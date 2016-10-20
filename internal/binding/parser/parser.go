@@ -3,6 +3,7 @@ package parser
 import (
 	"encoding/xml"
 	"fmt"
+	"os"
 	"path/filepath"
 
 	"github.com/therecipe/qt/internal/utils"
@@ -48,10 +49,21 @@ func GetModule(s string) *Module {
 	}
 
 	var m = new(Module)
-	if utils.UsePkgConfig() {
-		xml.Unmarshal([]byte(utils.Load(filepath.Join(utils.QT_DOC_DIR(), fmt.Sprintf("qt%v", s), fmt.Sprintf("qt%v.index", s)))), &m)
-	} else {
-		xml.Unmarshal([]byte(utils.Load(filepath.Join(utils.QT_DIR(), "Docs", "Qt-5.7", fmt.Sprintf("qt%v", s), fmt.Sprintf("qt%v.index", s)))), &m)
+	switch {
+	case utils.UseHomeBrew():
+		{
+			xml.Unmarshal([]byte(utils.Load(filepath.Join(os.Getenv("GOPATH"), "src", "github.com", "therecipe", "qt", "internal", "binding", "files", "docs", "5.7.0", fmt.Sprintf("qt%v.index", s)))), &m)
+		}
+
+	case utils.UsePkgConfig():
+		{
+			xml.Unmarshal([]byte(utils.Load(filepath.Join(utils.QT_DOC_DIR(), fmt.Sprintf("qt%v", s), fmt.Sprintf("qt%v.index", s)))), &m)
+		}
+
+	default:
+		{
+			xml.Unmarshal([]byte(utils.Load(filepath.Join(utils.QT_DIR(), "Docs", "Qt-5.7", fmt.Sprintf("qt%v", s), fmt.Sprintf("qt%v.index", s)))), &m)
+		}
 	}
 
 	m.Prepare()

@@ -55,8 +55,6 @@ func NewQMaskGeneratorFromPointer(ptr unsafe.Pointer) *QMaskGenerator {
 	return n
 }
 func NewQMaskGenerator(parent core.QObject_ITF) *QMaskGenerator {
-	defer qt.Recovering("QMaskGenerator::QMaskGenerator")
-
 	var tmpValue = NewQMaskGeneratorFromPointer(C.QMaskGenerator_NewQMaskGenerator(core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
@@ -66,7 +64,6 @@ func NewQMaskGenerator(parent core.QObject_ITF) *QMaskGenerator {
 
 //export callbackQMaskGenerator_NextMask
 func callbackQMaskGenerator_NextMask(ptr unsafe.Pointer) C.uint {
-	defer qt.Recovering("callback QMaskGenerator::nextMask")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMaskGenerator::nextMask"); signal != nil {
 		return C.uint(uint32(signal.(func() uint)()))
@@ -76,8 +73,6 @@ func callbackQMaskGenerator_NextMask(ptr unsafe.Pointer) C.uint {
 }
 
 func (ptr *QMaskGenerator) ConnectNextMask(f func() uint) {
-	defer qt.Recovering("connect QMaskGenerator::nextMask")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QMaskGenerator::nextMask", f)
@@ -85,8 +80,6 @@ func (ptr *QMaskGenerator) ConnectNextMask(f func() uint) {
 }
 
 func (ptr *QMaskGenerator) DisconnectNextMask() {
-	defer qt.Recovering("disconnect QMaskGenerator::nextMask")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QMaskGenerator::nextMask")
@@ -94,8 +87,6 @@ func (ptr *QMaskGenerator) DisconnectNextMask() {
 }
 
 func (ptr *QMaskGenerator) NextMask() uint {
-	defer qt.Recovering("QMaskGenerator::nextMask")
-
 	if ptr.Pointer() != nil {
 		return uint(uint32(C.QMaskGenerator_NextMask(ptr.Pointer())))
 	}
@@ -104,7 +95,6 @@ func (ptr *QMaskGenerator) NextMask() uint {
 
 //export callbackQMaskGenerator_Seed
 func callbackQMaskGenerator_Seed(ptr unsafe.Pointer) C.char {
-	defer qt.Recovering("callback QMaskGenerator::seed")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMaskGenerator::seed"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func() bool)())))
@@ -114,8 +104,6 @@ func callbackQMaskGenerator_Seed(ptr unsafe.Pointer) C.char {
 }
 
 func (ptr *QMaskGenerator) ConnectSeed(f func() bool) {
-	defer qt.Recovering("connect QMaskGenerator::seed")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QMaskGenerator::seed", f)
@@ -123,8 +111,6 @@ func (ptr *QMaskGenerator) ConnectSeed(f func() bool) {
 }
 
 func (ptr *QMaskGenerator) DisconnectSeed() {
-	defer qt.Recovering("disconnect QMaskGenerator::seed")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QMaskGenerator::seed")
@@ -132,8 +118,6 @@ func (ptr *QMaskGenerator) DisconnectSeed() {
 }
 
 func (ptr *QMaskGenerator) Seed() bool {
-	defer qt.Recovering("QMaskGenerator::seed")
-
 	if ptr.Pointer() != nil {
 		return C.QMaskGenerator_Seed(ptr.Pointer()) != 0
 	}
@@ -142,7 +126,6 @@ func (ptr *QMaskGenerator) Seed() bool {
 
 //export callbackQMaskGenerator_DestroyQMaskGenerator
 func callbackQMaskGenerator_DestroyQMaskGenerator(ptr unsafe.Pointer) {
-	defer qt.Recovering("callback QMaskGenerator::~QMaskGenerator")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMaskGenerator::~QMaskGenerator"); signal != nil {
 		signal.(func())()
@@ -152,8 +135,6 @@ func callbackQMaskGenerator_DestroyQMaskGenerator(ptr unsafe.Pointer) {
 }
 
 func (ptr *QMaskGenerator) ConnectDestroyQMaskGenerator(f func()) {
-	defer qt.Recovering("connect QMaskGenerator::~QMaskGenerator")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QMaskGenerator::~QMaskGenerator", f)
@@ -161,8 +142,6 @@ func (ptr *QMaskGenerator) ConnectDestroyQMaskGenerator(f func()) {
 }
 
 func (ptr *QMaskGenerator) DisconnectDestroyQMaskGenerator() {
-	defer qt.Recovering("disconnect QMaskGenerator::~QMaskGenerator")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QMaskGenerator::~QMaskGenerator")
@@ -170,8 +149,6 @@ func (ptr *QMaskGenerator) DisconnectDestroyQMaskGenerator() {
 }
 
 func (ptr *QMaskGenerator) DestroyQMaskGenerator() {
-	defer qt.Recovering("QMaskGenerator::~QMaskGenerator")
-
 	if ptr.Pointer() != nil {
 		C.QMaskGenerator_DestroyQMaskGenerator(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
@@ -180,8 +157,6 @@ func (ptr *QMaskGenerator) DestroyQMaskGenerator() {
 }
 
 func (ptr *QMaskGenerator) DestroyQMaskGeneratorDefault() {
-	defer qt.Recovering("QMaskGenerator::~QMaskGenerator")
-
 	if ptr.Pointer() != nil {
 		C.QMaskGenerator_DestroyQMaskGeneratorDefault(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
@@ -191,7 +166,6 @@ func (ptr *QMaskGenerator) DestroyQMaskGeneratorDefault() {
 
 //export callbackQMaskGenerator_TimerEvent
 func callbackQMaskGenerator_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	defer qt.Recovering("callback QMaskGenerator::timerEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMaskGenerator::timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
@@ -201,8 +175,6 @@ func callbackQMaskGenerator_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer)
 }
 
 func (ptr *QMaskGenerator) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
-	defer qt.Recovering("connect QMaskGenerator::timerEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QMaskGenerator::timerEvent", f)
@@ -210,8 +182,6 @@ func (ptr *QMaskGenerator) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
 }
 
 func (ptr *QMaskGenerator) DisconnectTimerEvent() {
-	defer qt.Recovering("disconnect QMaskGenerator::timerEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QMaskGenerator::timerEvent")
@@ -219,16 +189,12 @@ func (ptr *QMaskGenerator) DisconnectTimerEvent() {
 }
 
 func (ptr *QMaskGenerator) TimerEvent(event core.QTimerEvent_ITF) {
-	defer qt.Recovering("QMaskGenerator::timerEvent")
-
 	if ptr.Pointer() != nil {
 		C.QMaskGenerator_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
 	}
 }
 
 func (ptr *QMaskGenerator) TimerEventDefault(event core.QTimerEvent_ITF) {
-	defer qt.Recovering("QMaskGenerator::timerEvent")
-
 	if ptr.Pointer() != nil {
 		C.QMaskGenerator_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
 	}
@@ -236,7 +202,6 @@ func (ptr *QMaskGenerator) TimerEventDefault(event core.QTimerEvent_ITF) {
 
 //export callbackQMaskGenerator_ChildEvent
 func callbackQMaskGenerator_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	defer qt.Recovering("callback QMaskGenerator::childEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMaskGenerator::childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
@@ -246,8 +211,6 @@ func callbackQMaskGenerator_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer)
 }
 
 func (ptr *QMaskGenerator) ConnectChildEvent(f func(event *core.QChildEvent)) {
-	defer qt.Recovering("connect QMaskGenerator::childEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QMaskGenerator::childEvent", f)
@@ -255,8 +218,6 @@ func (ptr *QMaskGenerator) ConnectChildEvent(f func(event *core.QChildEvent)) {
 }
 
 func (ptr *QMaskGenerator) DisconnectChildEvent() {
-	defer qt.Recovering("disconnect QMaskGenerator::childEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QMaskGenerator::childEvent")
@@ -264,16 +225,12 @@ func (ptr *QMaskGenerator) DisconnectChildEvent() {
 }
 
 func (ptr *QMaskGenerator) ChildEvent(event core.QChildEvent_ITF) {
-	defer qt.Recovering("QMaskGenerator::childEvent")
-
 	if ptr.Pointer() != nil {
 		C.QMaskGenerator_ChildEvent(ptr.Pointer(), core.PointerFromQChildEvent(event))
 	}
 }
 
 func (ptr *QMaskGenerator) ChildEventDefault(event core.QChildEvent_ITF) {
-	defer qt.Recovering("QMaskGenerator::childEvent")
-
 	if ptr.Pointer() != nil {
 		C.QMaskGenerator_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
 	}
@@ -281,7 +238,6 @@ func (ptr *QMaskGenerator) ChildEventDefault(event core.QChildEvent_ITF) {
 
 //export callbackQMaskGenerator_ConnectNotify
 func callbackQMaskGenerator_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-	defer qt.Recovering("callback QMaskGenerator::connectNotify")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMaskGenerator::connectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
@@ -291,8 +247,6 @@ func callbackQMaskGenerator_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointe
 }
 
 func (ptr *QMaskGenerator) ConnectConnectNotify(f func(sign *core.QMetaMethod)) {
-	defer qt.Recovering("connect QMaskGenerator::connectNotify")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QMaskGenerator::connectNotify", f)
@@ -300,8 +254,6 @@ func (ptr *QMaskGenerator) ConnectConnectNotify(f func(sign *core.QMetaMethod)) 
 }
 
 func (ptr *QMaskGenerator) DisconnectConnectNotify() {
-	defer qt.Recovering("disconnect QMaskGenerator::connectNotify")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QMaskGenerator::connectNotify")
@@ -309,16 +261,12 @@ func (ptr *QMaskGenerator) DisconnectConnectNotify() {
 }
 
 func (ptr *QMaskGenerator) ConnectNotify(sign core.QMetaMethod_ITF) {
-	defer qt.Recovering("QMaskGenerator::connectNotify")
-
 	if ptr.Pointer() != nil {
 		C.QMaskGenerator_ConnectNotify(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
 	}
 }
 
 func (ptr *QMaskGenerator) ConnectNotifyDefault(sign core.QMetaMethod_ITF) {
-	defer qt.Recovering("QMaskGenerator::connectNotify")
-
 	if ptr.Pointer() != nil {
 		C.QMaskGenerator_ConnectNotifyDefault(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
 	}
@@ -326,7 +274,6 @@ func (ptr *QMaskGenerator) ConnectNotifyDefault(sign core.QMetaMethod_ITF) {
 
 //export callbackQMaskGenerator_CustomEvent
 func callbackQMaskGenerator_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	defer qt.Recovering("callback QMaskGenerator::customEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMaskGenerator::customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
@@ -336,8 +283,6 @@ func callbackQMaskGenerator_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer
 }
 
 func (ptr *QMaskGenerator) ConnectCustomEvent(f func(event *core.QEvent)) {
-	defer qt.Recovering("connect QMaskGenerator::customEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QMaskGenerator::customEvent", f)
@@ -345,8 +290,6 @@ func (ptr *QMaskGenerator) ConnectCustomEvent(f func(event *core.QEvent)) {
 }
 
 func (ptr *QMaskGenerator) DisconnectCustomEvent() {
-	defer qt.Recovering("disconnect QMaskGenerator::customEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QMaskGenerator::customEvent")
@@ -354,16 +297,12 @@ func (ptr *QMaskGenerator) DisconnectCustomEvent() {
 }
 
 func (ptr *QMaskGenerator) CustomEvent(event core.QEvent_ITF) {
-	defer qt.Recovering("QMaskGenerator::customEvent")
-
 	if ptr.Pointer() != nil {
 		C.QMaskGenerator_CustomEvent(ptr.Pointer(), core.PointerFromQEvent(event))
 	}
 }
 
 func (ptr *QMaskGenerator) CustomEventDefault(event core.QEvent_ITF) {
-	defer qt.Recovering("QMaskGenerator::customEvent")
-
 	if ptr.Pointer() != nil {
 		C.QMaskGenerator_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
 	}
@@ -371,8 +310,6 @@ func (ptr *QMaskGenerator) CustomEventDefault(event core.QEvent_ITF) {
 
 //export callbackQMaskGenerator_DeleteLater
 func callbackQMaskGenerator_DeleteLater(ptr unsafe.Pointer) {
-	defer qt.Recovering("callback QMaskGenerator::deleteLater")
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMaskGenerator::deleteLater"); signal != nil {
 		signal.(func())()
 	} else {
@@ -381,8 +318,6 @@ func callbackQMaskGenerator_DeleteLater(ptr unsafe.Pointer) {
 }
 
 func (ptr *QMaskGenerator) ConnectDeleteLater(f func()) {
-	defer qt.Recovering("connect QMaskGenerator::deleteLater")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QMaskGenerator::deleteLater", f)
@@ -390,8 +325,6 @@ func (ptr *QMaskGenerator) ConnectDeleteLater(f func()) {
 }
 
 func (ptr *QMaskGenerator) DisconnectDeleteLater() {
-	defer qt.Recovering("disconnect QMaskGenerator::deleteLater")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QMaskGenerator::deleteLater")
@@ -399,8 +332,6 @@ func (ptr *QMaskGenerator) DisconnectDeleteLater() {
 }
 
 func (ptr *QMaskGenerator) DeleteLater() {
-	defer qt.Recovering("QMaskGenerator::deleteLater")
-
 	if ptr.Pointer() != nil {
 		C.QMaskGenerator_DeleteLater(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
@@ -409,8 +340,6 @@ func (ptr *QMaskGenerator) DeleteLater() {
 }
 
 func (ptr *QMaskGenerator) DeleteLaterDefault() {
-	defer qt.Recovering("QMaskGenerator::deleteLater")
-
 	if ptr.Pointer() != nil {
 		C.QMaskGenerator_DeleteLaterDefault(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
@@ -420,7 +349,6 @@ func (ptr *QMaskGenerator) DeleteLaterDefault() {
 
 //export callbackQMaskGenerator_DisconnectNotify
 func callbackQMaskGenerator_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-	defer qt.Recovering("callback QMaskGenerator::disconnectNotify")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMaskGenerator::disconnectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
@@ -430,8 +358,6 @@ func callbackQMaskGenerator_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Poi
 }
 
 func (ptr *QMaskGenerator) ConnectDisconnectNotify(f func(sign *core.QMetaMethod)) {
-	defer qt.Recovering("connect QMaskGenerator::disconnectNotify")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QMaskGenerator::disconnectNotify", f)
@@ -439,8 +365,6 @@ func (ptr *QMaskGenerator) ConnectDisconnectNotify(f func(sign *core.QMetaMethod
 }
 
 func (ptr *QMaskGenerator) DisconnectDisconnectNotify() {
-	defer qt.Recovering("disconnect QMaskGenerator::disconnectNotify")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QMaskGenerator::disconnectNotify")
@@ -448,16 +372,12 @@ func (ptr *QMaskGenerator) DisconnectDisconnectNotify() {
 }
 
 func (ptr *QMaskGenerator) DisconnectNotify(sign core.QMetaMethod_ITF) {
-	defer qt.Recovering("QMaskGenerator::disconnectNotify")
-
 	if ptr.Pointer() != nil {
 		C.QMaskGenerator_DisconnectNotify(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
 	}
 }
 
 func (ptr *QMaskGenerator) DisconnectNotifyDefault(sign core.QMetaMethod_ITF) {
-	defer qt.Recovering("QMaskGenerator::disconnectNotify")
-
 	if ptr.Pointer() != nil {
 		C.QMaskGenerator_DisconnectNotifyDefault(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
 	}
@@ -465,7 +385,6 @@ func (ptr *QMaskGenerator) DisconnectNotifyDefault(sign core.QMetaMethod_ITF) {
 
 //export callbackQMaskGenerator_Event
 func callbackQMaskGenerator_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
-	defer qt.Recovering("callback QMaskGenerator::event")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMaskGenerator::event"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
@@ -475,8 +394,6 @@ func callbackQMaskGenerator_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
 }
 
 func (ptr *QMaskGenerator) ConnectEvent(f func(e *core.QEvent) bool) {
-	defer qt.Recovering("connect QMaskGenerator::event")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QMaskGenerator::event", f)
@@ -484,8 +401,6 @@ func (ptr *QMaskGenerator) ConnectEvent(f func(e *core.QEvent) bool) {
 }
 
 func (ptr *QMaskGenerator) DisconnectEvent() {
-	defer qt.Recovering("disconnect QMaskGenerator::event")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QMaskGenerator::event")
@@ -493,8 +408,6 @@ func (ptr *QMaskGenerator) DisconnectEvent() {
 }
 
 func (ptr *QMaskGenerator) Event(e core.QEvent_ITF) bool {
-	defer qt.Recovering("QMaskGenerator::event")
-
 	if ptr.Pointer() != nil {
 		return C.QMaskGenerator_Event(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
 	}
@@ -502,8 +415,6 @@ func (ptr *QMaskGenerator) Event(e core.QEvent_ITF) bool {
 }
 
 func (ptr *QMaskGenerator) EventDefault(e core.QEvent_ITF) bool {
-	defer qt.Recovering("QMaskGenerator::event")
-
 	if ptr.Pointer() != nil {
 		return C.QMaskGenerator_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
 	}
@@ -512,7 +423,6 @@ func (ptr *QMaskGenerator) EventDefault(e core.QEvent_ITF) bool {
 
 //export callbackQMaskGenerator_EventFilter
 func callbackQMaskGenerator_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-	defer qt.Recovering("callback QMaskGenerator::eventFilter")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMaskGenerator::eventFilter"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
@@ -522,8 +432,6 @@ func callbackQMaskGenerator_EventFilter(ptr unsafe.Pointer, watched unsafe.Point
 }
 
 func (ptr *QMaskGenerator) ConnectEventFilter(f func(watched *core.QObject, event *core.QEvent) bool) {
-	defer qt.Recovering("connect QMaskGenerator::eventFilter")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QMaskGenerator::eventFilter", f)
@@ -531,8 +439,6 @@ func (ptr *QMaskGenerator) ConnectEventFilter(f func(watched *core.QObject, even
 }
 
 func (ptr *QMaskGenerator) DisconnectEventFilter() {
-	defer qt.Recovering("disconnect QMaskGenerator::eventFilter")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QMaskGenerator::eventFilter")
@@ -540,8 +446,6 @@ func (ptr *QMaskGenerator) DisconnectEventFilter() {
 }
 
 func (ptr *QMaskGenerator) EventFilter(watched core.QObject_ITF, event core.QEvent_ITF) bool {
-	defer qt.Recovering("QMaskGenerator::eventFilter")
-
 	if ptr.Pointer() != nil {
 		return C.QMaskGenerator_EventFilter(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
 	}
@@ -549,8 +453,6 @@ func (ptr *QMaskGenerator) EventFilter(watched core.QObject_ITF, event core.QEve
 }
 
 func (ptr *QMaskGenerator) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
-	defer qt.Recovering("QMaskGenerator::eventFilter")
-
 	if ptr.Pointer() != nil {
 		return C.QMaskGenerator_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
 	}
@@ -559,7 +461,6 @@ func (ptr *QMaskGenerator) EventFilterDefault(watched core.QObject_ITF, event co
 
 //export callbackQMaskGenerator_MetaObject
 func callbackQMaskGenerator_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-	defer qt.Recovering("callback QMaskGenerator::metaObject")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMaskGenerator::metaObject"); signal != nil {
 		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
@@ -569,8 +470,6 @@ func callbackQMaskGenerator_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
 }
 
 func (ptr *QMaskGenerator) ConnectMetaObject(f func() *core.QMetaObject) {
-	defer qt.Recovering("connect QMaskGenerator::metaObject")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QMaskGenerator::metaObject", f)
@@ -578,8 +477,6 @@ func (ptr *QMaskGenerator) ConnectMetaObject(f func() *core.QMetaObject) {
 }
 
 func (ptr *QMaskGenerator) DisconnectMetaObject() {
-	defer qt.Recovering("disconnect QMaskGenerator::metaObject")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QMaskGenerator::metaObject")
@@ -587,8 +484,6 @@ func (ptr *QMaskGenerator) DisconnectMetaObject() {
 }
 
 func (ptr *QMaskGenerator) MetaObject() *core.QMetaObject {
-	defer qt.Recovering("QMaskGenerator::metaObject")
-
 	if ptr.Pointer() != nil {
 		return core.NewQMetaObjectFromPointer(C.QMaskGenerator_MetaObject(ptr.Pointer()))
 	}
@@ -596,8 +491,6 @@ func (ptr *QMaskGenerator) MetaObject() *core.QMetaObject {
 }
 
 func (ptr *QMaskGenerator) MetaObjectDefault() *core.QMetaObject {
-	defer qt.Recovering("QMaskGenerator::metaObject")
-
 	if ptr.Pointer() != nil {
 		return core.NewQMetaObjectFromPointer(C.QMaskGenerator_MetaObjectDefault(ptr.Pointer()))
 	}
@@ -643,8 +536,6 @@ func NewQWebSocketFromPointer(ptr unsafe.Pointer) *QWebSocket {
 	return n
 }
 func (ptr *QWebSocket) Abort() {
-	defer qt.Recovering("QWebSocket::abort")
-
 	if ptr.Pointer() != nil {
 		C.QWebSocket_Abort(ptr.Pointer())
 	}
@@ -652,7 +543,6 @@ func (ptr *QWebSocket) Abort() {
 
 //export callbackQWebSocket_AboutToClose
 func callbackQWebSocket_AboutToClose(ptr unsafe.Pointer) {
-	defer qt.Recovering("callback QWebSocket::aboutToClose")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebSocket::aboutToClose"); signal != nil {
 		signal.(func())()
@@ -661,8 +551,6 @@ func callbackQWebSocket_AboutToClose(ptr unsafe.Pointer) {
 }
 
 func (ptr *QWebSocket) ConnectAboutToClose(f func()) {
-	defer qt.Recovering("connect QWebSocket::aboutToClose")
-
 	if ptr.Pointer() != nil {
 		C.QWebSocket_ConnectAboutToClose(ptr.Pointer())
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QWebSocket::aboutToClose", f)
@@ -670,8 +558,6 @@ func (ptr *QWebSocket) ConnectAboutToClose(f func()) {
 }
 
 func (ptr *QWebSocket) DisconnectAboutToClose() {
-	defer qt.Recovering("disconnect QWebSocket::aboutToClose")
-
 	if ptr.Pointer() != nil {
 		C.QWebSocket_DisconnectAboutToClose(ptr.Pointer())
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QWebSocket::aboutToClose")
@@ -679,8 +565,6 @@ func (ptr *QWebSocket) DisconnectAboutToClose() {
 }
 
 func (ptr *QWebSocket) AboutToClose() {
-	defer qt.Recovering("QWebSocket::aboutToClose")
-
 	if ptr.Pointer() != nil {
 		C.QWebSocket_AboutToClose(ptr.Pointer())
 	}
@@ -688,7 +572,6 @@ func (ptr *QWebSocket) AboutToClose() {
 
 //export callbackQWebSocket_BinaryFrameReceived
 func callbackQWebSocket_BinaryFrameReceived(ptr unsafe.Pointer, frame *C.char, isLastFrame C.char) {
-	defer qt.Recovering("callback QWebSocket::binaryFrameReceived")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebSocket::binaryFrameReceived"); signal != nil {
 		signal.(func(string, bool))(qt.HexDecodeToString(C.GoString(frame)), int8(isLastFrame) != 0)
@@ -697,8 +580,6 @@ func callbackQWebSocket_BinaryFrameReceived(ptr unsafe.Pointer, frame *C.char, i
 }
 
 func (ptr *QWebSocket) ConnectBinaryFrameReceived(f func(frame string, isLastFrame bool)) {
-	defer qt.Recovering("connect QWebSocket::binaryFrameReceived")
-
 	if ptr.Pointer() != nil {
 		C.QWebSocket_ConnectBinaryFrameReceived(ptr.Pointer())
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QWebSocket::binaryFrameReceived", f)
@@ -706,8 +587,6 @@ func (ptr *QWebSocket) ConnectBinaryFrameReceived(f func(frame string, isLastFra
 }
 
 func (ptr *QWebSocket) DisconnectBinaryFrameReceived() {
-	defer qt.Recovering("disconnect QWebSocket::binaryFrameReceived")
-
 	if ptr.Pointer() != nil {
 		C.QWebSocket_DisconnectBinaryFrameReceived(ptr.Pointer())
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QWebSocket::binaryFrameReceived")
@@ -715,8 +594,6 @@ func (ptr *QWebSocket) DisconnectBinaryFrameReceived() {
 }
 
 func (ptr *QWebSocket) BinaryFrameReceived(frame string, isLastFrame bool) {
-	defer qt.Recovering("QWebSocket::binaryFrameReceived")
-
 	if ptr.Pointer() != nil {
 		var frameC = C.CString(hex.EncodeToString([]byte(frame)))
 		defer C.free(unsafe.Pointer(frameC))
@@ -726,7 +603,6 @@ func (ptr *QWebSocket) BinaryFrameReceived(frame string, isLastFrame bool) {
 
 //export callbackQWebSocket_BinaryMessageReceived
 func callbackQWebSocket_BinaryMessageReceived(ptr unsafe.Pointer, message *C.char) {
-	defer qt.Recovering("callback QWebSocket::binaryMessageReceived")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebSocket::binaryMessageReceived"); signal != nil {
 		signal.(func(string))(qt.HexDecodeToString(C.GoString(message)))
@@ -735,8 +611,6 @@ func callbackQWebSocket_BinaryMessageReceived(ptr unsafe.Pointer, message *C.cha
 }
 
 func (ptr *QWebSocket) ConnectBinaryMessageReceived(f func(message string)) {
-	defer qt.Recovering("connect QWebSocket::binaryMessageReceived")
-
 	if ptr.Pointer() != nil {
 		C.QWebSocket_ConnectBinaryMessageReceived(ptr.Pointer())
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QWebSocket::binaryMessageReceived", f)
@@ -744,8 +618,6 @@ func (ptr *QWebSocket) ConnectBinaryMessageReceived(f func(message string)) {
 }
 
 func (ptr *QWebSocket) DisconnectBinaryMessageReceived() {
-	defer qt.Recovering("disconnect QWebSocket::binaryMessageReceived")
-
 	if ptr.Pointer() != nil {
 		C.QWebSocket_DisconnectBinaryMessageReceived(ptr.Pointer())
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QWebSocket::binaryMessageReceived")
@@ -753,8 +625,6 @@ func (ptr *QWebSocket) DisconnectBinaryMessageReceived() {
 }
 
 func (ptr *QWebSocket) BinaryMessageReceived(message string) {
-	defer qt.Recovering("QWebSocket::binaryMessageReceived")
-
 	if ptr.Pointer() != nil {
 		var messageC = C.CString(hex.EncodeToString([]byte(message)))
 		defer C.free(unsafe.Pointer(messageC))
@@ -764,7 +634,6 @@ func (ptr *QWebSocket) BinaryMessageReceived(message string) {
 
 //export callbackQWebSocket_BytesWritten
 func callbackQWebSocket_BytesWritten(ptr unsafe.Pointer, bytes C.longlong) {
-	defer qt.Recovering("callback QWebSocket::bytesWritten")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebSocket::bytesWritten"); signal != nil {
 		signal.(func(int64))(int64(bytes))
@@ -773,8 +642,6 @@ func callbackQWebSocket_BytesWritten(ptr unsafe.Pointer, bytes C.longlong) {
 }
 
 func (ptr *QWebSocket) ConnectBytesWritten(f func(bytes int64)) {
-	defer qt.Recovering("connect QWebSocket::bytesWritten")
-
 	if ptr.Pointer() != nil {
 		C.QWebSocket_ConnectBytesWritten(ptr.Pointer())
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QWebSocket::bytesWritten", f)
@@ -782,8 +649,6 @@ func (ptr *QWebSocket) ConnectBytesWritten(f func(bytes int64)) {
 }
 
 func (ptr *QWebSocket) DisconnectBytesWritten() {
-	defer qt.Recovering("disconnect QWebSocket::bytesWritten")
-
 	if ptr.Pointer() != nil {
 		C.QWebSocket_DisconnectBytesWritten(ptr.Pointer())
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QWebSocket::bytesWritten")
@@ -791,16 +656,12 @@ func (ptr *QWebSocket) DisconnectBytesWritten() {
 }
 
 func (ptr *QWebSocket) BytesWritten(bytes int64) {
-	defer qt.Recovering("QWebSocket::bytesWritten")
-
 	if ptr.Pointer() != nil {
 		C.QWebSocket_BytesWritten(ptr.Pointer(), C.longlong(bytes))
 	}
 }
 
 func (ptr *QWebSocket) CloseReason() string {
-	defer qt.Recovering("QWebSocket::closeReason")
-
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QWebSocket_CloseReason(ptr.Pointer()))
 	}
@@ -809,7 +670,6 @@ func (ptr *QWebSocket) CloseReason() string {
 
 //export callbackQWebSocket_Connected
 func callbackQWebSocket_Connected(ptr unsafe.Pointer) {
-	defer qt.Recovering("callback QWebSocket::connected")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebSocket::connected"); signal != nil {
 		signal.(func())()
@@ -818,8 +678,6 @@ func callbackQWebSocket_Connected(ptr unsafe.Pointer) {
 }
 
 func (ptr *QWebSocket) ConnectConnected(f func()) {
-	defer qt.Recovering("connect QWebSocket::connected")
-
 	if ptr.Pointer() != nil {
 		C.QWebSocket_ConnectConnected(ptr.Pointer())
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QWebSocket::connected", f)
@@ -827,8 +685,6 @@ func (ptr *QWebSocket) ConnectConnected(f func()) {
 }
 
 func (ptr *QWebSocket) DisconnectConnected() {
-	defer qt.Recovering("disconnect QWebSocket::connected")
-
 	if ptr.Pointer() != nil {
 		C.QWebSocket_DisconnectConnected(ptr.Pointer())
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QWebSocket::connected")
@@ -836,8 +692,6 @@ func (ptr *QWebSocket) DisconnectConnected() {
 }
 
 func (ptr *QWebSocket) Connected() {
-	defer qt.Recovering("QWebSocket::connected")
-
 	if ptr.Pointer() != nil {
 		C.QWebSocket_Connected(ptr.Pointer())
 	}
@@ -845,7 +699,6 @@ func (ptr *QWebSocket) Connected() {
 
 //export callbackQWebSocket_Disconnected
 func callbackQWebSocket_Disconnected(ptr unsafe.Pointer) {
-	defer qt.Recovering("callback QWebSocket::disconnected")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebSocket::disconnected"); signal != nil {
 		signal.(func())()
@@ -854,8 +707,6 @@ func callbackQWebSocket_Disconnected(ptr unsafe.Pointer) {
 }
 
 func (ptr *QWebSocket) ConnectDisconnected(f func()) {
-	defer qt.Recovering("connect QWebSocket::disconnected")
-
 	if ptr.Pointer() != nil {
 		C.QWebSocket_ConnectDisconnected(ptr.Pointer())
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QWebSocket::disconnected", f)
@@ -863,8 +714,6 @@ func (ptr *QWebSocket) ConnectDisconnected(f func()) {
 }
 
 func (ptr *QWebSocket) DisconnectDisconnected() {
-	defer qt.Recovering("disconnect QWebSocket::disconnected")
-
 	if ptr.Pointer() != nil {
 		C.QWebSocket_DisconnectDisconnected(ptr.Pointer())
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QWebSocket::disconnected")
@@ -872,8 +721,6 @@ func (ptr *QWebSocket) DisconnectDisconnected() {
 }
 
 func (ptr *QWebSocket) Disconnected() {
-	defer qt.Recovering("QWebSocket::disconnected")
-
 	if ptr.Pointer() != nil {
 		C.QWebSocket_Disconnected(ptr.Pointer())
 	}
@@ -881,7 +728,6 @@ func (ptr *QWebSocket) Disconnected() {
 
 //export callbackQWebSocket_Error2
 func callbackQWebSocket_Error2(ptr unsafe.Pointer, error C.longlong) {
-	defer qt.Recovering("callback QWebSocket::error")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebSocket::error2"); signal != nil {
 		signal.(func(network.QAbstractSocket__SocketError))(network.QAbstractSocket__SocketError(error))
@@ -890,8 +736,6 @@ func callbackQWebSocket_Error2(ptr unsafe.Pointer, error C.longlong) {
 }
 
 func (ptr *QWebSocket) ConnectError2(f func(error network.QAbstractSocket__SocketError)) {
-	defer qt.Recovering("connect QWebSocket::error")
-
 	if ptr.Pointer() != nil {
 		C.QWebSocket_ConnectError2(ptr.Pointer())
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QWebSocket::error2", f)
@@ -899,8 +743,6 @@ func (ptr *QWebSocket) ConnectError2(f func(error network.QAbstractSocket__Socke
 }
 
 func (ptr *QWebSocket) DisconnectError2() {
-	defer qt.Recovering("disconnect QWebSocket::error")
-
 	if ptr.Pointer() != nil {
 		C.QWebSocket_DisconnectError2(ptr.Pointer())
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QWebSocket::error2")
@@ -908,16 +750,12 @@ func (ptr *QWebSocket) DisconnectError2() {
 }
 
 func (ptr *QWebSocket) Error2(error network.QAbstractSocket__SocketError) {
-	defer qt.Recovering("QWebSocket::error")
-
 	if ptr.Pointer() != nil {
 		C.QWebSocket_Error2(ptr.Pointer(), C.longlong(error))
 	}
 }
 
 func (ptr *QWebSocket) Error() network.QAbstractSocket__SocketError {
-	defer qt.Recovering("QWebSocket::error")
-
 	if ptr.Pointer() != nil {
 		return network.QAbstractSocket__SocketError(C.QWebSocket_Error(ptr.Pointer()))
 	}
@@ -925,8 +763,6 @@ func (ptr *QWebSocket) Error() network.QAbstractSocket__SocketError {
 }
 
 func (ptr *QWebSocket) ErrorString() string {
-	defer qt.Recovering("QWebSocket::errorString")
-
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QWebSocket_ErrorString(ptr.Pointer()))
 	}
@@ -934,8 +770,6 @@ func (ptr *QWebSocket) ErrorString() string {
 }
 
 func (ptr *QWebSocket) Flush() bool {
-	defer qt.Recovering("QWebSocket::flush")
-
 	if ptr.Pointer() != nil {
 		return C.QWebSocket_Flush(ptr.Pointer()) != 0
 	}
@@ -944,8 +778,6 @@ func (ptr *QWebSocket) Flush() bool {
 
 //export callbackQWebSocket_IgnoreSslErrors
 func callbackQWebSocket_IgnoreSslErrors(ptr unsafe.Pointer) {
-	defer qt.Recovering("callback QWebSocket::ignoreSslErrors")
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebSocket::ignoreSslErrors"); signal != nil {
 		signal.(func())()
 	}
@@ -953,8 +785,6 @@ func callbackQWebSocket_IgnoreSslErrors(ptr unsafe.Pointer) {
 }
 
 func (ptr *QWebSocket) ConnectIgnoreSslErrors(f func()) {
-	defer qt.Recovering("connect QWebSocket::ignoreSslErrors")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QWebSocket::ignoreSslErrors", f)
@@ -962,8 +792,6 @@ func (ptr *QWebSocket) ConnectIgnoreSslErrors(f func()) {
 }
 
 func (ptr *QWebSocket) DisconnectIgnoreSslErrors() {
-	defer qt.Recovering("disconnect QWebSocket::ignoreSslErrors")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QWebSocket::ignoreSslErrors")
@@ -971,16 +799,12 @@ func (ptr *QWebSocket) DisconnectIgnoreSslErrors() {
 }
 
 func (ptr *QWebSocket) IgnoreSslErrors() {
-	defer qt.Recovering("QWebSocket::ignoreSslErrors")
-
 	if ptr.Pointer() != nil {
 		C.QWebSocket_IgnoreSslErrors(ptr.Pointer())
 	}
 }
 
 func (ptr *QWebSocket) IsValid() bool {
-	defer qt.Recovering("QWebSocket::isValid")
-
 	if ptr.Pointer() != nil {
 		return C.QWebSocket_IsValid(ptr.Pointer()) != 0
 	}
@@ -988,8 +812,6 @@ func (ptr *QWebSocket) IsValid() bool {
 }
 
 func (ptr *QWebSocket) LocalAddress() *network.QHostAddress {
-	defer qt.Recovering("QWebSocket::localAddress")
-
 	if ptr.Pointer() != nil {
 		var tmpValue = network.NewQHostAddressFromPointer(C.QWebSocket_LocalAddress(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*network.QHostAddress).DestroyQHostAddress)
@@ -999,8 +821,6 @@ func (ptr *QWebSocket) LocalAddress() *network.QHostAddress {
 }
 
 func (ptr *QWebSocket) LocalPort() uint16 {
-	defer qt.Recovering("QWebSocket::localPort")
-
 	if ptr.Pointer() != nil {
 		return uint16(C.QWebSocket_LocalPort(ptr.Pointer()))
 	}
@@ -1008,8 +828,6 @@ func (ptr *QWebSocket) LocalPort() uint16 {
 }
 
 func (ptr *QWebSocket) MaskGenerator() *QMaskGenerator {
-	defer qt.Recovering("QWebSocket::maskGenerator")
-
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQMaskGeneratorFromPointer(C.QWebSocket_MaskGenerator(ptr.Pointer()))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
@@ -1022,8 +840,6 @@ func (ptr *QWebSocket) MaskGenerator() *QMaskGenerator {
 
 //export callbackQWebSocket_Open2
 func callbackQWebSocket_Open2(ptr unsafe.Pointer, request unsafe.Pointer) {
-	defer qt.Recovering("callback QWebSocket::open")
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebSocket::open2"); signal != nil {
 		signal.(func(*network.QNetworkRequest))(network.NewQNetworkRequestFromPointer(request))
 	}
@@ -1031,8 +847,6 @@ func callbackQWebSocket_Open2(ptr unsafe.Pointer, request unsafe.Pointer) {
 }
 
 func (ptr *QWebSocket) ConnectOpen2(f func(request *network.QNetworkRequest)) {
-	defer qt.Recovering("connect QWebSocket::open")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QWebSocket::open2", f)
@@ -1040,8 +854,6 @@ func (ptr *QWebSocket) ConnectOpen2(f func(request *network.QNetworkRequest)) {
 }
 
 func (ptr *QWebSocket) DisconnectOpen2(request network.QNetworkRequest_ITF) {
-	defer qt.Recovering("disconnect QWebSocket::open")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QWebSocket::open2")
@@ -1049,8 +861,6 @@ func (ptr *QWebSocket) DisconnectOpen2(request network.QNetworkRequest_ITF) {
 }
 
 func (ptr *QWebSocket) Open2(request network.QNetworkRequest_ITF) {
-	defer qt.Recovering("QWebSocket::open")
-
 	if ptr.Pointer() != nil {
 		C.QWebSocket_Open2(ptr.Pointer(), network.PointerFromQNetworkRequest(request))
 	}
@@ -1058,8 +868,6 @@ func (ptr *QWebSocket) Open2(request network.QNetworkRequest_ITF) {
 
 //export callbackQWebSocket_Open
 func callbackQWebSocket_Open(ptr unsafe.Pointer, url unsafe.Pointer) {
-	defer qt.Recovering("callback QWebSocket::open")
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebSocket::open"); signal != nil {
 		signal.(func(*core.QUrl))(core.NewQUrlFromPointer(url))
 	}
@@ -1067,8 +875,6 @@ func callbackQWebSocket_Open(ptr unsafe.Pointer, url unsafe.Pointer) {
 }
 
 func (ptr *QWebSocket) ConnectOpen(f func(url *core.QUrl)) {
-	defer qt.Recovering("connect QWebSocket::open")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QWebSocket::open", f)
@@ -1076,8 +882,6 @@ func (ptr *QWebSocket) ConnectOpen(f func(url *core.QUrl)) {
 }
 
 func (ptr *QWebSocket) DisconnectOpen(url core.QUrl_ITF) {
-	defer qt.Recovering("disconnect QWebSocket::open")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QWebSocket::open")
@@ -1085,16 +889,12 @@ func (ptr *QWebSocket) DisconnectOpen(url core.QUrl_ITF) {
 }
 
 func (ptr *QWebSocket) Open(url core.QUrl_ITF) {
-	defer qt.Recovering("QWebSocket::open")
-
 	if ptr.Pointer() != nil {
 		C.QWebSocket_Open(ptr.Pointer(), core.PointerFromQUrl(url))
 	}
 }
 
 func (ptr *QWebSocket) Origin() string {
-	defer qt.Recovering("QWebSocket::origin")
-
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QWebSocket_Origin(ptr.Pointer()))
 	}
@@ -1102,8 +902,6 @@ func (ptr *QWebSocket) Origin() string {
 }
 
 func (ptr *QWebSocket) PauseMode() network.QAbstractSocket__PauseMode {
-	defer qt.Recovering("QWebSocket::pauseMode")
-
 	if ptr.Pointer() != nil {
 		return network.QAbstractSocket__PauseMode(C.QWebSocket_PauseMode(ptr.Pointer()))
 	}
@@ -1111,8 +909,6 @@ func (ptr *QWebSocket) PauseMode() network.QAbstractSocket__PauseMode {
 }
 
 func (ptr *QWebSocket) PeerAddress() *network.QHostAddress {
-	defer qt.Recovering("QWebSocket::peerAddress")
-
 	if ptr.Pointer() != nil {
 		var tmpValue = network.NewQHostAddressFromPointer(C.QWebSocket_PeerAddress(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*network.QHostAddress).DestroyQHostAddress)
@@ -1122,8 +918,6 @@ func (ptr *QWebSocket) PeerAddress() *network.QHostAddress {
 }
 
 func (ptr *QWebSocket) PeerName() string {
-	defer qt.Recovering("QWebSocket::peerName")
-
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QWebSocket_PeerName(ptr.Pointer()))
 	}
@@ -1131,8 +925,6 @@ func (ptr *QWebSocket) PeerName() string {
 }
 
 func (ptr *QWebSocket) PeerPort() uint16 {
-	defer qt.Recovering("QWebSocket::peerPort")
-
 	if ptr.Pointer() != nil {
 		return uint16(C.QWebSocket_PeerPort(ptr.Pointer()))
 	}
@@ -1141,8 +933,6 @@ func (ptr *QWebSocket) PeerPort() uint16 {
 
 //export callbackQWebSocket_Ping
 func callbackQWebSocket_Ping(ptr unsafe.Pointer, payload *C.char) {
-	defer qt.Recovering("callback QWebSocket::ping")
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebSocket::ping"); signal != nil {
 		signal.(func(string))(qt.HexDecodeToString(C.GoString(payload)))
 	}
@@ -1150,8 +940,6 @@ func callbackQWebSocket_Ping(ptr unsafe.Pointer, payload *C.char) {
 }
 
 func (ptr *QWebSocket) ConnectPing(f func(payload string)) {
-	defer qt.Recovering("connect QWebSocket::ping")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QWebSocket::ping", f)
@@ -1159,8 +947,6 @@ func (ptr *QWebSocket) ConnectPing(f func(payload string)) {
 }
 
 func (ptr *QWebSocket) DisconnectPing(payload string) {
-	defer qt.Recovering("disconnect QWebSocket::ping")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QWebSocket::ping")
@@ -1168,8 +954,6 @@ func (ptr *QWebSocket) DisconnectPing(payload string) {
 }
 
 func (ptr *QWebSocket) Ping(payload string) {
-	defer qt.Recovering("QWebSocket::ping")
-
 	if ptr.Pointer() != nil {
 		var payloadC = C.CString(hex.EncodeToString([]byte(payload)))
 		defer C.free(unsafe.Pointer(payloadC))
@@ -1179,7 +963,6 @@ func (ptr *QWebSocket) Ping(payload string) {
 
 //export callbackQWebSocket_Pong
 func callbackQWebSocket_Pong(ptr unsafe.Pointer, elapsedTime C.ulonglong, payload *C.char) {
-	defer qt.Recovering("callback QWebSocket::pong")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebSocket::pong"); signal != nil {
 		signal.(func(uint64, string))(uint64(elapsedTime), qt.HexDecodeToString(C.GoString(payload)))
@@ -1188,8 +971,6 @@ func callbackQWebSocket_Pong(ptr unsafe.Pointer, elapsedTime C.ulonglong, payloa
 }
 
 func (ptr *QWebSocket) ConnectPong(f func(elapsedTime uint64, payload string)) {
-	defer qt.Recovering("connect QWebSocket::pong")
-
 	if ptr.Pointer() != nil {
 		C.QWebSocket_ConnectPong(ptr.Pointer())
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QWebSocket::pong", f)
@@ -1197,8 +978,6 @@ func (ptr *QWebSocket) ConnectPong(f func(elapsedTime uint64, payload string)) {
 }
 
 func (ptr *QWebSocket) DisconnectPong() {
-	defer qt.Recovering("disconnect QWebSocket::pong")
-
 	if ptr.Pointer() != nil {
 		C.QWebSocket_DisconnectPong(ptr.Pointer())
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QWebSocket::pong")
@@ -1206,8 +985,6 @@ func (ptr *QWebSocket) DisconnectPong() {
 }
 
 func (ptr *QWebSocket) Pong(elapsedTime uint64, payload string) {
-	defer qt.Recovering("QWebSocket::pong")
-
 	if ptr.Pointer() != nil {
 		var payloadC = C.CString(hex.EncodeToString([]byte(payload)))
 		defer C.free(unsafe.Pointer(payloadC))
@@ -1216,8 +993,6 @@ func (ptr *QWebSocket) Pong(elapsedTime uint64, payload string) {
 }
 
 func (ptr *QWebSocket) Proxy() *network.QNetworkProxy {
-	defer qt.Recovering("QWebSocket::proxy")
-
 	if ptr.Pointer() != nil {
 		var tmpValue = network.NewQNetworkProxyFromPointer(C.QWebSocket_Proxy(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*network.QNetworkProxy).DestroyQNetworkProxy)
@@ -1228,7 +1003,6 @@ func (ptr *QWebSocket) Proxy() *network.QNetworkProxy {
 
 //export callbackQWebSocket_ProxyAuthenticationRequired
 func callbackQWebSocket_ProxyAuthenticationRequired(ptr unsafe.Pointer, proxy unsafe.Pointer, authenticator unsafe.Pointer) {
-	defer qt.Recovering("callback QWebSocket::proxyAuthenticationRequired")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebSocket::proxyAuthenticationRequired"); signal != nil {
 		signal.(func(*network.QNetworkProxy, *network.QAuthenticator))(network.NewQNetworkProxyFromPointer(proxy), network.NewQAuthenticatorFromPointer(authenticator))
@@ -1237,8 +1011,6 @@ func callbackQWebSocket_ProxyAuthenticationRequired(ptr unsafe.Pointer, proxy un
 }
 
 func (ptr *QWebSocket) ConnectProxyAuthenticationRequired(f func(proxy *network.QNetworkProxy, authenticator *network.QAuthenticator)) {
-	defer qt.Recovering("connect QWebSocket::proxyAuthenticationRequired")
-
 	if ptr.Pointer() != nil {
 		C.QWebSocket_ConnectProxyAuthenticationRequired(ptr.Pointer())
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QWebSocket::proxyAuthenticationRequired", f)
@@ -1246,8 +1018,6 @@ func (ptr *QWebSocket) ConnectProxyAuthenticationRequired(f func(proxy *network.
 }
 
 func (ptr *QWebSocket) DisconnectProxyAuthenticationRequired() {
-	defer qt.Recovering("disconnect QWebSocket::proxyAuthenticationRequired")
-
 	if ptr.Pointer() != nil {
 		C.QWebSocket_DisconnectProxyAuthenticationRequired(ptr.Pointer())
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QWebSocket::proxyAuthenticationRequired")
@@ -1255,16 +1025,12 @@ func (ptr *QWebSocket) DisconnectProxyAuthenticationRequired() {
 }
 
 func (ptr *QWebSocket) ProxyAuthenticationRequired(proxy network.QNetworkProxy_ITF, authenticator network.QAuthenticator_ITF) {
-	defer qt.Recovering("QWebSocket::proxyAuthenticationRequired")
-
 	if ptr.Pointer() != nil {
 		C.QWebSocket_ProxyAuthenticationRequired(ptr.Pointer(), network.PointerFromQNetworkProxy(proxy), network.PointerFromQAuthenticator(authenticator))
 	}
 }
 
 func (ptr *QWebSocket) ReadBufferSize() int64 {
-	defer qt.Recovering("QWebSocket::readBufferSize")
-
 	if ptr.Pointer() != nil {
 		return int64(C.QWebSocket_ReadBufferSize(ptr.Pointer()))
 	}
@@ -1273,7 +1039,6 @@ func (ptr *QWebSocket) ReadBufferSize() int64 {
 
 //export callbackQWebSocket_ReadChannelFinished
 func callbackQWebSocket_ReadChannelFinished(ptr unsafe.Pointer) {
-	defer qt.Recovering("callback QWebSocket::readChannelFinished")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebSocket::readChannelFinished"); signal != nil {
 		signal.(func())()
@@ -1282,8 +1047,6 @@ func callbackQWebSocket_ReadChannelFinished(ptr unsafe.Pointer) {
 }
 
 func (ptr *QWebSocket) ConnectReadChannelFinished(f func()) {
-	defer qt.Recovering("connect QWebSocket::readChannelFinished")
-
 	if ptr.Pointer() != nil {
 		C.QWebSocket_ConnectReadChannelFinished(ptr.Pointer())
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QWebSocket::readChannelFinished", f)
@@ -1291,8 +1054,6 @@ func (ptr *QWebSocket) ConnectReadChannelFinished(f func()) {
 }
 
 func (ptr *QWebSocket) DisconnectReadChannelFinished() {
-	defer qt.Recovering("disconnect QWebSocket::readChannelFinished")
-
 	if ptr.Pointer() != nil {
 		C.QWebSocket_DisconnectReadChannelFinished(ptr.Pointer())
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QWebSocket::readChannelFinished")
@@ -1300,16 +1061,12 @@ func (ptr *QWebSocket) DisconnectReadChannelFinished() {
 }
 
 func (ptr *QWebSocket) ReadChannelFinished() {
-	defer qt.Recovering("QWebSocket::readChannelFinished")
-
 	if ptr.Pointer() != nil {
 		C.QWebSocket_ReadChannelFinished(ptr.Pointer())
 	}
 }
 
 func (ptr *QWebSocket) Request() *network.QNetworkRequest {
-	defer qt.Recovering("QWebSocket::request")
-
 	if ptr.Pointer() != nil {
 		var tmpValue = network.NewQNetworkRequestFromPointer(C.QWebSocket_Request(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*network.QNetworkRequest).DestroyQNetworkRequest)
@@ -1319,8 +1076,6 @@ func (ptr *QWebSocket) Request() *network.QNetworkRequest {
 }
 
 func (ptr *QWebSocket) RequestUrl() *core.QUrl {
-	defer qt.Recovering("QWebSocket::requestUrl")
-
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQUrlFromPointer(C.QWebSocket_RequestUrl(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*core.QUrl).DestroyQUrl)
@@ -1330,8 +1085,6 @@ func (ptr *QWebSocket) RequestUrl() *core.QUrl {
 }
 
 func (ptr *QWebSocket) ResourceName() string {
-	defer qt.Recovering("QWebSocket::resourceName")
-
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QWebSocket_ResourceName(ptr.Pointer()))
 	}
@@ -1339,16 +1092,12 @@ func (ptr *QWebSocket) ResourceName() string {
 }
 
 func (ptr *QWebSocket) Resume() {
-	defer qt.Recovering("QWebSocket::resume")
-
 	if ptr.Pointer() != nil {
 		C.QWebSocket_Resume(ptr.Pointer())
 	}
 }
 
 func (ptr *QWebSocket) SendBinaryMessage(data string) int64 {
-	defer qt.Recovering("QWebSocket::sendBinaryMessage")
-
 	if ptr.Pointer() != nil {
 		var dataC = C.CString(hex.EncodeToString([]byte(data)))
 		defer C.free(unsafe.Pointer(dataC))
@@ -1358,8 +1107,6 @@ func (ptr *QWebSocket) SendBinaryMessage(data string) int64 {
 }
 
 func (ptr *QWebSocket) SendTextMessage(message string) int64 {
-	defer qt.Recovering("QWebSocket::sendTextMessage")
-
 	if ptr.Pointer() != nil {
 		var messageC = C.CString(message)
 		defer C.free(unsafe.Pointer(messageC))
@@ -1369,48 +1116,36 @@ func (ptr *QWebSocket) SendTextMessage(message string) int64 {
 }
 
 func (ptr *QWebSocket) SetMaskGenerator(maskGenerator QMaskGenerator_ITF) {
-	defer qt.Recovering("QWebSocket::setMaskGenerator")
-
 	if ptr.Pointer() != nil {
 		C.QWebSocket_SetMaskGenerator(ptr.Pointer(), PointerFromQMaskGenerator(maskGenerator))
 	}
 }
 
 func (ptr *QWebSocket) SetPauseMode(pauseMode network.QAbstractSocket__PauseMode) {
-	defer qt.Recovering("QWebSocket::setPauseMode")
-
 	if ptr.Pointer() != nil {
 		C.QWebSocket_SetPauseMode(ptr.Pointer(), C.longlong(pauseMode))
 	}
 }
 
 func (ptr *QWebSocket) SetProxy(networkProxy network.QNetworkProxy_ITF) {
-	defer qt.Recovering("QWebSocket::setProxy")
-
 	if ptr.Pointer() != nil {
 		C.QWebSocket_SetProxy(ptr.Pointer(), network.PointerFromQNetworkProxy(networkProxy))
 	}
 }
 
 func (ptr *QWebSocket) SetReadBufferSize(size int64) {
-	defer qt.Recovering("QWebSocket::setReadBufferSize")
-
 	if ptr.Pointer() != nil {
 		C.QWebSocket_SetReadBufferSize(ptr.Pointer(), C.longlong(size))
 	}
 }
 
 func (ptr *QWebSocket) SetSslConfiguration(sslConfiguration network.QSslConfiguration_ITF) {
-	defer qt.Recovering("QWebSocket::setSslConfiguration")
-
 	if ptr.Pointer() != nil {
 		C.QWebSocket_SetSslConfiguration(ptr.Pointer(), network.PointerFromQSslConfiguration(sslConfiguration))
 	}
 }
 
 func (ptr *QWebSocket) SslConfiguration() *network.QSslConfiguration {
-	defer qt.Recovering("QWebSocket::sslConfiguration")
-
 	if ptr.Pointer() != nil {
 		var tmpValue = network.NewQSslConfigurationFromPointer(C.QWebSocket_SslConfiguration(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*network.QSslConfiguration).DestroyQSslConfiguration)
@@ -1420,8 +1155,6 @@ func (ptr *QWebSocket) SslConfiguration() *network.QSslConfiguration {
 }
 
 func (ptr *QWebSocket) State() network.QAbstractSocket__SocketState {
-	defer qt.Recovering("QWebSocket::state")
-
 	if ptr.Pointer() != nil {
 		return network.QAbstractSocket__SocketState(C.QWebSocket_State(ptr.Pointer()))
 	}
@@ -1430,7 +1163,6 @@ func (ptr *QWebSocket) State() network.QAbstractSocket__SocketState {
 
 //export callbackQWebSocket_StateChanged
 func callbackQWebSocket_StateChanged(ptr unsafe.Pointer, state C.longlong) {
-	defer qt.Recovering("callback QWebSocket::stateChanged")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebSocket::stateChanged"); signal != nil {
 		signal.(func(network.QAbstractSocket__SocketState))(network.QAbstractSocket__SocketState(state))
@@ -1439,8 +1171,6 @@ func callbackQWebSocket_StateChanged(ptr unsafe.Pointer, state C.longlong) {
 }
 
 func (ptr *QWebSocket) ConnectStateChanged(f func(state network.QAbstractSocket__SocketState)) {
-	defer qt.Recovering("connect QWebSocket::stateChanged")
-
 	if ptr.Pointer() != nil {
 		C.QWebSocket_ConnectStateChanged(ptr.Pointer())
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QWebSocket::stateChanged", f)
@@ -1448,8 +1178,6 @@ func (ptr *QWebSocket) ConnectStateChanged(f func(state network.QAbstractSocket_
 }
 
 func (ptr *QWebSocket) DisconnectStateChanged() {
-	defer qt.Recovering("disconnect QWebSocket::stateChanged")
-
 	if ptr.Pointer() != nil {
 		C.QWebSocket_DisconnectStateChanged(ptr.Pointer())
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QWebSocket::stateChanged")
@@ -1457,8 +1185,6 @@ func (ptr *QWebSocket) DisconnectStateChanged() {
 }
 
 func (ptr *QWebSocket) StateChanged(state network.QAbstractSocket__SocketState) {
-	defer qt.Recovering("QWebSocket::stateChanged")
-
 	if ptr.Pointer() != nil {
 		C.QWebSocket_StateChanged(ptr.Pointer(), C.longlong(state))
 	}
@@ -1466,7 +1192,6 @@ func (ptr *QWebSocket) StateChanged(state network.QAbstractSocket__SocketState) 
 
 //export callbackQWebSocket_TextFrameReceived
 func callbackQWebSocket_TextFrameReceived(ptr unsafe.Pointer, frame *C.char, isLastFrame C.char) {
-	defer qt.Recovering("callback QWebSocket::textFrameReceived")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebSocket::textFrameReceived"); signal != nil {
 		signal.(func(string, bool))(C.GoString(frame), int8(isLastFrame) != 0)
@@ -1475,8 +1200,6 @@ func callbackQWebSocket_TextFrameReceived(ptr unsafe.Pointer, frame *C.char, isL
 }
 
 func (ptr *QWebSocket) ConnectTextFrameReceived(f func(frame string, isLastFrame bool)) {
-	defer qt.Recovering("connect QWebSocket::textFrameReceived")
-
 	if ptr.Pointer() != nil {
 		C.QWebSocket_ConnectTextFrameReceived(ptr.Pointer())
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QWebSocket::textFrameReceived", f)
@@ -1484,8 +1207,6 @@ func (ptr *QWebSocket) ConnectTextFrameReceived(f func(frame string, isLastFrame
 }
 
 func (ptr *QWebSocket) DisconnectTextFrameReceived() {
-	defer qt.Recovering("disconnect QWebSocket::textFrameReceived")
-
 	if ptr.Pointer() != nil {
 		C.QWebSocket_DisconnectTextFrameReceived(ptr.Pointer())
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QWebSocket::textFrameReceived")
@@ -1493,8 +1214,6 @@ func (ptr *QWebSocket) DisconnectTextFrameReceived() {
 }
 
 func (ptr *QWebSocket) TextFrameReceived(frame string, isLastFrame bool) {
-	defer qt.Recovering("QWebSocket::textFrameReceived")
-
 	if ptr.Pointer() != nil {
 		var frameC = C.CString(frame)
 		defer C.free(unsafe.Pointer(frameC))
@@ -1504,7 +1223,6 @@ func (ptr *QWebSocket) TextFrameReceived(frame string, isLastFrame bool) {
 
 //export callbackQWebSocket_TextMessageReceived
 func callbackQWebSocket_TextMessageReceived(ptr unsafe.Pointer, message *C.char) {
-	defer qt.Recovering("callback QWebSocket::textMessageReceived")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebSocket::textMessageReceived"); signal != nil {
 		signal.(func(string))(C.GoString(message))
@@ -1513,8 +1231,6 @@ func callbackQWebSocket_TextMessageReceived(ptr unsafe.Pointer, message *C.char)
 }
 
 func (ptr *QWebSocket) ConnectTextMessageReceived(f func(message string)) {
-	defer qt.Recovering("connect QWebSocket::textMessageReceived")
-
 	if ptr.Pointer() != nil {
 		C.QWebSocket_ConnectTextMessageReceived(ptr.Pointer())
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QWebSocket::textMessageReceived", f)
@@ -1522,8 +1238,6 @@ func (ptr *QWebSocket) ConnectTextMessageReceived(f func(message string)) {
 }
 
 func (ptr *QWebSocket) DisconnectTextMessageReceived() {
-	defer qt.Recovering("disconnect QWebSocket::textMessageReceived")
-
 	if ptr.Pointer() != nil {
 		C.QWebSocket_DisconnectTextMessageReceived(ptr.Pointer())
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QWebSocket::textMessageReceived")
@@ -1531,8 +1245,6 @@ func (ptr *QWebSocket) DisconnectTextMessageReceived() {
 }
 
 func (ptr *QWebSocket) TextMessageReceived(message string) {
-	defer qt.Recovering("QWebSocket::textMessageReceived")
-
 	if ptr.Pointer() != nil {
 		var messageC = C.CString(message)
 		defer C.free(unsafe.Pointer(messageC))
@@ -1542,7 +1254,6 @@ func (ptr *QWebSocket) TextMessageReceived(message string) {
 
 //export callbackQWebSocket_DestroyQWebSocket
 func callbackQWebSocket_DestroyQWebSocket(ptr unsafe.Pointer) {
-	defer qt.Recovering("callback QWebSocket::~QWebSocket")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebSocket::~QWebSocket"); signal != nil {
 		signal.(func())()
@@ -1552,8 +1263,6 @@ func callbackQWebSocket_DestroyQWebSocket(ptr unsafe.Pointer) {
 }
 
 func (ptr *QWebSocket) ConnectDestroyQWebSocket(f func()) {
-	defer qt.Recovering("connect QWebSocket::~QWebSocket")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QWebSocket::~QWebSocket", f)
@@ -1561,8 +1270,6 @@ func (ptr *QWebSocket) ConnectDestroyQWebSocket(f func()) {
 }
 
 func (ptr *QWebSocket) DisconnectDestroyQWebSocket() {
-	defer qt.Recovering("disconnect QWebSocket::~QWebSocket")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QWebSocket::~QWebSocket")
@@ -1570,8 +1277,6 @@ func (ptr *QWebSocket) DisconnectDestroyQWebSocket() {
 }
 
 func (ptr *QWebSocket) DestroyQWebSocket() {
-	defer qt.Recovering("QWebSocket::~QWebSocket")
-
 	if ptr.Pointer() != nil {
 		C.QWebSocket_DestroyQWebSocket(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
@@ -1580,8 +1285,6 @@ func (ptr *QWebSocket) DestroyQWebSocket() {
 }
 
 func (ptr *QWebSocket) DestroyQWebSocketDefault() {
-	defer qt.Recovering("QWebSocket::~QWebSocket")
-
 	if ptr.Pointer() != nil {
 		C.QWebSocket_DestroyQWebSocketDefault(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
@@ -1591,7 +1294,6 @@ func (ptr *QWebSocket) DestroyQWebSocketDefault() {
 
 //export callbackQWebSocket_TimerEvent
 func callbackQWebSocket_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	defer qt.Recovering("callback QWebSocket::timerEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebSocket::timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
@@ -1601,8 +1303,6 @@ func callbackQWebSocket_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 }
 
 func (ptr *QWebSocket) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
-	defer qt.Recovering("connect QWebSocket::timerEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QWebSocket::timerEvent", f)
@@ -1610,8 +1310,6 @@ func (ptr *QWebSocket) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
 }
 
 func (ptr *QWebSocket) DisconnectTimerEvent() {
-	defer qt.Recovering("disconnect QWebSocket::timerEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QWebSocket::timerEvent")
@@ -1619,16 +1317,12 @@ func (ptr *QWebSocket) DisconnectTimerEvent() {
 }
 
 func (ptr *QWebSocket) TimerEvent(event core.QTimerEvent_ITF) {
-	defer qt.Recovering("QWebSocket::timerEvent")
-
 	if ptr.Pointer() != nil {
 		C.QWebSocket_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
 	}
 }
 
 func (ptr *QWebSocket) TimerEventDefault(event core.QTimerEvent_ITF) {
-	defer qt.Recovering("QWebSocket::timerEvent")
-
 	if ptr.Pointer() != nil {
 		C.QWebSocket_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
 	}
@@ -1636,7 +1330,6 @@ func (ptr *QWebSocket) TimerEventDefault(event core.QTimerEvent_ITF) {
 
 //export callbackQWebSocket_ChildEvent
 func callbackQWebSocket_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	defer qt.Recovering("callback QWebSocket::childEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebSocket::childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
@@ -1646,8 +1339,6 @@ func callbackQWebSocket_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 }
 
 func (ptr *QWebSocket) ConnectChildEvent(f func(event *core.QChildEvent)) {
-	defer qt.Recovering("connect QWebSocket::childEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QWebSocket::childEvent", f)
@@ -1655,8 +1346,6 @@ func (ptr *QWebSocket) ConnectChildEvent(f func(event *core.QChildEvent)) {
 }
 
 func (ptr *QWebSocket) DisconnectChildEvent() {
-	defer qt.Recovering("disconnect QWebSocket::childEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QWebSocket::childEvent")
@@ -1664,16 +1353,12 @@ func (ptr *QWebSocket) DisconnectChildEvent() {
 }
 
 func (ptr *QWebSocket) ChildEvent(event core.QChildEvent_ITF) {
-	defer qt.Recovering("QWebSocket::childEvent")
-
 	if ptr.Pointer() != nil {
 		C.QWebSocket_ChildEvent(ptr.Pointer(), core.PointerFromQChildEvent(event))
 	}
 }
 
 func (ptr *QWebSocket) ChildEventDefault(event core.QChildEvent_ITF) {
-	defer qt.Recovering("QWebSocket::childEvent")
-
 	if ptr.Pointer() != nil {
 		C.QWebSocket_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
 	}
@@ -1681,7 +1366,6 @@ func (ptr *QWebSocket) ChildEventDefault(event core.QChildEvent_ITF) {
 
 //export callbackQWebSocket_ConnectNotify
 func callbackQWebSocket_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-	defer qt.Recovering("callback QWebSocket::connectNotify")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebSocket::connectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
@@ -1691,8 +1375,6 @@ func callbackQWebSocket_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
 }
 
 func (ptr *QWebSocket) ConnectConnectNotify(f func(sign *core.QMetaMethod)) {
-	defer qt.Recovering("connect QWebSocket::connectNotify")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QWebSocket::connectNotify", f)
@@ -1700,8 +1382,6 @@ func (ptr *QWebSocket) ConnectConnectNotify(f func(sign *core.QMetaMethod)) {
 }
 
 func (ptr *QWebSocket) DisconnectConnectNotify() {
-	defer qt.Recovering("disconnect QWebSocket::connectNotify")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QWebSocket::connectNotify")
@@ -1709,16 +1389,12 @@ func (ptr *QWebSocket) DisconnectConnectNotify() {
 }
 
 func (ptr *QWebSocket) ConnectNotify(sign core.QMetaMethod_ITF) {
-	defer qt.Recovering("QWebSocket::connectNotify")
-
 	if ptr.Pointer() != nil {
 		C.QWebSocket_ConnectNotify(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
 	}
 }
 
 func (ptr *QWebSocket) ConnectNotifyDefault(sign core.QMetaMethod_ITF) {
-	defer qt.Recovering("QWebSocket::connectNotify")
-
 	if ptr.Pointer() != nil {
 		C.QWebSocket_ConnectNotifyDefault(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
 	}
@@ -1726,7 +1402,6 @@ func (ptr *QWebSocket) ConnectNotifyDefault(sign core.QMetaMethod_ITF) {
 
 //export callbackQWebSocket_CustomEvent
 func callbackQWebSocket_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	defer qt.Recovering("callback QWebSocket::customEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebSocket::customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
@@ -1736,8 +1411,6 @@ func callbackQWebSocket_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 }
 
 func (ptr *QWebSocket) ConnectCustomEvent(f func(event *core.QEvent)) {
-	defer qt.Recovering("connect QWebSocket::customEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QWebSocket::customEvent", f)
@@ -1745,8 +1418,6 @@ func (ptr *QWebSocket) ConnectCustomEvent(f func(event *core.QEvent)) {
 }
 
 func (ptr *QWebSocket) DisconnectCustomEvent() {
-	defer qt.Recovering("disconnect QWebSocket::customEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QWebSocket::customEvent")
@@ -1754,16 +1425,12 @@ func (ptr *QWebSocket) DisconnectCustomEvent() {
 }
 
 func (ptr *QWebSocket) CustomEvent(event core.QEvent_ITF) {
-	defer qt.Recovering("QWebSocket::customEvent")
-
 	if ptr.Pointer() != nil {
 		C.QWebSocket_CustomEvent(ptr.Pointer(), core.PointerFromQEvent(event))
 	}
 }
 
 func (ptr *QWebSocket) CustomEventDefault(event core.QEvent_ITF) {
-	defer qt.Recovering("QWebSocket::customEvent")
-
 	if ptr.Pointer() != nil {
 		C.QWebSocket_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
 	}
@@ -1771,8 +1438,6 @@ func (ptr *QWebSocket) CustomEventDefault(event core.QEvent_ITF) {
 
 //export callbackQWebSocket_DeleteLater
 func callbackQWebSocket_DeleteLater(ptr unsafe.Pointer) {
-	defer qt.Recovering("callback QWebSocket::deleteLater")
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebSocket::deleteLater"); signal != nil {
 		signal.(func())()
 	} else {
@@ -1781,8 +1446,6 @@ func callbackQWebSocket_DeleteLater(ptr unsafe.Pointer) {
 }
 
 func (ptr *QWebSocket) ConnectDeleteLater(f func()) {
-	defer qt.Recovering("connect QWebSocket::deleteLater")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QWebSocket::deleteLater", f)
@@ -1790,8 +1453,6 @@ func (ptr *QWebSocket) ConnectDeleteLater(f func()) {
 }
 
 func (ptr *QWebSocket) DisconnectDeleteLater() {
-	defer qt.Recovering("disconnect QWebSocket::deleteLater")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QWebSocket::deleteLater")
@@ -1799,8 +1460,6 @@ func (ptr *QWebSocket) DisconnectDeleteLater() {
 }
 
 func (ptr *QWebSocket) DeleteLater() {
-	defer qt.Recovering("QWebSocket::deleteLater")
-
 	if ptr.Pointer() != nil {
 		C.QWebSocket_DeleteLater(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
@@ -1809,8 +1468,6 @@ func (ptr *QWebSocket) DeleteLater() {
 }
 
 func (ptr *QWebSocket) DeleteLaterDefault() {
-	defer qt.Recovering("QWebSocket::deleteLater")
-
 	if ptr.Pointer() != nil {
 		C.QWebSocket_DeleteLaterDefault(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
@@ -1820,7 +1477,6 @@ func (ptr *QWebSocket) DeleteLaterDefault() {
 
 //export callbackQWebSocket_DisconnectNotify
 func callbackQWebSocket_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-	defer qt.Recovering("callback QWebSocket::disconnectNotify")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebSocket::disconnectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
@@ -1830,8 +1486,6 @@ func callbackQWebSocket_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer
 }
 
 func (ptr *QWebSocket) ConnectDisconnectNotify(f func(sign *core.QMetaMethod)) {
-	defer qt.Recovering("connect QWebSocket::disconnectNotify")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QWebSocket::disconnectNotify", f)
@@ -1839,8 +1493,6 @@ func (ptr *QWebSocket) ConnectDisconnectNotify(f func(sign *core.QMetaMethod)) {
 }
 
 func (ptr *QWebSocket) DisconnectDisconnectNotify() {
-	defer qt.Recovering("disconnect QWebSocket::disconnectNotify")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QWebSocket::disconnectNotify")
@@ -1848,16 +1500,12 @@ func (ptr *QWebSocket) DisconnectDisconnectNotify() {
 }
 
 func (ptr *QWebSocket) DisconnectNotify(sign core.QMetaMethod_ITF) {
-	defer qt.Recovering("QWebSocket::disconnectNotify")
-
 	if ptr.Pointer() != nil {
 		C.QWebSocket_DisconnectNotify(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
 	}
 }
 
 func (ptr *QWebSocket) DisconnectNotifyDefault(sign core.QMetaMethod_ITF) {
-	defer qt.Recovering("QWebSocket::disconnectNotify")
-
 	if ptr.Pointer() != nil {
 		C.QWebSocket_DisconnectNotifyDefault(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
 	}
@@ -1865,7 +1513,6 @@ func (ptr *QWebSocket) DisconnectNotifyDefault(sign core.QMetaMethod_ITF) {
 
 //export callbackQWebSocket_Event
 func callbackQWebSocket_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
-	defer qt.Recovering("callback QWebSocket::event")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebSocket::event"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
@@ -1875,8 +1522,6 @@ func callbackQWebSocket_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
 }
 
 func (ptr *QWebSocket) ConnectEvent(f func(e *core.QEvent) bool) {
-	defer qt.Recovering("connect QWebSocket::event")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QWebSocket::event", f)
@@ -1884,8 +1529,6 @@ func (ptr *QWebSocket) ConnectEvent(f func(e *core.QEvent) bool) {
 }
 
 func (ptr *QWebSocket) DisconnectEvent() {
-	defer qt.Recovering("disconnect QWebSocket::event")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QWebSocket::event")
@@ -1893,8 +1536,6 @@ func (ptr *QWebSocket) DisconnectEvent() {
 }
 
 func (ptr *QWebSocket) Event(e core.QEvent_ITF) bool {
-	defer qt.Recovering("QWebSocket::event")
-
 	if ptr.Pointer() != nil {
 		return C.QWebSocket_Event(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
 	}
@@ -1902,8 +1543,6 @@ func (ptr *QWebSocket) Event(e core.QEvent_ITF) bool {
 }
 
 func (ptr *QWebSocket) EventDefault(e core.QEvent_ITF) bool {
-	defer qt.Recovering("QWebSocket::event")
-
 	if ptr.Pointer() != nil {
 		return C.QWebSocket_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
 	}
@@ -1912,7 +1551,6 @@ func (ptr *QWebSocket) EventDefault(e core.QEvent_ITF) bool {
 
 //export callbackQWebSocket_EventFilter
 func callbackQWebSocket_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-	defer qt.Recovering("callback QWebSocket::eventFilter")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebSocket::eventFilter"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
@@ -1922,8 +1560,6 @@ func callbackQWebSocket_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, 
 }
 
 func (ptr *QWebSocket) ConnectEventFilter(f func(watched *core.QObject, event *core.QEvent) bool) {
-	defer qt.Recovering("connect QWebSocket::eventFilter")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QWebSocket::eventFilter", f)
@@ -1931,8 +1567,6 @@ func (ptr *QWebSocket) ConnectEventFilter(f func(watched *core.QObject, event *c
 }
 
 func (ptr *QWebSocket) DisconnectEventFilter() {
-	defer qt.Recovering("disconnect QWebSocket::eventFilter")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QWebSocket::eventFilter")
@@ -1940,8 +1574,6 @@ func (ptr *QWebSocket) DisconnectEventFilter() {
 }
 
 func (ptr *QWebSocket) EventFilter(watched core.QObject_ITF, event core.QEvent_ITF) bool {
-	defer qt.Recovering("QWebSocket::eventFilter")
-
 	if ptr.Pointer() != nil {
 		return C.QWebSocket_EventFilter(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
 	}
@@ -1949,8 +1581,6 @@ func (ptr *QWebSocket) EventFilter(watched core.QObject_ITF, event core.QEvent_I
 }
 
 func (ptr *QWebSocket) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
-	defer qt.Recovering("QWebSocket::eventFilter")
-
 	if ptr.Pointer() != nil {
 		return C.QWebSocket_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
 	}
@@ -1959,7 +1589,6 @@ func (ptr *QWebSocket) EventFilterDefault(watched core.QObject_ITF, event core.Q
 
 //export callbackQWebSocket_MetaObject
 func callbackQWebSocket_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-	defer qt.Recovering("callback QWebSocket::metaObject")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebSocket::metaObject"); signal != nil {
 		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
@@ -1969,8 +1598,6 @@ func callbackQWebSocket_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
 }
 
 func (ptr *QWebSocket) ConnectMetaObject(f func() *core.QMetaObject) {
-	defer qt.Recovering("connect QWebSocket::metaObject")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QWebSocket::metaObject", f)
@@ -1978,8 +1605,6 @@ func (ptr *QWebSocket) ConnectMetaObject(f func() *core.QMetaObject) {
 }
 
 func (ptr *QWebSocket) DisconnectMetaObject() {
-	defer qt.Recovering("disconnect QWebSocket::metaObject")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QWebSocket::metaObject")
@@ -1987,8 +1612,6 @@ func (ptr *QWebSocket) DisconnectMetaObject() {
 }
 
 func (ptr *QWebSocket) MetaObject() *core.QMetaObject {
-	defer qt.Recovering("QWebSocket::metaObject")
-
 	if ptr.Pointer() != nil {
 		return core.NewQMetaObjectFromPointer(C.QWebSocket_MetaObject(ptr.Pointer()))
 	}
@@ -1996,8 +1619,6 @@ func (ptr *QWebSocket) MetaObject() *core.QMetaObject {
 }
 
 func (ptr *QWebSocket) MetaObjectDefault() *core.QMetaObject {
-	defer qt.Recovering("QWebSocket::metaObject")
-
 	if ptr.Pointer() != nil {
 		return core.NewQMetaObjectFromPointer(C.QWebSocket_MetaObjectDefault(ptr.Pointer()))
 	}
@@ -2042,16 +1663,12 @@ func NewQWebSocketCorsAuthenticatorFromPointer(ptr unsafe.Pointer) *QWebSocketCo
 	return n
 }
 func NewQWebSocketCorsAuthenticator3(other QWebSocketCorsAuthenticator_ITF) *QWebSocketCorsAuthenticator {
-	defer qt.Recovering("QWebSocketCorsAuthenticator::QWebSocketCorsAuthenticator")
-
 	var tmpValue = NewQWebSocketCorsAuthenticatorFromPointer(C.QWebSocketCorsAuthenticator_NewQWebSocketCorsAuthenticator3(PointerFromQWebSocketCorsAuthenticator(other)))
 	runtime.SetFinalizer(tmpValue, (*QWebSocketCorsAuthenticator).DestroyQWebSocketCorsAuthenticator)
 	return tmpValue
 }
 
 func NewQWebSocketCorsAuthenticator(origin string) *QWebSocketCorsAuthenticator {
-	defer qt.Recovering("QWebSocketCorsAuthenticator::QWebSocketCorsAuthenticator")
-
 	var originC = C.CString(origin)
 	defer C.free(unsafe.Pointer(originC))
 	var tmpValue = NewQWebSocketCorsAuthenticatorFromPointer(C.QWebSocketCorsAuthenticator_NewQWebSocketCorsAuthenticator(originC))
@@ -2060,16 +1677,12 @@ func NewQWebSocketCorsAuthenticator(origin string) *QWebSocketCorsAuthenticator 
 }
 
 func NewQWebSocketCorsAuthenticator2(other QWebSocketCorsAuthenticator_ITF) *QWebSocketCorsAuthenticator {
-	defer qt.Recovering("QWebSocketCorsAuthenticator::QWebSocketCorsAuthenticator")
-
 	var tmpValue = NewQWebSocketCorsAuthenticatorFromPointer(C.QWebSocketCorsAuthenticator_NewQWebSocketCorsAuthenticator2(PointerFromQWebSocketCorsAuthenticator(other)))
 	runtime.SetFinalizer(tmpValue, (*QWebSocketCorsAuthenticator).DestroyQWebSocketCorsAuthenticator)
 	return tmpValue
 }
 
 func (ptr *QWebSocketCorsAuthenticator) Allowed() bool {
-	defer qt.Recovering("QWebSocketCorsAuthenticator::allowed")
-
 	if ptr.Pointer() != nil {
 		return C.QWebSocketCorsAuthenticator_Allowed(ptr.Pointer()) != 0
 	}
@@ -2077,8 +1690,6 @@ func (ptr *QWebSocketCorsAuthenticator) Allowed() bool {
 }
 
 func (ptr *QWebSocketCorsAuthenticator) Origin() string {
-	defer qt.Recovering("QWebSocketCorsAuthenticator::origin")
-
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QWebSocketCorsAuthenticator_Origin(ptr.Pointer()))
 	}
@@ -2086,24 +1697,18 @@ func (ptr *QWebSocketCorsAuthenticator) Origin() string {
 }
 
 func (ptr *QWebSocketCorsAuthenticator) SetAllowed(allowed bool) {
-	defer qt.Recovering("QWebSocketCorsAuthenticator::setAllowed")
-
 	if ptr.Pointer() != nil {
 		C.QWebSocketCorsAuthenticator_SetAllowed(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(allowed))))
 	}
 }
 
 func (ptr *QWebSocketCorsAuthenticator) Swap(other QWebSocketCorsAuthenticator_ITF) {
-	defer qt.Recovering("QWebSocketCorsAuthenticator::swap")
-
 	if ptr.Pointer() != nil {
 		C.QWebSocketCorsAuthenticator_Swap(ptr.Pointer(), PointerFromQWebSocketCorsAuthenticator(other))
 	}
 }
 
 func (ptr *QWebSocketCorsAuthenticator) DestroyQWebSocketCorsAuthenticator() {
-	defer qt.Recovering("QWebSocketCorsAuthenticator::~QWebSocketCorsAuthenticator")
-
 	if ptr.Pointer() != nil {
 		C.QWebSocketCorsAuthenticator_DestroyQWebSocketCorsAuthenticator(ptr.Pointer())
 		ptr.SetPointer(nil)
@@ -2157,8 +1762,6 @@ func NewQWebSocketServerFromPointer(ptr unsafe.Pointer) *QWebSocketServer {
 	return n
 }
 func NewQWebSocketServer(serverName string, secureMode QWebSocketServer__SslMode, parent core.QObject_ITF) *QWebSocketServer {
-	defer qt.Recovering("QWebSocketServer::QWebSocketServer")
-
 	var serverNameC = C.CString(serverName)
 	defer C.free(unsafe.Pointer(serverNameC))
 	var tmpValue = NewQWebSocketServerFromPointer(C.QWebSocketServer_NewQWebSocketServer(serverNameC, C.longlong(secureMode), core.PointerFromQObject(parent)))
@@ -2170,7 +1773,6 @@ func NewQWebSocketServer(serverName string, secureMode QWebSocketServer__SslMode
 
 //export callbackQWebSocketServer_AcceptError
 func callbackQWebSocketServer_AcceptError(ptr unsafe.Pointer, socketError C.longlong) {
-	defer qt.Recovering("callback QWebSocketServer::acceptError")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebSocketServer::acceptError"); signal != nil {
 		signal.(func(network.QAbstractSocket__SocketError))(network.QAbstractSocket__SocketError(socketError))
@@ -2179,8 +1781,6 @@ func callbackQWebSocketServer_AcceptError(ptr unsafe.Pointer, socketError C.long
 }
 
 func (ptr *QWebSocketServer) ConnectAcceptError(f func(socketError network.QAbstractSocket__SocketError)) {
-	defer qt.Recovering("connect QWebSocketServer::acceptError")
-
 	if ptr.Pointer() != nil {
 		C.QWebSocketServer_ConnectAcceptError(ptr.Pointer())
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QWebSocketServer::acceptError", f)
@@ -2188,8 +1788,6 @@ func (ptr *QWebSocketServer) ConnectAcceptError(f func(socketError network.QAbst
 }
 
 func (ptr *QWebSocketServer) DisconnectAcceptError() {
-	defer qt.Recovering("disconnect QWebSocketServer::acceptError")
-
 	if ptr.Pointer() != nil {
 		C.QWebSocketServer_DisconnectAcceptError(ptr.Pointer())
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QWebSocketServer::acceptError")
@@ -2197,16 +1795,12 @@ func (ptr *QWebSocketServer) DisconnectAcceptError() {
 }
 
 func (ptr *QWebSocketServer) AcceptError(socketError network.QAbstractSocket__SocketError) {
-	defer qt.Recovering("QWebSocketServer::acceptError")
-
 	if ptr.Pointer() != nil {
 		C.QWebSocketServer_AcceptError(ptr.Pointer(), C.longlong(socketError))
 	}
 }
 
 func (ptr *QWebSocketServer) Close() {
-	defer qt.Recovering("QWebSocketServer::close")
-
 	if ptr.Pointer() != nil {
 		C.QWebSocketServer_Close(ptr.Pointer())
 	}
@@ -2214,7 +1808,6 @@ func (ptr *QWebSocketServer) Close() {
 
 //export callbackQWebSocketServer_Closed
 func callbackQWebSocketServer_Closed(ptr unsafe.Pointer) {
-	defer qt.Recovering("callback QWebSocketServer::closed")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebSocketServer::closed"); signal != nil {
 		signal.(func())()
@@ -2223,8 +1816,6 @@ func callbackQWebSocketServer_Closed(ptr unsafe.Pointer) {
 }
 
 func (ptr *QWebSocketServer) ConnectClosed(f func()) {
-	defer qt.Recovering("connect QWebSocketServer::closed")
-
 	if ptr.Pointer() != nil {
 		C.QWebSocketServer_ConnectClosed(ptr.Pointer())
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QWebSocketServer::closed", f)
@@ -2232,8 +1823,6 @@ func (ptr *QWebSocketServer) ConnectClosed(f func()) {
 }
 
 func (ptr *QWebSocketServer) DisconnectClosed() {
-	defer qt.Recovering("disconnect QWebSocketServer::closed")
-
 	if ptr.Pointer() != nil {
 		C.QWebSocketServer_DisconnectClosed(ptr.Pointer())
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QWebSocketServer::closed")
@@ -2241,16 +1830,12 @@ func (ptr *QWebSocketServer) DisconnectClosed() {
 }
 
 func (ptr *QWebSocketServer) Closed() {
-	defer qt.Recovering("QWebSocketServer::closed")
-
 	if ptr.Pointer() != nil {
 		C.QWebSocketServer_Closed(ptr.Pointer())
 	}
 }
 
 func (ptr *QWebSocketServer) ErrorString() string {
-	defer qt.Recovering("QWebSocketServer::errorString")
-
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QWebSocketServer_ErrorString(ptr.Pointer()))
 	}
@@ -2258,8 +1843,6 @@ func (ptr *QWebSocketServer) ErrorString() string {
 }
 
 func (ptr *QWebSocketServer) HasPendingConnections() bool {
-	defer qt.Recovering("QWebSocketServer::hasPendingConnections")
-
 	if ptr.Pointer() != nil {
 		return C.QWebSocketServer_HasPendingConnections(ptr.Pointer()) != 0
 	}
@@ -2267,8 +1850,6 @@ func (ptr *QWebSocketServer) HasPendingConnections() bool {
 }
 
 func (ptr *QWebSocketServer) IsListening() bool {
-	defer qt.Recovering("QWebSocketServer::isListening")
-
 	if ptr.Pointer() != nil {
 		return C.QWebSocketServer_IsListening(ptr.Pointer()) != 0
 	}
@@ -2276,8 +1857,6 @@ func (ptr *QWebSocketServer) IsListening() bool {
 }
 
 func (ptr *QWebSocketServer) Listen(address network.QHostAddress_ITF, port uint16) bool {
-	defer qt.Recovering("QWebSocketServer::listen")
-
 	if ptr.Pointer() != nil {
 		return C.QWebSocketServer_Listen(ptr.Pointer(), network.PointerFromQHostAddress(address), C.ushort(port)) != 0
 	}
@@ -2285,8 +1864,6 @@ func (ptr *QWebSocketServer) Listen(address network.QHostAddress_ITF, port uint1
 }
 
 func (ptr *QWebSocketServer) MaxPendingConnections() int {
-	defer qt.Recovering("QWebSocketServer::maxPendingConnections")
-
 	if ptr.Pointer() != nil {
 		return int(int32(C.QWebSocketServer_MaxPendingConnections(ptr.Pointer())))
 	}
@@ -2295,7 +1872,6 @@ func (ptr *QWebSocketServer) MaxPendingConnections() int {
 
 //export callbackQWebSocketServer_NewConnection
 func callbackQWebSocketServer_NewConnection(ptr unsafe.Pointer) {
-	defer qt.Recovering("callback QWebSocketServer::newConnection")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebSocketServer::newConnection"); signal != nil {
 		signal.(func())()
@@ -2304,8 +1880,6 @@ func callbackQWebSocketServer_NewConnection(ptr unsafe.Pointer) {
 }
 
 func (ptr *QWebSocketServer) ConnectNewConnection(f func()) {
-	defer qt.Recovering("connect QWebSocketServer::newConnection")
-
 	if ptr.Pointer() != nil {
 		C.QWebSocketServer_ConnectNewConnection(ptr.Pointer())
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QWebSocketServer::newConnection", f)
@@ -2313,8 +1887,6 @@ func (ptr *QWebSocketServer) ConnectNewConnection(f func()) {
 }
 
 func (ptr *QWebSocketServer) DisconnectNewConnection() {
-	defer qt.Recovering("disconnect QWebSocketServer::newConnection")
-
 	if ptr.Pointer() != nil {
 		C.QWebSocketServer_DisconnectNewConnection(ptr.Pointer())
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QWebSocketServer::newConnection")
@@ -2322,8 +1894,6 @@ func (ptr *QWebSocketServer) DisconnectNewConnection() {
 }
 
 func (ptr *QWebSocketServer) NewConnection() {
-	defer qt.Recovering("QWebSocketServer::newConnection")
-
 	if ptr.Pointer() != nil {
 		C.QWebSocketServer_NewConnection(ptr.Pointer())
 	}
@@ -2331,7 +1901,6 @@ func (ptr *QWebSocketServer) NewConnection() {
 
 //export callbackQWebSocketServer_NextPendingConnection
 func callbackQWebSocketServer_NextPendingConnection(ptr unsafe.Pointer) unsafe.Pointer {
-	defer qt.Recovering("callback QWebSocketServer::nextPendingConnection")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebSocketServer::nextPendingConnection"); signal != nil {
 		return PointerFromQWebSocket(signal.(func() *QWebSocket)())
@@ -2341,8 +1910,6 @@ func callbackQWebSocketServer_NextPendingConnection(ptr unsafe.Pointer) unsafe.P
 }
 
 func (ptr *QWebSocketServer) ConnectNextPendingConnection(f func() *QWebSocket) {
-	defer qt.Recovering("connect QWebSocketServer::nextPendingConnection")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QWebSocketServer::nextPendingConnection", f)
@@ -2350,8 +1917,6 @@ func (ptr *QWebSocketServer) ConnectNextPendingConnection(f func() *QWebSocket) 
 }
 
 func (ptr *QWebSocketServer) DisconnectNextPendingConnection() {
-	defer qt.Recovering("disconnect QWebSocketServer::nextPendingConnection")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QWebSocketServer::nextPendingConnection")
@@ -2359,8 +1924,6 @@ func (ptr *QWebSocketServer) DisconnectNextPendingConnection() {
 }
 
 func (ptr *QWebSocketServer) NextPendingConnection() *QWebSocket {
-	defer qt.Recovering("QWebSocketServer::nextPendingConnection")
-
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQWebSocketFromPointer(C.QWebSocketServer_NextPendingConnection(ptr.Pointer()))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
@@ -2372,8 +1935,6 @@ func (ptr *QWebSocketServer) NextPendingConnection() *QWebSocket {
 }
 
 func (ptr *QWebSocketServer) NextPendingConnectionDefault() *QWebSocket {
-	defer qt.Recovering("QWebSocketServer::nextPendingConnection")
-
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQWebSocketFromPointer(C.QWebSocketServer_NextPendingConnectionDefault(ptr.Pointer()))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
@@ -2386,7 +1947,6 @@ func (ptr *QWebSocketServer) NextPendingConnectionDefault() *QWebSocket {
 
 //export callbackQWebSocketServer_OriginAuthenticationRequired
 func callbackQWebSocketServer_OriginAuthenticationRequired(ptr unsafe.Pointer, authenticator unsafe.Pointer) {
-	defer qt.Recovering("callback QWebSocketServer::originAuthenticationRequired")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebSocketServer::originAuthenticationRequired"); signal != nil {
 		signal.(func(*QWebSocketCorsAuthenticator))(NewQWebSocketCorsAuthenticatorFromPointer(authenticator))
@@ -2395,8 +1955,6 @@ func callbackQWebSocketServer_OriginAuthenticationRequired(ptr unsafe.Pointer, a
 }
 
 func (ptr *QWebSocketServer) ConnectOriginAuthenticationRequired(f func(authenticator *QWebSocketCorsAuthenticator)) {
-	defer qt.Recovering("connect QWebSocketServer::originAuthenticationRequired")
-
 	if ptr.Pointer() != nil {
 		C.QWebSocketServer_ConnectOriginAuthenticationRequired(ptr.Pointer())
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QWebSocketServer::originAuthenticationRequired", f)
@@ -2404,8 +1962,6 @@ func (ptr *QWebSocketServer) ConnectOriginAuthenticationRequired(f func(authenti
 }
 
 func (ptr *QWebSocketServer) DisconnectOriginAuthenticationRequired() {
-	defer qt.Recovering("disconnect QWebSocketServer::originAuthenticationRequired")
-
 	if ptr.Pointer() != nil {
 		C.QWebSocketServer_DisconnectOriginAuthenticationRequired(ptr.Pointer())
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QWebSocketServer::originAuthenticationRequired")
@@ -2413,16 +1969,12 @@ func (ptr *QWebSocketServer) DisconnectOriginAuthenticationRequired() {
 }
 
 func (ptr *QWebSocketServer) OriginAuthenticationRequired(authenticator QWebSocketCorsAuthenticator_ITF) {
-	defer qt.Recovering("QWebSocketServer::originAuthenticationRequired")
-
 	if ptr.Pointer() != nil {
 		C.QWebSocketServer_OriginAuthenticationRequired(ptr.Pointer(), PointerFromQWebSocketCorsAuthenticator(authenticator))
 	}
 }
 
 func (ptr *QWebSocketServer) PauseAccepting() {
-	defer qt.Recovering("QWebSocketServer::pauseAccepting")
-
 	if ptr.Pointer() != nil {
 		C.QWebSocketServer_PauseAccepting(ptr.Pointer())
 	}
@@ -2430,7 +1982,6 @@ func (ptr *QWebSocketServer) PauseAccepting() {
 
 //export callbackQWebSocketServer_PeerVerifyError
 func callbackQWebSocketServer_PeerVerifyError(ptr unsafe.Pointer, error unsafe.Pointer) {
-	defer qt.Recovering("callback QWebSocketServer::peerVerifyError")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebSocketServer::peerVerifyError"); signal != nil {
 		signal.(func(*network.QSslError))(network.NewQSslErrorFromPointer(error))
@@ -2439,8 +1990,6 @@ func callbackQWebSocketServer_PeerVerifyError(ptr unsafe.Pointer, error unsafe.P
 }
 
 func (ptr *QWebSocketServer) ConnectPeerVerifyError(f func(error *network.QSslError)) {
-	defer qt.Recovering("connect QWebSocketServer::peerVerifyError")
-
 	if ptr.Pointer() != nil {
 		C.QWebSocketServer_ConnectPeerVerifyError(ptr.Pointer())
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QWebSocketServer::peerVerifyError", f)
@@ -2448,8 +1997,6 @@ func (ptr *QWebSocketServer) ConnectPeerVerifyError(f func(error *network.QSslEr
 }
 
 func (ptr *QWebSocketServer) DisconnectPeerVerifyError() {
-	defer qt.Recovering("disconnect QWebSocketServer::peerVerifyError")
-
 	if ptr.Pointer() != nil {
 		C.QWebSocketServer_DisconnectPeerVerifyError(ptr.Pointer())
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QWebSocketServer::peerVerifyError")
@@ -2457,16 +2004,12 @@ func (ptr *QWebSocketServer) DisconnectPeerVerifyError() {
 }
 
 func (ptr *QWebSocketServer) PeerVerifyError(error network.QSslError_ITF) {
-	defer qt.Recovering("QWebSocketServer::peerVerifyError")
-
 	if ptr.Pointer() != nil {
 		C.QWebSocketServer_PeerVerifyError(ptr.Pointer(), network.PointerFromQSslError(error))
 	}
 }
 
 func (ptr *QWebSocketServer) Proxy() *network.QNetworkProxy {
-	defer qt.Recovering("QWebSocketServer::proxy")
-
 	if ptr.Pointer() != nil {
 		var tmpValue = network.NewQNetworkProxyFromPointer(C.QWebSocketServer_Proxy(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*network.QNetworkProxy).DestroyQNetworkProxy)
@@ -2476,16 +2019,12 @@ func (ptr *QWebSocketServer) Proxy() *network.QNetworkProxy {
 }
 
 func (ptr *QWebSocketServer) ResumeAccepting() {
-	defer qt.Recovering("QWebSocketServer::resumeAccepting")
-
 	if ptr.Pointer() != nil {
 		C.QWebSocketServer_ResumeAccepting(ptr.Pointer())
 	}
 }
 
 func (ptr *QWebSocketServer) SecureMode() QWebSocketServer__SslMode {
-	defer qt.Recovering("QWebSocketServer::secureMode")
-
 	if ptr.Pointer() != nil {
 		return QWebSocketServer__SslMode(C.QWebSocketServer_SecureMode(ptr.Pointer()))
 	}
@@ -2493,8 +2032,6 @@ func (ptr *QWebSocketServer) SecureMode() QWebSocketServer__SslMode {
 }
 
 func (ptr *QWebSocketServer) ServerAddress() *network.QHostAddress {
-	defer qt.Recovering("QWebSocketServer::serverAddress")
-
 	if ptr.Pointer() != nil {
 		var tmpValue = network.NewQHostAddressFromPointer(C.QWebSocketServer_ServerAddress(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*network.QHostAddress).DestroyQHostAddress)
@@ -2504,8 +2041,6 @@ func (ptr *QWebSocketServer) ServerAddress() *network.QHostAddress {
 }
 
 func (ptr *QWebSocketServer) ServerName() string {
-	defer qt.Recovering("QWebSocketServer::serverName")
-
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QWebSocketServer_ServerName(ptr.Pointer()))
 	}
@@ -2513,8 +2048,6 @@ func (ptr *QWebSocketServer) ServerName() string {
 }
 
 func (ptr *QWebSocketServer) ServerPort() uint16 {
-	defer qt.Recovering("QWebSocketServer::serverPort")
-
 	if ptr.Pointer() != nil {
 		return uint16(C.QWebSocketServer_ServerPort(ptr.Pointer()))
 	}
@@ -2522,8 +2055,6 @@ func (ptr *QWebSocketServer) ServerPort() uint16 {
 }
 
 func (ptr *QWebSocketServer) ServerUrl() *core.QUrl {
-	defer qt.Recovering("QWebSocketServer::serverUrl")
-
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQUrlFromPointer(C.QWebSocketServer_ServerUrl(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*core.QUrl).DestroyQUrl)
@@ -2533,24 +2064,18 @@ func (ptr *QWebSocketServer) ServerUrl() *core.QUrl {
 }
 
 func (ptr *QWebSocketServer) SetMaxPendingConnections(numConnections int) {
-	defer qt.Recovering("QWebSocketServer::setMaxPendingConnections")
-
 	if ptr.Pointer() != nil {
 		C.QWebSocketServer_SetMaxPendingConnections(ptr.Pointer(), C.int(int32(numConnections)))
 	}
 }
 
 func (ptr *QWebSocketServer) SetProxy(networkProxy network.QNetworkProxy_ITF) {
-	defer qt.Recovering("QWebSocketServer::setProxy")
-
 	if ptr.Pointer() != nil {
 		C.QWebSocketServer_SetProxy(ptr.Pointer(), network.PointerFromQNetworkProxy(networkProxy))
 	}
 }
 
 func (ptr *QWebSocketServer) SetServerName(serverName string) {
-	defer qt.Recovering("QWebSocketServer::setServerName")
-
 	if ptr.Pointer() != nil {
 		var serverNameC = C.CString(serverName)
 		defer C.free(unsafe.Pointer(serverNameC))
@@ -2559,8 +2084,6 @@ func (ptr *QWebSocketServer) SetServerName(serverName string) {
 }
 
 func (ptr *QWebSocketServer) SetSocketDescriptor(socketDescriptor int) bool {
-	defer qt.Recovering("QWebSocketServer::setSocketDescriptor")
-
 	if ptr.Pointer() != nil {
 		return C.QWebSocketServer_SetSocketDescriptor(ptr.Pointer(), C.int(int32(socketDescriptor))) != 0
 	}
@@ -2568,16 +2091,12 @@ func (ptr *QWebSocketServer) SetSocketDescriptor(socketDescriptor int) bool {
 }
 
 func (ptr *QWebSocketServer) SetSslConfiguration(sslConfiguration network.QSslConfiguration_ITF) {
-	defer qt.Recovering("QWebSocketServer::setSslConfiguration")
-
 	if ptr.Pointer() != nil {
 		C.QWebSocketServer_SetSslConfiguration(ptr.Pointer(), network.PointerFromQSslConfiguration(sslConfiguration))
 	}
 }
 
 func (ptr *QWebSocketServer) SocketDescriptor() int {
-	defer qt.Recovering("QWebSocketServer::socketDescriptor")
-
 	if ptr.Pointer() != nil {
 		return int(int32(C.QWebSocketServer_SocketDescriptor(ptr.Pointer())))
 	}
@@ -2585,8 +2104,6 @@ func (ptr *QWebSocketServer) SocketDescriptor() int {
 }
 
 func (ptr *QWebSocketServer) SslConfiguration() *network.QSslConfiguration {
-	defer qt.Recovering("QWebSocketServer::sslConfiguration")
-
 	if ptr.Pointer() != nil {
 		var tmpValue = network.NewQSslConfigurationFromPointer(C.QWebSocketServer_SslConfiguration(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*network.QSslConfiguration).DestroyQSslConfiguration)
@@ -2597,7 +2114,6 @@ func (ptr *QWebSocketServer) SslConfiguration() *network.QSslConfiguration {
 
 //export callbackQWebSocketServer_DestroyQWebSocketServer
 func callbackQWebSocketServer_DestroyQWebSocketServer(ptr unsafe.Pointer) {
-	defer qt.Recovering("callback QWebSocketServer::~QWebSocketServer")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebSocketServer::~QWebSocketServer"); signal != nil {
 		signal.(func())()
@@ -2607,8 +2123,6 @@ func callbackQWebSocketServer_DestroyQWebSocketServer(ptr unsafe.Pointer) {
 }
 
 func (ptr *QWebSocketServer) ConnectDestroyQWebSocketServer(f func()) {
-	defer qt.Recovering("connect QWebSocketServer::~QWebSocketServer")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QWebSocketServer::~QWebSocketServer", f)
@@ -2616,8 +2130,6 @@ func (ptr *QWebSocketServer) ConnectDestroyQWebSocketServer(f func()) {
 }
 
 func (ptr *QWebSocketServer) DisconnectDestroyQWebSocketServer() {
-	defer qt.Recovering("disconnect QWebSocketServer::~QWebSocketServer")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QWebSocketServer::~QWebSocketServer")
@@ -2625,8 +2137,6 @@ func (ptr *QWebSocketServer) DisconnectDestroyQWebSocketServer() {
 }
 
 func (ptr *QWebSocketServer) DestroyQWebSocketServer() {
-	defer qt.Recovering("QWebSocketServer::~QWebSocketServer")
-
 	if ptr.Pointer() != nil {
 		C.QWebSocketServer_DestroyQWebSocketServer(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
@@ -2635,8 +2145,6 @@ func (ptr *QWebSocketServer) DestroyQWebSocketServer() {
 }
 
 func (ptr *QWebSocketServer) DestroyQWebSocketServerDefault() {
-	defer qt.Recovering("QWebSocketServer::~QWebSocketServer")
-
 	if ptr.Pointer() != nil {
 		C.QWebSocketServer_DestroyQWebSocketServerDefault(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
@@ -2646,7 +2154,6 @@ func (ptr *QWebSocketServer) DestroyQWebSocketServerDefault() {
 
 //export callbackQWebSocketServer_TimerEvent
 func callbackQWebSocketServer_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	defer qt.Recovering("callback QWebSocketServer::timerEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebSocketServer::timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
@@ -2656,8 +2163,6 @@ func callbackQWebSocketServer_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointe
 }
 
 func (ptr *QWebSocketServer) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
-	defer qt.Recovering("connect QWebSocketServer::timerEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QWebSocketServer::timerEvent", f)
@@ -2665,8 +2170,6 @@ func (ptr *QWebSocketServer) ConnectTimerEvent(f func(event *core.QTimerEvent)) 
 }
 
 func (ptr *QWebSocketServer) DisconnectTimerEvent() {
-	defer qt.Recovering("disconnect QWebSocketServer::timerEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QWebSocketServer::timerEvent")
@@ -2674,16 +2177,12 @@ func (ptr *QWebSocketServer) DisconnectTimerEvent() {
 }
 
 func (ptr *QWebSocketServer) TimerEvent(event core.QTimerEvent_ITF) {
-	defer qt.Recovering("QWebSocketServer::timerEvent")
-
 	if ptr.Pointer() != nil {
 		C.QWebSocketServer_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
 	}
 }
 
 func (ptr *QWebSocketServer) TimerEventDefault(event core.QTimerEvent_ITF) {
-	defer qt.Recovering("QWebSocketServer::timerEvent")
-
 	if ptr.Pointer() != nil {
 		C.QWebSocketServer_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
 	}
@@ -2691,7 +2190,6 @@ func (ptr *QWebSocketServer) TimerEventDefault(event core.QTimerEvent_ITF) {
 
 //export callbackQWebSocketServer_ChildEvent
 func callbackQWebSocketServer_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	defer qt.Recovering("callback QWebSocketServer::childEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebSocketServer::childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
@@ -2701,8 +2199,6 @@ func callbackQWebSocketServer_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointe
 }
 
 func (ptr *QWebSocketServer) ConnectChildEvent(f func(event *core.QChildEvent)) {
-	defer qt.Recovering("connect QWebSocketServer::childEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QWebSocketServer::childEvent", f)
@@ -2710,8 +2206,6 @@ func (ptr *QWebSocketServer) ConnectChildEvent(f func(event *core.QChildEvent)) 
 }
 
 func (ptr *QWebSocketServer) DisconnectChildEvent() {
-	defer qt.Recovering("disconnect QWebSocketServer::childEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QWebSocketServer::childEvent")
@@ -2719,16 +2213,12 @@ func (ptr *QWebSocketServer) DisconnectChildEvent() {
 }
 
 func (ptr *QWebSocketServer) ChildEvent(event core.QChildEvent_ITF) {
-	defer qt.Recovering("QWebSocketServer::childEvent")
-
 	if ptr.Pointer() != nil {
 		C.QWebSocketServer_ChildEvent(ptr.Pointer(), core.PointerFromQChildEvent(event))
 	}
 }
 
 func (ptr *QWebSocketServer) ChildEventDefault(event core.QChildEvent_ITF) {
-	defer qt.Recovering("QWebSocketServer::childEvent")
-
 	if ptr.Pointer() != nil {
 		C.QWebSocketServer_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
 	}
@@ -2736,7 +2226,6 @@ func (ptr *QWebSocketServer) ChildEventDefault(event core.QChildEvent_ITF) {
 
 //export callbackQWebSocketServer_ConnectNotify
 func callbackQWebSocketServer_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-	defer qt.Recovering("callback QWebSocketServer::connectNotify")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebSocketServer::connectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
@@ -2746,8 +2235,6 @@ func callbackQWebSocketServer_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Poin
 }
 
 func (ptr *QWebSocketServer) ConnectConnectNotify(f func(sign *core.QMetaMethod)) {
-	defer qt.Recovering("connect QWebSocketServer::connectNotify")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QWebSocketServer::connectNotify", f)
@@ -2755,8 +2242,6 @@ func (ptr *QWebSocketServer) ConnectConnectNotify(f func(sign *core.QMetaMethod)
 }
 
 func (ptr *QWebSocketServer) DisconnectConnectNotify() {
-	defer qt.Recovering("disconnect QWebSocketServer::connectNotify")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QWebSocketServer::connectNotify")
@@ -2764,16 +2249,12 @@ func (ptr *QWebSocketServer) DisconnectConnectNotify() {
 }
 
 func (ptr *QWebSocketServer) ConnectNotify(sign core.QMetaMethod_ITF) {
-	defer qt.Recovering("QWebSocketServer::connectNotify")
-
 	if ptr.Pointer() != nil {
 		C.QWebSocketServer_ConnectNotify(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
 	}
 }
 
 func (ptr *QWebSocketServer) ConnectNotifyDefault(sign core.QMetaMethod_ITF) {
-	defer qt.Recovering("QWebSocketServer::connectNotify")
-
 	if ptr.Pointer() != nil {
 		C.QWebSocketServer_ConnectNotifyDefault(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
 	}
@@ -2781,7 +2262,6 @@ func (ptr *QWebSocketServer) ConnectNotifyDefault(sign core.QMetaMethod_ITF) {
 
 //export callbackQWebSocketServer_CustomEvent
 func callbackQWebSocketServer_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	defer qt.Recovering("callback QWebSocketServer::customEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebSocketServer::customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
@@ -2791,8 +2271,6 @@ func callbackQWebSocketServer_CustomEvent(ptr unsafe.Pointer, event unsafe.Point
 }
 
 func (ptr *QWebSocketServer) ConnectCustomEvent(f func(event *core.QEvent)) {
-	defer qt.Recovering("connect QWebSocketServer::customEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QWebSocketServer::customEvent", f)
@@ -2800,8 +2278,6 @@ func (ptr *QWebSocketServer) ConnectCustomEvent(f func(event *core.QEvent)) {
 }
 
 func (ptr *QWebSocketServer) DisconnectCustomEvent() {
-	defer qt.Recovering("disconnect QWebSocketServer::customEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QWebSocketServer::customEvent")
@@ -2809,16 +2285,12 @@ func (ptr *QWebSocketServer) DisconnectCustomEvent() {
 }
 
 func (ptr *QWebSocketServer) CustomEvent(event core.QEvent_ITF) {
-	defer qt.Recovering("QWebSocketServer::customEvent")
-
 	if ptr.Pointer() != nil {
 		C.QWebSocketServer_CustomEvent(ptr.Pointer(), core.PointerFromQEvent(event))
 	}
 }
 
 func (ptr *QWebSocketServer) CustomEventDefault(event core.QEvent_ITF) {
-	defer qt.Recovering("QWebSocketServer::customEvent")
-
 	if ptr.Pointer() != nil {
 		C.QWebSocketServer_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
 	}
@@ -2826,8 +2298,6 @@ func (ptr *QWebSocketServer) CustomEventDefault(event core.QEvent_ITF) {
 
 //export callbackQWebSocketServer_DeleteLater
 func callbackQWebSocketServer_DeleteLater(ptr unsafe.Pointer) {
-	defer qt.Recovering("callback QWebSocketServer::deleteLater")
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebSocketServer::deleteLater"); signal != nil {
 		signal.(func())()
 	} else {
@@ -2836,8 +2306,6 @@ func callbackQWebSocketServer_DeleteLater(ptr unsafe.Pointer) {
 }
 
 func (ptr *QWebSocketServer) ConnectDeleteLater(f func()) {
-	defer qt.Recovering("connect QWebSocketServer::deleteLater")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QWebSocketServer::deleteLater", f)
@@ -2845,8 +2313,6 @@ func (ptr *QWebSocketServer) ConnectDeleteLater(f func()) {
 }
 
 func (ptr *QWebSocketServer) DisconnectDeleteLater() {
-	defer qt.Recovering("disconnect QWebSocketServer::deleteLater")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QWebSocketServer::deleteLater")
@@ -2854,8 +2320,6 @@ func (ptr *QWebSocketServer) DisconnectDeleteLater() {
 }
 
 func (ptr *QWebSocketServer) DeleteLater() {
-	defer qt.Recovering("QWebSocketServer::deleteLater")
-
 	if ptr.Pointer() != nil {
 		C.QWebSocketServer_DeleteLater(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
@@ -2864,8 +2328,6 @@ func (ptr *QWebSocketServer) DeleteLater() {
 }
 
 func (ptr *QWebSocketServer) DeleteLaterDefault() {
-	defer qt.Recovering("QWebSocketServer::deleteLater")
-
 	if ptr.Pointer() != nil {
 		C.QWebSocketServer_DeleteLaterDefault(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
@@ -2875,7 +2337,6 @@ func (ptr *QWebSocketServer) DeleteLaterDefault() {
 
 //export callbackQWebSocketServer_DisconnectNotify
 func callbackQWebSocketServer_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-	defer qt.Recovering("callback QWebSocketServer::disconnectNotify")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebSocketServer::disconnectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
@@ -2885,8 +2346,6 @@ func callbackQWebSocketServer_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.P
 }
 
 func (ptr *QWebSocketServer) ConnectDisconnectNotify(f func(sign *core.QMetaMethod)) {
-	defer qt.Recovering("connect QWebSocketServer::disconnectNotify")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QWebSocketServer::disconnectNotify", f)
@@ -2894,8 +2353,6 @@ func (ptr *QWebSocketServer) ConnectDisconnectNotify(f func(sign *core.QMetaMeth
 }
 
 func (ptr *QWebSocketServer) DisconnectDisconnectNotify() {
-	defer qt.Recovering("disconnect QWebSocketServer::disconnectNotify")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QWebSocketServer::disconnectNotify")
@@ -2903,16 +2360,12 @@ func (ptr *QWebSocketServer) DisconnectDisconnectNotify() {
 }
 
 func (ptr *QWebSocketServer) DisconnectNotify(sign core.QMetaMethod_ITF) {
-	defer qt.Recovering("QWebSocketServer::disconnectNotify")
-
 	if ptr.Pointer() != nil {
 		C.QWebSocketServer_DisconnectNotify(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
 	}
 }
 
 func (ptr *QWebSocketServer) DisconnectNotifyDefault(sign core.QMetaMethod_ITF) {
-	defer qt.Recovering("QWebSocketServer::disconnectNotify")
-
 	if ptr.Pointer() != nil {
 		C.QWebSocketServer_DisconnectNotifyDefault(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
 	}
@@ -2920,7 +2373,6 @@ func (ptr *QWebSocketServer) DisconnectNotifyDefault(sign core.QMetaMethod_ITF) 
 
 //export callbackQWebSocketServer_Event
 func callbackQWebSocketServer_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
-	defer qt.Recovering("callback QWebSocketServer::event")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebSocketServer::event"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
@@ -2930,8 +2382,6 @@ func callbackQWebSocketServer_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char
 }
 
 func (ptr *QWebSocketServer) ConnectEvent(f func(e *core.QEvent) bool) {
-	defer qt.Recovering("connect QWebSocketServer::event")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QWebSocketServer::event", f)
@@ -2939,8 +2389,6 @@ func (ptr *QWebSocketServer) ConnectEvent(f func(e *core.QEvent) bool) {
 }
 
 func (ptr *QWebSocketServer) DisconnectEvent() {
-	defer qt.Recovering("disconnect QWebSocketServer::event")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QWebSocketServer::event")
@@ -2948,8 +2396,6 @@ func (ptr *QWebSocketServer) DisconnectEvent() {
 }
 
 func (ptr *QWebSocketServer) Event(e core.QEvent_ITF) bool {
-	defer qt.Recovering("QWebSocketServer::event")
-
 	if ptr.Pointer() != nil {
 		return C.QWebSocketServer_Event(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
 	}
@@ -2957,8 +2403,6 @@ func (ptr *QWebSocketServer) Event(e core.QEvent_ITF) bool {
 }
 
 func (ptr *QWebSocketServer) EventDefault(e core.QEvent_ITF) bool {
-	defer qt.Recovering("QWebSocketServer::event")
-
 	if ptr.Pointer() != nil {
 		return C.QWebSocketServer_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
 	}
@@ -2967,7 +2411,6 @@ func (ptr *QWebSocketServer) EventDefault(e core.QEvent_ITF) bool {
 
 //export callbackQWebSocketServer_EventFilter
 func callbackQWebSocketServer_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-	defer qt.Recovering("callback QWebSocketServer::eventFilter")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebSocketServer::eventFilter"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
@@ -2977,8 +2420,6 @@ func callbackQWebSocketServer_EventFilter(ptr unsafe.Pointer, watched unsafe.Poi
 }
 
 func (ptr *QWebSocketServer) ConnectEventFilter(f func(watched *core.QObject, event *core.QEvent) bool) {
-	defer qt.Recovering("connect QWebSocketServer::eventFilter")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QWebSocketServer::eventFilter", f)
@@ -2986,8 +2427,6 @@ func (ptr *QWebSocketServer) ConnectEventFilter(f func(watched *core.QObject, ev
 }
 
 func (ptr *QWebSocketServer) DisconnectEventFilter() {
-	defer qt.Recovering("disconnect QWebSocketServer::eventFilter")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QWebSocketServer::eventFilter")
@@ -2995,8 +2434,6 @@ func (ptr *QWebSocketServer) DisconnectEventFilter() {
 }
 
 func (ptr *QWebSocketServer) EventFilter(watched core.QObject_ITF, event core.QEvent_ITF) bool {
-	defer qt.Recovering("QWebSocketServer::eventFilter")
-
 	if ptr.Pointer() != nil {
 		return C.QWebSocketServer_EventFilter(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
 	}
@@ -3004,8 +2441,6 @@ func (ptr *QWebSocketServer) EventFilter(watched core.QObject_ITF, event core.QE
 }
 
 func (ptr *QWebSocketServer) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
-	defer qt.Recovering("QWebSocketServer::eventFilter")
-
 	if ptr.Pointer() != nil {
 		return C.QWebSocketServer_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
 	}
@@ -3014,7 +2449,6 @@ func (ptr *QWebSocketServer) EventFilterDefault(watched core.QObject_ITF, event 
 
 //export callbackQWebSocketServer_MetaObject
 func callbackQWebSocketServer_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-	defer qt.Recovering("callback QWebSocketServer::metaObject")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebSocketServer::metaObject"); signal != nil {
 		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
@@ -3024,8 +2458,6 @@ func callbackQWebSocketServer_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
 }
 
 func (ptr *QWebSocketServer) ConnectMetaObject(f func() *core.QMetaObject) {
-	defer qt.Recovering("connect QWebSocketServer::metaObject")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QWebSocketServer::metaObject", f)
@@ -3033,8 +2465,6 @@ func (ptr *QWebSocketServer) ConnectMetaObject(f func() *core.QMetaObject) {
 }
 
 func (ptr *QWebSocketServer) DisconnectMetaObject() {
-	defer qt.Recovering("disconnect QWebSocketServer::metaObject")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QWebSocketServer::metaObject")
@@ -3042,8 +2472,6 @@ func (ptr *QWebSocketServer) DisconnectMetaObject() {
 }
 
 func (ptr *QWebSocketServer) MetaObject() *core.QMetaObject {
-	defer qt.Recovering("QWebSocketServer::metaObject")
-
 	if ptr.Pointer() != nil {
 		return core.NewQMetaObjectFromPointer(C.QWebSocketServer_MetaObject(ptr.Pointer()))
 	}
@@ -3051,8 +2479,6 @@ func (ptr *QWebSocketServer) MetaObject() *core.QMetaObject {
 }
 
 func (ptr *QWebSocketServer) MetaObjectDefault() *core.QMetaObject {
-	defer qt.Recovering("QWebSocketServer::metaObject")
-
 	if ptr.Pointer() != nil {
 		return core.NewQMetaObjectFromPointer(C.QWebSocketServer_MetaObjectDefault(ptr.Pointer()))
 	}

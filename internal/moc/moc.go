@@ -252,7 +252,7 @@ func moc(appPath string) {
 			switch runtime.GOOS {
 			case "darwin":
 				{
-					mocPath = filepath.Join(utils.QT_DIR(), "5.7", "clang_64", "bin", "moc")
+					mocPath = filepath.Join(utils.QT_DARWIN_DIR(), "bin", "moc")
 				}
 
 			case "linux":

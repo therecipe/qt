@@ -84,8 +84,6 @@ func (ptr *QQuickWebEngineProfile) DestroyQQuickWebEngineProfile() {
 }
 
 func (ptr *QQuickWebEngineProfile) CachePath() string {
-	defer qt.Recovering("QQuickWebEngineProfile::cachePath")
-
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QQuickWebEngineProfile_CachePath(ptr.Pointer()))
 	}
@@ -93,8 +91,6 @@ func (ptr *QQuickWebEngineProfile) CachePath() string {
 }
 
 func (ptr *QQuickWebEngineProfile) HttpAcceptLanguage() string {
-	defer qt.Recovering("QQuickWebEngineProfile::httpAcceptLanguage")
-
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QQuickWebEngineProfile_HttpAcceptLanguage(ptr.Pointer()))
 	}
@@ -102,8 +98,6 @@ func (ptr *QQuickWebEngineProfile) HttpAcceptLanguage() string {
 }
 
 func (ptr *QQuickWebEngineProfile) HttpCacheMaximumSize() int {
-	defer qt.Recovering("QQuickWebEngineProfile::httpCacheMaximumSize")
-
 	if ptr.Pointer() != nil {
 		return int(int32(C.QQuickWebEngineProfile_HttpCacheMaximumSize(ptr.Pointer())))
 	}
@@ -111,8 +105,6 @@ func (ptr *QQuickWebEngineProfile) HttpCacheMaximumSize() int {
 }
 
 func (ptr *QQuickWebEngineProfile) HttpCacheType() QQuickWebEngineProfile__HttpCacheType {
-	defer qt.Recovering("QQuickWebEngineProfile::httpCacheType")
-
 	if ptr.Pointer() != nil {
 		return QQuickWebEngineProfile__HttpCacheType(C.QQuickWebEngineProfile_HttpCacheType(ptr.Pointer()))
 	}
@@ -120,8 +112,6 @@ func (ptr *QQuickWebEngineProfile) HttpCacheType() QQuickWebEngineProfile__HttpC
 }
 
 func (ptr *QQuickWebEngineProfile) HttpUserAgent() string {
-	defer qt.Recovering("QQuickWebEngineProfile::httpUserAgent")
-
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QQuickWebEngineProfile_HttpUserAgent(ptr.Pointer()))
 	}
@@ -129,8 +119,6 @@ func (ptr *QQuickWebEngineProfile) HttpUserAgent() string {
 }
 
 func (ptr *QQuickWebEngineProfile) IsOffTheRecord() bool {
-	defer qt.Recovering("QQuickWebEngineProfile::isOffTheRecord")
-
 	if ptr.Pointer() != nil {
 		return C.QQuickWebEngineProfile_IsOffTheRecord(ptr.Pointer()) != 0
 	}
@@ -138,8 +126,6 @@ func (ptr *QQuickWebEngineProfile) IsOffTheRecord() bool {
 }
 
 func (ptr *QQuickWebEngineProfile) PersistentCookiesPolicy() QQuickWebEngineProfile__PersistentCookiesPolicy {
-	defer qt.Recovering("QQuickWebEngineProfile::persistentCookiesPolicy")
-
 	if ptr.Pointer() != nil {
 		return QQuickWebEngineProfile__PersistentCookiesPolicy(C.QQuickWebEngineProfile_PersistentCookiesPolicy(ptr.Pointer()))
 	}
@@ -147,8 +133,6 @@ func (ptr *QQuickWebEngineProfile) PersistentCookiesPolicy() QQuickWebEngineProf
 }
 
 func (ptr *QQuickWebEngineProfile) PersistentStoragePath() string {
-	defer qt.Recovering("QQuickWebEngineProfile::persistentStoragePath")
-
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QQuickWebEngineProfile_PersistentStoragePath(ptr.Pointer()))
 	}
@@ -156,8 +140,6 @@ func (ptr *QQuickWebEngineProfile) PersistentStoragePath() string {
 }
 
 func (ptr *QQuickWebEngineProfile) SetCachePath(path string) {
-	defer qt.Recovering("QQuickWebEngineProfile::setCachePath")
-
 	if ptr.Pointer() != nil {
 		var pathC = C.CString(path)
 		defer C.free(unsafe.Pointer(pathC))
@@ -166,8 +148,6 @@ func (ptr *QQuickWebEngineProfile) SetCachePath(path string) {
 }
 
 func (ptr *QQuickWebEngineProfile) SetHttpAcceptLanguage(httpAcceptLanguage string) {
-	defer qt.Recovering("QQuickWebEngineProfile::setHttpAcceptLanguage")
-
 	if ptr.Pointer() != nil {
 		var httpAcceptLanguageC = C.CString(httpAcceptLanguage)
 		defer C.free(unsafe.Pointer(httpAcceptLanguageC))
@@ -176,24 +156,18 @@ func (ptr *QQuickWebEngineProfile) SetHttpAcceptLanguage(httpAcceptLanguage stri
 }
 
 func (ptr *QQuickWebEngineProfile) SetHttpCacheMaximumSize(maxSize int) {
-	defer qt.Recovering("QQuickWebEngineProfile::setHttpCacheMaximumSize")
-
 	if ptr.Pointer() != nil {
 		C.QQuickWebEngineProfile_SetHttpCacheMaximumSize(ptr.Pointer(), C.int(int32(maxSize)))
 	}
 }
 
 func (ptr *QQuickWebEngineProfile) SetHttpCacheType(vqq QQuickWebEngineProfile__HttpCacheType) {
-	defer qt.Recovering("QQuickWebEngineProfile::setHttpCacheType")
-
 	if ptr.Pointer() != nil {
 		C.QQuickWebEngineProfile_SetHttpCacheType(ptr.Pointer(), C.longlong(vqq))
 	}
 }
 
 func (ptr *QQuickWebEngineProfile) SetHttpUserAgent(userAgent string) {
-	defer qt.Recovering("QQuickWebEngineProfile::setHttpUserAgent")
-
 	if ptr.Pointer() != nil {
 		var userAgentC = C.CString(userAgent)
 		defer C.free(unsafe.Pointer(userAgentC))
@@ -202,24 +176,18 @@ func (ptr *QQuickWebEngineProfile) SetHttpUserAgent(userAgent string) {
 }
 
 func (ptr *QQuickWebEngineProfile) SetOffTheRecord(offTheRecord bool) {
-	defer qt.Recovering("QQuickWebEngineProfile::setOffTheRecord")
-
 	if ptr.Pointer() != nil {
 		C.QQuickWebEngineProfile_SetOffTheRecord(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(offTheRecord))))
 	}
 }
 
 func (ptr *QQuickWebEngineProfile) SetPersistentCookiesPolicy(vqq QQuickWebEngineProfile__PersistentCookiesPolicy) {
-	defer qt.Recovering("QQuickWebEngineProfile::setPersistentCookiesPolicy")
-
 	if ptr.Pointer() != nil {
 		C.QQuickWebEngineProfile_SetPersistentCookiesPolicy(ptr.Pointer(), C.longlong(vqq))
 	}
 }
 
 func (ptr *QQuickWebEngineProfile) SetPersistentStoragePath(path string) {
-	defer qt.Recovering("QQuickWebEngineProfile::setPersistentStoragePath")
-
 	if ptr.Pointer() != nil {
 		var pathC = C.CString(path)
 		defer C.free(unsafe.Pointer(pathC))
@@ -228,8 +196,6 @@ func (ptr *QQuickWebEngineProfile) SetPersistentStoragePath(path string) {
 }
 
 func (ptr *QQuickWebEngineProfile) SetStorageName(name string) {
-	defer qt.Recovering("QQuickWebEngineProfile::setStorageName")
-
 	if ptr.Pointer() != nil {
 		var nameC = C.CString(name)
 		defer C.free(unsafe.Pointer(nameC))
@@ -238,8 +204,6 @@ func (ptr *QQuickWebEngineProfile) SetStorageName(name string) {
 }
 
 func (ptr *QQuickWebEngineProfile) StorageName() string {
-	defer qt.Recovering("QQuickWebEngineProfile::storageName")
-
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QQuickWebEngineProfile_StorageName(ptr.Pointer()))
 	}
@@ -247,8 +211,6 @@ func (ptr *QQuickWebEngineProfile) StorageName() string {
 }
 
 func NewQQuickWebEngineProfile(parent core.QObject_ITF) *QQuickWebEngineProfile {
-	defer qt.Recovering("QQuickWebEngineProfile::QQuickWebEngineProfile")
-
 	var tmpValue = NewQQuickWebEngineProfileFromPointer(C.QQuickWebEngineProfile_NewQQuickWebEngineProfile(core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
@@ -258,7 +220,6 @@ func NewQQuickWebEngineProfile(parent core.QObject_ITF) *QQuickWebEngineProfile 
 
 //export callbackQQuickWebEngineProfile_CachePathChanged
 func callbackQQuickWebEngineProfile_CachePathChanged(ptr unsafe.Pointer) {
-	defer qt.Recovering("callback QQuickWebEngineProfile::cachePathChanged")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QQuickWebEngineProfile::cachePathChanged"); signal != nil {
 		signal.(func())()
@@ -267,8 +228,6 @@ func callbackQQuickWebEngineProfile_CachePathChanged(ptr unsafe.Pointer) {
 }
 
 func (ptr *QQuickWebEngineProfile) ConnectCachePathChanged(f func()) {
-	defer qt.Recovering("connect QQuickWebEngineProfile::cachePathChanged")
-
 	if ptr.Pointer() != nil {
 		C.QQuickWebEngineProfile_ConnectCachePathChanged(ptr.Pointer())
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QQuickWebEngineProfile::cachePathChanged", f)
@@ -276,8 +235,6 @@ func (ptr *QQuickWebEngineProfile) ConnectCachePathChanged(f func()) {
 }
 
 func (ptr *QQuickWebEngineProfile) DisconnectCachePathChanged() {
-	defer qt.Recovering("disconnect QQuickWebEngineProfile::cachePathChanged")
-
 	if ptr.Pointer() != nil {
 		C.QQuickWebEngineProfile_DisconnectCachePathChanged(ptr.Pointer())
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QQuickWebEngineProfile::cachePathChanged")
@@ -285,24 +242,18 @@ func (ptr *QQuickWebEngineProfile) DisconnectCachePathChanged() {
 }
 
 func (ptr *QQuickWebEngineProfile) CachePathChanged() {
-	defer qt.Recovering("QQuickWebEngineProfile::cachePathChanged")
-
 	if ptr.Pointer() != nil {
 		C.QQuickWebEngineProfile_CachePathChanged(ptr.Pointer())
 	}
 }
 
 func (ptr *QQuickWebEngineProfile) ClearHttpCache() {
-	defer qt.Recovering("QQuickWebEngineProfile::clearHttpCache")
-
 	if ptr.Pointer() != nil {
 		C.QQuickWebEngineProfile_ClearHttpCache(ptr.Pointer())
 	}
 }
 
 func (ptr *QQuickWebEngineProfile) CookieStore() *QWebEngineCookieStore {
-	defer qt.Recovering("QQuickWebEngineProfile::cookieStore")
-
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQWebEngineCookieStoreFromPointer(C.QQuickWebEngineProfile_CookieStore(ptr.Pointer()))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
@@ -314,8 +265,6 @@ func (ptr *QQuickWebEngineProfile) CookieStore() *QWebEngineCookieStore {
 }
 
 func QQuickWebEngineProfile_DefaultProfile() *QQuickWebEngineProfile {
-	defer qt.Recovering("QQuickWebEngineProfile::defaultProfile")
-
 	var tmpValue = NewQQuickWebEngineProfileFromPointer(C.QQuickWebEngineProfile_QQuickWebEngineProfile_DefaultProfile())
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
@@ -324,8 +273,6 @@ func QQuickWebEngineProfile_DefaultProfile() *QQuickWebEngineProfile {
 }
 
 func (ptr *QQuickWebEngineProfile) DefaultProfile() *QQuickWebEngineProfile {
-	defer qt.Recovering("QQuickWebEngineProfile::defaultProfile")
-
 	var tmpValue = NewQQuickWebEngineProfileFromPointer(C.QQuickWebEngineProfile_QQuickWebEngineProfile_DefaultProfile())
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
@@ -335,7 +282,6 @@ func (ptr *QQuickWebEngineProfile) DefaultProfile() *QQuickWebEngineProfile {
 
 //export callbackQQuickWebEngineProfile_HttpAcceptLanguageChanged
 func callbackQQuickWebEngineProfile_HttpAcceptLanguageChanged(ptr unsafe.Pointer) {
-	defer qt.Recovering("callback QQuickWebEngineProfile::httpAcceptLanguageChanged")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QQuickWebEngineProfile::httpAcceptLanguageChanged"); signal != nil {
 		signal.(func())()
@@ -344,8 +290,6 @@ func callbackQQuickWebEngineProfile_HttpAcceptLanguageChanged(ptr unsafe.Pointer
 }
 
 func (ptr *QQuickWebEngineProfile) ConnectHttpAcceptLanguageChanged(f func()) {
-	defer qt.Recovering("connect QQuickWebEngineProfile::httpAcceptLanguageChanged")
-
 	if ptr.Pointer() != nil {
 		C.QQuickWebEngineProfile_ConnectHttpAcceptLanguageChanged(ptr.Pointer())
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QQuickWebEngineProfile::httpAcceptLanguageChanged", f)
@@ -353,8 +297,6 @@ func (ptr *QQuickWebEngineProfile) ConnectHttpAcceptLanguageChanged(f func()) {
 }
 
 func (ptr *QQuickWebEngineProfile) DisconnectHttpAcceptLanguageChanged() {
-	defer qt.Recovering("disconnect QQuickWebEngineProfile::httpAcceptLanguageChanged")
-
 	if ptr.Pointer() != nil {
 		C.QQuickWebEngineProfile_DisconnectHttpAcceptLanguageChanged(ptr.Pointer())
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QQuickWebEngineProfile::httpAcceptLanguageChanged")
@@ -362,8 +304,6 @@ func (ptr *QQuickWebEngineProfile) DisconnectHttpAcceptLanguageChanged() {
 }
 
 func (ptr *QQuickWebEngineProfile) HttpAcceptLanguageChanged() {
-	defer qt.Recovering("QQuickWebEngineProfile::httpAcceptLanguageChanged")
-
 	if ptr.Pointer() != nil {
 		C.QQuickWebEngineProfile_HttpAcceptLanguageChanged(ptr.Pointer())
 	}
@@ -371,7 +311,6 @@ func (ptr *QQuickWebEngineProfile) HttpAcceptLanguageChanged() {
 
 //export callbackQQuickWebEngineProfile_HttpCacheMaximumSizeChanged
 func callbackQQuickWebEngineProfile_HttpCacheMaximumSizeChanged(ptr unsafe.Pointer) {
-	defer qt.Recovering("callback QQuickWebEngineProfile::httpCacheMaximumSizeChanged")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QQuickWebEngineProfile::httpCacheMaximumSizeChanged"); signal != nil {
 		signal.(func())()
@@ -380,8 +319,6 @@ func callbackQQuickWebEngineProfile_HttpCacheMaximumSizeChanged(ptr unsafe.Point
 }
 
 func (ptr *QQuickWebEngineProfile) ConnectHttpCacheMaximumSizeChanged(f func()) {
-	defer qt.Recovering("connect QQuickWebEngineProfile::httpCacheMaximumSizeChanged")
-
 	if ptr.Pointer() != nil {
 		C.QQuickWebEngineProfile_ConnectHttpCacheMaximumSizeChanged(ptr.Pointer())
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QQuickWebEngineProfile::httpCacheMaximumSizeChanged", f)
@@ -389,8 +326,6 @@ func (ptr *QQuickWebEngineProfile) ConnectHttpCacheMaximumSizeChanged(f func()) 
 }
 
 func (ptr *QQuickWebEngineProfile) DisconnectHttpCacheMaximumSizeChanged() {
-	defer qt.Recovering("disconnect QQuickWebEngineProfile::httpCacheMaximumSizeChanged")
-
 	if ptr.Pointer() != nil {
 		C.QQuickWebEngineProfile_DisconnectHttpCacheMaximumSizeChanged(ptr.Pointer())
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QQuickWebEngineProfile::httpCacheMaximumSizeChanged")
@@ -398,8 +333,6 @@ func (ptr *QQuickWebEngineProfile) DisconnectHttpCacheMaximumSizeChanged() {
 }
 
 func (ptr *QQuickWebEngineProfile) HttpCacheMaximumSizeChanged() {
-	defer qt.Recovering("QQuickWebEngineProfile::httpCacheMaximumSizeChanged")
-
 	if ptr.Pointer() != nil {
 		C.QQuickWebEngineProfile_HttpCacheMaximumSizeChanged(ptr.Pointer())
 	}
@@ -407,7 +340,6 @@ func (ptr *QQuickWebEngineProfile) HttpCacheMaximumSizeChanged() {
 
 //export callbackQQuickWebEngineProfile_HttpCacheTypeChanged
 func callbackQQuickWebEngineProfile_HttpCacheTypeChanged(ptr unsafe.Pointer) {
-	defer qt.Recovering("callback QQuickWebEngineProfile::httpCacheTypeChanged")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QQuickWebEngineProfile::httpCacheTypeChanged"); signal != nil {
 		signal.(func())()
@@ -416,8 +348,6 @@ func callbackQQuickWebEngineProfile_HttpCacheTypeChanged(ptr unsafe.Pointer) {
 }
 
 func (ptr *QQuickWebEngineProfile) ConnectHttpCacheTypeChanged(f func()) {
-	defer qt.Recovering("connect QQuickWebEngineProfile::httpCacheTypeChanged")
-
 	if ptr.Pointer() != nil {
 		C.QQuickWebEngineProfile_ConnectHttpCacheTypeChanged(ptr.Pointer())
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QQuickWebEngineProfile::httpCacheTypeChanged", f)
@@ -425,8 +355,6 @@ func (ptr *QQuickWebEngineProfile) ConnectHttpCacheTypeChanged(f func()) {
 }
 
 func (ptr *QQuickWebEngineProfile) DisconnectHttpCacheTypeChanged() {
-	defer qt.Recovering("disconnect QQuickWebEngineProfile::httpCacheTypeChanged")
-
 	if ptr.Pointer() != nil {
 		C.QQuickWebEngineProfile_DisconnectHttpCacheTypeChanged(ptr.Pointer())
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QQuickWebEngineProfile::httpCacheTypeChanged")
@@ -434,8 +362,6 @@ func (ptr *QQuickWebEngineProfile) DisconnectHttpCacheTypeChanged() {
 }
 
 func (ptr *QQuickWebEngineProfile) HttpCacheTypeChanged() {
-	defer qt.Recovering("QQuickWebEngineProfile::httpCacheTypeChanged")
-
 	if ptr.Pointer() != nil {
 		C.QQuickWebEngineProfile_HttpCacheTypeChanged(ptr.Pointer())
 	}
@@ -443,7 +369,6 @@ func (ptr *QQuickWebEngineProfile) HttpCacheTypeChanged() {
 
 //export callbackQQuickWebEngineProfile_HttpUserAgentChanged
 func callbackQQuickWebEngineProfile_HttpUserAgentChanged(ptr unsafe.Pointer) {
-	defer qt.Recovering("callback QQuickWebEngineProfile::httpUserAgentChanged")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QQuickWebEngineProfile::httpUserAgentChanged"); signal != nil {
 		signal.(func())()
@@ -452,8 +377,6 @@ func callbackQQuickWebEngineProfile_HttpUserAgentChanged(ptr unsafe.Pointer) {
 }
 
 func (ptr *QQuickWebEngineProfile) ConnectHttpUserAgentChanged(f func()) {
-	defer qt.Recovering("connect QQuickWebEngineProfile::httpUserAgentChanged")
-
 	if ptr.Pointer() != nil {
 		C.QQuickWebEngineProfile_ConnectHttpUserAgentChanged(ptr.Pointer())
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QQuickWebEngineProfile::httpUserAgentChanged", f)
@@ -461,8 +384,6 @@ func (ptr *QQuickWebEngineProfile) ConnectHttpUserAgentChanged(f func()) {
 }
 
 func (ptr *QQuickWebEngineProfile) DisconnectHttpUserAgentChanged() {
-	defer qt.Recovering("disconnect QQuickWebEngineProfile::httpUserAgentChanged")
-
 	if ptr.Pointer() != nil {
 		C.QQuickWebEngineProfile_DisconnectHttpUserAgentChanged(ptr.Pointer())
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QQuickWebEngineProfile::httpUserAgentChanged")
@@ -470,16 +391,12 @@ func (ptr *QQuickWebEngineProfile) DisconnectHttpUserAgentChanged() {
 }
 
 func (ptr *QQuickWebEngineProfile) HttpUserAgentChanged() {
-	defer qt.Recovering("QQuickWebEngineProfile::httpUserAgentChanged")
-
 	if ptr.Pointer() != nil {
 		C.QQuickWebEngineProfile_HttpUserAgentChanged(ptr.Pointer())
 	}
 }
 
 func (ptr *QQuickWebEngineProfile) InstallUrlSchemeHandler(scheme string, handler QWebEngineUrlSchemeHandler_ITF) {
-	defer qt.Recovering("QQuickWebEngineProfile::installUrlSchemeHandler")
-
 	if ptr.Pointer() != nil {
 		var schemeC = C.CString(hex.EncodeToString([]byte(scheme)))
 		defer C.free(unsafe.Pointer(schemeC))
@@ -489,7 +406,6 @@ func (ptr *QQuickWebEngineProfile) InstallUrlSchemeHandler(scheme string, handle
 
 //export callbackQQuickWebEngineProfile_OffTheRecordChanged
 func callbackQQuickWebEngineProfile_OffTheRecordChanged(ptr unsafe.Pointer) {
-	defer qt.Recovering("callback QQuickWebEngineProfile::offTheRecordChanged")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QQuickWebEngineProfile::offTheRecordChanged"); signal != nil {
 		signal.(func())()
@@ -498,8 +414,6 @@ func callbackQQuickWebEngineProfile_OffTheRecordChanged(ptr unsafe.Pointer) {
 }
 
 func (ptr *QQuickWebEngineProfile) ConnectOffTheRecordChanged(f func()) {
-	defer qt.Recovering("connect QQuickWebEngineProfile::offTheRecordChanged")
-
 	if ptr.Pointer() != nil {
 		C.QQuickWebEngineProfile_ConnectOffTheRecordChanged(ptr.Pointer())
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QQuickWebEngineProfile::offTheRecordChanged", f)
@@ -507,8 +421,6 @@ func (ptr *QQuickWebEngineProfile) ConnectOffTheRecordChanged(f func()) {
 }
 
 func (ptr *QQuickWebEngineProfile) DisconnectOffTheRecordChanged() {
-	defer qt.Recovering("disconnect QQuickWebEngineProfile::offTheRecordChanged")
-
 	if ptr.Pointer() != nil {
 		C.QQuickWebEngineProfile_DisconnectOffTheRecordChanged(ptr.Pointer())
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QQuickWebEngineProfile::offTheRecordChanged")
@@ -516,8 +428,6 @@ func (ptr *QQuickWebEngineProfile) DisconnectOffTheRecordChanged() {
 }
 
 func (ptr *QQuickWebEngineProfile) OffTheRecordChanged() {
-	defer qt.Recovering("QQuickWebEngineProfile::offTheRecordChanged")
-
 	if ptr.Pointer() != nil {
 		C.QQuickWebEngineProfile_OffTheRecordChanged(ptr.Pointer())
 	}
@@ -525,7 +435,6 @@ func (ptr *QQuickWebEngineProfile) OffTheRecordChanged() {
 
 //export callbackQQuickWebEngineProfile_PersistentCookiesPolicyChanged
 func callbackQQuickWebEngineProfile_PersistentCookiesPolicyChanged(ptr unsafe.Pointer) {
-	defer qt.Recovering("callback QQuickWebEngineProfile::persistentCookiesPolicyChanged")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QQuickWebEngineProfile::persistentCookiesPolicyChanged"); signal != nil {
 		signal.(func())()
@@ -534,8 +443,6 @@ func callbackQQuickWebEngineProfile_PersistentCookiesPolicyChanged(ptr unsafe.Po
 }
 
 func (ptr *QQuickWebEngineProfile) ConnectPersistentCookiesPolicyChanged(f func()) {
-	defer qt.Recovering("connect QQuickWebEngineProfile::persistentCookiesPolicyChanged")
-
 	if ptr.Pointer() != nil {
 		C.QQuickWebEngineProfile_ConnectPersistentCookiesPolicyChanged(ptr.Pointer())
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QQuickWebEngineProfile::persistentCookiesPolicyChanged", f)
@@ -543,8 +450,6 @@ func (ptr *QQuickWebEngineProfile) ConnectPersistentCookiesPolicyChanged(f func(
 }
 
 func (ptr *QQuickWebEngineProfile) DisconnectPersistentCookiesPolicyChanged() {
-	defer qt.Recovering("disconnect QQuickWebEngineProfile::persistentCookiesPolicyChanged")
-
 	if ptr.Pointer() != nil {
 		C.QQuickWebEngineProfile_DisconnectPersistentCookiesPolicyChanged(ptr.Pointer())
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QQuickWebEngineProfile::persistentCookiesPolicyChanged")
@@ -552,8 +457,6 @@ func (ptr *QQuickWebEngineProfile) DisconnectPersistentCookiesPolicyChanged() {
 }
 
 func (ptr *QQuickWebEngineProfile) PersistentCookiesPolicyChanged() {
-	defer qt.Recovering("QQuickWebEngineProfile::persistentCookiesPolicyChanged")
-
 	if ptr.Pointer() != nil {
 		C.QQuickWebEngineProfile_PersistentCookiesPolicyChanged(ptr.Pointer())
 	}
@@ -561,7 +464,6 @@ func (ptr *QQuickWebEngineProfile) PersistentCookiesPolicyChanged() {
 
 //export callbackQQuickWebEngineProfile_PersistentStoragePathChanged
 func callbackQQuickWebEngineProfile_PersistentStoragePathChanged(ptr unsafe.Pointer) {
-	defer qt.Recovering("callback QQuickWebEngineProfile::persistentStoragePathChanged")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QQuickWebEngineProfile::persistentStoragePathChanged"); signal != nil {
 		signal.(func())()
@@ -570,8 +472,6 @@ func callbackQQuickWebEngineProfile_PersistentStoragePathChanged(ptr unsafe.Poin
 }
 
 func (ptr *QQuickWebEngineProfile) ConnectPersistentStoragePathChanged(f func()) {
-	defer qt.Recovering("connect QQuickWebEngineProfile::persistentStoragePathChanged")
-
 	if ptr.Pointer() != nil {
 		C.QQuickWebEngineProfile_ConnectPersistentStoragePathChanged(ptr.Pointer())
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QQuickWebEngineProfile::persistentStoragePathChanged", f)
@@ -579,8 +479,6 @@ func (ptr *QQuickWebEngineProfile) ConnectPersistentStoragePathChanged(f func())
 }
 
 func (ptr *QQuickWebEngineProfile) DisconnectPersistentStoragePathChanged() {
-	defer qt.Recovering("disconnect QQuickWebEngineProfile::persistentStoragePathChanged")
-
 	if ptr.Pointer() != nil {
 		C.QQuickWebEngineProfile_DisconnectPersistentStoragePathChanged(ptr.Pointer())
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QQuickWebEngineProfile::persistentStoragePathChanged")
@@ -588,24 +486,18 @@ func (ptr *QQuickWebEngineProfile) DisconnectPersistentStoragePathChanged() {
 }
 
 func (ptr *QQuickWebEngineProfile) PersistentStoragePathChanged() {
-	defer qt.Recovering("QQuickWebEngineProfile::persistentStoragePathChanged")
-
 	if ptr.Pointer() != nil {
 		C.QQuickWebEngineProfile_PersistentStoragePathChanged(ptr.Pointer())
 	}
 }
 
 func (ptr *QQuickWebEngineProfile) RemoveAllUrlSchemeHandlers() {
-	defer qt.Recovering("QQuickWebEngineProfile::removeAllUrlSchemeHandlers")
-
 	if ptr.Pointer() != nil {
 		C.QQuickWebEngineProfile_RemoveAllUrlSchemeHandlers(ptr.Pointer())
 	}
 }
 
 func (ptr *QQuickWebEngineProfile) RemoveUrlScheme(scheme string) {
-	defer qt.Recovering("QQuickWebEngineProfile::removeUrlScheme")
-
 	if ptr.Pointer() != nil {
 		var schemeC = C.CString(hex.EncodeToString([]byte(scheme)))
 		defer C.free(unsafe.Pointer(schemeC))
@@ -614,16 +506,12 @@ func (ptr *QQuickWebEngineProfile) RemoveUrlScheme(scheme string) {
 }
 
 func (ptr *QQuickWebEngineProfile) RemoveUrlSchemeHandler(handler QWebEngineUrlSchemeHandler_ITF) {
-	defer qt.Recovering("QQuickWebEngineProfile::removeUrlSchemeHandler")
-
 	if ptr.Pointer() != nil {
 		C.QQuickWebEngineProfile_RemoveUrlSchemeHandler(ptr.Pointer(), PointerFromQWebEngineUrlSchemeHandler(handler))
 	}
 }
 
 func (ptr *QQuickWebEngineProfile) SetRequestInterceptor(interceptor QWebEngineUrlRequestInterceptor_ITF) {
-	defer qt.Recovering("QQuickWebEngineProfile::setRequestInterceptor")
-
 	if ptr.Pointer() != nil {
 		C.QQuickWebEngineProfile_SetRequestInterceptor(ptr.Pointer(), PointerFromQWebEngineUrlRequestInterceptor(interceptor))
 	}
@@ -631,7 +519,6 @@ func (ptr *QQuickWebEngineProfile) SetRequestInterceptor(interceptor QWebEngineU
 
 //export callbackQQuickWebEngineProfile_StorageNameChanged
 func callbackQQuickWebEngineProfile_StorageNameChanged(ptr unsafe.Pointer) {
-	defer qt.Recovering("callback QQuickWebEngineProfile::storageNameChanged")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QQuickWebEngineProfile::storageNameChanged"); signal != nil {
 		signal.(func())()
@@ -640,8 +527,6 @@ func callbackQQuickWebEngineProfile_StorageNameChanged(ptr unsafe.Pointer) {
 }
 
 func (ptr *QQuickWebEngineProfile) ConnectStorageNameChanged(f func()) {
-	defer qt.Recovering("connect QQuickWebEngineProfile::storageNameChanged")
-
 	if ptr.Pointer() != nil {
 		C.QQuickWebEngineProfile_ConnectStorageNameChanged(ptr.Pointer())
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QQuickWebEngineProfile::storageNameChanged", f)
@@ -649,8 +534,6 @@ func (ptr *QQuickWebEngineProfile) ConnectStorageNameChanged(f func()) {
 }
 
 func (ptr *QQuickWebEngineProfile) DisconnectStorageNameChanged() {
-	defer qt.Recovering("disconnect QQuickWebEngineProfile::storageNameChanged")
-
 	if ptr.Pointer() != nil {
 		C.QQuickWebEngineProfile_DisconnectStorageNameChanged(ptr.Pointer())
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QQuickWebEngineProfile::storageNameChanged")
@@ -658,16 +541,12 @@ func (ptr *QQuickWebEngineProfile) DisconnectStorageNameChanged() {
 }
 
 func (ptr *QQuickWebEngineProfile) StorageNameChanged() {
-	defer qt.Recovering("QQuickWebEngineProfile::storageNameChanged")
-
 	if ptr.Pointer() != nil {
 		C.QQuickWebEngineProfile_StorageNameChanged(ptr.Pointer())
 	}
 }
 
 func (ptr *QQuickWebEngineProfile) UrlSchemeHandler(scheme string) *QWebEngineUrlSchemeHandler {
-	defer qt.Recovering("QQuickWebEngineProfile::urlSchemeHandler")
-
 	if ptr.Pointer() != nil {
 		var schemeC = C.CString(hex.EncodeToString([]byte(scheme)))
 		defer C.free(unsafe.Pointer(schemeC))
@@ -682,7 +561,6 @@ func (ptr *QQuickWebEngineProfile) UrlSchemeHandler(scheme string) *QWebEngineUr
 
 //export callbackQQuickWebEngineProfile_TimerEvent
 func callbackQQuickWebEngineProfile_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	defer qt.Recovering("callback QQuickWebEngineProfile::timerEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QQuickWebEngineProfile::timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
@@ -692,8 +570,6 @@ func callbackQQuickWebEngineProfile_TimerEvent(ptr unsafe.Pointer, event unsafe.
 }
 
 func (ptr *QQuickWebEngineProfile) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
-	defer qt.Recovering("connect QQuickWebEngineProfile::timerEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QQuickWebEngineProfile::timerEvent", f)
@@ -701,8 +577,6 @@ func (ptr *QQuickWebEngineProfile) ConnectTimerEvent(f func(event *core.QTimerEv
 }
 
 func (ptr *QQuickWebEngineProfile) DisconnectTimerEvent() {
-	defer qt.Recovering("disconnect QQuickWebEngineProfile::timerEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QQuickWebEngineProfile::timerEvent")
@@ -710,16 +584,12 @@ func (ptr *QQuickWebEngineProfile) DisconnectTimerEvent() {
 }
 
 func (ptr *QQuickWebEngineProfile) TimerEvent(event core.QTimerEvent_ITF) {
-	defer qt.Recovering("QQuickWebEngineProfile::timerEvent")
-
 	if ptr.Pointer() != nil {
 		C.QQuickWebEngineProfile_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
 	}
 }
 
 func (ptr *QQuickWebEngineProfile) TimerEventDefault(event core.QTimerEvent_ITF) {
-	defer qt.Recovering("QQuickWebEngineProfile::timerEvent")
-
 	if ptr.Pointer() != nil {
 		C.QQuickWebEngineProfile_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
 	}
@@ -727,7 +597,6 @@ func (ptr *QQuickWebEngineProfile) TimerEventDefault(event core.QTimerEvent_ITF)
 
 //export callbackQQuickWebEngineProfile_ChildEvent
 func callbackQQuickWebEngineProfile_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	defer qt.Recovering("callback QQuickWebEngineProfile::childEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QQuickWebEngineProfile::childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
@@ -737,8 +606,6 @@ func callbackQQuickWebEngineProfile_ChildEvent(ptr unsafe.Pointer, event unsafe.
 }
 
 func (ptr *QQuickWebEngineProfile) ConnectChildEvent(f func(event *core.QChildEvent)) {
-	defer qt.Recovering("connect QQuickWebEngineProfile::childEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QQuickWebEngineProfile::childEvent", f)
@@ -746,8 +613,6 @@ func (ptr *QQuickWebEngineProfile) ConnectChildEvent(f func(event *core.QChildEv
 }
 
 func (ptr *QQuickWebEngineProfile) DisconnectChildEvent() {
-	defer qt.Recovering("disconnect QQuickWebEngineProfile::childEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QQuickWebEngineProfile::childEvent")
@@ -755,16 +620,12 @@ func (ptr *QQuickWebEngineProfile) DisconnectChildEvent() {
 }
 
 func (ptr *QQuickWebEngineProfile) ChildEvent(event core.QChildEvent_ITF) {
-	defer qt.Recovering("QQuickWebEngineProfile::childEvent")
-
 	if ptr.Pointer() != nil {
 		C.QQuickWebEngineProfile_ChildEvent(ptr.Pointer(), core.PointerFromQChildEvent(event))
 	}
 }
 
 func (ptr *QQuickWebEngineProfile) ChildEventDefault(event core.QChildEvent_ITF) {
-	defer qt.Recovering("QQuickWebEngineProfile::childEvent")
-
 	if ptr.Pointer() != nil {
 		C.QQuickWebEngineProfile_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
 	}
@@ -772,7 +633,6 @@ func (ptr *QQuickWebEngineProfile) ChildEventDefault(event core.QChildEvent_ITF)
 
 //export callbackQQuickWebEngineProfile_ConnectNotify
 func callbackQQuickWebEngineProfile_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-	defer qt.Recovering("callback QQuickWebEngineProfile::connectNotify")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QQuickWebEngineProfile::connectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
@@ -782,8 +642,6 @@ func callbackQQuickWebEngineProfile_ConnectNotify(ptr unsafe.Pointer, sign unsaf
 }
 
 func (ptr *QQuickWebEngineProfile) ConnectConnectNotify(f func(sign *core.QMetaMethod)) {
-	defer qt.Recovering("connect QQuickWebEngineProfile::connectNotify")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QQuickWebEngineProfile::connectNotify", f)
@@ -791,8 +649,6 @@ func (ptr *QQuickWebEngineProfile) ConnectConnectNotify(f func(sign *core.QMetaM
 }
 
 func (ptr *QQuickWebEngineProfile) DisconnectConnectNotify() {
-	defer qt.Recovering("disconnect QQuickWebEngineProfile::connectNotify")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QQuickWebEngineProfile::connectNotify")
@@ -800,16 +656,12 @@ func (ptr *QQuickWebEngineProfile) DisconnectConnectNotify() {
 }
 
 func (ptr *QQuickWebEngineProfile) ConnectNotify(sign core.QMetaMethod_ITF) {
-	defer qt.Recovering("QQuickWebEngineProfile::connectNotify")
-
 	if ptr.Pointer() != nil {
 		C.QQuickWebEngineProfile_ConnectNotify(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
 	}
 }
 
 func (ptr *QQuickWebEngineProfile) ConnectNotifyDefault(sign core.QMetaMethod_ITF) {
-	defer qt.Recovering("QQuickWebEngineProfile::connectNotify")
-
 	if ptr.Pointer() != nil {
 		C.QQuickWebEngineProfile_ConnectNotifyDefault(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
 	}
@@ -817,7 +669,6 @@ func (ptr *QQuickWebEngineProfile) ConnectNotifyDefault(sign core.QMetaMethod_IT
 
 //export callbackQQuickWebEngineProfile_CustomEvent
 func callbackQQuickWebEngineProfile_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	defer qt.Recovering("callback QQuickWebEngineProfile::customEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QQuickWebEngineProfile::customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
@@ -827,8 +678,6 @@ func callbackQQuickWebEngineProfile_CustomEvent(ptr unsafe.Pointer, event unsafe
 }
 
 func (ptr *QQuickWebEngineProfile) ConnectCustomEvent(f func(event *core.QEvent)) {
-	defer qt.Recovering("connect QQuickWebEngineProfile::customEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QQuickWebEngineProfile::customEvent", f)
@@ -836,8 +685,6 @@ func (ptr *QQuickWebEngineProfile) ConnectCustomEvent(f func(event *core.QEvent)
 }
 
 func (ptr *QQuickWebEngineProfile) DisconnectCustomEvent() {
-	defer qt.Recovering("disconnect QQuickWebEngineProfile::customEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QQuickWebEngineProfile::customEvent")
@@ -845,16 +692,12 @@ func (ptr *QQuickWebEngineProfile) DisconnectCustomEvent() {
 }
 
 func (ptr *QQuickWebEngineProfile) CustomEvent(event core.QEvent_ITF) {
-	defer qt.Recovering("QQuickWebEngineProfile::customEvent")
-
 	if ptr.Pointer() != nil {
 		C.QQuickWebEngineProfile_CustomEvent(ptr.Pointer(), core.PointerFromQEvent(event))
 	}
 }
 
 func (ptr *QQuickWebEngineProfile) CustomEventDefault(event core.QEvent_ITF) {
-	defer qt.Recovering("QQuickWebEngineProfile::customEvent")
-
 	if ptr.Pointer() != nil {
 		C.QQuickWebEngineProfile_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
 	}
@@ -862,8 +705,6 @@ func (ptr *QQuickWebEngineProfile) CustomEventDefault(event core.QEvent_ITF) {
 
 //export callbackQQuickWebEngineProfile_DeleteLater
 func callbackQQuickWebEngineProfile_DeleteLater(ptr unsafe.Pointer) {
-	defer qt.Recovering("callback QQuickWebEngineProfile::deleteLater")
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QQuickWebEngineProfile::deleteLater"); signal != nil {
 		signal.(func())()
 	} else {
@@ -872,8 +713,6 @@ func callbackQQuickWebEngineProfile_DeleteLater(ptr unsafe.Pointer) {
 }
 
 func (ptr *QQuickWebEngineProfile) ConnectDeleteLater(f func()) {
-	defer qt.Recovering("connect QQuickWebEngineProfile::deleteLater")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QQuickWebEngineProfile::deleteLater", f)
@@ -881,8 +720,6 @@ func (ptr *QQuickWebEngineProfile) ConnectDeleteLater(f func()) {
 }
 
 func (ptr *QQuickWebEngineProfile) DisconnectDeleteLater() {
-	defer qt.Recovering("disconnect QQuickWebEngineProfile::deleteLater")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QQuickWebEngineProfile::deleteLater")
@@ -890,8 +727,6 @@ func (ptr *QQuickWebEngineProfile) DisconnectDeleteLater() {
 }
 
 func (ptr *QQuickWebEngineProfile) DeleteLater() {
-	defer qt.Recovering("QQuickWebEngineProfile::deleteLater")
-
 	if ptr.Pointer() != nil {
 		C.QQuickWebEngineProfile_DeleteLater(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
@@ -900,8 +735,6 @@ func (ptr *QQuickWebEngineProfile) DeleteLater() {
 }
 
 func (ptr *QQuickWebEngineProfile) DeleteLaterDefault() {
-	defer qt.Recovering("QQuickWebEngineProfile::deleteLater")
-
 	if ptr.Pointer() != nil {
 		C.QQuickWebEngineProfile_DeleteLaterDefault(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
@@ -911,7 +744,6 @@ func (ptr *QQuickWebEngineProfile) DeleteLaterDefault() {
 
 //export callbackQQuickWebEngineProfile_DisconnectNotify
 func callbackQQuickWebEngineProfile_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-	defer qt.Recovering("callback QQuickWebEngineProfile::disconnectNotify")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QQuickWebEngineProfile::disconnectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
@@ -921,8 +753,6 @@ func callbackQQuickWebEngineProfile_DisconnectNotify(ptr unsafe.Pointer, sign un
 }
 
 func (ptr *QQuickWebEngineProfile) ConnectDisconnectNotify(f func(sign *core.QMetaMethod)) {
-	defer qt.Recovering("connect QQuickWebEngineProfile::disconnectNotify")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QQuickWebEngineProfile::disconnectNotify", f)
@@ -930,8 +760,6 @@ func (ptr *QQuickWebEngineProfile) ConnectDisconnectNotify(f func(sign *core.QMe
 }
 
 func (ptr *QQuickWebEngineProfile) DisconnectDisconnectNotify() {
-	defer qt.Recovering("disconnect QQuickWebEngineProfile::disconnectNotify")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QQuickWebEngineProfile::disconnectNotify")
@@ -939,16 +767,12 @@ func (ptr *QQuickWebEngineProfile) DisconnectDisconnectNotify() {
 }
 
 func (ptr *QQuickWebEngineProfile) DisconnectNotify(sign core.QMetaMethod_ITF) {
-	defer qt.Recovering("QQuickWebEngineProfile::disconnectNotify")
-
 	if ptr.Pointer() != nil {
 		C.QQuickWebEngineProfile_DisconnectNotify(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
 	}
 }
 
 func (ptr *QQuickWebEngineProfile) DisconnectNotifyDefault(sign core.QMetaMethod_ITF) {
-	defer qt.Recovering("QQuickWebEngineProfile::disconnectNotify")
-
 	if ptr.Pointer() != nil {
 		C.QQuickWebEngineProfile_DisconnectNotifyDefault(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
 	}
@@ -956,7 +780,6 @@ func (ptr *QQuickWebEngineProfile) DisconnectNotifyDefault(sign core.QMetaMethod
 
 //export callbackQQuickWebEngineProfile_Event
 func callbackQQuickWebEngineProfile_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
-	defer qt.Recovering("callback QQuickWebEngineProfile::event")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QQuickWebEngineProfile::event"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
@@ -966,8 +789,6 @@ func callbackQQuickWebEngineProfile_Event(ptr unsafe.Pointer, e unsafe.Pointer) 
 }
 
 func (ptr *QQuickWebEngineProfile) ConnectEvent(f func(e *core.QEvent) bool) {
-	defer qt.Recovering("connect QQuickWebEngineProfile::event")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QQuickWebEngineProfile::event", f)
@@ -975,8 +796,6 @@ func (ptr *QQuickWebEngineProfile) ConnectEvent(f func(e *core.QEvent) bool) {
 }
 
 func (ptr *QQuickWebEngineProfile) DisconnectEvent() {
-	defer qt.Recovering("disconnect QQuickWebEngineProfile::event")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QQuickWebEngineProfile::event")
@@ -984,8 +803,6 @@ func (ptr *QQuickWebEngineProfile) DisconnectEvent() {
 }
 
 func (ptr *QQuickWebEngineProfile) Event(e core.QEvent_ITF) bool {
-	defer qt.Recovering("QQuickWebEngineProfile::event")
-
 	if ptr.Pointer() != nil {
 		return C.QQuickWebEngineProfile_Event(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
 	}
@@ -993,8 +810,6 @@ func (ptr *QQuickWebEngineProfile) Event(e core.QEvent_ITF) bool {
 }
 
 func (ptr *QQuickWebEngineProfile) EventDefault(e core.QEvent_ITF) bool {
-	defer qt.Recovering("QQuickWebEngineProfile::event")
-
 	if ptr.Pointer() != nil {
 		return C.QQuickWebEngineProfile_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
 	}
@@ -1003,7 +818,6 @@ func (ptr *QQuickWebEngineProfile) EventDefault(e core.QEvent_ITF) bool {
 
 //export callbackQQuickWebEngineProfile_EventFilter
 func callbackQQuickWebEngineProfile_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-	defer qt.Recovering("callback QQuickWebEngineProfile::eventFilter")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QQuickWebEngineProfile::eventFilter"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
@@ -1013,8 +827,6 @@ func callbackQQuickWebEngineProfile_EventFilter(ptr unsafe.Pointer, watched unsa
 }
 
 func (ptr *QQuickWebEngineProfile) ConnectEventFilter(f func(watched *core.QObject, event *core.QEvent) bool) {
-	defer qt.Recovering("connect QQuickWebEngineProfile::eventFilter")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QQuickWebEngineProfile::eventFilter", f)
@@ -1022,8 +834,6 @@ func (ptr *QQuickWebEngineProfile) ConnectEventFilter(f func(watched *core.QObje
 }
 
 func (ptr *QQuickWebEngineProfile) DisconnectEventFilter() {
-	defer qt.Recovering("disconnect QQuickWebEngineProfile::eventFilter")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QQuickWebEngineProfile::eventFilter")
@@ -1031,8 +841,6 @@ func (ptr *QQuickWebEngineProfile) DisconnectEventFilter() {
 }
 
 func (ptr *QQuickWebEngineProfile) EventFilter(watched core.QObject_ITF, event core.QEvent_ITF) bool {
-	defer qt.Recovering("QQuickWebEngineProfile::eventFilter")
-
 	if ptr.Pointer() != nil {
 		return C.QQuickWebEngineProfile_EventFilter(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
 	}
@@ -1040,8 +848,6 @@ func (ptr *QQuickWebEngineProfile) EventFilter(watched core.QObject_ITF, event c
 }
 
 func (ptr *QQuickWebEngineProfile) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
-	defer qt.Recovering("QQuickWebEngineProfile::eventFilter")
-
 	if ptr.Pointer() != nil {
 		return C.QQuickWebEngineProfile_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
 	}
@@ -1050,7 +856,6 @@ func (ptr *QQuickWebEngineProfile) EventFilterDefault(watched core.QObject_ITF, 
 
 //export callbackQQuickWebEngineProfile_MetaObject
 func callbackQQuickWebEngineProfile_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-	defer qt.Recovering("callback QQuickWebEngineProfile::metaObject")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QQuickWebEngineProfile::metaObject"); signal != nil {
 		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
@@ -1060,8 +865,6 @@ func callbackQQuickWebEngineProfile_MetaObject(ptr unsafe.Pointer) unsafe.Pointe
 }
 
 func (ptr *QQuickWebEngineProfile) ConnectMetaObject(f func() *core.QMetaObject) {
-	defer qt.Recovering("connect QQuickWebEngineProfile::metaObject")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QQuickWebEngineProfile::metaObject", f)
@@ -1069,8 +872,6 @@ func (ptr *QQuickWebEngineProfile) ConnectMetaObject(f func() *core.QMetaObject)
 }
 
 func (ptr *QQuickWebEngineProfile) DisconnectMetaObject() {
-	defer qt.Recovering("disconnect QQuickWebEngineProfile::metaObject")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QQuickWebEngineProfile::metaObject")
@@ -1078,8 +879,6 @@ func (ptr *QQuickWebEngineProfile) DisconnectMetaObject() {
 }
 
 func (ptr *QQuickWebEngineProfile) MetaObject() *core.QMetaObject {
-	defer qt.Recovering("QQuickWebEngineProfile::metaObject")
-
 	if ptr.Pointer() != nil {
 		return core.NewQMetaObjectFromPointer(C.QQuickWebEngineProfile_MetaObject(ptr.Pointer()))
 	}
@@ -1087,8 +886,6 @@ func (ptr *QQuickWebEngineProfile) MetaObject() *core.QMetaObject {
 }
 
 func (ptr *QQuickWebEngineProfile) MetaObjectDefault() *core.QMetaObject {
-	defer qt.Recovering("QQuickWebEngineProfile::metaObject")
-
 	if ptr.Pointer() != nil {
 		return core.NewQMetaObjectFromPointer(C.QQuickWebEngineProfile_MetaObjectDefault(ptr.Pointer()))
 	}
@@ -1158,8 +955,6 @@ func (ptr *QWebEngineCertificateError) DestroyQWebEngineCertificateError() {
 }
 
 func (ptr *QWebEngineCertificateError) Error() QWebEngineCertificateError__Error {
-	defer qt.Recovering("QWebEngineCertificateError::error")
-
 	if ptr.Pointer() != nil {
 		return QWebEngineCertificateError__Error(C.QWebEngineCertificateError_Error(ptr.Pointer()))
 	}
@@ -1167,8 +962,6 @@ func (ptr *QWebEngineCertificateError) Error() QWebEngineCertificateError__Error
 }
 
 func (ptr *QWebEngineCertificateError) ErrorDescription() string {
-	defer qt.Recovering("QWebEngineCertificateError::errorDescription")
-
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QWebEngineCertificateError_ErrorDescription(ptr.Pointer()))
 	}
@@ -1176,8 +969,6 @@ func (ptr *QWebEngineCertificateError) ErrorDescription() string {
 }
 
 func (ptr *QWebEngineCertificateError) IsOverridable() bool {
-	defer qt.Recovering("QWebEngineCertificateError::isOverridable")
-
 	if ptr.Pointer() != nil {
 		return C.QWebEngineCertificateError_IsOverridable(ptr.Pointer()) != 0
 	}
@@ -1185,8 +976,6 @@ func (ptr *QWebEngineCertificateError) IsOverridable() bool {
 }
 
 func (ptr *QWebEngineCertificateError) Url() *core.QUrl {
-	defer qt.Recovering("QWebEngineCertificateError::url")
-
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQUrlFromPointer(C.QWebEngineCertificateError_Url(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*core.QUrl).DestroyQUrl)
@@ -1246,24 +1035,18 @@ func NewQWebEngineContextMenuDataFromPointer(ptr unsafe.Pointer) *QWebEngineCont
 	return n
 }
 func NewQWebEngineContextMenuData() *QWebEngineContextMenuData {
-	defer qt.Recovering("QWebEngineContextMenuData::QWebEngineContextMenuData")
-
 	var tmpValue = NewQWebEngineContextMenuDataFromPointer(C.QWebEngineContextMenuData_NewQWebEngineContextMenuData())
 	runtime.SetFinalizer(tmpValue, (*QWebEngineContextMenuData).DestroyQWebEngineContextMenuData)
 	return tmpValue
 }
 
 func NewQWebEngineContextMenuData2(other QWebEngineContextMenuData_ITF) *QWebEngineContextMenuData {
-	defer qt.Recovering("QWebEngineContextMenuData::QWebEngineContextMenuData")
-
 	var tmpValue = NewQWebEngineContextMenuDataFromPointer(C.QWebEngineContextMenuData_NewQWebEngineContextMenuData2(PointerFromQWebEngineContextMenuData(other)))
 	runtime.SetFinalizer(tmpValue, (*QWebEngineContextMenuData).DestroyQWebEngineContextMenuData)
 	return tmpValue
 }
 
 func (ptr *QWebEngineContextMenuData) IsContentEditable() bool {
-	defer qt.Recovering("QWebEngineContextMenuData::isContentEditable")
-
 	if ptr.Pointer() != nil {
 		return C.QWebEngineContextMenuData_IsContentEditable(ptr.Pointer()) != 0
 	}
@@ -1271,8 +1054,6 @@ func (ptr *QWebEngineContextMenuData) IsContentEditable() bool {
 }
 
 func (ptr *QWebEngineContextMenuData) IsValid() bool {
-	defer qt.Recovering("QWebEngineContextMenuData::isValid")
-
 	if ptr.Pointer() != nil {
 		return C.QWebEngineContextMenuData_IsValid(ptr.Pointer()) != 0
 	}
@@ -1280,8 +1061,6 @@ func (ptr *QWebEngineContextMenuData) IsValid() bool {
 }
 
 func (ptr *QWebEngineContextMenuData) LinkText() string {
-	defer qt.Recovering("QWebEngineContextMenuData::linkText")
-
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QWebEngineContextMenuData_LinkText(ptr.Pointer()))
 	}
@@ -1289,8 +1068,6 @@ func (ptr *QWebEngineContextMenuData) LinkText() string {
 }
 
 func (ptr *QWebEngineContextMenuData) LinkUrl() *core.QUrl {
-	defer qt.Recovering("QWebEngineContextMenuData::linkUrl")
-
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQUrlFromPointer(C.QWebEngineContextMenuData_LinkUrl(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*core.QUrl).DestroyQUrl)
@@ -1300,8 +1077,6 @@ func (ptr *QWebEngineContextMenuData) LinkUrl() *core.QUrl {
 }
 
 func (ptr *QWebEngineContextMenuData) MediaType() QWebEngineContextMenuData__MediaType {
-	defer qt.Recovering("QWebEngineContextMenuData::mediaType")
-
 	if ptr.Pointer() != nil {
 		return QWebEngineContextMenuData__MediaType(C.QWebEngineContextMenuData_MediaType(ptr.Pointer()))
 	}
@@ -1309,8 +1084,6 @@ func (ptr *QWebEngineContextMenuData) MediaType() QWebEngineContextMenuData__Med
 }
 
 func (ptr *QWebEngineContextMenuData) MediaUrl() *core.QUrl {
-	defer qt.Recovering("QWebEngineContextMenuData::mediaUrl")
-
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQUrlFromPointer(C.QWebEngineContextMenuData_MediaUrl(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*core.QUrl).DestroyQUrl)
@@ -1320,8 +1093,6 @@ func (ptr *QWebEngineContextMenuData) MediaUrl() *core.QUrl {
 }
 
 func (ptr *QWebEngineContextMenuData) Position() *core.QPoint {
-	defer qt.Recovering("QWebEngineContextMenuData::position")
-
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQPointFromPointer(C.QWebEngineContextMenuData_Position(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*core.QPoint).DestroyQPoint)
@@ -1331,8 +1102,6 @@ func (ptr *QWebEngineContextMenuData) Position() *core.QPoint {
 }
 
 func (ptr *QWebEngineContextMenuData) SelectedText() string {
-	defer qt.Recovering("QWebEngineContextMenuData::selectedText")
-
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QWebEngineContextMenuData_SelectedText(ptr.Pointer()))
 	}
@@ -1340,8 +1109,6 @@ func (ptr *QWebEngineContextMenuData) SelectedText() string {
 }
 
 func (ptr *QWebEngineContextMenuData) DestroyQWebEngineContextMenuData() {
-	defer qt.Recovering("QWebEngineContextMenuData::~QWebEngineContextMenuData")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineContextMenuData_DestroyQWebEngineContextMenuData(ptr.Pointer())
 		ptr.SetPointer(nil)
@@ -1389,7 +1156,6 @@ func NewQWebEngineCookieStoreFromPointer(ptr unsafe.Pointer) *QWebEngineCookieSt
 
 //export callbackQWebEngineCookieStore_CookieAdded
 func callbackQWebEngineCookieStore_CookieAdded(ptr unsafe.Pointer, cookie unsafe.Pointer) {
-	defer qt.Recovering("callback QWebEngineCookieStore::cookieAdded")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineCookieStore::cookieAdded"); signal != nil {
 		signal.(func(*network.QNetworkCookie))(network.NewQNetworkCookieFromPointer(cookie))
@@ -1398,8 +1164,6 @@ func callbackQWebEngineCookieStore_CookieAdded(ptr unsafe.Pointer, cookie unsafe
 }
 
 func (ptr *QWebEngineCookieStore) ConnectCookieAdded(f func(cookie *network.QNetworkCookie)) {
-	defer qt.Recovering("connect QWebEngineCookieStore::cookieAdded")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineCookieStore_ConnectCookieAdded(ptr.Pointer())
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineCookieStore::cookieAdded", f)
@@ -1407,8 +1171,6 @@ func (ptr *QWebEngineCookieStore) ConnectCookieAdded(f func(cookie *network.QNet
 }
 
 func (ptr *QWebEngineCookieStore) DisconnectCookieAdded() {
-	defer qt.Recovering("disconnect QWebEngineCookieStore::cookieAdded")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineCookieStore_DisconnectCookieAdded(ptr.Pointer())
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineCookieStore::cookieAdded")
@@ -1416,8 +1178,6 @@ func (ptr *QWebEngineCookieStore) DisconnectCookieAdded() {
 }
 
 func (ptr *QWebEngineCookieStore) CookieAdded(cookie network.QNetworkCookie_ITF) {
-	defer qt.Recovering("QWebEngineCookieStore::cookieAdded")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineCookieStore_CookieAdded(ptr.Pointer(), network.PointerFromQNetworkCookie(cookie))
 	}
@@ -1425,7 +1185,6 @@ func (ptr *QWebEngineCookieStore) CookieAdded(cookie network.QNetworkCookie_ITF)
 
 //export callbackQWebEngineCookieStore_CookieRemoved
 func callbackQWebEngineCookieStore_CookieRemoved(ptr unsafe.Pointer, cookie unsafe.Pointer) {
-	defer qt.Recovering("callback QWebEngineCookieStore::cookieRemoved")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineCookieStore::cookieRemoved"); signal != nil {
 		signal.(func(*network.QNetworkCookie))(network.NewQNetworkCookieFromPointer(cookie))
@@ -1434,8 +1193,6 @@ func callbackQWebEngineCookieStore_CookieRemoved(ptr unsafe.Pointer, cookie unsa
 }
 
 func (ptr *QWebEngineCookieStore) ConnectCookieRemoved(f func(cookie *network.QNetworkCookie)) {
-	defer qt.Recovering("connect QWebEngineCookieStore::cookieRemoved")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineCookieStore_ConnectCookieRemoved(ptr.Pointer())
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineCookieStore::cookieRemoved", f)
@@ -1443,8 +1200,6 @@ func (ptr *QWebEngineCookieStore) ConnectCookieRemoved(f func(cookie *network.QN
 }
 
 func (ptr *QWebEngineCookieStore) DisconnectCookieRemoved() {
-	defer qt.Recovering("disconnect QWebEngineCookieStore::cookieRemoved")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineCookieStore_DisconnectCookieRemoved(ptr.Pointer())
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineCookieStore::cookieRemoved")
@@ -1452,48 +1207,36 @@ func (ptr *QWebEngineCookieStore) DisconnectCookieRemoved() {
 }
 
 func (ptr *QWebEngineCookieStore) CookieRemoved(cookie network.QNetworkCookie_ITF) {
-	defer qt.Recovering("QWebEngineCookieStore::cookieRemoved")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineCookieStore_CookieRemoved(ptr.Pointer(), network.PointerFromQNetworkCookie(cookie))
 	}
 }
 
 func (ptr *QWebEngineCookieStore) DeleteAllCookies() {
-	defer qt.Recovering("QWebEngineCookieStore::deleteAllCookies")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineCookieStore_DeleteAllCookies(ptr.Pointer())
 	}
 }
 
 func (ptr *QWebEngineCookieStore) DeleteCookie(cookie network.QNetworkCookie_ITF, origin core.QUrl_ITF) {
-	defer qt.Recovering("QWebEngineCookieStore::deleteCookie")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineCookieStore_DeleteCookie(ptr.Pointer(), network.PointerFromQNetworkCookie(cookie), core.PointerFromQUrl(origin))
 	}
 }
 
 func (ptr *QWebEngineCookieStore) DeleteSessionCookies() {
-	defer qt.Recovering("QWebEngineCookieStore::deleteSessionCookies")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineCookieStore_DeleteSessionCookies(ptr.Pointer())
 	}
 }
 
 func (ptr *QWebEngineCookieStore) LoadAllCookies() {
-	defer qt.Recovering("QWebEngineCookieStore::loadAllCookies")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineCookieStore_LoadAllCookies(ptr.Pointer())
 	}
 }
 
 func (ptr *QWebEngineCookieStore) SetCookie(cookie network.QNetworkCookie_ITF, origin core.QUrl_ITF) {
-	defer qt.Recovering("QWebEngineCookieStore::setCookie")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineCookieStore_SetCookie(ptr.Pointer(), network.PointerFromQNetworkCookie(cookie), core.PointerFromQUrl(origin))
 	}
@@ -1501,7 +1244,6 @@ func (ptr *QWebEngineCookieStore) SetCookie(cookie network.QNetworkCookie_ITF, o
 
 //export callbackQWebEngineCookieStore_DestroyQWebEngineCookieStore
 func callbackQWebEngineCookieStore_DestroyQWebEngineCookieStore(ptr unsafe.Pointer) {
-	defer qt.Recovering("callback QWebEngineCookieStore::~QWebEngineCookieStore")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineCookieStore::~QWebEngineCookieStore"); signal != nil {
 		signal.(func())()
@@ -1511,8 +1253,6 @@ func callbackQWebEngineCookieStore_DestroyQWebEngineCookieStore(ptr unsafe.Point
 }
 
 func (ptr *QWebEngineCookieStore) ConnectDestroyQWebEngineCookieStore(f func()) {
-	defer qt.Recovering("connect QWebEngineCookieStore::~QWebEngineCookieStore")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineCookieStore::~QWebEngineCookieStore", f)
@@ -1520,8 +1260,6 @@ func (ptr *QWebEngineCookieStore) ConnectDestroyQWebEngineCookieStore(f func()) 
 }
 
 func (ptr *QWebEngineCookieStore) DisconnectDestroyQWebEngineCookieStore() {
-	defer qt.Recovering("disconnect QWebEngineCookieStore::~QWebEngineCookieStore")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineCookieStore::~QWebEngineCookieStore")
@@ -1529,8 +1267,6 @@ func (ptr *QWebEngineCookieStore) DisconnectDestroyQWebEngineCookieStore() {
 }
 
 func (ptr *QWebEngineCookieStore) DestroyQWebEngineCookieStore() {
-	defer qt.Recovering("QWebEngineCookieStore::~QWebEngineCookieStore")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineCookieStore_DestroyQWebEngineCookieStore(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
@@ -1539,8 +1275,6 @@ func (ptr *QWebEngineCookieStore) DestroyQWebEngineCookieStore() {
 }
 
 func (ptr *QWebEngineCookieStore) DestroyQWebEngineCookieStoreDefault() {
-	defer qt.Recovering("QWebEngineCookieStore::~QWebEngineCookieStore")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineCookieStore_DestroyQWebEngineCookieStoreDefault(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
@@ -1550,7 +1284,6 @@ func (ptr *QWebEngineCookieStore) DestroyQWebEngineCookieStoreDefault() {
 
 //export callbackQWebEngineCookieStore_TimerEvent
 func callbackQWebEngineCookieStore_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	defer qt.Recovering("callback QWebEngineCookieStore::timerEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineCookieStore::timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
@@ -1560,8 +1293,6 @@ func callbackQWebEngineCookieStore_TimerEvent(ptr unsafe.Pointer, event unsafe.P
 }
 
 func (ptr *QWebEngineCookieStore) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
-	defer qt.Recovering("connect QWebEngineCookieStore::timerEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineCookieStore::timerEvent", f)
@@ -1569,8 +1300,6 @@ func (ptr *QWebEngineCookieStore) ConnectTimerEvent(f func(event *core.QTimerEve
 }
 
 func (ptr *QWebEngineCookieStore) DisconnectTimerEvent() {
-	defer qt.Recovering("disconnect QWebEngineCookieStore::timerEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineCookieStore::timerEvent")
@@ -1578,16 +1307,12 @@ func (ptr *QWebEngineCookieStore) DisconnectTimerEvent() {
 }
 
 func (ptr *QWebEngineCookieStore) TimerEvent(event core.QTimerEvent_ITF) {
-	defer qt.Recovering("QWebEngineCookieStore::timerEvent")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineCookieStore_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
 	}
 }
 
 func (ptr *QWebEngineCookieStore) TimerEventDefault(event core.QTimerEvent_ITF) {
-	defer qt.Recovering("QWebEngineCookieStore::timerEvent")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineCookieStore_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
 	}
@@ -1595,7 +1320,6 @@ func (ptr *QWebEngineCookieStore) TimerEventDefault(event core.QTimerEvent_ITF) 
 
 //export callbackQWebEngineCookieStore_ChildEvent
 func callbackQWebEngineCookieStore_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	defer qt.Recovering("callback QWebEngineCookieStore::childEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineCookieStore::childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
@@ -1605,8 +1329,6 @@ func callbackQWebEngineCookieStore_ChildEvent(ptr unsafe.Pointer, event unsafe.P
 }
 
 func (ptr *QWebEngineCookieStore) ConnectChildEvent(f func(event *core.QChildEvent)) {
-	defer qt.Recovering("connect QWebEngineCookieStore::childEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineCookieStore::childEvent", f)
@@ -1614,8 +1336,6 @@ func (ptr *QWebEngineCookieStore) ConnectChildEvent(f func(event *core.QChildEve
 }
 
 func (ptr *QWebEngineCookieStore) DisconnectChildEvent() {
-	defer qt.Recovering("disconnect QWebEngineCookieStore::childEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineCookieStore::childEvent")
@@ -1623,16 +1343,12 @@ func (ptr *QWebEngineCookieStore) DisconnectChildEvent() {
 }
 
 func (ptr *QWebEngineCookieStore) ChildEvent(event core.QChildEvent_ITF) {
-	defer qt.Recovering("QWebEngineCookieStore::childEvent")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineCookieStore_ChildEvent(ptr.Pointer(), core.PointerFromQChildEvent(event))
 	}
 }
 
 func (ptr *QWebEngineCookieStore) ChildEventDefault(event core.QChildEvent_ITF) {
-	defer qt.Recovering("QWebEngineCookieStore::childEvent")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineCookieStore_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
 	}
@@ -1640,7 +1356,6 @@ func (ptr *QWebEngineCookieStore) ChildEventDefault(event core.QChildEvent_ITF) 
 
 //export callbackQWebEngineCookieStore_ConnectNotify
 func callbackQWebEngineCookieStore_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-	defer qt.Recovering("callback QWebEngineCookieStore::connectNotify")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineCookieStore::connectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
@@ -1650,8 +1365,6 @@ func callbackQWebEngineCookieStore_ConnectNotify(ptr unsafe.Pointer, sign unsafe
 }
 
 func (ptr *QWebEngineCookieStore) ConnectConnectNotify(f func(sign *core.QMetaMethod)) {
-	defer qt.Recovering("connect QWebEngineCookieStore::connectNotify")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineCookieStore::connectNotify", f)
@@ -1659,8 +1372,6 @@ func (ptr *QWebEngineCookieStore) ConnectConnectNotify(f func(sign *core.QMetaMe
 }
 
 func (ptr *QWebEngineCookieStore) DisconnectConnectNotify() {
-	defer qt.Recovering("disconnect QWebEngineCookieStore::connectNotify")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineCookieStore::connectNotify")
@@ -1668,16 +1379,12 @@ func (ptr *QWebEngineCookieStore) DisconnectConnectNotify() {
 }
 
 func (ptr *QWebEngineCookieStore) ConnectNotify(sign core.QMetaMethod_ITF) {
-	defer qt.Recovering("QWebEngineCookieStore::connectNotify")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineCookieStore_ConnectNotify(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
 	}
 }
 
 func (ptr *QWebEngineCookieStore) ConnectNotifyDefault(sign core.QMetaMethod_ITF) {
-	defer qt.Recovering("QWebEngineCookieStore::connectNotify")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineCookieStore_ConnectNotifyDefault(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
 	}
@@ -1685,7 +1392,6 @@ func (ptr *QWebEngineCookieStore) ConnectNotifyDefault(sign core.QMetaMethod_ITF
 
 //export callbackQWebEngineCookieStore_CustomEvent
 func callbackQWebEngineCookieStore_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	defer qt.Recovering("callback QWebEngineCookieStore::customEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineCookieStore::customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
@@ -1695,8 +1401,6 @@ func callbackQWebEngineCookieStore_CustomEvent(ptr unsafe.Pointer, event unsafe.
 }
 
 func (ptr *QWebEngineCookieStore) ConnectCustomEvent(f func(event *core.QEvent)) {
-	defer qt.Recovering("connect QWebEngineCookieStore::customEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineCookieStore::customEvent", f)
@@ -1704,8 +1408,6 @@ func (ptr *QWebEngineCookieStore) ConnectCustomEvent(f func(event *core.QEvent))
 }
 
 func (ptr *QWebEngineCookieStore) DisconnectCustomEvent() {
-	defer qt.Recovering("disconnect QWebEngineCookieStore::customEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineCookieStore::customEvent")
@@ -1713,16 +1415,12 @@ func (ptr *QWebEngineCookieStore) DisconnectCustomEvent() {
 }
 
 func (ptr *QWebEngineCookieStore) CustomEvent(event core.QEvent_ITF) {
-	defer qt.Recovering("QWebEngineCookieStore::customEvent")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineCookieStore_CustomEvent(ptr.Pointer(), core.PointerFromQEvent(event))
 	}
 }
 
 func (ptr *QWebEngineCookieStore) CustomEventDefault(event core.QEvent_ITF) {
-	defer qt.Recovering("QWebEngineCookieStore::customEvent")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineCookieStore_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
 	}
@@ -1730,8 +1428,6 @@ func (ptr *QWebEngineCookieStore) CustomEventDefault(event core.QEvent_ITF) {
 
 //export callbackQWebEngineCookieStore_DeleteLater
 func callbackQWebEngineCookieStore_DeleteLater(ptr unsafe.Pointer) {
-	defer qt.Recovering("callback QWebEngineCookieStore::deleteLater")
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineCookieStore::deleteLater"); signal != nil {
 		signal.(func())()
 	} else {
@@ -1740,8 +1436,6 @@ func callbackQWebEngineCookieStore_DeleteLater(ptr unsafe.Pointer) {
 }
 
 func (ptr *QWebEngineCookieStore) ConnectDeleteLater(f func()) {
-	defer qt.Recovering("connect QWebEngineCookieStore::deleteLater")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineCookieStore::deleteLater", f)
@@ -1749,8 +1443,6 @@ func (ptr *QWebEngineCookieStore) ConnectDeleteLater(f func()) {
 }
 
 func (ptr *QWebEngineCookieStore) DisconnectDeleteLater() {
-	defer qt.Recovering("disconnect QWebEngineCookieStore::deleteLater")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineCookieStore::deleteLater")
@@ -1758,8 +1450,6 @@ func (ptr *QWebEngineCookieStore) DisconnectDeleteLater() {
 }
 
 func (ptr *QWebEngineCookieStore) DeleteLater() {
-	defer qt.Recovering("QWebEngineCookieStore::deleteLater")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineCookieStore_DeleteLater(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
@@ -1768,8 +1458,6 @@ func (ptr *QWebEngineCookieStore) DeleteLater() {
 }
 
 func (ptr *QWebEngineCookieStore) DeleteLaterDefault() {
-	defer qt.Recovering("QWebEngineCookieStore::deleteLater")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineCookieStore_DeleteLaterDefault(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
@@ -1779,7 +1467,6 @@ func (ptr *QWebEngineCookieStore) DeleteLaterDefault() {
 
 //export callbackQWebEngineCookieStore_DisconnectNotify
 func callbackQWebEngineCookieStore_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-	defer qt.Recovering("callback QWebEngineCookieStore::disconnectNotify")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineCookieStore::disconnectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
@@ -1789,8 +1476,6 @@ func callbackQWebEngineCookieStore_DisconnectNotify(ptr unsafe.Pointer, sign uns
 }
 
 func (ptr *QWebEngineCookieStore) ConnectDisconnectNotify(f func(sign *core.QMetaMethod)) {
-	defer qt.Recovering("connect QWebEngineCookieStore::disconnectNotify")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineCookieStore::disconnectNotify", f)
@@ -1798,8 +1483,6 @@ func (ptr *QWebEngineCookieStore) ConnectDisconnectNotify(f func(sign *core.QMet
 }
 
 func (ptr *QWebEngineCookieStore) DisconnectDisconnectNotify() {
-	defer qt.Recovering("disconnect QWebEngineCookieStore::disconnectNotify")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineCookieStore::disconnectNotify")
@@ -1807,16 +1490,12 @@ func (ptr *QWebEngineCookieStore) DisconnectDisconnectNotify() {
 }
 
 func (ptr *QWebEngineCookieStore) DisconnectNotify(sign core.QMetaMethod_ITF) {
-	defer qt.Recovering("QWebEngineCookieStore::disconnectNotify")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineCookieStore_DisconnectNotify(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
 	}
 }
 
 func (ptr *QWebEngineCookieStore) DisconnectNotifyDefault(sign core.QMetaMethod_ITF) {
-	defer qt.Recovering("QWebEngineCookieStore::disconnectNotify")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineCookieStore_DisconnectNotifyDefault(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
 	}
@@ -1824,7 +1503,6 @@ func (ptr *QWebEngineCookieStore) DisconnectNotifyDefault(sign core.QMetaMethod_
 
 //export callbackQWebEngineCookieStore_Event
 func callbackQWebEngineCookieStore_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
-	defer qt.Recovering("callback QWebEngineCookieStore::event")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineCookieStore::event"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
@@ -1834,8 +1512,6 @@ func callbackQWebEngineCookieStore_Event(ptr unsafe.Pointer, e unsafe.Pointer) C
 }
 
 func (ptr *QWebEngineCookieStore) ConnectEvent(f func(e *core.QEvent) bool) {
-	defer qt.Recovering("connect QWebEngineCookieStore::event")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineCookieStore::event", f)
@@ -1843,8 +1519,6 @@ func (ptr *QWebEngineCookieStore) ConnectEvent(f func(e *core.QEvent) bool) {
 }
 
 func (ptr *QWebEngineCookieStore) DisconnectEvent() {
-	defer qt.Recovering("disconnect QWebEngineCookieStore::event")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineCookieStore::event")
@@ -1852,8 +1526,6 @@ func (ptr *QWebEngineCookieStore) DisconnectEvent() {
 }
 
 func (ptr *QWebEngineCookieStore) Event(e core.QEvent_ITF) bool {
-	defer qt.Recovering("QWebEngineCookieStore::event")
-
 	if ptr.Pointer() != nil {
 		return C.QWebEngineCookieStore_Event(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
 	}
@@ -1861,8 +1533,6 @@ func (ptr *QWebEngineCookieStore) Event(e core.QEvent_ITF) bool {
 }
 
 func (ptr *QWebEngineCookieStore) EventDefault(e core.QEvent_ITF) bool {
-	defer qt.Recovering("QWebEngineCookieStore::event")
-
 	if ptr.Pointer() != nil {
 		return C.QWebEngineCookieStore_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
 	}
@@ -1871,7 +1541,6 @@ func (ptr *QWebEngineCookieStore) EventDefault(e core.QEvent_ITF) bool {
 
 //export callbackQWebEngineCookieStore_EventFilter
 func callbackQWebEngineCookieStore_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-	defer qt.Recovering("callback QWebEngineCookieStore::eventFilter")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineCookieStore::eventFilter"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
@@ -1881,8 +1550,6 @@ func callbackQWebEngineCookieStore_EventFilter(ptr unsafe.Pointer, watched unsaf
 }
 
 func (ptr *QWebEngineCookieStore) ConnectEventFilter(f func(watched *core.QObject, event *core.QEvent) bool) {
-	defer qt.Recovering("connect QWebEngineCookieStore::eventFilter")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineCookieStore::eventFilter", f)
@@ -1890,8 +1557,6 @@ func (ptr *QWebEngineCookieStore) ConnectEventFilter(f func(watched *core.QObjec
 }
 
 func (ptr *QWebEngineCookieStore) DisconnectEventFilter() {
-	defer qt.Recovering("disconnect QWebEngineCookieStore::eventFilter")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineCookieStore::eventFilter")
@@ -1899,8 +1564,6 @@ func (ptr *QWebEngineCookieStore) DisconnectEventFilter() {
 }
 
 func (ptr *QWebEngineCookieStore) EventFilter(watched core.QObject_ITF, event core.QEvent_ITF) bool {
-	defer qt.Recovering("QWebEngineCookieStore::eventFilter")
-
 	if ptr.Pointer() != nil {
 		return C.QWebEngineCookieStore_EventFilter(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
 	}
@@ -1908,8 +1571,6 @@ func (ptr *QWebEngineCookieStore) EventFilter(watched core.QObject_ITF, event co
 }
 
 func (ptr *QWebEngineCookieStore) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
-	defer qt.Recovering("QWebEngineCookieStore::eventFilter")
-
 	if ptr.Pointer() != nil {
 		return C.QWebEngineCookieStore_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
 	}
@@ -1918,7 +1579,6 @@ func (ptr *QWebEngineCookieStore) EventFilterDefault(watched core.QObject_ITF, e
 
 //export callbackQWebEngineCookieStore_MetaObject
 func callbackQWebEngineCookieStore_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-	defer qt.Recovering("callback QWebEngineCookieStore::metaObject")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineCookieStore::metaObject"); signal != nil {
 		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
@@ -1928,8 +1588,6 @@ func callbackQWebEngineCookieStore_MetaObject(ptr unsafe.Pointer) unsafe.Pointer
 }
 
 func (ptr *QWebEngineCookieStore) ConnectMetaObject(f func() *core.QMetaObject) {
-	defer qt.Recovering("connect QWebEngineCookieStore::metaObject")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineCookieStore::metaObject", f)
@@ -1937,8 +1595,6 @@ func (ptr *QWebEngineCookieStore) ConnectMetaObject(f func() *core.QMetaObject) 
 }
 
 func (ptr *QWebEngineCookieStore) DisconnectMetaObject() {
-	defer qt.Recovering("disconnect QWebEngineCookieStore::metaObject")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineCookieStore::metaObject")
@@ -1946,8 +1602,6 @@ func (ptr *QWebEngineCookieStore) DisconnectMetaObject() {
 }
 
 func (ptr *QWebEngineCookieStore) MetaObject() *core.QMetaObject {
-	defer qt.Recovering("QWebEngineCookieStore::metaObject")
-
 	if ptr.Pointer() != nil {
 		return core.NewQMetaObjectFromPointer(C.QWebEngineCookieStore_MetaObject(ptr.Pointer()))
 	}
@@ -1955,8 +1609,6 @@ func (ptr *QWebEngineCookieStore) MetaObject() *core.QMetaObject {
 }
 
 func (ptr *QWebEngineCookieStore) MetaObjectDefault() *core.QMetaObject {
-	defer qt.Recovering("QWebEngineCookieStore::metaObject")
-
 	if ptr.Pointer() != nil {
 		return core.NewQMetaObjectFromPointer(C.QWebEngineCookieStore_MetaObjectDefault(ptr.Pointer()))
 	}
@@ -2031,8 +1683,6 @@ func (ptr *QWebEngineDownloadItem) DestroyQWebEngineDownloadItem() {
 
 //export callbackQWebEngineDownloadItem_Accept
 func callbackQWebEngineDownloadItem_Accept(ptr unsafe.Pointer) {
-	defer qt.Recovering("callback QWebEngineDownloadItem::accept")
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineDownloadItem::accept"); signal != nil {
 		signal.(func())()
 	}
@@ -2040,8 +1690,6 @@ func callbackQWebEngineDownloadItem_Accept(ptr unsafe.Pointer) {
 }
 
 func (ptr *QWebEngineDownloadItem) ConnectAccept(f func()) {
-	defer qt.Recovering("connect QWebEngineDownloadItem::accept")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineDownloadItem::accept", f)
@@ -2049,8 +1697,6 @@ func (ptr *QWebEngineDownloadItem) ConnectAccept(f func()) {
 }
 
 func (ptr *QWebEngineDownloadItem) DisconnectAccept() {
-	defer qt.Recovering("disconnect QWebEngineDownloadItem::accept")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineDownloadItem::accept")
@@ -2058,8 +1704,6 @@ func (ptr *QWebEngineDownloadItem) DisconnectAccept() {
 }
 
 func (ptr *QWebEngineDownloadItem) Accept() {
-	defer qt.Recovering("QWebEngineDownloadItem::accept")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineDownloadItem_Accept(ptr.Pointer())
 	}
@@ -2067,8 +1711,6 @@ func (ptr *QWebEngineDownloadItem) Accept() {
 
 //export callbackQWebEngineDownloadItem_Cancel
 func callbackQWebEngineDownloadItem_Cancel(ptr unsafe.Pointer) {
-	defer qt.Recovering("callback QWebEngineDownloadItem::cancel")
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineDownloadItem::cancel"); signal != nil {
 		signal.(func())()
 	}
@@ -2076,8 +1718,6 @@ func callbackQWebEngineDownloadItem_Cancel(ptr unsafe.Pointer) {
 }
 
 func (ptr *QWebEngineDownloadItem) ConnectCancel(f func()) {
-	defer qt.Recovering("connect QWebEngineDownloadItem::cancel")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineDownloadItem::cancel", f)
@@ -2085,8 +1725,6 @@ func (ptr *QWebEngineDownloadItem) ConnectCancel(f func()) {
 }
 
 func (ptr *QWebEngineDownloadItem) DisconnectCancel() {
-	defer qt.Recovering("disconnect QWebEngineDownloadItem::cancel")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineDownloadItem::cancel")
@@ -2094,8 +1732,6 @@ func (ptr *QWebEngineDownloadItem) DisconnectCancel() {
 }
 
 func (ptr *QWebEngineDownloadItem) Cancel() {
-	defer qt.Recovering("QWebEngineDownloadItem::cancel")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineDownloadItem_Cancel(ptr.Pointer())
 	}
@@ -2103,7 +1739,6 @@ func (ptr *QWebEngineDownloadItem) Cancel() {
 
 //export callbackQWebEngineDownloadItem_DownloadProgress
 func callbackQWebEngineDownloadItem_DownloadProgress(ptr unsafe.Pointer, bytesReceived C.longlong, bytesTotal C.longlong) {
-	defer qt.Recovering("callback QWebEngineDownloadItem::downloadProgress")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineDownloadItem::downloadProgress"); signal != nil {
 		signal.(func(int64, int64))(int64(bytesReceived), int64(bytesTotal))
@@ -2112,8 +1747,6 @@ func callbackQWebEngineDownloadItem_DownloadProgress(ptr unsafe.Pointer, bytesRe
 }
 
 func (ptr *QWebEngineDownloadItem) ConnectDownloadProgress(f func(bytesReceived int64, bytesTotal int64)) {
-	defer qt.Recovering("connect QWebEngineDownloadItem::downloadProgress")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineDownloadItem_ConnectDownloadProgress(ptr.Pointer())
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineDownloadItem::downloadProgress", f)
@@ -2121,8 +1754,6 @@ func (ptr *QWebEngineDownloadItem) ConnectDownloadProgress(f func(bytesReceived 
 }
 
 func (ptr *QWebEngineDownloadItem) DisconnectDownloadProgress() {
-	defer qt.Recovering("disconnect QWebEngineDownloadItem::downloadProgress")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineDownloadItem_DisconnectDownloadProgress(ptr.Pointer())
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineDownloadItem::downloadProgress")
@@ -2130,8 +1761,6 @@ func (ptr *QWebEngineDownloadItem) DisconnectDownloadProgress() {
 }
 
 func (ptr *QWebEngineDownloadItem) DownloadProgress(bytesReceived int64, bytesTotal int64) {
-	defer qt.Recovering("QWebEngineDownloadItem::downloadProgress")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineDownloadItem_DownloadProgress(ptr.Pointer(), C.longlong(bytesReceived), C.longlong(bytesTotal))
 	}
@@ -2139,7 +1768,6 @@ func (ptr *QWebEngineDownloadItem) DownloadProgress(bytesReceived int64, bytesTo
 
 //export callbackQWebEngineDownloadItem_Finished
 func callbackQWebEngineDownloadItem_Finished(ptr unsafe.Pointer) {
-	defer qt.Recovering("callback QWebEngineDownloadItem::finished")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineDownloadItem::finished"); signal != nil {
 		signal.(func())()
@@ -2148,8 +1776,6 @@ func callbackQWebEngineDownloadItem_Finished(ptr unsafe.Pointer) {
 }
 
 func (ptr *QWebEngineDownloadItem) ConnectFinished(f func()) {
-	defer qt.Recovering("connect QWebEngineDownloadItem::finished")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineDownloadItem_ConnectFinished(ptr.Pointer())
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineDownloadItem::finished", f)
@@ -2157,8 +1783,6 @@ func (ptr *QWebEngineDownloadItem) ConnectFinished(f func()) {
 }
 
 func (ptr *QWebEngineDownloadItem) DisconnectFinished() {
-	defer qt.Recovering("disconnect QWebEngineDownloadItem::finished")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineDownloadItem_DisconnectFinished(ptr.Pointer())
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineDownloadItem::finished")
@@ -2166,16 +1790,12 @@ func (ptr *QWebEngineDownloadItem) DisconnectFinished() {
 }
 
 func (ptr *QWebEngineDownloadItem) Finished() {
-	defer qt.Recovering("QWebEngineDownloadItem::finished")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineDownloadItem_Finished(ptr.Pointer())
 	}
 }
 
 func (ptr *QWebEngineDownloadItem) Id() uint {
-	defer qt.Recovering("QWebEngineDownloadItem::id")
-
 	if ptr.Pointer() != nil {
 		return uint(uint32(C.QWebEngineDownloadItem_Id(ptr.Pointer())))
 	}
@@ -2183,8 +1803,6 @@ func (ptr *QWebEngineDownloadItem) Id() uint {
 }
 
 func (ptr *QWebEngineDownloadItem) IsFinished() bool {
-	defer qt.Recovering("QWebEngineDownloadItem::isFinished")
-
 	if ptr.Pointer() != nil {
 		return C.QWebEngineDownloadItem_IsFinished(ptr.Pointer()) != 0
 	}
@@ -2192,8 +1810,6 @@ func (ptr *QWebEngineDownloadItem) IsFinished() bool {
 }
 
 func (ptr *QWebEngineDownloadItem) MimeType() string {
-	defer qt.Recovering("QWebEngineDownloadItem::mimeType")
-
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QWebEngineDownloadItem_MimeType(ptr.Pointer()))
 	}
@@ -2201,8 +1817,6 @@ func (ptr *QWebEngineDownloadItem) MimeType() string {
 }
 
 func (ptr *QWebEngineDownloadItem) Path() string {
-	defer qt.Recovering("QWebEngineDownloadItem::path")
-
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QWebEngineDownloadItem_Path(ptr.Pointer()))
 	}
@@ -2210,8 +1824,6 @@ func (ptr *QWebEngineDownloadItem) Path() string {
 }
 
 func (ptr *QWebEngineDownloadItem) ReceivedBytes() int64 {
-	defer qt.Recovering("QWebEngineDownloadItem::receivedBytes")
-
 	if ptr.Pointer() != nil {
 		return int64(C.QWebEngineDownloadItem_ReceivedBytes(ptr.Pointer()))
 	}
@@ -2219,8 +1831,6 @@ func (ptr *QWebEngineDownloadItem) ReceivedBytes() int64 {
 }
 
 func (ptr *QWebEngineDownloadItem) SavePageFormat() QWebEngineDownloadItem__SavePageFormat {
-	defer qt.Recovering("QWebEngineDownloadItem::savePageFormat")
-
 	if ptr.Pointer() != nil {
 		return QWebEngineDownloadItem__SavePageFormat(C.QWebEngineDownloadItem_SavePageFormat(ptr.Pointer()))
 	}
@@ -2228,8 +1838,6 @@ func (ptr *QWebEngineDownloadItem) SavePageFormat() QWebEngineDownloadItem__Save
 }
 
 func (ptr *QWebEngineDownloadItem) SetPath(path string) {
-	defer qt.Recovering("QWebEngineDownloadItem::setPath")
-
 	if ptr.Pointer() != nil {
 		var pathC = C.CString(path)
 		defer C.free(unsafe.Pointer(pathC))
@@ -2238,16 +1846,12 @@ func (ptr *QWebEngineDownloadItem) SetPath(path string) {
 }
 
 func (ptr *QWebEngineDownloadItem) SetSavePageFormat(format QWebEngineDownloadItem__SavePageFormat) {
-	defer qt.Recovering("QWebEngineDownloadItem::setSavePageFormat")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineDownloadItem_SetSavePageFormat(ptr.Pointer(), C.longlong(format))
 	}
 }
 
 func (ptr *QWebEngineDownloadItem) State() QWebEngineDownloadItem__DownloadState {
-	defer qt.Recovering("QWebEngineDownloadItem::state")
-
 	if ptr.Pointer() != nil {
 		return QWebEngineDownloadItem__DownloadState(C.QWebEngineDownloadItem_State(ptr.Pointer()))
 	}
@@ -2256,7 +1860,6 @@ func (ptr *QWebEngineDownloadItem) State() QWebEngineDownloadItem__DownloadState
 
 //export callbackQWebEngineDownloadItem_StateChanged
 func callbackQWebEngineDownloadItem_StateChanged(ptr unsafe.Pointer, state C.longlong) {
-	defer qt.Recovering("callback QWebEngineDownloadItem::stateChanged")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineDownloadItem::stateChanged"); signal != nil {
 		signal.(func(QWebEngineDownloadItem__DownloadState))(QWebEngineDownloadItem__DownloadState(state))
@@ -2265,8 +1868,6 @@ func callbackQWebEngineDownloadItem_StateChanged(ptr unsafe.Pointer, state C.lon
 }
 
 func (ptr *QWebEngineDownloadItem) ConnectStateChanged(f func(state QWebEngineDownloadItem__DownloadState)) {
-	defer qt.Recovering("connect QWebEngineDownloadItem::stateChanged")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineDownloadItem_ConnectStateChanged(ptr.Pointer())
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineDownloadItem::stateChanged", f)
@@ -2274,8 +1875,6 @@ func (ptr *QWebEngineDownloadItem) ConnectStateChanged(f func(state QWebEngineDo
 }
 
 func (ptr *QWebEngineDownloadItem) DisconnectStateChanged() {
-	defer qt.Recovering("disconnect QWebEngineDownloadItem::stateChanged")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineDownloadItem_DisconnectStateChanged(ptr.Pointer())
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineDownloadItem::stateChanged")
@@ -2283,16 +1882,12 @@ func (ptr *QWebEngineDownloadItem) DisconnectStateChanged() {
 }
 
 func (ptr *QWebEngineDownloadItem) StateChanged(state QWebEngineDownloadItem__DownloadState) {
-	defer qt.Recovering("QWebEngineDownloadItem::stateChanged")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineDownloadItem_StateChanged(ptr.Pointer(), C.longlong(state))
 	}
 }
 
 func (ptr *QWebEngineDownloadItem) TotalBytes() int64 {
-	defer qt.Recovering("QWebEngineDownloadItem::totalBytes")
-
 	if ptr.Pointer() != nil {
 		return int64(C.QWebEngineDownloadItem_TotalBytes(ptr.Pointer()))
 	}
@@ -2300,8 +1895,6 @@ func (ptr *QWebEngineDownloadItem) TotalBytes() int64 {
 }
 
 func (ptr *QWebEngineDownloadItem) Url() *core.QUrl {
-	defer qt.Recovering("QWebEngineDownloadItem::url")
-
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQUrlFromPointer(C.QWebEngineDownloadItem_Url(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*core.QUrl).DestroyQUrl)
@@ -2312,7 +1905,6 @@ func (ptr *QWebEngineDownloadItem) Url() *core.QUrl {
 
 //export callbackQWebEngineDownloadItem_TimerEvent
 func callbackQWebEngineDownloadItem_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	defer qt.Recovering("callback QWebEngineDownloadItem::timerEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineDownloadItem::timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
@@ -2322,8 +1914,6 @@ func callbackQWebEngineDownloadItem_TimerEvent(ptr unsafe.Pointer, event unsafe.
 }
 
 func (ptr *QWebEngineDownloadItem) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
-	defer qt.Recovering("connect QWebEngineDownloadItem::timerEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineDownloadItem::timerEvent", f)
@@ -2331,8 +1921,6 @@ func (ptr *QWebEngineDownloadItem) ConnectTimerEvent(f func(event *core.QTimerEv
 }
 
 func (ptr *QWebEngineDownloadItem) DisconnectTimerEvent() {
-	defer qt.Recovering("disconnect QWebEngineDownloadItem::timerEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineDownloadItem::timerEvent")
@@ -2340,16 +1928,12 @@ func (ptr *QWebEngineDownloadItem) DisconnectTimerEvent() {
 }
 
 func (ptr *QWebEngineDownloadItem) TimerEvent(event core.QTimerEvent_ITF) {
-	defer qt.Recovering("QWebEngineDownloadItem::timerEvent")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineDownloadItem_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
 	}
 }
 
 func (ptr *QWebEngineDownloadItem) TimerEventDefault(event core.QTimerEvent_ITF) {
-	defer qt.Recovering("QWebEngineDownloadItem::timerEvent")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineDownloadItem_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
 	}
@@ -2357,7 +1941,6 @@ func (ptr *QWebEngineDownloadItem) TimerEventDefault(event core.QTimerEvent_ITF)
 
 //export callbackQWebEngineDownloadItem_ChildEvent
 func callbackQWebEngineDownloadItem_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	defer qt.Recovering("callback QWebEngineDownloadItem::childEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineDownloadItem::childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
@@ -2367,8 +1950,6 @@ func callbackQWebEngineDownloadItem_ChildEvent(ptr unsafe.Pointer, event unsafe.
 }
 
 func (ptr *QWebEngineDownloadItem) ConnectChildEvent(f func(event *core.QChildEvent)) {
-	defer qt.Recovering("connect QWebEngineDownloadItem::childEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineDownloadItem::childEvent", f)
@@ -2376,8 +1957,6 @@ func (ptr *QWebEngineDownloadItem) ConnectChildEvent(f func(event *core.QChildEv
 }
 
 func (ptr *QWebEngineDownloadItem) DisconnectChildEvent() {
-	defer qt.Recovering("disconnect QWebEngineDownloadItem::childEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineDownloadItem::childEvent")
@@ -2385,16 +1964,12 @@ func (ptr *QWebEngineDownloadItem) DisconnectChildEvent() {
 }
 
 func (ptr *QWebEngineDownloadItem) ChildEvent(event core.QChildEvent_ITF) {
-	defer qt.Recovering("QWebEngineDownloadItem::childEvent")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineDownloadItem_ChildEvent(ptr.Pointer(), core.PointerFromQChildEvent(event))
 	}
 }
 
 func (ptr *QWebEngineDownloadItem) ChildEventDefault(event core.QChildEvent_ITF) {
-	defer qt.Recovering("QWebEngineDownloadItem::childEvent")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineDownloadItem_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
 	}
@@ -2402,7 +1977,6 @@ func (ptr *QWebEngineDownloadItem) ChildEventDefault(event core.QChildEvent_ITF)
 
 //export callbackQWebEngineDownloadItem_ConnectNotify
 func callbackQWebEngineDownloadItem_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-	defer qt.Recovering("callback QWebEngineDownloadItem::connectNotify")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineDownloadItem::connectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
@@ -2412,8 +1986,6 @@ func callbackQWebEngineDownloadItem_ConnectNotify(ptr unsafe.Pointer, sign unsaf
 }
 
 func (ptr *QWebEngineDownloadItem) ConnectConnectNotify(f func(sign *core.QMetaMethod)) {
-	defer qt.Recovering("connect QWebEngineDownloadItem::connectNotify")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineDownloadItem::connectNotify", f)
@@ -2421,8 +1993,6 @@ func (ptr *QWebEngineDownloadItem) ConnectConnectNotify(f func(sign *core.QMetaM
 }
 
 func (ptr *QWebEngineDownloadItem) DisconnectConnectNotify() {
-	defer qt.Recovering("disconnect QWebEngineDownloadItem::connectNotify")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineDownloadItem::connectNotify")
@@ -2430,16 +2000,12 @@ func (ptr *QWebEngineDownloadItem) DisconnectConnectNotify() {
 }
 
 func (ptr *QWebEngineDownloadItem) ConnectNotify(sign core.QMetaMethod_ITF) {
-	defer qt.Recovering("QWebEngineDownloadItem::connectNotify")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineDownloadItem_ConnectNotify(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
 	}
 }
 
 func (ptr *QWebEngineDownloadItem) ConnectNotifyDefault(sign core.QMetaMethod_ITF) {
-	defer qt.Recovering("QWebEngineDownloadItem::connectNotify")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineDownloadItem_ConnectNotifyDefault(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
 	}
@@ -2447,7 +2013,6 @@ func (ptr *QWebEngineDownloadItem) ConnectNotifyDefault(sign core.QMetaMethod_IT
 
 //export callbackQWebEngineDownloadItem_CustomEvent
 func callbackQWebEngineDownloadItem_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	defer qt.Recovering("callback QWebEngineDownloadItem::customEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineDownloadItem::customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
@@ -2457,8 +2022,6 @@ func callbackQWebEngineDownloadItem_CustomEvent(ptr unsafe.Pointer, event unsafe
 }
 
 func (ptr *QWebEngineDownloadItem) ConnectCustomEvent(f func(event *core.QEvent)) {
-	defer qt.Recovering("connect QWebEngineDownloadItem::customEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineDownloadItem::customEvent", f)
@@ -2466,8 +2029,6 @@ func (ptr *QWebEngineDownloadItem) ConnectCustomEvent(f func(event *core.QEvent)
 }
 
 func (ptr *QWebEngineDownloadItem) DisconnectCustomEvent() {
-	defer qt.Recovering("disconnect QWebEngineDownloadItem::customEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineDownloadItem::customEvent")
@@ -2475,16 +2036,12 @@ func (ptr *QWebEngineDownloadItem) DisconnectCustomEvent() {
 }
 
 func (ptr *QWebEngineDownloadItem) CustomEvent(event core.QEvent_ITF) {
-	defer qt.Recovering("QWebEngineDownloadItem::customEvent")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineDownloadItem_CustomEvent(ptr.Pointer(), core.PointerFromQEvent(event))
 	}
 }
 
 func (ptr *QWebEngineDownloadItem) CustomEventDefault(event core.QEvent_ITF) {
-	defer qt.Recovering("QWebEngineDownloadItem::customEvent")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineDownloadItem_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
 	}
@@ -2492,8 +2049,6 @@ func (ptr *QWebEngineDownloadItem) CustomEventDefault(event core.QEvent_ITF) {
 
 //export callbackQWebEngineDownloadItem_DeleteLater
 func callbackQWebEngineDownloadItem_DeleteLater(ptr unsafe.Pointer) {
-	defer qt.Recovering("callback QWebEngineDownloadItem::deleteLater")
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineDownloadItem::deleteLater"); signal != nil {
 		signal.(func())()
 	} else {
@@ -2502,8 +2057,6 @@ func callbackQWebEngineDownloadItem_DeleteLater(ptr unsafe.Pointer) {
 }
 
 func (ptr *QWebEngineDownloadItem) ConnectDeleteLater(f func()) {
-	defer qt.Recovering("connect QWebEngineDownloadItem::deleteLater")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineDownloadItem::deleteLater", f)
@@ -2511,8 +2064,6 @@ func (ptr *QWebEngineDownloadItem) ConnectDeleteLater(f func()) {
 }
 
 func (ptr *QWebEngineDownloadItem) DisconnectDeleteLater() {
-	defer qt.Recovering("disconnect QWebEngineDownloadItem::deleteLater")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineDownloadItem::deleteLater")
@@ -2520,8 +2071,6 @@ func (ptr *QWebEngineDownloadItem) DisconnectDeleteLater() {
 }
 
 func (ptr *QWebEngineDownloadItem) DeleteLater() {
-	defer qt.Recovering("QWebEngineDownloadItem::deleteLater")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineDownloadItem_DeleteLater(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
@@ -2530,8 +2079,6 @@ func (ptr *QWebEngineDownloadItem) DeleteLater() {
 }
 
 func (ptr *QWebEngineDownloadItem) DeleteLaterDefault() {
-	defer qt.Recovering("QWebEngineDownloadItem::deleteLater")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineDownloadItem_DeleteLaterDefault(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
@@ -2541,7 +2088,6 @@ func (ptr *QWebEngineDownloadItem) DeleteLaterDefault() {
 
 //export callbackQWebEngineDownloadItem_DisconnectNotify
 func callbackQWebEngineDownloadItem_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-	defer qt.Recovering("callback QWebEngineDownloadItem::disconnectNotify")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineDownloadItem::disconnectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
@@ -2551,8 +2097,6 @@ func callbackQWebEngineDownloadItem_DisconnectNotify(ptr unsafe.Pointer, sign un
 }
 
 func (ptr *QWebEngineDownloadItem) ConnectDisconnectNotify(f func(sign *core.QMetaMethod)) {
-	defer qt.Recovering("connect QWebEngineDownloadItem::disconnectNotify")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineDownloadItem::disconnectNotify", f)
@@ -2560,8 +2104,6 @@ func (ptr *QWebEngineDownloadItem) ConnectDisconnectNotify(f func(sign *core.QMe
 }
 
 func (ptr *QWebEngineDownloadItem) DisconnectDisconnectNotify() {
-	defer qt.Recovering("disconnect QWebEngineDownloadItem::disconnectNotify")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineDownloadItem::disconnectNotify")
@@ -2569,16 +2111,12 @@ func (ptr *QWebEngineDownloadItem) DisconnectDisconnectNotify() {
 }
 
 func (ptr *QWebEngineDownloadItem) DisconnectNotify(sign core.QMetaMethod_ITF) {
-	defer qt.Recovering("QWebEngineDownloadItem::disconnectNotify")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineDownloadItem_DisconnectNotify(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
 	}
 }
 
 func (ptr *QWebEngineDownloadItem) DisconnectNotifyDefault(sign core.QMetaMethod_ITF) {
-	defer qt.Recovering("QWebEngineDownloadItem::disconnectNotify")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineDownloadItem_DisconnectNotifyDefault(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
 	}
@@ -2586,7 +2124,6 @@ func (ptr *QWebEngineDownloadItem) DisconnectNotifyDefault(sign core.QMetaMethod
 
 //export callbackQWebEngineDownloadItem_Event
 func callbackQWebEngineDownloadItem_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
-	defer qt.Recovering("callback QWebEngineDownloadItem::event")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineDownloadItem::event"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
@@ -2596,8 +2133,6 @@ func callbackQWebEngineDownloadItem_Event(ptr unsafe.Pointer, e unsafe.Pointer) 
 }
 
 func (ptr *QWebEngineDownloadItem) ConnectEvent(f func(e *core.QEvent) bool) {
-	defer qt.Recovering("connect QWebEngineDownloadItem::event")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineDownloadItem::event", f)
@@ -2605,8 +2140,6 @@ func (ptr *QWebEngineDownloadItem) ConnectEvent(f func(e *core.QEvent) bool) {
 }
 
 func (ptr *QWebEngineDownloadItem) DisconnectEvent() {
-	defer qt.Recovering("disconnect QWebEngineDownloadItem::event")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineDownloadItem::event")
@@ -2614,8 +2147,6 @@ func (ptr *QWebEngineDownloadItem) DisconnectEvent() {
 }
 
 func (ptr *QWebEngineDownloadItem) Event(e core.QEvent_ITF) bool {
-	defer qt.Recovering("QWebEngineDownloadItem::event")
-
 	if ptr.Pointer() != nil {
 		return C.QWebEngineDownloadItem_Event(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
 	}
@@ -2623,8 +2154,6 @@ func (ptr *QWebEngineDownloadItem) Event(e core.QEvent_ITF) bool {
 }
 
 func (ptr *QWebEngineDownloadItem) EventDefault(e core.QEvent_ITF) bool {
-	defer qt.Recovering("QWebEngineDownloadItem::event")
-
 	if ptr.Pointer() != nil {
 		return C.QWebEngineDownloadItem_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
 	}
@@ -2633,7 +2162,6 @@ func (ptr *QWebEngineDownloadItem) EventDefault(e core.QEvent_ITF) bool {
 
 //export callbackQWebEngineDownloadItem_EventFilter
 func callbackQWebEngineDownloadItem_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-	defer qt.Recovering("callback QWebEngineDownloadItem::eventFilter")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineDownloadItem::eventFilter"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
@@ -2643,8 +2171,6 @@ func callbackQWebEngineDownloadItem_EventFilter(ptr unsafe.Pointer, watched unsa
 }
 
 func (ptr *QWebEngineDownloadItem) ConnectEventFilter(f func(watched *core.QObject, event *core.QEvent) bool) {
-	defer qt.Recovering("connect QWebEngineDownloadItem::eventFilter")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineDownloadItem::eventFilter", f)
@@ -2652,8 +2178,6 @@ func (ptr *QWebEngineDownloadItem) ConnectEventFilter(f func(watched *core.QObje
 }
 
 func (ptr *QWebEngineDownloadItem) DisconnectEventFilter() {
-	defer qt.Recovering("disconnect QWebEngineDownloadItem::eventFilter")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineDownloadItem::eventFilter")
@@ -2661,8 +2185,6 @@ func (ptr *QWebEngineDownloadItem) DisconnectEventFilter() {
 }
 
 func (ptr *QWebEngineDownloadItem) EventFilter(watched core.QObject_ITF, event core.QEvent_ITF) bool {
-	defer qt.Recovering("QWebEngineDownloadItem::eventFilter")
-
 	if ptr.Pointer() != nil {
 		return C.QWebEngineDownloadItem_EventFilter(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
 	}
@@ -2670,8 +2192,6 @@ func (ptr *QWebEngineDownloadItem) EventFilter(watched core.QObject_ITF, event c
 }
 
 func (ptr *QWebEngineDownloadItem) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
-	defer qt.Recovering("QWebEngineDownloadItem::eventFilter")
-
 	if ptr.Pointer() != nil {
 		return C.QWebEngineDownloadItem_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
 	}
@@ -2680,7 +2200,6 @@ func (ptr *QWebEngineDownloadItem) EventFilterDefault(watched core.QObject_ITF, 
 
 //export callbackQWebEngineDownloadItem_MetaObject
 func callbackQWebEngineDownloadItem_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-	defer qt.Recovering("callback QWebEngineDownloadItem::metaObject")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineDownloadItem::metaObject"); signal != nil {
 		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
@@ -2690,8 +2209,6 @@ func callbackQWebEngineDownloadItem_MetaObject(ptr unsafe.Pointer) unsafe.Pointe
 }
 
 func (ptr *QWebEngineDownloadItem) ConnectMetaObject(f func() *core.QMetaObject) {
-	defer qt.Recovering("connect QWebEngineDownloadItem::metaObject")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineDownloadItem::metaObject", f)
@@ -2699,8 +2216,6 @@ func (ptr *QWebEngineDownloadItem) ConnectMetaObject(f func() *core.QMetaObject)
 }
 
 func (ptr *QWebEngineDownloadItem) DisconnectMetaObject() {
-	defer qt.Recovering("disconnect QWebEngineDownloadItem::metaObject")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineDownloadItem::metaObject")
@@ -2708,8 +2223,6 @@ func (ptr *QWebEngineDownloadItem) DisconnectMetaObject() {
 }
 
 func (ptr *QWebEngineDownloadItem) MetaObject() *core.QMetaObject {
-	defer qt.Recovering("QWebEngineDownloadItem::metaObject")
-
 	if ptr.Pointer() != nil {
 		return core.NewQMetaObjectFromPointer(C.QWebEngineDownloadItem_MetaObject(ptr.Pointer()))
 	}
@@ -2717,8 +2230,6 @@ func (ptr *QWebEngineDownloadItem) MetaObject() *core.QMetaObject {
 }
 
 func (ptr *QWebEngineDownloadItem) MetaObjectDefault() *core.QMetaObject {
-	defer qt.Recovering("QWebEngineDownloadItem::metaObject")
-
 	if ptr.Pointer() != nil {
 		return core.NewQMetaObjectFromPointer(C.QWebEngineDownloadItem_MetaObjectDefault(ptr.Pointer()))
 	}
@@ -2769,16 +2280,12 @@ func (ptr *QWebEngineFullScreenRequest) DestroyQWebEngineFullScreenRequest() {
 }
 
 func (ptr *QWebEngineFullScreenRequest) Accept() {
-	defer qt.Recovering("QWebEngineFullScreenRequest::accept")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineFullScreenRequest_Accept(ptr.Pointer())
 	}
 }
 
 func (ptr *QWebEngineFullScreenRequest) Origin() *core.QUrl {
-	defer qt.Recovering("QWebEngineFullScreenRequest::origin")
-
 	if ptr.Pointer() != nil {
 		return core.NewQUrlFromPointer(C.QWebEngineFullScreenRequest_Origin(ptr.Pointer()))
 	}
@@ -2786,16 +2293,12 @@ func (ptr *QWebEngineFullScreenRequest) Origin() *core.QUrl {
 }
 
 func (ptr *QWebEngineFullScreenRequest) Reject() {
-	defer qt.Recovering("QWebEngineFullScreenRequest::reject")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineFullScreenRequest_Reject(ptr.Pointer())
 	}
 }
 
 func (ptr *QWebEngineFullScreenRequest) ToggleOn() bool {
-	defer qt.Recovering("QWebEngineFullScreenRequest::toggleOn")
-
 	if ptr.Pointer() != nil {
 		return C.QWebEngineFullScreenRequest_ToggleOn(ptr.Pointer()) != 0
 	}
@@ -2846,16 +2349,12 @@ func (ptr *QWebEngineHistory) DestroyQWebEngineHistory() {
 }
 
 func (ptr *QWebEngineHistory) Back() {
-	defer qt.Recovering("QWebEngineHistory::back")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineHistory_Back(ptr.Pointer())
 	}
 }
 
 func (ptr *QWebEngineHistory) BackItem() *QWebEngineHistoryItem {
-	defer qt.Recovering("QWebEngineHistory::backItem")
-
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQWebEngineHistoryItemFromPointer(C.QWebEngineHistory_BackItem(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*QWebEngineHistoryItem).DestroyQWebEngineHistoryItem)
@@ -2865,8 +2364,6 @@ func (ptr *QWebEngineHistory) BackItem() *QWebEngineHistoryItem {
 }
 
 func (ptr *QWebEngineHistory) CanGoBack() bool {
-	defer qt.Recovering("QWebEngineHistory::canGoBack")
-
 	if ptr.Pointer() != nil {
 		return C.QWebEngineHistory_CanGoBack(ptr.Pointer()) != 0
 	}
@@ -2874,8 +2371,6 @@ func (ptr *QWebEngineHistory) CanGoBack() bool {
 }
 
 func (ptr *QWebEngineHistory) CanGoForward() bool {
-	defer qt.Recovering("QWebEngineHistory::canGoForward")
-
 	if ptr.Pointer() != nil {
 		return C.QWebEngineHistory_CanGoForward(ptr.Pointer()) != 0
 	}
@@ -2883,16 +2378,12 @@ func (ptr *QWebEngineHistory) CanGoForward() bool {
 }
 
 func (ptr *QWebEngineHistory) Clear() {
-	defer qt.Recovering("QWebEngineHistory::clear")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineHistory_Clear(ptr.Pointer())
 	}
 }
 
 func (ptr *QWebEngineHistory) Count() int {
-	defer qt.Recovering("QWebEngineHistory::count")
-
 	if ptr.Pointer() != nil {
 		return int(int32(C.QWebEngineHistory_Count(ptr.Pointer())))
 	}
@@ -2900,8 +2391,6 @@ func (ptr *QWebEngineHistory) Count() int {
 }
 
 func (ptr *QWebEngineHistory) CurrentItem() *QWebEngineHistoryItem {
-	defer qt.Recovering("QWebEngineHistory::currentItem")
-
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQWebEngineHistoryItemFromPointer(C.QWebEngineHistory_CurrentItem(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*QWebEngineHistoryItem).DestroyQWebEngineHistoryItem)
@@ -2911,8 +2400,6 @@ func (ptr *QWebEngineHistory) CurrentItem() *QWebEngineHistoryItem {
 }
 
 func (ptr *QWebEngineHistory) CurrentItemIndex() int {
-	defer qt.Recovering("QWebEngineHistory::currentItemIndex")
-
 	if ptr.Pointer() != nil {
 		return int(int32(C.QWebEngineHistory_CurrentItemIndex(ptr.Pointer())))
 	}
@@ -2920,16 +2407,12 @@ func (ptr *QWebEngineHistory) CurrentItemIndex() int {
 }
 
 func (ptr *QWebEngineHistory) Forward() {
-	defer qt.Recovering("QWebEngineHistory::forward")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineHistory_Forward(ptr.Pointer())
 	}
 }
 
 func (ptr *QWebEngineHistory) ForwardItem() *QWebEngineHistoryItem {
-	defer qt.Recovering("QWebEngineHistory::forwardItem")
-
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQWebEngineHistoryItemFromPointer(C.QWebEngineHistory_ForwardItem(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*QWebEngineHistoryItem).DestroyQWebEngineHistoryItem)
@@ -2939,16 +2422,12 @@ func (ptr *QWebEngineHistory) ForwardItem() *QWebEngineHistoryItem {
 }
 
 func (ptr *QWebEngineHistory) GoToItem(item QWebEngineHistoryItem_ITF) {
-	defer qt.Recovering("QWebEngineHistory::goToItem")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineHistory_GoToItem(ptr.Pointer(), PointerFromQWebEngineHistoryItem(item))
 	}
 }
 
 func (ptr *QWebEngineHistory) ItemAt(i int) *QWebEngineHistoryItem {
-	defer qt.Recovering("QWebEngineHistory::itemAt")
-
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQWebEngineHistoryItemFromPointer(C.QWebEngineHistory_ItemAt(ptr.Pointer(), C.int(int32(i))))
 		runtime.SetFinalizer(tmpValue, (*QWebEngineHistoryItem).DestroyQWebEngineHistoryItem)
@@ -2995,16 +2474,12 @@ func NewQWebEngineHistoryItemFromPointer(ptr unsafe.Pointer) *QWebEngineHistoryI
 	return n
 }
 func NewQWebEngineHistoryItem(other QWebEngineHistoryItem_ITF) *QWebEngineHistoryItem {
-	defer qt.Recovering("QWebEngineHistoryItem::QWebEngineHistoryItem")
-
 	var tmpValue = NewQWebEngineHistoryItemFromPointer(C.QWebEngineHistoryItem_NewQWebEngineHistoryItem(PointerFromQWebEngineHistoryItem(other)))
 	runtime.SetFinalizer(tmpValue, (*QWebEngineHistoryItem).DestroyQWebEngineHistoryItem)
 	return tmpValue
 }
 
 func (ptr *QWebEngineHistoryItem) IsValid() bool {
-	defer qt.Recovering("QWebEngineHistoryItem::isValid")
-
 	if ptr.Pointer() != nil {
 		return C.QWebEngineHistoryItem_IsValid(ptr.Pointer()) != 0
 	}
@@ -3012,8 +2487,6 @@ func (ptr *QWebEngineHistoryItem) IsValid() bool {
 }
 
 func (ptr *QWebEngineHistoryItem) LastVisited() *core.QDateTime {
-	defer qt.Recovering("QWebEngineHistoryItem::lastVisited")
-
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQDateTimeFromPointer(C.QWebEngineHistoryItem_LastVisited(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*core.QDateTime).DestroyQDateTime)
@@ -3023,8 +2496,6 @@ func (ptr *QWebEngineHistoryItem) LastVisited() *core.QDateTime {
 }
 
 func (ptr *QWebEngineHistoryItem) OriginalUrl() *core.QUrl {
-	defer qt.Recovering("QWebEngineHistoryItem::originalUrl")
-
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQUrlFromPointer(C.QWebEngineHistoryItem_OriginalUrl(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*core.QUrl).DestroyQUrl)
@@ -3034,8 +2505,6 @@ func (ptr *QWebEngineHistoryItem) OriginalUrl() *core.QUrl {
 }
 
 func (ptr *QWebEngineHistoryItem) Title() string {
-	defer qt.Recovering("QWebEngineHistoryItem::title")
-
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QWebEngineHistoryItem_Title(ptr.Pointer()))
 	}
@@ -3043,8 +2512,6 @@ func (ptr *QWebEngineHistoryItem) Title() string {
 }
 
 func (ptr *QWebEngineHistoryItem) Url() *core.QUrl {
-	defer qt.Recovering("QWebEngineHistoryItem::url")
-
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQUrlFromPointer(C.QWebEngineHistoryItem_Url(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*core.QUrl).DestroyQUrl)
@@ -3054,8 +2521,6 @@ func (ptr *QWebEngineHistoryItem) Url() *core.QUrl {
 }
 
 func (ptr *QWebEngineHistoryItem) DestroyQWebEngineHistoryItem() {
-	defer qt.Recovering("QWebEngineHistoryItem::~QWebEngineHistoryItem")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineHistoryItem_DestroyQWebEngineHistoryItem(ptr.Pointer())
 		ptr.SetPointer(nil)
@@ -3063,8 +2528,6 @@ func (ptr *QWebEngineHistoryItem) DestroyQWebEngineHistoryItem() {
 }
 
 func (ptr *QWebEngineHistoryItem) IconUrl() *core.QUrl {
-	defer qt.Recovering("QWebEngineHistoryItem::iconUrl")
-
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQUrlFromPointer(C.QWebEngineHistoryItem_IconUrl(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*core.QUrl).DestroyQUrl)
@@ -3074,8 +2537,6 @@ func (ptr *QWebEngineHistoryItem) IconUrl() *core.QUrl {
 }
 
 func (ptr *QWebEngineHistoryItem) Swap(other QWebEngineHistoryItem_ITF) {
-	defer qt.Recovering("QWebEngineHistoryItem::swap")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineHistoryItem_Swap(ptr.Pointer(), PointerFromQWebEngineHistoryItem(other))
 	}
@@ -3237,8 +2698,6 @@ func NewQWebEnginePageFromPointer(ptr unsafe.Pointer) *QWebEnginePage {
 	return n
 }
 func NewQWebEnginePage(parent core.QObject_ITF) *QWebEnginePage {
-	defer qt.Recovering("QWebEnginePage::QWebEnginePage")
-
 	var tmpValue = NewQWebEnginePageFromPointer(C.QWebEnginePage_NewQWebEnginePage(core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
@@ -3248,7 +2707,6 @@ func NewQWebEnginePage(parent core.QObject_ITF) *QWebEnginePage {
 
 //export callbackQWebEnginePage_AcceptNavigationRequest
 func callbackQWebEnginePage_AcceptNavigationRequest(ptr unsafe.Pointer, url unsafe.Pointer, ty C.longlong, isMainFrame C.char) C.char {
-	defer qt.Recovering("callback QWebEnginePage::acceptNavigationRequest")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEnginePage::acceptNavigationRequest"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QUrl, QWebEnginePage__NavigationType, bool) bool)(core.NewQUrlFromPointer(url), QWebEnginePage__NavigationType(ty), int8(isMainFrame) != 0))))
@@ -3258,8 +2716,6 @@ func callbackQWebEnginePage_AcceptNavigationRequest(ptr unsafe.Pointer, url unsa
 }
 
 func (ptr *QWebEnginePage) ConnectAcceptNavigationRequest(f func(url *core.QUrl, ty QWebEnginePage__NavigationType, isMainFrame bool) bool) {
-	defer qt.Recovering("connect QWebEnginePage::acceptNavigationRequest")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEnginePage::acceptNavigationRequest", f)
@@ -3267,8 +2723,6 @@ func (ptr *QWebEnginePage) ConnectAcceptNavigationRequest(f func(url *core.QUrl,
 }
 
 func (ptr *QWebEnginePage) DisconnectAcceptNavigationRequest() {
-	defer qt.Recovering("disconnect QWebEnginePage::acceptNavigationRequest")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEnginePage::acceptNavigationRequest")
@@ -3276,8 +2730,6 @@ func (ptr *QWebEnginePage) DisconnectAcceptNavigationRequest() {
 }
 
 func (ptr *QWebEnginePage) AcceptNavigationRequest(url core.QUrl_ITF, ty QWebEnginePage__NavigationType, isMainFrame bool) bool {
-	defer qt.Recovering("QWebEnginePage::acceptNavigationRequest")
-
 	if ptr.Pointer() != nil {
 		return C.QWebEnginePage_AcceptNavigationRequest(ptr.Pointer(), core.PointerFromQUrl(url), C.longlong(ty), C.char(int8(qt.GoBoolToInt(isMainFrame)))) != 0
 	}
@@ -3285,8 +2737,6 @@ func (ptr *QWebEnginePage) AcceptNavigationRequest(url core.QUrl_ITF, ty QWebEng
 }
 
 func (ptr *QWebEnginePage) AcceptNavigationRequestDefault(url core.QUrl_ITF, ty QWebEnginePage__NavigationType, isMainFrame bool) bool {
-	defer qt.Recovering("QWebEnginePage::acceptNavigationRequest")
-
 	if ptr.Pointer() != nil {
 		return C.QWebEnginePage_AcceptNavigationRequestDefault(ptr.Pointer(), core.PointerFromQUrl(url), C.longlong(ty), C.char(int8(qt.GoBoolToInt(isMainFrame)))) != 0
 	}
@@ -3294,8 +2744,6 @@ func (ptr *QWebEnginePage) AcceptNavigationRequestDefault(url core.QUrl_ITF, ty 
 }
 
 func (ptr *QWebEnginePage) Action(action QWebEnginePage__WebAction) *widgets.QAction {
-	defer qt.Recovering("QWebEnginePage::action")
-
 	if ptr.Pointer() != nil {
 		var tmpValue = widgets.NewQActionFromPointer(C.QWebEnginePage_Action(ptr.Pointer(), C.longlong(action)))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
@@ -3307,8 +2755,6 @@ func (ptr *QWebEnginePage) Action(action QWebEnginePage__WebAction) *widgets.QAc
 }
 
 func (ptr *QWebEnginePage) BackgroundColor() *gui.QColor {
-	defer qt.Recovering("QWebEnginePage::backgroundColor")
-
 	if ptr.Pointer() != nil {
 		var tmpValue = gui.NewQColorFromPointer(C.QWebEnginePage_BackgroundColor(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*gui.QColor).DestroyQColor)
@@ -3319,7 +2765,6 @@ func (ptr *QWebEnginePage) BackgroundColor() *gui.QColor {
 
 //export callbackQWebEnginePage_CertificateError
 func callbackQWebEnginePage_CertificateError(ptr unsafe.Pointer, certificateError unsafe.Pointer) C.char {
-	defer qt.Recovering("callback QWebEnginePage::certificateError")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEnginePage::certificateError"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*QWebEngineCertificateError) bool)(NewQWebEngineCertificateErrorFromPointer(certificateError)))))
@@ -3329,8 +2774,6 @@ func callbackQWebEnginePage_CertificateError(ptr unsafe.Pointer, certificateErro
 }
 
 func (ptr *QWebEnginePage) ConnectCertificateError(f func(certificateError *QWebEngineCertificateError) bool) {
-	defer qt.Recovering("connect QWebEnginePage::certificateError")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEnginePage::certificateError", f)
@@ -3338,8 +2781,6 @@ func (ptr *QWebEnginePage) ConnectCertificateError(f func(certificateError *QWeb
 }
 
 func (ptr *QWebEnginePage) DisconnectCertificateError() {
-	defer qt.Recovering("disconnect QWebEnginePage::certificateError")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEnginePage::certificateError")
@@ -3347,8 +2788,6 @@ func (ptr *QWebEnginePage) DisconnectCertificateError() {
 }
 
 func (ptr *QWebEnginePage) CertificateError(certificateError QWebEngineCertificateError_ITF) bool {
-	defer qt.Recovering("QWebEnginePage::certificateError")
-
 	if ptr.Pointer() != nil {
 		return C.QWebEnginePage_CertificateError(ptr.Pointer(), PointerFromQWebEngineCertificateError(certificateError)) != 0
 	}
@@ -3356,8 +2795,6 @@ func (ptr *QWebEnginePage) CertificateError(certificateError QWebEngineCertifica
 }
 
 func (ptr *QWebEnginePage) CertificateErrorDefault(certificateError QWebEngineCertificateError_ITF) bool {
-	defer qt.Recovering("QWebEnginePage::certificateError")
-
 	if ptr.Pointer() != nil {
 		return C.QWebEnginePage_CertificateErrorDefault(ptr.Pointer(), PointerFromQWebEngineCertificateError(certificateError)) != 0
 	}
@@ -3366,7 +2803,6 @@ func (ptr *QWebEnginePage) CertificateErrorDefault(certificateError QWebEngineCe
 
 //export callbackQWebEnginePage_ChooseFiles
 func callbackQWebEnginePage_ChooseFiles(ptr unsafe.Pointer, mode C.longlong, oldFiles *C.char, acceptedMimeTypes *C.char) *C.char {
-	defer qt.Recovering("callback QWebEnginePage::chooseFiles")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEnginePage::chooseFiles"); signal != nil {
 		return C.CString(strings.Join(signal.(func(QWebEnginePage__FileSelectionMode, []string, []string) []string)(QWebEnginePage__FileSelectionMode(mode), strings.Split(C.GoString(oldFiles), "|"), strings.Split(C.GoString(acceptedMimeTypes), "|")), "|"))
@@ -3376,8 +2812,6 @@ func callbackQWebEnginePage_ChooseFiles(ptr unsafe.Pointer, mode C.longlong, old
 }
 
 func (ptr *QWebEnginePage) ConnectChooseFiles(f func(mode QWebEnginePage__FileSelectionMode, oldFiles []string, acceptedMimeTypes []string) []string) {
-	defer qt.Recovering("connect QWebEnginePage::chooseFiles")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEnginePage::chooseFiles", f)
@@ -3385,8 +2819,6 @@ func (ptr *QWebEnginePage) ConnectChooseFiles(f func(mode QWebEnginePage__FileSe
 }
 
 func (ptr *QWebEnginePage) DisconnectChooseFiles() {
-	defer qt.Recovering("disconnect QWebEnginePage::chooseFiles")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEnginePage::chooseFiles")
@@ -3394,8 +2826,6 @@ func (ptr *QWebEnginePage) DisconnectChooseFiles() {
 }
 
 func (ptr *QWebEnginePage) ChooseFiles(mode QWebEnginePage__FileSelectionMode, oldFiles []string, acceptedMimeTypes []string) []string {
-	defer qt.Recovering("QWebEnginePage::chooseFiles")
-
 	if ptr.Pointer() != nil {
 		var oldFilesC = C.CString(strings.Join(oldFiles, "|"))
 		defer C.free(unsafe.Pointer(oldFilesC))
@@ -3407,8 +2837,6 @@ func (ptr *QWebEnginePage) ChooseFiles(mode QWebEnginePage__FileSelectionMode, o
 }
 
 func (ptr *QWebEnginePage) ChooseFilesDefault(mode QWebEnginePage__FileSelectionMode, oldFiles []string, acceptedMimeTypes []string) []string {
-	defer qt.Recovering("QWebEnginePage::chooseFiles")
-
 	if ptr.Pointer() != nil {
 		var oldFilesC = C.CString(strings.Join(oldFiles, "|"))
 		defer C.free(unsafe.Pointer(oldFilesC))
@@ -3420,8 +2848,6 @@ func (ptr *QWebEnginePage) ChooseFilesDefault(mode QWebEnginePage__FileSelection
 }
 
 func (ptr *QWebEnginePage) ContentsSize() *core.QSizeF {
-	defer qt.Recovering("QWebEnginePage::contentsSize")
-
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQSizeFFromPointer(C.QWebEnginePage_ContentsSize(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*core.QSizeF).DestroyQSizeF)
@@ -3431,8 +2857,6 @@ func (ptr *QWebEnginePage) ContentsSize() *core.QSizeF {
 }
 
 func (ptr *QWebEnginePage) CreateStandardContextMenu() *widgets.QMenu {
-	defer qt.Recovering("QWebEnginePage::createStandardContextMenu")
-
 	if ptr.Pointer() != nil {
 		var tmpValue = widgets.NewQMenuFromPointer(C.QWebEnginePage_CreateStandardContextMenu(ptr.Pointer()))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
@@ -3445,7 +2869,6 @@ func (ptr *QWebEnginePage) CreateStandardContextMenu() *widgets.QMenu {
 
 //export callbackQWebEnginePage_CreateWindow
 func callbackQWebEnginePage_CreateWindow(ptr unsafe.Pointer, ty C.longlong) unsafe.Pointer {
-	defer qt.Recovering("callback QWebEnginePage::createWindow")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEnginePage::createWindow"); signal != nil {
 		return PointerFromQWebEnginePage(signal.(func(QWebEnginePage__WebWindowType) *QWebEnginePage)(QWebEnginePage__WebWindowType(ty)))
@@ -3455,8 +2878,6 @@ func callbackQWebEnginePage_CreateWindow(ptr unsafe.Pointer, ty C.longlong) unsa
 }
 
 func (ptr *QWebEnginePage) ConnectCreateWindow(f func(ty QWebEnginePage__WebWindowType) *QWebEnginePage) {
-	defer qt.Recovering("connect QWebEnginePage::createWindow")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEnginePage::createWindow", f)
@@ -3464,8 +2885,6 @@ func (ptr *QWebEnginePage) ConnectCreateWindow(f func(ty QWebEnginePage__WebWind
 }
 
 func (ptr *QWebEnginePage) DisconnectCreateWindow() {
-	defer qt.Recovering("disconnect QWebEnginePage::createWindow")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEnginePage::createWindow")
@@ -3473,8 +2892,6 @@ func (ptr *QWebEnginePage) DisconnectCreateWindow() {
 }
 
 func (ptr *QWebEnginePage) CreateWindow(ty QWebEnginePage__WebWindowType) *QWebEnginePage {
-	defer qt.Recovering("QWebEnginePage::createWindow")
-
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQWebEnginePageFromPointer(C.QWebEnginePage_CreateWindow(ptr.Pointer(), C.longlong(ty)))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
@@ -3486,8 +2903,6 @@ func (ptr *QWebEnginePage) CreateWindow(ty QWebEnginePage__WebWindowType) *QWebE
 }
 
 func (ptr *QWebEnginePage) CreateWindowDefault(ty QWebEnginePage__WebWindowType) *QWebEnginePage {
-	defer qt.Recovering("QWebEnginePage::createWindow")
-
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQWebEnginePageFromPointer(C.QWebEnginePage_CreateWindowDefault(ptr.Pointer(), C.longlong(ty)))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
@@ -3499,8 +2914,6 @@ func (ptr *QWebEnginePage) CreateWindowDefault(ty QWebEnginePage__WebWindowType)
 }
 
 func (ptr *QWebEnginePage) HasSelection() bool {
-	defer qt.Recovering("QWebEnginePage::hasSelection")
-
 	if ptr.Pointer() != nil {
 		return C.QWebEnginePage_HasSelection(ptr.Pointer()) != 0
 	}
@@ -3508,8 +2921,6 @@ func (ptr *QWebEnginePage) HasSelection() bool {
 }
 
 func (ptr *QWebEnginePage) History() *QWebEngineHistory {
-	defer qt.Recovering("QWebEnginePage::history")
-
 	if ptr.Pointer() != nil {
 		return NewQWebEngineHistoryFromPointer(C.QWebEnginePage_History(ptr.Pointer()))
 	}
@@ -3517,8 +2928,6 @@ func (ptr *QWebEnginePage) History() *QWebEngineHistory {
 }
 
 func (ptr *QWebEnginePage) Icon() *gui.QIcon {
-	defer qt.Recovering("QWebEnginePage::icon")
-
 	if ptr.Pointer() != nil {
 		var tmpValue = gui.NewQIconFromPointer(C.QWebEnginePage_Icon(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*gui.QIcon).DestroyQIcon)
@@ -3528,8 +2937,6 @@ func (ptr *QWebEnginePage) Icon() *gui.QIcon {
 }
 
 func (ptr *QWebEnginePage) IconUrl() *core.QUrl {
-	defer qt.Recovering("QWebEnginePage::iconUrl")
-
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQUrlFromPointer(C.QWebEnginePage_IconUrl(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*core.QUrl).DestroyQUrl)
@@ -3539,8 +2946,6 @@ func (ptr *QWebEnginePage) IconUrl() *core.QUrl {
 }
 
 func (ptr *QWebEnginePage) IsAudioMuted() bool {
-	defer qt.Recovering("QWebEnginePage::isAudioMuted")
-
 	if ptr.Pointer() != nil {
 		return C.QWebEnginePage_IsAudioMuted(ptr.Pointer()) != 0
 	}
@@ -3549,7 +2954,6 @@ func (ptr *QWebEnginePage) IsAudioMuted() bool {
 
 //export callbackQWebEnginePage_JavaScriptAlert
 func callbackQWebEnginePage_JavaScriptAlert(ptr unsafe.Pointer, securityOrigin unsafe.Pointer, msg *C.char) {
-	defer qt.Recovering("callback QWebEnginePage::javaScriptAlert")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEnginePage::javaScriptAlert"); signal != nil {
 		signal.(func(*core.QUrl, string))(core.NewQUrlFromPointer(securityOrigin), C.GoString(msg))
@@ -3559,8 +2963,6 @@ func callbackQWebEnginePage_JavaScriptAlert(ptr unsafe.Pointer, securityOrigin u
 }
 
 func (ptr *QWebEnginePage) ConnectJavaScriptAlert(f func(securityOrigin *core.QUrl, msg string)) {
-	defer qt.Recovering("connect QWebEnginePage::javaScriptAlert")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEnginePage::javaScriptAlert", f)
@@ -3568,8 +2970,6 @@ func (ptr *QWebEnginePage) ConnectJavaScriptAlert(f func(securityOrigin *core.QU
 }
 
 func (ptr *QWebEnginePage) DisconnectJavaScriptAlert() {
-	defer qt.Recovering("disconnect QWebEnginePage::javaScriptAlert")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEnginePage::javaScriptAlert")
@@ -3577,8 +2977,6 @@ func (ptr *QWebEnginePage) DisconnectJavaScriptAlert() {
 }
 
 func (ptr *QWebEnginePage) JavaScriptAlert(securityOrigin core.QUrl_ITF, msg string) {
-	defer qt.Recovering("QWebEnginePage::javaScriptAlert")
-
 	if ptr.Pointer() != nil {
 		var msgC = C.CString(msg)
 		defer C.free(unsafe.Pointer(msgC))
@@ -3587,8 +2985,6 @@ func (ptr *QWebEnginePage) JavaScriptAlert(securityOrigin core.QUrl_ITF, msg str
 }
 
 func (ptr *QWebEnginePage) JavaScriptAlertDefault(securityOrigin core.QUrl_ITF, msg string) {
-	defer qt.Recovering("QWebEnginePage::javaScriptAlert")
-
 	if ptr.Pointer() != nil {
 		var msgC = C.CString(msg)
 		defer C.free(unsafe.Pointer(msgC))
@@ -3598,7 +2994,6 @@ func (ptr *QWebEnginePage) JavaScriptAlertDefault(securityOrigin core.QUrl_ITF, 
 
 //export callbackQWebEnginePage_JavaScriptConfirm
 func callbackQWebEnginePage_JavaScriptConfirm(ptr unsafe.Pointer, securityOrigin unsafe.Pointer, msg *C.char) C.char {
-	defer qt.Recovering("callback QWebEnginePage::javaScriptConfirm")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEnginePage::javaScriptConfirm"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QUrl, string) bool)(core.NewQUrlFromPointer(securityOrigin), C.GoString(msg)))))
@@ -3608,8 +3003,6 @@ func callbackQWebEnginePage_JavaScriptConfirm(ptr unsafe.Pointer, securityOrigin
 }
 
 func (ptr *QWebEnginePage) ConnectJavaScriptConfirm(f func(securityOrigin *core.QUrl, msg string) bool) {
-	defer qt.Recovering("connect QWebEnginePage::javaScriptConfirm")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEnginePage::javaScriptConfirm", f)
@@ -3617,8 +3010,6 @@ func (ptr *QWebEnginePage) ConnectJavaScriptConfirm(f func(securityOrigin *core.
 }
 
 func (ptr *QWebEnginePage) DisconnectJavaScriptConfirm() {
-	defer qt.Recovering("disconnect QWebEnginePage::javaScriptConfirm")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEnginePage::javaScriptConfirm")
@@ -3626,8 +3017,6 @@ func (ptr *QWebEnginePage) DisconnectJavaScriptConfirm() {
 }
 
 func (ptr *QWebEnginePage) JavaScriptConfirm(securityOrigin core.QUrl_ITF, msg string) bool {
-	defer qt.Recovering("QWebEnginePage::javaScriptConfirm")
-
 	if ptr.Pointer() != nil {
 		var msgC = C.CString(msg)
 		defer C.free(unsafe.Pointer(msgC))
@@ -3637,8 +3026,6 @@ func (ptr *QWebEnginePage) JavaScriptConfirm(securityOrigin core.QUrl_ITF, msg s
 }
 
 func (ptr *QWebEnginePage) JavaScriptConfirmDefault(securityOrigin core.QUrl_ITF, msg string) bool {
-	defer qt.Recovering("QWebEnginePage::javaScriptConfirm")
-
 	if ptr.Pointer() != nil {
 		var msgC = C.CString(msg)
 		defer C.free(unsafe.Pointer(msgC))
@@ -3649,7 +3036,6 @@ func (ptr *QWebEnginePage) JavaScriptConfirmDefault(securityOrigin core.QUrl_ITF
 
 //export callbackQWebEnginePage_JavaScriptConsoleMessage
 func callbackQWebEnginePage_JavaScriptConsoleMessage(ptr unsafe.Pointer, level C.longlong, message *C.char, lineNumber C.int, sourceID *C.char) {
-	defer qt.Recovering("callback QWebEnginePage::javaScriptConsoleMessage")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEnginePage::javaScriptConsoleMessage"); signal != nil {
 		signal.(func(QWebEnginePage__JavaScriptConsoleMessageLevel, string, int, string))(QWebEnginePage__JavaScriptConsoleMessageLevel(level), C.GoString(message), int(int32(lineNumber)), C.GoString(sourceID))
@@ -3659,8 +3045,6 @@ func callbackQWebEnginePage_JavaScriptConsoleMessage(ptr unsafe.Pointer, level C
 }
 
 func (ptr *QWebEnginePage) ConnectJavaScriptConsoleMessage(f func(level QWebEnginePage__JavaScriptConsoleMessageLevel, message string, lineNumber int, sourceID string)) {
-	defer qt.Recovering("connect QWebEnginePage::javaScriptConsoleMessage")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEnginePage::javaScriptConsoleMessage", f)
@@ -3668,8 +3052,6 @@ func (ptr *QWebEnginePage) ConnectJavaScriptConsoleMessage(f func(level QWebEngi
 }
 
 func (ptr *QWebEnginePage) DisconnectJavaScriptConsoleMessage() {
-	defer qt.Recovering("disconnect QWebEnginePage::javaScriptConsoleMessage")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEnginePage::javaScriptConsoleMessage")
@@ -3677,8 +3059,6 @@ func (ptr *QWebEnginePage) DisconnectJavaScriptConsoleMessage() {
 }
 
 func (ptr *QWebEnginePage) JavaScriptConsoleMessage(level QWebEnginePage__JavaScriptConsoleMessageLevel, message string, lineNumber int, sourceID string) {
-	defer qt.Recovering("QWebEnginePage::javaScriptConsoleMessage")
-
 	if ptr.Pointer() != nil {
 		var messageC = C.CString(message)
 		defer C.free(unsafe.Pointer(messageC))
@@ -3689,8 +3069,6 @@ func (ptr *QWebEnginePage) JavaScriptConsoleMessage(level QWebEnginePage__JavaSc
 }
 
 func (ptr *QWebEnginePage) JavaScriptConsoleMessageDefault(level QWebEnginePage__JavaScriptConsoleMessageLevel, message string, lineNumber int, sourceID string) {
-	defer qt.Recovering("QWebEnginePage::javaScriptConsoleMessage")
-
 	if ptr.Pointer() != nil {
 		var messageC = C.CString(message)
 		defer C.free(unsafe.Pointer(messageC))
@@ -3702,7 +3080,6 @@ func (ptr *QWebEnginePage) JavaScriptConsoleMessageDefault(level QWebEnginePage_
 
 //export callbackQWebEnginePage_JavaScriptPrompt
 func callbackQWebEnginePage_JavaScriptPrompt(ptr unsafe.Pointer, securityOrigin unsafe.Pointer, msg *C.char, defaultValue *C.char, result *C.char) C.char {
-	defer qt.Recovering("callback QWebEnginePage::javaScriptPrompt")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEnginePage::javaScriptPrompt"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QUrl, string, string, string) bool)(core.NewQUrlFromPointer(securityOrigin), C.GoString(msg), C.GoString(defaultValue), C.GoString(result)))))
@@ -3712,8 +3089,6 @@ func callbackQWebEnginePage_JavaScriptPrompt(ptr unsafe.Pointer, securityOrigin 
 }
 
 func (ptr *QWebEnginePage) ConnectJavaScriptPrompt(f func(securityOrigin *core.QUrl, msg string, defaultValue string, result string) bool) {
-	defer qt.Recovering("connect QWebEnginePage::javaScriptPrompt")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEnginePage::javaScriptPrompt", f)
@@ -3721,8 +3096,6 @@ func (ptr *QWebEnginePage) ConnectJavaScriptPrompt(f func(securityOrigin *core.Q
 }
 
 func (ptr *QWebEnginePage) DisconnectJavaScriptPrompt() {
-	defer qt.Recovering("disconnect QWebEnginePage::javaScriptPrompt")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEnginePage::javaScriptPrompt")
@@ -3730,8 +3103,6 @@ func (ptr *QWebEnginePage) DisconnectJavaScriptPrompt() {
 }
 
 func (ptr *QWebEnginePage) JavaScriptPrompt(securityOrigin core.QUrl_ITF, msg string, defaultValue string, result string) bool {
-	defer qt.Recovering("QWebEnginePage::javaScriptPrompt")
-
 	if ptr.Pointer() != nil {
 		var msgC = C.CString(msg)
 		defer C.free(unsafe.Pointer(msgC))
@@ -3745,8 +3116,6 @@ func (ptr *QWebEnginePage) JavaScriptPrompt(securityOrigin core.QUrl_ITF, msg st
 }
 
 func (ptr *QWebEnginePage) JavaScriptPromptDefault(securityOrigin core.QUrl_ITF, msg string, defaultValue string, result string) bool {
-	defer qt.Recovering("QWebEnginePage::javaScriptPrompt")
-
 	if ptr.Pointer() != nil {
 		var msgC = C.CString(msg)
 		defer C.free(unsafe.Pointer(msgC))
@@ -3760,16 +3129,12 @@ func (ptr *QWebEnginePage) JavaScriptPromptDefault(securityOrigin core.QUrl_ITF,
 }
 
 func (ptr *QWebEnginePage) Load(url core.QUrl_ITF) {
-	defer qt.Recovering("QWebEnginePage::load")
-
 	if ptr.Pointer() != nil {
 		C.QWebEnginePage_Load(ptr.Pointer(), core.PointerFromQUrl(url))
 	}
 }
 
 func (ptr *QWebEnginePage) RecentlyAudible() bool {
-	defer qt.Recovering("QWebEnginePage::recentlyAudible")
-
 	if ptr.Pointer() != nil {
 		return C.QWebEnginePage_RecentlyAudible(ptr.Pointer()) != 0
 	}
@@ -3777,8 +3142,6 @@ func (ptr *QWebEnginePage) RecentlyAudible() bool {
 }
 
 func (ptr *QWebEnginePage) RequestedUrl() *core.QUrl {
-	defer qt.Recovering("QWebEnginePage::requestedUrl")
-
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQUrlFromPointer(C.QWebEnginePage_RequestedUrl(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*core.QUrl).DestroyQUrl)
@@ -3788,8 +3151,6 @@ func (ptr *QWebEnginePage) RequestedUrl() *core.QUrl {
 }
 
 func (ptr *QWebEnginePage) RunJavaScript4(scriptSource string) {
-	defer qt.Recovering("QWebEnginePage::runJavaScript")
-
 	if ptr.Pointer() != nil {
 		var scriptSourceC = C.CString(scriptSource)
 		defer C.free(unsafe.Pointer(scriptSourceC))
@@ -3798,8 +3159,6 @@ func (ptr *QWebEnginePage) RunJavaScript4(scriptSource string) {
 }
 
 func (ptr *QWebEnginePage) RunJavaScript2(scriptSource string, worldId uint) {
-	defer qt.Recovering("QWebEnginePage::runJavaScript")
-
 	if ptr.Pointer() != nil {
 		var scriptSourceC = C.CString(scriptSource)
 		defer C.free(unsafe.Pointer(scriptSourceC))
@@ -3808,8 +3167,6 @@ func (ptr *QWebEnginePage) RunJavaScript2(scriptSource string, worldId uint) {
 }
 
 func (ptr *QWebEnginePage) ScrollPosition() *core.QPointF {
-	defer qt.Recovering("QWebEnginePage::scrollPosition")
-
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQPointFFromPointer(C.QWebEnginePage_ScrollPosition(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*core.QPointF).DestroyQPointF)
@@ -3819,8 +3176,6 @@ func (ptr *QWebEnginePage) ScrollPosition() *core.QPointF {
 }
 
 func (ptr *QWebEnginePage) SelectedText() string {
-	defer qt.Recovering("QWebEnginePage::selectedText")
-
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QWebEnginePage_SelectedText(ptr.Pointer()))
 	}
@@ -3828,24 +3183,18 @@ func (ptr *QWebEnginePage) SelectedText() string {
 }
 
 func (ptr *QWebEnginePage) SetAudioMuted(muted bool) {
-	defer qt.Recovering("QWebEnginePage::setAudioMuted")
-
 	if ptr.Pointer() != nil {
 		C.QWebEnginePage_SetAudioMuted(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(muted))))
 	}
 }
 
 func (ptr *QWebEnginePage) SetBackgroundColor(color gui.QColor_ITF) {
-	defer qt.Recovering("QWebEnginePage::setBackgroundColor")
-
 	if ptr.Pointer() != nil {
 		C.QWebEnginePage_SetBackgroundColor(ptr.Pointer(), gui.PointerFromQColor(color))
 	}
 }
 
 func (ptr *QWebEnginePage) SetContent(data string, mimeType string, baseUrl core.QUrl_ITF) {
-	defer qt.Recovering("QWebEnginePage::setContent")
-
 	if ptr.Pointer() != nil {
 		var dataC = C.CString(hex.EncodeToString([]byte(data)))
 		defer C.free(unsafe.Pointer(dataC))
@@ -3856,16 +3205,12 @@ func (ptr *QWebEnginePage) SetContent(data string, mimeType string, baseUrl core
 }
 
 func (ptr *QWebEnginePage) SetFeaturePermission(securityOrigin core.QUrl_ITF, feature QWebEnginePage__Feature, policy QWebEnginePage__PermissionPolicy) {
-	defer qt.Recovering("QWebEnginePage::setFeaturePermission")
-
 	if ptr.Pointer() != nil {
 		C.QWebEnginePage_SetFeaturePermission(ptr.Pointer(), core.PointerFromQUrl(securityOrigin), C.longlong(feature), C.longlong(policy))
 	}
 }
 
 func (ptr *QWebEnginePage) SetHtml(html string, baseUrl core.QUrl_ITF) {
-	defer qt.Recovering("QWebEnginePage::setHtml")
-
 	if ptr.Pointer() != nil {
 		var htmlC = C.CString(html)
 		defer C.free(unsafe.Pointer(htmlC))
@@ -3874,32 +3219,24 @@ func (ptr *QWebEnginePage) SetHtml(html string, baseUrl core.QUrl_ITF) {
 }
 
 func (ptr *QWebEnginePage) SetUrl(url core.QUrl_ITF) {
-	defer qt.Recovering("QWebEnginePage::setUrl")
-
 	if ptr.Pointer() != nil {
 		C.QWebEnginePage_SetUrl(ptr.Pointer(), core.PointerFromQUrl(url))
 	}
 }
 
 func (ptr *QWebEnginePage) SetView(view widgets.QWidget_ITF) {
-	defer qt.Recovering("QWebEnginePage::setView")
-
 	if ptr.Pointer() != nil {
 		C.QWebEnginePage_SetView(ptr.Pointer(), widgets.PointerFromQWidget(view))
 	}
 }
 
 func (ptr *QWebEnginePage) SetZoomFactor(factor float64) {
-	defer qt.Recovering("QWebEnginePage::setZoomFactor")
-
 	if ptr.Pointer() != nil {
 		C.QWebEnginePage_SetZoomFactor(ptr.Pointer(), C.double(factor))
 	}
 }
 
 func (ptr *QWebEnginePage) Settings() *QWebEngineSettings {
-	defer qt.Recovering("QWebEnginePage::settings")
-
 	if ptr.Pointer() != nil {
 		return NewQWebEngineSettingsFromPointer(C.QWebEnginePage_Settings(ptr.Pointer()))
 	}
@@ -3907,8 +3244,6 @@ func (ptr *QWebEnginePage) Settings() *QWebEngineSettings {
 }
 
 func (ptr *QWebEnginePage) Title() string {
-	defer qt.Recovering("QWebEnginePage::title")
-
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QWebEnginePage_Title(ptr.Pointer()))
 	}
@@ -3917,7 +3252,6 @@ func (ptr *QWebEnginePage) Title() string {
 
 //export callbackQWebEnginePage_TriggerAction
 func callbackQWebEnginePage_TriggerAction(ptr unsafe.Pointer, action C.longlong, checked C.char) {
-	defer qt.Recovering("callback QWebEnginePage::triggerAction")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEnginePage::triggerAction"); signal != nil {
 		signal.(func(QWebEnginePage__WebAction, bool))(QWebEnginePage__WebAction(action), int8(checked) != 0)
@@ -3927,8 +3261,6 @@ func callbackQWebEnginePage_TriggerAction(ptr unsafe.Pointer, action C.longlong,
 }
 
 func (ptr *QWebEnginePage) ConnectTriggerAction(f func(action QWebEnginePage__WebAction, checked bool)) {
-	defer qt.Recovering("connect QWebEnginePage::triggerAction")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEnginePage::triggerAction", f)
@@ -3936,8 +3268,6 @@ func (ptr *QWebEnginePage) ConnectTriggerAction(f func(action QWebEnginePage__We
 }
 
 func (ptr *QWebEnginePage) DisconnectTriggerAction() {
-	defer qt.Recovering("disconnect QWebEnginePage::triggerAction")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEnginePage::triggerAction")
@@ -3945,24 +3275,18 @@ func (ptr *QWebEnginePage) DisconnectTriggerAction() {
 }
 
 func (ptr *QWebEnginePage) TriggerAction(action QWebEnginePage__WebAction, checked bool) {
-	defer qt.Recovering("QWebEnginePage::triggerAction")
-
 	if ptr.Pointer() != nil {
 		C.QWebEnginePage_TriggerAction(ptr.Pointer(), C.longlong(action), C.char(int8(qt.GoBoolToInt(checked))))
 	}
 }
 
 func (ptr *QWebEnginePage) TriggerActionDefault(action QWebEnginePage__WebAction, checked bool) {
-	defer qt.Recovering("QWebEnginePage::triggerAction")
-
 	if ptr.Pointer() != nil {
 		C.QWebEnginePage_TriggerActionDefault(ptr.Pointer(), C.longlong(action), C.char(int8(qt.GoBoolToInt(checked))))
 	}
 }
 
 func (ptr *QWebEnginePage) Url() *core.QUrl {
-	defer qt.Recovering("QWebEnginePage::url")
-
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQUrlFromPointer(C.QWebEnginePage_Url(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*core.QUrl).DestroyQUrl)
@@ -3972,8 +3296,6 @@ func (ptr *QWebEnginePage) Url() *core.QUrl {
 }
 
 func (ptr *QWebEnginePage) View() *widgets.QWidget {
-	defer qt.Recovering("QWebEnginePage::view")
-
 	if ptr.Pointer() != nil {
 		var tmpValue = widgets.NewQWidgetFromPointer(C.QWebEnginePage_View(ptr.Pointer()))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
@@ -3985,8 +3307,6 @@ func (ptr *QWebEnginePage) View() *widgets.QWidget {
 }
 
 func (ptr *QWebEnginePage) ZoomFactor() float64 {
-	defer qt.Recovering("QWebEnginePage::zoomFactor")
-
 	if ptr.Pointer() != nil {
 		return float64(C.QWebEnginePage_ZoomFactor(ptr.Pointer()))
 	}
@@ -3994,8 +3314,6 @@ func (ptr *QWebEnginePage) ZoomFactor() float64 {
 }
 
 func (ptr *QWebEnginePage) DestroyQWebEnginePage() {
-	defer qt.Recovering("QWebEnginePage::~QWebEnginePage")
-
 	if ptr.Pointer() != nil {
 		C.QWebEnginePage_DestroyQWebEnginePage(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
@@ -4004,8 +3322,6 @@ func (ptr *QWebEnginePage) DestroyQWebEnginePage() {
 }
 
 func NewQWebEnginePage2(profile QWebEngineProfile_ITF, parent core.QObject_ITF) *QWebEnginePage {
-	defer qt.Recovering("QWebEnginePage::QWebEnginePage")
-
 	var tmpValue = NewQWebEnginePageFromPointer(C.QWebEnginePage_NewQWebEnginePage2(PointerFromQWebEngineProfile(profile), core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
@@ -4015,7 +3331,6 @@ func NewQWebEnginePage2(profile QWebEngineProfile_ITF, parent core.QObject_ITF) 
 
 //export callbackQWebEnginePage_AudioMutedChanged
 func callbackQWebEnginePage_AudioMutedChanged(ptr unsafe.Pointer, muted C.char) {
-	defer qt.Recovering("callback QWebEnginePage::audioMutedChanged")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEnginePage::audioMutedChanged"); signal != nil {
 		signal.(func(bool))(int8(muted) != 0)
@@ -4024,8 +3339,6 @@ func callbackQWebEnginePage_AudioMutedChanged(ptr unsafe.Pointer, muted C.char) 
 }
 
 func (ptr *QWebEnginePage) ConnectAudioMutedChanged(f func(muted bool)) {
-	defer qt.Recovering("connect QWebEnginePage::audioMutedChanged")
-
 	if ptr.Pointer() != nil {
 		C.QWebEnginePage_ConnectAudioMutedChanged(ptr.Pointer())
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEnginePage::audioMutedChanged", f)
@@ -4033,8 +3346,6 @@ func (ptr *QWebEnginePage) ConnectAudioMutedChanged(f func(muted bool)) {
 }
 
 func (ptr *QWebEnginePage) DisconnectAudioMutedChanged() {
-	defer qt.Recovering("disconnect QWebEnginePage::audioMutedChanged")
-
 	if ptr.Pointer() != nil {
 		C.QWebEnginePage_DisconnectAudioMutedChanged(ptr.Pointer())
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEnginePage::audioMutedChanged")
@@ -4042,8 +3353,6 @@ func (ptr *QWebEnginePage) DisconnectAudioMutedChanged() {
 }
 
 func (ptr *QWebEnginePage) AudioMutedChanged(muted bool) {
-	defer qt.Recovering("QWebEnginePage::audioMutedChanged")
-
 	if ptr.Pointer() != nil {
 		C.QWebEnginePage_AudioMutedChanged(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(muted))))
 	}
@@ -4051,7 +3360,6 @@ func (ptr *QWebEnginePage) AudioMutedChanged(muted bool) {
 
 //export callbackQWebEnginePage_AuthenticationRequired
 func callbackQWebEnginePage_AuthenticationRequired(ptr unsafe.Pointer, requestUrl unsafe.Pointer, authenticator unsafe.Pointer) {
-	defer qt.Recovering("callback QWebEnginePage::authenticationRequired")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEnginePage::authenticationRequired"); signal != nil {
 		signal.(func(*core.QUrl, *network.QAuthenticator))(core.NewQUrlFromPointer(requestUrl), network.NewQAuthenticatorFromPointer(authenticator))
@@ -4060,8 +3368,6 @@ func callbackQWebEnginePage_AuthenticationRequired(ptr unsafe.Pointer, requestUr
 }
 
 func (ptr *QWebEnginePage) ConnectAuthenticationRequired(f func(requestUrl *core.QUrl, authenticator *network.QAuthenticator)) {
-	defer qt.Recovering("connect QWebEnginePage::authenticationRequired")
-
 	if ptr.Pointer() != nil {
 		C.QWebEnginePage_ConnectAuthenticationRequired(ptr.Pointer())
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEnginePage::authenticationRequired", f)
@@ -4069,8 +3375,6 @@ func (ptr *QWebEnginePage) ConnectAuthenticationRequired(f func(requestUrl *core
 }
 
 func (ptr *QWebEnginePage) DisconnectAuthenticationRequired() {
-	defer qt.Recovering("disconnect QWebEnginePage::authenticationRequired")
-
 	if ptr.Pointer() != nil {
 		C.QWebEnginePage_DisconnectAuthenticationRequired(ptr.Pointer())
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEnginePage::authenticationRequired")
@@ -4078,8 +3382,6 @@ func (ptr *QWebEnginePage) DisconnectAuthenticationRequired() {
 }
 
 func (ptr *QWebEnginePage) AuthenticationRequired(requestUrl core.QUrl_ITF, authenticator network.QAuthenticator_ITF) {
-	defer qt.Recovering("QWebEnginePage::authenticationRequired")
-
 	if ptr.Pointer() != nil {
 		C.QWebEnginePage_AuthenticationRequired(ptr.Pointer(), core.PointerFromQUrl(requestUrl), network.PointerFromQAuthenticator(authenticator))
 	}
@@ -4087,7 +3389,6 @@ func (ptr *QWebEnginePage) AuthenticationRequired(requestUrl core.QUrl_ITF, auth
 
 //export callbackQWebEnginePage_ContentsSizeChanged
 func callbackQWebEnginePage_ContentsSizeChanged(ptr unsafe.Pointer, size unsafe.Pointer) {
-	defer qt.Recovering("callback QWebEnginePage::contentsSizeChanged")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEnginePage::contentsSizeChanged"); signal != nil {
 		signal.(func(*core.QSizeF))(core.NewQSizeFFromPointer(size))
@@ -4096,8 +3397,6 @@ func callbackQWebEnginePage_ContentsSizeChanged(ptr unsafe.Pointer, size unsafe.
 }
 
 func (ptr *QWebEnginePage) ConnectContentsSizeChanged(f func(size *core.QSizeF)) {
-	defer qt.Recovering("connect QWebEnginePage::contentsSizeChanged")
-
 	if ptr.Pointer() != nil {
 		C.QWebEnginePage_ConnectContentsSizeChanged(ptr.Pointer())
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEnginePage::contentsSizeChanged", f)
@@ -4105,8 +3404,6 @@ func (ptr *QWebEnginePage) ConnectContentsSizeChanged(f func(size *core.QSizeF))
 }
 
 func (ptr *QWebEnginePage) DisconnectContentsSizeChanged() {
-	defer qt.Recovering("disconnect QWebEnginePage::contentsSizeChanged")
-
 	if ptr.Pointer() != nil {
 		C.QWebEnginePage_DisconnectContentsSizeChanged(ptr.Pointer())
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEnginePage::contentsSizeChanged")
@@ -4114,16 +3411,12 @@ func (ptr *QWebEnginePage) DisconnectContentsSizeChanged() {
 }
 
 func (ptr *QWebEnginePage) ContentsSizeChanged(size core.QSizeF_ITF) {
-	defer qt.Recovering("QWebEnginePage::contentsSizeChanged")
-
 	if ptr.Pointer() != nil {
 		C.QWebEnginePage_ContentsSizeChanged(ptr.Pointer(), core.PointerFromQSizeF(size))
 	}
 }
 
 func (ptr *QWebEnginePage) ContextMenuData() *QWebEngineContextMenuData {
-	defer qt.Recovering("QWebEnginePage::contextMenuData")
-
 	if ptr.Pointer() != nil {
 		return NewQWebEngineContextMenuDataFromPointer(C.QWebEnginePage_ContextMenuData(ptr.Pointer()))
 	}
@@ -4132,7 +3425,6 @@ func (ptr *QWebEnginePage) ContextMenuData() *QWebEngineContextMenuData {
 
 //export callbackQWebEnginePage_Event
 func callbackQWebEnginePage_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
-	defer qt.Recovering("callback QWebEnginePage::event")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEnginePage::event"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
@@ -4142,8 +3434,6 @@ func callbackQWebEnginePage_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
 }
 
 func (ptr *QWebEnginePage) ConnectEvent(f func(e *core.QEvent) bool) {
-	defer qt.Recovering("connect QWebEnginePage::event")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEnginePage::event", f)
@@ -4151,8 +3441,6 @@ func (ptr *QWebEnginePage) ConnectEvent(f func(e *core.QEvent) bool) {
 }
 
 func (ptr *QWebEnginePage) DisconnectEvent() {
-	defer qt.Recovering("disconnect QWebEnginePage::event")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEnginePage::event")
@@ -4160,8 +3448,6 @@ func (ptr *QWebEnginePage) DisconnectEvent() {
 }
 
 func (ptr *QWebEnginePage) Event(e core.QEvent_ITF) bool {
-	defer qt.Recovering("QWebEnginePage::event")
-
 	if ptr.Pointer() != nil {
 		return C.QWebEnginePage_Event(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
 	}
@@ -4169,8 +3455,6 @@ func (ptr *QWebEnginePage) Event(e core.QEvent_ITF) bool {
 }
 
 func (ptr *QWebEnginePage) EventDefault(e core.QEvent_ITF) bool {
-	defer qt.Recovering("QWebEnginePage::event")
-
 	if ptr.Pointer() != nil {
 		return C.QWebEnginePage_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
 	}
@@ -4179,7 +3463,6 @@ func (ptr *QWebEnginePage) EventDefault(e core.QEvent_ITF) bool {
 
 //export callbackQWebEnginePage_FeaturePermissionRequestCanceled
 func callbackQWebEnginePage_FeaturePermissionRequestCanceled(ptr unsafe.Pointer, securityOrigin unsafe.Pointer, feature C.longlong) {
-	defer qt.Recovering("callback QWebEnginePage::featurePermissionRequestCanceled")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEnginePage::featurePermissionRequestCanceled"); signal != nil {
 		signal.(func(*core.QUrl, QWebEnginePage__Feature))(core.NewQUrlFromPointer(securityOrigin), QWebEnginePage__Feature(feature))
@@ -4188,8 +3471,6 @@ func callbackQWebEnginePage_FeaturePermissionRequestCanceled(ptr unsafe.Pointer,
 }
 
 func (ptr *QWebEnginePage) ConnectFeaturePermissionRequestCanceled(f func(securityOrigin *core.QUrl, feature QWebEnginePage__Feature)) {
-	defer qt.Recovering("connect QWebEnginePage::featurePermissionRequestCanceled")
-
 	if ptr.Pointer() != nil {
 		C.QWebEnginePage_ConnectFeaturePermissionRequestCanceled(ptr.Pointer())
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEnginePage::featurePermissionRequestCanceled", f)
@@ -4197,8 +3478,6 @@ func (ptr *QWebEnginePage) ConnectFeaturePermissionRequestCanceled(f func(securi
 }
 
 func (ptr *QWebEnginePage) DisconnectFeaturePermissionRequestCanceled() {
-	defer qt.Recovering("disconnect QWebEnginePage::featurePermissionRequestCanceled")
-
 	if ptr.Pointer() != nil {
 		C.QWebEnginePage_DisconnectFeaturePermissionRequestCanceled(ptr.Pointer())
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEnginePage::featurePermissionRequestCanceled")
@@ -4206,8 +3485,6 @@ func (ptr *QWebEnginePage) DisconnectFeaturePermissionRequestCanceled() {
 }
 
 func (ptr *QWebEnginePage) FeaturePermissionRequestCanceled(securityOrigin core.QUrl_ITF, feature QWebEnginePage__Feature) {
-	defer qt.Recovering("QWebEnginePage::featurePermissionRequestCanceled")
-
 	if ptr.Pointer() != nil {
 		C.QWebEnginePage_FeaturePermissionRequestCanceled(ptr.Pointer(), core.PointerFromQUrl(securityOrigin), C.longlong(feature))
 	}
@@ -4215,7 +3492,6 @@ func (ptr *QWebEnginePage) FeaturePermissionRequestCanceled(securityOrigin core.
 
 //export callbackQWebEnginePage_FeaturePermissionRequested
 func callbackQWebEnginePage_FeaturePermissionRequested(ptr unsafe.Pointer, securityOrigin unsafe.Pointer, feature C.longlong) {
-	defer qt.Recovering("callback QWebEnginePage::featurePermissionRequested")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEnginePage::featurePermissionRequested"); signal != nil {
 		signal.(func(*core.QUrl, QWebEnginePage__Feature))(core.NewQUrlFromPointer(securityOrigin), QWebEnginePage__Feature(feature))
@@ -4224,8 +3500,6 @@ func callbackQWebEnginePage_FeaturePermissionRequested(ptr unsafe.Pointer, secur
 }
 
 func (ptr *QWebEnginePage) ConnectFeaturePermissionRequested(f func(securityOrigin *core.QUrl, feature QWebEnginePage__Feature)) {
-	defer qt.Recovering("connect QWebEnginePage::featurePermissionRequested")
-
 	if ptr.Pointer() != nil {
 		C.QWebEnginePage_ConnectFeaturePermissionRequested(ptr.Pointer())
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEnginePage::featurePermissionRequested", f)
@@ -4233,8 +3507,6 @@ func (ptr *QWebEnginePage) ConnectFeaturePermissionRequested(f func(securityOrig
 }
 
 func (ptr *QWebEnginePage) DisconnectFeaturePermissionRequested() {
-	defer qt.Recovering("disconnect QWebEnginePage::featurePermissionRequested")
-
 	if ptr.Pointer() != nil {
 		C.QWebEnginePage_DisconnectFeaturePermissionRequested(ptr.Pointer())
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEnginePage::featurePermissionRequested")
@@ -4242,16 +3514,12 @@ func (ptr *QWebEnginePage) DisconnectFeaturePermissionRequested() {
 }
 
 func (ptr *QWebEnginePage) FeaturePermissionRequested(securityOrigin core.QUrl_ITF, feature QWebEnginePage__Feature) {
-	defer qt.Recovering("QWebEnginePage::featurePermissionRequested")
-
 	if ptr.Pointer() != nil {
 		C.QWebEnginePage_FeaturePermissionRequested(ptr.Pointer(), core.PointerFromQUrl(securityOrigin), C.longlong(feature))
 	}
 }
 
 func (ptr *QWebEnginePage) FindText(subString string, options QWebEnginePage__FindFlag) {
-	defer qt.Recovering("QWebEnginePage::findText")
-
 	if ptr.Pointer() != nil {
 		var subStringC = C.CString(subString)
 		defer C.free(unsafe.Pointer(subStringC))
@@ -4261,7 +3529,6 @@ func (ptr *QWebEnginePage) FindText(subString string, options QWebEnginePage__Fi
 
 //export callbackQWebEnginePage_GeometryChangeRequested
 func callbackQWebEnginePage_GeometryChangeRequested(ptr unsafe.Pointer, geom unsafe.Pointer) {
-	defer qt.Recovering("callback QWebEnginePage::geometryChangeRequested")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEnginePage::geometryChangeRequested"); signal != nil {
 		signal.(func(*core.QRect))(core.NewQRectFromPointer(geom))
@@ -4270,8 +3537,6 @@ func callbackQWebEnginePage_GeometryChangeRequested(ptr unsafe.Pointer, geom uns
 }
 
 func (ptr *QWebEnginePage) ConnectGeometryChangeRequested(f func(geom *core.QRect)) {
-	defer qt.Recovering("connect QWebEnginePage::geometryChangeRequested")
-
 	if ptr.Pointer() != nil {
 		C.QWebEnginePage_ConnectGeometryChangeRequested(ptr.Pointer())
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEnginePage::geometryChangeRequested", f)
@@ -4279,8 +3544,6 @@ func (ptr *QWebEnginePage) ConnectGeometryChangeRequested(f func(geom *core.QRec
 }
 
 func (ptr *QWebEnginePage) DisconnectGeometryChangeRequested() {
-	defer qt.Recovering("disconnect QWebEnginePage::geometryChangeRequested")
-
 	if ptr.Pointer() != nil {
 		C.QWebEnginePage_DisconnectGeometryChangeRequested(ptr.Pointer())
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEnginePage::geometryChangeRequested")
@@ -4288,8 +3551,6 @@ func (ptr *QWebEnginePage) DisconnectGeometryChangeRequested() {
 }
 
 func (ptr *QWebEnginePage) GeometryChangeRequested(geom core.QRect_ITF) {
-	defer qt.Recovering("QWebEnginePage::geometryChangeRequested")
-
 	if ptr.Pointer() != nil {
 		C.QWebEnginePage_GeometryChangeRequested(ptr.Pointer(), core.PointerFromQRect(geom))
 	}
@@ -4297,7 +3558,6 @@ func (ptr *QWebEnginePage) GeometryChangeRequested(geom core.QRect_ITF) {
 
 //export callbackQWebEnginePage_IconChanged
 func callbackQWebEnginePage_IconChanged(ptr unsafe.Pointer, icon unsafe.Pointer) {
-	defer qt.Recovering("callback QWebEnginePage::iconChanged")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEnginePage::iconChanged"); signal != nil {
 		signal.(func(*gui.QIcon))(gui.NewQIconFromPointer(icon))
@@ -4306,8 +3566,6 @@ func callbackQWebEnginePage_IconChanged(ptr unsafe.Pointer, icon unsafe.Pointer)
 }
 
 func (ptr *QWebEnginePage) ConnectIconChanged(f func(icon *gui.QIcon)) {
-	defer qt.Recovering("connect QWebEnginePage::iconChanged")
-
 	if ptr.Pointer() != nil {
 		C.QWebEnginePage_ConnectIconChanged(ptr.Pointer())
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEnginePage::iconChanged", f)
@@ -4315,8 +3573,6 @@ func (ptr *QWebEnginePage) ConnectIconChanged(f func(icon *gui.QIcon)) {
 }
 
 func (ptr *QWebEnginePage) DisconnectIconChanged() {
-	defer qt.Recovering("disconnect QWebEnginePage::iconChanged")
-
 	if ptr.Pointer() != nil {
 		C.QWebEnginePage_DisconnectIconChanged(ptr.Pointer())
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEnginePage::iconChanged")
@@ -4324,8 +3580,6 @@ func (ptr *QWebEnginePage) DisconnectIconChanged() {
 }
 
 func (ptr *QWebEnginePage) IconChanged(icon gui.QIcon_ITF) {
-	defer qt.Recovering("QWebEnginePage::iconChanged")
-
 	if ptr.Pointer() != nil {
 		C.QWebEnginePage_IconChanged(ptr.Pointer(), gui.PointerFromQIcon(icon))
 	}
@@ -4333,7 +3587,6 @@ func (ptr *QWebEnginePage) IconChanged(icon gui.QIcon_ITF) {
 
 //export callbackQWebEnginePage_IconUrlChanged
 func callbackQWebEnginePage_IconUrlChanged(ptr unsafe.Pointer, url unsafe.Pointer) {
-	defer qt.Recovering("callback QWebEnginePage::iconUrlChanged")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEnginePage::iconUrlChanged"); signal != nil {
 		signal.(func(*core.QUrl))(core.NewQUrlFromPointer(url))
@@ -4342,8 +3595,6 @@ func callbackQWebEnginePage_IconUrlChanged(ptr unsafe.Pointer, url unsafe.Pointe
 }
 
 func (ptr *QWebEnginePage) ConnectIconUrlChanged(f func(url *core.QUrl)) {
-	defer qt.Recovering("connect QWebEnginePage::iconUrlChanged")
-
 	if ptr.Pointer() != nil {
 		C.QWebEnginePage_ConnectIconUrlChanged(ptr.Pointer())
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEnginePage::iconUrlChanged", f)
@@ -4351,8 +3602,6 @@ func (ptr *QWebEnginePage) ConnectIconUrlChanged(f func(url *core.QUrl)) {
 }
 
 func (ptr *QWebEnginePage) DisconnectIconUrlChanged() {
-	defer qt.Recovering("disconnect QWebEnginePage::iconUrlChanged")
-
 	if ptr.Pointer() != nil {
 		C.QWebEnginePage_DisconnectIconUrlChanged(ptr.Pointer())
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEnginePage::iconUrlChanged")
@@ -4360,8 +3609,6 @@ func (ptr *QWebEnginePage) DisconnectIconUrlChanged() {
 }
 
 func (ptr *QWebEnginePage) IconUrlChanged(url core.QUrl_ITF) {
-	defer qt.Recovering("QWebEnginePage::iconUrlChanged")
-
 	if ptr.Pointer() != nil {
 		C.QWebEnginePage_IconUrlChanged(ptr.Pointer(), core.PointerFromQUrl(url))
 	}
@@ -4369,7 +3616,6 @@ func (ptr *QWebEnginePage) IconUrlChanged(url core.QUrl_ITF) {
 
 //export callbackQWebEnginePage_LinkHovered
 func callbackQWebEnginePage_LinkHovered(ptr unsafe.Pointer, url *C.char) {
-	defer qt.Recovering("callback QWebEnginePage::linkHovered")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEnginePage::linkHovered"); signal != nil {
 		signal.(func(string))(C.GoString(url))
@@ -4378,8 +3624,6 @@ func callbackQWebEnginePage_LinkHovered(ptr unsafe.Pointer, url *C.char) {
 }
 
 func (ptr *QWebEnginePage) ConnectLinkHovered(f func(url string)) {
-	defer qt.Recovering("connect QWebEnginePage::linkHovered")
-
 	if ptr.Pointer() != nil {
 		C.QWebEnginePage_ConnectLinkHovered(ptr.Pointer())
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEnginePage::linkHovered", f)
@@ -4387,8 +3631,6 @@ func (ptr *QWebEnginePage) ConnectLinkHovered(f func(url string)) {
 }
 
 func (ptr *QWebEnginePage) DisconnectLinkHovered() {
-	defer qt.Recovering("disconnect QWebEnginePage::linkHovered")
-
 	if ptr.Pointer() != nil {
 		C.QWebEnginePage_DisconnectLinkHovered(ptr.Pointer())
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEnginePage::linkHovered")
@@ -4396,8 +3638,6 @@ func (ptr *QWebEnginePage) DisconnectLinkHovered() {
 }
 
 func (ptr *QWebEnginePage) LinkHovered(url string) {
-	defer qt.Recovering("QWebEnginePage::linkHovered")
-
 	if ptr.Pointer() != nil {
 		var urlC = C.CString(url)
 		defer C.free(unsafe.Pointer(urlC))
@@ -4407,7 +3647,6 @@ func (ptr *QWebEnginePage) LinkHovered(url string) {
 
 //export callbackQWebEnginePage_LoadFinished
 func callbackQWebEnginePage_LoadFinished(ptr unsafe.Pointer, ok C.char) {
-	defer qt.Recovering("callback QWebEnginePage::loadFinished")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEnginePage::loadFinished"); signal != nil {
 		signal.(func(bool))(int8(ok) != 0)
@@ -4416,8 +3655,6 @@ func callbackQWebEnginePage_LoadFinished(ptr unsafe.Pointer, ok C.char) {
 }
 
 func (ptr *QWebEnginePage) ConnectLoadFinished(f func(ok bool)) {
-	defer qt.Recovering("connect QWebEnginePage::loadFinished")
-
 	if ptr.Pointer() != nil {
 		C.QWebEnginePage_ConnectLoadFinished(ptr.Pointer())
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEnginePage::loadFinished", f)
@@ -4425,8 +3662,6 @@ func (ptr *QWebEnginePage) ConnectLoadFinished(f func(ok bool)) {
 }
 
 func (ptr *QWebEnginePage) DisconnectLoadFinished() {
-	defer qt.Recovering("disconnect QWebEnginePage::loadFinished")
-
 	if ptr.Pointer() != nil {
 		C.QWebEnginePage_DisconnectLoadFinished(ptr.Pointer())
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEnginePage::loadFinished")
@@ -4434,8 +3669,6 @@ func (ptr *QWebEnginePage) DisconnectLoadFinished() {
 }
 
 func (ptr *QWebEnginePage) LoadFinished(ok bool) {
-	defer qt.Recovering("QWebEnginePage::loadFinished")
-
 	if ptr.Pointer() != nil {
 		C.QWebEnginePage_LoadFinished(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(ok))))
 	}
@@ -4443,7 +3676,6 @@ func (ptr *QWebEnginePage) LoadFinished(ok bool) {
 
 //export callbackQWebEnginePage_LoadProgress
 func callbackQWebEnginePage_LoadProgress(ptr unsafe.Pointer, progress C.int) {
-	defer qt.Recovering("callback QWebEnginePage::loadProgress")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEnginePage::loadProgress"); signal != nil {
 		signal.(func(int))(int(int32(progress)))
@@ -4452,8 +3684,6 @@ func callbackQWebEnginePage_LoadProgress(ptr unsafe.Pointer, progress C.int) {
 }
 
 func (ptr *QWebEnginePage) ConnectLoadProgress(f func(progress int)) {
-	defer qt.Recovering("connect QWebEnginePage::loadProgress")
-
 	if ptr.Pointer() != nil {
 		C.QWebEnginePage_ConnectLoadProgress(ptr.Pointer())
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEnginePage::loadProgress", f)
@@ -4461,8 +3691,6 @@ func (ptr *QWebEnginePage) ConnectLoadProgress(f func(progress int)) {
 }
 
 func (ptr *QWebEnginePage) DisconnectLoadProgress() {
-	defer qt.Recovering("disconnect QWebEnginePage::loadProgress")
-
 	if ptr.Pointer() != nil {
 		C.QWebEnginePage_DisconnectLoadProgress(ptr.Pointer())
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEnginePage::loadProgress")
@@ -4470,8 +3698,6 @@ func (ptr *QWebEnginePage) DisconnectLoadProgress() {
 }
 
 func (ptr *QWebEnginePage) LoadProgress(progress int) {
-	defer qt.Recovering("QWebEnginePage::loadProgress")
-
 	if ptr.Pointer() != nil {
 		C.QWebEnginePage_LoadProgress(ptr.Pointer(), C.int(int32(progress)))
 	}
@@ -4479,7 +3705,6 @@ func (ptr *QWebEnginePage) LoadProgress(progress int) {
 
 //export callbackQWebEnginePage_LoadStarted
 func callbackQWebEnginePage_LoadStarted(ptr unsafe.Pointer) {
-	defer qt.Recovering("callback QWebEnginePage::loadStarted")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEnginePage::loadStarted"); signal != nil {
 		signal.(func())()
@@ -4488,8 +3713,6 @@ func callbackQWebEnginePage_LoadStarted(ptr unsafe.Pointer) {
 }
 
 func (ptr *QWebEnginePage) ConnectLoadStarted(f func()) {
-	defer qt.Recovering("connect QWebEnginePage::loadStarted")
-
 	if ptr.Pointer() != nil {
 		C.QWebEnginePage_ConnectLoadStarted(ptr.Pointer())
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEnginePage::loadStarted", f)
@@ -4497,8 +3720,6 @@ func (ptr *QWebEnginePage) ConnectLoadStarted(f func()) {
 }
 
 func (ptr *QWebEnginePage) DisconnectLoadStarted() {
-	defer qt.Recovering("disconnect QWebEnginePage::loadStarted")
-
 	if ptr.Pointer() != nil {
 		C.QWebEnginePage_DisconnectLoadStarted(ptr.Pointer())
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEnginePage::loadStarted")
@@ -4506,16 +3727,12 @@ func (ptr *QWebEnginePage) DisconnectLoadStarted() {
 }
 
 func (ptr *QWebEnginePage) LoadStarted() {
-	defer qt.Recovering("QWebEnginePage::loadStarted")
-
 	if ptr.Pointer() != nil {
 		C.QWebEnginePage_LoadStarted(ptr.Pointer())
 	}
 }
 
 func (ptr *QWebEnginePage) PrintToPdf(filePath string, pageLayout gui.QPageLayout_ITF) {
-	defer qt.Recovering("QWebEnginePage::printToPdf")
-
 	if ptr.Pointer() != nil {
 		var filePathC = C.CString(filePath)
 		defer C.free(unsafe.Pointer(filePathC))
@@ -4524,8 +3741,6 @@ func (ptr *QWebEnginePage) PrintToPdf(filePath string, pageLayout gui.QPageLayou
 }
 
 func (ptr *QWebEnginePage) Profile() *QWebEngineProfile {
-	defer qt.Recovering("QWebEnginePage::profile")
-
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQWebEngineProfileFromPointer(C.QWebEnginePage_Profile(ptr.Pointer()))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
@@ -4538,7 +3753,6 @@ func (ptr *QWebEnginePage) Profile() *QWebEngineProfile {
 
 //export callbackQWebEnginePage_ProxyAuthenticationRequired
 func callbackQWebEnginePage_ProxyAuthenticationRequired(ptr unsafe.Pointer, requestUrl unsafe.Pointer, authenticator unsafe.Pointer, proxyHost *C.char) {
-	defer qt.Recovering("callback QWebEnginePage::proxyAuthenticationRequired")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEnginePage::proxyAuthenticationRequired"); signal != nil {
 		signal.(func(*core.QUrl, *network.QAuthenticator, string))(core.NewQUrlFromPointer(requestUrl), network.NewQAuthenticatorFromPointer(authenticator), C.GoString(proxyHost))
@@ -4547,8 +3761,6 @@ func callbackQWebEnginePage_ProxyAuthenticationRequired(ptr unsafe.Pointer, requ
 }
 
 func (ptr *QWebEnginePage) ConnectProxyAuthenticationRequired(f func(requestUrl *core.QUrl, authenticator *network.QAuthenticator, proxyHost string)) {
-	defer qt.Recovering("connect QWebEnginePage::proxyAuthenticationRequired")
-
 	if ptr.Pointer() != nil {
 		C.QWebEnginePage_ConnectProxyAuthenticationRequired(ptr.Pointer())
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEnginePage::proxyAuthenticationRequired", f)
@@ -4556,8 +3768,6 @@ func (ptr *QWebEnginePage) ConnectProxyAuthenticationRequired(f func(requestUrl 
 }
 
 func (ptr *QWebEnginePage) DisconnectProxyAuthenticationRequired() {
-	defer qt.Recovering("disconnect QWebEnginePage::proxyAuthenticationRequired")
-
 	if ptr.Pointer() != nil {
 		C.QWebEnginePage_DisconnectProxyAuthenticationRequired(ptr.Pointer())
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEnginePage::proxyAuthenticationRequired")
@@ -4565,8 +3775,6 @@ func (ptr *QWebEnginePage) DisconnectProxyAuthenticationRequired() {
 }
 
 func (ptr *QWebEnginePage) ProxyAuthenticationRequired(requestUrl core.QUrl_ITF, authenticator network.QAuthenticator_ITF, proxyHost string) {
-	defer qt.Recovering("QWebEnginePage::proxyAuthenticationRequired")
-
 	if ptr.Pointer() != nil {
 		var proxyHostC = C.CString(proxyHost)
 		defer C.free(unsafe.Pointer(proxyHostC))
@@ -4576,7 +3784,6 @@ func (ptr *QWebEnginePage) ProxyAuthenticationRequired(requestUrl core.QUrl_ITF,
 
 //export callbackQWebEnginePage_RecentlyAudibleChanged
 func callbackQWebEnginePage_RecentlyAudibleChanged(ptr unsafe.Pointer, recentlyAudible C.char) {
-	defer qt.Recovering("callback QWebEnginePage::recentlyAudibleChanged")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEnginePage::recentlyAudibleChanged"); signal != nil {
 		signal.(func(bool))(int8(recentlyAudible) != 0)
@@ -4585,8 +3792,6 @@ func callbackQWebEnginePage_RecentlyAudibleChanged(ptr unsafe.Pointer, recentlyA
 }
 
 func (ptr *QWebEnginePage) ConnectRecentlyAudibleChanged(f func(recentlyAudible bool)) {
-	defer qt.Recovering("connect QWebEnginePage::recentlyAudibleChanged")
-
 	if ptr.Pointer() != nil {
 		C.QWebEnginePage_ConnectRecentlyAudibleChanged(ptr.Pointer())
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEnginePage::recentlyAudibleChanged", f)
@@ -4594,8 +3799,6 @@ func (ptr *QWebEnginePage) ConnectRecentlyAudibleChanged(f func(recentlyAudible 
 }
 
 func (ptr *QWebEnginePage) DisconnectRecentlyAudibleChanged() {
-	defer qt.Recovering("disconnect QWebEnginePage::recentlyAudibleChanged")
-
 	if ptr.Pointer() != nil {
 		C.QWebEnginePage_DisconnectRecentlyAudibleChanged(ptr.Pointer())
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEnginePage::recentlyAudibleChanged")
@@ -4603,8 +3806,6 @@ func (ptr *QWebEnginePage) DisconnectRecentlyAudibleChanged() {
 }
 
 func (ptr *QWebEnginePage) RecentlyAudibleChanged(recentlyAudible bool) {
-	defer qt.Recovering("QWebEnginePage::recentlyAudibleChanged")
-
 	if ptr.Pointer() != nil {
 		C.QWebEnginePage_RecentlyAudibleChanged(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(recentlyAudible))))
 	}
@@ -4612,7 +3813,6 @@ func (ptr *QWebEnginePage) RecentlyAudibleChanged(recentlyAudible bool) {
 
 //export callbackQWebEnginePage_RenderProcessTerminated
 func callbackQWebEnginePage_RenderProcessTerminated(ptr unsafe.Pointer, terminationStatus C.longlong, exitCode C.int) {
-	defer qt.Recovering("callback QWebEnginePage::renderProcessTerminated")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEnginePage::renderProcessTerminated"); signal != nil {
 		signal.(func(QWebEnginePage__RenderProcessTerminationStatus, int))(QWebEnginePage__RenderProcessTerminationStatus(terminationStatus), int(int32(exitCode)))
@@ -4621,8 +3821,6 @@ func callbackQWebEnginePage_RenderProcessTerminated(ptr unsafe.Pointer, terminat
 }
 
 func (ptr *QWebEnginePage) ConnectRenderProcessTerminated(f func(terminationStatus QWebEnginePage__RenderProcessTerminationStatus, exitCode int)) {
-	defer qt.Recovering("connect QWebEnginePage::renderProcessTerminated")
-
 	if ptr.Pointer() != nil {
 		C.QWebEnginePage_ConnectRenderProcessTerminated(ptr.Pointer())
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEnginePage::renderProcessTerminated", f)
@@ -4630,8 +3828,6 @@ func (ptr *QWebEnginePage) ConnectRenderProcessTerminated(f func(terminationStat
 }
 
 func (ptr *QWebEnginePage) DisconnectRenderProcessTerminated() {
-	defer qt.Recovering("disconnect QWebEnginePage::renderProcessTerminated")
-
 	if ptr.Pointer() != nil {
 		C.QWebEnginePage_DisconnectRenderProcessTerminated(ptr.Pointer())
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEnginePage::renderProcessTerminated")
@@ -4639,8 +3835,6 @@ func (ptr *QWebEnginePage) DisconnectRenderProcessTerminated() {
 }
 
 func (ptr *QWebEnginePage) RenderProcessTerminated(terminationStatus QWebEnginePage__RenderProcessTerminationStatus, exitCode int) {
-	defer qt.Recovering("QWebEnginePage::renderProcessTerminated")
-
 	if ptr.Pointer() != nil {
 		C.QWebEnginePage_RenderProcessTerminated(ptr.Pointer(), C.longlong(terminationStatus), C.int(int32(exitCode)))
 	}
@@ -4648,7 +3842,6 @@ func (ptr *QWebEnginePage) RenderProcessTerminated(terminationStatus QWebEngineP
 
 //export callbackQWebEnginePage_ScrollPositionChanged
 func callbackQWebEnginePage_ScrollPositionChanged(ptr unsafe.Pointer, position unsafe.Pointer) {
-	defer qt.Recovering("callback QWebEnginePage::scrollPositionChanged")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEnginePage::scrollPositionChanged"); signal != nil {
 		signal.(func(*core.QPointF))(core.NewQPointFFromPointer(position))
@@ -4657,8 +3850,6 @@ func callbackQWebEnginePage_ScrollPositionChanged(ptr unsafe.Pointer, position u
 }
 
 func (ptr *QWebEnginePage) ConnectScrollPositionChanged(f func(position *core.QPointF)) {
-	defer qt.Recovering("connect QWebEnginePage::scrollPositionChanged")
-
 	if ptr.Pointer() != nil {
 		C.QWebEnginePage_ConnectScrollPositionChanged(ptr.Pointer())
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEnginePage::scrollPositionChanged", f)
@@ -4666,8 +3857,6 @@ func (ptr *QWebEnginePage) ConnectScrollPositionChanged(f func(position *core.QP
 }
 
 func (ptr *QWebEnginePage) DisconnectScrollPositionChanged() {
-	defer qt.Recovering("disconnect QWebEnginePage::scrollPositionChanged")
-
 	if ptr.Pointer() != nil {
 		C.QWebEnginePage_DisconnectScrollPositionChanged(ptr.Pointer())
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEnginePage::scrollPositionChanged")
@@ -4675,8 +3864,6 @@ func (ptr *QWebEnginePage) DisconnectScrollPositionChanged() {
 }
 
 func (ptr *QWebEnginePage) ScrollPositionChanged(position core.QPointF_ITF) {
-	defer qt.Recovering("QWebEnginePage::scrollPositionChanged")
-
 	if ptr.Pointer() != nil {
 		C.QWebEnginePage_ScrollPositionChanged(ptr.Pointer(), core.PointerFromQPointF(position))
 	}
@@ -4684,7 +3871,6 @@ func (ptr *QWebEnginePage) ScrollPositionChanged(position core.QPointF_ITF) {
 
 //export callbackQWebEnginePage_SelectionChanged
 func callbackQWebEnginePage_SelectionChanged(ptr unsafe.Pointer) {
-	defer qt.Recovering("callback QWebEnginePage::selectionChanged")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEnginePage::selectionChanged"); signal != nil {
 		signal.(func())()
@@ -4693,8 +3879,6 @@ func callbackQWebEnginePage_SelectionChanged(ptr unsafe.Pointer) {
 }
 
 func (ptr *QWebEnginePage) ConnectSelectionChanged(f func()) {
-	defer qt.Recovering("connect QWebEnginePage::selectionChanged")
-
 	if ptr.Pointer() != nil {
 		C.QWebEnginePage_ConnectSelectionChanged(ptr.Pointer())
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEnginePage::selectionChanged", f)
@@ -4702,8 +3886,6 @@ func (ptr *QWebEnginePage) ConnectSelectionChanged(f func()) {
 }
 
 func (ptr *QWebEnginePage) DisconnectSelectionChanged() {
-	defer qt.Recovering("disconnect QWebEnginePage::selectionChanged")
-
 	if ptr.Pointer() != nil {
 		C.QWebEnginePage_DisconnectSelectionChanged(ptr.Pointer())
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEnginePage::selectionChanged")
@@ -4711,24 +3893,18 @@ func (ptr *QWebEnginePage) DisconnectSelectionChanged() {
 }
 
 func (ptr *QWebEnginePage) SelectionChanged() {
-	defer qt.Recovering("QWebEnginePage::selectionChanged")
-
 	if ptr.Pointer() != nil {
 		C.QWebEnginePage_SelectionChanged(ptr.Pointer())
 	}
 }
 
 func (ptr *QWebEnginePage) SetWebChannel2(channel webchannel.QWebChannel_ITF) {
-	defer qt.Recovering("QWebEnginePage::setWebChannel")
-
 	if ptr.Pointer() != nil {
 		C.QWebEnginePage_SetWebChannel2(ptr.Pointer(), webchannel.PointerFromQWebChannel(channel))
 	}
 }
 
 func (ptr *QWebEnginePage) SetWebChannel(channel webchannel.QWebChannel_ITF, worldId uint) {
-	defer qt.Recovering("QWebEnginePage::setWebChannel")
-
 	if ptr.Pointer() != nil {
 		C.QWebEnginePage_SetWebChannel(ptr.Pointer(), webchannel.PointerFromQWebChannel(channel), C.uint(uint32(worldId)))
 	}
@@ -4736,7 +3912,6 @@ func (ptr *QWebEnginePage) SetWebChannel(channel webchannel.QWebChannel_ITF, wor
 
 //export callbackQWebEnginePage_TitleChanged
 func callbackQWebEnginePage_TitleChanged(ptr unsafe.Pointer, title *C.char) {
-	defer qt.Recovering("callback QWebEnginePage::titleChanged")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEnginePage::titleChanged"); signal != nil {
 		signal.(func(string))(C.GoString(title))
@@ -4745,8 +3920,6 @@ func callbackQWebEnginePage_TitleChanged(ptr unsafe.Pointer, title *C.char) {
 }
 
 func (ptr *QWebEnginePage) ConnectTitleChanged(f func(title string)) {
-	defer qt.Recovering("connect QWebEnginePage::titleChanged")
-
 	if ptr.Pointer() != nil {
 		C.QWebEnginePage_ConnectTitleChanged(ptr.Pointer())
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEnginePage::titleChanged", f)
@@ -4754,8 +3927,6 @@ func (ptr *QWebEnginePage) ConnectTitleChanged(f func(title string)) {
 }
 
 func (ptr *QWebEnginePage) DisconnectTitleChanged() {
-	defer qt.Recovering("disconnect QWebEnginePage::titleChanged")
-
 	if ptr.Pointer() != nil {
 		C.QWebEnginePage_DisconnectTitleChanged(ptr.Pointer())
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEnginePage::titleChanged")
@@ -4763,8 +3934,6 @@ func (ptr *QWebEnginePage) DisconnectTitleChanged() {
 }
 
 func (ptr *QWebEnginePage) TitleChanged(title string) {
-	defer qt.Recovering("QWebEnginePage::titleChanged")
-
 	if ptr.Pointer() != nil {
 		var titleC = C.CString(title)
 		defer C.free(unsafe.Pointer(titleC))
@@ -4774,7 +3943,6 @@ func (ptr *QWebEnginePage) TitleChanged(title string) {
 
 //export callbackQWebEnginePage_UrlChanged
 func callbackQWebEnginePage_UrlChanged(ptr unsafe.Pointer, url unsafe.Pointer) {
-	defer qt.Recovering("callback QWebEnginePage::urlChanged")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEnginePage::urlChanged"); signal != nil {
 		signal.(func(*core.QUrl))(core.NewQUrlFromPointer(url))
@@ -4783,8 +3951,6 @@ func callbackQWebEnginePage_UrlChanged(ptr unsafe.Pointer, url unsafe.Pointer) {
 }
 
 func (ptr *QWebEnginePage) ConnectUrlChanged(f func(url *core.QUrl)) {
-	defer qt.Recovering("connect QWebEnginePage::urlChanged")
-
 	if ptr.Pointer() != nil {
 		C.QWebEnginePage_ConnectUrlChanged(ptr.Pointer())
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEnginePage::urlChanged", f)
@@ -4792,8 +3958,6 @@ func (ptr *QWebEnginePage) ConnectUrlChanged(f func(url *core.QUrl)) {
 }
 
 func (ptr *QWebEnginePage) DisconnectUrlChanged() {
-	defer qt.Recovering("disconnect QWebEnginePage::urlChanged")
-
 	if ptr.Pointer() != nil {
 		C.QWebEnginePage_DisconnectUrlChanged(ptr.Pointer())
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEnginePage::urlChanged")
@@ -4801,16 +3965,12 @@ func (ptr *QWebEnginePage) DisconnectUrlChanged() {
 }
 
 func (ptr *QWebEnginePage) UrlChanged(url core.QUrl_ITF) {
-	defer qt.Recovering("QWebEnginePage::urlChanged")
-
 	if ptr.Pointer() != nil {
 		C.QWebEnginePage_UrlChanged(ptr.Pointer(), core.PointerFromQUrl(url))
 	}
 }
 
 func (ptr *QWebEnginePage) WebChannel() *webchannel.QWebChannel {
-	defer qt.Recovering("QWebEnginePage::webChannel")
-
 	if ptr.Pointer() != nil {
 		var tmpValue = webchannel.NewQWebChannelFromPointer(C.QWebEnginePage_WebChannel(ptr.Pointer()))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
@@ -4823,7 +3983,6 @@ func (ptr *QWebEnginePage) WebChannel() *webchannel.QWebChannel {
 
 //export callbackQWebEnginePage_WindowCloseRequested
 func callbackQWebEnginePage_WindowCloseRequested(ptr unsafe.Pointer) {
-	defer qt.Recovering("callback QWebEnginePage::windowCloseRequested")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEnginePage::windowCloseRequested"); signal != nil {
 		signal.(func())()
@@ -4832,8 +3991,6 @@ func callbackQWebEnginePage_WindowCloseRequested(ptr unsafe.Pointer) {
 }
 
 func (ptr *QWebEnginePage) ConnectWindowCloseRequested(f func()) {
-	defer qt.Recovering("connect QWebEnginePage::windowCloseRequested")
-
 	if ptr.Pointer() != nil {
 		C.QWebEnginePage_ConnectWindowCloseRequested(ptr.Pointer())
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEnginePage::windowCloseRequested", f)
@@ -4841,8 +3998,6 @@ func (ptr *QWebEnginePage) ConnectWindowCloseRequested(f func()) {
 }
 
 func (ptr *QWebEnginePage) DisconnectWindowCloseRequested() {
-	defer qt.Recovering("disconnect QWebEnginePage::windowCloseRequested")
-
 	if ptr.Pointer() != nil {
 		C.QWebEnginePage_DisconnectWindowCloseRequested(ptr.Pointer())
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEnginePage::windowCloseRequested")
@@ -4850,8 +4005,6 @@ func (ptr *QWebEnginePage) DisconnectWindowCloseRequested() {
 }
 
 func (ptr *QWebEnginePage) WindowCloseRequested() {
-	defer qt.Recovering("QWebEnginePage::windowCloseRequested")
-
 	if ptr.Pointer() != nil {
 		C.QWebEnginePage_WindowCloseRequested(ptr.Pointer())
 	}
@@ -4859,7 +4012,6 @@ func (ptr *QWebEnginePage) WindowCloseRequested() {
 
 //export callbackQWebEnginePage_TimerEvent
 func callbackQWebEnginePage_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	defer qt.Recovering("callback QWebEnginePage::timerEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEnginePage::timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
@@ -4869,8 +4021,6 @@ func callbackQWebEnginePage_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer)
 }
 
 func (ptr *QWebEnginePage) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
-	defer qt.Recovering("connect QWebEnginePage::timerEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEnginePage::timerEvent", f)
@@ -4878,8 +4028,6 @@ func (ptr *QWebEnginePage) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
 }
 
 func (ptr *QWebEnginePage) DisconnectTimerEvent() {
-	defer qt.Recovering("disconnect QWebEnginePage::timerEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEnginePage::timerEvent")
@@ -4887,16 +4035,12 @@ func (ptr *QWebEnginePage) DisconnectTimerEvent() {
 }
 
 func (ptr *QWebEnginePage) TimerEvent(event core.QTimerEvent_ITF) {
-	defer qt.Recovering("QWebEnginePage::timerEvent")
-
 	if ptr.Pointer() != nil {
 		C.QWebEnginePage_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
 	}
 }
 
 func (ptr *QWebEnginePage) TimerEventDefault(event core.QTimerEvent_ITF) {
-	defer qt.Recovering("QWebEnginePage::timerEvent")
-
 	if ptr.Pointer() != nil {
 		C.QWebEnginePage_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
 	}
@@ -4904,7 +4048,6 @@ func (ptr *QWebEnginePage) TimerEventDefault(event core.QTimerEvent_ITF) {
 
 //export callbackQWebEnginePage_ChildEvent
 func callbackQWebEnginePage_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	defer qt.Recovering("callback QWebEnginePage::childEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEnginePage::childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
@@ -4914,8 +4057,6 @@ func callbackQWebEnginePage_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer)
 }
 
 func (ptr *QWebEnginePage) ConnectChildEvent(f func(event *core.QChildEvent)) {
-	defer qt.Recovering("connect QWebEnginePage::childEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEnginePage::childEvent", f)
@@ -4923,8 +4064,6 @@ func (ptr *QWebEnginePage) ConnectChildEvent(f func(event *core.QChildEvent)) {
 }
 
 func (ptr *QWebEnginePage) DisconnectChildEvent() {
-	defer qt.Recovering("disconnect QWebEnginePage::childEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEnginePage::childEvent")
@@ -4932,16 +4071,12 @@ func (ptr *QWebEnginePage) DisconnectChildEvent() {
 }
 
 func (ptr *QWebEnginePage) ChildEvent(event core.QChildEvent_ITF) {
-	defer qt.Recovering("QWebEnginePage::childEvent")
-
 	if ptr.Pointer() != nil {
 		C.QWebEnginePage_ChildEvent(ptr.Pointer(), core.PointerFromQChildEvent(event))
 	}
 }
 
 func (ptr *QWebEnginePage) ChildEventDefault(event core.QChildEvent_ITF) {
-	defer qt.Recovering("QWebEnginePage::childEvent")
-
 	if ptr.Pointer() != nil {
 		C.QWebEnginePage_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
 	}
@@ -4949,7 +4084,6 @@ func (ptr *QWebEnginePage) ChildEventDefault(event core.QChildEvent_ITF) {
 
 //export callbackQWebEnginePage_ConnectNotify
 func callbackQWebEnginePage_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-	defer qt.Recovering("callback QWebEnginePage::connectNotify")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEnginePage::connectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
@@ -4959,8 +4093,6 @@ func callbackQWebEnginePage_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointe
 }
 
 func (ptr *QWebEnginePage) ConnectConnectNotify(f func(sign *core.QMetaMethod)) {
-	defer qt.Recovering("connect QWebEnginePage::connectNotify")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEnginePage::connectNotify", f)
@@ -4968,8 +4100,6 @@ func (ptr *QWebEnginePage) ConnectConnectNotify(f func(sign *core.QMetaMethod)) 
 }
 
 func (ptr *QWebEnginePage) DisconnectConnectNotify() {
-	defer qt.Recovering("disconnect QWebEnginePage::connectNotify")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEnginePage::connectNotify")
@@ -4977,16 +4107,12 @@ func (ptr *QWebEnginePage) DisconnectConnectNotify() {
 }
 
 func (ptr *QWebEnginePage) ConnectNotify(sign core.QMetaMethod_ITF) {
-	defer qt.Recovering("QWebEnginePage::connectNotify")
-
 	if ptr.Pointer() != nil {
 		C.QWebEnginePage_ConnectNotify(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
 	}
 }
 
 func (ptr *QWebEnginePage) ConnectNotifyDefault(sign core.QMetaMethod_ITF) {
-	defer qt.Recovering("QWebEnginePage::connectNotify")
-
 	if ptr.Pointer() != nil {
 		C.QWebEnginePage_ConnectNotifyDefault(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
 	}
@@ -4994,7 +4120,6 @@ func (ptr *QWebEnginePage) ConnectNotifyDefault(sign core.QMetaMethod_ITF) {
 
 //export callbackQWebEnginePage_CustomEvent
 func callbackQWebEnginePage_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	defer qt.Recovering("callback QWebEnginePage::customEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEnginePage::customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
@@ -5004,8 +4129,6 @@ func callbackQWebEnginePage_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer
 }
 
 func (ptr *QWebEnginePage) ConnectCustomEvent(f func(event *core.QEvent)) {
-	defer qt.Recovering("connect QWebEnginePage::customEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEnginePage::customEvent", f)
@@ -5013,8 +4136,6 @@ func (ptr *QWebEnginePage) ConnectCustomEvent(f func(event *core.QEvent)) {
 }
 
 func (ptr *QWebEnginePage) DisconnectCustomEvent() {
-	defer qt.Recovering("disconnect QWebEnginePage::customEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEnginePage::customEvent")
@@ -5022,16 +4143,12 @@ func (ptr *QWebEnginePage) DisconnectCustomEvent() {
 }
 
 func (ptr *QWebEnginePage) CustomEvent(event core.QEvent_ITF) {
-	defer qt.Recovering("QWebEnginePage::customEvent")
-
 	if ptr.Pointer() != nil {
 		C.QWebEnginePage_CustomEvent(ptr.Pointer(), core.PointerFromQEvent(event))
 	}
 }
 
 func (ptr *QWebEnginePage) CustomEventDefault(event core.QEvent_ITF) {
-	defer qt.Recovering("QWebEnginePage::customEvent")
-
 	if ptr.Pointer() != nil {
 		C.QWebEnginePage_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
 	}
@@ -5039,8 +4156,6 @@ func (ptr *QWebEnginePage) CustomEventDefault(event core.QEvent_ITF) {
 
 //export callbackQWebEnginePage_DeleteLater
 func callbackQWebEnginePage_DeleteLater(ptr unsafe.Pointer) {
-	defer qt.Recovering("callback QWebEnginePage::deleteLater")
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEnginePage::deleteLater"); signal != nil {
 		signal.(func())()
 	} else {
@@ -5049,8 +4164,6 @@ func callbackQWebEnginePage_DeleteLater(ptr unsafe.Pointer) {
 }
 
 func (ptr *QWebEnginePage) ConnectDeleteLater(f func()) {
-	defer qt.Recovering("connect QWebEnginePage::deleteLater")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEnginePage::deleteLater", f)
@@ -5058,8 +4171,6 @@ func (ptr *QWebEnginePage) ConnectDeleteLater(f func()) {
 }
 
 func (ptr *QWebEnginePage) DisconnectDeleteLater() {
-	defer qt.Recovering("disconnect QWebEnginePage::deleteLater")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEnginePage::deleteLater")
@@ -5067,8 +4178,6 @@ func (ptr *QWebEnginePage) DisconnectDeleteLater() {
 }
 
 func (ptr *QWebEnginePage) DeleteLater() {
-	defer qt.Recovering("QWebEnginePage::deleteLater")
-
 	if ptr.Pointer() != nil {
 		C.QWebEnginePage_DeleteLater(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
@@ -5077,8 +4186,6 @@ func (ptr *QWebEnginePage) DeleteLater() {
 }
 
 func (ptr *QWebEnginePage) DeleteLaterDefault() {
-	defer qt.Recovering("QWebEnginePage::deleteLater")
-
 	if ptr.Pointer() != nil {
 		C.QWebEnginePage_DeleteLaterDefault(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
@@ -5088,7 +4195,6 @@ func (ptr *QWebEnginePage) DeleteLaterDefault() {
 
 //export callbackQWebEnginePage_DisconnectNotify
 func callbackQWebEnginePage_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-	defer qt.Recovering("callback QWebEnginePage::disconnectNotify")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEnginePage::disconnectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
@@ -5098,8 +4204,6 @@ func callbackQWebEnginePage_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Poi
 }
 
 func (ptr *QWebEnginePage) ConnectDisconnectNotify(f func(sign *core.QMetaMethod)) {
-	defer qt.Recovering("connect QWebEnginePage::disconnectNotify")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEnginePage::disconnectNotify", f)
@@ -5107,8 +4211,6 @@ func (ptr *QWebEnginePage) ConnectDisconnectNotify(f func(sign *core.QMetaMethod
 }
 
 func (ptr *QWebEnginePage) DisconnectDisconnectNotify() {
-	defer qt.Recovering("disconnect QWebEnginePage::disconnectNotify")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEnginePage::disconnectNotify")
@@ -5116,16 +4218,12 @@ func (ptr *QWebEnginePage) DisconnectDisconnectNotify() {
 }
 
 func (ptr *QWebEnginePage) DisconnectNotify(sign core.QMetaMethod_ITF) {
-	defer qt.Recovering("QWebEnginePage::disconnectNotify")
-
 	if ptr.Pointer() != nil {
 		C.QWebEnginePage_DisconnectNotify(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
 	}
 }
 
 func (ptr *QWebEnginePage) DisconnectNotifyDefault(sign core.QMetaMethod_ITF) {
-	defer qt.Recovering("QWebEnginePage::disconnectNotify")
-
 	if ptr.Pointer() != nil {
 		C.QWebEnginePage_DisconnectNotifyDefault(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
 	}
@@ -5133,7 +4231,6 @@ func (ptr *QWebEnginePage) DisconnectNotifyDefault(sign core.QMetaMethod_ITF) {
 
 //export callbackQWebEnginePage_EventFilter
 func callbackQWebEnginePage_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-	defer qt.Recovering("callback QWebEnginePage::eventFilter")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEnginePage::eventFilter"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
@@ -5143,8 +4240,6 @@ func callbackQWebEnginePage_EventFilter(ptr unsafe.Pointer, watched unsafe.Point
 }
 
 func (ptr *QWebEnginePage) ConnectEventFilter(f func(watched *core.QObject, event *core.QEvent) bool) {
-	defer qt.Recovering("connect QWebEnginePage::eventFilter")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEnginePage::eventFilter", f)
@@ -5152,8 +4247,6 @@ func (ptr *QWebEnginePage) ConnectEventFilter(f func(watched *core.QObject, even
 }
 
 func (ptr *QWebEnginePage) DisconnectEventFilter() {
-	defer qt.Recovering("disconnect QWebEnginePage::eventFilter")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEnginePage::eventFilter")
@@ -5161,8 +4254,6 @@ func (ptr *QWebEnginePage) DisconnectEventFilter() {
 }
 
 func (ptr *QWebEnginePage) EventFilter(watched core.QObject_ITF, event core.QEvent_ITF) bool {
-	defer qt.Recovering("QWebEnginePage::eventFilter")
-
 	if ptr.Pointer() != nil {
 		return C.QWebEnginePage_EventFilter(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
 	}
@@ -5170,8 +4261,6 @@ func (ptr *QWebEnginePage) EventFilter(watched core.QObject_ITF, event core.QEve
 }
 
 func (ptr *QWebEnginePage) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
-	defer qt.Recovering("QWebEnginePage::eventFilter")
-
 	if ptr.Pointer() != nil {
 		return C.QWebEnginePage_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
 	}
@@ -5180,7 +4269,6 @@ func (ptr *QWebEnginePage) EventFilterDefault(watched core.QObject_ITF, event co
 
 //export callbackQWebEnginePage_MetaObject
 func callbackQWebEnginePage_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-	defer qt.Recovering("callback QWebEnginePage::metaObject")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEnginePage::metaObject"); signal != nil {
 		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
@@ -5190,8 +4278,6 @@ func callbackQWebEnginePage_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
 }
 
 func (ptr *QWebEnginePage) ConnectMetaObject(f func() *core.QMetaObject) {
-	defer qt.Recovering("connect QWebEnginePage::metaObject")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEnginePage::metaObject", f)
@@ -5199,8 +4285,6 @@ func (ptr *QWebEnginePage) ConnectMetaObject(f func() *core.QMetaObject) {
 }
 
 func (ptr *QWebEnginePage) DisconnectMetaObject() {
-	defer qt.Recovering("disconnect QWebEnginePage::metaObject")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEnginePage::metaObject")
@@ -5208,8 +4292,6 @@ func (ptr *QWebEnginePage) DisconnectMetaObject() {
 }
 
 func (ptr *QWebEnginePage) MetaObject() *core.QMetaObject {
-	defer qt.Recovering("QWebEnginePage::metaObject")
-
 	if ptr.Pointer() != nil {
 		return core.NewQMetaObjectFromPointer(C.QWebEnginePage_MetaObject(ptr.Pointer()))
 	}
@@ -5217,8 +4299,6 @@ func (ptr *QWebEnginePage) MetaObject() *core.QMetaObject {
 }
 
 func (ptr *QWebEnginePage) MetaObjectDefault() *core.QMetaObject {
-	defer qt.Recovering("QWebEnginePage::metaObject")
-
 	if ptr.Pointer() != nil {
 		return core.NewQMetaObjectFromPointer(C.QWebEnginePage_MetaObjectDefault(ptr.Pointer()))
 	}
@@ -5289,8 +4369,6 @@ func (ptr *QWebEngineProfile) DestroyQWebEngineProfile() {
 }
 
 func NewQWebEngineProfile(parent core.QObject_ITF) *QWebEngineProfile {
-	defer qt.Recovering("QWebEngineProfile::QWebEngineProfile")
-
 	var tmpValue = NewQWebEngineProfileFromPointer(C.QWebEngineProfile_NewQWebEngineProfile(core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
@@ -5299,8 +4377,6 @@ func NewQWebEngineProfile(parent core.QObject_ITF) *QWebEngineProfile {
 }
 
 func NewQWebEngineProfile2(storageName string, parent core.QObject_ITF) *QWebEngineProfile {
-	defer qt.Recovering("QWebEngineProfile::QWebEngineProfile")
-
 	var storageNameC = C.CString(storageName)
 	defer C.free(unsafe.Pointer(storageNameC))
 	var tmpValue = NewQWebEngineProfileFromPointer(C.QWebEngineProfile_NewQWebEngineProfile2(storageNameC, core.PointerFromQObject(parent)))
@@ -5311,8 +4387,6 @@ func NewQWebEngineProfile2(storageName string, parent core.QObject_ITF) *QWebEng
 }
 
 func (ptr *QWebEngineProfile) CachePath() string {
-	defer qt.Recovering("QWebEngineProfile::cachePath")
-
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QWebEngineProfile_CachePath(ptr.Pointer()))
 	}
@@ -5320,24 +4394,18 @@ func (ptr *QWebEngineProfile) CachePath() string {
 }
 
 func (ptr *QWebEngineProfile) ClearAllVisitedLinks() {
-	defer qt.Recovering("QWebEngineProfile::clearAllVisitedLinks")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineProfile_ClearAllVisitedLinks(ptr.Pointer())
 	}
 }
 
 func (ptr *QWebEngineProfile) ClearHttpCache() {
-	defer qt.Recovering("QWebEngineProfile::clearHttpCache")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineProfile_ClearHttpCache(ptr.Pointer())
 	}
 }
 
 func (ptr *QWebEngineProfile) CookieStore() *QWebEngineCookieStore {
-	defer qt.Recovering("QWebEngineProfile::cookieStore")
-
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQWebEngineCookieStoreFromPointer(C.QWebEngineProfile_CookieStore(ptr.Pointer()))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
@@ -5349,8 +4417,6 @@ func (ptr *QWebEngineProfile) CookieStore() *QWebEngineCookieStore {
 }
 
 func QWebEngineProfile_DefaultProfile() *QWebEngineProfile {
-	defer qt.Recovering("QWebEngineProfile::defaultProfile")
-
 	var tmpValue = NewQWebEngineProfileFromPointer(C.QWebEngineProfile_QWebEngineProfile_DefaultProfile())
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
@@ -5359,8 +4425,6 @@ func QWebEngineProfile_DefaultProfile() *QWebEngineProfile {
 }
 
 func (ptr *QWebEngineProfile) DefaultProfile() *QWebEngineProfile {
-	defer qt.Recovering("QWebEngineProfile::defaultProfile")
-
 	var tmpValue = NewQWebEngineProfileFromPointer(C.QWebEngineProfile_QWebEngineProfile_DefaultProfile())
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
@@ -5370,7 +4434,6 @@ func (ptr *QWebEngineProfile) DefaultProfile() *QWebEngineProfile {
 
 //export callbackQWebEngineProfile_DownloadRequested
 func callbackQWebEngineProfile_DownloadRequested(ptr unsafe.Pointer, download unsafe.Pointer) {
-	defer qt.Recovering("callback QWebEngineProfile::downloadRequested")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineProfile::downloadRequested"); signal != nil {
 		signal.(func(*QWebEngineDownloadItem))(NewQWebEngineDownloadItemFromPointer(download))
@@ -5379,8 +4442,6 @@ func callbackQWebEngineProfile_DownloadRequested(ptr unsafe.Pointer, download un
 }
 
 func (ptr *QWebEngineProfile) ConnectDownloadRequested(f func(download *QWebEngineDownloadItem)) {
-	defer qt.Recovering("connect QWebEngineProfile::downloadRequested")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineProfile_ConnectDownloadRequested(ptr.Pointer())
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineProfile::downloadRequested", f)
@@ -5388,8 +4449,6 @@ func (ptr *QWebEngineProfile) ConnectDownloadRequested(f func(download *QWebEngi
 }
 
 func (ptr *QWebEngineProfile) DisconnectDownloadRequested() {
-	defer qt.Recovering("disconnect QWebEngineProfile::downloadRequested")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineProfile_DisconnectDownloadRequested(ptr.Pointer())
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineProfile::downloadRequested")
@@ -5397,16 +4456,12 @@ func (ptr *QWebEngineProfile) DisconnectDownloadRequested() {
 }
 
 func (ptr *QWebEngineProfile) DownloadRequested(download QWebEngineDownloadItem_ITF) {
-	defer qt.Recovering("QWebEngineProfile::downloadRequested")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineProfile_DownloadRequested(ptr.Pointer(), PointerFromQWebEngineDownloadItem(download))
 	}
 }
 
 func (ptr *QWebEngineProfile) HttpAcceptLanguage() string {
-	defer qt.Recovering("QWebEngineProfile::httpAcceptLanguage")
-
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QWebEngineProfile_HttpAcceptLanguage(ptr.Pointer()))
 	}
@@ -5414,8 +4469,6 @@ func (ptr *QWebEngineProfile) HttpAcceptLanguage() string {
 }
 
 func (ptr *QWebEngineProfile) HttpCacheMaximumSize() int {
-	defer qt.Recovering("QWebEngineProfile::httpCacheMaximumSize")
-
 	if ptr.Pointer() != nil {
 		return int(int32(C.QWebEngineProfile_HttpCacheMaximumSize(ptr.Pointer())))
 	}
@@ -5423,8 +4476,6 @@ func (ptr *QWebEngineProfile) HttpCacheMaximumSize() int {
 }
 
 func (ptr *QWebEngineProfile) HttpCacheType() QWebEngineProfile__HttpCacheType {
-	defer qt.Recovering("QWebEngineProfile::httpCacheType")
-
 	if ptr.Pointer() != nil {
 		return QWebEngineProfile__HttpCacheType(C.QWebEngineProfile_HttpCacheType(ptr.Pointer()))
 	}
@@ -5432,8 +4483,6 @@ func (ptr *QWebEngineProfile) HttpCacheType() QWebEngineProfile__HttpCacheType {
 }
 
 func (ptr *QWebEngineProfile) HttpUserAgent() string {
-	defer qt.Recovering("QWebEngineProfile::httpUserAgent")
-
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QWebEngineProfile_HttpUserAgent(ptr.Pointer()))
 	}
@@ -5441,8 +4490,6 @@ func (ptr *QWebEngineProfile) HttpUserAgent() string {
 }
 
 func (ptr *QWebEngineProfile) InstallUrlSchemeHandler(scheme string, handler QWebEngineUrlSchemeHandler_ITF) {
-	defer qt.Recovering("QWebEngineProfile::installUrlSchemeHandler")
-
 	if ptr.Pointer() != nil {
 		var schemeC = C.CString(hex.EncodeToString([]byte(scheme)))
 		defer C.free(unsafe.Pointer(schemeC))
@@ -5451,8 +4498,6 @@ func (ptr *QWebEngineProfile) InstallUrlSchemeHandler(scheme string, handler QWe
 }
 
 func (ptr *QWebEngineProfile) IsOffTheRecord() bool {
-	defer qt.Recovering("QWebEngineProfile::isOffTheRecord")
-
 	if ptr.Pointer() != nil {
 		return C.QWebEngineProfile_IsOffTheRecord(ptr.Pointer()) != 0
 	}
@@ -5460,8 +4505,6 @@ func (ptr *QWebEngineProfile) IsOffTheRecord() bool {
 }
 
 func (ptr *QWebEngineProfile) PersistentCookiesPolicy() QWebEngineProfile__PersistentCookiesPolicy {
-	defer qt.Recovering("QWebEngineProfile::persistentCookiesPolicy")
-
 	if ptr.Pointer() != nil {
 		return QWebEngineProfile__PersistentCookiesPolicy(C.QWebEngineProfile_PersistentCookiesPolicy(ptr.Pointer()))
 	}
@@ -5469,8 +4512,6 @@ func (ptr *QWebEngineProfile) PersistentCookiesPolicy() QWebEngineProfile__Persi
 }
 
 func (ptr *QWebEngineProfile) PersistentStoragePath() string {
-	defer qt.Recovering("QWebEngineProfile::persistentStoragePath")
-
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QWebEngineProfile_PersistentStoragePath(ptr.Pointer()))
 	}
@@ -5478,16 +4519,12 @@ func (ptr *QWebEngineProfile) PersistentStoragePath() string {
 }
 
 func (ptr *QWebEngineProfile) RemoveAllUrlSchemeHandlers() {
-	defer qt.Recovering("QWebEngineProfile::removeAllUrlSchemeHandlers")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineProfile_RemoveAllUrlSchemeHandlers(ptr.Pointer())
 	}
 }
 
 func (ptr *QWebEngineProfile) RemoveUrlScheme(scheme string) {
-	defer qt.Recovering("QWebEngineProfile::removeUrlScheme")
-
 	if ptr.Pointer() != nil {
 		var schemeC = C.CString(hex.EncodeToString([]byte(scheme)))
 		defer C.free(unsafe.Pointer(schemeC))
@@ -5496,16 +4533,12 @@ func (ptr *QWebEngineProfile) RemoveUrlScheme(scheme string) {
 }
 
 func (ptr *QWebEngineProfile) RemoveUrlSchemeHandler(handler QWebEngineUrlSchemeHandler_ITF) {
-	defer qt.Recovering("QWebEngineProfile::removeUrlSchemeHandler")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineProfile_RemoveUrlSchemeHandler(ptr.Pointer(), PointerFromQWebEngineUrlSchemeHandler(handler))
 	}
 }
 
 func (ptr *QWebEngineProfile) Scripts() *QWebEngineScriptCollection {
-	defer qt.Recovering("QWebEngineProfile::scripts")
-
 	if ptr.Pointer() != nil {
 		return NewQWebEngineScriptCollectionFromPointer(C.QWebEngineProfile_Scripts(ptr.Pointer()))
 	}
@@ -5513,8 +4546,6 @@ func (ptr *QWebEngineProfile) Scripts() *QWebEngineScriptCollection {
 }
 
 func (ptr *QWebEngineProfile) SetCachePath(path string) {
-	defer qt.Recovering("QWebEngineProfile::setCachePath")
-
 	if ptr.Pointer() != nil {
 		var pathC = C.CString(path)
 		defer C.free(unsafe.Pointer(pathC))
@@ -5523,8 +4554,6 @@ func (ptr *QWebEngineProfile) SetCachePath(path string) {
 }
 
 func (ptr *QWebEngineProfile) SetHttpAcceptLanguage(httpAcceptLanguage string) {
-	defer qt.Recovering("QWebEngineProfile::setHttpAcceptLanguage")
-
 	if ptr.Pointer() != nil {
 		var httpAcceptLanguageC = C.CString(httpAcceptLanguage)
 		defer C.free(unsafe.Pointer(httpAcceptLanguageC))
@@ -5533,24 +4562,18 @@ func (ptr *QWebEngineProfile) SetHttpAcceptLanguage(httpAcceptLanguage string) {
 }
 
 func (ptr *QWebEngineProfile) SetHttpCacheMaximumSize(maxSize int) {
-	defer qt.Recovering("QWebEngineProfile::setHttpCacheMaximumSize")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineProfile_SetHttpCacheMaximumSize(ptr.Pointer(), C.int(int32(maxSize)))
 	}
 }
 
 func (ptr *QWebEngineProfile) SetHttpCacheType(httpCacheType QWebEngineProfile__HttpCacheType) {
-	defer qt.Recovering("QWebEngineProfile::setHttpCacheType")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineProfile_SetHttpCacheType(ptr.Pointer(), C.longlong(httpCacheType))
 	}
 }
 
 func (ptr *QWebEngineProfile) SetHttpUserAgent(userAgent string) {
-	defer qt.Recovering("QWebEngineProfile::setHttpUserAgent")
-
 	if ptr.Pointer() != nil {
 		var userAgentC = C.CString(userAgent)
 		defer C.free(unsafe.Pointer(userAgentC))
@@ -5559,16 +4582,12 @@ func (ptr *QWebEngineProfile) SetHttpUserAgent(userAgent string) {
 }
 
 func (ptr *QWebEngineProfile) SetPersistentCookiesPolicy(newPersistentCookiesPolicy QWebEngineProfile__PersistentCookiesPolicy) {
-	defer qt.Recovering("QWebEngineProfile::setPersistentCookiesPolicy")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineProfile_SetPersistentCookiesPolicy(ptr.Pointer(), C.longlong(newPersistentCookiesPolicy))
 	}
 }
 
 func (ptr *QWebEngineProfile) SetPersistentStoragePath(path string) {
-	defer qt.Recovering("QWebEngineProfile::setPersistentStoragePath")
-
 	if ptr.Pointer() != nil {
 		var pathC = C.CString(path)
 		defer C.free(unsafe.Pointer(pathC))
@@ -5577,16 +4596,12 @@ func (ptr *QWebEngineProfile) SetPersistentStoragePath(path string) {
 }
 
 func (ptr *QWebEngineProfile) SetRequestInterceptor(interceptor QWebEngineUrlRequestInterceptor_ITF) {
-	defer qt.Recovering("QWebEngineProfile::setRequestInterceptor")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineProfile_SetRequestInterceptor(ptr.Pointer(), PointerFromQWebEngineUrlRequestInterceptor(interceptor))
 	}
 }
 
 func (ptr *QWebEngineProfile) Settings() *QWebEngineSettings {
-	defer qt.Recovering("QWebEngineProfile::settings")
-
 	if ptr.Pointer() != nil {
 		return NewQWebEngineSettingsFromPointer(C.QWebEngineProfile_Settings(ptr.Pointer()))
 	}
@@ -5594,8 +4609,6 @@ func (ptr *QWebEngineProfile) Settings() *QWebEngineSettings {
 }
 
 func (ptr *QWebEngineProfile) StorageName() string {
-	defer qt.Recovering("QWebEngineProfile::storageName")
-
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QWebEngineProfile_StorageName(ptr.Pointer()))
 	}
@@ -5603,8 +4616,6 @@ func (ptr *QWebEngineProfile) StorageName() string {
 }
 
 func (ptr *QWebEngineProfile) UrlSchemeHandler(scheme string) *QWebEngineUrlSchemeHandler {
-	defer qt.Recovering("QWebEngineProfile::urlSchemeHandler")
-
 	if ptr.Pointer() != nil {
 		var schemeC = C.CString(hex.EncodeToString([]byte(scheme)))
 		defer C.free(unsafe.Pointer(schemeC))
@@ -5618,8 +4629,6 @@ func (ptr *QWebEngineProfile) UrlSchemeHandler(scheme string) *QWebEngineUrlSche
 }
 
 func (ptr *QWebEngineProfile) VisitedLinksContainsUrl(url core.QUrl_ITF) bool {
-	defer qt.Recovering("QWebEngineProfile::visitedLinksContainsUrl")
-
 	if ptr.Pointer() != nil {
 		return C.QWebEngineProfile_VisitedLinksContainsUrl(ptr.Pointer(), core.PointerFromQUrl(url)) != 0
 	}
@@ -5628,7 +4637,6 @@ func (ptr *QWebEngineProfile) VisitedLinksContainsUrl(url core.QUrl_ITF) bool {
 
 //export callbackQWebEngineProfile_TimerEvent
 func callbackQWebEngineProfile_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	defer qt.Recovering("callback QWebEngineProfile::timerEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineProfile::timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
@@ -5638,8 +4646,6 @@ func callbackQWebEngineProfile_TimerEvent(ptr unsafe.Pointer, event unsafe.Point
 }
 
 func (ptr *QWebEngineProfile) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
-	defer qt.Recovering("connect QWebEngineProfile::timerEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineProfile::timerEvent", f)
@@ -5647,8 +4653,6 @@ func (ptr *QWebEngineProfile) ConnectTimerEvent(f func(event *core.QTimerEvent))
 }
 
 func (ptr *QWebEngineProfile) DisconnectTimerEvent() {
-	defer qt.Recovering("disconnect QWebEngineProfile::timerEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineProfile::timerEvent")
@@ -5656,16 +4660,12 @@ func (ptr *QWebEngineProfile) DisconnectTimerEvent() {
 }
 
 func (ptr *QWebEngineProfile) TimerEvent(event core.QTimerEvent_ITF) {
-	defer qt.Recovering("QWebEngineProfile::timerEvent")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineProfile_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
 	}
 }
 
 func (ptr *QWebEngineProfile) TimerEventDefault(event core.QTimerEvent_ITF) {
-	defer qt.Recovering("QWebEngineProfile::timerEvent")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineProfile_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
 	}
@@ -5673,7 +4673,6 @@ func (ptr *QWebEngineProfile) TimerEventDefault(event core.QTimerEvent_ITF) {
 
 //export callbackQWebEngineProfile_ChildEvent
 func callbackQWebEngineProfile_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	defer qt.Recovering("callback QWebEngineProfile::childEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineProfile::childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
@@ -5683,8 +4682,6 @@ func callbackQWebEngineProfile_ChildEvent(ptr unsafe.Pointer, event unsafe.Point
 }
 
 func (ptr *QWebEngineProfile) ConnectChildEvent(f func(event *core.QChildEvent)) {
-	defer qt.Recovering("connect QWebEngineProfile::childEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineProfile::childEvent", f)
@@ -5692,8 +4689,6 @@ func (ptr *QWebEngineProfile) ConnectChildEvent(f func(event *core.QChildEvent))
 }
 
 func (ptr *QWebEngineProfile) DisconnectChildEvent() {
-	defer qt.Recovering("disconnect QWebEngineProfile::childEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineProfile::childEvent")
@@ -5701,16 +4696,12 @@ func (ptr *QWebEngineProfile) DisconnectChildEvent() {
 }
 
 func (ptr *QWebEngineProfile) ChildEvent(event core.QChildEvent_ITF) {
-	defer qt.Recovering("QWebEngineProfile::childEvent")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineProfile_ChildEvent(ptr.Pointer(), core.PointerFromQChildEvent(event))
 	}
 }
 
 func (ptr *QWebEngineProfile) ChildEventDefault(event core.QChildEvent_ITF) {
-	defer qt.Recovering("QWebEngineProfile::childEvent")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineProfile_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
 	}
@@ -5718,7 +4709,6 @@ func (ptr *QWebEngineProfile) ChildEventDefault(event core.QChildEvent_ITF) {
 
 //export callbackQWebEngineProfile_ConnectNotify
 func callbackQWebEngineProfile_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-	defer qt.Recovering("callback QWebEngineProfile::connectNotify")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineProfile::connectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
@@ -5728,8 +4718,6 @@ func callbackQWebEngineProfile_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Poi
 }
 
 func (ptr *QWebEngineProfile) ConnectConnectNotify(f func(sign *core.QMetaMethod)) {
-	defer qt.Recovering("connect QWebEngineProfile::connectNotify")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineProfile::connectNotify", f)
@@ -5737,8 +4725,6 @@ func (ptr *QWebEngineProfile) ConnectConnectNotify(f func(sign *core.QMetaMethod
 }
 
 func (ptr *QWebEngineProfile) DisconnectConnectNotify() {
-	defer qt.Recovering("disconnect QWebEngineProfile::connectNotify")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineProfile::connectNotify")
@@ -5746,16 +4732,12 @@ func (ptr *QWebEngineProfile) DisconnectConnectNotify() {
 }
 
 func (ptr *QWebEngineProfile) ConnectNotify(sign core.QMetaMethod_ITF) {
-	defer qt.Recovering("QWebEngineProfile::connectNotify")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineProfile_ConnectNotify(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
 	}
 }
 
 func (ptr *QWebEngineProfile) ConnectNotifyDefault(sign core.QMetaMethod_ITF) {
-	defer qt.Recovering("QWebEngineProfile::connectNotify")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineProfile_ConnectNotifyDefault(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
 	}
@@ -5763,7 +4745,6 @@ func (ptr *QWebEngineProfile) ConnectNotifyDefault(sign core.QMetaMethod_ITF) {
 
 //export callbackQWebEngineProfile_CustomEvent
 func callbackQWebEngineProfile_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	defer qt.Recovering("callback QWebEngineProfile::customEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineProfile::customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
@@ -5773,8 +4754,6 @@ func callbackQWebEngineProfile_CustomEvent(ptr unsafe.Pointer, event unsafe.Poin
 }
 
 func (ptr *QWebEngineProfile) ConnectCustomEvent(f func(event *core.QEvent)) {
-	defer qt.Recovering("connect QWebEngineProfile::customEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineProfile::customEvent", f)
@@ -5782,8 +4761,6 @@ func (ptr *QWebEngineProfile) ConnectCustomEvent(f func(event *core.QEvent)) {
 }
 
 func (ptr *QWebEngineProfile) DisconnectCustomEvent() {
-	defer qt.Recovering("disconnect QWebEngineProfile::customEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineProfile::customEvent")
@@ -5791,16 +4768,12 @@ func (ptr *QWebEngineProfile) DisconnectCustomEvent() {
 }
 
 func (ptr *QWebEngineProfile) CustomEvent(event core.QEvent_ITF) {
-	defer qt.Recovering("QWebEngineProfile::customEvent")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineProfile_CustomEvent(ptr.Pointer(), core.PointerFromQEvent(event))
 	}
 }
 
 func (ptr *QWebEngineProfile) CustomEventDefault(event core.QEvent_ITF) {
-	defer qt.Recovering("QWebEngineProfile::customEvent")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineProfile_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
 	}
@@ -5808,8 +4781,6 @@ func (ptr *QWebEngineProfile) CustomEventDefault(event core.QEvent_ITF) {
 
 //export callbackQWebEngineProfile_DeleteLater
 func callbackQWebEngineProfile_DeleteLater(ptr unsafe.Pointer) {
-	defer qt.Recovering("callback QWebEngineProfile::deleteLater")
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineProfile::deleteLater"); signal != nil {
 		signal.(func())()
 	} else {
@@ -5818,8 +4789,6 @@ func callbackQWebEngineProfile_DeleteLater(ptr unsafe.Pointer) {
 }
 
 func (ptr *QWebEngineProfile) ConnectDeleteLater(f func()) {
-	defer qt.Recovering("connect QWebEngineProfile::deleteLater")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineProfile::deleteLater", f)
@@ -5827,8 +4796,6 @@ func (ptr *QWebEngineProfile) ConnectDeleteLater(f func()) {
 }
 
 func (ptr *QWebEngineProfile) DisconnectDeleteLater() {
-	defer qt.Recovering("disconnect QWebEngineProfile::deleteLater")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineProfile::deleteLater")
@@ -5836,8 +4803,6 @@ func (ptr *QWebEngineProfile) DisconnectDeleteLater() {
 }
 
 func (ptr *QWebEngineProfile) DeleteLater() {
-	defer qt.Recovering("QWebEngineProfile::deleteLater")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineProfile_DeleteLater(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
@@ -5846,8 +4811,6 @@ func (ptr *QWebEngineProfile) DeleteLater() {
 }
 
 func (ptr *QWebEngineProfile) DeleteLaterDefault() {
-	defer qt.Recovering("QWebEngineProfile::deleteLater")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineProfile_DeleteLaterDefault(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
@@ -5857,7 +4820,6 @@ func (ptr *QWebEngineProfile) DeleteLaterDefault() {
 
 //export callbackQWebEngineProfile_DisconnectNotify
 func callbackQWebEngineProfile_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-	defer qt.Recovering("callback QWebEngineProfile::disconnectNotify")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineProfile::disconnectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
@@ -5867,8 +4829,6 @@ func callbackQWebEngineProfile_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.
 }
 
 func (ptr *QWebEngineProfile) ConnectDisconnectNotify(f func(sign *core.QMetaMethod)) {
-	defer qt.Recovering("connect QWebEngineProfile::disconnectNotify")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineProfile::disconnectNotify", f)
@@ -5876,8 +4836,6 @@ func (ptr *QWebEngineProfile) ConnectDisconnectNotify(f func(sign *core.QMetaMet
 }
 
 func (ptr *QWebEngineProfile) DisconnectDisconnectNotify() {
-	defer qt.Recovering("disconnect QWebEngineProfile::disconnectNotify")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineProfile::disconnectNotify")
@@ -5885,16 +4843,12 @@ func (ptr *QWebEngineProfile) DisconnectDisconnectNotify() {
 }
 
 func (ptr *QWebEngineProfile) DisconnectNotify(sign core.QMetaMethod_ITF) {
-	defer qt.Recovering("QWebEngineProfile::disconnectNotify")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineProfile_DisconnectNotify(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
 	}
 }
 
 func (ptr *QWebEngineProfile) DisconnectNotifyDefault(sign core.QMetaMethod_ITF) {
-	defer qt.Recovering("QWebEngineProfile::disconnectNotify")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineProfile_DisconnectNotifyDefault(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
 	}
@@ -5902,7 +4856,6 @@ func (ptr *QWebEngineProfile) DisconnectNotifyDefault(sign core.QMetaMethod_ITF)
 
 //export callbackQWebEngineProfile_Event
 func callbackQWebEngineProfile_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
-	defer qt.Recovering("callback QWebEngineProfile::event")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineProfile::event"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
@@ -5912,8 +4865,6 @@ func callbackQWebEngineProfile_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.cha
 }
 
 func (ptr *QWebEngineProfile) ConnectEvent(f func(e *core.QEvent) bool) {
-	defer qt.Recovering("connect QWebEngineProfile::event")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineProfile::event", f)
@@ -5921,8 +4872,6 @@ func (ptr *QWebEngineProfile) ConnectEvent(f func(e *core.QEvent) bool) {
 }
 
 func (ptr *QWebEngineProfile) DisconnectEvent() {
-	defer qt.Recovering("disconnect QWebEngineProfile::event")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineProfile::event")
@@ -5930,8 +4879,6 @@ func (ptr *QWebEngineProfile) DisconnectEvent() {
 }
 
 func (ptr *QWebEngineProfile) Event(e core.QEvent_ITF) bool {
-	defer qt.Recovering("QWebEngineProfile::event")
-
 	if ptr.Pointer() != nil {
 		return C.QWebEngineProfile_Event(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
 	}
@@ -5939,8 +4886,6 @@ func (ptr *QWebEngineProfile) Event(e core.QEvent_ITF) bool {
 }
 
 func (ptr *QWebEngineProfile) EventDefault(e core.QEvent_ITF) bool {
-	defer qt.Recovering("QWebEngineProfile::event")
-
 	if ptr.Pointer() != nil {
 		return C.QWebEngineProfile_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
 	}
@@ -5949,7 +4894,6 @@ func (ptr *QWebEngineProfile) EventDefault(e core.QEvent_ITF) bool {
 
 //export callbackQWebEngineProfile_EventFilter
 func callbackQWebEngineProfile_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-	defer qt.Recovering("callback QWebEngineProfile::eventFilter")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineProfile::eventFilter"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
@@ -5959,8 +4903,6 @@ func callbackQWebEngineProfile_EventFilter(ptr unsafe.Pointer, watched unsafe.Po
 }
 
 func (ptr *QWebEngineProfile) ConnectEventFilter(f func(watched *core.QObject, event *core.QEvent) bool) {
-	defer qt.Recovering("connect QWebEngineProfile::eventFilter")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineProfile::eventFilter", f)
@@ -5968,8 +4910,6 @@ func (ptr *QWebEngineProfile) ConnectEventFilter(f func(watched *core.QObject, e
 }
 
 func (ptr *QWebEngineProfile) DisconnectEventFilter() {
-	defer qt.Recovering("disconnect QWebEngineProfile::eventFilter")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineProfile::eventFilter")
@@ -5977,8 +4917,6 @@ func (ptr *QWebEngineProfile) DisconnectEventFilter() {
 }
 
 func (ptr *QWebEngineProfile) EventFilter(watched core.QObject_ITF, event core.QEvent_ITF) bool {
-	defer qt.Recovering("QWebEngineProfile::eventFilter")
-
 	if ptr.Pointer() != nil {
 		return C.QWebEngineProfile_EventFilter(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
 	}
@@ -5986,8 +4924,6 @@ func (ptr *QWebEngineProfile) EventFilter(watched core.QObject_ITF, event core.Q
 }
 
 func (ptr *QWebEngineProfile) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
-	defer qt.Recovering("QWebEngineProfile::eventFilter")
-
 	if ptr.Pointer() != nil {
 		return C.QWebEngineProfile_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
 	}
@@ -5996,7 +4932,6 @@ func (ptr *QWebEngineProfile) EventFilterDefault(watched core.QObject_ITF, event
 
 //export callbackQWebEngineProfile_MetaObject
 func callbackQWebEngineProfile_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-	defer qt.Recovering("callback QWebEngineProfile::metaObject")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineProfile::metaObject"); signal != nil {
 		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
@@ -6006,8 +4941,6 @@ func callbackQWebEngineProfile_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
 }
 
 func (ptr *QWebEngineProfile) ConnectMetaObject(f func() *core.QMetaObject) {
-	defer qt.Recovering("connect QWebEngineProfile::metaObject")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineProfile::metaObject", f)
@@ -6015,8 +4948,6 @@ func (ptr *QWebEngineProfile) ConnectMetaObject(f func() *core.QMetaObject) {
 }
 
 func (ptr *QWebEngineProfile) DisconnectMetaObject() {
-	defer qt.Recovering("disconnect QWebEngineProfile::metaObject")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineProfile::metaObject")
@@ -6024,8 +4955,6 @@ func (ptr *QWebEngineProfile) DisconnectMetaObject() {
 }
 
 func (ptr *QWebEngineProfile) MetaObject() *core.QMetaObject {
-	defer qt.Recovering("QWebEngineProfile::metaObject")
-
 	if ptr.Pointer() != nil {
 		return core.NewQMetaObjectFromPointer(C.QWebEngineProfile_MetaObject(ptr.Pointer()))
 	}
@@ -6033,8 +4962,6 @@ func (ptr *QWebEngineProfile) MetaObject() *core.QMetaObject {
 }
 
 func (ptr *QWebEngineProfile) MetaObjectDefault() *core.QMetaObject {
-	defer qt.Recovering("QWebEngineProfile::metaObject")
-
 	if ptr.Pointer() != nil {
 		return core.NewQMetaObjectFromPointer(C.QWebEngineProfile_MetaObjectDefault(ptr.Pointer()))
 	}
@@ -6097,24 +5024,18 @@ func NewQWebEngineScriptFromPointer(ptr unsafe.Pointer) *QWebEngineScript {
 	return n
 }
 func NewQWebEngineScript() *QWebEngineScript {
-	defer qt.Recovering("QWebEngineScript::QWebEngineScript")
-
 	var tmpValue = NewQWebEngineScriptFromPointer(C.QWebEngineScript_NewQWebEngineScript())
 	runtime.SetFinalizer(tmpValue, (*QWebEngineScript).DestroyQWebEngineScript)
 	return tmpValue
 }
 
 func NewQWebEngineScript2(other QWebEngineScript_ITF) *QWebEngineScript {
-	defer qt.Recovering("QWebEngineScript::QWebEngineScript")
-
 	var tmpValue = NewQWebEngineScriptFromPointer(C.QWebEngineScript_NewQWebEngineScript2(PointerFromQWebEngineScript(other)))
 	runtime.SetFinalizer(tmpValue, (*QWebEngineScript).DestroyQWebEngineScript)
 	return tmpValue
 }
 
 func (ptr *QWebEngineScript) InjectionPoint() QWebEngineScript__InjectionPoint {
-	defer qt.Recovering("QWebEngineScript::injectionPoint")
-
 	if ptr.Pointer() != nil {
 		return QWebEngineScript__InjectionPoint(C.QWebEngineScript_InjectionPoint(ptr.Pointer()))
 	}
@@ -6122,8 +5043,6 @@ func (ptr *QWebEngineScript) InjectionPoint() QWebEngineScript__InjectionPoint {
 }
 
 func (ptr *QWebEngineScript) IsNull() bool {
-	defer qt.Recovering("QWebEngineScript::isNull")
-
 	if ptr.Pointer() != nil {
 		return C.QWebEngineScript_IsNull(ptr.Pointer()) != 0
 	}
@@ -6131,8 +5050,6 @@ func (ptr *QWebEngineScript) IsNull() bool {
 }
 
 func (ptr *QWebEngineScript) Name() string {
-	defer qt.Recovering("QWebEngineScript::name")
-
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QWebEngineScript_Name(ptr.Pointer()))
 	}
@@ -6140,8 +5057,6 @@ func (ptr *QWebEngineScript) Name() string {
 }
 
 func (ptr *QWebEngineScript) RunsOnSubFrames() bool {
-	defer qt.Recovering("QWebEngineScript::runsOnSubFrames")
-
 	if ptr.Pointer() != nil {
 		return C.QWebEngineScript_RunsOnSubFrames(ptr.Pointer()) != 0
 	}
@@ -6149,16 +5064,12 @@ func (ptr *QWebEngineScript) RunsOnSubFrames() bool {
 }
 
 func (ptr *QWebEngineScript) SetInjectionPoint(p QWebEngineScript__InjectionPoint) {
-	defer qt.Recovering("QWebEngineScript::setInjectionPoint")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineScript_SetInjectionPoint(ptr.Pointer(), C.longlong(p))
 	}
 }
 
 func (ptr *QWebEngineScript) SetName(scriptName string) {
-	defer qt.Recovering("QWebEngineScript::setName")
-
 	if ptr.Pointer() != nil {
 		var scriptNameC = C.CString(scriptName)
 		defer C.free(unsafe.Pointer(scriptNameC))
@@ -6167,16 +5078,12 @@ func (ptr *QWebEngineScript) SetName(scriptName string) {
 }
 
 func (ptr *QWebEngineScript) SetRunsOnSubFrames(on bool) {
-	defer qt.Recovering("QWebEngineScript::setRunsOnSubFrames")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineScript_SetRunsOnSubFrames(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(on))))
 	}
 }
 
 func (ptr *QWebEngineScript) SetSourceCode(scriptSource string) {
-	defer qt.Recovering("QWebEngineScript::setSourceCode")
-
 	if ptr.Pointer() != nil {
 		var scriptSourceC = C.CString(scriptSource)
 		defer C.free(unsafe.Pointer(scriptSourceC))
@@ -6185,16 +5092,12 @@ func (ptr *QWebEngineScript) SetSourceCode(scriptSource string) {
 }
 
 func (ptr *QWebEngineScript) SetWorldId(id uint) {
-	defer qt.Recovering("QWebEngineScript::setWorldId")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineScript_SetWorldId(ptr.Pointer(), C.uint(uint32(id)))
 	}
 }
 
 func (ptr *QWebEngineScript) SourceCode() string {
-	defer qt.Recovering("QWebEngineScript::sourceCode")
-
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QWebEngineScript_SourceCode(ptr.Pointer()))
 	}
@@ -6202,16 +5105,12 @@ func (ptr *QWebEngineScript) SourceCode() string {
 }
 
 func (ptr *QWebEngineScript) Swap(other QWebEngineScript_ITF) {
-	defer qt.Recovering("QWebEngineScript::swap")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineScript_Swap(ptr.Pointer(), PointerFromQWebEngineScript(other))
 	}
 }
 
 func (ptr *QWebEngineScript) WorldId() uint {
-	defer qt.Recovering("QWebEngineScript::worldId")
-
 	if ptr.Pointer() != nil {
 		return uint(uint32(C.QWebEngineScript_WorldId(ptr.Pointer())))
 	}
@@ -6219,8 +5118,6 @@ func (ptr *QWebEngineScript) WorldId() uint {
 }
 
 func (ptr *QWebEngineScript) DestroyQWebEngineScript() {
-	defer qt.Recovering("QWebEngineScript::~QWebEngineScript")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineScript_DestroyQWebEngineScript(ptr.Pointer())
 		ptr.SetPointer(nil)
@@ -6265,16 +5162,12 @@ func NewQWebEngineScriptCollectionFromPointer(ptr unsafe.Pointer) *QWebEngineScr
 	return n
 }
 func (ptr *QWebEngineScriptCollection) Clear() {
-	defer qt.Recovering("QWebEngineScriptCollection::clear")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineScriptCollection_Clear(ptr.Pointer())
 	}
 }
 
 func (ptr *QWebEngineScriptCollection) Contains(value QWebEngineScript_ITF) bool {
-	defer qt.Recovering("QWebEngineScriptCollection::contains")
-
 	if ptr.Pointer() != nil {
 		return C.QWebEngineScriptCollection_Contains(ptr.Pointer(), PointerFromQWebEngineScript(value)) != 0
 	}
@@ -6282,8 +5175,6 @@ func (ptr *QWebEngineScriptCollection) Contains(value QWebEngineScript_ITF) bool
 }
 
 func (ptr *QWebEngineScriptCollection) Count() int {
-	defer qt.Recovering("QWebEngineScriptCollection::count")
-
 	if ptr.Pointer() != nil {
 		return int(int32(C.QWebEngineScriptCollection_Count(ptr.Pointer())))
 	}
@@ -6291,8 +5182,6 @@ func (ptr *QWebEngineScriptCollection) Count() int {
 }
 
 func (ptr *QWebEngineScriptCollection) FindScript(name string) *QWebEngineScript {
-	defer qt.Recovering("QWebEngineScriptCollection::findScript")
-
 	if ptr.Pointer() != nil {
 		var nameC = C.CString(name)
 		defer C.free(unsafe.Pointer(nameC))
@@ -6304,16 +5193,12 @@ func (ptr *QWebEngineScriptCollection) FindScript(name string) *QWebEngineScript
 }
 
 func (ptr *QWebEngineScriptCollection) Insert(s QWebEngineScript_ITF) {
-	defer qt.Recovering("QWebEngineScriptCollection::insert")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineScriptCollection_Insert(ptr.Pointer(), PointerFromQWebEngineScript(s))
 	}
 }
 
 func (ptr *QWebEngineScriptCollection) IsEmpty() bool {
-	defer qt.Recovering("QWebEngineScriptCollection::isEmpty")
-
 	if ptr.Pointer() != nil {
 		return C.QWebEngineScriptCollection_IsEmpty(ptr.Pointer()) != 0
 	}
@@ -6321,8 +5206,6 @@ func (ptr *QWebEngineScriptCollection) IsEmpty() bool {
 }
 
 func (ptr *QWebEngineScriptCollection) Remove(script QWebEngineScript_ITF) bool {
-	defer qt.Recovering("QWebEngineScriptCollection::remove")
-
 	if ptr.Pointer() != nil {
 		return C.QWebEngineScriptCollection_Remove(ptr.Pointer(), PointerFromQWebEngineScript(script)) != 0
 	}
@@ -6330,8 +5213,6 @@ func (ptr *QWebEngineScriptCollection) Remove(script QWebEngineScript_ITF) bool 
 }
 
 func (ptr *QWebEngineScriptCollection) Size() int {
-	defer qt.Recovering("QWebEngineScriptCollection::size")
-
 	if ptr.Pointer() != nil {
 		return int(int32(C.QWebEngineScriptCollection_Size(ptr.Pointer())))
 	}
@@ -6339,8 +5220,6 @@ func (ptr *QWebEngineScriptCollection) Size() int {
 }
 
 func (ptr *QWebEngineScriptCollection) DestroyQWebEngineScriptCollection() {
-	defer qt.Recovering("QWebEngineScriptCollection::~QWebEngineScriptCollection")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineScriptCollection_DestroyQWebEngineScriptCollection(ptr.Pointer())
 		ptr.SetPointer(nil)
@@ -6440,8 +5319,6 @@ func (ptr *QWebEngineSettings) DestroyQWebEngineSettings() {
 }
 
 func (ptr *QWebEngineSettings) DefaultTextEncoding() string {
-	defer qt.Recovering("QWebEngineSettings::defaultTextEncoding")
-
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QWebEngineSettings_DefaultTextEncoding(ptr.Pointer()))
 	}
@@ -6449,8 +5326,6 @@ func (ptr *QWebEngineSettings) DefaultTextEncoding() string {
 }
 
 func (ptr *QWebEngineSettings) FontFamily(which QWebEngineSettings__FontFamily) string {
-	defer qt.Recovering("QWebEngineSettings::fontFamily")
-
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QWebEngineSettings_FontFamily(ptr.Pointer(), C.longlong(which)))
 	}
@@ -6458,8 +5333,6 @@ func (ptr *QWebEngineSettings) FontFamily(which QWebEngineSettings__FontFamily) 
 }
 
 func (ptr *QWebEngineSettings) FontSize(ty QWebEngineSettings__FontSize) int {
-	defer qt.Recovering("QWebEngineSettings::fontSize")
-
 	if ptr.Pointer() != nil {
 		return int(int32(C.QWebEngineSettings_FontSize(ptr.Pointer(), C.longlong(ty))))
 	}
@@ -6467,52 +5340,38 @@ func (ptr *QWebEngineSettings) FontSize(ty QWebEngineSettings__FontSize) int {
 }
 
 func QWebEngineSettings_GlobalSettings() *QWebEngineSettings {
-	defer qt.Recovering("QWebEngineSettings::globalSettings")
-
 	return NewQWebEngineSettingsFromPointer(C.QWebEngineSettings_QWebEngineSettings_GlobalSettings())
 }
 
 func (ptr *QWebEngineSettings) GlobalSettings() *QWebEngineSettings {
-	defer qt.Recovering("QWebEngineSettings::globalSettings")
-
 	return NewQWebEngineSettingsFromPointer(C.QWebEngineSettings_QWebEngineSettings_GlobalSettings())
 }
 
 func (ptr *QWebEngineSettings) ResetAttribute(attribute QWebEngineSettings__WebAttribute) {
-	defer qt.Recovering("QWebEngineSettings::resetAttribute")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineSettings_ResetAttribute(ptr.Pointer(), C.longlong(attribute))
 	}
 }
 
 func (ptr *QWebEngineSettings) ResetFontFamily(which QWebEngineSettings__FontFamily) {
-	defer qt.Recovering("QWebEngineSettings::resetFontFamily")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineSettings_ResetFontFamily(ptr.Pointer(), C.longlong(which))
 	}
 }
 
 func (ptr *QWebEngineSettings) ResetFontSize(ty QWebEngineSettings__FontSize) {
-	defer qt.Recovering("QWebEngineSettings::resetFontSize")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineSettings_ResetFontSize(ptr.Pointer(), C.longlong(ty))
 	}
 }
 
 func (ptr *QWebEngineSettings) SetAttribute(attribute QWebEngineSettings__WebAttribute, on bool) {
-	defer qt.Recovering("QWebEngineSettings::setAttribute")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineSettings_SetAttribute(ptr.Pointer(), C.longlong(attribute), C.char(int8(qt.GoBoolToInt(on))))
 	}
 }
 
 func (ptr *QWebEngineSettings) SetDefaultTextEncoding(encoding string) {
-	defer qt.Recovering("QWebEngineSettings::setDefaultTextEncoding")
-
 	if ptr.Pointer() != nil {
 		var encodingC = C.CString(encoding)
 		defer C.free(unsafe.Pointer(encodingC))
@@ -6521,8 +5380,6 @@ func (ptr *QWebEngineSettings) SetDefaultTextEncoding(encoding string) {
 }
 
 func (ptr *QWebEngineSettings) SetFontFamily(which QWebEngineSettings__FontFamily, family string) {
-	defer qt.Recovering("QWebEngineSettings::setFontFamily")
-
 	if ptr.Pointer() != nil {
 		var familyC = C.CString(family)
 		defer C.free(unsafe.Pointer(familyC))
@@ -6531,16 +5388,12 @@ func (ptr *QWebEngineSettings) SetFontFamily(which QWebEngineSettings__FontFamil
 }
 
 func (ptr *QWebEngineSettings) SetFontSize(ty QWebEngineSettings__FontSize, size int) {
-	defer qt.Recovering("QWebEngineSettings::setFontSize")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineSettings_SetFontSize(ptr.Pointer(), C.longlong(ty), C.int(int32(size)))
 	}
 }
 
 func (ptr *QWebEngineSettings) TestAttribute(attribute QWebEngineSettings__WebAttribute) bool {
-	defer qt.Recovering("QWebEngineSettings::testAttribute")
-
 	if ptr.Pointer() != nil {
 		return C.QWebEngineSettings_TestAttribute(ptr.Pointer(), C.longlong(attribute)) != 0
 	}
@@ -6548,14 +5401,10 @@ func (ptr *QWebEngineSettings) TestAttribute(attribute QWebEngineSettings__WebAt
 }
 
 func QWebEngineSettings_DefaultSettings() *QWebEngineSettings {
-	defer qt.Recovering("QWebEngineSettings::defaultSettings")
-
 	return NewQWebEngineSettingsFromPointer(C.QWebEngineSettings_QWebEngineSettings_DefaultSettings())
 }
 
 func (ptr *QWebEngineSettings) DefaultSettings() *QWebEngineSettings {
-	defer qt.Recovering("QWebEngineSettings::defaultSettings")
-
 	return NewQWebEngineSettingsFromPointer(C.QWebEngineSettings_QWebEngineSettings_DefaultSettings())
 }
 
@@ -6640,16 +5489,12 @@ func (ptr *QWebEngineUrlRequestInfo) DestroyQWebEngineUrlRequestInfo() {
 }
 
 func (ptr *QWebEngineUrlRequestInfo) Block(shouldBlock bool) {
-	defer qt.Recovering("QWebEngineUrlRequestInfo::block")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineUrlRequestInfo_Block(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(shouldBlock))))
 	}
 }
 
 func (ptr *QWebEngineUrlRequestInfo) FirstPartyUrl() *core.QUrl {
-	defer qt.Recovering("QWebEngineUrlRequestInfo::firstPartyUrl")
-
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQUrlFromPointer(C.QWebEngineUrlRequestInfo_FirstPartyUrl(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*core.QUrl).DestroyQUrl)
@@ -6659,8 +5504,6 @@ func (ptr *QWebEngineUrlRequestInfo) FirstPartyUrl() *core.QUrl {
 }
 
 func (ptr *QWebEngineUrlRequestInfo) NavigationType() QWebEngineUrlRequestInfo__NavigationType {
-	defer qt.Recovering("QWebEngineUrlRequestInfo::navigationType")
-
 	if ptr.Pointer() != nil {
 		return QWebEngineUrlRequestInfo__NavigationType(C.QWebEngineUrlRequestInfo_NavigationType(ptr.Pointer()))
 	}
@@ -6668,16 +5511,12 @@ func (ptr *QWebEngineUrlRequestInfo) NavigationType() QWebEngineUrlRequestInfo__
 }
 
 func (ptr *QWebEngineUrlRequestInfo) Redirect(url core.QUrl_ITF) {
-	defer qt.Recovering("QWebEngineUrlRequestInfo::redirect")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineUrlRequestInfo_Redirect(ptr.Pointer(), core.PointerFromQUrl(url))
 	}
 }
 
 func (ptr *QWebEngineUrlRequestInfo) RequestMethod() string {
-	defer qt.Recovering("QWebEngineUrlRequestInfo::requestMethod")
-
 	if ptr.Pointer() != nil {
 		return qt.HexDecodeToString(C.GoString(C.QWebEngineUrlRequestInfo_RequestMethod(ptr.Pointer())))
 	}
@@ -6685,8 +5524,6 @@ func (ptr *QWebEngineUrlRequestInfo) RequestMethod() string {
 }
 
 func (ptr *QWebEngineUrlRequestInfo) RequestUrl() *core.QUrl {
-	defer qt.Recovering("QWebEngineUrlRequestInfo::requestUrl")
-
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQUrlFromPointer(C.QWebEngineUrlRequestInfo_RequestUrl(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*core.QUrl).DestroyQUrl)
@@ -6696,8 +5533,6 @@ func (ptr *QWebEngineUrlRequestInfo) RequestUrl() *core.QUrl {
 }
 
 func (ptr *QWebEngineUrlRequestInfo) ResourceType() QWebEngineUrlRequestInfo__ResourceType {
-	defer qt.Recovering("QWebEngineUrlRequestInfo::resourceType")
-
 	if ptr.Pointer() != nil {
 		return QWebEngineUrlRequestInfo__ResourceType(C.QWebEngineUrlRequestInfo_ResourceType(ptr.Pointer()))
 	}
@@ -6705,8 +5540,6 @@ func (ptr *QWebEngineUrlRequestInfo) ResourceType() QWebEngineUrlRequestInfo__Re
 }
 
 func (ptr *QWebEngineUrlRequestInfo) SetHttpHeader(name string, value string) {
-	defer qt.Recovering("QWebEngineUrlRequestInfo::setHttpHeader")
-
 	if ptr.Pointer() != nil {
 		var nameC = C.CString(hex.EncodeToString([]byte(name)))
 		defer C.free(unsafe.Pointer(nameC))
@@ -6763,7 +5596,6 @@ func (ptr *QWebEngineUrlRequestInterceptor) DestroyQWebEngineUrlRequestIntercept
 
 //export callbackQWebEngineUrlRequestInterceptor_TimerEvent
 func callbackQWebEngineUrlRequestInterceptor_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	defer qt.Recovering("callback QWebEngineUrlRequestInterceptor::timerEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineUrlRequestInterceptor::timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
@@ -6773,8 +5605,6 @@ func callbackQWebEngineUrlRequestInterceptor_TimerEvent(ptr unsafe.Pointer, even
 }
 
 func (ptr *QWebEngineUrlRequestInterceptor) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
-	defer qt.Recovering("connect QWebEngineUrlRequestInterceptor::timerEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineUrlRequestInterceptor::timerEvent", f)
@@ -6782,8 +5612,6 @@ func (ptr *QWebEngineUrlRequestInterceptor) ConnectTimerEvent(f func(event *core
 }
 
 func (ptr *QWebEngineUrlRequestInterceptor) DisconnectTimerEvent() {
-	defer qt.Recovering("disconnect QWebEngineUrlRequestInterceptor::timerEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineUrlRequestInterceptor::timerEvent")
@@ -6791,16 +5619,12 @@ func (ptr *QWebEngineUrlRequestInterceptor) DisconnectTimerEvent() {
 }
 
 func (ptr *QWebEngineUrlRequestInterceptor) TimerEvent(event core.QTimerEvent_ITF) {
-	defer qt.Recovering("QWebEngineUrlRequestInterceptor::timerEvent")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineUrlRequestInterceptor_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
 	}
 }
 
 func (ptr *QWebEngineUrlRequestInterceptor) TimerEventDefault(event core.QTimerEvent_ITF) {
-	defer qt.Recovering("QWebEngineUrlRequestInterceptor::timerEvent")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineUrlRequestInterceptor_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
 	}
@@ -6808,7 +5632,6 @@ func (ptr *QWebEngineUrlRequestInterceptor) TimerEventDefault(event core.QTimerE
 
 //export callbackQWebEngineUrlRequestInterceptor_ChildEvent
 func callbackQWebEngineUrlRequestInterceptor_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	defer qt.Recovering("callback QWebEngineUrlRequestInterceptor::childEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineUrlRequestInterceptor::childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
@@ -6818,8 +5641,6 @@ func callbackQWebEngineUrlRequestInterceptor_ChildEvent(ptr unsafe.Pointer, even
 }
 
 func (ptr *QWebEngineUrlRequestInterceptor) ConnectChildEvent(f func(event *core.QChildEvent)) {
-	defer qt.Recovering("connect QWebEngineUrlRequestInterceptor::childEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineUrlRequestInterceptor::childEvent", f)
@@ -6827,8 +5648,6 @@ func (ptr *QWebEngineUrlRequestInterceptor) ConnectChildEvent(f func(event *core
 }
 
 func (ptr *QWebEngineUrlRequestInterceptor) DisconnectChildEvent() {
-	defer qt.Recovering("disconnect QWebEngineUrlRequestInterceptor::childEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineUrlRequestInterceptor::childEvent")
@@ -6836,16 +5655,12 @@ func (ptr *QWebEngineUrlRequestInterceptor) DisconnectChildEvent() {
 }
 
 func (ptr *QWebEngineUrlRequestInterceptor) ChildEvent(event core.QChildEvent_ITF) {
-	defer qt.Recovering("QWebEngineUrlRequestInterceptor::childEvent")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineUrlRequestInterceptor_ChildEvent(ptr.Pointer(), core.PointerFromQChildEvent(event))
 	}
 }
 
 func (ptr *QWebEngineUrlRequestInterceptor) ChildEventDefault(event core.QChildEvent_ITF) {
-	defer qt.Recovering("QWebEngineUrlRequestInterceptor::childEvent")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineUrlRequestInterceptor_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
 	}
@@ -6853,7 +5668,6 @@ func (ptr *QWebEngineUrlRequestInterceptor) ChildEventDefault(event core.QChildE
 
 //export callbackQWebEngineUrlRequestInterceptor_ConnectNotify
 func callbackQWebEngineUrlRequestInterceptor_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-	defer qt.Recovering("callback QWebEngineUrlRequestInterceptor::connectNotify")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineUrlRequestInterceptor::connectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
@@ -6863,8 +5677,6 @@ func callbackQWebEngineUrlRequestInterceptor_ConnectNotify(ptr unsafe.Pointer, s
 }
 
 func (ptr *QWebEngineUrlRequestInterceptor) ConnectConnectNotify(f func(sign *core.QMetaMethod)) {
-	defer qt.Recovering("connect QWebEngineUrlRequestInterceptor::connectNotify")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineUrlRequestInterceptor::connectNotify", f)
@@ -6872,8 +5684,6 @@ func (ptr *QWebEngineUrlRequestInterceptor) ConnectConnectNotify(f func(sign *co
 }
 
 func (ptr *QWebEngineUrlRequestInterceptor) DisconnectConnectNotify() {
-	defer qt.Recovering("disconnect QWebEngineUrlRequestInterceptor::connectNotify")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineUrlRequestInterceptor::connectNotify")
@@ -6881,16 +5691,12 @@ func (ptr *QWebEngineUrlRequestInterceptor) DisconnectConnectNotify() {
 }
 
 func (ptr *QWebEngineUrlRequestInterceptor) ConnectNotify(sign core.QMetaMethod_ITF) {
-	defer qt.Recovering("QWebEngineUrlRequestInterceptor::connectNotify")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineUrlRequestInterceptor_ConnectNotify(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
 	}
 }
 
 func (ptr *QWebEngineUrlRequestInterceptor) ConnectNotifyDefault(sign core.QMetaMethod_ITF) {
-	defer qt.Recovering("QWebEngineUrlRequestInterceptor::connectNotify")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineUrlRequestInterceptor_ConnectNotifyDefault(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
 	}
@@ -6898,7 +5704,6 @@ func (ptr *QWebEngineUrlRequestInterceptor) ConnectNotifyDefault(sign core.QMeta
 
 //export callbackQWebEngineUrlRequestInterceptor_CustomEvent
 func callbackQWebEngineUrlRequestInterceptor_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	defer qt.Recovering("callback QWebEngineUrlRequestInterceptor::customEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineUrlRequestInterceptor::customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
@@ -6908,8 +5713,6 @@ func callbackQWebEngineUrlRequestInterceptor_CustomEvent(ptr unsafe.Pointer, eve
 }
 
 func (ptr *QWebEngineUrlRequestInterceptor) ConnectCustomEvent(f func(event *core.QEvent)) {
-	defer qt.Recovering("connect QWebEngineUrlRequestInterceptor::customEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineUrlRequestInterceptor::customEvent", f)
@@ -6917,8 +5720,6 @@ func (ptr *QWebEngineUrlRequestInterceptor) ConnectCustomEvent(f func(event *cor
 }
 
 func (ptr *QWebEngineUrlRequestInterceptor) DisconnectCustomEvent() {
-	defer qt.Recovering("disconnect QWebEngineUrlRequestInterceptor::customEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineUrlRequestInterceptor::customEvent")
@@ -6926,16 +5727,12 @@ func (ptr *QWebEngineUrlRequestInterceptor) DisconnectCustomEvent() {
 }
 
 func (ptr *QWebEngineUrlRequestInterceptor) CustomEvent(event core.QEvent_ITF) {
-	defer qt.Recovering("QWebEngineUrlRequestInterceptor::customEvent")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineUrlRequestInterceptor_CustomEvent(ptr.Pointer(), core.PointerFromQEvent(event))
 	}
 }
 
 func (ptr *QWebEngineUrlRequestInterceptor) CustomEventDefault(event core.QEvent_ITF) {
-	defer qt.Recovering("QWebEngineUrlRequestInterceptor::customEvent")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineUrlRequestInterceptor_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
 	}
@@ -6943,8 +5740,6 @@ func (ptr *QWebEngineUrlRequestInterceptor) CustomEventDefault(event core.QEvent
 
 //export callbackQWebEngineUrlRequestInterceptor_DeleteLater
 func callbackQWebEngineUrlRequestInterceptor_DeleteLater(ptr unsafe.Pointer) {
-	defer qt.Recovering("callback QWebEngineUrlRequestInterceptor::deleteLater")
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineUrlRequestInterceptor::deleteLater"); signal != nil {
 		signal.(func())()
 	} else {
@@ -6953,8 +5748,6 @@ func callbackQWebEngineUrlRequestInterceptor_DeleteLater(ptr unsafe.Pointer) {
 }
 
 func (ptr *QWebEngineUrlRequestInterceptor) ConnectDeleteLater(f func()) {
-	defer qt.Recovering("connect QWebEngineUrlRequestInterceptor::deleteLater")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineUrlRequestInterceptor::deleteLater", f)
@@ -6962,8 +5755,6 @@ func (ptr *QWebEngineUrlRequestInterceptor) ConnectDeleteLater(f func()) {
 }
 
 func (ptr *QWebEngineUrlRequestInterceptor) DisconnectDeleteLater() {
-	defer qt.Recovering("disconnect QWebEngineUrlRequestInterceptor::deleteLater")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineUrlRequestInterceptor::deleteLater")
@@ -6971,8 +5762,6 @@ func (ptr *QWebEngineUrlRequestInterceptor) DisconnectDeleteLater() {
 }
 
 func (ptr *QWebEngineUrlRequestInterceptor) DeleteLater() {
-	defer qt.Recovering("QWebEngineUrlRequestInterceptor::deleteLater")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineUrlRequestInterceptor_DeleteLater(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
@@ -6981,8 +5770,6 @@ func (ptr *QWebEngineUrlRequestInterceptor) DeleteLater() {
 }
 
 func (ptr *QWebEngineUrlRequestInterceptor) DeleteLaterDefault() {
-	defer qt.Recovering("QWebEngineUrlRequestInterceptor::deleteLater")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineUrlRequestInterceptor_DeleteLaterDefault(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
@@ -6992,7 +5779,6 @@ func (ptr *QWebEngineUrlRequestInterceptor) DeleteLaterDefault() {
 
 //export callbackQWebEngineUrlRequestInterceptor_DisconnectNotify
 func callbackQWebEngineUrlRequestInterceptor_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-	defer qt.Recovering("callback QWebEngineUrlRequestInterceptor::disconnectNotify")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineUrlRequestInterceptor::disconnectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
@@ -7002,8 +5788,6 @@ func callbackQWebEngineUrlRequestInterceptor_DisconnectNotify(ptr unsafe.Pointer
 }
 
 func (ptr *QWebEngineUrlRequestInterceptor) ConnectDisconnectNotify(f func(sign *core.QMetaMethod)) {
-	defer qt.Recovering("connect QWebEngineUrlRequestInterceptor::disconnectNotify")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineUrlRequestInterceptor::disconnectNotify", f)
@@ -7011,8 +5795,6 @@ func (ptr *QWebEngineUrlRequestInterceptor) ConnectDisconnectNotify(f func(sign 
 }
 
 func (ptr *QWebEngineUrlRequestInterceptor) DisconnectDisconnectNotify() {
-	defer qt.Recovering("disconnect QWebEngineUrlRequestInterceptor::disconnectNotify")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineUrlRequestInterceptor::disconnectNotify")
@@ -7020,16 +5802,12 @@ func (ptr *QWebEngineUrlRequestInterceptor) DisconnectDisconnectNotify() {
 }
 
 func (ptr *QWebEngineUrlRequestInterceptor) DisconnectNotify(sign core.QMetaMethod_ITF) {
-	defer qt.Recovering("QWebEngineUrlRequestInterceptor::disconnectNotify")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineUrlRequestInterceptor_DisconnectNotify(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
 	}
 }
 
 func (ptr *QWebEngineUrlRequestInterceptor) DisconnectNotifyDefault(sign core.QMetaMethod_ITF) {
-	defer qt.Recovering("QWebEngineUrlRequestInterceptor::disconnectNotify")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineUrlRequestInterceptor_DisconnectNotifyDefault(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
 	}
@@ -7037,7 +5815,6 @@ func (ptr *QWebEngineUrlRequestInterceptor) DisconnectNotifyDefault(sign core.QM
 
 //export callbackQWebEngineUrlRequestInterceptor_Event
 func callbackQWebEngineUrlRequestInterceptor_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
-	defer qt.Recovering("callback QWebEngineUrlRequestInterceptor::event")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineUrlRequestInterceptor::event"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
@@ -7047,8 +5824,6 @@ func callbackQWebEngineUrlRequestInterceptor_Event(ptr unsafe.Pointer, e unsafe.
 }
 
 func (ptr *QWebEngineUrlRequestInterceptor) ConnectEvent(f func(e *core.QEvent) bool) {
-	defer qt.Recovering("connect QWebEngineUrlRequestInterceptor::event")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineUrlRequestInterceptor::event", f)
@@ -7056,8 +5831,6 @@ func (ptr *QWebEngineUrlRequestInterceptor) ConnectEvent(f func(e *core.QEvent) 
 }
 
 func (ptr *QWebEngineUrlRequestInterceptor) DisconnectEvent() {
-	defer qt.Recovering("disconnect QWebEngineUrlRequestInterceptor::event")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineUrlRequestInterceptor::event")
@@ -7065,8 +5838,6 @@ func (ptr *QWebEngineUrlRequestInterceptor) DisconnectEvent() {
 }
 
 func (ptr *QWebEngineUrlRequestInterceptor) Event(e core.QEvent_ITF) bool {
-	defer qt.Recovering("QWebEngineUrlRequestInterceptor::event")
-
 	if ptr.Pointer() != nil {
 		return C.QWebEngineUrlRequestInterceptor_Event(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
 	}
@@ -7074,8 +5845,6 @@ func (ptr *QWebEngineUrlRequestInterceptor) Event(e core.QEvent_ITF) bool {
 }
 
 func (ptr *QWebEngineUrlRequestInterceptor) EventDefault(e core.QEvent_ITF) bool {
-	defer qt.Recovering("QWebEngineUrlRequestInterceptor::event")
-
 	if ptr.Pointer() != nil {
 		return C.QWebEngineUrlRequestInterceptor_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
 	}
@@ -7084,7 +5853,6 @@ func (ptr *QWebEngineUrlRequestInterceptor) EventDefault(e core.QEvent_ITF) bool
 
 //export callbackQWebEngineUrlRequestInterceptor_EventFilter
 func callbackQWebEngineUrlRequestInterceptor_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-	defer qt.Recovering("callback QWebEngineUrlRequestInterceptor::eventFilter")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineUrlRequestInterceptor::eventFilter"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
@@ -7094,8 +5862,6 @@ func callbackQWebEngineUrlRequestInterceptor_EventFilter(ptr unsafe.Pointer, wat
 }
 
 func (ptr *QWebEngineUrlRequestInterceptor) ConnectEventFilter(f func(watched *core.QObject, event *core.QEvent) bool) {
-	defer qt.Recovering("connect QWebEngineUrlRequestInterceptor::eventFilter")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineUrlRequestInterceptor::eventFilter", f)
@@ -7103,8 +5869,6 @@ func (ptr *QWebEngineUrlRequestInterceptor) ConnectEventFilter(f func(watched *c
 }
 
 func (ptr *QWebEngineUrlRequestInterceptor) DisconnectEventFilter() {
-	defer qt.Recovering("disconnect QWebEngineUrlRequestInterceptor::eventFilter")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineUrlRequestInterceptor::eventFilter")
@@ -7112,8 +5876,6 @@ func (ptr *QWebEngineUrlRequestInterceptor) DisconnectEventFilter() {
 }
 
 func (ptr *QWebEngineUrlRequestInterceptor) EventFilter(watched core.QObject_ITF, event core.QEvent_ITF) bool {
-	defer qt.Recovering("QWebEngineUrlRequestInterceptor::eventFilter")
-
 	if ptr.Pointer() != nil {
 		return C.QWebEngineUrlRequestInterceptor_EventFilter(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
 	}
@@ -7121,8 +5883,6 @@ func (ptr *QWebEngineUrlRequestInterceptor) EventFilter(watched core.QObject_ITF
 }
 
 func (ptr *QWebEngineUrlRequestInterceptor) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
-	defer qt.Recovering("QWebEngineUrlRequestInterceptor::eventFilter")
-
 	if ptr.Pointer() != nil {
 		return C.QWebEngineUrlRequestInterceptor_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
 	}
@@ -7131,7 +5891,6 @@ func (ptr *QWebEngineUrlRequestInterceptor) EventFilterDefault(watched core.QObj
 
 //export callbackQWebEngineUrlRequestInterceptor_MetaObject
 func callbackQWebEngineUrlRequestInterceptor_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-	defer qt.Recovering("callback QWebEngineUrlRequestInterceptor::metaObject")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineUrlRequestInterceptor::metaObject"); signal != nil {
 		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
@@ -7141,8 +5900,6 @@ func callbackQWebEngineUrlRequestInterceptor_MetaObject(ptr unsafe.Pointer) unsa
 }
 
 func (ptr *QWebEngineUrlRequestInterceptor) ConnectMetaObject(f func() *core.QMetaObject) {
-	defer qt.Recovering("connect QWebEngineUrlRequestInterceptor::metaObject")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineUrlRequestInterceptor::metaObject", f)
@@ -7150,8 +5907,6 @@ func (ptr *QWebEngineUrlRequestInterceptor) ConnectMetaObject(f func() *core.QMe
 }
 
 func (ptr *QWebEngineUrlRequestInterceptor) DisconnectMetaObject() {
-	defer qt.Recovering("disconnect QWebEngineUrlRequestInterceptor::metaObject")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineUrlRequestInterceptor::metaObject")
@@ -7159,8 +5914,6 @@ func (ptr *QWebEngineUrlRequestInterceptor) DisconnectMetaObject() {
 }
 
 func (ptr *QWebEngineUrlRequestInterceptor) MetaObject() *core.QMetaObject {
-	defer qt.Recovering("QWebEngineUrlRequestInterceptor::metaObject")
-
 	if ptr.Pointer() != nil {
 		return core.NewQMetaObjectFromPointer(C.QWebEngineUrlRequestInterceptor_MetaObject(ptr.Pointer()))
 	}
@@ -7168,8 +5921,6 @@ func (ptr *QWebEngineUrlRequestInterceptor) MetaObject() *core.QMetaObject {
 }
 
 func (ptr *QWebEngineUrlRequestInterceptor) MetaObjectDefault() *core.QMetaObject {
-	defer qt.Recovering("QWebEngineUrlRequestInterceptor::metaObject")
-
 	if ptr.Pointer() != nil {
 		return core.NewQMetaObjectFromPointer(C.QWebEngineUrlRequestInterceptor_MetaObjectDefault(ptr.Pointer()))
 	}
@@ -7234,24 +5985,18 @@ func (ptr *QWebEngineUrlRequestJob) DestroyQWebEngineUrlRequestJob() {
 }
 
 func (ptr *QWebEngineUrlRequestJob) Fail(r QWebEngineUrlRequestJob__Error) {
-	defer qt.Recovering("QWebEngineUrlRequestJob::fail")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineUrlRequestJob_Fail(ptr.Pointer(), C.longlong(r))
 	}
 }
 
 func (ptr *QWebEngineUrlRequestJob) Redirect(url core.QUrl_ITF) {
-	defer qt.Recovering("QWebEngineUrlRequestJob::redirect")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineUrlRequestJob_Redirect(ptr.Pointer(), core.PointerFromQUrl(url))
 	}
 }
 
 func (ptr *QWebEngineUrlRequestJob) Reply(contentType string, device core.QIODevice_ITF) {
-	defer qt.Recovering("QWebEngineUrlRequestJob::reply")
-
 	if ptr.Pointer() != nil {
 		var contentTypeC = C.CString(hex.EncodeToString([]byte(contentType)))
 		defer C.free(unsafe.Pointer(contentTypeC))
@@ -7260,8 +6005,6 @@ func (ptr *QWebEngineUrlRequestJob) Reply(contentType string, device core.QIODev
 }
 
 func (ptr *QWebEngineUrlRequestJob) RequestMethod() string {
-	defer qt.Recovering("QWebEngineUrlRequestJob::requestMethod")
-
 	if ptr.Pointer() != nil {
 		return qt.HexDecodeToString(C.GoString(C.QWebEngineUrlRequestJob_RequestMethod(ptr.Pointer())))
 	}
@@ -7269,8 +6012,6 @@ func (ptr *QWebEngineUrlRequestJob) RequestMethod() string {
 }
 
 func (ptr *QWebEngineUrlRequestJob) RequestUrl() *core.QUrl {
-	defer qt.Recovering("QWebEngineUrlRequestJob::requestUrl")
-
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQUrlFromPointer(C.QWebEngineUrlRequestJob_RequestUrl(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*core.QUrl).DestroyQUrl)
@@ -7281,7 +6022,6 @@ func (ptr *QWebEngineUrlRequestJob) RequestUrl() *core.QUrl {
 
 //export callbackQWebEngineUrlRequestJob_TimerEvent
 func callbackQWebEngineUrlRequestJob_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	defer qt.Recovering("callback QWebEngineUrlRequestJob::timerEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineUrlRequestJob::timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
@@ -7291,8 +6031,6 @@ func callbackQWebEngineUrlRequestJob_TimerEvent(ptr unsafe.Pointer, event unsafe
 }
 
 func (ptr *QWebEngineUrlRequestJob) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
-	defer qt.Recovering("connect QWebEngineUrlRequestJob::timerEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineUrlRequestJob::timerEvent", f)
@@ -7300,8 +6038,6 @@ func (ptr *QWebEngineUrlRequestJob) ConnectTimerEvent(f func(event *core.QTimerE
 }
 
 func (ptr *QWebEngineUrlRequestJob) DisconnectTimerEvent() {
-	defer qt.Recovering("disconnect QWebEngineUrlRequestJob::timerEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineUrlRequestJob::timerEvent")
@@ -7309,16 +6045,12 @@ func (ptr *QWebEngineUrlRequestJob) DisconnectTimerEvent() {
 }
 
 func (ptr *QWebEngineUrlRequestJob) TimerEvent(event core.QTimerEvent_ITF) {
-	defer qt.Recovering("QWebEngineUrlRequestJob::timerEvent")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineUrlRequestJob_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
 	}
 }
 
 func (ptr *QWebEngineUrlRequestJob) TimerEventDefault(event core.QTimerEvent_ITF) {
-	defer qt.Recovering("QWebEngineUrlRequestJob::timerEvent")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineUrlRequestJob_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
 	}
@@ -7326,7 +6058,6 @@ func (ptr *QWebEngineUrlRequestJob) TimerEventDefault(event core.QTimerEvent_ITF
 
 //export callbackQWebEngineUrlRequestJob_ChildEvent
 func callbackQWebEngineUrlRequestJob_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	defer qt.Recovering("callback QWebEngineUrlRequestJob::childEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineUrlRequestJob::childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
@@ -7336,8 +6067,6 @@ func callbackQWebEngineUrlRequestJob_ChildEvent(ptr unsafe.Pointer, event unsafe
 }
 
 func (ptr *QWebEngineUrlRequestJob) ConnectChildEvent(f func(event *core.QChildEvent)) {
-	defer qt.Recovering("connect QWebEngineUrlRequestJob::childEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineUrlRequestJob::childEvent", f)
@@ -7345,8 +6074,6 @@ func (ptr *QWebEngineUrlRequestJob) ConnectChildEvent(f func(event *core.QChildE
 }
 
 func (ptr *QWebEngineUrlRequestJob) DisconnectChildEvent() {
-	defer qt.Recovering("disconnect QWebEngineUrlRequestJob::childEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineUrlRequestJob::childEvent")
@@ -7354,16 +6081,12 @@ func (ptr *QWebEngineUrlRequestJob) DisconnectChildEvent() {
 }
 
 func (ptr *QWebEngineUrlRequestJob) ChildEvent(event core.QChildEvent_ITF) {
-	defer qt.Recovering("QWebEngineUrlRequestJob::childEvent")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineUrlRequestJob_ChildEvent(ptr.Pointer(), core.PointerFromQChildEvent(event))
 	}
 }
 
 func (ptr *QWebEngineUrlRequestJob) ChildEventDefault(event core.QChildEvent_ITF) {
-	defer qt.Recovering("QWebEngineUrlRequestJob::childEvent")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineUrlRequestJob_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
 	}
@@ -7371,7 +6094,6 @@ func (ptr *QWebEngineUrlRequestJob) ChildEventDefault(event core.QChildEvent_ITF
 
 //export callbackQWebEngineUrlRequestJob_ConnectNotify
 func callbackQWebEngineUrlRequestJob_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-	defer qt.Recovering("callback QWebEngineUrlRequestJob::connectNotify")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineUrlRequestJob::connectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
@@ -7381,8 +6103,6 @@ func callbackQWebEngineUrlRequestJob_ConnectNotify(ptr unsafe.Pointer, sign unsa
 }
 
 func (ptr *QWebEngineUrlRequestJob) ConnectConnectNotify(f func(sign *core.QMetaMethod)) {
-	defer qt.Recovering("connect QWebEngineUrlRequestJob::connectNotify")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineUrlRequestJob::connectNotify", f)
@@ -7390,8 +6110,6 @@ func (ptr *QWebEngineUrlRequestJob) ConnectConnectNotify(f func(sign *core.QMeta
 }
 
 func (ptr *QWebEngineUrlRequestJob) DisconnectConnectNotify() {
-	defer qt.Recovering("disconnect QWebEngineUrlRequestJob::connectNotify")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineUrlRequestJob::connectNotify")
@@ -7399,16 +6117,12 @@ func (ptr *QWebEngineUrlRequestJob) DisconnectConnectNotify() {
 }
 
 func (ptr *QWebEngineUrlRequestJob) ConnectNotify(sign core.QMetaMethod_ITF) {
-	defer qt.Recovering("QWebEngineUrlRequestJob::connectNotify")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineUrlRequestJob_ConnectNotify(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
 	}
 }
 
 func (ptr *QWebEngineUrlRequestJob) ConnectNotifyDefault(sign core.QMetaMethod_ITF) {
-	defer qt.Recovering("QWebEngineUrlRequestJob::connectNotify")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineUrlRequestJob_ConnectNotifyDefault(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
 	}
@@ -7416,7 +6130,6 @@ func (ptr *QWebEngineUrlRequestJob) ConnectNotifyDefault(sign core.QMetaMethod_I
 
 //export callbackQWebEngineUrlRequestJob_CustomEvent
 func callbackQWebEngineUrlRequestJob_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	defer qt.Recovering("callback QWebEngineUrlRequestJob::customEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineUrlRequestJob::customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
@@ -7426,8 +6139,6 @@ func callbackQWebEngineUrlRequestJob_CustomEvent(ptr unsafe.Pointer, event unsaf
 }
 
 func (ptr *QWebEngineUrlRequestJob) ConnectCustomEvent(f func(event *core.QEvent)) {
-	defer qt.Recovering("connect QWebEngineUrlRequestJob::customEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineUrlRequestJob::customEvent", f)
@@ -7435,8 +6146,6 @@ func (ptr *QWebEngineUrlRequestJob) ConnectCustomEvent(f func(event *core.QEvent
 }
 
 func (ptr *QWebEngineUrlRequestJob) DisconnectCustomEvent() {
-	defer qt.Recovering("disconnect QWebEngineUrlRequestJob::customEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineUrlRequestJob::customEvent")
@@ -7444,16 +6153,12 @@ func (ptr *QWebEngineUrlRequestJob) DisconnectCustomEvent() {
 }
 
 func (ptr *QWebEngineUrlRequestJob) CustomEvent(event core.QEvent_ITF) {
-	defer qt.Recovering("QWebEngineUrlRequestJob::customEvent")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineUrlRequestJob_CustomEvent(ptr.Pointer(), core.PointerFromQEvent(event))
 	}
 }
 
 func (ptr *QWebEngineUrlRequestJob) CustomEventDefault(event core.QEvent_ITF) {
-	defer qt.Recovering("QWebEngineUrlRequestJob::customEvent")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineUrlRequestJob_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
 	}
@@ -7461,8 +6166,6 @@ func (ptr *QWebEngineUrlRequestJob) CustomEventDefault(event core.QEvent_ITF) {
 
 //export callbackQWebEngineUrlRequestJob_DeleteLater
 func callbackQWebEngineUrlRequestJob_DeleteLater(ptr unsafe.Pointer) {
-	defer qt.Recovering("callback QWebEngineUrlRequestJob::deleteLater")
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineUrlRequestJob::deleteLater"); signal != nil {
 		signal.(func())()
 	} else {
@@ -7471,8 +6174,6 @@ func callbackQWebEngineUrlRequestJob_DeleteLater(ptr unsafe.Pointer) {
 }
 
 func (ptr *QWebEngineUrlRequestJob) ConnectDeleteLater(f func()) {
-	defer qt.Recovering("connect QWebEngineUrlRequestJob::deleteLater")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineUrlRequestJob::deleteLater", f)
@@ -7480,8 +6181,6 @@ func (ptr *QWebEngineUrlRequestJob) ConnectDeleteLater(f func()) {
 }
 
 func (ptr *QWebEngineUrlRequestJob) DisconnectDeleteLater() {
-	defer qt.Recovering("disconnect QWebEngineUrlRequestJob::deleteLater")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineUrlRequestJob::deleteLater")
@@ -7489,8 +6188,6 @@ func (ptr *QWebEngineUrlRequestJob) DisconnectDeleteLater() {
 }
 
 func (ptr *QWebEngineUrlRequestJob) DeleteLater() {
-	defer qt.Recovering("QWebEngineUrlRequestJob::deleteLater")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineUrlRequestJob_DeleteLater(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
@@ -7499,8 +6196,6 @@ func (ptr *QWebEngineUrlRequestJob) DeleteLater() {
 }
 
 func (ptr *QWebEngineUrlRequestJob) DeleteLaterDefault() {
-	defer qt.Recovering("QWebEngineUrlRequestJob::deleteLater")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineUrlRequestJob_DeleteLaterDefault(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
@@ -7510,7 +6205,6 @@ func (ptr *QWebEngineUrlRequestJob) DeleteLaterDefault() {
 
 //export callbackQWebEngineUrlRequestJob_DisconnectNotify
 func callbackQWebEngineUrlRequestJob_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-	defer qt.Recovering("callback QWebEngineUrlRequestJob::disconnectNotify")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineUrlRequestJob::disconnectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
@@ -7520,8 +6214,6 @@ func callbackQWebEngineUrlRequestJob_DisconnectNotify(ptr unsafe.Pointer, sign u
 }
 
 func (ptr *QWebEngineUrlRequestJob) ConnectDisconnectNotify(f func(sign *core.QMetaMethod)) {
-	defer qt.Recovering("connect QWebEngineUrlRequestJob::disconnectNotify")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineUrlRequestJob::disconnectNotify", f)
@@ -7529,8 +6221,6 @@ func (ptr *QWebEngineUrlRequestJob) ConnectDisconnectNotify(f func(sign *core.QM
 }
 
 func (ptr *QWebEngineUrlRequestJob) DisconnectDisconnectNotify() {
-	defer qt.Recovering("disconnect QWebEngineUrlRequestJob::disconnectNotify")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineUrlRequestJob::disconnectNotify")
@@ -7538,16 +6228,12 @@ func (ptr *QWebEngineUrlRequestJob) DisconnectDisconnectNotify() {
 }
 
 func (ptr *QWebEngineUrlRequestJob) DisconnectNotify(sign core.QMetaMethod_ITF) {
-	defer qt.Recovering("QWebEngineUrlRequestJob::disconnectNotify")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineUrlRequestJob_DisconnectNotify(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
 	}
 }
 
 func (ptr *QWebEngineUrlRequestJob) DisconnectNotifyDefault(sign core.QMetaMethod_ITF) {
-	defer qt.Recovering("QWebEngineUrlRequestJob::disconnectNotify")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineUrlRequestJob_DisconnectNotifyDefault(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
 	}
@@ -7555,7 +6241,6 @@ func (ptr *QWebEngineUrlRequestJob) DisconnectNotifyDefault(sign core.QMetaMetho
 
 //export callbackQWebEngineUrlRequestJob_Event
 func callbackQWebEngineUrlRequestJob_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
-	defer qt.Recovering("callback QWebEngineUrlRequestJob::event")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineUrlRequestJob::event"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
@@ -7565,8 +6250,6 @@ func callbackQWebEngineUrlRequestJob_Event(ptr unsafe.Pointer, e unsafe.Pointer)
 }
 
 func (ptr *QWebEngineUrlRequestJob) ConnectEvent(f func(e *core.QEvent) bool) {
-	defer qt.Recovering("connect QWebEngineUrlRequestJob::event")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineUrlRequestJob::event", f)
@@ -7574,8 +6257,6 @@ func (ptr *QWebEngineUrlRequestJob) ConnectEvent(f func(e *core.QEvent) bool) {
 }
 
 func (ptr *QWebEngineUrlRequestJob) DisconnectEvent() {
-	defer qt.Recovering("disconnect QWebEngineUrlRequestJob::event")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineUrlRequestJob::event")
@@ -7583,8 +6264,6 @@ func (ptr *QWebEngineUrlRequestJob) DisconnectEvent() {
 }
 
 func (ptr *QWebEngineUrlRequestJob) Event(e core.QEvent_ITF) bool {
-	defer qt.Recovering("QWebEngineUrlRequestJob::event")
-
 	if ptr.Pointer() != nil {
 		return C.QWebEngineUrlRequestJob_Event(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
 	}
@@ -7592,8 +6271,6 @@ func (ptr *QWebEngineUrlRequestJob) Event(e core.QEvent_ITF) bool {
 }
 
 func (ptr *QWebEngineUrlRequestJob) EventDefault(e core.QEvent_ITF) bool {
-	defer qt.Recovering("QWebEngineUrlRequestJob::event")
-
 	if ptr.Pointer() != nil {
 		return C.QWebEngineUrlRequestJob_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
 	}
@@ -7602,7 +6279,6 @@ func (ptr *QWebEngineUrlRequestJob) EventDefault(e core.QEvent_ITF) bool {
 
 //export callbackQWebEngineUrlRequestJob_EventFilter
 func callbackQWebEngineUrlRequestJob_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-	defer qt.Recovering("callback QWebEngineUrlRequestJob::eventFilter")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineUrlRequestJob::eventFilter"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
@@ -7612,8 +6288,6 @@ func callbackQWebEngineUrlRequestJob_EventFilter(ptr unsafe.Pointer, watched uns
 }
 
 func (ptr *QWebEngineUrlRequestJob) ConnectEventFilter(f func(watched *core.QObject, event *core.QEvent) bool) {
-	defer qt.Recovering("connect QWebEngineUrlRequestJob::eventFilter")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineUrlRequestJob::eventFilter", f)
@@ -7621,8 +6295,6 @@ func (ptr *QWebEngineUrlRequestJob) ConnectEventFilter(f func(watched *core.QObj
 }
 
 func (ptr *QWebEngineUrlRequestJob) DisconnectEventFilter() {
-	defer qt.Recovering("disconnect QWebEngineUrlRequestJob::eventFilter")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineUrlRequestJob::eventFilter")
@@ -7630,8 +6302,6 @@ func (ptr *QWebEngineUrlRequestJob) DisconnectEventFilter() {
 }
 
 func (ptr *QWebEngineUrlRequestJob) EventFilter(watched core.QObject_ITF, event core.QEvent_ITF) bool {
-	defer qt.Recovering("QWebEngineUrlRequestJob::eventFilter")
-
 	if ptr.Pointer() != nil {
 		return C.QWebEngineUrlRequestJob_EventFilter(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
 	}
@@ -7639,8 +6309,6 @@ func (ptr *QWebEngineUrlRequestJob) EventFilter(watched core.QObject_ITF, event 
 }
 
 func (ptr *QWebEngineUrlRequestJob) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
-	defer qt.Recovering("QWebEngineUrlRequestJob::eventFilter")
-
 	if ptr.Pointer() != nil {
 		return C.QWebEngineUrlRequestJob_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
 	}
@@ -7649,7 +6317,6 @@ func (ptr *QWebEngineUrlRequestJob) EventFilterDefault(watched core.QObject_ITF,
 
 //export callbackQWebEngineUrlRequestJob_MetaObject
 func callbackQWebEngineUrlRequestJob_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-	defer qt.Recovering("callback QWebEngineUrlRequestJob::metaObject")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineUrlRequestJob::metaObject"); signal != nil {
 		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
@@ -7659,8 +6326,6 @@ func callbackQWebEngineUrlRequestJob_MetaObject(ptr unsafe.Pointer) unsafe.Point
 }
 
 func (ptr *QWebEngineUrlRequestJob) ConnectMetaObject(f func() *core.QMetaObject) {
-	defer qt.Recovering("connect QWebEngineUrlRequestJob::metaObject")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineUrlRequestJob::metaObject", f)
@@ -7668,8 +6333,6 @@ func (ptr *QWebEngineUrlRequestJob) ConnectMetaObject(f func() *core.QMetaObject
 }
 
 func (ptr *QWebEngineUrlRequestJob) DisconnectMetaObject() {
-	defer qt.Recovering("disconnect QWebEngineUrlRequestJob::metaObject")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineUrlRequestJob::metaObject")
@@ -7677,8 +6340,6 @@ func (ptr *QWebEngineUrlRequestJob) DisconnectMetaObject() {
 }
 
 func (ptr *QWebEngineUrlRequestJob) MetaObject() *core.QMetaObject {
-	defer qt.Recovering("QWebEngineUrlRequestJob::metaObject")
-
 	if ptr.Pointer() != nil {
 		return core.NewQMetaObjectFromPointer(C.QWebEngineUrlRequestJob_MetaObject(ptr.Pointer()))
 	}
@@ -7686,8 +6347,6 @@ func (ptr *QWebEngineUrlRequestJob) MetaObject() *core.QMetaObject {
 }
 
 func (ptr *QWebEngineUrlRequestJob) MetaObjectDefault() *core.QMetaObject {
-	defer qt.Recovering("QWebEngineUrlRequestJob::metaObject")
-
 	if ptr.Pointer() != nil {
 		return core.NewQMetaObjectFromPointer(C.QWebEngineUrlRequestJob_MetaObjectDefault(ptr.Pointer()))
 	}
@@ -7733,8 +6392,6 @@ func NewQWebEngineUrlSchemeHandlerFromPointer(ptr unsafe.Pointer) *QWebEngineUrl
 	return n
 }
 func NewQWebEngineUrlSchemeHandler(parent core.QObject_ITF) *QWebEngineUrlSchemeHandler {
-	defer qt.Recovering("QWebEngineUrlSchemeHandler::QWebEngineUrlSchemeHandler")
-
 	var tmpValue = NewQWebEngineUrlSchemeHandlerFromPointer(C.QWebEngineUrlSchemeHandler_NewQWebEngineUrlSchemeHandler(core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
@@ -7744,7 +6401,6 @@ func NewQWebEngineUrlSchemeHandler(parent core.QObject_ITF) *QWebEngineUrlScheme
 
 //export callbackQWebEngineUrlSchemeHandler_RequestStarted
 func callbackQWebEngineUrlSchemeHandler_RequestStarted(ptr unsafe.Pointer, request unsafe.Pointer) {
-	defer qt.Recovering("callback QWebEngineUrlSchemeHandler::requestStarted")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineUrlSchemeHandler::requestStarted"); signal != nil {
 		signal.(func(*QWebEngineUrlRequestJob))(NewQWebEngineUrlRequestJobFromPointer(request))
@@ -7753,8 +6409,6 @@ func callbackQWebEngineUrlSchemeHandler_RequestStarted(ptr unsafe.Pointer, reque
 }
 
 func (ptr *QWebEngineUrlSchemeHandler) ConnectRequestStarted(f func(request *QWebEngineUrlRequestJob)) {
-	defer qt.Recovering("connect QWebEngineUrlSchemeHandler::requestStarted")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineUrlSchemeHandler::requestStarted", f)
@@ -7762,8 +6416,6 @@ func (ptr *QWebEngineUrlSchemeHandler) ConnectRequestStarted(f func(request *QWe
 }
 
 func (ptr *QWebEngineUrlSchemeHandler) DisconnectRequestStarted(request QWebEngineUrlRequestJob_ITF) {
-	defer qt.Recovering("disconnect QWebEngineUrlSchemeHandler::requestStarted")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineUrlSchemeHandler::requestStarted")
@@ -7771,16 +6423,12 @@ func (ptr *QWebEngineUrlSchemeHandler) DisconnectRequestStarted(request QWebEngi
 }
 
 func (ptr *QWebEngineUrlSchemeHandler) RequestStarted(request QWebEngineUrlRequestJob_ITF) {
-	defer qt.Recovering("QWebEngineUrlSchemeHandler::requestStarted")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineUrlSchemeHandler_RequestStarted(ptr.Pointer(), PointerFromQWebEngineUrlRequestJob(request))
 	}
 }
 
 func (ptr *QWebEngineUrlSchemeHandler) DestroyQWebEngineUrlSchemeHandler() {
-	defer qt.Recovering("QWebEngineUrlSchemeHandler::~QWebEngineUrlSchemeHandler")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineUrlSchemeHandler_DestroyQWebEngineUrlSchemeHandler(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
@@ -7790,7 +6438,6 @@ func (ptr *QWebEngineUrlSchemeHandler) DestroyQWebEngineUrlSchemeHandler() {
 
 //export callbackQWebEngineUrlSchemeHandler_TimerEvent
 func callbackQWebEngineUrlSchemeHandler_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	defer qt.Recovering("callback QWebEngineUrlSchemeHandler::timerEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineUrlSchemeHandler::timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
@@ -7800,8 +6447,6 @@ func callbackQWebEngineUrlSchemeHandler_TimerEvent(ptr unsafe.Pointer, event uns
 }
 
 func (ptr *QWebEngineUrlSchemeHandler) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
-	defer qt.Recovering("connect QWebEngineUrlSchemeHandler::timerEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineUrlSchemeHandler::timerEvent", f)
@@ -7809,8 +6454,6 @@ func (ptr *QWebEngineUrlSchemeHandler) ConnectTimerEvent(f func(event *core.QTim
 }
 
 func (ptr *QWebEngineUrlSchemeHandler) DisconnectTimerEvent() {
-	defer qt.Recovering("disconnect QWebEngineUrlSchemeHandler::timerEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineUrlSchemeHandler::timerEvent")
@@ -7818,16 +6461,12 @@ func (ptr *QWebEngineUrlSchemeHandler) DisconnectTimerEvent() {
 }
 
 func (ptr *QWebEngineUrlSchemeHandler) TimerEvent(event core.QTimerEvent_ITF) {
-	defer qt.Recovering("QWebEngineUrlSchemeHandler::timerEvent")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineUrlSchemeHandler_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
 	}
 }
 
 func (ptr *QWebEngineUrlSchemeHandler) TimerEventDefault(event core.QTimerEvent_ITF) {
-	defer qt.Recovering("QWebEngineUrlSchemeHandler::timerEvent")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineUrlSchemeHandler_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
 	}
@@ -7835,7 +6474,6 @@ func (ptr *QWebEngineUrlSchemeHandler) TimerEventDefault(event core.QTimerEvent_
 
 //export callbackQWebEngineUrlSchemeHandler_ChildEvent
 func callbackQWebEngineUrlSchemeHandler_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	defer qt.Recovering("callback QWebEngineUrlSchemeHandler::childEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineUrlSchemeHandler::childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
@@ -7845,8 +6483,6 @@ func callbackQWebEngineUrlSchemeHandler_ChildEvent(ptr unsafe.Pointer, event uns
 }
 
 func (ptr *QWebEngineUrlSchemeHandler) ConnectChildEvent(f func(event *core.QChildEvent)) {
-	defer qt.Recovering("connect QWebEngineUrlSchemeHandler::childEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineUrlSchemeHandler::childEvent", f)
@@ -7854,8 +6490,6 @@ func (ptr *QWebEngineUrlSchemeHandler) ConnectChildEvent(f func(event *core.QChi
 }
 
 func (ptr *QWebEngineUrlSchemeHandler) DisconnectChildEvent() {
-	defer qt.Recovering("disconnect QWebEngineUrlSchemeHandler::childEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineUrlSchemeHandler::childEvent")
@@ -7863,16 +6497,12 @@ func (ptr *QWebEngineUrlSchemeHandler) DisconnectChildEvent() {
 }
 
 func (ptr *QWebEngineUrlSchemeHandler) ChildEvent(event core.QChildEvent_ITF) {
-	defer qt.Recovering("QWebEngineUrlSchemeHandler::childEvent")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineUrlSchemeHandler_ChildEvent(ptr.Pointer(), core.PointerFromQChildEvent(event))
 	}
 }
 
 func (ptr *QWebEngineUrlSchemeHandler) ChildEventDefault(event core.QChildEvent_ITF) {
-	defer qt.Recovering("QWebEngineUrlSchemeHandler::childEvent")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineUrlSchemeHandler_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
 	}
@@ -7880,7 +6510,6 @@ func (ptr *QWebEngineUrlSchemeHandler) ChildEventDefault(event core.QChildEvent_
 
 //export callbackQWebEngineUrlSchemeHandler_ConnectNotify
 func callbackQWebEngineUrlSchemeHandler_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-	defer qt.Recovering("callback QWebEngineUrlSchemeHandler::connectNotify")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineUrlSchemeHandler::connectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
@@ -7890,8 +6519,6 @@ func callbackQWebEngineUrlSchemeHandler_ConnectNotify(ptr unsafe.Pointer, sign u
 }
 
 func (ptr *QWebEngineUrlSchemeHandler) ConnectConnectNotify(f func(sign *core.QMetaMethod)) {
-	defer qt.Recovering("connect QWebEngineUrlSchemeHandler::connectNotify")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineUrlSchemeHandler::connectNotify", f)
@@ -7899,8 +6526,6 @@ func (ptr *QWebEngineUrlSchemeHandler) ConnectConnectNotify(f func(sign *core.QM
 }
 
 func (ptr *QWebEngineUrlSchemeHandler) DisconnectConnectNotify() {
-	defer qt.Recovering("disconnect QWebEngineUrlSchemeHandler::connectNotify")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineUrlSchemeHandler::connectNotify")
@@ -7908,16 +6533,12 @@ func (ptr *QWebEngineUrlSchemeHandler) DisconnectConnectNotify() {
 }
 
 func (ptr *QWebEngineUrlSchemeHandler) ConnectNotify(sign core.QMetaMethod_ITF) {
-	defer qt.Recovering("QWebEngineUrlSchemeHandler::connectNotify")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineUrlSchemeHandler_ConnectNotify(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
 	}
 }
 
 func (ptr *QWebEngineUrlSchemeHandler) ConnectNotifyDefault(sign core.QMetaMethod_ITF) {
-	defer qt.Recovering("QWebEngineUrlSchemeHandler::connectNotify")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineUrlSchemeHandler_ConnectNotifyDefault(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
 	}
@@ -7925,7 +6546,6 @@ func (ptr *QWebEngineUrlSchemeHandler) ConnectNotifyDefault(sign core.QMetaMetho
 
 //export callbackQWebEngineUrlSchemeHandler_CustomEvent
 func callbackQWebEngineUrlSchemeHandler_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	defer qt.Recovering("callback QWebEngineUrlSchemeHandler::customEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineUrlSchemeHandler::customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
@@ -7935,8 +6555,6 @@ func callbackQWebEngineUrlSchemeHandler_CustomEvent(ptr unsafe.Pointer, event un
 }
 
 func (ptr *QWebEngineUrlSchemeHandler) ConnectCustomEvent(f func(event *core.QEvent)) {
-	defer qt.Recovering("connect QWebEngineUrlSchemeHandler::customEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineUrlSchemeHandler::customEvent", f)
@@ -7944,8 +6562,6 @@ func (ptr *QWebEngineUrlSchemeHandler) ConnectCustomEvent(f func(event *core.QEv
 }
 
 func (ptr *QWebEngineUrlSchemeHandler) DisconnectCustomEvent() {
-	defer qt.Recovering("disconnect QWebEngineUrlSchemeHandler::customEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineUrlSchemeHandler::customEvent")
@@ -7953,16 +6569,12 @@ func (ptr *QWebEngineUrlSchemeHandler) DisconnectCustomEvent() {
 }
 
 func (ptr *QWebEngineUrlSchemeHandler) CustomEvent(event core.QEvent_ITF) {
-	defer qt.Recovering("QWebEngineUrlSchemeHandler::customEvent")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineUrlSchemeHandler_CustomEvent(ptr.Pointer(), core.PointerFromQEvent(event))
 	}
 }
 
 func (ptr *QWebEngineUrlSchemeHandler) CustomEventDefault(event core.QEvent_ITF) {
-	defer qt.Recovering("QWebEngineUrlSchemeHandler::customEvent")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineUrlSchemeHandler_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
 	}
@@ -7970,8 +6582,6 @@ func (ptr *QWebEngineUrlSchemeHandler) CustomEventDefault(event core.QEvent_ITF)
 
 //export callbackQWebEngineUrlSchemeHandler_DeleteLater
 func callbackQWebEngineUrlSchemeHandler_DeleteLater(ptr unsafe.Pointer) {
-	defer qt.Recovering("callback QWebEngineUrlSchemeHandler::deleteLater")
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineUrlSchemeHandler::deleteLater"); signal != nil {
 		signal.(func())()
 	} else {
@@ -7980,8 +6590,6 @@ func callbackQWebEngineUrlSchemeHandler_DeleteLater(ptr unsafe.Pointer) {
 }
 
 func (ptr *QWebEngineUrlSchemeHandler) ConnectDeleteLater(f func()) {
-	defer qt.Recovering("connect QWebEngineUrlSchemeHandler::deleteLater")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineUrlSchemeHandler::deleteLater", f)
@@ -7989,8 +6597,6 @@ func (ptr *QWebEngineUrlSchemeHandler) ConnectDeleteLater(f func()) {
 }
 
 func (ptr *QWebEngineUrlSchemeHandler) DisconnectDeleteLater() {
-	defer qt.Recovering("disconnect QWebEngineUrlSchemeHandler::deleteLater")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineUrlSchemeHandler::deleteLater")
@@ -7998,8 +6604,6 @@ func (ptr *QWebEngineUrlSchemeHandler) DisconnectDeleteLater() {
 }
 
 func (ptr *QWebEngineUrlSchemeHandler) DeleteLater() {
-	defer qt.Recovering("QWebEngineUrlSchemeHandler::deleteLater")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineUrlSchemeHandler_DeleteLater(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
@@ -8008,8 +6612,6 @@ func (ptr *QWebEngineUrlSchemeHandler) DeleteLater() {
 }
 
 func (ptr *QWebEngineUrlSchemeHandler) DeleteLaterDefault() {
-	defer qt.Recovering("QWebEngineUrlSchemeHandler::deleteLater")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineUrlSchemeHandler_DeleteLaterDefault(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
@@ -8019,7 +6621,6 @@ func (ptr *QWebEngineUrlSchemeHandler) DeleteLaterDefault() {
 
 //export callbackQWebEngineUrlSchemeHandler_DisconnectNotify
 func callbackQWebEngineUrlSchemeHandler_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-	defer qt.Recovering("callback QWebEngineUrlSchemeHandler::disconnectNotify")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineUrlSchemeHandler::disconnectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
@@ -8029,8 +6630,6 @@ func callbackQWebEngineUrlSchemeHandler_DisconnectNotify(ptr unsafe.Pointer, sig
 }
 
 func (ptr *QWebEngineUrlSchemeHandler) ConnectDisconnectNotify(f func(sign *core.QMetaMethod)) {
-	defer qt.Recovering("connect QWebEngineUrlSchemeHandler::disconnectNotify")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineUrlSchemeHandler::disconnectNotify", f)
@@ -8038,8 +6637,6 @@ func (ptr *QWebEngineUrlSchemeHandler) ConnectDisconnectNotify(f func(sign *core
 }
 
 func (ptr *QWebEngineUrlSchemeHandler) DisconnectDisconnectNotify() {
-	defer qt.Recovering("disconnect QWebEngineUrlSchemeHandler::disconnectNotify")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineUrlSchemeHandler::disconnectNotify")
@@ -8047,16 +6644,12 @@ func (ptr *QWebEngineUrlSchemeHandler) DisconnectDisconnectNotify() {
 }
 
 func (ptr *QWebEngineUrlSchemeHandler) DisconnectNotify(sign core.QMetaMethod_ITF) {
-	defer qt.Recovering("QWebEngineUrlSchemeHandler::disconnectNotify")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineUrlSchemeHandler_DisconnectNotify(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
 	}
 }
 
 func (ptr *QWebEngineUrlSchemeHandler) DisconnectNotifyDefault(sign core.QMetaMethod_ITF) {
-	defer qt.Recovering("QWebEngineUrlSchemeHandler::disconnectNotify")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineUrlSchemeHandler_DisconnectNotifyDefault(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
 	}
@@ -8064,7 +6657,6 @@ func (ptr *QWebEngineUrlSchemeHandler) DisconnectNotifyDefault(sign core.QMetaMe
 
 //export callbackQWebEngineUrlSchemeHandler_Event
 func callbackQWebEngineUrlSchemeHandler_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
-	defer qt.Recovering("callback QWebEngineUrlSchemeHandler::event")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineUrlSchemeHandler::event"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
@@ -8074,8 +6666,6 @@ func callbackQWebEngineUrlSchemeHandler_Event(ptr unsafe.Pointer, e unsafe.Point
 }
 
 func (ptr *QWebEngineUrlSchemeHandler) ConnectEvent(f func(e *core.QEvent) bool) {
-	defer qt.Recovering("connect QWebEngineUrlSchemeHandler::event")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineUrlSchemeHandler::event", f)
@@ -8083,8 +6673,6 @@ func (ptr *QWebEngineUrlSchemeHandler) ConnectEvent(f func(e *core.QEvent) bool)
 }
 
 func (ptr *QWebEngineUrlSchemeHandler) DisconnectEvent() {
-	defer qt.Recovering("disconnect QWebEngineUrlSchemeHandler::event")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineUrlSchemeHandler::event")
@@ -8092,8 +6680,6 @@ func (ptr *QWebEngineUrlSchemeHandler) DisconnectEvent() {
 }
 
 func (ptr *QWebEngineUrlSchemeHandler) Event(e core.QEvent_ITF) bool {
-	defer qt.Recovering("QWebEngineUrlSchemeHandler::event")
-
 	if ptr.Pointer() != nil {
 		return C.QWebEngineUrlSchemeHandler_Event(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
 	}
@@ -8101,8 +6687,6 @@ func (ptr *QWebEngineUrlSchemeHandler) Event(e core.QEvent_ITF) bool {
 }
 
 func (ptr *QWebEngineUrlSchemeHandler) EventDefault(e core.QEvent_ITF) bool {
-	defer qt.Recovering("QWebEngineUrlSchemeHandler::event")
-
 	if ptr.Pointer() != nil {
 		return C.QWebEngineUrlSchemeHandler_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
 	}
@@ -8111,7 +6695,6 @@ func (ptr *QWebEngineUrlSchemeHandler) EventDefault(e core.QEvent_ITF) bool {
 
 //export callbackQWebEngineUrlSchemeHandler_EventFilter
 func callbackQWebEngineUrlSchemeHandler_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-	defer qt.Recovering("callback QWebEngineUrlSchemeHandler::eventFilter")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineUrlSchemeHandler::eventFilter"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
@@ -8121,8 +6704,6 @@ func callbackQWebEngineUrlSchemeHandler_EventFilter(ptr unsafe.Pointer, watched 
 }
 
 func (ptr *QWebEngineUrlSchemeHandler) ConnectEventFilter(f func(watched *core.QObject, event *core.QEvent) bool) {
-	defer qt.Recovering("connect QWebEngineUrlSchemeHandler::eventFilter")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineUrlSchemeHandler::eventFilter", f)
@@ -8130,8 +6711,6 @@ func (ptr *QWebEngineUrlSchemeHandler) ConnectEventFilter(f func(watched *core.Q
 }
 
 func (ptr *QWebEngineUrlSchemeHandler) DisconnectEventFilter() {
-	defer qt.Recovering("disconnect QWebEngineUrlSchemeHandler::eventFilter")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineUrlSchemeHandler::eventFilter")
@@ -8139,8 +6718,6 @@ func (ptr *QWebEngineUrlSchemeHandler) DisconnectEventFilter() {
 }
 
 func (ptr *QWebEngineUrlSchemeHandler) EventFilter(watched core.QObject_ITF, event core.QEvent_ITF) bool {
-	defer qt.Recovering("QWebEngineUrlSchemeHandler::eventFilter")
-
 	if ptr.Pointer() != nil {
 		return C.QWebEngineUrlSchemeHandler_EventFilter(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
 	}
@@ -8148,8 +6725,6 @@ func (ptr *QWebEngineUrlSchemeHandler) EventFilter(watched core.QObject_ITF, eve
 }
 
 func (ptr *QWebEngineUrlSchemeHandler) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
-	defer qt.Recovering("QWebEngineUrlSchemeHandler::eventFilter")
-
 	if ptr.Pointer() != nil {
 		return C.QWebEngineUrlSchemeHandler_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
 	}
@@ -8158,7 +6733,6 @@ func (ptr *QWebEngineUrlSchemeHandler) EventFilterDefault(watched core.QObject_I
 
 //export callbackQWebEngineUrlSchemeHandler_MetaObject
 func callbackQWebEngineUrlSchemeHandler_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-	defer qt.Recovering("callback QWebEngineUrlSchemeHandler::metaObject")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineUrlSchemeHandler::metaObject"); signal != nil {
 		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
@@ -8168,8 +6742,6 @@ func callbackQWebEngineUrlSchemeHandler_MetaObject(ptr unsafe.Pointer) unsafe.Po
 }
 
 func (ptr *QWebEngineUrlSchemeHandler) ConnectMetaObject(f func() *core.QMetaObject) {
-	defer qt.Recovering("connect QWebEngineUrlSchemeHandler::metaObject")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineUrlSchemeHandler::metaObject", f)
@@ -8177,8 +6749,6 @@ func (ptr *QWebEngineUrlSchemeHandler) ConnectMetaObject(f func() *core.QMetaObj
 }
 
 func (ptr *QWebEngineUrlSchemeHandler) DisconnectMetaObject() {
-	defer qt.Recovering("disconnect QWebEngineUrlSchemeHandler::metaObject")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineUrlSchemeHandler::metaObject")
@@ -8186,8 +6756,6 @@ func (ptr *QWebEngineUrlSchemeHandler) DisconnectMetaObject() {
 }
 
 func (ptr *QWebEngineUrlSchemeHandler) MetaObject() *core.QMetaObject {
-	defer qt.Recovering("QWebEngineUrlSchemeHandler::metaObject")
-
 	if ptr.Pointer() != nil {
 		return core.NewQMetaObjectFromPointer(C.QWebEngineUrlSchemeHandler_MetaObject(ptr.Pointer()))
 	}
@@ -8195,8 +6763,6 @@ func (ptr *QWebEngineUrlSchemeHandler) MetaObject() *core.QMetaObject {
 }
 
 func (ptr *QWebEngineUrlSchemeHandler) MetaObjectDefault() *core.QMetaObject {
-	defer qt.Recovering("QWebEngineUrlSchemeHandler::metaObject")
-
 	if ptr.Pointer() != nil {
 		return core.NewQMetaObjectFromPointer(C.QWebEngineUrlSchemeHandler_MetaObjectDefault(ptr.Pointer()))
 	}
@@ -8242,8 +6808,6 @@ func NewQWebEngineViewFromPointer(ptr unsafe.Pointer) *QWebEngineView {
 	return n
 }
 func NewQWebEngineView(parent widgets.QWidget_ITF) *QWebEngineView {
-	defer qt.Recovering("QWebEngineView::QWebEngineView")
-
 	var tmpValue = NewQWebEngineViewFromPointer(C.QWebEngineView_NewQWebEngineView(widgets.PointerFromQWidget(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
@@ -8253,8 +6817,6 @@ func NewQWebEngineView(parent widgets.QWidget_ITF) *QWebEngineView {
 
 //export callbackQWebEngineView_Back
 func callbackQWebEngineView_Back(ptr unsafe.Pointer) {
-	defer qt.Recovering("callback QWebEngineView::back")
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineView::back"); signal != nil {
 		signal.(func())()
 	}
@@ -8262,8 +6824,6 @@ func callbackQWebEngineView_Back(ptr unsafe.Pointer) {
 }
 
 func (ptr *QWebEngineView) ConnectBack(f func()) {
-	defer qt.Recovering("connect QWebEngineView::back")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineView::back", f)
@@ -8271,8 +6831,6 @@ func (ptr *QWebEngineView) ConnectBack(f func()) {
 }
 
 func (ptr *QWebEngineView) DisconnectBack() {
-	defer qt.Recovering("disconnect QWebEngineView::back")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineView::back")
@@ -8280,8 +6838,6 @@ func (ptr *QWebEngineView) DisconnectBack() {
 }
 
 func (ptr *QWebEngineView) Back() {
-	defer qt.Recovering("QWebEngineView::back")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineView_Back(ptr.Pointer())
 	}
@@ -8289,7 +6845,6 @@ func (ptr *QWebEngineView) Back() {
 
 //export callbackQWebEngineView_CreateWindow
 func callbackQWebEngineView_CreateWindow(ptr unsafe.Pointer, ty C.longlong) unsafe.Pointer {
-	defer qt.Recovering("callback QWebEngineView::createWindow")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineView::createWindow"); signal != nil {
 		return PointerFromQWebEngineView(signal.(func(QWebEnginePage__WebWindowType) *QWebEngineView)(QWebEnginePage__WebWindowType(ty)))
@@ -8299,8 +6854,6 @@ func callbackQWebEngineView_CreateWindow(ptr unsafe.Pointer, ty C.longlong) unsa
 }
 
 func (ptr *QWebEngineView) ConnectCreateWindow(f func(ty QWebEnginePage__WebWindowType) *QWebEngineView) {
-	defer qt.Recovering("connect QWebEngineView::createWindow")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineView::createWindow", f)
@@ -8308,8 +6861,6 @@ func (ptr *QWebEngineView) ConnectCreateWindow(f func(ty QWebEnginePage__WebWind
 }
 
 func (ptr *QWebEngineView) DisconnectCreateWindow() {
-	defer qt.Recovering("disconnect QWebEngineView::createWindow")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineView::createWindow")
@@ -8317,8 +6868,6 @@ func (ptr *QWebEngineView) DisconnectCreateWindow() {
 }
 
 func (ptr *QWebEngineView) CreateWindow(ty QWebEnginePage__WebWindowType) *QWebEngineView {
-	defer qt.Recovering("QWebEngineView::createWindow")
-
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQWebEngineViewFromPointer(C.QWebEngineView_CreateWindow(ptr.Pointer(), C.longlong(ty)))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
@@ -8330,8 +6879,6 @@ func (ptr *QWebEngineView) CreateWindow(ty QWebEnginePage__WebWindowType) *QWebE
 }
 
 func (ptr *QWebEngineView) CreateWindowDefault(ty QWebEnginePage__WebWindowType) *QWebEngineView {
-	defer qt.Recovering("QWebEngineView::createWindow")
-
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQWebEngineViewFromPointer(C.QWebEngineView_CreateWindowDefault(ptr.Pointer(), C.longlong(ty)))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
@@ -8344,8 +6891,6 @@ func (ptr *QWebEngineView) CreateWindowDefault(ty QWebEnginePage__WebWindowType)
 
 //export callbackQWebEngineView_Forward
 func callbackQWebEngineView_Forward(ptr unsafe.Pointer) {
-	defer qt.Recovering("callback QWebEngineView::forward")
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineView::forward"); signal != nil {
 		signal.(func())()
 	}
@@ -8353,8 +6898,6 @@ func callbackQWebEngineView_Forward(ptr unsafe.Pointer) {
 }
 
 func (ptr *QWebEngineView) ConnectForward(f func()) {
-	defer qt.Recovering("connect QWebEngineView::forward")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineView::forward", f)
@@ -8362,8 +6905,6 @@ func (ptr *QWebEngineView) ConnectForward(f func()) {
 }
 
 func (ptr *QWebEngineView) DisconnectForward() {
-	defer qt.Recovering("disconnect QWebEngineView::forward")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineView::forward")
@@ -8371,16 +6912,12 @@ func (ptr *QWebEngineView) DisconnectForward() {
 }
 
 func (ptr *QWebEngineView) Forward() {
-	defer qt.Recovering("QWebEngineView::forward")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineView_Forward(ptr.Pointer())
 	}
 }
 
 func (ptr *QWebEngineView) HasSelection() bool {
-	defer qt.Recovering("QWebEngineView::hasSelection")
-
 	if ptr.Pointer() != nil {
 		return C.QWebEngineView_HasSelection(ptr.Pointer()) != 0
 	}
@@ -8388,8 +6925,6 @@ func (ptr *QWebEngineView) HasSelection() bool {
 }
 
 func (ptr *QWebEngineView) History() *QWebEngineHistory {
-	defer qt.Recovering("QWebEngineView::history")
-
 	if ptr.Pointer() != nil {
 		return NewQWebEngineHistoryFromPointer(C.QWebEngineView_History(ptr.Pointer()))
 	}
@@ -8397,8 +6932,6 @@ func (ptr *QWebEngineView) History() *QWebEngineHistory {
 }
 
 func (ptr *QWebEngineView) Icon() *gui.QIcon {
-	defer qt.Recovering("QWebEngineView::icon")
-
 	if ptr.Pointer() != nil {
 		var tmpValue = gui.NewQIconFromPointer(C.QWebEngineView_Icon(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*gui.QIcon).DestroyQIcon)
@@ -8408,8 +6941,6 @@ func (ptr *QWebEngineView) Icon() *gui.QIcon {
 }
 
 func (ptr *QWebEngineView) IconUrl() *core.QUrl {
-	defer qt.Recovering("QWebEngineView::iconUrl")
-
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQUrlFromPointer(C.QWebEngineView_IconUrl(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*core.QUrl).DestroyQUrl)
@@ -8419,16 +6950,12 @@ func (ptr *QWebEngineView) IconUrl() *core.QUrl {
 }
 
 func (ptr *QWebEngineView) Load(url core.QUrl_ITF) {
-	defer qt.Recovering("QWebEngineView::load")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineView_Load(ptr.Pointer(), core.PointerFromQUrl(url))
 	}
 }
 
 func (ptr *QWebEngineView) Page() *QWebEnginePage {
-	defer qt.Recovering("QWebEngineView::page")
-
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQWebEnginePageFromPointer(C.QWebEngineView_Page(ptr.Pointer()))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
@@ -8440,8 +6967,6 @@ func (ptr *QWebEngineView) Page() *QWebEnginePage {
 }
 
 func (ptr *QWebEngineView) PageAction(action QWebEnginePage__WebAction) *widgets.QAction {
-	defer qt.Recovering("QWebEngineView::pageAction")
-
 	if ptr.Pointer() != nil {
 		var tmpValue = widgets.NewQActionFromPointer(C.QWebEngineView_PageAction(ptr.Pointer(), C.longlong(action)))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
@@ -8454,8 +6979,6 @@ func (ptr *QWebEngineView) PageAction(action QWebEnginePage__WebAction) *widgets
 
 //export callbackQWebEngineView_Reload
 func callbackQWebEngineView_Reload(ptr unsafe.Pointer) {
-	defer qt.Recovering("callback QWebEngineView::reload")
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineView::reload"); signal != nil {
 		signal.(func())()
 	}
@@ -8463,8 +6986,6 @@ func callbackQWebEngineView_Reload(ptr unsafe.Pointer) {
 }
 
 func (ptr *QWebEngineView) ConnectReload(f func()) {
-	defer qt.Recovering("connect QWebEngineView::reload")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineView::reload", f)
@@ -8472,8 +6993,6 @@ func (ptr *QWebEngineView) ConnectReload(f func()) {
 }
 
 func (ptr *QWebEngineView) DisconnectReload() {
-	defer qt.Recovering("disconnect QWebEngineView::reload")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineView::reload")
@@ -8481,16 +7000,12 @@ func (ptr *QWebEngineView) DisconnectReload() {
 }
 
 func (ptr *QWebEngineView) Reload() {
-	defer qt.Recovering("QWebEngineView::reload")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineView_Reload(ptr.Pointer())
 	}
 }
 
 func (ptr *QWebEngineView) SelectedText() string {
-	defer qt.Recovering("QWebEngineView::selectedText")
-
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QWebEngineView_SelectedText(ptr.Pointer()))
 	}
@@ -8498,8 +7013,6 @@ func (ptr *QWebEngineView) SelectedText() string {
 }
 
 func (ptr *QWebEngineView) SetContent(data string, mimeType string, baseUrl core.QUrl_ITF) {
-	defer qt.Recovering("QWebEngineView::setContent")
-
 	if ptr.Pointer() != nil {
 		var dataC = C.CString(hex.EncodeToString([]byte(data)))
 		defer C.free(unsafe.Pointer(dataC))
@@ -8510,8 +7023,6 @@ func (ptr *QWebEngineView) SetContent(data string, mimeType string, baseUrl core
 }
 
 func (ptr *QWebEngineView) SetHtml(html string, baseUrl core.QUrl_ITF) {
-	defer qt.Recovering("QWebEngineView::setHtml")
-
 	if ptr.Pointer() != nil {
 		var htmlC = C.CString(html)
 		defer C.free(unsafe.Pointer(htmlC))
@@ -8520,32 +7031,24 @@ func (ptr *QWebEngineView) SetHtml(html string, baseUrl core.QUrl_ITF) {
 }
 
 func (ptr *QWebEngineView) SetPage(page QWebEnginePage_ITF) {
-	defer qt.Recovering("QWebEngineView::setPage")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineView_SetPage(ptr.Pointer(), PointerFromQWebEnginePage(page))
 	}
 }
 
 func (ptr *QWebEngineView) SetUrl(url core.QUrl_ITF) {
-	defer qt.Recovering("QWebEngineView::setUrl")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineView_SetUrl(ptr.Pointer(), core.PointerFromQUrl(url))
 	}
 }
 
 func (ptr *QWebEngineView) SetZoomFactor(factor float64) {
-	defer qt.Recovering("QWebEngineView::setZoomFactor")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineView_SetZoomFactor(ptr.Pointer(), C.double(factor))
 	}
 }
 
 func (ptr *QWebEngineView) Settings() *QWebEngineSettings {
-	defer qt.Recovering("QWebEngineView::settings")
-
 	if ptr.Pointer() != nil {
 		return NewQWebEngineSettingsFromPointer(C.QWebEngineView_Settings(ptr.Pointer()))
 	}
@@ -8554,8 +7057,6 @@ func (ptr *QWebEngineView) Settings() *QWebEngineSettings {
 
 //export callbackQWebEngineView_Stop
 func callbackQWebEngineView_Stop(ptr unsafe.Pointer) {
-	defer qt.Recovering("callback QWebEngineView::stop")
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineView::stop"); signal != nil {
 		signal.(func())()
 	}
@@ -8563,8 +7064,6 @@ func callbackQWebEngineView_Stop(ptr unsafe.Pointer) {
 }
 
 func (ptr *QWebEngineView) ConnectStop(f func()) {
-	defer qt.Recovering("connect QWebEngineView::stop")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineView::stop", f)
@@ -8572,8 +7071,6 @@ func (ptr *QWebEngineView) ConnectStop(f func()) {
 }
 
 func (ptr *QWebEngineView) DisconnectStop() {
-	defer qt.Recovering("disconnect QWebEngineView::stop")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineView::stop")
@@ -8581,16 +7078,12 @@ func (ptr *QWebEngineView) DisconnectStop() {
 }
 
 func (ptr *QWebEngineView) Stop() {
-	defer qt.Recovering("QWebEngineView::stop")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineView_Stop(ptr.Pointer())
 	}
 }
 
 func (ptr *QWebEngineView) Title() string {
-	defer qt.Recovering("QWebEngineView::title")
-
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QWebEngineView_Title(ptr.Pointer()))
 	}
@@ -8598,16 +7091,12 @@ func (ptr *QWebEngineView) Title() string {
 }
 
 func (ptr *QWebEngineView) TriggerPageAction(action QWebEnginePage__WebAction, checked bool) {
-	defer qt.Recovering("QWebEngineView::triggerPageAction")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineView_TriggerPageAction(ptr.Pointer(), C.longlong(action), C.char(int8(qt.GoBoolToInt(checked))))
 	}
 }
 
 func (ptr *QWebEngineView) Url() *core.QUrl {
-	defer qt.Recovering("QWebEngineView::url")
-
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQUrlFromPointer(C.QWebEngineView_Url(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*core.QUrl).DestroyQUrl)
@@ -8617,8 +7106,6 @@ func (ptr *QWebEngineView) Url() *core.QUrl {
 }
 
 func (ptr *QWebEngineView) ZoomFactor() float64 {
-	defer qt.Recovering("QWebEngineView::zoomFactor")
-
 	if ptr.Pointer() != nil {
 		return float64(C.QWebEngineView_ZoomFactor(ptr.Pointer()))
 	}
@@ -8627,7 +7114,6 @@ func (ptr *QWebEngineView) ZoomFactor() float64 {
 
 //export callbackQWebEngineView_DestroyQWebEngineView
 func callbackQWebEngineView_DestroyQWebEngineView(ptr unsafe.Pointer) {
-	defer qt.Recovering("callback QWebEngineView::~QWebEngineView")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineView::~QWebEngineView"); signal != nil {
 		signal.(func())()
@@ -8637,8 +7123,6 @@ func callbackQWebEngineView_DestroyQWebEngineView(ptr unsafe.Pointer) {
 }
 
 func (ptr *QWebEngineView) ConnectDestroyQWebEngineView(f func()) {
-	defer qt.Recovering("connect QWebEngineView::~QWebEngineView")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineView::~QWebEngineView", f)
@@ -8646,8 +7130,6 @@ func (ptr *QWebEngineView) ConnectDestroyQWebEngineView(f func()) {
 }
 
 func (ptr *QWebEngineView) DisconnectDestroyQWebEngineView() {
-	defer qt.Recovering("disconnect QWebEngineView::~QWebEngineView")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineView::~QWebEngineView")
@@ -8655,8 +7137,6 @@ func (ptr *QWebEngineView) DisconnectDestroyQWebEngineView() {
 }
 
 func (ptr *QWebEngineView) DestroyQWebEngineView() {
-	defer qt.Recovering("QWebEngineView::~QWebEngineView")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineView_DestroyQWebEngineView(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
@@ -8665,8 +7145,6 @@ func (ptr *QWebEngineView) DestroyQWebEngineView() {
 }
 
 func (ptr *QWebEngineView) DestroyQWebEngineViewDefault() {
-	defer qt.Recovering("QWebEngineView::~QWebEngineView")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineView_DestroyQWebEngineViewDefault(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
@@ -8676,7 +7154,6 @@ func (ptr *QWebEngineView) DestroyQWebEngineViewDefault() {
 
 //export callbackQWebEngineView_ContextMenuEvent
 func callbackQWebEngineView_ContextMenuEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	defer qt.Recovering("callback QWebEngineView::contextMenuEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineView::contextMenuEvent"); signal != nil {
 		signal.(func(*gui.QContextMenuEvent))(gui.NewQContextMenuEventFromPointer(event))
@@ -8686,8 +7163,6 @@ func callbackQWebEngineView_ContextMenuEvent(ptr unsafe.Pointer, event unsafe.Po
 }
 
 func (ptr *QWebEngineView) ConnectContextMenuEvent(f func(event *gui.QContextMenuEvent)) {
-	defer qt.Recovering("connect QWebEngineView::contextMenuEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineView::contextMenuEvent", f)
@@ -8695,8 +7170,6 @@ func (ptr *QWebEngineView) ConnectContextMenuEvent(f func(event *gui.QContextMen
 }
 
 func (ptr *QWebEngineView) DisconnectContextMenuEvent() {
-	defer qt.Recovering("disconnect QWebEngineView::contextMenuEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineView::contextMenuEvent")
@@ -8704,48 +7177,36 @@ func (ptr *QWebEngineView) DisconnectContextMenuEvent() {
 }
 
 func (ptr *QWebEngineView) ContextMenuEvent(event gui.QContextMenuEvent_ITF) {
-	defer qt.Recovering("QWebEngineView::contextMenuEvent")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineView_ContextMenuEvent(ptr.Pointer(), gui.PointerFromQContextMenuEvent(event))
 	}
 }
 
 func (ptr *QWebEngineView) ContextMenuEventDefault(event gui.QContextMenuEvent_ITF) {
-	defer qt.Recovering("QWebEngineView::contextMenuEvent")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineView_ContextMenuEventDefault(ptr.Pointer(), gui.PointerFromQContextMenuEvent(event))
 	}
 }
 
 func (ptr *QWebEngineView) DragEnterEvent(e gui.QDragEnterEvent_ITF) {
-	defer qt.Recovering("QWebEngineView::dragEnterEvent")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineView_DragEnterEvent(ptr.Pointer(), gui.PointerFromQDragEnterEvent(e))
 	}
 }
 
 func (ptr *QWebEngineView) DragLeaveEvent(e gui.QDragLeaveEvent_ITF) {
-	defer qt.Recovering("QWebEngineView::dragLeaveEvent")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineView_DragLeaveEvent(ptr.Pointer(), gui.PointerFromQDragLeaveEvent(e))
 	}
 }
 
 func (ptr *QWebEngineView) DragMoveEvent(e gui.QDragMoveEvent_ITF) {
-	defer qt.Recovering("QWebEngineView::dragMoveEvent")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineView_DragMoveEvent(ptr.Pointer(), gui.PointerFromQDragMoveEvent(e))
 	}
 }
 
 func (ptr *QWebEngineView) DropEvent(e gui.QDropEvent_ITF) {
-	defer qt.Recovering("QWebEngineView::dropEvent")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineView_DropEvent(ptr.Pointer(), gui.PointerFromQDropEvent(e))
 	}
@@ -8753,7 +7214,6 @@ func (ptr *QWebEngineView) DropEvent(e gui.QDropEvent_ITF) {
 
 //export callbackQWebEngineView_Event
 func callbackQWebEngineView_Event(ptr unsafe.Pointer, ev unsafe.Pointer) C.char {
-	defer qt.Recovering("callback QWebEngineView::event")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineView::event"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(ev)))))
@@ -8763,8 +7223,6 @@ func callbackQWebEngineView_Event(ptr unsafe.Pointer, ev unsafe.Pointer) C.char 
 }
 
 func (ptr *QWebEngineView) ConnectEvent(f func(ev *core.QEvent) bool) {
-	defer qt.Recovering("connect QWebEngineView::event")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineView::event", f)
@@ -8772,8 +7230,6 @@ func (ptr *QWebEngineView) ConnectEvent(f func(ev *core.QEvent) bool) {
 }
 
 func (ptr *QWebEngineView) DisconnectEvent() {
-	defer qt.Recovering("disconnect QWebEngineView::event")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineView::event")
@@ -8781,8 +7237,6 @@ func (ptr *QWebEngineView) DisconnectEvent() {
 }
 
 func (ptr *QWebEngineView) Event(ev core.QEvent_ITF) bool {
-	defer qt.Recovering("QWebEngineView::event")
-
 	if ptr.Pointer() != nil {
 		return C.QWebEngineView_Event(ptr.Pointer(), core.PointerFromQEvent(ev)) != 0
 	}
@@ -8790,8 +7244,6 @@ func (ptr *QWebEngineView) Event(ev core.QEvent_ITF) bool {
 }
 
 func (ptr *QWebEngineView) EventDefault(ev core.QEvent_ITF) bool {
-	defer qt.Recovering("QWebEngineView::event")
-
 	if ptr.Pointer() != nil {
 		return C.QWebEngineView_EventDefault(ptr.Pointer(), core.PointerFromQEvent(ev)) != 0
 	}
@@ -8799,8 +7251,6 @@ func (ptr *QWebEngineView) EventDefault(ev core.QEvent_ITF) bool {
 }
 
 func (ptr *QWebEngineView) FindText(subString string, options QWebEnginePage__FindFlag) {
-	defer qt.Recovering("QWebEngineView::findText")
-
 	if ptr.Pointer() != nil {
 		var subStringC = C.CString(subString)
 		defer C.free(unsafe.Pointer(subStringC))
@@ -8810,7 +7260,6 @@ func (ptr *QWebEngineView) FindText(subString string, options QWebEnginePage__Fi
 
 //export callbackQWebEngineView_HideEvent
 func callbackQWebEngineView_HideEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	defer qt.Recovering("callback QWebEngineView::hideEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineView::hideEvent"); signal != nil {
 		signal.(func(*gui.QHideEvent))(gui.NewQHideEventFromPointer(event))
@@ -8820,8 +7269,6 @@ func callbackQWebEngineView_HideEvent(ptr unsafe.Pointer, event unsafe.Pointer) 
 }
 
 func (ptr *QWebEngineView) ConnectHideEvent(f func(event *gui.QHideEvent)) {
-	defer qt.Recovering("connect QWebEngineView::hideEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineView::hideEvent", f)
@@ -8829,8 +7276,6 @@ func (ptr *QWebEngineView) ConnectHideEvent(f func(event *gui.QHideEvent)) {
 }
 
 func (ptr *QWebEngineView) DisconnectHideEvent() {
-	defer qt.Recovering("disconnect QWebEngineView::hideEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineView::hideEvent")
@@ -8838,16 +7283,12 @@ func (ptr *QWebEngineView) DisconnectHideEvent() {
 }
 
 func (ptr *QWebEngineView) HideEvent(event gui.QHideEvent_ITF) {
-	defer qt.Recovering("QWebEngineView::hideEvent")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineView_HideEvent(ptr.Pointer(), gui.PointerFromQHideEvent(event))
 	}
 }
 
 func (ptr *QWebEngineView) HideEventDefault(event gui.QHideEvent_ITF) {
-	defer qt.Recovering("QWebEngineView::hideEvent")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineView_HideEventDefault(ptr.Pointer(), gui.PointerFromQHideEvent(event))
 	}
@@ -8855,7 +7296,6 @@ func (ptr *QWebEngineView) HideEventDefault(event gui.QHideEvent_ITF) {
 
 //export callbackQWebEngineView_IconChanged
 func callbackQWebEngineView_IconChanged(ptr unsafe.Pointer, icon unsafe.Pointer) {
-	defer qt.Recovering("callback QWebEngineView::iconChanged")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineView::iconChanged"); signal != nil {
 		signal.(func(*gui.QIcon))(gui.NewQIconFromPointer(icon))
@@ -8864,8 +7304,6 @@ func callbackQWebEngineView_IconChanged(ptr unsafe.Pointer, icon unsafe.Pointer)
 }
 
 func (ptr *QWebEngineView) ConnectIconChanged(f func(icon *gui.QIcon)) {
-	defer qt.Recovering("connect QWebEngineView::iconChanged")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineView_ConnectIconChanged(ptr.Pointer())
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineView::iconChanged", f)
@@ -8873,8 +7311,6 @@ func (ptr *QWebEngineView) ConnectIconChanged(f func(icon *gui.QIcon)) {
 }
 
 func (ptr *QWebEngineView) DisconnectIconChanged() {
-	defer qt.Recovering("disconnect QWebEngineView::iconChanged")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineView_DisconnectIconChanged(ptr.Pointer())
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineView::iconChanged")
@@ -8882,8 +7318,6 @@ func (ptr *QWebEngineView) DisconnectIconChanged() {
 }
 
 func (ptr *QWebEngineView) IconChanged(icon gui.QIcon_ITF) {
-	defer qt.Recovering("QWebEngineView::iconChanged")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineView_IconChanged(ptr.Pointer(), gui.PointerFromQIcon(icon))
 	}
@@ -8891,7 +7325,6 @@ func (ptr *QWebEngineView) IconChanged(icon gui.QIcon_ITF) {
 
 //export callbackQWebEngineView_IconUrlChanged
 func callbackQWebEngineView_IconUrlChanged(ptr unsafe.Pointer, url unsafe.Pointer) {
-	defer qt.Recovering("callback QWebEngineView::iconUrlChanged")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineView::iconUrlChanged"); signal != nil {
 		signal.(func(*core.QUrl))(core.NewQUrlFromPointer(url))
@@ -8900,8 +7333,6 @@ func callbackQWebEngineView_IconUrlChanged(ptr unsafe.Pointer, url unsafe.Pointe
 }
 
 func (ptr *QWebEngineView) ConnectIconUrlChanged(f func(url *core.QUrl)) {
-	defer qt.Recovering("connect QWebEngineView::iconUrlChanged")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineView_ConnectIconUrlChanged(ptr.Pointer())
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineView::iconUrlChanged", f)
@@ -8909,8 +7340,6 @@ func (ptr *QWebEngineView) ConnectIconUrlChanged(f func(url *core.QUrl)) {
 }
 
 func (ptr *QWebEngineView) DisconnectIconUrlChanged() {
-	defer qt.Recovering("disconnect QWebEngineView::iconUrlChanged")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineView_DisconnectIconUrlChanged(ptr.Pointer())
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineView::iconUrlChanged")
@@ -8918,8 +7347,6 @@ func (ptr *QWebEngineView) DisconnectIconUrlChanged() {
 }
 
 func (ptr *QWebEngineView) IconUrlChanged(url core.QUrl_ITF) {
-	defer qt.Recovering("QWebEngineView::iconUrlChanged")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineView_IconUrlChanged(ptr.Pointer(), core.PointerFromQUrl(url))
 	}
@@ -8927,7 +7354,6 @@ func (ptr *QWebEngineView) IconUrlChanged(url core.QUrl_ITF) {
 
 //export callbackQWebEngineView_LoadFinished
 func callbackQWebEngineView_LoadFinished(ptr unsafe.Pointer, ok C.char) {
-	defer qt.Recovering("callback QWebEngineView::loadFinished")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineView::loadFinished"); signal != nil {
 		signal.(func(bool))(int8(ok) != 0)
@@ -8936,8 +7362,6 @@ func callbackQWebEngineView_LoadFinished(ptr unsafe.Pointer, ok C.char) {
 }
 
 func (ptr *QWebEngineView) ConnectLoadFinished(f func(ok bool)) {
-	defer qt.Recovering("connect QWebEngineView::loadFinished")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineView_ConnectLoadFinished(ptr.Pointer())
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineView::loadFinished", f)
@@ -8945,8 +7369,6 @@ func (ptr *QWebEngineView) ConnectLoadFinished(f func(ok bool)) {
 }
 
 func (ptr *QWebEngineView) DisconnectLoadFinished() {
-	defer qt.Recovering("disconnect QWebEngineView::loadFinished")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineView_DisconnectLoadFinished(ptr.Pointer())
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineView::loadFinished")
@@ -8954,8 +7376,6 @@ func (ptr *QWebEngineView) DisconnectLoadFinished() {
 }
 
 func (ptr *QWebEngineView) LoadFinished(ok bool) {
-	defer qt.Recovering("QWebEngineView::loadFinished")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineView_LoadFinished(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(ok))))
 	}
@@ -8963,7 +7383,6 @@ func (ptr *QWebEngineView) LoadFinished(ok bool) {
 
 //export callbackQWebEngineView_LoadProgress
 func callbackQWebEngineView_LoadProgress(ptr unsafe.Pointer, progress C.int) {
-	defer qt.Recovering("callback QWebEngineView::loadProgress")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineView::loadProgress"); signal != nil {
 		signal.(func(int))(int(int32(progress)))
@@ -8972,8 +7391,6 @@ func callbackQWebEngineView_LoadProgress(ptr unsafe.Pointer, progress C.int) {
 }
 
 func (ptr *QWebEngineView) ConnectLoadProgress(f func(progress int)) {
-	defer qt.Recovering("connect QWebEngineView::loadProgress")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineView_ConnectLoadProgress(ptr.Pointer())
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineView::loadProgress", f)
@@ -8981,8 +7398,6 @@ func (ptr *QWebEngineView) ConnectLoadProgress(f func(progress int)) {
 }
 
 func (ptr *QWebEngineView) DisconnectLoadProgress() {
-	defer qt.Recovering("disconnect QWebEngineView::loadProgress")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineView_DisconnectLoadProgress(ptr.Pointer())
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineView::loadProgress")
@@ -8990,8 +7405,6 @@ func (ptr *QWebEngineView) DisconnectLoadProgress() {
 }
 
 func (ptr *QWebEngineView) LoadProgress(progress int) {
-	defer qt.Recovering("QWebEngineView::loadProgress")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineView_LoadProgress(ptr.Pointer(), C.int(int32(progress)))
 	}
@@ -8999,7 +7412,6 @@ func (ptr *QWebEngineView) LoadProgress(progress int) {
 
 //export callbackQWebEngineView_LoadStarted
 func callbackQWebEngineView_LoadStarted(ptr unsafe.Pointer) {
-	defer qt.Recovering("callback QWebEngineView::loadStarted")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineView::loadStarted"); signal != nil {
 		signal.(func())()
@@ -9008,8 +7420,6 @@ func callbackQWebEngineView_LoadStarted(ptr unsafe.Pointer) {
 }
 
 func (ptr *QWebEngineView) ConnectLoadStarted(f func()) {
-	defer qt.Recovering("connect QWebEngineView::loadStarted")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineView_ConnectLoadStarted(ptr.Pointer())
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineView::loadStarted", f)
@@ -9017,8 +7427,6 @@ func (ptr *QWebEngineView) ConnectLoadStarted(f func()) {
 }
 
 func (ptr *QWebEngineView) DisconnectLoadStarted() {
-	defer qt.Recovering("disconnect QWebEngineView::loadStarted")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineView_DisconnectLoadStarted(ptr.Pointer())
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineView::loadStarted")
@@ -9026,8 +7434,6 @@ func (ptr *QWebEngineView) DisconnectLoadStarted() {
 }
 
 func (ptr *QWebEngineView) LoadStarted() {
-	defer qt.Recovering("QWebEngineView::loadStarted")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineView_LoadStarted(ptr.Pointer())
 	}
@@ -9035,7 +7441,6 @@ func (ptr *QWebEngineView) LoadStarted() {
 
 //export callbackQWebEngineView_RenderProcessTerminated
 func callbackQWebEngineView_RenderProcessTerminated(ptr unsafe.Pointer, terminationStatus C.longlong, exitCode C.int) {
-	defer qt.Recovering("callback QWebEngineView::renderProcessTerminated")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineView::renderProcessTerminated"); signal != nil {
 		signal.(func(QWebEnginePage__RenderProcessTerminationStatus, int))(QWebEnginePage__RenderProcessTerminationStatus(terminationStatus), int(int32(exitCode)))
@@ -9044,8 +7449,6 @@ func callbackQWebEngineView_RenderProcessTerminated(ptr unsafe.Pointer, terminat
 }
 
 func (ptr *QWebEngineView) ConnectRenderProcessTerminated(f func(terminationStatus QWebEnginePage__RenderProcessTerminationStatus, exitCode int)) {
-	defer qt.Recovering("connect QWebEngineView::renderProcessTerminated")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineView_ConnectRenderProcessTerminated(ptr.Pointer())
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineView::renderProcessTerminated", f)
@@ -9053,8 +7456,6 @@ func (ptr *QWebEngineView) ConnectRenderProcessTerminated(f func(terminationStat
 }
 
 func (ptr *QWebEngineView) DisconnectRenderProcessTerminated() {
-	defer qt.Recovering("disconnect QWebEngineView::renderProcessTerminated")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineView_DisconnectRenderProcessTerminated(ptr.Pointer())
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineView::renderProcessTerminated")
@@ -9062,8 +7463,6 @@ func (ptr *QWebEngineView) DisconnectRenderProcessTerminated() {
 }
 
 func (ptr *QWebEngineView) RenderProcessTerminated(terminationStatus QWebEnginePage__RenderProcessTerminationStatus, exitCode int) {
-	defer qt.Recovering("QWebEngineView::renderProcessTerminated")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineView_RenderProcessTerminated(ptr.Pointer(), C.longlong(terminationStatus), C.int(int32(exitCode)))
 	}
@@ -9071,7 +7470,6 @@ func (ptr *QWebEngineView) RenderProcessTerminated(terminationStatus QWebEngineP
 
 //export callbackQWebEngineView_SelectionChanged
 func callbackQWebEngineView_SelectionChanged(ptr unsafe.Pointer) {
-	defer qt.Recovering("callback QWebEngineView::selectionChanged")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineView::selectionChanged"); signal != nil {
 		signal.(func())()
@@ -9080,8 +7478,6 @@ func callbackQWebEngineView_SelectionChanged(ptr unsafe.Pointer) {
 }
 
 func (ptr *QWebEngineView) ConnectSelectionChanged(f func()) {
-	defer qt.Recovering("connect QWebEngineView::selectionChanged")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineView_ConnectSelectionChanged(ptr.Pointer())
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineView::selectionChanged", f)
@@ -9089,8 +7485,6 @@ func (ptr *QWebEngineView) ConnectSelectionChanged(f func()) {
 }
 
 func (ptr *QWebEngineView) DisconnectSelectionChanged() {
-	defer qt.Recovering("disconnect QWebEngineView::selectionChanged")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineView_DisconnectSelectionChanged(ptr.Pointer())
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineView::selectionChanged")
@@ -9098,8 +7492,6 @@ func (ptr *QWebEngineView) DisconnectSelectionChanged() {
 }
 
 func (ptr *QWebEngineView) SelectionChanged() {
-	defer qt.Recovering("QWebEngineView::selectionChanged")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineView_SelectionChanged(ptr.Pointer())
 	}
@@ -9107,7 +7499,6 @@ func (ptr *QWebEngineView) SelectionChanged() {
 
 //export callbackQWebEngineView_ShowEvent
 func callbackQWebEngineView_ShowEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	defer qt.Recovering("callback QWebEngineView::showEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineView::showEvent"); signal != nil {
 		signal.(func(*gui.QShowEvent))(gui.NewQShowEventFromPointer(event))
@@ -9117,8 +7508,6 @@ func callbackQWebEngineView_ShowEvent(ptr unsafe.Pointer, event unsafe.Pointer) 
 }
 
 func (ptr *QWebEngineView) ConnectShowEvent(f func(event *gui.QShowEvent)) {
-	defer qt.Recovering("connect QWebEngineView::showEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineView::showEvent", f)
@@ -9126,8 +7515,6 @@ func (ptr *QWebEngineView) ConnectShowEvent(f func(event *gui.QShowEvent)) {
 }
 
 func (ptr *QWebEngineView) DisconnectShowEvent() {
-	defer qt.Recovering("disconnect QWebEngineView::showEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineView::showEvent")
@@ -9135,16 +7522,12 @@ func (ptr *QWebEngineView) DisconnectShowEvent() {
 }
 
 func (ptr *QWebEngineView) ShowEvent(event gui.QShowEvent_ITF) {
-	defer qt.Recovering("QWebEngineView::showEvent")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineView_ShowEvent(ptr.Pointer(), gui.PointerFromQShowEvent(event))
 	}
 }
 
 func (ptr *QWebEngineView) ShowEventDefault(event gui.QShowEvent_ITF) {
-	defer qt.Recovering("QWebEngineView::showEvent")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineView_ShowEventDefault(ptr.Pointer(), gui.PointerFromQShowEvent(event))
 	}
@@ -9152,7 +7535,6 @@ func (ptr *QWebEngineView) ShowEventDefault(event gui.QShowEvent_ITF) {
 
 //export callbackQWebEngineView_SizeHint
 func callbackQWebEngineView_SizeHint(ptr unsafe.Pointer) unsafe.Pointer {
-	defer qt.Recovering("callback QWebEngineView::sizeHint")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineView::sizeHint"); signal != nil {
 		return core.PointerFromQSize(signal.(func() *core.QSize)())
@@ -9162,8 +7544,6 @@ func callbackQWebEngineView_SizeHint(ptr unsafe.Pointer) unsafe.Pointer {
 }
 
 func (ptr *QWebEngineView) ConnectSizeHint(f func() *core.QSize) {
-	defer qt.Recovering("connect QWebEngineView::sizeHint")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineView::sizeHint", f)
@@ -9171,8 +7551,6 @@ func (ptr *QWebEngineView) ConnectSizeHint(f func() *core.QSize) {
 }
 
 func (ptr *QWebEngineView) DisconnectSizeHint() {
-	defer qt.Recovering("disconnect QWebEngineView::sizeHint")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineView::sizeHint")
@@ -9180,8 +7558,6 @@ func (ptr *QWebEngineView) DisconnectSizeHint() {
 }
 
 func (ptr *QWebEngineView) SizeHint() *core.QSize {
-	defer qt.Recovering("QWebEngineView::sizeHint")
-
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQSizeFromPointer(C.QWebEngineView_SizeHint(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
@@ -9191,8 +7567,6 @@ func (ptr *QWebEngineView) SizeHint() *core.QSize {
 }
 
 func (ptr *QWebEngineView) SizeHintDefault() *core.QSize {
-	defer qt.Recovering("QWebEngineView::sizeHint")
-
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQSizeFromPointer(C.QWebEngineView_SizeHintDefault(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
@@ -9203,7 +7577,6 @@ func (ptr *QWebEngineView) SizeHintDefault() *core.QSize {
 
 //export callbackQWebEngineView_TitleChanged
 func callbackQWebEngineView_TitleChanged(ptr unsafe.Pointer, title *C.char) {
-	defer qt.Recovering("callback QWebEngineView::titleChanged")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineView::titleChanged"); signal != nil {
 		signal.(func(string))(C.GoString(title))
@@ -9212,8 +7585,6 @@ func callbackQWebEngineView_TitleChanged(ptr unsafe.Pointer, title *C.char) {
 }
 
 func (ptr *QWebEngineView) ConnectTitleChanged(f func(title string)) {
-	defer qt.Recovering("connect QWebEngineView::titleChanged")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineView_ConnectTitleChanged(ptr.Pointer())
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineView::titleChanged", f)
@@ -9221,8 +7592,6 @@ func (ptr *QWebEngineView) ConnectTitleChanged(f func(title string)) {
 }
 
 func (ptr *QWebEngineView) DisconnectTitleChanged() {
-	defer qt.Recovering("disconnect QWebEngineView::titleChanged")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineView_DisconnectTitleChanged(ptr.Pointer())
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineView::titleChanged")
@@ -9230,8 +7599,6 @@ func (ptr *QWebEngineView) DisconnectTitleChanged() {
 }
 
 func (ptr *QWebEngineView) TitleChanged(title string) {
-	defer qt.Recovering("QWebEngineView::titleChanged")
-
 	if ptr.Pointer() != nil {
 		var titleC = C.CString(title)
 		defer C.free(unsafe.Pointer(titleC))
@@ -9241,7 +7608,6 @@ func (ptr *QWebEngineView) TitleChanged(title string) {
 
 //export callbackQWebEngineView_UrlChanged
 func callbackQWebEngineView_UrlChanged(ptr unsafe.Pointer, url unsafe.Pointer) {
-	defer qt.Recovering("callback QWebEngineView::urlChanged")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineView::urlChanged"); signal != nil {
 		signal.(func(*core.QUrl))(core.NewQUrlFromPointer(url))
@@ -9250,8 +7616,6 @@ func callbackQWebEngineView_UrlChanged(ptr unsafe.Pointer, url unsafe.Pointer) {
 }
 
 func (ptr *QWebEngineView) ConnectUrlChanged(f func(url *core.QUrl)) {
-	defer qt.Recovering("connect QWebEngineView::urlChanged")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineView_ConnectUrlChanged(ptr.Pointer())
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineView::urlChanged", f)
@@ -9259,8 +7623,6 @@ func (ptr *QWebEngineView) ConnectUrlChanged(f func(url *core.QUrl)) {
 }
 
 func (ptr *QWebEngineView) DisconnectUrlChanged() {
-	defer qt.Recovering("disconnect QWebEngineView::urlChanged")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineView_DisconnectUrlChanged(ptr.Pointer())
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineView::urlChanged")
@@ -9268,8 +7630,6 @@ func (ptr *QWebEngineView) DisconnectUrlChanged() {
 }
 
 func (ptr *QWebEngineView) UrlChanged(url core.QUrl_ITF) {
-	defer qt.Recovering("QWebEngineView::urlChanged")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineView_UrlChanged(ptr.Pointer(), core.PointerFromQUrl(url))
 	}
@@ -9277,7 +7637,6 @@ func (ptr *QWebEngineView) UrlChanged(url core.QUrl_ITF) {
 
 //export callbackQWebEngineView_ActionEvent
 func callbackQWebEngineView_ActionEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	defer qt.Recovering("callback QWebEngineView::actionEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineView::actionEvent"); signal != nil {
 		signal.(func(*gui.QActionEvent))(gui.NewQActionEventFromPointer(event))
@@ -9287,8 +7646,6 @@ func callbackQWebEngineView_ActionEvent(ptr unsafe.Pointer, event unsafe.Pointer
 }
 
 func (ptr *QWebEngineView) ConnectActionEvent(f func(event *gui.QActionEvent)) {
-	defer qt.Recovering("connect QWebEngineView::actionEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineView::actionEvent", f)
@@ -9296,8 +7653,6 @@ func (ptr *QWebEngineView) ConnectActionEvent(f func(event *gui.QActionEvent)) {
 }
 
 func (ptr *QWebEngineView) DisconnectActionEvent() {
-	defer qt.Recovering("disconnect QWebEngineView::actionEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineView::actionEvent")
@@ -9305,16 +7660,12 @@ func (ptr *QWebEngineView) DisconnectActionEvent() {
 }
 
 func (ptr *QWebEngineView) ActionEvent(event gui.QActionEvent_ITF) {
-	defer qt.Recovering("QWebEngineView::actionEvent")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineView_ActionEvent(ptr.Pointer(), gui.PointerFromQActionEvent(event))
 	}
 }
 
 func (ptr *QWebEngineView) ActionEventDefault(event gui.QActionEvent_ITF) {
-	defer qt.Recovering("QWebEngineView::actionEvent")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineView_ActionEventDefault(ptr.Pointer(), gui.PointerFromQActionEvent(event))
 	}
@@ -9322,7 +7673,6 @@ func (ptr *QWebEngineView) ActionEventDefault(event gui.QActionEvent_ITF) {
 
 //export callbackQWebEngineView_EnterEvent
 func callbackQWebEngineView_EnterEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	defer qt.Recovering("callback QWebEngineView::enterEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineView::enterEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
@@ -9332,8 +7682,6 @@ func callbackQWebEngineView_EnterEvent(ptr unsafe.Pointer, event unsafe.Pointer)
 }
 
 func (ptr *QWebEngineView) ConnectEnterEvent(f func(event *core.QEvent)) {
-	defer qt.Recovering("connect QWebEngineView::enterEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineView::enterEvent", f)
@@ -9341,8 +7689,6 @@ func (ptr *QWebEngineView) ConnectEnterEvent(f func(event *core.QEvent)) {
 }
 
 func (ptr *QWebEngineView) DisconnectEnterEvent() {
-	defer qt.Recovering("disconnect QWebEngineView::enterEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineView::enterEvent")
@@ -9350,16 +7696,12 @@ func (ptr *QWebEngineView) DisconnectEnterEvent() {
 }
 
 func (ptr *QWebEngineView) EnterEvent(event core.QEvent_ITF) {
-	defer qt.Recovering("QWebEngineView::enterEvent")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineView_EnterEvent(ptr.Pointer(), core.PointerFromQEvent(event))
 	}
 }
 
 func (ptr *QWebEngineView) EnterEventDefault(event core.QEvent_ITF) {
-	defer qt.Recovering("QWebEngineView::enterEvent")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineView_EnterEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
 	}
@@ -9367,7 +7709,6 @@ func (ptr *QWebEngineView) EnterEventDefault(event core.QEvent_ITF) {
 
 //export callbackQWebEngineView_FocusInEvent
 func callbackQWebEngineView_FocusInEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	defer qt.Recovering("callback QWebEngineView::focusInEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineView::focusInEvent"); signal != nil {
 		signal.(func(*gui.QFocusEvent))(gui.NewQFocusEventFromPointer(event))
@@ -9377,8 +7718,6 @@ func callbackQWebEngineView_FocusInEvent(ptr unsafe.Pointer, event unsafe.Pointe
 }
 
 func (ptr *QWebEngineView) ConnectFocusInEvent(f func(event *gui.QFocusEvent)) {
-	defer qt.Recovering("connect QWebEngineView::focusInEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineView::focusInEvent", f)
@@ -9386,8 +7725,6 @@ func (ptr *QWebEngineView) ConnectFocusInEvent(f func(event *gui.QFocusEvent)) {
 }
 
 func (ptr *QWebEngineView) DisconnectFocusInEvent() {
-	defer qt.Recovering("disconnect QWebEngineView::focusInEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineView::focusInEvent")
@@ -9395,16 +7732,12 @@ func (ptr *QWebEngineView) DisconnectFocusInEvent() {
 }
 
 func (ptr *QWebEngineView) FocusInEvent(event gui.QFocusEvent_ITF) {
-	defer qt.Recovering("QWebEngineView::focusInEvent")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineView_FocusInEvent(ptr.Pointer(), gui.PointerFromQFocusEvent(event))
 	}
 }
 
 func (ptr *QWebEngineView) FocusInEventDefault(event gui.QFocusEvent_ITF) {
-	defer qt.Recovering("QWebEngineView::focusInEvent")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineView_FocusInEventDefault(ptr.Pointer(), gui.PointerFromQFocusEvent(event))
 	}
@@ -9412,7 +7745,6 @@ func (ptr *QWebEngineView) FocusInEventDefault(event gui.QFocusEvent_ITF) {
 
 //export callbackQWebEngineView_FocusOutEvent
 func callbackQWebEngineView_FocusOutEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	defer qt.Recovering("callback QWebEngineView::focusOutEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineView::focusOutEvent"); signal != nil {
 		signal.(func(*gui.QFocusEvent))(gui.NewQFocusEventFromPointer(event))
@@ -9422,8 +7754,6 @@ func callbackQWebEngineView_FocusOutEvent(ptr unsafe.Pointer, event unsafe.Point
 }
 
 func (ptr *QWebEngineView) ConnectFocusOutEvent(f func(event *gui.QFocusEvent)) {
-	defer qt.Recovering("connect QWebEngineView::focusOutEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineView::focusOutEvent", f)
@@ -9431,8 +7761,6 @@ func (ptr *QWebEngineView) ConnectFocusOutEvent(f func(event *gui.QFocusEvent)) 
 }
 
 func (ptr *QWebEngineView) DisconnectFocusOutEvent() {
-	defer qt.Recovering("disconnect QWebEngineView::focusOutEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineView::focusOutEvent")
@@ -9440,16 +7768,12 @@ func (ptr *QWebEngineView) DisconnectFocusOutEvent() {
 }
 
 func (ptr *QWebEngineView) FocusOutEvent(event gui.QFocusEvent_ITF) {
-	defer qt.Recovering("QWebEngineView::focusOutEvent")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineView_FocusOutEvent(ptr.Pointer(), gui.PointerFromQFocusEvent(event))
 	}
 }
 
 func (ptr *QWebEngineView) FocusOutEventDefault(event gui.QFocusEvent_ITF) {
-	defer qt.Recovering("QWebEngineView::focusOutEvent")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineView_FocusOutEventDefault(ptr.Pointer(), gui.PointerFromQFocusEvent(event))
 	}
@@ -9457,7 +7781,6 @@ func (ptr *QWebEngineView) FocusOutEventDefault(event gui.QFocusEvent_ITF) {
 
 //export callbackQWebEngineView_LeaveEvent
 func callbackQWebEngineView_LeaveEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	defer qt.Recovering("callback QWebEngineView::leaveEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineView::leaveEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
@@ -9467,8 +7790,6 @@ func callbackQWebEngineView_LeaveEvent(ptr unsafe.Pointer, event unsafe.Pointer)
 }
 
 func (ptr *QWebEngineView) ConnectLeaveEvent(f func(event *core.QEvent)) {
-	defer qt.Recovering("connect QWebEngineView::leaveEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineView::leaveEvent", f)
@@ -9476,8 +7797,6 @@ func (ptr *QWebEngineView) ConnectLeaveEvent(f func(event *core.QEvent)) {
 }
 
 func (ptr *QWebEngineView) DisconnectLeaveEvent() {
-	defer qt.Recovering("disconnect QWebEngineView::leaveEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineView::leaveEvent")
@@ -9485,16 +7804,12 @@ func (ptr *QWebEngineView) DisconnectLeaveEvent() {
 }
 
 func (ptr *QWebEngineView) LeaveEvent(event core.QEvent_ITF) {
-	defer qt.Recovering("QWebEngineView::leaveEvent")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineView_LeaveEvent(ptr.Pointer(), core.PointerFromQEvent(event))
 	}
 }
 
 func (ptr *QWebEngineView) LeaveEventDefault(event core.QEvent_ITF) {
-	defer qt.Recovering("QWebEngineView::leaveEvent")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineView_LeaveEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
 	}
@@ -9502,7 +7817,6 @@ func (ptr *QWebEngineView) LeaveEventDefault(event core.QEvent_ITF) {
 
 //export callbackQWebEngineView_MinimumSizeHint
 func callbackQWebEngineView_MinimumSizeHint(ptr unsafe.Pointer) unsafe.Pointer {
-	defer qt.Recovering("callback QWebEngineView::minimumSizeHint")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineView::minimumSizeHint"); signal != nil {
 		return core.PointerFromQSize(signal.(func() *core.QSize)())
@@ -9512,8 +7826,6 @@ func callbackQWebEngineView_MinimumSizeHint(ptr unsafe.Pointer) unsafe.Pointer {
 }
 
 func (ptr *QWebEngineView) ConnectMinimumSizeHint(f func() *core.QSize) {
-	defer qt.Recovering("connect QWebEngineView::minimumSizeHint")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineView::minimumSizeHint", f)
@@ -9521,8 +7833,6 @@ func (ptr *QWebEngineView) ConnectMinimumSizeHint(f func() *core.QSize) {
 }
 
 func (ptr *QWebEngineView) DisconnectMinimumSizeHint() {
-	defer qt.Recovering("disconnect QWebEngineView::minimumSizeHint")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineView::minimumSizeHint")
@@ -9530,8 +7840,6 @@ func (ptr *QWebEngineView) DisconnectMinimumSizeHint() {
 }
 
 func (ptr *QWebEngineView) MinimumSizeHint() *core.QSize {
-	defer qt.Recovering("QWebEngineView::minimumSizeHint")
-
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQSizeFromPointer(C.QWebEngineView_MinimumSizeHint(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
@@ -9541,8 +7849,6 @@ func (ptr *QWebEngineView) MinimumSizeHint() *core.QSize {
 }
 
 func (ptr *QWebEngineView) MinimumSizeHintDefault() *core.QSize {
-	defer qt.Recovering("QWebEngineView::minimumSizeHint")
-
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQSizeFromPointer(C.QWebEngineView_MinimumSizeHintDefault(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
@@ -9553,7 +7859,6 @@ func (ptr *QWebEngineView) MinimumSizeHintDefault() *core.QSize {
 
 //export callbackQWebEngineView_MoveEvent
 func callbackQWebEngineView_MoveEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	defer qt.Recovering("callback QWebEngineView::moveEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineView::moveEvent"); signal != nil {
 		signal.(func(*gui.QMoveEvent))(gui.NewQMoveEventFromPointer(event))
@@ -9563,8 +7868,6 @@ func callbackQWebEngineView_MoveEvent(ptr unsafe.Pointer, event unsafe.Pointer) 
 }
 
 func (ptr *QWebEngineView) ConnectMoveEvent(f func(event *gui.QMoveEvent)) {
-	defer qt.Recovering("connect QWebEngineView::moveEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineView::moveEvent", f)
@@ -9572,8 +7875,6 @@ func (ptr *QWebEngineView) ConnectMoveEvent(f func(event *gui.QMoveEvent)) {
 }
 
 func (ptr *QWebEngineView) DisconnectMoveEvent() {
-	defer qt.Recovering("disconnect QWebEngineView::moveEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineView::moveEvent")
@@ -9581,16 +7882,12 @@ func (ptr *QWebEngineView) DisconnectMoveEvent() {
 }
 
 func (ptr *QWebEngineView) MoveEvent(event gui.QMoveEvent_ITF) {
-	defer qt.Recovering("QWebEngineView::moveEvent")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineView_MoveEvent(ptr.Pointer(), gui.PointerFromQMoveEvent(event))
 	}
 }
 
 func (ptr *QWebEngineView) MoveEventDefault(event gui.QMoveEvent_ITF) {
-	defer qt.Recovering("QWebEngineView::moveEvent")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineView_MoveEventDefault(ptr.Pointer(), gui.PointerFromQMoveEvent(event))
 	}
@@ -9598,7 +7895,6 @@ func (ptr *QWebEngineView) MoveEventDefault(event gui.QMoveEvent_ITF) {
 
 //export callbackQWebEngineView_PaintEvent
 func callbackQWebEngineView_PaintEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	defer qt.Recovering("callback QWebEngineView::paintEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineView::paintEvent"); signal != nil {
 		signal.(func(*gui.QPaintEvent))(gui.NewQPaintEventFromPointer(event))
@@ -9608,8 +7904,6 @@ func callbackQWebEngineView_PaintEvent(ptr unsafe.Pointer, event unsafe.Pointer)
 }
 
 func (ptr *QWebEngineView) ConnectPaintEvent(f func(event *gui.QPaintEvent)) {
-	defer qt.Recovering("connect QWebEngineView::paintEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineView::paintEvent", f)
@@ -9617,8 +7911,6 @@ func (ptr *QWebEngineView) ConnectPaintEvent(f func(event *gui.QPaintEvent)) {
 }
 
 func (ptr *QWebEngineView) DisconnectPaintEvent() {
-	defer qt.Recovering("disconnect QWebEngineView::paintEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineView::paintEvent")
@@ -9626,16 +7918,12 @@ func (ptr *QWebEngineView) DisconnectPaintEvent() {
 }
 
 func (ptr *QWebEngineView) PaintEvent(event gui.QPaintEvent_ITF) {
-	defer qt.Recovering("QWebEngineView::paintEvent")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineView_PaintEvent(ptr.Pointer(), gui.PointerFromQPaintEvent(event))
 	}
 }
 
 func (ptr *QWebEngineView) PaintEventDefault(event gui.QPaintEvent_ITF) {
-	defer qt.Recovering("QWebEngineView::paintEvent")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineView_PaintEventDefault(ptr.Pointer(), gui.PointerFromQPaintEvent(event))
 	}
@@ -9643,8 +7931,6 @@ func (ptr *QWebEngineView) PaintEventDefault(event gui.QPaintEvent_ITF) {
 
 //export callbackQWebEngineView_SetEnabled
 func callbackQWebEngineView_SetEnabled(ptr unsafe.Pointer, vbo C.char) {
-	defer qt.Recovering("callback QWebEngineView::setEnabled")
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineView::setEnabled"); signal != nil {
 		signal.(func(bool))(int8(vbo) != 0)
 	} else {
@@ -9653,8 +7939,6 @@ func callbackQWebEngineView_SetEnabled(ptr unsafe.Pointer, vbo C.char) {
 }
 
 func (ptr *QWebEngineView) ConnectSetEnabled(f func(vbo bool)) {
-	defer qt.Recovering("connect QWebEngineView::setEnabled")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineView::setEnabled", f)
@@ -9662,8 +7946,6 @@ func (ptr *QWebEngineView) ConnectSetEnabled(f func(vbo bool)) {
 }
 
 func (ptr *QWebEngineView) DisconnectSetEnabled() {
-	defer qt.Recovering("disconnect QWebEngineView::setEnabled")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineView::setEnabled")
@@ -9671,16 +7953,12 @@ func (ptr *QWebEngineView) DisconnectSetEnabled() {
 }
 
 func (ptr *QWebEngineView) SetEnabled(vbo bool) {
-	defer qt.Recovering("QWebEngineView::setEnabled")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineView_SetEnabled(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(vbo))))
 	}
 }
 
 func (ptr *QWebEngineView) SetEnabledDefault(vbo bool) {
-	defer qt.Recovering("QWebEngineView::setEnabled")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineView_SetEnabledDefault(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(vbo))))
 	}
@@ -9688,8 +7966,6 @@ func (ptr *QWebEngineView) SetEnabledDefault(vbo bool) {
 
 //export callbackQWebEngineView_SetStyleSheet
 func callbackQWebEngineView_SetStyleSheet(ptr unsafe.Pointer, styleSheet *C.char) {
-	defer qt.Recovering("callback QWebEngineView::setStyleSheet")
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineView::setStyleSheet"); signal != nil {
 		signal.(func(string))(C.GoString(styleSheet))
 	} else {
@@ -9698,8 +7974,6 @@ func callbackQWebEngineView_SetStyleSheet(ptr unsafe.Pointer, styleSheet *C.char
 }
 
 func (ptr *QWebEngineView) ConnectSetStyleSheet(f func(styleSheet string)) {
-	defer qt.Recovering("connect QWebEngineView::setStyleSheet")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineView::setStyleSheet", f)
@@ -9707,8 +7981,6 @@ func (ptr *QWebEngineView) ConnectSetStyleSheet(f func(styleSheet string)) {
 }
 
 func (ptr *QWebEngineView) DisconnectSetStyleSheet() {
-	defer qt.Recovering("disconnect QWebEngineView::setStyleSheet")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineView::setStyleSheet")
@@ -9716,8 +7988,6 @@ func (ptr *QWebEngineView) DisconnectSetStyleSheet() {
 }
 
 func (ptr *QWebEngineView) SetStyleSheet(styleSheet string) {
-	defer qt.Recovering("QWebEngineView::setStyleSheet")
-
 	if ptr.Pointer() != nil {
 		var styleSheetC = C.CString(styleSheet)
 		defer C.free(unsafe.Pointer(styleSheetC))
@@ -9726,8 +7996,6 @@ func (ptr *QWebEngineView) SetStyleSheet(styleSheet string) {
 }
 
 func (ptr *QWebEngineView) SetStyleSheetDefault(styleSheet string) {
-	defer qt.Recovering("QWebEngineView::setStyleSheet")
-
 	if ptr.Pointer() != nil {
 		var styleSheetC = C.CString(styleSheet)
 		defer C.free(unsafe.Pointer(styleSheetC))
@@ -9737,8 +8005,6 @@ func (ptr *QWebEngineView) SetStyleSheetDefault(styleSheet string) {
 
 //export callbackQWebEngineView_SetVisible
 func callbackQWebEngineView_SetVisible(ptr unsafe.Pointer, visible C.char) {
-	defer qt.Recovering("callback QWebEngineView::setVisible")
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineView::setVisible"); signal != nil {
 		signal.(func(bool))(int8(visible) != 0)
 	} else {
@@ -9747,8 +8013,6 @@ func callbackQWebEngineView_SetVisible(ptr unsafe.Pointer, visible C.char) {
 }
 
 func (ptr *QWebEngineView) ConnectSetVisible(f func(visible bool)) {
-	defer qt.Recovering("connect QWebEngineView::setVisible")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineView::setVisible", f)
@@ -9756,8 +8020,6 @@ func (ptr *QWebEngineView) ConnectSetVisible(f func(visible bool)) {
 }
 
 func (ptr *QWebEngineView) DisconnectSetVisible() {
-	defer qt.Recovering("disconnect QWebEngineView::setVisible")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineView::setVisible")
@@ -9765,16 +8027,12 @@ func (ptr *QWebEngineView) DisconnectSetVisible() {
 }
 
 func (ptr *QWebEngineView) SetVisible(visible bool) {
-	defer qt.Recovering("QWebEngineView::setVisible")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineView_SetVisible(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(visible))))
 	}
 }
 
 func (ptr *QWebEngineView) SetVisibleDefault(visible bool) {
-	defer qt.Recovering("QWebEngineView::setVisible")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineView_SetVisibleDefault(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(visible))))
 	}
@@ -9782,8 +8040,6 @@ func (ptr *QWebEngineView) SetVisibleDefault(visible bool) {
 
 //export callbackQWebEngineView_SetWindowModified
 func callbackQWebEngineView_SetWindowModified(ptr unsafe.Pointer, vbo C.char) {
-	defer qt.Recovering("callback QWebEngineView::setWindowModified")
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineView::setWindowModified"); signal != nil {
 		signal.(func(bool))(int8(vbo) != 0)
 	} else {
@@ -9792,8 +8048,6 @@ func callbackQWebEngineView_SetWindowModified(ptr unsafe.Pointer, vbo C.char) {
 }
 
 func (ptr *QWebEngineView) ConnectSetWindowModified(f func(vbo bool)) {
-	defer qt.Recovering("connect QWebEngineView::setWindowModified")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineView::setWindowModified", f)
@@ -9801,8 +8055,6 @@ func (ptr *QWebEngineView) ConnectSetWindowModified(f func(vbo bool)) {
 }
 
 func (ptr *QWebEngineView) DisconnectSetWindowModified() {
-	defer qt.Recovering("disconnect QWebEngineView::setWindowModified")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineView::setWindowModified")
@@ -9810,16 +8062,12 @@ func (ptr *QWebEngineView) DisconnectSetWindowModified() {
 }
 
 func (ptr *QWebEngineView) SetWindowModified(vbo bool) {
-	defer qt.Recovering("QWebEngineView::setWindowModified")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineView_SetWindowModified(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(vbo))))
 	}
 }
 
 func (ptr *QWebEngineView) SetWindowModifiedDefault(vbo bool) {
-	defer qt.Recovering("QWebEngineView::setWindowModified")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineView_SetWindowModifiedDefault(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(vbo))))
 	}
@@ -9827,8 +8075,6 @@ func (ptr *QWebEngineView) SetWindowModifiedDefault(vbo bool) {
 
 //export callbackQWebEngineView_SetWindowTitle
 func callbackQWebEngineView_SetWindowTitle(ptr unsafe.Pointer, vqs *C.char) {
-	defer qt.Recovering("callback QWebEngineView::setWindowTitle")
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineView::setWindowTitle"); signal != nil {
 		signal.(func(string))(C.GoString(vqs))
 	} else {
@@ -9837,8 +8083,6 @@ func callbackQWebEngineView_SetWindowTitle(ptr unsafe.Pointer, vqs *C.char) {
 }
 
 func (ptr *QWebEngineView) ConnectSetWindowTitle(f func(vqs string)) {
-	defer qt.Recovering("connect QWebEngineView::setWindowTitle")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineView::setWindowTitle", f)
@@ -9846,8 +8090,6 @@ func (ptr *QWebEngineView) ConnectSetWindowTitle(f func(vqs string)) {
 }
 
 func (ptr *QWebEngineView) DisconnectSetWindowTitle() {
-	defer qt.Recovering("disconnect QWebEngineView::setWindowTitle")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineView::setWindowTitle")
@@ -9855,8 +8097,6 @@ func (ptr *QWebEngineView) DisconnectSetWindowTitle() {
 }
 
 func (ptr *QWebEngineView) SetWindowTitle(vqs string) {
-	defer qt.Recovering("QWebEngineView::setWindowTitle")
-
 	if ptr.Pointer() != nil {
 		var vqsC = C.CString(vqs)
 		defer C.free(unsafe.Pointer(vqsC))
@@ -9865,8 +8105,6 @@ func (ptr *QWebEngineView) SetWindowTitle(vqs string) {
 }
 
 func (ptr *QWebEngineView) SetWindowTitleDefault(vqs string) {
-	defer qt.Recovering("QWebEngineView::setWindowTitle")
-
 	if ptr.Pointer() != nil {
 		var vqsC = C.CString(vqs)
 		defer C.free(unsafe.Pointer(vqsC))
@@ -9876,7 +8114,6 @@ func (ptr *QWebEngineView) SetWindowTitleDefault(vqs string) {
 
 //export callbackQWebEngineView_ChangeEvent
 func callbackQWebEngineView_ChangeEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	defer qt.Recovering("callback QWebEngineView::changeEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineView::changeEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
@@ -9886,8 +8123,6 @@ func callbackQWebEngineView_ChangeEvent(ptr unsafe.Pointer, event unsafe.Pointer
 }
 
 func (ptr *QWebEngineView) ConnectChangeEvent(f func(event *core.QEvent)) {
-	defer qt.Recovering("connect QWebEngineView::changeEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineView::changeEvent", f)
@@ -9895,8 +8130,6 @@ func (ptr *QWebEngineView) ConnectChangeEvent(f func(event *core.QEvent)) {
 }
 
 func (ptr *QWebEngineView) DisconnectChangeEvent() {
-	defer qt.Recovering("disconnect QWebEngineView::changeEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineView::changeEvent")
@@ -9904,16 +8137,12 @@ func (ptr *QWebEngineView) DisconnectChangeEvent() {
 }
 
 func (ptr *QWebEngineView) ChangeEvent(event core.QEvent_ITF) {
-	defer qt.Recovering("QWebEngineView::changeEvent")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineView_ChangeEvent(ptr.Pointer(), core.PointerFromQEvent(event))
 	}
 }
 
 func (ptr *QWebEngineView) ChangeEventDefault(event core.QEvent_ITF) {
-	defer qt.Recovering("QWebEngineView::changeEvent")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineView_ChangeEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
 	}
@@ -9921,8 +8150,6 @@ func (ptr *QWebEngineView) ChangeEventDefault(event core.QEvent_ITF) {
 
 //export callbackQWebEngineView_Close
 func callbackQWebEngineView_Close(ptr unsafe.Pointer) C.char {
-	defer qt.Recovering("callback QWebEngineView::close")
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineView::close"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func() bool)())))
 	}
@@ -9931,8 +8158,6 @@ func callbackQWebEngineView_Close(ptr unsafe.Pointer) C.char {
 }
 
 func (ptr *QWebEngineView) ConnectClose(f func() bool) {
-	defer qt.Recovering("connect QWebEngineView::close")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineView::close", f)
@@ -9940,8 +8165,6 @@ func (ptr *QWebEngineView) ConnectClose(f func() bool) {
 }
 
 func (ptr *QWebEngineView) DisconnectClose() {
-	defer qt.Recovering("disconnect QWebEngineView::close")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineView::close")
@@ -9949,8 +8172,6 @@ func (ptr *QWebEngineView) DisconnectClose() {
 }
 
 func (ptr *QWebEngineView) Close() bool {
-	defer qt.Recovering("QWebEngineView::close")
-
 	if ptr.Pointer() != nil {
 		return C.QWebEngineView_Close(ptr.Pointer()) != 0
 	}
@@ -9958,8 +8179,6 @@ func (ptr *QWebEngineView) Close() bool {
 }
 
 func (ptr *QWebEngineView) CloseDefault() bool {
-	defer qt.Recovering("QWebEngineView::close")
-
 	if ptr.Pointer() != nil {
 		return C.QWebEngineView_CloseDefault(ptr.Pointer()) != 0
 	}
@@ -9968,7 +8187,6 @@ func (ptr *QWebEngineView) CloseDefault() bool {
 
 //export callbackQWebEngineView_CloseEvent
 func callbackQWebEngineView_CloseEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	defer qt.Recovering("callback QWebEngineView::closeEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineView::closeEvent"); signal != nil {
 		signal.(func(*gui.QCloseEvent))(gui.NewQCloseEventFromPointer(event))
@@ -9978,8 +8196,6 @@ func callbackQWebEngineView_CloseEvent(ptr unsafe.Pointer, event unsafe.Pointer)
 }
 
 func (ptr *QWebEngineView) ConnectCloseEvent(f func(event *gui.QCloseEvent)) {
-	defer qt.Recovering("connect QWebEngineView::closeEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineView::closeEvent", f)
@@ -9987,8 +8203,6 @@ func (ptr *QWebEngineView) ConnectCloseEvent(f func(event *gui.QCloseEvent)) {
 }
 
 func (ptr *QWebEngineView) DisconnectCloseEvent() {
-	defer qt.Recovering("disconnect QWebEngineView::closeEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineView::closeEvent")
@@ -9996,16 +8210,12 @@ func (ptr *QWebEngineView) DisconnectCloseEvent() {
 }
 
 func (ptr *QWebEngineView) CloseEvent(event gui.QCloseEvent_ITF) {
-	defer qt.Recovering("QWebEngineView::closeEvent")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineView_CloseEvent(ptr.Pointer(), gui.PointerFromQCloseEvent(event))
 	}
 }
 
 func (ptr *QWebEngineView) CloseEventDefault(event gui.QCloseEvent_ITF) {
-	defer qt.Recovering("QWebEngineView::closeEvent")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineView_CloseEventDefault(ptr.Pointer(), gui.PointerFromQCloseEvent(event))
 	}
@@ -10013,7 +8223,6 @@ func (ptr *QWebEngineView) CloseEventDefault(event gui.QCloseEvent_ITF) {
 
 //export callbackQWebEngineView_FocusNextPrevChild
 func callbackQWebEngineView_FocusNextPrevChild(ptr unsafe.Pointer, next C.char) C.char {
-	defer qt.Recovering("callback QWebEngineView::focusNextPrevChild")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineView::focusNextPrevChild"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(bool) bool)(int8(next) != 0))))
@@ -10023,8 +8232,6 @@ func callbackQWebEngineView_FocusNextPrevChild(ptr unsafe.Pointer, next C.char) 
 }
 
 func (ptr *QWebEngineView) ConnectFocusNextPrevChild(f func(next bool) bool) {
-	defer qt.Recovering("connect QWebEngineView::focusNextPrevChild")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineView::focusNextPrevChild", f)
@@ -10032,8 +8239,6 @@ func (ptr *QWebEngineView) ConnectFocusNextPrevChild(f func(next bool) bool) {
 }
 
 func (ptr *QWebEngineView) DisconnectFocusNextPrevChild() {
-	defer qt.Recovering("disconnect QWebEngineView::focusNextPrevChild")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineView::focusNextPrevChild")
@@ -10041,8 +8246,6 @@ func (ptr *QWebEngineView) DisconnectFocusNextPrevChild() {
 }
 
 func (ptr *QWebEngineView) FocusNextPrevChild(next bool) bool {
-	defer qt.Recovering("QWebEngineView::focusNextPrevChild")
-
 	if ptr.Pointer() != nil {
 		return C.QWebEngineView_FocusNextPrevChild(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(next)))) != 0
 	}
@@ -10050,8 +8253,6 @@ func (ptr *QWebEngineView) FocusNextPrevChild(next bool) bool {
 }
 
 func (ptr *QWebEngineView) FocusNextPrevChildDefault(next bool) bool {
-	defer qt.Recovering("QWebEngineView::focusNextPrevChild")
-
 	if ptr.Pointer() != nil {
 		return C.QWebEngineView_FocusNextPrevChildDefault(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(next)))) != 0
 	}
@@ -10060,7 +8261,6 @@ func (ptr *QWebEngineView) FocusNextPrevChildDefault(next bool) bool {
 
 //export callbackQWebEngineView_HasHeightForWidth
 func callbackQWebEngineView_HasHeightForWidth(ptr unsafe.Pointer) C.char {
-	defer qt.Recovering("callback QWebEngineView::hasHeightForWidth")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineView::hasHeightForWidth"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func() bool)())))
@@ -10070,8 +8270,6 @@ func callbackQWebEngineView_HasHeightForWidth(ptr unsafe.Pointer) C.char {
 }
 
 func (ptr *QWebEngineView) ConnectHasHeightForWidth(f func() bool) {
-	defer qt.Recovering("connect QWebEngineView::hasHeightForWidth")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineView::hasHeightForWidth", f)
@@ -10079,8 +8277,6 @@ func (ptr *QWebEngineView) ConnectHasHeightForWidth(f func() bool) {
 }
 
 func (ptr *QWebEngineView) DisconnectHasHeightForWidth() {
-	defer qt.Recovering("disconnect QWebEngineView::hasHeightForWidth")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineView::hasHeightForWidth")
@@ -10088,8 +8284,6 @@ func (ptr *QWebEngineView) DisconnectHasHeightForWidth() {
 }
 
 func (ptr *QWebEngineView) HasHeightForWidth() bool {
-	defer qt.Recovering("QWebEngineView::hasHeightForWidth")
-
 	if ptr.Pointer() != nil {
 		return C.QWebEngineView_HasHeightForWidth(ptr.Pointer()) != 0
 	}
@@ -10097,8 +8291,6 @@ func (ptr *QWebEngineView) HasHeightForWidth() bool {
 }
 
 func (ptr *QWebEngineView) HasHeightForWidthDefault() bool {
-	defer qt.Recovering("QWebEngineView::hasHeightForWidth")
-
 	if ptr.Pointer() != nil {
 		return C.QWebEngineView_HasHeightForWidthDefault(ptr.Pointer()) != 0
 	}
@@ -10107,7 +8299,6 @@ func (ptr *QWebEngineView) HasHeightForWidthDefault() bool {
 
 //export callbackQWebEngineView_HeightForWidth
 func callbackQWebEngineView_HeightForWidth(ptr unsafe.Pointer, w C.int) C.int {
-	defer qt.Recovering("callback QWebEngineView::heightForWidth")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineView::heightForWidth"); signal != nil {
 		return C.int(int32(signal.(func(int) int)(int(int32(w)))))
@@ -10117,8 +8308,6 @@ func callbackQWebEngineView_HeightForWidth(ptr unsafe.Pointer, w C.int) C.int {
 }
 
 func (ptr *QWebEngineView) ConnectHeightForWidth(f func(w int) int) {
-	defer qt.Recovering("connect QWebEngineView::heightForWidth")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineView::heightForWidth", f)
@@ -10126,8 +8315,6 @@ func (ptr *QWebEngineView) ConnectHeightForWidth(f func(w int) int) {
 }
 
 func (ptr *QWebEngineView) DisconnectHeightForWidth() {
-	defer qt.Recovering("disconnect QWebEngineView::heightForWidth")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineView::heightForWidth")
@@ -10135,8 +8322,6 @@ func (ptr *QWebEngineView) DisconnectHeightForWidth() {
 }
 
 func (ptr *QWebEngineView) HeightForWidth(w int) int {
-	defer qt.Recovering("QWebEngineView::heightForWidth")
-
 	if ptr.Pointer() != nil {
 		return int(int32(C.QWebEngineView_HeightForWidth(ptr.Pointer(), C.int(int32(w)))))
 	}
@@ -10144,8 +8329,6 @@ func (ptr *QWebEngineView) HeightForWidth(w int) int {
 }
 
 func (ptr *QWebEngineView) HeightForWidthDefault(w int) int {
-	defer qt.Recovering("QWebEngineView::heightForWidth")
-
 	if ptr.Pointer() != nil {
 		return int(int32(C.QWebEngineView_HeightForWidthDefault(ptr.Pointer(), C.int(int32(w)))))
 	}
@@ -10154,8 +8337,6 @@ func (ptr *QWebEngineView) HeightForWidthDefault(w int) int {
 
 //export callbackQWebEngineView_Hide
 func callbackQWebEngineView_Hide(ptr unsafe.Pointer) {
-	defer qt.Recovering("callback QWebEngineView::hide")
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineView::hide"); signal != nil {
 		signal.(func())()
 	} else {
@@ -10164,8 +8345,6 @@ func callbackQWebEngineView_Hide(ptr unsafe.Pointer) {
 }
 
 func (ptr *QWebEngineView) ConnectHide(f func()) {
-	defer qt.Recovering("connect QWebEngineView::hide")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineView::hide", f)
@@ -10173,8 +8352,6 @@ func (ptr *QWebEngineView) ConnectHide(f func()) {
 }
 
 func (ptr *QWebEngineView) DisconnectHide() {
-	defer qt.Recovering("disconnect QWebEngineView::hide")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineView::hide")
@@ -10182,16 +8359,12 @@ func (ptr *QWebEngineView) DisconnectHide() {
 }
 
 func (ptr *QWebEngineView) Hide() {
-	defer qt.Recovering("QWebEngineView::hide")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineView_Hide(ptr.Pointer())
 	}
 }
 
 func (ptr *QWebEngineView) HideDefault() {
-	defer qt.Recovering("QWebEngineView::hide")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineView_HideDefault(ptr.Pointer())
 	}
@@ -10199,7 +8372,6 @@ func (ptr *QWebEngineView) HideDefault() {
 
 //export callbackQWebEngineView_InputMethodEvent
 func callbackQWebEngineView_InputMethodEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	defer qt.Recovering("callback QWebEngineView::inputMethodEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineView::inputMethodEvent"); signal != nil {
 		signal.(func(*gui.QInputMethodEvent))(gui.NewQInputMethodEventFromPointer(event))
@@ -10209,8 +8381,6 @@ func callbackQWebEngineView_InputMethodEvent(ptr unsafe.Pointer, event unsafe.Po
 }
 
 func (ptr *QWebEngineView) ConnectInputMethodEvent(f func(event *gui.QInputMethodEvent)) {
-	defer qt.Recovering("connect QWebEngineView::inputMethodEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineView::inputMethodEvent", f)
@@ -10218,8 +8388,6 @@ func (ptr *QWebEngineView) ConnectInputMethodEvent(f func(event *gui.QInputMetho
 }
 
 func (ptr *QWebEngineView) DisconnectInputMethodEvent() {
-	defer qt.Recovering("disconnect QWebEngineView::inputMethodEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineView::inputMethodEvent")
@@ -10227,16 +8395,12 @@ func (ptr *QWebEngineView) DisconnectInputMethodEvent() {
 }
 
 func (ptr *QWebEngineView) InputMethodEvent(event gui.QInputMethodEvent_ITF) {
-	defer qt.Recovering("QWebEngineView::inputMethodEvent")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineView_InputMethodEvent(ptr.Pointer(), gui.PointerFromQInputMethodEvent(event))
 	}
 }
 
 func (ptr *QWebEngineView) InputMethodEventDefault(event gui.QInputMethodEvent_ITF) {
-	defer qt.Recovering("QWebEngineView::inputMethodEvent")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineView_InputMethodEventDefault(ptr.Pointer(), gui.PointerFromQInputMethodEvent(event))
 	}
@@ -10244,7 +8408,6 @@ func (ptr *QWebEngineView) InputMethodEventDefault(event gui.QInputMethodEvent_I
 
 //export callbackQWebEngineView_InputMethodQuery
 func callbackQWebEngineView_InputMethodQuery(ptr unsafe.Pointer, query C.longlong) unsafe.Pointer {
-	defer qt.Recovering("callback QWebEngineView::inputMethodQuery")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineView::inputMethodQuery"); signal != nil {
 		return core.PointerFromQVariant(signal.(func(core.Qt__InputMethodQuery) *core.QVariant)(core.Qt__InputMethodQuery(query)))
@@ -10254,8 +8417,6 @@ func callbackQWebEngineView_InputMethodQuery(ptr unsafe.Pointer, query C.longlon
 }
 
 func (ptr *QWebEngineView) ConnectInputMethodQuery(f func(query core.Qt__InputMethodQuery) *core.QVariant) {
-	defer qt.Recovering("connect QWebEngineView::inputMethodQuery")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineView::inputMethodQuery", f)
@@ -10263,8 +8424,6 @@ func (ptr *QWebEngineView) ConnectInputMethodQuery(f func(query core.Qt__InputMe
 }
 
 func (ptr *QWebEngineView) DisconnectInputMethodQuery() {
-	defer qt.Recovering("disconnect QWebEngineView::inputMethodQuery")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineView::inputMethodQuery")
@@ -10272,8 +8431,6 @@ func (ptr *QWebEngineView) DisconnectInputMethodQuery() {
 }
 
 func (ptr *QWebEngineView) InputMethodQuery(query core.Qt__InputMethodQuery) *core.QVariant {
-	defer qt.Recovering("QWebEngineView::inputMethodQuery")
-
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQVariantFromPointer(C.QWebEngineView_InputMethodQuery(ptr.Pointer(), C.longlong(query)))
 		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
@@ -10283,8 +8440,6 @@ func (ptr *QWebEngineView) InputMethodQuery(query core.Qt__InputMethodQuery) *co
 }
 
 func (ptr *QWebEngineView) InputMethodQueryDefault(query core.Qt__InputMethodQuery) *core.QVariant {
-	defer qt.Recovering("QWebEngineView::inputMethodQuery")
-
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQVariantFromPointer(C.QWebEngineView_InputMethodQueryDefault(ptr.Pointer(), C.longlong(query)))
 		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
@@ -10295,7 +8450,6 @@ func (ptr *QWebEngineView) InputMethodQueryDefault(query core.Qt__InputMethodQue
 
 //export callbackQWebEngineView_KeyPressEvent
 func callbackQWebEngineView_KeyPressEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	defer qt.Recovering("callback QWebEngineView::keyPressEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineView::keyPressEvent"); signal != nil {
 		signal.(func(*gui.QKeyEvent))(gui.NewQKeyEventFromPointer(event))
@@ -10305,8 +8459,6 @@ func callbackQWebEngineView_KeyPressEvent(ptr unsafe.Pointer, event unsafe.Point
 }
 
 func (ptr *QWebEngineView) ConnectKeyPressEvent(f func(event *gui.QKeyEvent)) {
-	defer qt.Recovering("connect QWebEngineView::keyPressEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineView::keyPressEvent", f)
@@ -10314,8 +8466,6 @@ func (ptr *QWebEngineView) ConnectKeyPressEvent(f func(event *gui.QKeyEvent)) {
 }
 
 func (ptr *QWebEngineView) DisconnectKeyPressEvent() {
-	defer qt.Recovering("disconnect QWebEngineView::keyPressEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineView::keyPressEvent")
@@ -10323,16 +8473,12 @@ func (ptr *QWebEngineView) DisconnectKeyPressEvent() {
 }
 
 func (ptr *QWebEngineView) KeyPressEvent(event gui.QKeyEvent_ITF) {
-	defer qt.Recovering("QWebEngineView::keyPressEvent")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineView_KeyPressEvent(ptr.Pointer(), gui.PointerFromQKeyEvent(event))
 	}
 }
 
 func (ptr *QWebEngineView) KeyPressEventDefault(event gui.QKeyEvent_ITF) {
-	defer qt.Recovering("QWebEngineView::keyPressEvent")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineView_KeyPressEventDefault(ptr.Pointer(), gui.PointerFromQKeyEvent(event))
 	}
@@ -10340,7 +8486,6 @@ func (ptr *QWebEngineView) KeyPressEventDefault(event gui.QKeyEvent_ITF) {
 
 //export callbackQWebEngineView_KeyReleaseEvent
 func callbackQWebEngineView_KeyReleaseEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	defer qt.Recovering("callback QWebEngineView::keyReleaseEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineView::keyReleaseEvent"); signal != nil {
 		signal.(func(*gui.QKeyEvent))(gui.NewQKeyEventFromPointer(event))
@@ -10350,8 +8495,6 @@ func callbackQWebEngineView_KeyReleaseEvent(ptr unsafe.Pointer, event unsafe.Poi
 }
 
 func (ptr *QWebEngineView) ConnectKeyReleaseEvent(f func(event *gui.QKeyEvent)) {
-	defer qt.Recovering("connect QWebEngineView::keyReleaseEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineView::keyReleaseEvent", f)
@@ -10359,8 +8502,6 @@ func (ptr *QWebEngineView) ConnectKeyReleaseEvent(f func(event *gui.QKeyEvent)) 
 }
 
 func (ptr *QWebEngineView) DisconnectKeyReleaseEvent() {
-	defer qt.Recovering("disconnect QWebEngineView::keyReleaseEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineView::keyReleaseEvent")
@@ -10368,16 +8509,12 @@ func (ptr *QWebEngineView) DisconnectKeyReleaseEvent() {
 }
 
 func (ptr *QWebEngineView) KeyReleaseEvent(event gui.QKeyEvent_ITF) {
-	defer qt.Recovering("QWebEngineView::keyReleaseEvent")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineView_KeyReleaseEvent(ptr.Pointer(), gui.PointerFromQKeyEvent(event))
 	}
 }
 
 func (ptr *QWebEngineView) KeyReleaseEventDefault(event gui.QKeyEvent_ITF) {
-	defer qt.Recovering("QWebEngineView::keyReleaseEvent")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineView_KeyReleaseEventDefault(ptr.Pointer(), gui.PointerFromQKeyEvent(event))
 	}
@@ -10385,8 +8522,6 @@ func (ptr *QWebEngineView) KeyReleaseEventDefault(event gui.QKeyEvent_ITF) {
 
 //export callbackQWebEngineView_Lower
 func callbackQWebEngineView_Lower(ptr unsafe.Pointer) {
-	defer qt.Recovering("callback QWebEngineView::lower")
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineView::lower"); signal != nil {
 		signal.(func())()
 	} else {
@@ -10395,8 +8530,6 @@ func callbackQWebEngineView_Lower(ptr unsafe.Pointer) {
 }
 
 func (ptr *QWebEngineView) ConnectLower(f func()) {
-	defer qt.Recovering("connect QWebEngineView::lower")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineView::lower", f)
@@ -10404,8 +8537,6 @@ func (ptr *QWebEngineView) ConnectLower(f func()) {
 }
 
 func (ptr *QWebEngineView) DisconnectLower() {
-	defer qt.Recovering("disconnect QWebEngineView::lower")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineView::lower")
@@ -10413,16 +8544,12 @@ func (ptr *QWebEngineView) DisconnectLower() {
 }
 
 func (ptr *QWebEngineView) Lower() {
-	defer qt.Recovering("QWebEngineView::lower")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineView_Lower(ptr.Pointer())
 	}
 }
 
 func (ptr *QWebEngineView) LowerDefault() {
-	defer qt.Recovering("QWebEngineView::lower")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineView_LowerDefault(ptr.Pointer())
 	}
@@ -10430,7 +8557,6 @@ func (ptr *QWebEngineView) LowerDefault() {
 
 //export callbackQWebEngineView_MouseDoubleClickEvent
 func callbackQWebEngineView_MouseDoubleClickEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	defer qt.Recovering("callback QWebEngineView::mouseDoubleClickEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineView::mouseDoubleClickEvent"); signal != nil {
 		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
@@ -10440,8 +8566,6 @@ func callbackQWebEngineView_MouseDoubleClickEvent(ptr unsafe.Pointer, event unsa
 }
 
 func (ptr *QWebEngineView) ConnectMouseDoubleClickEvent(f func(event *gui.QMouseEvent)) {
-	defer qt.Recovering("connect QWebEngineView::mouseDoubleClickEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineView::mouseDoubleClickEvent", f)
@@ -10449,8 +8573,6 @@ func (ptr *QWebEngineView) ConnectMouseDoubleClickEvent(f func(event *gui.QMouse
 }
 
 func (ptr *QWebEngineView) DisconnectMouseDoubleClickEvent() {
-	defer qt.Recovering("disconnect QWebEngineView::mouseDoubleClickEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineView::mouseDoubleClickEvent")
@@ -10458,16 +8580,12 @@ func (ptr *QWebEngineView) DisconnectMouseDoubleClickEvent() {
 }
 
 func (ptr *QWebEngineView) MouseDoubleClickEvent(event gui.QMouseEvent_ITF) {
-	defer qt.Recovering("QWebEngineView::mouseDoubleClickEvent")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineView_MouseDoubleClickEvent(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
 	}
 }
 
 func (ptr *QWebEngineView) MouseDoubleClickEventDefault(event gui.QMouseEvent_ITF) {
-	defer qt.Recovering("QWebEngineView::mouseDoubleClickEvent")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineView_MouseDoubleClickEventDefault(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
 	}
@@ -10475,7 +8593,6 @@ func (ptr *QWebEngineView) MouseDoubleClickEventDefault(event gui.QMouseEvent_IT
 
 //export callbackQWebEngineView_MouseMoveEvent
 func callbackQWebEngineView_MouseMoveEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	defer qt.Recovering("callback QWebEngineView::mouseMoveEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineView::mouseMoveEvent"); signal != nil {
 		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
@@ -10485,8 +8602,6 @@ func callbackQWebEngineView_MouseMoveEvent(ptr unsafe.Pointer, event unsafe.Poin
 }
 
 func (ptr *QWebEngineView) ConnectMouseMoveEvent(f func(event *gui.QMouseEvent)) {
-	defer qt.Recovering("connect QWebEngineView::mouseMoveEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineView::mouseMoveEvent", f)
@@ -10494,8 +8609,6 @@ func (ptr *QWebEngineView) ConnectMouseMoveEvent(f func(event *gui.QMouseEvent))
 }
 
 func (ptr *QWebEngineView) DisconnectMouseMoveEvent() {
-	defer qt.Recovering("disconnect QWebEngineView::mouseMoveEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineView::mouseMoveEvent")
@@ -10503,16 +8616,12 @@ func (ptr *QWebEngineView) DisconnectMouseMoveEvent() {
 }
 
 func (ptr *QWebEngineView) MouseMoveEvent(event gui.QMouseEvent_ITF) {
-	defer qt.Recovering("QWebEngineView::mouseMoveEvent")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineView_MouseMoveEvent(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
 	}
 }
 
 func (ptr *QWebEngineView) MouseMoveEventDefault(event gui.QMouseEvent_ITF) {
-	defer qt.Recovering("QWebEngineView::mouseMoveEvent")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineView_MouseMoveEventDefault(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
 	}
@@ -10520,7 +8629,6 @@ func (ptr *QWebEngineView) MouseMoveEventDefault(event gui.QMouseEvent_ITF) {
 
 //export callbackQWebEngineView_MousePressEvent
 func callbackQWebEngineView_MousePressEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	defer qt.Recovering("callback QWebEngineView::mousePressEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineView::mousePressEvent"); signal != nil {
 		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
@@ -10530,8 +8638,6 @@ func callbackQWebEngineView_MousePressEvent(ptr unsafe.Pointer, event unsafe.Poi
 }
 
 func (ptr *QWebEngineView) ConnectMousePressEvent(f func(event *gui.QMouseEvent)) {
-	defer qt.Recovering("connect QWebEngineView::mousePressEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineView::mousePressEvent", f)
@@ -10539,8 +8645,6 @@ func (ptr *QWebEngineView) ConnectMousePressEvent(f func(event *gui.QMouseEvent)
 }
 
 func (ptr *QWebEngineView) DisconnectMousePressEvent() {
-	defer qt.Recovering("disconnect QWebEngineView::mousePressEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineView::mousePressEvent")
@@ -10548,16 +8652,12 @@ func (ptr *QWebEngineView) DisconnectMousePressEvent() {
 }
 
 func (ptr *QWebEngineView) MousePressEvent(event gui.QMouseEvent_ITF) {
-	defer qt.Recovering("QWebEngineView::mousePressEvent")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineView_MousePressEvent(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
 	}
 }
 
 func (ptr *QWebEngineView) MousePressEventDefault(event gui.QMouseEvent_ITF) {
-	defer qt.Recovering("QWebEngineView::mousePressEvent")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineView_MousePressEventDefault(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
 	}
@@ -10565,7 +8665,6 @@ func (ptr *QWebEngineView) MousePressEventDefault(event gui.QMouseEvent_ITF) {
 
 //export callbackQWebEngineView_MouseReleaseEvent
 func callbackQWebEngineView_MouseReleaseEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	defer qt.Recovering("callback QWebEngineView::mouseReleaseEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineView::mouseReleaseEvent"); signal != nil {
 		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
@@ -10575,8 +8674,6 @@ func callbackQWebEngineView_MouseReleaseEvent(ptr unsafe.Pointer, event unsafe.P
 }
 
 func (ptr *QWebEngineView) ConnectMouseReleaseEvent(f func(event *gui.QMouseEvent)) {
-	defer qt.Recovering("connect QWebEngineView::mouseReleaseEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineView::mouseReleaseEvent", f)
@@ -10584,8 +8681,6 @@ func (ptr *QWebEngineView) ConnectMouseReleaseEvent(f func(event *gui.QMouseEven
 }
 
 func (ptr *QWebEngineView) DisconnectMouseReleaseEvent() {
-	defer qt.Recovering("disconnect QWebEngineView::mouseReleaseEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineView::mouseReleaseEvent")
@@ -10593,16 +8688,12 @@ func (ptr *QWebEngineView) DisconnectMouseReleaseEvent() {
 }
 
 func (ptr *QWebEngineView) MouseReleaseEvent(event gui.QMouseEvent_ITF) {
-	defer qt.Recovering("QWebEngineView::mouseReleaseEvent")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineView_MouseReleaseEvent(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
 	}
 }
 
 func (ptr *QWebEngineView) MouseReleaseEventDefault(event gui.QMouseEvent_ITF) {
-	defer qt.Recovering("QWebEngineView::mouseReleaseEvent")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineView_MouseReleaseEventDefault(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
 	}
@@ -10610,7 +8701,6 @@ func (ptr *QWebEngineView) MouseReleaseEventDefault(event gui.QMouseEvent_ITF) {
 
 //export callbackQWebEngineView_NativeEvent
 func callbackQWebEngineView_NativeEvent(ptr unsafe.Pointer, eventType *C.char, message unsafe.Pointer, result C.long) C.char {
-	defer qt.Recovering("callback QWebEngineView::nativeEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineView::nativeEvent"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(string, unsafe.Pointer, int) bool)(qt.HexDecodeToString(C.GoString(eventType)), message, int(int32(result))))))
@@ -10620,8 +8710,6 @@ func callbackQWebEngineView_NativeEvent(ptr unsafe.Pointer, eventType *C.char, m
 }
 
 func (ptr *QWebEngineView) ConnectNativeEvent(f func(eventType string, message unsafe.Pointer, result int) bool) {
-	defer qt.Recovering("connect QWebEngineView::nativeEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineView::nativeEvent", f)
@@ -10629,8 +8717,6 @@ func (ptr *QWebEngineView) ConnectNativeEvent(f func(eventType string, message u
 }
 
 func (ptr *QWebEngineView) DisconnectNativeEvent() {
-	defer qt.Recovering("disconnect QWebEngineView::nativeEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineView::nativeEvent")
@@ -10638,8 +8724,6 @@ func (ptr *QWebEngineView) DisconnectNativeEvent() {
 }
 
 func (ptr *QWebEngineView) NativeEvent(eventType string, message unsafe.Pointer, result int) bool {
-	defer qt.Recovering("QWebEngineView::nativeEvent")
-
 	if ptr.Pointer() != nil {
 		var eventTypeC = C.CString(hex.EncodeToString([]byte(eventType)))
 		defer C.free(unsafe.Pointer(eventTypeC))
@@ -10649,8 +8733,6 @@ func (ptr *QWebEngineView) NativeEvent(eventType string, message unsafe.Pointer,
 }
 
 func (ptr *QWebEngineView) NativeEventDefault(eventType string, message unsafe.Pointer, result int) bool {
-	defer qt.Recovering("QWebEngineView::nativeEvent")
-
 	if ptr.Pointer() != nil {
 		var eventTypeC = C.CString(hex.EncodeToString([]byte(eventType)))
 		defer C.free(unsafe.Pointer(eventTypeC))
@@ -10661,8 +8743,6 @@ func (ptr *QWebEngineView) NativeEventDefault(eventType string, message unsafe.P
 
 //export callbackQWebEngineView_Raise
 func callbackQWebEngineView_Raise(ptr unsafe.Pointer) {
-	defer qt.Recovering("callback QWebEngineView::raise")
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineView::raise"); signal != nil {
 		signal.(func())()
 	} else {
@@ -10671,8 +8751,6 @@ func callbackQWebEngineView_Raise(ptr unsafe.Pointer) {
 }
 
 func (ptr *QWebEngineView) ConnectRaise(f func()) {
-	defer qt.Recovering("connect QWebEngineView::raise")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineView::raise", f)
@@ -10680,8 +8758,6 @@ func (ptr *QWebEngineView) ConnectRaise(f func()) {
 }
 
 func (ptr *QWebEngineView) DisconnectRaise() {
-	defer qt.Recovering("disconnect QWebEngineView::raise")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineView::raise")
@@ -10689,16 +8765,12 @@ func (ptr *QWebEngineView) DisconnectRaise() {
 }
 
 func (ptr *QWebEngineView) Raise() {
-	defer qt.Recovering("QWebEngineView::raise")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineView_Raise(ptr.Pointer())
 	}
 }
 
 func (ptr *QWebEngineView) RaiseDefault() {
-	defer qt.Recovering("QWebEngineView::raise")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineView_RaiseDefault(ptr.Pointer())
 	}
@@ -10706,8 +8778,6 @@ func (ptr *QWebEngineView) RaiseDefault() {
 
 //export callbackQWebEngineView_Repaint
 func callbackQWebEngineView_Repaint(ptr unsafe.Pointer) {
-	defer qt.Recovering("callback QWebEngineView::repaint")
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineView::repaint"); signal != nil {
 		signal.(func())()
 	} else {
@@ -10716,8 +8786,6 @@ func callbackQWebEngineView_Repaint(ptr unsafe.Pointer) {
 }
 
 func (ptr *QWebEngineView) ConnectRepaint(f func()) {
-	defer qt.Recovering("connect QWebEngineView::repaint")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineView::repaint", f)
@@ -10725,8 +8793,6 @@ func (ptr *QWebEngineView) ConnectRepaint(f func()) {
 }
 
 func (ptr *QWebEngineView) DisconnectRepaint() {
-	defer qt.Recovering("disconnect QWebEngineView::repaint")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineView::repaint")
@@ -10734,16 +8800,12 @@ func (ptr *QWebEngineView) DisconnectRepaint() {
 }
 
 func (ptr *QWebEngineView) Repaint() {
-	defer qt.Recovering("QWebEngineView::repaint")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineView_Repaint(ptr.Pointer())
 	}
 }
 
 func (ptr *QWebEngineView) RepaintDefault() {
-	defer qt.Recovering("QWebEngineView::repaint")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineView_RepaintDefault(ptr.Pointer())
 	}
@@ -10751,7 +8813,6 @@ func (ptr *QWebEngineView) RepaintDefault() {
 
 //export callbackQWebEngineView_ResizeEvent
 func callbackQWebEngineView_ResizeEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	defer qt.Recovering("callback QWebEngineView::resizeEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineView::resizeEvent"); signal != nil {
 		signal.(func(*gui.QResizeEvent))(gui.NewQResizeEventFromPointer(event))
@@ -10761,8 +8822,6 @@ func callbackQWebEngineView_ResizeEvent(ptr unsafe.Pointer, event unsafe.Pointer
 }
 
 func (ptr *QWebEngineView) ConnectResizeEvent(f func(event *gui.QResizeEvent)) {
-	defer qt.Recovering("connect QWebEngineView::resizeEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineView::resizeEvent", f)
@@ -10770,8 +8829,6 @@ func (ptr *QWebEngineView) ConnectResizeEvent(f func(event *gui.QResizeEvent)) {
 }
 
 func (ptr *QWebEngineView) DisconnectResizeEvent() {
-	defer qt.Recovering("disconnect QWebEngineView::resizeEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineView::resizeEvent")
@@ -10779,16 +8836,12 @@ func (ptr *QWebEngineView) DisconnectResizeEvent() {
 }
 
 func (ptr *QWebEngineView) ResizeEvent(event gui.QResizeEvent_ITF) {
-	defer qt.Recovering("QWebEngineView::resizeEvent")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineView_ResizeEvent(ptr.Pointer(), gui.PointerFromQResizeEvent(event))
 	}
 }
 
 func (ptr *QWebEngineView) ResizeEventDefault(event gui.QResizeEvent_ITF) {
-	defer qt.Recovering("QWebEngineView::resizeEvent")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineView_ResizeEventDefault(ptr.Pointer(), gui.PointerFromQResizeEvent(event))
 	}
@@ -10796,8 +8849,6 @@ func (ptr *QWebEngineView) ResizeEventDefault(event gui.QResizeEvent_ITF) {
 
 //export callbackQWebEngineView_SetDisabled
 func callbackQWebEngineView_SetDisabled(ptr unsafe.Pointer, disable C.char) {
-	defer qt.Recovering("callback QWebEngineView::setDisabled")
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineView::setDisabled"); signal != nil {
 		signal.(func(bool))(int8(disable) != 0)
 	} else {
@@ -10806,8 +8857,6 @@ func callbackQWebEngineView_SetDisabled(ptr unsafe.Pointer, disable C.char) {
 }
 
 func (ptr *QWebEngineView) ConnectSetDisabled(f func(disable bool)) {
-	defer qt.Recovering("connect QWebEngineView::setDisabled")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineView::setDisabled", f)
@@ -10815,8 +8864,6 @@ func (ptr *QWebEngineView) ConnectSetDisabled(f func(disable bool)) {
 }
 
 func (ptr *QWebEngineView) DisconnectSetDisabled() {
-	defer qt.Recovering("disconnect QWebEngineView::setDisabled")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineView::setDisabled")
@@ -10824,16 +8871,12 @@ func (ptr *QWebEngineView) DisconnectSetDisabled() {
 }
 
 func (ptr *QWebEngineView) SetDisabled(disable bool) {
-	defer qt.Recovering("QWebEngineView::setDisabled")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineView_SetDisabled(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(disable))))
 	}
 }
 
 func (ptr *QWebEngineView) SetDisabledDefault(disable bool) {
-	defer qt.Recovering("QWebEngineView::setDisabled")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineView_SetDisabledDefault(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(disable))))
 	}
@@ -10841,8 +8884,6 @@ func (ptr *QWebEngineView) SetDisabledDefault(disable bool) {
 
 //export callbackQWebEngineView_SetFocus2
 func callbackQWebEngineView_SetFocus2(ptr unsafe.Pointer) {
-	defer qt.Recovering("callback QWebEngineView::setFocus")
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineView::setFocus2"); signal != nil {
 		signal.(func())()
 	} else {
@@ -10851,8 +8892,6 @@ func callbackQWebEngineView_SetFocus2(ptr unsafe.Pointer) {
 }
 
 func (ptr *QWebEngineView) ConnectSetFocus2(f func()) {
-	defer qt.Recovering("connect QWebEngineView::setFocus")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineView::setFocus2", f)
@@ -10860,8 +8899,6 @@ func (ptr *QWebEngineView) ConnectSetFocus2(f func()) {
 }
 
 func (ptr *QWebEngineView) DisconnectSetFocus2() {
-	defer qt.Recovering("disconnect QWebEngineView::setFocus")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineView::setFocus2")
@@ -10869,16 +8906,12 @@ func (ptr *QWebEngineView) DisconnectSetFocus2() {
 }
 
 func (ptr *QWebEngineView) SetFocus2() {
-	defer qt.Recovering("QWebEngineView::setFocus")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineView_SetFocus2(ptr.Pointer())
 	}
 }
 
 func (ptr *QWebEngineView) SetFocus2Default() {
-	defer qt.Recovering("QWebEngineView::setFocus")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineView_SetFocus2Default(ptr.Pointer())
 	}
@@ -10886,8 +8919,6 @@ func (ptr *QWebEngineView) SetFocus2Default() {
 
 //export callbackQWebEngineView_SetHidden
 func callbackQWebEngineView_SetHidden(ptr unsafe.Pointer, hidden C.char) {
-	defer qt.Recovering("callback QWebEngineView::setHidden")
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineView::setHidden"); signal != nil {
 		signal.(func(bool))(int8(hidden) != 0)
 	} else {
@@ -10896,8 +8927,6 @@ func callbackQWebEngineView_SetHidden(ptr unsafe.Pointer, hidden C.char) {
 }
 
 func (ptr *QWebEngineView) ConnectSetHidden(f func(hidden bool)) {
-	defer qt.Recovering("connect QWebEngineView::setHidden")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineView::setHidden", f)
@@ -10905,8 +8934,6 @@ func (ptr *QWebEngineView) ConnectSetHidden(f func(hidden bool)) {
 }
 
 func (ptr *QWebEngineView) DisconnectSetHidden() {
-	defer qt.Recovering("disconnect QWebEngineView::setHidden")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineView::setHidden")
@@ -10914,16 +8941,12 @@ func (ptr *QWebEngineView) DisconnectSetHidden() {
 }
 
 func (ptr *QWebEngineView) SetHidden(hidden bool) {
-	defer qt.Recovering("QWebEngineView::setHidden")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineView_SetHidden(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(hidden))))
 	}
 }
 
 func (ptr *QWebEngineView) SetHiddenDefault(hidden bool) {
-	defer qt.Recovering("QWebEngineView::setHidden")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineView_SetHiddenDefault(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(hidden))))
 	}
@@ -10931,8 +8954,6 @@ func (ptr *QWebEngineView) SetHiddenDefault(hidden bool) {
 
 //export callbackQWebEngineView_Show
 func callbackQWebEngineView_Show(ptr unsafe.Pointer) {
-	defer qt.Recovering("callback QWebEngineView::show")
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineView::show"); signal != nil {
 		signal.(func())()
 	} else {
@@ -10941,8 +8962,6 @@ func callbackQWebEngineView_Show(ptr unsafe.Pointer) {
 }
 
 func (ptr *QWebEngineView) ConnectShow(f func()) {
-	defer qt.Recovering("connect QWebEngineView::show")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineView::show", f)
@@ -10950,8 +8969,6 @@ func (ptr *QWebEngineView) ConnectShow(f func()) {
 }
 
 func (ptr *QWebEngineView) DisconnectShow() {
-	defer qt.Recovering("disconnect QWebEngineView::show")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineView::show")
@@ -10959,16 +8976,12 @@ func (ptr *QWebEngineView) DisconnectShow() {
 }
 
 func (ptr *QWebEngineView) Show() {
-	defer qt.Recovering("QWebEngineView::show")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineView_Show(ptr.Pointer())
 	}
 }
 
 func (ptr *QWebEngineView) ShowDefault() {
-	defer qt.Recovering("QWebEngineView::show")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineView_ShowDefault(ptr.Pointer())
 	}
@@ -10976,8 +8989,6 @@ func (ptr *QWebEngineView) ShowDefault() {
 
 //export callbackQWebEngineView_ShowFullScreen
 func callbackQWebEngineView_ShowFullScreen(ptr unsafe.Pointer) {
-	defer qt.Recovering("callback QWebEngineView::showFullScreen")
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineView::showFullScreen"); signal != nil {
 		signal.(func())()
 	} else {
@@ -10986,8 +8997,6 @@ func callbackQWebEngineView_ShowFullScreen(ptr unsafe.Pointer) {
 }
 
 func (ptr *QWebEngineView) ConnectShowFullScreen(f func()) {
-	defer qt.Recovering("connect QWebEngineView::showFullScreen")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineView::showFullScreen", f)
@@ -10995,8 +9004,6 @@ func (ptr *QWebEngineView) ConnectShowFullScreen(f func()) {
 }
 
 func (ptr *QWebEngineView) DisconnectShowFullScreen() {
-	defer qt.Recovering("disconnect QWebEngineView::showFullScreen")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineView::showFullScreen")
@@ -11004,16 +9011,12 @@ func (ptr *QWebEngineView) DisconnectShowFullScreen() {
 }
 
 func (ptr *QWebEngineView) ShowFullScreen() {
-	defer qt.Recovering("QWebEngineView::showFullScreen")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineView_ShowFullScreen(ptr.Pointer())
 	}
 }
 
 func (ptr *QWebEngineView) ShowFullScreenDefault() {
-	defer qt.Recovering("QWebEngineView::showFullScreen")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineView_ShowFullScreenDefault(ptr.Pointer())
 	}
@@ -11021,8 +9024,6 @@ func (ptr *QWebEngineView) ShowFullScreenDefault() {
 
 //export callbackQWebEngineView_ShowMaximized
 func callbackQWebEngineView_ShowMaximized(ptr unsafe.Pointer) {
-	defer qt.Recovering("callback QWebEngineView::showMaximized")
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineView::showMaximized"); signal != nil {
 		signal.(func())()
 	} else {
@@ -11031,8 +9032,6 @@ func callbackQWebEngineView_ShowMaximized(ptr unsafe.Pointer) {
 }
 
 func (ptr *QWebEngineView) ConnectShowMaximized(f func()) {
-	defer qt.Recovering("connect QWebEngineView::showMaximized")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineView::showMaximized", f)
@@ -11040,8 +9039,6 @@ func (ptr *QWebEngineView) ConnectShowMaximized(f func()) {
 }
 
 func (ptr *QWebEngineView) DisconnectShowMaximized() {
-	defer qt.Recovering("disconnect QWebEngineView::showMaximized")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineView::showMaximized")
@@ -11049,16 +9046,12 @@ func (ptr *QWebEngineView) DisconnectShowMaximized() {
 }
 
 func (ptr *QWebEngineView) ShowMaximized() {
-	defer qt.Recovering("QWebEngineView::showMaximized")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineView_ShowMaximized(ptr.Pointer())
 	}
 }
 
 func (ptr *QWebEngineView) ShowMaximizedDefault() {
-	defer qt.Recovering("QWebEngineView::showMaximized")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineView_ShowMaximizedDefault(ptr.Pointer())
 	}
@@ -11066,8 +9059,6 @@ func (ptr *QWebEngineView) ShowMaximizedDefault() {
 
 //export callbackQWebEngineView_ShowMinimized
 func callbackQWebEngineView_ShowMinimized(ptr unsafe.Pointer) {
-	defer qt.Recovering("callback QWebEngineView::showMinimized")
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineView::showMinimized"); signal != nil {
 		signal.(func())()
 	} else {
@@ -11076,8 +9067,6 @@ func callbackQWebEngineView_ShowMinimized(ptr unsafe.Pointer) {
 }
 
 func (ptr *QWebEngineView) ConnectShowMinimized(f func()) {
-	defer qt.Recovering("connect QWebEngineView::showMinimized")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineView::showMinimized", f)
@@ -11085,8 +9074,6 @@ func (ptr *QWebEngineView) ConnectShowMinimized(f func()) {
 }
 
 func (ptr *QWebEngineView) DisconnectShowMinimized() {
-	defer qt.Recovering("disconnect QWebEngineView::showMinimized")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineView::showMinimized")
@@ -11094,16 +9081,12 @@ func (ptr *QWebEngineView) DisconnectShowMinimized() {
 }
 
 func (ptr *QWebEngineView) ShowMinimized() {
-	defer qt.Recovering("QWebEngineView::showMinimized")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineView_ShowMinimized(ptr.Pointer())
 	}
 }
 
 func (ptr *QWebEngineView) ShowMinimizedDefault() {
-	defer qt.Recovering("QWebEngineView::showMinimized")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineView_ShowMinimizedDefault(ptr.Pointer())
 	}
@@ -11111,8 +9094,6 @@ func (ptr *QWebEngineView) ShowMinimizedDefault() {
 
 //export callbackQWebEngineView_ShowNormal
 func callbackQWebEngineView_ShowNormal(ptr unsafe.Pointer) {
-	defer qt.Recovering("callback QWebEngineView::showNormal")
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineView::showNormal"); signal != nil {
 		signal.(func())()
 	} else {
@@ -11121,8 +9102,6 @@ func callbackQWebEngineView_ShowNormal(ptr unsafe.Pointer) {
 }
 
 func (ptr *QWebEngineView) ConnectShowNormal(f func()) {
-	defer qt.Recovering("connect QWebEngineView::showNormal")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineView::showNormal", f)
@@ -11130,8 +9109,6 @@ func (ptr *QWebEngineView) ConnectShowNormal(f func()) {
 }
 
 func (ptr *QWebEngineView) DisconnectShowNormal() {
-	defer qt.Recovering("disconnect QWebEngineView::showNormal")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineView::showNormal")
@@ -11139,16 +9116,12 @@ func (ptr *QWebEngineView) DisconnectShowNormal() {
 }
 
 func (ptr *QWebEngineView) ShowNormal() {
-	defer qt.Recovering("QWebEngineView::showNormal")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineView_ShowNormal(ptr.Pointer())
 	}
 }
 
 func (ptr *QWebEngineView) ShowNormalDefault() {
-	defer qt.Recovering("QWebEngineView::showNormal")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineView_ShowNormalDefault(ptr.Pointer())
 	}
@@ -11156,7 +9129,6 @@ func (ptr *QWebEngineView) ShowNormalDefault() {
 
 //export callbackQWebEngineView_TabletEvent
 func callbackQWebEngineView_TabletEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	defer qt.Recovering("callback QWebEngineView::tabletEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineView::tabletEvent"); signal != nil {
 		signal.(func(*gui.QTabletEvent))(gui.NewQTabletEventFromPointer(event))
@@ -11166,8 +9138,6 @@ func callbackQWebEngineView_TabletEvent(ptr unsafe.Pointer, event unsafe.Pointer
 }
 
 func (ptr *QWebEngineView) ConnectTabletEvent(f func(event *gui.QTabletEvent)) {
-	defer qt.Recovering("connect QWebEngineView::tabletEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineView::tabletEvent", f)
@@ -11175,8 +9145,6 @@ func (ptr *QWebEngineView) ConnectTabletEvent(f func(event *gui.QTabletEvent)) {
 }
 
 func (ptr *QWebEngineView) DisconnectTabletEvent() {
-	defer qt.Recovering("disconnect QWebEngineView::tabletEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineView::tabletEvent")
@@ -11184,16 +9152,12 @@ func (ptr *QWebEngineView) DisconnectTabletEvent() {
 }
 
 func (ptr *QWebEngineView) TabletEvent(event gui.QTabletEvent_ITF) {
-	defer qt.Recovering("QWebEngineView::tabletEvent")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineView_TabletEvent(ptr.Pointer(), gui.PointerFromQTabletEvent(event))
 	}
 }
 
 func (ptr *QWebEngineView) TabletEventDefault(event gui.QTabletEvent_ITF) {
-	defer qt.Recovering("QWebEngineView::tabletEvent")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineView_TabletEventDefault(ptr.Pointer(), gui.PointerFromQTabletEvent(event))
 	}
@@ -11201,8 +9165,6 @@ func (ptr *QWebEngineView) TabletEventDefault(event gui.QTabletEvent_ITF) {
 
 //export callbackQWebEngineView_Update
 func callbackQWebEngineView_Update(ptr unsafe.Pointer) {
-	defer qt.Recovering("callback QWebEngineView::update")
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineView::update"); signal != nil {
 		signal.(func())()
 	} else {
@@ -11211,8 +9173,6 @@ func callbackQWebEngineView_Update(ptr unsafe.Pointer) {
 }
 
 func (ptr *QWebEngineView) ConnectUpdate(f func()) {
-	defer qt.Recovering("connect QWebEngineView::update")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineView::update", f)
@@ -11220,8 +9180,6 @@ func (ptr *QWebEngineView) ConnectUpdate(f func()) {
 }
 
 func (ptr *QWebEngineView) DisconnectUpdate() {
-	defer qt.Recovering("disconnect QWebEngineView::update")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineView::update")
@@ -11229,16 +9187,12 @@ func (ptr *QWebEngineView) DisconnectUpdate() {
 }
 
 func (ptr *QWebEngineView) Update() {
-	defer qt.Recovering("QWebEngineView::update")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineView_Update(ptr.Pointer())
 	}
 }
 
 func (ptr *QWebEngineView) UpdateDefault() {
-	defer qt.Recovering("QWebEngineView::update")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineView_UpdateDefault(ptr.Pointer())
 	}
@@ -11246,8 +9200,6 @@ func (ptr *QWebEngineView) UpdateDefault() {
 
 //export callbackQWebEngineView_UpdateMicroFocus
 func callbackQWebEngineView_UpdateMicroFocus(ptr unsafe.Pointer) {
-	defer qt.Recovering("callback QWebEngineView::updateMicroFocus")
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineView::updateMicroFocus"); signal != nil {
 		signal.(func())()
 	} else {
@@ -11256,8 +9208,6 @@ func callbackQWebEngineView_UpdateMicroFocus(ptr unsafe.Pointer) {
 }
 
 func (ptr *QWebEngineView) ConnectUpdateMicroFocus(f func()) {
-	defer qt.Recovering("connect QWebEngineView::updateMicroFocus")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineView::updateMicroFocus", f)
@@ -11265,8 +9215,6 @@ func (ptr *QWebEngineView) ConnectUpdateMicroFocus(f func()) {
 }
 
 func (ptr *QWebEngineView) DisconnectUpdateMicroFocus() {
-	defer qt.Recovering("disconnect QWebEngineView::updateMicroFocus")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineView::updateMicroFocus")
@@ -11274,16 +9222,12 @@ func (ptr *QWebEngineView) DisconnectUpdateMicroFocus() {
 }
 
 func (ptr *QWebEngineView) UpdateMicroFocus() {
-	defer qt.Recovering("QWebEngineView::updateMicroFocus")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineView_UpdateMicroFocus(ptr.Pointer())
 	}
 }
 
 func (ptr *QWebEngineView) UpdateMicroFocusDefault() {
-	defer qt.Recovering("QWebEngineView::updateMicroFocus")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineView_UpdateMicroFocusDefault(ptr.Pointer())
 	}
@@ -11291,7 +9235,6 @@ func (ptr *QWebEngineView) UpdateMicroFocusDefault() {
 
 //export callbackQWebEngineView_WheelEvent
 func callbackQWebEngineView_WheelEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	defer qt.Recovering("callback QWebEngineView::wheelEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineView::wheelEvent"); signal != nil {
 		signal.(func(*gui.QWheelEvent))(gui.NewQWheelEventFromPointer(event))
@@ -11301,8 +9244,6 @@ func callbackQWebEngineView_WheelEvent(ptr unsafe.Pointer, event unsafe.Pointer)
 }
 
 func (ptr *QWebEngineView) ConnectWheelEvent(f func(event *gui.QWheelEvent)) {
-	defer qt.Recovering("connect QWebEngineView::wheelEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineView::wheelEvent", f)
@@ -11310,8 +9251,6 @@ func (ptr *QWebEngineView) ConnectWheelEvent(f func(event *gui.QWheelEvent)) {
 }
 
 func (ptr *QWebEngineView) DisconnectWheelEvent() {
-	defer qt.Recovering("disconnect QWebEngineView::wheelEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineView::wheelEvent")
@@ -11319,16 +9258,12 @@ func (ptr *QWebEngineView) DisconnectWheelEvent() {
 }
 
 func (ptr *QWebEngineView) WheelEvent(event gui.QWheelEvent_ITF) {
-	defer qt.Recovering("QWebEngineView::wheelEvent")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineView_WheelEvent(ptr.Pointer(), gui.PointerFromQWheelEvent(event))
 	}
 }
 
 func (ptr *QWebEngineView) WheelEventDefault(event gui.QWheelEvent_ITF) {
-	defer qt.Recovering("QWebEngineView::wheelEvent")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineView_WheelEventDefault(ptr.Pointer(), gui.PointerFromQWheelEvent(event))
 	}
@@ -11336,7 +9271,6 @@ func (ptr *QWebEngineView) WheelEventDefault(event gui.QWheelEvent_ITF) {
 
 //export callbackQWebEngineView_TimerEvent
 func callbackQWebEngineView_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	defer qt.Recovering("callback QWebEngineView::timerEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineView::timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
@@ -11346,8 +9280,6 @@ func callbackQWebEngineView_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer)
 }
 
 func (ptr *QWebEngineView) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
-	defer qt.Recovering("connect QWebEngineView::timerEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineView::timerEvent", f)
@@ -11355,8 +9287,6 @@ func (ptr *QWebEngineView) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
 }
 
 func (ptr *QWebEngineView) DisconnectTimerEvent() {
-	defer qt.Recovering("disconnect QWebEngineView::timerEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineView::timerEvent")
@@ -11364,16 +9294,12 @@ func (ptr *QWebEngineView) DisconnectTimerEvent() {
 }
 
 func (ptr *QWebEngineView) TimerEvent(event core.QTimerEvent_ITF) {
-	defer qt.Recovering("QWebEngineView::timerEvent")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineView_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
 	}
 }
 
 func (ptr *QWebEngineView) TimerEventDefault(event core.QTimerEvent_ITF) {
-	defer qt.Recovering("QWebEngineView::timerEvent")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineView_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
 	}
@@ -11381,7 +9307,6 @@ func (ptr *QWebEngineView) TimerEventDefault(event core.QTimerEvent_ITF) {
 
 //export callbackQWebEngineView_ChildEvent
 func callbackQWebEngineView_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	defer qt.Recovering("callback QWebEngineView::childEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineView::childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
@@ -11391,8 +9316,6 @@ func callbackQWebEngineView_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer)
 }
 
 func (ptr *QWebEngineView) ConnectChildEvent(f func(event *core.QChildEvent)) {
-	defer qt.Recovering("connect QWebEngineView::childEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineView::childEvent", f)
@@ -11400,8 +9323,6 @@ func (ptr *QWebEngineView) ConnectChildEvent(f func(event *core.QChildEvent)) {
 }
 
 func (ptr *QWebEngineView) DisconnectChildEvent() {
-	defer qt.Recovering("disconnect QWebEngineView::childEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineView::childEvent")
@@ -11409,16 +9330,12 @@ func (ptr *QWebEngineView) DisconnectChildEvent() {
 }
 
 func (ptr *QWebEngineView) ChildEvent(event core.QChildEvent_ITF) {
-	defer qt.Recovering("QWebEngineView::childEvent")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineView_ChildEvent(ptr.Pointer(), core.PointerFromQChildEvent(event))
 	}
 }
 
 func (ptr *QWebEngineView) ChildEventDefault(event core.QChildEvent_ITF) {
-	defer qt.Recovering("QWebEngineView::childEvent")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineView_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
 	}
@@ -11426,7 +9343,6 @@ func (ptr *QWebEngineView) ChildEventDefault(event core.QChildEvent_ITF) {
 
 //export callbackQWebEngineView_ConnectNotify
 func callbackQWebEngineView_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-	defer qt.Recovering("callback QWebEngineView::connectNotify")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineView::connectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
@@ -11436,8 +9352,6 @@ func callbackQWebEngineView_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointe
 }
 
 func (ptr *QWebEngineView) ConnectConnectNotify(f func(sign *core.QMetaMethod)) {
-	defer qt.Recovering("connect QWebEngineView::connectNotify")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineView::connectNotify", f)
@@ -11445,8 +9359,6 @@ func (ptr *QWebEngineView) ConnectConnectNotify(f func(sign *core.QMetaMethod)) 
 }
 
 func (ptr *QWebEngineView) DisconnectConnectNotify() {
-	defer qt.Recovering("disconnect QWebEngineView::connectNotify")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineView::connectNotify")
@@ -11454,16 +9366,12 @@ func (ptr *QWebEngineView) DisconnectConnectNotify() {
 }
 
 func (ptr *QWebEngineView) ConnectNotify(sign core.QMetaMethod_ITF) {
-	defer qt.Recovering("QWebEngineView::connectNotify")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineView_ConnectNotify(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
 	}
 }
 
 func (ptr *QWebEngineView) ConnectNotifyDefault(sign core.QMetaMethod_ITF) {
-	defer qt.Recovering("QWebEngineView::connectNotify")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineView_ConnectNotifyDefault(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
 	}
@@ -11471,7 +9379,6 @@ func (ptr *QWebEngineView) ConnectNotifyDefault(sign core.QMetaMethod_ITF) {
 
 //export callbackQWebEngineView_CustomEvent
 func callbackQWebEngineView_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	defer qt.Recovering("callback QWebEngineView::customEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineView::customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
@@ -11481,8 +9388,6 @@ func callbackQWebEngineView_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer
 }
 
 func (ptr *QWebEngineView) ConnectCustomEvent(f func(event *core.QEvent)) {
-	defer qt.Recovering("connect QWebEngineView::customEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineView::customEvent", f)
@@ -11490,8 +9395,6 @@ func (ptr *QWebEngineView) ConnectCustomEvent(f func(event *core.QEvent)) {
 }
 
 func (ptr *QWebEngineView) DisconnectCustomEvent() {
-	defer qt.Recovering("disconnect QWebEngineView::customEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineView::customEvent")
@@ -11499,16 +9402,12 @@ func (ptr *QWebEngineView) DisconnectCustomEvent() {
 }
 
 func (ptr *QWebEngineView) CustomEvent(event core.QEvent_ITF) {
-	defer qt.Recovering("QWebEngineView::customEvent")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineView_CustomEvent(ptr.Pointer(), core.PointerFromQEvent(event))
 	}
 }
 
 func (ptr *QWebEngineView) CustomEventDefault(event core.QEvent_ITF) {
-	defer qt.Recovering("QWebEngineView::customEvent")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineView_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
 	}
@@ -11516,8 +9415,6 @@ func (ptr *QWebEngineView) CustomEventDefault(event core.QEvent_ITF) {
 
 //export callbackQWebEngineView_DeleteLater
 func callbackQWebEngineView_DeleteLater(ptr unsafe.Pointer) {
-	defer qt.Recovering("callback QWebEngineView::deleteLater")
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineView::deleteLater"); signal != nil {
 		signal.(func())()
 	} else {
@@ -11526,8 +9423,6 @@ func callbackQWebEngineView_DeleteLater(ptr unsafe.Pointer) {
 }
 
 func (ptr *QWebEngineView) ConnectDeleteLater(f func()) {
-	defer qt.Recovering("connect QWebEngineView::deleteLater")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineView::deleteLater", f)
@@ -11535,8 +9430,6 @@ func (ptr *QWebEngineView) ConnectDeleteLater(f func()) {
 }
 
 func (ptr *QWebEngineView) DisconnectDeleteLater() {
-	defer qt.Recovering("disconnect QWebEngineView::deleteLater")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineView::deleteLater")
@@ -11544,8 +9437,6 @@ func (ptr *QWebEngineView) DisconnectDeleteLater() {
 }
 
 func (ptr *QWebEngineView) DeleteLater() {
-	defer qt.Recovering("QWebEngineView::deleteLater")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineView_DeleteLater(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
@@ -11554,8 +9445,6 @@ func (ptr *QWebEngineView) DeleteLater() {
 }
 
 func (ptr *QWebEngineView) DeleteLaterDefault() {
-	defer qt.Recovering("QWebEngineView::deleteLater")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineView_DeleteLaterDefault(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
@@ -11565,7 +9454,6 @@ func (ptr *QWebEngineView) DeleteLaterDefault() {
 
 //export callbackQWebEngineView_DisconnectNotify
 func callbackQWebEngineView_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-	defer qt.Recovering("callback QWebEngineView::disconnectNotify")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineView::disconnectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
@@ -11575,8 +9463,6 @@ func callbackQWebEngineView_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Poi
 }
 
 func (ptr *QWebEngineView) ConnectDisconnectNotify(f func(sign *core.QMetaMethod)) {
-	defer qt.Recovering("connect QWebEngineView::disconnectNotify")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineView::disconnectNotify", f)
@@ -11584,8 +9470,6 @@ func (ptr *QWebEngineView) ConnectDisconnectNotify(f func(sign *core.QMetaMethod
 }
 
 func (ptr *QWebEngineView) DisconnectDisconnectNotify() {
-	defer qt.Recovering("disconnect QWebEngineView::disconnectNotify")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineView::disconnectNotify")
@@ -11593,16 +9477,12 @@ func (ptr *QWebEngineView) DisconnectDisconnectNotify() {
 }
 
 func (ptr *QWebEngineView) DisconnectNotify(sign core.QMetaMethod_ITF) {
-	defer qt.Recovering("QWebEngineView::disconnectNotify")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineView_DisconnectNotify(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
 	}
 }
 
 func (ptr *QWebEngineView) DisconnectNotifyDefault(sign core.QMetaMethod_ITF) {
-	defer qt.Recovering("QWebEngineView::disconnectNotify")
-
 	if ptr.Pointer() != nil {
 		C.QWebEngineView_DisconnectNotifyDefault(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
 	}
@@ -11610,7 +9490,6 @@ func (ptr *QWebEngineView) DisconnectNotifyDefault(sign core.QMetaMethod_ITF) {
 
 //export callbackQWebEngineView_EventFilter
 func callbackQWebEngineView_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-	defer qt.Recovering("callback QWebEngineView::eventFilter")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineView::eventFilter"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
@@ -11620,8 +9499,6 @@ func callbackQWebEngineView_EventFilter(ptr unsafe.Pointer, watched unsafe.Point
 }
 
 func (ptr *QWebEngineView) ConnectEventFilter(f func(watched *core.QObject, event *core.QEvent) bool) {
-	defer qt.Recovering("connect QWebEngineView::eventFilter")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineView::eventFilter", f)
@@ -11629,8 +9506,6 @@ func (ptr *QWebEngineView) ConnectEventFilter(f func(watched *core.QObject, even
 }
 
 func (ptr *QWebEngineView) DisconnectEventFilter() {
-	defer qt.Recovering("disconnect QWebEngineView::eventFilter")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineView::eventFilter")
@@ -11638,8 +9513,6 @@ func (ptr *QWebEngineView) DisconnectEventFilter() {
 }
 
 func (ptr *QWebEngineView) EventFilter(watched core.QObject_ITF, event core.QEvent_ITF) bool {
-	defer qt.Recovering("QWebEngineView::eventFilter")
-
 	if ptr.Pointer() != nil {
 		return C.QWebEngineView_EventFilter(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
 	}
@@ -11647,8 +9520,6 @@ func (ptr *QWebEngineView) EventFilter(watched core.QObject_ITF, event core.QEve
 }
 
 func (ptr *QWebEngineView) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
-	defer qt.Recovering("QWebEngineView::eventFilter")
-
 	if ptr.Pointer() != nil {
 		return C.QWebEngineView_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
 	}
@@ -11657,7 +9528,6 @@ func (ptr *QWebEngineView) EventFilterDefault(watched core.QObject_ITF, event co
 
 //export callbackQWebEngineView_MetaObject
 func callbackQWebEngineView_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-	defer qt.Recovering("callback QWebEngineView::metaObject")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineView::metaObject"); signal != nil {
 		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
@@ -11667,8 +9537,6 @@ func callbackQWebEngineView_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
 }
 
 func (ptr *QWebEngineView) ConnectMetaObject(f func() *core.QMetaObject) {
-	defer qt.Recovering("connect QWebEngineView::metaObject")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineView::metaObject", f)
@@ -11676,8 +9544,6 @@ func (ptr *QWebEngineView) ConnectMetaObject(f func() *core.QMetaObject) {
 }
 
 func (ptr *QWebEngineView) DisconnectMetaObject() {
-	defer qt.Recovering("disconnect QWebEngineView::metaObject")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineView::metaObject")
@@ -11685,8 +9551,6 @@ func (ptr *QWebEngineView) DisconnectMetaObject() {
 }
 
 func (ptr *QWebEngineView) MetaObject() *core.QMetaObject {
-	defer qt.Recovering("QWebEngineView::metaObject")
-
 	if ptr.Pointer() != nil {
 		return core.NewQMetaObjectFromPointer(C.QWebEngineView_MetaObject(ptr.Pointer()))
 	}
@@ -11694,8 +9558,6 @@ func (ptr *QWebEngineView) MetaObject() *core.QMetaObject {
 }
 
 func (ptr *QWebEngineView) MetaObjectDefault() *core.QMetaObject {
-	defer qt.Recovering("QWebEngineView::metaObject")
-
 	if ptr.Pointer() != nil {
 		return core.NewQMetaObjectFromPointer(C.QWebEngineView_MetaObjectDefault(ptr.Pointer()))
 	}

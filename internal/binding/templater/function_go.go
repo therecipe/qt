@@ -3,6 +3,7 @@ package templater
 import (
 	"bytes"
 	"fmt"
+	"os"
 	"strings"
 
 	"github.com/therecipe/qt/internal/binding/converter"
@@ -38,23 +39,33 @@ func goFunctionBody(function *parser.Function) string {
 	var bb = new(bytes.Buffer)
 	defer bb.Reset()
 
+	if strings.ToLower(os.Getenv("QT_DEBUG")) == "true" {
+		fmt.Fprintf(bb, "defer qt.Recover(\"\t%v%v%v(%v) %v\")\n",
+			function.Class(),
+
+			func() string {
+				return strings.Repeat(" ", 45-len(function.Class()))
+			}(),
+
+			converter.GoHeaderName(function), converter.GoHeaderInput(function), converter.GoHeaderOutput(function))
+
+		fmt.Fprintf(bb, "qt.Debug(\"\t%v%v%v(%v) %v\")\n",
+
+			function.Class(),
+
+			func() string {
+				return strings.Repeat(" ", 45-len(function.Class()))
+			}(),
+
+			converter.GoHeaderName(function), converter.GoHeaderInput(function), converter.GoHeaderOutput(function))
+	}
+
 	if parser.ClassMap[function.Class()].Stub {
 		if converter.GoHeaderOutput(function) != "" {
 			return fmt.Sprintf("\nreturn %v", converter.GoOutputParametersFromCFailed(function))
 		}
 		return ""
 	}
-
-	fmt.Fprintf(bb, "defer qt.Recovering(\"%v%v\")\n\n",
-		func() string {
-			if function.SignalMode != "" {
-				return fmt.Sprintf("%v ", strings.ToLower(function.SignalMode))
-			}
-			return ""
-		}(),
-
-		function.Fullname,
-	)
 
 	if !(function.Static || function.Meta == parser.CONSTRUCTOR || function.SignalMode == parser.CALLBACK) {
 		fmt.Fprintf(bb, "if ptr.Pointer() != nil {\n")

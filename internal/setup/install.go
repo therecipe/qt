@@ -255,7 +255,7 @@ func main() {
 						cmd.Env = append(cmd.Env, fmt.Sprintf("%v=%v", key, value))
 					}
 				}
-				if utils.UsePkgConfig() {
+				if utils.UsePkgConfig() || utils.UseHomeBrew() {
 					utils.RunCmdOptional(cmd, fmt.Sprintf("install.%v_1", m))
 				} else {
 					utils.RunCmd(cmd, fmt.Sprintf("install.%v_1", m))
@@ -274,7 +274,7 @@ func main() {
 					var tmp = strings.Replace(strings.Join(cmd.Env, "|"), "-arch arm64", "-arch armv7", -1)
 					tmp = strings.Replace(tmp, "arm64", "arm", -1)
 					cmdiOS.Env = append(strings.Split(tmp, "|"), "GOARM=7")
-					if utils.UsePkgConfig() {
+					if utils.UsePkgConfig() || utils.UseHomeBrew() {
 						utils.RunCmdOptional(cmdiOS, fmt.Sprintf("install.%v_2", m))
 					} else {
 						utils.RunCmd(cmdiOS, fmt.Sprintf("install.%v_2", m))

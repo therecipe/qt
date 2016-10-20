@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE QDOCINDEX>
+<INDEX url="http://doc.qt.io/qt-5" title="Qt Image Formats Documentation" version="5.7.0" project="QtImageFormats" indexTitle="Qt Image Formats">
+    <namespace threadsafety="unspecified" name="" status="active" access="public" module="qtimageformats">
+        <page name="qtimageformats-index.html" href="qtimageformats-index.html" status="active" location="qtimageformats.qdoc" filepath="/home/qt/work/qt/tqtc-qt5/qtimageformats/src/imageformats/doc/src/qtimageformats.qdoc" lineno="28" subtype="page" title="Qt Image Formats" fulltitle="Qt Image Formats" subtitle="" module="QtImageFormats" brief="Qt Image Formats module provides support for extra image file formats">
+            <contents name="the-image-i-o-plugins" title="The Image I/O Plugins" level="1"/>
+            <contents name="deployment" title="Deployment" level="2"/>
+            <contents name="security-considerations" title="Security considerations" level="2"/>
+        </page>
+    </namespace>
+</INDEX>

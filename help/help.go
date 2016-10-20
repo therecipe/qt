@@ -56,8 +56,6 @@ func NewQHelpContentItemFromPointer(ptr unsafe.Pointer) *QHelpContentItem {
 	return n
 }
 func (ptr *QHelpContentItem) Child(row int) *QHelpContentItem {
-	defer qt.Recovering("QHelpContentItem::child")
-
 	if ptr.Pointer() != nil {
 		return NewQHelpContentItemFromPointer(C.QHelpContentItem_Child(ptr.Pointer(), C.int(int32(row))))
 	}
@@ -65,8 +63,6 @@ func (ptr *QHelpContentItem) Child(row int) *QHelpContentItem {
 }
 
 func (ptr *QHelpContentItem) ChildCount() int {
-	defer qt.Recovering("QHelpContentItem::childCount")
-
 	if ptr.Pointer() != nil {
 		return int(int32(C.QHelpContentItem_ChildCount(ptr.Pointer())))
 	}
@@ -74,8 +70,6 @@ func (ptr *QHelpContentItem) ChildCount() int {
 }
 
 func (ptr *QHelpContentItem) ChildPosition(child QHelpContentItem_ITF) int {
-	defer qt.Recovering("QHelpContentItem::childPosition")
-
 	if ptr.Pointer() != nil {
 		return int(int32(C.QHelpContentItem_ChildPosition(ptr.Pointer(), PointerFromQHelpContentItem(child))))
 	}
@@ -83,8 +77,6 @@ func (ptr *QHelpContentItem) ChildPosition(child QHelpContentItem_ITF) int {
 }
 
 func (ptr *QHelpContentItem) Parent() *QHelpContentItem {
-	defer qt.Recovering("QHelpContentItem::parent")
-
 	if ptr.Pointer() != nil {
 		return NewQHelpContentItemFromPointer(C.QHelpContentItem_Parent(ptr.Pointer()))
 	}
@@ -92,8 +84,6 @@ func (ptr *QHelpContentItem) Parent() *QHelpContentItem {
 }
 
 func (ptr *QHelpContentItem) Row() int {
-	defer qt.Recovering("QHelpContentItem::row")
-
 	if ptr.Pointer() != nil {
 		return int(int32(C.QHelpContentItem_Row(ptr.Pointer())))
 	}
@@ -101,8 +91,6 @@ func (ptr *QHelpContentItem) Row() int {
 }
 
 func (ptr *QHelpContentItem) Title() string {
-	defer qt.Recovering("QHelpContentItem::title")
-
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QHelpContentItem_Title(ptr.Pointer()))
 	}
@@ -110,8 +98,6 @@ func (ptr *QHelpContentItem) Title() string {
 }
 
 func (ptr *QHelpContentItem) Url() *core.QUrl {
-	defer qt.Recovering("QHelpContentItem::url")
-
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQUrlFromPointer(C.QHelpContentItem_Url(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*core.QUrl).DestroyQUrl)
@@ -121,8 +107,6 @@ func (ptr *QHelpContentItem) Url() *core.QUrl {
 }
 
 func (ptr *QHelpContentItem) DestroyQHelpContentItem() {
-	defer qt.Recovering("QHelpContentItem::~QHelpContentItem")
-
 	if ptr.Pointer() != nil {
 		C.QHelpContentItem_DestroyQHelpContentItem(ptr.Pointer())
 		ptr.SetPointer(nil)
@@ -168,8 +152,6 @@ func NewQHelpContentModelFromPointer(ptr unsafe.Pointer) *QHelpContentModel {
 	return n
 }
 func (ptr *QHelpContentModel) ColumnCount(parent core.QModelIndex_ITF) int {
-	defer qt.Recovering("QHelpContentModel::columnCount")
-
 	if ptr.Pointer() != nil {
 		return int(int32(C.QHelpContentModel_ColumnCount(ptr.Pointer(), core.PointerFromQModelIndex(parent))))
 	}
@@ -177,8 +159,6 @@ func (ptr *QHelpContentModel) ColumnCount(parent core.QModelIndex_ITF) int {
 }
 
 func (ptr *QHelpContentModel) ContentItemAt(index core.QModelIndex_ITF) *QHelpContentItem {
-	defer qt.Recovering("QHelpContentModel::contentItemAt")
-
 	if ptr.Pointer() != nil {
 		return NewQHelpContentItemFromPointer(C.QHelpContentModel_ContentItemAt(ptr.Pointer(), core.PointerFromQModelIndex(index)))
 	}
@@ -187,7 +167,6 @@ func (ptr *QHelpContentModel) ContentItemAt(index core.QModelIndex_ITF) *QHelpCo
 
 //export callbackQHelpContentModel_ContentsCreated
 func callbackQHelpContentModel_ContentsCreated(ptr unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpContentModel::contentsCreated")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentModel::contentsCreated"); signal != nil {
 		signal.(func())()
@@ -196,8 +175,6 @@ func callbackQHelpContentModel_ContentsCreated(ptr unsafe.Pointer) {
 }
 
 func (ptr *QHelpContentModel) ConnectContentsCreated(f func()) {
-	defer qt.Recovering("connect QHelpContentModel::contentsCreated")
-
 	if ptr.Pointer() != nil {
 		C.QHelpContentModel_ConnectContentsCreated(ptr.Pointer())
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentModel::contentsCreated", f)
@@ -205,8 +182,6 @@ func (ptr *QHelpContentModel) ConnectContentsCreated(f func()) {
 }
 
 func (ptr *QHelpContentModel) DisconnectContentsCreated() {
-	defer qt.Recovering("disconnect QHelpContentModel::contentsCreated")
-
 	if ptr.Pointer() != nil {
 		C.QHelpContentModel_DisconnectContentsCreated(ptr.Pointer())
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentModel::contentsCreated")
@@ -214,8 +189,6 @@ func (ptr *QHelpContentModel) DisconnectContentsCreated() {
 }
 
 func (ptr *QHelpContentModel) ContentsCreated() {
-	defer qt.Recovering("QHelpContentModel::contentsCreated")
-
 	if ptr.Pointer() != nil {
 		C.QHelpContentModel_ContentsCreated(ptr.Pointer())
 	}
@@ -223,7 +196,6 @@ func (ptr *QHelpContentModel) ContentsCreated() {
 
 //export callbackQHelpContentModel_ContentsCreationStarted
 func callbackQHelpContentModel_ContentsCreationStarted(ptr unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpContentModel::contentsCreationStarted")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentModel::contentsCreationStarted"); signal != nil {
 		signal.(func())()
@@ -232,8 +204,6 @@ func callbackQHelpContentModel_ContentsCreationStarted(ptr unsafe.Pointer) {
 }
 
 func (ptr *QHelpContentModel) ConnectContentsCreationStarted(f func()) {
-	defer qt.Recovering("connect QHelpContentModel::contentsCreationStarted")
-
 	if ptr.Pointer() != nil {
 		C.QHelpContentModel_ConnectContentsCreationStarted(ptr.Pointer())
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentModel::contentsCreationStarted", f)
@@ -241,8 +211,6 @@ func (ptr *QHelpContentModel) ConnectContentsCreationStarted(f func()) {
 }
 
 func (ptr *QHelpContentModel) DisconnectContentsCreationStarted() {
-	defer qt.Recovering("disconnect QHelpContentModel::contentsCreationStarted")
-
 	if ptr.Pointer() != nil {
 		C.QHelpContentModel_DisconnectContentsCreationStarted(ptr.Pointer())
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentModel::contentsCreationStarted")
@@ -250,16 +218,12 @@ func (ptr *QHelpContentModel) DisconnectContentsCreationStarted() {
 }
 
 func (ptr *QHelpContentModel) ContentsCreationStarted() {
-	defer qt.Recovering("QHelpContentModel::contentsCreationStarted")
-
 	if ptr.Pointer() != nil {
 		C.QHelpContentModel_ContentsCreationStarted(ptr.Pointer())
 	}
 }
 
 func (ptr *QHelpContentModel) CreateContents(customFilterName string) {
-	defer qt.Recovering("QHelpContentModel::createContents")
-
 	if ptr.Pointer() != nil {
 		var customFilterNameC = C.CString(customFilterName)
 		defer C.free(unsafe.Pointer(customFilterNameC))
@@ -268,8 +232,6 @@ func (ptr *QHelpContentModel) CreateContents(customFilterName string) {
 }
 
 func (ptr *QHelpContentModel) Data(index core.QModelIndex_ITF, role int) *core.QVariant {
-	defer qt.Recovering("QHelpContentModel::data")
-
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQVariantFromPointer(C.QHelpContentModel_Data(ptr.Pointer(), core.PointerFromQModelIndex(index), C.int(int32(role))))
 		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
@@ -279,8 +241,6 @@ func (ptr *QHelpContentModel) Data(index core.QModelIndex_ITF, role int) *core.Q
 }
 
 func (ptr *QHelpContentModel) Index(row int, column int, parent core.QModelIndex_ITF) *core.QModelIndex {
-	defer qt.Recovering("QHelpContentModel::index")
-
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQModelIndexFromPointer(C.QHelpContentModel_Index(ptr.Pointer(), C.int(int32(row)), C.int(int32(column)), core.PointerFromQModelIndex(parent)))
 		runtime.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
@@ -290,8 +250,6 @@ func (ptr *QHelpContentModel) Index(row int, column int, parent core.QModelIndex
 }
 
 func (ptr *QHelpContentModel) IsCreatingContents() bool {
-	defer qt.Recovering("QHelpContentModel::isCreatingContents")
-
 	if ptr.Pointer() != nil {
 		return C.QHelpContentModel_IsCreatingContents(ptr.Pointer()) != 0
 	}
@@ -299,8 +257,6 @@ func (ptr *QHelpContentModel) IsCreatingContents() bool {
 }
 
 func (ptr *QHelpContentModel) Parent(index core.QModelIndex_ITF) *core.QModelIndex {
-	defer qt.Recovering("QHelpContentModel::parent")
-
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQModelIndexFromPointer(C.QHelpContentModel_Parent(ptr.Pointer(), core.PointerFromQModelIndex(index)))
 		runtime.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
@@ -310,8 +266,6 @@ func (ptr *QHelpContentModel) Parent(index core.QModelIndex_ITF) *core.QModelInd
 }
 
 func (ptr *QHelpContentModel) RowCount(parent core.QModelIndex_ITF) int {
-	defer qt.Recovering("QHelpContentModel::rowCount")
-
 	if ptr.Pointer() != nil {
 		return int(int32(C.QHelpContentModel_RowCount(ptr.Pointer(), core.PointerFromQModelIndex(parent))))
 	}
@@ -319,8 +273,6 @@ func (ptr *QHelpContentModel) RowCount(parent core.QModelIndex_ITF) int {
 }
 
 func (ptr *QHelpContentModel) DestroyQHelpContentModel() {
-	defer qt.Recovering("QHelpContentModel::~QHelpContentModel")
-
 	if ptr.Pointer() != nil {
 		C.QHelpContentModel_DestroyQHelpContentModel(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
@@ -330,7 +282,6 @@ func (ptr *QHelpContentModel) DestroyQHelpContentModel() {
 
 //export callbackQHelpContentModel_Sibling
 func callbackQHelpContentModel_Sibling(ptr unsafe.Pointer, row C.int, column C.int, index unsafe.Pointer) unsafe.Pointer {
-	defer qt.Recovering("callback QHelpContentModel::sibling")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentModel::sibling"); signal != nil {
 		return core.PointerFromQModelIndex(signal.(func(int, int, *core.QModelIndex) *core.QModelIndex)(int(int32(row)), int(int32(column)), core.NewQModelIndexFromPointer(index)))
@@ -340,8 +291,6 @@ func callbackQHelpContentModel_Sibling(ptr unsafe.Pointer, row C.int, column C.i
 }
 
 func (ptr *QHelpContentModel) ConnectSibling(f func(row int, column int, index *core.QModelIndex) *core.QModelIndex) {
-	defer qt.Recovering("connect QHelpContentModel::sibling")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentModel::sibling", f)
@@ -349,8 +298,6 @@ func (ptr *QHelpContentModel) ConnectSibling(f func(row int, column int, index *
 }
 
 func (ptr *QHelpContentModel) DisconnectSibling() {
-	defer qt.Recovering("disconnect QHelpContentModel::sibling")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentModel::sibling")
@@ -358,8 +305,6 @@ func (ptr *QHelpContentModel) DisconnectSibling() {
 }
 
 func (ptr *QHelpContentModel) Sibling(row int, column int, index core.QModelIndex_ITF) *core.QModelIndex {
-	defer qt.Recovering("QHelpContentModel::sibling")
-
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQModelIndexFromPointer(C.QHelpContentModel_Sibling(ptr.Pointer(), C.int(int32(row)), C.int(int32(column)), core.PointerFromQModelIndex(index)))
 		runtime.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
@@ -369,8 +314,6 @@ func (ptr *QHelpContentModel) Sibling(row int, column int, index core.QModelInde
 }
 
 func (ptr *QHelpContentModel) SiblingDefault(row int, column int, index core.QModelIndex_ITF) *core.QModelIndex {
-	defer qt.Recovering("QHelpContentModel::sibling")
-
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQModelIndexFromPointer(C.QHelpContentModel_SiblingDefault(ptr.Pointer(), C.int(int32(row)), C.int(int32(column)), core.PointerFromQModelIndex(index)))
 		runtime.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
@@ -381,7 +324,6 @@ func (ptr *QHelpContentModel) SiblingDefault(row int, column int, index core.QMo
 
 //export callbackQHelpContentModel_Buddy
 func callbackQHelpContentModel_Buddy(ptr unsafe.Pointer, index unsafe.Pointer) unsafe.Pointer {
-	defer qt.Recovering("callback QHelpContentModel::buddy")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentModel::buddy"); signal != nil {
 		return core.PointerFromQModelIndex(signal.(func(*core.QModelIndex) *core.QModelIndex)(core.NewQModelIndexFromPointer(index)))
@@ -391,8 +333,6 @@ func callbackQHelpContentModel_Buddy(ptr unsafe.Pointer, index unsafe.Pointer) u
 }
 
 func (ptr *QHelpContentModel) ConnectBuddy(f func(index *core.QModelIndex) *core.QModelIndex) {
-	defer qt.Recovering("connect QHelpContentModel::buddy")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentModel::buddy", f)
@@ -400,8 +340,6 @@ func (ptr *QHelpContentModel) ConnectBuddy(f func(index *core.QModelIndex) *core
 }
 
 func (ptr *QHelpContentModel) DisconnectBuddy() {
-	defer qt.Recovering("disconnect QHelpContentModel::buddy")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentModel::buddy")
@@ -409,8 +347,6 @@ func (ptr *QHelpContentModel) DisconnectBuddy() {
 }
 
 func (ptr *QHelpContentModel) Buddy(index core.QModelIndex_ITF) *core.QModelIndex {
-	defer qt.Recovering("QHelpContentModel::buddy")
-
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQModelIndexFromPointer(C.QHelpContentModel_Buddy(ptr.Pointer(), core.PointerFromQModelIndex(index)))
 		runtime.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
@@ -420,8 +356,6 @@ func (ptr *QHelpContentModel) Buddy(index core.QModelIndex_ITF) *core.QModelInde
 }
 
 func (ptr *QHelpContentModel) BuddyDefault(index core.QModelIndex_ITF) *core.QModelIndex {
-	defer qt.Recovering("QHelpContentModel::buddy")
-
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQModelIndexFromPointer(C.QHelpContentModel_BuddyDefault(ptr.Pointer(), core.PointerFromQModelIndex(index)))
 		runtime.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
@@ -432,7 +366,6 @@ func (ptr *QHelpContentModel) BuddyDefault(index core.QModelIndex_ITF) *core.QMo
 
 //export callbackQHelpContentModel_CanDropMimeData
 func callbackQHelpContentModel_CanDropMimeData(ptr unsafe.Pointer, data unsafe.Pointer, action C.longlong, row C.int, column C.int, parent unsafe.Pointer) C.char {
-	defer qt.Recovering("callback QHelpContentModel::canDropMimeData")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentModel::canDropMimeData"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QMimeData, core.Qt__DropAction, int, int, *core.QModelIndex) bool)(core.NewQMimeDataFromPointer(data), core.Qt__DropAction(action), int(int32(row)), int(int32(column)), core.NewQModelIndexFromPointer(parent)))))
@@ -442,8 +375,6 @@ func callbackQHelpContentModel_CanDropMimeData(ptr unsafe.Pointer, data unsafe.P
 }
 
 func (ptr *QHelpContentModel) ConnectCanDropMimeData(f func(data *core.QMimeData, action core.Qt__DropAction, row int, column int, parent *core.QModelIndex) bool) {
-	defer qt.Recovering("connect QHelpContentModel::canDropMimeData")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentModel::canDropMimeData", f)
@@ -451,8 +382,6 @@ func (ptr *QHelpContentModel) ConnectCanDropMimeData(f func(data *core.QMimeData
 }
 
 func (ptr *QHelpContentModel) DisconnectCanDropMimeData() {
-	defer qt.Recovering("disconnect QHelpContentModel::canDropMimeData")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentModel::canDropMimeData")
@@ -460,8 +389,6 @@ func (ptr *QHelpContentModel) DisconnectCanDropMimeData() {
 }
 
 func (ptr *QHelpContentModel) CanDropMimeData(data core.QMimeData_ITF, action core.Qt__DropAction, row int, column int, parent core.QModelIndex_ITF) bool {
-	defer qt.Recovering("QHelpContentModel::canDropMimeData")
-
 	if ptr.Pointer() != nil {
 		return C.QHelpContentModel_CanDropMimeData(ptr.Pointer(), core.PointerFromQMimeData(data), C.longlong(action), C.int(int32(row)), C.int(int32(column)), core.PointerFromQModelIndex(parent)) != 0
 	}
@@ -469,8 +396,6 @@ func (ptr *QHelpContentModel) CanDropMimeData(data core.QMimeData_ITF, action co
 }
 
 func (ptr *QHelpContentModel) CanDropMimeDataDefault(data core.QMimeData_ITF, action core.Qt__DropAction, row int, column int, parent core.QModelIndex_ITF) bool {
-	defer qt.Recovering("QHelpContentModel::canDropMimeData")
-
 	if ptr.Pointer() != nil {
 		return C.QHelpContentModel_CanDropMimeDataDefault(ptr.Pointer(), core.PointerFromQMimeData(data), C.longlong(action), C.int(int32(row)), C.int(int32(column)), core.PointerFromQModelIndex(parent)) != 0
 	}
@@ -479,7 +404,6 @@ func (ptr *QHelpContentModel) CanDropMimeDataDefault(data core.QMimeData_ITF, ac
 
 //export callbackQHelpContentModel_CanFetchMore
 func callbackQHelpContentModel_CanFetchMore(ptr unsafe.Pointer, parent unsafe.Pointer) C.char {
-	defer qt.Recovering("callback QHelpContentModel::canFetchMore")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentModel::canFetchMore"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QModelIndex) bool)(core.NewQModelIndexFromPointer(parent)))))
@@ -489,8 +413,6 @@ func callbackQHelpContentModel_CanFetchMore(ptr unsafe.Pointer, parent unsafe.Po
 }
 
 func (ptr *QHelpContentModel) ConnectCanFetchMore(f func(parent *core.QModelIndex) bool) {
-	defer qt.Recovering("connect QHelpContentModel::canFetchMore")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentModel::canFetchMore", f)
@@ -498,8 +420,6 @@ func (ptr *QHelpContentModel) ConnectCanFetchMore(f func(parent *core.QModelInde
 }
 
 func (ptr *QHelpContentModel) DisconnectCanFetchMore() {
-	defer qt.Recovering("disconnect QHelpContentModel::canFetchMore")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentModel::canFetchMore")
@@ -507,8 +427,6 @@ func (ptr *QHelpContentModel) DisconnectCanFetchMore() {
 }
 
 func (ptr *QHelpContentModel) CanFetchMore(parent core.QModelIndex_ITF) bool {
-	defer qt.Recovering("QHelpContentModel::canFetchMore")
-
 	if ptr.Pointer() != nil {
 		return C.QHelpContentModel_CanFetchMore(ptr.Pointer(), core.PointerFromQModelIndex(parent)) != 0
 	}
@@ -516,8 +434,6 @@ func (ptr *QHelpContentModel) CanFetchMore(parent core.QModelIndex_ITF) bool {
 }
 
 func (ptr *QHelpContentModel) CanFetchMoreDefault(parent core.QModelIndex_ITF) bool {
-	defer qt.Recovering("QHelpContentModel::canFetchMore")
-
 	if ptr.Pointer() != nil {
 		return C.QHelpContentModel_CanFetchMoreDefault(ptr.Pointer(), core.PointerFromQModelIndex(parent)) != 0
 	}
@@ -526,7 +442,6 @@ func (ptr *QHelpContentModel) CanFetchMoreDefault(parent core.QModelIndex_ITF) b
 
 //export callbackQHelpContentModel_DropMimeData
 func callbackQHelpContentModel_DropMimeData(ptr unsafe.Pointer, data unsafe.Pointer, action C.longlong, row C.int, column C.int, parent unsafe.Pointer) C.char {
-	defer qt.Recovering("callback QHelpContentModel::dropMimeData")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentModel::dropMimeData"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QMimeData, core.Qt__DropAction, int, int, *core.QModelIndex) bool)(core.NewQMimeDataFromPointer(data), core.Qt__DropAction(action), int(int32(row)), int(int32(column)), core.NewQModelIndexFromPointer(parent)))))
@@ -536,8 +451,6 @@ func callbackQHelpContentModel_DropMimeData(ptr unsafe.Pointer, data unsafe.Poin
 }
 
 func (ptr *QHelpContentModel) ConnectDropMimeData(f func(data *core.QMimeData, action core.Qt__DropAction, row int, column int, parent *core.QModelIndex) bool) {
-	defer qt.Recovering("connect QHelpContentModel::dropMimeData")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentModel::dropMimeData", f)
@@ -545,8 +458,6 @@ func (ptr *QHelpContentModel) ConnectDropMimeData(f func(data *core.QMimeData, a
 }
 
 func (ptr *QHelpContentModel) DisconnectDropMimeData() {
-	defer qt.Recovering("disconnect QHelpContentModel::dropMimeData")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentModel::dropMimeData")
@@ -554,8 +465,6 @@ func (ptr *QHelpContentModel) DisconnectDropMimeData() {
 }
 
 func (ptr *QHelpContentModel) DropMimeData(data core.QMimeData_ITF, action core.Qt__DropAction, row int, column int, parent core.QModelIndex_ITF) bool {
-	defer qt.Recovering("QHelpContentModel::dropMimeData")
-
 	if ptr.Pointer() != nil {
 		return C.QHelpContentModel_DropMimeData(ptr.Pointer(), core.PointerFromQMimeData(data), C.longlong(action), C.int(int32(row)), C.int(int32(column)), core.PointerFromQModelIndex(parent)) != 0
 	}
@@ -563,8 +472,6 @@ func (ptr *QHelpContentModel) DropMimeData(data core.QMimeData_ITF, action core.
 }
 
 func (ptr *QHelpContentModel) DropMimeDataDefault(data core.QMimeData_ITF, action core.Qt__DropAction, row int, column int, parent core.QModelIndex_ITF) bool {
-	defer qt.Recovering("QHelpContentModel::dropMimeData")
-
 	if ptr.Pointer() != nil {
 		return C.QHelpContentModel_DropMimeDataDefault(ptr.Pointer(), core.PointerFromQMimeData(data), C.longlong(action), C.int(int32(row)), C.int(int32(column)), core.PointerFromQModelIndex(parent)) != 0
 	}
@@ -573,7 +480,6 @@ func (ptr *QHelpContentModel) DropMimeDataDefault(data core.QMimeData_ITF, actio
 
 //export callbackQHelpContentModel_FetchMore
 func callbackQHelpContentModel_FetchMore(ptr unsafe.Pointer, parent unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpContentModel::fetchMore")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentModel::fetchMore"); signal != nil {
 		signal.(func(*core.QModelIndex))(core.NewQModelIndexFromPointer(parent))
@@ -583,8 +489,6 @@ func callbackQHelpContentModel_FetchMore(ptr unsafe.Pointer, parent unsafe.Point
 }
 
 func (ptr *QHelpContentModel) ConnectFetchMore(f func(parent *core.QModelIndex)) {
-	defer qt.Recovering("connect QHelpContentModel::fetchMore")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentModel::fetchMore", f)
@@ -592,8 +496,6 @@ func (ptr *QHelpContentModel) ConnectFetchMore(f func(parent *core.QModelIndex))
 }
 
 func (ptr *QHelpContentModel) DisconnectFetchMore() {
-	defer qt.Recovering("disconnect QHelpContentModel::fetchMore")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentModel::fetchMore")
@@ -601,16 +503,12 @@ func (ptr *QHelpContentModel) DisconnectFetchMore() {
 }
 
 func (ptr *QHelpContentModel) FetchMore(parent core.QModelIndex_ITF) {
-	defer qt.Recovering("QHelpContentModel::fetchMore")
-
 	if ptr.Pointer() != nil {
 		C.QHelpContentModel_FetchMore(ptr.Pointer(), core.PointerFromQModelIndex(parent))
 	}
 }
 
 func (ptr *QHelpContentModel) FetchMoreDefault(parent core.QModelIndex_ITF) {
-	defer qt.Recovering("QHelpContentModel::fetchMore")
-
 	if ptr.Pointer() != nil {
 		C.QHelpContentModel_FetchMoreDefault(ptr.Pointer(), core.PointerFromQModelIndex(parent))
 	}
@@ -618,7 +516,6 @@ func (ptr *QHelpContentModel) FetchMoreDefault(parent core.QModelIndex_ITF) {
 
 //export callbackQHelpContentModel_Flags
 func callbackQHelpContentModel_Flags(ptr unsafe.Pointer, index unsafe.Pointer) C.longlong {
-	defer qt.Recovering("callback QHelpContentModel::flags")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentModel::flags"); signal != nil {
 		return C.longlong(signal.(func(*core.QModelIndex) core.Qt__ItemFlag)(core.NewQModelIndexFromPointer(index)))
@@ -628,8 +525,6 @@ func callbackQHelpContentModel_Flags(ptr unsafe.Pointer, index unsafe.Pointer) C
 }
 
 func (ptr *QHelpContentModel) ConnectFlags(f func(index *core.QModelIndex) core.Qt__ItemFlag) {
-	defer qt.Recovering("connect QHelpContentModel::flags")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentModel::flags", f)
@@ -637,8 +532,6 @@ func (ptr *QHelpContentModel) ConnectFlags(f func(index *core.QModelIndex) core.
 }
 
 func (ptr *QHelpContentModel) DisconnectFlags() {
-	defer qt.Recovering("disconnect QHelpContentModel::flags")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentModel::flags")
@@ -646,8 +539,6 @@ func (ptr *QHelpContentModel) DisconnectFlags() {
 }
 
 func (ptr *QHelpContentModel) Flags(index core.QModelIndex_ITF) core.Qt__ItemFlag {
-	defer qt.Recovering("QHelpContentModel::flags")
-
 	if ptr.Pointer() != nil {
 		return core.Qt__ItemFlag(C.QHelpContentModel_Flags(ptr.Pointer(), core.PointerFromQModelIndex(index)))
 	}
@@ -655,8 +546,6 @@ func (ptr *QHelpContentModel) Flags(index core.QModelIndex_ITF) core.Qt__ItemFla
 }
 
 func (ptr *QHelpContentModel) FlagsDefault(index core.QModelIndex_ITF) core.Qt__ItemFlag {
-	defer qt.Recovering("QHelpContentModel::flags")
-
 	if ptr.Pointer() != nil {
 		return core.Qt__ItemFlag(C.QHelpContentModel_FlagsDefault(ptr.Pointer(), core.PointerFromQModelIndex(index)))
 	}
@@ -665,7 +554,6 @@ func (ptr *QHelpContentModel) FlagsDefault(index core.QModelIndex_ITF) core.Qt__
 
 //export callbackQHelpContentModel_HasChildren
 func callbackQHelpContentModel_HasChildren(ptr unsafe.Pointer, parent unsafe.Pointer) C.char {
-	defer qt.Recovering("callback QHelpContentModel::hasChildren")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentModel::hasChildren"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QModelIndex) bool)(core.NewQModelIndexFromPointer(parent)))))
@@ -675,8 +563,6 @@ func callbackQHelpContentModel_HasChildren(ptr unsafe.Pointer, parent unsafe.Poi
 }
 
 func (ptr *QHelpContentModel) ConnectHasChildren(f func(parent *core.QModelIndex) bool) {
-	defer qt.Recovering("connect QHelpContentModel::hasChildren")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentModel::hasChildren", f)
@@ -684,8 +570,6 @@ func (ptr *QHelpContentModel) ConnectHasChildren(f func(parent *core.QModelIndex
 }
 
 func (ptr *QHelpContentModel) DisconnectHasChildren() {
-	defer qt.Recovering("disconnect QHelpContentModel::hasChildren")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentModel::hasChildren")
@@ -693,8 +577,6 @@ func (ptr *QHelpContentModel) DisconnectHasChildren() {
 }
 
 func (ptr *QHelpContentModel) HasChildren(parent core.QModelIndex_ITF) bool {
-	defer qt.Recovering("QHelpContentModel::hasChildren")
-
 	if ptr.Pointer() != nil {
 		return C.QHelpContentModel_HasChildren(ptr.Pointer(), core.PointerFromQModelIndex(parent)) != 0
 	}
@@ -702,8 +584,6 @@ func (ptr *QHelpContentModel) HasChildren(parent core.QModelIndex_ITF) bool {
 }
 
 func (ptr *QHelpContentModel) HasChildrenDefault(parent core.QModelIndex_ITF) bool {
-	defer qt.Recovering("QHelpContentModel::hasChildren")
-
 	if ptr.Pointer() != nil {
 		return C.QHelpContentModel_HasChildrenDefault(ptr.Pointer(), core.PointerFromQModelIndex(parent)) != 0
 	}
@@ -712,7 +592,6 @@ func (ptr *QHelpContentModel) HasChildrenDefault(parent core.QModelIndex_ITF) bo
 
 //export callbackQHelpContentModel_HeaderData
 func callbackQHelpContentModel_HeaderData(ptr unsafe.Pointer, section C.int, orientation C.longlong, role C.int) unsafe.Pointer {
-	defer qt.Recovering("callback QHelpContentModel::headerData")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentModel::headerData"); signal != nil {
 		return core.PointerFromQVariant(signal.(func(int, core.Qt__Orientation, int) *core.QVariant)(int(int32(section)), core.Qt__Orientation(orientation), int(int32(role))))
@@ -722,8 +601,6 @@ func callbackQHelpContentModel_HeaderData(ptr unsafe.Pointer, section C.int, ori
 }
 
 func (ptr *QHelpContentModel) ConnectHeaderData(f func(section int, orientation core.Qt__Orientation, role int) *core.QVariant) {
-	defer qt.Recovering("connect QHelpContentModel::headerData")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentModel::headerData", f)
@@ -731,8 +608,6 @@ func (ptr *QHelpContentModel) ConnectHeaderData(f func(section int, orientation 
 }
 
 func (ptr *QHelpContentModel) DisconnectHeaderData() {
-	defer qt.Recovering("disconnect QHelpContentModel::headerData")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentModel::headerData")
@@ -740,8 +615,6 @@ func (ptr *QHelpContentModel) DisconnectHeaderData() {
 }
 
 func (ptr *QHelpContentModel) HeaderData(section int, orientation core.Qt__Orientation, role int) *core.QVariant {
-	defer qt.Recovering("QHelpContentModel::headerData")
-
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQVariantFromPointer(C.QHelpContentModel_HeaderData(ptr.Pointer(), C.int(int32(section)), C.longlong(orientation), C.int(int32(role))))
 		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
@@ -751,8 +624,6 @@ func (ptr *QHelpContentModel) HeaderData(section int, orientation core.Qt__Orien
 }
 
 func (ptr *QHelpContentModel) HeaderDataDefault(section int, orientation core.Qt__Orientation, role int) *core.QVariant {
-	defer qt.Recovering("QHelpContentModel::headerData")
-
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQVariantFromPointer(C.QHelpContentModel_HeaderDataDefault(ptr.Pointer(), C.int(int32(section)), C.longlong(orientation), C.int(int32(role))))
 		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
@@ -763,7 +634,6 @@ func (ptr *QHelpContentModel) HeaderDataDefault(section int, orientation core.Qt
 
 //export callbackQHelpContentModel_InsertColumns
 func callbackQHelpContentModel_InsertColumns(ptr unsafe.Pointer, column C.int, count C.int, parent unsafe.Pointer) C.char {
-	defer qt.Recovering("callback QHelpContentModel::insertColumns")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentModel::insertColumns"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(int, int, *core.QModelIndex) bool)(int(int32(column)), int(int32(count)), core.NewQModelIndexFromPointer(parent)))))
@@ -773,8 +643,6 @@ func callbackQHelpContentModel_InsertColumns(ptr unsafe.Pointer, column C.int, c
 }
 
 func (ptr *QHelpContentModel) ConnectInsertColumns(f func(column int, count int, parent *core.QModelIndex) bool) {
-	defer qt.Recovering("connect QHelpContentModel::insertColumns")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentModel::insertColumns", f)
@@ -782,8 +650,6 @@ func (ptr *QHelpContentModel) ConnectInsertColumns(f func(column int, count int,
 }
 
 func (ptr *QHelpContentModel) DisconnectInsertColumns() {
-	defer qt.Recovering("disconnect QHelpContentModel::insertColumns")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentModel::insertColumns")
@@ -791,8 +657,6 @@ func (ptr *QHelpContentModel) DisconnectInsertColumns() {
 }
 
 func (ptr *QHelpContentModel) InsertColumns(column int, count int, parent core.QModelIndex_ITF) bool {
-	defer qt.Recovering("QHelpContentModel::insertColumns")
-
 	if ptr.Pointer() != nil {
 		return C.QHelpContentModel_InsertColumns(ptr.Pointer(), C.int(int32(column)), C.int(int32(count)), core.PointerFromQModelIndex(parent)) != 0
 	}
@@ -800,8 +664,6 @@ func (ptr *QHelpContentModel) InsertColumns(column int, count int, parent core.Q
 }
 
 func (ptr *QHelpContentModel) InsertColumnsDefault(column int, count int, parent core.QModelIndex_ITF) bool {
-	defer qt.Recovering("QHelpContentModel::insertColumns")
-
 	if ptr.Pointer() != nil {
 		return C.QHelpContentModel_InsertColumnsDefault(ptr.Pointer(), C.int(int32(column)), C.int(int32(count)), core.PointerFromQModelIndex(parent)) != 0
 	}
@@ -810,7 +672,6 @@ func (ptr *QHelpContentModel) InsertColumnsDefault(column int, count int, parent
 
 //export callbackQHelpContentModel_InsertRows
 func callbackQHelpContentModel_InsertRows(ptr unsafe.Pointer, row C.int, count C.int, parent unsafe.Pointer) C.char {
-	defer qt.Recovering("callback QHelpContentModel::insertRows")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentModel::insertRows"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(int, int, *core.QModelIndex) bool)(int(int32(row)), int(int32(count)), core.NewQModelIndexFromPointer(parent)))))
@@ -820,8 +681,6 @@ func callbackQHelpContentModel_InsertRows(ptr unsafe.Pointer, row C.int, count C
 }
 
 func (ptr *QHelpContentModel) ConnectInsertRows(f func(row int, count int, parent *core.QModelIndex) bool) {
-	defer qt.Recovering("connect QHelpContentModel::insertRows")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentModel::insertRows", f)
@@ -829,8 +688,6 @@ func (ptr *QHelpContentModel) ConnectInsertRows(f func(row int, count int, paren
 }
 
 func (ptr *QHelpContentModel) DisconnectInsertRows() {
-	defer qt.Recovering("disconnect QHelpContentModel::insertRows")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentModel::insertRows")
@@ -838,8 +695,6 @@ func (ptr *QHelpContentModel) DisconnectInsertRows() {
 }
 
 func (ptr *QHelpContentModel) InsertRows(row int, count int, parent core.QModelIndex_ITF) bool {
-	defer qt.Recovering("QHelpContentModel::insertRows")
-
 	if ptr.Pointer() != nil {
 		return C.QHelpContentModel_InsertRows(ptr.Pointer(), C.int(int32(row)), C.int(int32(count)), core.PointerFromQModelIndex(parent)) != 0
 	}
@@ -847,8 +702,6 @@ func (ptr *QHelpContentModel) InsertRows(row int, count int, parent core.QModelI
 }
 
 func (ptr *QHelpContentModel) InsertRowsDefault(row int, count int, parent core.QModelIndex_ITF) bool {
-	defer qt.Recovering("QHelpContentModel::insertRows")
-
 	if ptr.Pointer() != nil {
 		return C.QHelpContentModel_InsertRowsDefault(ptr.Pointer(), C.int(int32(row)), C.int(int32(count)), core.PointerFromQModelIndex(parent)) != 0
 	}
@@ -857,7 +710,6 @@ func (ptr *QHelpContentModel) InsertRowsDefault(row int, count int, parent core.
 
 //export callbackQHelpContentModel_MimeTypes
 func callbackQHelpContentModel_MimeTypes(ptr unsafe.Pointer) *C.char {
-	defer qt.Recovering("callback QHelpContentModel::mimeTypes")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentModel::mimeTypes"); signal != nil {
 		return C.CString(strings.Join(signal.(func() []string)(), "|"))
@@ -867,8 +719,6 @@ func callbackQHelpContentModel_MimeTypes(ptr unsafe.Pointer) *C.char {
 }
 
 func (ptr *QHelpContentModel) ConnectMimeTypes(f func() []string) {
-	defer qt.Recovering("connect QHelpContentModel::mimeTypes")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentModel::mimeTypes", f)
@@ -876,8 +726,6 @@ func (ptr *QHelpContentModel) ConnectMimeTypes(f func() []string) {
 }
 
 func (ptr *QHelpContentModel) DisconnectMimeTypes() {
-	defer qt.Recovering("disconnect QHelpContentModel::mimeTypes")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentModel::mimeTypes")
@@ -885,8 +733,6 @@ func (ptr *QHelpContentModel) DisconnectMimeTypes() {
 }
 
 func (ptr *QHelpContentModel) MimeTypes() []string {
-	defer qt.Recovering("QHelpContentModel::mimeTypes")
-
 	if ptr.Pointer() != nil {
 		return strings.Split(C.GoString(C.QHelpContentModel_MimeTypes(ptr.Pointer())), "|")
 	}
@@ -894,8 +740,6 @@ func (ptr *QHelpContentModel) MimeTypes() []string {
 }
 
 func (ptr *QHelpContentModel) MimeTypesDefault() []string {
-	defer qt.Recovering("QHelpContentModel::mimeTypes")
-
 	if ptr.Pointer() != nil {
 		return strings.Split(C.GoString(C.QHelpContentModel_MimeTypesDefault(ptr.Pointer())), "|")
 	}
@@ -904,7 +748,6 @@ func (ptr *QHelpContentModel) MimeTypesDefault() []string {
 
 //export callbackQHelpContentModel_MoveColumns
 func callbackQHelpContentModel_MoveColumns(ptr unsafe.Pointer, sourceParent unsafe.Pointer, sourceColumn C.int, count C.int, destinationParent unsafe.Pointer, destinationChild C.int) C.char {
-	defer qt.Recovering("callback QHelpContentModel::moveColumns")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentModel::moveColumns"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QModelIndex, int, int, *core.QModelIndex, int) bool)(core.NewQModelIndexFromPointer(sourceParent), int(int32(sourceColumn)), int(int32(count)), core.NewQModelIndexFromPointer(destinationParent), int(int32(destinationChild))))))
@@ -914,8 +757,6 @@ func callbackQHelpContentModel_MoveColumns(ptr unsafe.Pointer, sourceParent unsa
 }
 
 func (ptr *QHelpContentModel) ConnectMoveColumns(f func(sourceParent *core.QModelIndex, sourceColumn int, count int, destinationParent *core.QModelIndex, destinationChild int) bool) {
-	defer qt.Recovering("connect QHelpContentModel::moveColumns")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentModel::moveColumns", f)
@@ -923,8 +764,6 @@ func (ptr *QHelpContentModel) ConnectMoveColumns(f func(sourceParent *core.QMode
 }
 
 func (ptr *QHelpContentModel) DisconnectMoveColumns() {
-	defer qt.Recovering("disconnect QHelpContentModel::moveColumns")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentModel::moveColumns")
@@ -932,8 +771,6 @@ func (ptr *QHelpContentModel) DisconnectMoveColumns() {
 }
 
 func (ptr *QHelpContentModel) MoveColumns(sourceParent core.QModelIndex_ITF, sourceColumn int, count int, destinationParent core.QModelIndex_ITF, destinationChild int) bool {
-	defer qt.Recovering("QHelpContentModel::moveColumns")
-
 	if ptr.Pointer() != nil {
 		return C.QHelpContentModel_MoveColumns(ptr.Pointer(), core.PointerFromQModelIndex(sourceParent), C.int(int32(sourceColumn)), C.int(int32(count)), core.PointerFromQModelIndex(destinationParent), C.int(int32(destinationChild))) != 0
 	}
@@ -941,8 +778,6 @@ func (ptr *QHelpContentModel) MoveColumns(sourceParent core.QModelIndex_ITF, sou
 }
 
 func (ptr *QHelpContentModel) MoveColumnsDefault(sourceParent core.QModelIndex_ITF, sourceColumn int, count int, destinationParent core.QModelIndex_ITF, destinationChild int) bool {
-	defer qt.Recovering("QHelpContentModel::moveColumns")
-
 	if ptr.Pointer() != nil {
 		return C.QHelpContentModel_MoveColumnsDefault(ptr.Pointer(), core.PointerFromQModelIndex(sourceParent), C.int(int32(sourceColumn)), C.int(int32(count)), core.PointerFromQModelIndex(destinationParent), C.int(int32(destinationChild))) != 0
 	}
@@ -951,7 +786,6 @@ func (ptr *QHelpContentModel) MoveColumnsDefault(sourceParent core.QModelIndex_I
 
 //export callbackQHelpContentModel_MoveRows
 func callbackQHelpContentModel_MoveRows(ptr unsafe.Pointer, sourceParent unsafe.Pointer, sourceRow C.int, count C.int, destinationParent unsafe.Pointer, destinationChild C.int) C.char {
-	defer qt.Recovering("callback QHelpContentModel::moveRows")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentModel::moveRows"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QModelIndex, int, int, *core.QModelIndex, int) bool)(core.NewQModelIndexFromPointer(sourceParent), int(int32(sourceRow)), int(int32(count)), core.NewQModelIndexFromPointer(destinationParent), int(int32(destinationChild))))))
@@ -961,8 +795,6 @@ func callbackQHelpContentModel_MoveRows(ptr unsafe.Pointer, sourceParent unsafe.
 }
 
 func (ptr *QHelpContentModel) ConnectMoveRows(f func(sourceParent *core.QModelIndex, sourceRow int, count int, destinationParent *core.QModelIndex, destinationChild int) bool) {
-	defer qt.Recovering("connect QHelpContentModel::moveRows")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentModel::moveRows", f)
@@ -970,8 +802,6 @@ func (ptr *QHelpContentModel) ConnectMoveRows(f func(sourceParent *core.QModelIn
 }
 
 func (ptr *QHelpContentModel) DisconnectMoveRows() {
-	defer qt.Recovering("disconnect QHelpContentModel::moveRows")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentModel::moveRows")
@@ -979,8 +809,6 @@ func (ptr *QHelpContentModel) DisconnectMoveRows() {
 }
 
 func (ptr *QHelpContentModel) MoveRows(sourceParent core.QModelIndex_ITF, sourceRow int, count int, destinationParent core.QModelIndex_ITF, destinationChild int) bool {
-	defer qt.Recovering("QHelpContentModel::moveRows")
-
 	if ptr.Pointer() != nil {
 		return C.QHelpContentModel_MoveRows(ptr.Pointer(), core.PointerFromQModelIndex(sourceParent), C.int(int32(sourceRow)), C.int(int32(count)), core.PointerFromQModelIndex(destinationParent), C.int(int32(destinationChild))) != 0
 	}
@@ -988,8 +816,6 @@ func (ptr *QHelpContentModel) MoveRows(sourceParent core.QModelIndex_ITF, source
 }
 
 func (ptr *QHelpContentModel) MoveRowsDefault(sourceParent core.QModelIndex_ITF, sourceRow int, count int, destinationParent core.QModelIndex_ITF, destinationChild int) bool {
-	defer qt.Recovering("QHelpContentModel::moveRows")
-
 	if ptr.Pointer() != nil {
 		return C.QHelpContentModel_MoveRowsDefault(ptr.Pointer(), core.PointerFromQModelIndex(sourceParent), C.int(int32(sourceRow)), C.int(int32(count)), core.PointerFromQModelIndex(destinationParent), C.int(int32(destinationChild))) != 0
 	}
@@ -998,7 +824,6 @@ func (ptr *QHelpContentModel) MoveRowsDefault(sourceParent core.QModelIndex_ITF,
 
 //export callbackQHelpContentModel_RemoveColumns
 func callbackQHelpContentModel_RemoveColumns(ptr unsafe.Pointer, column C.int, count C.int, parent unsafe.Pointer) C.char {
-	defer qt.Recovering("callback QHelpContentModel::removeColumns")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentModel::removeColumns"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(int, int, *core.QModelIndex) bool)(int(int32(column)), int(int32(count)), core.NewQModelIndexFromPointer(parent)))))
@@ -1008,8 +833,6 @@ func callbackQHelpContentModel_RemoveColumns(ptr unsafe.Pointer, column C.int, c
 }
 
 func (ptr *QHelpContentModel) ConnectRemoveColumns(f func(column int, count int, parent *core.QModelIndex) bool) {
-	defer qt.Recovering("connect QHelpContentModel::removeColumns")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentModel::removeColumns", f)
@@ -1017,8 +840,6 @@ func (ptr *QHelpContentModel) ConnectRemoveColumns(f func(column int, count int,
 }
 
 func (ptr *QHelpContentModel) DisconnectRemoveColumns() {
-	defer qt.Recovering("disconnect QHelpContentModel::removeColumns")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentModel::removeColumns")
@@ -1026,8 +847,6 @@ func (ptr *QHelpContentModel) DisconnectRemoveColumns() {
 }
 
 func (ptr *QHelpContentModel) RemoveColumns(column int, count int, parent core.QModelIndex_ITF) bool {
-	defer qt.Recovering("QHelpContentModel::removeColumns")
-
 	if ptr.Pointer() != nil {
 		return C.QHelpContentModel_RemoveColumns(ptr.Pointer(), C.int(int32(column)), C.int(int32(count)), core.PointerFromQModelIndex(parent)) != 0
 	}
@@ -1035,8 +854,6 @@ func (ptr *QHelpContentModel) RemoveColumns(column int, count int, parent core.Q
 }
 
 func (ptr *QHelpContentModel) RemoveColumnsDefault(column int, count int, parent core.QModelIndex_ITF) bool {
-	defer qt.Recovering("QHelpContentModel::removeColumns")
-
 	if ptr.Pointer() != nil {
 		return C.QHelpContentModel_RemoveColumnsDefault(ptr.Pointer(), C.int(int32(column)), C.int(int32(count)), core.PointerFromQModelIndex(parent)) != 0
 	}
@@ -1045,7 +862,6 @@ func (ptr *QHelpContentModel) RemoveColumnsDefault(column int, count int, parent
 
 //export callbackQHelpContentModel_RemoveRows
 func callbackQHelpContentModel_RemoveRows(ptr unsafe.Pointer, row C.int, count C.int, parent unsafe.Pointer) C.char {
-	defer qt.Recovering("callback QHelpContentModel::removeRows")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentModel::removeRows"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(int, int, *core.QModelIndex) bool)(int(int32(row)), int(int32(count)), core.NewQModelIndexFromPointer(parent)))))
@@ -1055,8 +871,6 @@ func callbackQHelpContentModel_RemoveRows(ptr unsafe.Pointer, row C.int, count C
 }
 
 func (ptr *QHelpContentModel) ConnectRemoveRows(f func(row int, count int, parent *core.QModelIndex) bool) {
-	defer qt.Recovering("connect QHelpContentModel::removeRows")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentModel::removeRows", f)
@@ -1064,8 +878,6 @@ func (ptr *QHelpContentModel) ConnectRemoveRows(f func(row int, count int, paren
 }
 
 func (ptr *QHelpContentModel) DisconnectRemoveRows() {
-	defer qt.Recovering("disconnect QHelpContentModel::removeRows")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentModel::removeRows")
@@ -1073,8 +885,6 @@ func (ptr *QHelpContentModel) DisconnectRemoveRows() {
 }
 
 func (ptr *QHelpContentModel) RemoveRows(row int, count int, parent core.QModelIndex_ITF) bool {
-	defer qt.Recovering("QHelpContentModel::removeRows")
-
 	if ptr.Pointer() != nil {
 		return C.QHelpContentModel_RemoveRows(ptr.Pointer(), C.int(int32(row)), C.int(int32(count)), core.PointerFromQModelIndex(parent)) != 0
 	}
@@ -1082,8 +892,6 @@ func (ptr *QHelpContentModel) RemoveRows(row int, count int, parent core.QModelI
 }
 
 func (ptr *QHelpContentModel) RemoveRowsDefault(row int, count int, parent core.QModelIndex_ITF) bool {
-	defer qt.Recovering("QHelpContentModel::removeRows")
-
 	if ptr.Pointer() != nil {
 		return C.QHelpContentModel_RemoveRowsDefault(ptr.Pointer(), C.int(int32(row)), C.int(int32(count)), core.PointerFromQModelIndex(parent)) != 0
 	}
@@ -1092,8 +900,6 @@ func (ptr *QHelpContentModel) RemoveRowsDefault(row int, count int, parent core.
 
 //export callbackQHelpContentModel_ResetInternalData
 func callbackQHelpContentModel_ResetInternalData(ptr unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpContentModel::resetInternalData")
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentModel::resetInternalData"); signal != nil {
 		signal.(func())()
 	} else {
@@ -1102,8 +908,6 @@ func callbackQHelpContentModel_ResetInternalData(ptr unsafe.Pointer) {
 }
 
 func (ptr *QHelpContentModel) ConnectResetInternalData(f func()) {
-	defer qt.Recovering("connect QHelpContentModel::resetInternalData")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentModel::resetInternalData", f)
@@ -1111,8 +915,6 @@ func (ptr *QHelpContentModel) ConnectResetInternalData(f func()) {
 }
 
 func (ptr *QHelpContentModel) DisconnectResetInternalData() {
-	defer qt.Recovering("disconnect QHelpContentModel::resetInternalData")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentModel::resetInternalData")
@@ -1120,16 +922,12 @@ func (ptr *QHelpContentModel) DisconnectResetInternalData() {
 }
 
 func (ptr *QHelpContentModel) ResetInternalData() {
-	defer qt.Recovering("QHelpContentModel::resetInternalData")
-
 	if ptr.Pointer() != nil {
 		C.QHelpContentModel_ResetInternalData(ptr.Pointer())
 	}
 }
 
 func (ptr *QHelpContentModel) ResetInternalDataDefault() {
-	defer qt.Recovering("QHelpContentModel::resetInternalData")
-
 	if ptr.Pointer() != nil {
 		C.QHelpContentModel_ResetInternalDataDefault(ptr.Pointer())
 	}
@@ -1137,8 +935,6 @@ func (ptr *QHelpContentModel) ResetInternalDataDefault() {
 
 //export callbackQHelpContentModel_Revert
 func callbackQHelpContentModel_Revert(ptr unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpContentModel::revert")
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentModel::revert"); signal != nil {
 		signal.(func())()
 	} else {
@@ -1147,8 +943,6 @@ func callbackQHelpContentModel_Revert(ptr unsafe.Pointer) {
 }
 
 func (ptr *QHelpContentModel) ConnectRevert(f func()) {
-	defer qt.Recovering("connect QHelpContentModel::revert")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentModel::revert", f)
@@ -1156,8 +950,6 @@ func (ptr *QHelpContentModel) ConnectRevert(f func()) {
 }
 
 func (ptr *QHelpContentModel) DisconnectRevert() {
-	defer qt.Recovering("disconnect QHelpContentModel::revert")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentModel::revert")
@@ -1165,16 +957,12 @@ func (ptr *QHelpContentModel) DisconnectRevert() {
 }
 
 func (ptr *QHelpContentModel) Revert() {
-	defer qt.Recovering("QHelpContentModel::revert")
-
 	if ptr.Pointer() != nil {
 		C.QHelpContentModel_Revert(ptr.Pointer())
 	}
 }
 
 func (ptr *QHelpContentModel) RevertDefault() {
-	defer qt.Recovering("QHelpContentModel::revert")
-
 	if ptr.Pointer() != nil {
 		C.QHelpContentModel_RevertDefault(ptr.Pointer())
 	}
@@ -1182,7 +970,6 @@ func (ptr *QHelpContentModel) RevertDefault() {
 
 //export callbackQHelpContentModel_SetData
 func callbackQHelpContentModel_SetData(ptr unsafe.Pointer, index unsafe.Pointer, value unsafe.Pointer, role C.int) C.char {
-	defer qt.Recovering("callback QHelpContentModel::setData")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentModel::setData"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QModelIndex, *core.QVariant, int) bool)(core.NewQModelIndexFromPointer(index), core.NewQVariantFromPointer(value), int(int32(role))))))
@@ -1192,8 +979,6 @@ func callbackQHelpContentModel_SetData(ptr unsafe.Pointer, index unsafe.Pointer,
 }
 
 func (ptr *QHelpContentModel) ConnectSetData(f func(index *core.QModelIndex, value *core.QVariant, role int) bool) {
-	defer qt.Recovering("connect QHelpContentModel::setData")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentModel::setData", f)
@@ -1201,8 +986,6 @@ func (ptr *QHelpContentModel) ConnectSetData(f func(index *core.QModelIndex, val
 }
 
 func (ptr *QHelpContentModel) DisconnectSetData() {
-	defer qt.Recovering("disconnect QHelpContentModel::setData")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentModel::setData")
@@ -1210,8 +993,6 @@ func (ptr *QHelpContentModel) DisconnectSetData() {
 }
 
 func (ptr *QHelpContentModel) SetData(index core.QModelIndex_ITF, value core.QVariant_ITF, role int) bool {
-	defer qt.Recovering("QHelpContentModel::setData")
-
 	if ptr.Pointer() != nil {
 		return C.QHelpContentModel_SetData(ptr.Pointer(), core.PointerFromQModelIndex(index), core.PointerFromQVariant(value), C.int(int32(role))) != 0
 	}
@@ -1219,8 +1000,6 @@ func (ptr *QHelpContentModel) SetData(index core.QModelIndex_ITF, value core.QVa
 }
 
 func (ptr *QHelpContentModel) SetDataDefault(index core.QModelIndex_ITF, value core.QVariant_ITF, role int) bool {
-	defer qt.Recovering("QHelpContentModel::setData")
-
 	if ptr.Pointer() != nil {
 		return C.QHelpContentModel_SetDataDefault(ptr.Pointer(), core.PointerFromQModelIndex(index), core.PointerFromQVariant(value), C.int(int32(role))) != 0
 	}
@@ -1229,7 +1008,6 @@ func (ptr *QHelpContentModel) SetDataDefault(index core.QModelIndex_ITF, value c
 
 //export callbackQHelpContentModel_SetHeaderData
 func callbackQHelpContentModel_SetHeaderData(ptr unsafe.Pointer, section C.int, orientation C.longlong, value unsafe.Pointer, role C.int) C.char {
-	defer qt.Recovering("callback QHelpContentModel::setHeaderData")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentModel::setHeaderData"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(int, core.Qt__Orientation, *core.QVariant, int) bool)(int(int32(section)), core.Qt__Orientation(orientation), core.NewQVariantFromPointer(value), int(int32(role))))))
@@ -1239,8 +1017,6 @@ func callbackQHelpContentModel_SetHeaderData(ptr unsafe.Pointer, section C.int, 
 }
 
 func (ptr *QHelpContentModel) ConnectSetHeaderData(f func(section int, orientation core.Qt__Orientation, value *core.QVariant, role int) bool) {
-	defer qt.Recovering("connect QHelpContentModel::setHeaderData")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentModel::setHeaderData", f)
@@ -1248,8 +1024,6 @@ func (ptr *QHelpContentModel) ConnectSetHeaderData(f func(section int, orientati
 }
 
 func (ptr *QHelpContentModel) DisconnectSetHeaderData() {
-	defer qt.Recovering("disconnect QHelpContentModel::setHeaderData")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentModel::setHeaderData")
@@ -1257,8 +1031,6 @@ func (ptr *QHelpContentModel) DisconnectSetHeaderData() {
 }
 
 func (ptr *QHelpContentModel) SetHeaderData(section int, orientation core.Qt__Orientation, value core.QVariant_ITF, role int) bool {
-	defer qt.Recovering("QHelpContentModel::setHeaderData")
-
 	if ptr.Pointer() != nil {
 		return C.QHelpContentModel_SetHeaderData(ptr.Pointer(), C.int(int32(section)), C.longlong(orientation), core.PointerFromQVariant(value), C.int(int32(role))) != 0
 	}
@@ -1266,8 +1038,6 @@ func (ptr *QHelpContentModel) SetHeaderData(section int, orientation core.Qt__Or
 }
 
 func (ptr *QHelpContentModel) SetHeaderDataDefault(section int, orientation core.Qt__Orientation, value core.QVariant_ITF, role int) bool {
-	defer qt.Recovering("QHelpContentModel::setHeaderData")
-
 	if ptr.Pointer() != nil {
 		return C.QHelpContentModel_SetHeaderDataDefault(ptr.Pointer(), C.int(int32(section)), C.longlong(orientation), core.PointerFromQVariant(value), C.int(int32(role))) != 0
 	}
@@ -1276,7 +1046,6 @@ func (ptr *QHelpContentModel) SetHeaderDataDefault(section int, orientation core
 
 //export callbackQHelpContentModel_Sort
 func callbackQHelpContentModel_Sort(ptr unsafe.Pointer, column C.int, order C.longlong) {
-	defer qt.Recovering("callback QHelpContentModel::sort")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentModel::sort"); signal != nil {
 		signal.(func(int, core.Qt__SortOrder))(int(int32(column)), core.Qt__SortOrder(order))
@@ -1286,8 +1055,6 @@ func callbackQHelpContentModel_Sort(ptr unsafe.Pointer, column C.int, order C.lo
 }
 
 func (ptr *QHelpContentModel) ConnectSort(f func(column int, order core.Qt__SortOrder)) {
-	defer qt.Recovering("connect QHelpContentModel::sort")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentModel::sort", f)
@@ -1295,8 +1062,6 @@ func (ptr *QHelpContentModel) ConnectSort(f func(column int, order core.Qt__Sort
 }
 
 func (ptr *QHelpContentModel) DisconnectSort() {
-	defer qt.Recovering("disconnect QHelpContentModel::sort")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentModel::sort")
@@ -1304,16 +1069,12 @@ func (ptr *QHelpContentModel) DisconnectSort() {
 }
 
 func (ptr *QHelpContentModel) Sort(column int, order core.Qt__SortOrder) {
-	defer qt.Recovering("QHelpContentModel::sort")
-
 	if ptr.Pointer() != nil {
 		C.QHelpContentModel_Sort(ptr.Pointer(), C.int(int32(column)), C.longlong(order))
 	}
 }
 
 func (ptr *QHelpContentModel) SortDefault(column int, order core.Qt__SortOrder) {
-	defer qt.Recovering("QHelpContentModel::sort")
-
 	if ptr.Pointer() != nil {
 		C.QHelpContentModel_SortDefault(ptr.Pointer(), C.int(int32(column)), C.longlong(order))
 	}
@@ -1321,7 +1082,6 @@ func (ptr *QHelpContentModel) SortDefault(column int, order core.Qt__SortOrder) 
 
 //export callbackQHelpContentModel_Span
 func callbackQHelpContentModel_Span(ptr unsafe.Pointer, index unsafe.Pointer) unsafe.Pointer {
-	defer qt.Recovering("callback QHelpContentModel::span")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentModel::span"); signal != nil {
 		return core.PointerFromQSize(signal.(func(*core.QModelIndex) *core.QSize)(core.NewQModelIndexFromPointer(index)))
@@ -1331,8 +1091,6 @@ func callbackQHelpContentModel_Span(ptr unsafe.Pointer, index unsafe.Pointer) un
 }
 
 func (ptr *QHelpContentModel) ConnectSpan(f func(index *core.QModelIndex) *core.QSize) {
-	defer qt.Recovering("connect QHelpContentModel::span")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentModel::span", f)
@@ -1340,8 +1098,6 @@ func (ptr *QHelpContentModel) ConnectSpan(f func(index *core.QModelIndex) *core.
 }
 
 func (ptr *QHelpContentModel) DisconnectSpan() {
-	defer qt.Recovering("disconnect QHelpContentModel::span")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentModel::span")
@@ -1349,8 +1105,6 @@ func (ptr *QHelpContentModel) DisconnectSpan() {
 }
 
 func (ptr *QHelpContentModel) Span(index core.QModelIndex_ITF) *core.QSize {
-	defer qt.Recovering("QHelpContentModel::span")
-
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQSizeFromPointer(C.QHelpContentModel_Span(ptr.Pointer(), core.PointerFromQModelIndex(index)))
 		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
@@ -1360,8 +1114,6 @@ func (ptr *QHelpContentModel) Span(index core.QModelIndex_ITF) *core.QSize {
 }
 
 func (ptr *QHelpContentModel) SpanDefault(index core.QModelIndex_ITF) *core.QSize {
-	defer qt.Recovering("QHelpContentModel::span")
-
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQSizeFromPointer(C.QHelpContentModel_SpanDefault(ptr.Pointer(), core.PointerFromQModelIndex(index)))
 		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
@@ -1372,8 +1124,6 @@ func (ptr *QHelpContentModel) SpanDefault(index core.QModelIndex_ITF) *core.QSiz
 
 //export callbackQHelpContentModel_Submit
 func callbackQHelpContentModel_Submit(ptr unsafe.Pointer) C.char {
-	defer qt.Recovering("callback QHelpContentModel::submit")
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentModel::submit"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func() bool)())))
 	}
@@ -1382,8 +1132,6 @@ func callbackQHelpContentModel_Submit(ptr unsafe.Pointer) C.char {
 }
 
 func (ptr *QHelpContentModel) ConnectSubmit(f func() bool) {
-	defer qt.Recovering("connect QHelpContentModel::submit")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentModel::submit", f)
@@ -1391,8 +1139,6 @@ func (ptr *QHelpContentModel) ConnectSubmit(f func() bool) {
 }
 
 func (ptr *QHelpContentModel) DisconnectSubmit() {
-	defer qt.Recovering("disconnect QHelpContentModel::submit")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentModel::submit")
@@ -1400,8 +1146,6 @@ func (ptr *QHelpContentModel) DisconnectSubmit() {
 }
 
 func (ptr *QHelpContentModel) Submit() bool {
-	defer qt.Recovering("QHelpContentModel::submit")
-
 	if ptr.Pointer() != nil {
 		return C.QHelpContentModel_Submit(ptr.Pointer()) != 0
 	}
@@ -1409,8 +1153,6 @@ func (ptr *QHelpContentModel) Submit() bool {
 }
 
 func (ptr *QHelpContentModel) SubmitDefault() bool {
-	defer qt.Recovering("QHelpContentModel::submit")
-
 	if ptr.Pointer() != nil {
 		return C.QHelpContentModel_SubmitDefault(ptr.Pointer()) != 0
 	}
@@ -1419,7 +1161,6 @@ func (ptr *QHelpContentModel) SubmitDefault() bool {
 
 //export callbackQHelpContentModel_SupportedDragActions
 func callbackQHelpContentModel_SupportedDragActions(ptr unsafe.Pointer) C.longlong {
-	defer qt.Recovering("callback QHelpContentModel::supportedDragActions")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentModel::supportedDragActions"); signal != nil {
 		return C.longlong(signal.(func() core.Qt__DropAction)())
@@ -1429,8 +1170,6 @@ func callbackQHelpContentModel_SupportedDragActions(ptr unsafe.Pointer) C.longlo
 }
 
 func (ptr *QHelpContentModel) ConnectSupportedDragActions(f func() core.Qt__DropAction) {
-	defer qt.Recovering("connect QHelpContentModel::supportedDragActions")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentModel::supportedDragActions", f)
@@ -1438,8 +1177,6 @@ func (ptr *QHelpContentModel) ConnectSupportedDragActions(f func() core.Qt__Drop
 }
 
 func (ptr *QHelpContentModel) DisconnectSupportedDragActions() {
-	defer qt.Recovering("disconnect QHelpContentModel::supportedDragActions")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentModel::supportedDragActions")
@@ -1447,8 +1184,6 @@ func (ptr *QHelpContentModel) DisconnectSupportedDragActions() {
 }
 
 func (ptr *QHelpContentModel) SupportedDragActions() core.Qt__DropAction {
-	defer qt.Recovering("QHelpContentModel::supportedDragActions")
-
 	if ptr.Pointer() != nil {
 		return core.Qt__DropAction(C.QHelpContentModel_SupportedDragActions(ptr.Pointer()))
 	}
@@ -1456,8 +1191,6 @@ func (ptr *QHelpContentModel) SupportedDragActions() core.Qt__DropAction {
 }
 
 func (ptr *QHelpContentModel) SupportedDragActionsDefault() core.Qt__DropAction {
-	defer qt.Recovering("QHelpContentModel::supportedDragActions")
-
 	if ptr.Pointer() != nil {
 		return core.Qt__DropAction(C.QHelpContentModel_SupportedDragActionsDefault(ptr.Pointer()))
 	}
@@ -1466,7 +1199,6 @@ func (ptr *QHelpContentModel) SupportedDragActionsDefault() core.Qt__DropAction 
 
 //export callbackQHelpContentModel_SupportedDropActions
 func callbackQHelpContentModel_SupportedDropActions(ptr unsafe.Pointer) C.longlong {
-	defer qt.Recovering("callback QHelpContentModel::supportedDropActions")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentModel::supportedDropActions"); signal != nil {
 		return C.longlong(signal.(func() core.Qt__DropAction)())
@@ -1476,8 +1208,6 @@ func callbackQHelpContentModel_SupportedDropActions(ptr unsafe.Pointer) C.longlo
 }
 
 func (ptr *QHelpContentModel) ConnectSupportedDropActions(f func() core.Qt__DropAction) {
-	defer qt.Recovering("connect QHelpContentModel::supportedDropActions")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentModel::supportedDropActions", f)
@@ -1485,8 +1215,6 @@ func (ptr *QHelpContentModel) ConnectSupportedDropActions(f func() core.Qt__Drop
 }
 
 func (ptr *QHelpContentModel) DisconnectSupportedDropActions() {
-	defer qt.Recovering("disconnect QHelpContentModel::supportedDropActions")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentModel::supportedDropActions")
@@ -1494,8 +1222,6 @@ func (ptr *QHelpContentModel) DisconnectSupportedDropActions() {
 }
 
 func (ptr *QHelpContentModel) SupportedDropActions() core.Qt__DropAction {
-	defer qt.Recovering("QHelpContentModel::supportedDropActions")
-
 	if ptr.Pointer() != nil {
 		return core.Qt__DropAction(C.QHelpContentModel_SupportedDropActions(ptr.Pointer()))
 	}
@@ -1503,8 +1229,6 @@ func (ptr *QHelpContentModel) SupportedDropActions() core.Qt__DropAction {
 }
 
 func (ptr *QHelpContentModel) SupportedDropActionsDefault() core.Qt__DropAction {
-	defer qt.Recovering("QHelpContentModel::supportedDropActions")
-
 	if ptr.Pointer() != nil {
 		return core.Qt__DropAction(C.QHelpContentModel_SupportedDropActionsDefault(ptr.Pointer()))
 	}
@@ -1513,7 +1237,6 @@ func (ptr *QHelpContentModel) SupportedDropActionsDefault() core.Qt__DropAction 
 
 //export callbackQHelpContentModel_TimerEvent
 func callbackQHelpContentModel_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpContentModel::timerEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentModel::timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
@@ -1523,8 +1246,6 @@ func callbackQHelpContentModel_TimerEvent(ptr unsafe.Pointer, event unsafe.Point
 }
 
 func (ptr *QHelpContentModel) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
-	defer qt.Recovering("connect QHelpContentModel::timerEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentModel::timerEvent", f)
@@ -1532,8 +1253,6 @@ func (ptr *QHelpContentModel) ConnectTimerEvent(f func(event *core.QTimerEvent))
 }
 
 func (ptr *QHelpContentModel) DisconnectTimerEvent() {
-	defer qt.Recovering("disconnect QHelpContentModel::timerEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentModel::timerEvent")
@@ -1541,16 +1260,12 @@ func (ptr *QHelpContentModel) DisconnectTimerEvent() {
 }
 
 func (ptr *QHelpContentModel) TimerEvent(event core.QTimerEvent_ITF) {
-	defer qt.Recovering("QHelpContentModel::timerEvent")
-
 	if ptr.Pointer() != nil {
 		C.QHelpContentModel_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
 	}
 }
 
 func (ptr *QHelpContentModel) TimerEventDefault(event core.QTimerEvent_ITF) {
-	defer qt.Recovering("QHelpContentModel::timerEvent")
-
 	if ptr.Pointer() != nil {
 		C.QHelpContentModel_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
 	}
@@ -1558,7 +1273,6 @@ func (ptr *QHelpContentModel) TimerEventDefault(event core.QTimerEvent_ITF) {
 
 //export callbackQHelpContentModel_ChildEvent
 func callbackQHelpContentModel_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpContentModel::childEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentModel::childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
@@ -1568,8 +1282,6 @@ func callbackQHelpContentModel_ChildEvent(ptr unsafe.Pointer, event unsafe.Point
 }
 
 func (ptr *QHelpContentModel) ConnectChildEvent(f func(event *core.QChildEvent)) {
-	defer qt.Recovering("connect QHelpContentModel::childEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentModel::childEvent", f)
@@ -1577,8 +1289,6 @@ func (ptr *QHelpContentModel) ConnectChildEvent(f func(event *core.QChildEvent))
 }
 
 func (ptr *QHelpContentModel) DisconnectChildEvent() {
-	defer qt.Recovering("disconnect QHelpContentModel::childEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentModel::childEvent")
@@ -1586,16 +1296,12 @@ func (ptr *QHelpContentModel) DisconnectChildEvent() {
 }
 
 func (ptr *QHelpContentModel) ChildEvent(event core.QChildEvent_ITF) {
-	defer qt.Recovering("QHelpContentModel::childEvent")
-
 	if ptr.Pointer() != nil {
 		C.QHelpContentModel_ChildEvent(ptr.Pointer(), core.PointerFromQChildEvent(event))
 	}
 }
 
 func (ptr *QHelpContentModel) ChildEventDefault(event core.QChildEvent_ITF) {
-	defer qt.Recovering("QHelpContentModel::childEvent")
-
 	if ptr.Pointer() != nil {
 		C.QHelpContentModel_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
 	}
@@ -1603,7 +1309,6 @@ func (ptr *QHelpContentModel) ChildEventDefault(event core.QChildEvent_ITF) {
 
 //export callbackQHelpContentModel_ConnectNotify
 func callbackQHelpContentModel_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpContentModel::connectNotify")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentModel::connectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
@@ -1613,8 +1318,6 @@ func callbackQHelpContentModel_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Poi
 }
 
 func (ptr *QHelpContentModel) ConnectConnectNotify(f func(sign *core.QMetaMethod)) {
-	defer qt.Recovering("connect QHelpContentModel::connectNotify")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentModel::connectNotify", f)
@@ -1622,8 +1325,6 @@ func (ptr *QHelpContentModel) ConnectConnectNotify(f func(sign *core.QMetaMethod
 }
 
 func (ptr *QHelpContentModel) DisconnectConnectNotify() {
-	defer qt.Recovering("disconnect QHelpContentModel::connectNotify")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentModel::connectNotify")
@@ -1631,16 +1332,12 @@ func (ptr *QHelpContentModel) DisconnectConnectNotify() {
 }
 
 func (ptr *QHelpContentModel) ConnectNotify(sign core.QMetaMethod_ITF) {
-	defer qt.Recovering("QHelpContentModel::connectNotify")
-
 	if ptr.Pointer() != nil {
 		C.QHelpContentModel_ConnectNotify(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
 	}
 }
 
 func (ptr *QHelpContentModel) ConnectNotifyDefault(sign core.QMetaMethod_ITF) {
-	defer qt.Recovering("QHelpContentModel::connectNotify")
-
 	if ptr.Pointer() != nil {
 		C.QHelpContentModel_ConnectNotifyDefault(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
 	}
@@ -1648,7 +1345,6 @@ func (ptr *QHelpContentModel) ConnectNotifyDefault(sign core.QMetaMethod_ITF) {
 
 //export callbackQHelpContentModel_CustomEvent
 func callbackQHelpContentModel_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpContentModel::customEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentModel::customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
@@ -1658,8 +1354,6 @@ func callbackQHelpContentModel_CustomEvent(ptr unsafe.Pointer, event unsafe.Poin
 }
 
 func (ptr *QHelpContentModel) ConnectCustomEvent(f func(event *core.QEvent)) {
-	defer qt.Recovering("connect QHelpContentModel::customEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentModel::customEvent", f)
@@ -1667,8 +1361,6 @@ func (ptr *QHelpContentModel) ConnectCustomEvent(f func(event *core.QEvent)) {
 }
 
 func (ptr *QHelpContentModel) DisconnectCustomEvent() {
-	defer qt.Recovering("disconnect QHelpContentModel::customEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentModel::customEvent")
@@ -1676,16 +1368,12 @@ func (ptr *QHelpContentModel) DisconnectCustomEvent() {
 }
 
 func (ptr *QHelpContentModel) CustomEvent(event core.QEvent_ITF) {
-	defer qt.Recovering("QHelpContentModel::customEvent")
-
 	if ptr.Pointer() != nil {
 		C.QHelpContentModel_CustomEvent(ptr.Pointer(), core.PointerFromQEvent(event))
 	}
 }
 
 func (ptr *QHelpContentModel) CustomEventDefault(event core.QEvent_ITF) {
-	defer qt.Recovering("QHelpContentModel::customEvent")
-
 	if ptr.Pointer() != nil {
 		C.QHelpContentModel_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
 	}
@@ -1693,8 +1381,6 @@ func (ptr *QHelpContentModel) CustomEventDefault(event core.QEvent_ITF) {
 
 //export callbackQHelpContentModel_DeleteLater
 func callbackQHelpContentModel_DeleteLater(ptr unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpContentModel::deleteLater")
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentModel::deleteLater"); signal != nil {
 		signal.(func())()
 	} else {
@@ -1703,8 +1389,6 @@ func callbackQHelpContentModel_DeleteLater(ptr unsafe.Pointer) {
 }
 
 func (ptr *QHelpContentModel) ConnectDeleteLater(f func()) {
-	defer qt.Recovering("connect QHelpContentModel::deleteLater")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentModel::deleteLater", f)
@@ -1712,8 +1396,6 @@ func (ptr *QHelpContentModel) ConnectDeleteLater(f func()) {
 }
 
 func (ptr *QHelpContentModel) DisconnectDeleteLater() {
-	defer qt.Recovering("disconnect QHelpContentModel::deleteLater")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentModel::deleteLater")
@@ -1721,8 +1403,6 @@ func (ptr *QHelpContentModel) DisconnectDeleteLater() {
 }
 
 func (ptr *QHelpContentModel) DeleteLater() {
-	defer qt.Recovering("QHelpContentModel::deleteLater")
-
 	if ptr.Pointer() != nil {
 		C.QHelpContentModel_DeleteLater(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
@@ -1731,8 +1411,6 @@ func (ptr *QHelpContentModel) DeleteLater() {
 }
 
 func (ptr *QHelpContentModel) DeleteLaterDefault() {
-	defer qt.Recovering("QHelpContentModel::deleteLater")
-
 	if ptr.Pointer() != nil {
 		C.QHelpContentModel_DeleteLaterDefault(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
@@ -1742,7 +1420,6 @@ func (ptr *QHelpContentModel) DeleteLaterDefault() {
 
 //export callbackQHelpContentModel_DisconnectNotify
 func callbackQHelpContentModel_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpContentModel::disconnectNotify")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentModel::disconnectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
@@ -1752,8 +1429,6 @@ func callbackQHelpContentModel_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.
 }
 
 func (ptr *QHelpContentModel) ConnectDisconnectNotify(f func(sign *core.QMetaMethod)) {
-	defer qt.Recovering("connect QHelpContentModel::disconnectNotify")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentModel::disconnectNotify", f)
@@ -1761,8 +1436,6 @@ func (ptr *QHelpContentModel) ConnectDisconnectNotify(f func(sign *core.QMetaMet
 }
 
 func (ptr *QHelpContentModel) DisconnectDisconnectNotify() {
-	defer qt.Recovering("disconnect QHelpContentModel::disconnectNotify")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentModel::disconnectNotify")
@@ -1770,16 +1443,12 @@ func (ptr *QHelpContentModel) DisconnectDisconnectNotify() {
 }
 
 func (ptr *QHelpContentModel) DisconnectNotify(sign core.QMetaMethod_ITF) {
-	defer qt.Recovering("QHelpContentModel::disconnectNotify")
-
 	if ptr.Pointer() != nil {
 		C.QHelpContentModel_DisconnectNotify(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
 	}
 }
 
 func (ptr *QHelpContentModel) DisconnectNotifyDefault(sign core.QMetaMethod_ITF) {
-	defer qt.Recovering("QHelpContentModel::disconnectNotify")
-
 	if ptr.Pointer() != nil {
 		C.QHelpContentModel_DisconnectNotifyDefault(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
 	}
@@ -1787,7 +1456,6 @@ func (ptr *QHelpContentModel) DisconnectNotifyDefault(sign core.QMetaMethod_ITF)
 
 //export callbackQHelpContentModel_Event
 func callbackQHelpContentModel_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
-	defer qt.Recovering("callback QHelpContentModel::event")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentModel::event"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
@@ -1797,8 +1465,6 @@ func callbackQHelpContentModel_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.cha
 }
 
 func (ptr *QHelpContentModel) ConnectEvent(f func(e *core.QEvent) bool) {
-	defer qt.Recovering("connect QHelpContentModel::event")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentModel::event", f)
@@ -1806,8 +1472,6 @@ func (ptr *QHelpContentModel) ConnectEvent(f func(e *core.QEvent) bool) {
 }
 
 func (ptr *QHelpContentModel) DisconnectEvent() {
-	defer qt.Recovering("disconnect QHelpContentModel::event")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentModel::event")
@@ -1815,8 +1479,6 @@ func (ptr *QHelpContentModel) DisconnectEvent() {
 }
 
 func (ptr *QHelpContentModel) Event(e core.QEvent_ITF) bool {
-	defer qt.Recovering("QHelpContentModel::event")
-
 	if ptr.Pointer() != nil {
 		return C.QHelpContentModel_Event(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
 	}
@@ -1824,8 +1486,6 @@ func (ptr *QHelpContentModel) Event(e core.QEvent_ITF) bool {
 }
 
 func (ptr *QHelpContentModel) EventDefault(e core.QEvent_ITF) bool {
-	defer qt.Recovering("QHelpContentModel::event")
-
 	if ptr.Pointer() != nil {
 		return C.QHelpContentModel_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
 	}
@@ -1834,7 +1494,6 @@ func (ptr *QHelpContentModel) EventDefault(e core.QEvent_ITF) bool {
 
 //export callbackQHelpContentModel_EventFilter
 func callbackQHelpContentModel_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-	defer qt.Recovering("callback QHelpContentModel::eventFilter")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentModel::eventFilter"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
@@ -1844,8 +1503,6 @@ func callbackQHelpContentModel_EventFilter(ptr unsafe.Pointer, watched unsafe.Po
 }
 
 func (ptr *QHelpContentModel) ConnectEventFilter(f func(watched *core.QObject, event *core.QEvent) bool) {
-	defer qt.Recovering("connect QHelpContentModel::eventFilter")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentModel::eventFilter", f)
@@ -1853,8 +1510,6 @@ func (ptr *QHelpContentModel) ConnectEventFilter(f func(watched *core.QObject, e
 }
 
 func (ptr *QHelpContentModel) DisconnectEventFilter() {
-	defer qt.Recovering("disconnect QHelpContentModel::eventFilter")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentModel::eventFilter")
@@ -1862,8 +1517,6 @@ func (ptr *QHelpContentModel) DisconnectEventFilter() {
 }
 
 func (ptr *QHelpContentModel) EventFilter(watched core.QObject_ITF, event core.QEvent_ITF) bool {
-	defer qt.Recovering("QHelpContentModel::eventFilter")
-
 	if ptr.Pointer() != nil {
 		return C.QHelpContentModel_EventFilter(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
 	}
@@ -1871,8 +1524,6 @@ func (ptr *QHelpContentModel) EventFilter(watched core.QObject_ITF, event core.Q
 }
 
 func (ptr *QHelpContentModel) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
-	defer qt.Recovering("QHelpContentModel::eventFilter")
-
 	if ptr.Pointer() != nil {
 		return C.QHelpContentModel_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
 	}
@@ -1881,7 +1532,6 @@ func (ptr *QHelpContentModel) EventFilterDefault(watched core.QObject_ITF, event
 
 //export callbackQHelpContentModel_MetaObject
 func callbackQHelpContentModel_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-	defer qt.Recovering("callback QHelpContentModel::metaObject")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentModel::metaObject"); signal != nil {
 		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
@@ -1891,8 +1541,6 @@ func callbackQHelpContentModel_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
 }
 
 func (ptr *QHelpContentModel) ConnectMetaObject(f func() *core.QMetaObject) {
-	defer qt.Recovering("connect QHelpContentModel::metaObject")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentModel::metaObject", f)
@@ -1900,8 +1548,6 @@ func (ptr *QHelpContentModel) ConnectMetaObject(f func() *core.QMetaObject) {
 }
 
 func (ptr *QHelpContentModel) DisconnectMetaObject() {
-	defer qt.Recovering("disconnect QHelpContentModel::metaObject")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentModel::metaObject")
@@ -1909,8 +1555,6 @@ func (ptr *QHelpContentModel) DisconnectMetaObject() {
 }
 
 func (ptr *QHelpContentModel) MetaObject() *core.QMetaObject {
-	defer qt.Recovering("QHelpContentModel::metaObject")
-
 	if ptr.Pointer() != nil {
 		return core.NewQMetaObjectFromPointer(C.QHelpContentModel_MetaObject(ptr.Pointer()))
 	}
@@ -1918,8 +1562,6 @@ func (ptr *QHelpContentModel) MetaObject() *core.QMetaObject {
 }
 
 func (ptr *QHelpContentModel) MetaObjectDefault() *core.QMetaObject {
-	defer qt.Recovering("QHelpContentModel::metaObject")
-
 	if ptr.Pointer() != nil {
 		return core.NewQMetaObjectFromPointer(C.QHelpContentModel_MetaObjectDefault(ptr.Pointer()))
 	}
@@ -1972,8 +1614,6 @@ func (ptr *QHelpContentWidget) DestroyQHelpContentWidget() {
 }
 
 func (ptr *QHelpContentWidget) IndexOf(link core.QUrl_ITF) *core.QModelIndex {
-	defer qt.Recovering("QHelpContentWidget::indexOf")
-
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQModelIndexFromPointer(C.QHelpContentWidget_IndexOf(ptr.Pointer(), core.PointerFromQUrl(link)))
 		runtime.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
@@ -1984,7 +1624,6 @@ func (ptr *QHelpContentWidget) IndexOf(link core.QUrl_ITF) *core.QModelIndex {
 
 //export callbackQHelpContentWidget_LinkActivated
 func callbackQHelpContentWidget_LinkActivated(ptr unsafe.Pointer, link unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpContentWidget::linkActivated")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentWidget::linkActivated"); signal != nil {
 		signal.(func(*core.QUrl))(core.NewQUrlFromPointer(link))
@@ -1993,8 +1632,6 @@ func callbackQHelpContentWidget_LinkActivated(ptr unsafe.Pointer, link unsafe.Po
 }
 
 func (ptr *QHelpContentWidget) ConnectLinkActivated(f func(link *core.QUrl)) {
-	defer qt.Recovering("connect QHelpContentWidget::linkActivated")
-
 	if ptr.Pointer() != nil {
 		C.QHelpContentWidget_ConnectLinkActivated(ptr.Pointer())
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentWidget::linkActivated", f)
@@ -2002,8 +1639,6 @@ func (ptr *QHelpContentWidget) ConnectLinkActivated(f func(link *core.QUrl)) {
 }
 
 func (ptr *QHelpContentWidget) DisconnectLinkActivated() {
-	defer qt.Recovering("disconnect QHelpContentWidget::linkActivated")
-
 	if ptr.Pointer() != nil {
 		C.QHelpContentWidget_DisconnectLinkActivated(ptr.Pointer())
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentWidget::linkActivated")
@@ -2011,8 +1646,6 @@ func (ptr *QHelpContentWidget) DisconnectLinkActivated() {
 }
 
 func (ptr *QHelpContentWidget) LinkActivated(link core.QUrl_ITF) {
-	defer qt.Recovering("QHelpContentWidget::linkActivated")
-
 	if ptr.Pointer() != nil {
 		C.QHelpContentWidget_LinkActivated(ptr.Pointer(), core.PointerFromQUrl(link))
 	}
@@ -2020,8 +1653,6 @@ func (ptr *QHelpContentWidget) LinkActivated(link core.QUrl_ITF) {
 
 //export callbackQHelpContentWidget_Collapse
 func callbackQHelpContentWidget_Collapse(ptr unsafe.Pointer, index unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpContentWidget::collapse")
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentWidget::collapse"); signal != nil {
 		signal.(func(*core.QModelIndex))(core.NewQModelIndexFromPointer(index))
 	} else {
@@ -2030,8 +1661,6 @@ func callbackQHelpContentWidget_Collapse(ptr unsafe.Pointer, index unsafe.Pointe
 }
 
 func (ptr *QHelpContentWidget) ConnectCollapse(f func(index *core.QModelIndex)) {
-	defer qt.Recovering("connect QHelpContentWidget::collapse")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentWidget::collapse", f)
@@ -2039,8 +1668,6 @@ func (ptr *QHelpContentWidget) ConnectCollapse(f func(index *core.QModelIndex)) 
 }
 
 func (ptr *QHelpContentWidget) DisconnectCollapse() {
-	defer qt.Recovering("disconnect QHelpContentWidget::collapse")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentWidget::collapse")
@@ -2048,16 +1675,12 @@ func (ptr *QHelpContentWidget) DisconnectCollapse() {
 }
 
 func (ptr *QHelpContentWidget) Collapse(index core.QModelIndex_ITF) {
-	defer qt.Recovering("QHelpContentWidget::collapse")
-
 	if ptr.Pointer() != nil {
 		C.QHelpContentWidget_Collapse(ptr.Pointer(), core.PointerFromQModelIndex(index))
 	}
 }
 
 func (ptr *QHelpContentWidget) CollapseDefault(index core.QModelIndex_ITF) {
-	defer qt.Recovering("QHelpContentWidget::collapse")
-
 	if ptr.Pointer() != nil {
 		C.QHelpContentWidget_CollapseDefault(ptr.Pointer(), core.PointerFromQModelIndex(index))
 	}
@@ -2065,8 +1688,6 @@ func (ptr *QHelpContentWidget) CollapseDefault(index core.QModelIndex_ITF) {
 
 //export callbackQHelpContentWidget_Expand
 func callbackQHelpContentWidget_Expand(ptr unsafe.Pointer, index unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpContentWidget::expand")
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentWidget::expand"); signal != nil {
 		signal.(func(*core.QModelIndex))(core.NewQModelIndexFromPointer(index))
 	} else {
@@ -2075,8 +1696,6 @@ func callbackQHelpContentWidget_Expand(ptr unsafe.Pointer, index unsafe.Pointer)
 }
 
 func (ptr *QHelpContentWidget) ConnectExpand(f func(index *core.QModelIndex)) {
-	defer qt.Recovering("connect QHelpContentWidget::expand")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentWidget::expand", f)
@@ -2084,8 +1703,6 @@ func (ptr *QHelpContentWidget) ConnectExpand(f func(index *core.QModelIndex)) {
 }
 
 func (ptr *QHelpContentWidget) DisconnectExpand() {
-	defer qt.Recovering("disconnect QHelpContentWidget::expand")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentWidget::expand")
@@ -2093,16 +1710,12 @@ func (ptr *QHelpContentWidget) DisconnectExpand() {
 }
 
 func (ptr *QHelpContentWidget) Expand(index core.QModelIndex_ITF) {
-	defer qt.Recovering("QHelpContentWidget::expand")
-
 	if ptr.Pointer() != nil {
 		C.QHelpContentWidget_Expand(ptr.Pointer(), core.PointerFromQModelIndex(index))
 	}
 }
 
 func (ptr *QHelpContentWidget) ExpandDefault(index core.QModelIndex_ITF) {
-	defer qt.Recovering("QHelpContentWidget::expand")
-
 	if ptr.Pointer() != nil {
 		C.QHelpContentWidget_ExpandDefault(ptr.Pointer(), core.PointerFromQModelIndex(index))
 	}
@@ -2110,8 +1723,6 @@ func (ptr *QHelpContentWidget) ExpandDefault(index core.QModelIndex_ITF) {
 
 //export callbackQHelpContentWidget_CollapseAll
 func callbackQHelpContentWidget_CollapseAll(ptr unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpContentWidget::collapseAll")
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentWidget::collapseAll"); signal != nil {
 		signal.(func())()
 	} else {
@@ -2120,8 +1731,6 @@ func callbackQHelpContentWidget_CollapseAll(ptr unsafe.Pointer) {
 }
 
 func (ptr *QHelpContentWidget) ConnectCollapseAll(f func()) {
-	defer qt.Recovering("connect QHelpContentWidget::collapseAll")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentWidget::collapseAll", f)
@@ -2129,8 +1738,6 @@ func (ptr *QHelpContentWidget) ConnectCollapseAll(f func()) {
 }
 
 func (ptr *QHelpContentWidget) DisconnectCollapseAll() {
-	defer qt.Recovering("disconnect QHelpContentWidget::collapseAll")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentWidget::collapseAll")
@@ -2138,16 +1745,12 @@ func (ptr *QHelpContentWidget) DisconnectCollapseAll() {
 }
 
 func (ptr *QHelpContentWidget) CollapseAll() {
-	defer qt.Recovering("QHelpContentWidget::collapseAll")
-
 	if ptr.Pointer() != nil {
 		C.QHelpContentWidget_CollapseAll(ptr.Pointer())
 	}
 }
 
 func (ptr *QHelpContentWidget) CollapseAllDefault() {
-	defer qt.Recovering("QHelpContentWidget::collapseAll")
-
 	if ptr.Pointer() != nil {
 		C.QHelpContentWidget_CollapseAllDefault(ptr.Pointer())
 	}
@@ -2155,8 +1758,6 @@ func (ptr *QHelpContentWidget) CollapseAllDefault() {
 
 //export callbackQHelpContentWidget_ColumnCountChanged
 func callbackQHelpContentWidget_ColumnCountChanged(ptr unsafe.Pointer, oldCount C.int, newCount C.int) {
-	defer qt.Recovering("callback QHelpContentWidget::columnCountChanged")
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentWidget::columnCountChanged"); signal != nil {
 		signal.(func(int, int))(int(int32(oldCount)), int(int32(newCount)))
 	} else {
@@ -2165,8 +1766,6 @@ func callbackQHelpContentWidget_ColumnCountChanged(ptr unsafe.Pointer, oldCount 
 }
 
 func (ptr *QHelpContentWidget) ConnectColumnCountChanged(f func(oldCount int, newCount int)) {
-	defer qt.Recovering("connect QHelpContentWidget::columnCountChanged")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentWidget::columnCountChanged", f)
@@ -2174,8 +1773,6 @@ func (ptr *QHelpContentWidget) ConnectColumnCountChanged(f func(oldCount int, ne
 }
 
 func (ptr *QHelpContentWidget) DisconnectColumnCountChanged() {
-	defer qt.Recovering("disconnect QHelpContentWidget::columnCountChanged")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentWidget::columnCountChanged")
@@ -2183,16 +1780,12 @@ func (ptr *QHelpContentWidget) DisconnectColumnCountChanged() {
 }
 
 func (ptr *QHelpContentWidget) ColumnCountChanged(oldCount int, newCount int) {
-	defer qt.Recovering("QHelpContentWidget::columnCountChanged")
-
 	if ptr.Pointer() != nil {
 		C.QHelpContentWidget_ColumnCountChanged(ptr.Pointer(), C.int(int32(oldCount)), C.int(int32(newCount)))
 	}
 }
 
 func (ptr *QHelpContentWidget) ColumnCountChangedDefault(oldCount int, newCount int) {
-	defer qt.Recovering("QHelpContentWidget::columnCountChanged")
-
 	if ptr.Pointer() != nil {
 		C.QHelpContentWidget_ColumnCountChangedDefault(ptr.Pointer(), C.int(int32(oldCount)), C.int(int32(newCount)))
 	}
@@ -2200,8 +1793,6 @@ func (ptr *QHelpContentWidget) ColumnCountChangedDefault(oldCount int, newCount 
 
 //export callbackQHelpContentWidget_ColumnMoved
 func callbackQHelpContentWidget_ColumnMoved(ptr unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpContentWidget::columnMoved")
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentWidget::columnMoved"); signal != nil {
 		signal.(func())()
 	} else {
@@ -2210,8 +1801,6 @@ func callbackQHelpContentWidget_ColumnMoved(ptr unsafe.Pointer) {
 }
 
 func (ptr *QHelpContentWidget) ConnectColumnMoved(f func()) {
-	defer qt.Recovering("connect QHelpContentWidget::columnMoved")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentWidget::columnMoved", f)
@@ -2219,8 +1808,6 @@ func (ptr *QHelpContentWidget) ConnectColumnMoved(f func()) {
 }
 
 func (ptr *QHelpContentWidget) DisconnectColumnMoved() {
-	defer qt.Recovering("disconnect QHelpContentWidget::columnMoved")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentWidget::columnMoved")
@@ -2228,16 +1815,12 @@ func (ptr *QHelpContentWidget) DisconnectColumnMoved() {
 }
 
 func (ptr *QHelpContentWidget) ColumnMoved() {
-	defer qt.Recovering("QHelpContentWidget::columnMoved")
-
 	if ptr.Pointer() != nil {
 		C.QHelpContentWidget_ColumnMoved(ptr.Pointer())
 	}
 }
 
 func (ptr *QHelpContentWidget) ColumnMovedDefault() {
-	defer qt.Recovering("QHelpContentWidget::columnMoved")
-
 	if ptr.Pointer() != nil {
 		C.QHelpContentWidget_ColumnMovedDefault(ptr.Pointer())
 	}
@@ -2245,8 +1828,6 @@ func (ptr *QHelpContentWidget) ColumnMovedDefault() {
 
 //export callbackQHelpContentWidget_ColumnResized
 func callbackQHelpContentWidget_ColumnResized(ptr unsafe.Pointer, column C.int, oldSize C.int, newSize C.int) {
-	defer qt.Recovering("callback QHelpContentWidget::columnResized")
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentWidget::columnResized"); signal != nil {
 		signal.(func(int, int, int))(int(int32(column)), int(int32(oldSize)), int(int32(newSize)))
 	} else {
@@ -2255,8 +1836,6 @@ func callbackQHelpContentWidget_ColumnResized(ptr unsafe.Pointer, column C.int, 
 }
 
 func (ptr *QHelpContentWidget) ConnectColumnResized(f func(column int, oldSize int, newSize int)) {
-	defer qt.Recovering("connect QHelpContentWidget::columnResized")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentWidget::columnResized", f)
@@ -2264,8 +1843,6 @@ func (ptr *QHelpContentWidget) ConnectColumnResized(f func(column int, oldSize i
 }
 
 func (ptr *QHelpContentWidget) DisconnectColumnResized() {
-	defer qt.Recovering("disconnect QHelpContentWidget::columnResized")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentWidget::columnResized")
@@ -2273,16 +1850,12 @@ func (ptr *QHelpContentWidget) DisconnectColumnResized() {
 }
 
 func (ptr *QHelpContentWidget) ColumnResized(column int, oldSize int, newSize int) {
-	defer qt.Recovering("QHelpContentWidget::columnResized")
-
 	if ptr.Pointer() != nil {
 		C.QHelpContentWidget_ColumnResized(ptr.Pointer(), C.int(int32(column)), C.int(int32(oldSize)), C.int(int32(newSize)))
 	}
 }
 
 func (ptr *QHelpContentWidget) ColumnResizedDefault(column int, oldSize int, newSize int) {
-	defer qt.Recovering("QHelpContentWidget::columnResized")
-
 	if ptr.Pointer() != nil {
 		C.QHelpContentWidget_ColumnResizedDefault(ptr.Pointer(), C.int(int32(column)), C.int(int32(oldSize)), C.int(int32(newSize)))
 	}
@@ -2290,7 +1863,6 @@ func (ptr *QHelpContentWidget) ColumnResizedDefault(column int, oldSize int, new
 
 //export callbackQHelpContentWidget_CurrentChanged
 func callbackQHelpContentWidget_CurrentChanged(ptr unsafe.Pointer, current unsafe.Pointer, previous unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpContentWidget::currentChanged")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentWidget::currentChanged"); signal != nil {
 		signal.(func(*core.QModelIndex, *core.QModelIndex))(core.NewQModelIndexFromPointer(current), core.NewQModelIndexFromPointer(previous))
@@ -2300,8 +1872,6 @@ func callbackQHelpContentWidget_CurrentChanged(ptr unsafe.Pointer, current unsaf
 }
 
 func (ptr *QHelpContentWidget) ConnectCurrentChanged(f func(current *core.QModelIndex, previous *core.QModelIndex)) {
-	defer qt.Recovering("connect QHelpContentWidget::currentChanged")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentWidget::currentChanged", f)
@@ -2309,8 +1879,6 @@ func (ptr *QHelpContentWidget) ConnectCurrentChanged(f func(current *core.QModel
 }
 
 func (ptr *QHelpContentWidget) DisconnectCurrentChanged() {
-	defer qt.Recovering("disconnect QHelpContentWidget::currentChanged")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentWidget::currentChanged")
@@ -2318,16 +1886,12 @@ func (ptr *QHelpContentWidget) DisconnectCurrentChanged() {
 }
 
 func (ptr *QHelpContentWidget) CurrentChanged(current core.QModelIndex_ITF, previous core.QModelIndex_ITF) {
-	defer qt.Recovering("QHelpContentWidget::currentChanged")
-
 	if ptr.Pointer() != nil {
 		C.QHelpContentWidget_CurrentChanged(ptr.Pointer(), core.PointerFromQModelIndex(current), core.PointerFromQModelIndex(previous))
 	}
 }
 
 func (ptr *QHelpContentWidget) CurrentChangedDefault(current core.QModelIndex_ITF, previous core.QModelIndex_ITF) {
-	defer qt.Recovering("QHelpContentWidget::currentChanged")
-
 	if ptr.Pointer() != nil {
 		C.QHelpContentWidget_CurrentChangedDefault(ptr.Pointer(), core.PointerFromQModelIndex(current), core.PointerFromQModelIndex(previous))
 	}
@@ -2335,7 +1899,6 @@ func (ptr *QHelpContentWidget) CurrentChangedDefault(current core.QModelIndex_IT
 
 //export callbackQHelpContentWidget_DragMoveEvent
 func callbackQHelpContentWidget_DragMoveEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpContentWidget::dragMoveEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentWidget::dragMoveEvent"); signal != nil {
 		signal.(func(*gui.QDragMoveEvent))(gui.NewQDragMoveEventFromPointer(event))
@@ -2345,8 +1908,6 @@ func callbackQHelpContentWidget_DragMoveEvent(ptr unsafe.Pointer, event unsafe.P
 }
 
 func (ptr *QHelpContentWidget) ConnectDragMoveEvent(f func(event *gui.QDragMoveEvent)) {
-	defer qt.Recovering("connect QHelpContentWidget::dragMoveEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentWidget::dragMoveEvent", f)
@@ -2354,8 +1915,6 @@ func (ptr *QHelpContentWidget) ConnectDragMoveEvent(f func(event *gui.QDragMoveE
 }
 
 func (ptr *QHelpContentWidget) DisconnectDragMoveEvent() {
-	defer qt.Recovering("disconnect QHelpContentWidget::dragMoveEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentWidget::dragMoveEvent")
@@ -2363,16 +1922,12 @@ func (ptr *QHelpContentWidget) DisconnectDragMoveEvent() {
 }
 
 func (ptr *QHelpContentWidget) DragMoveEvent(event gui.QDragMoveEvent_ITF) {
-	defer qt.Recovering("QHelpContentWidget::dragMoveEvent")
-
 	if ptr.Pointer() != nil {
 		C.QHelpContentWidget_DragMoveEvent(ptr.Pointer(), gui.PointerFromQDragMoveEvent(event))
 	}
 }
 
 func (ptr *QHelpContentWidget) DragMoveEventDefault(event gui.QDragMoveEvent_ITF) {
-	defer qt.Recovering("QHelpContentWidget::dragMoveEvent")
-
 	if ptr.Pointer() != nil {
 		C.QHelpContentWidget_DragMoveEventDefault(ptr.Pointer(), gui.PointerFromQDragMoveEvent(event))
 	}
@@ -2380,7 +1935,6 @@ func (ptr *QHelpContentWidget) DragMoveEventDefault(event gui.QDragMoveEvent_ITF
 
 //export callbackQHelpContentWidget_DrawBranches
 func callbackQHelpContentWidget_DrawBranches(ptr unsafe.Pointer, painter unsafe.Pointer, rect unsafe.Pointer, index unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpContentWidget::drawBranches")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentWidget::drawBranches"); signal != nil {
 		signal.(func(*gui.QPainter, *core.QRect, *core.QModelIndex))(gui.NewQPainterFromPointer(painter), core.NewQRectFromPointer(rect), core.NewQModelIndexFromPointer(index))
@@ -2390,8 +1944,6 @@ func callbackQHelpContentWidget_DrawBranches(ptr unsafe.Pointer, painter unsafe.
 }
 
 func (ptr *QHelpContentWidget) ConnectDrawBranches(f func(painter *gui.QPainter, rect *core.QRect, index *core.QModelIndex)) {
-	defer qt.Recovering("connect QHelpContentWidget::drawBranches")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentWidget::drawBranches", f)
@@ -2399,8 +1951,6 @@ func (ptr *QHelpContentWidget) ConnectDrawBranches(f func(painter *gui.QPainter,
 }
 
 func (ptr *QHelpContentWidget) DisconnectDrawBranches() {
-	defer qt.Recovering("disconnect QHelpContentWidget::drawBranches")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentWidget::drawBranches")
@@ -2408,16 +1958,12 @@ func (ptr *QHelpContentWidget) DisconnectDrawBranches() {
 }
 
 func (ptr *QHelpContentWidget) DrawBranches(painter gui.QPainter_ITF, rect core.QRect_ITF, index core.QModelIndex_ITF) {
-	defer qt.Recovering("QHelpContentWidget::drawBranches")
-
 	if ptr.Pointer() != nil {
 		C.QHelpContentWidget_DrawBranches(ptr.Pointer(), gui.PointerFromQPainter(painter), core.PointerFromQRect(rect), core.PointerFromQModelIndex(index))
 	}
 }
 
 func (ptr *QHelpContentWidget) DrawBranchesDefault(painter gui.QPainter_ITF, rect core.QRect_ITF, index core.QModelIndex_ITF) {
-	defer qt.Recovering("QHelpContentWidget::drawBranches")
-
 	if ptr.Pointer() != nil {
 		C.QHelpContentWidget_DrawBranchesDefault(ptr.Pointer(), gui.PointerFromQPainter(painter), core.PointerFromQRect(rect), core.PointerFromQModelIndex(index))
 	}
@@ -2425,7 +1971,6 @@ func (ptr *QHelpContentWidget) DrawBranchesDefault(painter gui.QPainter_ITF, rec
 
 //export callbackQHelpContentWidget_DrawRow
 func callbackQHelpContentWidget_DrawRow(ptr unsafe.Pointer, painter unsafe.Pointer, option unsafe.Pointer, index unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpContentWidget::drawRow")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentWidget::drawRow"); signal != nil {
 		signal.(func(*gui.QPainter, *widgets.QStyleOptionViewItem, *core.QModelIndex))(gui.NewQPainterFromPointer(painter), widgets.NewQStyleOptionViewItemFromPointer(option), core.NewQModelIndexFromPointer(index))
@@ -2435,8 +1980,6 @@ func callbackQHelpContentWidget_DrawRow(ptr unsafe.Pointer, painter unsafe.Point
 }
 
 func (ptr *QHelpContentWidget) ConnectDrawRow(f func(painter *gui.QPainter, option *widgets.QStyleOptionViewItem, index *core.QModelIndex)) {
-	defer qt.Recovering("connect QHelpContentWidget::drawRow")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentWidget::drawRow", f)
@@ -2444,8 +1987,6 @@ func (ptr *QHelpContentWidget) ConnectDrawRow(f func(painter *gui.QPainter, opti
 }
 
 func (ptr *QHelpContentWidget) DisconnectDrawRow() {
-	defer qt.Recovering("disconnect QHelpContentWidget::drawRow")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentWidget::drawRow")
@@ -2453,16 +1994,12 @@ func (ptr *QHelpContentWidget) DisconnectDrawRow() {
 }
 
 func (ptr *QHelpContentWidget) DrawRow(painter gui.QPainter_ITF, option widgets.QStyleOptionViewItem_ITF, index core.QModelIndex_ITF) {
-	defer qt.Recovering("QHelpContentWidget::drawRow")
-
 	if ptr.Pointer() != nil {
 		C.QHelpContentWidget_DrawRow(ptr.Pointer(), gui.PointerFromQPainter(painter), widgets.PointerFromQStyleOptionViewItem(option), core.PointerFromQModelIndex(index))
 	}
 }
 
 func (ptr *QHelpContentWidget) DrawRowDefault(painter gui.QPainter_ITF, option widgets.QStyleOptionViewItem_ITF, index core.QModelIndex_ITF) {
-	defer qt.Recovering("QHelpContentWidget::drawRow")
-
 	if ptr.Pointer() != nil {
 		C.QHelpContentWidget_DrawRowDefault(ptr.Pointer(), gui.PointerFromQPainter(painter), widgets.PointerFromQStyleOptionViewItem(option), core.PointerFromQModelIndex(index))
 	}
@@ -2470,8 +2007,6 @@ func (ptr *QHelpContentWidget) DrawRowDefault(painter gui.QPainter_ITF, option w
 
 //export callbackQHelpContentWidget_ExpandAll
 func callbackQHelpContentWidget_ExpandAll(ptr unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpContentWidget::expandAll")
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentWidget::expandAll"); signal != nil {
 		signal.(func())()
 	} else {
@@ -2480,8 +2015,6 @@ func callbackQHelpContentWidget_ExpandAll(ptr unsafe.Pointer) {
 }
 
 func (ptr *QHelpContentWidget) ConnectExpandAll(f func()) {
-	defer qt.Recovering("connect QHelpContentWidget::expandAll")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentWidget::expandAll", f)
@@ -2489,8 +2022,6 @@ func (ptr *QHelpContentWidget) ConnectExpandAll(f func()) {
 }
 
 func (ptr *QHelpContentWidget) DisconnectExpandAll() {
-	defer qt.Recovering("disconnect QHelpContentWidget::expandAll")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentWidget::expandAll")
@@ -2498,16 +2029,12 @@ func (ptr *QHelpContentWidget) DisconnectExpandAll() {
 }
 
 func (ptr *QHelpContentWidget) ExpandAll() {
-	defer qt.Recovering("QHelpContentWidget::expandAll")
-
 	if ptr.Pointer() != nil {
 		C.QHelpContentWidget_ExpandAll(ptr.Pointer())
 	}
 }
 
 func (ptr *QHelpContentWidget) ExpandAllDefault() {
-	defer qt.Recovering("QHelpContentWidget::expandAll")
-
 	if ptr.Pointer() != nil {
 		C.QHelpContentWidget_ExpandAllDefault(ptr.Pointer())
 	}
@@ -2515,8 +2042,6 @@ func (ptr *QHelpContentWidget) ExpandAllDefault() {
 
 //export callbackQHelpContentWidget_ExpandToDepth
 func callbackQHelpContentWidget_ExpandToDepth(ptr unsafe.Pointer, depth C.int) {
-	defer qt.Recovering("callback QHelpContentWidget::expandToDepth")
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentWidget::expandToDepth"); signal != nil {
 		signal.(func(int))(int(int32(depth)))
 	} else {
@@ -2525,8 +2050,6 @@ func callbackQHelpContentWidget_ExpandToDepth(ptr unsafe.Pointer, depth C.int) {
 }
 
 func (ptr *QHelpContentWidget) ConnectExpandToDepth(f func(depth int)) {
-	defer qt.Recovering("connect QHelpContentWidget::expandToDepth")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentWidget::expandToDepth", f)
@@ -2534,8 +2057,6 @@ func (ptr *QHelpContentWidget) ConnectExpandToDepth(f func(depth int)) {
 }
 
 func (ptr *QHelpContentWidget) DisconnectExpandToDepth() {
-	defer qt.Recovering("disconnect QHelpContentWidget::expandToDepth")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentWidget::expandToDepth")
@@ -2543,16 +2064,12 @@ func (ptr *QHelpContentWidget) DisconnectExpandToDepth() {
 }
 
 func (ptr *QHelpContentWidget) ExpandToDepth(depth int) {
-	defer qt.Recovering("QHelpContentWidget::expandToDepth")
-
 	if ptr.Pointer() != nil {
 		C.QHelpContentWidget_ExpandToDepth(ptr.Pointer(), C.int(int32(depth)))
 	}
 }
 
 func (ptr *QHelpContentWidget) ExpandToDepthDefault(depth int) {
-	defer qt.Recovering("QHelpContentWidget::expandToDepth")
-
 	if ptr.Pointer() != nil {
 		C.QHelpContentWidget_ExpandToDepthDefault(ptr.Pointer(), C.int(int32(depth)))
 	}
@@ -2560,8 +2077,6 @@ func (ptr *QHelpContentWidget) ExpandToDepthDefault(depth int) {
 
 //export callbackQHelpContentWidget_HideColumn
 func callbackQHelpContentWidget_HideColumn(ptr unsafe.Pointer, column C.int) {
-	defer qt.Recovering("callback QHelpContentWidget::hideColumn")
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentWidget::hideColumn"); signal != nil {
 		signal.(func(int))(int(int32(column)))
 	} else {
@@ -2570,8 +2085,6 @@ func callbackQHelpContentWidget_HideColumn(ptr unsafe.Pointer, column C.int) {
 }
 
 func (ptr *QHelpContentWidget) ConnectHideColumn(f func(column int)) {
-	defer qt.Recovering("connect QHelpContentWidget::hideColumn")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentWidget::hideColumn", f)
@@ -2579,8 +2092,6 @@ func (ptr *QHelpContentWidget) ConnectHideColumn(f func(column int)) {
 }
 
 func (ptr *QHelpContentWidget) DisconnectHideColumn() {
-	defer qt.Recovering("disconnect QHelpContentWidget::hideColumn")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentWidget::hideColumn")
@@ -2588,16 +2099,12 @@ func (ptr *QHelpContentWidget) DisconnectHideColumn() {
 }
 
 func (ptr *QHelpContentWidget) HideColumn(column int) {
-	defer qt.Recovering("QHelpContentWidget::hideColumn")
-
 	if ptr.Pointer() != nil {
 		C.QHelpContentWidget_HideColumn(ptr.Pointer(), C.int(int32(column)))
 	}
 }
 
 func (ptr *QHelpContentWidget) HideColumnDefault(column int) {
-	defer qt.Recovering("QHelpContentWidget::hideColumn")
-
 	if ptr.Pointer() != nil {
 		C.QHelpContentWidget_HideColumnDefault(ptr.Pointer(), C.int(int32(column)))
 	}
@@ -2605,7 +2112,6 @@ func (ptr *QHelpContentWidget) HideColumnDefault(column int) {
 
 //export callbackQHelpContentWidget_HorizontalOffset
 func callbackQHelpContentWidget_HorizontalOffset(ptr unsafe.Pointer) C.int {
-	defer qt.Recovering("callback QHelpContentWidget::horizontalOffset")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentWidget::horizontalOffset"); signal != nil {
 		return C.int(int32(signal.(func() int)()))
@@ -2615,8 +2121,6 @@ func callbackQHelpContentWidget_HorizontalOffset(ptr unsafe.Pointer) C.int {
 }
 
 func (ptr *QHelpContentWidget) ConnectHorizontalOffset(f func() int) {
-	defer qt.Recovering("connect QHelpContentWidget::horizontalOffset")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentWidget::horizontalOffset", f)
@@ -2624,8 +2128,6 @@ func (ptr *QHelpContentWidget) ConnectHorizontalOffset(f func() int) {
 }
 
 func (ptr *QHelpContentWidget) DisconnectHorizontalOffset() {
-	defer qt.Recovering("disconnect QHelpContentWidget::horizontalOffset")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentWidget::horizontalOffset")
@@ -2633,8 +2135,6 @@ func (ptr *QHelpContentWidget) DisconnectHorizontalOffset() {
 }
 
 func (ptr *QHelpContentWidget) HorizontalOffset() int {
-	defer qt.Recovering("QHelpContentWidget::horizontalOffset")
-
 	if ptr.Pointer() != nil {
 		return int(int32(C.QHelpContentWidget_HorizontalOffset(ptr.Pointer())))
 	}
@@ -2642,8 +2142,6 @@ func (ptr *QHelpContentWidget) HorizontalOffset() int {
 }
 
 func (ptr *QHelpContentWidget) HorizontalOffsetDefault() int {
-	defer qt.Recovering("QHelpContentWidget::horizontalOffset")
-
 	if ptr.Pointer() != nil {
 		return int(int32(C.QHelpContentWidget_HorizontalOffsetDefault(ptr.Pointer())))
 	}
@@ -2652,7 +2150,6 @@ func (ptr *QHelpContentWidget) HorizontalOffsetDefault() int {
 
 //export callbackQHelpContentWidget_IndexAt
 func callbackQHelpContentWidget_IndexAt(ptr unsafe.Pointer, point unsafe.Pointer) unsafe.Pointer {
-	defer qt.Recovering("callback QHelpContentWidget::indexAt")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentWidget::indexAt"); signal != nil {
 		return core.PointerFromQModelIndex(signal.(func(*core.QPoint) *core.QModelIndex)(core.NewQPointFromPointer(point)))
@@ -2662,8 +2159,6 @@ func callbackQHelpContentWidget_IndexAt(ptr unsafe.Pointer, point unsafe.Pointer
 }
 
 func (ptr *QHelpContentWidget) ConnectIndexAt(f func(point *core.QPoint) *core.QModelIndex) {
-	defer qt.Recovering("connect QHelpContentWidget::indexAt")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentWidget::indexAt", f)
@@ -2671,8 +2166,6 @@ func (ptr *QHelpContentWidget) ConnectIndexAt(f func(point *core.QPoint) *core.Q
 }
 
 func (ptr *QHelpContentWidget) DisconnectIndexAt() {
-	defer qt.Recovering("disconnect QHelpContentWidget::indexAt")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentWidget::indexAt")
@@ -2680,8 +2173,6 @@ func (ptr *QHelpContentWidget) DisconnectIndexAt() {
 }
 
 func (ptr *QHelpContentWidget) IndexAt(point core.QPoint_ITF) *core.QModelIndex {
-	defer qt.Recovering("QHelpContentWidget::indexAt")
-
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQModelIndexFromPointer(C.QHelpContentWidget_IndexAt(ptr.Pointer(), core.PointerFromQPoint(point)))
 		runtime.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
@@ -2691,8 +2182,6 @@ func (ptr *QHelpContentWidget) IndexAt(point core.QPoint_ITF) *core.QModelIndex 
 }
 
 func (ptr *QHelpContentWidget) IndexAtDefault(point core.QPoint_ITF) *core.QModelIndex {
-	defer qt.Recovering("QHelpContentWidget::indexAt")
-
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQModelIndexFromPointer(C.QHelpContentWidget_IndexAtDefault(ptr.Pointer(), core.PointerFromQPoint(point)))
 		runtime.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
@@ -2703,7 +2192,6 @@ func (ptr *QHelpContentWidget) IndexAtDefault(point core.QPoint_ITF) *core.QMode
 
 //export callbackQHelpContentWidget_IsIndexHidden
 func callbackQHelpContentWidget_IsIndexHidden(ptr unsafe.Pointer, index unsafe.Pointer) C.char {
-	defer qt.Recovering("callback QHelpContentWidget::isIndexHidden")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentWidget::isIndexHidden"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QModelIndex) bool)(core.NewQModelIndexFromPointer(index)))))
@@ -2713,8 +2201,6 @@ func callbackQHelpContentWidget_IsIndexHidden(ptr unsafe.Pointer, index unsafe.P
 }
 
 func (ptr *QHelpContentWidget) ConnectIsIndexHidden(f func(index *core.QModelIndex) bool) {
-	defer qt.Recovering("connect QHelpContentWidget::isIndexHidden")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentWidget::isIndexHidden", f)
@@ -2722,8 +2208,6 @@ func (ptr *QHelpContentWidget) ConnectIsIndexHidden(f func(index *core.QModelInd
 }
 
 func (ptr *QHelpContentWidget) DisconnectIsIndexHidden() {
-	defer qt.Recovering("disconnect QHelpContentWidget::isIndexHidden")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentWidget::isIndexHidden")
@@ -2731,8 +2215,6 @@ func (ptr *QHelpContentWidget) DisconnectIsIndexHidden() {
 }
 
 func (ptr *QHelpContentWidget) IsIndexHidden(index core.QModelIndex_ITF) bool {
-	defer qt.Recovering("QHelpContentWidget::isIndexHidden")
-
 	if ptr.Pointer() != nil {
 		return C.QHelpContentWidget_IsIndexHidden(ptr.Pointer(), core.PointerFromQModelIndex(index)) != 0
 	}
@@ -2740,8 +2222,6 @@ func (ptr *QHelpContentWidget) IsIndexHidden(index core.QModelIndex_ITF) bool {
 }
 
 func (ptr *QHelpContentWidget) IsIndexHiddenDefault(index core.QModelIndex_ITF) bool {
-	defer qt.Recovering("QHelpContentWidget::isIndexHidden")
-
 	if ptr.Pointer() != nil {
 		return C.QHelpContentWidget_IsIndexHiddenDefault(ptr.Pointer(), core.PointerFromQModelIndex(index)) != 0
 	}
@@ -2750,7 +2230,6 @@ func (ptr *QHelpContentWidget) IsIndexHiddenDefault(index core.QModelIndex_ITF) 
 
 //export callbackQHelpContentWidget_KeyPressEvent
 func callbackQHelpContentWidget_KeyPressEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpContentWidget::keyPressEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentWidget::keyPressEvent"); signal != nil {
 		signal.(func(*gui.QKeyEvent))(gui.NewQKeyEventFromPointer(event))
@@ -2760,8 +2239,6 @@ func callbackQHelpContentWidget_KeyPressEvent(ptr unsafe.Pointer, event unsafe.P
 }
 
 func (ptr *QHelpContentWidget) ConnectKeyPressEvent(f func(event *gui.QKeyEvent)) {
-	defer qt.Recovering("connect QHelpContentWidget::keyPressEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentWidget::keyPressEvent", f)
@@ -2769,8 +2246,6 @@ func (ptr *QHelpContentWidget) ConnectKeyPressEvent(f func(event *gui.QKeyEvent)
 }
 
 func (ptr *QHelpContentWidget) DisconnectKeyPressEvent() {
-	defer qt.Recovering("disconnect QHelpContentWidget::keyPressEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentWidget::keyPressEvent")
@@ -2778,16 +2253,12 @@ func (ptr *QHelpContentWidget) DisconnectKeyPressEvent() {
 }
 
 func (ptr *QHelpContentWidget) KeyPressEvent(event gui.QKeyEvent_ITF) {
-	defer qt.Recovering("QHelpContentWidget::keyPressEvent")
-
 	if ptr.Pointer() != nil {
 		C.QHelpContentWidget_KeyPressEvent(ptr.Pointer(), gui.PointerFromQKeyEvent(event))
 	}
 }
 
 func (ptr *QHelpContentWidget) KeyPressEventDefault(event gui.QKeyEvent_ITF) {
-	defer qt.Recovering("QHelpContentWidget::keyPressEvent")
-
 	if ptr.Pointer() != nil {
 		C.QHelpContentWidget_KeyPressEventDefault(ptr.Pointer(), gui.PointerFromQKeyEvent(event))
 	}
@@ -2795,7 +2266,6 @@ func (ptr *QHelpContentWidget) KeyPressEventDefault(event gui.QKeyEvent_ITF) {
 
 //export callbackQHelpContentWidget_KeyboardSearch
 func callbackQHelpContentWidget_KeyboardSearch(ptr unsafe.Pointer, search *C.char) {
-	defer qt.Recovering("callback QHelpContentWidget::keyboardSearch")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentWidget::keyboardSearch"); signal != nil {
 		signal.(func(string))(C.GoString(search))
@@ -2805,8 +2275,6 @@ func callbackQHelpContentWidget_KeyboardSearch(ptr unsafe.Pointer, search *C.cha
 }
 
 func (ptr *QHelpContentWidget) ConnectKeyboardSearch(f func(search string)) {
-	defer qt.Recovering("connect QHelpContentWidget::keyboardSearch")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentWidget::keyboardSearch", f)
@@ -2814,8 +2282,6 @@ func (ptr *QHelpContentWidget) ConnectKeyboardSearch(f func(search string)) {
 }
 
 func (ptr *QHelpContentWidget) DisconnectKeyboardSearch() {
-	defer qt.Recovering("disconnect QHelpContentWidget::keyboardSearch")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentWidget::keyboardSearch")
@@ -2823,8 +2289,6 @@ func (ptr *QHelpContentWidget) DisconnectKeyboardSearch() {
 }
 
 func (ptr *QHelpContentWidget) KeyboardSearch(search string) {
-	defer qt.Recovering("QHelpContentWidget::keyboardSearch")
-
 	if ptr.Pointer() != nil {
 		var searchC = C.CString(search)
 		defer C.free(unsafe.Pointer(searchC))
@@ -2833,8 +2297,6 @@ func (ptr *QHelpContentWidget) KeyboardSearch(search string) {
 }
 
 func (ptr *QHelpContentWidget) KeyboardSearchDefault(search string) {
-	defer qt.Recovering("QHelpContentWidget::keyboardSearch")
-
 	if ptr.Pointer() != nil {
 		var searchC = C.CString(search)
 		defer C.free(unsafe.Pointer(searchC))
@@ -2844,7 +2306,6 @@ func (ptr *QHelpContentWidget) KeyboardSearchDefault(search string) {
 
 //export callbackQHelpContentWidget_MouseDoubleClickEvent
 func callbackQHelpContentWidget_MouseDoubleClickEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpContentWidget::mouseDoubleClickEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentWidget::mouseDoubleClickEvent"); signal != nil {
 		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
@@ -2854,8 +2315,6 @@ func callbackQHelpContentWidget_MouseDoubleClickEvent(ptr unsafe.Pointer, event 
 }
 
 func (ptr *QHelpContentWidget) ConnectMouseDoubleClickEvent(f func(event *gui.QMouseEvent)) {
-	defer qt.Recovering("connect QHelpContentWidget::mouseDoubleClickEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentWidget::mouseDoubleClickEvent", f)
@@ -2863,8 +2322,6 @@ func (ptr *QHelpContentWidget) ConnectMouseDoubleClickEvent(f func(event *gui.QM
 }
 
 func (ptr *QHelpContentWidget) DisconnectMouseDoubleClickEvent() {
-	defer qt.Recovering("disconnect QHelpContentWidget::mouseDoubleClickEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentWidget::mouseDoubleClickEvent")
@@ -2872,16 +2329,12 @@ func (ptr *QHelpContentWidget) DisconnectMouseDoubleClickEvent() {
 }
 
 func (ptr *QHelpContentWidget) MouseDoubleClickEvent(event gui.QMouseEvent_ITF) {
-	defer qt.Recovering("QHelpContentWidget::mouseDoubleClickEvent")
-
 	if ptr.Pointer() != nil {
 		C.QHelpContentWidget_MouseDoubleClickEvent(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
 	}
 }
 
 func (ptr *QHelpContentWidget) MouseDoubleClickEventDefault(event gui.QMouseEvent_ITF) {
-	defer qt.Recovering("QHelpContentWidget::mouseDoubleClickEvent")
-
 	if ptr.Pointer() != nil {
 		C.QHelpContentWidget_MouseDoubleClickEventDefault(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
 	}
@@ -2889,7 +2342,6 @@ func (ptr *QHelpContentWidget) MouseDoubleClickEventDefault(event gui.QMouseEven
 
 //export callbackQHelpContentWidget_MouseMoveEvent
 func callbackQHelpContentWidget_MouseMoveEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpContentWidget::mouseMoveEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentWidget::mouseMoveEvent"); signal != nil {
 		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
@@ -2899,8 +2351,6 @@ func callbackQHelpContentWidget_MouseMoveEvent(ptr unsafe.Pointer, event unsafe.
 }
 
 func (ptr *QHelpContentWidget) ConnectMouseMoveEvent(f func(event *gui.QMouseEvent)) {
-	defer qt.Recovering("connect QHelpContentWidget::mouseMoveEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentWidget::mouseMoveEvent", f)
@@ -2908,8 +2358,6 @@ func (ptr *QHelpContentWidget) ConnectMouseMoveEvent(f func(event *gui.QMouseEve
 }
 
 func (ptr *QHelpContentWidget) DisconnectMouseMoveEvent() {
-	defer qt.Recovering("disconnect QHelpContentWidget::mouseMoveEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentWidget::mouseMoveEvent")
@@ -2917,16 +2365,12 @@ func (ptr *QHelpContentWidget) DisconnectMouseMoveEvent() {
 }
 
 func (ptr *QHelpContentWidget) MouseMoveEvent(event gui.QMouseEvent_ITF) {
-	defer qt.Recovering("QHelpContentWidget::mouseMoveEvent")
-
 	if ptr.Pointer() != nil {
 		C.QHelpContentWidget_MouseMoveEvent(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
 	}
 }
 
 func (ptr *QHelpContentWidget) MouseMoveEventDefault(event gui.QMouseEvent_ITF) {
-	defer qt.Recovering("QHelpContentWidget::mouseMoveEvent")
-
 	if ptr.Pointer() != nil {
 		C.QHelpContentWidget_MouseMoveEventDefault(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
 	}
@@ -2934,7 +2378,6 @@ func (ptr *QHelpContentWidget) MouseMoveEventDefault(event gui.QMouseEvent_ITF) 
 
 //export callbackQHelpContentWidget_MousePressEvent
 func callbackQHelpContentWidget_MousePressEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpContentWidget::mousePressEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentWidget::mousePressEvent"); signal != nil {
 		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
@@ -2944,8 +2387,6 @@ func callbackQHelpContentWidget_MousePressEvent(ptr unsafe.Pointer, event unsafe
 }
 
 func (ptr *QHelpContentWidget) ConnectMousePressEvent(f func(event *gui.QMouseEvent)) {
-	defer qt.Recovering("connect QHelpContentWidget::mousePressEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentWidget::mousePressEvent", f)
@@ -2953,8 +2394,6 @@ func (ptr *QHelpContentWidget) ConnectMousePressEvent(f func(event *gui.QMouseEv
 }
 
 func (ptr *QHelpContentWidget) DisconnectMousePressEvent() {
-	defer qt.Recovering("disconnect QHelpContentWidget::mousePressEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentWidget::mousePressEvent")
@@ -2962,16 +2401,12 @@ func (ptr *QHelpContentWidget) DisconnectMousePressEvent() {
 }
 
 func (ptr *QHelpContentWidget) MousePressEvent(event gui.QMouseEvent_ITF) {
-	defer qt.Recovering("QHelpContentWidget::mousePressEvent")
-
 	if ptr.Pointer() != nil {
 		C.QHelpContentWidget_MousePressEvent(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
 	}
 }
 
 func (ptr *QHelpContentWidget) MousePressEventDefault(event gui.QMouseEvent_ITF) {
-	defer qt.Recovering("QHelpContentWidget::mousePressEvent")
-
 	if ptr.Pointer() != nil {
 		C.QHelpContentWidget_MousePressEventDefault(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
 	}
@@ -2979,7 +2414,6 @@ func (ptr *QHelpContentWidget) MousePressEventDefault(event gui.QMouseEvent_ITF)
 
 //export callbackQHelpContentWidget_MouseReleaseEvent
 func callbackQHelpContentWidget_MouseReleaseEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpContentWidget::mouseReleaseEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentWidget::mouseReleaseEvent"); signal != nil {
 		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
@@ -2989,8 +2423,6 @@ func callbackQHelpContentWidget_MouseReleaseEvent(ptr unsafe.Pointer, event unsa
 }
 
 func (ptr *QHelpContentWidget) ConnectMouseReleaseEvent(f func(event *gui.QMouseEvent)) {
-	defer qt.Recovering("connect QHelpContentWidget::mouseReleaseEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentWidget::mouseReleaseEvent", f)
@@ -2998,8 +2430,6 @@ func (ptr *QHelpContentWidget) ConnectMouseReleaseEvent(f func(event *gui.QMouse
 }
 
 func (ptr *QHelpContentWidget) DisconnectMouseReleaseEvent() {
-	defer qt.Recovering("disconnect QHelpContentWidget::mouseReleaseEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentWidget::mouseReleaseEvent")
@@ -3007,16 +2437,12 @@ func (ptr *QHelpContentWidget) DisconnectMouseReleaseEvent() {
 }
 
 func (ptr *QHelpContentWidget) MouseReleaseEvent(event gui.QMouseEvent_ITF) {
-	defer qt.Recovering("QHelpContentWidget::mouseReleaseEvent")
-
 	if ptr.Pointer() != nil {
 		C.QHelpContentWidget_MouseReleaseEvent(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
 	}
 }
 
 func (ptr *QHelpContentWidget) MouseReleaseEventDefault(event gui.QMouseEvent_ITF) {
-	defer qt.Recovering("QHelpContentWidget::mouseReleaseEvent")
-
 	if ptr.Pointer() != nil {
 		C.QHelpContentWidget_MouseReleaseEventDefault(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
 	}
@@ -3024,7 +2450,6 @@ func (ptr *QHelpContentWidget) MouseReleaseEventDefault(event gui.QMouseEvent_IT
 
 //export callbackQHelpContentWidget_MoveCursor
 func callbackQHelpContentWidget_MoveCursor(ptr unsafe.Pointer, cursorAction C.longlong, modifiers C.longlong) unsafe.Pointer {
-	defer qt.Recovering("callback QHelpContentWidget::moveCursor")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentWidget::moveCursor"); signal != nil {
 		return core.PointerFromQModelIndex(signal.(func(widgets.QAbstractItemView__CursorAction, core.Qt__KeyboardModifier) *core.QModelIndex)(widgets.QAbstractItemView__CursorAction(cursorAction), core.Qt__KeyboardModifier(modifiers)))
@@ -3034,8 +2459,6 @@ func callbackQHelpContentWidget_MoveCursor(ptr unsafe.Pointer, cursorAction C.lo
 }
 
 func (ptr *QHelpContentWidget) ConnectMoveCursor(f func(cursorAction widgets.QAbstractItemView__CursorAction, modifiers core.Qt__KeyboardModifier) *core.QModelIndex) {
-	defer qt.Recovering("connect QHelpContentWidget::moveCursor")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentWidget::moveCursor", f)
@@ -3043,8 +2466,6 @@ func (ptr *QHelpContentWidget) ConnectMoveCursor(f func(cursorAction widgets.QAb
 }
 
 func (ptr *QHelpContentWidget) DisconnectMoveCursor() {
-	defer qt.Recovering("disconnect QHelpContentWidget::moveCursor")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentWidget::moveCursor")
@@ -3052,8 +2473,6 @@ func (ptr *QHelpContentWidget) DisconnectMoveCursor() {
 }
 
 func (ptr *QHelpContentWidget) MoveCursor(cursorAction widgets.QAbstractItemView__CursorAction, modifiers core.Qt__KeyboardModifier) *core.QModelIndex {
-	defer qt.Recovering("QHelpContentWidget::moveCursor")
-
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQModelIndexFromPointer(C.QHelpContentWidget_MoveCursor(ptr.Pointer(), C.longlong(cursorAction), C.longlong(modifiers)))
 		runtime.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
@@ -3063,8 +2482,6 @@ func (ptr *QHelpContentWidget) MoveCursor(cursorAction widgets.QAbstractItemView
 }
 
 func (ptr *QHelpContentWidget) MoveCursorDefault(cursorAction widgets.QAbstractItemView__CursorAction, modifiers core.Qt__KeyboardModifier) *core.QModelIndex {
-	defer qt.Recovering("QHelpContentWidget::moveCursor")
-
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQModelIndexFromPointer(C.QHelpContentWidget_MoveCursorDefault(ptr.Pointer(), C.longlong(cursorAction), C.longlong(modifiers)))
 		runtime.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
@@ -3075,7 +2492,6 @@ func (ptr *QHelpContentWidget) MoveCursorDefault(cursorAction widgets.QAbstractI
 
 //export callbackQHelpContentWidget_PaintEvent
 func callbackQHelpContentWidget_PaintEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpContentWidget::paintEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentWidget::paintEvent"); signal != nil {
 		signal.(func(*gui.QPaintEvent))(gui.NewQPaintEventFromPointer(event))
@@ -3085,8 +2501,6 @@ func callbackQHelpContentWidget_PaintEvent(ptr unsafe.Pointer, event unsafe.Poin
 }
 
 func (ptr *QHelpContentWidget) ConnectPaintEvent(f func(event *gui.QPaintEvent)) {
-	defer qt.Recovering("connect QHelpContentWidget::paintEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentWidget::paintEvent", f)
@@ -3094,8 +2508,6 @@ func (ptr *QHelpContentWidget) ConnectPaintEvent(f func(event *gui.QPaintEvent))
 }
 
 func (ptr *QHelpContentWidget) DisconnectPaintEvent() {
-	defer qt.Recovering("disconnect QHelpContentWidget::paintEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentWidget::paintEvent")
@@ -3103,16 +2515,12 @@ func (ptr *QHelpContentWidget) DisconnectPaintEvent() {
 }
 
 func (ptr *QHelpContentWidget) PaintEvent(event gui.QPaintEvent_ITF) {
-	defer qt.Recovering("QHelpContentWidget::paintEvent")
-
 	if ptr.Pointer() != nil {
 		C.QHelpContentWidget_PaintEvent(ptr.Pointer(), gui.PointerFromQPaintEvent(event))
 	}
 }
 
 func (ptr *QHelpContentWidget) PaintEventDefault(event gui.QPaintEvent_ITF) {
-	defer qt.Recovering("QHelpContentWidget::paintEvent")
-
 	if ptr.Pointer() != nil {
 		C.QHelpContentWidget_PaintEventDefault(ptr.Pointer(), gui.PointerFromQPaintEvent(event))
 	}
@@ -3120,7 +2528,6 @@ func (ptr *QHelpContentWidget) PaintEventDefault(event gui.QPaintEvent_ITF) {
 
 //export callbackQHelpContentWidget_Reset
 func callbackQHelpContentWidget_Reset(ptr unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpContentWidget::reset")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentWidget::reset"); signal != nil {
 		signal.(func())()
@@ -3130,8 +2537,6 @@ func callbackQHelpContentWidget_Reset(ptr unsafe.Pointer) {
 }
 
 func (ptr *QHelpContentWidget) ConnectReset(f func()) {
-	defer qt.Recovering("connect QHelpContentWidget::reset")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentWidget::reset", f)
@@ -3139,8 +2544,6 @@ func (ptr *QHelpContentWidget) ConnectReset(f func()) {
 }
 
 func (ptr *QHelpContentWidget) DisconnectReset() {
-	defer qt.Recovering("disconnect QHelpContentWidget::reset")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentWidget::reset")
@@ -3148,16 +2551,12 @@ func (ptr *QHelpContentWidget) DisconnectReset() {
 }
 
 func (ptr *QHelpContentWidget) Reset() {
-	defer qt.Recovering("QHelpContentWidget::reset")
-
 	if ptr.Pointer() != nil {
 		C.QHelpContentWidget_Reset(ptr.Pointer())
 	}
 }
 
 func (ptr *QHelpContentWidget) ResetDefault() {
-	defer qt.Recovering("QHelpContentWidget::reset")
-
 	if ptr.Pointer() != nil {
 		C.QHelpContentWidget_ResetDefault(ptr.Pointer())
 	}
@@ -3165,8 +2564,6 @@ func (ptr *QHelpContentWidget) ResetDefault() {
 
 //export callbackQHelpContentWidget_ResizeColumnToContents
 func callbackQHelpContentWidget_ResizeColumnToContents(ptr unsafe.Pointer, column C.int) {
-	defer qt.Recovering("callback QHelpContentWidget::resizeColumnToContents")
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentWidget::resizeColumnToContents"); signal != nil {
 		signal.(func(int))(int(int32(column)))
 	} else {
@@ -3175,8 +2572,6 @@ func callbackQHelpContentWidget_ResizeColumnToContents(ptr unsafe.Pointer, colum
 }
 
 func (ptr *QHelpContentWidget) ConnectResizeColumnToContents(f func(column int)) {
-	defer qt.Recovering("connect QHelpContentWidget::resizeColumnToContents")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentWidget::resizeColumnToContents", f)
@@ -3184,8 +2579,6 @@ func (ptr *QHelpContentWidget) ConnectResizeColumnToContents(f func(column int))
 }
 
 func (ptr *QHelpContentWidget) DisconnectResizeColumnToContents() {
-	defer qt.Recovering("disconnect QHelpContentWidget::resizeColumnToContents")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentWidget::resizeColumnToContents")
@@ -3193,16 +2586,12 @@ func (ptr *QHelpContentWidget) DisconnectResizeColumnToContents() {
 }
 
 func (ptr *QHelpContentWidget) ResizeColumnToContents(column int) {
-	defer qt.Recovering("QHelpContentWidget::resizeColumnToContents")
-
 	if ptr.Pointer() != nil {
 		C.QHelpContentWidget_ResizeColumnToContents(ptr.Pointer(), C.int(int32(column)))
 	}
 }
 
 func (ptr *QHelpContentWidget) ResizeColumnToContentsDefault(column int) {
-	defer qt.Recovering("QHelpContentWidget::resizeColumnToContents")
-
 	if ptr.Pointer() != nil {
 		C.QHelpContentWidget_ResizeColumnToContentsDefault(ptr.Pointer(), C.int(int32(column)))
 	}
@@ -3210,7 +2599,6 @@ func (ptr *QHelpContentWidget) ResizeColumnToContentsDefault(column int) {
 
 //export callbackQHelpContentWidget_RowsAboutToBeRemoved
 func callbackQHelpContentWidget_RowsAboutToBeRemoved(ptr unsafe.Pointer, parent unsafe.Pointer, start C.int, end C.int) {
-	defer qt.Recovering("callback QHelpContentWidget::rowsAboutToBeRemoved")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentWidget::rowsAboutToBeRemoved"); signal != nil {
 		signal.(func(*core.QModelIndex, int, int))(core.NewQModelIndexFromPointer(parent), int(int32(start)), int(int32(end)))
@@ -3220,8 +2608,6 @@ func callbackQHelpContentWidget_RowsAboutToBeRemoved(ptr unsafe.Pointer, parent 
 }
 
 func (ptr *QHelpContentWidget) ConnectRowsAboutToBeRemoved(f func(parent *core.QModelIndex, start int, end int)) {
-	defer qt.Recovering("connect QHelpContentWidget::rowsAboutToBeRemoved")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentWidget::rowsAboutToBeRemoved", f)
@@ -3229,8 +2615,6 @@ func (ptr *QHelpContentWidget) ConnectRowsAboutToBeRemoved(f func(parent *core.Q
 }
 
 func (ptr *QHelpContentWidget) DisconnectRowsAboutToBeRemoved() {
-	defer qt.Recovering("disconnect QHelpContentWidget::rowsAboutToBeRemoved")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentWidget::rowsAboutToBeRemoved")
@@ -3238,16 +2622,12 @@ func (ptr *QHelpContentWidget) DisconnectRowsAboutToBeRemoved() {
 }
 
 func (ptr *QHelpContentWidget) RowsAboutToBeRemoved(parent core.QModelIndex_ITF, start int, end int) {
-	defer qt.Recovering("QHelpContentWidget::rowsAboutToBeRemoved")
-
 	if ptr.Pointer() != nil {
 		C.QHelpContentWidget_RowsAboutToBeRemoved(ptr.Pointer(), core.PointerFromQModelIndex(parent), C.int(int32(start)), C.int(int32(end)))
 	}
 }
 
 func (ptr *QHelpContentWidget) RowsAboutToBeRemovedDefault(parent core.QModelIndex_ITF, start int, end int) {
-	defer qt.Recovering("QHelpContentWidget::rowsAboutToBeRemoved")
-
 	if ptr.Pointer() != nil {
 		C.QHelpContentWidget_RowsAboutToBeRemovedDefault(ptr.Pointer(), core.PointerFromQModelIndex(parent), C.int(int32(start)), C.int(int32(end)))
 	}
@@ -3255,7 +2635,6 @@ func (ptr *QHelpContentWidget) RowsAboutToBeRemovedDefault(parent core.QModelInd
 
 //export callbackQHelpContentWidget_RowsInserted
 func callbackQHelpContentWidget_RowsInserted(ptr unsafe.Pointer, parent unsafe.Pointer, start C.int, end C.int) {
-	defer qt.Recovering("callback QHelpContentWidget::rowsInserted")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentWidget::rowsInserted"); signal != nil {
 		signal.(func(*core.QModelIndex, int, int))(core.NewQModelIndexFromPointer(parent), int(int32(start)), int(int32(end)))
@@ -3265,8 +2644,6 @@ func callbackQHelpContentWidget_RowsInserted(ptr unsafe.Pointer, parent unsafe.P
 }
 
 func (ptr *QHelpContentWidget) ConnectRowsInserted(f func(parent *core.QModelIndex, start int, end int)) {
-	defer qt.Recovering("connect QHelpContentWidget::rowsInserted")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentWidget::rowsInserted", f)
@@ -3274,8 +2651,6 @@ func (ptr *QHelpContentWidget) ConnectRowsInserted(f func(parent *core.QModelInd
 }
 
 func (ptr *QHelpContentWidget) DisconnectRowsInserted() {
-	defer qt.Recovering("disconnect QHelpContentWidget::rowsInserted")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentWidget::rowsInserted")
@@ -3283,16 +2658,12 @@ func (ptr *QHelpContentWidget) DisconnectRowsInserted() {
 }
 
 func (ptr *QHelpContentWidget) RowsInserted(parent core.QModelIndex_ITF, start int, end int) {
-	defer qt.Recovering("QHelpContentWidget::rowsInserted")
-
 	if ptr.Pointer() != nil {
 		C.QHelpContentWidget_RowsInserted(ptr.Pointer(), core.PointerFromQModelIndex(parent), C.int(int32(start)), C.int(int32(end)))
 	}
 }
 
 func (ptr *QHelpContentWidget) RowsInsertedDefault(parent core.QModelIndex_ITF, start int, end int) {
-	defer qt.Recovering("QHelpContentWidget::rowsInserted")
-
 	if ptr.Pointer() != nil {
 		C.QHelpContentWidget_RowsInsertedDefault(ptr.Pointer(), core.PointerFromQModelIndex(parent), C.int(int32(start)), C.int(int32(end)))
 	}
@@ -3300,8 +2671,6 @@ func (ptr *QHelpContentWidget) RowsInsertedDefault(parent core.QModelIndex_ITF, 
 
 //export callbackQHelpContentWidget_RowsRemoved
 func callbackQHelpContentWidget_RowsRemoved(ptr unsafe.Pointer, parent unsafe.Pointer, start C.int, end C.int) {
-	defer qt.Recovering("callback QHelpContentWidget::rowsRemoved")
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentWidget::rowsRemoved"); signal != nil {
 		signal.(func(*core.QModelIndex, int, int))(core.NewQModelIndexFromPointer(parent), int(int32(start)), int(int32(end)))
 	} else {
@@ -3310,8 +2679,6 @@ func callbackQHelpContentWidget_RowsRemoved(ptr unsafe.Pointer, parent unsafe.Po
 }
 
 func (ptr *QHelpContentWidget) ConnectRowsRemoved(f func(parent *core.QModelIndex, start int, end int)) {
-	defer qt.Recovering("connect QHelpContentWidget::rowsRemoved")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentWidget::rowsRemoved", f)
@@ -3319,8 +2686,6 @@ func (ptr *QHelpContentWidget) ConnectRowsRemoved(f func(parent *core.QModelInde
 }
 
 func (ptr *QHelpContentWidget) DisconnectRowsRemoved() {
-	defer qt.Recovering("disconnect QHelpContentWidget::rowsRemoved")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentWidget::rowsRemoved")
@@ -3328,16 +2693,12 @@ func (ptr *QHelpContentWidget) DisconnectRowsRemoved() {
 }
 
 func (ptr *QHelpContentWidget) RowsRemoved(parent core.QModelIndex_ITF, start int, end int) {
-	defer qt.Recovering("QHelpContentWidget::rowsRemoved")
-
 	if ptr.Pointer() != nil {
 		C.QHelpContentWidget_RowsRemoved(ptr.Pointer(), core.PointerFromQModelIndex(parent), C.int(int32(start)), C.int(int32(end)))
 	}
 }
 
 func (ptr *QHelpContentWidget) RowsRemovedDefault(parent core.QModelIndex_ITF, start int, end int) {
-	defer qt.Recovering("QHelpContentWidget::rowsRemoved")
-
 	if ptr.Pointer() != nil {
 		C.QHelpContentWidget_RowsRemovedDefault(ptr.Pointer(), core.PointerFromQModelIndex(parent), C.int(int32(start)), C.int(int32(end)))
 	}
@@ -3345,7 +2706,6 @@ func (ptr *QHelpContentWidget) RowsRemovedDefault(parent core.QModelIndex_ITF, s
 
 //export callbackQHelpContentWidget_ScrollContentsBy
 func callbackQHelpContentWidget_ScrollContentsBy(ptr unsafe.Pointer, dx C.int, dy C.int) {
-	defer qt.Recovering("callback QHelpContentWidget::scrollContentsBy")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentWidget::scrollContentsBy"); signal != nil {
 		signal.(func(int, int))(int(int32(dx)), int(int32(dy)))
@@ -3355,8 +2715,6 @@ func callbackQHelpContentWidget_ScrollContentsBy(ptr unsafe.Pointer, dx C.int, d
 }
 
 func (ptr *QHelpContentWidget) ConnectScrollContentsBy(f func(dx int, dy int)) {
-	defer qt.Recovering("connect QHelpContentWidget::scrollContentsBy")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentWidget::scrollContentsBy", f)
@@ -3364,8 +2722,6 @@ func (ptr *QHelpContentWidget) ConnectScrollContentsBy(f func(dx int, dy int)) {
 }
 
 func (ptr *QHelpContentWidget) DisconnectScrollContentsBy() {
-	defer qt.Recovering("disconnect QHelpContentWidget::scrollContentsBy")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentWidget::scrollContentsBy")
@@ -3373,16 +2729,12 @@ func (ptr *QHelpContentWidget) DisconnectScrollContentsBy() {
 }
 
 func (ptr *QHelpContentWidget) ScrollContentsBy(dx int, dy int) {
-	defer qt.Recovering("QHelpContentWidget::scrollContentsBy")
-
 	if ptr.Pointer() != nil {
 		C.QHelpContentWidget_ScrollContentsBy(ptr.Pointer(), C.int(int32(dx)), C.int(int32(dy)))
 	}
 }
 
 func (ptr *QHelpContentWidget) ScrollContentsByDefault(dx int, dy int) {
-	defer qt.Recovering("QHelpContentWidget::scrollContentsBy")
-
 	if ptr.Pointer() != nil {
 		C.QHelpContentWidget_ScrollContentsByDefault(ptr.Pointer(), C.int(int32(dx)), C.int(int32(dy)))
 	}
@@ -3390,7 +2742,6 @@ func (ptr *QHelpContentWidget) ScrollContentsByDefault(dx int, dy int) {
 
 //export callbackQHelpContentWidget_ScrollTo
 func callbackQHelpContentWidget_ScrollTo(ptr unsafe.Pointer, index unsafe.Pointer, hint C.longlong) {
-	defer qt.Recovering("callback QHelpContentWidget::scrollTo")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentWidget::scrollTo"); signal != nil {
 		signal.(func(*core.QModelIndex, widgets.QAbstractItemView__ScrollHint))(core.NewQModelIndexFromPointer(index), widgets.QAbstractItemView__ScrollHint(hint))
@@ -3400,8 +2751,6 @@ func callbackQHelpContentWidget_ScrollTo(ptr unsafe.Pointer, index unsafe.Pointe
 }
 
 func (ptr *QHelpContentWidget) ConnectScrollTo(f func(index *core.QModelIndex, hint widgets.QAbstractItemView__ScrollHint)) {
-	defer qt.Recovering("connect QHelpContentWidget::scrollTo")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentWidget::scrollTo", f)
@@ -3409,8 +2758,6 @@ func (ptr *QHelpContentWidget) ConnectScrollTo(f func(index *core.QModelIndex, h
 }
 
 func (ptr *QHelpContentWidget) DisconnectScrollTo() {
-	defer qt.Recovering("disconnect QHelpContentWidget::scrollTo")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentWidget::scrollTo")
@@ -3418,16 +2765,12 @@ func (ptr *QHelpContentWidget) DisconnectScrollTo() {
 }
 
 func (ptr *QHelpContentWidget) ScrollTo(index core.QModelIndex_ITF, hint widgets.QAbstractItemView__ScrollHint) {
-	defer qt.Recovering("QHelpContentWidget::scrollTo")
-
 	if ptr.Pointer() != nil {
 		C.QHelpContentWidget_ScrollTo(ptr.Pointer(), core.PointerFromQModelIndex(index), C.longlong(hint))
 	}
 }
 
 func (ptr *QHelpContentWidget) ScrollToDefault(index core.QModelIndex_ITF, hint widgets.QAbstractItemView__ScrollHint) {
-	defer qt.Recovering("QHelpContentWidget::scrollTo")
-
 	if ptr.Pointer() != nil {
 		C.QHelpContentWidget_ScrollToDefault(ptr.Pointer(), core.PointerFromQModelIndex(index), C.longlong(hint))
 	}
@@ -3435,7 +2778,6 @@ func (ptr *QHelpContentWidget) ScrollToDefault(index core.QModelIndex_ITF, hint 
 
 //export callbackQHelpContentWidget_SelectAll
 func callbackQHelpContentWidget_SelectAll(ptr unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpContentWidget::selectAll")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentWidget::selectAll"); signal != nil {
 		signal.(func())()
@@ -3445,8 +2787,6 @@ func callbackQHelpContentWidget_SelectAll(ptr unsafe.Pointer) {
 }
 
 func (ptr *QHelpContentWidget) ConnectSelectAll(f func()) {
-	defer qt.Recovering("connect QHelpContentWidget::selectAll")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentWidget::selectAll", f)
@@ -3454,8 +2794,6 @@ func (ptr *QHelpContentWidget) ConnectSelectAll(f func()) {
 }
 
 func (ptr *QHelpContentWidget) DisconnectSelectAll() {
-	defer qt.Recovering("disconnect QHelpContentWidget::selectAll")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentWidget::selectAll")
@@ -3463,16 +2801,12 @@ func (ptr *QHelpContentWidget) DisconnectSelectAll() {
 }
 
 func (ptr *QHelpContentWidget) SelectAll() {
-	defer qt.Recovering("QHelpContentWidget::selectAll")
-
 	if ptr.Pointer() != nil {
 		C.QHelpContentWidget_SelectAll(ptr.Pointer())
 	}
 }
 
 func (ptr *QHelpContentWidget) SelectAllDefault() {
-	defer qt.Recovering("QHelpContentWidget::selectAll")
-
 	if ptr.Pointer() != nil {
 		C.QHelpContentWidget_SelectAllDefault(ptr.Pointer())
 	}
@@ -3480,7 +2814,6 @@ func (ptr *QHelpContentWidget) SelectAllDefault() {
 
 //export callbackQHelpContentWidget_SelectionChanged
 func callbackQHelpContentWidget_SelectionChanged(ptr unsafe.Pointer, selected unsafe.Pointer, deselected unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpContentWidget::selectionChanged")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentWidget::selectionChanged"); signal != nil {
 		signal.(func(*core.QItemSelection, *core.QItemSelection))(core.NewQItemSelectionFromPointer(selected), core.NewQItemSelectionFromPointer(deselected))
@@ -3490,8 +2823,6 @@ func callbackQHelpContentWidget_SelectionChanged(ptr unsafe.Pointer, selected un
 }
 
 func (ptr *QHelpContentWidget) ConnectSelectionChanged(f func(selected *core.QItemSelection, deselected *core.QItemSelection)) {
-	defer qt.Recovering("connect QHelpContentWidget::selectionChanged")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentWidget::selectionChanged", f)
@@ -3499,8 +2830,6 @@ func (ptr *QHelpContentWidget) ConnectSelectionChanged(f func(selected *core.QIt
 }
 
 func (ptr *QHelpContentWidget) DisconnectSelectionChanged() {
-	defer qt.Recovering("disconnect QHelpContentWidget::selectionChanged")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentWidget::selectionChanged")
@@ -3508,16 +2837,12 @@ func (ptr *QHelpContentWidget) DisconnectSelectionChanged() {
 }
 
 func (ptr *QHelpContentWidget) SelectionChanged(selected core.QItemSelection_ITF, deselected core.QItemSelection_ITF) {
-	defer qt.Recovering("QHelpContentWidget::selectionChanged")
-
 	if ptr.Pointer() != nil {
 		C.QHelpContentWidget_SelectionChanged(ptr.Pointer(), core.PointerFromQItemSelection(selected), core.PointerFromQItemSelection(deselected))
 	}
 }
 
 func (ptr *QHelpContentWidget) SelectionChangedDefault(selected core.QItemSelection_ITF, deselected core.QItemSelection_ITF) {
-	defer qt.Recovering("QHelpContentWidget::selectionChanged")
-
 	if ptr.Pointer() != nil {
 		C.QHelpContentWidget_SelectionChangedDefault(ptr.Pointer(), core.PointerFromQItemSelection(selected), core.PointerFromQItemSelection(deselected))
 	}
@@ -3525,7 +2850,6 @@ func (ptr *QHelpContentWidget) SelectionChangedDefault(selected core.QItemSelect
 
 //export callbackQHelpContentWidget_SetModel
 func callbackQHelpContentWidget_SetModel(ptr unsafe.Pointer, model unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpContentWidget::setModel")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentWidget::setModel"); signal != nil {
 		signal.(func(*core.QAbstractItemModel))(core.NewQAbstractItemModelFromPointer(model))
@@ -3535,8 +2859,6 @@ func callbackQHelpContentWidget_SetModel(ptr unsafe.Pointer, model unsafe.Pointe
 }
 
 func (ptr *QHelpContentWidget) ConnectSetModel(f func(model *core.QAbstractItemModel)) {
-	defer qt.Recovering("connect QHelpContentWidget::setModel")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentWidget::setModel", f)
@@ -3544,8 +2866,6 @@ func (ptr *QHelpContentWidget) ConnectSetModel(f func(model *core.QAbstractItemM
 }
 
 func (ptr *QHelpContentWidget) DisconnectSetModel() {
-	defer qt.Recovering("disconnect QHelpContentWidget::setModel")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentWidget::setModel")
@@ -3553,16 +2873,12 @@ func (ptr *QHelpContentWidget) DisconnectSetModel() {
 }
 
 func (ptr *QHelpContentWidget) SetModel(model core.QAbstractItemModel_ITF) {
-	defer qt.Recovering("QHelpContentWidget::setModel")
-
 	if ptr.Pointer() != nil {
 		C.QHelpContentWidget_SetModel(ptr.Pointer(), core.PointerFromQAbstractItemModel(model))
 	}
 }
 
 func (ptr *QHelpContentWidget) SetModelDefault(model core.QAbstractItemModel_ITF) {
-	defer qt.Recovering("QHelpContentWidget::setModel")
-
 	if ptr.Pointer() != nil {
 		C.QHelpContentWidget_SetModelDefault(ptr.Pointer(), core.PointerFromQAbstractItemModel(model))
 	}
@@ -3570,7 +2886,6 @@ func (ptr *QHelpContentWidget) SetModelDefault(model core.QAbstractItemModel_ITF
 
 //export callbackQHelpContentWidget_SetRootIndex
 func callbackQHelpContentWidget_SetRootIndex(ptr unsafe.Pointer, index unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpContentWidget::setRootIndex")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentWidget::setRootIndex"); signal != nil {
 		signal.(func(*core.QModelIndex))(core.NewQModelIndexFromPointer(index))
@@ -3580,8 +2895,6 @@ func callbackQHelpContentWidget_SetRootIndex(ptr unsafe.Pointer, index unsafe.Po
 }
 
 func (ptr *QHelpContentWidget) ConnectSetRootIndex(f func(index *core.QModelIndex)) {
-	defer qt.Recovering("connect QHelpContentWidget::setRootIndex")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentWidget::setRootIndex", f)
@@ -3589,8 +2902,6 @@ func (ptr *QHelpContentWidget) ConnectSetRootIndex(f func(index *core.QModelInde
 }
 
 func (ptr *QHelpContentWidget) DisconnectSetRootIndex() {
-	defer qt.Recovering("disconnect QHelpContentWidget::setRootIndex")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentWidget::setRootIndex")
@@ -3598,16 +2909,12 @@ func (ptr *QHelpContentWidget) DisconnectSetRootIndex() {
 }
 
 func (ptr *QHelpContentWidget) SetRootIndex(index core.QModelIndex_ITF) {
-	defer qt.Recovering("QHelpContentWidget::setRootIndex")
-
 	if ptr.Pointer() != nil {
 		C.QHelpContentWidget_SetRootIndex(ptr.Pointer(), core.PointerFromQModelIndex(index))
 	}
 }
 
 func (ptr *QHelpContentWidget) SetRootIndexDefault(index core.QModelIndex_ITF) {
-	defer qt.Recovering("QHelpContentWidget::setRootIndex")
-
 	if ptr.Pointer() != nil {
 		C.QHelpContentWidget_SetRootIndexDefault(ptr.Pointer(), core.PointerFromQModelIndex(index))
 	}
@@ -3615,7 +2922,6 @@ func (ptr *QHelpContentWidget) SetRootIndexDefault(index core.QModelIndex_ITF) {
 
 //export callbackQHelpContentWidget_SetSelection
 func callbackQHelpContentWidget_SetSelection(ptr unsafe.Pointer, rect unsafe.Pointer, command C.longlong) {
-	defer qt.Recovering("callback QHelpContentWidget::setSelection")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentWidget::setSelection"); signal != nil {
 		signal.(func(*core.QRect, core.QItemSelectionModel__SelectionFlag))(core.NewQRectFromPointer(rect), core.QItemSelectionModel__SelectionFlag(command))
@@ -3625,8 +2931,6 @@ func callbackQHelpContentWidget_SetSelection(ptr unsafe.Pointer, rect unsafe.Poi
 }
 
 func (ptr *QHelpContentWidget) ConnectSetSelection(f func(rect *core.QRect, command core.QItemSelectionModel__SelectionFlag)) {
-	defer qt.Recovering("connect QHelpContentWidget::setSelection")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentWidget::setSelection", f)
@@ -3634,8 +2938,6 @@ func (ptr *QHelpContentWidget) ConnectSetSelection(f func(rect *core.QRect, comm
 }
 
 func (ptr *QHelpContentWidget) DisconnectSetSelection() {
-	defer qt.Recovering("disconnect QHelpContentWidget::setSelection")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentWidget::setSelection")
@@ -3643,16 +2945,12 @@ func (ptr *QHelpContentWidget) DisconnectSetSelection() {
 }
 
 func (ptr *QHelpContentWidget) SetSelection(rect core.QRect_ITF, command core.QItemSelectionModel__SelectionFlag) {
-	defer qt.Recovering("QHelpContentWidget::setSelection")
-
 	if ptr.Pointer() != nil {
 		C.QHelpContentWidget_SetSelection(ptr.Pointer(), core.PointerFromQRect(rect), C.longlong(command))
 	}
 }
 
 func (ptr *QHelpContentWidget) SetSelectionDefault(rect core.QRect_ITF, command core.QItemSelectionModel__SelectionFlag) {
-	defer qt.Recovering("QHelpContentWidget::setSelection")
-
 	if ptr.Pointer() != nil {
 		C.QHelpContentWidget_SetSelectionDefault(ptr.Pointer(), core.PointerFromQRect(rect), C.longlong(command))
 	}
@@ -3660,7 +2958,6 @@ func (ptr *QHelpContentWidget) SetSelectionDefault(rect core.QRect_ITF, command 
 
 //export callbackQHelpContentWidget_SetSelectionModel
 func callbackQHelpContentWidget_SetSelectionModel(ptr unsafe.Pointer, selectionModel unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpContentWidget::setSelectionModel")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentWidget::setSelectionModel"); signal != nil {
 		signal.(func(*core.QItemSelectionModel))(core.NewQItemSelectionModelFromPointer(selectionModel))
@@ -3670,8 +2967,6 @@ func callbackQHelpContentWidget_SetSelectionModel(ptr unsafe.Pointer, selectionM
 }
 
 func (ptr *QHelpContentWidget) ConnectSetSelectionModel(f func(selectionModel *core.QItemSelectionModel)) {
-	defer qt.Recovering("connect QHelpContentWidget::setSelectionModel")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentWidget::setSelectionModel", f)
@@ -3679,8 +2974,6 @@ func (ptr *QHelpContentWidget) ConnectSetSelectionModel(f func(selectionModel *c
 }
 
 func (ptr *QHelpContentWidget) DisconnectSetSelectionModel() {
-	defer qt.Recovering("disconnect QHelpContentWidget::setSelectionModel")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentWidget::setSelectionModel")
@@ -3688,16 +2981,12 @@ func (ptr *QHelpContentWidget) DisconnectSetSelectionModel() {
 }
 
 func (ptr *QHelpContentWidget) SetSelectionModel(selectionModel core.QItemSelectionModel_ITF) {
-	defer qt.Recovering("QHelpContentWidget::setSelectionModel")
-
 	if ptr.Pointer() != nil {
 		C.QHelpContentWidget_SetSelectionModel(ptr.Pointer(), core.PointerFromQItemSelectionModel(selectionModel))
 	}
 }
 
 func (ptr *QHelpContentWidget) SetSelectionModelDefault(selectionModel core.QItemSelectionModel_ITF) {
-	defer qt.Recovering("QHelpContentWidget::setSelectionModel")
-
 	if ptr.Pointer() != nil {
 		C.QHelpContentWidget_SetSelectionModelDefault(ptr.Pointer(), core.PointerFromQItemSelectionModel(selectionModel))
 	}
@@ -3705,8 +2994,6 @@ func (ptr *QHelpContentWidget) SetSelectionModelDefault(selectionModel core.QIte
 
 //export callbackQHelpContentWidget_ShowColumn
 func callbackQHelpContentWidget_ShowColumn(ptr unsafe.Pointer, column C.int) {
-	defer qt.Recovering("callback QHelpContentWidget::showColumn")
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentWidget::showColumn"); signal != nil {
 		signal.(func(int))(int(int32(column)))
 	} else {
@@ -3715,8 +3002,6 @@ func callbackQHelpContentWidget_ShowColumn(ptr unsafe.Pointer, column C.int) {
 }
 
 func (ptr *QHelpContentWidget) ConnectShowColumn(f func(column int)) {
-	defer qt.Recovering("connect QHelpContentWidget::showColumn")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentWidget::showColumn", f)
@@ -3724,8 +3009,6 @@ func (ptr *QHelpContentWidget) ConnectShowColumn(f func(column int)) {
 }
 
 func (ptr *QHelpContentWidget) DisconnectShowColumn() {
-	defer qt.Recovering("disconnect QHelpContentWidget::showColumn")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentWidget::showColumn")
@@ -3733,16 +3016,12 @@ func (ptr *QHelpContentWidget) DisconnectShowColumn() {
 }
 
 func (ptr *QHelpContentWidget) ShowColumn(column int) {
-	defer qt.Recovering("QHelpContentWidget::showColumn")
-
 	if ptr.Pointer() != nil {
 		C.QHelpContentWidget_ShowColumn(ptr.Pointer(), C.int(int32(column)))
 	}
 }
 
 func (ptr *QHelpContentWidget) ShowColumnDefault(column int) {
-	defer qt.Recovering("QHelpContentWidget::showColumn")
-
 	if ptr.Pointer() != nil {
 		C.QHelpContentWidget_ShowColumnDefault(ptr.Pointer(), C.int(int32(column)))
 	}
@@ -3750,7 +3029,6 @@ func (ptr *QHelpContentWidget) ShowColumnDefault(column int) {
 
 //export callbackQHelpContentWidget_SizeHintForColumn
 func callbackQHelpContentWidget_SizeHintForColumn(ptr unsafe.Pointer, column C.int) C.int {
-	defer qt.Recovering("callback QHelpContentWidget::sizeHintForColumn")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentWidget::sizeHintForColumn"); signal != nil {
 		return C.int(int32(signal.(func(int) int)(int(int32(column)))))
@@ -3760,8 +3038,6 @@ func callbackQHelpContentWidget_SizeHintForColumn(ptr unsafe.Pointer, column C.i
 }
 
 func (ptr *QHelpContentWidget) ConnectSizeHintForColumn(f func(column int) int) {
-	defer qt.Recovering("connect QHelpContentWidget::sizeHintForColumn")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentWidget::sizeHintForColumn", f)
@@ -3769,8 +3045,6 @@ func (ptr *QHelpContentWidget) ConnectSizeHintForColumn(f func(column int) int) 
 }
 
 func (ptr *QHelpContentWidget) DisconnectSizeHintForColumn() {
-	defer qt.Recovering("disconnect QHelpContentWidget::sizeHintForColumn")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentWidget::sizeHintForColumn")
@@ -3778,8 +3052,6 @@ func (ptr *QHelpContentWidget) DisconnectSizeHintForColumn() {
 }
 
 func (ptr *QHelpContentWidget) SizeHintForColumn(column int) int {
-	defer qt.Recovering("QHelpContentWidget::sizeHintForColumn")
-
 	if ptr.Pointer() != nil {
 		return int(int32(C.QHelpContentWidget_SizeHintForColumn(ptr.Pointer(), C.int(int32(column)))))
 	}
@@ -3787,8 +3059,6 @@ func (ptr *QHelpContentWidget) SizeHintForColumn(column int) int {
 }
 
 func (ptr *QHelpContentWidget) SizeHintForColumnDefault(column int) int {
-	defer qt.Recovering("QHelpContentWidget::sizeHintForColumn")
-
 	if ptr.Pointer() != nil {
 		return int(int32(C.QHelpContentWidget_SizeHintForColumnDefault(ptr.Pointer(), C.int(int32(column)))))
 	}
@@ -3797,7 +3067,6 @@ func (ptr *QHelpContentWidget) SizeHintForColumnDefault(column int) int {
 
 //export callbackQHelpContentWidget_UpdateGeometries
 func callbackQHelpContentWidget_UpdateGeometries(ptr unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpContentWidget::updateGeometries")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentWidget::updateGeometries"); signal != nil {
 		signal.(func())()
@@ -3807,8 +3076,6 @@ func callbackQHelpContentWidget_UpdateGeometries(ptr unsafe.Pointer) {
 }
 
 func (ptr *QHelpContentWidget) ConnectUpdateGeometries(f func()) {
-	defer qt.Recovering("connect QHelpContentWidget::updateGeometries")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentWidget::updateGeometries", f)
@@ -3816,8 +3083,6 @@ func (ptr *QHelpContentWidget) ConnectUpdateGeometries(f func()) {
 }
 
 func (ptr *QHelpContentWidget) DisconnectUpdateGeometries() {
-	defer qt.Recovering("disconnect QHelpContentWidget::updateGeometries")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentWidget::updateGeometries")
@@ -3825,16 +3090,12 @@ func (ptr *QHelpContentWidget) DisconnectUpdateGeometries() {
 }
 
 func (ptr *QHelpContentWidget) UpdateGeometries() {
-	defer qt.Recovering("QHelpContentWidget::updateGeometries")
-
 	if ptr.Pointer() != nil {
 		C.QHelpContentWidget_UpdateGeometries(ptr.Pointer())
 	}
 }
 
 func (ptr *QHelpContentWidget) UpdateGeometriesDefault() {
-	defer qt.Recovering("QHelpContentWidget::updateGeometries")
-
 	if ptr.Pointer() != nil {
 		C.QHelpContentWidget_UpdateGeometriesDefault(ptr.Pointer())
 	}
@@ -3842,7 +3103,6 @@ func (ptr *QHelpContentWidget) UpdateGeometriesDefault() {
 
 //export callbackQHelpContentWidget_VerticalOffset
 func callbackQHelpContentWidget_VerticalOffset(ptr unsafe.Pointer) C.int {
-	defer qt.Recovering("callback QHelpContentWidget::verticalOffset")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentWidget::verticalOffset"); signal != nil {
 		return C.int(int32(signal.(func() int)()))
@@ -3852,8 +3112,6 @@ func callbackQHelpContentWidget_VerticalOffset(ptr unsafe.Pointer) C.int {
 }
 
 func (ptr *QHelpContentWidget) ConnectVerticalOffset(f func() int) {
-	defer qt.Recovering("connect QHelpContentWidget::verticalOffset")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentWidget::verticalOffset", f)
@@ -3861,8 +3119,6 @@ func (ptr *QHelpContentWidget) ConnectVerticalOffset(f func() int) {
 }
 
 func (ptr *QHelpContentWidget) DisconnectVerticalOffset() {
-	defer qt.Recovering("disconnect QHelpContentWidget::verticalOffset")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentWidget::verticalOffset")
@@ -3870,8 +3126,6 @@ func (ptr *QHelpContentWidget) DisconnectVerticalOffset() {
 }
 
 func (ptr *QHelpContentWidget) VerticalOffset() int {
-	defer qt.Recovering("QHelpContentWidget::verticalOffset")
-
 	if ptr.Pointer() != nil {
 		return int(int32(C.QHelpContentWidget_VerticalOffset(ptr.Pointer())))
 	}
@@ -3879,8 +3133,6 @@ func (ptr *QHelpContentWidget) VerticalOffset() int {
 }
 
 func (ptr *QHelpContentWidget) VerticalOffsetDefault() int {
-	defer qt.Recovering("QHelpContentWidget::verticalOffset")
-
 	if ptr.Pointer() != nil {
 		return int(int32(C.QHelpContentWidget_VerticalOffsetDefault(ptr.Pointer())))
 	}
@@ -3889,7 +3141,6 @@ func (ptr *QHelpContentWidget) VerticalOffsetDefault() int {
 
 //export callbackQHelpContentWidget_ViewportEvent
 func callbackQHelpContentWidget_ViewportEvent(ptr unsafe.Pointer, event unsafe.Pointer) C.char {
-	defer qt.Recovering("callback QHelpContentWidget::viewportEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentWidget::viewportEvent"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(event)))))
@@ -3899,8 +3150,6 @@ func callbackQHelpContentWidget_ViewportEvent(ptr unsafe.Pointer, event unsafe.P
 }
 
 func (ptr *QHelpContentWidget) ConnectViewportEvent(f func(event *core.QEvent) bool) {
-	defer qt.Recovering("connect QHelpContentWidget::viewportEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentWidget::viewportEvent", f)
@@ -3908,8 +3157,6 @@ func (ptr *QHelpContentWidget) ConnectViewportEvent(f func(event *core.QEvent) b
 }
 
 func (ptr *QHelpContentWidget) DisconnectViewportEvent() {
-	defer qt.Recovering("disconnect QHelpContentWidget::viewportEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentWidget::viewportEvent")
@@ -3917,8 +3164,6 @@ func (ptr *QHelpContentWidget) DisconnectViewportEvent() {
 }
 
 func (ptr *QHelpContentWidget) ViewportEvent(event core.QEvent_ITF) bool {
-	defer qt.Recovering("QHelpContentWidget::viewportEvent")
-
 	if ptr.Pointer() != nil {
 		return C.QHelpContentWidget_ViewportEvent(ptr.Pointer(), core.PointerFromQEvent(event)) != 0
 	}
@@ -3926,8 +3171,6 @@ func (ptr *QHelpContentWidget) ViewportEvent(event core.QEvent_ITF) bool {
 }
 
 func (ptr *QHelpContentWidget) ViewportEventDefault(event core.QEvent_ITF) bool {
-	defer qt.Recovering("QHelpContentWidget::viewportEvent")
-
 	if ptr.Pointer() != nil {
 		return C.QHelpContentWidget_ViewportEventDefault(ptr.Pointer(), core.PointerFromQEvent(event)) != 0
 	}
@@ -3936,7 +3179,6 @@ func (ptr *QHelpContentWidget) ViewportEventDefault(event core.QEvent_ITF) bool 
 
 //export callbackQHelpContentWidget_ViewportSizeHint
 func callbackQHelpContentWidget_ViewportSizeHint(ptr unsafe.Pointer) unsafe.Pointer {
-	defer qt.Recovering("callback QHelpContentWidget::viewportSizeHint")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentWidget::viewportSizeHint"); signal != nil {
 		return core.PointerFromQSize(signal.(func() *core.QSize)())
@@ -3946,8 +3188,6 @@ func callbackQHelpContentWidget_ViewportSizeHint(ptr unsafe.Pointer) unsafe.Poin
 }
 
 func (ptr *QHelpContentWidget) ConnectViewportSizeHint(f func() *core.QSize) {
-	defer qt.Recovering("connect QHelpContentWidget::viewportSizeHint")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentWidget::viewportSizeHint", f)
@@ -3955,8 +3195,6 @@ func (ptr *QHelpContentWidget) ConnectViewportSizeHint(f func() *core.QSize) {
 }
 
 func (ptr *QHelpContentWidget) DisconnectViewportSizeHint() {
-	defer qt.Recovering("disconnect QHelpContentWidget::viewportSizeHint")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentWidget::viewportSizeHint")
@@ -3964,8 +3202,6 @@ func (ptr *QHelpContentWidget) DisconnectViewportSizeHint() {
 }
 
 func (ptr *QHelpContentWidget) ViewportSizeHint() *core.QSize {
-	defer qt.Recovering("QHelpContentWidget::viewportSizeHint")
-
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQSizeFromPointer(C.QHelpContentWidget_ViewportSizeHint(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
@@ -3975,8 +3211,6 @@ func (ptr *QHelpContentWidget) ViewportSizeHint() *core.QSize {
 }
 
 func (ptr *QHelpContentWidget) ViewportSizeHintDefault() *core.QSize {
-	defer qt.Recovering("QHelpContentWidget::viewportSizeHint")
-
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQSizeFromPointer(C.QHelpContentWidget_ViewportSizeHintDefault(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
@@ -3987,7 +3221,6 @@ func (ptr *QHelpContentWidget) ViewportSizeHintDefault() *core.QSize {
 
 //export callbackQHelpContentWidget_VisualRect
 func callbackQHelpContentWidget_VisualRect(ptr unsafe.Pointer, index unsafe.Pointer) unsafe.Pointer {
-	defer qt.Recovering("callback QHelpContentWidget::visualRect")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentWidget::visualRect"); signal != nil {
 		return core.PointerFromQRect(signal.(func(*core.QModelIndex) *core.QRect)(core.NewQModelIndexFromPointer(index)))
@@ -3997,8 +3230,6 @@ func callbackQHelpContentWidget_VisualRect(ptr unsafe.Pointer, index unsafe.Poin
 }
 
 func (ptr *QHelpContentWidget) ConnectVisualRect(f func(index *core.QModelIndex) *core.QRect) {
-	defer qt.Recovering("connect QHelpContentWidget::visualRect")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentWidget::visualRect", f)
@@ -4006,8 +3237,6 @@ func (ptr *QHelpContentWidget) ConnectVisualRect(f func(index *core.QModelIndex)
 }
 
 func (ptr *QHelpContentWidget) DisconnectVisualRect() {
-	defer qt.Recovering("disconnect QHelpContentWidget::visualRect")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentWidget::visualRect")
@@ -4015,8 +3244,6 @@ func (ptr *QHelpContentWidget) DisconnectVisualRect() {
 }
 
 func (ptr *QHelpContentWidget) VisualRect(index core.QModelIndex_ITF) *core.QRect {
-	defer qt.Recovering("QHelpContentWidget::visualRect")
-
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQRectFromPointer(C.QHelpContentWidget_VisualRect(ptr.Pointer(), core.PointerFromQModelIndex(index)))
 		runtime.SetFinalizer(tmpValue, (*core.QRect).DestroyQRect)
@@ -4026,8 +3253,6 @@ func (ptr *QHelpContentWidget) VisualRect(index core.QModelIndex_ITF) *core.QRec
 }
 
 func (ptr *QHelpContentWidget) VisualRectDefault(index core.QModelIndex_ITF) *core.QRect {
-	defer qt.Recovering("QHelpContentWidget::visualRect")
-
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQRectFromPointer(C.QHelpContentWidget_VisualRectDefault(ptr.Pointer(), core.PointerFromQModelIndex(index)))
 		runtime.SetFinalizer(tmpValue, (*core.QRect).DestroyQRect)
@@ -4038,7 +3263,6 @@ func (ptr *QHelpContentWidget) VisualRectDefault(index core.QModelIndex_ITF) *co
 
 //export callbackQHelpContentWidget_VisualRegionForSelection
 func callbackQHelpContentWidget_VisualRegionForSelection(ptr unsafe.Pointer, selection unsafe.Pointer) unsafe.Pointer {
-	defer qt.Recovering("callback QHelpContentWidget::visualRegionForSelection")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentWidget::visualRegionForSelection"); signal != nil {
 		return gui.PointerFromQRegion(signal.(func(*core.QItemSelection) *gui.QRegion)(core.NewQItemSelectionFromPointer(selection)))
@@ -4048,8 +3272,6 @@ func callbackQHelpContentWidget_VisualRegionForSelection(ptr unsafe.Pointer, sel
 }
 
 func (ptr *QHelpContentWidget) ConnectVisualRegionForSelection(f func(selection *core.QItemSelection) *gui.QRegion) {
-	defer qt.Recovering("connect QHelpContentWidget::visualRegionForSelection")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentWidget::visualRegionForSelection", f)
@@ -4057,8 +3279,6 @@ func (ptr *QHelpContentWidget) ConnectVisualRegionForSelection(f func(selection 
 }
 
 func (ptr *QHelpContentWidget) DisconnectVisualRegionForSelection() {
-	defer qt.Recovering("disconnect QHelpContentWidget::visualRegionForSelection")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentWidget::visualRegionForSelection")
@@ -4066,8 +3286,6 @@ func (ptr *QHelpContentWidget) DisconnectVisualRegionForSelection() {
 }
 
 func (ptr *QHelpContentWidget) VisualRegionForSelection(selection core.QItemSelection_ITF) *gui.QRegion {
-	defer qt.Recovering("QHelpContentWidget::visualRegionForSelection")
-
 	if ptr.Pointer() != nil {
 		var tmpValue = gui.NewQRegionFromPointer(C.QHelpContentWidget_VisualRegionForSelection(ptr.Pointer(), core.PointerFromQItemSelection(selection)))
 		runtime.SetFinalizer(tmpValue, (*gui.QRegion).DestroyQRegion)
@@ -4077,8 +3295,6 @@ func (ptr *QHelpContentWidget) VisualRegionForSelection(selection core.QItemSele
 }
 
 func (ptr *QHelpContentWidget) VisualRegionForSelectionDefault(selection core.QItemSelection_ITF) *gui.QRegion {
-	defer qt.Recovering("QHelpContentWidget::visualRegionForSelection")
-
 	if ptr.Pointer() != nil {
 		var tmpValue = gui.NewQRegionFromPointer(C.QHelpContentWidget_VisualRegionForSelectionDefault(ptr.Pointer(), core.PointerFromQItemSelection(selection)))
 		runtime.SetFinalizer(tmpValue, (*gui.QRegion).DestroyQRegion)
@@ -4089,7 +3305,6 @@ func (ptr *QHelpContentWidget) VisualRegionForSelectionDefault(selection core.QI
 
 //export callbackQHelpContentWidget_DragLeaveEvent
 func callbackQHelpContentWidget_DragLeaveEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpContentWidget::dragLeaveEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentWidget::dragLeaveEvent"); signal != nil {
 		signal.(func(*gui.QDragLeaveEvent))(gui.NewQDragLeaveEventFromPointer(event))
@@ -4099,8 +3314,6 @@ func callbackQHelpContentWidget_DragLeaveEvent(ptr unsafe.Pointer, event unsafe.
 }
 
 func (ptr *QHelpContentWidget) ConnectDragLeaveEvent(f func(event *gui.QDragLeaveEvent)) {
-	defer qt.Recovering("connect QHelpContentWidget::dragLeaveEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentWidget::dragLeaveEvent", f)
@@ -4108,8 +3321,6 @@ func (ptr *QHelpContentWidget) ConnectDragLeaveEvent(f func(event *gui.QDragLeav
 }
 
 func (ptr *QHelpContentWidget) DisconnectDragLeaveEvent() {
-	defer qt.Recovering("disconnect QHelpContentWidget::dragLeaveEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentWidget::dragLeaveEvent")
@@ -4117,16 +3328,12 @@ func (ptr *QHelpContentWidget) DisconnectDragLeaveEvent() {
 }
 
 func (ptr *QHelpContentWidget) DragLeaveEvent(event gui.QDragLeaveEvent_ITF) {
-	defer qt.Recovering("QHelpContentWidget::dragLeaveEvent")
-
 	if ptr.Pointer() != nil {
 		C.QHelpContentWidget_DragLeaveEvent(ptr.Pointer(), gui.PointerFromQDragLeaveEvent(event))
 	}
 }
 
 func (ptr *QHelpContentWidget) DragLeaveEventDefault(event gui.QDragLeaveEvent_ITF) {
-	defer qt.Recovering("QHelpContentWidget::dragLeaveEvent")
-
 	if ptr.Pointer() != nil {
 		C.QHelpContentWidget_DragLeaveEventDefault(ptr.Pointer(), gui.PointerFromQDragLeaveEvent(event))
 	}
@@ -4134,8 +3341,6 @@ func (ptr *QHelpContentWidget) DragLeaveEventDefault(event gui.QDragLeaveEvent_I
 
 //export callbackQHelpContentWidget_ClearSelection
 func callbackQHelpContentWidget_ClearSelection(ptr unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpContentWidget::clearSelection")
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentWidget::clearSelection"); signal != nil {
 		signal.(func())()
 	} else {
@@ -4144,8 +3349,6 @@ func callbackQHelpContentWidget_ClearSelection(ptr unsafe.Pointer) {
 }
 
 func (ptr *QHelpContentWidget) ConnectClearSelection(f func()) {
-	defer qt.Recovering("connect QHelpContentWidget::clearSelection")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentWidget::clearSelection", f)
@@ -4153,8 +3356,6 @@ func (ptr *QHelpContentWidget) ConnectClearSelection(f func()) {
 }
 
 func (ptr *QHelpContentWidget) DisconnectClearSelection() {
-	defer qt.Recovering("disconnect QHelpContentWidget::clearSelection")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentWidget::clearSelection")
@@ -4162,16 +3363,12 @@ func (ptr *QHelpContentWidget) DisconnectClearSelection() {
 }
 
 func (ptr *QHelpContentWidget) ClearSelection() {
-	defer qt.Recovering("QHelpContentWidget::clearSelection")
-
 	if ptr.Pointer() != nil {
 		C.QHelpContentWidget_ClearSelection(ptr.Pointer())
 	}
 }
 
 func (ptr *QHelpContentWidget) ClearSelectionDefault() {
-	defer qt.Recovering("QHelpContentWidget::clearSelection")
-
 	if ptr.Pointer() != nil {
 		C.QHelpContentWidget_ClearSelectionDefault(ptr.Pointer())
 	}
@@ -4179,8 +3376,6 @@ func (ptr *QHelpContentWidget) ClearSelectionDefault() {
 
 //export callbackQHelpContentWidget_CloseEditor
 func callbackQHelpContentWidget_CloseEditor(ptr unsafe.Pointer, editor unsafe.Pointer, hint C.longlong) {
-	defer qt.Recovering("callback QHelpContentWidget::closeEditor")
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentWidget::closeEditor"); signal != nil {
 		signal.(func(*widgets.QWidget, widgets.QAbstractItemDelegate__EndEditHint))(widgets.NewQWidgetFromPointer(editor), widgets.QAbstractItemDelegate__EndEditHint(hint))
 	} else {
@@ -4189,8 +3384,6 @@ func callbackQHelpContentWidget_CloseEditor(ptr unsafe.Pointer, editor unsafe.Po
 }
 
 func (ptr *QHelpContentWidget) ConnectCloseEditor(f func(editor *widgets.QWidget, hint widgets.QAbstractItemDelegate__EndEditHint)) {
-	defer qt.Recovering("connect QHelpContentWidget::closeEditor")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentWidget::closeEditor", f)
@@ -4198,8 +3391,6 @@ func (ptr *QHelpContentWidget) ConnectCloseEditor(f func(editor *widgets.QWidget
 }
 
 func (ptr *QHelpContentWidget) DisconnectCloseEditor() {
-	defer qt.Recovering("disconnect QHelpContentWidget::closeEditor")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentWidget::closeEditor")
@@ -4207,16 +3398,12 @@ func (ptr *QHelpContentWidget) DisconnectCloseEditor() {
 }
 
 func (ptr *QHelpContentWidget) CloseEditor(editor widgets.QWidget_ITF, hint widgets.QAbstractItemDelegate__EndEditHint) {
-	defer qt.Recovering("QHelpContentWidget::closeEditor")
-
 	if ptr.Pointer() != nil {
 		C.QHelpContentWidget_CloseEditor(ptr.Pointer(), widgets.PointerFromQWidget(editor), C.longlong(hint))
 	}
 }
 
 func (ptr *QHelpContentWidget) CloseEditorDefault(editor widgets.QWidget_ITF, hint widgets.QAbstractItemDelegate__EndEditHint) {
-	defer qt.Recovering("QHelpContentWidget::closeEditor")
-
 	if ptr.Pointer() != nil {
 		C.QHelpContentWidget_CloseEditorDefault(ptr.Pointer(), widgets.PointerFromQWidget(editor), C.longlong(hint))
 	}
@@ -4224,8 +3411,6 @@ func (ptr *QHelpContentWidget) CloseEditorDefault(editor widgets.QWidget_ITF, hi
 
 //export callbackQHelpContentWidget_CommitData
 func callbackQHelpContentWidget_CommitData(ptr unsafe.Pointer, editor unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpContentWidget::commitData")
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentWidget::commitData"); signal != nil {
 		signal.(func(*widgets.QWidget))(widgets.NewQWidgetFromPointer(editor))
 	} else {
@@ -4234,8 +3419,6 @@ func callbackQHelpContentWidget_CommitData(ptr unsafe.Pointer, editor unsafe.Poi
 }
 
 func (ptr *QHelpContentWidget) ConnectCommitData(f func(editor *widgets.QWidget)) {
-	defer qt.Recovering("connect QHelpContentWidget::commitData")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentWidget::commitData", f)
@@ -4243,8 +3426,6 @@ func (ptr *QHelpContentWidget) ConnectCommitData(f func(editor *widgets.QWidget)
 }
 
 func (ptr *QHelpContentWidget) DisconnectCommitData() {
-	defer qt.Recovering("disconnect QHelpContentWidget::commitData")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentWidget::commitData")
@@ -4252,16 +3433,12 @@ func (ptr *QHelpContentWidget) DisconnectCommitData() {
 }
 
 func (ptr *QHelpContentWidget) CommitData(editor widgets.QWidget_ITF) {
-	defer qt.Recovering("QHelpContentWidget::commitData")
-
 	if ptr.Pointer() != nil {
 		C.QHelpContentWidget_CommitData(ptr.Pointer(), widgets.PointerFromQWidget(editor))
 	}
 }
 
 func (ptr *QHelpContentWidget) CommitDataDefault(editor widgets.QWidget_ITF) {
-	defer qt.Recovering("QHelpContentWidget::commitData")
-
 	if ptr.Pointer() != nil {
 		C.QHelpContentWidget_CommitDataDefault(ptr.Pointer(), widgets.PointerFromQWidget(editor))
 	}
@@ -4269,7 +3446,6 @@ func (ptr *QHelpContentWidget) CommitDataDefault(editor widgets.QWidget_ITF) {
 
 //export callbackQHelpContentWidget_DragEnterEvent
 func callbackQHelpContentWidget_DragEnterEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpContentWidget::dragEnterEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentWidget::dragEnterEvent"); signal != nil {
 		signal.(func(*gui.QDragEnterEvent))(gui.NewQDragEnterEventFromPointer(event))
@@ -4279,8 +3455,6 @@ func callbackQHelpContentWidget_DragEnterEvent(ptr unsafe.Pointer, event unsafe.
 }
 
 func (ptr *QHelpContentWidget) ConnectDragEnterEvent(f func(event *gui.QDragEnterEvent)) {
-	defer qt.Recovering("connect QHelpContentWidget::dragEnterEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentWidget::dragEnterEvent", f)
@@ -4288,8 +3462,6 @@ func (ptr *QHelpContentWidget) ConnectDragEnterEvent(f func(event *gui.QDragEnte
 }
 
 func (ptr *QHelpContentWidget) DisconnectDragEnterEvent() {
-	defer qt.Recovering("disconnect QHelpContentWidget::dragEnterEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentWidget::dragEnterEvent")
@@ -4297,16 +3469,12 @@ func (ptr *QHelpContentWidget) DisconnectDragEnterEvent() {
 }
 
 func (ptr *QHelpContentWidget) DragEnterEvent(event gui.QDragEnterEvent_ITF) {
-	defer qt.Recovering("QHelpContentWidget::dragEnterEvent")
-
 	if ptr.Pointer() != nil {
 		C.QHelpContentWidget_DragEnterEvent(ptr.Pointer(), gui.PointerFromQDragEnterEvent(event))
 	}
 }
 
 func (ptr *QHelpContentWidget) DragEnterEventDefault(event gui.QDragEnterEvent_ITF) {
-	defer qt.Recovering("QHelpContentWidget::dragEnterEvent")
-
 	if ptr.Pointer() != nil {
 		C.QHelpContentWidget_DragEnterEventDefault(ptr.Pointer(), gui.PointerFromQDragEnterEvent(event))
 	}
@@ -4314,7 +3482,6 @@ func (ptr *QHelpContentWidget) DragEnterEventDefault(event gui.QDragEnterEvent_I
 
 //export callbackQHelpContentWidget_DropEvent
 func callbackQHelpContentWidget_DropEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpContentWidget::dropEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentWidget::dropEvent"); signal != nil {
 		signal.(func(*gui.QDropEvent))(gui.NewQDropEventFromPointer(event))
@@ -4324,8 +3491,6 @@ func callbackQHelpContentWidget_DropEvent(ptr unsafe.Pointer, event unsafe.Point
 }
 
 func (ptr *QHelpContentWidget) ConnectDropEvent(f func(event *gui.QDropEvent)) {
-	defer qt.Recovering("connect QHelpContentWidget::dropEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentWidget::dropEvent", f)
@@ -4333,8 +3498,6 @@ func (ptr *QHelpContentWidget) ConnectDropEvent(f func(event *gui.QDropEvent)) {
 }
 
 func (ptr *QHelpContentWidget) DisconnectDropEvent() {
-	defer qt.Recovering("disconnect QHelpContentWidget::dropEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentWidget::dropEvent")
@@ -4342,16 +3505,12 @@ func (ptr *QHelpContentWidget) DisconnectDropEvent() {
 }
 
 func (ptr *QHelpContentWidget) DropEvent(event gui.QDropEvent_ITF) {
-	defer qt.Recovering("QHelpContentWidget::dropEvent")
-
 	if ptr.Pointer() != nil {
 		C.QHelpContentWidget_DropEvent(ptr.Pointer(), gui.PointerFromQDropEvent(event))
 	}
 }
 
 func (ptr *QHelpContentWidget) DropEventDefault(event gui.QDropEvent_ITF) {
-	defer qt.Recovering("QHelpContentWidget::dropEvent")
-
 	if ptr.Pointer() != nil {
 		C.QHelpContentWidget_DropEventDefault(ptr.Pointer(), gui.PointerFromQDropEvent(event))
 	}
@@ -4359,8 +3518,6 @@ func (ptr *QHelpContentWidget) DropEventDefault(event gui.QDropEvent_ITF) {
 
 //export callbackQHelpContentWidget_Edit
 func callbackQHelpContentWidget_Edit(ptr unsafe.Pointer, index unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpContentWidget::edit")
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentWidget::edit"); signal != nil {
 		signal.(func(*core.QModelIndex))(core.NewQModelIndexFromPointer(index))
 	} else {
@@ -4369,8 +3526,6 @@ func callbackQHelpContentWidget_Edit(ptr unsafe.Pointer, index unsafe.Pointer) {
 }
 
 func (ptr *QHelpContentWidget) ConnectEdit(f func(index *core.QModelIndex)) {
-	defer qt.Recovering("connect QHelpContentWidget::edit")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentWidget::edit", f)
@@ -4378,8 +3533,6 @@ func (ptr *QHelpContentWidget) ConnectEdit(f func(index *core.QModelIndex)) {
 }
 
 func (ptr *QHelpContentWidget) DisconnectEdit() {
-	defer qt.Recovering("disconnect QHelpContentWidget::edit")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentWidget::edit")
@@ -4387,16 +3540,12 @@ func (ptr *QHelpContentWidget) DisconnectEdit() {
 }
 
 func (ptr *QHelpContentWidget) Edit(index core.QModelIndex_ITF) {
-	defer qt.Recovering("QHelpContentWidget::edit")
-
 	if ptr.Pointer() != nil {
 		C.QHelpContentWidget_Edit(ptr.Pointer(), core.PointerFromQModelIndex(index))
 	}
 }
 
 func (ptr *QHelpContentWidget) EditDefault(index core.QModelIndex_ITF) {
-	defer qt.Recovering("QHelpContentWidget::edit")
-
 	if ptr.Pointer() != nil {
 		C.QHelpContentWidget_EditDefault(ptr.Pointer(), core.PointerFromQModelIndex(index))
 	}
@@ -4404,7 +3553,6 @@ func (ptr *QHelpContentWidget) EditDefault(index core.QModelIndex_ITF) {
 
 //export callbackQHelpContentWidget_Edit2
 func callbackQHelpContentWidget_Edit2(ptr unsafe.Pointer, index unsafe.Pointer, trigger C.longlong, event unsafe.Pointer) C.char {
-	defer qt.Recovering("callback QHelpContentWidget::edit")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentWidget::edit2"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QModelIndex, widgets.QAbstractItemView__EditTrigger, *core.QEvent) bool)(core.NewQModelIndexFromPointer(index), widgets.QAbstractItemView__EditTrigger(trigger), core.NewQEventFromPointer(event)))))
@@ -4414,8 +3562,6 @@ func callbackQHelpContentWidget_Edit2(ptr unsafe.Pointer, index unsafe.Pointer, 
 }
 
 func (ptr *QHelpContentWidget) ConnectEdit2(f func(index *core.QModelIndex, trigger widgets.QAbstractItemView__EditTrigger, event *core.QEvent) bool) {
-	defer qt.Recovering("connect QHelpContentWidget::edit")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentWidget::edit2", f)
@@ -4423,8 +3569,6 @@ func (ptr *QHelpContentWidget) ConnectEdit2(f func(index *core.QModelIndex, trig
 }
 
 func (ptr *QHelpContentWidget) DisconnectEdit2() {
-	defer qt.Recovering("disconnect QHelpContentWidget::edit")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentWidget::edit2")
@@ -4432,8 +3576,6 @@ func (ptr *QHelpContentWidget) DisconnectEdit2() {
 }
 
 func (ptr *QHelpContentWidget) Edit2(index core.QModelIndex_ITF, trigger widgets.QAbstractItemView__EditTrigger, event core.QEvent_ITF) bool {
-	defer qt.Recovering("QHelpContentWidget::edit")
-
 	if ptr.Pointer() != nil {
 		return C.QHelpContentWidget_Edit2(ptr.Pointer(), core.PointerFromQModelIndex(index), C.longlong(trigger), core.PointerFromQEvent(event)) != 0
 	}
@@ -4441,8 +3583,6 @@ func (ptr *QHelpContentWidget) Edit2(index core.QModelIndex_ITF, trigger widgets
 }
 
 func (ptr *QHelpContentWidget) Edit2Default(index core.QModelIndex_ITF, trigger widgets.QAbstractItemView__EditTrigger, event core.QEvent_ITF) bool {
-	defer qt.Recovering("QHelpContentWidget::edit")
-
 	if ptr.Pointer() != nil {
 		return C.QHelpContentWidget_Edit2Default(ptr.Pointer(), core.PointerFromQModelIndex(index), C.longlong(trigger), core.PointerFromQEvent(event)) != 0
 	}
@@ -4451,8 +3591,6 @@ func (ptr *QHelpContentWidget) Edit2Default(index core.QModelIndex_ITF, trigger 
 
 //export callbackQHelpContentWidget_EditorDestroyed
 func callbackQHelpContentWidget_EditorDestroyed(ptr unsafe.Pointer, editor unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpContentWidget::editorDestroyed")
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentWidget::editorDestroyed"); signal != nil {
 		signal.(func(*core.QObject))(core.NewQObjectFromPointer(editor))
 	} else {
@@ -4461,8 +3599,6 @@ func callbackQHelpContentWidget_EditorDestroyed(ptr unsafe.Pointer, editor unsaf
 }
 
 func (ptr *QHelpContentWidget) ConnectEditorDestroyed(f func(editor *core.QObject)) {
-	defer qt.Recovering("connect QHelpContentWidget::editorDestroyed")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentWidget::editorDestroyed", f)
@@ -4470,8 +3606,6 @@ func (ptr *QHelpContentWidget) ConnectEditorDestroyed(f func(editor *core.QObjec
 }
 
 func (ptr *QHelpContentWidget) DisconnectEditorDestroyed() {
-	defer qt.Recovering("disconnect QHelpContentWidget::editorDestroyed")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentWidget::editorDestroyed")
@@ -4479,16 +3613,12 @@ func (ptr *QHelpContentWidget) DisconnectEditorDestroyed() {
 }
 
 func (ptr *QHelpContentWidget) EditorDestroyed(editor core.QObject_ITF) {
-	defer qt.Recovering("QHelpContentWidget::editorDestroyed")
-
 	if ptr.Pointer() != nil {
 		C.QHelpContentWidget_EditorDestroyed(ptr.Pointer(), core.PointerFromQObject(editor))
 	}
 }
 
 func (ptr *QHelpContentWidget) EditorDestroyedDefault(editor core.QObject_ITF) {
-	defer qt.Recovering("QHelpContentWidget::editorDestroyed")
-
 	if ptr.Pointer() != nil {
 		C.QHelpContentWidget_EditorDestroyedDefault(ptr.Pointer(), core.PointerFromQObject(editor))
 	}
@@ -4496,7 +3626,6 @@ func (ptr *QHelpContentWidget) EditorDestroyedDefault(editor core.QObject_ITF) {
 
 //export callbackQHelpContentWidget_FocusInEvent
 func callbackQHelpContentWidget_FocusInEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpContentWidget::focusInEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentWidget::focusInEvent"); signal != nil {
 		signal.(func(*gui.QFocusEvent))(gui.NewQFocusEventFromPointer(event))
@@ -4506,8 +3635,6 @@ func callbackQHelpContentWidget_FocusInEvent(ptr unsafe.Pointer, event unsafe.Po
 }
 
 func (ptr *QHelpContentWidget) ConnectFocusInEvent(f func(event *gui.QFocusEvent)) {
-	defer qt.Recovering("connect QHelpContentWidget::focusInEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentWidget::focusInEvent", f)
@@ -4515,8 +3642,6 @@ func (ptr *QHelpContentWidget) ConnectFocusInEvent(f func(event *gui.QFocusEvent
 }
 
 func (ptr *QHelpContentWidget) DisconnectFocusInEvent() {
-	defer qt.Recovering("disconnect QHelpContentWidget::focusInEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentWidget::focusInEvent")
@@ -4524,16 +3649,12 @@ func (ptr *QHelpContentWidget) DisconnectFocusInEvent() {
 }
 
 func (ptr *QHelpContentWidget) FocusInEvent(event gui.QFocusEvent_ITF) {
-	defer qt.Recovering("QHelpContentWidget::focusInEvent")
-
 	if ptr.Pointer() != nil {
 		C.QHelpContentWidget_FocusInEvent(ptr.Pointer(), gui.PointerFromQFocusEvent(event))
 	}
 }
 
 func (ptr *QHelpContentWidget) FocusInEventDefault(event gui.QFocusEvent_ITF) {
-	defer qt.Recovering("QHelpContentWidget::focusInEvent")
-
 	if ptr.Pointer() != nil {
 		C.QHelpContentWidget_FocusInEventDefault(ptr.Pointer(), gui.PointerFromQFocusEvent(event))
 	}
@@ -4541,7 +3662,6 @@ func (ptr *QHelpContentWidget) FocusInEventDefault(event gui.QFocusEvent_ITF) {
 
 //export callbackQHelpContentWidget_FocusNextPrevChild
 func callbackQHelpContentWidget_FocusNextPrevChild(ptr unsafe.Pointer, next C.char) C.char {
-	defer qt.Recovering("callback QHelpContentWidget::focusNextPrevChild")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentWidget::focusNextPrevChild"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(bool) bool)(int8(next) != 0))))
@@ -4551,8 +3671,6 @@ func callbackQHelpContentWidget_FocusNextPrevChild(ptr unsafe.Pointer, next C.ch
 }
 
 func (ptr *QHelpContentWidget) ConnectFocusNextPrevChild(f func(next bool) bool) {
-	defer qt.Recovering("connect QHelpContentWidget::focusNextPrevChild")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentWidget::focusNextPrevChild", f)
@@ -4560,8 +3678,6 @@ func (ptr *QHelpContentWidget) ConnectFocusNextPrevChild(f func(next bool) bool)
 }
 
 func (ptr *QHelpContentWidget) DisconnectFocusNextPrevChild() {
-	defer qt.Recovering("disconnect QHelpContentWidget::focusNextPrevChild")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentWidget::focusNextPrevChild")
@@ -4569,8 +3685,6 @@ func (ptr *QHelpContentWidget) DisconnectFocusNextPrevChild() {
 }
 
 func (ptr *QHelpContentWidget) FocusNextPrevChild(next bool) bool {
-	defer qt.Recovering("QHelpContentWidget::focusNextPrevChild")
-
 	if ptr.Pointer() != nil {
 		return C.QHelpContentWidget_FocusNextPrevChild(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(next)))) != 0
 	}
@@ -4578,8 +3692,6 @@ func (ptr *QHelpContentWidget) FocusNextPrevChild(next bool) bool {
 }
 
 func (ptr *QHelpContentWidget) FocusNextPrevChildDefault(next bool) bool {
-	defer qt.Recovering("QHelpContentWidget::focusNextPrevChild")
-
 	if ptr.Pointer() != nil {
 		return C.QHelpContentWidget_FocusNextPrevChildDefault(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(next)))) != 0
 	}
@@ -4588,7 +3700,6 @@ func (ptr *QHelpContentWidget) FocusNextPrevChildDefault(next bool) bool {
 
 //export callbackQHelpContentWidget_FocusOutEvent
 func callbackQHelpContentWidget_FocusOutEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpContentWidget::focusOutEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentWidget::focusOutEvent"); signal != nil {
 		signal.(func(*gui.QFocusEvent))(gui.NewQFocusEventFromPointer(event))
@@ -4598,8 +3709,6 @@ func callbackQHelpContentWidget_FocusOutEvent(ptr unsafe.Pointer, event unsafe.P
 }
 
 func (ptr *QHelpContentWidget) ConnectFocusOutEvent(f func(event *gui.QFocusEvent)) {
-	defer qt.Recovering("connect QHelpContentWidget::focusOutEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentWidget::focusOutEvent", f)
@@ -4607,8 +3716,6 @@ func (ptr *QHelpContentWidget) ConnectFocusOutEvent(f func(event *gui.QFocusEven
 }
 
 func (ptr *QHelpContentWidget) DisconnectFocusOutEvent() {
-	defer qt.Recovering("disconnect QHelpContentWidget::focusOutEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentWidget::focusOutEvent")
@@ -4616,16 +3723,12 @@ func (ptr *QHelpContentWidget) DisconnectFocusOutEvent() {
 }
 
 func (ptr *QHelpContentWidget) FocusOutEvent(event gui.QFocusEvent_ITF) {
-	defer qt.Recovering("QHelpContentWidget::focusOutEvent")
-
 	if ptr.Pointer() != nil {
 		C.QHelpContentWidget_FocusOutEvent(ptr.Pointer(), gui.PointerFromQFocusEvent(event))
 	}
 }
 
 func (ptr *QHelpContentWidget) FocusOutEventDefault(event gui.QFocusEvent_ITF) {
-	defer qt.Recovering("QHelpContentWidget::focusOutEvent")
-
 	if ptr.Pointer() != nil {
 		C.QHelpContentWidget_FocusOutEventDefault(ptr.Pointer(), gui.PointerFromQFocusEvent(event))
 	}
@@ -4633,7 +3736,6 @@ func (ptr *QHelpContentWidget) FocusOutEventDefault(event gui.QFocusEvent_ITF) {
 
 //export callbackQHelpContentWidget_InputMethodEvent
 func callbackQHelpContentWidget_InputMethodEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpContentWidget::inputMethodEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentWidget::inputMethodEvent"); signal != nil {
 		signal.(func(*gui.QInputMethodEvent))(gui.NewQInputMethodEventFromPointer(event))
@@ -4643,8 +3745,6 @@ func callbackQHelpContentWidget_InputMethodEvent(ptr unsafe.Pointer, event unsaf
 }
 
 func (ptr *QHelpContentWidget) ConnectInputMethodEvent(f func(event *gui.QInputMethodEvent)) {
-	defer qt.Recovering("connect QHelpContentWidget::inputMethodEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentWidget::inputMethodEvent", f)
@@ -4652,8 +3752,6 @@ func (ptr *QHelpContentWidget) ConnectInputMethodEvent(f func(event *gui.QInputM
 }
 
 func (ptr *QHelpContentWidget) DisconnectInputMethodEvent() {
-	defer qt.Recovering("disconnect QHelpContentWidget::inputMethodEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentWidget::inputMethodEvent")
@@ -4661,16 +3759,12 @@ func (ptr *QHelpContentWidget) DisconnectInputMethodEvent() {
 }
 
 func (ptr *QHelpContentWidget) InputMethodEvent(event gui.QInputMethodEvent_ITF) {
-	defer qt.Recovering("QHelpContentWidget::inputMethodEvent")
-
 	if ptr.Pointer() != nil {
 		C.QHelpContentWidget_InputMethodEvent(ptr.Pointer(), gui.PointerFromQInputMethodEvent(event))
 	}
 }
 
 func (ptr *QHelpContentWidget) InputMethodEventDefault(event gui.QInputMethodEvent_ITF) {
-	defer qt.Recovering("QHelpContentWidget::inputMethodEvent")
-
 	if ptr.Pointer() != nil {
 		C.QHelpContentWidget_InputMethodEventDefault(ptr.Pointer(), gui.PointerFromQInputMethodEvent(event))
 	}
@@ -4678,7 +3772,6 @@ func (ptr *QHelpContentWidget) InputMethodEventDefault(event gui.QInputMethodEve
 
 //export callbackQHelpContentWidget_InputMethodQuery
 func callbackQHelpContentWidget_InputMethodQuery(ptr unsafe.Pointer, query C.longlong) unsafe.Pointer {
-	defer qt.Recovering("callback QHelpContentWidget::inputMethodQuery")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentWidget::inputMethodQuery"); signal != nil {
 		return core.PointerFromQVariant(signal.(func(core.Qt__InputMethodQuery) *core.QVariant)(core.Qt__InputMethodQuery(query)))
@@ -4688,8 +3781,6 @@ func callbackQHelpContentWidget_InputMethodQuery(ptr unsafe.Pointer, query C.lon
 }
 
 func (ptr *QHelpContentWidget) ConnectInputMethodQuery(f func(query core.Qt__InputMethodQuery) *core.QVariant) {
-	defer qt.Recovering("connect QHelpContentWidget::inputMethodQuery")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentWidget::inputMethodQuery", f)
@@ -4697,8 +3788,6 @@ func (ptr *QHelpContentWidget) ConnectInputMethodQuery(f func(query core.Qt__Inp
 }
 
 func (ptr *QHelpContentWidget) DisconnectInputMethodQuery() {
-	defer qt.Recovering("disconnect QHelpContentWidget::inputMethodQuery")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentWidget::inputMethodQuery")
@@ -4706,8 +3795,6 @@ func (ptr *QHelpContentWidget) DisconnectInputMethodQuery() {
 }
 
 func (ptr *QHelpContentWidget) InputMethodQuery(query core.Qt__InputMethodQuery) *core.QVariant {
-	defer qt.Recovering("QHelpContentWidget::inputMethodQuery")
-
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQVariantFromPointer(C.QHelpContentWidget_InputMethodQuery(ptr.Pointer(), C.longlong(query)))
 		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
@@ -4717,8 +3804,6 @@ func (ptr *QHelpContentWidget) InputMethodQuery(query core.Qt__InputMethodQuery)
 }
 
 func (ptr *QHelpContentWidget) InputMethodQueryDefault(query core.Qt__InputMethodQuery) *core.QVariant {
-	defer qt.Recovering("QHelpContentWidget::inputMethodQuery")
-
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQVariantFromPointer(C.QHelpContentWidget_InputMethodQueryDefault(ptr.Pointer(), C.longlong(query)))
 		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
@@ -4729,7 +3814,6 @@ func (ptr *QHelpContentWidget) InputMethodQueryDefault(query core.Qt__InputMetho
 
 //export callbackQHelpContentWidget_ResizeEvent
 func callbackQHelpContentWidget_ResizeEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpContentWidget::resizeEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentWidget::resizeEvent"); signal != nil {
 		signal.(func(*gui.QResizeEvent))(gui.NewQResizeEventFromPointer(event))
@@ -4739,8 +3823,6 @@ func callbackQHelpContentWidget_ResizeEvent(ptr unsafe.Pointer, event unsafe.Poi
 }
 
 func (ptr *QHelpContentWidget) ConnectResizeEvent(f func(event *gui.QResizeEvent)) {
-	defer qt.Recovering("connect QHelpContentWidget::resizeEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentWidget::resizeEvent", f)
@@ -4748,8 +3830,6 @@ func (ptr *QHelpContentWidget) ConnectResizeEvent(f func(event *gui.QResizeEvent
 }
 
 func (ptr *QHelpContentWidget) DisconnectResizeEvent() {
-	defer qt.Recovering("disconnect QHelpContentWidget::resizeEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentWidget::resizeEvent")
@@ -4757,16 +3837,12 @@ func (ptr *QHelpContentWidget) DisconnectResizeEvent() {
 }
 
 func (ptr *QHelpContentWidget) ResizeEvent(event gui.QResizeEvent_ITF) {
-	defer qt.Recovering("QHelpContentWidget::resizeEvent")
-
 	if ptr.Pointer() != nil {
 		C.QHelpContentWidget_ResizeEvent(ptr.Pointer(), gui.PointerFromQResizeEvent(event))
 	}
 }
 
 func (ptr *QHelpContentWidget) ResizeEventDefault(event gui.QResizeEvent_ITF) {
-	defer qt.Recovering("QHelpContentWidget::resizeEvent")
-
 	if ptr.Pointer() != nil {
 		C.QHelpContentWidget_ResizeEventDefault(ptr.Pointer(), gui.PointerFromQResizeEvent(event))
 	}
@@ -4774,8 +3850,6 @@ func (ptr *QHelpContentWidget) ResizeEventDefault(event gui.QResizeEvent_ITF) {
 
 //export callbackQHelpContentWidget_ScrollToBottom
 func callbackQHelpContentWidget_ScrollToBottom(ptr unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpContentWidget::scrollToBottom")
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentWidget::scrollToBottom"); signal != nil {
 		signal.(func())()
 	} else {
@@ -4784,8 +3858,6 @@ func callbackQHelpContentWidget_ScrollToBottom(ptr unsafe.Pointer) {
 }
 
 func (ptr *QHelpContentWidget) ConnectScrollToBottom(f func()) {
-	defer qt.Recovering("connect QHelpContentWidget::scrollToBottom")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentWidget::scrollToBottom", f)
@@ -4793,8 +3865,6 @@ func (ptr *QHelpContentWidget) ConnectScrollToBottom(f func()) {
 }
 
 func (ptr *QHelpContentWidget) DisconnectScrollToBottom() {
-	defer qt.Recovering("disconnect QHelpContentWidget::scrollToBottom")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentWidget::scrollToBottom")
@@ -4802,16 +3872,12 @@ func (ptr *QHelpContentWidget) DisconnectScrollToBottom() {
 }
 
 func (ptr *QHelpContentWidget) ScrollToBottom() {
-	defer qt.Recovering("QHelpContentWidget::scrollToBottom")
-
 	if ptr.Pointer() != nil {
 		C.QHelpContentWidget_ScrollToBottom(ptr.Pointer())
 	}
 }
 
 func (ptr *QHelpContentWidget) ScrollToBottomDefault() {
-	defer qt.Recovering("QHelpContentWidget::scrollToBottom")
-
 	if ptr.Pointer() != nil {
 		C.QHelpContentWidget_ScrollToBottomDefault(ptr.Pointer())
 	}
@@ -4819,8 +3885,6 @@ func (ptr *QHelpContentWidget) ScrollToBottomDefault() {
 
 //export callbackQHelpContentWidget_ScrollToTop
 func callbackQHelpContentWidget_ScrollToTop(ptr unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpContentWidget::scrollToTop")
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentWidget::scrollToTop"); signal != nil {
 		signal.(func())()
 	} else {
@@ -4829,8 +3893,6 @@ func callbackQHelpContentWidget_ScrollToTop(ptr unsafe.Pointer) {
 }
 
 func (ptr *QHelpContentWidget) ConnectScrollToTop(f func()) {
-	defer qt.Recovering("connect QHelpContentWidget::scrollToTop")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentWidget::scrollToTop", f)
@@ -4838,8 +3900,6 @@ func (ptr *QHelpContentWidget) ConnectScrollToTop(f func()) {
 }
 
 func (ptr *QHelpContentWidget) DisconnectScrollToTop() {
-	defer qt.Recovering("disconnect QHelpContentWidget::scrollToTop")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentWidget::scrollToTop")
@@ -4847,16 +3907,12 @@ func (ptr *QHelpContentWidget) DisconnectScrollToTop() {
 }
 
 func (ptr *QHelpContentWidget) ScrollToTop() {
-	defer qt.Recovering("QHelpContentWidget::scrollToTop")
-
 	if ptr.Pointer() != nil {
 		C.QHelpContentWidget_ScrollToTop(ptr.Pointer())
 	}
 }
 
 func (ptr *QHelpContentWidget) ScrollToTopDefault() {
-	defer qt.Recovering("QHelpContentWidget::scrollToTop")
-
 	if ptr.Pointer() != nil {
 		C.QHelpContentWidget_ScrollToTopDefault(ptr.Pointer())
 	}
@@ -4864,7 +3920,6 @@ func (ptr *QHelpContentWidget) ScrollToTopDefault() {
 
 //export callbackQHelpContentWidget_SelectionCommand
 func callbackQHelpContentWidget_SelectionCommand(ptr unsafe.Pointer, index unsafe.Pointer, event unsafe.Pointer) C.longlong {
-	defer qt.Recovering("callback QHelpContentWidget::selectionCommand")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentWidget::selectionCommand"); signal != nil {
 		return C.longlong(signal.(func(*core.QModelIndex, *core.QEvent) core.QItemSelectionModel__SelectionFlag)(core.NewQModelIndexFromPointer(index), core.NewQEventFromPointer(event)))
@@ -4874,8 +3929,6 @@ func callbackQHelpContentWidget_SelectionCommand(ptr unsafe.Pointer, index unsaf
 }
 
 func (ptr *QHelpContentWidget) ConnectSelectionCommand(f func(index *core.QModelIndex, event *core.QEvent) core.QItemSelectionModel__SelectionFlag) {
-	defer qt.Recovering("connect QHelpContentWidget::selectionCommand")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentWidget::selectionCommand", f)
@@ -4883,8 +3936,6 @@ func (ptr *QHelpContentWidget) ConnectSelectionCommand(f func(index *core.QModel
 }
 
 func (ptr *QHelpContentWidget) DisconnectSelectionCommand() {
-	defer qt.Recovering("disconnect QHelpContentWidget::selectionCommand")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentWidget::selectionCommand")
@@ -4892,8 +3943,6 @@ func (ptr *QHelpContentWidget) DisconnectSelectionCommand() {
 }
 
 func (ptr *QHelpContentWidget) SelectionCommand(index core.QModelIndex_ITF, event core.QEvent_ITF) core.QItemSelectionModel__SelectionFlag {
-	defer qt.Recovering("QHelpContentWidget::selectionCommand")
-
 	if ptr.Pointer() != nil {
 		return core.QItemSelectionModel__SelectionFlag(C.QHelpContentWidget_SelectionCommand(ptr.Pointer(), core.PointerFromQModelIndex(index), core.PointerFromQEvent(event)))
 	}
@@ -4901,8 +3950,6 @@ func (ptr *QHelpContentWidget) SelectionCommand(index core.QModelIndex_ITF, even
 }
 
 func (ptr *QHelpContentWidget) SelectionCommandDefault(index core.QModelIndex_ITF, event core.QEvent_ITF) core.QItemSelectionModel__SelectionFlag {
-	defer qt.Recovering("QHelpContentWidget::selectionCommand")
-
 	if ptr.Pointer() != nil {
 		return core.QItemSelectionModel__SelectionFlag(C.QHelpContentWidget_SelectionCommandDefault(ptr.Pointer(), core.PointerFromQModelIndex(index), core.PointerFromQEvent(event)))
 	}
@@ -4911,8 +3958,6 @@ func (ptr *QHelpContentWidget) SelectionCommandDefault(index core.QModelIndex_IT
 
 //export callbackQHelpContentWidget_SetCurrentIndex
 func callbackQHelpContentWidget_SetCurrentIndex(ptr unsafe.Pointer, index unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpContentWidget::setCurrentIndex")
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentWidget::setCurrentIndex"); signal != nil {
 		signal.(func(*core.QModelIndex))(core.NewQModelIndexFromPointer(index))
 	} else {
@@ -4921,8 +3966,6 @@ func callbackQHelpContentWidget_SetCurrentIndex(ptr unsafe.Pointer, index unsafe
 }
 
 func (ptr *QHelpContentWidget) ConnectSetCurrentIndex(f func(index *core.QModelIndex)) {
-	defer qt.Recovering("connect QHelpContentWidget::setCurrentIndex")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentWidget::setCurrentIndex", f)
@@ -4930,8 +3973,6 @@ func (ptr *QHelpContentWidget) ConnectSetCurrentIndex(f func(index *core.QModelI
 }
 
 func (ptr *QHelpContentWidget) DisconnectSetCurrentIndex() {
-	defer qt.Recovering("disconnect QHelpContentWidget::setCurrentIndex")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentWidget::setCurrentIndex")
@@ -4939,16 +3980,12 @@ func (ptr *QHelpContentWidget) DisconnectSetCurrentIndex() {
 }
 
 func (ptr *QHelpContentWidget) SetCurrentIndex(index core.QModelIndex_ITF) {
-	defer qt.Recovering("QHelpContentWidget::setCurrentIndex")
-
 	if ptr.Pointer() != nil {
 		C.QHelpContentWidget_SetCurrentIndex(ptr.Pointer(), core.PointerFromQModelIndex(index))
 	}
 }
 
 func (ptr *QHelpContentWidget) SetCurrentIndexDefault(index core.QModelIndex_ITF) {
-	defer qt.Recovering("QHelpContentWidget::setCurrentIndex")
-
 	if ptr.Pointer() != nil {
 		C.QHelpContentWidget_SetCurrentIndexDefault(ptr.Pointer(), core.PointerFromQModelIndex(index))
 	}
@@ -4956,7 +3993,6 @@ func (ptr *QHelpContentWidget) SetCurrentIndexDefault(index core.QModelIndex_ITF
 
 //export callbackQHelpContentWidget_SizeHintForRow
 func callbackQHelpContentWidget_SizeHintForRow(ptr unsafe.Pointer, row C.int) C.int {
-	defer qt.Recovering("callback QHelpContentWidget::sizeHintForRow")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentWidget::sizeHintForRow"); signal != nil {
 		return C.int(int32(signal.(func(int) int)(int(int32(row)))))
@@ -4966,8 +4002,6 @@ func callbackQHelpContentWidget_SizeHintForRow(ptr unsafe.Pointer, row C.int) C.
 }
 
 func (ptr *QHelpContentWidget) ConnectSizeHintForRow(f func(row int) int) {
-	defer qt.Recovering("connect QHelpContentWidget::sizeHintForRow")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentWidget::sizeHintForRow", f)
@@ -4975,8 +4009,6 @@ func (ptr *QHelpContentWidget) ConnectSizeHintForRow(f func(row int) int) {
 }
 
 func (ptr *QHelpContentWidget) DisconnectSizeHintForRow() {
-	defer qt.Recovering("disconnect QHelpContentWidget::sizeHintForRow")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentWidget::sizeHintForRow")
@@ -4984,8 +4016,6 @@ func (ptr *QHelpContentWidget) DisconnectSizeHintForRow() {
 }
 
 func (ptr *QHelpContentWidget) SizeHintForRow(row int) int {
-	defer qt.Recovering("QHelpContentWidget::sizeHintForRow")
-
 	if ptr.Pointer() != nil {
 		return int(int32(C.QHelpContentWidget_SizeHintForRow(ptr.Pointer(), C.int(int32(row)))))
 	}
@@ -4993,8 +4023,6 @@ func (ptr *QHelpContentWidget) SizeHintForRow(row int) int {
 }
 
 func (ptr *QHelpContentWidget) SizeHintForRowDefault(row int) int {
-	defer qt.Recovering("QHelpContentWidget::sizeHintForRow")
-
 	if ptr.Pointer() != nil {
 		return int(int32(C.QHelpContentWidget_SizeHintForRowDefault(ptr.Pointer(), C.int(int32(row)))))
 	}
@@ -5003,7 +4031,6 @@ func (ptr *QHelpContentWidget) SizeHintForRowDefault(row int) int {
 
 //export callbackQHelpContentWidget_StartDrag
 func callbackQHelpContentWidget_StartDrag(ptr unsafe.Pointer, supportedActions C.longlong) {
-	defer qt.Recovering("callback QHelpContentWidget::startDrag")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentWidget::startDrag"); signal != nil {
 		signal.(func(core.Qt__DropAction))(core.Qt__DropAction(supportedActions))
@@ -5013,8 +4040,6 @@ func callbackQHelpContentWidget_StartDrag(ptr unsafe.Pointer, supportedActions C
 }
 
 func (ptr *QHelpContentWidget) ConnectStartDrag(f func(supportedActions core.Qt__DropAction)) {
-	defer qt.Recovering("connect QHelpContentWidget::startDrag")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentWidget::startDrag", f)
@@ -5022,8 +4047,6 @@ func (ptr *QHelpContentWidget) ConnectStartDrag(f func(supportedActions core.Qt_
 }
 
 func (ptr *QHelpContentWidget) DisconnectStartDrag() {
-	defer qt.Recovering("disconnect QHelpContentWidget::startDrag")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentWidget::startDrag")
@@ -5031,16 +4054,12 @@ func (ptr *QHelpContentWidget) DisconnectStartDrag() {
 }
 
 func (ptr *QHelpContentWidget) StartDrag(supportedActions core.Qt__DropAction) {
-	defer qt.Recovering("QHelpContentWidget::startDrag")
-
 	if ptr.Pointer() != nil {
 		C.QHelpContentWidget_StartDrag(ptr.Pointer(), C.longlong(supportedActions))
 	}
 }
 
 func (ptr *QHelpContentWidget) StartDragDefault(supportedActions core.Qt__DropAction) {
-	defer qt.Recovering("QHelpContentWidget::startDrag")
-
 	if ptr.Pointer() != nil {
 		C.QHelpContentWidget_StartDragDefault(ptr.Pointer(), C.longlong(supportedActions))
 	}
@@ -5048,8 +4067,6 @@ func (ptr *QHelpContentWidget) StartDragDefault(supportedActions core.Qt__DropAc
 
 //export callbackQHelpContentWidget_Update
 func callbackQHelpContentWidget_Update(ptr unsafe.Pointer, index unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpContentWidget::update")
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentWidget::update"); signal != nil {
 		signal.(func(*core.QModelIndex))(core.NewQModelIndexFromPointer(index))
 	} else {
@@ -5058,8 +4075,6 @@ func callbackQHelpContentWidget_Update(ptr unsafe.Pointer, index unsafe.Pointer)
 }
 
 func (ptr *QHelpContentWidget) ConnectUpdate(f func(index *core.QModelIndex)) {
-	defer qt.Recovering("connect QHelpContentWidget::update")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentWidget::update", f)
@@ -5067,8 +4082,6 @@ func (ptr *QHelpContentWidget) ConnectUpdate(f func(index *core.QModelIndex)) {
 }
 
 func (ptr *QHelpContentWidget) DisconnectUpdate() {
-	defer qt.Recovering("disconnect QHelpContentWidget::update")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentWidget::update")
@@ -5076,16 +4089,12 @@ func (ptr *QHelpContentWidget) DisconnectUpdate() {
 }
 
 func (ptr *QHelpContentWidget) Update(index core.QModelIndex_ITF) {
-	defer qt.Recovering("QHelpContentWidget::update")
-
 	if ptr.Pointer() != nil {
 		C.QHelpContentWidget_Update(ptr.Pointer(), core.PointerFromQModelIndex(index))
 	}
 }
 
 func (ptr *QHelpContentWidget) UpdateDefault(index core.QModelIndex_ITF) {
-	defer qt.Recovering("QHelpContentWidget::update")
-
 	if ptr.Pointer() != nil {
 		C.QHelpContentWidget_UpdateDefault(ptr.Pointer(), core.PointerFromQModelIndex(index))
 	}
@@ -5093,7 +4102,6 @@ func (ptr *QHelpContentWidget) UpdateDefault(index core.QModelIndex_ITF) {
 
 //export callbackQHelpContentWidget_ViewOptions
 func callbackQHelpContentWidget_ViewOptions(ptr unsafe.Pointer) unsafe.Pointer {
-	defer qt.Recovering("callback QHelpContentWidget::viewOptions")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentWidget::viewOptions"); signal != nil {
 		return widgets.PointerFromQStyleOptionViewItem(signal.(func() *widgets.QStyleOptionViewItem)())
@@ -5103,8 +4111,6 @@ func callbackQHelpContentWidget_ViewOptions(ptr unsafe.Pointer) unsafe.Pointer {
 }
 
 func (ptr *QHelpContentWidget) ConnectViewOptions(f func() *widgets.QStyleOptionViewItem) {
-	defer qt.Recovering("connect QHelpContentWidget::viewOptions")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentWidget::viewOptions", f)
@@ -5112,8 +4118,6 @@ func (ptr *QHelpContentWidget) ConnectViewOptions(f func() *widgets.QStyleOption
 }
 
 func (ptr *QHelpContentWidget) DisconnectViewOptions() {
-	defer qt.Recovering("disconnect QHelpContentWidget::viewOptions")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentWidget::viewOptions")
@@ -5121,8 +4125,6 @@ func (ptr *QHelpContentWidget) DisconnectViewOptions() {
 }
 
 func (ptr *QHelpContentWidget) ViewOptions() *widgets.QStyleOptionViewItem {
-	defer qt.Recovering("QHelpContentWidget::viewOptions")
-
 	if ptr.Pointer() != nil {
 		var tmpValue = widgets.NewQStyleOptionViewItemFromPointer(C.QHelpContentWidget_ViewOptions(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*widgets.QStyleOptionViewItem).DestroyQStyleOptionViewItem)
@@ -5132,8 +4134,6 @@ func (ptr *QHelpContentWidget) ViewOptions() *widgets.QStyleOptionViewItem {
 }
 
 func (ptr *QHelpContentWidget) ViewOptionsDefault() *widgets.QStyleOptionViewItem {
-	defer qt.Recovering("QHelpContentWidget::viewOptions")
-
 	if ptr.Pointer() != nil {
 		var tmpValue = widgets.NewQStyleOptionViewItemFromPointer(C.QHelpContentWidget_ViewOptionsDefault(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*widgets.QStyleOptionViewItem).DestroyQStyleOptionViewItem)
@@ -5144,7 +4144,6 @@ func (ptr *QHelpContentWidget) ViewOptionsDefault() *widgets.QStyleOptionViewIte
 
 //export callbackQHelpContentWidget_ContextMenuEvent
 func callbackQHelpContentWidget_ContextMenuEvent(ptr unsafe.Pointer, e unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpContentWidget::contextMenuEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentWidget::contextMenuEvent"); signal != nil {
 		signal.(func(*gui.QContextMenuEvent))(gui.NewQContextMenuEventFromPointer(e))
@@ -5154,8 +4153,6 @@ func callbackQHelpContentWidget_ContextMenuEvent(ptr unsafe.Pointer, e unsafe.Po
 }
 
 func (ptr *QHelpContentWidget) ConnectContextMenuEvent(f func(e *gui.QContextMenuEvent)) {
-	defer qt.Recovering("connect QHelpContentWidget::contextMenuEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentWidget::contextMenuEvent", f)
@@ -5163,8 +4160,6 @@ func (ptr *QHelpContentWidget) ConnectContextMenuEvent(f func(e *gui.QContextMen
 }
 
 func (ptr *QHelpContentWidget) DisconnectContextMenuEvent() {
-	defer qt.Recovering("disconnect QHelpContentWidget::contextMenuEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentWidget::contextMenuEvent")
@@ -5172,16 +4167,12 @@ func (ptr *QHelpContentWidget) DisconnectContextMenuEvent() {
 }
 
 func (ptr *QHelpContentWidget) ContextMenuEvent(e gui.QContextMenuEvent_ITF) {
-	defer qt.Recovering("QHelpContentWidget::contextMenuEvent")
-
 	if ptr.Pointer() != nil {
 		C.QHelpContentWidget_ContextMenuEvent(ptr.Pointer(), gui.PointerFromQContextMenuEvent(e))
 	}
 }
 
 func (ptr *QHelpContentWidget) ContextMenuEventDefault(e gui.QContextMenuEvent_ITF) {
-	defer qt.Recovering("QHelpContentWidget::contextMenuEvent")
-
 	if ptr.Pointer() != nil {
 		C.QHelpContentWidget_ContextMenuEventDefault(ptr.Pointer(), gui.PointerFromQContextMenuEvent(e))
 	}
@@ -5189,7 +4180,6 @@ func (ptr *QHelpContentWidget) ContextMenuEventDefault(e gui.QContextMenuEvent_I
 
 //export callbackQHelpContentWidget_MinimumSizeHint
 func callbackQHelpContentWidget_MinimumSizeHint(ptr unsafe.Pointer) unsafe.Pointer {
-	defer qt.Recovering("callback QHelpContentWidget::minimumSizeHint")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentWidget::minimumSizeHint"); signal != nil {
 		return core.PointerFromQSize(signal.(func() *core.QSize)())
@@ -5199,8 +4189,6 @@ func callbackQHelpContentWidget_MinimumSizeHint(ptr unsafe.Pointer) unsafe.Point
 }
 
 func (ptr *QHelpContentWidget) ConnectMinimumSizeHint(f func() *core.QSize) {
-	defer qt.Recovering("connect QHelpContentWidget::minimumSizeHint")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentWidget::minimumSizeHint", f)
@@ -5208,8 +4196,6 @@ func (ptr *QHelpContentWidget) ConnectMinimumSizeHint(f func() *core.QSize) {
 }
 
 func (ptr *QHelpContentWidget) DisconnectMinimumSizeHint() {
-	defer qt.Recovering("disconnect QHelpContentWidget::minimumSizeHint")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentWidget::minimumSizeHint")
@@ -5217,8 +4203,6 @@ func (ptr *QHelpContentWidget) DisconnectMinimumSizeHint() {
 }
 
 func (ptr *QHelpContentWidget) MinimumSizeHint() *core.QSize {
-	defer qt.Recovering("QHelpContentWidget::minimumSizeHint")
-
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQSizeFromPointer(C.QHelpContentWidget_MinimumSizeHint(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
@@ -5228,8 +4212,6 @@ func (ptr *QHelpContentWidget) MinimumSizeHint() *core.QSize {
 }
 
 func (ptr *QHelpContentWidget) MinimumSizeHintDefault() *core.QSize {
-	defer qt.Recovering("QHelpContentWidget::minimumSizeHint")
-
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQSizeFromPointer(C.QHelpContentWidget_MinimumSizeHintDefault(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
@@ -5240,7 +4222,6 @@ func (ptr *QHelpContentWidget) MinimumSizeHintDefault() *core.QSize {
 
 //export callbackQHelpContentWidget_SetupViewport
 func callbackQHelpContentWidget_SetupViewport(ptr unsafe.Pointer, viewport unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpContentWidget::setupViewport")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentWidget::setupViewport"); signal != nil {
 		signal.(func(*widgets.QWidget))(widgets.NewQWidgetFromPointer(viewport))
@@ -5250,8 +4231,6 @@ func callbackQHelpContentWidget_SetupViewport(ptr unsafe.Pointer, viewport unsaf
 }
 
 func (ptr *QHelpContentWidget) ConnectSetupViewport(f func(viewport *widgets.QWidget)) {
-	defer qt.Recovering("connect QHelpContentWidget::setupViewport")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentWidget::setupViewport", f)
@@ -5259,8 +4238,6 @@ func (ptr *QHelpContentWidget) ConnectSetupViewport(f func(viewport *widgets.QWi
 }
 
 func (ptr *QHelpContentWidget) DisconnectSetupViewport() {
-	defer qt.Recovering("disconnect QHelpContentWidget::setupViewport")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentWidget::setupViewport")
@@ -5268,16 +4245,12 @@ func (ptr *QHelpContentWidget) DisconnectSetupViewport() {
 }
 
 func (ptr *QHelpContentWidget) SetupViewport(viewport widgets.QWidget_ITF) {
-	defer qt.Recovering("QHelpContentWidget::setupViewport")
-
 	if ptr.Pointer() != nil {
 		C.QHelpContentWidget_SetupViewport(ptr.Pointer(), widgets.PointerFromQWidget(viewport))
 	}
 }
 
 func (ptr *QHelpContentWidget) SetupViewportDefault(viewport widgets.QWidget_ITF) {
-	defer qt.Recovering("QHelpContentWidget::setupViewport")
-
 	if ptr.Pointer() != nil {
 		C.QHelpContentWidget_SetupViewportDefault(ptr.Pointer(), widgets.PointerFromQWidget(viewport))
 	}
@@ -5285,7 +4258,6 @@ func (ptr *QHelpContentWidget) SetupViewportDefault(viewport widgets.QWidget_ITF
 
 //export callbackQHelpContentWidget_SizeHint
 func callbackQHelpContentWidget_SizeHint(ptr unsafe.Pointer) unsafe.Pointer {
-	defer qt.Recovering("callback QHelpContentWidget::sizeHint")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentWidget::sizeHint"); signal != nil {
 		return core.PointerFromQSize(signal.(func() *core.QSize)())
@@ -5295,8 +4267,6 @@ func callbackQHelpContentWidget_SizeHint(ptr unsafe.Pointer) unsafe.Pointer {
 }
 
 func (ptr *QHelpContentWidget) ConnectSizeHint(f func() *core.QSize) {
-	defer qt.Recovering("connect QHelpContentWidget::sizeHint")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentWidget::sizeHint", f)
@@ -5304,8 +4274,6 @@ func (ptr *QHelpContentWidget) ConnectSizeHint(f func() *core.QSize) {
 }
 
 func (ptr *QHelpContentWidget) DisconnectSizeHint() {
-	defer qt.Recovering("disconnect QHelpContentWidget::sizeHint")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentWidget::sizeHint")
@@ -5313,8 +4281,6 @@ func (ptr *QHelpContentWidget) DisconnectSizeHint() {
 }
 
 func (ptr *QHelpContentWidget) SizeHint() *core.QSize {
-	defer qt.Recovering("QHelpContentWidget::sizeHint")
-
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQSizeFromPointer(C.QHelpContentWidget_SizeHint(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
@@ -5324,8 +4290,6 @@ func (ptr *QHelpContentWidget) SizeHint() *core.QSize {
 }
 
 func (ptr *QHelpContentWidget) SizeHintDefault() *core.QSize {
-	defer qt.Recovering("QHelpContentWidget::sizeHint")
-
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQSizeFromPointer(C.QHelpContentWidget_SizeHintDefault(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
@@ -5336,7 +4300,6 @@ func (ptr *QHelpContentWidget) SizeHintDefault() *core.QSize {
 
 //export callbackQHelpContentWidget_WheelEvent
 func callbackQHelpContentWidget_WheelEvent(ptr unsafe.Pointer, e unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpContentWidget::wheelEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentWidget::wheelEvent"); signal != nil {
 		signal.(func(*gui.QWheelEvent))(gui.NewQWheelEventFromPointer(e))
@@ -5346,8 +4309,6 @@ func callbackQHelpContentWidget_WheelEvent(ptr unsafe.Pointer, e unsafe.Pointer)
 }
 
 func (ptr *QHelpContentWidget) ConnectWheelEvent(f func(e *gui.QWheelEvent)) {
-	defer qt.Recovering("connect QHelpContentWidget::wheelEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentWidget::wheelEvent", f)
@@ -5355,8 +4316,6 @@ func (ptr *QHelpContentWidget) ConnectWheelEvent(f func(e *gui.QWheelEvent)) {
 }
 
 func (ptr *QHelpContentWidget) DisconnectWheelEvent() {
-	defer qt.Recovering("disconnect QHelpContentWidget::wheelEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentWidget::wheelEvent")
@@ -5364,16 +4323,12 @@ func (ptr *QHelpContentWidget) DisconnectWheelEvent() {
 }
 
 func (ptr *QHelpContentWidget) WheelEvent(e gui.QWheelEvent_ITF) {
-	defer qt.Recovering("QHelpContentWidget::wheelEvent")
-
 	if ptr.Pointer() != nil {
 		C.QHelpContentWidget_WheelEvent(ptr.Pointer(), gui.PointerFromQWheelEvent(e))
 	}
 }
 
 func (ptr *QHelpContentWidget) WheelEventDefault(e gui.QWheelEvent_ITF) {
-	defer qt.Recovering("QHelpContentWidget::wheelEvent")
-
 	if ptr.Pointer() != nil {
 		C.QHelpContentWidget_WheelEventDefault(ptr.Pointer(), gui.PointerFromQWheelEvent(e))
 	}
@@ -5381,7 +4336,6 @@ func (ptr *QHelpContentWidget) WheelEventDefault(e gui.QWheelEvent_ITF) {
 
 //export callbackQHelpContentWidget_ChangeEvent
 func callbackQHelpContentWidget_ChangeEvent(ptr unsafe.Pointer, ev unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpContentWidget::changeEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentWidget::changeEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(ev))
@@ -5391,8 +4345,6 @@ func callbackQHelpContentWidget_ChangeEvent(ptr unsafe.Pointer, ev unsafe.Pointe
 }
 
 func (ptr *QHelpContentWidget) ConnectChangeEvent(f func(ev *core.QEvent)) {
-	defer qt.Recovering("connect QHelpContentWidget::changeEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentWidget::changeEvent", f)
@@ -5400,8 +4352,6 @@ func (ptr *QHelpContentWidget) ConnectChangeEvent(f func(ev *core.QEvent)) {
 }
 
 func (ptr *QHelpContentWidget) DisconnectChangeEvent() {
-	defer qt.Recovering("disconnect QHelpContentWidget::changeEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentWidget::changeEvent")
@@ -5409,16 +4359,12 @@ func (ptr *QHelpContentWidget) DisconnectChangeEvent() {
 }
 
 func (ptr *QHelpContentWidget) ChangeEvent(ev core.QEvent_ITF) {
-	defer qt.Recovering("QHelpContentWidget::changeEvent")
-
 	if ptr.Pointer() != nil {
 		C.QHelpContentWidget_ChangeEvent(ptr.Pointer(), core.PointerFromQEvent(ev))
 	}
 }
 
 func (ptr *QHelpContentWidget) ChangeEventDefault(ev core.QEvent_ITF) {
-	defer qt.Recovering("QHelpContentWidget::changeEvent")
-
 	if ptr.Pointer() != nil {
 		C.QHelpContentWidget_ChangeEventDefault(ptr.Pointer(), core.PointerFromQEvent(ev))
 	}
@@ -5426,7 +4372,6 @@ func (ptr *QHelpContentWidget) ChangeEventDefault(ev core.QEvent_ITF) {
 
 //export callbackQHelpContentWidget_ActionEvent
 func callbackQHelpContentWidget_ActionEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpContentWidget::actionEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentWidget::actionEvent"); signal != nil {
 		signal.(func(*gui.QActionEvent))(gui.NewQActionEventFromPointer(event))
@@ -5436,8 +4381,6 @@ func callbackQHelpContentWidget_ActionEvent(ptr unsafe.Pointer, event unsafe.Poi
 }
 
 func (ptr *QHelpContentWidget) ConnectActionEvent(f func(event *gui.QActionEvent)) {
-	defer qt.Recovering("connect QHelpContentWidget::actionEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentWidget::actionEvent", f)
@@ -5445,8 +4388,6 @@ func (ptr *QHelpContentWidget) ConnectActionEvent(f func(event *gui.QActionEvent
 }
 
 func (ptr *QHelpContentWidget) DisconnectActionEvent() {
-	defer qt.Recovering("disconnect QHelpContentWidget::actionEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentWidget::actionEvent")
@@ -5454,16 +4395,12 @@ func (ptr *QHelpContentWidget) DisconnectActionEvent() {
 }
 
 func (ptr *QHelpContentWidget) ActionEvent(event gui.QActionEvent_ITF) {
-	defer qt.Recovering("QHelpContentWidget::actionEvent")
-
 	if ptr.Pointer() != nil {
 		C.QHelpContentWidget_ActionEvent(ptr.Pointer(), gui.PointerFromQActionEvent(event))
 	}
 }
 
 func (ptr *QHelpContentWidget) ActionEventDefault(event gui.QActionEvent_ITF) {
-	defer qt.Recovering("QHelpContentWidget::actionEvent")
-
 	if ptr.Pointer() != nil {
 		C.QHelpContentWidget_ActionEventDefault(ptr.Pointer(), gui.PointerFromQActionEvent(event))
 	}
@@ -5471,7 +4408,6 @@ func (ptr *QHelpContentWidget) ActionEventDefault(event gui.QActionEvent_ITF) {
 
 //export callbackQHelpContentWidget_EnterEvent
 func callbackQHelpContentWidget_EnterEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpContentWidget::enterEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentWidget::enterEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
@@ -5481,8 +4417,6 @@ func callbackQHelpContentWidget_EnterEvent(ptr unsafe.Pointer, event unsafe.Poin
 }
 
 func (ptr *QHelpContentWidget) ConnectEnterEvent(f func(event *core.QEvent)) {
-	defer qt.Recovering("connect QHelpContentWidget::enterEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentWidget::enterEvent", f)
@@ -5490,8 +4424,6 @@ func (ptr *QHelpContentWidget) ConnectEnterEvent(f func(event *core.QEvent)) {
 }
 
 func (ptr *QHelpContentWidget) DisconnectEnterEvent() {
-	defer qt.Recovering("disconnect QHelpContentWidget::enterEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentWidget::enterEvent")
@@ -5499,16 +4431,12 @@ func (ptr *QHelpContentWidget) DisconnectEnterEvent() {
 }
 
 func (ptr *QHelpContentWidget) EnterEvent(event core.QEvent_ITF) {
-	defer qt.Recovering("QHelpContentWidget::enterEvent")
-
 	if ptr.Pointer() != nil {
 		C.QHelpContentWidget_EnterEvent(ptr.Pointer(), core.PointerFromQEvent(event))
 	}
 }
 
 func (ptr *QHelpContentWidget) EnterEventDefault(event core.QEvent_ITF) {
-	defer qt.Recovering("QHelpContentWidget::enterEvent")
-
 	if ptr.Pointer() != nil {
 		C.QHelpContentWidget_EnterEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
 	}
@@ -5516,7 +4444,6 @@ func (ptr *QHelpContentWidget) EnterEventDefault(event core.QEvent_ITF) {
 
 //export callbackQHelpContentWidget_HideEvent
 func callbackQHelpContentWidget_HideEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpContentWidget::hideEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentWidget::hideEvent"); signal != nil {
 		signal.(func(*gui.QHideEvent))(gui.NewQHideEventFromPointer(event))
@@ -5526,8 +4453,6 @@ func callbackQHelpContentWidget_HideEvent(ptr unsafe.Pointer, event unsafe.Point
 }
 
 func (ptr *QHelpContentWidget) ConnectHideEvent(f func(event *gui.QHideEvent)) {
-	defer qt.Recovering("connect QHelpContentWidget::hideEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentWidget::hideEvent", f)
@@ -5535,8 +4460,6 @@ func (ptr *QHelpContentWidget) ConnectHideEvent(f func(event *gui.QHideEvent)) {
 }
 
 func (ptr *QHelpContentWidget) DisconnectHideEvent() {
-	defer qt.Recovering("disconnect QHelpContentWidget::hideEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentWidget::hideEvent")
@@ -5544,16 +4467,12 @@ func (ptr *QHelpContentWidget) DisconnectHideEvent() {
 }
 
 func (ptr *QHelpContentWidget) HideEvent(event gui.QHideEvent_ITF) {
-	defer qt.Recovering("QHelpContentWidget::hideEvent")
-
 	if ptr.Pointer() != nil {
 		C.QHelpContentWidget_HideEvent(ptr.Pointer(), gui.PointerFromQHideEvent(event))
 	}
 }
 
 func (ptr *QHelpContentWidget) HideEventDefault(event gui.QHideEvent_ITF) {
-	defer qt.Recovering("QHelpContentWidget::hideEvent")
-
 	if ptr.Pointer() != nil {
 		C.QHelpContentWidget_HideEventDefault(ptr.Pointer(), gui.PointerFromQHideEvent(event))
 	}
@@ -5561,7 +4480,6 @@ func (ptr *QHelpContentWidget) HideEventDefault(event gui.QHideEvent_ITF) {
 
 //export callbackQHelpContentWidget_LeaveEvent
 func callbackQHelpContentWidget_LeaveEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpContentWidget::leaveEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentWidget::leaveEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
@@ -5571,8 +4489,6 @@ func callbackQHelpContentWidget_LeaveEvent(ptr unsafe.Pointer, event unsafe.Poin
 }
 
 func (ptr *QHelpContentWidget) ConnectLeaveEvent(f func(event *core.QEvent)) {
-	defer qt.Recovering("connect QHelpContentWidget::leaveEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentWidget::leaveEvent", f)
@@ -5580,8 +4496,6 @@ func (ptr *QHelpContentWidget) ConnectLeaveEvent(f func(event *core.QEvent)) {
 }
 
 func (ptr *QHelpContentWidget) DisconnectLeaveEvent() {
-	defer qt.Recovering("disconnect QHelpContentWidget::leaveEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentWidget::leaveEvent")
@@ -5589,16 +4503,12 @@ func (ptr *QHelpContentWidget) DisconnectLeaveEvent() {
 }
 
 func (ptr *QHelpContentWidget) LeaveEvent(event core.QEvent_ITF) {
-	defer qt.Recovering("QHelpContentWidget::leaveEvent")
-
 	if ptr.Pointer() != nil {
 		C.QHelpContentWidget_LeaveEvent(ptr.Pointer(), core.PointerFromQEvent(event))
 	}
 }
 
 func (ptr *QHelpContentWidget) LeaveEventDefault(event core.QEvent_ITF) {
-	defer qt.Recovering("QHelpContentWidget::leaveEvent")
-
 	if ptr.Pointer() != nil {
 		C.QHelpContentWidget_LeaveEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
 	}
@@ -5606,7 +4516,6 @@ func (ptr *QHelpContentWidget) LeaveEventDefault(event core.QEvent_ITF) {
 
 //export callbackQHelpContentWidget_MoveEvent
 func callbackQHelpContentWidget_MoveEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpContentWidget::moveEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentWidget::moveEvent"); signal != nil {
 		signal.(func(*gui.QMoveEvent))(gui.NewQMoveEventFromPointer(event))
@@ -5616,8 +4525,6 @@ func callbackQHelpContentWidget_MoveEvent(ptr unsafe.Pointer, event unsafe.Point
 }
 
 func (ptr *QHelpContentWidget) ConnectMoveEvent(f func(event *gui.QMoveEvent)) {
-	defer qt.Recovering("connect QHelpContentWidget::moveEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentWidget::moveEvent", f)
@@ -5625,8 +4532,6 @@ func (ptr *QHelpContentWidget) ConnectMoveEvent(f func(event *gui.QMoveEvent)) {
 }
 
 func (ptr *QHelpContentWidget) DisconnectMoveEvent() {
-	defer qt.Recovering("disconnect QHelpContentWidget::moveEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentWidget::moveEvent")
@@ -5634,16 +4539,12 @@ func (ptr *QHelpContentWidget) DisconnectMoveEvent() {
 }
 
 func (ptr *QHelpContentWidget) MoveEvent(event gui.QMoveEvent_ITF) {
-	defer qt.Recovering("QHelpContentWidget::moveEvent")
-
 	if ptr.Pointer() != nil {
 		C.QHelpContentWidget_MoveEvent(ptr.Pointer(), gui.PointerFromQMoveEvent(event))
 	}
 }
 
 func (ptr *QHelpContentWidget) MoveEventDefault(event gui.QMoveEvent_ITF) {
-	defer qt.Recovering("QHelpContentWidget::moveEvent")
-
 	if ptr.Pointer() != nil {
 		C.QHelpContentWidget_MoveEventDefault(ptr.Pointer(), gui.PointerFromQMoveEvent(event))
 	}
@@ -5651,8 +4552,6 @@ func (ptr *QHelpContentWidget) MoveEventDefault(event gui.QMoveEvent_ITF) {
 
 //export callbackQHelpContentWidget_SetEnabled
 func callbackQHelpContentWidget_SetEnabled(ptr unsafe.Pointer, vbo C.char) {
-	defer qt.Recovering("callback QHelpContentWidget::setEnabled")
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentWidget::setEnabled"); signal != nil {
 		signal.(func(bool))(int8(vbo) != 0)
 	} else {
@@ -5661,8 +4560,6 @@ func callbackQHelpContentWidget_SetEnabled(ptr unsafe.Pointer, vbo C.char) {
 }
 
 func (ptr *QHelpContentWidget) ConnectSetEnabled(f func(vbo bool)) {
-	defer qt.Recovering("connect QHelpContentWidget::setEnabled")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentWidget::setEnabled", f)
@@ -5670,8 +4567,6 @@ func (ptr *QHelpContentWidget) ConnectSetEnabled(f func(vbo bool)) {
 }
 
 func (ptr *QHelpContentWidget) DisconnectSetEnabled() {
-	defer qt.Recovering("disconnect QHelpContentWidget::setEnabled")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentWidget::setEnabled")
@@ -5679,16 +4574,12 @@ func (ptr *QHelpContentWidget) DisconnectSetEnabled() {
 }
 
 func (ptr *QHelpContentWidget) SetEnabled(vbo bool) {
-	defer qt.Recovering("QHelpContentWidget::setEnabled")
-
 	if ptr.Pointer() != nil {
 		C.QHelpContentWidget_SetEnabled(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(vbo))))
 	}
 }
 
 func (ptr *QHelpContentWidget) SetEnabledDefault(vbo bool) {
-	defer qt.Recovering("QHelpContentWidget::setEnabled")
-
 	if ptr.Pointer() != nil {
 		C.QHelpContentWidget_SetEnabledDefault(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(vbo))))
 	}
@@ -5696,8 +4587,6 @@ func (ptr *QHelpContentWidget) SetEnabledDefault(vbo bool) {
 
 //export callbackQHelpContentWidget_SetStyleSheet
 func callbackQHelpContentWidget_SetStyleSheet(ptr unsafe.Pointer, styleSheet *C.char) {
-	defer qt.Recovering("callback QHelpContentWidget::setStyleSheet")
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentWidget::setStyleSheet"); signal != nil {
 		signal.(func(string))(C.GoString(styleSheet))
 	} else {
@@ -5706,8 +4595,6 @@ func callbackQHelpContentWidget_SetStyleSheet(ptr unsafe.Pointer, styleSheet *C.
 }
 
 func (ptr *QHelpContentWidget) ConnectSetStyleSheet(f func(styleSheet string)) {
-	defer qt.Recovering("connect QHelpContentWidget::setStyleSheet")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentWidget::setStyleSheet", f)
@@ -5715,8 +4602,6 @@ func (ptr *QHelpContentWidget) ConnectSetStyleSheet(f func(styleSheet string)) {
 }
 
 func (ptr *QHelpContentWidget) DisconnectSetStyleSheet() {
-	defer qt.Recovering("disconnect QHelpContentWidget::setStyleSheet")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentWidget::setStyleSheet")
@@ -5724,8 +4609,6 @@ func (ptr *QHelpContentWidget) DisconnectSetStyleSheet() {
 }
 
 func (ptr *QHelpContentWidget) SetStyleSheet(styleSheet string) {
-	defer qt.Recovering("QHelpContentWidget::setStyleSheet")
-
 	if ptr.Pointer() != nil {
 		var styleSheetC = C.CString(styleSheet)
 		defer C.free(unsafe.Pointer(styleSheetC))
@@ -5734,8 +4617,6 @@ func (ptr *QHelpContentWidget) SetStyleSheet(styleSheet string) {
 }
 
 func (ptr *QHelpContentWidget) SetStyleSheetDefault(styleSheet string) {
-	defer qt.Recovering("QHelpContentWidget::setStyleSheet")
-
 	if ptr.Pointer() != nil {
 		var styleSheetC = C.CString(styleSheet)
 		defer C.free(unsafe.Pointer(styleSheetC))
@@ -5745,8 +4626,6 @@ func (ptr *QHelpContentWidget) SetStyleSheetDefault(styleSheet string) {
 
 //export callbackQHelpContentWidget_SetVisible
 func callbackQHelpContentWidget_SetVisible(ptr unsafe.Pointer, visible C.char) {
-	defer qt.Recovering("callback QHelpContentWidget::setVisible")
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentWidget::setVisible"); signal != nil {
 		signal.(func(bool))(int8(visible) != 0)
 	} else {
@@ -5755,8 +4634,6 @@ func callbackQHelpContentWidget_SetVisible(ptr unsafe.Pointer, visible C.char) {
 }
 
 func (ptr *QHelpContentWidget) ConnectSetVisible(f func(visible bool)) {
-	defer qt.Recovering("connect QHelpContentWidget::setVisible")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentWidget::setVisible", f)
@@ -5764,8 +4641,6 @@ func (ptr *QHelpContentWidget) ConnectSetVisible(f func(visible bool)) {
 }
 
 func (ptr *QHelpContentWidget) DisconnectSetVisible() {
-	defer qt.Recovering("disconnect QHelpContentWidget::setVisible")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentWidget::setVisible")
@@ -5773,16 +4648,12 @@ func (ptr *QHelpContentWidget) DisconnectSetVisible() {
 }
 
 func (ptr *QHelpContentWidget) SetVisible(visible bool) {
-	defer qt.Recovering("QHelpContentWidget::setVisible")
-
 	if ptr.Pointer() != nil {
 		C.QHelpContentWidget_SetVisible(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(visible))))
 	}
 }
 
 func (ptr *QHelpContentWidget) SetVisibleDefault(visible bool) {
-	defer qt.Recovering("QHelpContentWidget::setVisible")
-
 	if ptr.Pointer() != nil {
 		C.QHelpContentWidget_SetVisibleDefault(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(visible))))
 	}
@@ -5790,8 +4661,6 @@ func (ptr *QHelpContentWidget) SetVisibleDefault(visible bool) {
 
 //export callbackQHelpContentWidget_SetWindowModified
 func callbackQHelpContentWidget_SetWindowModified(ptr unsafe.Pointer, vbo C.char) {
-	defer qt.Recovering("callback QHelpContentWidget::setWindowModified")
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentWidget::setWindowModified"); signal != nil {
 		signal.(func(bool))(int8(vbo) != 0)
 	} else {
@@ -5800,8 +4669,6 @@ func callbackQHelpContentWidget_SetWindowModified(ptr unsafe.Pointer, vbo C.char
 }
 
 func (ptr *QHelpContentWidget) ConnectSetWindowModified(f func(vbo bool)) {
-	defer qt.Recovering("connect QHelpContentWidget::setWindowModified")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentWidget::setWindowModified", f)
@@ -5809,8 +4676,6 @@ func (ptr *QHelpContentWidget) ConnectSetWindowModified(f func(vbo bool)) {
 }
 
 func (ptr *QHelpContentWidget) DisconnectSetWindowModified() {
-	defer qt.Recovering("disconnect QHelpContentWidget::setWindowModified")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentWidget::setWindowModified")
@@ -5818,16 +4683,12 @@ func (ptr *QHelpContentWidget) DisconnectSetWindowModified() {
 }
 
 func (ptr *QHelpContentWidget) SetWindowModified(vbo bool) {
-	defer qt.Recovering("QHelpContentWidget::setWindowModified")
-
 	if ptr.Pointer() != nil {
 		C.QHelpContentWidget_SetWindowModified(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(vbo))))
 	}
 }
 
 func (ptr *QHelpContentWidget) SetWindowModifiedDefault(vbo bool) {
-	defer qt.Recovering("QHelpContentWidget::setWindowModified")
-
 	if ptr.Pointer() != nil {
 		C.QHelpContentWidget_SetWindowModifiedDefault(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(vbo))))
 	}
@@ -5835,8 +4696,6 @@ func (ptr *QHelpContentWidget) SetWindowModifiedDefault(vbo bool) {
 
 //export callbackQHelpContentWidget_SetWindowTitle
 func callbackQHelpContentWidget_SetWindowTitle(ptr unsafe.Pointer, vqs *C.char) {
-	defer qt.Recovering("callback QHelpContentWidget::setWindowTitle")
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentWidget::setWindowTitle"); signal != nil {
 		signal.(func(string))(C.GoString(vqs))
 	} else {
@@ -5845,8 +4704,6 @@ func callbackQHelpContentWidget_SetWindowTitle(ptr unsafe.Pointer, vqs *C.char) 
 }
 
 func (ptr *QHelpContentWidget) ConnectSetWindowTitle(f func(vqs string)) {
-	defer qt.Recovering("connect QHelpContentWidget::setWindowTitle")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentWidget::setWindowTitle", f)
@@ -5854,8 +4711,6 @@ func (ptr *QHelpContentWidget) ConnectSetWindowTitle(f func(vqs string)) {
 }
 
 func (ptr *QHelpContentWidget) DisconnectSetWindowTitle() {
-	defer qt.Recovering("disconnect QHelpContentWidget::setWindowTitle")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentWidget::setWindowTitle")
@@ -5863,8 +4718,6 @@ func (ptr *QHelpContentWidget) DisconnectSetWindowTitle() {
 }
 
 func (ptr *QHelpContentWidget) SetWindowTitle(vqs string) {
-	defer qt.Recovering("QHelpContentWidget::setWindowTitle")
-
 	if ptr.Pointer() != nil {
 		var vqsC = C.CString(vqs)
 		defer C.free(unsafe.Pointer(vqsC))
@@ -5873,8 +4726,6 @@ func (ptr *QHelpContentWidget) SetWindowTitle(vqs string) {
 }
 
 func (ptr *QHelpContentWidget) SetWindowTitleDefault(vqs string) {
-	defer qt.Recovering("QHelpContentWidget::setWindowTitle")
-
 	if ptr.Pointer() != nil {
 		var vqsC = C.CString(vqs)
 		defer C.free(unsafe.Pointer(vqsC))
@@ -5884,7 +4735,6 @@ func (ptr *QHelpContentWidget) SetWindowTitleDefault(vqs string) {
 
 //export callbackQHelpContentWidget_ShowEvent
 func callbackQHelpContentWidget_ShowEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpContentWidget::showEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentWidget::showEvent"); signal != nil {
 		signal.(func(*gui.QShowEvent))(gui.NewQShowEventFromPointer(event))
@@ -5894,8 +4744,6 @@ func callbackQHelpContentWidget_ShowEvent(ptr unsafe.Pointer, event unsafe.Point
 }
 
 func (ptr *QHelpContentWidget) ConnectShowEvent(f func(event *gui.QShowEvent)) {
-	defer qt.Recovering("connect QHelpContentWidget::showEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentWidget::showEvent", f)
@@ -5903,8 +4751,6 @@ func (ptr *QHelpContentWidget) ConnectShowEvent(f func(event *gui.QShowEvent)) {
 }
 
 func (ptr *QHelpContentWidget) DisconnectShowEvent() {
-	defer qt.Recovering("disconnect QHelpContentWidget::showEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentWidget::showEvent")
@@ -5912,16 +4758,12 @@ func (ptr *QHelpContentWidget) DisconnectShowEvent() {
 }
 
 func (ptr *QHelpContentWidget) ShowEvent(event gui.QShowEvent_ITF) {
-	defer qt.Recovering("QHelpContentWidget::showEvent")
-
 	if ptr.Pointer() != nil {
 		C.QHelpContentWidget_ShowEvent(ptr.Pointer(), gui.PointerFromQShowEvent(event))
 	}
 }
 
 func (ptr *QHelpContentWidget) ShowEventDefault(event gui.QShowEvent_ITF) {
-	defer qt.Recovering("QHelpContentWidget::showEvent")
-
 	if ptr.Pointer() != nil {
 		C.QHelpContentWidget_ShowEventDefault(ptr.Pointer(), gui.PointerFromQShowEvent(event))
 	}
@@ -5929,8 +4771,6 @@ func (ptr *QHelpContentWidget) ShowEventDefault(event gui.QShowEvent_ITF) {
 
 //export callbackQHelpContentWidget_Close
 func callbackQHelpContentWidget_Close(ptr unsafe.Pointer) C.char {
-	defer qt.Recovering("callback QHelpContentWidget::close")
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentWidget::close"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func() bool)())))
 	}
@@ -5939,8 +4779,6 @@ func callbackQHelpContentWidget_Close(ptr unsafe.Pointer) C.char {
 }
 
 func (ptr *QHelpContentWidget) ConnectClose(f func() bool) {
-	defer qt.Recovering("connect QHelpContentWidget::close")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentWidget::close", f)
@@ -5948,8 +4786,6 @@ func (ptr *QHelpContentWidget) ConnectClose(f func() bool) {
 }
 
 func (ptr *QHelpContentWidget) DisconnectClose() {
-	defer qt.Recovering("disconnect QHelpContentWidget::close")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentWidget::close")
@@ -5957,8 +4793,6 @@ func (ptr *QHelpContentWidget) DisconnectClose() {
 }
 
 func (ptr *QHelpContentWidget) Close() bool {
-	defer qt.Recovering("QHelpContentWidget::close")
-
 	if ptr.Pointer() != nil {
 		return C.QHelpContentWidget_Close(ptr.Pointer()) != 0
 	}
@@ -5966,8 +4800,6 @@ func (ptr *QHelpContentWidget) Close() bool {
 }
 
 func (ptr *QHelpContentWidget) CloseDefault() bool {
-	defer qt.Recovering("QHelpContentWidget::close")
-
 	if ptr.Pointer() != nil {
 		return C.QHelpContentWidget_CloseDefault(ptr.Pointer()) != 0
 	}
@@ -5976,7 +4808,6 @@ func (ptr *QHelpContentWidget) CloseDefault() bool {
 
 //export callbackQHelpContentWidget_CloseEvent
 func callbackQHelpContentWidget_CloseEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpContentWidget::closeEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentWidget::closeEvent"); signal != nil {
 		signal.(func(*gui.QCloseEvent))(gui.NewQCloseEventFromPointer(event))
@@ -5986,8 +4817,6 @@ func callbackQHelpContentWidget_CloseEvent(ptr unsafe.Pointer, event unsafe.Poin
 }
 
 func (ptr *QHelpContentWidget) ConnectCloseEvent(f func(event *gui.QCloseEvent)) {
-	defer qt.Recovering("connect QHelpContentWidget::closeEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentWidget::closeEvent", f)
@@ -5995,8 +4824,6 @@ func (ptr *QHelpContentWidget) ConnectCloseEvent(f func(event *gui.QCloseEvent))
 }
 
 func (ptr *QHelpContentWidget) DisconnectCloseEvent() {
-	defer qt.Recovering("disconnect QHelpContentWidget::closeEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentWidget::closeEvent")
@@ -6004,16 +4831,12 @@ func (ptr *QHelpContentWidget) DisconnectCloseEvent() {
 }
 
 func (ptr *QHelpContentWidget) CloseEvent(event gui.QCloseEvent_ITF) {
-	defer qt.Recovering("QHelpContentWidget::closeEvent")
-
 	if ptr.Pointer() != nil {
 		C.QHelpContentWidget_CloseEvent(ptr.Pointer(), gui.PointerFromQCloseEvent(event))
 	}
 }
 
 func (ptr *QHelpContentWidget) CloseEventDefault(event gui.QCloseEvent_ITF) {
-	defer qt.Recovering("QHelpContentWidget::closeEvent")
-
 	if ptr.Pointer() != nil {
 		C.QHelpContentWidget_CloseEventDefault(ptr.Pointer(), gui.PointerFromQCloseEvent(event))
 	}
@@ -6021,7 +4844,6 @@ func (ptr *QHelpContentWidget) CloseEventDefault(event gui.QCloseEvent_ITF) {
 
 //export callbackQHelpContentWidget_HasHeightForWidth
 func callbackQHelpContentWidget_HasHeightForWidth(ptr unsafe.Pointer) C.char {
-	defer qt.Recovering("callback QHelpContentWidget::hasHeightForWidth")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentWidget::hasHeightForWidth"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func() bool)())))
@@ -6031,8 +4853,6 @@ func callbackQHelpContentWidget_HasHeightForWidth(ptr unsafe.Pointer) C.char {
 }
 
 func (ptr *QHelpContentWidget) ConnectHasHeightForWidth(f func() bool) {
-	defer qt.Recovering("connect QHelpContentWidget::hasHeightForWidth")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentWidget::hasHeightForWidth", f)
@@ -6040,8 +4860,6 @@ func (ptr *QHelpContentWidget) ConnectHasHeightForWidth(f func() bool) {
 }
 
 func (ptr *QHelpContentWidget) DisconnectHasHeightForWidth() {
-	defer qt.Recovering("disconnect QHelpContentWidget::hasHeightForWidth")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentWidget::hasHeightForWidth")
@@ -6049,8 +4867,6 @@ func (ptr *QHelpContentWidget) DisconnectHasHeightForWidth() {
 }
 
 func (ptr *QHelpContentWidget) HasHeightForWidth() bool {
-	defer qt.Recovering("QHelpContentWidget::hasHeightForWidth")
-
 	if ptr.Pointer() != nil {
 		return C.QHelpContentWidget_HasHeightForWidth(ptr.Pointer()) != 0
 	}
@@ -6058,8 +4874,6 @@ func (ptr *QHelpContentWidget) HasHeightForWidth() bool {
 }
 
 func (ptr *QHelpContentWidget) HasHeightForWidthDefault() bool {
-	defer qt.Recovering("QHelpContentWidget::hasHeightForWidth")
-
 	if ptr.Pointer() != nil {
 		return C.QHelpContentWidget_HasHeightForWidthDefault(ptr.Pointer()) != 0
 	}
@@ -6068,7 +4882,6 @@ func (ptr *QHelpContentWidget) HasHeightForWidthDefault() bool {
 
 //export callbackQHelpContentWidget_HeightForWidth
 func callbackQHelpContentWidget_HeightForWidth(ptr unsafe.Pointer, w C.int) C.int {
-	defer qt.Recovering("callback QHelpContentWidget::heightForWidth")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentWidget::heightForWidth"); signal != nil {
 		return C.int(int32(signal.(func(int) int)(int(int32(w)))))
@@ -6078,8 +4891,6 @@ func callbackQHelpContentWidget_HeightForWidth(ptr unsafe.Pointer, w C.int) C.in
 }
 
 func (ptr *QHelpContentWidget) ConnectHeightForWidth(f func(w int) int) {
-	defer qt.Recovering("connect QHelpContentWidget::heightForWidth")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentWidget::heightForWidth", f)
@@ -6087,8 +4898,6 @@ func (ptr *QHelpContentWidget) ConnectHeightForWidth(f func(w int) int) {
 }
 
 func (ptr *QHelpContentWidget) DisconnectHeightForWidth() {
-	defer qt.Recovering("disconnect QHelpContentWidget::heightForWidth")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentWidget::heightForWidth")
@@ -6096,8 +4905,6 @@ func (ptr *QHelpContentWidget) DisconnectHeightForWidth() {
 }
 
 func (ptr *QHelpContentWidget) HeightForWidth(w int) int {
-	defer qt.Recovering("QHelpContentWidget::heightForWidth")
-
 	if ptr.Pointer() != nil {
 		return int(int32(C.QHelpContentWidget_HeightForWidth(ptr.Pointer(), C.int(int32(w)))))
 	}
@@ -6105,8 +4912,6 @@ func (ptr *QHelpContentWidget) HeightForWidth(w int) int {
 }
 
 func (ptr *QHelpContentWidget) HeightForWidthDefault(w int) int {
-	defer qt.Recovering("QHelpContentWidget::heightForWidth")
-
 	if ptr.Pointer() != nil {
 		return int(int32(C.QHelpContentWidget_HeightForWidthDefault(ptr.Pointer(), C.int(int32(w)))))
 	}
@@ -6115,8 +4920,6 @@ func (ptr *QHelpContentWidget) HeightForWidthDefault(w int) int {
 
 //export callbackQHelpContentWidget_Hide
 func callbackQHelpContentWidget_Hide(ptr unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpContentWidget::hide")
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentWidget::hide"); signal != nil {
 		signal.(func())()
 	} else {
@@ -6125,8 +4928,6 @@ func callbackQHelpContentWidget_Hide(ptr unsafe.Pointer) {
 }
 
 func (ptr *QHelpContentWidget) ConnectHide(f func()) {
-	defer qt.Recovering("connect QHelpContentWidget::hide")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentWidget::hide", f)
@@ -6134,8 +4935,6 @@ func (ptr *QHelpContentWidget) ConnectHide(f func()) {
 }
 
 func (ptr *QHelpContentWidget) DisconnectHide() {
-	defer qt.Recovering("disconnect QHelpContentWidget::hide")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentWidget::hide")
@@ -6143,16 +4942,12 @@ func (ptr *QHelpContentWidget) DisconnectHide() {
 }
 
 func (ptr *QHelpContentWidget) Hide() {
-	defer qt.Recovering("QHelpContentWidget::hide")
-
 	if ptr.Pointer() != nil {
 		C.QHelpContentWidget_Hide(ptr.Pointer())
 	}
 }
 
 func (ptr *QHelpContentWidget) HideDefault() {
-	defer qt.Recovering("QHelpContentWidget::hide")
-
 	if ptr.Pointer() != nil {
 		C.QHelpContentWidget_HideDefault(ptr.Pointer())
 	}
@@ -6160,7 +4955,6 @@ func (ptr *QHelpContentWidget) HideDefault() {
 
 //export callbackQHelpContentWidget_KeyReleaseEvent
 func callbackQHelpContentWidget_KeyReleaseEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpContentWidget::keyReleaseEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentWidget::keyReleaseEvent"); signal != nil {
 		signal.(func(*gui.QKeyEvent))(gui.NewQKeyEventFromPointer(event))
@@ -6170,8 +4964,6 @@ func callbackQHelpContentWidget_KeyReleaseEvent(ptr unsafe.Pointer, event unsafe
 }
 
 func (ptr *QHelpContentWidget) ConnectKeyReleaseEvent(f func(event *gui.QKeyEvent)) {
-	defer qt.Recovering("connect QHelpContentWidget::keyReleaseEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentWidget::keyReleaseEvent", f)
@@ -6179,8 +4971,6 @@ func (ptr *QHelpContentWidget) ConnectKeyReleaseEvent(f func(event *gui.QKeyEven
 }
 
 func (ptr *QHelpContentWidget) DisconnectKeyReleaseEvent() {
-	defer qt.Recovering("disconnect QHelpContentWidget::keyReleaseEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentWidget::keyReleaseEvent")
@@ -6188,16 +4978,12 @@ func (ptr *QHelpContentWidget) DisconnectKeyReleaseEvent() {
 }
 
 func (ptr *QHelpContentWidget) KeyReleaseEvent(event gui.QKeyEvent_ITF) {
-	defer qt.Recovering("QHelpContentWidget::keyReleaseEvent")
-
 	if ptr.Pointer() != nil {
 		C.QHelpContentWidget_KeyReleaseEvent(ptr.Pointer(), gui.PointerFromQKeyEvent(event))
 	}
 }
 
 func (ptr *QHelpContentWidget) KeyReleaseEventDefault(event gui.QKeyEvent_ITF) {
-	defer qt.Recovering("QHelpContentWidget::keyReleaseEvent")
-
 	if ptr.Pointer() != nil {
 		C.QHelpContentWidget_KeyReleaseEventDefault(ptr.Pointer(), gui.PointerFromQKeyEvent(event))
 	}
@@ -6205,8 +4991,6 @@ func (ptr *QHelpContentWidget) KeyReleaseEventDefault(event gui.QKeyEvent_ITF) {
 
 //export callbackQHelpContentWidget_Lower
 func callbackQHelpContentWidget_Lower(ptr unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpContentWidget::lower")
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentWidget::lower"); signal != nil {
 		signal.(func())()
 	} else {
@@ -6215,8 +4999,6 @@ func callbackQHelpContentWidget_Lower(ptr unsafe.Pointer) {
 }
 
 func (ptr *QHelpContentWidget) ConnectLower(f func()) {
-	defer qt.Recovering("connect QHelpContentWidget::lower")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentWidget::lower", f)
@@ -6224,8 +5006,6 @@ func (ptr *QHelpContentWidget) ConnectLower(f func()) {
 }
 
 func (ptr *QHelpContentWidget) DisconnectLower() {
-	defer qt.Recovering("disconnect QHelpContentWidget::lower")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentWidget::lower")
@@ -6233,16 +5013,12 @@ func (ptr *QHelpContentWidget) DisconnectLower() {
 }
 
 func (ptr *QHelpContentWidget) Lower() {
-	defer qt.Recovering("QHelpContentWidget::lower")
-
 	if ptr.Pointer() != nil {
 		C.QHelpContentWidget_Lower(ptr.Pointer())
 	}
 }
 
 func (ptr *QHelpContentWidget) LowerDefault() {
-	defer qt.Recovering("QHelpContentWidget::lower")
-
 	if ptr.Pointer() != nil {
 		C.QHelpContentWidget_LowerDefault(ptr.Pointer())
 	}
@@ -6250,7 +5026,6 @@ func (ptr *QHelpContentWidget) LowerDefault() {
 
 //export callbackQHelpContentWidget_NativeEvent
 func callbackQHelpContentWidget_NativeEvent(ptr unsafe.Pointer, eventType *C.char, message unsafe.Pointer, result C.long) C.char {
-	defer qt.Recovering("callback QHelpContentWidget::nativeEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentWidget::nativeEvent"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(string, unsafe.Pointer, int) bool)(qt.HexDecodeToString(C.GoString(eventType)), message, int(int32(result))))))
@@ -6260,8 +5035,6 @@ func callbackQHelpContentWidget_NativeEvent(ptr unsafe.Pointer, eventType *C.cha
 }
 
 func (ptr *QHelpContentWidget) ConnectNativeEvent(f func(eventType string, message unsafe.Pointer, result int) bool) {
-	defer qt.Recovering("connect QHelpContentWidget::nativeEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentWidget::nativeEvent", f)
@@ -6269,8 +5042,6 @@ func (ptr *QHelpContentWidget) ConnectNativeEvent(f func(eventType string, messa
 }
 
 func (ptr *QHelpContentWidget) DisconnectNativeEvent() {
-	defer qt.Recovering("disconnect QHelpContentWidget::nativeEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentWidget::nativeEvent")
@@ -6278,8 +5049,6 @@ func (ptr *QHelpContentWidget) DisconnectNativeEvent() {
 }
 
 func (ptr *QHelpContentWidget) NativeEvent(eventType string, message unsafe.Pointer, result int) bool {
-	defer qt.Recovering("QHelpContentWidget::nativeEvent")
-
 	if ptr.Pointer() != nil {
 		var eventTypeC = C.CString(hex.EncodeToString([]byte(eventType)))
 		defer C.free(unsafe.Pointer(eventTypeC))
@@ -6289,8 +5058,6 @@ func (ptr *QHelpContentWidget) NativeEvent(eventType string, message unsafe.Poin
 }
 
 func (ptr *QHelpContentWidget) NativeEventDefault(eventType string, message unsafe.Pointer, result int) bool {
-	defer qt.Recovering("QHelpContentWidget::nativeEvent")
-
 	if ptr.Pointer() != nil {
 		var eventTypeC = C.CString(hex.EncodeToString([]byte(eventType)))
 		defer C.free(unsafe.Pointer(eventTypeC))
@@ -6301,8 +5068,6 @@ func (ptr *QHelpContentWidget) NativeEventDefault(eventType string, message unsa
 
 //export callbackQHelpContentWidget_Raise
 func callbackQHelpContentWidget_Raise(ptr unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpContentWidget::raise")
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentWidget::raise"); signal != nil {
 		signal.(func())()
 	} else {
@@ -6311,8 +5076,6 @@ func callbackQHelpContentWidget_Raise(ptr unsafe.Pointer) {
 }
 
 func (ptr *QHelpContentWidget) ConnectRaise(f func()) {
-	defer qt.Recovering("connect QHelpContentWidget::raise")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentWidget::raise", f)
@@ -6320,8 +5083,6 @@ func (ptr *QHelpContentWidget) ConnectRaise(f func()) {
 }
 
 func (ptr *QHelpContentWidget) DisconnectRaise() {
-	defer qt.Recovering("disconnect QHelpContentWidget::raise")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentWidget::raise")
@@ -6329,16 +5090,12 @@ func (ptr *QHelpContentWidget) DisconnectRaise() {
 }
 
 func (ptr *QHelpContentWidget) Raise() {
-	defer qt.Recovering("QHelpContentWidget::raise")
-
 	if ptr.Pointer() != nil {
 		C.QHelpContentWidget_Raise(ptr.Pointer())
 	}
 }
 
 func (ptr *QHelpContentWidget) RaiseDefault() {
-	defer qt.Recovering("QHelpContentWidget::raise")
-
 	if ptr.Pointer() != nil {
 		C.QHelpContentWidget_RaiseDefault(ptr.Pointer())
 	}
@@ -6346,8 +5103,6 @@ func (ptr *QHelpContentWidget) RaiseDefault() {
 
 //export callbackQHelpContentWidget_Repaint
 func callbackQHelpContentWidget_Repaint(ptr unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpContentWidget::repaint")
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentWidget::repaint"); signal != nil {
 		signal.(func())()
 	} else {
@@ -6356,8 +5111,6 @@ func callbackQHelpContentWidget_Repaint(ptr unsafe.Pointer) {
 }
 
 func (ptr *QHelpContentWidget) ConnectRepaint(f func()) {
-	defer qt.Recovering("connect QHelpContentWidget::repaint")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentWidget::repaint", f)
@@ -6365,8 +5118,6 @@ func (ptr *QHelpContentWidget) ConnectRepaint(f func()) {
 }
 
 func (ptr *QHelpContentWidget) DisconnectRepaint() {
-	defer qt.Recovering("disconnect QHelpContentWidget::repaint")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentWidget::repaint")
@@ -6374,16 +5125,12 @@ func (ptr *QHelpContentWidget) DisconnectRepaint() {
 }
 
 func (ptr *QHelpContentWidget) Repaint() {
-	defer qt.Recovering("QHelpContentWidget::repaint")
-
 	if ptr.Pointer() != nil {
 		C.QHelpContentWidget_Repaint(ptr.Pointer())
 	}
 }
 
 func (ptr *QHelpContentWidget) RepaintDefault() {
-	defer qt.Recovering("QHelpContentWidget::repaint")
-
 	if ptr.Pointer() != nil {
 		C.QHelpContentWidget_RepaintDefault(ptr.Pointer())
 	}
@@ -6391,8 +5138,6 @@ func (ptr *QHelpContentWidget) RepaintDefault() {
 
 //export callbackQHelpContentWidget_SetDisabled
 func callbackQHelpContentWidget_SetDisabled(ptr unsafe.Pointer, disable C.char) {
-	defer qt.Recovering("callback QHelpContentWidget::setDisabled")
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentWidget::setDisabled"); signal != nil {
 		signal.(func(bool))(int8(disable) != 0)
 	} else {
@@ -6401,8 +5146,6 @@ func callbackQHelpContentWidget_SetDisabled(ptr unsafe.Pointer, disable C.char) 
 }
 
 func (ptr *QHelpContentWidget) ConnectSetDisabled(f func(disable bool)) {
-	defer qt.Recovering("connect QHelpContentWidget::setDisabled")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentWidget::setDisabled", f)
@@ -6410,8 +5153,6 @@ func (ptr *QHelpContentWidget) ConnectSetDisabled(f func(disable bool)) {
 }
 
 func (ptr *QHelpContentWidget) DisconnectSetDisabled() {
-	defer qt.Recovering("disconnect QHelpContentWidget::setDisabled")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentWidget::setDisabled")
@@ -6419,16 +5160,12 @@ func (ptr *QHelpContentWidget) DisconnectSetDisabled() {
 }
 
 func (ptr *QHelpContentWidget) SetDisabled(disable bool) {
-	defer qt.Recovering("QHelpContentWidget::setDisabled")
-
 	if ptr.Pointer() != nil {
 		C.QHelpContentWidget_SetDisabled(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(disable))))
 	}
 }
 
 func (ptr *QHelpContentWidget) SetDisabledDefault(disable bool) {
-	defer qt.Recovering("QHelpContentWidget::setDisabled")
-
 	if ptr.Pointer() != nil {
 		C.QHelpContentWidget_SetDisabledDefault(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(disable))))
 	}
@@ -6436,8 +5173,6 @@ func (ptr *QHelpContentWidget) SetDisabledDefault(disable bool) {
 
 //export callbackQHelpContentWidget_SetFocus2
 func callbackQHelpContentWidget_SetFocus2(ptr unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpContentWidget::setFocus")
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentWidget::setFocus2"); signal != nil {
 		signal.(func())()
 	} else {
@@ -6446,8 +5181,6 @@ func callbackQHelpContentWidget_SetFocus2(ptr unsafe.Pointer) {
 }
 
 func (ptr *QHelpContentWidget) ConnectSetFocus2(f func()) {
-	defer qt.Recovering("connect QHelpContentWidget::setFocus")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentWidget::setFocus2", f)
@@ -6455,8 +5188,6 @@ func (ptr *QHelpContentWidget) ConnectSetFocus2(f func()) {
 }
 
 func (ptr *QHelpContentWidget) DisconnectSetFocus2() {
-	defer qt.Recovering("disconnect QHelpContentWidget::setFocus")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentWidget::setFocus2")
@@ -6464,16 +5195,12 @@ func (ptr *QHelpContentWidget) DisconnectSetFocus2() {
 }
 
 func (ptr *QHelpContentWidget) SetFocus2() {
-	defer qt.Recovering("QHelpContentWidget::setFocus")
-
 	if ptr.Pointer() != nil {
 		C.QHelpContentWidget_SetFocus2(ptr.Pointer())
 	}
 }
 
 func (ptr *QHelpContentWidget) SetFocus2Default() {
-	defer qt.Recovering("QHelpContentWidget::setFocus")
-
 	if ptr.Pointer() != nil {
 		C.QHelpContentWidget_SetFocus2Default(ptr.Pointer())
 	}
@@ -6481,8 +5208,6 @@ func (ptr *QHelpContentWidget) SetFocus2Default() {
 
 //export callbackQHelpContentWidget_SetHidden
 func callbackQHelpContentWidget_SetHidden(ptr unsafe.Pointer, hidden C.char) {
-	defer qt.Recovering("callback QHelpContentWidget::setHidden")
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentWidget::setHidden"); signal != nil {
 		signal.(func(bool))(int8(hidden) != 0)
 	} else {
@@ -6491,8 +5216,6 @@ func callbackQHelpContentWidget_SetHidden(ptr unsafe.Pointer, hidden C.char) {
 }
 
 func (ptr *QHelpContentWidget) ConnectSetHidden(f func(hidden bool)) {
-	defer qt.Recovering("connect QHelpContentWidget::setHidden")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentWidget::setHidden", f)
@@ -6500,8 +5223,6 @@ func (ptr *QHelpContentWidget) ConnectSetHidden(f func(hidden bool)) {
 }
 
 func (ptr *QHelpContentWidget) DisconnectSetHidden() {
-	defer qt.Recovering("disconnect QHelpContentWidget::setHidden")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentWidget::setHidden")
@@ -6509,16 +5230,12 @@ func (ptr *QHelpContentWidget) DisconnectSetHidden() {
 }
 
 func (ptr *QHelpContentWidget) SetHidden(hidden bool) {
-	defer qt.Recovering("QHelpContentWidget::setHidden")
-
 	if ptr.Pointer() != nil {
 		C.QHelpContentWidget_SetHidden(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(hidden))))
 	}
 }
 
 func (ptr *QHelpContentWidget) SetHiddenDefault(hidden bool) {
-	defer qt.Recovering("QHelpContentWidget::setHidden")
-
 	if ptr.Pointer() != nil {
 		C.QHelpContentWidget_SetHiddenDefault(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(hidden))))
 	}
@@ -6526,8 +5243,6 @@ func (ptr *QHelpContentWidget) SetHiddenDefault(hidden bool) {
 
 //export callbackQHelpContentWidget_Show
 func callbackQHelpContentWidget_Show(ptr unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpContentWidget::show")
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentWidget::show"); signal != nil {
 		signal.(func())()
 	} else {
@@ -6536,8 +5251,6 @@ func callbackQHelpContentWidget_Show(ptr unsafe.Pointer) {
 }
 
 func (ptr *QHelpContentWidget) ConnectShow(f func()) {
-	defer qt.Recovering("connect QHelpContentWidget::show")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentWidget::show", f)
@@ -6545,8 +5258,6 @@ func (ptr *QHelpContentWidget) ConnectShow(f func()) {
 }
 
 func (ptr *QHelpContentWidget) DisconnectShow() {
-	defer qt.Recovering("disconnect QHelpContentWidget::show")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentWidget::show")
@@ -6554,16 +5265,12 @@ func (ptr *QHelpContentWidget) DisconnectShow() {
 }
 
 func (ptr *QHelpContentWidget) Show() {
-	defer qt.Recovering("QHelpContentWidget::show")
-
 	if ptr.Pointer() != nil {
 		C.QHelpContentWidget_Show(ptr.Pointer())
 	}
 }
 
 func (ptr *QHelpContentWidget) ShowDefault() {
-	defer qt.Recovering("QHelpContentWidget::show")
-
 	if ptr.Pointer() != nil {
 		C.QHelpContentWidget_ShowDefault(ptr.Pointer())
 	}
@@ -6571,8 +5278,6 @@ func (ptr *QHelpContentWidget) ShowDefault() {
 
 //export callbackQHelpContentWidget_ShowFullScreen
 func callbackQHelpContentWidget_ShowFullScreen(ptr unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpContentWidget::showFullScreen")
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentWidget::showFullScreen"); signal != nil {
 		signal.(func())()
 	} else {
@@ -6581,8 +5286,6 @@ func callbackQHelpContentWidget_ShowFullScreen(ptr unsafe.Pointer) {
 }
 
 func (ptr *QHelpContentWidget) ConnectShowFullScreen(f func()) {
-	defer qt.Recovering("connect QHelpContentWidget::showFullScreen")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentWidget::showFullScreen", f)
@@ -6590,8 +5293,6 @@ func (ptr *QHelpContentWidget) ConnectShowFullScreen(f func()) {
 }
 
 func (ptr *QHelpContentWidget) DisconnectShowFullScreen() {
-	defer qt.Recovering("disconnect QHelpContentWidget::showFullScreen")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentWidget::showFullScreen")
@@ -6599,16 +5300,12 @@ func (ptr *QHelpContentWidget) DisconnectShowFullScreen() {
 }
 
 func (ptr *QHelpContentWidget) ShowFullScreen() {
-	defer qt.Recovering("QHelpContentWidget::showFullScreen")
-
 	if ptr.Pointer() != nil {
 		C.QHelpContentWidget_ShowFullScreen(ptr.Pointer())
 	}
 }
 
 func (ptr *QHelpContentWidget) ShowFullScreenDefault() {
-	defer qt.Recovering("QHelpContentWidget::showFullScreen")
-
 	if ptr.Pointer() != nil {
 		C.QHelpContentWidget_ShowFullScreenDefault(ptr.Pointer())
 	}
@@ -6616,8 +5313,6 @@ func (ptr *QHelpContentWidget) ShowFullScreenDefault() {
 
 //export callbackQHelpContentWidget_ShowMaximized
 func callbackQHelpContentWidget_ShowMaximized(ptr unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpContentWidget::showMaximized")
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentWidget::showMaximized"); signal != nil {
 		signal.(func())()
 	} else {
@@ -6626,8 +5321,6 @@ func callbackQHelpContentWidget_ShowMaximized(ptr unsafe.Pointer) {
 }
 
 func (ptr *QHelpContentWidget) ConnectShowMaximized(f func()) {
-	defer qt.Recovering("connect QHelpContentWidget::showMaximized")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentWidget::showMaximized", f)
@@ -6635,8 +5328,6 @@ func (ptr *QHelpContentWidget) ConnectShowMaximized(f func()) {
 }
 
 func (ptr *QHelpContentWidget) DisconnectShowMaximized() {
-	defer qt.Recovering("disconnect QHelpContentWidget::showMaximized")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentWidget::showMaximized")
@@ -6644,16 +5335,12 @@ func (ptr *QHelpContentWidget) DisconnectShowMaximized() {
 }
 
 func (ptr *QHelpContentWidget) ShowMaximized() {
-	defer qt.Recovering("QHelpContentWidget::showMaximized")
-
 	if ptr.Pointer() != nil {
 		C.QHelpContentWidget_ShowMaximized(ptr.Pointer())
 	}
 }
 
 func (ptr *QHelpContentWidget) ShowMaximizedDefault() {
-	defer qt.Recovering("QHelpContentWidget::showMaximized")
-
 	if ptr.Pointer() != nil {
 		C.QHelpContentWidget_ShowMaximizedDefault(ptr.Pointer())
 	}
@@ -6661,8 +5348,6 @@ func (ptr *QHelpContentWidget) ShowMaximizedDefault() {
 
 //export callbackQHelpContentWidget_ShowMinimized
 func callbackQHelpContentWidget_ShowMinimized(ptr unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpContentWidget::showMinimized")
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentWidget::showMinimized"); signal != nil {
 		signal.(func())()
 	} else {
@@ -6671,8 +5356,6 @@ func callbackQHelpContentWidget_ShowMinimized(ptr unsafe.Pointer) {
 }
 
 func (ptr *QHelpContentWidget) ConnectShowMinimized(f func()) {
-	defer qt.Recovering("connect QHelpContentWidget::showMinimized")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentWidget::showMinimized", f)
@@ -6680,8 +5363,6 @@ func (ptr *QHelpContentWidget) ConnectShowMinimized(f func()) {
 }
 
 func (ptr *QHelpContentWidget) DisconnectShowMinimized() {
-	defer qt.Recovering("disconnect QHelpContentWidget::showMinimized")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentWidget::showMinimized")
@@ -6689,16 +5370,12 @@ func (ptr *QHelpContentWidget) DisconnectShowMinimized() {
 }
 
 func (ptr *QHelpContentWidget) ShowMinimized() {
-	defer qt.Recovering("QHelpContentWidget::showMinimized")
-
 	if ptr.Pointer() != nil {
 		C.QHelpContentWidget_ShowMinimized(ptr.Pointer())
 	}
 }
 
 func (ptr *QHelpContentWidget) ShowMinimizedDefault() {
-	defer qt.Recovering("QHelpContentWidget::showMinimized")
-
 	if ptr.Pointer() != nil {
 		C.QHelpContentWidget_ShowMinimizedDefault(ptr.Pointer())
 	}
@@ -6706,8 +5383,6 @@ func (ptr *QHelpContentWidget) ShowMinimizedDefault() {
 
 //export callbackQHelpContentWidget_ShowNormal
 func callbackQHelpContentWidget_ShowNormal(ptr unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpContentWidget::showNormal")
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentWidget::showNormal"); signal != nil {
 		signal.(func())()
 	} else {
@@ -6716,8 +5391,6 @@ func callbackQHelpContentWidget_ShowNormal(ptr unsafe.Pointer) {
 }
 
 func (ptr *QHelpContentWidget) ConnectShowNormal(f func()) {
-	defer qt.Recovering("connect QHelpContentWidget::showNormal")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentWidget::showNormal", f)
@@ -6725,8 +5398,6 @@ func (ptr *QHelpContentWidget) ConnectShowNormal(f func()) {
 }
 
 func (ptr *QHelpContentWidget) DisconnectShowNormal() {
-	defer qt.Recovering("disconnect QHelpContentWidget::showNormal")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentWidget::showNormal")
@@ -6734,16 +5405,12 @@ func (ptr *QHelpContentWidget) DisconnectShowNormal() {
 }
 
 func (ptr *QHelpContentWidget) ShowNormal() {
-	defer qt.Recovering("QHelpContentWidget::showNormal")
-
 	if ptr.Pointer() != nil {
 		C.QHelpContentWidget_ShowNormal(ptr.Pointer())
 	}
 }
 
 func (ptr *QHelpContentWidget) ShowNormalDefault() {
-	defer qt.Recovering("QHelpContentWidget::showNormal")
-
 	if ptr.Pointer() != nil {
 		C.QHelpContentWidget_ShowNormalDefault(ptr.Pointer())
 	}
@@ -6751,7 +5418,6 @@ func (ptr *QHelpContentWidget) ShowNormalDefault() {
 
 //export callbackQHelpContentWidget_TabletEvent
 func callbackQHelpContentWidget_TabletEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpContentWidget::tabletEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentWidget::tabletEvent"); signal != nil {
 		signal.(func(*gui.QTabletEvent))(gui.NewQTabletEventFromPointer(event))
@@ -6761,8 +5427,6 @@ func callbackQHelpContentWidget_TabletEvent(ptr unsafe.Pointer, event unsafe.Poi
 }
 
 func (ptr *QHelpContentWidget) ConnectTabletEvent(f func(event *gui.QTabletEvent)) {
-	defer qt.Recovering("connect QHelpContentWidget::tabletEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentWidget::tabletEvent", f)
@@ -6770,8 +5434,6 @@ func (ptr *QHelpContentWidget) ConnectTabletEvent(f func(event *gui.QTabletEvent
 }
 
 func (ptr *QHelpContentWidget) DisconnectTabletEvent() {
-	defer qt.Recovering("disconnect QHelpContentWidget::tabletEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentWidget::tabletEvent")
@@ -6779,16 +5441,12 @@ func (ptr *QHelpContentWidget) DisconnectTabletEvent() {
 }
 
 func (ptr *QHelpContentWidget) TabletEvent(event gui.QTabletEvent_ITF) {
-	defer qt.Recovering("QHelpContentWidget::tabletEvent")
-
 	if ptr.Pointer() != nil {
 		C.QHelpContentWidget_TabletEvent(ptr.Pointer(), gui.PointerFromQTabletEvent(event))
 	}
 }
 
 func (ptr *QHelpContentWidget) TabletEventDefault(event gui.QTabletEvent_ITF) {
-	defer qt.Recovering("QHelpContentWidget::tabletEvent")
-
 	if ptr.Pointer() != nil {
 		C.QHelpContentWidget_TabletEventDefault(ptr.Pointer(), gui.PointerFromQTabletEvent(event))
 	}
@@ -6796,8 +5454,6 @@ func (ptr *QHelpContentWidget) TabletEventDefault(event gui.QTabletEvent_ITF) {
 
 //export callbackQHelpContentWidget_UpdateMicroFocus
 func callbackQHelpContentWidget_UpdateMicroFocus(ptr unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpContentWidget::updateMicroFocus")
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentWidget::updateMicroFocus"); signal != nil {
 		signal.(func())()
 	} else {
@@ -6806,8 +5462,6 @@ func callbackQHelpContentWidget_UpdateMicroFocus(ptr unsafe.Pointer) {
 }
 
 func (ptr *QHelpContentWidget) ConnectUpdateMicroFocus(f func()) {
-	defer qt.Recovering("connect QHelpContentWidget::updateMicroFocus")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentWidget::updateMicroFocus", f)
@@ -6815,8 +5469,6 @@ func (ptr *QHelpContentWidget) ConnectUpdateMicroFocus(f func()) {
 }
 
 func (ptr *QHelpContentWidget) DisconnectUpdateMicroFocus() {
-	defer qt.Recovering("disconnect QHelpContentWidget::updateMicroFocus")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentWidget::updateMicroFocus")
@@ -6824,16 +5476,12 @@ func (ptr *QHelpContentWidget) DisconnectUpdateMicroFocus() {
 }
 
 func (ptr *QHelpContentWidget) UpdateMicroFocus() {
-	defer qt.Recovering("QHelpContentWidget::updateMicroFocus")
-
 	if ptr.Pointer() != nil {
 		C.QHelpContentWidget_UpdateMicroFocus(ptr.Pointer())
 	}
 }
 
 func (ptr *QHelpContentWidget) UpdateMicroFocusDefault() {
-	defer qt.Recovering("QHelpContentWidget::updateMicroFocus")
-
 	if ptr.Pointer() != nil {
 		C.QHelpContentWidget_UpdateMicroFocusDefault(ptr.Pointer())
 	}
@@ -6841,7 +5489,6 @@ func (ptr *QHelpContentWidget) UpdateMicroFocusDefault() {
 
 //export callbackQHelpContentWidget_ChildEvent
 func callbackQHelpContentWidget_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpContentWidget::childEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentWidget::childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
@@ -6851,8 +5498,6 @@ func callbackQHelpContentWidget_ChildEvent(ptr unsafe.Pointer, event unsafe.Poin
 }
 
 func (ptr *QHelpContentWidget) ConnectChildEvent(f func(event *core.QChildEvent)) {
-	defer qt.Recovering("connect QHelpContentWidget::childEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentWidget::childEvent", f)
@@ -6860,8 +5505,6 @@ func (ptr *QHelpContentWidget) ConnectChildEvent(f func(event *core.QChildEvent)
 }
 
 func (ptr *QHelpContentWidget) DisconnectChildEvent() {
-	defer qt.Recovering("disconnect QHelpContentWidget::childEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentWidget::childEvent")
@@ -6869,16 +5512,12 @@ func (ptr *QHelpContentWidget) DisconnectChildEvent() {
 }
 
 func (ptr *QHelpContentWidget) ChildEvent(event core.QChildEvent_ITF) {
-	defer qt.Recovering("QHelpContentWidget::childEvent")
-
 	if ptr.Pointer() != nil {
 		C.QHelpContentWidget_ChildEvent(ptr.Pointer(), core.PointerFromQChildEvent(event))
 	}
 }
 
 func (ptr *QHelpContentWidget) ChildEventDefault(event core.QChildEvent_ITF) {
-	defer qt.Recovering("QHelpContentWidget::childEvent")
-
 	if ptr.Pointer() != nil {
 		C.QHelpContentWidget_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
 	}
@@ -6886,7 +5525,6 @@ func (ptr *QHelpContentWidget) ChildEventDefault(event core.QChildEvent_ITF) {
 
 //export callbackQHelpContentWidget_ConnectNotify
 func callbackQHelpContentWidget_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpContentWidget::connectNotify")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentWidget::connectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
@@ -6896,8 +5534,6 @@ func callbackQHelpContentWidget_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Po
 }
 
 func (ptr *QHelpContentWidget) ConnectConnectNotify(f func(sign *core.QMetaMethod)) {
-	defer qt.Recovering("connect QHelpContentWidget::connectNotify")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentWidget::connectNotify", f)
@@ -6905,8 +5541,6 @@ func (ptr *QHelpContentWidget) ConnectConnectNotify(f func(sign *core.QMetaMetho
 }
 
 func (ptr *QHelpContentWidget) DisconnectConnectNotify() {
-	defer qt.Recovering("disconnect QHelpContentWidget::connectNotify")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentWidget::connectNotify")
@@ -6914,16 +5548,12 @@ func (ptr *QHelpContentWidget) DisconnectConnectNotify() {
 }
 
 func (ptr *QHelpContentWidget) ConnectNotify(sign core.QMetaMethod_ITF) {
-	defer qt.Recovering("QHelpContentWidget::connectNotify")
-
 	if ptr.Pointer() != nil {
 		C.QHelpContentWidget_ConnectNotify(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
 	}
 }
 
 func (ptr *QHelpContentWidget) ConnectNotifyDefault(sign core.QMetaMethod_ITF) {
-	defer qt.Recovering("QHelpContentWidget::connectNotify")
-
 	if ptr.Pointer() != nil {
 		C.QHelpContentWidget_ConnectNotifyDefault(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
 	}
@@ -6931,7 +5561,6 @@ func (ptr *QHelpContentWidget) ConnectNotifyDefault(sign core.QMetaMethod_ITF) {
 
 //export callbackQHelpContentWidget_CustomEvent
 func callbackQHelpContentWidget_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpContentWidget::customEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentWidget::customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
@@ -6941,8 +5570,6 @@ func callbackQHelpContentWidget_CustomEvent(ptr unsafe.Pointer, event unsafe.Poi
 }
 
 func (ptr *QHelpContentWidget) ConnectCustomEvent(f func(event *core.QEvent)) {
-	defer qt.Recovering("connect QHelpContentWidget::customEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentWidget::customEvent", f)
@@ -6950,8 +5577,6 @@ func (ptr *QHelpContentWidget) ConnectCustomEvent(f func(event *core.QEvent)) {
 }
 
 func (ptr *QHelpContentWidget) DisconnectCustomEvent() {
-	defer qt.Recovering("disconnect QHelpContentWidget::customEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentWidget::customEvent")
@@ -6959,16 +5584,12 @@ func (ptr *QHelpContentWidget) DisconnectCustomEvent() {
 }
 
 func (ptr *QHelpContentWidget) CustomEvent(event core.QEvent_ITF) {
-	defer qt.Recovering("QHelpContentWidget::customEvent")
-
 	if ptr.Pointer() != nil {
 		C.QHelpContentWidget_CustomEvent(ptr.Pointer(), core.PointerFromQEvent(event))
 	}
 }
 
 func (ptr *QHelpContentWidget) CustomEventDefault(event core.QEvent_ITF) {
-	defer qt.Recovering("QHelpContentWidget::customEvent")
-
 	if ptr.Pointer() != nil {
 		C.QHelpContentWidget_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
 	}
@@ -6976,8 +5597,6 @@ func (ptr *QHelpContentWidget) CustomEventDefault(event core.QEvent_ITF) {
 
 //export callbackQHelpContentWidget_DeleteLater
 func callbackQHelpContentWidget_DeleteLater(ptr unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpContentWidget::deleteLater")
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentWidget::deleteLater"); signal != nil {
 		signal.(func())()
 	} else {
@@ -6986,8 +5605,6 @@ func callbackQHelpContentWidget_DeleteLater(ptr unsafe.Pointer) {
 }
 
 func (ptr *QHelpContentWidget) ConnectDeleteLater(f func()) {
-	defer qt.Recovering("connect QHelpContentWidget::deleteLater")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentWidget::deleteLater", f)
@@ -6995,8 +5612,6 @@ func (ptr *QHelpContentWidget) ConnectDeleteLater(f func()) {
 }
 
 func (ptr *QHelpContentWidget) DisconnectDeleteLater() {
-	defer qt.Recovering("disconnect QHelpContentWidget::deleteLater")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentWidget::deleteLater")
@@ -7004,8 +5619,6 @@ func (ptr *QHelpContentWidget) DisconnectDeleteLater() {
 }
 
 func (ptr *QHelpContentWidget) DeleteLater() {
-	defer qt.Recovering("QHelpContentWidget::deleteLater")
-
 	if ptr.Pointer() != nil {
 		C.QHelpContentWidget_DeleteLater(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
@@ -7014,8 +5627,6 @@ func (ptr *QHelpContentWidget) DeleteLater() {
 }
 
 func (ptr *QHelpContentWidget) DeleteLaterDefault() {
-	defer qt.Recovering("QHelpContentWidget::deleteLater")
-
 	if ptr.Pointer() != nil {
 		C.QHelpContentWidget_DeleteLaterDefault(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
@@ -7025,7 +5636,6 @@ func (ptr *QHelpContentWidget) DeleteLaterDefault() {
 
 //export callbackQHelpContentWidget_DisconnectNotify
 func callbackQHelpContentWidget_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpContentWidget::disconnectNotify")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentWidget::disconnectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
@@ -7035,8 +5645,6 @@ func callbackQHelpContentWidget_DisconnectNotify(ptr unsafe.Pointer, sign unsafe
 }
 
 func (ptr *QHelpContentWidget) ConnectDisconnectNotify(f func(sign *core.QMetaMethod)) {
-	defer qt.Recovering("connect QHelpContentWidget::disconnectNotify")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentWidget::disconnectNotify", f)
@@ -7044,8 +5652,6 @@ func (ptr *QHelpContentWidget) ConnectDisconnectNotify(f func(sign *core.QMetaMe
 }
 
 func (ptr *QHelpContentWidget) DisconnectDisconnectNotify() {
-	defer qt.Recovering("disconnect QHelpContentWidget::disconnectNotify")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentWidget::disconnectNotify")
@@ -7053,16 +5659,12 @@ func (ptr *QHelpContentWidget) DisconnectDisconnectNotify() {
 }
 
 func (ptr *QHelpContentWidget) DisconnectNotify(sign core.QMetaMethod_ITF) {
-	defer qt.Recovering("QHelpContentWidget::disconnectNotify")
-
 	if ptr.Pointer() != nil {
 		C.QHelpContentWidget_DisconnectNotify(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
 	}
 }
 
 func (ptr *QHelpContentWidget) DisconnectNotifyDefault(sign core.QMetaMethod_ITF) {
-	defer qt.Recovering("QHelpContentWidget::disconnectNotify")
-
 	if ptr.Pointer() != nil {
 		C.QHelpContentWidget_DisconnectNotifyDefault(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
 	}
@@ -7070,7 +5672,6 @@ func (ptr *QHelpContentWidget) DisconnectNotifyDefault(sign core.QMetaMethod_ITF
 
 //export callbackQHelpContentWidget_EventFilter
 func callbackQHelpContentWidget_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-	defer qt.Recovering("callback QHelpContentWidget::eventFilter")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentWidget::eventFilter"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
@@ -7080,8 +5681,6 @@ func callbackQHelpContentWidget_EventFilter(ptr unsafe.Pointer, watched unsafe.P
 }
 
 func (ptr *QHelpContentWidget) ConnectEventFilter(f func(watched *core.QObject, event *core.QEvent) bool) {
-	defer qt.Recovering("connect QHelpContentWidget::eventFilter")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentWidget::eventFilter", f)
@@ -7089,8 +5688,6 @@ func (ptr *QHelpContentWidget) ConnectEventFilter(f func(watched *core.QObject, 
 }
 
 func (ptr *QHelpContentWidget) DisconnectEventFilter() {
-	defer qt.Recovering("disconnect QHelpContentWidget::eventFilter")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentWidget::eventFilter")
@@ -7098,8 +5695,6 @@ func (ptr *QHelpContentWidget) DisconnectEventFilter() {
 }
 
 func (ptr *QHelpContentWidget) EventFilter(watched core.QObject_ITF, event core.QEvent_ITF) bool {
-	defer qt.Recovering("QHelpContentWidget::eventFilter")
-
 	if ptr.Pointer() != nil {
 		return C.QHelpContentWidget_EventFilter(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
 	}
@@ -7107,8 +5702,6 @@ func (ptr *QHelpContentWidget) EventFilter(watched core.QObject_ITF, event core.
 }
 
 func (ptr *QHelpContentWidget) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
-	defer qt.Recovering("QHelpContentWidget::eventFilter")
-
 	if ptr.Pointer() != nil {
 		return C.QHelpContentWidget_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
 	}
@@ -7117,7 +5710,6 @@ func (ptr *QHelpContentWidget) EventFilterDefault(watched core.QObject_ITF, even
 
 //export callbackQHelpContentWidget_MetaObject
 func callbackQHelpContentWidget_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-	defer qt.Recovering("callback QHelpContentWidget::metaObject")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentWidget::metaObject"); signal != nil {
 		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
@@ -7127,8 +5719,6 @@ func callbackQHelpContentWidget_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
 }
 
 func (ptr *QHelpContentWidget) ConnectMetaObject(f func() *core.QMetaObject) {
-	defer qt.Recovering("connect QHelpContentWidget::metaObject")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentWidget::metaObject", f)
@@ -7136,8 +5726,6 @@ func (ptr *QHelpContentWidget) ConnectMetaObject(f func() *core.QMetaObject) {
 }
 
 func (ptr *QHelpContentWidget) DisconnectMetaObject() {
-	defer qt.Recovering("disconnect QHelpContentWidget::metaObject")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentWidget::metaObject")
@@ -7145,8 +5733,6 @@ func (ptr *QHelpContentWidget) DisconnectMetaObject() {
 }
 
 func (ptr *QHelpContentWidget) MetaObject() *core.QMetaObject {
-	defer qt.Recovering("QHelpContentWidget::metaObject")
-
 	if ptr.Pointer() != nil {
 		return core.NewQMetaObjectFromPointer(C.QHelpContentWidget_MetaObject(ptr.Pointer()))
 	}
@@ -7154,8 +5740,6 @@ func (ptr *QHelpContentWidget) MetaObject() *core.QMetaObject {
 }
 
 func (ptr *QHelpContentWidget) MetaObjectDefault() *core.QMetaObject {
-	defer qt.Recovering("QHelpContentWidget::metaObject")
-
 	if ptr.Pointer() != nil {
 		return core.NewQMetaObjectFromPointer(C.QHelpContentWidget_MetaObjectDefault(ptr.Pointer()))
 	}
@@ -7201,8 +5785,6 @@ func NewQHelpEngineFromPointer(ptr unsafe.Pointer) *QHelpEngine {
 	return n
 }
 func NewQHelpEngine(collectionFile string, parent core.QObject_ITF) *QHelpEngine {
-	defer qt.Recovering("QHelpEngine::QHelpEngine")
-
 	var collectionFileC = C.CString(collectionFile)
 	defer C.free(unsafe.Pointer(collectionFileC))
 	var tmpValue = NewQHelpEngineFromPointer(C.QHelpEngine_NewQHelpEngine(collectionFileC, core.PointerFromQObject(parent)))
@@ -7213,8 +5795,6 @@ func NewQHelpEngine(collectionFile string, parent core.QObject_ITF) *QHelpEngine
 }
 
 func (ptr *QHelpEngine) ContentModel() *QHelpContentModel {
-	defer qt.Recovering("QHelpEngine::contentModel")
-
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQHelpContentModelFromPointer(C.QHelpEngine_ContentModel(ptr.Pointer()))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
@@ -7226,8 +5806,6 @@ func (ptr *QHelpEngine) ContentModel() *QHelpContentModel {
 }
 
 func (ptr *QHelpEngine) ContentWidget() *QHelpContentWidget {
-	defer qt.Recovering("QHelpEngine::contentWidget")
-
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQHelpContentWidgetFromPointer(C.QHelpEngine_ContentWidget(ptr.Pointer()))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
@@ -7239,8 +5817,6 @@ func (ptr *QHelpEngine) ContentWidget() *QHelpContentWidget {
 }
 
 func (ptr *QHelpEngine) IndexModel() *QHelpIndexModel {
-	defer qt.Recovering("QHelpEngine::indexModel")
-
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQHelpIndexModelFromPointer(C.QHelpEngine_IndexModel(ptr.Pointer()))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
@@ -7252,8 +5828,6 @@ func (ptr *QHelpEngine) IndexModel() *QHelpIndexModel {
 }
 
 func (ptr *QHelpEngine) IndexWidget() *QHelpIndexWidget {
-	defer qt.Recovering("QHelpEngine::indexWidget")
-
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQHelpIndexWidgetFromPointer(C.QHelpEngine_IndexWidget(ptr.Pointer()))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
@@ -7265,8 +5839,6 @@ func (ptr *QHelpEngine) IndexWidget() *QHelpIndexWidget {
 }
 
 func (ptr *QHelpEngine) SearchEngine() *QHelpSearchEngine {
-	defer qt.Recovering("QHelpEngine::searchEngine")
-
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQHelpSearchEngineFromPointer(C.QHelpEngine_SearchEngine(ptr.Pointer()))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
@@ -7278,8 +5850,6 @@ func (ptr *QHelpEngine) SearchEngine() *QHelpSearchEngine {
 }
 
 func (ptr *QHelpEngine) DestroyQHelpEngine() {
-	defer qt.Recovering("QHelpEngine::~QHelpEngine")
-
 	if ptr.Pointer() != nil {
 		C.QHelpEngine_DestroyQHelpEngine(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
@@ -7289,7 +5859,6 @@ func (ptr *QHelpEngine) DestroyQHelpEngine() {
 
 //export callbackQHelpEngine_TimerEvent
 func callbackQHelpEngine_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpEngine::timerEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpEngine::timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
@@ -7299,8 +5868,6 @@ func callbackQHelpEngine_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 }
 
 func (ptr *QHelpEngine) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
-	defer qt.Recovering("connect QHelpEngine::timerEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpEngine::timerEvent", f)
@@ -7308,8 +5875,6 @@ func (ptr *QHelpEngine) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
 }
 
 func (ptr *QHelpEngine) DisconnectTimerEvent() {
-	defer qt.Recovering("disconnect QHelpEngine::timerEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpEngine::timerEvent")
@@ -7317,16 +5882,12 @@ func (ptr *QHelpEngine) DisconnectTimerEvent() {
 }
 
 func (ptr *QHelpEngine) TimerEvent(event core.QTimerEvent_ITF) {
-	defer qt.Recovering("QHelpEngine::timerEvent")
-
 	if ptr.Pointer() != nil {
 		C.QHelpEngine_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
 	}
 }
 
 func (ptr *QHelpEngine) TimerEventDefault(event core.QTimerEvent_ITF) {
-	defer qt.Recovering("QHelpEngine::timerEvent")
-
 	if ptr.Pointer() != nil {
 		C.QHelpEngine_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
 	}
@@ -7334,7 +5895,6 @@ func (ptr *QHelpEngine) TimerEventDefault(event core.QTimerEvent_ITF) {
 
 //export callbackQHelpEngine_ChildEvent
 func callbackQHelpEngine_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpEngine::childEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpEngine::childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
@@ -7344,8 +5904,6 @@ func callbackQHelpEngine_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 }
 
 func (ptr *QHelpEngine) ConnectChildEvent(f func(event *core.QChildEvent)) {
-	defer qt.Recovering("connect QHelpEngine::childEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpEngine::childEvent", f)
@@ -7353,8 +5911,6 @@ func (ptr *QHelpEngine) ConnectChildEvent(f func(event *core.QChildEvent)) {
 }
 
 func (ptr *QHelpEngine) DisconnectChildEvent() {
-	defer qt.Recovering("disconnect QHelpEngine::childEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpEngine::childEvent")
@@ -7362,16 +5918,12 @@ func (ptr *QHelpEngine) DisconnectChildEvent() {
 }
 
 func (ptr *QHelpEngine) ChildEvent(event core.QChildEvent_ITF) {
-	defer qt.Recovering("QHelpEngine::childEvent")
-
 	if ptr.Pointer() != nil {
 		C.QHelpEngine_ChildEvent(ptr.Pointer(), core.PointerFromQChildEvent(event))
 	}
 }
 
 func (ptr *QHelpEngine) ChildEventDefault(event core.QChildEvent_ITF) {
-	defer qt.Recovering("QHelpEngine::childEvent")
-
 	if ptr.Pointer() != nil {
 		C.QHelpEngine_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
 	}
@@ -7379,7 +5931,6 @@ func (ptr *QHelpEngine) ChildEventDefault(event core.QChildEvent_ITF) {
 
 //export callbackQHelpEngine_ConnectNotify
 func callbackQHelpEngine_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpEngine::connectNotify")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpEngine::connectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
@@ -7389,8 +5940,6 @@ func callbackQHelpEngine_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) 
 }
 
 func (ptr *QHelpEngine) ConnectConnectNotify(f func(sign *core.QMetaMethod)) {
-	defer qt.Recovering("connect QHelpEngine::connectNotify")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpEngine::connectNotify", f)
@@ -7398,8 +5947,6 @@ func (ptr *QHelpEngine) ConnectConnectNotify(f func(sign *core.QMetaMethod)) {
 }
 
 func (ptr *QHelpEngine) DisconnectConnectNotify() {
-	defer qt.Recovering("disconnect QHelpEngine::connectNotify")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpEngine::connectNotify")
@@ -7407,16 +5954,12 @@ func (ptr *QHelpEngine) DisconnectConnectNotify() {
 }
 
 func (ptr *QHelpEngine) ConnectNotify(sign core.QMetaMethod_ITF) {
-	defer qt.Recovering("QHelpEngine::connectNotify")
-
 	if ptr.Pointer() != nil {
 		C.QHelpEngine_ConnectNotify(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
 	}
 }
 
 func (ptr *QHelpEngine) ConnectNotifyDefault(sign core.QMetaMethod_ITF) {
-	defer qt.Recovering("QHelpEngine::connectNotify")
-
 	if ptr.Pointer() != nil {
 		C.QHelpEngine_ConnectNotifyDefault(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
 	}
@@ -7424,7 +5967,6 @@ func (ptr *QHelpEngine) ConnectNotifyDefault(sign core.QMetaMethod_ITF) {
 
 //export callbackQHelpEngine_CustomEvent
 func callbackQHelpEngine_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpEngine::customEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpEngine::customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
@@ -7434,8 +5976,6 @@ func callbackQHelpEngine_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 }
 
 func (ptr *QHelpEngine) ConnectCustomEvent(f func(event *core.QEvent)) {
-	defer qt.Recovering("connect QHelpEngine::customEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpEngine::customEvent", f)
@@ -7443,8 +5983,6 @@ func (ptr *QHelpEngine) ConnectCustomEvent(f func(event *core.QEvent)) {
 }
 
 func (ptr *QHelpEngine) DisconnectCustomEvent() {
-	defer qt.Recovering("disconnect QHelpEngine::customEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpEngine::customEvent")
@@ -7452,16 +5990,12 @@ func (ptr *QHelpEngine) DisconnectCustomEvent() {
 }
 
 func (ptr *QHelpEngine) CustomEvent(event core.QEvent_ITF) {
-	defer qt.Recovering("QHelpEngine::customEvent")
-
 	if ptr.Pointer() != nil {
 		C.QHelpEngine_CustomEvent(ptr.Pointer(), core.PointerFromQEvent(event))
 	}
 }
 
 func (ptr *QHelpEngine) CustomEventDefault(event core.QEvent_ITF) {
-	defer qt.Recovering("QHelpEngine::customEvent")
-
 	if ptr.Pointer() != nil {
 		C.QHelpEngine_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
 	}
@@ -7469,8 +6003,6 @@ func (ptr *QHelpEngine) CustomEventDefault(event core.QEvent_ITF) {
 
 //export callbackQHelpEngine_DeleteLater
 func callbackQHelpEngine_DeleteLater(ptr unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpEngine::deleteLater")
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpEngine::deleteLater"); signal != nil {
 		signal.(func())()
 	} else {
@@ -7479,8 +6011,6 @@ func callbackQHelpEngine_DeleteLater(ptr unsafe.Pointer) {
 }
 
 func (ptr *QHelpEngine) ConnectDeleteLater(f func()) {
-	defer qt.Recovering("connect QHelpEngine::deleteLater")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpEngine::deleteLater", f)
@@ -7488,8 +6018,6 @@ func (ptr *QHelpEngine) ConnectDeleteLater(f func()) {
 }
 
 func (ptr *QHelpEngine) DisconnectDeleteLater() {
-	defer qt.Recovering("disconnect QHelpEngine::deleteLater")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpEngine::deleteLater")
@@ -7497,8 +6025,6 @@ func (ptr *QHelpEngine) DisconnectDeleteLater() {
 }
 
 func (ptr *QHelpEngine) DeleteLater() {
-	defer qt.Recovering("QHelpEngine::deleteLater")
-
 	if ptr.Pointer() != nil {
 		C.QHelpEngine_DeleteLater(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
@@ -7507,8 +6033,6 @@ func (ptr *QHelpEngine) DeleteLater() {
 }
 
 func (ptr *QHelpEngine) DeleteLaterDefault() {
-	defer qt.Recovering("QHelpEngine::deleteLater")
-
 	if ptr.Pointer() != nil {
 		C.QHelpEngine_DeleteLaterDefault(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
@@ -7518,7 +6042,6 @@ func (ptr *QHelpEngine) DeleteLaterDefault() {
 
 //export callbackQHelpEngine_DisconnectNotify
 func callbackQHelpEngine_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpEngine::disconnectNotify")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpEngine::disconnectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
@@ -7528,8 +6051,6 @@ func callbackQHelpEngine_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointe
 }
 
 func (ptr *QHelpEngine) ConnectDisconnectNotify(f func(sign *core.QMetaMethod)) {
-	defer qt.Recovering("connect QHelpEngine::disconnectNotify")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpEngine::disconnectNotify", f)
@@ -7537,8 +6058,6 @@ func (ptr *QHelpEngine) ConnectDisconnectNotify(f func(sign *core.QMetaMethod)) 
 }
 
 func (ptr *QHelpEngine) DisconnectDisconnectNotify() {
-	defer qt.Recovering("disconnect QHelpEngine::disconnectNotify")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpEngine::disconnectNotify")
@@ -7546,16 +6065,12 @@ func (ptr *QHelpEngine) DisconnectDisconnectNotify() {
 }
 
 func (ptr *QHelpEngine) DisconnectNotify(sign core.QMetaMethod_ITF) {
-	defer qt.Recovering("QHelpEngine::disconnectNotify")
-
 	if ptr.Pointer() != nil {
 		C.QHelpEngine_DisconnectNotify(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
 	}
 }
 
 func (ptr *QHelpEngine) DisconnectNotifyDefault(sign core.QMetaMethod_ITF) {
-	defer qt.Recovering("QHelpEngine::disconnectNotify")
-
 	if ptr.Pointer() != nil {
 		C.QHelpEngine_DisconnectNotifyDefault(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
 	}
@@ -7563,7 +6078,6 @@ func (ptr *QHelpEngine) DisconnectNotifyDefault(sign core.QMetaMethod_ITF) {
 
 //export callbackQHelpEngine_Event
 func callbackQHelpEngine_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
-	defer qt.Recovering("callback QHelpEngine::event")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpEngine::event"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
@@ -7573,8 +6087,6 @@ func callbackQHelpEngine_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
 }
 
 func (ptr *QHelpEngine) ConnectEvent(f func(e *core.QEvent) bool) {
-	defer qt.Recovering("connect QHelpEngine::event")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpEngine::event", f)
@@ -7582,8 +6094,6 @@ func (ptr *QHelpEngine) ConnectEvent(f func(e *core.QEvent) bool) {
 }
 
 func (ptr *QHelpEngine) DisconnectEvent() {
-	defer qt.Recovering("disconnect QHelpEngine::event")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpEngine::event")
@@ -7591,8 +6101,6 @@ func (ptr *QHelpEngine) DisconnectEvent() {
 }
 
 func (ptr *QHelpEngine) Event(e core.QEvent_ITF) bool {
-	defer qt.Recovering("QHelpEngine::event")
-
 	if ptr.Pointer() != nil {
 		return C.QHelpEngine_Event(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
 	}
@@ -7600,8 +6108,6 @@ func (ptr *QHelpEngine) Event(e core.QEvent_ITF) bool {
 }
 
 func (ptr *QHelpEngine) EventDefault(e core.QEvent_ITF) bool {
-	defer qt.Recovering("QHelpEngine::event")
-
 	if ptr.Pointer() != nil {
 		return C.QHelpEngine_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
 	}
@@ -7610,7 +6116,6 @@ func (ptr *QHelpEngine) EventDefault(e core.QEvent_ITF) bool {
 
 //export callbackQHelpEngine_EventFilter
 func callbackQHelpEngine_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-	defer qt.Recovering("callback QHelpEngine::eventFilter")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpEngine::eventFilter"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
@@ -7620,8 +6125,6 @@ func callbackQHelpEngine_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer,
 }
 
 func (ptr *QHelpEngine) ConnectEventFilter(f func(watched *core.QObject, event *core.QEvent) bool) {
-	defer qt.Recovering("connect QHelpEngine::eventFilter")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpEngine::eventFilter", f)
@@ -7629,8 +6132,6 @@ func (ptr *QHelpEngine) ConnectEventFilter(f func(watched *core.QObject, event *
 }
 
 func (ptr *QHelpEngine) DisconnectEventFilter() {
-	defer qt.Recovering("disconnect QHelpEngine::eventFilter")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpEngine::eventFilter")
@@ -7638,8 +6139,6 @@ func (ptr *QHelpEngine) DisconnectEventFilter() {
 }
 
 func (ptr *QHelpEngine) EventFilter(watched core.QObject_ITF, event core.QEvent_ITF) bool {
-	defer qt.Recovering("QHelpEngine::eventFilter")
-
 	if ptr.Pointer() != nil {
 		return C.QHelpEngine_EventFilter(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
 	}
@@ -7647,8 +6146,6 @@ func (ptr *QHelpEngine) EventFilter(watched core.QObject_ITF, event core.QEvent_
 }
 
 func (ptr *QHelpEngine) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
-	defer qt.Recovering("QHelpEngine::eventFilter")
-
 	if ptr.Pointer() != nil {
 		return C.QHelpEngine_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
 	}
@@ -7657,7 +6154,6 @@ func (ptr *QHelpEngine) EventFilterDefault(watched core.QObject_ITF, event core.
 
 //export callbackQHelpEngine_MetaObject
 func callbackQHelpEngine_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-	defer qt.Recovering("callback QHelpEngine::metaObject")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpEngine::metaObject"); signal != nil {
 		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
@@ -7667,8 +6163,6 @@ func callbackQHelpEngine_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
 }
 
 func (ptr *QHelpEngine) ConnectMetaObject(f func() *core.QMetaObject) {
-	defer qt.Recovering("connect QHelpEngine::metaObject")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpEngine::metaObject", f)
@@ -7676,8 +6170,6 @@ func (ptr *QHelpEngine) ConnectMetaObject(f func() *core.QMetaObject) {
 }
 
 func (ptr *QHelpEngine) DisconnectMetaObject() {
-	defer qt.Recovering("disconnect QHelpEngine::metaObject")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpEngine::metaObject")
@@ -7685,8 +6177,6 @@ func (ptr *QHelpEngine) DisconnectMetaObject() {
 }
 
 func (ptr *QHelpEngine) MetaObject() *core.QMetaObject {
-	defer qt.Recovering("QHelpEngine::metaObject")
-
 	if ptr.Pointer() != nil {
 		return core.NewQMetaObjectFromPointer(C.QHelpEngine_MetaObject(ptr.Pointer()))
 	}
@@ -7694,8 +6184,6 @@ func (ptr *QHelpEngine) MetaObject() *core.QMetaObject {
 }
 
 func (ptr *QHelpEngine) MetaObjectDefault() *core.QMetaObject {
-	defer qt.Recovering("QHelpEngine::metaObject")
-
 	if ptr.Pointer() != nil {
 		return core.NewQMetaObjectFromPointer(C.QHelpEngine_MetaObjectDefault(ptr.Pointer()))
 	}
@@ -7741,8 +6229,6 @@ func NewQHelpEngineCoreFromPointer(ptr unsafe.Pointer) *QHelpEngineCore {
 	return n
 }
 func (ptr *QHelpEngineCore) AutoSaveFilter() bool {
-	defer qt.Recovering("QHelpEngineCore::autoSaveFilter")
-
 	if ptr.Pointer() != nil {
 		return C.QHelpEngineCore_AutoSaveFilter(ptr.Pointer()) != 0
 	}
@@ -7750,8 +6236,6 @@ func (ptr *QHelpEngineCore) AutoSaveFilter() bool {
 }
 
 func (ptr *QHelpEngineCore) CollectionFile() string {
-	defer qt.Recovering("QHelpEngineCore::collectionFile")
-
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QHelpEngineCore_CollectionFile(ptr.Pointer()))
 	}
@@ -7759,8 +6243,6 @@ func (ptr *QHelpEngineCore) CollectionFile() string {
 }
 
 func (ptr *QHelpEngineCore) CurrentFilter() string {
-	defer qt.Recovering("QHelpEngineCore::currentFilter")
-
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QHelpEngineCore_CurrentFilter(ptr.Pointer()))
 	}
@@ -7768,16 +6250,12 @@ func (ptr *QHelpEngineCore) CurrentFilter() string {
 }
 
 func (ptr *QHelpEngineCore) SetAutoSaveFilter(save bool) {
-	defer qt.Recovering("QHelpEngineCore::setAutoSaveFilter")
-
 	if ptr.Pointer() != nil {
 		C.QHelpEngineCore_SetAutoSaveFilter(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(save))))
 	}
 }
 
 func (ptr *QHelpEngineCore) SetCollectionFile(fileName string) {
-	defer qt.Recovering("QHelpEngineCore::setCollectionFile")
-
 	if ptr.Pointer() != nil {
 		var fileNameC = C.CString(fileName)
 		defer C.free(unsafe.Pointer(fileNameC))
@@ -7786,8 +6264,6 @@ func (ptr *QHelpEngineCore) SetCollectionFile(fileName string) {
 }
 
 func (ptr *QHelpEngineCore) SetCurrentFilter(filterName string) {
-	defer qt.Recovering("QHelpEngineCore::setCurrentFilter")
-
 	if ptr.Pointer() != nil {
 		var filterNameC = C.CString(filterName)
 		defer C.free(unsafe.Pointer(filterNameC))
@@ -7796,8 +6272,6 @@ func (ptr *QHelpEngineCore) SetCurrentFilter(filterName string) {
 }
 
 func NewQHelpEngineCore(collectionFile string, parent core.QObject_ITF) *QHelpEngineCore {
-	defer qt.Recovering("QHelpEngineCore::QHelpEngineCore")
-
 	var collectionFileC = C.CString(collectionFile)
 	defer C.free(unsafe.Pointer(collectionFileC))
 	var tmpValue = NewQHelpEngineCoreFromPointer(C.QHelpEngineCore_NewQHelpEngineCore(collectionFileC, core.PointerFromQObject(parent)))
@@ -7808,8 +6282,6 @@ func NewQHelpEngineCore(collectionFile string, parent core.QObject_ITF) *QHelpEn
 }
 
 func (ptr *QHelpEngineCore) AddCustomFilter(filterName string, attributes []string) bool {
-	defer qt.Recovering("QHelpEngineCore::addCustomFilter")
-
 	if ptr.Pointer() != nil {
 		var filterNameC = C.CString(filterName)
 		defer C.free(unsafe.Pointer(filterNameC))
@@ -7821,8 +6293,6 @@ func (ptr *QHelpEngineCore) AddCustomFilter(filterName string, attributes []stri
 }
 
 func (ptr *QHelpEngineCore) CopyCollectionFile(fileName string) bool {
-	defer qt.Recovering("QHelpEngineCore::copyCollectionFile")
-
 	if ptr.Pointer() != nil {
 		var fileNameC = C.CString(fileName)
 		defer C.free(unsafe.Pointer(fileNameC))
@@ -7833,7 +6303,6 @@ func (ptr *QHelpEngineCore) CopyCollectionFile(fileName string) bool {
 
 //export callbackQHelpEngineCore_CurrentFilterChanged
 func callbackQHelpEngineCore_CurrentFilterChanged(ptr unsafe.Pointer, newFilter *C.char) {
-	defer qt.Recovering("callback QHelpEngineCore::currentFilterChanged")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpEngineCore::currentFilterChanged"); signal != nil {
 		signal.(func(string))(C.GoString(newFilter))
@@ -7842,8 +6311,6 @@ func callbackQHelpEngineCore_CurrentFilterChanged(ptr unsafe.Pointer, newFilter 
 }
 
 func (ptr *QHelpEngineCore) ConnectCurrentFilterChanged(f func(newFilter string)) {
-	defer qt.Recovering("connect QHelpEngineCore::currentFilterChanged")
-
 	if ptr.Pointer() != nil {
 		C.QHelpEngineCore_ConnectCurrentFilterChanged(ptr.Pointer())
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpEngineCore::currentFilterChanged", f)
@@ -7851,8 +6318,6 @@ func (ptr *QHelpEngineCore) ConnectCurrentFilterChanged(f func(newFilter string)
 }
 
 func (ptr *QHelpEngineCore) DisconnectCurrentFilterChanged() {
-	defer qt.Recovering("disconnect QHelpEngineCore::currentFilterChanged")
-
 	if ptr.Pointer() != nil {
 		C.QHelpEngineCore_DisconnectCurrentFilterChanged(ptr.Pointer())
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpEngineCore::currentFilterChanged")
@@ -7860,8 +6325,6 @@ func (ptr *QHelpEngineCore) DisconnectCurrentFilterChanged() {
 }
 
 func (ptr *QHelpEngineCore) CurrentFilterChanged(newFilter string) {
-	defer qt.Recovering("QHelpEngineCore::currentFilterChanged")
-
 	if ptr.Pointer() != nil {
 		var newFilterC = C.CString(newFilter)
 		defer C.free(unsafe.Pointer(newFilterC))
@@ -7870,8 +6333,6 @@ func (ptr *QHelpEngineCore) CurrentFilterChanged(newFilter string) {
 }
 
 func (ptr *QHelpEngineCore) CustomFilters() []string {
-	defer qt.Recovering("QHelpEngineCore::customFilters")
-
 	if ptr.Pointer() != nil {
 		return strings.Split(C.GoString(C.QHelpEngineCore_CustomFilters(ptr.Pointer())), "|")
 	}
@@ -7879,8 +6340,6 @@ func (ptr *QHelpEngineCore) CustomFilters() []string {
 }
 
 func (ptr *QHelpEngineCore) CustomValue(key string, defaultValue core.QVariant_ITF) *core.QVariant {
-	defer qt.Recovering("QHelpEngineCore::customValue")
-
 	if ptr.Pointer() != nil {
 		var keyC = C.CString(key)
 		defer C.free(unsafe.Pointer(keyC))
@@ -7892,8 +6351,6 @@ func (ptr *QHelpEngineCore) CustomValue(key string, defaultValue core.QVariant_I
 }
 
 func (ptr *QHelpEngineCore) DocumentationFileName(namespaceName string) string {
-	defer qt.Recovering("QHelpEngineCore::documentationFileName")
-
 	if ptr.Pointer() != nil {
 		var namespaceNameC = C.CString(namespaceName)
 		defer C.free(unsafe.Pointer(namespaceNameC))
@@ -7903,8 +6360,6 @@ func (ptr *QHelpEngineCore) DocumentationFileName(namespaceName string) string {
 }
 
 func (ptr *QHelpEngineCore) Error() string {
-	defer qt.Recovering("QHelpEngineCore::error")
-
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QHelpEngineCore_Error(ptr.Pointer()))
 	}
@@ -7912,8 +6367,6 @@ func (ptr *QHelpEngineCore) Error() string {
 }
 
 func (ptr *QHelpEngineCore) FileData(url core.QUrl_ITF) string {
-	defer qt.Recovering("QHelpEngineCore::fileData")
-
 	if ptr.Pointer() != nil {
 		return qt.HexDecodeToString(C.GoString(C.QHelpEngineCore_FileData(ptr.Pointer(), core.PointerFromQUrl(url))))
 	}
@@ -7921,8 +6374,6 @@ func (ptr *QHelpEngineCore) FileData(url core.QUrl_ITF) string {
 }
 
 func (ptr *QHelpEngineCore) FilterAttributes() []string {
-	defer qt.Recovering("QHelpEngineCore::filterAttributes")
-
 	if ptr.Pointer() != nil {
 		return strings.Split(C.GoString(C.QHelpEngineCore_FilterAttributes(ptr.Pointer())), "|")
 	}
@@ -7930,8 +6381,6 @@ func (ptr *QHelpEngineCore) FilterAttributes() []string {
 }
 
 func (ptr *QHelpEngineCore) FilterAttributes2(filterName string) []string {
-	defer qt.Recovering("QHelpEngineCore::filterAttributes")
-
 	if ptr.Pointer() != nil {
 		var filterNameC = C.CString(filterName)
 		defer C.free(unsafe.Pointer(filterNameC))
@@ -7941,8 +6390,6 @@ func (ptr *QHelpEngineCore) FilterAttributes2(filterName string) []string {
 }
 
 func (ptr *QHelpEngineCore) FindFile(url core.QUrl_ITF) *core.QUrl {
-	defer qt.Recovering("QHelpEngineCore::findFile")
-
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQUrlFromPointer(C.QHelpEngineCore_FindFile(ptr.Pointer(), core.PointerFromQUrl(url)))
 		runtime.SetFinalizer(tmpValue, (*core.QUrl).DestroyQUrl)
@@ -7952,8 +6399,6 @@ func (ptr *QHelpEngineCore) FindFile(url core.QUrl_ITF) *core.QUrl {
 }
 
 func QHelpEngineCore_MetaData(documentationFileName string, name string) *core.QVariant {
-	defer qt.Recovering("QHelpEngineCore::metaData")
-
 	var documentationFileNameC = C.CString(documentationFileName)
 	defer C.free(unsafe.Pointer(documentationFileNameC))
 	var nameC = C.CString(name)
@@ -7964,8 +6409,6 @@ func QHelpEngineCore_MetaData(documentationFileName string, name string) *core.Q
 }
 
 func (ptr *QHelpEngineCore) MetaData(documentationFileName string, name string) *core.QVariant {
-	defer qt.Recovering("QHelpEngineCore::metaData")
-
 	var documentationFileNameC = C.CString(documentationFileName)
 	defer C.free(unsafe.Pointer(documentationFileNameC))
 	var nameC = C.CString(name)
@@ -7976,16 +6419,12 @@ func (ptr *QHelpEngineCore) MetaData(documentationFileName string, name string) 
 }
 
 func QHelpEngineCore_NamespaceName(documentationFileName string) string {
-	defer qt.Recovering("QHelpEngineCore::namespaceName")
-
 	var documentationFileNameC = C.CString(documentationFileName)
 	defer C.free(unsafe.Pointer(documentationFileNameC))
 	return C.GoString(C.QHelpEngineCore_QHelpEngineCore_NamespaceName(documentationFileNameC))
 }
 
 func (ptr *QHelpEngineCore) NamespaceName(documentationFileName string) string {
-	defer qt.Recovering("QHelpEngineCore::namespaceName")
-
 	var documentationFileNameC = C.CString(documentationFileName)
 	defer C.free(unsafe.Pointer(documentationFileNameC))
 	return C.GoString(C.QHelpEngineCore_QHelpEngineCore_NamespaceName(documentationFileNameC))
@@ -7993,7 +6432,6 @@ func (ptr *QHelpEngineCore) NamespaceName(documentationFileName string) string {
 
 //export callbackQHelpEngineCore_ReadersAboutToBeInvalidated
 func callbackQHelpEngineCore_ReadersAboutToBeInvalidated(ptr unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpEngineCore::readersAboutToBeInvalidated")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpEngineCore::readersAboutToBeInvalidated"); signal != nil {
 		signal.(func())()
@@ -8002,8 +6440,6 @@ func callbackQHelpEngineCore_ReadersAboutToBeInvalidated(ptr unsafe.Pointer) {
 }
 
 func (ptr *QHelpEngineCore) ConnectReadersAboutToBeInvalidated(f func()) {
-	defer qt.Recovering("connect QHelpEngineCore::readersAboutToBeInvalidated")
-
 	if ptr.Pointer() != nil {
 		C.QHelpEngineCore_ConnectReadersAboutToBeInvalidated(ptr.Pointer())
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpEngineCore::readersAboutToBeInvalidated", f)
@@ -8011,8 +6447,6 @@ func (ptr *QHelpEngineCore) ConnectReadersAboutToBeInvalidated(f func()) {
 }
 
 func (ptr *QHelpEngineCore) DisconnectReadersAboutToBeInvalidated() {
-	defer qt.Recovering("disconnect QHelpEngineCore::readersAboutToBeInvalidated")
-
 	if ptr.Pointer() != nil {
 		C.QHelpEngineCore_DisconnectReadersAboutToBeInvalidated(ptr.Pointer())
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpEngineCore::readersAboutToBeInvalidated")
@@ -8020,16 +6454,12 @@ func (ptr *QHelpEngineCore) DisconnectReadersAboutToBeInvalidated() {
 }
 
 func (ptr *QHelpEngineCore) ReadersAboutToBeInvalidated() {
-	defer qt.Recovering("QHelpEngineCore::readersAboutToBeInvalidated")
-
 	if ptr.Pointer() != nil {
 		C.QHelpEngineCore_ReadersAboutToBeInvalidated(ptr.Pointer())
 	}
 }
 
 func (ptr *QHelpEngineCore) RegisterDocumentation(documentationFileName string) bool {
-	defer qt.Recovering("QHelpEngineCore::registerDocumentation")
-
 	if ptr.Pointer() != nil {
 		var documentationFileNameC = C.CString(documentationFileName)
 		defer C.free(unsafe.Pointer(documentationFileNameC))
@@ -8039,8 +6469,6 @@ func (ptr *QHelpEngineCore) RegisterDocumentation(documentationFileName string) 
 }
 
 func (ptr *QHelpEngineCore) RegisteredDocumentations() []string {
-	defer qt.Recovering("QHelpEngineCore::registeredDocumentations")
-
 	if ptr.Pointer() != nil {
 		return strings.Split(C.GoString(C.QHelpEngineCore_RegisteredDocumentations(ptr.Pointer())), "|")
 	}
@@ -8048,8 +6476,6 @@ func (ptr *QHelpEngineCore) RegisteredDocumentations() []string {
 }
 
 func (ptr *QHelpEngineCore) RemoveCustomFilter(filterName string) bool {
-	defer qt.Recovering("QHelpEngineCore::removeCustomFilter")
-
 	if ptr.Pointer() != nil {
 		var filterNameC = C.CString(filterName)
 		defer C.free(unsafe.Pointer(filterNameC))
@@ -8059,8 +6485,6 @@ func (ptr *QHelpEngineCore) RemoveCustomFilter(filterName string) bool {
 }
 
 func (ptr *QHelpEngineCore) RemoveCustomValue(key string) bool {
-	defer qt.Recovering("QHelpEngineCore::removeCustomValue")
-
 	if ptr.Pointer() != nil {
 		var keyC = C.CString(key)
 		defer C.free(unsafe.Pointer(keyC))
@@ -8070,8 +6494,6 @@ func (ptr *QHelpEngineCore) RemoveCustomValue(key string) bool {
 }
 
 func (ptr *QHelpEngineCore) SetCustomValue(key string, value core.QVariant_ITF) bool {
-	defer qt.Recovering("QHelpEngineCore::setCustomValue")
-
 	if ptr.Pointer() != nil {
 		var keyC = C.CString(key)
 		defer C.free(unsafe.Pointer(keyC))
@@ -8081,8 +6503,6 @@ func (ptr *QHelpEngineCore) SetCustomValue(key string, value core.QVariant_ITF) 
 }
 
 func (ptr *QHelpEngineCore) SetupData() bool {
-	defer qt.Recovering("QHelpEngineCore::setupData")
-
 	if ptr.Pointer() != nil {
 		return C.QHelpEngineCore_SetupData(ptr.Pointer()) != 0
 	}
@@ -8091,7 +6511,6 @@ func (ptr *QHelpEngineCore) SetupData() bool {
 
 //export callbackQHelpEngineCore_SetupFinished
 func callbackQHelpEngineCore_SetupFinished(ptr unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpEngineCore::setupFinished")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpEngineCore::setupFinished"); signal != nil {
 		signal.(func())()
@@ -8100,8 +6519,6 @@ func callbackQHelpEngineCore_SetupFinished(ptr unsafe.Pointer) {
 }
 
 func (ptr *QHelpEngineCore) ConnectSetupFinished(f func()) {
-	defer qt.Recovering("connect QHelpEngineCore::setupFinished")
-
 	if ptr.Pointer() != nil {
 		C.QHelpEngineCore_ConnectSetupFinished(ptr.Pointer())
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpEngineCore::setupFinished", f)
@@ -8109,8 +6526,6 @@ func (ptr *QHelpEngineCore) ConnectSetupFinished(f func()) {
 }
 
 func (ptr *QHelpEngineCore) DisconnectSetupFinished() {
-	defer qt.Recovering("disconnect QHelpEngineCore::setupFinished")
-
 	if ptr.Pointer() != nil {
 		C.QHelpEngineCore_DisconnectSetupFinished(ptr.Pointer())
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpEngineCore::setupFinished")
@@ -8118,8 +6533,6 @@ func (ptr *QHelpEngineCore) DisconnectSetupFinished() {
 }
 
 func (ptr *QHelpEngineCore) SetupFinished() {
-	defer qt.Recovering("QHelpEngineCore::setupFinished")
-
 	if ptr.Pointer() != nil {
 		C.QHelpEngineCore_SetupFinished(ptr.Pointer())
 	}
@@ -8127,7 +6540,6 @@ func (ptr *QHelpEngineCore) SetupFinished() {
 
 //export callbackQHelpEngineCore_SetupStarted
 func callbackQHelpEngineCore_SetupStarted(ptr unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpEngineCore::setupStarted")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpEngineCore::setupStarted"); signal != nil {
 		signal.(func())()
@@ -8136,8 +6548,6 @@ func callbackQHelpEngineCore_SetupStarted(ptr unsafe.Pointer) {
 }
 
 func (ptr *QHelpEngineCore) ConnectSetupStarted(f func()) {
-	defer qt.Recovering("connect QHelpEngineCore::setupStarted")
-
 	if ptr.Pointer() != nil {
 		C.QHelpEngineCore_ConnectSetupStarted(ptr.Pointer())
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpEngineCore::setupStarted", f)
@@ -8145,8 +6555,6 @@ func (ptr *QHelpEngineCore) ConnectSetupStarted(f func()) {
 }
 
 func (ptr *QHelpEngineCore) DisconnectSetupStarted() {
-	defer qt.Recovering("disconnect QHelpEngineCore::setupStarted")
-
 	if ptr.Pointer() != nil {
 		C.QHelpEngineCore_DisconnectSetupStarted(ptr.Pointer())
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpEngineCore::setupStarted")
@@ -8154,16 +6562,12 @@ func (ptr *QHelpEngineCore) DisconnectSetupStarted() {
 }
 
 func (ptr *QHelpEngineCore) SetupStarted() {
-	defer qt.Recovering("QHelpEngineCore::setupStarted")
-
 	if ptr.Pointer() != nil {
 		C.QHelpEngineCore_SetupStarted(ptr.Pointer())
 	}
 }
 
 func (ptr *QHelpEngineCore) UnregisterDocumentation(namespaceName string) bool {
-	defer qt.Recovering("QHelpEngineCore::unregisterDocumentation")
-
 	if ptr.Pointer() != nil {
 		var namespaceNameC = C.CString(namespaceName)
 		defer C.free(unsafe.Pointer(namespaceNameC))
@@ -8174,7 +6578,6 @@ func (ptr *QHelpEngineCore) UnregisterDocumentation(namespaceName string) bool {
 
 //export callbackQHelpEngineCore_Warning
 func callbackQHelpEngineCore_Warning(ptr unsafe.Pointer, msg *C.char) {
-	defer qt.Recovering("callback QHelpEngineCore::warning")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpEngineCore::warning"); signal != nil {
 		signal.(func(string))(C.GoString(msg))
@@ -8183,8 +6586,6 @@ func callbackQHelpEngineCore_Warning(ptr unsafe.Pointer, msg *C.char) {
 }
 
 func (ptr *QHelpEngineCore) ConnectWarning(f func(msg string)) {
-	defer qt.Recovering("connect QHelpEngineCore::warning")
-
 	if ptr.Pointer() != nil {
 		C.QHelpEngineCore_ConnectWarning(ptr.Pointer())
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpEngineCore::warning", f)
@@ -8192,8 +6593,6 @@ func (ptr *QHelpEngineCore) ConnectWarning(f func(msg string)) {
 }
 
 func (ptr *QHelpEngineCore) DisconnectWarning() {
-	defer qt.Recovering("disconnect QHelpEngineCore::warning")
-
 	if ptr.Pointer() != nil {
 		C.QHelpEngineCore_DisconnectWarning(ptr.Pointer())
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpEngineCore::warning")
@@ -8201,8 +6600,6 @@ func (ptr *QHelpEngineCore) DisconnectWarning() {
 }
 
 func (ptr *QHelpEngineCore) Warning(msg string) {
-	defer qt.Recovering("QHelpEngineCore::warning")
-
 	if ptr.Pointer() != nil {
 		var msgC = C.CString(msg)
 		defer C.free(unsafe.Pointer(msgC))
@@ -8212,7 +6609,6 @@ func (ptr *QHelpEngineCore) Warning(msg string) {
 
 //export callbackQHelpEngineCore_DestroyQHelpEngineCore
 func callbackQHelpEngineCore_DestroyQHelpEngineCore(ptr unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpEngineCore::~QHelpEngineCore")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpEngineCore::~QHelpEngineCore"); signal != nil {
 		signal.(func())()
@@ -8222,8 +6618,6 @@ func callbackQHelpEngineCore_DestroyQHelpEngineCore(ptr unsafe.Pointer) {
 }
 
 func (ptr *QHelpEngineCore) ConnectDestroyQHelpEngineCore(f func()) {
-	defer qt.Recovering("connect QHelpEngineCore::~QHelpEngineCore")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpEngineCore::~QHelpEngineCore", f)
@@ -8231,8 +6625,6 @@ func (ptr *QHelpEngineCore) ConnectDestroyQHelpEngineCore(f func()) {
 }
 
 func (ptr *QHelpEngineCore) DisconnectDestroyQHelpEngineCore() {
-	defer qt.Recovering("disconnect QHelpEngineCore::~QHelpEngineCore")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpEngineCore::~QHelpEngineCore")
@@ -8240,8 +6632,6 @@ func (ptr *QHelpEngineCore) DisconnectDestroyQHelpEngineCore() {
 }
 
 func (ptr *QHelpEngineCore) DestroyQHelpEngineCore() {
-	defer qt.Recovering("QHelpEngineCore::~QHelpEngineCore")
-
 	if ptr.Pointer() != nil {
 		C.QHelpEngineCore_DestroyQHelpEngineCore(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
@@ -8250,8 +6640,6 @@ func (ptr *QHelpEngineCore) DestroyQHelpEngineCore() {
 }
 
 func (ptr *QHelpEngineCore) DestroyQHelpEngineCoreDefault() {
-	defer qt.Recovering("QHelpEngineCore::~QHelpEngineCore")
-
 	if ptr.Pointer() != nil {
 		C.QHelpEngineCore_DestroyQHelpEngineCoreDefault(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
@@ -8261,7 +6649,6 @@ func (ptr *QHelpEngineCore) DestroyQHelpEngineCoreDefault() {
 
 //export callbackQHelpEngineCore_TimerEvent
 func callbackQHelpEngineCore_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpEngineCore::timerEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpEngineCore::timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
@@ -8271,8 +6658,6 @@ func callbackQHelpEngineCore_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer
 }
 
 func (ptr *QHelpEngineCore) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
-	defer qt.Recovering("connect QHelpEngineCore::timerEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpEngineCore::timerEvent", f)
@@ -8280,8 +6665,6 @@ func (ptr *QHelpEngineCore) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
 }
 
 func (ptr *QHelpEngineCore) DisconnectTimerEvent() {
-	defer qt.Recovering("disconnect QHelpEngineCore::timerEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpEngineCore::timerEvent")
@@ -8289,16 +6672,12 @@ func (ptr *QHelpEngineCore) DisconnectTimerEvent() {
 }
 
 func (ptr *QHelpEngineCore) TimerEvent(event core.QTimerEvent_ITF) {
-	defer qt.Recovering("QHelpEngineCore::timerEvent")
-
 	if ptr.Pointer() != nil {
 		C.QHelpEngineCore_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
 	}
 }
 
 func (ptr *QHelpEngineCore) TimerEventDefault(event core.QTimerEvent_ITF) {
-	defer qt.Recovering("QHelpEngineCore::timerEvent")
-
 	if ptr.Pointer() != nil {
 		C.QHelpEngineCore_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
 	}
@@ -8306,7 +6685,6 @@ func (ptr *QHelpEngineCore) TimerEventDefault(event core.QTimerEvent_ITF) {
 
 //export callbackQHelpEngineCore_ChildEvent
 func callbackQHelpEngineCore_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpEngineCore::childEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpEngineCore::childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
@@ -8316,8 +6694,6 @@ func callbackQHelpEngineCore_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer
 }
 
 func (ptr *QHelpEngineCore) ConnectChildEvent(f func(event *core.QChildEvent)) {
-	defer qt.Recovering("connect QHelpEngineCore::childEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpEngineCore::childEvent", f)
@@ -8325,8 +6701,6 @@ func (ptr *QHelpEngineCore) ConnectChildEvent(f func(event *core.QChildEvent)) {
 }
 
 func (ptr *QHelpEngineCore) DisconnectChildEvent() {
-	defer qt.Recovering("disconnect QHelpEngineCore::childEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpEngineCore::childEvent")
@@ -8334,16 +6708,12 @@ func (ptr *QHelpEngineCore) DisconnectChildEvent() {
 }
 
 func (ptr *QHelpEngineCore) ChildEvent(event core.QChildEvent_ITF) {
-	defer qt.Recovering("QHelpEngineCore::childEvent")
-
 	if ptr.Pointer() != nil {
 		C.QHelpEngineCore_ChildEvent(ptr.Pointer(), core.PointerFromQChildEvent(event))
 	}
 }
 
 func (ptr *QHelpEngineCore) ChildEventDefault(event core.QChildEvent_ITF) {
-	defer qt.Recovering("QHelpEngineCore::childEvent")
-
 	if ptr.Pointer() != nil {
 		C.QHelpEngineCore_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
 	}
@@ -8351,7 +6721,6 @@ func (ptr *QHelpEngineCore) ChildEventDefault(event core.QChildEvent_ITF) {
 
 //export callbackQHelpEngineCore_ConnectNotify
 func callbackQHelpEngineCore_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpEngineCore::connectNotify")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpEngineCore::connectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
@@ -8361,8 +6730,6 @@ func callbackQHelpEngineCore_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Point
 }
 
 func (ptr *QHelpEngineCore) ConnectConnectNotify(f func(sign *core.QMetaMethod)) {
-	defer qt.Recovering("connect QHelpEngineCore::connectNotify")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpEngineCore::connectNotify", f)
@@ -8370,8 +6737,6 @@ func (ptr *QHelpEngineCore) ConnectConnectNotify(f func(sign *core.QMetaMethod))
 }
 
 func (ptr *QHelpEngineCore) DisconnectConnectNotify() {
-	defer qt.Recovering("disconnect QHelpEngineCore::connectNotify")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpEngineCore::connectNotify")
@@ -8379,16 +6744,12 @@ func (ptr *QHelpEngineCore) DisconnectConnectNotify() {
 }
 
 func (ptr *QHelpEngineCore) ConnectNotify(sign core.QMetaMethod_ITF) {
-	defer qt.Recovering("QHelpEngineCore::connectNotify")
-
 	if ptr.Pointer() != nil {
 		C.QHelpEngineCore_ConnectNotify(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
 	}
 }
 
 func (ptr *QHelpEngineCore) ConnectNotifyDefault(sign core.QMetaMethod_ITF) {
-	defer qt.Recovering("QHelpEngineCore::connectNotify")
-
 	if ptr.Pointer() != nil {
 		C.QHelpEngineCore_ConnectNotifyDefault(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
 	}
@@ -8396,7 +6757,6 @@ func (ptr *QHelpEngineCore) ConnectNotifyDefault(sign core.QMetaMethod_ITF) {
 
 //export callbackQHelpEngineCore_CustomEvent
 func callbackQHelpEngineCore_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpEngineCore::customEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpEngineCore::customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
@@ -8406,8 +6766,6 @@ func callbackQHelpEngineCore_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointe
 }
 
 func (ptr *QHelpEngineCore) ConnectCustomEvent(f func(event *core.QEvent)) {
-	defer qt.Recovering("connect QHelpEngineCore::customEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpEngineCore::customEvent", f)
@@ -8415,8 +6773,6 @@ func (ptr *QHelpEngineCore) ConnectCustomEvent(f func(event *core.QEvent)) {
 }
 
 func (ptr *QHelpEngineCore) DisconnectCustomEvent() {
-	defer qt.Recovering("disconnect QHelpEngineCore::customEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpEngineCore::customEvent")
@@ -8424,16 +6780,12 @@ func (ptr *QHelpEngineCore) DisconnectCustomEvent() {
 }
 
 func (ptr *QHelpEngineCore) CustomEvent(event core.QEvent_ITF) {
-	defer qt.Recovering("QHelpEngineCore::customEvent")
-
 	if ptr.Pointer() != nil {
 		C.QHelpEngineCore_CustomEvent(ptr.Pointer(), core.PointerFromQEvent(event))
 	}
 }
 
 func (ptr *QHelpEngineCore) CustomEventDefault(event core.QEvent_ITF) {
-	defer qt.Recovering("QHelpEngineCore::customEvent")
-
 	if ptr.Pointer() != nil {
 		C.QHelpEngineCore_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
 	}
@@ -8441,8 +6793,6 @@ func (ptr *QHelpEngineCore) CustomEventDefault(event core.QEvent_ITF) {
 
 //export callbackQHelpEngineCore_DeleteLater
 func callbackQHelpEngineCore_DeleteLater(ptr unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpEngineCore::deleteLater")
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpEngineCore::deleteLater"); signal != nil {
 		signal.(func())()
 	} else {
@@ -8451,8 +6801,6 @@ func callbackQHelpEngineCore_DeleteLater(ptr unsafe.Pointer) {
 }
 
 func (ptr *QHelpEngineCore) ConnectDeleteLater(f func()) {
-	defer qt.Recovering("connect QHelpEngineCore::deleteLater")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpEngineCore::deleteLater", f)
@@ -8460,8 +6808,6 @@ func (ptr *QHelpEngineCore) ConnectDeleteLater(f func()) {
 }
 
 func (ptr *QHelpEngineCore) DisconnectDeleteLater() {
-	defer qt.Recovering("disconnect QHelpEngineCore::deleteLater")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpEngineCore::deleteLater")
@@ -8469,8 +6815,6 @@ func (ptr *QHelpEngineCore) DisconnectDeleteLater() {
 }
 
 func (ptr *QHelpEngineCore) DeleteLater() {
-	defer qt.Recovering("QHelpEngineCore::deleteLater")
-
 	if ptr.Pointer() != nil {
 		C.QHelpEngineCore_DeleteLater(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
@@ -8479,8 +6823,6 @@ func (ptr *QHelpEngineCore) DeleteLater() {
 }
 
 func (ptr *QHelpEngineCore) DeleteLaterDefault() {
-	defer qt.Recovering("QHelpEngineCore::deleteLater")
-
 	if ptr.Pointer() != nil {
 		C.QHelpEngineCore_DeleteLaterDefault(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
@@ -8490,7 +6832,6 @@ func (ptr *QHelpEngineCore) DeleteLaterDefault() {
 
 //export callbackQHelpEngineCore_DisconnectNotify
 func callbackQHelpEngineCore_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpEngineCore::disconnectNotify")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpEngineCore::disconnectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
@@ -8500,8 +6841,6 @@ func callbackQHelpEngineCore_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Po
 }
 
 func (ptr *QHelpEngineCore) ConnectDisconnectNotify(f func(sign *core.QMetaMethod)) {
-	defer qt.Recovering("connect QHelpEngineCore::disconnectNotify")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpEngineCore::disconnectNotify", f)
@@ -8509,8 +6848,6 @@ func (ptr *QHelpEngineCore) ConnectDisconnectNotify(f func(sign *core.QMetaMetho
 }
 
 func (ptr *QHelpEngineCore) DisconnectDisconnectNotify() {
-	defer qt.Recovering("disconnect QHelpEngineCore::disconnectNotify")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpEngineCore::disconnectNotify")
@@ -8518,16 +6855,12 @@ func (ptr *QHelpEngineCore) DisconnectDisconnectNotify() {
 }
 
 func (ptr *QHelpEngineCore) DisconnectNotify(sign core.QMetaMethod_ITF) {
-	defer qt.Recovering("QHelpEngineCore::disconnectNotify")
-
 	if ptr.Pointer() != nil {
 		C.QHelpEngineCore_DisconnectNotify(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
 	}
 }
 
 func (ptr *QHelpEngineCore) DisconnectNotifyDefault(sign core.QMetaMethod_ITF) {
-	defer qt.Recovering("QHelpEngineCore::disconnectNotify")
-
 	if ptr.Pointer() != nil {
 		C.QHelpEngineCore_DisconnectNotifyDefault(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
 	}
@@ -8535,7 +6868,6 @@ func (ptr *QHelpEngineCore) DisconnectNotifyDefault(sign core.QMetaMethod_ITF) {
 
 //export callbackQHelpEngineCore_Event
 func callbackQHelpEngineCore_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
-	defer qt.Recovering("callback QHelpEngineCore::event")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpEngineCore::event"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
@@ -8545,8 +6877,6 @@ func callbackQHelpEngineCore_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char 
 }
 
 func (ptr *QHelpEngineCore) ConnectEvent(f func(e *core.QEvent) bool) {
-	defer qt.Recovering("connect QHelpEngineCore::event")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpEngineCore::event", f)
@@ -8554,8 +6884,6 @@ func (ptr *QHelpEngineCore) ConnectEvent(f func(e *core.QEvent) bool) {
 }
 
 func (ptr *QHelpEngineCore) DisconnectEvent() {
-	defer qt.Recovering("disconnect QHelpEngineCore::event")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpEngineCore::event")
@@ -8563,8 +6891,6 @@ func (ptr *QHelpEngineCore) DisconnectEvent() {
 }
 
 func (ptr *QHelpEngineCore) Event(e core.QEvent_ITF) bool {
-	defer qt.Recovering("QHelpEngineCore::event")
-
 	if ptr.Pointer() != nil {
 		return C.QHelpEngineCore_Event(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
 	}
@@ -8572,8 +6898,6 @@ func (ptr *QHelpEngineCore) Event(e core.QEvent_ITF) bool {
 }
 
 func (ptr *QHelpEngineCore) EventDefault(e core.QEvent_ITF) bool {
-	defer qt.Recovering("QHelpEngineCore::event")
-
 	if ptr.Pointer() != nil {
 		return C.QHelpEngineCore_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
 	}
@@ -8582,7 +6906,6 @@ func (ptr *QHelpEngineCore) EventDefault(e core.QEvent_ITF) bool {
 
 //export callbackQHelpEngineCore_EventFilter
 func callbackQHelpEngineCore_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-	defer qt.Recovering("callback QHelpEngineCore::eventFilter")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpEngineCore::eventFilter"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
@@ -8592,8 +6915,6 @@ func callbackQHelpEngineCore_EventFilter(ptr unsafe.Pointer, watched unsafe.Poin
 }
 
 func (ptr *QHelpEngineCore) ConnectEventFilter(f func(watched *core.QObject, event *core.QEvent) bool) {
-	defer qt.Recovering("connect QHelpEngineCore::eventFilter")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpEngineCore::eventFilter", f)
@@ -8601,8 +6922,6 @@ func (ptr *QHelpEngineCore) ConnectEventFilter(f func(watched *core.QObject, eve
 }
 
 func (ptr *QHelpEngineCore) DisconnectEventFilter() {
-	defer qt.Recovering("disconnect QHelpEngineCore::eventFilter")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpEngineCore::eventFilter")
@@ -8610,8 +6929,6 @@ func (ptr *QHelpEngineCore) DisconnectEventFilter() {
 }
 
 func (ptr *QHelpEngineCore) EventFilter(watched core.QObject_ITF, event core.QEvent_ITF) bool {
-	defer qt.Recovering("QHelpEngineCore::eventFilter")
-
 	if ptr.Pointer() != nil {
 		return C.QHelpEngineCore_EventFilter(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
 	}
@@ -8619,8 +6936,6 @@ func (ptr *QHelpEngineCore) EventFilter(watched core.QObject_ITF, event core.QEv
 }
 
 func (ptr *QHelpEngineCore) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
-	defer qt.Recovering("QHelpEngineCore::eventFilter")
-
 	if ptr.Pointer() != nil {
 		return C.QHelpEngineCore_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
 	}
@@ -8629,7 +6944,6 @@ func (ptr *QHelpEngineCore) EventFilterDefault(watched core.QObject_ITF, event c
 
 //export callbackQHelpEngineCore_MetaObject
 func callbackQHelpEngineCore_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-	defer qt.Recovering("callback QHelpEngineCore::metaObject")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpEngineCore::metaObject"); signal != nil {
 		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
@@ -8639,8 +6953,6 @@ func callbackQHelpEngineCore_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
 }
 
 func (ptr *QHelpEngineCore) ConnectMetaObject(f func() *core.QMetaObject) {
-	defer qt.Recovering("connect QHelpEngineCore::metaObject")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpEngineCore::metaObject", f)
@@ -8648,8 +6960,6 @@ func (ptr *QHelpEngineCore) ConnectMetaObject(f func() *core.QMetaObject) {
 }
 
 func (ptr *QHelpEngineCore) DisconnectMetaObject() {
-	defer qt.Recovering("disconnect QHelpEngineCore::metaObject")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpEngineCore::metaObject")
@@ -8657,8 +6967,6 @@ func (ptr *QHelpEngineCore) DisconnectMetaObject() {
 }
 
 func (ptr *QHelpEngineCore) MetaObject() *core.QMetaObject {
-	defer qt.Recovering("QHelpEngineCore::metaObject")
-
 	if ptr.Pointer() != nil {
 		return core.NewQMetaObjectFromPointer(C.QHelpEngineCore_MetaObject(ptr.Pointer()))
 	}
@@ -8666,8 +6974,6 @@ func (ptr *QHelpEngineCore) MetaObject() *core.QMetaObject {
 }
 
 func (ptr *QHelpEngineCore) MetaObjectDefault() *core.QMetaObject {
-	defer qt.Recovering("QHelpEngineCore::metaObject")
-
 	if ptr.Pointer() != nil {
 		return core.NewQMetaObjectFromPointer(C.QHelpEngineCore_MetaObjectDefault(ptr.Pointer()))
 	}
@@ -8720,8 +7026,6 @@ func (ptr *QHelpIndexModel) DestroyQHelpIndexModel() {
 }
 
 func (ptr *QHelpIndexModel) CreateIndex(customFilterName string) {
-	defer qt.Recovering("QHelpIndexModel::createIndex")
-
 	if ptr.Pointer() != nil {
 		var customFilterNameC = C.CString(customFilterName)
 		defer C.free(unsafe.Pointer(customFilterNameC))
@@ -8730,8 +7034,6 @@ func (ptr *QHelpIndexModel) CreateIndex(customFilterName string) {
 }
 
 func (ptr *QHelpIndexModel) Filter(filter string, wildcard string) *core.QModelIndex {
-	defer qt.Recovering("QHelpIndexModel::filter")
-
 	if ptr.Pointer() != nil {
 		var filterC = C.CString(filter)
 		defer C.free(unsafe.Pointer(filterC))
@@ -8746,7 +7048,6 @@ func (ptr *QHelpIndexModel) Filter(filter string, wildcard string) *core.QModelI
 
 //export callbackQHelpIndexModel_IndexCreated
 func callbackQHelpIndexModel_IndexCreated(ptr unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpIndexModel::indexCreated")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpIndexModel::indexCreated"); signal != nil {
 		signal.(func())()
@@ -8755,8 +7056,6 @@ func callbackQHelpIndexModel_IndexCreated(ptr unsafe.Pointer) {
 }
 
 func (ptr *QHelpIndexModel) ConnectIndexCreated(f func()) {
-	defer qt.Recovering("connect QHelpIndexModel::indexCreated")
-
 	if ptr.Pointer() != nil {
 		C.QHelpIndexModel_ConnectIndexCreated(ptr.Pointer())
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexModel::indexCreated", f)
@@ -8764,8 +7063,6 @@ func (ptr *QHelpIndexModel) ConnectIndexCreated(f func()) {
 }
 
 func (ptr *QHelpIndexModel) DisconnectIndexCreated() {
-	defer qt.Recovering("disconnect QHelpIndexModel::indexCreated")
-
 	if ptr.Pointer() != nil {
 		C.QHelpIndexModel_DisconnectIndexCreated(ptr.Pointer())
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexModel::indexCreated")
@@ -8773,8 +7070,6 @@ func (ptr *QHelpIndexModel) DisconnectIndexCreated() {
 }
 
 func (ptr *QHelpIndexModel) IndexCreated() {
-	defer qt.Recovering("QHelpIndexModel::indexCreated")
-
 	if ptr.Pointer() != nil {
 		C.QHelpIndexModel_IndexCreated(ptr.Pointer())
 	}
@@ -8782,7 +7077,6 @@ func (ptr *QHelpIndexModel) IndexCreated() {
 
 //export callbackQHelpIndexModel_IndexCreationStarted
 func callbackQHelpIndexModel_IndexCreationStarted(ptr unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpIndexModel::indexCreationStarted")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpIndexModel::indexCreationStarted"); signal != nil {
 		signal.(func())()
@@ -8791,8 +7085,6 @@ func callbackQHelpIndexModel_IndexCreationStarted(ptr unsafe.Pointer) {
 }
 
 func (ptr *QHelpIndexModel) ConnectIndexCreationStarted(f func()) {
-	defer qt.Recovering("connect QHelpIndexModel::indexCreationStarted")
-
 	if ptr.Pointer() != nil {
 		C.QHelpIndexModel_ConnectIndexCreationStarted(ptr.Pointer())
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexModel::indexCreationStarted", f)
@@ -8800,8 +7092,6 @@ func (ptr *QHelpIndexModel) ConnectIndexCreationStarted(f func()) {
 }
 
 func (ptr *QHelpIndexModel) DisconnectIndexCreationStarted() {
-	defer qt.Recovering("disconnect QHelpIndexModel::indexCreationStarted")
-
 	if ptr.Pointer() != nil {
 		C.QHelpIndexModel_DisconnectIndexCreationStarted(ptr.Pointer())
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexModel::indexCreationStarted")
@@ -8809,16 +7099,12 @@ func (ptr *QHelpIndexModel) DisconnectIndexCreationStarted() {
 }
 
 func (ptr *QHelpIndexModel) IndexCreationStarted() {
-	defer qt.Recovering("QHelpIndexModel::indexCreationStarted")
-
 	if ptr.Pointer() != nil {
 		C.QHelpIndexModel_IndexCreationStarted(ptr.Pointer())
 	}
 }
 
 func (ptr *QHelpIndexModel) IsCreatingIndex() bool {
-	defer qt.Recovering("QHelpIndexModel::isCreatingIndex")
-
 	if ptr.Pointer() != nil {
 		return C.QHelpIndexModel_IsCreatingIndex(ptr.Pointer()) != 0
 	}
@@ -8827,7 +7113,6 @@ func (ptr *QHelpIndexModel) IsCreatingIndex() bool {
 
 //export callbackQHelpIndexModel_Data
 func callbackQHelpIndexModel_Data(ptr unsafe.Pointer, index unsafe.Pointer, role C.int) unsafe.Pointer {
-	defer qt.Recovering("callback QHelpIndexModel::data")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpIndexModel::data"); signal != nil {
 		return core.PointerFromQVariant(signal.(func(*core.QModelIndex, int) *core.QVariant)(core.NewQModelIndexFromPointer(index), int(int32(role))))
@@ -8837,8 +7122,6 @@ func callbackQHelpIndexModel_Data(ptr unsafe.Pointer, index unsafe.Pointer, role
 }
 
 func (ptr *QHelpIndexModel) ConnectData(f func(index *core.QModelIndex, role int) *core.QVariant) {
-	defer qt.Recovering("connect QHelpIndexModel::data")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexModel::data", f)
@@ -8846,8 +7129,6 @@ func (ptr *QHelpIndexModel) ConnectData(f func(index *core.QModelIndex, role int
 }
 
 func (ptr *QHelpIndexModel) DisconnectData() {
-	defer qt.Recovering("disconnect QHelpIndexModel::data")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexModel::data")
@@ -8855,8 +7136,6 @@ func (ptr *QHelpIndexModel) DisconnectData() {
 }
 
 func (ptr *QHelpIndexModel) Data(index core.QModelIndex_ITF, role int) *core.QVariant {
-	defer qt.Recovering("QHelpIndexModel::data")
-
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQVariantFromPointer(C.QHelpIndexModel_Data(ptr.Pointer(), core.PointerFromQModelIndex(index), C.int(int32(role))))
 		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
@@ -8866,8 +7145,6 @@ func (ptr *QHelpIndexModel) Data(index core.QModelIndex_ITF, role int) *core.QVa
 }
 
 func (ptr *QHelpIndexModel) DataDefault(index core.QModelIndex_ITF, role int) *core.QVariant {
-	defer qt.Recovering("QHelpIndexModel::data")
-
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQVariantFromPointer(C.QHelpIndexModel_DataDefault(ptr.Pointer(), core.PointerFromQModelIndex(index), C.int(int32(role))))
 		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
@@ -8878,7 +7155,6 @@ func (ptr *QHelpIndexModel) DataDefault(index core.QModelIndex_ITF, role int) *c
 
 //export callbackQHelpIndexModel_Flags
 func callbackQHelpIndexModel_Flags(ptr unsafe.Pointer, index unsafe.Pointer) C.longlong {
-	defer qt.Recovering("callback QHelpIndexModel::flags")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpIndexModel::flags"); signal != nil {
 		return C.longlong(signal.(func(*core.QModelIndex) core.Qt__ItemFlag)(core.NewQModelIndexFromPointer(index)))
@@ -8888,8 +7164,6 @@ func callbackQHelpIndexModel_Flags(ptr unsafe.Pointer, index unsafe.Pointer) C.l
 }
 
 func (ptr *QHelpIndexModel) ConnectFlags(f func(index *core.QModelIndex) core.Qt__ItemFlag) {
-	defer qt.Recovering("connect QHelpIndexModel::flags")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexModel::flags", f)
@@ -8897,8 +7171,6 @@ func (ptr *QHelpIndexModel) ConnectFlags(f func(index *core.QModelIndex) core.Qt
 }
 
 func (ptr *QHelpIndexModel) DisconnectFlags() {
-	defer qt.Recovering("disconnect QHelpIndexModel::flags")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexModel::flags")
@@ -8906,8 +7178,6 @@ func (ptr *QHelpIndexModel) DisconnectFlags() {
 }
 
 func (ptr *QHelpIndexModel) Flags(index core.QModelIndex_ITF) core.Qt__ItemFlag {
-	defer qt.Recovering("QHelpIndexModel::flags")
-
 	if ptr.Pointer() != nil {
 		return core.Qt__ItemFlag(C.QHelpIndexModel_Flags(ptr.Pointer(), core.PointerFromQModelIndex(index)))
 	}
@@ -8915,8 +7185,6 @@ func (ptr *QHelpIndexModel) Flags(index core.QModelIndex_ITF) core.Qt__ItemFlag 
 }
 
 func (ptr *QHelpIndexModel) FlagsDefault(index core.QModelIndex_ITF) core.Qt__ItemFlag {
-	defer qt.Recovering("QHelpIndexModel::flags")
-
 	if ptr.Pointer() != nil {
 		return core.Qt__ItemFlag(C.QHelpIndexModel_FlagsDefault(ptr.Pointer(), core.PointerFromQModelIndex(index)))
 	}
@@ -8925,7 +7193,6 @@ func (ptr *QHelpIndexModel) FlagsDefault(index core.QModelIndex_ITF) core.Qt__It
 
 //export callbackQHelpIndexModel_InsertRows
 func callbackQHelpIndexModel_InsertRows(ptr unsafe.Pointer, row C.int, count C.int, parent unsafe.Pointer) C.char {
-	defer qt.Recovering("callback QHelpIndexModel::insertRows")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpIndexModel::insertRows"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(int, int, *core.QModelIndex) bool)(int(int32(row)), int(int32(count)), core.NewQModelIndexFromPointer(parent)))))
@@ -8935,8 +7202,6 @@ func callbackQHelpIndexModel_InsertRows(ptr unsafe.Pointer, row C.int, count C.i
 }
 
 func (ptr *QHelpIndexModel) ConnectInsertRows(f func(row int, count int, parent *core.QModelIndex) bool) {
-	defer qt.Recovering("connect QHelpIndexModel::insertRows")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexModel::insertRows", f)
@@ -8944,8 +7209,6 @@ func (ptr *QHelpIndexModel) ConnectInsertRows(f func(row int, count int, parent 
 }
 
 func (ptr *QHelpIndexModel) DisconnectInsertRows() {
-	defer qt.Recovering("disconnect QHelpIndexModel::insertRows")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexModel::insertRows")
@@ -8953,8 +7216,6 @@ func (ptr *QHelpIndexModel) DisconnectInsertRows() {
 }
 
 func (ptr *QHelpIndexModel) InsertRows(row int, count int, parent core.QModelIndex_ITF) bool {
-	defer qt.Recovering("QHelpIndexModel::insertRows")
-
 	if ptr.Pointer() != nil {
 		return C.QHelpIndexModel_InsertRows(ptr.Pointer(), C.int(int32(row)), C.int(int32(count)), core.PointerFromQModelIndex(parent)) != 0
 	}
@@ -8962,8 +7223,6 @@ func (ptr *QHelpIndexModel) InsertRows(row int, count int, parent core.QModelInd
 }
 
 func (ptr *QHelpIndexModel) InsertRowsDefault(row int, count int, parent core.QModelIndex_ITF) bool {
-	defer qt.Recovering("QHelpIndexModel::insertRows")
-
 	if ptr.Pointer() != nil {
 		return C.QHelpIndexModel_InsertRowsDefault(ptr.Pointer(), C.int(int32(row)), C.int(int32(count)), core.PointerFromQModelIndex(parent)) != 0
 	}
@@ -8972,7 +7231,6 @@ func (ptr *QHelpIndexModel) InsertRowsDefault(row int, count int, parent core.QM
 
 //export callbackQHelpIndexModel_RemoveRows
 func callbackQHelpIndexModel_RemoveRows(ptr unsafe.Pointer, row C.int, count C.int, parent unsafe.Pointer) C.char {
-	defer qt.Recovering("callback QHelpIndexModel::removeRows")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpIndexModel::removeRows"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(int, int, *core.QModelIndex) bool)(int(int32(row)), int(int32(count)), core.NewQModelIndexFromPointer(parent)))))
@@ -8982,8 +7240,6 @@ func callbackQHelpIndexModel_RemoveRows(ptr unsafe.Pointer, row C.int, count C.i
 }
 
 func (ptr *QHelpIndexModel) ConnectRemoveRows(f func(row int, count int, parent *core.QModelIndex) bool) {
-	defer qt.Recovering("connect QHelpIndexModel::removeRows")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexModel::removeRows", f)
@@ -8991,8 +7247,6 @@ func (ptr *QHelpIndexModel) ConnectRemoveRows(f func(row int, count int, parent 
 }
 
 func (ptr *QHelpIndexModel) DisconnectRemoveRows() {
-	defer qt.Recovering("disconnect QHelpIndexModel::removeRows")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexModel::removeRows")
@@ -9000,8 +7254,6 @@ func (ptr *QHelpIndexModel) DisconnectRemoveRows() {
 }
 
 func (ptr *QHelpIndexModel) RemoveRows(row int, count int, parent core.QModelIndex_ITF) bool {
-	defer qt.Recovering("QHelpIndexModel::removeRows")
-
 	if ptr.Pointer() != nil {
 		return C.QHelpIndexModel_RemoveRows(ptr.Pointer(), C.int(int32(row)), C.int(int32(count)), core.PointerFromQModelIndex(parent)) != 0
 	}
@@ -9009,8 +7261,6 @@ func (ptr *QHelpIndexModel) RemoveRows(row int, count int, parent core.QModelInd
 }
 
 func (ptr *QHelpIndexModel) RemoveRowsDefault(row int, count int, parent core.QModelIndex_ITF) bool {
-	defer qt.Recovering("QHelpIndexModel::removeRows")
-
 	if ptr.Pointer() != nil {
 		return C.QHelpIndexModel_RemoveRowsDefault(ptr.Pointer(), C.int(int32(row)), C.int(int32(count)), core.PointerFromQModelIndex(parent)) != 0
 	}
@@ -9019,7 +7269,6 @@ func (ptr *QHelpIndexModel) RemoveRowsDefault(row int, count int, parent core.QM
 
 //export callbackQHelpIndexModel_RowCount
 func callbackQHelpIndexModel_RowCount(ptr unsafe.Pointer, parent unsafe.Pointer) C.int {
-	defer qt.Recovering("callback QHelpIndexModel::rowCount")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpIndexModel::rowCount"); signal != nil {
 		return C.int(int32(signal.(func(*core.QModelIndex) int)(core.NewQModelIndexFromPointer(parent))))
@@ -9029,8 +7278,6 @@ func callbackQHelpIndexModel_RowCount(ptr unsafe.Pointer, parent unsafe.Pointer)
 }
 
 func (ptr *QHelpIndexModel) ConnectRowCount(f func(parent *core.QModelIndex) int) {
-	defer qt.Recovering("connect QHelpIndexModel::rowCount")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexModel::rowCount", f)
@@ -9038,8 +7285,6 @@ func (ptr *QHelpIndexModel) ConnectRowCount(f func(parent *core.QModelIndex) int
 }
 
 func (ptr *QHelpIndexModel) DisconnectRowCount() {
-	defer qt.Recovering("disconnect QHelpIndexModel::rowCount")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexModel::rowCount")
@@ -9047,8 +7292,6 @@ func (ptr *QHelpIndexModel) DisconnectRowCount() {
 }
 
 func (ptr *QHelpIndexModel) RowCount(parent core.QModelIndex_ITF) int {
-	defer qt.Recovering("QHelpIndexModel::rowCount")
-
 	if ptr.Pointer() != nil {
 		return int(int32(C.QHelpIndexModel_RowCount(ptr.Pointer(), core.PointerFromQModelIndex(parent))))
 	}
@@ -9056,8 +7299,6 @@ func (ptr *QHelpIndexModel) RowCount(parent core.QModelIndex_ITF) int {
 }
 
 func (ptr *QHelpIndexModel) RowCountDefault(parent core.QModelIndex_ITF) int {
-	defer qt.Recovering("QHelpIndexModel::rowCount")
-
 	if ptr.Pointer() != nil {
 		return int(int32(C.QHelpIndexModel_RowCountDefault(ptr.Pointer(), core.PointerFromQModelIndex(parent))))
 	}
@@ -9066,7 +7307,6 @@ func (ptr *QHelpIndexModel) RowCountDefault(parent core.QModelIndex_ITF) int {
 
 //export callbackQHelpIndexModel_SetData
 func callbackQHelpIndexModel_SetData(ptr unsafe.Pointer, index unsafe.Pointer, value unsafe.Pointer, role C.int) C.char {
-	defer qt.Recovering("callback QHelpIndexModel::setData")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpIndexModel::setData"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QModelIndex, *core.QVariant, int) bool)(core.NewQModelIndexFromPointer(index), core.NewQVariantFromPointer(value), int(int32(role))))))
@@ -9076,8 +7316,6 @@ func callbackQHelpIndexModel_SetData(ptr unsafe.Pointer, index unsafe.Pointer, v
 }
 
 func (ptr *QHelpIndexModel) ConnectSetData(f func(index *core.QModelIndex, value *core.QVariant, role int) bool) {
-	defer qt.Recovering("connect QHelpIndexModel::setData")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexModel::setData", f)
@@ -9085,8 +7323,6 @@ func (ptr *QHelpIndexModel) ConnectSetData(f func(index *core.QModelIndex, value
 }
 
 func (ptr *QHelpIndexModel) DisconnectSetData() {
-	defer qt.Recovering("disconnect QHelpIndexModel::setData")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexModel::setData")
@@ -9094,8 +7330,6 @@ func (ptr *QHelpIndexModel) DisconnectSetData() {
 }
 
 func (ptr *QHelpIndexModel) SetData(index core.QModelIndex_ITF, value core.QVariant_ITF, role int) bool {
-	defer qt.Recovering("QHelpIndexModel::setData")
-
 	if ptr.Pointer() != nil {
 		return C.QHelpIndexModel_SetData(ptr.Pointer(), core.PointerFromQModelIndex(index), core.PointerFromQVariant(value), C.int(int32(role))) != 0
 	}
@@ -9103,8 +7337,6 @@ func (ptr *QHelpIndexModel) SetData(index core.QModelIndex_ITF, value core.QVari
 }
 
 func (ptr *QHelpIndexModel) SetDataDefault(index core.QModelIndex_ITF, value core.QVariant_ITF, role int) bool {
-	defer qt.Recovering("QHelpIndexModel::setData")
-
 	if ptr.Pointer() != nil {
 		return C.QHelpIndexModel_SetDataDefault(ptr.Pointer(), core.PointerFromQModelIndex(index), core.PointerFromQVariant(value), C.int(int32(role))) != 0
 	}
@@ -9113,7 +7345,6 @@ func (ptr *QHelpIndexModel) SetDataDefault(index core.QModelIndex_ITF, value cor
 
 //export callbackQHelpIndexModel_Sibling
 func callbackQHelpIndexModel_Sibling(ptr unsafe.Pointer, row C.int, column C.int, idx unsafe.Pointer) unsafe.Pointer {
-	defer qt.Recovering("callback QHelpIndexModel::sibling")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpIndexModel::sibling"); signal != nil {
 		return core.PointerFromQModelIndex(signal.(func(int, int, *core.QModelIndex) *core.QModelIndex)(int(int32(row)), int(int32(column)), core.NewQModelIndexFromPointer(idx)))
@@ -9123,8 +7354,6 @@ func callbackQHelpIndexModel_Sibling(ptr unsafe.Pointer, row C.int, column C.int
 }
 
 func (ptr *QHelpIndexModel) ConnectSibling(f func(row int, column int, idx *core.QModelIndex) *core.QModelIndex) {
-	defer qt.Recovering("connect QHelpIndexModel::sibling")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexModel::sibling", f)
@@ -9132,8 +7361,6 @@ func (ptr *QHelpIndexModel) ConnectSibling(f func(row int, column int, idx *core
 }
 
 func (ptr *QHelpIndexModel) DisconnectSibling() {
-	defer qt.Recovering("disconnect QHelpIndexModel::sibling")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexModel::sibling")
@@ -9141,8 +7368,6 @@ func (ptr *QHelpIndexModel) DisconnectSibling() {
 }
 
 func (ptr *QHelpIndexModel) Sibling(row int, column int, idx core.QModelIndex_ITF) *core.QModelIndex {
-	defer qt.Recovering("QHelpIndexModel::sibling")
-
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQModelIndexFromPointer(C.QHelpIndexModel_Sibling(ptr.Pointer(), C.int(int32(row)), C.int(int32(column)), core.PointerFromQModelIndex(idx)))
 		runtime.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
@@ -9152,8 +7377,6 @@ func (ptr *QHelpIndexModel) Sibling(row int, column int, idx core.QModelIndex_IT
 }
 
 func (ptr *QHelpIndexModel) SiblingDefault(row int, column int, idx core.QModelIndex_ITF) *core.QModelIndex {
-	defer qt.Recovering("QHelpIndexModel::sibling")
-
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQModelIndexFromPointer(C.QHelpIndexModel_SiblingDefault(ptr.Pointer(), C.int(int32(row)), C.int(int32(column)), core.PointerFromQModelIndex(idx)))
 		runtime.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
@@ -9164,7 +7387,6 @@ func (ptr *QHelpIndexModel) SiblingDefault(row int, column int, idx core.QModelI
 
 //export callbackQHelpIndexModel_Sort
 func callbackQHelpIndexModel_Sort(ptr unsafe.Pointer, column C.int, order C.longlong) {
-	defer qt.Recovering("callback QHelpIndexModel::sort")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpIndexModel::sort"); signal != nil {
 		signal.(func(int, core.Qt__SortOrder))(int(int32(column)), core.Qt__SortOrder(order))
@@ -9174,8 +7396,6 @@ func callbackQHelpIndexModel_Sort(ptr unsafe.Pointer, column C.int, order C.long
 }
 
 func (ptr *QHelpIndexModel) ConnectSort(f func(column int, order core.Qt__SortOrder)) {
-	defer qt.Recovering("connect QHelpIndexModel::sort")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexModel::sort", f)
@@ -9183,8 +7403,6 @@ func (ptr *QHelpIndexModel) ConnectSort(f func(column int, order core.Qt__SortOr
 }
 
 func (ptr *QHelpIndexModel) DisconnectSort() {
-	defer qt.Recovering("disconnect QHelpIndexModel::sort")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexModel::sort")
@@ -9192,16 +7410,12 @@ func (ptr *QHelpIndexModel) DisconnectSort() {
 }
 
 func (ptr *QHelpIndexModel) Sort(column int, order core.Qt__SortOrder) {
-	defer qt.Recovering("QHelpIndexModel::sort")
-
 	if ptr.Pointer() != nil {
 		C.QHelpIndexModel_Sort(ptr.Pointer(), C.int(int32(column)), C.longlong(order))
 	}
 }
 
 func (ptr *QHelpIndexModel) SortDefault(column int, order core.Qt__SortOrder) {
-	defer qt.Recovering("QHelpIndexModel::sort")
-
 	if ptr.Pointer() != nil {
 		C.QHelpIndexModel_SortDefault(ptr.Pointer(), C.int(int32(column)), C.longlong(order))
 	}
@@ -9209,7 +7423,6 @@ func (ptr *QHelpIndexModel) SortDefault(column int, order core.Qt__SortOrder) {
 
 //export callbackQHelpIndexModel_SupportedDropActions
 func callbackQHelpIndexModel_SupportedDropActions(ptr unsafe.Pointer) C.longlong {
-	defer qt.Recovering("callback QHelpIndexModel::supportedDropActions")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpIndexModel::supportedDropActions"); signal != nil {
 		return C.longlong(signal.(func() core.Qt__DropAction)())
@@ -9219,8 +7432,6 @@ func callbackQHelpIndexModel_SupportedDropActions(ptr unsafe.Pointer) C.longlong
 }
 
 func (ptr *QHelpIndexModel) ConnectSupportedDropActions(f func() core.Qt__DropAction) {
-	defer qt.Recovering("connect QHelpIndexModel::supportedDropActions")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexModel::supportedDropActions", f)
@@ -9228,8 +7439,6 @@ func (ptr *QHelpIndexModel) ConnectSupportedDropActions(f func() core.Qt__DropAc
 }
 
 func (ptr *QHelpIndexModel) DisconnectSupportedDropActions() {
-	defer qt.Recovering("disconnect QHelpIndexModel::supportedDropActions")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexModel::supportedDropActions")
@@ -9237,8 +7446,6 @@ func (ptr *QHelpIndexModel) DisconnectSupportedDropActions() {
 }
 
 func (ptr *QHelpIndexModel) SupportedDropActions() core.Qt__DropAction {
-	defer qt.Recovering("QHelpIndexModel::supportedDropActions")
-
 	if ptr.Pointer() != nil {
 		return core.Qt__DropAction(C.QHelpIndexModel_SupportedDropActions(ptr.Pointer()))
 	}
@@ -9246,8 +7453,6 @@ func (ptr *QHelpIndexModel) SupportedDropActions() core.Qt__DropAction {
 }
 
 func (ptr *QHelpIndexModel) SupportedDropActionsDefault() core.Qt__DropAction {
-	defer qt.Recovering("QHelpIndexModel::supportedDropActions")
-
 	if ptr.Pointer() != nil {
 		return core.Qt__DropAction(C.QHelpIndexModel_SupportedDropActionsDefault(ptr.Pointer()))
 	}
@@ -9256,7 +7461,6 @@ func (ptr *QHelpIndexModel) SupportedDropActionsDefault() core.Qt__DropAction {
 
 //export callbackQHelpIndexModel_Index
 func callbackQHelpIndexModel_Index(ptr unsafe.Pointer, row C.int, column C.int, parent unsafe.Pointer) unsafe.Pointer {
-	defer qt.Recovering("callback QHelpIndexModel::index")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpIndexModel::index"); signal != nil {
 		return core.PointerFromQModelIndex(signal.(func(int, int, *core.QModelIndex) *core.QModelIndex)(int(int32(row)), int(int32(column)), core.NewQModelIndexFromPointer(parent)))
@@ -9266,8 +7470,6 @@ func callbackQHelpIndexModel_Index(ptr unsafe.Pointer, row C.int, column C.int, 
 }
 
 func (ptr *QHelpIndexModel) ConnectIndex(f func(row int, column int, parent *core.QModelIndex) *core.QModelIndex) {
-	defer qt.Recovering("connect QHelpIndexModel::index")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexModel::index", f)
@@ -9275,8 +7477,6 @@ func (ptr *QHelpIndexModel) ConnectIndex(f func(row int, column int, parent *cor
 }
 
 func (ptr *QHelpIndexModel) DisconnectIndex() {
-	defer qt.Recovering("disconnect QHelpIndexModel::index")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexModel::index")
@@ -9284,8 +7484,6 @@ func (ptr *QHelpIndexModel) DisconnectIndex() {
 }
 
 func (ptr *QHelpIndexModel) Index(row int, column int, parent core.QModelIndex_ITF) *core.QModelIndex {
-	defer qt.Recovering("QHelpIndexModel::index")
-
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQModelIndexFromPointer(C.QHelpIndexModel_Index(ptr.Pointer(), C.int(int32(row)), C.int(int32(column)), core.PointerFromQModelIndex(parent)))
 		runtime.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
@@ -9295,8 +7493,6 @@ func (ptr *QHelpIndexModel) Index(row int, column int, parent core.QModelIndex_I
 }
 
 func (ptr *QHelpIndexModel) IndexDefault(row int, column int, parent core.QModelIndex_ITF) *core.QModelIndex {
-	defer qt.Recovering("QHelpIndexModel::index")
-
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQModelIndexFromPointer(C.QHelpIndexModel_IndexDefault(ptr.Pointer(), C.int(int32(row)), C.int(int32(column)), core.PointerFromQModelIndex(parent)))
 		runtime.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
@@ -9307,7 +7503,6 @@ func (ptr *QHelpIndexModel) IndexDefault(row int, column int, parent core.QModel
 
 //export callbackQHelpIndexModel_DropMimeData
 func callbackQHelpIndexModel_DropMimeData(ptr unsafe.Pointer, data unsafe.Pointer, action C.longlong, row C.int, column C.int, parent unsafe.Pointer) C.char {
-	defer qt.Recovering("callback QHelpIndexModel::dropMimeData")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpIndexModel::dropMimeData"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QMimeData, core.Qt__DropAction, int, int, *core.QModelIndex) bool)(core.NewQMimeDataFromPointer(data), core.Qt__DropAction(action), int(int32(row)), int(int32(column)), core.NewQModelIndexFromPointer(parent)))))
@@ -9317,8 +7512,6 @@ func callbackQHelpIndexModel_DropMimeData(ptr unsafe.Pointer, data unsafe.Pointe
 }
 
 func (ptr *QHelpIndexModel) ConnectDropMimeData(f func(data *core.QMimeData, action core.Qt__DropAction, row int, column int, parent *core.QModelIndex) bool) {
-	defer qt.Recovering("connect QHelpIndexModel::dropMimeData")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexModel::dropMimeData", f)
@@ -9326,8 +7519,6 @@ func (ptr *QHelpIndexModel) ConnectDropMimeData(f func(data *core.QMimeData, act
 }
 
 func (ptr *QHelpIndexModel) DisconnectDropMimeData() {
-	defer qt.Recovering("disconnect QHelpIndexModel::dropMimeData")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexModel::dropMimeData")
@@ -9335,8 +7526,6 @@ func (ptr *QHelpIndexModel) DisconnectDropMimeData() {
 }
 
 func (ptr *QHelpIndexModel) DropMimeData(data core.QMimeData_ITF, action core.Qt__DropAction, row int, column int, parent core.QModelIndex_ITF) bool {
-	defer qt.Recovering("QHelpIndexModel::dropMimeData")
-
 	if ptr.Pointer() != nil {
 		return C.QHelpIndexModel_DropMimeData(ptr.Pointer(), core.PointerFromQMimeData(data), C.longlong(action), C.int(int32(row)), C.int(int32(column)), core.PointerFromQModelIndex(parent)) != 0
 	}
@@ -9344,8 +7533,6 @@ func (ptr *QHelpIndexModel) DropMimeData(data core.QMimeData_ITF, action core.Qt
 }
 
 func (ptr *QHelpIndexModel) DropMimeDataDefault(data core.QMimeData_ITF, action core.Qt__DropAction, row int, column int, parent core.QModelIndex_ITF) bool {
-	defer qt.Recovering("QHelpIndexModel::dropMimeData")
-
 	if ptr.Pointer() != nil {
 		return C.QHelpIndexModel_DropMimeDataDefault(ptr.Pointer(), core.PointerFromQMimeData(data), C.longlong(action), C.int(int32(row)), C.int(int32(column)), core.PointerFromQModelIndex(parent)) != 0
 	}
@@ -9354,7 +7541,6 @@ func (ptr *QHelpIndexModel) DropMimeDataDefault(data core.QMimeData_ITF, action 
 
 //export callbackQHelpIndexModel_Buddy
 func callbackQHelpIndexModel_Buddy(ptr unsafe.Pointer, index unsafe.Pointer) unsafe.Pointer {
-	defer qt.Recovering("callback QHelpIndexModel::buddy")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpIndexModel::buddy"); signal != nil {
 		return core.PointerFromQModelIndex(signal.(func(*core.QModelIndex) *core.QModelIndex)(core.NewQModelIndexFromPointer(index)))
@@ -9364,8 +7550,6 @@ func callbackQHelpIndexModel_Buddy(ptr unsafe.Pointer, index unsafe.Pointer) uns
 }
 
 func (ptr *QHelpIndexModel) ConnectBuddy(f func(index *core.QModelIndex) *core.QModelIndex) {
-	defer qt.Recovering("connect QHelpIndexModel::buddy")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexModel::buddy", f)
@@ -9373,8 +7557,6 @@ func (ptr *QHelpIndexModel) ConnectBuddy(f func(index *core.QModelIndex) *core.Q
 }
 
 func (ptr *QHelpIndexModel) DisconnectBuddy() {
-	defer qt.Recovering("disconnect QHelpIndexModel::buddy")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexModel::buddy")
@@ -9382,8 +7564,6 @@ func (ptr *QHelpIndexModel) DisconnectBuddy() {
 }
 
 func (ptr *QHelpIndexModel) Buddy(index core.QModelIndex_ITF) *core.QModelIndex {
-	defer qt.Recovering("QHelpIndexModel::buddy")
-
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQModelIndexFromPointer(C.QHelpIndexModel_Buddy(ptr.Pointer(), core.PointerFromQModelIndex(index)))
 		runtime.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
@@ -9393,8 +7573,6 @@ func (ptr *QHelpIndexModel) Buddy(index core.QModelIndex_ITF) *core.QModelIndex 
 }
 
 func (ptr *QHelpIndexModel) BuddyDefault(index core.QModelIndex_ITF) *core.QModelIndex {
-	defer qt.Recovering("QHelpIndexModel::buddy")
-
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQModelIndexFromPointer(C.QHelpIndexModel_BuddyDefault(ptr.Pointer(), core.PointerFromQModelIndex(index)))
 		runtime.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
@@ -9405,7 +7583,6 @@ func (ptr *QHelpIndexModel) BuddyDefault(index core.QModelIndex_ITF) *core.QMode
 
 //export callbackQHelpIndexModel_CanDropMimeData
 func callbackQHelpIndexModel_CanDropMimeData(ptr unsafe.Pointer, data unsafe.Pointer, action C.longlong, row C.int, column C.int, parent unsafe.Pointer) C.char {
-	defer qt.Recovering("callback QHelpIndexModel::canDropMimeData")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpIndexModel::canDropMimeData"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QMimeData, core.Qt__DropAction, int, int, *core.QModelIndex) bool)(core.NewQMimeDataFromPointer(data), core.Qt__DropAction(action), int(int32(row)), int(int32(column)), core.NewQModelIndexFromPointer(parent)))))
@@ -9415,8 +7592,6 @@ func callbackQHelpIndexModel_CanDropMimeData(ptr unsafe.Pointer, data unsafe.Poi
 }
 
 func (ptr *QHelpIndexModel) ConnectCanDropMimeData(f func(data *core.QMimeData, action core.Qt__DropAction, row int, column int, parent *core.QModelIndex) bool) {
-	defer qt.Recovering("connect QHelpIndexModel::canDropMimeData")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexModel::canDropMimeData", f)
@@ -9424,8 +7599,6 @@ func (ptr *QHelpIndexModel) ConnectCanDropMimeData(f func(data *core.QMimeData, 
 }
 
 func (ptr *QHelpIndexModel) DisconnectCanDropMimeData() {
-	defer qt.Recovering("disconnect QHelpIndexModel::canDropMimeData")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexModel::canDropMimeData")
@@ -9433,8 +7606,6 @@ func (ptr *QHelpIndexModel) DisconnectCanDropMimeData() {
 }
 
 func (ptr *QHelpIndexModel) CanDropMimeData(data core.QMimeData_ITF, action core.Qt__DropAction, row int, column int, parent core.QModelIndex_ITF) bool {
-	defer qt.Recovering("QHelpIndexModel::canDropMimeData")
-
 	if ptr.Pointer() != nil {
 		return C.QHelpIndexModel_CanDropMimeData(ptr.Pointer(), core.PointerFromQMimeData(data), C.longlong(action), C.int(int32(row)), C.int(int32(column)), core.PointerFromQModelIndex(parent)) != 0
 	}
@@ -9442,8 +7613,6 @@ func (ptr *QHelpIndexModel) CanDropMimeData(data core.QMimeData_ITF, action core
 }
 
 func (ptr *QHelpIndexModel) CanDropMimeDataDefault(data core.QMimeData_ITF, action core.Qt__DropAction, row int, column int, parent core.QModelIndex_ITF) bool {
-	defer qt.Recovering("QHelpIndexModel::canDropMimeData")
-
 	if ptr.Pointer() != nil {
 		return C.QHelpIndexModel_CanDropMimeDataDefault(ptr.Pointer(), core.PointerFromQMimeData(data), C.longlong(action), C.int(int32(row)), C.int(int32(column)), core.PointerFromQModelIndex(parent)) != 0
 	}
@@ -9452,7 +7621,6 @@ func (ptr *QHelpIndexModel) CanDropMimeDataDefault(data core.QMimeData_ITF, acti
 
 //export callbackQHelpIndexModel_CanFetchMore
 func callbackQHelpIndexModel_CanFetchMore(ptr unsafe.Pointer, parent unsafe.Pointer) C.char {
-	defer qt.Recovering("callback QHelpIndexModel::canFetchMore")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpIndexModel::canFetchMore"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QModelIndex) bool)(core.NewQModelIndexFromPointer(parent)))))
@@ -9462,8 +7630,6 @@ func callbackQHelpIndexModel_CanFetchMore(ptr unsafe.Pointer, parent unsafe.Poin
 }
 
 func (ptr *QHelpIndexModel) ConnectCanFetchMore(f func(parent *core.QModelIndex) bool) {
-	defer qt.Recovering("connect QHelpIndexModel::canFetchMore")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexModel::canFetchMore", f)
@@ -9471,8 +7637,6 @@ func (ptr *QHelpIndexModel) ConnectCanFetchMore(f func(parent *core.QModelIndex)
 }
 
 func (ptr *QHelpIndexModel) DisconnectCanFetchMore() {
-	defer qt.Recovering("disconnect QHelpIndexModel::canFetchMore")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexModel::canFetchMore")
@@ -9480,8 +7644,6 @@ func (ptr *QHelpIndexModel) DisconnectCanFetchMore() {
 }
 
 func (ptr *QHelpIndexModel) CanFetchMore(parent core.QModelIndex_ITF) bool {
-	defer qt.Recovering("QHelpIndexModel::canFetchMore")
-
 	if ptr.Pointer() != nil {
 		return C.QHelpIndexModel_CanFetchMore(ptr.Pointer(), core.PointerFromQModelIndex(parent)) != 0
 	}
@@ -9489,8 +7651,6 @@ func (ptr *QHelpIndexModel) CanFetchMore(parent core.QModelIndex_ITF) bool {
 }
 
 func (ptr *QHelpIndexModel) CanFetchMoreDefault(parent core.QModelIndex_ITF) bool {
-	defer qt.Recovering("QHelpIndexModel::canFetchMore")
-
 	if ptr.Pointer() != nil {
 		return C.QHelpIndexModel_CanFetchMoreDefault(ptr.Pointer(), core.PointerFromQModelIndex(parent)) != 0
 	}
@@ -9499,7 +7659,6 @@ func (ptr *QHelpIndexModel) CanFetchMoreDefault(parent core.QModelIndex_ITF) boo
 
 //export callbackQHelpIndexModel_ColumnCount
 func callbackQHelpIndexModel_ColumnCount(ptr unsafe.Pointer, parent unsafe.Pointer) C.int {
-	defer qt.Recovering("callback QHelpIndexModel::columnCount")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpIndexModel::columnCount"); signal != nil {
 		return C.int(int32(signal.(func(*core.QModelIndex) int)(core.NewQModelIndexFromPointer(parent))))
@@ -9509,8 +7668,6 @@ func callbackQHelpIndexModel_ColumnCount(ptr unsafe.Pointer, parent unsafe.Point
 }
 
 func (ptr *QHelpIndexModel) ConnectColumnCount(f func(parent *core.QModelIndex) int) {
-	defer qt.Recovering("connect QHelpIndexModel::columnCount")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexModel::columnCount", f)
@@ -9518,8 +7675,6 @@ func (ptr *QHelpIndexModel) ConnectColumnCount(f func(parent *core.QModelIndex) 
 }
 
 func (ptr *QHelpIndexModel) DisconnectColumnCount() {
-	defer qt.Recovering("disconnect QHelpIndexModel::columnCount")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexModel::columnCount")
@@ -9527,8 +7682,6 @@ func (ptr *QHelpIndexModel) DisconnectColumnCount() {
 }
 
 func (ptr *QHelpIndexModel) ColumnCount(parent core.QModelIndex_ITF) int {
-	defer qt.Recovering("QHelpIndexModel::columnCount")
-
 	if ptr.Pointer() != nil {
 		return int(int32(C.QHelpIndexModel_ColumnCount(ptr.Pointer(), core.PointerFromQModelIndex(parent))))
 	}
@@ -9536,8 +7689,6 @@ func (ptr *QHelpIndexModel) ColumnCount(parent core.QModelIndex_ITF) int {
 }
 
 func (ptr *QHelpIndexModel) ColumnCountDefault(parent core.QModelIndex_ITF) int {
-	defer qt.Recovering("QHelpIndexModel::columnCount")
-
 	if ptr.Pointer() != nil {
 		return int(int32(C.QHelpIndexModel_ColumnCountDefault(ptr.Pointer(), core.PointerFromQModelIndex(parent))))
 	}
@@ -9546,7 +7697,6 @@ func (ptr *QHelpIndexModel) ColumnCountDefault(parent core.QModelIndex_ITF) int 
 
 //export callbackQHelpIndexModel_FetchMore
 func callbackQHelpIndexModel_FetchMore(ptr unsafe.Pointer, parent unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpIndexModel::fetchMore")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpIndexModel::fetchMore"); signal != nil {
 		signal.(func(*core.QModelIndex))(core.NewQModelIndexFromPointer(parent))
@@ -9556,8 +7706,6 @@ func callbackQHelpIndexModel_FetchMore(ptr unsafe.Pointer, parent unsafe.Pointer
 }
 
 func (ptr *QHelpIndexModel) ConnectFetchMore(f func(parent *core.QModelIndex)) {
-	defer qt.Recovering("connect QHelpIndexModel::fetchMore")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexModel::fetchMore", f)
@@ -9565,8 +7713,6 @@ func (ptr *QHelpIndexModel) ConnectFetchMore(f func(parent *core.QModelIndex)) {
 }
 
 func (ptr *QHelpIndexModel) DisconnectFetchMore() {
-	defer qt.Recovering("disconnect QHelpIndexModel::fetchMore")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexModel::fetchMore")
@@ -9574,16 +7720,12 @@ func (ptr *QHelpIndexModel) DisconnectFetchMore() {
 }
 
 func (ptr *QHelpIndexModel) FetchMore(parent core.QModelIndex_ITF) {
-	defer qt.Recovering("QHelpIndexModel::fetchMore")
-
 	if ptr.Pointer() != nil {
 		C.QHelpIndexModel_FetchMore(ptr.Pointer(), core.PointerFromQModelIndex(parent))
 	}
 }
 
 func (ptr *QHelpIndexModel) FetchMoreDefault(parent core.QModelIndex_ITF) {
-	defer qt.Recovering("QHelpIndexModel::fetchMore")
-
 	if ptr.Pointer() != nil {
 		C.QHelpIndexModel_FetchMoreDefault(ptr.Pointer(), core.PointerFromQModelIndex(parent))
 	}
@@ -9591,7 +7733,6 @@ func (ptr *QHelpIndexModel) FetchMoreDefault(parent core.QModelIndex_ITF) {
 
 //export callbackQHelpIndexModel_HasChildren
 func callbackQHelpIndexModel_HasChildren(ptr unsafe.Pointer, parent unsafe.Pointer) C.char {
-	defer qt.Recovering("callback QHelpIndexModel::hasChildren")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpIndexModel::hasChildren"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QModelIndex) bool)(core.NewQModelIndexFromPointer(parent)))))
@@ -9601,8 +7742,6 @@ func callbackQHelpIndexModel_HasChildren(ptr unsafe.Pointer, parent unsafe.Point
 }
 
 func (ptr *QHelpIndexModel) ConnectHasChildren(f func(parent *core.QModelIndex) bool) {
-	defer qt.Recovering("connect QHelpIndexModel::hasChildren")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexModel::hasChildren", f)
@@ -9610,8 +7749,6 @@ func (ptr *QHelpIndexModel) ConnectHasChildren(f func(parent *core.QModelIndex) 
 }
 
 func (ptr *QHelpIndexModel) DisconnectHasChildren() {
-	defer qt.Recovering("disconnect QHelpIndexModel::hasChildren")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexModel::hasChildren")
@@ -9619,8 +7756,6 @@ func (ptr *QHelpIndexModel) DisconnectHasChildren() {
 }
 
 func (ptr *QHelpIndexModel) HasChildren(parent core.QModelIndex_ITF) bool {
-	defer qt.Recovering("QHelpIndexModel::hasChildren")
-
 	if ptr.Pointer() != nil {
 		return C.QHelpIndexModel_HasChildren(ptr.Pointer(), core.PointerFromQModelIndex(parent)) != 0
 	}
@@ -9628,8 +7763,6 @@ func (ptr *QHelpIndexModel) HasChildren(parent core.QModelIndex_ITF) bool {
 }
 
 func (ptr *QHelpIndexModel) HasChildrenDefault(parent core.QModelIndex_ITF) bool {
-	defer qt.Recovering("QHelpIndexModel::hasChildren")
-
 	if ptr.Pointer() != nil {
 		return C.QHelpIndexModel_HasChildrenDefault(ptr.Pointer(), core.PointerFromQModelIndex(parent)) != 0
 	}
@@ -9638,7 +7771,6 @@ func (ptr *QHelpIndexModel) HasChildrenDefault(parent core.QModelIndex_ITF) bool
 
 //export callbackQHelpIndexModel_HeaderData
 func callbackQHelpIndexModel_HeaderData(ptr unsafe.Pointer, section C.int, orientation C.longlong, role C.int) unsafe.Pointer {
-	defer qt.Recovering("callback QHelpIndexModel::headerData")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpIndexModel::headerData"); signal != nil {
 		return core.PointerFromQVariant(signal.(func(int, core.Qt__Orientation, int) *core.QVariant)(int(int32(section)), core.Qt__Orientation(orientation), int(int32(role))))
@@ -9648,8 +7780,6 @@ func callbackQHelpIndexModel_HeaderData(ptr unsafe.Pointer, section C.int, orien
 }
 
 func (ptr *QHelpIndexModel) ConnectHeaderData(f func(section int, orientation core.Qt__Orientation, role int) *core.QVariant) {
-	defer qt.Recovering("connect QHelpIndexModel::headerData")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexModel::headerData", f)
@@ -9657,8 +7787,6 @@ func (ptr *QHelpIndexModel) ConnectHeaderData(f func(section int, orientation co
 }
 
 func (ptr *QHelpIndexModel) DisconnectHeaderData() {
-	defer qt.Recovering("disconnect QHelpIndexModel::headerData")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexModel::headerData")
@@ -9666,8 +7794,6 @@ func (ptr *QHelpIndexModel) DisconnectHeaderData() {
 }
 
 func (ptr *QHelpIndexModel) HeaderData(section int, orientation core.Qt__Orientation, role int) *core.QVariant {
-	defer qt.Recovering("QHelpIndexModel::headerData")
-
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQVariantFromPointer(C.QHelpIndexModel_HeaderData(ptr.Pointer(), C.int(int32(section)), C.longlong(orientation), C.int(int32(role))))
 		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
@@ -9677,8 +7803,6 @@ func (ptr *QHelpIndexModel) HeaderData(section int, orientation core.Qt__Orienta
 }
 
 func (ptr *QHelpIndexModel) HeaderDataDefault(section int, orientation core.Qt__Orientation, role int) *core.QVariant {
-	defer qt.Recovering("QHelpIndexModel::headerData")
-
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQVariantFromPointer(C.QHelpIndexModel_HeaderDataDefault(ptr.Pointer(), C.int(int32(section)), C.longlong(orientation), C.int(int32(role))))
 		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
@@ -9689,7 +7813,6 @@ func (ptr *QHelpIndexModel) HeaderDataDefault(section int, orientation core.Qt__
 
 //export callbackQHelpIndexModel_InsertColumns
 func callbackQHelpIndexModel_InsertColumns(ptr unsafe.Pointer, column C.int, count C.int, parent unsafe.Pointer) C.char {
-	defer qt.Recovering("callback QHelpIndexModel::insertColumns")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpIndexModel::insertColumns"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(int, int, *core.QModelIndex) bool)(int(int32(column)), int(int32(count)), core.NewQModelIndexFromPointer(parent)))))
@@ -9699,8 +7822,6 @@ func callbackQHelpIndexModel_InsertColumns(ptr unsafe.Pointer, column C.int, cou
 }
 
 func (ptr *QHelpIndexModel) ConnectInsertColumns(f func(column int, count int, parent *core.QModelIndex) bool) {
-	defer qt.Recovering("connect QHelpIndexModel::insertColumns")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexModel::insertColumns", f)
@@ -9708,8 +7829,6 @@ func (ptr *QHelpIndexModel) ConnectInsertColumns(f func(column int, count int, p
 }
 
 func (ptr *QHelpIndexModel) DisconnectInsertColumns() {
-	defer qt.Recovering("disconnect QHelpIndexModel::insertColumns")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexModel::insertColumns")
@@ -9717,8 +7836,6 @@ func (ptr *QHelpIndexModel) DisconnectInsertColumns() {
 }
 
 func (ptr *QHelpIndexModel) InsertColumns(column int, count int, parent core.QModelIndex_ITF) bool {
-	defer qt.Recovering("QHelpIndexModel::insertColumns")
-
 	if ptr.Pointer() != nil {
 		return C.QHelpIndexModel_InsertColumns(ptr.Pointer(), C.int(int32(column)), C.int(int32(count)), core.PointerFromQModelIndex(parent)) != 0
 	}
@@ -9726,8 +7843,6 @@ func (ptr *QHelpIndexModel) InsertColumns(column int, count int, parent core.QMo
 }
 
 func (ptr *QHelpIndexModel) InsertColumnsDefault(column int, count int, parent core.QModelIndex_ITF) bool {
-	defer qt.Recovering("QHelpIndexModel::insertColumns")
-
 	if ptr.Pointer() != nil {
 		return C.QHelpIndexModel_InsertColumnsDefault(ptr.Pointer(), C.int(int32(column)), C.int(int32(count)), core.PointerFromQModelIndex(parent)) != 0
 	}
@@ -9736,7 +7851,6 @@ func (ptr *QHelpIndexModel) InsertColumnsDefault(column int, count int, parent c
 
 //export callbackQHelpIndexModel_MimeTypes
 func callbackQHelpIndexModel_MimeTypes(ptr unsafe.Pointer) *C.char {
-	defer qt.Recovering("callback QHelpIndexModel::mimeTypes")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpIndexModel::mimeTypes"); signal != nil {
 		return C.CString(strings.Join(signal.(func() []string)(), "|"))
@@ -9746,8 +7860,6 @@ func callbackQHelpIndexModel_MimeTypes(ptr unsafe.Pointer) *C.char {
 }
 
 func (ptr *QHelpIndexModel) ConnectMimeTypes(f func() []string) {
-	defer qt.Recovering("connect QHelpIndexModel::mimeTypes")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexModel::mimeTypes", f)
@@ -9755,8 +7867,6 @@ func (ptr *QHelpIndexModel) ConnectMimeTypes(f func() []string) {
 }
 
 func (ptr *QHelpIndexModel) DisconnectMimeTypes() {
-	defer qt.Recovering("disconnect QHelpIndexModel::mimeTypes")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexModel::mimeTypes")
@@ -9764,8 +7874,6 @@ func (ptr *QHelpIndexModel) DisconnectMimeTypes() {
 }
 
 func (ptr *QHelpIndexModel) MimeTypes() []string {
-	defer qt.Recovering("QHelpIndexModel::mimeTypes")
-
 	if ptr.Pointer() != nil {
 		return strings.Split(C.GoString(C.QHelpIndexModel_MimeTypes(ptr.Pointer())), "|")
 	}
@@ -9773,8 +7881,6 @@ func (ptr *QHelpIndexModel) MimeTypes() []string {
 }
 
 func (ptr *QHelpIndexModel) MimeTypesDefault() []string {
-	defer qt.Recovering("QHelpIndexModel::mimeTypes")
-
 	if ptr.Pointer() != nil {
 		return strings.Split(C.GoString(C.QHelpIndexModel_MimeTypesDefault(ptr.Pointer())), "|")
 	}
@@ -9783,7 +7889,6 @@ func (ptr *QHelpIndexModel) MimeTypesDefault() []string {
 
 //export callbackQHelpIndexModel_MoveColumns
 func callbackQHelpIndexModel_MoveColumns(ptr unsafe.Pointer, sourceParent unsafe.Pointer, sourceColumn C.int, count C.int, destinationParent unsafe.Pointer, destinationChild C.int) C.char {
-	defer qt.Recovering("callback QHelpIndexModel::moveColumns")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpIndexModel::moveColumns"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QModelIndex, int, int, *core.QModelIndex, int) bool)(core.NewQModelIndexFromPointer(sourceParent), int(int32(sourceColumn)), int(int32(count)), core.NewQModelIndexFromPointer(destinationParent), int(int32(destinationChild))))))
@@ -9793,8 +7898,6 @@ func callbackQHelpIndexModel_MoveColumns(ptr unsafe.Pointer, sourceParent unsafe
 }
 
 func (ptr *QHelpIndexModel) ConnectMoveColumns(f func(sourceParent *core.QModelIndex, sourceColumn int, count int, destinationParent *core.QModelIndex, destinationChild int) bool) {
-	defer qt.Recovering("connect QHelpIndexModel::moveColumns")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexModel::moveColumns", f)
@@ -9802,8 +7905,6 @@ func (ptr *QHelpIndexModel) ConnectMoveColumns(f func(sourceParent *core.QModelI
 }
 
 func (ptr *QHelpIndexModel) DisconnectMoveColumns() {
-	defer qt.Recovering("disconnect QHelpIndexModel::moveColumns")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexModel::moveColumns")
@@ -9811,8 +7912,6 @@ func (ptr *QHelpIndexModel) DisconnectMoveColumns() {
 }
 
 func (ptr *QHelpIndexModel) MoveColumns(sourceParent core.QModelIndex_ITF, sourceColumn int, count int, destinationParent core.QModelIndex_ITF, destinationChild int) bool {
-	defer qt.Recovering("QHelpIndexModel::moveColumns")
-
 	if ptr.Pointer() != nil {
 		return C.QHelpIndexModel_MoveColumns(ptr.Pointer(), core.PointerFromQModelIndex(sourceParent), C.int(int32(sourceColumn)), C.int(int32(count)), core.PointerFromQModelIndex(destinationParent), C.int(int32(destinationChild))) != 0
 	}
@@ -9820,8 +7919,6 @@ func (ptr *QHelpIndexModel) MoveColumns(sourceParent core.QModelIndex_ITF, sourc
 }
 
 func (ptr *QHelpIndexModel) MoveColumnsDefault(sourceParent core.QModelIndex_ITF, sourceColumn int, count int, destinationParent core.QModelIndex_ITF, destinationChild int) bool {
-	defer qt.Recovering("QHelpIndexModel::moveColumns")
-
 	if ptr.Pointer() != nil {
 		return C.QHelpIndexModel_MoveColumnsDefault(ptr.Pointer(), core.PointerFromQModelIndex(sourceParent), C.int(int32(sourceColumn)), C.int(int32(count)), core.PointerFromQModelIndex(destinationParent), C.int(int32(destinationChild))) != 0
 	}
@@ -9830,7 +7927,6 @@ func (ptr *QHelpIndexModel) MoveColumnsDefault(sourceParent core.QModelIndex_ITF
 
 //export callbackQHelpIndexModel_MoveRows
 func callbackQHelpIndexModel_MoveRows(ptr unsafe.Pointer, sourceParent unsafe.Pointer, sourceRow C.int, count C.int, destinationParent unsafe.Pointer, destinationChild C.int) C.char {
-	defer qt.Recovering("callback QHelpIndexModel::moveRows")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpIndexModel::moveRows"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QModelIndex, int, int, *core.QModelIndex, int) bool)(core.NewQModelIndexFromPointer(sourceParent), int(int32(sourceRow)), int(int32(count)), core.NewQModelIndexFromPointer(destinationParent), int(int32(destinationChild))))))
@@ -9840,8 +7936,6 @@ func callbackQHelpIndexModel_MoveRows(ptr unsafe.Pointer, sourceParent unsafe.Po
 }
 
 func (ptr *QHelpIndexModel) ConnectMoveRows(f func(sourceParent *core.QModelIndex, sourceRow int, count int, destinationParent *core.QModelIndex, destinationChild int) bool) {
-	defer qt.Recovering("connect QHelpIndexModel::moveRows")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexModel::moveRows", f)
@@ -9849,8 +7943,6 @@ func (ptr *QHelpIndexModel) ConnectMoveRows(f func(sourceParent *core.QModelInde
 }
 
 func (ptr *QHelpIndexModel) DisconnectMoveRows() {
-	defer qt.Recovering("disconnect QHelpIndexModel::moveRows")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexModel::moveRows")
@@ -9858,8 +7950,6 @@ func (ptr *QHelpIndexModel) DisconnectMoveRows() {
 }
 
 func (ptr *QHelpIndexModel) MoveRows(sourceParent core.QModelIndex_ITF, sourceRow int, count int, destinationParent core.QModelIndex_ITF, destinationChild int) bool {
-	defer qt.Recovering("QHelpIndexModel::moveRows")
-
 	if ptr.Pointer() != nil {
 		return C.QHelpIndexModel_MoveRows(ptr.Pointer(), core.PointerFromQModelIndex(sourceParent), C.int(int32(sourceRow)), C.int(int32(count)), core.PointerFromQModelIndex(destinationParent), C.int(int32(destinationChild))) != 0
 	}
@@ -9867,8 +7957,6 @@ func (ptr *QHelpIndexModel) MoveRows(sourceParent core.QModelIndex_ITF, sourceRo
 }
 
 func (ptr *QHelpIndexModel) MoveRowsDefault(sourceParent core.QModelIndex_ITF, sourceRow int, count int, destinationParent core.QModelIndex_ITF, destinationChild int) bool {
-	defer qt.Recovering("QHelpIndexModel::moveRows")
-
 	if ptr.Pointer() != nil {
 		return C.QHelpIndexModel_MoveRowsDefault(ptr.Pointer(), core.PointerFromQModelIndex(sourceParent), C.int(int32(sourceRow)), C.int(int32(count)), core.PointerFromQModelIndex(destinationParent), C.int(int32(destinationChild))) != 0
 	}
@@ -9877,7 +7965,6 @@ func (ptr *QHelpIndexModel) MoveRowsDefault(sourceParent core.QModelIndex_ITF, s
 
 //export callbackQHelpIndexModel_Parent
 func callbackQHelpIndexModel_Parent(ptr unsafe.Pointer, index unsafe.Pointer) unsafe.Pointer {
-	defer qt.Recovering("callback QHelpIndexModel::parent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpIndexModel::parent"); signal != nil {
 		return core.PointerFromQModelIndex(signal.(func(*core.QModelIndex) *core.QModelIndex)(core.NewQModelIndexFromPointer(index)))
@@ -9887,8 +7974,6 @@ func callbackQHelpIndexModel_Parent(ptr unsafe.Pointer, index unsafe.Pointer) un
 }
 
 func (ptr *QHelpIndexModel) ConnectParent(f func(index *core.QModelIndex) *core.QModelIndex) {
-	defer qt.Recovering("connect QHelpIndexModel::parent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexModel::parent", f)
@@ -9896,8 +7981,6 @@ func (ptr *QHelpIndexModel) ConnectParent(f func(index *core.QModelIndex) *core.
 }
 
 func (ptr *QHelpIndexModel) DisconnectParent() {
-	defer qt.Recovering("disconnect QHelpIndexModel::parent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexModel::parent")
@@ -9905,8 +7988,6 @@ func (ptr *QHelpIndexModel) DisconnectParent() {
 }
 
 func (ptr *QHelpIndexModel) Parent(index core.QModelIndex_ITF) *core.QModelIndex {
-	defer qt.Recovering("QHelpIndexModel::parent")
-
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQModelIndexFromPointer(C.QHelpIndexModel_Parent(ptr.Pointer(), core.PointerFromQModelIndex(index)))
 		runtime.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
@@ -9916,8 +7997,6 @@ func (ptr *QHelpIndexModel) Parent(index core.QModelIndex_ITF) *core.QModelIndex
 }
 
 func (ptr *QHelpIndexModel) ParentDefault(index core.QModelIndex_ITF) *core.QModelIndex {
-	defer qt.Recovering("QHelpIndexModel::parent")
-
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQModelIndexFromPointer(C.QHelpIndexModel_ParentDefault(ptr.Pointer(), core.PointerFromQModelIndex(index)))
 		runtime.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
@@ -9928,7 +8007,6 @@ func (ptr *QHelpIndexModel) ParentDefault(index core.QModelIndex_ITF) *core.QMod
 
 //export callbackQHelpIndexModel_RemoveColumns
 func callbackQHelpIndexModel_RemoveColumns(ptr unsafe.Pointer, column C.int, count C.int, parent unsafe.Pointer) C.char {
-	defer qt.Recovering("callback QHelpIndexModel::removeColumns")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpIndexModel::removeColumns"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(int, int, *core.QModelIndex) bool)(int(int32(column)), int(int32(count)), core.NewQModelIndexFromPointer(parent)))))
@@ -9938,8 +8016,6 @@ func callbackQHelpIndexModel_RemoveColumns(ptr unsafe.Pointer, column C.int, cou
 }
 
 func (ptr *QHelpIndexModel) ConnectRemoveColumns(f func(column int, count int, parent *core.QModelIndex) bool) {
-	defer qt.Recovering("connect QHelpIndexModel::removeColumns")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexModel::removeColumns", f)
@@ -9947,8 +8023,6 @@ func (ptr *QHelpIndexModel) ConnectRemoveColumns(f func(column int, count int, p
 }
 
 func (ptr *QHelpIndexModel) DisconnectRemoveColumns() {
-	defer qt.Recovering("disconnect QHelpIndexModel::removeColumns")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexModel::removeColumns")
@@ -9956,8 +8030,6 @@ func (ptr *QHelpIndexModel) DisconnectRemoveColumns() {
 }
 
 func (ptr *QHelpIndexModel) RemoveColumns(column int, count int, parent core.QModelIndex_ITF) bool {
-	defer qt.Recovering("QHelpIndexModel::removeColumns")
-
 	if ptr.Pointer() != nil {
 		return C.QHelpIndexModel_RemoveColumns(ptr.Pointer(), C.int(int32(column)), C.int(int32(count)), core.PointerFromQModelIndex(parent)) != 0
 	}
@@ -9965,8 +8037,6 @@ func (ptr *QHelpIndexModel) RemoveColumns(column int, count int, parent core.QMo
 }
 
 func (ptr *QHelpIndexModel) RemoveColumnsDefault(column int, count int, parent core.QModelIndex_ITF) bool {
-	defer qt.Recovering("QHelpIndexModel::removeColumns")
-
 	if ptr.Pointer() != nil {
 		return C.QHelpIndexModel_RemoveColumnsDefault(ptr.Pointer(), C.int(int32(column)), C.int(int32(count)), core.PointerFromQModelIndex(parent)) != 0
 	}
@@ -9975,8 +8045,6 @@ func (ptr *QHelpIndexModel) RemoveColumnsDefault(column int, count int, parent c
 
 //export callbackQHelpIndexModel_ResetInternalData
 func callbackQHelpIndexModel_ResetInternalData(ptr unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpIndexModel::resetInternalData")
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpIndexModel::resetInternalData"); signal != nil {
 		signal.(func())()
 	} else {
@@ -9985,8 +8053,6 @@ func callbackQHelpIndexModel_ResetInternalData(ptr unsafe.Pointer) {
 }
 
 func (ptr *QHelpIndexModel) ConnectResetInternalData(f func()) {
-	defer qt.Recovering("connect QHelpIndexModel::resetInternalData")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexModel::resetInternalData", f)
@@ -9994,8 +8060,6 @@ func (ptr *QHelpIndexModel) ConnectResetInternalData(f func()) {
 }
 
 func (ptr *QHelpIndexModel) DisconnectResetInternalData() {
-	defer qt.Recovering("disconnect QHelpIndexModel::resetInternalData")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexModel::resetInternalData")
@@ -10003,16 +8067,12 @@ func (ptr *QHelpIndexModel) DisconnectResetInternalData() {
 }
 
 func (ptr *QHelpIndexModel) ResetInternalData() {
-	defer qt.Recovering("QHelpIndexModel::resetInternalData")
-
 	if ptr.Pointer() != nil {
 		C.QHelpIndexModel_ResetInternalData(ptr.Pointer())
 	}
 }
 
 func (ptr *QHelpIndexModel) ResetInternalDataDefault() {
-	defer qt.Recovering("QHelpIndexModel::resetInternalData")
-
 	if ptr.Pointer() != nil {
 		C.QHelpIndexModel_ResetInternalDataDefault(ptr.Pointer())
 	}
@@ -10020,8 +8080,6 @@ func (ptr *QHelpIndexModel) ResetInternalDataDefault() {
 
 //export callbackQHelpIndexModel_Revert
 func callbackQHelpIndexModel_Revert(ptr unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpIndexModel::revert")
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpIndexModel::revert"); signal != nil {
 		signal.(func())()
 	} else {
@@ -10030,8 +8088,6 @@ func callbackQHelpIndexModel_Revert(ptr unsafe.Pointer) {
 }
 
 func (ptr *QHelpIndexModel) ConnectRevert(f func()) {
-	defer qt.Recovering("connect QHelpIndexModel::revert")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexModel::revert", f)
@@ -10039,8 +8095,6 @@ func (ptr *QHelpIndexModel) ConnectRevert(f func()) {
 }
 
 func (ptr *QHelpIndexModel) DisconnectRevert() {
-	defer qt.Recovering("disconnect QHelpIndexModel::revert")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexModel::revert")
@@ -10048,16 +8102,12 @@ func (ptr *QHelpIndexModel) DisconnectRevert() {
 }
 
 func (ptr *QHelpIndexModel) Revert() {
-	defer qt.Recovering("QHelpIndexModel::revert")
-
 	if ptr.Pointer() != nil {
 		C.QHelpIndexModel_Revert(ptr.Pointer())
 	}
 }
 
 func (ptr *QHelpIndexModel) RevertDefault() {
-	defer qt.Recovering("QHelpIndexModel::revert")
-
 	if ptr.Pointer() != nil {
 		C.QHelpIndexModel_RevertDefault(ptr.Pointer())
 	}
@@ -10065,7 +8115,6 @@ func (ptr *QHelpIndexModel) RevertDefault() {
 
 //export callbackQHelpIndexModel_SetHeaderData
 func callbackQHelpIndexModel_SetHeaderData(ptr unsafe.Pointer, section C.int, orientation C.longlong, value unsafe.Pointer, role C.int) C.char {
-	defer qt.Recovering("callback QHelpIndexModel::setHeaderData")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpIndexModel::setHeaderData"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(int, core.Qt__Orientation, *core.QVariant, int) bool)(int(int32(section)), core.Qt__Orientation(orientation), core.NewQVariantFromPointer(value), int(int32(role))))))
@@ -10075,8 +8124,6 @@ func callbackQHelpIndexModel_SetHeaderData(ptr unsafe.Pointer, section C.int, or
 }
 
 func (ptr *QHelpIndexModel) ConnectSetHeaderData(f func(section int, orientation core.Qt__Orientation, value *core.QVariant, role int) bool) {
-	defer qt.Recovering("connect QHelpIndexModel::setHeaderData")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexModel::setHeaderData", f)
@@ -10084,8 +8131,6 @@ func (ptr *QHelpIndexModel) ConnectSetHeaderData(f func(section int, orientation
 }
 
 func (ptr *QHelpIndexModel) DisconnectSetHeaderData() {
-	defer qt.Recovering("disconnect QHelpIndexModel::setHeaderData")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexModel::setHeaderData")
@@ -10093,8 +8138,6 @@ func (ptr *QHelpIndexModel) DisconnectSetHeaderData() {
 }
 
 func (ptr *QHelpIndexModel) SetHeaderData(section int, orientation core.Qt__Orientation, value core.QVariant_ITF, role int) bool {
-	defer qt.Recovering("QHelpIndexModel::setHeaderData")
-
 	if ptr.Pointer() != nil {
 		return C.QHelpIndexModel_SetHeaderData(ptr.Pointer(), C.int(int32(section)), C.longlong(orientation), core.PointerFromQVariant(value), C.int(int32(role))) != 0
 	}
@@ -10102,8 +8145,6 @@ func (ptr *QHelpIndexModel) SetHeaderData(section int, orientation core.Qt__Orie
 }
 
 func (ptr *QHelpIndexModel) SetHeaderDataDefault(section int, orientation core.Qt__Orientation, value core.QVariant_ITF, role int) bool {
-	defer qt.Recovering("QHelpIndexModel::setHeaderData")
-
 	if ptr.Pointer() != nil {
 		return C.QHelpIndexModel_SetHeaderDataDefault(ptr.Pointer(), C.int(int32(section)), C.longlong(orientation), core.PointerFromQVariant(value), C.int(int32(role))) != 0
 	}
@@ -10112,7 +8153,6 @@ func (ptr *QHelpIndexModel) SetHeaderDataDefault(section int, orientation core.Q
 
 //export callbackQHelpIndexModel_Span
 func callbackQHelpIndexModel_Span(ptr unsafe.Pointer, index unsafe.Pointer) unsafe.Pointer {
-	defer qt.Recovering("callback QHelpIndexModel::span")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpIndexModel::span"); signal != nil {
 		return core.PointerFromQSize(signal.(func(*core.QModelIndex) *core.QSize)(core.NewQModelIndexFromPointer(index)))
@@ -10122,8 +8162,6 @@ func callbackQHelpIndexModel_Span(ptr unsafe.Pointer, index unsafe.Pointer) unsa
 }
 
 func (ptr *QHelpIndexModel) ConnectSpan(f func(index *core.QModelIndex) *core.QSize) {
-	defer qt.Recovering("connect QHelpIndexModel::span")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexModel::span", f)
@@ -10131,8 +8169,6 @@ func (ptr *QHelpIndexModel) ConnectSpan(f func(index *core.QModelIndex) *core.QS
 }
 
 func (ptr *QHelpIndexModel) DisconnectSpan() {
-	defer qt.Recovering("disconnect QHelpIndexModel::span")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexModel::span")
@@ -10140,8 +8176,6 @@ func (ptr *QHelpIndexModel) DisconnectSpan() {
 }
 
 func (ptr *QHelpIndexModel) Span(index core.QModelIndex_ITF) *core.QSize {
-	defer qt.Recovering("QHelpIndexModel::span")
-
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQSizeFromPointer(C.QHelpIndexModel_Span(ptr.Pointer(), core.PointerFromQModelIndex(index)))
 		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
@@ -10151,8 +8185,6 @@ func (ptr *QHelpIndexModel) Span(index core.QModelIndex_ITF) *core.QSize {
 }
 
 func (ptr *QHelpIndexModel) SpanDefault(index core.QModelIndex_ITF) *core.QSize {
-	defer qt.Recovering("QHelpIndexModel::span")
-
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQSizeFromPointer(C.QHelpIndexModel_SpanDefault(ptr.Pointer(), core.PointerFromQModelIndex(index)))
 		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
@@ -10163,8 +8195,6 @@ func (ptr *QHelpIndexModel) SpanDefault(index core.QModelIndex_ITF) *core.QSize 
 
 //export callbackQHelpIndexModel_Submit
 func callbackQHelpIndexModel_Submit(ptr unsafe.Pointer) C.char {
-	defer qt.Recovering("callback QHelpIndexModel::submit")
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpIndexModel::submit"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func() bool)())))
 	}
@@ -10173,8 +8203,6 @@ func callbackQHelpIndexModel_Submit(ptr unsafe.Pointer) C.char {
 }
 
 func (ptr *QHelpIndexModel) ConnectSubmit(f func() bool) {
-	defer qt.Recovering("connect QHelpIndexModel::submit")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexModel::submit", f)
@@ -10182,8 +8210,6 @@ func (ptr *QHelpIndexModel) ConnectSubmit(f func() bool) {
 }
 
 func (ptr *QHelpIndexModel) DisconnectSubmit() {
-	defer qt.Recovering("disconnect QHelpIndexModel::submit")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexModel::submit")
@@ -10191,8 +8217,6 @@ func (ptr *QHelpIndexModel) DisconnectSubmit() {
 }
 
 func (ptr *QHelpIndexModel) Submit() bool {
-	defer qt.Recovering("QHelpIndexModel::submit")
-
 	if ptr.Pointer() != nil {
 		return C.QHelpIndexModel_Submit(ptr.Pointer()) != 0
 	}
@@ -10200,8 +8224,6 @@ func (ptr *QHelpIndexModel) Submit() bool {
 }
 
 func (ptr *QHelpIndexModel) SubmitDefault() bool {
-	defer qt.Recovering("QHelpIndexModel::submit")
-
 	if ptr.Pointer() != nil {
 		return C.QHelpIndexModel_SubmitDefault(ptr.Pointer()) != 0
 	}
@@ -10210,7 +8232,6 @@ func (ptr *QHelpIndexModel) SubmitDefault() bool {
 
 //export callbackQHelpIndexModel_SupportedDragActions
 func callbackQHelpIndexModel_SupportedDragActions(ptr unsafe.Pointer) C.longlong {
-	defer qt.Recovering("callback QHelpIndexModel::supportedDragActions")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpIndexModel::supportedDragActions"); signal != nil {
 		return C.longlong(signal.(func() core.Qt__DropAction)())
@@ -10220,8 +8241,6 @@ func callbackQHelpIndexModel_SupportedDragActions(ptr unsafe.Pointer) C.longlong
 }
 
 func (ptr *QHelpIndexModel) ConnectSupportedDragActions(f func() core.Qt__DropAction) {
-	defer qt.Recovering("connect QHelpIndexModel::supportedDragActions")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexModel::supportedDragActions", f)
@@ -10229,8 +8248,6 @@ func (ptr *QHelpIndexModel) ConnectSupportedDragActions(f func() core.Qt__DropAc
 }
 
 func (ptr *QHelpIndexModel) DisconnectSupportedDragActions() {
-	defer qt.Recovering("disconnect QHelpIndexModel::supportedDragActions")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexModel::supportedDragActions")
@@ -10238,8 +8255,6 @@ func (ptr *QHelpIndexModel) DisconnectSupportedDragActions() {
 }
 
 func (ptr *QHelpIndexModel) SupportedDragActions() core.Qt__DropAction {
-	defer qt.Recovering("QHelpIndexModel::supportedDragActions")
-
 	if ptr.Pointer() != nil {
 		return core.Qt__DropAction(C.QHelpIndexModel_SupportedDragActions(ptr.Pointer()))
 	}
@@ -10247,8 +8262,6 @@ func (ptr *QHelpIndexModel) SupportedDragActions() core.Qt__DropAction {
 }
 
 func (ptr *QHelpIndexModel) SupportedDragActionsDefault() core.Qt__DropAction {
-	defer qt.Recovering("QHelpIndexModel::supportedDragActions")
-
 	if ptr.Pointer() != nil {
 		return core.Qt__DropAction(C.QHelpIndexModel_SupportedDragActionsDefault(ptr.Pointer()))
 	}
@@ -10257,7 +8270,6 @@ func (ptr *QHelpIndexModel) SupportedDragActionsDefault() core.Qt__DropAction {
 
 //export callbackQHelpIndexModel_TimerEvent
 func callbackQHelpIndexModel_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpIndexModel::timerEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpIndexModel::timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
@@ -10267,8 +8279,6 @@ func callbackQHelpIndexModel_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer
 }
 
 func (ptr *QHelpIndexModel) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
-	defer qt.Recovering("connect QHelpIndexModel::timerEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexModel::timerEvent", f)
@@ -10276,8 +8286,6 @@ func (ptr *QHelpIndexModel) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
 }
 
 func (ptr *QHelpIndexModel) DisconnectTimerEvent() {
-	defer qt.Recovering("disconnect QHelpIndexModel::timerEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexModel::timerEvent")
@@ -10285,16 +8293,12 @@ func (ptr *QHelpIndexModel) DisconnectTimerEvent() {
 }
 
 func (ptr *QHelpIndexModel) TimerEvent(event core.QTimerEvent_ITF) {
-	defer qt.Recovering("QHelpIndexModel::timerEvent")
-
 	if ptr.Pointer() != nil {
 		C.QHelpIndexModel_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
 	}
 }
 
 func (ptr *QHelpIndexModel) TimerEventDefault(event core.QTimerEvent_ITF) {
-	defer qt.Recovering("QHelpIndexModel::timerEvent")
-
 	if ptr.Pointer() != nil {
 		C.QHelpIndexModel_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
 	}
@@ -10302,7 +8306,6 @@ func (ptr *QHelpIndexModel) TimerEventDefault(event core.QTimerEvent_ITF) {
 
 //export callbackQHelpIndexModel_ChildEvent
 func callbackQHelpIndexModel_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpIndexModel::childEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpIndexModel::childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
@@ -10312,8 +8315,6 @@ func callbackQHelpIndexModel_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer
 }
 
 func (ptr *QHelpIndexModel) ConnectChildEvent(f func(event *core.QChildEvent)) {
-	defer qt.Recovering("connect QHelpIndexModel::childEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexModel::childEvent", f)
@@ -10321,8 +8322,6 @@ func (ptr *QHelpIndexModel) ConnectChildEvent(f func(event *core.QChildEvent)) {
 }
 
 func (ptr *QHelpIndexModel) DisconnectChildEvent() {
-	defer qt.Recovering("disconnect QHelpIndexModel::childEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexModel::childEvent")
@@ -10330,16 +8329,12 @@ func (ptr *QHelpIndexModel) DisconnectChildEvent() {
 }
 
 func (ptr *QHelpIndexModel) ChildEvent(event core.QChildEvent_ITF) {
-	defer qt.Recovering("QHelpIndexModel::childEvent")
-
 	if ptr.Pointer() != nil {
 		C.QHelpIndexModel_ChildEvent(ptr.Pointer(), core.PointerFromQChildEvent(event))
 	}
 }
 
 func (ptr *QHelpIndexModel) ChildEventDefault(event core.QChildEvent_ITF) {
-	defer qt.Recovering("QHelpIndexModel::childEvent")
-
 	if ptr.Pointer() != nil {
 		C.QHelpIndexModel_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
 	}
@@ -10347,7 +8342,6 @@ func (ptr *QHelpIndexModel) ChildEventDefault(event core.QChildEvent_ITF) {
 
 //export callbackQHelpIndexModel_ConnectNotify
 func callbackQHelpIndexModel_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpIndexModel::connectNotify")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpIndexModel::connectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
@@ -10357,8 +8351,6 @@ func callbackQHelpIndexModel_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Point
 }
 
 func (ptr *QHelpIndexModel) ConnectConnectNotify(f func(sign *core.QMetaMethod)) {
-	defer qt.Recovering("connect QHelpIndexModel::connectNotify")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexModel::connectNotify", f)
@@ -10366,8 +8358,6 @@ func (ptr *QHelpIndexModel) ConnectConnectNotify(f func(sign *core.QMetaMethod))
 }
 
 func (ptr *QHelpIndexModel) DisconnectConnectNotify() {
-	defer qt.Recovering("disconnect QHelpIndexModel::connectNotify")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexModel::connectNotify")
@@ -10375,16 +8365,12 @@ func (ptr *QHelpIndexModel) DisconnectConnectNotify() {
 }
 
 func (ptr *QHelpIndexModel) ConnectNotify(sign core.QMetaMethod_ITF) {
-	defer qt.Recovering("QHelpIndexModel::connectNotify")
-
 	if ptr.Pointer() != nil {
 		C.QHelpIndexModel_ConnectNotify(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
 	}
 }
 
 func (ptr *QHelpIndexModel) ConnectNotifyDefault(sign core.QMetaMethod_ITF) {
-	defer qt.Recovering("QHelpIndexModel::connectNotify")
-
 	if ptr.Pointer() != nil {
 		C.QHelpIndexModel_ConnectNotifyDefault(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
 	}
@@ -10392,7 +8378,6 @@ func (ptr *QHelpIndexModel) ConnectNotifyDefault(sign core.QMetaMethod_ITF) {
 
 //export callbackQHelpIndexModel_CustomEvent
 func callbackQHelpIndexModel_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpIndexModel::customEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpIndexModel::customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
@@ -10402,8 +8387,6 @@ func callbackQHelpIndexModel_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointe
 }
 
 func (ptr *QHelpIndexModel) ConnectCustomEvent(f func(event *core.QEvent)) {
-	defer qt.Recovering("connect QHelpIndexModel::customEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexModel::customEvent", f)
@@ -10411,8 +8394,6 @@ func (ptr *QHelpIndexModel) ConnectCustomEvent(f func(event *core.QEvent)) {
 }
 
 func (ptr *QHelpIndexModel) DisconnectCustomEvent() {
-	defer qt.Recovering("disconnect QHelpIndexModel::customEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexModel::customEvent")
@@ -10420,16 +8401,12 @@ func (ptr *QHelpIndexModel) DisconnectCustomEvent() {
 }
 
 func (ptr *QHelpIndexModel) CustomEvent(event core.QEvent_ITF) {
-	defer qt.Recovering("QHelpIndexModel::customEvent")
-
 	if ptr.Pointer() != nil {
 		C.QHelpIndexModel_CustomEvent(ptr.Pointer(), core.PointerFromQEvent(event))
 	}
 }
 
 func (ptr *QHelpIndexModel) CustomEventDefault(event core.QEvent_ITF) {
-	defer qt.Recovering("QHelpIndexModel::customEvent")
-
 	if ptr.Pointer() != nil {
 		C.QHelpIndexModel_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
 	}
@@ -10437,8 +8414,6 @@ func (ptr *QHelpIndexModel) CustomEventDefault(event core.QEvent_ITF) {
 
 //export callbackQHelpIndexModel_DeleteLater
 func callbackQHelpIndexModel_DeleteLater(ptr unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpIndexModel::deleteLater")
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpIndexModel::deleteLater"); signal != nil {
 		signal.(func())()
 	} else {
@@ -10447,8 +8422,6 @@ func callbackQHelpIndexModel_DeleteLater(ptr unsafe.Pointer) {
 }
 
 func (ptr *QHelpIndexModel) ConnectDeleteLater(f func()) {
-	defer qt.Recovering("connect QHelpIndexModel::deleteLater")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexModel::deleteLater", f)
@@ -10456,8 +8429,6 @@ func (ptr *QHelpIndexModel) ConnectDeleteLater(f func()) {
 }
 
 func (ptr *QHelpIndexModel) DisconnectDeleteLater() {
-	defer qt.Recovering("disconnect QHelpIndexModel::deleteLater")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexModel::deleteLater")
@@ -10465,8 +8436,6 @@ func (ptr *QHelpIndexModel) DisconnectDeleteLater() {
 }
 
 func (ptr *QHelpIndexModel) DeleteLater() {
-	defer qt.Recovering("QHelpIndexModel::deleteLater")
-
 	if ptr.Pointer() != nil {
 		C.QHelpIndexModel_DeleteLater(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
@@ -10475,8 +8444,6 @@ func (ptr *QHelpIndexModel) DeleteLater() {
 }
 
 func (ptr *QHelpIndexModel) DeleteLaterDefault() {
-	defer qt.Recovering("QHelpIndexModel::deleteLater")
-
 	if ptr.Pointer() != nil {
 		C.QHelpIndexModel_DeleteLaterDefault(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
@@ -10486,7 +8453,6 @@ func (ptr *QHelpIndexModel) DeleteLaterDefault() {
 
 //export callbackQHelpIndexModel_DisconnectNotify
 func callbackQHelpIndexModel_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpIndexModel::disconnectNotify")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpIndexModel::disconnectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
@@ -10496,8 +8462,6 @@ func callbackQHelpIndexModel_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Po
 }
 
 func (ptr *QHelpIndexModel) ConnectDisconnectNotify(f func(sign *core.QMetaMethod)) {
-	defer qt.Recovering("connect QHelpIndexModel::disconnectNotify")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexModel::disconnectNotify", f)
@@ -10505,8 +8469,6 @@ func (ptr *QHelpIndexModel) ConnectDisconnectNotify(f func(sign *core.QMetaMetho
 }
 
 func (ptr *QHelpIndexModel) DisconnectDisconnectNotify() {
-	defer qt.Recovering("disconnect QHelpIndexModel::disconnectNotify")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexModel::disconnectNotify")
@@ -10514,16 +8476,12 @@ func (ptr *QHelpIndexModel) DisconnectDisconnectNotify() {
 }
 
 func (ptr *QHelpIndexModel) DisconnectNotify(sign core.QMetaMethod_ITF) {
-	defer qt.Recovering("QHelpIndexModel::disconnectNotify")
-
 	if ptr.Pointer() != nil {
 		C.QHelpIndexModel_DisconnectNotify(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
 	}
 }
 
 func (ptr *QHelpIndexModel) DisconnectNotifyDefault(sign core.QMetaMethod_ITF) {
-	defer qt.Recovering("QHelpIndexModel::disconnectNotify")
-
 	if ptr.Pointer() != nil {
 		C.QHelpIndexModel_DisconnectNotifyDefault(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
 	}
@@ -10531,7 +8489,6 @@ func (ptr *QHelpIndexModel) DisconnectNotifyDefault(sign core.QMetaMethod_ITF) {
 
 //export callbackQHelpIndexModel_Event
 func callbackQHelpIndexModel_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
-	defer qt.Recovering("callback QHelpIndexModel::event")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpIndexModel::event"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
@@ -10541,8 +8498,6 @@ func callbackQHelpIndexModel_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char 
 }
 
 func (ptr *QHelpIndexModel) ConnectEvent(f func(e *core.QEvent) bool) {
-	defer qt.Recovering("connect QHelpIndexModel::event")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexModel::event", f)
@@ -10550,8 +8505,6 @@ func (ptr *QHelpIndexModel) ConnectEvent(f func(e *core.QEvent) bool) {
 }
 
 func (ptr *QHelpIndexModel) DisconnectEvent() {
-	defer qt.Recovering("disconnect QHelpIndexModel::event")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexModel::event")
@@ -10559,8 +8512,6 @@ func (ptr *QHelpIndexModel) DisconnectEvent() {
 }
 
 func (ptr *QHelpIndexModel) Event(e core.QEvent_ITF) bool {
-	defer qt.Recovering("QHelpIndexModel::event")
-
 	if ptr.Pointer() != nil {
 		return C.QHelpIndexModel_Event(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
 	}
@@ -10568,8 +8519,6 @@ func (ptr *QHelpIndexModel) Event(e core.QEvent_ITF) bool {
 }
 
 func (ptr *QHelpIndexModel) EventDefault(e core.QEvent_ITF) bool {
-	defer qt.Recovering("QHelpIndexModel::event")
-
 	if ptr.Pointer() != nil {
 		return C.QHelpIndexModel_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
 	}
@@ -10578,7 +8527,6 @@ func (ptr *QHelpIndexModel) EventDefault(e core.QEvent_ITF) bool {
 
 //export callbackQHelpIndexModel_EventFilter
 func callbackQHelpIndexModel_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-	defer qt.Recovering("callback QHelpIndexModel::eventFilter")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpIndexModel::eventFilter"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
@@ -10588,8 +8536,6 @@ func callbackQHelpIndexModel_EventFilter(ptr unsafe.Pointer, watched unsafe.Poin
 }
 
 func (ptr *QHelpIndexModel) ConnectEventFilter(f func(watched *core.QObject, event *core.QEvent) bool) {
-	defer qt.Recovering("connect QHelpIndexModel::eventFilter")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexModel::eventFilter", f)
@@ -10597,8 +8543,6 @@ func (ptr *QHelpIndexModel) ConnectEventFilter(f func(watched *core.QObject, eve
 }
 
 func (ptr *QHelpIndexModel) DisconnectEventFilter() {
-	defer qt.Recovering("disconnect QHelpIndexModel::eventFilter")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexModel::eventFilter")
@@ -10606,8 +8550,6 @@ func (ptr *QHelpIndexModel) DisconnectEventFilter() {
 }
 
 func (ptr *QHelpIndexModel) EventFilter(watched core.QObject_ITF, event core.QEvent_ITF) bool {
-	defer qt.Recovering("QHelpIndexModel::eventFilter")
-
 	if ptr.Pointer() != nil {
 		return C.QHelpIndexModel_EventFilter(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
 	}
@@ -10615,8 +8557,6 @@ func (ptr *QHelpIndexModel) EventFilter(watched core.QObject_ITF, event core.QEv
 }
 
 func (ptr *QHelpIndexModel) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
-	defer qt.Recovering("QHelpIndexModel::eventFilter")
-
 	if ptr.Pointer() != nil {
 		return C.QHelpIndexModel_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
 	}
@@ -10625,7 +8565,6 @@ func (ptr *QHelpIndexModel) EventFilterDefault(watched core.QObject_ITF, event c
 
 //export callbackQHelpIndexModel_MetaObject
 func callbackQHelpIndexModel_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-	defer qt.Recovering("callback QHelpIndexModel::metaObject")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpIndexModel::metaObject"); signal != nil {
 		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
@@ -10635,8 +8574,6 @@ func callbackQHelpIndexModel_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
 }
 
 func (ptr *QHelpIndexModel) ConnectMetaObject(f func() *core.QMetaObject) {
-	defer qt.Recovering("connect QHelpIndexModel::metaObject")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexModel::metaObject", f)
@@ -10644,8 +8581,6 @@ func (ptr *QHelpIndexModel) ConnectMetaObject(f func() *core.QMetaObject) {
 }
 
 func (ptr *QHelpIndexModel) DisconnectMetaObject() {
-	defer qt.Recovering("disconnect QHelpIndexModel::metaObject")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexModel::metaObject")
@@ -10653,8 +8588,6 @@ func (ptr *QHelpIndexModel) DisconnectMetaObject() {
 }
 
 func (ptr *QHelpIndexModel) MetaObject() *core.QMetaObject {
-	defer qt.Recovering("QHelpIndexModel::metaObject")
-
 	if ptr.Pointer() != nil {
 		return core.NewQMetaObjectFromPointer(C.QHelpIndexModel_MetaObject(ptr.Pointer()))
 	}
@@ -10662,8 +8595,6 @@ func (ptr *QHelpIndexModel) MetaObject() *core.QMetaObject {
 }
 
 func (ptr *QHelpIndexModel) MetaObjectDefault() *core.QMetaObject {
-	defer qt.Recovering("QHelpIndexModel::metaObject")
-
 	if ptr.Pointer() != nil {
 		return core.NewQMetaObjectFromPointer(C.QHelpIndexModel_MetaObjectDefault(ptr.Pointer()))
 	}
@@ -10717,8 +8648,6 @@ func (ptr *QHelpIndexWidget) DestroyQHelpIndexWidget() {
 
 //export callbackQHelpIndexWidget_ActivateCurrentItem
 func callbackQHelpIndexWidget_ActivateCurrentItem(ptr unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpIndexWidget::activateCurrentItem")
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpIndexWidget::activateCurrentItem"); signal != nil {
 		signal.(func())()
 	}
@@ -10726,8 +8655,6 @@ func callbackQHelpIndexWidget_ActivateCurrentItem(ptr unsafe.Pointer) {
 }
 
 func (ptr *QHelpIndexWidget) ConnectActivateCurrentItem(f func()) {
-	defer qt.Recovering("connect QHelpIndexWidget::activateCurrentItem")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexWidget::activateCurrentItem", f)
@@ -10735,8 +8662,6 @@ func (ptr *QHelpIndexWidget) ConnectActivateCurrentItem(f func()) {
 }
 
 func (ptr *QHelpIndexWidget) DisconnectActivateCurrentItem() {
-	defer qt.Recovering("disconnect QHelpIndexWidget::activateCurrentItem")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexWidget::activateCurrentItem")
@@ -10744,8 +8669,6 @@ func (ptr *QHelpIndexWidget) DisconnectActivateCurrentItem() {
 }
 
 func (ptr *QHelpIndexWidget) ActivateCurrentItem() {
-	defer qt.Recovering("QHelpIndexWidget::activateCurrentItem")
-
 	if ptr.Pointer() != nil {
 		C.QHelpIndexWidget_ActivateCurrentItem(ptr.Pointer())
 	}
@@ -10753,8 +8676,6 @@ func (ptr *QHelpIndexWidget) ActivateCurrentItem() {
 
 //export callbackQHelpIndexWidget_FilterIndices
 func callbackQHelpIndexWidget_FilterIndices(ptr unsafe.Pointer, filter *C.char, wildcard *C.char) {
-	defer qt.Recovering("callback QHelpIndexWidget::filterIndices")
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpIndexWidget::filterIndices"); signal != nil {
 		signal.(func(string, string))(C.GoString(filter), C.GoString(wildcard))
 	}
@@ -10762,8 +8683,6 @@ func callbackQHelpIndexWidget_FilterIndices(ptr unsafe.Pointer, filter *C.char, 
 }
 
 func (ptr *QHelpIndexWidget) ConnectFilterIndices(f func(filter string, wildcard string)) {
-	defer qt.Recovering("connect QHelpIndexWidget::filterIndices")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexWidget::filterIndices", f)
@@ -10771,8 +8690,6 @@ func (ptr *QHelpIndexWidget) ConnectFilterIndices(f func(filter string, wildcard
 }
 
 func (ptr *QHelpIndexWidget) DisconnectFilterIndices(filter string, wildcard string) {
-	defer qt.Recovering("disconnect QHelpIndexWidget::filterIndices")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexWidget::filterIndices")
@@ -10780,8 +8697,6 @@ func (ptr *QHelpIndexWidget) DisconnectFilterIndices(filter string, wildcard str
 }
 
 func (ptr *QHelpIndexWidget) FilterIndices(filter string, wildcard string) {
-	defer qt.Recovering("QHelpIndexWidget::filterIndices")
-
 	if ptr.Pointer() != nil {
 		var filterC = C.CString(filter)
 		defer C.free(unsafe.Pointer(filterC))
@@ -10793,7 +8708,6 @@ func (ptr *QHelpIndexWidget) FilterIndices(filter string, wildcard string) {
 
 //export callbackQHelpIndexWidget_LinkActivated
 func callbackQHelpIndexWidget_LinkActivated(ptr unsafe.Pointer, link unsafe.Pointer, keyword *C.char) {
-	defer qt.Recovering("callback QHelpIndexWidget::linkActivated")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpIndexWidget::linkActivated"); signal != nil {
 		signal.(func(*core.QUrl, string))(core.NewQUrlFromPointer(link), C.GoString(keyword))
@@ -10802,8 +8716,6 @@ func callbackQHelpIndexWidget_LinkActivated(ptr unsafe.Pointer, link unsafe.Poin
 }
 
 func (ptr *QHelpIndexWidget) ConnectLinkActivated(f func(link *core.QUrl, keyword string)) {
-	defer qt.Recovering("connect QHelpIndexWidget::linkActivated")
-
 	if ptr.Pointer() != nil {
 		C.QHelpIndexWidget_ConnectLinkActivated(ptr.Pointer())
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexWidget::linkActivated", f)
@@ -10811,8 +8723,6 @@ func (ptr *QHelpIndexWidget) ConnectLinkActivated(f func(link *core.QUrl, keywor
 }
 
 func (ptr *QHelpIndexWidget) DisconnectLinkActivated() {
-	defer qt.Recovering("disconnect QHelpIndexWidget::linkActivated")
-
 	if ptr.Pointer() != nil {
 		C.QHelpIndexWidget_DisconnectLinkActivated(ptr.Pointer())
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexWidget::linkActivated")
@@ -10820,8 +8730,6 @@ func (ptr *QHelpIndexWidget) DisconnectLinkActivated() {
 }
 
 func (ptr *QHelpIndexWidget) LinkActivated(link core.QUrl_ITF, keyword string) {
-	defer qt.Recovering("QHelpIndexWidget::linkActivated")
-
 	if ptr.Pointer() != nil {
 		var keywordC = C.CString(keyword)
 		defer C.free(unsafe.Pointer(keywordC))
@@ -10831,7 +8739,6 @@ func (ptr *QHelpIndexWidget) LinkActivated(link core.QUrl_ITF, keyword string) {
 
 //export callbackQHelpIndexWidget_CurrentChanged
 func callbackQHelpIndexWidget_CurrentChanged(ptr unsafe.Pointer, current unsafe.Pointer, previous unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpIndexWidget::currentChanged")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpIndexWidget::currentChanged"); signal != nil {
 		signal.(func(*core.QModelIndex, *core.QModelIndex))(core.NewQModelIndexFromPointer(current), core.NewQModelIndexFromPointer(previous))
@@ -10841,8 +8748,6 @@ func callbackQHelpIndexWidget_CurrentChanged(ptr unsafe.Pointer, current unsafe.
 }
 
 func (ptr *QHelpIndexWidget) ConnectCurrentChanged(f func(current *core.QModelIndex, previous *core.QModelIndex)) {
-	defer qt.Recovering("connect QHelpIndexWidget::currentChanged")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexWidget::currentChanged", f)
@@ -10850,8 +8755,6 @@ func (ptr *QHelpIndexWidget) ConnectCurrentChanged(f func(current *core.QModelIn
 }
 
 func (ptr *QHelpIndexWidget) DisconnectCurrentChanged() {
-	defer qt.Recovering("disconnect QHelpIndexWidget::currentChanged")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexWidget::currentChanged")
@@ -10859,16 +8762,12 @@ func (ptr *QHelpIndexWidget) DisconnectCurrentChanged() {
 }
 
 func (ptr *QHelpIndexWidget) CurrentChanged(current core.QModelIndex_ITF, previous core.QModelIndex_ITF) {
-	defer qt.Recovering("QHelpIndexWidget::currentChanged")
-
 	if ptr.Pointer() != nil {
 		C.QHelpIndexWidget_CurrentChanged(ptr.Pointer(), core.PointerFromQModelIndex(current), core.PointerFromQModelIndex(previous))
 	}
 }
 
 func (ptr *QHelpIndexWidget) CurrentChangedDefault(current core.QModelIndex_ITF, previous core.QModelIndex_ITF) {
-	defer qt.Recovering("QHelpIndexWidget::currentChanged")
-
 	if ptr.Pointer() != nil {
 		C.QHelpIndexWidget_CurrentChangedDefault(ptr.Pointer(), core.PointerFromQModelIndex(current), core.PointerFromQModelIndex(previous))
 	}
@@ -10876,7 +8775,6 @@ func (ptr *QHelpIndexWidget) CurrentChangedDefault(current core.QModelIndex_ITF,
 
 //export callbackQHelpIndexWidget_DragLeaveEvent
 func callbackQHelpIndexWidget_DragLeaveEvent(ptr unsafe.Pointer, e unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpIndexWidget::dragLeaveEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpIndexWidget::dragLeaveEvent"); signal != nil {
 		signal.(func(*gui.QDragLeaveEvent))(gui.NewQDragLeaveEventFromPointer(e))
@@ -10886,8 +8784,6 @@ func callbackQHelpIndexWidget_DragLeaveEvent(ptr unsafe.Pointer, e unsafe.Pointe
 }
 
 func (ptr *QHelpIndexWidget) ConnectDragLeaveEvent(f func(e *gui.QDragLeaveEvent)) {
-	defer qt.Recovering("connect QHelpIndexWidget::dragLeaveEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexWidget::dragLeaveEvent", f)
@@ -10895,8 +8791,6 @@ func (ptr *QHelpIndexWidget) ConnectDragLeaveEvent(f func(e *gui.QDragLeaveEvent
 }
 
 func (ptr *QHelpIndexWidget) DisconnectDragLeaveEvent() {
-	defer qt.Recovering("disconnect QHelpIndexWidget::dragLeaveEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexWidget::dragLeaveEvent")
@@ -10904,16 +8798,12 @@ func (ptr *QHelpIndexWidget) DisconnectDragLeaveEvent() {
 }
 
 func (ptr *QHelpIndexWidget) DragLeaveEvent(e gui.QDragLeaveEvent_ITF) {
-	defer qt.Recovering("QHelpIndexWidget::dragLeaveEvent")
-
 	if ptr.Pointer() != nil {
 		C.QHelpIndexWidget_DragLeaveEvent(ptr.Pointer(), gui.PointerFromQDragLeaveEvent(e))
 	}
 }
 
 func (ptr *QHelpIndexWidget) DragLeaveEventDefault(e gui.QDragLeaveEvent_ITF) {
-	defer qt.Recovering("QHelpIndexWidget::dragLeaveEvent")
-
 	if ptr.Pointer() != nil {
 		C.QHelpIndexWidget_DragLeaveEventDefault(ptr.Pointer(), gui.PointerFromQDragLeaveEvent(e))
 	}
@@ -10921,7 +8811,6 @@ func (ptr *QHelpIndexWidget) DragLeaveEventDefault(e gui.QDragLeaveEvent_ITF) {
 
 //export callbackQHelpIndexWidget_DragMoveEvent
 func callbackQHelpIndexWidget_DragMoveEvent(ptr unsafe.Pointer, e unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpIndexWidget::dragMoveEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpIndexWidget::dragMoveEvent"); signal != nil {
 		signal.(func(*gui.QDragMoveEvent))(gui.NewQDragMoveEventFromPointer(e))
@@ -10931,8 +8820,6 @@ func callbackQHelpIndexWidget_DragMoveEvent(ptr unsafe.Pointer, e unsafe.Pointer
 }
 
 func (ptr *QHelpIndexWidget) ConnectDragMoveEvent(f func(e *gui.QDragMoveEvent)) {
-	defer qt.Recovering("connect QHelpIndexWidget::dragMoveEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexWidget::dragMoveEvent", f)
@@ -10940,8 +8827,6 @@ func (ptr *QHelpIndexWidget) ConnectDragMoveEvent(f func(e *gui.QDragMoveEvent))
 }
 
 func (ptr *QHelpIndexWidget) DisconnectDragMoveEvent() {
-	defer qt.Recovering("disconnect QHelpIndexWidget::dragMoveEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexWidget::dragMoveEvent")
@@ -10949,16 +8834,12 @@ func (ptr *QHelpIndexWidget) DisconnectDragMoveEvent() {
 }
 
 func (ptr *QHelpIndexWidget) DragMoveEvent(e gui.QDragMoveEvent_ITF) {
-	defer qt.Recovering("QHelpIndexWidget::dragMoveEvent")
-
 	if ptr.Pointer() != nil {
 		C.QHelpIndexWidget_DragMoveEvent(ptr.Pointer(), gui.PointerFromQDragMoveEvent(e))
 	}
 }
 
 func (ptr *QHelpIndexWidget) DragMoveEventDefault(e gui.QDragMoveEvent_ITF) {
-	defer qt.Recovering("QHelpIndexWidget::dragMoveEvent")
-
 	if ptr.Pointer() != nil {
 		C.QHelpIndexWidget_DragMoveEventDefault(ptr.Pointer(), gui.PointerFromQDragMoveEvent(e))
 	}
@@ -10966,7 +8847,6 @@ func (ptr *QHelpIndexWidget) DragMoveEventDefault(e gui.QDragMoveEvent_ITF) {
 
 //export callbackQHelpIndexWidget_DropEvent
 func callbackQHelpIndexWidget_DropEvent(ptr unsafe.Pointer, e unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpIndexWidget::dropEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpIndexWidget::dropEvent"); signal != nil {
 		signal.(func(*gui.QDropEvent))(gui.NewQDropEventFromPointer(e))
@@ -10976,8 +8856,6 @@ func callbackQHelpIndexWidget_DropEvent(ptr unsafe.Pointer, e unsafe.Pointer) {
 }
 
 func (ptr *QHelpIndexWidget) ConnectDropEvent(f func(e *gui.QDropEvent)) {
-	defer qt.Recovering("connect QHelpIndexWidget::dropEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexWidget::dropEvent", f)
@@ -10985,8 +8863,6 @@ func (ptr *QHelpIndexWidget) ConnectDropEvent(f func(e *gui.QDropEvent)) {
 }
 
 func (ptr *QHelpIndexWidget) DisconnectDropEvent() {
-	defer qt.Recovering("disconnect QHelpIndexWidget::dropEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexWidget::dropEvent")
@@ -10994,16 +8870,12 @@ func (ptr *QHelpIndexWidget) DisconnectDropEvent() {
 }
 
 func (ptr *QHelpIndexWidget) DropEvent(e gui.QDropEvent_ITF) {
-	defer qt.Recovering("QHelpIndexWidget::dropEvent")
-
 	if ptr.Pointer() != nil {
 		C.QHelpIndexWidget_DropEvent(ptr.Pointer(), gui.PointerFromQDropEvent(e))
 	}
 }
 
 func (ptr *QHelpIndexWidget) DropEventDefault(e gui.QDropEvent_ITF) {
-	defer qt.Recovering("QHelpIndexWidget::dropEvent")
-
 	if ptr.Pointer() != nil {
 		C.QHelpIndexWidget_DropEventDefault(ptr.Pointer(), gui.PointerFromQDropEvent(e))
 	}
@@ -11011,7 +8883,6 @@ func (ptr *QHelpIndexWidget) DropEventDefault(e gui.QDropEvent_ITF) {
 
 //export callbackQHelpIndexWidget_HorizontalOffset
 func callbackQHelpIndexWidget_HorizontalOffset(ptr unsafe.Pointer) C.int {
-	defer qt.Recovering("callback QHelpIndexWidget::horizontalOffset")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpIndexWidget::horizontalOffset"); signal != nil {
 		return C.int(int32(signal.(func() int)()))
@@ -11021,8 +8892,6 @@ func callbackQHelpIndexWidget_HorizontalOffset(ptr unsafe.Pointer) C.int {
 }
 
 func (ptr *QHelpIndexWidget) ConnectHorizontalOffset(f func() int) {
-	defer qt.Recovering("connect QHelpIndexWidget::horizontalOffset")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexWidget::horizontalOffset", f)
@@ -11030,8 +8899,6 @@ func (ptr *QHelpIndexWidget) ConnectHorizontalOffset(f func() int) {
 }
 
 func (ptr *QHelpIndexWidget) DisconnectHorizontalOffset() {
-	defer qt.Recovering("disconnect QHelpIndexWidget::horizontalOffset")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexWidget::horizontalOffset")
@@ -11039,8 +8906,6 @@ func (ptr *QHelpIndexWidget) DisconnectHorizontalOffset() {
 }
 
 func (ptr *QHelpIndexWidget) HorizontalOffset() int {
-	defer qt.Recovering("QHelpIndexWidget::horizontalOffset")
-
 	if ptr.Pointer() != nil {
 		return int(int32(C.QHelpIndexWidget_HorizontalOffset(ptr.Pointer())))
 	}
@@ -11048,8 +8913,6 @@ func (ptr *QHelpIndexWidget) HorizontalOffset() int {
 }
 
 func (ptr *QHelpIndexWidget) HorizontalOffsetDefault() int {
-	defer qt.Recovering("QHelpIndexWidget::horizontalOffset")
-
 	if ptr.Pointer() != nil {
 		return int(int32(C.QHelpIndexWidget_HorizontalOffsetDefault(ptr.Pointer())))
 	}
@@ -11058,7 +8921,6 @@ func (ptr *QHelpIndexWidget) HorizontalOffsetDefault() int {
 
 //export callbackQHelpIndexWidget_IndexAt
 func callbackQHelpIndexWidget_IndexAt(ptr unsafe.Pointer, p unsafe.Pointer) unsafe.Pointer {
-	defer qt.Recovering("callback QHelpIndexWidget::indexAt")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpIndexWidget::indexAt"); signal != nil {
 		return core.PointerFromQModelIndex(signal.(func(*core.QPoint) *core.QModelIndex)(core.NewQPointFromPointer(p)))
@@ -11068,8 +8930,6 @@ func callbackQHelpIndexWidget_IndexAt(ptr unsafe.Pointer, p unsafe.Pointer) unsa
 }
 
 func (ptr *QHelpIndexWidget) ConnectIndexAt(f func(p *core.QPoint) *core.QModelIndex) {
-	defer qt.Recovering("connect QHelpIndexWidget::indexAt")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexWidget::indexAt", f)
@@ -11077,8 +8937,6 @@ func (ptr *QHelpIndexWidget) ConnectIndexAt(f func(p *core.QPoint) *core.QModelI
 }
 
 func (ptr *QHelpIndexWidget) DisconnectIndexAt() {
-	defer qt.Recovering("disconnect QHelpIndexWidget::indexAt")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexWidget::indexAt")
@@ -11086,8 +8944,6 @@ func (ptr *QHelpIndexWidget) DisconnectIndexAt() {
 }
 
 func (ptr *QHelpIndexWidget) IndexAt(p core.QPoint_ITF) *core.QModelIndex {
-	defer qt.Recovering("QHelpIndexWidget::indexAt")
-
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQModelIndexFromPointer(C.QHelpIndexWidget_IndexAt(ptr.Pointer(), core.PointerFromQPoint(p)))
 		runtime.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
@@ -11097,8 +8953,6 @@ func (ptr *QHelpIndexWidget) IndexAt(p core.QPoint_ITF) *core.QModelIndex {
 }
 
 func (ptr *QHelpIndexWidget) IndexAtDefault(p core.QPoint_ITF) *core.QModelIndex {
-	defer qt.Recovering("QHelpIndexWidget::indexAt")
-
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQModelIndexFromPointer(C.QHelpIndexWidget_IndexAtDefault(ptr.Pointer(), core.PointerFromQPoint(p)))
 		runtime.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
@@ -11109,7 +8963,6 @@ func (ptr *QHelpIndexWidget) IndexAtDefault(p core.QPoint_ITF) *core.QModelIndex
 
 //export callbackQHelpIndexWidget_IsIndexHidden
 func callbackQHelpIndexWidget_IsIndexHidden(ptr unsafe.Pointer, index unsafe.Pointer) C.char {
-	defer qt.Recovering("callback QHelpIndexWidget::isIndexHidden")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpIndexWidget::isIndexHidden"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QModelIndex) bool)(core.NewQModelIndexFromPointer(index)))))
@@ -11119,8 +8972,6 @@ func callbackQHelpIndexWidget_IsIndexHidden(ptr unsafe.Pointer, index unsafe.Poi
 }
 
 func (ptr *QHelpIndexWidget) ConnectIsIndexHidden(f func(index *core.QModelIndex) bool) {
-	defer qt.Recovering("connect QHelpIndexWidget::isIndexHidden")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexWidget::isIndexHidden", f)
@@ -11128,8 +8979,6 @@ func (ptr *QHelpIndexWidget) ConnectIsIndexHidden(f func(index *core.QModelIndex
 }
 
 func (ptr *QHelpIndexWidget) DisconnectIsIndexHidden() {
-	defer qt.Recovering("disconnect QHelpIndexWidget::isIndexHidden")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexWidget::isIndexHidden")
@@ -11137,8 +8986,6 @@ func (ptr *QHelpIndexWidget) DisconnectIsIndexHidden() {
 }
 
 func (ptr *QHelpIndexWidget) IsIndexHidden(index core.QModelIndex_ITF) bool {
-	defer qt.Recovering("QHelpIndexWidget::isIndexHidden")
-
 	if ptr.Pointer() != nil {
 		return C.QHelpIndexWidget_IsIndexHidden(ptr.Pointer(), core.PointerFromQModelIndex(index)) != 0
 	}
@@ -11146,8 +8993,6 @@ func (ptr *QHelpIndexWidget) IsIndexHidden(index core.QModelIndex_ITF) bool {
 }
 
 func (ptr *QHelpIndexWidget) IsIndexHiddenDefault(index core.QModelIndex_ITF) bool {
-	defer qt.Recovering("QHelpIndexWidget::isIndexHidden")
-
 	if ptr.Pointer() != nil {
 		return C.QHelpIndexWidget_IsIndexHiddenDefault(ptr.Pointer(), core.PointerFromQModelIndex(index)) != 0
 	}
@@ -11156,7 +9001,6 @@ func (ptr *QHelpIndexWidget) IsIndexHiddenDefault(index core.QModelIndex_ITF) bo
 
 //export callbackQHelpIndexWidget_MouseMoveEvent
 func callbackQHelpIndexWidget_MouseMoveEvent(ptr unsafe.Pointer, e unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpIndexWidget::mouseMoveEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpIndexWidget::mouseMoveEvent"); signal != nil {
 		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(e))
@@ -11166,8 +9010,6 @@ func callbackQHelpIndexWidget_MouseMoveEvent(ptr unsafe.Pointer, e unsafe.Pointe
 }
 
 func (ptr *QHelpIndexWidget) ConnectMouseMoveEvent(f func(e *gui.QMouseEvent)) {
-	defer qt.Recovering("connect QHelpIndexWidget::mouseMoveEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexWidget::mouseMoveEvent", f)
@@ -11175,8 +9017,6 @@ func (ptr *QHelpIndexWidget) ConnectMouseMoveEvent(f func(e *gui.QMouseEvent)) {
 }
 
 func (ptr *QHelpIndexWidget) DisconnectMouseMoveEvent() {
-	defer qt.Recovering("disconnect QHelpIndexWidget::mouseMoveEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexWidget::mouseMoveEvent")
@@ -11184,16 +9024,12 @@ func (ptr *QHelpIndexWidget) DisconnectMouseMoveEvent() {
 }
 
 func (ptr *QHelpIndexWidget) MouseMoveEvent(e gui.QMouseEvent_ITF) {
-	defer qt.Recovering("QHelpIndexWidget::mouseMoveEvent")
-
 	if ptr.Pointer() != nil {
 		C.QHelpIndexWidget_MouseMoveEvent(ptr.Pointer(), gui.PointerFromQMouseEvent(e))
 	}
 }
 
 func (ptr *QHelpIndexWidget) MouseMoveEventDefault(e gui.QMouseEvent_ITF) {
-	defer qt.Recovering("QHelpIndexWidget::mouseMoveEvent")
-
 	if ptr.Pointer() != nil {
 		C.QHelpIndexWidget_MouseMoveEventDefault(ptr.Pointer(), gui.PointerFromQMouseEvent(e))
 	}
@@ -11201,7 +9037,6 @@ func (ptr *QHelpIndexWidget) MouseMoveEventDefault(e gui.QMouseEvent_ITF) {
 
 //export callbackQHelpIndexWidget_MouseReleaseEvent
 func callbackQHelpIndexWidget_MouseReleaseEvent(ptr unsafe.Pointer, e unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpIndexWidget::mouseReleaseEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpIndexWidget::mouseReleaseEvent"); signal != nil {
 		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(e))
@@ -11211,8 +9046,6 @@ func callbackQHelpIndexWidget_MouseReleaseEvent(ptr unsafe.Pointer, e unsafe.Poi
 }
 
 func (ptr *QHelpIndexWidget) ConnectMouseReleaseEvent(f func(e *gui.QMouseEvent)) {
-	defer qt.Recovering("connect QHelpIndexWidget::mouseReleaseEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexWidget::mouseReleaseEvent", f)
@@ -11220,8 +9053,6 @@ func (ptr *QHelpIndexWidget) ConnectMouseReleaseEvent(f func(e *gui.QMouseEvent)
 }
 
 func (ptr *QHelpIndexWidget) DisconnectMouseReleaseEvent() {
-	defer qt.Recovering("disconnect QHelpIndexWidget::mouseReleaseEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexWidget::mouseReleaseEvent")
@@ -11229,16 +9060,12 @@ func (ptr *QHelpIndexWidget) DisconnectMouseReleaseEvent() {
 }
 
 func (ptr *QHelpIndexWidget) MouseReleaseEvent(e gui.QMouseEvent_ITF) {
-	defer qt.Recovering("QHelpIndexWidget::mouseReleaseEvent")
-
 	if ptr.Pointer() != nil {
 		C.QHelpIndexWidget_MouseReleaseEvent(ptr.Pointer(), gui.PointerFromQMouseEvent(e))
 	}
 }
 
 func (ptr *QHelpIndexWidget) MouseReleaseEventDefault(e gui.QMouseEvent_ITF) {
-	defer qt.Recovering("QHelpIndexWidget::mouseReleaseEvent")
-
 	if ptr.Pointer() != nil {
 		C.QHelpIndexWidget_MouseReleaseEventDefault(ptr.Pointer(), gui.PointerFromQMouseEvent(e))
 	}
@@ -11246,7 +9073,6 @@ func (ptr *QHelpIndexWidget) MouseReleaseEventDefault(e gui.QMouseEvent_ITF) {
 
 //export callbackQHelpIndexWidget_MoveCursor
 func callbackQHelpIndexWidget_MoveCursor(ptr unsafe.Pointer, cursorAction C.longlong, modifiers C.longlong) unsafe.Pointer {
-	defer qt.Recovering("callback QHelpIndexWidget::moveCursor")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpIndexWidget::moveCursor"); signal != nil {
 		return core.PointerFromQModelIndex(signal.(func(widgets.QAbstractItemView__CursorAction, core.Qt__KeyboardModifier) *core.QModelIndex)(widgets.QAbstractItemView__CursorAction(cursorAction), core.Qt__KeyboardModifier(modifiers)))
@@ -11256,8 +9082,6 @@ func callbackQHelpIndexWidget_MoveCursor(ptr unsafe.Pointer, cursorAction C.long
 }
 
 func (ptr *QHelpIndexWidget) ConnectMoveCursor(f func(cursorAction widgets.QAbstractItemView__CursorAction, modifiers core.Qt__KeyboardModifier) *core.QModelIndex) {
-	defer qt.Recovering("connect QHelpIndexWidget::moveCursor")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexWidget::moveCursor", f)
@@ -11265,8 +9089,6 @@ func (ptr *QHelpIndexWidget) ConnectMoveCursor(f func(cursorAction widgets.QAbst
 }
 
 func (ptr *QHelpIndexWidget) DisconnectMoveCursor() {
-	defer qt.Recovering("disconnect QHelpIndexWidget::moveCursor")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexWidget::moveCursor")
@@ -11274,8 +9096,6 @@ func (ptr *QHelpIndexWidget) DisconnectMoveCursor() {
 }
 
 func (ptr *QHelpIndexWidget) MoveCursor(cursorAction widgets.QAbstractItemView__CursorAction, modifiers core.Qt__KeyboardModifier) *core.QModelIndex {
-	defer qt.Recovering("QHelpIndexWidget::moveCursor")
-
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQModelIndexFromPointer(C.QHelpIndexWidget_MoveCursor(ptr.Pointer(), C.longlong(cursorAction), C.longlong(modifiers)))
 		runtime.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
@@ -11285,8 +9105,6 @@ func (ptr *QHelpIndexWidget) MoveCursor(cursorAction widgets.QAbstractItemView__
 }
 
 func (ptr *QHelpIndexWidget) MoveCursorDefault(cursorAction widgets.QAbstractItemView__CursorAction, modifiers core.Qt__KeyboardModifier) *core.QModelIndex {
-	defer qt.Recovering("QHelpIndexWidget::moveCursor")
-
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQModelIndexFromPointer(C.QHelpIndexWidget_MoveCursorDefault(ptr.Pointer(), C.longlong(cursorAction), C.longlong(modifiers)))
 		runtime.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
@@ -11297,7 +9115,6 @@ func (ptr *QHelpIndexWidget) MoveCursorDefault(cursorAction widgets.QAbstractIte
 
 //export callbackQHelpIndexWidget_PaintEvent
 func callbackQHelpIndexWidget_PaintEvent(ptr unsafe.Pointer, e unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpIndexWidget::paintEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpIndexWidget::paintEvent"); signal != nil {
 		signal.(func(*gui.QPaintEvent))(gui.NewQPaintEventFromPointer(e))
@@ -11307,8 +9124,6 @@ func callbackQHelpIndexWidget_PaintEvent(ptr unsafe.Pointer, e unsafe.Pointer) {
 }
 
 func (ptr *QHelpIndexWidget) ConnectPaintEvent(f func(e *gui.QPaintEvent)) {
-	defer qt.Recovering("connect QHelpIndexWidget::paintEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexWidget::paintEvent", f)
@@ -11316,8 +9131,6 @@ func (ptr *QHelpIndexWidget) ConnectPaintEvent(f func(e *gui.QPaintEvent)) {
 }
 
 func (ptr *QHelpIndexWidget) DisconnectPaintEvent() {
-	defer qt.Recovering("disconnect QHelpIndexWidget::paintEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexWidget::paintEvent")
@@ -11325,16 +9138,12 @@ func (ptr *QHelpIndexWidget) DisconnectPaintEvent() {
 }
 
 func (ptr *QHelpIndexWidget) PaintEvent(e gui.QPaintEvent_ITF) {
-	defer qt.Recovering("QHelpIndexWidget::paintEvent")
-
 	if ptr.Pointer() != nil {
 		C.QHelpIndexWidget_PaintEvent(ptr.Pointer(), gui.PointerFromQPaintEvent(e))
 	}
 }
 
 func (ptr *QHelpIndexWidget) PaintEventDefault(e gui.QPaintEvent_ITF) {
-	defer qt.Recovering("QHelpIndexWidget::paintEvent")
-
 	if ptr.Pointer() != nil {
 		C.QHelpIndexWidget_PaintEventDefault(ptr.Pointer(), gui.PointerFromQPaintEvent(e))
 	}
@@ -11342,7 +9151,6 @@ func (ptr *QHelpIndexWidget) PaintEventDefault(e gui.QPaintEvent_ITF) {
 
 //export callbackQHelpIndexWidget_ResizeEvent
 func callbackQHelpIndexWidget_ResizeEvent(ptr unsafe.Pointer, e unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpIndexWidget::resizeEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpIndexWidget::resizeEvent"); signal != nil {
 		signal.(func(*gui.QResizeEvent))(gui.NewQResizeEventFromPointer(e))
@@ -11352,8 +9160,6 @@ func callbackQHelpIndexWidget_ResizeEvent(ptr unsafe.Pointer, e unsafe.Pointer) 
 }
 
 func (ptr *QHelpIndexWidget) ConnectResizeEvent(f func(e *gui.QResizeEvent)) {
-	defer qt.Recovering("connect QHelpIndexWidget::resizeEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexWidget::resizeEvent", f)
@@ -11361,8 +9167,6 @@ func (ptr *QHelpIndexWidget) ConnectResizeEvent(f func(e *gui.QResizeEvent)) {
 }
 
 func (ptr *QHelpIndexWidget) DisconnectResizeEvent() {
-	defer qt.Recovering("disconnect QHelpIndexWidget::resizeEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexWidget::resizeEvent")
@@ -11370,16 +9174,12 @@ func (ptr *QHelpIndexWidget) DisconnectResizeEvent() {
 }
 
 func (ptr *QHelpIndexWidget) ResizeEvent(e gui.QResizeEvent_ITF) {
-	defer qt.Recovering("QHelpIndexWidget::resizeEvent")
-
 	if ptr.Pointer() != nil {
 		C.QHelpIndexWidget_ResizeEvent(ptr.Pointer(), gui.PointerFromQResizeEvent(e))
 	}
 }
 
 func (ptr *QHelpIndexWidget) ResizeEventDefault(e gui.QResizeEvent_ITF) {
-	defer qt.Recovering("QHelpIndexWidget::resizeEvent")
-
 	if ptr.Pointer() != nil {
 		C.QHelpIndexWidget_ResizeEventDefault(ptr.Pointer(), gui.PointerFromQResizeEvent(e))
 	}
@@ -11387,7 +9187,6 @@ func (ptr *QHelpIndexWidget) ResizeEventDefault(e gui.QResizeEvent_ITF) {
 
 //export callbackQHelpIndexWidget_RowsAboutToBeRemoved
 func callbackQHelpIndexWidget_RowsAboutToBeRemoved(ptr unsafe.Pointer, parent unsafe.Pointer, start C.int, end C.int) {
-	defer qt.Recovering("callback QHelpIndexWidget::rowsAboutToBeRemoved")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpIndexWidget::rowsAboutToBeRemoved"); signal != nil {
 		signal.(func(*core.QModelIndex, int, int))(core.NewQModelIndexFromPointer(parent), int(int32(start)), int(int32(end)))
@@ -11397,8 +9196,6 @@ func callbackQHelpIndexWidget_RowsAboutToBeRemoved(ptr unsafe.Pointer, parent un
 }
 
 func (ptr *QHelpIndexWidget) ConnectRowsAboutToBeRemoved(f func(parent *core.QModelIndex, start int, end int)) {
-	defer qt.Recovering("connect QHelpIndexWidget::rowsAboutToBeRemoved")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexWidget::rowsAboutToBeRemoved", f)
@@ -11406,8 +9203,6 @@ func (ptr *QHelpIndexWidget) ConnectRowsAboutToBeRemoved(f func(parent *core.QMo
 }
 
 func (ptr *QHelpIndexWidget) DisconnectRowsAboutToBeRemoved() {
-	defer qt.Recovering("disconnect QHelpIndexWidget::rowsAboutToBeRemoved")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexWidget::rowsAboutToBeRemoved")
@@ -11415,16 +9210,12 @@ func (ptr *QHelpIndexWidget) DisconnectRowsAboutToBeRemoved() {
 }
 
 func (ptr *QHelpIndexWidget) RowsAboutToBeRemoved(parent core.QModelIndex_ITF, start int, end int) {
-	defer qt.Recovering("QHelpIndexWidget::rowsAboutToBeRemoved")
-
 	if ptr.Pointer() != nil {
 		C.QHelpIndexWidget_RowsAboutToBeRemoved(ptr.Pointer(), core.PointerFromQModelIndex(parent), C.int(int32(start)), C.int(int32(end)))
 	}
 }
 
 func (ptr *QHelpIndexWidget) RowsAboutToBeRemovedDefault(parent core.QModelIndex_ITF, start int, end int) {
-	defer qt.Recovering("QHelpIndexWidget::rowsAboutToBeRemoved")
-
 	if ptr.Pointer() != nil {
 		C.QHelpIndexWidget_RowsAboutToBeRemovedDefault(ptr.Pointer(), core.PointerFromQModelIndex(parent), C.int(int32(start)), C.int(int32(end)))
 	}
@@ -11432,7 +9223,6 @@ func (ptr *QHelpIndexWidget) RowsAboutToBeRemovedDefault(parent core.QModelIndex
 
 //export callbackQHelpIndexWidget_RowsInserted
 func callbackQHelpIndexWidget_RowsInserted(ptr unsafe.Pointer, parent unsafe.Pointer, start C.int, end C.int) {
-	defer qt.Recovering("callback QHelpIndexWidget::rowsInserted")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpIndexWidget::rowsInserted"); signal != nil {
 		signal.(func(*core.QModelIndex, int, int))(core.NewQModelIndexFromPointer(parent), int(int32(start)), int(int32(end)))
@@ -11442,8 +9232,6 @@ func callbackQHelpIndexWidget_RowsInserted(ptr unsafe.Pointer, parent unsafe.Poi
 }
 
 func (ptr *QHelpIndexWidget) ConnectRowsInserted(f func(parent *core.QModelIndex, start int, end int)) {
-	defer qt.Recovering("connect QHelpIndexWidget::rowsInserted")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexWidget::rowsInserted", f)
@@ -11451,8 +9239,6 @@ func (ptr *QHelpIndexWidget) ConnectRowsInserted(f func(parent *core.QModelIndex
 }
 
 func (ptr *QHelpIndexWidget) DisconnectRowsInserted() {
-	defer qt.Recovering("disconnect QHelpIndexWidget::rowsInserted")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexWidget::rowsInserted")
@@ -11460,16 +9246,12 @@ func (ptr *QHelpIndexWidget) DisconnectRowsInserted() {
 }
 
 func (ptr *QHelpIndexWidget) RowsInserted(parent core.QModelIndex_ITF, start int, end int) {
-	defer qt.Recovering("QHelpIndexWidget::rowsInserted")
-
 	if ptr.Pointer() != nil {
 		C.QHelpIndexWidget_RowsInserted(ptr.Pointer(), core.PointerFromQModelIndex(parent), C.int(int32(start)), C.int(int32(end)))
 	}
 }
 
 func (ptr *QHelpIndexWidget) RowsInsertedDefault(parent core.QModelIndex_ITF, start int, end int) {
-	defer qt.Recovering("QHelpIndexWidget::rowsInserted")
-
 	if ptr.Pointer() != nil {
 		C.QHelpIndexWidget_RowsInsertedDefault(ptr.Pointer(), core.PointerFromQModelIndex(parent), C.int(int32(start)), C.int(int32(end)))
 	}
@@ -11477,7 +9259,6 @@ func (ptr *QHelpIndexWidget) RowsInsertedDefault(parent core.QModelIndex_ITF, st
 
 //export callbackQHelpIndexWidget_ScrollTo
 func callbackQHelpIndexWidget_ScrollTo(ptr unsafe.Pointer, index unsafe.Pointer, hint C.longlong) {
-	defer qt.Recovering("callback QHelpIndexWidget::scrollTo")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpIndexWidget::scrollTo"); signal != nil {
 		signal.(func(*core.QModelIndex, widgets.QAbstractItemView__ScrollHint))(core.NewQModelIndexFromPointer(index), widgets.QAbstractItemView__ScrollHint(hint))
@@ -11487,8 +9268,6 @@ func callbackQHelpIndexWidget_ScrollTo(ptr unsafe.Pointer, index unsafe.Pointer,
 }
 
 func (ptr *QHelpIndexWidget) ConnectScrollTo(f func(index *core.QModelIndex, hint widgets.QAbstractItemView__ScrollHint)) {
-	defer qt.Recovering("connect QHelpIndexWidget::scrollTo")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexWidget::scrollTo", f)
@@ -11496,8 +9275,6 @@ func (ptr *QHelpIndexWidget) ConnectScrollTo(f func(index *core.QModelIndex, hin
 }
 
 func (ptr *QHelpIndexWidget) DisconnectScrollTo() {
-	defer qt.Recovering("disconnect QHelpIndexWidget::scrollTo")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexWidget::scrollTo")
@@ -11505,16 +9282,12 @@ func (ptr *QHelpIndexWidget) DisconnectScrollTo() {
 }
 
 func (ptr *QHelpIndexWidget) ScrollTo(index core.QModelIndex_ITF, hint widgets.QAbstractItemView__ScrollHint) {
-	defer qt.Recovering("QHelpIndexWidget::scrollTo")
-
 	if ptr.Pointer() != nil {
 		C.QHelpIndexWidget_ScrollTo(ptr.Pointer(), core.PointerFromQModelIndex(index), C.longlong(hint))
 	}
 }
 
 func (ptr *QHelpIndexWidget) ScrollToDefault(index core.QModelIndex_ITF, hint widgets.QAbstractItemView__ScrollHint) {
-	defer qt.Recovering("QHelpIndexWidget::scrollTo")
-
 	if ptr.Pointer() != nil {
 		C.QHelpIndexWidget_ScrollToDefault(ptr.Pointer(), core.PointerFromQModelIndex(index), C.longlong(hint))
 	}
@@ -11522,7 +9295,6 @@ func (ptr *QHelpIndexWidget) ScrollToDefault(index core.QModelIndex_ITF, hint wi
 
 //export callbackQHelpIndexWidget_SelectionChanged
 func callbackQHelpIndexWidget_SelectionChanged(ptr unsafe.Pointer, selected unsafe.Pointer, deselected unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpIndexWidget::selectionChanged")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpIndexWidget::selectionChanged"); signal != nil {
 		signal.(func(*core.QItemSelection, *core.QItemSelection))(core.NewQItemSelectionFromPointer(selected), core.NewQItemSelectionFromPointer(deselected))
@@ -11532,8 +9304,6 @@ func callbackQHelpIndexWidget_SelectionChanged(ptr unsafe.Pointer, selected unsa
 }
 
 func (ptr *QHelpIndexWidget) ConnectSelectionChanged(f func(selected *core.QItemSelection, deselected *core.QItemSelection)) {
-	defer qt.Recovering("connect QHelpIndexWidget::selectionChanged")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexWidget::selectionChanged", f)
@@ -11541,8 +9311,6 @@ func (ptr *QHelpIndexWidget) ConnectSelectionChanged(f func(selected *core.QItem
 }
 
 func (ptr *QHelpIndexWidget) DisconnectSelectionChanged() {
-	defer qt.Recovering("disconnect QHelpIndexWidget::selectionChanged")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexWidget::selectionChanged")
@@ -11550,16 +9318,12 @@ func (ptr *QHelpIndexWidget) DisconnectSelectionChanged() {
 }
 
 func (ptr *QHelpIndexWidget) SelectionChanged(selected core.QItemSelection_ITF, deselected core.QItemSelection_ITF) {
-	defer qt.Recovering("QHelpIndexWidget::selectionChanged")
-
 	if ptr.Pointer() != nil {
 		C.QHelpIndexWidget_SelectionChanged(ptr.Pointer(), core.PointerFromQItemSelection(selected), core.PointerFromQItemSelection(deselected))
 	}
 }
 
 func (ptr *QHelpIndexWidget) SelectionChangedDefault(selected core.QItemSelection_ITF, deselected core.QItemSelection_ITF) {
-	defer qt.Recovering("QHelpIndexWidget::selectionChanged")
-
 	if ptr.Pointer() != nil {
 		C.QHelpIndexWidget_SelectionChangedDefault(ptr.Pointer(), core.PointerFromQItemSelection(selected), core.PointerFromQItemSelection(deselected))
 	}
@@ -11567,7 +9331,6 @@ func (ptr *QHelpIndexWidget) SelectionChangedDefault(selected core.QItemSelectio
 
 //export callbackQHelpIndexWidget_SetSelection
 func callbackQHelpIndexWidget_SetSelection(ptr unsafe.Pointer, rect unsafe.Pointer, command C.longlong) {
-	defer qt.Recovering("callback QHelpIndexWidget::setSelection")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpIndexWidget::setSelection"); signal != nil {
 		signal.(func(*core.QRect, core.QItemSelectionModel__SelectionFlag))(core.NewQRectFromPointer(rect), core.QItemSelectionModel__SelectionFlag(command))
@@ -11577,8 +9340,6 @@ func callbackQHelpIndexWidget_SetSelection(ptr unsafe.Pointer, rect unsafe.Point
 }
 
 func (ptr *QHelpIndexWidget) ConnectSetSelection(f func(rect *core.QRect, command core.QItemSelectionModel__SelectionFlag)) {
-	defer qt.Recovering("connect QHelpIndexWidget::setSelection")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexWidget::setSelection", f)
@@ -11586,8 +9347,6 @@ func (ptr *QHelpIndexWidget) ConnectSetSelection(f func(rect *core.QRect, comman
 }
 
 func (ptr *QHelpIndexWidget) DisconnectSetSelection() {
-	defer qt.Recovering("disconnect QHelpIndexWidget::setSelection")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexWidget::setSelection")
@@ -11595,16 +9354,12 @@ func (ptr *QHelpIndexWidget) DisconnectSetSelection() {
 }
 
 func (ptr *QHelpIndexWidget) SetSelection(rect core.QRect_ITF, command core.QItemSelectionModel__SelectionFlag) {
-	defer qt.Recovering("QHelpIndexWidget::setSelection")
-
 	if ptr.Pointer() != nil {
 		C.QHelpIndexWidget_SetSelection(ptr.Pointer(), core.PointerFromQRect(rect), C.longlong(command))
 	}
 }
 
 func (ptr *QHelpIndexWidget) SetSelectionDefault(rect core.QRect_ITF, command core.QItemSelectionModel__SelectionFlag) {
-	defer qt.Recovering("QHelpIndexWidget::setSelection")
-
 	if ptr.Pointer() != nil {
 		C.QHelpIndexWidget_SetSelectionDefault(ptr.Pointer(), core.PointerFromQRect(rect), C.longlong(command))
 	}
@@ -11612,7 +9367,6 @@ func (ptr *QHelpIndexWidget) SetSelectionDefault(rect core.QRect_ITF, command co
 
 //export callbackQHelpIndexWidget_StartDrag
 func callbackQHelpIndexWidget_StartDrag(ptr unsafe.Pointer, supportedActions C.longlong) {
-	defer qt.Recovering("callback QHelpIndexWidget::startDrag")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpIndexWidget::startDrag"); signal != nil {
 		signal.(func(core.Qt__DropAction))(core.Qt__DropAction(supportedActions))
@@ -11622,8 +9376,6 @@ func callbackQHelpIndexWidget_StartDrag(ptr unsafe.Pointer, supportedActions C.l
 }
 
 func (ptr *QHelpIndexWidget) ConnectStartDrag(f func(supportedActions core.Qt__DropAction)) {
-	defer qt.Recovering("connect QHelpIndexWidget::startDrag")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexWidget::startDrag", f)
@@ -11631,8 +9383,6 @@ func (ptr *QHelpIndexWidget) ConnectStartDrag(f func(supportedActions core.Qt__D
 }
 
 func (ptr *QHelpIndexWidget) DisconnectStartDrag() {
-	defer qt.Recovering("disconnect QHelpIndexWidget::startDrag")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexWidget::startDrag")
@@ -11640,16 +9390,12 @@ func (ptr *QHelpIndexWidget) DisconnectStartDrag() {
 }
 
 func (ptr *QHelpIndexWidget) StartDrag(supportedActions core.Qt__DropAction) {
-	defer qt.Recovering("QHelpIndexWidget::startDrag")
-
 	if ptr.Pointer() != nil {
 		C.QHelpIndexWidget_StartDrag(ptr.Pointer(), C.longlong(supportedActions))
 	}
 }
 
 func (ptr *QHelpIndexWidget) StartDragDefault(supportedActions core.Qt__DropAction) {
-	defer qt.Recovering("QHelpIndexWidget::startDrag")
-
 	if ptr.Pointer() != nil {
 		C.QHelpIndexWidget_StartDragDefault(ptr.Pointer(), C.longlong(supportedActions))
 	}
@@ -11657,7 +9403,6 @@ func (ptr *QHelpIndexWidget) StartDragDefault(supportedActions core.Qt__DropActi
 
 //export callbackQHelpIndexWidget_UpdateGeometries
 func callbackQHelpIndexWidget_UpdateGeometries(ptr unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpIndexWidget::updateGeometries")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpIndexWidget::updateGeometries"); signal != nil {
 		signal.(func())()
@@ -11667,8 +9412,6 @@ func callbackQHelpIndexWidget_UpdateGeometries(ptr unsafe.Pointer) {
 }
 
 func (ptr *QHelpIndexWidget) ConnectUpdateGeometries(f func()) {
-	defer qt.Recovering("connect QHelpIndexWidget::updateGeometries")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexWidget::updateGeometries", f)
@@ -11676,8 +9419,6 @@ func (ptr *QHelpIndexWidget) ConnectUpdateGeometries(f func()) {
 }
 
 func (ptr *QHelpIndexWidget) DisconnectUpdateGeometries() {
-	defer qt.Recovering("disconnect QHelpIndexWidget::updateGeometries")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexWidget::updateGeometries")
@@ -11685,16 +9426,12 @@ func (ptr *QHelpIndexWidget) DisconnectUpdateGeometries() {
 }
 
 func (ptr *QHelpIndexWidget) UpdateGeometries() {
-	defer qt.Recovering("QHelpIndexWidget::updateGeometries")
-
 	if ptr.Pointer() != nil {
 		C.QHelpIndexWidget_UpdateGeometries(ptr.Pointer())
 	}
 }
 
 func (ptr *QHelpIndexWidget) UpdateGeometriesDefault() {
-	defer qt.Recovering("QHelpIndexWidget::updateGeometries")
-
 	if ptr.Pointer() != nil {
 		C.QHelpIndexWidget_UpdateGeometriesDefault(ptr.Pointer())
 	}
@@ -11702,7 +9439,6 @@ func (ptr *QHelpIndexWidget) UpdateGeometriesDefault() {
 
 //export callbackQHelpIndexWidget_VerticalOffset
 func callbackQHelpIndexWidget_VerticalOffset(ptr unsafe.Pointer) C.int {
-	defer qt.Recovering("callback QHelpIndexWidget::verticalOffset")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpIndexWidget::verticalOffset"); signal != nil {
 		return C.int(int32(signal.(func() int)()))
@@ -11712,8 +9448,6 @@ func callbackQHelpIndexWidget_VerticalOffset(ptr unsafe.Pointer) C.int {
 }
 
 func (ptr *QHelpIndexWidget) ConnectVerticalOffset(f func() int) {
-	defer qt.Recovering("connect QHelpIndexWidget::verticalOffset")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexWidget::verticalOffset", f)
@@ -11721,8 +9455,6 @@ func (ptr *QHelpIndexWidget) ConnectVerticalOffset(f func() int) {
 }
 
 func (ptr *QHelpIndexWidget) DisconnectVerticalOffset() {
-	defer qt.Recovering("disconnect QHelpIndexWidget::verticalOffset")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexWidget::verticalOffset")
@@ -11730,8 +9462,6 @@ func (ptr *QHelpIndexWidget) DisconnectVerticalOffset() {
 }
 
 func (ptr *QHelpIndexWidget) VerticalOffset() int {
-	defer qt.Recovering("QHelpIndexWidget::verticalOffset")
-
 	if ptr.Pointer() != nil {
 		return int(int32(C.QHelpIndexWidget_VerticalOffset(ptr.Pointer())))
 	}
@@ -11739,8 +9469,6 @@ func (ptr *QHelpIndexWidget) VerticalOffset() int {
 }
 
 func (ptr *QHelpIndexWidget) VerticalOffsetDefault() int {
-	defer qt.Recovering("QHelpIndexWidget::verticalOffset")
-
 	if ptr.Pointer() != nil {
 		return int(int32(C.QHelpIndexWidget_VerticalOffsetDefault(ptr.Pointer())))
 	}
@@ -11749,7 +9477,6 @@ func (ptr *QHelpIndexWidget) VerticalOffsetDefault() int {
 
 //export callbackQHelpIndexWidget_ViewOptions
 func callbackQHelpIndexWidget_ViewOptions(ptr unsafe.Pointer) unsafe.Pointer {
-	defer qt.Recovering("callback QHelpIndexWidget::viewOptions")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpIndexWidget::viewOptions"); signal != nil {
 		return widgets.PointerFromQStyleOptionViewItem(signal.(func() *widgets.QStyleOptionViewItem)())
@@ -11759,8 +9486,6 @@ func callbackQHelpIndexWidget_ViewOptions(ptr unsafe.Pointer) unsafe.Pointer {
 }
 
 func (ptr *QHelpIndexWidget) ConnectViewOptions(f func() *widgets.QStyleOptionViewItem) {
-	defer qt.Recovering("connect QHelpIndexWidget::viewOptions")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexWidget::viewOptions", f)
@@ -11768,8 +9493,6 @@ func (ptr *QHelpIndexWidget) ConnectViewOptions(f func() *widgets.QStyleOptionVi
 }
 
 func (ptr *QHelpIndexWidget) DisconnectViewOptions() {
-	defer qt.Recovering("disconnect QHelpIndexWidget::viewOptions")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexWidget::viewOptions")
@@ -11777,8 +9500,6 @@ func (ptr *QHelpIndexWidget) DisconnectViewOptions() {
 }
 
 func (ptr *QHelpIndexWidget) ViewOptions() *widgets.QStyleOptionViewItem {
-	defer qt.Recovering("QHelpIndexWidget::viewOptions")
-
 	if ptr.Pointer() != nil {
 		var tmpValue = widgets.NewQStyleOptionViewItemFromPointer(C.QHelpIndexWidget_ViewOptions(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*widgets.QStyleOptionViewItem).DestroyQStyleOptionViewItem)
@@ -11788,8 +9509,6 @@ func (ptr *QHelpIndexWidget) ViewOptions() *widgets.QStyleOptionViewItem {
 }
 
 func (ptr *QHelpIndexWidget) ViewOptionsDefault() *widgets.QStyleOptionViewItem {
-	defer qt.Recovering("QHelpIndexWidget::viewOptions")
-
 	if ptr.Pointer() != nil {
 		var tmpValue = widgets.NewQStyleOptionViewItemFromPointer(C.QHelpIndexWidget_ViewOptionsDefault(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*widgets.QStyleOptionViewItem).DestroyQStyleOptionViewItem)
@@ -11800,7 +9519,6 @@ func (ptr *QHelpIndexWidget) ViewOptionsDefault() *widgets.QStyleOptionViewItem 
 
 //export callbackQHelpIndexWidget_ViewportSizeHint
 func callbackQHelpIndexWidget_ViewportSizeHint(ptr unsafe.Pointer) unsafe.Pointer {
-	defer qt.Recovering("callback QHelpIndexWidget::viewportSizeHint")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpIndexWidget::viewportSizeHint"); signal != nil {
 		return core.PointerFromQSize(signal.(func() *core.QSize)())
@@ -11810,8 +9528,6 @@ func callbackQHelpIndexWidget_ViewportSizeHint(ptr unsafe.Pointer) unsafe.Pointe
 }
 
 func (ptr *QHelpIndexWidget) ConnectViewportSizeHint(f func() *core.QSize) {
-	defer qt.Recovering("connect QHelpIndexWidget::viewportSizeHint")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexWidget::viewportSizeHint", f)
@@ -11819,8 +9535,6 @@ func (ptr *QHelpIndexWidget) ConnectViewportSizeHint(f func() *core.QSize) {
 }
 
 func (ptr *QHelpIndexWidget) DisconnectViewportSizeHint() {
-	defer qt.Recovering("disconnect QHelpIndexWidget::viewportSizeHint")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexWidget::viewportSizeHint")
@@ -11828,8 +9542,6 @@ func (ptr *QHelpIndexWidget) DisconnectViewportSizeHint() {
 }
 
 func (ptr *QHelpIndexWidget) ViewportSizeHint() *core.QSize {
-	defer qt.Recovering("QHelpIndexWidget::viewportSizeHint")
-
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQSizeFromPointer(C.QHelpIndexWidget_ViewportSizeHint(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
@@ -11839,8 +9551,6 @@ func (ptr *QHelpIndexWidget) ViewportSizeHint() *core.QSize {
 }
 
 func (ptr *QHelpIndexWidget) ViewportSizeHintDefault() *core.QSize {
-	defer qt.Recovering("QHelpIndexWidget::viewportSizeHint")
-
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQSizeFromPointer(C.QHelpIndexWidget_ViewportSizeHintDefault(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
@@ -11851,7 +9561,6 @@ func (ptr *QHelpIndexWidget) ViewportSizeHintDefault() *core.QSize {
 
 //export callbackQHelpIndexWidget_VisualRect
 func callbackQHelpIndexWidget_VisualRect(ptr unsafe.Pointer, index unsafe.Pointer) unsafe.Pointer {
-	defer qt.Recovering("callback QHelpIndexWidget::visualRect")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpIndexWidget::visualRect"); signal != nil {
 		return core.PointerFromQRect(signal.(func(*core.QModelIndex) *core.QRect)(core.NewQModelIndexFromPointer(index)))
@@ -11861,8 +9570,6 @@ func callbackQHelpIndexWidget_VisualRect(ptr unsafe.Pointer, index unsafe.Pointe
 }
 
 func (ptr *QHelpIndexWidget) ConnectVisualRect(f func(index *core.QModelIndex) *core.QRect) {
-	defer qt.Recovering("connect QHelpIndexWidget::visualRect")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexWidget::visualRect", f)
@@ -11870,8 +9577,6 @@ func (ptr *QHelpIndexWidget) ConnectVisualRect(f func(index *core.QModelIndex) *
 }
 
 func (ptr *QHelpIndexWidget) DisconnectVisualRect() {
-	defer qt.Recovering("disconnect QHelpIndexWidget::visualRect")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexWidget::visualRect")
@@ -11879,8 +9584,6 @@ func (ptr *QHelpIndexWidget) DisconnectVisualRect() {
 }
 
 func (ptr *QHelpIndexWidget) VisualRect(index core.QModelIndex_ITF) *core.QRect {
-	defer qt.Recovering("QHelpIndexWidget::visualRect")
-
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQRectFromPointer(C.QHelpIndexWidget_VisualRect(ptr.Pointer(), core.PointerFromQModelIndex(index)))
 		runtime.SetFinalizer(tmpValue, (*core.QRect).DestroyQRect)
@@ -11890,8 +9593,6 @@ func (ptr *QHelpIndexWidget) VisualRect(index core.QModelIndex_ITF) *core.QRect 
 }
 
 func (ptr *QHelpIndexWidget) VisualRectDefault(index core.QModelIndex_ITF) *core.QRect {
-	defer qt.Recovering("QHelpIndexWidget::visualRect")
-
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQRectFromPointer(C.QHelpIndexWidget_VisualRectDefault(ptr.Pointer(), core.PointerFromQModelIndex(index)))
 		runtime.SetFinalizer(tmpValue, (*core.QRect).DestroyQRect)
@@ -11902,7 +9603,6 @@ func (ptr *QHelpIndexWidget) VisualRectDefault(index core.QModelIndex_ITF) *core
 
 //export callbackQHelpIndexWidget_VisualRegionForSelection
 func callbackQHelpIndexWidget_VisualRegionForSelection(ptr unsafe.Pointer, selection unsafe.Pointer) unsafe.Pointer {
-	defer qt.Recovering("callback QHelpIndexWidget::visualRegionForSelection")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpIndexWidget::visualRegionForSelection"); signal != nil {
 		return gui.PointerFromQRegion(signal.(func(*core.QItemSelection) *gui.QRegion)(core.NewQItemSelectionFromPointer(selection)))
@@ -11912,8 +9612,6 @@ func callbackQHelpIndexWidget_VisualRegionForSelection(ptr unsafe.Pointer, selec
 }
 
 func (ptr *QHelpIndexWidget) ConnectVisualRegionForSelection(f func(selection *core.QItemSelection) *gui.QRegion) {
-	defer qt.Recovering("connect QHelpIndexWidget::visualRegionForSelection")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexWidget::visualRegionForSelection", f)
@@ -11921,8 +9619,6 @@ func (ptr *QHelpIndexWidget) ConnectVisualRegionForSelection(f func(selection *c
 }
 
 func (ptr *QHelpIndexWidget) DisconnectVisualRegionForSelection() {
-	defer qt.Recovering("disconnect QHelpIndexWidget::visualRegionForSelection")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexWidget::visualRegionForSelection")
@@ -11930,8 +9626,6 @@ func (ptr *QHelpIndexWidget) DisconnectVisualRegionForSelection() {
 }
 
 func (ptr *QHelpIndexWidget) VisualRegionForSelection(selection core.QItemSelection_ITF) *gui.QRegion {
-	defer qt.Recovering("QHelpIndexWidget::visualRegionForSelection")
-
 	if ptr.Pointer() != nil {
 		var tmpValue = gui.NewQRegionFromPointer(C.QHelpIndexWidget_VisualRegionForSelection(ptr.Pointer(), core.PointerFromQItemSelection(selection)))
 		runtime.SetFinalizer(tmpValue, (*gui.QRegion).DestroyQRegion)
@@ -11941,8 +9635,6 @@ func (ptr *QHelpIndexWidget) VisualRegionForSelection(selection core.QItemSelect
 }
 
 func (ptr *QHelpIndexWidget) VisualRegionForSelectionDefault(selection core.QItemSelection_ITF) *gui.QRegion {
-	defer qt.Recovering("QHelpIndexWidget::visualRegionForSelection")
-
 	if ptr.Pointer() != nil {
 		var tmpValue = gui.NewQRegionFromPointer(C.QHelpIndexWidget_VisualRegionForSelectionDefault(ptr.Pointer(), core.PointerFromQItemSelection(selection)))
 		runtime.SetFinalizer(tmpValue, (*gui.QRegion).DestroyQRegion)
@@ -11953,7 +9645,6 @@ func (ptr *QHelpIndexWidget) VisualRegionForSelectionDefault(selection core.QIte
 
 //export callbackQHelpIndexWidget_WheelEvent
 func callbackQHelpIndexWidget_WheelEvent(ptr unsafe.Pointer, e unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpIndexWidget::wheelEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpIndexWidget::wheelEvent"); signal != nil {
 		signal.(func(*gui.QWheelEvent))(gui.NewQWheelEventFromPointer(e))
@@ -11963,8 +9654,6 @@ func callbackQHelpIndexWidget_WheelEvent(ptr unsafe.Pointer, e unsafe.Pointer) {
 }
 
 func (ptr *QHelpIndexWidget) ConnectWheelEvent(f func(e *gui.QWheelEvent)) {
-	defer qt.Recovering("connect QHelpIndexWidget::wheelEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexWidget::wheelEvent", f)
@@ -11972,8 +9661,6 @@ func (ptr *QHelpIndexWidget) ConnectWheelEvent(f func(e *gui.QWheelEvent)) {
 }
 
 func (ptr *QHelpIndexWidget) DisconnectWheelEvent() {
-	defer qt.Recovering("disconnect QHelpIndexWidget::wheelEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexWidget::wheelEvent")
@@ -11981,16 +9668,12 @@ func (ptr *QHelpIndexWidget) DisconnectWheelEvent() {
 }
 
 func (ptr *QHelpIndexWidget) WheelEvent(e gui.QWheelEvent_ITF) {
-	defer qt.Recovering("QHelpIndexWidget::wheelEvent")
-
 	if ptr.Pointer() != nil {
 		C.QHelpIndexWidget_WheelEvent(ptr.Pointer(), gui.PointerFromQWheelEvent(e))
 	}
 }
 
 func (ptr *QHelpIndexWidget) WheelEventDefault(e gui.QWheelEvent_ITF) {
-	defer qt.Recovering("QHelpIndexWidget::wheelEvent")
-
 	if ptr.Pointer() != nil {
 		C.QHelpIndexWidget_WheelEventDefault(ptr.Pointer(), gui.PointerFromQWheelEvent(e))
 	}
@@ -11998,7 +9681,6 @@ func (ptr *QHelpIndexWidget) WheelEventDefault(e gui.QWheelEvent_ITF) {
 
 //export callbackQHelpIndexWidget_ViewportEvent
 func callbackQHelpIndexWidget_ViewportEvent(ptr unsafe.Pointer, event unsafe.Pointer) C.char {
-	defer qt.Recovering("callback QHelpIndexWidget::viewportEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpIndexWidget::viewportEvent"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(event)))))
@@ -12008,8 +9690,6 @@ func callbackQHelpIndexWidget_ViewportEvent(ptr unsafe.Pointer, event unsafe.Poi
 }
 
 func (ptr *QHelpIndexWidget) ConnectViewportEvent(f func(event *core.QEvent) bool) {
-	defer qt.Recovering("connect QHelpIndexWidget::viewportEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexWidget::viewportEvent", f)
@@ -12017,8 +9697,6 @@ func (ptr *QHelpIndexWidget) ConnectViewportEvent(f func(event *core.QEvent) boo
 }
 
 func (ptr *QHelpIndexWidget) DisconnectViewportEvent() {
-	defer qt.Recovering("disconnect QHelpIndexWidget::viewportEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexWidget::viewportEvent")
@@ -12026,8 +9704,6 @@ func (ptr *QHelpIndexWidget) DisconnectViewportEvent() {
 }
 
 func (ptr *QHelpIndexWidget) ViewportEvent(event core.QEvent_ITF) bool {
-	defer qt.Recovering("QHelpIndexWidget::viewportEvent")
-
 	if ptr.Pointer() != nil {
 		return C.QHelpIndexWidget_ViewportEvent(ptr.Pointer(), core.PointerFromQEvent(event)) != 0
 	}
@@ -12035,8 +9711,6 @@ func (ptr *QHelpIndexWidget) ViewportEvent(event core.QEvent_ITF) bool {
 }
 
 func (ptr *QHelpIndexWidget) ViewportEventDefault(event core.QEvent_ITF) bool {
-	defer qt.Recovering("QHelpIndexWidget::viewportEvent")
-
 	if ptr.Pointer() != nil {
 		return C.QHelpIndexWidget_ViewportEventDefault(ptr.Pointer(), core.PointerFromQEvent(event)) != 0
 	}
@@ -12045,8 +9719,6 @@ func (ptr *QHelpIndexWidget) ViewportEventDefault(event core.QEvent_ITF) bool {
 
 //export callbackQHelpIndexWidget_ClearSelection
 func callbackQHelpIndexWidget_ClearSelection(ptr unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpIndexWidget::clearSelection")
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpIndexWidget::clearSelection"); signal != nil {
 		signal.(func())()
 	} else {
@@ -12055,8 +9727,6 @@ func callbackQHelpIndexWidget_ClearSelection(ptr unsafe.Pointer) {
 }
 
 func (ptr *QHelpIndexWidget) ConnectClearSelection(f func()) {
-	defer qt.Recovering("connect QHelpIndexWidget::clearSelection")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexWidget::clearSelection", f)
@@ -12064,8 +9734,6 @@ func (ptr *QHelpIndexWidget) ConnectClearSelection(f func()) {
 }
 
 func (ptr *QHelpIndexWidget) DisconnectClearSelection() {
-	defer qt.Recovering("disconnect QHelpIndexWidget::clearSelection")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexWidget::clearSelection")
@@ -12073,16 +9741,12 @@ func (ptr *QHelpIndexWidget) DisconnectClearSelection() {
 }
 
 func (ptr *QHelpIndexWidget) ClearSelection() {
-	defer qt.Recovering("QHelpIndexWidget::clearSelection")
-
 	if ptr.Pointer() != nil {
 		C.QHelpIndexWidget_ClearSelection(ptr.Pointer())
 	}
 }
 
 func (ptr *QHelpIndexWidget) ClearSelectionDefault() {
-	defer qt.Recovering("QHelpIndexWidget::clearSelection")
-
 	if ptr.Pointer() != nil {
 		C.QHelpIndexWidget_ClearSelectionDefault(ptr.Pointer())
 	}
@@ -12090,8 +9754,6 @@ func (ptr *QHelpIndexWidget) ClearSelectionDefault() {
 
 //export callbackQHelpIndexWidget_CloseEditor
 func callbackQHelpIndexWidget_CloseEditor(ptr unsafe.Pointer, editor unsafe.Pointer, hint C.longlong) {
-	defer qt.Recovering("callback QHelpIndexWidget::closeEditor")
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpIndexWidget::closeEditor"); signal != nil {
 		signal.(func(*widgets.QWidget, widgets.QAbstractItemDelegate__EndEditHint))(widgets.NewQWidgetFromPointer(editor), widgets.QAbstractItemDelegate__EndEditHint(hint))
 	} else {
@@ -12100,8 +9762,6 @@ func callbackQHelpIndexWidget_CloseEditor(ptr unsafe.Pointer, editor unsafe.Poin
 }
 
 func (ptr *QHelpIndexWidget) ConnectCloseEditor(f func(editor *widgets.QWidget, hint widgets.QAbstractItemDelegate__EndEditHint)) {
-	defer qt.Recovering("connect QHelpIndexWidget::closeEditor")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexWidget::closeEditor", f)
@@ -12109,8 +9769,6 @@ func (ptr *QHelpIndexWidget) ConnectCloseEditor(f func(editor *widgets.QWidget, 
 }
 
 func (ptr *QHelpIndexWidget) DisconnectCloseEditor() {
-	defer qt.Recovering("disconnect QHelpIndexWidget::closeEditor")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexWidget::closeEditor")
@@ -12118,16 +9776,12 @@ func (ptr *QHelpIndexWidget) DisconnectCloseEditor() {
 }
 
 func (ptr *QHelpIndexWidget) CloseEditor(editor widgets.QWidget_ITF, hint widgets.QAbstractItemDelegate__EndEditHint) {
-	defer qt.Recovering("QHelpIndexWidget::closeEditor")
-
 	if ptr.Pointer() != nil {
 		C.QHelpIndexWidget_CloseEditor(ptr.Pointer(), widgets.PointerFromQWidget(editor), C.longlong(hint))
 	}
 }
 
 func (ptr *QHelpIndexWidget) CloseEditorDefault(editor widgets.QWidget_ITF, hint widgets.QAbstractItemDelegate__EndEditHint) {
-	defer qt.Recovering("QHelpIndexWidget::closeEditor")
-
 	if ptr.Pointer() != nil {
 		C.QHelpIndexWidget_CloseEditorDefault(ptr.Pointer(), widgets.PointerFromQWidget(editor), C.longlong(hint))
 	}
@@ -12135,8 +9789,6 @@ func (ptr *QHelpIndexWidget) CloseEditorDefault(editor widgets.QWidget_ITF, hint
 
 //export callbackQHelpIndexWidget_CommitData
 func callbackQHelpIndexWidget_CommitData(ptr unsafe.Pointer, editor unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpIndexWidget::commitData")
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpIndexWidget::commitData"); signal != nil {
 		signal.(func(*widgets.QWidget))(widgets.NewQWidgetFromPointer(editor))
 	} else {
@@ -12145,8 +9797,6 @@ func callbackQHelpIndexWidget_CommitData(ptr unsafe.Pointer, editor unsafe.Point
 }
 
 func (ptr *QHelpIndexWidget) ConnectCommitData(f func(editor *widgets.QWidget)) {
-	defer qt.Recovering("connect QHelpIndexWidget::commitData")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexWidget::commitData", f)
@@ -12154,8 +9804,6 @@ func (ptr *QHelpIndexWidget) ConnectCommitData(f func(editor *widgets.QWidget)) 
 }
 
 func (ptr *QHelpIndexWidget) DisconnectCommitData() {
-	defer qt.Recovering("disconnect QHelpIndexWidget::commitData")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexWidget::commitData")
@@ -12163,16 +9811,12 @@ func (ptr *QHelpIndexWidget) DisconnectCommitData() {
 }
 
 func (ptr *QHelpIndexWidget) CommitData(editor widgets.QWidget_ITF) {
-	defer qt.Recovering("QHelpIndexWidget::commitData")
-
 	if ptr.Pointer() != nil {
 		C.QHelpIndexWidget_CommitData(ptr.Pointer(), widgets.PointerFromQWidget(editor))
 	}
 }
 
 func (ptr *QHelpIndexWidget) CommitDataDefault(editor widgets.QWidget_ITF) {
-	defer qt.Recovering("QHelpIndexWidget::commitData")
-
 	if ptr.Pointer() != nil {
 		C.QHelpIndexWidget_CommitDataDefault(ptr.Pointer(), widgets.PointerFromQWidget(editor))
 	}
@@ -12180,7 +9824,6 @@ func (ptr *QHelpIndexWidget) CommitDataDefault(editor widgets.QWidget_ITF) {
 
 //export callbackQHelpIndexWidget_DragEnterEvent
 func callbackQHelpIndexWidget_DragEnterEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpIndexWidget::dragEnterEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpIndexWidget::dragEnterEvent"); signal != nil {
 		signal.(func(*gui.QDragEnterEvent))(gui.NewQDragEnterEventFromPointer(event))
@@ -12190,8 +9833,6 @@ func callbackQHelpIndexWidget_DragEnterEvent(ptr unsafe.Pointer, event unsafe.Po
 }
 
 func (ptr *QHelpIndexWidget) ConnectDragEnterEvent(f func(event *gui.QDragEnterEvent)) {
-	defer qt.Recovering("connect QHelpIndexWidget::dragEnterEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexWidget::dragEnterEvent", f)
@@ -12199,8 +9840,6 @@ func (ptr *QHelpIndexWidget) ConnectDragEnterEvent(f func(event *gui.QDragEnterE
 }
 
 func (ptr *QHelpIndexWidget) DisconnectDragEnterEvent() {
-	defer qt.Recovering("disconnect QHelpIndexWidget::dragEnterEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexWidget::dragEnterEvent")
@@ -12208,16 +9847,12 @@ func (ptr *QHelpIndexWidget) DisconnectDragEnterEvent() {
 }
 
 func (ptr *QHelpIndexWidget) DragEnterEvent(event gui.QDragEnterEvent_ITF) {
-	defer qt.Recovering("QHelpIndexWidget::dragEnterEvent")
-
 	if ptr.Pointer() != nil {
 		C.QHelpIndexWidget_DragEnterEvent(ptr.Pointer(), gui.PointerFromQDragEnterEvent(event))
 	}
 }
 
 func (ptr *QHelpIndexWidget) DragEnterEventDefault(event gui.QDragEnterEvent_ITF) {
-	defer qt.Recovering("QHelpIndexWidget::dragEnterEvent")
-
 	if ptr.Pointer() != nil {
 		C.QHelpIndexWidget_DragEnterEventDefault(ptr.Pointer(), gui.PointerFromQDragEnterEvent(event))
 	}
@@ -12225,8 +9860,6 @@ func (ptr *QHelpIndexWidget) DragEnterEventDefault(event gui.QDragEnterEvent_ITF
 
 //export callbackQHelpIndexWidget_Edit
 func callbackQHelpIndexWidget_Edit(ptr unsafe.Pointer, index unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpIndexWidget::edit")
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpIndexWidget::edit"); signal != nil {
 		signal.(func(*core.QModelIndex))(core.NewQModelIndexFromPointer(index))
 	} else {
@@ -12235,8 +9868,6 @@ func callbackQHelpIndexWidget_Edit(ptr unsafe.Pointer, index unsafe.Pointer) {
 }
 
 func (ptr *QHelpIndexWidget) ConnectEdit(f func(index *core.QModelIndex)) {
-	defer qt.Recovering("connect QHelpIndexWidget::edit")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexWidget::edit", f)
@@ -12244,8 +9875,6 @@ func (ptr *QHelpIndexWidget) ConnectEdit(f func(index *core.QModelIndex)) {
 }
 
 func (ptr *QHelpIndexWidget) DisconnectEdit() {
-	defer qt.Recovering("disconnect QHelpIndexWidget::edit")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexWidget::edit")
@@ -12253,16 +9882,12 @@ func (ptr *QHelpIndexWidget) DisconnectEdit() {
 }
 
 func (ptr *QHelpIndexWidget) Edit(index core.QModelIndex_ITF) {
-	defer qt.Recovering("QHelpIndexWidget::edit")
-
 	if ptr.Pointer() != nil {
 		C.QHelpIndexWidget_Edit(ptr.Pointer(), core.PointerFromQModelIndex(index))
 	}
 }
 
 func (ptr *QHelpIndexWidget) EditDefault(index core.QModelIndex_ITF) {
-	defer qt.Recovering("QHelpIndexWidget::edit")
-
 	if ptr.Pointer() != nil {
 		C.QHelpIndexWidget_EditDefault(ptr.Pointer(), core.PointerFromQModelIndex(index))
 	}
@@ -12270,7 +9895,6 @@ func (ptr *QHelpIndexWidget) EditDefault(index core.QModelIndex_ITF) {
 
 //export callbackQHelpIndexWidget_Edit2
 func callbackQHelpIndexWidget_Edit2(ptr unsafe.Pointer, index unsafe.Pointer, trigger C.longlong, event unsafe.Pointer) C.char {
-	defer qt.Recovering("callback QHelpIndexWidget::edit")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpIndexWidget::edit2"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QModelIndex, widgets.QAbstractItemView__EditTrigger, *core.QEvent) bool)(core.NewQModelIndexFromPointer(index), widgets.QAbstractItemView__EditTrigger(trigger), core.NewQEventFromPointer(event)))))
@@ -12280,8 +9904,6 @@ func callbackQHelpIndexWidget_Edit2(ptr unsafe.Pointer, index unsafe.Pointer, tr
 }
 
 func (ptr *QHelpIndexWidget) ConnectEdit2(f func(index *core.QModelIndex, trigger widgets.QAbstractItemView__EditTrigger, event *core.QEvent) bool) {
-	defer qt.Recovering("connect QHelpIndexWidget::edit")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexWidget::edit2", f)
@@ -12289,8 +9911,6 @@ func (ptr *QHelpIndexWidget) ConnectEdit2(f func(index *core.QModelIndex, trigge
 }
 
 func (ptr *QHelpIndexWidget) DisconnectEdit2() {
-	defer qt.Recovering("disconnect QHelpIndexWidget::edit")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexWidget::edit2")
@@ -12298,8 +9918,6 @@ func (ptr *QHelpIndexWidget) DisconnectEdit2() {
 }
 
 func (ptr *QHelpIndexWidget) Edit2(index core.QModelIndex_ITF, trigger widgets.QAbstractItemView__EditTrigger, event core.QEvent_ITF) bool {
-	defer qt.Recovering("QHelpIndexWidget::edit")
-
 	if ptr.Pointer() != nil {
 		return C.QHelpIndexWidget_Edit2(ptr.Pointer(), core.PointerFromQModelIndex(index), C.longlong(trigger), core.PointerFromQEvent(event)) != 0
 	}
@@ -12307,8 +9925,6 @@ func (ptr *QHelpIndexWidget) Edit2(index core.QModelIndex_ITF, trigger widgets.Q
 }
 
 func (ptr *QHelpIndexWidget) Edit2Default(index core.QModelIndex_ITF, trigger widgets.QAbstractItemView__EditTrigger, event core.QEvent_ITF) bool {
-	defer qt.Recovering("QHelpIndexWidget::edit")
-
 	if ptr.Pointer() != nil {
 		return C.QHelpIndexWidget_Edit2Default(ptr.Pointer(), core.PointerFromQModelIndex(index), C.longlong(trigger), core.PointerFromQEvent(event)) != 0
 	}
@@ -12317,8 +9933,6 @@ func (ptr *QHelpIndexWidget) Edit2Default(index core.QModelIndex_ITF, trigger wi
 
 //export callbackQHelpIndexWidget_EditorDestroyed
 func callbackQHelpIndexWidget_EditorDestroyed(ptr unsafe.Pointer, editor unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpIndexWidget::editorDestroyed")
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpIndexWidget::editorDestroyed"); signal != nil {
 		signal.(func(*core.QObject))(core.NewQObjectFromPointer(editor))
 	} else {
@@ -12327,8 +9941,6 @@ func callbackQHelpIndexWidget_EditorDestroyed(ptr unsafe.Pointer, editor unsafe.
 }
 
 func (ptr *QHelpIndexWidget) ConnectEditorDestroyed(f func(editor *core.QObject)) {
-	defer qt.Recovering("connect QHelpIndexWidget::editorDestroyed")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexWidget::editorDestroyed", f)
@@ -12336,8 +9948,6 @@ func (ptr *QHelpIndexWidget) ConnectEditorDestroyed(f func(editor *core.QObject)
 }
 
 func (ptr *QHelpIndexWidget) DisconnectEditorDestroyed() {
-	defer qt.Recovering("disconnect QHelpIndexWidget::editorDestroyed")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexWidget::editorDestroyed")
@@ -12345,16 +9955,12 @@ func (ptr *QHelpIndexWidget) DisconnectEditorDestroyed() {
 }
 
 func (ptr *QHelpIndexWidget) EditorDestroyed(editor core.QObject_ITF) {
-	defer qt.Recovering("QHelpIndexWidget::editorDestroyed")
-
 	if ptr.Pointer() != nil {
 		C.QHelpIndexWidget_EditorDestroyed(ptr.Pointer(), core.PointerFromQObject(editor))
 	}
 }
 
 func (ptr *QHelpIndexWidget) EditorDestroyedDefault(editor core.QObject_ITF) {
-	defer qt.Recovering("QHelpIndexWidget::editorDestroyed")
-
 	if ptr.Pointer() != nil {
 		C.QHelpIndexWidget_EditorDestroyedDefault(ptr.Pointer(), core.PointerFromQObject(editor))
 	}
@@ -12362,7 +9968,6 @@ func (ptr *QHelpIndexWidget) EditorDestroyedDefault(editor core.QObject_ITF) {
 
 //export callbackQHelpIndexWidget_FocusInEvent
 func callbackQHelpIndexWidget_FocusInEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpIndexWidget::focusInEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpIndexWidget::focusInEvent"); signal != nil {
 		signal.(func(*gui.QFocusEvent))(gui.NewQFocusEventFromPointer(event))
@@ -12372,8 +9977,6 @@ func callbackQHelpIndexWidget_FocusInEvent(ptr unsafe.Pointer, event unsafe.Poin
 }
 
 func (ptr *QHelpIndexWidget) ConnectFocusInEvent(f func(event *gui.QFocusEvent)) {
-	defer qt.Recovering("connect QHelpIndexWidget::focusInEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexWidget::focusInEvent", f)
@@ -12381,8 +9984,6 @@ func (ptr *QHelpIndexWidget) ConnectFocusInEvent(f func(event *gui.QFocusEvent))
 }
 
 func (ptr *QHelpIndexWidget) DisconnectFocusInEvent() {
-	defer qt.Recovering("disconnect QHelpIndexWidget::focusInEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexWidget::focusInEvent")
@@ -12390,16 +9991,12 @@ func (ptr *QHelpIndexWidget) DisconnectFocusInEvent() {
 }
 
 func (ptr *QHelpIndexWidget) FocusInEvent(event gui.QFocusEvent_ITF) {
-	defer qt.Recovering("QHelpIndexWidget::focusInEvent")
-
 	if ptr.Pointer() != nil {
 		C.QHelpIndexWidget_FocusInEvent(ptr.Pointer(), gui.PointerFromQFocusEvent(event))
 	}
 }
 
 func (ptr *QHelpIndexWidget) FocusInEventDefault(event gui.QFocusEvent_ITF) {
-	defer qt.Recovering("QHelpIndexWidget::focusInEvent")
-
 	if ptr.Pointer() != nil {
 		C.QHelpIndexWidget_FocusInEventDefault(ptr.Pointer(), gui.PointerFromQFocusEvent(event))
 	}
@@ -12407,7 +10004,6 @@ func (ptr *QHelpIndexWidget) FocusInEventDefault(event gui.QFocusEvent_ITF) {
 
 //export callbackQHelpIndexWidget_FocusNextPrevChild
 func callbackQHelpIndexWidget_FocusNextPrevChild(ptr unsafe.Pointer, next C.char) C.char {
-	defer qt.Recovering("callback QHelpIndexWidget::focusNextPrevChild")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpIndexWidget::focusNextPrevChild"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(bool) bool)(int8(next) != 0))))
@@ -12417,8 +10013,6 @@ func callbackQHelpIndexWidget_FocusNextPrevChild(ptr unsafe.Pointer, next C.char
 }
 
 func (ptr *QHelpIndexWidget) ConnectFocusNextPrevChild(f func(next bool) bool) {
-	defer qt.Recovering("connect QHelpIndexWidget::focusNextPrevChild")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexWidget::focusNextPrevChild", f)
@@ -12426,8 +10020,6 @@ func (ptr *QHelpIndexWidget) ConnectFocusNextPrevChild(f func(next bool) bool) {
 }
 
 func (ptr *QHelpIndexWidget) DisconnectFocusNextPrevChild() {
-	defer qt.Recovering("disconnect QHelpIndexWidget::focusNextPrevChild")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexWidget::focusNextPrevChild")
@@ -12435,8 +10027,6 @@ func (ptr *QHelpIndexWidget) DisconnectFocusNextPrevChild() {
 }
 
 func (ptr *QHelpIndexWidget) FocusNextPrevChild(next bool) bool {
-	defer qt.Recovering("QHelpIndexWidget::focusNextPrevChild")
-
 	if ptr.Pointer() != nil {
 		return C.QHelpIndexWidget_FocusNextPrevChild(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(next)))) != 0
 	}
@@ -12444,8 +10034,6 @@ func (ptr *QHelpIndexWidget) FocusNextPrevChild(next bool) bool {
 }
 
 func (ptr *QHelpIndexWidget) FocusNextPrevChildDefault(next bool) bool {
-	defer qt.Recovering("QHelpIndexWidget::focusNextPrevChild")
-
 	if ptr.Pointer() != nil {
 		return C.QHelpIndexWidget_FocusNextPrevChildDefault(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(next)))) != 0
 	}
@@ -12454,7 +10042,6 @@ func (ptr *QHelpIndexWidget) FocusNextPrevChildDefault(next bool) bool {
 
 //export callbackQHelpIndexWidget_FocusOutEvent
 func callbackQHelpIndexWidget_FocusOutEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpIndexWidget::focusOutEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpIndexWidget::focusOutEvent"); signal != nil {
 		signal.(func(*gui.QFocusEvent))(gui.NewQFocusEventFromPointer(event))
@@ -12464,8 +10051,6 @@ func callbackQHelpIndexWidget_FocusOutEvent(ptr unsafe.Pointer, event unsafe.Poi
 }
 
 func (ptr *QHelpIndexWidget) ConnectFocusOutEvent(f func(event *gui.QFocusEvent)) {
-	defer qt.Recovering("connect QHelpIndexWidget::focusOutEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexWidget::focusOutEvent", f)
@@ -12473,8 +10058,6 @@ func (ptr *QHelpIndexWidget) ConnectFocusOutEvent(f func(event *gui.QFocusEvent)
 }
 
 func (ptr *QHelpIndexWidget) DisconnectFocusOutEvent() {
-	defer qt.Recovering("disconnect QHelpIndexWidget::focusOutEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexWidget::focusOutEvent")
@@ -12482,16 +10065,12 @@ func (ptr *QHelpIndexWidget) DisconnectFocusOutEvent() {
 }
 
 func (ptr *QHelpIndexWidget) FocusOutEvent(event gui.QFocusEvent_ITF) {
-	defer qt.Recovering("QHelpIndexWidget::focusOutEvent")
-
 	if ptr.Pointer() != nil {
 		C.QHelpIndexWidget_FocusOutEvent(ptr.Pointer(), gui.PointerFromQFocusEvent(event))
 	}
 }
 
 func (ptr *QHelpIndexWidget) FocusOutEventDefault(event gui.QFocusEvent_ITF) {
-	defer qt.Recovering("QHelpIndexWidget::focusOutEvent")
-
 	if ptr.Pointer() != nil {
 		C.QHelpIndexWidget_FocusOutEventDefault(ptr.Pointer(), gui.PointerFromQFocusEvent(event))
 	}
@@ -12499,7 +10078,6 @@ func (ptr *QHelpIndexWidget) FocusOutEventDefault(event gui.QFocusEvent_ITF) {
 
 //export callbackQHelpIndexWidget_InputMethodEvent
 func callbackQHelpIndexWidget_InputMethodEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpIndexWidget::inputMethodEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpIndexWidget::inputMethodEvent"); signal != nil {
 		signal.(func(*gui.QInputMethodEvent))(gui.NewQInputMethodEventFromPointer(event))
@@ -12509,8 +10087,6 @@ func callbackQHelpIndexWidget_InputMethodEvent(ptr unsafe.Pointer, event unsafe.
 }
 
 func (ptr *QHelpIndexWidget) ConnectInputMethodEvent(f func(event *gui.QInputMethodEvent)) {
-	defer qt.Recovering("connect QHelpIndexWidget::inputMethodEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexWidget::inputMethodEvent", f)
@@ -12518,8 +10094,6 @@ func (ptr *QHelpIndexWidget) ConnectInputMethodEvent(f func(event *gui.QInputMet
 }
 
 func (ptr *QHelpIndexWidget) DisconnectInputMethodEvent() {
-	defer qt.Recovering("disconnect QHelpIndexWidget::inputMethodEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexWidget::inputMethodEvent")
@@ -12527,16 +10101,12 @@ func (ptr *QHelpIndexWidget) DisconnectInputMethodEvent() {
 }
 
 func (ptr *QHelpIndexWidget) InputMethodEvent(event gui.QInputMethodEvent_ITF) {
-	defer qt.Recovering("QHelpIndexWidget::inputMethodEvent")
-
 	if ptr.Pointer() != nil {
 		C.QHelpIndexWidget_InputMethodEvent(ptr.Pointer(), gui.PointerFromQInputMethodEvent(event))
 	}
 }
 
 func (ptr *QHelpIndexWidget) InputMethodEventDefault(event gui.QInputMethodEvent_ITF) {
-	defer qt.Recovering("QHelpIndexWidget::inputMethodEvent")
-
 	if ptr.Pointer() != nil {
 		C.QHelpIndexWidget_InputMethodEventDefault(ptr.Pointer(), gui.PointerFromQInputMethodEvent(event))
 	}
@@ -12544,7 +10114,6 @@ func (ptr *QHelpIndexWidget) InputMethodEventDefault(event gui.QInputMethodEvent
 
 //export callbackQHelpIndexWidget_InputMethodQuery
 func callbackQHelpIndexWidget_InputMethodQuery(ptr unsafe.Pointer, query C.longlong) unsafe.Pointer {
-	defer qt.Recovering("callback QHelpIndexWidget::inputMethodQuery")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpIndexWidget::inputMethodQuery"); signal != nil {
 		return core.PointerFromQVariant(signal.(func(core.Qt__InputMethodQuery) *core.QVariant)(core.Qt__InputMethodQuery(query)))
@@ -12554,8 +10123,6 @@ func callbackQHelpIndexWidget_InputMethodQuery(ptr unsafe.Pointer, query C.longl
 }
 
 func (ptr *QHelpIndexWidget) ConnectInputMethodQuery(f func(query core.Qt__InputMethodQuery) *core.QVariant) {
-	defer qt.Recovering("connect QHelpIndexWidget::inputMethodQuery")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexWidget::inputMethodQuery", f)
@@ -12563,8 +10130,6 @@ func (ptr *QHelpIndexWidget) ConnectInputMethodQuery(f func(query core.Qt__Input
 }
 
 func (ptr *QHelpIndexWidget) DisconnectInputMethodQuery() {
-	defer qt.Recovering("disconnect QHelpIndexWidget::inputMethodQuery")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexWidget::inputMethodQuery")
@@ -12572,8 +10137,6 @@ func (ptr *QHelpIndexWidget) DisconnectInputMethodQuery() {
 }
 
 func (ptr *QHelpIndexWidget) InputMethodQuery(query core.Qt__InputMethodQuery) *core.QVariant {
-	defer qt.Recovering("QHelpIndexWidget::inputMethodQuery")
-
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQVariantFromPointer(C.QHelpIndexWidget_InputMethodQuery(ptr.Pointer(), C.longlong(query)))
 		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
@@ -12583,8 +10146,6 @@ func (ptr *QHelpIndexWidget) InputMethodQuery(query core.Qt__InputMethodQuery) *
 }
 
 func (ptr *QHelpIndexWidget) InputMethodQueryDefault(query core.Qt__InputMethodQuery) *core.QVariant {
-	defer qt.Recovering("QHelpIndexWidget::inputMethodQuery")
-
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQVariantFromPointer(C.QHelpIndexWidget_InputMethodQueryDefault(ptr.Pointer(), C.longlong(query)))
 		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
@@ -12595,7 +10156,6 @@ func (ptr *QHelpIndexWidget) InputMethodQueryDefault(query core.Qt__InputMethodQ
 
 //export callbackQHelpIndexWidget_KeyPressEvent
 func callbackQHelpIndexWidget_KeyPressEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpIndexWidget::keyPressEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpIndexWidget::keyPressEvent"); signal != nil {
 		signal.(func(*gui.QKeyEvent))(gui.NewQKeyEventFromPointer(event))
@@ -12605,8 +10165,6 @@ func callbackQHelpIndexWidget_KeyPressEvent(ptr unsafe.Pointer, event unsafe.Poi
 }
 
 func (ptr *QHelpIndexWidget) ConnectKeyPressEvent(f func(event *gui.QKeyEvent)) {
-	defer qt.Recovering("connect QHelpIndexWidget::keyPressEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexWidget::keyPressEvent", f)
@@ -12614,8 +10172,6 @@ func (ptr *QHelpIndexWidget) ConnectKeyPressEvent(f func(event *gui.QKeyEvent)) 
 }
 
 func (ptr *QHelpIndexWidget) DisconnectKeyPressEvent() {
-	defer qt.Recovering("disconnect QHelpIndexWidget::keyPressEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexWidget::keyPressEvent")
@@ -12623,16 +10179,12 @@ func (ptr *QHelpIndexWidget) DisconnectKeyPressEvent() {
 }
 
 func (ptr *QHelpIndexWidget) KeyPressEvent(event gui.QKeyEvent_ITF) {
-	defer qt.Recovering("QHelpIndexWidget::keyPressEvent")
-
 	if ptr.Pointer() != nil {
 		C.QHelpIndexWidget_KeyPressEvent(ptr.Pointer(), gui.PointerFromQKeyEvent(event))
 	}
 }
 
 func (ptr *QHelpIndexWidget) KeyPressEventDefault(event gui.QKeyEvent_ITF) {
-	defer qt.Recovering("QHelpIndexWidget::keyPressEvent")
-
 	if ptr.Pointer() != nil {
 		C.QHelpIndexWidget_KeyPressEventDefault(ptr.Pointer(), gui.PointerFromQKeyEvent(event))
 	}
@@ -12640,7 +10192,6 @@ func (ptr *QHelpIndexWidget) KeyPressEventDefault(event gui.QKeyEvent_ITF) {
 
 //export callbackQHelpIndexWidget_KeyboardSearch
 func callbackQHelpIndexWidget_KeyboardSearch(ptr unsafe.Pointer, search *C.char) {
-	defer qt.Recovering("callback QHelpIndexWidget::keyboardSearch")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpIndexWidget::keyboardSearch"); signal != nil {
 		signal.(func(string))(C.GoString(search))
@@ -12650,8 +10201,6 @@ func callbackQHelpIndexWidget_KeyboardSearch(ptr unsafe.Pointer, search *C.char)
 }
 
 func (ptr *QHelpIndexWidget) ConnectKeyboardSearch(f func(search string)) {
-	defer qt.Recovering("connect QHelpIndexWidget::keyboardSearch")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexWidget::keyboardSearch", f)
@@ -12659,8 +10208,6 @@ func (ptr *QHelpIndexWidget) ConnectKeyboardSearch(f func(search string)) {
 }
 
 func (ptr *QHelpIndexWidget) DisconnectKeyboardSearch() {
-	defer qt.Recovering("disconnect QHelpIndexWidget::keyboardSearch")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexWidget::keyboardSearch")
@@ -12668,8 +10215,6 @@ func (ptr *QHelpIndexWidget) DisconnectKeyboardSearch() {
 }
 
 func (ptr *QHelpIndexWidget) KeyboardSearch(search string) {
-	defer qt.Recovering("QHelpIndexWidget::keyboardSearch")
-
 	if ptr.Pointer() != nil {
 		var searchC = C.CString(search)
 		defer C.free(unsafe.Pointer(searchC))
@@ -12678,8 +10223,6 @@ func (ptr *QHelpIndexWidget) KeyboardSearch(search string) {
 }
 
 func (ptr *QHelpIndexWidget) KeyboardSearchDefault(search string) {
-	defer qt.Recovering("QHelpIndexWidget::keyboardSearch")
-
 	if ptr.Pointer() != nil {
 		var searchC = C.CString(search)
 		defer C.free(unsafe.Pointer(searchC))
@@ -12689,7 +10232,6 @@ func (ptr *QHelpIndexWidget) KeyboardSearchDefault(search string) {
 
 //export callbackQHelpIndexWidget_MouseDoubleClickEvent
 func callbackQHelpIndexWidget_MouseDoubleClickEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpIndexWidget::mouseDoubleClickEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpIndexWidget::mouseDoubleClickEvent"); signal != nil {
 		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
@@ -12699,8 +10241,6 @@ func callbackQHelpIndexWidget_MouseDoubleClickEvent(ptr unsafe.Pointer, event un
 }
 
 func (ptr *QHelpIndexWidget) ConnectMouseDoubleClickEvent(f func(event *gui.QMouseEvent)) {
-	defer qt.Recovering("connect QHelpIndexWidget::mouseDoubleClickEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexWidget::mouseDoubleClickEvent", f)
@@ -12708,8 +10248,6 @@ func (ptr *QHelpIndexWidget) ConnectMouseDoubleClickEvent(f func(event *gui.QMou
 }
 
 func (ptr *QHelpIndexWidget) DisconnectMouseDoubleClickEvent() {
-	defer qt.Recovering("disconnect QHelpIndexWidget::mouseDoubleClickEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexWidget::mouseDoubleClickEvent")
@@ -12717,16 +10255,12 @@ func (ptr *QHelpIndexWidget) DisconnectMouseDoubleClickEvent() {
 }
 
 func (ptr *QHelpIndexWidget) MouseDoubleClickEvent(event gui.QMouseEvent_ITF) {
-	defer qt.Recovering("QHelpIndexWidget::mouseDoubleClickEvent")
-
 	if ptr.Pointer() != nil {
 		C.QHelpIndexWidget_MouseDoubleClickEvent(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
 	}
 }
 
 func (ptr *QHelpIndexWidget) MouseDoubleClickEventDefault(event gui.QMouseEvent_ITF) {
-	defer qt.Recovering("QHelpIndexWidget::mouseDoubleClickEvent")
-
 	if ptr.Pointer() != nil {
 		C.QHelpIndexWidget_MouseDoubleClickEventDefault(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
 	}
@@ -12734,7 +10268,6 @@ func (ptr *QHelpIndexWidget) MouseDoubleClickEventDefault(event gui.QMouseEvent_
 
 //export callbackQHelpIndexWidget_MousePressEvent
 func callbackQHelpIndexWidget_MousePressEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpIndexWidget::mousePressEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpIndexWidget::mousePressEvent"); signal != nil {
 		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
@@ -12744,8 +10277,6 @@ func callbackQHelpIndexWidget_MousePressEvent(ptr unsafe.Pointer, event unsafe.P
 }
 
 func (ptr *QHelpIndexWidget) ConnectMousePressEvent(f func(event *gui.QMouseEvent)) {
-	defer qt.Recovering("connect QHelpIndexWidget::mousePressEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexWidget::mousePressEvent", f)
@@ -12753,8 +10284,6 @@ func (ptr *QHelpIndexWidget) ConnectMousePressEvent(f func(event *gui.QMouseEven
 }
 
 func (ptr *QHelpIndexWidget) DisconnectMousePressEvent() {
-	defer qt.Recovering("disconnect QHelpIndexWidget::mousePressEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexWidget::mousePressEvent")
@@ -12762,16 +10291,12 @@ func (ptr *QHelpIndexWidget) DisconnectMousePressEvent() {
 }
 
 func (ptr *QHelpIndexWidget) MousePressEvent(event gui.QMouseEvent_ITF) {
-	defer qt.Recovering("QHelpIndexWidget::mousePressEvent")
-
 	if ptr.Pointer() != nil {
 		C.QHelpIndexWidget_MousePressEvent(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
 	}
 }
 
 func (ptr *QHelpIndexWidget) MousePressEventDefault(event gui.QMouseEvent_ITF) {
-	defer qt.Recovering("QHelpIndexWidget::mousePressEvent")
-
 	if ptr.Pointer() != nil {
 		C.QHelpIndexWidget_MousePressEventDefault(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
 	}
@@ -12779,8 +10304,6 @@ func (ptr *QHelpIndexWidget) MousePressEventDefault(event gui.QMouseEvent_ITF) {
 
 //export callbackQHelpIndexWidget_Reset
 func callbackQHelpIndexWidget_Reset(ptr unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpIndexWidget::reset")
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpIndexWidget::reset"); signal != nil {
 		signal.(func())()
 	} else {
@@ -12789,8 +10312,6 @@ func callbackQHelpIndexWidget_Reset(ptr unsafe.Pointer) {
 }
 
 func (ptr *QHelpIndexWidget) ConnectReset(f func()) {
-	defer qt.Recovering("connect QHelpIndexWidget::reset")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexWidget::reset", f)
@@ -12798,8 +10319,6 @@ func (ptr *QHelpIndexWidget) ConnectReset(f func()) {
 }
 
 func (ptr *QHelpIndexWidget) DisconnectReset() {
-	defer qt.Recovering("disconnect QHelpIndexWidget::reset")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexWidget::reset")
@@ -12807,16 +10326,12 @@ func (ptr *QHelpIndexWidget) DisconnectReset() {
 }
 
 func (ptr *QHelpIndexWidget) Reset() {
-	defer qt.Recovering("QHelpIndexWidget::reset")
-
 	if ptr.Pointer() != nil {
 		C.QHelpIndexWidget_Reset(ptr.Pointer())
 	}
 }
 
 func (ptr *QHelpIndexWidget) ResetDefault() {
-	defer qt.Recovering("QHelpIndexWidget::reset")
-
 	if ptr.Pointer() != nil {
 		C.QHelpIndexWidget_ResetDefault(ptr.Pointer())
 	}
@@ -12824,8 +10339,6 @@ func (ptr *QHelpIndexWidget) ResetDefault() {
 
 //export callbackQHelpIndexWidget_ScrollToBottom
 func callbackQHelpIndexWidget_ScrollToBottom(ptr unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpIndexWidget::scrollToBottom")
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpIndexWidget::scrollToBottom"); signal != nil {
 		signal.(func())()
 	} else {
@@ -12834,8 +10347,6 @@ func callbackQHelpIndexWidget_ScrollToBottom(ptr unsafe.Pointer) {
 }
 
 func (ptr *QHelpIndexWidget) ConnectScrollToBottom(f func()) {
-	defer qt.Recovering("connect QHelpIndexWidget::scrollToBottom")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexWidget::scrollToBottom", f)
@@ -12843,8 +10354,6 @@ func (ptr *QHelpIndexWidget) ConnectScrollToBottom(f func()) {
 }
 
 func (ptr *QHelpIndexWidget) DisconnectScrollToBottom() {
-	defer qt.Recovering("disconnect QHelpIndexWidget::scrollToBottom")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexWidget::scrollToBottom")
@@ -12852,16 +10361,12 @@ func (ptr *QHelpIndexWidget) DisconnectScrollToBottom() {
 }
 
 func (ptr *QHelpIndexWidget) ScrollToBottom() {
-	defer qt.Recovering("QHelpIndexWidget::scrollToBottom")
-
 	if ptr.Pointer() != nil {
 		C.QHelpIndexWidget_ScrollToBottom(ptr.Pointer())
 	}
 }
 
 func (ptr *QHelpIndexWidget) ScrollToBottomDefault() {
-	defer qt.Recovering("QHelpIndexWidget::scrollToBottom")
-
 	if ptr.Pointer() != nil {
 		C.QHelpIndexWidget_ScrollToBottomDefault(ptr.Pointer())
 	}
@@ -12869,8 +10374,6 @@ func (ptr *QHelpIndexWidget) ScrollToBottomDefault() {
 
 //export callbackQHelpIndexWidget_ScrollToTop
 func callbackQHelpIndexWidget_ScrollToTop(ptr unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpIndexWidget::scrollToTop")
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpIndexWidget::scrollToTop"); signal != nil {
 		signal.(func())()
 	} else {
@@ -12879,8 +10382,6 @@ func callbackQHelpIndexWidget_ScrollToTop(ptr unsafe.Pointer) {
 }
 
 func (ptr *QHelpIndexWidget) ConnectScrollToTop(f func()) {
-	defer qt.Recovering("connect QHelpIndexWidget::scrollToTop")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexWidget::scrollToTop", f)
@@ -12888,8 +10389,6 @@ func (ptr *QHelpIndexWidget) ConnectScrollToTop(f func()) {
 }
 
 func (ptr *QHelpIndexWidget) DisconnectScrollToTop() {
-	defer qt.Recovering("disconnect QHelpIndexWidget::scrollToTop")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexWidget::scrollToTop")
@@ -12897,16 +10396,12 @@ func (ptr *QHelpIndexWidget) DisconnectScrollToTop() {
 }
 
 func (ptr *QHelpIndexWidget) ScrollToTop() {
-	defer qt.Recovering("QHelpIndexWidget::scrollToTop")
-
 	if ptr.Pointer() != nil {
 		C.QHelpIndexWidget_ScrollToTop(ptr.Pointer())
 	}
 }
 
 func (ptr *QHelpIndexWidget) ScrollToTopDefault() {
-	defer qt.Recovering("QHelpIndexWidget::scrollToTop")
-
 	if ptr.Pointer() != nil {
 		C.QHelpIndexWidget_ScrollToTopDefault(ptr.Pointer())
 	}
@@ -12914,8 +10409,6 @@ func (ptr *QHelpIndexWidget) ScrollToTopDefault() {
 
 //export callbackQHelpIndexWidget_SelectAll
 func callbackQHelpIndexWidget_SelectAll(ptr unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpIndexWidget::selectAll")
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpIndexWidget::selectAll"); signal != nil {
 		signal.(func())()
 	} else {
@@ -12924,8 +10417,6 @@ func callbackQHelpIndexWidget_SelectAll(ptr unsafe.Pointer) {
 }
 
 func (ptr *QHelpIndexWidget) ConnectSelectAll(f func()) {
-	defer qt.Recovering("connect QHelpIndexWidget::selectAll")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexWidget::selectAll", f)
@@ -12933,8 +10424,6 @@ func (ptr *QHelpIndexWidget) ConnectSelectAll(f func()) {
 }
 
 func (ptr *QHelpIndexWidget) DisconnectSelectAll() {
-	defer qt.Recovering("disconnect QHelpIndexWidget::selectAll")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexWidget::selectAll")
@@ -12942,16 +10431,12 @@ func (ptr *QHelpIndexWidget) DisconnectSelectAll() {
 }
 
 func (ptr *QHelpIndexWidget) SelectAll() {
-	defer qt.Recovering("QHelpIndexWidget::selectAll")
-
 	if ptr.Pointer() != nil {
 		C.QHelpIndexWidget_SelectAll(ptr.Pointer())
 	}
 }
 
 func (ptr *QHelpIndexWidget) SelectAllDefault() {
-	defer qt.Recovering("QHelpIndexWidget::selectAll")
-
 	if ptr.Pointer() != nil {
 		C.QHelpIndexWidget_SelectAllDefault(ptr.Pointer())
 	}
@@ -12959,7 +10444,6 @@ func (ptr *QHelpIndexWidget) SelectAllDefault() {
 
 //export callbackQHelpIndexWidget_SelectionCommand
 func callbackQHelpIndexWidget_SelectionCommand(ptr unsafe.Pointer, index unsafe.Pointer, event unsafe.Pointer) C.longlong {
-	defer qt.Recovering("callback QHelpIndexWidget::selectionCommand")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpIndexWidget::selectionCommand"); signal != nil {
 		return C.longlong(signal.(func(*core.QModelIndex, *core.QEvent) core.QItemSelectionModel__SelectionFlag)(core.NewQModelIndexFromPointer(index), core.NewQEventFromPointer(event)))
@@ -12969,8 +10453,6 @@ func callbackQHelpIndexWidget_SelectionCommand(ptr unsafe.Pointer, index unsafe.
 }
 
 func (ptr *QHelpIndexWidget) ConnectSelectionCommand(f func(index *core.QModelIndex, event *core.QEvent) core.QItemSelectionModel__SelectionFlag) {
-	defer qt.Recovering("connect QHelpIndexWidget::selectionCommand")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexWidget::selectionCommand", f)
@@ -12978,8 +10460,6 @@ func (ptr *QHelpIndexWidget) ConnectSelectionCommand(f func(index *core.QModelIn
 }
 
 func (ptr *QHelpIndexWidget) DisconnectSelectionCommand() {
-	defer qt.Recovering("disconnect QHelpIndexWidget::selectionCommand")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexWidget::selectionCommand")
@@ -12987,8 +10467,6 @@ func (ptr *QHelpIndexWidget) DisconnectSelectionCommand() {
 }
 
 func (ptr *QHelpIndexWidget) SelectionCommand(index core.QModelIndex_ITF, event core.QEvent_ITF) core.QItemSelectionModel__SelectionFlag {
-	defer qt.Recovering("QHelpIndexWidget::selectionCommand")
-
 	if ptr.Pointer() != nil {
 		return core.QItemSelectionModel__SelectionFlag(C.QHelpIndexWidget_SelectionCommand(ptr.Pointer(), core.PointerFromQModelIndex(index), core.PointerFromQEvent(event)))
 	}
@@ -12996,8 +10474,6 @@ func (ptr *QHelpIndexWidget) SelectionCommand(index core.QModelIndex_ITF, event 
 }
 
 func (ptr *QHelpIndexWidget) SelectionCommandDefault(index core.QModelIndex_ITF, event core.QEvent_ITF) core.QItemSelectionModel__SelectionFlag {
-	defer qt.Recovering("QHelpIndexWidget::selectionCommand")
-
 	if ptr.Pointer() != nil {
 		return core.QItemSelectionModel__SelectionFlag(C.QHelpIndexWidget_SelectionCommandDefault(ptr.Pointer(), core.PointerFromQModelIndex(index), core.PointerFromQEvent(event)))
 	}
@@ -13006,8 +10482,6 @@ func (ptr *QHelpIndexWidget) SelectionCommandDefault(index core.QModelIndex_ITF,
 
 //export callbackQHelpIndexWidget_SetCurrentIndex
 func callbackQHelpIndexWidget_SetCurrentIndex(ptr unsafe.Pointer, index unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpIndexWidget::setCurrentIndex")
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpIndexWidget::setCurrentIndex"); signal != nil {
 		signal.(func(*core.QModelIndex))(core.NewQModelIndexFromPointer(index))
 	} else {
@@ -13016,8 +10490,6 @@ func callbackQHelpIndexWidget_SetCurrentIndex(ptr unsafe.Pointer, index unsafe.P
 }
 
 func (ptr *QHelpIndexWidget) ConnectSetCurrentIndex(f func(index *core.QModelIndex)) {
-	defer qt.Recovering("connect QHelpIndexWidget::setCurrentIndex")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexWidget::setCurrentIndex", f)
@@ -13025,8 +10497,6 @@ func (ptr *QHelpIndexWidget) ConnectSetCurrentIndex(f func(index *core.QModelInd
 }
 
 func (ptr *QHelpIndexWidget) DisconnectSetCurrentIndex() {
-	defer qt.Recovering("disconnect QHelpIndexWidget::setCurrentIndex")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexWidget::setCurrentIndex")
@@ -13034,16 +10504,12 @@ func (ptr *QHelpIndexWidget) DisconnectSetCurrentIndex() {
 }
 
 func (ptr *QHelpIndexWidget) SetCurrentIndex(index core.QModelIndex_ITF) {
-	defer qt.Recovering("QHelpIndexWidget::setCurrentIndex")
-
 	if ptr.Pointer() != nil {
 		C.QHelpIndexWidget_SetCurrentIndex(ptr.Pointer(), core.PointerFromQModelIndex(index))
 	}
 }
 
 func (ptr *QHelpIndexWidget) SetCurrentIndexDefault(index core.QModelIndex_ITF) {
-	defer qt.Recovering("QHelpIndexWidget::setCurrentIndex")
-
 	if ptr.Pointer() != nil {
 		C.QHelpIndexWidget_SetCurrentIndexDefault(ptr.Pointer(), core.PointerFromQModelIndex(index))
 	}
@@ -13051,7 +10517,6 @@ func (ptr *QHelpIndexWidget) SetCurrentIndexDefault(index core.QModelIndex_ITF) 
 
 //export callbackQHelpIndexWidget_SetModel
 func callbackQHelpIndexWidget_SetModel(ptr unsafe.Pointer, model unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpIndexWidget::setModel")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpIndexWidget::setModel"); signal != nil {
 		signal.(func(*core.QAbstractItemModel))(core.NewQAbstractItemModelFromPointer(model))
@@ -13061,8 +10526,6 @@ func callbackQHelpIndexWidget_SetModel(ptr unsafe.Pointer, model unsafe.Pointer)
 }
 
 func (ptr *QHelpIndexWidget) ConnectSetModel(f func(model *core.QAbstractItemModel)) {
-	defer qt.Recovering("connect QHelpIndexWidget::setModel")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexWidget::setModel", f)
@@ -13070,8 +10533,6 @@ func (ptr *QHelpIndexWidget) ConnectSetModel(f func(model *core.QAbstractItemMod
 }
 
 func (ptr *QHelpIndexWidget) DisconnectSetModel() {
-	defer qt.Recovering("disconnect QHelpIndexWidget::setModel")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexWidget::setModel")
@@ -13079,16 +10540,12 @@ func (ptr *QHelpIndexWidget) DisconnectSetModel() {
 }
 
 func (ptr *QHelpIndexWidget) SetModel(model core.QAbstractItemModel_ITF) {
-	defer qt.Recovering("QHelpIndexWidget::setModel")
-
 	if ptr.Pointer() != nil {
 		C.QHelpIndexWidget_SetModel(ptr.Pointer(), core.PointerFromQAbstractItemModel(model))
 	}
 }
 
 func (ptr *QHelpIndexWidget) SetModelDefault(model core.QAbstractItemModel_ITF) {
-	defer qt.Recovering("QHelpIndexWidget::setModel")
-
 	if ptr.Pointer() != nil {
 		C.QHelpIndexWidget_SetModelDefault(ptr.Pointer(), core.PointerFromQAbstractItemModel(model))
 	}
@@ -13096,8 +10553,6 @@ func (ptr *QHelpIndexWidget) SetModelDefault(model core.QAbstractItemModel_ITF) 
 
 //export callbackQHelpIndexWidget_SetRootIndex
 func callbackQHelpIndexWidget_SetRootIndex(ptr unsafe.Pointer, index unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpIndexWidget::setRootIndex")
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpIndexWidget::setRootIndex"); signal != nil {
 		signal.(func(*core.QModelIndex))(core.NewQModelIndexFromPointer(index))
 	} else {
@@ -13106,8 +10561,6 @@ func callbackQHelpIndexWidget_SetRootIndex(ptr unsafe.Pointer, index unsafe.Poin
 }
 
 func (ptr *QHelpIndexWidget) ConnectSetRootIndex(f func(index *core.QModelIndex)) {
-	defer qt.Recovering("connect QHelpIndexWidget::setRootIndex")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexWidget::setRootIndex", f)
@@ -13115,8 +10568,6 @@ func (ptr *QHelpIndexWidget) ConnectSetRootIndex(f func(index *core.QModelIndex)
 }
 
 func (ptr *QHelpIndexWidget) DisconnectSetRootIndex() {
-	defer qt.Recovering("disconnect QHelpIndexWidget::setRootIndex")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexWidget::setRootIndex")
@@ -13124,16 +10575,12 @@ func (ptr *QHelpIndexWidget) DisconnectSetRootIndex() {
 }
 
 func (ptr *QHelpIndexWidget) SetRootIndex(index core.QModelIndex_ITF) {
-	defer qt.Recovering("QHelpIndexWidget::setRootIndex")
-
 	if ptr.Pointer() != nil {
 		C.QHelpIndexWidget_SetRootIndex(ptr.Pointer(), core.PointerFromQModelIndex(index))
 	}
 }
 
 func (ptr *QHelpIndexWidget) SetRootIndexDefault(index core.QModelIndex_ITF) {
-	defer qt.Recovering("QHelpIndexWidget::setRootIndex")
-
 	if ptr.Pointer() != nil {
 		C.QHelpIndexWidget_SetRootIndexDefault(ptr.Pointer(), core.PointerFromQModelIndex(index))
 	}
@@ -13141,7 +10588,6 @@ func (ptr *QHelpIndexWidget) SetRootIndexDefault(index core.QModelIndex_ITF) {
 
 //export callbackQHelpIndexWidget_SetSelectionModel
 func callbackQHelpIndexWidget_SetSelectionModel(ptr unsafe.Pointer, selectionModel unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpIndexWidget::setSelectionModel")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpIndexWidget::setSelectionModel"); signal != nil {
 		signal.(func(*core.QItemSelectionModel))(core.NewQItemSelectionModelFromPointer(selectionModel))
@@ -13151,8 +10597,6 @@ func callbackQHelpIndexWidget_SetSelectionModel(ptr unsafe.Pointer, selectionMod
 }
 
 func (ptr *QHelpIndexWidget) ConnectSetSelectionModel(f func(selectionModel *core.QItemSelectionModel)) {
-	defer qt.Recovering("connect QHelpIndexWidget::setSelectionModel")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexWidget::setSelectionModel", f)
@@ -13160,8 +10604,6 @@ func (ptr *QHelpIndexWidget) ConnectSetSelectionModel(f func(selectionModel *cor
 }
 
 func (ptr *QHelpIndexWidget) DisconnectSetSelectionModel() {
-	defer qt.Recovering("disconnect QHelpIndexWidget::setSelectionModel")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexWidget::setSelectionModel")
@@ -13169,16 +10611,12 @@ func (ptr *QHelpIndexWidget) DisconnectSetSelectionModel() {
 }
 
 func (ptr *QHelpIndexWidget) SetSelectionModel(selectionModel core.QItemSelectionModel_ITF) {
-	defer qt.Recovering("QHelpIndexWidget::setSelectionModel")
-
 	if ptr.Pointer() != nil {
 		C.QHelpIndexWidget_SetSelectionModel(ptr.Pointer(), core.PointerFromQItemSelectionModel(selectionModel))
 	}
 }
 
 func (ptr *QHelpIndexWidget) SetSelectionModelDefault(selectionModel core.QItemSelectionModel_ITF) {
-	defer qt.Recovering("QHelpIndexWidget::setSelectionModel")
-
 	if ptr.Pointer() != nil {
 		C.QHelpIndexWidget_SetSelectionModelDefault(ptr.Pointer(), core.PointerFromQItemSelectionModel(selectionModel))
 	}
@@ -13186,7 +10624,6 @@ func (ptr *QHelpIndexWidget) SetSelectionModelDefault(selectionModel core.QItemS
 
 //export callbackQHelpIndexWidget_SizeHintForColumn
 func callbackQHelpIndexWidget_SizeHintForColumn(ptr unsafe.Pointer, column C.int) C.int {
-	defer qt.Recovering("callback QHelpIndexWidget::sizeHintForColumn")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpIndexWidget::sizeHintForColumn"); signal != nil {
 		return C.int(int32(signal.(func(int) int)(int(int32(column)))))
@@ -13196,8 +10633,6 @@ func callbackQHelpIndexWidget_SizeHintForColumn(ptr unsafe.Pointer, column C.int
 }
 
 func (ptr *QHelpIndexWidget) ConnectSizeHintForColumn(f func(column int) int) {
-	defer qt.Recovering("connect QHelpIndexWidget::sizeHintForColumn")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexWidget::sizeHintForColumn", f)
@@ -13205,8 +10640,6 @@ func (ptr *QHelpIndexWidget) ConnectSizeHintForColumn(f func(column int) int) {
 }
 
 func (ptr *QHelpIndexWidget) DisconnectSizeHintForColumn() {
-	defer qt.Recovering("disconnect QHelpIndexWidget::sizeHintForColumn")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexWidget::sizeHintForColumn")
@@ -13214,8 +10647,6 @@ func (ptr *QHelpIndexWidget) DisconnectSizeHintForColumn() {
 }
 
 func (ptr *QHelpIndexWidget) SizeHintForColumn(column int) int {
-	defer qt.Recovering("QHelpIndexWidget::sizeHintForColumn")
-
 	if ptr.Pointer() != nil {
 		return int(int32(C.QHelpIndexWidget_SizeHintForColumn(ptr.Pointer(), C.int(int32(column)))))
 	}
@@ -13223,8 +10654,6 @@ func (ptr *QHelpIndexWidget) SizeHintForColumn(column int) int {
 }
 
 func (ptr *QHelpIndexWidget) SizeHintForColumnDefault(column int) int {
-	defer qt.Recovering("QHelpIndexWidget::sizeHintForColumn")
-
 	if ptr.Pointer() != nil {
 		return int(int32(C.QHelpIndexWidget_SizeHintForColumnDefault(ptr.Pointer(), C.int(int32(column)))))
 	}
@@ -13233,7 +10662,6 @@ func (ptr *QHelpIndexWidget) SizeHintForColumnDefault(column int) int {
 
 //export callbackQHelpIndexWidget_SizeHintForRow
 func callbackQHelpIndexWidget_SizeHintForRow(ptr unsafe.Pointer, row C.int) C.int {
-	defer qt.Recovering("callback QHelpIndexWidget::sizeHintForRow")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpIndexWidget::sizeHintForRow"); signal != nil {
 		return C.int(int32(signal.(func(int) int)(int(int32(row)))))
@@ -13243,8 +10671,6 @@ func callbackQHelpIndexWidget_SizeHintForRow(ptr unsafe.Pointer, row C.int) C.in
 }
 
 func (ptr *QHelpIndexWidget) ConnectSizeHintForRow(f func(row int) int) {
-	defer qt.Recovering("connect QHelpIndexWidget::sizeHintForRow")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexWidget::sizeHintForRow", f)
@@ -13252,8 +10678,6 @@ func (ptr *QHelpIndexWidget) ConnectSizeHintForRow(f func(row int) int) {
 }
 
 func (ptr *QHelpIndexWidget) DisconnectSizeHintForRow() {
-	defer qt.Recovering("disconnect QHelpIndexWidget::sizeHintForRow")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexWidget::sizeHintForRow")
@@ -13261,8 +10685,6 @@ func (ptr *QHelpIndexWidget) DisconnectSizeHintForRow() {
 }
 
 func (ptr *QHelpIndexWidget) SizeHintForRow(row int) int {
-	defer qt.Recovering("QHelpIndexWidget::sizeHintForRow")
-
 	if ptr.Pointer() != nil {
 		return int(int32(C.QHelpIndexWidget_SizeHintForRow(ptr.Pointer(), C.int(int32(row)))))
 	}
@@ -13270,8 +10692,6 @@ func (ptr *QHelpIndexWidget) SizeHintForRow(row int) int {
 }
 
 func (ptr *QHelpIndexWidget) SizeHintForRowDefault(row int) int {
-	defer qt.Recovering("QHelpIndexWidget::sizeHintForRow")
-
 	if ptr.Pointer() != nil {
 		return int(int32(C.QHelpIndexWidget_SizeHintForRowDefault(ptr.Pointer(), C.int(int32(row)))))
 	}
@@ -13280,8 +10700,6 @@ func (ptr *QHelpIndexWidget) SizeHintForRowDefault(row int) int {
 
 //export callbackQHelpIndexWidget_Update
 func callbackQHelpIndexWidget_Update(ptr unsafe.Pointer, index unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpIndexWidget::update")
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpIndexWidget::update"); signal != nil {
 		signal.(func(*core.QModelIndex))(core.NewQModelIndexFromPointer(index))
 	} else {
@@ -13290,8 +10708,6 @@ func callbackQHelpIndexWidget_Update(ptr unsafe.Pointer, index unsafe.Pointer) {
 }
 
 func (ptr *QHelpIndexWidget) ConnectUpdate(f func(index *core.QModelIndex)) {
-	defer qt.Recovering("connect QHelpIndexWidget::update")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexWidget::update", f)
@@ -13299,8 +10715,6 @@ func (ptr *QHelpIndexWidget) ConnectUpdate(f func(index *core.QModelIndex)) {
 }
 
 func (ptr *QHelpIndexWidget) DisconnectUpdate() {
-	defer qt.Recovering("disconnect QHelpIndexWidget::update")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexWidget::update")
@@ -13308,16 +10722,12 @@ func (ptr *QHelpIndexWidget) DisconnectUpdate() {
 }
 
 func (ptr *QHelpIndexWidget) Update(index core.QModelIndex_ITF) {
-	defer qt.Recovering("QHelpIndexWidget::update")
-
 	if ptr.Pointer() != nil {
 		C.QHelpIndexWidget_Update(ptr.Pointer(), core.PointerFromQModelIndex(index))
 	}
 }
 
 func (ptr *QHelpIndexWidget) UpdateDefault(index core.QModelIndex_ITF) {
-	defer qt.Recovering("QHelpIndexWidget::update")
-
 	if ptr.Pointer() != nil {
 		C.QHelpIndexWidget_UpdateDefault(ptr.Pointer(), core.PointerFromQModelIndex(index))
 	}
@@ -13325,7 +10735,6 @@ func (ptr *QHelpIndexWidget) UpdateDefault(index core.QModelIndex_ITF) {
 
 //export callbackQHelpIndexWidget_ContextMenuEvent
 func callbackQHelpIndexWidget_ContextMenuEvent(ptr unsafe.Pointer, e unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpIndexWidget::contextMenuEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpIndexWidget::contextMenuEvent"); signal != nil {
 		signal.(func(*gui.QContextMenuEvent))(gui.NewQContextMenuEventFromPointer(e))
@@ -13335,8 +10744,6 @@ func callbackQHelpIndexWidget_ContextMenuEvent(ptr unsafe.Pointer, e unsafe.Poin
 }
 
 func (ptr *QHelpIndexWidget) ConnectContextMenuEvent(f func(e *gui.QContextMenuEvent)) {
-	defer qt.Recovering("connect QHelpIndexWidget::contextMenuEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexWidget::contextMenuEvent", f)
@@ -13344,8 +10751,6 @@ func (ptr *QHelpIndexWidget) ConnectContextMenuEvent(f func(e *gui.QContextMenuE
 }
 
 func (ptr *QHelpIndexWidget) DisconnectContextMenuEvent() {
-	defer qt.Recovering("disconnect QHelpIndexWidget::contextMenuEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexWidget::contextMenuEvent")
@@ -13353,16 +10758,12 @@ func (ptr *QHelpIndexWidget) DisconnectContextMenuEvent() {
 }
 
 func (ptr *QHelpIndexWidget) ContextMenuEvent(e gui.QContextMenuEvent_ITF) {
-	defer qt.Recovering("QHelpIndexWidget::contextMenuEvent")
-
 	if ptr.Pointer() != nil {
 		C.QHelpIndexWidget_ContextMenuEvent(ptr.Pointer(), gui.PointerFromQContextMenuEvent(e))
 	}
 }
 
 func (ptr *QHelpIndexWidget) ContextMenuEventDefault(e gui.QContextMenuEvent_ITF) {
-	defer qt.Recovering("QHelpIndexWidget::contextMenuEvent")
-
 	if ptr.Pointer() != nil {
 		C.QHelpIndexWidget_ContextMenuEventDefault(ptr.Pointer(), gui.PointerFromQContextMenuEvent(e))
 	}
@@ -13370,7 +10771,6 @@ func (ptr *QHelpIndexWidget) ContextMenuEventDefault(e gui.QContextMenuEvent_ITF
 
 //export callbackQHelpIndexWidget_MinimumSizeHint
 func callbackQHelpIndexWidget_MinimumSizeHint(ptr unsafe.Pointer) unsafe.Pointer {
-	defer qt.Recovering("callback QHelpIndexWidget::minimumSizeHint")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpIndexWidget::minimumSizeHint"); signal != nil {
 		return core.PointerFromQSize(signal.(func() *core.QSize)())
@@ -13380,8 +10780,6 @@ func callbackQHelpIndexWidget_MinimumSizeHint(ptr unsafe.Pointer) unsafe.Pointer
 }
 
 func (ptr *QHelpIndexWidget) ConnectMinimumSizeHint(f func() *core.QSize) {
-	defer qt.Recovering("connect QHelpIndexWidget::minimumSizeHint")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexWidget::minimumSizeHint", f)
@@ -13389,8 +10787,6 @@ func (ptr *QHelpIndexWidget) ConnectMinimumSizeHint(f func() *core.QSize) {
 }
 
 func (ptr *QHelpIndexWidget) DisconnectMinimumSizeHint() {
-	defer qt.Recovering("disconnect QHelpIndexWidget::minimumSizeHint")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexWidget::minimumSizeHint")
@@ -13398,8 +10794,6 @@ func (ptr *QHelpIndexWidget) DisconnectMinimumSizeHint() {
 }
 
 func (ptr *QHelpIndexWidget) MinimumSizeHint() *core.QSize {
-	defer qt.Recovering("QHelpIndexWidget::minimumSizeHint")
-
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQSizeFromPointer(C.QHelpIndexWidget_MinimumSizeHint(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
@@ -13409,8 +10803,6 @@ func (ptr *QHelpIndexWidget) MinimumSizeHint() *core.QSize {
 }
 
 func (ptr *QHelpIndexWidget) MinimumSizeHintDefault() *core.QSize {
-	defer qt.Recovering("QHelpIndexWidget::minimumSizeHint")
-
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQSizeFromPointer(C.QHelpIndexWidget_MinimumSizeHintDefault(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
@@ -13421,7 +10813,6 @@ func (ptr *QHelpIndexWidget) MinimumSizeHintDefault() *core.QSize {
 
 //export callbackQHelpIndexWidget_ScrollContentsBy
 func callbackQHelpIndexWidget_ScrollContentsBy(ptr unsafe.Pointer, dx C.int, dy C.int) {
-	defer qt.Recovering("callback QHelpIndexWidget::scrollContentsBy")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpIndexWidget::scrollContentsBy"); signal != nil {
 		signal.(func(int, int))(int(int32(dx)), int(int32(dy)))
@@ -13431,8 +10822,6 @@ func callbackQHelpIndexWidget_ScrollContentsBy(ptr unsafe.Pointer, dx C.int, dy 
 }
 
 func (ptr *QHelpIndexWidget) ConnectScrollContentsBy(f func(dx int, dy int)) {
-	defer qt.Recovering("connect QHelpIndexWidget::scrollContentsBy")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexWidget::scrollContentsBy", f)
@@ -13440,8 +10829,6 @@ func (ptr *QHelpIndexWidget) ConnectScrollContentsBy(f func(dx int, dy int)) {
 }
 
 func (ptr *QHelpIndexWidget) DisconnectScrollContentsBy() {
-	defer qt.Recovering("disconnect QHelpIndexWidget::scrollContentsBy")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexWidget::scrollContentsBy")
@@ -13449,16 +10836,12 @@ func (ptr *QHelpIndexWidget) DisconnectScrollContentsBy() {
 }
 
 func (ptr *QHelpIndexWidget) ScrollContentsBy(dx int, dy int) {
-	defer qt.Recovering("QHelpIndexWidget::scrollContentsBy")
-
 	if ptr.Pointer() != nil {
 		C.QHelpIndexWidget_ScrollContentsBy(ptr.Pointer(), C.int(int32(dx)), C.int(int32(dy)))
 	}
 }
 
 func (ptr *QHelpIndexWidget) ScrollContentsByDefault(dx int, dy int) {
-	defer qt.Recovering("QHelpIndexWidget::scrollContentsBy")
-
 	if ptr.Pointer() != nil {
 		C.QHelpIndexWidget_ScrollContentsByDefault(ptr.Pointer(), C.int(int32(dx)), C.int(int32(dy)))
 	}
@@ -13466,7 +10849,6 @@ func (ptr *QHelpIndexWidget) ScrollContentsByDefault(dx int, dy int) {
 
 //export callbackQHelpIndexWidget_SetupViewport
 func callbackQHelpIndexWidget_SetupViewport(ptr unsafe.Pointer, viewport unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpIndexWidget::setupViewport")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpIndexWidget::setupViewport"); signal != nil {
 		signal.(func(*widgets.QWidget))(widgets.NewQWidgetFromPointer(viewport))
@@ -13476,8 +10858,6 @@ func callbackQHelpIndexWidget_SetupViewport(ptr unsafe.Pointer, viewport unsafe.
 }
 
 func (ptr *QHelpIndexWidget) ConnectSetupViewport(f func(viewport *widgets.QWidget)) {
-	defer qt.Recovering("connect QHelpIndexWidget::setupViewport")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexWidget::setupViewport", f)
@@ -13485,8 +10865,6 @@ func (ptr *QHelpIndexWidget) ConnectSetupViewport(f func(viewport *widgets.QWidg
 }
 
 func (ptr *QHelpIndexWidget) DisconnectSetupViewport() {
-	defer qt.Recovering("disconnect QHelpIndexWidget::setupViewport")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexWidget::setupViewport")
@@ -13494,16 +10872,12 @@ func (ptr *QHelpIndexWidget) DisconnectSetupViewport() {
 }
 
 func (ptr *QHelpIndexWidget) SetupViewport(viewport widgets.QWidget_ITF) {
-	defer qt.Recovering("QHelpIndexWidget::setupViewport")
-
 	if ptr.Pointer() != nil {
 		C.QHelpIndexWidget_SetupViewport(ptr.Pointer(), widgets.PointerFromQWidget(viewport))
 	}
 }
 
 func (ptr *QHelpIndexWidget) SetupViewportDefault(viewport widgets.QWidget_ITF) {
-	defer qt.Recovering("QHelpIndexWidget::setupViewport")
-
 	if ptr.Pointer() != nil {
 		C.QHelpIndexWidget_SetupViewportDefault(ptr.Pointer(), widgets.PointerFromQWidget(viewport))
 	}
@@ -13511,7 +10885,6 @@ func (ptr *QHelpIndexWidget) SetupViewportDefault(viewport widgets.QWidget_ITF) 
 
 //export callbackQHelpIndexWidget_SizeHint
 func callbackQHelpIndexWidget_SizeHint(ptr unsafe.Pointer) unsafe.Pointer {
-	defer qt.Recovering("callback QHelpIndexWidget::sizeHint")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpIndexWidget::sizeHint"); signal != nil {
 		return core.PointerFromQSize(signal.(func() *core.QSize)())
@@ -13521,8 +10894,6 @@ func callbackQHelpIndexWidget_SizeHint(ptr unsafe.Pointer) unsafe.Pointer {
 }
 
 func (ptr *QHelpIndexWidget) ConnectSizeHint(f func() *core.QSize) {
-	defer qt.Recovering("connect QHelpIndexWidget::sizeHint")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexWidget::sizeHint", f)
@@ -13530,8 +10901,6 @@ func (ptr *QHelpIndexWidget) ConnectSizeHint(f func() *core.QSize) {
 }
 
 func (ptr *QHelpIndexWidget) DisconnectSizeHint() {
-	defer qt.Recovering("disconnect QHelpIndexWidget::sizeHint")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexWidget::sizeHint")
@@ -13539,8 +10908,6 @@ func (ptr *QHelpIndexWidget) DisconnectSizeHint() {
 }
 
 func (ptr *QHelpIndexWidget) SizeHint() *core.QSize {
-	defer qt.Recovering("QHelpIndexWidget::sizeHint")
-
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQSizeFromPointer(C.QHelpIndexWidget_SizeHint(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
@@ -13550,8 +10917,6 @@ func (ptr *QHelpIndexWidget) SizeHint() *core.QSize {
 }
 
 func (ptr *QHelpIndexWidget) SizeHintDefault() *core.QSize {
-	defer qt.Recovering("QHelpIndexWidget::sizeHint")
-
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQSizeFromPointer(C.QHelpIndexWidget_SizeHintDefault(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
@@ -13562,7 +10927,6 @@ func (ptr *QHelpIndexWidget) SizeHintDefault() *core.QSize {
 
 //export callbackQHelpIndexWidget_ChangeEvent
 func callbackQHelpIndexWidget_ChangeEvent(ptr unsafe.Pointer, ev unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpIndexWidget::changeEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpIndexWidget::changeEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(ev))
@@ -13572,8 +10936,6 @@ func callbackQHelpIndexWidget_ChangeEvent(ptr unsafe.Pointer, ev unsafe.Pointer)
 }
 
 func (ptr *QHelpIndexWidget) ConnectChangeEvent(f func(ev *core.QEvent)) {
-	defer qt.Recovering("connect QHelpIndexWidget::changeEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexWidget::changeEvent", f)
@@ -13581,8 +10943,6 @@ func (ptr *QHelpIndexWidget) ConnectChangeEvent(f func(ev *core.QEvent)) {
 }
 
 func (ptr *QHelpIndexWidget) DisconnectChangeEvent() {
-	defer qt.Recovering("disconnect QHelpIndexWidget::changeEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexWidget::changeEvent")
@@ -13590,16 +10950,12 @@ func (ptr *QHelpIndexWidget) DisconnectChangeEvent() {
 }
 
 func (ptr *QHelpIndexWidget) ChangeEvent(ev core.QEvent_ITF) {
-	defer qt.Recovering("QHelpIndexWidget::changeEvent")
-
 	if ptr.Pointer() != nil {
 		C.QHelpIndexWidget_ChangeEvent(ptr.Pointer(), core.PointerFromQEvent(ev))
 	}
 }
 
 func (ptr *QHelpIndexWidget) ChangeEventDefault(ev core.QEvent_ITF) {
-	defer qt.Recovering("QHelpIndexWidget::changeEvent")
-
 	if ptr.Pointer() != nil {
 		C.QHelpIndexWidget_ChangeEventDefault(ptr.Pointer(), core.PointerFromQEvent(ev))
 	}
@@ -13607,7 +10963,6 @@ func (ptr *QHelpIndexWidget) ChangeEventDefault(ev core.QEvent_ITF) {
 
 //export callbackQHelpIndexWidget_ActionEvent
 func callbackQHelpIndexWidget_ActionEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpIndexWidget::actionEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpIndexWidget::actionEvent"); signal != nil {
 		signal.(func(*gui.QActionEvent))(gui.NewQActionEventFromPointer(event))
@@ -13617,8 +10972,6 @@ func callbackQHelpIndexWidget_ActionEvent(ptr unsafe.Pointer, event unsafe.Point
 }
 
 func (ptr *QHelpIndexWidget) ConnectActionEvent(f func(event *gui.QActionEvent)) {
-	defer qt.Recovering("connect QHelpIndexWidget::actionEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexWidget::actionEvent", f)
@@ -13626,8 +10979,6 @@ func (ptr *QHelpIndexWidget) ConnectActionEvent(f func(event *gui.QActionEvent))
 }
 
 func (ptr *QHelpIndexWidget) DisconnectActionEvent() {
-	defer qt.Recovering("disconnect QHelpIndexWidget::actionEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexWidget::actionEvent")
@@ -13635,16 +10986,12 @@ func (ptr *QHelpIndexWidget) DisconnectActionEvent() {
 }
 
 func (ptr *QHelpIndexWidget) ActionEvent(event gui.QActionEvent_ITF) {
-	defer qt.Recovering("QHelpIndexWidget::actionEvent")
-
 	if ptr.Pointer() != nil {
 		C.QHelpIndexWidget_ActionEvent(ptr.Pointer(), gui.PointerFromQActionEvent(event))
 	}
 }
 
 func (ptr *QHelpIndexWidget) ActionEventDefault(event gui.QActionEvent_ITF) {
-	defer qt.Recovering("QHelpIndexWidget::actionEvent")
-
 	if ptr.Pointer() != nil {
 		C.QHelpIndexWidget_ActionEventDefault(ptr.Pointer(), gui.PointerFromQActionEvent(event))
 	}
@@ -13652,7 +10999,6 @@ func (ptr *QHelpIndexWidget) ActionEventDefault(event gui.QActionEvent_ITF) {
 
 //export callbackQHelpIndexWidget_EnterEvent
 func callbackQHelpIndexWidget_EnterEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpIndexWidget::enterEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpIndexWidget::enterEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
@@ -13662,8 +11008,6 @@ func callbackQHelpIndexWidget_EnterEvent(ptr unsafe.Pointer, event unsafe.Pointe
 }
 
 func (ptr *QHelpIndexWidget) ConnectEnterEvent(f func(event *core.QEvent)) {
-	defer qt.Recovering("connect QHelpIndexWidget::enterEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexWidget::enterEvent", f)
@@ -13671,8 +11015,6 @@ func (ptr *QHelpIndexWidget) ConnectEnterEvent(f func(event *core.QEvent)) {
 }
 
 func (ptr *QHelpIndexWidget) DisconnectEnterEvent() {
-	defer qt.Recovering("disconnect QHelpIndexWidget::enterEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexWidget::enterEvent")
@@ -13680,16 +11022,12 @@ func (ptr *QHelpIndexWidget) DisconnectEnterEvent() {
 }
 
 func (ptr *QHelpIndexWidget) EnterEvent(event core.QEvent_ITF) {
-	defer qt.Recovering("QHelpIndexWidget::enterEvent")
-
 	if ptr.Pointer() != nil {
 		C.QHelpIndexWidget_EnterEvent(ptr.Pointer(), core.PointerFromQEvent(event))
 	}
 }
 
 func (ptr *QHelpIndexWidget) EnterEventDefault(event core.QEvent_ITF) {
-	defer qt.Recovering("QHelpIndexWidget::enterEvent")
-
 	if ptr.Pointer() != nil {
 		C.QHelpIndexWidget_EnterEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
 	}
@@ -13697,7 +11035,6 @@ func (ptr *QHelpIndexWidget) EnterEventDefault(event core.QEvent_ITF) {
 
 //export callbackQHelpIndexWidget_HideEvent
 func callbackQHelpIndexWidget_HideEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpIndexWidget::hideEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpIndexWidget::hideEvent"); signal != nil {
 		signal.(func(*gui.QHideEvent))(gui.NewQHideEventFromPointer(event))
@@ -13707,8 +11044,6 @@ func callbackQHelpIndexWidget_HideEvent(ptr unsafe.Pointer, event unsafe.Pointer
 }
 
 func (ptr *QHelpIndexWidget) ConnectHideEvent(f func(event *gui.QHideEvent)) {
-	defer qt.Recovering("connect QHelpIndexWidget::hideEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexWidget::hideEvent", f)
@@ -13716,8 +11051,6 @@ func (ptr *QHelpIndexWidget) ConnectHideEvent(f func(event *gui.QHideEvent)) {
 }
 
 func (ptr *QHelpIndexWidget) DisconnectHideEvent() {
-	defer qt.Recovering("disconnect QHelpIndexWidget::hideEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexWidget::hideEvent")
@@ -13725,16 +11058,12 @@ func (ptr *QHelpIndexWidget) DisconnectHideEvent() {
 }
 
 func (ptr *QHelpIndexWidget) HideEvent(event gui.QHideEvent_ITF) {
-	defer qt.Recovering("QHelpIndexWidget::hideEvent")
-
 	if ptr.Pointer() != nil {
 		C.QHelpIndexWidget_HideEvent(ptr.Pointer(), gui.PointerFromQHideEvent(event))
 	}
 }
 
 func (ptr *QHelpIndexWidget) HideEventDefault(event gui.QHideEvent_ITF) {
-	defer qt.Recovering("QHelpIndexWidget::hideEvent")
-
 	if ptr.Pointer() != nil {
 		C.QHelpIndexWidget_HideEventDefault(ptr.Pointer(), gui.PointerFromQHideEvent(event))
 	}
@@ -13742,7 +11071,6 @@ func (ptr *QHelpIndexWidget) HideEventDefault(event gui.QHideEvent_ITF) {
 
 //export callbackQHelpIndexWidget_LeaveEvent
 func callbackQHelpIndexWidget_LeaveEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpIndexWidget::leaveEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpIndexWidget::leaveEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
@@ -13752,8 +11080,6 @@ func callbackQHelpIndexWidget_LeaveEvent(ptr unsafe.Pointer, event unsafe.Pointe
 }
 
 func (ptr *QHelpIndexWidget) ConnectLeaveEvent(f func(event *core.QEvent)) {
-	defer qt.Recovering("connect QHelpIndexWidget::leaveEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexWidget::leaveEvent", f)
@@ -13761,8 +11087,6 @@ func (ptr *QHelpIndexWidget) ConnectLeaveEvent(f func(event *core.QEvent)) {
 }
 
 func (ptr *QHelpIndexWidget) DisconnectLeaveEvent() {
-	defer qt.Recovering("disconnect QHelpIndexWidget::leaveEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexWidget::leaveEvent")
@@ -13770,16 +11094,12 @@ func (ptr *QHelpIndexWidget) DisconnectLeaveEvent() {
 }
 
 func (ptr *QHelpIndexWidget) LeaveEvent(event core.QEvent_ITF) {
-	defer qt.Recovering("QHelpIndexWidget::leaveEvent")
-
 	if ptr.Pointer() != nil {
 		C.QHelpIndexWidget_LeaveEvent(ptr.Pointer(), core.PointerFromQEvent(event))
 	}
 }
 
 func (ptr *QHelpIndexWidget) LeaveEventDefault(event core.QEvent_ITF) {
-	defer qt.Recovering("QHelpIndexWidget::leaveEvent")
-
 	if ptr.Pointer() != nil {
 		C.QHelpIndexWidget_LeaveEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
 	}
@@ -13787,7 +11107,6 @@ func (ptr *QHelpIndexWidget) LeaveEventDefault(event core.QEvent_ITF) {
 
 //export callbackQHelpIndexWidget_MoveEvent
 func callbackQHelpIndexWidget_MoveEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpIndexWidget::moveEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpIndexWidget::moveEvent"); signal != nil {
 		signal.(func(*gui.QMoveEvent))(gui.NewQMoveEventFromPointer(event))
@@ -13797,8 +11116,6 @@ func callbackQHelpIndexWidget_MoveEvent(ptr unsafe.Pointer, event unsafe.Pointer
 }
 
 func (ptr *QHelpIndexWidget) ConnectMoveEvent(f func(event *gui.QMoveEvent)) {
-	defer qt.Recovering("connect QHelpIndexWidget::moveEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexWidget::moveEvent", f)
@@ -13806,8 +11123,6 @@ func (ptr *QHelpIndexWidget) ConnectMoveEvent(f func(event *gui.QMoveEvent)) {
 }
 
 func (ptr *QHelpIndexWidget) DisconnectMoveEvent() {
-	defer qt.Recovering("disconnect QHelpIndexWidget::moveEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexWidget::moveEvent")
@@ -13815,16 +11130,12 @@ func (ptr *QHelpIndexWidget) DisconnectMoveEvent() {
 }
 
 func (ptr *QHelpIndexWidget) MoveEvent(event gui.QMoveEvent_ITF) {
-	defer qt.Recovering("QHelpIndexWidget::moveEvent")
-
 	if ptr.Pointer() != nil {
 		C.QHelpIndexWidget_MoveEvent(ptr.Pointer(), gui.PointerFromQMoveEvent(event))
 	}
 }
 
 func (ptr *QHelpIndexWidget) MoveEventDefault(event gui.QMoveEvent_ITF) {
-	defer qt.Recovering("QHelpIndexWidget::moveEvent")
-
 	if ptr.Pointer() != nil {
 		C.QHelpIndexWidget_MoveEventDefault(ptr.Pointer(), gui.PointerFromQMoveEvent(event))
 	}
@@ -13832,8 +11143,6 @@ func (ptr *QHelpIndexWidget) MoveEventDefault(event gui.QMoveEvent_ITF) {
 
 //export callbackQHelpIndexWidget_SetEnabled
 func callbackQHelpIndexWidget_SetEnabled(ptr unsafe.Pointer, vbo C.char) {
-	defer qt.Recovering("callback QHelpIndexWidget::setEnabled")
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpIndexWidget::setEnabled"); signal != nil {
 		signal.(func(bool))(int8(vbo) != 0)
 	} else {
@@ -13842,8 +11151,6 @@ func callbackQHelpIndexWidget_SetEnabled(ptr unsafe.Pointer, vbo C.char) {
 }
 
 func (ptr *QHelpIndexWidget) ConnectSetEnabled(f func(vbo bool)) {
-	defer qt.Recovering("connect QHelpIndexWidget::setEnabled")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexWidget::setEnabled", f)
@@ -13851,8 +11158,6 @@ func (ptr *QHelpIndexWidget) ConnectSetEnabled(f func(vbo bool)) {
 }
 
 func (ptr *QHelpIndexWidget) DisconnectSetEnabled() {
-	defer qt.Recovering("disconnect QHelpIndexWidget::setEnabled")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexWidget::setEnabled")
@@ -13860,16 +11165,12 @@ func (ptr *QHelpIndexWidget) DisconnectSetEnabled() {
 }
 
 func (ptr *QHelpIndexWidget) SetEnabled(vbo bool) {
-	defer qt.Recovering("QHelpIndexWidget::setEnabled")
-
 	if ptr.Pointer() != nil {
 		C.QHelpIndexWidget_SetEnabled(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(vbo))))
 	}
 }
 
 func (ptr *QHelpIndexWidget) SetEnabledDefault(vbo bool) {
-	defer qt.Recovering("QHelpIndexWidget::setEnabled")
-
 	if ptr.Pointer() != nil {
 		C.QHelpIndexWidget_SetEnabledDefault(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(vbo))))
 	}
@@ -13877,8 +11178,6 @@ func (ptr *QHelpIndexWidget) SetEnabledDefault(vbo bool) {
 
 //export callbackQHelpIndexWidget_SetStyleSheet
 func callbackQHelpIndexWidget_SetStyleSheet(ptr unsafe.Pointer, styleSheet *C.char) {
-	defer qt.Recovering("callback QHelpIndexWidget::setStyleSheet")
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpIndexWidget::setStyleSheet"); signal != nil {
 		signal.(func(string))(C.GoString(styleSheet))
 	} else {
@@ -13887,8 +11186,6 @@ func callbackQHelpIndexWidget_SetStyleSheet(ptr unsafe.Pointer, styleSheet *C.ch
 }
 
 func (ptr *QHelpIndexWidget) ConnectSetStyleSheet(f func(styleSheet string)) {
-	defer qt.Recovering("connect QHelpIndexWidget::setStyleSheet")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexWidget::setStyleSheet", f)
@@ -13896,8 +11193,6 @@ func (ptr *QHelpIndexWidget) ConnectSetStyleSheet(f func(styleSheet string)) {
 }
 
 func (ptr *QHelpIndexWidget) DisconnectSetStyleSheet() {
-	defer qt.Recovering("disconnect QHelpIndexWidget::setStyleSheet")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexWidget::setStyleSheet")
@@ -13905,8 +11200,6 @@ func (ptr *QHelpIndexWidget) DisconnectSetStyleSheet() {
 }
 
 func (ptr *QHelpIndexWidget) SetStyleSheet(styleSheet string) {
-	defer qt.Recovering("QHelpIndexWidget::setStyleSheet")
-
 	if ptr.Pointer() != nil {
 		var styleSheetC = C.CString(styleSheet)
 		defer C.free(unsafe.Pointer(styleSheetC))
@@ -13915,8 +11208,6 @@ func (ptr *QHelpIndexWidget) SetStyleSheet(styleSheet string) {
 }
 
 func (ptr *QHelpIndexWidget) SetStyleSheetDefault(styleSheet string) {
-	defer qt.Recovering("QHelpIndexWidget::setStyleSheet")
-
 	if ptr.Pointer() != nil {
 		var styleSheetC = C.CString(styleSheet)
 		defer C.free(unsafe.Pointer(styleSheetC))
@@ -13926,8 +11217,6 @@ func (ptr *QHelpIndexWidget) SetStyleSheetDefault(styleSheet string) {
 
 //export callbackQHelpIndexWidget_SetVisible
 func callbackQHelpIndexWidget_SetVisible(ptr unsafe.Pointer, visible C.char) {
-	defer qt.Recovering("callback QHelpIndexWidget::setVisible")
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpIndexWidget::setVisible"); signal != nil {
 		signal.(func(bool))(int8(visible) != 0)
 	} else {
@@ -13936,8 +11225,6 @@ func callbackQHelpIndexWidget_SetVisible(ptr unsafe.Pointer, visible C.char) {
 }
 
 func (ptr *QHelpIndexWidget) ConnectSetVisible(f func(visible bool)) {
-	defer qt.Recovering("connect QHelpIndexWidget::setVisible")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexWidget::setVisible", f)
@@ -13945,8 +11232,6 @@ func (ptr *QHelpIndexWidget) ConnectSetVisible(f func(visible bool)) {
 }
 
 func (ptr *QHelpIndexWidget) DisconnectSetVisible() {
-	defer qt.Recovering("disconnect QHelpIndexWidget::setVisible")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexWidget::setVisible")
@@ -13954,16 +11239,12 @@ func (ptr *QHelpIndexWidget) DisconnectSetVisible() {
 }
 
 func (ptr *QHelpIndexWidget) SetVisible(visible bool) {
-	defer qt.Recovering("QHelpIndexWidget::setVisible")
-
 	if ptr.Pointer() != nil {
 		C.QHelpIndexWidget_SetVisible(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(visible))))
 	}
 }
 
 func (ptr *QHelpIndexWidget) SetVisibleDefault(visible bool) {
-	defer qt.Recovering("QHelpIndexWidget::setVisible")
-
 	if ptr.Pointer() != nil {
 		C.QHelpIndexWidget_SetVisibleDefault(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(visible))))
 	}
@@ -13971,8 +11252,6 @@ func (ptr *QHelpIndexWidget) SetVisibleDefault(visible bool) {
 
 //export callbackQHelpIndexWidget_SetWindowModified
 func callbackQHelpIndexWidget_SetWindowModified(ptr unsafe.Pointer, vbo C.char) {
-	defer qt.Recovering("callback QHelpIndexWidget::setWindowModified")
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpIndexWidget::setWindowModified"); signal != nil {
 		signal.(func(bool))(int8(vbo) != 0)
 	} else {
@@ -13981,8 +11260,6 @@ func callbackQHelpIndexWidget_SetWindowModified(ptr unsafe.Pointer, vbo C.char) 
 }
 
 func (ptr *QHelpIndexWidget) ConnectSetWindowModified(f func(vbo bool)) {
-	defer qt.Recovering("connect QHelpIndexWidget::setWindowModified")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexWidget::setWindowModified", f)
@@ -13990,8 +11267,6 @@ func (ptr *QHelpIndexWidget) ConnectSetWindowModified(f func(vbo bool)) {
 }
 
 func (ptr *QHelpIndexWidget) DisconnectSetWindowModified() {
-	defer qt.Recovering("disconnect QHelpIndexWidget::setWindowModified")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexWidget::setWindowModified")
@@ -13999,16 +11274,12 @@ func (ptr *QHelpIndexWidget) DisconnectSetWindowModified() {
 }
 
 func (ptr *QHelpIndexWidget) SetWindowModified(vbo bool) {
-	defer qt.Recovering("QHelpIndexWidget::setWindowModified")
-
 	if ptr.Pointer() != nil {
 		C.QHelpIndexWidget_SetWindowModified(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(vbo))))
 	}
 }
 
 func (ptr *QHelpIndexWidget) SetWindowModifiedDefault(vbo bool) {
-	defer qt.Recovering("QHelpIndexWidget::setWindowModified")
-
 	if ptr.Pointer() != nil {
 		C.QHelpIndexWidget_SetWindowModifiedDefault(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(vbo))))
 	}
@@ -14016,8 +11287,6 @@ func (ptr *QHelpIndexWidget) SetWindowModifiedDefault(vbo bool) {
 
 //export callbackQHelpIndexWidget_SetWindowTitle
 func callbackQHelpIndexWidget_SetWindowTitle(ptr unsafe.Pointer, vqs *C.char) {
-	defer qt.Recovering("callback QHelpIndexWidget::setWindowTitle")
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpIndexWidget::setWindowTitle"); signal != nil {
 		signal.(func(string))(C.GoString(vqs))
 	} else {
@@ -14026,8 +11295,6 @@ func callbackQHelpIndexWidget_SetWindowTitle(ptr unsafe.Pointer, vqs *C.char) {
 }
 
 func (ptr *QHelpIndexWidget) ConnectSetWindowTitle(f func(vqs string)) {
-	defer qt.Recovering("connect QHelpIndexWidget::setWindowTitle")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexWidget::setWindowTitle", f)
@@ -14035,8 +11302,6 @@ func (ptr *QHelpIndexWidget) ConnectSetWindowTitle(f func(vqs string)) {
 }
 
 func (ptr *QHelpIndexWidget) DisconnectSetWindowTitle() {
-	defer qt.Recovering("disconnect QHelpIndexWidget::setWindowTitle")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexWidget::setWindowTitle")
@@ -14044,8 +11309,6 @@ func (ptr *QHelpIndexWidget) DisconnectSetWindowTitle() {
 }
 
 func (ptr *QHelpIndexWidget) SetWindowTitle(vqs string) {
-	defer qt.Recovering("QHelpIndexWidget::setWindowTitle")
-
 	if ptr.Pointer() != nil {
 		var vqsC = C.CString(vqs)
 		defer C.free(unsafe.Pointer(vqsC))
@@ -14054,8 +11317,6 @@ func (ptr *QHelpIndexWidget) SetWindowTitle(vqs string) {
 }
 
 func (ptr *QHelpIndexWidget) SetWindowTitleDefault(vqs string) {
-	defer qt.Recovering("QHelpIndexWidget::setWindowTitle")
-
 	if ptr.Pointer() != nil {
 		var vqsC = C.CString(vqs)
 		defer C.free(unsafe.Pointer(vqsC))
@@ -14065,7 +11326,6 @@ func (ptr *QHelpIndexWidget) SetWindowTitleDefault(vqs string) {
 
 //export callbackQHelpIndexWidget_ShowEvent
 func callbackQHelpIndexWidget_ShowEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpIndexWidget::showEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpIndexWidget::showEvent"); signal != nil {
 		signal.(func(*gui.QShowEvent))(gui.NewQShowEventFromPointer(event))
@@ -14075,8 +11335,6 @@ func callbackQHelpIndexWidget_ShowEvent(ptr unsafe.Pointer, event unsafe.Pointer
 }
 
 func (ptr *QHelpIndexWidget) ConnectShowEvent(f func(event *gui.QShowEvent)) {
-	defer qt.Recovering("connect QHelpIndexWidget::showEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexWidget::showEvent", f)
@@ -14084,8 +11342,6 @@ func (ptr *QHelpIndexWidget) ConnectShowEvent(f func(event *gui.QShowEvent)) {
 }
 
 func (ptr *QHelpIndexWidget) DisconnectShowEvent() {
-	defer qt.Recovering("disconnect QHelpIndexWidget::showEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexWidget::showEvent")
@@ -14093,16 +11349,12 @@ func (ptr *QHelpIndexWidget) DisconnectShowEvent() {
 }
 
 func (ptr *QHelpIndexWidget) ShowEvent(event gui.QShowEvent_ITF) {
-	defer qt.Recovering("QHelpIndexWidget::showEvent")
-
 	if ptr.Pointer() != nil {
 		C.QHelpIndexWidget_ShowEvent(ptr.Pointer(), gui.PointerFromQShowEvent(event))
 	}
 }
 
 func (ptr *QHelpIndexWidget) ShowEventDefault(event gui.QShowEvent_ITF) {
-	defer qt.Recovering("QHelpIndexWidget::showEvent")
-
 	if ptr.Pointer() != nil {
 		C.QHelpIndexWidget_ShowEventDefault(ptr.Pointer(), gui.PointerFromQShowEvent(event))
 	}
@@ -14110,8 +11362,6 @@ func (ptr *QHelpIndexWidget) ShowEventDefault(event gui.QShowEvent_ITF) {
 
 //export callbackQHelpIndexWidget_Close
 func callbackQHelpIndexWidget_Close(ptr unsafe.Pointer) C.char {
-	defer qt.Recovering("callback QHelpIndexWidget::close")
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpIndexWidget::close"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func() bool)())))
 	}
@@ -14120,8 +11370,6 @@ func callbackQHelpIndexWidget_Close(ptr unsafe.Pointer) C.char {
 }
 
 func (ptr *QHelpIndexWidget) ConnectClose(f func() bool) {
-	defer qt.Recovering("connect QHelpIndexWidget::close")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexWidget::close", f)
@@ -14129,8 +11377,6 @@ func (ptr *QHelpIndexWidget) ConnectClose(f func() bool) {
 }
 
 func (ptr *QHelpIndexWidget) DisconnectClose() {
-	defer qt.Recovering("disconnect QHelpIndexWidget::close")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexWidget::close")
@@ -14138,8 +11384,6 @@ func (ptr *QHelpIndexWidget) DisconnectClose() {
 }
 
 func (ptr *QHelpIndexWidget) Close() bool {
-	defer qt.Recovering("QHelpIndexWidget::close")
-
 	if ptr.Pointer() != nil {
 		return C.QHelpIndexWidget_Close(ptr.Pointer()) != 0
 	}
@@ -14147,8 +11391,6 @@ func (ptr *QHelpIndexWidget) Close() bool {
 }
 
 func (ptr *QHelpIndexWidget) CloseDefault() bool {
-	defer qt.Recovering("QHelpIndexWidget::close")
-
 	if ptr.Pointer() != nil {
 		return C.QHelpIndexWidget_CloseDefault(ptr.Pointer()) != 0
 	}
@@ -14157,7 +11399,6 @@ func (ptr *QHelpIndexWidget) CloseDefault() bool {
 
 //export callbackQHelpIndexWidget_CloseEvent
 func callbackQHelpIndexWidget_CloseEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpIndexWidget::closeEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpIndexWidget::closeEvent"); signal != nil {
 		signal.(func(*gui.QCloseEvent))(gui.NewQCloseEventFromPointer(event))
@@ -14167,8 +11408,6 @@ func callbackQHelpIndexWidget_CloseEvent(ptr unsafe.Pointer, event unsafe.Pointe
 }
 
 func (ptr *QHelpIndexWidget) ConnectCloseEvent(f func(event *gui.QCloseEvent)) {
-	defer qt.Recovering("connect QHelpIndexWidget::closeEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexWidget::closeEvent", f)
@@ -14176,8 +11415,6 @@ func (ptr *QHelpIndexWidget) ConnectCloseEvent(f func(event *gui.QCloseEvent)) {
 }
 
 func (ptr *QHelpIndexWidget) DisconnectCloseEvent() {
-	defer qt.Recovering("disconnect QHelpIndexWidget::closeEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexWidget::closeEvent")
@@ -14185,16 +11422,12 @@ func (ptr *QHelpIndexWidget) DisconnectCloseEvent() {
 }
 
 func (ptr *QHelpIndexWidget) CloseEvent(event gui.QCloseEvent_ITF) {
-	defer qt.Recovering("QHelpIndexWidget::closeEvent")
-
 	if ptr.Pointer() != nil {
 		C.QHelpIndexWidget_CloseEvent(ptr.Pointer(), gui.PointerFromQCloseEvent(event))
 	}
 }
 
 func (ptr *QHelpIndexWidget) CloseEventDefault(event gui.QCloseEvent_ITF) {
-	defer qt.Recovering("QHelpIndexWidget::closeEvent")
-
 	if ptr.Pointer() != nil {
 		C.QHelpIndexWidget_CloseEventDefault(ptr.Pointer(), gui.PointerFromQCloseEvent(event))
 	}
@@ -14202,7 +11435,6 @@ func (ptr *QHelpIndexWidget) CloseEventDefault(event gui.QCloseEvent_ITF) {
 
 //export callbackQHelpIndexWidget_HasHeightForWidth
 func callbackQHelpIndexWidget_HasHeightForWidth(ptr unsafe.Pointer) C.char {
-	defer qt.Recovering("callback QHelpIndexWidget::hasHeightForWidth")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpIndexWidget::hasHeightForWidth"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func() bool)())))
@@ -14212,8 +11444,6 @@ func callbackQHelpIndexWidget_HasHeightForWidth(ptr unsafe.Pointer) C.char {
 }
 
 func (ptr *QHelpIndexWidget) ConnectHasHeightForWidth(f func() bool) {
-	defer qt.Recovering("connect QHelpIndexWidget::hasHeightForWidth")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexWidget::hasHeightForWidth", f)
@@ -14221,8 +11451,6 @@ func (ptr *QHelpIndexWidget) ConnectHasHeightForWidth(f func() bool) {
 }
 
 func (ptr *QHelpIndexWidget) DisconnectHasHeightForWidth() {
-	defer qt.Recovering("disconnect QHelpIndexWidget::hasHeightForWidth")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexWidget::hasHeightForWidth")
@@ -14230,8 +11458,6 @@ func (ptr *QHelpIndexWidget) DisconnectHasHeightForWidth() {
 }
 
 func (ptr *QHelpIndexWidget) HasHeightForWidth() bool {
-	defer qt.Recovering("QHelpIndexWidget::hasHeightForWidth")
-
 	if ptr.Pointer() != nil {
 		return C.QHelpIndexWidget_HasHeightForWidth(ptr.Pointer()) != 0
 	}
@@ -14239,8 +11465,6 @@ func (ptr *QHelpIndexWidget) HasHeightForWidth() bool {
 }
 
 func (ptr *QHelpIndexWidget) HasHeightForWidthDefault() bool {
-	defer qt.Recovering("QHelpIndexWidget::hasHeightForWidth")
-
 	if ptr.Pointer() != nil {
 		return C.QHelpIndexWidget_HasHeightForWidthDefault(ptr.Pointer()) != 0
 	}
@@ -14249,7 +11473,6 @@ func (ptr *QHelpIndexWidget) HasHeightForWidthDefault() bool {
 
 //export callbackQHelpIndexWidget_HeightForWidth
 func callbackQHelpIndexWidget_HeightForWidth(ptr unsafe.Pointer, w C.int) C.int {
-	defer qt.Recovering("callback QHelpIndexWidget::heightForWidth")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpIndexWidget::heightForWidth"); signal != nil {
 		return C.int(int32(signal.(func(int) int)(int(int32(w)))))
@@ -14259,8 +11482,6 @@ func callbackQHelpIndexWidget_HeightForWidth(ptr unsafe.Pointer, w C.int) C.int 
 }
 
 func (ptr *QHelpIndexWidget) ConnectHeightForWidth(f func(w int) int) {
-	defer qt.Recovering("connect QHelpIndexWidget::heightForWidth")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexWidget::heightForWidth", f)
@@ -14268,8 +11489,6 @@ func (ptr *QHelpIndexWidget) ConnectHeightForWidth(f func(w int) int) {
 }
 
 func (ptr *QHelpIndexWidget) DisconnectHeightForWidth() {
-	defer qt.Recovering("disconnect QHelpIndexWidget::heightForWidth")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexWidget::heightForWidth")
@@ -14277,8 +11496,6 @@ func (ptr *QHelpIndexWidget) DisconnectHeightForWidth() {
 }
 
 func (ptr *QHelpIndexWidget) HeightForWidth(w int) int {
-	defer qt.Recovering("QHelpIndexWidget::heightForWidth")
-
 	if ptr.Pointer() != nil {
 		return int(int32(C.QHelpIndexWidget_HeightForWidth(ptr.Pointer(), C.int(int32(w)))))
 	}
@@ -14286,8 +11503,6 @@ func (ptr *QHelpIndexWidget) HeightForWidth(w int) int {
 }
 
 func (ptr *QHelpIndexWidget) HeightForWidthDefault(w int) int {
-	defer qt.Recovering("QHelpIndexWidget::heightForWidth")
-
 	if ptr.Pointer() != nil {
 		return int(int32(C.QHelpIndexWidget_HeightForWidthDefault(ptr.Pointer(), C.int(int32(w)))))
 	}
@@ -14296,8 +11511,6 @@ func (ptr *QHelpIndexWidget) HeightForWidthDefault(w int) int {
 
 //export callbackQHelpIndexWidget_Hide
 func callbackQHelpIndexWidget_Hide(ptr unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpIndexWidget::hide")
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpIndexWidget::hide"); signal != nil {
 		signal.(func())()
 	} else {
@@ -14306,8 +11519,6 @@ func callbackQHelpIndexWidget_Hide(ptr unsafe.Pointer) {
 }
 
 func (ptr *QHelpIndexWidget) ConnectHide(f func()) {
-	defer qt.Recovering("connect QHelpIndexWidget::hide")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexWidget::hide", f)
@@ -14315,8 +11526,6 @@ func (ptr *QHelpIndexWidget) ConnectHide(f func()) {
 }
 
 func (ptr *QHelpIndexWidget) DisconnectHide() {
-	defer qt.Recovering("disconnect QHelpIndexWidget::hide")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexWidget::hide")
@@ -14324,16 +11533,12 @@ func (ptr *QHelpIndexWidget) DisconnectHide() {
 }
 
 func (ptr *QHelpIndexWidget) Hide() {
-	defer qt.Recovering("QHelpIndexWidget::hide")
-
 	if ptr.Pointer() != nil {
 		C.QHelpIndexWidget_Hide(ptr.Pointer())
 	}
 }
 
 func (ptr *QHelpIndexWidget) HideDefault() {
-	defer qt.Recovering("QHelpIndexWidget::hide")
-
 	if ptr.Pointer() != nil {
 		C.QHelpIndexWidget_HideDefault(ptr.Pointer())
 	}
@@ -14341,7 +11546,6 @@ func (ptr *QHelpIndexWidget) HideDefault() {
 
 //export callbackQHelpIndexWidget_KeyReleaseEvent
 func callbackQHelpIndexWidget_KeyReleaseEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpIndexWidget::keyReleaseEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpIndexWidget::keyReleaseEvent"); signal != nil {
 		signal.(func(*gui.QKeyEvent))(gui.NewQKeyEventFromPointer(event))
@@ -14351,8 +11555,6 @@ func callbackQHelpIndexWidget_KeyReleaseEvent(ptr unsafe.Pointer, event unsafe.P
 }
 
 func (ptr *QHelpIndexWidget) ConnectKeyReleaseEvent(f func(event *gui.QKeyEvent)) {
-	defer qt.Recovering("connect QHelpIndexWidget::keyReleaseEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexWidget::keyReleaseEvent", f)
@@ -14360,8 +11562,6 @@ func (ptr *QHelpIndexWidget) ConnectKeyReleaseEvent(f func(event *gui.QKeyEvent)
 }
 
 func (ptr *QHelpIndexWidget) DisconnectKeyReleaseEvent() {
-	defer qt.Recovering("disconnect QHelpIndexWidget::keyReleaseEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexWidget::keyReleaseEvent")
@@ -14369,16 +11569,12 @@ func (ptr *QHelpIndexWidget) DisconnectKeyReleaseEvent() {
 }
 
 func (ptr *QHelpIndexWidget) KeyReleaseEvent(event gui.QKeyEvent_ITF) {
-	defer qt.Recovering("QHelpIndexWidget::keyReleaseEvent")
-
 	if ptr.Pointer() != nil {
 		C.QHelpIndexWidget_KeyReleaseEvent(ptr.Pointer(), gui.PointerFromQKeyEvent(event))
 	}
 }
 
 func (ptr *QHelpIndexWidget) KeyReleaseEventDefault(event gui.QKeyEvent_ITF) {
-	defer qt.Recovering("QHelpIndexWidget::keyReleaseEvent")
-
 	if ptr.Pointer() != nil {
 		C.QHelpIndexWidget_KeyReleaseEventDefault(ptr.Pointer(), gui.PointerFromQKeyEvent(event))
 	}
@@ -14386,8 +11582,6 @@ func (ptr *QHelpIndexWidget) KeyReleaseEventDefault(event gui.QKeyEvent_ITF) {
 
 //export callbackQHelpIndexWidget_Lower
 func callbackQHelpIndexWidget_Lower(ptr unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpIndexWidget::lower")
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpIndexWidget::lower"); signal != nil {
 		signal.(func())()
 	} else {
@@ -14396,8 +11590,6 @@ func callbackQHelpIndexWidget_Lower(ptr unsafe.Pointer) {
 }
 
 func (ptr *QHelpIndexWidget) ConnectLower(f func()) {
-	defer qt.Recovering("connect QHelpIndexWidget::lower")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexWidget::lower", f)
@@ -14405,8 +11597,6 @@ func (ptr *QHelpIndexWidget) ConnectLower(f func()) {
 }
 
 func (ptr *QHelpIndexWidget) DisconnectLower() {
-	defer qt.Recovering("disconnect QHelpIndexWidget::lower")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexWidget::lower")
@@ -14414,16 +11604,12 @@ func (ptr *QHelpIndexWidget) DisconnectLower() {
 }
 
 func (ptr *QHelpIndexWidget) Lower() {
-	defer qt.Recovering("QHelpIndexWidget::lower")
-
 	if ptr.Pointer() != nil {
 		C.QHelpIndexWidget_Lower(ptr.Pointer())
 	}
 }
 
 func (ptr *QHelpIndexWidget) LowerDefault() {
-	defer qt.Recovering("QHelpIndexWidget::lower")
-
 	if ptr.Pointer() != nil {
 		C.QHelpIndexWidget_LowerDefault(ptr.Pointer())
 	}
@@ -14431,7 +11617,6 @@ func (ptr *QHelpIndexWidget) LowerDefault() {
 
 //export callbackQHelpIndexWidget_NativeEvent
 func callbackQHelpIndexWidget_NativeEvent(ptr unsafe.Pointer, eventType *C.char, message unsafe.Pointer, result C.long) C.char {
-	defer qt.Recovering("callback QHelpIndexWidget::nativeEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpIndexWidget::nativeEvent"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(string, unsafe.Pointer, int) bool)(qt.HexDecodeToString(C.GoString(eventType)), message, int(int32(result))))))
@@ -14441,8 +11626,6 @@ func callbackQHelpIndexWidget_NativeEvent(ptr unsafe.Pointer, eventType *C.char,
 }
 
 func (ptr *QHelpIndexWidget) ConnectNativeEvent(f func(eventType string, message unsafe.Pointer, result int) bool) {
-	defer qt.Recovering("connect QHelpIndexWidget::nativeEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexWidget::nativeEvent", f)
@@ -14450,8 +11633,6 @@ func (ptr *QHelpIndexWidget) ConnectNativeEvent(f func(eventType string, message
 }
 
 func (ptr *QHelpIndexWidget) DisconnectNativeEvent() {
-	defer qt.Recovering("disconnect QHelpIndexWidget::nativeEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexWidget::nativeEvent")
@@ -14459,8 +11640,6 @@ func (ptr *QHelpIndexWidget) DisconnectNativeEvent() {
 }
 
 func (ptr *QHelpIndexWidget) NativeEvent(eventType string, message unsafe.Pointer, result int) bool {
-	defer qt.Recovering("QHelpIndexWidget::nativeEvent")
-
 	if ptr.Pointer() != nil {
 		var eventTypeC = C.CString(hex.EncodeToString([]byte(eventType)))
 		defer C.free(unsafe.Pointer(eventTypeC))
@@ -14470,8 +11649,6 @@ func (ptr *QHelpIndexWidget) NativeEvent(eventType string, message unsafe.Pointe
 }
 
 func (ptr *QHelpIndexWidget) NativeEventDefault(eventType string, message unsafe.Pointer, result int) bool {
-	defer qt.Recovering("QHelpIndexWidget::nativeEvent")
-
 	if ptr.Pointer() != nil {
 		var eventTypeC = C.CString(hex.EncodeToString([]byte(eventType)))
 		defer C.free(unsafe.Pointer(eventTypeC))
@@ -14482,8 +11659,6 @@ func (ptr *QHelpIndexWidget) NativeEventDefault(eventType string, message unsafe
 
 //export callbackQHelpIndexWidget_Raise
 func callbackQHelpIndexWidget_Raise(ptr unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpIndexWidget::raise")
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpIndexWidget::raise"); signal != nil {
 		signal.(func())()
 	} else {
@@ -14492,8 +11667,6 @@ func callbackQHelpIndexWidget_Raise(ptr unsafe.Pointer) {
 }
 
 func (ptr *QHelpIndexWidget) ConnectRaise(f func()) {
-	defer qt.Recovering("connect QHelpIndexWidget::raise")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexWidget::raise", f)
@@ -14501,8 +11674,6 @@ func (ptr *QHelpIndexWidget) ConnectRaise(f func()) {
 }
 
 func (ptr *QHelpIndexWidget) DisconnectRaise() {
-	defer qt.Recovering("disconnect QHelpIndexWidget::raise")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexWidget::raise")
@@ -14510,16 +11681,12 @@ func (ptr *QHelpIndexWidget) DisconnectRaise() {
 }
 
 func (ptr *QHelpIndexWidget) Raise() {
-	defer qt.Recovering("QHelpIndexWidget::raise")
-
 	if ptr.Pointer() != nil {
 		C.QHelpIndexWidget_Raise(ptr.Pointer())
 	}
 }
 
 func (ptr *QHelpIndexWidget) RaiseDefault() {
-	defer qt.Recovering("QHelpIndexWidget::raise")
-
 	if ptr.Pointer() != nil {
 		C.QHelpIndexWidget_RaiseDefault(ptr.Pointer())
 	}
@@ -14527,8 +11694,6 @@ func (ptr *QHelpIndexWidget) RaiseDefault() {
 
 //export callbackQHelpIndexWidget_Repaint
 func callbackQHelpIndexWidget_Repaint(ptr unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpIndexWidget::repaint")
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpIndexWidget::repaint"); signal != nil {
 		signal.(func())()
 	} else {
@@ -14537,8 +11702,6 @@ func callbackQHelpIndexWidget_Repaint(ptr unsafe.Pointer) {
 }
 
 func (ptr *QHelpIndexWidget) ConnectRepaint(f func()) {
-	defer qt.Recovering("connect QHelpIndexWidget::repaint")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexWidget::repaint", f)
@@ -14546,8 +11709,6 @@ func (ptr *QHelpIndexWidget) ConnectRepaint(f func()) {
 }
 
 func (ptr *QHelpIndexWidget) DisconnectRepaint() {
-	defer qt.Recovering("disconnect QHelpIndexWidget::repaint")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexWidget::repaint")
@@ -14555,16 +11716,12 @@ func (ptr *QHelpIndexWidget) DisconnectRepaint() {
 }
 
 func (ptr *QHelpIndexWidget) Repaint() {
-	defer qt.Recovering("QHelpIndexWidget::repaint")
-
 	if ptr.Pointer() != nil {
 		C.QHelpIndexWidget_Repaint(ptr.Pointer())
 	}
 }
 
 func (ptr *QHelpIndexWidget) RepaintDefault() {
-	defer qt.Recovering("QHelpIndexWidget::repaint")
-
 	if ptr.Pointer() != nil {
 		C.QHelpIndexWidget_RepaintDefault(ptr.Pointer())
 	}
@@ -14572,8 +11729,6 @@ func (ptr *QHelpIndexWidget) RepaintDefault() {
 
 //export callbackQHelpIndexWidget_SetDisabled
 func callbackQHelpIndexWidget_SetDisabled(ptr unsafe.Pointer, disable C.char) {
-	defer qt.Recovering("callback QHelpIndexWidget::setDisabled")
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpIndexWidget::setDisabled"); signal != nil {
 		signal.(func(bool))(int8(disable) != 0)
 	} else {
@@ -14582,8 +11737,6 @@ func callbackQHelpIndexWidget_SetDisabled(ptr unsafe.Pointer, disable C.char) {
 }
 
 func (ptr *QHelpIndexWidget) ConnectSetDisabled(f func(disable bool)) {
-	defer qt.Recovering("connect QHelpIndexWidget::setDisabled")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexWidget::setDisabled", f)
@@ -14591,8 +11744,6 @@ func (ptr *QHelpIndexWidget) ConnectSetDisabled(f func(disable bool)) {
 }
 
 func (ptr *QHelpIndexWidget) DisconnectSetDisabled() {
-	defer qt.Recovering("disconnect QHelpIndexWidget::setDisabled")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexWidget::setDisabled")
@@ -14600,16 +11751,12 @@ func (ptr *QHelpIndexWidget) DisconnectSetDisabled() {
 }
 
 func (ptr *QHelpIndexWidget) SetDisabled(disable bool) {
-	defer qt.Recovering("QHelpIndexWidget::setDisabled")
-
 	if ptr.Pointer() != nil {
 		C.QHelpIndexWidget_SetDisabled(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(disable))))
 	}
 }
 
 func (ptr *QHelpIndexWidget) SetDisabledDefault(disable bool) {
-	defer qt.Recovering("QHelpIndexWidget::setDisabled")
-
 	if ptr.Pointer() != nil {
 		C.QHelpIndexWidget_SetDisabledDefault(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(disable))))
 	}
@@ -14617,8 +11764,6 @@ func (ptr *QHelpIndexWidget) SetDisabledDefault(disable bool) {
 
 //export callbackQHelpIndexWidget_SetFocus2
 func callbackQHelpIndexWidget_SetFocus2(ptr unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpIndexWidget::setFocus")
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpIndexWidget::setFocus2"); signal != nil {
 		signal.(func())()
 	} else {
@@ -14627,8 +11772,6 @@ func callbackQHelpIndexWidget_SetFocus2(ptr unsafe.Pointer) {
 }
 
 func (ptr *QHelpIndexWidget) ConnectSetFocus2(f func()) {
-	defer qt.Recovering("connect QHelpIndexWidget::setFocus")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexWidget::setFocus2", f)
@@ -14636,8 +11779,6 @@ func (ptr *QHelpIndexWidget) ConnectSetFocus2(f func()) {
 }
 
 func (ptr *QHelpIndexWidget) DisconnectSetFocus2() {
-	defer qt.Recovering("disconnect QHelpIndexWidget::setFocus")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexWidget::setFocus2")
@@ -14645,16 +11786,12 @@ func (ptr *QHelpIndexWidget) DisconnectSetFocus2() {
 }
 
 func (ptr *QHelpIndexWidget) SetFocus2() {
-	defer qt.Recovering("QHelpIndexWidget::setFocus")
-
 	if ptr.Pointer() != nil {
 		C.QHelpIndexWidget_SetFocus2(ptr.Pointer())
 	}
 }
 
 func (ptr *QHelpIndexWidget) SetFocus2Default() {
-	defer qt.Recovering("QHelpIndexWidget::setFocus")
-
 	if ptr.Pointer() != nil {
 		C.QHelpIndexWidget_SetFocus2Default(ptr.Pointer())
 	}
@@ -14662,8 +11799,6 @@ func (ptr *QHelpIndexWidget) SetFocus2Default() {
 
 //export callbackQHelpIndexWidget_SetHidden
 func callbackQHelpIndexWidget_SetHidden(ptr unsafe.Pointer, hidden C.char) {
-	defer qt.Recovering("callback QHelpIndexWidget::setHidden")
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpIndexWidget::setHidden"); signal != nil {
 		signal.(func(bool))(int8(hidden) != 0)
 	} else {
@@ -14672,8 +11807,6 @@ func callbackQHelpIndexWidget_SetHidden(ptr unsafe.Pointer, hidden C.char) {
 }
 
 func (ptr *QHelpIndexWidget) ConnectSetHidden(f func(hidden bool)) {
-	defer qt.Recovering("connect QHelpIndexWidget::setHidden")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexWidget::setHidden", f)
@@ -14681,8 +11814,6 @@ func (ptr *QHelpIndexWidget) ConnectSetHidden(f func(hidden bool)) {
 }
 
 func (ptr *QHelpIndexWidget) DisconnectSetHidden() {
-	defer qt.Recovering("disconnect QHelpIndexWidget::setHidden")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexWidget::setHidden")
@@ -14690,16 +11821,12 @@ func (ptr *QHelpIndexWidget) DisconnectSetHidden() {
 }
 
 func (ptr *QHelpIndexWidget) SetHidden(hidden bool) {
-	defer qt.Recovering("QHelpIndexWidget::setHidden")
-
 	if ptr.Pointer() != nil {
 		C.QHelpIndexWidget_SetHidden(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(hidden))))
 	}
 }
 
 func (ptr *QHelpIndexWidget) SetHiddenDefault(hidden bool) {
-	defer qt.Recovering("QHelpIndexWidget::setHidden")
-
 	if ptr.Pointer() != nil {
 		C.QHelpIndexWidget_SetHiddenDefault(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(hidden))))
 	}
@@ -14707,8 +11834,6 @@ func (ptr *QHelpIndexWidget) SetHiddenDefault(hidden bool) {
 
 //export callbackQHelpIndexWidget_Show
 func callbackQHelpIndexWidget_Show(ptr unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpIndexWidget::show")
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpIndexWidget::show"); signal != nil {
 		signal.(func())()
 	} else {
@@ -14717,8 +11842,6 @@ func callbackQHelpIndexWidget_Show(ptr unsafe.Pointer) {
 }
 
 func (ptr *QHelpIndexWidget) ConnectShow(f func()) {
-	defer qt.Recovering("connect QHelpIndexWidget::show")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexWidget::show", f)
@@ -14726,8 +11849,6 @@ func (ptr *QHelpIndexWidget) ConnectShow(f func()) {
 }
 
 func (ptr *QHelpIndexWidget) DisconnectShow() {
-	defer qt.Recovering("disconnect QHelpIndexWidget::show")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexWidget::show")
@@ -14735,16 +11856,12 @@ func (ptr *QHelpIndexWidget) DisconnectShow() {
 }
 
 func (ptr *QHelpIndexWidget) Show() {
-	defer qt.Recovering("QHelpIndexWidget::show")
-
 	if ptr.Pointer() != nil {
 		C.QHelpIndexWidget_Show(ptr.Pointer())
 	}
 }
 
 func (ptr *QHelpIndexWidget) ShowDefault() {
-	defer qt.Recovering("QHelpIndexWidget::show")
-
 	if ptr.Pointer() != nil {
 		C.QHelpIndexWidget_ShowDefault(ptr.Pointer())
 	}
@@ -14752,8 +11869,6 @@ func (ptr *QHelpIndexWidget) ShowDefault() {
 
 //export callbackQHelpIndexWidget_ShowFullScreen
 func callbackQHelpIndexWidget_ShowFullScreen(ptr unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpIndexWidget::showFullScreen")
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpIndexWidget::showFullScreen"); signal != nil {
 		signal.(func())()
 	} else {
@@ -14762,8 +11877,6 @@ func callbackQHelpIndexWidget_ShowFullScreen(ptr unsafe.Pointer) {
 }
 
 func (ptr *QHelpIndexWidget) ConnectShowFullScreen(f func()) {
-	defer qt.Recovering("connect QHelpIndexWidget::showFullScreen")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexWidget::showFullScreen", f)
@@ -14771,8 +11884,6 @@ func (ptr *QHelpIndexWidget) ConnectShowFullScreen(f func()) {
 }
 
 func (ptr *QHelpIndexWidget) DisconnectShowFullScreen() {
-	defer qt.Recovering("disconnect QHelpIndexWidget::showFullScreen")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexWidget::showFullScreen")
@@ -14780,16 +11891,12 @@ func (ptr *QHelpIndexWidget) DisconnectShowFullScreen() {
 }
 
 func (ptr *QHelpIndexWidget) ShowFullScreen() {
-	defer qt.Recovering("QHelpIndexWidget::showFullScreen")
-
 	if ptr.Pointer() != nil {
 		C.QHelpIndexWidget_ShowFullScreen(ptr.Pointer())
 	}
 }
 
 func (ptr *QHelpIndexWidget) ShowFullScreenDefault() {
-	defer qt.Recovering("QHelpIndexWidget::showFullScreen")
-
 	if ptr.Pointer() != nil {
 		C.QHelpIndexWidget_ShowFullScreenDefault(ptr.Pointer())
 	}
@@ -14797,8 +11904,6 @@ func (ptr *QHelpIndexWidget) ShowFullScreenDefault() {
 
 //export callbackQHelpIndexWidget_ShowMaximized
 func callbackQHelpIndexWidget_ShowMaximized(ptr unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpIndexWidget::showMaximized")
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpIndexWidget::showMaximized"); signal != nil {
 		signal.(func())()
 	} else {
@@ -14807,8 +11912,6 @@ func callbackQHelpIndexWidget_ShowMaximized(ptr unsafe.Pointer) {
 }
 
 func (ptr *QHelpIndexWidget) ConnectShowMaximized(f func()) {
-	defer qt.Recovering("connect QHelpIndexWidget::showMaximized")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexWidget::showMaximized", f)
@@ -14816,8 +11919,6 @@ func (ptr *QHelpIndexWidget) ConnectShowMaximized(f func()) {
 }
 
 func (ptr *QHelpIndexWidget) DisconnectShowMaximized() {
-	defer qt.Recovering("disconnect QHelpIndexWidget::showMaximized")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexWidget::showMaximized")
@@ -14825,16 +11926,12 @@ func (ptr *QHelpIndexWidget) DisconnectShowMaximized() {
 }
 
 func (ptr *QHelpIndexWidget) ShowMaximized() {
-	defer qt.Recovering("QHelpIndexWidget::showMaximized")
-
 	if ptr.Pointer() != nil {
 		C.QHelpIndexWidget_ShowMaximized(ptr.Pointer())
 	}
 }
 
 func (ptr *QHelpIndexWidget) ShowMaximizedDefault() {
-	defer qt.Recovering("QHelpIndexWidget::showMaximized")
-
 	if ptr.Pointer() != nil {
 		C.QHelpIndexWidget_ShowMaximizedDefault(ptr.Pointer())
 	}
@@ -14842,8 +11939,6 @@ func (ptr *QHelpIndexWidget) ShowMaximizedDefault() {
 
 //export callbackQHelpIndexWidget_ShowMinimized
 func callbackQHelpIndexWidget_ShowMinimized(ptr unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpIndexWidget::showMinimized")
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpIndexWidget::showMinimized"); signal != nil {
 		signal.(func())()
 	} else {
@@ -14852,8 +11947,6 @@ func callbackQHelpIndexWidget_ShowMinimized(ptr unsafe.Pointer) {
 }
 
 func (ptr *QHelpIndexWidget) ConnectShowMinimized(f func()) {
-	defer qt.Recovering("connect QHelpIndexWidget::showMinimized")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexWidget::showMinimized", f)
@@ -14861,8 +11954,6 @@ func (ptr *QHelpIndexWidget) ConnectShowMinimized(f func()) {
 }
 
 func (ptr *QHelpIndexWidget) DisconnectShowMinimized() {
-	defer qt.Recovering("disconnect QHelpIndexWidget::showMinimized")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexWidget::showMinimized")
@@ -14870,16 +11961,12 @@ func (ptr *QHelpIndexWidget) DisconnectShowMinimized() {
 }
 
 func (ptr *QHelpIndexWidget) ShowMinimized() {
-	defer qt.Recovering("QHelpIndexWidget::showMinimized")
-
 	if ptr.Pointer() != nil {
 		C.QHelpIndexWidget_ShowMinimized(ptr.Pointer())
 	}
 }
 
 func (ptr *QHelpIndexWidget) ShowMinimizedDefault() {
-	defer qt.Recovering("QHelpIndexWidget::showMinimized")
-
 	if ptr.Pointer() != nil {
 		C.QHelpIndexWidget_ShowMinimizedDefault(ptr.Pointer())
 	}
@@ -14887,8 +11974,6 @@ func (ptr *QHelpIndexWidget) ShowMinimizedDefault() {
 
 //export callbackQHelpIndexWidget_ShowNormal
 func callbackQHelpIndexWidget_ShowNormal(ptr unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpIndexWidget::showNormal")
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpIndexWidget::showNormal"); signal != nil {
 		signal.(func())()
 	} else {
@@ -14897,8 +11982,6 @@ func callbackQHelpIndexWidget_ShowNormal(ptr unsafe.Pointer) {
 }
 
 func (ptr *QHelpIndexWidget) ConnectShowNormal(f func()) {
-	defer qt.Recovering("connect QHelpIndexWidget::showNormal")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexWidget::showNormal", f)
@@ -14906,8 +11989,6 @@ func (ptr *QHelpIndexWidget) ConnectShowNormal(f func()) {
 }
 
 func (ptr *QHelpIndexWidget) DisconnectShowNormal() {
-	defer qt.Recovering("disconnect QHelpIndexWidget::showNormal")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexWidget::showNormal")
@@ -14915,16 +11996,12 @@ func (ptr *QHelpIndexWidget) DisconnectShowNormal() {
 }
 
 func (ptr *QHelpIndexWidget) ShowNormal() {
-	defer qt.Recovering("QHelpIndexWidget::showNormal")
-
 	if ptr.Pointer() != nil {
 		C.QHelpIndexWidget_ShowNormal(ptr.Pointer())
 	}
 }
 
 func (ptr *QHelpIndexWidget) ShowNormalDefault() {
-	defer qt.Recovering("QHelpIndexWidget::showNormal")
-
 	if ptr.Pointer() != nil {
 		C.QHelpIndexWidget_ShowNormalDefault(ptr.Pointer())
 	}
@@ -14932,7 +12009,6 @@ func (ptr *QHelpIndexWidget) ShowNormalDefault() {
 
 //export callbackQHelpIndexWidget_TabletEvent
 func callbackQHelpIndexWidget_TabletEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpIndexWidget::tabletEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpIndexWidget::tabletEvent"); signal != nil {
 		signal.(func(*gui.QTabletEvent))(gui.NewQTabletEventFromPointer(event))
@@ -14942,8 +12018,6 @@ func callbackQHelpIndexWidget_TabletEvent(ptr unsafe.Pointer, event unsafe.Point
 }
 
 func (ptr *QHelpIndexWidget) ConnectTabletEvent(f func(event *gui.QTabletEvent)) {
-	defer qt.Recovering("connect QHelpIndexWidget::tabletEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexWidget::tabletEvent", f)
@@ -14951,8 +12025,6 @@ func (ptr *QHelpIndexWidget) ConnectTabletEvent(f func(event *gui.QTabletEvent))
 }
 
 func (ptr *QHelpIndexWidget) DisconnectTabletEvent() {
-	defer qt.Recovering("disconnect QHelpIndexWidget::tabletEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexWidget::tabletEvent")
@@ -14960,16 +12032,12 @@ func (ptr *QHelpIndexWidget) DisconnectTabletEvent() {
 }
 
 func (ptr *QHelpIndexWidget) TabletEvent(event gui.QTabletEvent_ITF) {
-	defer qt.Recovering("QHelpIndexWidget::tabletEvent")
-
 	if ptr.Pointer() != nil {
 		C.QHelpIndexWidget_TabletEvent(ptr.Pointer(), gui.PointerFromQTabletEvent(event))
 	}
 }
 
 func (ptr *QHelpIndexWidget) TabletEventDefault(event gui.QTabletEvent_ITF) {
-	defer qt.Recovering("QHelpIndexWidget::tabletEvent")
-
 	if ptr.Pointer() != nil {
 		C.QHelpIndexWidget_TabletEventDefault(ptr.Pointer(), gui.PointerFromQTabletEvent(event))
 	}
@@ -14977,8 +12045,6 @@ func (ptr *QHelpIndexWidget) TabletEventDefault(event gui.QTabletEvent_ITF) {
 
 //export callbackQHelpIndexWidget_UpdateMicroFocus
 func callbackQHelpIndexWidget_UpdateMicroFocus(ptr unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpIndexWidget::updateMicroFocus")
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpIndexWidget::updateMicroFocus"); signal != nil {
 		signal.(func())()
 	} else {
@@ -14987,8 +12053,6 @@ func callbackQHelpIndexWidget_UpdateMicroFocus(ptr unsafe.Pointer) {
 }
 
 func (ptr *QHelpIndexWidget) ConnectUpdateMicroFocus(f func()) {
-	defer qt.Recovering("connect QHelpIndexWidget::updateMicroFocus")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexWidget::updateMicroFocus", f)
@@ -14996,8 +12060,6 @@ func (ptr *QHelpIndexWidget) ConnectUpdateMicroFocus(f func()) {
 }
 
 func (ptr *QHelpIndexWidget) DisconnectUpdateMicroFocus() {
-	defer qt.Recovering("disconnect QHelpIndexWidget::updateMicroFocus")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexWidget::updateMicroFocus")
@@ -15005,16 +12067,12 @@ func (ptr *QHelpIndexWidget) DisconnectUpdateMicroFocus() {
 }
 
 func (ptr *QHelpIndexWidget) UpdateMicroFocus() {
-	defer qt.Recovering("QHelpIndexWidget::updateMicroFocus")
-
 	if ptr.Pointer() != nil {
 		C.QHelpIndexWidget_UpdateMicroFocus(ptr.Pointer())
 	}
 }
 
 func (ptr *QHelpIndexWidget) UpdateMicroFocusDefault() {
-	defer qt.Recovering("QHelpIndexWidget::updateMicroFocus")
-
 	if ptr.Pointer() != nil {
 		C.QHelpIndexWidget_UpdateMicroFocusDefault(ptr.Pointer())
 	}
@@ -15022,7 +12080,6 @@ func (ptr *QHelpIndexWidget) UpdateMicroFocusDefault() {
 
 //export callbackQHelpIndexWidget_ChildEvent
 func callbackQHelpIndexWidget_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpIndexWidget::childEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpIndexWidget::childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
@@ -15032,8 +12089,6 @@ func callbackQHelpIndexWidget_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointe
 }
 
 func (ptr *QHelpIndexWidget) ConnectChildEvent(f func(event *core.QChildEvent)) {
-	defer qt.Recovering("connect QHelpIndexWidget::childEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexWidget::childEvent", f)
@@ -15041,8 +12096,6 @@ func (ptr *QHelpIndexWidget) ConnectChildEvent(f func(event *core.QChildEvent)) 
 }
 
 func (ptr *QHelpIndexWidget) DisconnectChildEvent() {
-	defer qt.Recovering("disconnect QHelpIndexWidget::childEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexWidget::childEvent")
@@ -15050,16 +12103,12 @@ func (ptr *QHelpIndexWidget) DisconnectChildEvent() {
 }
 
 func (ptr *QHelpIndexWidget) ChildEvent(event core.QChildEvent_ITF) {
-	defer qt.Recovering("QHelpIndexWidget::childEvent")
-
 	if ptr.Pointer() != nil {
 		C.QHelpIndexWidget_ChildEvent(ptr.Pointer(), core.PointerFromQChildEvent(event))
 	}
 }
 
 func (ptr *QHelpIndexWidget) ChildEventDefault(event core.QChildEvent_ITF) {
-	defer qt.Recovering("QHelpIndexWidget::childEvent")
-
 	if ptr.Pointer() != nil {
 		C.QHelpIndexWidget_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
 	}
@@ -15067,7 +12116,6 @@ func (ptr *QHelpIndexWidget) ChildEventDefault(event core.QChildEvent_ITF) {
 
 //export callbackQHelpIndexWidget_ConnectNotify
 func callbackQHelpIndexWidget_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpIndexWidget::connectNotify")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpIndexWidget::connectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
@@ -15077,8 +12125,6 @@ func callbackQHelpIndexWidget_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Poin
 }
 
 func (ptr *QHelpIndexWidget) ConnectConnectNotify(f func(sign *core.QMetaMethod)) {
-	defer qt.Recovering("connect QHelpIndexWidget::connectNotify")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexWidget::connectNotify", f)
@@ -15086,8 +12132,6 @@ func (ptr *QHelpIndexWidget) ConnectConnectNotify(f func(sign *core.QMetaMethod)
 }
 
 func (ptr *QHelpIndexWidget) DisconnectConnectNotify() {
-	defer qt.Recovering("disconnect QHelpIndexWidget::connectNotify")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexWidget::connectNotify")
@@ -15095,16 +12139,12 @@ func (ptr *QHelpIndexWidget) DisconnectConnectNotify() {
 }
 
 func (ptr *QHelpIndexWidget) ConnectNotify(sign core.QMetaMethod_ITF) {
-	defer qt.Recovering("QHelpIndexWidget::connectNotify")
-
 	if ptr.Pointer() != nil {
 		C.QHelpIndexWidget_ConnectNotify(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
 	}
 }
 
 func (ptr *QHelpIndexWidget) ConnectNotifyDefault(sign core.QMetaMethod_ITF) {
-	defer qt.Recovering("QHelpIndexWidget::connectNotify")
-
 	if ptr.Pointer() != nil {
 		C.QHelpIndexWidget_ConnectNotifyDefault(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
 	}
@@ -15112,7 +12152,6 @@ func (ptr *QHelpIndexWidget) ConnectNotifyDefault(sign core.QMetaMethod_ITF) {
 
 //export callbackQHelpIndexWidget_CustomEvent
 func callbackQHelpIndexWidget_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpIndexWidget::customEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpIndexWidget::customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
@@ -15122,8 +12161,6 @@ func callbackQHelpIndexWidget_CustomEvent(ptr unsafe.Pointer, event unsafe.Point
 }
 
 func (ptr *QHelpIndexWidget) ConnectCustomEvent(f func(event *core.QEvent)) {
-	defer qt.Recovering("connect QHelpIndexWidget::customEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexWidget::customEvent", f)
@@ -15131,8 +12168,6 @@ func (ptr *QHelpIndexWidget) ConnectCustomEvent(f func(event *core.QEvent)) {
 }
 
 func (ptr *QHelpIndexWidget) DisconnectCustomEvent() {
-	defer qt.Recovering("disconnect QHelpIndexWidget::customEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexWidget::customEvent")
@@ -15140,16 +12175,12 @@ func (ptr *QHelpIndexWidget) DisconnectCustomEvent() {
 }
 
 func (ptr *QHelpIndexWidget) CustomEvent(event core.QEvent_ITF) {
-	defer qt.Recovering("QHelpIndexWidget::customEvent")
-
 	if ptr.Pointer() != nil {
 		C.QHelpIndexWidget_CustomEvent(ptr.Pointer(), core.PointerFromQEvent(event))
 	}
 }
 
 func (ptr *QHelpIndexWidget) CustomEventDefault(event core.QEvent_ITF) {
-	defer qt.Recovering("QHelpIndexWidget::customEvent")
-
 	if ptr.Pointer() != nil {
 		C.QHelpIndexWidget_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
 	}
@@ -15157,8 +12188,6 @@ func (ptr *QHelpIndexWidget) CustomEventDefault(event core.QEvent_ITF) {
 
 //export callbackQHelpIndexWidget_DeleteLater
 func callbackQHelpIndexWidget_DeleteLater(ptr unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpIndexWidget::deleteLater")
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpIndexWidget::deleteLater"); signal != nil {
 		signal.(func())()
 	} else {
@@ -15167,8 +12196,6 @@ func callbackQHelpIndexWidget_DeleteLater(ptr unsafe.Pointer) {
 }
 
 func (ptr *QHelpIndexWidget) ConnectDeleteLater(f func()) {
-	defer qt.Recovering("connect QHelpIndexWidget::deleteLater")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexWidget::deleteLater", f)
@@ -15176,8 +12203,6 @@ func (ptr *QHelpIndexWidget) ConnectDeleteLater(f func()) {
 }
 
 func (ptr *QHelpIndexWidget) DisconnectDeleteLater() {
-	defer qt.Recovering("disconnect QHelpIndexWidget::deleteLater")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexWidget::deleteLater")
@@ -15185,8 +12210,6 @@ func (ptr *QHelpIndexWidget) DisconnectDeleteLater() {
 }
 
 func (ptr *QHelpIndexWidget) DeleteLater() {
-	defer qt.Recovering("QHelpIndexWidget::deleteLater")
-
 	if ptr.Pointer() != nil {
 		C.QHelpIndexWidget_DeleteLater(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
@@ -15195,8 +12218,6 @@ func (ptr *QHelpIndexWidget) DeleteLater() {
 }
 
 func (ptr *QHelpIndexWidget) DeleteLaterDefault() {
-	defer qt.Recovering("QHelpIndexWidget::deleteLater")
-
 	if ptr.Pointer() != nil {
 		C.QHelpIndexWidget_DeleteLaterDefault(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
@@ -15206,7 +12227,6 @@ func (ptr *QHelpIndexWidget) DeleteLaterDefault() {
 
 //export callbackQHelpIndexWidget_DisconnectNotify
 func callbackQHelpIndexWidget_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpIndexWidget::disconnectNotify")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpIndexWidget::disconnectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
@@ -15216,8 +12236,6 @@ func callbackQHelpIndexWidget_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.P
 }
 
 func (ptr *QHelpIndexWidget) ConnectDisconnectNotify(f func(sign *core.QMetaMethod)) {
-	defer qt.Recovering("connect QHelpIndexWidget::disconnectNotify")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexWidget::disconnectNotify", f)
@@ -15225,8 +12243,6 @@ func (ptr *QHelpIndexWidget) ConnectDisconnectNotify(f func(sign *core.QMetaMeth
 }
 
 func (ptr *QHelpIndexWidget) DisconnectDisconnectNotify() {
-	defer qt.Recovering("disconnect QHelpIndexWidget::disconnectNotify")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexWidget::disconnectNotify")
@@ -15234,16 +12250,12 @@ func (ptr *QHelpIndexWidget) DisconnectDisconnectNotify() {
 }
 
 func (ptr *QHelpIndexWidget) DisconnectNotify(sign core.QMetaMethod_ITF) {
-	defer qt.Recovering("QHelpIndexWidget::disconnectNotify")
-
 	if ptr.Pointer() != nil {
 		C.QHelpIndexWidget_DisconnectNotify(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
 	}
 }
 
 func (ptr *QHelpIndexWidget) DisconnectNotifyDefault(sign core.QMetaMethod_ITF) {
-	defer qt.Recovering("QHelpIndexWidget::disconnectNotify")
-
 	if ptr.Pointer() != nil {
 		C.QHelpIndexWidget_DisconnectNotifyDefault(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
 	}
@@ -15251,7 +12263,6 @@ func (ptr *QHelpIndexWidget) DisconnectNotifyDefault(sign core.QMetaMethod_ITF) 
 
 //export callbackQHelpIndexWidget_EventFilter
 func callbackQHelpIndexWidget_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-	defer qt.Recovering("callback QHelpIndexWidget::eventFilter")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpIndexWidget::eventFilter"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
@@ -15261,8 +12272,6 @@ func callbackQHelpIndexWidget_EventFilter(ptr unsafe.Pointer, watched unsafe.Poi
 }
 
 func (ptr *QHelpIndexWidget) ConnectEventFilter(f func(watched *core.QObject, event *core.QEvent) bool) {
-	defer qt.Recovering("connect QHelpIndexWidget::eventFilter")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexWidget::eventFilter", f)
@@ -15270,8 +12279,6 @@ func (ptr *QHelpIndexWidget) ConnectEventFilter(f func(watched *core.QObject, ev
 }
 
 func (ptr *QHelpIndexWidget) DisconnectEventFilter() {
-	defer qt.Recovering("disconnect QHelpIndexWidget::eventFilter")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexWidget::eventFilter")
@@ -15279,8 +12286,6 @@ func (ptr *QHelpIndexWidget) DisconnectEventFilter() {
 }
 
 func (ptr *QHelpIndexWidget) EventFilter(watched core.QObject_ITF, event core.QEvent_ITF) bool {
-	defer qt.Recovering("QHelpIndexWidget::eventFilter")
-
 	if ptr.Pointer() != nil {
 		return C.QHelpIndexWidget_EventFilter(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
 	}
@@ -15288,8 +12293,6 @@ func (ptr *QHelpIndexWidget) EventFilter(watched core.QObject_ITF, event core.QE
 }
 
 func (ptr *QHelpIndexWidget) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
-	defer qt.Recovering("QHelpIndexWidget::eventFilter")
-
 	if ptr.Pointer() != nil {
 		return C.QHelpIndexWidget_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
 	}
@@ -15298,7 +12301,6 @@ func (ptr *QHelpIndexWidget) EventFilterDefault(watched core.QObject_ITF, event 
 
 //export callbackQHelpIndexWidget_MetaObject
 func callbackQHelpIndexWidget_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-	defer qt.Recovering("callback QHelpIndexWidget::metaObject")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpIndexWidget::metaObject"); signal != nil {
 		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
@@ -15308,8 +12310,6 @@ func callbackQHelpIndexWidget_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
 }
 
 func (ptr *QHelpIndexWidget) ConnectMetaObject(f func() *core.QMetaObject) {
-	defer qt.Recovering("connect QHelpIndexWidget::metaObject")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexWidget::metaObject", f)
@@ -15317,8 +12317,6 @@ func (ptr *QHelpIndexWidget) ConnectMetaObject(f func() *core.QMetaObject) {
 }
 
 func (ptr *QHelpIndexWidget) DisconnectMetaObject() {
-	defer qt.Recovering("disconnect QHelpIndexWidget::metaObject")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexWidget::metaObject")
@@ -15326,8 +12324,6 @@ func (ptr *QHelpIndexWidget) DisconnectMetaObject() {
 }
 
 func (ptr *QHelpIndexWidget) MetaObject() *core.QMetaObject {
-	defer qt.Recovering("QHelpIndexWidget::metaObject")
-
 	if ptr.Pointer() != nil {
 		return core.NewQMetaObjectFromPointer(C.QHelpIndexWidget_MetaObject(ptr.Pointer()))
 	}
@@ -15335,8 +12331,6 @@ func (ptr *QHelpIndexWidget) MetaObject() *core.QMetaObject {
 }
 
 func (ptr *QHelpIndexWidget) MetaObjectDefault() *core.QMetaObject {
-	defer qt.Recovering("QHelpIndexWidget::metaObject")
-
 	if ptr.Pointer() != nil {
 		return core.NewQMetaObjectFromPointer(C.QHelpIndexWidget_MetaObjectDefault(ptr.Pointer()))
 	}
@@ -15382,8 +12376,6 @@ func NewQHelpSearchEngineFromPointer(ptr unsafe.Pointer) *QHelpSearchEngine {
 	return n
 }
 func NewQHelpSearchEngine(helpEngine QHelpEngineCore_ITF, parent core.QObject_ITF) *QHelpSearchEngine {
-	defer qt.Recovering("QHelpSearchEngine::QHelpSearchEngine")
-
 	var tmpValue = NewQHelpSearchEngineFromPointer(C.QHelpSearchEngine_NewQHelpSearchEngine(PointerFromQHelpEngineCore(helpEngine), core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
@@ -15393,8 +12385,6 @@ func NewQHelpSearchEngine(helpEngine QHelpEngineCore_ITF, parent core.QObject_IT
 
 //export callbackQHelpSearchEngine_CancelIndexing
 func callbackQHelpSearchEngine_CancelIndexing(ptr unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpSearchEngine::cancelIndexing")
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpSearchEngine::cancelIndexing"); signal != nil {
 		signal.(func())()
 	}
@@ -15402,8 +12392,6 @@ func callbackQHelpSearchEngine_CancelIndexing(ptr unsafe.Pointer) {
 }
 
 func (ptr *QHelpSearchEngine) ConnectCancelIndexing(f func()) {
-	defer qt.Recovering("connect QHelpSearchEngine::cancelIndexing")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchEngine::cancelIndexing", f)
@@ -15411,8 +12399,6 @@ func (ptr *QHelpSearchEngine) ConnectCancelIndexing(f func()) {
 }
 
 func (ptr *QHelpSearchEngine) DisconnectCancelIndexing() {
-	defer qt.Recovering("disconnect QHelpSearchEngine::cancelIndexing")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchEngine::cancelIndexing")
@@ -15420,8 +12406,6 @@ func (ptr *QHelpSearchEngine) DisconnectCancelIndexing() {
 }
 
 func (ptr *QHelpSearchEngine) CancelIndexing() {
-	defer qt.Recovering("QHelpSearchEngine::cancelIndexing")
-
 	if ptr.Pointer() != nil {
 		C.QHelpSearchEngine_CancelIndexing(ptr.Pointer())
 	}
@@ -15429,8 +12413,6 @@ func (ptr *QHelpSearchEngine) CancelIndexing() {
 
 //export callbackQHelpSearchEngine_CancelSearching
 func callbackQHelpSearchEngine_CancelSearching(ptr unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpSearchEngine::cancelSearching")
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpSearchEngine::cancelSearching"); signal != nil {
 		signal.(func())()
 	}
@@ -15438,8 +12420,6 @@ func callbackQHelpSearchEngine_CancelSearching(ptr unsafe.Pointer) {
 }
 
 func (ptr *QHelpSearchEngine) ConnectCancelSearching(f func()) {
-	defer qt.Recovering("connect QHelpSearchEngine::cancelSearching")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchEngine::cancelSearching", f)
@@ -15447,8 +12427,6 @@ func (ptr *QHelpSearchEngine) ConnectCancelSearching(f func()) {
 }
 
 func (ptr *QHelpSearchEngine) DisconnectCancelSearching() {
-	defer qt.Recovering("disconnect QHelpSearchEngine::cancelSearching")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchEngine::cancelSearching")
@@ -15456,16 +12434,12 @@ func (ptr *QHelpSearchEngine) DisconnectCancelSearching() {
 }
 
 func (ptr *QHelpSearchEngine) CancelSearching() {
-	defer qt.Recovering("QHelpSearchEngine::cancelSearching")
-
 	if ptr.Pointer() != nil {
 		C.QHelpSearchEngine_CancelSearching(ptr.Pointer())
 	}
 }
 
 func (ptr *QHelpSearchEngine) HitCount() int {
-	defer qt.Recovering("QHelpSearchEngine::hitCount")
-
 	if ptr.Pointer() != nil {
 		return int(int32(C.QHelpSearchEngine_HitCount(ptr.Pointer())))
 	}
@@ -15474,7 +12448,6 @@ func (ptr *QHelpSearchEngine) HitCount() int {
 
 //export callbackQHelpSearchEngine_IndexingFinished
 func callbackQHelpSearchEngine_IndexingFinished(ptr unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpSearchEngine::indexingFinished")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpSearchEngine::indexingFinished"); signal != nil {
 		signal.(func())()
@@ -15483,8 +12456,6 @@ func callbackQHelpSearchEngine_IndexingFinished(ptr unsafe.Pointer) {
 }
 
 func (ptr *QHelpSearchEngine) ConnectIndexingFinished(f func()) {
-	defer qt.Recovering("connect QHelpSearchEngine::indexingFinished")
-
 	if ptr.Pointer() != nil {
 		C.QHelpSearchEngine_ConnectIndexingFinished(ptr.Pointer())
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchEngine::indexingFinished", f)
@@ -15492,8 +12463,6 @@ func (ptr *QHelpSearchEngine) ConnectIndexingFinished(f func()) {
 }
 
 func (ptr *QHelpSearchEngine) DisconnectIndexingFinished() {
-	defer qt.Recovering("disconnect QHelpSearchEngine::indexingFinished")
-
 	if ptr.Pointer() != nil {
 		C.QHelpSearchEngine_DisconnectIndexingFinished(ptr.Pointer())
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchEngine::indexingFinished")
@@ -15501,8 +12470,6 @@ func (ptr *QHelpSearchEngine) DisconnectIndexingFinished() {
 }
 
 func (ptr *QHelpSearchEngine) IndexingFinished() {
-	defer qt.Recovering("QHelpSearchEngine::indexingFinished")
-
 	if ptr.Pointer() != nil {
 		C.QHelpSearchEngine_IndexingFinished(ptr.Pointer())
 	}
@@ -15510,7 +12477,6 @@ func (ptr *QHelpSearchEngine) IndexingFinished() {
 
 //export callbackQHelpSearchEngine_IndexingStarted
 func callbackQHelpSearchEngine_IndexingStarted(ptr unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpSearchEngine::indexingStarted")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpSearchEngine::indexingStarted"); signal != nil {
 		signal.(func())()
@@ -15519,8 +12485,6 @@ func callbackQHelpSearchEngine_IndexingStarted(ptr unsafe.Pointer) {
 }
 
 func (ptr *QHelpSearchEngine) ConnectIndexingStarted(f func()) {
-	defer qt.Recovering("connect QHelpSearchEngine::indexingStarted")
-
 	if ptr.Pointer() != nil {
 		C.QHelpSearchEngine_ConnectIndexingStarted(ptr.Pointer())
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchEngine::indexingStarted", f)
@@ -15528,8 +12492,6 @@ func (ptr *QHelpSearchEngine) ConnectIndexingStarted(f func()) {
 }
 
 func (ptr *QHelpSearchEngine) DisconnectIndexingStarted() {
-	defer qt.Recovering("disconnect QHelpSearchEngine::indexingStarted")
-
 	if ptr.Pointer() != nil {
 		C.QHelpSearchEngine_DisconnectIndexingStarted(ptr.Pointer())
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchEngine::indexingStarted")
@@ -15537,16 +12499,12 @@ func (ptr *QHelpSearchEngine) DisconnectIndexingStarted() {
 }
 
 func (ptr *QHelpSearchEngine) IndexingStarted() {
-	defer qt.Recovering("QHelpSearchEngine::indexingStarted")
-
 	if ptr.Pointer() != nil {
 		C.QHelpSearchEngine_IndexingStarted(ptr.Pointer())
 	}
 }
 
 func (ptr *QHelpSearchEngine) QueryWidget() *QHelpSearchQueryWidget {
-	defer qt.Recovering("QHelpSearchEngine::queryWidget")
-
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQHelpSearchQueryWidgetFromPointer(C.QHelpSearchEngine_QueryWidget(ptr.Pointer()))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
@@ -15559,8 +12517,6 @@ func (ptr *QHelpSearchEngine) QueryWidget() *QHelpSearchQueryWidget {
 
 //export callbackQHelpSearchEngine_ReindexDocumentation
 func callbackQHelpSearchEngine_ReindexDocumentation(ptr unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpSearchEngine::reindexDocumentation")
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpSearchEngine::reindexDocumentation"); signal != nil {
 		signal.(func())()
 	}
@@ -15568,8 +12524,6 @@ func callbackQHelpSearchEngine_ReindexDocumentation(ptr unsafe.Pointer) {
 }
 
 func (ptr *QHelpSearchEngine) ConnectReindexDocumentation(f func()) {
-	defer qt.Recovering("connect QHelpSearchEngine::reindexDocumentation")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchEngine::reindexDocumentation", f)
@@ -15577,8 +12531,6 @@ func (ptr *QHelpSearchEngine) ConnectReindexDocumentation(f func()) {
 }
 
 func (ptr *QHelpSearchEngine) DisconnectReindexDocumentation() {
-	defer qt.Recovering("disconnect QHelpSearchEngine::reindexDocumentation")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchEngine::reindexDocumentation")
@@ -15586,16 +12538,12 @@ func (ptr *QHelpSearchEngine) DisconnectReindexDocumentation() {
 }
 
 func (ptr *QHelpSearchEngine) ReindexDocumentation() {
-	defer qt.Recovering("QHelpSearchEngine::reindexDocumentation")
-
 	if ptr.Pointer() != nil {
 		C.QHelpSearchEngine_ReindexDocumentation(ptr.Pointer())
 	}
 }
 
 func (ptr *QHelpSearchEngine) ResultWidget() *QHelpSearchResultWidget {
-	defer qt.Recovering("QHelpSearchEngine::resultWidget")
-
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQHelpSearchResultWidgetFromPointer(C.QHelpSearchEngine_ResultWidget(ptr.Pointer()))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
@@ -15608,7 +12556,6 @@ func (ptr *QHelpSearchEngine) ResultWidget() *QHelpSearchResultWidget {
 
 //export callbackQHelpSearchEngine_SearchingFinished
 func callbackQHelpSearchEngine_SearchingFinished(ptr unsafe.Pointer, hits C.int) {
-	defer qt.Recovering("callback QHelpSearchEngine::searchingFinished")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpSearchEngine::searchingFinished"); signal != nil {
 		signal.(func(int))(int(int32(hits)))
@@ -15617,8 +12564,6 @@ func callbackQHelpSearchEngine_SearchingFinished(ptr unsafe.Pointer, hits C.int)
 }
 
 func (ptr *QHelpSearchEngine) ConnectSearchingFinished(f func(hits int)) {
-	defer qt.Recovering("connect QHelpSearchEngine::searchingFinished")
-
 	if ptr.Pointer() != nil {
 		C.QHelpSearchEngine_ConnectSearchingFinished(ptr.Pointer())
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchEngine::searchingFinished", f)
@@ -15626,8 +12571,6 @@ func (ptr *QHelpSearchEngine) ConnectSearchingFinished(f func(hits int)) {
 }
 
 func (ptr *QHelpSearchEngine) DisconnectSearchingFinished() {
-	defer qt.Recovering("disconnect QHelpSearchEngine::searchingFinished")
-
 	if ptr.Pointer() != nil {
 		C.QHelpSearchEngine_DisconnectSearchingFinished(ptr.Pointer())
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchEngine::searchingFinished")
@@ -15635,8 +12578,6 @@ func (ptr *QHelpSearchEngine) DisconnectSearchingFinished() {
 }
 
 func (ptr *QHelpSearchEngine) SearchingFinished(hits int) {
-	defer qt.Recovering("QHelpSearchEngine::searchingFinished")
-
 	if ptr.Pointer() != nil {
 		C.QHelpSearchEngine_SearchingFinished(ptr.Pointer(), C.int(int32(hits)))
 	}
@@ -15644,7 +12585,6 @@ func (ptr *QHelpSearchEngine) SearchingFinished(hits int) {
 
 //export callbackQHelpSearchEngine_SearchingStarted
 func callbackQHelpSearchEngine_SearchingStarted(ptr unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpSearchEngine::searchingStarted")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpSearchEngine::searchingStarted"); signal != nil {
 		signal.(func())()
@@ -15653,8 +12593,6 @@ func callbackQHelpSearchEngine_SearchingStarted(ptr unsafe.Pointer) {
 }
 
 func (ptr *QHelpSearchEngine) ConnectSearchingStarted(f func()) {
-	defer qt.Recovering("connect QHelpSearchEngine::searchingStarted")
-
 	if ptr.Pointer() != nil {
 		C.QHelpSearchEngine_ConnectSearchingStarted(ptr.Pointer())
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchEngine::searchingStarted", f)
@@ -15662,8 +12600,6 @@ func (ptr *QHelpSearchEngine) ConnectSearchingStarted(f func()) {
 }
 
 func (ptr *QHelpSearchEngine) DisconnectSearchingStarted() {
-	defer qt.Recovering("disconnect QHelpSearchEngine::searchingStarted")
-
 	if ptr.Pointer() != nil {
 		C.QHelpSearchEngine_DisconnectSearchingStarted(ptr.Pointer())
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchEngine::searchingStarted")
@@ -15671,16 +12607,12 @@ func (ptr *QHelpSearchEngine) DisconnectSearchingStarted() {
 }
 
 func (ptr *QHelpSearchEngine) SearchingStarted() {
-	defer qt.Recovering("QHelpSearchEngine::searchingStarted")
-
 	if ptr.Pointer() != nil {
 		C.QHelpSearchEngine_SearchingStarted(ptr.Pointer())
 	}
 }
 
 func (ptr *QHelpSearchEngine) DestroyQHelpSearchEngine() {
-	defer qt.Recovering("QHelpSearchEngine::~QHelpSearchEngine")
-
 	if ptr.Pointer() != nil {
 		C.QHelpSearchEngine_DestroyQHelpSearchEngine(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
@@ -15690,7 +12622,6 @@ func (ptr *QHelpSearchEngine) DestroyQHelpSearchEngine() {
 
 //export callbackQHelpSearchEngine_TimerEvent
 func callbackQHelpSearchEngine_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpSearchEngine::timerEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpSearchEngine::timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
@@ -15700,8 +12631,6 @@ func callbackQHelpSearchEngine_TimerEvent(ptr unsafe.Pointer, event unsafe.Point
 }
 
 func (ptr *QHelpSearchEngine) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
-	defer qt.Recovering("connect QHelpSearchEngine::timerEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchEngine::timerEvent", f)
@@ -15709,8 +12638,6 @@ func (ptr *QHelpSearchEngine) ConnectTimerEvent(f func(event *core.QTimerEvent))
 }
 
 func (ptr *QHelpSearchEngine) DisconnectTimerEvent() {
-	defer qt.Recovering("disconnect QHelpSearchEngine::timerEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchEngine::timerEvent")
@@ -15718,16 +12645,12 @@ func (ptr *QHelpSearchEngine) DisconnectTimerEvent() {
 }
 
 func (ptr *QHelpSearchEngine) TimerEvent(event core.QTimerEvent_ITF) {
-	defer qt.Recovering("QHelpSearchEngine::timerEvent")
-
 	if ptr.Pointer() != nil {
 		C.QHelpSearchEngine_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
 	}
 }
 
 func (ptr *QHelpSearchEngine) TimerEventDefault(event core.QTimerEvent_ITF) {
-	defer qt.Recovering("QHelpSearchEngine::timerEvent")
-
 	if ptr.Pointer() != nil {
 		C.QHelpSearchEngine_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
 	}
@@ -15735,7 +12658,6 @@ func (ptr *QHelpSearchEngine) TimerEventDefault(event core.QTimerEvent_ITF) {
 
 //export callbackQHelpSearchEngine_ChildEvent
 func callbackQHelpSearchEngine_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpSearchEngine::childEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpSearchEngine::childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
@@ -15745,8 +12667,6 @@ func callbackQHelpSearchEngine_ChildEvent(ptr unsafe.Pointer, event unsafe.Point
 }
 
 func (ptr *QHelpSearchEngine) ConnectChildEvent(f func(event *core.QChildEvent)) {
-	defer qt.Recovering("connect QHelpSearchEngine::childEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchEngine::childEvent", f)
@@ -15754,8 +12674,6 @@ func (ptr *QHelpSearchEngine) ConnectChildEvent(f func(event *core.QChildEvent))
 }
 
 func (ptr *QHelpSearchEngine) DisconnectChildEvent() {
-	defer qt.Recovering("disconnect QHelpSearchEngine::childEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchEngine::childEvent")
@@ -15763,16 +12681,12 @@ func (ptr *QHelpSearchEngine) DisconnectChildEvent() {
 }
 
 func (ptr *QHelpSearchEngine) ChildEvent(event core.QChildEvent_ITF) {
-	defer qt.Recovering("QHelpSearchEngine::childEvent")
-
 	if ptr.Pointer() != nil {
 		C.QHelpSearchEngine_ChildEvent(ptr.Pointer(), core.PointerFromQChildEvent(event))
 	}
 }
 
 func (ptr *QHelpSearchEngine) ChildEventDefault(event core.QChildEvent_ITF) {
-	defer qt.Recovering("QHelpSearchEngine::childEvent")
-
 	if ptr.Pointer() != nil {
 		C.QHelpSearchEngine_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
 	}
@@ -15780,7 +12694,6 @@ func (ptr *QHelpSearchEngine) ChildEventDefault(event core.QChildEvent_ITF) {
 
 //export callbackQHelpSearchEngine_ConnectNotify
 func callbackQHelpSearchEngine_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpSearchEngine::connectNotify")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpSearchEngine::connectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
@@ -15790,8 +12703,6 @@ func callbackQHelpSearchEngine_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Poi
 }
 
 func (ptr *QHelpSearchEngine) ConnectConnectNotify(f func(sign *core.QMetaMethod)) {
-	defer qt.Recovering("connect QHelpSearchEngine::connectNotify")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchEngine::connectNotify", f)
@@ -15799,8 +12710,6 @@ func (ptr *QHelpSearchEngine) ConnectConnectNotify(f func(sign *core.QMetaMethod
 }
 
 func (ptr *QHelpSearchEngine) DisconnectConnectNotify() {
-	defer qt.Recovering("disconnect QHelpSearchEngine::connectNotify")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchEngine::connectNotify")
@@ -15808,16 +12717,12 @@ func (ptr *QHelpSearchEngine) DisconnectConnectNotify() {
 }
 
 func (ptr *QHelpSearchEngine) ConnectNotify(sign core.QMetaMethod_ITF) {
-	defer qt.Recovering("QHelpSearchEngine::connectNotify")
-
 	if ptr.Pointer() != nil {
 		C.QHelpSearchEngine_ConnectNotify(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
 	}
 }
 
 func (ptr *QHelpSearchEngine) ConnectNotifyDefault(sign core.QMetaMethod_ITF) {
-	defer qt.Recovering("QHelpSearchEngine::connectNotify")
-
 	if ptr.Pointer() != nil {
 		C.QHelpSearchEngine_ConnectNotifyDefault(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
 	}
@@ -15825,7 +12730,6 @@ func (ptr *QHelpSearchEngine) ConnectNotifyDefault(sign core.QMetaMethod_ITF) {
 
 //export callbackQHelpSearchEngine_CustomEvent
 func callbackQHelpSearchEngine_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpSearchEngine::customEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpSearchEngine::customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
@@ -15835,8 +12739,6 @@ func callbackQHelpSearchEngine_CustomEvent(ptr unsafe.Pointer, event unsafe.Poin
 }
 
 func (ptr *QHelpSearchEngine) ConnectCustomEvent(f func(event *core.QEvent)) {
-	defer qt.Recovering("connect QHelpSearchEngine::customEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchEngine::customEvent", f)
@@ -15844,8 +12746,6 @@ func (ptr *QHelpSearchEngine) ConnectCustomEvent(f func(event *core.QEvent)) {
 }
 
 func (ptr *QHelpSearchEngine) DisconnectCustomEvent() {
-	defer qt.Recovering("disconnect QHelpSearchEngine::customEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchEngine::customEvent")
@@ -15853,16 +12753,12 @@ func (ptr *QHelpSearchEngine) DisconnectCustomEvent() {
 }
 
 func (ptr *QHelpSearchEngine) CustomEvent(event core.QEvent_ITF) {
-	defer qt.Recovering("QHelpSearchEngine::customEvent")
-
 	if ptr.Pointer() != nil {
 		C.QHelpSearchEngine_CustomEvent(ptr.Pointer(), core.PointerFromQEvent(event))
 	}
 }
 
 func (ptr *QHelpSearchEngine) CustomEventDefault(event core.QEvent_ITF) {
-	defer qt.Recovering("QHelpSearchEngine::customEvent")
-
 	if ptr.Pointer() != nil {
 		C.QHelpSearchEngine_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
 	}
@@ -15870,8 +12766,6 @@ func (ptr *QHelpSearchEngine) CustomEventDefault(event core.QEvent_ITF) {
 
 //export callbackQHelpSearchEngine_DeleteLater
 func callbackQHelpSearchEngine_DeleteLater(ptr unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpSearchEngine::deleteLater")
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpSearchEngine::deleteLater"); signal != nil {
 		signal.(func())()
 	} else {
@@ -15880,8 +12774,6 @@ func callbackQHelpSearchEngine_DeleteLater(ptr unsafe.Pointer) {
 }
 
 func (ptr *QHelpSearchEngine) ConnectDeleteLater(f func()) {
-	defer qt.Recovering("connect QHelpSearchEngine::deleteLater")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchEngine::deleteLater", f)
@@ -15889,8 +12781,6 @@ func (ptr *QHelpSearchEngine) ConnectDeleteLater(f func()) {
 }
 
 func (ptr *QHelpSearchEngine) DisconnectDeleteLater() {
-	defer qt.Recovering("disconnect QHelpSearchEngine::deleteLater")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchEngine::deleteLater")
@@ -15898,8 +12788,6 @@ func (ptr *QHelpSearchEngine) DisconnectDeleteLater() {
 }
 
 func (ptr *QHelpSearchEngine) DeleteLater() {
-	defer qt.Recovering("QHelpSearchEngine::deleteLater")
-
 	if ptr.Pointer() != nil {
 		C.QHelpSearchEngine_DeleteLater(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
@@ -15908,8 +12796,6 @@ func (ptr *QHelpSearchEngine) DeleteLater() {
 }
 
 func (ptr *QHelpSearchEngine) DeleteLaterDefault() {
-	defer qt.Recovering("QHelpSearchEngine::deleteLater")
-
 	if ptr.Pointer() != nil {
 		C.QHelpSearchEngine_DeleteLaterDefault(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
@@ -15919,7 +12805,6 @@ func (ptr *QHelpSearchEngine) DeleteLaterDefault() {
 
 //export callbackQHelpSearchEngine_DisconnectNotify
 func callbackQHelpSearchEngine_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpSearchEngine::disconnectNotify")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpSearchEngine::disconnectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
@@ -15929,8 +12814,6 @@ func callbackQHelpSearchEngine_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.
 }
 
 func (ptr *QHelpSearchEngine) ConnectDisconnectNotify(f func(sign *core.QMetaMethod)) {
-	defer qt.Recovering("connect QHelpSearchEngine::disconnectNotify")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchEngine::disconnectNotify", f)
@@ -15938,8 +12821,6 @@ func (ptr *QHelpSearchEngine) ConnectDisconnectNotify(f func(sign *core.QMetaMet
 }
 
 func (ptr *QHelpSearchEngine) DisconnectDisconnectNotify() {
-	defer qt.Recovering("disconnect QHelpSearchEngine::disconnectNotify")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchEngine::disconnectNotify")
@@ -15947,16 +12828,12 @@ func (ptr *QHelpSearchEngine) DisconnectDisconnectNotify() {
 }
 
 func (ptr *QHelpSearchEngine) DisconnectNotify(sign core.QMetaMethod_ITF) {
-	defer qt.Recovering("QHelpSearchEngine::disconnectNotify")
-
 	if ptr.Pointer() != nil {
 		C.QHelpSearchEngine_DisconnectNotify(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
 	}
 }
 
 func (ptr *QHelpSearchEngine) DisconnectNotifyDefault(sign core.QMetaMethod_ITF) {
-	defer qt.Recovering("QHelpSearchEngine::disconnectNotify")
-
 	if ptr.Pointer() != nil {
 		C.QHelpSearchEngine_DisconnectNotifyDefault(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
 	}
@@ -15964,7 +12841,6 @@ func (ptr *QHelpSearchEngine) DisconnectNotifyDefault(sign core.QMetaMethod_ITF)
 
 //export callbackQHelpSearchEngine_Event
 func callbackQHelpSearchEngine_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
-	defer qt.Recovering("callback QHelpSearchEngine::event")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpSearchEngine::event"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
@@ -15974,8 +12850,6 @@ func callbackQHelpSearchEngine_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.cha
 }
 
 func (ptr *QHelpSearchEngine) ConnectEvent(f func(e *core.QEvent) bool) {
-	defer qt.Recovering("connect QHelpSearchEngine::event")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchEngine::event", f)
@@ -15983,8 +12857,6 @@ func (ptr *QHelpSearchEngine) ConnectEvent(f func(e *core.QEvent) bool) {
 }
 
 func (ptr *QHelpSearchEngine) DisconnectEvent() {
-	defer qt.Recovering("disconnect QHelpSearchEngine::event")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchEngine::event")
@@ -15992,8 +12864,6 @@ func (ptr *QHelpSearchEngine) DisconnectEvent() {
 }
 
 func (ptr *QHelpSearchEngine) Event(e core.QEvent_ITF) bool {
-	defer qt.Recovering("QHelpSearchEngine::event")
-
 	if ptr.Pointer() != nil {
 		return C.QHelpSearchEngine_Event(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
 	}
@@ -16001,8 +12871,6 @@ func (ptr *QHelpSearchEngine) Event(e core.QEvent_ITF) bool {
 }
 
 func (ptr *QHelpSearchEngine) EventDefault(e core.QEvent_ITF) bool {
-	defer qt.Recovering("QHelpSearchEngine::event")
-
 	if ptr.Pointer() != nil {
 		return C.QHelpSearchEngine_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
 	}
@@ -16011,7 +12879,6 @@ func (ptr *QHelpSearchEngine) EventDefault(e core.QEvent_ITF) bool {
 
 //export callbackQHelpSearchEngine_EventFilter
 func callbackQHelpSearchEngine_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-	defer qt.Recovering("callback QHelpSearchEngine::eventFilter")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpSearchEngine::eventFilter"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
@@ -16021,8 +12888,6 @@ func callbackQHelpSearchEngine_EventFilter(ptr unsafe.Pointer, watched unsafe.Po
 }
 
 func (ptr *QHelpSearchEngine) ConnectEventFilter(f func(watched *core.QObject, event *core.QEvent) bool) {
-	defer qt.Recovering("connect QHelpSearchEngine::eventFilter")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchEngine::eventFilter", f)
@@ -16030,8 +12895,6 @@ func (ptr *QHelpSearchEngine) ConnectEventFilter(f func(watched *core.QObject, e
 }
 
 func (ptr *QHelpSearchEngine) DisconnectEventFilter() {
-	defer qt.Recovering("disconnect QHelpSearchEngine::eventFilter")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchEngine::eventFilter")
@@ -16039,8 +12902,6 @@ func (ptr *QHelpSearchEngine) DisconnectEventFilter() {
 }
 
 func (ptr *QHelpSearchEngine) EventFilter(watched core.QObject_ITF, event core.QEvent_ITF) bool {
-	defer qt.Recovering("QHelpSearchEngine::eventFilter")
-
 	if ptr.Pointer() != nil {
 		return C.QHelpSearchEngine_EventFilter(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
 	}
@@ -16048,8 +12909,6 @@ func (ptr *QHelpSearchEngine) EventFilter(watched core.QObject_ITF, event core.Q
 }
 
 func (ptr *QHelpSearchEngine) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
-	defer qt.Recovering("QHelpSearchEngine::eventFilter")
-
 	if ptr.Pointer() != nil {
 		return C.QHelpSearchEngine_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
 	}
@@ -16058,7 +12917,6 @@ func (ptr *QHelpSearchEngine) EventFilterDefault(watched core.QObject_ITF, event
 
 //export callbackQHelpSearchEngine_MetaObject
 func callbackQHelpSearchEngine_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-	defer qt.Recovering("callback QHelpSearchEngine::metaObject")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpSearchEngine::metaObject"); signal != nil {
 		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
@@ -16068,8 +12926,6 @@ func callbackQHelpSearchEngine_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
 }
 
 func (ptr *QHelpSearchEngine) ConnectMetaObject(f func() *core.QMetaObject) {
-	defer qt.Recovering("connect QHelpSearchEngine::metaObject")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchEngine::metaObject", f)
@@ -16077,8 +12933,6 @@ func (ptr *QHelpSearchEngine) ConnectMetaObject(f func() *core.QMetaObject) {
 }
 
 func (ptr *QHelpSearchEngine) DisconnectMetaObject() {
-	defer qt.Recovering("disconnect QHelpSearchEngine::metaObject")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchEngine::metaObject")
@@ -16086,8 +12940,6 @@ func (ptr *QHelpSearchEngine) DisconnectMetaObject() {
 }
 
 func (ptr *QHelpSearchEngine) MetaObject() *core.QMetaObject {
-	defer qt.Recovering("QHelpSearchEngine::metaObject")
-
 	if ptr.Pointer() != nil {
 		return core.NewQMetaObjectFromPointer(C.QHelpSearchEngine_MetaObject(ptr.Pointer()))
 	}
@@ -16095,8 +12947,6 @@ func (ptr *QHelpSearchEngine) MetaObject() *core.QMetaObject {
 }
 
 func (ptr *QHelpSearchEngine) MetaObjectDefault() *core.QMetaObject {
-	defer qt.Recovering("QHelpSearchEngine::metaObject")
-
 	if ptr.Pointer() != nil {
 		return core.NewQMetaObjectFromPointer(C.QHelpSearchEngine_MetaObjectDefault(ptr.Pointer()))
 	}
@@ -16159,16 +13009,12 @@ func (ptr *QHelpSearchQuery) DestroyQHelpSearchQuery() {
 }
 
 func NewQHelpSearchQuery() *QHelpSearchQuery {
-	defer qt.Recovering("QHelpSearchQuery::QHelpSearchQuery")
-
 	var tmpValue = NewQHelpSearchQueryFromPointer(C.QHelpSearchQuery_NewQHelpSearchQuery())
 	runtime.SetFinalizer(tmpValue, (*QHelpSearchQuery).DestroyQHelpSearchQuery)
 	return tmpValue
 }
 
 func NewQHelpSearchQuery2(field QHelpSearchQuery__FieldName, wordList []string) *QHelpSearchQuery {
-	defer qt.Recovering("QHelpSearchQuery::QHelpSearchQuery")
-
 	var wordListC = C.CString(strings.Join(wordList, "|"))
 	defer C.free(unsafe.Pointer(wordListC))
 	var tmpValue = NewQHelpSearchQueryFromPointer(C.QHelpSearchQuery_NewQHelpSearchQuery2(C.longlong(field), wordListC))
@@ -16177,8 +13023,6 @@ func NewQHelpSearchQuery2(field QHelpSearchQuery__FieldName, wordList []string) 
 }
 
 func (ptr *QHelpSearchQuery) FieldName() QHelpSearchQuery__FieldName {
-	defer qt.Recovering("QHelpSearchQuery::fieldName")
-
 	if ptr.Pointer() != nil {
 		return QHelpSearchQuery__FieldName(C.QHelpSearchQuery_FieldName(ptr.Pointer()))
 	}
@@ -16186,16 +13030,12 @@ func (ptr *QHelpSearchQuery) FieldName() QHelpSearchQuery__FieldName {
 }
 
 func (ptr *QHelpSearchQuery) SetFieldName(vfi QHelpSearchQuery__FieldName) {
-	defer qt.Recovering("QHelpSearchQuery::setFieldName")
-
 	if ptr.Pointer() != nil {
 		C.QHelpSearchQuery_SetFieldName(ptr.Pointer(), C.longlong(vfi))
 	}
 }
 
 func (ptr *QHelpSearchQuery) WordList() []string {
-	defer qt.Recovering("QHelpSearchQuery::wordList")
-
 	if ptr.Pointer() != nil {
 		return strings.Split(C.GoString(C.QHelpSearchQuery_WordList(ptr.Pointer())), "|")
 	}
@@ -16203,8 +13043,6 @@ func (ptr *QHelpSearchQuery) WordList() []string {
 }
 
 func (ptr *QHelpSearchQuery) SetWordList(vqs []string) {
-	defer qt.Recovering("QHelpSearchQuery::setWordList")
-
 	if ptr.Pointer() != nil {
 		var vqsC = C.CString(strings.Join(vqs, "|"))
 		defer C.free(unsafe.Pointer(vqsC))
@@ -16251,8 +13089,6 @@ func NewQHelpSearchQueryWidgetFromPointer(ptr unsafe.Pointer) *QHelpSearchQueryW
 	return n
 }
 func (ptr *QHelpSearchQueryWidget) IsCompactMode() bool {
-	defer qt.Recovering("QHelpSearchQueryWidget::isCompactMode")
-
 	if ptr.Pointer() != nil {
 		return C.QHelpSearchQueryWidget_IsCompactMode(ptr.Pointer()) != 0
 	}
@@ -16260,8 +13096,6 @@ func (ptr *QHelpSearchQueryWidget) IsCompactMode() bool {
 }
 
 func NewQHelpSearchQueryWidget(parent widgets.QWidget_ITF) *QHelpSearchQueryWidget {
-	defer qt.Recovering("QHelpSearchQueryWidget::QHelpSearchQueryWidget")
-
 	var tmpValue = NewQHelpSearchQueryWidgetFromPointer(C.QHelpSearchQueryWidget_NewQHelpSearchQueryWidget(widgets.PointerFromQWidget(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
@@ -16270,16 +13104,12 @@ func NewQHelpSearchQueryWidget(parent widgets.QWidget_ITF) *QHelpSearchQueryWidg
 }
 
 func (ptr *QHelpSearchQueryWidget) CollapseExtendedSearch() {
-	defer qt.Recovering("QHelpSearchQueryWidget::collapseExtendedSearch")
-
 	if ptr.Pointer() != nil {
 		C.QHelpSearchQueryWidget_CollapseExtendedSearch(ptr.Pointer())
 	}
 }
 
 func (ptr *QHelpSearchQueryWidget) ExpandExtendedSearch() {
-	defer qt.Recovering("QHelpSearchQueryWidget::expandExtendedSearch")
-
 	if ptr.Pointer() != nil {
 		C.QHelpSearchQueryWidget_ExpandExtendedSearch(ptr.Pointer())
 	}
@@ -16287,7 +13117,6 @@ func (ptr *QHelpSearchQueryWidget) ExpandExtendedSearch() {
 
 //export callbackQHelpSearchQueryWidget_Search
 func callbackQHelpSearchQueryWidget_Search(ptr unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpSearchQueryWidget::search")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpSearchQueryWidget::search"); signal != nil {
 		signal.(func())()
@@ -16296,8 +13125,6 @@ func callbackQHelpSearchQueryWidget_Search(ptr unsafe.Pointer) {
 }
 
 func (ptr *QHelpSearchQueryWidget) ConnectSearch(f func()) {
-	defer qt.Recovering("connect QHelpSearchQueryWidget::search")
-
 	if ptr.Pointer() != nil {
 		C.QHelpSearchQueryWidget_ConnectSearch(ptr.Pointer())
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchQueryWidget::search", f)
@@ -16305,8 +13132,6 @@ func (ptr *QHelpSearchQueryWidget) ConnectSearch(f func()) {
 }
 
 func (ptr *QHelpSearchQueryWidget) DisconnectSearch() {
-	defer qt.Recovering("disconnect QHelpSearchQueryWidget::search")
-
 	if ptr.Pointer() != nil {
 		C.QHelpSearchQueryWidget_DisconnectSearch(ptr.Pointer())
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchQueryWidget::search")
@@ -16314,16 +13139,12 @@ func (ptr *QHelpSearchQueryWidget) DisconnectSearch() {
 }
 
 func (ptr *QHelpSearchQueryWidget) Search() {
-	defer qt.Recovering("QHelpSearchQueryWidget::search")
-
 	if ptr.Pointer() != nil {
 		C.QHelpSearchQueryWidget_Search(ptr.Pointer())
 	}
 }
 
 func (ptr *QHelpSearchQueryWidget) DestroyQHelpSearchQueryWidget() {
-	defer qt.Recovering("QHelpSearchQueryWidget::~QHelpSearchQueryWidget")
-
 	if ptr.Pointer() != nil {
 		C.QHelpSearchQueryWidget_DestroyQHelpSearchQueryWidget(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
@@ -16333,7 +13154,6 @@ func (ptr *QHelpSearchQueryWidget) DestroyQHelpSearchQueryWidget() {
 
 //export callbackQHelpSearchQueryWidget_ActionEvent
 func callbackQHelpSearchQueryWidget_ActionEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpSearchQueryWidget::actionEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpSearchQueryWidget::actionEvent"); signal != nil {
 		signal.(func(*gui.QActionEvent))(gui.NewQActionEventFromPointer(event))
@@ -16343,8 +13163,6 @@ func callbackQHelpSearchQueryWidget_ActionEvent(ptr unsafe.Pointer, event unsafe
 }
 
 func (ptr *QHelpSearchQueryWidget) ConnectActionEvent(f func(event *gui.QActionEvent)) {
-	defer qt.Recovering("connect QHelpSearchQueryWidget::actionEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchQueryWidget::actionEvent", f)
@@ -16352,8 +13170,6 @@ func (ptr *QHelpSearchQueryWidget) ConnectActionEvent(f func(event *gui.QActionE
 }
 
 func (ptr *QHelpSearchQueryWidget) DisconnectActionEvent() {
-	defer qt.Recovering("disconnect QHelpSearchQueryWidget::actionEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchQueryWidget::actionEvent")
@@ -16361,16 +13177,12 @@ func (ptr *QHelpSearchQueryWidget) DisconnectActionEvent() {
 }
 
 func (ptr *QHelpSearchQueryWidget) ActionEvent(event gui.QActionEvent_ITF) {
-	defer qt.Recovering("QHelpSearchQueryWidget::actionEvent")
-
 	if ptr.Pointer() != nil {
 		C.QHelpSearchQueryWidget_ActionEvent(ptr.Pointer(), gui.PointerFromQActionEvent(event))
 	}
 }
 
 func (ptr *QHelpSearchQueryWidget) ActionEventDefault(event gui.QActionEvent_ITF) {
-	defer qt.Recovering("QHelpSearchQueryWidget::actionEvent")
-
 	if ptr.Pointer() != nil {
 		C.QHelpSearchQueryWidget_ActionEventDefault(ptr.Pointer(), gui.PointerFromQActionEvent(event))
 	}
@@ -16378,7 +13190,6 @@ func (ptr *QHelpSearchQueryWidget) ActionEventDefault(event gui.QActionEvent_ITF
 
 //export callbackQHelpSearchQueryWidget_DragEnterEvent
 func callbackQHelpSearchQueryWidget_DragEnterEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpSearchQueryWidget::dragEnterEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpSearchQueryWidget::dragEnterEvent"); signal != nil {
 		signal.(func(*gui.QDragEnterEvent))(gui.NewQDragEnterEventFromPointer(event))
@@ -16388,8 +13199,6 @@ func callbackQHelpSearchQueryWidget_DragEnterEvent(ptr unsafe.Pointer, event uns
 }
 
 func (ptr *QHelpSearchQueryWidget) ConnectDragEnterEvent(f func(event *gui.QDragEnterEvent)) {
-	defer qt.Recovering("connect QHelpSearchQueryWidget::dragEnterEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchQueryWidget::dragEnterEvent", f)
@@ -16397,8 +13206,6 @@ func (ptr *QHelpSearchQueryWidget) ConnectDragEnterEvent(f func(event *gui.QDrag
 }
 
 func (ptr *QHelpSearchQueryWidget) DisconnectDragEnterEvent() {
-	defer qt.Recovering("disconnect QHelpSearchQueryWidget::dragEnterEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchQueryWidget::dragEnterEvent")
@@ -16406,16 +13213,12 @@ func (ptr *QHelpSearchQueryWidget) DisconnectDragEnterEvent() {
 }
 
 func (ptr *QHelpSearchQueryWidget) DragEnterEvent(event gui.QDragEnterEvent_ITF) {
-	defer qt.Recovering("QHelpSearchQueryWidget::dragEnterEvent")
-
 	if ptr.Pointer() != nil {
 		C.QHelpSearchQueryWidget_DragEnterEvent(ptr.Pointer(), gui.PointerFromQDragEnterEvent(event))
 	}
 }
 
 func (ptr *QHelpSearchQueryWidget) DragEnterEventDefault(event gui.QDragEnterEvent_ITF) {
-	defer qt.Recovering("QHelpSearchQueryWidget::dragEnterEvent")
-
 	if ptr.Pointer() != nil {
 		C.QHelpSearchQueryWidget_DragEnterEventDefault(ptr.Pointer(), gui.PointerFromQDragEnterEvent(event))
 	}
@@ -16423,7 +13226,6 @@ func (ptr *QHelpSearchQueryWidget) DragEnterEventDefault(event gui.QDragEnterEve
 
 //export callbackQHelpSearchQueryWidget_DragLeaveEvent
 func callbackQHelpSearchQueryWidget_DragLeaveEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpSearchQueryWidget::dragLeaveEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpSearchQueryWidget::dragLeaveEvent"); signal != nil {
 		signal.(func(*gui.QDragLeaveEvent))(gui.NewQDragLeaveEventFromPointer(event))
@@ -16433,8 +13235,6 @@ func callbackQHelpSearchQueryWidget_DragLeaveEvent(ptr unsafe.Pointer, event uns
 }
 
 func (ptr *QHelpSearchQueryWidget) ConnectDragLeaveEvent(f func(event *gui.QDragLeaveEvent)) {
-	defer qt.Recovering("connect QHelpSearchQueryWidget::dragLeaveEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchQueryWidget::dragLeaveEvent", f)
@@ -16442,8 +13242,6 @@ func (ptr *QHelpSearchQueryWidget) ConnectDragLeaveEvent(f func(event *gui.QDrag
 }
 
 func (ptr *QHelpSearchQueryWidget) DisconnectDragLeaveEvent() {
-	defer qt.Recovering("disconnect QHelpSearchQueryWidget::dragLeaveEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchQueryWidget::dragLeaveEvent")
@@ -16451,16 +13249,12 @@ func (ptr *QHelpSearchQueryWidget) DisconnectDragLeaveEvent() {
 }
 
 func (ptr *QHelpSearchQueryWidget) DragLeaveEvent(event gui.QDragLeaveEvent_ITF) {
-	defer qt.Recovering("QHelpSearchQueryWidget::dragLeaveEvent")
-
 	if ptr.Pointer() != nil {
 		C.QHelpSearchQueryWidget_DragLeaveEvent(ptr.Pointer(), gui.PointerFromQDragLeaveEvent(event))
 	}
 }
 
 func (ptr *QHelpSearchQueryWidget) DragLeaveEventDefault(event gui.QDragLeaveEvent_ITF) {
-	defer qt.Recovering("QHelpSearchQueryWidget::dragLeaveEvent")
-
 	if ptr.Pointer() != nil {
 		C.QHelpSearchQueryWidget_DragLeaveEventDefault(ptr.Pointer(), gui.PointerFromQDragLeaveEvent(event))
 	}
@@ -16468,7 +13262,6 @@ func (ptr *QHelpSearchQueryWidget) DragLeaveEventDefault(event gui.QDragLeaveEve
 
 //export callbackQHelpSearchQueryWidget_DragMoveEvent
 func callbackQHelpSearchQueryWidget_DragMoveEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpSearchQueryWidget::dragMoveEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpSearchQueryWidget::dragMoveEvent"); signal != nil {
 		signal.(func(*gui.QDragMoveEvent))(gui.NewQDragMoveEventFromPointer(event))
@@ -16478,8 +13271,6 @@ func callbackQHelpSearchQueryWidget_DragMoveEvent(ptr unsafe.Pointer, event unsa
 }
 
 func (ptr *QHelpSearchQueryWidget) ConnectDragMoveEvent(f func(event *gui.QDragMoveEvent)) {
-	defer qt.Recovering("connect QHelpSearchQueryWidget::dragMoveEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchQueryWidget::dragMoveEvent", f)
@@ -16487,8 +13278,6 @@ func (ptr *QHelpSearchQueryWidget) ConnectDragMoveEvent(f func(event *gui.QDragM
 }
 
 func (ptr *QHelpSearchQueryWidget) DisconnectDragMoveEvent() {
-	defer qt.Recovering("disconnect QHelpSearchQueryWidget::dragMoveEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchQueryWidget::dragMoveEvent")
@@ -16496,16 +13285,12 @@ func (ptr *QHelpSearchQueryWidget) DisconnectDragMoveEvent() {
 }
 
 func (ptr *QHelpSearchQueryWidget) DragMoveEvent(event gui.QDragMoveEvent_ITF) {
-	defer qt.Recovering("QHelpSearchQueryWidget::dragMoveEvent")
-
 	if ptr.Pointer() != nil {
 		C.QHelpSearchQueryWidget_DragMoveEvent(ptr.Pointer(), gui.PointerFromQDragMoveEvent(event))
 	}
 }
 
 func (ptr *QHelpSearchQueryWidget) DragMoveEventDefault(event gui.QDragMoveEvent_ITF) {
-	defer qt.Recovering("QHelpSearchQueryWidget::dragMoveEvent")
-
 	if ptr.Pointer() != nil {
 		C.QHelpSearchQueryWidget_DragMoveEventDefault(ptr.Pointer(), gui.PointerFromQDragMoveEvent(event))
 	}
@@ -16513,7 +13298,6 @@ func (ptr *QHelpSearchQueryWidget) DragMoveEventDefault(event gui.QDragMoveEvent
 
 //export callbackQHelpSearchQueryWidget_DropEvent
 func callbackQHelpSearchQueryWidget_DropEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpSearchQueryWidget::dropEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpSearchQueryWidget::dropEvent"); signal != nil {
 		signal.(func(*gui.QDropEvent))(gui.NewQDropEventFromPointer(event))
@@ -16523,8 +13307,6 @@ func callbackQHelpSearchQueryWidget_DropEvent(ptr unsafe.Pointer, event unsafe.P
 }
 
 func (ptr *QHelpSearchQueryWidget) ConnectDropEvent(f func(event *gui.QDropEvent)) {
-	defer qt.Recovering("connect QHelpSearchQueryWidget::dropEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchQueryWidget::dropEvent", f)
@@ -16532,8 +13314,6 @@ func (ptr *QHelpSearchQueryWidget) ConnectDropEvent(f func(event *gui.QDropEvent
 }
 
 func (ptr *QHelpSearchQueryWidget) DisconnectDropEvent() {
-	defer qt.Recovering("disconnect QHelpSearchQueryWidget::dropEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchQueryWidget::dropEvent")
@@ -16541,16 +13321,12 @@ func (ptr *QHelpSearchQueryWidget) DisconnectDropEvent() {
 }
 
 func (ptr *QHelpSearchQueryWidget) DropEvent(event gui.QDropEvent_ITF) {
-	defer qt.Recovering("QHelpSearchQueryWidget::dropEvent")
-
 	if ptr.Pointer() != nil {
 		C.QHelpSearchQueryWidget_DropEvent(ptr.Pointer(), gui.PointerFromQDropEvent(event))
 	}
 }
 
 func (ptr *QHelpSearchQueryWidget) DropEventDefault(event gui.QDropEvent_ITF) {
-	defer qt.Recovering("QHelpSearchQueryWidget::dropEvent")
-
 	if ptr.Pointer() != nil {
 		C.QHelpSearchQueryWidget_DropEventDefault(ptr.Pointer(), gui.PointerFromQDropEvent(event))
 	}
@@ -16558,7 +13334,6 @@ func (ptr *QHelpSearchQueryWidget) DropEventDefault(event gui.QDropEvent_ITF) {
 
 //export callbackQHelpSearchQueryWidget_EnterEvent
 func callbackQHelpSearchQueryWidget_EnterEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpSearchQueryWidget::enterEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpSearchQueryWidget::enterEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
@@ -16568,8 +13343,6 @@ func callbackQHelpSearchQueryWidget_EnterEvent(ptr unsafe.Pointer, event unsafe.
 }
 
 func (ptr *QHelpSearchQueryWidget) ConnectEnterEvent(f func(event *core.QEvent)) {
-	defer qt.Recovering("connect QHelpSearchQueryWidget::enterEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchQueryWidget::enterEvent", f)
@@ -16577,8 +13350,6 @@ func (ptr *QHelpSearchQueryWidget) ConnectEnterEvent(f func(event *core.QEvent))
 }
 
 func (ptr *QHelpSearchQueryWidget) DisconnectEnterEvent() {
-	defer qt.Recovering("disconnect QHelpSearchQueryWidget::enterEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchQueryWidget::enterEvent")
@@ -16586,16 +13357,12 @@ func (ptr *QHelpSearchQueryWidget) DisconnectEnterEvent() {
 }
 
 func (ptr *QHelpSearchQueryWidget) EnterEvent(event core.QEvent_ITF) {
-	defer qt.Recovering("QHelpSearchQueryWidget::enterEvent")
-
 	if ptr.Pointer() != nil {
 		C.QHelpSearchQueryWidget_EnterEvent(ptr.Pointer(), core.PointerFromQEvent(event))
 	}
 }
 
 func (ptr *QHelpSearchQueryWidget) EnterEventDefault(event core.QEvent_ITF) {
-	defer qt.Recovering("QHelpSearchQueryWidget::enterEvent")
-
 	if ptr.Pointer() != nil {
 		C.QHelpSearchQueryWidget_EnterEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
 	}
@@ -16603,7 +13370,6 @@ func (ptr *QHelpSearchQueryWidget) EnterEventDefault(event core.QEvent_ITF) {
 
 //export callbackQHelpSearchQueryWidget_FocusInEvent
 func callbackQHelpSearchQueryWidget_FocusInEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpSearchQueryWidget::focusInEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpSearchQueryWidget::focusInEvent"); signal != nil {
 		signal.(func(*gui.QFocusEvent))(gui.NewQFocusEventFromPointer(event))
@@ -16613,8 +13379,6 @@ func callbackQHelpSearchQueryWidget_FocusInEvent(ptr unsafe.Pointer, event unsaf
 }
 
 func (ptr *QHelpSearchQueryWidget) ConnectFocusInEvent(f func(event *gui.QFocusEvent)) {
-	defer qt.Recovering("connect QHelpSearchQueryWidget::focusInEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchQueryWidget::focusInEvent", f)
@@ -16622,8 +13386,6 @@ func (ptr *QHelpSearchQueryWidget) ConnectFocusInEvent(f func(event *gui.QFocusE
 }
 
 func (ptr *QHelpSearchQueryWidget) DisconnectFocusInEvent() {
-	defer qt.Recovering("disconnect QHelpSearchQueryWidget::focusInEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchQueryWidget::focusInEvent")
@@ -16631,16 +13393,12 @@ func (ptr *QHelpSearchQueryWidget) DisconnectFocusInEvent() {
 }
 
 func (ptr *QHelpSearchQueryWidget) FocusInEvent(event gui.QFocusEvent_ITF) {
-	defer qt.Recovering("QHelpSearchQueryWidget::focusInEvent")
-
 	if ptr.Pointer() != nil {
 		C.QHelpSearchQueryWidget_FocusInEvent(ptr.Pointer(), gui.PointerFromQFocusEvent(event))
 	}
 }
 
 func (ptr *QHelpSearchQueryWidget) FocusInEventDefault(event gui.QFocusEvent_ITF) {
-	defer qt.Recovering("QHelpSearchQueryWidget::focusInEvent")
-
 	if ptr.Pointer() != nil {
 		C.QHelpSearchQueryWidget_FocusInEventDefault(ptr.Pointer(), gui.PointerFromQFocusEvent(event))
 	}
@@ -16648,7 +13406,6 @@ func (ptr *QHelpSearchQueryWidget) FocusInEventDefault(event gui.QFocusEvent_ITF
 
 //export callbackQHelpSearchQueryWidget_FocusOutEvent
 func callbackQHelpSearchQueryWidget_FocusOutEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpSearchQueryWidget::focusOutEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpSearchQueryWidget::focusOutEvent"); signal != nil {
 		signal.(func(*gui.QFocusEvent))(gui.NewQFocusEventFromPointer(event))
@@ -16658,8 +13415,6 @@ func callbackQHelpSearchQueryWidget_FocusOutEvent(ptr unsafe.Pointer, event unsa
 }
 
 func (ptr *QHelpSearchQueryWidget) ConnectFocusOutEvent(f func(event *gui.QFocusEvent)) {
-	defer qt.Recovering("connect QHelpSearchQueryWidget::focusOutEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchQueryWidget::focusOutEvent", f)
@@ -16667,8 +13422,6 @@ func (ptr *QHelpSearchQueryWidget) ConnectFocusOutEvent(f func(event *gui.QFocus
 }
 
 func (ptr *QHelpSearchQueryWidget) DisconnectFocusOutEvent() {
-	defer qt.Recovering("disconnect QHelpSearchQueryWidget::focusOutEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchQueryWidget::focusOutEvent")
@@ -16676,16 +13429,12 @@ func (ptr *QHelpSearchQueryWidget) DisconnectFocusOutEvent() {
 }
 
 func (ptr *QHelpSearchQueryWidget) FocusOutEvent(event gui.QFocusEvent_ITF) {
-	defer qt.Recovering("QHelpSearchQueryWidget::focusOutEvent")
-
 	if ptr.Pointer() != nil {
 		C.QHelpSearchQueryWidget_FocusOutEvent(ptr.Pointer(), gui.PointerFromQFocusEvent(event))
 	}
 }
 
 func (ptr *QHelpSearchQueryWidget) FocusOutEventDefault(event gui.QFocusEvent_ITF) {
-	defer qt.Recovering("QHelpSearchQueryWidget::focusOutEvent")
-
 	if ptr.Pointer() != nil {
 		C.QHelpSearchQueryWidget_FocusOutEventDefault(ptr.Pointer(), gui.PointerFromQFocusEvent(event))
 	}
@@ -16693,7 +13442,6 @@ func (ptr *QHelpSearchQueryWidget) FocusOutEventDefault(event gui.QFocusEvent_IT
 
 //export callbackQHelpSearchQueryWidget_HideEvent
 func callbackQHelpSearchQueryWidget_HideEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpSearchQueryWidget::hideEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpSearchQueryWidget::hideEvent"); signal != nil {
 		signal.(func(*gui.QHideEvent))(gui.NewQHideEventFromPointer(event))
@@ -16703,8 +13451,6 @@ func callbackQHelpSearchQueryWidget_HideEvent(ptr unsafe.Pointer, event unsafe.P
 }
 
 func (ptr *QHelpSearchQueryWidget) ConnectHideEvent(f func(event *gui.QHideEvent)) {
-	defer qt.Recovering("connect QHelpSearchQueryWidget::hideEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchQueryWidget::hideEvent", f)
@@ -16712,8 +13458,6 @@ func (ptr *QHelpSearchQueryWidget) ConnectHideEvent(f func(event *gui.QHideEvent
 }
 
 func (ptr *QHelpSearchQueryWidget) DisconnectHideEvent() {
-	defer qt.Recovering("disconnect QHelpSearchQueryWidget::hideEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchQueryWidget::hideEvent")
@@ -16721,16 +13465,12 @@ func (ptr *QHelpSearchQueryWidget) DisconnectHideEvent() {
 }
 
 func (ptr *QHelpSearchQueryWidget) HideEvent(event gui.QHideEvent_ITF) {
-	defer qt.Recovering("QHelpSearchQueryWidget::hideEvent")
-
 	if ptr.Pointer() != nil {
 		C.QHelpSearchQueryWidget_HideEvent(ptr.Pointer(), gui.PointerFromQHideEvent(event))
 	}
 }
 
 func (ptr *QHelpSearchQueryWidget) HideEventDefault(event gui.QHideEvent_ITF) {
-	defer qt.Recovering("QHelpSearchQueryWidget::hideEvent")
-
 	if ptr.Pointer() != nil {
 		C.QHelpSearchQueryWidget_HideEventDefault(ptr.Pointer(), gui.PointerFromQHideEvent(event))
 	}
@@ -16738,7 +13478,6 @@ func (ptr *QHelpSearchQueryWidget) HideEventDefault(event gui.QHideEvent_ITF) {
 
 //export callbackQHelpSearchQueryWidget_LeaveEvent
 func callbackQHelpSearchQueryWidget_LeaveEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpSearchQueryWidget::leaveEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpSearchQueryWidget::leaveEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
@@ -16748,8 +13487,6 @@ func callbackQHelpSearchQueryWidget_LeaveEvent(ptr unsafe.Pointer, event unsafe.
 }
 
 func (ptr *QHelpSearchQueryWidget) ConnectLeaveEvent(f func(event *core.QEvent)) {
-	defer qt.Recovering("connect QHelpSearchQueryWidget::leaveEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchQueryWidget::leaveEvent", f)
@@ -16757,8 +13494,6 @@ func (ptr *QHelpSearchQueryWidget) ConnectLeaveEvent(f func(event *core.QEvent))
 }
 
 func (ptr *QHelpSearchQueryWidget) DisconnectLeaveEvent() {
-	defer qt.Recovering("disconnect QHelpSearchQueryWidget::leaveEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchQueryWidget::leaveEvent")
@@ -16766,16 +13501,12 @@ func (ptr *QHelpSearchQueryWidget) DisconnectLeaveEvent() {
 }
 
 func (ptr *QHelpSearchQueryWidget) LeaveEvent(event core.QEvent_ITF) {
-	defer qt.Recovering("QHelpSearchQueryWidget::leaveEvent")
-
 	if ptr.Pointer() != nil {
 		C.QHelpSearchQueryWidget_LeaveEvent(ptr.Pointer(), core.PointerFromQEvent(event))
 	}
 }
 
 func (ptr *QHelpSearchQueryWidget) LeaveEventDefault(event core.QEvent_ITF) {
-	defer qt.Recovering("QHelpSearchQueryWidget::leaveEvent")
-
 	if ptr.Pointer() != nil {
 		C.QHelpSearchQueryWidget_LeaveEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
 	}
@@ -16783,7 +13514,6 @@ func (ptr *QHelpSearchQueryWidget) LeaveEventDefault(event core.QEvent_ITF) {
 
 //export callbackQHelpSearchQueryWidget_MinimumSizeHint
 func callbackQHelpSearchQueryWidget_MinimumSizeHint(ptr unsafe.Pointer) unsafe.Pointer {
-	defer qt.Recovering("callback QHelpSearchQueryWidget::minimumSizeHint")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpSearchQueryWidget::minimumSizeHint"); signal != nil {
 		return core.PointerFromQSize(signal.(func() *core.QSize)())
@@ -16793,8 +13523,6 @@ func callbackQHelpSearchQueryWidget_MinimumSizeHint(ptr unsafe.Pointer) unsafe.P
 }
 
 func (ptr *QHelpSearchQueryWidget) ConnectMinimumSizeHint(f func() *core.QSize) {
-	defer qt.Recovering("connect QHelpSearchQueryWidget::minimumSizeHint")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchQueryWidget::minimumSizeHint", f)
@@ -16802,8 +13530,6 @@ func (ptr *QHelpSearchQueryWidget) ConnectMinimumSizeHint(f func() *core.QSize) 
 }
 
 func (ptr *QHelpSearchQueryWidget) DisconnectMinimumSizeHint() {
-	defer qt.Recovering("disconnect QHelpSearchQueryWidget::minimumSizeHint")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchQueryWidget::minimumSizeHint")
@@ -16811,8 +13537,6 @@ func (ptr *QHelpSearchQueryWidget) DisconnectMinimumSizeHint() {
 }
 
 func (ptr *QHelpSearchQueryWidget) MinimumSizeHint() *core.QSize {
-	defer qt.Recovering("QHelpSearchQueryWidget::minimumSizeHint")
-
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQSizeFromPointer(C.QHelpSearchQueryWidget_MinimumSizeHint(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
@@ -16822,8 +13546,6 @@ func (ptr *QHelpSearchQueryWidget) MinimumSizeHint() *core.QSize {
 }
 
 func (ptr *QHelpSearchQueryWidget) MinimumSizeHintDefault() *core.QSize {
-	defer qt.Recovering("QHelpSearchQueryWidget::minimumSizeHint")
-
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQSizeFromPointer(C.QHelpSearchQueryWidget_MinimumSizeHintDefault(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
@@ -16834,7 +13556,6 @@ func (ptr *QHelpSearchQueryWidget) MinimumSizeHintDefault() *core.QSize {
 
 //export callbackQHelpSearchQueryWidget_MoveEvent
 func callbackQHelpSearchQueryWidget_MoveEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpSearchQueryWidget::moveEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpSearchQueryWidget::moveEvent"); signal != nil {
 		signal.(func(*gui.QMoveEvent))(gui.NewQMoveEventFromPointer(event))
@@ -16844,8 +13565,6 @@ func callbackQHelpSearchQueryWidget_MoveEvent(ptr unsafe.Pointer, event unsafe.P
 }
 
 func (ptr *QHelpSearchQueryWidget) ConnectMoveEvent(f func(event *gui.QMoveEvent)) {
-	defer qt.Recovering("connect QHelpSearchQueryWidget::moveEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchQueryWidget::moveEvent", f)
@@ -16853,8 +13572,6 @@ func (ptr *QHelpSearchQueryWidget) ConnectMoveEvent(f func(event *gui.QMoveEvent
 }
 
 func (ptr *QHelpSearchQueryWidget) DisconnectMoveEvent() {
-	defer qt.Recovering("disconnect QHelpSearchQueryWidget::moveEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchQueryWidget::moveEvent")
@@ -16862,16 +13579,12 @@ func (ptr *QHelpSearchQueryWidget) DisconnectMoveEvent() {
 }
 
 func (ptr *QHelpSearchQueryWidget) MoveEvent(event gui.QMoveEvent_ITF) {
-	defer qt.Recovering("QHelpSearchQueryWidget::moveEvent")
-
 	if ptr.Pointer() != nil {
 		C.QHelpSearchQueryWidget_MoveEvent(ptr.Pointer(), gui.PointerFromQMoveEvent(event))
 	}
 }
 
 func (ptr *QHelpSearchQueryWidget) MoveEventDefault(event gui.QMoveEvent_ITF) {
-	defer qt.Recovering("QHelpSearchQueryWidget::moveEvent")
-
 	if ptr.Pointer() != nil {
 		C.QHelpSearchQueryWidget_MoveEventDefault(ptr.Pointer(), gui.PointerFromQMoveEvent(event))
 	}
@@ -16879,7 +13592,6 @@ func (ptr *QHelpSearchQueryWidget) MoveEventDefault(event gui.QMoveEvent_ITF) {
 
 //export callbackQHelpSearchQueryWidget_PaintEvent
 func callbackQHelpSearchQueryWidget_PaintEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpSearchQueryWidget::paintEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpSearchQueryWidget::paintEvent"); signal != nil {
 		signal.(func(*gui.QPaintEvent))(gui.NewQPaintEventFromPointer(event))
@@ -16889,8 +13601,6 @@ func callbackQHelpSearchQueryWidget_PaintEvent(ptr unsafe.Pointer, event unsafe.
 }
 
 func (ptr *QHelpSearchQueryWidget) ConnectPaintEvent(f func(event *gui.QPaintEvent)) {
-	defer qt.Recovering("connect QHelpSearchQueryWidget::paintEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchQueryWidget::paintEvent", f)
@@ -16898,8 +13608,6 @@ func (ptr *QHelpSearchQueryWidget) ConnectPaintEvent(f func(event *gui.QPaintEve
 }
 
 func (ptr *QHelpSearchQueryWidget) DisconnectPaintEvent() {
-	defer qt.Recovering("disconnect QHelpSearchQueryWidget::paintEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchQueryWidget::paintEvent")
@@ -16907,16 +13615,12 @@ func (ptr *QHelpSearchQueryWidget) DisconnectPaintEvent() {
 }
 
 func (ptr *QHelpSearchQueryWidget) PaintEvent(event gui.QPaintEvent_ITF) {
-	defer qt.Recovering("QHelpSearchQueryWidget::paintEvent")
-
 	if ptr.Pointer() != nil {
 		C.QHelpSearchQueryWidget_PaintEvent(ptr.Pointer(), gui.PointerFromQPaintEvent(event))
 	}
 }
 
 func (ptr *QHelpSearchQueryWidget) PaintEventDefault(event gui.QPaintEvent_ITF) {
-	defer qt.Recovering("QHelpSearchQueryWidget::paintEvent")
-
 	if ptr.Pointer() != nil {
 		C.QHelpSearchQueryWidget_PaintEventDefault(ptr.Pointer(), gui.PointerFromQPaintEvent(event))
 	}
@@ -16924,8 +13628,6 @@ func (ptr *QHelpSearchQueryWidget) PaintEventDefault(event gui.QPaintEvent_ITF) 
 
 //export callbackQHelpSearchQueryWidget_SetEnabled
 func callbackQHelpSearchQueryWidget_SetEnabled(ptr unsafe.Pointer, vbo C.char) {
-	defer qt.Recovering("callback QHelpSearchQueryWidget::setEnabled")
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpSearchQueryWidget::setEnabled"); signal != nil {
 		signal.(func(bool))(int8(vbo) != 0)
 	} else {
@@ -16934,8 +13636,6 @@ func callbackQHelpSearchQueryWidget_SetEnabled(ptr unsafe.Pointer, vbo C.char) {
 }
 
 func (ptr *QHelpSearchQueryWidget) ConnectSetEnabled(f func(vbo bool)) {
-	defer qt.Recovering("connect QHelpSearchQueryWidget::setEnabled")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchQueryWidget::setEnabled", f)
@@ -16943,8 +13643,6 @@ func (ptr *QHelpSearchQueryWidget) ConnectSetEnabled(f func(vbo bool)) {
 }
 
 func (ptr *QHelpSearchQueryWidget) DisconnectSetEnabled() {
-	defer qt.Recovering("disconnect QHelpSearchQueryWidget::setEnabled")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchQueryWidget::setEnabled")
@@ -16952,16 +13650,12 @@ func (ptr *QHelpSearchQueryWidget) DisconnectSetEnabled() {
 }
 
 func (ptr *QHelpSearchQueryWidget) SetEnabled(vbo bool) {
-	defer qt.Recovering("QHelpSearchQueryWidget::setEnabled")
-
 	if ptr.Pointer() != nil {
 		C.QHelpSearchQueryWidget_SetEnabled(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(vbo))))
 	}
 }
 
 func (ptr *QHelpSearchQueryWidget) SetEnabledDefault(vbo bool) {
-	defer qt.Recovering("QHelpSearchQueryWidget::setEnabled")
-
 	if ptr.Pointer() != nil {
 		C.QHelpSearchQueryWidget_SetEnabledDefault(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(vbo))))
 	}
@@ -16969,8 +13663,6 @@ func (ptr *QHelpSearchQueryWidget) SetEnabledDefault(vbo bool) {
 
 //export callbackQHelpSearchQueryWidget_SetStyleSheet
 func callbackQHelpSearchQueryWidget_SetStyleSheet(ptr unsafe.Pointer, styleSheet *C.char) {
-	defer qt.Recovering("callback QHelpSearchQueryWidget::setStyleSheet")
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpSearchQueryWidget::setStyleSheet"); signal != nil {
 		signal.(func(string))(C.GoString(styleSheet))
 	} else {
@@ -16979,8 +13671,6 @@ func callbackQHelpSearchQueryWidget_SetStyleSheet(ptr unsafe.Pointer, styleSheet
 }
 
 func (ptr *QHelpSearchQueryWidget) ConnectSetStyleSheet(f func(styleSheet string)) {
-	defer qt.Recovering("connect QHelpSearchQueryWidget::setStyleSheet")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchQueryWidget::setStyleSheet", f)
@@ -16988,8 +13678,6 @@ func (ptr *QHelpSearchQueryWidget) ConnectSetStyleSheet(f func(styleSheet string
 }
 
 func (ptr *QHelpSearchQueryWidget) DisconnectSetStyleSheet() {
-	defer qt.Recovering("disconnect QHelpSearchQueryWidget::setStyleSheet")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchQueryWidget::setStyleSheet")
@@ -16997,8 +13685,6 @@ func (ptr *QHelpSearchQueryWidget) DisconnectSetStyleSheet() {
 }
 
 func (ptr *QHelpSearchQueryWidget) SetStyleSheet(styleSheet string) {
-	defer qt.Recovering("QHelpSearchQueryWidget::setStyleSheet")
-
 	if ptr.Pointer() != nil {
 		var styleSheetC = C.CString(styleSheet)
 		defer C.free(unsafe.Pointer(styleSheetC))
@@ -17007,8 +13693,6 @@ func (ptr *QHelpSearchQueryWidget) SetStyleSheet(styleSheet string) {
 }
 
 func (ptr *QHelpSearchQueryWidget) SetStyleSheetDefault(styleSheet string) {
-	defer qt.Recovering("QHelpSearchQueryWidget::setStyleSheet")
-
 	if ptr.Pointer() != nil {
 		var styleSheetC = C.CString(styleSheet)
 		defer C.free(unsafe.Pointer(styleSheetC))
@@ -17018,8 +13702,6 @@ func (ptr *QHelpSearchQueryWidget) SetStyleSheetDefault(styleSheet string) {
 
 //export callbackQHelpSearchQueryWidget_SetVisible
 func callbackQHelpSearchQueryWidget_SetVisible(ptr unsafe.Pointer, visible C.char) {
-	defer qt.Recovering("callback QHelpSearchQueryWidget::setVisible")
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpSearchQueryWidget::setVisible"); signal != nil {
 		signal.(func(bool))(int8(visible) != 0)
 	} else {
@@ -17028,8 +13710,6 @@ func callbackQHelpSearchQueryWidget_SetVisible(ptr unsafe.Pointer, visible C.cha
 }
 
 func (ptr *QHelpSearchQueryWidget) ConnectSetVisible(f func(visible bool)) {
-	defer qt.Recovering("connect QHelpSearchQueryWidget::setVisible")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchQueryWidget::setVisible", f)
@@ -17037,8 +13717,6 @@ func (ptr *QHelpSearchQueryWidget) ConnectSetVisible(f func(visible bool)) {
 }
 
 func (ptr *QHelpSearchQueryWidget) DisconnectSetVisible() {
-	defer qt.Recovering("disconnect QHelpSearchQueryWidget::setVisible")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchQueryWidget::setVisible")
@@ -17046,16 +13724,12 @@ func (ptr *QHelpSearchQueryWidget) DisconnectSetVisible() {
 }
 
 func (ptr *QHelpSearchQueryWidget) SetVisible(visible bool) {
-	defer qt.Recovering("QHelpSearchQueryWidget::setVisible")
-
 	if ptr.Pointer() != nil {
 		C.QHelpSearchQueryWidget_SetVisible(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(visible))))
 	}
 }
 
 func (ptr *QHelpSearchQueryWidget) SetVisibleDefault(visible bool) {
-	defer qt.Recovering("QHelpSearchQueryWidget::setVisible")
-
 	if ptr.Pointer() != nil {
 		C.QHelpSearchQueryWidget_SetVisibleDefault(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(visible))))
 	}
@@ -17063,8 +13737,6 @@ func (ptr *QHelpSearchQueryWidget) SetVisibleDefault(visible bool) {
 
 //export callbackQHelpSearchQueryWidget_SetWindowModified
 func callbackQHelpSearchQueryWidget_SetWindowModified(ptr unsafe.Pointer, vbo C.char) {
-	defer qt.Recovering("callback QHelpSearchQueryWidget::setWindowModified")
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpSearchQueryWidget::setWindowModified"); signal != nil {
 		signal.(func(bool))(int8(vbo) != 0)
 	} else {
@@ -17073,8 +13745,6 @@ func callbackQHelpSearchQueryWidget_SetWindowModified(ptr unsafe.Pointer, vbo C.
 }
 
 func (ptr *QHelpSearchQueryWidget) ConnectSetWindowModified(f func(vbo bool)) {
-	defer qt.Recovering("connect QHelpSearchQueryWidget::setWindowModified")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchQueryWidget::setWindowModified", f)
@@ -17082,8 +13752,6 @@ func (ptr *QHelpSearchQueryWidget) ConnectSetWindowModified(f func(vbo bool)) {
 }
 
 func (ptr *QHelpSearchQueryWidget) DisconnectSetWindowModified() {
-	defer qt.Recovering("disconnect QHelpSearchQueryWidget::setWindowModified")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchQueryWidget::setWindowModified")
@@ -17091,16 +13759,12 @@ func (ptr *QHelpSearchQueryWidget) DisconnectSetWindowModified() {
 }
 
 func (ptr *QHelpSearchQueryWidget) SetWindowModified(vbo bool) {
-	defer qt.Recovering("QHelpSearchQueryWidget::setWindowModified")
-
 	if ptr.Pointer() != nil {
 		C.QHelpSearchQueryWidget_SetWindowModified(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(vbo))))
 	}
 }
 
 func (ptr *QHelpSearchQueryWidget) SetWindowModifiedDefault(vbo bool) {
-	defer qt.Recovering("QHelpSearchQueryWidget::setWindowModified")
-
 	if ptr.Pointer() != nil {
 		C.QHelpSearchQueryWidget_SetWindowModifiedDefault(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(vbo))))
 	}
@@ -17108,8 +13772,6 @@ func (ptr *QHelpSearchQueryWidget) SetWindowModifiedDefault(vbo bool) {
 
 //export callbackQHelpSearchQueryWidget_SetWindowTitle
 func callbackQHelpSearchQueryWidget_SetWindowTitle(ptr unsafe.Pointer, vqs *C.char) {
-	defer qt.Recovering("callback QHelpSearchQueryWidget::setWindowTitle")
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpSearchQueryWidget::setWindowTitle"); signal != nil {
 		signal.(func(string))(C.GoString(vqs))
 	} else {
@@ -17118,8 +13780,6 @@ func callbackQHelpSearchQueryWidget_SetWindowTitle(ptr unsafe.Pointer, vqs *C.ch
 }
 
 func (ptr *QHelpSearchQueryWidget) ConnectSetWindowTitle(f func(vqs string)) {
-	defer qt.Recovering("connect QHelpSearchQueryWidget::setWindowTitle")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchQueryWidget::setWindowTitle", f)
@@ -17127,8 +13787,6 @@ func (ptr *QHelpSearchQueryWidget) ConnectSetWindowTitle(f func(vqs string)) {
 }
 
 func (ptr *QHelpSearchQueryWidget) DisconnectSetWindowTitle() {
-	defer qt.Recovering("disconnect QHelpSearchQueryWidget::setWindowTitle")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchQueryWidget::setWindowTitle")
@@ -17136,8 +13794,6 @@ func (ptr *QHelpSearchQueryWidget) DisconnectSetWindowTitle() {
 }
 
 func (ptr *QHelpSearchQueryWidget) SetWindowTitle(vqs string) {
-	defer qt.Recovering("QHelpSearchQueryWidget::setWindowTitle")
-
 	if ptr.Pointer() != nil {
 		var vqsC = C.CString(vqs)
 		defer C.free(unsafe.Pointer(vqsC))
@@ -17146,8 +13802,6 @@ func (ptr *QHelpSearchQueryWidget) SetWindowTitle(vqs string) {
 }
 
 func (ptr *QHelpSearchQueryWidget) SetWindowTitleDefault(vqs string) {
-	defer qt.Recovering("QHelpSearchQueryWidget::setWindowTitle")
-
 	if ptr.Pointer() != nil {
 		var vqsC = C.CString(vqs)
 		defer C.free(unsafe.Pointer(vqsC))
@@ -17157,7 +13811,6 @@ func (ptr *QHelpSearchQueryWidget) SetWindowTitleDefault(vqs string) {
 
 //export callbackQHelpSearchQueryWidget_ShowEvent
 func callbackQHelpSearchQueryWidget_ShowEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpSearchQueryWidget::showEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpSearchQueryWidget::showEvent"); signal != nil {
 		signal.(func(*gui.QShowEvent))(gui.NewQShowEventFromPointer(event))
@@ -17167,8 +13820,6 @@ func callbackQHelpSearchQueryWidget_ShowEvent(ptr unsafe.Pointer, event unsafe.P
 }
 
 func (ptr *QHelpSearchQueryWidget) ConnectShowEvent(f func(event *gui.QShowEvent)) {
-	defer qt.Recovering("connect QHelpSearchQueryWidget::showEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchQueryWidget::showEvent", f)
@@ -17176,8 +13827,6 @@ func (ptr *QHelpSearchQueryWidget) ConnectShowEvent(f func(event *gui.QShowEvent
 }
 
 func (ptr *QHelpSearchQueryWidget) DisconnectShowEvent() {
-	defer qt.Recovering("disconnect QHelpSearchQueryWidget::showEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchQueryWidget::showEvent")
@@ -17185,16 +13834,12 @@ func (ptr *QHelpSearchQueryWidget) DisconnectShowEvent() {
 }
 
 func (ptr *QHelpSearchQueryWidget) ShowEvent(event gui.QShowEvent_ITF) {
-	defer qt.Recovering("QHelpSearchQueryWidget::showEvent")
-
 	if ptr.Pointer() != nil {
 		C.QHelpSearchQueryWidget_ShowEvent(ptr.Pointer(), gui.PointerFromQShowEvent(event))
 	}
 }
 
 func (ptr *QHelpSearchQueryWidget) ShowEventDefault(event gui.QShowEvent_ITF) {
-	defer qt.Recovering("QHelpSearchQueryWidget::showEvent")
-
 	if ptr.Pointer() != nil {
 		C.QHelpSearchQueryWidget_ShowEventDefault(ptr.Pointer(), gui.PointerFromQShowEvent(event))
 	}
@@ -17202,7 +13847,6 @@ func (ptr *QHelpSearchQueryWidget) ShowEventDefault(event gui.QShowEvent_ITF) {
 
 //export callbackQHelpSearchQueryWidget_SizeHint
 func callbackQHelpSearchQueryWidget_SizeHint(ptr unsafe.Pointer) unsafe.Pointer {
-	defer qt.Recovering("callback QHelpSearchQueryWidget::sizeHint")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpSearchQueryWidget::sizeHint"); signal != nil {
 		return core.PointerFromQSize(signal.(func() *core.QSize)())
@@ -17212,8 +13856,6 @@ func callbackQHelpSearchQueryWidget_SizeHint(ptr unsafe.Pointer) unsafe.Pointer 
 }
 
 func (ptr *QHelpSearchQueryWidget) ConnectSizeHint(f func() *core.QSize) {
-	defer qt.Recovering("connect QHelpSearchQueryWidget::sizeHint")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchQueryWidget::sizeHint", f)
@@ -17221,8 +13863,6 @@ func (ptr *QHelpSearchQueryWidget) ConnectSizeHint(f func() *core.QSize) {
 }
 
 func (ptr *QHelpSearchQueryWidget) DisconnectSizeHint() {
-	defer qt.Recovering("disconnect QHelpSearchQueryWidget::sizeHint")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchQueryWidget::sizeHint")
@@ -17230,8 +13870,6 @@ func (ptr *QHelpSearchQueryWidget) DisconnectSizeHint() {
 }
 
 func (ptr *QHelpSearchQueryWidget) SizeHint() *core.QSize {
-	defer qt.Recovering("QHelpSearchQueryWidget::sizeHint")
-
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQSizeFromPointer(C.QHelpSearchQueryWidget_SizeHint(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
@@ -17241,8 +13879,6 @@ func (ptr *QHelpSearchQueryWidget) SizeHint() *core.QSize {
 }
 
 func (ptr *QHelpSearchQueryWidget) SizeHintDefault() *core.QSize {
-	defer qt.Recovering("QHelpSearchQueryWidget::sizeHint")
-
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQSizeFromPointer(C.QHelpSearchQueryWidget_SizeHintDefault(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
@@ -17253,7 +13889,6 @@ func (ptr *QHelpSearchQueryWidget) SizeHintDefault() *core.QSize {
 
 //export callbackQHelpSearchQueryWidget_ChangeEvent
 func callbackQHelpSearchQueryWidget_ChangeEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpSearchQueryWidget::changeEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpSearchQueryWidget::changeEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
@@ -17263,8 +13898,6 @@ func callbackQHelpSearchQueryWidget_ChangeEvent(ptr unsafe.Pointer, event unsafe
 }
 
 func (ptr *QHelpSearchQueryWidget) ConnectChangeEvent(f func(event *core.QEvent)) {
-	defer qt.Recovering("connect QHelpSearchQueryWidget::changeEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchQueryWidget::changeEvent", f)
@@ -17272,8 +13905,6 @@ func (ptr *QHelpSearchQueryWidget) ConnectChangeEvent(f func(event *core.QEvent)
 }
 
 func (ptr *QHelpSearchQueryWidget) DisconnectChangeEvent() {
-	defer qt.Recovering("disconnect QHelpSearchQueryWidget::changeEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchQueryWidget::changeEvent")
@@ -17281,16 +13912,12 @@ func (ptr *QHelpSearchQueryWidget) DisconnectChangeEvent() {
 }
 
 func (ptr *QHelpSearchQueryWidget) ChangeEvent(event core.QEvent_ITF) {
-	defer qt.Recovering("QHelpSearchQueryWidget::changeEvent")
-
 	if ptr.Pointer() != nil {
 		C.QHelpSearchQueryWidget_ChangeEvent(ptr.Pointer(), core.PointerFromQEvent(event))
 	}
 }
 
 func (ptr *QHelpSearchQueryWidget) ChangeEventDefault(event core.QEvent_ITF) {
-	defer qt.Recovering("QHelpSearchQueryWidget::changeEvent")
-
 	if ptr.Pointer() != nil {
 		C.QHelpSearchQueryWidget_ChangeEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
 	}
@@ -17298,8 +13925,6 @@ func (ptr *QHelpSearchQueryWidget) ChangeEventDefault(event core.QEvent_ITF) {
 
 //export callbackQHelpSearchQueryWidget_Close
 func callbackQHelpSearchQueryWidget_Close(ptr unsafe.Pointer) C.char {
-	defer qt.Recovering("callback QHelpSearchQueryWidget::close")
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpSearchQueryWidget::close"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func() bool)())))
 	}
@@ -17308,8 +13933,6 @@ func callbackQHelpSearchQueryWidget_Close(ptr unsafe.Pointer) C.char {
 }
 
 func (ptr *QHelpSearchQueryWidget) ConnectClose(f func() bool) {
-	defer qt.Recovering("connect QHelpSearchQueryWidget::close")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchQueryWidget::close", f)
@@ -17317,8 +13940,6 @@ func (ptr *QHelpSearchQueryWidget) ConnectClose(f func() bool) {
 }
 
 func (ptr *QHelpSearchQueryWidget) DisconnectClose() {
-	defer qt.Recovering("disconnect QHelpSearchQueryWidget::close")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchQueryWidget::close")
@@ -17326,8 +13947,6 @@ func (ptr *QHelpSearchQueryWidget) DisconnectClose() {
 }
 
 func (ptr *QHelpSearchQueryWidget) Close() bool {
-	defer qt.Recovering("QHelpSearchQueryWidget::close")
-
 	if ptr.Pointer() != nil {
 		return C.QHelpSearchQueryWidget_Close(ptr.Pointer()) != 0
 	}
@@ -17335,8 +13954,6 @@ func (ptr *QHelpSearchQueryWidget) Close() bool {
 }
 
 func (ptr *QHelpSearchQueryWidget) CloseDefault() bool {
-	defer qt.Recovering("QHelpSearchQueryWidget::close")
-
 	if ptr.Pointer() != nil {
 		return C.QHelpSearchQueryWidget_CloseDefault(ptr.Pointer()) != 0
 	}
@@ -17345,7 +13962,6 @@ func (ptr *QHelpSearchQueryWidget) CloseDefault() bool {
 
 //export callbackQHelpSearchQueryWidget_CloseEvent
 func callbackQHelpSearchQueryWidget_CloseEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpSearchQueryWidget::closeEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpSearchQueryWidget::closeEvent"); signal != nil {
 		signal.(func(*gui.QCloseEvent))(gui.NewQCloseEventFromPointer(event))
@@ -17355,8 +13971,6 @@ func callbackQHelpSearchQueryWidget_CloseEvent(ptr unsafe.Pointer, event unsafe.
 }
 
 func (ptr *QHelpSearchQueryWidget) ConnectCloseEvent(f func(event *gui.QCloseEvent)) {
-	defer qt.Recovering("connect QHelpSearchQueryWidget::closeEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchQueryWidget::closeEvent", f)
@@ -17364,8 +13978,6 @@ func (ptr *QHelpSearchQueryWidget) ConnectCloseEvent(f func(event *gui.QCloseEve
 }
 
 func (ptr *QHelpSearchQueryWidget) DisconnectCloseEvent() {
-	defer qt.Recovering("disconnect QHelpSearchQueryWidget::closeEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchQueryWidget::closeEvent")
@@ -17373,16 +13985,12 @@ func (ptr *QHelpSearchQueryWidget) DisconnectCloseEvent() {
 }
 
 func (ptr *QHelpSearchQueryWidget) CloseEvent(event gui.QCloseEvent_ITF) {
-	defer qt.Recovering("QHelpSearchQueryWidget::closeEvent")
-
 	if ptr.Pointer() != nil {
 		C.QHelpSearchQueryWidget_CloseEvent(ptr.Pointer(), gui.PointerFromQCloseEvent(event))
 	}
 }
 
 func (ptr *QHelpSearchQueryWidget) CloseEventDefault(event gui.QCloseEvent_ITF) {
-	defer qt.Recovering("QHelpSearchQueryWidget::closeEvent")
-
 	if ptr.Pointer() != nil {
 		C.QHelpSearchQueryWidget_CloseEventDefault(ptr.Pointer(), gui.PointerFromQCloseEvent(event))
 	}
@@ -17390,7 +13998,6 @@ func (ptr *QHelpSearchQueryWidget) CloseEventDefault(event gui.QCloseEvent_ITF) 
 
 //export callbackQHelpSearchQueryWidget_ContextMenuEvent
 func callbackQHelpSearchQueryWidget_ContextMenuEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpSearchQueryWidget::contextMenuEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpSearchQueryWidget::contextMenuEvent"); signal != nil {
 		signal.(func(*gui.QContextMenuEvent))(gui.NewQContextMenuEventFromPointer(event))
@@ -17400,8 +14007,6 @@ func callbackQHelpSearchQueryWidget_ContextMenuEvent(ptr unsafe.Pointer, event u
 }
 
 func (ptr *QHelpSearchQueryWidget) ConnectContextMenuEvent(f func(event *gui.QContextMenuEvent)) {
-	defer qt.Recovering("connect QHelpSearchQueryWidget::contextMenuEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchQueryWidget::contextMenuEvent", f)
@@ -17409,8 +14014,6 @@ func (ptr *QHelpSearchQueryWidget) ConnectContextMenuEvent(f func(event *gui.QCo
 }
 
 func (ptr *QHelpSearchQueryWidget) DisconnectContextMenuEvent() {
-	defer qt.Recovering("disconnect QHelpSearchQueryWidget::contextMenuEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchQueryWidget::contextMenuEvent")
@@ -17418,16 +14021,12 @@ func (ptr *QHelpSearchQueryWidget) DisconnectContextMenuEvent() {
 }
 
 func (ptr *QHelpSearchQueryWidget) ContextMenuEvent(event gui.QContextMenuEvent_ITF) {
-	defer qt.Recovering("QHelpSearchQueryWidget::contextMenuEvent")
-
 	if ptr.Pointer() != nil {
 		C.QHelpSearchQueryWidget_ContextMenuEvent(ptr.Pointer(), gui.PointerFromQContextMenuEvent(event))
 	}
 }
 
 func (ptr *QHelpSearchQueryWidget) ContextMenuEventDefault(event gui.QContextMenuEvent_ITF) {
-	defer qt.Recovering("QHelpSearchQueryWidget::contextMenuEvent")
-
 	if ptr.Pointer() != nil {
 		C.QHelpSearchQueryWidget_ContextMenuEventDefault(ptr.Pointer(), gui.PointerFromQContextMenuEvent(event))
 	}
@@ -17435,7 +14034,6 @@ func (ptr *QHelpSearchQueryWidget) ContextMenuEventDefault(event gui.QContextMen
 
 //export callbackQHelpSearchQueryWidget_FocusNextPrevChild
 func callbackQHelpSearchQueryWidget_FocusNextPrevChild(ptr unsafe.Pointer, next C.char) C.char {
-	defer qt.Recovering("callback QHelpSearchQueryWidget::focusNextPrevChild")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpSearchQueryWidget::focusNextPrevChild"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(bool) bool)(int8(next) != 0))))
@@ -17445,8 +14043,6 @@ func callbackQHelpSearchQueryWidget_FocusNextPrevChild(ptr unsafe.Pointer, next 
 }
 
 func (ptr *QHelpSearchQueryWidget) ConnectFocusNextPrevChild(f func(next bool) bool) {
-	defer qt.Recovering("connect QHelpSearchQueryWidget::focusNextPrevChild")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchQueryWidget::focusNextPrevChild", f)
@@ -17454,8 +14050,6 @@ func (ptr *QHelpSearchQueryWidget) ConnectFocusNextPrevChild(f func(next bool) b
 }
 
 func (ptr *QHelpSearchQueryWidget) DisconnectFocusNextPrevChild() {
-	defer qt.Recovering("disconnect QHelpSearchQueryWidget::focusNextPrevChild")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchQueryWidget::focusNextPrevChild")
@@ -17463,8 +14057,6 @@ func (ptr *QHelpSearchQueryWidget) DisconnectFocusNextPrevChild() {
 }
 
 func (ptr *QHelpSearchQueryWidget) FocusNextPrevChild(next bool) bool {
-	defer qt.Recovering("QHelpSearchQueryWidget::focusNextPrevChild")
-
 	if ptr.Pointer() != nil {
 		return C.QHelpSearchQueryWidget_FocusNextPrevChild(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(next)))) != 0
 	}
@@ -17472,8 +14064,6 @@ func (ptr *QHelpSearchQueryWidget) FocusNextPrevChild(next bool) bool {
 }
 
 func (ptr *QHelpSearchQueryWidget) FocusNextPrevChildDefault(next bool) bool {
-	defer qt.Recovering("QHelpSearchQueryWidget::focusNextPrevChild")
-
 	if ptr.Pointer() != nil {
 		return C.QHelpSearchQueryWidget_FocusNextPrevChildDefault(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(next)))) != 0
 	}
@@ -17482,7 +14072,6 @@ func (ptr *QHelpSearchQueryWidget) FocusNextPrevChildDefault(next bool) bool {
 
 //export callbackQHelpSearchQueryWidget_HasHeightForWidth
 func callbackQHelpSearchQueryWidget_HasHeightForWidth(ptr unsafe.Pointer) C.char {
-	defer qt.Recovering("callback QHelpSearchQueryWidget::hasHeightForWidth")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpSearchQueryWidget::hasHeightForWidth"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func() bool)())))
@@ -17492,8 +14081,6 @@ func callbackQHelpSearchQueryWidget_HasHeightForWidth(ptr unsafe.Pointer) C.char
 }
 
 func (ptr *QHelpSearchQueryWidget) ConnectHasHeightForWidth(f func() bool) {
-	defer qt.Recovering("connect QHelpSearchQueryWidget::hasHeightForWidth")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchQueryWidget::hasHeightForWidth", f)
@@ -17501,8 +14088,6 @@ func (ptr *QHelpSearchQueryWidget) ConnectHasHeightForWidth(f func() bool) {
 }
 
 func (ptr *QHelpSearchQueryWidget) DisconnectHasHeightForWidth() {
-	defer qt.Recovering("disconnect QHelpSearchQueryWidget::hasHeightForWidth")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchQueryWidget::hasHeightForWidth")
@@ -17510,8 +14095,6 @@ func (ptr *QHelpSearchQueryWidget) DisconnectHasHeightForWidth() {
 }
 
 func (ptr *QHelpSearchQueryWidget) HasHeightForWidth() bool {
-	defer qt.Recovering("QHelpSearchQueryWidget::hasHeightForWidth")
-
 	if ptr.Pointer() != nil {
 		return C.QHelpSearchQueryWidget_HasHeightForWidth(ptr.Pointer()) != 0
 	}
@@ -17519,8 +14102,6 @@ func (ptr *QHelpSearchQueryWidget) HasHeightForWidth() bool {
 }
 
 func (ptr *QHelpSearchQueryWidget) HasHeightForWidthDefault() bool {
-	defer qt.Recovering("QHelpSearchQueryWidget::hasHeightForWidth")
-
 	if ptr.Pointer() != nil {
 		return C.QHelpSearchQueryWidget_HasHeightForWidthDefault(ptr.Pointer()) != 0
 	}
@@ -17529,7 +14110,6 @@ func (ptr *QHelpSearchQueryWidget) HasHeightForWidthDefault() bool {
 
 //export callbackQHelpSearchQueryWidget_HeightForWidth
 func callbackQHelpSearchQueryWidget_HeightForWidth(ptr unsafe.Pointer, w C.int) C.int {
-	defer qt.Recovering("callback QHelpSearchQueryWidget::heightForWidth")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpSearchQueryWidget::heightForWidth"); signal != nil {
 		return C.int(int32(signal.(func(int) int)(int(int32(w)))))
@@ -17539,8 +14119,6 @@ func callbackQHelpSearchQueryWidget_HeightForWidth(ptr unsafe.Pointer, w C.int) 
 }
 
 func (ptr *QHelpSearchQueryWidget) ConnectHeightForWidth(f func(w int) int) {
-	defer qt.Recovering("connect QHelpSearchQueryWidget::heightForWidth")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchQueryWidget::heightForWidth", f)
@@ -17548,8 +14126,6 @@ func (ptr *QHelpSearchQueryWidget) ConnectHeightForWidth(f func(w int) int) {
 }
 
 func (ptr *QHelpSearchQueryWidget) DisconnectHeightForWidth() {
-	defer qt.Recovering("disconnect QHelpSearchQueryWidget::heightForWidth")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchQueryWidget::heightForWidth")
@@ -17557,8 +14133,6 @@ func (ptr *QHelpSearchQueryWidget) DisconnectHeightForWidth() {
 }
 
 func (ptr *QHelpSearchQueryWidget) HeightForWidth(w int) int {
-	defer qt.Recovering("QHelpSearchQueryWidget::heightForWidth")
-
 	if ptr.Pointer() != nil {
 		return int(int32(C.QHelpSearchQueryWidget_HeightForWidth(ptr.Pointer(), C.int(int32(w)))))
 	}
@@ -17566,8 +14140,6 @@ func (ptr *QHelpSearchQueryWidget) HeightForWidth(w int) int {
 }
 
 func (ptr *QHelpSearchQueryWidget) HeightForWidthDefault(w int) int {
-	defer qt.Recovering("QHelpSearchQueryWidget::heightForWidth")
-
 	if ptr.Pointer() != nil {
 		return int(int32(C.QHelpSearchQueryWidget_HeightForWidthDefault(ptr.Pointer(), C.int(int32(w)))))
 	}
@@ -17576,8 +14148,6 @@ func (ptr *QHelpSearchQueryWidget) HeightForWidthDefault(w int) int {
 
 //export callbackQHelpSearchQueryWidget_Hide
 func callbackQHelpSearchQueryWidget_Hide(ptr unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpSearchQueryWidget::hide")
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpSearchQueryWidget::hide"); signal != nil {
 		signal.(func())()
 	} else {
@@ -17586,8 +14156,6 @@ func callbackQHelpSearchQueryWidget_Hide(ptr unsafe.Pointer) {
 }
 
 func (ptr *QHelpSearchQueryWidget) ConnectHide(f func()) {
-	defer qt.Recovering("connect QHelpSearchQueryWidget::hide")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchQueryWidget::hide", f)
@@ -17595,8 +14163,6 @@ func (ptr *QHelpSearchQueryWidget) ConnectHide(f func()) {
 }
 
 func (ptr *QHelpSearchQueryWidget) DisconnectHide() {
-	defer qt.Recovering("disconnect QHelpSearchQueryWidget::hide")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchQueryWidget::hide")
@@ -17604,16 +14170,12 @@ func (ptr *QHelpSearchQueryWidget) DisconnectHide() {
 }
 
 func (ptr *QHelpSearchQueryWidget) Hide() {
-	defer qt.Recovering("QHelpSearchQueryWidget::hide")
-
 	if ptr.Pointer() != nil {
 		C.QHelpSearchQueryWidget_Hide(ptr.Pointer())
 	}
 }
 
 func (ptr *QHelpSearchQueryWidget) HideDefault() {
-	defer qt.Recovering("QHelpSearchQueryWidget::hide")
-
 	if ptr.Pointer() != nil {
 		C.QHelpSearchQueryWidget_HideDefault(ptr.Pointer())
 	}
@@ -17621,7 +14183,6 @@ func (ptr *QHelpSearchQueryWidget) HideDefault() {
 
 //export callbackQHelpSearchQueryWidget_InputMethodEvent
 func callbackQHelpSearchQueryWidget_InputMethodEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpSearchQueryWidget::inputMethodEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpSearchQueryWidget::inputMethodEvent"); signal != nil {
 		signal.(func(*gui.QInputMethodEvent))(gui.NewQInputMethodEventFromPointer(event))
@@ -17631,8 +14192,6 @@ func callbackQHelpSearchQueryWidget_InputMethodEvent(ptr unsafe.Pointer, event u
 }
 
 func (ptr *QHelpSearchQueryWidget) ConnectInputMethodEvent(f func(event *gui.QInputMethodEvent)) {
-	defer qt.Recovering("connect QHelpSearchQueryWidget::inputMethodEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchQueryWidget::inputMethodEvent", f)
@@ -17640,8 +14199,6 @@ func (ptr *QHelpSearchQueryWidget) ConnectInputMethodEvent(f func(event *gui.QIn
 }
 
 func (ptr *QHelpSearchQueryWidget) DisconnectInputMethodEvent() {
-	defer qt.Recovering("disconnect QHelpSearchQueryWidget::inputMethodEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchQueryWidget::inputMethodEvent")
@@ -17649,16 +14206,12 @@ func (ptr *QHelpSearchQueryWidget) DisconnectInputMethodEvent() {
 }
 
 func (ptr *QHelpSearchQueryWidget) InputMethodEvent(event gui.QInputMethodEvent_ITF) {
-	defer qt.Recovering("QHelpSearchQueryWidget::inputMethodEvent")
-
 	if ptr.Pointer() != nil {
 		C.QHelpSearchQueryWidget_InputMethodEvent(ptr.Pointer(), gui.PointerFromQInputMethodEvent(event))
 	}
 }
 
 func (ptr *QHelpSearchQueryWidget) InputMethodEventDefault(event gui.QInputMethodEvent_ITF) {
-	defer qt.Recovering("QHelpSearchQueryWidget::inputMethodEvent")
-
 	if ptr.Pointer() != nil {
 		C.QHelpSearchQueryWidget_InputMethodEventDefault(ptr.Pointer(), gui.PointerFromQInputMethodEvent(event))
 	}
@@ -17666,7 +14219,6 @@ func (ptr *QHelpSearchQueryWidget) InputMethodEventDefault(event gui.QInputMetho
 
 //export callbackQHelpSearchQueryWidget_InputMethodQuery
 func callbackQHelpSearchQueryWidget_InputMethodQuery(ptr unsafe.Pointer, query C.longlong) unsafe.Pointer {
-	defer qt.Recovering("callback QHelpSearchQueryWidget::inputMethodQuery")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpSearchQueryWidget::inputMethodQuery"); signal != nil {
 		return core.PointerFromQVariant(signal.(func(core.Qt__InputMethodQuery) *core.QVariant)(core.Qt__InputMethodQuery(query)))
@@ -17676,8 +14228,6 @@ func callbackQHelpSearchQueryWidget_InputMethodQuery(ptr unsafe.Pointer, query C
 }
 
 func (ptr *QHelpSearchQueryWidget) ConnectInputMethodQuery(f func(query core.Qt__InputMethodQuery) *core.QVariant) {
-	defer qt.Recovering("connect QHelpSearchQueryWidget::inputMethodQuery")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchQueryWidget::inputMethodQuery", f)
@@ -17685,8 +14235,6 @@ func (ptr *QHelpSearchQueryWidget) ConnectInputMethodQuery(f func(query core.Qt_
 }
 
 func (ptr *QHelpSearchQueryWidget) DisconnectInputMethodQuery() {
-	defer qt.Recovering("disconnect QHelpSearchQueryWidget::inputMethodQuery")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchQueryWidget::inputMethodQuery")
@@ -17694,8 +14242,6 @@ func (ptr *QHelpSearchQueryWidget) DisconnectInputMethodQuery() {
 }
 
 func (ptr *QHelpSearchQueryWidget) InputMethodQuery(query core.Qt__InputMethodQuery) *core.QVariant {
-	defer qt.Recovering("QHelpSearchQueryWidget::inputMethodQuery")
-
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQVariantFromPointer(C.QHelpSearchQueryWidget_InputMethodQuery(ptr.Pointer(), C.longlong(query)))
 		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
@@ -17705,8 +14251,6 @@ func (ptr *QHelpSearchQueryWidget) InputMethodQuery(query core.Qt__InputMethodQu
 }
 
 func (ptr *QHelpSearchQueryWidget) InputMethodQueryDefault(query core.Qt__InputMethodQuery) *core.QVariant {
-	defer qt.Recovering("QHelpSearchQueryWidget::inputMethodQuery")
-
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQVariantFromPointer(C.QHelpSearchQueryWidget_InputMethodQueryDefault(ptr.Pointer(), C.longlong(query)))
 		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
@@ -17717,7 +14261,6 @@ func (ptr *QHelpSearchQueryWidget) InputMethodQueryDefault(query core.Qt__InputM
 
 //export callbackQHelpSearchQueryWidget_KeyPressEvent
 func callbackQHelpSearchQueryWidget_KeyPressEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpSearchQueryWidget::keyPressEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpSearchQueryWidget::keyPressEvent"); signal != nil {
 		signal.(func(*gui.QKeyEvent))(gui.NewQKeyEventFromPointer(event))
@@ -17727,8 +14270,6 @@ func callbackQHelpSearchQueryWidget_KeyPressEvent(ptr unsafe.Pointer, event unsa
 }
 
 func (ptr *QHelpSearchQueryWidget) ConnectKeyPressEvent(f func(event *gui.QKeyEvent)) {
-	defer qt.Recovering("connect QHelpSearchQueryWidget::keyPressEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchQueryWidget::keyPressEvent", f)
@@ -17736,8 +14277,6 @@ func (ptr *QHelpSearchQueryWidget) ConnectKeyPressEvent(f func(event *gui.QKeyEv
 }
 
 func (ptr *QHelpSearchQueryWidget) DisconnectKeyPressEvent() {
-	defer qt.Recovering("disconnect QHelpSearchQueryWidget::keyPressEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchQueryWidget::keyPressEvent")
@@ -17745,16 +14284,12 @@ func (ptr *QHelpSearchQueryWidget) DisconnectKeyPressEvent() {
 }
 
 func (ptr *QHelpSearchQueryWidget) KeyPressEvent(event gui.QKeyEvent_ITF) {
-	defer qt.Recovering("QHelpSearchQueryWidget::keyPressEvent")
-
 	if ptr.Pointer() != nil {
 		C.QHelpSearchQueryWidget_KeyPressEvent(ptr.Pointer(), gui.PointerFromQKeyEvent(event))
 	}
 }
 
 func (ptr *QHelpSearchQueryWidget) KeyPressEventDefault(event gui.QKeyEvent_ITF) {
-	defer qt.Recovering("QHelpSearchQueryWidget::keyPressEvent")
-
 	if ptr.Pointer() != nil {
 		C.QHelpSearchQueryWidget_KeyPressEventDefault(ptr.Pointer(), gui.PointerFromQKeyEvent(event))
 	}
@@ -17762,7 +14297,6 @@ func (ptr *QHelpSearchQueryWidget) KeyPressEventDefault(event gui.QKeyEvent_ITF)
 
 //export callbackQHelpSearchQueryWidget_KeyReleaseEvent
 func callbackQHelpSearchQueryWidget_KeyReleaseEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpSearchQueryWidget::keyReleaseEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpSearchQueryWidget::keyReleaseEvent"); signal != nil {
 		signal.(func(*gui.QKeyEvent))(gui.NewQKeyEventFromPointer(event))
@@ -17772,8 +14306,6 @@ func callbackQHelpSearchQueryWidget_KeyReleaseEvent(ptr unsafe.Pointer, event un
 }
 
 func (ptr *QHelpSearchQueryWidget) ConnectKeyReleaseEvent(f func(event *gui.QKeyEvent)) {
-	defer qt.Recovering("connect QHelpSearchQueryWidget::keyReleaseEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchQueryWidget::keyReleaseEvent", f)
@@ -17781,8 +14313,6 @@ func (ptr *QHelpSearchQueryWidget) ConnectKeyReleaseEvent(f func(event *gui.QKey
 }
 
 func (ptr *QHelpSearchQueryWidget) DisconnectKeyReleaseEvent() {
-	defer qt.Recovering("disconnect QHelpSearchQueryWidget::keyReleaseEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchQueryWidget::keyReleaseEvent")
@@ -17790,16 +14320,12 @@ func (ptr *QHelpSearchQueryWidget) DisconnectKeyReleaseEvent() {
 }
 
 func (ptr *QHelpSearchQueryWidget) KeyReleaseEvent(event gui.QKeyEvent_ITF) {
-	defer qt.Recovering("QHelpSearchQueryWidget::keyReleaseEvent")
-
 	if ptr.Pointer() != nil {
 		C.QHelpSearchQueryWidget_KeyReleaseEvent(ptr.Pointer(), gui.PointerFromQKeyEvent(event))
 	}
 }
 
 func (ptr *QHelpSearchQueryWidget) KeyReleaseEventDefault(event gui.QKeyEvent_ITF) {
-	defer qt.Recovering("QHelpSearchQueryWidget::keyReleaseEvent")
-
 	if ptr.Pointer() != nil {
 		C.QHelpSearchQueryWidget_KeyReleaseEventDefault(ptr.Pointer(), gui.PointerFromQKeyEvent(event))
 	}
@@ -17807,8 +14333,6 @@ func (ptr *QHelpSearchQueryWidget) KeyReleaseEventDefault(event gui.QKeyEvent_IT
 
 //export callbackQHelpSearchQueryWidget_Lower
 func callbackQHelpSearchQueryWidget_Lower(ptr unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpSearchQueryWidget::lower")
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpSearchQueryWidget::lower"); signal != nil {
 		signal.(func())()
 	} else {
@@ -17817,8 +14341,6 @@ func callbackQHelpSearchQueryWidget_Lower(ptr unsafe.Pointer) {
 }
 
 func (ptr *QHelpSearchQueryWidget) ConnectLower(f func()) {
-	defer qt.Recovering("connect QHelpSearchQueryWidget::lower")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchQueryWidget::lower", f)
@@ -17826,8 +14348,6 @@ func (ptr *QHelpSearchQueryWidget) ConnectLower(f func()) {
 }
 
 func (ptr *QHelpSearchQueryWidget) DisconnectLower() {
-	defer qt.Recovering("disconnect QHelpSearchQueryWidget::lower")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchQueryWidget::lower")
@@ -17835,16 +14355,12 @@ func (ptr *QHelpSearchQueryWidget) DisconnectLower() {
 }
 
 func (ptr *QHelpSearchQueryWidget) Lower() {
-	defer qt.Recovering("QHelpSearchQueryWidget::lower")
-
 	if ptr.Pointer() != nil {
 		C.QHelpSearchQueryWidget_Lower(ptr.Pointer())
 	}
 }
 
 func (ptr *QHelpSearchQueryWidget) LowerDefault() {
-	defer qt.Recovering("QHelpSearchQueryWidget::lower")
-
 	if ptr.Pointer() != nil {
 		C.QHelpSearchQueryWidget_LowerDefault(ptr.Pointer())
 	}
@@ -17852,7 +14368,6 @@ func (ptr *QHelpSearchQueryWidget) LowerDefault() {
 
 //export callbackQHelpSearchQueryWidget_MouseDoubleClickEvent
 func callbackQHelpSearchQueryWidget_MouseDoubleClickEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpSearchQueryWidget::mouseDoubleClickEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpSearchQueryWidget::mouseDoubleClickEvent"); signal != nil {
 		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
@@ -17862,8 +14377,6 @@ func callbackQHelpSearchQueryWidget_MouseDoubleClickEvent(ptr unsafe.Pointer, ev
 }
 
 func (ptr *QHelpSearchQueryWidget) ConnectMouseDoubleClickEvent(f func(event *gui.QMouseEvent)) {
-	defer qt.Recovering("connect QHelpSearchQueryWidget::mouseDoubleClickEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchQueryWidget::mouseDoubleClickEvent", f)
@@ -17871,8 +14384,6 @@ func (ptr *QHelpSearchQueryWidget) ConnectMouseDoubleClickEvent(f func(event *gu
 }
 
 func (ptr *QHelpSearchQueryWidget) DisconnectMouseDoubleClickEvent() {
-	defer qt.Recovering("disconnect QHelpSearchQueryWidget::mouseDoubleClickEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchQueryWidget::mouseDoubleClickEvent")
@@ -17880,16 +14391,12 @@ func (ptr *QHelpSearchQueryWidget) DisconnectMouseDoubleClickEvent() {
 }
 
 func (ptr *QHelpSearchQueryWidget) MouseDoubleClickEvent(event gui.QMouseEvent_ITF) {
-	defer qt.Recovering("QHelpSearchQueryWidget::mouseDoubleClickEvent")
-
 	if ptr.Pointer() != nil {
 		C.QHelpSearchQueryWidget_MouseDoubleClickEvent(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
 	}
 }
 
 func (ptr *QHelpSearchQueryWidget) MouseDoubleClickEventDefault(event gui.QMouseEvent_ITF) {
-	defer qt.Recovering("QHelpSearchQueryWidget::mouseDoubleClickEvent")
-
 	if ptr.Pointer() != nil {
 		C.QHelpSearchQueryWidget_MouseDoubleClickEventDefault(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
 	}
@@ -17897,7 +14404,6 @@ func (ptr *QHelpSearchQueryWidget) MouseDoubleClickEventDefault(event gui.QMouse
 
 //export callbackQHelpSearchQueryWidget_MouseMoveEvent
 func callbackQHelpSearchQueryWidget_MouseMoveEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpSearchQueryWidget::mouseMoveEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpSearchQueryWidget::mouseMoveEvent"); signal != nil {
 		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
@@ -17907,8 +14413,6 @@ func callbackQHelpSearchQueryWidget_MouseMoveEvent(ptr unsafe.Pointer, event uns
 }
 
 func (ptr *QHelpSearchQueryWidget) ConnectMouseMoveEvent(f func(event *gui.QMouseEvent)) {
-	defer qt.Recovering("connect QHelpSearchQueryWidget::mouseMoveEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchQueryWidget::mouseMoveEvent", f)
@@ -17916,8 +14420,6 @@ func (ptr *QHelpSearchQueryWidget) ConnectMouseMoveEvent(f func(event *gui.QMous
 }
 
 func (ptr *QHelpSearchQueryWidget) DisconnectMouseMoveEvent() {
-	defer qt.Recovering("disconnect QHelpSearchQueryWidget::mouseMoveEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchQueryWidget::mouseMoveEvent")
@@ -17925,16 +14427,12 @@ func (ptr *QHelpSearchQueryWidget) DisconnectMouseMoveEvent() {
 }
 
 func (ptr *QHelpSearchQueryWidget) MouseMoveEvent(event gui.QMouseEvent_ITF) {
-	defer qt.Recovering("QHelpSearchQueryWidget::mouseMoveEvent")
-
 	if ptr.Pointer() != nil {
 		C.QHelpSearchQueryWidget_MouseMoveEvent(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
 	}
 }
 
 func (ptr *QHelpSearchQueryWidget) MouseMoveEventDefault(event gui.QMouseEvent_ITF) {
-	defer qt.Recovering("QHelpSearchQueryWidget::mouseMoveEvent")
-
 	if ptr.Pointer() != nil {
 		C.QHelpSearchQueryWidget_MouseMoveEventDefault(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
 	}
@@ -17942,7 +14440,6 @@ func (ptr *QHelpSearchQueryWidget) MouseMoveEventDefault(event gui.QMouseEvent_I
 
 //export callbackQHelpSearchQueryWidget_MousePressEvent
 func callbackQHelpSearchQueryWidget_MousePressEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpSearchQueryWidget::mousePressEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpSearchQueryWidget::mousePressEvent"); signal != nil {
 		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
@@ -17952,8 +14449,6 @@ func callbackQHelpSearchQueryWidget_MousePressEvent(ptr unsafe.Pointer, event un
 }
 
 func (ptr *QHelpSearchQueryWidget) ConnectMousePressEvent(f func(event *gui.QMouseEvent)) {
-	defer qt.Recovering("connect QHelpSearchQueryWidget::mousePressEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchQueryWidget::mousePressEvent", f)
@@ -17961,8 +14456,6 @@ func (ptr *QHelpSearchQueryWidget) ConnectMousePressEvent(f func(event *gui.QMou
 }
 
 func (ptr *QHelpSearchQueryWidget) DisconnectMousePressEvent() {
-	defer qt.Recovering("disconnect QHelpSearchQueryWidget::mousePressEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchQueryWidget::mousePressEvent")
@@ -17970,16 +14463,12 @@ func (ptr *QHelpSearchQueryWidget) DisconnectMousePressEvent() {
 }
 
 func (ptr *QHelpSearchQueryWidget) MousePressEvent(event gui.QMouseEvent_ITF) {
-	defer qt.Recovering("QHelpSearchQueryWidget::mousePressEvent")
-
 	if ptr.Pointer() != nil {
 		C.QHelpSearchQueryWidget_MousePressEvent(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
 	}
 }
 
 func (ptr *QHelpSearchQueryWidget) MousePressEventDefault(event gui.QMouseEvent_ITF) {
-	defer qt.Recovering("QHelpSearchQueryWidget::mousePressEvent")
-
 	if ptr.Pointer() != nil {
 		C.QHelpSearchQueryWidget_MousePressEventDefault(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
 	}
@@ -17987,7 +14476,6 @@ func (ptr *QHelpSearchQueryWidget) MousePressEventDefault(event gui.QMouseEvent_
 
 //export callbackQHelpSearchQueryWidget_MouseReleaseEvent
 func callbackQHelpSearchQueryWidget_MouseReleaseEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpSearchQueryWidget::mouseReleaseEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpSearchQueryWidget::mouseReleaseEvent"); signal != nil {
 		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
@@ -17997,8 +14485,6 @@ func callbackQHelpSearchQueryWidget_MouseReleaseEvent(ptr unsafe.Pointer, event 
 }
 
 func (ptr *QHelpSearchQueryWidget) ConnectMouseReleaseEvent(f func(event *gui.QMouseEvent)) {
-	defer qt.Recovering("connect QHelpSearchQueryWidget::mouseReleaseEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchQueryWidget::mouseReleaseEvent", f)
@@ -18006,8 +14492,6 @@ func (ptr *QHelpSearchQueryWidget) ConnectMouseReleaseEvent(f func(event *gui.QM
 }
 
 func (ptr *QHelpSearchQueryWidget) DisconnectMouseReleaseEvent() {
-	defer qt.Recovering("disconnect QHelpSearchQueryWidget::mouseReleaseEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchQueryWidget::mouseReleaseEvent")
@@ -18015,16 +14499,12 @@ func (ptr *QHelpSearchQueryWidget) DisconnectMouseReleaseEvent() {
 }
 
 func (ptr *QHelpSearchQueryWidget) MouseReleaseEvent(event gui.QMouseEvent_ITF) {
-	defer qt.Recovering("QHelpSearchQueryWidget::mouseReleaseEvent")
-
 	if ptr.Pointer() != nil {
 		C.QHelpSearchQueryWidget_MouseReleaseEvent(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
 	}
 }
 
 func (ptr *QHelpSearchQueryWidget) MouseReleaseEventDefault(event gui.QMouseEvent_ITF) {
-	defer qt.Recovering("QHelpSearchQueryWidget::mouseReleaseEvent")
-
 	if ptr.Pointer() != nil {
 		C.QHelpSearchQueryWidget_MouseReleaseEventDefault(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
 	}
@@ -18032,7 +14512,6 @@ func (ptr *QHelpSearchQueryWidget) MouseReleaseEventDefault(event gui.QMouseEven
 
 //export callbackQHelpSearchQueryWidget_NativeEvent
 func callbackQHelpSearchQueryWidget_NativeEvent(ptr unsafe.Pointer, eventType *C.char, message unsafe.Pointer, result C.long) C.char {
-	defer qt.Recovering("callback QHelpSearchQueryWidget::nativeEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpSearchQueryWidget::nativeEvent"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(string, unsafe.Pointer, int) bool)(qt.HexDecodeToString(C.GoString(eventType)), message, int(int32(result))))))
@@ -18042,8 +14521,6 @@ func callbackQHelpSearchQueryWidget_NativeEvent(ptr unsafe.Pointer, eventType *C
 }
 
 func (ptr *QHelpSearchQueryWidget) ConnectNativeEvent(f func(eventType string, message unsafe.Pointer, result int) bool) {
-	defer qt.Recovering("connect QHelpSearchQueryWidget::nativeEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchQueryWidget::nativeEvent", f)
@@ -18051,8 +14528,6 @@ func (ptr *QHelpSearchQueryWidget) ConnectNativeEvent(f func(eventType string, m
 }
 
 func (ptr *QHelpSearchQueryWidget) DisconnectNativeEvent() {
-	defer qt.Recovering("disconnect QHelpSearchQueryWidget::nativeEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchQueryWidget::nativeEvent")
@@ -18060,8 +14535,6 @@ func (ptr *QHelpSearchQueryWidget) DisconnectNativeEvent() {
 }
 
 func (ptr *QHelpSearchQueryWidget) NativeEvent(eventType string, message unsafe.Pointer, result int) bool {
-	defer qt.Recovering("QHelpSearchQueryWidget::nativeEvent")
-
 	if ptr.Pointer() != nil {
 		var eventTypeC = C.CString(hex.EncodeToString([]byte(eventType)))
 		defer C.free(unsafe.Pointer(eventTypeC))
@@ -18071,8 +14544,6 @@ func (ptr *QHelpSearchQueryWidget) NativeEvent(eventType string, message unsafe.
 }
 
 func (ptr *QHelpSearchQueryWidget) NativeEventDefault(eventType string, message unsafe.Pointer, result int) bool {
-	defer qt.Recovering("QHelpSearchQueryWidget::nativeEvent")
-
 	if ptr.Pointer() != nil {
 		var eventTypeC = C.CString(hex.EncodeToString([]byte(eventType)))
 		defer C.free(unsafe.Pointer(eventTypeC))
@@ -18083,8 +14554,6 @@ func (ptr *QHelpSearchQueryWidget) NativeEventDefault(eventType string, message 
 
 //export callbackQHelpSearchQueryWidget_Raise
 func callbackQHelpSearchQueryWidget_Raise(ptr unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpSearchQueryWidget::raise")
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpSearchQueryWidget::raise"); signal != nil {
 		signal.(func())()
 	} else {
@@ -18093,8 +14562,6 @@ func callbackQHelpSearchQueryWidget_Raise(ptr unsafe.Pointer) {
 }
 
 func (ptr *QHelpSearchQueryWidget) ConnectRaise(f func()) {
-	defer qt.Recovering("connect QHelpSearchQueryWidget::raise")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchQueryWidget::raise", f)
@@ -18102,8 +14569,6 @@ func (ptr *QHelpSearchQueryWidget) ConnectRaise(f func()) {
 }
 
 func (ptr *QHelpSearchQueryWidget) DisconnectRaise() {
-	defer qt.Recovering("disconnect QHelpSearchQueryWidget::raise")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchQueryWidget::raise")
@@ -18111,16 +14576,12 @@ func (ptr *QHelpSearchQueryWidget) DisconnectRaise() {
 }
 
 func (ptr *QHelpSearchQueryWidget) Raise() {
-	defer qt.Recovering("QHelpSearchQueryWidget::raise")
-
 	if ptr.Pointer() != nil {
 		C.QHelpSearchQueryWidget_Raise(ptr.Pointer())
 	}
 }
 
 func (ptr *QHelpSearchQueryWidget) RaiseDefault() {
-	defer qt.Recovering("QHelpSearchQueryWidget::raise")
-
 	if ptr.Pointer() != nil {
 		C.QHelpSearchQueryWidget_RaiseDefault(ptr.Pointer())
 	}
@@ -18128,8 +14589,6 @@ func (ptr *QHelpSearchQueryWidget) RaiseDefault() {
 
 //export callbackQHelpSearchQueryWidget_Repaint
 func callbackQHelpSearchQueryWidget_Repaint(ptr unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpSearchQueryWidget::repaint")
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpSearchQueryWidget::repaint"); signal != nil {
 		signal.(func())()
 	} else {
@@ -18138,8 +14597,6 @@ func callbackQHelpSearchQueryWidget_Repaint(ptr unsafe.Pointer) {
 }
 
 func (ptr *QHelpSearchQueryWidget) ConnectRepaint(f func()) {
-	defer qt.Recovering("connect QHelpSearchQueryWidget::repaint")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchQueryWidget::repaint", f)
@@ -18147,8 +14604,6 @@ func (ptr *QHelpSearchQueryWidget) ConnectRepaint(f func()) {
 }
 
 func (ptr *QHelpSearchQueryWidget) DisconnectRepaint() {
-	defer qt.Recovering("disconnect QHelpSearchQueryWidget::repaint")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchQueryWidget::repaint")
@@ -18156,16 +14611,12 @@ func (ptr *QHelpSearchQueryWidget) DisconnectRepaint() {
 }
 
 func (ptr *QHelpSearchQueryWidget) Repaint() {
-	defer qt.Recovering("QHelpSearchQueryWidget::repaint")
-
 	if ptr.Pointer() != nil {
 		C.QHelpSearchQueryWidget_Repaint(ptr.Pointer())
 	}
 }
 
 func (ptr *QHelpSearchQueryWidget) RepaintDefault() {
-	defer qt.Recovering("QHelpSearchQueryWidget::repaint")
-
 	if ptr.Pointer() != nil {
 		C.QHelpSearchQueryWidget_RepaintDefault(ptr.Pointer())
 	}
@@ -18173,7 +14624,6 @@ func (ptr *QHelpSearchQueryWidget) RepaintDefault() {
 
 //export callbackQHelpSearchQueryWidget_ResizeEvent
 func callbackQHelpSearchQueryWidget_ResizeEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpSearchQueryWidget::resizeEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpSearchQueryWidget::resizeEvent"); signal != nil {
 		signal.(func(*gui.QResizeEvent))(gui.NewQResizeEventFromPointer(event))
@@ -18183,8 +14633,6 @@ func callbackQHelpSearchQueryWidget_ResizeEvent(ptr unsafe.Pointer, event unsafe
 }
 
 func (ptr *QHelpSearchQueryWidget) ConnectResizeEvent(f func(event *gui.QResizeEvent)) {
-	defer qt.Recovering("connect QHelpSearchQueryWidget::resizeEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchQueryWidget::resizeEvent", f)
@@ -18192,8 +14640,6 @@ func (ptr *QHelpSearchQueryWidget) ConnectResizeEvent(f func(event *gui.QResizeE
 }
 
 func (ptr *QHelpSearchQueryWidget) DisconnectResizeEvent() {
-	defer qt.Recovering("disconnect QHelpSearchQueryWidget::resizeEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchQueryWidget::resizeEvent")
@@ -18201,16 +14647,12 @@ func (ptr *QHelpSearchQueryWidget) DisconnectResizeEvent() {
 }
 
 func (ptr *QHelpSearchQueryWidget) ResizeEvent(event gui.QResizeEvent_ITF) {
-	defer qt.Recovering("QHelpSearchQueryWidget::resizeEvent")
-
 	if ptr.Pointer() != nil {
 		C.QHelpSearchQueryWidget_ResizeEvent(ptr.Pointer(), gui.PointerFromQResizeEvent(event))
 	}
 }
 
 func (ptr *QHelpSearchQueryWidget) ResizeEventDefault(event gui.QResizeEvent_ITF) {
-	defer qt.Recovering("QHelpSearchQueryWidget::resizeEvent")
-
 	if ptr.Pointer() != nil {
 		C.QHelpSearchQueryWidget_ResizeEventDefault(ptr.Pointer(), gui.PointerFromQResizeEvent(event))
 	}
@@ -18218,8 +14660,6 @@ func (ptr *QHelpSearchQueryWidget) ResizeEventDefault(event gui.QResizeEvent_ITF
 
 //export callbackQHelpSearchQueryWidget_SetDisabled
 func callbackQHelpSearchQueryWidget_SetDisabled(ptr unsafe.Pointer, disable C.char) {
-	defer qt.Recovering("callback QHelpSearchQueryWidget::setDisabled")
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpSearchQueryWidget::setDisabled"); signal != nil {
 		signal.(func(bool))(int8(disable) != 0)
 	} else {
@@ -18228,8 +14668,6 @@ func callbackQHelpSearchQueryWidget_SetDisabled(ptr unsafe.Pointer, disable C.ch
 }
 
 func (ptr *QHelpSearchQueryWidget) ConnectSetDisabled(f func(disable bool)) {
-	defer qt.Recovering("connect QHelpSearchQueryWidget::setDisabled")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchQueryWidget::setDisabled", f)
@@ -18237,8 +14675,6 @@ func (ptr *QHelpSearchQueryWidget) ConnectSetDisabled(f func(disable bool)) {
 }
 
 func (ptr *QHelpSearchQueryWidget) DisconnectSetDisabled() {
-	defer qt.Recovering("disconnect QHelpSearchQueryWidget::setDisabled")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchQueryWidget::setDisabled")
@@ -18246,16 +14682,12 @@ func (ptr *QHelpSearchQueryWidget) DisconnectSetDisabled() {
 }
 
 func (ptr *QHelpSearchQueryWidget) SetDisabled(disable bool) {
-	defer qt.Recovering("QHelpSearchQueryWidget::setDisabled")
-
 	if ptr.Pointer() != nil {
 		C.QHelpSearchQueryWidget_SetDisabled(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(disable))))
 	}
 }
 
 func (ptr *QHelpSearchQueryWidget) SetDisabledDefault(disable bool) {
-	defer qt.Recovering("QHelpSearchQueryWidget::setDisabled")
-
 	if ptr.Pointer() != nil {
 		C.QHelpSearchQueryWidget_SetDisabledDefault(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(disable))))
 	}
@@ -18263,8 +14695,6 @@ func (ptr *QHelpSearchQueryWidget) SetDisabledDefault(disable bool) {
 
 //export callbackQHelpSearchQueryWidget_SetFocus2
 func callbackQHelpSearchQueryWidget_SetFocus2(ptr unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpSearchQueryWidget::setFocus")
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpSearchQueryWidget::setFocus2"); signal != nil {
 		signal.(func())()
 	} else {
@@ -18273,8 +14703,6 @@ func callbackQHelpSearchQueryWidget_SetFocus2(ptr unsafe.Pointer) {
 }
 
 func (ptr *QHelpSearchQueryWidget) ConnectSetFocus2(f func()) {
-	defer qt.Recovering("connect QHelpSearchQueryWidget::setFocus")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchQueryWidget::setFocus2", f)
@@ -18282,8 +14710,6 @@ func (ptr *QHelpSearchQueryWidget) ConnectSetFocus2(f func()) {
 }
 
 func (ptr *QHelpSearchQueryWidget) DisconnectSetFocus2() {
-	defer qt.Recovering("disconnect QHelpSearchQueryWidget::setFocus")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchQueryWidget::setFocus2")
@@ -18291,16 +14717,12 @@ func (ptr *QHelpSearchQueryWidget) DisconnectSetFocus2() {
 }
 
 func (ptr *QHelpSearchQueryWidget) SetFocus2() {
-	defer qt.Recovering("QHelpSearchQueryWidget::setFocus")
-
 	if ptr.Pointer() != nil {
 		C.QHelpSearchQueryWidget_SetFocus2(ptr.Pointer())
 	}
 }
 
 func (ptr *QHelpSearchQueryWidget) SetFocus2Default() {
-	defer qt.Recovering("QHelpSearchQueryWidget::setFocus")
-
 	if ptr.Pointer() != nil {
 		C.QHelpSearchQueryWidget_SetFocus2Default(ptr.Pointer())
 	}
@@ -18308,8 +14730,6 @@ func (ptr *QHelpSearchQueryWidget) SetFocus2Default() {
 
 //export callbackQHelpSearchQueryWidget_SetHidden
 func callbackQHelpSearchQueryWidget_SetHidden(ptr unsafe.Pointer, hidden C.char) {
-	defer qt.Recovering("callback QHelpSearchQueryWidget::setHidden")
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpSearchQueryWidget::setHidden"); signal != nil {
 		signal.(func(bool))(int8(hidden) != 0)
 	} else {
@@ -18318,8 +14738,6 @@ func callbackQHelpSearchQueryWidget_SetHidden(ptr unsafe.Pointer, hidden C.char)
 }
 
 func (ptr *QHelpSearchQueryWidget) ConnectSetHidden(f func(hidden bool)) {
-	defer qt.Recovering("connect QHelpSearchQueryWidget::setHidden")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchQueryWidget::setHidden", f)
@@ -18327,8 +14745,6 @@ func (ptr *QHelpSearchQueryWidget) ConnectSetHidden(f func(hidden bool)) {
 }
 
 func (ptr *QHelpSearchQueryWidget) DisconnectSetHidden() {
-	defer qt.Recovering("disconnect QHelpSearchQueryWidget::setHidden")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchQueryWidget::setHidden")
@@ -18336,16 +14752,12 @@ func (ptr *QHelpSearchQueryWidget) DisconnectSetHidden() {
 }
 
 func (ptr *QHelpSearchQueryWidget) SetHidden(hidden bool) {
-	defer qt.Recovering("QHelpSearchQueryWidget::setHidden")
-
 	if ptr.Pointer() != nil {
 		C.QHelpSearchQueryWidget_SetHidden(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(hidden))))
 	}
 }
 
 func (ptr *QHelpSearchQueryWidget) SetHiddenDefault(hidden bool) {
-	defer qt.Recovering("QHelpSearchQueryWidget::setHidden")
-
 	if ptr.Pointer() != nil {
 		C.QHelpSearchQueryWidget_SetHiddenDefault(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(hidden))))
 	}
@@ -18353,8 +14765,6 @@ func (ptr *QHelpSearchQueryWidget) SetHiddenDefault(hidden bool) {
 
 //export callbackQHelpSearchQueryWidget_Show
 func callbackQHelpSearchQueryWidget_Show(ptr unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpSearchQueryWidget::show")
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpSearchQueryWidget::show"); signal != nil {
 		signal.(func())()
 	} else {
@@ -18363,8 +14773,6 @@ func callbackQHelpSearchQueryWidget_Show(ptr unsafe.Pointer) {
 }
 
 func (ptr *QHelpSearchQueryWidget) ConnectShow(f func()) {
-	defer qt.Recovering("connect QHelpSearchQueryWidget::show")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchQueryWidget::show", f)
@@ -18372,8 +14780,6 @@ func (ptr *QHelpSearchQueryWidget) ConnectShow(f func()) {
 }
 
 func (ptr *QHelpSearchQueryWidget) DisconnectShow() {
-	defer qt.Recovering("disconnect QHelpSearchQueryWidget::show")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchQueryWidget::show")
@@ -18381,16 +14787,12 @@ func (ptr *QHelpSearchQueryWidget) DisconnectShow() {
 }
 
 func (ptr *QHelpSearchQueryWidget) Show() {
-	defer qt.Recovering("QHelpSearchQueryWidget::show")
-
 	if ptr.Pointer() != nil {
 		C.QHelpSearchQueryWidget_Show(ptr.Pointer())
 	}
 }
 
 func (ptr *QHelpSearchQueryWidget) ShowDefault() {
-	defer qt.Recovering("QHelpSearchQueryWidget::show")
-
 	if ptr.Pointer() != nil {
 		C.QHelpSearchQueryWidget_ShowDefault(ptr.Pointer())
 	}
@@ -18398,8 +14800,6 @@ func (ptr *QHelpSearchQueryWidget) ShowDefault() {
 
 //export callbackQHelpSearchQueryWidget_ShowFullScreen
 func callbackQHelpSearchQueryWidget_ShowFullScreen(ptr unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpSearchQueryWidget::showFullScreen")
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpSearchQueryWidget::showFullScreen"); signal != nil {
 		signal.(func())()
 	} else {
@@ -18408,8 +14808,6 @@ func callbackQHelpSearchQueryWidget_ShowFullScreen(ptr unsafe.Pointer) {
 }
 
 func (ptr *QHelpSearchQueryWidget) ConnectShowFullScreen(f func()) {
-	defer qt.Recovering("connect QHelpSearchQueryWidget::showFullScreen")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchQueryWidget::showFullScreen", f)
@@ -18417,8 +14815,6 @@ func (ptr *QHelpSearchQueryWidget) ConnectShowFullScreen(f func()) {
 }
 
 func (ptr *QHelpSearchQueryWidget) DisconnectShowFullScreen() {
-	defer qt.Recovering("disconnect QHelpSearchQueryWidget::showFullScreen")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchQueryWidget::showFullScreen")
@@ -18426,16 +14822,12 @@ func (ptr *QHelpSearchQueryWidget) DisconnectShowFullScreen() {
 }
 
 func (ptr *QHelpSearchQueryWidget) ShowFullScreen() {
-	defer qt.Recovering("QHelpSearchQueryWidget::showFullScreen")
-
 	if ptr.Pointer() != nil {
 		C.QHelpSearchQueryWidget_ShowFullScreen(ptr.Pointer())
 	}
 }
 
 func (ptr *QHelpSearchQueryWidget) ShowFullScreenDefault() {
-	defer qt.Recovering("QHelpSearchQueryWidget::showFullScreen")
-
 	if ptr.Pointer() != nil {
 		C.QHelpSearchQueryWidget_ShowFullScreenDefault(ptr.Pointer())
 	}
@@ -18443,8 +14835,6 @@ func (ptr *QHelpSearchQueryWidget) ShowFullScreenDefault() {
 
 //export callbackQHelpSearchQueryWidget_ShowMaximized
 func callbackQHelpSearchQueryWidget_ShowMaximized(ptr unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpSearchQueryWidget::showMaximized")
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpSearchQueryWidget::showMaximized"); signal != nil {
 		signal.(func())()
 	} else {
@@ -18453,8 +14843,6 @@ func callbackQHelpSearchQueryWidget_ShowMaximized(ptr unsafe.Pointer) {
 }
 
 func (ptr *QHelpSearchQueryWidget) ConnectShowMaximized(f func()) {
-	defer qt.Recovering("connect QHelpSearchQueryWidget::showMaximized")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchQueryWidget::showMaximized", f)
@@ -18462,8 +14850,6 @@ func (ptr *QHelpSearchQueryWidget) ConnectShowMaximized(f func()) {
 }
 
 func (ptr *QHelpSearchQueryWidget) DisconnectShowMaximized() {
-	defer qt.Recovering("disconnect QHelpSearchQueryWidget::showMaximized")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchQueryWidget::showMaximized")
@@ -18471,16 +14857,12 @@ func (ptr *QHelpSearchQueryWidget) DisconnectShowMaximized() {
 }
 
 func (ptr *QHelpSearchQueryWidget) ShowMaximized() {
-	defer qt.Recovering("QHelpSearchQueryWidget::showMaximized")
-
 	if ptr.Pointer() != nil {
 		C.QHelpSearchQueryWidget_ShowMaximized(ptr.Pointer())
 	}
 }
 
 func (ptr *QHelpSearchQueryWidget) ShowMaximizedDefault() {
-	defer qt.Recovering("QHelpSearchQueryWidget::showMaximized")
-
 	if ptr.Pointer() != nil {
 		C.QHelpSearchQueryWidget_ShowMaximizedDefault(ptr.Pointer())
 	}
@@ -18488,8 +14870,6 @@ func (ptr *QHelpSearchQueryWidget) ShowMaximizedDefault() {
 
 //export callbackQHelpSearchQueryWidget_ShowMinimized
 func callbackQHelpSearchQueryWidget_ShowMinimized(ptr unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpSearchQueryWidget::showMinimized")
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpSearchQueryWidget::showMinimized"); signal != nil {
 		signal.(func())()
 	} else {
@@ -18498,8 +14878,6 @@ func callbackQHelpSearchQueryWidget_ShowMinimized(ptr unsafe.Pointer) {
 }
 
 func (ptr *QHelpSearchQueryWidget) ConnectShowMinimized(f func()) {
-	defer qt.Recovering("connect QHelpSearchQueryWidget::showMinimized")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchQueryWidget::showMinimized", f)
@@ -18507,8 +14885,6 @@ func (ptr *QHelpSearchQueryWidget) ConnectShowMinimized(f func()) {
 }
 
 func (ptr *QHelpSearchQueryWidget) DisconnectShowMinimized() {
-	defer qt.Recovering("disconnect QHelpSearchQueryWidget::showMinimized")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchQueryWidget::showMinimized")
@@ -18516,16 +14892,12 @@ func (ptr *QHelpSearchQueryWidget) DisconnectShowMinimized() {
 }
 
 func (ptr *QHelpSearchQueryWidget) ShowMinimized() {
-	defer qt.Recovering("QHelpSearchQueryWidget::showMinimized")
-
 	if ptr.Pointer() != nil {
 		C.QHelpSearchQueryWidget_ShowMinimized(ptr.Pointer())
 	}
 }
 
 func (ptr *QHelpSearchQueryWidget) ShowMinimizedDefault() {
-	defer qt.Recovering("QHelpSearchQueryWidget::showMinimized")
-
 	if ptr.Pointer() != nil {
 		C.QHelpSearchQueryWidget_ShowMinimizedDefault(ptr.Pointer())
 	}
@@ -18533,8 +14905,6 @@ func (ptr *QHelpSearchQueryWidget) ShowMinimizedDefault() {
 
 //export callbackQHelpSearchQueryWidget_ShowNormal
 func callbackQHelpSearchQueryWidget_ShowNormal(ptr unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpSearchQueryWidget::showNormal")
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpSearchQueryWidget::showNormal"); signal != nil {
 		signal.(func())()
 	} else {
@@ -18543,8 +14913,6 @@ func callbackQHelpSearchQueryWidget_ShowNormal(ptr unsafe.Pointer) {
 }
 
 func (ptr *QHelpSearchQueryWidget) ConnectShowNormal(f func()) {
-	defer qt.Recovering("connect QHelpSearchQueryWidget::showNormal")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchQueryWidget::showNormal", f)
@@ -18552,8 +14920,6 @@ func (ptr *QHelpSearchQueryWidget) ConnectShowNormal(f func()) {
 }
 
 func (ptr *QHelpSearchQueryWidget) DisconnectShowNormal() {
-	defer qt.Recovering("disconnect QHelpSearchQueryWidget::showNormal")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchQueryWidget::showNormal")
@@ -18561,16 +14927,12 @@ func (ptr *QHelpSearchQueryWidget) DisconnectShowNormal() {
 }
 
 func (ptr *QHelpSearchQueryWidget) ShowNormal() {
-	defer qt.Recovering("QHelpSearchQueryWidget::showNormal")
-
 	if ptr.Pointer() != nil {
 		C.QHelpSearchQueryWidget_ShowNormal(ptr.Pointer())
 	}
 }
 
 func (ptr *QHelpSearchQueryWidget) ShowNormalDefault() {
-	defer qt.Recovering("QHelpSearchQueryWidget::showNormal")
-
 	if ptr.Pointer() != nil {
 		C.QHelpSearchQueryWidget_ShowNormalDefault(ptr.Pointer())
 	}
@@ -18578,7 +14940,6 @@ func (ptr *QHelpSearchQueryWidget) ShowNormalDefault() {
 
 //export callbackQHelpSearchQueryWidget_TabletEvent
 func callbackQHelpSearchQueryWidget_TabletEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpSearchQueryWidget::tabletEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpSearchQueryWidget::tabletEvent"); signal != nil {
 		signal.(func(*gui.QTabletEvent))(gui.NewQTabletEventFromPointer(event))
@@ -18588,8 +14949,6 @@ func callbackQHelpSearchQueryWidget_TabletEvent(ptr unsafe.Pointer, event unsafe
 }
 
 func (ptr *QHelpSearchQueryWidget) ConnectTabletEvent(f func(event *gui.QTabletEvent)) {
-	defer qt.Recovering("connect QHelpSearchQueryWidget::tabletEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchQueryWidget::tabletEvent", f)
@@ -18597,8 +14956,6 @@ func (ptr *QHelpSearchQueryWidget) ConnectTabletEvent(f func(event *gui.QTabletE
 }
 
 func (ptr *QHelpSearchQueryWidget) DisconnectTabletEvent() {
-	defer qt.Recovering("disconnect QHelpSearchQueryWidget::tabletEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchQueryWidget::tabletEvent")
@@ -18606,16 +14963,12 @@ func (ptr *QHelpSearchQueryWidget) DisconnectTabletEvent() {
 }
 
 func (ptr *QHelpSearchQueryWidget) TabletEvent(event gui.QTabletEvent_ITF) {
-	defer qt.Recovering("QHelpSearchQueryWidget::tabletEvent")
-
 	if ptr.Pointer() != nil {
 		C.QHelpSearchQueryWidget_TabletEvent(ptr.Pointer(), gui.PointerFromQTabletEvent(event))
 	}
 }
 
 func (ptr *QHelpSearchQueryWidget) TabletEventDefault(event gui.QTabletEvent_ITF) {
-	defer qt.Recovering("QHelpSearchQueryWidget::tabletEvent")
-
 	if ptr.Pointer() != nil {
 		C.QHelpSearchQueryWidget_TabletEventDefault(ptr.Pointer(), gui.PointerFromQTabletEvent(event))
 	}
@@ -18623,8 +14976,6 @@ func (ptr *QHelpSearchQueryWidget) TabletEventDefault(event gui.QTabletEvent_ITF
 
 //export callbackQHelpSearchQueryWidget_Update
 func callbackQHelpSearchQueryWidget_Update(ptr unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpSearchQueryWidget::update")
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpSearchQueryWidget::update"); signal != nil {
 		signal.(func())()
 	} else {
@@ -18633,8 +14984,6 @@ func callbackQHelpSearchQueryWidget_Update(ptr unsafe.Pointer) {
 }
 
 func (ptr *QHelpSearchQueryWidget) ConnectUpdate(f func()) {
-	defer qt.Recovering("connect QHelpSearchQueryWidget::update")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchQueryWidget::update", f)
@@ -18642,8 +14991,6 @@ func (ptr *QHelpSearchQueryWidget) ConnectUpdate(f func()) {
 }
 
 func (ptr *QHelpSearchQueryWidget) DisconnectUpdate() {
-	defer qt.Recovering("disconnect QHelpSearchQueryWidget::update")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchQueryWidget::update")
@@ -18651,16 +14998,12 @@ func (ptr *QHelpSearchQueryWidget) DisconnectUpdate() {
 }
 
 func (ptr *QHelpSearchQueryWidget) Update() {
-	defer qt.Recovering("QHelpSearchQueryWidget::update")
-
 	if ptr.Pointer() != nil {
 		C.QHelpSearchQueryWidget_Update(ptr.Pointer())
 	}
 }
 
 func (ptr *QHelpSearchQueryWidget) UpdateDefault() {
-	defer qt.Recovering("QHelpSearchQueryWidget::update")
-
 	if ptr.Pointer() != nil {
 		C.QHelpSearchQueryWidget_UpdateDefault(ptr.Pointer())
 	}
@@ -18668,8 +15011,6 @@ func (ptr *QHelpSearchQueryWidget) UpdateDefault() {
 
 //export callbackQHelpSearchQueryWidget_UpdateMicroFocus
 func callbackQHelpSearchQueryWidget_UpdateMicroFocus(ptr unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpSearchQueryWidget::updateMicroFocus")
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpSearchQueryWidget::updateMicroFocus"); signal != nil {
 		signal.(func())()
 	} else {
@@ -18678,8 +15019,6 @@ func callbackQHelpSearchQueryWidget_UpdateMicroFocus(ptr unsafe.Pointer) {
 }
 
 func (ptr *QHelpSearchQueryWidget) ConnectUpdateMicroFocus(f func()) {
-	defer qt.Recovering("connect QHelpSearchQueryWidget::updateMicroFocus")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchQueryWidget::updateMicroFocus", f)
@@ -18687,8 +15026,6 @@ func (ptr *QHelpSearchQueryWidget) ConnectUpdateMicroFocus(f func()) {
 }
 
 func (ptr *QHelpSearchQueryWidget) DisconnectUpdateMicroFocus() {
-	defer qt.Recovering("disconnect QHelpSearchQueryWidget::updateMicroFocus")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchQueryWidget::updateMicroFocus")
@@ -18696,16 +15033,12 @@ func (ptr *QHelpSearchQueryWidget) DisconnectUpdateMicroFocus() {
 }
 
 func (ptr *QHelpSearchQueryWidget) UpdateMicroFocus() {
-	defer qt.Recovering("QHelpSearchQueryWidget::updateMicroFocus")
-
 	if ptr.Pointer() != nil {
 		C.QHelpSearchQueryWidget_UpdateMicroFocus(ptr.Pointer())
 	}
 }
 
 func (ptr *QHelpSearchQueryWidget) UpdateMicroFocusDefault() {
-	defer qt.Recovering("QHelpSearchQueryWidget::updateMicroFocus")
-
 	if ptr.Pointer() != nil {
 		C.QHelpSearchQueryWidget_UpdateMicroFocusDefault(ptr.Pointer())
 	}
@@ -18713,7 +15046,6 @@ func (ptr *QHelpSearchQueryWidget) UpdateMicroFocusDefault() {
 
 //export callbackQHelpSearchQueryWidget_WheelEvent
 func callbackQHelpSearchQueryWidget_WheelEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpSearchQueryWidget::wheelEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpSearchQueryWidget::wheelEvent"); signal != nil {
 		signal.(func(*gui.QWheelEvent))(gui.NewQWheelEventFromPointer(event))
@@ -18723,8 +15055,6 @@ func callbackQHelpSearchQueryWidget_WheelEvent(ptr unsafe.Pointer, event unsafe.
 }
 
 func (ptr *QHelpSearchQueryWidget) ConnectWheelEvent(f func(event *gui.QWheelEvent)) {
-	defer qt.Recovering("connect QHelpSearchQueryWidget::wheelEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchQueryWidget::wheelEvent", f)
@@ -18732,8 +15062,6 @@ func (ptr *QHelpSearchQueryWidget) ConnectWheelEvent(f func(event *gui.QWheelEve
 }
 
 func (ptr *QHelpSearchQueryWidget) DisconnectWheelEvent() {
-	defer qt.Recovering("disconnect QHelpSearchQueryWidget::wheelEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchQueryWidget::wheelEvent")
@@ -18741,16 +15069,12 @@ func (ptr *QHelpSearchQueryWidget) DisconnectWheelEvent() {
 }
 
 func (ptr *QHelpSearchQueryWidget) WheelEvent(event gui.QWheelEvent_ITF) {
-	defer qt.Recovering("QHelpSearchQueryWidget::wheelEvent")
-
 	if ptr.Pointer() != nil {
 		C.QHelpSearchQueryWidget_WheelEvent(ptr.Pointer(), gui.PointerFromQWheelEvent(event))
 	}
 }
 
 func (ptr *QHelpSearchQueryWidget) WheelEventDefault(event gui.QWheelEvent_ITF) {
-	defer qt.Recovering("QHelpSearchQueryWidget::wheelEvent")
-
 	if ptr.Pointer() != nil {
 		C.QHelpSearchQueryWidget_WheelEventDefault(ptr.Pointer(), gui.PointerFromQWheelEvent(event))
 	}
@@ -18758,7 +15082,6 @@ func (ptr *QHelpSearchQueryWidget) WheelEventDefault(event gui.QWheelEvent_ITF) 
 
 //export callbackQHelpSearchQueryWidget_TimerEvent
 func callbackQHelpSearchQueryWidget_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpSearchQueryWidget::timerEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpSearchQueryWidget::timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
@@ -18768,8 +15091,6 @@ func callbackQHelpSearchQueryWidget_TimerEvent(ptr unsafe.Pointer, event unsafe.
 }
 
 func (ptr *QHelpSearchQueryWidget) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
-	defer qt.Recovering("connect QHelpSearchQueryWidget::timerEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchQueryWidget::timerEvent", f)
@@ -18777,8 +15098,6 @@ func (ptr *QHelpSearchQueryWidget) ConnectTimerEvent(f func(event *core.QTimerEv
 }
 
 func (ptr *QHelpSearchQueryWidget) DisconnectTimerEvent() {
-	defer qt.Recovering("disconnect QHelpSearchQueryWidget::timerEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchQueryWidget::timerEvent")
@@ -18786,16 +15105,12 @@ func (ptr *QHelpSearchQueryWidget) DisconnectTimerEvent() {
 }
 
 func (ptr *QHelpSearchQueryWidget) TimerEvent(event core.QTimerEvent_ITF) {
-	defer qt.Recovering("QHelpSearchQueryWidget::timerEvent")
-
 	if ptr.Pointer() != nil {
 		C.QHelpSearchQueryWidget_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
 	}
 }
 
 func (ptr *QHelpSearchQueryWidget) TimerEventDefault(event core.QTimerEvent_ITF) {
-	defer qt.Recovering("QHelpSearchQueryWidget::timerEvent")
-
 	if ptr.Pointer() != nil {
 		C.QHelpSearchQueryWidget_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
 	}
@@ -18803,7 +15118,6 @@ func (ptr *QHelpSearchQueryWidget) TimerEventDefault(event core.QTimerEvent_ITF)
 
 //export callbackQHelpSearchQueryWidget_ChildEvent
 func callbackQHelpSearchQueryWidget_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpSearchQueryWidget::childEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpSearchQueryWidget::childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
@@ -18813,8 +15127,6 @@ func callbackQHelpSearchQueryWidget_ChildEvent(ptr unsafe.Pointer, event unsafe.
 }
 
 func (ptr *QHelpSearchQueryWidget) ConnectChildEvent(f func(event *core.QChildEvent)) {
-	defer qt.Recovering("connect QHelpSearchQueryWidget::childEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchQueryWidget::childEvent", f)
@@ -18822,8 +15134,6 @@ func (ptr *QHelpSearchQueryWidget) ConnectChildEvent(f func(event *core.QChildEv
 }
 
 func (ptr *QHelpSearchQueryWidget) DisconnectChildEvent() {
-	defer qt.Recovering("disconnect QHelpSearchQueryWidget::childEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchQueryWidget::childEvent")
@@ -18831,16 +15141,12 @@ func (ptr *QHelpSearchQueryWidget) DisconnectChildEvent() {
 }
 
 func (ptr *QHelpSearchQueryWidget) ChildEvent(event core.QChildEvent_ITF) {
-	defer qt.Recovering("QHelpSearchQueryWidget::childEvent")
-
 	if ptr.Pointer() != nil {
 		C.QHelpSearchQueryWidget_ChildEvent(ptr.Pointer(), core.PointerFromQChildEvent(event))
 	}
 }
 
 func (ptr *QHelpSearchQueryWidget) ChildEventDefault(event core.QChildEvent_ITF) {
-	defer qt.Recovering("QHelpSearchQueryWidget::childEvent")
-
 	if ptr.Pointer() != nil {
 		C.QHelpSearchQueryWidget_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
 	}
@@ -18848,7 +15154,6 @@ func (ptr *QHelpSearchQueryWidget) ChildEventDefault(event core.QChildEvent_ITF)
 
 //export callbackQHelpSearchQueryWidget_ConnectNotify
 func callbackQHelpSearchQueryWidget_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpSearchQueryWidget::connectNotify")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpSearchQueryWidget::connectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
@@ -18858,8 +15163,6 @@ func callbackQHelpSearchQueryWidget_ConnectNotify(ptr unsafe.Pointer, sign unsaf
 }
 
 func (ptr *QHelpSearchQueryWidget) ConnectConnectNotify(f func(sign *core.QMetaMethod)) {
-	defer qt.Recovering("connect QHelpSearchQueryWidget::connectNotify")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchQueryWidget::connectNotify", f)
@@ -18867,8 +15170,6 @@ func (ptr *QHelpSearchQueryWidget) ConnectConnectNotify(f func(sign *core.QMetaM
 }
 
 func (ptr *QHelpSearchQueryWidget) DisconnectConnectNotify() {
-	defer qt.Recovering("disconnect QHelpSearchQueryWidget::connectNotify")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchQueryWidget::connectNotify")
@@ -18876,16 +15177,12 @@ func (ptr *QHelpSearchQueryWidget) DisconnectConnectNotify() {
 }
 
 func (ptr *QHelpSearchQueryWidget) ConnectNotify(sign core.QMetaMethod_ITF) {
-	defer qt.Recovering("QHelpSearchQueryWidget::connectNotify")
-
 	if ptr.Pointer() != nil {
 		C.QHelpSearchQueryWidget_ConnectNotify(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
 	}
 }
 
 func (ptr *QHelpSearchQueryWidget) ConnectNotifyDefault(sign core.QMetaMethod_ITF) {
-	defer qt.Recovering("QHelpSearchQueryWidget::connectNotify")
-
 	if ptr.Pointer() != nil {
 		C.QHelpSearchQueryWidget_ConnectNotifyDefault(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
 	}
@@ -18893,7 +15190,6 @@ func (ptr *QHelpSearchQueryWidget) ConnectNotifyDefault(sign core.QMetaMethod_IT
 
 //export callbackQHelpSearchQueryWidget_CustomEvent
 func callbackQHelpSearchQueryWidget_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpSearchQueryWidget::customEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpSearchQueryWidget::customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
@@ -18903,8 +15199,6 @@ func callbackQHelpSearchQueryWidget_CustomEvent(ptr unsafe.Pointer, event unsafe
 }
 
 func (ptr *QHelpSearchQueryWidget) ConnectCustomEvent(f func(event *core.QEvent)) {
-	defer qt.Recovering("connect QHelpSearchQueryWidget::customEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchQueryWidget::customEvent", f)
@@ -18912,8 +15206,6 @@ func (ptr *QHelpSearchQueryWidget) ConnectCustomEvent(f func(event *core.QEvent)
 }
 
 func (ptr *QHelpSearchQueryWidget) DisconnectCustomEvent() {
-	defer qt.Recovering("disconnect QHelpSearchQueryWidget::customEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchQueryWidget::customEvent")
@@ -18921,16 +15213,12 @@ func (ptr *QHelpSearchQueryWidget) DisconnectCustomEvent() {
 }
 
 func (ptr *QHelpSearchQueryWidget) CustomEvent(event core.QEvent_ITF) {
-	defer qt.Recovering("QHelpSearchQueryWidget::customEvent")
-
 	if ptr.Pointer() != nil {
 		C.QHelpSearchQueryWidget_CustomEvent(ptr.Pointer(), core.PointerFromQEvent(event))
 	}
 }
 
 func (ptr *QHelpSearchQueryWidget) CustomEventDefault(event core.QEvent_ITF) {
-	defer qt.Recovering("QHelpSearchQueryWidget::customEvent")
-
 	if ptr.Pointer() != nil {
 		C.QHelpSearchQueryWidget_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
 	}
@@ -18938,8 +15226,6 @@ func (ptr *QHelpSearchQueryWidget) CustomEventDefault(event core.QEvent_ITF) {
 
 //export callbackQHelpSearchQueryWidget_DeleteLater
 func callbackQHelpSearchQueryWidget_DeleteLater(ptr unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpSearchQueryWidget::deleteLater")
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpSearchQueryWidget::deleteLater"); signal != nil {
 		signal.(func())()
 	} else {
@@ -18948,8 +15234,6 @@ func callbackQHelpSearchQueryWidget_DeleteLater(ptr unsafe.Pointer) {
 }
 
 func (ptr *QHelpSearchQueryWidget) ConnectDeleteLater(f func()) {
-	defer qt.Recovering("connect QHelpSearchQueryWidget::deleteLater")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchQueryWidget::deleteLater", f)
@@ -18957,8 +15241,6 @@ func (ptr *QHelpSearchQueryWidget) ConnectDeleteLater(f func()) {
 }
 
 func (ptr *QHelpSearchQueryWidget) DisconnectDeleteLater() {
-	defer qt.Recovering("disconnect QHelpSearchQueryWidget::deleteLater")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchQueryWidget::deleteLater")
@@ -18966,8 +15248,6 @@ func (ptr *QHelpSearchQueryWidget) DisconnectDeleteLater() {
 }
 
 func (ptr *QHelpSearchQueryWidget) DeleteLater() {
-	defer qt.Recovering("QHelpSearchQueryWidget::deleteLater")
-
 	if ptr.Pointer() != nil {
 		C.QHelpSearchQueryWidget_DeleteLater(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
@@ -18976,8 +15256,6 @@ func (ptr *QHelpSearchQueryWidget) DeleteLater() {
 }
 
 func (ptr *QHelpSearchQueryWidget) DeleteLaterDefault() {
-	defer qt.Recovering("QHelpSearchQueryWidget::deleteLater")
-
 	if ptr.Pointer() != nil {
 		C.QHelpSearchQueryWidget_DeleteLaterDefault(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
@@ -18987,7 +15265,6 @@ func (ptr *QHelpSearchQueryWidget) DeleteLaterDefault() {
 
 //export callbackQHelpSearchQueryWidget_DisconnectNotify
 func callbackQHelpSearchQueryWidget_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpSearchQueryWidget::disconnectNotify")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpSearchQueryWidget::disconnectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
@@ -18997,8 +15274,6 @@ func callbackQHelpSearchQueryWidget_DisconnectNotify(ptr unsafe.Pointer, sign un
 }
 
 func (ptr *QHelpSearchQueryWidget) ConnectDisconnectNotify(f func(sign *core.QMetaMethod)) {
-	defer qt.Recovering("connect QHelpSearchQueryWidget::disconnectNotify")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchQueryWidget::disconnectNotify", f)
@@ -19006,8 +15281,6 @@ func (ptr *QHelpSearchQueryWidget) ConnectDisconnectNotify(f func(sign *core.QMe
 }
 
 func (ptr *QHelpSearchQueryWidget) DisconnectDisconnectNotify() {
-	defer qt.Recovering("disconnect QHelpSearchQueryWidget::disconnectNotify")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchQueryWidget::disconnectNotify")
@@ -19015,16 +15288,12 @@ func (ptr *QHelpSearchQueryWidget) DisconnectDisconnectNotify() {
 }
 
 func (ptr *QHelpSearchQueryWidget) DisconnectNotify(sign core.QMetaMethod_ITF) {
-	defer qt.Recovering("QHelpSearchQueryWidget::disconnectNotify")
-
 	if ptr.Pointer() != nil {
 		C.QHelpSearchQueryWidget_DisconnectNotify(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
 	}
 }
 
 func (ptr *QHelpSearchQueryWidget) DisconnectNotifyDefault(sign core.QMetaMethod_ITF) {
-	defer qt.Recovering("QHelpSearchQueryWidget::disconnectNotify")
-
 	if ptr.Pointer() != nil {
 		C.QHelpSearchQueryWidget_DisconnectNotifyDefault(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
 	}
@@ -19032,7 +15301,6 @@ func (ptr *QHelpSearchQueryWidget) DisconnectNotifyDefault(sign core.QMetaMethod
 
 //export callbackQHelpSearchQueryWidget_EventFilter
 func callbackQHelpSearchQueryWidget_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-	defer qt.Recovering("callback QHelpSearchQueryWidget::eventFilter")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpSearchQueryWidget::eventFilter"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
@@ -19042,8 +15310,6 @@ func callbackQHelpSearchQueryWidget_EventFilter(ptr unsafe.Pointer, watched unsa
 }
 
 func (ptr *QHelpSearchQueryWidget) ConnectEventFilter(f func(watched *core.QObject, event *core.QEvent) bool) {
-	defer qt.Recovering("connect QHelpSearchQueryWidget::eventFilter")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchQueryWidget::eventFilter", f)
@@ -19051,8 +15317,6 @@ func (ptr *QHelpSearchQueryWidget) ConnectEventFilter(f func(watched *core.QObje
 }
 
 func (ptr *QHelpSearchQueryWidget) DisconnectEventFilter() {
-	defer qt.Recovering("disconnect QHelpSearchQueryWidget::eventFilter")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchQueryWidget::eventFilter")
@@ -19060,8 +15324,6 @@ func (ptr *QHelpSearchQueryWidget) DisconnectEventFilter() {
 }
 
 func (ptr *QHelpSearchQueryWidget) EventFilter(watched core.QObject_ITF, event core.QEvent_ITF) bool {
-	defer qt.Recovering("QHelpSearchQueryWidget::eventFilter")
-
 	if ptr.Pointer() != nil {
 		return C.QHelpSearchQueryWidget_EventFilter(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
 	}
@@ -19069,8 +15331,6 @@ func (ptr *QHelpSearchQueryWidget) EventFilter(watched core.QObject_ITF, event c
 }
 
 func (ptr *QHelpSearchQueryWidget) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
-	defer qt.Recovering("QHelpSearchQueryWidget::eventFilter")
-
 	if ptr.Pointer() != nil {
 		return C.QHelpSearchQueryWidget_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
 	}
@@ -19079,7 +15339,6 @@ func (ptr *QHelpSearchQueryWidget) EventFilterDefault(watched core.QObject_ITF, 
 
 //export callbackQHelpSearchQueryWidget_MetaObject
 func callbackQHelpSearchQueryWidget_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-	defer qt.Recovering("callback QHelpSearchQueryWidget::metaObject")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpSearchQueryWidget::metaObject"); signal != nil {
 		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
@@ -19089,8 +15348,6 @@ func callbackQHelpSearchQueryWidget_MetaObject(ptr unsafe.Pointer) unsafe.Pointe
 }
 
 func (ptr *QHelpSearchQueryWidget) ConnectMetaObject(f func() *core.QMetaObject) {
-	defer qt.Recovering("connect QHelpSearchQueryWidget::metaObject")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchQueryWidget::metaObject", f)
@@ -19098,8 +15355,6 @@ func (ptr *QHelpSearchQueryWidget) ConnectMetaObject(f func() *core.QMetaObject)
 }
 
 func (ptr *QHelpSearchQueryWidget) DisconnectMetaObject() {
-	defer qt.Recovering("disconnect QHelpSearchQueryWidget::metaObject")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchQueryWidget::metaObject")
@@ -19107,8 +15362,6 @@ func (ptr *QHelpSearchQueryWidget) DisconnectMetaObject() {
 }
 
 func (ptr *QHelpSearchQueryWidget) MetaObject() *core.QMetaObject {
-	defer qt.Recovering("QHelpSearchQueryWidget::metaObject")
-
 	if ptr.Pointer() != nil {
 		return core.NewQMetaObjectFromPointer(C.QHelpSearchQueryWidget_MetaObject(ptr.Pointer()))
 	}
@@ -19116,8 +15369,6 @@ func (ptr *QHelpSearchQueryWidget) MetaObject() *core.QMetaObject {
 }
 
 func (ptr *QHelpSearchQueryWidget) MetaObjectDefault() *core.QMetaObject {
-	defer qt.Recovering("QHelpSearchQueryWidget::metaObject")
-
 	if ptr.Pointer() != nil {
 		return core.NewQMetaObjectFromPointer(C.QHelpSearchQueryWidget_MetaObjectDefault(ptr.Pointer()))
 	}
@@ -19163,8 +15414,6 @@ func NewQHelpSearchResultWidgetFromPointer(ptr unsafe.Pointer) *QHelpSearchResul
 	return n
 }
 func (ptr *QHelpSearchResultWidget) LinkAt(point core.QPoint_ITF) *core.QUrl {
-	defer qt.Recovering("QHelpSearchResultWidget::linkAt")
-
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQUrlFromPointer(C.QHelpSearchResultWidget_LinkAt(ptr.Pointer(), core.PointerFromQPoint(point)))
 		runtime.SetFinalizer(tmpValue, (*core.QUrl).DestroyQUrl)
@@ -19175,7 +15424,6 @@ func (ptr *QHelpSearchResultWidget) LinkAt(point core.QPoint_ITF) *core.QUrl {
 
 //export callbackQHelpSearchResultWidget_RequestShowLink
 func callbackQHelpSearchResultWidget_RequestShowLink(ptr unsafe.Pointer, link unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpSearchResultWidget::requestShowLink")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpSearchResultWidget::requestShowLink"); signal != nil {
 		signal.(func(*core.QUrl))(core.NewQUrlFromPointer(link))
@@ -19184,8 +15432,6 @@ func callbackQHelpSearchResultWidget_RequestShowLink(ptr unsafe.Pointer, link un
 }
 
 func (ptr *QHelpSearchResultWidget) ConnectRequestShowLink(f func(link *core.QUrl)) {
-	defer qt.Recovering("connect QHelpSearchResultWidget::requestShowLink")
-
 	if ptr.Pointer() != nil {
 		C.QHelpSearchResultWidget_ConnectRequestShowLink(ptr.Pointer())
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchResultWidget::requestShowLink", f)
@@ -19193,8 +15439,6 @@ func (ptr *QHelpSearchResultWidget) ConnectRequestShowLink(f func(link *core.QUr
 }
 
 func (ptr *QHelpSearchResultWidget) DisconnectRequestShowLink() {
-	defer qt.Recovering("disconnect QHelpSearchResultWidget::requestShowLink")
-
 	if ptr.Pointer() != nil {
 		C.QHelpSearchResultWidget_DisconnectRequestShowLink(ptr.Pointer())
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchResultWidget::requestShowLink")
@@ -19202,16 +15446,12 @@ func (ptr *QHelpSearchResultWidget) DisconnectRequestShowLink() {
 }
 
 func (ptr *QHelpSearchResultWidget) RequestShowLink(link core.QUrl_ITF) {
-	defer qt.Recovering("QHelpSearchResultWidget::requestShowLink")
-
 	if ptr.Pointer() != nil {
 		C.QHelpSearchResultWidget_RequestShowLink(ptr.Pointer(), core.PointerFromQUrl(link))
 	}
 }
 
 func (ptr *QHelpSearchResultWidget) DestroyQHelpSearchResultWidget() {
-	defer qt.Recovering("QHelpSearchResultWidget::~QHelpSearchResultWidget")
-
 	if ptr.Pointer() != nil {
 		C.QHelpSearchResultWidget_DestroyQHelpSearchResultWidget(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
@@ -19221,7 +15461,6 @@ func (ptr *QHelpSearchResultWidget) DestroyQHelpSearchResultWidget() {
 
 //export callbackQHelpSearchResultWidget_ActionEvent
 func callbackQHelpSearchResultWidget_ActionEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpSearchResultWidget::actionEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpSearchResultWidget::actionEvent"); signal != nil {
 		signal.(func(*gui.QActionEvent))(gui.NewQActionEventFromPointer(event))
@@ -19231,8 +15470,6 @@ func callbackQHelpSearchResultWidget_ActionEvent(ptr unsafe.Pointer, event unsaf
 }
 
 func (ptr *QHelpSearchResultWidget) ConnectActionEvent(f func(event *gui.QActionEvent)) {
-	defer qt.Recovering("connect QHelpSearchResultWidget::actionEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchResultWidget::actionEvent", f)
@@ -19240,8 +15477,6 @@ func (ptr *QHelpSearchResultWidget) ConnectActionEvent(f func(event *gui.QAction
 }
 
 func (ptr *QHelpSearchResultWidget) DisconnectActionEvent() {
-	defer qt.Recovering("disconnect QHelpSearchResultWidget::actionEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchResultWidget::actionEvent")
@@ -19249,16 +15484,12 @@ func (ptr *QHelpSearchResultWidget) DisconnectActionEvent() {
 }
 
 func (ptr *QHelpSearchResultWidget) ActionEvent(event gui.QActionEvent_ITF) {
-	defer qt.Recovering("QHelpSearchResultWidget::actionEvent")
-
 	if ptr.Pointer() != nil {
 		C.QHelpSearchResultWidget_ActionEvent(ptr.Pointer(), gui.PointerFromQActionEvent(event))
 	}
 }
 
 func (ptr *QHelpSearchResultWidget) ActionEventDefault(event gui.QActionEvent_ITF) {
-	defer qt.Recovering("QHelpSearchResultWidget::actionEvent")
-
 	if ptr.Pointer() != nil {
 		C.QHelpSearchResultWidget_ActionEventDefault(ptr.Pointer(), gui.PointerFromQActionEvent(event))
 	}
@@ -19266,7 +15497,6 @@ func (ptr *QHelpSearchResultWidget) ActionEventDefault(event gui.QActionEvent_IT
 
 //export callbackQHelpSearchResultWidget_DragEnterEvent
 func callbackQHelpSearchResultWidget_DragEnterEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpSearchResultWidget::dragEnterEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpSearchResultWidget::dragEnterEvent"); signal != nil {
 		signal.(func(*gui.QDragEnterEvent))(gui.NewQDragEnterEventFromPointer(event))
@@ -19276,8 +15506,6 @@ func callbackQHelpSearchResultWidget_DragEnterEvent(ptr unsafe.Pointer, event un
 }
 
 func (ptr *QHelpSearchResultWidget) ConnectDragEnterEvent(f func(event *gui.QDragEnterEvent)) {
-	defer qt.Recovering("connect QHelpSearchResultWidget::dragEnterEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchResultWidget::dragEnterEvent", f)
@@ -19285,8 +15513,6 @@ func (ptr *QHelpSearchResultWidget) ConnectDragEnterEvent(f func(event *gui.QDra
 }
 
 func (ptr *QHelpSearchResultWidget) DisconnectDragEnterEvent() {
-	defer qt.Recovering("disconnect QHelpSearchResultWidget::dragEnterEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchResultWidget::dragEnterEvent")
@@ -19294,16 +15520,12 @@ func (ptr *QHelpSearchResultWidget) DisconnectDragEnterEvent() {
 }
 
 func (ptr *QHelpSearchResultWidget) DragEnterEvent(event gui.QDragEnterEvent_ITF) {
-	defer qt.Recovering("QHelpSearchResultWidget::dragEnterEvent")
-
 	if ptr.Pointer() != nil {
 		C.QHelpSearchResultWidget_DragEnterEvent(ptr.Pointer(), gui.PointerFromQDragEnterEvent(event))
 	}
 }
 
 func (ptr *QHelpSearchResultWidget) DragEnterEventDefault(event gui.QDragEnterEvent_ITF) {
-	defer qt.Recovering("QHelpSearchResultWidget::dragEnterEvent")
-
 	if ptr.Pointer() != nil {
 		C.QHelpSearchResultWidget_DragEnterEventDefault(ptr.Pointer(), gui.PointerFromQDragEnterEvent(event))
 	}
@@ -19311,7 +15533,6 @@ func (ptr *QHelpSearchResultWidget) DragEnterEventDefault(event gui.QDragEnterEv
 
 //export callbackQHelpSearchResultWidget_DragLeaveEvent
 func callbackQHelpSearchResultWidget_DragLeaveEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpSearchResultWidget::dragLeaveEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpSearchResultWidget::dragLeaveEvent"); signal != nil {
 		signal.(func(*gui.QDragLeaveEvent))(gui.NewQDragLeaveEventFromPointer(event))
@@ -19321,8 +15542,6 @@ func callbackQHelpSearchResultWidget_DragLeaveEvent(ptr unsafe.Pointer, event un
 }
 
 func (ptr *QHelpSearchResultWidget) ConnectDragLeaveEvent(f func(event *gui.QDragLeaveEvent)) {
-	defer qt.Recovering("connect QHelpSearchResultWidget::dragLeaveEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchResultWidget::dragLeaveEvent", f)
@@ -19330,8 +15549,6 @@ func (ptr *QHelpSearchResultWidget) ConnectDragLeaveEvent(f func(event *gui.QDra
 }
 
 func (ptr *QHelpSearchResultWidget) DisconnectDragLeaveEvent() {
-	defer qt.Recovering("disconnect QHelpSearchResultWidget::dragLeaveEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchResultWidget::dragLeaveEvent")
@@ -19339,16 +15556,12 @@ func (ptr *QHelpSearchResultWidget) DisconnectDragLeaveEvent() {
 }
 
 func (ptr *QHelpSearchResultWidget) DragLeaveEvent(event gui.QDragLeaveEvent_ITF) {
-	defer qt.Recovering("QHelpSearchResultWidget::dragLeaveEvent")
-
 	if ptr.Pointer() != nil {
 		C.QHelpSearchResultWidget_DragLeaveEvent(ptr.Pointer(), gui.PointerFromQDragLeaveEvent(event))
 	}
 }
 
 func (ptr *QHelpSearchResultWidget) DragLeaveEventDefault(event gui.QDragLeaveEvent_ITF) {
-	defer qt.Recovering("QHelpSearchResultWidget::dragLeaveEvent")
-
 	if ptr.Pointer() != nil {
 		C.QHelpSearchResultWidget_DragLeaveEventDefault(ptr.Pointer(), gui.PointerFromQDragLeaveEvent(event))
 	}
@@ -19356,7 +15569,6 @@ func (ptr *QHelpSearchResultWidget) DragLeaveEventDefault(event gui.QDragLeaveEv
 
 //export callbackQHelpSearchResultWidget_DragMoveEvent
 func callbackQHelpSearchResultWidget_DragMoveEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpSearchResultWidget::dragMoveEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpSearchResultWidget::dragMoveEvent"); signal != nil {
 		signal.(func(*gui.QDragMoveEvent))(gui.NewQDragMoveEventFromPointer(event))
@@ -19366,8 +15578,6 @@ func callbackQHelpSearchResultWidget_DragMoveEvent(ptr unsafe.Pointer, event uns
 }
 
 func (ptr *QHelpSearchResultWidget) ConnectDragMoveEvent(f func(event *gui.QDragMoveEvent)) {
-	defer qt.Recovering("connect QHelpSearchResultWidget::dragMoveEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchResultWidget::dragMoveEvent", f)
@@ -19375,8 +15585,6 @@ func (ptr *QHelpSearchResultWidget) ConnectDragMoveEvent(f func(event *gui.QDrag
 }
 
 func (ptr *QHelpSearchResultWidget) DisconnectDragMoveEvent() {
-	defer qt.Recovering("disconnect QHelpSearchResultWidget::dragMoveEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchResultWidget::dragMoveEvent")
@@ -19384,16 +15592,12 @@ func (ptr *QHelpSearchResultWidget) DisconnectDragMoveEvent() {
 }
 
 func (ptr *QHelpSearchResultWidget) DragMoveEvent(event gui.QDragMoveEvent_ITF) {
-	defer qt.Recovering("QHelpSearchResultWidget::dragMoveEvent")
-
 	if ptr.Pointer() != nil {
 		C.QHelpSearchResultWidget_DragMoveEvent(ptr.Pointer(), gui.PointerFromQDragMoveEvent(event))
 	}
 }
 
 func (ptr *QHelpSearchResultWidget) DragMoveEventDefault(event gui.QDragMoveEvent_ITF) {
-	defer qt.Recovering("QHelpSearchResultWidget::dragMoveEvent")
-
 	if ptr.Pointer() != nil {
 		C.QHelpSearchResultWidget_DragMoveEventDefault(ptr.Pointer(), gui.PointerFromQDragMoveEvent(event))
 	}
@@ -19401,7 +15605,6 @@ func (ptr *QHelpSearchResultWidget) DragMoveEventDefault(event gui.QDragMoveEven
 
 //export callbackQHelpSearchResultWidget_DropEvent
 func callbackQHelpSearchResultWidget_DropEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpSearchResultWidget::dropEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpSearchResultWidget::dropEvent"); signal != nil {
 		signal.(func(*gui.QDropEvent))(gui.NewQDropEventFromPointer(event))
@@ -19411,8 +15614,6 @@ func callbackQHelpSearchResultWidget_DropEvent(ptr unsafe.Pointer, event unsafe.
 }
 
 func (ptr *QHelpSearchResultWidget) ConnectDropEvent(f func(event *gui.QDropEvent)) {
-	defer qt.Recovering("connect QHelpSearchResultWidget::dropEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchResultWidget::dropEvent", f)
@@ -19420,8 +15621,6 @@ func (ptr *QHelpSearchResultWidget) ConnectDropEvent(f func(event *gui.QDropEven
 }
 
 func (ptr *QHelpSearchResultWidget) DisconnectDropEvent() {
-	defer qt.Recovering("disconnect QHelpSearchResultWidget::dropEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchResultWidget::dropEvent")
@@ -19429,16 +15628,12 @@ func (ptr *QHelpSearchResultWidget) DisconnectDropEvent() {
 }
 
 func (ptr *QHelpSearchResultWidget) DropEvent(event gui.QDropEvent_ITF) {
-	defer qt.Recovering("QHelpSearchResultWidget::dropEvent")
-
 	if ptr.Pointer() != nil {
 		C.QHelpSearchResultWidget_DropEvent(ptr.Pointer(), gui.PointerFromQDropEvent(event))
 	}
 }
 
 func (ptr *QHelpSearchResultWidget) DropEventDefault(event gui.QDropEvent_ITF) {
-	defer qt.Recovering("QHelpSearchResultWidget::dropEvent")
-
 	if ptr.Pointer() != nil {
 		C.QHelpSearchResultWidget_DropEventDefault(ptr.Pointer(), gui.PointerFromQDropEvent(event))
 	}
@@ -19446,7 +15641,6 @@ func (ptr *QHelpSearchResultWidget) DropEventDefault(event gui.QDropEvent_ITF) {
 
 //export callbackQHelpSearchResultWidget_EnterEvent
 func callbackQHelpSearchResultWidget_EnterEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpSearchResultWidget::enterEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpSearchResultWidget::enterEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
@@ -19456,8 +15650,6 @@ func callbackQHelpSearchResultWidget_EnterEvent(ptr unsafe.Pointer, event unsafe
 }
 
 func (ptr *QHelpSearchResultWidget) ConnectEnterEvent(f func(event *core.QEvent)) {
-	defer qt.Recovering("connect QHelpSearchResultWidget::enterEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchResultWidget::enterEvent", f)
@@ -19465,8 +15657,6 @@ func (ptr *QHelpSearchResultWidget) ConnectEnterEvent(f func(event *core.QEvent)
 }
 
 func (ptr *QHelpSearchResultWidget) DisconnectEnterEvent() {
-	defer qt.Recovering("disconnect QHelpSearchResultWidget::enterEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchResultWidget::enterEvent")
@@ -19474,16 +15664,12 @@ func (ptr *QHelpSearchResultWidget) DisconnectEnterEvent() {
 }
 
 func (ptr *QHelpSearchResultWidget) EnterEvent(event core.QEvent_ITF) {
-	defer qt.Recovering("QHelpSearchResultWidget::enterEvent")
-
 	if ptr.Pointer() != nil {
 		C.QHelpSearchResultWidget_EnterEvent(ptr.Pointer(), core.PointerFromQEvent(event))
 	}
 }
 
 func (ptr *QHelpSearchResultWidget) EnterEventDefault(event core.QEvent_ITF) {
-	defer qt.Recovering("QHelpSearchResultWidget::enterEvent")
-
 	if ptr.Pointer() != nil {
 		C.QHelpSearchResultWidget_EnterEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
 	}
@@ -19491,7 +15677,6 @@ func (ptr *QHelpSearchResultWidget) EnterEventDefault(event core.QEvent_ITF) {
 
 //export callbackQHelpSearchResultWidget_FocusInEvent
 func callbackQHelpSearchResultWidget_FocusInEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpSearchResultWidget::focusInEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpSearchResultWidget::focusInEvent"); signal != nil {
 		signal.(func(*gui.QFocusEvent))(gui.NewQFocusEventFromPointer(event))
@@ -19501,8 +15686,6 @@ func callbackQHelpSearchResultWidget_FocusInEvent(ptr unsafe.Pointer, event unsa
 }
 
 func (ptr *QHelpSearchResultWidget) ConnectFocusInEvent(f func(event *gui.QFocusEvent)) {
-	defer qt.Recovering("connect QHelpSearchResultWidget::focusInEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchResultWidget::focusInEvent", f)
@@ -19510,8 +15693,6 @@ func (ptr *QHelpSearchResultWidget) ConnectFocusInEvent(f func(event *gui.QFocus
 }
 
 func (ptr *QHelpSearchResultWidget) DisconnectFocusInEvent() {
-	defer qt.Recovering("disconnect QHelpSearchResultWidget::focusInEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchResultWidget::focusInEvent")
@@ -19519,16 +15700,12 @@ func (ptr *QHelpSearchResultWidget) DisconnectFocusInEvent() {
 }
 
 func (ptr *QHelpSearchResultWidget) FocusInEvent(event gui.QFocusEvent_ITF) {
-	defer qt.Recovering("QHelpSearchResultWidget::focusInEvent")
-
 	if ptr.Pointer() != nil {
 		C.QHelpSearchResultWidget_FocusInEvent(ptr.Pointer(), gui.PointerFromQFocusEvent(event))
 	}
 }
 
 func (ptr *QHelpSearchResultWidget) FocusInEventDefault(event gui.QFocusEvent_ITF) {
-	defer qt.Recovering("QHelpSearchResultWidget::focusInEvent")
-
 	if ptr.Pointer() != nil {
 		C.QHelpSearchResultWidget_FocusInEventDefault(ptr.Pointer(), gui.PointerFromQFocusEvent(event))
 	}
@@ -19536,7 +15713,6 @@ func (ptr *QHelpSearchResultWidget) FocusInEventDefault(event gui.QFocusEvent_IT
 
 //export callbackQHelpSearchResultWidget_FocusOutEvent
 func callbackQHelpSearchResultWidget_FocusOutEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpSearchResultWidget::focusOutEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpSearchResultWidget::focusOutEvent"); signal != nil {
 		signal.(func(*gui.QFocusEvent))(gui.NewQFocusEventFromPointer(event))
@@ -19546,8 +15722,6 @@ func callbackQHelpSearchResultWidget_FocusOutEvent(ptr unsafe.Pointer, event uns
 }
 
 func (ptr *QHelpSearchResultWidget) ConnectFocusOutEvent(f func(event *gui.QFocusEvent)) {
-	defer qt.Recovering("connect QHelpSearchResultWidget::focusOutEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchResultWidget::focusOutEvent", f)
@@ -19555,8 +15729,6 @@ func (ptr *QHelpSearchResultWidget) ConnectFocusOutEvent(f func(event *gui.QFocu
 }
 
 func (ptr *QHelpSearchResultWidget) DisconnectFocusOutEvent() {
-	defer qt.Recovering("disconnect QHelpSearchResultWidget::focusOutEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchResultWidget::focusOutEvent")
@@ -19564,16 +15736,12 @@ func (ptr *QHelpSearchResultWidget) DisconnectFocusOutEvent() {
 }
 
 func (ptr *QHelpSearchResultWidget) FocusOutEvent(event gui.QFocusEvent_ITF) {
-	defer qt.Recovering("QHelpSearchResultWidget::focusOutEvent")
-
 	if ptr.Pointer() != nil {
 		C.QHelpSearchResultWidget_FocusOutEvent(ptr.Pointer(), gui.PointerFromQFocusEvent(event))
 	}
 }
 
 func (ptr *QHelpSearchResultWidget) FocusOutEventDefault(event gui.QFocusEvent_ITF) {
-	defer qt.Recovering("QHelpSearchResultWidget::focusOutEvent")
-
 	if ptr.Pointer() != nil {
 		C.QHelpSearchResultWidget_FocusOutEventDefault(ptr.Pointer(), gui.PointerFromQFocusEvent(event))
 	}
@@ -19581,7 +15749,6 @@ func (ptr *QHelpSearchResultWidget) FocusOutEventDefault(event gui.QFocusEvent_I
 
 //export callbackQHelpSearchResultWidget_HideEvent
 func callbackQHelpSearchResultWidget_HideEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpSearchResultWidget::hideEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpSearchResultWidget::hideEvent"); signal != nil {
 		signal.(func(*gui.QHideEvent))(gui.NewQHideEventFromPointer(event))
@@ -19591,8 +15758,6 @@ func callbackQHelpSearchResultWidget_HideEvent(ptr unsafe.Pointer, event unsafe.
 }
 
 func (ptr *QHelpSearchResultWidget) ConnectHideEvent(f func(event *gui.QHideEvent)) {
-	defer qt.Recovering("connect QHelpSearchResultWidget::hideEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchResultWidget::hideEvent", f)
@@ -19600,8 +15765,6 @@ func (ptr *QHelpSearchResultWidget) ConnectHideEvent(f func(event *gui.QHideEven
 }
 
 func (ptr *QHelpSearchResultWidget) DisconnectHideEvent() {
-	defer qt.Recovering("disconnect QHelpSearchResultWidget::hideEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchResultWidget::hideEvent")
@@ -19609,16 +15772,12 @@ func (ptr *QHelpSearchResultWidget) DisconnectHideEvent() {
 }
 
 func (ptr *QHelpSearchResultWidget) HideEvent(event gui.QHideEvent_ITF) {
-	defer qt.Recovering("QHelpSearchResultWidget::hideEvent")
-
 	if ptr.Pointer() != nil {
 		C.QHelpSearchResultWidget_HideEvent(ptr.Pointer(), gui.PointerFromQHideEvent(event))
 	}
 }
 
 func (ptr *QHelpSearchResultWidget) HideEventDefault(event gui.QHideEvent_ITF) {
-	defer qt.Recovering("QHelpSearchResultWidget::hideEvent")
-
 	if ptr.Pointer() != nil {
 		C.QHelpSearchResultWidget_HideEventDefault(ptr.Pointer(), gui.PointerFromQHideEvent(event))
 	}
@@ -19626,7 +15785,6 @@ func (ptr *QHelpSearchResultWidget) HideEventDefault(event gui.QHideEvent_ITF) {
 
 //export callbackQHelpSearchResultWidget_LeaveEvent
 func callbackQHelpSearchResultWidget_LeaveEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpSearchResultWidget::leaveEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpSearchResultWidget::leaveEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
@@ -19636,8 +15794,6 @@ func callbackQHelpSearchResultWidget_LeaveEvent(ptr unsafe.Pointer, event unsafe
 }
 
 func (ptr *QHelpSearchResultWidget) ConnectLeaveEvent(f func(event *core.QEvent)) {
-	defer qt.Recovering("connect QHelpSearchResultWidget::leaveEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchResultWidget::leaveEvent", f)
@@ -19645,8 +15801,6 @@ func (ptr *QHelpSearchResultWidget) ConnectLeaveEvent(f func(event *core.QEvent)
 }
 
 func (ptr *QHelpSearchResultWidget) DisconnectLeaveEvent() {
-	defer qt.Recovering("disconnect QHelpSearchResultWidget::leaveEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchResultWidget::leaveEvent")
@@ -19654,16 +15808,12 @@ func (ptr *QHelpSearchResultWidget) DisconnectLeaveEvent() {
 }
 
 func (ptr *QHelpSearchResultWidget) LeaveEvent(event core.QEvent_ITF) {
-	defer qt.Recovering("QHelpSearchResultWidget::leaveEvent")
-
 	if ptr.Pointer() != nil {
 		C.QHelpSearchResultWidget_LeaveEvent(ptr.Pointer(), core.PointerFromQEvent(event))
 	}
 }
 
 func (ptr *QHelpSearchResultWidget) LeaveEventDefault(event core.QEvent_ITF) {
-	defer qt.Recovering("QHelpSearchResultWidget::leaveEvent")
-
 	if ptr.Pointer() != nil {
 		C.QHelpSearchResultWidget_LeaveEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
 	}
@@ -19671,7 +15821,6 @@ func (ptr *QHelpSearchResultWidget) LeaveEventDefault(event core.QEvent_ITF) {
 
 //export callbackQHelpSearchResultWidget_MinimumSizeHint
 func callbackQHelpSearchResultWidget_MinimumSizeHint(ptr unsafe.Pointer) unsafe.Pointer {
-	defer qt.Recovering("callback QHelpSearchResultWidget::minimumSizeHint")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpSearchResultWidget::minimumSizeHint"); signal != nil {
 		return core.PointerFromQSize(signal.(func() *core.QSize)())
@@ -19681,8 +15830,6 @@ func callbackQHelpSearchResultWidget_MinimumSizeHint(ptr unsafe.Pointer) unsafe.
 }
 
 func (ptr *QHelpSearchResultWidget) ConnectMinimumSizeHint(f func() *core.QSize) {
-	defer qt.Recovering("connect QHelpSearchResultWidget::minimumSizeHint")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchResultWidget::minimumSizeHint", f)
@@ -19690,8 +15837,6 @@ func (ptr *QHelpSearchResultWidget) ConnectMinimumSizeHint(f func() *core.QSize)
 }
 
 func (ptr *QHelpSearchResultWidget) DisconnectMinimumSizeHint() {
-	defer qt.Recovering("disconnect QHelpSearchResultWidget::minimumSizeHint")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchResultWidget::minimumSizeHint")
@@ -19699,8 +15844,6 @@ func (ptr *QHelpSearchResultWidget) DisconnectMinimumSizeHint() {
 }
 
 func (ptr *QHelpSearchResultWidget) MinimumSizeHint() *core.QSize {
-	defer qt.Recovering("QHelpSearchResultWidget::minimumSizeHint")
-
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQSizeFromPointer(C.QHelpSearchResultWidget_MinimumSizeHint(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
@@ -19710,8 +15853,6 @@ func (ptr *QHelpSearchResultWidget) MinimumSizeHint() *core.QSize {
 }
 
 func (ptr *QHelpSearchResultWidget) MinimumSizeHintDefault() *core.QSize {
-	defer qt.Recovering("QHelpSearchResultWidget::minimumSizeHint")
-
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQSizeFromPointer(C.QHelpSearchResultWidget_MinimumSizeHintDefault(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
@@ -19722,7 +15863,6 @@ func (ptr *QHelpSearchResultWidget) MinimumSizeHintDefault() *core.QSize {
 
 //export callbackQHelpSearchResultWidget_MoveEvent
 func callbackQHelpSearchResultWidget_MoveEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpSearchResultWidget::moveEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpSearchResultWidget::moveEvent"); signal != nil {
 		signal.(func(*gui.QMoveEvent))(gui.NewQMoveEventFromPointer(event))
@@ -19732,8 +15872,6 @@ func callbackQHelpSearchResultWidget_MoveEvent(ptr unsafe.Pointer, event unsafe.
 }
 
 func (ptr *QHelpSearchResultWidget) ConnectMoveEvent(f func(event *gui.QMoveEvent)) {
-	defer qt.Recovering("connect QHelpSearchResultWidget::moveEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchResultWidget::moveEvent", f)
@@ -19741,8 +15879,6 @@ func (ptr *QHelpSearchResultWidget) ConnectMoveEvent(f func(event *gui.QMoveEven
 }
 
 func (ptr *QHelpSearchResultWidget) DisconnectMoveEvent() {
-	defer qt.Recovering("disconnect QHelpSearchResultWidget::moveEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchResultWidget::moveEvent")
@@ -19750,16 +15886,12 @@ func (ptr *QHelpSearchResultWidget) DisconnectMoveEvent() {
 }
 
 func (ptr *QHelpSearchResultWidget) MoveEvent(event gui.QMoveEvent_ITF) {
-	defer qt.Recovering("QHelpSearchResultWidget::moveEvent")
-
 	if ptr.Pointer() != nil {
 		C.QHelpSearchResultWidget_MoveEvent(ptr.Pointer(), gui.PointerFromQMoveEvent(event))
 	}
 }
 
 func (ptr *QHelpSearchResultWidget) MoveEventDefault(event gui.QMoveEvent_ITF) {
-	defer qt.Recovering("QHelpSearchResultWidget::moveEvent")
-
 	if ptr.Pointer() != nil {
 		C.QHelpSearchResultWidget_MoveEventDefault(ptr.Pointer(), gui.PointerFromQMoveEvent(event))
 	}
@@ -19767,7 +15899,6 @@ func (ptr *QHelpSearchResultWidget) MoveEventDefault(event gui.QMoveEvent_ITF) {
 
 //export callbackQHelpSearchResultWidget_PaintEvent
 func callbackQHelpSearchResultWidget_PaintEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpSearchResultWidget::paintEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpSearchResultWidget::paintEvent"); signal != nil {
 		signal.(func(*gui.QPaintEvent))(gui.NewQPaintEventFromPointer(event))
@@ -19777,8 +15908,6 @@ func callbackQHelpSearchResultWidget_PaintEvent(ptr unsafe.Pointer, event unsafe
 }
 
 func (ptr *QHelpSearchResultWidget) ConnectPaintEvent(f func(event *gui.QPaintEvent)) {
-	defer qt.Recovering("connect QHelpSearchResultWidget::paintEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchResultWidget::paintEvent", f)
@@ -19786,8 +15915,6 @@ func (ptr *QHelpSearchResultWidget) ConnectPaintEvent(f func(event *gui.QPaintEv
 }
 
 func (ptr *QHelpSearchResultWidget) DisconnectPaintEvent() {
-	defer qt.Recovering("disconnect QHelpSearchResultWidget::paintEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchResultWidget::paintEvent")
@@ -19795,16 +15922,12 @@ func (ptr *QHelpSearchResultWidget) DisconnectPaintEvent() {
 }
 
 func (ptr *QHelpSearchResultWidget) PaintEvent(event gui.QPaintEvent_ITF) {
-	defer qt.Recovering("QHelpSearchResultWidget::paintEvent")
-
 	if ptr.Pointer() != nil {
 		C.QHelpSearchResultWidget_PaintEvent(ptr.Pointer(), gui.PointerFromQPaintEvent(event))
 	}
 }
 
 func (ptr *QHelpSearchResultWidget) PaintEventDefault(event gui.QPaintEvent_ITF) {
-	defer qt.Recovering("QHelpSearchResultWidget::paintEvent")
-
 	if ptr.Pointer() != nil {
 		C.QHelpSearchResultWidget_PaintEventDefault(ptr.Pointer(), gui.PointerFromQPaintEvent(event))
 	}
@@ -19812,8 +15935,6 @@ func (ptr *QHelpSearchResultWidget) PaintEventDefault(event gui.QPaintEvent_ITF)
 
 //export callbackQHelpSearchResultWidget_SetEnabled
 func callbackQHelpSearchResultWidget_SetEnabled(ptr unsafe.Pointer, vbo C.char) {
-	defer qt.Recovering("callback QHelpSearchResultWidget::setEnabled")
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpSearchResultWidget::setEnabled"); signal != nil {
 		signal.(func(bool))(int8(vbo) != 0)
 	} else {
@@ -19822,8 +15943,6 @@ func callbackQHelpSearchResultWidget_SetEnabled(ptr unsafe.Pointer, vbo C.char) 
 }
 
 func (ptr *QHelpSearchResultWidget) ConnectSetEnabled(f func(vbo bool)) {
-	defer qt.Recovering("connect QHelpSearchResultWidget::setEnabled")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchResultWidget::setEnabled", f)
@@ -19831,8 +15950,6 @@ func (ptr *QHelpSearchResultWidget) ConnectSetEnabled(f func(vbo bool)) {
 }
 
 func (ptr *QHelpSearchResultWidget) DisconnectSetEnabled() {
-	defer qt.Recovering("disconnect QHelpSearchResultWidget::setEnabled")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchResultWidget::setEnabled")
@@ -19840,16 +15957,12 @@ func (ptr *QHelpSearchResultWidget) DisconnectSetEnabled() {
 }
 
 func (ptr *QHelpSearchResultWidget) SetEnabled(vbo bool) {
-	defer qt.Recovering("QHelpSearchResultWidget::setEnabled")
-
 	if ptr.Pointer() != nil {
 		C.QHelpSearchResultWidget_SetEnabled(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(vbo))))
 	}
 }
 
 func (ptr *QHelpSearchResultWidget) SetEnabledDefault(vbo bool) {
-	defer qt.Recovering("QHelpSearchResultWidget::setEnabled")
-
 	if ptr.Pointer() != nil {
 		C.QHelpSearchResultWidget_SetEnabledDefault(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(vbo))))
 	}
@@ -19857,8 +15970,6 @@ func (ptr *QHelpSearchResultWidget) SetEnabledDefault(vbo bool) {
 
 //export callbackQHelpSearchResultWidget_SetStyleSheet
 func callbackQHelpSearchResultWidget_SetStyleSheet(ptr unsafe.Pointer, styleSheet *C.char) {
-	defer qt.Recovering("callback QHelpSearchResultWidget::setStyleSheet")
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpSearchResultWidget::setStyleSheet"); signal != nil {
 		signal.(func(string))(C.GoString(styleSheet))
 	} else {
@@ -19867,8 +15978,6 @@ func callbackQHelpSearchResultWidget_SetStyleSheet(ptr unsafe.Pointer, styleShee
 }
 
 func (ptr *QHelpSearchResultWidget) ConnectSetStyleSheet(f func(styleSheet string)) {
-	defer qt.Recovering("connect QHelpSearchResultWidget::setStyleSheet")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchResultWidget::setStyleSheet", f)
@@ -19876,8 +15985,6 @@ func (ptr *QHelpSearchResultWidget) ConnectSetStyleSheet(f func(styleSheet strin
 }
 
 func (ptr *QHelpSearchResultWidget) DisconnectSetStyleSheet() {
-	defer qt.Recovering("disconnect QHelpSearchResultWidget::setStyleSheet")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchResultWidget::setStyleSheet")
@@ -19885,8 +15992,6 @@ func (ptr *QHelpSearchResultWidget) DisconnectSetStyleSheet() {
 }
 
 func (ptr *QHelpSearchResultWidget) SetStyleSheet(styleSheet string) {
-	defer qt.Recovering("QHelpSearchResultWidget::setStyleSheet")
-
 	if ptr.Pointer() != nil {
 		var styleSheetC = C.CString(styleSheet)
 		defer C.free(unsafe.Pointer(styleSheetC))
@@ -19895,8 +16000,6 @@ func (ptr *QHelpSearchResultWidget) SetStyleSheet(styleSheet string) {
 }
 
 func (ptr *QHelpSearchResultWidget) SetStyleSheetDefault(styleSheet string) {
-	defer qt.Recovering("QHelpSearchResultWidget::setStyleSheet")
-
 	if ptr.Pointer() != nil {
 		var styleSheetC = C.CString(styleSheet)
 		defer C.free(unsafe.Pointer(styleSheetC))
@@ -19906,8 +16009,6 @@ func (ptr *QHelpSearchResultWidget) SetStyleSheetDefault(styleSheet string) {
 
 //export callbackQHelpSearchResultWidget_SetVisible
 func callbackQHelpSearchResultWidget_SetVisible(ptr unsafe.Pointer, visible C.char) {
-	defer qt.Recovering("callback QHelpSearchResultWidget::setVisible")
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpSearchResultWidget::setVisible"); signal != nil {
 		signal.(func(bool))(int8(visible) != 0)
 	} else {
@@ -19916,8 +16017,6 @@ func callbackQHelpSearchResultWidget_SetVisible(ptr unsafe.Pointer, visible C.ch
 }
 
 func (ptr *QHelpSearchResultWidget) ConnectSetVisible(f func(visible bool)) {
-	defer qt.Recovering("connect QHelpSearchResultWidget::setVisible")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchResultWidget::setVisible", f)
@@ -19925,8 +16024,6 @@ func (ptr *QHelpSearchResultWidget) ConnectSetVisible(f func(visible bool)) {
 }
 
 func (ptr *QHelpSearchResultWidget) DisconnectSetVisible() {
-	defer qt.Recovering("disconnect QHelpSearchResultWidget::setVisible")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchResultWidget::setVisible")
@@ -19934,16 +16031,12 @@ func (ptr *QHelpSearchResultWidget) DisconnectSetVisible() {
 }
 
 func (ptr *QHelpSearchResultWidget) SetVisible(visible bool) {
-	defer qt.Recovering("QHelpSearchResultWidget::setVisible")
-
 	if ptr.Pointer() != nil {
 		C.QHelpSearchResultWidget_SetVisible(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(visible))))
 	}
 }
 
 func (ptr *QHelpSearchResultWidget) SetVisibleDefault(visible bool) {
-	defer qt.Recovering("QHelpSearchResultWidget::setVisible")
-
 	if ptr.Pointer() != nil {
 		C.QHelpSearchResultWidget_SetVisibleDefault(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(visible))))
 	}
@@ -19951,8 +16044,6 @@ func (ptr *QHelpSearchResultWidget) SetVisibleDefault(visible bool) {
 
 //export callbackQHelpSearchResultWidget_SetWindowModified
 func callbackQHelpSearchResultWidget_SetWindowModified(ptr unsafe.Pointer, vbo C.char) {
-	defer qt.Recovering("callback QHelpSearchResultWidget::setWindowModified")
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpSearchResultWidget::setWindowModified"); signal != nil {
 		signal.(func(bool))(int8(vbo) != 0)
 	} else {
@@ -19961,8 +16052,6 @@ func callbackQHelpSearchResultWidget_SetWindowModified(ptr unsafe.Pointer, vbo C
 }
 
 func (ptr *QHelpSearchResultWidget) ConnectSetWindowModified(f func(vbo bool)) {
-	defer qt.Recovering("connect QHelpSearchResultWidget::setWindowModified")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchResultWidget::setWindowModified", f)
@@ -19970,8 +16059,6 @@ func (ptr *QHelpSearchResultWidget) ConnectSetWindowModified(f func(vbo bool)) {
 }
 
 func (ptr *QHelpSearchResultWidget) DisconnectSetWindowModified() {
-	defer qt.Recovering("disconnect QHelpSearchResultWidget::setWindowModified")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchResultWidget::setWindowModified")
@@ -19979,16 +16066,12 @@ func (ptr *QHelpSearchResultWidget) DisconnectSetWindowModified() {
 }
 
 func (ptr *QHelpSearchResultWidget) SetWindowModified(vbo bool) {
-	defer qt.Recovering("QHelpSearchResultWidget::setWindowModified")
-
 	if ptr.Pointer() != nil {
 		C.QHelpSearchResultWidget_SetWindowModified(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(vbo))))
 	}
 }
 
 func (ptr *QHelpSearchResultWidget) SetWindowModifiedDefault(vbo bool) {
-	defer qt.Recovering("QHelpSearchResultWidget::setWindowModified")
-
 	if ptr.Pointer() != nil {
 		C.QHelpSearchResultWidget_SetWindowModifiedDefault(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(vbo))))
 	}
@@ -19996,8 +16079,6 @@ func (ptr *QHelpSearchResultWidget) SetWindowModifiedDefault(vbo bool) {
 
 //export callbackQHelpSearchResultWidget_SetWindowTitle
 func callbackQHelpSearchResultWidget_SetWindowTitle(ptr unsafe.Pointer, vqs *C.char) {
-	defer qt.Recovering("callback QHelpSearchResultWidget::setWindowTitle")
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpSearchResultWidget::setWindowTitle"); signal != nil {
 		signal.(func(string))(C.GoString(vqs))
 	} else {
@@ -20006,8 +16087,6 @@ func callbackQHelpSearchResultWidget_SetWindowTitle(ptr unsafe.Pointer, vqs *C.c
 }
 
 func (ptr *QHelpSearchResultWidget) ConnectSetWindowTitle(f func(vqs string)) {
-	defer qt.Recovering("connect QHelpSearchResultWidget::setWindowTitle")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchResultWidget::setWindowTitle", f)
@@ -20015,8 +16094,6 @@ func (ptr *QHelpSearchResultWidget) ConnectSetWindowTitle(f func(vqs string)) {
 }
 
 func (ptr *QHelpSearchResultWidget) DisconnectSetWindowTitle() {
-	defer qt.Recovering("disconnect QHelpSearchResultWidget::setWindowTitle")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchResultWidget::setWindowTitle")
@@ -20024,8 +16101,6 @@ func (ptr *QHelpSearchResultWidget) DisconnectSetWindowTitle() {
 }
 
 func (ptr *QHelpSearchResultWidget) SetWindowTitle(vqs string) {
-	defer qt.Recovering("QHelpSearchResultWidget::setWindowTitle")
-
 	if ptr.Pointer() != nil {
 		var vqsC = C.CString(vqs)
 		defer C.free(unsafe.Pointer(vqsC))
@@ -20034,8 +16109,6 @@ func (ptr *QHelpSearchResultWidget) SetWindowTitle(vqs string) {
 }
 
 func (ptr *QHelpSearchResultWidget) SetWindowTitleDefault(vqs string) {
-	defer qt.Recovering("QHelpSearchResultWidget::setWindowTitle")
-
 	if ptr.Pointer() != nil {
 		var vqsC = C.CString(vqs)
 		defer C.free(unsafe.Pointer(vqsC))
@@ -20045,7 +16118,6 @@ func (ptr *QHelpSearchResultWidget) SetWindowTitleDefault(vqs string) {
 
 //export callbackQHelpSearchResultWidget_ShowEvent
 func callbackQHelpSearchResultWidget_ShowEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpSearchResultWidget::showEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpSearchResultWidget::showEvent"); signal != nil {
 		signal.(func(*gui.QShowEvent))(gui.NewQShowEventFromPointer(event))
@@ -20055,8 +16127,6 @@ func callbackQHelpSearchResultWidget_ShowEvent(ptr unsafe.Pointer, event unsafe.
 }
 
 func (ptr *QHelpSearchResultWidget) ConnectShowEvent(f func(event *gui.QShowEvent)) {
-	defer qt.Recovering("connect QHelpSearchResultWidget::showEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchResultWidget::showEvent", f)
@@ -20064,8 +16134,6 @@ func (ptr *QHelpSearchResultWidget) ConnectShowEvent(f func(event *gui.QShowEven
 }
 
 func (ptr *QHelpSearchResultWidget) DisconnectShowEvent() {
-	defer qt.Recovering("disconnect QHelpSearchResultWidget::showEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchResultWidget::showEvent")
@@ -20073,16 +16141,12 @@ func (ptr *QHelpSearchResultWidget) DisconnectShowEvent() {
 }
 
 func (ptr *QHelpSearchResultWidget) ShowEvent(event gui.QShowEvent_ITF) {
-	defer qt.Recovering("QHelpSearchResultWidget::showEvent")
-
 	if ptr.Pointer() != nil {
 		C.QHelpSearchResultWidget_ShowEvent(ptr.Pointer(), gui.PointerFromQShowEvent(event))
 	}
 }
 
 func (ptr *QHelpSearchResultWidget) ShowEventDefault(event gui.QShowEvent_ITF) {
-	defer qt.Recovering("QHelpSearchResultWidget::showEvent")
-
 	if ptr.Pointer() != nil {
 		C.QHelpSearchResultWidget_ShowEventDefault(ptr.Pointer(), gui.PointerFromQShowEvent(event))
 	}
@@ -20090,7 +16154,6 @@ func (ptr *QHelpSearchResultWidget) ShowEventDefault(event gui.QShowEvent_ITF) {
 
 //export callbackQHelpSearchResultWidget_SizeHint
 func callbackQHelpSearchResultWidget_SizeHint(ptr unsafe.Pointer) unsafe.Pointer {
-	defer qt.Recovering("callback QHelpSearchResultWidget::sizeHint")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpSearchResultWidget::sizeHint"); signal != nil {
 		return core.PointerFromQSize(signal.(func() *core.QSize)())
@@ -20100,8 +16163,6 @@ func callbackQHelpSearchResultWidget_SizeHint(ptr unsafe.Pointer) unsafe.Pointer
 }
 
 func (ptr *QHelpSearchResultWidget) ConnectSizeHint(f func() *core.QSize) {
-	defer qt.Recovering("connect QHelpSearchResultWidget::sizeHint")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchResultWidget::sizeHint", f)
@@ -20109,8 +16170,6 @@ func (ptr *QHelpSearchResultWidget) ConnectSizeHint(f func() *core.QSize) {
 }
 
 func (ptr *QHelpSearchResultWidget) DisconnectSizeHint() {
-	defer qt.Recovering("disconnect QHelpSearchResultWidget::sizeHint")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchResultWidget::sizeHint")
@@ -20118,8 +16177,6 @@ func (ptr *QHelpSearchResultWidget) DisconnectSizeHint() {
 }
 
 func (ptr *QHelpSearchResultWidget) SizeHint() *core.QSize {
-	defer qt.Recovering("QHelpSearchResultWidget::sizeHint")
-
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQSizeFromPointer(C.QHelpSearchResultWidget_SizeHint(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
@@ -20129,8 +16186,6 @@ func (ptr *QHelpSearchResultWidget) SizeHint() *core.QSize {
 }
 
 func (ptr *QHelpSearchResultWidget) SizeHintDefault() *core.QSize {
-	defer qt.Recovering("QHelpSearchResultWidget::sizeHint")
-
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQSizeFromPointer(C.QHelpSearchResultWidget_SizeHintDefault(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
@@ -20141,7 +16196,6 @@ func (ptr *QHelpSearchResultWidget) SizeHintDefault() *core.QSize {
 
 //export callbackQHelpSearchResultWidget_ChangeEvent
 func callbackQHelpSearchResultWidget_ChangeEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpSearchResultWidget::changeEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpSearchResultWidget::changeEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
@@ -20151,8 +16205,6 @@ func callbackQHelpSearchResultWidget_ChangeEvent(ptr unsafe.Pointer, event unsaf
 }
 
 func (ptr *QHelpSearchResultWidget) ConnectChangeEvent(f func(event *core.QEvent)) {
-	defer qt.Recovering("connect QHelpSearchResultWidget::changeEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchResultWidget::changeEvent", f)
@@ -20160,8 +16212,6 @@ func (ptr *QHelpSearchResultWidget) ConnectChangeEvent(f func(event *core.QEvent
 }
 
 func (ptr *QHelpSearchResultWidget) DisconnectChangeEvent() {
-	defer qt.Recovering("disconnect QHelpSearchResultWidget::changeEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchResultWidget::changeEvent")
@@ -20169,16 +16219,12 @@ func (ptr *QHelpSearchResultWidget) DisconnectChangeEvent() {
 }
 
 func (ptr *QHelpSearchResultWidget) ChangeEvent(event core.QEvent_ITF) {
-	defer qt.Recovering("QHelpSearchResultWidget::changeEvent")
-
 	if ptr.Pointer() != nil {
 		C.QHelpSearchResultWidget_ChangeEvent(ptr.Pointer(), core.PointerFromQEvent(event))
 	}
 }
 
 func (ptr *QHelpSearchResultWidget) ChangeEventDefault(event core.QEvent_ITF) {
-	defer qt.Recovering("QHelpSearchResultWidget::changeEvent")
-
 	if ptr.Pointer() != nil {
 		C.QHelpSearchResultWidget_ChangeEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
 	}
@@ -20186,8 +16232,6 @@ func (ptr *QHelpSearchResultWidget) ChangeEventDefault(event core.QEvent_ITF) {
 
 //export callbackQHelpSearchResultWidget_Close
 func callbackQHelpSearchResultWidget_Close(ptr unsafe.Pointer) C.char {
-	defer qt.Recovering("callback QHelpSearchResultWidget::close")
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpSearchResultWidget::close"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func() bool)())))
 	}
@@ -20196,8 +16240,6 @@ func callbackQHelpSearchResultWidget_Close(ptr unsafe.Pointer) C.char {
 }
 
 func (ptr *QHelpSearchResultWidget) ConnectClose(f func() bool) {
-	defer qt.Recovering("connect QHelpSearchResultWidget::close")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchResultWidget::close", f)
@@ -20205,8 +16247,6 @@ func (ptr *QHelpSearchResultWidget) ConnectClose(f func() bool) {
 }
 
 func (ptr *QHelpSearchResultWidget) DisconnectClose() {
-	defer qt.Recovering("disconnect QHelpSearchResultWidget::close")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchResultWidget::close")
@@ -20214,8 +16254,6 @@ func (ptr *QHelpSearchResultWidget) DisconnectClose() {
 }
 
 func (ptr *QHelpSearchResultWidget) Close() bool {
-	defer qt.Recovering("QHelpSearchResultWidget::close")
-
 	if ptr.Pointer() != nil {
 		return C.QHelpSearchResultWidget_Close(ptr.Pointer()) != 0
 	}
@@ -20223,8 +16261,6 @@ func (ptr *QHelpSearchResultWidget) Close() bool {
 }
 
 func (ptr *QHelpSearchResultWidget) CloseDefault() bool {
-	defer qt.Recovering("QHelpSearchResultWidget::close")
-
 	if ptr.Pointer() != nil {
 		return C.QHelpSearchResultWidget_CloseDefault(ptr.Pointer()) != 0
 	}
@@ -20233,7 +16269,6 @@ func (ptr *QHelpSearchResultWidget) CloseDefault() bool {
 
 //export callbackQHelpSearchResultWidget_CloseEvent
 func callbackQHelpSearchResultWidget_CloseEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpSearchResultWidget::closeEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpSearchResultWidget::closeEvent"); signal != nil {
 		signal.(func(*gui.QCloseEvent))(gui.NewQCloseEventFromPointer(event))
@@ -20243,8 +16278,6 @@ func callbackQHelpSearchResultWidget_CloseEvent(ptr unsafe.Pointer, event unsafe
 }
 
 func (ptr *QHelpSearchResultWidget) ConnectCloseEvent(f func(event *gui.QCloseEvent)) {
-	defer qt.Recovering("connect QHelpSearchResultWidget::closeEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchResultWidget::closeEvent", f)
@@ -20252,8 +16285,6 @@ func (ptr *QHelpSearchResultWidget) ConnectCloseEvent(f func(event *gui.QCloseEv
 }
 
 func (ptr *QHelpSearchResultWidget) DisconnectCloseEvent() {
-	defer qt.Recovering("disconnect QHelpSearchResultWidget::closeEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchResultWidget::closeEvent")
@@ -20261,16 +16292,12 @@ func (ptr *QHelpSearchResultWidget) DisconnectCloseEvent() {
 }
 
 func (ptr *QHelpSearchResultWidget) CloseEvent(event gui.QCloseEvent_ITF) {
-	defer qt.Recovering("QHelpSearchResultWidget::closeEvent")
-
 	if ptr.Pointer() != nil {
 		C.QHelpSearchResultWidget_CloseEvent(ptr.Pointer(), gui.PointerFromQCloseEvent(event))
 	}
 }
 
 func (ptr *QHelpSearchResultWidget) CloseEventDefault(event gui.QCloseEvent_ITF) {
-	defer qt.Recovering("QHelpSearchResultWidget::closeEvent")
-
 	if ptr.Pointer() != nil {
 		C.QHelpSearchResultWidget_CloseEventDefault(ptr.Pointer(), gui.PointerFromQCloseEvent(event))
 	}
@@ -20278,7 +16305,6 @@ func (ptr *QHelpSearchResultWidget) CloseEventDefault(event gui.QCloseEvent_ITF)
 
 //export callbackQHelpSearchResultWidget_ContextMenuEvent
 func callbackQHelpSearchResultWidget_ContextMenuEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpSearchResultWidget::contextMenuEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpSearchResultWidget::contextMenuEvent"); signal != nil {
 		signal.(func(*gui.QContextMenuEvent))(gui.NewQContextMenuEventFromPointer(event))
@@ -20288,8 +16314,6 @@ func callbackQHelpSearchResultWidget_ContextMenuEvent(ptr unsafe.Pointer, event 
 }
 
 func (ptr *QHelpSearchResultWidget) ConnectContextMenuEvent(f func(event *gui.QContextMenuEvent)) {
-	defer qt.Recovering("connect QHelpSearchResultWidget::contextMenuEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchResultWidget::contextMenuEvent", f)
@@ -20297,8 +16321,6 @@ func (ptr *QHelpSearchResultWidget) ConnectContextMenuEvent(f func(event *gui.QC
 }
 
 func (ptr *QHelpSearchResultWidget) DisconnectContextMenuEvent() {
-	defer qt.Recovering("disconnect QHelpSearchResultWidget::contextMenuEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchResultWidget::contextMenuEvent")
@@ -20306,16 +16328,12 @@ func (ptr *QHelpSearchResultWidget) DisconnectContextMenuEvent() {
 }
 
 func (ptr *QHelpSearchResultWidget) ContextMenuEvent(event gui.QContextMenuEvent_ITF) {
-	defer qt.Recovering("QHelpSearchResultWidget::contextMenuEvent")
-
 	if ptr.Pointer() != nil {
 		C.QHelpSearchResultWidget_ContextMenuEvent(ptr.Pointer(), gui.PointerFromQContextMenuEvent(event))
 	}
 }
 
 func (ptr *QHelpSearchResultWidget) ContextMenuEventDefault(event gui.QContextMenuEvent_ITF) {
-	defer qt.Recovering("QHelpSearchResultWidget::contextMenuEvent")
-
 	if ptr.Pointer() != nil {
 		C.QHelpSearchResultWidget_ContextMenuEventDefault(ptr.Pointer(), gui.PointerFromQContextMenuEvent(event))
 	}
@@ -20323,7 +16341,6 @@ func (ptr *QHelpSearchResultWidget) ContextMenuEventDefault(event gui.QContextMe
 
 //export callbackQHelpSearchResultWidget_FocusNextPrevChild
 func callbackQHelpSearchResultWidget_FocusNextPrevChild(ptr unsafe.Pointer, next C.char) C.char {
-	defer qt.Recovering("callback QHelpSearchResultWidget::focusNextPrevChild")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpSearchResultWidget::focusNextPrevChild"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(bool) bool)(int8(next) != 0))))
@@ -20333,8 +16350,6 @@ func callbackQHelpSearchResultWidget_FocusNextPrevChild(ptr unsafe.Pointer, next
 }
 
 func (ptr *QHelpSearchResultWidget) ConnectFocusNextPrevChild(f func(next bool) bool) {
-	defer qt.Recovering("connect QHelpSearchResultWidget::focusNextPrevChild")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchResultWidget::focusNextPrevChild", f)
@@ -20342,8 +16357,6 @@ func (ptr *QHelpSearchResultWidget) ConnectFocusNextPrevChild(f func(next bool) 
 }
 
 func (ptr *QHelpSearchResultWidget) DisconnectFocusNextPrevChild() {
-	defer qt.Recovering("disconnect QHelpSearchResultWidget::focusNextPrevChild")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchResultWidget::focusNextPrevChild")
@@ -20351,8 +16364,6 @@ func (ptr *QHelpSearchResultWidget) DisconnectFocusNextPrevChild() {
 }
 
 func (ptr *QHelpSearchResultWidget) FocusNextPrevChild(next bool) bool {
-	defer qt.Recovering("QHelpSearchResultWidget::focusNextPrevChild")
-
 	if ptr.Pointer() != nil {
 		return C.QHelpSearchResultWidget_FocusNextPrevChild(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(next)))) != 0
 	}
@@ -20360,8 +16371,6 @@ func (ptr *QHelpSearchResultWidget) FocusNextPrevChild(next bool) bool {
 }
 
 func (ptr *QHelpSearchResultWidget) FocusNextPrevChildDefault(next bool) bool {
-	defer qt.Recovering("QHelpSearchResultWidget::focusNextPrevChild")
-
 	if ptr.Pointer() != nil {
 		return C.QHelpSearchResultWidget_FocusNextPrevChildDefault(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(next)))) != 0
 	}
@@ -20370,7 +16379,6 @@ func (ptr *QHelpSearchResultWidget) FocusNextPrevChildDefault(next bool) bool {
 
 //export callbackQHelpSearchResultWidget_HasHeightForWidth
 func callbackQHelpSearchResultWidget_HasHeightForWidth(ptr unsafe.Pointer) C.char {
-	defer qt.Recovering("callback QHelpSearchResultWidget::hasHeightForWidth")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpSearchResultWidget::hasHeightForWidth"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func() bool)())))
@@ -20380,8 +16388,6 @@ func callbackQHelpSearchResultWidget_HasHeightForWidth(ptr unsafe.Pointer) C.cha
 }
 
 func (ptr *QHelpSearchResultWidget) ConnectHasHeightForWidth(f func() bool) {
-	defer qt.Recovering("connect QHelpSearchResultWidget::hasHeightForWidth")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchResultWidget::hasHeightForWidth", f)
@@ -20389,8 +16395,6 @@ func (ptr *QHelpSearchResultWidget) ConnectHasHeightForWidth(f func() bool) {
 }
 
 func (ptr *QHelpSearchResultWidget) DisconnectHasHeightForWidth() {
-	defer qt.Recovering("disconnect QHelpSearchResultWidget::hasHeightForWidth")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchResultWidget::hasHeightForWidth")
@@ -20398,8 +16402,6 @@ func (ptr *QHelpSearchResultWidget) DisconnectHasHeightForWidth() {
 }
 
 func (ptr *QHelpSearchResultWidget) HasHeightForWidth() bool {
-	defer qt.Recovering("QHelpSearchResultWidget::hasHeightForWidth")
-
 	if ptr.Pointer() != nil {
 		return C.QHelpSearchResultWidget_HasHeightForWidth(ptr.Pointer()) != 0
 	}
@@ -20407,8 +16409,6 @@ func (ptr *QHelpSearchResultWidget) HasHeightForWidth() bool {
 }
 
 func (ptr *QHelpSearchResultWidget) HasHeightForWidthDefault() bool {
-	defer qt.Recovering("QHelpSearchResultWidget::hasHeightForWidth")
-
 	if ptr.Pointer() != nil {
 		return C.QHelpSearchResultWidget_HasHeightForWidthDefault(ptr.Pointer()) != 0
 	}
@@ -20417,7 +16417,6 @@ func (ptr *QHelpSearchResultWidget) HasHeightForWidthDefault() bool {
 
 //export callbackQHelpSearchResultWidget_HeightForWidth
 func callbackQHelpSearchResultWidget_HeightForWidth(ptr unsafe.Pointer, w C.int) C.int {
-	defer qt.Recovering("callback QHelpSearchResultWidget::heightForWidth")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpSearchResultWidget::heightForWidth"); signal != nil {
 		return C.int(int32(signal.(func(int) int)(int(int32(w)))))
@@ -20427,8 +16426,6 @@ func callbackQHelpSearchResultWidget_HeightForWidth(ptr unsafe.Pointer, w C.int)
 }
 
 func (ptr *QHelpSearchResultWidget) ConnectHeightForWidth(f func(w int) int) {
-	defer qt.Recovering("connect QHelpSearchResultWidget::heightForWidth")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchResultWidget::heightForWidth", f)
@@ -20436,8 +16433,6 @@ func (ptr *QHelpSearchResultWidget) ConnectHeightForWidth(f func(w int) int) {
 }
 
 func (ptr *QHelpSearchResultWidget) DisconnectHeightForWidth() {
-	defer qt.Recovering("disconnect QHelpSearchResultWidget::heightForWidth")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchResultWidget::heightForWidth")
@@ -20445,8 +16440,6 @@ func (ptr *QHelpSearchResultWidget) DisconnectHeightForWidth() {
 }
 
 func (ptr *QHelpSearchResultWidget) HeightForWidth(w int) int {
-	defer qt.Recovering("QHelpSearchResultWidget::heightForWidth")
-
 	if ptr.Pointer() != nil {
 		return int(int32(C.QHelpSearchResultWidget_HeightForWidth(ptr.Pointer(), C.int(int32(w)))))
 	}
@@ -20454,8 +16447,6 @@ func (ptr *QHelpSearchResultWidget) HeightForWidth(w int) int {
 }
 
 func (ptr *QHelpSearchResultWidget) HeightForWidthDefault(w int) int {
-	defer qt.Recovering("QHelpSearchResultWidget::heightForWidth")
-
 	if ptr.Pointer() != nil {
 		return int(int32(C.QHelpSearchResultWidget_HeightForWidthDefault(ptr.Pointer(), C.int(int32(w)))))
 	}
@@ -20464,8 +16455,6 @@ func (ptr *QHelpSearchResultWidget) HeightForWidthDefault(w int) int {
 
 //export callbackQHelpSearchResultWidget_Hide
 func callbackQHelpSearchResultWidget_Hide(ptr unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpSearchResultWidget::hide")
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpSearchResultWidget::hide"); signal != nil {
 		signal.(func())()
 	} else {
@@ -20474,8 +16463,6 @@ func callbackQHelpSearchResultWidget_Hide(ptr unsafe.Pointer) {
 }
 
 func (ptr *QHelpSearchResultWidget) ConnectHide(f func()) {
-	defer qt.Recovering("connect QHelpSearchResultWidget::hide")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchResultWidget::hide", f)
@@ -20483,8 +16470,6 @@ func (ptr *QHelpSearchResultWidget) ConnectHide(f func()) {
 }
 
 func (ptr *QHelpSearchResultWidget) DisconnectHide() {
-	defer qt.Recovering("disconnect QHelpSearchResultWidget::hide")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchResultWidget::hide")
@@ -20492,16 +16477,12 @@ func (ptr *QHelpSearchResultWidget) DisconnectHide() {
 }
 
 func (ptr *QHelpSearchResultWidget) Hide() {
-	defer qt.Recovering("QHelpSearchResultWidget::hide")
-
 	if ptr.Pointer() != nil {
 		C.QHelpSearchResultWidget_Hide(ptr.Pointer())
 	}
 }
 
 func (ptr *QHelpSearchResultWidget) HideDefault() {
-	defer qt.Recovering("QHelpSearchResultWidget::hide")
-
 	if ptr.Pointer() != nil {
 		C.QHelpSearchResultWidget_HideDefault(ptr.Pointer())
 	}
@@ -20509,7 +16490,6 @@ func (ptr *QHelpSearchResultWidget) HideDefault() {
 
 //export callbackQHelpSearchResultWidget_InputMethodEvent
 func callbackQHelpSearchResultWidget_InputMethodEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpSearchResultWidget::inputMethodEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpSearchResultWidget::inputMethodEvent"); signal != nil {
 		signal.(func(*gui.QInputMethodEvent))(gui.NewQInputMethodEventFromPointer(event))
@@ -20519,8 +16499,6 @@ func callbackQHelpSearchResultWidget_InputMethodEvent(ptr unsafe.Pointer, event 
 }
 
 func (ptr *QHelpSearchResultWidget) ConnectInputMethodEvent(f func(event *gui.QInputMethodEvent)) {
-	defer qt.Recovering("connect QHelpSearchResultWidget::inputMethodEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchResultWidget::inputMethodEvent", f)
@@ -20528,8 +16506,6 @@ func (ptr *QHelpSearchResultWidget) ConnectInputMethodEvent(f func(event *gui.QI
 }
 
 func (ptr *QHelpSearchResultWidget) DisconnectInputMethodEvent() {
-	defer qt.Recovering("disconnect QHelpSearchResultWidget::inputMethodEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchResultWidget::inputMethodEvent")
@@ -20537,16 +16513,12 @@ func (ptr *QHelpSearchResultWidget) DisconnectInputMethodEvent() {
 }
 
 func (ptr *QHelpSearchResultWidget) InputMethodEvent(event gui.QInputMethodEvent_ITF) {
-	defer qt.Recovering("QHelpSearchResultWidget::inputMethodEvent")
-
 	if ptr.Pointer() != nil {
 		C.QHelpSearchResultWidget_InputMethodEvent(ptr.Pointer(), gui.PointerFromQInputMethodEvent(event))
 	}
 }
 
 func (ptr *QHelpSearchResultWidget) InputMethodEventDefault(event gui.QInputMethodEvent_ITF) {
-	defer qt.Recovering("QHelpSearchResultWidget::inputMethodEvent")
-
 	if ptr.Pointer() != nil {
 		C.QHelpSearchResultWidget_InputMethodEventDefault(ptr.Pointer(), gui.PointerFromQInputMethodEvent(event))
 	}
@@ -20554,7 +16526,6 @@ func (ptr *QHelpSearchResultWidget) InputMethodEventDefault(event gui.QInputMeth
 
 //export callbackQHelpSearchResultWidget_InputMethodQuery
 func callbackQHelpSearchResultWidget_InputMethodQuery(ptr unsafe.Pointer, query C.longlong) unsafe.Pointer {
-	defer qt.Recovering("callback QHelpSearchResultWidget::inputMethodQuery")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpSearchResultWidget::inputMethodQuery"); signal != nil {
 		return core.PointerFromQVariant(signal.(func(core.Qt__InputMethodQuery) *core.QVariant)(core.Qt__InputMethodQuery(query)))
@@ -20564,8 +16535,6 @@ func callbackQHelpSearchResultWidget_InputMethodQuery(ptr unsafe.Pointer, query 
 }
 
 func (ptr *QHelpSearchResultWidget) ConnectInputMethodQuery(f func(query core.Qt__InputMethodQuery) *core.QVariant) {
-	defer qt.Recovering("connect QHelpSearchResultWidget::inputMethodQuery")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchResultWidget::inputMethodQuery", f)
@@ -20573,8 +16542,6 @@ func (ptr *QHelpSearchResultWidget) ConnectInputMethodQuery(f func(query core.Qt
 }
 
 func (ptr *QHelpSearchResultWidget) DisconnectInputMethodQuery() {
-	defer qt.Recovering("disconnect QHelpSearchResultWidget::inputMethodQuery")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchResultWidget::inputMethodQuery")
@@ -20582,8 +16549,6 @@ func (ptr *QHelpSearchResultWidget) DisconnectInputMethodQuery() {
 }
 
 func (ptr *QHelpSearchResultWidget) InputMethodQuery(query core.Qt__InputMethodQuery) *core.QVariant {
-	defer qt.Recovering("QHelpSearchResultWidget::inputMethodQuery")
-
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQVariantFromPointer(C.QHelpSearchResultWidget_InputMethodQuery(ptr.Pointer(), C.longlong(query)))
 		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
@@ -20593,8 +16558,6 @@ func (ptr *QHelpSearchResultWidget) InputMethodQuery(query core.Qt__InputMethodQ
 }
 
 func (ptr *QHelpSearchResultWidget) InputMethodQueryDefault(query core.Qt__InputMethodQuery) *core.QVariant {
-	defer qt.Recovering("QHelpSearchResultWidget::inputMethodQuery")
-
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQVariantFromPointer(C.QHelpSearchResultWidget_InputMethodQueryDefault(ptr.Pointer(), C.longlong(query)))
 		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
@@ -20605,7 +16568,6 @@ func (ptr *QHelpSearchResultWidget) InputMethodQueryDefault(query core.Qt__Input
 
 //export callbackQHelpSearchResultWidget_KeyPressEvent
 func callbackQHelpSearchResultWidget_KeyPressEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpSearchResultWidget::keyPressEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpSearchResultWidget::keyPressEvent"); signal != nil {
 		signal.(func(*gui.QKeyEvent))(gui.NewQKeyEventFromPointer(event))
@@ -20615,8 +16577,6 @@ func callbackQHelpSearchResultWidget_KeyPressEvent(ptr unsafe.Pointer, event uns
 }
 
 func (ptr *QHelpSearchResultWidget) ConnectKeyPressEvent(f func(event *gui.QKeyEvent)) {
-	defer qt.Recovering("connect QHelpSearchResultWidget::keyPressEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchResultWidget::keyPressEvent", f)
@@ -20624,8 +16584,6 @@ func (ptr *QHelpSearchResultWidget) ConnectKeyPressEvent(f func(event *gui.QKeyE
 }
 
 func (ptr *QHelpSearchResultWidget) DisconnectKeyPressEvent() {
-	defer qt.Recovering("disconnect QHelpSearchResultWidget::keyPressEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchResultWidget::keyPressEvent")
@@ -20633,16 +16591,12 @@ func (ptr *QHelpSearchResultWidget) DisconnectKeyPressEvent() {
 }
 
 func (ptr *QHelpSearchResultWidget) KeyPressEvent(event gui.QKeyEvent_ITF) {
-	defer qt.Recovering("QHelpSearchResultWidget::keyPressEvent")
-
 	if ptr.Pointer() != nil {
 		C.QHelpSearchResultWidget_KeyPressEvent(ptr.Pointer(), gui.PointerFromQKeyEvent(event))
 	}
 }
 
 func (ptr *QHelpSearchResultWidget) KeyPressEventDefault(event gui.QKeyEvent_ITF) {
-	defer qt.Recovering("QHelpSearchResultWidget::keyPressEvent")
-
 	if ptr.Pointer() != nil {
 		C.QHelpSearchResultWidget_KeyPressEventDefault(ptr.Pointer(), gui.PointerFromQKeyEvent(event))
 	}
@@ -20650,7 +16604,6 @@ func (ptr *QHelpSearchResultWidget) KeyPressEventDefault(event gui.QKeyEvent_ITF
 
 //export callbackQHelpSearchResultWidget_KeyReleaseEvent
 func callbackQHelpSearchResultWidget_KeyReleaseEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpSearchResultWidget::keyReleaseEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpSearchResultWidget::keyReleaseEvent"); signal != nil {
 		signal.(func(*gui.QKeyEvent))(gui.NewQKeyEventFromPointer(event))
@@ -20660,8 +16613,6 @@ func callbackQHelpSearchResultWidget_KeyReleaseEvent(ptr unsafe.Pointer, event u
 }
 
 func (ptr *QHelpSearchResultWidget) ConnectKeyReleaseEvent(f func(event *gui.QKeyEvent)) {
-	defer qt.Recovering("connect QHelpSearchResultWidget::keyReleaseEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchResultWidget::keyReleaseEvent", f)
@@ -20669,8 +16620,6 @@ func (ptr *QHelpSearchResultWidget) ConnectKeyReleaseEvent(f func(event *gui.QKe
 }
 
 func (ptr *QHelpSearchResultWidget) DisconnectKeyReleaseEvent() {
-	defer qt.Recovering("disconnect QHelpSearchResultWidget::keyReleaseEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchResultWidget::keyReleaseEvent")
@@ -20678,16 +16627,12 @@ func (ptr *QHelpSearchResultWidget) DisconnectKeyReleaseEvent() {
 }
 
 func (ptr *QHelpSearchResultWidget) KeyReleaseEvent(event gui.QKeyEvent_ITF) {
-	defer qt.Recovering("QHelpSearchResultWidget::keyReleaseEvent")
-
 	if ptr.Pointer() != nil {
 		C.QHelpSearchResultWidget_KeyReleaseEvent(ptr.Pointer(), gui.PointerFromQKeyEvent(event))
 	}
 }
 
 func (ptr *QHelpSearchResultWidget) KeyReleaseEventDefault(event gui.QKeyEvent_ITF) {
-	defer qt.Recovering("QHelpSearchResultWidget::keyReleaseEvent")
-
 	if ptr.Pointer() != nil {
 		C.QHelpSearchResultWidget_KeyReleaseEventDefault(ptr.Pointer(), gui.PointerFromQKeyEvent(event))
 	}
@@ -20695,8 +16640,6 @@ func (ptr *QHelpSearchResultWidget) KeyReleaseEventDefault(event gui.QKeyEvent_I
 
 //export callbackQHelpSearchResultWidget_Lower
 func callbackQHelpSearchResultWidget_Lower(ptr unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpSearchResultWidget::lower")
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpSearchResultWidget::lower"); signal != nil {
 		signal.(func())()
 	} else {
@@ -20705,8 +16648,6 @@ func callbackQHelpSearchResultWidget_Lower(ptr unsafe.Pointer) {
 }
 
 func (ptr *QHelpSearchResultWidget) ConnectLower(f func()) {
-	defer qt.Recovering("connect QHelpSearchResultWidget::lower")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchResultWidget::lower", f)
@@ -20714,8 +16655,6 @@ func (ptr *QHelpSearchResultWidget) ConnectLower(f func()) {
 }
 
 func (ptr *QHelpSearchResultWidget) DisconnectLower() {
-	defer qt.Recovering("disconnect QHelpSearchResultWidget::lower")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchResultWidget::lower")
@@ -20723,16 +16662,12 @@ func (ptr *QHelpSearchResultWidget) DisconnectLower() {
 }
 
 func (ptr *QHelpSearchResultWidget) Lower() {
-	defer qt.Recovering("QHelpSearchResultWidget::lower")
-
 	if ptr.Pointer() != nil {
 		C.QHelpSearchResultWidget_Lower(ptr.Pointer())
 	}
 }
 
 func (ptr *QHelpSearchResultWidget) LowerDefault() {
-	defer qt.Recovering("QHelpSearchResultWidget::lower")
-
 	if ptr.Pointer() != nil {
 		C.QHelpSearchResultWidget_LowerDefault(ptr.Pointer())
 	}
@@ -20740,7 +16675,6 @@ func (ptr *QHelpSearchResultWidget) LowerDefault() {
 
 //export callbackQHelpSearchResultWidget_MouseDoubleClickEvent
 func callbackQHelpSearchResultWidget_MouseDoubleClickEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpSearchResultWidget::mouseDoubleClickEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpSearchResultWidget::mouseDoubleClickEvent"); signal != nil {
 		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
@@ -20750,8 +16684,6 @@ func callbackQHelpSearchResultWidget_MouseDoubleClickEvent(ptr unsafe.Pointer, e
 }
 
 func (ptr *QHelpSearchResultWidget) ConnectMouseDoubleClickEvent(f func(event *gui.QMouseEvent)) {
-	defer qt.Recovering("connect QHelpSearchResultWidget::mouseDoubleClickEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchResultWidget::mouseDoubleClickEvent", f)
@@ -20759,8 +16691,6 @@ func (ptr *QHelpSearchResultWidget) ConnectMouseDoubleClickEvent(f func(event *g
 }
 
 func (ptr *QHelpSearchResultWidget) DisconnectMouseDoubleClickEvent() {
-	defer qt.Recovering("disconnect QHelpSearchResultWidget::mouseDoubleClickEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchResultWidget::mouseDoubleClickEvent")
@@ -20768,16 +16698,12 @@ func (ptr *QHelpSearchResultWidget) DisconnectMouseDoubleClickEvent() {
 }
 
 func (ptr *QHelpSearchResultWidget) MouseDoubleClickEvent(event gui.QMouseEvent_ITF) {
-	defer qt.Recovering("QHelpSearchResultWidget::mouseDoubleClickEvent")
-
 	if ptr.Pointer() != nil {
 		C.QHelpSearchResultWidget_MouseDoubleClickEvent(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
 	}
 }
 
 func (ptr *QHelpSearchResultWidget) MouseDoubleClickEventDefault(event gui.QMouseEvent_ITF) {
-	defer qt.Recovering("QHelpSearchResultWidget::mouseDoubleClickEvent")
-
 	if ptr.Pointer() != nil {
 		C.QHelpSearchResultWidget_MouseDoubleClickEventDefault(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
 	}
@@ -20785,7 +16711,6 @@ func (ptr *QHelpSearchResultWidget) MouseDoubleClickEventDefault(event gui.QMous
 
 //export callbackQHelpSearchResultWidget_MouseMoveEvent
 func callbackQHelpSearchResultWidget_MouseMoveEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpSearchResultWidget::mouseMoveEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpSearchResultWidget::mouseMoveEvent"); signal != nil {
 		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
@@ -20795,8 +16720,6 @@ func callbackQHelpSearchResultWidget_MouseMoveEvent(ptr unsafe.Pointer, event un
 }
 
 func (ptr *QHelpSearchResultWidget) ConnectMouseMoveEvent(f func(event *gui.QMouseEvent)) {
-	defer qt.Recovering("connect QHelpSearchResultWidget::mouseMoveEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchResultWidget::mouseMoveEvent", f)
@@ -20804,8 +16727,6 @@ func (ptr *QHelpSearchResultWidget) ConnectMouseMoveEvent(f func(event *gui.QMou
 }
 
 func (ptr *QHelpSearchResultWidget) DisconnectMouseMoveEvent() {
-	defer qt.Recovering("disconnect QHelpSearchResultWidget::mouseMoveEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchResultWidget::mouseMoveEvent")
@@ -20813,16 +16734,12 @@ func (ptr *QHelpSearchResultWidget) DisconnectMouseMoveEvent() {
 }
 
 func (ptr *QHelpSearchResultWidget) MouseMoveEvent(event gui.QMouseEvent_ITF) {
-	defer qt.Recovering("QHelpSearchResultWidget::mouseMoveEvent")
-
 	if ptr.Pointer() != nil {
 		C.QHelpSearchResultWidget_MouseMoveEvent(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
 	}
 }
 
 func (ptr *QHelpSearchResultWidget) MouseMoveEventDefault(event gui.QMouseEvent_ITF) {
-	defer qt.Recovering("QHelpSearchResultWidget::mouseMoveEvent")
-
 	if ptr.Pointer() != nil {
 		C.QHelpSearchResultWidget_MouseMoveEventDefault(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
 	}
@@ -20830,7 +16747,6 @@ func (ptr *QHelpSearchResultWidget) MouseMoveEventDefault(event gui.QMouseEvent_
 
 //export callbackQHelpSearchResultWidget_MousePressEvent
 func callbackQHelpSearchResultWidget_MousePressEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpSearchResultWidget::mousePressEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpSearchResultWidget::mousePressEvent"); signal != nil {
 		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
@@ -20840,8 +16756,6 @@ func callbackQHelpSearchResultWidget_MousePressEvent(ptr unsafe.Pointer, event u
 }
 
 func (ptr *QHelpSearchResultWidget) ConnectMousePressEvent(f func(event *gui.QMouseEvent)) {
-	defer qt.Recovering("connect QHelpSearchResultWidget::mousePressEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchResultWidget::mousePressEvent", f)
@@ -20849,8 +16763,6 @@ func (ptr *QHelpSearchResultWidget) ConnectMousePressEvent(f func(event *gui.QMo
 }
 
 func (ptr *QHelpSearchResultWidget) DisconnectMousePressEvent() {
-	defer qt.Recovering("disconnect QHelpSearchResultWidget::mousePressEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchResultWidget::mousePressEvent")
@@ -20858,16 +16770,12 @@ func (ptr *QHelpSearchResultWidget) DisconnectMousePressEvent() {
 }
 
 func (ptr *QHelpSearchResultWidget) MousePressEvent(event gui.QMouseEvent_ITF) {
-	defer qt.Recovering("QHelpSearchResultWidget::mousePressEvent")
-
 	if ptr.Pointer() != nil {
 		C.QHelpSearchResultWidget_MousePressEvent(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
 	}
 }
 
 func (ptr *QHelpSearchResultWidget) MousePressEventDefault(event gui.QMouseEvent_ITF) {
-	defer qt.Recovering("QHelpSearchResultWidget::mousePressEvent")
-
 	if ptr.Pointer() != nil {
 		C.QHelpSearchResultWidget_MousePressEventDefault(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
 	}
@@ -20875,7 +16783,6 @@ func (ptr *QHelpSearchResultWidget) MousePressEventDefault(event gui.QMouseEvent
 
 //export callbackQHelpSearchResultWidget_MouseReleaseEvent
 func callbackQHelpSearchResultWidget_MouseReleaseEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpSearchResultWidget::mouseReleaseEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpSearchResultWidget::mouseReleaseEvent"); signal != nil {
 		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
@@ -20885,8 +16792,6 @@ func callbackQHelpSearchResultWidget_MouseReleaseEvent(ptr unsafe.Pointer, event
 }
 
 func (ptr *QHelpSearchResultWidget) ConnectMouseReleaseEvent(f func(event *gui.QMouseEvent)) {
-	defer qt.Recovering("connect QHelpSearchResultWidget::mouseReleaseEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchResultWidget::mouseReleaseEvent", f)
@@ -20894,8 +16799,6 @@ func (ptr *QHelpSearchResultWidget) ConnectMouseReleaseEvent(f func(event *gui.Q
 }
 
 func (ptr *QHelpSearchResultWidget) DisconnectMouseReleaseEvent() {
-	defer qt.Recovering("disconnect QHelpSearchResultWidget::mouseReleaseEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchResultWidget::mouseReleaseEvent")
@@ -20903,16 +16806,12 @@ func (ptr *QHelpSearchResultWidget) DisconnectMouseReleaseEvent() {
 }
 
 func (ptr *QHelpSearchResultWidget) MouseReleaseEvent(event gui.QMouseEvent_ITF) {
-	defer qt.Recovering("QHelpSearchResultWidget::mouseReleaseEvent")
-
 	if ptr.Pointer() != nil {
 		C.QHelpSearchResultWidget_MouseReleaseEvent(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
 	}
 }
 
 func (ptr *QHelpSearchResultWidget) MouseReleaseEventDefault(event gui.QMouseEvent_ITF) {
-	defer qt.Recovering("QHelpSearchResultWidget::mouseReleaseEvent")
-
 	if ptr.Pointer() != nil {
 		C.QHelpSearchResultWidget_MouseReleaseEventDefault(ptr.Pointer(), gui.PointerFromQMouseEvent(event))
 	}
@@ -20920,7 +16819,6 @@ func (ptr *QHelpSearchResultWidget) MouseReleaseEventDefault(event gui.QMouseEve
 
 //export callbackQHelpSearchResultWidget_NativeEvent
 func callbackQHelpSearchResultWidget_NativeEvent(ptr unsafe.Pointer, eventType *C.char, message unsafe.Pointer, result C.long) C.char {
-	defer qt.Recovering("callback QHelpSearchResultWidget::nativeEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpSearchResultWidget::nativeEvent"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(string, unsafe.Pointer, int) bool)(qt.HexDecodeToString(C.GoString(eventType)), message, int(int32(result))))))
@@ -20930,8 +16828,6 @@ func callbackQHelpSearchResultWidget_NativeEvent(ptr unsafe.Pointer, eventType *
 }
 
 func (ptr *QHelpSearchResultWidget) ConnectNativeEvent(f func(eventType string, message unsafe.Pointer, result int) bool) {
-	defer qt.Recovering("connect QHelpSearchResultWidget::nativeEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchResultWidget::nativeEvent", f)
@@ -20939,8 +16835,6 @@ func (ptr *QHelpSearchResultWidget) ConnectNativeEvent(f func(eventType string, 
 }
 
 func (ptr *QHelpSearchResultWidget) DisconnectNativeEvent() {
-	defer qt.Recovering("disconnect QHelpSearchResultWidget::nativeEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchResultWidget::nativeEvent")
@@ -20948,8 +16842,6 @@ func (ptr *QHelpSearchResultWidget) DisconnectNativeEvent() {
 }
 
 func (ptr *QHelpSearchResultWidget) NativeEvent(eventType string, message unsafe.Pointer, result int) bool {
-	defer qt.Recovering("QHelpSearchResultWidget::nativeEvent")
-
 	if ptr.Pointer() != nil {
 		var eventTypeC = C.CString(hex.EncodeToString([]byte(eventType)))
 		defer C.free(unsafe.Pointer(eventTypeC))
@@ -20959,8 +16851,6 @@ func (ptr *QHelpSearchResultWidget) NativeEvent(eventType string, message unsafe
 }
 
 func (ptr *QHelpSearchResultWidget) NativeEventDefault(eventType string, message unsafe.Pointer, result int) bool {
-	defer qt.Recovering("QHelpSearchResultWidget::nativeEvent")
-
 	if ptr.Pointer() != nil {
 		var eventTypeC = C.CString(hex.EncodeToString([]byte(eventType)))
 		defer C.free(unsafe.Pointer(eventTypeC))
@@ -20971,8 +16861,6 @@ func (ptr *QHelpSearchResultWidget) NativeEventDefault(eventType string, message
 
 //export callbackQHelpSearchResultWidget_Raise
 func callbackQHelpSearchResultWidget_Raise(ptr unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpSearchResultWidget::raise")
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpSearchResultWidget::raise"); signal != nil {
 		signal.(func())()
 	} else {
@@ -20981,8 +16869,6 @@ func callbackQHelpSearchResultWidget_Raise(ptr unsafe.Pointer) {
 }
 
 func (ptr *QHelpSearchResultWidget) ConnectRaise(f func()) {
-	defer qt.Recovering("connect QHelpSearchResultWidget::raise")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchResultWidget::raise", f)
@@ -20990,8 +16876,6 @@ func (ptr *QHelpSearchResultWidget) ConnectRaise(f func()) {
 }
 
 func (ptr *QHelpSearchResultWidget) DisconnectRaise() {
-	defer qt.Recovering("disconnect QHelpSearchResultWidget::raise")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchResultWidget::raise")
@@ -20999,16 +16883,12 @@ func (ptr *QHelpSearchResultWidget) DisconnectRaise() {
 }
 
 func (ptr *QHelpSearchResultWidget) Raise() {
-	defer qt.Recovering("QHelpSearchResultWidget::raise")
-
 	if ptr.Pointer() != nil {
 		C.QHelpSearchResultWidget_Raise(ptr.Pointer())
 	}
 }
 
 func (ptr *QHelpSearchResultWidget) RaiseDefault() {
-	defer qt.Recovering("QHelpSearchResultWidget::raise")
-
 	if ptr.Pointer() != nil {
 		C.QHelpSearchResultWidget_RaiseDefault(ptr.Pointer())
 	}
@@ -21016,8 +16896,6 @@ func (ptr *QHelpSearchResultWidget) RaiseDefault() {
 
 //export callbackQHelpSearchResultWidget_Repaint
 func callbackQHelpSearchResultWidget_Repaint(ptr unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpSearchResultWidget::repaint")
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpSearchResultWidget::repaint"); signal != nil {
 		signal.(func())()
 	} else {
@@ -21026,8 +16904,6 @@ func callbackQHelpSearchResultWidget_Repaint(ptr unsafe.Pointer) {
 }
 
 func (ptr *QHelpSearchResultWidget) ConnectRepaint(f func()) {
-	defer qt.Recovering("connect QHelpSearchResultWidget::repaint")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchResultWidget::repaint", f)
@@ -21035,8 +16911,6 @@ func (ptr *QHelpSearchResultWidget) ConnectRepaint(f func()) {
 }
 
 func (ptr *QHelpSearchResultWidget) DisconnectRepaint() {
-	defer qt.Recovering("disconnect QHelpSearchResultWidget::repaint")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchResultWidget::repaint")
@@ -21044,16 +16918,12 @@ func (ptr *QHelpSearchResultWidget) DisconnectRepaint() {
 }
 
 func (ptr *QHelpSearchResultWidget) Repaint() {
-	defer qt.Recovering("QHelpSearchResultWidget::repaint")
-
 	if ptr.Pointer() != nil {
 		C.QHelpSearchResultWidget_Repaint(ptr.Pointer())
 	}
 }
 
 func (ptr *QHelpSearchResultWidget) RepaintDefault() {
-	defer qt.Recovering("QHelpSearchResultWidget::repaint")
-
 	if ptr.Pointer() != nil {
 		C.QHelpSearchResultWidget_RepaintDefault(ptr.Pointer())
 	}
@@ -21061,7 +16931,6 @@ func (ptr *QHelpSearchResultWidget) RepaintDefault() {
 
 //export callbackQHelpSearchResultWidget_ResizeEvent
 func callbackQHelpSearchResultWidget_ResizeEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpSearchResultWidget::resizeEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpSearchResultWidget::resizeEvent"); signal != nil {
 		signal.(func(*gui.QResizeEvent))(gui.NewQResizeEventFromPointer(event))
@@ -21071,8 +16940,6 @@ func callbackQHelpSearchResultWidget_ResizeEvent(ptr unsafe.Pointer, event unsaf
 }
 
 func (ptr *QHelpSearchResultWidget) ConnectResizeEvent(f func(event *gui.QResizeEvent)) {
-	defer qt.Recovering("connect QHelpSearchResultWidget::resizeEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchResultWidget::resizeEvent", f)
@@ -21080,8 +16947,6 @@ func (ptr *QHelpSearchResultWidget) ConnectResizeEvent(f func(event *gui.QResize
 }
 
 func (ptr *QHelpSearchResultWidget) DisconnectResizeEvent() {
-	defer qt.Recovering("disconnect QHelpSearchResultWidget::resizeEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchResultWidget::resizeEvent")
@@ -21089,16 +16954,12 @@ func (ptr *QHelpSearchResultWidget) DisconnectResizeEvent() {
 }
 
 func (ptr *QHelpSearchResultWidget) ResizeEvent(event gui.QResizeEvent_ITF) {
-	defer qt.Recovering("QHelpSearchResultWidget::resizeEvent")
-
 	if ptr.Pointer() != nil {
 		C.QHelpSearchResultWidget_ResizeEvent(ptr.Pointer(), gui.PointerFromQResizeEvent(event))
 	}
 }
 
 func (ptr *QHelpSearchResultWidget) ResizeEventDefault(event gui.QResizeEvent_ITF) {
-	defer qt.Recovering("QHelpSearchResultWidget::resizeEvent")
-
 	if ptr.Pointer() != nil {
 		C.QHelpSearchResultWidget_ResizeEventDefault(ptr.Pointer(), gui.PointerFromQResizeEvent(event))
 	}
@@ -21106,8 +16967,6 @@ func (ptr *QHelpSearchResultWidget) ResizeEventDefault(event gui.QResizeEvent_IT
 
 //export callbackQHelpSearchResultWidget_SetDisabled
 func callbackQHelpSearchResultWidget_SetDisabled(ptr unsafe.Pointer, disable C.char) {
-	defer qt.Recovering("callback QHelpSearchResultWidget::setDisabled")
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpSearchResultWidget::setDisabled"); signal != nil {
 		signal.(func(bool))(int8(disable) != 0)
 	} else {
@@ -21116,8 +16975,6 @@ func callbackQHelpSearchResultWidget_SetDisabled(ptr unsafe.Pointer, disable C.c
 }
 
 func (ptr *QHelpSearchResultWidget) ConnectSetDisabled(f func(disable bool)) {
-	defer qt.Recovering("connect QHelpSearchResultWidget::setDisabled")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchResultWidget::setDisabled", f)
@@ -21125,8 +16982,6 @@ func (ptr *QHelpSearchResultWidget) ConnectSetDisabled(f func(disable bool)) {
 }
 
 func (ptr *QHelpSearchResultWidget) DisconnectSetDisabled() {
-	defer qt.Recovering("disconnect QHelpSearchResultWidget::setDisabled")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchResultWidget::setDisabled")
@@ -21134,16 +16989,12 @@ func (ptr *QHelpSearchResultWidget) DisconnectSetDisabled() {
 }
 
 func (ptr *QHelpSearchResultWidget) SetDisabled(disable bool) {
-	defer qt.Recovering("QHelpSearchResultWidget::setDisabled")
-
 	if ptr.Pointer() != nil {
 		C.QHelpSearchResultWidget_SetDisabled(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(disable))))
 	}
 }
 
 func (ptr *QHelpSearchResultWidget) SetDisabledDefault(disable bool) {
-	defer qt.Recovering("QHelpSearchResultWidget::setDisabled")
-
 	if ptr.Pointer() != nil {
 		C.QHelpSearchResultWidget_SetDisabledDefault(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(disable))))
 	}
@@ -21151,8 +17002,6 @@ func (ptr *QHelpSearchResultWidget) SetDisabledDefault(disable bool) {
 
 //export callbackQHelpSearchResultWidget_SetFocus2
 func callbackQHelpSearchResultWidget_SetFocus2(ptr unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpSearchResultWidget::setFocus")
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpSearchResultWidget::setFocus2"); signal != nil {
 		signal.(func())()
 	} else {
@@ -21161,8 +17010,6 @@ func callbackQHelpSearchResultWidget_SetFocus2(ptr unsafe.Pointer) {
 }
 
 func (ptr *QHelpSearchResultWidget) ConnectSetFocus2(f func()) {
-	defer qt.Recovering("connect QHelpSearchResultWidget::setFocus")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchResultWidget::setFocus2", f)
@@ -21170,8 +17017,6 @@ func (ptr *QHelpSearchResultWidget) ConnectSetFocus2(f func()) {
 }
 
 func (ptr *QHelpSearchResultWidget) DisconnectSetFocus2() {
-	defer qt.Recovering("disconnect QHelpSearchResultWidget::setFocus")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchResultWidget::setFocus2")
@@ -21179,16 +17024,12 @@ func (ptr *QHelpSearchResultWidget) DisconnectSetFocus2() {
 }
 
 func (ptr *QHelpSearchResultWidget) SetFocus2() {
-	defer qt.Recovering("QHelpSearchResultWidget::setFocus")
-
 	if ptr.Pointer() != nil {
 		C.QHelpSearchResultWidget_SetFocus2(ptr.Pointer())
 	}
 }
 
 func (ptr *QHelpSearchResultWidget) SetFocus2Default() {
-	defer qt.Recovering("QHelpSearchResultWidget::setFocus")
-
 	if ptr.Pointer() != nil {
 		C.QHelpSearchResultWidget_SetFocus2Default(ptr.Pointer())
 	}
@@ -21196,8 +17037,6 @@ func (ptr *QHelpSearchResultWidget) SetFocus2Default() {
 
 //export callbackQHelpSearchResultWidget_SetHidden
 func callbackQHelpSearchResultWidget_SetHidden(ptr unsafe.Pointer, hidden C.char) {
-	defer qt.Recovering("callback QHelpSearchResultWidget::setHidden")
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpSearchResultWidget::setHidden"); signal != nil {
 		signal.(func(bool))(int8(hidden) != 0)
 	} else {
@@ -21206,8 +17045,6 @@ func callbackQHelpSearchResultWidget_SetHidden(ptr unsafe.Pointer, hidden C.char
 }
 
 func (ptr *QHelpSearchResultWidget) ConnectSetHidden(f func(hidden bool)) {
-	defer qt.Recovering("connect QHelpSearchResultWidget::setHidden")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchResultWidget::setHidden", f)
@@ -21215,8 +17052,6 @@ func (ptr *QHelpSearchResultWidget) ConnectSetHidden(f func(hidden bool)) {
 }
 
 func (ptr *QHelpSearchResultWidget) DisconnectSetHidden() {
-	defer qt.Recovering("disconnect QHelpSearchResultWidget::setHidden")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchResultWidget::setHidden")
@@ -21224,16 +17059,12 @@ func (ptr *QHelpSearchResultWidget) DisconnectSetHidden() {
 }
 
 func (ptr *QHelpSearchResultWidget) SetHidden(hidden bool) {
-	defer qt.Recovering("QHelpSearchResultWidget::setHidden")
-
 	if ptr.Pointer() != nil {
 		C.QHelpSearchResultWidget_SetHidden(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(hidden))))
 	}
 }
 
 func (ptr *QHelpSearchResultWidget) SetHiddenDefault(hidden bool) {
-	defer qt.Recovering("QHelpSearchResultWidget::setHidden")
-
 	if ptr.Pointer() != nil {
 		C.QHelpSearchResultWidget_SetHiddenDefault(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(hidden))))
 	}
@@ -21241,8 +17072,6 @@ func (ptr *QHelpSearchResultWidget) SetHiddenDefault(hidden bool) {
 
 //export callbackQHelpSearchResultWidget_Show
 func callbackQHelpSearchResultWidget_Show(ptr unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpSearchResultWidget::show")
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpSearchResultWidget::show"); signal != nil {
 		signal.(func())()
 	} else {
@@ -21251,8 +17080,6 @@ func callbackQHelpSearchResultWidget_Show(ptr unsafe.Pointer) {
 }
 
 func (ptr *QHelpSearchResultWidget) ConnectShow(f func()) {
-	defer qt.Recovering("connect QHelpSearchResultWidget::show")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchResultWidget::show", f)
@@ -21260,8 +17087,6 @@ func (ptr *QHelpSearchResultWidget) ConnectShow(f func()) {
 }
 
 func (ptr *QHelpSearchResultWidget) DisconnectShow() {
-	defer qt.Recovering("disconnect QHelpSearchResultWidget::show")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchResultWidget::show")
@@ -21269,16 +17094,12 @@ func (ptr *QHelpSearchResultWidget) DisconnectShow() {
 }
 
 func (ptr *QHelpSearchResultWidget) Show() {
-	defer qt.Recovering("QHelpSearchResultWidget::show")
-
 	if ptr.Pointer() != nil {
 		C.QHelpSearchResultWidget_Show(ptr.Pointer())
 	}
 }
 
 func (ptr *QHelpSearchResultWidget) ShowDefault() {
-	defer qt.Recovering("QHelpSearchResultWidget::show")
-
 	if ptr.Pointer() != nil {
 		C.QHelpSearchResultWidget_ShowDefault(ptr.Pointer())
 	}
@@ -21286,8 +17107,6 @@ func (ptr *QHelpSearchResultWidget) ShowDefault() {
 
 //export callbackQHelpSearchResultWidget_ShowFullScreen
 func callbackQHelpSearchResultWidget_ShowFullScreen(ptr unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpSearchResultWidget::showFullScreen")
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpSearchResultWidget::showFullScreen"); signal != nil {
 		signal.(func())()
 	} else {
@@ -21296,8 +17115,6 @@ func callbackQHelpSearchResultWidget_ShowFullScreen(ptr unsafe.Pointer) {
 }
 
 func (ptr *QHelpSearchResultWidget) ConnectShowFullScreen(f func()) {
-	defer qt.Recovering("connect QHelpSearchResultWidget::showFullScreen")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchResultWidget::showFullScreen", f)
@@ -21305,8 +17122,6 @@ func (ptr *QHelpSearchResultWidget) ConnectShowFullScreen(f func()) {
 }
 
 func (ptr *QHelpSearchResultWidget) DisconnectShowFullScreen() {
-	defer qt.Recovering("disconnect QHelpSearchResultWidget::showFullScreen")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchResultWidget::showFullScreen")
@@ -21314,16 +17129,12 @@ func (ptr *QHelpSearchResultWidget) DisconnectShowFullScreen() {
 }
 
 func (ptr *QHelpSearchResultWidget) ShowFullScreen() {
-	defer qt.Recovering("QHelpSearchResultWidget::showFullScreen")
-
 	if ptr.Pointer() != nil {
 		C.QHelpSearchResultWidget_ShowFullScreen(ptr.Pointer())
 	}
 }
 
 func (ptr *QHelpSearchResultWidget) ShowFullScreenDefault() {
-	defer qt.Recovering("QHelpSearchResultWidget::showFullScreen")
-
 	if ptr.Pointer() != nil {
 		C.QHelpSearchResultWidget_ShowFullScreenDefault(ptr.Pointer())
 	}
@@ -21331,8 +17142,6 @@ func (ptr *QHelpSearchResultWidget) ShowFullScreenDefault() {
 
 //export callbackQHelpSearchResultWidget_ShowMaximized
 func callbackQHelpSearchResultWidget_ShowMaximized(ptr unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpSearchResultWidget::showMaximized")
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpSearchResultWidget::showMaximized"); signal != nil {
 		signal.(func())()
 	} else {
@@ -21341,8 +17150,6 @@ func callbackQHelpSearchResultWidget_ShowMaximized(ptr unsafe.Pointer) {
 }
 
 func (ptr *QHelpSearchResultWidget) ConnectShowMaximized(f func()) {
-	defer qt.Recovering("connect QHelpSearchResultWidget::showMaximized")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchResultWidget::showMaximized", f)
@@ -21350,8 +17157,6 @@ func (ptr *QHelpSearchResultWidget) ConnectShowMaximized(f func()) {
 }
 
 func (ptr *QHelpSearchResultWidget) DisconnectShowMaximized() {
-	defer qt.Recovering("disconnect QHelpSearchResultWidget::showMaximized")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchResultWidget::showMaximized")
@@ -21359,16 +17164,12 @@ func (ptr *QHelpSearchResultWidget) DisconnectShowMaximized() {
 }
 
 func (ptr *QHelpSearchResultWidget) ShowMaximized() {
-	defer qt.Recovering("QHelpSearchResultWidget::showMaximized")
-
 	if ptr.Pointer() != nil {
 		C.QHelpSearchResultWidget_ShowMaximized(ptr.Pointer())
 	}
 }
 
 func (ptr *QHelpSearchResultWidget) ShowMaximizedDefault() {
-	defer qt.Recovering("QHelpSearchResultWidget::showMaximized")
-
 	if ptr.Pointer() != nil {
 		C.QHelpSearchResultWidget_ShowMaximizedDefault(ptr.Pointer())
 	}
@@ -21376,8 +17177,6 @@ func (ptr *QHelpSearchResultWidget) ShowMaximizedDefault() {
 
 //export callbackQHelpSearchResultWidget_ShowMinimized
 func callbackQHelpSearchResultWidget_ShowMinimized(ptr unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpSearchResultWidget::showMinimized")
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpSearchResultWidget::showMinimized"); signal != nil {
 		signal.(func())()
 	} else {
@@ -21386,8 +17185,6 @@ func callbackQHelpSearchResultWidget_ShowMinimized(ptr unsafe.Pointer) {
 }
 
 func (ptr *QHelpSearchResultWidget) ConnectShowMinimized(f func()) {
-	defer qt.Recovering("connect QHelpSearchResultWidget::showMinimized")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchResultWidget::showMinimized", f)
@@ -21395,8 +17192,6 @@ func (ptr *QHelpSearchResultWidget) ConnectShowMinimized(f func()) {
 }
 
 func (ptr *QHelpSearchResultWidget) DisconnectShowMinimized() {
-	defer qt.Recovering("disconnect QHelpSearchResultWidget::showMinimized")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchResultWidget::showMinimized")
@@ -21404,16 +17199,12 @@ func (ptr *QHelpSearchResultWidget) DisconnectShowMinimized() {
 }
 
 func (ptr *QHelpSearchResultWidget) ShowMinimized() {
-	defer qt.Recovering("QHelpSearchResultWidget::showMinimized")
-
 	if ptr.Pointer() != nil {
 		C.QHelpSearchResultWidget_ShowMinimized(ptr.Pointer())
 	}
 }
 
 func (ptr *QHelpSearchResultWidget) ShowMinimizedDefault() {
-	defer qt.Recovering("QHelpSearchResultWidget::showMinimized")
-
 	if ptr.Pointer() != nil {
 		C.QHelpSearchResultWidget_ShowMinimizedDefault(ptr.Pointer())
 	}
@@ -21421,8 +17212,6 @@ func (ptr *QHelpSearchResultWidget) ShowMinimizedDefault() {
 
 //export callbackQHelpSearchResultWidget_ShowNormal
 func callbackQHelpSearchResultWidget_ShowNormal(ptr unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpSearchResultWidget::showNormal")
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpSearchResultWidget::showNormal"); signal != nil {
 		signal.(func())()
 	} else {
@@ -21431,8 +17220,6 @@ func callbackQHelpSearchResultWidget_ShowNormal(ptr unsafe.Pointer) {
 }
 
 func (ptr *QHelpSearchResultWidget) ConnectShowNormal(f func()) {
-	defer qt.Recovering("connect QHelpSearchResultWidget::showNormal")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchResultWidget::showNormal", f)
@@ -21440,8 +17227,6 @@ func (ptr *QHelpSearchResultWidget) ConnectShowNormal(f func()) {
 }
 
 func (ptr *QHelpSearchResultWidget) DisconnectShowNormal() {
-	defer qt.Recovering("disconnect QHelpSearchResultWidget::showNormal")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchResultWidget::showNormal")
@@ -21449,16 +17234,12 @@ func (ptr *QHelpSearchResultWidget) DisconnectShowNormal() {
 }
 
 func (ptr *QHelpSearchResultWidget) ShowNormal() {
-	defer qt.Recovering("QHelpSearchResultWidget::showNormal")
-
 	if ptr.Pointer() != nil {
 		C.QHelpSearchResultWidget_ShowNormal(ptr.Pointer())
 	}
 }
 
 func (ptr *QHelpSearchResultWidget) ShowNormalDefault() {
-	defer qt.Recovering("QHelpSearchResultWidget::showNormal")
-
 	if ptr.Pointer() != nil {
 		C.QHelpSearchResultWidget_ShowNormalDefault(ptr.Pointer())
 	}
@@ -21466,7 +17247,6 @@ func (ptr *QHelpSearchResultWidget) ShowNormalDefault() {
 
 //export callbackQHelpSearchResultWidget_TabletEvent
 func callbackQHelpSearchResultWidget_TabletEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpSearchResultWidget::tabletEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpSearchResultWidget::tabletEvent"); signal != nil {
 		signal.(func(*gui.QTabletEvent))(gui.NewQTabletEventFromPointer(event))
@@ -21476,8 +17256,6 @@ func callbackQHelpSearchResultWidget_TabletEvent(ptr unsafe.Pointer, event unsaf
 }
 
 func (ptr *QHelpSearchResultWidget) ConnectTabletEvent(f func(event *gui.QTabletEvent)) {
-	defer qt.Recovering("connect QHelpSearchResultWidget::tabletEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchResultWidget::tabletEvent", f)
@@ -21485,8 +17263,6 @@ func (ptr *QHelpSearchResultWidget) ConnectTabletEvent(f func(event *gui.QTablet
 }
 
 func (ptr *QHelpSearchResultWidget) DisconnectTabletEvent() {
-	defer qt.Recovering("disconnect QHelpSearchResultWidget::tabletEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchResultWidget::tabletEvent")
@@ -21494,16 +17270,12 @@ func (ptr *QHelpSearchResultWidget) DisconnectTabletEvent() {
 }
 
 func (ptr *QHelpSearchResultWidget) TabletEvent(event gui.QTabletEvent_ITF) {
-	defer qt.Recovering("QHelpSearchResultWidget::tabletEvent")
-
 	if ptr.Pointer() != nil {
 		C.QHelpSearchResultWidget_TabletEvent(ptr.Pointer(), gui.PointerFromQTabletEvent(event))
 	}
 }
 
 func (ptr *QHelpSearchResultWidget) TabletEventDefault(event gui.QTabletEvent_ITF) {
-	defer qt.Recovering("QHelpSearchResultWidget::tabletEvent")
-
 	if ptr.Pointer() != nil {
 		C.QHelpSearchResultWidget_TabletEventDefault(ptr.Pointer(), gui.PointerFromQTabletEvent(event))
 	}
@@ -21511,8 +17283,6 @@ func (ptr *QHelpSearchResultWidget) TabletEventDefault(event gui.QTabletEvent_IT
 
 //export callbackQHelpSearchResultWidget_Update
 func callbackQHelpSearchResultWidget_Update(ptr unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpSearchResultWidget::update")
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpSearchResultWidget::update"); signal != nil {
 		signal.(func())()
 	} else {
@@ -21521,8 +17291,6 @@ func callbackQHelpSearchResultWidget_Update(ptr unsafe.Pointer) {
 }
 
 func (ptr *QHelpSearchResultWidget) ConnectUpdate(f func()) {
-	defer qt.Recovering("connect QHelpSearchResultWidget::update")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchResultWidget::update", f)
@@ -21530,8 +17298,6 @@ func (ptr *QHelpSearchResultWidget) ConnectUpdate(f func()) {
 }
 
 func (ptr *QHelpSearchResultWidget) DisconnectUpdate() {
-	defer qt.Recovering("disconnect QHelpSearchResultWidget::update")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchResultWidget::update")
@@ -21539,16 +17305,12 @@ func (ptr *QHelpSearchResultWidget) DisconnectUpdate() {
 }
 
 func (ptr *QHelpSearchResultWidget) Update() {
-	defer qt.Recovering("QHelpSearchResultWidget::update")
-
 	if ptr.Pointer() != nil {
 		C.QHelpSearchResultWidget_Update(ptr.Pointer())
 	}
 }
 
 func (ptr *QHelpSearchResultWidget) UpdateDefault() {
-	defer qt.Recovering("QHelpSearchResultWidget::update")
-
 	if ptr.Pointer() != nil {
 		C.QHelpSearchResultWidget_UpdateDefault(ptr.Pointer())
 	}
@@ -21556,8 +17318,6 @@ func (ptr *QHelpSearchResultWidget) UpdateDefault() {
 
 //export callbackQHelpSearchResultWidget_UpdateMicroFocus
 func callbackQHelpSearchResultWidget_UpdateMicroFocus(ptr unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpSearchResultWidget::updateMicroFocus")
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpSearchResultWidget::updateMicroFocus"); signal != nil {
 		signal.(func())()
 	} else {
@@ -21566,8 +17326,6 @@ func callbackQHelpSearchResultWidget_UpdateMicroFocus(ptr unsafe.Pointer) {
 }
 
 func (ptr *QHelpSearchResultWidget) ConnectUpdateMicroFocus(f func()) {
-	defer qt.Recovering("connect QHelpSearchResultWidget::updateMicroFocus")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchResultWidget::updateMicroFocus", f)
@@ -21575,8 +17333,6 @@ func (ptr *QHelpSearchResultWidget) ConnectUpdateMicroFocus(f func()) {
 }
 
 func (ptr *QHelpSearchResultWidget) DisconnectUpdateMicroFocus() {
-	defer qt.Recovering("disconnect QHelpSearchResultWidget::updateMicroFocus")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchResultWidget::updateMicroFocus")
@@ -21584,16 +17340,12 @@ func (ptr *QHelpSearchResultWidget) DisconnectUpdateMicroFocus() {
 }
 
 func (ptr *QHelpSearchResultWidget) UpdateMicroFocus() {
-	defer qt.Recovering("QHelpSearchResultWidget::updateMicroFocus")
-
 	if ptr.Pointer() != nil {
 		C.QHelpSearchResultWidget_UpdateMicroFocus(ptr.Pointer())
 	}
 }
 
 func (ptr *QHelpSearchResultWidget) UpdateMicroFocusDefault() {
-	defer qt.Recovering("QHelpSearchResultWidget::updateMicroFocus")
-
 	if ptr.Pointer() != nil {
 		C.QHelpSearchResultWidget_UpdateMicroFocusDefault(ptr.Pointer())
 	}
@@ -21601,7 +17353,6 @@ func (ptr *QHelpSearchResultWidget) UpdateMicroFocusDefault() {
 
 //export callbackQHelpSearchResultWidget_WheelEvent
 func callbackQHelpSearchResultWidget_WheelEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpSearchResultWidget::wheelEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpSearchResultWidget::wheelEvent"); signal != nil {
 		signal.(func(*gui.QWheelEvent))(gui.NewQWheelEventFromPointer(event))
@@ -21611,8 +17362,6 @@ func callbackQHelpSearchResultWidget_WheelEvent(ptr unsafe.Pointer, event unsafe
 }
 
 func (ptr *QHelpSearchResultWidget) ConnectWheelEvent(f func(event *gui.QWheelEvent)) {
-	defer qt.Recovering("connect QHelpSearchResultWidget::wheelEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchResultWidget::wheelEvent", f)
@@ -21620,8 +17369,6 @@ func (ptr *QHelpSearchResultWidget) ConnectWheelEvent(f func(event *gui.QWheelEv
 }
 
 func (ptr *QHelpSearchResultWidget) DisconnectWheelEvent() {
-	defer qt.Recovering("disconnect QHelpSearchResultWidget::wheelEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchResultWidget::wheelEvent")
@@ -21629,16 +17376,12 @@ func (ptr *QHelpSearchResultWidget) DisconnectWheelEvent() {
 }
 
 func (ptr *QHelpSearchResultWidget) WheelEvent(event gui.QWheelEvent_ITF) {
-	defer qt.Recovering("QHelpSearchResultWidget::wheelEvent")
-
 	if ptr.Pointer() != nil {
 		C.QHelpSearchResultWidget_WheelEvent(ptr.Pointer(), gui.PointerFromQWheelEvent(event))
 	}
 }
 
 func (ptr *QHelpSearchResultWidget) WheelEventDefault(event gui.QWheelEvent_ITF) {
-	defer qt.Recovering("QHelpSearchResultWidget::wheelEvent")
-
 	if ptr.Pointer() != nil {
 		C.QHelpSearchResultWidget_WheelEventDefault(ptr.Pointer(), gui.PointerFromQWheelEvent(event))
 	}
@@ -21646,7 +17389,6 @@ func (ptr *QHelpSearchResultWidget) WheelEventDefault(event gui.QWheelEvent_ITF)
 
 //export callbackQHelpSearchResultWidget_TimerEvent
 func callbackQHelpSearchResultWidget_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpSearchResultWidget::timerEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpSearchResultWidget::timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
@@ -21656,8 +17398,6 @@ func callbackQHelpSearchResultWidget_TimerEvent(ptr unsafe.Pointer, event unsafe
 }
 
 func (ptr *QHelpSearchResultWidget) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
-	defer qt.Recovering("connect QHelpSearchResultWidget::timerEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchResultWidget::timerEvent", f)
@@ -21665,8 +17405,6 @@ func (ptr *QHelpSearchResultWidget) ConnectTimerEvent(f func(event *core.QTimerE
 }
 
 func (ptr *QHelpSearchResultWidget) DisconnectTimerEvent() {
-	defer qt.Recovering("disconnect QHelpSearchResultWidget::timerEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchResultWidget::timerEvent")
@@ -21674,16 +17412,12 @@ func (ptr *QHelpSearchResultWidget) DisconnectTimerEvent() {
 }
 
 func (ptr *QHelpSearchResultWidget) TimerEvent(event core.QTimerEvent_ITF) {
-	defer qt.Recovering("QHelpSearchResultWidget::timerEvent")
-
 	if ptr.Pointer() != nil {
 		C.QHelpSearchResultWidget_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
 	}
 }
 
 func (ptr *QHelpSearchResultWidget) TimerEventDefault(event core.QTimerEvent_ITF) {
-	defer qt.Recovering("QHelpSearchResultWidget::timerEvent")
-
 	if ptr.Pointer() != nil {
 		C.QHelpSearchResultWidget_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
 	}
@@ -21691,7 +17425,6 @@ func (ptr *QHelpSearchResultWidget) TimerEventDefault(event core.QTimerEvent_ITF
 
 //export callbackQHelpSearchResultWidget_ChildEvent
 func callbackQHelpSearchResultWidget_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpSearchResultWidget::childEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpSearchResultWidget::childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
@@ -21701,8 +17434,6 @@ func callbackQHelpSearchResultWidget_ChildEvent(ptr unsafe.Pointer, event unsafe
 }
 
 func (ptr *QHelpSearchResultWidget) ConnectChildEvent(f func(event *core.QChildEvent)) {
-	defer qt.Recovering("connect QHelpSearchResultWidget::childEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchResultWidget::childEvent", f)
@@ -21710,8 +17441,6 @@ func (ptr *QHelpSearchResultWidget) ConnectChildEvent(f func(event *core.QChildE
 }
 
 func (ptr *QHelpSearchResultWidget) DisconnectChildEvent() {
-	defer qt.Recovering("disconnect QHelpSearchResultWidget::childEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchResultWidget::childEvent")
@@ -21719,16 +17448,12 @@ func (ptr *QHelpSearchResultWidget) DisconnectChildEvent() {
 }
 
 func (ptr *QHelpSearchResultWidget) ChildEvent(event core.QChildEvent_ITF) {
-	defer qt.Recovering("QHelpSearchResultWidget::childEvent")
-
 	if ptr.Pointer() != nil {
 		C.QHelpSearchResultWidget_ChildEvent(ptr.Pointer(), core.PointerFromQChildEvent(event))
 	}
 }
 
 func (ptr *QHelpSearchResultWidget) ChildEventDefault(event core.QChildEvent_ITF) {
-	defer qt.Recovering("QHelpSearchResultWidget::childEvent")
-
 	if ptr.Pointer() != nil {
 		C.QHelpSearchResultWidget_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
 	}
@@ -21736,7 +17461,6 @@ func (ptr *QHelpSearchResultWidget) ChildEventDefault(event core.QChildEvent_ITF
 
 //export callbackQHelpSearchResultWidget_ConnectNotify
 func callbackQHelpSearchResultWidget_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpSearchResultWidget::connectNotify")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpSearchResultWidget::connectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
@@ -21746,8 +17470,6 @@ func callbackQHelpSearchResultWidget_ConnectNotify(ptr unsafe.Pointer, sign unsa
 }
 
 func (ptr *QHelpSearchResultWidget) ConnectConnectNotify(f func(sign *core.QMetaMethod)) {
-	defer qt.Recovering("connect QHelpSearchResultWidget::connectNotify")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchResultWidget::connectNotify", f)
@@ -21755,8 +17477,6 @@ func (ptr *QHelpSearchResultWidget) ConnectConnectNotify(f func(sign *core.QMeta
 }
 
 func (ptr *QHelpSearchResultWidget) DisconnectConnectNotify() {
-	defer qt.Recovering("disconnect QHelpSearchResultWidget::connectNotify")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchResultWidget::connectNotify")
@@ -21764,16 +17484,12 @@ func (ptr *QHelpSearchResultWidget) DisconnectConnectNotify() {
 }
 
 func (ptr *QHelpSearchResultWidget) ConnectNotify(sign core.QMetaMethod_ITF) {
-	defer qt.Recovering("QHelpSearchResultWidget::connectNotify")
-
 	if ptr.Pointer() != nil {
 		C.QHelpSearchResultWidget_ConnectNotify(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
 	}
 }
 
 func (ptr *QHelpSearchResultWidget) ConnectNotifyDefault(sign core.QMetaMethod_ITF) {
-	defer qt.Recovering("QHelpSearchResultWidget::connectNotify")
-
 	if ptr.Pointer() != nil {
 		C.QHelpSearchResultWidget_ConnectNotifyDefault(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
 	}
@@ -21781,7 +17497,6 @@ func (ptr *QHelpSearchResultWidget) ConnectNotifyDefault(sign core.QMetaMethod_I
 
 //export callbackQHelpSearchResultWidget_CustomEvent
 func callbackQHelpSearchResultWidget_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpSearchResultWidget::customEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpSearchResultWidget::customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
@@ -21791,8 +17506,6 @@ func callbackQHelpSearchResultWidget_CustomEvent(ptr unsafe.Pointer, event unsaf
 }
 
 func (ptr *QHelpSearchResultWidget) ConnectCustomEvent(f func(event *core.QEvent)) {
-	defer qt.Recovering("connect QHelpSearchResultWidget::customEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchResultWidget::customEvent", f)
@@ -21800,8 +17513,6 @@ func (ptr *QHelpSearchResultWidget) ConnectCustomEvent(f func(event *core.QEvent
 }
 
 func (ptr *QHelpSearchResultWidget) DisconnectCustomEvent() {
-	defer qt.Recovering("disconnect QHelpSearchResultWidget::customEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchResultWidget::customEvent")
@@ -21809,16 +17520,12 @@ func (ptr *QHelpSearchResultWidget) DisconnectCustomEvent() {
 }
 
 func (ptr *QHelpSearchResultWidget) CustomEvent(event core.QEvent_ITF) {
-	defer qt.Recovering("QHelpSearchResultWidget::customEvent")
-
 	if ptr.Pointer() != nil {
 		C.QHelpSearchResultWidget_CustomEvent(ptr.Pointer(), core.PointerFromQEvent(event))
 	}
 }
 
 func (ptr *QHelpSearchResultWidget) CustomEventDefault(event core.QEvent_ITF) {
-	defer qt.Recovering("QHelpSearchResultWidget::customEvent")
-
 	if ptr.Pointer() != nil {
 		C.QHelpSearchResultWidget_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
 	}
@@ -21826,8 +17533,6 @@ func (ptr *QHelpSearchResultWidget) CustomEventDefault(event core.QEvent_ITF) {
 
 //export callbackQHelpSearchResultWidget_DeleteLater
 func callbackQHelpSearchResultWidget_DeleteLater(ptr unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpSearchResultWidget::deleteLater")
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpSearchResultWidget::deleteLater"); signal != nil {
 		signal.(func())()
 	} else {
@@ -21836,8 +17541,6 @@ func callbackQHelpSearchResultWidget_DeleteLater(ptr unsafe.Pointer) {
 }
 
 func (ptr *QHelpSearchResultWidget) ConnectDeleteLater(f func()) {
-	defer qt.Recovering("connect QHelpSearchResultWidget::deleteLater")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchResultWidget::deleteLater", f)
@@ -21845,8 +17548,6 @@ func (ptr *QHelpSearchResultWidget) ConnectDeleteLater(f func()) {
 }
 
 func (ptr *QHelpSearchResultWidget) DisconnectDeleteLater() {
-	defer qt.Recovering("disconnect QHelpSearchResultWidget::deleteLater")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchResultWidget::deleteLater")
@@ -21854,8 +17555,6 @@ func (ptr *QHelpSearchResultWidget) DisconnectDeleteLater() {
 }
 
 func (ptr *QHelpSearchResultWidget) DeleteLater() {
-	defer qt.Recovering("QHelpSearchResultWidget::deleteLater")
-
 	if ptr.Pointer() != nil {
 		C.QHelpSearchResultWidget_DeleteLater(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
@@ -21864,8 +17563,6 @@ func (ptr *QHelpSearchResultWidget) DeleteLater() {
 }
 
 func (ptr *QHelpSearchResultWidget) DeleteLaterDefault() {
-	defer qt.Recovering("QHelpSearchResultWidget::deleteLater")
-
 	if ptr.Pointer() != nil {
 		C.QHelpSearchResultWidget_DeleteLaterDefault(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
@@ -21875,7 +17572,6 @@ func (ptr *QHelpSearchResultWidget) DeleteLaterDefault() {
 
 //export callbackQHelpSearchResultWidget_DisconnectNotify
 func callbackQHelpSearchResultWidget_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-	defer qt.Recovering("callback QHelpSearchResultWidget::disconnectNotify")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpSearchResultWidget::disconnectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
@@ -21885,8 +17581,6 @@ func callbackQHelpSearchResultWidget_DisconnectNotify(ptr unsafe.Pointer, sign u
 }
 
 func (ptr *QHelpSearchResultWidget) ConnectDisconnectNotify(f func(sign *core.QMetaMethod)) {
-	defer qt.Recovering("connect QHelpSearchResultWidget::disconnectNotify")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchResultWidget::disconnectNotify", f)
@@ -21894,8 +17588,6 @@ func (ptr *QHelpSearchResultWidget) ConnectDisconnectNotify(f func(sign *core.QM
 }
 
 func (ptr *QHelpSearchResultWidget) DisconnectDisconnectNotify() {
-	defer qt.Recovering("disconnect QHelpSearchResultWidget::disconnectNotify")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchResultWidget::disconnectNotify")
@@ -21903,16 +17595,12 @@ func (ptr *QHelpSearchResultWidget) DisconnectDisconnectNotify() {
 }
 
 func (ptr *QHelpSearchResultWidget) DisconnectNotify(sign core.QMetaMethod_ITF) {
-	defer qt.Recovering("QHelpSearchResultWidget::disconnectNotify")
-
 	if ptr.Pointer() != nil {
 		C.QHelpSearchResultWidget_DisconnectNotify(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
 	}
 }
 
 func (ptr *QHelpSearchResultWidget) DisconnectNotifyDefault(sign core.QMetaMethod_ITF) {
-	defer qt.Recovering("QHelpSearchResultWidget::disconnectNotify")
-
 	if ptr.Pointer() != nil {
 		C.QHelpSearchResultWidget_DisconnectNotifyDefault(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
 	}
@@ -21920,7 +17608,6 @@ func (ptr *QHelpSearchResultWidget) DisconnectNotifyDefault(sign core.QMetaMetho
 
 //export callbackQHelpSearchResultWidget_EventFilter
 func callbackQHelpSearchResultWidget_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-	defer qt.Recovering("callback QHelpSearchResultWidget::eventFilter")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpSearchResultWidget::eventFilter"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
@@ -21930,8 +17617,6 @@ func callbackQHelpSearchResultWidget_EventFilter(ptr unsafe.Pointer, watched uns
 }
 
 func (ptr *QHelpSearchResultWidget) ConnectEventFilter(f func(watched *core.QObject, event *core.QEvent) bool) {
-	defer qt.Recovering("connect QHelpSearchResultWidget::eventFilter")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchResultWidget::eventFilter", f)
@@ -21939,8 +17624,6 @@ func (ptr *QHelpSearchResultWidget) ConnectEventFilter(f func(watched *core.QObj
 }
 
 func (ptr *QHelpSearchResultWidget) DisconnectEventFilter() {
-	defer qt.Recovering("disconnect QHelpSearchResultWidget::eventFilter")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchResultWidget::eventFilter")
@@ -21948,8 +17631,6 @@ func (ptr *QHelpSearchResultWidget) DisconnectEventFilter() {
 }
 
 func (ptr *QHelpSearchResultWidget) EventFilter(watched core.QObject_ITF, event core.QEvent_ITF) bool {
-	defer qt.Recovering("QHelpSearchResultWidget::eventFilter")
-
 	if ptr.Pointer() != nil {
 		return C.QHelpSearchResultWidget_EventFilter(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
 	}
@@ -21957,8 +17638,6 @@ func (ptr *QHelpSearchResultWidget) EventFilter(watched core.QObject_ITF, event 
 }
 
 func (ptr *QHelpSearchResultWidget) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
-	defer qt.Recovering("QHelpSearchResultWidget::eventFilter")
-
 	if ptr.Pointer() != nil {
 		return C.QHelpSearchResultWidget_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
 	}
@@ -21967,7 +17646,6 @@ func (ptr *QHelpSearchResultWidget) EventFilterDefault(watched core.QObject_ITF,
 
 //export callbackQHelpSearchResultWidget_MetaObject
 func callbackQHelpSearchResultWidget_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-	defer qt.Recovering("callback QHelpSearchResultWidget::metaObject")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpSearchResultWidget::metaObject"); signal != nil {
 		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
@@ -21977,8 +17655,6 @@ func callbackQHelpSearchResultWidget_MetaObject(ptr unsafe.Pointer) unsafe.Point
 }
 
 func (ptr *QHelpSearchResultWidget) ConnectMetaObject(f func() *core.QMetaObject) {
-	defer qt.Recovering("connect QHelpSearchResultWidget::metaObject")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchResultWidget::metaObject", f)
@@ -21986,8 +17662,6 @@ func (ptr *QHelpSearchResultWidget) ConnectMetaObject(f func() *core.QMetaObject
 }
 
 func (ptr *QHelpSearchResultWidget) DisconnectMetaObject() {
-	defer qt.Recovering("disconnect QHelpSearchResultWidget::metaObject")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchResultWidget::metaObject")
@@ -21995,8 +17669,6 @@ func (ptr *QHelpSearchResultWidget) DisconnectMetaObject() {
 }
 
 func (ptr *QHelpSearchResultWidget) MetaObject() *core.QMetaObject {
-	defer qt.Recovering("QHelpSearchResultWidget::metaObject")
-
 	if ptr.Pointer() != nil {
 		return core.NewQMetaObjectFromPointer(C.QHelpSearchResultWidget_MetaObject(ptr.Pointer()))
 	}
@@ -22004,8 +17676,6 @@ func (ptr *QHelpSearchResultWidget) MetaObject() *core.QMetaObject {
 }
 
 func (ptr *QHelpSearchResultWidget) MetaObjectDefault() *core.QMetaObject {
-	defer qt.Recovering("QHelpSearchResultWidget::metaObject")
-
 	if ptr.Pointer() != nil {
 		return core.NewQMetaObjectFromPointer(C.QHelpSearchResultWidget_MetaObjectDefault(ptr.Pointer()))
 	}

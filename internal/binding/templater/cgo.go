@@ -74,14 +74,14 @@ func cgoDarwin(module string) {
 	}
 	fmt.Fprint(bb, "\n")
 
-	fmt.Fprintf(bb, "#cgo CXXFLAGS: -I%v/5.7/clang_64/mkspecs/macx-clang -F%v/5.7/clang_64/lib\n", utils.QT_DIR(), utils.QT_DIR())
+	fmt.Fprintf(bb, "#cgo CXXFLAGS: -I%v/mkspecs/macx-clang -F%v/lib\n", utils.QT_DARWIN_DIR(), utils.QT_DARWIN_DIR())
 
 	fmt.Fprint(bb, "#cgo CXXFLAGS:")
 	for _, m := range libs {
 		if m == "UiTools" || m == "PlatformHeaders" {
-			fmt.Fprintf(bb, " -I%v/5.7/clang_64/include/Qt%v", utils.QT_DIR(), m)
+			fmt.Fprintf(bb, " -I%v/include/Qt%v", utils.QT_DARWIN_DIR(), m)
 		} else {
-			fmt.Fprintf(bb, " -I%v/5.7/clang_64/lib/Qt%v.framework/Headers", utils.QT_DIR(), m)
+			fmt.Fprintf(bb, " -I%v/lib/Qt%v.framework/Headers", utils.QT_DARWIN_DIR(), m)
 		}
 	}
 	fmt.Fprint(bb, "\n")
@@ -89,13 +89,13 @@ func cgoDarwin(module string) {
 	fmt.Fprintf(bb, "#cgo CXXFLAGS: -I%v/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/%v/System/Library/Frameworks/OpenGL.framework/Headers -I%v/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/%v/System/Library/Frameworks/AGL.framework/Headers\n", utils.XCODE_DIR(), utils.MACOS_SDK_DIR(), utils.XCODE_DIR(), utils.MACOS_SDK_DIR())
 	fmt.Fprintf(bb, "\n")
 
-	fmt.Fprintf(bb, "#cgo LDFLAGS: -headerpad_max_install_names -stdlib=libc++ -Wl,-syslibroot,%v/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/%v -mmacosx-version-min=10.8 -Wl,-rpath,%v/5.7/clang_64/lib\n", utils.XCODE_DIR(), utils.MACOS_SDK_DIR(), utils.QT_DIR())
+	fmt.Fprintf(bb, "#cgo LDFLAGS: -headerpad_max_install_names -stdlib=libc++ -Wl,-syslibroot,%v/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/%v -mmacosx-version-min=10.8 -Wl,-rpath,%v/lib\n", utils.XCODE_DIR(), utils.MACOS_SDK_DIR(), utils.QT_DARWIN_DIR())
 
-	fmt.Fprintf(bb, "#cgo LDFLAGS: -F%v/5.7/clang_64/lib", utils.QT_DIR())
+	fmt.Fprintf(bb, "#cgo LDFLAGS: -F%v/lib", utils.QT_DARWIN_DIR())
 
 	for _, m := range libs {
 		if m == "UiTools" || m == "PlatformHeaders" {
-			fmt.Fprintf(bb, " -L%v/5.7/clang_64/lib -lQt5%v", utils.QT_DIR(), m)
+			fmt.Fprintf(bb, " -L%v/lib -lQt5%v", utils.QT_DARWIN_DIR(), m)
 		} else {
 			if m != "UiPlugin" {
 				fmt.Fprintf(bb, " -framework Qt%v", m)

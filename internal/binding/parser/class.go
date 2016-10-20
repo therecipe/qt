@@ -227,7 +227,7 @@ func (c *Class) fixBases() {
 
 		case "darwin":
 			{
-				prefixPath = filepath.Join(utils.QT_DIR(), "5.7", "clang_64")
+				prefixPath = utils.QT_DARWIN_DIR()
 				infixPath = "lib"
 				suffixPath = ".framework/Versions/5/Headers/"
 			}

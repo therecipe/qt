@@ -281,7 +281,7 @@ func IsPrivateSignal(f *parser.Function) bool {
 		switch runtime.GOOS {
 		case "darwin":
 			{
-				fData = utils.Load(filepath.Join(utils.QT_DIR(), "5.7", "clang_64", "lib", fmt.Sprintf("%v.framework", strings.Title(parser.ClassMap[f.Class()].DocModule)), "Versions", "5", "Headers", fPath))
+				fData = utils.Load(filepath.Join(utils.QT_DARWIN_DIR(), "lib", fmt.Sprintf("%v.framework", strings.Title(parser.ClassMap[f.Class()].DocModule)), "Versions", "5", "Headers", fPath))
 			}
 
 		case "windows":

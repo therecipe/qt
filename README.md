@@ -83,8 +83,14 @@
 
 2. Install Qt 5.7.0; you can also define a custom location with **QT_DIR**
 
-	* without iOS https://download.qt.io/official_releases/qt/5.7/5.7.0/qt-opensource-mac-x64-android-5.7.0.dmg
-	* with iOS https://download.qt.io/official_releases/qt/5.7/5.7.0/qt-opensource-mac-x64-android-ios-5.7.0.dmg
+	* Install the official prebuild package; you can also define a custom location with **QT_DIR**
+		* without iOS https://download.qt.io/official_releases/qt/5.7/5.7.0/qt-opensource-mac-x64-android-5.7.0.dmg
+		* with iOS https://download.qt.io/official_releases/qt/5.7/5.7.0/qt-opensource-mac-x64-android-ios-5.7.0.dmg
+
+	or
+
+	* Install the Qt-dev package with Homebrew **(experimental)** and define the custom location with **QT_DIR** (usually: /usr/local/opt/qt5/)
+		* `brew install qt5`
 
 3. Install **Xcode** >= 7.2.0; you can also define a custom location with **XCODE_DIR**
 
@@ -116,6 +122,7 @@
 	* Install the Qt-dev package with your system package manager; if you want to link against your system libs **(experimental)**
 		* add **export QT_PKG_CONFIG=true** to your .profile or .bash_profile
 		* if needed you can also define custom locations for the misc and doc dir with **QT_MISC_DIR** and/or **QT_DOC_DIR**
+		* and you may want to define a custom pkg-config search path with **PKG_CONFIG_PATH**, if the default path points to old Qt pkg-config files
 
 3. Install **g++** >= 5 and **OpenGL** dependencies
 
@@ -191,9 +198,9 @@
 1. Install the desktop version for [Windows](#windows-1), [macOS](#macos-1) or [Linux](#linux-1)
 
 2. Install VirtualBox; you can also define a custom location with **VIRTUALBOX_DIR**
-	* http://download.virtualbox.org/virtualbox/5.1.6/VirtualBox-5.1.6-110634-Win.exe
-	* http://download.virtualbox.org/virtualbox/5.1.6/VirtualBox-5.1.6-110634-OSX.dmg
-	* http://download.virtualbox.org/virtualbox/5.1.6/VirtualBox-5.1.6-110634-Linux_amd64.run
+	* http://download.virtualbox.org/virtualbox/5.1.8/VirtualBox-5.1.8-111374-Win.exe
+	* http://download.virtualbox.org/virtualbox/5.1.8/VirtualBox-5.1.8-111374-OSX.dmg
+	* http://download.virtualbox.org/virtualbox/5.1.8/VirtualBox-5.1.8-111374-Linux_amd64.run
 
 3. Install the Sailfish OS SDK; you can also define a custom location with **SAILFISH_DIR**
 	* https://releases.sailfishos.org/sdk/installers/1608/SailfishOSSDK-Beta-1608-Qt5-windows-offline.exe
@@ -382,7 +389,7 @@ func main() {
 
 3. Open the { command-line | terminal | shell } in `[GOPATH]/src/qtExample` and run `qtdeploy build desktop`
 
-4. You will find the application in `[GOPATH]/src/qtExample/deploy/[GOOS]/qtExample`
+4. You will find the application in `[GOPATH]/src/qtExample/deploy/[GOOS]_minimal/qtExample`
 
 5. Take a look at the [examples](https://github.com/therecipe/qt/tree/master/internal/examples)
 

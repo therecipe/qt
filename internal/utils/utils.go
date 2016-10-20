@@ -78,6 +78,25 @@ func QT_DIR() string {
 	return filepath.Join(os.Getenv("HOME"), "Qt5.7.0")
 }
 
+func UseHomeBrew() bool {
+	return strings.ToLower(os.Getenv("QT_HOMEBREW")) == "true" || IsHomeBrewQtDir()
+}
+
+func IsHomeBrewQtDir() bool {
+	return Exists(filepath.Join(QT_DIR(), "INSTALL_RECEIPT.json"))
+}
+
+func QT_DARWIN_DIR() string {
+	if UseHomeBrew() {
+		if IsHomeBrewQtDir() {
+			return QT_DIR()
+		}
+		return filepath.Join("/usr", "local", "opt", "qt5")
+	}
+
+	return filepath.Join(QT_DIR(), "5.7", "clang_64")
+}
+
 func ANDROID_SDK_DIR() string {
 	if dir := os.Getenv("ANDROID_SDK_DIR"); dir != "" {
 		return filepath.Clean(dir)

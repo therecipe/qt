@@ -5,48 +5,54 @@ sudo: required
 
 go: 1.7.1
 
-env: DESKTOP=true ANDROID=true IOS=false IOS_SIMULATOR=false
+env: DESKTOP=true ANDROID=true
 
 matrix:
   include:
-    - os: osx
-      osx_image: xcode8
-      env: DESKTOP=true ANDROID=false IOS=false IOS_SIMULATOR=false
+    - os: linux
+      env: DESKTOP=true ANDROID=false PKG_CONFIG_PATH=/opt/qt57/lib/pkgconfig QT_PKG_CONFIG=true QT_DOC_DIR=/opt/qt57/doc QT_MISC_DIR=/opt/qt57
 
     - os: osx
-      osx_image: xcode7.3
-      env: DESKTOP=true ANDROID=false IOS=false IOS_SIMULATOR=false
+      env: DESKTOP=true ANDROID=false
 
     - os: osx
-      osx_image: xcode7.2
-      env: DESKTOP=true ANDROID=false IOS=false IOS_SIMULATOR=false
-
-    - os: osx
-      env: DESKTOP=false ANDROID=true IOS=false IOS_SIMULATOR=false
+      env: DESKTOP=false ANDROID=true
 
     - os: osx
       osx_image: xcode8
-      env: DESKTOP=false ANDROID=false IOS=true IOS_SIMULATOR=false
+      env: DESKTOP=true ANDROID=false QT_HOMEBREW=true
 
     - os: osx
       osx_image: xcode7.3
-      env: DESKTOP=false ANDROID=false IOS=true IOS_SIMULATOR=false
+      env: DESKTOP=true ANDROID=false QT_HOMEBREW=true
 
     - os: osx
       osx_image: xcode7.2
-      env: DESKTOP=false ANDROID=false IOS=true IOS_SIMULATOR=false
+      env: DESKTOP=true ANDROID=false QT_HOMEBREW=true
 
     - os: osx
       osx_image: xcode8
-      env: DESKTOP=false ANDROID=false IOS=false IOS_SIMULATOR=true
+      env: DESKTOP=false ANDROID=false IOS=true
 
     - os: osx
       osx_image: xcode7.3
-      env: DESKTOP=false ANDROID=false IOS=false IOS_SIMULATOR=true
+      env: DESKTOP=false ANDROID=false IOS=true
 
     - os: osx
       osx_image: xcode7.2
-      env: DESKTOP=false ANDROID=false IOS=false IOS_SIMULATOR=true
+      env: DESKTOP=false ANDROID=false IOS=true
+
+    - os: osx
+      osx_image: xcode8
+      env: DESKTOP=false ANDROID=false IOS_SIMULATOR=true
+
+    - os: osx
+      osx_image: xcode7.3
+      env: DESKTOP=false ANDROID=false IOS_SIMULATOR=true
+
+    - os: osx
+      osx_image: xcode7.2
+      env: DESKTOP=false ANDROID=false IOS_SIMULATOR=true
 
 install:
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then travis_wait 30 $GOPATH/src/github.com/therecipe/qt/internal/ci/linux.sh; fi

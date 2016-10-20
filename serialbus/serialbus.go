@@ -61,8 +61,6 @@ func (ptr *QCanBus) DestroyQCanBus() {
 }
 
 func (ptr *QCanBus) CreateDevice(plugin string, interfaceName string) *QCanBusDevice {
-	defer qt.Recovering("QCanBus::createDevice")
-
 	if ptr.Pointer() != nil {
 		var pluginC = C.CString(hex.EncodeToString([]byte(plugin)))
 		defer C.free(unsafe.Pointer(pluginC))
@@ -78,8 +76,6 @@ func (ptr *QCanBus) CreateDevice(plugin string, interfaceName string) *QCanBusDe
 }
 
 func QCanBus_Instance() *QCanBus {
-	defer qt.Recovering("QCanBus::instance")
-
 	var tmpValue = NewQCanBusFromPointer(C.QCanBus_QCanBus_Instance())
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
@@ -88,8 +84,6 @@ func QCanBus_Instance() *QCanBus {
 }
 
 func (ptr *QCanBus) Instance() *QCanBus {
-	defer qt.Recovering("QCanBus::instance")
-
 	var tmpValue = NewQCanBusFromPointer(C.QCanBus_QCanBus_Instance())
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
@@ -99,7 +93,6 @@ func (ptr *QCanBus) Instance() *QCanBus {
 
 //export callbackQCanBus_TimerEvent
 func callbackQCanBus_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	defer qt.Recovering("callback QCanBus::timerEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCanBus::timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
@@ -109,8 +102,6 @@ func callbackQCanBus_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 }
 
 func (ptr *QCanBus) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
-	defer qt.Recovering("connect QCanBus::timerEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QCanBus::timerEvent", f)
@@ -118,8 +109,6 @@ func (ptr *QCanBus) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
 }
 
 func (ptr *QCanBus) DisconnectTimerEvent() {
-	defer qt.Recovering("disconnect QCanBus::timerEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QCanBus::timerEvent")
@@ -127,16 +116,12 @@ func (ptr *QCanBus) DisconnectTimerEvent() {
 }
 
 func (ptr *QCanBus) TimerEvent(event core.QTimerEvent_ITF) {
-	defer qt.Recovering("QCanBus::timerEvent")
-
 	if ptr.Pointer() != nil {
 		C.QCanBus_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
 	}
 }
 
 func (ptr *QCanBus) TimerEventDefault(event core.QTimerEvent_ITF) {
-	defer qt.Recovering("QCanBus::timerEvent")
-
 	if ptr.Pointer() != nil {
 		C.QCanBus_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
 	}
@@ -144,7 +129,6 @@ func (ptr *QCanBus) TimerEventDefault(event core.QTimerEvent_ITF) {
 
 //export callbackQCanBus_ChildEvent
 func callbackQCanBus_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	defer qt.Recovering("callback QCanBus::childEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCanBus::childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
@@ -154,8 +138,6 @@ func callbackQCanBus_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 }
 
 func (ptr *QCanBus) ConnectChildEvent(f func(event *core.QChildEvent)) {
-	defer qt.Recovering("connect QCanBus::childEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QCanBus::childEvent", f)
@@ -163,8 +145,6 @@ func (ptr *QCanBus) ConnectChildEvent(f func(event *core.QChildEvent)) {
 }
 
 func (ptr *QCanBus) DisconnectChildEvent() {
-	defer qt.Recovering("disconnect QCanBus::childEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QCanBus::childEvent")
@@ -172,16 +152,12 @@ func (ptr *QCanBus) DisconnectChildEvent() {
 }
 
 func (ptr *QCanBus) ChildEvent(event core.QChildEvent_ITF) {
-	defer qt.Recovering("QCanBus::childEvent")
-
 	if ptr.Pointer() != nil {
 		C.QCanBus_ChildEvent(ptr.Pointer(), core.PointerFromQChildEvent(event))
 	}
 }
 
 func (ptr *QCanBus) ChildEventDefault(event core.QChildEvent_ITF) {
-	defer qt.Recovering("QCanBus::childEvent")
-
 	if ptr.Pointer() != nil {
 		C.QCanBus_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
 	}
@@ -189,7 +165,6 @@ func (ptr *QCanBus) ChildEventDefault(event core.QChildEvent_ITF) {
 
 //export callbackQCanBus_ConnectNotify
 func callbackQCanBus_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-	defer qt.Recovering("callback QCanBus::connectNotify")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCanBus::connectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
@@ -199,8 +174,6 @@ func callbackQCanBus_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
 }
 
 func (ptr *QCanBus) ConnectConnectNotify(f func(sign *core.QMetaMethod)) {
-	defer qt.Recovering("connect QCanBus::connectNotify")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QCanBus::connectNotify", f)
@@ -208,8 +181,6 @@ func (ptr *QCanBus) ConnectConnectNotify(f func(sign *core.QMetaMethod)) {
 }
 
 func (ptr *QCanBus) DisconnectConnectNotify() {
-	defer qt.Recovering("disconnect QCanBus::connectNotify")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QCanBus::connectNotify")
@@ -217,16 +188,12 @@ func (ptr *QCanBus) DisconnectConnectNotify() {
 }
 
 func (ptr *QCanBus) ConnectNotify(sign core.QMetaMethod_ITF) {
-	defer qt.Recovering("QCanBus::connectNotify")
-
 	if ptr.Pointer() != nil {
 		C.QCanBus_ConnectNotify(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
 	}
 }
 
 func (ptr *QCanBus) ConnectNotifyDefault(sign core.QMetaMethod_ITF) {
-	defer qt.Recovering("QCanBus::connectNotify")
-
 	if ptr.Pointer() != nil {
 		C.QCanBus_ConnectNotifyDefault(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
 	}
@@ -234,7 +201,6 @@ func (ptr *QCanBus) ConnectNotifyDefault(sign core.QMetaMethod_ITF) {
 
 //export callbackQCanBus_CustomEvent
 func callbackQCanBus_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	defer qt.Recovering("callback QCanBus::customEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCanBus::customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
@@ -244,8 +210,6 @@ func callbackQCanBus_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 }
 
 func (ptr *QCanBus) ConnectCustomEvent(f func(event *core.QEvent)) {
-	defer qt.Recovering("connect QCanBus::customEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QCanBus::customEvent", f)
@@ -253,8 +217,6 @@ func (ptr *QCanBus) ConnectCustomEvent(f func(event *core.QEvent)) {
 }
 
 func (ptr *QCanBus) DisconnectCustomEvent() {
-	defer qt.Recovering("disconnect QCanBus::customEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QCanBus::customEvent")
@@ -262,16 +224,12 @@ func (ptr *QCanBus) DisconnectCustomEvent() {
 }
 
 func (ptr *QCanBus) CustomEvent(event core.QEvent_ITF) {
-	defer qt.Recovering("QCanBus::customEvent")
-
 	if ptr.Pointer() != nil {
 		C.QCanBus_CustomEvent(ptr.Pointer(), core.PointerFromQEvent(event))
 	}
 }
 
 func (ptr *QCanBus) CustomEventDefault(event core.QEvent_ITF) {
-	defer qt.Recovering("QCanBus::customEvent")
-
 	if ptr.Pointer() != nil {
 		C.QCanBus_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
 	}
@@ -279,8 +237,6 @@ func (ptr *QCanBus) CustomEventDefault(event core.QEvent_ITF) {
 
 //export callbackQCanBus_DeleteLater
 func callbackQCanBus_DeleteLater(ptr unsafe.Pointer) {
-	defer qt.Recovering("callback QCanBus::deleteLater")
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCanBus::deleteLater"); signal != nil {
 		signal.(func())()
 	} else {
@@ -289,8 +245,6 @@ func callbackQCanBus_DeleteLater(ptr unsafe.Pointer) {
 }
 
 func (ptr *QCanBus) ConnectDeleteLater(f func()) {
-	defer qt.Recovering("connect QCanBus::deleteLater")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QCanBus::deleteLater", f)
@@ -298,8 +252,6 @@ func (ptr *QCanBus) ConnectDeleteLater(f func()) {
 }
 
 func (ptr *QCanBus) DisconnectDeleteLater() {
-	defer qt.Recovering("disconnect QCanBus::deleteLater")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QCanBus::deleteLater")
@@ -307,8 +259,6 @@ func (ptr *QCanBus) DisconnectDeleteLater() {
 }
 
 func (ptr *QCanBus) DeleteLater() {
-	defer qt.Recovering("QCanBus::deleteLater")
-
 	if ptr.Pointer() != nil {
 		C.QCanBus_DeleteLater(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
@@ -317,8 +267,6 @@ func (ptr *QCanBus) DeleteLater() {
 }
 
 func (ptr *QCanBus) DeleteLaterDefault() {
-	defer qt.Recovering("QCanBus::deleteLater")
-
 	if ptr.Pointer() != nil {
 		C.QCanBus_DeleteLaterDefault(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
@@ -328,7 +276,6 @@ func (ptr *QCanBus) DeleteLaterDefault() {
 
 //export callbackQCanBus_DisconnectNotify
 func callbackQCanBus_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-	defer qt.Recovering("callback QCanBus::disconnectNotify")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCanBus::disconnectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
@@ -338,8 +285,6 @@ func callbackQCanBus_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
 }
 
 func (ptr *QCanBus) ConnectDisconnectNotify(f func(sign *core.QMetaMethod)) {
-	defer qt.Recovering("connect QCanBus::disconnectNotify")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QCanBus::disconnectNotify", f)
@@ -347,8 +292,6 @@ func (ptr *QCanBus) ConnectDisconnectNotify(f func(sign *core.QMetaMethod)) {
 }
 
 func (ptr *QCanBus) DisconnectDisconnectNotify() {
-	defer qt.Recovering("disconnect QCanBus::disconnectNotify")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QCanBus::disconnectNotify")
@@ -356,16 +299,12 @@ func (ptr *QCanBus) DisconnectDisconnectNotify() {
 }
 
 func (ptr *QCanBus) DisconnectNotify(sign core.QMetaMethod_ITF) {
-	defer qt.Recovering("QCanBus::disconnectNotify")
-
 	if ptr.Pointer() != nil {
 		C.QCanBus_DisconnectNotify(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
 	}
 }
 
 func (ptr *QCanBus) DisconnectNotifyDefault(sign core.QMetaMethod_ITF) {
-	defer qt.Recovering("QCanBus::disconnectNotify")
-
 	if ptr.Pointer() != nil {
 		C.QCanBus_DisconnectNotifyDefault(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
 	}
@@ -373,7 +312,6 @@ func (ptr *QCanBus) DisconnectNotifyDefault(sign core.QMetaMethod_ITF) {
 
 //export callbackQCanBus_Event
 func callbackQCanBus_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
-	defer qt.Recovering("callback QCanBus::event")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCanBus::event"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
@@ -383,8 +321,6 @@ func callbackQCanBus_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
 }
 
 func (ptr *QCanBus) ConnectEvent(f func(e *core.QEvent) bool) {
-	defer qt.Recovering("connect QCanBus::event")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QCanBus::event", f)
@@ -392,8 +328,6 @@ func (ptr *QCanBus) ConnectEvent(f func(e *core.QEvent) bool) {
 }
 
 func (ptr *QCanBus) DisconnectEvent() {
-	defer qt.Recovering("disconnect QCanBus::event")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QCanBus::event")
@@ -401,8 +335,6 @@ func (ptr *QCanBus) DisconnectEvent() {
 }
 
 func (ptr *QCanBus) Event(e core.QEvent_ITF) bool {
-	defer qt.Recovering("QCanBus::event")
-
 	if ptr.Pointer() != nil {
 		return C.QCanBus_Event(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
 	}
@@ -410,8 +342,6 @@ func (ptr *QCanBus) Event(e core.QEvent_ITF) bool {
 }
 
 func (ptr *QCanBus) EventDefault(e core.QEvent_ITF) bool {
-	defer qt.Recovering("QCanBus::event")
-
 	if ptr.Pointer() != nil {
 		return C.QCanBus_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
 	}
@@ -420,7 +350,6 @@ func (ptr *QCanBus) EventDefault(e core.QEvent_ITF) bool {
 
 //export callbackQCanBus_EventFilter
 func callbackQCanBus_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-	defer qt.Recovering("callback QCanBus::eventFilter")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCanBus::eventFilter"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
@@ -430,8 +359,6 @@ func callbackQCanBus_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, eve
 }
 
 func (ptr *QCanBus) ConnectEventFilter(f func(watched *core.QObject, event *core.QEvent) bool) {
-	defer qt.Recovering("connect QCanBus::eventFilter")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QCanBus::eventFilter", f)
@@ -439,8 +366,6 @@ func (ptr *QCanBus) ConnectEventFilter(f func(watched *core.QObject, event *core
 }
 
 func (ptr *QCanBus) DisconnectEventFilter() {
-	defer qt.Recovering("disconnect QCanBus::eventFilter")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QCanBus::eventFilter")
@@ -448,8 +373,6 @@ func (ptr *QCanBus) DisconnectEventFilter() {
 }
 
 func (ptr *QCanBus) EventFilter(watched core.QObject_ITF, event core.QEvent_ITF) bool {
-	defer qt.Recovering("QCanBus::eventFilter")
-
 	if ptr.Pointer() != nil {
 		return C.QCanBus_EventFilter(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
 	}
@@ -457,8 +380,6 @@ func (ptr *QCanBus) EventFilter(watched core.QObject_ITF, event core.QEvent_ITF)
 }
 
 func (ptr *QCanBus) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
-	defer qt.Recovering("QCanBus::eventFilter")
-
 	if ptr.Pointer() != nil {
 		return C.QCanBus_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
 	}
@@ -467,7 +388,6 @@ func (ptr *QCanBus) EventFilterDefault(watched core.QObject_ITF, event core.QEve
 
 //export callbackQCanBus_MetaObject
 func callbackQCanBus_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-	defer qt.Recovering("callback QCanBus::metaObject")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCanBus::metaObject"); signal != nil {
 		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
@@ -477,8 +397,6 @@ func callbackQCanBus_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
 }
 
 func (ptr *QCanBus) ConnectMetaObject(f func() *core.QMetaObject) {
-	defer qt.Recovering("connect QCanBus::metaObject")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QCanBus::metaObject", f)
@@ -486,8 +404,6 @@ func (ptr *QCanBus) ConnectMetaObject(f func() *core.QMetaObject) {
 }
 
 func (ptr *QCanBus) DisconnectMetaObject() {
-	defer qt.Recovering("disconnect QCanBus::metaObject")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QCanBus::metaObject")
@@ -495,8 +411,6 @@ func (ptr *QCanBus) DisconnectMetaObject() {
 }
 
 func (ptr *QCanBus) MetaObject() *core.QMetaObject {
-	defer qt.Recovering("QCanBus::metaObject")
-
 	if ptr.Pointer() != nil {
 		return core.NewQMetaObjectFromPointer(C.QCanBus_MetaObject(ptr.Pointer()))
 	}
@@ -504,8 +418,6 @@ func (ptr *QCanBus) MetaObject() *core.QMetaObject {
 }
 
 func (ptr *QCanBus) MetaObjectDefault() *core.QMetaObject {
-	defer qt.Recovering("QCanBus::metaObject")
-
 	if ptr.Pointer() != nil {
 		return core.NewQMetaObjectFromPointer(C.QCanBus_MetaObjectDefault(ptr.Pointer()))
 	}
@@ -593,8 +505,6 @@ func (ptr *QCanBusDevice) DestroyQCanBusDevice() {
 }
 
 func (ptr *QCanBusDevice) FramesAvailable() int64 {
-	defer qt.Recovering("QCanBusDevice::framesAvailable")
-
 	if ptr.Pointer() != nil {
 		return int64(C.QCanBusDevice_FramesAvailable(ptr.Pointer()))
 	}
@@ -602,8 +512,6 @@ func (ptr *QCanBusDevice) FramesAvailable() int64 {
 }
 
 func (ptr *QCanBusDevice) FramesToWrite() int64 {
-	defer qt.Recovering("QCanBusDevice::framesToWrite")
-
 	if ptr.Pointer() != nil {
 		return int64(C.QCanBusDevice_FramesToWrite(ptr.Pointer()))
 	}
@@ -611,8 +519,6 @@ func (ptr *QCanBusDevice) FramesToWrite() int64 {
 }
 
 func NewQCanBusDevice(parent core.QObject_ITF) *QCanBusDevice {
-	defer qt.Recovering("QCanBusDevice::QCanBusDevice")
-
 	var tmpValue = NewQCanBusDeviceFromPointer(C.QCanBusDevice_NewQCanBusDevice(core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
@@ -622,7 +528,6 @@ func NewQCanBusDevice(parent core.QObject_ITF) *QCanBusDevice {
 
 //export callbackQCanBusDevice_Close
 func callbackQCanBusDevice_Close(ptr unsafe.Pointer) {
-	defer qt.Recovering("callback QCanBusDevice::close")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCanBusDevice::close"); signal != nil {
 		signal.(func())()
@@ -631,8 +536,6 @@ func callbackQCanBusDevice_Close(ptr unsafe.Pointer) {
 }
 
 func (ptr *QCanBusDevice) ConnectClose(f func()) {
-	defer qt.Recovering("connect QCanBusDevice::close")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QCanBusDevice::close", f)
@@ -640,8 +543,6 @@ func (ptr *QCanBusDevice) ConnectClose(f func()) {
 }
 
 func (ptr *QCanBusDevice) DisconnectClose() {
-	defer qt.Recovering("disconnect QCanBusDevice::close")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QCanBusDevice::close")
@@ -649,16 +550,12 @@ func (ptr *QCanBusDevice) DisconnectClose() {
 }
 
 func (ptr *QCanBusDevice) Close() {
-	defer qt.Recovering("QCanBusDevice::close")
-
 	if ptr.Pointer() != nil {
 		C.QCanBusDevice_Close(ptr.Pointer())
 	}
 }
 
 func (ptr *QCanBusDevice) ConfigurationParameter(key int) *core.QVariant {
-	defer qt.Recovering("QCanBusDevice::configurationParameter")
-
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQVariantFromPointer(C.QCanBusDevice_ConfigurationParameter(ptr.Pointer(), C.int(int32(key))))
 		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
@@ -668,8 +565,6 @@ func (ptr *QCanBusDevice) ConfigurationParameter(key int) *core.QVariant {
 }
 
 func (ptr *QCanBusDevice) ConnectDevice() bool {
-	defer qt.Recovering("QCanBusDevice::connectDevice")
-
 	if ptr.Pointer() != nil {
 		return C.QCanBusDevice_ConnectDevice(ptr.Pointer()) != 0
 	}
@@ -677,24 +572,18 @@ func (ptr *QCanBusDevice) ConnectDevice() bool {
 }
 
 func (ptr *QCanBusDevice) DisconnectDevice() {
-	defer qt.Recovering("QCanBusDevice::disconnectDevice")
-
 	if ptr.Pointer() != nil {
 		C.QCanBusDevice_DisconnectDevice(ptr.Pointer())
 	}
 }
 
 func (ptr *QCanBusDevice) EnqueueOutgoingFrame(newFrame QCanBusFrame_ITF) {
-	defer qt.Recovering("QCanBusDevice::enqueueOutgoingFrame")
-
 	if ptr.Pointer() != nil {
 		C.QCanBusDevice_EnqueueOutgoingFrame(ptr.Pointer(), PointerFromQCanBusFrame(newFrame))
 	}
 }
 
 func (ptr *QCanBusDevice) Error() QCanBusDevice__CanBusError {
-	defer qt.Recovering("QCanBusDevice::error")
-
 	if ptr.Pointer() != nil {
 		return QCanBusDevice__CanBusError(C.QCanBusDevice_Error(ptr.Pointer()))
 	}
@@ -703,7 +592,6 @@ func (ptr *QCanBusDevice) Error() QCanBusDevice__CanBusError {
 
 //export callbackQCanBusDevice_ErrorOccurred
 func callbackQCanBusDevice_ErrorOccurred(ptr unsafe.Pointer, error C.longlong) {
-	defer qt.Recovering("callback QCanBusDevice::errorOccurred")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCanBusDevice::errorOccurred"); signal != nil {
 		signal.(func(QCanBusDevice__CanBusError))(QCanBusDevice__CanBusError(error))
@@ -712,8 +600,6 @@ func callbackQCanBusDevice_ErrorOccurred(ptr unsafe.Pointer, error C.longlong) {
 }
 
 func (ptr *QCanBusDevice) ConnectErrorOccurred(f func(error QCanBusDevice__CanBusError)) {
-	defer qt.Recovering("connect QCanBusDevice::errorOccurred")
-
 	if ptr.Pointer() != nil {
 		C.QCanBusDevice_ConnectErrorOccurred(ptr.Pointer())
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QCanBusDevice::errorOccurred", f)
@@ -721,8 +607,6 @@ func (ptr *QCanBusDevice) ConnectErrorOccurred(f func(error QCanBusDevice__CanBu
 }
 
 func (ptr *QCanBusDevice) DisconnectErrorOccurred() {
-	defer qt.Recovering("disconnect QCanBusDevice::errorOccurred")
-
 	if ptr.Pointer() != nil {
 		C.QCanBusDevice_DisconnectErrorOccurred(ptr.Pointer())
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QCanBusDevice::errorOccurred")
@@ -730,16 +614,12 @@ func (ptr *QCanBusDevice) DisconnectErrorOccurred() {
 }
 
 func (ptr *QCanBusDevice) ErrorOccurred(error QCanBusDevice__CanBusError) {
-	defer qt.Recovering("QCanBusDevice::errorOccurred")
-
 	if ptr.Pointer() != nil {
 		C.QCanBusDevice_ErrorOccurred(ptr.Pointer(), C.longlong(error))
 	}
 }
 
 func (ptr *QCanBusDevice) ErrorString() string {
-	defer qt.Recovering("QCanBusDevice::errorString")
-
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QCanBusDevice_ErrorString(ptr.Pointer()))
 	}
@@ -748,7 +628,6 @@ func (ptr *QCanBusDevice) ErrorString() string {
 
 //export callbackQCanBusDevice_FramesReceived
 func callbackQCanBusDevice_FramesReceived(ptr unsafe.Pointer) {
-	defer qt.Recovering("callback QCanBusDevice::framesReceived")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCanBusDevice::framesReceived"); signal != nil {
 		signal.(func())()
@@ -757,8 +636,6 @@ func callbackQCanBusDevice_FramesReceived(ptr unsafe.Pointer) {
 }
 
 func (ptr *QCanBusDevice) ConnectFramesReceived(f func()) {
-	defer qt.Recovering("connect QCanBusDevice::framesReceived")
-
 	if ptr.Pointer() != nil {
 		C.QCanBusDevice_ConnectFramesReceived(ptr.Pointer())
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QCanBusDevice::framesReceived", f)
@@ -766,8 +643,6 @@ func (ptr *QCanBusDevice) ConnectFramesReceived(f func()) {
 }
 
 func (ptr *QCanBusDevice) DisconnectFramesReceived() {
-	defer qt.Recovering("disconnect QCanBusDevice::framesReceived")
-
 	if ptr.Pointer() != nil {
 		C.QCanBusDevice_DisconnectFramesReceived(ptr.Pointer())
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QCanBusDevice::framesReceived")
@@ -775,8 +650,6 @@ func (ptr *QCanBusDevice) DisconnectFramesReceived() {
 }
 
 func (ptr *QCanBusDevice) FramesReceived() {
-	defer qt.Recovering("QCanBusDevice::framesReceived")
-
 	if ptr.Pointer() != nil {
 		C.QCanBusDevice_FramesReceived(ptr.Pointer())
 	}
@@ -784,7 +657,6 @@ func (ptr *QCanBusDevice) FramesReceived() {
 
 //export callbackQCanBusDevice_FramesWritten
 func callbackQCanBusDevice_FramesWritten(ptr unsafe.Pointer, framesCount C.longlong) {
-	defer qt.Recovering("callback QCanBusDevice::framesWritten")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCanBusDevice::framesWritten"); signal != nil {
 		signal.(func(int64))(int64(framesCount))
@@ -793,8 +665,6 @@ func callbackQCanBusDevice_FramesWritten(ptr unsafe.Pointer, framesCount C.longl
 }
 
 func (ptr *QCanBusDevice) ConnectFramesWritten(f func(framesCount int64)) {
-	defer qt.Recovering("connect QCanBusDevice::framesWritten")
-
 	if ptr.Pointer() != nil {
 		C.QCanBusDevice_ConnectFramesWritten(ptr.Pointer())
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QCanBusDevice::framesWritten", f)
@@ -802,8 +672,6 @@ func (ptr *QCanBusDevice) ConnectFramesWritten(f func(framesCount int64)) {
 }
 
 func (ptr *QCanBusDevice) DisconnectFramesWritten() {
-	defer qt.Recovering("disconnect QCanBusDevice::framesWritten")
-
 	if ptr.Pointer() != nil {
 		C.QCanBusDevice_DisconnectFramesWritten(ptr.Pointer())
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QCanBusDevice::framesWritten")
@@ -811,16 +679,12 @@ func (ptr *QCanBusDevice) DisconnectFramesWritten() {
 }
 
 func (ptr *QCanBusDevice) FramesWritten(framesCount int64) {
-	defer qt.Recovering("QCanBusDevice::framesWritten")
-
 	if ptr.Pointer() != nil {
 		C.QCanBusDevice_FramesWritten(ptr.Pointer(), C.longlong(framesCount))
 	}
 }
 
 func (ptr *QCanBusDevice) HasOutgoingFrames() bool {
-	defer qt.Recovering("QCanBusDevice::hasOutgoingFrames")
-
 	if ptr.Pointer() != nil {
 		return C.QCanBusDevice_HasOutgoingFrames(ptr.Pointer()) != 0
 	}
@@ -829,7 +693,6 @@ func (ptr *QCanBusDevice) HasOutgoingFrames() bool {
 
 //export callbackQCanBusDevice_InterpretErrorFrame
 func callbackQCanBusDevice_InterpretErrorFrame(ptr unsafe.Pointer, frame unsafe.Pointer) *C.char {
-	defer qt.Recovering("callback QCanBusDevice::interpretErrorFrame")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCanBusDevice::interpretErrorFrame"); signal != nil {
 		return C.CString(signal.(func(*QCanBusFrame) string)(NewQCanBusFrameFromPointer(frame)))
@@ -839,8 +702,6 @@ func callbackQCanBusDevice_InterpretErrorFrame(ptr unsafe.Pointer, frame unsafe.
 }
 
 func (ptr *QCanBusDevice) ConnectInterpretErrorFrame(f func(frame *QCanBusFrame) string) {
-	defer qt.Recovering("connect QCanBusDevice::interpretErrorFrame")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QCanBusDevice::interpretErrorFrame", f)
@@ -848,8 +709,6 @@ func (ptr *QCanBusDevice) ConnectInterpretErrorFrame(f func(frame *QCanBusFrame)
 }
 
 func (ptr *QCanBusDevice) DisconnectInterpretErrorFrame(frame QCanBusFrame_ITF) {
-	defer qt.Recovering("disconnect QCanBusDevice::interpretErrorFrame")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QCanBusDevice::interpretErrorFrame")
@@ -857,8 +716,6 @@ func (ptr *QCanBusDevice) DisconnectInterpretErrorFrame(frame QCanBusFrame_ITF) 
 }
 
 func (ptr *QCanBusDevice) InterpretErrorFrame(frame QCanBusFrame_ITF) string {
-	defer qt.Recovering("QCanBusDevice::interpretErrorFrame")
-
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QCanBusDevice_InterpretErrorFrame(ptr.Pointer(), PointerFromQCanBusFrame(frame)))
 	}
@@ -867,7 +724,6 @@ func (ptr *QCanBusDevice) InterpretErrorFrame(frame QCanBusFrame_ITF) string {
 
 //export callbackQCanBusDevice_Open
 func callbackQCanBusDevice_Open(ptr unsafe.Pointer) C.char {
-	defer qt.Recovering("callback QCanBusDevice::open")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCanBusDevice::open"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func() bool)())))
@@ -877,8 +733,6 @@ func callbackQCanBusDevice_Open(ptr unsafe.Pointer) C.char {
 }
 
 func (ptr *QCanBusDevice) ConnectOpen(f func() bool) {
-	defer qt.Recovering("connect QCanBusDevice::open")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QCanBusDevice::open", f)
@@ -886,8 +740,6 @@ func (ptr *QCanBusDevice) ConnectOpen(f func() bool) {
 }
 
 func (ptr *QCanBusDevice) DisconnectOpen() {
-	defer qt.Recovering("disconnect QCanBusDevice::open")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QCanBusDevice::open")
@@ -895,8 +747,6 @@ func (ptr *QCanBusDevice) DisconnectOpen() {
 }
 
 func (ptr *QCanBusDevice) Open() bool {
-	defer qt.Recovering("QCanBusDevice::open")
-
 	if ptr.Pointer() != nil {
 		return C.QCanBusDevice_Open(ptr.Pointer()) != 0
 	}
@@ -905,7 +755,6 @@ func (ptr *QCanBusDevice) Open() bool {
 
 //export callbackQCanBusDevice_SetConfigurationParameter
 func callbackQCanBusDevice_SetConfigurationParameter(ptr unsafe.Pointer, key C.int, value unsafe.Pointer) {
-	defer qt.Recovering("callback QCanBusDevice::setConfigurationParameter")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCanBusDevice::setConfigurationParameter"); signal != nil {
 		signal.(func(int, *core.QVariant))(int(int32(key)), core.NewQVariantFromPointer(value))
@@ -915,8 +764,6 @@ func callbackQCanBusDevice_SetConfigurationParameter(ptr unsafe.Pointer, key C.i
 }
 
 func (ptr *QCanBusDevice) ConnectSetConfigurationParameter(f func(key int, value *core.QVariant)) {
-	defer qt.Recovering("connect QCanBusDevice::setConfigurationParameter")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QCanBusDevice::setConfigurationParameter", f)
@@ -924,8 +771,6 @@ func (ptr *QCanBusDevice) ConnectSetConfigurationParameter(f func(key int, value
 }
 
 func (ptr *QCanBusDevice) DisconnectSetConfigurationParameter() {
-	defer qt.Recovering("disconnect QCanBusDevice::setConfigurationParameter")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QCanBusDevice::setConfigurationParameter")
@@ -933,24 +778,18 @@ func (ptr *QCanBusDevice) DisconnectSetConfigurationParameter() {
 }
 
 func (ptr *QCanBusDevice) SetConfigurationParameter(key int, value core.QVariant_ITF) {
-	defer qt.Recovering("QCanBusDevice::setConfigurationParameter")
-
 	if ptr.Pointer() != nil {
 		C.QCanBusDevice_SetConfigurationParameter(ptr.Pointer(), C.int(int32(key)), core.PointerFromQVariant(value))
 	}
 }
 
 func (ptr *QCanBusDevice) SetConfigurationParameterDefault(key int, value core.QVariant_ITF) {
-	defer qt.Recovering("QCanBusDevice::setConfigurationParameter")
-
 	if ptr.Pointer() != nil {
 		C.QCanBusDevice_SetConfigurationParameterDefault(ptr.Pointer(), C.int(int32(key)), core.PointerFromQVariant(value))
 	}
 }
 
 func (ptr *QCanBusDevice) SetError(errorText string, errorId QCanBusDevice__CanBusError) {
-	defer qt.Recovering("QCanBusDevice::setError")
-
 	if ptr.Pointer() != nil {
 		var errorTextC = C.CString(errorText)
 		defer C.free(unsafe.Pointer(errorTextC))
@@ -959,16 +798,12 @@ func (ptr *QCanBusDevice) SetError(errorText string, errorId QCanBusDevice__CanB
 }
 
 func (ptr *QCanBusDevice) SetState(newState QCanBusDevice__CanBusDeviceState) {
-	defer qt.Recovering("QCanBusDevice::setState")
-
 	if ptr.Pointer() != nil {
 		C.QCanBusDevice_SetState(ptr.Pointer(), C.longlong(newState))
 	}
 }
 
 func (ptr *QCanBusDevice) State() QCanBusDevice__CanBusDeviceState {
-	defer qt.Recovering("QCanBusDevice::state")
-
 	if ptr.Pointer() != nil {
 		return QCanBusDevice__CanBusDeviceState(C.QCanBusDevice_State(ptr.Pointer()))
 	}
@@ -977,7 +812,6 @@ func (ptr *QCanBusDevice) State() QCanBusDevice__CanBusDeviceState {
 
 //export callbackQCanBusDevice_StateChanged
 func callbackQCanBusDevice_StateChanged(ptr unsafe.Pointer, state C.longlong) {
-	defer qt.Recovering("callback QCanBusDevice::stateChanged")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCanBusDevice::stateChanged"); signal != nil {
 		signal.(func(QCanBusDevice__CanBusDeviceState))(QCanBusDevice__CanBusDeviceState(state))
@@ -986,8 +820,6 @@ func callbackQCanBusDevice_StateChanged(ptr unsafe.Pointer, state C.longlong) {
 }
 
 func (ptr *QCanBusDevice) ConnectStateChanged(f func(state QCanBusDevice__CanBusDeviceState)) {
-	defer qt.Recovering("connect QCanBusDevice::stateChanged")
-
 	if ptr.Pointer() != nil {
 		C.QCanBusDevice_ConnectStateChanged(ptr.Pointer())
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QCanBusDevice::stateChanged", f)
@@ -995,8 +827,6 @@ func (ptr *QCanBusDevice) ConnectStateChanged(f func(state QCanBusDevice__CanBus
 }
 
 func (ptr *QCanBusDevice) DisconnectStateChanged() {
-	defer qt.Recovering("disconnect QCanBusDevice::stateChanged")
-
 	if ptr.Pointer() != nil {
 		C.QCanBusDevice_DisconnectStateChanged(ptr.Pointer())
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QCanBusDevice::stateChanged")
@@ -1004,8 +834,6 @@ func (ptr *QCanBusDevice) DisconnectStateChanged() {
 }
 
 func (ptr *QCanBusDevice) StateChanged(state QCanBusDevice__CanBusDeviceState) {
-	defer qt.Recovering("QCanBusDevice::stateChanged")
-
 	if ptr.Pointer() != nil {
 		C.QCanBusDevice_StateChanged(ptr.Pointer(), C.longlong(state))
 	}
@@ -1013,7 +841,6 @@ func (ptr *QCanBusDevice) StateChanged(state QCanBusDevice__CanBusDeviceState) {
 
 //export callbackQCanBusDevice_WriteFrame
 func callbackQCanBusDevice_WriteFrame(ptr unsafe.Pointer, frame unsafe.Pointer) C.char {
-	defer qt.Recovering("callback QCanBusDevice::writeFrame")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCanBusDevice::writeFrame"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*QCanBusFrame) bool)(NewQCanBusFrameFromPointer(frame)))))
@@ -1023,8 +850,6 @@ func callbackQCanBusDevice_WriteFrame(ptr unsafe.Pointer, frame unsafe.Pointer) 
 }
 
 func (ptr *QCanBusDevice) ConnectWriteFrame(f func(frame *QCanBusFrame) bool) {
-	defer qt.Recovering("connect QCanBusDevice::writeFrame")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QCanBusDevice::writeFrame", f)
@@ -1032,8 +857,6 @@ func (ptr *QCanBusDevice) ConnectWriteFrame(f func(frame *QCanBusFrame) bool) {
 }
 
 func (ptr *QCanBusDevice) DisconnectWriteFrame(frame QCanBusFrame_ITF) {
-	defer qt.Recovering("disconnect QCanBusDevice::writeFrame")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QCanBusDevice::writeFrame")
@@ -1041,8 +864,6 @@ func (ptr *QCanBusDevice) DisconnectWriteFrame(frame QCanBusFrame_ITF) {
 }
 
 func (ptr *QCanBusDevice) WriteFrame(frame QCanBusFrame_ITF) bool {
-	defer qt.Recovering("QCanBusDevice::writeFrame")
-
 	if ptr.Pointer() != nil {
 		return C.QCanBusDevice_WriteFrame(ptr.Pointer(), PointerFromQCanBusFrame(frame)) != 0
 	}
@@ -1051,7 +872,6 @@ func (ptr *QCanBusDevice) WriteFrame(frame QCanBusFrame_ITF) bool {
 
 //export callbackQCanBusDevice_TimerEvent
 func callbackQCanBusDevice_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	defer qt.Recovering("callback QCanBusDevice::timerEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCanBusDevice::timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
@@ -1061,8 +881,6 @@ func callbackQCanBusDevice_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) 
 }
 
 func (ptr *QCanBusDevice) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
-	defer qt.Recovering("connect QCanBusDevice::timerEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QCanBusDevice::timerEvent", f)
@@ -1070,8 +888,6 @@ func (ptr *QCanBusDevice) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
 }
 
 func (ptr *QCanBusDevice) DisconnectTimerEvent() {
-	defer qt.Recovering("disconnect QCanBusDevice::timerEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QCanBusDevice::timerEvent")
@@ -1079,16 +895,12 @@ func (ptr *QCanBusDevice) DisconnectTimerEvent() {
 }
 
 func (ptr *QCanBusDevice) TimerEvent(event core.QTimerEvent_ITF) {
-	defer qt.Recovering("QCanBusDevice::timerEvent")
-
 	if ptr.Pointer() != nil {
 		C.QCanBusDevice_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
 	}
 }
 
 func (ptr *QCanBusDevice) TimerEventDefault(event core.QTimerEvent_ITF) {
-	defer qt.Recovering("QCanBusDevice::timerEvent")
-
 	if ptr.Pointer() != nil {
 		C.QCanBusDevice_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
 	}
@@ -1096,7 +908,6 @@ func (ptr *QCanBusDevice) TimerEventDefault(event core.QTimerEvent_ITF) {
 
 //export callbackQCanBusDevice_ChildEvent
 func callbackQCanBusDevice_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	defer qt.Recovering("callback QCanBusDevice::childEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCanBusDevice::childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
@@ -1106,8 +917,6 @@ func callbackQCanBusDevice_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) 
 }
 
 func (ptr *QCanBusDevice) ConnectChildEvent(f func(event *core.QChildEvent)) {
-	defer qt.Recovering("connect QCanBusDevice::childEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QCanBusDevice::childEvent", f)
@@ -1115,8 +924,6 @@ func (ptr *QCanBusDevice) ConnectChildEvent(f func(event *core.QChildEvent)) {
 }
 
 func (ptr *QCanBusDevice) DisconnectChildEvent() {
-	defer qt.Recovering("disconnect QCanBusDevice::childEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QCanBusDevice::childEvent")
@@ -1124,16 +931,12 @@ func (ptr *QCanBusDevice) DisconnectChildEvent() {
 }
 
 func (ptr *QCanBusDevice) ChildEvent(event core.QChildEvent_ITF) {
-	defer qt.Recovering("QCanBusDevice::childEvent")
-
 	if ptr.Pointer() != nil {
 		C.QCanBusDevice_ChildEvent(ptr.Pointer(), core.PointerFromQChildEvent(event))
 	}
 }
 
 func (ptr *QCanBusDevice) ChildEventDefault(event core.QChildEvent_ITF) {
-	defer qt.Recovering("QCanBusDevice::childEvent")
-
 	if ptr.Pointer() != nil {
 		C.QCanBusDevice_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
 	}
@@ -1141,7 +944,6 @@ func (ptr *QCanBusDevice) ChildEventDefault(event core.QChildEvent_ITF) {
 
 //export callbackQCanBusDevice_ConnectNotify
 func callbackQCanBusDevice_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-	defer qt.Recovering("callback QCanBusDevice::connectNotify")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCanBusDevice::connectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
@@ -1151,8 +953,6 @@ func callbackQCanBusDevice_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer
 }
 
 func (ptr *QCanBusDevice) ConnectConnectNotify(f func(sign *core.QMetaMethod)) {
-	defer qt.Recovering("connect QCanBusDevice::connectNotify")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QCanBusDevice::connectNotify", f)
@@ -1160,8 +960,6 @@ func (ptr *QCanBusDevice) ConnectConnectNotify(f func(sign *core.QMetaMethod)) {
 }
 
 func (ptr *QCanBusDevice) DisconnectConnectNotify() {
-	defer qt.Recovering("disconnect QCanBusDevice::connectNotify")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QCanBusDevice::connectNotify")
@@ -1169,16 +967,12 @@ func (ptr *QCanBusDevice) DisconnectConnectNotify() {
 }
 
 func (ptr *QCanBusDevice) ConnectNotify(sign core.QMetaMethod_ITF) {
-	defer qt.Recovering("QCanBusDevice::connectNotify")
-
 	if ptr.Pointer() != nil {
 		C.QCanBusDevice_ConnectNotify(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
 	}
 }
 
 func (ptr *QCanBusDevice) ConnectNotifyDefault(sign core.QMetaMethod_ITF) {
-	defer qt.Recovering("QCanBusDevice::connectNotify")
-
 	if ptr.Pointer() != nil {
 		C.QCanBusDevice_ConnectNotifyDefault(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
 	}
@@ -1186,7 +980,6 @@ func (ptr *QCanBusDevice) ConnectNotifyDefault(sign core.QMetaMethod_ITF) {
 
 //export callbackQCanBusDevice_CustomEvent
 func callbackQCanBusDevice_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	defer qt.Recovering("callback QCanBusDevice::customEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCanBusDevice::customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
@@ -1196,8 +989,6 @@ func callbackQCanBusDevice_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer)
 }
 
 func (ptr *QCanBusDevice) ConnectCustomEvent(f func(event *core.QEvent)) {
-	defer qt.Recovering("connect QCanBusDevice::customEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QCanBusDevice::customEvent", f)
@@ -1205,8 +996,6 @@ func (ptr *QCanBusDevice) ConnectCustomEvent(f func(event *core.QEvent)) {
 }
 
 func (ptr *QCanBusDevice) DisconnectCustomEvent() {
-	defer qt.Recovering("disconnect QCanBusDevice::customEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QCanBusDevice::customEvent")
@@ -1214,16 +1003,12 @@ func (ptr *QCanBusDevice) DisconnectCustomEvent() {
 }
 
 func (ptr *QCanBusDevice) CustomEvent(event core.QEvent_ITF) {
-	defer qt.Recovering("QCanBusDevice::customEvent")
-
 	if ptr.Pointer() != nil {
 		C.QCanBusDevice_CustomEvent(ptr.Pointer(), core.PointerFromQEvent(event))
 	}
 }
 
 func (ptr *QCanBusDevice) CustomEventDefault(event core.QEvent_ITF) {
-	defer qt.Recovering("QCanBusDevice::customEvent")
-
 	if ptr.Pointer() != nil {
 		C.QCanBusDevice_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
 	}
@@ -1231,8 +1016,6 @@ func (ptr *QCanBusDevice) CustomEventDefault(event core.QEvent_ITF) {
 
 //export callbackQCanBusDevice_DeleteLater
 func callbackQCanBusDevice_DeleteLater(ptr unsafe.Pointer) {
-	defer qt.Recovering("callback QCanBusDevice::deleteLater")
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCanBusDevice::deleteLater"); signal != nil {
 		signal.(func())()
 	} else {
@@ -1241,8 +1024,6 @@ func callbackQCanBusDevice_DeleteLater(ptr unsafe.Pointer) {
 }
 
 func (ptr *QCanBusDevice) ConnectDeleteLater(f func()) {
-	defer qt.Recovering("connect QCanBusDevice::deleteLater")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QCanBusDevice::deleteLater", f)
@@ -1250,8 +1031,6 @@ func (ptr *QCanBusDevice) ConnectDeleteLater(f func()) {
 }
 
 func (ptr *QCanBusDevice) DisconnectDeleteLater() {
-	defer qt.Recovering("disconnect QCanBusDevice::deleteLater")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QCanBusDevice::deleteLater")
@@ -1259,8 +1038,6 @@ func (ptr *QCanBusDevice) DisconnectDeleteLater() {
 }
 
 func (ptr *QCanBusDevice) DeleteLater() {
-	defer qt.Recovering("QCanBusDevice::deleteLater")
-
 	if ptr.Pointer() != nil {
 		C.QCanBusDevice_DeleteLater(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
@@ -1269,8 +1046,6 @@ func (ptr *QCanBusDevice) DeleteLater() {
 }
 
 func (ptr *QCanBusDevice) DeleteLaterDefault() {
-	defer qt.Recovering("QCanBusDevice::deleteLater")
-
 	if ptr.Pointer() != nil {
 		C.QCanBusDevice_DeleteLaterDefault(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
@@ -1280,7 +1055,6 @@ func (ptr *QCanBusDevice) DeleteLaterDefault() {
 
 //export callbackQCanBusDevice_DisconnectNotify
 func callbackQCanBusDevice_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-	defer qt.Recovering("callback QCanBusDevice::disconnectNotify")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCanBusDevice::disconnectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
@@ -1290,8 +1064,6 @@ func callbackQCanBusDevice_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Poin
 }
 
 func (ptr *QCanBusDevice) ConnectDisconnectNotify(f func(sign *core.QMetaMethod)) {
-	defer qt.Recovering("connect QCanBusDevice::disconnectNotify")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QCanBusDevice::disconnectNotify", f)
@@ -1299,8 +1071,6 @@ func (ptr *QCanBusDevice) ConnectDisconnectNotify(f func(sign *core.QMetaMethod)
 }
 
 func (ptr *QCanBusDevice) DisconnectDisconnectNotify() {
-	defer qt.Recovering("disconnect QCanBusDevice::disconnectNotify")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QCanBusDevice::disconnectNotify")
@@ -1308,16 +1078,12 @@ func (ptr *QCanBusDevice) DisconnectDisconnectNotify() {
 }
 
 func (ptr *QCanBusDevice) DisconnectNotify(sign core.QMetaMethod_ITF) {
-	defer qt.Recovering("QCanBusDevice::disconnectNotify")
-
 	if ptr.Pointer() != nil {
 		C.QCanBusDevice_DisconnectNotify(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
 	}
 }
 
 func (ptr *QCanBusDevice) DisconnectNotifyDefault(sign core.QMetaMethod_ITF) {
-	defer qt.Recovering("QCanBusDevice::disconnectNotify")
-
 	if ptr.Pointer() != nil {
 		C.QCanBusDevice_DisconnectNotifyDefault(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
 	}
@@ -1325,7 +1091,6 @@ func (ptr *QCanBusDevice) DisconnectNotifyDefault(sign core.QMetaMethod_ITF) {
 
 //export callbackQCanBusDevice_Event
 func callbackQCanBusDevice_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
-	defer qt.Recovering("callback QCanBusDevice::event")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCanBusDevice::event"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
@@ -1335,8 +1100,6 @@ func callbackQCanBusDevice_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
 }
 
 func (ptr *QCanBusDevice) ConnectEvent(f func(e *core.QEvent) bool) {
-	defer qt.Recovering("connect QCanBusDevice::event")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QCanBusDevice::event", f)
@@ -1344,8 +1107,6 @@ func (ptr *QCanBusDevice) ConnectEvent(f func(e *core.QEvent) bool) {
 }
 
 func (ptr *QCanBusDevice) DisconnectEvent() {
-	defer qt.Recovering("disconnect QCanBusDevice::event")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QCanBusDevice::event")
@@ -1353,8 +1114,6 @@ func (ptr *QCanBusDevice) DisconnectEvent() {
 }
 
 func (ptr *QCanBusDevice) Event(e core.QEvent_ITF) bool {
-	defer qt.Recovering("QCanBusDevice::event")
-
 	if ptr.Pointer() != nil {
 		return C.QCanBusDevice_Event(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
 	}
@@ -1362,8 +1121,6 @@ func (ptr *QCanBusDevice) Event(e core.QEvent_ITF) bool {
 }
 
 func (ptr *QCanBusDevice) EventDefault(e core.QEvent_ITF) bool {
-	defer qt.Recovering("QCanBusDevice::event")
-
 	if ptr.Pointer() != nil {
 		return C.QCanBusDevice_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
 	}
@@ -1372,7 +1129,6 @@ func (ptr *QCanBusDevice) EventDefault(e core.QEvent_ITF) bool {
 
 //export callbackQCanBusDevice_EventFilter
 func callbackQCanBusDevice_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-	defer qt.Recovering("callback QCanBusDevice::eventFilter")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCanBusDevice::eventFilter"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
@@ -1382,8 +1138,6 @@ func callbackQCanBusDevice_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointe
 }
 
 func (ptr *QCanBusDevice) ConnectEventFilter(f func(watched *core.QObject, event *core.QEvent) bool) {
-	defer qt.Recovering("connect QCanBusDevice::eventFilter")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QCanBusDevice::eventFilter", f)
@@ -1391,8 +1145,6 @@ func (ptr *QCanBusDevice) ConnectEventFilter(f func(watched *core.QObject, event
 }
 
 func (ptr *QCanBusDevice) DisconnectEventFilter() {
-	defer qt.Recovering("disconnect QCanBusDevice::eventFilter")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QCanBusDevice::eventFilter")
@@ -1400,8 +1152,6 @@ func (ptr *QCanBusDevice) DisconnectEventFilter() {
 }
 
 func (ptr *QCanBusDevice) EventFilter(watched core.QObject_ITF, event core.QEvent_ITF) bool {
-	defer qt.Recovering("QCanBusDevice::eventFilter")
-
 	if ptr.Pointer() != nil {
 		return C.QCanBusDevice_EventFilter(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
 	}
@@ -1409,8 +1159,6 @@ func (ptr *QCanBusDevice) EventFilter(watched core.QObject_ITF, event core.QEven
 }
 
 func (ptr *QCanBusDevice) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
-	defer qt.Recovering("QCanBusDevice::eventFilter")
-
 	if ptr.Pointer() != nil {
 		return C.QCanBusDevice_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
 	}
@@ -1419,7 +1167,6 @@ func (ptr *QCanBusDevice) EventFilterDefault(watched core.QObject_ITF, event cor
 
 //export callbackQCanBusDevice_MetaObject
 func callbackQCanBusDevice_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-	defer qt.Recovering("callback QCanBusDevice::metaObject")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCanBusDevice::metaObject"); signal != nil {
 		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
@@ -1429,8 +1176,6 @@ func callbackQCanBusDevice_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
 }
 
 func (ptr *QCanBusDevice) ConnectMetaObject(f func() *core.QMetaObject) {
-	defer qt.Recovering("connect QCanBusDevice::metaObject")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QCanBusDevice::metaObject", f)
@@ -1438,8 +1183,6 @@ func (ptr *QCanBusDevice) ConnectMetaObject(f func() *core.QMetaObject) {
 }
 
 func (ptr *QCanBusDevice) DisconnectMetaObject() {
-	defer qt.Recovering("disconnect QCanBusDevice::metaObject")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QCanBusDevice::metaObject")
@@ -1447,8 +1190,6 @@ func (ptr *QCanBusDevice) DisconnectMetaObject() {
 }
 
 func (ptr *QCanBusDevice) MetaObject() *core.QMetaObject {
-	defer qt.Recovering("QCanBusDevice::metaObject")
-
 	if ptr.Pointer() != nil {
 		return core.NewQMetaObjectFromPointer(C.QCanBusDevice_MetaObject(ptr.Pointer()))
 	}
@@ -1456,8 +1197,6 @@ func (ptr *QCanBusDevice) MetaObject() *core.QMetaObject {
 }
 
 func (ptr *QCanBusDevice) MetaObjectDefault() *core.QMetaObject {
-	defer qt.Recovering("QCanBusDevice::metaObject")
-
 	if ptr.Pointer() != nil {
 		return core.NewQMetaObjectFromPointer(C.QCanBusDevice_MetaObjectDefault(ptr.Pointer()))
 	}
@@ -1510,7 +1249,6 @@ func (ptr *QCanBusFactory) DestroyQCanBusFactory() {
 
 //export callbackQCanBusFactory_CreateDevice
 func callbackQCanBusFactory_CreateDevice(ptr unsafe.Pointer, interfaceName *C.char) unsafe.Pointer {
-	defer qt.Recovering("callback QCanBusFactory::createDevice")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCanBusFactory::createDevice"); signal != nil {
 		return PointerFromQCanBusDevice(signal.(func(string) *QCanBusDevice)(C.GoString(interfaceName)))
@@ -1520,8 +1258,6 @@ func callbackQCanBusFactory_CreateDevice(ptr unsafe.Pointer, interfaceName *C.ch
 }
 
 func (ptr *QCanBusFactory) ConnectCreateDevice(f func(interfaceName string) *QCanBusDevice) {
-	defer qt.Recovering("connect QCanBusFactory::createDevice")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QCanBusFactory::createDevice", f)
@@ -1529,8 +1265,6 @@ func (ptr *QCanBusFactory) ConnectCreateDevice(f func(interfaceName string) *QCa
 }
 
 func (ptr *QCanBusFactory) DisconnectCreateDevice(interfaceName string) {
-	defer qt.Recovering("disconnect QCanBusFactory::createDevice")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QCanBusFactory::createDevice")
@@ -1538,8 +1272,6 @@ func (ptr *QCanBusFactory) DisconnectCreateDevice(interfaceName string) {
 }
 
 func (ptr *QCanBusFactory) CreateDevice(interfaceName string) *QCanBusDevice {
-	defer qt.Recovering("QCanBusFactory::createDevice")
-
 	if ptr.Pointer() != nil {
 		var interfaceNameC = C.CString(interfaceName)
 		defer C.free(unsafe.Pointer(interfaceNameC))
@@ -1625,16 +1357,12 @@ func (ptr *QCanBusFrame) DestroyQCanBusFrame() {
 }
 
 func NewQCanBusFrame(ty QCanBusFrame__FrameType) *QCanBusFrame {
-	defer qt.Recovering("QCanBusFrame::QCanBusFrame")
-
 	var tmpValue = NewQCanBusFrameFromPointer(C.QCanBusFrame_NewQCanBusFrame(C.longlong(ty)))
 	runtime.SetFinalizer(tmpValue, (*QCanBusFrame).DestroyQCanBusFrame)
 	return tmpValue
 }
 
 func NewQCanBusFrame2(identifier uint, data string) *QCanBusFrame {
-	defer qt.Recovering("QCanBusFrame::QCanBusFrame")
-
 	var dataC = C.CString(hex.EncodeToString([]byte(data)))
 	defer C.free(unsafe.Pointer(dataC))
 	var tmpValue = NewQCanBusFrameFromPointer(C.QCanBusFrame_NewQCanBusFrame2(C.uint(uint32(identifier)), dataC))
@@ -1643,8 +1371,6 @@ func NewQCanBusFrame2(identifier uint, data string) *QCanBusFrame {
 }
 
 func (ptr *QCanBusFrame) Error() QCanBusFrame__FrameError {
-	defer qt.Recovering("QCanBusFrame::error")
-
 	if ptr.Pointer() != nil {
 		return QCanBusFrame__FrameError(C.QCanBusFrame_Error(ptr.Pointer()))
 	}
@@ -1652,8 +1378,6 @@ func (ptr *QCanBusFrame) Error() QCanBusFrame__FrameError {
 }
 
 func (ptr *QCanBusFrame) FrameId() uint {
-	defer qt.Recovering("QCanBusFrame::frameId")
-
 	if ptr.Pointer() != nil {
 		return uint(uint32(C.QCanBusFrame_FrameId(ptr.Pointer())))
 	}
@@ -1661,8 +1385,6 @@ func (ptr *QCanBusFrame) FrameId() uint {
 }
 
 func (ptr *QCanBusFrame) FrameType() QCanBusFrame__FrameType {
-	defer qt.Recovering("QCanBusFrame::frameType")
-
 	if ptr.Pointer() != nil {
 		return QCanBusFrame__FrameType(C.QCanBusFrame_FrameType(ptr.Pointer()))
 	}
@@ -1670,8 +1392,6 @@ func (ptr *QCanBusFrame) FrameType() QCanBusFrame__FrameType {
 }
 
 func (ptr *QCanBusFrame) HasExtendedFrameFormat() bool {
-	defer qt.Recovering("QCanBusFrame::hasExtendedFrameFormat")
-
 	if ptr.Pointer() != nil {
 		return C.QCanBusFrame_HasExtendedFrameFormat(ptr.Pointer()) != 0
 	}
@@ -1679,8 +1399,6 @@ func (ptr *QCanBusFrame) HasExtendedFrameFormat() bool {
 }
 
 func (ptr *QCanBusFrame) IsValid() bool {
-	defer qt.Recovering("QCanBusFrame::isValid")
-
 	if ptr.Pointer() != nil {
 		return C.QCanBusFrame_IsValid(ptr.Pointer()) != 0
 	}
@@ -1688,8 +1406,6 @@ func (ptr *QCanBusFrame) IsValid() bool {
 }
 
 func (ptr *QCanBusFrame) Payload() string {
-	defer qt.Recovering("QCanBusFrame::payload")
-
 	if ptr.Pointer() != nil {
 		return qt.HexDecodeToString(C.GoString(C.QCanBusFrame_Payload(ptr.Pointer())))
 	}
@@ -1697,40 +1413,30 @@ func (ptr *QCanBusFrame) Payload() string {
 }
 
 func (ptr *QCanBusFrame) SetError(error QCanBusFrame__FrameError) {
-	defer qt.Recovering("QCanBusFrame::setError")
-
 	if ptr.Pointer() != nil {
 		C.QCanBusFrame_SetError(ptr.Pointer(), C.longlong(error))
 	}
 }
 
 func (ptr *QCanBusFrame) SetExtendedFrameFormat(isExtended bool) {
-	defer qt.Recovering("QCanBusFrame::setExtendedFrameFormat")
-
 	if ptr.Pointer() != nil {
 		C.QCanBusFrame_SetExtendedFrameFormat(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(isExtended))))
 	}
 }
 
 func (ptr *QCanBusFrame) SetFrameId(newFrameId uint) {
-	defer qt.Recovering("QCanBusFrame::setFrameId")
-
 	if ptr.Pointer() != nil {
 		C.QCanBusFrame_SetFrameId(ptr.Pointer(), C.uint(uint32(newFrameId)))
 	}
 }
 
 func (ptr *QCanBusFrame) SetFrameType(newType QCanBusFrame__FrameType) {
-	defer qt.Recovering("QCanBusFrame::setFrameType")
-
 	if ptr.Pointer() != nil {
 		C.QCanBusFrame_SetFrameType(ptr.Pointer(), C.longlong(newType))
 	}
 }
 
 func (ptr *QCanBusFrame) SetPayload(data string) {
-	defer qt.Recovering("QCanBusFrame::setPayload")
-
 	if ptr.Pointer() != nil {
 		var dataC = C.CString(hex.EncodeToString([]byte(data)))
 		defer C.free(unsafe.Pointer(dataC))
@@ -1784,8 +1490,6 @@ func (ptr *QModbusClient) DestroyQModbusClient() {
 }
 
 func (ptr *QModbusClient) Timeout() int {
-	defer qt.Recovering("QModbusClient::timeout")
-
 	if ptr.Pointer() != nil {
 		return int(int32(C.QModbusClient_Timeout(ptr.Pointer())))
 	}
@@ -1793,8 +1497,6 @@ func (ptr *QModbusClient) Timeout() int {
 }
 
 func NewQModbusClient(parent core.QObject_ITF) *QModbusClient {
-	defer qt.Recovering("QModbusClient::QModbusClient")
-
 	var tmpValue = NewQModbusClientFromPointer(C.QModbusClient_NewQModbusClient(core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
@@ -1803,8 +1505,6 @@ func NewQModbusClient(parent core.QObject_ITF) *QModbusClient {
 }
 
 func (ptr *QModbusClient) NumberOfRetries() int {
-	defer qt.Recovering("QModbusClient::numberOfRetries")
-
 	if ptr.Pointer() != nil {
 		return int(int32(C.QModbusClient_NumberOfRetries(ptr.Pointer())))
 	}
@@ -1812,8 +1512,6 @@ func (ptr *QModbusClient) NumberOfRetries() int {
 }
 
 func (ptr *QModbusClient) SendRawRequest(request QModbusRequest_ITF, serverAddress int) *QModbusReply {
-	defer qt.Recovering("QModbusClient::sendRawRequest")
-
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQModbusReplyFromPointer(C.QModbusClient_SendRawRequest(ptr.Pointer(), PointerFromQModbusRequest(request), C.int(int32(serverAddress))))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
@@ -1825,8 +1523,6 @@ func (ptr *QModbusClient) SendRawRequest(request QModbusRequest_ITF, serverAddre
 }
 
 func (ptr *QModbusClient) SendReadRequest(read QModbusDataUnit_ITF, serverAddress int) *QModbusReply {
-	defer qt.Recovering("QModbusClient::sendReadRequest")
-
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQModbusReplyFromPointer(C.QModbusClient_SendReadRequest(ptr.Pointer(), PointerFromQModbusDataUnit(read), C.int(int32(serverAddress))))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
@@ -1838,8 +1534,6 @@ func (ptr *QModbusClient) SendReadRequest(read QModbusDataUnit_ITF, serverAddres
 }
 
 func (ptr *QModbusClient) SendReadWriteRequest(read QModbusDataUnit_ITF, write QModbusDataUnit_ITF, serverAddress int) *QModbusReply {
-	defer qt.Recovering("QModbusClient::sendReadWriteRequest")
-
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQModbusReplyFromPointer(C.QModbusClient_SendReadWriteRequest(ptr.Pointer(), PointerFromQModbusDataUnit(read), PointerFromQModbusDataUnit(write), C.int(int32(serverAddress))))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
@@ -1851,8 +1545,6 @@ func (ptr *QModbusClient) SendReadWriteRequest(read QModbusDataUnit_ITF, write Q
 }
 
 func (ptr *QModbusClient) SendWriteRequest(write QModbusDataUnit_ITF, serverAddress int) *QModbusReply {
-	defer qt.Recovering("QModbusClient::sendWriteRequest")
-
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQModbusReplyFromPointer(C.QModbusClient_SendWriteRequest(ptr.Pointer(), PointerFromQModbusDataUnit(write), C.int(int32(serverAddress))))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
@@ -1864,16 +1556,12 @@ func (ptr *QModbusClient) SendWriteRequest(write QModbusDataUnit_ITF, serverAddr
 }
 
 func (ptr *QModbusClient) SetNumberOfRetries(number int) {
-	defer qt.Recovering("QModbusClient::setNumberOfRetries")
-
 	if ptr.Pointer() != nil {
 		C.QModbusClient_SetNumberOfRetries(ptr.Pointer(), C.int(int32(number)))
 	}
 }
 
 func (ptr *QModbusClient) SetTimeout(newTimeout int) {
-	defer qt.Recovering("QModbusClient::setTimeout")
-
 	if ptr.Pointer() != nil {
 		C.QModbusClient_SetTimeout(ptr.Pointer(), C.int(int32(newTimeout)))
 	}
@@ -1881,7 +1569,6 @@ func (ptr *QModbusClient) SetTimeout(newTimeout int) {
 
 //export callbackQModbusClient_TimeoutChanged
 func callbackQModbusClient_TimeoutChanged(ptr unsafe.Pointer, newTimeout C.int) {
-	defer qt.Recovering("callback QModbusClient::timeoutChanged")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QModbusClient::timeoutChanged"); signal != nil {
 		signal.(func(int))(int(int32(newTimeout)))
@@ -1890,8 +1577,6 @@ func callbackQModbusClient_TimeoutChanged(ptr unsafe.Pointer, newTimeout C.int) 
 }
 
 func (ptr *QModbusClient) ConnectTimeoutChanged(f func(newTimeout int)) {
-	defer qt.Recovering("connect QModbusClient::timeoutChanged")
-
 	if ptr.Pointer() != nil {
 		C.QModbusClient_ConnectTimeoutChanged(ptr.Pointer())
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QModbusClient::timeoutChanged", f)
@@ -1899,8 +1584,6 @@ func (ptr *QModbusClient) ConnectTimeoutChanged(f func(newTimeout int)) {
 }
 
 func (ptr *QModbusClient) DisconnectTimeoutChanged() {
-	defer qt.Recovering("disconnect QModbusClient::timeoutChanged")
-
 	if ptr.Pointer() != nil {
 		C.QModbusClient_DisconnectTimeoutChanged(ptr.Pointer())
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QModbusClient::timeoutChanged")
@@ -1908,8 +1591,6 @@ func (ptr *QModbusClient) DisconnectTimeoutChanged() {
 }
 
 func (ptr *QModbusClient) TimeoutChanged(newTimeout int) {
-	defer qt.Recovering("QModbusClient::timeoutChanged")
-
 	if ptr.Pointer() != nil {
 		C.QModbusClient_TimeoutChanged(ptr.Pointer(), C.int(int32(newTimeout)))
 	}
@@ -1917,7 +1598,6 @@ func (ptr *QModbusClient) TimeoutChanged(newTimeout int) {
 
 //export callbackQModbusClient_ProcessPrivateResponse
 func callbackQModbusClient_ProcessPrivateResponse(ptr unsafe.Pointer, response unsafe.Pointer, data unsafe.Pointer) C.char {
-	defer qt.Recovering("callback QModbusClient::processPrivateResponse")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QModbusClient::processPrivateResponse"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*QModbusResponse, *QModbusDataUnit) bool)(NewQModbusResponseFromPointer(response), NewQModbusDataUnitFromPointer(data)))))
@@ -1927,8 +1607,6 @@ func callbackQModbusClient_ProcessPrivateResponse(ptr unsafe.Pointer, response u
 }
 
 func (ptr *QModbusClient) ConnectProcessPrivateResponse(f func(response *QModbusResponse, data *QModbusDataUnit) bool) {
-	defer qt.Recovering("connect QModbusClient::processPrivateResponse")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QModbusClient::processPrivateResponse", f)
@@ -1936,8 +1614,6 @@ func (ptr *QModbusClient) ConnectProcessPrivateResponse(f func(response *QModbus
 }
 
 func (ptr *QModbusClient) DisconnectProcessPrivateResponse() {
-	defer qt.Recovering("disconnect QModbusClient::processPrivateResponse")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QModbusClient::processPrivateResponse")
@@ -1945,8 +1621,6 @@ func (ptr *QModbusClient) DisconnectProcessPrivateResponse() {
 }
 
 func (ptr *QModbusClient) ProcessPrivateResponse(response QModbusResponse_ITF, data QModbusDataUnit_ITF) bool {
-	defer qt.Recovering("QModbusClient::processPrivateResponse")
-
 	if ptr.Pointer() != nil {
 		return C.QModbusClient_ProcessPrivateResponse(ptr.Pointer(), PointerFromQModbusResponse(response), PointerFromQModbusDataUnit(data)) != 0
 	}
@@ -1954,8 +1628,6 @@ func (ptr *QModbusClient) ProcessPrivateResponse(response QModbusResponse_ITF, d
 }
 
 func (ptr *QModbusClient) ProcessPrivateResponseDefault(response QModbusResponse_ITF, data QModbusDataUnit_ITF) bool {
-	defer qt.Recovering("QModbusClient::processPrivateResponse")
-
 	if ptr.Pointer() != nil {
 		return C.QModbusClient_ProcessPrivateResponseDefault(ptr.Pointer(), PointerFromQModbusResponse(response), PointerFromQModbusDataUnit(data)) != 0
 	}
@@ -1964,7 +1636,6 @@ func (ptr *QModbusClient) ProcessPrivateResponseDefault(response QModbusResponse
 
 //export callbackQModbusClient_ProcessResponse
 func callbackQModbusClient_ProcessResponse(ptr unsafe.Pointer, response unsafe.Pointer, data unsafe.Pointer) C.char {
-	defer qt.Recovering("callback QModbusClient::processResponse")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QModbusClient::processResponse"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*QModbusResponse, *QModbusDataUnit) bool)(NewQModbusResponseFromPointer(response), NewQModbusDataUnitFromPointer(data)))))
@@ -1974,8 +1645,6 @@ func callbackQModbusClient_ProcessResponse(ptr unsafe.Pointer, response unsafe.P
 }
 
 func (ptr *QModbusClient) ConnectProcessResponse(f func(response *QModbusResponse, data *QModbusDataUnit) bool) {
-	defer qt.Recovering("connect QModbusClient::processResponse")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QModbusClient::processResponse", f)
@@ -1983,8 +1652,6 @@ func (ptr *QModbusClient) ConnectProcessResponse(f func(response *QModbusRespons
 }
 
 func (ptr *QModbusClient) DisconnectProcessResponse() {
-	defer qt.Recovering("disconnect QModbusClient::processResponse")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QModbusClient::processResponse")
@@ -1992,8 +1659,6 @@ func (ptr *QModbusClient) DisconnectProcessResponse() {
 }
 
 func (ptr *QModbusClient) ProcessResponse(response QModbusResponse_ITF, data QModbusDataUnit_ITF) bool {
-	defer qt.Recovering("QModbusClient::processResponse")
-
 	if ptr.Pointer() != nil {
 		return C.QModbusClient_ProcessResponse(ptr.Pointer(), PointerFromQModbusResponse(response), PointerFromQModbusDataUnit(data)) != 0
 	}
@@ -2001,8 +1666,6 @@ func (ptr *QModbusClient) ProcessResponse(response QModbusResponse_ITF, data QMo
 }
 
 func (ptr *QModbusClient) ProcessResponseDefault(response QModbusResponse_ITF, data QModbusDataUnit_ITF) bool {
-	defer qt.Recovering("QModbusClient::processResponse")
-
 	if ptr.Pointer() != nil {
 		return C.QModbusClient_ProcessResponseDefault(ptr.Pointer(), PointerFromQModbusResponse(response), PointerFromQModbusDataUnit(data)) != 0
 	}
@@ -2011,7 +1674,6 @@ func (ptr *QModbusClient) ProcessResponseDefault(response QModbusResponse_ITF, d
 
 //export callbackQModbusClient_Close
 func callbackQModbusClient_Close(ptr unsafe.Pointer) {
-	defer qt.Recovering("callback QModbusClient::close")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QModbusClient::close"); signal != nil {
 		signal.(func())()
@@ -2021,8 +1683,6 @@ func callbackQModbusClient_Close(ptr unsafe.Pointer) {
 }
 
 func (ptr *QModbusClient) ConnectClose(f func()) {
-	defer qt.Recovering("connect QModbusClient::close")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QModbusClient::close", f)
@@ -2030,8 +1690,6 @@ func (ptr *QModbusClient) ConnectClose(f func()) {
 }
 
 func (ptr *QModbusClient) DisconnectClose() {
-	defer qt.Recovering("disconnect QModbusClient::close")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QModbusClient::close")
@@ -2039,8 +1697,6 @@ func (ptr *QModbusClient) DisconnectClose() {
 }
 
 func (ptr *QModbusClient) Close() {
-	defer qt.Recovering("QModbusClient::close")
-
 	if ptr.Pointer() != nil {
 		C.QModbusClient_Close(ptr.Pointer())
 	}
@@ -2048,7 +1704,6 @@ func (ptr *QModbusClient) Close() {
 
 //export callbackQModbusClient_Open
 func callbackQModbusClient_Open(ptr unsafe.Pointer) C.char {
-	defer qt.Recovering("callback QModbusClient::open")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QModbusClient::open"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func() bool)())))
@@ -2058,8 +1713,6 @@ func callbackQModbusClient_Open(ptr unsafe.Pointer) C.char {
 }
 
 func (ptr *QModbusClient) ConnectOpen(f func() bool) {
-	defer qt.Recovering("connect QModbusClient::open")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QModbusClient::open", f)
@@ -2067,8 +1720,6 @@ func (ptr *QModbusClient) ConnectOpen(f func() bool) {
 }
 
 func (ptr *QModbusClient) DisconnectOpen() {
-	defer qt.Recovering("disconnect QModbusClient::open")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QModbusClient::open")
@@ -2076,8 +1727,6 @@ func (ptr *QModbusClient) DisconnectOpen() {
 }
 
 func (ptr *QModbusClient) Open() bool {
-	defer qt.Recovering("QModbusClient::open")
-
 	if ptr.Pointer() != nil {
 		return C.QModbusClient_Open(ptr.Pointer()) != 0
 	}
@@ -2086,7 +1735,6 @@ func (ptr *QModbusClient) Open() bool {
 
 //export callbackQModbusClient_TimerEvent
 func callbackQModbusClient_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	defer qt.Recovering("callback QModbusClient::timerEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QModbusClient::timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
@@ -2096,8 +1744,6 @@ func callbackQModbusClient_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) 
 }
 
 func (ptr *QModbusClient) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
-	defer qt.Recovering("connect QModbusClient::timerEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QModbusClient::timerEvent", f)
@@ -2105,8 +1751,6 @@ func (ptr *QModbusClient) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
 }
 
 func (ptr *QModbusClient) DisconnectTimerEvent() {
-	defer qt.Recovering("disconnect QModbusClient::timerEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QModbusClient::timerEvent")
@@ -2114,16 +1758,12 @@ func (ptr *QModbusClient) DisconnectTimerEvent() {
 }
 
 func (ptr *QModbusClient) TimerEvent(event core.QTimerEvent_ITF) {
-	defer qt.Recovering("QModbusClient::timerEvent")
-
 	if ptr.Pointer() != nil {
 		C.QModbusClient_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
 	}
 }
 
 func (ptr *QModbusClient) TimerEventDefault(event core.QTimerEvent_ITF) {
-	defer qt.Recovering("QModbusClient::timerEvent")
-
 	if ptr.Pointer() != nil {
 		C.QModbusClient_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
 	}
@@ -2131,7 +1771,6 @@ func (ptr *QModbusClient) TimerEventDefault(event core.QTimerEvent_ITF) {
 
 //export callbackQModbusClient_ChildEvent
 func callbackQModbusClient_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	defer qt.Recovering("callback QModbusClient::childEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QModbusClient::childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
@@ -2141,8 +1780,6 @@ func callbackQModbusClient_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) 
 }
 
 func (ptr *QModbusClient) ConnectChildEvent(f func(event *core.QChildEvent)) {
-	defer qt.Recovering("connect QModbusClient::childEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QModbusClient::childEvent", f)
@@ -2150,8 +1787,6 @@ func (ptr *QModbusClient) ConnectChildEvent(f func(event *core.QChildEvent)) {
 }
 
 func (ptr *QModbusClient) DisconnectChildEvent() {
-	defer qt.Recovering("disconnect QModbusClient::childEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QModbusClient::childEvent")
@@ -2159,16 +1794,12 @@ func (ptr *QModbusClient) DisconnectChildEvent() {
 }
 
 func (ptr *QModbusClient) ChildEvent(event core.QChildEvent_ITF) {
-	defer qt.Recovering("QModbusClient::childEvent")
-
 	if ptr.Pointer() != nil {
 		C.QModbusClient_ChildEvent(ptr.Pointer(), core.PointerFromQChildEvent(event))
 	}
 }
 
 func (ptr *QModbusClient) ChildEventDefault(event core.QChildEvent_ITF) {
-	defer qt.Recovering("QModbusClient::childEvent")
-
 	if ptr.Pointer() != nil {
 		C.QModbusClient_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
 	}
@@ -2176,7 +1807,6 @@ func (ptr *QModbusClient) ChildEventDefault(event core.QChildEvent_ITF) {
 
 //export callbackQModbusClient_ConnectNotify
 func callbackQModbusClient_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-	defer qt.Recovering("callback QModbusClient::connectNotify")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QModbusClient::connectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
@@ -2186,8 +1816,6 @@ func callbackQModbusClient_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer
 }
 
 func (ptr *QModbusClient) ConnectConnectNotify(f func(sign *core.QMetaMethod)) {
-	defer qt.Recovering("connect QModbusClient::connectNotify")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QModbusClient::connectNotify", f)
@@ -2195,8 +1823,6 @@ func (ptr *QModbusClient) ConnectConnectNotify(f func(sign *core.QMetaMethod)) {
 }
 
 func (ptr *QModbusClient) DisconnectConnectNotify() {
-	defer qt.Recovering("disconnect QModbusClient::connectNotify")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QModbusClient::connectNotify")
@@ -2204,16 +1830,12 @@ func (ptr *QModbusClient) DisconnectConnectNotify() {
 }
 
 func (ptr *QModbusClient) ConnectNotify(sign core.QMetaMethod_ITF) {
-	defer qt.Recovering("QModbusClient::connectNotify")
-
 	if ptr.Pointer() != nil {
 		C.QModbusClient_ConnectNotify(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
 	}
 }
 
 func (ptr *QModbusClient) ConnectNotifyDefault(sign core.QMetaMethod_ITF) {
-	defer qt.Recovering("QModbusClient::connectNotify")
-
 	if ptr.Pointer() != nil {
 		C.QModbusClient_ConnectNotifyDefault(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
 	}
@@ -2221,7 +1843,6 @@ func (ptr *QModbusClient) ConnectNotifyDefault(sign core.QMetaMethod_ITF) {
 
 //export callbackQModbusClient_CustomEvent
 func callbackQModbusClient_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	defer qt.Recovering("callback QModbusClient::customEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QModbusClient::customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
@@ -2231,8 +1852,6 @@ func callbackQModbusClient_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer)
 }
 
 func (ptr *QModbusClient) ConnectCustomEvent(f func(event *core.QEvent)) {
-	defer qt.Recovering("connect QModbusClient::customEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QModbusClient::customEvent", f)
@@ -2240,8 +1859,6 @@ func (ptr *QModbusClient) ConnectCustomEvent(f func(event *core.QEvent)) {
 }
 
 func (ptr *QModbusClient) DisconnectCustomEvent() {
-	defer qt.Recovering("disconnect QModbusClient::customEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QModbusClient::customEvent")
@@ -2249,16 +1866,12 @@ func (ptr *QModbusClient) DisconnectCustomEvent() {
 }
 
 func (ptr *QModbusClient) CustomEvent(event core.QEvent_ITF) {
-	defer qt.Recovering("QModbusClient::customEvent")
-
 	if ptr.Pointer() != nil {
 		C.QModbusClient_CustomEvent(ptr.Pointer(), core.PointerFromQEvent(event))
 	}
 }
 
 func (ptr *QModbusClient) CustomEventDefault(event core.QEvent_ITF) {
-	defer qt.Recovering("QModbusClient::customEvent")
-
 	if ptr.Pointer() != nil {
 		C.QModbusClient_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
 	}
@@ -2266,8 +1879,6 @@ func (ptr *QModbusClient) CustomEventDefault(event core.QEvent_ITF) {
 
 //export callbackQModbusClient_DeleteLater
 func callbackQModbusClient_DeleteLater(ptr unsafe.Pointer) {
-	defer qt.Recovering("callback QModbusClient::deleteLater")
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QModbusClient::deleteLater"); signal != nil {
 		signal.(func())()
 	} else {
@@ -2276,8 +1887,6 @@ func callbackQModbusClient_DeleteLater(ptr unsafe.Pointer) {
 }
 
 func (ptr *QModbusClient) ConnectDeleteLater(f func()) {
-	defer qt.Recovering("connect QModbusClient::deleteLater")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QModbusClient::deleteLater", f)
@@ -2285,8 +1894,6 @@ func (ptr *QModbusClient) ConnectDeleteLater(f func()) {
 }
 
 func (ptr *QModbusClient) DisconnectDeleteLater() {
-	defer qt.Recovering("disconnect QModbusClient::deleteLater")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QModbusClient::deleteLater")
@@ -2294,8 +1901,6 @@ func (ptr *QModbusClient) DisconnectDeleteLater() {
 }
 
 func (ptr *QModbusClient) DeleteLater() {
-	defer qt.Recovering("QModbusClient::deleteLater")
-
 	if ptr.Pointer() != nil {
 		C.QModbusClient_DeleteLater(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
@@ -2304,8 +1909,6 @@ func (ptr *QModbusClient) DeleteLater() {
 }
 
 func (ptr *QModbusClient) DeleteLaterDefault() {
-	defer qt.Recovering("QModbusClient::deleteLater")
-
 	if ptr.Pointer() != nil {
 		C.QModbusClient_DeleteLaterDefault(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
@@ -2315,7 +1918,6 @@ func (ptr *QModbusClient) DeleteLaterDefault() {
 
 //export callbackQModbusClient_DisconnectNotify
 func callbackQModbusClient_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-	defer qt.Recovering("callback QModbusClient::disconnectNotify")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QModbusClient::disconnectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
@@ -2325,8 +1927,6 @@ func callbackQModbusClient_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Poin
 }
 
 func (ptr *QModbusClient) ConnectDisconnectNotify(f func(sign *core.QMetaMethod)) {
-	defer qt.Recovering("connect QModbusClient::disconnectNotify")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QModbusClient::disconnectNotify", f)
@@ -2334,8 +1934,6 @@ func (ptr *QModbusClient) ConnectDisconnectNotify(f func(sign *core.QMetaMethod)
 }
 
 func (ptr *QModbusClient) DisconnectDisconnectNotify() {
-	defer qt.Recovering("disconnect QModbusClient::disconnectNotify")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QModbusClient::disconnectNotify")
@@ -2343,16 +1941,12 @@ func (ptr *QModbusClient) DisconnectDisconnectNotify() {
 }
 
 func (ptr *QModbusClient) DisconnectNotify(sign core.QMetaMethod_ITF) {
-	defer qt.Recovering("QModbusClient::disconnectNotify")
-
 	if ptr.Pointer() != nil {
 		C.QModbusClient_DisconnectNotify(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
 	}
 }
 
 func (ptr *QModbusClient) DisconnectNotifyDefault(sign core.QMetaMethod_ITF) {
-	defer qt.Recovering("QModbusClient::disconnectNotify")
-
 	if ptr.Pointer() != nil {
 		C.QModbusClient_DisconnectNotifyDefault(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
 	}
@@ -2360,7 +1954,6 @@ func (ptr *QModbusClient) DisconnectNotifyDefault(sign core.QMetaMethod_ITF) {
 
 //export callbackQModbusClient_Event
 func callbackQModbusClient_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
-	defer qt.Recovering("callback QModbusClient::event")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QModbusClient::event"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
@@ -2370,8 +1963,6 @@ func callbackQModbusClient_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
 }
 
 func (ptr *QModbusClient) ConnectEvent(f func(e *core.QEvent) bool) {
-	defer qt.Recovering("connect QModbusClient::event")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QModbusClient::event", f)
@@ -2379,8 +1970,6 @@ func (ptr *QModbusClient) ConnectEvent(f func(e *core.QEvent) bool) {
 }
 
 func (ptr *QModbusClient) DisconnectEvent() {
-	defer qt.Recovering("disconnect QModbusClient::event")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QModbusClient::event")
@@ -2388,8 +1977,6 @@ func (ptr *QModbusClient) DisconnectEvent() {
 }
 
 func (ptr *QModbusClient) Event(e core.QEvent_ITF) bool {
-	defer qt.Recovering("QModbusClient::event")
-
 	if ptr.Pointer() != nil {
 		return C.QModbusClient_Event(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
 	}
@@ -2397,8 +1984,6 @@ func (ptr *QModbusClient) Event(e core.QEvent_ITF) bool {
 }
 
 func (ptr *QModbusClient) EventDefault(e core.QEvent_ITF) bool {
-	defer qt.Recovering("QModbusClient::event")
-
 	if ptr.Pointer() != nil {
 		return C.QModbusClient_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
 	}
@@ -2407,7 +1992,6 @@ func (ptr *QModbusClient) EventDefault(e core.QEvent_ITF) bool {
 
 //export callbackQModbusClient_EventFilter
 func callbackQModbusClient_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-	defer qt.Recovering("callback QModbusClient::eventFilter")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QModbusClient::eventFilter"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
@@ -2417,8 +2001,6 @@ func callbackQModbusClient_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointe
 }
 
 func (ptr *QModbusClient) ConnectEventFilter(f func(watched *core.QObject, event *core.QEvent) bool) {
-	defer qt.Recovering("connect QModbusClient::eventFilter")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QModbusClient::eventFilter", f)
@@ -2426,8 +2008,6 @@ func (ptr *QModbusClient) ConnectEventFilter(f func(watched *core.QObject, event
 }
 
 func (ptr *QModbusClient) DisconnectEventFilter() {
-	defer qt.Recovering("disconnect QModbusClient::eventFilter")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QModbusClient::eventFilter")
@@ -2435,8 +2015,6 @@ func (ptr *QModbusClient) DisconnectEventFilter() {
 }
 
 func (ptr *QModbusClient) EventFilter(watched core.QObject_ITF, event core.QEvent_ITF) bool {
-	defer qt.Recovering("QModbusClient::eventFilter")
-
 	if ptr.Pointer() != nil {
 		return C.QModbusClient_EventFilter(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
 	}
@@ -2444,8 +2022,6 @@ func (ptr *QModbusClient) EventFilter(watched core.QObject_ITF, event core.QEven
 }
 
 func (ptr *QModbusClient) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
-	defer qt.Recovering("QModbusClient::eventFilter")
-
 	if ptr.Pointer() != nil {
 		return C.QModbusClient_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
 	}
@@ -2454,7 +2030,6 @@ func (ptr *QModbusClient) EventFilterDefault(watched core.QObject_ITF, event cor
 
 //export callbackQModbusClient_MetaObject
 func callbackQModbusClient_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-	defer qt.Recovering("callback QModbusClient::metaObject")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QModbusClient::metaObject"); signal != nil {
 		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
@@ -2464,8 +2039,6 @@ func callbackQModbusClient_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
 }
 
 func (ptr *QModbusClient) ConnectMetaObject(f func() *core.QMetaObject) {
-	defer qt.Recovering("connect QModbusClient::metaObject")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QModbusClient::metaObject", f)
@@ -2473,8 +2046,6 @@ func (ptr *QModbusClient) ConnectMetaObject(f func() *core.QMetaObject) {
 }
 
 func (ptr *QModbusClient) DisconnectMetaObject() {
-	defer qt.Recovering("disconnect QModbusClient::metaObject")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QModbusClient::metaObject")
@@ -2482,8 +2053,6 @@ func (ptr *QModbusClient) DisconnectMetaObject() {
 }
 
 func (ptr *QModbusClient) MetaObject() *core.QMetaObject {
-	defer qt.Recovering("QModbusClient::metaObject")
-
 	if ptr.Pointer() != nil {
 		return core.NewQMetaObjectFromPointer(C.QModbusClient_MetaObject(ptr.Pointer()))
 	}
@@ -2491,8 +2060,6 @@ func (ptr *QModbusClient) MetaObject() *core.QMetaObject {
 }
 
 func (ptr *QModbusClient) MetaObjectDefault() *core.QMetaObject {
-	defer qt.Recovering("QModbusClient::metaObject")
-
 	if ptr.Pointer() != nil {
 		return core.NewQMetaObjectFromPointer(C.QModbusClient_MetaObjectDefault(ptr.Pointer()))
 	}
@@ -2554,32 +2121,24 @@ func (ptr *QModbusDataUnit) DestroyQModbusDataUnit() {
 }
 
 func NewQModbusDataUnit() *QModbusDataUnit {
-	defer qt.Recovering("QModbusDataUnit::QModbusDataUnit")
-
 	var tmpValue = NewQModbusDataUnitFromPointer(C.QModbusDataUnit_NewQModbusDataUnit())
 	runtime.SetFinalizer(tmpValue, (*QModbusDataUnit).DestroyQModbusDataUnit)
 	return tmpValue
 }
 
 func NewQModbusDataUnit2(ty QModbusDataUnit__RegisterType) *QModbusDataUnit {
-	defer qt.Recovering("QModbusDataUnit::QModbusDataUnit")
-
 	var tmpValue = NewQModbusDataUnitFromPointer(C.QModbusDataUnit_NewQModbusDataUnit2(C.longlong(ty)))
 	runtime.SetFinalizer(tmpValue, (*QModbusDataUnit).DestroyQModbusDataUnit)
 	return tmpValue
 }
 
 func NewQModbusDataUnit3(ty QModbusDataUnit__RegisterType, address int, size uint16) *QModbusDataUnit {
-	defer qt.Recovering("QModbusDataUnit::QModbusDataUnit")
-
 	var tmpValue = NewQModbusDataUnitFromPointer(C.QModbusDataUnit_NewQModbusDataUnit3(C.longlong(ty), C.int(int32(address)), C.ushort(size)))
 	runtime.SetFinalizer(tmpValue, (*QModbusDataUnit).DestroyQModbusDataUnit)
 	return tmpValue
 }
 
 func (ptr *QModbusDataUnit) IsValid() bool {
-	defer qt.Recovering("QModbusDataUnit::isValid")
-
 	if ptr.Pointer() != nil {
 		return C.QModbusDataUnit_IsValid(ptr.Pointer()) != 0
 	}
@@ -2587,8 +2146,6 @@ func (ptr *QModbusDataUnit) IsValid() bool {
 }
 
 func (ptr *QModbusDataUnit) RegisterType() QModbusDataUnit__RegisterType {
-	defer qt.Recovering("QModbusDataUnit::registerType")
-
 	if ptr.Pointer() != nil {
 		return QModbusDataUnit__RegisterType(C.QModbusDataUnit_RegisterType(ptr.Pointer()))
 	}
@@ -2596,40 +2153,30 @@ func (ptr *QModbusDataUnit) RegisterType() QModbusDataUnit__RegisterType {
 }
 
 func (ptr *QModbusDataUnit) SetRegisterType(ty QModbusDataUnit__RegisterType) {
-	defer qt.Recovering("QModbusDataUnit::setRegisterType")
-
 	if ptr.Pointer() != nil {
 		C.QModbusDataUnit_SetRegisterType(ptr.Pointer(), C.longlong(ty))
 	}
 }
 
 func (ptr *QModbusDataUnit) SetStartAddress(address int) {
-	defer qt.Recovering("QModbusDataUnit::setStartAddress")
-
 	if ptr.Pointer() != nil {
 		C.QModbusDataUnit_SetStartAddress(ptr.Pointer(), C.int(int32(address)))
 	}
 }
 
 func (ptr *QModbusDataUnit) SetValue(index int, value uint16) {
-	defer qt.Recovering("QModbusDataUnit::setValue")
-
 	if ptr.Pointer() != nil {
 		C.QModbusDataUnit_SetValue(ptr.Pointer(), C.int(int32(index)), C.ushort(value))
 	}
 }
 
 func (ptr *QModbusDataUnit) SetValueCount(newCount uint) {
-	defer qt.Recovering("QModbusDataUnit::setValueCount")
-
 	if ptr.Pointer() != nil {
 		C.QModbusDataUnit_SetValueCount(ptr.Pointer(), C.uint(uint32(newCount)))
 	}
 }
 
 func (ptr *QModbusDataUnit) StartAddress() int {
-	defer qt.Recovering("QModbusDataUnit::startAddress")
-
 	if ptr.Pointer() != nil {
 		return int(int32(C.QModbusDataUnit_StartAddress(ptr.Pointer())))
 	}
@@ -2637,8 +2184,6 @@ func (ptr *QModbusDataUnit) StartAddress() int {
 }
 
 func (ptr *QModbusDataUnit) Value(index int) uint16 {
-	defer qt.Recovering("QModbusDataUnit::value")
-
 	if ptr.Pointer() != nil {
 		return uint16(C.QModbusDataUnit_Value(ptr.Pointer(), C.int(int32(index))))
 	}
@@ -2646,8 +2191,6 @@ func (ptr *QModbusDataUnit) Value(index int) uint16 {
 }
 
 func (ptr *QModbusDataUnit) ValueCount() uint {
-	defer qt.Recovering("QModbusDataUnit::valueCount")
-
 	if ptr.Pointer() != nil {
 		return uint(uint32(C.QModbusDataUnit_ValueCount(ptr.Pointer())))
 	}
@@ -2732,8 +2275,6 @@ func NewQModbusDeviceFromPointer(ptr unsafe.Pointer) *QModbusDevice {
 	return n
 }
 func NewQModbusDevice(parent core.QObject_ITF) *QModbusDevice {
-	defer qt.Recovering("QModbusDevice::QModbusDevice")
-
 	var tmpValue = NewQModbusDeviceFromPointer(C.QModbusDevice_NewQModbusDevice(core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
@@ -2743,7 +2284,6 @@ func NewQModbusDevice(parent core.QObject_ITF) *QModbusDevice {
 
 //export callbackQModbusDevice_Close
 func callbackQModbusDevice_Close(ptr unsafe.Pointer) {
-	defer qt.Recovering("callback QModbusDevice::close")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QModbusDevice::close"); signal != nil {
 		signal.(func())()
@@ -2752,8 +2292,6 @@ func callbackQModbusDevice_Close(ptr unsafe.Pointer) {
 }
 
 func (ptr *QModbusDevice) ConnectClose(f func()) {
-	defer qt.Recovering("connect QModbusDevice::close")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QModbusDevice::close", f)
@@ -2761,8 +2299,6 @@ func (ptr *QModbusDevice) ConnectClose(f func()) {
 }
 
 func (ptr *QModbusDevice) DisconnectClose() {
-	defer qt.Recovering("disconnect QModbusDevice::close")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QModbusDevice::close")
@@ -2770,16 +2306,12 @@ func (ptr *QModbusDevice) DisconnectClose() {
 }
 
 func (ptr *QModbusDevice) Close() {
-	defer qt.Recovering("QModbusDevice::close")
-
 	if ptr.Pointer() != nil {
 		C.QModbusDevice_Close(ptr.Pointer())
 	}
 }
 
 func (ptr *QModbusDevice) ConnectDevice() bool {
-	defer qt.Recovering("QModbusDevice::connectDevice")
-
 	if ptr.Pointer() != nil {
 		return C.QModbusDevice_ConnectDevice(ptr.Pointer()) != 0
 	}
@@ -2787,8 +2319,6 @@ func (ptr *QModbusDevice) ConnectDevice() bool {
 }
 
 func (ptr *QModbusDevice) ConnectionParameter(parameter int) *core.QVariant {
-	defer qt.Recovering("QModbusDevice::connectionParameter")
-
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQVariantFromPointer(C.QModbusDevice_ConnectionParameter(ptr.Pointer(), C.int(int32(parameter))))
 		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
@@ -2798,16 +2328,12 @@ func (ptr *QModbusDevice) ConnectionParameter(parameter int) *core.QVariant {
 }
 
 func (ptr *QModbusDevice) DisconnectDevice() {
-	defer qt.Recovering("QModbusDevice::disconnectDevice")
-
 	if ptr.Pointer() != nil {
 		C.QModbusDevice_DisconnectDevice(ptr.Pointer())
 	}
 }
 
 func (ptr *QModbusDevice) Error() QModbusDevice__Error {
-	defer qt.Recovering("QModbusDevice::error")
-
 	if ptr.Pointer() != nil {
 		return QModbusDevice__Error(C.QModbusDevice_Error(ptr.Pointer()))
 	}
@@ -2816,7 +2342,6 @@ func (ptr *QModbusDevice) Error() QModbusDevice__Error {
 
 //export callbackQModbusDevice_ErrorOccurred
 func callbackQModbusDevice_ErrorOccurred(ptr unsafe.Pointer, error C.longlong) {
-	defer qt.Recovering("callback QModbusDevice::errorOccurred")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QModbusDevice::errorOccurred"); signal != nil {
 		signal.(func(QModbusDevice__Error))(QModbusDevice__Error(error))
@@ -2825,8 +2350,6 @@ func callbackQModbusDevice_ErrorOccurred(ptr unsafe.Pointer, error C.longlong) {
 }
 
 func (ptr *QModbusDevice) ConnectErrorOccurred(f func(error QModbusDevice__Error)) {
-	defer qt.Recovering("connect QModbusDevice::errorOccurred")
-
 	if ptr.Pointer() != nil {
 		C.QModbusDevice_ConnectErrorOccurred(ptr.Pointer())
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QModbusDevice::errorOccurred", f)
@@ -2834,8 +2357,6 @@ func (ptr *QModbusDevice) ConnectErrorOccurred(f func(error QModbusDevice__Error
 }
 
 func (ptr *QModbusDevice) DisconnectErrorOccurred() {
-	defer qt.Recovering("disconnect QModbusDevice::errorOccurred")
-
 	if ptr.Pointer() != nil {
 		C.QModbusDevice_DisconnectErrorOccurred(ptr.Pointer())
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QModbusDevice::errorOccurred")
@@ -2843,16 +2364,12 @@ func (ptr *QModbusDevice) DisconnectErrorOccurred() {
 }
 
 func (ptr *QModbusDevice) ErrorOccurred(error QModbusDevice__Error) {
-	defer qt.Recovering("QModbusDevice::errorOccurred")
-
 	if ptr.Pointer() != nil {
 		C.QModbusDevice_ErrorOccurred(ptr.Pointer(), C.longlong(error))
 	}
 }
 
 func (ptr *QModbusDevice) ErrorString() string {
-	defer qt.Recovering("QModbusDevice::errorString")
-
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QModbusDevice_ErrorString(ptr.Pointer()))
 	}
@@ -2861,7 +2378,6 @@ func (ptr *QModbusDevice) ErrorString() string {
 
 //export callbackQModbusDevice_Open
 func callbackQModbusDevice_Open(ptr unsafe.Pointer) C.char {
-	defer qt.Recovering("callback QModbusDevice::open")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QModbusDevice::open"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func() bool)())))
@@ -2871,8 +2387,6 @@ func callbackQModbusDevice_Open(ptr unsafe.Pointer) C.char {
 }
 
 func (ptr *QModbusDevice) ConnectOpen(f func() bool) {
-	defer qt.Recovering("connect QModbusDevice::open")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QModbusDevice::open", f)
@@ -2880,8 +2394,6 @@ func (ptr *QModbusDevice) ConnectOpen(f func() bool) {
 }
 
 func (ptr *QModbusDevice) DisconnectOpen() {
-	defer qt.Recovering("disconnect QModbusDevice::open")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QModbusDevice::open")
@@ -2889,8 +2401,6 @@ func (ptr *QModbusDevice) DisconnectOpen() {
 }
 
 func (ptr *QModbusDevice) Open() bool {
-	defer qt.Recovering("QModbusDevice::open")
-
 	if ptr.Pointer() != nil {
 		return C.QModbusDevice_Open(ptr.Pointer()) != 0
 	}
@@ -2898,16 +2408,12 @@ func (ptr *QModbusDevice) Open() bool {
 }
 
 func (ptr *QModbusDevice) SetConnectionParameter(parameter int, value core.QVariant_ITF) {
-	defer qt.Recovering("QModbusDevice::setConnectionParameter")
-
 	if ptr.Pointer() != nil {
 		C.QModbusDevice_SetConnectionParameter(ptr.Pointer(), C.int(int32(parameter)), core.PointerFromQVariant(value))
 	}
 }
 
 func (ptr *QModbusDevice) SetError(errorText string, error QModbusDevice__Error) {
-	defer qt.Recovering("QModbusDevice::setError")
-
 	if ptr.Pointer() != nil {
 		var errorTextC = C.CString(errorText)
 		defer C.free(unsafe.Pointer(errorTextC))
@@ -2916,16 +2422,12 @@ func (ptr *QModbusDevice) SetError(errorText string, error QModbusDevice__Error)
 }
 
 func (ptr *QModbusDevice) SetState(newState QModbusDevice__State) {
-	defer qt.Recovering("QModbusDevice::setState")
-
 	if ptr.Pointer() != nil {
 		C.QModbusDevice_SetState(ptr.Pointer(), C.longlong(newState))
 	}
 }
 
 func (ptr *QModbusDevice) State() QModbusDevice__State {
-	defer qt.Recovering("QModbusDevice::state")
-
 	if ptr.Pointer() != nil {
 		return QModbusDevice__State(C.QModbusDevice_State(ptr.Pointer()))
 	}
@@ -2934,7 +2436,6 @@ func (ptr *QModbusDevice) State() QModbusDevice__State {
 
 //export callbackQModbusDevice_StateChanged
 func callbackQModbusDevice_StateChanged(ptr unsafe.Pointer, state C.longlong) {
-	defer qt.Recovering("callback QModbusDevice::stateChanged")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QModbusDevice::stateChanged"); signal != nil {
 		signal.(func(QModbusDevice__State))(QModbusDevice__State(state))
@@ -2943,8 +2444,6 @@ func callbackQModbusDevice_StateChanged(ptr unsafe.Pointer, state C.longlong) {
 }
 
 func (ptr *QModbusDevice) ConnectStateChanged(f func(state QModbusDevice__State)) {
-	defer qt.Recovering("connect QModbusDevice::stateChanged")
-
 	if ptr.Pointer() != nil {
 		C.QModbusDevice_ConnectStateChanged(ptr.Pointer())
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QModbusDevice::stateChanged", f)
@@ -2952,8 +2451,6 @@ func (ptr *QModbusDevice) ConnectStateChanged(f func(state QModbusDevice__State)
 }
 
 func (ptr *QModbusDevice) DisconnectStateChanged() {
-	defer qt.Recovering("disconnect QModbusDevice::stateChanged")
-
 	if ptr.Pointer() != nil {
 		C.QModbusDevice_DisconnectStateChanged(ptr.Pointer())
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QModbusDevice::stateChanged")
@@ -2961,16 +2458,12 @@ func (ptr *QModbusDevice) DisconnectStateChanged() {
 }
 
 func (ptr *QModbusDevice) StateChanged(state QModbusDevice__State) {
-	defer qt.Recovering("QModbusDevice::stateChanged")
-
 	if ptr.Pointer() != nil {
 		C.QModbusDevice_StateChanged(ptr.Pointer(), C.longlong(state))
 	}
 }
 
 func (ptr *QModbusDevice) DestroyQModbusDevice() {
-	defer qt.Recovering("QModbusDevice::~QModbusDevice")
-
 	if ptr.Pointer() != nil {
 		C.QModbusDevice_DestroyQModbusDevice(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
@@ -2980,7 +2473,6 @@ func (ptr *QModbusDevice) DestroyQModbusDevice() {
 
 //export callbackQModbusDevice_TimerEvent
 func callbackQModbusDevice_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	defer qt.Recovering("callback QModbusDevice::timerEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QModbusDevice::timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
@@ -2990,8 +2482,6 @@ func callbackQModbusDevice_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) 
 }
 
 func (ptr *QModbusDevice) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
-	defer qt.Recovering("connect QModbusDevice::timerEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QModbusDevice::timerEvent", f)
@@ -2999,8 +2489,6 @@ func (ptr *QModbusDevice) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
 }
 
 func (ptr *QModbusDevice) DisconnectTimerEvent() {
-	defer qt.Recovering("disconnect QModbusDevice::timerEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QModbusDevice::timerEvent")
@@ -3008,16 +2496,12 @@ func (ptr *QModbusDevice) DisconnectTimerEvent() {
 }
 
 func (ptr *QModbusDevice) TimerEvent(event core.QTimerEvent_ITF) {
-	defer qt.Recovering("QModbusDevice::timerEvent")
-
 	if ptr.Pointer() != nil {
 		C.QModbusDevice_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
 	}
 }
 
 func (ptr *QModbusDevice) TimerEventDefault(event core.QTimerEvent_ITF) {
-	defer qt.Recovering("QModbusDevice::timerEvent")
-
 	if ptr.Pointer() != nil {
 		C.QModbusDevice_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
 	}
@@ -3025,7 +2509,6 @@ func (ptr *QModbusDevice) TimerEventDefault(event core.QTimerEvent_ITF) {
 
 //export callbackQModbusDevice_ChildEvent
 func callbackQModbusDevice_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	defer qt.Recovering("callback QModbusDevice::childEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QModbusDevice::childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
@@ -3035,8 +2518,6 @@ func callbackQModbusDevice_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) 
 }
 
 func (ptr *QModbusDevice) ConnectChildEvent(f func(event *core.QChildEvent)) {
-	defer qt.Recovering("connect QModbusDevice::childEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QModbusDevice::childEvent", f)
@@ -3044,8 +2525,6 @@ func (ptr *QModbusDevice) ConnectChildEvent(f func(event *core.QChildEvent)) {
 }
 
 func (ptr *QModbusDevice) DisconnectChildEvent() {
-	defer qt.Recovering("disconnect QModbusDevice::childEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QModbusDevice::childEvent")
@@ -3053,16 +2532,12 @@ func (ptr *QModbusDevice) DisconnectChildEvent() {
 }
 
 func (ptr *QModbusDevice) ChildEvent(event core.QChildEvent_ITF) {
-	defer qt.Recovering("QModbusDevice::childEvent")
-
 	if ptr.Pointer() != nil {
 		C.QModbusDevice_ChildEvent(ptr.Pointer(), core.PointerFromQChildEvent(event))
 	}
 }
 
 func (ptr *QModbusDevice) ChildEventDefault(event core.QChildEvent_ITF) {
-	defer qt.Recovering("QModbusDevice::childEvent")
-
 	if ptr.Pointer() != nil {
 		C.QModbusDevice_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
 	}
@@ -3070,7 +2545,6 @@ func (ptr *QModbusDevice) ChildEventDefault(event core.QChildEvent_ITF) {
 
 //export callbackQModbusDevice_ConnectNotify
 func callbackQModbusDevice_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-	defer qt.Recovering("callback QModbusDevice::connectNotify")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QModbusDevice::connectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
@@ -3080,8 +2554,6 @@ func callbackQModbusDevice_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer
 }
 
 func (ptr *QModbusDevice) ConnectConnectNotify(f func(sign *core.QMetaMethod)) {
-	defer qt.Recovering("connect QModbusDevice::connectNotify")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QModbusDevice::connectNotify", f)
@@ -3089,8 +2561,6 @@ func (ptr *QModbusDevice) ConnectConnectNotify(f func(sign *core.QMetaMethod)) {
 }
 
 func (ptr *QModbusDevice) DisconnectConnectNotify() {
-	defer qt.Recovering("disconnect QModbusDevice::connectNotify")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QModbusDevice::connectNotify")
@@ -3098,16 +2568,12 @@ func (ptr *QModbusDevice) DisconnectConnectNotify() {
 }
 
 func (ptr *QModbusDevice) ConnectNotify(sign core.QMetaMethod_ITF) {
-	defer qt.Recovering("QModbusDevice::connectNotify")
-
 	if ptr.Pointer() != nil {
 		C.QModbusDevice_ConnectNotify(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
 	}
 }
 
 func (ptr *QModbusDevice) ConnectNotifyDefault(sign core.QMetaMethod_ITF) {
-	defer qt.Recovering("QModbusDevice::connectNotify")
-
 	if ptr.Pointer() != nil {
 		C.QModbusDevice_ConnectNotifyDefault(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
 	}
@@ -3115,7 +2581,6 @@ func (ptr *QModbusDevice) ConnectNotifyDefault(sign core.QMetaMethod_ITF) {
 
 //export callbackQModbusDevice_CustomEvent
 func callbackQModbusDevice_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	defer qt.Recovering("callback QModbusDevice::customEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QModbusDevice::customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
@@ -3125,8 +2590,6 @@ func callbackQModbusDevice_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer)
 }
 
 func (ptr *QModbusDevice) ConnectCustomEvent(f func(event *core.QEvent)) {
-	defer qt.Recovering("connect QModbusDevice::customEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QModbusDevice::customEvent", f)
@@ -3134,8 +2597,6 @@ func (ptr *QModbusDevice) ConnectCustomEvent(f func(event *core.QEvent)) {
 }
 
 func (ptr *QModbusDevice) DisconnectCustomEvent() {
-	defer qt.Recovering("disconnect QModbusDevice::customEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QModbusDevice::customEvent")
@@ -3143,16 +2604,12 @@ func (ptr *QModbusDevice) DisconnectCustomEvent() {
 }
 
 func (ptr *QModbusDevice) CustomEvent(event core.QEvent_ITF) {
-	defer qt.Recovering("QModbusDevice::customEvent")
-
 	if ptr.Pointer() != nil {
 		C.QModbusDevice_CustomEvent(ptr.Pointer(), core.PointerFromQEvent(event))
 	}
 }
 
 func (ptr *QModbusDevice) CustomEventDefault(event core.QEvent_ITF) {
-	defer qt.Recovering("QModbusDevice::customEvent")
-
 	if ptr.Pointer() != nil {
 		C.QModbusDevice_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
 	}
@@ -3160,8 +2617,6 @@ func (ptr *QModbusDevice) CustomEventDefault(event core.QEvent_ITF) {
 
 //export callbackQModbusDevice_DeleteLater
 func callbackQModbusDevice_DeleteLater(ptr unsafe.Pointer) {
-	defer qt.Recovering("callback QModbusDevice::deleteLater")
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QModbusDevice::deleteLater"); signal != nil {
 		signal.(func())()
 	} else {
@@ -3170,8 +2625,6 @@ func callbackQModbusDevice_DeleteLater(ptr unsafe.Pointer) {
 }
 
 func (ptr *QModbusDevice) ConnectDeleteLater(f func()) {
-	defer qt.Recovering("connect QModbusDevice::deleteLater")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QModbusDevice::deleteLater", f)
@@ -3179,8 +2632,6 @@ func (ptr *QModbusDevice) ConnectDeleteLater(f func()) {
 }
 
 func (ptr *QModbusDevice) DisconnectDeleteLater() {
-	defer qt.Recovering("disconnect QModbusDevice::deleteLater")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QModbusDevice::deleteLater")
@@ -3188,8 +2639,6 @@ func (ptr *QModbusDevice) DisconnectDeleteLater() {
 }
 
 func (ptr *QModbusDevice) DeleteLater() {
-	defer qt.Recovering("QModbusDevice::deleteLater")
-
 	if ptr.Pointer() != nil {
 		C.QModbusDevice_DeleteLater(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
@@ -3198,8 +2647,6 @@ func (ptr *QModbusDevice) DeleteLater() {
 }
 
 func (ptr *QModbusDevice) DeleteLaterDefault() {
-	defer qt.Recovering("QModbusDevice::deleteLater")
-
 	if ptr.Pointer() != nil {
 		C.QModbusDevice_DeleteLaterDefault(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
@@ -3209,7 +2656,6 @@ func (ptr *QModbusDevice) DeleteLaterDefault() {
 
 //export callbackQModbusDevice_DisconnectNotify
 func callbackQModbusDevice_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-	defer qt.Recovering("callback QModbusDevice::disconnectNotify")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QModbusDevice::disconnectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
@@ -3219,8 +2665,6 @@ func callbackQModbusDevice_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Poin
 }
 
 func (ptr *QModbusDevice) ConnectDisconnectNotify(f func(sign *core.QMetaMethod)) {
-	defer qt.Recovering("connect QModbusDevice::disconnectNotify")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QModbusDevice::disconnectNotify", f)
@@ -3228,8 +2672,6 @@ func (ptr *QModbusDevice) ConnectDisconnectNotify(f func(sign *core.QMetaMethod)
 }
 
 func (ptr *QModbusDevice) DisconnectDisconnectNotify() {
-	defer qt.Recovering("disconnect QModbusDevice::disconnectNotify")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QModbusDevice::disconnectNotify")
@@ -3237,16 +2679,12 @@ func (ptr *QModbusDevice) DisconnectDisconnectNotify() {
 }
 
 func (ptr *QModbusDevice) DisconnectNotify(sign core.QMetaMethod_ITF) {
-	defer qt.Recovering("QModbusDevice::disconnectNotify")
-
 	if ptr.Pointer() != nil {
 		C.QModbusDevice_DisconnectNotify(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
 	}
 }
 
 func (ptr *QModbusDevice) DisconnectNotifyDefault(sign core.QMetaMethod_ITF) {
-	defer qt.Recovering("QModbusDevice::disconnectNotify")
-
 	if ptr.Pointer() != nil {
 		C.QModbusDevice_DisconnectNotifyDefault(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
 	}
@@ -3254,7 +2692,6 @@ func (ptr *QModbusDevice) DisconnectNotifyDefault(sign core.QMetaMethod_ITF) {
 
 //export callbackQModbusDevice_Event
 func callbackQModbusDevice_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
-	defer qt.Recovering("callback QModbusDevice::event")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QModbusDevice::event"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
@@ -3264,8 +2701,6 @@ func callbackQModbusDevice_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
 }
 
 func (ptr *QModbusDevice) ConnectEvent(f func(e *core.QEvent) bool) {
-	defer qt.Recovering("connect QModbusDevice::event")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QModbusDevice::event", f)
@@ -3273,8 +2708,6 @@ func (ptr *QModbusDevice) ConnectEvent(f func(e *core.QEvent) bool) {
 }
 
 func (ptr *QModbusDevice) DisconnectEvent() {
-	defer qt.Recovering("disconnect QModbusDevice::event")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QModbusDevice::event")
@@ -3282,8 +2715,6 @@ func (ptr *QModbusDevice) DisconnectEvent() {
 }
 
 func (ptr *QModbusDevice) Event(e core.QEvent_ITF) bool {
-	defer qt.Recovering("QModbusDevice::event")
-
 	if ptr.Pointer() != nil {
 		return C.QModbusDevice_Event(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
 	}
@@ -3291,8 +2722,6 @@ func (ptr *QModbusDevice) Event(e core.QEvent_ITF) bool {
 }
 
 func (ptr *QModbusDevice) EventDefault(e core.QEvent_ITF) bool {
-	defer qt.Recovering("QModbusDevice::event")
-
 	if ptr.Pointer() != nil {
 		return C.QModbusDevice_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
 	}
@@ -3301,7 +2730,6 @@ func (ptr *QModbusDevice) EventDefault(e core.QEvent_ITF) bool {
 
 //export callbackQModbusDevice_EventFilter
 func callbackQModbusDevice_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-	defer qt.Recovering("callback QModbusDevice::eventFilter")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QModbusDevice::eventFilter"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
@@ -3311,8 +2739,6 @@ func callbackQModbusDevice_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointe
 }
 
 func (ptr *QModbusDevice) ConnectEventFilter(f func(watched *core.QObject, event *core.QEvent) bool) {
-	defer qt.Recovering("connect QModbusDevice::eventFilter")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QModbusDevice::eventFilter", f)
@@ -3320,8 +2746,6 @@ func (ptr *QModbusDevice) ConnectEventFilter(f func(watched *core.QObject, event
 }
 
 func (ptr *QModbusDevice) DisconnectEventFilter() {
-	defer qt.Recovering("disconnect QModbusDevice::eventFilter")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QModbusDevice::eventFilter")
@@ -3329,8 +2753,6 @@ func (ptr *QModbusDevice) DisconnectEventFilter() {
 }
 
 func (ptr *QModbusDevice) EventFilter(watched core.QObject_ITF, event core.QEvent_ITF) bool {
-	defer qt.Recovering("QModbusDevice::eventFilter")
-
 	if ptr.Pointer() != nil {
 		return C.QModbusDevice_EventFilter(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
 	}
@@ -3338,8 +2760,6 @@ func (ptr *QModbusDevice) EventFilter(watched core.QObject_ITF, event core.QEven
 }
 
 func (ptr *QModbusDevice) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
-	defer qt.Recovering("QModbusDevice::eventFilter")
-
 	if ptr.Pointer() != nil {
 		return C.QModbusDevice_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
 	}
@@ -3348,7 +2768,6 @@ func (ptr *QModbusDevice) EventFilterDefault(watched core.QObject_ITF, event cor
 
 //export callbackQModbusDevice_MetaObject
 func callbackQModbusDevice_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-	defer qt.Recovering("callback QModbusDevice::metaObject")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QModbusDevice::metaObject"); signal != nil {
 		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
@@ -3358,8 +2777,6 @@ func callbackQModbusDevice_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
 }
 
 func (ptr *QModbusDevice) ConnectMetaObject(f func() *core.QMetaObject) {
-	defer qt.Recovering("connect QModbusDevice::metaObject")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QModbusDevice::metaObject", f)
@@ -3367,8 +2784,6 @@ func (ptr *QModbusDevice) ConnectMetaObject(f func() *core.QMetaObject) {
 }
 
 func (ptr *QModbusDevice) DisconnectMetaObject() {
-	defer qt.Recovering("disconnect QModbusDevice::metaObject")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QModbusDevice::metaObject")
@@ -3376,8 +2791,6 @@ func (ptr *QModbusDevice) DisconnectMetaObject() {
 }
 
 func (ptr *QModbusDevice) MetaObject() *core.QMetaObject {
-	defer qt.Recovering("QModbusDevice::metaObject")
-
 	if ptr.Pointer() != nil {
 		return core.NewQMetaObjectFromPointer(C.QModbusDevice_MetaObject(ptr.Pointer()))
 	}
@@ -3385,8 +2798,6 @@ func (ptr *QModbusDevice) MetaObject() *core.QMetaObject {
 }
 
 func (ptr *QModbusDevice) MetaObjectDefault() *core.QMetaObject {
-	defer qt.Recovering("QModbusDevice::metaObject")
-
 	if ptr.Pointer() != nil {
 		return core.NewQMetaObjectFromPointer(C.QModbusDevice_MetaObjectDefault(ptr.Pointer()))
 	}
@@ -3475,16 +2886,12 @@ func (ptr *QModbusDeviceIdentification) DestroyQModbusDeviceIdentification() {
 }
 
 func NewQModbusDeviceIdentification() *QModbusDeviceIdentification {
-	defer qt.Recovering("QModbusDeviceIdentification::QModbusDeviceIdentification")
-
 	var tmpValue = NewQModbusDeviceIdentificationFromPointer(C.QModbusDeviceIdentification_NewQModbusDeviceIdentification())
 	runtime.SetFinalizer(tmpValue, (*QModbusDeviceIdentification).DestroyQModbusDeviceIdentification)
 	return tmpValue
 }
 
 func (ptr *QModbusDeviceIdentification) ConformityLevel() QModbusDeviceIdentification__ConformityLevel {
-	defer qt.Recovering("QModbusDeviceIdentification::conformityLevel")
-
 	if ptr.Pointer() != nil {
 		return QModbusDeviceIdentification__ConformityLevel(C.QModbusDeviceIdentification_ConformityLevel(ptr.Pointer()))
 	}
@@ -3492,8 +2899,6 @@ func (ptr *QModbusDeviceIdentification) ConformityLevel() QModbusDeviceIdentific
 }
 
 func (ptr *QModbusDeviceIdentification) Contains(objectId uint) bool {
-	defer qt.Recovering("QModbusDeviceIdentification::contains")
-
 	if ptr.Pointer() != nil {
 		return C.QModbusDeviceIdentification_Contains(ptr.Pointer(), C.uint(uint32(objectId))) != 0
 	}
@@ -3501,8 +2906,6 @@ func (ptr *QModbusDeviceIdentification) Contains(objectId uint) bool {
 }
 
 func (ptr *QModbusDeviceIdentification) Insert(objectId uint, value string) bool {
-	defer qt.Recovering("QModbusDeviceIdentification::insert")
-
 	if ptr.Pointer() != nil {
 		var valueC = C.CString(hex.EncodeToString([]byte(value)))
 		defer C.free(unsafe.Pointer(valueC))
@@ -3512,8 +2915,6 @@ func (ptr *QModbusDeviceIdentification) Insert(objectId uint, value string) bool
 }
 
 func (ptr *QModbusDeviceIdentification) IsValid() bool {
-	defer qt.Recovering("QModbusDeviceIdentification::isValid")
-
 	if ptr.Pointer() != nil {
 		return C.QModbusDeviceIdentification_IsValid(ptr.Pointer()) != 0
 	}
@@ -3521,24 +2922,18 @@ func (ptr *QModbusDeviceIdentification) IsValid() bool {
 }
 
 func (ptr *QModbusDeviceIdentification) Remove(objectId uint) {
-	defer qt.Recovering("QModbusDeviceIdentification::remove")
-
 	if ptr.Pointer() != nil {
 		C.QModbusDeviceIdentification_Remove(ptr.Pointer(), C.uint(uint32(objectId)))
 	}
 }
 
 func (ptr *QModbusDeviceIdentification) SetConformityLevel(level QModbusDeviceIdentification__ConformityLevel) {
-	defer qt.Recovering("QModbusDeviceIdentification::setConformityLevel")
-
 	if ptr.Pointer() != nil {
 		C.QModbusDeviceIdentification_SetConformityLevel(ptr.Pointer(), C.longlong(level))
 	}
 }
 
 func (ptr *QModbusDeviceIdentification) Value(objectId uint) string {
-	defer qt.Recovering("QModbusDeviceIdentification::value")
-
 	if ptr.Pointer() != nil {
 		return qt.HexDecodeToString(C.GoString(C.QModbusDeviceIdentification_Value(ptr.Pointer(), C.uint(uint32(objectId)))))
 	}
@@ -3591,26 +2986,18 @@ func (ptr *QModbusExceptionResponse) DestroyQModbusExceptionResponse() {
 }
 
 func NewQModbusExceptionResponse() *QModbusExceptionResponse {
-	defer qt.Recovering("QModbusExceptionResponse::QModbusExceptionResponse")
-
 	return NewQModbusExceptionResponseFromPointer(C.QModbusExceptionResponse_NewQModbusExceptionResponse())
 }
 
 func NewQModbusExceptionResponse3(code QModbusPdu__FunctionCode, ec QModbusPdu__ExceptionCode) *QModbusExceptionResponse {
-	defer qt.Recovering("QModbusExceptionResponse::QModbusExceptionResponse")
-
 	return NewQModbusExceptionResponseFromPointer(C.QModbusExceptionResponse_NewQModbusExceptionResponse3(C.longlong(code), C.longlong(ec)))
 }
 
 func NewQModbusExceptionResponse2(pdu QModbusPdu_ITF) *QModbusExceptionResponse {
-	defer qt.Recovering("QModbusExceptionResponse::QModbusExceptionResponse")
-
 	return NewQModbusExceptionResponseFromPointer(C.QModbusExceptionResponse_NewQModbusExceptionResponse2(PointerFromQModbusPdu(pdu)))
 }
 
 func (ptr *QModbusExceptionResponse) SetExceptionCode(ec QModbusPdu__ExceptionCode) {
-	defer qt.Recovering("QModbusExceptionResponse::setExceptionCode")
-
 	if ptr.Pointer() != nil {
 		C.QModbusExceptionResponse_SetExceptionCode(ptr.Pointer(), C.longlong(ec))
 	}
@@ -3618,7 +3005,6 @@ func (ptr *QModbusExceptionResponse) SetExceptionCode(ec QModbusPdu__ExceptionCo
 
 //export callbackQModbusExceptionResponse_SetFunctionCode
 func callbackQModbusExceptionResponse_SetFunctionCode(ptr unsafe.Pointer, c C.longlong) {
-	defer qt.Recovering("callback QModbusExceptionResponse::setFunctionCode")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QModbusExceptionResponse::setFunctionCode"); signal != nil {
 		signal.(func(QModbusPdu__FunctionCode))(QModbusPdu__FunctionCode(c))
@@ -3628,8 +3014,6 @@ func callbackQModbusExceptionResponse_SetFunctionCode(ptr unsafe.Pointer, c C.lo
 }
 
 func (ptr *QModbusExceptionResponse) ConnectSetFunctionCode(f func(c QModbusPdu__FunctionCode)) {
-	defer qt.Recovering("connect QModbusExceptionResponse::setFunctionCode")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QModbusExceptionResponse::setFunctionCode", f)
@@ -3637,8 +3021,6 @@ func (ptr *QModbusExceptionResponse) ConnectSetFunctionCode(f func(c QModbusPdu_
 }
 
 func (ptr *QModbusExceptionResponse) DisconnectSetFunctionCode() {
-	defer qt.Recovering("disconnect QModbusExceptionResponse::setFunctionCode")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QModbusExceptionResponse::setFunctionCode")
@@ -3646,16 +3028,12 @@ func (ptr *QModbusExceptionResponse) DisconnectSetFunctionCode() {
 }
 
 func (ptr *QModbusExceptionResponse) SetFunctionCode(c QModbusPdu__FunctionCode) {
-	defer qt.Recovering("QModbusExceptionResponse::setFunctionCode")
-
 	if ptr.Pointer() != nil {
 		C.QModbusExceptionResponse_SetFunctionCode(ptr.Pointer(), C.longlong(c))
 	}
 }
 
 func (ptr *QModbusExceptionResponse) SetFunctionCodeDefault(c QModbusPdu__FunctionCode) {
-	defer qt.Recovering("QModbusExceptionResponse::setFunctionCode")
-
 	if ptr.Pointer() != nil {
 		C.QModbusExceptionResponse_SetFunctionCodeDefault(ptr.Pointer(), C.longlong(c))
 	}
@@ -3743,28 +3121,20 @@ func NewQModbusPduFromPointer(ptr unsafe.Pointer) *QModbusPdu {
 	return n
 }
 func NewQModbusPdu() *QModbusPdu {
-	defer qt.Recovering("QModbusPdu::QModbusPdu")
-
 	return NewQModbusPduFromPointer(C.QModbusPdu_NewQModbusPdu())
 }
 
 func NewQModbusPdu2(code QModbusPdu__FunctionCode, data string) *QModbusPdu {
-	defer qt.Recovering("QModbusPdu::QModbusPdu")
-
 	var dataC = C.CString(hex.EncodeToString([]byte(data)))
 	defer C.free(unsafe.Pointer(dataC))
 	return NewQModbusPduFromPointer(C.QModbusPdu_NewQModbusPdu2(C.longlong(code), dataC))
 }
 
 func NewQModbusPdu3(other QModbusPdu_ITF) *QModbusPdu {
-	defer qt.Recovering("QModbusPdu::QModbusPdu")
-
 	return NewQModbusPduFromPointer(C.QModbusPdu_NewQModbusPdu3(PointerFromQModbusPdu(other)))
 }
 
 func (ptr *QModbusPdu) DataSize() int16 {
-	defer qt.Recovering("QModbusPdu::dataSize")
-
 	if ptr.Pointer() != nil {
 		return int16(C.QModbusPdu_DataSize(ptr.Pointer()))
 	}
@@ -3772,8 +3142,6 @@ func (ptr *QModbusPdu) DataSize() int16 {
 }
 
 func (ptr *QModbusPdu) Data() string {
-	defer qt.Recovering("QModbusPdu::data")
-
 	if ptr.Pointer() != nil {
 		return qt.HexDecodeToString(C.GoString(C.QModbusPdu_Data(ptr.Pointer())))
 	}
@@ -3781,8 +3149,6 @@ func (ptr *QModbusPdu) Data() string {
 }
 
 func (ptr *QModbusPdu) ExceptionCode() QModbusPdu__ExceptionCode {
-	defer qt.Recovering("QModbusPdu::exceptionCode")
-
 	if ptr.Pointer() != nil {
 		return QModbusPdu__ExceptionCode(C.QModbusPdu_ExceptionCode(ptr.Pointer()))
 	}
@@ -3790,8 +3156,6 @@ func (ptr *QModbusPdu) ExceptionCode() QModbusPdu__ExceptionCode {
 }
 
 func (ptr *QModbusPdu) FunctionCode() QModbusPdu__FunctionCode {
-	defer qt.Recovering("QModbusPdu::functionCode")
-
 	if ptr.Pointer() != nil {
 		return QModbusPdu__FunctionCode(C.QModbusPdu_FunctionCode(ptr.Pointer()))
 	}
@@ -3799,8 +3163,6 @@ func (ptr *QModbusPdu) FunctionCode() QModbusPdu__FunctionCode {
 }
 
 func (ptr *QModbusPdu) IsException() bool {
-	defer qt.Recovering("QModbusPdu::isException")
-
 	if ptr.Pointer() != nil {
 		return C.QModbusPdu_IsException(ptr.Pointer()) != 0
 	}
@@ -3808,8 +3170,6 @@ func (ptr *QModbusPdu) IsException() bool {
 }
 
 func (ptr *QModbusPdu) IsValid() bool {
-	defer qt.Recovering("QModbusPdu::isValid")
-
 	if ptr.Pointer() != nil {
 		return C.QModbusPdu_IsValid(ptr.Pointer()) != 0
 	}
@@ -3817,8 +3177,6 @@ func (ptr *QModbusPdu) IsValid() bool {
 }
 
 func (ptr *QModbusPdu) SetData(data string) {
-	defer qt.Recovering("QModbusPdu::setData")
-
 	if ptr.Pointer() != nil {
 		var dataC = C.CString(hex.EncodeToString([]byte(data)))
 		defer C.free(unsafe.Pointer(dataC))
@@ -3828,7 +3186,6 @@ func (ptr *QModbusPdu) SetData(data string) {
 
 //export callbackQModbusPdu_SetFunctionCode
 func callbackQModbusPdu_SetFunctionCode(ptr unsafe.Pointer, code C.longlong) {
-	defer qt.Recovering("callback QModbusPdu::setFunctionCode")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QModbusPdu::setFunctionCode"); signal != nil {
 		signal.(func(QModbusPdu__FunctionCode))(QModbusPdu__FunctionCode(code))
@@ -3838,8 +3195,6 @@ func callbackQModbusPdu_SetFunctionCode(ptr unsafe.Pointer, code C.longlong) {
 }
 
 func (ptr *QModbusPdu) ConnectSetFunctionCode(f func(code QModbusPdu__FunctionCode)) {
-	defer qt.Recovering("connect QModbusPdu::setFunctionCode")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QModbusPdu::setFunctionCode", f)
@@ -3847,8 +3202,6 @@ func (ptr *QModbusPdu) ConnectSetFunctionCode(f func(code QModbusPdu__FunctionCo
 }
 
 func (ptr *QModbusPdu) DisconnectSetFunctionCode() {
-	defer qt.Recovering("disconnect QModbusPdu::setFunctionCode")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QModbusPdu::setFunctionCode")
@@ -3856,24 +3209,18 @@ func (ptr *QModbusPdu) DisconnectSetFunctionCode() {
 }
 
 func (ptr *QModbusPdu) SetFunctionCode(code QModbusPdu__FunctionCode) {
-	defer qt.Recovering("QModbusPdu::setFunctionCode")
-
 	if ptr.Pointer() != nil {
 		C.QModbusPdu_SetFunctionCode(ptr.Pointer(), C.longlong(code))
 	}
 }
 
 func (ptr *QModbusPdu) SetFunctionCodeDefault(code QModbusPdu__FunctionCode) {
-	defer qt.Recovering("QModbusPdu::setFunctionCode")
-
 	if ptr.Pointer() != nil {
 		C.QModbusPdu_SetFunctionCodeDefault(ptr.Pointer(), C.longlong(code))
 	}
 }
 
 func (ptr *QModbusPdu) Size() int16 {
-	defer qt.Recovering("QModbusPdu::size")
-
 	if ptr.Pointer() != nil {
 		return int16(C.QModbusPdu_Size(ptr.Pointer()))
 	}
@@ -3882,7 +3229,6 @@ func (ptr *QModbusPdu) Size() int16 {
 
 //export callbackQModbusPdu_DestroyQModbusPdu
 func callbackQModbusPdu_DestroyQModbusPdu(ptr unsafe.Pointer) {
-	defer qt.Recovering("callback QModbusPdu::~QModbusPdu")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QModbusPdu::~QModbusPdu"); signal != nil {
 		signal.(func())()
@@ -3892,8 +3238,6 @@ func callbackQModbusPdu_DestroyQModbusPdu(ptr unsafe.Pointer) {
 }
 
 func (ptr *QModbusPdu) ConnectDestroyQModbusPdu(f func()) {
-	defer qt.Recovering("connect QModbusPdu::~QModbusPdu")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QModbusPdu::~QModbusPdu", f)
@@ -3901,8 +3245,6 @@ func (ptr *QModbusPdu) ConnectDestroyQModbusPdu(f func()) {
 }
 
 func (ptr *QModbusPdu) DisconnectDestroyQModbusPdu() {
-	defer qt.Recovering("disconnect QModbusPdu::~QModbusPdu")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QModbusPdu::~QModbusPdu")
@@ -3910,8 +3252,6 @@ func (ptr *QModbusPdu) DisconnectDestroyQModbusPdu() {
 }
 
 func (ptr *QModbusPdu) DestroyQModbusPdu() {
-	defer qt.Recovering("QModbusPdu::~QModbusPdu")
-
 	if ptr.Pointer() != nil {
 		C.QModbusPdu_DestroyQModbusPdu(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
@@ -3920,8 +3260,6 @@ func (ptr *QModbusPdu) DestroyQModbusPdu() {
 }
 
 func (ptr *QModbusPdu) DestroyQModbusPduDefault() {
-	defer qt.Recovering("QModbusPdu::~QModbusPdu")
-
 	if ptr.Pointer() != nil {
 		C.QModbusPdu_DestroyQModbusPduDefault(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
@@ -3983,8 +3321,6 @@ func (ptr *QModbusReply) DestroyQModbusReply() {
 }
 
 func NewQModbusReply(ty QModbusReply__ReplyType, serverAddress int, parent core.QObject_ITF) *QModbusReply {
-	defer qt.Recovering("QModbusReply::QModbusReply")
-
 	var tmpValue = NewQModbusReplyFromPointer(C.QModbusReply_NewQModbusReply(C.longlong(ty), C.int(int32(serverAddress)), core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
@@ -3993,8 +3329,6 @@ func NewQModbusReply(ty QModbusReply__ReplyType, serverAddress int, parent core.
 }
 
 func (ptr *QModbusReply) Error() QModbusDevice__Error {
-	defer qt.Recovering("QModbusReply::error")
-
 	if ptr.Pointer() != nil {
 		return QModbusDevice__Error(C.QModbusReply_Error(ptr.Pointer()))
 	}
@@ -4003,7 +3337,6 @@ func (ptr *QModbusReply) Error() QModbusDevice__Error {
 
 //export callbackQModbusReply_ErrorOccurred
 func callbackQModbusReply_ErrorOccurred(ptr unsafe.Pointer, error C.longlong) {
-	defer qt.Recovering("callback QModbusReply::errorOccurred")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QModbusReply::errorOccurred"); signal != nil {
 		signal.(func(QModbusDevice__Error))(QModbusDevice__Error(error))
@@ -4012,8 +3345,6 @@ func callbackQModbusReply_ErrorOccurred(ptr unsafe.Pointer, error C.longlong) {
 }
 
 func (ptr *QModbusReply) ConnectErrorOccurred(f func(error QModbusDevice__Error)) {
-	defer qt.Recovering("connect QModbusReply::errorOccurred")
-
 	if ptr.Pointer() != nil {
 		C.QModbusReply_ConnectErrorOccurred(ptr.Pointer())
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QModbusReply::errorOccurred", f)
@@ -4021,8 +3352,6 @@ func (ptr *QModbusReply) ConnectErrorOccurred(f func(error QModbusDevice__Error)
 }
 
 func (ptr *QModbusReply) DisconnectErrorOccurred() {
-	defer qt.Recovering("disconnect QModbusReply::errorOccurred")
-
 	if ptr.Pointer() != nil {
 		C.QModbusReply_DisconnectErrorOccurred(ptr.Pointer())
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QModbusReply::errorOccurred")
@@ -4030,16 +3359,12 @@ func (ptr *QModbusReply) DisconnectErrorOccurred() {
 }
 
 func (ptr *QModbusReply) ErrorOccurred(error QModbusDevice__Error) {
-	defer qt.Recovering("QModbusReply::errorOccurred")
-
 	if ptr.Pointer() != nil {
 		C.QModbusReply_ErrorOccurred(ptr.Pointer(), C.longlong(error))
 	}
 }
 
 func (ptr *QModbusReply) ErrorString() string {
-	defer qt.Recovering("QModbusReply::errorString")
-
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QModbusReply_ErrorString(ptr.Pointer()))
 	}
@@ -4048,7 +3373,6 @@ func (ptr *QModbusReply) ErrorString() string {
 
 //export callbackQModbusReply_Finished
 func callbackQModbusReply_Finished(ptr unsafe.Pointer) {
-	defer qt.Recovering("callback QModbusReply::finished")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QModbusReply::finished"); signal != nil {
 		signal.(func())()
@@ -4057,8 +3381,6 @@ func callbackQModbusReply_Finished(ptr unsafe.Pointer) {
 }
 
 func (ptr *QModbusReply) ConnectFinished(f func()) {
-	defer qt.Recovering("connect QModbusReply::finished")
-
 	if ptr.Pointer() != nil {
 		C.QModbusReply_ConnectFinished(ptr.Pointer())
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QModbusReply::finished", f)
@@ -4066,8 +3388,6 @@ func (ptr *QModbusReply) ConnectFinished(f func()) {
 }
 
 func (ptr *QModbusReply) DisconnectFinished() {
-	defer qt.Recovering("disconnect QModbusReply::finished")
-
 	if ptr.Pointer() != nil {
 		C.QModbusReply_DisconnectFinished(ptr.Pointer())
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QModbusReply::finished")
@@ -4075,16 +3395,12 @@ func (ptr *QModbusReply) DisconnectFinished() {
 }
 
 func (ptr *QModbusReply) Finished() {
-	defer qt.Recovering("QModbusReply::finished")
-
 	if ptr.Pointer() != nil {
 		C.QModbusReply_Finished(ptr.Pointer())
 	}
 }
 
 func (ptr *QModbusReply) IsFinished() bool {
-	defer qt.Recovering("QModbusReply::isFinished")
-
 	if ptr.Pointer() != nil {
 		return C.QModbusReply_IsFinished(ptr.Pointer()) != 0
 	}
@@ -4092,8 +3408,6 @@ func (ptr *QModbusReply) IsFinished() bool {
 }
 
 func (ptr *QModbusReply) ServerAddress() int {
-	defer qt.Recovering("QModbusReply::serverAddress")
-
 	if ptr.Pointer() != nil {
 		return int(int32(C.QModbusReply_ServerAddress(ptr.Pointer())))
 	}
@@ -4101,8 +3415,6 @@ func (ptr *QModbusReply) ServerAddress() int {
 }
 
 func (ptr *QModbusReply) Type() QModbusReply__ReplyType {
-	defer qt.Recovering("QModbusReply::type")
-
 	if ptr.Pointer() != nil {
 		return QModbusReply__ReplyType(C.QModbusReply_Type(ptr.Pointer()))
 	}
@@ -4111,7 +3423,6 @@ func (ptr *QModbusReply) Type() QModbusReply__ReplyType {
 
 //export callbackQModbusReply_TimerEvent
 func callbackQModbusReply_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	defer qt.Recovering("callback QModbusReply::timerEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QModbusReply::timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
@@ -4121,8 +3432,6 @@ func callbackQModbusReply_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 }
 
 func (ptr *QModbusReply) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
-	defer qt.Recovering("connect QModbusReply::timerEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QModbusReply::timerEvent", f)
@@ -4130,8 +3439,6 @@ func (ptr *QModbusReply) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
 }
 
 func (ptr *QModbusReply) DisconnectTimerEvent() {
-	defer qt.Recovering("disconnect QModbusReply::timerEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QModbusReply::timerEvent")
@@ -4139,16 +3446,12 @@ func (ptr *QModbusReply) DisconnectTimerEvent() {
 }
 
 func (ptr *QModbusReply) TimerEvent(event core.QTimerEvent_ITF) {
-	defer qt.Recovering("QModbusReply::timerEvent")
-
 	if ptr.Pointer() != nil {
 		C.QModbusReply_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
 	}
 }
 
 func (ptr *QModbusReply) TimerEventDefault(event core.QTimerEvent_ITF) {
-	defer qt.Recovering("QModbusReply::timerEvent")
-
 	if ptr.Pointer() != nil {
 		C.QModbusReply_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
 	}
@@ -4156,7 +3459,6 @@ func (ptr *QModbusReply) TimerEventDefault(event core.QTimerEvent_ITF) {
 
 //export callbackQModbusReply_ChildEvent
 func callbackQModbusReply_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	defer qt.Recovering("callback QModbusReply::childEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QModbusReply::childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
@@ -4166,8 +3468,6 @@ func callbackQModbusReply_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 }
 
 func (ptr *QModbusReply) ConnectChildEvent(f func(event *core.QChildEvent)) {
-	defer qt.Recovering("connect QModbusReply::childEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QModbusReply::childEvent", f)
@@ -4175,8 +3475,6 @@ func (ptr *QModbusReply) ConnectChildEvent(f func(event *core.QChildEvent)) {
 }
 
 func (ptr *QModbusReply) DisconnectChildEvent() {
-	defer qt.Recovering("disconnect QModbusReply::childEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QModbusReply::childEvent")
@@ -4184,16 +3482,12 @@ func (ptr *QModbusReply) DisconnectChildEvent() {
 }
 
 func (ptr *QModbusReply) ChildEvent(event core.QChildEvent_ITF) {
-	defer qt.Recovering("QModbusReply::childEvent")
-
 	if ptr.Pointer() != nil {
 		C.QModbusReply_ChildEvent(ptr.Pointer(), core.PointerFromQChildEvent(event))
 	}
 }
 
 func (ptr *QModbusReply) ChildEventDefault(event core.QChildEvent_ITF) {
-	defer qt.Recovering("QModbusReply::childEvent")
-
 	if ptr.Pointer() != nil {
 		C.QModbusReply_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
 	}
@@ -4201,7 +3495,6 @@ func (ptr *QModbusReply) ChildEventDefault(event core.QChildEvent_ITF) {
 
 //export callbackQModbusReply_ConnectNotify
 func callbackQModbusReply_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-	defer qt.Recovering("callback QModbusReply::connectNotify")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QModbusReply::connectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
@@ -4211,8 +3504,6 @@ func callbackQModbusReply_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer)
 }
 
 func (ptr *QModbusReply) ConnectConnectNotify(f func(sign *core.QMetaMethod)) {
-	defer qt.Recovering("connect QModbusReply::connectNotify")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QModbusReply::connectNotify", f)
@@ -4220,8 +3511,6 @@ func (ptr *QModbusReply) ConnectConnectNotify(f func(sign *core.QMetaMethod)) {
 }
 
 func (ptr *QModbusReply) DisconnectConnectNotify() {
-	defer qt.Recovering("disconnect QModbusReply::connectNotify")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QModbusReply::connectNotify")
@@ -4229,16 +3518,12 @@ func (ptr *QModbusReply) DisconnectConnectNotify() {
 }
 
 func (ptr *QModbusReply) ConnectNotify(sign core.QMetaMethod_ITF) {
-	defer qt.Recovering("QModbusReply::connectNotify")
-
 	if ptr.Pointer() != nil {
 		C.QModbusReply_ConnectNotify(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
 	}
 }
 
 func (ptr *QModbusReply) ConnectNotifyDefault(sign core.QMetaMethod_ITF) {
-	defer qt.Recovering("QModbusReply::connectNotify")
-
 	if ptr.Pointer() != nil {
 		C.QModbusReply_ConnectNotifyDefault(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
 	}
@@ -4246,7 +3531,6 @@ func (ptr *QModbusReply) ConnectNotifyDefault(sign core.QMetaMethod_ITF) {
 
 //export callbackQModbusReply_CustomEvent
 func callbackQModbusReply_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	defer qt.Recovering("callback QModbusReply::customEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QModbusReply::customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
@@ -4256,8 +3540,6 @@ func callbackQModbusReply_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) 
 }
 
 func (ptr *QModbusReply) ConnectCustomEvent(f func(event *core.QEvent)) {
-	defer qt.Recovering("connect QModbusReply::customEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QModbusReply::customEvent", f)
@@ -4265,8 +3547,6 @@ func (ptr *QModbusReply) ConnectCustomEvent(f func(event *core.QEvent)) {
 }
 
 func (ptr *QModbusReply) DisconnectCustomEvent() {
-	defer qt.Recovering("disconnect QModbusReply::customEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QModbusReply::customEvent")
@@ -4274,16 +3554,12 @@ func (ptr *QModbusReply) DisconnectCustomEvent() {
 }
 
 func (ptr *QModbusReply) CustomEvent(event core.QEvent_ITF) {
-	defer qt.Recovering("QModbusReply::customEvent")
-
 	if ptr.Pointer() != nil {
 		C.QModbusReply_CustomEvent(ptr.Pointer(), core.PointerFromQEvent(event))
 	}
 }
 
 func (ptr *QModbusReply) CustomEventDefault(event core.QEvent_ITF) {
-	defer qt.Recovering("QModbusReply::customEvent")
-
 	if ptr.Pointer() != nil {
 		C.QModbusReply_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
 	}
@@ -4291,8 +3567,6 @@ func (ptr *QModbusReply) CustomEventDefault(event core.QEvent_ITF) {
 
 //export callbackQModbusReply_DeleteLater
 func callbackQModbusReply_DeleteLater(ptr unsafe.Pointer) {
-	defer qt.Recovering("callback QModbusReply::deleteLater")
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QModbusReply::deleteLater"); signal != nil {
 		signal.(func())()
 	} else {
@@ -4301,8 +3575,6 @@ func callbackQModbusReply_DeleteLater(ptr unsafe.Pointer) {
 }
 
 func (ptr *QModbusReply) ConnectDeleteLater(f func()) {
-	defer qt.Recovering("connect QModbusReply::deleteLater")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QModbusReply::deleteLater", f)
@@ -4310,8 +3582,6 @@ func (ptr *QModbusReply) ConnectDeleteLater(f func()) {
 }
 
 func (ptr *QModbusReply) DisconnectDeleteLater() {
-	defer qt.Recovering("disconnect QModbusReply::deleteLater")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QModbusReply::deleteLater")
@@ -4319,8 +3589,6 @@ func (ptr *QModbusReply) DisconnectDeleteLater() {
 }
 
 func (ptr *QModbusReply) DeleteLater() {
-	defer qt.Recovering("QModbusReply::deleteLater")
-
 	if ptr.Pointer() != nil {
 		C.QModbusReply_DeleteLater(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
@@ -4329,8 +3597,6 @@ func (ptr *QModbusReply) DeleteLater() {
 }
 
 func (ptr *QModbusReply) DeleteLaterDefault() {
-	defer qt.Recovering("QModbusReply::deleteLater")
-
 	if ptr.Pointer() != nil {
 		C.QModbusReply_DeleteLaterDefault(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
@@ -4340,7 +3606,6 @@ func (ptr *QModbusReply) DeleteLaterDefault() {
 
 //export callbackQModbusReply_DisconnectNotify
 func callbackQModbusReply_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-	defer qt.Recovering("callback QModbusReply::disconnectNotify")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QModbusReply::disconnectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
@@ -4350,8 +3615,6 @@ func callbackQModbusReply_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Point
 }
 
 func (ptr *QModbusReply) ConnectDisconnectNotify(f func(sign *core.QMetaMethod)) {
-	defer qt.Recovering("connect QModbusReply::disconnectNotify")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QModbusReply::disconnectNotify", f)
@@ -4359,8 +3622,6 @@ func (ptr *QModbusReply) ConnectDisconnectNotify(f func(sign *core.QMetaMethod))
 }
 
 func (ptr *QModbusReply) DisconnectDisconnectNotify() {
-	defer qt.Recovering("disconnect QModbusReply::disconnectNotify")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QModbusReply::disconnectNotify")
@@ -4368,16 +3629,12 @@ func (ptr *QModbusReply) DisconnectDisconnectNotify() {
 }
 
 func (ptr *QModbusReply) DisconnectNotify(sign core.QMetaMethod_ITF) {
-	defer qt.Recovering("QModbusReply::disconnectNotify")
-
 	if ptr.Pointer() != nil {
 		C.QModbusReply_DisconnectNotify(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
 	}
 }
 
 func (ptr *QModbusReply) DisconnectNotifyDefault(sign core.QMetaMethod_ITF) {
-	defer qt.Recovering("QModbusReply::disconnectNotify")
-
 	if ptr.Pointer() != nil {
 		C.QModbusReply_DisconnectNotifyDefault(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
 	}
@@ -4385,7 +3642,6 @@ func (ptr *QModbusReply) DisconnectNotifyDefault(sign core.QMetaMethod_ITF) {
 
 //export callbackQModbusReply_Event
 func callbackQModbusReply_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
-	defer qt.Recovering("callback QModbusReply::event")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QModbusReply::event"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
@@ -4395,8 +3651,6 @@ func callbackQModbusReply_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
 }
 
 func (ptr *QModbusReply) ConnectEvent(f func(e *core.QEvent) bool) {
-	defer qt.Recovering("connect QModbusReply::event")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QModbusReply::event", f)
@@ -4404,8 +3658,6 @@ func (ptr *QModbusReply) ConnectEvent(f func(e *core.QEvent) bool) {
 }
 
 func (ptr *QModbusReply) DisconnectEvent() {
-	defer qt.Recovering("disconnect QModbusReply::event")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QModbusReply::event")
@@ -4413,8 +3665,6 @@ func (ptr *QModbusReply) DisconnectEvent() {
 }
 
 func (ptr *QModbusReply) Event(e core.QEvent_ITF) bool {
-	defer qt.Recovering("QModbusReply::event")
-
 	if ptr.Pointer() != nil {
 		return C.QModbusReply_Event(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
 	}
@@ -4422,8 +3672,6 @@ func (ptr *QModbusReply) Event(e core.QEvent_ITF) bool {
 }
 
 func (ptr *QModbusReply) EventDefault(e core.QEvent_ITF) bool {
-	defer qt.Recovering("QModbusReply::event")
-
 	if ptr.Pointer() != nil {
 		return C.QModbusReply_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
 	}
@@ -4432,7 +3680,6 @@ func (ptr *QModbusReply) EventDefault(e core.QEvent_ITF) bool {
 
 //export callbackQModbusReply_EventFilter
 func callbackQModbusReply_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-	defer qt.Recovering("callback QModbusReply::eventFilter")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QModbusReply::eventFilter"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
@@ -4442,8 +3689,6 @@ func callbackQModbusReply_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer
 }
 
 func (ptr *QModbusReply) ConnectEventFilter(f func(watched *core.QObject, event *core.QEvent) bool) {
-	defer qt.Recovering("connect QModbusReply::eventFilter")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QModbusReply::eventFilter", f)
@@ -4451,8 +3696,6 @@ func (ptr *QModbusReply) ConnectEventFilter(f func(watched *core.QObject, event 
 }
 
 func (ptr *QModbusReply) DisconnectEventFilter() {
-	defer qt.Recovering("disconnect QModbusReply::eventFilter")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QModbusReply::eventFilter")
@@ -4460,8 +3703,6 @@ func (ptr *QModbusReply) DisconnectEventFilter() {
 }
 
 func (ptr *QModbusReply) EventFilter(watched core.QObject_ITF, event core.QEvent_ITF) bool {
-	defer qt.Recovering("QModbusReply::eventFilter")
-
 	if ptr.Pointer() != nil {
 		return C.QModbusReply_EventFilter(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
 	}
@@ -4469,8 +3710,6 @@ func (ptr *QModbusReply) EventFilter(watched core.QObject_ITF, event core.QEvent
 }
 
 func (ptr *QModbusReply) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
-	defer qt.Recovering("QModbusReply::eventFilter")
-
 	if ptr.Pointer() != nil {
 		return C.QModbusReply_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
 	}
@@ -4479,7 +3718,6 @@ func (ptr *QModbusReply) EventFilterDefault(watched core.QObject_ITF, event core
 
 //export callbackQModbusReply_MetaObject
 func callbackQModbusReply_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-	defer qt.Recovering("callback QModbusReply::metaObject")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QModbusReply::metaObject"); signal != nil {
 		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
@@ -4489,8 +3727,6 @@ func callbackQModbusReply_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
 }
 
 func (ptr *QModbusReply) ConnectMetaObject(f func() *core.QMetaObject) {
-	defer qt.Recovering("connect QModbusReply::metaObject")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QModbusReply::metaObject", f)
@@ -4498,8 +3734,6 @@ func (ptr *QModbusReply) ConnectMetaObject(f func() *core.QMetaObject) {
 }
 
 func (ptr *QModbusReply) DisconnectMetaObject() {
-	defer qt.Recovering("disconnect QModbusReply::metaObject")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QModbusReply::metaObject")
@@ -4507,8 +3741,6 @@ func (ptr *QModbusReply) DisconnectMetaObject() {
 }
 
 func (ptr *QModbusReply) MetaObject() *core.QMetaObject {
-	defer qt.Recovering("QModbusReply::metaObject")
-
 	if ptr.Pointer() != nil {
 		return core.NewQMetaObjectFromPointer(C.QModbusReply_MetaObject(ptr.Pointer()))
 	}
@@ -4516,8 +3748,6 @@ func (ptr *QModbusReply) MetaObject() *core.QMetaObject {
 }
 
 func (ptr *QModbusReply) MetaObjectDefault() *core.QMetaObject {
-	defer qt.Recovering("QModbusReply::metaObject")
-
 	if ptr.Pointer() != nil {
 		return core.NewQMetaObjectFromPointer(C.QModbusReply_MetaObjectDefault(ptr.Pointer()))
 	}
@@ -4569,16 +3799,12 @@ func (ptr *QModbusRequest) DestroyQModbusRequest() {
 }
 
 func NewQModbusRequest() *QModbusRequest {
-	defer qt.Recovering("QModbusRequest::QModbusRequest")
-
 	var tmpValue = NewQModbusRequestFromPointer(C.QModbusRequest_NewQModbusRequest())
 	runtime.SetFinalizer(tmpValue, (*QModbusRequest).DestroyQModbusRequest)
 	return tmpValue
 }
 
 func NewQModbusRequest3(code QModbusPdu__FunctionCode, data string) *QModbusRequest {
-	defer qt.Recovering("QModbusRequest::QModbusRequest")
-
 	var dataC = C.CString(hex.EncodeToString([]byte(data)))
 	defer C.free(unsafe.Pointer(dataC))
 	var tmpValue = NewQModbusRequestFromPointer(C.QModbusRequest_NewQModbusRequest3(C.longlong(code), dataC))
@@ -4587,40 +3813,29 @@ func NewQModbusRequest3(code QModbusPdu__FunctionCode, data string) *QModbusRequ
 }
 
 func NewQModbusRequest2(pdu QModbusPdu_ITF) *QModbusRequest {
-	defer qt.Recovering("QModbusRequest::QModbusRequest")
-
 	var tmpValue = NewQModbusRequestFromPointer(C.QModbusRequest_NewQModbusRequest2(PointerFromQModbusPdu(pdu)))
 	runtime.SetFinalizer(tmpValue, (*QModbusRequest).DestroyQModbusRequest)
 	return tmpValue
 }
 
 func QModbusRequest_CalculateDataSize(request QModbusRequest_ITF) int {
-	defer qt.Recovering("QModbusRequest::calculateDataSize")
-
 	return int(int32(C.QModbusRequest_QModbusRequest_CalculateDataSize(PointerFromQModbusRequest(request))))
 }
 
 func (ptr *QModbusRequest) CalculateDataSize(request QModbusRequest_ITF) int {
-	defer qt.Recovering("QModbusRequest::calculateDataSize")
-
 	return int(int32(C.QModbusRequest_QModbusRequest_CalculateDataSize(PointerFromQModbusRequest(request))))
 }
 
 func QModbusRequest_MinimumDataSize(request QModbusRequest_ITF) int {
-	defer qt.Recovering("QModbusRequest::minimumDataSize")
-
 	return int(int32(C.QModbusRequest_QModbusRequest_MinimumDataSize(PointerFromQModbusRequest(request))))
 }
 
 func (ptr *QModbusRequest) MinimumDataSize(request QModbusRequest_ITF) int {
-	defer qt.Recovering("QModbusRequest::minimumDataSize")
-
 	return int(int32(C.QModbusRequest_QModbusRequest_MinimumDataSize(PointerFromQModbusRequest(request))))
 }
 
 //export callbackQModbusRequest_SetFunctionCode
 func callbackQModbusRequest_SetFunctionCode(ptr unsafe.Pointer, code C.longlong) {
-	defer qt.Recovering("callback QModbusRequest::setFunctionCode")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QModbusRequest::setFunctionCode"); signal != nil {
 		signal.(func(QModbusPdu__FunctionCode))(QModbusPdu__FunctionCode(code))
@@ -4630,8 +3845,6 @@ func callbackQModbusRequest_SetFunctionCode(ptr unsafe.Pointer, code C.longlong)
 }
 
 func (ptr *QModbusRequest) ConnectSetFunctionCode(f func(code QModbusPdu__FunctionCode)) {
-	defer qt.Recovering("connect QModbusRequest::setFunctionCode")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QModbusRequest::setFunctionCode", f)
@@ -4639,8 +3852,6 @@ func (ptr *QModbusRequest) ConnectSetFunctionCode(f func(code QModbusPdu__Functi
 }
 
 func (ptr *QModbusRequest) DisconnectSetFunctionCode() {
-	defer qt.Recovering("disconnect QModbusRequest::setFunctionCode")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QModbusRequest::setFunctionCode")
@@ -4648,16 +3859,12 @@ func (ptr *QModbusRequest) DisconnectSetFunctionCode() {
 }
 
 func (ptr *QModbusRequest) SetFunctionCode(code QModbusPdu__FunctionCode) {
-	defer qt.Recovering("QModbusRequest::setFunctionCode")
-
 	if ptr.Pointer() != nil {
 		C.QModbusRequest_SetFunctionCode(ptr.Pointer(), C.longlong(code))
 	}
 }
 
 func (ptr *QModbusRequest) SetFunctionCodeDefault(code QModbusPdu__FunctionCode) {
-	defer qt.Recovering("QModbusRequest::setFunctionCode")
-
 	if ptr.Pointer() != nil {
 		C.QModbusRequest_SetFunctionCodeDefault(ptr.Pointer(), C.longlong(code))
 	}
@@ -4708,16 +3915,12 @@ func (ptr *QModbusResponse) DestroyQModbusResponse() {
 }
 
 func NewQModbusResponse() *QModbusResponse {
-	defer qt.Recovering("QModbusResponse::QModbusResponse")
-
 	var tmpValue = NewQModbusResponseFromPointer(C.QModbusResponse_NewQModbusResponse())
 	runtime.SetFinalizer(tmpValue, (*QModbusResponse).DestroyQModbusResponse)
 	return tmpValue
 }
 
 func NewQModbusResponse3(code QModbusPdu__FunctionCode, data string) *QModbusResponse {
-	defer qt.Recovering("QModbusResponse::QModbusResponse")
-
 	var dataC = C.CString(hex.EncodeToString([]byte(data)))
 	defer C.free(unsafe.Pointer(dataC))
 	var tmpValue = NewQModbusResponseFromPointer(C.QModbusResponse_NewQModbusResponse3(C.longlong(code), dataC))
@@ -4726,40 +3929,29 @@ func NewQModbusResponse3(code QModbusPdu__FunctionCode, data string) *QModbusRes
 }
 
 func NewQModbusResponse2(pdu QModbusPdu_ITF) *QModbusResponse {
-	defer qt.Recovering("QModbusResponse::QModbusResponse")
-
 	var tmpValue = NewQModbusResponseFromPointer(C.QModbusResponse_NewQModbusResponse2(PointerFromQModbusPdu(pdu)))
 	runtime.SetFinalizer(tmpValue, (*QModbusResponse).DestroyQModbusResponse)
 	return tmpValue
 }
 
 func QModbusResponse_CalculateDataSize(response QModbusResponse_ITF) int {
-	defer qt.Recovering("QModbusResponse::calculateDataSize")
-
 	return int(int32(C.QModbusResponse_QModbusResponse_CalculateDataSize(PointerFromQModbusResponse(response))))
 }
 
 func (ptr *QModbusResponse) CalculateDataSize(response QModbusResponse_ITF) int {
-	defer qt.Recovering("QModbusResponse::calculateDataSize")
-
 	return int(int32(C.QModbusResponse_QModbusResponse_CalculateDataSize(PointerFromQModbusResponse(response))))
 }
 
 func QModbusResponse_MinimumDataSize(response QModbusResponse_ITF) int {
-	defer qt.Recovering("QModbusResponse::minimumDataSize")
-
 	return int(int32(C.QModbusResponse_QModbusResponse_MinimumDataSize(PointerFromQModbusResponse(response))))
 }
 
 func (ptr *QModbusResponse) MinimumDataSize(response QModbusResponse_ITF) int {
-	defer qt.Recovering("QModbusResponse::minimumDataSize")
-
 	return int(int32(C.QModbusResponse_QModbusResponse_MinimumDataSize(PointerFromQModbusResponse(response))))
 }
 
 //export callbackQModbusResponse_SetFunctionCode
 func callbackQModbusResponse_SetFunctionCode(ptr unsafe.Pointer, code C.longlong) {
-	defer qt.Recovering("callback QModbusResponse::setFunctionCode")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QModbusResponse::setFunctionCode"); signal != nil {
 		signal.(func(QModbusPdu__FunctionCode))(QModbusPdu__FunctionCode(code))
@@ -4769,8 +3961,6 @@ func callbackQModbusResponse_SetFunctionCode(ptr unsafe.Pointer, code C.longlong
 }
 
 func (ptr *QModbusResponse) ConnectSetFunctionCode(f func(code QModbusPdu__FunctionCode)) {
-	defer qt.Recovering("connect QModbusResponse::setFunctionCode")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QModbusResponse::setFunctionCode", f)
@@ -4778,8 +3968,6 @@ func (ptr *QModbusResponse) ConnectSetFunctionCode(f func(code QModbusPdu__Funct
 }
 
 func (ptr *QModbusResponse) DisconnectSetFunctionCode() {
-	defer qt.Recovering("disconnect QModbusResponse::setFunctionCode")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QModbusResponse::setFunctionCode")
@@ -4787,16 +3975,12 @@ func (ptr *QModbusResponse) DisconnectSetFunctionCode() {
 }
 
 func (ptr *QModbusResponse) SetFunctionCode(code QModbusPdu__FunctionCode) {
-	defer qt.Recovering("QModbusResponse::setFunctionCode")
-
 	if ptr.Pointer() != nil {
 		C.QModbusResponse_SetFunctionCode(ptr.Pointer(), C.longlong(code))
 	}
 }
 
 func (ptr *QModbusResponse) SetFunctionCodeDefault(code QModbusPdu__FunctionCode) {
-	defer qt.Recovering("QModbusResponse::setFunctionCode")
-
 	if ptr.Pointer() != nil {
 		C.QModbusResponse_SetFunctionCodeDefault(ptr.Pointer(), C.longlong(code))
 	}
@@ -4848,8 +4032,6 @@ func (ptr *QModbusRtuSerialMaster) DestroyQModbusRtuSerialMaster() {
 }
 
 func NewQModbusRtuSerialMaster(parent core.QObject_ITF) *QModbusRtuSerialMaster {
-	defer qt.Recovering("QModbusRtuSerialMaster::QModbusRtuSerialMaster")
-
 	var tmpValue = NewQModbusRtuSerialMasterFromPointer(C.QModbusRtuSerialMaster_NewQModbusRtuSerialMaster(core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
@@ -4858,8 +4040,6 @@ func NewQModbusRtuSerialMaster(parent core.QObject_ITF) *QModbusRtuSerialMaster 
 }
 
 func (ptr *QModbusRtuSerialMaster) InterFrameDelay() int {
-	defer qt.Recovering("QModbusRtuSerialMaster::interFrameDelay")
-
 	if ptr.Pointer() != nil {
 		return int(int32(C.QModbusRtuSerialMaster_InterFrameDelay(ptr.Pointer())))
 	}
@@ -4867,8 +4047,6 @@ func (ptr *QModbusRtuSerialMaster) InterFrameDelay() int {
 }
 
 func (ptr *QModbusRtuSerialMaster) SetInterFrameDelay(microseconds int) {
-	defer qt.Recovering("QModbusRtuSerialMaster::setInterFrameDelay")
-
 	if ptr.Pointer() != nil {
 		C.QModbusRtuSerialMaster_SetInterFrameDelay(ptr.Pointer(), C.int(int32(microseconds)))
 	}
@@ -4876,7 +4054,6 @@ func (ptr *QModbusRtuSerialMaster) SetInterFrameDelay(microseconds int) {
 
 //export callbackQModbusRtuSerialMaster_ProcessPrivateResponse
 func callbackQModbusRtuSerialMaster_ProcessPrivateResponse(ptr unsafe.Pointer, response unsafe.Pointer, data unsafe.Pointer) C.char {
-	defer qt.Recovering("callback QModbusRtuSerialMaster::processPrivateResponse")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QModbusRtuSerialMaster::processPrivateResponse"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*QModbusResponse, *QModbusDataUnit) bool)(NewQModbusResponseFromPointer(response), NewQModbusDataUnitFromPointer(data)))))
@@ -4886,8 +4063,6 @@ func callbackQModbusRtuSerialMaster_ProcessPrivateResponse(ptr unsafe.Pointer, r
 }
 
 func (ptr *QModbusRtuSerialMaster) ConnectProcessPrivateResponse(f func(response *QModbusResponse, data *QModbusDataUnit) bool) {
-	defer qt.Recovering("connect QModbusRtuSerialMaster::processPrivateResponse")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QModbusRtuSerialMaster::processPrivateResponse", f)
@@ -4895,8 +4070,6 @@ func (ptr *QModbusRtuSerialMaster) ConnectProcessPrivateResponse(f func(response
 }
 
 func (ptr *QModbusRtuSerialMaster) DisconnectProcessPrivateResponse() {
-	defer qt.Recovering("disconnect QModbusRtuSerialMaster::processPrivateResponse")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QModbusRtuSerialMaster::processPrivateResponse")
@@ -4904,8 +4077,6 @@ func (ptr *QModbusRtuSerialMaster) DisconnectProcessPrivateResponse() {
 }
 
 func (ptr *QModbusRtuSerialMaster) ProcessPrivateResponse(response QModbusResponse_ITF, data QModbusDataUnit_ITF) bool {
-	defer qt.Recovering("QModbusRtuSerialMaster::processPrivateResponse")
-
 	if ptr.Pointer() != nil {
 		return C.QModbusRtuSerialMaster_ProcessPrivateResponse(ptr.Pointer(), PointerFromQModbusResponse(response), PointerFromQModbusDataUnit(data)) != 0
 	}
@@ -4913,8 +4084,6 @@ func (ptr *QModbusRtuSerialMaster) ProcessPrivateResponse(response QModbusRespon
 }
 
 func (ptr *QModbusRtuSerialMaster) ProcessPrivateResponseDefault(response QModbusResponse_ITF, data QModbusDataUnit_ITF) bool {
-	defer qt.Recovering("QModbusRtuSerialMaster::processPrivateResponse")
-
 	if ptr.Pointer() != nil {
 		return C.QModbusRtuSerialMaster_ProcessPrivateResponseDefault(ptr.Pointer(), PointerFromQModbusResponse(response), PointerFromQModbusDataUnit(data)) != 0
 	}
@@ -4923,7 +4092,6 @@ func (ptr *QModbusRtuSerialMaster) ProcessPrivateResponseDefault(response QModbu
 
 //export callbackQModbusRtuSerialMaster_ProcessResponse
 func callbackQModbusRtuSerialMaster_ProcessResponse(ptr unsafe.Pointer, response unsafe.Pointer, data unsafe.Pointer) C.char {
-	defer qt.Recovering("callback QModbusRtuSerialMaster::processResponse")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QModbusRtuSerialMaster::processResponse"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*QModbusResponse, *QModbusDataUnit) bool)(NewQModbusResponseFromPointer(response), NewQModbusDataUnitFromPointer(data)))))
@@ -4933,8 +4101,6 @@ func callbackQModbusRtuSerialMaster_ProcessResponse(ptr unsafe.Pointer, response
 }
 
 func (ptr *QModbusRtuSerialMaster) ConnectProcessResponse(f func(response *QModbusResponse, data *QModbusDataUnit) bool) {
-	defer qt.Recovering("connect QModbusRtuSerialMaster::processResponse")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QModbusRtuSerialMaster::processResponse", f)
@@ -4942,8 +4108,6 @@ func (ptr *QModbusRtuSerialMaster) ConnectProcessResponse(f func(response *QModb
 }
 
 func (ptr *QModbusRtuSerialMaster) DisconnectProcessResponse() {
-	defer qt.Recovering("disconnect QModbusRtuSerialMaster::processResponse")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QModbusRtuSerialMaster::processResponse")
@@ -4951,8 +4115,6 @@ func (ptr *QModbusRtuSerialMaster) DisconnectProcessResponse() {
 }
 
 func (ptr *QModbusRtuSerialMaster) ProcessResponse(response QModbusResponse_ITF, data QModbusDataUnit_ITF) bool {
-	defer qt.Recovering("QModbusRtuSerialMaster::processResponse")
-
 	if ptr.Pointer() != nil {
 		return C.QModbusRtuSerialMaster_ProcessResponse(ptr.Pointer(), PointerFromQModbusResponse(response), PointerFromQModbusDataUnit(data)) != 0
 	}
@@ -4960,8 +4122,6 @@ func (ptr *QModbusRtuSerialMaster) ProcessResponse(response QModbusResponse_ITF,
 }
 
 func (ptr *QModbusRtuSerialMaster) ProcessResponseDefault(response QModbusResponse_ITF, data QModbusDataUnit_ITF) bool {
-	defer qt.Recovering("QModbusRtuSerialMaster::processResponse")
-
 	if ptr.Pointer() != nil {
 		return C.QModbusRtuSerialMaster_ProcessResponseDefault(ptr.Pointer(), PointerFromQModbusResponse(response), PointerFromQModbusDataUnit(data)) != 0
 	}
@@ -4970,7 +4130,6 @@ func (ptr *QModbusRtuSerialMaster) ProcessResponseDefault(response QModbusRespon
 
 //export callbackQModbusRtuSerialMaster_Close
 func callbackQModbusRtuSerialMaster_Close(ptr unsafe.Pointer) {
-	defer qt.Recovering("callback QModbusRtuSerialMaster::close")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QModbusRtuSerialMaster::close"); signal != nil {
 		signal.(func())()
@@ -4980,8 +4139,6 @@ func callbackQModbusRtuSerialMaster_Close(ptr unsafe.Pointer) {
 }
 
 func (ptr *QModbusRtuSerialMaster) ConnectClose(f func()) {
-	defer qt.Recovering("connect QModbusRtuSerialMaster::close")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QModbusRtuSerialMaster::close", f)
@@ -4989,8 +4146,6 @@ func (ptr *QModbusRtuSerialMaster) ConnectClose(f func()) {
 }
 
 func (ptr *QModbusRtuSerialMaster) DisconnectClose() {
-	defer qt.Recovering("disconnect QModbusRtuSerialMaster::close")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QModbusRtuSerialMaster::close")
@@ -4998,16 +4153,12 @@ func (ptr *QModbusRtuSerialMaster) DisconnectClose() {
 }
 
 func (ptr *QModbusRtuSerialMaster) Close() {
-	defer qt.Recovering("QModbusRtuSerialMaster::close")
-
 	if ptr.Pointer() != nil {
 		C.QModbusRtuSerialMaster_Close(ptr.Pointer())
 	}
 }
 
 func (ptr *QModbusRtuSerialMaster) CloseDefault() {
-	defer qt.Recovering("QModbusRtuSerialMaster::close")
-
 	if ptr.Pointer() != nil {
 		C.QModbusRtuSerialMaster_CloseDefault(ptr.Pointer())
 	}
@@ -5015,7 +4166,6 @@ func (ptr *QModbusRtuSerialMaster) CloseDefault() {
 
 //export callbackQModbusRtuSerialMaster_Open
 func callbackQModbusRtuSerialMaster_Open(ptr unsafe.Pointer) C.char {
-	defer qt.Recovering("callback QModbusRtuSerialMaster::open")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QModbusRtuSerialMaster::open"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func() bool)())))
@@ -5025,8 +4175,6 @@ func callbackQModbusRtuSerialMaster_Open(ptr unsafe.Pointer) C.char {
 }
 
 func (ptr *QModbusRtuSerialMaster) ConnectOpen(f func() bool) {
-	defer qt.Recovering("connect QModbusRtuSerialMaster::open")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QModbusRtuSerialMaster::open", f)
@@ -5034,8 +4182,6 @@ func (ptr *QModbusRtuSerialMaster) ConnectOpen(f func() bool) {
 }
 
 func (ptr *QModbusRtuSerialMaster) DisconnectOpen() {
-	defer qt.Recovering("disconnect QModbusRtuSerialMaster::open")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QModbusRtuSerialMaster::open")
@@ -5043,8 +4189,6 @@ func (ptr *QModbusRtuSerialMaster) DisconnectOpen() {
 }
 
 func (ptr *QModbusRtuSerialMaster) Open() bool {
-	defer qt.Recovering("QModbusRtuSerialMaster::open")
-
 	if ptr.Pointer() != nil {
 		return C.QModbusRtuSerialMaster_Open(ptr.Pointer()) != 0
 	}
@@ -5052,8 +4196,6 @@ func (ptr *QModbusRtuSerialMaster) Open() bool {
 }
 
 func (ptr *QModbusRtuSerialMaster) OpenDefault() bool {
-	defer qt.Recovering("QModbusRtuSerialMaster::open")
-
 	if ptr.Pointer() != nil {
 		return C.QModbusRtuSerialMaster_OpenDefault(ptr.Pointer()) != 0
 	}
@@ -5062,7 +4204,6 @@ func (ptr *QModbusRtuSerialMaster) OpenDefault() bool {
 
 //export callbackQModbusRtuSerialMaster_TimerEvent
 func callbackQModbusRtuSerialMaster_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	defer qt.Recovering("callback QModbusRtuSerialMaster::timerEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QModbusRtuSerialMaster::timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
@@ -5072,8 +4213,6 @@ func callbackQModbusRtuSerialMaster_TimerEvent(ptr unsafe.Pointer, event unsafe.
 }
 
 func (ptr *QModbusRtuSerialMaster) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
-	defer qt.Recovering("connect QModbusRtuSerialMaster::timerEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QModbusRtuSerialMaster::timerEvent", f)
@@ -5081,8 +4220,6 @@ func (ptr *QModbusRtuSerialMaster) ConnectTimerEvent(f func(event *core.QTimerEv
 }
 
 func (ptr *QModbusRtuSerialMaster) DisconnectTimerEvent() {
-	defer qt.Recovering("disconnect QModbusRtuSerialMaster::timerEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QModbusRtuSerialMaster::timerEvent")
@@ -5090,16 +4227,12 @@ func (ptr *QModbusRtuSerialMaster) DisconnectTimerEvent() {
 }
 
 func (ptr *QModbusRtuSerialMaster) TimerEvent(event core.QTimerEvent_ITF) {
-	defer qt.Recovering("QModbusRtuSerialMaster::timerEvent")
-
 	if ptr.Pointer() != nil {
 		C.QModbusRtuSerialMaster_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
 	}
 }
 
 func (ptr *QModbusRtuSerialMaster) TimerEventDefault(event core.QTimerEvent_ITF) {
-	defer qt.Recovering("QModbusRtuSerialMaster::timerEvent")
-
 	if ptr.Pointer() != nil {
 		C.QModbusRtuSerialMaster_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
 	}
@@ -5107,7 +4240,6 @@ func (ptr *QModbusRtuSerialMaster) TimerEventDefault(event core.QTimerEvent_ITF)
 
 //export callbackQModbusRtuSerialMaster_ChildEvent
 func callbackQModbusRtuSerialMaster_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	defer qt.Recovering("callback QModbusRtuSerialMaster::childEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QModbusRtuSerialMaster::childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
@@ -5117,8 +4249,6 @@ func callbackQModbusRtuSerialMaster_ChildEvent(ptr unsafe.Pointer, event unsafe.
 }
 
 func (ptr *QModbusRtuSerialMaster) ConnectChildEvent(f func(event *core.QChildEvent)) {
-	defer qt.Recovering("connect QModbusRtuSerialMaster::childEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QModbusRtuSerialMaster::childEvent", f)
@@ -5126,8 +4256,6 @@ func (ptr *QModbusRtuSerialMaster) ConnectChildEvent(f func(event *core.QChildEv
 }
 
 func (ptr *QModbusRtuSerialMaster) DisconnectChildEvent() {
-	defer qt.Recovering("disconnect QModbusRtuSerialMaster::childEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QModbusRtuSerialMaster::childEvent")
@@ -5135,16 +4263,12 @@ func (ptr *QModbusRtuSerialMaster) DisconnectChildEvent() {
 }
 
 func (ptr *QModbusRtuSerialMaster) ChildEvent(event core.QChildEvent_ITF) {
-	defer qt.Recovering("QModbusRtuSerialMaster::childEvent")
-
 	if ptr.Pointer() != nil {
 		C.QModbusRtuSerialMaster_ChildEvent(ptr.Pointer(), core.PointerFromQChildEvent(event))
 	}
 }
 
 func (ptr *QModbusRtuSerialMaster) ChildEventDefault(event core.QChildEvent_ITF) {
-	defer qt.Recovering("QModbusRtuSerialMaster::childEvent")
-
 	if ptr.Pointer() != nil {
 		C.QModbusRtuSerialMaster_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
 	}
@@ -5152,7 +4276,6 @@ func (ptr *QModbusRtuSerialMaster) ChildEventDefault(event core.QChildEvent_ITF)
 
 //export callbackQModbusRtuSerialMaster_ConnectNotify
 func callbackQModbusRtuSerialMaster_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-	defer qt.Recovering("callback QModbusRtuSerialMaster::connectNotify")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QModbusRtuSerialMaster::connectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
@@ -5162,8 +4285,6 @@ func callbackQModbusRtuSerialMaster_ConnectNotify(ptr unsafe.Pointer, sign unsaf
 }
 
 func (ptr *QModbusRtuSerialMaster) ConnectConnectNotify(f func(sign *core.QMetaMethod)) {
-	defer qt.Recovering("connect QModbusRtuSerialMaster::connectNotify")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QModbusRtuSerialMaster::connectNotify", f)
@@ -5171,8 +4292,6 @@ func (ptr *QModbusRtuSerialMaster) ConnectConnectNotify(f func(sign *core.QMetaM
 }
 
 func (ptr *QModbusRtuSerialMaster) DisconnectConnectNotify() {
-	defer qt.Recovering("disconnect QModbusRtuSerialMaster::connectNotify")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QModbusRtuSerialMaster::connectNotify")
@@ -5180,16 +4299,12 @@ func (ptr *QModbusRtuSerialMaster) DisconnectConnectNotify() {
 }
 
 func (ptr *QModbusRtuSerialMaster) ConnectNotify(sign core.QMetaMethod_ITF) {
-	defer qt.Recovering("QModbusRtuSerialMaster::connectNotify")
-
 	if ptr.Pointer() != nil {
 		C.QModbusRtuSerialMaster_ConnectNotify(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
 	}
 }
 
 func (ptr *QModbusRtuSerialMaster) ConnectNotifyDefault(sign core.QMetaMethod_ITF) {
-	defer qt.Recovering("QModbusRtuSerialMaster::connectNotify")
-
 	if ptr.Pointer() != nil {
 		C.QModbusRtuSerialMaster_ConnectNotifyDefault(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
 	}
@@ -5197,7 +4312,6 @@ func (ptr *QModbusRtuSerialMaster) ConnectNotifyDefault(sign core.QMetaMethod_IT
 
 //export callbackQModbusRtuSerialMaster_CustomEvent
 func callbackQModbusRtuSerialMaster_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	defer qt.Recovering("callback QModbusRtuSerialMaster::customEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QModbusRtuSerialMaster::customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
@@ -5207,8 +4321,6 @@ func callbackQModbusRtuSerialMaster_CustomEvent(ptr unsafe.Pointer, event unsafe
 }
 
 func (ptr *QModbusRtuSerialMaster) ConnectCustomEvent(f func(event *core.QEvent)) {
-	defer qt.Recovering("connect QModbusRtuSerialMaster::customEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QModbusRtuSerialMaster::customEvent", f)
@@ -5216,8 +4328,6 @@ func (ptr *QModbusRtuSerialMaster) ConnectCustomEvent(f func(event *core.QEvent)
 }
 
 func (ptr *QModbusRtuSerialMaster) DisconnectCustomEvent() {
-	defer qt.Recovering("disconnect QModbusRtuSerialMaster::customEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QModbusRtuSerialMaster::customEvent")
@@ -5225,16 +4335,12 @@ func (ptr *QModbusRtuSerialMaster) DisconnectCustomEvent() {
 }
 
 func (ptr *QModbusRtuSerialMaster) CustomEvent(event core.QEvent_ITF) {
-	defer qt.Recovering("QModbusRtuSerialMaster::customEvent")
-
 	if ptr.Pointer() != nil {
 		C.QModbusRtuSerialMaster_CustomEvent(ptr.Pointer(), core.PointerFromQEvent(event))
 	}
 }
 
 func (ptr *QModbusRtuSerialMaster) CustomEventDefault(event core.QEvent_ITF) {
-	defer qt.Recovering("QModbusRtuSerialMaster::customEvent")
-
 	if ptr.Pointer() != nil {
 		C.QModbusRtuSerialMaster_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
 	}
@@ -5242,8 +4348,6 @@ func (ptr *QModbusRtuSerialMaster) CustomEventDefault(event core.QEvent_ITF) {
 
 //export callbackQModbusRtuSerialMaster_DeleteLater
 func callbackQModbusRtuSerialMaster_DeleteLater(ptr unsafe.Pointer) {
-	defer qt.Recovering("callback QModbusRtuSerialMaster::deleteLater")
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QModbusRtuSerialMaster::deleteLater"); signal != nil {
 		signal.(func())()
 	} else {
@@ -5252,8 +4356,6 @@ func callbackQModbusRtuSerialMaster_DeleteLater(ptr unsafe.Pointer) {
 }
 
 func (ptr *QModbusRtuSerialMaster) ConnectDeleteLater(f func()) {
-	defer qt.Recovering("connect QModbusRtuSerialMaster::deleteLater")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QModbusRtuSerialMaster::deleteLater", f)
@@ -5261,8 +4363,6 @@ func (ptr *QModbusRtuSerialMaster) ConnectDeleteLater(f func()) {
 }
 
 func (ptr *QModbusRtuSerialMaster) DisconnectDeleteLater() {
-	defer qt.Recovering("disconnect QModbusRtuSerialMaster::deleteLater")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QModbusRtuSerialMaster::deleteLater")
@@ -5270,8 +4370,6 @@ func (ptr *QModbusRtuSerialMaster) DisconnectDeleteLater() {
 }
 
 func (ptr *QModbusRtuSerialMaster) DeleteLater() {
-	defer qt.Recovering("QModbusRtuSerialMaster::deleteLater")
-
 	if ptr.Pointer() != nil {
 		C.QModbusRtuSerialMaster_DeleteLater(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
@@ -5280,8 +4378,6 @@ func (ptr *QModbusRtuSerialMaster) DeleteLater() {
 }
 
 func (ptr *QModbusRtuSerialMaster) DeleteLaterDefault() {
-	defer qt.Recovering("QModbusRtuSerialMaster::deleteLater")
-
 	if ptr.Pointer() != nil {
 		C.QModbusRtuSerialMaster_DeleteLaterDefault(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
@@ -5291,7 +4387,6 @@ func (ptr *QModbusRtuSerialMaster) DeleteLaterDefault() {
 
 //export callbackQModbusRtuSerialMaster_DisconnectNotify
 func callbackQModbusRtuSerialMaster_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-	defer qt.Recovering("callback QModbusRtuSerialMaster::disconnectNotify")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QModbusRtuSerialMaster::disconnectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
@@ -5301,8 +4396,6 @@ func callbackQModbusRtuSerialMaster_DisconnectNotify(ptr unsafe.Pointer, sign un
 }
 
 func (ptr *QModbusRtuSerialMaster) ConnectDisconnectNotify(f func(sign *core.QMetaMethod)) {
-	defer qt.Recovering("connect QModbusRtuSerialMaster::disconnectNotify")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QModbusRtuSerialMaster::disconnectNotify", f)
@@ -5310,8 +4403,6 @@ func (ptr *QModbusRtuSerialMaster) ConnectDisconnectNotify(f func(sign *core.QMe
 }
 
 func (ptr *QModbusRtuSerialMaster) DisconnectDisconnectNotify() {
-	defer qt.Recovering("disconnect QModbusRtuSerialMaster::disconnectNotify")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QModbusRtuSerialMaster::disconnectNotify")
@@ -5319,16 +4410,12 @@ func (ptr *QModbusRtuSerialMaster) DisconnectDisconnectNotify() {
 }
 
 func (ptr *QModbusRtuSerialMaster) DisconnectNotify(sign core.QMetaMethod_ITF) {
-	defer qt.Recovering("QModbusRtuSerialMaster::disconnectNotify")
-
 	if ptr.Pointer() != nil {
 		C.QModbusRtuSerialMaster_DisconnectNotify(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
 	}
 }
 
 func (ptr *QModbusRtuSerialMaster) DisconnectNotifyDefault(sign core.QMetaMethod_ITF) {
-	defer qt.Recovering("QModbusRtuSerialMaster::disconnectNotify")
-
 	if ptr.Pointer() != nil {
 		C.QModbusRtuSerialMaster_DisconnectNotifyDefault(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
 	}
@@ -5336,7 +4423,6 @@ func (ptr *QModbusRtuSerialMaster) DisconnectNotifyDefault(sign core.QMetaMethod
 
 //export callbackQModbusRtuSerialMaster_Event
 func callbackQModbusRtuSerialMaster_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
-	defer qt.Recovering("callback QModbusRtuSerialMaster::event")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QModbusRtuSerialMaster::event"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
@@ -5346,8 +4432,6 @@ func callbackQModbusRtuSerialMaster_Event(ptr unsafe.Pointer, e unsafe.Pointer) 
 }
 
 func (ptr *QModbusRtuSerialMaster) ConnectEvent(f func(e *core.QEvent) bool) {
-	defer qt.Recovering("connect QModbusRtuSerialMaster::event")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QModbusRtuSerialMaster::event", f)
@@ -5355,8 +4439,6 @@ func (ptr *QModbusRtuSerialMaster) ConnectEvent(f func(e *core.QEvent) bool) {
 }
 
 func (ptr *QModbusRtuSerialMaster) DisconnectEvent() {
-	defer qt.Recovering("disconnect QModbusRtuSerialMaster::event")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QModbusRtuSerialMaster::event")
@@ -5364,8 +4446,6 @@ func (ptr *QModbusRtuSerialMaster) DisconnectEvent() {
 }
 
 func (ptr *QModbusRtuSerialMaster) Event(e core.QEvent_ITF) bool {
-	defer qt.Recovering("QModbusRtuSerialMaster::event")
-
 	if ptr.Pointer() != nil {
 		return C.QModbusRtuSerialMaster_Event(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
 	}
@@ -5373,8 +4453,6 @@ func (ptr *QModbusRtuSerialMaster) Event(e core.QEvent_ITF) bool {
 }
 
 func (ptr *QModbusRtuSerialMaster) EventDefault(e core.QEvent_ITF) bool {
-	defer qt.Recovering("QModbusRtuSerialMaster::event")
-
 	if ptr.Pointer() != nil {
 		return C.QModbusRtuSerialMaster_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
 	}
@@ -5383,7 +4461,6 @@ func (ptr *QModbusRtuSerialMaster) EventDefault(e core.QEvent_ITF) bool {
 
 //export callbackQModbusRtuSerialMaster_EventFilter
 func callbackQModbusRtuSerialMaster_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-	defer qt.Recovering("callback QModbusRtuSerialMaster::eventFilter")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QModbusRtuSerialMaster::eventFilter"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
@@ -5393,8 +4470,6 @@ func callbackQModbusRtuSerialMaster_EventFilter(ptr unsafe.Pointer, watched unsa
 }
 
 func (ptr *QModbusRtuSerialMaster) ConnectEventFilter(f func(watched *core.QObject, event *core.QEvent) bool) {
-	defer qt.Recovering("connect QModbusRtuSerialMaster::eventFilter")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QModbusRtuSerialMaster::eventFilter", f)
@@ -5402,8 +4477,6 @@ func (ptr *QModbusRtuSerialMaster) ConnectEventFilter(f func(watched *core.QObje
 }
 
 func (ptr *QModbusRtuSerialMaster) DisconnectEventFilter() {
-	defer qt.Recovering("disconnect QModbusRtuSerialMaster::eventFilter")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QModbusRtuSerialMaster::eventFilter")
@@ -5411,8 +4484,6 @@ func (ptr *QModbusRtuSerialMaster) DisconnectEventFilter() {
 }
 
 func (ptr *QModbusRtuSerialMaster) EventFilter(watched core.QObject_ITF, event core.QEvent_ITF) bool {
-	defer qt.Recovering("QModbusRtuSerialMaster::eventFilter")
-
 	if ptr.Pointer() != nil {
 		return C.QModbusRtuSerialMaster_EventFilter(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
 	}
@@ -5420,8 +4491,6 @@ func (ptr *QModbusRtuSerialMaster) EventFilter(watched core.QObject_ITF, event c
 }
 
 func (ptr *QModbusRtuSerialMaster) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
-	defer qt.Recovering("QModbusRtuSerialMaster::eventFilter")
-
 	if ptr.Pointer() != nil {
 		return C.QModbusRtuSerialMaster_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
 	}
@@ -5430,7 +4499,6 @@ func (ptr *QModbusRtuSerialMaster) EventFilterDefault(watched core.QObject_ITF, 
 
 //export callbackQModbusRtuSerialMaster_MetaObject
 func callbackQModbusRtuSerialMaster_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-	defer qt.Recovering("callback QModbusRtuSerialMaster::metaObject")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QModbusRtuSerialMaster::metaObject"); signal != nil {
 		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
@@ -5440,8 +4508,6 @@ func callbackQModbusRtuSerialMaster_MetaObject(ptr unsafe.Pointer) unsafe.Pointe
 }
 
 func (ptr *QModbusRtuSerialMaster) ConnectMetaObject(f func() *core.QMetaObject) {
-	defer qt.Recovering("connect QModbusRtuSerialMaster::metaObject")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QModbusRtuSerialMaster::metaObject", f)
@@ -5449,8 +4515,6 @@ func (ptr *QModbusRtuSerialMaster) ConnectMetaObject(f func() *core.QMetaObject)
 }
 
 func (ptr *QModbusRtuSerialMaster) DisconnectMetaObject() {
-	defer qt.Recovering("disconnect QModbusRtuSerialMaster::metaObject")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QModbusRtuSerialMaster::metaObject")
@@ -5458,8 +4522,6 @@ func (ptr *QModbusRtuSerialMaster) DisconnectMetaObject() {
 }
 
 func (ptr *QModbusRtuSerialMaster) MetaObject() *core.QMetaObject {
-	defer qt.Recovering("QModbusRtuSerialMaster::metaObject")
-
 	if ptr.Pointer() != nil {
 		return core.NewQMetaObjectFromPointer(C.QModbusRtuSerialMaster_MetaObject(ptr.Pointer()))
 	}
@@ -5467,8 +4529,6 @@ func (ptr *QModbusRtuSerialMaster) MetaObject() *core.QMetaObject {
 }
 
 func (ptr *QModbusRtuSerialMaster) MetaObjectDefault() *core.QMetaObject {
-	defer qt.Recovering("QModbusRtuSerialMaster::metaObject")
-
 	if ptr.Pointer() != nil {
 		return core.NewQMetaObjectFromPointer(C.QModbusRtuSerialMaster_MetaObjectDefault(ptr.Pointer()))
 	}
@@ -5514,8 +4574,6 @@ func NewQModbusRtuSerialSlaveFromPointer(ptr unsafe.Pointer) *QModbusRtuSerialSl
 	return n
 }
 func NewQModbusRtuSerialSlave(parent core.QObject_ITF) *QModbusRtuSerialSlave {
-	defer qt.Recovering("QModbusRtuSerialSlave::QModbusRtuSerialSlave")
-
 	var tmpValue = NewQModbusRtuSerialSlaveFromPointer(C.QModbusRtuSerialSlave_NewQModbusRtuSerialSlave(core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
@@ -5524,8 +4582,6 @@ func NewQModbusRtuSerialSlave(parent core.QObject_ITF) *QModbusRtuSerialSlave {
 }
 
 func (ptr *QModbusRtuSerialSlave) DestroyQModbusRtuSerialSlave() {
-	defer qt.Recovering("QModbusRtuSerialSlave::~QModbusRtuSerialSlave")
-
 	if ptr.Pointer() != nil {
 		C.QModbusRtuSerialSlave_DestroyQModbusRtuSerialSlave(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
@@ -5535,7 +4591,6 @@ func (ptr *QModbusRtuSerialSlave) DestroyQModbusRtuSerialSlave() {
 
 //export callbackQModbusRtuSerialSlave_ProcessPrivateRequest
 func callbackQModbusRtuSerialSlave_ProcessPrivateRequest(ptr unsafe.Pointer, request unsafe.Pointer) unsafe.Pointer {
-	defer qt.Recovering("callback QModbusRtuSerialSlave::processPrivateRequest")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QModbusRtuSerialSlave::processPrivateRequest"); signal != nil {
 		return PointerFromQModbusResponse(signal.(func(*QModbusPdu) *QModbusResponse)(NewQModbusPduFromPointer(request)))
@@ -5545,8 +4600,6 @@ func callbackQModbusRtuSerialSlave_ProcessPrivateRequest(ptr unsafe.Pointer, req
 }
 
 func (ptr *QModbusRtuSerialSlave) ConnectProcessPrivateRequest(f func(request *QModbusPdu) *QModbusResponse) {
-	defer qt.Recovering("connect QModbusRtuSerialSlave::processPrivateRequest")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QModbusRtuSerialSlave::processPrivateRequest", f)
@@ -5554,8 +4607,6 @@ func (ptr *QModbusRtuSerialSlave) ConnectProcessPrivateRequest(f func(request *Q
 }
 
 func (ptr *QModbusRtuSerialSlave) DisconnectProcessPrivateRequest() {
-	defer qt.Recovering("disconnect QModbusRtuSerialSlave::processPrivateRequest")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QModbusRtuSerialSlave::processPrivateRequest")
@@ -5563,8 +4614,6 @@ func (ptr *QModbusRtuSerialSlave) DisconnectProcessPrivateRequest() {
 }
 
 func (ptr *QModbusRtuSerialSlave) ProcessPrivateRequest(request QModbusPdu_ITF) *QModbusResponse {
-	defer qt.Recovering("QModbusRtuSerialSlave::processPrivateRequest")
-
 	if ptr.Pointer() != nil {
 
 	}
@@ -5572,8 +4621,6 @@ func (ptr *QModbusRtuSerialSlave) ProcessPrivateRequest(request QModbusPdu_ITF) 
 }
 
 func (ptr *QModbusRtuSerialSlave) ProcessPrivateRequestDefault(request QModbusPdu_ITF) *QModbusResponse {
-	defer qt.Recovering("QModbusRtuSerialSlave::processPrivateRequest")
-
 	if ptr.Pointer() != nil {
 
 	}
@@ -5582,7 +4629,6 @@ func (ptr *QModbusRtuSerialSlave) ProcessPrivateRequestDefault(request QModbusPd
 
 //export callbackQModbusRtuSerialSlave_ProcessRequest
 func callbackQModbusRtuSerialSlave_ProcessRequest(ptr unsafe.Pointer, request unsafe.Pointer) unsafe.Pointer {
-	defer qt.Recovering("callback QModbusRtuSerialSlave::processRequest")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QModbusRtuSerialSlave::processRequest"); signal != nil {
 		return PointerFromQModbusResponse(signal.(func(*QModbusPdu) *QModbusResponse)(NewQModbusPduFromPointer(request)))
@@ -5592,8 +4638,6 @@ func callbackQModbusRtuSerialSlave_ProcessRequest(ptr unsafe.Pointer, request un
 }
 
 func (ptr *QModbusRtuSerialSlave) ConnectProcessRequest(f func(request *QModbusPdu) *QModbusResponse) {
-	defer qt.Recovering("connect QModbusRtuSerialSlave::processRequest")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QModbusRtuSerialSlave::processRequest", f)
@@ -5601,8 +4645,6 @@ func (ptr *QModbusRtuSerialSlave) ConnectProcessRequest(f func(request *QModbusP
 }
 
 func (ptr *QModbusRtuSerialSlave) DisconnectProcessRequest() {
-	defer qt.Recovering("disconnect QModbusRtuSerialSlave::processRequest")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QModbusRtuSerialSlave::processRequest")
@@ -5610,8 +4652,6 @@ func (ptr *QModbusRtuSerialSlave) DisconnectProcessRequest() {
 }
 
 func (ptr *QModbusRtuSerialSlave) ProcessRequest(request QModbusPdu_ITF) *QModbusResponse {
-	defer qt.Recovering("QModbusRtuSerialSlave::processRequest")
-
 	if ptr.Pointer() != nil {
 
 	}
@@ -5619,8 +4659,6 @@ func (ptr *QModbusRtuSerialSlave) ProcessRequest(request QModbusPdu_ITF) *QModbu
 }
 
 func (ptr *QModbusRtuSerialSlave) ProcessRequestDefault(request QModbusPdu_ITF) *QModbusResponse {
-	defer qt.Recovering("QModbusRtuSerialSlave::processRequest")
-
 	if ptr.Pointer() != nil {
 
 	}
@@ -5629,7 +4667,6 @@ func (ptr *QModbusRtuSerialSlave) ProcessRequestDefault(request QModbusPdu_ITF) 
 
 //export callbackQModbusRtuSerialSlave_ProcessesBroadcast
 func callbackQModbusRtuSerialSlave_ProcessesBroadcast(ptr unsafe.Pointer) C.char {
-	defer qt.Recovering("callback QModbusRtuSerialSlave::processesBroadcast")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QModbusRtuSerialSlave::processesBroadcast"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func() bool)())))
@@ -5639,8 +4676,6 @@ func callbackQModbusRtuSerialSlave_ProcessesBroadcast(ptr unsafe.Pointer) C.char
 }
 
 func (ptr *QModbusRtuSerialSlave) ConnectProcessesBroadcast(f func() bool) {
-	defer qt.Recovering("connect QModbusRtuSerialSlave::processesBroadcast")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QModbusRtuSerialSlave::processesBroadcast", f)
@@ -5648,8 +4683,6 @@ func (ptr *QModbusRtuSerialSlave) ConnectProcessesBroadcast(f func() bool) {
 }
 
 func (ptr *QModbusRtuSerialSlave) DisconnectProcessesBroadcast() {
-	defer qt.Recovering("disconnect QModbusRtuSerialSlave::processesBroadcast")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QModbusRtuSerialSlave::processesBroadcast")
@@ -5657,8 +4690,6 @@ func (ptr *QModbusRtuSerialSlave) DisconnectProcessesBroadcast() {
 }
 
 func (ptr *QModbusRtuSerialSlave) ProcessesBroadcast() bool {
-	defer qt.Recovering("QModbusRtuSerialSlave::processesBroadcast")
-
 	if ptr.Pointer() != nil {
 		return C.QModbusRtuSerialSlave_ProcessesBroadcast(ptr.Pointer()) != 0
 	}
@@ -5666,8 +4697,6 @@ func (ptr *QModbusRtuSerialSlave) ProcessesBroadcast() bool {
 }
 
 func (ptr *QModbusRtuSerialSlave) ProcessesBroadcastDefault() bool {
-	defer qt.Recovering("QModbusRtuSerialSlave::processesBroadcast")
-
 	if ptr.Pointer() != nil {
 		return C.QModbusRtuSerialSlave_ProcessesBroadcastDefault(ptr.Pointer()) != 0
 	}
@@ -5676,7 +4705,6 @@ func (ptr *QModbusRtuSerialSlave) ProcessesBroadcastDefault() bool {
 
 //export callbackQModbusRtuSerialSlave_SetValue
 func callbackQModbusRtuSerialSlave_SetValue(ptr unsafe.Pointer, option C.int, newValue unsafe.Pointer) C.char {
-	defer qt.Recovering("callback QModbusRtuSerialSlave::setValue")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QModbusRtuSerialSlave::setValue"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(int, *core.QVariant) bool)(int(int32(option)), core.NewQVariantFromPointer(newValue)))))
@@ -5686,8 +4714,6 @@ func callbackQModbusRtuSerialSlave_SetValue(ptr unsafe.Pointer, option C.int, ne
 }
 
 func (ptr *QModbusRtuSerialSlave) ConnectSetValue(f func(option int, newValue *core.QVariant) bool) {
-	defer qt.Recovering("connect QModbusRtuSerialSlave::setValue")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QModbusRtuSerialSlave::setValue", f)
@@ -5695,8 +4721,6 @@ func (ptr *QModbusRtuSerialSlave) ConnectSetValue(f func(option int, newValue *c
 }
 
 func (ptr *QModbusRtuSerialSlave) DisconnectSetValue() {
-	defer qt.Recovering("disconnect QModbusRtuSerialSlave::setValue")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QModbusRtuSerialSlave::setValue")
@@ -5704,8 +4728,6 @@ func (ptr *QModbusRtuSerialSlave) DisconnectSetValue() {
 }
 
 func (ptr *QModbusRtuSerialSlave) SetValue(option int, newValue core.QVariant_ITF) bool {
-	defer qt.Recovering("QModbusRtuSerialSlave::setValue")
-
 	if ptr.Pointer() != nil {
 		return C.QModbusRtuSerialSlave_SetValue(ptr.Pointer(), C.int(int32(option)), core.PointerFromQVariant(newValue)) != 0
 	}
@@ -5713,8 +4735,6 @@ func (ptr *QModbusRtuSerialSlave) SetValue(option int, newValue core.QVariant_IT
 }
 
 func (ptr *QModbusRtuSerialSlave) SetValueDefault(option int, newValue core.QVariant_ITF) bool {
-	defer qt.Recovering("QModbusRtuSerialSlave::setValue")
-
 	if ptr.Pointer() != nil {
 		return C.QModbusRtuSerialSlave_SetValueDefault(ptr.Pointer(), C.int(int32(option)), core.PointerFromQVariant(newValue)) != 0
 	}
@@ -5723,7 +4743,6 @@ func (ptr *QModbusRtuSerialSlave) SetValueDefault(option int, newValue core.QVar
 
 //export callbackQModbusRtuSerialSlave_Value
 func callbackQModbusRtuSerialSlave_Value(ptr unsafe.Pointer, option C.int) unsafe.Pointer {
-	defer qt.Recovering("callback QModbusRtuSerialSlave::value")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QModbusRtuSerialSlave::value"); signal != nil {
 		return core.PointerFromQVariant(signal.(func(int) *core.QVariant)(int(int32(option))))
@@ -5733,8 +4752,6 @@ func callbackQModbusRtuSerialSlave_Value(ptr unsafe.Pointer, option C.int) unsaf
 }
 
 func (ptr *QModbusRtuSerialSlave) ConnectValue(f func(option int) *core.QVariant) {
-	defer qt.Recovering("connect QModbusRtuSerialSlave::value")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QModbusRtuSerialSlave::value", f)
@@ -5742,8 +4759,6 @@ func (ptr *QModbusRtuSerialSlave) ConnectValue(f func(option int) *core.QVariant
 }
 
 func (ptr *QModbusRtuSerialSlave) DisconnectValue() {
-	defer qt.Recovering("disconnect QModbusRtuSerialSlave::value")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QModbusRtuSerialSlave::value")
@@ -5751,8 +4766,6 @@ func (ptr *QModbusRtuSerialSlave) DisconnectValue() {
 }
 
 func (ptr *QModbusRtuSerialSlave) Value(option int) *core.QVariant {
-	defer qt.Recovering("QModbusRtuSerialSlave::value")
-
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQVariantFromPointer(C.QModbusRtuSerialSlave_Value(ptr.Pointer(), C.int(int32(option))))
 		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
@@ -5762,8 +4775,6 @@ func (ptr *QModbusRtuSerialSlave) Value(option int) *core.QVariant {
 }
 
 func (ptr *QModbusRtuSerialSlave) ValueDefault(option int) *core.QVariant {
-	defer qt.Recovering("QModbusRtuSerialSlave::value")
-
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQVariantFromPointer(C.QModbusRtuSerialSlave_ValueDefault(ptr.Pointer(), C.int(int32(option))))
 		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
@@ -5774,7 +4785,6 @@ func (ptr *QModbusRtuSerialSlave) ValueDefault(option int) *core.QVariant {
 
 //export callbackQModbusRtuSerialSlave_WriteData
 func callbackQModbusRtuSerialSlave_WriteData(ptr unsafe.Pointer, newData unsafe.Pointer) C.char {
-	defer qt.Recovering("callback QModbusRtuSerialSlave::writeData")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QModbusRtuSerialSlave::writeData"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*QModbusDataUnit) bool)(NewQModbusDataUnitFromPointer(newData)))))
@@ -5784,8 +4794,6 @@ func callbackQModbusRtuSerialSlave_WriteData(ptr unsafe.Pointer, newData unsafe.
 }
 
 func (ptr *QModbusRtuSerialSlave) ConnectWriteData(f func(newData *QModbusDataUnit) bool) {
-	defer qt.Recovering("connect QModbusRtuSerialSlave::writeData")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QModbusRtuSerialSlave::writeData", f)
@@ -5793,8 +4801,6 @@ func (ptr *QModbusRtuSerialSlave) ConnectWriteData(f func(newData *QModbusDataUn
 }
 
 func (ptr *QModbusRtuSerialSlave) DisconnectWriteData() {
-	defer qt.Recovering("disconnect QModbusRtuSerialSlave::writeData")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QModbusRtuSerialSlave::writeData")
@@ -5802,8 +4808,6 @@ func (ptr *QModbusRtuSerialSlave) DisconnectWriteData() {
 }
 
 func (ptr *QModbusRtuSerialSlave) WriteData(newData QModbusDataUnit_ITF) bool {
-	defer qt.Recovering("QModbusRtuSerialSlave::writeData")
-
 	if ptr.Pointer() != nil {
 		return C.QModbusRtuSerialSlave_WriteData(ptr.Pointer(), PointerFromQModbusDataUnit(newData)) != 0
 	}
@@ -5811,8 +4815,6 @@ func (ptr *QModbusRtuSerialSlave) WriteData(newData QModbusDataUnit_ITF) bool {
 }
 
 func (ptr *QModbusRtuSerialSlave) WriteDataDefault(newData QModbusDataUnit_ITF) bool {
-	defer qt.Recovering("QModbusRtuSerialSlave::writeData")
-
 	if ptr.Pointer() != nil {
 		return C.QModbusRtuSerialSlave_WriteDataDefault(ptr.Pointer(), PointerFromQModbusDataUnit(newData)) != 0
 	}
@@ -5821,7 +4823,6 @@ func (ptr *QModbusRtuSerialSlave) WriteDataDefault(newData QModbusDataUnit_ITF) 
 
 //export callbackQModbusRtuSerialSlave_Close
 func callbackQModbusRtuSerialSlave_Close(ptr unsafe.Pointer) {
-	defer qt.Recovering("callback QModbusRtuSerialSlave::close")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QModbusRtuSerialSlave::close"); signal != nil {
 		signal.(func())()
@@ -5831,8 +4832,6 @@ func callbackQModbusRtuSerialSlave_Close(ptr unsafe.Pointer) {
 }
 
 func (ptr *QModbusRtuSerialSlave) ConnectClose(f func()) {
-	defer qt.Recovering("connect QModbusRtuSerialSlave::close")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QModbusRtuSerialSlave::close", f)
@@ -5840,8 +4839,6 @@ func (ptr *QModbusRtuSerialSlave) ConnectClose(f func()) {
 }
 
 func (ptr *QModbusRtuSerialSlave) DisconnectClose() {
-	defer qt.Recovering("disconnect QModbusRtuSerialSlave::close")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QModbusRtuSerialSlave::close")
@@ -5849,16 +4846,12 @@ func (ptr *QModbusRtuSerialSlave) DisconnectClose() {
 }
 
 func (ptr *QModbusRtuSerialSlave) Close() {
-	defer qt.Recovering("QModbusRtuSerialSlave::close")
-
 	if ptr.Pointer() != nil {
 		C.QModbusRtuSerialSlave_Close(ptr.Pointer())
 	}
 }
 
 func (ptr *QModbusRtuSerialSlave) CloseDefault() {
-	defer qt.Recovering("QModbusRtuSerialSlave::close")
-
 	if ptr.Pointer() != nil {
 		C.QModbusRtuSerialSlave_CloseDefault(ptr.Pointer())
 	}
@@ -5866,7 +4859,6 @@ func (ptr *QModbusRtuSerialSlave) CloseDefault() {
 
 //export callbackQModbusRtuSerialSlave_Open
 func callbackQModbusRtuSerialSlave_Open(ptr unsafe.Pointer) C.char {
-	defer qt.Recovering("callback QModbusRtuSerialSlave::open")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QModbusRtuSerialSlave::open"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func() bool)())))
@@ -5876,8 +4868,6 @@ func callbackQModbusRtuSerialSlave_Open(ptr unsafe.Pointer) C.char {
 }
 
 func (ptr *QModbusRtuSerialSlave) ConnectOpen(f func() bool) {
-	defer qt.Recovering("connect QModbusRtuSerialSlave::open")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QModbusRtuSerialSlave::open", f)
@@ -5885,8 +4875,6 @@ func (ptr *QModbusRtuSerialSlave) ConnectOpen(f func() bool) {
 }
 
 func (ptr *QModbusRtuSerialSlave) DisconnectOpen() {
-	defer qt.Recovering("disconnect QModbusRtuSerialSlave::open")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QModbusRtuSerialSlave::open")
@@ -5894,8 +4882,6 @@ func (ptr *QModbusRtuSerialSlave) DisconnectOpen() {
 }
 
 func (ptr *QModbusRtuSerialSlave) Open() bool {
-	defer qt.Recovering("QModbusRtuSerialSlave::open")
-
 	if ptr.Pointer() != nil {
 		return C.QModbusRtuSerialSlave_Open(ptr.Pointer()) != 0
 	}
@@ -5903,8 +4889,6 @@ func (ptr *QModbusRtuSerialSlave) Open() bool {
 }
 
 func (ptr *QModbusRtuSerialSlave) OpenDefault() bool {
-	defer qt.Recovering("QModbusRtuSerialSlave::open")
-
 	if ptr.Pointer() != nil {
 		return C.QModbusRtuSerialSlave_OpenDefault(ptr.Pointer()) != 0
 	}
@@ -5913,7 +4897,6 @@ func (ptr *QModbusRtuSerialSlave) OpenDefault() bool {
 
 //export callbackQModbusRtuSerialSlave_TimerEvent
 func callbackQModbusRtuSerialSlave_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	defer qt.Recovering("callback QModbusRtuSerialSlave::timerEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QModbusRtuSerialSlave::timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
@@ -5923,8 +4906,6 @@ func callbackQModbusRtuSerialSlave_TimerEvent(ptr unsafe.Pointer, event unsafe.P
 }
 
 func (ptr *QModbusRtuSerialSlave) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
-	defer qt.Recovering("connect QModbusRtuSerialSlave::timerEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QModbusRtuSerialSlave::timerEvent", f)
@@ -5932,8 +4913,6 @@ func (ptr *QModbusRtuSerialSlave) ConnectTimerEvent(f func(event *core.QTimerEve
 }
 
 func (ptr *QModbusRtuSerialSlave) DisconnectTimerEvent() {
-	defer qt.Recovering("disconnect QModbusRtuSerialSlave::timerEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QModbusRtuSerialSlave::timerEvent")
@@ -5941,16 +4920,12 @@ func (ptr *QModbusRtuSerialSlave) DisconnectTimerEvent() {
 }
 
 func (ptr *QModbusRtuSerialSlave) TimerEvent(event core.QTimerEvent_ITF) {
-	defer qt.Recovering("QModbusRtuSerialSlave::timerEvent")
-
 	if ptr.Pointer() != nil {
 		C.QModbusRtuSerialSlave_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
 	}
 }
 
 func (ptr *QModbusRtuSerialSlave) TimerEventDefault(event core.QTimerEvent_ITF) {
-	defer qt.Recovering("QModbusRtuSerialSlave::timerEvent")
-
 	if ptr.Pointer() != nil {
 		C.QModbusRtuSerialSlave_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
 	}
@@ -5958,7 +4933,6 @@ func (ptr *QModbusRtuSerialSlave) TimerEventDefault(event core.QTimerEvent_ITF) 
 
 //export callbackQModbusRtuSerialSlave_ChildEvent
 func callbackQModbusRtuSerialSlave_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	defer qt.Recovering("callback QModbusRtuSerialSlave::childEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QModbusRtuSerialSlave::childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
@@ -5968,8 +4942,6 @@ func callbackQModbusRtuSerialSlave_ChildEvent(ptr unsafe.Pointer, event unsafe.P
 }
 
 func (ptr *QModbusRtuSerialSlave) ConnectChildEvent(f func(event *core.QChildEvent)) {
-	defer qt.Recovering("connect QModbusRtuSerialSlave::childEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QModbusRtuSerialSlave::childEvent", f)
@@ -5977,8 +4949,6 @@ func (ptr *QModbusRtuSerialSlave) ConnectChildEvent(f func(event *core.QChildEve
 }
 
 func (ptr *QModbusRtuSerialSlave) DisconnectChildEvent() {
-	defer qt.Recovering("disconnect QModbusRtuSerialSlave::childEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QModbusRtuSerialSlave::childEvent")
@@ -5986,16 +4956,12 @@ func (ptr *QModbusRtuSerialSlave) DisconnectChildEvent() {
 }
 
 func (ptr *QModbusRtuSerialSlave) ChildEvent(event core.QChildEvent_ITF) {
-	defer qt.Recovering("QModbusRtuSerialSlave::childEvent")
-
 	if ptr.Pointer() != nil {
 		C.QModbusRtuSerialSlave_ChildEvent(ptr.Pointer(), core.PointerFromQChildEvent(event))
 	}
 }
 
 func (ptr *QModbusRtuSerialSlave) ChildEventDefault(event core.QChildEvent_ITF) {
-	defer qt.Recovering("QModbusRtuSerialSlave::childEvent")
-
 	if ptr.Pointer() != nil {
 		C.QModbusRtuSerialSlave_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
 	}
@@ -6003,7 +4969,6 @@ func (ptr *QModbusRtuSerialSlave) ChildEventDefault(event core.QChildEvent_ITF) 
 
 //export callbackQModbusRtuSerialSlave_ConnectNotify
 func callbackQModbusRtuSerialSlave_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-	defer qt.Recovering("callback QModbusRtuSerialSlave::connectNotify")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QModbusRtuSerialSlave::connectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
@@ -6013,8 +4978,6 @@ func callbackQModbusRtuSerialSlave_ConnectNotify(ptr unsafe.Pointer, sign unsafe
 }
 
 func (ptr *QModbusRtuSerialSlave) ConnectConnectNotify(f func(sign *core.QMetaMethod)) {
-	defer qt.Recovering("connect QModbusRtuSerialSlave::connectNotify")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QModbusRtuSerialSlave::connectNotify", f)
@@ -6022,8 +4985,6 @@ func (ptr *QModbusRtuSerialSlave) ConnectConnectNotify(f func(sign *core.QMetaMe
 }
 
 func (ptr *QModbusRtuSerialSlave) DisconnectConnectNotify() {
-	defer qt.Recovering("disconnect QModbusRtuSerialSlave::connectNotify")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QModbusRtuSerialSlave::connectNotify")
@@ -6031,16 +4992,12 @@ func (ptr *QModbusRtuSerialSlave) DisconnectConnectNotify() {
 }
 
 func (ptr *QModbusRtuSerialSlave) ConnectNotify(sign core.QMetaMethod_ITF) {
-	defer qt.Recovering("QModbusRtuSerialSlave::connectNotify")
-
 	if ptr.Pointer() != nil {
 		C.QModbusRtuSerialSlave_ConnectNotify(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
 	}
 }
 
 func (ptr *QModbusRtuSerialSlave) ConnectNotifyDefault(sign core.QMetaMethod_ITF) {
-	defer qt.Recovering("QModbusRtuSerialSlave::connectNotify")
-
 	if ptr.Pointer() != nil {
 		C.QModbusRtuSerialSlave_ConnectNotifyDefault(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
 	}
@@ -6048,7 +5005,6 @@ func (ptr *QModbusRtuSerialSlave) ConnectNotifyDefault(sign core.QMetaMethod_ITF
 
 //export callbackQModbusRtuSerialSlave_CustomEvent
 func callbackQModbusRtuSerialSlave_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	defer qt.Recovering("callback QModbusRtuSerialSlave::customEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QModbusRtuSerialSlave::customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
@@ -6058,8 +5014,6 @@ func callbackQModbusRtuSerialSlave_CustomEvent(ptr unsafe.Pointer, event unsafe.
 }
 
 func (ptr *QModbusRtuSerialSlave) ConnectCustomEvent(f func(event *core.QEvent)) {
-	defer qt.Recovering("connect QModbusRtuSerialSlave::customEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QModbusRtuSerialSlave::customEvent", f)
@@ -6067,8 +5021,6 @@ func (ptr *QModbusRtuSerialSlave) ConnectCustomEvent(f func(event *core.QEvent))
 }
 
 func (ptr *QModbusRtuSerialSlave) DisconnectCustomEvent() {
-	defer qt.Recovering("disconnect QModbusRtuSerialSlave::customEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QModbusRtuSerialSlave::customEvent")
@@ -6076,16 +5028,12 @@ func (ptr *QModbusRtuSerialSlave) DisconnectCustomEvent() {
 }
 
 func (ptr *QModbusRtuSerialSlave) CustomEvent(event core.QEvent_ITF) {
-	defer qt.Recovering("QModbusRtuSerialSlave::customEvent")
-
 	if ptr.Pointer() != nil {
 		C.QModbusRtuSerialSlave_CustomEvent(ptr.Pointer(), core.PointerFromQEvent(event))
 	}
 }
 
 func (ptr *QModbusRtuSerialSlave) CustomEventDefault(event core.QEvent_ITF) {
-	defer qt.Recovering("QModbusRtuSerialSlave::customEvent")
-
 	if ptr.Pointer() != nil {
 		C.QModbusRtuSerialSlave_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
 	}
@@ -6093,8 +5041,6 @@ func (ptr *QModbusRtuSerialSlave) CustomEventDefault(event core.QEvent_ITF) {
 
 //export callbackQModbusRtuSerialSlave_DeleteLater
 func callbackQModbusRtuSerialSlave_DeleteLater(ptr unsafe.Pointer) {
-	defer qt.Recovering("callback QModbusRtuSerialSlave::deleteLater")
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QModbusRtuSerialSlave::deleteLater"); signal != nil {
 		signal.(func())()
 	} else {
@@ -6103,8 +5049,6 @@ func callbackQModbusRtuSerialSlave_DeleteLater(ptr unsafe.Pointer) {
 }
 
 func (ptr *QModbusRtuSerialSlave) ConnectDeleteLater(f func()) {
-	defer qt.Recovering("connect QModbusRtuSerialSlave::deleteLater")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QModbusRtuSerialSlave::deleteLater", f)
@@ -6112,8 +5056,6 @@ func (ptr *QModbusRtuSerialSlave) ConnectDeleteLater(f func()) {
 }
 
 func (ptr *QModbusRtuSerialSlave) DisconnectDeleteLater() {
-	defer qt.Recovering("disconnect QModbusRtuSerialSlave::deleteLater")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QModbusRtuSerialSlave::deleteLater")
@@ -6121,8 +5063,6 @@ func (ptr *QModbusRtuSerialSlave) DisconnectDeleteLater() {
 }
 
 func (ptr *QModbusRtuSerialSlave) DeleteLater() {
-	defer qt.Recovering("QModbusRtuSerialSlave::deleteLater")
-
 	if ptr.Pointer() != nil {
 		C.QModbusRtuSerialSlave_DeleteLater(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
@@ -6131,8 +5071,6 @@ func (ptr *QModbusRtuSerialSlave) DeleteLater() {
 }
 
 func (ptr *QModbusRtuSerialSlave) DeleteLaterDefault() {
-	defer qt.Recovering("QModbusRtuSerialSlave::deleteLater")
-
 	if ptr.Pointer() != nil {
 		C.QModbusRtuSerialSlave_DeleteLaterDefault(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
@@ -6142,7 +5080,6 @@ func (ptr *QModbusRtuSerialSlave) DeleteLaterDefault() {
 
 //export callbackQModbusRtuSerialSlave_DisconnectNotify
 func callbackQModbusRtuSerialSlave_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-	defer qt.Recovering("callback QModbusRtuSerialSlave::disconnectNotify")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QModbusRtuSerialSlave::disconnectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
@@ -6152,8 +5089,6 @@ func callbackQModbusRtuSerialSlave_DisconnectNotify(ptr unsafe.Pointer, sign uns
 }
 
 func (ptr *QModbusRtuSerialSlave) ConnectDisconnectNotify(f func(sign *core.QMetaMethod)) {
-	defer qt.Recovering("connect QModbusRtuSerialSlave::disconnectNotify")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QModbusRtuSerialSlave::disconnectNotify", f)
@@ -6161,8 +5096,6 @@ func (ptr *QModbusRtuSerialSlave) ConnectDisconnectNotify(f func(sign *core.QMet
 }
 
 func (ptr *QModbusRtuSerialSlave) DisconnectDisconnectNotify() {
-	defer qt.Recovering("disconnect QModbusRtuSerialSlave::disconnectNotify")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QModbusRtuSerialSlave::disconnectNotify")
@@ -6170,16 +5103,12 @@ func (ptr *QModbusRtuSerialSlave) DisconnectDisconnectNotify() {
 }
 
 func (ptr *QModbusRtuSerialSlave) DisconnectNotify(sign core.QMetaMethod_ITF) {
-	defer qt.Recovering("QModbusRtuSerialSlave::disconnectNotify")
-
 	if ptr.Pointer() != nil {
 		C.QModbusRtuSerialSlave_DisconnectNotify(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
 	}
 }
 
 func (ptr *QModbusRtuSerialSlave) DisconnectNotifyDefault(sign core.QMetaMethod_ITF) {
-	defer qt.Recovering("QModbusRtuSerialSlave::disconnectNotify")
-
 	if ptr.Pointer() != nil {
 		C.QModbusRtuSerialSlave_DisconnectNotifyDefault(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
 	}
@@ -6187,7 +5116,6 @@ func (ptr *QModbusRtuSerialSlave) DisconnectNotifyDefault(sign core.QMetaMethod_
 
 //export callbackQModbusRtuSerialSlave_Event
 func callbackQModbusRtuSerialSlave_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
-	defer qt.Recovering("callback QModbusRtuSerialSlave::event")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QModbusRtuSerialSlave::event"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
@@ -6197,8 +5125,6 @@ func callbackQModbusRtuSerialSlave_Event(ptr unsafe.Pointer, e unsafe.Pointer) C
 }
 
 func (ptr *QModbusRtuSerialSlave) ConnectEvent(f func(e *core.QEvent) bool) {
-	defer qt.Recovering("connect QModbusRtuSerialSlave::event")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QModbusRtuSerialSlave::event", f)
@@ -6206,8 +5132,6 @@ func (ptr *QModbusRtuSerialSlave) ConnectEvent(f func(e *core.QEvent) bool) {
 }
 
 func (ptr *QModbusRtuSerialSlave) DisconnectEvent() {
-	defer qt.Recovering("disconnect QModbusRtuSerialSlave::event")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QModbusRtuSerialSlave::event")
@@ -6215,8 +5139,6 @@ func (ptr *QModbusRtuSerialSlave) DisconnectEvent() {
 }
 
 func (ptr *QModbusRtuSerialSlave) Event(e core.QEvent_ITF) bool {
-	defer qt.Recovering("QModbusRtuSerialSlave::event")
-
 	if ptr.Pointer() != nil {
 		return C.QModbusRtuSerialSlave_Event(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
 	}
@@ -6224,8 +5146,6 @@ func (ptr *QModbusRtuSerialSlave) Event(e core.QEvent_ITF) bool {
 }
 
 func (ptr *QModbusRtuSerialSlave) EventDefault(e core.QEvent_ITF) bool {
-	defer qt.Recovering("QModbusRtuSerialSlave::event")
-
 	if ptr.Pointer() != nil {
 		return C.QModbusRtuSerialSlave_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
 	}
@@ -6234,7 +5154,6 @@ func (ptr *QModbusRtuSerialSlave) EventDefault(e core.QEvent_ITF) bool {
 
 //export callbackQModbusRtuSerialSlave_EventFilter
 func callbackQModbusRtuSerialSlave_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-	defer qt.Recovering("callback QModbusRtuSerialSlave::eventFilter")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QModbusRtuSerialSlave::eventFilter"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
@@ -6244,8 +5163,6 @@ func callbackQModbusRtuSerialSlave_EventFilter(ptr unsafe.Pointer, watched unsaf
 }
 
 func (ptr *QModbusRtuSerialSlave) ConnectEventFilter(f func(watched *core.QObject, event *core.QEvent) bool) {
-	defer qt.Recovering("connect QModbusRtuSerialSlave::eventFilter")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QModbusRtuSerialSlave::eventFilter", f)
@@ -6253,8 +5170,6 @@ func (ptr *QModbusRtuSerialSlave) ConnectEventFilter(f func(watched *core.QObjec
 }
 
 func (ptr *QModbusRtuSerialSlave) DisconnectEventFilter() {
-	defer qt.Recovering("disconnect QModbusRtuSerialSlave::eventFilter")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QModbusRtuSerialSlave::eventFilter")
@@ -6262,8 +5177,6 @@ func (ptr *QModbusRtuSerialSlave) DisconnectEventFilter() {
 }
 
 func (ptr *QModbusRtuSerialSlave) EventFilter(watched core.QObject_ITF, event core.QEvent_ITF) bool {
-	defer qt.Recovering("QModbusRtuSerialSlave::eventFilter")
-
 	if ptr.Pointer() != nil {
 		return C.QModbusRtuSerialSlave_EventFilter(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
 	}
@@ -6271,8 +5184,6 @@ func (ptr *QModbusRtuSerialSlave) EventFilter(watched core.QObject_ITF, event co
 }
 
 func (ptr *QModbusRtuSerialSlave) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
-	defer qt.Recovering("QModbusRtuSerialSlave::eventFilter")
-
 	if ptr.Pointer() != nil {
 		return C.QModbusRtuSerialSlave_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
 	}
@@ -6281,7 +5192,6 @@ func (ptr *QModbusRtuSerialSlave) EventFilterDefault(watched core.QObject_ITF, e
 
 //export callbackQModbusRtuSerialSlave_MetaObject
 func callbackQModbusRtuSerialSlave_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-	defer qt.Recovering("callback QModbusRtuSerialSlave::metaObject")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QModbusRtuSerialSlave::metaObject"); signal != nil {
 		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
@@ -6291,8 +5201,6 @@ func callbackQModbusRtuSerialSlave_MetaObject(ptr unsafe.Pointer) unsafe.Pointer
 }
 
 func (ptr *QModbusRtuSerialSlave) ConnectMetaObject(f func() *core.QMetaObject) {
-	defer qt.Recovering("connect QModbusRtuSerialSlave::metaObject")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QModbusRtuSerialSlave::metaObject", f)
@@ -6300,8 +5208,6 @@ func (ptr *QModbusRtuSerialSlave) ConnectMetaObject(f func() *core.QMetaObject) 
 }
 
 func (ptr *QModbusRtuSerialSlave) DisconnectMetaObject() {
-	defer qt.Recovering("disconnect QModbusRtuSerialSlave::metaObject")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QModbusRtuSerialSlave::metaObject")
@@ -6309,8 +5215,6 @@ func (ptr *QModbusRtuSerialSlave) DisconnectMetaObject() {
 }
 
 func (ptr *QModbusRtuSerialSlave) MetaObject() *core.QMetaObject {
-	defer qt.Recovering("QModbusRtuSerialSlave::metaObject")
-
 	if ptr.Pointer() != nil {
 		return core.NewQMetaObjectFromPointer(C.QModbusRtuSerialSlave_MetaObject(ptr.Pointer()))
 	}
@@ -6318,8 +5222,6 @@ func (ptr *QModbusRtuSerialSlave) MetaObject() *core.QMetaObject {
 }
 
 func (ptr *QModbusRtuSerialSlave) MetaObjectDefault() *core.QMetaObject {
-	defer qt.Recovering("QModbusRtuSerialSlave::metaObject")
-
 	if ptr.Pointer() != nil {
 		return core.NewQMetaObjectFromPointer(C.QModbusRtuSerialSlave_MetaObjectDefault(ptr.Pointer()))
 	}
@@ -6388,8 +5290,6 @@ func (ptr *QModbusServer) DestroyQModbusServer() {
 }
 
 func NewQModbusServer(parent core.QObject_ITF) *QModbusServer {
-	defer qt.Recovering("QModbusServer::QModbusServer")
-
 	var tmpValue = NewQModbusServerFromPointer(C.QModbusServer_NewQModbusServer(core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
@@ -6398,8 +5298,6 @@ func NewQModbusServer(parent core.QObject_ITF) *QModbusServer {
 }
 
 func (ptr *QModbusServer) Data(newData QModbusDataUnit_ITF) bool {
-	defer qt.Recovering("QModbusServer::data")
-
 	if ptr.Pointer() != nil {
 		return C.QModbusServer_Data(ptr.Pointer(), PointerFromQModbusDataUnit(newData)) != 0
 	}
@@ -6407,8 +5305,6 @@ func (ptr *QModbusServer) Data(newData QModbusDataUnit_ITF) bool {
 }
 
 func (ptr *QModbusServer) Data2(table QModbusDataUnit__RegisterType, address uint16, data uint16) bool {
-	defer qt.Recovering("QModbusServer::data")
-
 	if ptr.Pointer() != nil {
 		return C.QModbusServer_Data2(ptr.Pointer(), C.longlong(table), C.ushort(address), C.ushort(data)) != 0
 	}
@@ -6417,7 +5313,6 @@ func (ptr *QModbusServer) Data2(table QModbusDataUnit__RegisterType, address uin
 
 //export callbackQModbusServer_DataWritten
 func callbackQModbusServer_DataWritten(ptr unsafe.Pointer, regist C.longlong, address C.int, size C.int) {
-	defer qt.Recovering("callback QModbusServer::dataWritten")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QModbusServer::dataWritten"); signal != nil {
 		signal.(func(QModbusDataUnit__RegisterType, int, int))(QModbusDataUnit__RegisterType(regist), int(int32(address)), int(int32(size)))
@@ -6426,8 +5321,6 @@ func callbackQModbusServer_DataWritten(ptr unsafe.Pointer, regist C.longlong, ad
 }
 
 func (ptr *QModbusServer) ConnectDataWritten(f func(regist QModbusDataUnit__RegisterType, address int, size int)) {
-	defer qt.Recovering("connect QModbusServer::dataWritten")
-
 	if ptr.Pointer() != nil {
 		C.QModbusServer_ConnectDataWritten(ptr.Pointer())
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QModbusServer::dataWritten", f)
@@ -6435,8 +5328,6 @@ func (ptr *QModbusServer) ConnectDataWritten(f func(regist QModbusDataUnit__Regi
 }
 
 func (ptr *QModbusServer) DisconnectDataWritten() {
-	defer qt.Recovering("disconnect QModbusServer::dataWritten")
-
 	if ptr.Pointer() != nil {
 		C.QModbusServer_DisconnectDataWritten(ptr.Pointer())
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QModbusServer::dataWritten")
@@ -6444,8 +5335,6 @@ func (ptr *QModbusServer) DisconnectDataWritten() {
 }
 
 func (ptr *QModbusServer) DataWritten(regist QModbusDataUnit__RegisterType, address int, size int) {
-	defer qt.Recovering("QModbusServer::dataWritten")
-
 	if ptr.Pointer() != nil {
 		C.QModbusServer_DataWritten(ptr.Pointer(), C.longlong(regist), C.int(int32(address)), C.int(int32(size)))
 	}
@@ -6453,7 +5342,6 @@ func (ptr *QModbusServer) DataWritten(regist QModbusDataUnit__RegisterType, addr
 
 //export callbackQModbusServer_ProcessPrivateRequest
 func callbackQModbusServer_ProcessPrivateRequest(ptr unsafe.Pointer, request unsafe.Pointer) unsafe.Pointer {
-	defer qt.Recovering("callback QModbusServer::processPrivateRequest")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QModbusServer::processPrivateRequest"); signal != nil {
 		return PointerFromQModbusResponse(signal.(func(*QModbusPdu) *QModbusResponse)(NewQModbusPduFromPointer(request)))
@@ -6463,8 +5351,6 @@ func callbackQModbusServer_ProcessPrivateRequest(ptr unsafe.Pointer, request uns
 }
 
 func (ptr *QModbusServer) ConnectProcessPrivateRequest(f func(request *QModbusPdu) *QModbusResponse) {
-	defer qt.Recovering("connect QModbusServer::processPrivateRequest")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QModbusServer::processPrivateRequest", f)
@@ -6472,8 +5358,6 @@ func (ptr *QModbusServer) ConnectProcessPrivateRequest(f func(request *QModbusPd
 }
 
 func (ptr *QModbusServer) DisconnectProcessPrivateRequest() {
-	defer qt.Recovering("disconnect QModbusServer::processPrivateRequest")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QModbusServer::processPrivateRequest")
@@ -6481,8 +5365,6 @@ func (ptr *QModbusServer) DisconnectProcessPrivateRequest() {
 }
 
 func (ptr *QModbusServer) ProcessPrivateRequest(request QModbusPdu_ITF) *QModbusResponse {
-	defer qt.Recovering("QModbusServer::processPrivateRequest")
-
 	if ptr.Pointer() != nil {
 
 	}
@@ -6490,8 +5372,6 @@ func (ptr *QModbusServer) ProcessPrivateRequest(request QModbusPdu_ITF) *QModbus
 }
 
 func (ptr *QModbusServer) ProcessPrivateRequestDefault(request QModbusPdu_ITF) *QModbusResponse {
-	defer qt.Recovering("QModbusServer::processPrivateRequest")
-
 	if ptr.Pointer() != nil {
 
 	}
@@ -6500,7 +5380,6 @@ func (ptr *QModbusServer) ProcessPrivateRequestDefault(request QModbusPdu_ITF) *
 
 //export callbackQModbusServer_ProcessRequest
 func callbackQModbusServer_ProcessRequest(ptr unsafe.Pointer, request unsafe.Pointer) unsafe.Pointer {
-	defer qt.Recovering("callback QModbusServer::processRequest")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QModbusServer::processRequest"); signal != nil {
 		return PointerFromQModbusResponse(signal.(func(*QModbusPdu) *QModbusResponse)(NewQModbusPduFromPointer(request)))
@@ -6510,8 +5389,6 @@ func callbackQModbusServer_ProcessRequest(ptr unsafe.Pointer, request unsafe.Poi
 }
 
 func (ptr *QModbusServer) ConnectProcessRequest(f func(request *QModbusPdu) *QModbusResponse) {
-	defer qt.Recovering("connect QModbusServer::processRequest")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QModbusServer::processRequest", f)
@@ -6519,8 +5396,6 @@ func (ptr *QModbusServer) ConnectProcessRequest(f func(request *QModbusPdu) *QMo
 }
 
 func (ptr *QModbusServer) DisconnectProcessRequest() {
-	defer qt.Recovering("disconnect QModbusServer::processRequest")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QModbusServer::processRequest")
@@ -6528,8 +5403,6 @@ func (ptr *QModbusServer) DisconnectProcessRequest() {
 }
 
 func (ptr *QModbusServer) ProcessRequest(request QModbusPdu_ITF) *QModbusResponse {
-	defer qt.Recovering("QModbusServer::processRequest")
-
 	if ptr.Pointer() != nil {
 
 	}
@@ -6537,8 +5410,6 @@ func (ptr *QModbusServer) ProcessRequest(request QModbusPdu_ITF) *QModbusRespons
 }
 
 func (ptr *QModbusServer) ProcessRequestDefault(request QModbusPdu_ITF) *QModbusResponse {
-	defer qt.Recovering("QModbusServer::processRequest")
-
 	if ptr.Pointer() != nil {
 
 	}
@@ -6547,7 +5418,6 @@ func (ptr *QModbusServer) ProcessRequestDefault(request QModbusPdu_ITF) *QModbus
 
 //export callbackQModbusServer_ProcessesBroadcast
 func callbackQModbusServer_ProcessesBroadcast(ptr unsafe.Pointer) C.char {
-	defer qt.Recovering("callback QModbusServer::processesBroadcast")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QModbusServer::processesBroadcast"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func() bool)())))
@@ -6557,8 +5427,6 @@ func callbackQModbusServer_ProcessesBroadcast(ptr unsafe.Pointer) C.char {
 }
 
 func (ptr *QModbusServer) ConnectProcessesBroadcast(f func() bool) {
-	defer qt.Recovering("connect QModbusServer::processesBroadcast")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QModbusServer::processesBroadcast", f)
@@ -6566,8 +5434,6 @@ func (ptr *QModbusServer) ConnectProcessesBroadcast(f func() bool) {
 }
 
 func (ptr *QModbusServer) DisconnectProcessesBroadcast() {
-	defer qt.Recovering("disconnect QModbusServer::processesBroadcast")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QModbusServer::processesBroadcast")
@@ -6575,8 +5441,6 @@ func (ptr *QModbusServer) DisconnectProcessesBroadcast() {
 }
 
 func (ptr *QModbusServer) ProcessesBroadcast() bool {
-	defer qt.Recovering("QModbusServer::processesBroadcast")
-
 	if ptr.Pointer() != nil {
 		return C.QModbusServer_ProcessesBroadcast(ptr.Pointer()) != 0
 	}
@@ -6584,8 +5448,6 @@ func (ptr *QModbusServer) ProcessesBroadcast() bool {
 }
 
 func (ptr *QModbusServer) ProcessesBroadcastDefault() bool {
-	defer qt.Recovering("QModbusServer::processesBroadcast")
-
 	if ptr.Pointer() != nil {
 		return C.QModbusServer_ProcessesBroadcastDefault(ptr.Pointer()) != 0
 	}
@@ -6593,8 +5455,6 @@ func (ptr *QModbusServer) ProcessesBroadcastDefault() bool {
 }
 
 func (ptr *QModbusServer) ServerAddress() int {
-	defer qt.Recovering("QModbusServer::serverAddress")
-
 	if ptr.Pointer() != nil {
 		return int(int32(C.QModbusServer_ServerAddress(ptr.Pointer())))
 	}
@@ -6602,8 +5462,6 @@ func (ptr *QModbusServer) ServerAddress() int {
 }
 
 func (ptr *QModbusServer) SetData2(table QModbusDataUnit__RegisterType, address uint16, data uint16) bool {
-	defer qt.Recovering("QModbusServer::setData")
-
 	if ptr.Pointer() != nil {
 		return C.QModbusServer_SetData2(ptr.Pointer(), C.longlong(table), C.ushort(address), C.ushort(data)) != 0
 	}
@@ -6611,8 +5469,6 @@ func (ptr *QModbusServer) SetData2(table QModbusDataUnit__RegisterType, address 
 }
 
 func (ptr *QModbusServer) SetData(newData QModbusDataUnit_ITF) bool {
-	defer qt.Recovering("QModbusServer::setData")
-
 	if ptr.Pointer() != nil {
 		return C.QModbusServer_SetData(ptr.Pointer(), PointerFromQModbusDataUnit(newData)) != 0
 	}
@@ -6620,8 +5476,6 @@ func (ptr *QModbusServer) SetData(newData QModbusDataUnit_ITF) bool {
 }
 
 func (ptr *QModbusServer) SetServerAddress(serverAddress int) {
-	defer qt.Recovering("QModbusServer::setServerAddress")
-
 	if ptr.Pointer() != nil {
 		C.QModbusServer_SetServerAddress(ptr.Pointer(), C.int(int32(serverAddress)))
 	}
@@ -6629,7 +5483,6 @@ func (ptr *QModbusServer) SetServerAddress(serverAddress int) {
 
 //export callbackQModbusServer_SetValue
 func callbackQModbusServer_SetValue(ptr unsafe.Pointer, option C.int, newValue unsafe.Pointer) C.char {
-	defer qt.Recovering("callback QModbusServer::setValue")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QModbusServer::setValue"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(int, *core.QVariant) bool)(int(int32(option)), core.NewQVariantFromPointer(newValue)))))
@@ -6639,8 +5492,6 @@ func callbackQModbusServer_SetValue(ptr unsafe.Pointer, option C.int, newValue u
 }
 
 func (ptr *QModbusServer) ConnectSetValue(f func(option int, newValue *core.QVariant) bool) {
-	defer qt.Recovering("connect QModbusServer::setValue")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QModbusServer::setValue", f)
@@ -6648,8 +5499,6 @@ func (ptr *QModbusServer) ConnectSetValue(f func(option int, newValue *core.QVar
 }
 
 func (ptr *QModbusServer) DisconnectSetValue() {
-	defer qt.Recovering("disconnect QModbusServer::setValue")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QModbusServer::setValue")
@@ -6657,8 +5506,6 @@ func (ptr *QModbusServer) DisconnectSetValue() {
 }
 
 func (ptr *QModbusServer) SetValue(option int, newValue core.QVariant_ITF) bool {
-	defer qt.Recovering("QModbusServer::setValue")
-
 	if ptr.Pointer() != nil {
 		return C.QModbusServer_SetValue(ptr.Pointer(), C.int(int32(option)), core.PointerFromQVariant(newValue)) != 0
 	}
@@ -6666,8 +5513,6 @@ func (ptr *QModbusServer) SetValue(option int, newValue core.QVariant_ITF) bool 
 }
 
 func (ptr *QModbusServer) SetValueDefault(option int, newValue core.QVariant_ITF) bool {
-	defer qt.Recovering("QModbusServer::setValue")
-
 	if ptr.Pointer() != nil {
 		return C.QModbusServer_SetValueDefault(ptr.Pointer(), C.int(int32(option)), core.PointerFromQVariant(newValue)) != 0
 	}
@@ -6676,7 +5521,6 @@ func (ptr *QModbusServer) SetValueDefault(option int, newValue core.QVariant_ITF
 
 //export callbackQModbusServer_Value
 func callbackQModbusServer_Value(ptr unsafe.Pointer, option C.int) unsafe.Pointer {
-	defer qt.Recovering("callback QModbusServer::value")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QModbusServer::value"); signal != nil {
 		return core.PointerFromQVariant(signal.(func(int) *core.QVariant)(int(int32(option))))
@@ -6686,8 +5530,6 @@ func callbackQModbusServer_Value(ptr unsafe.Pointer, option C.int) unsafe.Pointe
 }
 
 func (ptr *QModbusServer) ConnectValue(f func(option int) *core.QVariant) {
-	defer qt.Recovering("connect QModbusServer::value")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QModbusServer::value", f)
@@ -6695,8 +5537,6 @@ func (ptr *QModbusServer) ConnectValue(f func(option int) *core.QVariant) {
 }
 
 func (ptr *QModbusServer) DisconnectValue() {
-	defer qt.Recovering("disconnect QModbusServer::value")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QModbusServer::value")
@@ -6704,8 +5544,6 @@ func (ptr *QModbusServer) DisconnectValue() {
 }
 
 func (ptr *QModbusServer) Value(option int) *core.QVariant {
-	defer qt.Recovering("QModbusServer::value")
-
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQVariantFromPointer(C.QModbusServer_Value(ptr.Pointer(), C.int(int32(option))))
 		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
@@ -6715,8 +5553,6 @@ func (ptr *QModbusServer) Value(option int) *core.QVariant {
 }
 
 func (ptr *QModbusServer) ValueDefault(option int) *core.QVariant {
-	defer qt.Recovering("QModbusServer::value")
-
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQVariantFromPointer(C.QModbusServer_ValueDefault(ptr.Pointer(), C.int(int32(option))))
 		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
@@ -6727,7 +5563,6 @@ func (ptr *QModbusServer) ValueDefault(option int) *core.QVariant {
 
 //export callbackQModbusServer_WriteData
 func callbackQModbusServer_WriteData(ptr unsafe.Pointer, newData unsafe.Pointer) C.char {
-	defer qt.Recovering("callback QModbusServer::writeData")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QModbusServer::writeData"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*QModbusDataUnit) bool)(NewQModbusDataUnitFromPointer(newData)))))
@@ -6737,8 +5572,6 @@ func callbackQModbusServer_WriteData(ptr unsafe.Pointer, newData unsafe.Pointer)
 }
 
 func (ptr *QModbusServer) ConnectWriteData(f func(newData *QModbusDataUnit) bool) {
-	defer qt.Recovering("connect QModbusServer::writeData")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QModbusServer::writeData", f)
@@ -6746,8 +5579,6 @@ func (ptr *QModbusServer) ConnectWriteData(f func(newData *QModbusDataUnit) bool
 }
 
 func (ptr *QModbusServer) DisconnectWriteData() {
-	defer qt.Recovering("disconnect QModbusServer::writeData")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QModbusServer::writeData")
@@ -6755,8 +5586,6 @@ func (ptr *QModbusServer) DisconnectWriteData() {
 }
 
 func (ptr *QModbusServer) WriteData(newData QModbusDataUnit_ITF) bool {
-	defer qt.Recovering("QModbusServer::writeData")
-
 	if ptr.Pointer() != nil {
 		return C.QModbusServer_WriteData(ptr.Pointer(), PointerFromQModbusDataUnit(newData)) != 0
 	}
@@ -6764,8 +5593,6 @@ func (ptr *QModbusServer) WriteData(newData QModbusDataUnit_ITF) bool {
 }
 
 func (ptr *QModbusServer) WriteDataDefault(newData QModbusDataUnit_ITF) bool {
-	defer qt.Recovering("QModbusServer::writeData")
-
 	if ptr.Pointer() != nil {
 		return C.QModbusServer_WriteDataDefault(ptr.Pointer(), PointerFromQModbusDataUnit(newData)) != 0
 	}
@@ -6774,7 +5601,6 @@ func (ptr *QModbusServer) WriteDataDefault(newData QModbusDataUnit_ITF) bool {
 
 //export callbackQModbusServer_Close
 func callbackQModbusServer_Close(ptr unsafe.Pointer) {
-	defer qt.Recovering("callback QModbusServer::close")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QModbusServer::close"); signal != nil {
 		signal.(func())()
@@ -6784,8 +5610,6 @@ func callbackQModbusServer_Close(ptr unsafe.Pointer) {
 }
 
 func (ptr *QModbusServer) ConnectClose(f func()) {
-	defer qt.Recovering("connect QModbusServer::close")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QModbusServer::close", f)
@@ -6793,8 +5617,6 @@ func (ptr *QModbusServer) ConnectClose(f func()) {
 }
 
 func (ptr *QModbusServer) DisconnectClose() {
-	defer qt.Recovering("disconnect QModbusServer::close")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QModbusServer::close")
@@ -6802,8 +5624,6 @@ func (ptr *QModbusServer) DisconnectClose() {
 }
 
 func (ptr *QModbusServer) Close() {
-	defer qt.Recovering("QModbusServer::close")
-
 	if ptr.Pointer() != nil {
 		C.QModbusServer_Close(ptr.Pointer())
 	}
@@ -6811,7 +5631,6 @@ func (ptr *QModbusServer) Close() {
 
 //export callbackQModbusServer_Open
 func callbackQModbusServer_Open(ptr unsafe.Pointer) C.char {
-	defer qt.Recovering("callback QModbusServer::open")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QModbusServer::open"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func() bool)())))
@@ -6821,8 +5640,6 @@ func callbackQModbusServer_Open(ptr unsafe.Pointer) C.char {
 }
 
 func (ptr *QModbusServer) ConnectOpen(f func() bool) {
-	defer qt.Recovering("connect QModbusServer::open")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QModbusServer::open", f)
@@ -6830,8 +5647,6 @@ func (ptr *QModbusServer) ConnectOpen(f func() bool) {
 }
 
 func (ptr *QModbusServer) DisconnectOpen() {
-	defer qt.Recovering("disconnect QModbusServer::open")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QModbusServer::open")
@@ -6839,8 +5654,6 @@ func (ptr *QModbusServer) DisconnectOpen() {
 }
 
 func (ptr *QModbusServer) Open() bool {
-	defer qt.Recovering("QModbusServer::open")
-
 	if ptr.Pointer() != nil {
 		return C.QModbusServer_Open(ptr.Pointer()) != 0
 	}
@@ -6849,7 +5662,6 @@ func (ptr *QModbusServer) Open() bool {
 
 //export callbackQModbusServer_TimerEvent
 func callbackQModbusServer_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	defer qt.Recovering("callback QModbusServer::timerEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QModbusServer::timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
@@ -6859,8 +5671,6 @@ func callbackQModbusServer_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) 
 }
 
 func (ptr *QModbusServer) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
-	defer qt.Recovering("connect QModbusServer::timerEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QModbusServer::timerEvent", f)
@@ -6868,8 +5678,6 @@ func (ptr *QModbusServer) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
 }
 
 func (ptr *QModbusServer) DisconnectTimerEvent() {
-	defer qt.Recovering("disconnect QModbusServer::timerEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QModbusServer::timerEvent")
@@ -6877,16 +5685,12 @@ func (ptr *QModbusServer) DisconnectTimerEvent() {
 }
 
 func (ptr *QModbusServer) TimerEvent(event core.QTimerEvent_ITF) {
-	defer qt.Recovering("QModbusServer::timerEvent")
-
 	if ptr.Pointer() != nil {
 		C.QModbusServer_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
 	}
 }
 
 func (ptr *QModbusServer) TimerEventDefault(event core.QTimerEvent_ITF) {
-	defer qt.Recovering("QModbusServer::timerEvent")
-
 	if ptr.Pointer() != nil {
 		C.QModbusServer_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
 	}
@@ -6894,7 +5698,6 @@ func (ptr *QModbusServer) TimerEventDefault(event core.QTimerEvent_ITF) {
 
 //export callbackQModbusServer_ChildEvent
 func callbackQModbusServer_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	defer qt.Recovering("callback QModbusServer::childEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QModbusServer::childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
@@ -6904,8 +5707,6 @@ func callbackQModbusServer_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) 
 }
 
 func (ptr *QModbusServer) ConnectChildEvent(f func(event *core.QChildEvent)) {
-	defer qt.Recovering("connect QModbusServer::childEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QModbusServer::childEvent", f)
@@ -6913,8 +5714,6 @@ func (ptr *QModbusServer) ConnectChildEvent(f func(event *core.QChildEvent)) {
 }
 
 func (ptr *QModbusServer) DisconnectChildEvent() {
-	defer qt.Recovering("disconnect QModbusServer::childEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QModbusServer::childEvent")
@@ -6922,16 +5721,12 @@ func (ptr *QModbusServer) DisconnectChildEvent() {
 }
 
 func (ptr *QModbusServer) ChildEvent(event core.QChildEvent_ITF) {
-	defer qt.Recovering("QModbusServer::childEvent")
-
 	if ptr.Pointer() != nil {
 		C.QModbusServer_ChildEvent(ptr.Pointer(), core.PointerFromQChildEvent(event))
 	}
 }
 
 func (ptr *QModbusServer) ChildEventDefault(event core.QChildEvent_ITF) {
-	defer qt.Recovering("QModbusServer::childEvent")
-
 	if ptr.Pointer() != nil {
 		C.QModbusServer_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
 	}
@@ -6939,7 +5734,6 @@ func (ptr *QModbusServer) ChildEventDefault(event core.QChildEvent_ITF) {
 
 //export callbackQModbusServer_ConnectNotify
 func callbackQModbusServer_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-	defer qt.Recovering("callback QModbusServer::connectNotify")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QModbusServer::connectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
@@ -6949,8 +5743,6 @@ func callbackQModbusServer_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer
 }
 
 func (ptr *QModbusServer) ConnectConnectNotify(f func(sign *core.QMetaMethod)) {
-	defer qt.Recovering("connect QModbusServer::connectNotify")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QModbusServer::connectNotify", f)
@@ -6958,8 +5750,6 @@ func (ptr *QModbusServer) ConnectConnectNotify(f func(sign *core.QMetaMethod)) {
 }
 
 func (ptr *QModbusServer) DisconnectConnectNotify() {
-	defer qt.Recovering("disconnect QModbusServer::connectNotify")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QModbusServer::connectNotify")
@@ -6967,16 +5757,12 @@ func (ptr *QModbusServer) DisconnectConnectNotify() {
 }
 
 func (ptr *QModbusServer) ConnectNotify(sign core.QMetaMethod_ITF) {
-	defer qt.Recovering("QModbusServer::connectNotify")
-
 	if ptr.Pointer() != nil {
 		C.QModbusServer_ConnectNotify(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
 	}
 }
 
 func (ptr *QModbusServer) ConnectNotifyDefault(sign core.QMetaMethod_ITF) {
-	defer qt.Recovering("QModbusServer::connectNotify")
-
 	if ptr.Pointer() != nil {
 		C.QModbusServer_ConnectNotifyDefault(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
 	}
@@ -6984,7 +5770,6 @@ func (ptr *QModbusServer) ConnectNotifyDefault(sign core.QMetaMethod_ITF) {
 
 //export callbackQModbusServer_CustomEvent
 func callbackQModbusServer_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	defer qt.Recovering("callback QModbusServer::customEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QModbusServer::customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
@@ -6994,8 +5779,6 @@ func callbackQModbusServer_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer)
 }
 
 func (ptr *QModbusServer) ConnectCustomEvent(f func(event *core.QEvent)) {
-	defer qt.Recovering("connect QModbusServer::customEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QModbusServer::customEvent", f)
@@ -7003,8 +5786,6 @@ func (ptr *QModbusServer) ConnectCustomEvent(f func(event *core.QEvent)) {
 }
 
 func (ptr *QModbusServer) DisconnectCustomEvent() {
-	defer qt.Recovering("disconnect QModbusServer::customEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QModbusServer::customEvent")
@@ -7012,16 +5793,12 @@ func (ptr *QModbusServer) DisconnectCustomEvent() {
 }
 
 func (ptr *QModbusServer) CustomEvent(event core.QEvent_ITF) {
-	defer qt.Recovering("QModbusServer::customEvent")
-
 	if ptr.Pointer() != nil {
 		C.QModbusServer_CustomEvent(ptr.Pointer(), core.PointerFromQEvent(event))
 	}
 }
 
 func (ptr *QModbusServer) CustomEventDefault(event core.QEvent_ITF) {
-	defer qt.Recovering("QModbusServer::customEvent")
-
 	if ptr.Pointer() != nil {
 		C.QModbusServer_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
 	}
@@ -7029,8 +5806,6 @@ func (ptr *QModbusServer) CustomEventDefault(event core.QEvent_ITF) {
 
 //export callbackQModbusServer_DeleteLater
 func callbackQModbusServer_DeleteLater(ptr unsafe.Pointer) {
-	defer qt.Recovering("callback QModbusServer::deleteLater")
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QModbusServer::deleteLater"); signal != nil {
 		signal.(func())()
 	} else {
@@ -7039,8 +5814,6 @@ func callbackQModbusServer_DeleteLater(ptr unsafe.Pointer) {
 }
 
 func (ptr *QModbusServer) ConnectDeleteLater(f func()) {
-	defer qt.Recovering("connect QModbusServer::deleteLater")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QModbusServer::deleteLater", f)
@@ -7048,8 +5821,6 @@ func (ptr *QModbusServer) ConnectDeleteLater(f func()) {
 }
 
 func (ptr *QModbusServer) DisconnectDeleteLater() {
-	defer qt.Recovering("disconnect QModbusServer::deleteLater")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QModbusServer::deleteLater")
@@ -7057,8 +5828,6 @@ func (ptr *QModbusServer) DisconnectDeleteLater() {
 }
 
 func (ptr *QModbusServer) DeleteLater() {
-	defer qt.Recovering("QModbusServer::deleteLater")
-
 	if ptr.Pointer() != nil {
 		C.QModbusServer_DeleteLater(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
@@ -7067,8 +5836,6 @@ func (ptr *QModbusServer) DeleteLater() {
 }
 
 func (ptr *QModbusServer) DeleteLaterDefault() {
-	defer qt.Recovering("QModbusServer::deleteLater")
-
 	if ptr.Pointer() != nil {
 		C.QModbusServer_DeleteLaterDefault(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
@@ -7078,7 +5845,6 @@ func (ptr *QModbusServer) DeleteLaterDefault() {
 
 //export callbackQModbusServer_DisconnectNotify
 func callbackQModbusServer_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-	defer qt.Recovering("callback QModbusServer::disconnectNotify")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QModbusServer::disconnectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
@@ -7088,8 +5854,6 @@ func callbackQModbusServer_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Poin
 }
 
 func (ptr *QModbusServer) ConnectDisconnectNotify(f func(sign *core.QMetaMethod)) {
-	defer qt.Recovering("connect QModbusServer::disconnectNotify")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QModbusServer::disconnectNotify", f)
@@ -7097,8 +5861,6 @@ func (ptr *QModbusServer) ConnectDisconnectNotify(f func(sign *core.QMetaMethod)
 }
 
 func (ptr *QModbusServer) DisconnectDisconnectNotify() {
-	defer qt.Recovering("disconnect QModbusServer::disconnectNotify")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QModbusServer::disconnectNotify")
@@ -7106,16 +5868,12 @@ func (ptr *QModbusServer) DisconnectDisconnectNotify() {
 }
 
 func (ptr *QModbusServer) DisconnectNotify(sign core.QMetaMethod_ITF) {
-	defer qt.Recovering("QModbusServer::disconnectNotify")
-
 	if ptr.Pointer() != nil {
 		C.QModbusServer_DisconnectNotify(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
 	}
 }
 
 func (ptr *QModbusServer) DisconnectNotifyDefault(sign core.QMetaMethod_ITF) {
-	defer qt.Recovering("QModbusServer::disconnectNotify")
-
 	if ptr.Pointer() != nil {
 		C.QModbusServer_DisconnectNotifyDefault(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
 	}
@@ -7123,7 +5881,6 @@ func (ptr *QModbusServer) DisconnectNotifyDefault(sign core.QMetaMethod_ITF) {
 
 //export callbackQModbusServer_Event
 func callbackQModbusServer_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
-	defer qt.Recovering("callback QModbusServer::event")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QModbusServer::event"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
@@ -7133,8 +5890,6 @@ func callbackQModbusServer_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
 }
 
 func (ptr *QModbusServer) ConnectEvent(f func(e *core.QEvent) bool) {
-	defer qt.Recovering("connect QModbusServer::event")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QModbusServer::event", f)
@@ -7142,8 +5897,6 @@ func (ptr *QModbusServer) ConnectEvent(f func(e *core.QEvent) bool) {
 }
 
 func (ptr *QModbusServer) DisconnectEvent() {
-	defer qt.Recovering("disconnect QModbusServer::event")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QModbusServer::event")
@@ -7151,8 +5904,6 @@ func (ptr *QModbusServer) DisconnectEvent() {
 }
 
 func (ptr *QModbusServer) Event(e core.QEvent_ITF) bool {
-	defer qt.Recovering("QModbusServer::event")
-
 	if ptr.Pointer() != nil {
 		return C.QModbusServer_Event(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
 	}
@@ -7160,8 +5911,6 @@ func (ptr *QModbusServer) Event(e core.QEvent_ITF) bool {
 }
 
 func (ptr *QModbusServer) EventDefault(e core.QEvent_ITF) bool {
-	defer qt.Recovering("QModbusServer::event")
-
 	if ptr.Pointer() != nil {
 		return C.QModbusServer_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
 	}
@@ -7170,7 +5919,6 @@ func (ptr *QModbusServer) EventDefault(e core.QEvent_ITF) bool {
 
 //export callbackQModbusServer_EventFilter
 func callbackQModbusServer_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-	defer qt.Recovering("callback QModbusServer::eventFilter")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QModbusServer::eventFilter"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
@@ -7180,8 +5928,6 @@ func callbackQModbusServer_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointe
 }
 
 func (ptr *QModbusServer) ConnectEventFilter(f func(watched *core.QObject, event *core.QEvent) bool) {
-	defer qt.Recovering("connect QModbusServer::eventFilter")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QModbusServer::eventFilter", f)
@@ -7189,8 +5935,6 @@ func (ptr *QModbusServer) ConnectEventFilter(f func(watched *core.QObject, event
 }
 
 func (ptr *QModbusServer) DisconnectEventFilter() {
-	defer qt.Recovering("disconnect QModbusServer::eventFilter")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QModbusServer::eventFilter")
@@ -7198,8 +5942,6 @@ func (ptr *QModbusServer) DisconnectEventFilter() {
 }
 
 func (ptr *QModbusServer) EventFilter(watched core.QObject_ITF, event core.QEvent_ITF) bool {
-	defer qt.Recovering("QModbusServer::eventFilter")
-
 	if ptr.Pointer() != nil {
 		return C.QModbusServer_EventFilter(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
 	}
@@ -7207,8 +5949,6 @@ func (ptr *QModbusServer) EventFilter(watched core.QObject_ITF, event core.QEven
 }
 
 func (ptr *QModbusServer) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
-	defer qt.Recovering("QModbusServer::eventFilter")
-
 	if ptr.Pointer() != nil {
 		return C.QModbusServer_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
 	}
@@ -7217,7 +5957,6 @@ func (ptr *QModbusServer) EventFilterDefault(watched core.QObject_ITF, event cor
 
 //export callbackQModbusServer_MetaObject
 func callbackQModbusServer_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-	defer qt.Recovering("callback QModbusServer::metaObject")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QModbusServer::metaObject"); signal != nil {
 		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
@@ -7227,8 +5966,6 @@ func callbackQModbusServer_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
 }
 
 func (ptr *QModbusServer) ConnectMetaObject(f func() *core.QMetaObject) {
-	defer qt.Recovering("connect QModbusServer::metaObject")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QModbusServer::metaObject", f)
@@ -7236,8 +5973,6 @@ func (ptr *QModbusServer) ConnectMetaObject(f func() *core.QMetaObject) {
 }
 
 func (ptr *QModbusServer) DisconnectMetaObject() {
-	defer qt.Recovering("disconnect QModbusServer::metaObject")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QModbusServer::metaObject")
@@ -7245,8 +5980,6 @@ func (ptr *QModbusServer) DisconnectMetaObject() {
 }
 
 func (ptr *QModbusServer) MetaObject() *core.QMetaObject {
-	defer qt.Recovering("QModbusServer::metaObject")
-
 	if ptr.Pointer() != nil {
 		return core.NewQMetaObjectFromPointer(C.QModbusServer_MetaObject(ptr.Pointer()))
 	}
@@ -7254,8 +5987,6 @@ func (ptr *QModbusServer) MetaObject() *core.QMetaObject {
 }
 
 func (ptr *QModbusServer) MetaObjectDefault() *core.QMetaObject {
-	defer qt.Recovering("QModbusServer::metaObject")
-
 	if ptr.Pointer() != nil {
 		return core.NewQMetaObjectFromPointer(C.QModbusServer_MetaObjectDefault(ptr.Pointer()))
 	}
@@ -7301,8 +6032,6 @@ func NewQModbusTcpClientFromPointer(ptr unsafe.Pointer) *QModbusTcpClient {
 	return n
 }
 func NewQModbusTcpClient(parent core.QObject_ITF) *QModbusTcpClient {
-	defer qt.Recovering("QModbusTcpClient::QModbusTcpClient")
-
 	var tmpValue = NewQModbusTcpClientFromPointer(C.QModbusTcpClient_NewQModbusTcpClient(core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
@@ -7311,8 +6040,6 @@ func NewQModbusTcpClient(parent core.QObject_ITF) *QModbusTcpClient {
 }
 
 func (ptr *QModbusTcpClient) DestroyQModbusTcpClient() {
-	defer qt.Recovering("QModbusTcpClient::~QModbusTcpClient")
-
 	if ptr.Pointer() != nil {
 		C.QModbusTcpClient_DestroyQModbusTcpClient(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
@@ -7322,7 +6049,6 @@ func (ptr *QModbusTcpClient) DestroyQModbusTcpClient() {
 
 //export callbackQModbusTcpClient_ProcessPrivateResponse
 func callbackQModbusTcpClient_ProcessPrivateResponse(ptr unsafe.Pointer, response unsafe.Pointer, data unsafe.Pointer) C.char {
-	defer qt.Recovering("callback QModbusTcpClient::processPrivateResponse")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QModbusTcpClient::processPrivateResponse"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*QModbusResponse, *QModbusDataUnit) bool)(NewQModbusResponseFromPointer(response), NewQModbusDataUnitFromPointer(data)))))
@@ -7332,8 +6058,6 @@ func callbackQModbusTcpClient_ProcessPrivateResponse(ptr unsafe.Pointer, respons
 }
 
 func (ptr *QModbusTcpClient) ConnectProcessPrivateResponse(f func(response *QModbusResponse, data *QModbusDataUnit) bool) {
-	defer qt.Recovering("connect QModbusTcpClient::processPrivateResponse")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QModbusTcpClient::processPrivateResponse", f)
@@ -7341,8 +6065,6 @@ func (ptr *QModbusTcpClient) ConnectProcessPrivateResponse(f func(response *QMod
 }
 
 func (ptr *QModbusTcpClient) DisconnectProcessPrivateResponse() {
-	defer qt.Recovering("disconnect QModbusTcpClient::processPrivateResponse")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QModbusTcpClient::processPrivateResponse")
@@ -7350,8 +6072,6 @@ func (ptr *QModbusTcpClient) DisconnectProcessPrivateResponse() {
 }
 
 func (ptr *QModbusTcpClient) ProcessPrivateResponse(response QModbusResponse_ITF, data QModbusDataUnit_ITF) bool {
-	defer qt.Recovering("QModbusTcpClient::processPrivateResponse")
-
 	if ptr.Pointer() != nil {
 		return C.QModbusTcpClient_ProcessPrivateResponse(ptr.Pointer(), PointerFromQModbusResponse(response), PointerFromQModbusDataUnit(data)) != 0
 	}
@@ -7359,8 +6079,6 @@ func (ptr *QModbusTcpClient) ProcessPrivateResponse(response QModbusResponse_ITF
 }
 
 func (ptr *QModbusTcpClient) ProcessPrivateResponseDefault(response QModbusResponse_ITF, data QModbusDataUnit_ITF) bool {
-	defer qt.Recovering("QModbusTcpClient::processPrivateResponse")
-
 	if ptr.Pointer() != nil {
 		return C.QModbusTcpClient_ProcessPrivateResponseDefault(ptr.Pointer(), PointerFromQModbusResponse(response), PointerFromQModbusDataUnit(data)) != 0
 	}
@@ -7369,7 +6087,6 @@ func (ptr *QModbusTcpClient) ProcessPrivateResponseDefault(response QModbusRespo
 
 //export callbackQModbusTcpClient_ProcessResponse
 func callbackQModbusTcpClient_ProcessResponse(ptr unsafe.Pointer, response unsafe.Pointer, data unsafe.Pointer) C.char {
-	defer qt.Recovering("callback QModbusTcpClient::processResponse")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QModbusTcpClient::processResponse"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*QModbusResponse, *QModbusDataUnit) bool)(NewQModbusResponseFromPointer(response), NewQModbusDataUnitFromPointer(data)))))
@@ -7379,8 +6096,6 @@ func callbackQModbusTcpClient_ProcessResponse(ptr unsafe.Pointer, response unsaf
 }
 
 func (ptr *QModbusTcpClient) ConnectProcessResponse(f func(response *QModbusResponse, data *QModbusDataUnit) bool) {
-	defer qt.Recovering("connect QModbusTcpClient::processResponse")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QModbusTcpClient::processResponse", f)
@@ -7388,8 +6103,6 @@ func (ptr *QModbusTcpClient) ConnectProcessResponse(f func(response *QModbusResp
 }
 
 func (ptr *QModbusTcpClient) DisconnectProcessResponse() {
-	defer qt.Recovering("disconnect QModbusTcpClient::processResponse")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QModbusTcpClient::processResponse")
@@ -7397,8 +6110,6 @@ func (ptr *QModbusTcpClient) DisconnectProcessResponse() {
 }
 
 func (ptr *QModbusTcpClient) ProcessResponse(response QModbusResponse_ITF, data QModbusDataUnit_ITF) bool {
-	defer qt.Recovering("QModbusTcpClient::processResponse")
-
 	if ptr.Pointer() != nil {
 		return C.QModbusTcpClient_ProcessResponse(ptr.Pointer(), PointerFromQModbusResponse(response), PointerFromQModbusDataUnit(data)) != 0
 	}
@@ -7406,8 +6117,6 @@ func (ptr *QModbusTcpClient) ProcessResponse(response QModbusResponse_ITF, data 
 }
 
 func (ptr *QModbusTcpClient) ProcessResponseDefault(response QModbusResponse_ITF, data QModbusDataUnit_ITF) bool {
-	defer qt.Recovering("QModbusTcpClient::processResponse")
-
 	if ptr.Pointer() != nil {
 		return C.QModbusTcpClient_ProcessResponseDefault(ptr.Pointer(), PointerFromQModbusResponse(response), PointerFromQModbusDataUnit(data)) != 0
 	}
@@ -7416,7 +6125,6 @@ func (ptr *QModbusTcpClient) ProcessResponseDefault(response QModbusResponse_ITF
 
 //export callbackQModbusTcpClient_Close
 func callbackQModbusTcpClient_Close(ptr unsafe.Pointer) {
-	defer qt.Recovering("callback QModbusTcpClient::close")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QModbusTcpClient::close"); signal != nil {
 		signal.(func())()
@@ -7426,8 +6134,6 @@ func callbackQModbusTcpClient_Close(ptr unsafe.Pointer) {
 }
 
 func (ptr *QModbusTcpClient) ConnectClose(f func()) {
-	defer qt.Recovering("connect QModbusTcpClient::close")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QModbusTcpClient::close", f)
@@ -7435,8 +6141,6 @@ func (ptr *QModbusTcpClient) ConnectClose(f func()) {
 }
 
 func (ptr *QModbusTcpClient) DisconnectClose() {
-	defer qt.Recovering("disconnect QModbusTcpClient::close")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QModbusTcpClient::close")
@@ -7444,16 +6148,12 @@ func (ptr *QModbusTcpClient) DisconnectClose() {
 }
 
 func (ptr *QModbusTcpClient) Close() {
-	defer qt.Recovering("QModbusTcpClient::close")
-
 	if ptr.Pointer() != nil {
 		C.QModbusTcpClient_Close(ptr.Pointer())
 	}
 }
 
 func (ptr *QModbusTcpClient) CloseDefault() {
-	defer qt.Recovering("QModbusTcpClient::close")
-
 	if ptr.Pointer() != nil {
 		C.QModbusTcpClient_CloseDefault(ptr.Pointer())
 	}
@@ -7461,7 +6161,6 @@ func (ptr *QModbusTcpClient) CloseDefault() {
 
 //export callbackQModbusTcpClient_Open
 func callbackQModbusTcpClient_Open(ptr unsafe.Pointer) C.char {
-	defer qt.Recovering("callback QModbusTcpClient::open")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QModbusTcpClient::open"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func() bool)())))
@@ -7471,8 +6170,6 @@ func callbackQModbusTcpClient_Open(ptr unsafe.Pointer) C.char {
 }
 
 func (ptr *QModbusTcpClient) ConnectOpen(f func() bool) {
-	defer qt.Recovering("connect QModbusTcpClient::open")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QModbusTcpClient::open", f)
@@ -7480,8 +6177,6 @@ func (ptr *QModbusTcpClient) ConnectOpen(f func() bool) {
 }
 
 func (ptr *QModbusTcpClient) DisconnectOpen() {
-	defer qt.Recovering("disconnect QModbusTcpClient::open")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QModbusTcpClient::open")
@@ -7489,8 +6184,6 @@ func (ptr *QModbusTcpClient) DisconnectOpen() {
 }
 
 func (ptr *QModbusTcpClient) Open() bool {
-	defer qt.Recovering("QModbusTcpClient::open")
-
 	if ptr.Pointer() != nil {
 		return C.QModbusTcpClient_Open(ptr.Pointer()) != 0
 	}
@@ -7498,8 +6191,6 @@ func (ptr *QModbusTcpClient) Open() bool {
 }
 
 func (ptr *QModbusTcpClient) OpenDefault() bool {
-	defer qt.Recovering("QModbusTcpClient::open")
-
 	if ptr.Pointer() != nil {
 		return C.QModbusTcpClient_OpenDefault(ptr.Pointer()) != 0
 	}
@@ -7508,7 +6199,6 @@ func (ptr *QModbusTcpClient) OpenDefault() bool {
 
 //export callbackQModbusTcpClient_TimerEvent
 func callbackQModbusTcpClient_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	defer qt.Recovering("callback QModbusTcpClient::timerEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QModbusTcpClient::timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
@@ -7518,8 +6208,6 @@ func callbackQModbusTcpClient_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointe
 }
 
 func (ptr *QModbusTcpClient) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
-	defer qt.Recovering("connect QModbusTcpClient::timerEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QModbusTcpClient::timerEvent", f)
@@ -7527,8 +6215,6 @@ func (ptr *QModbusTcpClient) ConnectTimerEvent(f func(event *core.QTimerEvent)) 
 }
 
 func (ptr *QModbusTcpClient) DisconnectTimerEvent() {
-	defer qt.Recovering("disconnect QModbusTcpClient::timerEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QModbusTcpClient::timerEvent")
@@ -7536,16 +6222,12 @@ func (ptr *QModbusTcpClient) DisconnectTimerEvent() {
 }
 
 func (ptr *QModbusTcpClient) TimerEvent(event core.QTimerEvent_ITF) {
-	defer qt.Recovering("QModbusTcpClient::timerEvent")
-
 	if ptr.Pointer() != nil {
 		C.QModbusTcpClient_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
 	}
 }
 
 func (ptr *QModbusTcpClient) TimerEventDefault(event core.QTimerEvent_ITF) {
-	defer qt.Recovering("QModbusTcpClient::timerEvent")
-
 	if ptr.Pointer() != nil {
 		C.QModbusTcpClient_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
 	}
@@ -7553,7 +6235,6 @@ func (ptr *QModbusTcpClient) TimerEventDefault(event core.QTimerEvent_ITF) {
 
 //export callbackQModbusTcpClient_ChildEvent
 func callbackQModbusTcpClient_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	defer qt.Recovering("callback QModbusTcpClient::childEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QModbusTcpClient::childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
@@ -7563,8 +6244,6 @@ func callbackQModbusTcpClient_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointe
 }
 
 func (ptr *QModbusTcpClient) ConnectChildEvent(f func(event *core.QChildEvent)) {
-	defer qt.Recovering("connect QModbusTcpClient::childEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QModbusTcpClient::childEvent", f)
@@ -7572,8 +6251,6 @@ func (ptr *QModbusTcpClient) ConnectChildEvent(f func(event *core.QChildEvent)) 
 }
 
 func (ptr *QModbusTcpClient) DisconnectChildEvent() {
-	defer qt.Recovering("disconnect QModbusTcpClient::childEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QModbusTcpClient::childEvent")
@@ -7581,16 +6258,12 @@ func (ptr *QModbusTcpClient) DisconnectChildEvent() {
 }
 
 func (ptr *QModbusTcpClient) ChildEvent(event core.QChildEvent_ITF) {
-	defer qt.Recovering("QModbusTcpClient::childEvent")
-
 	if ptr.Pointer() != nil {
 		C.QModbusTcpClient_ChildEvent(ptr.Pointer(), core.PointerFromQChildEvent(event))
 	}
 }
 
 func (ptr *QModbusTcpClient) ChildEventDefault(event core.QChildEvent_ITF) {
-	defer qt.Recovering("QModbusTcpClient::childEvent")
-
 	if ptr.Pointer() != nil {
 		C.QModbusTcpClient_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
 	}
@@ -7598,7 +6271,6 @@ func (ptr *QModbusTcpClient) ChildEventDefault(event core.QChildEvent_ITF) {
 
 //export callbackQModbusTcpClient_ConnectNotify
 func callbackQModbusTcpClient_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-	defer qt.Recovering("callback QModbusTcpClient::connectNotify")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QModbusTcpClient::connectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
@@ -7608,8 +6280,6 @@ func callbackQModbusTcpClient_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Poin
 }
 
 func (ptr *QModbusTcpClient) ConnectConnectNotify(f func(sign *core.QMetaMethod)) {
-	defer qt.Recovering("connect QModbusTcpClient::connectNotify")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QModbusTcpClient::connectNotify", f)
@@ -7617,8 +6287,6 @@ func (ptr *QModbusTcpClient) ConnectConnectNotify(f func(sign *core.QMetaMethod)
 }
 
 func (ptr *QModbusTcpClient) DisconnectConnectNotify() {
-	defer qt.Recovering("disconnect QModbusTcpClient::connectNotify")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QModbusTcpClient::connectNotify")
@@ -7626,16 +6294,12 @@ func (ptr *QModbusTcpClient) DisconnectConnectNotify() {
 }
 
 func (ptr *QModbusTcpClient) ConnectNotify(sign core.QMetaMethod_ITF) {
-	defer qt.Recovering("QModbusTcpClient::connectNotify")
-
 	if ptr.Pointer() != nil {
 		C.QModbusTcpClient_ConnectNotify(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
 	}
 }
 
 func (ptr *QModbusTcpClient) ConnectNotifyDefault(sign core.QMetaMethod_ITF) {
-	defer qt.Recovering("QModbusTcpClient::connectNotify")
-
 	if ptr.Pointer() != nil {
 		C.QModbusTcpClient_ConnectNotifyDefault(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
 	}
@@ -7643,7 +6307,6 @@ func (ptr *QModbusTcpClient) ConnectNotifyDefault(sign core.QMetaMethod_ITF) {
 
 //export callbackQModbusTcpClient_CustomEvent
 func callbackQModbusTcpClient_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	defer qt.Recovering("callback QModbusTcpClient::customEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QModbusTcpClient::customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
@@ -7653,8 +6316,6 @@ func callbackQModbusTcpClient_CustomEvent(ptr unsafe.Pointer, event unsafe.Point
 }
 
 func (ptr *QModbusTcpClient) ConnectCustomEvent(f func(event *core.QEvent)) {
-	defer qt.Recovering("connect QModbusTcpClient::customEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QModbusTcpClient::customEvent", f)
@@ -7662,8 +6323,6 @@ func (ptr *QModbusTcpClient) ConnectCustomEvent(f func(event *core.QEvent)) {
 }
 
 func (ptr *QModbusTcpClient) DisconnectCustomEvent() {
-	defer qt.Recovering("disconnect QModbusTcpClient::customEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QModbusTcpClient::customEvent")
@@ -7671,16 +6330,12 @@ func (ptr *QModbusTcpClient) DisconnectCustomEvent() {
 }
 
 func (ptr *QModbusTcpClient) CustomEvent(event core.QEvent_ITF) {
-	defer qt.Recovering("QModbusTcpClient::customEvent")
-
 	if ptr.Pointer() != nil {
 		C.QModbusTcpClient_CustomEvent(ptr.Pointer(), core.PointerFromQEvent(event))
 	}
 }
 
 func (ptr *QModbusTcpClient) CustomEventDefault(event core.QEvent_ITF) {
-	defer qt.Recovering("QModbusTcpClient::customEvent")
-
 	if ptr.Pointer() != nil {
 		C.QModbusTcpClient_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
 	}
@@ -7688,8 +6343,6 @@ func (ptr *QModbusTcpClient) CustomEventDefault(event core.QEvent_ITF) {
 
 //export callbackQModbusTcpClient_DeleteLater
 func callbackQModbusTcpClient_DeleteLater(ptr unsafe.Pointer) {
-	defer qt.Recovering("callback QModbusTcpClient::deleteLater")
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QModbusTcpClient::deleteLater"); signal != nil {
 		signal.(func())()
 	} else {
@@ -7698,8 +6351,6 @@ func callbackQModbusTcpClient_DeleteLater(ptr unsafe.Pointer) {
 }
 
 func (ptr *QModbusTcpClient) ConnectDeleteLater(f func()) {
-	defer qt.Recovering("connect QModbusTcpClient::deleteLater")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QModbusTcpClient::deleteLater", f)
@@ -7707,8 +6358,6 @@ func (ptr *QModbusTcpClient) ConnectDeleteLater(f func()) {
 }
 
 func (ptr *QModbusTcpClient) DisconnectDeleteLater() {
-	defer qt.Recovering("disconnect QModbusTcpClient::deleteLater")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QModbusTcpClient::deleteLater")
@@ -7716,8 +6365,6 @@ func (ptr *QModbusTcpClient) DisconnectDeleteLater() {
 }
 
 func (ptr *QModbusTcpClient) DeleteLater() {
-	defer qt.Recovering("QModbusTcpClient::deleteLater")
-
 	if ptr.Pointer() != nil {
 		C.QModbusTcpClient_DeleteLater(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
@@ -7726,8 +6373,6 @@ func (ptr *QModbusTcpClient) DeleteLater() {
 }
 
 func (ptr *QModbusTcpClient) DeleteLaterDefault() {
-	defer qt.Recovering("QModbusTcpClient::deleteLater")
-
 	if ptr.Pointer() != nil {
 		C.QModbusTcpClient_DeleteLaterDefault(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
@@ -7737,7 +6382,6 @@ func (ptr *QModbusTcpClient) DeleteLaterDefault() {
 
 //export callbackQModbusTcpClient_DisconnectNotify
 func callbackQModbusTcpClient_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-	defer qt.Recovering("callback QModbusTcpClient::disconnectNotify")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QModbusTcpClient::disconnectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
@@ -7747,8 +6391,6 @@ func callbackQModbusTcpClient_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.P
 }
 
 func (ptr *QModbusTcpClient) ConnectDisconnectNotify(f func(sign *core.QMetaMethod)) {
-	defer qt.Recovering("connect QModbusTcpClient::disconnectNotify")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QModbusTcpClient::disconnectNotify", f)
@@ -7756,8 +6398,6 @@ func (ptr *QModbusTcpClient) ConnectDisconnectNotify(f func(sign *core.QMetaMeth
 }
 
 func (ptr *QModbusTcpClient) DisconnectDisconnectNotify() {
-	defer qt.Recovering("disconnect QModbusTcpClient::disconnectNotify")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QModbusTcpClient::disconnectNotify")
@@ -7765,16 +6405,12 @@ func (ptr *QModbusTcpClient) DisconnectDisconnectNotify() {
 }
 
 func (ptr *QModbusTcpClient) DisconnectNotify(sign core.QMetaMethod_ITF) {
-	defer qt.Recovering("QModbusTcpClient::disconnectNotify")
-
 	if ptr.Pointer() != nil {
 		C.QModbusTcpClient_DisconnectNotify(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
 	}
 }
 
 func (ptr *QModbusTcpClient) DisconnectNotifyDefault(sign core.QMetaMethod_ITF) {
-	defer qt.Recovering("QModbusTcpClient::disconnectNotify")
-
 	if ptr.Pointer() != nil {
 		C.QModbusTcpClient_DisconnectNotifyDefault(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
 	}
@@ -7782,7 +6418,6 @@ func (ptr *QModbusTcpClient) DisconnectNotifyDefault(sign core.QMetaMethod_ITF) 
 
 //export callbackQModbusTcpClient_Event
 func callbackQModbusTcpClient_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
-	defer qt.Recovering("callback QModbusTcpClient::event")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QModbusTcpClient::event"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
@@ -7792,8 +6427,6 @@ func callbackQModbusTcpClient_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char
 }
 
 func (ptr *QModbusTcpClient) ConnectEvent(f func(e *core.QEvent) bool) {
-	defer qt.Recovering("connect QModbusTcpClient::event")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QModbusTcpClient::event", f)
@@ -7801,8 +6434,6 @@ func (ptr *QModbusTcpClient) ConnectEvent(f func(e *core.QEvent) bool) {
 }
 
 func (ptr *QModbusTcpClient) DisconnectEvent() {
-	defer qt.Recovering("disconnect QModbusTcpClient::event")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QModbusTcpClient::event")
@@ -7810,8 +6441,6 @@ func (ptr *QModbusTcpClient) DisconnectEvent() {
 }
 
 func (ptr *QModbusTcpClient) Event(e core.QEvent_ITF) bool {
-	defer qt.Recovering("QModbusTcpClient::event")
-
 	if ptr.Pointer() != nil {
 		return C.QModbusTcpClient_Event(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
 	}
@@ -7819,8 +6448,6 @@ func (ptr *QModbusTcpClient) Event(e core.QEvent_ITF) bool {
 }
 
 func (ptr *QModbusTcpClient) EventDefault(e core.QEvent_ITF) bool {
-	defer qt.Recovering("QModbusTcpClient::event")
-
 	if ptr.Pointer() != nil {
 		return C.QModbusTcpClient_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
 	}
@@ -7829,7 +6456,6 @@ func (ptr *QModbusTcpClient) EventDefault(e core.QEvent_ITF) bool {
 
 //export callbackQModbusTcpClient_EventFilter
 func callbackQModbusTcpClient_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-	defer qt.Recovering("callback QModbusTcpClient::eventFilter")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QModbusTcpClient::eventFilter"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
@@ -7839,8 +6465,6 @@ func callbackQModbusTcpClient_EventFilter(ptr unsafe.Pointer, watched unsafe.Poi
 }
 
 func (ptr *QModbusTcpClient) ConnectEventFilter(f func(watched *core.QObject, event *core.QEvent) bool) {
-	defer qt.Recovering("connect QModbusTcpClient::eventFilter")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QModbusTcpClient::eventFilter", f)
@@ -7848,8 +6472,6 @@ func (ptr *QModbusTcpClient) ConnectEventFilter(f func(watched *core.QObject, ev
 }
 
 func (ptr *QModbusTcpClient) DisconnectEventFilter() {
-	defer qt.Recovering("disconnect QModbusTcpClient::eventFilter")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QModbusTcpClient::eventFilter")
@@ -7857,8 +6479,6 @@ func (ptr *QModbusTcpClient) DisconnectEventFilter() {
 }
 
 func (ptr *QModbusTcpClient) EventFilter(watched core.QObject_ITF, event core.QEvent_ITF) bool {
-	defer qt.Recovering("QModbusTcpClient::eventFilter")
-
 	if ptr.Pointer() != nil {
 		return C.QModbusTcpClient_EventFilter(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
 	}
@@ -7866,8 +6486,6 @@ func (ptr *QModbusTcpClient) EventFilter(watched core.QObject_ITF, event core.QE
 }
 
 func (ptr *QModbusTcpClient) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
-	defer qt.Recovering("QModbusTcpClient::eventFilter")
-
 	if ptr.Pointer() != nil {
 		return C.QModbusTcpClient_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
 	}
@@ -7876,7 +6494,6 @@ func (ptr *QModbusTcpClient) EventFilterDefault(watched core.QObject_ITF, event 
 
 //export callbackQModbusTcpClient_MetaObject
 func callbackQModbusTcpClient_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-	defer qt.Recovering("callback QModbusTcpClient::metaObject")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QModbusTcpClient::metaObject"); signal != nil {
 		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
@@ -7886,8 +6503,6 @@ func callbackQModbusTcpClient_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
 }
 
 func (ptr *QModbusTcpClient) ConnectMetaObject(f func() *core.QMetaObject) {
-	defer qt.Recovering("connect QModbusTcpClient::metaObject")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QModbusTcpClient::metaObject", f)
@@ -7895,8 +6510,6 @@ func (ptr *QModbusTcpClient) ConnectMetaObject(f func() *core.QMetaObject) {
 }
 
 func (ptr *QModbusTcpClient) DisconnectMetaObject() {
-	defer qt.Recovering("disconnect QModbusTcpClient::metaObject")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QModbusTcpClient::metaObject")
@@ -7904,8 +6517,6 @@ func (ptr *QModbusTcpClient) DisconnectMetaObject() {
 }
 
 func (ptr *QModbusTcpClient) MetaObject() *core.QMetaObject {
-	defer qt.Recovering("QModbusTcpClient::metaObject")
-
 	if ptr.Pointer() != nil {
 		return core.NewQMetaObjectFromPointer(C.QModbusTcpClient_MetaObject(ptr.Pointer()))
 	}
@@ -7913,8 +6524,6 @@ func (ptr *QModbusTcpClient) MetaObject() *core.QMetaObject {
 }
 
 func (ptr *QModbusTcpClient) MetaObjectDefault() *core.QMetaObject {
-	defer qt.Recovering("QModbusTcpClient::metaObject")
-
 	if ptr.Pointer() != nil {
 		return core.NewQMetaObjectFromPointer(C.QModbusTcpClient_MetaObjectDefault(ptr.Pointer()))
 	}
@@ -7960,8 +6569,6 @@ func NewQModbusTcpServerFromPointer(ptr unsafe.Pointer) *QModbusTcpServer {
 	return n
 }
 func NewQModbusTcpServer(parent core.QObject_ITF) *QModbusTcpServer {
-	defer qt.Recovering("QModbusTcpServer::QModbusTcpServer")
-
 	var tmpValue = NewQModbusTcpServerFromPointer(C.QModbusTcpServer_NewQModbusTcpServer(core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
@@ -7970,8 +6577,6 @@ func NewQModbusTcpServer(parent core.QObject_ITF) *QModbusTcpServer {
 }
 
 func (ptr *QModbusTcpServer) DestroyQModbusTcpServer() {
-	defer qt.Recovering("QModbusTcpServer::~QModbusTcpServer")
-
 	if ptr.Pointer() != nil {
 		C.QModbusTcpServer_DestroyQModbusTcpServer(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
@@ -7981,7 +6586,6 @@ func (ptr *QModbusTcpServer) DestroyQModbusTcpServer() {
 
 //export callbackQModbusTcpServer_ProcessPrivateRequest
 func callbackQModbusTcpServer_ProcessPrivateRequest(ptr unsafe.Pointer, request unsafe.Pointer) unsafe.Pointer {
-	defer qt.Recovering("callback QModbusTcpServer::processPrivateRequest")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QModbusTcpServer::processPrivateRequest"); signal != nil {
 		return PointerFromQModbusResponse(signal.(func(*QModbusPdu) *QModbusResponse)(NewQModbusPduFromPointer(request)))
@@ -7991,8 +6595,6 @@ func callbackQModbusTcpServer_ProcessPrivateRequest(ptr unsafe.Pointer, request 
 }
 
 func (ptr *QModbusTcpServer) ConnectProcessPrivateRequest(f func(request *QModbusPdu) *QModbusResponse) {
-	defer qt.Recovering("connect QModbusTcpServer::processPrivateRequest")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QModbusTcpServer::processPrivateRequest", f)
@@ -8000,8 +6602,6 @@ func (ptr *QModbusTcpServer) ConnectProcessPrivateRequest(f func(request *QModbu
 }
 
 func (ptr *QModbusTcpServer) DisconnectProcessPrivateRequest() {
-	defer qt.Recovering("disconnect QModbusTcpServer::processPrivateRequest")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QModbusTcpServer::processPrivateRequest")
@@ -8009,8 +6609,6 @@ func (ptr *QModbusTcpServer) DisconnectProcessPrivateRequest() {
 }
 
 func (ptr *QModbusTcpServer) ProcessPrivateRequest(request QModbusPdu_ITF) *QModbusResponse {
-	defer qt.Recovering("QModbusTcpServer::processPrivateRequest")
-
 	if ptr.Pointer() != nil {
 
 	}
@@ -8018,8 +6616,6 @@ func (ptr *QModbusTcpServer) ProcessPrivateRequest(request QModbusPdu_ITF) *QMod
 }
 
 func (ptr *QModbusTcpServer) ProcessPrivateRequestDefault(request QModbusPdu_ITF) *QModbusResponse {
-	defer qt.Recovering("QModbusTcpServer::processPrivateRequest")
-
 	if ptr.Pointer() != nil {
 
 	}
@@ -8028,7 +6624,6 @@ func (ptr *QModbusTcpServer) ProcessPrivateRequestDefault(request QModbusPdu_ITF
 
 //export callbackQModbusTcpServer_ProcessRequest
 func callbackQModbusTcpServer_ProcessRequest(ptr unsafe.Pointer, request unsafe.Pointer) unsafe.Pointer {
-	defer qt.Recovering("callback QModbusTcpServer::processRequest")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QModbusTcpServer::processRequest"); signal != nil {
 		return PointerFromQModbusResponse(signal.(func(*QModbusPdu) *QModbusResponse)(NewQModbusPduFromPointer(request)))
@@ -8038,8 +6633,6 @@ func callbackQModbusTcpServer_ProcessRequest(ptr unsafe.Pointer, request unsafe.
 }
 
 func (ptr *QModbusTcpServer) ConnectProcessRequest(f func(request *QModbusPdu) *QModbusResponse) {
-	defer qt.Recovering("connect QModbusTcpServer::processRequest")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QModbusTcpServer::processRequest", f)
@@ -8047,8 +6640,6 @@ func (ptr *QModbusTcpServer) ConnectProcessRequest(f func(request *QModbusPdu) *
 }
 
 func (ptr *QModbusTcpServer) DisconnectProcessRequest() {
-	defer qt.Recovering("disconnect QModbusTcpServer::processRequest")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QModbusTcpServer::processRequest")
@@ -8056,8 +6647,6 @@ func (ptr *QModbusTcpServer) DisconnectProcessRequest() {
 }
 
 func (ptr *QModbusTcpServer) ProcessRequest(request QModbusPdu_ITF) *QModbusResponse {
-	defer qt.Recovering("QModbusTcpServer::processRequest")
-
 	if ptr.Pointer() != nil {
 
 	}
@@ -8065,8 +6654,6 @@ func (ptr *QModbusTcpServer) ProcessRequest(request QModbusPdu_ITF) *QModbusResp
 }
 
 func (ptr *QModbusTcpServer) ProcessRequestDefault(request QModbusPdu_ITF) *QModbusResponse {
-	defer qt.Recovering("QModbusTcpServer::processRequest")
-
 	if ptr.Pointer() != nil {
 
 	}
@@ -8075,7 +6662,6 @@ func (ptr *QModbusTcpServer) ProcessRequestDefault(request QModbusPdu_ITF) *QMod
 
 //export callbackQModbusTcpServer_ProcessesBroadcast
 func callbackQModbusTcpServer_ProcessesBroadcast(ptr unsafe.Pointer) C.char {
-	defer qt.Recovering("callback QModbusTcpServer::processesBroadcast")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QModbusTcpServer::processesBroadcast"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func() bool)())))
@@ -8085,8 +6671,6 @@ func callbackQModbusTcpServer_ProcessesBroadcast(ptr unsafe.Pointer) C.char {
 }
 
 func (ptr *QModbusTcpServer) ConnectProcessesBroadcast(f func() bool) {
-	defer qt.Recovering("connect QModbusTcpServer::processesBroadcast")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QModbusTcpServer::processesBroadcast", f)
@@ -8094,8 +6678,6 @@ func (ptr *QModbusTcpServer) ConnectProcessesBroadcast(f func() bool) {
 }
 
 func (ptr *QModbusTcpServer) DisconnectProcessesBroadcast() {
-	defer qt.Recovering("disconnect QModbusTcpServer::processesBroadcast")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QModbusTcpServer::processesBroadcast")
@@ -8103,8 +6685,6 @@ func (ptr *QModbusTcpServer) DisconnectProcessesBroadcast() {
 }
 
 func (ptr *QModbusTcpServer) ProcessesBroadcast() bool {
-	defer qt.Recovering("QModbusTcpServer::processesBroadcast")
-
 	if ptr.Pointer() != nil {
 		return C.QModbusTcpServer_ProcessesBroadcast(ptr.Pointer()) != 0
 	}
@@ -8112,8 +6692,6 @@ func (ptr *QModbusTcpServer) ProcessesBroadcast() bool {
 }
 
 func (ptr *QModbusTcpServer) ProcessesBroadcastDefault() bool {
-	defer qt.Recovering("QModbusTcpServer::processesBroadcast")
-
 	if ptr.Pointer() != nil {
 		return C.QModbusTcpServer_ProcessesBroadcastDefault(ptr.Pointer()) != 0
 	}
@@ -8122,7 +6700,6 @@ func (ptr *QModbusTcpServer) ProcessesBroadcastDefault() bool {
 
 //export callbackQModbusTcpServer_SetValue
 func callbackQModbusTcpServer_SetValue(ptr unsafe.Pointer, option C.int, newValue unsafe.Pointer) C.char {
-	defer qt.Recovering("callback QModbusTcpServer::setValue")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QModbusTcpServer::setValue"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(int, *core.QVariant) bool)(int(int32(option)), core.NewQVariantFromPointer(newValue)))))
@@ -8132,8 +6709,6 @@ func callbackQModbusTcpServer_SetValue(ptr unsafe.Pointer, option C.int, newValu
 }
 
 func (ptr *QModbusTcpServer) ConnectSetValue(f func(option int, newValue *core.QVariant) bool) {
-	defer qt.Recovering("connect QModbusTcpServer::setValue")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QModbusTcpServer::setValue", f)
@@ -8141,8 +6716,6 @@ func (ptr *QModbusTcpServer) ConnectSetValue(f func(option int, newValue *core.Q
 }
 
 func (ptr *QModbusTcpServer) DisconnectSetValue() {
-	defer qt.Recovering("disconnect QModbusTcpServer::setValue")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QModbusTcpServer::setValue")
@@ -8150,8 +6723,6 @@ func (ptr *QModbusTcpServer) DisconnectSetValue() {
 }
 
 func (ptr *QModbusTcpServer) SetValue(option int, newValue core.QVariant_ITF) bool {
-	defer qt.Recovering("QModbusTcpServer::setValue")
-
 	if ptr.Pointer() != nil {
 		return C.QModbusTcpServer_SetValue(ptr.Pointer(), C.int(int32(option)), core.PointerFromQVariant(newValue)) != 0
 	}
@@ -8159,8 +6730,6 @@ func (ptr *QModbusTcpServer) SetValue(option int, newValue core.QVariant_ITF) bo
 }
 
 func (ptr *QModbusTcpServer) SetValueDefault(option int, newValue core.QVariant_ITF) bool {
-	defer qt.Recovering("QModbusTcpServer::setValue")
-
 	if ptr.Pointer() != nil {
 		return C.QModbusTcpServer_SetValueDefault(ptr.Pointer(), C.int(int32(option)), core.PointerFromQVariant(newValue)) != 0
 	}
@@ -8169,7 +6738,6 @@ func (ptr *QModbusTcpServer) SetValueDefault(option int, newValue core.QVariant_
 
 //export callbackQModbusTcpServer_Value
 func callbackQModbusTcpServer_Value(ptr unsafe.Pointer, option C.int) unsafe.Pointer {
-	defer qt.Recovering("callback QModbusTcpServer::value")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QModbusTcpServer::value"); signal != nil {
 		return core.PointerFromQVariant(signal.(func(int) *core.QVariant)(int(int32(option))))
@@ -8179,8 +6747,6 @@ func callbackQModbusTcpServer_Value(ptr unsafe.Pointer, option C.int) unsafe.Poi
 }
 
 func (ptr *QModbusTcpServer) ConnectValue(f func(option int) *core.QVariant) {
-	defer qt.Recovering("connect QModbusTcpServer::value")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QModbusTcpServer::value", f)
@@ -8188,8 +6754,6 @@ func (ptr *QModbusTcpServer) ConnectValue(f func(option int) *core.QVariant) {
 }
 
 func (ptr *QModbusTcpServer) DisconnectValue() {
-	defer qt.Recovering("disconnect QModbusTcpServer::value")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QModbusTcpServer::value")
@@ -8197,8 +6761,6 @@ func (ptr *QModbusTcpServer) DisconnectValue() {
 }
 
 func (ptr *QModbusTcpServer) Value(option int) *core.QVariant {
-	defer qt.Recovering("QModbusTcpServer::value")
-
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQVariantFromPointer(C.QModbusTcpServer_Value(ptr.Pointer(), C.int(int32(option))))
 		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
@@ -8208,8 +6770,6 @@ func (ptr *QModbusTcpServer) Value(option int) *core.QVariant {
 }
 
 func (ptr *QModbusTcpServer) ValueDefault(option int) *core.QVariant {
-	defer qt.Recovering("QModbusTcpServer::value")
-
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQVariantFromPointer(C.QModbusTcpServer_ValueDefault(ptr.Pointer(), C.int(int32(option))))
 		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
@@ -8220,7 +6780,6 @@ func (ptr *QModbusTcpServer) ValueDefault(option int) *core.QVariant {
 
 //export callbackQModbusTcpServer_WriteData
 func callbackQModbusTcpServer_WriteData(ptr unsafe.Pointer, newData unsafe.Pointer) C.char {
-	defer qt.Recovering("callback QModbusTcpServer::writeData")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QModbusTcpServer::writeData"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*QModbusDataUnit) bool)(NewQModbusDataUnitFromPointer(newData)))))
@@ -8230,8 +6789,6 @@ func callbackQModbusTcpServer_WriteData(ptr unsafe.Pointer, newData unsafe.Point
 }
 
 func (ptr *QModbusTcpServer) ConnectWriteData(f func(newData *QModbusDataUnit) bool) {
-	defer qt.Recovering("connect QModbusTcpServer::writeData")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QModbusTcpServer::writeData", f)
@@ -8239,8 +6796,6 @@ func (ptr *QModbusTcpServer) ConnectWriteData(f func(newData *QModbusDataUnit) b
 }
 
 func (ptr *QModbusTcpServer) DisconnectWriteData() {
-	defer qt.Recovering("disconnect QModbusTcpServer::writeData")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QModbusTcpServer::writeData")
@@ -8248,8 +6803,6 @@ func (ptr *QModbusTcpServer) DisconnectWriteData() {
 }
 
 func (ptr *QModbusTcpServer) WriteData(newData QModbusDataUnit_ITF) bool {
-	defer qt.Recovering("QModbusTcpServer::writeData")
-
 	if ptr.Pointer() != nil {
 		return C.QModbusTcpServer_WriteData(ptr.Pointer(), PointerFromQModbusDataUnit(newData)) != 0
 	}
@@ -8257,8 +6810,6 @@ func (ptr *QModbusTcpServer) WriteData(newData QModbusDataUnit_ITF) bool {
 }
 
 func (ptr *QModbusTcpServer) WriteDataDefault(newData QModbusDataUnit_ITF) bool {
-	defer qt.Recovering("QModbusTcpServer::writeData")
-
 	if ptr.Pointer() != nil {
 		return C.QModbusTcpServer_WriteDataDefault(ptr.Pointer(), PointerFromQModbusDataUnit(newData)) != 0
 	}
@@ -8267,7 +6818,6 @@ func (ptr *QModbusTcpServer) WriteDataDefault(newData QModbusDataUnit_ITF) bool 
 
 //export callbackQModbusTcpServer_Close
 func callbackQModbusTcpServer_Close(ptr unsafe.Pointer) {
-	defer qt.Recovering("callback QModbusTcpServer::close")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QModbusTcpServer::close"); signal != nil {
 		signal.(func())()
@@ -8277,8 +6827,6 @@ func callbackQModbusTcpServer_Close(ptr unsafe.Pointer) {
 }
 
 func (ptr *QModbusTcpServer) ConnectClose(f func()) {
-	defer qt.Recovering("connect QModbusTcpServer::close")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QModbusTcpServer::close", f)
@@ -8286,8 +6834,6 @@ func (ptr *QModbusTcpServer) ConnectClose(f func()) {
 }
 
 func (ptr *QModbusTcpServer) DisconnectClose() {
-	defer qt.Recovering("disconnect QModbusTcpServer::close")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QModbusTcpServer::close")
@@ -8295,16 +6841,12 @@ func (ptr *QModbusTcpServer) DisconnectClose() {
 }
 
 func (ptr *QModbusTcpServer) Close() {
-	defer qt.Recovering("QModbusTcpServer::close")
-
 	if ptr.Pointer() != nil {
 		C.QModbusTcpServer_Close(ptr.Pointer())
 	}
 }
 
 func (ptr *QModbusTcpServer) CloseDefault() {
-	defer qt.Recovering("QModbusTcpServer::close")
-
 	if ptr.Pointer() != nil {
 		C.QModbusTcpServer_CloseDefault(ptr.Pointer())
 	}
@@ -8312,7 +6854,6 @@ func (ptr *QModbusTcpServer) CloseDefault() {
 
 //export callbackQModbusTcpServer_Open
 func callbackQModbusTcpServer_Open(ptr unsafe.Pointer) C.char {
-	defer qt.Recovering("callback QModbusTcpServer::open")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QModbusTcpServer::open"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func() bool)())))
@@ -8322,8 +6863,6 @@ func callbackQModbusTcpServer_Open(ptr unsafe.Pointer) C.char {
 }
 
 func (ptr *QModbusTcpServer) ConnectOpen(f func() bool) {
-	defer qt.Recovering("connect QModbusTcpServer::open")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QModbusTcpServer::open", f)
@@ -8331,8 +6870,6 @@ func (ptr *QModbusTcpServer) ConnectOpen(f func() bool) {
 }
 
 func (ptr *QModbusTcpServer) DisconnectOpen() {
-	defer qt.Recovering("disconnect QModbusTcpServer::open")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QModbusTcpServer::open")
@@ -8340,8 +6877,6 @@ func (ptr *QModbusTcpServer) DisconnectOpen() {
 }
 
 func (ptr *QModbusTcpServer) Open() bool {
-	defer qt.Recovering("QModbusTcpServer::open")
-
 	if ptr.Pointer() != nil {
 		return C.QModbusTcpServer_Open(ptr.Pointer()) != 0
 	}
@@ -8349,8 +6884,6 @@ func (ptr *QModbusTcpServer) Open() bool {
 }
 
 func (ptr *QModbusTcpServer) OpenDefault() bool {
-	defer qt.Recovering("QModbusTcpServer::open")
-
 	if ptr.Pointer() != nil {
 		return C.QModbusTcpServer_OpenDefault(ptr.Pointer()) != 0
 	}
@@ -8359,7 +6892,6 @@ func (ptr *QModbusTcpServer) OpenDefault() bool {
 
 //export callbackQModbusTcpServer_TimerEvent
 func callbackQModbusTcpServer_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	defer qt.Recovering("callback QModbusTcpServer::timerEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QModbusTcpServer::timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
@@ -8369,8 +6901,6 @@ func callbackQModbusTcpServer_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointe
 }
 
 func (ptr *QModbusTcpServer) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
-	defer qt.Recovering("connect QModbusTcpServer::timerEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QModbusTcpServer::timerEvent", f)
@@ -8378,8 +6908,6 @@ func (ptr *QModbusTcpServer) ConnectTimerEvent(f func(event *core.QTimerEvent)) 
 }
 
 func (ptr *QModbusTcpServer) DisconnectTimerEvent() {
-	defer qt.Recovering("disconnect QModbusTcpServer::timerEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QModbusTcpServer::timerEvent")
@@ -8387,16 +6915,12 @@ func (ptr *QModbusTcpServer) DisconnectTimerEvent() {
 }
 
 func (ptr *QModbusTcpServer) TimerEvent(event core.QTimerEvent_ITF) {
-	defer qt.Recovering("QModbusTcpServer::timerEvent")
-
 	if ptr.Pointer() != nil {
 		C.QModbusTcpServer_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
 	}
 }
 
 func (ptr *QModbusTcpServer) TimerEventDefault(event core.QTimerEvent_ITF) {
-	defer qt.Recovering("QModbusTcpServer::timerEvent")
-
 	if ptr.Pointer() != nil {
 		C.QModbusTcpServer_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
 	}
@@ -8404,7 +6928,6 @@ func (ptr *QModbusTcpServer) TimerEventDefault(event core.QTimerEvent_ITF) {
 
 //export callbackQModbusTcpServer_ChildEvent
 func callbackQModbusTcpServer_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	defer qt.Recovering("callback QModbusTcpServer::childEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QModbusTcpServer::childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
@@ -8414,8 +6937,6 @@ func callbackQModbusTcpServer_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointe
 }
 
 func (ptr *QModbusTcpServer) ConnectChildEvent(f func(event *core.QChildEvent)) {
-	defer qt.Recovering("connect QModbusTcpServer::childEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QModbusTcpServer::childEvent", f)
@@ -8423,8 +6944,6 @@ func (ptr *QModbusTcpServer) ConnectChildEvent(f func(event *core.QChildEvent)) 
 }
 
 func (ptr *QModbusTcpServer) DisconnectChildEvent() {
-	defer qt.Recovering("disconnect QModbusTcpServer::childEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QModbusTcpServer::childEvent")
@@ -8432,16 +6951,12 @@ func (ptr *QModbusTcpServer) DisconnectChildEvent() {
 }
 
 func (ptr *QModbusTcpServer) ChildEvent(event core.QChildEvent_ITF) {
-	defer qt.Recovering("QModbusTcpServer::childEvent")
-
 	if ptr.Pointer() != nil {
 		C.QModbusTcpServer_ChildEvent(ptr.Pointer(), core.PointerFromQChildEvent(event))
 	}
 }
 
 func (ptr *QModbusTcpServer) ChildEventDefault(event core.QChildEvent_ITF) {
-	defer qt.Recovering("QModbusTcpServer::childEvent")
-
 	if ptr.Pointer() != nil {
 		C.QModbusTcpServer_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
 	}
@@ -8449,7 +6964,6 @@ func (ptr *QModbusTcpServer) ChildEventDefault(event core.QChildEvent_ITF) {
 
 //export callbackQModbusTcpServer_ConnectNotify
 func callbackQModbusTcpServer_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-	defer qt.Recovering("callback QModbusTcpServer::connectNotify")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QModbusTcpServer::connectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
@@ -8459,8 +6973,6 @@ func callbackQModbusTcpServer_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Poin
 }
 
 func (ptr *QModbusTcpServer) ConnectConnectNotify(f func(sign *core.QMetaMethod)) {
-	defer qt.Recovering("connect QModbusTcpServer::connectNotify")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QModbusTcpServer::connectNotify", f)
@@ -8468,8 +6980,6 @@ func (ptr *QModbusTcpServer) ConnectConnectNotify(f func(sign *core.QMetaMethod)
 }
 
 func (ptr *QModbusTcpServer) DisconnectConnectNotify() {
-	defer qt.Recovering("disconnect QModbusTcpServer::connectNotify")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QModbusTcpServer::connectNotify")
@@ -8477,16 +6987,12 @@ func (ptr *QModbusTcpServer) DisconnectConnectNotify() {
 }
 
 func (ptr *QModbusTcpServer) ConnectNotify(sign core.QMetaMethod_ITF) {
-	defer qt.Recovering("QModbusTcpServer::connectNotify")
-
 	if ptr.Pointer() != nil {
 		C.QModbusTcpServer_ConnectNotify(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
 	}
 }
 
 func (ptr *QModbusTcpServer) ConnectNotifyDefault(sign core.QMetaMethod_ITF) {
-	defer qt.Recovering("QModbusTcpServer::connectNotify")
-
 	if ptr.Pointer() != nil {
 		C.QModbusTcpServer_ConnectNotifyDefault(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
 	}
@@ -8494,7 +7000,6 @@ func (ptr *QModbusTcpServer) ConnectNotifyDefault(sign core.QMetaMethod_ITF) {
 
 //export callbackQModbusTcpServer_CustomEvent
 func callbackQModbusTcpServer_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	defer qt.Recovering("callback QModbusTcpServer::customEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QModbusTcpServer::customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
@@ -8504,8 +7009,6 @@ func callbackQModbusTcpServer_CustomEvent(ptr unsafe.Pointer, event unsafe.Point
 }
 
 func (ptr *QModbusTcpServer) ConnectCustomEvent(f func(event *core.QEvent)) {
-	defer qt.Recovering("connect QModbusTcpServer::customEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QModbusTcpServer::customEvent", f)
@@ -8513,8 +7016,6 @@ func (ptr *QModbusTcpServer) ConnectCustomEvent(f func(event *core.QEvent)) {
 }
 
 func (ptr *QModbusTcpServer) DisconnectCustomEvent() {
-	defer qt.Recovering("disconnect QModbusTcpServer::customEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QModbusTcpServer::customEvent")
@@ -8522,16 +7023,12 @@ func (ptr *QModbusTcpServer) DisconnectCustomEvent() {
 }
 
 func (ptr *QModbusTcpServer) CustomEvent(event core.QEvent_ITF) {
-	defer qt.Recovering("QModbusTcpServer::customEvent")
-
 	if ptr.Pointer() != nil {
 		C.QModbusTcpServer_CustomEvent(ptr.Pointer(), core.PointerFromQEvent(event))
 	}
 }
 
 func (ptr *QModbusTcpServer) CustomEventDefault(event core.QEvent_ITF) {
-	defer qt.Recovering("QModbusTcpServer::customEvent")
-
 	if ptr.Pointer() != nil {
 		C.QModbusTcpServer_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
 	}
@@ -8539,8 +7036,6 @@ func (ptr *QModbusTcpServer) CustomEventDefault(event core.QEvent_ITF) {
 
 //export callbackQModbusTcpServer_DeleteLater
 func callbackQModbusTcpServer_DeleteLater(ptr unsafe.Pointer) {
-	defer qt.Recovering("callback QModbusTcpServer::deleteLater")
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QModbusTcpServer::deleteLater"); signal != nil {
 		signal.(func())()
 	} else {
@@ -8549,8 +7044,6 @@ func callbackQModbusTcpServer_DeleteLater(ptr unsafe.Pointer) {
 }
 
 func (ptr *QModbusTcpServer) ConnectDeleteLater(f func()) {
-	defer qt.Recovering("connect QModbusTcpServer::deleteLater")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QModbusTcpServer::deleteLater", f)
@@ -8558,8 +7051,6 @@ func (ptr *QModbusTcpServer) ConnectDeleteLater(f func()) {
 }
 
 func (ptr *QModbusTcpServer) DisconnectDeleteLater() {
-	defer qt.Recovering("disconnect QModbusTcpServer::deleteLater")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QModbusTcpServer::deleteLater")
@@ -8567,8 +7058,6 @@ func (ptr *QModbusTcpServer) DisconnectDeleteLater() {
 }
 
 func (ptr *QModbusTcpServer) DeleteLater() {
-	defer qt.Recovering("QModbusTcpServer::deleteLater")
-
 	if ptr.Pointer() != nil {
 		C.QModbusTcpServer_DeleteLater(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
@@ -8577,8 +7066,6 @@ func (ptr *QModbusTcpServer) DeleteLater() {
 }
 
 func (ptr *QModbusTcpServer) DeleteLaterDefault() {
-	defer qt.Recovering("QModbusTcpServer::deleteLater")
-
 	if ptr.Pointer() != nil {
 		C.QModbusTcpServer_DeleteLaterDefault(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
@@ -8588,7 +7075,6 @@ func (ptr *QModbusTcpServer) DeleteLaterDefault() {
 
 //export callbackQModbusTcpServer_DisconnectNotify
 func callbackQModbusTcpServer_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-	defer qt.Recovering("callback QModbusTcpServer::disconnectNotify")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QModbusTcpServer::disconnectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
@@ -8598,8 +7084,6 @@ func callbackQModbusTcpServer_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.P
 }
 
 func (ptr *QModbusTcpServer) ConnectDisconnectNotify(f func(sign *core.QMetaMethod)) {
-	defer qt.Recovering("connect QModbusTcpServer::disconnectNotify")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QModbusTcpServer::disconnectNotify", f)
@@ -8607,8 +7091,6 @@ func (ptr *QModbusTcpServer) ConnectDisconnectNotify(f func(sign *core.QMetaMeth
 }
 
 func (ptr *QModbusTcpServer) DisconnectDisconnectNotify() {
-	defer qt.Recovering("disconnect QModbusTcpServer::disconnectNotify")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QModbusTcpServer::disconnectNotify")
@@ -8616,16 +7098,12 @@ func (ptr *QModbusTcpServer) DisconnectDisconnectNotify() {
 }
 
 func (ptr *QModbusTcpServer) DisconnectNotify(sign core.QMetaMethod_ITF) {
-	defer qt.Recovering("QModbusTcpServer::disconnectNotify")
-
 	if ptr.Pointer() != nil {
 		C.QModbusTcpServer_DisconnectNotify(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
 	}
 }
 
 func (ptr *QModbusTcpServer) DisconnectNotifyDefault(sign core.QMetaMethod_ITF) {
-	defer qt.Recovering("QModbusTcpServer::disconnectNotify")
-
 	if ptr.Pointer() != nil {
 		C.QModbusTcpServer_DisconnectNotifyDefault(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
 	}
@@ -8633,7 +7111,6 @@ func (ptr *QModbusTcpServer) DisconnectNotifyDefault(sign core.QMetaMethod_ITF) 
 
 //export callbackQModbusTcpServer_Event
 func callbackQModbusTcpServer_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
-	defer qt.Recovering("callback QModbusTcpServer::event")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QModbusTcpServer::event"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
@@ -8643,8 +7120,6 @@ func callbackQModbusTcpServer_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char
 }
 
 func (ptr *QModbusTcpServer) ConnectEvent(f func(e *core.QEvent) bool) {
-	defer qt.Recovering("connect QModbusTcpServer::event")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QModbusTcpServer::event", f)
@@ -8652,8 +7127,6 @@ func (ptr *QModbusTcpServer) ConnectEvent(f func(e *core.QEvent) bool) {
 }
 
 func (ptr *QModbusTcpServer) DisconnectEvent() {
-	defer qt.Recovering("disconnect QModbusTcpServer::event")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QModbusTcpServer::event")
@@ -8661,8 +7134,6 @@ func (ptr *QModbusTcpServer) DisconnectEvent() {
 }
 
 func (ptr *QModbusTcpServer) Event(e core.QEvent_ITF) bool {
-	defer qt.Recovering("QModbusTcpServer::event")
-
 	if ptr.Pointer() != nil {
 		return C.QModbusTcpServer_Event(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
 	}
@@ -8670,8 +7141,6 @@ func (ptr *QModbusTcpServer) Event(e core.QEvent_ITF) bool {
 }
 
 func (ptr *QModbusTcpServer) EventDefault(e core.QEvent_ITF) bool {
-	defer qt.Recovering("QModbusTcpServer::event")
-
 	if ptr.Pointer() != nil {
 		return C.QModbusTcpServer_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
 	}
@@ -8680,7 +7149,6 @@ func (ptr *QModbusTcpServer) EventDefault(e core.QEvent_ITF) bool {
 
 //export callbackQModbusTcpServer_EventFilter
 func callbackQModbusTcpServer_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-	defer qt.Recovering("callback QModbusTcpServer::eventFilter")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QModbusTcpServer::eventFilter"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
@@ -8690,8 +7158,6 @@ func callbackQModbusTcpServer_EventFilter(ptr unsafe.Pointer, watched unsafe.Poi
 }
 
 func (ptr *QModbusTcpServer) ConnectEventFilter(f func(watched *core.QObject, event *core.QEvent) bool) {
-	defer qt.Recovering("connect QModbusTcpServer::eventFilter")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QModbusTcpServer::eventFilter", f)
@@ -8699,8 +7165,6 @@ func (ptr *QModbusTcpServer) ConnectEventFilter(f func(watched *core.QObject, ev
 }
 
 func (ptr *QModbusTcpServer) DisconnectEventFilter() {
-	defer qt.Recovering("disconnect QModbusTcpServer::eventFilter")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QModbusTcpServer::eventFilter")
@@ -8708,8 +7172,6 @@ func (ptr *QModbusTcpServer) DisconnectEventFilter() {
 }
 
 func (ptr *QModbusTcpServer) EventFilter(watched core.QObject_ITF, event core.QEvent_ITF) bool {
-	defer qt.Recovering("QModbusTcpServer::eventFilter")
-
 	if ptr.Pointer() != nil {
 		return C.QModbusTcpServer_EventFilter(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
 	}
@@ -8717,8 +7179,6 @@ func (ptr *QModbusTcpServer) EventFilter(watched core.QObject_ITF, event core.QE
 }
 
 func (ptr *QModbusTcpServer) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
-	defer qt.Recovering("QModbusTcpServer::eventFilter")
-
 	if ptr.Pointer() != nil {
 		return C.QModbusTcpServer_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
 	}
@@ -8727,7 +7187,6 @@ func (ptr *QModbusTcpServer) EventFilterDefault(watched core.QObject_ITF, event 
 
 //export callbackQModbusTcpServer_MetaObject
 func callbackQModbusTcpServer_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-	defer qt.Recovering("callback QModbusTcpServer::metaObject")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QModbusTcpServer::metaObject"); signal != nil {
 		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
@@ -8737,8 +7196,6 @@ func callbackQModbusTcpServer_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
 }
 
 func (ptr *QModbusTcpServer) ConnectMetaObject(f func() *core.QMetaObject) {
-	defer qt.Recovering("connect QModbusTcpServer::metaObject")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QModbusTcpServer::metaObject", f)
@@ -8746,8 +7203,6 @@ func (ptr *QModbusTcpServer) ConnectMetaObject(f func() *core.QMetaObject) {
 }
 
 func (ptr *QModbusTcpServer) DisconnectMetaObject() {
-	defer qt.Recovering("disconnect QModbusTcpServer::metaObject")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QModbusTcpServer::metaObject")
@@ -8755,8 +7210,6 @@ func (ptr *QModbusTcpServer) DisconnectMetaObject() {
 }
 
 func (ptr *QModbusTcpServer) MetaObject() *core.QMetaObject {
-	defer qt.Recovering("QModbusTcpServer::metaObject")
-
 	if ptr.Pointer() != nil {
 		return core.NewQMetaObjectFromPointer(C.QModbusTcpServer_MetaObject(ptr.Pointer()))
 	}
@@ -8764,8 +7217,6 @@ func (ptr *QModbusTcpServer) MetaObject() *core.QMetaObject {
 }
 
 func (ptr *QModbusTcpServer) MetaObjectDefault() *core.QMetaObject {
-	defer qt.Recovering("QModbusTcpServer::metaObject")
-
 	if ptr.Pointer() != nil {
 		return core.NewQMetaObjectFromPointer(C.QModbusTcpServer_MetaObjectDefault(ptr.Pointer()))
 	}

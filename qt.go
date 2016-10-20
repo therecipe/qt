@@ -3,6 +3,8 @@ package qt
 import (
 	"encoding/hex"
 	"fmt"
+	"log"
+	"os"
 	"runtime"
 	"strings"
 	"sync"
@@ -11,9 +13,12 @@ import (
 )
 
 var (
+	Logger = log.New(os.Stderr, "", log.Ltime)
+
 	signals      = make(map[string]interface{})
 	signalsMutex = new(sync.Mutex)
-	ids          int
+
+	ids int
 )
 
 func init() { runtime.LockOSThread() }
@@ -64,11 +69,11 @@ func Identifier() string {
 }
 
 func DumpSignals() {
-	println("##############################\tDUMP_SIGNALTABLE_START\t##############################")
+	Debug("##############################\tSIGNALSTABLE_START\t##############################")
 	for entry := range signals {
-		println(entry)
+		Debug(entry)
 	}
-	println("##############################\tDUMP_SIGNALTABLE_END\t##############################")
+	Debug("##############################\tSIGNALSTABLE_END\t##############################")
 }
 
 func GoBoolToInt(b bool) int {
@@ -78,15 +83,22 @@ func GoBoolToInt(b bool) int {
 	return 0
 }
 
-func Recovering(fn string) {
+func Recover(fn string) {
 	if recover() != nil {
-		println("recovered in:", fn)
+		Debug("RECOVERED:", fn)
+	}
+}
+
+func Debug(fn ...interface{}) {
+	if strings.ToLower(os.Getenv("QT_DEBUG")) == "true" {
+		Logger.Println(fn...)
 	}
 }
 
 func HexDecodeToString(in string) string {
 	var out, err = hex.DecodeString(in)
 	if err != nil {
+		Debug("couldn't decode hex:", in)
 		return ""
 	}
 	return string(out)

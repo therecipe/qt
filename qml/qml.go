@@ -66,8 +66,6 @@ func NewQJSEngineFromPointer(ptr unsafe.Pointer) *QJSEngine {
 	return n
 }
 func NewQJSEngine() *QJSEngine {
-	defer qt.Recovering("QJSEngine::QJSEngine")
-
 	var tmpValue = NewQJSEngineFromPointer(C.QJSEngine_NewQJSEngine())
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
@@ -76,8 +74,6 @@ func NewQJSEngine() *QJSEngine {
 }
 
 func NewQJSEngine2(parent core.QObject_ITF) *QJSEngine {
-	defer qt.Recovering("QJSEngine::QJSEngine")
-
 	var tmpValue = NewQJSEngineFromPointer(C.QJSEngine_NewQJSEngine2(core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
@@ -86,16 +82,12 @@ func NewQJSEngine2(parent core.QObject_ITF) *QJSEngine {
 }
 
 func (ptr *QJSEngine) CollectGarbage() {
-	defer qt.Recovering("QJSEngine::collectGarbage")
-
 	if ptr.Pointer() != nil {
 		C.QJSEngine_CollectGarbage(ptr.Pointer())
 	}
 }
 
 func (ptr *QJSEngine) Evaluate(program string, fileName string, lineNumber int) *QJSValue {
-	defer qt.Recovering("QJSEngine::evaluate")
-
 	if ptr.Pointer() != nil {
 		var programC = C.CString(program)
 		defer C.free(unsafe.Pointer(programC))
@@ -109,8 +101,6 @@ func (ptr *QJSEngine) Evaluate(program string, fileName string, lineNumber int) 
 }
 
 func (ptr *QJSEngine) GlobalObject() *QJSValue {
-	defer qt.Recovering("QJSEngine::globalObject")
-
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQJSValueFromPointer(C.QJSEngine_GlobalObject(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*QJSValue).DestroyQJSValue)
@@ -120,16 +110,12 @@ func (ptr *QJSEngine) GlobalObject() *QJSValue {
 }
 
 func (ptr *QJSEngine) InstallExtensions(extensions QJSEngine__Extension, object QJSValue_ITF) {
-	defer qt.Recovering("QJSEngine::installExtensions")
-
 	if ptr.Pointer() != nil {
 		C.QJSEngine_InstallExtensions(ptr.Pointer(), C.longlong(extensions), PointerFromQJSValue(object))
 	}
 }
 
 func (ptr *QJSEngine) NewArray(length uint) *QJSValue {
-	defer qt.Recovering("QJSEngine::newArray")
-
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQJSValueFromPointer(C.QJSEngine_NewArray(ptr.Pointer(), C.uint(uint32(length))))
 		runtime.SetFinalizer(tmpValue, (*QJSValue).DestroyQJSValue)
@@ -139,8 +125,6 @@ func (ptr *QJSEngine) NewArray(length uint) *QJSValue {
 }
 
 func (ptr *QJSEngine) NewObject() *QJSValue {
-	defer qt.Recovering("QJSEngine::newObject")
-
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQJSValueFromPointer(C.QJSEngine_NewObject(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*QJSValue).DestroyQJSValue)
@@ -150,8 +134,6 @@ func (ptr *QJSEngine) NewObject() *QJSValue {
 }
 
 func (ptr *QJSEngine) NewQObject(object core.QObject_ITF) *QJSValue {
-	defer qt.Recovering("QJSEngine::newQObject")
-
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQJSValueFromPointer(C.QJSEngine_NewQObject(ptr.Pointer(), core.PointerFromQObject(object)))
 		runtime.SetFinalizer(tmpValue, (*QJSValue).DestroyQJSValue)
@@ -162,7 +144,6 @@ func (ptr *QJSEngine) NewQObject(object core.QObject_ITF) *QJSValue {
 
 //export callbackQJSEngine_DestroyQJSEngine
 func callbackQJSEngine_DestroyQJSEngine(ptr unsafe.Pointer) {
-	defer qt.Recovering("callback QJSEngine::~QJSEngine")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QJSEngine::~QJSEngine"); signal != nil {
 		signal.(func())()
@@ -172,8 +153,6 @@ func callbackQJSEngine_DestroyQJSEngine(ptr unsafe.Pointer) {
 }
 
 func (ptr *QJSEngine) ConnectDestroyQJSEngine(f func()) {
-	defer qt.Recovering("connect QJSEngine::~QJSEngine")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QJSEngine::~QJSEngine", f)
@@ -181,8 +160,6 @@ func (ptr *QJSEngine) ConnectDestroyQJSEngine(f func()) {
 }
 
 func (ptr *QJSEngine) DisconnectDestroyQJSEngine() {
-	defer qt.Recovering("disconnect QJSEngine::~QJSEngine")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QJSEngine::~QJSEngine")
@@ -190,8 +167,6 @@ func (ptr *QJSEngine) DisconnectDestroyQJSEngine() {
 }
 
 func (ptr *QJSEngine) DestroyQJSEngine() {
-	defer qt.Recovering("QJSEngine::~QJSEngine")
-
 	if ptr.Pointer() != nil {
 		C.QJSEngine_DestroyQJSEngine(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
@@ -200,8 +175,6 @@ func (ptr *QJSEngine) DestroyQJSEngine() {
 }
 
 func (ptr *QJSEngine) DestroyQJSEngineDefault() {
-	defer qt.Recovering("QJSEngine::~QJSEngine")
-
 	if ptr.Pointer() != nil {
 		C.QJSEngine_DestroyQJSEngineDefault(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
@@ -211,7 +184,6 @@ func (ptr *QJSEngine) DestroyQJSEngineDefault() {
 
 //export callbackQJSEngine_TimerEvent
 func callbackQJSEngine_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	defer qt.Recovering("callback QJSEngine::timerEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QJSEngine::timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
@@ -221,8 +193,6 @@ func callbackQJSEngine_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 }
 
 func (ptr *QJSEngine) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
-	defer qt.Recovering("connect QJSEngine::timerEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QJSEngine::timerEvent", f)
@@ -230,8 +200,6 @@ func (ptr *QJSEngine) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
 }
 
 func (ptr *QJSEngine) DisconnectTimerEvent() {
-	defer qt.Recovering("disconnect QJSEngine::timerEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QJSEngine::timerEvent")
@@ -239,16 +207,12 @@ func (ptr *QJSEngine) DisconnectTimerEvent() {
 }
 
 func (ptr *QJSEngine) TimerEvent(event core.QTimerEvent_ITF) {
-	defer qt.Recovering("QJSEngine::timerEvent")
-
 	if ptr.Pointer() != nil {
 		C.QJSEngine_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
 	}
 }
 
 func (ptr *QJSEngine) TimerEventDefault(event core.QTimerEvent_ITF) {
-	defer qt.Recovering("QJSEngine::timerEvent")
-
 	if ptr.Pointer() != nil {
 		C.QJSEngine_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
 	}
@@ -256,7 +220,6 @@ func (ptr *QJSEngine) TimerEventDefault(event core.QTimerEvent_ITF) {
 
 //export callbackQJSEngine_ChildEvent
 func callbackQJSEngine_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	defer qt.Recovering("callback QJSEngine::childEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QJSEngine::childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
@@ -266,8 +229,6 @@ func callbackQJSEngine_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 }
 
 func (ptr *QJSEngine) ConnectChildEvent(f func(event *core.QChildEvent)) {
-	defer qt.Recovering("connect QJSEngine::childEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QJSEngine::childEvent", f)
@@ -275,8 +236,6 @@ func (ptr *QJSEngine) ConnectChildEvent(f func(event *core.QChildEvent)) {
 }
 
 func (ptr *QJSEngine) DisconnectChildEvent() {
-	defer qt.Recovering("disconnect QJSEngine::childEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QJSEngine::childEvent")
@@ -284,16 +243,12 @@ func (ptr *QJSEngine) DisconnectChildEvent() {
 }
 
 func (ptr *QJSEngine) ChildEvent(event core.QChildEvent_ITF) {
-	defer qt.Recovering("QJSEngine::childEvent")
-
 	if ptr.Pointer() != nil {
 		C.QJSEngine_ChildEvent(ptr.Pointer(), core.PointerFromQChildEvent(event))
 	}
 }
 
 func (ptr *QJSEngine) ChildEventDefault(event core.QChildEvent_ITF) {
-	defer qt.Recovering("QJSEngine::childEvent")
-
 	if ptr.Pointer() != nil {
 		C.QJSEngine_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
 	}
@@ -301,7 +256,6 @@ func (ptr *QJSEngine) ChildEventDefault(event core.QChildEvent_ITF) {
 
 //export callbackQJSEngine_ConnectNotify
 func callbackQJSEngine_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-	defer qt.Recovering("callback QJSEngine::connectNotify")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QJSEngine::connectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
@@ -311,8 +265,6 @@ func callbackQJSEngine_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
 }
 
 func (ptr *QJSEngine) ConnectConnectNotify(f func(sign *core.QMetaMethod)) {
-	defer qt.Recovering("connect QJSEngine::connectNotify")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QJSEngine::connectNotify", f)
@@ -320,8 +272,6 @@ func (ptr *QJSEngine) ConnectConnectNotify(f func(sign *core.QMetaMethod)) {
 }
 
 func (ptr *QJSEngine) DisconnectConnectNotify() {
-	defer qt.Recovering("disconnect QJSEngine::connectNotify")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QJSEngine::connectNotify")
@@ -329,16 +279,12 @@ func (ptr *QJSEngine) DisconnectConnectNotify() {
 }
 
 func (ptr *QJSEngine) ConnectNotify(sign core.QMetaMethod_ITF) {
-	defer qt.Recovering("QJSEngine::connectNotify")
-
 	if ptr.Pointer() != nil {
 		C.QJSEngine_ConnectNotify(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
 	}
 }
 
 func (ptr *QJSEngine) ConnectNotifyDefault(sign core.QMetaMethod_ITF) {
-	defer qt.Recovering("QJSEngine::connectNotify")
-
 	if ptr.Pointer() != nil {
 		C.QJSEngine_ConnectNotifyDefault(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
 	}
@@ -346,7 +292,6 @@ func (ptr *QJSEngine) ConnectNotifyDefault(sign core.QMetaMethod_ITF) {
 
 //export callbackQJSEngine_CustomEvent
 func callbackQJSEngine_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	defer qt.Recovering("callback QJSEngine::customEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QJSEngine::customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
@@ -356,8 +301,6 @@ func callbackQJSEngine_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 }
 
 func (ptr *QJSEngine) ConnectCustomEvent(f func(event *core.QEvent)) {
-	defer qt.Recovering("connect QJSEngine::customEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QJSEngine::customEvent", f)
@@ -365,8 +308,6 @@ func (ptr *QJSEngine) ConnectCustomEvent(f func(event *core.QEvent)) {
 }
 
 func (ptr *QJSEngine) DisconnectCustomEvent() {
-	defer qt.Recovering("disconnect QJSEngine::customEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QJSEngine::customEvent")
@@ -374,16 +315,12 @@ func (ptr *QJSEngine) DisconnectCustomEvent() {
 }
 
 func (ptr *QJSEngine) CustomEvent(event core.QEvent_ITF) {
-	defer qt.Recovering("QJSEngine::customEvent")
-
 	if ptr.Pointer() != nil {
 		C.QJSEngine_CustomEvent(ptr.Pointer(), core.PointerFromQEvent(event))
 	}
 }
 
 func (ptr *QJSEngine) CustomEventDefault(event core.QEvent_ITF) {
-	defer qt.Recovering("QJSEngine::customEvent")
-
 	if ptr.Pointer() != nil {
 		C.QJSEngine_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
 	}
@@ -391,8 +328,6 @@ func (ptr *QJSEngine) CustomEventDefault(event core.QEvent_ITF) {
 
 //export callbackQJSEngine_DeleteLater
 func callbackQJSEngine_DeleteLater(ptr unsafe.Pointer) {
-	defer qt.Recovering("callback QJSEngine::deleteLater")
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QJSEngine::deleteLater"); signal != nil {
 		signal.(func())()
 	} else {
@@ -401,8 +336,6 @@ func callbackQJSEngine_DeleteLater(ptr unsafe.Pointer) {
 }
 
 func (ptr *QJSEngine) ConnectDeleteLater(f func()) {
-	defer qt.Recovering("connect QJSEngine::deleteLater")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QJSEngine::deleteLater", f)
@@ -410,8 +343,6 @@ func (ptr *QJSEngine) ConnectDeleteLater(f func()) {
 }
 
 func (ptr *QJSEngine) DisconnectDeleteLater() {
-	defer qt.Recovering("disconnect QJSEngine::deleteLater")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QJSEngine::deleteLater")
@@ -419,8 +350,6 @@ func (ptr *QJSEngine) DisconnectDeleteLater() {
 }
 
 func (ptr *QJSEngine) DeleteLater() {
-	defer qt.Recovering("QJSEngine::deleteLater")
-
 	if ptr.Pointer() != nil {
 		C.QJSEngine_DeleteLater(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
@@ -429,8 +358,6 @@ func (ptr *QJSEngine) DeleteLater() {
 }
 
 func (ptr *QJSEngine) DeleteLaterDefault() {
-	defer qt.Recovering("QJSEngine::deleteLater")
-
 	if ptr.Pointer() != nil {
 		C.QJSEngine_DeleteLaterDefault(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
@@ -440,7 +367,6 @@ func (ptr *QJSEngine) DeleteLaterDefault() {
 
 //export callbackQJSEngine_DisconnectNotify
 func callbackQJSEngine_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-	defer qt.Recovering("callback QJSEngine::disconnectNotify")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QJSEngine::disconnectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
@@ -450,8 +376,6 @@ func callbackQJSEngine_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer)
 }
 
 func (ptr *QJSEngine) ConnectDisconnectNotify(f func(sign *core.QMetaMethod)) {
-	defer qt.Recovering("connect QJSEngine::disconnectNotify")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QJSEngine::disconnectNotify", f)
@@ -459,8 +383,6 @@ func (ptr *QJSEngine) ConnectDisconnectNotify(f func(sign *core.QMetaMethod)) {
 }
 
 func (ptr *QJSEngine) DisconnectDisconnectNotify() {
-	defer qt.Recovering("disconnect QJSEngine::disconnectNotify")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QJSEngine::disconnectNotify")
@@ -468,16 +390,12 @@ func (ptr *QJSEngine) DisconnectDisconnectNotify() {
 }
 
 func (ptr *QJSEngine) DisconnectNotify(sign core.QMetaMethod_ITF) {
-	defer qt.Recovering("QJSEngine::disconnectNotify")
-
 	if ptr.Pointer() != nil {
 		C.QJSEngine_DisconnectNotify(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
 	}
 }
 
 func (ptr *QJSEngine) DisconnectNotifyDefault(sign core.QMetaMethod_ITF) {
-	defer qt.Recovering("QJSEngine::disconnectNotify")
-
 	if ptr.Pointer() != nil {
 		C.QJSEngine_DisconnectNotifyDefault(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
 	}
@@ -485,7 +403,6 @@ func (ptr *QJSEngine) DisconnectNotifyDefault(sign core.QMetaMethod_ITF) {
 
 //export callbackQJSEngine_Event
 func callbackQJSEngine_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
-	defer qt.Recovering("callback QJSEngine::event")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QJSEngine::event"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
@@ -495,8 +412,6 @@ func callbackQJSEngine_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
 }
 
 func (ptr *QJSEngine) ConnectEvent(f func(e *core.QEvent) bool) {
-	defer qt.Recovering("connect QJSEngine::event")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QJSEngine::event", f)
@@ -504,8 +419,6 @@ func (ptr *QJSEngine) ConnectEvent(f func(e *core.QEvent) bool) {
 }
 
 func (ptr *QJSEngine) DisconnectEvent() {
-	defer qt.Recovering("disconnect QJSEngine::event")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QJSEngine::event")
@@ -513,8 +426,6 @@ func (ptr *QJSEngine) DisconnectEvent() {
 }
 
 func (ptr *QJSEngine) Event(e core.QEvent_ITF) bool {
-	defer qt.Recovering("QJSEngine::event")
-
 	if ptr.Pointer() != nil {
 		return C.QJSEngine_Event(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
 	}
@@ -522,8 +433,6 @@ func (ptr *QJSEngine) Event(e core.QEvent_ITF) bool {
 }
 
 func (ptr *QJSEngine) EventDefault(e core.QEvent_ITF) bool {
-	defer qt.Recovering("QJSEngine::event")
-
 	if ptr.Pointer() != nil {
 		return C.QJSEngine_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
 	}
@@ -532,7 +441,6 @@ func (ptr *QJSEngine) EventDefault(e core.QEvent_ITF) bool {
 
 //export callbackQJSEngine_EventFilter
 func callbackQJSEngine_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-	defer qt.Recovering("callback QJSEngine::eventFilter")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QJSEngine::eventFilter"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
@@ -542,8 +450,6 @@ func callbackQJSEngine_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, e
 }
 
 func (ptr *QJSEngine) ConnectEventFilter(f func(watched *core.QObject, event *core.QEvent) bool) {
-	defer qt.Recovering("connect QJSEngine::eventFilter")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QJSEngine::eventFilter", f)
@@ -551,8 +457,6 @@ func (ptr *QJSEngine) ConnectEventFilter(f func(watched *core.QObject, event *co
 }
 
 func (ptr *QJSEngine) DisconnectEventFilter() {
-	defer qt.Recovering("disconnect QJSEngine::eventFilter")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QJSEngine::eventFilter")
@@ -560,8 +464,6 @@ func (ptr *QJSEngine) DisconnectEventFilter() {
 }
 
 func (ptr *QJSEngine) EventFilter(watched core.QObject_ITF, event core.QEvent_ITF) bool {
-	defer qt.Recovering("QJSEngine::eventFilter")
-
 	if ptr.Pointer() != nil {
 		return C.QJSEngine_EventFilter(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
 	}
@@ -569,8 +471,6 @@ func (ptr *QJSEngine) EventFilter(watched core.QObject_ITF, event core.QEvent_IT
 }
 
 func (ptr *QJSEngine) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
-	defer qt.Recovering("QJSEngine::eventFilter")
-
 	if ptr.Pointer() != nil {
 		return C.QJSEngine_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
 	}
@@ -579,7 +479,6 @@ func (ptr *QJSEngine) EventFilterDefault(watched core.QObject_ITF, event core.QE
 
 //export callbackQJSEngine_MetaObject
 func callbackQJSEngine_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-	defer qt.Recovering("callback QJSEngine::metaObject")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QJSEngine::metaObject"); signal != nil {
 		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
@@ -589,8 +488,6 @@ func callbackQJSEngine_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
 }
 
 func (ptr *QJSEngine) ConnectMetaObject(f func() *core.QMetaObject) {
-	defer qt.Recovering("connect QJSEngine::metaObject")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QJSEngine::metaObject", f)
@@ -598,8 +495,6 @@ func (ptr *QJSEngine) ConnectMetaObject(f func() *core.QMetaObject) {
 }
 
 func (ptr *QJSEngine) DisconnectMetaObject() {
-	defer qt.Recovering("disconnect QJSEngine::metaObject")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QJSEngine::metaObject")
@@ -607,8 +502,6 @@ func (ptr *QJSEngine) DisconnectMetaObject() {
 }
 
 func (ptr *QJSEngine) MetaObject() *core.QMetaObject {
-	defer qt.Recovering("QJSEngine::metaObject")
-
 	if ptr.Pointer() != nil {
 		return core.NewQMetaObjectFromPointer(C.QJSEngine_MetaObject(ptr.Pointer()))
 	}
@@ -616,8 +509,6 @@ func (ptr *QJSEngine) MetaObject() *core.QMetaObject {
 }
 
 func (ptr *QJSEngine) MetaObjectDefault() *core.QMetaObject {
-	defer qt.Recovering("QJSEngine::metaObject")
-
 	if ptr.Pointer() != nil {
 		return core.NewQMetaObjectFromPointer(C.QJSEngine_MetaObjectDefault(ptr.Pointer()))
 	}
@@ -670,48 +561,36 @@ func NewQJSValueFromPointer(ptr unsafe.Pointer) *QJSValue {
 	return n
 }
 func NewQJSValue3(other QJSValue_ITF) *QJSValue {
-	defer qt.Recovering("QJSValue::QJSValue")
-
 	var tmpValue = NewQJSValueFromPointer(C.QJSValue_NewQJSValue3(PointerFromQJSValue(other)))
 	runtime.SetFinalizer(tmpValue, (*QJSValue).DestroyQJSValue)
 	return tmpValue
 }
 
 func NewQJSValue(value QJSValue__SpecialValue) *QJSValue {
-	defer qt.Recovering("QJSValue::QJSValue")
-
 	var tmpValue = NewQJSValueFromPointer(C.QJSValue_NewQJSValue(C.longlong(value)))
 	runtime.SetFinalizer(tmpValue, (*QJSValue).DestroyQJSValue)
 	return tmpValue
 }
 
 func NewQJSValue4(value bool) *QJSValue {
-	defer qt.Recovering("QJSValue::QJSValue")
-
 	var tmpValue = NewQJSValueFromPointer(C.QJSValue_NewQJSValue4(C.char(int8(qt.GoBoolToInt(value)))))
 	runtime.SetFinalizer(tmpValue, (*QJSValue).DestroyQJSValue)
 	return tmpValue
 }
 
 func NewQJSValue2(other QJSValue_ITF) *QJSValue {
-	defer qt.Recovering("QJSValue::QJSValue")
-
 	var tmpValue = NewQJSValueFromPointer(C.QJSValue_NewQJSValue2(PointerFromQJSValue(other)))
 	runtime.SetFinalizer(tmpValue, (*QJSValue).DestroyQJSValue)
 	return tmpValue
 }
 
 func NewQJSValue9(value core.QLatin1String_ITF) *QJSValue {
-	defer qt.Recovering("QJSValue::QJSValue")
-
 	var tmpValue = NewQJSValueFromPointer(C.QJSValue_NewQJSValue9(core.PointerFromQLatin1String(value)))
 	runtime.SetFinalizer(tmpValue, (*QJSValue).DestroyQJSValue)
 	return tmpValue
 }
 
 func NewQJSValue8(value string) *QJSValue {
-	defer qt.Recovering("QJSValue::QJSValue")
-
 	var valueC = C.CString(value)
 	defer C.free(unsafe.Pointer(valueC))
 	var tmpValue = NewQJSValueFromPointer(C.QJSValue_NewQJSValue8(valueC))
@@ -720,8 +599,6 @@ func NewQJSValue8(value string) *QJSValue {
 }
 
 func NewQJSValue10(value string) *QJSValue {
-	defer qt.Recovering("QJSValue::QJSValue")
-
 	var valueC = C.CString(value)
 	defer C.free(unsafe.Pointer(valueC))
 	var tmpValue = NewQJSValueFromPointer(C.QJSValue_NewQJSValue10(valueC))
@@ -730,32 +607,24 @@ func NewQJSValue10(value string) *QJSValue {
 }
 
 func NewQJSValue7(value float64) *QJSValue {
-	defer qt.Recovering("QJSValue::QJSValue")
-
 	var tmpValue = NewQJSValueFromPointer(C.QJSValue_NewQJSValue7(C.double(value)))
 	runtime.SetFinalizer(tmpValue, (*QJSValue).DestroyQJSValue)
 	return tmpValue
 }
 
 func NewQJSValue5(value int) *QJSValue {
-	defer qt.Recovering("QJSValue::QJSValue")
-
 	var tmpValue = NewQJSValueFromPointer(C.QJSValue_NewQJSValue5(C.int(int32(value))))
 	runtime.SetFinalizer(tmpValue, (*QJSValue).DestroyQJSValue)
 	return tmpValue
 }
 
 func NewQJSValue6(value uint) *QJSValue {
-	defer qt.Recovering("QJSValue::QJSValue")
-
 	var tmpValue = NewQJSValueFromPointer(C.QJSValue_NewQJSValue6(C.uint(uint32(value))))
 	runtime.SetFinalizer(tmpValue, (*QJSValue).DestroyQJSValue)
 	return tmpValue
 }
 
 func (ptr *QJSValue) DeleteProperty(name string) bool {
-	defer qt.Recovering("QJSValue::deleteProperty")
-
 	if ptr.Pointer() != nil {
 		var nameC = C.CString(name)
 		defer C.free(unsafe.Pointer(nameC))
@@ -765,8 +634,6 @@ func (ptr *QJSValue) DeleteProperty(name string) bool {
 }
 
 func (ptr *QJSValue) Equals(other QJSValue_ITF) bool {
-	defer qt.Recovering("QJSValue::equals")
-
 	if ptr.Pointer() != nil {
 		return C.QJSValue_Equals(ptr.Pointer(), PointerFromQJSValue(other)) != 0
 	}
@@ -774,8 +641,6 @@ func (ptr *QJSValue) Equals(other QJSValue_ITF) bool {
 }
 
 func (ptr *QJSValue) HasOwnProperty(name string) bool {
-	defer qt.Recovering("QJSValue::hasOwnProperty")
-
 	if ptr.Pointer() != nil {
 		var nameC = C.CString(name)
 		defer C.free(unsafe.Pointer(nameC))
@@ -785,8 +650,6 @@ func (ptr *QJSValue) HasOwnProperty(name string) bool {
 }
 
 func (ptr *QJSValue) HasProperty(name string) bool {
-	defer qt.Recovering("QJSValue::hasProperty")
-
 	if ptr.Pointer() != nil {
 		var nameC = C.CString(name)
 		defer C.free(unsafe.Pointer(nameC))
@@ -796,8 +659,6 @@ func (ptr *QJSValue) HasProperty(name string) bool {
 }
 
 func (ptr *QJSValue) IsArray() bool {
-	defer qt.Recovering("QJSValue::isArray")
-
 	if ptr.Pointer() != nil {
 		return C.QJSValue_IsArray(ptr.Pointer()) != 0
 	}
@@ -805,8 +666,6 @@ func (ptr *QJSValue) IsArray() bool {
 }
 
 func (ptr *QJSValue) IsBool() bool {
-	defer qt.Recovering("QJSValue::isBool")
-
 	if ptr.Pointer() != nil {
 		return C.QJSValue_IsBool(ptr.Pointer()) != 0
 	}
@@ -814,8 +673,6 @@ func (ptr *QJSValue) IsBool() bool {
 }
 
 func (ptr *QJSValue) IsCallable() bool {
-	defer qt.Recovering("QJSValue::isCallable")
-
 	if ptr.Pointer() != nil {
 		return C.QJSValue_IsCallable(ptr.Pointer()) != 0
 	}
@@ -823,8 +680,6 @@ func (ptr *QJSValue) IsCallable() bool {
 }
 
 func (ptr *QJSValue) IsDate() bool {
-	defer qt.Recovering("QJSValue::isDate")
-
 	if ptr.Pointer() != nil {
 		return C.QJSValue_IsDate(ptr.Pointer()) != 0
 	}
@@ -832,8 +687,6 @@ func (ptr *QJSValue) IsDate() bool {
 }
 
 func (ptr *QJSValue) IsError() bool {
-	defer qt.Recovering("QJSValue::isError")
-
 	if ptr.Pointer() != nil {
 		return C.QJSValue_IsError(ptr.Pointer()) != 0
 	}
@@ -841,8 +694,6 @@ func (ptr *QJSValue) IsError() bool {
 }
 
 func (ptr *QJSValue) IsNull() bool {
-	defer qt.Recovering("QJSValue::isNull")
-
 	if ptr.Pointer() != nil {
 		return C.QJSValue_IsNull(ptr.Pointer()) != 0
 	}
@@ -850,8 +701,6 @@ func (ptr *QJSValue) IsNull() bool {
 }
 
 func (ptr *QJSValue) IsNumber() bool {
-	defer qt.Recovering("QJSValue::isNumber")
-
 	if ptr.Pointer() != nil {
 		return C.QJSValue_IsNumber(ptr.Pointer()) != 0
 	}
@@ -859,8 +708,6 @@ func (ptr *QJSValue) IsNumber() bool {
 }
 
 func (ptr *QJSValue) IsObject() bool {
-	defer qt.Recovering("QJSValue::isObject")
-
 	if ptr.Pointer() != nil {
 		return C.QJSValue_IsObject(ptr.Pointer()) != 0
 	}
@@ -868,8 +715,6 @@ func (ptr *QJSValue) IsObject() bool {
 }
 
 func (ptr *QJSValue) IsQObject() bool {
-	defer qt.Recovering("QJSValue::isQObject")
-
 	if ptr.Pointer() != nil {
 		return C.QJSValue_IsQObject(ptr.Pointer()) != 0
 	}
@@ -877,8 +722,6 @@ func (ptr *QJSValue) IsQObject() bool {
 }
 
 func (ptr *QJSValue) IsRegExp() bool {
-	defer qt.Recovering("QJSValue::isRegExp")
-
 	if ptr.Pointer() != nil {
 		return C.QJSValue_IsRegExp(ptr.Pointer()) != 0
 	}
@@ -886,8 +729,6 @@ func (ptr *QJSValue) IsRegExp() bool {
 }
 
 func (ptr *QJSValue) IsString() bool {
-	defer qt.Recovering("QJSValue::isString")
-
 	if ptr.Pointer() != nil {
 		return C.QJSValue_IsString(ptr.Pointer()) != 0
 	}
@@ -895,8 +736,6 @@ func (ptr *QJSValue) IsString() bool {
 }
 
 func (ptr *QJSValue) IsUndefined() bool {
-	defer qt.Recovering("QJSValue::isUndefined")
-
 	if ptr.Pointer() != nil {
 		return C.QJSValue_IsUndefined(ptr.Pointer()) != 0
 	}
@@ -904,8 +743,6 @@ func (ptr *QJSValue) IsUndefined() bool {
 }
 
 func (ptr *QJSValue) IsVariant() bool {
-	defer qt.Recovering("QJSValue::isVariant")
-
 	if ptr.Pointer() != nil {
 		return C.QJSValue_IsVariant(ptr.Pointer()) != 0
 	}
@@ -913,8 +750,6 @@ func (ptr *QJSValue) IsVariant() bool {
 }
 
 func (ptr *QJSValue) Property(name string) *QJSValue {
-	defer qt.Recovering("QJSValue::property")
-
 	if ptr.Pointer() != nil {
 		var nameC = C.CString(name)
 		defer C.free(unsafe.Pointer(nameC))
@@ -926,8 +761,6 @@ func (ptr *QJSValue) Property(name string) *QJSValue {
 }
 
 func (ptr *QJSValue) Property2(arrayIndex uint) *QJSValue {
-	defer qt.Recovering("QJSValue::property")
-
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQJSValueFromPointer(C.QJSValue_Property2(ptr.Pointer(), C.uint(uint32(arrayIndex))))
 		runtime.SetFinalizer(tmpValue, (*QJSValue).DestroyQJSValue)
@@ -937,8 +770,6 @@ func (ptr *QJSValue) Property2(arrayIndex uint) *QJSValue {
 }
 
 func (ptr *QJSValue) Prototype() *QJSValue {
-	defer qt.Recovering("QJSValue::prototype")
-
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQJSValueFromPointer(C.QJSValue_Prototype(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*QJSValue).DestroyQJSValue)
@@ -948,8 +779,6 @@ func (ptr *QJSValue) Prototype() *QJSValue {
 }
 
 func (ptr *QJSValue) SetProperty(name string, value QJSValue_ITF) {
-	defer qt.Recovering("QJSValue::setProperty")
-
 	if ptr.Pointer() != nil {
 		var nameC = C.CString(name)
 		defer C.free(unsafe.Pointer(nameC))
@@ -958,24 +787,18 @@ func (ptr *QJSValue) SetProperty(name string, value QJSValue_ITF) {
 }
 
 func (ptr *QJSValue) SetProperty2(arrayIndex uint, value QJSValue_ITF) {
-	defer qt.Recovering("QJSValue::setProperty")
-
 	if ptr.Pointer() != nil {
 		C.QJSValue_SetProperty2(ptr.Pointer(), C.uint(uint32(arrayIndex)), PointerFromQJSValue(value))
 	}
 }
 
 func (ptr *QJSValue) SetPrototype(prototype QJSValue_ITF) {
-	defer qt.Recovering("QJSValue::setPrototype")
-
 	if ptr.Pointer() != nil {
 		C.QJSValue_SetPrototype(ptr.Pointer(), PointerFromQJSValue(prototype))
 	}
 }
 
 func (ptr *QJSValue) StrictlyEquals(other QJSValue_ITF) bool {
-	defer qt.Recovering("QJSValue::strictlyEquals")
-
 	if ptr.Pointer() != nil {
 		return C.QJSValue_StrictlyEquals(ptr.Pointer(), PointerFromQJSValue(other)) != 0
 	}
@@ -983,8 +806,6 @@ func (ptr *QJSValue) StrictlyEquals(other QJSValue_ITF) bool {
 }
 
 func (ptr *QJSValue) ToBool() bool {
-	defer qt.Recovering("QJSValue::toBool")
-
 	if ptr.Pointer() != nil {
 		return C.QJSValue_ToBool(ptr.Pointer()) != 0
 	}
@@ -992,8 +813,6 @@ func (ptr *QJSValue) ToBool() bool {
 }
 
 func (ptr *QJSValue) ToDateTime() *core.QDateTime {
-	defer qt.Recovering("QJSValue::toDateTime")
-
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQDateTimeFromPointer(C.QJSValue_ToDateTime(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*core.QDateTime).DestroyQDateTime)
@@ -1003,8 +822,6 @@ func (ptr *QJSValue) ToDateTime() *core.QDateTime {
 }
 
 func (ptr *QJSValue) ToInt() int {
-	defer qt.Recovering("QJSValue::toInt")
-
 	if ptr.Pointer() != nil {
 		return int(int32(C.QJSValue_ToInt(ptr.Pointer())))
 	}
@@ -1012,8 +829,6 @@ func (ptr *QJSValue) ToInt() int {
 }
 
 func (ptr *QJSValue) ToNumber() float64 {
-	defer qt.Recovering("QJSValue::toNumber")
-
 	if ptr.Pointer() != nil {
 		return float64(C.QJSValue_ToNumber(ptr.Pointer()))
 	}
@@ -1021,8 +836,6 @@ func (ptr *QJSValue) ToNumber() float64 {
 }
 
 func (ptr *QJSValue) ToQObject() *core.QObject {
-	defer qt.Recovering("QJSValue::toQObject")
-
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQObjectFromPointer(C.QJSValue_ToQObject(ptr.Pointer()))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
@@ -1034,8 +847,6 @@ func (ptr *QJSValue) ToQObject() *core.QObject {
 }
 
 func (ptr *QJSValue) ToString() string {
-	defer qt.Recovering("QJSValue::toString")
-
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QJSValue_ToString(ptr.Pointer()))
 	}
@@ -1043,8 +854,6 @@ func (ptr *QJSValue) ToString() string {
 }
 
 func (ptr *QJSValue) ToUInt() uint {
-	defer qt.Recovering("QJSValue::toUInt")
-
 	if ptr.Pointer() != nil {
 		return uint(uint32(C.QJSValue_ToUInt(ptr.Pointer())))
 	}
@@ -1052,8 +861,6 @@ func (ptr *QJSValue) ToUInt() uint {
 }
 
 func (ptr *QJSValue) ToVariant() *core.QVariant {
-	defer qt.Recovering("QJSValue::toVariant")
-
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQVariantFromPointer(C.QJSValue_ToVariant(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
@@ -1063,8 +870,6 @@ func (ptr *QJSValue) ToVariant() *core.QVariant {
 }
 
 func (ptr *QJSValue) DestroyQJSValue() {
-	defer qt.Recovering("QJSValue::~QJSValue")
-
 	if ptr.Pointer() != nil {
 		C.QJSValue_DestroyQJSValue(ptr.Pointer())
 		ptr.SetPointer(nil)
@@ -1157,14 +962,11 @@ func NewQQmlAbstractUrlInterceptorFromPointer(ptr unsafe.Pointer) *QQmlAbstractU
 	return n
 }
 func NewQQmlAbstractUrlInterceptor() *QQmlAbstractUrlInterceptor {
-	defer qt.Recovering("QQmlAbstractUrlInterceptor::QQmlAbstractUrlInterceptor")
-
 	return NewQQmlAbstractUrlInterceptorFromPointer(C.QQmlAbstractUrlInterceptor_NewQQmlAbstractUrlInterceptor())
 }
 
 //export callbackQQmlAbstractUrlInterceptor_Intercept
 func callbackQQmlAbstractUrlInterceptor_Intercept(ptr unsafe.Pointer, url unsafe.Pointer, ty C.longlong) unsafe.Pointer {
-	defer qt.Recovering("callback QQmlAbstractUrlInterceptor::intercept")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QQmlAbstractUrlInterceptor::intercept"); signal != nil {
 		return core.PointerFromQUrl(signal.(func(*core.QUrl, QQmlAbstractUrlInterceptor__DataType) *core.QUrl)(core.NewQUrlFromPointer(url), QQmlAbstractUrlInterceptor__DataType(ty)))
@@ -1174,8 +976,6 @@ func callbackQQmlAbstractUrlInterceptor_Intercept(ptr unsafe.Pointer, url unsafe
 }
 
 func (ptr *QQmlAbstractUrlInterceptor) ConnectIntercept(f func(url *core.QUrl, ty QQmlAbstractUrlInterceptor__DataType) *core.QUrl) {
-	defer qt.Recovering("connect QQmlAbstractUrlInterceptor::intercept")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QQmlAbstractUrlInterceptor::intercept", f)
@@ -1183,8 +983,6 @@ func (ptr *QQmlAbstractUrlInterceptor) ConnectIntercept(f func(url *core.QUrl, t
 }
 
 func (ptr *QQmlAbstractUrlInterceptor) DisconnectIntercept(url core.QUrl_ITF, ty QQmlAbstractUrlInterceptor__DataType) {
-	defer qt.Recovering("disconnect QQmlAbstractUrlInterceptor::intercept")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QQmlAbstractUrlInterceptor::intercept")
@@ -1192,8 +990,6 @@ func (ptr *QQmlAbstractUrlInterceptor) DisconnectIntercept(url core.QUrl_ITF, ty
 }
 
 func (ptr *QQmlAbstractUrlInterceptor) Intercept(url core.QUrl_ITF, ty QQmlAbstractUrlInterceptor__DataType) *core.QUrl {
-	defer qt.Recovering("QQmlAbstractUrlInterceptor::intercept")
-
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQUrlFromPointer(C.QQmlAbstractUrlInterceptor_Intercept(ptr.Pointer(), core.PointerFromQUrl(url), C.longlong(ty)))
 		runtime.SetFinalizer(tmpValue, (*core.QUrl).DestroyQUrl)
@@ -1204,7 +1000,6 @@ func (ptr *QQmlAbstractUrlInterceptor) Intercept(url core.QUrl_ITF, ty QQmlAbstr
 
 //export callbackQQmlAbstractUrlInterceptor_DestroyQQmlAbstractUrlInterceptor
 func callbackQQmlAbstractUrlInterceptor_DestroyQQmlAbstractUrlInterceptor(ptr unsafe.Pointer) {
-	defer qt.Recovering("callback QQmlAbstractUrlInterceptor::~QQmlAbstractUrlInterceptor")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QQmlAbstractUrlInterceptor::~QQmlAbstractUrlInterceptor"); signal != nil {
 		signal.(func())()
@@ -1214,8 +1009,6 @@ func callbackQQmlAbstractUrlInterceptor_DestroyQQmlAbstractUrlInterceptor(ptr un
 }
 
 func (ptr *QQmlAbstractUrlInterceptor) ConnectDestroyQQmlAbstractUrlInterceptor(f func()) {
-	defer qt.Recovering("connect QQmlAbstractUrlInterceptor::~QQmlAbstractUrlInterceptor")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QQmlAbstractUrlInterceptor::~QQmlAbstractUrlInterceptor", f)
@@ -1223,8 +1016,6 @@ func (ptr *QQmlAbstractUrlInterceptor) ConnectDestroyQQmlAbstractUrlInterceptor(
 }
 
 func (ptr *QQmlAbstractUrlInterceptor) DisconnectDestroyQQmlAbstractUrlInterceptor() {
-	defer qt.Recovering("disconnect QQmlAbstractUrlInterceptor::~QQmlAbstractUrlInterceptor")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QQmlAbstractUrlInterceptor::~QQmlAbstractUrlInterceptor")
@@ -1232,8 +1023,6 @@ func (ptr *QQmlAbstractUrlInterceptor) DisconnectDestroyQQmlAbstractUrlIntercept
 }
 
 func (ptr *QQmlAbstractUrlInterceptor) DestroyQQmlAbstractUrlInterceptor() {
-	defer qt.Recovering("QQmlAbstractUrlInterceptor::~QQmlAbstractUrlInterceptor")
-
 	if ptr.Pointer() != nil {
 		C.QQmlAbstractUrlInterceptor_DestroyQQmlAbstractUrlInterceptor(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
@@ -1242,8 +1031,6 @@ func (ptr *QQmlAbstractUrlInterceptor) DestroyQQmlAbstractUrlInterceptor() {
 }
 
 func (ptr *QQmlAbstractUrlInterceptor) DestroyQQmlAbstractUrlInterceptorDefault() {
-	defer qt.Recovering("QQmlAbstractUrlInterceptor::~QQmlAbstractUrlInterceptor")
-
 	if ptr.Pointer() != nil {
 		C.QQmlAbstractUrlInterceptor_DestroyQQmlAbstractUrlInterceptorDefault(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
@@ -1290,8 +1077,6 @@ func NewQQmlApplicationEngineFromPointer(ptr unsafe.Pointer) *QQmlApplicationEng
 	return n
 }
 func NewQQmlApplicationEngine(parent core.QObject_ITF) *QQmlApplicationEngine {
-	defer qt.Recovering("QQmlApplicationEngine::QQmlApplicationEngine")
-
 	var tmpValue = NewQQmlApplicationEngineFromPointer(C.QQmlApplicationEngine_NewQQmlApplicationEngine(core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
@@ -1300,8 +1085,6 @@ func NewQQmlApplicationEngine(parent core.QObject_ITF) *QQmlApplicationEngine {
 }
 
 func NewQQmlApplicationEngine3(filePath string, parent core.QObject_ITF) *QQmlApplicationEngine {
-	defer qt.Recovering("QQmlApplicationEngine::QQmlApplicationEngine")
-
 	var filePathC = C.CString(filePath)
 	defer C.free(unsafe.Pointer(filePathC))
 	var tmpValue = NewQQmlApplicationEngineFromPointer(C.QQmlApplicationEngine_NewQQmlApplicationEngine3(filePathC, core.PointerFromQObject(parent)))
@@ -1312,8 +1095,6 @@ func NewQQmlApplicationEngine3(filePath string, parent core.QObject_ITF) *QQmlAp
 }
 
 func NewQQmlApplicationEngine2(url core.QUrl_ITF, parent core.QObject_ITF) *QQmlApplicationEngine {
-	defer qt.Recovering("QQmlApplicationEngine::QQmlApplicationEngine")
-
 	var tmpValue = NewQQmlApplicationEngineFromPointer(C.QQmlApplicationEngine_NewQQmlApplicationEngine2(core.PointerFromQUrl(url), core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
@@ -1323,8 +1104,6 @@ func NewQQmlApplicationEngine2(url core.QUrl_ITF, parent core.QObject_ITF) *QQml
 
 //export callbackQQmlApplicationEngine_Load2
 func callbackQQmlApplicationEngine_Load2(ptr unsafe.Pointer, filePath *C.char) {
-	defer qt.Recovering("callback QQmlApplicationEngine::load")
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QQmlApplicationEngine::load2"); signal != nil {
 		signal.(func(string))(C.GoString(filePath))
 	}
@@ -1332,8 +1111,6 @@ func callbackQQmlApplicationEngine_Load2(ptr unsafe.Pointer, filePath *C.char) {
 }
 
 func (ptr *QQmlApplicationEngine) ConnectLoad2(f func(filePath string)) {
-	defer qt.Recovering("connect QQmlApplicationEngine::load")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QQmlApplicationEngine::load2", f)
@@ -1341,8 +1118,6 @@ func (ptr *QQmlApplicationEngine) ConnectLoad2(f func(filePath string)) {
 }
 
 func (ptr *QQmlApplicationEngine) DisconnectLoad2(filePath string) {
-	defer qt.Recovering("disconnect QQmlApplicationEngine::load")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QQmlApplicationEngine::load2")
@@ -1350,8 +1125,6 @@ func (ptr *QQmlApplicationEngine) DisconnectLoad2(filePath string) {
 }
 
 func (ptr *QQmlApplicationEngine) Load2(filePath string) {
-	defer qt.Recovering("QQmlApplicationEngine::load")
-
 	if ptr.Pointer() != nil {
 		var filePathC = C.CString(filePath)
 		defer C.free(unsafe.Pointer(filePathC))
@@ -1361,8 +1134,6 @@ func (ptr *QQmlApplicationEngine) Load2(filePath string) {
 
 //export callbackQQmlApplicationEngine_Load
 func callbackQQmlApplicationEngine_Load(ptr unsafe.Pointer, url unsafe.Pointer) {
-	defer qt.Recovering("callback QQmlApplicationEngine::load")
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QQmlApplicationEngine::load"); signal != nil {
 		signal.(func(*core.QUrl))(core.NewQUrlFromPointer(url))
 	}
@@ -1370,8 +1141,6 @@ func callbackQQmlApplicationEngine_Load(ptr unsafe.Pointer, url unsafe.Pointer) 
 }
 
 func (ptr *QQmlApplicationEngine) ConnectLoad(f func(url *core.QUrl)) {
-	defer qt.Recovering("connect QQmlApplicationEngine::load")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QQmlApplicationEngine::load", f)
@@ -1379,8 +1148,6 @@ func (ptr *QQmlApplicationEngine) ConnectLoad(f func(url *core.QUrl)) {
 }
 
 func (ptr *QQmlApplicationEngine) DisconnectLoad(url core.QUrl_ITF) {
-	defer qt.Recovering("disconnect QQmlApplicationEngine::load")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QQmlApplicationEngine::load")
@@ -1388,8 +1155,6 @@ func (ptr *QQmlApplicationEngine) DisconnectLoad(url core.QUrl_ITF) {
 }
 
 func (ptr *QQmlApplicationEngine) Load(url core.QUrl_ITF) {
-	defer qt.Recovering("QQmlApplicationEngine::load")
-
 	if ptr.Pointer() != nil {
 		C.QQmlApplicationEngine_Load(ptr.Pointer(), core.PointerFromQUrl(url))
 	}
@@ -1397,8 +1162,6 @@ func (ptr *QQmlApplicationEngine) Load(url core.QUrl_ITF) {
 
 //export callbackQQmlApplicationEngine_LoadData
 func callbackQQmlApplicationEngine_LoadData(ptr unsafe.Pointer, data *C.char, url unsafe.Pointer) {
-	defer qt.Recovering("callback QQmlApplicationEngine::loadData")
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QQmlApplicationEngine::loadData"); signal != nil {
 		signal.(func(string, *core.QUrl))(qt.HexDecodeToString(C.GoString(data)), core.NewQUrlFromPointer(url))
 	}
@@ -1406,8 +1169,6 @@ func callbackQQmlApplicationEngine_LoadData(ptr unsafe.Pointer, data *C.char, ur
 }
 
 func (ptr *QQmlApplicationEngine) ConnectLoadData(f func(data string, url *core.QUrl)) {
-	defer qt.Recovering("connect QQmlApplicationEngine::loadData")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QQmlApplicationEngine::loadData", f)
@@ -1415,8 +1176,6 @@ func (ptr *QQmlApplicationEngine) ConnectLoadData(f func(data string, url *core.
 }
 
 func (ptr *QQmlApplicationEngine) DisconnectLoadData(data string, url core.QUrl_ITF) {
-	defer qt.Recovering("disconnect QQmlApplicationEngine::loadData")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QQmlApplicationEngine::loadData")
@@ -1424,8 +1183,6 @@ func (ptr *QQmlApplicationEngine) DisconnectLoadData(data string, url core.QUrl_
 }
 
 func (ptr *QQmlApplicationEngine) LoadData(data string, url core.QUrl_ITF) {
-	defer qt.Recovering("QQmlApplicationEngine::loadData")
-
 	if ptr.Pointer() != nil {
 		var dataC = C.CString(hex.EncodeToString([]byte(data)))
 		defer C.free(unsafe.Pointer(dataC))
@@ -1435,7 +1192,6 @@ func (ptr *QQmlApplicationEngine) LoadData(data string, url core.QUrl_ITF) {
 
 //export callbackQQmlApplicationEngine_ObjectCreated
 func callbackQQmlApplicationEngine_ObjectCreated(ptr unsafe.Pointer, object unsafe.Pointer, url unsafe.Pointer) {
-	defer qt.Recovering("callback QQmlApplicationEngine::objectCreated")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QQmlApplicationEngine::objectCreated"); signal != nil {
 		signal.(func(*core.QObject, *core.QUrl))(core.NewQObjectFromPointer(object), core.NewQUrlFromPointer(url))
@@ -1444,8 +1200,6 @@ func callbackQQmlApplicationEngine_ObjectCreated(ptr unsafe.Pointer, object unsa
 }
 
 func (ptr *QQmlApplicationEngine) ConnectObjectCreated(f func(object *core.QObject, url *core.QUrl)) {
-	defer qt.Recovering("connect QQmlApplicationEngine::objectCreated")
-
 	if ptr.Pointer() != nil {
 		C.QQmlApplicationEngine_ConnectObjectCreated(ptr.Pointer())
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QQmlApplicationEngine::objectCreated", f)
@@ -1453,8 +1207,6 @@ func (ptr *QQmlApplicationEngine) ConnectObjectCreated(f func(object *core.QObje
 }
 
 func (ptr *QQmlApplicationEngine) DisconnectObjectCreated() {
-	defer qt.Recovering("disconnect QQmlApplicationEngine::objectCreated")
-
 	if ptr.Pointer() != nil {
 		C.QQmlApplicationEngine_DisconnectObjectCreated(ptr.Pointer())
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QQmlApplicationEngine::objectCreated")
@@ -1462,16 +1214,12 @@ func (ptr *QQmlApplicationEngine) DisconnectObjectCreated() {
 }
 
 func (ptr *QQmlApplicationEngine) ObjectCreated(object core.QObject_ITF, url core.QUrl_ITF) {
-	defer qt.Recovering("QQmlApplicationEngine::objectCreated")
-
 	if ptr.Pointer() != nil {
 		C.QQmlApplicationEngine_ObjectCreated(ptr.Pointer(), core.PointerFromQObject(object), core.PointerFromQUrl(url))
 	}
 }
 
 func (ptr *QQmlApplicationEngine) DestroyQQmlApplicationEngine() {
-	defer qt.Recovering("QQmlApplicationEngine::~QQmlApplicationEngine")
-
 	if ptr.Pointer() != nil {
 		C.QQmlApplicationEngine_DestroyQQmlApplicationEngine(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
@@ -1481,7 +1229,6 @@ func (ptr *QQmlApplicationEngine) DestroyQQmlApplicationEngine() {
 
 //export callbackQQmlApplicationEngine_Event
 func callbackQQmlApplicationEngine_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
-	defer qt.Recovering("callback QQmlApplicationEngine::event")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QQmlApplicationEngine::event"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
@@ -1491,8 +1238,6 @@ func callbackQQmlApplicationEngine_Event(ptr unsafe.Pointer, e unsafe.Pointer) C
 }
 
 func (ptr *QQmlApplicationEngine) ConnectEvent(f func(e *core.QEvent) bool) {
-	defer qt.Recovering("connect QQmlApplicationEngine::event")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QQmlApplicationEngine::event", f)
@@ -1500,8 +1245,6 @@ func (ptr *QQmlApplicationEngine) ConnectEvent(f func(e *core.QEvent) bool) {
 }
 
 func (ptr *QQmlApplicationEngine) DisconnectEvent() {
-	defer qt.Recovering("disconnect QQmlApplicationEngine::event")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QQmlApplicationEngine::event")
@@ -1509,8 +1252,6 @@ func (ptr *QQmlApplicationEngine) DisconnectEvent() {
 }
 
 func (ptr *QQmlApplicationEngine) Event(e core.QEvent_ITF) bool {
-	defer qt.Recovering("QQmlApplicationEngine::event")
-
 	if ptr.Pointer() != nil {
 		return C.QQmlApplicationEngine_Event(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
 	}
@@ -1518,8 +1259,6 @@ func (ptr *QQmlApplicationEngine) Event(e core.QEvent_ITF) bool {
 }
 
 func (ptr *QQmlApplicationEngine) EventDefault(e core.QEvent_ITF) bool {
-	defer qt.Recovering("QQmlApplicationEngine::event")
-
 	if ptr.Pointer() != nil {
 		return C.QQmlApplicationEngine_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
 	}
@@ -1528,7 +1267,6 @@ func (ptr *QQmlApplicationEngine) EventDefault(e core.QEvent_ITF) bool {
 
 //export callbackQQmlApplicationEngine_TimerEvent
 func callbackQQmlApplicationEngine_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	defer qt.Recovering("callback QQmlApplicationEngine::timerEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QQmlApplicationEngine::timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
@@ -1538,8 +1276,6 @@ func callbackQQmlApplicationEngine_TimerEvent(ptr unsafe.Pointer, event unsafe.P
 }
 
 func (ptr *QQmlApplicationEngine) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
-	defer qt.Recovering("connect QQmlApplicationEngine::timerEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QQmlApplicationEngine::timerEvent", f)
@@ -1547,8 +1283,6 @@ func (ptr *QQmlApplicationEngine) ConnectTimerEvent(f func(event *core.QTimerEve
 }
 
 func (ptr *QQmlApplicationEngine) DisconnectTimerEvent() {
-	defer qt.Recovering("disconnect QQmlApplicationEngine::timerEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QQmlApplicationEngine::timerEvent")
@@ -1556,16 +1290,12 @@ func (ptr *QQmlApplicationEngine) DisconnectTimerEvent() {
 }
 
 func (ptr *QQmlApplicationEngine) TimerEvent(event core.QTimerEvent_ITF) {
-	defer qt.Recovering("QQmlApplicationEngine::timerEvent")
-
 	if ptr.Pointer() != nil {
 		C.QQmlApplicationEngine_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
 	}
 }
 
 func (ptr *QQmlApplicationEngine) TimerEventDefault(event core.QTimerEvent_ITF) {
-	defer qt.Recovering("QQmlApplicationEngine::timerEvent")
-
 	if ptr.Pointer() != nil {
 		C.QQmlApplicationEngine_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
 	}
@@ -1573,7 +1303,6 @@ func (ptr *QQmlApplicationEngine) TimerEventDefault(event core.QTimerEvent_ITF) 
 
 //export callbackQQmlApplicationEngine_ChildEvent
 func callbackQQmlApplicationEngine_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	defer qt.Recovering("callback QQmlApplicationEngine::childEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QQmlApplicationEngine::childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
@@ -1583,8 +1312,6 @@ func callbackQQmlApplicationEngine_ChildEvent(ptr unsafe.Pointer, event unsafe.P
 }
 
 func (ptr *QQmlApplicationEngine) ConnectChildEvent(f func(event *core.QChildEvent)) {
-	defer qt.Recovering("connect QQmlApplicationEngine::childEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QQmlApplicationEngine::childEvent", f)
@@ -1592,8 +1319,6 @@ func (ptr *QQmlApplicationEngine) ConnectChildEvent(f func(event *core.QChildEve
 }
 
 func (ptr *QQmlApplicationEngine) DisconnectChildEvent() {
-	defer qt.Recovering("disconnect QQmlApplicationEngine::childEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QQmlApplicationEngine::childEvent")
@@ -1601,16 +1326,12 @@ func (ptr *QQmlApplicationEngine) DisconnectChildEvent() {
 }
 
 func (ptr *QQmlApplicationEngine) ChildEvent(event core.QChildEvent_ITF) {
-	defer qt.Recovering("QQmlApplicationEngine::childEvent")
-
 	if ptr.Pointer() != nil {
 		C.QQmlApplicationEngine_ChildEvent(ptr.Pointer(), core.PointerFromQChildEvent(event))
 	}
 }
 
 func (ptr *QQmlApplicationEngine) ChildEventDefault(event core.QChildEvent_ITF) {
-	defer qt.Recovering("QQmlApplicationEngine::childEvent")
-
 	if ptr.Pointer() != nil {
 		C.QQmlApplicationEngine_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
 	}
@@ -1618,7 +1339,6 @@ func (ptr *QQmlApplicationEngine) ChildEventDefault(event core.QChildEvent_ITF) 
 
 //export callbackQQmlApplicationEngine_ConnectNotify
 func callbackQQmlApplicationEngine_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-	defer qt.Recovering("callback QQmlApplicationEngine::connectNotify")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QQmlApplicationEngine::connectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
@@ -1628,8 +1348,6 @@ func callbackQQmlApplicationEngine_ConnectNotify(ptr unsafe.Pointer, sign unsafe
 }
 
 func (ptr *QQmlApplicationEngine) ConnectConnectNotify(f func(sign *core.QMetaMethod)) {
-	defer qt.Recovering("connect QQmlApplicationEngine::connectNotify")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QQmlApplicationEngine::connectNotify", f)
@@ -1637,8 +1355,6 @@ func (ptr *QQmlApplicationEngine) ConnectConnectNotify(f func(sign *core.QMetaMe
 }
 
 func (ptr *QQmlApplicationEngine) DisconnectConnectNotify() {
-	defer qt.Recovering("disconnect QQmlApplicationEngine::connectNotify")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QQmlApplicationEngine::connectNotify")
@@ -1646,16 +1362,12 @@ func (ptr *QQmlApplicationEngine) DisconnectConnectNotify() {
 }
 
 func (ptr *QQmlApplicationEngine) ConnectNotify(sign core.QMetaMethod_ITF) {
-	defer qt.Recovering("QQmlApplicationEngine::connectNotify")
-
 	if ptr.Pointer() != nil {
 		C.QQmlApplicationEngine_ConnectNotify(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
 	}
 }
 
 func (ptr *QQmlApplicationEngine) ConnectNotifyDefault(sign core.QMetaMethod_ITF) {
-	defer qt.Recovering("QQmlApplicationEngine::connectNotify")
-
 	if ptr.Pointer() != nil {
 		C.QQmlApplicationEngine_ConnectNotifyDefault(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
 	}
@@ -1663,7 +1375,6 @@ func (ptr *QQmlApplicationEngine) ConnectNotifyDefault(sign core.QMetaMethod_ITF
 
 //export callbackQQmlApplicationEngine_CustomEvent
 func callbackQQmlApplicationEngine_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	defer qt.Recovering("callback QQmlApplicationEngine::customEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QQmlApplicationEngine::customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
@@ -1673,8 +1384,6 @@ func callbackQQmlApplicationEngine_CustomEvent(ptr unsafe.Pointer, event unsafe.
 }
 
 func (ptr *QQmlApplicationEngine) ConnectCustomEvent(f func(event *core.QEvent)) {
-	defer qt.Recovering("connect QQmlApplicationEngine::customEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QQmlApplicationEngine::customEvent", f)
@@ -1682,8 +1391,6 @@ func (ptr *QQmlApplicationEngine) ConnectCustomEvent(f func(event *core.QEvent))
 }
 
 func (ptr *QQmlApplicationEngine) DisconnectCustomEvent() {
-	defer qt.Recovering("disconnect QQmlApplicationEngine::customEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QQmlApplicationEngine::customEvent")
@@ -1691,16 +1398,12 @@ func (ptr *QQmlApplicationEngine) DisconnectCustomEvent() {
 }
 
 func (ptr *QQmlApplicationEngine) CustomEvent(event core.QEvent_ITF) {
-	defer qt.Recovering("QQmlApplicationEngine::customEvent")
-
 	if ptr.Pointer() != nil {
 		C.QQmlApplicationEngine_CustomEvent(ptr.Pointer(), core.PointerFromQEvent(event))
 	}
 }
 
 func (ptr *QQmlApplicationEngine) CustomEventDefault(event core.QEvent_ITF) {
-	defer qt.Recovering("QQmlApplicationEngine::customEvent")
-
 	if ptr.Pointer() != nil {
 		C.QQmlApplicationEngine_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
 	}
@@ -1708,8 +1411,6 @@ func (ptr *QQmlApplicationEngine) CustomEventDefault(event core.QEvent_ITF) {
 
 //export callbackQQmlApplicationEngine_DeleteLater
 func callbackQQmlApplicationEngine_DeleteLater(ptr unsafe.Pointer) {
-	defer qt.Recovering("callback QQmlApplicationEngine::deleteLater")
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QQmlApplicationEngine::deleteLater"); signal != nil {
 		signal.(func())()
 	} else {
@@ -1718,8 +1419,6 @@ func callbackQQmlApplicationEngine_DeleteLater(ptr unsafe.Pointer) {
 }
 
 func (ptr *QQmlApplicationEngine) ConnectDeleteLater(f func()) {
-	defer qt.Recovering("connect QQmlApplicationEngine::deleteLater")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QQmlApplicationEngine::deleteLater", f)
@@ -1727,8 +1426,6 @@ func (ptr *QQmlApplicationEngine) ConnectDeleteLater(f func()) {
 }
 
 func (ptr *QQmlApplicationEngine) DisconnectDeleteLater() {
-	defer qt.Recovering("disconnect QQmlApplicationEngine::deleteLater")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QQmlApplicationEngine::deleteLater")
@@ -1736,8 +1433,6 @@ func (ptr *QQmlApplicationEngine) DisconnectDeleteLater() {
 }
 
 func (ptr *QQmlApplicationEngine) DeleteLater() {
-	defer qt.Recovering("QQmlApplicationEngine::deleteLater")
-
 	if ptr.Pointer() != nil {
 		C.QQmlApplicationEngine_DeleteLater(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
@@ -1746,8 +1441,6 @@ func (ptr *QQmlApplicationEngine) DeleteLater() {
 }
 
 func (ptr *QQmlApplicationEngine) DeleteLaterDefault() {
-	defer qt.Recovering("QQmlApplicationEngine::deleteLater")
-
 	if ptr.Pointer() != nil {
 		C.QQmlApplicationEngine_DeleteLaterDefault(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
@@ -1757,7 +1450,6 @@ func (ptr *QQmlApplicationEngine) DeleteLaterDefault() {
 
 //export callbackQQmlApplicationEngine_DisconnectNotify
 func callbackQQmlApplicationEngine_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-	defer qt.Recovering("callback QQmlApplicationEngine::disconnectNotify")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QQmlApplicationEngine::disconnectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
@@ -1767,8 +1459,6 @@ func callbackQQmlApplicationEngine_DisconnectNotify(ptr unsafe.Pointer, sign uns
 }
 
 func (ptr *QQmlApplicationEngine) ConnectDisconnectNotify(f func(sign *core.QMetaMethod)) {
-	defer qt.Recovering("connect QQmlApplicationEngine::disconnectNotify")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QQmlApplicationEngine::disconnectNotify", f)
@@ -1776,8 +1466,6 @@ func (ptr *QQmlApplicationEngine) ConnectDisconnectNotify(f func(sign *core.QMet
 }
 
 func (ptr *QQmlApplicationEngine) DisconnectDisconnectNotify() {
-	defer qt.Recovering("disconnect QQmlApplicationEngine::disconnectNotify")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QQmlApplicationEngine::disconnectNotify")
@@ -1785,16 +1473,12 @@ func (ptr *QQmlApplicationEngine) DisconnectDisconnectNotify() {
 }
 
 func (ptr *QQmlApplicationEngine) DisconnectNotify(sign core.QMetaMethod_ITF) {
-	defer qt.Recovering("QQmlApplicationEngine::disconnectNotify")
-
 	if ptr.Pointer() != nil {
 		C.QQmlApplicationEngine_DisconnectNotify(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
 	}
 }
 
 func (ptr *QQmlApplicationEngine) DisconnectNotifyDefault(sign core.QMetaMethod_ITF) {
-	defer qt.Recovering("QQmlApplicationEngine::disconnectNotify")
-
 	if ptr.Pointer() != nil {
 		C.QQmlApplicationEngine_DisconnectNotifyDefault(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
 	}
@@ -1802,7 +1486,6 @@ func (ptr *QQmlApplicationEngine) DisconnectNotifyDefault(sign core.QMetaMethod_
 
 //export callbackQQmlApplicationEngine_EventFilter
 func callbackQQmlApplicationEngine_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-	defer qt.Recovering("callback QQmlApplicationEngine::eventFilter")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QQmlApplicationEngine::eventFilter"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
@@ -1812,8 +1495,6 @@ func callbackQQmlApplicationEngine_EventFilter(ptr unsafe.Pointer, watched unsaf
 }
 
 func (ptr *QQmlApplicationEngine) ConnectEventFilter(f func(watched *core.QObject, event *core.QEvent) bool) {
-	defer qt.Recovering("connect QQmlApplicationEngine::eventFilter")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QQmlApplicationEngine::eventFilter", f)
@@ -1821,8 +1502,6 @@ func (ptr *QQmlApplicationEngine) ConnectEventFilter(f func(watched *core.QObjec
 }
 
 func (ptr *QQmlApplicationEngine) DisconnectEventFilter() {
-	defer qt.Recovering("disconnect QQmlApplicationEngine::eventFilter")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QQmlApplicationEngine::eventFilter")
@@ -1830,8 +1509,6 @@ func (ptr *QQmlApplicationEngine) DisconnectEventFilter() {
 }
 
 func (ptr *QQmlApplicationEngine) EventFilter(watched core.QObject_ITF, event core.QEvent_ITF) bool {
-	defer qt.Recovering("QQmlApplicationEngine::eventFilter")
-
 	if ptr.Pointer() != nil {
 		return C.QQmlApplicationEngine_EventFilter(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
 	}
@@ -1839,8 +1516,6 @@ func (ptr *QQmlApplicationEngine) EventFilter(watched core.QObject_ITF, event co
 }
 
 func (ptr *QQmlApplicationEngine) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
-	defer qt.Recovering("QQmlApplicationEngine::eventFilter")
-
 	if ptr.Pointer() != nil {
 		return C.QQmlApplicationEngine_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
 	}
@@ -1849,7 +1524,6 @@ func (ptr *QQmlApplicationEngine) EventFilterDefault(watched core.QObject_ITF, e
 
 //export callbackQQmlApplicationEngine_MetaObject
 func callbackQQmlApplicationEngine_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-	defer qt.Recovering("callback QQmlApplicationEngine::metaObject")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QQmlApplicationEngine::metaObject"); signal != nil {
 		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
@@ -1859,8 +1533,6 @@ func callbackQQmlApplicationEngine_MetaObject(ptr unsafe.Pointer) unsafe.Pointer
 }
 
 func (ptr *QQmlApplicationEngine) ConnectMetaObject(f func() *core.QMetaObject) {
-	defer qt.Recovering("connect QQmlApplicationEngine::metaObject")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QQmlApplicationEngine::metaObject", f)
@@ -1868,8 +1540,6 @@ func (ptr *QQmlApplicationEngine) ConnectMetaObject(f func() *core.QMetaObject) 
 }
 
 func (ptr *QQmlApplicationEngine) DisconnectMetaObject() {
-	defer qt.Recovering("disconnect QQmlApplicationEngine::metaObject")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QQmlApplicationEngine::metaObject")
@@ -1877,8 +1547,6 @@ func (ptr *QQmlApplicationEngine) DisconnectMetaObject() {
 }
 
 func (ptr *QQmlApplicationEngine) MetaObject() *core.QMetaObject {
-	defer qt.Recovering("QQmlApplicationEngine::metaObject")
-
 	if ptr.Pointer() != nil {
 		return core.NewQMetaObjectFromPointer(C.QQmlApplicationEngine_MetaObject(ptr.Pointer()))
 	}
@@ -1886,8 +1554,6 @@ func (ptr *QQmlApplicationEngine) MetaObject() *core.QMetaObject {
 }
 
 func (ptr *QQmlApplicationEngine) MetaObjectDefault() *core.QMetaObject {
-	defer qt.Recovering("QQmlApplicationEngine::metaObject")
-
 	if ptr.Pointer() != nil {
 		return core.NewQMetaObjectFromPointer(C.QQmlApplicationEngine_MetaObjectDefault(ptr.Pointer()))
 	}
@@ -1951,8 +1617,6 @@ func NewQQmlComponentFromPointer(ptr unsafe.Pointer) *QQmlComponent {
 	return n
 }
 func (ptr *QQmlComponent) Progress() float64 {
-	defer qt.Recovering("QQmlComponent::progress")
-
 	if ptr.Pointer() != nil {
 		return float64(C.QQmlComponent_Progress(ptr.Pointer()))
 	}
@@ -1960,8 +1624,6 @@ func (ptr *QQmlComponent) Progress() float64 {
 }
 
 func (ptr *QQmlComponent) Status() QQmlComponent__Status {
-	defer qt.Recovering("QQmlComponent::status")
-
 	if ptr.Pointer() != nil {
 		return QQmlComponent__Status(C.QQmlComponent_Status(ptr.Pointer()))
 	}
@@ -1969,8 +1631,6 @@ func (ptr *QQmlComponent) Status() QQmlComponent__Status {
 }
 
 func (ptr *QQmlComponent) Url() *core.QUrl {
-	defer qt.Recovering("QQmlComponent::url")
-
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQUrlFromPointer(C.QQmlComponent_Url(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*core.QUrl).DestroyQUrl)
@@ -1980,8 +1640,6 @@ func (ptr *QQmlComponent) Url() *core.QUrl {
 }
 
 func NewQQmlComponent(engine QQmlEngine_ITF, parent core.QObject_ITF) *QQmlComponent {
-	defer qt.Recovering("QQmlComponent::QQmlComponent")
-
 	var tmpValue = NewQQmlComponentFromPointer(C.QQmlComponent_NewQQmlComponent(PointerFromQQmlEngine(engine), core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
@@ -1990,8 +1648,6 @@ func NewQQmlComponent(engine QQmlEngine_ITF, parent core.QObject_ITF) *QQmlCompo
 }
 
 func NewQQmlComponent4(engine QQmlEngine_ITF, fileName string, mode QQmlComponent__CompilationMode, parent core.QObject_ITF) *QQmlComponent {
-	defer qt.Recovering("QQmlComponent::QQmlComponent")
-
 	var fileNameC = C.CString(fileName)
 	defer C.free(unsafe.Pointer(fileNameC))
 	var tmpValue = NewQQmlComponentFromPointer(C.QQmlComponent_NewQQmlComponent4(PointerFromQQmlEngine(engine), fileNameC, C.longlong(mode), core.PointerFromQObject(parent)))
@@ -2002,8 +1658,6 @@ func NewQQmlComponent4(engine QQmlEngine_ITF, fileName string, mode QQmlComponen
 }
 
 func NewQQmlComponent3(engine QQmlEngine_ITF, fileName string, parent core.QObject_ITF) *QQmlComponent {
-	defer qt.Recovering("QQmlComponent::QQmlComponent")
-
 	var fileNameC = C.CString(fileName)
 	defer C.free(unsafe.Pointer(fileNameC))
 	var tmpValue = NewQQmlComponentFromPointer(C.QQmlComponent_NewQQmlComponent3(PointerFromQQmlEngine(engine), fileNameC, core.PointerFromQObject(parent)))
@@ -2014,8 +1668,6 @@ func NewQQmlComponent3(engine QQmlEngine_ITF, fileName string, parent core.QObje
 }
 
 func NewQQmlComponent6(engine QQmlEngine_ITF, url core.QUrl_ITF, mode QQmlComponent__CompilationMode, parent core.QObject_ITF) *QQmlComponent {
-	defer qt.Recovering("QQmlComponent::QQmlComponent")
-
 	var tmpValue = NewQQmlComponentFromPointer(C.QQmlComponent_NewQQmlComponent6(PointerFromQQmlEngine(engine), core.PointerFromQUrl(url), C.longlong(mode), core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
@@ -2024,8 +1676,6 @@ func NewQQmlComponent6(engine QQmlEngine_ITF, url core.QUrl_ITF, mode QQmlCompon
 }
 
 func NewQQmlComponent5(engine QQmlEngine_ITF, url core.QUrl_ITF, parent core.QObject_ITF) *QQmlComponent {
-	defer qt.Recovering("QQmlComponent::QQmlComponent")
-
 	var tmpValue = NewQQmlComponentFromPointer(C.QQmlComponent_NewQQmlComponent5(PointerFromQQmlEngine(engine), core.PointerFromQUrl(url), core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
@@ -2035,7 +1685,6 @@ func NewQQmlComponent5(engine QQmlEngine_ITF, url core.QUrl_ITF, parent core.QOb
 
 //export callbackQQmlComponent_BeginCreate
 func callbackQQmlComponent_BeginCreate(ptr unsafe.Pointer, publicContext unsafe.Pointer) unsafe.Pointer {
-	defer qt.Recovering("callback QQmlComponent::beginCreate")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QQmlComponent::beginCreate"); signal != nil {
 		return core.PointerFromQObject(signal.(func(*QQmlContext) *core.QObject)(NewQQmlContextFromPointer(publicContext)))
@@ -2045,8 +1694,6 @@ func callbackQQmlComponent_BeginCreate(ptr unsafe.Pointer, publicContext unsafe.
 }
 
 func (ptr *QQmlComponent) ConnectBeginCreate(f func(publicContext *QQmlContext) *core.QObject) {
-	defer qt.Recovering("connect QQmlComponent::beginCreate")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QQmlComponent::beginCreate", f)
@@ -2054,8 +1701,6 @@ func (ptr *QQmlComponent) ConnectBeginCreate(f func(publicContext *QQmlContext) 
 }
 
 func (ptr *QQmlComponent) DisconnectBeginCreate() {
-	defer qt.Recovering("disconnect QQmlComponent::beginCreate")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QQmlComponent::beginCreate")
@@ -2063,8 +1708,6 @@ func (ptr *QQmlComponent) DisconnectBeginCreate() {
 }
 
 func (ptr *QQmlComponent) BeginCreate(publicContext QQmlContext_ITF) *core.QObject {
-	defer qt.Recovering("QQmlComponent::beginCreate")
-
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQObjectFromPointer(C.QQmlComponent_BeginCreate(ptr.Pointer(), PointerFromQQmlContext(publicContext)))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
@@ -2076,8 +1719,6 @@ func (ptr *QQmlComponent) BeginCreate(publicContext QQmlContext_ITF) *core.QObje
 }
 
 func (ptr *QQmlComponent) BeginCreateDefault(publicContext QQmlContext_ITF) *core.QObject {
-	defer qt.Recovering("QQmlComponent::beginCreate")
-
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQObjectFromPointer(C.QQmlComponent_BeginCreateDefault(ptr.Pointer(), PointerFromQQmlContext(publicContext)))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
@@ -2090,7 +1731,6 @@ func (ptr *QQmlComponent) BeginCreateDefault(publicContext QQmlContext_ITF) *cor
 
 //export callbackQQmlComponent_CompleteCreate
 func callbackQQmlComponent_CompleteCreate(ptr unsafe.Pointer) {
-	defer qt.Recovering("callback QQmlComponent::completeCreate")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QQmlComponent::completeCreate"); signal != nil {
 		signal.(func())()
@@ -2100,8 +1740,6 @@ func callbackQQmlComponent_CompleteCreate(ptr unsafe.Pointer) {
 }
 
 func (ptr *QQmlComponent) ConnectCompleteCreate(f func()) {
-	defer qt.Recovering("connect QQmlComponent::completeCreate")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QQmlComponent::completeCreate", f)
@@ -2109,8 +1747,6 @@ func (ptr *QQmlComponent) ConnectCompleteCreate(f func()) {
 }
 
 func (ptr *QQmlComponent) DisconnectCompleteCreate() {
-	defer qt.Recovering("disconnect QQmlComponent::completeCreate")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QQmlComponent::completeCreate")
@@ -2118,16 +1754,12 @@ func (ptr *QQmlComponent) DisconnectCompleteCreate() {
 }
 
 func (ptr *QQmlComponent) CompleteCreate() {
-	defer qt.Recovering("QQmlComponent::completeCreate")
-
 	if ptr.Pointer() != nil {
 		C.QQmlComponent_CompleteCreate(ptr.Pointer())
 	}
 }
 
 func (ptr *QQmlComponent) CompleteCreateDefault() {
-	defer qt.Recovering("QQmlComponent::completeCreate")
-
 	if ptr.Pointer() != nil {
 		C.QQmlComponent_CompleteCreateDefault(ptr.Pointer())
 	}
@@ -2135,7 +1767,6 @@ func (ptr *QQmlComponent) CompleteCreateDefault() {
 
 //export callbackQQmlComponent_Create
 func callbackQQmlComponent_Create(ptr unsafe.Pointer, context unsafe.Pointer) unsafe.Pointer {
-	defer qt.Recovering("callback QQmlComponent::create")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QQmlComponent::create"); signal != nil {
 		return core.PointerFromQObject(signal.(func(*QQmlContext) *core.QObject)(NewQQmlContextFromPointer(context)))
@@ -2145,8 +1776,6 @@ func callbackQQmlComponent_Create(ptr unsafe.Pointer, context unsafe.Pointer) un
 }
 
 func (ptr *QQmlComponent) ConnectCreate(f func(context *QQmlContext) *core.QObject) {
-	defer qt.Recovering("connect QQmlComponent::create")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QQmlComponent::create", f)
@@ -2154,8 +1783,6 @@ func (ptr *QQmlComponent) ConnectCreate(f func(context *QQmlContext) *core.QObje
 }
 
 func (ptr *QQmlComponent) DisconnectCreate() {
-	defer qt.Recovering("disconnect QQmlComponent::create")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QQmlComponent::create")
@@ -2163,8 +1790,6 @@ func (ptr *QQmlComponent) DisconnectCreate() {
 }
 
 func (ptr *QQmlComponent) Create(context QQmlContext_ITF) *core.QObject {
-	defer qt.Recovering("QQmlComponent::create")
-
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQObjectFromPointer(C.QQmlComponent_Create(ptr.Pointer(), PointerFromQQmlContext(context)))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
@@ -2176,8 +1801,6 @@ func (ptr *QQmlComponent) Create(context QQmlContext_ITF) *core.QObject {
 }
 
 func (ptr *QQmlComponent) CreateDefault(context QQmlContext_ITF) *core.QObject {
-	defer qt.Recovering("QQmlComponent::create")
-
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQObjectFromPointer(C.QQmlComponent_CreateDefault(ptr.Pointer(), PointerFromQQmlContext(context)))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
@@ -2189,16 +1812,12 @@ func (ptr *QQmlComponent) CreateDefault(context QQmlContext_ITF) *core.QObject {
 }
 
 func (ptr *QQmlComponent) Create2(incubator QQmlIncubator_ITF, context QQmlContext_ITF, forContext QQmlContext_ITF) {
-	defer qt.Recovering("QQmlComponent::create")
-
 	if ptr.Pointer() != nil {
 		C.QQmlComponent_Create2(ptr.Pointer(), PointerFromQQmlIncubator(incubator), PointerFromQQmlContext(context), PointerFromQQmlContext(forContext))
 	}
 }
 
 func (ptr *QQmlComponent) CreationContext() *QQmlContext {
-	defer qt.Recovering("QQmlComponent::creationContext")
-
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQQmlContextFromPointer(C.QQmlComponent_CreationContext(ptr.Pointer()))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
@@ -2210,8 +1829,6 @@ func (ptr *QQmlComponent) CreationContext() *QQmlContext {
 }
 
 func (ptr *QQmlComponent) IsError() bool {
-	defer qt.Recovering("QQmlComponent::isError")
-
 	if ptr.Pointer() != nil {
 		return C.QQmlComponent_IsError(ptr.Pointer()) != 0
 	}
@@ -2219,8 +1836,6 @@ func (ptr *QQmlComponent) IsError() bool {
 }
 
 func (ptr *QQmlComponent) IsLoading() bool {
-	defer qt.Recovering("QQmlComponent::isLoading")
-
 	if ptr.Pointer() != nil {
 		return C.QQmlComponent_IsLoading(ptr.Pointer()) != 0
 	}
@@ -2228,8 +1843,6 @@ func (ptr *QQmlComponent) IsLoading() bool {
 }
 
 func (ptr *QQmlComponent) IsNull() bool {
-	defer qt.Recovering("QQmlComponent::isNull")
-
 	if ptr.Pointer() != nil {
 		return C.QQmlComponent_IsNull(ptr.Pointer()) != 0
 	}
@@ -2237,8 +1850,6 @@ func (ptr *QQmlComponent) IsNull() bool {
 }
 
 func (ptr *QQmlComponent) IsReady() bool {
-	defer qt.Recovering("QQmlComponent::isReady")
-
 	if ptr.Pointer() != nil {
 		return C.QQmlComponent_IsReady(ptr.Pointer()) != 0
 	}
@@ -2247,8 +1858,6 @@ func (ptr *QQmlComponent) IsReady() bool {
 
 //export callbackQQmlComponent_LoadUrl
 func callbackQQmlComponent_LoadUrl(ptr unsafe.Pointer, url unsafe.Pointer) {
-	defer qt.Recovering("callback QQmlComponent::loadUrl")
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QQmlComponent::loadUrl"); signal != nil {
 		signal.(func(*core.QUrl))(core.NewQUrlFromPointer(url))
 	}
@@ -2256,8 +1865,6 @@ func callbackQQmlComponent_LoadUrl(ptr unsafe.Pointer, url unsafe.Pointer) {
 }
 
 func (ptr *QQmlComponent) ConnectLoadUrl(f func(url *core.QUrl)) {
-	defer qt.Recovering("connect QQmlComponent::loadUrl")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QQmlComponent::loadUrl", f)
@@ -2265,8 +1872,6 @@ func (ptr *QQmlComponent) ConnectLoadUrl(f func(url *core.QUrl)) {
 }
 
 func (ptr *QQmlComponent) DisconnectLoadUrl(url core.QUrl_ITF) {
-	defer qt.Recovering("disconnect QQmlComponent::loadUrl")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QQmlComponent::loadUrl")
@@ -2274,8 +1879,6 @@ func (ptr *QQmlComponent) DisconnectLoadUrl(url core.QUrl_ITF) {
 }
 
 func (ptr *QQmlComponent) LoadUrl(url core.QUrl_ITF) {
-	defer qt.Recovering("QQmlComponent::loadUrl")
-
 	if ptr.Pointer() != nil {
 		C.QQmlComponent_LoadUrl(ptr.Pointer(), core.PointerFromQUrl(url))
 	}
@@ -2283,8 +1886,6 @@ func (ptr *QQmlComponent) LoadUrl(url core.QUrl_ITF) {
 
 //export callbackQQmlComponent_LoadUrl2
 func callbackQQmlComponent_LoadUrl2(ptr unsafe.Pointer, url unsafe.Pointer, mode C.longlong) {
-	defer qt.Recovering("callback QQmlComponent::loadUrl")
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QQmlComponent::loadUrl2"); signal != nil {
 		signal.(func(*core.QUrl, QQmlComponent__CompilationMode))(core.NewQUrlFromPointer(url), QQmlComponent__CompilationMode(mode))
 	}
@@ -2292,8 +1893,6 @@ func callbackQQmlComponent_LoadUrl2(ptr unsafe.Pointer, url unsafe.Pointer, mode
 }
 
 func (ptr *QQmlComponent) ConnectLoadUrl2(f func(url *core.QUrl, mode QQmlComponent__CompilationMode)) {
-	defer qt.Recovering("connect QQmlComponent::loadUrl")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QQmlComponent::loadUrl2", f)
@@ -2301,8 +1900,6 @@ func (ptr *QQmlComponent) ConnectLoadUrl2(f func(url *core.QUrl, mode QQmlCompon
 }
 
 func (ptr *QQmlComponent) DisconnectLoadUrl2(url core.QUrl_ITF, mode QQmlComponent__CompilationMode) {
-	defer qt.Recovering("disconnect QQmlComponent::loadUrl")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QQmlComponent::loadUrl2")
@@ -2310,8 +1907,6 @@ func (ptr *QQmlComponent) DisconnectLoadUrl2(url core.QUrl_ITF, mode QQmlCompone
 }
 
 func (ptr *QQmlComponent) LoadUrl2(url core.QUrl_ITF, mode QQmlComponent__CompilationMode) {
-	defer qt.Recovering("QQmlComponent::loadUrl")
-
 	if ptr.Pointer() != nil {
 		C.QQmlComponent_LoadUrl2(ptr.Pointer(), core.PointerFromQUrl(url), C.longlong(mode))
 	}
@@ -2319,7 +1914,6 @@ func (ptr *QQmlComponent) LoadUrl2(url core.QUrl_ITF, mode QQmlComponent__Compil
 
 //export callbackQQmlComponent_ProgressChanged
 func callbackQQmlComponent_ProgressChanged(ptr unsafe.Pointer, progress C.double) {
-	defer qt.Recovering("callback QQmlComponent::progressChanged")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QQmlComponent::progressChanged"); signal != nil {
 		signal.(func(float64))(float64(progress))
@@ -2328,8 +1922,6 @@ func callbackQQmlComponent_ProgressChanged(ptr unsafe.Pointer, progress C.double
 }
 
 func (ptr *QQmlComponent) ConnectProgressChanged(f func(progress float64)) {
-	defer qt.Recovering("connect QQmlComponent::progressChanged")
-
 	if ptr.Pointer() != nil {
 		C.QQmlComponent_ConnectProgressChanged(ptr.Pointer())
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QQmlComponent::progressChanged", f)
@@ -2337,8 +1929,6 @@ func (ptr *QQmlComponent) ConnectProgressChanged(f func(progress float64)) {
 }
 
 func (ptr *QQmlComponent) DisconnectProgressChanged() {
-	defer qt.Recovering("disconnect QQmlComponent::progressChanged")
-
 	if ptr.Pointer() != nil {
 		C.QQmlComponent_DisconnectProgressChanged(ptr.Pointer())
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QQmlComponent::progressChanged")
@@ -2346,8 +1936,6 @@ func (ptr *QQmlComponent) DisconnectProgressChanged() {
 }
 
 func (ptr *QQmlComponent) ProgressChanged(progress float64) {
-	defer qt.Recovering("QQmlComponent::progressChanged")
-
 	if ptr.Pointer() != nil {
 		C.QQmlComponent_ProgressChanged(ptr.Pointer(), C.double(progress))
 	}
@@ -2355,8 +1943,6 @@ func (ptr *QQmlComponent) ProgressChanged(progress float64) {
 
 //export callbackQQmlComponent_SetData
 func callbackQQmlComponent_SetData(ptr unsafe.Pointer, data *C.char, url unsafe.Pointer) {
-	defer qt.Recovering("callback QQmlComponent::setData")
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QQmlComponent::setData"); signal != nil {
 		signal.(func(string, *core.QUrl))(qt.HexDecodeToString(C.GoString(data)), core.NewQUrlFromPointer(url))
 	}
@@ -2364,8 +1950,6 @@ func callbackQQmlComponent_SetData(ptr unsafe.Pointer, data *C.char, url unsafe.
 }
 
 func (ptr *QQmlComponent) ConnectSetData(f func(data string, url *core.QUrl)) {
-	defer qt.Recovering("connect QQmlComponent::setData")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QQmlComponent::setData", f)
@@ -2373,8 +1957,6 @@ func (ptr *QQmlComponent) ConnectSetData(f func(data string, url *core.QUrl)) {
 }
 
 func (ptr *QQmlComponent) DisconnectSetData(data string, url core.QUrl_ITF) {
-	defer qt.Recovering("disconnect QQmlComponent::setData")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QQmlComponent::setData")
@@ -2382,8 +1964,6 @@ func (ptr *QQmlComponent) DisconnectSetData(data string, url core.QUrl_ITF) {
 }
 
 func (ptr *QQmlComponent) SetData(data string, url core.QUrl_ITF) {
-	defer qt.Recovering("QQmlComponent::setData")
-
 	if ptr.Pointer() != nil {
 		var dataC = C.CString(hex.EncodeToString([]byte(data)))
 		defer C.free(unsafe.Pointer(dataC))
@@ -2393,7 +1973,6 @@ func (ptr *QQmlComponent) SetData(data string, url core.QUrl_ITF) {
 
 //export callbackQQmlComponent_StatusChanged
 func callbackQQmlComponent_StatusChanged(ptr unsafe.Pointer, status C.longlong) {
-	defer qt.Recovering("callback QQmlComponent::statusChanged")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QQmlComponent::statusChanged"); signal != nil {
 		signal.(func(QQmlComponent__Status))(QQmlComponent__Status(status))
@@ -2402,8 +1981,6 @@ func callbackQQmlComponent_StatusChanged(ptr unsafe.Pointer, status C.longlong) 
 }
 
 func (ptr *QQmlComponent) ConnectStatusChanged(f func(status QQmlComponent__Status)) {
-	defer qt.Recovering("connect QQmlComponent::statusChanged")
-
 	if ptr.Pointer() != nil {
 		C.QQmlComponent_ConnectStatusChanged(ptr.Pointer())
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QQmlComponent::statusChanged", f)
@@ -2411,8 +1988,6 @@ func (ptr *QQmlComponent) ConnectStatusChanged(f func(status QQmlComponent__Stat
 }
 
 func (ptr *QQmlComponent) DisconnectStatusChanged() {
-	defer qt.Recovering("disconnect QQmlComponent::statusChanged")
-
 	if ptr.Pointer() != nil {
 		C.QQmlComponent_DisconnectStatusChanged(ptr.Pointer())
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QQmlComponent::statusChanged")
@@ -2420,8 +1995,6 @@ func (ptr *QQmlComponent) DisconnectStatusChanged() {
 }
 
 func (ptr *QQmlComponent) StatusChanged(status QQmlComponent__Status) {
-	defer qt.Recovering("QQmlComponent::statusChanged")
-
 	if ptr.Pointer() != nil {
 		C.QQmlComponent_StatusChanged(ptr.Pointer(), C.longlong(status))
 	}
@@ -2429,7 +2002,6 @@ func (ptr *QQmlComponent) StatusChanged(status QQmlComponent__Status) {
 
 //export callbackQQmlComponent_DestroyQQmlComponent
 func callbackQQmlComponent_DestroyQQmlComponent(ptr unsafe.Pointer) {
-	defer qt.Recovering("callback QQmlComponent::~QQmlComponent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QQmlComponent::~QQmlComponent"); signal != nil {
 		signal.(func())()
@@ -2439,8 +2011,6 @@ func callbackQQmlComponent_DestroyQQmlComponent(ptr unsafe.Pointer) {
 }
 
 func (ptr *QQmlComponent) ConnectDestroyQQmlComponent(f func()) {
-	defer qt.Recovering("connect QQmlComponent::~QQmlComponent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QQmlComponent::~QQmlComponent", f)
@@ -2448,8 +2018,6 @@ func (ptr *QQmlComponent) ConnectDestroyQQmlComponent(f func()) {
 }
 
 func (ptr *QQmlComponent) DisconnectDestroyQQmlComponent() {
-	defer qt.Recovering("disconnect QQmlComponent::~QQmlComponent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QQmlComponent::~QQmlComponent")
@@ -2457,8 +2025,6 @@ func (ptr *QQmlComponent) DisconnectDestroyQQmlComponent() {
 }
 
 func (ptr *QQmlComponent) DestroyQQmlComponent() {
-	defer qt.Recovering("QQmlComponent::~QQmlComponent")
-
 	if ptr.Pointer() != nil {
 		C.QQmlComponent_DestroyQQmlComponent(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
@@ -2467,8 +2033,6 @@ func (ptr *QQmlComponent) DestroyQQmlComponent() {
 }
 
 func (ptr *QQmlComponent) DestroyQQmlComponentDefault() {
-	defer qt.Recovering("QQmlComponent::~QQmlComponent")
-
 	if ptr.Pointer() != nil {
 		C.QQmlComponent_DestroyQQmlComponentDefault(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
@@ -2478,7 +2042,6 @@ func (ptr *QQmlComponent) DestroyQQmlComponentDefault() {
 
 //export callbackQQmlComponent_TimerEvent
 func callbackQQmlComponent_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	defer qt.Recovering("callback QQmlComponent::timerEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QQmlComponent::timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
@@ -2488,8 +2051,6 @@ func callbackQQmlComponent_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) 
 }
 
 func (ptr *QQmlComponent) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
-	defer qt.Recovering("connect QQmlComponent::timerEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QQmlComponent::timerEvent", f)
@@ -2497,8 +2058,6 @@ func (ptr *QQmlComponent) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
 }
 
 func (ptr *QQmlComponent) DisconnectTimerEvent() {
-	defer qt.Recovering("disconnect QQmlComponent::timerEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QQmlComponent::timerEvent")
@@ -2506,16 +2065,12 @@ func (ptr *QQmlComponent) DisconnectTimerEvent() {
 }
 
 func (ptr *QQmlComponent) TimerEvent(event core.QTimerEvent_ITF) {
-	defer qt.Recovering("QQmlComponent::timerEvent")
-
 	if ptr.Pointer() != nil {
 		C.QQmlComponent_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
 	}
 }
 
 func (ptr *QQmlComponent) TimerEventDefault(event core.QTimerEvent_ITF) {
-	defer qt.Recovering("QQmlComponent::timerEvent")
-
 	if ptr.Pointer() != nil {
 		C.QQmlComponent_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
 	}
@@ -2523,7 +2078,6 @@ func (ptr *QQmlComponent) TimerEventDefault(event core.QTimerEvent_ITF) {
 
 //export callbackQQmlComponent_ChildEvent
 func callbackQQmlComponent_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	defer qt.Recovering("callback QQmlComponent::childEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QQmlComponent::childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
@@ -2533,8 +2087,6 @@ func callbackQQmlComponent_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) 
 }
 
 func (ptr *QQmlComponent) ConnectChildEvent(f func(event *core.QChildEvent)) {
-	defer qt.Recovering("connect QQmlComponent::childEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QQmlComponent::childEvent", f)
@@ -2542,8 +2094,6 @@ func (ptr *QQmlComponent) ConnectChildEvent(f func(event *core.QChildEvent)) {
 }
 
 func (ptr *QQmlComponent) DisconnectChildEvent() {
-	defer qt.Recovering("disconnect QQmlComponent::childEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QQmlComponent::childEvent")
@@ -2551,16 +2101,12 @@ func (ptr *QQmlComponent) DisconnectChildEvent() {
 }
 
 func (ptr *QQmlComponent) ChildEvent(event core.QChildEvent_ITF) {
-	defer qt.Recovering("QQmlComponent::childEvent")
-
 	if ptr.Pointer() != nil {
 		C.QQmlComponent_ChildEvent(ptr.Pointer(), core.PointerFromQChildEvent(event))
 	}
 }
 
 func (ptr *QQmlComponent) ChildEventDefault(event core.QChildEvent_ITF) {
-	defer qt.Recovering("QQmlComponent::childEvent")
-
 	if ptr.Pointer() != nil {
 		C.QQmlComponent_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
 	}
@@ -2568,7 +2114,6 @@ func (ptr *QQmlComponent) ChildEventDefault(event core.QChildEvent_ITF) {
 
 //export callbackQQmlComponent_ConnectNotify
 func callbackQQmlComponent_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-	defer qt.Recovering("callback QQmlComponent::connectNotify")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QQmlComponent::connectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
@@ -2578,8 +2123,6 @@ func callbackQQmlComponent_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer
 }
 
 func (ptr *QQmlComponent) ConnectConnectNotify(f func(sign *core.QMetaMethod)) {
-	defer qt.Recovering("connect QQmlComponent::connectNotify")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QQmlComponent::connectNotify", f)
@@ -2587,8 +2130,6 @@ func (ptr *QQmlComponent) ConnectConnectNotify(f func(sign *core.QMetaMethod)) {
 }
 
 func (ptr *QQmlComponent) DisconnectConnectNotify() {
-	defer qt.Recovering("disconnect QQmlComponent::connectNotify")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QQmlComponent::connectNotify")
@@ -2596,16 +2137,12 @@ func (ptr *QQmlComponent) DisconnectConnectNotify() {
 }
 
 func (ptr *QQmlComponent) ConnectNotify(sign core.QMetaMethod_ITF) {
-	defer qt.Recovering("QQmlComponent::connectNotify")
-
 	if ptr.Pointer() != nil {
 		C.QQmlComponent_ConnectNotify(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
 	}
 }
 
 func (ptr *QQmlComponent) ConnectNotifyDefault(sign core.QMetaMethod_ITF) {
-	defer qt.Recovering("QQmlComponent::connectNotify")
-
 	if ptr.Pointer() != nil {
 		C.QQmlComponent_ConnectNotifyDefault(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
 	}
@@ -2613,7 +2150,6 @@ func (ptr *QQmlComponent) ConnectNotifyDefault(sign core.QMetaMethod_ITF) {
 
 //export callbackQQmlComponent_CustomEvent
 func callbackQQmlComponent_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	defer qt.Recovering("callback QQmlComponent::customEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QQmlComponent::customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
@@ -2623,8 +2159,6 @@ func callbackQQmlComponent_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer)
 }
 
 func (ptr *QQmlComponent) ConnectCustomEvent(f func(event *core.QEvent)) {
-	defer qt.Recovering("connect QQmlComponent::customEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QQmlComponent::customEvent", f)
@@ -2632,8 +2166,6 @@ func (ptr *QQmlComponent) ConnectCustomEvent(f func(event *core.QEvent)) {
 }
 
 func (ptr *QQmlComponent) DisconnectCustomEvent() {
-	defer qt.Recovering("disconnect QQmlComponent::customEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QQmlComponent::customEvent")
@@ -2641,16 +2173,12 @@ func (ptr *QQmlComponent) DisconnectCustomEvent() {
 }
 
 func (ptr *QQmlComponent) CustomEvent(event core.QEvent_ITF) {
-	defer qt.Recovering("QQmlComponent::customEvent")
-
 	if ptr.Pointer() != nil {
 		C.QQmlComponent_CustomEvent(ptr.Pointer(), core.PointerFromQEvent(event))
 	}
 }
 
 func (ptr *QQmlComponent) CustomEventDefault(event core.QEvent_ITF) {
-	defer qt.Recovering("QQmlComponent::customEvent")
-
 	if ptr.Pointer() != nil {
 		C.QQmlComponent_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
 	}
@@ -2658,8 +2186,6 @@ func (ptr *QQmlComponent) CustomEventDefault(event core.QEvent_ITF) {
 
 //export callbackQQmlComponent_DeleteLater
 func callbackQQmlComponent_DeleteLater(ptr unsafe.Pointer) {
-	defer qt.Recovering("callback QQmlComponent::deleteLater")
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QQmlComponent::deleteLater"); signal != nil {
 		signal.(func())()
 	} else {
@@ -2668,8 +2194,6 @@ func callbackQQmlComponent_DeleteLater(ptr unsafe.Pointer) {
 }
 
 func (ptr *QQmlComponent) ConnectDeleteLater(f func()) {
-	defer qt.Recovering("connect QQmlComponent::deleteLater")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QQmlComponent::deleteLater", f)
@@ -2677,8 +2201,6 @@ func (ptr *QQmlComponent) ConnectDeleteLater(f func()) {
 }
 
 func (ptr *QQmlComponent) DisconnectDeleteLater() {
-	defer qt.Recovering("disconnect QQmlComponent::deleteLater")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QQmlComponent::deleteLater")
@@ -2686,8 +2208,6 @@ func (ptr *QQmlComponent) DisconnectDeleteLater() {
 }
 
 func (ptr *QQmlComponent) DeleteLater() {
-	defer qt.Recovering("QQmlComponent::deleteLater")
-
 	if ptr.Pointer() != nil {
 		C.QQmlComponent_DeleteLater(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
@@ -2696,8 +2216,6 @@ func (ptr *QQmlComponent) DeleteLater() {
 }
 
 func (ptr *QQmlComponent) DeleteLaterDefault() {
-	defer qt.Recovering("QQmlComponent::deleteLater")
-
 	if ptr.Pointer() != nil {
 		C.QQmlComponent_DeleteLaterDefault(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
@@ -2707,7 +2225,6 @@ func (ptr *QQmlComponent) DeleteLaterDefault() {
 
 //export callbackQQmlComponent_DisconnectNotify
 func callbackQQmlComponent_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-	defer qt.Recovering("callback QQmlComponent::disconnectNotify")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QQmlComponent::disconnectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
@@ -2717,8 +2234,6 @@ func callbackQQmlComponent_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Poin
 }
 
 func (ptr *QQmlComponent) ConnectDisconnectNotify(f func(sign *core.QMetaMethod)) {
-	defer qt.Recovering("connect QQmlComponent::disconnectNotify")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QQmlComponent::disconnectNotify", f)
@@ -2726,8 +2241,6 @@ func (ptr *QQmlComponent) ConnectDisconnectNotify(f func(sign *core.QMetaMethod)
 }
 
 func (ptr *QQmlComponent) DisconnectDisconnectNotify() {
-	defer qt.Recovering("disconnect QQmlComponent::disconnectNotify")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QQmlComponent::disconnectNotify")
@@ -2735,16 +2248,12 @@ func (ptr *QQmlComponent) DisconnectDisconnectNotify() {
 }
 
 func (ptr *QQmlComponent) DisconnectNotify(sign core.QMetaMethod_ITF) {
-	defer qt.Recovering("QQmlComponent::disconnectNotify")
-
 	if ptr.Pointer() != nil {
 		C.QQmlComponent_DisconnectNotify(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
 	}
 }
 
 func (ptr *QQmlComponent) DisconnectNotifyDefault(sign core.QMetaMethod_ITF) {
-	defer qt.Recovering("QQmlComponent::disconnectNotify")
-
 	if ptr.Pointer() != nil {
 		C.QQmlComponent_DisconnectNotifyDefault(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
 	}
@@ -2752,7 +2261,6 @@ func (ptr *QQmlComponent) DisconnectNotifyDefault(sign core.QMetaMethod_ITF) {
 
 //export callbackQQmlComponent_Event
 func callbackQQmlComponent_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
-	defer qt.Recovering("callback QQmlComponent::event")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QQmlComponent::event"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
@@ -2762,8 +2270,6 @@ func callbackQQmlComponent_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
 }
 
 func (ptr *QQmlComponent) ConnectEvent(f func(e *core.QEvent) bool) {
-	defer qt.Recovering("connect QQmlComponent::event")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QQmlComponent::event", f)
@@ -2771,8 +2277,6 @@ func (ptr *QQmlComponent) ConnectEvent(f func(e *core.QEvent) bool) {
 }
 
 func (ptr *QQmlComponent) DisconnectEvent() {
-	defer qt.Recovering("disconnect QQmlComponent::event")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QQmlComponent::event")
@@ -2780,8 +2284,6 @@ func (ptr *QQmlComponent) DisconnectEvent() {
 }
 
 func (ptr *QQmlComponent) Event(e core.QEvent_ITF) bool {
-	defer qt.Recovering("QQmlComponent::event")
-
 	if ptr.Pointer() != nil {
 		return C.QQmlComponent_Event(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
 	}
@@ -2789,8 +2291,6 @@ func (ptr *QQmlComponent) Event(e core.QEvent_ITF) bool {
 }
 
 func (ptr *QQmlComponent) EventDefault(e core.QEvent_ITF) bool {
-	defer qt.Recovering("QQmlComponent::event")
-
 	if ptr.Pointer() != nil {
 		return C.QQmlComponent_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
 	}
@@ -2799,7 +2299,6 @@ func (ptr *QQmlComponent) EventDefault(e core.QEvent_ITF) bool {
 
 //export callbackQQmlComponent_EventFilter
 func callbackQQmlComponent_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-	defer qt.Recovering("callback QQmlComponent::eventFilter")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QQmlComponent::eventFilter"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
@@ -2809,8 +2308,6 @@ func callbackQQmlComponent_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointe
 }
 
 func (ptr *QQmlComponent) ConnectEventFilter(f func(watched *core.QObject, event *core.QEvent) bool) {
-	defer qt.Recovering("connect QQmlComponent::eventFilter")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QQmlComponent::eventFilter", f)
@@ -2818,8 +2315,6 @@ func (ptr *QQmlComponent) ConnectEventFilter(f func(watched *core.QObject, event
 }
 
 func (ptr *QQmlComponent) DisconnectEventFilter() {
-	defer qt.Recovering("disconnect QQmlComponent::eventFilter")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QQmlComponent::eventFilter")
@@ -2827,8 +2322,6 @@ func (ptr *QQmlComponent) DisconnectEventFilter() {
 }
 
 func (ptr *QQmlComponent) EventFilter(watched core.QObject_ITF, event core.QEvent_ITF) bool {
-	defer qt.Recovering("QQmlComponent::eventFilter")
-
 	if ptr.Pointer() != nil {
 		return C.QQmlComponent_EventFilter(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
 	}
@@ -2836,8 +2329,6 @@ func (ptr *QQmlComponent) EventFilter(watched core.QObject_ITF, event core.QEven
 }
 
 func (ptr *QQmlComponent) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
-	defer qt.Recovering("QQmlComponent::eventFilter")
-
 	if ptr.Pointer() != nil {
 		return C.QQmlComponent_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
 	}
@@ -2846,7 +2337,6 @@ func (ptr *QQmlComponent) EventFilterDefault(watched core.QObject_ITF, event cor
 
 //export callbackQQmlComponent_MetaObject
 func callbackQQmlComponent_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-	defer qt.Recovering("callback QQmlComponent::metaObject")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QQmlComponent::metaObject"); signal != nil {
 		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
@@ -2856,8 +2346,6 @@ func callbackQQmlComponent_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
 }
 
 func (ptr *QQmlComponent) ConnectMetaObject(f func() *core.QMetaObject) {
-	defer qt.Recovering("connect QQmlComponent::metaObject")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QQmlComponent::metaObject", f)
@@ -2865,8 +2353,6 @@ func (ptr *QQmlComponent) ConnectMetaObject(f func() *core.QMetaObject) {
 }
 
 func (ptr *QQmlComponent) DisconnectMetaObject() {
-	defer qt.Recovering("disconnect QQmlComponent::metaObject")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QQmlComponent::metaObject")
@@ -2874,8 +2360,6 @@ func (ptr *QQmlComponent) DisconnectMetaObject() {
 }
 
 func (ptr *QQmlComponent) MetaObject() *core.QMetaObject {
-	defer qt.Recovering("QQmlComponent::metaObject")
-
 	if ptr.Pointer() != nil {
 		return core.NewQMetaObjectFromPointer(C.QQmlComponent_MetaObject(ptr.Pointer()))
 	}
@@ -2883,8 +2367,6 @@ func (ptr *QQmlComponent) MetaObject() *core.QMetaObject {
 }
 
 func (ptr *QQmlComponent) MetaObjectDefault() *core.QMetaObject {
-	defer qt.Recovering("QQmlComponent::metaObject")
-
 	if ptr.Pointer() != nil {
 		return core.NewQMetaObjectFromPointer(C.QQmlComponent_MetaObjectDefault(ptr.Pointer()))
 	}
@@ -2930,8 +2412,6 @@ func NewQQmlContextFromPointer(ptr unsafe.Pointer) *QQmlContext {
 	return n
 }
 func NewQQmlContext2(parentContext QQmlContext_ITF, parent core.QObject_ITF) *QQmlContext {
-	defer qt.Recovering("QQmlContext::QQmlContext")
-
 	var tmpValue = NewQQmlContextFromPointer(C.QQmlContext_NewQQmlContext2(PointerFromQQmlContext(parentContext), core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
@@ -2940,8 +2420,6 @@ func NewQQmlContext2(parentContext QQmlContext_ITF, parent core.QObject_ITF) *QQ
 }
 
 func NewQQmlContext(engine QQmlEngine_ITF, parent core.QObject_ITF) *QQmlContext {
-	defer qt.Recovering("QQmlContext::QQmlContext")
-
 	var tmpValue = NewQQmlContextFromPointer(C.QQmlContext_NewQQmlContext(PointerFromQQmlEngine(engine), core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
@@ -2950,8 +2428,6 @@ func NewQQmlContext(engine QQmlEngine_ITF, parent core.QObject_ITF) *QQmlContext
 }
 
 func (ptr *QQmlContext) BaseUrl() *core.QUrl {
-	defer qt.Recovering("QQmlContext::baseUrl")
-
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQUrlFromPointer(C.QQmlContext_BaseUrl(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*core.QUrl).DestroyQUrl)
@@ -2961,8 +2437,6 @@ func (ptr *QQmlContext) BaseUrl() *core.QUrl {
 }
 
 func (ptr *QQmlContext) ContextObject() *core.QObject {
-	defer qt.Recovering("QQmlContext::contextObject")
-
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQObjectFromPointer(C.QQmlContext_ContextObject(ptr.Pointer()))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
@@ -2974,8 +2448,6 @@ func (ptr *QQmlContext) ContextObject() *core.QObject {
 }
 
 func (ptr *QQmlContext) ContextProperty(name string) *core.QVariant {
-	defer qt.Recovering("QQmlContext::contextProperty")
-
 	if ptr.Pointer() != nil {
 		var nameC = C.CString(name)
 		defer C.free(unsafe.Pointer(nameC))
@@ -2987,8 +2459,6 @@ func (ptr *QQmlContext) ContextProperty(name string) *core.QVariant {
 }
 
 func (ptr *QQmlContext) Engine() *QQmlEngine {
-	defer qt.Recovering("QQmlContext::engine")
-
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQQmlEngineFromPointer(C.QQmlContext_Engine(ptr.Pointer()))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
@@ -3000,8 +2470,6 @@ func (ptr *QQmlContext) Engine() *QQmlEngine {
 }
 
 func (ptr *QQmlContext) IsValid() bool {
-	defer qt.Recovering("QQmlContext::isValid")
-
 	if ptr.Pointer() != nil {
 		return C.QQmlContext_IsValid(ptr.Pointer()) != 0
 	}
@@ -3009,8 +2477,6 @@ func (ptr *QQmlContext) IsValid() bool {
 }
 
 func (ptr *QQmlContext) NameForObject(object core.QObject_ITF) string {
-	defer qt.Recovering("QQmlContext::nameForObject")
-
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QQmlContext_NameForObject(ptr.Pointer(), core.PointerFromQObject(object)))
 	}
@@ -3018,8 +2484,6 @@ func (ptr *QQmlContext) NameForObject(object core.QObject_ITF) string {
 }
 
 func (ptr *QQmlContext) ParentContext() *QQmlContext {
-	defer qt.Recovering("QQmlContext::parentContext")
-
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQQmlContextFromPointer(C.QQmlContext_ParentContext(ptr.Pointer()))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
@@ -3031,8 +2495,6 @@ func (ptr *QQmlContext) ParentContext() *QQmlContext {
 }
 
 func (ptr *QQmlContext) ResolvedUrl(src core.QUrl_ITF) *core.QUrl {
-	defer qt.Recovering("QQmlContext::resolvedUrl")
-
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQUrlFromPointer(C.QQmlContext_ResolvedUrl(ptr.Pointer(), core.PointerFromQUrl(src)))
 		runtime.SetFinalizer(tmpValue, (*core.QUrl).DestroyQUrl)
@@ -3042,24 +2504,18 @@ func (ptr *QQmlContext) ResolvedUrl(src core.QUrl_ITF) *core.QUrl {
 }
 
 func (ptr *QQmlContext) SetBaseUrl(baseUrl core.QUrl_ITF) {
-	defer qt.Recovering("QQmlContext::setBaseUrl")
-
 	if ptr.Pointer() != nil {
 		C.QQmlContext_SetBaseUrl(ptr.Pointer(), core.PointerFromQUrl(baseUrl))
 	}
 }
 
 func (ptr *QQmlContext) SetContextObject(object core.QObject_ITF) {
-	defer qt.Recovering("QQmlContext::setContextObject")
-
 	if ptr.Pointer() != nil {
 		C.QQmlContext_SetContextObject(ptr.Pointer(), core.PointerFromQObject(object))
 	}
 }
 
 func (ptr *QQmlContext) SetContextProperty(name string, value core.QObject_ITF) {
-	defer qt.Recovering("QQmlContext::setContextProperty")
-
 	if ptr.Pointer() != nil {
 		var nameC = C.CString(name)
 		defer C.free(unsafe.Pointer(nameC))
@@ -3068,8 +2524,6 @@ func (ptr *QQmlContext) SetContextProperty(name string, value core.QObject_ITF) 
 }
 
 func (ptr *QQmlContext) SetContextProperty2(name string, value core.QVariant_ITF) {
-	defer qt.Recovering("QQmlContext::setContextProperty")
-
 	if ptr.Pointer() != nil {
 		var nameC = C.CString(name)
 		defer C.free(unsafe.Pointer(nameC))
@@ -3079,7 +2533,6 @@ func (ptr *QQmlContext) SetContextProperty2(name string, value core.QVariant_ITF
 
 //export callbackQQmlContext_DestroyQQmlContext
 func callbackQQmlContext_DestroyQQmlContext(ptr unsafe.Pointer) {
-	defer qt.Recovering("callback QQmlContext::~QQmlContext")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QQmlContext::~QQmlContext"); signal != nil {
 		signal.(func())()
@@ -3089,8 +2542,6 @@ func callbackQQmlContext_DestroyQQmlContext(ptr unsafe.Pointer) {
 }
 
 func (ptr *QQmlContext) ConnectDestroyQQmlContext(f func()) {
-	defer qt.Recovering("connect QQmlContext::~QQmlContext")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QQmlContext::~QQmlContext", f)
@@ -3098,8 +2549,6 @@ func (ptr *QQmlContext) ConnectDestroyQQmlContext(f func()) {
 }
 
 func (ptr *QQmlContext) DisconnectDestroyQQmlContext() {
-	defer qt.Recovering("disconnect QQmlContext::~QQmlContext")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QQmlContext::~QQmlContext")
@@ -3107,8 +2556,6 @@ func (ptr *QQmlContext) DisconnectDestroyQQmlContext() {
 }
 
 func (ptr *QQmlContext) DestroyQQmlContext() {
-	defer qt.Recovering("QQmlContext::~QQmlContext")
-
 	if ptr.Pointer() != nil {
 		C.QQmlContext_DestroyQQmlContext(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
@@ -3117,8 +2564,6 @@ func (ptr *QQmlContext) DestroyQQmlContext() {
 }
 
 func (ptr *QQmlContext) DestroyQQmlContextDefault() {
-	defer qt.Recovering("QQmlContext::~QQmlContext")
-
 	if ptr.Pointer() != nil {
 		C.QQmlContext_DestroyQQmlContextDefault(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
@@ -3128,7 +2573,6 @@ func (ptr *QQmlContext) DestroyQQmlContextDefault() {
 
 //export callbackQQmlContext_TimerEvent
 func callbackQQmlContext_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	defer qt.Recovering("callback QQmlContext::timerEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QQmlContext::timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
@@ -3138,8 +2582,6 @@ func callbackQQmlContext_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 }
 
 func (ptr *QQmlContext) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
-	defer qt.Recovering("connect QQmlContext::timerEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QQmlContext::timerEvent", f)
@@ -3147,8 +2589,6 @@ func (ptr *QQmlContext) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
 }
 
 func (ptr *QQmlContext) DisconnectTimerEvent() {
-	defer qt.Recovering("disconnect QQmlContext::timerEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QQmlContext::timerEvent")
@@ -3156,16 +2596,12 @@ func (ptr *QQmlContext) DisconnectTimerEvent() {
 }
 
 func (ptr *QQmlContext) TimerEvent(event core.QTimerEvent_ITF) {
-	defer qt.Recovering("QQmlContext::timerEvent")
-
 	if ptr.Pointer() != nil {
 		C.QQmlContext_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
 	}
 }
 
 func (ptr *QQmlContext) TimerEventDefault(event core.QTimerEvent_ITF) {
-	defer qt.Recovering("QQmlContext::timerEvent")
-
 	if ptr.Pointer() != nil {
 		C.QQmlContext_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
 	}
@@ -3173,7 +2609,6 @@ func (ptr *QQmlContext) TimerEventDefault(event core.QTimerEvent_ITF) {
 
 //export callbackQQmlContext_ChildEvent
 func callbackQQmlContext_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	defer qt.Recovering("callback QQmlContext::childEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QQmlContext::childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
@@ -3183,8 +2618,6 @@ func callbackQQmlContext_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 }
 
 func (ptr *QQmlContext) ConnectChildEvent(f func(event *core.QChildEvent)) {
-	defer qt.Recovering("connect QQmlContext::childEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QQmlContext::childEvent", f)
@@ -3192,8 +2625,6 @@ func (ptr *QQmlContext) ConnectChildEvent(f func(event *core.QChildEvent)) {
 }
 
 func (ptr *QQmlContext) DisconnectChildEvent() {
-	defer qt.Recovering("disconnect QQmlContext::childEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QQmlContext::childEvent")
@@ -3201,16 +2632,12 @@ func (ptr *QQmlContext) DisconnectChildEvent() {
 }
 
 func (ptr *QQmlContext) ChildEvent(event core.QChildEvent_ITF) {
-	defer qt.Recovering("QQmlContext::childEvent")
-
 	if ptr.Pointer() != nil {
 		C.QQmlContext_ChildEvent(ptr.Pointer(), core.PointerFromQChildEvent(event))
 	}
 }
 
 func (ptr *QQmlContext) ChildEventDefault(event core.QChildEvent_ITF) {
-	defer qt.Recovering("QQmlContext::childEvent")
-
 	if ptr.Pointer() != nil {
 		C.QQmlContext_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
 	}
@@ -3218,7 +2645,6 @@ func (ptr *QQmlContext) ChildEventDefault(event core.QChildEvent_ITF) {
 
 //export callbackQQmlContext_ConnectNotify
 func callbackQQmlContext_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-	defer qt.Recovering("callback QQmlContext::connectNotify")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QQmlContext::connectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
@@ -3228,8 +2654,6 @@ func callbackQQmlContext_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) 
 }
 
 func (ptr *QQmlContext) ConnectConnectNotify(f func(sign *core.QMetaMethod)) {
-	defer qt.Recovering("connect QQmlContext::connectNotify")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QQmlContext::connectNotify", f)
@@ -3237,8 +2661,6 @@ func (ptr *QQmlContext) ConnectConnectNotify(f func(sign *core.QMetaMethod)) {
 }
 
 func (ptr *QQmlContext) DisconnectConnectNotify() {
-	defer qt.Recovering("disconnect QQmlContext::connectNotify")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QQmlContext::connectNotify")
@@ -3246,16 +2668,12 @@ func (ptr *QQmlContext) DisconnectConnectNotify() {
 }
 
 func (ptr *QQmlContext) ConnectNotify(sign core.QMetaMethod_ITF) {
-	defer qt.Recovering("QQmlContext::connectNotify")
-
 	if ptr.Pointer() != nil {
 		C.QQmlContext_ConnectNotify(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
 	}
 }
 
 func (ptr *QQmlContext) ConnectNotifyDefault(sign core.QMetaMethod_ITF) {
-	defer qt.Recovering("QQmlContext::connectNotify")
-
 	if ptr.Pointer() != nil {
 		C.QQmlContext_ConnectNotifyDefault(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
 	}
@@ -3263,7 +2681,6 @@ func (ptr *QQmlContext) ConnectNotifyDefault(sign core.QMetaMethod_ITF) {
 
 //export callbackQQmlContext_CustomEvent
 func callbackQQmlContext_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	defer qt.Recovering("callback QQmlContext::customEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QQmlContext::customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
@@ -3273,8 +2690,6 @@ func callbackQQmlContext_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 }
 
 func (ptr *QQmlContext) ConnectCustomEvent(f func(event *core.QEvent)) {
-	defer qt.Recovering("connect QQmlContext::customEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QQmlContext::customEvent", f)
@@ -3282,8 +2697,6 @@ func (ptr *QQmlContext) ConnectCustomEvent(f func(event *core.QEvent)) {
 }
 
 func (ptr *QQmlContext) DisconnectCustomEvent() {
-	defer qt.Recovering("disconnect QQmlContext::customEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QQmlContext::customEvent")
@@ -3291,16 +2704,12 @@ func (ptr *QQmlContext) DisconnectCustomEvent() {
 }
 
 func (ptr *QQmlContext) CustomEvent(event core.QEvent_ITF) {
-	defer qt.Recovering("QQmlContext::customEvent")
-
 	if ptr.Pointer() != nil {
 		C.QQmlContext_CustomEvent(ptr.Pointer(), core.PointerFromQEvent(event))
 	}
 }
 
 func (ptr *QQmlContext) CustomEventDefault(event core.QEvent_ITF) {
-	defer qt.Recovering("QQmlContext::customEvent")
-
 	if ptr.Pointer() != nil {
 		C.QQmlContext_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
 	}
@@ -3308,8 +2717,6 @@ func (ptr *QQmlContext) CustomEventDefault(event core.QEvent_ITF) {
 
 //export callbackQQmlContext_DeleteLater
 func callbackQQmlContext_DeleteLater(ptr unsafe.Pointer) {
-	defer qt.Recovering("callback QQmlContext::deleteLater")
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QQmlContext::deleteLater"); signal != nil {
 		signal.(func())()
 	} else {
@@ -3318,8 +2725,6 @@ func callbackQQmlContext_DeleteLater(ptr unsafe.Pointer) {
 }
 
 func (ptr *QQmlContext) ConnectDeleteLater(f func()) {
-	defer qt.Recovering("connect QQmlContext::deleteLater")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QQmlContext::deleteLater", f)
@@ -3327,8 +2732,6 @@ func (ptr *QQmlContext) ConnectDeleteLater(f func()) {
 }
 
 func (ptr *QQmlContext) DisconnectDeleteLater() {
-	defer qt.Recovering("disconnect QQmlContext::deleteLater")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QQmlContext::deleteLater")
@@ -3336,8 +2739,6 @@ func (ptr *QQmlContext) DisconnectDeleteLater() {
 }
 
 func (ptr *QQmlContext) DeleteLater() {
-	defer qt.Recovering("QQmlContext::deleteLater")
-
 	if ptr.Pointer() != nil {
 		C.QQmlContext_DeleteLater(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
@@ -3346,8 +2747,6 @@ func (ptr *QQmlContext) DeleteLater() {
 }
 
 func (ptr *QQmlContext) DeleteLaterDefault() {
-	defer qt.Recovering("QQmlContext::deleteLater")
-
 	if ptr.Pointer() != nil {
 		C.QQmlContext_DeleteLaterDefault(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
@@ -3357,7 +2756,6 @@ func (ptr *QQmlContext) DeleteLaterDefault() {
 
 //export callbackQQmlContext_DisconnectNotify
 func callbackQQmlContext_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-	defer qt.Recovering("callback QQmlContext::disconnectNotify")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QQmlContext::disconnectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
@@ -3367,8 +2765,6 @@ func callbackQQmlContext_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointe
 }
 
 func (ptr *QQmlContext) ConnectDisconnectNotify(f func(sign *core.QMetaMethod)) {
-	defer qt.Recovering("connect QQmlContext::disconnectNotify")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QQmlContext::disconnectNotify", f)
@@ -3376,8 +2772,6 @@ func (ptr *QQmlContext) ConnectDisconnectNotify(f func(sign *core.QMetaMethod)) 
 }
 
 func (ptr *QQmlContext) DisconnectDisconnectNotify() {
-	defer qt.Recovering("disconnect QQmlContext::disconnectNotify")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QQmlContext::disconnectNotify")
@@ -3385,16 +2779,12 @@ func (ptr *QQmlContext) DisconnectDisconnectNotify() {
 }
 
 func (ptr *QQmlContext) DisconnectNotify(sign core.QMetaMethod_ITF) {
-	defer qt.Recovering("QQmlContext::disconnectNotify")
-
 	if ptr.Pointer() != nil {
 		C.QQmlContext_DisconnectNotify(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
 	}
 }
 
 func (ptr *QQmlContext) DisconnectNotifyDefault(sign core.QMetaMethod_ITF) {
-	defer qt.Recovering("QQmlContext::disconnectNotify")
-
 	if ptr.Pointer() != nil {
 		C.QQmlContext_DisconnectNotifyDefault(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
 	}
@@ -3402,7 +2792,6 @@ func (ptr *QQmlContext) DisconnectNotifyDefault(sign core.QMetaMethod_ITF) {
 
 //export callbackQQmlContext_Event
 func callbackQQmlContext_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
-	defer qt.Recovering("callback QQmlContext::event")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QQmlContext::event"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
@@ -3412,8 +2801,6 @@ func callbackQQmlContext_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
 }
 
 func (ptr *QQmlContext) ConnectEvent(f func(e *core.QEvent) bool) {
-	defer qt.Recovering("connect QQmlContext::event")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QQmlContext::event", f)
@@ -3421,8 +2808,6 @@ func (ptr *QQmlContext) ConnectEvent(f func(e *core.QEvent) bool) {
 }
 
 func (ptr *QQmlContext) DisconnectEvent() {
-	defer qt.Recovering("disconnect QQmlContext::event")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QQmlContext::event")
@@ -3430,8 +2815,6 @@ func (ptr *QQmlContext) DisconnectEvent() {
 }
 
 func (ptr *QQmlContext) Event(e core.QEvent_ITF) bool {
-	defer qt.Recovering("QQmlContext::event")
-
 	if ptr.Pointer() != nil {
 		return C.QQmlContext_Event(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
 	}
@@ -3439,8 +2822,6 @@ func (ptr *QQmlContext) Event(e core.QEvent_ITF) bool {
 }
 
 func (ptr *QQmlContext) EventDefault(e core.QEvent_ITF) bool {
-	defer qt.Recovering("QQmlContext::event")
-
 	if ptr.Pointer() != nil {
 		return C.QQmlContext_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
 	}
@@ -3449,7 +2830,6 @@ func (ptr *QQmlContext) EventDefault(e core.QEvent_ITF) bool {
 
 //export callbackQQmlContext_EventFilter
 func callbackQQmlContext_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-	defer qt.Recovering("callback QQmlContext::eventFilter")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QQmlContext::eventFilter"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
@@ -3459,8 +2839,6 @@ func callbackQQmlContext_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer,
 }
 
 func (ptr *QQmlContext) ConnectEventFilter(f func(watched *core.QObject, event *core.QEvent) bool) {
-	defer qt.Recovering("connect QQmlContext::eventFilter")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QQmlContext::eventFilter", f)
@@ -3468,8 +2846,6 @@ func (ptr *QQmlContext) ConnectEventFilter(f func(watched *core.QObject, event *
 }
 
 func (ptr *QQmlContext) DisconnectEventFilter() {
-	defer qt.Recovering("disconnect QQmlContext::eventFilter")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QQmlContext::eventFilter")
@@ -3477,8 +2853,6 @@ func (ptr *QQmlContext) DisconnectEventFilter() {
 }
 
 func (ptr *QQmlContext) EventFilter(watched core.QObject_ITF, event core.QEvent_ITF) bool {
-	defer qt.Recovering("QQmlContext::eventFilter")
-
 	if ptr.Pointer() != nil {
 		return C.QQmlContext_EventFilter(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
 	}
@@ -3486,8 +2860,6 @@ func (ptr *QQmlContext) EventFilter(watched core.QObject_ITF, event core.QEvent_
 }
 
 func (ptr *QQmlContext) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
-	defer qt.Recovering("QQmlContext::eventFilter")
-
 	if ptr.Pointer() != nil {
 		return C.QQmlContext_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
 	}
@@ -3496,7 +2868,6 @@ func (ptr *QQmlContext) EventFilterDefault(watched core.QObject_ITF, event core.
 
 //export callbackQQmlContext_MetaObject
 func callbackQQmlContext_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-	defer qt.Recovering("callback QQmlContext::metaObject")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QQmlContext::metaObject"); signal != nil {
 		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
@@ -3506,8 +2877,6 @@ func callbackQQmlContext_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
 }
 
 func (ptr *QQmlContext) ConnectMetaObject(f func() *core.QMetaObject) {
-	defer qt.Recovering("connect QQmlContext::metaObject")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QQmlContext::metaObject", f)
@@ -3515,8 +2884,6 @@ func (ptr *QQmlContext) ConnectMetaObject(f func() *core.QMetaObject) {
 }
 
 func (ptr *QQmlContext) DisconnectMetaObject() {
-	defer qt.Recovering("disconnect QQmlContext::metaObject")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QQmlContext::metaObject")
@@ -3524,8 +2891,6 @@ func (ptr *QQmlContext) DisconnectMetaObject() {
 }
 
 func (ptr *QQmlContext) MetaObject() *core.QMetaObject {
-	defer qt.Recovering("QQmlContext::metaObject")
-
 	if ptr.Pointer() != nil {
 		return core.NewQMetaObjectFromPointer(C.QQmlContext_MetaObject(ptr.Pointer()))
 	}
@@ -3533,8 +2898,6 @@ func (ptr *QQmlContext) MetaObject() *core.QMetaObject {
 }
 
 func (ptr *QQmlContext) MetaObjectDefault() *core.QMetaObject {
-	defer qt.Recovering("QQmlContext::metaObject")
-
 	if ptr.Pointer() != nil {
 		return core.NewQMetaObjectFromPointer(C.QQmlContext_MetaObjectDefault(ptr.Pointer()))
 	}
@@ -3588,8 +2951,6 @@ func NewQQmlEngineFromPointer(ptr unsafe.Pointer) *QQmlEngine {
 	return n
 }
 func (ptr *QQmlEngine) OfflineStoragePath() string {
-	defer qt.Recovering("QQmlEngine::offlineStoragePath")
-
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QQmlEngine_OfflineStoragePath(ptr.Pointer()))
 	}
@@ -3597,8 +2958,6 @@ func (ptr *QQmlEngine) OfflineStoragePath() string {
 }
 
 func (ptr *QQmlEngine) SetOfflineStoragePath(dir string) {
-	defer qt.Recovering("QQmlEngine::setOfflineStoragePath")
-
 	if ptr.Pointer() != nil {
 		var dirC = C.CString(dir)
 		defer C.free(unsafe.Pointer(dirC))
@@ -3607,8 +2966,6 @@ func (ptr *QQmlEngine) SetOfflineStoragePath(dir string) {
 }
 
 func NewQQmlEngine(parent core.QObject_ITF) *QQmlEngine {
-	defer qt.Recovering("QQmlEngine::QQmlEngine")
-
 	var tmpValue = NewQQmlEngineFromPointer(C.QQmlEngine_NewQQmlEngine(core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
@@ -3617,8 +2974,6 @@ func NewQQmlEngine(parent core.QObject_ITF) *QQmlEngine {
 }
 
 func (ptr *QQmlEngine) AddImageProvider(providerId string, provider QQmlImageProviderBase_ITF) {
-	defer qt.Recovering("QQmlEngine::addImageProvider")
-
 	if ptr.Pointer() != nil {
 		var providerIdC = C.CString(providerId)
 		defer C.free(unsafe.Pointer(providerIdC))
@@ -3627,8 +2982,6 @@ func (ptr *QQmlEngine) AddImageProvider(providerId string, provider QQmlImagePro
 }
 
 func (ptr *QQmlEngine) AddImportPath(path string) {
-	defer qt.Recovering("QQmlEngine::addImportPath")
-
 	if ptr.Pointer() != nil {
 		var pathC = C.CString(path)
 		defer C.free(unsafe.Pointer(pathC))
@@ -3637,8 +2990,6 @@ func (ptr *QQmlEngine) AddImportPath(path string) {
 }
 
 func (ptr *QQmlEngine) AddPluginPath(path string) {
-	defer qt.Recovering("QQmlEngine::addPluginPath")
-
 	if ptr.Pointer() != nil {
 		var pathC = C.CString(path)
 		defer C.free(unsafe.Pointer(pathC))
@@ -3647,8 +2998,6 @@ func (ptr *QQmlEngine) AddPluginPath(path string) {
 }
 
 func (ptr *QQmlEngine) BaseUrl() *core.QUrl {
-	defer qt.Recovering("QQmlEngine::baseUrl")
-
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQUrlFromPointer(C.QQmlEngine_BaseUrl(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*core.QUrl).DestroyQUrl)
@@ -3658,16 +3007,12 @@ func (ptr *QQmlEngine) BaseUrl() *core.QUrl {
 }
 
 func (ptr *QQmlEngine) ClearComponentCache() {
-	defer qt.Recovering("QQmlEngine::clearComponentCache")
-
 	if ptr.Pointer() != nil {
 		C.QQmlEngine_ClearComponentCache(ptr.Pointer())
 	}
 }
 
 func QQmlEngine_ContextForObject(object core.QObject_ITF) *QQmlContext {
-	defer qt.Recovering("QQmlEngine::contextForObject")
-
 	var tmpValue = NewQQmlContextFromPointer(C.QQmlEngine_QQmlEngine_ContextForObject(core.PointerFromQObject(object)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
@@ -3676,8 +3021,6 @@ func QQmlEngine_ContextForObject(object core.QObject_ITF) *QQmlContext {
 }
 
 func (ptr *QQmlEngine) ContextForObject(object core.QObject_ITF) *QQmlContext {
-	defer qt.Recovering("QQmlEngine::contextForObject")
-
 	var tmpValue = NewQQmlContextFromPointer(C.QQmlEngine_QQmlEngine_ContextForObject(core.PointerFromQObject(object)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
@@ -3687,7 +3030,6 @@ func (ptr *QQmlEngine) ContextForObject(object core.QObject_ITF) *QQmlContext {
 
 //export callbackQQmlEngine_Event
 func callbackQQmlEngine_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
-	defer qt.Recovering("callback QQmlEngine::event")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QQmlEngine::event"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
@@ -3697,8 +3039,6 @@ func callbackQQmlEngine_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
 }
 
 func (ptr *QQmlEngine) ConnectEvent(f func(e *core.QEvent) bool) {
-	defer qt.Recovering("connect QQmlEngine::event")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QQmlEngine::event", f)
@@ -3706,8 +3046,6 @@ func (ptr *QQmlEngine) ConnectEvent(f func(e *core.QEvent) bool) {
 }
 
 func (ptr *QQmlEngine) DisconnectEvent() {
-	defer qt.Recovering("disconnect QQmlEngine::event")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QQmlEngine::event")
@@ -3715,8 +3053,6 @@ func (ptr *QQmlEngine) DisconnectEvent() {
 }
 
 func (ptr *QQmlEngine) Event(e core.QEvent_ITF) bool {
-	defer qt.Recovering("QQmlEngine::event")
-
 	if ptr.Pointer() != nil {
 		return C.QQmlEngine_Event(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
 	}
@@ -3724,8 +3060,6 @@ func (ptr *QQmlEngine) Event(e core.QEvent_ITF) bool {
 }
 
 func (ptr *QQmlEngine) EventDefault(e core.QEvent_ITF) bool {
-	defer qt.Recovering("QQmlEngine::event")
-
 	if ptr.Pointer() != nil {
 		return C.QQmlEngine_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
 	}
@@ -3733,8 +3067,6 @@ func (ptr *QQmlEngine) EventDefault(e core.QEvent_ITF) bool {
 }
 
 func (ptr *QQmlEngine) ImageProvider(providerId string) *QQmlImageProviderBase {
-	defer qt.Recovering("QQmlEngine::imageProvider")
-
 	if ptr.Pointer() != nil {
 		var providerIdC = C.CString(providerId)
 		defer C.free(unsafe.Pointer(providerIdC))
@@ -3744,8 +3076,6 @@ func (ptr *QQmlEngine) ImageProvider(providerId string) *QQmlImageProviderBase {
 }
 
 func (ptr *QQmlEngine) ImportPathList() []string {
-	defer qt.Recovering("QQmlEngine::importPathList")
-
 	if ptr.Pointer() != nil {
 		return strings.Split(C.GoString(C.QQmlEngine_ImportPathList(ptr.Pointer())), "|")
 	}
@@ -3753,8 +3083,6 @@ func (ptr *QQmlEngine) ImportPathList() []string {
 }
 
 func (ptr *QQmlEngine) IncubationController() *QQmlIncubationController {
-	defer qt.Recovering("QQmlEngine::incubationController")
-
 	if ptr.Pointer() != nil {
 		return NewQQmlIncubationControllerFromPointer(C.QQmlEngine_IncubationController(ptr.Pointer()))
 	}
@@ -3762,8 +3090,6 @@ func (ptr *QQmlEngine) IncubationController() *QQmlIncubationController {
 }
 
 func (ptr *QQmlEngine) NetworkAccessManager() *network.QNetworkAccessManager {
-	defer qt.Recovering("QQmlEngine::networkAccessManager")
-
 	if ptr.Pointer() != nil {
 		var tmpValue = network.NewQNetworkAccessManagerFromPointer(C.QQmlEngine_NetworkAccessManager(ptr.Pointer()))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
@@ -3775,8 +3101,6 @@ func (ptr *QQmlEngine) NetworkAccessManager() *network.QNetworkAccessManager {
 }
 
 func (ptr *QQmlEngine) NetworkAccessManagerFactory() *QQmlNetworkAccessManagerFactory {
-	defer qt.Recovering("QQmlEngine::networkAccessManagerFactory")
-
 	if ptr.Pointer() != nil {
 		return NewQQmlNetworkAccessManagerFactoryFromPointer(C.QQmlEngine_NetworkAccessManagerFactory(ptr.Pointer()))
 	}
@@ -3784,20 +3108,14 @@ func (ptr *QQmlEngine) NetworkAccessManagerFactory() *QQmlNetworkAccessManagerFa
 }
 
 func QQmlEngine_ObjectOwnership(object core.QObject_ITF) QQmlEngine__ObjectOwnership {
-	defer qt.Recovering("QQmlEngine::objectOwnership")
-
 	return QQmlEngine__ObjectOwnership(C.QQmlEngine_QQmlEngine_ObjectOwnership(core.PointerFromQObject(object)))
 }
 
 func (ptr *QQmlEngine) ObjectOwnership(object core.QObject_ITF) QQmlEngine__ObjectOwnership {
-	defer qt.Recovering("QQmlEngine::objectOwnership")
-
 	return QQmlEngine__ObjectOwnership(C.QQmlEngine_QQmlEngine_ObjectOwnership(core.PointerFromQObject(object)))
 }
 
 func (ptr *QQmlEngine) OutputWarningsToStandardError() bool {
-	defer qt.Recovering("QQmlEngine::outputWarningsToStandardError")
-
 	if ptr.Pointer() != nil {
 		return C.QQmlEngine_OutputWarningsToStandardError(ptr.Pointer()) != 0
 	}
@@ -3805,8 +3123,6 @@ func (ptr *QQmlEngine) OutputWarningsToStandardError() bool {
 }
 
 func (ptr *QQmlEngine) PluginPathList() []string {
-	defer qt.Recovering("QQmlEngine::pluginPathList")
-
 	if ptr.Pointer() != nil {
 		return strings.Split(C.GoString(C.QQmlEngine_PluginPathList(ptr.Pointer())), "|")
 	}
@@ -3815,7 +3131,6 @@ func (ptr *QQmlEngine) PluginPathList() []string {
 
 //export callbackQQmlEngine_Quit
 func callbackQQmlEngine_Quit(ptr unsafe.Pointer) {
-	defer qt.Recovering("callback QQmlEngine::quit")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QQmlEngine::quit"); signal != nil {
 		signal.(func())()
@@ -3824,8 +3139,6 @@ func callbackQQmlEngine_Quit(ptr unsafe.Pointer) {
 }
 
 func (ptr *QQmlEngine) ConnectQuit(f func()) {
-	defer qt.Recovering("connect QQmlEngine::quit")
-
 	if ptr.Pointer() != nil {
 		C.QQmlEngine_ConnectQuit(ptr.Pointer())
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QQmlEngine::quit", f)
@@ -3833,8 +3146,6 @@ func (ptr *QQmlEngine) ConnectQuit(f func()) {
 }
 
 func (ptr *QQmlEngine) DisconnectQuit() {
-	defer qt.Recovering("disconnect QQmlEngine::quit")
-
 	if ptr.Pointer() != nil {
 		C.QQmlEngine_DisconnectQuit(ptr.Pointer())
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QQmlEngine::quit")
@@ -3842,16 +3153,12 @@ func (ptr *QQmlEngine) DisconnectQuit() {
 }
 
 func (ptr *QQmlEngine) Quit() {
-	defer qt.Recovering("QQmlEngine::quit")
-
 	if ptr.Pointer() != nil {
 		C.QQmlEngine_Quit(ptr.Pointer())
 	}
 }
 
 func (ptr *QQmlEngine) RemoveImageProvider(providerId string) {
-	defer qt.Recovering("QQmlEngine::removeImageProvider")
-
 	if ptr.Pointer() != nil {
 		var providerIdC = C.CString(providerId)
 		defer C.free(unsafe.Pointer(providerIdC))
@@ -3860,8 +3167,6 @@ func (ptr *QQmlEngine) RemoveImageProvider(providerId string) {
 }
 
 func (ptr *QQmlEngine) RootContext() *QQmlContext {
-	defer qt.Recovering("QQmlEngine::rootContext")
-
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQQmlContextFromPointer(C.QQmlEngine_RootContext(ptr.Pointer()))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
@@ -3873,28 +3178,20 @@ func (ptr *QQmlEngine) RootContext() *QQmlContext {
 }
 
 func (ptr *QQmlEngine) SetBaseUrl(url core.QUrl_ITF) {
-	defer qt.Recovering("QQmlEngine::setBaseUrl")
-
 	if ptr.Pointer() != nil {
 		C.QQmlEngine_SetBaseUrl(ptr.Pointer(), core.PointerFromQUrl(url))
 	}
 }
 
 func QQmlEngine_SetContextForObject(object core.QObject_ITF, context QQmlContext_ITF) {
-	defer qt.Recovering("QQmlEngine::setContextForObject")
-
 	C.QQmlEngine_QQmlEngine_SetContextForObject(core.PointerFromQObject(object), PointerFromQQmlContext(context))
 }
 
 func (ptr *QQmlEngine) SetContextForObject(object core.QObject_ITF, context QQmlContext_ITF) {
-	defer qt.Recovering("QQmlEngine::setContextForObject")
-
 	C.QQmlEngine_QQmlEngine_SetContextForObject(core.PointerFromQObject(object), PointerFromQQmlContext(context))
 }
 
 func (ptr *QQmlEngine) SetImportPathList(paths []string) {
-	defer qt.Recovering("QQmlEngine::setImportPathList")
-
 	if ptr.Pointer() != nil {
 		var pathsC = C.CString(strings.Join(paths, "|"))
 		defer C.free(unsafe.Pointer(pathsC))
@@ -3903,44 +3200,32 @@ func (ptr *QQmlEngine) SetImportPathList(paths []string) {
 }
 
 func (ptr *QQmlEngine) SetIncubationController(controller QQmlIncubationController_ITF) {
-	defer qt.Recovering("QQmlEngine::setIncubationController")
-
 	if ptr.Pointer() != nil {
 		C.QQmlEngine_SetIncubationController(ptr.Pointer(), PointerFromQQmlIncubationController(controller))
 	}
 }
 
 func (ptr *QQmlEngine) SetNetworkAccessManagerFactory(factory QQmlNetworkAccessManagerFactory_ITF) {
-	defer qt.Recovering("QQmlEngine::setNetworkAccessManagerFactory")
-
 	if ptr.Pointer() != nil {
 		C.QQmlEngine_SetNetworkAccessManagerFactory(ptr.Pointer(), PointerFromQQmlNetworkAccessManagerFactory(factory))
 	}
 }
 
 func QQmlEngine_SetObjectOwnership(object core.QObject_ITF, ownership QQmlEngine__ObjectOwnership) {
-	defer qt.Recovering("QQmlEngine::setObjectOwnership")
-
 	C.QQmlEngine_QQmlEngine_SetObjectOwnership(core.PointerFromQObject(object), C.longlong(ownership))
 }
 
 func (ptr *QQmlEngine) SetObjectOwnership(object core.QObject_ITF, ownership QQmlEngine__ObjectOwnership) {
-	defer qt.Recovering("QQmlEngine::setObjectOwnership")
-
 	C.QQmlEngine_QQmlEngine_SetObjectOwnership(core.PointerFromQObject(object), C.longlong(ownership))
 }
 
 func (ptr *QQmlEngine) SetOutputWarningsToStandardError(enabled bool) {
-	defer qt.Recovering("QQmlEngine::setOutputWarningsToStandardError")
-
 	if ptr.Pointer() != nil {
 		C.QQmlEngine_SetOutputWarningsToStandardError(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(enabled))))
 	}
 }
 
 func (ptr *QQmlEngine) SetPluginPathList(paths []string) {
-	defer qt.Recovering("QQmlEngine::setPluginPathList")
-
 	if ptr.Pointer() != nil {
 		var pathsC = C.CString(strings.Join(paths, "|"))
 		defer C.free(unsafe.Pointer(pathsC))
@@ -3949,8 +3234,6 @@ func (ptr *QQmlEngine) SetPluginPathList(paths []string) {
 }
 
 func (ptr *QQmlEngine) TrimComponentCache() {
-	defer qt.Recovering("QQmlEngine::trimComponentCache")
-
 	if ptr.Pointer() != nil {
 		C.QQmlEngine_TrimComponentCache(ptr.Pointer())
 	}
@@ -3958,7 +3241,6 @@ func (ptr *QQmlEngine) TrimComponentCache() {
 
 //export callbackQQmlEngine_DestroyQQmlEngine
 func callbackQQmlEngine_DestroyQQmlEngine(ptr unsafe.Pointer) {
-	defer qt.Recovering("callback QQmlEngine::~QQmlEngine")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QQmlEngine::~QQmlEngine"); signal != nil {
 		signal.(func())()
@@ -3968,8 +3250,6 @@ func callbackQQmlEngine_DestroyQQmlEngine(ptr unsafe.Pointer) {
 }
 
 func (ptr *QQmlEngine) ConnectDestroyQQmlEngine(f func()) {
-	defer qt.Recovering("connect QQmlEngine::~QQmlEngine")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QQmlEngine::~QQmlEngine", f)
@@ -3977,8 +3257,6 @@ func (ptr *QQmlEngine) ConnectDestroyQQmlEngine(f func()) {
 }
 
 func (ptr *QQmlEngine) DisconnectDestroyQQmlEngine() {
-	defer qt.Recovering("disconnect QQmlEngine::~QQmlEngine")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QQmlEngine::~QQmlEngine")
@@ -3986,8 +3264,6 @@ func (ptr *QQmlEngine) DisconnectDestroyQQmlEngine() {
 }
 
 func (ptr *QQmlEngine) DestroyQQmlEngine() {
-	defer qt.Recovering("QQmlEngine::~QQmlEngine")
-
 	if ptr.Pointer() != nil {
 		C.QQmlEngine_DestroyQQmlEngine(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
@@ -3996,8 +3272,6 @@ func (ptr *QQmlEngine) DestroyQQmlEngine() {
 }
 
 func (ptr *QQmlEngine) DestroyQQmlEngineDefault() {
-	defer qt.Recovering("QQmlEngine::~QQmlEngine")
-
 	if ptr.Pointer() != nil {
 		C.QQmlEngine_DestroyQQmlEngineDefault(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
@@ -4007,7 +3281,6 @@ func (ptr *QQmlEngine) DestroyQQmlEngineDefault() {
 
 //export callbackQQmlEngine_TimerEvent
 func callbackQQmlEngine_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	defer qt.Recovering("callback QQmlEngine::timerEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QQmlEngine::timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
@@ -4017,8 +3290,6 @@ func callbackQQmlEngine_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 }
 
 func (ptr *QQmlEngine) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
-	defer qt.Recovering("connect QQmlEngine::timerEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QQmlEngine::timerEvent", f)
@@ -4026,8 +3297,6 @@ func (ptr *QQmlEngine) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
 }
 
 func (ptr *QQmlEngine) DisconnectTimerEvent() {
-	defer qt.Recovering("disconnect QQmlEngine::timerEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QQmlEngine::timerEvent")
@@ -4035,16 +3304,12 @@ func (ptr *QQmlEngine) DisconnectTimerEvent() {
 }
 
 func (ptr *QQmlEngine) TimerEvent(event core.QTimerEvent_ITF) {
-	defer qt.Recovering("QQmlEngine::timerEvent")
-
 	if ptr.Pointer() != nil {
 		C.QQmlEngine_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
 	}
 }
 
 func (ptr *QQmlEngine) TimerEventDefault(event core.QTimerEvent_ITF) {
-	defer qt.Recovering("QQmlEngine::timerEvent")
-
 	if ptr.Pointer() != nil {
 		C.QQmlEngine_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
 	}
@@ -4052,7 +3317,6 @@ func (ptr *QQmlEngine) TimerEventDefault(event core.QTimerEvent_ITF) {
 
 //export callbackQQmlEngine_ChildEvent
 func callbackQQmlEngine_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	defer qt.Recovering("callback QQmlEngine::childEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QQmlEngine::childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
@@ -4062,8 +3326,6 @@ func callbackQQmlEngine_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 }
 
 func (ptr *QQmlEngine) ConnectChildEvent(f func(event *core.QChildEvent)) {
-	defer qt.Recovering("connect QQmlEngine::childEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QQmlEngine::childEvent", f)
@@ -4071,8 +3333,6 @@ func (ptr *QQmlEngine) ConnectChildEvent(f func(event *core.QChildEvent)) {
 }
 
 func (ptr *QQmlEngine) DisconnectChildEvent() {
-	defer qt.Recovering("disconnect QQmlEngine::childEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QQmlEngine::childEvent")
@@ -4080,16 +3340,12 @@ func (ptr *QQmlEngine) DisconnectChildEvent() {
 }
 
 func (ptr *QQmlEngine) ChildEvent(event core.QChildEvent_ITF) {
-	defer qt.Recovering("QQmlEngine::childEvent")
-
 	if ptr.Pointer() != nil {
 		C.QQmlEngine_ChildEvent(ptr.Pointer(), core.PointerFromQChildEvent(event))
 	}
 }
 
 func (ptr *QQmlEngine) ChildEventDefault(event core.QChildEvent_ITF) {
-	defer qt.Recovering("QQmlEngine::childEvent")
-
 	if ptr.Pointer() != nil {
 		C.QQmlEngine_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
 	}
@@ -4097,7 +3353,6 @@ func (ptr *QQmlEngine) ChildEventDefault(event core.QChildEvent_ITF) {
 
 //export callbackQQmlEngine_ConnectNotify
 func callbackQQmlEngine_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-	defer qt.Recovering("callback QQmlEngine::connectNotify")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QQmlEngine::connectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
@@ -4107,8 +3362,6 @@ func callbackQQmlEngine_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
 }
 
 func (ptr *QQmlEngine) ConnectConnectNotify(f func(sign *core.QMetaMethod)) {
-	defer qt.Recovering("connect QQmlEngine::connectNotify")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QQmlEngine::connectNotify", f)
@@ -4116,8 +3369,6 @@ func (ptr *QQmlEngine) ConnectConnectNotify(f func(sign *core.QMetaMethod)) {
 }
 
 func (ptr *QQmlEngine) DisconnectConnectNotify() {
-	defer qt.Recovering("disconnect QQmlEngine::connectNotify")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QQmlEngine::connectNotify")
@@ -4125,16 +3376,12 @@ func (ptr *QQmlEngine) DisconnectConnectNotify() {
 }
 
 func (ptr *QQmlEngine) ConnectNotify(sign core.QMetaMethod_ITF) {
-	defer qt.Recovering("QQmlEngine::connectNotify")
-
 	if ptr.Pointer() != nil {
 		C.QQmlEngine_ConnectNotify(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
 	}
 }
 
 func (ptr *QQmlEngine) ConnectNotifyDefault(sign core.QMetaMethod_ITF) {
-	defer qt.Recovering("QQmlEngine::connectNotify")
-
 	if ptr.Pointer() != nil {
 		C.QQmlEngine_ConnectNotifyDefault(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
 	}
@@ -4142,7 +3389,6 @@ func (ptr *QQmlEngine) ConnectNotifyDefault(sign core.QMetaMethod_ITF) {
 
 //export callbackQQmlEngine_CustomEvent
 func callbackQQmlEngine_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	defer qt.Recovering("callback QQmlEngine::customEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QQmlEngine::customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
@@ -4152,8 +3398,6 @@ func callbackQQmlEngine_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 }
 
 func (ptr *QQmlEngine) ConnectCustomEvent(f func(event *core.QEvent)) {
-	defer qt.Recovering("connect QQmlEngine::customEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QQmlEngine::customEvent", f)
@@ -4161,8 +3405,6 @@ func (ptr *QQmlEngine) ConnectCustomEvent(f func(event *core.QEvent)) {
 }
 
 func (ptr *QQmlEngine) DisconnectCustomEvent() {
-	defer qt.Recovering("disconnect QQmlEngine::customEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QQmlEngine::customEvent")
@@ -4170,16 +3412,12 @@ func (ptr *QQmlEngine) DisconnectCustomEvent() {
 }
 
 func (ptr *QQmlEngine) CustomEvent(event core.QEvent_ITF) {
-	defer qt.Recovering("QQmlEngine::customEvent")
-
 	if ptr.Pointer() != nil {
 		C.QQmlEngine_CustomEvent(ptr.Pointer(), core.PointerFromQEvent(event))
 	}
 }
 
 func (ptr *QQmlEngine) CustomEventDefault(event core.QEvent_ITF) {
-	defer qt.Recovering("QQmlEngine::customEvent")
-
 	if ptr.Pointer() != nil {
 		C.QQmlEngine_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
 	}
@@ -4187,8 +3425,6 @@ func (ptr *QQmlEngine) CustomEventDefault(event core.QEvent_ITF) {
 
 //export callbackQQmlEngine_DeleteLater
 func callbackQQmlEngine_DeleteLater(ptr unsafe.Pointer) {
-	defer qt.Recovering("callback QQmlEngine::deleteLater")
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QQmlEngine::deleteLater"); signal != nil {
 		signal.(func())()
 	} else {
@@ -4197,8 +3433,6 @@ func callbackQQmlEngine_DeleteLater(ptr unsafe.Pointer) {
 }
 
 func (ptr *QQmlEngine) ConnectDeleteLater(f func()) {
-	defer qt.Recovering("connect QQmlEngine::deleteLater")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QQmlEngine::deleteLater", f)
@@ -4206,8 +3440,6 @@ func (ptr *QQmlEngine) ConnectDeleteLater(f func()) {
 }
 
 func (ptr *QQmlEngine) DisconnectDeleteLater() {
-	defer qt.Recovering("disconnect QQmlEngine::deleteLater")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QQmlEngine::deleteLater")
@@ -4215,8 +3447,6 @@ func (ptr *QQmlEngine) DisconnectDeleteLater() {
 }
 
 func (ptr *QQmlEngine) DeleteLater() {
-	defer qt.Recovering("QQmlEngine::deleteLater")
-
 	if ptr.Pointer() != nil {
 		C.QQmlEngine_DeleteLater(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
@@ -4225,8 +3455,6 @@ func (ptr *QQmlEngine) DeleteLater() {
 }
 
 func (ptr *QQmlEngine) DeleteLaterDefault() {
-	defer qt.Recovering("QQmlEngine::deleteLater")
-
 	if ptr.Pointer() != nil {
 		C.QQmlEngine_DeleteLaterDefault(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
@@ -4236,7 +3464,6 @@ func (ptr *QQmlEngine) DeleteLaterDefault() {
 
 //export callbackQQmlEngine_DisconnectNotify
 func callbackQQmlEngine_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-	defer qt.Recovering("callback QQmlEngine::disconnectNotify")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QQmlEngine::disconnectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
@@ -4246,8 +3473,6 @@ func callbackQQmlEngine_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer
 }
 
 func (ptr *QQmlEngine) ConnectDisconnectNotify(f func(sign *core.QMetaMethod)) {
-	defer qt.Recovering("connect QQmlEngine::disconnectNotify")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QQmlEngine::disconnectNotify", f)
@@ -4255,8 +3480,6 @@ func (ptr *QQmlEngine) ConnectDisconnectNotify(f func(sign *core.QMetaMethod)) {
 }
 
 func (ptr *QQmlEngine) DisconnectDisconnectNotify() {
-	defer qt.Recovering("disconnect QQmlEngine::disconnectNotify")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QQmlEngine::disconnectNotify")
@@ -4264,16 +3487,12 @@ func (ptr *QQmlEngine) DisconnectDisconnectNotify() {
 }
 
 func (ptr *QQmlEngine) DisconnectNotify(sign core.QMetaMethod_ITF) {
-	defer qt.Recovering("QQmlEngine::disconnectNotify")
-
 	if ptr.Pointer() != nil {
 		C.QQmlEngine_DisconnectNotify(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
 	}
 }
 
 func (ptr *QQmlEngine) DisconnectNotifyDefault(sign core.QMetaMethod_ITF) {
-	defer qt.Recovering("QQmlEngine::disconnectNotify")
-
 	if ptr.Pointer() != nil {
 		C.QQmlEngine_DisconnectNotifyDefault(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
 	}
@@ -4281,7 +3500,6 @@ func (ptr *QQmlEngine) DisconnectNotifyDefault(sign core.QMetaMethod_ITF) {
 
 //export callbackQQmlEngine_EventFilter
 func callbackQQmlEngine_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-	defer qt.Recovering("callback QQmlEngine::eventFilter")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QQmlEngine::eventFilter"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
@@ -4291,8 +3509,6 @@ func callbackQQmlEngine_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, 
 }
 
 func (ptr *QQmlEngine) ConnectEventFilter(f func(watched *core.QObject, event *core.QEvent) bool) {
-	defer qt.Recovering("connect QQmlEngine::eventFilter")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QQmlEngine::eventFilter", f)
@@ -4300,8 +3516,6 @@ func (ptr *QQmlEngine) ConnectEventFilter(f func(watched *core.QObject, event *c
 }
 
 func (ptr *QQmlEngine) DisconnectEventFilter() {
-	defer qt.Recovering("disconnect QQmlEngine::eventFilter")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QQmlEngine::eventFilter")
@@ -4309,8 +3523,6 @@ func (ptr *QQmlEngine) DisconnectEventFilter() {
 }
 
 func (ptr *QQmlEngine) EventFilter(watched core.QObject_ITF, event core.QEvent_ITF) bool {
-	defer qt.Recovering("QQmlEngine::eventFilter")
-
 	if ptr.Pointer() != nil {
 		return C.QQmlEngine_EventFilter(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
 	}
@@ -4318,8 +3530,6 @@ func (ptr *QQmlEngine) EventFilter(watched core.QObject_ITF, event core.QEvent_I
 }
 
 func (ptr *QQmlEngine) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
-	defer qt.Recovering("QQmlEngine::eventFilter")
-
 	if ptr.Pointer() != nil {
 		return C.QQmlEngine_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
 	}
@@ -4328,7 +3538,6 @@ func (ptr *QQmlEngine) EventFilterDefault(watched core.QObject_ITF, event core.Q
 
 //export callbackQQmlEngine_MetaObject
 func callbackQQmlEngine_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-	defer qt.Recovering("callback QQmlEngine::metaObject")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QQmlEngine::metaObject"); signal != nil {
 		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
@@ -4338,8 +3547,6 @@ func callbackQQmlEngine_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
 }
 
 func (ptr *QQmlEngine) ConnectMetaObject(f func() *core.QMetaObject) {
-	defer qt.Recovering("connect QQmlEngine::metaObject")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QQmlEngine::metaObject", f)
@@ -4347,8 +3554,6 @@ func (ptr *QQmlEngine) ConnectMetaObject(f func() *core.QMetaObject) {
 }
 
 func (ptr *QQmlEngine) DisconnectMetaObject() {
-	defer qt.Recovering("disconnect QQmlEngine::metaObject")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QQmlEngine::metaObject")
@@ -4356,8 +3561,6 @@ func (ptr *QQmlEngine) DisconnectMetaObject() {
 }
 
 func (ptr *QQmlEngine) MetaObject() *core.QMetaObject {
-	defer qt.Recovering("QQmlEngine::metaObject")
-
 	if ptr.Pointer() != nil {
 		return core.NewQMetaObjectFromPointer(C.QQmlEngine_MetaObject(ptr.Pointer()))
 	}
@@ -4365,8 +3568,6 @@ func (ptr *QQmlEngine) MetaObject() *core.QMetaObject {
 }
 
 func (ptr *QQmlEngine) MetaObjectDefault() *core.QMetaObject {
-	defer qt.Recovering("QQmlEngine::metaObject")
-
 	if ptr.Pointer() != nil {
 		return core.NewQMetaObjectFromPointer(C.QQmlEngine_MetaObjectDefault(ptr.Pointer()))
 	}
@@ -4417,24 +3618,18 @@ func (ptr *QQmlError) DestroyQQmlError() {
 }
 
 func NewQQmlError() *QQmlError {
-	defer qt.Recovering("QQmlError::QQmlError")
-
 	var tmpValue = NewQQmlErrorFromPointer(C.QQmlError_NewQQmlError())
 	runtime.SetFinalizer(tmpValue, (*QQmlError).DestroyQQmlError)
 	return tmpValue
 }
 
 func NewQQmlError2(other QQmlError_ITF) *QQmlError {
-	defer qt.Recovering("QQmlError::QQmlError")
-
 	var tmpValue = NewQQmlErrorFromPointer(C.QQmlError_NewQQmlError2(PointerFromQQmlError(other)))
 	runtime.SetFinalizer(tmpValue, (*QQmlError).DestroyQQmlError)
 	return tmpValue
 }
 
 func (ptr *QQmlError) Column() int {
-	defer qt.Recovering("QQmlError::column")
-
 	if ptr.Pointer() != nil {
 		return int(int32(C.QQmlError_Column(ptr.Pointer())))
 	}
@@ -4442,8 +3637,6 @@ func (ptr *QQmlError) Column() int {
 }
 
 func (ptr *QQmlError) Description() string {
-	defer qt.Recovering("QQmlError::description")
-
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QQmlError_Description(ptr.Pointer()))
 	}
@@ -4451,8 +3644,6 @@ func (ptr *QQmlError) Description() string {
 }
 
 func (ptr *QQmlError) IsValid() bool {
-	defer qt.Recovering("QQmlError::isValid")
-
 	if ptr.Pointer() != nil {
 		return C.QQmlError_IsValid(ptr.Pointer()) != 0
 	}
@@ -4460,8 +3651,6 @@ func (ptr *QQmlError) IsValid() bool {
 }
 
 func (ptr *QQmlError) Line() int {
-	defer qt.Recovering("QQmlError::line")
-
 	if ptr.Pointer() != nil {
 		return int(int32(C.QQmlError_Line(ptr.Pointer())))
 	}
@@ -4469,8 +3658,6 @@ func (ptr *QQmlError) Line() int {
 }
 
 func (ptr *QQmlError) Object() *core.QObject {
-	defer qt.Recovering("QQmlError::object")
-
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQObjectFromPointer(C.QQmlError_Object(ptr.Pointer()))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
@@ -4482,16 +3669,12 @@ func (ptr *QQmlError) Object() *core.QObject {
 }
 
 func (ptr *QQmlError) SetColumn(column int) {
-	defer qt.Recovering("QQmlError::setColumn")
-
 	if ptr.Pointer() != nil {
 		C.QQmlError_SetColumn(ptr.Pointer(), C.int(int32(column)))
 	}
 }
 
 func (ptr *QQmlError) SetDescription(description string) {
-	defer qt.Recovering("QQmlError::setDescription")
-
 	if ptr.Pointer() != nil {
 		var descriptionC = C.CString(description)
 		defer C.free(unsafe.Pointer(descriptionC))
@@ -4500,32 +3683,24 @@ func (ptr *QQmlError) SetDescription(description string) {
 }
 
 func (ptr *QQmlError) SetLine(line int) {
-	defer qt.Recovering("QQmlError::setLine")
-
 	if ptr.Pointer() != nil {
 		C.QQmlError_SetLine(ptr.Pointer(), C.int(int32(line)))
 	}
 }
 
 func (ptr *QQmlError) SetObject(object core.QObject_ITF) {
-	defer qt.Recovering("QQmlError::setObject")
-
 	if ptr.Pointer() != nil {
 		C.QQmlError_SetObject(ptr.Pointer(), core.PointerFromQObject(object))
 	}
 }
 
 func (ptr *QQmlError) SetUrl(url core.QUrl_ITF) {
-	defer qt.Recovering("QQmlError::setUrl")
-
 	if ptr.Pointer() != nil {
 		C.QQmlError_SetUrl(ptr.Pointer(), core.PointerFromQUrl(url))
 	}
 }
 
 func (ptr *QQmlError) ToString() string {
-	defer qt.Recovering("QQmlError::toString")
-
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QQmlError_ToString(ptr.Pointer()))
 	}
@@ -4533,8 +3708,6 @@ func (ptr *QQmlError) ToString() string {
 }
 
 func (ptr *QQmlError) Url() *core.QUrl {
-	defer qt.Recovering("QQmlError::url")
-
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQUrlFromPointer(C.QQmlError_Url(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*core.QUrl).DestroyQUrl)
@@ -4582,8 +3755,6 @@ func NewQQmlExpressionFromPointer(ptr unsafe.Pointer) *QQmlExpression {
 	return n
 }
 func NewQQmlExpression() *QQmlExpression {
-	defer qt.Recovering("QQmlExpression::QQmlExpression")
-
 	var tmpValue = NewQQmlExpressionFromPointer(C.QQmlExpression_NewQQmlExpression())
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
@@ -4592,8 +3763,6 @@ func NewQQmlExpression() *QQmlExpression {
 }
 
 func NewQQmlExpression2(ctxt QQmlContext_ITF, scope core.QObject_ITF, expression string, parent core.QObject_ITF) *QQmlExpression {
-	defer qt.Recovering("QQmlExpression::QQmlExpression")
-
 	var expressionC = C.CString(expression)
 	defer C.free(unsafe.Pointer(expressionC))
 	var tmpValue = NewQQmlExpressionFromPointer(C.QQmlExpression_NewQQmlExpression2(PointerFromQQmlContext(ctxt), core.PointerFromQObject(scope), expressionC, core.PointerFromQObject(parent)))
@@ -4604,8 +3773,6 @@ func NewQQmlExpression2(ctxt QQmlContext_ITF, scope core.QObject_ITF, expression
 }
 
 func NewQQmlExpression3(script QQmlScriptString_ITF, ctxt QQmlContext_ITF, scope core.QObject_ITF, parent core.QObject_ITF) *QQmlExpression {
-	defer qt.Recovering("QQmlExpression::QQmlExpression")
-
 	var tmpValue = NewQQmlExpressionFromPointer(C.QQmlExpression_NewQQmlExpression3(PointerFromQQmlScriptString(script), PointerFromQQmlContext(ctxt), core.PointerFromQObject(scope), core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
@@ -4614,16 +3781,12 @@ func NewQQmlExpression3(script QQmlScriptString_ITF, ctxt QQmlContext_ITF, scope
 }
 
 func (ptr *QQmlExpression) ClearError() {
-	defer qt.Recovering("QQmlExpression::clearError")
-
 	if ptr.Pointer() != nil {
 		C.QQmlExpression_ClearError(ptr.Pointer())
 	}
 }
 
 func (ptr *QQmlExpression) ColumnNumber() int {
-	defer qt.Recovering("QQmlExpression::columnNumber")
-
 	if ptr.Pointer() != nil {
 		return int(int32(C.QQmlExpression_ColumnNumber(ptr.Pointer())))
 	}
@@ -4631,8 +3794,6 @@ func (ptr *QQmlExpression) ColumnNumber() int {
 }
 
 func (ptr *QQmlExpression) Context() *QQmlContext {
-	defer qt.Recovering("QQmlExpression::context")
-
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQQmlContextFromPointer(C.QQmlExpression_Context(ptr.Pointer()))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
@@ -4644,8 +3805,6 @@ func (ptr *QQmlExpression) Context() *QQmlContext {
 }
 
 func (ptr *QQmlExpression) Engine() *QQmlEngine {
-	defer qt.Recovering("QQmlExpression::engine")
-
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQQmlEngineFromPointer(C.QQmlExpression_Engine(ptr.Pointer()))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
@@ -4657,8 +3816,6 @@ func (ptr *QQmlExpression) Engine() *QQmlEngine {
 }
 
 func (ptr *QQmlExpression) Error() *QQmlError {
-	defer qt.Recovering("QQmlExpression::error")
-
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQQmlErrorFromPointer(C.QQmlExpression_Error(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*QQmlError).DestroyQQmlError)
@@ -4668,8 +3825,6 @@ func (ptr *QQmlExpression) Error() *QQmlError {
 }
 
 func (ptr *QQmlExpression) Evaluate(valueIsUndefined bool) *core.QVariant {
-	defer qt.Recovering("QQmlExpression::evaluate")
-
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQVariantFromPointer(C.QQmlExpression_Evaluate(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(valueIsUndefined)))))
 		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
@@ -4679,8 +3834,6 @@ func (ptr *QQmlExpression) Evaluate(valueIsUndefined bool) *core.QVariant {
 }
 
 func (ptr *QQmlExpression) Expression() string {
-	defer qt.Recovering("QQmlExpression::expression")
-
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QQmlExpression_Expression(ptr.Pointer()))
 	}
@@ -4688,8 +3841,6 @@ func (ptr *QQmlExpression) Expression() string {
 }
 
 func (ptr *QQmlExpression) HasError() bool {
-	defer qt.Recovering("QQmlExpression::hasError")
-
 	if ptr.Pointer() != nil {
 		return C.QQmlExpression_HasError(ptr.Pointer()) != 0
 	}
@@ -4697,8 +3848,6 @@ func (ptr *QQmlExpression) HasError() bool {
 }
 
 func (ptr *QQmlExpression) LineNumber() int {
-	defer qt.Recovering("QQmlExpression::lineNumber")
-
 	if ptr.Pointer() != nil {
 		return int(int32(C.QQmlExpression_LineNumber(ptr.Pointer())))
 	}
@@ -4706,8 +3855,6 @@ func (ptr *QQmlExpression) LineNumber() int {
 }
 
 func (ptr *QQmlExpression) NotifyOnValueChanged() bool {
-	defer qt.Recovering("QQmlExpression::notifyOnValueChanged")
-
 	if ptr.Pointer() != nil {
 		return C.QQmlExpression_NotifyOnValueChanged(ptr.Pointer()) != 0
 	}
@@ -4715,8 +3862,6 @@ func (ptr *QQmlExpression) NotifyOnValueChanged() bool {
 }
 
 func (ptr *QQmlExpression) ScopeObject() *core.QObject {
-	defer qt.Recovering("QQmlExpression::scopeObject")
-
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQObjectFromPointer(C.QQmlExpression_ScopeObject(ptr.Pointer()))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
@@ -4728,8 +3873,6 @@ func (ptr *QQmlExpression) ScopeObject() *core.QObject {
 }
 
 func (ptr *QQmlExpression) SetExpression(expression string) {
-	defer qt.Recovering("QQmlExpression::setExpression")
-
 	if ptr.Pointer() != nil {
 		var expressionC = C.CString(expression)
 		defer C.free(unsafe.Pointer(expressionC))
@@ -4738,16 +3881,12 @@ func (ptr *QQmlExpression) SetExpression(expression string) {
 }
 
 func (ptr *QQmlExpression) SetNotifyOnValueChanged(notifyOnChange bool) {
-	defer qt.Recovering("QQmlExpression::setNotifyOnValueChanged")
-
 	if ptr.Pointer() != nil {
 		C.QQmlExpression_SetNotifyOnValueChanged(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(notifyOnChange))))
 	}
 }
 
 func (ptr *QQmlExpression) SetSourceLocation(url string, line int, column int) {
-	defer qt.Recovering("QQmlExpression::setSourceLocation")
-
 	if ptr.Pointer() != nil {
 		var urlC = C.CString(url)
 		defer C.free(unsafe.Pointer(urlC))
@@ -4756,8 +3895,6 @@ func (ptr *QQmlExpression) SetSourceLocation(url string, line int, column int) {
 }
 
 func (ptr *QQmlExpression) SourceFile() string {
-	defer qt.Recovering("QQmlExpression::sourceFile")
-
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QQmlExpression_SourceFile(ptr.Pointer()))
 	}
@@ -4766,7 +3903,6 @@ func (ptr *QQmlExpression) SourceFile() string {
 
 //export callbackQQmlExpression_ValueChanged
 func callbackQQmlExpression_ValueChanged(ptr unsafe.Pointer) {
-	defer qt.Recovering("callback QQmlExpression::valueChanged")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QQmlExpression::valueChanged"); signal != nil {
 		signal.(func())()
@@ -4775,8 +3911,6 @@ func callbackQQmlExpression_ValueChanged(ptr unsafe.Pointer) {
 }
 
 func (ptr *QQmlExpression) ConnectValueChanged(f func()) {
-	defer qt.Recovering("connect QQmlExpression::valueChanged")
-
 	if ptr.Pointer() != nil {
 		C.QQmlExpression_ConnectValueChanged(ptr.Pointer())
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QQmlExpression::valueChanged", f)
@@ -4784,8 +3918,6 @@ func (ptr *QQmlExpression) ConnectValueChanged(f func()) {
 }
 
 func (ptr *QQmlExpression) DisconnectValueChanged() {
-	defer qt.Recovering("disconnect QQmlExpression::valueChanged")
-
 	if ptr.Pointer() != nil {
 		C.QQmlExpression_DisconnectValueChanged(ptr.Pointer())
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QQmlExpression::valueChanged")
@@ -4793,8 +3925,6 @@ func (ptr *QQmlExpression) DisconnectValueChanged() {
 }
 
 func (ptr *QQmlExpression) ValueChanged() {
-	defer qt.Recovering("QQmlExpression::valueChanged")
-
 	if ptr.Pointer() != nil {
 		C.QQmlExpression_ValueChanged(ptr.Pointer())
 	}
@@ -4802,7 +3932,6 @@ func (ptr *QQmlExpression) ValueChanged() {
 
 //export callbackQQmlExpression_DestroyQQmlExpression
 func callbackQQmlExpression_DestroyQQmlExpression(ptr unsafe.Pointer) {
-	defer qt.Recovering("callback QQmlExpression::~QQmlExpression")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QQmlExpression::~QQmlExpression"); signal != nil {
 		signal.(func())()
@@ -4812,8 +3941,6 @@ func callbackQQmlExpression_DestroyQQmlExpression(ptr unsafe.Pointer) {
 }
 
 func (ptr *QQmlExpression) ConnectDestroyQQmlExpression(f func()) {
-	defer qt.Recovering("connect QQmlExpression::~QQmlExpression")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QQmlExpression::~QQmlExpression", f)
@@ -4821,8 +3948,6 @@ func (ptr *QQmlExpression) ConnectDestroyQQmlExpression(f func()) {
 }
 
 func (ptr *QQmlExpression) DisconnectDestroyQQmlExpression() {
-	defer qt.Recovering("disconnect QQmlExpression::~QQmlExpression")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QQmlExpression::~QQmlExpression")
@@ -4830,8 +3955,6 @@ func (ptr *QQmlExpression) DisconnectDestroyQQmlExpression() {
 }
 
 func (ptr *QQmlExpression) DestroyQQmlExpression() {
-	defer qt.Recovering("QQmlExpression::~QQmlExpression")
-
 	if ptr.Pointer() != nil {
 		C.QQmlExpression_DestroyQQmlExpression(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
@@ -4840,8 +3963,6 @@ func (ptr *QQmlExpression) DestroyQQmlExpression() {
 }
 
 func (ptr *QQmlExpression) DestroyQQmlExpressionDefault() {
-	defer qt.Recovering("QQmlExpression::~QQmlExpression")
-
 	if ptr.Pointer() != nil {
 		C.QQmlExpression_DestroyQQmlExpressionDefault(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
@@ -4851,7 +3972,6 @@ func (ptr *QQmlExpression) DestroyQQmlExpressionDefault() {
 
 //export callbackQQmlExpression_TimerEvent
 func callbackQQmlExpression_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	defer qt.Recovering("callback QQmlExpression::timerEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QQmlExpression::timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
@@ -4861,8 +3981,6 @@ func callbackQQmlExpression_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer)
 }
 
 func (ptr *QQmlExpression) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
-	defer qt.Recovering("connect QQmlExpression::timerEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QQmlExpression::timerEvent", f)
@@ -4870,8 +3988,6 @@ func (ptr *QQmlExpression) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
 }
 
 func (ptr *QQmlExpression) DisconnectTimerEvent() {
-	defer qt.Recovering("disconnect QQmlExpression::timerEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QQmlExpression::timerEvent")
@@ -4879,16 +3995,12 @@ func (ptr *QQmlExpression) DisconnectTimerEvent() {
 }
 
 func (ptr *QQmlExpression) TimerEvent(event core.QTimerEvent_ITF) {
-	defer qt.Recovering("QQmlExpression::timerEvent")
-
 	if ptr.Pointer() != nil {
 		C.QQmlExpression_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
 	}
 }
 
 func (ptr *QQmlExpression) TimerEventDefault(event core.QTimerEvent_ITF) {
-	defer qt.Recovering("QQmlExpression::timerEvent")
-
 	if ptr.Pointer() != nil {
 		C.QQmlExpression_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
 	}
@@ -4896,7 +4008,6 @@ func (ptr *QQmlExpression) TimerEventDefault(event core.QTimerEvent_ITF) {
 
 //export callbackQQmlExpression_ChildEvent
 func callbackQQmlExpression_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	defer qt.Recovering("callback QQmlExpression::childEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QQmlExpression::childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
@@ -4906,8 +4017,6 @@ func callbackQQmlExpression_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer)
 }
 
 func (ptr *QQmlExpression) ConnectChildEvent(f func(event *core.QChildEvent)) {
-	defer qt.Recovering("connect QQmlExpression::childEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QQmlExpression::childEvent", f)
@@ -4915,8 +4024,6 @@ func (ptr *QQmlExpression) ConnectChildEvent(f func(event *core.QChildEvent)) {
 }
 
 func (ptr *QQmlExpression) DisconnectChildEvent() {
-	defer qt.Recovering("disconnect QQmlExpression::childEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QQmlExpression::childEvent")
@@ -4924,16 +4031,12 @@ func (ptr *QQmlExpression) DisconnectChildEvent() {
 }
 
 func (ptr *QQmlExpression) ChildEvent(event core.QChildEvent_ITF) {
-	defer qt.Recovering("QQmlExpression::childEvent")
-
 	if ptr.Pointer() != nil {
 		C.QQmlExpression_ChildEvent(ptr.Pointer(), core.PointerFromQChildEvent(event))
 	}
 }
 
 func (ptr *QQmlExpression) ChildEventDefault(event core.QChildEvent_ITF) {
-	defer qt.Recovering("QQmlExpression::childEvent")
-
 	if ptr.Pointer() != nil {
 		C.QQmlExpression_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
 	}
@@ -4941,7 +4044,6 @@ func (ptr *QQmlExpression) ChildEventDefault(event core.QChildEvent_ITF) {
 
 //export callbackQQmlExpression_ConnectNotify
 func callbackQQmlExpression_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-	defer qt.Recovering("callback QQmlExpression::connectNotify")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QQmlExpression::connectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
@@ -4951,8 +4053,6 @@ func callbackQQmlExpression_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointe
 }
 
 func (ptr *QQmlExpression) ConnectConnectNotify(f func(sign *core.QMetaMethod)) {
-	defer qt.Recovering("connect QQmlExpression::connectNotify")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QQmlExpression::connectNotify", f)
@@ -4960,8 +4060,6 @@ func (ptr *QQmlExpression) ConnectConnectNotify(f func(sign *core.QMetaMethod)) 
 }
 
 func (ptr *QQmlExpression) DisconnectConnectNotify() {
-	defer qt.Recovering("disconnect QQmlExpression::connectNotify")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QQmlExpression::connectNotify")
@@ -4969,16 +4067,12 @@ func (ptr *QQmlExpression) DisconnectConnectNotify() {
 }
 
 func (ptr *QQmlExpression) ConnectNotify(sign core.QMetaMethod_ITF) {
-	defer qt.Recovering("QQmlExpression::connectNotify")
-
 	if ptr.Pointer() != nil {
 		C.QQmlExpression_ConnectNotify(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
 	}
 }
 
 func (ptr *QQmlExpression) ConnectNotifyDefault(sign core.QMetaMethod_ITF) {
-	defer qt.Recovering("QQmlExpression::connectNotify")
-
 	if ptr.Pointer() != nil {
 		C.QQmlExpression_ConnectNotifyDefault(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
 	}
@@ -4986,7 +4080,6 @@ func (ptr *QQmlExpression) ConnectNotifyDefault(sign core.QMetaMethod_ITF) {
 
 //export callbackQQmlExpression_CustomEvent
 func callbackQQmlExpression_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	defer qt.Recovering("callback QQmlExpression::customEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QQmlExpression::customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
@@ -4996,8 +4089,6 @@ func callbackQQmlExpression_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer
 }
 
 func (ptr *QQmlExpression) ConnectCustomEvent(f func(event *core.QEvent)) {
-	defer qt.Recovering("connect QQmlExpression::customEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QQmlExpression::customEvent", f)
@@ -5005,8 +4096,6 @@ func (ptr *QQmlExpression) ConnectCustomEvent(f func(event *core.QEvent)) {
 }
 
 func (ptr *QQmlExpression) DisconnectCustomEvent() {
-	defer qt.Recovering("disconnect QQmlExpression::customEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QQmlExpression::customEvent")
@@ -5014,16 +4103,12 @@ func (ptr *QQmlExpression) DisconnectCustomEvent() {
 }
 
 func (ptr *QQmlExpression) CustomEvent(event core.QEvent_ITF) {
-	defer qt.Recovering("QQmlExpression::customEvent")
-
 	if ptr.Pointer() != nil {
 		C.QQmlExpression_CustomEvent(ptr.Pointer(), core.PointerFromQEvent(event))
 	}
 }
 
 func (ptr *QQmlExpression) CustomEventDefault(event core.QEvent_ITF) {
-	defer qt.Recovering("QQmlExpression::customEvent")
-
 	if ptr.Pointer() != nil {
 		C.QQmlExpression_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
 	}
@@ -5031,8 +4116,6 @@ func (ptr *QQmlExpression) CustomEventDefault(event core.QEvent_ITF) {
 
 //export callbackQQmlExpression_DeleteLater
 func callbackQQmlExpression_DeleteLater(ptr unsafe.Pointer) {
-	defer qt.Recovering("callback QQmlExpression::deleteLater")
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QQmlExpression::deleteLater"); signal != nil {
 		signal.(func())()
 	} else {
@@ -5041,8 +4124,6 @@ func callbackQQmlExpression_DeleteLater(ptr unsafe.Pointer) {
 }
 
 func (ptr *QQmlExpression) ConnectDeleteLater(f func()) {
-	defer qt.Recovering("connect QQmlExpression::deleteLater")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QQmlExpression::deleteLater", f)
@@ -5050,8 +4131,6 @@ func (ptr *QQmlExpression) ConnectDeleteLater(f func()) {
 }
 
 func (ptr *QQmlExpression) DisconnectDeleteLater() {
-	defer qt.Recovering("disconnect QQmlExpression::deleteLater")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QQmlExpression::deleteLater")
@@ -5059,8 +4138,6 @@ func (ptr *QQmlExpression) DisconnectDeleteLater() {
 }
 
 func (ptr *QQmlExpression) DeleteLater() {
-	defer qt.Recovering("QQmlExpression::deleteLater")
-
 	if ptr.Pointer() != nil {
 		C.QQmlExpression_DeleteLater(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
@@ -5069,8 +4146,6 @@ func (ptr *QQmlExpression) DeleteLater() {
 }
 
 func (ptr *QQmlExpression) DeleteLaterDefault() {
-	defer qt.Recovering("QQmlExpression::deleteLater")
-
 	if ptr.Pointer() != nil {
 		C.QQmlExpression_DeleteLaterDefault(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
@@ -5080,7 +4155,6 @@ func (ptr *QQmlExpression) DeleteLaterDefault() {
 
 //export callbackQQmlExpression_DisconnectNotify
 func callbackQQmlExpression_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-	defer qt.Recovering("callback QQmlExpression::disconnectNotify")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QQmlExpression::disconnectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
@@ -5090,8 +4164,6 @@ func callbackQQmlExpression_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Poi
 }
 
 func (ptr *QQmlExpression) ConnectDisconnectNotify(f func(sign *core.QMetaMethod)) {
-	defer qt.Recovering("connect QQmlExpression::disconnectNotify")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QQmlExpression::disconnectNotify", f)
@@ -5099,8 +4171,6 @@ func (ptr *QQmlExpression) ConnectDisconnectNotify(f func(sign *core.QMetaMethod
 }
 
 func (ptr *QQmlExpression) DisconnectDisconnectNotify() {
-	defer qt.Recovering("disconnect QQmlExpression::disconnectNotify")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QQmlExpression::disconnectNotify")
@@ -5108,16 +4178,12 @@ func (ptr *QQmlExpression) DisconnectDisconnectNotify() {
 }
 
 func (ptr *QQmlExpression) DisconnectNotify(sign core.QMetaMethod_ITF) {
-	defer qt.Recovering("QQmlExpression::disconnectNotify")
-
 	if ptr.Pointer() != nil {
 		C.QQmlExpression_DisconnectNotify(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
 	}
 }
 
 func (ptr *QQmlExpression) DisconnectNotifyDefault(sign core.QMetaMethod_ITF) {
-	defer qt.Recovering("QQmlExpression::disconnectNotify")
-
 	if ptr.Pointer() != nil {
 		C.QQmlExpression_DisconnectNotifyDefault(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
 	}
@@ -5125,7 +4191,6 @@ func (ptr *QQmlExpression) DisconnectNotifyDefault(sign core.QMetaMethod_ITF) {
 
 //export callbackQQmlExpression_Event
 func callbackQQmlExpression_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
-	defer qt.Recovering("callback QQmlExpression::event")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QQmlExpression::event"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
@@ -5135,8 +4200,6 @@ func callbackQQmlExpression_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
 }
 
 func (ptr *QQmlExpression) ConnectEvent(f func(e *core.QEvent) bool) {
-	defer qt.Recovering("connect QQmlExpression::event")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QQmlExpression::event", f)
@@ -5144,8 +4207,6 @@ func (ptr *QQmlExpression) ConnectEvent(f func(e *core.QEvent) bool) {
 }
 
 func (ptr *QQmlExpression) DisconnectEvent() {
-	defer qt.Recovering("disconnect QQmlExpression::event")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QQmlExpression::event")
@@ -5153,8 +4214,6 @@ func (ptr *QQmlExpression) DisconnectEvent() {
 }
 
 func (ptr *QQmlExpression) Event(e core.QEvent_ITF) bool {
-	defer qt.Recovering("QQmlExpression::event")
-
 	if ptr.Pointer() != nil {
 		return C.QQmlExpression_Event(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
 	}
@@ -5162,8 +4221,6 @@ func (ptr *QQmlExpression) Event(e core.QEvent_ITF) bool {
 }
 
 func (ptr *QQmlExpression) EventDefault(e core.QEvent_ITF) bool {
-	defer qt.Recovering("QQmlExpression::event")
-
 	if ptr.Pointer() != nil {
 		return C.QQmlExpression_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
 	}
@@ -5172,7 +4229,6 @@ func (ptr *QQmlExpression) EventDefault(e core.QEvent_ITF) bool {
 
 //export callbackQQmlExpression_EventFilter
 func callbackQQmlExpression_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-	defer qt.Recovering("callback QQmlExpression::eventFilter")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QQmlExpression::eventFilter"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
@@ -5182,8 +4238,6 @@ func callbackQQmlExpression_EventFilter(ptr unsafe.Pointer, watched unsafe.Point
 }
 
 func (ptr *QQmlExpression) ConnectEventFilter(f func(watched *core.QObject, event *core.QEvent) bool) {
-	defer qt.Recovering("connect QQmlExpression::eventFilter")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QQmlExpression::eventFilter", f)
@@ -5191,8 +4245,6 @@ func (ptr *QQmlExpression) ConnectEventFilter(f func(watched *core.QObject, even
 }
 
 func (ptr *QQmlExpression) DisconnectEventFilter() {
-	defer qt.Recovering("disconnect QQmlExpression::eventFilter")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QQmlExpression::eventFilter")
@@ -5200,8 +4252,6 @@ func (ptr *QQmlExpression) DisconnectEventFilter() {
 }
 
 func (ptr *QQmlExpression) EventFilter(watched core.QObject_ITF, event core.QEvent_ITF) bool {
-	defer qt.Recovering("QQmlExpression::eventFilter")
-
 	if ptr.Pointer() != nil {
 		return C.QQmlExpression_EventFilter(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
 	}
@@ -5209,8 +4259,6 @@ func (ptr *QQmlExpression) EventFilter(watched core.QObject_ITF, event core.QEve
 }
 
 func (ptr *QQmlExpression) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
-	defer qt.Recovering("QQmlExpression::eventFilter")
-
 	if ptr.Pointer() != nil {
 		return C.QQmlExpression_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
 	}
@@ -5219,7 +4267,6 @@ func (ptr *QQmlExpression) EventFilterDefault(watched core.QObject_ITF, event co
 
 //export callbackQQmlExpression_MetaObject
 func callbackQQmlExpression_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-	defer qt.Recovering("callback QQmlExpression::metaObject")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QQmlExpression::metaObject"); signal != nil {
 		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
@@ -5229,8 +4276,6 @@ func callbackQQmlExpression_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
 }
 
 func (ptr *QQmlExpression) ConnectMetaObject(f func() *core.QMetaObject) {
-	defer qt.Recovering("connect QQmlExpression::metaObject")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QQmlExpression::metaObject", f)
@@ -5238,8 +4283,6 @@ func (ptr *QQmlExpression) ConnectMetaObject(f func() *core.QMetaObject) {
 }
 
 func (ptr *QQmlExpression) DisconnectMetaObject() {
-	defer qt.Recovering("disconnect QQmlExpression::metaObject")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QQmlExpression::metaObject")
@@ -5247,8 +4290,6 @@ func (ptr *QQmlExpression) DisconnectMetaObject() {
 }
 
 func (ptr *QQmlExpression) MetaObject() *core.QMetaObject {
-	defer qt.Recovering("QQmlExpression::metaObject")
-
 	if ptr.Pointer() != nil {
 		return core.NewQMetaObjectFromPointer(C.QQmlExpression_MetaObject(ptr.Pointer()))
 	}
@@ -5256,8 +4297,6 @@ func (ptr *QQmlExpression) MetaObject() *core.QMetaObject {
 }
 
 func (ptr *QQmlExpression) MetaObjectDefault() *core.QMetaObject {
-	defer qt.Recovering("QQmlExpression::metaObject")
-
 	if ptr.Pointer() != nil {
 		return core.NewQMetaObjectFromPointer(C.QQmlExpression_MetaObjectDefault(ptr.Pointer()))
 	}
@@ -5311,7 +4350,6 @@ func (ptr *QQmlExtensionPlugin) DestroyQQmlExtensionPlugin() {
 
 //export callbackQQmlExtensionPlugin_InitializeEngine
 func callbackQQmlExtensionPlugin_InitializeEngine(ptr unsafe.Pointer, engine unsafe.Pointer, uri *C.char) {
-	defer qt.Recovering("callback QQmlExtensionPlugin::initializeEngine")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QQmlExtensionPlugin::initializeEngine"); signal != nil {
 		signal.(func(*QQmlEngine, string))(NewQQmlEngineFromPointer(engine), C.GoString(uri))
@@ -5321,8 +4359,6 @@ func callbackQQmlExtensionPlugin_InitializeEngine(ptr unsafe.Pointer, engine uns
 }
 
 func (ptr *QQmlExtensionPlugin) ConnectInitializeEngine(f func(engine *QQmlEngine, uri string)) {
-	defer qt.Recovering("connect QQmlExtensionPlugin::initializeEngine")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QQmlExtensionPlugin::initializeEngine", f)
@@ -5330,8 +4366,6 @@ func (ptr *QQmlExtensionPlugin) ConnectInitializeEngine(f func(engine *QQmlEngin
 }
 
 func (ptr *QQmlExtensionPlugin) DisconnectInitializeEngine() {
-	defer qt.Recovering("disconnect QQmlExtensionPlugin::initializeEngine")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QQmlExtensionPlugin::initializeEngine")
@@ -5339,8 +4373,6 @@ func (ptr *QQmlExtensionPlugin) DisconnectInitializeEngine() {
 }
 
 func (ptr *QQmlExtensionPlugin) InitializeEngine(engine QQmlEngine_ITF, uri string) {
-	defer qt.Recovering("QQmlExtensionPlugin::initializeEngine")
-
 	if ptr.Pointer() != nil {
 		var uriC = C.CString(uri)
 		defer C.free(unsafe.Pointer(uriC))
@@ -5349,8 +4381,6 @@ func (ptr *QQmlExtensionPlugin) InitializeEngine(engine QQmlEngine_ITF, uri stri
 }
 
 func (ptr *QQmlExtensionPlugin) InitializeEngineDefault(engine QQmlEngine_ITF, uri string) {
-	defer qt.Recovering("QQmlExtensionPlugin::initializeEngine")
-
 	if ptr.Pointer() != nil {
 		var uriC = C.CString(uri)
 		defer C.free(unsafe.Pointer(uriC))
@@ -5359,8 +4389,6 @@ func (ptr *QQmlExtensionPlugin) InitializeEngineDefault(engine QQmlEngine_ITF, u
 }
 
 func NewQQmlExtensionPlugin(parent core.QObject_ITF) *QQmlExtensionPlugin {
-	defer qt.Recovering("QQmlExtensionPlugin::QQmlExtensionPlugin")
-
 	var tmpValue = NewQQmlExtensionPluginFromPointer(C.QQmlExtensionPlugin_NewQQmlExtensionPlugin(core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
@@ -5369,8 +4397,6 @@ func NewQQmlExtensionPlugin(parent core.QObject_ITF) *QQmlExtensionPlugin {
 }
 
 func (ptr *QQmlExtensionPlugin) BaseUrl() *core.QUrl {
-	defer qt.Recovering("QQmlExtensionPlugin::baseUrl")
-
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQUrlFromPointer(C.QQmlExtensionPlugin_BaseUrl(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*core.QUrl).DestroyQUrl)
@@ -5381,7 +4407,6 @@ func (ptr *QQmlExtensionPlugin) BaseUrl() *core.QUrl {
 
 //export callbackQQmlExtensionPlugin_RegisterTypes
 func callbackQQmlExtensionPlugin_RegisterTypes(ptr unsafe.Pointer, uri *C.char) {
-	defer qt.Recovering("callback QQmlExtensionPlugin::registerTypes")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QQmlExtensionPlugin::registerTypes"); signal != nil {
 		signal.(func(string))(C.GoString(uri))
@@ -5390,8 +4415,6 @@ func callbackQQmlExtensionPlugin_RegisterTypes(ptr unsafe.Pointer, uri *C.char) 
 }
 
 func (ptr *QQmlExtensionPlugin) ConnectRegisterTypes(f func(uri string)) {
-	defer qt.Recovering("connect QQmlExtensionPlugin::registerTypes")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QQmlExtensionPlugin::registerTypes", f)
@@ -5399,8 +4422,6 @@ func (ptr *QQmlExtensionPlugin) ConnectRegisterTypes(f func(uri string)) {
 }
 
 func (ptr *QQmlExtensionPlugin) DisconnectRegisterTypes(uri string) {
-	defer qt.Recovering("disconnect QQmlExtensionPlugin::registerTypes")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QQmlExtensionPlugin::registerTypes")
@@ -5408,8 +4429,6 @@ func (ptr *QQmlExtensionPlugin) DisconnectRegisterTypes(uri string) {
 }
 
 func (ptr *QQmlExtensionPlugin) RegisterTypes(uri string) {
-	defer qt.Recovering("QQmlExtensionPlugin::registerTypes")
-
 	if ptr.Pointer() != nil {
 		var uriC = C.CString(uri)
 		defer C.free(unsafe.Pointer(uriC))
@@ -5419,7 +4438,6 @@ func (ptr *QQmlExtensionPlugin) RegisterTypes(uri string) {
 
 //export callbackQQmlExtensionPlugin_TimerEvent
 func callbackQQmlExtensionPlugin_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	defer qt.Recovering("callback QQmlExtensionPlugin::timerEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QQmlExtensionPlugin::timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
@@ -5429,8 +4447,6 @@ func callbackQQmlExtensionPlugin_TimerEvent(ptr unsafe.Pointer, event unsafe.Poi
 }
 
 func (ptr *QQmlExtensionPlugin) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
-	defer qt.Recovering("connect QQmlExtensionPlugin::timerEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QQmlExtensionPlugin::timerEvent", f)
@@ -5438,8 +4454,6 @@ func (ptr *QQmlExtensionPlugin) ConnectTimerEvent(f func(event *core.QTimerEvent
 }
 
 func (ptr *QQmlExtensionPlugin) DisconnectTimerEvent() {
-	defer qt.Recovering("disconnect QQmlExtensionPlugin::timerEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QQmlExtensionPlugin::timerEvent")
@@ -5447,16 +4461,12 @@ func (ptr *QQmlExtensionPlugin) DisconnectTimerEvent() {
 }
 
 func (ptr *QQmlExtensionPlugin) TimerEvent(event core.QTimerEvent_ITF) {
-	defer qt.Recovering("QQmlExtensionPlugin::timerEvent")
-
 	if ptr.Pointer() != nil {
 		C.QQmlExtensionPlugin_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
 	}
 }
 
 func (ptr *QQmlExtensionPlugin) TimerEventDefault(event core.QTimerEvent_ITF) {
-	defer qt.Recovering("QQmlExtensionPlugin::timerEvent")
-
 	if ptr.Pointer() != nil {
 		C.QQmlExtensionPlugin_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
 	}
@@ -5464,7 +4474,6 @@ func (ptr *QQmlExtensionPlugin) TimerEventDefault(event core.QTimerEvent_ITF) {
 
 //export callbackQQmlExtensionPlugin_ChildEvent
 func callbackQQmlExtensionPlugin_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	defer qt.Recovering("callback QQmlExtensionPlugin::childEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QQmlExtensionPlugin::childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
@@ -5474,8 +4483,6 @@ func callbackQQmlExtensionPlugin_ChildEvent(ptr unsafe.Pointer, event unsafe.Poi
 }
 
 func (ptr *QQmlExtensionPlugin) ConnectChildEvent(f func(event *core.QChildEvent)) {
-	defer qt.Recovering("connect QQmlExtensionPlugin::childEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QQmlExtensionPlugin::childEvent", f)
@@ -5483,8 +4490,6 @@ func (ptr *QQmlExtensionPlugin) ConnectChildEvent(f func(event *core.QChildEvent
 }
 
 func (ptr *QQmlExtensionPlugin) DisconnectChildEvent() {
-	defer qt.Recovering("disconnect QQmlExtensionPlugin::childEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QQmlExtensionPlugin::childEvent")
@@ -5492,16 +4497,12 @@ func (ptr *QQmlExtensionPlugin) DisconnectChildEvent() {
 }
 
 func (ptr *QQmlExtensionPlugin) ChildEvent(event core.QChildEvent_ITF) {
-	defer qt.Recovering("QQmlExtensionPlugin::childEvent")
-
 	if ptr.Pointer() != nil {
 		C.QQmlExtensionPlugin_ChildEvent(ptr.Pointer(), core.PointerFromQChildEvent(event))
 	}
 }
 
 func (ptr *QQmlExtensionPlugin) ChildEventDefault(event core.QChildEvent_ITF) {
-	defer qt.Recovering("QQmlExtensionPlugin::childEvent")
-
 	if ptr.Pointer() != nil {
 		C.QQmlExtensionPlugin_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
 	}
@@ -5509,7 +4510,6 @@ func (ptr *QQmlExtensionPlugin) ChildEventDefault(event core.QChildEvent_ITF) {
 
 //export callbackQQmlExtensionPlugin_ConnectNotify
 func callbackQQmlExtensionPlugin_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-	defer qt.Recovering("callback QQmlExtensionPlugin::connectNotify")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QQmlExtensionPlugin::connectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
@@ -5519,8 +4519,6 @@ func callbackQQmlExtensionPlugin_ConnectNotify(ptr unsafe.Pointer, sign unsafe.P
 }
 
 func (ptr *QQmlExtensionPlugin) ConnectConnectNotify(f func(sign *core.QMetaMethod)) {
-	defer qt.Recovering("connect QQmlExtensionPlugin::connectNotify")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QQmlExtensionPlugin::connectNotify", f)
@@ -5528,8 +4526,6 @@ func (ptr *QQmlExtensionPlugin) ConnectConnectNotify(f func(sign *core.QMetaMeth
 }
 
 func (ptr *QQmlExtensionPlugin) DisconnectConnectNotify() {
-	defer qt.Recovering("disconnect QQmlExtensionPlugin::connectNotify")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QQmlExtensionPlugin::connectNotify")
@@ -5537,16 +4533,12 @@ func (ptr *QQmlExtensionPlugin) DisconnectConnectNotify() {
 }
 
 func (ptr *QQmlExtensionPlugin) ConnectNotify(sign core.QMetaMethod_ITF) {
-	defer qt.Recovering("QQmlExtensionPlugin::connectNotify")
-
 	if ptr.Pointer() != nil {
 		C.QQmlExtensionPlugin_ConnectNotify(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
 	}
 }
 
 func (ptr *QQmlExtensionPlugin) ConnectNotifyDefault(sign core.QMetaMethod_ITF) {
-	defer qt.Recovering("QQmlExtensionPlugin::connectNotify")
-
 	if ptr.Pointer() != nil {
 		C.QQmlExtensionPlugin_ConnectNotifyDefault(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
 	}
@@ -5554,7 +4546,6 @@ func (ptr *QQmlExtensionPlugin) ConnectNotifyDefault(sign core.QMetaMethod_ITF) 
 
 //export callbackQQmlExtensionPlugin_CustomEvent
 func callbackQQmlExtensionPlugin_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	defer qt.Recovering("callback QQmlExtensionPlugin::customEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QQmlExtensionPlugin::customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
@@ -5564,8 +4555,6 @@ func callbackQQmlExtensionPlugin_CustomEvent(ptr unsafe.Pointer, event unsafe.Po
 }
 
 func (ptr *QQmlExtensionPlugin) ConnectCustomEvent(f func(event *core.QEvent)) {
-	defer qt.Recovering("connect QQmlExtensionPlugin::customEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QQmlExtensionPlugin::customEvent", f)
@@ -5573,8 +4562,6 @@ func (ptr *QQmlExtensionPlugin) ConnectCustomEvent(f func(event *core.QEvent)) {
 }
 
 func (ptr *QQmlExtensionPlugin) DisconnectCustomEvent() {
-	defer qt.Recovering("disconnect QQmlExtensionPlugin::customEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QQmlExtensionPlugin::customEvent")
@@ -5582,16 +4569,12 @@ func (ptr *QQmlExtensionPlugin) DisconnectCustomEvent() {
 }
 
 func (ptr *QQmlExtensionPlugin) CustomEvent(event core.QEvent_ITF) {
-	defer qt.Recovering("QQmlExtensionPlugin::customEvent")
-
 	if ptr.Pointer() != nil {
 		C.QQmlExtensionPlugin_CustomEvent(ptr.Pointer(), core.PointerFromQEvent(event))
 	}
 }
 
 func (ptr *QQmlExtensionPlugin) CustomEventDefault(event core.QEvent_ITF) {
-	defer qt.Recovering("QQmlExtensionPlugin::customEvent")
-
 	if ptr.Pointer() != nil {
 		C.QQmlExtensionPlugin_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
 	}
@@ -5599,8 +4582,6 @@ func (ptr *QQmlExtensionPlugin) CustomEventDefault(event core.QEvent_ITF) {
 
 //export callbackQQmlExtensionPlugin_DeleteLater
 func callbackQQmlExtensionPlugin_DeleteLater(ptr unsafe.Pointer) {
-	defer qt.Recovering("callback QQmlExtensionPlugin::deleteLater")
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QQmlExtensionPlugin::deleteLater"); signal != nil {
 		signal.(func())()
 	} else {
@@ -5609,8 +4590,6 @@ func callbackQQmlExtensionPlugin_DeleteLater(ptr unsafe.Pointer) {
 }
 
 func (ptr *QQmlExtensionPlugin) ConnectDeleteLater(f func()) {
-	defer qt.Recovering("connect QQmlExtensionPlugin::deleteLater")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QQmlExtensionPlugin::deleteLater", f)
@@ -5618,8 +4597,6 @@ func (ptr *QQmlExtensionPlugin) ConnectDeleteLater(f func()) {
 }
 
 func (ptr *QQmlExtensionPlugin) DisconnectDeleteLater() {
-	defer qt.Recovering("disconnect QQmlExtensionPlugin::deleteLater")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QQmlExtensionPlugin::deleteLater")
@@ -5627,8 +4604,6 @@ func (ptr *QQmlExtensionPlugin) DisconnectDeleteLater() {
 }
 
 func (ptr *QQmlExtensionPlugin) DeleteLater() {
-	defer qt.Recovering("QQmlExtensionPlugin::deleteLater")
-
 	if ptr.Pointer() != nil {
 		C.QQmlExtensionPlugin_DeleteLater(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
@@ -5637,8 +4612,6 @@ func (ptr *QQmlExtensionPlugin) DeleteLater() {
 }
 
 func (ptr *QQmlExtensionPlugin) DeleteLaterDefault() {
-	defer qt.Recovering("QQmlExtensionPlugin::deleteLater")
-
 	if ptr.Pointer() != nil {
 		C.QQmlExtensionPlugin_DeleteLaterDefault(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
@@ -5648,7 +4621,6 @@ func (ptr *QQmlExtensionPlugin) DeleteLaterDefault() {
 
 //export callbackQQmlExtensionPlugin_DisconnectNotify
 func callbackQQmlExtensionPlugin_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-	defer qt.Recovering("callback QQmlExtensionPlugin::disconnectNotify")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QQmlExtensionPlugin::disconnectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
@@ -5658,8 +4630,6 @@ func callbackQQmlExtensionPlugin_DisconnectNotify(ptr unsafe.Pointer, sign unsaf
 }
 
 func (ptr *QQmlExtensionPlugin) ConnectDisconnectNotify(f func(sign *core.QMetaMethod)) {
-	defer qt.Recovering("connect QQmlExtensionPlugin::disconnectNotify")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QQmlExtensionPlugin::disconnectNotify", f)
@@ -5667,8 +4637,6 @@ func (ptr *QQmlExtensionPlugin) ConnectDisconnectNotify(f func(sign *core.QMetaM
 }
 
 func (ptr *QQmlExtensionPlugin) DisconnectDisconnectNotify() {
-	defer qt.Recovering("disconnect QQmlExtensionPlugin::disconnectNotify")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QQmlExtensionPlugin::disconnectNotify")
@@ -5676,16 +4644,12 @@ func (ptr *QQmlExtensionPlugin) DisconnectDisconnectNotify() {
 }
 
 func (ptr *QQmlExtensionPlugin) DisconnectNotify(sign core.QMetaMethod_ITF) {
-	defer qt.Recovering("QQmlExtensionPlugin::disconnectNotify")
-
 	if ptr.Pointer() != nil {
 		C.QQmlExtensionPlugin_DisconnectNotify(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
 	}
 }
 
 func (ptr *QQmlExtensionPlugin) DisconnectNotifyDefault(sign core.QMetaMethod_ITF) {
-	defer qt.Recovering("QQmlExtensionPlugin::disconnectNotify")
-
 	if ptr.Pointer() != nil {
 		C.QQmlExtensionPlugin_DisconnectNotifyDefault(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
 	}
@@ -5693,7 +4657,6 @@ func (ptr *QQmlExtensionPlugin) DisconnectNotifyDefault(sign core.QMetaMethod_IT
 
 //export callbackQQmlExtensionPlugin_Event
 func callbackQQmlExtensionPlugin_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
-	defer qt.Recovering("callback QQmlExtensionPlugin::event")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QQmlExtensionPlugin::event"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
@@ -5703,8 +4666,6 @@ func callbackQQmlExtensionPlugin_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.c
 }
 
 func (ptr *QQmlExtensionPlugin) ConnectEvent(f func(e *core.QEvent) bool) {
-	defer qt.Recovering("connect QQmlExtensionPlugin::event")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QQmlExtensionPlugin::event", f)
@@ -5712,8 +4673,6 @@ func (ptr *QQmlExtensionPlugin) ConnectEvent(f func(e *core.QEvent) bool) {
 }
 
 func (ptr *QQmlExtensionPlugin) DisconnectEvent() {
-	defer qt.Recovering("disconnect QQmlExtensionPlugin::event")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QQmlExtensionPlugin::event")
@@ -5721,8 +4680,6 @@ func (ptr *QQmlExtensionPlugin) DisconnectEvent() {
 }
 
 func (ptr *QQmlExtensionPlugin) Event(e core.QEvent_ITF) bool {
-	defer qt.Recovering("QQmlExtensionPlugin::event")
-
 	if ptr.Pointer() != nil {
 		return C.QQmlExtensionPlugin_Event(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
 	}
@@ -5730,8 +4687,6 @@ func (ptr *QQmlExtensionPlugin) Event(e core.QEvent_ITF) bool {
 }
 
 func (ptr *QQmlExtensionPlugin) EventDefault(e core.QEvent_ITF) bool {
-	defer qt.Recovering("QQmlExtensionPlugin::event")
-
 	if ptr.Pointer() != nil {
 		return C.QQmlExtensionPlugin_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
 	}
@@ -5740,7 +4695,6 @@ func (ptr *QQmlExtensionPlugin) EventDefault(e core.QEvent_ITF) bool {
 
 //export callbackQQmlExtensionPlugin_EventFilter
 func callbackQQmlExtensionPlugin_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-	defer qt.Recovering("callback QQmlExtensionPlugin::eventFilter")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QQmlExtensionPlugin::eventFilter"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
@@ -5750,8 +4704,6 @@ func callbackQQmlExtensionPlugin_EventFilter(ptr unsafe.Pointer, watched unsafe.
 }
 
 func (ptr *QQmlExtensionPlugin) ConnectEventFilter(f func(watched *core.QObject, event *core.QEvent) bool) {
-	defer qt.Recovering("connect QQmlExtensionPlugin::eventFilter")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QQmlExtensionPlugin::eventFilter", f)
@@ -5759,8 +4711,6 @@ func (ptr *QQmlExtensionPlugin) ConnectEventFilter(f func(watched *core.QObject,
 }
 
 func (ptr *QQmlExtensionPlugin) DisconnectEventFilter() {
-	defer qt.Recovering("disconnect QQmlExtensionPlugin::eventFilter")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QQmlExtensionPlugin::eventFilter")
@@ -5768,8 +4718,6 @@ func (ptr *QQmlExtensionPlugin) DisconnectEventFilter() {
 }
 
 func (ptr *QQmlExtensionPlugin) EventFilter(watched core.QObject_ITF, event core.QEvent_ITF) bool {
-	defer qt.Recovering("QQmlExtensionPlugin::eventFilter")
-
 	if ptr.Pointer() != nil {
 		return C.QQmlExtensionPlugin_EventFilter(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
 	}
@@ -5777,8 +4725,6 @@ func (ptr *QQmlExtensionPlugin) EventFilter(watched core.QObject_ITF, event core
 }
 
 func (ptr *QQmlExtensionPlugin) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
-	defer qt.Recovering("QQmlExtensionPlugin::eventFilter")
-
 	if ptr.Pointer() != nil {
 		return C.QQmlExtensionPlugin_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
 	}
@@ -5787,7 +4733,6 @@ func (ptr *QQmlExtensionPlugin) EventFilterDefault(watched core.QObject_ITF, eve
 
 //export callbackQQmlExtensionPlugin_MetaObject
 func callbackQQmlExtensionPlugin_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-	defer qt.Recovering("callback QQmlExtensionPlugin::metaObject")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QQmlExtensionPlugin::metaObject"); signal != nil {
 		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
@@ -5797,8 +4742,6 @@ func callbackQQmlExtensionPlugin_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
 }
 
 func (ptr *QQmlExtensionPlugin) ConnectMetaObject(f func() *core.QMetaObject) {
-	defer qt.Recovering("connect QQmlExtensionPlugin::metaObject")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QQmlExtensionPlugin::metaObject", f)
@@ -5806,8 +4749,6 @@ func (ptr *QQmlExtensionPlugin) ConnectMetaObject(f func() *core.QMetaObject) {
 }
 
 func (ptr *QQmlExtensionPlugin) DisconnectMetaObject() {
-	defer qt.Recovering("disconnect QQmlExtensionPlugin::metaObject")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QQmlExtensionPlugin::metaObject")
@@ -5815,8 +4756,6 @@ func (ptr *QQmlExtensionPlugin) DisconnectMetaObject() {
 }
 
 func (ptr *QQmlExtensionPlugin) MetaObject() *core.QMetaObject {
-	defer qt.Recovering("QQmlExtensionPlugin::metaObject")
-
 	if ptr.Pointer() != nil {
 		return core.NewQMetaObjectFromPointer(C.QQmlExtensionPlugin_MetaObject(ptr.Pointer()))
 	}
@@ -5824,8 +4763,6 @@ func (ptr *QQmlExtensionPlugin) MetaObject() *core.QMetaObject {
 }
 
 func (ptr *QQmlExtensionPlugin) MetaObjectDefault() *core.QMetaObject {
-	defer qt.Recovering("QQmlExtensionPlugin::metaObject")
-
 	if ptr.Pointer() != nil {
 		return core.NewQMetaObjectFromPointer(C.QQmlExtensionPlugin_MetaObjectDefault(ptr.Pointer()))
 	}
@@ -5871,8 +4808,6 @@ func NewQQmlFileSelectorFromPointer(ptr unsafe.Pointer) *QQmlFileSelector {
 	return n
 }
 func NewQQmlFileSelector(engine QQmlEngine_ITF, parent core.QObject_ITF) *QQmlFileSelector {
-	defer qt.Recovering("QQmlFileSelector::QQmlFileSelector")
-
 	var tmpValue = NewQQmlFileSelectorFromPointer(C.QQmlFileSelector_NewQQmlFileSelector(PointerFromQQmlEngine(engine), core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
@@ -5881,8 +4816,6 @@ func NewQQmlFileSelector(engine QQmlEngine_ITF, parent core.QObject_ITF) *QQmlFi
 }
 
 func QQmlFileSelector_Get(engine QQmlEngine_ITF) *QQmlFileSelector {
-	defer qt.Recovering("QQmlFileSelector::get")
-
 	var tmpValue = NewQQmlFileSelectorFromPointer(C.QQmlFileSelector_QQmlFileSelector_Get(PointerFromQQmlEngine(engine)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
@@ -5891,8 +4824,6 @@ func QQmlFileSelector_Get(engine QQmlEngine_ITF) *QQmlFileSelector {
 }
 
 func (ptr *QQmlFileSelector) Get(engine QQmlEngine_ITF) *QQmlFileSelector {
-	defer qt.Recovering("QQmlFileSelector::get")
-
 	var tmpValue = NewQQmlFileSelectorFromPointer(C.QQmlFileSelector_QQmlFileSelector_Get(PointerFromQQmlEngine(engine)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
@@ -5901,8 +4832,6 @@ func (ptr *QQmlFileSelector) Get(engine QQmlEngine_ITF) *QQmlFileSelector {
 }
 
 func (ptr *QQmlFileSelector) Selector() *core.QFileSelector {
-	defer qt.Recovering("QQmlFileSelector::selector")
-
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQFileSelectorFromPointer(C.QQmlFileSelector_Selector(ptr.Pointer()))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
@@ -5914,8 +4843,6 @@ func (ptr *QQmlFileSelector) Selector() *core.QFileSelector {
 }
 
 func (ptr *QQmlFileSelector) SetExtraSelectors(strin []string) {
-	defer qt.Recovering("QQmlFileSelector::setExtraSelectors")
-
 	if ptr.Pointer() != nil {
 		var strinC = C.CString(strings.Join(strin, "|"))
 		defer C.free(unsafe.Pointer(strinC))
@@ -5924,8 +4851,6 @@ func (ptr *QQmlFileSelector) SetExtraSelectors(strin []string) {
 }
 
 func (ptr *QQmlFileSelector) SetExtraSelectors2(strin []string) {
-	defer qt.Recovering("QQmlFileSelector::setExtraSelectors")
-
 	if ptr.Pointer() != nil {
 		var strinC = C.CString(strings.Join(strin, "|"))
 		defer C.free(unsafe.Pointer(strinC))
@@ -5934,16 +4859,12 @@ func (ptr *QQmlFileSelector) SetExtraSelectors2(strin []string) {
 }
 
 func (ptr *QQmlFileSelector) SetSelector(selector core.QFileSelector_ITF) {
-	defer qt.Recovering("QQmlFileSelector::setSelector")
-
 	if ptr.Pointer() != nil {
 		C.QQmlFileSelector_SetSelector(ptr.Pointer(), core.PointerFromQFileSelector(selector))
 	}
 }
 
 func (ptr *QQmlFileSelector) DestroyQQmlFileSelector() {
-	defer qt.Recovering("QQmlFileSelector::~QQmlFileSelector")
-
 	if ptr.Pointer() != nil {
 		C.QQmlFileSelector_DestroyQQmlFileSelector(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
@@ -5953,7 +4874,6 @@ func (ptr *QQmlFileSelector) DestroyQQmlFileSelector() {
 
 //export callbackQQmlFileSelector_TimerEvent
 func callbackQQmlFileSelector_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	defer qt.Recovering("callback QQmlFileSelector::timerEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QQmlFileSelector::timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
@@ -5963,8 +4883,6 @@ func callbackQQmlFileSelector_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointe
 }
 
 func (ptr *QQmlFileSelector) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
-	defer qt.Recovering("connect QQmlFileSelector::timerEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QQmlFileSelector::timerEvent", f)
@@ -5972,8 +4890,6 @@ func (ptr *QQmlFileSelector) ConnectTimerEvent(f func(event *core.QTimerEvent)) 
 }
 
 func (ptr *QQmlFileSelector) DisconnectTimerEvent() {
-	defer qt.Recovering("disconnect QQmlFileSelector::timerEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QQmlFileSelector::timerEvent")
@@ -5981,16 +4897,12 @@ func (ptr *QQmlFileSelector) DisconnectTimerEvent() {
 }
 
 func (ptr *QQmlFileSelector) TimerEvent(event core.QTimerEvent_ITF) {
-	defer qt.Recovering("QQmlFileSelector::timerEvent")
-
 	if ptr.Pointer() != nil {
 		C.QQmlFileSelector_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
 	}
 }
 
 func (ptr *QQmlFileSelector) TimerEventDefault(event core.QTimerEvent_ITF) {
-	defer qt.Recovering("QQmlFileSelector::timerEvent")
-
 	if ptr.Pointer() != nil {
 		C.QQmlFileSelector_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
 	}
@@ -5998,7 +4910,6 @@ func (ptr *QQmlFileSelector) TimerEventDefault(event core.QTimerEvent_ITF) {
 
 //export callbackQQmlFileSelector_ChildEvent
 func callbackQQmlFileSelector_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	defer qt.Recovering("callback QQmlFileSelector::childEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QQmlFileSelector::childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
@@ -6008,8 +4919,6 @@ func callbackQQmlFileSelector_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointe
 }
 
 func (ptr *QQmlFileSelector) ConnectChildEvent(f func(event *core.QChildEvent)) {
-	defer qt.Recovering("connect QQmlFileSelector::childEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QQmlFileSelector::childEvent", f)
@@ -6017,8 +4926,6 @@ func (ptr *QQmlFileSelector) ConnectChildEvent(f func(event *core.QChildEvent)) 
 }
 
 func (ptr *QQmlFileSelector) DisconnectChildEvent() {
-	defer qt.Recovering("disconnect QQmlFileSelector::childEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QQmlFileSelector::childEvent")
@@ -6026,16 +4933,12 @@ func (ptr *QQmlFileSelector) DisconnectChildEvent() {
 }
 
 func (ptr *QQmlFileSelector) ChildEvent(event core.QChildEvent_ITF) {
-	defer qt.Recovering("QQmlFileSelector::childEvent")
-
 	if ptr.Pointer() != nil {
 		C.QQmlFileSelector_ChildEvent(ptr.Pointer(), core.PointerFromQChildEvent(event))
 	}
 }
 
 func (ptr *QQmlFileSelector) ChildEventDefault(event core.QChildEvent_ITF) {
-	defer qt.Recovering("QQmlFileSelector::childEvent")
-
 	if ptr.Pointer() != nil {
 		C.QQmlFileSelector_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
 	}
@@ -6043,7 +4946,6 @@ func (ptr *QQmlFileSelector) ChildEventDefault(event core.QChildEvent_ITF) {
 
 //export callbackQQmlFileSelector_ConnectNotify
 func callbackQQmlFileSelector_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-	defer qt.Recovering("callback QQmlFileSelector::connectNotify")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QQmlFileSelector::connectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
@@ -6053,8 +4955,6 @@ func callbackQQmlFileSelector_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Poin
 }
 
 func (ptr *QQmlFileSelector) ConnectConnectNotify(f func(sign *core.QMetaMethod)) {
-	defer qt.Recovering("connect QQmlFileSelector::connectNotify")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QQmlFileSelector::connectNotify", f)
@@ -6062,8 +4962,6 @@ func (ptr *QQmlFileSelector) ConnectConnectNotify(f func(sign *core.QMetaMethod)
 }
 
 func (ptr *QQmlFileSelector) DisconnectConnectNotify() {
-	defer qt.Recovering("disconnect QQmlFileSelector::connectNotify")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QQmlFileSelector::connectNotify")
@@ -6071,16 +4969,12 @@ func (ptr *QQmlFileSelector) DisconnectConnectNotify() {
 }
 
 func (ptr *QQmlFileSelector) ConnectNotify(sign core.QMetaMethod_ITF) {
-	defer qt.Recovering("QQmlFileSelector::connectNotify")
-
 	if ptr.Pointer() != nil {
 		C.QQmlFileSelector_ConnectNotify(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
 	}
 }
 
 func (ptr *QQmlFileSelector) ConnectNotifyDefault(sign core.QMetaMethod_ITF) {
-	defer qt.Recovering("QQmlFileSelector::connectNotify")
-
 	if ptr.Pointer() != nil {
 		C.QQmlFileSelector_ConnectNotifyDefault(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
 	}
@@ -6088,7 +4982,6 @@ func (ptr *QQmlFileSelector) ConnectNotifyDefault(sign core.QMetaMethod_ITF) {
 
 //export callbackQQmlFileSelector_CustomEvent
 func callbackQQmlFileSelector_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	defer qt.Recovering("callback QQmlFileSelector::customEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QQmlFileSelector::customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
@@ -6098,8 +4991,6 @@ func callbackQQmlFileSelector_CustomEvent(ptr unsafe.Pointer, event unsafe.Point
 }
 
 func (ptr *QQmlFileSelector) ConnectCustomEvent(f func(event *core.QEvent)) {
-	defer qt.Recovering("connect QQmlFileSelector::customEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QQmlFileSelector::customEvent", f)
@@ -6107,8 +4998,6 @@ func (ptr *QQmlFileSelector) ConnectCustomEvent(f func(event *core.QEvent)) {
 }
 
 func (ptr *QQmlFileSelector) DisconnectCustomEvent() {
-	defer qt.Recovering("disconnect QQmlFileSelector::customEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QQmlFileSelector::customEvent")
@@ -6116,16 +5005,12 @@ func (ptr *QQmlFileSelector) DisconnectCustomEvent() {
 }
 
 func (ptr *QQmlFileSelector) CustomEvent(event core.QEvent_ITF) {
-	defer qt.Recovering("QQmlFileSelector::customEvent")
-
 	if ptr.Pointer() != nil {
 		C.QQmlFileSelector_CustomEvent(ptr.Pointer(), core.PointerFromQEvent(event))
 	}
 }
 
 func (ptr *QQmlFileSelector) CustomEventDefault(event core.QEvent_ITF) {
-	defer qt.Recovering("QQmlFileSelector::customEvent")
-
 	if ptr.Pointer() != nil {
 		C.QQmlFileSelector_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
 	}
@@ -6133,8 +5018,6 @@ func (ptr *QQmlFileSelector) CustomEventDefault(event core.QEvent_ITF) {
 
 //export callbackQQmlFileSelector_DeleteLater
 func callbackQQmlFileSelector_DeleteLater(ptr unsafe.Pointer) {
-	defer qt.Recovering("callback QQmlFileSelector::deleteLater")
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QQmlFileSelector::deleteLater"); signal != nil {
 		signal.(func())()
 	} else {
@@ -6143,8 +5026,6 @@ func callbackQQmlFileSelector_DeleteLater(ptr unsafe.Pointer) {
 }
 
 func (ptr *QQmlFileSelector) ConnectDeleteLater(f func()) {
-	defer qt.Recovering("connect QQmlFileSelector::deleteLater")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QQmlFileSelector::deleteLater", f)
@@ -6152,8 +5033,6 @@ func (ptr *QQmlFileSelector) ConnectDeleteLater(f func()) {
 }
 
 func (ptr *QQmlFileSelector) DisconnectDeleteLater() {
-	defer qt.Recovering("disconnect QQmlFileSelector::deleteLater")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QQmlFileSelector::deleteLater")
@@ -6161,8 +5040,6 @@ func (ptr *QQmlFileSelector) DisconnectDeleteLater() {
 }
 
 func (ptr *QQmlFileSelector) DeleteLater() {
-	defer qt.Recovering("QQmlFileSelector::deleteLater")
-
 	if ptr.Pointer() != nil {
 		C.QQmlFileSelector_DeleteLater(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
@@ -6171,8 +5048,6 @@ func (ptr *QQmlFileSelector) DeleteLater() {
 }
 
 func (ptr *QQmlFileSelector) DeleteLaterDefault() {
-	defer qt.Recovering("QQmlFileSelector::deleteLater")
-
 	if ptr.Pointer() != nil {
 		C.QQmlFileSelector_DeleteLaterDefault(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
@@ -6182,7 +5057,6 @@ func (ptr *QQmlFileSelector) DeleteLaterDefault() {
 
 //export callbackQQmlFileSelector_DisconnectNotify
 func callbackQQmlFileSelector_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-	defer qt.Recovering("callback QQmlFileSelector::disconnectNotify")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QQmlFileSelector::disconnectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
@@ -6192,8 +5066,6 @@ func callbackQQmlFileSelector_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.P
 }
 
 func (ptr *QQmlFileSelector) ConnectDisconnectNotify(f func(sign *core.QMetaMethod)) {
-	defer qt.Recovering("connect QQmlFileSelector::disconnectNotify")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QQmlFileSelector::disconnectNotify", f)
@@ -6201,8 +5073,6 @@ func (ptr *QQmlFileSelector) ConnectDisconnectNotify(f func(sign *core.QMetaMeth
 }
 
 func (ptr *QQmlFileSelector) DisconnectDisconnectNotify() {
-	defer qt.Recovering("disconnect QQmlFileSelector::disconnectNotify")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QQmlFileSelector::disconnectNotify")
@@ -6210,16 +5080,12 @@ func (ptr *QQmlFileSelector) DisconnectDisconnectNotify() {
 }
 
 func (ptr *QQmlFileSelector) DisconnectNotify(sign core.QMetaMethod_ITF) {
-	defer qt.Recovering("QQmlFileSelector::disconnectNotify")
-
 	if ptr.Pointer() != nil {
 		C.QQmlFileSelector_DisconnectNotify(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
 	}
 }
 
 func (ptr *QQmlFileSelector) DisconnectNotifyDefault(sign core.QMetaMethod_ITF) {
-	defer qt.Recovering("QQmlFileSelector::disconnectNotify")
-
 	if ptr.Pointer() != nil {
 		C.QQmlFileSelector_DisconnectNotifyDefault(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
 	}
@@ -6227,7 +5093,6 @@ func (ptr *QQmlFileSelector) DisconnectNotifyDefault(sign core.QMetaMethod_ITF) 
 
 //export callbackQQmlFileSelector_Event
 func callbackQQmlFileSelector_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
-	defer qt.Recovering("callback QQmlFileSelector::event")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QQmlFileSelector::event"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
@@ -6237,8 +5102,6 @@ func callbackQQmlFileSelector_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char
 }
 
 func (ptr *QQmlFileSelector) ConnectEvent(f func(e *core.QEvent) bool) {
-	defer qt.Recovering("connect QQmlFileSelector::event")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QQmlFileSelector::event", f)
@@ -6246,8 +5109,6 @@ func (ptr *QQmlFileSelector) ConnectEvent(f func(e *core.QEvent) bool) {
 }
 
 func (ptr *QQmlFileSelector) DisconnectEvent() {
-	defer qt.Recovering("disconnect QQmlFileSelector::event")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QQmlFileSelector::event")
@@ -6255,8 +5116,6 @@ func (ptr *QQmlFileSelector) DisconnectEvent() {
 }
 
 func (ptr *QQmlFileSelector) Event(e core.QEvent_ITF) bool {
-	defer qt.Recovering("QQmlFileSelector::event")
-
 	if ptr.Pointer() != nil {
 		return C.QQmlFileSelector_Event(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
 	}
@@ -6264,8 +5123,6 @@ func (ptr *QQmlFileSelector) Event(e core.QEvent_ITF) bool {
 }
 
 func (ptr *QQmlFileSelector) EventDefault(e core.QEvent_ITF) bool {
-	defer qt.Recovering("QQmlFileSelector::event")
-
 	if ptr.Pointer() != nil {
 		return C.QQmlFileSelector_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
 	}
@@ -6274,7 +5131,6 @@ func (ptr *QQmlFileSelector) EventDefault(e core.QEvent_ITF) bool {
 
 //export callbackQQmlFileSelector_EventFilter
 func callbackQQmlFileSelector_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-	defer qt.Recovering("callback QQmlFileSelector::eventFilter")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QQmlFileSelector::eventFilter"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
@@ -6284,8 +5140,6 @@ func callbackQQmlFileSelector_EventFilter(ptr unsafe.Pointer, watched unsafe.Poi
 }
 
 func (ptr *QQmlFileSelector) ConnectEventFilter(f func(watched *core.QObject, event *core.QEvent) bool) {
-	defer qt.Recovering("connect QQmlFileSelector::eventFilter")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QQmlFileSelector::eventFilter", f)
@@ -6293,8 +5147,6 @@ func (ptr *QQmlFileSelector) ConnectEventFilter(f func(watched *core.QObject, ev
 }
 
 func (ptr *QQmlFileSelector) DisconnectEventFilter() {
-	defer qt.Recovering("disconnect QQmlFileSelector::eventFilter")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QQmlFileSelector::eventFilter")
@@ -6302,8 +5154,6 @@ func (ptr *QQmlFileSelector) DisconnectEventFilter() {
 }
 
 func (ptr *QQmlFileSelector) EventFilter(watched core.QObject_ITF, event core.QEvent_ITF) bool {
-	defer qt.Recovering("QQmlFileSelector::eventFilter")
-
 	if ptr.Pointer() != nil {
 		return C.QQmlFileSelector_EventFilter(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
 	}
@@ -6311,8 +5161,6 @@ func (ptr *QQmlFileSelector) EventFilter(watched core.QObject_ITF, event core.QE
 }
 
 func (ptr *QQmlFileSelector) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
-	defer qt.Recovering("QQmlFileSelector::eventFilter")
-
 	if ptr.Pointer() != nil {
 		return C.QQmlFileSelector_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
 	}
@@ -6321,7 +5169,6 @@ func (ptr *QQmlFileSelector) EventFilterDefault(watched core.QObject_ITF, event 
 
 //export callbackQQmlFileSelector_MetaObject
 func callbackQQmlFileSelector_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-	defer qt.Recovering("callback QQmlFileSelector::metaObject")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QQmlFileSelector::metaObject"); signal != nil {
 		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
@@ -6331,8 +5178,6 @@ func callbackQQmlFileSelector_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
 }
 
 func (ptr *QQmlFileSelector) ConnectMetaObject(f func() *core.QMetaObject) {
-	defer qt.Recovering("connect QQmlFileSelector::metaObject")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QQmlFileSelector::metaObject", f)
@@ -6340,8 +5185,6 @@ func (ptr *QQmlFileSelector) ConnectMetaObject(f func() *core.QMetaObject) {
 }
 
 func (ptr *QQmlFileSelector) DisconnectMetaObject() {
-	defer qt.Recovering("disconnect QQmlFileSelector::metaObject")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QQmlFileSelector::metaObject")
@@ -6349,8 +5192,6 @@ func (ptr *QQmlFileSelector) DisconnectMetaObject() {
 }
 
 func (ptr *QQmlFileSelector) MetaObject() *core.QMetaObject {
-	defer qt.Recovering("QQmlFileSelector::metaObject")
-
 	if ptr.Pointer() != nil {
 		return core.NewQMetaObjectFromPointer(C.QQmlFileSelector_MetaObject(ptr.Pointer()))
 	}
@@ -6358,8 +5199,6 @@ func (ptr *QQmlFileSelector) MetaObject() *core.QMetaObject {
 }
 
 func (ptr *QQmlFileSelector) MetaObjectDefault() *core.QMetaObject {
-	defer qt.Recovering("QQmlFileSelector::metaObject")
-
 	if ptr.Pointer() != nil {
 		return core.NewQMetaObjectFromPointer(C.QQmlFileSelector_MetaObjectDefault(ptr.Pointer()))
 	}
@@ -6430,7 +5269,6 @@ func (ptr *QQmlImageProviderBase) DestroyQQmlImageProviderBase() {
 
 //export callbackQQmlImageProviderBase_Flags
 func callbackQQmlImageProviderBase_Flags(ptr unsafe.Pointer) C.longlong {
-	defer qt.Recovering("callback QQmlImageProviderBase::flags")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QQmlImageProviderBase::flags"); signal != nil {
 		return C.longlong(signal.(func() QQmlImageProviderBase__Flag)())
@@ -6440,8 +5278,6 @@ func callbackQQmlImageProviderBase_Flags(ptr unsafe.Pointer) C.longlong {
 }
 
 func (ptr *QQmlImageProviderBase) ConnectFlags(f func() QQmlImageProviderBase__Flag) {
-	defer qt.Recovering("connect QQmlImageProviderBase::flags")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QQmlImageProviderBase::flags", f)
@@ -6449,8 +5285,6 @@ func (ptr *QQmlImageProviderBase) ConnectFlags(f func() QQmlImageProviderBase__F
 }
 
 func (ptr *QQmlImageProviderBase) DisconnectFlags() {
-	defer qt.Recovering("disconnect QQmlImageProviderBase::flags")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QQmlImageProviderBase::flags")
@@ -6458,8 +5292,6 @@ func (ptr *QQmlImageProviderBase) DisconnectFlags() {
 }
 
 func (ptr *QQmlImageProviderBase) Flags() QQmlImageProviderBase__Flag {
-	defer qt.Recovering("QQmlImageProviderBase::flags")
-
 	if ptr.Pointer() != nil {
 		return QQmlImageProviderBase__Flag(C.QQmlImageProviderBase_Flags(ptr.Pointer()))
 	}
@@ -6468,7 +5300,6 @@ func (ptr *QQmlImageProviderBase) Flags() QQmlImageProviderBase__Flag {
 
 //export callbackQQmlImageProviderBase_ImageType
 func callbackQQmlImageProviderBase_ImageType(ptr unsafe.Pointer) C.longlong {
-	defer qt.Recovering("callback QQmlImageProviderBase::imageType")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QQmlImageProviderBase::imageType"); signal != nil {
 		return C.longlong(signal.(func() QQmlImageProviderBase__ImageType)())
@@ -6478,8 +5309,6 @@ func callbackQQmlImageProviderBase_ImageType(ptr unsafe.Pointer) C.longlong {
 }
 
 func (ptr *QQmlImageProviderBase) ConnectImageType(f func() QQmlImageProviderBase__ImageType) {
-	defer qt.Recovering("connect QQmlImageProviderBase::imageType")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QQmlImageProviderBase::imageType", f)
@@ -6487,8 +5316,6 @@ func (ptr *QQmlImageProviderBase) ConnectImageType(f func() QQmlImageProviderBas
 }
 
 func (ptr *QQmlImageProviderBase) DisconnectImageType() {
-	defer qt.Recovering("disconnect QQmlImageProviderBase::imageType")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QQmlImageProviderBase::imageType")
@@ -6496,8 +5323,6 @@ func (ptr *QQmlImageProviderBase) DisconnectImageType() {
 }
 
 func (ptr *QQmlImageProviderBase) ImageType() QQmlImageProviderBase__ImageType {
-	defer qt.Recovering("QQmlImageProviderBase::imageType")
-
 	if ptr.Pointer() != nil {
 		return QQmlImageProviderBase__ImageType(C.QQmlImageProviderBase_ImageType(ptr.Pointer()))
 	}
@@ -6549,14 +5374,10 @@ func (ptr *QQmlIncubationController) DestroyQQmlIncubationController() {
 }
 
 func NewQQmlIncubationController() *QQmlIncubationController {
-	defer qt.Recovering("QQmlIncubationController::QQmlIncubationController")
-
 	return NewQQmlIncubationControllerFromPointer(C.QQmlIncubationController_NewQQmlIncubationController())
 }
 
 func (ptr *QQmlIncubationController) Engine() *QQmlEngine {
-	defer qt.Recovering("QQmlIncubationController::engine")
-
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQQmlEngineFromPointer(C.QQmlIncubationController_Engine(ptr.Pointer()))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
@@ -6568,16 +5389,12 @@ func (ptr *QQmlIncubationController) Engine() *QQmlEngine {
 }
 
 func (ptr *QQmlIncubationController) IncubateFor(msecs int) {
-	defer qt.Recovering("QQmlIncubationController::incubateFor")
-
 	if ptr.Pointer() != nil {
 		C.QQmlIncubationController_IncubateFor(ptr.Pointer(), C.int(int32(msecs)))
 	}
 }
 
 func (ptr *QQmlIncubationController) IncubatingObjectCount() int {
-	defer qt.Recovering("QQmlIncubationController::incubatingObjectCount")
-
 	if ptr.Pointer() != nil {
 		return int(int32(C.QQmlIncubationController_IncubatingObjectCount(ptr.Pointer())))
 	}
@@ -6586,7 +5403,6 @@ func (ptr *QQmlIncubationController) IncubatingObjectCount() int {
 
 //export callbackQQmlIncubationController_IncubatingObjectCountChanged
 func callbackQQmlIncubationController_IncubatingObjectCountChanged(ptr unsafe.Pointer, incubatingObjectCount C.int) {
-	defer qt.Recovering("callback QQmlIncubationController::incubatingObjectCountChanged")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QQmlIncubationController::incubatingObjectCountChanged"); signal != nil {
 		signal.(func(int))(int(int32(incubatingObjectCount)))
@@ -6596,8 +5412,6 @@ func callbackQQmlIncubationController_IncubatingObjectCountChanged(ptr unsafe.Po
 }
 
 func (ptr *QQmlIncubationController) ConnectIncubatingObjectCountChanged(f func(incubatingObjectCount int)) {
-	defer qt.Recovering("connect QQmlIncubationController::incubatingObjectCountChanged")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QQmlIncubationController::incubatingObjectCountChanged", f)
@@ -6605,8 +5419,6 @@ func (ptr *QQmlIncubationController) ConnectIncubatingObjectCountChanged(f func(
 }
 
 func (ptr *QQmlIncubationController) DisconnectIncubatingObjectCountChanged() {
-	defer qt.Recovering("disconnect QQmlIncubationController::incubatingObjectCountChanged")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QQmlIncubationController::incubatingObjectCountChanged")
@@ -6614,16 +5426,12 @@ func (ptr *QQmlIncubationController) DisconnectIncubatingObjectCountChanged() {
 }
 
 func (ptr *QQmlIncubationController) IncubatingObjectCountChanged(incubatingObjectCount int) {
-	defer qt.Recovering("QQmlIncubationController::incubatingObjectCountChanged")
-
 	if ptr.Pointer() != nil {
 		C.QQmlIncubationController_IncubatingObjectCountChanged(ptr.Pointer(), C.int(int32(incubatingObjectCount)))
 	}
 }
 
 func (ptr *QQmlIncubationController) IncubatingObjectCountChangedDefault(incubatingObjectCount int) {
-	defer qt.Recovering("QQmlIncubationController::incubatingObjectCountChanged")
-
 	if ptr.Pointer() != nil {
 		C.QQmlIncubationController_IncubatingObjectCountChangedDefault(ptr.Pointer(), C.int(int32(incubatingObjectCount)))
 	}
@@ -6693,30 +5501,22 @@ func (ptr *QQmlIncubator) DestroyQQmlIncubator() {
 }
 
 func NewQQmlIncubator(mode QQmlIncubator__IncubationMode) *QQmlIncubator {
-	defer qt.Recovering("QQmlIncubator::QQmlIncubator")
-
 	return NewQQmlIncubatorFromPointer(C.QQmlIncubator_NewQQmlIncubator(C.longlong(mode)))
 }
 
 func (ptr *QQmlIncubator) Clear() {
-	defer qt.Recovering("QQmlIncubator::clear")
-
 	if ptr.Pointer() != nil {
 		C.QQmlIncubator_Clear(ptr.Pointer())
 	}
 }
 
 func (ptr *QQmlIncubator) ForceCompletion() {
-	defer qt.Recovering("QQmlIncubator::forceCompletion")
-
 	if ptr.Pointer() != nil {
 		C.QQmlIncubator_ForceCompletion(ptr.Pointer())
 	}
 }
 
 func (ptr *QQmlIncubator) IncubationMode() QQmlIncubator__IncubationMode {
-	defer qt.Recovering("QQmlIncubator::incubationMode")
-
 	if ptr.Pointer() != nil {
 		return QQmlIncubator__IncubationMode(C.QQmlIncubator_IncubationMode(ptr.Pointer()))
 	}
@@ -6724,8 +5524,6 @@ func (ptr *QQmlIncubator) IncubationMode() QQmlIncubator__IncubationMode {
 }
 
 func (ptr *QQmlIncubator) IsError() bool {
-	defer qt.Recovering("QQmlIncubator::isError")
-
 	if ptr.Pointer() != nil {
 		return C.QQmlIncubator_IsError(ptr.Pointer()) != 0
 	}
@@ -6733,8 +5531,6 @@ func (ptr *QQmlIncubator) IsError() bool {
 }
 
 func (ptr *QQmlIncubator) IsLoading() bool {
-	defer qt.Recovering("QQmlIncubator::isLoading")
-
 	if ptr.Pointer() != nil {
 		return C.QQmlIncubator_IsLoading(ptr.Pointer()) != 0
 	}
@@ -6742,8 +5538,6 @@ func (ptr *QQmlIncubator) IsLoading() bool {
 }
 
 func (ptr *QQmlIncubator) IsNull() bool {
-	defer qt.Recovering("QQmlIncubator::isNull")
-
 	if ptr.Pointer() != nil {
 		return C.QQmlIncubator_IsNull(ptr.Pointer()) != 0
 	}
@@ -6751,8 +5545,6 @@ func (ptr *QQmlIncubator) IsNull() bool {
 }
 
 func (ptr *QQmlIncubator) IsReady() bool {
-	defer qt.Recovering("QQmlIncubator::isReady")
-
 	if ptr.Pointer() != nil {
 		return C.QQmlIncubator_IsReady(ptr.Pointer()) != 0
 	}
@@ -6760,8 +5552,6 @@ func (ptr *QQmlIncubator) IsReady() bool {
 }
 
 func (ptr *QQmlIncubator) Object() *core.QObject {
-	defer qt.Recovering("QQmlIncubator::object")
-
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQObjectFromPointer(C.QQmlIncubator_Object(ptr.Pointer()))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
@@ -6774,7 +5564,6 @@ func (ptr *QQmlIncubator) Object() *core.QObject {
 
 //export callbackQQmlIncubator_SetInitialState
 func callbackQQmlIncubator_SetInitialState(ptr unsafe.Pointer, object unsafe.Pointer) {
-	defer qt.Recovering("callback QQmlIncubator::setInitialState")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QQmlIncubator::setInitialState"); signal != nil {
 		signal.(func(*core.QObject))(core.NewQObjectFromPointer(object))
@@ -6784,8 +5573,6 @@ func callbackQQmlIncubator_SetInitialState(ptr unsafe.Pointer, object unsafe.Poi
 }
 
 func (ptr *QQmlIncubator) ConnectSetInitialState(f func(object *core.QObject)) {
-	defer qt.Recovering("connect QQmlIncubator::setInitialState")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QQmlIncubator::setInitialState", f)
@@ -6793,8 +5580,6 @@ func (ptr *QQmlIncubator) ConnectSetInitialState(f func(object *core.QObject)) {
 }
 
 func (ptr *QQmlIncubator) DisconnectSetInitialState() {
-	defer qt.Recovering("disconnect QQmlIncubator::setInitialState")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QQmlIncubator::setInitialState")
@@ -6802,24 +5587,18 @@ func (ptr *QQmlIncubator) DisconnectSetInitialState() {
 }
 
 func (ptr *QQmlIncubator) SetInitialState(object core.QObject_ITF) {
-	defer qt.Recovering("QQmlIncubator::setInitialState")
-
 	if ptr.Pointer() != nil {
 		C.QQmlIncubator_SetInitialState(ptr.Pointer(), core.PointerFromQObject(object))
 	}
 }
 
 func (ptr *QQmlIncubator) SetInitialStateDefault(object core.QObject_ITF) {
-	defer qt.Recovering("QQmlIncubator::setInitialState")
-
 	if ptr.Pointer() != nil {
 		C.QQmlIncubator_SetInitialStateDefault(ptr.Pointer(), core.PointerFromQObject(object))
 	}
 }
 
 func (ptr *QQmlIncubator) Status() QQmlIncubator__Status {
-	defer qt.Recovering("QQmlIncubator::status")
-
 	if ptr.Pointer() != nil {
 		return QQmlIncubator__Status(C.QQmlIncubator_Status(ptr.Pointer()))
 	}
@@ -6828,7 +5607,6 @@ func (ptr *QQmlIncubator) Status() QQmlIncubator__Status {
 
 //export callbackQQmlIncubator_StatusChanged
 func callbackQQmlIncubator_StatusChanged(ptr unsafe.Pointer, status C.longlong) {
-	defer qt.Recovering("callback QQmlIncubator::statusChanged")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QQmlIncubator::statusChanged"); signal != nil {
 		signal.(func(QQmlIncubator__Status))(QQmlIncubator__Status(status))
@@ -6838,8 +5616,6 @@ func callbackQQmlIncubator_StatusChanged(ptr unsafe.Pointer, status C.longlong) 
 }
 
 func (ptr *QQmlIncubator) ConnectStatusChanged(f func(status QQmlIncubator__Status)) {
-	defer qt.Recovering("connect QQmlIncubator::statusChanged")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QQmlIncubator::statusChanged", f)
@@ -6847,8 +5623,6 @@ func (ptr *QQmlIncubator) ConnectStatusChanged(f func(status QQmlIncubator__Stat
 }
 
 func (ptr *QQmlIncubator) DisconnectStatusChanged() {
-	defer qt.Recovering("disconnect QQmlIncubator::statusChanged")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QQmlIncubator::statusChanged")
@@ -6856,16 +5630,12 @@ func (ptr *QQmlIncubator) DisconnectStatusChanged() {
 }
 
 func (ptr *QQmlIncubator) StatusChanged(status QQmlIncubator__Status) {
-	defer qt.Recovering("QQmlIncubator::statusChanged")
-
 	if ptr.Pointer() != nil {
 		C.QQmlIncubator_StatusChanged(ptr.Pointer(), C.longlong(status))
 	}
 }
 
 func (ptr *QQmlIncubator) StatusChangedDefault(status QQmlIncubator__Status) {
-	defer qt.Recovering("QQmlIncubator::statusChanged")
-
 	if ptr.Pointer() != nil {
 		C.QQmlIncubator_StatusChangedDefault(ptr.Pointer(), C.longlong(status))
 	}
@@ -6958,16 +5728,12 @@ func (ptr *QQmlListReference) DestroyQQmlListReference() {
 }
 
 func NewQQmlListReference() *QQmlListReference {
-	defer qt.Recovering("QQmlListReference::QQmlListReference")
-
 	var tmpValue = NewQQmlListReferenceFromPointer(C.QQmlListReference_NewQQmlListReference())
 	runtime.SetFinalizer(tmpValue, (*QQmlListReference).DestroyQQmlListReference)
 	return tmpValue
 }
 
 func NewQQmlListReference2(object core.QObject_ITF, property string, engine QQmlEngine_ITF) *QQmlListReference {
-	defer qt.Recovering("QQmlListReference::QQmlListReference")
-
 	var propertyC = C.CString(property)
 	defer C.free(unsafe.Pointer(propertyC))
 	var tmpValue = NewQQmlListReferenceFromPointer(C.QQmlListReference_NewQQmlListReference2(core.PointerFromQObject(object), propertyC, PointerFromQQmlEngine(engine)))
@@ -6976,8 +5742,6 @@ func NewQQmlListReference2(object core.QObject_ITF, property string, engine QQml
 }
 
 func (ptr *QQmlListReference) Append(object core.QObject_ITF) bool {
-	defer qt.Recovering("QQmlListReference::append")
-
 	if ptr.Pointer() != nil {
 		return C.QQmlListReference_Append(ptr.Pointer(), core.PointerFromQObject(object)) != 0
 	}
@@ -6985,8 +5749,6 @@ func (ptr *QQmlListReference) Append(object core.QObject_ITF) bool {
 }
 
 func (ptr *QQmlListReference) At(index int) *core.QObject {
-	defer qt.Recovering("QQmlListReference::at")
-
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQObjectFromPointer(C.QQmlListReference_At(ptr.Pointer(), C.int(int32(index))))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
@@ -6998,8 +5760,6 @@ func (ptr *QQmlListReference) At(index int) *core.QObject {
 }
 
 func (ptr *QQmlListReference) CanAppend() bool {
-	defer qt.Recovering("QQmlListReference::canAppend")
-
 	if ptr.Pointer() != nil {
 		return C.QQmlListReference_CanAppend(ptr.Pointer()) != 0
 	}
@@ -7007,8 +5767,6 @@ func (ptr *QQmlListReference) CanAppend() bool {
 }
 
 func (ptr *QQmlListReference) CanAt() bool {
-	defer qt.Recovering("QQmlListReference::canAt")
-
 	if ptr.Pointer() != nil {
 		return C.QQmlListReference_CanAt(ptr.Pointer()) != 0
 	}
@@ -7016,8 +5774,6 @@ func (ptr *QQmlListReference) CanAt() bool {
 }
 
 func (ptr *QQmlListReference) CanClear() bool {
-	defer qt.Recovering("QQmlListReference::canClear")
-
 	if ptr.Pointer() != nil {
 		return C.QQmlListReference_CanClear(ptr.Pointer()) != 0
 	}
@@ -7025,8 +5781,6 @@ func (ptr *QQmlListReference) CanClear() bool {
 }
 
 func (ptr *QQmlListReference) CanCount() bool {
-	defer qt.Recovering("QQmlListReference::canCount")
-
 	if ptr.Pointer() != nil {
 		return C.QQmlListReference_CanCount(ptr.Pointer()) != 0
 	}
@@ -7034,8 +5788,6 @@ func (ptr *QQmlListReference) CanCount() bool {
 }
 
 func (ptr *QQmlListReference) Clear() bool {
-	defer qt.Recovering("QQmlListReference::clear")
-
 	if ptr.Pointer() != nil {
 		return C.QQmlListReference_Clear(ptr.Pointer()) != 0
 	}
@@ -7043,8 +5795,6 @@ func (ptr *QQmlListReference) Clear() bool {
 }
 
 func (ptr *QQmlListReference) Count() int {
-	defer qt.Recovering("QQmlListReference::count")
-
 	if ptr.Pointer() != nil {
 		return int(int32(C.QQmlListReference_Count(ptr.Pointer())))
 	}
@@ -7052,8 +5802,6 @@ func (ptr *QQmlListReference) Count() int {
 }
 
 func (ptr *QQmlListReference) IsManipulable() bool {
-	defer qt.Recovering("QQmlListReference::isManipulable")
-
 	if ptr.Pointer() != nil {
 		return C.QQmlListReference_IsManipulable(ptr.Pointer()) != 0
 	}
@@ -7061,8 +5809,6 @@ func (ptr *QQmlListReference) IsManipulable() bool {
 }
 
 func (ptr *QQmlListReference) IsReadable() bool {
-	defer qt.Recovering("QQmlListReference::isReadable")
-
 	if ptr.Pointer() != nil {
 		return C.QQmlListReference_IsReadable(ptr.Pointer()) != 0
 	}
@@ -7070,8 +5816,6 @@ func (ptr *QQmlListReference) IsReadable() bool {
 }
 
 func (ptr *QQmlListReference) IsValid() bool {
-	defer qt.Recovering("QQmlListReference::isValid")
-
 	if ptr.Pointer() != nil {
 		return C.QQmlListReference_IsValid(ptr.Pointer()) != 0
 	}
@@ -7079,8 +5823,6 @@ func (ptr *QQmlListReference) IsValid() bool {
 }
 
 func (ptr *QQmlListReference) ListElementType() *core.QMetaObject {
-	defer qt.Recovering("QQmlListReference::listElementType")
-
 	if ptr.Pointer() != nil {
 		return core.NewQMetaObjectFromPointer(C.QQmlListReference_ListElementType(ptr.Pointer()))
 	}
@@ -7088,8 +5830,6 @@ func (ptr *QQmlListReference) ListElementType() *core.QMetaObject {
 }
 
 func (ptr *QQmlListReference) Object() *core.QObject {
-	defer qt.Recovering("QQmlListReference::object")
-
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQObjectFromPointer(C.QQmlListReference_Object(ptr.Pointer()))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
@@ -7140,7 +5880,6 @@ func NewQQmlNetworkAccessManagerFactoryFromPointer(ptr unsafe.Pointer) *QQmlNetw
 
 //export callbackQQmlNetworkAccessManagerFactory_Create
 func callbackQQmlNetworkAccessManagerFactory_Create(ptr unsafe.Pointer, parent unsafe.Pointer) unsafe.Pointer {
-	defer qt.Recovering("callback QQmlNetworkAccessManagerFactory::create")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QQmlNetworkAccessManagerFactory::create"); signal != nil {
 		return network.PointerFromQNetworkAccessManager(signal.(func(*core.QObject) *network.QNetworkAccessManager)(core.NewQObjectFromPointer(parent)))
@@ -7150,8 +5889,6 @@ func callbackQQmlNetworkAccessManagerFactory_Create(ptr unsafe.Pointer, parent u
 }
 
 func (ptr *QQmlNetworkAccessManagerFactory) ConnectCreate(f func(parent *core.QObject) *network.QNetworkAccessManager) {
-	defer qt.Recovering("connect QQmlNetworkAccessManagerFactory::create")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QQmlNetworkAccessManagerFactory::create", f)
@@ -7159,8 +5896,6 @@ func (ptr *QQmlNetworkAccessManagerFactory) ConnectCreate(f func(parent *core.QO
 }
 
 func (ptr *QQmlNetworkAccessManagerFactory) DisconnectCreate(parent core.QObject_ITF) {
-	defer qt.Recovering("disconnect QQmlNetworkAccessManagerFactory::create")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QQmlNetworkAccessManagerFactory::create")
@@ -7168,8 +5903,6 @@ func (ptr *QQmlNetworkAccessManagerFactory) DisconnectCreate(parent core.QObject
 }
 
 func (ptr *QQmlNetworkAccessManagerFactory) Create(parent core.QObject_ITF) *network.QNetworkAccessManager {
-	defer qt.Recovering("QQmlNetworkAccessManagerFactory::create")
-
 	if ptr.Pointer() != nil {
 		var tmpValue = network.NewQNetworkAccessManagerFromPointer(C.QQmlNetworkAccessManagerFactory_Create(ptr.Pointer(), core.PointerFromQObject(parent)))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
@@ -7182,7 +5915,6 @@ func (ptr *QQmlNetworkAccessManagerFactory) Create(parent core.QObject_ITF) *net
 
 //export callbackQQmlNetworkAccessManagerFactory_DestroyQQmlNetworkAccessManagerFactory
 func callbackQQmlNetworkAccessManagerFactory_DestroyQQmlNetworkAccessManagerFactory(ptr unsafe.Pointer) {
-	defer qt.Recovering("callback QQmlNetworkAccessManagerFactory::~QQmlNetworkAccessManagerFactory")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QQmlNetworkAccessManagerFactory::~QQmlNetworkAccessManagerFactory"); signal != nil {
 		signal.(func())()
@@ -7192,8 +5924,6 @@ func callbackQQmlNetworkAccessManagerFactory_DestroyQQmlNetworkAccessManagerFact
 }
 
 func (ptr *QQmlNetworkAccessManagerFactory) ConnectDestroyQQmlNetworkAccessManagerFactory(f func()) {
-	defer qt.Recovering("connect QQmlNetworkAccessManagerFactory::~QQmlNetworkAccessManagerFactory")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QQmlNetworkAccessManagerFactory::~QQmlNetworkAccessManagerFactory", f)
@@ -7201,8 +5931,6 @@ func (ptr *QQmlNetworkAccessManagerFactory) ConnectDestroyQQmlNetworkAccessManag
 }
 
 func (ptr *QQmlNetworkAccessManagerFactory) DisconnectDestroyQQmlNetworkAccessManagerFactory() {
-	defer qt.Recovering("disconnect QQmlNetworkAccessManagerFactory::~QQmlNetworkAccessManagerFactory")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QQmlNetworkAccessManagerFactory::~QQmlNetworkAccessManagerFactory")
@@ -7210,8 +5938,6 @@ func (ptr *QQmlNetworkAccessManagerFactory) DisconnectDestroyQQmlNetworkAccessMa
 }
 
 func (ptr *QQmlNetworkAccessManagerFactory) DestroyQQmlNetworkAccessManagerFactory() {
-	defer qt.Recovering("QQmlNetworkAccessManagerFactory::~QQmlNetworkAccessManagerFactory")
-
 	if ptr.Pointer() != nil {
 		C.QQmlNetworkAccessManagerFactory_DestroyQQmlNetworkAccessManagerFactory(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
@@ -7220,8 +5946,6 @@ func (ptr *QQmlNetworkAccessManagerFactory) DestroyQQmlNetworkAccessManagerFacto
 }
 
 func (ptr *QQmlNetworkAccessManagerFactory) DestroyQQmlNetworkAccessManagerFactoryDefault() {
-	defer qt.Recovering("QQmlNetworkAccessManagerFactory::~QQmlNetworkAccessManagerFactory")
-
 	if ptr.Pointer() != nil {
 		C.QQmlNetworkAccessManagerFactory_DestroyQQmlNetworkAccessManagerFactoryDefault(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
@@ -7275,7 +5999,6 @@ func (ptr *QQmlParserStatus) DestroyQQmlParserStatus() {
 
 //export callbackQQmlParserStatus_ClassBegin
 func callbackQQmlParserStatus_ClassBegin(ptr unsafe.Pointer) {
-	defer qt.Recovering("callback QQmlParserStatus::classBegin")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QQmlParserStatus::classBegin"); signal != nil {
 		signal.(func())()
@@ -7284,8 +6007,6 @@ func callbackQQmlParserStatus_ClassBegin(ptr unsafe.Pointer) {
 }
 
 func (ptr *QQmlParserStatus) ConnectClassBegin(f func()) {
-	defer qt.Recovering("connect QQmlParserStatus::classBegin")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QQmlParserStatus::classBegin", f)
@@ -7293,8 +6014,6 @@ func (ptr *QQmlParserStatus) ConnectClassBegin(f func()) {
 }
 
 func (ptr *QQmlParserStatus) DisconnectClassBegin() {
-	defer qt.Recovering("disconnect QQmlParserStatus::classBegin")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QQmlParserStatus::classBegin")
@@ -7302,8 +6021,6 @@ func (ptr *QQmlParserStatus) DisconnectClassBegin() {
 }
 
 func (ptr *QQmlParserStatus) ClassBegin() {
-	defer qt.Recovering("QQmlParserStatus::classBegin")
-
 	if ptr.Pointer() != nil {
 		C.QQmlParserStatus_ClassBegin(ptr.Pointer())
 	}
@@ -7311,7 +6028,6 @@ func (ptr *QQmlParserStatus) ClassBegin() {
 
 //export callbackQQmlParserStatus_ComponentComplete
 func callbackQQmlParserStatus_ComponentComplete(ptr unsafe.Pointer) {
-	defer qt.Recovering("callback QQmlParserStatus::componentComplete")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QQmlParserStatus::componentComplete"); signal != nil {
 		signal.(func())()
@@ -7320,8 +6036,6 @@ func callbackQQmlParserStatus_ComponentComplete(ptr unsafe.Pointer) {
 }
 
 func (ptr *QQmlParserStatus) ConnectComponentComplete(f func()) {
-	defer qt.Recovering("connect QQmlParserStatus::componentComplete")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QQmlParserStatus::componentComplete", f)
@@ -7329,8 +6043,6 @@ func (ptr *QQmlParserStatus) ConnectComponentComplete(f func()) {
 }
 
 func (ptr *QQmlParserStatus) DisconnectComponentComplete() {
-	defer qt.Recovering("disconnect QQmlParserStatus::componentComplete")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QQmlParserStatus::componentComplete")
@@ -7338,8 +6050,6 @@ func (ptr *QQmlParserStatus) DisconnectComponentComplete() {
 }
 
 func (ptr *QQmlParserStatus) ComponentComplete() {
-	defer qt.Recovering("QQmlParserStatus::componentComplete")
-
 	if ptr.Pointer() != nil {
 		C.QQmlParserStatus_ComponentComplete(ptr.Pointer())
 	}
@@ -7408,40 +6118,30 @@ func (ptr *QQmlProperty) DestroyQQmlProperty() {
 }
 
 func NewQQmlProperty() *QQmlProperty {
-	defer qt.Recovering("QQmlProperty::QQmlProperty")
-
 	var tmpValue = NewQQmlPropertyFromPointer(C.QQmlProperty_NewQQmlProperty())
 	runtime.SetFinalizer(tmpValue, (*QQmlProperty).DestroyQQmlProperty)
 	return tmpValue
 }
 
 func NewQQmlProperty2(obj core.QObject_ITF) *QQmlProperty {
-	defer qt.Recovering("QQmlProperty::QQmlProperty")
-
 	var tmpValue = NewQQmlPropertyFromPointer(C.QQmlProperty_NewQQmlProperty2(core.PointerFromQObject(obj)))
 	runtime.SetFinalizer(tmpValue, (*QQmlProperty).DestroyQQmlProperty)
 	return tmpValue
 }
 
 func NewQQmlProperty3(obj core.QObject_ITF, ctxt QQmlContext_ITF) *QQmlProperty {
-	defer qt.Recovering("QQmlProperty::QQmlProperty")
-
 	var tmpValue = NewQQmlPropertyFromPointer(C.QQmlProperty_NewQQmlProperty3(core.PointerFromQObject(obj), PointerFromQQmlContext(ctxt)))
 	runtime.SetFinalizer(tmpValue, (*QQmlProperty).DestroyQQmlProperty)
 	return tmpValue
 }
 
 func NewQQmlProperty4(obj core.QObject_ITF, engine QQmlEngine_ITF) *QQmlProperty {
-	defer qt.Recovering("QQmlProperty::QQmlProperty")
-
 	var tmpValue = NewQQmlPropertyFromPointer(C.QQmlProperty_NewQQmlProperty4(core.PointerFromQObject(obj), PointerFromQQmlEngine(engine)))
 	runtime.SetFinalizer(tmpValue, (*QQmlProperty).DestroyQQmlProperty)
 	return tmpValue
 }
 
 func NewQQmlProperty5(obj core.QObject_ITF, name string) *QQmlProperty {
-	defer qt.Recovering("QQmlProperty::QQmlProperty")
-
 	var nameC = C.CString(name)
 	defer C.free(unsafe.Pointer(nameC))
 	var tmpValue = NewQQmlPropertyFromPointer(C.QQmlProperty_NewQQmlProperty5(core.PointerFromQObject(obj), nameC))
@@ -7450,8 +6150,6 @@ func NewQQmlProperty5(obj core.QObject_ITF, name string) *QQmlProperty {
 }
 
 func NewQQmlProperty6(obj core.QObject_ITF, name string, ctxt QQmlContext_ITF) *QQmlProperty {
-	defer qt.Recovering("QQmlProperty::QQmlProperty")
-
 	var nameC = C.CString(name)
 	defer C.free(unsafe.Pointer(nameC))
 	var tmpValue = NewQQmlPropertyFromPointer(C.QQmlProperty_NewQQmlProperty6(core.PointerFromQObject(obj), nameC, PointerFromQQmlContext(ctxt)))
@@ -7460,8 +6158,6 @@ func NewQQmlProperty6(obj core.QObject_ITF, name string, ctxt QQmlContext_ITF) *
 }
 
 func NewQQmlProperty7(obj core.QObject_ITF, name string, engine QQmlEngine_ITF) *QQmlProperty {
-	defer qt.Recovering("QQmlProperty::QQmlProperty")
-
 	var nameC = C.CString(name)
 	defer C.free(unsafe.Pointer(nameC))
 	var tmpValue = NewQQmlPropertyFromPointer(C.QQmlProperty_NewQQmlProperty7(core.PointerFromQObject(obj), nameC, PointerFromQQmlEngine(engine)))
@@ -7470,16 +6166,12 @@ func NewQQmlProperty7(obj core.QObject_ITF, name string, engine QQmlEngine_ITF) 
 }
 
 func NewQQmlProperty8(other QQmlProperty_ITF) *QQmlProperty {
-	defer qt.Recovering("QQmlProperty::QQmlProperty")
-
 	var tmpValue = NewQQmlPropertyFromPointer(C.QQmlProperty_NewQQmlProperty8(PointerFromQQmlProperty(other)))
 	runtime.SetFinalizer(tmpValue, (*QQmlProperty).DestroyQQmlProperty)
 	return tmpValue
 }
 
 func (ptr *QQmlProperty) ConnectNotifySignal(dest core.QObject_ITF, slot string) bool {
-	defer qt.Recovering("QQmlProperty::connectNotifySignal")
-
 	if ptr.Pointer() != nil {
 		var slotC = C.CString(slot)
 		defer C.free(unsafe.Pointer(slotC))
@@ -7489,8 +6181,6 @@ func (ptr *QQmlProperty) ConnectNotifySignal(dest core.QObject_ITF, slot string)
 }
 
 func (ptr *QQmlProperty) ConnectNotifySignal2(dest core.QObject_ITF, method int) bool {
-	defer qt.Recovering("QQmlProperty::connectNotifySignal")
-
 	if ptr.Pointer() != nil {
 		return C.QQmlProperty_ConnectNotifySignal2(ptr.Pointer(), core.PointerFromQObject(dest), C.int(int32(method))) != 0
 	}
@@ -7498,8 +6188,6 @@ func (ptr *QQmlProperty) ConnectNotifySignal2(dest core.QObject_ITF, method int)
 }
 
 func (ptr *QQmlProperty) HasNotifySignal() bool {
-	defer qt.Recovering("QQmlProperty::hasNotifySignal")
-
 	if ptr.Pointer() != nil {
 		return C.QQmlProperty_HasNotifySignal(ptr.Pointer()) != 0
 	}
@@ -7507,8 +6195,6 @@ func (ptr *QQmlProperty) HasNotifySignal() bool {
 }
 
 func (ptr *QQmlProperty) Index() int {
-	defer qt.Recovering("QQmlProperty::index")
-
 	if ptr.Pointer() != nil {
 		return int(int32(C.QQmlProperty_Index(ptr.Pointer())))
 	}
@@ -7516,8 +6202,6 @@ func (ptr *QQmlProperty) Index() int {
 }
 
 func (ptr *QQmlProperty) IsDesignable() bool {
-	defer qt.Recovering("QQmlProperty::isDesignable")
-
 	if ptr.Pointer() != nil {
 		return C.QQmlProperty_IsDesignable(ptr.Pointer()) != 0
 	}
@@ -7525,8 +6209,6 @@ func (ptr *QQmlProperty) IsDesignable() bool {
 }
 
 func (ptr *QQmlProperty) IsProperty() bool {
-	defer qt.Recovering("QQmlProperty::isProperty")
-
 	if ptr.Pointer() != nil {
 		return C.QQmlProperty_IsProperty(ptr.Pointer()) != 0
 	}
@@ -7534,8 +6216,6 @@ func (ptr *QQmlProperty) IsProperty() bool {
 }
 
 func (ptr *QQmlProperty) IsResettable() bool {
-	defer qt.Recovering("QQmlProperty::isResettable")
-
 	if ptr.Pointer() != nil {
 		return C.QQmlProperty_IsResettable(ptr.Pointer()) != 0
 	}
@@ -7543,8 +6223,6 @@ func (ptr *QQmlProperty) IsResettable() bool {
 }
 
 func (ptr *QQmlProperty) IsSignalProperty() bool {
-	defer qt.Recovering("QQmlProperty::isSignalProperty")
-
 	if ptr.Pointer() != nil {
 		return C.QQmlProperty_IsSignalProperty(ptr.Pointer()) != 0
 	}
@@ -7552,8 +6230,6 @@ func (ptr *QQmlProperty) IsSignalProperty() bool {
 }
 
 func (ptr *QQmlProperty) IsValid() bool {
-	defer qt.Recovering("QQmlProperty::isValid")
-
 	if ptr.Pointer() != nil {
 		return C.QQmlProperty_IsValid(ptr.Pointer()) != 0
 	}
@@ -7561,8 +6237,6 @@ func (ptr *QQmlProperty) IsValid() bool {
 }
 
 func (ptr *QQmlProperty) IsWritable() bool {
-	defer qt.Recovering("QQmlProperty::isWritable")
-
 	if ptr.Pointer() != nil {
 		return C.QQmlProperty_IsWritable(ptr.Pointer()) != 0
 	}
@@ -7570,8 +6244,6 @@ func (ptr *QQmlProperty) IsWritable() bool {
 }
 
 func (ptr *QQmlProperty) Method() *core.QMetaMethod {
-	defer qt.Recovering("QQmlProperty::method")
-
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQMetaMethodFromPointer(C.QQmlProperty_Method(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*core.QMetaMethod).DestroyQMetaMethod)
@@ -7581,8 +6253,6 @@ func (ptr *QQmlProperty) Method() *core.QMetaMethod {
 }
 
 func (ptr *QQmlProperty) Name() string {
-	defer qt.Recovering("QQmlProperty::name")
-
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QQmlProperty_Name(ptr.Pointer()))
 	}
@@ -7590,8 +6260,6 @@ func (ptr *QQmlProperty) Name() string {
 }
 
 func (ptr *QQmlProperty) NeedsNotifySignal() bool {
-	defer qt.Recovering("QQmlProperty::needsNotifySignal")
-
 	if ptr.Pointer() != nil {
 		return C.QQmlProperty_NeedsNotifySignal(ptr.Pointer()) != 0
 	}
@@ -7599,8 +6267,6 @@ func (ptr *QQmlProperty) NeedsNotifySignal() bool {
 }
 
 func (ptr *QQmlProperty) Object() *core.QObject {
-	defer qt.Recovering("QQmlProperty::object")
-
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQObjectFromPointer(C.QQmlProperty_Object(ptr.Pointer()))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
@@ -7612,8 +6278,6 @@ func (ptr *QQmlProperty) Object() *core.QObject {
 }
 
 func (ptr *QQmlProperty) PropertyType() int {
-	defer qt.Recovering("QQmlProperty::propertyType")
-
 	if ptr.Pointer() != nil {
 		return int(int32(C.QQmlProperty_PropertyType(ptr.Pointer())))
 	}
@@ -7621,8 +6285,6 @@ func (ptr *QQmlProperty) PropertyType() int {
 }
 
 func (ptr *QQmlProperty) PropertyTypeCategory() QQmlProperty__PropertyTypeCategory {
-	defer qt.Recovering("QQmlProperty::propertyTypeCategory")
-
 	if ptr.Pointer() != nil {
 		return QQmlProperty__PropertyTypeCategory(C.QQmlProperty_PropertyTypeCategory(ptr.Pointer()))
 	}
@@ -7630,8 +6292,6 @@ func (ptr *QQmlProperty) PropertyTypeCategory() QQmlProperty__PropertyTypeCatego
 }
 
 func (ptr *QQmlProperty) PropertyTypeName() string {
-	defer qt.Recovering("QQmlProperty::propertyTypeName")
-
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QQmlProperty_PropertyTypeName(ptr.Pointer()))
 	}
@@ -7639,8 +6299,6 @@ func (ptr *QQmlProperty) PropertyTypeName() string {
 }
 
 func QQmlProperty_Read2(object core.QObject_ITF, name string) *core.QVariant {
-	defer qt.Recovering("QQmlProperty::read")
-
 	var nameC = C.CString(name)
 	defer C.free(unsafe.Pointer(nameC))
 	var tmpValue = core.NewQVariantFromPointer(C.QQmlProperty_QQmlProperty_Read2(core.PointerFromQObject(object), nameC))
@@ -7649,8 +6307,6 @@ func QQmlProperty_Read2(object core.QObject_ITF, name string) *core.QVariant {
 }
 
 func (ptr *QQmlProperty) Read2(object core.QObject_ITF, name string) *core.QVariant {
-	defer qt.Recovering("QQmlProperty::read")
-
 	var nameC = C.CString(name)
 	defer C.free(unsafe.Pointer(nameC))
 	var tmpValue = core.NewQVariantFromPointer(C.QQmlProperty_QQmlProperty_Read2(core.PointerFromQObject(object), nameC))
@@ -7659,8 +6315,6 @@ func (ptr *QQmlProperty) Read2(object core.QObject_ITF, name string) *core.QVari
 }
 
 func QQmlProperty_Read3(object core.QObject_ITF, name string, ctxt QQmlContext_ITF) *core.QVariant {
-	defer qt.Recovering("QQmlProperty::read")
-
 	var nameC = C.CString(name)
 	defer C.free(unsafe.Pointer(nameC))
 	var tmpValue = core.NewQVariantFromPointer(C.QQmlProperty_QQmlProperty_Read3(core.PointerFromQObject(object), nameC, PointerFromQQmlContext(ctxt)))
@@ -7669,8 +6323,6 @@ func QQmlProperty_Read3(object core.QObject_ITF, name string, ctxt QQmlContext_I
 }
 
 func (ptr *QQmlProperty) Read3(object core.QObject_ITF, name string, ctxt QQmlContext_ITF) *core.QVariant {
-	defer qt.Recovering("QQmlProperty::read")
-
 	var nameC = C.CString(name)
 	defer C.free(unsafe.Pointer(nameC))
 	var tmpValue = core.NewQVariantFromPointer(C.QQmlProperty_QQmlProperty_Read3(core.PointerFromQObject(object), nameC, PointerFromQQmlContext(ctxt)))
@@ -7679,8 +6331,6 @@ func (ptr *QQmlProperty) Read3(object core.QObject_ITF, name string, ctxt QQmlCo
 }
 
 func QQmlProperty_Read4(object core.QObject_ITF, name string, engine QQmlEngine_ITF) *core.QVariant {
-	defer qt.Recovering("QQmlProperty::read")
-
 	var nameC = C.CString(name)
 	defer C.free(unsafe.Pointer(nameC))
 	var tmpValue = core.NewQVariantFromPointer(C.QQmlProperty_QQmlProperty_Read4(core.PointerFromQObject(object), nameC, PointerFromQQmlEngine(engine)))
@@ -7689,8 +6339,6 @@ func QQmlProperty_Read4(object core.QObject_ITF, name string, engine QQmlEngine_
 }
 
 func (ptr *QQmlProperty) Read4(object core.QObject_ITF, name string, engine QQmlEngine_ITF) *core.QVariant {
-	defer qt.Recovering("QQmlProperty::read")
-
 	var nameC = C.CString(name)
 	defer C.free(unsafe.Pointer(nameC))
 	var tmpValue = core.NewQVariantFromPointer(C.QQmlProperty_QQmlProperty_Read4(core.PointerFromQObject(object), nameC, PointerFromQQmlEngine(engine)))
@@ -7699,8 +6347,6 @@ func (ptr *QQmlProperty) Read4(object core.QObject_ITF, name string, engine QQml
 }
 
 func (ptr *QQmlProperty) Read() *core.QVariant {
-	defer qt.Recovering("QQmlProperty::read")
-
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQVariantFromPointer(C.QQmlProperty_Read(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
@@ -7710,8 +6356,6 @@ func (ptr *QQmlProperty) Read() *core.QVariant {
 }
 
 func (ptr *QQmlProperty) Reset() bool {
-	defer qt.Recovering("QQmlProperty::reset")
-
 	if ptr.Pointer() != nil {
 		return C.QQmlProperty_Reset(ptr.Pointer()) != 0
 	}
@@ -7719,8 +6363,6 @@ func (ptr *QQmlProperty) Reset() bool {
 }
 
 func (ptr *QQmlProperty) Type() QQmlProperty__Type {
-	defer qt.Recovering("QQmlProperty::type")
-
 	if ptr.Pointer() != nil {
 		return QQmlProperty__Type(C.QQmlProperty_Type(ptr.Pointer()))
 	}
@@ -7728,56 +6370,42 @@ func (ptr *QQmlProperty) Type() QQmlProperty__Type {
 }
 
 func QQmlProperty_Write2(object core.QObject_ITF, name string, value core.QVariant_ITF) bool {
-	defer qt.Recovering("QQmlProperty::write")
-
 	var nameC = C.CString(name)
 	defer C.free(unsafe.Pointer(nameC))
 	return C.QQmlProperty_QQmlProperty_Write2(core.PointerFromQObject(object), nameC, core.PointerFromQVariant(value)) != 0
 }
 
 func (ptr *QQmlProperty) Write2(object core.QObject_ITF, name string, value core.QVariant_ITF) bool {
-	defer qt.Recovering("QQmlProperty::write")
-
 	var nameC = C.CString(name)
 	defer C.free(unsafe.Pointer(nameC))
 	return C.QQmlProperty_QQmlProperty_Write2(core.PointerFromQObject(object), nameC, core.PointerFromQVariant(value)) != 0
 }
 
 func QQmlProperty_Write3(object core.QObject_ITF, name string, value core.QVariant_ITF, ctxt QQmlContext_ITF) bool {
-	defer qt.Recovering("QQmlProperty::write")
-
 	var nameC = C.CString(name)
 	defer C.free(unsafe.Pointer(nameC))
 	return C.QQmlProperty_QQmlProperty_Write3(core.PointerFromQObject(object), nameC, core.PointerFromQVariant(value), PointerFromQQmlContext(ctxt)) != 0
 }
 
 func (ptr *QQmlProperty) Write3(object core.QObject_ITF, name string, value core.QVariant_ITF, ctxt QQmlContext_ITF) bool {
-	defer qt.Recovering("QQmlProperty::write")
-
 	var nameC = C.CString(name)
 	defer C.free(unsafe.Pointer(nameC))
 	return C.QQmlProperty_QQmlProperty_Write3(core.PointerFromQObject(object), nameC, core.PointerFromQVariant(value), PointerFromQQmlContext(ctxt)) != 0
 }
 
 func QQmlProperty_Write4(object core.QObject_ITF, name string, value core.QVariant_ITF, engine QQmlEngine_ITF) bool {
-	defer qt.Recovering("QQmlProperty::write")
-
 	var nameC = C.CString(name)
 	defer C.free(unsafe.Pointer(nameC))
 	return C.QQmlProperty_QQmlProperty_Write4(core.PointerFromQObject(object), nameC, core.PointerFromQVariant(value), PointerFromQQmlEngine(engine)) != 0
 }
 
 func (ptr *QQmlProperty) Write4(object core.QObject_ITF, name string, value core.QVariant_ITF, engine QQmlEngine_ITF) bool {
-	defer qt.Recovering("QQmlProperty::write")
-
 	var nameC = C.CString(name)
 	defer C.free(unsafe.Pointer(nameC))
 	return C.QQmlProperty_QQmlProperty_Write4(core.PointerFromQObject(object), nameC, core.PointerFromQVariant(value), PointerFromQQmlEngine(engine)) != 0
 }
 
 func (ptr *QQmlProperty) Write(value core.QVariant_ITF) bool {
-	defer qt.Recovering("QQmlProperty::write")
-
 	if ptr.Pointer() != nil {
 		return C.QQmlProperty_Write(ptr.Pointer(), core.PointerFromQVariant(value)) != 0
 	}
@@ -7823,8 +6451,6 @@ func NewQQmlPropertyMapFromPointer(ptr unsafe.Pointer) *QQmlPropertyMap {
 	return n
 }
 func NewQQmlPropertyMap(parent core.QObject_ITF) *QQmlPropertyMap {
-	defer qt.Recovering("QQmlPropertyMap::QQmlPropertyMap")
-
 	var tmpValue = NewQQmlPropertyMapFromPointer(C.QQmlPropertyMap_NewQQmlPropertyMap(core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
@@ -7833,8 +6459,6 @@ func NewQQmlPropertyMap(parent core.QObject_ITF) *QQmlPropertyMap {
 }
 
 func (ptr *QQmlPropertyMap) Clear(key string) {
-	defer qt.Recovering("QQmlPropertyMap::clear")
-
 	if ptr.Pointer() != nil {
 		var keyC = C.CString(key)
 		defer C.free(unsafe.Pointer(keyC))
@@ -7843,8 +6467,6 @@ func (ptr *QQmlPropertyMap) Clear(key string) {
 }
 
 func (ptr *QQmlPropertyMap) Contains(key string) bool {
-	defer qt.Recovering("QQmlPropertyMap::contains")
-
 	if ptr.Pointer() != nil {
 		var keyC = C.CString(key)
 		defer C.free(unsafe.Pointer(keyC))
@@ -7854,8 +6476,6 @@ func (ptr *QQmlPropertyMap) Contains(key string) bool {
 }
 
 func (ptr *QQmlPropertyMap) Count() int {
-	defer qt.Recovering("QQmlPropertyMap::count")
-
 	if ptr.Pointer() != nil {
 		return int(int32(C.QQmlPropertyMap_Count(ptr.Pointer())))
 	}
@@ -7863,8 +6483,6 @@ func (ptr *QQmlPropertyMap) Count() int {
 }
 
 func (ptr *QQmlPropertyMap) Insert(key string, value core.QVariant_ITF) {
-	defer qt.Recovering("QQmlPropertyMap::insert")
-
 	if ptr.Pointer() != nil {
 		var keyC = C.CString(key)
 		defer C.free(unsafe.Pointer(keyC))
@@ -7873,8 +6491,6 @@ func (ptr *QQmlPropertyMap) Insert(key string, value core.QVariant_ITF) {
 }
 
 func (ptr *QQmlPropertyMap) IsEmpty() bool {
-	defer qt.Recovering("QQmlPropertyMap::isEmpty")
-
 	if ptr.Pointer() != nil {
 		return C.QQmlPropertyMap_IsEmpty(ptr.Pointer()) != 0
 	}
@@ -7882,8 +6498,6 @@ func (ptr *QQmlPropertyMap) IsEmpty() bool {
 }
 
 func (ptr *QQmlPropertyMap) Keys() []string {
-	defer qt.Recovering("QQmlPropertyMap::keys")
-
 	if ptr.Pointer() != nil {
 		return strings.Split(C.GoString(C.QQmlPropertyMap_Keys(ptr.Pointer())), "|")
 	}
@@ -7891,8 +6505,6 @@ func (ptr *QQmlPropertyMap) Keys() []string {
 }
 
 func (ptr *QQmlPropertyMap) Size() int {
-	defer qt.Recovering("QQmlPropertyMap::size")
-
 	if ptr.Pointer() != nil {
 		return int(int32(C.QQmlPropertyMap_Size(ptr.Pointer())))
 	}
@@ -7901,7 +6513,6 @@ func (ptr *QQmlPropertyMap) Size() int {
 
 //export callbackQQmlPropertyMap_UpdateValue
 func callbackQQmlPropertyMap_UpdateValue(ptr unsafe.Pointer, key *C.char, input unsafe.Pointer) unsafe.Pointer {
-	defer qt.Recovering("callback QQmlPropertyMap::updateValue")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QQmlPropertyMap::updateValue"); signal != nil {
 		return core.PointerFromQVariant(signal.(func(string, *core.QVariant) *core.QVariant)(C.GoString(key), core.NewQVariantFromPointer(input)))
@@ -7911,8 +6522,6 @@ func callbackQQmlPropertyMap_UpdateValue(ptr unsafe.Pointer, key *C.char, input 
 }
 
 func (ptr *QQmlPropertyMap) ConnectUpdateValue(f func(key string, input *core.QVariant) *core.QVariant) {
-	defer qt.Recovering("connect QQmlPropertyMap::updateValue")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QQmlPropertyMap::updateValue", f)
@@ -7920,8 +6529,6 @@ func (ptr *QQmlPropertyMap) ConnectUpdateValue(f func(key string, input *core.QV
 }
 
 func (ptr *QQmlPropertyMap) DisconnectUpdateValue() {
-	defer qt.Recovering("disconnect QQmlPropertyMap::updateValue")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QQmlPropertyMap::updateValue")
@@ -7929,8 +6536,6 @@ func (ptr *QQmlPropertyMap) DisconnectUpdateValue() {
 }
 
 func (ptr *QQmlPropertyMap) UpdateValue(key string, input core.QVariant_ITF) *core.QVariant {
-	defer qt.Recovering("QQmlPropertyMap::updateValue")
-
 	if ptr.Pointer() != nil {
 		var keyC = C.CString(key)
 		defer C.free(unsafe.Pointer(keyC))
@@ -7942,8 +6547,6 @@ func (ptr *QQmlPropertyMap) UpdateValue(key string, input core.QVariant_ITF) *co
 }
 
 func (ptr *QQmlPropertyMap) UpdateValueDefault(key string, input core.QVariant_ITF) *core.QVariant {
-	defer qt.Recovering("QQmlPropertyMap::updateValue")
-
 	if ptr.Pointer() != nil {
 		var keyC = C.CString(key)
 		defer C.free(unsafe.Pointer(keyC))
@@ -7955,8 +6558,6 @@ func (ptr *QQmlPropertyMap) UpdateValueDefault(key string, input core.QVariant_I
 }
 
 func (ptr *QQmlPropertyMap) Value(key string) *core.QVariant {
-	defer qt.Recovering("QQmlPropertyMap::value")
-
 	if ptr.Pointer() != nil {
 		var keyC = C.CString(key)
 		defer C.free(unsafe.Pointer(keyC))
@@ -7969,7 +6570,6 @@ func (ptr *QQmlPropertyMap) Value(key string) *core.QVariant {
 
 //export callbackQQmlPropertyMap_ValueChanged
 func callbackQQmlPropertyMap_ValueChanged(ptr unsafe.Pointer, key *C.char, value unsafe.Pointer) {
-	defer qt.Recovering("callback QQmlPropertyMap::valueChanged")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QQmlPropertyMap::valueChanged"); signal != nil {
 		signal.(func(string, *core.QVariant))(C.GoString(key), core.NewQVariantFromPointer(value))
@@ -7978,8 +6578,6 @@ func callbackQQmlPropertyMap_ValueChanged(ptr unsafe.Pointer, key *C.char, value
 }
 
 func (ptr *QQmlPropertyMap) ConnectValueChanged(f func(key string, value *core.QVariant)) {
-	defer qt.Recovering("connect QQmlPropertyMap::valueChanged")
-
 	if ptr.Pointer() != nil {
 		C.QQmlPropertyMap_ConnectValueChanged(ptr.Pointer())
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QQmlPropertyMap::valueChanged", f)
@@ -7987,8 +6585,6 @@ func (ptr *QQmlPropertyMap) ConnectValueChanged(f func(key string, value *core.Q
 }
 
 func (ptr *QQmlPropertyMap) DisconnectValueChanged() {
-	defer qt.Recovering("disconnect QQmlPropertyMap::valueChanged")
-
 	if ptr.Pointer() != nil {
 		C.QQmlPropertyMap_DisconnectValueChanged(ptr.Pointer())
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QQmlPropertyMap::valueChanged")
@@ -7996,8 +6592,6 @@ func (ptr *QQmlPropertyMap) DisconnectValueChanged() {
 }
 
 func (ptr *QQmlPropertyMap) ValueChanged(key string, value core.QVariant_ITF) {
-	defer qt.Recovering("QQmlPropertyMap::valueChanged")
-
 	if ptr.Pointer() != nil {
 		var keyC = C.CString(key)
 		defer C.free(unsafe.Pointer(keyC))
@@ -8007,7 +6601,6 @@ func (ptr *QQmlPropertyMap) ValueChanged(key string, value core.QVariant_ITF) {
 
 //export callbackQQmlPropertyMap_DestroyQQmlPropertyMap
 func callbackQQmlPropertyMap_DestroyQQmlPropertyMap(ptr unsafe.Pointer) {
-	defer qt.Recovering("callback QQmlPropertyMap::~QQmlPropertyMap")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QQmlPropertyMap::~QQmlPropertyMap"); signal != nil {
 		signal.(func())()
@@ -8017,8 +6610,6 @@ func callbackQQmlPropertyMap_DestroyQQmlPropertyMap(ptr unsafe.Pointer) {
 }
 
 func (ptr *QQmlPropertyMap) ConnectDestroyQQmlPropertyMap(f func()) {
-	defer qt.Recovering("connect QQmlPropertyMap::~QQmlPropertyMap")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QQmlPropertyMap::~QQmlPropertyMap", f)
@@ -8026,8 +6617,6 @@ func (ptr *QQmlPropertyMap) ConnectDestroyQQmlPropertyMap(f func()) {
 }
 
 func (ptr *QQmlPropertyMap) DisconnectDestroyQQmlPropertyMap() {
-	defer qt.Recovering("disconnect QQmlPropertyMap::~QQmlPropertyMap")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QQmlPropertyMap::~QQmlPropertyMap")
@@ -8035,8 +6624,6 @@ func (ptr *QQmlPropertyMap) DisconnectDestroyQQmlPropertyMap() {
 }
 
 func (ptr *QQmlPropertyMap) DestroyQQmlPropertyMap() {
-	defer qt.Recovering("QQmlPropertyMap::~QQmlPropertyMap")
-
 	if ptr.Pointer() != nil {
 		C.QQmlPropertyMap_DestroyQQmlPropertyMap(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
@@ -8045,8 +6632,6 @@ func (ptr *QQmlPropertyMap) DestroyQQmlPropertyMap() {
 }
 
 func (ptr *QQmlPropertyMap) DestroyQQmlPropertyMapDefault() {
-	defer qt.Recovering("QQmlPropertyMap::~QQmlPropertyMap")
-
 	if ptr.Pointer() != nil {
 		C.QQmlPropertyMap_DestroyQQmlPropertyMapDefault(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
@@ -8056,7 +6641,6 @@ func (ptr *QQmlPropertyMap) DestroyQQmlPropertyMapDefault() {
 
 //export callbackQQmlPropertyMap_TimerEvent
 func callbackQQmlPropertyMap_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	defer qt.Recovering("callback QQmlPropertyMap::timerEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QQmlPropertyMap::timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
@@ -8066,8 +6650,6 @@ func callbackQQmlPropertyMap_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer
 }
 
 func (ptr *QQmlPropertyMap) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
-	defer qt.Recovering("connect QQmlPropertyMap::timerEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QQmlPropertyMap::timerEvent", f)
@@ -8075,8 +6657,6 @@ func (ptr *QQmlPropertyMap) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
 }
 
 func (ptr *QQmlPropertyMap) DisconnectTimerEvent() {
-	defer qt.Recovering("disconnect QQmlPropertyMap::timerEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QQmlPropertyMap::timerEvent")
@@ -8084,16 +6664,12 @@ func (ptr *QQmlPropertyMap) DisconnectTimerEvent() {
 }
 
 func (ptr *QQmlPropertyMap) TimerEvent(event core.QTimerEvent_ITF) {
-	defer qt.Recovering("QQmlPropertyMap::timerEvent")
-
 	if ptr.Pointer() != nil {
 		C.QQmlPropertyMap_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
 	}
 }
 
 func (ptr *QQmlPropertyMap) TimerEventDefault(event core.QTimerEvent_ITF) {
-	defer qt.Recovering("QQmlPropertyMap::timerEvent")
-
 	if ptr.Pointer() != nil {
 		C.QQmlPropertyMap_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
 	}
@@ -8101,7 +6677,6 @@ func (ptr *QQmlPropertyMap) TimerEventDefault(event core.QTimerEvent_ITF) {
 
 //export callbackQQmlPropertyMap_ChildEvent
 func callbackQQmlPropertyMap_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	defer qt.Recovering("callback QQmlPropertyMap::childEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QQmlPropertyMap::childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
@@ -8111,8 +6686,6 @@ func callbackQQmlPropertyMap_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer
 }
 
 func (ptr *QQmlPropertyMap) ConnectChildEvent(f func(event *core.QChildEvent)) {
-	defer qt.Recovering("connect QQmlPropertyMap::childEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QQmlPropertyMap::childEvent", f)
@@ -8120,8 +6693,6 @@ func (ptr *QQmlPropertyMap) ConnectChildEvent(f func(event *core.QChildEvent)) {
 }
 
 func (ptr *QQmlPropertyMap) DisconnectChildEvent() {
-	defer qt.Recovering("disconnect QQmlPropertyMap::childEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QQmlPropertyMap::childEvent")
@@ -8129,16 +6700,12 @@ func (ptr *QQmlPropertyMap) DisconnectChildEvent() {
 }
 
 func (ptr *QQmlPropertyMap) ChildEvent(event core.QChildEvent_ITF) {
-	defer qt.Recovering("QQmlPropertyMap::childEvent")
-
 	if ptr.Pointer() != nil {
 		C.QQmlPropertyMap_ChildEvent(ptr.Pointer(), core.PointerFromQChildEvent(event))
 	}
 }
 
 func (ptr *QQmlPropertyMap) ChildEventDefault(event core.QChildEvent_ITF) {
-	defer qt.Recovering("QQmlPropertyMap::childEvent")
-
 	if ptr.Pointer() != nil {
 		C.QQmlPropertyMap_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
 	}
@@ -8146,7 +6713,6 @@ func (ptr *QQmlPropertyMap) ChildEventDefault(event core.QChildEvent_ITF) {
 
 //export callbackQQmlPropertyMap_ConnectNotify
 func callbackQQmlPropertyMap_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-	defer qt.Recovering("callback QQmlPropertyMap::connectNotify")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QQmlPropertyMap::connectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
@@ -8156,8 +6722,6 @@ func callbackQQmlPropertyMap_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Point
 }
 
 func (ptr *QQmlPropertyMap) ConnectConnectNotify(f func(sign *core.QMetaMethod)) {
-	defer qt.Recovering("connect QQmlPropertyMap::connectNotify")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QQmlPropertyMap::connectNotify", f)
@@ -8165,8 +6729,6 @@ func (ptr *QQmlPropertyMap) ConnectConnectNotify(f func(sign *core.QMetaMethod))
 }
 
 func (ptr *QQmlPropertyMap) DisconnectConnectNotify() {
-	defer qt.Recovering("disconnect QQmlPropertyMap::connectNotify")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QQmlPropertyMap::connectNotify")
@@ -8174,16 +6736,12 @@ func (ptr *QQmlPropertyMap) DisconnectConnectNotify() {
 }
 
 func (ptr *QQmlPropertyMap) ConnectNotify(sign core.QMetaMethod_ITF) {
-	defer qt.Recovering("QQmlPropertyMap::connectNotify")
-
 	if ptr.Pointer() != nil {
 		C.QQmlPropertyMap_ConnectNotify(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
 	}
 }
 
 func (ptr *QQmlPropertyMap) ConnectNotifyDefault(sign core.QMetaMethod_ITF) {
-	defer qt.Recovering("QQmlPropertyMap::connectNotify")
-
 	if ptr.Pointer() != nil {
 		C.QQmlPropertyMap_ConnectNotifyDefault(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
 	}
@@ -8191,7 +6749,6 @@ func (ptr *QQmlPropertyMap) ConnectNotifyDefault(sign core.QMetaMethod_ITF) {
 
 //export callbackQQmlPropertyMap_CustomEvent
 func callbackQQmlPropertyMap_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	defer qt.Recovering("callback QQmlPropertyMap::customEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QQmlPropertyMap::customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
@@ -8201,8 +6758,6 @@ func callbackQQmlPropertyMap_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointe
 }
 
 func (ptr *QQmlPropertyMap) ConnectCustomEvent(f func(event *core.QEvent)) {
-	defer qt.Recovering("connect QQmlPropertyMap::customEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QQmlPropertyMap::customEvent", f)
@@ -8210,8 +6765,6 @@ func (ptr *QQmlPropertyMap) ConnectCustomEvent(f func(event *core.QEvent)) {
 }
 
 func (ptr *QQmlPropertyMap) DisconnectCustomEvent() {
-	defer qt.Recovering("disconnect QQmlPropertyMap::customEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QQmlPropertyMap::customEvent")
@@ -8219,16 +6772,12 @@ func (ptr *QQmlPropertyMap) DisconnectCustomEvent() {
 }
 
 func (ptr *QQmlPropertyMap) CustomEvent(event core.QEvent_ITF) {
-	defer qt.Recovering("QQmlPropertyMap::customEvent")
-
 	if ptr.Pointer() != nil {
 		C.QQmlPropertyMap_CustomEvent(ptr.Pointer(), core.PointerFromQEvent(event))
 	}
 }
 
 func (ptr *QQmlPropertyMap) CustomEventDefault(event core.QEvent_ITF) {
-	defer qt.Recovering("QQmlPropertyMap::customEvent")
-
 	if ptr.Pointer() != nil {
 		C.QQmlPropertyMap_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
 	}
@@ -8236,8 +6785,6 @@ func (ptr *QQmlPropertyMap) CustomEventDefault(event core.QEvent_ITF) {
 
 //export callbackQQmlPropertyMap_DeleteLater
 func callbackQQmlPropertyMap_DeleteLater(ptr unsafe.Pointer) {
-	defer qt.Recovering("callback QQmlPropertyMap::deleteLater")
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QQmlPropertyMap::deleteLater"); signal != nil {
 		signal.(func())()
 	} else {
@@ -8246,8 +6793,6 @@ func callbackQQmlPropertyMap_DeleteLater(ptr unsafe.Pointer) {
 }
 
 func (ptr *QQmlPropertyMap) ConnectDeleteLater(f func()) {
-	defer qt.Recovering("connect QQmlPropertyMap::deleteLater")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QQmlPropertyMap::deleteLater", f)
@@ -8255,8 +6800,6 @@ func (ptr *QQmlPropertyMap) ConnectDeleteLater(f func()) {
 }
 
 func (ptr *QQmlPropertyMap) DisconnectDeleteLater() {
-	defer qt.Recovering("disconnect QQmlPropertyMap::deleteLater")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QQmlPropertyMap::deleteLater")
@@ -8264,8 +6807,6 @@ func (ptr *QQmlPropertyMap) DisconnectDeleteLater() {
 }
 
 func (ptr *QQmlPropertyMap) DeleteLater() {
-	defer qt.Recovering("QQmlPropertyMap::deleteLater")
-
 	if ptr.Pointer() != nil {
 		C.QQmlPropertyMap_DeleteLater(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
@@ -8274,8 +6815,6 @@ func (ptr *QQmlPropertyMap) DeleteLater() {
 }
 
 func (ptr *QQmlPropertyMap) DeleteLaterDefault() {
-	defer qt.Recovering("QQmlPropertyMap::deleteLater")
-
 	if ptr.Pointer() != nil {
 		C.QQmlPropertyMap_DeleteLaterDefault(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
@@ -8285,7 +6824,6 @@ func (ptr *QQmlPropertyMap) DeleteLaterDefault() {
 
 //export callbackQQmlPropertyMap_DisconnectNotify
 func callbackQQmlPropertyMap_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-	defer qt.Recovering("callback QQmlPropertyMap::disconnectNotify")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QQmlPropertyMap::disconnectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
@@ -8295,8 +6833,6 @@ func callbackQQmlPropertyMap_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Po
 }
 
 func (ptr *QQmlPropertyMap) ConnectDisconnectNotify(f func(sign *core.QMetaMethod)) {
-	defer qt.Recovering("connect QQmlPropertyMap::disconnectNotify")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QQmlPropertyMap::disconnectNotify", f)
@@ -8304,8 +6840,6 @@ func (ptr *QQmlPropertyMap) ConnectDisconnectNotify(f func(sign *core.QMetaMetho
 }
 
 func (ptr *QQmlPropertyMap) DisconnectDisconnectNotify() {
-	defer qt.Recovering("disconnect QQmlPropertyMap::disconnectNotify")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QQmlPropertyMap::disconnectNotify")
@@ -8313,16 +6847,12 @@ func (ptr *QQmlPropertyMap) DisconnectDisconnectNotify() {
 }
 
 func (ptr *QQmlPropertyMap) DisconnectNotify(sign core.QMetaMethod_ITF) {
-	defer qt.Recovering("QQmlPropertyMap::disconnectNotify")
-
 	if ptr.Pointer() != nil {
 		C.QQmlPropertyMap_DisconnectNotify(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
 	}
 }
 
 func (ptr *QQmlPropertyMap) DisconnectNotifyDefault(sign core.QMetaMethod_ITF) {
-	defer qt.Recovering("QQmlPropertyMap::disconnectNotify")
-
 	if ptr.Pointer() != nil {
 		C.QQmlPropertyMap_DisconnectNotifyDefault(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
 	}
@@ -8330,7 +6860,6 @@ func (ptr *QQmlPropertyMap) DisconnectNotifyDefault(sign core.QMetaMethod_ITF) {
 
 //export callbackQQmlPropertyMap_Event
 func callbackQQmlPropertyMap_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
-	defer qt.Recovering("callback QQmlPropertyMap::event")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QQmlPropertyMap::event"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
@@ -8340,8 +6869,6 @@ func callbackQQmlPropertyMap_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char 
 }
 
 func (ptr *QQmlPropertyMap) ConnectEvent(f func(e *core.QEvent) bool) {
-	defer qt.Recovering("connect QQmlPropertyMap::event")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QQmlPropertyMap::event", f)
@@ -8349,8 +6876,6 @@ func (ptr *QQmlPropertyMap) ConnectEvent(f func(e *core.QEvent) bool) {
 }
 
 func (ptr *QQmlPropertyMap) DisconnectEvent() {
-	defer qt.Recovering("disconnect QQmlPropertyMap::event")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QQmlPropertyMap::event")
@@ -8358,8 +6883,6 @@ func (ptr *QQmlPropertyMap) DisconnectEvent() {
 }
 
 func (ptr *QQmlPropertyMap) Event(e core.QEvent_ITF) bool {
-	defer qt.Recovering("QQmlPropertyMap::event")
-
 	if ptr.Pointer() != nil {
 		return C.QQmlPropertyMap_Event(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
 	}
@@ -8367,8 +6890,6 @@ func (ptr *QQmlPropertyMap) Event(e core.QEvent_ITF) bool {
 }
 
 func (ptr *QQmlPropertyMap) EventDefault(e core.QEvent_ITF) bool {
-	defer qt.Recovering("QQmlPropertyMap::event")
-
 	if ptr.Pointer() != nil {
 		return C.QQmlPropertyMap_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
 	}
@@ -8377,7 +6898,6 @@ func (ptr *QQmlPropertyMap) EventDefault(e core.QEvent_ITF) bool {
 
 //export callbackQQmlPropertyMap_EventFilter
 func callbackQQmlPropertyMap_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-	defer qt.Recovering("callback QQmlPropertyMap::eventFilter")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QQmlPropertyMap::eventFilter"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
@@ -8387,8 +6907,6 @@ func callbackQQmlPropertyMap_EventFilter(ptr unsafe.Pointer, watched unsafe.Poin
 }
 
 func (ptr *QQmlPropertyMap) ConnectEventFilter(f func(watched *core.QObject, event *core.QEvent) bool) {
-	defer qt.Recovering("connect QQmlPropertyMap::eventFilter")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QQmlPropertyMap::eventFilter", f)
@@ -8396,8 +6914,6 @@ func (ptr *QQmlPropertyMap) ConnectEventFilter(f func(watched *core.QObject, eve
 }
 
 func (ptr *QQmlPropertyMap) DisconnectEventFilter() {
-	defer qt.Recovering("disconnect QQmlPropertyMap::eventFilter")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QQmlPropertyMap::eventFilter")
@@ -8405,8 +6921,6 @@ func (ptr *QQmlPropertyMap) DisconnectEventFilter() {
 }
 
 func (ptr *QQmlPropertyMap) EventFilter(watched core.QObject_ITF, event core.QEvent_ITF) bool {
-	defer qt.Recovering("QQmlPropertyMap::eventFilter")
-
 	if ptr.Pointer() != nil {
 		return C.QQmlPropertyMap_EventFilter(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
 	}
@@ -8414,8 +6928,6 @@ func (ptr *QQmlPropertyMap) EventFilter(watched core.QObject_ITF, event core.QEv
 }
 
 func (ptr *QQmlPropertyMap) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
-	defer qt.Recovering("QQmlPropertyMap::eventFilter")
-
 	if ptr.Pointer() != nil {
 		return C.QQmlPropertyMap_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
 	}
@@ -8424,7 +6936,6 @@ func (ptr *QQmlPropertyMap) EventFilterDefault(watched core.QObject_ITF, event c
 
 //export callbackQQmlPropertyMap_MetaObject
 func callbackQQmlPropertyMap_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-	defer qt.Recovering("callback QQmlPropertyMap::metaObject")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QQmlPropertyMap::metaObject"); signal != nil {
 		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
@@ -8434,8 +6945,6 @@ func callbackQQmlPropertyMap_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
 }
 
 func (ptr *QQmlPropertyMap) ConnectMetaObject(f func() *core.QMetaObject) {
-	defer qt.Recovering("connect QQmlPropertyMap::metaObject")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QQmlPropertyMap::metaObject", f)
@@ -8443,8 +6952,6 @@ func (ptr *QQmlPropertyMap) ConnectMetaObject(f func() *core.QMetaObject) {
 }
 
 func (ptr *QQmlPropertyMap) DisconnectMetaObject() {
-	defer qt.Recovering("disconnect QQmlPropertyMap::metaObject")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QQmlPropertyMap::metaObject")
@@ -8452,8 +6959,6 @@ func (ptr *QQmlPropertyMap) DisconnectMetaObject() {
 }
 
 func (ptr *QQmlPropertyMap) MetaObject() *core.QMetaObject {
-	defer qt.Recovering("QQmlPropertyMap::metaObject")
-
 	if ptr.Pointer() != nil {
 		return core.NewQMetaObjectFromPointer(C.QQmlPropertyMap_MetaObject(ptr.Pointer()))
 	}
@@ -8461,8 +6966,6 @@ func (ptr *QQmlPropertyMap) MetaObject() *core.QMetaObject {
 }
 
 func (ptr *QQmlPropertyMap) MetaObjectDefault() *core.QMetaObject {
-	defer qt.Recovering("QQmlPropertyMap::metaObject")
-
 	if ptr.Pointer() != nil {
 		return core.NewQMetaObjectFromPointer(C.QQmlPropertyMap_MetaObjectDefault(ptr.Pointer()))
 	}
@@ -8507,14 +7010,11 @@ func NewQQmlPropertyValueSourceFromPointer(ptr unsafe.Pointer) *QQmlPropertyValu
 	return n
 }
 func NewQQmlPropertyValueSource() *QQmlPropertyValueSource {
-	defer qt.Recovering("QQmlPropertyValueSource::QQmlPropertyValueSource")
-
 	return NewQQmlPropertyValueSourceFromPointer(C.QQmlPropertyValueSource_NewQQmlPropertyValueSource())
 }
 
 //export callbackQQmlPropertyValueSource_SetTarget
 func callbackQQmlPropertyValueSource_SetTarget(ptr unsafe.Pointer, property unsafe.Pointer) {
-	defer qt.Recovering("callback QQmlPropertyValueSource::setTarget")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QQmlPropertyValueSource::setTarget"); signal != nil {
 		signal.(func(*QQmlProperty))(NewQQmlPropertyFromPointer(property))
@@ -8523,8 +7023,6 @@ func callbackQQmlPropertyValueSource_SetTarget(ptr unsafe.Pointer, property unsa
 }
 
 func (ptr *QQmlPropertyValueSource) ConnectSetTarget(f func(property *QQmlProperty)) {
-	defer qt.Recovering("connect QQmlPropertyValueSource::setTarget")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QQmlPropertyValueSource::setTarget", f)
@@ -8532,8 +7030,6 @@ func (ptr *QQmlPropertyValueSource) ConnectSetTarget(f func(property *QQmlProper
 }
 
 func (ptr *QQmlPropertyValueSource) DisconnectSetTarget(property QQmlProperty_ITF) {
-	defer qt.Recovering("disconnect QQmlPropertyValueSource::setTarget")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QQmlPropertyValueSource::setTarget")
@@ -8541,8 +7037,6 @@ func (ptr *QQmlPropertyValueSource) DisconnectSetTarget(property QQmlProperty_IT
 }
 
 func (ptr *QQmlPropertyValueSource) SetTarget(property QQmlProperty_ITF) {
-	defer qt.Recovering("QQmlPropertyValueSource::setTarget")
-
 	if ptr.Pointer() != nil {
 		C.QQmlPropertyValueSource_SetTarget(ptr.Pointer(), PointerFromQQmlProperty(property))
 	}
@@ -8550,7 +7044,6 @@ func (ptr *QQmlPropertyValueSource) SetTarget(property QQmlProperty_ITF) {
 
 //export callbackQQmlPropertyValueSource_DestroyQQmlPropertyValueSource
 func callbackQQmlPropertyValueSource_DestroyQQmlPropertyValueSource(ptr unsafe.Pointer) {
-	defer qt.Recovering("callback QQmlPropertyValueSource::~QQmlPropertyValueSource")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QQmlPropertyValueSource::~QQmlPropertyValueSource"); signal != nil {
 		signal.(func())()
@@ -8560,8 +7053,6 @@ func callbackQQmlPropertyValueSource_DestroyQQmlPropertyValueSource(ptr unsafe.P
 }
 
 func (ptr *QQmlPropertyValueSource) ConnectDestroyQQmlPropertyValueSource(f func()) {
-	defer qt.Recovering("connect QQmlPropertyValueSource::~QQmlPropertyValueSource")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QQmlPropertyValueSource::~QQmlPropertyValueSource", f)
@@ -8569,8 +7060,6 @@ func (ptr *QQmlPropertyValueSource) ConnectDestroyQQmlPropertyValueSource(f func
 }
 
 func (ptr *QQmlPropertyValueSource) DisconnectDestroyQQmlPropertyValueSource() {
-	defer qt.Recovering("disconnect QQmlPropertyValueSource::~QQmlPropertyValueSource")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QQmlPropertyValueSource::~QQmlPropertyValueSource")
@@ -8578,8 +7067,6 @@ func (ptr *QQmlPropertyValueSource) DisconnectDestroyQQmlPropertyValueSource() {
 }
 
 func (ptr *QQmlPropertyValueSource) DestroyQQmlPropertyValueSource() {
-	defer qt.Recovering("QQmlPropertyValueSource::~QQmlPropertyValueSource")
-
 	if ptr.Pointer() != nil {
 		C.QQmlPropertyValueSource_DestroyQQmlPropertyValueSource(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
@@ -8588,8 +7075,6 @@ func (ptr *QQmlPropertyValueSource) DestroyQQmlPropertyValueSource() {
 }
 
 func (ptr *QQmlPropertyValueSource) DestroyQQmlPropertyValueSourceDefault() {
-	defer qt.Recovering("QQmlPropertyValueSource::~QQmlPropertyValueSource")
-
 	if ptr.Pointer() != nil {
 		C.QQmlPropertyValueSource_DestroyQQmlPropertyValueSourceDefault(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
@@ -8641,24 +7126,18 @@ func (ptr *QQmlScriptString) DestroyQQmlScriptString() {
 }
 
 func NewQQmlScriptString() *QQmlScriptString {
-	defer qt.Recovering("QQmlScriptString::QQmlScriptString")
-
 	var tmpValue = NewQQmlScriptStringFromPointer(C.QQmlScriptString_NewQQmlScriptString())
 	runtime.SetFinalizer(tmpValue, (*QQmlScriptString).DestroyQQmlScriptString)
 	return tmpValue
 }
 
 func NewQQmlScriptString2(other QQmlScriptString_ITF) *QQmlScriptString {
-	defer qt.Recovering("QQmlScriptString::QQmlScriptString")
-
 	var tmpValue = NewQQmlScriptStringFromPointer(C.QQmlScriptString_NewQQmlScriptString2(PointerFromQQmlScriptString(other)))
 	runtime.SetFinalizer(tmpValue, (*QQmlScriptString).DestroyQQmlScriptString)
 	return tmpValue
 }
 
 func (ptr *QQmlScriptString) BooleanLiteral(ok bool) bool {
-	defer qt.Recovering("QQmlScriptString::booleanLiteral")
-
 	if ptr.Pointer() != nil {
 		return C.QQmlScriptString_BooleanLiteral(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(ok)))) != 0
 	}
@@ -8666,8 +7145,6 @@ func (ptr *QQmlScriptString) BooleanLiteral(ok bool) bool {
 }
 
 func (ptr *QQmlScriptString) IsEmpty() bool {
-	defer qt.Recovering("QQmlScriptString::isEmpty")
-
 	if ptr.Pointer() != nil {
 		return C.QQmlScriptString_IsEmpty(ptr.Pointer()) != 0
 	}
@@ -8675,8 +7152,6 @@ func (ptr *QQmlScriptString) IsEmpty() bool {
 }
 
 func (ptr *QQmlScriptString) IsNullLiteral() bool {
-	defer qt.Recovering("QQmlScriptString::isNullLiteral")
-
 	if ptr.Pointer() != nil {
 		return C.QQmlScriptString_IsNullLiteral(ptr.Pointer()) != 0
 	}
@@ -8684,8 +7159,6 @@ func (ptr *QQmlScriptString) IsNullLiteral() bool {
 }
 
 func (ptr *QQmlScriptString) IsUndefinedLiteral() bool {
-	defer qt.Recovering("QQmlScriptString::isUndefinedLiteral")
-
 	if ptr.Pointer() != nil {
 		return C.QQmlScriptString_IsUndefinedLiteral(ptr.Pointer()) != 0
 	}
@@ -8693,8 +7166,6 @@ func (ptr *QQmlScriptString) IsUndefinedLiteral() bool {
 }
 
 func (ptr *QQmlScriptString) NumberLiteral(ok bool) float64 {
-	defer qt.Recovering("QQmlScriptString::numberLiteral")
-
 	if ptr.Pointer() != nil {
 		return float64(C.QQmlScriptString_NumberLiteral(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(ok)))))
 	}
@@ -8702,8 +7173,6 @@ func (ptr *QQmlScriptString) NumberLiteral(ok bool) float64 {
 }
 
 func (ptr *QQmlScriptString) StringLiteral() string {
-	defer qt.Recovering("QQmlScriptString::stringLiteral")
-
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QQmlScriptString_StringLiteral(ptr.Pointer()))
 	}

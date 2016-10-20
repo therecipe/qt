@@ -62,8 +62,6 @@ func (ptr *QScxmlCppDataModel) DestroyQScxmlCppDataModel() {
 }
 
 func (ptr *QScxmlCppDataModel) In(stateName string) bool {
-	defer qt.Recovering("QScxmlCppDataModel::In")
-
 	if ptr.Pointer() != nil {
 		var stateNameC = C.CString(stateName)
 		defer C.free(unsafe.Pointer(stateNameC))
@@ -74,7 +72,6 @@ func (ptr *QScxmlCppDataModel) In(stateName string) bool {
 
 //export callbackQScxmlCppDataModel_HasScxmlProperty
 func callbackQScxmlCppDataModel_HasScxmlProperty(ptr unsafe.Pointer, name *C.char) C.char {
-	defer qt.Recovering("callback QScxmlCppDataModel::hasScxmlProperty")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QScxmlCppDataModel::hasScxmlProperty"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(string) bool)(C.GoString(name)))))
@@ -84,8 +81,6 @@ func callbackQScxmlCppDataModel_HasScxmlProperty(ptr unsafe.Pointer, name *C.cha
 }
 
 func (ptr *QScxmlCppDataModel) ConnectHasScxmlProperty(f func(name string) bool) {
-	defer qt.Recovering("connect QScxmlCppDataModel::hasScxmlProperty")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QScxmlCppDataModel::hasScxmlProperty", f)
@@ -93,8 +88,6 @@ func (ptr *QScxmlCppDataModel) ConnectHasScxmlProperty(f func(name string) bool)
 }
 
 func (ptr *QScxmlCppDataModel) DisconnectHasScxmlProperty() {
-	defer qt.Recovering("disconnect QScxmlCppDataModel::hasScxmlProperty")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QScxmlCppDataModel::hasScxmlProperty")
@@ -102,8 +95,6 @@ func (ptr *QScxmlCppDataModel) DisconnectHasScxmlProperty() {
 }
 
 func (ptr *QScxmlCppDataModel) HasScxmlProperty(name string) bool {
-	defer qt.Recovering("QScxmlCppDataModel::hasScxmlProperty")
-
 	if ptr.Pointer() != nil {
 		var nameC = C.CString(name)
 		defer C.free(unsafe.Pointer(nameC))
@@ -113,8 +104,6 @@ func (ptr *QScxmlCppDataModel) HasScxmlProperty(name string) bool {
 }
 
 func (ptr *QScxmlCppDataModel) HasScxmlPropertyDefault(name string) bool {
-	defer qt.Recovering("QScxmlCppDataModel::hasScxmlProperty")
-
 	if ptr.Pointer() != nil {
 		var nameC = C.CString(name)
 		defer C.free(unsafe.Pointer(nameC))
@@ -124,8 +113,6 @@ func (ptr *QScxmlCppDataModel) HasScxmlPropertyDefault(name string) bool {
 }
 
 func (ptr *QScxmlCppDataModel) ScxmlEvent() *QScxmlEvent {
-	defer qt.Recovering("QScxmlCppDataModel::scxmlEvent")
-
 	if ptr.Pointer() != nil {
 		return NewQScxmlEventFromPointer(C.QScxmlCppDataModel_ScxmlEvent(ptr.Pointer()))
 	}
@@ -134,7 +121,6 @@ func (ptr *QScxmlCppDataModel) ScxmlEvent() *QScxmlEvent {
 
 //export callbackQScxmlCppDataModel_ScxmlProperty
 func callbackQScxmlCppDataModel_ScxmlProperty(ptr unsafe.Pointer, name *C.char) unsafe.Pointer {
-	defer qt.Recovering("callback QScxmlCppDataModel::scxmlProperty")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QScxmlCppDataModel::scxmlProperty"); signal != nil {
 		return core.PointerFromQVariant(signal.(func(string) *core.QVariant)(C.GoString(name)))
@@ -144,8 +130,6 @@ func callbackQScxmlCppDataModel_ScxmlProperty(ptr unsafe.Pointer, name *C.char) 
 }
 
 func (ptr *QScxmlCppDataModel) ConnectScxmlProperty(f func(name string) *core.QVariant) {
-	defer qt.Recovering("connect QScxmlCppDataModel::scxmlProperty")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QScxmlCppDataModel::scxmlProperty", f)
@@ -153,8 +137,6 @@ func (ptr *QScxmlCppDataModel) ConnectScxmlProperty(f func(name string) *core.QV
 }
 
 func (ptr *QScxmlCppDataModel) DisconnectScxmlProperty() {
-	defer qt.Recovering("disconnect QScxmlCppDataModel::scxmlProperty")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QScxmlCppDataModel::scxmlProperty")
@@ -162,8 +144,6 @@ func (ptr *QScxmlCppDataModel) DisconnectScxmlProperty() {
 }
 
 func (ptr *QScxmlCppDataModel) ScxmlProperty(name string) *core.QVariant {
-	defer qt.Recovering("QScxmlCppDataModel::scxmlProperty")
-
 	if ptr.Pointer() != nil {
 		var nameC = C.CString(name)
 		defer C.free(unsafe.Pointer(nameC))
@@ -175,8 +155,6 @@ func (ptr *QScxmlCppDataModel) ScxmlProperty(name string) *core.QVariant {
 }
 
 func (ptr *QScxmlCppDataModel) ScxmlPropertyDefault(name string) *core.QVariant {
-	defer qt.Recovering("QScxmlCppDataModel::scxmlProperty")
-
 	if ptr.Pointer() != nil {
 		var nameC = C.CString(name)
 		defer C.free(unsafe.Pointer(nameC))
@@ -188,8 +166,6 @@ func (ptr *QScxmlCppDataModel) ScxmlPropertyDefault(name string) *core.QVariant 
 }
 
 func (ptr *QScxmlCppDataModel) SetScxmlEvent(event QScxmlEvent_ITF) {
-	defer qt.Recovering("QScxmlCppDataModel::setScxmlEvent")
-
 	if ptr.Pointer() != nil {
 		C.QScxmlCppDataModel_SetScxmlEvent(ptr.Pointer(), PointerFromQScxmlEvent(event))
 	}
@@ -197,7 +173,6 @@ func (ptr *QScxmlCppDataModel) SetScxmlEvent(event QScxmlEvent_ITF) {
 
 //export callbackQScxmlCppDataModel_SetScxmlProperty
 func callbackQScxmlCppDataModel_SetScxmlProperty(ptr unsafe.Pointer, name *C.char, value unsafe.Pointer, context *C.char) C.char {
-	defer qt.Recovering("callback QScxmlCppDataModel::setScxmlProperty")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QScxmlCppDataModel::setScxmlProperty"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(string, *core.QVariant, string) bool)(C.GoString(name), core.NewQVariantFromPointer(value), C.GoString(context)))))
@@ -207,8 +182,6 @@ func callbackQScxmlCppDataModel_SetScxmlProperty(ptr unsafe.Pointer, name *C.cha
 }
 
 func (ptr *QScxmlCppDataModel) ConnectSetScxmlProperty(f func(name string, value *core.QVariant, context string) bool) {
-	defer qt.Recovering("connect QScxmlCppDataModel::setScxmlProperty")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QScxmlCppDataModel::setScxmlProperty", f)
@@ -216,8 +189,6 @@ func (ptr *QScxmlCppDataModel) ConnectSetScxmlProperty(f func(name string, value
 }
 
 func (ptr *QScxmlCppDataModel) DisconnectSetScxmlProperty() {
-	defer qt.Recovering("disconnect QScxmlCppDataModel::setScxmlProperty")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QScxmlCppDataModel::setScxmlProperty")
@@ -225,8 +196,6 @@ func (ptr *QScxmlCppDataModel) DisconnectSetScxmlProperty() {
 }
 
 func (ptr *QScxmlCppDataModel) SetScxmlProperty(name string, value core.QVariant_ITF, context string) bool {
-	defer qt.Recovering("QScxmlCppDataModel::setScxmlProperty")
-
 	if ptr.Pointer() != nil {
 		var nameC = C.CString(name)
 		defer C.free(unsafe.Pointer(nameC))
@@ -238,8 +207,6 @@ func (ptr *QScxmlCppDataModel) SetScxmlProperty(name string, value core.QVariant
 }
 
 func (ptr *QScxmlCppDataModel) SetScxmlPropertyDefault(name string, value core.QVariant_ITF, context string) bool {
-	defer qt.Recovering("QScxmlCppDataModel::setScxmlProperty")
-
 	if ptr.Pointer() != nil {
 		var nameC = C.CString(name)
 		defer C.free(unsafe.Pointer(nameC))
@@ -252,7 +219,6 @@ func (ptr *QScxmlCppDataModel) SetScxmlPropertyDefault(name string, value core.Q
 
 //export callbackQScxmlCppDataModel_TimerEvent
 func callbackQScxmlCppDataModel_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	defer qt.Recovering("callback QScxmlCppDataModel::timerEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QScxmlCppDataModel::timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
@@ -262,8 +228,6 @@ func callbackQScxmlCppDataModel_TimerEvent(ptr unsafe.Pointer, event unsafe.Poin
 }
 
 func (ptr *QScxmlCppDataModel) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
-	defer qt.Recovering("connect QScxmlCppDataModel::timerEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QScxmlCppDataModel::timerEvent", f)
@@ -271,8 +235,6 @@ func (ptr *QScxmlCppDataModel) ConnectTimerEvent(f func(event *core.QTimerEvent)
 }
 
 func (ptr *QScxmlCppDataModel) DisconnectTimerEvent() {
-	defer qt.Recovering("disconnect QScxmlCppDataModel::timerEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QScxmlCppDataModel::timerEvent")
@@ -280,16 +242,12 @@ func (ptr *QScxmlCppDataModel) DisconnectTimerEvent() {
 }
 
 func (ptr *QScxmlCppDataModel) TimerEvent(event core.QTimerEvent_ITF) {
-	defer qt.Recovering("QScxmlCppDataModel::timerEvent")
-
 	if ptr.Pointer() != nil {
 		C.QScxmlCppDataModel_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
 	}
 }
 
 func (ptr *QScxmlCppDataModel) TimerEventDefault(event core.QTimerEvent_ITF) {
-	defer qt.Recovering("QScxmlCppDataModel::timerEvent")
-
 	if ptr.Pointer() != nil {
 		C.QScxmlCppDataModel_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
 	}
@@ -297,7 +255,6 @@ func (ptr *QScxmlCppDataModel) TimerEventDefault(event core.QTimerEvent_ITF) {
 
 //export callbackQScxmlCppDataModel_ChildEvent
 func callbackQScxmlCppDataModel_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	defer qt.Recovering("callback QScxmlCppDataModel::childEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QScxmlCppDataModel::childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
@@ -307,8 +264,6 @@ func callbackQScxmlCppDataModel_ChildEvent(ptr unsafe.Pointer, event unsafe.Poin
 }
 
 func (ptr *QScxmlCppDataModel) ConnectChildEvent(f func(event *core.QChildEvent)) {
-	defer qt.Recovering("connect QScxmlCppDataModel::childEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QScxmlCppDataModel::childEvent", f)
@@ -316,8 +271,6 @@ func (ptr *QScxmlCppDataModel) ConnectChildEvent(f func(event *core.QChildEvent)
 }
 
 func (ptr *QScxmlCppDataModel) DisconnectChildEvent() {
-	defer qt.Recovering("disconnect QScxmlCppDataModel::childEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QScxmlCppDataModel::childEvent")
@@ -325,16 +278,12 @@ func (ptr *QScxmlCppDataModel) DisconnectChildEvent() {
 }
 
 func (ptr *QScxmlCppDataModel) ChildEvent(event core.QChildEvent_ITF) {
-	defer qt.Recovering("QScxmlCppDataModel::childEvent")
-
 	if ptr.Pointer() != nil {
 		C.QScxmlCppDataModel_ChildEvent(ptr.Pointer(), core.PointerFromQChildEvent(event))
 	}
 }
 
 func (ptr *QScxmlCppDataModel) ChildEventDefault(event core.QChildEvent_ITF) {
-	defer qt.Recovering("QScxmlCppDataModel::childEvent")
-
 	if ptr.Pointer() != nil {
 		C.QScxmlCppDataModel_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
 	}
@@ -342,7 +291,6 @@ func (ptr *QScxmlCppDataModel) ChildEventDefault(event core.QChildEvent_ITF) {
 
 //export callbackQScxmlCppDataModel_ConnectNotify
 func callbackQScxmlCppDataModel_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-	defer qt.Recovering("callback QScxmlCppDataModel::connectNotify")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QScxmlCppDataModel::connectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
@@ -352,8 +300,6 @@ func callbackQScxmlCppDataModel_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Po
 }
 
 func (ptr *QScxmlCppDataModel) ConnectConnectNotify(f func(sign *core.QMetaMethod)) {
-	defer qt.Recovering("connect QScxmlCppDataModel::connectNotify")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QScxmlCppDataModel::connectNotify", f)
@@ -361,8 +307,6 @@ func (ptr *QScxmlCppDataModel) ConnectConnectNotify(f func(sign *core.QMetaMetho
 }
 
 func (ptr *QScxmlCppDataModel) DisconnectConnectNotify() {
-	defer qt.Recovering("disconnect QScxmlCppDataModel::connectNotify")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QScxmlCppDataModel::connectNotify")
@@ -370,16 +314,12 @@ func (ptr *QScxmlCppDataModel) DisconnectConnectNotify() {
 }
 
 func (ptr *QScxmlCppDataModel) ConnectNotify(sign core.QMetaMethod_ITF) {
-	defer qt.Recovering("QScxmlCppDataModel::connectNotify")
-
 	if ptr.Pointer() != nil {
 		C.QScxmlCppDataModel_ConnectNotify(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
 	}
 }
 
 func (ptr *QScxmlCppDataModel) ConnectNotifyDefault(sign core.QMetaMethod_ITF) {
-	defer qt.Recovering("QScxmlCppDataModel::connectNotify")
-
 	if ptr.Pointer() != nil {
 		C.QScxmlCppDataModel_ConnectNotifyDefault(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
 	}
@@ -387,7 +327,6 @@ func (ptr *QScxmlCppDataModel) ConnectNotifyDefault(sign core.QMetaMethod_ITF) {
 
 //export callbackQScxmlCppDataModel_CustomEvent
 func callbackQScxmlCppDataModel_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	defer qt.Recovering("callback QScxmlCppDataModel::customEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QScxmlCppDataModel::customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
@@ -397,8 +336,6 @@ func callbackQScxmlCppDataModel_CustomEvent(ptr unsafe.Pointer, event unsafe.Poi
 }
 
 func (ptr *QScxmlCppDataModel) ConnectCustomEvent(f func(event *core.QEvent)) {
-	defer qt.Recovering("connect QScxmlCppDataModel::customEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QScxmlCppDataModel::customEvent", f)
@@ -406,8 +343,6 @@ func (ptr *QScxmlCppDataModel) ConnectCustomEvent(f func(event *core.QEvent)) {
 }
 
 func (ptr *QScxmlCppDataModel) DisconnectCustomEvent() {
-	defer qt.Recovering("disconnect QScxmlCppDataModel::customEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QScxmlCppDataModel::customEvent")
@@ -415,16 +350,12 @@ func (ptr *QScxmlCppDataModel) DisconnectCustomEvent() {
 }
 
 func (ptr *QScxmlCppDataModel) CustomEvent(event core.QEvent_ITF) {
-	defer qt.Recovering("QScxmlCppDataModel::customEvent")
-
 	if ptr.Pointer() != nil {
 		C.QScxmlCppDataModel_CustomEvent(ptr.Pointer(), core.PointerFromQEvent(event))
 	}
 }
 
 func (ptr *QScxmlCppDataModel) CustomEventDefault(event core.QEvent_ITF) {
-	defer qt.Recovering("QScxmlCppDataModel::customEvent")
-
 	if ptr.Pointer() != nil {
 		C.QScxmlCppDataModel_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
 	}
@@ -432,8 +363,6 @@ func (ptr *QScxmlCppDataModel) CustomEventDefault(event core.QEvent_ITF) {
 
 //export callbackQScxmlCppDataModel_DeleteLater
 func callbackQScxmlCppDataModel_DeleteLater(ptr unsafe.Pointer) {
-	defer qt.Recovering("callback QScxmlCppDataModel::deleteLater")
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QScxmlCppDataModel::deleteLater"); signal != nil {
 		signal.(func())()
 	} else {
@@ -442,8 +371,6 @@ func callbackQScxmlCppDataModel_DeleteLater(ptr unsafe.Pointer) {
 }
 
 func (ptr *QScxmlCppDataModel) ConnectDeleteLater(f func()) {
-	defer qt.Recovering("connect QScxmlCppDataModel::deleteLater")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QScxmlCppDataModel::deleteLater", f)
@@ -451,8 +378,6 @@ func (ptr *QScxmlCppDataModel) ConnectDeleteLater(f func()) {
 }
 
 func (ptr *QScxmlCppDataModel) DisconnectDeleteLater() {
-	defer qt.Recovering("disconnect QScxmlCppDataModel::deleteLater")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QScxmlCppDataModel::deleteLater")
@@ -460,8 +385,6 @@ func (ptr *QScxmlCppDataModel) DisconnectDeleteLater() {
 }
 
 func (ptr *QScxmlCppDataModel) DeleteLater() {
-	defer qt.Recovering("QScxmlCppDataModel::deleteLater")
-
 	if ptr.Pointer() != nil {
 		C.QScxmlCppDataModel_DeleteLater(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
@@ -470,8 +393,6 @@ func (ptr *QScxmlCppDataModel) DeleteLater() {
 }
 
 func (ptr *QScxmlCppDataModel) DeleteLaterDefault() {
-	defer qt.Recovering("QScxmlCppDataModel::deleteLater")
-
 	if ptr.Pointer() != nil {
 		C.QScxmlCppDataModel_DeleteLaterDefault(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
@@ -481,7 +402,6 @@ func (ptr *QScxmlCppDataModel) DeleteLaterDefault() {
 
 //export callbackQScxmlCppDataModel_DisconnectNotify
 func callbackQScxmlCppDataModel_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-	defer qt.Recovering("callback QScxmlCppDataModel::disconnectNotify")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QScxmlCppDataModel::disconnectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
@@ -491,8 +411,6 @@ func callbackQScxmlCppDataModel_DisconnectNotify(ptr unsafe.Pointer, sign unsafe
 }
 
 func (ptr *QScxmlCppDataModel) ConnectDisconnectNotify(f func(sign *core.QMetaMethod)) {
-	defer qt.Recovering("connect QScxmlCppDataModel::disconnectNotify")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QScxmlCppDataModel::disconnectNotify", f)
@@ -500,8 +418,6 @@ func (ptr *QScxmlCppDataModel) ConnectDisconnectNotify(f func(sign *core.QMetaMe
 }
 
 func (ptr *QScxmlCppDataModel) DisconnectDisconnectNotify() {
-	defer qt.Recovering("disconnect QScxmlCppDataModel::disconnectNotify")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QScxmlCppDataModel::disconnectNotify")
@@ -509,16 +425,12 @@ func (ptr *QScxmlCppDataModel) DisconnectDisconnectNotify() {
 }
 
 func (ptr *QScxmlCppDataModel) DisconnectNotify(sign core.QMetaMethod_ITF) {
-	defer qt.Recovering("QScxmlCppDataModel::disconnectNotify")
-
 	if ptr.Pointer() != nil {
 		C.QScxmlCppDataModel_DisconnectNotify(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
 	}
 }
 
 func (ptr *QScxmlCppDataModel) DisconnectNotifyDefault(sign core.QMetaMethod_ITF) {
-	defer qt.Recovering("QScxmlCppDataModel::disconnectNotify")
-
 	if ptr.Pointer() != nil {
 		C.QScxmlCppDataModel_DisconnectNotifyDefault(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
 	}
@@ -526,7 +438,6 @@ func (ptr *QScxmlCppDataModel) DisconnectNotifyDefault(sign core.QMetaMethod_ITF
 
 //export callbackQScxmlCppDataModel_Event
 func callbackQScxmlCppDataModel_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
-	defer qt.Recovering("callback QScxmlCppDataModel::event")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QScxmlCppDataModel::event"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
@@ -536,8 +447,6 @@ func callbackQScxmlCppDataModel_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.ch
 }
 
 func (ptr *QScxmlCppDataModel) ConnectEvent(f func(e *core.QEvent) bool) {
-	defer qt.Recovering("connect QScxmlCppDataModel::event")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QScxmlCppDataModel::event", f)
@@ -545,8 +454,6 @@ func (ptr *QScxmlCppDataModel) ConnectEvent(f func(e *core.QEvent) bool) {
 }
 
 func (ptr *QScxmlCppDataModel) DisconnectEvent() {
-	defer qt.Recovering("disconnect QScxmlCppDataModel::event")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QScxmlCppDataModel::event")
@@ -554,8 +461,6 @@ func (ptr *QScxmlCppDataModel) DisconnectEvent() {
 }
 
 func (ptr *QScxmlCppDataModel) Event(e core.QEvent_ITF) bool {
-	defer qt.Recovering("QScxmlCppDataModel::event")
-
 	if ptr.Pointer() != nil {
 		return C.QScxmlCppDataModel_Event(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
 	}
@@ -563,8 +468,6 @@ func (ptr *QScxmlCppDataModel) Event(e core.QEvent_ITF) bool {
 }
 
 func (ptr *QScxmlCppDataModel) EventDefault(e core.QEvent_ITF) bool {
-	defer qt.Recovering("QScxmlCppDataModel::event")
-
 	if ptr.Pointer() != nil {
 		return C.QScxmlCppDataModel_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
 	}
@@ -573,7 +476,6 @@ func (ptr *QScxmlCppDataModel) EventDefault(e core.QEvent_ITF) bool {
 
 //export callbackQScxmlCppDataModel_EventFilter
 func callbackQScxmlCppDataModel_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-	defer qt.Recovering("callback QScxmlCppDataModel::eventFilter")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QScxmlCppDataModel::eventFilter"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
@@ -583,8 +485,6 @@ func callbackQScxmlCppDataModel_EventFilter(ptr unsafe.Pointer, watched unsafe.P
 }
 
 func (ptr *QScxmlCppDataModel) ConnectEventFilter(f func(watched *core.QObject, event *core.QEvent) bool) {
-	defer qt.Recovering("connect QScxmlCppDataModel::eventFilter")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QScxmlCppDataModel::eventFilter", f)
@@ -592,8 +492,6 @@ func (ptr *QScxmlCppDataModel) ConnectEventFilter(f func(watched *core.QObject, 
 }
 
 func (ptr *QScxmlCppDataModel) DisconnectEventFilter() {
-	defer qt.Recovering("disconnect QScxmlCppDataModel::eventFilter")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QScxmlCppDataModel::eventFilter")
@@ -601,8 +499,6 @@ func (ptr *QScxmlCppDataModel) DisconnectEventFilter() {
 }
 
 func (ptr *QScxmlCppDataModel) EventFilter(watched core.QObject_ITF, event core.QEvent_ITF) bool {
-	defer qt.Recovering("QScxmlCppDataModel::eventFilter")
-
 	if ptr.Pointer() != nil {
 		return C.QScxmlCppDataModel_EventFilter(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
 	}
@@ -610,8 +506,6 @@ func (ptr *QScxmlCppDataModel) EventFilter(watched core.QObject_ITF, event core.
 }
 
 func (ptr *QScxmlCppDataModel) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
-	defer qt.Recovering("QScxmlCppDataModel::eventFilter")
-
 	if ptr.Pointer() != nil {
 		return C.QScxmlCppDataModel_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
 	}
@@ -620,7 +514,6 @@ func (ptr *QScxmlCppDataModel) EventFilterDefault(watched core.QObject_ITF, even
 
 //export callbackQScxmlCppDataModel_MetaObject
 func callbackQScxmlCppDataModel_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-	defer qt.Recovering("callback QScxmlCppDataModel::metaObject")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QScxmlCppDataModel::metaObject"); signal != nil {
 		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
@@ -630,8 +523,6 @@ func callbackQScxmlCppDataModel_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
 }
 
 func (ptr *QScxmlCppDataModel) ConnectMetaObject(f func() *core.QMetaObject) {
-	defer qt.Recovering("connect QScxmlCppDataModel::metaObject")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QScxmlCppDataModel::metaObject", f)
@@ -639,8 +530,6 @@ func (ptr *QScxmlCppDataModel) ConnectMetaObject(f func() *core.QMetaObject) {
 }
 
 func (ptr *QScxmlCppDataModel) DisconnectMetaObject() {
-	defer qt.Recovering("disconnect QScxmlCppDataModel::metaObject")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QScxmlCppDataModel::metaObject")
@@ -648,8 +537,6 @@ func (ptr *QScxmlCppDataModel) DisconnectMetaObject() {
 }
 
 func (ptr *QScxmlCppDataModel) MetaObject() *core.QMetaObject {
-	defer qt.Recovering("QScxmlCppDataModel::metaObject")
-
 	if ptr.Pointer() != nil {
 		return core.NewQMetaObjectFromPointer(C.QScxmlCppDataModel_MetaObject(ptr.Pointer()))
 	}
@@ -657,8 +544,6 @@ func (ptr *QScxmlCppDataModel) MetaObject() *core.QMetaObject {
 }
 
 func (ptr *QScxmlCppDataModel) MetaObjectDefault() *core.QMetaObject {
-	defer qt.Recovering("QScxmlCppDataModel::metaObject")
-
 	if ptr.Pointer() != nil {
 		return core.NewQMetaObjectFromPointer(C.QScxmlCppDataModel_MetaObjectDefault(ptr.Pointer()))
 	}
@@ -712,7 +597,6 @@ func (ptr *QScxmlDataModel) DestroyQScxmlDataModel() {
 
 //export callbackQScxmlDataModel_HasScxmlProperty
 func callbackQScxmlDataModel_HasScxmlProperty(ptr unsafe.Pointer, name *C.char) C.char {
-	defer qt.Recovering("callback QScxmlDataModel::hasScxmlProperty")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QScxmlDataModel::hasScxmlProperty"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(string) bool)(C.GoString(name)))))
@@ -722,8 +606,6 @@ func callbackQScxmlDataModel_HasScxmlProperty(ptr unsafe.Pointer, name *C.char) 
 }
 
 func (ptr *QScxmlDataModel) ConnectHasScxmlProperty(f func(name string) bool) {
-	defer qt.Recovering("connect QScxmlDataModel::hasScxmlProperty")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QScxmlDataModel::hasScxmlProperty", f)
@@ -731,8 +613,6 @@ func (ptr *QScxmlDataModel) ConnectHasScxmlProperty(f func(name string) bool) {
 }
 
 func (ptr *QScxmlDataModel) DisconnectHasScxmlProperty(name string) {
-	defer qt.Recovering("disconnect QScxmlDataModel::hasScxmlProperty")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QScxmlDataModel::hasScxmlProperty")
@@ -740,8 +620,6 @@ func (ptr *QScxmlDataModel) DisconnectHasScxmlProperty(name string) {
 }
 
 func (ptr *QScxmlDataModel) HasScxmlProperty(name string) bool {
-	defer qt.Recovering("QScxmlDataModel::hasScxmlProperty")
-
 	if ptr.Pointer() != nil {
 		var nameC = C.CString(name)
 		defer C.free(unsafe.Pointer(nameC))
@@ -752,7 +630,6 @@ func (ptr *QScxmlDataModel) HasScxmlProperty(name string) bool {
 
 //export callbackQScxmlDataModel_ScxmlProperty
 func callbackQScxmlDataModel_ScxmlProperty(ptr unsafe.Pointer, name *C.char) unsafe.Pointer {
-	defer qt.Recovering("callback QScxmlDataModel::scxmlProperty")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QScxmlDataModel::scxmlProperty"); signal != nil {
 		return core.PointerFromQVariant(signal.(func(string) *core.QVariant)(C.GoString(name)))
@@ -762,8 +639,6 @@ func callbackQScxmlDataModel_ScxmlProperty(ptr unsafe.Pointer, name *C.char) uns
 }
 
 func (ptr *QScxmlDataModel) ConnectScxmlProperty(f func(name string) *core.QVariant) {
-	defer qt.Recovering("connect QScxmlDataModel::scxmlProperty")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QScxmlDataModel::scxmlProperty", f)
@@ -771,8 +646,6 @@ func (ptr *QScxmlDataModel) ConnectScxmlProperty(f func(name string) *core.QVari
 }
 
 func (ptr *QScxmlDataModel) DisconnectScxmlProperty(name string) {
-	defer qt.Recovering("disconnect QScxmlDataModel::scxmlProperty")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QScxmlDataModel::scxmlProperty")
@@ -780,8 +653,6 @@ func (ptr *QScxmlDataModel) DisconnectScxmlProperty(name string) {
 }
 
 func (ptr *QScxmlDataModel) ScxmlProperty(name string) *core.QVariant {
-	defer qt.Recovering("QScxmlDataModel::scxmlProperty")
-
 	if ptr.Pointer() != nil {
 		var nameC = C.CString(name)
 		defer C.free(unsafe.Pointer(nameC))
@@ -794,7 +665,6 @@ func (ptr *QScxmlDataModel) ScxmlProperty(name string) *core.QVariant {
 
 //export callbackQScxmlDataModel_SetScxmlEvent
 func callbackQScxmlDataModel_SetScxmlEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	defer qt.Recovering("callback QScxmlDataModel::setScxmlEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QScxmlDataModel::setScxmlEvent"); signal != nil {
 		signal.(func(*QScxmlEvent))(NewQScxmlEventFromPointer(event))
@@ -803,8 +673,6 @@ func callbackQScxmlDataModel_SetScxmlEvent(ptr unsafe.Pointer, event unsafe.Poin
 }
 
 func (ptr *QScxmlDataModel) ConnectSetScxmlEvent(f func(event *QScxmlEvent)) {
-	defer qt.Recovering("connect QScxmlDataModel::setScxmlEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QScxmlDataModel::setScxmlEvent", f)
@@ -812,8 +680,6 @@ func (ptr *QScxmlDataModel) ConnectSetScxmlEvent(f func(event *QScxmlEvent)) {
 }
 
 func (ptr *QScxmlDataModel) DisconnectSetScxmlEvent(event QScxmlEvent_ITF) {
-	defer qt.Recovering("disconnect QScxmlDataModel::setScxmlEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QScxmlDataModel::setScxmlEvent")
@@ -821,8 +687,6 @@ func (ptr *QScxmlDataModel) DisconnectSetScxmlEvent(event QScxmlEvent_ITF) {
 }
 
 func (ptr *QScxmlDataModel) SetScxmlEvent(event QScxmlEvent_ITF) {
-	defer qt.Recovering("QScxmlDataModel::setScxmlEvent")
-
 	if ptr.Pointer() != nil {
 		C.QScxmlDataModel_SetScxmlEvent(ptr.Pointer(), PointerFromQScxmlEvent(event))
 	}
@@ -830,7 +694,6 @@ func (ptr *QScxmlDataModel) SetScxmlEvent(event QScxmlEvent_ITF) {
 
 //export callbackQScxmlDataModel_SetScxmlProperty
 func callbackQScxmlDataModel_SetScxmlProperty(ptr unsafe.Pointer, name *C.char, value unsafe.Pointer, context *C.char) C.char {
-	defer qt.Recovering("callback QScxmlDataModel::setScxmlProperty")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QScxmlDataModel::setScxmlProperty"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(string, *core.QVariant, string) bool)(C.GoString(name), core.NewQVariantFromPointer(value), C.GoString(context)))))
@@ -840,8 +703,6 @@ func callbackQScxmlDataModel_SetScxmlProperty(ptr unsafe.Pointer, name *C.char, 
 }
 
 func (ptr *QScxmlDataModel) ConnectSetScxmlProperty(f func(name string, value *core.QVariant, context string) bool) {
-	defer qt.Recovering("connect QScxmlDataModel::setScxmlProperty")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QScxmlDataModel::setScxmlProperty", f)
@@ -849,8 +710,6 @@ func (ptr *QScxmlDataModel) ConnectSetScxmlProperty(f func(name string, value *c
 }
 
 func (ptr *QScxmlDataModel) DisconnectSetScxmlProperty(name string, value core.QVariant_ITF, context string) {
-	defer qt.Recovering("disconnect QScxmlDataModel::setScxmlProperty")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QScxmlDataModel::setScxmlProperty")
@@ -858,8 +717,6 @@ func (ptr *QScxmlDataModel) DisconnectSetScxmlProperty(name string, value core.Q
 }
 
 func (ptr *QScxmlDataModel) SetScxmlProperty(name string, value core.QVariant_ITF, context string) bool {
-	defer qt.Recovering("QScxmlDataModel::setScxmlProperty")
-
 	if ptr.Pointer() != nil {
 		var nameC = C.CString(name)
 		defer C.free(unsafe.Pointer(nameC))
@@ -871,16 +728,12 @@ func (ptr *QScxmlDataModel) SetScxmlProperty(name string, value core.QVariant_IT
 }
 
 func (ptr *QScxmlDataModel) SetStateMachine(stateMachine QScxmlStateMachine_ITF) {
-	defer qt.Recovering("QScxmlDataModel::setStateMachine")
-
 	if ptr.Pointer() != nil {
 		C.QScxmlDataModel_SetStateMachine(ptr.Pointer(), PointerFromQScxmlStateMachine(stateMachine))
 	}
 }
 
 func (ptr *QScxmlDataModel) StateMachine() *QScxmlStateMachine {
-	defer qt.Recovering("QScxmlDataModel::stateMachine")
-
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQScxmlStateMachineFromPointer(C.QScxmlDataModel_StateMachine(ptr.Pointer()))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
@@ -893,7 +746,6 @@ func (ptr *QScxmlDataModel) StateMachine() *QScxmlStateMachine {
 
 //export callbackQScxmlDataModel_StateMachineChanged
 func callbackQScxmlDataModel_StateMachineChanged(ptr unsafe.Pointer, stateMachine unsafe.Pointer) {
-	defer qt.Recovering("callback QScxmlDataModel::stateMachineChanged")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QScxmlDataModel::stateMachineChanged"); signal != nil {
 		signal.(func(*QScxmlStateMachine))(NewQScxmlStateMachineFromPointer(stateMachine))
@@ -902,8 +754,6 @@ func callbackQScxmlDataModel_StateMachineChanged(ptr unsafe.Pointer, stateMachin
 }
 
 func (ptr *QScxmlDataModel) ConnectStateMachineChanged(f func(stateMachine *QScxmlStateMachine)) {
-	defer qt.Recovering("connect QScxmlDataModel::stateMachineChanged")
-
 	if ptr.Pointer() != nil {
 		C.QScxmlDataModel_ConnectStateMachineChanged(ptr.Pointer())
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QScxmlDataModel::stateMachineChanged", f)
@@ -911,8 +761,6 @@ func (ptr *QScxmlDataModel) ConnectStateMachineChanged(f func(stateMachine *QScx
 }
 
 func (ptr *QScxmlDataModel) DisconnectStateMachineChanged() {
-	defer qt.Recovering("disconnect QScxmlDataModel::stateMachineChanged")
-
 	if ptr.Pointer() != nil {
 		C.QScxmlDataModel_DisconnectStateMachineChanged(ptr.Pointer())
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QScxmlDataModel::stateMachineChanged")
@@ -920,8 +768,6 @@ func (ptr *QScxmlDataModel) DisconnectStateMachineChanged() {
 }
 
 func (ptr *QScxmlDataModel) StateMachineChanged(stateMachine QScxmlStateMachine_ITF) {
-	defer qt.Recovering("QScxmlDataModel::stateMachineChanged")
-
 	if ptr.Pointer() != nil {
 		C.QScxmlDataModel_StateMachineChanged(ptr.Pointer(), PointerFromQScxmlStateMachine(stateMachine))
 	}
@@ -929,7 +775,6 @@ func (ptr *QScxmlDataModel) StateMachineChanged(stateMachine QScxmlStateMachine_
 
 //export callbackQScxmlDataModel_TimerEvent
 func callbackQScxmlDataModel_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	defer qt.Recovering("callback QScxmlDataModel::timerEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QScxmlDataModel::timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
@@ -939,8 +784,6 @@ func callbackQScxmlDataModel_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer
 }
 
 func (ptr *QScxmlDataModel) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
-	defer qt.Recovering("connect QScxmlDataModel::timerEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QScxmlDataModel::timerEvent", f)
@@ -948,8 +791,6 @@ func (ptr *QScxmlDataModel) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
 }
 
 func (ptr *QScxmlDataModel) DisconnectTimerEvent() {
-	defer qt.Recovering("disconnect QScxmlDataModel::timerEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QScxmlDataModel::timerEvent")
@@ -957,16 +798,12 @@ func (ptr *QScxmlDataModel) DisconnectTimerEvent() {
 }
 
 func (ptr *QScxmlDataModel) TimerEvent(event core.QTimerEvent_ITF) {
-	defer qt.Recovering("QScxmlDataModel::timerEvent")
-
 	if ptr.Pointer() != nil {
 		C.QScxmlDataModel_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
 	}
 }
 
 func (ptr *QScxmlDataModel) TimerEventDefault(event core.QTimerEvent_ITF) {
-	defer qt.Recovering("QScxmlDataModel::timerEvent")
-
 	if ptr.Pointer() != nil {
 		C.QScxmlDataModel_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
 	}
@@ -974,7 +811,6 @@ func (ptr *QScxmlDataModel) TimerEventDefault(event core.QTimerEvent_ITF) {
 
 //export callbackQScxmlDataModel_ChildEvent
 func callbackQScxmlDataModel_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	defer qt.Recovering("callback QScxmlDataModel::childEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QScxmlDataModel::childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
@@ -984,8 +820,6 @@ func callbackQScxmlDataModel_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer
 }
 
 func (ptr *QScxmlDataModel) ConnectChildEvent(f func(event *core.QChildEvent)) {
-	defer qt.Recovering("connect QScxmlDataModel::childEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QScxmlDataModel::childEvent", f)
@@ -993,8 +827,6 @@ func (ptr *QScxmlDataModel) ConnectChildEvent(f func(event *core.QChildEvent)) {
 }
 
 func (ptr *QScxmlDataModel) DisconnectChildEvent() {
-	defer qt.Recovering("disconnect QScxmlDataModel::childEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QScxmlDataModel::childEvent")
@@ -1002,16 +834,12 @@ func (ptr *QScxmlDataModel) DisconnectChildEvent() {
 }
 
 func (ptr *QScxmlDataModel) ChildEvent(event core.QChildEvent_ITF) {
-	defer qt.Recovering("QScxmlDataModel::childEvent")
-
 	if ptr.Pointer() != nil {
 		C.QScxmlDataModel_ChildEvent(ptr.Pointer(), core.PointerFromQChildEvent(event))
 	}
 }
 
 func (ptr *QScxmlDataModel) ChildEventDefault(event core.QChildEvent_ITF) {
-	defer qt.Recovering("QScxmlDataModel::childEvent")
-
 	if ptr.Pointer() != nil {
 		C.QScxmlDataModel_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
 	}
@@ -1019,7 +847,6 @@ func (ptr *QScxmlDataModel) ChildEventDefault(event core.QChildEvent_ITF) {
 
 //export callbackQScxmlDataModel_ConnectNotify
 func callbackQScxmlDataModel_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-	defer qt.Recovering("callback QScxmlDataModel::connectNotify")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QScxmlDataModel::connectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
@@ -1029,8 +856,6 @@ func callbackQScxmlDataModel_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Point
 }
 
 func (ptr *QScxmlDataModel) ConnectConnectNotify(f func(sign *core.QMetaMethod)) {
-	defer qt.Recovering("connect QScxmlDataModel::connectNotify")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QScxmlDataModel::connectNotify", f)
@@ -1038,8 +863,6 @@ func (ptr *QScxmlDataModel) ConnectConnectNotify(f func(sign *core.QMetaMethod))
 }
 
 func (ptr *QScxmlDataModel) DisconnectConnectNotify() {
-	defer qt.Recovering("disconnect QScxmlDataModel::connectNotify")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QScxmlDataModel::connectNotify")
@@ -1047,16 +870,12 @@ func (ptr *QScxmlDataModel) DisconnectConnectNotify() {
 }
 
 func (ptr *QScxmlDataModel) ConnectNotify(sign core.QMetaMethod_ITF) {
-	defer qt.Recovering("QScxmlDataModel::connectNotify")
-
 	if ptr.Pointer() != nil {
 		C.QScxmlDataModel_ConnectNotify(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
 	}
 }
 
 func (ptr *QScxmlDataModel) ConnectNotifyDefault(sign core.QMetaMethod_ITF) {
-	defer qt.Recovering("QScxmlDataModel::connectNotify")
-
 	if ptr.Pointer() != nil {
 		C.QScxmlDataModel_ConnectNotifyDefault(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
 	}
@@ -1064,7 +883,6 @@ func (ptr *QScxmlDataModel) ConnectNotifyDefault(sign core.QMetaMethod_ITF) {
 
 //export callbackQScxmlDataModel_CustomEvent
 func callbackQScxmlDataModel_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	defer qt.Recovering("callback QScxmlDataModel::customEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QScxmlDataModel::customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
@@ -1074,8 +892,6 @@ func callbackQScxmlDataModel_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointe
 }
 
 func (ptr *QScxmlDataModel) ConnectCustomEvent(f func(event *core.QEvent)) {
-	defer qt.Recovering("connect QScxmlDataModel::customEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QScxmlDataModel::customEvent", f)
@@ -1083,8 +899,6 @@ func (ptr *QScxmlDataModel) ConnectCustomEvent(f func(event *core.QEvent)) {
 }
 
 func (ptr *QScxmlDataModel) DisconnectCustomEvent() {
-	defer qt.Recovering("disconnect QScxmlDataModel::customEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QScxmlDataModel::customEvent")
@@ -1092,16 +906,12 @@ func (ptr *QScxmlDataModel) DisconnectCustomEvent() {
 }
 
 func (ptr *QScxmlDataModel) CustomEvent(event core.QEvent_ITF) {
-	defer qt.Recovering("QScxmlDataModel::customEvent")
-
 	if ptr.Pointer() != nil {
 		C.QScxmlDataModel_CustomEvent(ptr.Pointer(), core.PointerFromQEvent(event))
 	}
 }
 
 func (ptr *QScxmlDataModel) CustomEventDefault(event core.QEvent_ITF) {
-	defer qt.Recovering("QScxmlDataModel::customEvent")
-
 	if ptr.Pointer() != nil {
 		C.QScxmlDataModel_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
 	}
@@ -1109,8 +919,6 @@ func (ptr *QScxmlDataModel) CustomEventDefault(event core.QEvent_ITF) {
 
 //export callbackQScxmlDataModel_DeleteLater
 func callbackQScxmlDataModel_DeleteLater(ptr unsafe.Pointer) {
-	defer qt.Recovering("callback QScxmlDataModel::deleteLater")
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QScxmlDataModel::deleteLater"); signal != nil {
 		signal.(func())()
 	} else {
@@ -1119,8 +927,6 @@ func callbackQScxmlDataModel_DeleteLater(ptr unsafe.Pointer) {
 }
 
 func (ptr *QScxmlDataModel) ConnectDeleteLater(f func()) {
-	defer qt.Recovering("connect QScxmlDataModel::deleteLater")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QScxmlDataModel::deleteLater", f)
@@ -1128,8 +934,6 @@ func (ptr *QScxmlDataModel) ConnectDeleteLater(f func()) {
 }
 
 func (ptr *QScxmlDataModel) DisconnectDeleteLater() {
-	defer qt.Recovering("disconnect QScxmlDataModel::deleteLater")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QScxmlDataModel::deleteLater")
@@ -1137,8 +941,6 @@ func (ptr *QScxmlDataModel) DisconnectDeleteLater() {
 }
 
 func (ptr *QScxmlDataModel) DeleteLater() {
-	defer qt.Recovering("QScxmlDataModel::deleteLater")
-
 	if ptr.Pointer() != nil {
 		C.QScxmlDataModel_DeleteLater(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
@@ -1147,8 +949,6 @@ func (ptr *QScxmlDataModel) DeleteLater() {
 }
 
 func (ptr *QScxmlDataModel) DeleteLaterDefault() {
-	defer qt.Recovering("QScxmlDataModel::deleteLater")
-
 	if ptr.Pointer() != nil {
 		C.QScxmlDataModel_DeleteLaterDefault(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
@@ -1158,7 +958,6 @@ func (ptr *QScxmlDataModel) DeleteLaterDefault() {
 
 //export callbackQScxmlDataModel_DisconnectNotify
 func callbackQScxmlDataModel_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-	defer qt.Recovering("callback QScxmlDataModel::disconnectNotify")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QScxmlDataModel::disconnectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
@@ -1168,8 +967,6 @@ func callbackQScxmlDataModel_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Po
 }
 
 func (ptr *QScxmlDataModel) ConnectDisconnectNotify(f func(sign *core.QMetaMethod)) {
-	defer qt.Recovering("connect QScxmlDataModel::disconnectNotify")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QScxmlDataModel::disconnectNotify", f)
@@ -1177,8 +974,6 @@ func (ptr *QScxmlDataModel) ConnectDisconnectNotify(f func(sign *core.QMetaMetho
 }
 
 func (ptr *QScxmlDataModel) DisconnectDisconnectNotify() {
-	defer qt.Recovering("disconnect QScxmlDataModel::disconnectNotify")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QScxmlDataModel::disconnectNotify")
@@ -1186,16 +981,12 @@ func (ptr *QScxmlDataModel) DisconnectDisconnectNotify() {
 }
 
 func (ptr *QScxmlDataModel) DisconnectNotify(sign core.QMetaMethod_ITF) {
-	defer qt.Recovering("QScxmlDataModel::disconnectNotify")
-
 	if ptr.Pointer() != nil {
 		C.QScxmlDataModel_DisconnectNotify(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
 	}
 }
 
 func (ptr *QScxmlDataModel) DisconnectNotifyDefault(sign core.QMetaMethod_ITF) {
-	defer qt.Recovering("QScxmlDataModel::disconnectNotify")
-
 	if ptr.Pointer() != nil {
 		C.QScxmlDataModel_DisconnectNotifyDefault(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
 	}
@@ -1203,7 +994,6 @@ func (ptr *QScxmlDataModel) DisconnectNotifyDefault(sign core.QMetaMethod_ITF) {
 
 //export callbackQScxmlDataModel_Event
 func callbackQScxmlDataModel_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
-	defer qt.Recovering("callback QScxmlDataModel::event")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QScxmlDataModel::event"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
@@ -1213,8 +1003,6 @@ func callbackQScxmlDataModel_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char 
 }
 
 func (ptr *QScxmlDataModel) ConnectEvent(f func(e *core.QEvent) bool) {
-	defer qt.Recovering("connect QScxmlDataModel::event")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QScxmlDataModel::event", f)
@@ -1222,8 +1010,6 @@ func (ptr *QScxmlDataModel) ConnectEvent(f func(e *core.QEvent) bool) {
 }
 
 func (ptr *QScxmlDataModel) DisconnectEvent() {
-	defer qt.Recovering("disconnect QScxmlDataModel::event")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QScxmlDataModel::event")
@@ -1231,8 +1017,6 @@ func (ptr *QScxmlDataModel) DisconnectEvent() {
 }
 
 func (ptr *QScxmlDataModel) Event(e core.QEvent_ITF) bool {
-	defer qt.Recovering("QScxmlDataModel::event")
-
 	if ptr.Pointer() != nil {
 		return C.QScxmlDataModel_Event(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
 	}
@@ -1240,8 +1024,6 @@ func (ptr *QScxmlDataModel) Event(e core.QEvent_ITF) bool {
 }
 
 func (ptr *QScxmlDataModel) EventDefault(e core.QEvent_ITF) bool {
-	defer qt.Recovering("QScxmlDataModel::event")
-
 	if ptr.Pointer() != nil {
 		return C.QScxmlDataModel_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
 	}
@@ -1250,7 +1032,6 @@ func (ptr *QScxmlDataModel) EventDefault(e core.QEvent_ITF) bool {
 
 //export callbackQScxmlDataModel_EventFilter
 func callbackQScxmlDataModel_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-	defer qt.Recovering("callback QScxmlDataModel::eventFilter")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QScxmlDataModel::eventFilter"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
@@ -1260,8 +1041,6 @@ func callbackQScxmlDataModel_EventFilter(ptr unsafe.Pointer, watched unsafe.Poin
 }
 
 func (ptr *QScxmlDataModel) ConnectEventFilter(f func(watched *core.QObject, event *core.QEvent) bool) {
-	defer qt.Recovering("connect QScxmlDataModel::eventFilter")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QScxmlDataModel::eventFilter", f)
@@ -1269,8 +1048,6 @@ func (ptr *QScxmlDataModel) ConnectEventFilter(f func(watched *core.QObject, eve
 }
 
 func (ptr *QScxmlDataModel) DisconnectEventFilter() {
-	defer qt.Recovering("disconnect QScxmlDataModel::eventFilter")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QScxmlDataModel::eventFilter")
@@ -1278,8 +1055,6 @@ func (ptr *QScxmlDataModel) DisconnectEventFilter() {
 }
 
 func (ptr *QScxmlDataModel) EventFilter(watched core.QObject_ITF, event core.QEvent_ITF) bool {
-	defer qt.Recovering("QScxmlDataModel::eventFilter")
-
 	if ptr.Pointer() != nil {
 		return C.QScxmlDataModel_EventFilter(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
 	}
@@ -1287,8 +1062,6 @@ func (ptr *QScxmlDataModel) EventFilter(watched core.QObject_ITF, event core.QEv
 }
 
 func (ptr *QScxmlDataModel) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
-	defer qt.Recovering("QScxmlDataModel::eventFilter")
-
 	if ptr.Pointer() != nil {
 		return C.QScxmlDataModel_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
 	}
@@ -1297,7 +1070,6 @@ func (ptr *QScxmlDataModel) EventFilterDefault(watched core.QObject_ITF, event c
 
 //export callbackQScxmlDataModel_MetaObject
 func callbackQScxmlDataModel_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-	defer qt.Recovering("callback QScxmlDataModel::metaObject")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QScxmlDataModel::metaObject"); signal != nil {
 		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
@@ -1307,8 +1079,6 @@ func callbackQScxmlDataModel_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
 }
 
 func (ptr *QScxmlDataModel) ConnectMetaObject(f func() *core.QMetaObject) {
-	defer qt.Recovering("connect QScxmlDataModel::metaObject")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QScxmlDataModel::metaObject", f)
@@ -1316,8 +1086,6 @@ func (ptr *QScxmlDataModel) ConnectMetaObject(f func() *core.QMetaObject) {
 }
 
 func (ptr *QScxmlDataModel) DisconnectMetaObject() {
-	defer qt.Recovering("disconnect QScxmlDataModel::metaObject")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QScxmlDataModel::metaObject")
@@ -1325,8 +1093,6 @@ func (ptr *QScxmlDataModel) DisconnectMetaObject() {
 }
 
 func (ptr *QScxmlDataModel) MetaObject() *core.QMetaObject {
-	defer qt.Recovering("QScxmlDataModel::metaObject")
-
 	if ptr.Pointer() != nil {
 		return core.NewQMetaObjectFromPointer(C.QScxmlDataModel_MetaObject(ptr.Pointer()))
 	}
@@ -1334,8 +1100,6 @@ func (ptr *QScxmlDataModel) MetaObject() *core.QMetaObject {
 }
 
 func (ptr *QScxmlDataModel) MetaObjectDefault() *core.QMetaObject {
-	defer qt.Recovering("QScxmlDataModel::metaObject")
-
 	if ptr.Pointer() != nil {
 		return core.NewQMetaObjectFromPointer(C.QScxmlDataModel_MetaObjectDefault(ptr.Pointer()))
 	}
@@ -1388,8 +1152,6 @@ func (ptr *QScxmlEcmaScriptDataModel) DestroyQScxmlEcmaScriptDataModel() {
 }
 
 func NewQScxmlEcmaScriptDataModel(parent core.QObject_ITF) *QScxmlEcmaScriptDataModel {
-	defer qt.Recovering("QScxmlEcmaScriptDataModel::QScxmlEcmaScriptDataModel")
-
 	var tmpValue = NewQScxmlEcmaScriptDataModelFromPointer(C.QScxmlEcmaScriptDataModel_NewQScxmlEcmaScriptDataModel(core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
@@ -1398,8 +1160,6 @@ func NewQScxmlEcmaScriptDataModel(parent core.QObject_ITF) *QScxmlEcmaScriptData
 }
 
 func (ptr *QScxmlEcmaScriptDataModel) Engine() *qml.QJSEngine {
-	defer qt.Recovering("QScxmlEcmaScriptDataModel::engine")
-
 	if ptr.Pointer() != nil {
 		var tmpValue = qml.NewQJSEngineFromPointer(C.QScxmlEcmaScriptDataModel_Engine(ptr.Pointer()))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
@@ -1412,7 +1172,6 @@ func (ptr *QScxmlEcmaScriptDataModel) Engine() *qml.QJSEngine {
 
 //export callbackQScxmlEcmaScriptDataModel_HasScxmlProperty
 func callbackQScxmlEcmaScriptDataModel_HasScxmlProperty(ptr unsafe.Pointer, name *C.char) C.char {
-	defer qt.Recovering("callback QScxmlEcmaScriptDataModel::hasScxmlProperty")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QScxmlEcmaScriptDataModel::hasScxmlProperty"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(string) bool)(C.GoString(name)))))
@@ -1422,8 +1181,6 @@ func callbackQScxmlEcmaScriptDataModel_HasScxmlProperty(ptr unsafe.Pointer, name
 }
 
 func (ptr *QScxmlEcmaScriptDataModel) ConnectHasScxmlProperty(f func(name string) bool) {
-	defer qt.Recovering("connect QScxmlEcmaScriptDataModel::hasScxmlProperty")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QScxmlEcmaScriptDataModel::hasScxmlProperty", f)
@@ -1431,8 +1188,6 @@ func (ptr *QScxmlEcmaScriptDataModel) ConnectHasScxmlProperty(f func(name string
 }
 
 func (ptr *QScxmlEcmaScriptDataModel) DisconnectHasScxmlProperty() {
-	defer qt.Recovering("disconnect QScxmlEcmaScriptDataModel::hasScxmlProperty")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QScxmlEcmaScriptDataModel::hasScxmlProperty")
@@ -1440,8 +1195,6 @@ func (ptr *QScxmlEcmaScriptDataModel) DisconnectHasScxmlProperty() {
 }
 
 func (ptr *QScxmlEcmaScriptDataModel) HasScxmlProperty(name string) bool {
-	defer qt.Recovering("QScxmlEcmaScriptDataModel::hasScxmlProperty")
-
 	if ptr.Pointer() != nil {
 		var nameC = C.CString(name)
 		defer C.free(unsafe.Pointer(nameC))
@@ -1451,8 +1204,6 @@ func (ptr *QScxmlEcmaScriptDataModel) HasScxmlProperty(name string) bool {
 }
 
 func (ptr *QScxmlEcmaScriptDataModel) HasScxmlPropertyDefault(name string) bool {
-	defer qt.Recovering("QScxmlEcmaScriptDataModel::hasScxmlProperty")
-
 	if ptr.Pointer() != nil {
 		var nameC = C.CString(name)
 		defer C.free(unsafe.Pointer(nameC))
@@ -1463,7 +1214,6 @@ func (ptr *QScxmlEcmaScriptDataModel) HasScxmlPropertyDefault(name string) bool 
 
 //export callbackQScxmlEcmaScriptDataModel_ScxmlProperty
 func callbackQScxmlEcmaScriptDataModel_ScxmlProperty(ptr unsafe.Pointer, name *C.char) unsafe.Pointer {
-	defer qt.Recovering("callback QScxmlEcmaScriptDataModel::scxmlProperty")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QScxmlEcmaScriptDataModel::scxmlProperty"); signal != nil {
 		return core.PointerFromQVariant(signal.(func(string) *core.QVariant)(C.GoString(name)))
@@ -1473,8 +1223,6 @@ func callbackQScxmlEcmaScriptDataModel_ScxmlProperty(ptr unsafe.Pointer, name *C
 }
 
 func (ptr *QScxmlEcmaScriptDataModel) ConnectScxmlProperty(f func(name string) *core.QVariant) {
-	defer qt.Recovering("connect QScxmlEcmaScriptDataModel::scxmlProperty")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QScxmlEcmaScriptDataModel::scxmlProperty", f)
@@ -1482,8 +1230,6 @@ func (ptr *QScxmlEcmaScriptDataModel) ConnectScxmlProperty(f func(name string) *
 }
 
 func (ptr *QScxmlEcmaScriptDataModel) DisconnectScxmlProperty() {
-	defer qt.Recovering("disconnect QScxmlEcmaScriptDataModel::scxmlProperty")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QScxmlEcmaScriptDataModel::scxmlProperty")
@@ -1491,8 +1237,6 @@ func (ptr *QScxmlEcmaScriptDataModel) DisconnectScxmlProperty() {
 }
 
 func (ptr *QScxmlEcmaScriptDataModel) ScxmlProperty(name string) *core.QVariant {
-	defer qt.Recovering("QScxmlEcmaScriptDataModel::scxmlProperty")
-
 	if ptr.Pointer() != nil {
 		var nameC = C.CString(name)
 		defer C.free(unsafe.Pointer(nameC))
@@ -1504,8 +1248,6 @@ func (ptr *QScxmlEcmaScriptDataModel) ScxmlProperty(name string) *core.QVariant 
 }
 
 func (ptr *QScxmlEcmaScriptDataModel) ScxmlPropertyDefault(name string) *core.QVariant {
-	defer qt.Recovering("QScxmlEcmaScriptDataModel::scxmlProperty")
-
 	if ptr.Pointer() != nil {
 		var nameC = C.CString(name)
 		defer C.free(unsafe.Pointer(nameC))
@@ -1517,8 +1259,6 @@ func (ptr *QScxmlEcmaScriptDataModel) ScxmlPropertyDefault(name string) *core.QV
 }
 
 func (ptr *QScxmlEcmaScriptDataModel) SetEngine(engine qml.QJSEngine_ITF) {
-	defer qt.Recovering("QScxmlEcmaScriptDataModel::setEngine")
-
 	if ptr.Pointer() != nil {
 		C.QScxmlEcmaScriptDataModel_SetEngine(ptr.Pointer(), qml.PointerFromQJSEngine(engine))
 	}
@@ -1526,7 +1266,6 @@ func (ptr *QScxmlEcmaScriptDataModel) SetEngine(engine qml.QJSEngine_ITF) {
 
 //export callbackQScxmlEcmaScriptDataModel_SetScxmlEvent
 func callbackQScxmlEcmaScriptDataModel_SetScxmlEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	defer qt.Recovering("callback QScxmlEcmaScriptDataModel::setScxmlEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QScxmlEcmaScriptDataModel::setScxmlEvent"); signal != nil {
 		signal.(func(*QScxmlEvent))(NewQScxmlEventFromPointer(event))
@@ -1536,8 +1275,6 @@ func callbackQScxmlEcmaScriptDataModel_SetScxmlEvent(ptr unsafe.Pointer, event u
 }
 
 func (ptr *QScxmlEcmaScriptDataModel) ConnectSetScxmlEvent(f func(event *QScxmlEvent)) {
-	defer qt.Recovering("connect QScxmlEcmaScriptDataModel::setScxmlEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QScxmlEcmaScriptDataModel::setScxmlEvent", f)
@@ -1545,8 +1282,6 @@ func (ptr *QScxmlEcmaScriptDataModel) ConnectSetScxmlEvent(f func(event *QScxmlE
 }
 
 func (ptr *QScxmlEcmaScriptDataModel) DisconnectSetScxmlEvent() {
-	defer qt.Recovering("disconnect QScxmlEcmaScriptDataModel::setScxmlEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QScxmlEcmaScriptDataModel::setScxmlEvent")
@@ -1554,16 +1289,12 @@ func (ptr *QScxmlEcmaScriptDataModel) DisconnectSetScxmlEvent() {
 }
 
 func (ptr *QScxmlEcmaScriptDataModel) SetScxmlEvent(event QScxmlEvent_ITF) {
-	defer qt.Recovering("QScxmlEcmaScriptDataModel::setScxmlEvent")
-
 	if ptr.Pointer() != nil {
 		C.QScxmlEcmaScriptDataModel_SetScxmlEvent(ptr.Pointer(), PointerFromQScxmlEvent(event))
 	}
 }
 
 func (ptr *QScxmlEcmaScriptDataModel) SetScxmlEventDefault(event QScxmlEvent_ITF) {
-	defer qt.Recovering("QScxmlEcmaScriptDataModel::setScxmlEvent")
-
 	if ptr.Pointer() != nil {
 		C.QScxmlEcmaScriptDataModel_SetScxmlEventDefault(ptr.Pointer(), PointerFromQScxmlEvent(event))
 	}
@@ -1571,7 +1302,6 @@ func (ptr *QScxmlEcmaScriptDataModel) SetScxmlEventDefault(event QScxmlEvent_ITF
 
 //export callbackQScxmlEcmaScriptDataModel_SetScxmlProperty
 func callbackQScxmlEcmaScriptDataModel_SetScxmlProperty(ptr unsafe.Pointer, name *C.char, value unsafe.Pointer, context *C.char) C.char {
-	defer qt.Recovering("callback QScxmlEcmaScriptDataModel::setScxmlProperty")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QScxmlEcmaScriptDataModel::setScxmlProperty"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(string, *core.QVariant, string) bool)(C.GoString(name), core.NewQVariantFromPointer(value), C.GoString(context)))))
@@ -1581,8 +1311,6 @@ func callbackQScxmlEcmaScriptDataModel_SetScxmlProperty(ptr unsafe.Pointer, name
 }
 
 func (ptr *QScxmlEcmaScriptDataModel) ConnectSetScxmlProperty(f func(name string, value *core.QVariant, context string) bool) {
-	defer qt.Recovering("connect QScxmlEcmaScriptDataModel::setScxmlProperty")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QScxmlEcmaScriptDataModel::setScxmlProperty", f)
@@ -1590,8 +1318,6 @@ func (ptr *QScxmlEcmaScriptDataModel) ConnectSetScxmlProperty(f func(name string
 }
 
 func (ptr *QScxmlEcmaScriptDataModel) DisconnectSetScxmlProperty() {
-	defer qt.Recovering("disconnect QScxmlEcmaScriptDataModel::setScxmlProperty")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QScxmlEcmaScriptDataModel::setScxmlProperty")
@@ -1599,8 +1325,6 @@ func (ptr *QScxmlEcmaScriptDataModel) DisconnectSetScxmlProperty() {
 }
 
 func (ptr *QScxmlEcmaScriptDataModel) SetScxmlProperty(name string, value core.QVariant_ITF, context string) bool {
-	defer qt.Recovering("QScxmlEcmaScriptDataModel::setScxmlProperty")
-
 	if ptr.Pointer() != nil {
 		var nameC = C.CString(name)
 		defer C.free(unsafe.Pointer(nameC))
@@ -1612,8 +1336,6 @@ func (ptr *QScxmlEcmaScriptDataModel) SetScxmlProperty(name string, value core.Q
 }
 
 func (ptr *QScxmlEcmaScriptDataModel) SetScxmlPropertyDefault(name string, value core.QVariant_ITF, context string) bool {
-	defer qt.Recovering("QScxmlEcmaScriptDataModel::setScxmlProperty")
-
 	if ptr.Pointer() != nil {
 		var nameC = C.CString(name)
 		defer C.free(unsafe.Pointer(nameC))
@@ -1626,7 +1348,6 @@ func (ptr *QScxmlEcmaScriptDataModel) SetScxmlPropertyDefault(name string, value
 
 //export callbackQScxmlEcmaScriptDataModel_TimerEvent
 func callbackQScxmlEcmaScriptDataModel_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	defer qt.Recovering("callback QScxmlEcmaScriptDataModel::timerEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QScxmlEcmaScriptDataModel::timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
@@ -1636,8 +1357,6 @@ func callbackQScxmlEcmaScriptDataModel_TimerEvent(ptr unsafe.Pointer, event unsa
 }
 
 func (ptr *QScxmlEcmaScriptDataModel) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
-	defer qt.Recovering("connect QScxmlEcmaScriptDataModel::timerEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QScxmlEcmaScriptDataModel::timerEvent", f)
@@ -1645,8 +1364,6 @@ func (ptr *QScxmlEcmaScriptDataModel) ConnectTimerEvent(f func(event *core.QTime
 }
 
 func (ptr *QScxmlEcmaScriptDataModel) DisconnectTimerEvent() {
-	defer qt.Recovering("disconnect QScxmlEcmaScriptDataModel::timerEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QScxmlEcmaScriptDataModel::timerEvent")
@@ -1654,16 +1371,12 @@ func (ptr *QScxmlEcmaScriptDataModel) DisconnectTimerEvent() {
 }
 
 func (ptr *QScxmlEcmaScriptDataModel) TimerEvent(event core.QTimerEvent_ITF) {
-	defer qt.Recovering("QScxmlEcmaScriptDataModel::timerEvent")
-
 	if ptr.Pointer() != nil {
 		C.QScxmlEcmaScriptDataModel_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
 	}
 }
 
 func (ptr *QScxmlEcmaScriptDataModel) TimerEventDefault(event core.QTimerEvent_ITF) {
-	defer qt.Recovering("QScxmlEcmaScriptDataModel::timerEvent")
-
 	if ptr.Pointer() != nil {
 		C.QScxmlEcmaScriptDataModel_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
 	}
@@ -1671,7 +1384,6 @@ func (ptr *QScxmlEcmaScriptDataModel) TimerEventDefault(event core.QTimerEvent_I
 
 //export callbackQScxmlEcmaScriptDataModel_ChildEvent
 func callbackQScxmlEcmaScriptDataModel_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	defer qt.Recovering("callback QScxmlEcmaScriptDataModel::childEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QScxmlEcmaScriptDataModel::childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
@@ -1681,8 +1393,6 @@ func callbackQScxmlEcmaScriptDataModel_ChildEvent(ptr unsafe.Pointer, event unsa
 }
 
 func (ptr *QScxmlEcmaScriptDataModel) ConnectChildEvent(f func(event *core.QChildEvent)) {
-	defer qt.Recovering("connect QScxmlEcmaScriptDataModel::childEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QScxmlEcmaScriptDataModel::childEvent", f)
@@ -1690,8 +1400,6 @@ func (ptr *QScxmlEcmaScriptDataModel) ConnectChildEvent(f func(event *core.QChil
 }
 
 func (ptr *QScxmlEcmaScriptDataModel) DisconnectChildEvent() {
-	defer qt.Recovering("disconnect QScxmlEcmaScriptDataModel::childEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QScxmlEcmaScriptDataModel::childEvent")
@@ -1699,16 +1407,12 @@ func (ptr *QScxmlEcmaScriptDataModel) DisconnectChildEvent() {
 }
 
 func (ptr *QScxmlEcmaScriptDataModel) ChildEvent(event core.QChildEvent_ITF) {
-	defer qt.Recovering("QScxmlEcmaScriptDataModel::childEvent")
-
 	if ptr.Pointer() != nil {
 		C.QScxmlEcmaScriptDataModel_ChildEvent(ptr.Pointer(), core.PointerFromQChildEvent(event))
 	}
 }
 
 func (ptr *QScxmlEcmaScriptDataModel) ChildEventDefault(event core.QChildEvent_ITF) {
-	defer qt.Recovering("QScxmlEcmaScriptDataModel::childEvent")
-
 	if ptr.Pointer() != nil {
 		C.QScxmlEcmaScriptDataModel_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
 	}
@@ -1716,7 +1420,6 @@ func (ptr *QScxmlEcmaScriptDataModel) ChildEventDefault(event core.QChildEvent_I
 
 //export callbackQScxmlEcmaScriptDataModel_ConnectNotify
 func callbackQScxmlEcmaScriptDataModel_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-	defer qt.Recovering("callback QScxmlEcmaScriptDataModel::connectNotify")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QScxmlEcmaScriptDataModel::connectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
@@ -1726,8 +1429,6 @@ func callbackQScxmlEcmaScriptDataModel_ConnectNotify(ptr unsafe.Pointer, sign un
 }
 
 func (ptr *QScxmlEcmaScriptDataModel) ConnectConnectNotify(f func(sign *core.QMetaMethod)) {
-	defer qt.Recovering("connect QScxmlEcmaScriptDataModel::connectNotify")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QScxmlEcmaScriptDataModel::connectNotify", f)
@@ -1735,8 +1436,6 @@ func (ptr *QScxmlEcmaScriptDataModel) ConnectConnectNotify(f func(sign *core.QMe
 }
 
 func (ptr *QScxmlEcmaScriptDataModel) DisconnectConnectNotify() {
-	defer qt.Recovering("disconnect QScxmlEcmaScriptDataModel::connectNotify")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QScxmlEcmaScriptDataModel::connectNotify")
@@ -1744,16 +1443,12 @@ func (ptr *QScxmlEcmaScriptDataModel) DisconnectConnectNotify() {
 }
 
 func (ptr *QScxmlEcmaScriptDataModel) ConnectNotify(sign core.QMetaMethod_ITF) {
-	defer qt.Recovering("QScxmlEcmaScriptDataModel::connectNotify")
-
 	if ptr.Pointer() != nil {
 		C.QScxmlEcmaScriptDataModel_ConnectNotify(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
 	}
 }
 
 func (ptr *QScxmlEcmaScriptDataModel) ConnectNotifyDefault(sign core.QMetaMethod_ITF) {
-	defer qt.Recovering("QScxmlEcmaScriptDataModel::connectNotify")
-
 	if ptr.Pointer() != nil {
 		C.QScxmlEcmaScriptDataModel_ConnectNotifyDefault(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
 	}
@@ -1761,7 +1456,6 @@ func (ptr *QScxmlEcmaScriptDataModel) ConnectNotifyDefault(sign core.QMetaMethod
 
 //export callbackQScxmlEcmaScriptDataModel_CustomEvent
 func callbackQScxmlEcmaScriptDataModel_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	defer qt.Recovering("callback QScxmlEcmaScriptDataModel::customEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QScxmlEcmaScriptDataModel::customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
@@ -1771,8 +1465,6 @@ func callbackQScxmlEcmaScriptDataModel_CustomEvent(ptr unsafe.Pointer, event uns
 }
 
 func (ptr *QScxmlEcmaScriptDataModel) ConnectCustomEvent(f func(event *core.QEvent)) {
-	defer qt.Recovering("connect QScxmlEcmaScriptDataModel::customEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QScxmlEcmaScriptDataModel::customEvent", f)
@@ -1780,8 +1472,6 @@ func (ptr *QScxmlEcmaScriptDataModel) ConnectCustomEvent(f func(event *core.QEve
 }
 
 func (ptr *QScxmlEcmaScriptDataModel) DisconnectCustomEvent() {
-	defer qt.Recovering("disconnect QScxmlEcmaScriptDataModel::customEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QScxmlEcmaScriptDataModel::customEvent")
@@ -1789,16 +1479,12 @@ func (ptr *QScxmlEcmaScriptDataModel) DisconnectCustomEvent() {
 }
 
 func (ptr *QScxmlEcmaScriptDataModel) CustomEvent(event core.QEvent_ITF) {
-	defer qt.Recovering("QScxmlEcmaScriptDataModel::customEvent")
-
 	if ptr.Pointer() != nil {
 		C.QScxmlEcmaScriptDataModel_CustomEvent(ptr.Pointer(), core.PointerFromQEvent(event))
 	}
 }
 
 func (ptr *QScxmlEcmaScriptDataModel) CustomEventDefault(event core.QEvent_ITF) {
-	defer qt.Recovering("QScxmlEcmaScriptDataModel::customEvent")
-
 	if ptr.Pointer() != nil {
 		C.QScxmlEcmaScriptDataModel_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
 	}
@@ -1806,8 +1492,6 @@ func (ptr *QScxmlEcmaScriptDataModel) CustomEventDefault(event core.QEvent_ITF) 
 
 //export callbackQScxmlEcmaScriptDataModel_DeleteLater
 func callbackQScxmlEcmaScriptDataModel_DeleteLater(ptr unsafe.Pointer) {
-	defer qt.Recovering("callback QScxmlEcmaScriptDataModel::deleteLater")
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QScxmlEcmaScriptDataModel::deleteLater"); signal != nil {
 		signal.(func())()
 	} else {
@@ -1816,8 +1500,6 @@ func callbackQScxmlEcmaScriptDataModel_DeleteLater(ptr unsafe.Pointer) {
 }
 
 func (ptr *QScxmlEcmaScriptDataModel) ConnectDeleteLater(f func()) {
-	defer qt.Recovering("connect QScxmlEcmaScriptDataModel::deleteLater")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QScxmlEcmaScriptDataModel::deleteLater", f)
@@ -1825,8 +1507,6 @@ func (ptr *QScxmlEcmaScriptDataModel) ConnectDeleteLater(f func()) {
 }
 
 func (ptr *QScxmlEcmaScriptDataModel) DisconnectDeleteLater() {
-	defer qt.Recovering("disconnect QScxmlEcmaScriptDataModel::deleteLater")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QScxmlEcmaScriptDataModel::deleteLater")
@@ -1834,8 +1514,6 @@ func (ptr *QScxmlEcmaScriptDataModel) DisconnectDeleteLater() {
 }
 
 func (ptr *QScxmlEcmaScriptDataModel) DeleteLater() {
-	defer qt.Recovering("QScxmlEcmaScriptDataModel::deleteLater")
-
 	if ptr.Pointer() != nil {
 		C.QScxmlEcmaScriptDataModel_DeleteLater(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
@@ -1844,8 +1522,6 @@ func (ptr *QScxmlEcmaScriptDataModel) DeleteLater() {
 }
 
 func (ptr *QScxmlEcmaScriptDataModel) DeleteLaterDefault() {
-	defer qt.Recovering("QScxmlEcmaScriptDataModel::deleteLater")
-
 	if ptr.Pointer() != nil {
 		C.QScxmlEcmaScriptDataModel_DeleteLaterDefault(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
@@ -1855,7 +1531,6 @@ func (ptr *QScxmlEcmaScriptDataModel) DeleteLaterDefault() {
 
 //export callbackQScxmlEcmaScriptDataModel_DisconnectNotify
 func callbackQScxmlEcmaScriptDataModel_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-	defer qt.Recovering("callback QScxmlEcmaScriptDataModel::disconnectNotify")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QScxmlEcmaScriptDataModel::disconnectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
@@ -1865,8 +1540,6 @@ func callbackQScxmlEcmaScriptDataModel_DisconnectNotify(ptr unsafe.Pointer, sign
 }
 
 func (ptr *QScxmlEcmaScriptDataModel) ConnectDisconnectNotify(f func(sign *core.QMetaMethod)) {
-	defer qt.Recovering("connect QScxmlEcmaScriptDataModel::disconnectNotify")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QScxmlEcmaScriptDataModel::disconnectNotify", f)
@@ -1874,8 +1547,6 @@ func (ptr *QScxmlEcmaScriptDataModel) ConnectDisconnectNotify(f func(sign *core.
 }
 
 func (ptr *QScxmlEcmaScriptDataModel) DisconnectDisconnectNotify() {
-	defer qt.Recovering("disconnect QScxmlEcmaScriptDataModel::disconnectNotify")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QScxmlEcmaScriptDataModel::disconnectNotify")
@@ -1883,16 +1554,12 @@ func (ptr *QScxmlEcmaScriptDataModel) DisconnectDisconnectNotify() {
 }
 
 func (ptr *QScxmlEcmaScriptDataModel) DisconnectNotify(sign core.QMetaMethod_ITF) {
-	defer qt.Recovering("QScxmlEcmaScriptDataModel::disconnectNotify")
-
 	if ptr.Pointer() != nil {
 		C.QScxmlEcmaScriptDataModel_DisconnectNotify(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
 	}
 }
 
 func (ptr *QScxmlEcmaScriptDataModel) DisconnectNotifyDefault(sign core.QMetaMethod_ITF) {
-	defer qt.Recovering("QScxmlEcmaScriptDataModel::disconnectNotify")
-
 	if ptr.Pointer() != nil {
 		C.QScxmlEcmaScriptDataModel_DisconnectNotifyDefault(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
 	}
@@ -1900,7 +1567,6 @@ func (ptr *QScxmlEcmaScriptDataModel) DisconnectNotifyDefault(sign core.QMetaMet
 
 //export callbackQScxmlEcmaScriptDataModel_Event
 func callbackQScxmlEcmaScriptDataModel_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
-	defer qt.Recovering("callback QScxmlEcmaScriptDataModel::event")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QScxmlEcmaScriptDataModel::event"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
@@ -1910,8 +1576,6 @@ func callbackQScxmlEcmaScriptDataModel_Event(ptr unsafe.Pointer, e unsafe.Pointe
 }
 
 func (ptr *QScxmlEcmaScriptDataModel) ConnectEvent(f func(e *core.QEvent) bool) {
-	defer qt.Recovering("connect QScxmlEcmaScriptDataModel::event")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QScxmlEcmaScriptDataModel::event", f)
@@ -1919,8 +1583,6 @@ func (ptr *QScxmlEcmaScriptDataModel) ConnectEvent(f func(e *core.QEvent) bool) 
 }
 
 func (ptr *QScxmlEcmaScriptDataModel) DisconnectEvent() {
-	defer qt.Recovering("disconnect QScxmlEcmaScriptDataModel::event")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QScxmlEcmaScriptDataModel::event")
@@ -1928,8 +1590,6 @@ func (ptr *QScxmlEcmaScriptDataModel) DisconnectEvent() {
 }
 
 func (ptr *QScxmlEcmaScriptDataModel) Event(e core.QEvent_ITF) bool {
-	defer qt.Recovering("QScxmlEcmaScriptDataModel::event")
-
 	if ptr.Pointer() != nil {
 		return C.QScxmlEcmaScriptDataModel_Event(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
 	}
@@ -1937,8 +1597,6 @@ func (ptr *QScxmlEcmaScriptDataModel) Event(e core.QEvent_ITF) bool {
 }
 
 func (ptr *QScxmlEcmaScriptDataModel) EventDefault(e core.QEvent_ITF) bool {
-	defer qt.Recovering("QScxmlEcmaScriptDataModel::event")
-
 	if ptr.Pointer() != nil {
 		return C.QScxmlEcmaScriptDataModel_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
 	}
@@ -1947,7 +1605,6 @@ func (ptr *QScxmlEcmaScriptDataModel) EventDefault(e core.QEvent_ITF) bool {
 
 //export callbackQScxmlEcmaScriptDataModel_EventFilter
 func callbackQScxmlEcmaScriptDataModel_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-	defer qt.Recovering("callback QScxmlEcmaScriptDataModel::eventFilter")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QScxmlEcmaScriptDataModel::eventFilter"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
@@ -1957,8 +1614,6 @@ func callbackQScxmlEcmaScriptDataModel_EventFilter(ptr unsafe.Pointer, watched u
 }
 
 func (ptr *QScxmlEcmaScriptDataModel) ConnectEventFilter(f func(watched *core.QObject, event *core.QEvent) bool) {
-	defer qt.Recovering("connect QScxmlEcmaScriptDataModel::eventFilter")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QScxmlEcmaScriptDataModel::eventFilter", f)
@@ -1966,8 +1621,6 @@ func (ptr *QScxmlEcmaScriptDataModel) ConnectEventFilter(f func(watched *core.QO
 }
 
 func (ptr *QScxmlEcmaScriptDataModel) DisconnectEventFilter() {
-	defer qt.Recovering("disconnect QScxmlEcmaScriptDataModel::eventFilter")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QScxmlEcmaScriptDataModel::eventFilter")
@@ -1975,8 +1628,6 @@ func (ptr *QScxmlEcmaScriptDataModel) DisconnectEventFilter() {
 }
 
 func (ptr *QScxmlEcmaScriptDataModel) EventFilter(watched core.QObject_ITF, event core.QEvent_ITF) bool {
-	defer qt.Recovering("QScxmlEcmaScriptDataModel::eventFilter")
-
 	if ptr.Pointer() != nil {
 		return C.QScxmlEcmaScriptDataModel_EventFilter(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
 	}
@@ -1984,8 +1635,6 @@ func (ptr *QScxmlEcmaScriptDataModel) EventFilter(watched core.QObject_ITF, even
 }
 
 func (ptr *QScxmlEcmaScriptDataModel) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
-	defer qt.Recovering("QScxmlEcmaScriptDataModel::eventFilter")
-
 	if ptr.Pointer() != nil {
 		return C.QScxmlEcmaScriptDataModel_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
 	}
@@ -1994,7 +1643,6 @@ func (ptr *QScxmlEcmaScriptDataModel) EventFilterDefault(watched core.QObject_IT
 
 //export callbackQScxmlEcmaScriptDataModel_MetaObject
 func callbackQScxmlEcmaScriptDataModel_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-	defer qt.Recovering("callback QScxmlEcmaScriptDataModel::metaObject")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QScxmlEcmaScriptDataModel::metaObject"); signal != nil {
 		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
@@ -2004,8 +1652,6 @@ func callbackQScxmlEcmaScriptDataModel_MetaObject(ptr unsafe.Pointer) unsafe.Poi
 }
 
 func (ptr *QScxmlEcmaScriptDataModel) ConnectMetaObject(f func() *core.QMetaObject) {
-	defer qt.Recovering("connect QScxmlEcmaScriptDataModel::metaObject")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QScxmlEcmaScriptDataModel::metaObject", f)
@@ -2013,8 +1659,6 @@ func (ptr *QScxmlEcmaScriptDataModel) ConnectMetaObject(f func() *core.QMetaObje
 }
 
 func (ptr *QScxmlEcmaScriptDataModel) DisconnectMetaObject() {
-	defer qt.Recovering("disconnect QScxmlEcmaScriptDataModel::metaObject")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QScxmlEcmaScriptDataModel::metaObject")
@@ -2022,8 +1666,6 @@ func (ptr *QScxmlEcmaScriptDataModel) DisconnectMetaObject() {
 }
 
 func (ptr *QScxmlEcmaScriptDataModel) MetaObject() *core.QMetaObject {
-	defer qt.Recovering("QScxmlEcmaScriptDataModel::metaObject")
-
 	if ptr.Pointer() != nil {
 		return core.NewQMetaObjectFromPointer(C.QScxmlEcmaScriptDataModel_MetaObject(ptr.Pointer()))
 	}
@@ -2031,8 +1673,6 @@ func (ptr *QScxmlEcmaScriptDataModel) MetaObject() *core.QMetaObject {
 }
 
 func (ptr *QScxmlEcmaScriptDataModel) MetaObjectDefault() *core.QMetaObject {
-	defer qt.Recovering("QScxmlEcmaScriptDataModel::metaObject")
-
 	if ptr.Pointer() != nil {
 		return core.NewQMetaObjectFromPointer(C.QScxmlEcmaScriptDataModel_MetaObjectDefault(ptr.Pointer()))
 	}
@@ -2077,24 +1717,18 @@ func NewQScxmlErrorFromPointer(ptr unsafe.Pointer) *QScxmlError {
 	return n
 }
 func NewQScxmlError() *QScxmlError {
-	defer qt.Recovering("QScxmlError::QScxmlError")
-
 	var tmpValue = NewQScxmlErrorFromPointer(C.QScxmlError_NewQScxmlError())
 	runtime.SetFinalizer(tmpValue, (*QScxmlError).DestroyQScxmlError)
 	return tmpValue
 }
 
 func NewQScxmlError3(other QScxmlError_ITF) *QScxmlError {
-	defer qt.Recovering("QScxmlError::QScxmlError")
-
 	var tmpValue = NewQScxmlErrorFromPointer(C.QScxmlError_NewQScxmlError3(PointerFromQScxmlError(other)))
 	runtime.SetFinalizer(tmpValue, (*QScxmlError).DestroyQScxmlError)
 	return tmpValue
 }
 
 func NewQScxmlError2(fileName string, line int, column int, description string) *QScxmlError {
-	defer qt.Recovering("QScxmlError::QScxmlError")
-
 	var fileNameC = C.CString(fileName)
 	defer C.free(unsafe.Pointer(fileNameC))
 	var descriptionC = C.CString(description)
@@ -2105,8 +1739,6 @@ func NewQScxmlError2(fileName string, line int, column int, description string) 
 }
 
 func (ptr *QScxmlError) Column() int {
-	defer qt.Recovering("QScxmlError::column")
-
 	if ptr.Pointer() != nil {
 		return int(int32(C.QScxmlError_Column(ptr.Pointer())))
 	}
@@ -2114,8 +1746,6 @@ func (ptr *QScxmlError) Column() int {
 }
 
 func (ptr *QScxmlError) Description() string {
-	defer qt.Recovering("QScxmlError::description")
-
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QScxmlError_Description(ptr.Pointer()))
 	}
@@ -2123,8 +1753,6 @@ func (ptr *QScxmlError) Description() string {
 }
 
 func (ptr *QScxmlError) FileName() string {
-	defer qt.Recovering("QScxmlError::fileName")
-
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QScxmlError_FileName(ptr.Pointer()))
 	}
@@ -2132,8 +1760,6 @@ func (ptr *QScxmlError) FileName() string {
 }
 
 func (ptr *QScxmlError) IsValid() bool {
-	defer qt.Recovering("QScxmlError::isValid")
-
 	if ptr.Pointer() != nil {
 		return C.QScxmlError_IsValid(ptr.Pointer()) != 0
 	}
@@ -2141,8 +1767,6 @@ func (ptr *QScxmlError) IsValid() bool {
 }
 
 func (ptr *QScxmlError) Line() int {
-	defer qt.Recovering("QScxmlError::line")
-
 	if ptr.Pointer() != nil {
 		return int(int32(C.QScxmlError_Line(ptr.Pointer())))
 	}
@@ -2150,8 +1774,6 @@ func (ptr *QScxmlError) Line() int {
 }
 
 func (ptr *QScxmlError) ToString() string {
-	defer qt.Recovering("QScxmlError::toString")
-
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QScxmlError_ToString(ptr.Pointer()))
 	}
@@ -2159,8 +1781,6 @@ func (ptr *QScxmlError) ToString() string {
 }
 
 func (ptr *QScxmlError) DestroyQScxmlError() {
-	defer qt.Recovering("QScxmlError::~QScxmlError")
-
 	if ptr.Pointer() != nil {
 		C.QScxmlError_DestroyQScxmlError(ptr.Pointer())
 		ptr.SetPointer(nil)
@@ -2215,32 +1835,24 @@ func NewQScxmlEventFromPointer(ptr unsafe.Pointer) *QScxmlEvent {
 	return n
 }
 func NewQScxmlEvent() *QScxmlEvent {
-	defer qt.Recovering("QScxmlEvent::QScxmlEvent")
-
 	var tmpValue = NewQScxmlEventFromPointer(C.QScxmlEvent_NewQScxmlEvent())
 	runtime.SetFinalizer(tmpValue, (*QScxmlEvent).DestroyQScxmlEvent)
 	return tmpValue
 }
 
 func NewQScxmlEvent2(other QScxmlEvent_ITF) *QScxmlEvent {
-	defer qt.Recovering("QScxmlEvent::QScxmlEvent")
-
 	var tmpValue = NewQScxmlEventFromPointer(C.QScxmlEvent_NewQScxmlEvent2(PointerFromQScxmlEvent(other)))
 	runtime.SetFinalizer(tmpValue, (*QScxmlEvent).DestroyQScxmlEvent)
 	return tmpValue
 }
 
 func (ptr *QScxmlEvent) Clear() {
-	defer qt.Recovering("QScxmlEvent::clear")
-
 	if ptr.Pointer() != nil {
 		C.QScxmlEvent_Clear(ptr.Pointer())
 	}
 }
 
 func (ptr *QScxmlEvent) Data() *core.QVariant {
-	defer qt.Recovering("QScxmlEvent::data")
-
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQVariantFromPointer(C.QScxmlEvent_Data(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
@@ -2250,8 +1862,6 @@ func (ptr *QScxmlEvent) Data() *core.QVariant {
 }
 
 func (ptr *QScxmlEvent) Delay() int {
-	defer qt.Recovering("QScxmlEvent::delay")
-
 	if ptr.Pointer() != nil {
 		return int(int32(C.QScxmlEvent_Delay(ptr.Pointer())))
 	}
@@ -2259,8 +1869,6 @@ func (ptr *QScxmlEvent) Delay() int {
 }
 
 func (ptr *QScxmlEvent) ErrorMessage() string {
-	defer qt.Recovering("QScxmlEvent::errorMessage")
-
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QScxmlEvent_ErrorMessage(ptr.Pointer()))
 	}
@@ -2268,8 +1876,6 @@ func (ptr *QScxmlEvent) ErrorMessage() string {
 }
 
 func (ptr *QScxmlEvent) EventType() QScxmlEvent__EventType {
-	defer qt.Recovering("QScxmlEvent::eventType")
-
 	if ptr.Pointer() != nil {
 		return QScxmlEvent__EventType(C.QScxmlEvent_EventType(ptr.Pointer()))
 	}
@@ -2277,8 +1883,6 @@ func (ptr *QScxmlEvent) EventType() QScxmlEvent__EventType {
 }
 
 func (ptr *QScxmlEvent) InvokeId() string {
-	defer qt.Recovering("QScxmlEvent::invokeId")
-
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QScxmlEvent_InvokeId(ptr.Pointer()))
 	}
@@ -2286,8 +1890,6 @@ func (ptr *QScxmlEvent) InvokeId() string {
 }
 
 func (ptr *QScxmlEvent) IsErrorEvent() bool {
-	defer qt.Recovering("QScxmlEvent::isErrorEvent")
-
 	if ptr.Pointer() != nil {
 		return C.QScxmlEvent_IsErrorEvent(ptr.Pointer()) != 0
 	}
@@ -2295,8 +1897,6 @@ func (ptr *QScxmlEvent) IsErrorEvent() bool {
 }
 
 func (ptr *QScxmlEvent) Name() string {
-	defer qt.Recovering("QScxmlEvent::name")
-
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QScxmlEvent_Name(ptr.Pointer()))
 	}
@@ -2304,8 +1904,6 @@ func (ptr *QScxmlEvent) Name() string {
 }
 
 func (ptr *QScxmlEvent) Origin() string {
-	defer qt.Recovering("QScxmlEvent::origin")
-
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QScxmlEvent_Origin(ptr.Pointer()))
 	}
@@ -2313,8 +1911,6 @@ func (ptr *QScxmlEvent) Origin() string {
 }
 
 func (ptr *QScxmlEvent) OriginType() string {
-	defer qt.Recovering("QScxmlEvent::originType")
-
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QScxmlEvent_OriginType(ptr.Pointer()))
 	}
@@ -2322,8 +1918,6 @@ func (ptr *QScxmlEvent) OriginType() string {
 }
 
 func (ptr *QScxmlEvent) ScxmlType() string {
-	defer qt.Recovering("QScxmlEvent::scxmlType")
-
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QScxmlEvent_ScxmlType(ptr.Pointer()))
 	}
@@ -2331,8 +1925,6 @@ func (ptr *QScxmlEvent) ScxmlType() string {
 }
 
 func (ptr *QScxmlEvent) SendId() string {
-	defer qt.Recovering("QScxmlEvent::sendId")
-
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QScxmlEvent_SendId(ptr.Pointer()))
 	}
@@ -2340,24 +1932,18 @@ func (ptr *QScxmlEvent) SendId() string {
 }
 
 func (ptr *QScxmlEvent) SetData(data core.QVariant_ITF) {
-	defer qt.Recovering("QScxmlEvent::setData")
-
 	if ptr.Pointer() != nil {
 		C.QScxmlEvent_SetData(ptr.Pointer(), core.PointerFromQVariant(data))
 	}
 }
 
 func (ptr *QScxmlEvent) SetDelay(delayInMiliSecs int) {
-	defer qt.Recovering("QScxmlEvent::setDelay")
-
 	if ptr.Pointer() != nil {
 		C.QScxmlEvent_SetDelay(ptr.Pointer(), C.int(int32(delayInMiliSecs)))
 	}
 }
 
 func (ptr *QScxmlEvent) SetErrorMessage(message string) {
-	defer qt.Recovering("QScxmlEvent::setErrorMessage")
-
 	if ptr.Pointer() != nil {
 		var messageC = C.CString(message)
 		defer C.free(unsafe.Pointer(messageC))
@@ -2366,16 +1952,12 @@ func (ptr *QScxmlEvent) SetErrorMessage(message string) {
 }
 
 func (ptr *QScxmlEvent) SetEventType(ty QScxmlEvent__EventType) {
-	defer qt.Recovering("QScxmlEvent::setEventType")
-
 	if ptr.Pointer() != nil {
 		C.QScxmlEvent_SetEventType(ptr.Pointer(), C.longlong(ty))
 	}
 }
 
 func (ptr *QScxmlEvent) SetInvokeId(invokeid string) {
-	defer qt.Recovering("QScxmlEvent::setInvokeId")
-
 	if ptr.Pointer() != nil {
 		var invokeidC = C.CString(invokeid)
 		defer C.free(unsafe.Pointer(invokeidC))
@@ -2384,8 +1966,6 @@ func (ptr *QScxmlEvent) SetInvokeId(invokeid string) {
 }
 
 func (ptr *QScxmlEvent) SetName(name string) {
-	defer qt.Recovering("QScxmlEvent::setName")
-
 	if ptr.Pointer() != nil {
 		var nameC = C.CString(name)
 		defer C.free(unsafe.Pointer(nameC))
@@ -2394,8 +1974,6 @@ func (ptr *QScxmlEvent) SetName(name string) {
 }
 
 func (ptr *QScxmlEvent) SetOrigin(origin string) {
-	defer qt.Recovering("QScxmlEvent::setOrigin")
-
 	if ptr.Pointer() != nil {
 		var originC = C.CString(origin)
 		defer C.free(unsafe.Pointer(originC))
@@ -2404,8 +1982,6 @@ func (ptr *QScxmlEvent) SetOrigin(origin string) {
 }
 
 func (ptr *QScxmlEvent) SetOriginType(origintype string) {
-	defer qt.Recovering("QScxmlEvent::setOriginType")
-
 	if ptr.Pointer() != nil {
 		var origintypeC = C.CString(origintype)
 		defer C.free(unsafe.Pointer(origintypeC))
@@ -2414,8 +1990,6 @@ func (ptr *QScxmlEvent) SetOriginType(origintype string) {
 }
 
 func (ptr *QScxmlEvent) SetSendId(sendid string) {
-	defer qt.Recovering("QScxmlEvent::setSendId")
-
 	if ptr.Pointer() != nil {
 		var sendidC = C.CString(sendid)
 		defer C.free(unsafe.Pointer(sendidC))
@@ -2424,8 +1998,6 @@ func (ptr *QScxmlEvent) SetSendId(sendid string) {
 }
 
 func (ptr *QScxmlEvent) DestroyQScxmlEvent() {
-	defer qt.Recovering("QScxmlEvent::~QScxmlEvent")
-
 	if ptr.Pointer() != nil {
 		C.QScxmlEvent_DestroyQScxmlEvent(ptr.Pointer())
 		ptr.SetPointer(nil)
@@ -2472,7 +2044,6 @@ func NewQScxmlEventFilterFromPointer(ptr unsafe.Pointer) *QScxmlEventFilter {
 
 //export callbackQScxmlEventFilter_Handle
 func callbackQScxmlEventFilter_Handle(ptr unsafe.Pointer, event unsafe.Pointer, stateMachine unsafe.Pointer) C.char {
-	defer qt.Recovering("callback QScxmlEventFilter::handle")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QScxmlEventFilter::handle"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*QScxmlEvent, *QScxmlStateMachine) bool)(NewQScxmlEventFromPointer(event), NewQScxmlStateMachineFromPointer(stateMachine)))))
@@ -2482,8 +2053,6 @@ func callbackQScxmlEventFilter_Handle(ptr unsafe.Pointer, event unsafe.Pointer, 
 }
 
 func (ptr *QScxmlEventFilter) ConnectHandle(f func(event *QScxmlEvent, stateMachine *QScxmlStateMachine) bool) {
-	defer qt.Recovering("connect QScxmlEventFilter::handle")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QScxmlEventFilter::handle", f)
@@ -2491,8 +2060,6 @@ func (ptr *QScxmlEventFilter) ConnectHandle(f func(event *QScxmlEvent, stateMach
 }
 
 func (ptr *QScxmlEventFilter) DisconnectHandle(event QScxmlEvent_ITF, stateMachine QScxmlStateMachine_ITF) {
-	defer qt.Recovering("disconnect QScxmlEventFilter::handle")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QScxmlEventFilter::handle")
@@ -2500,8 +2067,6 @@ func (ptr *QScxmlEventFilter) DisconnectHandle(event QScxmlEvent_ITF, stateMachi
 }
 
 func (ptr *QScxmlEventFilter) Handle(event QScxmlEvent_ITF, stateMachine QScxmlStateMachine_ITF) bool {
-	defer qt.Recovering("QScxmlEventFilter::handle")
-
 	if ptr.Pointer() != nil {
 		return C.QScxmlEventFilter_Handle(ptr.Pointer(), PointerFromQScxmlEvent(event), PointerFromQScxmlStateMachine(stateMachine)) != 0
 	}
@@ -2510,7 +2075,6 @@ func (ptr *QScxmlEventFilter) Handle(event QScxmlEvent_ITF, stateMachine QScxmlS
 
 //export callbackQScxmlEventFilter_DestroyQScxmlEventFilter
 func callbackQScxmlEventFilter_DestroyQScxmlEventFilter(ptr unsafe.Pointer) {
-	defer qt.Recovering("callback QScxmlEventFilter::~QScxmlEventFilter")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QScxmlEventFilter::~QScxmlEventFilter"); signal != nil {
 		signal.(func())()
@@ -2520,8 +2084,6 @@ func callbackQScxmlEventFilter_DestroyQScxmlEventFilter(ptr unsafe.Pointer) {
 }
 
 func (ptr *QScxmlEventFilter) ConnectDestroyQScxmlEventFilter(f func()) {
-	defer qt.Recovering("connect QScxmlEventFilter::~QScxmlEventFilter")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QScxmlEventFilter::~QScxmlEventFilter", f)
@@ -2529,8 +2091,6 @@ func (ptr *QScxmlEventFilter) ConnectDestroyQScxmlEventFilter(f func()) {
 }
 
 func (ptr *QScxmlEventFilter) DisconnectDestroyQScxmlEventFilter() {
-	defer qt.Recovering("disconnect QScxmlEventFilter::~QScxmlEventFilter")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QScxmlEventFilter::~QScxmlEventFilter")
@@ -2538,8 +2098,6 @@ func (ptr *QScxmlEventFilter) DisconnectDestroyQScxmlEventFilter() {
 }
 
 func (ptr *QScxmlEventFilter) DestroyQScxmlEventFilter() {
-	defer qt.Recovering("QScxmlEventFilter::~QScxmlEventFilter")
-
 	if ptr.Pointer() != nil {
 		C.QScxmlEventFilter_DestroyQScxmlEventFilter(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
@@ -2548,8 +2106,6 @@ func (ptr *QScxmlEventFilter) DestroyQScxmlEventFilter() {
 }
 
 func (ptr *QScxmlEventFilter) DestroyQScxmlEventFilterDefault() {
-	defer qt.Recovering("QScxmlEventFilter::~QScxmlEventFilter")
-
 	if ptr.Pointer() != nil {
 		C.QScxmlEventFilter_DestroyQScxmlEventFilterDefault(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
@@ -2603,8 +2159,6 @@ func (ptr *QScxmlNullDataModel) DestroyQScxmlNullDataModel() {
 }
 
 func NewQScxmlNullDataModel(parent core.QObject_ITF) *QScxmlNullDataModel {
-	defer qt.Recovering("QScxmlNullDataModel::QScxmlNullDataModel")
-
 	var tmpValue = NewQScxmlNullDataModelFromPointer(C.QScxmlNullDataModel_NewQScxmlNullDataModel(core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
@@ -2614,7 +2168,6 @@ func NewQScxmlNullDataModel(parent core.QObject_ITF) *QScxmlNullDataModel {
 
 //export callbackQScxmlNullDataModel_HasScxmlProperty
 func callbackQScxmlNullDataModel_HasScxmlProperty(ptr unsafe.Pointer, name *C.char) C.char {
-	defer qt.Recovering("callback QScxmlNullDataModel::hasScxmlProperty")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QScxmlNullDataModel::hasScxmlProperty"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(string) bool)(C.GoString(name)))))
@@ -2624,8 +2177,6 @@ func callbackQScxmlNullDataModel_HasScxmlProperty(ptr unsafe.Pointer, name *C.ch
 }
 
 func (ptr *QScxmlNullDataModel) ConnectHasScxmlProperty(f func(name string) bool) {
-	defer qt.Recovering("connect QScxmlNullDataModel::hasScxmlProperty")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QScxmlNullDataModel::hasScxmlProperty", f)
@@ -2633,8 +2184,6 @@ func (ptr *QScxmlNullDataModel) ConnectHasScxmlProperty(f func(name string) bool
 }
 
 func (ptr *QScxmlNullDataModel) DisconnectHasScxmlProperty() {
-	defer qt.Recovering("disconnect QScxmlNullDataModel::hasScxmlProperty")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QScxmlNullDataModel::hasScxmlProperty")
@@ -2642,8 +2191,6 @@ func (ptr *QScxmlNullDataModel) DisconnectHasScxmlProperty() {
 }
 
 func (ptr *QScxmlNullDataModel) HasScxmlProperty(name string) bool {
-	defer qt.Recovering("QScxmlNullDataModel::hasScxmlProperty")
-
 	if ptr.Pointer() != nil {
 		var nameC = C.CString(name)
 		defer C.free(unsafe.Pointer(nameC))
@@ -2653,8 +2200,6 @@ func (ptr *QScxmlNullDataModel) HasScxmlProperty(name string) bool {
 }
 
 func (ptr *QScxmlNullDataModel) HasScxmlPropertyDefault(name string) bool {
-	defer qt.Recovering("QScxmlNullDataModel::hasScxmlProperty")
-
 	if ptr.Pointer() != nil {
 		var nameC = C.CString(name)
 		defer C.free(unsafe.Pointer(nameC))
@@ -2665,7 +2210,6 @@ func (ptr *QScxmlNullDataModel) HasScxmlPropertyDefault(name string) bool {
 
 //export callbackQScxmlNullDataModel_ScxmlProperty
 func callbackQScxmlNullDataModel_ScxmlProperty(ptr unsafe.Pointer, name *C.char) unsafe.Pointer {
-	defer qt.Recovering("callback QScxmlNullDataModel::scxmlProperty")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QScxmlNullDataModel::scxmlProperty"); signal != nil {
 		return core.PointerFromQVariant(signal.(func(string) *core.QVariant)(C.GoString(name)))
@@ -2675,8 +2219,6 @@ func callbackQScxmlNullDataModel_ScxmlProperty(ptr unsafe.Pointer, name *C.char)
 }
 
 func (ptr *QScxmlNullDataModel) ConnectScxmlProperty(f func(name string) *core.QVariant) {
-	defer qt.Recovering("connect QScxmlNullDataModel::scxmlProperty")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QScxmlNullDataModel::scxmlProperty", f)
@@ -2684,8 +2226,6 @@ func (ptr *QScxmlNullDataModel) ConnectScxmlProperty(f func(name string) *core.Q
 }
 
 func (ptr *QScxmlNullDataModel) DisconnectScxmlProperty() {
-	defer qt.Recovering("disconnect QScxmlNullDataModel::scxmlProperty")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QScxmlNullDataModel::scxmlProperty")
@@ -2693,8 +2233,6 @@ func (ptr *QScxmlNullDataModel) DisconnectScxmlProperty() {
 }
 
 func (ptr *QScxmlNullDataModel) ScxmlProperty(name string) *core.QVariant {
-	defer qt.Recovering("QScxmlNullDataModel::scxmlProperty")
-
 	if ptr.Pointer() != nil {
 		var nameC = C.CString(name)
 		defer C.free(unsafe.Pointer(nameC))
@@ -2706,8 +2244,6 @@ func (ptr *QScxmlNullDataModel) ScxmlProperty(name string) *core.QVariant {
 }
 
 func (ptr *QScxmlNullDataModel) ScxmlPropertyDefault(name string) *core.QVariant {
-	defer qt.Recovering("QScxmlNullDataModel::scxmlProperty")
-
 	if ptr.Pointer() != nil {
 		var nameC = C.CString(name)
 		defer C.free(unsafe.Pointer(nameC))
@@ -2720,7 +2256,6 @@ func (ptr *QScxmlNullDataModel) ScxmlPropertyDefault(name string) *core.QVariant
 
 //export callbackQScxmlNullDataModel_SetScxmlEvent
 func callbackQScxmlNullDataModel_SetScxmlEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	defer qt.Recovering("callback QScxmlNullDataModel::setScxmlEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QScxmlNullDataModel::setScxmlEvent"); signal != nil {
 		signal.(func(*QScxmlEvent))(NewQScxmlEventFromPointer(event))
@@ -2730,8 +2265,6 @@ func callbackQScxmlNullDataModel_SetScxmlEvent(ptr unsafe.Pointer, event unsafe.
 }
 
 func (ptr *QScxmlNullDataModel) ConnectSetScxmlEvent(f func(event *QScxmlEvent)) {
-	defer qt.Recovering("connect QScxmlNullDataModel::setScxmlEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QScxmlNullDataModel::setScxmlEvent", f)
@@ -2739,8 +2272,6 @@ func (ptr *QScxmlNullDataModel) ConnectSetScxmlEvent(f func(event *QScxmlEvent))
 }
 
 func (ptr *QScxmlNullDataModel) DisconnectSetScxmlEvent() {
-	defer qt.Recovering("disconnect QScxmlNullDataModel::setScxmlEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QScxmlNullDataModel::setScxmlEvent")
@@ -2748,16 +2279,12 @@ func (ptr *QScxmlNullDataModel) DisconnectSetScxmlEvent() {
 }
 
 func (ptr *QScxmlNullDataModel) SetScxmlEvent(event QScxmlEvent_ITF) {
-	defer qt.Recovering("QScxmlNullDataModel::setScxmlEvent")
-
 	if ptr.Pointer() != nil {
 		C.QScxmlNullDataModel_SetScxmlEvent(ptr.Pointer(), PointerFromQScxmlEvent(event))
 	}
 }
 
 func (ptr *QScxmlNullDataModel) SetScxmlEventDefault(event QScxmlEvent_ITF) {
-	defer qt.Recovering("QScxmlNullDataModel::setScxmlEvent")
-
 	if ptr.Pointer() != nil {
 		C.QScxmlNullDataModel_SetScxmlEventDefault(ptr.Pointer(), PointerFromQScxmlEvent(event))
 	}
@@ -2765,7 +2292,6 @@ func (ptr *QScxmlNullDataModel) SetScxmlEventDefault(event QScxmlEvent_ITF) {
 
 //export callbackQScxmlNullDataModel_SetScxmlProperty
 func callbackQScxmlNullDataModel_SetScxmlProperty(ptr unsafe.Pointer, name *C.char, value unsafe.Pointer, context *C.char) C.char {
-	defer qt.Recovering("callback QScxmlNullDataModel::setScxmlProperty")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QScxmlNullDataModel::setScxmlProperty"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(string, *core.QVariant, string) bool)(C.GoString(name), core.NewQVariantFromPointer(value), C.GoString(context)))))
@@ -2775,8 +2301,6 @@ func callbackQScxmlNullDataModel_SetScxmlProperty(ptr unsafe.Pointer, name *C.ch
 }
 
 func (ptr *QScxmlNullDataModel) ConnectSetScxmlProperty(f func(name string, value *core.QVariant, context string) bool) {
-	defer qt.Recovering("connect QScxmlNullDataModel::setScxmlProperty")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QScxmlNullDataModel::setScxmlProperty", f)
@@ -2784,8 +2308,6 @@ func (ptr *QScxmlNullDataModel) ConnectSetScxmlProperty(f func(name string, valu
 }
 
 func (ptr *QScxmlNullDataModel) DisconnectSetScxmlProperty() {
-	defer qt.Recovering("disconnect QScxmlNullDataModel::setScxmlProperty")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QScxmlNullDataModel::setScxmlProperty")
@@ -2793,8 +2315,6 @@ func (ptr *QScxmlNullDataModel) DisconnectSetScxmlProperty() {
 }
 
 func (ptr *QScxmlNullDataModel) SetScxmlProperty(name string, value core.QVariant_ITF, context string) bool {
-	defer qt.Recovering("QScxmlNullDataModel::setScxmlProperty")
-
 	if ptr.Pointer() != nil {
 		var nameC = C.CString(name)
 		defer C.free(unsafe.Pointer(nameC))
@@ -2806,8 +2326,6 @@ func (ptr *QScxmlNullDataModel) SetScxmlProperty(name string, value core.QVarian
 }
 
 func (ptr *QScxmlNullDataModel) SetScxmlPropertyDefault(name string, value core.QVariant_ITF, context string) bool {
-	defer qt.Recovering("QScxmlNullDataModel::setScxmlProperty")
-
 	if ptr.Pointer() != nil {
 		var nameC = C.CString(name)
 		defer C.free(unsafe.Pointer(nameC))
@@ -2820,7 +2338,6 @@ func (ptr *QScxmlNullDataModel) SetScxmlPropertyDefault(name string, value core.
 
 //export callbackQScxmlNullDataModel_TimerEvent
 func callbackQScxmlNullDataModel_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	defer qt.Recovering("callback QScxmlNullDataModel::timerEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QScxmlNullDataModel::timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
@@ -2830,8 +2347,6 @@ func callbackQScxmlNullDataModel_TimerEvent(ptr unsafe.Pointer, event unsafe.Poi
 }
 
 func (ptr *QScxmlNullDataModel) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
-	defer qt.Recovering("connect QScxmlNullDataModel::timerEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QScxmlNullDataModel::timerEvent", f)
@@ -2839,8 +2354,6 @@ func (ptr *QScxmlNullDataModel) ConnectTimerEvent(f func(event *core.QTimerEvent
 }
 
 func (ptr *QScxmlNullDataModel) DisconnectTimerEvent() {
-	defer qt.Recovering("disconnect QScxmlNullDataModel::timerEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QScxmlNullDataModel::timerEvent")
@@ -2848,16 +2361,12 @@ func (ptr *QScxmlNullDataModel) DisconnectTimerEvent() {
 }
 
 func (ptr *QScxmlNullDataModel) TimerEvent(event core.QTimerEvent_ITF) {
-	defer qt.Recovering("QScxmlNullDataModel::timerEvent")
-
 	if ptr.Pointer() != nil {
 		C.QScxmlNullDataModel_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
 	}
 }
 
 func (ptr *QScxmlNullDataModel) TimerEventDefault(event core.QTimerEvent_ITF) {
-	defer qt.Recovering("QScxmlNullDataModel::timerEvent")
-
 	if ptr.Pointer() != nil {
 		C.QScxmlNullDataModel_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
 	}
@@ -2865,7 +2374,6 @@ func (ptr *QScxmlNullDataModel) TimerEventDefault(event core.QTimerEvent_ITF) {
 
 //export callbackQScxmlNullDataModel_ChildEvent
 func callbackQScxmlNullDataModel_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	defer qt.Recovering("callback QScxmlNullDataModel::childEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QScxmlNullDataModel::childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
@@ -2875,8 +2383,6 @@ func callbackQScxmlNullDataModel_ChildEvent(ptr unsafe.Pointer, event unsafe.Poi
 }
 
 func (ptr *QScxmlNullDataModel) ConnectChildEvent(f func(event *core.QChildEvent)) {
-	defer qt.Recovering("connect QScxmlNullDataModel::childEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QScxmlNullDataModel::childEvent", f)
@@ -2884,8 +2390,6 @@ func (ptr *QScxmlNullDataModel) ConnectChildEvent(f func(event *core.QChildEvent
 }
 
 func (ptr *QScxmlNullDataModel) DisconnectChildEvent() {
-	defer qt.Recovering("disconnect QScxmlNullDataModel::childEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QScxmlNullDataModel::childEvent")
@@ -2893,16 +2397,12 @@ func (ptr *QScxmlNullDataModel) DisconnectChildEvent() {
 }
 
 func (ptr *QScxmlNullDataModel) ChildEvent(event core.QChildEvent_ITF) {
-	defer qt.Recovering("QScxmlNullDataModel::childEvent")
-
 	if ptr.Pointer() != nil {
 		C.QScxmlNullDataModel_ChildEvent(ptr.Pointer(), core.PointerFromQChildEvent(event))
 	}
 }
 
 func (ptr *QScxmlNullDataModel) ChildEventDefault(event core.QChildEvent_ITF) {
-	defer qt.Recovering("QScxmlNullDataModel::childEvent")
-
 	if ptr.Pointer() != nil {
 		C.QScxmlNullDataModel_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
 	}
@@ -2910,7 +2410,6 @@ func (ptr *QScxmlNullDataModel) ChildEventDefault(event core.QChildEvent_ITF) {
 
 //export callbackQScxmlNullDataModel_ConnectNotify
 func callbackQScxmlNullDataModel_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-	defer qt.Recovering("callback QScxmlNullDataModel::connectNotify")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QScxmlNullDataModel::connectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
@@ -2920,8 +2419,6 @@ func callbackQScxmlNullDataModel_ConnectNotify(ptr unsafe.Pointer, sign unsafe.P
 }
 
 func (ptr *QScxmlNullDataModel) ConnectConnectNotify(f func(sign *core.QMetaMethod)) {
-	defer qt.Recovering("connect QScxmlNullDataModel::connectNotify")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QScxmlNullDataModel::connectNotify", f)
@@ -2929,8 +2426,6 @@ func (ptr *QScxmlNullDataModel) ConnectConnectNotify(f func(sign *core.QMetaMeth
 }
 
 func (ptr *QScxmlNullDataModel) DisconnectConnectNotify() {
-	defer qt.Recovering("disconnect QScxmlNullDataModel::connectNotify")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QScxmlNullDataModel::connectNotify")
@@ -2938,16 +2433,12 @@ func (ptr *QScxmlNullDataModel) DisconnectConnectNotify() {
 }
 
 func (ptr *QScxmlNullDataModel) ConnectNotify(sign core.QMetaMethod_ITF) {
-	defer qt.Recovering("QScxmlNullDataModel::connectNotify")
-
 	if ptr.Pointer() != nil {
 		C.QScxmlNullDataModel_ConnectNotify(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
 	}
 }
 
 func (ptr *QScxmlNullDataModel) ConnectNotifyDefault(sign core.QMetaMethod_ITF) {
-	defer qt.Recovering("QScxmlNullDataModel::connectNotify")
-
 	if ptr.Pointer() != nil {
 		C.QScxmlNullDataModel_ConnectNotifyDefault(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
 	}
@@ -2955,7 +2446,6 @@ func (ptr *QScxmlNullDataModel) ConnectNotifyDefault(sign core.QMetaMethod_ITF) 
 
 //export callbackQScxmlNullDataModel_CustomEvent
 func callbackQScxmlNullDataModel_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	defer qt.Recovering("callback QScxmlNullDataModel::customEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QScxmlNullDataModel::customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
@@ -2965,8 +2455,6 @@ func callbackQScxmlNullDataModel_CustomEvent(ptr unsafe.Pointer, event unsafe.Po
 }
 
 func (ptr *QScxmlNullDataModel) ConnectCustomEvent(f func(event *core.QEvent)) {
-	defer qt.Recovering("connect QScxmlNullDataModel::customEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QScxmlNullDataModel::customEvent", f)
@@ -2974,8 +2462,6 @@ func (ptr *QScxmlNullDataModel) ConnectCustomEvent(f func(event *core.QEvent)) {
 }
 
 func (ptr *QScxmlNullDataModel) DisconnectCustomEvent() {
-	defer qt.Recovering("disconnect QScxmlNullDataModel::customEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QScxmlNullDataModel::customEvent")
@@ -2983,16 +2469,12 @@ func (ptr *QScxmlNullDataModel) DisconnectCustomEvent() {
 }
 
 func (ptr *QScxmlNullDataModel) CustomEvent(event core.QEvent_ITF) {
-	defer qt.Recovering("QScxmlNullDataModel::customEvent")
-
 	if ptr.Pointer() != nil {
 		C.QScxmlNullDataModel_CustomEvent(ptr.Pointer(), core.PointerFromQEvent(event))
 	}
 }
 
 func (ptr *QScxmlNullDataModel) CustomEventDefault(event core.QEvent_ITF) {
-	defer qt.Recovering("QScxmlNullDataModel::customEvent")
-
 	if ptr.Pointer() != nil {
 		C.QScxmlNullDataModel_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
 	}
@@ -3000,8 +2482,6 @@ func (ptr *QScxmlNullDataModel) CustomEventDefault(event core.QEvent_ITF) {
 
 //export callbackQScxmlNullDataModel_DeleteLater
 func callbackQScxmlNullDataModel_DeleteLater(ptr unsafe.Pointer) {
-	defer qt.Recovering("callback QScxmlNullDataModel::deleteLater")
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QScxmlNullDataModel::deleteLater"); signal != nil {
 		signal.(func())()
 	} else {
@@ -3010,8 +2490,6 @@ func callbackQScxmlNullDataModel_DeleteLater(ptr unsafe.Pointer) {
 }
 
 func (ptr *QScxmlNullDataModel) ConnectDeleteLater(f func()) {
-	defer qt.Recovering("connect QScxmlNullDataModel::deleteLater")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QScxmlNullDataModel::deleteLater", f)
@@ -3019,8 +2497,6 @@ func (ptr *QScxmlNullDataModel) ConnectDeleteLater(f func()) {
 }
 
 func (ptr *QScxmlNullDataModel) DisconnectDeleteLater() {
-	defer qt.Recovering("disconnect QScxmlNullDataModel::deleteLater")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QScxmlNullDataModel::deleteLater")
@@ -3028,8 +2504,6 @@ func (ptr *QScxmlNullDataModel) DisconnectDeleteLater() {
 }
 
 func (ptr *QScxmlNullDataModel) DeleteLater() {
-	defer qt.Recovering("QScxmlNullDataModel::deleteLater")
-
 	if ptr.Pointer() != nil {
 		C.QScxmlNullDataModel_DeleteLater(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
@@ -3038,8 +2512,6 @@ func (ptr *QScxmlNullDataModel) DeleteLater() {
 }
 
 func (ptr *QScxmlNullDataModel) DeleteLaterDefault() {
-	defer qt.Recovering("QScxmlNullDataModel::deleteLater")
-
 	if ptr.Pointer() != nil {
 		C.QScxmlNullDataModel_DeleteLaterDefault(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
@@ -3049,7 +2521,6 @@ func (ptr *QScxmlNullDataModel) DeleteLaterDefault() {
 
 //export callbackQScxmlNullDataModel_DisconnectNotify
 func callbackQScxmlNullDataModel_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-	defer qt.Recovering("callback QScxmlNullDataModel::disconnectNotify")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QScxmlNullDataModel::disconnectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
@@ -3059,8 +2530,6 @@ func callbackQScxmlNullDataModel_DisconnectNotify(ptr unsafe.Pointer, sign unsaf
 }
 
 func (ptr *QScxmlNullDataModel) ConnectDisconnectNotify(f func(sign *core.QMetaMethod)) {
-	defer qt.Recovering("connect QScxmlNullDataModel::disconnectNotify")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QScxmlNullDataModel::disconnectNotify", f)
@@ -3068,8 +2537,6 @@ func (ptr *QScxmlNullDataModel) ConnectDisconnectNotify(f func(sign *core.QMetaM
 }
 
 func (ptr *QScxmlNullDataModel) DisconnectDisconnectNotify() {
-	defer qt.Recovering("disconnect QScxmlNullDataModel::disconnectNotify")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QScxmlNullDataModel::disconnectNotify")
@@ -3077,16 +2544,12 @@ func (ptr *QScxmlNullDataModel) DisconnectDisconnectNotify() {
 }
 
 func (ptr *QScxmlNullDataModel) DisconnectNotify(sign core.QMetaMethod_ITF) {
-	defer qt.Recovering("QScxmlNullDataModel::disconnectNotify")
-
 	if ptr.Pointer() != nil {
 		C.QScxmlNullDataModel_DisconnectNotify(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
 	}
 }
 
 func (ptr *QScxmlNullDataModel) DisconnectNotifyDefault(sign core.QMetaMethod_ITF) {
-	defer qt.Recovering("QScxmlNullDataModel::disconnectNotify")
-
 	if ptr.Pointer() != nil {
 		C.QScxmlNullDataModel_DisconnectNotifyDefault(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
 	}
@@ -3094,7 +2557,6 @@ func (ptr *QScxmlNullDataModel) DisconnectNotifyDefault(sign core.QMetaMethod_IT
 
 //export callbackQScxmlNullDataModel_Event
 func callbackQScxmlNullDataModel_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
-	defer qt.Recovering("callback QScxmlNullDataModel::event")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QScxmlNullDataModel::event"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
@@ -3104,8 +2566,6 @@ func callbackQScxmlNullDataModel_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.c
 }
 
 func (ptr *QScxmlNullDataModel) ConnectEvent(f func(e *core.QEvent) bool) {
-	defer qt.Recovering("connect QScxmlNullDataModel::event")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QScxmlNullDataModel::event", f)
@@ -3113,8 +2573,6 @@ func (ptr *QScxmlNullDataModel) ConnectEvent(f func(e *core.QEvent) bool) {
 }
 
 func (ptr *QScxmlNullDataModel) DisconnectEvent() {
-	defer qt.Recovering("disconnect QScxmlNullDataModel::event")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QScxmlNullDataModel::event")
@@ -3122,8 +2580,6 @@ func (ptr *QScxmlNullDataModel) DisconnectEvent() {
 }
 
 func (ptr *QScxmlNullDataModel) Event(e core.QEvent_ITF) bool {
-	defer qt.Recovering("QScxmlNullDataModel::event")
-
 	if ptr.Pointer() != nil {
 		return C.QScxmlNullDataModel_Event(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
 	}
@@ -3131,8 +2587,6 @@ func (ptr *QScxmlNullDataModel) Event(e core.QEvent_ITF) bool {
 }
 
 func (ptr *QScxmlNullDataModel) EventDefault(e core.QEvent_ITF) bool {
-	defer qt.Recovering("QScxmlNullDataModel::event")
-
 	if ptr.Pointer() != nil {
 		return C.QScxmlNullDataModel_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
 	}
@@ -3141,7 +2595,6 @@ func (ptr *QScxmlNullDataModel) EventDefault(e core.QEvent_ITF) bool {
 
 //export callbackQScxmlNullDataModel_EventFilter
 func callbackQScxmlNullDataModel_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-	defer qt.Recovering("callback QScxmlNullDataModel::eventFilter")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QScxmlNullDataModel::eventFilter"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
@@ -3151,8 +2604,6 @@ func callbackQScxmlNullDataModel_EventFilter(ptr unsafe.Pointer, watched unsafe.
 }
 
 func (ptr *QScxmlNullDataModel) ConnectEventFilter(f func(watched *core.QObject, event *core.QEvent) bool) {
-	defer qt.Recovering("connect QScxmlNullDataModel::eventFilter")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QScxmlNullDataModel::eventFilter", f)
@@ -3160,8 +2611,6 @@ func (ptr *QScxmlNullDataModel) ConnectEventFilter(f func(watched *core.QObject,
 }
 
 func (ptr *QScxmlNullDataModel) DisconnectEventFilter() {
-	defer qt.Recovering("disconnect QScxmlNullDataModel::eventFilter")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QScxmlNullDataModel::eventFilter")
@@ -3169,8 +2618,6 @@ func (ptr *QScxmlNullDataModel) DisconnectEventFilter() {
 }
 
 func (ptr *QScxmlNullDataModel) EventFilter(watched core.QObject_ITF, event core.QEvent_ITF) bool {
-	defer qt.Recovering("QScxmlNullDataModel::eventFilter")
-
 	if ptr.Pointer() != nil {
 		return C.QScxmlNullDataModel_EventFilter(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
 	}
@@ -3178,8 +2625,6 @@ func (ptr *QScxmlNullDataModel) EventFilter(watched core.QObject_ITF, event core
 }
 
 func (ptr *QScxmlNullDataModel) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
-	defer qt.Recovering("QScxmlNullDataModel::eventFilter")
-
 	if ptr.Pointer() != nil {
 		return C.QScxmlNullDataModel_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
 	}
@@ -3188,7 +2633,6 @@ func (ptr *QScxmlNullDataModel) EventFilterDefault(watched core.QObject_ITF, eve
 
 //export callbackQScxmlNullDataModel_MetaObject
 func callbackQScxmlNullDataModel_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-	defer qt.Recovering("callback QScxmlNullDataModel::metaObject")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QScxmlNullDataModel::metaObject"); signal != nil {
 		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
@@ -3198,8 +2642,6 @@ func callbackQScxmlNullDataModel_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
 }
 
 func (ptr *QScxmlNullDataModel) ConnectMetaObject(f func() *core.QMetaObject) {
-	defer qt.Recovering("connect QScxmlNullDataModel::metaObject")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QScxmlNullDataModel::metaObject", f)
@@ -3207,8 +2649,6 @@ func (ptr *QScxmlNullDataModel) ConnectMetaObject(f func() *core.QMetaObject) {
 }
 
 func (ptr *QScxmlNullDataModel) DisconnectMetaObject() {
-	defer qt.Recovering("disconnect QScxmlNullDataModel::metaObject")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QScxmlNullDataModel::metaObject")
@@ -3216,8 +2656,6 @@ func (ptr *QScxmlNullDataModel) DisconnectMetaObject() {
 }
 
 func (ptr *QScxmlNullDataModel) MetaObject() *core.QMetaObject {
-	defer qt.Recovering("QScxmlNullDataModel::metaObject")
-
 	if ptr.Pointer() != nil {
 		return core.NewQMetaObjectFromPointer(C.QScxmlNullDataModel_MetaObject(ptr.Pointer()))
 	}
@@ -3225,8 +2663,6 @@ func (ptr *QScxmlNullDataModel) MetaObject() *core.QMetaObject {
 }
 
 func (ptr *QScxmlNullDataModel) MetaObjectDefault() *core.QMetaObject {
-	defer qt.Recovering("QScxmlNullDataModel::metaObject")
-
 	if ptr.Pointer() != nil {
 		return core.NewQMetaObjectFromPointer(C.QScxmlNullDataModel_MetaObjectDefault(ptr.Pointer()))
 	}
@@ -3280,16 +2716,12 @@ func NewQScxmlParserFromPointer(ptr unsafe.Pointer) *QScxmlParser {
 	return n
 }
 func NewQScxmlParser(reader core.QXmlStreamReader_ITF) *QScxmlParser {
-	defer qt.Recovering("QScxmlParser::QScxmlParser")
-
 	var tmpValue = NewQScxmlParserFromPointer(C.QScxmlParser_NewQScxmlParser(core.PointerFromQXmlStreamReader(reader)))
 	runtime.SetFinalizer(tmpValue, (*QScxmlParser).DestroyQScxmlParser)
 	return tmpValue
 }
 
 func (ptr *QScxmlParser) AddError(msg string) {
-	defer qt.Recovering("QScxmlParser::addError")
-
 	if ptr.Pointer() != nil {
 		var msgC = C.CString(msg)
 		defer C.free(unsafe.Pointer(msgC))
@@ -3298,8 +2730,6 @@ func (ptr *QScxmlParser) AddError(msg string) {
 }
 
 func (ptr *QScxmlParser) FileName() string {
-	defer qt.Recovering("QScxmlParser::fileName")
-
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QScxmlParser_FileName(ptr.Pointer()))
 	}
@@ -3307,16 +2737,12 @@ func (ptr *QScxmlParser) FileName() string {
 }
 
 func (ptr *QScxmlParser) InstantiateDataModel(stateMachine QScxmlStateMachine_ITF) {
-	defer qt.Recovering("QScxmlParser::instantiateDataModel")
-
 	if ptr.Pointer() != nil {
 		C.QScxmlParser_InstantiateDataModel(ptr.Pointer(), PointerFromQScxmlStateMachine(stateMachine))
 	}
 }
 
 func (ptr *QScxmlParser) InstantiateStateMachine() *QScxmlStateMachine {
-	defer qt.Recovering("QScxmlParser::instantiateStateMachine")
-
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQScxmlStateMachineFromPointer(C.QScxmlParser_InstantiateStateMachine(ptr.Pointer()))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
@@ -3328,16 +2754,12 @@ func (ptr *QScxmlParser) InstantiateStateMachine() *QScxmlStateMachine {
 }
 
 func (ptr *QScxmlParser) Parse() {
-	defer qt.Recovering("QScxmlParser::parse")
-
 	if ptr.Pointer() != nil {
 		C.QScxmlParser_Parse(ptr.Pointer())
 	}
 }
 
 func (ptr *QScxmlParser) QtMode() QScxmlParser__QtMode {
-	defer qt.Recovering("QScxmlParser::qtMode")
-
 	if ptr.Pointer() != nil {
 		return QScxmlParser__QtMode(C.QScxmlParser_QtMode(ptr.Pointer()))
 	}
@@ -3345,8 +2767,6 @@ func (ptr *QScxmlParser) QtMode() QScxmlParser__QtMode {
 }
 
 func (ptr *QScxmlParser) SetFileName(fileName string) {
-	defer qt.Recovering("QScxmlParser::setFileName")
-
 	if ptr.Pointer() != nil {
 		var fileNameC = C.CString(fileName)
 		defer C.free(unsafe.Pointer(fileNameC))
@@ -3355,16 +2775,12 @@ func (ptr *QScxmlParser) SetFileName(fileName string) {
 }
 
 func (ptr *QScxmlParser) SetQtMode(mode QScxmlParser__QtMode) {
-	defer qt.Recovering("QScxmlParser::setQtMode")
-
 	if ptr.Pointer() != nil {
 		C.QScxmlParser_SetQtMode(ptr.Pointer(), C.longlong(mode))
 	}
 }
 
 func (ptr *QScxmlParser) DestroyQScxmlParser() {
-	defer qt.Recovering("QScxmlParser::~QScxmlParser")
-
 	if ptr.Pointer() != nil {
 		C.QScxmlParser_DestroyQScxmlParser(ptr.Pointer())
 		ptr.SetPointer(nil)
@@ -3425,8 +2841,6 @@ func (ptr *QScxmlStateMachine) DestroyQScxmlStateMachine() {
 }
 
 func (ptr *QScxmlStateMachine) IsInitialized() bool {
-	defer qt.Recovering("QScxmlStateMachine::isInitialized")
-
 	if ptr.Pointer() != nil {
 		return C.QScxmlStateMachine_IsInitialized(ptr.Pointer()) != 0
 	}
@@ -3434,8 +2848,6 @@ func (ptr *QScxmlStateMachine) IsInitialized() bool {
 }
 
 func (ptr *QScxmlStateMachine) ActiveStateNames(compress bool) []string {
-	defer qt.Recovering("QScxmlStateMachine::activeStateNames")
-
 	if ptr.Pointer() != nil {
 		return strings.Split(C.GoString(C.QScxmlStateMachine_ActiveStateNames(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(compress))))), "|")
 	}
@@ -3443,8 +2855,6 @@ func (ptr *QScxmlStateMachine) ActiveStateNames(compress bool) []string {
 }
 
 func (ptr *QScxmlStateMachine) CancelDelayedEvent(sendId string) {
-	defer qt.Recovering("QScxmlStateMachine::cancelDelayedEvent")
-
 	if ptr.Pointer() != nil {
 		var sendIdC = C.CString(sendId)
 		defer C.free(unsafe.Pointer(sendIdC))
@@ -3453,8 +2863,6 @@ func (ptr *QScxmlStateMachine) CancelDelayedEvent(sendId string) {
 }
 
 func (ptr *QScxmlStateMachine) DataBinding() QScxmlStateMachine__BindingMethod {
-	defer qt.Recovering("QScxmlStateMachine::dataBinding")
-
 	if ptr.Pointer() != nil {
 		return QScxmlStateMachine__BindingMethod(C.QScxmlStateMachine_DataBinding(ptr.Pointer()))
 	}
@@ -3462,8 +2870,6 @@ func (ptr *QScxmlStateMachine) DataBinding() QScxmlStateMachine__BindingMethod {
 }
 
 func (ptr *QScxmlStateMachine) DataModel() *QScxmlDataModel {
-	defer qt.Recovering("QScxmlStateMachine::dataModel")
-
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQScxmlDataModelFromPointer(C.QScxmlStateMachine_DataModel(ptr.Pointer()))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
@@ -3476,7 +2882,6 @@ func (ptr *QScxmlStateMachine) DataModel() *QScxmlDataModel {
 
 //export callbackQScxmlStateMachine_DataModelChanged
 func callbackQScxmlStateMachine_DataModelChanged(ptr unsafe.Pointer, model unsafe.Pointer) {
-	defer qt.Recovering("callback QScxmlStateMachine::dataModelChanged")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QScxmlStateMachine::dataModelChanged"); signal != nil {
 		signal.(func(*QScxmlDataModel))(NewQScxmlDataModelFromPointer(model))
@@ -3485,8 +2890,6 @@ func callbackQScxmlStateMachine_DataModelChanged(ptr unsafe.Pointer, model unsaf
 }
 
 func (ptr *QScxmlStateMachine) ConnectDataModelChanged(f func(model *QScxmlDataModel)) {
-	defer qt.Recovering("connect QScxmlStateMachine::dataModelChanged")
-
 	if ptr.Pointer() != nil {
 		C.QScxmlStateMachine_ConnectDataModelChanged(ptr.Pointer())
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QScxmlStateMachine::dataModelChanged", f)
@@ -3494,8 +2897,6 @@ func (ptr *QScxmlStateMachine) ConnectDataModelChanged(f func(model *QScxmlDataM
 }
 
 func (ptr *QScxmlStateMachine) DisconnectDataModelChanged() {
-	defer qt.Recovering("disconnect QScxmlStateMachine::dataModelChanged")
-
 	if ptr.Pointer() != nil {
 		C.QScxmlStateMachine_DisconnectDataModelChanged(ptr.Pointer())
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QScxmlStateMachine::dataModelChanged")
@@ -3503,8 +2904,6 @@ func (ptr *QScxmlStateMachine) DisconnectDataModelChanged() {
 }
 
 func (ptr *QScxmlStateMachine) DataModelChanged(model QScxmlDataModel_ITF) {
-	defer qt.Recovering("QScxmlStateMachine::dataModelChanged")
-
 	if ptr.Pointer() != nil {
 		C.QScxmlStateMachine_DataModelChanged(ptr.Pointer(), PointerFromQScxmlDataModel(model))
 	}
@@ -3512,7 +2911,6 @@ func (ptr *QScxmlStateMachine) DataModelChanged(model QScxmlDataModel_ITF) {
 
 //export callbackQScxmlStateMachine_EventOccurred
 func callbackQScxmlStateMachine_EventOccurred(ptr unsafe.Pointer, event unsafe.Pointer) {
-	defer qt.Recovering("callback QScxmlStateMachine::eventOccurred")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QScxmlStateMachine::eventOccurred"); signal != nil {
 		signal.(func(*QScxmlEvent))(NewQScxmlEventFromPointer(event))
@@ -3521,8 +2919,6 @@ func callbackQScxmlStateMachine_EventOccurred(ptr unsafe.Pointer, event unsafe.P
 }
 
 func (ptr *QScxmlStateMachine) ConnectEventOccurred(f func(event *QScxmlEvent)) {
-	defer qt.Recovering("connect QScxmlStateMachine::eventOccurred")
-
 	if ptr.Pointer() != nil {
 		C.QScxmlStateMachine_ConnectEventOccurred(ptr.Pointer())
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QScxmlStateMachine::eventOccurred", f)
@@ -3530,8 +2926,6 @@ func (ptr *QScxmlStateMachine) ConnectEventOccurred(f func(event *QScxmlEvent)) 
 }
 
 func (ptr *QScxmlStateMachine) DisconnectEventOccurred() {
-	defer qt.Recovering("disconnect QScxmlStateMachine::eventOccurred")
-
 	if ptr.Pointer() != nil {
 		C.QScxmlStateMachine_DisconnectEventOccurred(ptr.Pointer())
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QScxmlStateMachine::eventOccurred")
@@ -3539,8 +2933,6 @@ func (ptr *QScxmlStateMachine) DisconnectEventOccurred() {
 }
 
 func (ptr *QScxmlStateMachine) EventOccurred(event QScxmlEvent_ITF) {
-	defer qt.Recovering("QScxmlStateMachine::eventOccurred")
-
 	if ptr.Pointer() != nil {
 		C.QScxmlStateMachine_EventOccurred(ptr.Pointer(), PointerFromQScxmlEvent(event))
 	}
@@ -3548,7 +2940,6 @@ func (ptr *QScxmlStateMachine) EventOccurred(event QScxmlEvent_ITF) {
 
 //export callbackQScxmlStateMachine_ExternalEventOccurred
 func callbackQScxmlStateMachine_ExternalEventOccurred(ptr unsafe.Pointer, event unsafe.Pointer) {
-	defer qt.Recovering("callback QScxmlStateMachine::externalEventOccurred")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QScxmlStateMachine::externalEventOccurred"); signal != nil {
 		signal.(func(*QScxmlEvent))(NewQScxmlEventFromPointer(event))
@@ -3557,8 +2948,6 @@ func callbackQScxmlStateMachine_ExternalEventOccurred(ptr unsafe.Pointer, event 
 }
 
 func (ptr *QScxmlStateMachine) ConnectExternalEventOccurred(f func(event *QScxmlEvent)) {
-	defer qt.Recovering("connect QScxmlStateMachine::externalEventOccurred")
-
 	if ptr.Pointer() != nil {
 		C.QScxmlStateMachine_ConnectExternalEventOccurred(ptr.Pointer())
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QScxmlStateMachine::externalEventOccurred", f)
@@ -3566,8 +2955,6 @@ func (ptr *QScxmlStateMachine) ConnectExternalEventOccurred(f func(event *QScxml
 }
 
 func (ptr *QScxmlStateMachine) DisconnectExternalEventOccurred() {
-	defer qt.Recovering("disconnect QScxmlStateMachine::externalEventOccurred")
-
 	if ptr.Pointer() != nil {
 		C.QScxmlStateMachine_DisconnectExternalEventOccurred(ptr.Pointer())
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QScxmlStateMachine::externalEventOccurred")
@@ -3575,8 +2962,6 @@ func (ptr *QScxmlStateMachine) DisconnectExternalEventOccurred() {
 }
 
 func (ptr *QScxmlStateMachine) ExternalEventOccurred(event QScxmlEvent_ITF) {
-	defer qt.Recovering("QScxmlStateMachine::externalEventOccurred")
-
 	if ptr.Pointer() != nil {
 		C.QScxmlStateMachine_ExternalEventOccurred(ptr.Pointer(), PointerFromQScxmlEvent(event))
 	}
@@ -3584,7 +2969,6 @@ func (ptr *QScxmlStateMachine) ExternalEventOccurred(event QScxmlEvent_ITF) {
 
 //export callbackQScxmlStateMachine_Finished
 func callbackQScxmlStateMachine_Finished(ptr unsafe.Pointer) {
-	defer qt.Recovering("callback QScxmlStateMachine::finished")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QScxmlStateMachine::finished"); signal != nil {
 		signal.(func())()
@@ -3593,8 +2977,6 @@ func callbackQScxmlStateMachine_Finished(ptr unsafe.Pointer) {
 }
 
 func (ptr *QScxmlStateMachine) ConnectFinished(f func()) {
-	defer qt.Recovering("connect QScxmlStateMachine::finished")
-
 	if ptr.Pointer() != nil {
 		C.QScxmlStateMachine_ConnectFinished(ptr.Pointer())
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QScxmlStateMachine::finished", f)
@@ -3602,8 +2984,6 @@ func (ptr *QScxmlStateMachine) ConnectFinished(f func()) {
 }
 
 func (ptr *QScxmlStateMachine) DisconnectFinished() {
-	defer qt.Recovering("disconnect QScxmlStateMachine::finished")
-
 	if ptr.Pointer() != nil {
 		C.QScxmlStateMachine_DisconnectFinished(ptr.Pointer())
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QScxmlStateMachine::finished")
@@ -3611,16 +2991,12 @@ func (ptr *QScxmlStateMachine) DisconnectFinished() {
 }
 
 func (ptr *QScxmlStateMachine) Finished() {
-	defer qt.Recovering("QScxmlStateMachine::finished")
-
 	if ptr.Pointer() != nil {
 		C.QScxmlStateMachine_Finished(ptr.Pointer())
 	}
 }
 
 func QScxmlStateMachine_FromData(data core.QIODevice_ITF, fileName string) *QScxmlStateMachine {
-	defer qt.Recovering("QScxmlStateMachine::fromData")
-
 	var fileNameC = C.CString(fileName)
 	defer C.free(unsafe.Pointer(fileNameC))
 	var tmpValue = NewQScxmlStateMachineFromPointer(C.QScxmlStateMachine_QScxmlStateMachine_FromData(core.PointerFromQIODevice(data), fileNameC))
@@ -3631,8 +3007,6 @@ func QScxmlStateMachine_FromData(data core.QIODevice_ITF, fileName string) *QScx
 }
 
 func (ptr *QScxmlStateMachine) FromData(data core.QIODevice_ITF, fileName string) *QScxmlStateMachine {
-	defer qt.Recovering("QScxmlStateMachine::fromData")
-
 	var fileNameC = C.CString(fileName)
 	defer C.free(unsafe.Pointer(fileNameC))
 	var tmpValue = NewQScxmlStateMachineFromPointer(C.QScxmlStateMachine_QScxmlStateMachine_FromData(core.PointerFromQIODevice(data), fileNameC))
@@ -3643,8 +3017,6 @@ func (ptr *QScxmlStateMachine) FromData(data core.QIODevice_ITF, fileName string
 }
 
 func QScxmlStateMachine_FromFile(fileName string) *QScxmlStateMachine {
-	defer qt.Recovering("QScxmlStateMachine::fromFile")
-
 	var fileNameC = C.CString(fileName)
 	defer C.free(unsafe.Pointer(fileNameC))
 	var tmpValue = NewQScxmlStateMachineFromPointer(C.QScxmlStateMachine_QScxmlStateMachine_FromFile(fileNameC))
@@ -3655,8 +3027,6 @@ func QScxmlStateMachine_FromFile(fileName string) *QScxmlStateMachine {
 }
 
 func (ptr *QScxmlStateMachine) FromFile(fileName string) *QScxmlStateMachine {
-	defer qt.Recovering("QScxmlStateMachine::fromFile")
-
 	var fileNameC = C.CString(fileName)
 	defer C.free(unsafe.Pointer(fileNameC))
 	var tmpValue = NewQScxmlStateMachineFromPointer(C.QScxmlStateMachine_QScxmlStateMachine_FromFile(fileNameC))
@@ -3667,16 +3037,12 @@ func (ptr *QScxmlStateMachine) FromFile(fileName string) *QScxmlStateMachine {
 }
 
 func QScxmlStateMachine_GenerateSessionId(prefix string) string {
-	defer qt.Recovering("QScxmlStateMachine::generateSessionId")
-
 	var prefixC = C.CString(prefix)
 	defer C.free(unsafe.Pointer(prefixC))
 	return C.GoString(C.QScxmlStateMachine_QScxmlStateMachine_GenerateSessionId(prefixC))
 }
 
 func (ptr *QScxmlStateMachine) GenerateSessionId(prefix string) string {
-	defer qt.Recovering("QScxmlStateMachine::generateSessionId")
-
 	var prefixC = C.CString(prefix)
 	defer C.free(unsafe.Pointer(prefixC))
 	return C.GoString(C.QScxmlStateMachine_QScxmlStateMachine_GenerateSessionId(prefixC))
@@ -3684,8 +3050,6 @@ func (ptr *QScxmlStateMachine) GenerateSessionId(prefix string) string {
 
 //export callbackQScxmlStateMachine_Init
 func callbackQScxmlStateMachine_Init(ptr unsafe.Pointer) C.char {
-	defer qt.Recovering("callback QScxmlStateMachine::init")
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QScxmlStateMachine::init"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func() bool)())))
 	}
@@ -3694,8 +3058,6 @@ func callbackQScxmlStateMachine_Init(ptr unsafe.Pointer) C.char {
 }
 
 func (ptr *QScxmlStateMachine) ConnectInit(f func() bool) {
-	defer qt.Recovering("connect QScxmlStateMachine::init")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QScxmlStateMachine::init", f)
@@ -3703,8 +3065,6 @@ func (ptr *QScxmlStateMachine) ConnectInit(f func() bool) {
 }
 
 func (ptr *QScxmlStateMachine) DisconnectInit() {
-	defer qt.Recovering("disconnect QScxmlStateMachine::init")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QScxmlStateMachine::init")
@@ -3712,8 +3072,6 @@ func (ptr *QScxmlStateMachine) DisconnectInit() {
 }
 
 func (ptr *QScxmlStateMachine) Init() bool {
-	defer qt.Recovering("QScxmlStateMachine::init")
-
 	if ptr.Pointer() != nil {
 		return C.QScxmlStateMachine_Init(ptr.Pointer()) != 0
 	}
@@ -3722,7 +3080,6 @@ func (ptr *QScxmlStateMachine) Init() bool {
 
 //export callbackQScxmlStateMachine_InitializedChanged
 func callbackQScxmlStateMachine_InitializedChanged(ptr unsafe.Pointer, initialized C.char) {
-	defer qt.Recovering("callback QScxmlStateMachine::initializedChanged")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QScxmlStateMachine::initializedChanged"); signal != nil {
 		signal.(func(bool))(int8(initialized) != 0)
@@ -3731,8 +3088,6 @@ func callbackQScxmlStateMachine_InitializedChanged(ptr unsafe.Pointer, initializ
 }
 
 func (ptr *QScxmlStateMachine) ConnectInitializedChanged(f func(initialized bool)) {
-	defer qt.Recovering("connect QScxmlStateMachine::initializedChanged")
-
 	if ptr.Pointer() != nil {
 		C.QScxmlStateMachine_ConnectInitializedChanged(ptr.Pointer())
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QScxmlStateMachine::initializedChanged", f)
@@ -3740,8 +3095,6 @@ func (ptr *QScxmlStateMachine) ConnectInitializedChanged(f func(initialized bool
 }
 
 func (ptr *QScxmlStateMachine) DisconnectInitializedChanged() {
-	defer qt.Recovering("disconnect QScxmlStateMachine::initializedChanged")
-
 	if ptr.Pointer() != nil {
 		C.QScxmlStateMachine_DisconnectInitializedChanged(ptr.Pointer())
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QScxmlStateMachine::initializedChanged")
@@ -3749,16 +3102,12 @@ func (ptr *QScxmlStateMachine) DisconnectInitializedChanged() {
 }
 
 func (ptr *QScxmlStateMachine) InitializedChanged(initialized bool) {
-	defer qt.Recovering("QScxmlStateMachine::initializedChanged")
-
 	if ptr.Pointer() != nil {
 		C.QScxmlStateMachine_InitializedChanged(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(initialized))))
 	}
 }
 
 func (ptr *QScxmlStateMachine) IsActive(scxmlStateName string) bool {
-	defer qt.Recovering("QScxmlStateMachine::isActive")
-
 	if ptr.Pointer() != nil {
 		var scxmlStateNameC = C.CString(scxmlStateName)
 		defer C.free(unsafe.Pointer(scxmlStateNameC))
@@ -3768,8 +3117,6 @@ func (ptr *QScxmlStateMachine) IsActive(scxmlStateName string) bool {
 }
 
 func (ptr *QScxmlStateMachine) IsDispatchableTarget(target string) bool {
-	defer qt.Recovering("QScxmlStateMachine::isDispatchableTarget")
-
 	if ptr.Pointer() != nil {
 		var targetC = C.CString(target)
 		defer C.free(unsafe.Pointer(targetC))
@@ -3779,8 +3126,6 @@ func (ptr *QScxmlStateMachine) IsDispatchableTarget(target string) bool {
 }
 
 func (ptr *QScxmlStateMachine) IsInvoked() bool {
-	defer qt.Recovering("QScxmlStateMachine::isInvoked")
-
 	if ptr.Pointer() != nil {
 		return C.QScxmlStateMachine_IsInvoked(ptr.Pointer()) != 0
 	}
@@ -3788,8 +3133,6 @@ func (ptr *QScxmlStateMachine) IsInvoked() bool {
 }
 
 func (ptr *QScxmlStateMachine) IsRunning() bool {
-	defer qt.Recovering("QScxmlStateMachine::isRunning")
-
 	if ptr.Pointer() != nil {
 		return C.QScxmlStateMachine_IsRunning(ptr.Pointer()) != 0
 	}
@@ -3798,7 +3141,6 @@ func (ptr *QScxmlStateMachine) IsRunning() bool {
 
 //export callbackQScxmlStateMachine_Log
 func callbackQScxmlStateMachine_Log(ptr unsafe.Pointer, label *C.char, msg *C.char) {
-	defer qt.Recovering("callback QScxmlStateMachine::log")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QScxmlStateMachine::log"); signal != nil {
 		signal.(func(string, string))(C.GoString(label), C.GoString(msg))
@@ -3807,8 +3149,6 @@ func callbackQScxmlStateMachine_Log(ptr unsafe.Pointer, label *C.char, msg *C.ch
 }
 
 func (ptr *QScxmlStateMachine) ConnectLog(f func(label string, msg string)) {
-	defer qt.Recovering("connect QScxmlStateMachine::log")
-
 	if ptr.Pointer() != nil {
 		C.QScxmlStateMachine_ConnectLog(ptr.Pointer())
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QScxmlStateMachine::log", f)
@@ -3816,8 +3156,6 @@ func (ptr *QScxmlStateMachine) ConnectLog(f func(label string, msg string)) {
 }
 
 func (ptr *QScxmlStateMachine) DisconnectLog() {
-	defer qt.Recovering("disconnect QScxmlStateMachine::log")
-
 	if ptr.Pointer() != nil {
 		C.QScxmlStateMachine_DisconnectLog(ptr.Pointer())
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QScxmlStateMachine::log")
@@ -3825,8 +3163,6 @@ func (ptr *QScxmlStateMachine) DisconnectLog() {
 }
 
 func (ptr *QScxmlStateMachine) Log(label string, msg string) {
-	defer qt.Recovering("QScxmlStateMachine::log")
-
 	if ptr.Pointer() != nil {
 		var labelC = C.CString(label)
 		defer C.free(unsafe.Pointer(labelC))
@@ -3837,8 +3173,6 @@ func (ptr *QScxmlStateMachine) Log(label string, msg string) {
 }
 
 func (ptr *QScxmlStateMachine) Name() string {
-	defer qt.Recovering("QScxmlStateMachine::name")
-
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QScxmlStateMachine_Name(ptr.Pointer()))
 	}
@@ -3847,7 +3181,6 @@ func (ptr *QScxmlStateMachine) Name() string {
 
 //export callbackQScxmlStateMachine_ReachedStableState
 func callbackQScxmlStateMachine_ReachedStableState(ptr unsafe.Pointer) {
-	defer qt.Recovering("callback QScxmlStateMachine::reachedStableState")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QScxmlStateMachine::reachedStableState"); signal != nil {
 		signal.(func())()
@@ -3856,8 +3189,6 @@ func callbackQScxmlStateMachine_ReachedStableState(ptr unsafe.Pointer) {
 }
 
 func (ptr *QScxmlStateMachine) ConnectReachedStableState(f func()) {
-	defer qt.Recovering("connect QScxmlStateMachine::reachedStableState")
-
 	if ptr.Pointer() != nil {
 		C.QScxmlStateMachine_ConnectReachedStableState(ptr.Pointer())
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QScxmlStateMachine::reachedStableState", f)
@@ -3865,8 +3196,6 @@ func (ptr *QScxmlStateMachine) ConnectReachedStableState(f func()) {
 }
 
 func (ptr *QScxmlStateMachine) DisconnectReachedStableState() {
-	defer qt.Recovering("disconnect QScxmlStateMachine::reachedStableState")
-
 	if ptr.Pointer() != nil {
 		C.QScxmlStateMachine_DisconnectReachedStableState(ptr.Pointer())
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QScxmlStateMachine::reachedStableState")
@@ -3874,8 +3203,6 @@ func (ptr *QScxmlStateMachine) DisconnectReachedStableState() {
 }
 
 func (ptr *QScxmlStateMachine) ReachedStableState() {
-	defer qt.Recovering("QScxmlStateMachine::reachedStableState")
-
 	if ptr.Pointer() != nil {
 		C.QScxmlStateMachine_ReachedStableState(ptr.Pointer())
 	}
@@ -3883,7 +3210,6 @@ func (ptr *QScxmlStateMachine) ReachedStableState() {
 
 //export callbackQScxmlStateMachine_RunningChanged
 func callbackQScxmlStateMachine_RunningChanged(ptr unsafe.Pointer, running C.char) {
-	defer qt.Recovering("callback QScxmlStateMachine::runningChanged")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QScxmlStateMachine::runningChanged"); signal != nil {
 		signal.(func(bool))(int8(running) != 0)
@@ -3892,8 +3218,6 @@ func callbackQScxmlStateMachine_RunningChanged(ptr unsafe.Pointer, running C.cha
 }
 
 func (ptr *QScxmlStateMachine) ConnectRunningChanged(f func(running bool)) {
-	defer qt.Recovering("connect QScxmlStateMachine::runningChanged")
-
 	if ptr.Pointer() != nil {
 		C.QScxmlStateMachine_ConnectRunningChanged(ptr.Pointer())
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QScxmlStateMachine::runningChanged", f)
@@ -3901,8 +3225,6 @@ func (ptr *QScxmlStateMachine) ConnectRunningChanged(f func(running bool)) {
 }
 
 func (ptr *QScxmlStateMachine) DisconnectRunningChanged() {
-	defer qt.Recovering("disconnect QScxmlStateMachine::runningChanged")
-
 	if ptr.Pointer() != nil {
 		C.QScxmlStateMachine_DisconnectRunningChanged(ptr.Pointer())
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QScxmlStateMachine::runningChanged")
@@ -3910,16 +3232,12 @@ func (ptr *QScxmlStateMachine) DisconnectRunningChanged() {
 }
 
 func (ptr *QScxmlStateMachine) RunningChanged(running bool) {
-	defer qt.Recovering("QScxmlStateMachine::runningChanged")
-
 	if ptr.Pointer() != nil {
 		C.QScxmlStateMachine_RunningChanged(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(running))))
 	}
 }
 
 func (ptr *QScxmlStateMachine) ScxmlEventFilter() *QScxmlEventFilter {
-	defer qt.Recovering("QScxmlStateMachine::scxmlEventFilter")
-
 	if ptr.Pointer() != nil {
 		return NewQScxmlEventFilterFromPointer(C.QScxmlStateMachine_ScxmlEventFilter(ptr.Pointer()))
 	}
@@ -3927,8 +3245,6 @@ func (ptr *QScxmlStateMachine) ScxmlEventFilter() *QScxmlEventFilter {
 }
 
 func (ptr *QScxmlStateMachine) SessionId() string {
-	defer qt.Recovering("QScxmlStateMachine::sessionId")
-
 	if ptr.Pointer() != nil {
 		return C.GoString(C.QScxmlStateMachine_SessionId(ptr.Pointer()))
 	}
@@ -3936,32 +3252,24 @@ func (ptr *QScxmlStateMachine) SessionId() string {
 }
 
 func (ptr *QScxmlStateMachine) SetDataModel(model QScxmlDataModel_ITF) {
-	defer qt.Recovering("QScxmlStateMachine::setDataModel")
-
 	if ptr.Pointer() != nil {
 		C.QScxmlStateMachine_SetDataModel(ptr.Pointer(), PointerFromQScxmlDataModel(model))
 	}
 }
 
 func (ptr *QScxmlStateMachine) SetRunning(running bool) {
-	defer qt.Recovering("QScxmlStateMachine::setRunning")
-
 	if ptr.Pointer() != nil {
 		C.QScxmlStateMachine_SetRunning(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(running))))
 	}
 }
 
 func (ptr *QScxmlStateMachine) SetScxmlEventFilter(newFilter QScxmlEventFilter_ITF) {
-	defer qt.Recovering("QScxmlStateMachine::setScxmlEventFilter")
-
 	if ptr.Pointer() != nil {
 		C.QScxmlStateMachine_SetScxmlEventFilter(ptr.Pointer(), PointerFromQScxmlEventFilter(newFilter))
 	}
 }
 
 func (ptr *QScxmlStateMachine) SetSessionId(id string) {
-	defer qt.Recovering("QScxmlStateMachine::setSessionId")
-
 	if ptr.Pointer() != nil {
 		var idC = C.CString(id)
 		defer C.free(unsafe.Pointer(idC))
@@ -3971,8 +3279,6 @@ func (ptr *QScxmlStateMachine) SetSessionId(id string) {
 
 //export callbackQScxmlStateMachine_Start
 func callbackQScxmlStateMachine_Start(ptr unsafe.Pointer) {
-	defer qt.Recovering("callback QScxmlStateMachine::start")
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QScxmlStateMachine::start"); signal != nil {
 		signal.(func())()
 	}
@@ -3980,8 +3286,6 @@ func callbackQScxmlStateMachine_Start(ptr unsafe.Pointer) {
 }
 
 func (ptr *QScxmlStateMachine) ConnectStart(f func()) {
-	defer qt.Recovering("connect QScxmlStateMachine::start")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QScxmlStateMachine::start", f)
@@ -3989,8 +3293,6 @@ func (ptr *QScxmlStateMachine) ConnectStart(f func()) {
 }
 
 func (ptr *QScxmlStateMachine) DisconnectStart() {
-	defer qt.Recovering("disconnect QScxmlStateMachine::start")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QScxmlStateMachine::start")
@@ -3998,16 +3300,12 @@ func (ptr *QScxmlStateMachine) DisconnectStart() {
 }
 
 func (ptr *QScxmlStateMachine) Start() {
-	defer qt.Recovering("QScxmlStateMachine::start")
-
 	if ptr.Pointer() != nil {
 		C.QScxmlStateMachine_Start(ptr.Pointer())
 	}
 }
 
 func (ptr *QScxmlStateMachine) StateNames(compress bool) []string {
-	defer qt.Recovering("QScxmlStateMachine::stateNames")
-
 	if ptr.Pointer() != nil {
 		return strings.Split(C.GoString(C.QScxmlStateMachine_StateNames(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(compress))))), "|")
 	}
@@ -4016,8 +3314,6 @@ func (ptr *QScxmlStateMachine) StateNames(compress bool) []string {
 
 //export callbackQScxmlStateMachine_Stop
 func callbackQScxmlStateMachine_Stop(ptr unsafe.Pointer) {
-	defer qt.Recovering("callback QScxmlStateMachine::stop")
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QScxmlStateMachine::stop"); signal != nil {
 		signal.(func())()
 	}
@@ -4025,8 +3321,6 @@ func callbackQScxmlStateMachine_Stop(ptr unsafe.Pointer) {
 }
 
 func (ptr *QScxmlStateMachine) ConnectStop(f func()) {
-	defer qt.Recovering("connect QScxmlStateMachine::stop")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QScxmlStateMachine::stop", f)
@@ -4034,8 +3328,6 @@ func (ptr *QScxmlStateMachine) ConnectStop(f func()) {
 }
 
 func (ptr *QScxmlStateMachine) DisconnectStop() {
-	defer qt.Recovering("disconnect QScxmlStateMachine::stop")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QScxmlStateMachine::stop")
@@ -4043,24 +3335,18 @@ func (ptr *QScxmlStateMachine) DisconnectStop() {
 }
 
 func (ptr *QScxmlStateMachine) Stop() {
-	defer qt.Recovering("QScxmlStateMachine::stop")
-
 	if ptr.Pointer() != nil {
 		C.QScxmlStateMachine_Stop(ptr.Pointer())
 	}
 }
 
 func (ptr *QScxmlStateMachine) SubmitEvent(event QScxmlEvent_ITF) {
-	defer qt.Recovering("QScxmlStateMachine::submitEvent")
-
 	if ptr.Pointer() != nil {
 		C.QScxmlStateMachine_SubmitEvent(ptr.Pointer(), PointerFromQScxmlEvent(event))
 	}
 }
 
 func (ptr *QScxmlStateMachine) SubmitEvent2(eventName string) {
-	defer qt.Recovering("QScxmlStateMachine::submitEvent")
-
 	if ptr.Pointer() != nil {
 		var eventNameC = C.CString(eventName)
 		defer C.free(unsafe.Pointer(eventNameC))
@@ -4069,8 +3355,6 @@ func (ptr *QScxmlStateMachine) SubmitEvent2(eventName string) {
 }
 
 func (ptr *QScxmlStateMachine) SubmitEvent3(eventName string, data core.QVariant_ITF) {
-	defer qt.Recovering("QScxmlStateMachine::submitEvent")
-
 	if ptr.Pointer() != nil {
 		var eventNameC = C.CString(eventName)
 		defer C.free(unsafe.Pointer(eventNameC))
@@ -4080,7 +3364,6 @@ func (ptr *QScxmlStateMachine) SubmitEvent3(eventName string, data core.QVariant
 
 //export callbackQScxmlStateMachine_TimerEvent
 func callbackQScxmlStateMachine_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	defer qt.Recovering("callback QScxmlStateMachine::timerEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QScxmlStateMachine::timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
@@ -4090,8 +3373,6 @@ func callbackQScxmlStateMachine_TimerEvent(ptr unsafe.Pointer, event unsafe.Poin
 }
 
 func (ptr *QScxmlStateMachine) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
-	defer qt.Recovering("connect QScxmlStateMachine::timerEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QScxmlStateMachine::timerEvent", f)
@@ -4099,8 +3380,6 @@ func (ptr *QScxmlStateMachine) ConnectTimerEvent(f func(event *core.QTimerEvent)
 }
 
 func (ptr *QScxmlStateMachine) DisconnectTimerEvent() {
-	defer qt.Recovering("disconnect QScxmlStateMachine::timerEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QScxmlStateMachine::timerEvent")
@@ -4108,16 +3387,12 @@ func (ptr *QScxmlStateMachine) DisconnectTimerEvent() {
 }
 
 func (ptr *QScxmlStateMachine) TimerEvent(event core.QTimerEvent_ITF) {
-	defer qt.Recovering("QScxmlStateMachine::timerEvent")
-
 	if ptr.Pointer() != nil {
 		C.QScxmlStateMachine_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
 	}
 }
 
 func (ptr *QScxmlStateMachine) TimerEventDefault(event core.QTimerEvent_ITF) {
-	defer qt.Recovering("QScxmlStateMachine::timerEvent")
-
 	if ptr.Pointer() != nil {
 		C.QScxmlStateMachine_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
 	}
@@ -4125,7 +3400,6 @@ func (ptr *QScxmlStateMachine) TimerEventDefault(event core.QTimerEvent_ITF) {
 
 //export callbackQScxmlStateMachine_ChildEvent
 func callbackQScxmlStateMachine_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	defer qt.Recovering("callback QScxmlStateMachine::childEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QScxmlStateMachine::childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
@@ -4135,8 +3409,6 @@ func callbackQScxmlStateMachine_ChildEvent(ptr unsafe.Pointer, event unsafe.Poin
 }
 
 func (ptr *QScxmlStateMachine) ConnectChildEvent(f func(event *core.QChildEvent)) {
-	defer qt.Recovering("connect QScxmlStateMachine::childEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QScxmlStateMachine::childEvent", f)
@@ -4144,8 +3416,6 @@ func (ptr *QScxmlStateMachine) ConnectChildEvent(f func(event *core.QChildEvent)
 }
 
 func (ptr *QScxmlStateMachine) DisconnectChildEvent() {
-	defer qt.Recovering("disconnect QScxmlStateMachine::childEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QScxmlStateMachine::childEvent")
@@ -4153,16 +3423,12 @@ func (ptr *QScxmlStateMachine) DisconnectChildEvent() {
 }
 
 func (ptr *QScxmlStateMachine) ChildEvent(event core.QChildEvent_ITF) {
-	defer qt.Recovering("QScxmlStateMachine::childEvent")
-
 	if ptr.Pointer() != nil {
 		C.QScxmlStateMachine_ChildEvent(ptr.Pointer(), core.PointerFromQChildEvent(event))
 	}
 }
 
 func (ptr *QScxmlStateMachine) ChildEventDefault(event core.QChildEvent_ITF) {
-	defer qt.Recovering("QScxmlStateMachine::childEvent")
-
 	if ptr.Pointer() != nil {
 		C.QScxmlStateMachine_ChildEventDefault(ptr.Pointer(), core.PointerFromQChildEvent(event))
 	}
@@ -4170,7 +3436,6 @@ func (ptr *QScxmlStateMachine) ChildEventDefault(event core.QChildEvent_ITF) {
 
 //export callbackQScxmlStateMachine_ConnectNotify
 func callbackQScxmlStateMachine_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-	defer qt.Recovering("callback QScxmlStateMachine::connectNotify")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QScxmlStateMachine::connectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
@@ -4180,8 +3445,6 @@ func callbackQScxmlStateMachine_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Po
 }
 
 func (ptr *QScxmlStateMachine) ConnectConnectNotify(f func(sign *core.QMetaMethod)) {
-	defer qt.Recovering("connect QScxmlStateMachine::connectNotify")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QScxmlStateMachine::connectNotify", f)
@@ -4189,8 +3452,6 @@ func (ptr *QScxmlStateMachine) ConnectConnectNotify(f func(sign *core.QMetaMetho
 }
 
 func (ptr *QScxmlStateMachine) DisconnectConnectNotify() {
-	defer qt.Recovering("disconnect QScxmlStateMachine::connectNotify")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QScxmlStateMachine::connectNotify")
@@ -4198,16 +3459,12 @@ func (ptr *QScxmlStateMachine) DisconnectConnectNotify() {
 }
 
 func (ptr *QScxmlStateMachine) ConnectNotify(sign core.QMetaMethod_ITF) {
-	defer qt.Recovering("QScxmlStateMachine::connectNotify")
-
 	if ptr.Pointer() != nil {
 		C.QScxmlStateMachine_ConnectNotify(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
 	}
 }
 
 func (ptr *QScxmlStateMachine) ConnectNotifyDefault(sign core.QMetaMethod_ITF) {
-	defer qt.Recovering("QScxmlStateMachine::connectNotify")
-
 	if ptr.Pointer() != nil {
 		C.QScxmlStateMachine_ConnectNotifyDefault(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
 	}
@@ -4215,7 +3472,6 @@ func (ptr *QScxmlStateMachine) ConnectNotifyDefault(sign core.QMetaMethod_ITF) {
 
 //export callbackQScxmlStateMachine_CustomEvent
 func callbackQScxmlStateMachine_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-	defer qt.Recovering("callback QScxmlStateMachine::customEvent")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QScxmlStateMachine::customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
@@ -4225,8 +3481,6 @@ func callbackQScxmlStateMachine_CustomEvent(ptr unsafe.Pointer, event unsafe.Poi
 }
 
 func (ptr *QScxmlStateMachine) ConnectCustomEvent(f func(event *core.QEvent)) {
-	defer qt.Recovering("connect QScxmlStateMachine::customEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QScxmlStateMachine::customEvent", f)
@@ -4234,8 +3488,6 @@ func (ptr *QScxmlStateMachine) ConnectCustomEvent(f func(event *core.QEvent)) {
 }
 
 func (ptr *QScxmlStateMachine) DisconnectCustomEvent() {
-	defer qt.Recovering("disconnect QScxmlStateMachine::customEvent")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QScxmlStateMachine::customEvent")
@@ -4243,16 +3495,12 @@ func (ptr *QScxmlStateMachine) DisconnectCustomEvent() {
 }
 
 func (ptr *QScxmlStateMachine) CustomEvent(event core.QEvent_ITF) {
-	defer qt.Recovering("QScxmlStateMachine::customEvent")
-
 	if ptr.Pointer() != nil {
 		C.QScxmlStateMachine_CustomEvent(ptr.Pointer(), core.PointerFromQEvent(event))
 	}
 }
 
 func (ptr *QScxmlStateMachine) CustomEventDefault(event core.QEvent_ITF) {
-	defer qt.Recovering("QScxmlStateMachine::customEvent")
-
 	if ptr.Pointer() != nil {
 		C.QScxmlStateMachine_CustomEventDefault(ptr.Pointer(), core.PointerFromQEvent(event))
 	}
@@ -4260,8 +3508,6 @@ func (ptr *QScxmlStateMachine) CustomEventDefault(event core.QEvent_ITF) {
 
 //export callbackQScxmlStateMachine_DeleteLater
 func callbackQScxmlStateMachine_DeleteLater(ptr unsafe.Pointer) {
-	defer qt.Recovering("callback QScxmlStateMachine::deleteLater")
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QScxmlStateMachine::deleteLater"); signal != nil {
 		signal.(func())()
 	} else {
@@ -4270,8 +3516,6 @@ func callbackQScxmlStateMachine_DeleteLater(ptr unsafe.Pointer) {
 }
 
 func (ptr *QScxmlStateMachine) ConnectDeleteLater(f func()) {
-	defer qt.Recovering("connect QScxmlStateMachine::deleteLater")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QScxmlStateMachine::deleteLater", f)
@@ -4279,8 +3523,6 @@ func (ptr *QScxmlStateMachine) ConnectDeleteLater(f func()) {
 }
 
 func (ptr *QScxmlStateMachine) DisconnectDeleteLater() {
-	defer qt.Recovering("disconnect QScxmlStateMachine::deleteLater")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QScxmlStateMachine::deleteLater")
@@ -4288,8 +3530,6 @@ func (ptr *QScxmlStateMachine) DisconnectDeleteLater() {
 }
 
 func (ptr *QScxmlStateMachine) DeleteLater() {
-	defer qt.Recovering("QScxmlStateMachine::deleteLater")
-
 	if ptr.Pointer() != nil {
 		C.QScxmlStateMachine_DeleteLater(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
@@ -4298,8 +3538,6 @@ func (ptr *QScxmlStateMachine) DeleteLater() {
 }
 
 func (ptr *QScxmlStateMachine) DeleteLaterDefault() {
-	defer qt.Recovering("QScxmlStateMachine::deleteLater")
-
 	if ptr.Pointer() != nil {
 		C.QScxmlStateMachine_DeleteLaterDefault(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
@@ -4309,7 +3547,6 @@ func (ptr *QScxmlStateMachine) DeleteLaterDefault() {
 
 //export callbackQScxmlStateMachine_DisconnectNotify
 func callbackQScxmlStateMachine_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-	defer qt.Recovering("callback QScxmlStateMachine::disconnectNotify")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QScxmlStateMachine::disconnectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
@@ -4319,8 +3556,6 @@ func callbackQScxmlStateMachine_DisconnectNotify(ptr unsafe.Pointer, sign unsafe
 }
 
 func (ptr *QScxmlStateMachine) ConnectDisconnectNotify(f func(sign *core.QMetaMethod)) {
-	defer qt.Recovering("connect QScxmlStateMachine::disconnectNotify")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QScxmlStateMachine::disconnectNotify", f)
@@ -4328,8 +3563,6 @@ func (ptr *QScxmlStateMachine) ConnectDisconnectNotify(f func(sign *core.QMetaMe
 }
 
 func (ptr *QScxmlStateMachine) DisconnectDisconnectNotify() {
-	defer qt.Recovering("disconnect QScxmlStateMachine::disconnectNotify")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QScxmlStateMachine::disconnectNotify")
@@ -4337,16 +3570,12 @@ func (ptr *QScxmlStateMachine) DisconnectDisconnectNotify() {
 }
 
 func (ptr *QScxmlStateMachine) DisconnectNotify(sign core.QMetaMethod_ITF) {
-	defer qt.Recovering("QScxmlStateMachine::disconnectNotify")
-
 	if ptr.Pointer() != nil {
 		C.QScxmlStateMachine_DisconnectNotify(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
 	}
 }
 
 func (ptr *QScxmlStateMachine) DisconnectNotifyDefault(sign core.QMetaMethod_ITF) {
-	defer qt.Recovering("QScxmlStateMachine::disconnectNotify")
-
 	if ptr.Pointer() != nil {
 		C.QScxmlStateMachine_DisconnectNotifyDefault(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
 	}
@@ -4354,7 +3583,6 @@ func (ptr *QScxmlStateMachine) DisconnectNotifyDefault(sign core.QMetaMethod_ITF
 
 //export callbackQScxmlStateMachine_Event
 func callbackQScxmlStateMachine_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
-	defer qt.Recovering("callback QScxmlStateMachine::event")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QScxmlStateMachine::event"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
@@ -4364,8 +3592,6 @@ func callbackQScxmlStateMachine_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.ch
 }
 
 func (ptr *QScxmlStateMachine) ConnectEvent(f func(e *core.QEvent) bool) {
-	defer qt.Recovering("connect QScxmlStateMachine::event")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QScxmlStateMachine::event", f)
@@ -4373,8 +3599,6 @@ func (ptr *QScxmlStateMachine) ConnectEvent(f func(e *core.QEvent) bool) {
 }
 
 func (ptr *QScxmlStateMachine) DisconnectEvent() {
-	defer qt.Recovering("disconnect QScxmlStateMachine::event")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QScxmlStateMachine::event")
@@ -4382,8 +3606,6 @@ func (ptr *QScxmlStateMachine) DisconnectEvent() {
 }
 
 func (ptr *QScxmlStateMachine) Event(e core.QEvent_ITF) bool {
-	defer qt.Recovering("QScxmlStateMachine::event")
-
 	if ptr.Pointer() != nil {
 		return C.QScxmlStateMachine_Event(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
 	}
@@ -4391,8 +3613,6 @@ func (ptr *QScxmlStateMachine) Event(e core.QEvent_ITF) bool {
 }
 
 func (ptr *QScxmlStateMachine) EventDefault(e core.QEvent_ITF) bool {
-	defer qt.Recovering("QScxmlStateMachine::event")
-
 	if ptr.Pointer() != nil {
 		return C.QScxmlStateMachine_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
 	}
@@ -4401,7 +3621,6 @@ func (ptr *QScxmlStateMachine) EventDefault(e core.QEvent_ITF) bool {
 
 //export callbackQScxmlStateMachine_EventFilter
 func callbackQScxmlStateMachine_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-	defer qt.Recovering("callback QScxmlStateMachine::eventFilter")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QScxmlStateMachine::eventFilter"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
@@ -4411,8 +3630,6 @@ func callbackQScxmlStateMachine_EventFilter(ptr unsafe.Pointer, watched unsafe.P
 }
 
 func (ptr *QScxmlStateMachine) ConnectEventFilter(f func(watched *core.QObject, event *core.QEvent) bool) {
-	defer qt.Recovering("connect QScxmlStateMachine::eventFilter")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QScxmlStateMachine::eventFilter", f)
@@ -4420,8 +3637,6 @@ func (ptr *QScxmlStateMachine) ConnectEventFilter(f func(watched *core.QObject, 
 }
 
 func (ptr *QScxmlStateMachine) DisconnectEventFilter() {
-	defer qt.Recovering("disconnect QScxmlStateMachine::eventFilter")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QScxmlStateMachine::eventFilter")
@@ -4429,8 +3644,6 @@ func (ptr *QScxmlStateMachine) DisconnectEventFilter() {
 }
 
 func (ptr *QScxmlStateMachine) EventFilter(watched core.QObject_ITF, event core.QEvent_ITF) bool {
-	defer qt.Recovering("QScxmlStateMachine::eventFilter")
-
 	if ptr.Pointer() != nil {
 		return C.QScxmlStateMachine_EventFilter(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
 	}
@@ -4438,8 +3651,6 @@ func (ptr *QScxmlStateMachine) EventFilter(watched core.QObject_ITF, event core.
 }
 
 func (ptr *QScxmlStateMachine) EventFilterDefault(watched core.QObject_ITF, event core.QEvent_ITF) bool {
-	defer qt.Recovering("QScxmlStateMachine::eventFilter")
-
 	if ptr.Pointer() != nil {
 		return C.QScxmlStateMachine_EventFilterDefault(ptr.Pointer(), core.PointerFromQObject(watched), core.PointerFromQEvent(event)) != 0
 	}
@@ -4448,7 +3659,6 @@ func (ptr *QScxmlStateMachine) EventFilterDefault(watched core.QObject_ITF, even
 
 //export callbackQScxmlStateMachine_MetaObject
 func callbackQScxmlStateMachine_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-	defer qt.Recovering("callback QScxmlStateMachine::metaObject")
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QScxmlStateMachine::metaObject"); signal != nil {
 		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
@@ -4458,8 +3668,6 @@ func callbackQScxmlStateMachine_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
 }
 
 func (ptr *QScxmlStateMachine) ConnectMetaObject(f func() *core.QMetaObject) {
-	defer qt.Recovering("connect QScxmlStateMachine::metaObject")
-
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QScxmlStateMachine::metaObject", f)
@@ -4467,8 +3675,6 @@ func (ptr *QScxmlStateMachine) ConnectMetaObject(f func() *core.QMetaObject) {
 }
 
 func (ptr *QScxmlStateMachine) DisconnectMetaObject() {
-	defer qt.Recovering("disconnect QScxmlStateMachine::metaObject")
-
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QScxmlStateMachine::metaObject")
@@ -4476,8 +3682,6 @@ func (ptr *QScxmlStateMachine) DisconnectMetaObject() {
 }
 
 func (ptr *QScxmlStateMachine) MetaObject() *core.QMetaObject {
-	defer qt.Recovering("QScxmlStateMachine::metaObject")
-
 	if ptr.Pointer() != nil {
 		return core.NewQMetaObjectFromPointer(C.QScxmlStateMachine_MetaObject(ptr.Pointer()))
 	}
@@ -4485,8 +3689,6 @@ func (ptr *QScxmlStateMachine) MetaObject() *core.QMetaObject {
 }
 
 func (ptr *QScxmlStateMachine) MetaObjectDefault() *core.QMetaObject {
-	defer qt.Recovering("QScxmlStateMachine::metaObject")
-
 	if ptr.Pointer() != nil {
 		return core.NewQMetaObjectFromPointer(C.QScxmlStateMachine_MetaObjectDefault(ptr.Pointer()))
 	}

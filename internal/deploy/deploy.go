@@ -191,7 +191,7 @@ func qrc() {
 			switch runtime.GOOS {
 			case "darwin":
 				{
-					rccPath = filepath.Join(utils.QT_DIR(), "5.7", "clang_64", "bin", "rcc")
+					rccPath = filepath.Join(utils.QT_DARWIN_DIR(), "bin", "rcc")
 				}
 
 			case "linux":
@@ -225,12 +225,12 @@ func qrc() {
 
 func qmlHeader() string {
 
-	return strings.Replace(strings.Replace(strings.Replace(strings.Replace(strings.Replace(strings.Replace(strings.Replace(strings.Replace(strings.Replace(strings.Replace(`package main
+	return strings.Replace(strings.Replace(strings.Replace(strings.Replace(strings.Replace(strings.Replace(strings.Replace(strings.Replace(strings.Replace(strings.Replace(strings.Replace(`package main
 
 /*
 #cgo +build windows,386 LDFLAGS: -L${QT_DIR}/5.7/mingw53_32/lib -lQt5Core
 
-#cgo +build !ios,darwin,amd64 LDFLAGS: -F${QT_DIR}/5.7/clang_64/lib -framework QtCore
+#cgo +build !ios,darwin,amd64 LDFLAGS: -F${QT_DARWIN_DIR}/lib -framework QtCore
 
 #cgo +build linux,amd64 LDFLAGS: -Wl,-rpath,${QT_LINUX_DIR} -L${QT_LINUX_DIR} -lQt5Core
 
@@ -268,6 +268,7 @@ import "C"`,
 			return "${QT_DIR}/5.7/gcc_64/lib"
 		}(), -1),
 		"${QT_DIR}", utils.QT_DIR(), -1),
+		"${QT_DARWIN_DIR}", utils.QT_DARWIN_DIR(), -1),
 		"${RPI1_SYSROOT_DIR}", utils.RPI1_SYSROOT_DIR(), -1),
 		"${RPI2_SYSROOT_DIR}", utils.RPI2_SYSROOT_DIR(), -1),
 		"${RPI3_SYSROOT_DIR}", utils.RPI3_SYSROOT_DIR(), -1),
@@ -390,7 +391,7 @@ func build() {
 			switch runtime.GOOS {
 			case "darwin":
 				{
-					ldFlags += fmt.Sprintf("\"-w\" \"-r=%v/5.7/clang_64/lib\"", utils.QT_DIR())
+					ldFlags += fmt.Sprintf("\"-w\" \"-r=%v/lib\"", utils.QT_DARWIN_DIR())
 					outputFile = filepath.Join(depPath, fmt.Sprintf("%v.app/Contents/MacOS/%v", appName, appName))
 				}
 
@@ -781,12 +782,16 @@ func deploy() {
 			switch runtime.GOOS {
 			case "darwin":
 				{
-					var deploy = exec.Command(fmt.Sprintf("%v/5.7/clang_64/bin/macdeployqt", utils.QT_DIR()))
+					if utils.UseHomeBrew() {
+						return
+					}
+
+					var deploy = exec.Command(fmt.Sprintf("%v/bin/macdeployqt", utils.QT_DARWIN_DIR()))
 					deploy.Args = append(deploy.Args,
 						filepath.Join(depPath, fmt.Sprintf("%v.app/", appName)),
 						fmt.Sprintf("-qmldir=%v", filepath.Join(appPath, "qml")),
 						"-always-overwrite")
-					deploy.Dir = fmt.Sprintf("%v/5.7/clang_64/bin/", utils.QT_DIR())
+					deploy.Dir = fmt.Sprintf("%v/bin/", utils.QT_DARWIN_DIR())
 					utils.RunCmd(deploy, "deploy")
 				}
 
