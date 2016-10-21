@@ -17,12 +17,9 @@ This binding aims to make it as simple as possible to write applications for all
 
 The project is pretty much a WIP and not recommended to be used in production yet.
 
-However the binding should already contain most open source modules and everything you need to build fully featured applications.
+However it should already contain most open source modules and everything you need to build fully featured applications.
 
-Also the Qt API is brought as unaltered as possible from C++ to Go, which should make it simple to prototype applications.
-
----
----
+Also the Qt API is brought as unaltered as possible from C++ to Go, which makes it ideal for prototyping.
 
 ## Screenshots
 
@@ -55,9 +52,6 @@ Also the Qt API is brought as unaltered as possible from C++ to Go, which should
 
 ![](internal/screens/sailfish_portrait.png)
 
----
----
-
 ## Installation
 
 **You will need at least 8gb ram to install this binding!**
@@ -77,13 +71,11 @@ Also the Qt API is brought as unaltered as possible from C++ to Go, which should
 * Embedded
 	* [Raspberry Pi](#raspberry-pi)
 
----
-
 ## Windows
 
 1. Install Go >= 1.7.1 and setup a proper [**GOPATH**](https://golang.org/doc/code.html#GOPATH)
 
-	* https://golang.org/doc/install?download=go1.7.1.windows-amd64.msi
+	* https://golang.org/doc/install?download=go1.7.3.windows-amd64.msi
 
 2. Install Qt 5.7.0; you can also define a custom location with **QT_DIR**. **Don't** de-select any default packages in Select Components screen.
 
@@ -107,11 +99,11 @@ Also the Qt API is brought as unaltered as possible from C++ to Go, which should
 
 1. Install Go >= 1.7.1 and setup a proper [**GOPATH**](https://golang.org/doc/code.html#GOPATH)
 
-	* https://golang.org/doc/install?download=go1.7.1.darwin-amd64.pkg
+	* https://golang.org/doc/install?download=go1.7.3.darwin-amd64.pkg
 
-2. Install Qt 5.7.0; you can also define a custom location with **QT_DIR**
+2. Install Qt 5.7.0
 
-	* Install the official prebuild package; you can also define a custom location with **QT_DIR**
+	* Install the official prebuild package; you can also define a custom location with **QT_DIR**. **Don't** de-select any default packages in Select Components screen.
 		* without iOS https://download.qt.io/official_releases/qt/5.7/5.7.0/qt-opensource-mac-x64-android-5.7.0.dmg
 		* with iOS https://download.qt.io/official_releases/qt/5.7/5.7.0/qt-opensource-mac-x64-android-ios-5.7.0.dmg
 
@@ -138,11 +130,11 @@ Also the Qt API is brought as unaltered as possible from C++ to Go, which should
 
 1. Install Go >= 1.7.1 and setup a proper [**GOPATH**](https://golang.org/doc/code.html#GOPATH)
 
-	* https://golang.org/doc/install?download=go1.7.1.linux-amd64.tar.gz
+	* https://golang.org/doc/install?download=go1.7.3.linux-amd64.tar.gz
 
 2. Install Qt 5.7.0
 
-	* Install the official prebuild package; you can also define a custom location with **QT_DIR**
+	* Install the official prebuild package; you can also define a custom location with **QT_DIR**. **Don't** de-select any default packages in Select Components screen.
 		* https://download.qt.io/official_releases/qt/5.7/5.7.0/qt-opensource-linux-x64-android-5.7.0.run
 
 	or
@@ -173,8 +165,6 @@ Also the Qt API is brought as unaltered as possible from C++ to Go, which should
 	* `cd $GOPATH/src/github.com/therecipe/qt && ./setup.sh`
 
 6. Create your first [application](#example)
-
----
 
 ## Android
 
@@ -244,8 +234,6 @@ Also the Qt API is brought as unaltered as possible from C++ to Go, which should
 	* `cd $GOPATH/src/github.com/therecipe/qt && ./setup.sh sailfish && ./setup.sh sailfish-emulator`
 
 5. Create your first [application](#example)
-
----
 
 ## Raspberry Pi
 
@@ -371,9 +359,6 @@ Also the Qt API is brought as unaltered as possible from C++ to Go, which should
 	* you can increase the available gpu memory by editing `/boot/config.txt`
 
 16. Create your first [application](#example)
-
----
----
 
 ## Example
 
