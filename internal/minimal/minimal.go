@@ -109,8 +109,21 @@ func Minimal(path string) {
 
 			default:
 				{
-					if strings.Contains(file, "."+converter.GoHeaderName(f)+"(") {
-						exportFunction(c, f)
+					if f.Static {
+						if strings.Contains(file, converter.GoHeaderName(f)+"(") {
+							exportFunction(c, f)
+						}
+
+						var fTmp = *f
+						fTmp.Static = false
+
+						if strings.Contains(file, "."+converter.GoHeaderName(&fTmp)+"(") {
+							exportFunction(c, f)
+						}
+					} else {
+						if strings.Contains(file, "."+converter.GoHeaderName(f)+"(") {
+							exportFunction(c, f)
+						}
 					}
 				}
 			}
