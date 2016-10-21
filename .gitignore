@@ -1,10 +1,4 @@
 .DS_Store
-*-minimal*
-**_minimal/
-**/dump/
-**/deploy/windows/
-**/deploy/darwin/
-**/deploy/linux/
-**/deploy/android/
-**/deploy/ios/
-**/deploy/ios-simulator/
+*/cgo_*
+*/*-minimal.*
+/internal/examples/**/deploy
