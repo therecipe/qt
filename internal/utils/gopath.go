@@ -12,6 +12,23 @@ import (
 
 const packageName = "github.com/therecipe/qt"
 
+var goPath *string
+
+// MustGoPath is same as GoPath but exit if any error
+// it also cache the result
+func MustGoPath() string {
+	if goPath != nil {
+		return *goPath
+	}
+	out, err := GoPath()
+	if err != nil {
+		fmt.Println("Error:", err.Error())
+		os.Exit(1)
+	}
+	goPath = &out
+	return out
+}
+
 // GoPath return the GOPATH where hold this package.
 func GoPath() (goPath string , err error) {
 	goPaths := os.Getenv("GOPATH")

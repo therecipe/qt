@@ -16,11 +16,7 @@ func main() {
 		buildTarget = os.Args[1]
 	}
 
-	if _, err := utils.GoPath();  err != nil {
-		fmt.Printf("\nerror:\n%s\n\n", err.Error())
-		os.Exit(1)
-	}
-
+	_ = utils.MustGoPath()
 
 	if _, err := ioutil.ReadDir(utils.QT_DIR()); err != nil && !utils.UsePkgConfig() {
 		fmt.Printf("\nerror: Qt not found\nsolution: install Qt in \"%v\" or define QT_DIR\n\n", utils.QT_DIR())

@@ -16,7 +16,10 @@ func main() {
 		fmt.Println("------------------------generate------------------------")
 
 		for _, module := range templater.GetLibs() {
-			parser.GetModule(strings.ToLower(module))
+			if _, err := parser.GetModule(strings.ToLower(module)); err != nil {
+				fmt.Println(err.Error())
+				os.Exit(1)
+			}
 		}
 
 		for _, module := range templater.GetLibs() {

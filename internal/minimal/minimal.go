@@ -16,7 +16,7 @@ import (
 
 var BuildTarget string
 
-func Minimal(path string) {
+func Minimal(path string) error {
 
 	var (
 		imported []string
@@ -72,7 +72,9 @@ func Minimal(path string) {
 	}
 
 	for _, module := range templater.GetLibs() {
-		parser.GetModule(strings.ToLower(module))
+		if _, err := parser.GetModule(strings.ToLower(module)); err != nil {
+			return err
+		}
 	}
 
 	var file = strings.Join(cached, "")
@@ -130,6 +132,7 @@ func Minimal(path string) {
 	for _, module := range templater.GetLibs() {
 		templater.GenModule(module)
 	}
+	return nil
 }
 
 func exportFunction(class *parser.Class, function *parser.Function) {
