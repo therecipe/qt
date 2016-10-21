@@ -285,52 +285,52 @@ func GetLibs() []string {
 }
 
 var LibDeps = map[string][]string{
-	"Core":          []string{"Widgets", "Gui"}, //Widgets, Gui
-	"AndroidExtras": []string{"Core"},
-	"Gui":           []string{"Widgets", "Core"}, //Widgets
-	"Network":       []string{"Core"},
-	"Xml":           []string{"XmlPatterns", "Core"}, //XmlPatterns
-	"DBus":          []string{"Core"},
-	"Nfc":           []string{"Core"},
-	"Script":        []string{"Core"},
-	"Sensors":       []string{"Core"},
-	"Positioning":   []string{"Core"},
-	"Widgets":       []string{"Gui", "Core"},
-	"Sql":           []string{"Widgets", "Gui", "Core"}, //Widgets, Gui
-	"MacExtras":     []string{"Gui", "Core"},
-	"Qml":           []string{"Network", "Core"},
-	"WebSockets":    []string{"Network", "Core"},
-	"XmlPatterns":   []string{"Network", "Core"},
-	"Bluetooth":     []string{"Core"},
-	"WebChannel":    []string{"Network", "Qml", "Core"}, //Network (needed for static linking ios)
-	"Svg":           []string{"Widgets", "Gui", "Core"},
-	"Multimedia":    []string{"MultimediaWidgets", "Widgets", "Network", "Gui", "Core"},   //MultimediaWidgets, Widgets
-	"Quick":         []string{"QuickWidgets", "Widgets", "Network", "Qml", "Gui", "Core"}, //QuickWidgets, Widgets, Network (needed for static linking ios)
-	"Help":          []string{"Sql", "CLucene", "Network", "Widgets", "Gui", "Core"},      //Sql + CLucene + Network (needed for static linking ios)
-	"Location":      []string{"Positioning", "Quick", "Gui", "Core"},
-	"ScriptTools":   []string{"Script", "Widgets", "Core"}, //Script, Widgets
-	"UiTools":       []string{"Widgets", "Gui", "Core"},
-	"X11Extras":     []string{"Gui", "Core"},
-	"WinExtras":     []string{"Gui", "Core"},
-	"WebEngine":     []string{"Widgets", "WebEngineWidgets", "WebChannel", "Network", "WebEngineCore", "Quick", "Gui", "Qml", "Core"}, //Widgets, WebEngineWidgets, WebChannel, Network
-	"TestLib":       []string{"Widgets", "Gui", "Core"},                                                                               //Widgets, Gui
-	"SerialPort":    []string{"Core"},
-	"SerialBus":     []string{"Core"},
-	"PrintSupport":  []string{"Widgets", "Gui", "Core"},
+	"Core":          {"Widgets", "Gui"}, //Widgets, Gui
+	"AndroidExtras": {"Core"},
+	"Gui":           {"Widgets", "Core"}, //Widgets
+	"Network":       {"Core"},
+	"Xml":           {"XmlPatterns", "Core"}, //XmlPatterns
+	"DBus":          {"Core"},
+	"Nfc":           {"Core"},
+	"Script":        {"Core"},
+	"Sensors":       {"Core"},
+	"Positioning":   {"Core"},
+	"Widgets":       {"Gui", "Core"},
+	"Sql":           {"Widgets", "Gui", "Core"}, //Widgets, Gui
+	"MacExtras":     {"Gui", "Core"},
+	"Qml":           {"Network", "Core"},
+	"WebSockets":    {"Network", "Core"},
+	"XmlPatterns":   {"Network", "Core"},
+	"Bluetooth":     {"Core"},
+	"WebChannel":    {"Network", "Qml", "Core"}, //Network (needed for static linking ios)
+	"Svg":           {"Widgets", "Gui", "Core"},
+	"Multimedia":    {"MultimediaWidgets", "Widgets", "Network", "Gui", "Core"},   //MultimediaWidgets, Widgets
+	"Quick":         {"QuickWidgets", "Widgets", "Network", "Qml", "Gui", "Core"}, //QuickWidgets, Widgets, Network (needed for static linking ios)
+	"Help":          {"Sql", "CLucene", "Network", "Widgets", "Gui", "Core"},      //Sql + CLucene + Network (needed for static linking ios)
+	"Location":      {"Positioning", "Quick", "Gui", "Core"},
+	"ScriptTools":   {"Script", "Widgets", "Core"}, //Script, Widgets
+	"UiTools":       {"Widgets", "Gui", "Core"},
+	"X11Extras":     {"Gui", "Core"},
+	"WinExtras":     {"Gui", "Core"},
+	"WebEngine":     {"Widgets", "WebEngineWidgets", "WebChannel", "Network", "WebEngineCore", "Quick", "Gui", "Qml", "Core"}, //Widgets, WebEngineWidgets, WebChannel, Network
+	"TestLib":       {"Widgets", "Gui", "Core"},                                                                               //Widgets, Gui
+	"SerialPort":    {"Core"},
+	"SerialBus":     {"Core"},
+	"PrintSupport":  {"Widgets", "Gui", "Core"},
 	//"PlatformHeaders": []string{}, //TODO:
-	"Designer": []string{"UiPlugin", "Widgets", "Gui", "Xml", "Core"},
-	"Scxml":    []string{"Network", "Qml", "Core"}, //Network (needed for static linking ios)
-	"Gamepad":  []string{"Gui", "Core"},
+	"Designer": {"UiPlugin", "Widgets", "Gui", "Xml", "Core"},
+	"Scxml":    {"Network", "Qml", "Core"}, //Network (needed for static linking ios)
+	"Gamepad":  {"Gui", "Core"},
 
-	"Purchasing": []string{"Core"},
+	"Purchasing": {"Core"},
 	//"DataVisualization": []string{"Gui", "Core"},
 	//"Charts":            []string{"Widgets", "Gui", "Core"},
 	//"Quick2DRenderer":   []string{}, //TODO:
 
-	"Sailfish": []string{"Core"},
+	"Sailfish": {"Core"},
 
 	parser.MOC:  make([]string, 0),
-	"build_ios": []string{"Core", "Gui", "Network", "Sql", "Xml", "DBus", "Nfc", "Script", "Sensors", "Positioning", "Widgets", "Qml", "WebSockets", "XmlPatterns", "Bluetooth", "WebChannel", "Svg", "Multimedia", "Quick", "Help", "Location", "ScriptTools", "MultimediaWidgets", "UiTools", "PrintSupport"},
+	"build_ios": {"Core", "Gui", "Network", "Sql", "Xml", "DBus", "Nfc", "Script", "Sensors", "Positioning", "Widgets", "Qml", "WebSockets", "XmlPatterns", "Bluetooth", "WebChannel", "Svg", "Multimedia", "Quick", "Help", "Location", "ScriptTools", "MultimediaWidgets", "UiTools", "PrintSupport"},
 }
 
 func isGeneric(f *parser.Function) bool {

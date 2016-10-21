@@ -81,7 +81,7 @@ func newQmlWidget() *quick.QQuickWidget {
 func initQmlContext(quickWidget *quick.QQuickWidget) {
 
 	var m = map[string]map[string]string{
-		"QmlButton": map[string]string{
+		"QmlButton": {
 			"color":        "lightGray",
 			"pressedColor": "darkGray",
 			"text":         "Call Go Function",

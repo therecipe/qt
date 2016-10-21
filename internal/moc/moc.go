@@ -131,7 +131,7 @@ func moc(appPath string) {
 										skipClass = strings.HasPrefix(fieldValue, "*")
 									}
 
-									for _ = range field.Names {
+									for range field.Names {
 
 										var _type = string(src[field.Type.Pos()-1 : field.Type.End()-1])
 										var tag = ""

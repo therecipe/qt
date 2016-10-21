@@ -42,7 +42,7 @@ func (v *Variable) toFunction(meta string) *Function {
 		Static:     v.Static,
 		Output:     "void",
 		Meta:       meta,
-		Parameters: []*Parameter{&Parameter{Value: v.Output}},
+		Parameters: []*Parameter{{Value: v.Output}},
 		TmpName:    v.Name,
 	}
 }
