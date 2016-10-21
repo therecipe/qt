@@ -85,7 +85,7 @@ Also the Qt API is brought as unaltered as possible from C++ to Go, which should
 
 	* https://golang.org/doc/install?download=go1.7.1.windows-amd64.msi
 
-2. Install Qt 5.7.0; you can also define a custom location with **QT_DIR**
+2. Install Qt 5.7.0; you can also define a custom location with **QT_DIR**. **Don't** de-select any default packages in Select Components screen.
 
 	* https://download.qt.io/official_releases/qt/5.7/5.7.0/qt-opensource-windows-x86-android-5.7.0.exe
 
