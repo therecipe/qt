@@ -161,7 +161,7 @@ func args() {
 }
 
 func moc() {
-	utils.RunCmd(exec.Command(filepath.Join(os.Getenv("GOPATH"), "bin", "qtmoc"), appPath, "cleanup"), "qtdeploy.moc")
+	utils.RunCmd(exec.Command(filepath.Join(utils.MustGoPath(), "bin", "qtmoc"), appPath, "cleanup"), "qtdeploy.moc")
 }
 
 func qrc() {
