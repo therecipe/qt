@@ -503,7 +503,9 @@ func build() {
 		{
 			if runtime.GOOS == "linux" {
 				ldFlags += "\"-s\" \"-w\" \"-H=windowsgui\""
+				tagFlags += fmt.Sprintf("\"%v\"", buildTarget)
 				outputFile = filepath.Join(depPath, appName)
+
 				env = map[string]string{
 					"PATH":   os.Getenv("PATH"),
 					"GOPATH": utils.MustGoPath(),

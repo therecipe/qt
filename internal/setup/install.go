@@ -195,6 +195,8 @@ func main() {
 
 		case "windows":
 			{
+				tagFlags = fmt.Sprintf("-tags=\"%v\"", buildTarget)
+
 				if runtime.GOOS == "linux" {
 					env = map[string]string{
 						"PATH":   os.Getenv("PATH"),
@@ -205,8 +207,8 @@ func main() {
 						"GOARCH": "386",
 
 						"CGO_ENABLED": "1",
-						"CC":          "/usr/bin/i686-w64-mingw32-gcc",
-						"CXX":         "/usr/bin/i686-w64-mingw32-g++",
+						"CC":          "/usr/lib/mxe/usr/bin/i686-w64-mingw32.shared-gcc",
+						"CXX":         "/usr/lib/mxe/usr/bin/i686-w64-mingw32.shared-g++",
 					}
 				}
 			}
