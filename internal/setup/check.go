@@ -6,7 +6,6 @@ import (
 	"os"
 	"os/exec"
 	"runtime"
-	"strings"
 
 	"github.com/therecipe/qt/internal/utils"
 )
@@ -17,20 +16,7 @@ func main() {
 		buildTarget = os.Args[1]
 	}
 
-	if _, err := ioutil.ReadDir(os.Getenv("GOPATH")); err != nil {
-		fmt.Print("\nerror:\nGOPATH not set\nsolution: define GOPATH\n\n")
-		os.Exit(1)
-	}
-
-	if strings.Contains(os.Getenv("GOPATH"), runtime.GOROOT()) {
-		fmt.Print("\nerror:\nGOPATH is or contains GOROOT\n\n")
-		os.Exit(1)
-	}
-
-	if strings.Contains(runtime.GOROOT(), os.Getenv("GOPATH")) {
-		fmt.Print("\nerror:\nGOROOT is or contains GOPATH\n\n")
-		os.Exit(1)
-	}
+	_ = utils.MustGoPath()
 
 	if _, err := ioutil.ReadDir(utils.QT_DIR()); err != nil && !(utils.UsePkgConfig() || utils.UseHomeBrew()) {
 		fmt.Printf("\nerror: Qt not found\nsolution: install Qt in \"%v\" or define QT_DIR\n\n", utils.QT_DIR())
@@ -41,7 +27,7 @@ func main() {
 	case "darwin":
 		{
 			if _, err := exec.LookPath("clang++"); err != nil {
-				fmt.Printf("\nerror: clang++ not found\nsolution: install Xcode\n\n")
+				fmt.Print("\nerror: clang++ not found\nsolution: install Xcode\n\n")
 				os.Exit(1)
 			}
 		}
@@ -49,7 +35,7 @@ func main() {
 	case "linux":
 		{
 			if _, err := exec.LookPath("g++"); err != nil {
-				fmt.Printf("\nerror: g++ not found\nsolution: sudo apt-get -y install build-essential\n\n")
+				fmt.Print("\nerror: g++ not found\nsolution: sudo apt-get -y install build-essential\n\n")
 				os.Exit(1)
 			}
 		}
@@ -57,7 +43,7 @@ func main() {
 	case "windows":
 		{
 			if _, err := exec.LookPath("g++"); err != nil {
-				fmt.Printf("\nerror: g++ not found\nsolution: add the directory that contains \"g++\" to your PATH\n\n")
+				fmt.Print("\nerror: g++ not found\nsolution: add the directory that contains \"g++\" to your PATH\n\n")
 				os.Exit(1)
 			}
 		}

@@ -3,7 +3,6 @@ package parser
 import (
 	"encoding/xml"
 	"fmt"
-	"os"
 	"path/filepath"
 
 	"github.com/therecipe/qt/internal/utils"
@@ -40,32 +39,40 @@ var (
 	SubnamespaceMap = make(map[string]bool)
 )
 
-func GetModule(s string) *Module {
+func GetModule(s string) (*Module, error) {
+
+	goPath, err := utils.GoPath()
+	if err != nil {
+		return nil, err
+	}
 
 	if s == "sailfish" {
 		var m = sailfishModule()
 		m.Prepare()
-		return m
+		return m, nil
 	}
 
 	var m = new(Module)
 	switch {
 	case utils.UseHomeBrew():
 		{
-			xml.Unmarshal([]byte(utils.Load(filepath.Join(os.Getenv("GOPATH"), "src", "github.com", "therecipe", "qt", "internal", "binding", "files", "docs", "5.7.0", fmt.Sprintf("qt%v.index", s)))), &m)
+			err = xml.Unmarshal([]byte(utils.Load(filepath.Join(goPath, "src", "github.com", "therecipe", "qt", "internal", "binding", "files", "docs", "5.7.0", fmt.Sprintf("qt%v.index", s)))), &m)
 		}
 
 	case utils.UsePkgConfig():
 		{
-			xml.Unmarshal([]byte(utils.Load(filepath.Join(utils.QT_DOC_DIR(), fmt.Sprintf("qt%v", s), fmt.Sprintf("qt%v.index", s)))), &m)
+			err = xml.Unmarshal([]byte(utils.Load(filepath.Join(utils.QT_DOC_DIR(), fmt.Sprintf("qt%v", s), fmt.Sprintf("qt%v.index", s)))), &m)
 		}
 
 	default:
 		{
-			xml.Unmarshal([]byte(utils.Load(filepath.Join(utils.QT_DIR(), "Docs", "Qt-5.7", fmt.Sprintf("qt%v", s), fmt.Sprintf("qt%v.index", s)))), &m)
+			err = xml.Unmarshal([]byte(utils.Load(filepath.Join(utils.QT_DIR(), "Docs", "Qt-5.7", fmt.Sprintf("qt%v", s), fmt.Sprintf("qt%v.index", s)))), &m)
 		}
+	}
+	if err != nil {
+		return nil, err
 	}
 
 	m.Prepare()
-	return m
+	return m, nil
 }
