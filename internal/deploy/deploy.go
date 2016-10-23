@@ -265,7 +265,7 @@ import "C"`,
 			if runtime.GOOS == "linux" {
 				return "/usr/lib/mxe/usr/i686-w64-mingw32.shared/qt5/lib"
 			}
-			return "{QT_DIR}/5.7/mingw53_32/lib"
+			return "${QT_DIR}/5.7/mingw53_32/lib"
 		}(), -1),
 		"${QT_DARWIN_DIR}", utils.QT_DARWIN_DIR(), -1),
 		"${QT_LINUX_DIR}", func() string {

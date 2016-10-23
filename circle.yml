@@ -6,6 +6,7 @@ machine:
     ANDROID: true
     QT_WINDOWS_CC: true
     GOROOT: /usr/local/go
+    GOPATH: /home/ubuntu/.go_project
     JDK_DIR: /usr/lib/jvm/java-8-openjdk-amd64
 dependencies:
   pre:
