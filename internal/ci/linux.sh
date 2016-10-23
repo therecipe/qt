@@ -34,8 +34,8 @@ fi
 
 if [ "$QT_WINDOWS_CC" == "true" ]
 then
-  #download and install qt and wine for cross compilation
-  sudo apt-get -y -qq install wine
+  #download and install qt (and wine) for cross compilation
+  #sudo apt-get -y -qq install wine
   echo "deb http://pkg.mxe.cc/repos/apt/debian wheezy main" | sudo tee --append /etc/apt/sources.list.d/mxeapt.list > /dev/null
   sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys D43A795B73B16ABE9643FE1AFD8FFF16DB45C6AB
   sudo apt-get -qq update

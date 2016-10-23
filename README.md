@@ -101,7 +101,7 @@ However it should already contain everything you need to build fully featured Qt
 
 2. Install Qt 5.7.0
 
-	* Install the official prebuild package; you can also define a custom location with **QT_DIR**. **Don't** de-select any default packages in Select Components screen.
+	* Install the official prebuilt package; you can also define a custom location with **QT_DIR**. **Don't** de-select any default packages in Select Components screen.
 		* without iOS https://download.qt.io/official_releases/qt/5.7/5.7.0/qt-opensource-mac-x64-android-5.7.0.dmg
 		* with iOS https://download.qt.io/official_releases/qt/5.7/5.7.0/qt-opensource-mac-x64-android-ios-5.7.0.dmg
 
@@ -132,7 +132,7 @@ However it should already contain everything you need to build fully featured Qt
 
 2. Install Qt 5.7.0
 
-	* Install the official prebuild package; you can also define a custom location with **QT_DIR**. **Don't** de-select any default packages in Select Components screen.
+	* Install the official prebuilt package; you can also define a custom location with **QT_DIR**. **Don't** de-select any default packages in Select Components screen.
 		* https://download.qt.io/official_releases/qt/5.7/5.7.0/qt-opensource-linux-x64-android-5.7.0.run
 
 	or
