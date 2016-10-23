@@ -14,6 +14,7 @@ import (
 
 	"golang.org/x/crypto/ssh"
 
+	"github.com/therecipe/qt/internal/binding/parser"
 	"github.com/therecipe/qt/internal/binding/templater"
 	"github.com/therecipe/qt/internal/minimal"
 	"github.com/therecipe/qt/internal/utils"
@@ -52,7 +53,7 @@ func main() {
 	}
 
 	if !buildMinimal {
-		utils.RunCmd(exec.Command(filepath.Join(os.Getenv("GOPATH"), "bin", "qtdeploy"), []string{"build", buildTarget, appPath, "minimal"}...), "build.minimal")
+		utils.RunCmd(exec.Command(filepath.Join(utils.MustGoPath(), "bin", "qtdeploy"), []string{"build", buildTarget, appPath, "minimal"}...), "build.minimal")
 	}
 }
 
@@ -106,14 +107,14 @@ func args() {
 	case "build", "run", "test":
 		{
 			switch buildTarget {
-			case "desktop", "android", "ios", "ios-simulator", "sailfish", "sailfish-emulator", "rpi1", "rpi2", "rpi3":
+			case "desktop", "android", "ios", "ios-simulator", "sailfish", "sailfish-emulator", "rpi1", "rpi2", "rpi3", "windows":
 				{
 
 				}
 
 			default:
 				{
-					fmt.Println("usage:", "qtdeploy", "[ build | run | test ]", "[ desktop | android | ios | ios-simulator | sailfish | sailfish-emulator | rpi1 | rpi2 | rpi3 ]", fmt.Sprintf("[ %v ]", filepath.Join("path", "to", "project")))
+					fmt.Println("usage:", "qtdeploy", "[ build | run | test ]", "[ desktop | android | ios | ios-simulator | sailfish | sailfish-emulator | rpi1 | rpi2 | rpi3 | windows ]", fmt.Sprintf("[ %v ]", filepath.Join("path", "to", "project")))
 					os.Exit(1)
 				}
 			}
@@ -121,7 +122,7 @@ func args() {
 
 	default:
 		{
-			fmt.Println("usage:", "qtdeploy", "[ build | run | test ]", "[ desktop | android | ios | ios-simulator | sailfish | sailfish-emulator | rpi1 | rpi2 | rpi3 ]", fmt.Sprintf("[ %v ]", filepath.Join("path", "to", "project")))
+			fmt.Println("usage:", "qtdeploy", "[ build | run | test ]", "[ desktop | android | ios | ios-simulator | sailfish | sailfish-emulator | rpi1 | rpi2 | rpi3 | windows ]", fmt.Sprintf("[ %v ]", filepath.Join("path", "to", "project")))
 			os.Exit(1)
 		}
 	}
@@ -132,7 +133,7 @@ func args() {
 	appName = filepath.Base(appPath)
 
 	switch buildTarget {
-	case "android", "ios", "ios-simulator", "sailfish", "sailfish-emulator", "rpi1", "rpi2", "rpi3":
+	case "android", "ios", "ios-simulator", "sailfish", "sailfish-emulator", "rpi1", "rpi2", "rpi3", "windows":
 		{
 			depPath = filepath.Join(appPath, "deploy", buildTarget)
 		}
@@ -155,7 +156,7 @@ func args() {
 		}
 	}
 
-	if runtime.GOOS == "windows" && buildTarget == "desktop" {
+	if runtime.GOOS == "windows" && buildTarget == "desktop" || buildTarget == "windows" {
 		ending = ".exe"
 	}
 }
@@ -186,7 +187,7 @@ func qrc() {
 			rccPath = filepath.Join(utils.QT_DIR(), "5.7", "ios", "bin", "rcc")
 		}
 
-	case "desktop", "sailfish", "sailfish-emulator", "rpi1", "rpi2", "rpi3":
+	case "desktop", "sailfish", "sailfish-emulator", "rpi1", "rpi2", "rpi3", "windows":
 		{
 			switch runtime.GOOS {
 			case "darwin":
@@ -225,10 +226,10 @@ func qrc() {
 
 func qmlHeader() string {
 
-	return strings.Replace(strings.Replace(strings.Replace(strings.Replace(strings.Replace(strings.Replace(strings.Replace(strings.Replace(strings.Replace(strings.Replace(strings.Replace(`package main
+	return strings.Replace(strings.Replace(strings.Replace(strings.Replace(strings.Replace(strings.Replace(strings.Replace(strings.Replace(strings.Replace(strings.Replace(strings.Replace(strings.Replace(`package main
 
 /*
-#cgo +build windows,386 LDFLAGS: -L${QT_DIR}/5.7/mingw53_32/lib -lQt5Core
+#cgo +build windows,386 LDFLAGS: -L${QT_WINDOWS_DIR} -lQt5Core
 
 #cgo +build !ios,darwin,amd64 LDFLAGS: -F${QT_DARWIN_DIR}/lib -framework QtCore
 
@@ -260,7 +261,13 @@ func qmlHeader() string {
 #cgo +build rpi3,linux,arm LDFLAGS: -Wl,-rpath-link,${RPI3_SYSROOT_DIR}/opt/vc/lib -Wl,-rpath-link,${RPI3_SYSROOT_DIR}/usr/lib/arm-linux-gnueabihf -Wl,-rpath-link,${RPI3_SYSROOT_DIR}/lib/arm-linux-gnueabihf -Wl,-rpath-link,${QT_DIR}/5.7/rpi3/lib -mfloat-abi=hard --sysroot=${RPI3_SYSROOT_DIR} -Wl,-O1 -Wl,--enable-new-dtags -Wl,-z,origin -L${RPI3_SYSROOT_DIR}/opt/vc/lib -L${QT_DIR}/5.7/rpi3/lib -lQt5Core
 */
 import "C"`,
-
+		"${QT_WINDOWS_DIR}", func() string {
+			if runtime.GOOS == "linux" {
+				return "/usr/lib/mxe/usr/i686-w64-mingw32.shared/qt5/lib"
+			}
+			return "{QT_DIR}/5.7/mingw53_32/lib"
+		}(), -1),
+		"${QT_DARWIN_DIR}", utils.QT_DARWIN_DIR(), -1),
 		"${QT_LINUX_DIR}", func() string {
 			if utils.UsePkgConfig() {
 				return strings.TrimSpace(utils.RunCmd(exec.Command("pkg-config", "--variable=libdir", "Qt5Core"), "qmlHeader.LinuxPkgConfig_libDir"))
@@ -268,7 +275,6 @@ import "C"`,
 			return "${QT_DIR}/5.7/gcc_64/lib"
 		}(), -1),
 		"${QT_DIR}", utils.QT_DIR(), -1),
-		"${QT_DARWIN_DIR}", utils.QT_DARWIN_DIR(), -1),
 		"${RPI1_SYSROOT_DIR}", utils.RPI1_SYSROOT_DIR(), -1),
 		"${RPI2_SYSROOT_DIR}", utils.RPI2_SYSROOT_DIR(), -1),
 		"${RPI3_SYSROOT_DIR}", utils.RPI3_SYSROOT_DIR(), -1),
@@ -306,7 +312,7 @@ func build() {
 				{
 					env = map[string]string{
 						"PATH":   os.Getenv("PATH"),
-						"GOPATH": os.Getenv("GOPATH"),
+						"GOPATH": utils.MustGoPath(),
 						"GOROOT": runtime.GOROOT(),
 
 						"GOOS":   "android",
@@ -325,7 +331,7 @@ func build() {
 				{
 					env = map[string]string{
 						"PATH":   os.Getenv("PATH"),
-						"GOPATH": os.Getenv("GOPATH"),
+						"GOPATH": utils.MustGoPath(),
 						"GOROOT": runtime.GOROOT(),
 
 						"TMP":  os.Getenv("TMP"),
@@ -362,25 +368,25 @@ func build() {
 					return "amd64"
 				}()
 
-				CLANGARCH, CLANGDIR_BASE, CLANGDIR, CLANGFLAG = func() (string, string, string, string) {
+				ClangDir, ClangPlatform, ClangFlag, ClangArch = func() (string, string, string, string) {
 					if buildTarget == "ios" {
-						return "arm64", "iPhoneOS", utils.IPHONEOS_SDK_DIR(), "iphoneos"
+						return "iPhoneOS", utils.IPHONEOS_SDK_DIR(), "iphoneos", "arm64"
 					}
-					return "x86_64", "iPhoneSimulator", utils.IPHONESIMULATOR_SDK_DIR(), "ios-simulator"
+					return "iPhoneSimulator", utils.IPHONESIMULATOR_SDK_DIR(), "ios-simulator", "x86_64"
 				}()
 			)
 
 			env = map[string]string{
 				"PATH":   os.Getenv("PATH"),
-				"GOPATH": os.Getenv("GOPATH"),
+				"GOPATH": utils.MustGoPath(),
 				"GOROOT": runtime.GOROOT(),
 
 				"GOOS":   runtime.GOOS,
 				"GOARCH": GOARCH,
 
 				"CGO_ENABLED":  "1",
-				"CGO_CPPFLAGS": fmt.Sprintf("-isysroot %v/Contents/Developer/Platforms/%v.platform/Developer/SDKs/%v -m%v-version-min=7.0 -arch %v", utils.XCODE_DIR(), CLANGDIR_BASE, CLANGDIR, CLANGFLAG, CLANGARCH),
-				"CGO_LDFLAGS":  fmt.Sprintf("-isysroot %v/Contents/Developer/Platforms/%v.platform/Developer/SDKs/%v -m%v-version-min=7.0 -arch %v", utils.XCODE_DIR(), CLANGDIR_BASE, CLANGDIR, CLANGFLAG, CLANGARCH),
+				"CGO_CPPFLAGS": fmt.Sprintf("-isysroot %v/Contents/Developer/Platforms/%v.platform/Developer/SDKs/%v -m%v-version-min=7.0 -arch %v", utils.XCODE_DIR(), ClangDir, ClangPlatform, ClangFlag, ClangArch),
+				"CGO_LDFLAGS":  fmt.Sprintf("-isysroot %v/Contents/Developer/Platforms/%v.platform/Developer/SDKs/%v -m%v-version-min=7.0 -arch %v", utils.XCODE_DIR(), ClangDir, ClangPlatform, ClangFlag, ClangArch),
 			}
 
 			utils.Save(filepath.Join(appPath, "cgo_main_wrapper.go"), "package main\nimport \"C\"\n//export go_main_wrapper\nfunc go_main_wrapper() { main() }")
@@ -407,7 +413,7 @@ func build() {
 					outputFile = filepath.Join(depPath, appName)
 					env = map[string]string{
 						"PATH":   os.Getenv("PATH"),
-						"GOPATH": os.Getenv("GOPATH"),
+						"GOPATH": utils.MustGoPath(),
 						"GOROOT": runtime.GOROOT(),
 
 						"TMP":  os.Getenv("TMP"),
@@ -424,14 +430,14 @@ func build() {
 
 	case "sailfish", "sailfish-emulator":
 		{
-			if !strings.Contains(appPath, os.Getenv("GOPATH")) {
-				fmt.Println("Project needs to be inside GOPATH", appPath, os.Getenv("GOPATH"))
+			if !strings.Contains(appPath, utils.MustGoPath()) {
+				fmt.Println("Project needs to be inside GOPATH", appPath, utils.MustGoPath())
 				os.Exit(1)
 			}
 
 			utils.RunCmdOptional(exec.Command(filepath.Join(utils.VIRTUALBOX_DIR(), "vboxmanage"), "registervm", filepath.Join(utils.SAILFISH_DIR(), "mersdk", "MerSDK", "MerSDK.vbox")), "buid.vboxRegisterSDK")
 			utils.RunCmdOptional(exec.Command(filepath.Join(utils.VIRTUALBOX_DIR(), "vboxmanage"), "sharedfolder", "add", "MerSDK", "--name", "GOROOT", "--hostpath", runtime.GOROOT(), "--automount"), "buid.vboxSharedFolder_GOROOT")
-			utils.RunCmdOptional(exec.Command(filepath.Join(utils.VIRTUALBOX_DIR(), "vboxmanage"), "sharedfolder", "add", "MerSDK", "--name", "GOPATH", "--hostpath", os.Getenv("GOPATH"), "--automount"), "buid.vboxSharedFolder_GOPATH")
+			utils.RunCmdOptional(exec.Command(filepath.Join(utils.VIRTUALBOX_DIR(), "vboxmanage"), "sharedfolder", "add", "MerSDK", "--name", "GOPATH", "--hostpath", utils.MustGoPath(), "--automount"), "buid.vboxSharedFolder_GOPATH")
 
 			if runtime.GOOS == "windows" {
 				utils.RunCmdOptional(exec.Command(filepath.Join(utils.VIRTUALBOX_DIR(), "vboxmanage"), "startvm", "--type", "headless", "MerSDK"), "build.vboxStartSDK")
@@ -446,7 +452,7 @@ func build() {
 				sshCommand("2222", "root", "ln", "-s", "/opt/cross/bin/i486-meego-linux-gnu-as", "/opt/cross/libexec/gcc/i486-meego-linux-gnu/4.8.3/as")
 				sshCommand("2222", "root", "ln", "-s", "/opt/cross/bin/i486-meego-linux-gnu-ld", "/opt/cross/libexec/gcc/i486-meego-linux-gnu/4.8.3/ld")
 
-				var errBuild = sshCommand("2222", "root", "cd", strings.Replace(strings.Replace(appPath, os.Getenv("GOPATH"), "/media/sf_GOPATH", -1), "\\", "/", -1), "&&", "GOROOT=/media/sf_GOROOT", "GOPATH=/media/sf_GOPATH", "PATH=$PATH:$GOROOT/bin/linux_386", "GOOS=linux", "GOARCH=386", "CGO_ENABLED=1", "CC=/opt/cross/bin/i486-meego-linux-gnu-gcc", "CXX=/opt/cross/bin/i486-meego-linux-gnu-g++", "CPATH=/srv/mer/targets/SailfishOS-i486/usr/include", "LIBRARY_PATH=/srv/mer/targets/SailfishOS-i486/usr/lib:/srv/mer/targets/SailfishOS-i486/lib", "CGO_LDFLAGS=--sysroot=/srv/mer/targets/SailfishOS-i486/", "go", "build", "-ldflags=\"-s -w\"", "-tags=\"minimal sailfish_emulator\"", fmt.Sprintf("-installsuffix=%v", strings.Replace(buildTarget, "-", "_", -1)), "-o", "deploy/"+buildTarget+"_minimal/harbour-"+appName)
+				var errBuild = sshCommand("2222", "root", "cd", strings.Replace(strings.Replace(appPath, utils.MustGoPath(), "/media/sf_GOPATH", -1), "\\", "/", -1), "&&", "GOROOT=/media/sf_GOROOT", "GOPATH=/media/sf_GOPATH", "PATH=$PATH:$GOROOT/bin/linux_386", "GOOS=linux", "GOARCH=386", "CGO_ENABLED=1", "CC=/opt/cross/bin/i486-meego-linux-gnu-gcc", "CXX=/opt/cross/bin/i486-meego-linux-gnu-g++", "CPATH=/srv/mer/targets/SailfishOS-i486/usr/include", "LIBRARY_PATH=/srv/mer/targets/SailfishOS-i486/usr/lib:/srv/mer/targets/SailfishOS-i486/lib", "CGO_LDFLAGS=--sysroot=/srv/mer/targets/SailfishOS-i486/", "go", "build", "-ldflags=\"-s -w\"", "-tags=\"minimal sailfish_emulator\"", fmt.Sprintf("-installsuffix=%v", strings.Replace(buildTarget, "-", "_", -1)), "-o", "deploy/"+buildTarget+"_minimal/harbour-"+appName)
 				if errBuild != nil {
 					fmt.Println("build.Sailfish", errBuild)
 					cleanup()
@@ -457,7 +463,7 @@ func build() {
 				sshCommand("2222", "root", "ln", "-s", "/opt/cross/bin/armv7hl-meego-linux-gnueabi-as", "/opt/cross/libexec/gcc/armv7hl-meego-linux-gnueabi/4.8.3/as")
 				sshCommand("2222", "root", "ln", "-s", "/opt/cross/bin/armv7hl-meego-linux-gnueabi-ld", "/opt/cross/libexec/gcc/armv7hl-meego-linux-gnueabi/4.8.3/ld")
 
-				var errBuild = sshCommand("2222", "root", "cd", strings.Replace(strings.Replace(appPath, os.Getenv("GOPATH"), "/media/sf_GOPATH", -1), "\\", "/", -1), "&&", "GOROOT=/media/sf_GOROOT", "GOPATH=/media/sf_GOPATH", "PATH=$PATH:$GOROOT/bin/linux_386", "GOOS=linux", "GOARCH=arm", "GOARM=7", "CGO_ENABLED=1", "CC=/opt/cross/bin/armv7hl-meego-linux-gnueabi-gcc", "CXX=/opt/cross/bin/armv7hl-meego-linux-gnueabi-g++", "CPATH=/srv/mer/targets/SailfishOS-armv7hl/usr/include", "LIBRARY_PATH=/srv/mer/targets/SailfishOS-armv7hl/usr/lib:/srv/mer/targets/SailfishOS-armv7hl/lib", "CGO_LDFLAGS=--sysroot=/srv/mer/targets/SailfishOS-armv7hl/", "go", "build", "-ldflags=\"-s -w\"", "-tags=\"minimal sailfish\"", fmt.Sprintf("-installsuffix=%v", buildTarget), "-o", "deploy/"+buildTarget+"_minimal/harbour-"+appName)
+				var errBuild = sshCommand("2222", "root", "cd", strings.Replace(strings.Replace(appPath, utils.MustGoPath(), "/media/sf_GOPATH", -1), "\\", "/", -1), "&&", "GOROOT=/media/sf_GOROOT", "GOPATH=/media/sf_GOPATH", "PATH=$PATH:$GOROOT/bin/linux_386", "GOOS=linux", "GOARCH=arm", "GOARM=7", "CGO_ENABLED=1", "CC=/opt/cross/bin/armv7hl-meego-linux-gnueabi-gcc", "CXX=/opt/cross/bin/armv7hl-meego-linux-gnueabi-g++", "CPATH=/srv/mer/targets/SailfishOS-armv7hl/usr/include", "LIBRARY_PATH=/srv/mer/targets/SailfishOS-armv7hl/usr/lib:/srv/mer/targets/SailfishOS-armv7hl/lib", "CGO_LDFLAGS=--sysroot=/srv/mer/targets/SailfishOS-armv7hl/", "go", "build", "-ldflags=\"-s -w\"", "-tags=\"minimal sailfish\"", fmt.Sprintf("-installsuffix=%v", buildTarget), "-o", "deploy/"+buildTarget+"_minimal/harbour-"+appName)
 				if errBuild != nil {
 					fmt.Println("build.Sailfish", errBuild)
 					cleanup()
@@ -476,7 +482,7 @@ func build() {
 
 			env = map[string]string{
 				"PATH":   os.Getenv("PATH"),
-				"GOPATH": os.Getenv("GOPATH"),
+				"GOPATH": utils.MustGoPath(),
 				"GOROOT": runtime.GOROOT(),
 
 				"GOOS":   "linux",
@@ -490,6 +496,26 @@ func build() {
 
 			if buildTarget == "rpi1" {
 				env["GOARM"] = "6"
+			}
+		}
+
+	case "windows":
+		{
+			if runtime.GOOS == "linux" {
+				ldFlags += "\"-s\" \"-w\" \"-H=windowsgui\""
+				outputFile = filepath.Join(depPath, appName)
+				env = map[string]string{
+					"PATH":   os.Getenv("PATH"),
+					"GOPATH": utils.MustGoPath(),
+					"GOROOT": runtime.GOROOT(),
+
+					"GOOS":   "windows",
+					"GOARCH": "386",
+
+					"CGO_ENABLED": "1",
+					"CC":          "/usr/lib/mxe/usr/bin/i686-w64-mingw32.shared-gcc",
+					"CXX":         "/usr/lib/mxe/usr/bin/i686-w64-mingw32.shared-g++",
+				}
 			}
 		}
 	}
@@ -726,7 +752,7 @@ func predeploy() {
 				fmt.Println("predeploy.clean", errClean)
 			}
 
-			var errCopy = sshCommand("2222", "mersdk", "cd", strings.Replace(strings.Replace(appPath, os.Getenv("GOPATH"), "/media/sf_GOPATH", -1)+"/deploy", "\\", "/", -1), "&&", "cp", "-R", buildTarget+"_minimal", "/home/mersdk")
+			var errCopy = sshCommand("2222", "mersdk", "cd", strings.Replace(strings.Replace(appPath, utils.MustGoPath(), "/media/sf_GOPATH", -1)+"/deploy", "\\", "/", -1), "&&", "cp", "-R", buildTarget+"_minimal", "/home/mersdk")
 			if errCopy != nil {
 				fmt.Println("predeploy.copy", errCopy)
 				cleanup()
@@ -777,10 +803,45 @@ func deploy() {
 			utils.RunCmd(exec.Command("xcrun", "xcodebuild", "clean", "build", "CODE_SIGN_IDENTITY=", "CODE_SIGNING_REQUIRED=NO", "CONFIGURATION_BUILD_DIR="+depPath, "-configuration", "Release", "-project", filepath.Join(depPath, "build", "project.xcodeproj")), "deploy")
 		}
 
-	case "desktop", "rpi1", "rpi2", "rpi3":
+	case "desktop", "rpi1", "rpi2", "rpi3", "windows":
 		{
-			switch runtime.GOOS {
-			case "darwin":
+			switch {
+			case buildTarget == "windows":
+				{
+					if runtime.GOOS == "linux" {
+						var libraryPath = "/usr/lib/mxe/usr/i686-w64-mingw32.shared/bin/"
+						for _, d := range []string{"libbz2", "libfreetype-6", "libgcc_s_sjlj-1", "libglib-2.0-0", "libharfbuzz-0", "libiconv-2", "libintl-8", "libpcre-1", "libpcre16-0", "libpng16-16", "libstdc++-6", "libwinpthread-1", "zlib1", "libeay32", "ssleay32"} {
+							utils.RunCmdOptional(exec.Command("cp", filepath.Join(libraryPath, fmt.Sprintf("%v.dll", d)), depPath), "deploy.cpWindowsDlls")
+						}
+
+						libraryPath = "/usr/lib/mxe/usr/i686-w64-mingw32.shared/qt5/"
+						utils.RunCmd(exec.Command("cp", "-R", filepath.Join(libraryPath, "qml/")+"/.", depPath), "deploy.cpQml")
+						utils.RunCmd(exec.Command("cp", "-R", filepath.Join(libraryPath, "plugins/")+"/.", depPath), "deploy.cpPlugins")
+
+						libraryPath = "/usr/lib/mxe/usr/i686-w64-mingw32.shared/qt5/bin/"
+						var output = utils.RunCmd(exec.Command("/usr/lib/mxe/usr/bin/i686-w64-mingw32.shared-objdump", "-x", filepath.Join(depPath, appName+ending)), "deploy.cpWindowsDeps")
+						for lib, deps := range templater.LibDeps {
+							if strings.Contains(output, lib) && lib != parser.MOC {
+								for _, lib := range append(deps, lib) {
+									utils.RunCmd(exec.Command("cp", filepath.Join(libraryPath, fmt.Sprintf("Qt5%v.dll", lib)), depPath), "deploy.cpWindowsDlls")
+								}
+							}
+						}
+						utils.RunCmd(exec.Command("cp", filepath.Join(libraryPath, "Qt5OpenGL.dll"), depPath), "deploy.cpWindowsDlls")
+					}
+				}
+
+			case runtime.GOOS == "windows":
+				{
+					var deploy = exec.Command(filepath.Join(utils.QT_DIR(), "5.7", "mingw53_32", "bin", "windeployqt"))
+					deploy.Args = append(deploy.Args,
+						filepath.Join(depPath, appName+ending),
+						fmt.Sprintf("-qmldir=%v", filepath.Join(appPath, "qml")),
+						"-force")
+					utils.RunCmd(deploy, "deploy")
+				}
+
+			case runtime.GOOS == "darwin":
 				{
 					if utils.UseHomeBrew() {
 						return
@@ -795,7 +856,7 @@ func deploy() {
 					utils.RunCmd(deploy, "deploy")
 				}
 
-			case "linux":
+			case runtime.GOOS == "linux":
 				{
 					if utils.UsePkgConfig() {
 						return
@@ -843,16 +904,6 @@ func deploy() {
 
 					utils.RunCmd(exec.Command("cp", "-R", filepath.Join(libraryPath, "qml/"), depPath), "deploy.qml")
 					utils.RunCmd(exec.Command("cp", "-R", filepath.Join(libraryPath, "plugins/")+"/.", depPath), "deploy.plugins")
-				}
-
-			case "windows":
-				{
-					var deploy = exec.Command(filepath.Join(utils.QT_DIR(), "5.7", "mingw53_32", "bin", "windeployqt"))
-					deploy.Args = append(deploy.Args,
-						filepath.Join(depPath, appName+ending),
-						fmt.Sprintf("-qmldir=%v", filepath.Join(appPath, "qml")),
-						"-force")
-					utils.RunCmd(deploy, "deploy")
 				}
 			}
 		}
@@ -930,7 +981,7 @@ func pastdeploy() {
 
 	case "sailfish", "sailfish-emulator":
 		{
-			var errPastDeploy = sshCommand("2222", "mersdk", "cd", "/home/mersdk/"+buildTarget+"_minimal/RPMS", "&&", "cp", "*", strings.Replace(strings.Replace(depPath, os.Getenv("GOPATH"), "/media/sf_GOPATH", -1), "\\", "/", -1))
+			var errPastDeploy = sshCommand("2222", "mersdk", "cd", "/home/mersdk/"+buildTarget+"_minimal/RPMS", "&&", "cp", "*", strings.Replace(strings.Replace(depPath, utils.MustGoPath(), "/media/sf_GOPATH", -1), "\\", "/", -1))
 			if errPastDeploy != nil {
 				fmt.Println("pastdeploy.sailfish", errPastDeploy)
 				cleanup()
@@ -973,7 +1024,7 @@ func run() {
 			utils.RunCmd(exec.Command("xcrun", "simctl", "launch", "booted", fmt.Sprintf("com.identifier.%v", appName)), "run.launch")
 		}
 
-	case "desktop":
+	case "desktop", "windows":
 		{
 			switch runtime.GOOS {
 			case "darwin":
@@ -983,7 +1034,11 @@ func run() {
 
 			case "linux":
 				{
-					exec.Command(filepath.Join(depPath, fmt.Sprintf("%v.sh", appName))).Start()
+					if buildTarget == "windows" {
+						exec.Command("wine", filepath.Join(depPath, appName+ending)).Start()
+					} else {
+						exec.Command(filepath.Join(depPath, fmt.Sprintf("%v.sh", appName))).Start()
+					}
 				}
 
 			case "windows":
@@ -996,7 +1051,7 @@ func run() {
 	case /*"sailfish",*/ "sailfish-emulator":
 		{
 			utils.RunCmdOptional(exec.Command(filepath.Join(utils.VIRTUALBOX_DIR(), "vboxmanage"), "registervm", filepath.Join(utils.SAILFISH_DIR(), "emulator", "SailfishOS Emulator", "SailfishOS Emulator.vbox")), "buid.vboxRegisterEmulator")
-			utils.RunCmdOptional(exec.Command(filepath.Join(utils.VIRTUALBOX_DIR(), "vboxmanage"), "sharedfolder", "add", "SailfishOS Emulator", "--name", "GOPATH", "--hostpath", os.Getenv("GOPATH"), "--automount"), "run.vboxSharedFolder_GOPATH")
+			utils.RunCmdOptional(exec.Command(filepath.Join(utils.VIRTUALBOX_DIR(), "vboxmanage"), "sharedfolder", "add", "SailfishOS Emulator", "--name", "GOPATH", "--hostpath", utils.MustGoPath(), "--automount"), "run.vboxSharedFolder_GOPATH")
 
 			if runtime.GOOS == "windows" {
 				utils.RunCmdOptional(exec.Command(filepath.Join(utils.VIRTUALBOX_DIR(), "vboxmanage"), "startvm", "SailfishOS Emulator"), "run.vboxStartEmulator")
@@ -1006,7 +1061,7 @@ func run() {
 
 			time.Sleep(10 * time.Second)
 
-			var errInstall = sshCommand("2223", "nemo", "sudo", "rpm", "-i", "--force", strings.Replace(strings.Replace(depPath, os.Getenv("GOPATH"), "/media/sf_GOPATH", -1)+"/*.rpm", "\\", "/", -1))
+			var errInstall = sshCommand("2223", "nemo", "sudo", "rpm", "-i", "--force", strings.Replace(strings.Replace(depPath, utils.MustGoPath(), "/media/sf_GOPATH", -1)+"/*.rpm", "\\", "/", -1))
 			if errInstall != nil {
 				fmt.Println("run.install", errInstall)
 				cleanup()

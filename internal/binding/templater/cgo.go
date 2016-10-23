@@ -25,7 +25,11 @@ func CopyCgo(module string) {
 
 	if !(strings.Contains(module, "droid") || strings.Contains(module, "fish")) {
 		cgoDarwin(module)
-		cgoWindows(module)
+		if runtime.GOOS == "windows" {
+			cgoWindows(module)
+		} else {
+			cgoWindowsForLinux(module)
+		}
 		if utils.UsePkgConfig() {
 			cgoLinuxPkgConfig(module)
 		} else {
@@ -138,6 +142,7 @@ func cgoWindows(module string) {
 	for _, m := range libs {
 		fmt.Fprintf(bb, " -DQT_%v_LIB", strings.ToUpper(m))
 	}
+	fmt.Fprint(bb, " -DQT_NEEDS_QMAIN")
 	fmt.Fprint(bb, "\n")
 
 	fmt.Fprintf(bb, "#cgo CXXFLAGS: -I%v/5.7/mingw53_32/include -I%v/5.7/mingw53_32/mkspecs/win32-g++\n", QT_DIR(), QT_DIR())
@@ -151,6 +156,61 @@ func cgoWindows(module string) {
 	fmt.Fprint(bb, "#cgo LDFLAGS: -Wl,-s -Wl,-subsystem,windows -mthreads -Wl,--allow-multiple-definition\n")
 
 	fmt.Fprintf(bb, "#cgo LDFLAGS: -L%v/5.7/mingw53_32/lib", QT_DIR())
+	for _, m := range libs {
+		if m != "UiPlugin" {
+			fmt.Fprintf(bb, " -lQt5%v", m)
+		}
+	}
+
+	fmt.Fprint(bb, " -lmingw32 -lqtmain -lshell32\n")
+	fmt.Fprint(bb, "*/\n")
+
+	fmt.Fprint(bb, "import \"C\"\n")
+
+	if module == parser.MOC {
+		utils.Save(filepath.Join(MocAppPath, "moc_cgo_desktop_windows_386.go"), bb.String())
+	} else {
+		utils.Save(utils.GoQtPkgPath(strings.ToLower(module), "cgo_desktop_windows_386.go"), bb.String())
+	}
+}
+
+func cgoWindowsForLinux(module string) {
+	var (
+		bb     = new(bytes.Buffer)
+		libs   = cleanLibs(module)
+		QT_DIR = func() string { return "/usr/lib/mxe/usr/i686-w64-mingw32.shared/qt5" }
+	)
+	defer bb.Reset()
+
+	fmt.Fprintf(bb, "package %v\n\n", func() string {
+		if MocModule != "" {
+			return MocModule
+		}
+		return strings.ToLower(module)
+	}())
+	fmt.Fprint(bb, "/*\n")
+
+	fmt.Fprint(bb, "#cgo CFLAGS: -pipe -fno-keep-inline-dllexport -O2 -Wall -Wextra\n")
+	fmt.Fprint(bb, "#cgo CXXFLAGS: -pipe -fno-keep-inline-dllexport -O2 -std=gnu++11 -frtti -Wall -Wextra -fexceptions -mthreads\n")
+
+	fmt.Fprint(bb, "#cgo CXXFLAGS: -DUNICODE -DQT_NO_DEBUG")
+	for _, m := range libs {
+		fmt.Fprintf(bb, " -DQT_%v_LIB", strings.ToUpper(m))
+	}
+	fmt.Fprint(bb, " -DQT_NEEDS_QMAIN")
+	fmt.Fprint(bb, "\n")
+
+	fmt.Fprintf(bb, "#cgo CXXFLAGS: -I%v/include -I%v/mkspecs/win32-g++\n", QT_DIR(), QT_DIR())
+
+	fmt.Fprint(bb, "#cgo CXXFLAGS:")
+	for _, m := range libs {
+		fmt.Fprintf(bb, " -I%v/include/Qt%v", QT_DIR(), m)
+	}
+	fmt.Fprint(bb, "\n\n")
+
+	fmt.Fprint(bb, "#cgo LDFLAGS: -Wl,-s -Wl,-subsystem,windows -mthreads -Wl,--allow-multiple-definition\n")
+
+	fmt.Fprintf(bb, "#cgo LDFLAGS: -lglu32 -lopengl32 -lgdi32 -luser32 -L%v/lib", QT_DIR())
 	for _, m := range libs {
 		if m != "UiPlugin" {
 			fmt.Fprintf(bb, " -lQt5%v", m)

@@ -12,6 +12,7 @@ import (
 	"github.com/therecipe/qt/internal/binding/converter"
 	"github.com/therecipe/qt/internal/binding/parser"
 	"github.com/therecipe/qt/internal/binding/templater"
+	"github.com/therecipe/qt/internal/utils"
 )
 
 var BuildTarget string
@@ -31,7 +32,7 @@ func Minimal(path string) error {
 			} else {
 				for _, i := range pFile.Imports {
 					if !strings.Contains(i.Path.Value, "github.com/therecipe/qt") {
-						var path = filepath.Join(os.Getenv("GOPATH"), "src", strings.Replace(i.Path.Value, "\"", "", -1))
+						var path = filepath.Join(utils.MustGoPath(), "src", strings.Replace(i.Path.Value, "\"", "", -1))
 						if _, err := ioutil.ReadDir(path); err == nil {
 							if !isImported(imported, path) {
 								imported = append(imported, path)

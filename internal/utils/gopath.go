@@ -1,13 +1,13 @@
 package utils
 
 import (
-	"os"
-	"strings"
-	"io/ioutil"
-	"fmt"
 	"errors"
-	"runtime"
+	"fmt"
+	"io/ioutil"
+	"os"
 	"path/filepath"
+	"runtime"
+	"strings"
 )
 
 const packageName = "github.com/therecipe/qt"
@@ -30,7 +30,7 @@ func MustGoPath() string {
 }
 
 // GoPath return the GOPATH where hold this package.
-func GoPath() (goPath string , err error) {
+func GoPath() (goPath string, err error) {
 	goPaths := os.Getenv("GOPATH")
 	if len(goPaths) == 0 {
 		err = errors.New("GOPATH environment variable is unset")
@@ -38,7 +38,7 @@ func GoPath() (goPath string , err error) {
 	}
 
 	tries := make([]string, 0)
-	for _, path := range strings.Split(goPaths, ":") {
+	for _, path := range strings.Split(goPaths, string(os.PathListSeparator)) {
 		if _, err = ioutil.ReadDir(path); err != nil {
 			err = fmt.Errorf("GOPATH %q point to a non-existing directory", path)
 			return

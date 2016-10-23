@@ -37,7 +37,7 @@ func main() {
 					{
 						env = map[string]string{
 							"PATH":   os.Getenv("PATH"),
-							"GOPATH": os.Getenv("GOPATH"),
+							"GOPATH": utils.MustGoPath(),
 							"GOROOT": runtime.GOROOT(),
 
 							"GOOS":   "android",
@@ -56,7 +56,7 @@ func main() {
 					{
 						env = map[string]string{
 							"PATH":   os.Getenv("PATH"),
-							"GOPATH": os.Getenv("GOPATH"),
+							"GOPATH": utils.MustGoPath(),
 							"GOROOT": runtime.GOROOT(),
 
 							"TMP":  os.Getenv("TMP"),
@@ -89,25 +89,25 @@ func main() {
 						return "amd64"
 					}()
 
-					CLANGARCH, CLANGDIR_BASE, CLANGDIR, CLANGFLAG = func() (string, string, string, string) {
+					ClangDir, ClangPlatform, ClangFlag, ClangArch = func() (string, string, string, string) {
 						if buildTarget == "ios" {
-							return "arm64", "iPhoneOS", utils.IPHONEOS_SDK_DIR(), "iphoneos"
+							return "iPhoneOS", utils.IPHONEOS_SDK_DIR(), "iphoneos", "arm64"
 						}
-						return "x86_64", "iPhoneSimulator", utils.IPHONESIMULATOR_SDK_DIR(), "ios-simulator"
+						return "iPhoneSimulator", utils.IPHONESIMULATOR_SDK_DIR(), "ios-simulator", "x86_64"
 					}()
 				)
 
 				env = map[string]string{
 					"PATH":   os.Getenv("PATH"),
-					"GOPATH": os.Getenv("GOPATH"),
+					"GOPATH": utils.MustGoPath(),
 					"GOROOT": runtime.GOROOT(),
 
 					"GOOS":   runtime.GOOS,
 					"GOARCH": GOARCH,
 
 					"CGO_ENABLED":  "1",
-					"CGO_CPPFLAGS": fmt.Sprintf("-isysroot %v/Contents/Developer/Platforms/%v.platform/Developer/SDKs/%v -m%v-version-min=7.0 -arch %v", utils.XCODE_DIR(), CLANGDIR_BASE, CLANGDIR, CLANGFLAG, CLANGARCH),
-					"CGO_LDFLAGS":  fmt.Sprintf("-isysroot %v/Contents/Developer/Platforms/%v.platform/Developer/SDKs/%v -m%v-version-min=7.0 -arch %v", utils.XCODE_DIR(), CLANGDIR_BASE, CLANGDIR, CLANGFLAG, CLANGARCH),
+					"CGO_CPPFLAGS": fmt.Sprintf("-isysroot %v/Contents/Developer/Platforms/%v.platform/Developer/SDKs/%v -m%v-version-min=7.0 -arch %v", utils.XCODE_DIR(), ClangDir, ClangPlatform, ClangFlag, ClangArch),
+					"CGO_LDFLAGS":  fmt.Sprintf("-isysroot %v/Contents/Developer/Platforms/%v.platform/Developer/SDKs/%v -m%v-version-min=7.0 -arch %v", utils.XCODE_DIR(), ClangDir, ClangPlatform, ClangFlag, ClangArch),
 				}
 			}
 
@@ -117,7 +117,7 @@ func main() {
 				if runtime.GOOS == "windows" {
 					env = map[string]string{
 						"PATH":   os.Getenv("PATH"),
-						"GOPATH": os.Getenv("GOPATH"),
+						"GOPATH": utils.MustGoPath(),
 						"GOROOT": runtime.GOROOT(),
 
 						"TMP":  os.Getenv("TMP"),
@@ -137,7 +137,7 @@ func main() {
 
 				env = map[string]string{
 					"PATH":   os.Getenv("PATH"),
-					"GOPATH": os.Getenv("GOPATH"),
+					"GOPATH": utils.MustGoPath(),
 					"GOROOT": runtime.GOROOT(),
 
 					"GOOS":   "linux",
@@ -176,7 +176,7 @@ func main() {
 
 				env = map[string]string{
 					"PATH":   os.Getenv("PATH"),
-					"GOPATH": os.Getenv("GOPATH"),
+					"GOPATH": utils.MustGoPath(),
 					"GOROOT": runtime.GOROOT(),
 
 					"GOOS":   "linux",
@@ -190,6 +190,24 @@ func main() {
 
 				if buildTarget == "rpi1" {
 					env["GOARM"] = "6"
+				}
+			}
+
+		case "windows":
+			{
+				if runtime.GOOS == "linux" {
+					env = map[string]string{
+						"PATH":   os.Getenv("PATH"),
+						"GOPATH": utils.MustGoPath(),
+						"GOROOT": runtime.GOROOT(),
+
+						"GOOS":   "windows",
+						"GOARCH": "386",
+
+						"CGO_ENABLED": "1",
+						"CC":          "/usr/bin/i686-w64-mingw32-gcc",
+						"CXX":         "/usr/bin/i686-w64-mingw32-g++",
+					}
 				}
 			}
 		}
