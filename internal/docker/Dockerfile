@@ -10,6 +10,7 @@ RUN apt-get -qq update && apt-get -y -qq install curl git software-properties-co
 
 
 RUN add-apt-repository -y ppa:ubuntu-toolchain-r/test && apt-get -qq update && apt-get -y -qq install gcc-5 g++-5 && apt-get -qq clean
+RUN ln -s /usr/bin/gcc-5 /usr/bin/gcc && ln -s /usr/bin/g++-5 /usr/bin/g++
 
 
 ENV QT qt-opensource-linux-x64-android-5.7.0.run
