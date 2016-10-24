@@ -28,8 +28,8 @@ ENV GOPATH $HOME/work
 RUN go get -d github.com/therecipe/qt
 RUN go get -d golang.org/x/crypto/ssh
 RUN go get -d github.com/emirpasic/gods/lists/arraylist
-RUN go build -o /usr/local/bin/qtdeploy $GOPATH/src/github.com/therecipe/qt/internal/deploy
-RUN go build -o /usr/local/bin/qtmoc $GOPATH/src/github.com/therecipe/qt/internal/moc
+RUN go build -o /usr/local/bin/qtdeploy $GOPATH/src/github.com/therecipe/qt/internal/deploy/deploy.go
+RUN go build -o /usr/local/bin/qtmoc $GOPATH/src/github.com/therecipe/qt/internal/moc/moc.go
 
 
 ENV QT_DIR /opt/Qt5.7.0

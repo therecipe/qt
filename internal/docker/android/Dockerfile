@@ -6,8 +6,7 @@ RUN add-apt-repository -y ppa:openjdk-r/ppa && apt-get -qq update && apt-get -y 
 
 
 ENV SDK android-sdk_r24.4.1-linux.tgz
-RUN curl -sL --retry 10 --retry-delay 10 -o /tmp/$SDK https://dl.google.com/android/$SDK && tar -xzf /tmp/$SDK -C $HOME && rm -f /tmp/$SDK && $HOME/android-sdk-linux/tools/android list sdk && echo "y" | $HOME/android-sdk-linux/tools/android -s update sdk -f -u -t 1,2,3,5 && && rm -f /tmp/$SDK
-RUN unzip $HOME/android-sdk-linux/temp/tools_r25.2.2-linux.zip -d $HOME/android-sdk-linux/
+RUN curl -sL --retry 10 --retry-delay 10 -o /tmp/$SDK https://dl.google.com/android/$SDK && tar -xzf /tmp/$SDK -C $HOME && rm -f /tmp/$SDK && $HOME/android-sdk-linux/tools/android list sdk && echo "y" | $HOME/android-sdk-linux/tools/android -s update sdk -f -u -t 1,2,3,5 && rm -f /tmp/$SDK
 
 
 ENV NDK android-ndk-r12b-linux-x86_64.zip
