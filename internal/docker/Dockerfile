@@ -29,5 +29,6 @@ RUN go get -d golang.org/x/crypto/ssh
 RUN go get -d github.com/emirpasic/gods/lists/arraylist
 
 
+ENV QT_DIR /opt/Qt5.7.0
 RUN go run $GOPATH/src/github.com/therecipe/qt/internal/setup/check.go
 RUN go run $GOPATH/src/github.com/therecipe/qt/internal/setup/generate.go
