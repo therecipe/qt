@@ -37,11 +37,16 @@ func main() {
 	switch runtime.GOOS {
 	case "darwin", "linux":
 		{
-			utils.RemoveAll(filepath.Join("/usr", "local", "bin", "qtdeploy"))
-			utils.RemoveAll(filepath.Join("/usr", "local", "bin", "qtmoc"))
+			// if user is root, symlink in /usr/local/bin
+			if os.Geteuid() == 0 {
+				utils.RemoveAll(filepath.Join("/usr", "local", "bin", "qtdeploy"))
+				utils.RemoveAll(filepath.Join("/usr", "local", "bin", "qtmoc"))
 
-			utils.RunCmdOptional(exec.Command("ln", "-s", filepath.Join(utils.MustGoPath(), "bin", "qtdeploy"), filepath.Join("/usr", "local", "bin", "qtdeploy")), "symlink.qtdeploy")
-			utils.RunCmdOptional(exec.Command("ln", "-s", filepath.Join(utils.MustGoPath(), "bin", "qtmoc"), filepath.Join("/usr", "local", "bin", "qtmoc")), "symlink.qtmoc")
+				utils.RunCmdOptional(exec.Command("ln", "-s", filepath.Join(utils.MustGoPath(), "bin", "qtdeploy"), filepath.Join("/usr", "local", "bin", "qtdeploy")), "symlink.qtdeploy")
+				utils.RunCmdOptional(exec.Command("ln", "-s", filepath.Join(utils.MustGoPath(), "bin", "qtmoc"), filepath.Join("/usr", "local", "bin", "qtmoc")), "symlink.qtmoc")
+			} else {
+				fmt.Println("Do not create symlink: not root")
+			}
 		}
 
 	case "windows":
