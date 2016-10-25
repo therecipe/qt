@@ -753,7 +753,7 @@ func predeploy() {
 			case "darwin":
 				{
 					utils.Save(filepath.Join(depPath, fmt.Sprintf("%v.app/Contents/MacOS/%v_sh", appName, appName)), darwinSH())
-					utils.Save(filepath.Join(depPath, fmt.Sprintf("%v.app/Contents/MacOS/Info.plist", appName)), darwinPLIST())
+					utils.Save(filepath.Join(depPath, fmt.Sprintf("%v.app/Contents/Info.plist", appName)), darwinPLIST())
 					//TODO: icon + plist
 				}
 
@@ -1231,6 +1231,9 @@ func darwinPLIST() string {
 
 	<key>CFBundleVersion</key>
 	<string>1</string>
+
+	<key>NSPrincipalClass</key>
+	<string>NSApplication</string>
 
 	<key>NSHighResolutionCapable</key>
 	<string>True</string>
