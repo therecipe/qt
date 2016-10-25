@@ -26,6 +26,7 @@ var (
 	buildMode, buildTarget string
 	ending                 string
 	buildMinimal           bool
+	buildDocker            bool
 )
 
 func main() {
@@ -35,13 +36,17 @@ func main() {
 	switch buildMode {
 	case "build", "test":
 		{
-			moc()
-			qrc()
-			build()
-			predeploy()
-			deploy()
-			pastdeploy()
-			cleanup()
+			if buildDocker {
+				deployDocker()
+			} else {
+				moc()
+				qrc()
+				build()
+				predeploy()
+				deploy()
+				pastdeploy()
+				cleanup()
+			}
 		}
 	}
 
@@ -93,7 +98,7 @@ func args() {
 			buildMode = os.Args[1]
 			buildTarget = os.Args[2]
 			appPath = os.Args[3]
-			buildMinimal = true
+			buildDocker = true
 		}
 	}
 
@@ -107,14 +112,48 @@ func args() {
 	case "build", "run", "test":
 		{
 			switch buildTarget {
-			case "desktop", "android", "ios", "ios-simulator", "sailfish", "sailfish-emulator", "rpi1", "rpi2", "rpi3", "windows":
+			case "desktop", "android", "ios", "ios-simulator", "sailfish", "sailfish-emulator", "rpi1", "rpi2", "rpi3", "windows", "darwin", "linux":
 				{
+					switch buildTarget {
+					case "windows":
+						{
+							if runtime.GOOS == "windows" && !buildDocker {
+								buildTarget = "desktop"
+							} else if runtime.GOOS == "linux" || buildDocker {
+								buildTarget = "windows"
+							} else {
+								fmt.Printf("%v is currently not supported as a deploy target on %v\n", buildTarget, runtime.GOOS)
+								os.Exit(1)
+							}
+						}
 
+					case "darwin":
+						{
+							if runtime.GOOS == "darwin" && !buildDocker {
+								buildTarget = "desktop"
+							} else {
+								fmt.Printf("%v is currently not supported as a deploy target on %v (not even with docker)", buildTarget, runtime.GOOS)
+								os.Exit(1)
+							}
+						}
+
+					case "linux":
+						{
+							if runtime.GOOS == "linux" && !buildDocker {
+								buildTarget = "desktop"
+							} else if buildDocker {
+								buildTarget = "linux"
+							} else {
+								fmt.Printf("%v is currently not supported as a deploy target on %v\n", buildTarget, runtime.GOOS)
+								os.Exit(1)
+							}
+						}
+					}
 				}
 
 			default:
 				{
-					fmt.Println("usage:", "qtdeploy", "[ build | run | test ]", "[ desktop | android | ios | ios-simulator | sailfish | sailfish-emulator | rpi1 | rpi2 | rpi3 | windows ]", fmt.Sprintf("[ %v ]", filepath.Join("path", "to", "project")))
+					fmt.Println("usage:", "qtdeploy", "[ build | run | test ]", "[ desktop | android | ios | ios-simulator | sailfish | sailfish-emulator | rpi1 | rpi2 | rpi3 | windows ]", fmt.Sprintf("[ %v ]", filepath.Join("path", "to", "project")), "[ docker ]")
 					os.Exit(1)
 				}
 			}
@@ -122,7 +161,7 @@ func args() {
 
 	default:
 		{
-			fmt.Println("usage:", "qtdeploy", "[ build | run | test ]", "[ desktop | android | ios | ios-simulator | sailfish | sailfish-emulator | rpi1 | rpi2 | rpi3 | windows ]", fmt.Sprintf("[ %v ]", filepath.Join("path", "to", "project")))
+			fmt.Println("usage:", "qtdeploy", "[ build | run | test ]", "[ desktop | android | ios | ios-simulator | sailfish | sailfish-emulator | rpi1 | rpi2 | rpi3 | windows ]", fmt.Sprintf("[ %v ]", filepath.Join("path", "to", "project")), "[ docker ]")
 			os.Exit(1)
 		}
 	}
@@ -1005,6 +1044,68 @@ func cleanup() {
 		utils.RemoveAll(mf)
 	}
 	utils.RemoveAll(filepath.Join(appPath, "cleanup.json"))
+}
+
+func deployDocker() {
+
+	var dockerImage string
+
+	switch buildTarget {
+	case "desktop":
+		{
+			switch runtime.GOOS {
+			case "windows":
+				{
+					dockerImage = "base_windows"
+				}
+
+			case "darwin":
+				{
+					fmt.Printf("%v is currently not supported as a deploy target by docker", runtime.GOOS)
+					os.Exit(1)
+				}
+
+			case "linux":
+				{
+					dockerImage = "base"
+				}
+			}
+		}
+
+	case "windows":
+		{
+			dockerImage = "base_windows"
+		}
+
+	case "darwin":
+		{
+			fmt.Printf("%v is currently not supported as a deploy target by docker", runtime.GOOS)
+			os.Exit(1)
+		}
+
+	case "linux":
+		{
+			dockerImage = "base"
+		}
+
+	case "android":
+		{
+			dockerImage = "base_android"
+		}
+
+	default:
+		{
+			fmt.Printf("%v is currently not supported as a deploy target by docker", runtime.GOOS)
+			os.Exit(1)
+		}
+	}
+
+	if !strings.Contains(appPath, utils.MustGoPath()) {
+		fmt.Println("Project needs to be inside GOPATH", appPath, utils.MustGoPath())
+		os.Exit(1)
+	}
+
+	utils.RunCmd(exec.Command("docker", "run", "--rm", "-v", fmt.Sprintf("%v:/media/sf_GOPATH", utils.MustGoPath()), "-i", fmt.Sprintf("therecipe/qt:%v", dockerImage), "qtdeploy", "build", buildTarget, strings.Replace(strings.Replace(appPath, utils.MustGoPath(), "/media/sf_GOPATH", -1), "\\", "/", -1)), "deployDocker")
 }
 
 func run() {
