@@ -132,7 +132,7 @@ func args() {
 							if runtime.GOOS == "darwin" && !buildDocker {
 								buildTarget = "desktop"
 							} else {
-								fmt.Printf("%v is currently not supported as a deploy target on %v (not even with docker)", buildTarget, runtime.GOOS)
+								fmt.Printf("%v is currently not supported as a deploy target on %v (not even with docker)\n", buildTarget, runtime.GOOS)
 								os.Exit(1)
 							}
 						}
@@ -172,8 +172,11 @@ func args() {
 	appName = filepath.Base(appPath)
 
 	switch buildTarget {
-	case "android", "ios", "ios-simulator", "sailfish", "sailfish-emulator", "rpi1", "rpi2", "rpi3", "windows":
+	case "android", "ios", "ios-simulator", "sailfish", "sailfish-emulator", "rpi1", "rpi2", "rpi3", "windows", "darwin", "linux":
 		{
+			if buildTarget == runtime.GOOS && !buildDocker {
+				depPath = filepath.Join(appPath, "deploy", runtime.GOOS)
+			}
 			depPath = filepath.Join(appPath, "deploy", buildTarget)
 		}
 
@@ -926,7 +929,11 @@ func deploy() {
 							if strings.HasPrefix(buildTarget, "rpi") {
 								libName = strings.TrimSpace(strings.Replace(strings.Split(dep, "=>")[0], "not found", "", -1))
 							} else {
-								libraryPath, libName = filepath.Split(strings.Split(dep, " ")[2])
+								if libraryPath == "" {
+									libraryPath, libName = filepath.Split(strings.Split(dep, " ")[2])
+								} else {
+									_, libName = filepath.Split(strings.Split(dep, " ")[2])
+								}
 							}
 
 							if utils.Exists(filepath.Join(libraryPath, libName)) {
@@ -1061,7 +1068,7 @@ func deployDocker() {
 
 			case "darwin":
 				{
-					fmt.Printf("%v is currently not supported as a deploy target by docker", runtime.GOOS)
+					fmt.Printf("%v is currently not supported as a deploy target by docker\n", runtime.GOOS)
 					os.Exit(1)
 				}
 
@@ -1079,7 +1086,7 @@ func deployDocker() {
 
 	case "darwin":
 		{
-			fmt.Printf("%v is currently not supported as a deploy target by docker", runtime.GOOS)
+			fmt.Printf("%v is currently not supported as a deploy target by docker\n", runtime.GOOS)
 			os.Exit(1)
 		}
 
@@ -1095,7 +1102,7 @@ func deployDocker() {
 
 	default:
 		{
-			fmt.Printf("%v is currently not supported as a deploy target by docker", runtime.GOOS)
+			fmt.Printf("%v is currently not supported as a deploy target by docker\n", runtime.GOOS)
 			os.Exit(1)
 		}
 	}
