@@ -23,6 +23,9 @@ func main() {
 	if len(os.Args) > 1 {
 		buildTarget = os.Args[1]
 	}
+	if strings.Contains(buildTarget, "docker") {
+		return
+	}
 
 	if buildTarget != "desktop" || (runtime.GOOS == "windows" && buildTarget == "desktop") {
 

@@ -6,6 +6,7 @@ import (
 	"os"
 	"os/exec"
 	"runtime"
+	"strings"
 
 	"github.com/therecipe/qt/internal/utils"
 )
@@ -14,6 +15,9 @@ func main() {
 	var buildTarget = "desktop"
 	if len(os.Args) > 1 {
 		buildTarget = os.Args[1]
+	}
+	if strings.Contains(buildTarget, "docker") {
+		return
 	}
 
 	_ = utils.MustGoPath()

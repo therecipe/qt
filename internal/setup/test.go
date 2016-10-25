@@ -78,8 +78,13 @@ func main() {
 
 			fmt.Print(example)
 
-			//TODO:
-			utils.RunCmd(exec.Command(filepath.Join(utils.MustGoPath(), "bin", "qtdeploy"), "test", buildTarget, filepath.Join(utils.GoQtPkgPath("internal", "examples"), example)), fmt.Sprintf("test.%v", example))
+			if strings.HasSuffix(buildTarget, "-docker") {
+				//TODO:
+				utils.RunCmd(exec.Command(filepath.Join(utils.MustGoPath(), "bin", "qtdeploy"), "test", strings.TrimSuffix(buildTarget, "-docker"), filepath.Join(utils.GoQtPkgPath("internal", "examples"), example), "docker"), fmt.Sprintf("test.%v", example))
+			} else {
+				//TODO:
+				utils.RunCmd(exec.Command(filepath.Join(utils.MustGoPath(), "bin", "qtdeploy"), "test", buildTarget, filepath.Join(utils.GoQtPkgPath("internal", "examples"), example)), fmt.Sprintf("test.%v", example))
+			}
 
 			fmt.Println(strings.Repeat(" ", 45-len(example)), time.Since(before)/time.Second*time.Second)
 		}
