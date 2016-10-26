@@ -262,6 +262,10 @@ func qrc() {
 
 	utils.Save(qmlQrc, strings.Replace(utils.Load(qmlQrc), "<file>./", "<file>qml/", -1))
 
+	if utils.Exists(filepath.Join(appPath, "qtquickcontrols2.conf")) {
+		utils.Save(qmlQrc, strings.Replace(utils.Load(qmlQrc), "<qresource>", "<qresource>\n<file>qtquickcontrols2.conf</file>", -1))
+	}
+
 	rcc = exec.Command(rccPath, "-name", appName, "-o", qmlCpp, qmlQrc)
 	utils.RunCmd(rcc, "qrc.cpp")
 }
@@ -1195,7 +1199,7 @@ func darwinSH() string {
 
 	fmt.Fprint(bb, "#!/bin/bash\n")
 	fmt.Fprint(bb, "cd \"${0%/*}\"\n")
-	fmt.Fprintf(bb, "./%v_app", appName)
+	fmt.Fprintf(bb, "./%v_app \"$@\"", appName)
 
 	return bb.String()
 }
