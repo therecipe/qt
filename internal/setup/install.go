@@ -255,9 +255,9 @@ func main() {
 
 	for _, m := range templater.GetLibs() {
 
-		if !(buildTarget == "android" && (m == "DBus" || m == "WebEngine" || m == "Designer") || strings.HasSuffix(m, "Extras")) &&
-			!(strings.HasPrefix(buildTarget, "ios") && (m == "SerialPort" || m == "SerialBus" || m == "WebEngine" || m == "PrintSupport" || m == "Designer") || strings.HasSuffix(m, "Extras")) && //TODO: support for PrintSupport
-			!(strings.HasPrefix(buildTarget, "rpi") && (m == "WebEngine" || m == "Designer") || strings.HasSuffix(m, "Extras")) { //TODO: support for WebEngine (rpi2 + rpi3)
+		if !(buildTarget == "android" && (m == "DBus" || m == "WebEngine" || m == "Designer" || (strings.HasSuffix(m, "Extras") && m != "AndroidExtras"))) &&
+			!(strings.HasPrefix(buildTarget, "ios") && (m == "SerialPort" || m == "SerialBus" || m == "WebEngine" || m == "PrintSupport" || m == "Designer" || strings.HasSuffix(m, "Extras"))) && //TODO: support for PrintSupport
+			!(strings.HasPrefix(buildTarget, "rpi") && (m == "WebEngine" || m == "Designer" || strings.HasSuffix(m, "Extras"))) { //TODO: support for WebEngine (rpi2 + rpi3)
 
 			var before = time.Now()
 

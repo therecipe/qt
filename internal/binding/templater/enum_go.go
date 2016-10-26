@@ -35,6 +35,9 @@ func goEnum(e *parser.Enum) string {
 				} else {
 					t = converter.GoEnum(v.Name, v.Value, e)
 				}
+				if strings.HasPrefix(t, "C.") && UseStub() {
+					t = "0"
+				}
 				fmt.Fprintf(bb, "%v__%v = %v(%v)\n", strings.Split(e.Fullname, "::")[0], v.Name, strings.Replace(e.Fullname, ":", "_", -1), t)
 			}
 		}

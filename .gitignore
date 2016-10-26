@@ -1,4 +1,5 @@
 .DS_Store
 */cgo_*
+*/minimal_*
 */*-minimal.*
 /internal/examples/**/deploy

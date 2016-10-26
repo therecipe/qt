@@ -366,6 +366,10 @@ func IPHONESIMULATOR_SDK_DIR() string {
 	return ""
 }
 
+func QT_STUB() bool {
+	return strings.ToLower(os.Getenv("QT_STUB")) == "true"
+}
+
 func RunCmd(cmd *exec.Cmd, name string) string {
 	var out, err = cmd.CombinedOutput()
 	if err != nil {

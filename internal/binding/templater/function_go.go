@@ -13,7 +13,13 @@ import (
 func goFunction(function *parser.Function) string {
 	var output = fmt.Sprintf("%v{\n%v\n}", goFunctionHeader(function), goFunctionBody(function))
 	if functionIsSupported(parser.ClassMap[function.Class()], function) {
-		return output
+		if UseStub() {
+			if function.SignalMode != parser.CALLBACK {
+				return output
+			}
+		} else {
+			return output
+		}
 	}
 	return ""
 }

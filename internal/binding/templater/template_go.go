@@ -20,7 +20,7 @@ func GoTemplate(module string, stub bool) []byte {
 			fmt.Fprintf(bb, "%v\n\n", goEnum(enum))
 		}
 
-		class.Stub = stub
+		class.Stub = UseStub() || stub
 
 		if !Minimal || (Minimal && class.Export) {
 
@@ -117,18 +117,24 @@ return n
 `, strings.Title(class.Name), class.Name, class.Name)
 
 			if classNeedsDestructor(class) {
-				fmt.Fprintf(bb, `
+				if UseStub() {
+					fmt.Fprintf(bb, `
+			func (ptr *%v) Destroy%v() {}
+			`, class.Name, class.Name)
+				} else {
+					fmt.Fprintf(bb, `
 func (ptr *%v) Destroy%v() {
 C.free(ptr.Pointer())%v
 ptr.SetPointer(nil)
 }
 
 `, class.Name, class.Name, func() string {
-					if classNeedsCallbackFunctions(class) || class.IsQObjectSubClass() {
-						return "\nqt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))"
-					}
-					return ""
-				}())
+						if classNeedsCallbackFunctions(class) || class.IsQObjectSubClass() {
+							return "\nqt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))"
+						}
+						return ""
+					}())
+				}
 			}
 		}
 
@@ -265,7 +271,22 @@ func preambleGo(module string, input []byte, stub bool) []byte {
 	var bb = new(bytes.Buffer)
 	defer bb.Reset()
 
-	fmt.Fprintf(bb, `%v
+	if UseStub() {
+		fmt.Fprintf(bb, `// +build !minimal
+
+package %v
+
+import "C"
+import (
+`, func() string {
+			if MocModule != "" {
+				return MocModule
+			}
+			return module
+		}())
+
+	} else {
+		fmt.Fprintf(bb, `%v
 
 package %v
 
@@ -276,78 +297,79 @@ import "C"
 import (
 `,
 
-		func() string {
-			switch {
-			case stub:
-				{
-					if module == "androidextras" {
-						return "// +build !android"
+			func() string {
+				switch {
+				case stub:
+					{
+						if module == "androidextras" {
+							return "// +build !android"
+						}
+						return "// +build !sailfish,!sailfish_emulator"
 					}
-					return "// +build !sailfish,!sailfish_emulator"
+
+				case Minimal:
+					{
+						return "// +build minimal"
+					}
+
+				case module == parser.MOC:
+					{
+						return ""
+					}
+
+				case module == "androidextras":
+					{
+						return "// +build android"
+					}
+
+				case module == "sailfish":
+					{
+						return "// +build sailfish sailfish_emulator"
+					}
+
+				default:
+					{
+						return "// +build !minimal"
+					}
+				}
+			}(),
+
+			func() string {
+				if MocModule != "" {
+					return MocModule
+				}
+				return module
+			}(),
+
+			func() string {
+				if Minimal {
+					return fmt.Sprintf("%v-minimal", module)
 				}
 
-			case Minimal:
-				{
-					return "// +build minimal"
+				switch module {
+				case parser.MOC:
+					{
+						return "moc"
+					}
+
+				case "androidextras":
+					{
+						return fmt.Sprintf("%v_android", module)
+					}
+
+				case "sailfish":
+					{
+						return fmt.Sprintf("%v_sailfish", module)
+					}
+
+				default:
+					{
+						return module
+					}
 				}
-
-			case module == parser.MOC:
-				{
-					return ""
-				}
-
-			case module == "androidextras":
-				{
-					return "// +build android"
-				}
-
-			case module == "sailfish":
-				{
-					return "// +build sailfish sailfish_emulator"
-				}
-
-			default:
-				{
-					return "// +build !minimal"
-				}
-			}
-		}(),
-
-		func() string {
-			if MocModule != "" {
-				return MocModule
-			}
-			return module
-		}(),
-
-		func() string {
-			if Minimal {
-				return fmt.Sprintf("%v-minimal", module)
-			}
-
-			switch module {
-			case parser.MOC:
-				{
-					return "moc"
-				}
-
-			case "androidextras":
-				{
-					return fmt.Sprintf("%v_android", module)
-				}
-
-			case "sailfish":
-				{
-					return fmt.Sprintf("%v_sailfish", module)
-				}
-
-			default:
-				{
-					return module
-				}
-			}
-		}(),
-	)
+			}(),
+		)
+	}
 
 	for _, m := range append(Libs, "qt", "strings", "unsafe", "log", "runtime", "hex", "fmt") {
 		m = strings.ToLower(m)

@@ -6,7 +6,11 @@ import (
 	"github.com/therecipe/qt/internal/utils"
 )
 
-var Minimal bool
+var (
+	Minimal       bool
+	UsedFromMoc   bool
+	CurrentModule string
+)
 
 func GenModule(name string) {
 	if ShouldBuild(name) {
@@ -37,6 +41,8 @@ func GenModule(name string) {
 		}
 		manualWeakLink("Qt" + name)
 
+		CurrentModule = name
+
 		//dry run
 		CppTemplate("Qt" + name)
 		GoTemplate("Qt"+name, false)
@@ -48,8 +54,10 @@ func GenModule(name string) {
 				utils.SaveBytes(utils.GoQtPkgPath(pkgName, pkgName+"-minimal"+suffix+".h"), HTemplate("Qt"+name))
 			}
 		} else {
-			utils.SaveBytes(utils.GoQtPkgPath(pkgName, pkgName+suffix+".cpp"), CppTemplate("Qt"+name))
-			utils.SaveBytes(utils.GoQtPkgPath(pkgName, pkgName+suffix+".h"), HTemplate("Qt"+name))
+			if !UseStub() {
+				utils.SaveBytes(utils.GoQtPkgPath(pkgName, pkgName+suffix+".cpp"), CppTemplate("Qt"+name))
+				utils.SaveBytes(utils.GoQtPkgPath(pkgName, pkgName+suffix+".h"), HTemplate("Qt"+name))
+			}
 		}
 
 		if Minimal {

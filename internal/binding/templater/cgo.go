@@ -19,10 +19,6 @@ var (
 
 func CopyCgo(module string) {
 
-	if Minimal {
-		return
-	}
-
 	if !(strings.Contains(module, "droid") || strings.Contains(module, "fish")) {
 		cgoDarwin(module)
 		if runtime.GOOS == "windows" {
@@ -59,7 +55,12 @@ func cgoDarwin(module string) {
 	)
 	defer bb.Reset()
 
-	fmt.Fprint(bb, "// +build !ios\n\n")
+	fmt.Fprintf(bb, "// +build !ios%v\n\n", func() string {
+		if Minimal {
+			return ",minimal"
+		}
+		return ""
+	}())
 
 	fmt.Fprintf(bb, "package %v\n\n", func() string {
 		if MocModule != "" {
@@ -112,10 +113,21 @@ func cgoDarwin(module string) {
 
 	fmt.Fprint(bb, "import \"C\"\n")
 
-	if module == parser.MOC {
-		utils.Save(filepath.Join(MocAppPath, "moc_cgo_desktop_darwin_amd64.go"), bb.String())
-	} else {
-		utils.Save(utils.GoQtPkgPath(strings.ToLower(module), "cgo_desktop_darwin_amd64.go"), bb.String())
+	switch {
+	case module == parser.MOC:
+		{
+			utils.Save(filepath.Join(MocAppPath, "moc_cgo_desktop_darwin_amd64.go"), bb.String())
+		}
+
+	case Minimal:
+		{
+			utils.Save(utils.GoQtPkgPath(strings.ToLower(module), "minimal_cgo_desktop_darwin_amd64.go"), bb.String())
+		}
+
+	default:
+		{
+			utils.Save(utils.GoQtPkgPath(strings.ToLower(module), "cgo_desktop_darwin_amd64.go"), bb.String())
+		}
 	}
 }
 
@@ -126,6 +138,10 @@ func cgoWindows(module string) {
 		QT_DIR = func() string { return strings.Replace(utils.QT_DIR(), "\\", "/", -1) }
 	)
 	defer bb.Reset()
+
+	if Minimal {
+		fmt.Fprint(bb, "// +build minimal\n\n")
+	}
 
 	fmt.Fprintf(bb, "package %v\n\n", func() string {
 		if MocModule != "" {
@@ -167,10 +183,21 @@ func cgoWindows(module string) {
 
 	fmt.Fprint(bb, "import \"C\"\n")
 
-	if module == parser.MOC {
-		utils.Save(filepath.Join(MocAppPath, "moc_cgo_desktop_windows_386.go"), bb.String())
-	} else {
-		utils.Save(utils.GoQtPkgPath(strings.ToLower(module), "cgo_desktop_windows_386.go"), bb.String())
+	switch {
+	case module == parser.MOC:
+		{
+			utils.Save(filepath.Join(MocAppPath, "moc_cgo_desktop_windows_386.go"), bb.String())
+		}
+
+	case Minimal:
+		{
+			utils.Save(utils.GoQtPkgPath(strings.ToLower(module), "minimal_cgo_desktop_windows_386.go"), bb.String())
+		}
+
+	default:
+		{
+			utils.Save(utils.GoQtPkgPath(strings.ToLower(module), "cgo_desktop_windows_386.go"), bb.String())
+		}
 	}
 }
 
@@ -181,6 +208,10 @@ func cgoWindowsForLinux(module string) {
 		QT_DIR = func() string { return "/usr/lib/mxe/usr/i686-w64-mingw32.shared/qt5" }
 	)
 	defer bb.Reset()
+
+	if Minimal {
+		fmt.Fprint(bb, "// +build minimal\n\n")
+	}
 
 	fmt.Fprintf(bb, "package %v\n\n", func() string {
 		if MocModule != "" {
@@ -222,10 +253,21 @@ func cgoWindowsForLinux(module string) {
 
 	fmt.Fprint(bb, "import \"C\"\n")
 
-	if module == parser.MOC {
-		utils.Save(filepath.Join(MocAppPath, "moc_cgo_desktop_windows_386.go"), bb.String())
-	} else {
-		utils.Save(utils.GoQtPkgPath(strings.ToLower(module), "cgo_desktop_windows_386.go"), bb.String())
+	switch {
+	case module == parser.MOC:
+		{
+			utils.Save(filepath.Join(MocAppPath, "moc_cgo_desktop_windows_386.go"), bb.String())
+		}
+
+	case Minimal:
+		{
+			utils.Save(utils.GoQtPkgPath(strings.ToLower(module), "minimal_cgo_desktop_windows_386.go"), bb.String())
+		}
+
+	default:
+		{
+			utils.Save(utils.GoQtPkgPath(strings.ToLower(module), "cgo_desktop_windows_386.go"), bb.String())
+		}
 	}
 }
 
@@ -235,6 +277,10 @@ func cgoLinux(module string) {
 		libs = cleanLibs(module)
 	)
 	defer bb.Reset()
+
+	if Minimal {
+		fmt.Fprint(bb, "// +build minimal\n\n")
+	}
 
 	fmt.Fprintf(bb, "package %v\n\n", func() string {
 		if MocModule != "" {
@@ -275,10 +321,21 @@ func cgoLinux(module string) {
 
 	fmt.Fprint(bb, "import \"C\"\n")
 
-	if module == parser.MOC {
-		utils.Save(filepath.Join(MocAppPath, "moc_cgo_desktop_linux_amd64.go"), bb.String())
-	} else {
-		utils.Save(utils.GoQtPkgPath(strings.ToLower(module), "cgo_desktop_linux_amd64.go"), bb.String())
+	switch {
+	case module == parser.MOC:
+		{
+			utils.Save(filepath.Join(MocAppPath, "moc_cgo_desktop_linux_amd64.go"), bb.String())
+		}
+
+	case Minimal:
+		{
+			utils.Save(utils.GoQtPkgPath(strings.ToLower(module), "minimal_cgo_desktop_linux_amd64.go"), bb.String())
+		}
+
+	default:
+		{
+			utils.Save(utils.GoQtPkgPath(strings.ToLower(module), "cgo_desktop_linux_amd64.go"), bb.String())
+		}
 	}
 }
 
@@ -288,6 +345,10 @@ func cgoLinuxPkgConfig(module string) {
 		libs = cleanLibs(module)
 	)
 	defer bb.Reset()
+
+	if Minimal {
+		fmt.Fprint(bb, "// +build minimal\n\n")
+	}
 
 	fmt.Fprintf(bb, "package %v\n\n", func() string {
 		if MocModule != "" {
@@ -334,10 +395,21 @@ func cgoLinuxPkgConfig(module string) {
 
 	fmt.Fprint(bb, "import \"C\"\n")
 
-	if module == parser.MOC {
-		utils.Save(filepath.Join(MocAppPath, "moc_cgo_desktop_linux_amd64.go"), bb.String())
-	} else {
-		utils.Save(utils.GoQtPkgPath(strings.ToLower(module), "cgo_desktop_linux_amd64.go"), bb.String())
+	switch {
+	case module == parser.MOC:
+		{
+			utils.Save(filepath.Join(MocAppPath, "moc_cgo_desktop_linux_amd64.go"), bb.String())
+		}
+
+	case Minimal:
+		{
+			utils.Save(utils.GoQtPkgPath(strings.ToLower(module), "minimal_cgo_desktop_linux_amd64.go"), bb.String())
+		}
+
+	default:
+		{
+			utils.Save(utils.GoQtPkgPath(strings.ToLower(module), "cgo_desktop_linux_amd64.go"), bb.String())
+		}
 	}
 }
 
@@ -350,7 +422,12 @@ func cgoAndroid(module string) {
 	)
 	defer bb.Reset()
 
-	fmt.Fprint(bb, "// +build android\n\n")
+	fmt.Fprintf(bb, "// +build android%v\n\n", func() string {
+		if Minimal {
+			return ",minimal"
+		}
+		return ""
+	}())
 
 	fmt.Fprintf(bb, "package %v\n\n", func() string {
 		if MocModule != "" {
@@ -392,10 +469,21 @@ func cgoAndroid(module string) {
 
 	fmt.Fprint(bb, "import \"C\"\n")
 
-	if module == parser.MOC {
-		utils.Save(filepath.Join(MocAppPath, "moc_cgo_android_linux_arm.go"), bb.String())
-	} else {
-		utils.Save(utils.GoQtPkgPath(strings.ToLower(module), "cgo_android_linux_arm.go"), bb.String())
+	switch {
+	case module == parser.MOC:
+		{
+			utils.Save(filepath.Join(MocAppPath, "moc_cgo_android_linux_arm.go"), bb.String())
+		}
+
+	case Minimal:
+		{
+			utils.Save(utils.GoQtPkgPath(strings.ToLower(module), "minimal_cgo_android_linux_arm.go"), bb.String())
+		}
+
+	default:
+		{
+			utils.Save(utils.GoQtPkgPath(strings.ToLower(module), "cgo_android_linux_arm.go"), bb.String())
+		}
 	}
 }
 
@@ -406,7 +494,12 @@ func cgoIos(module string) string {
 	)
 	defer bb.Reset()
 
-	fmt.Fprint(bb, "// +build ${BUILDTARGET}\n\n")
+	fmt.Fprintf(bb, "// +build ${BUILDTARGET}%v\n\n", func() string {
+		if Minimal {
+			return ",minimal"
+		}
+		return ""
+	}())
 
 	fmt.Fprintf(bb, "package %v\n\n", func() string {
 		if MocModule != "" {
@@ -494,10 +587,22 @@ func cgoIos(module string) string {
 	}
 
 	var path, prefix = func() (string, string) {
-		if module == parser.MOC {
-			return MocAppPath, "moc_"
+		switch {
+		case module == parser.MOC:
+			{
+				return MocAppPath, "moc_"
+			}
+
+		case Minimal:
+			{
+				return utils.GoQtPkgPath(strings.ToLower(module)), "minimal_"
+			}
+
+		default:
+			{
+				return utils.GoQtPkgPath(strings.ToLower(module)), ""
+			}
 		}
-		return utils.GoQtPkgPath(strings.ToLower(module)), ""
 	}()
 
 	var tmp = strings.Replace(bb.String(), "${BUILDTARGET}", "ios", -1)
@@ -529,7 +634,12 @@ func cgoSailfish(module string) {
 	)
 	defer bb.Reset()
 
-	fmt.Fprint(bb, "// +build ${BUILDTARGET}\n\n")
+	fmt.Fprintf(bb, "// +build ${BUILDTARGET}%v\n\n", func() string {
+		if Minimal {
+			return ",minimal"
+		}
+		return ""
+	}())
 
 	fmt.Fprintf(bb, "package %v\n\n", func() string {
 		if MocModule != "" {
@@ -574,20 +684,42 @@ func cgoSailfish(module string) {
 
 	var tmp = strings.Replace(bb.String(), "${BUILDTARGET}", "sailfish_emulator", -1)
 
-	if module == parser.MOC {
-		utils.Save(filepath.Join(MocAppPath, "moc_cgo_sailfish_emulator_linux_386.go"), tmp)
-	} else {
-		utils.Save(utils.GoQtPkgPath(strings.ToLower(module), "cgo_sailfish_emulator_linux_386.go"), tmp)
+	switch {
+	case module == parser.MOC:
+		{
+			utils.Save(filepath.Join(MocAppPath, "moc_cgo_sailfish_emulator_linux_386.go"), tmp)
+		}
+
+	case Minimal:
+		{
+			utils.Save(utils.GoQtPkgPath(strings.ToLower(module), "minimal_cgo_sailfish_emulator_linux_386.go"), tmp)
+		}
+
+	default:
+		{
+			utils.Save(utils.GoQtPkgPath(strings.ToLower(module), "cgo_sailfish_emulator_linux_386.go"), tmp)
+		}
 	}
 
 	tmp = strings.Replace(bb.String(), "${BUILDTARGET}", "sailfish", -1)
 	tmp = strings.Replace(tmp, "-m32 -msse -msse2 -march=i686 -mfpmath=sse -mtune=generic -fno-omit-frame-pointer -fasynchronous-unwind-tables", "-fmessage-length=0 -march=armv7-a -mfloat-abi=hard -mfpu=neon -mthumb -Wno-psabi", -1)
 	tmp = strings.Replace(tmp, "i486", "armv7hl", -1)
 
-	if module == parser.MOC {
-		utils.Save(filepath.Join(MocAppPath, "moc_cgo_sailfish_linux_arm.go"), tmp)
-	} else {
-		utils.Save(utils.GoQtPkgPath(strings.ToLower(module), "cgo_sailfish_linux_arm.go"), tmp)
+	switch {
+	case module == parser.MOC:
+		{
+			utils.Save(filepath.Join(MocAppPath, "moc_cgo_sailfish_linux_arm.go"), tmp)
+		}
+
+	case Minimal:
+		{
+			utils.Save(utils.GoQtPkgPath(strings.ToLower(module), "minimal_cgo_sailfish_linux_arm.go"), tmp)
+		}
+
+	default:
+		{
+			utils.Save(utils.GoQtPkgPath(strings.ToLower(module), "cgo_sailfish_linux_arm.go"), tmp)
+		}
 	}
 }
 
@@ -597,7 +729,13 @@ func cgoRaspberryPi1(module string) {
 		libs = cleanLibs(module)
 	)
 	defer bb.Reset()
-	fmt.Fprint(bb, "// +build rpi1\n\n")
+
+	fmt.Fprintf(bb, "// +build rpi1%v\n\n", func() string {
+		if Minimal {
+			return ",minimal"
+		}
+		return ""
+	}())
 
 	fmt.Fprintf(bb, "package %v\n\n", func() string {
 		if MocModule != "" {
@@ -640,10 +778,21 @@ func cgoRaspberryPi1(module string) {
 
 	var tmp = strings.Replace(bb.String(), "${RPI1_SYSROOT_DIR}", utils.RPI1_SYSROOT_DIR(), -1)
 
-	if module == parser.MOC {
-		utils.Save(filepath.Join(MocAppPath, "moc_cgo_rpi1_linux_arm.go"), tmp)
-	} else {
-		utils.Save(utils.GoQtPkgPath(strings.ToLower(module), "cgo_rpi1_linux_arm.go"), tmp)
+	switch {
+	case module == parser.MOC:
+		{
+			utils.Save(filepath.Join(MocAppPath, "moc_cgo_rpi1_linux_arm.go"), tmp)
+		}
+
+	case Minimal:
+		{
+			utils.Save(utils.GoQtPkgPath(strings.ToLower(module), "minimal_cgo_rpi1_linux_arm.go"), tmp)
+		}
+
+	default:
+		{
+			utils.Save(utils.GoQtPkgPath(strings.ToLower(module), "cgo_rpi1_linux_arm.go"), tmp)
+		}
 	}
 }
 
@@ -653,7 +802,13 @@ func cgoRaspberryPi2(module string) {
 		libs = cleanLibs(module)
 	)
 	defer bb.Reset()
-	fmt.Fprint(bb, "// +build rpi2\n\n")
+
+	fmt.Fprintf(bb, "// +build rpi2%v\n\n", func() string {
+		if Minimal {
+			return ",minimal"
+		}
+		return ""
+	}())
 
 	fmt.Fprintf(bb, "package %v\n\n", func() string {
 		if MocModule != "" {
@@ -696,10 +851,21 @@ func cgoRaspberryPi2(module string) {
 
 	var tmp = strings.Replace(bb.String(), "${RPI2_SYSROOT_DIR}", utils.RPI2_SYSROOT_DIR(), -1)
 
-	if module == parser.MOC {
-		utils.Save(filepath.Join(MocAppPath, "moc_cgo_rpi2_linux_arm.go"), tmp)
-	} else {
-		utils.Save(utils.GoQtPkgPath(strings.ToLower(module), "cgo_rpi2_linux_arm.go"), tmp)
+	switch {
+	case module == parser.MOC:
+		{
+			utils.Save(filepath.Join(MocAppPath, "moc_cgo_rpi2_linux_arm.go"), tmp)
+		}
+
+	case Minimal:
+		{
+			utils.Save(utils.GoQtPkgPath(strings.ToLower(module), "minimal_cgo_rpi2_linux_arm.go"), tmp)
+		}
+
+	default:
+		{
+			utils.Save(utils.GoQtPkgPath(strings.ToLower(module), "cgo_rpi2_linux_arm.go"), tmp)
+		}
 	}
 }
 
@@ -709,7 +875,13 @@ func cgoRaspberryPi3(module string) {
 		libs = cleanLibs(module)
 	)
 	defer bb.Reset()
-	fmt.Fprint(bb, "// +build rpi3\n\n")
+
+	fmt.Fprintf(bb, "// +build rpi3%v\n\n", func() string {
+		if Minimal {
+			return ",minimal"
+		}
+		return ""
+	}())
 
 	fmt.Fprintf(bb, "package %v\n\n", func() string {
 		if MocModule != "" {
@@ -752,10 +924,21 @@ func cgoRaspberryPi3(module string) {
 
 	var tmp = strings.Replace(bb.String(), "${RPI3_SYSROOT_DIR}", utils.RPI3_SYSROOT_DIR(), -1)
 
-	if module == parser.MOC {
-		utils.Save(filepath.Join(MocAppPath, "moc_cgo_rpi3_linux_arm.go"), tmp)
-	} else {
-		utils.Save(utils.GoQtPkgPath(strings.ToLower(module), "cgo_rpi3_linux_arm.go"), tmp)
+	switch {
+	case module == parser.MOC:
+		{
+			utils.Save(filepath.Join(MocAppPath, "moc_cgo_rpi3_linux_arm.go"), tmp)
+		}
+
+	case Minimal:
+		{
+			utils.Save(utils.GoQtPkgPath(strings.ToLower(module), "minimal_cgo_rpi3_linux_arm.go"), tmp)
+		}
+
+	default:
+		{
+			utils.Save(utils.GoQtPkgPath(strings.ToLower(module), "cgo_rpi3_linux_arm.go"), tmp)
+		}
 	}
 }
 

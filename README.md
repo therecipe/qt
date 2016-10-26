@@ -15,46 +15,46 @@
 
 This binding aims to make it as simple as possible to write applications for all operating systems supported by Qt in Go.
 
-The project is pretty much a WIP and not recommended to be used in production yet.
+The project is pretty much a WIP and **not** recommended to be used in production yet.
 
 However it should already contain everything you need to build fully featured Qt applications in Go.
 
-## Screenshots
-
-### Windows
-![](internal/screens/windows.png)
-
-### macOS
-![](internal/screens/mac.png)
-
-### Linux
-![](internal/screens/linux.png)
-
-### Android
-
-#### Portrait
-![](internal/screens/android_portrait.png)
-
-#### Landscape
-![](internal/screens/android_landscape.png)
-
-### iOS
-
-#### Portrait
-![](internal/screens/ios_portrait.png)
-
-#### Landscape
-![](internal/screens/ios_landscape.png)
-
-### Sailfish OS
-
-![](internal/screens/sailfish_portrait.png)
+[Screenshots of the Line Edits example](internal/screens)
 
 ## Installation
 
-**You will need at least 8gb ram to install this binding!**
+#### Full or stub installation?
 
-**If you define environment variables, export them in your .profile or .bash_profile!**
+The full installation requires at least **8gb** free ram and takes 20 min.
+
+The stub installation requires only **1gb** free ram and takes 5 min. (**experimental**)
+
+The only differnce between those two version is that you **won't** be able to use `go run/build` to build your project if you choose to install the stub version.
+Your are therefore **limited** to the use of `qtdeploy` to build your applications.
+
+To build the stub version export `QT_STUB=true` system wide and procede as usuall.
+
+#### Environmental variables
+
+If you define enviormental variables during the installation export them system wide, as they are needed not only during the installation but also later.
+
+Add them into your `$HOME/.bash_profile` or `$HOME/.profile` on macOS or Linux.
+
+On windows your can use the advanced system settings.
+
+#### Docker Images (**experimental**)
+
+You can also use Docker images from [hub.docker](https://hub.docker.com/r/therecipe/qt/).
+
+To cross compile to Windows, Linux and Android.
+
+**You will still need to install the desktop version for your host system first!**
+
+#### Command line debugging
+
+You can export `QT_DEBUG=true` before "qtdeploying" your application to enable printing of the current function name at runtime.
+
+#### Instructions
 
 * Desktop
 	* [Windows](#windows-1)
@@ -68,6 +68,8 @@ However it should already contain everything you need to build fully featured Qt
 
 * Embedded
 	* [Raspberry Pi](#raspberry-pi)
+
+* [Docker](#docker)
 
 ## Windows
 
@@ -93,6 +95,8 @@ However it should already contain everything you need to build fully featured Qt
 
 6. Create your first [application](#example)
 
+7. Deploy applications with `%GOPATH%\bin\qtdeploy build desktop path\to\your\project`
+
 ## macOS
 
 1. Install Go >= 1.7.1 and setup a proper [**GOPATH**](https://golang.org/doc/code.html#GOPATH)
@@ -107,7 +111,7 @@ However it should already contain everything you need to build fully featured Qt
 
 	or
 
-	* Install the Qt-dev package with Homebrew and define **QT_HOMEBREW=true** or define a custom Qt location with **QT_DIR** (usually: /usr/local/opt/qt5/); if you want to link against homebrews Qt libs **(experimental)**
+	* Install the Qt-dev package with Homebrew and define **QT_HOMEBREW=true** or define a custom Qt location with **QT_DIR** (usually: /usr/local/opt/qt5/); if you want to link against homebrews Qt libs (**experimental**)
 		* `brew install qt5`
 
 3. Install **Xcode** >= 7.2.0; you can also define a custom location with **XCODE_DIR**
@@ -124,6 +128,8 @@ However it should already contain everything you need to build fully featured Qt
 
 6. Create your first [application](#example)
 
+7. Deploy applications with `$GOPATH/bin/qtdeploy build desktop path/to/your/project`
+
 ## Linux
 
 1. Install Go >= 1.7.1 and setup a proper [**GOPATH**](https://golang.org/doc/code.html#GOPATH)
@@ -137,7 +143,7 @@ However it should already contain everything you need to build fully featured Qt
 
 	or
 
-	* Install the Qt-dev package with your system package manager; if you want to link against your system Qt libs **(experimental)**
+	* Install the Qt-dev package with your system package manager; if you want to link against your system Qt libs (**experimental**)
 		* add **export QT_PKG_CONFIG=true** to your .profile or .bash_profile
 		* if needed you can also define custom locations for the misc and doc dir with **QT_MISC_DIR** and/or **QT_DOC_DIR**
 		* and you may want to define a custom pkg-config search path with **PKG_CONFIG_PATH**, if the default path points to old Qt pkg-config files
@@ -164,7 +170,9 @@ However it should already contain everything you need to build fully featured Qt
 
 6. Create your first [application](#example)
 
-#### **Optional:** Cross compile for Windows on Debian/Ubuntu **(experimental)**
+7. Deploy applications with `$GOPATH/bin/qtdeploy build desktop path/to/your/project` (use the *.sh file to start your application)
+
+#### **Optional:** Cross compile for Windows on Debian/Ubuntu (**experimental**)
 
 1. Install Wine
 
@@ -183,6 +191,8 @@ However it should already contain everything you need to build fully featured Qt
 3. Generate, install and test (20 min)
 
 	* `cd $GOPATH/src/github.com/therecipe/qt && ./setup.sh windows`
+
+4. Deploy applications with `$GOPATH/bin/qtdeploy build windows path/to/your/project`
 
 ## Android
 
@@ -219,6 +229,8 @@ However it should already contain everything you need to build fully featured Qt
 
 7. Create your first [application](#example)
 
+8. Deploy applications with `[GOPATH]/bin/qtdeploy build android path/to/your/project`
+
 ## iOS
 
 1. Install the desktop version for [macOS](#macos-1)
@@ -228,6 +240,8 @@ However it should already contain everything you need to build fully featured Qt
 	* `cd $GOPATH/src/github.com/therecipe/qt && ./setup.sh ios && ./setup.sh ios-simulator`
 
 3. Create your first [application](#example)
+
+4. Deploy applications with `$GOPATH/bin/qtdeploy build ios path/to/your/project` or `$GOPATH/bin/qtdeploy build ios-simulator path/to/your/project`
 
 ## Sailfish OS
 
@@ -252,6 +266,8 @@ However it should already contain everything you need to build fully featured Qt
 	* `cd $GOPATH/src/github.com/therecipe/qt && ./setup.sh sailfish && ./setup.sh sailfish-emulator`
 
 5. Create your first [application](#example)
+
+6. Deploy applications with `[GOPATH]/bin/qtdeploy build sailfish path/to/your/project` or `[GOPATH]/bin/qtdeploy build sailfish-emulator path/to/your/project`
 
 ## Raspberry Pi
 
@@ -378,6 +394,44 @@ However it should already contain everything you need to build fully featured Qt
 
 16. Create your first [application](#example)
 
+17. Deploy applications with `$GOPATH/bin/qtdeploy build rpiX path/to/your/project` (replace X with 1, 2 or 3)
+
+## Docker
+
+1. Install the desktop version for [Windows](#windows-1), [macOS](#macos-1) or [Linux](#linux-1)
+
+2. Install [Docker](https://www.docker.com)
+
+3. Share your **GOPATH** host directory as a [data volume](https://docs.docker.com/engine/tutorials/dockervolumes/#/mount-a-host-directory-as-a-data-volume) with Docker.
+It has to be accessible with `docker run -v $GOPATH:/media/sf_GOPATH ...` by `qtdeploy` as your Project is expected to be found there.
+
+
+* Windows
+
+	* `docker pull therecipe/qt:base_windows`
+
+	* **Optional:** Install [Wine](https://www.winehq.org) to test your applications.
+
+	* `cd $GOPATH/src/github.com/therecipe/qt && ./setup.sh windows-docker`
+
+	* Deploy applications with `$GOPATH/bin/qtdeploy build windows path/to/your/project docker`
+
+* Linux
+
+	* `docker pull therecipe/qt:base`
+
+	* `cd $GOPATH/src/github.com/therecipe/qt && ./setup.sh linux-docker`
+
+	* Deploy applications with `$GOPATH/bin/qtdeploy build linux path/to/your/project docker`
+
+* Android
+
+	* `docker pull therecipe/qt:base_android`
+
+	* `cd $GOPATH/src/github.com/therecipe/qt && ./setup.sh android-docker`
+
+	* Deploy applications with `$GOPATH/bin/qtdeploy build android path/to/your/project docker`
+
 ## Example
 
 1. Create a project folder `[GOPATH]/src/qtExample`
@@ -418,9 +472,9 @@ func main() {
 }
 ```
 
-3. Open the { command-line | terminal | shell } in `[GOPATH]/src/qtExample` and run `qtdeploy build desktop`
+3. Open the terminal in `[GOPATH]/src/qtExample` and run `[GOPATH]/bin/qtdeploy build desktop`
 
-4. You will find the application in `[GOPATH]/src/qtExample/deploy/[GOOS]_minimal/qtExample`
+4. You will find the application in `[GOPATH]/src/qtExample/deploy/[GOOS]_minimal/`
 
 5. Take a look at the [examples](https://github.com/therecipe/qt/tree/master/internal/examples)
 

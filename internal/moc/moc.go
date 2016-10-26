@@ -18,6 +18,10 @@ import (
 	"github.com/therecipe/qt/internal/utils"
 )
 
+func init() {
+	templater.UsedFromMoc = true
+}
+
 var (
 	modulesInited bool
 	tmpFiles      = make([]string, 0)

@@ -6,6 +6,7 @@ import (
 	"strings"
 
 	"github.com/therecipe/qt/internal/binding/parser"
+	"github.com/therecipe/qt/internal/utils"
 )
 
 func functionIsSupported(_ *parser.Class, f *parser.Function) bool {
@@ -432,4 +433,8 @@ func classNeedsDestructor(c *parser.Class) bool {
 		}
 	}
 	return true
+}
+
+func UseStub() bool {
+	return utils.QT_STUB() && !Minimal && !UsedFromMoc && !(CurrentModule == "AndroidExtras" || CurrentModule == "Sailfish")
 }
