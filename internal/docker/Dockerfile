@@ -28,9 +28,10 @@ ENV PATH $PATH:/usr/local/go/bin
 ENV GOPATH $HOME/work
 
 
-RUN go get -d github.com/therecipe/qt
-RUN go get -d golang.org/x/crypto/ssh
-RUN go get -d github.com/emirpasic/gods/lists/arraylist
+RUN go get github.com/therecipe/qt
+RUN go get golang.org/x/crypto/ssh
+RUN go get github.com/emirpasic/gods/lists/arraylist
+RUN go get github.com/Sirupsen/logrus
 RUN go build -o $HOME/work/bin/qtdeploy $GOPATH/src/github.com/therecipe/qt/internal/deploy/deploy.go && ln -s $HOME/work/bin/qtdeploy /usr/local/bin/qtdeploy
 RUN go build -o $HOME/work/bin/qtmoc $GOPATH/src/github.com/therecipe/qt/internal/moc/moc.go && ln -s $HOME/work/bin/qtmoc /usr/local/bin/qtmoc
 

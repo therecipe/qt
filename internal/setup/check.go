@@ -51,8 +51,15 @@ func main() {
 		}
 	}
 
+	utils.Log.Infoln("GOOS:", runtime.GOOS)
+	utils.Log.Infoln("GOVERSION:", runtime.Version())
 	utils.Log.Infoln("GOROOT:", runtime.GOROOT())
 	utils.Log.Infoln("GOPATH:", utils.MustGoPath())
+
+	var hash = exec.Command("git", "rev-parse", "--verify", "HEAD")
+	hash.Dir = utils.GoQtPkgPath()
+	utils.Log.Infoln("HASH:", strings.TrimSpace(utils.RunCmdOptional(hash, "get git hash")))
+
 	utils.Log.Infoln("QT_DIR:", utils.QT_DIR())
 	utils.Log.Infoln("QT_STUB:", utils.QT_STUB())
 
@@ -113,7 +120,7 @@ func main() {
 		}
 	}
 
-	if _, err := ioutil.ReadDir(utils.QT_DIR()); err != nil && !utils.UsePkgConfig() {
+	if _, err := ioutil.ReadDir(utils.QT_DIR()); err != nil && !(utils.UsePkgConfig() || utils.UseHomeBrew()) {
 		utils.Log.WithError(err).Panic("failed to find Qt dir, did you export QT_DIR?")
 	}
 
