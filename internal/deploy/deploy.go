@@ -815,7 +815,7 @@ func deploy() {
 				"--gradle",
 			)
 
-			if ks := utils.Load(filepath.Join(appPath, "android", appName+".keystore")); ks != "" {
+			if utils.Exists(filepath.Join(appPath, "android", appName+".keystore")) {
 				deploy.Args = append(deploy.Args,
 					"--sign", filepath.Join(appPath, "android", appName+".keystore"),
 					strings.TrimSpace(utils.Load(filepath.Join(appPath, "android", "alias.txt"))),

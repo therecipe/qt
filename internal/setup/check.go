@@ -77,8 +77,10 @@ func main() {
 					utils.Log.Infoln("Distro:", utils.LinuxDistro())
 					utils.Log.Infoln("QT_PKG_CONFIG:", os.Getenv("QT_PKG_CONFIG"))
 					utils.Log.Infoln("UsePkgConfig:", utils.UsePkgConfig())
-					utils.Log.Infoln("QT_DOC_DIR:", utils.QT_DOC_DIR())
-					utils.Log.Infoln("QT_MISC_DIR:", utils.QT_MISC_DIR())
+					if utils.UsePkgConfig() {
+						utils.Log.Infoln("QT_DOC_DIR:", utils.QT_DOC_DIR())
+						utils.Log.Infoln("QT_MISC_DIR:", utils.QT_MISC_DIR())
+					}
 				}
 			}
 		}
