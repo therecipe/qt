@@ -4,6 +4,7 @@ import (
 	"encoding/xml"
 	"fmt"
 	"path/filepath"
+	"strings"
 
 	"github.com/therecipe/qt/internal/utils"
 )
@@ -39,20 +40,18 @@ var (
 	SubnamespaceMap = make(map[string]bool)
 )
 
-func GetModule(s string) (*Module, error) {
+func GetModule(s string) (m *Module, err error) {
+	s = strings.ToLower(s)
 
-	goPath, err := utils.GoPath()
-	if err != nil {
-		return nil, err
-	}
+	var goPath = utils.MustGoPath()
 
 	if s == "sailfish" {
-		var m = sailfishModule()
+		m = sailfishModule()
 		m.Prepare()
 		return m, nil
 	}
 
-	var m = new(Module)
+	m = new(Module)
 	switch {
 	case utils.UseHomeBrew():
 		{

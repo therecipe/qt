@@ -29,18 +29,18 @@ The full installation requires at least **8gb** free ram and takes 20 min.
 
 The stub installation requires only **1gb** free ram and takes 5 min. (**experimental**)
 
-The only differnce between those two version is that you **won't** be able to use `go run/build` to build your project if you choose to install the stub version.
-Your are therefore **limited** to the use of `qtdeploy` to build your applications.
+The only differnce between those two version is, that you **won't** be able to use `go run/build` to build your applications if you choose to install the stub version.
+You are therefore **limited** to the use of `qtdeploy` to build your application.
 
-To build the stub version export `QT_STUB=true` system wide and procede as usuall.
+To build the stub version export `QT_STUB=true` system wide and procede with the installation as usuall.
 
 #### Environmental variables
 
-If you define enviormental variables during the installation export them system wide, as they are needed not only during the installation but also later.
+If you define enviormental variables during the installation export them system wide, as they are needed not only during the installation but also later by `qtdeploy`.
 
-Add them into your `$HOME/.bash_profile` or `$HOME/.profile` on macOS or Linux.
+Add the enviormental variables into your `$HOME/.bash_profile` or `$HOME/.profile` on macOS or Linux.
 
-On windows your can use the advanced system settings.
+Or if you are on Windows simply use the advanced system settings.
 
 #### Docker Images (**experimental**)
 
@@ -400,13 +400,15 @@ You can export `QT_DEBUG=true` before "qtdeploying" your application to enable p
 
 1. Install the desktop version for [Windows](#windows-1), [macOS](#macos-1) or [Linux](#linux-1)
 
-2. Install [Docker](https://www.docker.com)
+2. Install and start [Docker](https://www.docker.com)
 
 3. Share your **GOPATH** host directory as a [data volume](https://docs.docker.com/engine/tutorials/dockervolumes/#/mount-a-host-directory-as-a-data-volume) with Docker.
-It has to be accessible with `docker run -v $GOPATH:/media/sf_GOPATH ...` by `qtdeploy` as your Project is expected to be found there.
+And make sure your Project folder is in your **GOPATH**.
+
+4. Download the necessary Docker image(s) and run the setup.
 
 
-* Windows
+* For cross compiling to Windows:
 
 	* `docker pull therecipe/qt:base_windows`
 
@@ -416,7 +418,7 @@ It has to be accessible with `docker run -v $GOPATH:/media/sf_GOPATH ...` by `qt
 
 	* Deploy applications with `$GOPATH/bin/qtdeploy build windows path/to/your/project docker`
 
-* Linux
+* For cross compiling to Linux:
 
 	* `docker pull therecipe/qt:base`
 
@@ -424,7 +426,7 @@ It has to be accessible with `docker run -v $GOPATH:/media/sf_GOPATH ...` by `qt
 
 	* Deploy applications with `$GOPATH/bin/qtdeploy build linux path/to/your/project docker`
 
-* Android
+* For cross compiling to Android:
 
 	* `docker pull therecipe/qt:base_android`
 

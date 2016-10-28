@@ -56,13 +56,10 @@ func main() {
 			run()
 		}
 	}
-
-	if !buildMinimal {
-		utils.RunCmd(exec.Command(filepath.Join(utils.MustGoPath(), "bin", "qtdeploy"), []string{"build", buildTarget, appPath, "minimal"}...), "build.minimal")
-	}
 }
 
 func args() {
+	utils.Log.Debug("parsing arguments")
 
 	switch len(os.Args) {
 	case 1:
@@ -98,7 +95,7 @@ func args() {
 			buildMode = os.Args[1]
 			buildTarget = os.Args[2]
 			appPath = os.Args[3]
-			buildDocker = true
+			buildDocker = (os.Args[4] == "docker")
 		}
 	}
 
@@ -107,6 +104,8 @@ func args() {
 	}
 
 	buildMinimal = true
+
+	utils.Log.Debugln("mode:", buildMode, "target:", buildTarget, "path:", appPath, "use docker:", buildDocker)
 
 	switch buildMode {
 	case "build", "run", "test":
@@ -122,8 +121,7 @@ func args() {
 							} else if runtime.GOOS == "linux" || buildDocker {
 								buildTarget = "windows"
 							} else {
-								fmt.Printf("%v is currently not supported as a deploy target on %v\n", buildTarget, runtime.GOOS)
-								os.Exit(1)
+								utils.Log.Fatalf("%v is currently not supported as a deploy target on %v", buildTarget, runtime.GOOS)
 							}
 						}
 
@@ -132,8 +130,7 @@ func args() {
 							if runtime.GOOS == "darwin" && !buildDocker {
 								buildTarget = "desktop"
 							} else {
-								fmt.Printf("%v is currently not supported as a deploy target on %v (not even with docker)\n", buildTarget, runtime.GOOS)
-								os.Exit(1)
+								utils.Log.Fatalf("%v is currently not supported as a deploy target on %v (not even with docker)", buildTarget, runtime.GOOS)
 							}
 						}
 
@@ -144,8 +141,7 @@ func args() {
 							} else if buildDocker {
 								buildTarget = "linux"
 							} else {
-								fmt.Printf("%v is currently not supported as a deploy target on %v\n", buildTarget, runtime.GOOS)
-								os.Exit(1)
+								utils.Log.Fatalf("%v is currently not supported as a deploy target on %v", buildTarget, runtime.GOOS)
 							}
 						}
 					}
@@ -153,16 +149,14 @@ func args() {
 
 			default:
 				{
-					fmt.Println("usage:", "qtdeploy", "[ build | run | test ]", "[ desktop | android | ios | ios-simulator | sailfish | sailfish-emulator | rpi1 | rpi2 | rpi3 | windows ]", fmt.Sprintf("[ %v ]", filepath.Join("path", "to", "project")), "[ docker ]")
-					os.Exit(1)
+					utils.Log.Fatalln("usage:", "qtdeploy", "[ build | run | test ]", "[ desktop | android | ios | ios-simulator | sailfish | sailfish-emulator | rpi1 | rpi2 | rpi3 | windows ]", fmt.Sprintf("[ %v ]", filepath.Join("path", "to", "project")), "[ docker ]")
 				}
 			}
 		}
 
 	default:
 		{
-			fmt.Println("usage:", "qtdeploy", "[ build | run | test ]", "[ desktop | android | ios | ios-simulator | sailfish | sailfish-emulator | rpi1 | rpi2 | rpi3 | windows ]", fmt.Sprintf("[ %v ]", filepath.Join("path", "to", "project")), "[ docker ]")
-			os.Exit(1)
+			utils.Log.Fatalln("usage:", "qtdeploy", "[ build | run | test ]", "[ desktop | android | ios | ios-simulator | sailfish | sailfish-emulator | rpi1 | rpi2 | rpi3 | windows ]", fmt.Sprintf("[ %v ]", filepath.Join("path", "to", "project")), "[ docker ]")
 		}
 	}
 
@@ -204,7 +198,7 @@ func args() {
 }
 
 func moc() {
-	utils.RunCmd(exec.Command(filepath.Join(utils.MustGoPath(), "bin", "qtmoc"), appPath, "cleanup"), "qtdeploy.moc")
+	utils.RunCmd(exec.Command(filepath.Join(utils.MustGoPath(), "bin", "qtmoc"), appPath, "cleanup"), fmt.Sprintf("execute qtmoc for %v on %v", buildTarget, runtime.GOOS))
 }
 
 func qrc() {
@@ -240,7 +234,7 @@ func qrc() {
 			case "linux":
 				{
 					if utils.UsePkgConfig() {
-						rccPath = filepath.Join(strings.TrimSpace(utils.RunCmd(exec.Command("pkg-config", "--variable=host_bins", "Qt5Core"), "qrc.LinuxPkgConfig_hostBins")), "rcc")
+						rccPath = filepath.Join(strings.TrimSpace(utils.RunCmd(exec.Command("pkg-config", "--variable=host_bins", "Qt5Core"), fmt.Sprintf("find rccPath for %v on %v", buildTarget, runtime.GOOS))), "rcc")
 					} else {
 						rccPath = filepath.Join(utils.QT_DIR(), "5.7", "gcc_64", "bin", "rcc")
 					}
@@ -258,7 +252,7 @@ func qrc() {
 
 	var rcc = exec.Command(rccPath, "-project", "-o", qmlQrc)
 	rcc.Dir = filepath.Join(appPath, "qml")
-	utils.RunCmd(rcc, "qrc.qrc")
+	utils.RunCmd(rcc, fmt.Sprintf("execute rcc.1 for %v on %v", buildTarget, runtime.GOOS))
 
 	utils.Save(qmlQrc, strings.Replace(utils.Load(qmlQrc), "<file>./", "<file>qml/", -1))
 
@@ -267,7 +261,7 @@ func qrc() {
 	}
 
 	rcc = exec.Command(rccPath, "-name", appName, "-o", qmlCpp, qmlQrc)
-	utils.RunCmd(rcc, "qrc.cpp")
+	utils.RunCmd(rcc, fmt.Sprintf("execute rcc.2 for %v on %v", buildTarget, runtime.GOOS))
 }
 
 func qmlHeader() string {
@@ -316,7 +310,7 @@ import "C"`,
 		"${QT_DARWIN_DIR}", utils.QT_DARWIN_DIR(), -1),
 		"${QT_LINUX_DIR}", func() string {
 			if utils.UsePkgConfig() {
-				return strings.TrimSpace(utils.RunCmd(exec.Command("pkg-config", "--variable=libdir", "Qt5Core"), "qmlHeader.LinuxPkgConfig_libDir"))
+				return strings.TrimSpace(utils.RunCmd(exec.Command("pkg-config", "--variable=libdir", "Qt5Core"), fmt.Sprintf("find linux pkg-config lib dir for %v on %v", buildTarget, runtime.GOOS)))
 			}
 			return "${QT_DIR}/5.7/gcc_64/lib"
 		}(), -1),
@@ -477,18 +471,17 @@ func build() {
 	case "sailfish", "sailfish-emulator":
 		{
 			if !strings.Contains(appPath, utils.MustGoPath()) {
-				fmt.Println("Project needs to be inside GOPATH", appPath, utils.MustGoPath())
-				os.Exit(1)
+				utils.Log.Panicln("Project needs to be inside GOPATH", appPath, utils.MustGoPath())
 			}
 
-			utils.RunCmdOptional(exec.Command(filepath.Join(utils.VIRTUALBOX_DIR(), "vboxmanage"), "registervm", filepath.Join(utils.SAILFISH_DIR(), "mersdk", "MerSDK", "MerSDK.vbox")), "buid.vboxRegisterSDK")
-			utils.RunCmdOptional(exec.Command(filepath.Join(utils.VIRTUALBOX_DIR(), "vboxmanage"), "sharedfolder", "add", "MerSDK", "--name", "GOROOT", "--hostpath", runtime.GOROOT(), "--automount"), "buid.vboxSharedFolder_GOROOT")
-			utils.RunCmdOptional(exec.Command(filepath.Join(utils.VIRTUALBOX_DIR(), "vboxmanage"), "sharedfolder", "add", "MerSDK", "--name", "GOPATH", "--hostpath", utils.MustGoPath(), "--automount"), "buid.vboxSharedFolder_GOPATH")
+			utils.RunCmdOptional(exec.Command(filepath.Join(utils.VIRTUALBOX_DIR(), "vboxmanage"), "registervm", filepath.Join(utils.SAILFISH_DIR(), "mersdk", "MerSDK", "MerSDK.vbox")), fmt.Sprintf("register mersdk for %v on %v", buildTarget, runtime.GOOS))
+			utils.RunCmdOptional(exec.Command(filepath.Join(utils.VIRTUALBOX_DIR(), "vboxmanage"), "sharedfolder", "add", "MerSDK", "--name", "GOROOT", "--hostpath", runtime.GOROOT(), "--automount"), fmt.Sprintf("share GOROOT dir for %v on %v", buildTarget, runtime.GOOS))
+			utils.RunCmdOptional(exec.Command(filepath.Join(utils.VIRTUALBOX_DIR(), "vboxmanage"), "sharedfolder", "add", "MerSDK", "--name", "GOPATH", "--hostpath", utils.MustGoPath(), "--automount"), fmt.Sprintf("share GOPATH dir for %v on %v", buildTarget, runtime.GOOS))
 
 			if runtime.GOOS == "windows" {
-				utils.RunCmdOptional(exec.Command(filepath.Join(utils.VIRTUALBOX_DIR(), "vboxmanage"), "startvm", "--type", "headless", "MerSDK"), "build.vboxStartSDK")
+				utils.RunCmdOptional(exec.Command(filepath.Join(utils.VIRTUALBOX_DIR(), "vboxmanage"), "startvm", "--type", "headless", "MerSDK"), fmt.Sprintf("start vbox mersdk for %v on %v", buildTarget, runtime.GOOS))
 			} else {
-				utils.RunCmdOptional(exec.Command("nohup", filepath.Join(utils.VIRTUALBOX_DIR(), "vboxmanage"), "startvm", "--type", "headless", "MerSDK"), "build.vboxStartSDK")
+				utils.RunCmdOptional(exec.Command("nohup", filepath.Join(utils.VIRTUALBOX_DIR(), "vboxmanage"), "startvm", "--type", "headless", "MerSDK"), fmt.Sprintf("start vbox mersdk for %v on %v", buildTarget, runtime.GOOS))
 			}
 
 			time.Sleep(10 * time.Second)
@@ -500,9 +493,8 @@ func build() {
 
 				var errBuild = sshCommand("2222", "root", "cd", strings.Replace(strings.Replace(appPath, utils.MustGoPath(), "/media/sf_GOPATH", -1), "\\", "/", -1), "&&", "GOROOT=/media/sf_GOROOT", "GOPATH=/media/sf_GOPATH", "PATH=$PATH:$GOROOT/bin/linux_386", "GOOS=linux", "GOARCH=386", "CGO_ENABLED=1", "CC=/opt/cross/bin/i486-meego-linux-gnu-gcc", "CXX=/opt/cross/bin/i486-meego-linux-gnu-g++", "CPATH=/srv/mer/targets/SailfishOS-i486/usr/include", "LIBRARY_PATH=/srv/mer/targets/SailfishOS-i486/usr/lib:/srv/mer/targets/SailfishOS-i486/lib", "CGO_LDFLAGS=--sysroot=/srv/mer/targets/SailfishOS-i486/", "go", "build", "-ldflags=\"-s -w\"", "-tags=\"minimal sailfish_emulator\"", fmt.Sprintf("-installsuffix=%v", strings.Replace(buildTarget, "-", "_", -1)), "-o", "deploy/"+buildTarget+"_minimal/harbour-"+appName)
 				if errBuild != nil {
-					fmt.Println("build.Sailfish", errBuild)
 					cleanup()
-					os.Exit(1)
+					utils.Log.WithError(errBuild).Panicf("failed to build for %v on %v", buildTarget, runtime.GOOS)
 				}
 			} else {
 
@@ -511,9 +503,8 @@ func build() {
 
 				var errBuild = sshCommand("2222", "root", "cd", strings.Replace(strings.Replace(appPath, utils.MustGoPath(), "/media/sf_GOPATH", -1), "\\", "/", -1), "&&", "GOROOT=/media/sf_GOROOT", "GOPATH=/media/sf_GOPATH", "PATH=$PATH:$GOROOT/bin/linux_386", "GOOS=linux", "GOARCH=arm", "GOARM=7", "CGO_ENABLED=1", "CC=/opt/cross/bin/armv7hl-meego-linux-gnueabi-gcc", "CXX=/opt/cross/bin/armv7hl-meego-linux-gnueabi-g++", "CPATH=/srv/mer/targets/SailfishOS-armv7hl/usr/include", "LIBRARY_PATH=/srv/mer/targets/SailfishOS-armv7hl/usr/lib:/srv/mer/targets/SailfishOS-armv7hl/lib", "CGO_LDFLAGS=--sysroot=/srv/mer/targets/SailfishOS-armv7hl/", "go", "build", "-ldflags=\"-s -w\"", "-tags=\"minimal sailfish\"", fmt.Sprintf("-installsuffix=%v", buildTarget), "-o", "deploy/"+buildTarget+"_minimal/harbour-"+appName)
 				if errBuild != nil {
-					fmt.Println("build.Sailfish", errBuild)
 					cleanup()
-					os.Exit(1)
+					utils.Log.WithError(errBuild).Panicf("failed to build for %v on %v", buildTarget, runtime.GOOS)
 				}
 			}
 
@@ -589,12 +580,12 @@ func build() {
 			cmd.Env = append(cmd.Env, fmt.Sprintf("%v=%v", key, value))
 		}
 	}
-	utils.RunCmd(cmd, "build_1")
+	utils.RunCmd(cmd, fmt.Sprintf("build for %v on %v", buildTarget, runtime.GOOS))
 
 	if runtime.GOOS == "darwin" && buildTarget == "desktop" {
 		var strip = exec.Command("strip", outputFile)
 		strip.Dir = appPath
-		utils.RunCmd(strip, "build.strip")
+		utils.RunCmd(strip, fmt.Sprintf("strip binary for %v on %v", buildTarget, runtime.GOOS))
 	}
 
 	//armv7
@@ -611,7 +602,7 @@ func build() {
 		var tmp = strings.Replace(strings.Join(cmd.Env, "|"), "-arch arm64", "-arch armv7", -1)
 		tmp = strings.Replace(tmp, "arm64", "arm", -1)
 		cmdiOS.Env = append(strings.Split(tmp, "|"), "GOARM=7")
-		utils.RunCmd(cmdiOS, "build_2")
+		utils.RunCmd(cmdiOS, fmt.Sprintf("build for %v on %v", buildTarget, runtime.GOOS))
 	}
 }
 
@@ -639,22 +630,22 @@ func predeploy() {
 
 			var cmd = exec.Command(compiler, "c_main_wrapper.cpp", "-o", filepath.Join(depPath, "libgo.so"), "-I../..", "-L.", "-lgo_base", fmt.Sprintf("--sysroot=%v", filepath.Join(utils.ANDROID_NDK_DIR(), "platforms", "android-9", "arch-arm")), "-shared")
 			cmd.Dir = depPath
-			utils.RunCmd(cmd, "predeploy.go_main_wrapper_1")
+			utils.RunCmd(cmd, fmt.Sprintf("compile for %v on %v", buildTarget, runtime.GOOS))
 
 			var strip = exec.Command(filepath.Join(filepath.Dir(compiler), "arm-linux-androideabi-strip"), "libgo.so")
 			strip.Dir = depPath
-			utils.RunCmd(strip, "predeploy.strip_1")
+			utils.RunCmd(strip, fmt.Sprintf("strip binary for %v on %v", buildTarget, runtime.GOOS))
 
-			utils.RunCmd(exec.Command(copyCmd, filepath.Join(depPath, "libgo_base.so"), libPath), "predeploy.cpBase")
-			utils.RunCmd(exec.Command(copyCmd, filepath.Join(depPath, "libgo.so"), libPath), "predeploy.cpMain")
+			utils.RunCmd(exec.Command(copyCmd, filepath.Join(depPath, "libgo_base.so"), libPath), fmt.Sprintf("copy libgo_base for %v on %v", buildTarget, runtime.GOOS))
+			utils.RunCmd(exec.Command(copyCmd, filepath.Join(depPath, "libgo.so"), libPath), fmt.Sprintf("copy libgo for %v on %v", buildTarget, runtime.GOOS))
 
 			var qtLibPath = filepath.Join(utils.QT_DIR(), "5.7", "android_armv7", "lib")
-			utils.RunCmd(exec.Command(copyCmd, filepath.Join(qtLibPath, "libQt5Widgets.so"), libPath), "predeploy.cpWidgets")
-			utils.RunCmd(exec.Command(copyCmd, filepath.Join(qtLibPath, "libQt5QuickWidgets.so"), libPath), "predeploy.cpQuickWidgets")
-			utils.RunCmd(exec.Command(copyCmd, filepath.Join(qtLibPath, "libQt5MultimediaWidgets.so"), libPath), "predeploy.cpMultimediaWidgets")
-			utils.RunCmd(exec.Command(copyCmd, filepath.Join(qtLibPath, "libQt5Multimedia.so"), libPath), "predeploy.cpMultimedia")
-			utils.RunCmd(exec.Command(copyCmd, filepath.Join(qtLibPath, "libQt5Network.so"), libPath), "predeploy.cpNetwork")
-			utils.RunCmd(exec.Command(copyCmd, filepath.Join(qtLibPath, "libQt5AndroidExtras.so"), libPath), "predeploy.cpAndroidExtras")
+			utils.RunCmd(exec.Command(copyCmd, filepath.Join(qtLibPath, "libQt5Widgets.so"), libPath), fmt.Sprintf("copy libQt5Widgets for %v on %v", buildTarget, runtime.GOOS))
+			utils.RunCmd(exec.Command(copyCmd, filepath.Join(qtLibPath, "libQt5QuickWidgets.so"), libPath), fmt.Sprintf("copy libQt5QuickWidgets for %v on %v", buildTarget, runtime.GOOS))
+			utils.RunCmd(exec.Command(copyCmd, filepath.Join(qtLibPath, "libQt5MultimediaWidgets.so"), libPath), fmt.Sprintf("copy libQt5MultimediaWidgets for %v on %v", buildTarget, runtime.GOOS))
+			utils.RunCmd(exec.Command(copyCmd, filepath.Join(qtLibPath, "libQt5Multimedia.so"), libPath), fmt.Sprintf("copy libQt5Multimedia for %v on %v", buildTarget, runtime.GOOS))
+			utils.RunCmd(exec.Command(copyCmd, filepath.Join(qtLibPath, "libQt5Network.so"), libPath), fmt.Sprintf("copy libQt5Network for %v on %v", buildTarget, runtime.GOOS))
+			utils.RunCmd(exec.Command(copyCmd, filepath.Join(qtLibPath, "libQt5AndroidExtras.so"), libPath), fmt.Sprintf("copy libQt5AndroidExtras for %v on %v", buildTarget, runtime.GOOS))
 
 			var out, err = json.Marshal(&struct {
 				Qt                            string `json:"qt"`
@@ -686,8 +677,7 @@ func predeploy() {
 				Applicationbinary:             filepath.Join(depPath, "libgo.so"),
 			})
 			if err != nil {
-				fmt.Println("predeploy.json", string(out), err)
-				os.Exit(1)
+				utils.Log.WithError(err).Panicf("failed to create json-config file for androiddeployqt on %v", runtime.GOOS)
 			}
 
 			utils.Save(filepath.Join(depPath, "android-libgo.so-deployment-settings.json"), strings.Replace(string(out), "\\", "/", -1))
@@ -716,27 +706,27 @@ func predeploy() {
 			var cmd = exec.Command("xcrun", "clang++", "c_main_wrapper.cpp", "gallery_plugin_import.cpp", "gallery_qml_plugin_import.cpp", "-o", "build/main", "-u", "_qt_registerPlatformPlugin", "-Wl,-e,_qt_main_wrapper", "-I../..", "-L.", "-lgo")
 			cmd.Args = append(cmd.Args, templater.GetiOSClang(buildTarget, "")...)
 			cmd.Dir = depPath
-			utils.RunCmd(cmd, "predeploy.go_main_wrapper_1")
+			utils.RunCmd(cmd, fmt.Sprintf("compile for %v on %v", buildTarget, runtime.GOOS))
 
 			var strip = exec.Command("strip", "main")
 			strip.Dir = filepath.Join(depPath, "build")
-			utils.RunCmd(strip, "predeploy.strip_1")
+			utils.RunCmd(strip, fmt.Sprintf("strip binary for %v on %v", buildTarget, runtime.GOOS))
 
 			if buildTarget == "ios" && (strings.HasPrefix(runtime.Version(), "go1.7") || strings.HasPrefix(runtime.Version(), "devel") || buildMinimal) {
 				//build armv7
 				cmd = exec.Command("xcrun", "clang++", "c_main_wrapper_armv7.cpp", "gallery_plugin_import.cpp", "gallery_qml_plugin_import.cpp", "-o", "build/main_armv7", "-u", "_qt_registerPlatformPlugin", "-Wl,-e,_qt_main_wrapper", "-I../..", "-L.", "-lgo_armv7")
 				cmd.Args = append(cmd.Args, templater.GetiOSClang(buildTarget, "armv7")...)
 				cmd.Dir = depPath
-				utils.RunCmdOptional(cmd, "predeploy.go_main_wrapper_2")
+				utils.RunCmdOptional(cmd, fmt.Sprintf("compile for %v on %v", buildTarget, runtime.GOOS))
 
 				strip = exec.Command("strip", "main_armv7")
 				strip.Dir = filepath.Join(depPath, "build")
-				utils.RunCmdOptional(strip, "predeploy.strip_2")
+				utils.RunCmdOptional(strip, fmt.Sprintf("strip binary for %v on %v", buildTarget, runtime.GOOS))
 
 				//binary size limits	=> https://developer.apple.com/library/ios/documentation/LanguagesUtilities/Conceptual/iTunesConnect_Guide/Chapters/SubmittingTheApp.html
 				var lipo = exec.Command("xcrun", "lipo", "-create", "-arch", "arm64", "main", "-arch", "armv7", "main_armv7", "-output", "main")
 				lipo.Dir = filepath.Join(depPath, "build")
-				utils.RunCmdOptional(lipo, "predeploy.lipo")
+				utils.RunCmdOptional(lipo, fmt.Sprintf("create fat binary for %v on %v", buildTarget, runtime.GOOS))
 			}
 
 			//create default assets
@@ -745,10 +735,10 @@ func predeploy() {
 			utils.Save(filepath.Join(buildPath, "LaunchScreen.xib"), iosLaunchScreen())
 			utils.Save(filepath.Join(buildPath, "project.xcodeproj", "project.pbxproj"), iosProject())
 
-			utils.RunCmd(exec.Command(copyCmd, fmt.Sprintf("%v/5.7/ios/mkspecs/macx-ios-clang/Default-568h@2x.png", utils.QT_DIR()), buildPath), "predeploy.cpIcon")
+			utils.RunCmd(exec.Command(copyCmd, fmt.Sprintf("%v/5.7/ios/mkspecs/macx-ios-clang/Default-568h@2x.png", utils.QT_DIR()), buildPath), fmt.Sprintf("copy icon for %v on %v", buildTarget, runtime.GOOS))
 
 			//copy assets from buildTarget folder
-			utils.RunCmd(exec.Command(copyCmd, "-R", fmt.Sprintf("%v/%v/", appPath, buildTarget), buildPath), "predeploy.cpiOS")
+			utils.RunCmd(exec.Command(copyCmd, "-R", fmt.Sprintf("%v/%v/", appPath, buildTarget), buildPath), fmt.Sprintf("copy assets for %v on %v", buildTarget, runtime.GOOS))
 		}
 
 	case "desktop", "rpi1", "rpi2", "rpi3":
@@ -784,27 +774,26 @@ func predeploy() {
 
 			//copy assets from buildTarget folder
 			if runtime.GOOS == "windows" {
-				utils.RunCmd(exec.Command(copyCmd, filepath.Join(utils.SAILFISH_DIR(), "tutorials", "stocqt", "stocqt.png"), filepath.Join(depPath, fmt.Sprintf("harbour-%v.png*", appName))), "predeploy.cpIcon")
+				utils.RunCmd(exec.Command(copyCmd, filepath.Join(utils.SAILFISH_DIR(), "tutorials", "stocqt", "stocqt.png"), filepath.Join(depPath, fmt.Sprintf("harbour-%v.png*", appName))), fmt.Sprintf("copy icon for %v on %v", buildTarget, runtime.GOOS))
 
 				var cmd = exec.Command(copyCmd, buildTarget, depPath)
 				cmd.Dir = appPath
-				utils.RunCmd(cmd, "predeploy.cpSailfish")
+				utils.RunCmd(cmd, fmt.Sprintf("copy assets for %v on %v", buildTarget, runtime.GOOS))
 			} else {
-				utils.RunCmd(exec.Command(copyCmd, filepath.Join(utils.SAILFISH_DIR(), "tutorials", "stocqt", "stocqt.png"), filepath.Join(depPath, fmt.Sprintf("harbour-%v.png", appName))), "predeploy.cpIcon")
+				utils.RunCmd(exec.Command(copyCmd, filepath.Join(utils.SAILFISH_DIR(), "tutorials", "stocqt", "stocqt.png"), filepath.Join(depPath, fmt.Sprintf("harbour-%v.png", appName))), fmt.Sprintf("copy icon for %v on %v", buildTarget, runtime.GOOS))
 
-				utils.RunCmd(exec.Command(copyCmd, "-R", fmt.Sprintf("%v/%v/", appPath, buildTarget), depPath), "predeploy.cpSailfish")
+				utils.RunCmd(exec.Command(copyCmd, "-R", fmt.Sprintf("%v/%v/", appPath, buildTarget), depPath), fmt.Sprintf("copy assets for %v on %v", buildTarget, runtime.GOOS))
 			}
 
 			var errClean = sshCommand("2222", "mersdk", "cd", "/home/mersdk", "&&", "rm", "-R", buildTarget+"_minimal")
 			if errClean != nil {
-				fmt.Println("predeploy.clean", errClean)
+				utils.Log.WithError(errClean).Errorf("failed to cleanup for %v on %v", buildTarget, runtime.GOOS)
 			}
 
 			var errCopy = sshCommand("2222", "mersdk", "cd", strings.Replace(strings.Replace(appPath, utils.MustGoPath(), "/media/sf_GOPATH", -1)+"/deploy", "\\", "/", -1), "&&", "cp", "-R", buildTarget+"_minimal", "/home/mersdk")
 			if errCopy != nil {
-				fmt.Println("predeploy.copy", errCopy)
 				cleanup()
-				os.Exit(1)
+				utils.Log.WithError(errClean).Panicf("failed to copy project for %v on %v", buildTarget, runtime.GOOS)
 			}
 		}
 	}
@@ -839,16 +828,16 @@ func deploy() {
 
 			if runtime.GOOS == "windows" {
 				utils.Save(filepath.Join(depPath, "build.bat"), fmt.Sprintf("set JAVA_HOME=%v\r\n%v", utils.JDK_DIR(), strings.Join(deploy.Args, " ")))
-				utils.RunCmd(exec.Command(filepath.Join(depPath, "build.bat")), "deploy")
+				utils.RunCmd(exec.Command(filepath.Join(depPath, "build.bat")), fmt.Sprintf("deploy %v on %v", buildTarget, runtime.GOOS))
 				utils.RemoveAll(filepath.Join(depPath, "build.bat"))
 			} else {
-				utils.RunCmd(deploy, "deploy")
+				utils.RunCmd(deploy, fmt.Sprintf("deploy %v on %v", buildTarget, runtime.GOOS))
 			}
 		}
 
 	case "ios", "ios-simulator":
 		{
-			utils.RunCmd(exec.Command("xcrun", "xcodebuild", "clean", "build", "CODE_SIGN_IDENTITY=", "CODE_SIGNING_REQUIRED=NO", "CONFIGURATION_BUILD_DIR="+depPath, "-configuration", "Release", "-project", filepath.Join(depPath, "build", "project.xcodeproj")), "deploy")
+			utils.RunCmd(exec.Command("xcrun", "xcodebuild", "clean", "build", "CODE_SIGN_IDENTITY=", "CODE_SIGNING_REQUIRED=NO", "CONFIGURATION_BUILD_DIR="+depPath, "-configuration", "Release", "-project", filepath.Join(depPath, "build", "project.xcodeproj")), fmt.Sprintf("deploy %v on %v", buildTarget, runtime.GOOS))
 		}
 
 	case "desktop", "rpi1", "rpi2", "rpi3", "windows":
@@ -859,23 +848,23 @@ func deploy() {
 					if runtime.GOOS == "linux" {
 						var libraryPath = "/usr/lib/mxe/usr/i686-w64-mingw32.shared/bin/"
 						for _, d := range []string{"libbz2", "libfreetype-6", "libgcc_s_sjlj-1", "libglib-2.0-0", "libharfbuzz-0", "libiconv-2", "libintl-8", "libpcre-1", "libpcre16-0", "libpng16-16", "libstdc++-6", "libwinpthread-1", "zlib1", "libeay32", "ssleay32"} {
-							utils.RunCmdOptional(exec.Command("cp", filepath.Join(libraryPath, fmt.Sprintf("%v.dll", d)), depPath), "deploy.cpWindowsDlls")
+							utils.RunCmdOptional(exec.Command("cp", filepath.Join(libraryPath, fmt.Sprintf("%v.dll", d)), depPath), fmt.Sprintf("copy %v for %v on %v", d, buildTarget, runtime.GOOS))
 						}
 
 						libraryPath = "/usr/lib/mxe/usr/i686-w64-mingw32.shared/qt5/"
-						utils.RunCmd(exec.Command("cp", "-R", filepath.Join(libraryPath, "qml/")+"/.", depPath), "deploy.cpQml")
-						utils.RunCmd(exec.Command("cp", "-R", filepath.Join(libraryPath, "plugins/")+"/.", depPath), "deploy.cpPlugins")
+						utils.RunCmd(exec.Command("cp", "-R", filepath.Join(libraryPath, "qml/")+"/.", depPath), fmt.Sprintf("copy qml dir for %v on %v", buildTarget, runtime.GOOS))
+						utils.RunCmd(exec.Command("cp", "-R", filepath.Join(libraryPath, "plugins/")+"/.", depPath), fmt.Sprintf("copy plugins dir for %v on %v", buildTarget, runtime.GOOS))
 
 						libraryPath = "/usr/lib/mxe/usr/i686-w64-mingw32.shared/qt5/bin/"
-						var output = utils.RunCmd(exec.Command("/usr/lib/mxe/usr/bin/i686-w64-mingw32.shared-objdump", "-x", filepath.Join(depPath, appName+ending)), "deploy.cpWindowsDeps")
+						var output = utils.RunCmd(exec.Command("/usr/lib/mxe/usr/bin/i686-w64-mingw32.shared-objdump", "-x", filepath.Join(depPath, appName+ending)), fmt.Sprintf("objdump binary for %v on %v", buildTarget, runtime.GOOS))
 						for lib, deps := range templater.LibDeps {
 							if strings.Contains(output, lib) && lib != parser.MOC {
 								for _, lib := range append(deps, lib) {
-									utils.RunCmd(exec.Command("cp", filepath.Join(libraryPath, fmt.Sprintf("Qt5%v.dll", lib)), depPath), "deploy.cpWindowsDlls")
+									utils.RunCmd(exec.Command("cp", filepath.Join(libraryPath, fmt.Sprintf("Qt5%v.dll", lib)), depPath), fmt.Sprintf("copy %v for %v on %v", lib, buildTarget, runtime.GOOS))
 								}
 							}
 						}
-						utils.RunCmd(exec.Command("cp", filepath.Join(libraryPath, "Qt5OpenGL.dll"), depPath), "deploy.cpWindowsDlls")
+						utils.RunCmd(exec.Command("cp", filepath.Join(libraryPath, "Qt5OpenGL.dll"), depPath), fmt.Sprintf("copy OpenGL for %v on %v", buildTarget, runtime.GOOS))
 					}
 				}
 
@@ -886,7 +875,7 @@ func deploy() {
 						filepath.Join(depPath, appName+ending),
 						fmt.Sprintf("-qmldir=%v", filepath.Join(appPath, "qml")),
 						"-force")
-					utils.RunCmd(deploy, "deploy")
+					utils.RunCmd(deploy, fmt.Sprintf("depoy %v on %v", buildTarget, runtime.GOOS))
 				}
 
 			case runtime.GOOS == "darwin":
@@ -901,7 +890,7 @@ func deploy() {
 						fmt.Sprintf("-qmldir=%v", filepath.Join(appPath, "qml")),
 						"-always-overwrite")
 					deploy.Dir = fmt.Sprintf("%v/bin/", utils.QT_DARWIN_DIR())
-					utils.RunCmd(deploy, "deploy")
+					utils.RunCmd(deploy, fmt.Sprintf("deploy %v on %v", buildTarget, runtime.GOOS))
 				}
 
 			case runtime.GOOS == "linux":
@@ -921,9 +910,9 @@ func deploy() {
 						libraryPath = fmt.Sprintf("%v/5.7/%v/lib/", utils.QT_DIR(), buildTarget)
 						lddPath = fmt.Sprintf("%v/arm-bcm2708/arm-rpi-4.9.3-linux-gnueabihf/bin/arm-linux-gnueabihf-ldd", utils.RPI_TOOLS_DIR())
 						lddExtra = "--root=/"
-						lddOutput = utils.RunCmd(exec.Command(lddPath, lddExtra, filepath.Join(depPath, appName)), "deploy.ldd")
+						lddOutput = utils.RunCmd(exec.Command(lddPath, lddExtra, filepath.Join(depPath, appName)), fmt.Sprintf("ldd binary for %v on %v", buildTarget, runtime.GOOS))
 					} else {
-						lddOutput = utils.RunCmd(exec.Command(lddPath, filepath.Join(depPath, appName)), "deploy.ldd")
+						lddOutput = utils.RunCmd(exec.Command(lddPath, filepath.Join(depPath, appName)), fmt.Sprintf("ldd binary for %v on %v", buildTarget, runtime.GOOS))
 					}
 
 					for _, dep := range strings.Split(lddOutput, "\n") {
@@ -941,21 +930,21 @@ func deploy() {
 							}
 
 							if utils.Exists(filepath.Join(libraryPath, libName)) {
-								utils.RunCmd(exec.Command("cp", "-L", filepath.Join(libraryPath, libName), filepath.Join(depPath, libName)), fmt.Sprintf("deploy.%v", libName))
+								utils.RunCmd(exec.Command("cp", "-L", filepath.Join(libraryPath, libName), filepath.Join(depPath, libName)), fmt.Sprintf("copy %v for %v on %v", libName, buildTarget, runtime.GOOS))
 							}
 						}
 					}
 
 					for _, libName := range []string{"DBus", "XcbQpa", "Quick", "Widgets", "EglDeviceIntegration", "EglFsKmsSupport", "OpenGL", "WaylandClient", "WaylandCompositor"} {
 						if utils.Exists(filepath.Join(libraryPath, fmt.Sprintf("libQt5%v.so.5", libName))) {
-							utils.RunCmd(exec.Command("cp", "-L", filepath.Join(libraryPath, fmt.Sprintf("libQt5%v.so.5", libName)), filepath.Join(depPath, fmt.Sprintf("libQt5%v.so.5", libName))), fmt.Sprintf("deploy.%v", libName))
+							utils.RunCmd(exec.Command("cp", "-L", filepath.Join(libraryPath, fmt.Sprintf("libQt5%v.so.5", libName)), filepath.Join(depPath, fmt.Sprintf("libQt5%v.so.5", libName))), fmt.Sprintf("copy %v for %v on %v", libName, buildTarget, runtime.GOOS))
 						}
 					}
 
 					libraryPath = strings.TrimSuffix(libraryPath, "lib/")
 
-					utils.RunCmd(exec.Command("cp", "-R", filepath.Join(libraryPath, "qml/"), depPath), "deploy.qml")
-					utils.RunCmd(exec.Command("cp", "-R", filepath.Join(libraryPath, "plugins/")+"/.", depPath), "deploy.plugins")
+					utils.RunCmd(exec.Command("cp", "-R", filepath.Join(libraryPath, "qml/"), depPath), fmt.Sprintf("copy qml dir for %v on %v", buildTarget, runtime.GOOS))
+					utils.RunCmd(exec.Command("cp", "-R", filepath.Join(libraryPath, "plugins/")+"/.", depPath), fmt.Sprintf("copy plugins dir for %v on %v", buildTarget, runtime.GOOS))
 				}
 			}
 		}
@@ -965,16 +954,14 @@ func deploy() {
 			if buildTarget == "sailfish-emulator" {
 				var errDeploy = sshCommand("2222", "mersdk", "cd", "/home/mersdk/"+buildTarget+"_minimal", "&&", "mb2", "-t", "SailfishOS-i486", "build")
 				if errDeploy != nil {
-					fmt.Println("deploy.sailfish", errDeploy)
 					cleanup()
-					os.Exit(1)
+					utils.Log.WithError(errDeploy).Errorf("failed to deploy for %v on %v", buildTarget, runtime.GOOS)
 				}
 			} else {
 				var errDeploy = sshCommand("2222", "mersdk", "cd", "/home/mersdk/"+buildTarget+"_minimal", "&&", "mb2", "-t", "SailfishOS-armv7hl", "build")
 				if errDeploy != nil {
-					fmt.Println("deploy.sailfish", errDeploy)
 					cleanup()
-					os.Exit(1)
+					utils.Log.WithError(errDeploy).Errorf("failed to deploy for %v on %v", buildTarget, runtime.GOOS)
 				}
 			}
 		}
@@ -1005,14 +992,13 @@ func pastdeploy() {
 				}
 			}
 
-			if ks := utils.Load(filepath.Join(appPath, "android", appName+".keystore")); ks != "" {
-				utils.RunCmd(exec.Command(copyCmd, filepath.Join(depPath, "build", "build", "outputs", "apk", "build-release-signed.apk"), filepath.Join(depPath, fmt.Sprintf("%v.%v", appName, apkEnding))), "pastdeploy.release")
+			if utils.Exists(filepath.Join(appPath, "android", appName+".keystore")) {
+				utils.RunCmd(exec.Command(copyCmd, filepath.Join(depPath, "build", "build", "outputs", "apk", "build-release-signed.apk"), filepath.Join(depPath, fmt.Sprintf("%v.%v", appName, apkEnding))), fmt.Sprintf("copy release apk for %v on %v", buildTarget, runtime.GOOS))
 			} else {
-				utils.RunCmd(exec.Command(copyCmd, filepath.Join(depPath, "build", "build", "outputs", "apk", "build-debug.apk"), filepath.Join(depPath, fmt.Sprintf("%v.%v", appName, apkEnding))), "pastdeploy.debug")
+				utils.RunCmd(exec.Command(copyCmd, filepath.Join(depPath, "build", "build", "outputs", "apk", "build-debug.apk"), filepath.Join(depPath, fmt.Sprintf("%v.%v", appName, apkEnding))), fmt.Sprintf("copy debug apk for %v on %v", buildTarget, runtime.GOOS))
 			}
 
 			//TODO: copy manifest to android folder and change mindSdkVersion >= 16
-
 		}
 
 	case "ios", "ios-simulator":
@@ -1025,8 +1011,8 @@ func pastdeploy() {
 			switch runtime.GOOS {
 			case "darwin":
 				{
-					utils.RunCmd(exec.Command("mv", filepath.Join(depPath, fmt.Sprintf("%v.app/Contents/MacOS/%v", appName, appName)), filepath.Join(depPath, fmt.Sprintf("%v.app/Contents/MacOS/%v_app", appName, appName))), "pastdeploy.moveApp")
-					utils.RunCmd(exec.Command("mv", filepath.Join(depPath, fmt.Sprintf("%v.app/Contents/MacOS/%v_sh", appName, appName)), filepath.Join(depPath, fmt.Sprintf("%v.app/Contents/MacOS/%v", appName, appName))), "pastdeploy.moveSh")
+					utils.RunCmd(exec.Command("mv", filepath.Join(depPath, fmt.Sprintf("%v.app/Contents/MacOS/%v", appName, appName)), filepath.Join(depPath, fmt.Sprintf("%v.app/Contents/MacOS/%v_app", appName, appName))), fmt.Sprintf("move binary for %v on %v", buildTarget, runtime.GOOS))
+					utils.RunCmd(exec.Command("mv", filepath.Join(depPath, fmt.Sprintf("%v.app/Contents/MacOS/%v_sh", appName, appName)), filepath.Join(depPath, fmt.Sprintf("%v.app/Contents/MacOS/%v", appName, appName))), fmt.Sprintf("move script for %v on %v", buildTarget, runtime.GOOS))
 				}
 			}
 		}
@@ -1035,9 +1021,8 @@ func pastdeploy() {
 		{
 			var errPastDeploy = sshCommand("2222", "mersdk", "cd", "/home/mersdk/"+buildTarget+"_minimal/RPMS", "&&", "cp", "*", strings.Replace(strings.Replace(depPath, utils.MustGoPath(), "/media/sf_GOPATH", -1), "\\", "/", -1))
 			if errPastDeploy != nil {
-				fmt.Println("pastdeploy.sailfish", errPastDeploy)
 				cleanup()
-				os.Exit(1)
+				utils.Log.WithError(errPastDeploy).Panicf("failed to receive project for %v on %v", buildTarget, runtime.GOOS)
 			}
 		}
 	}
@@ -1072,8 +1057,7 @@ func deployDocker() {
 
 			case "darwin":
 				{
-					fmt.Printf("%v is currently not supported as a deploy target by docker\n", runtime.GOOS)
-					os.Exit(1)
+					utils.Log.Fatalf("%v is currently not supported as a deploy target by docker", runtime.GOOS)
 				}
 
 			case "linux":
@@ -1090,8 +1074,7 @@ func deployDocker() {
 
 	case "darwin":
 		{
-			fmt.Printf("%v is currently not supported as a deploy target by docker\n", runtime.GOOS)
-			os.Exit(1)
+			utils.Log.Fatalf("%v is currently not supported as a deploy target by docker", runtime.GOOS)
 		}
 
 	case "linux":
@@ -1106,17 +1089,15 @@ func deployDocker() {
 
 	default:
 		{
-			fmt.Printf("%v is currently not supported as a deploy target by docker\n", runtime.GOOS)
-			os.Exit(1)
+			utils.Log.Fatalf("%v is currently not supported as a deploy target by docker", runtime.GOOS)
 		}
 	}
 
 	if !strings.Contains(appPath, utils.MustGoPath()) {
-		fmt.Println("Project needs to be inside GOPATH", appPath, utils.MustGoPath())
-		os.Exit(1)
+		utils.Log.Panicln("Project needs to be inside GOPATH", appPath, utils.MustGoPath())
 	}
 
-	utils.RunCmd(exec.Command("docker", "run", "--rm", "-v", fmt.Sprintf("%v:/media/sf_GOPATH", utils.MustGoPath()), "-i", fmt.Sprintf("therecipe/qt:%v", dockerImage), "qtdeploy", "build", buildTarget, strings.Replace(strings.Replace(appPath, utils.MustGoPath(), "/media/sf_GOPATH", -1), "\\", "/", -1)), "deployDocker")
+	utils.RunCmd(exec.Command("docker", "run", "--rm", "-v", fmt.Sprintf("%v:/media/sf_GOPATH", utils.MustGoPath()), "-i", fmt.Sprintf("therecipe/qt:%v", dockerImage), "qtdeploy", "build", buildTarget, strings.Replace(strings.Replace(appPath, utils.MustGoPath(), "/media/sf_GOPATH", -1), "\\", "/", -1)), fmt.Sprintf("deploy binary for %v on %v with docker", buildTarget, runtime.GOOS))
 }
 
 func run() {
@@ -1125,17 +1106,17 @@ func run() {
 	case "android":
 		{
 			if runtime.GOOS != "windows" {
-				utils.RunCmdOptional(exec.Command("killall", "adb"), "run.killadb")
+				utils.RunCmdOptional(exec.Command("killall", "adb"), fmt.Sprintf("run \"killall adb\" for %v on %v", buildTarget, runtime.GOOS))
 			}
 			exec.Command(filepath.Join(utils.ANDROID_SDK_DIR(), "platform-tools", "adb"), "install", "-r", filepath.Join(depPath, fmt.Sprintf("%v.apk", appName))).Start()
 		}
 
 	case /*"ios",*/ "ios-simulator":
 		{
-			utils.RunCmdOptional(exec.Command("xcrun", "instruments", "-w", "iPhone 7 Plus (10.0)#"), "run.boot")
-			utils.RunCmd(exec.Command("xcrun", "simctl", "uninstall", "booted", filepath.Join(depPath, "main.app")), "run.install")
-			utils.RunCmd(exec.Command("xcrun", "simctl", "install", "booted", filepath.Join(depPath, "main.app")), "run.install")
-			utils.RunCmd(exec.Command("xcrun", "simctl", "launch", "booted", fmt.Sprintf("com.identifier.%v", appName)), "run.launch")
+			utils.RunCmdOptional(exec.Command("xcrun", "instruments", "-w", "iPhone 7 Plus (10.0)#"), fmt.Sprintf("start simulator for %v on %v", buildTarget, runtime.GOOS))
+			utils.RunCmd(exec.Command("xcrun", "simctl", "uninstall", "booted", filepath.Join(depPath, "main.app")), fmt.Sprintf("uninstall app for %v on %v", buildTarget, runtime.GOOS))
+			utils.RunCmd(exec.Command("xcrun", "simctl", "install", "booted", filepath.Join(depPath, "main.app")), fmt.Sprintf("install app for %v on %v", buildTarget, runtime.GOOS))
+			utils.RunCmd(exec.Command("xcrun", "simctl", "launch", "booted", fmt.Sprintf("com.identifier.%v", appName)), fmt.Sprintf("launch app for %v on %v", buildTarget, runtime.GOOS))
 		}
 
 	case "desktop", "windows":
@@ -1143,7 +1124,7 @@ func run() {
 			switch runtime.GOOS {
 			case "darwin":
 				{
-					utils.RunCmdOptional(exec.Command("open", filepath.Join(depPath, fmt.Sprintf("%v.app/", appName))), "run")
+					utils.RunCmdOptional(exec.Command("open", filepath.Join(depPath, fmt.Sprintf("%v.app/", appName))), fmt.Sprintf("run binary for %v on %v", buildTarget, runtime.GOOS))
 				}
 
 			case "linux":
@@ -1164,29 +1145,27 @@ func run() {
 
 	case /*"sailfish",*/ "sailfish-emulator":
 		{
-			utils.RunCmdOptional(exec.Command(filepath.Join(utils.VIRTUALBOX_DIR(), "vboxmanage"), "registervm", filepath.Join(utils.SAILFISH_DIR(), "emulator", "SailfishOS Emulator", "SailfishOS Emulator.vbox")), "buid.vboxRegisterEmulator")
-			utils.RunCmdOptional(exec.Command(filepath.Join(utils.VIRTUALBOX_DIR(), "vboxmanage"), "sharedfolder", "add", "SailfishOS Emulator", "--name", "GOPATH", "--hostpath", utils.MustGoPath(), "--automount"), "run.vboxSharedFolder_GOPATH")
+			utils.RunCmdOptional(exec.Command(filepath.Join(utils.VIRTUALBOX_DIR(), "vboxmanage"), "registervm", filepath.Join(utils.SAILFISH_DIR(), "emulator", "SailfishOS Emulator", "SailfishOS Emulator.vbox")), fmt.Sprintf("register sailfish-emulator for %v on %v", buildTarget, runtime.GOOS))
+			utils.RunCmdOptional(exec.Command(filepath.Join(utils.VIRTUALBOX_DIR(), "vboxmanage"), "sharedfolder", "add", "SailfishOS Emulator", "--name", "GOPATH", "--hostpath", utils.MustGoPath(), "--automount"), fmt.Sprintf("share GOPATH dir for %v on %v", buildTarget, runtime.GOOS))
 
 			if runtime.GOOS == "windows" {
-				utils.RunCmdOptional(exec.Command(filepath.Join(utils.VIRTUALBOX_DIR(), "vboxmanage"), "startvm", "SailfishOS Emulator"), "run.vboxStartEmulator")
+				utils.RunCmdOptional(exec.Command(filepath.Join(utils.VIRTUALBOX_DIR(), "vboxmanage"), "startvm", "SailfishOS Emulator"), fmt.Sprintf("start vbox sailfish-emulator for %v on %v", buildTarget, runtime.GOOS))
 			} else {
-				utils.RunCmdOptional(exec.Command("nohup", filepath.Join(utils.VIRTUALBOX_DIR(), "vboxmanage"), "startvm", "SailfishOS Emulator"), "run.vboxStartEmulator")
+				utils.RunCmdOptional(exec.Command("nohup", filepath.Join(utils.VIRTUALBOX_DIR(), "vboxmanage"), "startvm", "SailfishOS Emulator"), fmt.Sprintf("start vbox sailfish-emulator for %v on %v", buildTarget, runtime.GOOS))
 			}
 
 			time.Sleep(10 * time.Second)
 
 			var errInstall = sshCommand("2223", "nemo", "sudo", "rpm", "-i", "--force", strings.Replace(strings.Replace(depPath, utils.MustGoPath(), "/media/sf_GOPATH", -1)+"/*.rpm", "\\", "/", -1))
 			if errInstall != nil {
-				fmt.Println("run.install", errInstall)
 				cleanup()
-				os.Exit(1)
+				utils.Log.WithError(errInstall).Errorf("failed to install %v for %v", appName, buildTarget)
 			}
 
 			var errRun = sshCommand("2223", "nemo", "nohup", "/usr/bin/harbour-"+appName, ">", "/dev/null", "2>&1", "&")
 			if errRun != nil {
-				fmt.Println("run.run", errRun)
 				cleanup()
-				os.Exit(1)
+				utils.Log.WithError(errRun).Errorf("failed to run %v for %v", appName, buildTarget)
 			}
 		}
 	}
@@ -1266,7 +1245,7 @@ func linuxSH() string {
 
 	if utils.UsePkgConfig() {
 		var (
-			libDir  = strings.TrimSpace(utils.RunCmd(exec.Command("pkg-config", "--variable=libdir", "Qt5Core"), "linux.sh_libDir"))
+			libDir  = strings.TrimSpace(utils.RunCmd(exec.Command("pkg-config", "--variable=libdir", "Qt5Core"), fmt.Sprintf("get lib dir for %v on %v", buildTarget, runtime.GOOS)))
 			miscDir = utils.QT_MISC_DIR()
 		)
 		fmt.Fprintf(bb, "export LD_LIBRARY_PATH=%v\n", libDir)

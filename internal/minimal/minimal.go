@@ -1,7 +1,6 @@
 package minimal
 
 import (
-	"fmt"
 	goparser "go/parser"
 	"go/token"
 	"io/ioutil"
@@ -28,7 +27,7 @@ func Minimal(path string) error {
 		if err == nil && !strings.HasPrefix(info.Name(), "moc") && strings.HasSuffix(info.Name(), ".go") && !info.IsDir() {
 			var pFile, errParse = goparser.ParseFile(token.NewFileSet(), path, nil, 0)
 			if errParse != nil {
-				fmt.Println("minimal.parseFile", errParse)
+				utils.Log.WithError(errParse).Panicf("failed to parser file %v", path)
 			} else {
 				for _, i := range pFile.Imports {
 					if !strings.Contains(i.Path.Value, "github.com/therecipe/qt") {
@@ -48,13 +47,9 @@ func Minimal(path string) error {
 	var walkFunc = func(path string, info os.FileInfo, err error) error {
 		if err == nil && strings.HasSuffix(info.Name(), ".go") && !info.IsDir() {
 
-			var src, err = ioutil.ReadFile(path)
-			if err != nil {
-				fmt.Println("minimal.readFile", err)
-			}
-			var file = string(src)
-
-			if strings.Contains(file, "github.com/therecipe/qt/") && !(strings.Contains(file, "github.com/therecipe/qt/androidextras") && strings.Count(file, "github.com/therecipe/qt/") == 1) {
+			if file := utils.Load(path); strings.Contains(file, "github.com/therecipe/qt/") &&
+				!(strings.Contains(file, "github.com/therecipe/qt/androidextras") &&
+					strings.Count(file, "github.com/therecipe/qt/") == 1) {
 				cached = append(cached, file)
 			}
 		}
@@ -73,7 +68,8 @@ func Minimal(path string) error {
 	}
 
 	for _, module := range templater.GetLibs() {
-		if _, err := parser.GetModule(strings.ToLower(module)); err != nil {
+		if _, err := parser.GetModule(module); err != nil {
+			utils.Log.Errorf("failed to load qt/%v", strings.ToLower(module))
 			return err
 		}
 	}

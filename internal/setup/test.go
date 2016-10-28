@@ -7,24 +7,28 @@ import (
 	"path/filepath"
 	"runtime"
 	"strings"
-	"time"
 
 	"github.com/therecipe/qt/internal/utils"
 )
 
 func main() {
 	var (
-		buildTarget = "desktop"
-		ending      string
-	)
-	if len(os.Args) > 1 {
-		buildTarget = os.Args[1]
-	}
-	if runtime.GOOS == "windows" {
-		ending = ".exe"
-	}
+		buildTarget = func() string {
+			if len(os.Args) > 1 {
+				return os.Args[1]
+			}
+			return "desktop"
+		}()
 
-	fmt.Println("------------------------test----------------------------")
+		ending = func() string {
+			if runtime.GOOS == "windows" {
+				return ".exe"
+			}
+			return ""
+		}()
+	)
+
+	utils.Log.Infof("running setup/test.go %v", buildTarget)
 
 	utils.MakeFolder(filepath.Join(utils.MustGoPath(), "bin"))
 
@@ -37,34 +41,37 @@ func main() {
 	switch runtime.GOOS {
 	case "darwin", "linux":
 		{
-			// if user is root, symlink in /usr/local/bin
-			if os.Geteuid() == 0 {
-				utils.RemoveAll(filepath.Join("/usr", "local", "bin", "qtdeploy"))
-				utils.RemoveAll(filepath.Join("/usr", "local", "bin", "qtmoc"))
+			if os.Geteuid() == 0 || runtime.GOOS == "darwin" {
+				utils.RemoveAll("/usr/local/bin/qtdeploy")
+				utils.RemoveAll("/usr/local/bin/qtmoc")
 
-				utils.RunCmdOptional(exec.Command("ln", "-s", filepath.Join(utils.MustGoPath(), "bin", "qtdeploy"), filepath.Join("/usr", "local", "bin", "qtdeploy")), "symlink.qtdeploy")
-				utils.RunCmdOptional(exec.Command("ln", "-s", filepath.Join(utils.MustGoPath(), "bin", "qtmoc"), filepath.Join("/usr", "local", "bin", "qtmoc")), "symlink.qtmoc")
+				var err = os.Symlink(filepath.Join(utils.MustGoPath(), "bin/qtdeploy"), "/usr/local/bin/qtdeploy")
+				if err != nil {
+					utils.Log.WithError(err).Errorf("failed to create qtdeploy symlink in your PATH -> use %v instead", filepath.Join(utils.MustGoPath(), "bin/qtdeploy"))
+				}
+
+				err = os.Symlink(filepath.Join(utils.MustGoPath(), "bin/qtmoc"), "/usr/local/bin/qtmoc")
+				if err != nil {
+					utils.Log.WithError(err).Errorf("failed to create qtmoc symlink in your PATH -> use %v instead", filepath.Join(utils.MustGoPath(), "bin/qtmoc"))
+				}
 			} else {
-				fmt.Println("Do not create symlink: not root")
+				utils.Log.Errorf("failed to create qtdeploy and qtmoc symlinks in your PATH (not root) -> use %v and %v instead", filepath.Join(utils.MustGoPath(), "bin/qtdeploy"), filepath.Join(utils.MustGoPath(), "bin/qtmoc"))
 			}
 		}
 
 	case "windows":
 		{
-			utils.RemoveAll(filepath.Join(runtime.GOROOT(), "bin", fmt.Sprintf("qtdeploy%v", ending)))
-			utils.RemoveAll(filepath.Join(runtime.GOROOT(), "bin", fmt.Sprintf("qtmoc%v", ending)))
+			utils.RemoveAll(filepath.Join(runtime.GOROOT(), "bin\\qtdeploy.exe"))
+			utils.RemoveAll(filepath.Join(runtime.GOROOT(), "bin\\qtmoc.exe"))
 
-			var cmdDeploy = exec.Command("cmd", "/C", "mklink", "/H", fmt.Sprintf("qtdeploy%v", ending), filepath.Join(utils.MustGoPath(), "bin", fmt.Sprintf("qtdeploy%v", ending)))
-			cmdDeploy.Dir = filepath.Join(runtime.GOROOT(), "bin")
-			utils.RunCmdOptional(cmdDeploy, "symlink.qtdeploy")
-
-			var cmdMoc = exec.Command("cmd", "/C", "mklink", "/H", fmt.Sprintf("qtmoc%v", ending), filepath.Join(utils.MustGoPath(), "bin", fmt.Sprintf("qtmoc%v", ending)))
-			cmdMoc.Dir = filepath.Join(runtime.GOROOT(), "bin")
-			utils.RunCmdOptional(cmdMoc, "symlink.qtmoc")
+			utils.RunCmdOptional(exec.Command("cmd", "/C", "mklink", "/H", filepath.Join(runtime.GOROOT(), "bin\\qtdeploy.exe"), filepath.Join(utils.MustGoPath(), "bin\\qtdeploy.exe")), "symlink.qtdeploy")
+			utils.RunCmdOptional(exec.Command("cmd", "/C", "mklink", "/H", filepath.Join(runtime.GOROOT(), "bin\\qtmoc.exe"), filepath.Join(utils.MustGoPath(), "bin\\qtmoc.exe")), "symlink.qtmoc")
 		}
 	}
 
-	//TODO:
+	utils.Log.Info("starting to test examples (~10min)")
+
+	//TODO: cleanup
 	for _, example := range []string{filepath.Join("widgets", "line_edits"), filepath.Join("widgets", "video_player"), filepath.Join("widgets", "graphicsscene"), filepath.Join("widgets", "dropsite"), filepath.Join("widgets", "table"),
 		filepath.Join("quick", "bridge"), filepath.Join("quick", "bridge2"), filepath.Join("quick", "calc"), filepath.Join("quick", "dialog"), filepath.Join("quick", "sailfish"), filepath.Join("quick", "translate"), filepath.Join("quick", "view"),
 		filepath.Join("qml", "application"), filepath.Join("qml", "prop"),
@@ -74,19 +81,24 @@ func main() {
 		} else if !(buildTarget == "sailfish" || buildTarget == "sailfish-emulator") && example == filepath.Join("quick", "sailfish") {
 		} else {
 
-			var before = time.Now()
+			utils.Log.Infoln("testing", example)
 
-			fmt.Print(example)
+			utils.RunCmd(exec.Command(filepath.Join(utils.MustGoPath(), "bin", "qtdeploy"),
 
-			if strings.HasSuffix(buildTarget, "-docker") {
-				//TODO:
-				utils.RunCmd(exec.Command(filepath.Join(utils.MustGoPath(), "bin", "qtdeploy"), "test", strings.TrimSuffix(buildTarget, "-docker"), filepath.Join(utils.GoQtPkgPath("internal", "examples"), example), "docker"), fmt.Sprintf("test.%v", example))
-			} else {
-				//TODO:
-				utils.RunCmd(exec.Command(filepath.Join(utils.MustGoPath(), "bin", "qtdeploy"), "test", buildTarget, filepath.Join(utils.GoQtPkgPath("internal", "examples"), example)), fmt.Sprintf("test.%v", example))
-			}
+				"test",
 
-			fmt.Println(strings.Repeat(" ", 45-len(example)), time.Since(before)/time.Second*time.Second)
+				strings.TrimSuffix(buildTarget, "-docker"),
+
+				filepath.Join(utils.GoQtPkgPath("internal", "examples"), example),
+
+				func() string {
+					if strings.HasSuffix(buildTarget, "-docker") {
+						return "docker"
+					}
+					return ""
+				}()),
+
+				fmt.Sprintf("test.%v", example))
 		}
 	}
 }

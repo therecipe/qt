@@ -98,7 +98,7 @@ func Debug(fn ...interface{}) {
 func HexDecodeToString(in string) string {
 	var out, err = hex.DecodeString(in)
 	if err != nil {
-		Debug("couldn't decode hex:", in)
+		Debug("failed to decode hex:", in)
 		return ""
 	}
 	return string(out)

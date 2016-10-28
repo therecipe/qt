@@ -14,50 +14,50 @@ const packageName = "github.com/therecipe/qt"
 
 var goPath *string
 
-// MustGoPath is same as GoPath but exit if any error
-// it also cache the result
+// MustGoPath is same as GoPath but exits if any error ocurres
+// it also caches the result
 func MustGoPath() string {
 	if goPath != nil {
 		return *goPath
 	}
-	out, err := GoPath()
+	var out, err = gopath()
 	if err != nil {
-		fmt.Println("Error:", err.Error())
-		os.Exit(1)
+		Log.WithError(err).Errorf("failed to get GOPATH that holds %v", packageName)
 	}
 	goPath = &out
 	return out
 }
 
-// GoPath return the GOPATH where hold this package.
-func GoPath() (goPath string, err error) {
-	goPaths := os.Getenv("GOPATH")
+// GoPath return the GOPATH that holds this package
+func gopath() (goPath string, err error) {
+	var goPaths = os.Getenv("GOPATH")
 	if len(goPaths) == 0 {
 		err = errors.New("GOPATH environment variable is unset")
 		return
 	}
 
-	tries := make([]string, 0)
+	//TODO: fix issue
+	var tries = make([]string, 0)
 	for _, path := range strings.Split(goPaths, string(os.PathListSeparator)) {
 		if _, err = ioutil.ReadDir(path); err != nil {
 			err = fmt.Errorf("GOPATH %q point to a non-existing directory", path)
 			return
 		}
 
-		if strings.Contains(path, runtime.GOROOT()) {
+		if strings.HasPrefix(fmt.Sprintf("%v%v", path, string(os.PathSeparator)), runtime.GOROOT()) {
 			err = fmt.Errorf("GOPATH %q is or contains GOROOT", path)
 			return
 		}
 
-		if strings.Contains(runtime.GOROOT(), path) {
-			err = fmt.Errorf("nGOROOT %q is or contains GOPATH", path)
+		if strings.HasPrefix(fmt.Sprintf("%v%v", runtime.GOROOT(), string(os.PathSeparator)), path) {
+			err = fmt.Errorf("GOROOT %q is or contains GOPATH", path)
 			return
 		}
 
-		packageDir := filepath.Join(path, "src", packageName)
+		var packageDir = filepath.Join(path, "src", packageName)
 		if _, err = ioutil.ReadDir(packageDir); err == nil {
 			if len(goPath) > 0 {
-				err = fmt.Errorf("Multiple copies of %s are in GOPATH: in %s and %s", packageName, goPath, path)
+				err = fmt.Errorf("multiple copies of %s are in GOPATH: in %s and %s", packageName, goPath, path)
 				return
 			}
 			goPath = path
@@ -67,7 +67,7 @@ func GoPath() (goPath string, err error) {
 	}
 
 	if len(goPath) == 0 {
-		err = fmt.Errorf("Couldn't find %s in all %d GOPATH, tried: %s", packageName, len(tries), strings.Join(tries, " "))
+		err = fmt.Errorf("failed to find %s in all %d GOPATH, tried %s", packageName, len(tries), strings.Join(tries, " "))
 	}
 	return
 }

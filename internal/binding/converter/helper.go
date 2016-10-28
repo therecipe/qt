@@ -310,7 +310,7 @@ func IsPrivateSignal(f *parser.Function) bool {
 			}
 		}
 
-		fmt.Println("converter.IsPrivateSignal", f.Class())
+		utils.Log.Debugln("converter.IsPrivateSignal", f.Class())
 	}
 
 	return false

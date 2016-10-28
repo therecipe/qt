@@ -2,6 +2,7 @@ machine:
   environment:
     OS: linux
     CI: true
+    QT_STUB: true
     DESKTOP: true
     ANDROID: true
     QT_WINDOWS_CC: true
@@ -17,7 +18,7 @@ dependencies:
 test:
   pre:
   override:
-    - if [[ "$DESKTOP" == "true" ]]; then /home/ubuntu/.go_project/src/github.com/therecipe/qt/setup.sh; else go run $GOPATH/src/github.com/therecipe/qt/internal/setup/generate.go; fi
+    - if [[ "$DESKTOP" == "true" ]]; then /home/ubuntu/.go_project/src/github.com/therecipe/qt/setup.sh; fi
     - if [[ "$ANDROID" == "true" ]]; then /home/ubuntu/.go_project/src/github.com/therecipe/qt/setup.sh android; fi
     - if [[ "$QT_WINDOWS_CC" == "true" ]]; then /home/ubuntu/.go_project/src/github.com/therecipe/qt/setup.sh windows; fi
   post:

@@ -340,7 +340,7 @@ func (c *Class) fixBases() {
 		}
 
 		if !found && c.Name != "SailfishApp" {
-			fmt.Println("HEADER FILE NOT FOUND:", c.Name, c.Module)
+			utils.Log.Errorln("failed to find header file for:", c.Name, c.Module)
 		}
 
 		var bases = c.GetBases()
@@ -406,7 +406,7 @@ func getBasesFromHeader(f string, n string, m string) string {
 		}
 	}
 
-	fmt.Println("HEADER FILE NOT SUCCESFULL PARSED:", m, n)
+	utils.Log.Errorln("failed to parse header for:", m, n)
 	return ""
 }
 

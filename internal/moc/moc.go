@@ -96,14 +96,12 @@ func moc(appPath string) {
 
 			src, err := ioutil.ReadFile(path)
 			if err != nil {
-				fmt.Println(err)
-				os.Exit(1)
+				utils.Log.WithError(err).Panicf("failed to load file %v", path)
 			}
 
 			file, err := goparser.ParseFile(token.NewFileSet(), path, nil, 0)
 			if err != nil {
-				fmt.Println(err)
-				os.Exit(1)
+				utils.Log.WithError(err).Panicf("failed to parse file %v", path)
 			}
 
 			if !strings.Contains(string(src), "package main") {
@@ -187,7 +185,7 @@ func moc(appPath string) {
 
 		if !modulesInited {
 			for _, module := range templater.GetLibs() {
-				parser.GetModule(strings.ToLower(module))
+				parser.GetModule(module)
 			}
 			modulesInited = true
 		}

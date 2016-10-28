@@ -1,43 +1,48 @@
 package main
 
 import (
-	"fmt"
-	"os"
-	"os/exec"
 	"strings"
-	"time"
 
 	"github.com/therecipe/qt/internal/binding/parser"
 	"github.com/therecipe/qt/internal/binding/templater"
+	"github.com/therecipe/qt/internal/utils"
 )
 
 func main() {
-	if len(os.Args) == 1 {
-		fmt.Println("------------------------generate------------------------")
+	utils.Log.Info("running setup/generate.go")
 
-		for _, module := range templater.GetLibs() {
-			if _, err := parser.GetModule(strings.ToLower(module)); err != nil {
-				fmt.Println(err.Error())
-				os.Exit(1)
-			}
+	if testFile := utils.GoQtPkgPath("core", "cgo_desktop_darwin_amd64.go"); utils.Exists(testFile) && strings.Contains(utils.Load(testFile), utils.QT_DIR()) {
+		if utils.QT_STUB() &&
+			!utils.Exists(utils.GoQtPkgPath("core", "core.h")) &&
+			!utils.Exists(utils.GoQtPkgPath("core", "core.cpp")) {
+
+			utils.Log.Debug("stub files are up to date -> don't re-generate")
+			return
 		}
 
-		for _, module := range templater.GetLibs() {
+		if !utils.QT_STUB() &&
+			utils.Exists(utils.GoQtPkgPath("core", "core.h")) &&
+			utils.Exists(utils.GoQtPkgPath("core", "core.cpp")) {
 
-			var before = time.Now()
-
-			fmt.Print(strings.ToLower(module))
-
-			templater.GenModule(module)
-
-			fmt.Println(strings.Repeat(" ", 45-len(module)), time.Since(before)/time.Second*time.Second)
-
-			//TODO: replace with go/format.Source
-			var out, err = exec.Command("go", "fmt", fmt.Sprintf("github.com/therecipe/qt/%v", strings.ToLower(module))).CombinedOutput()
-			if err != nil {
-				fmt.Println(string(out), err)
-				os.Exit(1)
-			}
+			utils.Log.Debug("real files are up to date -> don't re-generate")
+			return
 		}
+	}
+
+	for _, module := range templater.GetLibs() {
+		utils.Log.Debugf("loading qt/%v", strings.ToLower(module))
+		if _, err := parser.GetModule(module); err != nil {
+			utils.Log.WithError(err).Errorf("failed to load qt/%v", strings.ToLower(module))
+		}
+	}
+
+	for _, module := range templater.GetLibs() {
+		utils.Log.Infof("generating%v qt/%v", func() string {
+			if utils.QT_STUB() {
+				return " stub"
+			}
+			return " full"
+		}(), strings.ToLower(module))
+		templater.GenModule(module)
 	}
 }

@@ -3,10 +3,12 @@ package templater
 import (
 	"bytes"
 	"fmt"
+	"go/format"
 	"strings"
 
 	"github.com/therecipe/qt/internal/binding/converter"
 	"github.com/therecipe/qt/internal/binding/parser"
+	"github.com/therecipe/qt/internal/utils"
 )
 
 func GoTemplate(module string, stub bool) []byte {
@@ -406,5 +408,9 @@ import (
 
 	bb.Write(input)
 
-	return bb.Bytes()
+	var out, err = format.Source(bb.Bytes())
+	if err != nil {
+		utils.Log.WithError(err).Panicln("failed to format:", module)
+	}
+	return out
 }
