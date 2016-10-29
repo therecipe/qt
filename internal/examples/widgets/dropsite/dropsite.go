@@ -11,10 +11,11 @@ import (
 	"github.com/therecipe/qt/widgets"
 )
 
+//go:generate qtmoc
 type DropSiteWindow struct {
 	widgets.QWidget
 
-	_ func(mimeData *core.QMimeData) `slot:updateFormatsTable`
+	_ func(mimeData *core.QMimeData) `slot:"updateFormatsTable"`
 }
 
 func main() {
@@ -117,7 +118,7 @@ func main() {
 type DropArea struct {
 	widgets.QLabel
 
-	_ func(mimeData *core.QMimeData) `signal:changed`
+	_ func(mimeData *core.QMimeData) `signal:"changed"`
 }
 
 func initDropArea() *DropArea {

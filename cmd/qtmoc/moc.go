@@ -69,7 +69,7 @@ func main() {
 	if cleanup {
 		var b, err = json.Marshal(tmpFiles)
 		if err == nil {
-			utils.SaveBytes(filepath.Join(appPath, "cleanup.json"), b)
+			utils.SaveBytes(filepath.Join(appPath, "moc_cleanup.json"), b)
 		}
 	}
 }
@@ -87,7 +87,7 @@ func moc(appPath string) {
 		}
 		tmpFiles = append(tmpFiles, filepath.Join(appPath, name))
 	}
-	utils.RemoveAll(filepath.Join(appPath, "cleanup.json"))
+	utils.RemoveAll(filepath.Join(appPath, "moc_cleanup.json"))
 
 	var module = &parser.Module{Project: parser.MOC, Namespace: &parser.Namespace{Classes: make([]*parser.Class, 0)}}
 
@@ -154,7 +154,7 @@ func moc(appPath string) {
 
 										if meta != "" {
 											var (
-												name = strings.Split(tag, ":")[1]
+												name = strings.Replace(strings.Split(tag, ":")[1], "\"", "", -1)
 												f    = &parser.Function{Access: "public", Fullname: class.Name + "::" + name, Meta: meta, Name: name, Output: "void", Status: "public", Virtual: "non", Signature: "()"}
 											)
 											f.Parameters = getParameters(_type)

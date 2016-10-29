@@ -8,8 +8,8 @@ import (
 	"github.com/therecipe/qt/internal/utils"
 )
 
-func main() {
-	utils.Log.Info("running setup/generate.go")
+func generate() {
+	utils.Log.Info("running setup/generate")
 
 	if testFile := utils.GoQtPkgPath("core", "cgo_desktop_darwin_amd64.go"); utils.Exists(testFile) && strings.Contains(utils.Load(testFile), utils.QT_DIR()) {
 		if utils.QT_STUB() &&

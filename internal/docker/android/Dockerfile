@@ -13,5 +13,5 @@ ENV NDK android-ndk-r12b-linux-x86_64.zip
 RUN curl -sL --retry 10 --retry-delay 10 -o /tmp/$NDK https://dl.google.com/android/repository/$NDK && unzip -qq /tmp/$NDK -d $HOME && rm -f /tmp/$NDK
 
 
-RUN go run $GOPATH/src/github.com/therecipe/qt/internal/setup/check.go android
-RUN go run $GOPATH/src/github.com/therecipe/qt/internal/setup/generate.go
+RUN $GOPATH/bin/qtsetup check android
+RUN $GOPATH/bin/qtsetup generate

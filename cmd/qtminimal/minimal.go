@@ -1,4 +1,4 @@
-package minimal
+package main
 
 import (
 	goparser "go/parser"
@@ -14,27 +14,45 @@ import (
 	"github.com/therecipe/qt/internal/utils"
 )
 
-var BuildTarget string
+func main() {
+	var (
+		buildTarget = "desktop"
+		appPath, _  = os.Getwd()
+	)
 
-func Minimal(path string) error {
+	switch len(os.Args) {
+	case 2:
+		{
+			buildTarget = os.Args[1]
+		}
+
+	case 3:
+		{
+			buildTarget = os.Args[1]
+			appPath = os.Args[2]
+		}
+	}
+	if !filepath.IsAbs(appPath) {
+		appPath = utils.GetAbsPath(appPath)
+	}
 
 	var (
 		imported []string
 		cached   []string
 	)
 
-	var walkFuncImports = func(path string, info os.FileInfo, err error) error {
+	var walkFuncImports = func(appPath string, info os.FileInfo, err error) error {
 		if err == nil && !strings.HasPrefix(info.Name(), "moc") && strings.HasSuffix(info.Name(), ".go") && !info.IsDir() {
-			var pFile, errParse = goparser.ParseFile(token.NewFileSet(), path, nil, 0)
+			var pFile, errParse = goparser.ParseFile(token.NewFileSet(), appPath, nil, 0)
 			if errParse != nil {
-				utils.Log.WithError(errParse).Panicf("failed to parser file %v", path)
+				utils.Log.WithError(errParse).Panicf("failed to parser file %v", appPath)
 			} else {
 				for _, i := range pFile.Imports {
 					if !strings.Contains(i.Path.Value, "github.com/therecipe/qt") {
-						var path = filepath.Join(utils.MustGoPath(), "src", strings.Replace(i.Path.Value, "\"", "", -1))
-						if _, err := ioutil.ReadDir(path); err == nil {
-							if !isImported(imported, path) {
-								imported = append(imported, path)
+						var appPath = filepath.Join(utils.MustGoPath(), "src", strings.Replace(i.Path.Value, "\"", "", -1))
+						if _, err := ioutil.ReadDir(appPath); err == nil {
+							if !isImported(imported, appPath) {
+								imported = append(imported, appPath)
 							}
 						}
 					}
@@ -44,10 +62,10 @@ func Minimal(path string) error {
 		return nil
 	}
 
-	var walkFunc = func(path string, info os.FileInfo, err error) error {
+	var walkFunc = func(appPath string, info os.FileInfo, err error) error {
 		if err == nil && strings.HasSuffix(info.Name(), ".go") && !info.IsDir() {
 
-			if file := utils.Load(path); strings.Contains(file, "github.com/therecipe/qt/") &&
+			if file := utils.Load(appPath); strings.Contains(file, "github.com/therecipe/qt/") &&
 				!(strings.Contains(file, "github.com/therecipe/qt/androidextras") &&
 					strings.Count(file, "github.com/therecipe/qt/") == 1) {
 				cached = append(cached, file)
@@ -57,20 +75,19 @@ func Minimal(path string) error {
 		return nil
 	}
 
-	filepath.Walk(path, walkFuncImports)
+	filepath.Walk(appPath, walkFuncImports)
 	for _, imp := range imported {
 		filepath.Walk(imp, walkFuncImports)
 	}
 
-	filepath.Walk(path, walkFunc)
+	filepath.Walk(appPath, walkFunc)
 	for _, imp := range imported {
 		filepath.Walk(imp, walkFunc)
 	}
 
 	for _, module := range templater.GetLibs() {
 		if _, err := parser.GetModule(module); err != nil {
-			utils.Log.Errorf("failed to load qt/%v", strings.ToLower(module))
-			return err
+			utils.Log.WithError(err).Errorf("failed to load qt/%v", strings.ToLower(module))
 		}
 	}
 
@@ -129,11 +146,11 @@ func Minimal(path string) error {
 		}
 	}
 
-	if BuildTarget == "sailfish" || BuildTarget == "sailfish-emulator" {
+	if buildTarget == "sailfish" || buildTarget == "sailfish-emulator" {
 		parser.ClassMap["QQuickWidget"].Export = false
 	}
 
-	if BuildTarget == "ios" || BuildTarget == "ios-simulator" {
+	if buildTarget == "ios" || buildTarget == "ios-simulator" {
 		parser.ClassMap["QProcess"].Export = false
 		parser.ClassMap["QProcessEnvironment"].Export = false
 	}
@@ -142,7 +159,6 @@ func Minimal(path string) error {
 	for _, module := range templater.GetLibs() {
 		templater.GenModule(module)
 	}
-	return nil
 }
 
 func exportFunction(class *parser.Class, function *parser.Function) {
@@ -187,9 +203,9 @@ func hasPureVirtualFunctions(className string) bool {
 	return false
 }
 
-func isImported(imported []string, path string) bool {
+func isImported(imported []string, appPath string) bool {
 	for _, i := range imported {
-		if i == path {
+		if i == appPath {
 			return true
 		}
 	}

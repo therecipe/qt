@@ -99,11 +99,11 @@ func initQmlContext(quickWidget *quick.QQuickWidget) {
 type QmlBridge struct {
 	core.QObject
 
-	_ func(source, action, data string) `signal:sendToQml`
-	_ func(source, action, data string) `slot:sendToGo`
+	_ func(source, action, data string) `signal:"sendToQml"`
+	_ func(source, action, data string) `slot:"sendToGo"`
 
-	_ func(object *core.QObject) `slot:registerToGo`
-	_ func(objectName string)    `slot:deregisterToGo`
+	_ func(object *core.QObject) `slot:"registerToGo"`
+	_ func(objectName string)    `slot:"deregisterToGo"`
 }
 
 func initQmlBridge(quickWidget *quick.QQuickWidget) {

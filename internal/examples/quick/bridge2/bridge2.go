@@ -16,8 +16,8 @@ import (
 type QmlBridge struct {
 	core.QObject
 
-	_ func(data string)        `signal:sendToQml`
-	_ func(data string) string `slot:sendToGo`
+	_ func(data string)        `signal:"sendToQml"`
+	_ func(data string) string `slot:"sendToGo"`
 }
 
 func main() {

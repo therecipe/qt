@@ -19,7 +19,7 @@ The project is pretty much a WIP and **not** recommended to be used in productio
 
 However it should already contain everything you need to build fully featured Qt applications in Go.
 
-[Screenshots of the Line Edits example](internal/screens)
+[Screenshots of the Line Edits example](internal/screenshots)
 
 ## Installation
 
@@ -27,7 +27,7 @@ However it should already contain everything you need to build fully featured Qt
 
 The full installation requires at least **8gb** free ram and takes 20 min.
 
-The stub installation requires only **1gb** free ram and takes 5 min. (**experimental**)
+The stub installation requires only **1gb** free ram and takes 10 min. (**experimental**)
 
 The only differnce between those two version is, that you **won't** be able to use `go run/build` to build your applications if you choose to install the stub version.
 You are therefore **limited** to the use of `qtdeploy` to build your application.
@@ -36,7 +36,7 @@ To build the stub version export `QT_STUB=true` system wide and procede with the
 
 #### Environmental variables
 
-If you define enviormental variables during the installation export them system wide, as they are needed not only during the installation but also later by `qtdeploy`.
+If you define enviormental variables during the installation export them system wide, as they are needed not only during the installation but also later.
 
 Add the enviormental variables into your `$HOME/.bash_profile` or `$HOME/.profile` on macOS or Linux.
 
@@ -87,11 +87,11 @@ You can export `QT_DEBUG=true` before "qtdeploying" your application to enable p
 
 4. Download the binding
 
-	* `go get -d github.com/therecipe/qt`
+	* `go get github.com/therecipe/qt/cmd/qtsetup`
 
 5. Generate, install and test (20 min)
 
-	* `cd %GOPATH%\src\github.com\therecipe\qt && setup.bat`
+	* `%GOPATH%\bin\qtsetup`
 
 6. Create your first [application](#example)
 
@@ -120,11 +120,11 @@ You can export `QT_DEBUG=true` before "qtdeploying" your application to enable p
 
 4. Download the binding
 
-	* `go get -d github.com/therecipe/qt`
+	* `go get github.com/therecipe/qt/cmd/qtsetup`
 
 5. Generate, install and test (20 min)
 
-	* `cd $GOPATH/src/github.com/therecipe/qt && ./setup.sh`
+	* `$GOPATH/bin/qtsetup`
 
 6. Create your first [application](#example)
 
@@ -162,11 +162,11 @@ You can export `QT_DEBUG=true` before "qtdeploying" your application to enable p
 
 4. Download the binding
 
-	* `go get -d github.com/therecipe/qt`
+	* `go get github.com/therecipe/qt/cmd/qtsetup`
 
 5. Generate, install and test (20 min)
 
-	* `cd $GOPATH/src/github.com/therecipe/qt && ./setup.sh`
+	* `$GOPATH/bin/qtsetup`
 
 6. Create your first [application](#example)
 
@@ -190,7 +190,7 @@ You can export `QT_DEBUG=true` before "qtdeploying" your application to enable p
 
 3. Generate, install and test (20 min)
 
-	* `cd $GOPATH/src/github.com/therecipe/qt && ./setup.sh windows`
+	* `$GOPATH/bin/qtsetup windows`
 
 4. Deploy applications with `$GOPATH/bin/qtdeploy build windows path/to/your/project`
 
@@ -221,11 +221,11 @@ You can export `QT_DEBUG=true` before "qtdeploying" your application to enable p
 
 6. Install and test (20 min)
 
-	* `cd %GOPATH%\src\github.com\therecipe\qt && setup.bat android`
+	* `%GOPATH%\bin\qtsetup android`
 
 		or
 
-	* `cd $GOPATH/src/github.com/therecipe/qt && ./setup.sh android`
+	* `$GOPATH/bin/qtsetup android`
 
 7. Create your first [application](#example)
 
@@ -237,7 +237,7 @@ You can export `QT_DEBUG=true` before "qtdeploying" your application to enable p
 
 2. Install and test (20 min)
 
-	* `cd $GOPATH/src/github.com/therecipe/qt && ./setup.sh ios && ./setup.sh ios-simulator`
+	* `$GOPATH/bin/qtsetup ios && $GOPATH/bin/qtsetup ios-simulator`
 
 3. Create your first [application](#example)
 
@@ -259,11 +259,11 @@ You can export `QT_DEBUG=true` before "qtdeploying" your application to enable p
 
 4. Install and test (20 min)
 
-	* `cd %GOPATH%\src\github.com\therecipe\qt && setup.bat sailfish && setup.bat sailfish-emulator`
+	* `%GOPATH%\bin\qtsetup sailfish && %GOPATH%\bin\qtsetup sailfish-emulator`
 
 		or
 
-	* `cd $GOPATH/src/github.com/therecipe/qt && ./setup.sh sailfish && ./setup.sh sailfish-emulator`
+	* `$GOPATH/bin/qtsetup sailfish && $GOPATH/bin/qtsetup sailfish-emulator`
 
 5. Create your first [application](#example)
 
@@ -376,13 +376,13 @@ You can export `QT_DEBUG=true` before "qtdeploying" your application to enable p
 14. Install and test the binding (20 min)
 
 	* Raspberry Pi 1
-		* `cd $GOPATH/src/github.com/therecipe/qt && ./setup.sh rpi1`
+		* `$GOPATH/bin/qtsetup rpi1`
 
 	* Raspberry Pi 2
-		* `cd $GOPATH/src/github.com/therecipe/qt && ./setup.sh rpi2`
+		* `$GOPATH/bin/qtsetup rpi2`
 
 	* Raspberry Pi 3
-		* `cd $GOPATH/src/github.com/therecipe/qt && ./setup.sh rpi3`
+		* `$GOPATH/bin/qtsetup rpi3`
 
 15. Notes
 
@@ -414,7 +414,7 @@ And make sure your Project folder is in your **GOPATH**.
 
 	* **Optional:** Install [Wine](https://www.winehq.org) to test your applications.
 
-	* `cd $GOPATH/src/github.com/therecipe/qt && ./setup.sh windows-docker`
+	* `$GOPATH/bin/qtsetup windows-docker`
 
 	* Deploy applications with `$GOPATH/bin/qtdeploy build windows path/to/your/project docker`
 
@@ -422,7 +422,7 @@ And make sure your Project folder is in your **GOPATH**.
 
 	* `docker pull therecipe/qt:base`
 
-	* `cd $GOPATH/src/github.com/therecipe/qt && ./setup.sh linux-docker`
+	* `$GOPATH/bin/qtsetup linux-docker`
 
 	* Deploy applications with `$GOPATH/bin/qtdeploy build linux path/to/your/project docker`
 
@@ -430,7 +430,7 @@ And make sure your Project folder is in your **GOPATH**.
 
 	* `docker pull therecipe/qt:base_android`
 
-	* `cd $GOPATH/src/github.com/therecipe/qt && ./setup.sh android-docker`
+	* `$GOPATH/bin/qtsetup android-docker`
 
 	* Deploy applications with `$GOPATH/bin/qtdeploy build android path/to/your/project docker`
 
@@ -474,7 +474,7 @@ func main() {
 }
 ```
 
-3. Open the terminal in `[GOPATH]/src/qtExample` and run `[GOPATH]/bin/qtdeploy build desktop`
+3. Open the terminal in `[GOPATH]/src` and run `[GOPATH]/bin/qtdeploy build desktop ./qtExample`
 
 4. You will find the application in `[GOPATH]/src/qtExample/deploy/[GOOS]_minimal/`
 
