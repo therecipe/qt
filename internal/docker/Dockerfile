@@ -28,7 +28,7 @@ ENV PATH $PATH:/usr/local/go/bin
 ENV GOPATH $HOME/work
 
 
-RUN go get github.com/therecipe/qt/cmd/qtsetup
+RUN go get -v github.com/therecipe/qt/cmd/...
 
 
 ENV QT_DIR /opt/Qt5.7.0

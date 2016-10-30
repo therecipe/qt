@@ -39,7 +39,7 @@ func test(buildTarget string) {
 					return ""
 				}()),
 
-				fmt.Sprintf("test.%v", example))
+				fmt.Sprintf("test %v", example))
 		}
 	}
 }

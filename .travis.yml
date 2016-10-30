@@ -62,7 +62,7 @@ install:
   - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then travis_wait 45 $GOPATH/src/github.com/therecipe/qt/internal/ci/darwin.sh; fi
 
 script:
-  - go get github.com/therecipe/qt/cmd/qtsetup
+  - go get -v github.com/therecipe/qt/cmd/...
   - if [[ "$DESKTOP" == "true" ]]; then $GOPATH/bin/qtsetup; fi
   - if [[ "$ANDROID" == "true" ]]; then $GOPATH/bin/qtsetup android; fi
   - if [[ "$IOS" == "true" ]]; then $GOPATH/bin/qtsetup ios; fi

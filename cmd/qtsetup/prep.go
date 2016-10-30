@@ -13,10 +13,7 @@ import (
 func prep() {
 	utils.Log.Info("running setup/prep")
 
-	utils.RunCmd(exec.Command("go", "get", "golang.org/x/crypto/ssh"), "install ssh pkg")
-	utils.RunCmd(exec.Command("go", "get", "github.com/emirpasic/gods/lists/arraylist"), "install arraylist pkg")
-	utils.RunCmd(exec.Command("go", "get", "github.com/Sirupsen/logrus"), "install logrus pkg")
-	utils.RunCmd(exec.Command("go", "install", "github.com/therecipe/qt/cmd/..."), "install cmd pkgs")
+	utils.RunCmd(exec.Command("go", "get", "-v", "github.com/emirpasic/gods/lists/arraylist"), "install arraylist pkg") //needed for widgets/table example
 
 	for _, app := range []string{"qtdeploy", "qtmoc", "qtrcc", "qtminimal"} {
 		switch runtime.GOOS {

@@ -12,7 +12,7 @@ machine:
 dependencies:
   pre:
   override:
-      - go get github.com/therecipe/qt/cmd/qtsetup
+      - go get -v github.com/therecipe/qt/cmd/...
       - if [[ "$OS" == "linux" ]]; then /home/ubuntu/.go_project/src/github.com/therecipe/qt/internal/ci/linux.sh; fi
   post:
 test:

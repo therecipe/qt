@@ -87,7 +87,7 @@ You can export `QT_DEBUG=true` before "qtdeploying" your application to enable p
 
 4. Download the binding
 
-	* `go get github.com/therecipe/qt/cmd/qtsetup`
+	* `go get -v github.com/therecipe/qt/cmd/...`
 
 5. Generate, install and test (20 min)
 
@@ -120,7 +120,7 @@ You can export `QT_DEBUG=true` before "qtdeploying" your application to enable p
 
 4. Download the binding
 
-	* `go get github.com/therecipe/qt/cmd/qtsetup`
+	* `go get -v github.com/therecipe/qt/cmd/...`
 
 5. Generate, install and test (20 min)
 
@@ -162,7 +162,7 @@ You can export `QT_DEBUG=true` before "qtdeploying" your application to enable p
 
 4. Download the binding
 
-	* `go get github.com/therecipe/qt/cmd/qtsetup`
+	* `go get -v github.com/therecipe/qt/cmd/...`
 
 5. Generate, install and test (20 min)
 

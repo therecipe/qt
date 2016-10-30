@@ -68,7 +68,7 @@ func GoQtPkgPath(s ...string) string {
 func RunCmd(cmd *exec.Cmd, name string) string {
 	var out, err = cmd.CombinedOutput()
 	if err != nil {
-		Log.Panicf("failed to %v\nerror: %s\ncmd: %v", name, out, cmd)
+		Log.WithError(err).Panicf("failed to %v\nerror: %s\ncmd: %v", name, out, cmd)
 	}
 	return string(out)
 }
@@ -76,7 +76,7 @@ func RunCmd(cmd *exec.Cmd, name string) string {
 func RunCmdOptional(cmd *exec.Cmd, name string) string {
 	var out, err = cmd.CombinedOutput()
 	if err != nil {
-		Log.Errorf("failed to %v\nerror: %s\ncmd: %v", name, out, cmd)
+		Log.WithError(err).Errorf("failed to %v\nerror: %s\ncmd: %v", name, out, cmd)
 	}
 	return string(out)
 }
