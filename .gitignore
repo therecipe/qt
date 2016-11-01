@@ -3,3 +3,4 @@
 */minimal_*
 */*-minimal.*
 /internal/examples/**/deploy
+/internal/binding/dump/*

@@ -32483,6 +32483,136 @@ void QGraphicsObject_DestroyQGraphicsObject(void* ptr)
 	static_cast<QGraphicsObject*>(ptr)->~QGraphicsObject();
 }
 
+void* QGraphicsObject_GraphicsEffect(void* ptr)
+{
+	return static_cast<QGraphicsObject*>(ptr)->graphicsEffect();
+}
+
+void QGraphicsObject_SetGraphicsEffect(void* ptr, void* vqg)
+{
+	static_cast<QGraphicsObject*>(ptr)->setGraphicsEffect(static_cast<QGraphicsEffect*>(vqg));
+}
+
+char QGraphicsObject_IsEnabled(void* ptr)
+{
+	return static_cast<QGraphicsObject*>(ptr)->isEnabled();
+}
+
+void QGraphicsObject_SetEnabled(void* ptr, char vbo)
+{
+	static_cast<QGraphicsObject*>(ptr)->setEnabled(vbo != 0);
+}
+
+double QGraphicsObject_Opacity(void* ptr)
+{
+	return static_cast<QGraphicsObject*>(ptr)->opacity();
+}
+
+void QGraphicsObject_SetOpacity(void* ptr, double vqr)
+{
+	static_cast<QGraphicsObject*>(ptr)->setOpacity(vqr);
+}
+
+void* QGraphicsObject_Parent(void* ptr)
+{
+	return static_cast<QGraphicsObject*>(ptr)->parent();
+}
+
+void QGraphicsObject_SetParent(void* ptr, void* vqg)
+{
+	static_cast<QGraphicsObject*>(ptr)->setParent(static_cast<QGraphicsObject*>(vqg));
+}
+
+void* QGraphicsObject_Pos(void* ptr)
+{
+	return ({ QPointF tmpValue = static_cast<QGraphicsObject*>(ptr)->pos(); new QPointF(tmpValue.x(), tmpValue.y()); });
+}
+
+void QGraphicsObject_SetPos(void* ptr, void* vqp)
+{
+	static_cast<QGraphicsObject*>(ptr)->setPos(*static_cast<QPointF*>(vqp));
+}
+
+void QGraphicsObject_SetPos2(void* ptr, double x, double y)
+{
+	static_cast<QGraphicsObject*>(ptr)->setPos(x, y);
+}
+
+double QGraphicsObject_Rotation(void* ptr)
+{
+	return static_cast<QGraphicsObject*>(ptr)->rotation();
+}
+
+void QGraphicsObject_SetRotation(void* ptr, double vqr)
+{
+	static_cast<QGraphicsObject*>(ptr)->setRotation(vqr);
+}
+
+double QGraphicsObject_Scale(void* ptr)
+{
+	return static_cast<QGraphicsObject*>(ptr)->scale();
+}
+
+void QGraphicsObject_SetScale(void* ptr, double vqr)
+{
+	static_cast<QGraphicsObject*>(ptr)->setScale(vqr);
+}
+
+void* QGraphicsObject_TransformOriginPoint(void* ptr)
+{
+	return ({ QPointF tmpValue = static_cast<QGraphicsObject*>(ptr)->transformOriginPoint(); new QPointF(tmpValue.x(), tmpValue.y()); });
+}
+
+void QGraphicsObject_SetTransformOriginPoint(void* ptr, void* vqp)
+{
+	static_cast<QGraphicsObject*>(ptr)->setTransformOriginPoint(*static_cast<QPointF*>(vqp));
+}
+
+void QGraphicsObject_SetTransformOriginPoint2(void* ptr, double x, double y)
+{
+	static_cast<QGraphicsObject*>(ptr)->setTransformOriginPoint(x, y);
+}
+
+char QGraphicsObject_IsVisible(void* ptr)
+{
+	return static_cast<QGraphicsObject*>(ptr)->isVisible();
+}
+
+void QGraphicsObject_SetVisible(void* ptr, char vbo)
+{
+	static_cast<QGraphicsObject*>(ptr)->setVisible(vbo != 0);
+}
+
+double QGraphicsObject_X(void* ptr)
+{
+	return static_cast<QGraphicsObject*>(ptr)->x();
+}
+
+void QGraphicsObject_SetX(void* ptr, double vqr)
+{
+	static_cast<QGraphicsObject*>(ptr)->setX(vqr);
+}
+
+double QGraphicsObject_Y(void* ptr)
+{
+	return static_cast<QGraphicsObject*>(ptr)->y();
+}
+
+void QGraphicsObject_SetY(void* ptr, double vqr)
+{
+	static_cast<QGraphicsObject*>(ptr)->setY(vqr);
+}
+
+double QGraphicsObject_ZValue(void* ptr)
+{
+	return static_cast<QGraphicsObject*>(ptr)->zValue();
+}
+
+void QGraphicsObject_SetZValue(void* ptr, double vqr)
+{
+	static_cast<QGraphicsObject*>(ptr)->setZValue(vqr);
+}
+
 void QGraphicsObject_TimerEvent(void* ptr, void* event)
 {
 	static_cast<QGraphicsObject*>(ptr)->timerEvent(static_cast<QTimerEvent*>(event));
@@ -39812,6 +39942,51 @@ long long QGraphicsWidget_WindowType(void* ptr)
 void QGraphicsWidget_DestroyQGraphicsWidget(void* ptr)
 {
 	static_cast<QGraphicsWidget*>(ptr)->~QGraphicsWidget();
+}
+
+void* QGraphicsWidget_Geometry(void* ptr)
+{
+	return ({ QRectF tmpValue = static_cast<QGraphicsWidget*>(ptr)->geometry(); new QRectF(tmpValue.x(), tmpValue.y(), tmpValue.width(), tmpValue.height()); });
+}
+
+void* QGraphicsWidget_MaximumSize(void* ptr)
+{
+	return ({ QSizeF tmpValue = static_cast<QGraphicsWidget*>(ptr)->maximumSize(); new QSizeF(tmpValue.width(), tmpValue.height()); });
+}
+
+void QGraphicsWidget_SetMaximumSize(void* ptr, void* vqs)
+{
+	static_cast<QGraphicsWidget*>(ptr)->setMaximumSize(*static_cast<QSizeF*>(vqs));
+}
+
+void* QGraphicsWidget_MinimumSize(void* ptr)
+{
+	return ({ QSizeF tmpValue = static_cast<QGraphicsWidget*>(ptr)->minimumSize(); new QSizeF(tmpValue.width(), tmpValue.height()); });
+}
+
+void QGraphicsWidget_SetMinimumSize(void* ptr, void* vqs)
+{
+	static_cast<QGraphicsWidget*>(ptr)->setMinimumSize(*static_cast<QSizeF*>(vqs));
+}
+
+void* QGraphicsWidget_PreferredSize(void* ptr)
+{
+	return ({ QSizeF tmpValue = static_cast<QGraphicsWidget*>(ptr)->preferredSize(); new QSizeF(tmpValue.width(), tmpValue.height()); });
+}
+
+void QGraphicsWidget_SetPreferredSize(void* ptr, void* vqs)
+{
+	static_cast<QGraphicsWidget*>(ptr)->setPreferredSize(*static_cast<QSizeF*>(vqs));
+}
+
+void QGraphicsWidget_SetSizePolicy(void* ptr, void* vqs)
+{
+	static_cast<QGraphicsWidget*>(ptr)->setSizePolicy(*static_cast<QSizePolicy*>(vqs));
+}
+
+void QGraphicsWidget_SetSizePolicy2(void* ptr, long long hPolicy, long long vPolicy, long long controlType)
+{
+	static_cast<QGraphicsWidget*>(ptr)->setSizePolicy(static_cast<QSizePolicy::Policy>(hPolicy), static_cast<QSizePolicy::Policy>(vPolicy), static_cast<QSizePolicy::ControlType>(controlType));
 }
 
 void QGraphicsWidget_UpdateMicroFocus(void* ptr)
@@ -85018,6 +85193,26 @@ void QTextBrowser_DisconnectSourceChanged(void* ptr)
 void QTextBrowser_SourceChanged(void* ptr, void* src)
 {
 	static_cast<QTextBrowser*>(ptr)->sourceChanged(*static_cast<QUrl*>(src));
+}
+
+char QTextBrowser_IsReadOnly(void* ptr)
+{
+	return static_cast<QTextBrowser*>(ptr)->isReadOnly();
+}
+
+void QTextBrowser_SetReadOnly(void* ptr, char vbo)
+{
+	static_cast<QTextBrowser*>(ptr)->setReadOnly(vbo != 0);
+}
+
+char QTextBrowser_IsUndoRedoEnabled(void* ptr)
+{
+	return static_cast<QTextBrowser*>(ptr)->isUndoRedoEnabled();
+}
+
+void QTextBrowser_SetUndoRedoEnabled(void* ptr, char vbo)
+{
+	static_cast<QTextBrowser*>(ptr)->setUndoRedoEnabled(vbo != 0);
 }
 
 void QTextBrowser_ContextMenuEvent(void* ptr, void* event)

@@ -12,20 +12,21 @@ import (
 )
 
 type Class struct {
-	Name      string      `xml:"name,attr"`
-	Status    string      `xml:"status,attr"`
-	Access    string      `xml:"access,attr"`
-	Abstract  bool        `xml:"abstract,attr"`
-	Bases     string      `xml:"bases,attr"`
-	Module    string      `xml:"module,attr"`
-	Brief     string      `xml:"brief,attr"`
-	Functions []*Function `xml:"function"`
-	Enums     []*Enum     `xml:"enum"`
-	Variables []*Variable `xml:"variable"`
-	DocModule string
-	Stub      bool
-	WeakLink  map[string]bool
-	Export    bool
+	Name       string      `xml:"name,attr"`
+	Status     string      `xml:"status,attr"`
+	Access     string      `xml:"access,attr"`
+	Abstract   bool        `xml:"abstract,attr"`
+	Bases      string      `xml:"bases,attr"`
+	Module     string      `xml:"module,attr"`
+	Brief      string      `xml:"brief,attr"`
+	Functions  []*Function `xml:"function"`
+	Enums      []*Enum     `xml:"enum"`
+	Variables  []*Variable `xml:"variable"`
+	Properties []*Variable `xml:"property"`
+	DocModule  string
+	Stub       bool
+	WeakLink   map[string]bool
+	Export     bool
 }
 
 func (c *Class) register(module string) {

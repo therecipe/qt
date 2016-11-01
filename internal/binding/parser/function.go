@@ -20,6 +20,7 @@ type Function struct {
 	Output         string       `xml:"type,attr"`
 	Signature      string       `xml:"signature,attr"`
 	Parameters     []*Parameter `xml:"parameter"`
+	Brief          string       `xml:"brief,attr"`
 	SignalMode     string
 	TemplateMode   string
 	Default        bool

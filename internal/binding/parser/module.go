@@ -27,11 +27,14 @@ func (m *Module) Prepare() {
 			c.register(m.Project)
 			for _, v := range c.Variables {
 				if !c.hasFunctionWithName(v.Name) {
-					c.Functions = append(c.Functions, v.toFunction(GETTER))
+					c.Functions = append(c.Functions, v.variableToFunction(GETTER))
 					if !strings.Contains(v.Output, "const") {
-						c.Functions = append(c.Functions, v.toFunction(SETTER))
+						c.Functions = append(c.Functions, v.variableToFunction(SETTER))
 					}
 				}
+			}
+			for _, p := range c.Properties {
+				c.Functions = append(c.Functions, p.propertyToFunctions(c)...)
 			}
 		}
 	}
