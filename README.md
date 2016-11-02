@@ -456,6 +456,13 @@ And make sure your Project folder is in your **GOPATH**.
     -XX:+UseCompressedOops
     ```
 
+* Neovim
+
+    Update your neocomplete.vim
+    ```
+    let g:neocomplete#skip_auto_completion_time = ""
+    ```
+
 ## Example
 
 1. Create a project folder `[GOPATH]/src/qtExample`

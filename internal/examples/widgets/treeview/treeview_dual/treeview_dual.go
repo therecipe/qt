@@ -1,3 +1,5 @@
+//author: https://github.com/5k3105
+
 //  Extended example for two treeviews and changed the listview to a treeview that only shows files.
 //  This way you can now see file details, unlike previous example.
 
@@ -43,7 +45,7 @@ func main() {
 	SetupUi()
 
 	widgets.QApplication_SetStyle2("fusion")
-	ap.Window.ShowMaximized()
+	ap.Window.Show()
 	widgets.QApplication_Exec()
 }
 

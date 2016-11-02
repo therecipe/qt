@@ -37,12 +37,13 @@ func main() {
 	}
 
 	var (
-		imported []string
-		cached   []string
+		imported       []string
+		cached         []string
+		importedPkgMap = make(map[string]bool)
 	)
 
 	var walkFuncImports = func(appPath string, info os.FileInfo, err error) error {
-		if err == nil && !strings.HasPrefix(info.Name(), "moc") && strings.HasSuffix(info.Name(), ".go") && !info.IsDir() {
+		if err == nil && !strings.HasPrefix(info.Name(), "moc") && !strings.HasPrefix(info.Name(), "rcc") && strings.HasSuffix(info.Name(), ".go") && !info.IsDir() {
 			var pFile, errParse = goparser.ParseFile(token.NewFileSet(), appPath, nil, 0)
 			if errParse != nil {
 				utils.Log.WithError(errParse).Panicf("failed to parser file %v", appPath)
@@ -53,6 +54,23 @@ func main() {
 						if _, err := ioutil.ReadDir(appPath); err == nil {
 							if !isImported(imported, appPath) {
 								imported = append(imported, appPath)
+							}
+						}
+					} else {
+						if iPath := strings.Replace(i.Path.Value, "\"", "", -1); iPath != "github.com/therecipe/qt" {
+							var pkg string
+							for _, pkgs := range templater.Libs {
+								if strings.ToLower(pkgs) == strings.TrimPrefix(iPath, "github.com/therecipe/qt/") {
+									pkg = pkgs
+								}
+							}
+							if _, exists := templater.LibDeps[pkg]; exists {
+								importedPkgMap[pkg] = true
+								for _, dep := range templater.LibDeps[pkg] {
+									if _, exists := templater.LibDeps[dep]; exists {
+										importedPkgMap[dep] = true
+									}
+								}
 							}
 						}
 					}
@@ -66,8 +84,7 @@ func main() {
 		if err == nil && strings.HasSuffix(info.Name(), ".go") && !info.IsDir() {
 
 			if file := utils.Load(appPath); strings.Contains(file, "github.com/therecipe/qt/") &&
-				!(strings.Contains(file, "github.com/therecipe/qt/androidextras") &&
-					strings.Count(file, "github.com/therecipe/qt/") == 1) {
+				!(strings.Contains(file, "github.com/therecipe/qt/androidextras") && strings.Count(file, "github.com/therecipe/qt/") == 1) {
 				cached = append(cached, file)
 			}
 		}
@@ -85,7 +102,15 @@ func main() {
 		filepath.Walk(imp, walkFunc)
 	}
 
-	for _, module := range templater.GetLibs() {
+	var importedPkgs []string
+	for _, dep := range templater.Libs {
+		if _, exist := importedPkgMap[dep]; exist {
+			importedPkgs = append(importedPkgs, dep)
+		}
+	}
+
+	for _, module := range importedPkgs {
+		utils.Log.Debugf("loading qt/%v", strings.ToLower(module))
 		if _, err := parser.GetModule(module); err != nil {
 			utils.Log.WithError(err).Errorf("failed to load qt/%v", strings.ToLower(module))
 		}
@@ -156,8 +181,9 @@ func main() {
 	}
 
 	templater.Minimal = true
-	for _, module := range templater.GetLibs() {
-		templater.GenModule(module)
+	for _, module := range importedPkgs {
+		utils.Log.Debugf("generating minimal qt/%v", strings.ToLower(module))
+		templater.GenModule(strings.Title(module))
 	}
 }
 

@@ -1,3 +1,5 @@
+//author: https://github.com/5k3105
+
 //  This is a filesystem treeview with a listview for individual files on the right.
 //  Approx translation from: http://www.bogotobogo.com/Qt/Qt5_QTreeView_QFileSystemModel_ModelView_MVC.php
 
@@ -48,7 +50,7 @@ func main() {
 	ap.Statusbar.ShowMessage("Application Path: "+core.QCoreApplication_ApplicationDirPath(), 0)
 
 	widgets.QApplication_SetStyle2("fusion")
-	ap.Window.ShowMaximized()
+	ap.Window.Show()
 	widgets.QApplication_Exec()
 }
 

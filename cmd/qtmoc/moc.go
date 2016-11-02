@@ -22,10 +22,7 @@ func init() {
 	templater.UsedFromMoc = true
 }
 
-var (
-	modulesInited bool
-	tmpFiles      = make([]string, 0)
-)
+var tmpFiles = make([]string, 0)
 
 func main() {
 	var (
@@ -45,7 +42,6 @@ func main() {
 			cleanup = len(os.Args) == 3
 		}
 	}
-
 	if !filepath.IsAbs(appPath) {
 		appPath = utils.GetAbsPath(appPath)
 	}
@@ -183,11 +179,50 @@ func moc(appPath string) {
 
 	if len(module.Namespace.Classes) > 0 {
 
-		if !modulesInited {
-			for _, module := range templater.GetLibs() {
-				parser.GetModule(module)
+		var importedPkgMap = make(map[string]bool)
+
+		var walkFuncImports = func(appPath string, info os.FileInfo, err error) error {
+			if err == nil && !strings.HasPrefix(info.Name(), "moc") && !strings.HasPrefix(info.Name(), "rcc") && strings.HasSuffix(info.Name(), ".go") && !info.IsDir() {
+				var pFile, errParse = goparser.ParseFile(token.NewFileSet(), appPath, nil, 0)
+				if errParse != nil {
+					utils.Log.WithError(errParse).Panicf("failed to parser file %v", appPath)
+				} else {
+					for _, i := range pFile.Imports {
+						if iPath := strings.Replace(i.Path.Value, "\"", "", -1); iPath != "github.com/therecipe/qt" {
+							var pkg string
+							for _, pkgs := range templater.Libs {
+								if strings.ToLower(pkgs) == strings.TrimPrefix(iPath, "github.com/therecipe/qt/") {
+									pkg = pkgs
+								}
+							}
+							if _, exists := templater.LibDeps[pkg]; exists {
+								importedPkgMap[pkg] = true
+								for _, dep := range templater.LibDeps[pkg] {
+									if _, exists := templater.LibDeps[dep]; exists {
+										importedPkgMap[dep] = true
+									}
+								}
+							}
+						}
+					}
+				}
 			}
-			modulesInited = true
+			return nil
+		}
+		filepath.Walk(appPath, walkFuncImports)
+
+		var importedPkgs []string
+		for _, dep := range templater.Libs {
+			if _, exist := importedPkgMap[dep]; exist {
+				importedPkgs = append(importedPkgs, dep)
+			}
+		}
+
+		for _, module := range importedPkgs {
+			utils.Log.Debugf("loading qt/%v", strings.ToLower(module))
+			if _, err := parser.GetModule(strings.ToLower(module)); err != nil {
+				utils.Log.WithError(err).Errorf("failed to load qt/%v", strings.ToLower(module))
+			}
 		}
 
 		module.Prepare()
@@ -242,6 +277,7 @@ func moc(appPath string) {
 		}
 
 		if classCount > 0 {
+			utils.Log.Debugf("generating %v moc", parser.MOC)
 			utils.SaveBytes(filepath.Join(appPath, "moc.cpp"), templater.CppTemplate(parser.MOC))
 			utils.SaveBytes(filepath.Join(appPath, "moc.h"), templater.HTemplate(parser.MOC))
 			utils.SaveBytes(filepath.Join(appPath, "moc.go"), templater.GoTemplate(parser.MOC, false))
@@ -289,6 +325,8 @@ func moc(appPath string) {
 			templater.CopyCgo(parser.MOC)
 		}
 	}
+
+	parser.ClassMap = make(map[string]*parser.Class)
 }
 
 func getParameters(tag string) []*parser.Parameter {
