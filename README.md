@@ -434,7 +434,7 @@ And make sure your Project folder is in your **GOPATH**.
 
 	* Deploy applications with `$GOPATH/bin/qtdeploy build android path/to/your/project docker`
 
-## Code Editor Settings
+## Code Editor Settings (for code completion)
 
 * IntelliJ Idea
 
