@@ -434,6 +434,28 @@ And make sure your Project folder is in your **GOPATH**.
 
 	* Deploy applications with `$GOPATH/bin/qtdeploy build android path/to/your/project docker`
 
+## Code Editor Settings
+
+* IntelliJ Idea
+
+    Help > Edit Custom Properties
+    ```
+    # custom IntelliJ IDEA properties
+
+    idea.max.intellisense.filesize=999999
+    ```
+
+    Help > Edit Custom VM Options
+
+    ```
+    # custom IntelliJ IDEA VM options
+
+    -Xms128m
+    -Xmx2000m
+    -XX:ReservedCodeCacheSize=240m
+    -XX:+UseCompressedOops
+    ```
+
 ## Example
 
 1. Create a project folder `[GOPATH]/src/qtExample`
