@@ -77,7 +77,7 @@ You can export `QT_DEBUG=true` before "qtdeploying" your application to enable p
 
 	* https://golang.org/doc/install?download=go1.7.3.windows-amd64.msi
 
-2. Install Qt 5.7.0; you can also define a custom location with **QT_DIR**. **Don't** de-select any default packages in Select Components screen.
+2. Install Qt 5.7.0; you can also define a custom location with **QT_DIR**.
 
 	* https://download.qt.io/official_releases/qt/5.7/5.7.0/qt-opensource-windows-x86-android-5.7.0.exe
 
@@ -105,7 +105,7 @@ You can export `QT_DEBUG=true` before "qtdeploying" your application to enable p
 
 2. Install Qt 5.7.0
 
-	* Install the official prebuilt package; you can also define a custom location with **QT_DIR**. **Don't** de-select any default packages in Select Components screen.
+	* Install the official prebuilt package; you can also define a custom location with **QT_DIR**.
 		* without iOS https://download.qt.io/official_releases/qt/5.7/5.7.0/qt-opensource-mac-x64-android-5.7.0.dmg
 		* with iOS https://download.qt.io/official_releases/qt/5.7/5.7.0/qt-opensource-mac-x64-android-ios-5.7.0.dmg
 
@@ -138,7 +138,7 @@ You can export `QT_DEBUG=true` before "qtdeploying" your application to enable p
 
 2. Install Qt 5.7.0
 
-	* Install the official prebuilt package; you can also define a custom location with **QT_DIR**. **Don't** de-select any default packages in Select Components screen.
+	* Install the official prebuilt package; you can also define a custom location with **QT_DIR**.
 		* https://download.qt.io/official_releases/qt/5.7/5.7.0/qt-opensource-linux-x64-android-5.7.0.run
 
 	or
@@ -219,7 +219,9 @@ You can export `QT_DEBUG=true` before "qtdeploying" your application to enable p
 5. Install Java SE Development Kit >= 8 (Linux: install in `$HOME/jdk/`); you can also define a custom location with **JDK_DIR**
 	* https://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html
 
-6. Install and test (20 min)
+6. You may need to `chmod` your `$GOROOT/pkg` dir or run the setup as **root**
+
+7. Install and test (20 min)
 
 	* `%GOPATH%\bin\qtsetup android`
 
@@ -227,9 +229,9 @@ You can export `QT_DEBUG=true` before "qtdeploying" your application to enable p
 
 	* `$GOPATH/bin/qtsetup android`
 
-7. Create your first [application](#example)
+8. Create your first [application](#example)
 
-8. Deploy applications with `[GOPATH]/bin/qtdeploy build android path/to/your/project`
+9. Deploy applications with `[GOPATH]/bin/qtdeploy build android path/to/your/project`
 
 ## iOS
 
@@ -257,7 +259,9 @@ You can export `QT_DEBUG=true` before "qtdeploying" your application to enable p
 	* https://releases.sailfishos.org/sdk/installers/1608/SailfishOSSDK-Beta-1608-Qt5-mac-offline.dmg
 	* https://releases.sailfishos.org/sdk/installers/1608/SailfishOSSDK-Beta-1608-Qt5-linux-64-offline.run
 
-4. Install and test (20 min)
+4. You may need to `chmod` your `$GOROOT` dir or run the setup as **root**
+
+5. Install and test (20 min)
 
 	* `%GOPATH%\bin\qtsetup sailfish && %GOPATH%\bin\qtsetup sailfish-emulator`
 
@@ -265,9 +269,9 @@ You can export `QT_DEBUG=true` before "qtdeploying" your application to enable p
 
 	* `$GOPATH/bin/qtsetup sailfish && $GOPATH/bin/qtsetup sailfish-emulator`
 
-5. Create your first [application](#example)
+6. Create your first [application](#example)
 
-6. Deploy applications with `[GOPATH]/bin/qtdeploy build sailfish path/to/your/project` or `[GOPATH]/bin/qtdeploy build sailfish-emulator path/to/your/project`
+7. Deploy applications with `[GOPATH]/bin/qtdeploy build sailfish path/to/your/project` or `[GOPATH]/bin/qtdeploy build sailfish-emulator path/to/your/project`
 
 ## Raspberry Pi
 
@@ -373,7 +377,9 @@ You can export `QT_DEBUG=true` before "qtdeploying" your application to enable p
 
 	* `sudo chown -R $USER $HOME/Qt5.7.0/`
 
-14. Install and test the binding (20 min)
+14. You may need to `chmod` your `$GOROOT/pkg` dir or run the setup as **root**
+
+15. Install and test the binding (20 min)
 
 	* Raspberry Pi 1
 		* `$GOPATH/bin/qtsetup rpi1`
@@ -384,7 +390,7 @@ You can export `QT_DEBUG=true` before "qtdeploying" your application to enable p
 	* Raspberry Pi 3
 		* `$GOPATH/bin/qtsetup rpi3`
 
-15. Notes
+16. Notes
 
 	* run `startx &` before starting an application with `-platform xcb` (qml/quick applications won't work; they may work with Qt 5.8)
 
@@ -392,9 +398,9 @@ You can export `QT_DEBUG=true` before "qtdeploying" your application to enable p
 
 	* you can increase the available gpu memory by editing `/boot/config.txt`
 
-16. Create your first [application](#example)
+17. Create your first [application](#example)
 
-17. Deploy applications with `$GOPATH/bin/qtdeploy build rpiX path/to/your/project` (replace X with 1, 2 or 3)
+18. Deploy applications with `$GOPATH/bin/qtdeploy build rpiX path/to/your/project` (replace X with 1, 2 or 3)
 
 ## Docker
 
