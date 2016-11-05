@@ -100,10 +100,7 @@ func moc(appPath string) {
 				utils.Log.WithError(err).Panicf("failed to parse file %v", path)
 			}
 
-			if !strings.Contains(string(src), "package main") {
-				var plist = strings.Split(filepath.Clean(path), string(filepath.Separator))
-				templater.MocModule = plist[len(plist)-2]
-			}
+			templater.MocModule = file.Name.String()
 
 			for _, d := range file.Decls {
 				if typeDecl, ok := d.(*ast.GenDecl); ok {
