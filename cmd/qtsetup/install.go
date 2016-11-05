@@ -49,9 +49,14 @@ func install(buildTarget string) {
 		}
 	}
 
+	if utils.UseMsys2() && !utils.QT_STUB() {
+		utils.Log.Infof("build target is %v with msys2 -> skipping installation of modules -> re-run setup with QT_STUB=true for code-autocompletion", buildTarget)
+		return
+	}
+
 	if buildTarget != "desktop" {
 		utils.Log.Debugf("build target is %v -> skipping installation of modules", buildTarget)
-		//return
+		return
 	}
 
 	if strings.ToLower(os.Getenv("CI")) == "true" && !utils.QT_STUB() {

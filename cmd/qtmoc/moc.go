@@ -73,7 +73,7 @@ func main() {
 func moc(appPath string) {
 
 	for _, name := range []string{"moc.h", "moc.go", "moc.cpp", "moc_moc.h",
-		"moc_cgo_desktop_darwin_amd64.go", "moc_cgo_desktop_windows_386.go", "moc_cgo_desktop_linux_amd64.go",
+		"moc_cgo_desktop_darwin_amd64.go", "moc_cgo_desktop_windows_386.go", "moc_cgo_desktop_windows_amd64.go", "moc_cgo_desktop_linux_amd64.go",
 		"moc_cgo_android_linux_arm.go",
 		"moc_cgo_ios_simulator_darwin_amd64.go", "moc_cgo_ios_simulator_darwin_386.go", "moc_cgo_ios_darwin_arm64.go", "moc_cgo_ios_darwin_arm.go",
 		"moc_cgo_sailfish_emulator_linux_386.go", "moc_cgo_sailfish_linux_arm.go",
@@ -304,7 +304,11 @@ func moc(appPath string) {
 
 			case "windows":
 				{
-					mocPath = filepath.Join(utils.QT_DIR(), "5.7", "mingw53_32", "bin", "moc")
+					if utils.UseMsys2() {
+						mocPath = filepath.Join(utils.QT_MSYS2_DIR(), "bin", "moc")
+					} else {
+						mocPath = filepath.Join(utils.QT_DIR(), "5.7", "mingw53_32", "bin", "moc")
+					}
 				}
 			}
 

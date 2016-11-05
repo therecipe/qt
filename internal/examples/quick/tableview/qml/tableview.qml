@@ -1,4 +1,4 @@
-import QtQuick 2.7
+import QtQuick 2.6
 import QtQuick.Layouts 1.1
 import QtQuick.Controls 1.4
 
@@ -50,13 +50,13 @@ Item {
       width: 100
 
       delegate: TextEdit {
-        id: titleDelgate
+        id: titleDelegate
         text: styleData.value
 
-        Keys.onReturnPressed: titleDelgate.focus = false
+        Keys.onReturnPressed: titleDelegate.focus = false
 
         onEditingFinished: {
-          libraryModel.setProperty(tableView.currentRow, "title", titleDelgate.text)
+          libraryModel.setProperty(tableView.currentRow, "title", titleDelegate.text)
         }
       }
     }
@@ -67,13 +67,13 @@ Item {
       width: 100
 
       delegate: TextEdit {
-        id: titleDelgate
+        id: authorDelegate
         text: styleData.value
 
-        Keys.onReturnPressed: titleDelgate.focus = false
+        Keys.onReturnPressed: authorDelegate.focus = false
 
         onEditingFinished: {
-          libraryModel.setProperty(tableView.currentRow, "author", titleDelgate.text)
+          libraryModel.setProperty(tableView.currentRow, "author", authorDelegate.text)
         }
       }
     }

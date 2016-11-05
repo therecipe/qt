@@ -55,6 +55,7 @@ func check(buildTarget string) {
 	}
 
 	utils.Log.Infoln("GOOS:", runtime.GOOS)
+	utils.Log.Infoln("GOARCH:", runtime.GOARCH)
 	utils.Log.Infoln("GOVERSION:", runtime.Version())
 	utils.Log.Infoln("GOROOT:", runtime.GOROOT())
 	utils.Log.Infoln("GOPATH:", utils.MustGoPath())
@@ -73,7 +74,7 @@ func check(buildTarget string) {
 			case "darwin":
 				{
 					utils.Log.Infoln("QT_HOMEBREW:", os.Getenv("QT_HOMEBREW"))
-					utils.Log.Infoln("IsHomebrew:", utils.IsHomeBrewQtDir())
+					utils.Log.Infoln("IsHomeBrewQtDir:", utils.IsHomeBrewQtDir())
 					utils.Log.Infoln("UseHomebrew:", utils.UseHomeBrew())
 					utils.Log.Infoln("QT_DARWIN_DIR:", utils.QT_DARWIN_DIR())
 					utils.Log.Infoln("XCODE_DIR:", utils.XCODE_DIR())
@@ -91,6 +92,14 @@ func check(buildTarget string) {
 						utils.Log.Infoln("QT_DOC_DIR:", utils.QT_DOC_DIR())
 						utils.Log.Infoln("QT_MISC_DIR:", utils.QT_MISC_DIR())
 					}
+				}
+
+			case "windows":
+				{
+					utils.Log.Infoln("QT_MSYS2:", os.Getenv("QT_MSYS2"))
+					utils.Log.Infoln("QT_MSYS2_DIR:", os.Getenv("QT_MSYS2_DIR"))
+					utils.Log.Infoln("IsMsys2QtDir:", utils.IsMsys2QtDir())
+					utils.Log.Infoln("UseMsys2:", utils.UseMsys2())
 				}
 			}
 		}
@@ -123,7 +132,7 @@ func check(buildTarget string) {
 		}
 	}
 
-	if _, err := ioutil.ReadDir(utils.QT_DIR()); err != nil && !(utils.UsePkgConfig() || utils.UseHomeBrew()) {
+	if _, err := ioutil.ReadDir(utils.QT_DIR()); err != nil && !(utils.UsePkgConfig() || utils.UseHomeBrew() || utils.UseMsys2()) {
 		utils.Log.WithError(err).Panic("failed to find Qt dir, did you export QT_DIR?")
 	}
 

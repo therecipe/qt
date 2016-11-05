@@ -77,11 +77,20 @@ You can export `QT_DEBUG=true` before "qtdeploying" your application to enable p
 
 	* https://golang.org/doc/install?download=go1.7.3.windows-amd64.msi
 
-2. Install Qt 5.7.0; you can also define a custom location with **QT_DIR**.
+2. Install Qt 5.7.0
 
-	* https://download.qt.io/official_releases/qt/5.7/5.7.0/qt-opensource-windows-x86-android-5.7.0.exe
+	* Install the official prebuilt package; you can also define a custom location with **QT_DIR**.
+		* https://download.qt.io/official_releases/qt/5.7/5.7.0/qt-opensource-windows-x86-android-5.7.0.exe
 
-3. Add the directory that contains **gcc** and **g++** to your **PATH**
+	or
+
+	* Install the Qt-dev package with [MSYS2](http://msys2.github.io) and define **QT_MSYS2=true** or define a custom Qt location with **QT_MSYS2_DIR** (usually: C:\msys32\ or C:\msys64\);
+		* `pacman -Syyu`
+		* if you want to deploy 32-bit applications `pacman -S mingw-w64-i686-qt-creator mingw-w64-i686-qt5`
+		* if you want to deploy 64-bit applications `pacman -S mingw-w64-x86_64-qt-creator mingw-w64-x86_64-qt5`
+		* `pacman -Scc`
+
+3. Add the directory that contains **gcc** and **g++** to your **PATH** (not needed with MSYS2)
 
 	* `C:\Qt\Qt5.7.0\Tools\mingw530_32\bin`
 
@@ -89,13 +98,13 @@ You can export `QT_DEBUG=true` before "qtdeploying" your application to enable p
 
 	* `go get -v github.com/therecipe/qt/cmd/...`
 
-5. Generate, install and test (20 min)
+5. Generate, install and test (20 min) (MSYS2: run within the MSYS2 MinGW 32-bit or MSYS2 MinGW 64-bit shell)
 
 	* `%GOPATH%\bin\qtsetup`
 
 6. Create your first [application](#example)
 
-7. Deploy applications with `%GOPATH%\bin\qtdeploy build desktop path\to\your\project`
+7. Deploy applications with `%GOPATH%\bin\qtdeploy build desktop path\to\your\project` (MSYS2: run within the MSYS2 MinGW 32-bit or MSYS2 MinGW 64-bit shell)
 
 ## macOS
 

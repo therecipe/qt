@@ -74949,212 +74949,380 @@ int QStyle_PM_HeaderDefaultSectionSizeVertical_Type()
 
 int QStyle_PE_FrameTabWidget_Type()
 {
-	return QStyle::PE_FrameTabWidget;
+	#if QT_VERSION >= 0x057000
+		return QStyle::PE_FrameTabWidget;
+	#else
+		return 0;
+	#endif
 }
 
 int QStyle_PE_FrameWindow_Type()
 {
-	return QStyle::PE_FrameWindow;
+	#if QT_VERSION >= 0x057000
+		return QStyle::PE_FrameWindow;
+	#else
+		return 0;
+	#endif
 }
 
 int QStyle_PE_FrameButtonBevel_Type()
 {
-	return QStyle::PE_FrameButtonBevel;
+	#if QT_VERSION >= 0x057000
+		return QStyle::PE_FrameButtonBevel;
+	#else
+		return 0;
+	#endif
 }
 
 int QStyle_PE_FrameButtonTool_Type()
 {
-	return QStyle::PE_FrameButtonTool;
+	#if QT_VERSION >= 0x057000
+		return QStyle::PE_FrameButtonTool;
+	#else
+		return 0;
+	#endif
 }
 
 int QStyle_PE_FrameTabBarBase_Type()
 {
-	return QStyle::PE_FrameTabBarBase;
+	#if QT_VERSION >= 0x057000
+		return QStyle::PE_FrameTabBarBase;
+	#else
+		return 0;
+	#endif
 }
 
 int QStyle_PE_PanelButtonCommand_Type()
 {
-	return QStyle::PE_PanelButtonCommand;
+	#if QT_VERSION >= 0x057000
+		return QStyle::PE_PanelButtonCommand;
+	#else
+		return 0;
+	#endif
 }
 
 int QStyle_PE_PanelButtonBevel_Type()
 {
-	return QStyle::PE_PanelButtonBevel;
+	#if QT_VERSION >= 0x057000
+		return QStyle::PE_PanelButtonBevel;
+	#else
+		return 0;
+	#endif
 }
 
 int QStyle_PE_PanelButtonTool_Type()
 {
-	return QStyle::PE_PanelButtonTool;
+	#if QT_VERSION >= 0x057000
+		return QStyle::PE_PanelButtonTool;
+	#else
+		return 0;
+	#endif
 }
 
 int QStyle_PE_PanelMenuBar_Type()
 {
-	return QStyle::PE_PanelMenuBar;
+	#if QT_VERSION >= 0x057000
+		return QStyle::PE_PanelMenuBar;
+	#else
+		return 0;
+	#endif
 }
 
 int QStyle_PE_PanelToolBar_Type()
 {
-	return QStyle::PE_PanelToolBar;
+	#if QT_VERSION >= 0x057000
+		return QStyle::PE_PanelToolBar;
+	#else
+		return 0;
+	#endif
 }
 
 int QStyle_PE_PanelLineEdit_Type()
 {
-	return QStyle::PE_PanelLineEdit;
+	#if QT_VERSION >= 0x057000
+		return QStyle::PE_PanelLineEdit;
+	#else
+		return 0;
+	#endif
 }
 
 int QStyle_PE_IndicatorArrowDown_Type()
 {
-	return QStyle::PE_IndicatorArrowDown;
+	#if QT_VERSION >= 0x057000
+		return QStyle::PE_IndicatorArrowDown;
+	#else
+		return 0;
+	#endif
 }
 
 int QStyle_PE_IndicatorArrowLeft_Type()
 {
-	return QStyle::PE_IndicatorArrowLeft;
+	#if QT_VERSION >= 0x057000
+		return QStyle::PE_IndicatorArrowLeft;
+	#else
+		return 0;
+	#endif
 }
 
 int QStyle_PE_IndicatorArrowRight_Type()
 {
-	return QStyle::PE_IndicatorArrowRight;
+	#if QT_VERSION >= 0x057000
+		return QStyle::PE_IndicatorArrowRight;
+	#else
+		return 0;
+	#endif
 }
 
 int QStyle_PE_IndicatorArrowUp_Type()
 {
-	return QStyle::PE_IndicatorArrowUp;
+	#if QT_VERSION >= 0x057000
+		return QStyle::PE_IndicatorArrowUp;
+	#else
+		return 0;
+	#endif
 }
 
 int QStyle_PE_IndicatorBranch_Type()
 {
-	return QStyle::PE_IndicatorBranch;
+	#if QT_VERSION >= 0x057000
+		return QStyle::PE_IndicatorBranch;
+	#else
+		return 0;
+	#endif
 }
 
 int QStyle_PE_IndicatorButtonDropDown_Type()
 {
-	return QStyle::PE_IndicatorButtonDropDown;
+	#if QT_VERSION >= 0x057000
+		return QStyle::PE_IndicatorButtonDropDown;
+	#else
+		return 0;
+	#endif
 }
 
 int QStyle_PE_IndicatorViewItemCheck_Type()
 {
-	return QStyle::PE_IndicatorViewItemCheck;
+	#if QT_VERSION >= 0x057000
+		return QStyle::PE_IndicatorViewItemCheck;
+	#else
+		return 0;
+	#endif
 }
 
 int QStyle_PE_IndicatorCheckBox_Type()
 {
-	return QStyle::PE_IndicatorCheckBox;
+	#if QT_VERSION >= 0x057000
+		return QStyle::PE_IndicatorCheckBox;
+	#else
+		return 0;
+	#endif
 }
 
 int QStyle_PE_IndicatorDockWidgetResizeHandle_Type()
 {
-	return QStyle::PE_IndicatorDockWidgetResizeHandle;
+	#if QT_VERSION >= 0x057000
+		return QStyle::PE_IndicatorDockWidgetResizeHandle;
+	#else
+		return 0;
+	#endif
 }
 
 int QStyle_PE_IndicatorHeaderArrow_Type()
 {
-	return QStyle::PE_IndicatorHeaderArrow;
+	#if QT_VERSION >= 0x057000
+		return QStyle::PE_IndicatorHeaderArrow;
+	#else
+		return 0;
+	#endif
 }
 
 int QStyle_PE_IndicatorMenuCheckMark_Type()
 {
-	return QStyle::PE_IndicatorMenuCheckMark;
+	#if QT_VERSION >= 0x057000
+		return QStyle::PE_IndicatorMenuCheckMark;
+	#else
+		return 0;
+	#endif
 }
 
 int QStyle_PE_IndicatorProgressChunk_Type()
 {
-	return QStyle::PE_IndicatorProgressChunk;
+	#if QT_VERSION >= 0x057000
+		return QStyle::PE_IndicatorProgressChunk;
+	#else
+		return 0;
+	#endif
 }
 
 int QStyle_PE_IndicatorRadioButton_Type()
 {
-	return QStyle::PE_IndicatorRadioButton;
+	#if QT_VERSION >= 0x057000
+		return QStyle::PE_IndicatorRadioButton;
+	#else
+		return 0;
+	#endif
 }
 
 int QStyle_PE_IndicatorSpinDown_Type()
 {
-	return QStyle::PE_IndicatorSpinDown;
+	#if QT_VERSION >= 0x057000
+		return QStyle::PE_IndicatorSpinDown;
+	#else
+		return 0;
+	#endif
 }
 
 int QStyle_PE_IndicatorSpinMinus_Type()
 {
-	return QStyle::PE_IndicatorSpinMinus;
+	#if QT_VERSION >= 0x057000
+		return QStyle::PE_IndicatorSpinMinus;
+	#else
+		return 0;
+	#endif
 }
 
 int QStyle_PE_IndicatorSpinPlus_Type()
 {
-	return QStyle::PE_IndicatorSpinPlus;
+	#if QT_VERSION >= 0x057000
+		return QStyle::PE_IndicatorSpinPlus;
+	#else
+		return 0;
+	#endif
 }
 
 int QStyle_PE_IndicatorSpinUp_Type()
 {
-	return QStyle::PE_IndicatorSpinUp;
+	#if QT_VERSION >= 0x057000
+		return QStyle::PE_IndicatorSpinUp;
+	#else
+		return 0;
+	#endif
 }
 
 int QStyle_PE_IndicatorToolBarHandle_Type()
 {
-	return QStyle::PE_IndicatorToolBarHandle;
+	#if QT_VERSION >= 0x057000
+		return QStyle::PE_IndicatorToolBarHandle;
+	#else
+		return 0;
+	#endif
 }
 
 int QStyle_PE_IndicatorToolBarSeparator_Type()
 {
-	return QStyle::PE_IndicatorToolBarSeparator;
+	#if QT_VERSION >= 0x057000
+		return QStyle::PE_IndicatorToolBarSeparator;
+	#else
+		return 0;
+	#endif
 }
 
 int QStyle_PE_PanelTipLabel_Type()
 {
-	return QStyle::PE_PanelTipLabel;
+	#if QT_VERSION >= 0x057000
+		return QStyle::PE_PanelTipLabel;
+	#else
+		return 0;
+	#endif
 }
 
 int QStyle_PE_IndicatorTabTear_Type()
 {
-	return QStyle::PE_IndicatorTabTear;
+	#if QT_VERSION >= 0x057000
+		return QStyle::PE_IndicatorTabTear;
+	#else
+		return 0;
+	#endif
 }
 
 int QStyle_PE_PanelScrollAreaCorner_Type()
 {
-	return QStyle::PE_PanelScrollAreaCorner;
+	#if QT_VERSION >= 0x057000
+		return QStyle::PE_PanelScrollAreaCorner;
+	#else
+		return 0;
+	#endif
 }
 
 int QStyle_PE_Widget_Type()
 {
-	return QStyle::PE_Widget;
+	#if QT_VERSION >= 0x057000
+		return QStyle::PE_Widget;
+	#else
+		return 0;
+	#endif
 }
 
 int QStyle_PE_IndicatorColumnViewArrow_Type()
 {
-	return QStyle::PE_IndicatorColumnViewArrow;
+	#if QT_VERSION >= 0x057000
+		return QStyle::PE_IndicatorColumnViewArrow;
+	#else
+		return 0;
+	#endif
 }
 
 int QStyle_PE_IndicatorItemViewItemDrop_Type()
 {
-	return QStyle::PE_IndicatorItemViewItemDrop;
+	#if QT_VERSION >= 0x057000
+		return QStyle::PE_IndicatorItemViewItemDrop;
+	#else
+		return 0;
+	#endif
 }
 
 int QStyle_PE_PanelItemViewItem_Type()
 {
-	return QStyle::PE_PanelItemViewItem;
+	#if QT_VERSION >= 0x057000
+		return QStyle::PE_PanelItemViewItem;
+	#else
+		return 0;
+	#endif
 }
 
 int QStyle_PE_PanelItemViewRow_Type()
 {
-	return QStyle::PE_PanelItemViewRow;
+	#if QT_VERSION >= 0x057000
+		return QStyle::PE_PanelItemViewRow;
+	#else
+		return 0;
+	#endif
 }
 
 int QStyle_PE_PanelStatusBar_Type()
 {
-	return QStyle::PE_PanelStatusBar;
+	#if QT_VERSION >= 0x057000
+		return QStyle::PE_PanelStatusBar;
+	#else
+		return 0;
+	#endif
 }
 
 int QStyle_PE_IndicatorTabClose_Type()
 {
-	return QStyle::PE_IndicatorTabClose;
+	#if QT_VERSION >= 0x057000
+		return QStyle::PE_IndicatorTabClose;
+	#else
+		return 0;
+	#endif
 }
 
 int QStyle_PE_PanelMenu_Type()
 {
-	return QStyle::PE_PanelMenu;
+	#if QT_VERSION >= 0x057000
+		return QStyle::PE_PanelMenu;
+	#else
+		return 0;
+	#endif
 }
 
 int QStyle_PE_IndicatorTabTearRight_Type()
 {
-	return QStyle::PE_IndicatorTabTearRight;
+	#if QT_VERSION >= 0x057000
+		return QStyle::PE_IndicatorTabTearRight;
+	#else
+		return 0;
+	#endif
 }
 
 int QStyle_SH_BlinkCursorWhenTextSelected_Type()
@@ -75924,167 +76092,299 @@ int QStyle_SH_ItemView_ScrollMode_Type()
 
 int QStyle_SE_TabBarTearIndicator_Type()
 {
-	return QStyle::SE_TabBarTearIndicator;
+	#if QT_VERSION >= 0x057000
+		return QStyle::SE_TabBarTearIndicator;
+	#else
+		return 0;
+	#endif
 }
 
 int QStyle_SE_TreeViewDisclosureItem_Type()
 {
-	return QStyle::SE_TreeViewDisclosureItem;
+	#if QT_VERSION >= 0x057000
+		return QStyle::SE_TreeViewDisclosureItem;
+	#else
+		return 0;
+	#endif
 }
 
 int QStyle_SE_LineEditContents_Type()
 {
-	return QStyle::SE_LineEditContents;
+	#if QT_VERSION >= 0x057000
+		return QStyle::SE_LineEditContents;
+	#else
+		return 0;
+	#endif
 }
 
 int QStyle_SE_FrameContents_Type()
 {
-	return QStyle::SE_FrameContents;
+	#if QT_VERSION >= 0x057000
+		return QStyle::SE_FrameContents;
+	#else
+		return 0;
+	#endif
 }
 
 int QStyle_SE_DockWidgetCloseButton_Type()
 {
-	return QStyle::SE_DockWidgetCloseButton;
+	#if QT_VERSION >= 0x057000
+		return QStyle::SE_DockWidgetCloseButton;
+	#else
+		return 0;
+	#endif
 }
 
 int QStyle_SE_DockWidgetFloatButton_Type()
 {
-	return QStyle::SE_DockWidgetFloatButton;
+	#if QT_VERSION >= 0x057000
+		return QStyle::SE_DockWidgetFloatButton;
+	#else
+		return 0;
+	#endif
 }
 
 int QStyle_SE_DockWidgetTitleBarText_Type()
 {
-	return QStyle::SE_DockWidgetTitleBarText;
+	#if QT_VERSION >= 0x057000
+		return QStyle::SE_DockWidgetTitleBarText;
+	#else
+		return 0;
+	#endif
 }
 
 int QStyle_SE_DockWidgetIcon_Type()
 {
-	return QStyle::SE_DockWidgetIcon;
+	#if QT_VERSION >= 0x057000
+		return QStyle::SE_DockWidgetIcon;
+	#else
+		return 0;
+	#endif
 }
 
 int QStyle_SE_CheckBoxLayoutItem_Type()
 {
-	return QStyle::SE_CheckBoxLayoutItem;
+	#if QT_VERSION >= 0x057000
+		return QStyle::SE_CheckBoxLayoutItem;
+	#else
+		return 0;
+	#endif
 }
 
 int QStyle_SE_ComboBoxLayoutItem_Type()
 {
-	return QStyle::SE_ComboBoxLayoutItem;
+	#if QT_VERSION >= 0x057000
+		return QStyle::SE_ComboBoxLayoutItem;
+	#else
+		return 0;
+	#endif
 }
 
 int QStyle_SE_DateTimeEditLayoutItem_Type()
 {
-	return QStyle::SE_DateTimeEditLayoutItem;
+	#if QT_VERSION >= 0x057000
+		return QStyle::SE_DateTimeEditLayoutItem;
+	#else
+		return 0;
+	#endif
 }
 
 int QStyle_SE_DialogButtonBoxLayoutItem_Type()
 {
-	return QStyle::SE_DialogButtonBoxLayoutItem;
+	#if QT_VERSION >= 0x057000
+		return QStyle::SE_DialogButtonBoxLayoutItem;
+	#else
+		return 0;
+	#endif
 }
 
 int QStyle_SE_LabelLayoutItem_Type()
 {
-	return QStyle::SE_LabelLayoutItem;
+	#if QT_VERSION >= 0x057000
+		return QStyle::SE_LabelLayoutItem;
+	#else
+		return 0;
+	#endif
 }
 
 int QStyle_SE_ProgressBarLayoutItem_Type()
 {
-	return QStyle::SE_ProgressBarLayoutItem;
+	#if QT_VERSION >= 0x057000
+		return QStyle::SE_ProgressBarLayoutItem;
+	#else
+		return 0;
+	#endif
 }
 
 int QStyle_SE_PushButtonLayoutItem_Type()
 {
-	return QStyle::SE_PushButtonLayoutItem;
+	#if QT_VERSION >= 0x057000
+		return QStyle::SE_PushButtonLayoutItem;
+	#else
+		return 0;
+	#endif
 }
 
 int QStyle_SE_RadioButtonLayoutItem_Type()
 {
-	return QStyle::SE_RadioButtonLayoutItem;
+	#if QT_VERSION >= 0x057000
+		return QStyle::SE_RadioButtonLayoutItem;
+	#else
+		return 0;
+	#endif
 }
 
 int QStyle_SE_SliderLayoutItem_Type()
 {
-	return QStyle::SE_SliderLayoutItem;
+	#if QT_VERSION >= 0x057000
+		return QStyle::SE_SliderLayoutItem;
+	#else
+		return 0;
+	#endif
 }
 
 int QStyle_SE_SpinBoxLayoutItem_Type()
 {
-	return QStyle::SE_SpinBoxLayoutItem;
+	#if QT_VERSION >= 0x057000
+		return QStyle::SE_SpinBoxLayoutItem;
+	#else
+		return 0;
+	#endif
 }
 
 int QStyle_SE_ToolButtonLayoutItem_Type()
 {
-	return QStyle::SE_ToolButtonLayoutItem;
+	#if QT_VERSION >= 0x057000
+		return QStyle::SE_ToolButtonLayoutItem;
+	#else
+		return 0;
+	#endif
 }
 
 int QStyle_SE_FrameLayoutItem_Type()
 {
-	return QStyle::SE_FrameLayoutItem;
+	#if QT_VERSION >= 0x057000
+		return QStyle::SE_FrameLayoutItem;
+	#else
+		return 0;
+	#endif
 }
 
 int QStyle_SE_GroupBoxLayoutItem_Type()
 {
-	return QStyle::SE_GroupBoxLayoutItem;
+	#if QT_VERSION >= 0x057000
+		return QStyle::SE_GroupBoxLayoutItem;
+	#else
+		return 0;
+	#endif
 }
 
 int QStyle_SE_TabWidgetLayoutItem_Type()
 {
-	return QStyle::SE_TabWidgetLayoutItem;
+	#if QT_VERSION >= 0x057000
+		return QStyle::SE_TabWidgetLayoutItem;
+	#else
+		return 0;
+	#endif
 }
 
 int QStyle_SE_ItemViewItemDecoration_Type()
 {
-	return QStyle::SE_ItemViewItemDecoration;
+	#if QT_VERSION >= 0x057000
+		return QStyle::SE_ItemViewItemDecoration;
+	#else
+		return 0;
+	#endif
 }
 
 int QStyle_SE_ItemViewItemText_Type()
 {
-	return QStyle::SE_ItemViewItemText;
+	#if QT_VERSION >= 0x057000
+		return QStyle::SE_ItemViewItemText;
+	#else
+		return 0;
+	#endif
 }
 
 int QStyle_SE_ItemViewItemFocusRect_Type()
 {
-	return QStyle::SE_ItemViewItemFocusRect;
+	#if QT_VERSION >= 0x057000
+		return QStyle::SE_ItemViewItemFocusRect;
+	#else
+		return 0;
+	#endif
 }
 
 int QStyle_SE_TabBarTabLeftButton_Type()
 {
-	return QStyle::SE_TabBarTabLeftButton;
+	#if QT_VERSION >= 0x057000
+		return QStyle::SE_TabBarTabLeftButton;
+	#else
+		return 0;
+	#endif
 }
 
 int QStyle_SE_TabBarTabRightButton_Type()
 {
-	return QStyle::SE_TabBarTabRightButton;
+	#if QT_VERSION >= 0x057000
+		return QStyle::SE_TabBarTabRightButton;
+	#else
+		return 0;
+	#endif
 }
 
 int QStyle_SE_TabBarTabText_Type()
 {
-	return QStyle::SE_TabBarTabText;
+	#if QT_VERSION >= 0x057000
+		return QStyle::SE_TabBarTabText;
+	#else
+		return 0;
+	#endif
 }
 
 int QStyle_SE_ShapedFrameContents_Type()
 {
-	return QStyle::SE_ShapedFrameContents;
+	#if QT_VERSION >= 0x057000
+		return QStyle::SE_ShapedFrameContents;
+	#else
+		return 0;
+	#endif
 }
 
 int QStyle_SE_ToolBarHandle_Type()
 {
-	return QStyle::SE_ToolBarHandle;
+	#if QT_VERSION >= 0x057000
+		return QStyle::SE_ToolBarHandle;
+	#else
+		return 0;
+	#endif
 }
 
 int QStyle_SE_TabBarScrollLeftButton_Type()
 {
-	return QStyle::SE_TabBarScrollLeftButton;
+	#if QT_VERSION >= 0x057000
+		return QStyle::SE_TabBarScrollLeftButton;
+	#else
+		return 0;
+	#endif
 }
 
 int QStyle_SE_TabBarScrollRightButton_Type()
 {
-	return QStyle::SE_TabBarScrollRightButton;
+	#if QT_VERSION >= 0x057000
+		return QStyle::SE_TabBarScrollRightButton;
+	#else
+		return 0;
+	#endif
 }
 
 int QStyle_SE_TabBarTearIndicatorRight_Type()
 {
-	return QStyle::SE_TabBarTearIndicatorRight;
+	#if QT_VERSION >= 0x057000
+		return QStyle::SE_TabBarTearIndicatorRight;
+	#else
+		return 0;
+	#endif
 }
 
 class MyQStyle: public QStyle

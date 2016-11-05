@@ -53,7 +53,7 @@ func GetModule(s string) (m *Module, err error) {
 
 	m = new(Module)
 	switch {
-	case utils.UseHomeBrew():
+	case utils.UseHomeBrew(), utils.UseMsys2():
 		{
 			err = xml.Unmarshal([]byte(utils.Load(filepath.Join(goPath, "src", "github.com", "therecipe", "qt", "internal", "binding", "files", "docs", "5.7.0", fmt.Sprintf("qt%v.index", s)))), &m)
 		}

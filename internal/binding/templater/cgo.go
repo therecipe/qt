@@ -22,7 +22,11 @@ func CopyCgo(module string) {
 	if !(strings.Contains(module, "droid") || strings.Contains(module, "fish")) {
 		cgoDarwin(module)
 		if runtime.GOOS == "windows" {
-			cgoWindows(module)
+			if utils.UseMsys2() {
+				cgoWindowsMsys2(module)
+			} else {
+				cgoWindows(module)
+			}
 		} else {
 			cgoWindowsForLinux(module)
 		}
@@ -59,7 +63,10 @@ func cgoDarwin(module string) {
 		if Minimal {
 			return ",minimal"
 		}
-		return ""
+		if module == parser.MOC {
+			return ""
+		}
+		return ",!minimal"
 	}())
 
 	fmt.Fprintf(bb, "package %v\n\n", func() string {
@@ -141,6 +148,9 @@ func cgoWindows(module string) {
 
 	if Minimal {
 		fmt.Fprint(bb, "// +build minimal\n\n")
+	} else if module == parser.MOC {
+	} else {
+		fmt.Fprint(bb, "// +build !minimal\n\n")
 	}
 
 	fmt.Fprintf(bb, "package %v\n\n", func() string {
@@ -211,6 +221,9 @@ func cgoWindowsForLinux(module string) {
 
 	if Minimal {
 		fmt.Fprint(bb, "// +build minimal\n\n")
+	} else if module == parser.MOC {
+	} else {
+		fmt.Fprint(bb, "// +build !minimal\n\n")
 	}
 
 	fmt.Fprintf(bb, "package %v\n\n", func() string {
@@ -271,6 +284,86 @@ func cgoWindowsForLinux(module string) {
 	}
 }
 
+func cgoWindowsMsys2(module string) {
+	var (
+		bb        = new(bytes.Buffer)
+		libs      = cleanLibs(module)
+		MSYS2_DIR = func() string { return strings.Replace(utils.QT_MSYS2_DIR(), "\\", "/", -1) }
+	)
+	defer bb.Reset()
+
+	if Minimal {
+		fmt.Fprint(bb, "// +build minimal\n\n")
+	} else if module == parser.MOC {
+	} else {
+		fmt.Fprint(bb, "// +build !minimal\n\n")
+	}
+
+	fmt.Fprintf(bb, "package %v\n\n", func() string {
+		if MocModule != "" {
+			return MocModule
+		}
+		return strings.ToLower(module)
+	}())
+	fmt.Fprint(bb, "/*\n")
+
+	fmt.Fprint(bb, "#cgo CFLAGS: -pipe -fno-keep-inline-dllexport -march=i686 -mtune=core2 -Wa,-mbig-obj -O2 -Wall -Wextra\n")
+	fmt.Fprint(bb, "#cgo CXXFLAGS: -pipe -fno-keep-inline-dllexport -march=i686 -mtune=core2 -Wa,-mbig-obj -O2 -std=gnu++0x -frtti -Wall -Wextra -fexceptions -mthreads\n")
+
+	fmt.Fprint(bb, "#cgo CXXFLAGS: -DUNICODE -DQT_NO_DEBUG")
+	for _, m := range libs {
+		fmt.Fprintf(bb, " -DQT_%v_LIB", strings.ToUpper(m))
+	}
+	fmt.Fprint(bb, " -DQT_NEEDS_QMAIN")
+	fmt.Fprint(bb, "\n")
+
+	fmt.Fprintf(bb, "#cgo CXXFLAGS: -I%v/include -I%v/share/qt5/mkspecs/win32-g++\n", MSYS2_DIR(), MSYS2_DIR())
+
+	fmt.Fprint(bb, "#cgo CXXFLAGS:")
+	for _, m := range libs {
+		fmt.Fprintf(bb, " -I%v/include/Qt%v", MSYS2_DIR(), m)
+	}
+	fmt.Fprint(bb, "\n\n")
+
+	fmt.Fprint(bb, "#cgo LDFLAGS: -Wl,-s -Wl,-subsystem,windows -mthreads -Wl,--allow-multiple-definition\n")
+
+	fmt.Fprintf(bb, "#cgo LDFLAGS: -L%v/lib", MSYS2_DIR())
+	for _, m := range libs {
+		if m != "UiPlugin" {
+			fmt.Fprintf(bb, " -lQt5%v", m)
+		}
+	}
+
+	fmt.Fprint(bb, " -lglu32 -lopengl32 -lgdi32 -luser32 -lmingw32 -lqtmain\n")
+	fmt.Fprint(bb, "*/\n")
+
+	fmt.Fprint(bb, "import \"C\"\n")
+
+	var tmp64 = strings.Replace(bb.String(), "-march=i686", "-march=nocona", -1)
+	tmp64 = strings.Replace(tmp64, " -Wa,-mbig-obj ", " ", -1)
+	tmp64 = strings.Replace(tmp64, " -Wl,-s ", " ", -1)
+
+	switch {
+	case module == parser.MOC:
+		{
+			utils.Save(filepath.Join(MocAppPath, "moc_cgo_desktop_windows_amd64.go"), tmp64)
+			utils.SaveBytes(filepath.Join(MocAppPath, "moc_cgo_desktop_windows_386.go"), bb.Bytes())
+		}
+
+	case Minimal:
+		{
+			utils.Save(utils.GoQtPkgPath(strings.ToLower(module), "minimal_cgo_desktop_windows_amd64.go"), tmp64)
+			utils.SaveBytes(utils.GoQtPkgPath(strings.ToLower(module), "minimal_cgo_desktop_windows_386.go"), bb.Bytes())
+		}
+
+	default:
+		{
+			utils.Save(utils.GoQtPkgPath(strings.ToLower(module), "cgo_desktop_windows_amd64.go"), tmp64)
+			utils.SaveBytes(utils.GoQtPkgPath(strings.ToLower(module), "cgo_desktop_windows_386.go"), bb.Bytes())
+		}
+	}
+}
+
 func cgoLinux(module string) {
 	var (
 		bb   = new(bytes.Buffer)
@@ -280,6 +373,9 @@ func cgoLinux(module string) {
 
 	if Minimal {
 		fmt.Fprint(bb, "// +build minimal\n\n")
+	} else if module == parser.MOC {
+	} else {
+		fmt.Fprint(bb, "// +build !minimal\n\n")
 	}
 
 	fmt.Fprintf(bb, "package %v\n\n", func() string {
@@ -348,6 +444,9 @@ func cgoLinuxPkgConfig(module string) {
 
 	if Minimal {
 		fmt.Fprint(bb, "// +build minimal\n\n")
+	} else if module == parser.MOC {
+	} else {
+		fmt.Fprint(bb, "// +build !minimal\n\n")
 	}
 
 	fmt.Fprintf(bb, "package %v\n\n", func() string {
@@ -426,7 +525,10 @@ func cgoAndroid(module string) {
 		if Minimal {
 			return ",minimal"
 		}
-		return ""
+		if module == parser.MOC {
+			return ""
+		}
+		return ",!minimal"
 	}())
 
 	fmt.Fprintf(bb, "package %v\n\n", func() string {
@@ -498,7 +600,10 @@ func cgoIos(module string) string {
 		if Minimal {
 			return ",minimal"
 		}
-		return ""
+		if module == parser.MOC {
+			return ""
+		}
+		return ",!minimal"
 	}())
 
 	fmt.Fprintf(bb, "package %v\n\n", func() string {
@@ -638,7 +743,10 @@ func cgoSailfish(module string) {
 		if Minimal {
 			return ",minimal"
 		}
-		return ""
+		if module == parser.MOC {
+			return ""
+		}
+		return ",!minimal"
 	}())
 
 	fmt.Fprintf(bb, "package %v\n\n", func() string {
@@ -734,7 +842,10 @@ func cgoRaspberryPi1(module string) {
 		if Minimal {
 			return ",minimal"
 		}
-		return ""
+		if module == parser.MOC {
+			return ""
+		}
+		return ",!minimal"
 	}())
 
 	fmt.Fprintf(bb, "package %v\n\n", func() string {
@@ -807,7 +918,10 @@ func cgoRaspberryPi2(module string) {
 		if Minimal {
 			return ",minimal"
 		}
-		return ""
+		if module == parser.MOC {
+			return ""
+		}
+		return ",!minimal"
 	}())
 
 	fmt.Fprintf(bb, "package %v\n\n", func() string {
@@ -880,7 +994,10 @@ func cgoRaspberryPi3(module string) {
 		if Minimal {
 			return ",minimal"
 		}
-		return ""
+		if module == parser.MOC {
+			return ""
+		}
+		return ",!minimal"
 	}())
 
 	fmt.Fprintf(bb, "package %v\n\n", func() string {

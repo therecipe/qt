@@ -57,7 +57,11 @@ func main() {
 
 	case "windows":
 		{
-			rccPath = filepath.Join(utils.QT_DIR(), "5.7", "mingw53_32", "bin", "rcc")
+			if utils.UseMsys2() {
+				rccPath = filepath.Join(utils.QT_MSYS2_DIR(), "bin", "rcc")
+			} else {
+				rccPath = filepath.Join(utils.QT_DIR(), "5.7", "mingw53_32", "bin", "rcc")
+			}
 		}
 	}
 
@@ -82,7 +86,7 @@ func qmlHeader(appName string) string {
 	return strings.Replace(strings.Replace(strings.Replace(strings.Replace(strings.Replace(strings.Replace(strings.Replace(strings.Replace(strings.Replace(strings.Replace(strings.Replace(strings.Replace(`package main
 
 /*
-#cgo +build windows,386 LDFLAGS: -L${QT_WINDOWS_DIR} -lQt5Core
+#cgo +build windows,386 windows,amd64 LDFLAGS: -L${QT_WINDOWS_DIR} -lQt5Core
 
 #cgo +build !ios,darwin,amd64 LDFLAGS: -F${QT_DARWIN_DIR}/lib -framework QtCore
 
@@ -117,6 +121,9 @@ import "C"`,
 		"${QT_WINDOWS_DIR}", func() string {
 			if runtime.GOOS == "linux" {
 				return "/usr/lib/mxe/usr/i686-w64-mingw32.shared/qt5/lib"
+			}
+			if utils.UseMsys2() {
+				return filepath.Join(utils.QT_MSYS2_DIR(), "lib")
 			}
 			return "${QT_DIR}/5.7/mingw53_32/lib"
 		}(), -1),

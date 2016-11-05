@@ -223,7 +223,11 @@ func (c *Class) fixBases() {
 		switch runtime.GOOS {
 		case "windows":
 			{
-				prefixPath = filepath.Join(utils.QT_DIR(), "5.7", "mingw53_32")
+				if utils.UseMsys2() {
+					prefixPath = utils.QT_MSYS2_DIR()
+				} else {
+					prefixPath = filepath.Join(utils.QT_DIR(), "5.7", "mingw53_32")
+				}
 			}
 
 		case "darwin":
