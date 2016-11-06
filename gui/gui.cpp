@@ -5123,7 +5123,7 @@ void* QGuiApplication_QGuiApplication_WindowIcon()
 void* QGuiApplication_NewQGuiApplication(int argc, char* argv)
 {
 	QList<QByteArray> aList = QByteArray(argv).split('|');
-	char *argvs[argc];
+	static char** argvs = static_cast<char**>(malloc(argc * sizeof(char*)));
 	static int argcs = argc;
 	for (int i = 0; i < argc; i++)
 		argvs[i] = const_cast<char*>(aList[i].constData());
