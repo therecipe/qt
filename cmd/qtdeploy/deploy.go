@@ -837,6 +837,8 @@ func deploy() {
 						return
 					}
 
+					utils.MakeFolder(filepath.Join(depPath, "lib"))
+
 					var (
 						libraryPath string
 						lddPath     = "ldd"
@@ -868,21 +870,23 @@ func deploy() {
 							}
 
 							if utils.Exists(filepath.Join(libraryPath, libName)) {
-								utils.RunCmd(exec.Command("cp", "-L", filepath.Join(libraryPath, libName), filepath.Join(depPath, libName)), fmt.Sprintf("copy %v for %v on %v", libName, buildTarget, runtime.GOOS))
+								utils.RunCmd(exec.Command("cp", "-L", filepath.Join(libraryPath, libName), filepath.Join(depPath, "lib", libName)), fmt.Sprintf("copy %v for %v on %v", libName, buildTarget, runtime.GOOS))
 							}
 						}
 					}
 
-					for _, libName := range []string{"DBus", "XcbQpa", "Quick", "Widgets", "EglDeviceIntegration", "EglFsKmsSupport", "OpenGL", "WaylandClient", "WaylandCompositor"} {
+					for _, libName := range []string{"DBus", "XcbQpa", "Quick", "Widgets", "EglDeviceIntegration", "EglFsKmsSupport", "OpenGL", "WaylandClient", "WaylandCompositor", "QuickControls2", "QuickTemplates2", "QuickWidgets", "QuickParticles", "CLucene", "Concurrent"} {
 						if utils.Exists(filepath.Join(libraryPath, fmt.Sprintf("libQt5%v.so.5", libName))) {
-							utils.RunCmd(exec.Command("cp", "-L", filepath.Join(libraryPath, fmt.Sprintf("libQt5%v.so.5", libName)), filepath.Join(depPath, fmt.Sprintf("libQt5%v.so.5", libName))), fmt.Sprintf("copy %v for %v on %v", libName, buildTarget, runtime.GOOS))
+							utils.RunCmd(exec.Command("cp", "-L", filepath.Join(libraryPath, fmt.Sprintf("libQt5%v.so.5", libName)), filepath.Join(depPath, "lib", fmt.Sprintf("libQt5%v.so.5", libName))), fmt.Sprintf("copy %v for %v on %v", libName, buildTarget, runtime.GOOS))
 						}
+					}
+					if utils.Exists(filepath.Join(libraryPath, "libqgsttools_p.so.1.0.0")) {
+						utils.RunCmd(exec.Command("cp", "-L", filepath.Join(libraryPath, "libqgsttools_p.so.1.0.0"), filepath.Join(depPath, "lib", "libqgsttools_p.so.1")), fmt.Sprintf("copy libqgsttools_p.so.1 for %v on %v", buildTarget, runtime.GOOS))
 					}
 
 					libraryPath = strings.TrimSuffix(libraryPath, "lib/")
-
 					utils.RunCmd(exec.Command("cp", "-R", filepath.Join(libraryPath, "qml/"), depPath), fmt.Sprintf("copy qml dir for %v on %v", buildTarget, runtime.GOOS))
-					utils.RunCmd(exec.Command("cp", "-R", filepath.Join(libraryPath, "plugins/")+"/.", depPath), fmt.Sprintf("copy plugins dir for %v on %v", buildTarget, runtime.GOOS))
+					utils.RunCmd(exec.Command("cp", "-R", filepath.Join(libraryPath, "plugins/"), depPath), fmt.Sprintf("copy plugins dir for %v on %v", buildTarget, runtime.GOOS))
 				}
 			}
 		}
@@ -1191,10 +1195,10 @@ func linuxSH() string {
 		fmt.Fprintf(bb, "export QML_IMPORT_PATH=%v\n", filepath.Join(miscDir, "qml"))
 		fmt.Fprintf(bb, "export QML2_IMPORT_PATH=%v\n", filepath.Join(miscDir, "qml"))
 	} else {
-		fmt.Fprint(bb, "export LD_LIBRARY_PATH=$dirname\n")
-		fmt.Fprint(bb, "export QT_PLUGIN_PATH=$dirname\n")
-		fmt.Fprint(bb, "export QML_IMPORT_PATH=$dirname/\"qml\"\n")
-		fmt.Fprint(bb, "export QML2_IMPORT_PATH=$dirname/\"qml\"\n")
+		fmt.Fprint(bb, "export LD_LIBRARY_PATH=$dirname/lib\n")
+		fmt.Fprint(bb, "export QT_PLUGIN_PATH=$dirname/plugins\n")
+		fmt.Fprint(bb, "export QML_IMPORT_PATH=$dirname/qml\n")
+		fmt.Fprint(bb, "export QML2_IMPORT_PATH=$dirname/qml\n")
 	}
 	fmt.Fprint(bb, "$dirname/$appname \"$@\"\n")
 
