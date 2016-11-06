@@ -6940,11 +6940,12 @@ void* QApplication_QApplication_WindowIcon()
 
 void* QApplication_NewQApplication(int argc, char* argv)
 {
-	QList<QByteArray> aList = QByteArray(argv).split('|');
-	static char** argvs = static_cast<char**>(malloc(argc * sizeof(char*)));
 	static int argcs = argc;
-	for (int i = 0; i < argc; i++)
-		argvs[i] = const_cast<char*>(aList[i].constData());
+	static char** argvs = static_cast<char**>(malloc(argcs * sizeof(char*)));
+
+	QList<QByteArray> aList = QByteArray(argv).split('|');
+	for (int i = 0; i < argcs; i++)
+		argvs[i] = (new QByteArray(aList.at(i)))->prepend("WHITESPACE").data()+10;
 
 	return new MyQApplication(argcs, argvs);
 }
