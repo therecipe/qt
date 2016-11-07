@@ -266,19 +266,25 @@ func cgoWindowsForLinux(module string) {
 
 	fmt.Fprint(bb, "import \"C\"\n")
 
+	var tmp64 = strings.Replace(bb.String(), "i686", "x86_64", -1)
+	tmp64 = strings.Replace(tmp64, " -Wl,-s ", " ", -1)
+
 	switch {
 	case module == parser.MOC:
 		{
+			utils.Save(filepath.Join(MocAppPath, "moc_cgo_desktop_windows_amd64.go"), tmp64)
 			utils.SaveBytes(filepath.Join(MocAppPath, "moc_cgo_desktop_windows_386.go"), bb.Bytes())
 		}
 
 	case Minimal:
 		{
+			utils.Save(utils.GoQtPkgPath(strings.ToLower(module), "minimal_cgo_desktop_windows_amd64.go"), tmp64)
 			utils.SaveBytes(utils.GoQtPkgPath(strings.ToLower(module), "minimal_cgo_desktop_windows_386.go"), bb.Bytes())
 		}
 
 	default:
 		{
+			utils.Save(utils.GoQtPkgPath(strings.ToLower(module), "cgo_desktop_windows_amd64.go"), tmp64)
 			utils.SaveBytes(utils.GoQtPkgPath(strings.ToLower(module), "cgo_desktop_windows_386.go"), bb.Bytes())
 		}
 	}

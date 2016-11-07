@@ -92,6 +92,7 @@ func check(buildTarget string) {
 						utils.Log.Infoln("QT_DOC_DIR:", utils.QT_DOC_DIR())
 						utils.Log.Infoln("QT_MISC_DIR:", utils.QT_MISC_DIR())
 					}
+					utils.Log.Infoln("QT_MXE_ARCH:", os.Getenv("QT_MXE_ARCH"))
 				}
 
 			case "windows":

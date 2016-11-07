@@ -90,3 +90,10 @@ func LinuxDistro() string {
 	Log.Error("failed to detect the Linux distro")
 	return ""
 }
+
+func QT_MXE_ARCH() string {
+	if arch := os.Getenv("QT_MXE_ARCH"); arch == "386" || arch == "amd64" {
+		return arch
+	}
+	return "386"
+}

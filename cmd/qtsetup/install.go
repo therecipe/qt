@@ -312,11 +312,15 @@ func getEnvAndTagflags(buildTarget string) (env map[string]string, tagFlags stri
 					"GOROOT": runtime.GOROOT(),
 
 					"GOOS":   "windows",
-					"GOARCH": "386",
+					"GOARCH": utils.QT_MXE_ARCH(),
 
 					"CGO_ENABLED": "1",
 					"CC":          "/usr/lib/mxe/usr/bin/i686-w64-mingw32.shared-gcc",
 					"CXX":         "/usr/lib/mxe/usr/bin/i686-w64-mingw32.shared-g++",
+				}
+				if utils.QT_MXE_ARCH() == "amd64" {
+					env["CC"] = "/usr/lib/mxe/usr/bin/x86_64-w64-mingw32.shared-gcc"
+					env["CXX"] = "/usr/lib/mxe/usr/bin/x86_64-w64-mingw32.shared-g++"
 				}
 			} else {
 				utils.Log.Panicf("failed to install %v on %v", buildTarget, runtime.GOOS)

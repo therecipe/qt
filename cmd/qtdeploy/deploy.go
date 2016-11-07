@@ -431,11 +431,15 @@ func build() {
 					"GOROOT": runtime.GOROOT(),
 
 					"GOOS":   "windows",
-					"GOARCH": "386",
+					"GOARCH": utils.QT_MXE_ARCH(),
 
 					"CGO_ENABLED": "1",
 					"CC":          "/usr/lib/mxe/usr/bin/i686-w64-mingw32.shared-gcc",
 					"CXX":         "/usr/lib/mxe/usr/bin/i686-w64-mingw32.shared-g++",
+				}
+				if utils.QT_MXE_ARCH() == "amd64" {
+					env["CC"] = "/usr/lib/mxe/usr/bin/x86_64-w64-mingw32.shared-gcc"
+					env["CXX"] = "/usr/lib/mxe/usr/bin/x86_64-w64-mingw32.shared-g++"
 				}
 			}
 		}
@@ -729,16 +733,39 @@ func deploy() {
 				{
 					if runtime.GOOS == "linux" {
 						var libraryPath = "/usr/lib/mxe/usr/i686-w64-mingw32.shared/bin/"
-						for _, d := range []string{"libbz2", "libfreetype-6", "libgcc_s_sjlj-1", "libglib-2.0-0", "libharfbuzz-0", "libiconv-2", "libintl-8", "libpcre-1", "libpcre16-0", "libpng16-16", "libstdc++-6", "libwinpthread-1", "zlib1", "libeay32", "ssleay32"} {
+						if utils.QT_MXE_ARCH() == "amd64" {
+							libraryPath = "/usr/lib/mxe/usr/x86_64-w64-mingw32.shared/bin/"
+						}
+						for _, d := range []string{"libbz2", "libfreetype-6", "libglib-2.0-0", "libharfbuzz-0", "libiconv-2", "libintl-8", "libpcre-1", "libpcre16-0", "libpng16-16", "libstdc++-6", "libwinpthread-1", "zlib1", "libeay32", "ssleay32"} {
 							utils.RunCmdOptional(exec.Command("cp", filepath.Join(libraryPath, fmt.Sprintf("%v.dll", d)), depPath), fmt.Sprintf("copy %v for %v on %v", d, buildTarget, runtime.GOOS))
 						}
 
+						var gccDep string
+						if utils.QT_MXE_ARCH() == "386" {
+							gccDep = "libgcc_s_sjlj-1"
+						} else {
+							gccDep = "libgcc_s_seh-1"
+						}
+						utils.RunCmdOptional(exec.Command("cp", filepath.Join(libraryPath, fmt.Sprintf("%v.dll", gccDep)), depPath), fmt.Sprintf("copy %v for %v on %v", gccDep, buildTarget, runtime.GOOS))
+
 						libraryPath = "/usr/lib/mxe/usr/i686-w64-mingw32.shared/qt5/"
+						if utils.QT_MXE_ARCH() == "amd64" {
+							libraryPath = "/usr/lib/mxe/usr/x86_64-w64-mingw32.shared/qt5/"
+						}
 						utils.RunCmd(exec.Command("cp", "-R", filepath.Join(libraryPath, "qml/")+"/.", depPath), fmt.Sprintf("copy qml dir for %v on %v", buildTarget, runtime.GOOS))
 						utils.RunCmd(exec.Command("cp", "-R", filepath.Join(libraryPath, "plugins/")+"/.", depPath), fmt.Sprintf("copy plugins dir for %v on %v", buildTarget, runtime.GOOS))
 
 						libraryPath = "/usr/lib/mxe/usr/i686-w64-mingw32.shared/qt5/bin/"
-						var output = utils.RunCmd(exec.Command("/usr/lib/mxe/usr/bin/i686-w64-mingw32.shared-objdump", "-x", filepath.Join(depPath, appName+ending)), fmt.Sprintf("objdump binary for %v on %v", buildTarget, runtime.GOOS))
+						if utils.QT_MXE_ARCH() == "amd64" {
+							libraryPath = "/usr/lib/mxe/usr/x86_64-w64-mingw32.shared/qt5/bin/"
+						}
+
+						var output string
+						if utils.QT_MXE_ARCH() == "amd64" {
+							output = utils.RunCmd(exec.Command("/usr/lib/mxe/usr/bin/x86_64-w64-mingw32.shared-objdump", "-x", filepath.Join(depPath, appName+ending)), fmt.Sprintf("objdump binary for %v on %v", buildTarget, runtime.GOOS))
+						} else {
+							output = utils.RunCmd(exec.Command("/usr/lib/mxe/usr/bin/i686-w64-mingw32.shared-objdump", "-x", filepath.Join(depPath, appName+ending)), fmt.Sprintf("objdump binary for %v on %v", buildTarget, runtime.GOOS))
+						}
 						for lib, deps := range templater.LibDeps {
 							if strings.Contains(output, lib) && lib != parser.MOC {
 								for _, lib := range append(deps, lib) {

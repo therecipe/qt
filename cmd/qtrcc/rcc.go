@@ -120,6 +120,9 @@ func qmlHeader(appName string) string {
 import "C"`,
 		"${QT_WINDOWS_DIR}", func() string {
 			if runtime.GOOS == "linux" {
+				if utils.QT_MXE_ARCH() == "amd64" {
+					return "/usr/lib/mxe/usr/x86_64-w64-mingw32.shared/qt5/lib"
+				}
 				return "/usr/lib/mxe/usr/i686-w64-mingw32.shared/qt5/lib"
 			}
 			if utils.UseMsys2() {
