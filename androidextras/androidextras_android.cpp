@@ -9,6 +9,7 @@
 #include <QAndroidActivityResultReceiver>
 #include <QAndroidJniEnvironment>
 #include <QAndroidJniObject>
+#include <QByteArray>
 #include <QString>
 
 class MyQAndroidActivityResultReceiver: public QAndroidActivityResultReceiver
@@ -327,9 +328,9 @@ char QAndroidJniObject_IsValid(void* ptr)
 	return static_cast<QAndroidJniObject*>(ptr)->isValid();
 }
 
-char* QAndroidJniObject_ToString(void* ptr)
+struct QtAndroidExtras_PackedString QAndroidJniObject_ToString(void* ptr)
 {
-	return const_cast<char*>(static_cast<QAndroidJniObject*>(ptr)->toString().toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray t3150b4 = static_cast<QAndroidJniObject*>(ptr)->toString().toUtf8(); QtAndroidExtras_PackedString { const_cast<char*>(t3150b4.prepend("WHITESPACE").constData()+10), t3150b4.size()-10 }; });
 }
 
 void* QAndroidJniObject_Object(void* ptr)

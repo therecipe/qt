@@ -16,6 +16,13 @@ import (
 	"unsafe"
 )
 
+func cGoUnpackString(s C.struct_QtLocation_PackedString) string {
+	if len := int(s.len); len == -1 {
+		return C.GoString(s.data)
+	}
+	return C.GoStringN(s.data, C.int(s.len))
+}
+
 //QGeoCodeReply::Error
 type QGeoCodeReply__Error int64
 
@@ -229,7 +236,7 @@ func (ptr *QGeoManeuver) DistanceToNextInstruction() float64 {
 
 func (ptr *QGeoManeuver) InstructionText() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QGeoManeuver_InstructionText(ptr.Pointer()))
+		return cGoUnpackString(C.QGeoManeuver_InstructionText(ptr.Pointer()))
 	}
 	return ""
 }
@@ -396,7 +403,7 @@ func (ptr *QGeoRoute) Request() *QGeoRouteRequest {
 
 func (ptr *QGeoRoute) RouteId() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QGeoRoute_RouteId(ptr.Pointer()))
+		return cGoUnpackString(C.QGeoRoute_RouteId(ptr.Pointer()))
 	}
 	return ""
 }
@@ -571,10 +578,10 @@ func (ptr *QGeoRouteReply) AbortDefault() {
 }
 
 //export callbackQGeoRouteReply_Error2
-func callbackQGeoRouteReply_Error2(ptr unsafe.Pointer, error C.longlong, errorString *C.char) {
+func callbackQGeoRouteReply_Error2(ptr unsafe.Pointer, error C.longlong, errorString C.struct_QtLocation_PackedString) {
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QGeoRouteReply::error2"); signal != nil {
-		signal.(func(QGeoRouteReply__Error, string))(QGeoRouteReply__Error(error), C.GoString(errorString))
+		signal.(func(QGeoRouteReply__Error, string))(QGeoRouteReply__Error(error), cGoUnpackString(errorString))
 	}
 
 }
@@ -610,7 +617,7 @@ func (ptr *QGeoRouteReply) Error() QGeoRouteReply__Error {
 
 func (ptr *QGeoRouteReply) ErrorString() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QGeoRouteReply_ErrorString(ptr.Pointer()))
+		return cGoUnpackString(C.QGeoRouteReply_ErrorString(ptr.Pointer()))
 	}
 	return ""
 }
@@ -1413,10 +1420,10 @@ func (ptr *QGeoRoutingManager) CalculateRoute(request QGeoRouteRequest_ITF) *QGe
 }
 
 //export callbackQGeoRoutingManager_Error
-func callbackQGeoRoutingManager_Error(ptr unsafe.Pointer, reply unsafe.Pointer, error C.longlong, errorString *C.char) {
+func callbackQGeoRoutingManager_Error(ptr unsafe.Pointer, reply unsafe.Pointer, error C.longlong, errorString C.struct_QtLocation_PackedString) {
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QGeoRoutingManager::error"); signal != nil {
-		signal.(func(*QGeoRouteReply, QGeoRouteReply__Error, string))(NewQGeoRouteReplyFromPointer(reply), QGeoRouteReply__Error(error), C.GoString(errorString))
+		signal.(func(*QGeoRouteReply, QGeoRouteReply__Error, string))(NewQGeoRouteReplyFromPointer(reply), QGeoRouteReply__Error(error), cGoUnpackString(errorString))
 	}
 
 }
@@ -1483,7 +1490,7 @@ func (ptr *QGeoRoutingManager) Locale() *core.QLocale {
 
 func (ptr *QGeoRoutingManager) ManagerName() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QGeoRoutingManager_ManagerName(ptr.Pointer()))
+		return cGoUnpackString(C.QGeoRoutingManager_ManagerName(ptr.Pointer()))
 	}
 	return ""
 }
@@ -1983,10 +1990,10 @@ func (ptr *QGeoRoutingManagerEngine) CalculateRoute(request QGeoRouteRequest_ITF
 }
 
 //export callbackQGeoRoutingManagerEngine_Error
-func callbackQGeoRoutingManagerEngine_Error(ptr unsafe.Pointer, reply unsafe.Pointer, error C.longlong, errorString *C.char) {
+func callbackQGeoRoutingManagerEngine_Error(ptr unsafe.Pointer, reply unsafe.Pointer, error C.longlong, errorString C.struct_QtLocation_PackedString) {
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QGeoRoutingManagerEngine::error"); signal != nil {
-		signal.(func(*QGeoRouteReply, QGeoRouteReply__Error, string))(NewQGeoRouteReplyFromPointer(reply), QGeoRouteReply__Error(error), C.GoString(errorString))
+		signal.(func(*QGeoRouteReply, QGeoRouteReply__Error, string))(NewQGeoRouteReplyFromPointer(reply), QGeoRouteReply__Error(error), cGoUnpackString(errorString))
 	}
 
 }
@@ -2053,7 +2060,7 @@ func (ptr *QGeoRoutingManagerEngine) Locale() *core.QLocale {
 
 func (ptr *QGeoRoutingManagerEngine) ManagerName() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QGeoRoutingManagerEngine_ManagerName(ptr.Pointer()))
+		return cGoUnpackString(C.QGeoRoutingManagerEngine_ManagerName(ptr.Pointer()))
 	}
 	return ""
 }
@@ -2687,11 +2694,11 @@ func NewQGeoServiceProviderFromPointer(ptr unsafe.Pointer) *QGeoServiceProvider 
 	return n
 }
 func QGeoServiceProvider_AvailableServiceProviders() []string {
-	return strings.Split(C.GoString(C.QGeoServiceProvider_QGeoServiceProvider_AvailableServiceProviders()), "|")
+	return strings.Split(cGoUnpackString(C.QGeoServiceProvider_QGeoServiceProvider_AvailableServiceProviders()), "|")
 }
 
 func (ptr *QGeoServiceProvider) AvailableServiceProviders() []string {
-	return strings.Split(C.GoString(C.QGeoServiceProvider_QGeoServiceProvider_AvailableServiceProviders()), "|")
+	return strings.Split(cGoUnpackString(C.QGeoServiceProvider_QGeoServiceProvider_AvailableServiceProviders()), "|")
 }
 
 func (ptr *QGeoServiceProvider) Error() QGeoServiceProvider__Error {
@@ -2703,7 +2710,7 @@ func (ptr *QGeoServiceProvider) Error() QGeoServiceProvider__Error {
 
 func (ptr *QGeoServiceProvider) ErrorString() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QGeoServiceProvider_ErrorString(ptr.Pointer()))
+		return cGoUnpackString(C.QGeoServiceProvider_ErrorString(ptr.Pointer()))
 	}
 	return ""
 }

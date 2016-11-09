@@ -16,6 +16,13 @@ import (
 	"unsafe"
 )
 
+func cGoUnpackString(s C.struct_QtScxml_PackedString) string {
+	if len := int(s.len); len == -1 {
+		return C.GoString(s.data)
+	}
+	return C.GoStringN(s.data, C.int(s.len))
+}
+
 type QScxmlCppDataModel struct {
 	QScxmlDataModel
 }
@@ -71,13 +78,13 @@ func (ptr *QScxmlCppDataModel) In(stateName string) bool {
 }
 
 //export callbackQScxmlCppDataModel_HasScxmlProperty
-func callbackQScxmlCppDataModel_HasScxmlProperty(ptr unsafe.Pointer, name *C.char) C.char {
+func callbackQScxmlCppDataModel_HasScxmlProperty(ptr unsafe.Pointer, name C.struct_QtScxml_PackedString) C.char {
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QScxmlCppDataModel::hasScxmlProperty"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt(signal.(func(string) bool)(C.GoString(name)))))
+		return C.char(int8(qt.GoBoolToInt(signal.(func(string) bool)(cGoUnpackString(name)))))
 	}
 
-	return C.char(int8(qt.GoBoolToInt(NewQScxmlCppDataModelFromPointer(ptr).HasScxmlPropertyDefault(C.GoString(name)))))
+	return C.char(int8(qt.GoBoolToInt(NewQScxmlCppDataModelFromPointer(ptr).HasScxmlPropertyDefault(cGoUnpackString(name)))))
 }
 
 func (ptr *QScxmlCppDataModel) ConnectHasScxmlProperty(f func(name string) bool) {
@@ -120,13 +127,13 @@ func (ptr *QScxmlCppDataModel) ScxmlEvent() *QScxmlEvent {
 }
 
 //export callbackQScxmlCppDataModel_ScxmlProperty
-func callbackQScxmlCppDataModel_ScxmlProperty(ptr unsafe.Pointer, name *C.char) unsafe.Pointer {
+func callbackQScxmlCppDataModel_ScxmlProperty(ptr unsafe.Pointer, name C.struct_QtScxml_PackedString) unsafe.Pointer {
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QScxmlCppDataModel::scxmlProperty"); signal != nil {
-		return core.PointerFromQVariant(signal.(func(string) *core.QVariant)(C.GoString(name)))
+		return core.PointerFromQVariant(signal.(func(string) *core.QVariant)(cGoUnpackString(name)))
 	}
 
-	return core.PointerFromQVariant(NewQScxmlCppDataModelFromPointer(ptr).ScxmlPropertyDefault(C.GoString(name)))
+	return core.PointerFromQVariant(NewQScxmlCppDataModelFromPointer(ptr).ScxmlPropertyDefault(cGoUnpackString(name)))
 }
 
 func (ptr *QScxmlCppDataModel) ConnectScxmlProperty(f func(name string) *core.QVariant) {
@@ -172,13 +179,13 @@ func (ptr *QScxmlCppDataModel) SetScxmlEvent(event QScxmlEvent_ITF) {
 }
 
 //export callbackQScxmlCppDataModel_SetScxmlProperty
-func callbackQScxmlCppDataModel_SetScxmlProperty(ptr unsafe.Pointer, name *C.char, value unsafe.Pointer, context *C.char) C.char {
+func callbackQScxmlCppDataModel_SetScxmlProperty(ptr unsafe.Pointer, name C.struct_QtScxml_PackedString, value unsafe.Pointer, context C.struct_QtScxml_PackedString) C.char {
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QScxmlCppDataModel::setScxmlProperty"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt(signal.(func(string, *core.QVariant, string) bool)(C.GoString(name), core.NewQVariantFromPointer(value), C.GoString(context)))))
+		return C.char(int8(qt.GoBoolToInt(signal.(func(string, *core.QVariant, string) bool)(cGoUnpackString(name), core.NewQVariantFromPointer(value), cGoUnpackString(context)))))
 	}
 
-	return C.char(int8(qt.GoBoolToInt(NewQScxmlCppDataModelFromPointer(ptr).SetScxmlPropertyDefault(C.GoString(name), core.NewQVariantFromPointer(value), C.GoString(context)))))
+	return C.char(int8(qt.GoBoolToInt(NewQScxmlCppDataModelFromPointer(ptr).SetScxmlPropertyDefault(cGoUnpackString(name), core.NewQVariantFromPointer(value), cGoUnpackString(context)))))
 }
 
 func (ptr *QScxmlCppDataModel) ConnectSetScxmlProperty(f func(name string, value *core.QVariant, context string) bool) {
@@ -596,10 +603,10 @@ func (ptr *QScxmlDataModel) DestroyQScxmlDataModel() {
 }
 
 //export callbackQScxmlDataModel_HasScxmlProperty
-func callbackQScxmlDataModel_HasScxmlProperty(ptr unsafe.Pointer, name *C.char) C.char {
+func callbackQScxmlDataModel_HasScxmlProperty(ptr unsafe.Pointer, name C.struct_QtScxml_PackedString) C.char {
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QScxmlDataModel::hasScxmlProperty"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt(signal.(func(string) bool)(C.GoString(name)))))
+		return C.char(int8(qt.GoBoolToInt(signal.(func(string) bool)(cGoUnpackString(name)))))
 	}
 
 	return C.char(int8(qt.GoBoolToInt(false)))
@@ -629,10 +636,10 @@ func (ptr *QScxmlDataModel) HasScxmlProperty(name string) bool {
 }
 
 //export callbackQScxmlDataModel_ScxmlProperty
-func callbackQScxmlDataModel_ScxmlProperty(ptr unsafe.Pointer, name *C.char) unsafe.Pointer {
+func callbackQScxmlDataModel_ScxmlProperty(ptr unsafe.Pointer, name C.struct_QtScxml_PackedString) unsafe.Pointer {
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QScxmlDataModel::scxmlProperty"); signal != nil {
-		return core.PointerFromQVariant(signal.(func(string) *core.QVariant)(C.GoString(name)))
+		return core.PointerFromQVariant(signal.(func(string) *core.QVariant)(cGoUnpackString(name)))
 	}
 
 	return core.PointerFromQVariant(nil)
@@ -693,10 +700,10 @@ func (ptr *QScxmlDataModel) SetScxmlEvent(event QScxmlEvent_ITF) {
 }
 
 //export callbackQScxmlDataModel_SetScxmlProperty
-func callbackQScxmlDataModel_SetScxmlProperty(ptr unsafe.Pointer, name *C.char, value unsafe.Pointer, context *C.char) C.char {
+func callbackQScxmlDataModel_SetScxmlProperty(ptr unsafe.Pointer, name C.struct_QtScxml_PackedString, value unsafe.Pointer, context C.struct_QtScxml_PackedString) C.char {
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QScxmlDataModel::setScxmlProperty"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt(signal.(func(string, *core.QVariant, string) bool)(C.GoString(name), core.NewQVariantFromPointer(value), C.GoString(context)))))
+		return C.char(int8(qt.GoBoolToInt(signal.(func(string, *core.QVariant, string) bool)(cGoUnpackString(name), core.NewQVariantFromPointer(value), cGoUnpackString(context)))))
 	}
 
 	return C.char(int8(qt.GoBoolToInt(false)))
@@ -1171,13 +1178,13 @@ func (ptr *QScxmlEcmaScriptDataModel) Engine() *qml.QJSEngine {
 }
 
 //export callbackQScxmlEcmaScriptDataModel_HasScxmlProperty
-func callbackQScxmlEcmaScriptDataModel_HasScxmlProperty(ptr unsafe.Pointer, name *C.char) C.char {
+func callbackQScxmlEcmaScriptDataModel_HasScxmlProperty(ptr unsafe.Pointer, name C.struct_QtScxml_PackedString) C.char {
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QScxmlEcmaScriptDataModel::hasScxmlProperty"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt(signal.(func(string) bool)(C.GoString(name)))))
+		return C.char(int8(qt.GoBoolToInt(signal.(func(string) bool)(cGoUnpackString(name)))))
 	}
 
-	return C.char(int8(qt.GoBoolToInt(NewQScxmlEcmaScriptDataModelFromPointer(ptr).HasScxmlPropertyDefault(C.GoString(name)))))
+	return C.char(int8(qt.GoBoolToInt(NewQScxmlEcmaScriptDataModelFromPointer(ptr).HasScxmlPropertyDefault(cGoUnpackString(name)))))
 }
 
 func (ptr *QScxmlEcmaScriptDataModel) ConnectHasScxmlProperty(f func(name string) bool) {
@@ -1213,13 +1220,13 @@ func (ptr *QScxmlEcmaScriptDataModel) HasScxmlPropertyDefault(name string) bool 
 }
 
 //export callbackQScxmlEcmaScriptDataModel_ScxmlProperty
-func callbackQScxmlEcmaScriptDataModel_ScxmlProperty(ptr unsafe.Pointer, name *C.char) unsafe.Pointer {
+func callbackQScxmlEcmaScriptDataModel_ScxmlProperty(ptr unsafe.Pointer, name C.struct_QtScxml_PackedString) unsafe.Pointer {
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QScxmlEcmaScriptDataModel::scxmlProperty"); signal != nil {
-		return core.PointerFromQVariant(signal.(func(string) *core.QVariant)(C.GoString(name)))
+		return core.PointerFromQVariant(signal.(func(string) *core.QVariant)(cGoUnpackString(name)))
 	}
 
-	return core.PointerFromQVariant(NewQScxmlEcmaScriptDataModelFromPointer(ptr).ScxmlPropertyDefault(C.GoString(name)))
+	return core.PointerFromQVariant(NewQScxmlEcmaScriptDataModelFromPointer(ptr).ScxmlPropertyDefault(cGoUnpackString(name)))
 }
 
 func (ptr *QScxmlEcmaScriptDataModel) ConnectScxmlProperty(f func(name string) *core.QVariant) {
@@ -1301,13 +1308,13 @@ func (ptr *QScxmlEcmaScriptDataModel) SetScxmlEventDefault(event QScxmlEvent_ITF
 }
 
 //export callbackQScxmlEcmaScriptDataModel_SetScxmlProperty
-func callbackQScxmlEcmaScriptDataModel_SetScxmlProperty(ptr unsafe.Pointer, name *C.char, value unsafe.Pointer, context *C.char) C.char {
+func callbackQScxmlEcmaScriptDataModel_SetScxmlProperty(ptr unsafe.Pointer, name C.struct_QtScxml_PackedString, value unsafe.Pointer, context C.struct_QtScxml_PackedString) C.char {
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QScxmlEcmaScriptDataModel::setScxmlProperty"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt(signal.(func(string, *core.QVariant, string) bool)(C.GoString(name), core.NewQVariantFromPointer(value), C.GoString(context)))))
+		return C.char(int8(qt.GoBoolToInt(signal.(func(string, *core.QVariant, string) bool)(cGoUnpackString(name), core.NewQVariantFromPointer(value), cGoUnpackString(context)))))
 	}
 
-	return C.char(int8(qt.GoBoolToInt(NewQScxmlEcmaScriptDataModelFromPointer(ptr).SetScxmlPropertyDefault(C.GoString(name), core.NewQVariantFromPointer(value), C.GoString(context)))))
+	return C.char(int8(qt.GoBoolToInt(NewQScxmlEcmaScriptDataModelFromPointer(ptr).SetScxmlPropertyDefault(cGoUnpackString(name), core.NewQVariantFromPointer(value), cGoUnpackString(context)))))
 }
 
 func (ptr *QScxmlEcmaScriptDataModel) ConnectSetScxmlProperty(f func(name string, value *core.QVariant, context string) bool) {
@@ -1747,14 +1754,14 @@ func (ptr *QScxmlError) Column() int {
 
 func (ptr *QScxmlError) Description() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QScxmlError_Description(ptr.Pointer()))
+		return cGoUnpackString(C.QScxmlError_Description(ptr.Pointer()))
 	}
 	return ""
 }
 
 func (ptr *QScxmlError) FileName() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QScxmlError_FileName(ptr.Pointer()))
+		return cGoUnpackString(C.QScxmlError_FileName(ptr.Pointer()))
 	}
 	return ""
 }
@@ -1775,7 +1782,7 @@ func (ptr *QScxmlError) Line() int {
 
 func (ptr *QScxmlError) ToString() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QScxmlError_ToString(ptr.Pointer()))
+		return cGoUnpackString(C.QScxmlError_ToString(ptr.Pointer()))
 	}
 	return ""
 }
@@ -1870,7 +1877,7 @@ func (ptr *QScxmlEvent) Delay() int {
 
 func (ptr *QScxmlEvent) ErrorMessage() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QScxmlEvent_ErrorMessage(ptr.Pointer()))
+		return cGoUnpackString(C.QScxmlEvent_ErrorMessage(ptr.Pointer()))
 	}
 	return ""
 }
@@ -1884,7 +1891,7 @@ func (ptr *QScxmlEvent) EventType() QScxmlEvent__EventType {
 
 func (ptr *QScxmlEvent) InvokeId() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QScxmlEvent_InvokeId(ptr.Pointer()))
+		return cGoUnpackString(C.QScxmlEvent_InvokeId(ptr.Pointer()))
 	}
 	return ""
 }
@@ -1898,35 +1905,35 @@ func (ptr *QScxmlEvent) IsErrorEvent() bool {
 
 func (ptr *QScxmlEvent) Name() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QScxmlEvent_Name(ptr.Pointer()))
+		return cGoUnpackString(C.QScxmlEvent_Name(ptr.Pointer()))
 	}
 	return ""
 }
 
 func (ptr *QScxmlEvent) Origin() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QScxmlEvent_Origin(ptr.Pointer()))
+		return cGoUnpackString(C.QScxmlEvent_Origin(ptr.Pointer()))
 	}
 	return ""
 }
 
 func (ptr *QScxmlEvent) OriginType() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QScxmlEvent_OriginType(ptr.Pointer()))
+		return cGoUnpackString(C.QScxmlEvent_OriginType(ptr.Pointer()))
 	}
 	return ""
 }
 
 func (ptr *QScxmlEvent) ScxmlType() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QScxmlEvent_ScxmlType(ptr.Pointer()))
+		return cGoUnpackString(C.QScxmlEvent_ScxmlType(ptr.Pointer()))
 	}
 	return ""
 }
 
 func (ptr *QScxmlEvent) SendId() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QScxmlEvent_SendId(ptr.Pointer()))
+		return cGoUnpackString(C.QScxmlEvent_SendId(ptr.Pointer()))
 	}
 	return ""
 }
@@ -2167,13 +2174,13 @@ func NewQScxmlNullDataModel(parent core.QObject_ITF) *QScxmlNullDataModel {
 }
 
 //export callbackQScxmlNullDataModel_HasScxmlProperty
-func callbackQScxmlNullDataModel_HasScxmlProperty(ptr unsafe.Pointer, name *C.char) C.char {
+func callbackQScxmlNullDataModel_HasScxmlProperty(ptr unsafe.Pointer, name C.struct_QtScxml_PackedString) C.char {
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QScxmlNullDataModel::hasScxmlProperty"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt(signal.(func(string) bool)(C.GoString(name)))))
+		return C.char(int8(qt.GoBoolToInt(signal.(func(string) bool)(cGoUnpackString(name)))))
 	}
 
-	return C.char(int8(qt.GoBoolToInt(NewQScxmlNullDataModelFromPointer(ptr).HasScxmlPropertyDefault(C.GoString(name)))))
+	return C.char(int8(qt.GoBoolToInt(NewQScxmlNullDataModelFromPointer(ptr).HasScxmlPropertyDefault(cGoUnpackString(name)))))
 }
 
 func (ptr *QScxmlNullDataModel) ConnectHasScxmlProperty(f func(name string) bool) {
@@ -2209,13 +2216,13 @@ func (ptr *QScxmlNullDataModel) HasScxmlPropertyDefault(name string) bool {
 }
 
 //export callbackQScxmlNullDataModel_ScxmlProperty
-func callbackQScxmlNullDataModel_ScxmlProperty(ptr unsafe.Pointer, name *C.char) unsafe.Pointer {
+func callbackQScxmlNullDataModel_ScxmlProperty(ptr unsafe.Pointer, name C.struct_QtScxml_PackedString) unsafe.Pointer {
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QScxmlNullDataModel::scxmlProperty"); signal != nil {
-		return core.PointerFromQVariant(signal.(func(string) *core.QVariant)(C.GoString(name)))
+		return core.PointerFromQVariant(signal.(func(string) *core.QVariant)(cGoUnpackString(name)))
 	}
 
-	return core.PointerFromQVariant(NewQScxmlNullDataModelFromPointer(ptr).ScxmlPropertyDefault(C.GoString(name)))
+	return core.PointerFromQVariant(NewQScxmlNullDataModelFromPointer(ptr).ScxmlPropertyDefault(cGoUnpackString(name)))
 }
 
 func (ptr *QScxmlNullDataModel) ConnectScxmlProperty(f func(name string) *core.QVariant) {
@@ -2291,13 +2298,13 @@ func (ptr *QScxmlNullDataModel) SetScxmlEventDefault(event QScxmlEvent_ITF) {
 }
 
 //export callbackQScxmlNullDataModel_SetScxmlProperty
-func callbackQScxmlNullDataModel_SetScxmlProperty(ptr unsafe.Pointer, name *C.char, value unsafe.Pointer, context *C.char) C.char {
+func callbackQScxmlNullDataModel_SetScxmlProperty(ptr unsafe.Pointer, name C.struct_QtScxml_PackedString, value unsafe.Pointer, context C.struct_QtScxml_PackedString) C.char {
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QScxmlNullDataModel::setScxmlProperty"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt(signal.(func(string, *core.QVariant, string) bool)(C.GoString(name), core.NewQVariantFromPointer(value), C.GoString(context)))))
+		return C.char(int8(qt.GoBoolToInt(signal.(func(string, *core.QVariant, string) bool)(cGoUnpackString(name), core.NewQVariantFromPointer(value), cGoUnpackString(context)))))
 	}
 
-	return C.char(int8(qt.GoBoolToInt(NewQScxmlNullDataModelFromPointer(ptr).SetScxmlPropertyDefault(C.GoString(name), core.NewQVariantFromPointer(value), C.GoString(context)))))
+	return C.char(int8(qt.GoBoolToInt(NewQScxmlNullDataModelFromPointer(ptr).SetScxmlPropertyDefault(cGoUnpackString(name), core.NewQVariantFromPointer(value), cGoUnpackString(context)))))
 }
 
 func (ptr *QScxmlNullDataModel) ConnectSetScxmlProperty(f func(name string, value *core.QVariant, context string) bool) {
@@ -2731,7 +2738,7 @@ func (ptr *QScxmlParser) AddError(msg string) {
 
 func (ptr *QScxmlParser) FileName() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QScxmlParser_FileName(ptr.Pointer()))
+		return cGoUnpackString(C.QScxmlParser_FileName(ptr.Pointer()))
 	}
 	return ""
 }
@@ -2849,7 +2856,7 @@ func (ptr *QScxmlStateMachine) IsInitialized() bool {
 
 func (ptr *QScxmlStateMachine) ActiveStateNames(compress bool) []string {
 	if ptr.Pointer() != nil {
-		return strings.Split(C.GoString(C.QScxmlStateMachine_ActiveStateNames(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(compress))))), "|")
+		return strings.Split(cGoUnpackString(C.QScxmlStateMachine_ActiveStateNames(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(compress))))), "|")
 	}
 	return make([]string, 0)
 }
@@ -3039,13 +3046,13 @@ func (ptr *QScxmlStateMachine) FromFile(fileName string) *QScxmlStateMachine {
 func QScxmlStateMachine_GenerateSessionId(prefix string) string {
 	var prefixC = C.CString(prefix)
 	defer C.free(unsafe.Pointer(prefixC))
-	return C.GoString(C.QScxmlStateMachine_QScxmlStateMachine_GenerateSessionId(prefixC))
+	return cGoUnpackString(C.QScxmlStateMachine_QScxmlStateMachine_GenerateSessionId(prefixC))
 }
 
 func (ptr *QScxmlStateMachine) GenerateSessionId(prefix string) string {
 	var prefixC = C.CString(prefix)
 	defer C.free(unsafe.Pointer(prefixC))
-	return C.GoString(C.QScxmlStateMachine_QScxmlStateMachine_GenerateSessionId(prefixC))
+	return cGoUnpackString(C.QScxmlStateMachine_QScxmlStateMachine_GenerateSessionId(prefixC))
 }
 
 //export callbackQScxmlStateMachine_Init
@@ -3140,10 +3147,10 @@ func (ptr *QScxmlStateMachine) IsRunning() bool {
 }
 
 //export callbackQScxmlStateMachine_Log
-func callbackQScxmlStateMachine_Log(ptr unsafe.Pointer, label *C.char, msg *C.char) {
+func callbackQScxmlStateMachine_Log(ptr unsafe.Pointer, label C.struct_QtScxml_PackedString, msg C.struct_QtScxml_PackedString) {
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QScxmlStateMachine::log"); signal != nil {
-		signal.(func(string, string))(C.GoString(label), C.GoString(msg))
+		signal.(func(string, string))(cGoUnpackString(label), cGoUnpackString(msg))
 	}
 
 }
@@ -3174,7 +3181,7 @@ func (ptr *QScxmlStateMachine) Log(label string, msg string) {
 
 func (ptr *QScxmlStateMachine) Name() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QScxmlStateMachine_Name(ptr.Pointer()))
+		return cGoUnpackString(C.QScxmlStateMachine_Name(ptr.Pointer()))
 	}
 	return ""
 }
@@ -3246,7 +3253,7 @@ func (ptr *QScxmlStateMachine) ScxmlEventFilter() *QScxmlEventFilter {
 
 func (ptr *QScxmlStateMachine) SessionId() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QScxmlStateMachine_SessionId(ptr.Pointer()))
+		return cGoUnpackString(C.QScxmlStateMachine_SessionId(ptr.Pointer()))
 	}
 	return ""
 }
@@ -3307,7 +3314,7 @@ func (ptr *QScxmlStateMachine) Start() {
 
 func (ptr *QScxmlStateMachine) StateNames(compress bool) []string {
 	if ptr.Pointer() != nil {
-		return strings.Split(C.GoString(C.QScxmlStateMachine_StateNames(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(compress))))), "|")
+		return strings.Split(cGoUnpackString(C.QScxmlStateMachine_StateNames(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(compress))))), "|")
 	}
 	return make([]string, 0)
 }

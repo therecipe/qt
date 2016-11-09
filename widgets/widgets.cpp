@@ -337,10 +337,10 @@ public:
 	QSize minimumSizeHint() const { return *static_cast<QSize*>(callbackQAbstractButton_MinimumSizeHint(const_cast<MyQAbstractButton*>(this))); };
 	void moveEvent(QMoveEvent * event) { callbackQAbstractButton_MoveEvent(this, event); };
 	void setEnabled(bool vbo) { callbackQAbstractButton_SetEnabled(this, vbo); };
-	void setStyleSheet(const QString & styleSheet) { callbackQAbstractButton_SetStyleSheet(this, const_cast<char*>(styleSheet.toUtf8().prepend("WHITESPACE").constData()+10)); };
+	void setStyleSheet(const QString & styleSheet) { QByteArray t728ae7 = styleSheet.toUtf8(); QtWidgets_PackedString styleSheetPacked = { const_cast<char*>(t728ae7.prepend("WHITESPACE").constData()+10), t728ae7.size()-10 };callbackQAbstractButton_SetStyleSheet(this, styleSheetPacked); };
 	void setVisible(bool visible) { callbackQAbstractButton_SetVisible(this, visible); };
 	void setWindowModified(bool vbo) { callbackQAbstractButton_SetWindowModified(this, vbo); };
-	void setWindowTitle(const QString & vqs) { callbackQAbstractButton_SetWindowTitle(this, const_cast<char*>(vqs.toUtf8().prepend("WHITESPACE").constData()+10)); };
+	void setWindowTitle(const QString & vqs) { QByteArray tda39a3 = vqs.toUtf8(); QtWidgets_PackedString vqsPacked = { const_cast<char*>(tda39a3.prepend("WHITESPACE").constData()+10), tda39a3.size()-10 };callbackQAbstractButton_SetWindowTitle(this, vqsPacked); };
 	void showEvent(QShowEvent * event) { callbackQAbstractButton_ShowEvent(this, event); };
 	QSize sizeHint() const { return *static_cast<QSize*>(callbackQAbstractButton_SizeHint(const_cast<MyQAbstractButton*>(this))); };
 	bool close() { return callbackQAbstractButton_Close(this) != 0; };
@@ -354,7 +354,7 @@ public:
 	QVariant inputMethodQuery(Qt::InputMethodQuery query) const { return *static_cast<QVariant*>(callbackQAbstractButton_InputMethodQuery(const_cast<MyQAbstractButton*>(this), query)); };
 	void lower() { callbackQAbstractButton_Lower(this); };
 	void mouseDoubleClickEvent(QMouseEvent * event) { callbackQAbstractButton_MouseDoubleClickEvent(this, event); };
-	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQAbstractButton_NativeEvent(this, const_cast<char*>(eventType.toHex().prepend("WHITESPACE").constData()+10), message, *result) != 0; };
+	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQAbstractButton_NativeEvent(this, const_cast<QByteArray*>(&eventType), message, *result) != 0; };
 	void raise() { callbackQAbstractButton_Raise(this); };
 	void repaint() { callbackQAbstractButton_Repaint(this); };
 	void resizeEvent(QResizeEvent * event) { callbackQAbstractButton_ResizeEvent(this, event); };
@@ -484,9 +484,9 @@ void* QAbstractButton_Shortcut(void* ptr)
 	return new QKeySequence(static_cast<QAbstractButton*>(ptr)->shortcut());
 }
 
-char* QAbstractButton_Text(void* ptr)
+struct QtWidgets_PackedString QAbstractButton_Text(void* ptr)
 {
-	return const_cast<char*>(static_cast<QAbstractButton*>(ptr)->text().toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray t8ae7db = static_cast<QAbstractButton*>(ptr)->text().toUtf8(); QtWidgets_PackedString { const_cast<char*>(t8ae7db.prepend("WHITESPACE").constData()+10), t8ae7db.size()-10 }; });
 }
 
 void QAbstractButton_Toggle(void* ptr)
@@ -986,14 +986,14 @@ void QAbstractButton_MouseDoubleClickEventDefault(void* ptr, void* event)
 	static_cast<QAbstractButton*>(ptr)->QAbstractButton::mouseDoubleClickEvent(static_cast<QMouseEvent*>(event));
 }
 
-char QAbstractButton_NativeEvent(void* ptr, char* eventType, void* message, long result)
+char QAbstractButton_NativeEvent(void* ptr, void* eventType, void* message, long result)
 {
-	return static_cast<QAbstractButton*>(ptr)->nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
+	return static_cast<QAbstractButton*>(ptr)->nativeEvent(*static_cast<QByteArray*>(eventType), message, &result);
 }
 
-char QAbstractButton_NativeEventDefault(void* ptr, char* eventType, void* message, long result)
+char QAbstractButton_NativeEventDefault(void* ptr, void* eventType, void* message, long result)
 {
-	return static_cast<QAbstractButton*>(ptr)->QAbstractButton::nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
+	return static_cast<QAbstractButton*>(ptr)->QAbstractButton::nativeEvent(*static_cast<QByteArray*>(eventType), message, &result);
 }
 
 void QAbstractButton_Raise(void* ptr)
@@ -1886,7 +1886,7 @@ public:
 	QVariant inputMethodQuery(Qt::InputMethodQuery query) const { return *static_cast<QVariant*>(callbackQAbstractItemView_InputMethodQuery(const_cast<MyQAbstractItemView*>(this), query)); };
 	bool isIndexHidden(const QModelIndex & index) const { return callbackQAbstractItemView_IsIndexHidden(const_cast<MyQAbstractItemView*>(this), const_cast<QModelIndex*>(&index)) != 0; };
 	void keyPressEvent(QKeyEvent * event) { callbackQAbstractItemView_KeyPressEvent(this, event); };
-	void keyboardSearch(const QString & search) { callbackQAbstractItemView_KeyboardSearch(this, const_cast<char*>(search.toUtf8().prepend("WHITESPACE").constData()+10)); };
+	void keyboardSearch(const QString & search) { QByteArray t3559d7 = search.toUtf8(); QtWidgets_PackedString searchPacked = { const_cast<char*>(t3559d7.prepend("WHITESPACE").constData()+10), t3559d7.size()-10 };callbackQAbstractItemView_KeyboardSearch(this, searchPacked); };
 	void mouseDoubleClickEvent(QMouseEvent * event) { callbackQAbstractItemView_MouseDoubleClickEvent(this, event); };
 	void mouseMoveEvent(QMouseEvent * event) { callbackQAbstractItemView_MouseMoveEvent(this, event); };
 	void mousePressEvent(QMouseEvent * event) { callbackQAbstractItemView_MousePressEvent(this, event); };
@@ -1933,10 +1933,10 @@ public:
 	void leaveEvent(QEvent * event) { callbackQAbstractItemView_LeaveEvent(this, event); };
 	void moveEvent(QMoveEvent * event) { callbackQAbstractItemView_MoveEvent(this, event); };
 	void setEnabled(bool vbo) { callbackQAbstractItemView_SetEnabled(this, vbo); };
-	void setStyleSheet(const QString & styleSheet) { callbackQAbstractItemView_SetStyleSheet(this, const_cast<char*>(styleSheet.toUtf8().prepend("WHITESPACE").constData()+10)); };
+	void setStyleSheet(const QString & styleSheet) { QByteArray t728ae7 = styleSheet.toUtf8(); QtWidgets_PackedString styleSheetPacked = { const_cast<char*>(t728ae7.prepend("WHITESPACE").constData()+10), t728ae7.size()-10 };callbackQAbstractItemView_SetStyleSheet(this, styleSheetPacked); };
 	void setVisible(bool visible) { callbackQAbstractItemView_SetVisible(this, visible); };
 	void setWindowModified(bool vbo) { callbackQAbstractItemView_SetWindowModified(this, vbo); };
-	void setWindowTitle(const QString & vqs) { callbackQAbstractItemView_SetWindowTitle(this, const_cast<char*>(vqs.toUtf8().prepend("WHITESPACE").constData()+10)); };
+	void setWindowTitle(const QString & vqs) { QByteArray tda39a3 = vqs.toUtf8(); QtWidgets_PackedString vqsPacked = { const_cast<char*>(tda39a3.prepend("WHITESPACE").constData()+10), tda39a3.size()-10 };callbackQAbstractItemView_SetWindowTitle(this, vqsPacked); };
 	void showEvent(QShowEvent * event) { callbackQAbstractItemView_ShowEvent(this, event); };
 	bool close() { return callbackQAbstractItemView_Close(this) != 0; };
 	void closeEvent(QCloseEvent * event) { callbackQAbstractItemView_CloseEvent(this, event); };
@@ -1945,7 +1945,7 @@ public:
 	void hide() { callbackQAbstractItemView_Hide(this); };
 	void keyReleaseEvent(QKeyEvent * event) { callbackQAbstractItemView_KeyReleaseEvent(this, event); };
 	void lower() { callbackQAbstractItemView_Lower(this); };
-	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQAbstractItemView_NativeEvent(this, const_cast<char*>(eventType.toHex().prepend("WHITESPACE").constData()+10), message, *result) != 0; };
+	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQAbstractItemView_NativeEvent(this, const_cast<QByteArray*>(&eventType), message, *result) != 0; };
 	void raise() { callbackQAbstractItemView_Raise(this); };
 	void repaint() { callbackQAbstractItemView_Repaint(this); };
 	void setDisabled(bool disable) { callbackQAbstractItemView_SetDisabled(this, disable); };
@@ -3089,14 +3089,14 @@ void QAbstractItemView_LowerDefault(void* ptr)
 	static_cast<QAbstractItemView*>(ptr)->QAbstractItemView::lower();
 }
 
-char QAbstractItemView_NativeEvent(void* ptr, char* eventType, void* message, long result)
+char QAbstractItemView_NativeEvent(void* ptr, void* eventType, void* message, long result)
 {
-	return static_cast<QAbstractItemView*>(ptr)->nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
+	return static_cast<QAbstractItemView*>(ptr)->nativeEvent(*static_cast<QByteArray*>(eventType), message, &result);
 }
 
-char QAbstractItemView_NativeEventDefault(void* ptr, char* eventType, void* message, long result)
+char QAbstractItemView_NativeEventDefault(void* ptr, void* eventType, void* message, long result)
 {
-	return static_cast<QAbstractItemView*>(ptr)->QAbstractItemView::nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
+	return static_cast<QAbstractItemView*>(ptr)->QAbstractItemView::nativeEvent(*static_cast<QByteArray*>(eventType), message, &result);
 }
 
 void QAbstractItemView_Raise(void* ptr)
@@ -3321,10 +3321,10 @@ public:
 	void leaveEvent(QEvent * event) { callbackQAbstractScrollArea_LeaveEvent(this, event); };
 	void moveEvent(QMoveEvent * event) { callbackQAbstractScrollArea_MoveEvent(this, event); };
 	void setEnabled(bool vbo) { callbackQAbstractScrollArea_SetEnabled(this, vbo); };
-	void setStyleSheet(const QString & styleSheet) { callbackQAbstractScrollArea_SetStyleSheet(this, const_cast<char*>(styleSheet.toUtf8().prepend("WHITESPACE").constData()+10)); };
+	void setStyleSheet(const QString & styleSheet) { QByteArray t728ae7 = styleSheet.toUtf8(); QtWidgets_PackedString styleSheetPacked = { const_cast<char*>(t728ae7.prepend("WHITESPACE").constData()+10), t728ae7.size()-10 };callbackQAbstractScrollArea_SetStyleSheet(this, styleSheetPacked); };
 	void setVisible(bool visible) { callbackQAbstractScrollArea_SetVisible(this, visible); };
 	void setWindowModified(bool vbo) { callbackQAbstractScrollArea_SetWindowModified(this, vbo); };
-	void setWindowTitle(const QString & vqs) { callbackQAbstractScrollArea_SetWindowTitle(this, const_cast<char*>(vqs.toUtf8().prepend("WHITESPACE").constData()+10)); };
+	void setWindowTitle(const QString & vqs) { QByteArray tda39a3 = vqs.toUtf8(); QtWidgets_PackedString vqsPacked = { const_cast<char*>(tda39a3.prepend("WHITESPACE").constData()+10), tda39a3.size()-10 };callbackQAbstractScrollArea_SetWindowTitle(this, vqsPacked); };
 	void showEvent(QShowEvent * event) { callbackQAbstractScrollArea_ShowEvent(this, event); };
 	bool close() { return callbackQAbstractScrollArea_Close(this) != 0; };
 	void closeEvent(QCloseEvent * event) { callbackQAbstractScrollArea_CloseEvent(this, event); };
@@ -3336,7 +3336,7 @@ public:
 	QVariant inputMethodQuery(Qt::InputMethodQuery query) const { return *static_cast<QVariant*>(callbackQAbstractScrollArea_InputMethodQuery(const_cast<MyQAbstractScrollArea*>(this), query)); };
 	void keyReleaseEvent(QKeyEvent * event) { callbackQAbstractScrollArea_KeyReleaseEvent(this, event); };
 	void lower() { callbackQAbstractScrollArea_Lower(this); };
-	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQAbstractScrollArea_NativeEvent(this, const_cast<char*>(eventType.toHex().prepend("WHITESPACE").constData()+10), message, *result) != 0; };
+	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQAbstractScrollArea_NativeEvent(this, const_cast<QByteArray*>(&eventType), message, *result) != 0; };
 	void raise() { callbackQAbstractScrollArea_Raise(this); };
 	void repaint() { callbackQAbstractScrollArea_Repaint(this); };
 	void setDisabled(bool disable) { callbackQAbstractScrollArea_SetDisabled(this, disable); };
@@ -3902,14 +3902,14 @@ void QAbstractScrollArea_LowerDefault(void* ptr)
 	static_cast<QAbstractScrollArea*>(ptr)->QAbstractScrollArea::lower();
 }
 
-char QAbstractScrollArea_NativeEvent(void* ptr, char* eventType, void* message, long result)
+char QAbstractScrollArea_NativeEvent(void* ptr, void* eventType, void* message, long result)
 {
-	return static_cast<QAbstractScrollArea*>(ptr)->nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
+	return static_cast<QAbstractScrollArea*>(ptr)->nativeEvent(*static_cast<QByteArray*>(eventType), message, &result);
 }
 
-char QAbstractScrollArea_NativeEventDefault(void* ptr, char* eventType, void* message, long result)
+char QAbstractScrollArea_NativeEventDefault(void* ptr, void* eventType, void* message, long result)
 {
-	return static_cast<QAbstractScrollArea*>(ptr)->QAbstractScrollArea::nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
+	return static_cast<QAbstractScrollArea*>(ptr)->QAbstractScrollArea::nativeEvent(*static_cast<QByteArray*>(eventType), message, &result);
 }
 
 void QAbstractScrollArea_Raise(void* ptr)
@@ -4153,10 +4153,10 @@ public:
 	void moveEvent(QMoveEvent * event) { callbackQAbstractSlider_MoveEvent(this, event); };
 	void paintEvent(QPaintEvent * event) { callbackQAbstractSlider_PaintEvent(this, event); };
 	void setEnabled(bool vbo) { callbackQAbstractSlider_SetEnabled(this, vbo); };
-	void setStyleSheet(const QString & styleSheet) { callbackQAbstractSlider_SetStyleSheet(this, const_cast<char*>(styleSheet.toUtf8().prepend("WHITESPACE").constData()+10)); };
+	void setStyleSheet(const QString & styleSheet) { QByteArray t728ae7 = styleSheet.toUtf8(); QtWidgets_PackedString styleSheetPacked = { const_cast<char*>(t728ae7.prepend("WHITESPACE").constData()+10), t728ae7.size()-10 };callbackQAbstractSlider_SetStyleSheet(this, styleSheetPacked); };
 	void setVisible(bool visible) { callbackQAbstractSlider_SetVisible(this, visible); };
 	void setWindowModified(bool vbo) { callbackQAbstractSlider_SetWindowModified(this, vbo); };
-	void setWindowTitle(const QString & vqs) { callbackQAbstractSlider_SetWindowTitle(this, const_cast<char*>(vqs.toUtf8().prepend("WHITESPACE").constData()+10)); };
+	void setWindowTitle(const QString & vqs) { QByteArray tda39a3 = vqs.toUtf8(); QtWidgets_PackedString vqsPacked = { const_cast<char*>(tda39a3.prepend("WHITESPACE").constData()+10), tda39a3.size()-10 };callbackQAbstractSlider_SetWindowTitle(this, vqsPacked); };
 	void showEvent(QShowEvent * event) { callbackQAbstractSlider_ShowEvent(this, event); };
 	QSize sizeHint() const { return *static_cast<QSize*>(callbackQAbstractSlider_SizeHint(const_cast<MyQAbstractSlider*>(this))); };
 	bool close() { return callbackQAbstractSlider_Close(this) != 0; };
@@ -4174,7 +4174,7 @@ public:
 	void mouseMoveEvent(QMouseEvent * event) { callbackQAbstractSlider_MouseMoveEvent(this, event); };
 	void mousePressEvent(QMouseEvent * event) { callbackQAbstractSlider_MousePressEvent(this, event); };
 	void mouseReleaseEvent(QMouseEvent * event) { callbackQAbstractSlider_MouseReleaseEvent(this, event); };
-	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQAbstractSlider_NativeEvent(this, const_cast<char*>(eventType.toHex().prepend("WHITESPACE").constData()+10), message, *result) != 0; };
+	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQAbstractSlider_NativeEvent(this, const_cast<QByteArray*>(&eventType), message, *result) != 0; };
 	void raise() { callbackQAbstractSlider_Raise(this); };
 	void repaint() { callbackQAbstractSlider_Repaint(this); };
 	void resizeEvent(QResizeEvent * event) { callbackQAbstractSlider_ResizeEvent(this, event); };
@@ -4830,14 +4830,14 @@ void QAbstractSlider_MouseReleaseEventDefault(void* ptr, void* event)
 	static_cast<QAbstractSlider*>(ptr)->QAbstractSlider::mouseReleaseEvent(static_cast<QMouseEvent*>(event));
 }
 
-char QAbstractSlider_NativeEvent(void* ptr, char* eventType, void* message, long result)
+char QAbstractSlider_NativeEvent(void* ptr, void* eventType, void* message, long result)
 {
-	return static_cast<QAbstractSlider*>(ptr)->nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
+	return static_cast<QAbstractSlider*>(ptr)->nativeEvent(*static_cast<QByteArray*>(eventType), message, &result);
 }
 
-char QAbstractSlider_NativeEventDefault(void* ptr, char* eventType, void* message, long result)
+char QAbstractSlider_NativeEventDefault(void* ptr, void* eventType, void* message, long result)
 {
-	return static_cast<QAbstractSlider*>(ptr)->QAbstractSlider::nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
+	return static_cast<QAbstractSlider*>(ptr)->QAbstractSlider::nativeEvent(*static_cast<QByteArray*>(eventType), message, &result);
 }
 
 void QAbstractSlider_Raise(void* ptr)
@@ -5059,7 +5059,7 @@ public:
 	void closeEvent(QCloseEvent * event) { callbackQAbstractSpinBox_CloseEvent(this, event); };
 	void contextMenuEvent(QContextMenuEvent * event) { callbackQAbstractSpinBox_ContextMenuEvent(this, event); };
 	void Signal_EditingFinished() { callbackQAbstractSpinBox_EditingFinished(this); };
-	void fixup(QString & input) const { callbackQAbstractSpinBox_Fixup(const_cast<MyQAbstractSpinBox*>(this), const_cast<char*>(input.toUtf8().prepend("WHITESPACE").constData()+10)); };
+	void fixup(QString & input) const { QByteArray t140f86 = input.toUtf8(); QtWidgets_PackedString inputPacked = { const_cast<char*>(t140f86.prepend("WHITESPACE").constData()+10), t140f86.size()-10 };callbackQAbstractSpinBox_Fixup(const_cast<MyQAbstractSpinBox*>(this), inputPacked); };
 	void focusInEvent(QFocusEvent * event) { callbackQAbstractSpinBox_FocusInEvent(this, event); };
 	void focusOutEvent(QFocusEvent * event) { callbackQAbstractSpinBox_FocusOutEvent(this, event); };
 	void hideEvent(QHideEvent * event) { callbackQAbstractSpinBox_HideEvent(this, event); };
@@ -5079,7 +5079,7 @@ public:
 	void stepDown() { callbackQAbstractSpinBox_StepDown(this); };
 	StepEnabled stepEnabled() const { return static_cast<QAbstractSpinBox::StepEnabledFlag>(callbackQAbstractSpinBox_StepEnabled(const_cast<MyQAbstractSpinBox*>(this))); };
 	void stepUp() { callbackQAbstractSpinBox_StepUp(this); };
-	QValidator::State validate(QString & input, int & pos) const { return static_cast<QValidator::State>(callbackQAbstractSpinBox_Validate(const_cast<MyQAbstractSpinBox*>(this), const_cast<char*>(input.toUtf8().prepend("WHITESPACE").constData()+10), pos)); };
+	QValidator::State validate(QString & input, int & pos) const { QByteArray t140f86 = input.toUtf8(); QtWidgets_PackedString inputPacked = { const_cast<char*>(t140f86.prepend("WHITESPACE").constData()+10), t140f86.size()-10 };return static_cast<QValidator::State>(callbackQAbstractSpinBox_Validate(const_cast<MyQAbstractSpinBox*>(this), inputPacked, pos)); };
 	void wheelEvent(QWheelEvent * event) { callbackQAbstractSpinBox_WheelEvent(this, event); };
 	void actionEvent(QActionEvent * event) { callbackQAbstractSpinBox_ActionEvent(this, event); };
 	void dragEnterEvent(QDragEnterEvent * event) { callbackQAbstractSpinBox_DragEnterEvent(this, event); };
@@ -5090,10 +5090,10 @@ public:
 	void leaveEvent(QEvent * event) { callbackQAbstractSpinBox_LeaveEvent(this, event); };
 	void moveEvent(QMoveEvent * event) { callbackQAbstractSpinBox_MoveEvent(this, event); };
 	void setEnabled(bool vbo) { callbackQAbstractSpinBox_SetEnabled(this, vbo); };
-	void setStyleSheet(const QString & styleSheet) { callbackQAbstractSpinBox_SetStyleSheet(this, const_cast<char*>(styleSheet.toUtf8().prepend("WHITESPACE").constData()+10)); };
+	void setStyleSheet(const QString & styleSheet) { QByteArray t728ae7 = styleSheet.toUtf8(); QtWidgets_PackedString styleSheetPacked = { const_cast<char*>(t728ae7.prepend("WHITESPACE").constData()+10), t728ae7.size()-10 };callbackQAbstractSpinBox_SetStyleSheet(this, styleSheetPacked); };
 	void setVisible(bool visible) { callbackQAbstractSpinBox_SetVisible(this, visible); };
 	void setWindowModified(bool vbo) { callbackQAbstractSpinBox_SetWindowModified(this, vbo); };
-	void setWindowTitle(const QString & vqs) { callbackQAbstractSpinBox_SetWindowTitle(this, const_cast<char*>(vqs.toUtf8().prepend("WHITESPACE").constData()+10)); };
+	void setWindowTitle(const QString & vqs) { QByteArray tda39a3 = vqs.toUtf8(); QtWidgets_PackedString vqsPacked = { const_cast<char*>(tda39a3.prepend("WHITESPACE").constData()+10), tda39a3.size()-10 };callbackQAbstractSpinBox_SetWindowTitle(this, vqsPacked); };
 	bool close() { return callbackQAbstractSpinBox_Close(this) != 0; };
 	bool focusNextPrevChild(bool next) { return callbackQAbstractSpinBox_FocusNextPrevChild(this, next) != 0; };
 	bool hasHeightForWidth() const { return callbackQAbstractSpinBox_HasHeightForWidth(const_cast<MyQAbstractSpinBox*>(this)) != 0; };
@@ -5102,7 +5102,7 @@ public:
 	void inputMethodEvent(QInputMethodEvent * event) { callbackQAbstractSpinBox_InputMethodEvent(this, event); };
 	void lower() { callbackQAbstractSpinBox_Lower(this); };
 	void mouseDoubleClickEvent(QMouseEvent * event) { callbackQAbstractSpinBox_MouseDoubleClickEvent(this, event); };
-	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQAbstractSpinBox_NativeEvent(this, const_cast<char*>(eventType.toHex().prepend("WHITESPACE").constData()+10), message, *result) != 0; };
+	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQAbstractSpinBox_NativeEvent(this, const_cast<QByteArray*>(&eventType), message, *result) != 0; };
 	void raise() { callbackQAbstractSpinBox_Raise(this); };
 	void repaint() { callbackQAbstractSpinBox_Repaint(this); };
 	void setDisabled(bool disable) { callbackQAbstractSpinBox_SetDisabled(this, disable); };
@@ -5225,14 +5225,14 @@ void QAbstractSpinBox_SetWrapping(void* ptr, char w)
 	static_cast<QAbstractSpinBox*>(ptr)->setWrapping(w != 0);
 }
 
-char* QAbstractSpinBox_SpecialValueText(void* ptr)
+struct QtWidgets_PackedString QAbstractSpinBox_SpecialValueText(void* ptr)
 {
-	return const_cast<char*>(static_cast<QAbstractSpinBox*>(ptr)->specialValueText().toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray t81b86a = static_cast<QAbstractSpinBox*>(ptr)->specialValueText().toUtf8(); QtWidgets_PackedString { const_cast<char*>(t81b86a.prepend("WHITESPACE").constData()+10), t81b86a.size()-10 }; });
 }
 
-char* QAbstractSpinBox_Text(void* ptr)
+struct QtWidgets_PackedString QAbstractSpinBox_Text(void* ptr)
 {
-	return const_cast<char*>(static_cast<QAbstractSpinBox*>(ptr)->text().toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray t58fa9c = static_cast<QAbstractSpinBox*>(ptr)->text().toUtf8(); QtWidgets_PackedString { const_cast<char*>(t58fa9c.prepend("WHITESPACE").constData()+10), t58fa9c.size()-10 }; });
 }
 
 char QAbstractSpinBox_Wrapping(void* ptr)
@@ -5747,14 +5747,14 @@ void QAbstractSpinBox_MouseDoubleClickEventDefault(void* ptr, void* event)
 	static_cast<QAbstractSpinBox*>(ptr)->QAbstractSpinBox::mouseDoubleClickEvent(static_cast<QMouseEvent*>(event));
 }
 
-char QAbstractSpinBox_NativeEvent(void* ptr, char* eventType, void* message, long result)
+char QAbstractSpinBox_NativeEvent(void* ptr, void* eventType, void* message, long result)
 {
-	return static_cast<QAbstractSpinBox*>(ptr)->nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
+	return static_cast<QAbstractSpinBox*>(ptr)->nativeEvent(*static_cast<QByteArray*>(eventType), message, &result);
 }
 
-char QAbstractSpinBox_NativeEventDefault(void* ptr, char* eventType, void* message, long result)
+char QAbstractSpinBox_NativeEventDefault(void* ptr, void* eventType, void* message, long result)
 {
-	return static_cast<QAbstractSpinBox*>(ptr)->QAbstractSpinBox::nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
+	return static_cast<QAbstractSpinBox*>(ptr)->QAbstractSpinBox::nativeEvent(*static_cast<QByteArray*>(eventType), message, &result);
 }
 
 void QAbstractSpinBox_Raise(void* ptr)
@@ -5957,9 +5957,9 @@ void* QAbstractSpinBox_MetaObjectDefault(void* ptr)
 	return const_cast<QMetaObject*>(static_cast<QAbstractSpinBox*>(ptr)->QAbstractSpinBox::metaObject());
 }
 
-char* QAccessibleWidget_ActionNames(void* ptr)
+struct QtWidgets_PackedString QAccessibleWidget_ActionNames(void* ptr)
 {
-	return const_cast<char*>(static_cast<QAccessibleWidget*>(ptr)->actionNames().join("|").toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray t5da01f = static_cast<QAccessibleWidget*>(ptr)->actionNames().join("|").toUtf8(); QtWidgets_PackedString { const_cast<char*>(t5da01f.prepend("WHITESPACE").constData()+10), t5da01f.size()-10 }; });
 }
 
 void QAccessibleWidget_AddControllingSignal(void* ptr, char* sign)
@@ -6012,9 +6012,9 @@ char QAccessibleWidget_IsValid(void* ptr)
 	return static_cast<QAccessibleWidget*>(ptr)->isValid();
 }
 
-char* QAccessibleWidget_KeyBindingsForAction(void* ptr, char* actionName)
+struct QtWidgets_PackedString QAccessibleWidget_KeyBindingsForAction(void* ptr, char* actionName)
 {
-	return const_cast<char*>(static_cast<QAccessibleWidget*>(ptr)->keyBindingsForAction(QString(actionName)).join("|").toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray t54230d = static_cast<QAccessibleWidget*>(ptr)->keyBindingsForAction(QString(actionName)).join("|").toUtf8(); QtWidgets_PackedString { const_cast<char*>(t54230d.prepend("WHITESPACE").constData()+10), t54230d.size()-10 }; });
 }
 
 void* QAccessibleWidget_Parent(void* ptr)
@@ -6037,9 +6037,9 @@ long long QAccessibleWidget_Role(void* ptr)
 	return static_cast<QAccessibleWidget*>(ptr)->role();
 }
 
-char* QAccessibleWidget_Text(void* ptr, long long t)
+struct QtWidgets_PackedString QAccessibleWidget_Text(void* ptr, long long t)
 {
-	return const_cast<char*>(static_cast<QAccessibleWidget*>(ptr)->text(static_cast<QAccessible::Text>(t)).toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray t7973e3 = static_cast<QAccessibleWidget*>(ptr)->text(static_cast<QAccessible::Text>(t)).toUtf8(); QtWidgets_PackedString { const_cast<char*>(t7973e3.prepend("WHITESPACE").constData()+10), t7973e3.size()-10 }; });
 }
 
 void* QAccessibleWidget_Widget(void* ptr)
@@ -6087,24 +6087,24 @@ void QAccessibleWidget_SetTextDefault(void* ptr, long long t, char* text)
 	static_cast<QAccessibleWidget*>(ptr)->QAccessibleWidget::setText(static_cast<QAccessible::Text>(t), QString(text));
 }
 
-char* QAccessibleWidget_LocalizedActionDescription(void* ptr, char* actionName)
+struct QtWidgets_PackedString QAccessibleWidget_LocalizedActionDescription(void* ptr, char* actionName)
 {
-	return const_cast<char*>(static_cast<QAccessibleWidget*>(ptr)->localizedActionDescription(QString(actionName)).toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray te05878 = static_cast<QAccessibleWidget*>(ptr)->localizedActionDescription(QString(actionName)).toUtf8(); QtWidgets_PackedString { const_cast<char*>(te05878.prepend("WHITESPACE").constData()+10), te05878.size()-10 }; });
 }
 
-char* QAccessibleWidget_LocalizedActionDescriptionDefault(void* ptr, char* actionName)
+struct QtWidgets_PackedString QAccessibleWidget_LocalizedActionDescriptionDefault(void* ptr, char* actionName)
 {
-	return const_cast<char*>(static_cast<QAccessibleWidget*>(ptr)->QAccessibleWidget::localizedActionDescription(QString(actionName)).toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray t4463d2 = static_cast<QAccessibleWidget*>(ptr)->QAccessibleWidget::localizedActionDescription(QString(actionName)).toUtf8(); QtWidgets_PackedString { const_cast<char*>(t4463d2.prepend("WHITESPACE").constData()+10), t4463d2.size()-10 }; });
 }
 
-char* QAccessibleWidget_LocalizedActionName(void* ptr, char* actionName)
+struct QtWidgets_PackedString QAccessibleWidget_LocalizedActionName(void* ptr, char* actionName)
 {
-	return const_cast<char*>(static_cast<QAccessibleWidget*>(ptr)->localizedActionName(QString(actionName)).toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray t14d6f3 = static_cast<QAccessibleWidget*>(ptr)->localizedActionName(QString(actionName)).toUtf8(); QtWidgets_PackedString { const_cast<char*>(t14d6f3.prepend("WHITESPACE").constData()+10), t14d6f3.size()-10 }; });
 }
 
-char* QAccessibleWidget_LocalizedActionNameDefault(void* ptr, char* actionName)
+struct QtWidgets_PackedString QAccessibleWidget_LocalizedActionNameDefault(void* ptr, char* actionName)
 {
-	return const_cast<char*>(static_cast<QAccessibleWidget*>(ptr)->QAccessibleWidget::localizedActionName(QString(actionName)).toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray t6e929f = static_cast<QAccessibleWidget*>(ptr)->QAccessibleWidget::localizedActionName(QString(actionName)).toUtf8(); QtWidgets_PackedString { const_cast<char*>(t6e929f.prepend("WHITESPACE").constData()+10), t6e929f.size()-10 }; });
 }
 
 class MyQAction: public QAction
@@ -6149,9 +6149,9 @@ void* QAction_Icon(void* ptr)
 	return new QIcon(static_cast<QAction*>(ptr)->icon());
 }
 
-char* QAction_IconText(void* ptr)
+struct QtWidgets_PackedString QAction_IconText(void* ptr)
 {
-	return const_cast<char*>(static_cast<QAction*>(ptr)->iconText().toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray t6729e1 = static_cast<QAction*>(ptr)->iconText().toUtf8(); QtWidgets_PackedString { const_cast<char*>(t6729e1.prepend("WHITESPACE").constData()+10), t6729e1.size()-10 }; });
 }
 
 char QAction_IsCheckable(void* ptr)
@@ -6284,14 +6284,14 @@ long long QAction_ShortcutContext(void* ptr)
 	return static_cast<QAction*>(ptr)->shortcutContext();
 }
 
-char* QAction_StatusTip(void* ptr)
+struct QtWidgets_PackedString QAction_StatusTip(void* ptr)
 {
-	return const_cast<char*>(static_cast<QAction*>(ptr)->statusTip().toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray t5e64a4 = static_cast<QAction*>(ptr)->statusTip().toUtf8(); QtWidgets_PackedString { const_cast<char*>(t5e64a4.prepend("WHITESPACE").constData()+10), t5e64a4.size()-10 }; });
 }
 
-char* QAction_Text(void* ptr)
+struct QtWidgets_PackedString QAction_Text(void* ptr)
 {
-	return const_cast<char*>(static_cast<QAction*>(ptr)->text().toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray t0f57fa = static_cast<QAction*>(ptr)->text().toUtf8(); QtWidgets_PackedString { const_cast<char*>(t0f57fa.prepend("WHITESPACE").constData()+10), t0f57fa.size()-10 }; });
 }
 
 void QAction_Toggle(void* ptr)
@@ -6299,14 +6299,14 @@ void QAction_Toggle(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QAction*>(ptr), "toggle");
 }
 
-char* QAction_ToolTip(void* ptr)
+struct QtWidgets_PackedString QAction_ToolTip(void* ptr)
 {
-	return const_cast<char*>(static_cast<QAction*>(ptr)->toolTip().toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray td308d4 = static_cast<QAction*>(ptr)->toolTip().toUtf8(); QtWidgets_PackedString { const_cast<char*>(td308d4.prepend("WHITESPACE").constData()+10), td308d4.size()-10 }; });
 }
 
-char* QAction_WhatsThis(void* ptr)
+struct QtWidgets_PackedString QAction_WhatsThis(void* ptr)
 {
-	return const_cast<char*>(static_cast<QAction*>(ptr)->whatsThis().toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray tba6af8 = static_cast<QAction*>(ptr)->whatsThis().toUtf8(); QtWidgets_PackedString { const_cast<char*>(tba6af8.prepend("WHITESPACE").constData()+10), tba6af8.size()-10 }; });
 }
 
 void* QAction_NewQAction(void* parent)
@@ -6768,7 +6768,7 @@ public:
 	bool autoSipEnabled() const { return callbackQApplication_AutoSipEnabled(const_cast<MyQApplication*>(this)) != 0; };
 	void setAutoMaximizeThreshold(const int threshold) { callbackQApplication_SetAutoMaximizeThreshold(this, threshold); };
 	void setAutoSipEnabled(const bool enabled) { callbackQApplication_SetAutoSipEnabled(this, enabled); };
-	void setStyleSheet(const QString & sheet) { callbackQApplication_SetStyleSheet(this, const_cast<char*>(sheet.toUtf8().prepend("WHITESPACE").constData()+10)); };
+	void setStyleSheet(const QString & sheet) { QByteArray t542ebc = sheet.toUtf8(); QtWidgets_PackedString sheetPacked = { const_cast<char*>(t542ebc.prepend("WHITESPACE").constData()+10), t542ebc.size()-10 };callbackQApplication_SetStyleSheet(this, sheetPacked); };
 	void aboutQt() { callbackQApplication_AboutQt(this); };
 	void closeAllWindows() { callbackQApplication_CloseAllWindows(this); };
 	void Signal_FocusChanged(QWidget * old, QWidget * now) { callbackQApplication_FocusChanged(this, old, now); };
@@ -6913,9 +6913,9 @@ int QApplication_QApplication_StartDragTime()
 	return QApplication::startDragTime();
 }
 
-char* QApplication_StyleSheet(void* ptr)
+struct QtWidgets_PackedString QApplication_StyleSheet(void* ptr)
 {
-	return const_cast<char*>(static_cast<QApplication*>(ptr)->styleSheet().toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray ta53b66 = static_cast<QApplication*>(ptr)->styleSheet().toUtf8(); QtWidgets_PackedString { const_cast<char*>(ta53b66.prepend("WHITESPACE").constData()+10), ta53b66.size()-10 }; });
 }
 
 void* QApplication_QApplication_TopLevelAt(void* point)
@@ -6945,7 +6945,7 @@ void* QApplication_NewQApplication(int argc, char* argv)
 
 	QList<QByteArray> aList = QByteArray(argv).split('|');
 	for (int i = 0; i < argcs; i++)
-		argvs[i] = (new QByteArray(aList.at(i)))->prepend("WHITESPACE").data()+10;
+		argvs[i] = (new QByteArray(aList.at(i)))->data();
 
 	return new MyQApplication(argcs, argvs);
 }
@@ -7946,10 +7946,10 @@ public:
 	void moveEvent(QMoveEvent * event) { callbackQCalendarWidget_MoveEvent(this, event); };
 	void paintEvent(QPaintEvent * event) { callbackQCalendarWidget_PaintEvent(this, event); };
 	void setEnabled(bool vbo) { callbackQCalendarWidget_SetEnabled(this, vbo); };
-	void setStyleSheet(const QString & styleSheet) { callbackQCalendarWidget_SetStyleSheet(this, const_cast<char*>(styleSheet.toUtf8().prepend("WHITESPACE").constData()+10)); };
+	void setStyleSheet(const QString & styleSheet) { QByteArray t728ae7 = styleSheet.toUtf8(); QtWidgets_PackedString styleSheetPacked = { const_cast<char*>(t728ae7.prepend("WHITESPACE").constData()+10), t728ae7.size()-10 };callbackQCalendarWidget_SetStyleSheet(this, styleSheetPacked); };
 	void setVisible(bool visible) { callbackQCalendarWidget_SetVisible(this, visible); };
 	void setWindowModified(bool vbo) { callbackQCalendarWidget_SetWindowModified(this, vbo); };
-	void setWindowTitle(const QString & vqs) { callbackQCalendarWidget_SetWindowTitle(this, const_cast<char*>(vqs.toUtf8().prepend("WHITESPACE").constData()+10)); };
+	void setWindowTitle(const QString & vqs) { QByteArray tda39a3 = vqs.toUtf8(); QtWidgets_PackedString vqsPacked = { const_cast<char*>(tda39a3.prepend("WHITESPACE").constData()+10), tda39a3.size()-10 };callbackQCalendarWidget_SetWindowTitle(this, vqsPacked); };
 	void showEvent(QShowEvent * event) { callbackQCalendarWidget_ShowEvent(this, event); };
 	void changeEvent(QEvent * event) { callbackQCalendarWidget_ChangeEvent(this, event); };
 	bool close() { return callbackQCalendarWidget_Close(this) != 0; };
@@ -7966,7 +7966,7 @@ public:
 	void mouseDoubleClickEvent(QMouseEvent * event) { callbackQCalendarWidget_MouseDoubleClickEvent(this, event); };
 	void mouseMoveEvent(QMouseEvent * event) { callbackQCalendarWidget_MouseMoveEvent(this, event); };
 	void mouseReleaseEvent(QMouseEvent * event) { callbackQCalendarWidget_MouseReleaseEvent(this, event); };
-	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQCalendarWidget_NativeEvent(this, const_cast<char*>(eventType.toHex().prepend("WHITESPACE").constData()+10), message, *result) != 0; };
+	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQCalendarWidget_NativeEvent(this, const_cast<QByteArray*>(&eventType), message, *result) != 0; };
 	void raise() { callbackQCalendarWidget_Raise(this); };
 	void repaint() { callbackQCalendarWidget_Repaint(this); };
 	void setDisabled(bool disable) { callbackQCalendarWidget_SetDisabled(this, disable); };
@@ -8632,14 +8632,14 @@ void QCalendarWidget_MouseReleaseEventDefault(void* ptr, void* event)
 	static_cast<QCalendarWidget*>(ptr)->QCalendarWidget::mouseReleaseEvent(static_cast<QMouseEvent*>(event));
 }
 
-char QCalendarWidget_NativeEvent(void* ptr, char* eventType, void* message, long result)
+char QCalendarWidget_NativeEvent(void* ptr, void* eventType, void* message, long result)
 {
-	return static_cast<QCalendarWidget*>(ptr)->nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
+	return static_cast<QCalendarWidget*>(ptr)->nativeEvent(*static_cast<QByteArray*>(eventType), message, &result);
 }
 
-char QCalendarWidget_NativeEventDefault(void* ptr, char* eventType, void* message, long result)
+char QCalendarWidget_NativeEventDefault(void* ptr, void* eventType, void* message, long result)
 {
-	return static_cast<QCalendarWidget*>(ptr)->QCalendarWidget::nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
+	return static_cast<QCalendarWidget*>(ptr)->QCalendarWidget::nativeEvent(*static_cast<QByteArray*>(eventType), message, &result);
 }
 
 void QCalendarWidget_Raise(void* ptr)
@@ -8887,10 +8887,10 @@ public:
 	void leaveEvent(QEvent * event) { callbackQCheckBox_LeaveEvent(this, event); };
 	void moveEvent(QMoveEvent * event) { callbackQCheckBox_MoveEvent(this, event); };
 	void setEnabled(bool vbo) { callbackQCheckBox_SetEnabled(this, vbo); };
-	void setStyleSheet(const QString & styleSheet) { callbackQCheckBox_SetStyleSheet(this, const_cast<char*>(styleSheet.toUtf8().prepend("WHITESPACE").constData()+10)); };
+	void setStyleSheet(const QString & styleSheet) { QByteArray t728ae7 = styleSheet.toUtf8(); QtWidgets_PackedString styleSheetPacked = { const_cast<char*>(t728ae7.prepend("WHITESPACE").constData()+10), t728ae7.size()-10 };callbackQCheckBox_SetStyleSheet(this, styleSheetPacked); };
 	void setVisible(bool visible) { callbackQCheckBox_SetVisible(this, visible); };
 	void setWindowModified(bool vbo) { callbackQCheckBox_SetWindowModified(this, vbo); };
-	void setWindowTitle(const QString & vqs) { callbackQCheckBox_SetWindowTitle(this, const_cast<char*>(vqs.toUtf8().prepend("WHITESPACE").constData()+10)); };
+	void setWindowTitle(const QString & vqs) { QByteArray tda39a3 = vqs.toUtf8(); QtWidgets_PackedString vqsPacked = { const_cast<char*>(tda39a3.prepend("WHITESPACE").constData()+10), tda39a3.size()-10 };callbackQCheckBox_SetWindowTitle(this, vqsPacked); };
 	void showEvent(QShowEvent * event) { callbackQCheckBox_ShowEvent(this, event); };
 	bool close() { return callbackQCheckBox_Close(this) != 0; };
 	void closeEvent(QCloseEvent * event) { callbackQCheckBox_CloseEvent(this, event); };
@@ -8903,7 +8903,7 @@ public:
 	QVariant inputMethodQuery(Qt::InputMethodQuery query) const { return *static_cast<QVariant*>(callbackQCheckBox_InputMethodQuery(const_cast<MyQCheckBox*>(this), query)); };
 	void lower() { callbackQCheckBox_Lower(this); };
 	void mouseDoubleClickEvent(QMouseEvent * event) { callbackQCheckBox_MouseDoubleClickEvent(this, event); };
-	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQCheckBox_NativeEvent(this, const_cast<char*>(eventType.toHex().prepend("WHITESPACE").constData()+10), message, *result) != 0; };
+	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQCheckBox_NativeEvent(this, const_cast<QByteArray*>(&eventType), message, *result) != 0; };
 	void raise() { callbackQCheckBox_Raise(this); };
 	void repaint() { callbackQCheckBox_Repaint(this); };
 	void resizeEvent(QResizeEvent * event) { callbackQCheckBox_ResizeEvent(this, event); };
@@ -9440,14 +9440,14 @@ void QCheckBox_MouseDoubleClickEventDefault(void* ptr, void* event)
 	static_cast<QCheckBox*>(ptr)->QCheckBox::mouseDoubleClickEvent(static_cast<QMouseEvent*>(event));
 }
 
-char QCheckBox_NativeEvent(void* ptr, char* eventType, void* message, long result)
+char QCheckBox_NativeEvent(void* ptr, void* eventType, void* message, long result)
 {
-	return static_cast<QCheckBox*>(ptr)->nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
+	return static_cast<QCheckBox*>(ptr)->nativeEvent(*static_cast<QByteArray*>(eventType), message, &result);
 }
 
-char QCheckBox_NativeEventDefault(void* ptr, char* eventType, void* message, long result)
+char QCheckBox_NativeEventDefault(void* ptr, void* eventType, void* message, long result)
 {
-	return static_cast<QCheckBox*>(ptr)->QCheckBox::nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
+	return static_cast<QCheckBox*>(ptr)->QCheckBox::nativeEvent(*static_cast<QByteArray*>(eventType), message, &result);
 }
 
 void QCheckBox_Raise(void* ptr)
@@ -9703,9 +9703,9 @@ public:
 	void moveEvent(QMoveEvent * event) { callbackQColorDialog_MoveEvent(this, event); };
 	void paintEvent(QPaintEvent * event) { callbackQColorDialog_PaintEvent(this, event); };
 	void setEnabled(bool vbo) { callbackQColorDialog_SetEnabled(this, vbo); };
-	void setStyleSheet(const QString & styleSheet) { callbackQColorDialog_SetStyleSheet(this, const_cast<char*>(styleSheet.toUtf8().prepend("WHITESPACE").constData()+10)); };
+	void setStyleSheet(const QString & styleSheet) { QByteArray t728ae7 = styleSheet.toUtf8(); QtWidgets_PackedString styleSheetPacked = { const_cast<char*>(t728ae7.prepend("WHITESPACE").constData()+10), t728ae7.size()-10 };callbackQColorDialog_SetStyleSheet(this, styleSheetPacked); };
 	void setWindowModified(bool vbo) { callbackQColorDialog_SetWindowModified(this, vbo); };
-	void setWindowTitle(const QString & vqs) { callbackQColorDialog_SetWindowTitle(this, const_cast<char*>(vqs.toUtf8().prepend("WHITESPACE").constData()+10)); };
+	void setWindowTitle(const QString & vqs) { QByteArray tda39a3 = vqs.toUtf8(); QtWidgets_PackedString vqsPacked = { const_cast<char*>(tda39a3.prepend("WHITESPACE").constData()+10), tda39a3.size()-10 };callbackQColorDialog_SetWindowTitle(this, vqsPacked); };
 	bool close() { return callbackQColorDialog_Close(this) != 0; };
 	bool focusNextPrevChild(bool next) { return callbackQColorDialog_FocusNextPrevChild(this, next) != 0; };
 	bool hasHeightForWidth() const { return callbackQColorDialog_HasHeightForWidth(const_cast<MyQColorDialog*>(this)) != 0; };
@@ -9719,7 +9719,7 @@ public:
 	void mouseMoveEvent(QMouseEvent * event) { callbackQColorDialog_MouseMoveEvent(this, event); };
 	void mousePressEvent(QMouseEvent * event) { callbackQColorDialog_MousePressEvent(this, event); };
 	void mouseReleaseEvent(QMouseEvent * event) { callbackQColorDialog_MouseReleaseEvent(this, event); };
-	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQColorDialog_NativeEvent(this, const_cast<char*>(eventType.toHex().prepend("WHITESPACE").constData()+10), message, *result) != 0; };
+	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQColorDialog_NativeEvent(this, const_cast<QByteArray*>(&eventType), message, *result) != 0; };
 	void raise() { callbackQColorDialog_Raise(this); };
 	void repaint() { callbackQColorDialog_Repaint(this); };
 	void setDisabled(bool disable) { callbackQColorDialog_SetDisabled(this, disable); };
@@ -10282,14 +10282,14 @@ void QColorDialog_MouseReleaseEventDefault(void* ptr, void* event)
 	static_cast<QColorDialog*>(ptr)->QColorDialog::mouseReleaseEvent(static_cast<QMouseEvent*>(event));
 }
 
-char QColorDialog_NativeEvent(void* ptr, char* eventType, void* message, long result)
+char QColorDialog_NativeEvent(void* ptr, void* eventType, void* message, long result)
 {
-	return static_cast<QColorDialog*>(ptr)->nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
+	return static_cast<QColorDialog*>(ptr)->nativeEvent(*static_cast<QByteArray*>(eventType), message, &result);
 }
 
-char QColorDialog_NativeEventDefault(void* ptr, char* eventType, void* message, long result)
+char QColorDialog_NativeEventDefault(void* ptr, void* eventType, void* message, long result)
 {
-	return static_cast<QColorDialog*>(ptr)->QColorDialog::nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
+	return static_cast<QColorDialog*>(ptr)->QColorDialog::nativeEvent(*static_cast<QByteArray*>(eventType), message, &result);
 }
 
 void QColorDialog_Raise(void* ptr)
@@ -10583,7 +10583,7 @@ public:
 	void inputMethodEvent(QInputMethodEvent * event) { callbackQColumnView_InputMethodEvent(this, event); };
 	QVariant inputMethodQuery(Qt::InputMethodQuery query) const { return *static_cast<QVariant*>(callbackQColumnView_InputMethodQuery(const_cast<MyQColumnView*>(this), query)); };
 	void keyPressEvent(QKeyEvent * event) { callbackQColumnView_KeyPressEvent(this, event); };
-	void keyboardSearch(const QString & search) { callbackQColumnView_KeyboardSearch(this, const_cast<char*>(search.toUtf8().prepend("WHITESPACE").constData()+10)); };
+	void keyboardSearch(const QString & search) { QByteArray t3559d7 = search.toUtf8(); QtWidgets_PackedString searchPacked = { const_cast<char*>(t3559d7.prepend("WHITESPACE").constData()+10), t3559d7.size()-10 };callbackQColumnView_KeyboardSearch(this, searchPacked); };
 	void mouseDoubleClickEvent(QMouseEvent * event) { callbackQColumnView_MouseDoubleClickEvent(this, event); };
 	void mouseMoveEvent(QMouseEvent * event) { callbackQColumnView_MouseMoveEvent(this, event); };
 	void mousePressEvent(QMouseEvent * event) { callbackQColumnView_MousePressEvent(this, event); };
@@ -10614,10 +10614,10 @@ public:
 	void leaveEvent(QEvent * event) { callbackQColumnView_LeaveEvent(this, event); };
 	void moveEvent(QMoveEvent * event) { callbackQColumnView_MoveEvent(this, event); };
 	void setEnabled(bool vbo) { callbackQColumnView_SetEnabled(this, vbo); };
-	void setStyleSheet(const QString & styleSheet) { callbackQColumnView_SetStyleSheet(this, const_cast<char*>(styleSheet.toUtf8().prepend("WHITESPACE").constData()+10)); };
+	void setStyleSheet(const QString & styleSheet) { QByteArray t728ae7 = styleSheet.toUtf8(); QtWidgets_PackedString styleSheetPacked = { const_cast<char*>(t728ae7.prepend("WHITESPACE").constData()+10), t728ae7.size()-10 };callbackQColumnView_SetStyleSheet(this, styleSheetPacked); };
 	void setVisible(bool visible) { callbackQColumnView_SetVisible(this, visible); };
 	void setWindowModified(bool vbo) { callbackQColumnView_SetWindowModified(this, vbo); };
-	void setWindowTitle(const QString & vqs) { callbackQColumnView_SetWindowTitle(this, const_cast<char*>(vqs.toUtf8().prepend("WHITESPACE").constData()+10)); };
+	void setWindowTitle(const QString & vqs) { QByteArray tda39a3 = vqs.toUtf8(); QtWidgets_PackedString vqsPacked = { const_cast<char*>(tda39a3.prepend("WHITESPACE").constData()+10), tda39a3.size()-10 };callbackQColumnView_SetWindowTitle(this, vqsPacked); };
 	void showEvent(QShowEvent * event) { callbackQColumnView_ShowEvent(this, event); };
 	bool close() { return callbackQColumnView_Close(this) != 0; };
 	void closeEvent(QCloseEvent * event) { callbackQColumnView_CloseEvent(this, event); };
@@ -10626,7 +10626,7 @@ public:
 	void hide() { callbackQColumnView_Hide(this); };
 	void keyReleaseEvent(QKeyEvent * event) { callbackQColumnView_KeyReleaseEvent(this, event); };
 	void lower() { callbackQColumnView_Lower(this); };
-	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQColumnView_NativeEvent(this, const_cast<char*>(eventType.toHex().prepend("WHITESPACE").constData()+10), message, *result) != 0; };
+	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQColumnView_NativeEvent(this, const_cast<QByteArray*>(&eventType), message, *result) != 0; };
 	void raise() { callbackQColumnView_Raise(this); };
 	void repaint() { callbackQColumnView_Repaint(this); };
 	void setDisabled(bool disable) { callbackQColumnView_SetDisabled(this, disable); };
@@ -11490,14 +11490,14 @@ void QColumnView_LowerDefault(void* ptr)
 	static_cast<QColumnView*>(ptr)->QColumnView::lower();
 }
 
-char QColumnView_NativeEvent(void* ptr, char* eventType, void* message, long result)
+char QColumnView_NativeEvent(void* ptr, void* eventType, void* message, long result)
 {
-	return static_cast<QColumnView*>(ptr)->nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
+	return static_cast<QColumnView*>(ptr)->nativeEvent(*static_cast<QByteArray*>(eventType), message, &result);
 }
 
-char QColumnView_NativeEventDefault(void* ptr, char* eventType, void* message, long result)
+char QColumnView_NativeEventDefault(void* ptr, void* eventType, void* message, long result)
 {
-	return static_cast<QColumnView*>(ptr)->QColumnView::nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
+	return static_cast<QColumnView*>(ptr)->QColumnView::nativeEvent(*static_cast<QByteArray*>(eventType), message, &result);
 }
 
 void QColumnView_Raise(void* ptr)
@@ -11695,22 +11695,22 @@ class MyQComboBox: public QComboBox
 public:
 	MyQComboBox(QWidget *parent) : QComboBox(parent) {};
 	void setCurrentIndex(int index) { callbackQComboBox_SetCurrentIndex(this, index); };
-	void setCurrentText(const QString & text) { callbackQComboBox_SetCurrentText(this, const_cast<char*>(text.toUtf8().prepend("WHITESPACE").constData()+10)); };
-	void Signal_Activated2(const QString & text) { callbackQComboBox_Activated2(this, const_cast<char*>(text.toUtf8().prepend("WHITESPACE").constData()+10)); };
+	void setCurrentText(const QString & text) { QByteArray t372ea0 = text.toUtf8(); QtWidgets_PackedString textPacked = { const_cast<char*>(t372ea0.prepend("WHITESPACE").constData()+10), t372ea0.size()-10 };callbackQComboBox_SetCurrentText(this, textPacked); };
+	void Signal_Activated2(const QString & text) { QByteArray t372ea0 = text.toUtf8(); QtWidgets_PackedString textPacked = { const_cast<char*>(t372ea0.prepend("WHITESPACE").constData()+10), t372ea0.size()-10 };callbackQComboBox_Activated2(this, textPacked); };
 	void Signal_Activated(int index) { callbackQComboBox_Activated(this, index); };
 	void changeEvent(QEvent * e) { callbackQComboBox_ChangeEvent(this, e); };
 	void clear() { callbackQComboBox_Clear(this); };
 	void clearEditText() { callbackQComboBox_ClearEditText(this); };
 	void contextMenuEvent(QContextMenuEvent * e) { callbackQComboBox_ContextMenuEvent(this, e); };
-	void Signal_CurrentIndexChanged2(const QString & text) { callbackQComboBox_CurrentIndexChanged2(this, const_cast<char*>(text.toUtf8().prepend("WHITESPACE").constData()+10)); };
+	void Signal_CurrentIndexChanged2(const QString & text) { QByteArray t372ea0 = text.toUtf8(); QtWidgets_PackedString textPacked = { const_cast<char*>(t372ea0.prepend("WHITESPACE").constData()+10), t372ea0.size()-10 };callbackQComboBox_CurrentIndexChanged2(this, textPacked); };
 	void Signal_CurrentIndexChanged(int index) { callbackQComboBox_CurrentIndexChanged(this, index); };
-	void Signal_CurrentTextChanged(const QString & text) { callbackQComboBox_CurrentTextChanged(this, const_cast<char*>(text.toUtf8().prepend("WHITESPACE").constData()+10)); };
-	void Signal_EditTextChanged(const QString & text) { callbackQComboBox_EditTextChanged(this, const_cast<char*>(text.toUtf8().prepend("WHITESPACE").constData()+10)); };
+	void Signal_CurrentTextChanged(const QString & text) { QByteArray t372ea0 = text.toUtf8(); QtWidgets_PackedString textPacked = { const_cast<char*>(t372ea0.prepend("WHITESPACE").constData()+10), t372ea0.size()-10 };callbackQComboBox_CurrentTextChanged(this, textPacked); };
+	void Signal_EditTextChanged(const QString & text) { QByteArray t372ea0 = text.toUtf8(); QtWidgets_PackedString textPacked = { const_cast<char*>(t372ea0.prepend("WHITESPACE").constData()+10), t372ea0.size()-10 };callbackQComboBox_EditTextChanged(this, textPacked); };
 	void focusInEvent(QFocusEvent * e) { callbackQComboBox_FocusInEvent(this, e); };
 	void focusOutEvent(QFocusEvent * e) { callbackQComboBox_FocusOutEvent(this, e); };
 	void hideEvent(QHideEvent * e) { callbackQComboBox_HideEvent(this, e); };
 	void hidePopup() { callbackQComboBox_HidePopup(this); };
-	void Signal_Highlighted2(const QString & text) { callbackQComboBox_Highlighted2(this, const_cast<char*>(text.toUtf8().prepend("WHITESPACE").constData()+10)); };
+	void Signal_Highlighted2(const QString & text) { QByteArray t372ea0 = text.toUtf8(); QtWidgets_PackedString textPacked = { const_cast<char*>(t372ea0.prepend("WHITESPACE").constData()+10), t372ea0.size()-10 };callbackQComboBox_Highlighted2(this, textPacked); };
 	void Signal_Highlighted(int index) { callbackQComboBox_Highlighted(this, index); };
 	void inputMethodEvent(QInputMethodEvent * e) { callbackQComboBox_InputMethodEvent(this, e); };
 	QVariant inputMethodQuery(Qt::InputMethodQuery query) const { return *static_cast<QVariant*>(callbackQComboBox_InputMethodQuery(const_cast<MyQComboBox*>(this), query)); };
@@ -11721,7 +11721,7 @@ public:
 	void mouseReleaseEvent(QMouseEvent * e) { callbackQComboBox_MouseReleaseEvent(this, e); };
 	void paintEvent(QPaintEvent * e) { callbackQComboBox_PaintEvent(this, e); };
 	void resizeEvent(QResizeEvent * e) { callbackQComboBox_ResizeEvent(this, e); };
-	void setEditText(const QString & text) { callbackQComboBox_SetEditText(this, const_cast<char*>(text.toUtf8().prepend("WHITESPACE").constData()+10)); };
+	void setEditText(const QString & text) { QByteArray t372ea0 = text.toUtf8(); QtWidgets_PackedString textPacked = { const_cast<char*>(t372ea0.prepend("WHITESPACE").constData()+10), t372ea0.size()-10 };callbackQComboBox_SetEditText(this, textPacked); };
 	void showEvent(QShowEvent * e) { callbackQComboBox_ShowEvent(this, e); };
 	void showPopup() { callbackQComboBox_ShowPopup(this); };
 	QSize sizeHint() const { return *static_cast<QSize*>(callbackQComboBox_SizeHint(const_cast<MyQComboBox*>(this))); };
@@ -11735,10 +11735,10 @@ public:
 	void leaveEvent(QEvent * event) { callbackQComboBox_LeaveEvent(this, event); };
 	void moveEvent(QMoveEvent * event) { callbackQComboBox_MoveEvent(this, event); };
 	void setEnabled(bool vbo) { callbackQComboBox_SetEnabled(this, vbo); };
-	void setStyleSheet(const QString & styleSheet) { callbackQComboBox_SetStyleSheet(this, const_cast<char*>(styleSheet.toUtf8().prepend("WHITESPACE").constData()+10)); };
+	void setStyleSheet(const QString & styleSheet) { QByteArray t728ae7 = styleSheet.toUtf8(); QtWidgets_PackedString styleSheetPacked = { const_cast<char*>(t728ae7.prepend("WHITESPACE").constData()+10), t728ae7.size()-10 };callbackQComboBox_SetStyleSheet(this, styleSheetPacked); };
 	void setVisible(bool visible) { callbackQComboBox_SetVisible(this, visible); };
 	void setWindowModified(bool vbo) { callbackQComboBox_SetWindowModified(this, vbo); };
-	void setWindowTitle(const QString & vqs) { callbackQComboBox_SetWindowTitle(this, const_cast<char*>(vqs.toUtf8().prepend("WHITESPACE").constData()+10)); };
+	void setWindowTitle(const QString & vqs) { QByteArray tda39a3 = vqs.toUtf8(); QtWidgets_PackedString vqsPacked = { const_cast<char*>(tda39a3.prepend("WHITESPACE").constData()+10), tda39a3.size()-10 };callbackQComboBox_SetWindowTitle(this, vqsPacked); };
 	bool close() { return callbackQComboBox_Close(this) != 0; };
 	void closeEvent(QCloseEvent * event) { callbackQComboBox_CloseEvent(this, event); };
 	bool focusNextPrevChild(bool next) { return callbackQComboBox_FocusNextPrevChild(this, next) != 0; };
@@ -11748,7 +11748,7 @@ public:
 	void lower() { callbackQComboBox_Lower(this); };
 	void mouseDoubleClickEvent(QMouseEvent * event) { callbackQComboBox_MouseDoubleClickEvent(this, event); };
 	void mouseMoveEvent(QMouseEvent * event) { callbackQComboBox_MouseMoveEvent(this, event); };
-	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQComboBox_NativeEvent(this, const_cast<char*>(eventType.toHex().prepend("WHITESPACE").constData()+10), message, *result) != 0; };
+	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQComboBox_NativeEvent(this, const_cast<QByteArray*>(&eventType), message, *result) != 0; };
 	void raise() { callbackQComboBox_Raise(this); };
 	void repaint() { callbackQComboBox_Repaint(this); };
 	void setDisabled(bool disable) { callbackQComboBox_SetDisabled(this, disable); };
@@ -11787,9 +11787,9 @@ int QComboBox_CurrentIndex(void* ptr)
 	return static_cast<QComboBox*>(ptr)->currentIndex();
 }
 
-char* QComboBox_CurrentText(void* ptr)
+struct QtWidgets_PackedString QComboBox_CurrentText(void* ptr)
 {
-	return const_cast<char*>(static_cast<QComboBox*>(ptr)->currentText().toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray t0977ce = static_cast<QComboBox*>(ptr)->currentText().toUtf8(); QtWidgets_PackedString { const_cast<char*>(t0977ce.prepend("WHITESPACE").constData()+10), t0977ce.size()-10 }; });
 }
 
 char QComboBox_DuplicatesEnabled(void* ptr)
@@ -12202,9 +12202,9 @@ void* QComboBox_ItemIcon(void* ptr, int index)
 	return new QIcon(static_cast<QComboBox*>(ptr)->itemIcon(index));
 }
 
-char* QComboBox_ItemText(void* ptr, int index)
+struct QtWidgets_PackedString QComboBox_ItemText(void* ptr, int index)
 {
-	return const_cast<char*>(static_cast<QComboBox*>(ptr)->itemText(index).toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray tda5d0a = static_cast<QComboBox*>(ptr)->itemText(index).toUtf8(); QtWidgets_PackedString { const_cast<char*>(tda5d0a.prepend("WHITESPACE").constData()+10), tda5d0a.size()-10 }; });
 }
 
 void QComboBox_KeyPressEvent(void* ptr, void* e)
@@ -12619,14 +12619,14 @@ void QComboBox_MouseMoveEventDefault(void* ptr, void* event)
 	static_cast<QComboBox*>(ptr)->QComboBox::mouseMoveEvent(static_cast<QMouseEvent*>(event));
 }
 
-char QComboBox_NativeEvent(void* ptr, char* eventType, void* message, long result)
+char QComboBox_NativeEvent(void* ptr, void* eventType, void* message, long result)
 {
-	return static_cast<QComboBox*>(ptr)->nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
+	return static_cast<QComboBox*>(ptr)->nativeEvent(*static_cast<QByteArray*>(eventType), message, &result);
 }
 
-char QComboBox_NativeEventDefault(void* ptr, char* eventType, void* message, long result)
+char QComboBox_NativeEventDefault(void* ptr, void* eventType, void* message, long result)
 {
-	return static_cast<QComboBox*>(ptr)->QComboBox::nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
+	return static_cast<QComboBox*>(ptr)->QComboBox::nativeEvent(*static_cast<QByteArray*>(eventType), message, &result);
 }
 
 void QComboBox_Raise(void* ptr)
@@ -12876,10 +12876,10 @@ public:
 	void leaveEvent(QEvent * event) { callbackQCommandLinkButton_LeaveEvent(this, event); };
 	void moveEvent(QMoveEvent * event) { callbackQCommandLinkButton_MoveEvent(this, event); };
 	void setEnabled(bool vbo) { callbackQCommandLinkButton_SetEnabled(this, vbo); };
-	void setStyleSheet(const QString & styleSheet) { callbackQCommandLinkButton_SetStyleSheet(this, const_cast<char*>(styleSheet.toUtf8().prepend("WHITESPACE").constData()+10)); };
+	void setStyleSheet(const QString & styleSheet) { QByteArray t728ae7 = styleSheet.toUtf8(); QtWidgets_PackedString styleSheetPacked = { const_cast<char*>(t728ae7.prepend("WHITESPACE").constData()+10), t728ae7.size()-10 };callbackQCommandLinkButton_SetStyleSheet(this, styleSheetPacked); };
 	void setVisible(bool visible) { callbackQCommandLinkButton_SetVisible(this, visible); };
 	void setWindowModified(bool vbo) { callbackQCommandLinkButton_SetWindowModified(this, vbo); };
-	void setWindowTitle(const QString & vqs) { callbackQCommandLinkButton_SetWindowTitle(this, const_cast<char*>(vqs.toUtf8().prepend("WHITESPACE").constData()+10)); };
+	void setWindowTitle(const QString & vqs) { QByteArray tda39a3 = vqs.toUtf8(); QtWidgets_PackedString vqsPacked = { const_cast<char*>(tda39a3.prepend("WHITESPACE").constData()+10), tda39a3.size()-10 };callbackQCommandLinkButton_SetWindowTitle(this, vqsPacked); };
 	void showEvent(QShowEvent * event) { callbackQCommandLinkButton_ShowEvent(this, event); };
 	bool close() { return callbackQCommandLinkButton_Close(this) != 0; };
 	void closeEvent(QCloseEvent * event) { callbackQCommandLinkButton_CloseEvent(this, event); };
@@ -12891,7 +12891,7 @@ public:
 	QVariant inputMethodQuery(Qt::InputMethodQuery query) const { return *static_cast<QVariant*>(callbackQCommandLinkButton_InputMethodQuery(const_cast<MyQCommandLinkButton*>(this), query)); };
 	void lower() { callbackQCommandLinkButton_Lower(this); };
 	void mouseDoubleClickEvent(QMouseEvent * event) { callbackQCommandLinkButton_MouseDoubleClickEvent(this, event); };
-	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQCommandLinkButton_NativeEvent(this, const_cast<char*>(eventType.toHex().prepend("WHITESPACE").constData()+10), message, *result) != 0; };
+	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQCommandLinkButton_NativeEvent(this, const_cast<QByteArray*>(&eventType), message, *result) != 0; };
 	void raise() { callbackQCommandLinkButton_Raise(this); };
 	void repaint() { callbackQCommandLinkButton_Repaint(this); };
 	void resizeEvent(QResizeEvent * event) { callbackQCommandLinkButton_ResizeEvent(this, event); };
@@ -12916,9 +12916,9 @@ public:
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQCommandLinkButton_MetaObject(const_cast<MyQCommandLinkButton*>(this))); };
 };
 
-char* QCommandLinkButton_Description(void* ptr)
+struct QtWidgets_PackedString QCommandLinkButton_Description(void* ptr)
 {
-	return const_cast<char*>(static_cast<QCommandLinkButton*>(ptr)->description().toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray t0a86ba = static_cast<QCommandLinkButton*>(ptr)->description().toUtf8(); QtWidgets_PackedString { const_cast<char*>(t0a86ba.prepend("WHITESPACE").constData()+10), t0a86ba.size()-10 }; });
 }
 
 void QCommandLinkButton_SetDescription(void* ptr, char* description)
@@ -13413,14 +13413,14 @@ void QCommandLinkButton_MouseDoubleClickEventDefault(void* ptr, void* event)
 	static_cast<QCommandLinkButton*>(ptr)->QCommandLinkButton::mouseDoubleClickEvent(static_cast<QMouseEvent*>(event));
 }
 
-char QCommandLinkButton_NativeEvent(void* ptr, char* eventType, void* message, long result)
+char QCommandLinkButton_NativeEvent(void* ptr, void* eventType, void* message, long result)
 {
-	return static_cast<QCommandLinkButton*>(ptr)->nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
+	return static_cast<QCommandLinkButton*>(ptr)->nativeEvent(*static_cast<QByteArray*>(eventType), message, &result);
 }
 
-char QCommandLinkButton_NativeEventDefault(void* ptr, char* eventType, void* message, long result)
+char QCommandLinkButton_NativeEventDefault(void* ptr, void* eventType, void* message, long result)
 {
-	return static_cast<QCommandLinkButton*>(ptr)->QCommandLinkButton::nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
+	return static_cast<QCommandLinkButton*>(ptr)->QCommandLinkButton::nativeEvent(*static_cast<QByteArray*>(eventType), message, &result);
 }
 
 void QCommandLinkButton_Raise(void* ptr)
@@ -13665,9 +13665,9 @@ public:
 	void unpolish(QApplication * application) { callbackQCommonStyle_Unpolish2(this, application); };
 	void unpolish(QWidget * widget) { callbackQCommonStyle_Unpolish(this, widget); };
 	void drawItemPixmap(QPainter * painter, const QRect & rectangle, int alignment, const QPixmap & pixmap) const { callbackQCommonStyle_DrawItemPixmap(const_cast<MyQCommonStyle*>(this), painter, const_cast<QRect*>(&rectangle), alignment, const_cast<QPixmap*>(&pixmap)); };
-	void drawItemText(QPainter * painter, const QRect & rectangle, int alignment, const QPalette & palette, bool enabled, const QString & text, QPalette::ColorRole textRole) const { callbackQCommonStyle_DrawItemText(const_cast<MyQCommonStyle*>(this), painter, const_cast<QRect*>(&rectangle), alignment, const_cast<QPalette*>(&palette), enabled, const_cast<char*>(text.toUtf8().prepend("WHITESPACE").constData()+10), textRole); };
+	void drawItemText(QPainter * painter, const QRect & rectangle, int alignment, const QPalette & palette, bool enabled, const QString & text, QPalette::ColorRole textRole) const { QByteArray t372ea0 = text.toUtf8(); QtWidgets_PackedString textPacked = { const_cast<char*>(t372ea0.prepend("WHITESPACE").constData()+10), t372ea0.size()-10 };callbackQCommonStyle_DrawItemText(const_cast<MyQCommonStyle*>(this), painter, const_cast<QRect*>(&rectangle), alignment, const_cast<QPalette*>(&palette), enabled, textPacked, textRole); };
 	QRect itemPixmapRect(const QRect & rectangle, int alignment, const QPixmap & pixmap) const { return *static_cast<QRect*>(callbackQCommonStyle_ItemPixmapRect(const_cast<MyQCommonStyle*>(this), const_cast<QRect*>(&rectangle), alignment, const_cast<QPixmap*>(&pixmap))); };
-	QRect itemTextRect(const QFontMetrics & metrics, const QRect & rectangle, int alignment, bool enabled, const QString & text) const { return *static_cast<QRect*>(callbackQCommonStyle_ItemTextRect(const_cast<MyQCommonStyle*>(this), const_cast<QFontMetrics*>(&metrics), const_cast<QRect*>(&rectangle), alignment, enabled, const_cast<char*>(text.toUtf8().prepend("WHITESPACE").constData()+10))); };
+	QRect itemTextRect(const QFontMetrics & metrics, const QRect & rectangle, int alignment, bool enabled, const QString & text) const { QByteArray t372ea0 = text.toUtf8(); QtWidgets_PackedString textPacked = { const_cast<char*>(t372ea0.prepend("WHITESPACE").constData()+10), t372ea0.size()-10 };return *static_cast<QRect*>(callbackQCommonStyle_ItemTextRect(const_cast<MyQCommonStyle*>(this), const_cast<QFontMetrics*>(&metrics), const_cast<QRect*>(&rectangle), alignment, enabled, textPacked)); };
 	QIcon standardIcon(QStyle::StandardPixmap standardIcon, const QStyleOption * option, const QWidget * widget) const { return *static_cast<QIcon*>(callbackQCommonStyle_StandardIcon(const_cast<MyQCommonStyle*>(this), standardIcon, const_cast<QStyleOption*>(option), const_cast<QWidget*>(widget))); };
 	QPalette standardPalette() const { return *static_cast<QPalette*>(callbackQCommonStyle_StandardPalette(const_cast<MyQCommonStyle*>(this))); };
 	void timerEvent(QTimerEvent * event) { callbackQCommonStyle_TimerEvent(this, event); };
@@ -14017,15 +14017,15 @@ public:
 	MyQCompleter(QAbstractItemModel *model, QObject *parent) : QCompleter(model, parent) {};
 	MyQCompleter(QObject *parent) : QCompleter(parent) {};
 	MyQCompleter(const QStringList &list, QObject *parent) : QCompleter(list, parent) {};
-	void setCompletionPrefix(const QString & prefix) { callbackQCompleter_SetCompletionPrefix(this, const_cast<char*>(prefix.toUtf8().prepend("WHITESPACE").constData()+10)); };
+	void setCompletionPrefix(const QString & prefix) { QByteArray tb4ebfe = prefix.toUtf8(); QtWidgets_PackedString prefixPacked = { const_cast<char*>(tb4ebfe.prepend("WHITESPACE").constData()+10), tb4ebfe.size()-10 };callbackQCompleter_SetCompletionPrefix(this, prefixPacked); };
 	void setWrapAround(bool wrap) { callbackQCompleter_SetWrapAround(this, wrap); };
 	void Signal_Activated2(const QModelIndex & index) { callbackQCompleter_Activated2(this, const_cast<QModelIndex*>(&index)); };
-	void Signal_Activated(const QString & text) { callbackQCompleter_Activated(this, const_cast<char*>(text.toUtf8().prepend("WHITESPACE").constData()+10)); };
+	void Signal_Activated(const QString & text) { QByteArray t372ea0 = text.toUtf8(); QtWidgets_PackedString textPacked = { const_cast<char*>(t372ea0.prepend("WHITESPACE").constData()+10), t372ea0.size()-10 };callbackQCompleter_Activated(this, textPacked); };
 	void complete(const QRect & rect) { callbackQCompleter_Complete(this, const_cast<QRect*>(&rect)); };
 	void Signal_Highlighted2(const QModelIndex & index) { callbackQCompleter_Highlighted2(this, const_cast<QModelIndex*>(&index)); };
-	void Signal_Highlighted(const QString & text) { callbackQCompleter_Highlighted(this, const_cast<char*>(text.toUtf8().prepend("WHITESPACE").constData()+10)); };
+	void Signal_Highlighted(const QString & text) { QByteArray t372ea0 = text.toUtf8(); QtWidgets_PackedString textPacked = { const_cast<char*>(t372ea0.prepend("WHITESPACE").constData()+10), t372ea0.size()-10 };callbackQCompleter_Highlighted(this, textPacked); };
 	QString pathFromIndex(const QModelIndex & index) const { return QString(callbackQCompleter_PathFromIndex(const_cast<MyQCompleter*>(this), const_cast<QModelIndex*>(&index))); };
-	QStringList splitPath(const QString & path) const { return QString(callbackQCompleter_SplitPath(const_cast<MyQCompleter*>(this), const_cast<char*>(path.toUtf8().prepend("WHITESPACE").constData()+10))).split("|", QString::SkipEmptyParts); };
+	QStringList splitPath(const QString & path) const { QByteArray t3150ec = path.toUtf8(); QtWidgets_PackedString pathPacked = { const_cast<char*>(t3150ec.prepend("WHITESPACE").constData()+10), t3150ec.size()-10 };return QString(callbackQCompleter_SplitPath(const_cast<MyQCompleter*>(this), pathPacked)).split("|", QString::SkipEmptyParts); };
 	void timerEvent(QTimerEvent * event) { callbackQCompleter_TimerEvent(this, event); };
 	void childEvent(QChildEvent * event) { callbackQCompleter_ChildEvent(this, event); };
 	void connectNotify(const QMetaMethod & sign) { callbackQCompleter_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
@@ -14050,9 +14050,9 @@ long long QCompleter_CompletionMode(void* ptr)
 	return static_cast<QCompleter*>(ptr)->completionMode();
 }
 
-char* QCompleter_CompletionPrefix(void* ptr)
+struct QtWidgets_PackedString QCompleter_CompletionPrefix(void* ptr)
 {
-	return const_cast<char*>(static_cast<QCompleter*>(ptr)->completionPrefix().toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray t26112f = static_cast<QCompleter*>(ptr)->completionPrefix().toUtf8(); QtWidgets_PackedString { const_cast<char*>(t26112f.prepend("WHITESPACE").constData()+10), t26112f.size()-10 }; });
 }
 
 int QCompleter_CompletionRole(void* ptr)
@@ -14185,9 +14185,9 @@ void* QCompleter_CompletionModel(void* ptr)
 	return static_cast<QCompleter*>(ptr)->completionModel();
 }
 
-char* QCompleter_CurrentCompletion(void* ptr)
+struct QtWidgets_PackedString QCompleter_CurrentCompletion(void* ptr)
 {
-	return const_cast<char*>(static_cast<QCompleter*>(ptr)->currentCompletion().toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray t7ce42a = static_cast<QCompleter*>(ptr)->currentCompletion().toUtf8(); QtWidgets_PackedString { const_cast<char*>(t7ce42a.prepend("WHITESPACE").constData()+10), t7ce42a.size()-10 }; });
 }
 
 void* QCompleter_CurrentIndex(void* ptr)
@@ -14245,14 +14245,14 @@ void* QCompleter_Model(void* ptr)
 	return static_cast<QCompleter*>(ptr)->model();
 }
 
-char* QCompleter_PathFromIndex(void* ptr, void* index)
+struct QtWidgets_PackedString QCompleter_PathFromIndex(void* ptr, void* index)
 {
-	return const_cast<char*>(static_cast<QCompleter*>(ptr)->pathFromIndex(*static_cast<QModelIndex*>(index)).toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray t37a887 = static_cast<QCompleter*>(ptr)->pathFromIndex(*static_cast<QModelIndex*>(index)).toUtf8(); QtWidgets_PackedString { const_cast<char*>(t37a887.prepend("WHITESPACE").constData()+10), t37a887.size()-10 }; });
 }
 
-char* QCompleter_PathFromIndexDefault(void* ptr, void* index)
+struct QtWidgets_PackedString QCompleter_PathFromIndexDefault(void* ptr, void* index)
 {
-	return const_cast<char*>(static_cast<QCompleter*>(ptr)->QCompleter::pathFromIndex(*static_cast<QModelIndex*>(index)).toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray td0fb01 = static_cast<QCompleter*>(ptr)->QCompleter::pathFromIndex(*static_cast<QModelIndex*>(index)).toUtf8(); QtWidgets_PackedString { const_cast<char*>(td0fb01.prepend("WHITESPACE").constData()+10), td0fb01.size()-10 }; });
 }
 
 void* QCompleter_Popup(void* ptr)
@@ -14280,14 +14280,14 @@ void QCompleter_SetWidget(void* ptr, void* widget)
 	static_cast<QCompleter*>(ptr)->setWidget(static_cast<QWidget*>(widget));
 }
 
-char* QCompleter_SplitPath(void* ptr, char* path)
+struct QtWidgets_PackedString QCompleter_SplitPath(void* ptr, char* path)
 {
-	return const_cast<char*>(static_cast<QCompleter*>(ptr)->splitPath(QString(path)).join("|").toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray t3137ee = static_cast<QCompleter*>(ptr)->splitPath(QString(path)).join("|").toUtf8(); QtWidgets_PackedString { const_cast<char*>(t3137ee.prepend("WHITESPACE").constData()+10), t3137ee.size()-10 }; });
 }
 
-char* QCompleter_SplitPathDefault(void* ptr, char* path)
+struct QtWidgets_PackedString QCompleter_SplitPathDefault(void* ptr, char* path)
 {
-	return const_cast<char*>(static_cast<QCompleter*>(ptr)->QCompleter::splitPath(QString(path)).join("|").toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray t8a6dff = static_cast<QCompleter*>(ptr)->QCompleter::splitPath(QString(path)).join("|").toUtf8(); QtWidgets_PackedString { const_cast<char*>(t8a6dff.prepend("WHITESPACE").constData()+10), t8a6dff.size()-10 }; });
 }
 
 void* QCompleter_Widget(void* ptr)
@@ -14439,9 +14439,9 @@ void QDataWidgetMapper_AddMapping(void* ptr, void* widget, int section)
 	static_cast<QDataWidgetMapper*>(ptr)->addMapping(static_cast<QWidget*>(widget), section);
 }
 
-void QDataWidgetMapper_AddMapping2(void* ptr, void* widget, int section, char* propertyName)
+void QDataWidgetMapper_AddMapping2(void* ptr, void* widget, int section, void* propertyName)
 {
-	static_cast<QDataWidgetMapper*>(ptr)->addMapping(static_cast<QWidget*>(widget), section, QByteArray::fromHex(QString(propertyName).toUtf8()));
+	static_cast<QDataWidgetMapper*>(ptr)->addMapping(static_cast<QWidget*>(widget), section, *static_cast<QByteArray*>(propertyName));
 }
 
 void QDataWidgetMapper_ClearMapping(void* ptr)
@@ -14469,9 +14469,9 @@ void* QDataWidgetMapper_ItemDelegate(void* ptr)
 	return static_cast<QDataWidgetMapper*>(ptr)->itemDelegate();
 }
 
-char* QDataWidgetMapper_MappedPropertyName(void* ptr, void* widget)
+void* QDataWidgetMapper_MappedPropertyName(void* ptr, void* widget)
 {
-	return const_cast<char*>(static_cast<QDataWidgetMapper*>(ptr)->mappedPropertyName(static_cast<QWidget*>(widget)).toHex().prepend("WHITESPACE").constData()+10);
+	return new QByteArray(static_cast<QDataWidgetMapper*>(ptr)->mappedPropertyName(static_cast<QWidget*>(widget)));
 }
 
 int QDataWidgetMapper_MappedSection(void* ptr, void* widget)
@@ -14801,14 +14801,14 @@ long long QDateEdit_StepEnabledDefault(void* ptr)
 	return static_cast<QDateEdit*>(ptr)->QDateEdit::stepEnabled();
 }
 
-char* QDateEdit_TextFromDateTime(void* ptr, void* dateTime)
+struct QtWidgets_PackedString QDateEdit_TextFromDateTime(void* ptr, void* dateTime)
 {
-	return const_cast<char*>(static_cast<QDateEdit*>(ptr)->textFromDateTime(*static_cast<QDateTime*>(dateTime)).toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray t4b6f46 = static_cast<QDateEdit*>(ptr)->textFromDateTime(*static_cast<QDateTime*>(dateTime)).toUtf8(); QtWidgets_PackedString { const_cast<char*>(t4b6f46.prepend("WHITESPACE").constData()+10), t4b6f46.size()-10 }; });
 }
 
-char* QDateEdit_TextFromDateTimeDefault(void* ptr, void* dateTime)
+struct QtWidgets_PackedString QDateEdit_TextFromDateTimeDefault(void* ptr, void* dateTime)
 {
-	return const_cast<char*>(static_cast<QDateEdit*>(ptr)->QDateEdit::textFromDateTime(*static_cast<QDateTime*>(dateTime)).toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray tdde3c1 = static_cast<QDateEdit*>(ptr)->QDateEdit::textFromDateTime(*static_cast<QDateTime*>(dateTime)).toUtf8(); QtWidgets_PackedString { const_cast<char*>(tdde3c1.prepend("WHITESPACE").constData()+10), tdde3c1.size()-10 }; });
 }
 
 long long QDateEdit_Validate(void* ptr, char* text, int pos)
@@ -15183,14 +15183,14 @@ void QDateEdit_MouseDoubleClickEventDefault(void* ptr, void* event)
 	static_cast<QDateEdit*>(ptr)->QDateEdit::mouseDoubleClickEvent(static_cast<QMouseEvent*>(event));
 }
 
-char QDateEdit_NativeEvent(void* ptr, char* eventType, void* message, long result)
+char QDateEdit_NativeEvent(void* ptr, void* eventType, void* message, long result)
 {
-	return static_cast<QDateEdit*>(ptr)->nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
+	return static_cast<QDateEdit*>(ptr)->nativeEvent(*static_cast<QByteArray*>(eventType), message, &result);
 }
 
-char QDateEdit_NativeEventDefault(void* ptr, char* eventType, void* message, long result)
+char QDateEdit_NativeEventDefault(void* ptr, void* eventType, void* message, long result)
 {
-	return static_cast<QDateEdit*>(ptr)->QDateEdit::nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
+	return static_cast<QDateEdit*>(ptr)->QDateEdit::nativeEvent(*static_cast<QByteArray*>(eventType), message, &result);
 }
 
 void QDateEdit_Raise(void* ptr)
@@ -15406,8 +15406,8 @@ public:
 	void clear() { callbackQDateTimeEdit_Clear(this); };
 	void Signal_DateChanged(const QDate & date) { callbackQDateTimeEdit_DateChanged(this, const_cast<QDate*>(&date)); };
 	void Signal_DateTimeChanged(const QDateTime & datetime) { callbackQDateTimeEdit_DateTimeChanged(this, const_cast<QDateTime*>(&datetime)); };
-	QDateTime dateTimeFromText(const QString & text) const { return *static_cast<QDateTime*>(callbackQDateTimeEdit_DateTimeFromText(const_cast<MyQDateTimeEdit*>(this), const_cast<char*>(text.toUtf8().prepend("WHITESPACE").constData()+10))); };
-	void fixup(QString & input) const { callbackQDateTimeEdit_Fixup(const_cast<MyQDateTimeEdit*>(this), const_cast<char*>(input.toUtf8().prepend("WHITESPACE").constData()+10)); };
+	QDateTime dateTimeFromText(const QString & text) const { QByteArray t372ea0 = text.toUtf8(); QtWidgets_PackedString textPacked = { const_cast<char*>(t372ea0.prepend("WHITESPACE").constData()+10), t372ea0.size()-10 };return *static_cast<QDateTime*>(callbackQDateTimeEdit_DateTimeFromText(const_cast<MyQDateTimeEdit*>(this), textPacked)); };
+	void fixup(QString & input) const { QByteArray t140f86 = input.toUtf8(); QtWidgets_PackedString inputPacked = { const_cast<char*>(t140f86.prepend("WHITESPACE").constData()+10), t140f86.size()-10 };callbackQDateTimeEdit_Fixup(const_cast<MyQDateTimeEdit*>(this), inputPacked); };
 	void focusInEvent(QFocusEvent * event) { callbackQDateTimeEdit_FocusInEvent(this, event); };
 	bool focusNextPrevChild(bool next) { return callbackQDateTimeEdit_FocusNextPrevChild(this, next) != 0; };
 	void keyPressEvent(QKeyEvent * event) { callbackQDateTimeEdit_KeyPressEvent(this, event); };
@@ -15418,7 +15418,7 @@ public:
 	StepEnabled stepEnabled() const { return static_cast<QAbstractSpinBox::StepEnabledFlag>(callbackQDateTimeEdit_StepEnabled(const_cast<MyQDateTimeEdit*>(this))); };
 	QString textFromDateTime(const QDateTime & dateTime) const { return QString(callbackQDateTimeEdit_TextFromDateTime(const_cast<MyQDateTimeEdit*>(this), const_cast<QDateTime*>(&dateTime))); };
 	void Signal_TimeChanged(const QTime & time) { callbackQDateTimeEdit_TimeChanged(this, const_cast<QTime*>(&time)); };
-	QValidator::State validate(QString & text, int & pos) const { return static_cast<QValidator::State>(callbackQDateTimeEdit_Validate(const_cast<MyQDateTimeEdit*>(this), const_cast<char*>(text.toUtf8().prepend("WHITESPACE").constData()+10), pos)); };
+	QValidator::State validate(QString & text, int & pos) const { QByteArray t372ea0 = text.toUtf8(); QtWidgets_PackedString textPacked = { const_cast<char*>(t372ea0.prepend("WHITESPACE").constData()+10), t372ea0.size()-10 };return static_cast<QValidator::State>(callbackQDateTimeEdit_Validate(const_cast<MyQDateTimeEdit*>(this), textPacked, pos)); };
 	void wheelEvent(QWheelEvent * event) { callbackQDateTimeEdit_WheelEvent(this, event); };
 	void changeEvent(QEvent * event) { callbackQDateTimeEdit_ChangeEvent(this, event); };
 	void closeEvent(QCloseEvent * event) { callbackQDateTimeEdit_CloseEvent(this, event); };
@@ -15444,10 +15444,10 @@ public:
 	void leaveEvent(QEvent * event) { callbackQDateTimeEdit_LeaveEvent(this, event); };
 	void moveEvent(QMoveEvent * event) { callbackQDateTimeEdit_MoveEvent(this, event); };
 	void setEnabled(bool vbo) { callbackQDateTimeEdit_SetEnabled(this, vbo); };
-	void setStyleSheet(const QString & styleSheet) { callbackQDateTimeEdit_SetStyleSheet(this, const_cast<char*>(styleSheet.toUtf8().prepend("WHITESPACE").constData()+10)); };
+	void setStyleSheet(const QString & styleSheet) { QByteArray t728ae7 = styleSheet.toUtf8(); QtWidgets_PackedString styleSheetPacked = { const_cast<char*>(t728ae7.prepend("WHITESPACE").constData()+10), t728ae7.size()-10 };callbackQDateTimeEdit_SetStyleSheet(this, styleSheetPacked); };
 	void setVisible(bool visible) { callbackQDateTimeEdit_SetVisible(this, visible); };
 	void setWindowModified(bool vbo) { callbackQDateTimeEdit_SetWindowModified(this, vbo); };
-	void setWindowTitle(const QString & vqs) { callbackQDateTimeEdit_SetWindowTitle(this, const_cast<char*>(vqs.toUtf8().prepend("WHITESPACE").constData()+10)); };
+	void setWindowTitle(const QString & vqs) { QByteArray tda39a3 = vqs.toUtf8(); QtWidgets_PackedString vqsPacked = { const_cast<char*>(tda39a3.prepend("WHITESPACE").constData()+10), tda39a3.size()-10 };callbackQDateTimeEdit_SetWindowTitle(this, vqsPacked); };
 	bool close() { return callbackQDateTimeEdit_Close(this) != 0; };
 	bool hasHeightForWidth() const { return callbackQDateTimeEdit_HasHeightForWidth(const_cast<MyQDateTimeEdit*>(this)) != 0; };
 	int heightForWidth(int w) const { return callbackQDateTimeEdit_HeightForWidth(const_cast<MyQDateTimeEdit*>(this), w); };
@@ -15455,7 +15455,7 @@ public:
 	void inputMethodEvent(QInputMethodEvent * event) { callbackQDateTimeEdit_InputMethodEvent(this, event); };
 	void lower() { callbackQDateTimeEdit_Lower(this); };
 	void mouseDoubleClickEvent(QMouseEvent * event) { callbackQDateTimeEdit_MouseDoubleClickEvent(this, event); };
-	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQDateTimeEdit_NativeEvent(this, const_cast<char*>(eventType.toHex().prepend("WHITESPACE").constData()+10), message, *result) != 0; };
+	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQDateTimeEdit_NativeEvent(this, const_cast<QByteArray*>(&eventType), message, *result) != 0; };
 	void raise() { callbackQDateTimeEdit_Raise(this); };
 	void repaint() { callbackQDateTimeEdit_Repaint(this); };
 	void setDisabled(bool disable) { callbackQDateTimeEdit_SetDisabled(this, disable); };
@@ -15538,9 +15538,9 @@ void* QDateTimeEdit_DateTime(void* ptr)
 	return new QDateTime(static_cast<QDateTimeEdit*>(ptr)->dateTime());
 }
 
-char* QDateTimeEdit_DisplayFormat(void* ptr)
+struct QtWidgets_PackedString QDateTimeEdit_DisplayFormat(void* ptr)
 {
-	return const_cast<char*>(static_cast<QDateTimeEdit*>(ptr)->displayFormat().toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray t18a499 = static_cast<QDateTimeEdit*>(ptr)->displayFormat().toUtf8(); QtWidgets_PackedString { const_cast<char*>(t18a499.prepend("WHITESPACE").constData()+10), t18a499.size()-10 }; });
 }
 
 long long QDateTimeEdit_DisplayedSections(void* ptr)
@@ -15563,9 +15563,9 @@ int QDateTimeEdit_SectionCount(void* ptr)
 	return static_cast<QDateTimeEdit*>(ptr)->sectionCount();
 }
 
-char* QDateTimeEdit_SectionText(void* ptr, long long section)
+struct QtWidgets_PackedString QDateTimeEdit_SectionText(void* ptr, long long section)
 {
-	return const_cast<char*>(static_cast<QDateTimeEdit*>(ptr)->sectionText(static_cast<QDateTimeEdit::Section>(section)).toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray tdf4510 = static_cast<QDateTimeEdit*>(ptr)->sectionText(static_cast<QDateTimeEdit::Section>(section)).toUtf8(); QtWidgets_PackedString { const_cast<char*>(tdf4510.prepend("WHITESPACE").constData()+10), tdf4510.size()-10 }; });
 }
 
 void QDateTimeEdit_SetCalendarPopup(void* ptr, char enable)
@@ -15838,14 +15838,14 @@ long long QDateTimeEdit_StepEnabledDefault(void* ptr)
 	return static_cast<QDateTimeEdit*>(ptr)->QDateTimeEdit::stepEnabled();
 }
 
-char* QDateTimeEdit_TextFromDateTime(void* ptr, void* dateTime)
+struct QtWidgets_PackedString QDateTimeEdit_TextFromDateTime(void* ptr, void* dateTime)
 {
-	return const_cast<char*>(static_cast<QDateTimeEdit*>(ptr)->textFromDateTime(*static_cast<QDateTime*>(dateTime)).toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray t00949f = static_cast<QDateTimeEdit*>(ptr)->textFromDateTime(*static_cast<QDateTime*>(dateTime)).toUtf8(); QtWidgets_PackedString { const_cast<char*>(t00949f.prepend("WHITESPACE").constData()+10), t00949f.size()-10 }; });
 }
 
-char* QDateTimeEdit_TextFromDateTimeDefault(void* ptr, void* dateTime)
+struct QtWidgets_PackedString QDateTimeEdit_TextFromDateTimeDefault(void* ptr, void* dateTime)
 {
-	return const_cast<char*>(static_cast<QDateTimeEdit*>(ptr)->QDateTimeEdit::textFromDateTime(*static_cast<QDateTime*>(dateTime)).toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray t15f412 = static_cast<QDateTimeEdit*>(ptr)->QDateTimeEdit::textFromDateTime(*static_cast<QDateTime*>(dateTime)).toUtf8(); QtWidgets_PackedString { const_cast<char*>(t15f412.prepend("WHITESPACE").constData()+10), t15f412.size()-10 }; });
 }
 
 void QDateTimeEdit_ConnectTimeChanged(void* ptr)
@@ -16240,14 +16240,14 @@ void QDateTimeEdit_MouseDoubleClickEventDefault(void* ptr, void* event)
 	static_cast<QDateTimeEdit*>(ptr)->QDateTimeEdit::mouseDoubleClickEvent(static_cast<QMouseEvent*>(event));
 }
 
-char QDateTimeEdit_NativeEvent(void* ptr, char* eventType, void* message, long result)
+char QDateTimeEdit_NativeEvent(void* ptr, void* eventType, void* message, long result)
 {
-	return static_cast<QDateTimeEdit*>(ptr)->nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
+	return static_cast<QDateTimeEdit*>(ptr)->nativeEvent(*static_cast<QByteArray*>(eventType), message, &result);
 }
 
-char QDateTimeEdit_NativeEventDefault(void* ptr, char* eventType, void* message, long result)
+char QDateTimeEdit_NativeEventDefault(void* ptr, void* eventType, void* message, long result)
 {
-	return static_cast<QDateTimeEdit*>(ptr)->QDateTimeEdit::nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
+	return static_cast<QDateTimeEdit*>(ptr)->QDateTimeEdit::nativeEvent(*static_cast<QByteArray*>(eventType), message, &result);
 }
 
 void QDateTimeEdit_Raise(void* ptr)
@@ -16472,10 +16472,10 @@ public:
 	void moveEvent(QMoveEvent * event) { callbackQDesktopWidget_MoveEvent(this, event); };
 	void paintEvent(QPaintEvent * event) { callbackQDesktopWidget_PaintEvent(this, event); };
 	void setEnabled(bool vbo) { callbackQDesktopWidget_SetEnabled(this, vbo); };
-	void setStyleSheet(const QString & styleSheet) { callbackQDesktopWidget_SetStyleSheet(this, const_cast<char*>(styleSheet.toUtf8().prepend("WHITESPACE").constData()+10)); };
+	void setStyleSheet(const QString & styleSheet) { QByteArray t728ae7 = styleSheet.toUtf8(); QtWidgets_PackedString styleSheetPacked = { const_cast<char*>(t728ae7.prepend("WHITESPACE").constData()+10), t728ae7.size()-10 };callbackQDesktopWidget_SetStyleSheet(this, styleSheetPacked); };
 	void setVisible(bool visible) { callbackQDesktopWidget_SetVisible(this, visible); };
 	void setWindowModified(bool vbo) { callbackQDesktopWidget_SetWindowModified(this, vbo); };
-	void setWindowTitle(const QString & vqs) { callbackQDesktopWidget_SetWindowTitle(this, const_cast<char*>(vqs.toUtf8().prepend("WHITESPACE").constData()+10)); };
+	void setWindowTitle(const QString & vqs) { QByteArray tda39a3 = vqs.toUtf8(); QtWidgets_PackedString vqsPacked = { const_cast<char*>(tda39a3.prepend("WHITESPACE").constData()+10), tda39a3.size()-10 };callbackQDesktopWidget_SetWindowTitle(this, vqsPacked); };
 	void showEvent(QShowEvent * event) { callbackQDesktopWidget_ShowEvent(this, event); };
 	QSize sizeHint() const { return *static_cast<QSize*>(callbackQDesktopWidget_SizeHint(const_cast<MyQDesktopWidget*>(this))); };
 	void changeEvent(QEvent * event) { callbackQDesktopWidget_ChangeEvent(this, event); };
@@ -16495,7 +16495,7 @@ public:
 	void mouseMoveEvent(QMouseEvent * event) { callbackQDesktopWidget_MouseMoveEvent(this, event); };
 	void mousePressEvent(QMouseEvent * event) { callbackQDesktopWidget_MousePressEvent(this, event); };
 	void mouseReleaseEvent(QMouseEvent * event) { callbackQDesktopWidget_MouseReleaseEvent(this, event); };
-	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQDesktopWidget_NativeEvent(this, const_cast<char*>(eventType.toHex().prepend("WHITESPACE").constData()+10), message, *result) != 0; };
+	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQDesktopWidget_NativeEvent(this, const_cast<QByteArray*>(&eventType), message, *result) != 0; };
 	void raise() { callbackQDesktopWidget_Raise(this); };
 	void repaint() { callbackQDesktopWidget_Repaint(this); };
 	void setDisabled(bool disable) { callbackQDesktopWidget_SetDisabled(this, disable); };
@@ -17022,14 +17022,14 @@ void QDesktopWidget_MouseReleaseEventDefault(void* ptr, void* event)
 	static_cast<QDesktopWidget*>(ptr)->QDesktopWidget::mouseReleaseEvent(static_cast<QMouseEvent*>(event));
 }
 
-char QDesktopWidget_NativeEvent(void* ptr, char* eventType, void* message, long result)
+char QDesktopWidget_NativeEvent(void* ptr, void* eventType, void* message, long result)
 {
-	return static_cast<QDesktopWidget*>(ptr)->nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
+	return static_cast<QDesktopWidget*>(ptr)->nativeEvent(*static_cast<QByteArray*>(eventType), message, &result);
 }
 
-char QDesktopWidget_NativeEventDefault(void* ptr, char* eventType, void* message, long result)
+char QDesktopWidget_NativeEventDefault(void* ptr, void* eventType, void* message, long result)
 {
-	return static_cast<QDesktopWidget*>(ptr)->QDesktopWidget::nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
+	return static_cast<QDesktopWidget*>(ptr)->QDesktopWidget::nativeEvent(*static_cast<QByteArray*>(eventType), message, &result);
 }
 
 void QDesktopWidget_Raise(void* ptr)
@@ -17284,10 +17284,10 @@ public:
 	void leaveEvent(QEvent * event) { callbackQDial_LeaveEvent(this, event); };
 	void moveEvent(QMoveEvent * event) { callbackQDial_MoveEvent(this, event); };
 	void setEnabled(bool vbo) { callbackQDial_SetEnabled(this, vbo); };
-	void setStyleSheet(const QString & styleSheet) { callbackQDial_SetStyleSheet(this, const_cast<char*>(styleSheet.toUtf8().prepend("WHITESPACE").constData()+10)); };
+	void setStyleSheet(const QString & styleSheet) { QByteArray t728ae7 = styleSheet.toUtf8(); QtWidgets_PackedString styleSheetPacked = { const_cast<char*>(t728ae7.prepend("WHITESPACE").constData()+10), t728ae7.size()-10 };callbackQDial_SetStyleSheet(this, styleSheetPacked); };
 	void setVisible(bool visible) { callbackQDial_SetVisible(this, visible); };
 	void setWindowModified(bool vbo) { callbackQDial_SetWindowModified(this, vbo); };
-	void setWindowTitle(const QString & vqs) { callbackQDial_SetWindowTitle(this, const_cast<char*>(vqs.toUtf8().prepend("WHITESPACE").constData()+10)); };
+	void setWindowTitle(const QString & vqs) { QByteArray tda39a3 = vqs.toUtf8(); QtWidgets_PackedString vqsPacked = { const_cast<char*>(tda39a3.prepend("WHITESPACE").constData()+10), tda39a3.size()-10 };callbackQDial_SetWindowTitle(this, vqsPacked); };
 	void showEvent(QShowEvent * event) { callbackQDial_ShowEvent(this, event); };
 	bool close() { return callbackQDial_Close(this) != 0; };
 	void closeEvent(QCloseEvent * event) { callbackQDial_CloseEvent(this, event); };
@@ -17301,7 +17301,7 @@ public:
 	void keyReleaseEvent(QKeyEvent * event) { callbackQDial_KeyReleaseEvent(this, event); };
 	void lower() { callbackQDial_Lower(this); };
 	void mouseDoubleClickEvent(QMouseEvent * event) { callbackQDial_MouseDoubleClickEvent(this, event); };
-	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQDial_NativeEvent(this, const_cast<char*>(eventType.toHex().prepend("WHITESPACE").constData()+10), message, *result) != 0; };
+	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQDial_NativeEvent(this, const_cast<QByteArray*>(&eventType), message, *result) != 0; };
 	void raise() { callbackQDial_Raise(this); };
 	void repaint() { callbackQDial_Repaint(this); };
 	void setDisabled(bool disable) { callbackQDial_SetDisabled(this, disable); };
@@ -17811,14 +17811,14 @@ void QDial_MouseDoubleClickEventDefault(void* ptr, void* event)
 	static_cast<QDial*>(ptr)->QDial::mouseDoubleClickEvent(static_cast<QMouseEvent*>(event));
 }
 
-char QDial_NativeEvent(void* ptr, char* eventType, void* message, long result)
+char QDial_NativeEvent(void* ptr, void* eventType, void* message, long result)
 {
-	return static_cast<QDial*>(ptr)->nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
+	return static_cast<QDial*>(ptr)->nativeEvent(*static_cast<QByteArray*>(eventType), message, &result);
 }
 
-char QDial_NativeEventDefault(void* ptr, char* eventType, void* message, long result)
+char QDial_NativeEventDefault(void* ptr, void* eventType, void* message, long result)
 {
-	return static_cast<QDial*>(ptr)->QDial::nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
+	return static_cast<QDial*>(ptr)->QDial::nativeEvent(*static_cast<QByteArray*>(eventType), message, &result);
 }
 
 void QDial_Raise(void* ptr)
@@ -18054,9 +18054,9 @@ public:
 	void moveEvent(QMoveEvent * event) { callbackQDialog_MoveEvent(this, event); };
 	void paintEvent(QPaintEvent * event) { callbackQDialog_PaintEvent(this, event); };
 	void setEnabled(bool vbo) { callbackQDialog_SetEnabled(this, vbo); };
-	void setStyleSheet(const QString & styleSheet) { callbackQDialog_SetStyleSheet(this, const_cast<char*>(styleSheet.toUtf8().prepend("WHITESPACE").constData()+10)); };
+	void setStyleSheet(const QString & styleSheet) { QByteArray t728ae7 = styleSheet.toUtf8(); QtWidgets_PackedString styleSheetPacked = { const_cast<char*>(t728ae7.prepend("WHITESPACE").constData()+10), t728ae7.size()-10 };callbackQDialog_SetStyleSheet(this, styleSheetPacked); };
 	void setWindowModified(bool vbo) { callbackQDialog_SetWindowModified(this, vbo); };
-	void setWindowTitle(const QString & vqs) { callbackQDialog_SetWindowTitle(this, const_cast<char*>(vqs.toUtf8().prepend("WHITESPACE").constData()+10)); };
+	void setWindowTitle(const QString & vqs) { QByteArray tda39a3 = vqs.toUtf8(); QtWidgets_PackedString vqsPacked = { const_cast<char*>(tda39a3.prepend("WHITESPACE").constData()+10), tda39a3.size()-10 };callbackQDialog_SetWindowTitle(this, vqsPacked); };
 	void changeEvent(QEvent * event) { callbackQDialog_ChangeEvent(this, event); };
 	bool close() { return callbackQDialog_Close(this) != 0; };
 	bool focusNextPrevChild(bool next) { return callbackQDialog_FocusNextPrevChild(this, next) != 0; };
@@ -18071,7 +18071,7 @@ public:
 	void mouseMoveEvent(QMouseEvent * event) { callbackQDialog_MouseMoveEvent(this, event); };
 	void mousePressEvent(QMouseEvent * event) { callbackQDialog_MousePressEvent(this, event); };
 	void mouseReleaseEvent(QMouseEvent * event) { callbackQDialog_MouseReleaseEvent(this, event); };
-	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQDialog_NativeEvent(this, const_cast<char*>(eventType.toHex().prepend("WHITESPACE").constData()+10), message, *result) != 0; };
+	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQDialog_NativeEvent(this, const_cast<QByteArray*>(&eventType), message, *result) != 0; };
 	void raise() { callbackQDialog_Raise(this); };
 	void repaint() { callbackQDialog_Repaint(this); };
 	void setDisabled(bool disable) { callbackQDialog_SetDisabled(this, disable); };
@@ -18619,14 +18619,14 @@ void QDialog_MouseReleaseEventDefault(void* ptr, void* event)
 	static_cast<QDialog*>(ptr)->QDialog::mouseReleaseEvent(static_cast<QMouseEvent*>(event));
 }
 
-char QDialog_NativeEvent(void* ptr, char* eventType, void* message, long result)
+char QDialog_NativeEvent(void* ptr, void* eventType, void* message, long result)
 {
-	return static_cast<QDialog*>(ptr)->nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
+	return static_cast<QDialog*>(ptr)->nativeEvent(*static_cast<QByteArray*>(eventType), message, &result);
 }
 
-char QDialog_NativeEventDefault(void* ptr, char* eventType, void* message, long result)
+char QDialog_NativeEventDefault(void* ptr, void* eventType, void* message, long result)
 {
-	return static_cast<QDialog*>(ptr)->QDialog::nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
+	return static_cast<QDialog*>(ptr)->QDialog::nativeEvent(*static_cast<QByteArray*>(eventType), message, &result);
 }
 
 void QDialog_Raise(void* ptr)
@@ -18865,10 +18865,10 @@ public:
 	void moveEvent(QMoveEvent * event) { callbackQDialogButtonBox_MoveEvent(this, event); };
 	void paintEvent(QPaintEvent * event) { callbackQDialogButtonBox_PaintEvent(this, event); };
 	void setEnabled(bool vbo) { callbackQDialogButtonBox_SetEnabled(this, vbo); };
-	void setStyleSheet(const QString & styleSheet) { callbackQDialogButtonBox_SetStyleSheet(this, const_cast<char*>(styleSheet.toUtf8().prepend("WHITESPACE").constData()+10)); };
+	void setStyleSheet(const QString & styleSheet) { QByteArray t728ae7 = styleSheet.toUtf8(); QtWidgets_PackedString styleSheetPacked = { const_cast<char*>(t728ae7.prepend("WHITESPACE").constData()+10), t728ae7.size()-10 };callbackQDialogButtonBox_SetStyleSheet(this, styleSheetPacked); };
 	void setVisible(bool visible) { callbackQDialogButtonBox_SetVisible(this, visible); };
 	void setWindowModified(bool vbo) { callbackQDialogButtonBox_SetWindowModified(this, vbo); };
-	void setWindowTitle(const QString & vqs) { callbackQDialogButtonBox_SetWindowTitle(this, const_cast<char*>(vqs.toUtf8().prepend("WHITESPACE").constData()+10)); };
+	void setWindowTitle(const QString & vqs) { QByteArray tda39a3 = vqs.toUtf8(); QtWidgets_PackedString vqsPacked = { const_cast<char*>(tda39a3.prepend("WHITESPACE").constData()+10), tda39a3.size()-10 };callbackQDialogButtonBox_SetWindowTitle(this, vqsPacked); };
 	void showEvent(QShowEvent * event) { callbackQDialogButtonBox_ShowEvent(this, event); };
 	QSize sizeHint() const { return *static_cast<QSize*>(callbackQDialogButtonBox_SizeHint(const_cast<MyQDialogButtonBox*>(this))); };
 	bool close() { return callbackQDialogButtonBox_Close(this) != 0; };
@@ -18887,7 +18887,7 @@ public:
 	void mouseMoveEvent(QMouseEvent * event) { callbackQDialogButtonBox_MouseMoveEvent(this, event); };
 	void mousePressEvent(QMouseEvent * event) { callbackQDialogButtonBox_MousePressEvent(this, event); };
 	void mouseReleaseEvent(QMouseEvent * event) { callbackQDialogButtonBox_MouseReleaseEvent(this, event); };
-	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQDialogButtonBox_NativeEvent(this, const_cast<char*>(eventType.toHex().prepend("WHITESPACE").constData()+10), message, *result) != 0; };
+	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQDialogButtonBox_NativeEvent(this, const_cast<QByteArray*>(&eventType), message, *result) != 0; };
 	void raise() { callbackQDialogButtonBox_Raise(this); };
 	void repaint() { callbackQDialogButtonBox_Repaint(this); };
 	void resizeEvent(QResizeEvent * event) { callbackQDialogButtonBox_ResizeEvent(this, event); };
@@ -19445,14 +19445,14 @@ void QDialogButtonBox_MouseReleaseEventDefault(void* ptr, void* event)
 	static_cast<QDialogButtonBox*>(ptr)->QDialogButtonBox::mouseReleaseEvent(static_cast<QMouseEvent*>(event));
 }
 
-char QDialogButtonBox_NativeEvent(void* ptr, char* eventType, void* message, long result)
+char QDialogButtonBox_NativeEvent(void* ptr, void* eventType, void* message, long result)
 {
-	return static_cast<QDialogButtonBox*>(ptr)->nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
+	return static_cast<QDialogButtonBox*>(ptr)->nativeEvent(*static_cast<QByteArray*>(eventType), message, &result);
 }
 
-char QDialogButtonBox_NativeEventDefault(void* ptr, char* eventType, void* message, long result)
+char QDialogButtonBox_NativeEventDefault(void* ptr, void* eventType, void* message, long result)
 {
-	return static_cast<QDialogButtonBox*>(ptr)->QDialogButtonBox::nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
+	return static_cast<QDialogButtonBox*>(ptr)->QDialogButtonBox::nativeEvent(*static_cast<QByteArray*>(eventType), message, &result);
 }
 
 void QDialogButtonBox_Raise(void* ptr)
@@ -19711,10 +19711,10 @@ public:
 	QSize minimumSizeHint() const { return *static_cast<QSize*>(callbackQDockWidget_MinimumSizeHint(const_cast<MyQDockWidget*>(this))); };
 	void moveEvent(QMoveEvent * event) { callbackQDockWidget_MoveEvent(this, event); };
 	void setEnabled(bool vbo) { callbackQDockWidget_SetEnabled(this, vbo); };
-	void setStyleSheet(const QString & styleSheet) { callbackQDockWidget_SetStyleSheet(this, const_cast<char*>(styleSheet.toUtf8().prepend("WHITESPACE").constData()+10)); };
+	void setStyleSheet(const QString & styleSheet) { QByteArray t728ae7 = styleSheet.toUtf8(); QtWidgets_PackedString styleSheetPacked = { const_cast<char*>(t728ae7.prepend("WHITESPACE").constData()+10), t728ae7.size()-10 };callbackQDockWidget_SetStyleSheet(this, styleSheetPacked); };
 	void setVisible(bool visible) { callbackQDockWidget_SetVisible(this, visible); };
 	void setWindowModified(bool vbo) { callbackQDockWidget_SetWindowModified(this, vbo); };
-	void setWindowTitle(const QString & vqs) { callbackQDockWidget_SetWindowTitle(this, const_cast<char*>(vqs.toUtf8().prepend("WHITESPACE").constData()+10)); };
+	void setWindowTitle(const QString & vqs) { QByteArray tda39a3 = vqs.toUtf8(); QtWidgets_PackedString vqsPacked = { const_cast<char*>(tda39a3.prepend("WHITESPACE").constData()+10), tda39a3.size()-10 };callbackQDockWidget_SetWindowTitle(this, vqsPacked); };
 	void showEvent(QShowEvent * event) { callbackQDockWidget_ShowEvent(this, event); };
 	QSize sizeHint() const { return *static_cast<QSize*>(callbackQDockWidget_SizeHint(const_cast<MyQDockWidget*>(this))); };
 	bool close() { return callbackQDockWidget_Close(this) != 0; };
@@ -19732,7 +19732,7 @@ public:
 	void mouseMoveEvent(QMouseEvent * event) { callbackQDockWidget_MouseMoveEvent(this, event); };
 	void mousePressEvent(QMouseEvent * event) { callbackQDockWidget_MousePressEvent(this, event); };
 	void mouseReleaseEvent(QMouseEvent * event) { callbackQDockWidget_MouseReleaseEvent(this, event); };
-	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQDockWidget_NativeEvent(this, const_cast<char*>(eventType.toHex().prepend("WHITESPACE").constData()+10), message, *result) != 0; };
+	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQDockWidget_NativeEvent(this, const_cast<QByteArray*>(&eventType), message, *result) != 0; };
 	void raise() { callbackQDockWidget_Raise(this); };
 	void repaint() { callbackQDockWidget_Repaint(this); };
 	void resizeEvent(QResizeEvent * event) { callbackQDockWidget_ResizeEvent(this, event); };
@@ -20290,14 +20290,14 @@ void QDockWidget_MouseReleaseEventDefault(void* ptr, void* event)
 	static_cast<QDockWidget*>(ptr)->QDockWidget::mouseReleaseEvent(static_cast<QMouseEvent*>(event));
 }
 
-char QDockWidget_NativeEvent(void* ptr, char* eventType, void* message, long result)
+char QDockWidget_NativeEvent(void* ptr, void* eventType, void* message, long result)
 {
-	return static_cast<QDockWidget*>(ptr)->nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
+	return static_cast<QDockWidget*>(ptr)->nativeEvent(*static_cast<QByteArray*>(eventType), message, &result);
 }
 
-char QDockWidget_NativeEventDefault(void* ptr, char* eventType, void* message, long result)
+char QDockWidget_NativeEventDefault(void* ptr, void* eventType, void* message, long result)
 {
-	return static_cast<QDockWidget*>(ptr)->QDockWidget::nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
+	return static_cast<QDockWidget*>(ptr)->QDockWidget::nativeEvent(*static_cast<QByteArray*>(eventType), message, &result);
 }
 
 void QDockWidget_Raise(void* ptr)
@@ -20535,12 +20535,12 @@ class MyQDoubleSpinBox: public QDoubleSpinBox
 public:
 	MyQDoubleSpinBox(QWidget *parent) : QDoubleSpinBox(parent) {};
 	void setValue(double val) { callbackQDoubleSpinBox_SetValue(this, val); };
-	void fixup(QString & input) const { callbackQDoubleSpinBox_Fixup(const_cast<MyQDoubleSpinBox*>(this), const_cast<char*>(input.toUtf8().prepend("WHITESPACE").constData()+10)); };
+	void fixup(QString & input) const { QByteArray t140f86 = input.toUtf8(); QtWidgets_PackedString inputPacked = { const_cast<char*>(t140f86.prepend("WHITESPACE").constData()+10), t140f86.size()-10 };callbackQDoubleSpinBox_Fixup(const_cast<MyQDoubleSpinBox*>(this), inputPacked); };
 	QString textFromValue(double value) const { return QString(callbackQDoubleSpinBox_TextFromValue(const_cast<MyQDoubleSpinBox*>(this), value)); };
-	QValidator::State validate(QString & text, int & pos) const { return static_cast<QValidator::State>(callbackQDoubleSpinBox_Validate(const_cast<MyQDoubleSpinBox*>(this), const_cast<char*>(text.toUtf8().prepend("WHITESPACE").constData()+10), pos)); };
-	void Signal_ValueChanged2(const QString & text) { callbackQDoubleSpinBox_ValueChanged2(this, const_cast<char*>(text.toUtf8().prepend("WHITESPACE").constData()+10)); };
+	QValidator::State validate(QString & text, int & pos) const { QByteArray t372ea0 = text.toUtf8(); QtWidgets_PackedString textPacked = { const_cast<char*>(t372ea0.prepend("WHITESPACE").constData()+10), t372ea0.size()-10 };return static_cast<QValidator::State>(callbackQDoubleSpinBox_Validate(const_cast<MyQDoubleSpinBox*>(this), textPacked, pos)); };
+	void Signal_ValueChanged2(const QString & text) { QByteArray t372ea0 = text.toUtf8(); QtWidgets_PackedString textPacked = { const_cast<char*>(t372ea0.prepend("WHITESPACE").constData()+10), t372ea0.size()-10 };callbackQDoubleSpinBox_ValueChanged2(this, textPacked); };
 	void Signal_ValueChanged(double d) { callbackQDoubleSpinBox_ValueChanged(this, d); };
-	double valueFromText(const QString & text) const { return callbackQDoubleSpinBox_ValueFromText(const_cast<MyQDoubleSpinBox*>(this), const_cast<char*>(text.toUtf8().prepend("WHITESPACE").constData()+10)); };
+	double valueFromText(const QString & text) const { QByteArray t372ea0 = text.toUtf8(); QtWidgets_PackedString textPacked = { const_cast<char*>(t372ea0.prepend("WHITESPACE").constData()+10), t372ea0.size()-10 };return callbackQDoubleSpinBox_ValueFromText(const_cast<MyQDoubleSpinBox*>(this), textPacked); };
 	void changeEvent(QEvent * event) { callbackQDoubleSpinBox_ChangeEvent(this, event); };
 	void clear() { callbackQDoubleSpinBox_Clear(this); };
 	void closeEvent(QCloseEvent * event) { callbackQDoubleSpinBox_CloseEvent(this, event); };
@@ -20574,10 +20574,10 @@ public:
 	void leaveEvent(QEvent * event) { callbackQDoubleSpinBox_LeaveEvent(this, event); };
 	void moveEvent(QMoveEvent * event) { callbackQDoubleSpinBox_MoveEvent(this, event); };
 	void setEnabled(bool vbo) { callbackQDoubleSpinBox_SetEnabled(this, vbo); };
-	void setStyleSheet(const QString & styleSheet) { callbackQDoubleSpinBox_SetStyleSheet(this, const_cast<char*>(styleSheet.toUtf8().prepend("WHITESPACE").constData()+10)); };
+	void setStyleSheet(const QString & styleSheet) { QByteArray t728ae7 = styleSheet.toUtf8(); QtWidgets_PackedString styleSheetPacked = { const_cast<char*>(t728ae7.prepend("WHITESPACE").constData()+10), t728ae7.size()-10 };callbackQDoubleSpinBox_SetStyleSheet(this, styleSheetPacked); };
 	void setVisible(bool visible) { callbackQDoubleSpinBox_SetVisible(this, visible); };
 	void setWindowModified(bool vbo) { callbackQDoubleSpinBox_SetWindowModified(this, vbo); };
-	void setWindowTitle(const QString & vqs) { callbackQDoubleSpinBox_SetWindowTitle(this, const_cast<char*>(vqs.toUtf8().prepend("WHITESPACE").constData()+10)); };
+	void setWindowTitle(const QString & vqs) { QByteArray tda39a3 = vqs.toUtf8(); QtWidgets_PackedString vqsPacked = { const_cast<char*>(tda39a3.prepend("WHITESPACE").constData()+10), tda39a3.size()-10 };callbackQDoubleSpinBox_SetWindowTitle(this, vqsPacked); };
 	bool close() { return callbackQDoubleSpinBox_Close(this) != 0; };
 	bool focusNextPrevChild(bool next) { return callbackQDoubleSpinBox_FocusNextPrevChild(this, next) != 0; };
 	bool hasHeightForWidth() const { return callbackQDoubleSpinBox_HasHeightForWidth(const_cast<MyQDoubleSpinBox*>(this)) != 0; };
@@ -20586,7 +20586,7 @@ public:
 	void inputMethodEvent(QInputMethodEvent * event) { callbackQDoubleSpinBox_InputMethodEvent(this, event); };
 	void lower() { callbackQDoubleSpinBox_Lower(this); };
 	void mouseDoubleClickEvent(QMouseEvent * event) { callbackQDoubleSpinBox_MouseDoubleClickEvent(this, event); };
-	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQDoubleSpinBox_NativeEvent(this, const_cast<char*>(eventType.toHex().prepend("WHITESPACE").constData()+10), message, *result) != 0; };
+	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQDoubleSpinBox_NativeEvent(this, const_cast<QByteArray*>(&eventType), message, *result) != 0; };
 	void raise() { callbackQDoubleSpinBox_Raise(this); };
 	void repaint() { callbackQDoubleSpinBox_Repaint(this); };
 	void setDisabled(bool disable) { callbackQDoubleSpinBox_SetDisabled(this, disable); };
@@ -20609,9 +20609,9 @@ public:
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQDoubleSpinBox_MetaObject(const_cast<MyQDoubleSpinBox*>(this))); };
 };
 
-char* QDoubleSpinBox_CleanText(void* ptr)
+struct QtWidgets_PackedString QDoubleSpinBox_CleanText(void* ptr)
 {
-	return const_cast<char*>(static_cast<QDoubleSpinBox*>(ptr)->cleanText().toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray t77d32e = static_cast<QDoubleSpinBox*>(ptr)->cleanText().toUtf8(); QtWidgets_PackedString { const_cast<char*>(t77d32e.prepend("WHITESPACE").constData()+10), t77d32e.size()-10 }; });
 }
 
 int QDoubleSpinBox_Decimals(void* ptr)
@@ -20629,9 +20629,9 @@ double QDoubleSpinBox_Minimum(void* ptr)
 	return static_cast<QDoubleSpinBox*>(ptr)->minimum();
 }
 
-char* QDoubleSpinBox_Prefix(void* ptr)
+struct QtWidgets_PackedString QDoubleSpinBox_Prefix(void* ptr)
 {
-	return const_cast<char*>(static_cast<QDoubleSpinBox*>(ptr)->prefix().toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray t5a79ac = static_cast<QDoubleSpinBox*>(ptr)->prefix().toUtf8(); QtWidgets_PackedString { const_cast<char*>(t5a79ac.prepend("WHITESPACE").constData()+10), t5a79ac.size()-10 }; });
 }
 
 void QDoubleSpinBox_SetDecimals(void* ptr, int prec)
@@ -20674,9 +20674,9 @@ double QDoubleSpinBox_SingleStep(void* ptr)
 	return static_cast<QDoubleSpinBox*>(ptr)->singleStep();
 }
 
-char* QDoubleSpinBox_Suffix(void* ptr)
+struct QtWidgets_PackedString QDoubleSpinBox_Suffix(void* ptr)
 {
-	return const_cast<char*>(static_cast<QDoubleSpinBox*>(ptr)->suffix().toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray t4d98e3 = static_cast<QDoubleSpinBox*>(ptr)->suffix().toUtf8(); QtWidgets_PackedString { const_cast<char*>(t4d98e3.prepend("WHITESPACE").constData()+10), t4d98e3.size()-10 }; });
 }
 
 double QDoubleSpinBox_Value(void* ptr)
@@ -20704,14 +20704,14 @@ void QDoubleSpinBox_SetRange(void* ptr, double minimum, double maximum)
 	static_cast<QDoubleSpinBox*>(ptr)->setRange(minimum, maximum);
 }
 
-char* QDoubleSpinBox_TextFromValue(void* ptr, double value)
+struct QtWidgets_PackedString QDoubleSpinBox_TextFromValue(void* ptr, double value)
 {
-	return const_cast<char*>(static_cast<QDoubleSpinBox*>(ptr)->textFromValue(value).toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray t86f376 = static_cast<QDoubleSpinBox*>(ptr)->textFromValue(value).toUtf8(); QtWidgets_PackedString { const_cast<char*>(t86f376.prepend("WHITESPACE").constData()+10), t86f376.size()-10 }; });
 }
 
-char* QDoubleSpinBox_TextFromValueDefault(void* ptr, double value)
+struct QtWidgets_PackedString QDoubleSpinBox_TextFromValueDefault(void* ptr, double value)
 {
-	return const_cast<char*>(static_cast<QDoubleSpinBox*>(ptr)->QDoubleSpinBox::textFromValue(value).toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray t7bc6a7 = static_cast<QDoubleSpinBox*>(ptr)->QDoubleSpinBox::textFromValue(value).toUtf8(); QtWidgets_PackedString { const_cast<char*>(t7bc6a7.prepend("WHITESPACE").constData()+10), t7bc6a7.size()-10 }; });
 }
 
 long long QDoubleSpinBox_Validate(void* ptr, char* text, int pos)
@@ -21221,14 +21221,14 @@ void QDoubleSpinBox_MouseDoubleClickEventDefault(void* ptr, void* event)
 	static_cast<QDoubleSpinBox*>(ptr)->QDoubleSpinBox::mouseDoubleClickEvent(static_cast<QMouseEvent*>(event));
 }
 
-char QDoubleSpinBox_NativeEvent(void* ptr, char* eventType, void* message, long result)
+char QDoubleSpinBox_NativeEvent(void* ptr, void* eventType, void* message, long result)
 {
-	return static_cast<QDoubleSpinBox*>(ptr)->nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
+	return static_cast<QDoubleSpinBox*>(ptr)->nativeEvent(*static_cast<QByteArray*>(eventType), message, &result);
 }
 
-char QDoubleSpinBox_NativeEventDefault(void* ptr, char* eventType, void* message, long result)
+char QDoubleSpinBox_NativeEventDefault(void* ptr, void* eventType, void* message, long result)
 {
-	return static_cast<QDoubleSpinBox*>(ptr)->QDoubleSpinBox::nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
+	return static_cast<QDoubleSpinBox*>(ptr)->QDoubleSpinBox::nativeEvent(*static_cast<QByteArray*>(eventType), message, &result);
 }
 
 void QDoubleSpinBox_Raise(void* ptr)
@@ -21437,8 +21437,8 @@ public:
 	MyQErrorMessage(QWidget *parent) : QErrorMessage(parent) {};
 	void changeEvent(QEvent * e) { callbackQErrorMessage_ChangeEvent(this, e); };
 	void done(int a) { callbackQErrorMessage_Done(this, a); };
-	void showMessage(const QString & message) { callbackQErrorMessage_ShowMessage(this, const_cast<char*>(message.toUtf8().prepend("WHITESPACE").constData()+10)); };
-	void showMessage(const QString & message, const QString & ty) { callbackQErrorMessage_ShowMessage2(this, const_cast<char*>(message.toUtf8().prepend("WHITESPACE").constData()+10), const_cast<char*>(ty.toUtf8().prepend("WHITESPACE").constData()+10)); };
+	void showMessage(const QString & message) { QByteArray t6f9b9a = message.toUtf8(); QtWidgets_PackedString messagePacked = { const_cast<char*>(t6f9b9a.prepend("WHITESPACE").constData()+10), t6f9b9a.size()-10 };callbackQErrorMessage_ShowMessage(this, messagePacked); };
+	void showMessage(const QString & message, const QString & ty) { QByteArray t6f9b9a = message.toUtf8(); QtWidgets_PackedString messagePacked = { const_cast<char*>(t6f9b9a.prepend("WHITESPACE").constData()+10), t6f9b9a.size()-10 };QByteArray td0a3e7 = ty.toUtf8(); QtWidgets_PackedString tyPacked = { const_cast<char*>(td0a3e7.prepend("WHITESPACE").constData()+10), td0a3e7.size()-10 };callbackQErrorMessage_ShowMessage2(this, messagePacked, tyPacked); };
 	void accept() { callbackQErrorMessage_Accept(this); };
 	void closeEvent(QCloseEvent * e) { callbackQErrorMessage_CloseEvent(this, e); };
 	void contextMenuEvent(QContextMenuEvent * e) { callbackQErrorMessage_ContextMenuEvent(this, e); };
@@ -21464,9 +21464,9 @@ public:
 	void moveEvent(QMoveEvent * event) { callbackQErrorMessage_MoveEvent(this, event); };
 	void paintEvent(QPaintEvent * event) { callbackQErrorMessage_PaintEvent(this, event); };
 	void setEnabled(bool vbo) { callbackQErrorMessage_SetEnabled(this, vbo); };
-	void setStyleSheet(const QString & styleSheet) { callbackQErrorMessage_SetStyleSheet(this, const_cast<char*>(styleSheet.toUtf8().prepend("WHITESPACE").constData()+10)); };
+	void setStyleSheet(const QString & styleSheet) { QByteArray t728ae7 = styleSheet.toUtf8(); QtWidgets_PackedString styleSheetPacked = { const_cast<char*>(t728ae7.prepend("WHITESPACE").constData()+10), t728ae7.size()-10 };callbackQErrorMessage_SetStyleSheet(this, styleSheetPacked); };
 	void setWindowModified(bool vbo) { callbackQErrorMessage_SetWindowModified(this, vbo); };
-	void setWindowTitle(const QString & vqs) { callbackQErrorMessage_SetWindowTitle(this, const_cast<char*>(vqs.toUtf8().prepend("WHITESPACE").constData()+10)); };
+	void setWindowTitle(const QString & vqs) { QByteArray tda39a3 = vqs.toUtf8(); QtWidgets_PackedString vqsPacked = { const_cast<char*>(tda39a3.prepend("WHITESPACE").constData()+10), tda39a3.size()-10 };callbackQErrorMessage_SetWindowTitle(this, vqsPacked); };
 	bool close() { return callbackQErrorMessage_Close(this) != 0; };
 	bool focusNextPrevChild(bool next) { return callbackQErrorMessage_FocusNextPrevChild(this, next) != 0; };
 	bool hasHeightForWidth() const { return callbackQErrorMessage_HasHeightForWidth(const_cast<MyQErrorMessage*>(this)) != 0; };
@@ -21480,7 +21480,7 @@ public:
 	void mouseMoveEvent(QMouseEvent * event) { callbackQErrorMessage_MouseMoveEvent(this, event); };
 	void mousePressEvent(QMouseEvent * event) { callbackQErrorMessage_MousePressEvent(this, event); };
 	void mouseReleaseEvent(QMouseEvent * event) { callbackQErrorMessage_MouseReleaseEvent(this, event); };
-	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQErrorMessage_NativeEvent(this, const_cast<char*>(eventType.toHex().prepend("WHITESPACE").constData()+10), message, *result) != 0; };
+	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQErrorMessage_NativeEvent(this, const_cast<QByteArray*>(&eventType), message, *result) != 0; };
 	void raise() { callbackQErrorMessage_Raise(this); };
 	void repaint() { callbackQErrorMessage_Repaint(this); };
 	void setDisabled(bool disable) { callbackQErrorMessage_SetDisabled(this, disable); };
@@ -21963,14 +21963,14 @@ void QErrorMessage_MouseReleaseEventDefault(void* ptr, void* event)
 	static_cast<QErrorMessage*>(ptr)->QErrorMessage::mouseReleaseEvent(static_cast<QMouseEvent*>(event));
 }
 
-char QErrorMessage_NativeEvent(void* ptr, char* eventType, void* message, long result)
+char QErrorMessage_NativeEvent(void* ptr, void* eventType, void* message, long result)
 {
-	return static_cast<QErrorMessage*>(ptr)->nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
+	return static_cast<QErrorMessage*>(ptr)->nativeEvent(*static_cast<QByteArray*>(eventType), message, &result);
 }
 
-char QErrorMessage_NativeEventDefault(void* ptr, char* eventType, void* message, long result)
+char QErrorMessage_NativeEventDefault(void* ptr, void* eventType, void* message, long result)
 {
-	return static_cast<QErrorMessage*>(ptr)->QErrorMessage::nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
+	return static_cast<QErrorMessage*>(ptr)->QErrorMessage::nativeEvent(*static_cast<QByteArray*>(eventType), message, &result);
 }
 
 void QErrorMessage_Raise(void* ptr)
@@ -22190,14 +22190,14 @@ public:
 	MyQFileDialog(QWidget *parent, const QString &caption, const QString &directory, const QString &filter) : QFileDialog(parent, caption, directory, filter) {};
 	void accept() { callbackQFileDialog_Accept(this); };
 	void changeEvent(QEvent * e) { callbackQFileDialog_ChangeEvent(this, e); };
-	void Signal_CurrentChanged(const QString & path) { callbackQFileDialog_CurrentChanged(this, const_cast<char*>(path.toUtf8().prepend("WHITESPACE").constData()+10)); };
+	void Signal_CurrentChanged(const QString & path) { QByteArray t3150ec = path.toUtf8(); QtWidgets_PackedString pathPacked = { const_cast<char*>(t3150ec.prepend("WHITESPACE").constData()+10), t3150ec.size()-10 };callbackQFileDialog_CurrentChanged(this, pathPacked); };
 	void Signal_CurrentUrlChanged(const QUrl & url) { callbackQFileDialog_CurrentUrlChanged(this, const_cast<QUrl*>(&url)); };
-	void Signal_DirectoryEntered(const QString & directory) { callbackQFileDialog_DirectoryEntered(this, const_cast<char*>(directory.toUtf8().prepend("WHITESPACE").constData()+10)); };
+	void Signal_DirectoryEntered(const QString & directory) { QByteArray t8d392f = directory.toUtf8(); QtWidgets_PackedString directoryPacked = { const_cast<char*>(t8d392f.prepend("WHITESPACE").constData()+10), t8d392f.size()-10 };callbackQFileDialog_DirectoryEntered(this, directoryPacked); };
 	void Signal_DirectoryUrlEntered(const QUrl & directory) { callbackQFileDialog_DirectoryUrlEntered(this, const_cast<QUrl*>(&directory)); };
 	void done(int result) { callbackQFileDialog_Done(this, result); };
-	void Signal_FileSelected(const QString & file) { callbackQFileDialog_FileSelected(this, const_cast<char*>(file.toUtf8().prepend("WHITESPACE").constData()+10)); };
-	void Signal_FilesSelected(const QStringList & selected) { callbackQFileDialog_FilesSelected(this, const_cast<char*>(selected.join("|").toUtf8().prepend("WHITESPACE").constData()+10)); };
-	void Signal_FilterSelected(const QString & filter) { callbackQFileDialog_FilterSelected(this, const_cast<char*>(filter.toUtf8().prepend("WHITESPACE").constData()+10)); };
+	void Signal_FileSelected(const QString & file) { QByteArray t971c41 = file.toUtf8(); QtWidgets_PackedString filePacked = { const_cast<char*>(t971c41.prepend("WHITESPACE").constData()+10), t971c41.size()-10 };callbackQFileDialog_FileSelected(this, filePacked); };
+	void Signal_FilesSelected(const QStringList & selected) { QByteArray t835f3b = selected.join("|").toUtf8(); QtWidgets_PackedString selectedPacked = { const_cast<char*>(t835f3b.prepend("WHITESPACE").constData()+10), t835f3b.size()-10 };callbackQFileDialog_FilesSelected(this, selectedPacked); };
+	void Signal_FilterSelected(const QString & filter) { QByteArray t4bb4ca = filter.toUtf8(); QtWidgets_PackedString filterPacked = { const_cast<char*>(t4bb4ca.prepend("WHITESPACE").constData()+10), t4bb4ca.size()-10 };callbackQFileDialog_FilterSelected(this, filterPacked); };
 	void setVisible(bool visible) { callbackQFileDialog_SetVisible(this, visible); };
 	void Signal_UrlSelected(const QUrl & url) { callbackQFileDialog_UrlSelected(this, const_cast<QUrl*>(&url)); };
 	void closeEvent(QCloseEvent * e) { callbackQFileDialog_CloseEvent(this, e); };
@@ -22222,9 +22222,9 @@ public:
 	void moveEvent(QMoveEvent * event) { callbackQFileDialog_MoveEvent(this, event); };
 	void paintEvent(QPaintEvent * event) { callbackQFileDialog_PaintEvent(this, event); };
 	void setEnabled(bool vbo) { callbackQFileDialog_SetEnabled(this, vbo); };
-	void setStyleSheet(const QString & styleSheet) { callbackQFileDialog_SetStyleSheet(this, const_cast<char*>(styleSheet.toUtf8().prepend("WHITESPACE").constData()+10)); };
+	void setStyleSheet(const QString & styleSheet) { QByteArray t728ae7 = styleSheet.toUtf8(); QtWidgets_PackedString styleSheetPacked = { const_cast<char*>(t728ae7.prepend("WHITESPACE").constData()+10), t728ae7.size()-10 };callbackQFileDialog_SetStyleSheet(this, styleSheetPacked); };
 	void setWindowModified(bool vbo) { callbackQFileDialog_SetWindowModified(this, vbo); };
-	void setWindowTitle(const QString & vqs) { callbackQFileDialog_SetWindowTitle(this, const_cast<char*>(vqs.toUtf8().prepend("WHITESPACE").constData()+10)); };
+	void setWindowTitle(const QString & vqs) { QByteArray tda39a3 = vqs.toUtf8(); QtWidgets_PackedString vqsPacked = { const_cast<char*>(tda39a3.prepend("WHITESPACE").constData()+10), tda39a3.size()-10 };callbackQFileDialog_SetWindowTitle(this, vqsPacked); };
 	bool close() { return callbackQFileDialog_Close(this) != 0; };
 	bool focusNextPrevChild(bool next) { return callbackQFileDialog_FocusNextPrevChild(this, next) != 0; };
 	bool hasHeightForWidth() const { return callbackQFileDialog_HasHeightForWidth(const_cast<MyQFileDialog*>(this)) != 0; };
@@ -22238,7 +22238,7 @@ public:
 	void mouseMoveEvent(QMouseEvent * event) { callbackQFileDialog_MouseMoveEvent(this, event); };
 	void mousePressEvent(QMouseEvent * event) { callbackQFileDialog_MousePressEvent(this, event); };
 	void mouseReleaseEvent(QMouseEvent * event) { callbackQFileDialog_MouseReleaseEvent(this, event); };
-	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQFileDialog_NativeEvent(this, const_cast<char*>(eventType.toHex().prepend("WHITESPACE").constData()+10), message, *result) != 0; };
+	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQFileDialog_NativeEvent(this, const_cast<QByteArray*>(&eventType), message, *result) != 0; };
 	void raise() { callbackQFileDialog_Raise(this); };
 	void repaint() { callbackQFileDialog_Repaint(this); };
 	void setDisabled(bool disable) { callbackQFileDialog_SetDisabled(this, disable); };
@@ -22277,9 +22277,9 @@ char QFileDialog_ConfirmOverwrite(void* ptr)
 	return static_cast<QFileDialog*>(ptr)->confirmOverwrite();
 }
 
-char* QFileDialog_DefaultSuffix(void* ptr)
+struct QtWidgets_PackedString QFileDialog_DefaultSuffix(void* ptr)
 {
-	return const_cast<char*>(static_cast<QFileDialog*>(ptr)->defaultSuffix().toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray t9b6b68 = static_cast<QFileDialog*>(ptr)->defaultSuffix().toUtf8(); QtWidgets_PackedString { const_cast<char*>(t9b6b68.prepend("WHITESPACE").constData()+10), t9b6b68.size()-10 }; });
 }
 
 long long QFileDialog_FileMode(void* ptr)
@@ -22357,9 +22357,9 @@ void QFileDialog_SetViewMode(void* ptr, long long mode)
 	static_cast<QFileDialog*>(ptr)->setViewMode(static_cast<QFileDialog::ViewMode>(mode));
 }
 
-char* QFileDialog_SupportedSchemes(void* ptr)
+struct QtWidgets_PackedString QFileDialog_SupportedSchemes(void* ptr)
 {
-	return const_cast<char*>(static_cast<QFileDialog*>(ptr)->supportedSchemes().join("|").toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray tfcd263 = static_cast<QFileDialog*>(ptr)->supportedSchemes().join("|").toUtf8(); QtWidgets_PackedString { const_cast<char*>(tfcd263.prepend("WHITESPACE").constData()+10), tfcd263.size()-10 }; });
 }
 
 long long QFileDialog_ViewMode(void* ptr)
@@ -22522,9 +22522,9 @@ void QFileDialog_FilterSelected(void* ptr, char* filter)
 	static_cast<QFileDialog*>(ptr)->filterSelected(QString(filter));
 }
 
-char* QFileDialog_QFileDialog_GetExistingDirectory(void* parent, char* caption, char* dir, long long options)
+struct QtWidgets_PackedString QFileDialog_QFileDialog_GetExistingDirectory(void* parent, char* caption, char* dir, long long options)
 {
-	return const_cast<char*>(QFileDialog::getExistingDirectory(static_cast<QWidget*>(parent), QString(caption), QString(dir), static_cast<QFileDialog::Option>(options)).toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray t6c26bd = QFileDialog::getExistingDirectory(static_cast<QWidget*>(parent), QString(caption), QString(dir), static_cast<QFileDialog::Option>(options)).toUtf8(); QtWidgets_PackedString { const_cast<char*>(t6c26bd.prepend("WHITESPACE").constData()+10), t6c26bd.size()-10 }; });
 }
 
 void* QFileDialog_QFileDialog_GetExistingDirectoryUrl(void* parent, char* caption, void* dir, long long options, char* supportedSchemes)
@@ -22532,14 +22532,14 @@ void* QFileDialog_QFileDialog_GetExistingDirectoryUrl(void* parent, char* captio
 	return new QUrl(QFileDialog::getExistingDirectoryUrl(static_cast<QWidget*>(parent), QString(caption), *static_cast<QUrl*>(dir), static_cast<QFileDialog::Option>(options), QString(supportedSchemes).split("|", QString::SkipEmptyParts)));
 }
 
-char* QFileDialog_QFileDialog_GetOpenFileName(void* parent, char* caption, char* dir, char* filter, char* selectedFilter, long long options)
+struct QtWidgets_PackedString QFileDialog_QFileDialog_GetOpenFileName(void* parent, char* caption, char* dir, char* filter, char* selectedFilter, long long options)
 {
-	return const_cast<char*>(QFileDialog::getOpenFileName(static_cast<QWidget*>(parent), QString(caption), QString(dir), QString(filter), new QString(selectedFilter), static_cast<QFileDialog::Option>(options)).toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray t4d142d = QFileDialog::getOpenFileName(static_cast<QWidget*>(parent), QString(caption), QString(dir), QString(filter), new QString(selectedFilter), static_cast<QFileDialog::Option>(options)).toUtf8(); QtWidgets_PackedString { const_cast<char*>(t4d142d.prepend("WHITESPACE").constData()+10), t4d142d.size()-10 }; });
 }
 
-char* QFileDialog_QFileDialog_GetOpenFileNames(void* parent, char* caption, char* dir, char* filter, char* selectedFilter, long long options)
+struct QtWidgets_PackedString QFileDialog_QFileDialog_GetOpenFileNames(void* parent, char* caption, char* dir, char* filter, char* selectedFilter, long long options)
 {
-	return const_cast<char*>(QFileDialog::getOpenFileNames(static_cast<QWidget*>(parent), QString(caption), QString(dir), QString(filter), new QString(selectedFilter), static_cast<QFileDialog::Option>(options)).join("|").toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray t1d7015 = QFileDialog::getOpenFileNames(static_cast<QWidget*>(parent), QString(caption), QString(dir), QString(filter), new QString(selectedFilter), static_cast<QFileDialog::Option>(options)).join("|").toUtf8(); QtWidgets_PackedString { const_cast<char*>(t1d7015.prepend("WHITESPACE").constData()+10), t1d7015.size()-10 }; });
 }
 
 void* QFileDialog_QFileDialog_GetOpenFileUrl(void* parent, char* caption, void* dir, char* filter, char* selectedFilter, long long options, char* supportedSchemes)
@@ -22547,9 +22547,9 @@ void* QFileDialog_QFileDialog_GetOpenFileUrl(void* parent, char* caption, void* 
 	return new QUrl(QFileDialog::getOpenFileUrl(static_cast<QWidget*>(parent), QString(caption), *static_cast<QUrl*>(dir), QString(filter), new QString(selectedFilter), static_cast<QFileDialog::Option>(options), QString(supportedSchemes).split("|", QString::SkipEmptyParts)));
 }
 
-char* QFileDialog_QFileDialog_GetSaveFileName(void* parent, char* caption, char* dir, char* filter, char* selectedFilter, long long options)
+struct QtWidgets_PackedString QFileDialog_QFileDialog_GetSaveFileName(void* parent, char* caption, char* dir, char* filter, char* selectedFilter, long long options)
 {
-	return const_cast<char*>(QFileDialog::getSaveFileName(static_cast<QWidget*>(parent), QString(caption), QString(dir), QString(filter), new QString(selectedFilter), static_cast<QFileDialog::Option>(options)).toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray t897f02 = QFileDialog::getSaveFileName(static_cast<QWidget*>(parent), QString(caption), QString(dir), QString(filter), new QString(selectedFilter), static_cast<QFileDialog::Option>(options)).toUtf8(); QtWidgets_PackedString { const_cast<char*>(t897f02.prepend("WHITESPACE").constData()+10), t897f02.size()-10 }; });
 }
 
 void* QFileDialog_QFileDialog_GetSaveFileUrl(void* parent, char* caption, void* dir, char* filter, char* selectedFilter, long long options, char* supportedSchemes)
@@ -22557,9 +22557,9 @@ void* QFileDialog_QFileDialog_GetSaveFileUrl(void* parent, char* caption, void* 
 	return new QUrl(QFileDialog::getSaveFileUrl(static_cast<QWidget*>(parent), QString(caption), *static_cast<QUrl*>(dir), QString(filter), new QString(selectedFilter), static_cast<QFileDialog::Option>(options), QString(supportedSchemes).split("|", QString::SkipEmptyParts)));
 }
 
-char* QFileDialog_History(void* ptr)
+struct QtWidgets_PackedString QFileDialog_History(void* ptr)
 {
-	return const_cast<char*>(static_cast<QFileDialog*>(ptr)->history().join("|").toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray t242067 = static_cast<QFileDialog*>(ptr)->history().join("|").toUtf8(); QtWidgets_PackedString { const_cast<char*>(t242067.prepend("WHITESPACE").constData()+10), t242067.size()-10 }; });
 }
 
 void* QFileDialog_IconProvider(void* ptr)
@@ -22572,19 +22572,19 @@ void* QFileDialog_ItemDelegate(void* ptr)
 	return static_cast<QFileDialog*>(ptr)->itemDelegate();
 }
 
-char* QFileDialog_LabelText(void* ptr, long long label)
+struct QtWidgets_PackedString QFileDialog_LabelText(void* ptr, long long label)
 {
-	return const_cast<char*>(static_cast<QFileDialog*>(ptr)->labelText(static_cast<QFileDialog::DialogLabel>(label)).toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray td750f3 = static_cast<QFileDialog*>(ptr)->labelText(static_cast<QFileDialog::DialogLabel>(label)).toUtf8(); QtWidgets_PackedString { const_cast<char*>(td750f3.prepend("WHITESPACE").constData()+10), td750f3.size()-10 }; });
 }
 
-char* QFileDialog_MimeTypeFilters(void* ptr)
+struct QtWidgets_PackedString QFileDialog_MimeTypeFilters(void* ptr)
 {
-	return const_cast<char*>(static_cast<QFileDialog*>(ptr)->mimeTypeFilters().join("|").toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray t17a2a7 = static_cast<QFileDialog*>(ptr)->mimeTypeFilters().join("|").toUtf8(); QtWidgets_PackedString { const_cast<char*>(t17a2a7.prepend("WHITESPACE").constData()+10), t17a2a7.size()-10 }; });
 }
 
-char* QFileDialog_NameFilters(void* ptr)
+struct QtWidgets_PackedString QFileDialog_NameFilters(void* ptr)
 {
-	return const_cast<char*>(static_cast<QFileDialog*>(ptr)->nameFilters().join("|").toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray t4389e5 = static_cast<QFileDialog*>(ptr)->nameFilters().join("|").toUtf8(); QtWidgets_PackedString { const_cast<char*>(t4389e5.prepend("WHITESPACE").constData()+10), t4389e5.size()-10 }; });
 }
 
 void QFileDialog_Open(void* ptr, void* receiver, char* member)
@@ -22597,14 +22597,14 @@ void* QFileDialog_ProxyModel(void* ptr)
 	return static_cast<QFileDialog*>(ptr)->proxyModel();
 }
 
-char QFileDialog_RestoreState(void* ptr, char* state)
+char QFileDialog_RestoreState(void* ptr, void* state)
 {
-	return static_cast<QFileDialog*>(ptr)->restoreState(QByteArray::fromHex(QString(state).toUtf8()));
+	return static_cast<QFileDialog*>(ptr)->restoreState(*static_cast<QByteArray*>(state));
 }
 
-char* QFileDialog_SaveState(void* ptr)
+void* QFileDialog_SaveState(void* ptr)
 {
-	return const_cast<char*>(static_cast<QFileDialog*>(ptr)->saveState().toHex().prepend("WHITESPACE").constData()+10);
+	return new QByteArray(static_cast<QFileDialog*>(ptr)->saveState());
 }
 
 void QFileDialog_SelectFile(void* ptr, char* filename)
@@ -22627,14 +22627,14 @@ void QFileDialog_SelectUrl(void* ptr, void* url)
 	static_cast<QFileDialog*>(ptr)->selectUrl(*static_cast<QUrl*>(url));
 }
 
-char* QFileDialog_SelectedFiles(void* ptr)
+struct QtWidgets_PackedString QFileDialog_SelectedFiles(void* ptr)
 {
-	return const_cast<char*>(static_cast<QFileDialog*>(ptr)->selectedFiles().join("|").toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray tc6127b = static_cast<QFileDialog*>(ptr)->selectedFiles().join("|").toUtf8(); QtWidgets_PackedString { const_cast<char*>(tc6127b.prepend("WHITESPACE").constData()+10), tc6127b.size()-10 }; });
 }
 
-char* QFileDialog_SelectedNameFilter(void* ptr)
+struct QtWidgets_PackedString QFileDialog_SelectedNameFilter(void* ptr)
 {
-	return const_cast<char*>(static_cast<QFileDialog*>(ptr)->selectedNameFilter().toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray tca1caa = static_cast<QFileDialog*>(ptr)->selectedNameFilter().toUtf8(); QtWidgets_PackedString { const_cast<char*>(tca1caa.prepend("WHITESPACE").constData()+10), tca1caa.size()-10 }; });
 }
 
 void QFileDialog_SetDirectory2(void* ptr, void* directory)
@@ -23121,14 +23121,14 @@ void QFileDialog_MouseReleaseEventDefault(void* ptr, void* event)
 	static_cast<QFileDialog*>(ptr)->QFileDialog::mouseReleaseEvent(static_cast<QMouseEvent*>(event));
 }
 
-char QFileDialog_NativeEvent(void* ptr, char* eventType, void* message, long result)
+char QFileDialog_NativeEvent(void* ptr, void* eventType, void* message, long result)
 {
-	return static_cast<QFileDialog*>(ptr)->nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
+	return static_cast<QFileDialog*>(ptr)->nativeEvent(*static_cast<QByteArray*>(eventType), message, &result);
 }
 
-char QFileDialog_NativeEventDefault(void* ptr, char* eventType, void* message, long result)
+char QFileDialog_NativeEventDefault(void* ptr, void* eventType, void* message, long result)
 {
-	return static_cast<QFileDialog*>(ptr)->QFileDialog::nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
+	return static_cast<QFileDialog*>(ptr)->QFileDialog::nativeEvent(*static_cast<QByteArray*>(eventType), message, &result);
 }
 
 void QFileDialog_Raise(void* ptr)
@@ -23386,14 +23386,14 @@ void QFileIconProvider_SetOptions(void* ptr, long long options)
 	static_cast<QFileIconProvider*>(ptr)->setOptions(static_cast<QFileIconProvider::Option>(options));
 }
 
-char* QFileIconProvider_Type(void* ptr, void* info)
+struct QtWidgets_PackedString QFileIconProvider_Type(void* ptr, void* info)
 {
-	return const_cast<char*>(static_cast<QFileIconProvider*>(ptr)->type(*static_cast<QFileInfo*>(info)).toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray t69d0f8 = static_cast<QFileIconProvider*>(ptr)->type(*static_cast<QFileInfo*>(info)).toUtf8(); QtWidgets_PackedString { const_cast<char*>(t69d0f8.prepend("WHITESPACE").constData()+10), t69d0f8.size()-10 }; });
 }
 
-char* QFileIconProvider_TypeDefault(void* ptr, void* info)
+struct QtWidgets_PackedString QFileIconProvider_TypeDefault(void* ptr, void* info)
 {
-	return const_cast<char*>(static_cast<QFileIconProvider*>(ptr)->QFileIconProvider::type(*static_cast<QFileInfo*>(info)).toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray tb3bd2f = static_cast<QFileIconProvider*>(ptr)->QFileIconProvider::type(*static_cast<QFileInfo*>(info)).toUtf8(); QtWidgets_PackedString { const_cast<char*>(tb3bd2f.prepend("WHITESPACE").constData()+10), tb3bd2f.size()-10 }; });
 }
 
 void QFileIconProvider_DestroyQFileIconProvider(void* ptr)
@@ -23425,9 +23425,9 @@ class MyQFileSystemModel: public QFileSystemModel
 {
 public:
 	MyQFileSystemModel(QObject *parent) : QFileSystemModel(parent) {};
-	void Signal_DirectoryLoaded(const QString & path) { callbackQFileSystemModel_DirectoryLoaded(this, const_cast<char*>(path.toUtf8().prepend("WHITESPACE").constData()+10)); };
-	void Signal_FileRenamed(const QString & path, const QString & oldName, const QString & newName) { callbackQFileSystemModel_FileRenamed(this, const_cast<char*>(path.toUtf8().prepend("WHITESPACE").constData()+10), const_cast<char*>(oldName.toUtf8().prepend("WHITESPACE").constData()+10), const_cast<char*>(newName.toUtf8().prepend("WHITESPACE").constData()+10)); };
-	void Signal_RootPathChanged(const QString & newPath) { callbackQFileSystemModel_RootPathChanged(this, const_cast<char*>(newPath.toUtf8().prepend("WHITESPACE").constData()+10)); };
+	void Signal_DirectoryLoaded(const QString & path) { QByteArray t3150ec = path.toUtf8(); QtWidgets_PackedString pathPacked = { const_cast<char*>(t3150ec.prepend("WHITESPACE").constData()+10), t3150ec.size()-10 };callbackQFileSystemModel_DirectoryLoaded(this, pathPacked); };
+	void Signal_FileRenamed(const QString & path, const QString & oldName, const QString & newName) { QByteArray t3150ec = path.toUtf8(); QtWidgets_PackedString pathPacked = { const_cast<char*>(t3150ec.prepend("WHITESPACE").constData()+10), t3150ec.size()-10 };QByteArray td041bb = oldName.toUtf8(); QtWidgets_PackedString oldNamePacked = { const_cast<char*>(td041bb.prepend("WHITESPACE").constData()+10), td041bb.size()-10 };QByteArray t1530cb = newName.toUtf8(); QtWidgets_PackedString newNamePacked = { const_cast<char*>(t1530cb.prepend("WHITESPACE").constData()+10), t1530cb.size()-10 };callbackQFileSystemModel_FileRenamed(this, pathPacked, oldNamePacked, newNamePacked); };
+	void Signal_RootPathChanged(const QString & newPath) { QByteArray t1ced92 = newPath.toUtf8(); QtWidgets_PackedString newPathPacked = { const_cast<char*>(t1ced92.prepend("WHITESPACE").constData()+10), t1ced92.size()-10 };callbackQFileSystemModel_RootPathChanged(this, newPathPacked); };
 	QModelIndex buddy(const QModelIndex & index) const { return *static_cast<QModelIndex*>(callbackQFileSystemModel_Buddy(const_cast<MyQFileSystemModel*>(this), const_cast<QModelIndex*>(&index))); };
 	bool canDropMimeData(const QMimeData * data, Qt::DropAction action, int row, int column, const QModelIndex & parent) const { return callbackQFileSystemModel_CanDropMimeData(const_cast<MyQFileSystemModel*>(this), const_cast<QMimeData*>(data), action, row, column, const_cast<QModelIndex*>(&parent)) != 0; };
 	bool insertColumns(int column, int count, const QModelIndex & parent) { return callbackQFileSystemModel_InsertColumns(this, column, count, const_cast<QModelIndex*>(&parent)) != 0; };
@@ -23551,14 +23551,14 @@ void* QFileSystemModel_FileIcon(void* ptr, void* index)
 	return new QIcon(static_cast<QFileSystemModel*>(ptr)->fileIcon(*static_cast<QModelIndex*>(index)));
 }
 
-char* QFileSystemModel_FileName(void* ptr, void* index)
+struct QtWidgets_PackedString QFileSystemModel_FileName(void* ptr, void* index)
 {
-	return const_cast<char*>(static_cast<QFileSystemModel*>(ptr)->fileName(*static_cast<QModelIndex*>(index)).toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray t9528ac = static_cast<QFileSystemModel*>(ptr)->fileName(*static_cast<QModelIndex*>(index)).toUtf8(); QtWidgets_PackedString { const_cast<char*>(t9528ac.prepend("WHITESPACE").constData()+10), t9528ac.size()-10 }; });
 }
 
-char* QFileSystemModel_FilePath(void* ptr, void* index)
+struct QtWidgets_PackedString QFileSystemModel_FilePath(void* ptr, void* index)
 {
-	return const_cast<char*>(static_cast<QFileSystemModel*>(ptr)->filePath(*static_cast<QModelIndex*>(index)).toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray t6d0e31 = static_cast<QFileSystemModel*>(ptr)->filePath(*static_cast<QModelIndex*>(index)).toUtf8(); QtWidgets_PackedString { const_cast<char*>(t6d0e31.prepend("WHITESPACE").constData()+10), t6d0e31.size()-10 }; });
 }
 
 void QFileSystemModel_ConnectFileRenamed(void* ptr)
@@ -23621,9 +23621,9 @@ void* QFileSystemModel_LastModified(void* ptr, void* index)
 	return new QDateTime(static_cast<QFileSystemModel*>(ptr)->lastModified(*static_cast<QModelIndex*>(index)));
 }
 
-char* QFileSystemModel_MimeTypes(void* ptr)
+struct QtWidgets_PackedString QFileSystemModel_MimeTypes(void* ptr)
 {
-	return const_cast<char*>(static_cast<QFileSystemModel*>(ptr)->mimeTypes().join("|").toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray tf2a9c9 = static_cast<QFileSystemModel*>(ptr)->mimeTypes().join("|").toUtf8(); QtWidgets_PackedString { const_cast<char*>(tf2a9c9.prepend("WHITESPACE").constData()+10), tf2a9c9.size()-10 }; });
 }
 
 void* QFileSystemModel_Mkdir(void* ptr, void* parent, char* name)
@@ -23636,9 +23636,9 @@ void* QFileSystemModel_MyComputer(void* ptr, int role)
 	return new QVariant(static_cast<QFileSystemModel*>(ptr)->myComputer(role));
 }
 
-char* QFileSystemModel_NameFilters(void* ptr)
+struct QtWidgets_PackedString QFileSystemModel_NameFilters(void* ptr)
 {
-	return const_cast<char*>(static_cast<QFileSystemModel*>(ptr)->nameFilters().join("|").toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray te17825 = static_cast<QFileSystemModel*>(ptr)->nameFilters().join("|").toUtf8(); QtWidgets_PackedString { const_cast<char*>(te17825.prepend("WHITESPACE").constData()+10), te17825.size()-10 }; });
 }
 
 void* QFileSystemModel_Parent(void* ptr, void* index)
@@ -23651,9 +23651,9 @@ void* QFileSystemModel_RootDirectory(void* ptr)
 	return new QDir(static_cast<QFileSystemModel*>(ptr)->rootDirectory());
 }
 
-char* QFileSystemModel_RootPath(void* ptr)
+struct QtWidgets_PackedString QFileSystemModel_RootPath(void* ptr)
 {
-	return const_cast<char*>(static_cast<QFileSystemModel*>(ptr)->rootPath().toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray tdcb5b3 = static_cast<QFileSystemModel*>(ptr)->rootPath().toUtf8(); QtWidgets_PackedString { const_cast<char*>(tdcb5b3.prepend("WHITESPACE").constData()+10), tdcb5b3.size()-10 }; });
 }
 
 void QFileSystemModel_ConnectRootPathChanged(void* ptr)
@@ -23726,9 +23726,9 @@ void QFileSystemModel_TimerEvent(void* ptr, void* event)
 	static_cast<QFileSystemModel*>(ptr)->timerEvent(static_cast<QTimerEvent*>(event));
 }
 
-char* QFileSystemModel_Type(void* ptr, void* index)
+struct QtWidgets_PackedString QFileSystemModel_Type(void* ptr, void* index)
 {
-	return const_cast<char*>(static_cast<QFileSystemModel*>(ptr)->type(*static_cast<QModelIndex*>(index)).toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray tf8baa8 = static_cast<QFileSystemModel*>(ptr)->type(*static_cast<QModelIndex*>(index)).toUtf8(); QtWidgets_PackedString { const_cast<char*>(tf8baa8.prepend("WHITESPACE").constData()+10), tf8baa8.size()-10 }; });
 }
 
 void QFileSystemModel_DestroyQFileSystemModel(void* ptr)
@@ -23966,10 +23966,10 @@ public:
 	QSize minimumSizeHint() const { return *static_cast<QSize*>(callbackQFocusFrame_MinimumSizeHint(const_cast<MyQFocusFrame*>(this))); };
 	void moveEvent(QMoveEvent * event) { callbackQFocusFrame_MoveEvent(this, event); };
 	void setEnabled(bool vbo) { callbackQFocusFrame_SetEnabled(this, vbo); };
-	void setStyleSheet(const QString & styleSheet) { callbackQFocusFrame_SetStyleSheet(this, const_cast<char*>(styleSheet.toUtf8().prepend("WHITESPACE").constData()+10)); };
+	void setStyleSheet(const QString & styleSheet) { QByteArray t728ae7 = styleSheet.toUtf8(); QtWidgets_PackedString styleSheetPacked = { const_cast<char*>(t728ae7.prepend("WHITESPACE").constData()+10), t728ae7.size()-10 };callbackQFocusFrame_SetStyleSheet(this, styleSheetPacked); };
 	void setVisible(bool visible) { callbackQFocusFrame_SetVisible(this, visible); };
 	void setWindowModified(bool vbo) { callbackQFocusFrame_SetWindowModified(this, vbo); };
-	void setWindowTitle(const QString & vqs) { callbackQFocusFrame_SetWindowTitle(this, const_cast<char*>(vqs.toUtf8().prepend("WHITESPACE").constData()+10)); };
+	void setWindowTitle(const QString & vqs) { QByteArray tda39a3 = vqs.toUtf8(); QtWidgets_PackedString vqsPacked = { const_cast<char*>(tda39a3.prepend("WHITESPACE").constData()+10), tda39a3.size()-10 };callbackQFocusFrame_SetWindowTitle(this, vqsPacked); };
 	void showEvent(QShowEvent * event) { callbackQFocusFrame_ShowEvent(this, event); };
 	QSize sizeHint() const { return *static_cast<QSize*>(callbackQFocusFrame_SizeHint(const_cast<MyQFocusFrame*>(this))); };
 	void changeEvent(QEvent * event) { callbackQFocusFrame_ChangeEvent(this, event); };
@@ -23989,7 +23989,7 @@ public:
 	void mouseMoveEvent(QMouseEvent * event) { callbackQFocusFrame_MouseMoveEvent(this, event); };
 	void mousePressEvent(QMouseEvent * event) { callbackQFocusFrame_MousePressEvent(this, event); };
 	void mouseReleaseEvent(QMouseEvent * event) { callbackQFocusFrame_MouseReleaseEvent(this, event); };
-	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQFocusFrame_NativeEvent(this, const_cast<char*>(eventType.toHex().prepend("WHITESPACE").constData()+10), message, *result) != 0; };
+	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQFocusFrame_NativeEvent(this, const_cast<QByteArray*>(&eventType), message, *result) != 0; };
 	void raise() { callbackQFocusFrame_Raise(this); };
 	void repaint() { callbackQFocusFrame_Repaint(this); };
 	void resizeEvent(QResizeEvent * event) { callbackQFocusFrame_ResizeEvent(this, event); };
@@ -24421,14 +24421,14 @@ void QFocusFrame_MouseReleaseEventDefault(void* ptr, void* event)
 	static_cast<QFocusFrame*>(ptr)->QFocusFrame::mouseReleaseEvent(static_cast<QMouseEvent*>(event));
 }
 
-char QFocusFrame_NativeEvent(void* ptr, char* eventType, void* message, long result)
+char QFocusFrame_NativeEvent(void* ptr, void* eventType, void* message, long result)
 {
-	return static_cast<QFocusFrame*>(ptr)->nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
+	return static_cast<QFocusFrame*>(ptr)->nativeEvent(*static_cast<QByteArray*>(eventType), message, &result);
 }
 
-char QFocusFrame_NativeEventDefault(void* ptr, char* eventType, void* message, long result)
+char QFocusFrame_NativeEventDefault(void* ptr, void* eventType, void* message, long result)
 {
-	return static_cast<QFocusFrame*>(ptr)->QFocusFrame::nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
+	return static_cast<QFocusFrame*>(ptr)->QFocusFrame::nativeEvent(*static_cast<QByteArray*>(eventType), message, &result);
 }
 
 void QFocusFrame_Raise(void* ptr)
@@ -24659,7 +24659,7 @@ public:
 	void Signal_CurrentFontChanged(const QFont & font) { callbackQFontComboBox_CurrentFontChanged(this, const_cast<QFont*>(&font)); };
 	QSize sizeHint() const { return *static_cast<QSize*>(callbackQFontComboBox_SizeHint(const_cast<MyQFontComboBox*>(this))); };
 	void setCurrentIndex(int index) { callbackQFontComboBox_SetCurrentIndex(this, index); };
-	void setCurrentText(const QString & text) { callbackQFontComboBox_SetCurrentText(this, const_cast<char*>(text.toUtf8().prepend("WHITESPACE").constData()+10)); };
+	void setCurrentText(const QString & text) { QByteArray t372ea0 = text.toUtf8(); QtWidgets_PackedString textPacked = { const_cast<char*>(t372ea0.prepend("WHITESPACE").constData()+10), t372ea0.size()-10 };callbackQFontComboBox_SetCurrentText(this, textPacked); };
 	void changeEvent(QEvent * e) { callbackQFontComboBox_ChangeEvent(this, e); };
 	void clear() { callbackQFontComboBox_Clear(this); };
 	void clearEditText() { callbackQFontComboBox_ClearEditText(this); };
@@ -24677,7 +24677,7 @@ public:
 	void mouseReleaseEvent(QMouseEvent * e) { callbackQFontComboBox_MouseReleaseEvent(this, e); };
 	void paintEvent(QPaintEvent * e) { callbackQFontComboBox_PaintEvent(this, e); };
 	void resizeEvent(QResizeEvent * e) { callbackQFontComboBox_ResizeEvent(this, e); };
-	void setEditText(const QString & text) { callbackQFontComboBox_SetEditText(this, const_cast<char*>(text.toUtf8().prepend("WHITESPACE").constData()+10)); };
+	void setEditText(const QString & text) { QByteArray t372ea0 = text.toUtf8(); QtWidgets_PackedString textPacked = { const_cast<char*>(t372ea0.prepend("WHITESPACE").constData()+10), t372ea0.size()-10 };callbackQFontComboBox_SetEditText(this, textPacked); };
 	void showEvent(QShowEvent * e) { callbackQFontComboBox_ShowEvent(this, e); };
 	void showPopup() { callbackQFontComboBox_ShowPopup(this); };
 	void wheelEvent(QWheelEvent * e) { callbackQFontComboBox_WheelEvent(this, e); };
@@ -24690,10 +24690,10 @@ public:
 	void leaveEvent(QEvent * event) { callbackQFontComboBox_LeaveEvent(this, event); };
 	void moveEvent(QMoveEvent * event) { callbackQFontComboBox_MoveEvent(this, event); };
 	void setEnabled(bool vbo) { callbackQFontComboBox_SetEnabled(this, vbo); };
-	void setStyleSheet(const QString & styleSheet) { callbackQFontComboBox_SetStyleSheet(this, const_cast<char*>(styleSheet.toUtf8().prepend("WHITESPACE").constData()+10)); };
+	void setStyleSheet(const QString & styleSheet) { QByteArray t728ae7 = styleSheet.toUtf8(); QtWidgets_PackedString styleSheetPacked = { const_cast<char*>(t728ae7.prepend("WHITESPACE").constData()+10), t728ae7.size()-10 };callbackQFontComboBox_SetStyleSheet(this, styleSheetPacked); };
 	void setVisible(bool visible) { callbackQFontComboBox_SetVisible(this, visible); };
 	void setWindowModified(bool vbo) { callbackQFontComboBox_SetWindowModified(this, vbo); };
-	void setWindowTitle(const QString & vqs) { callbackQFontComboBox_SetWindowTitle(this, const_cast<char*>(vqs.toUtf8().prepend("WHITESPACE").constData()+10)); };
+	void setWindowTitle(const QString & vqs) { QByteArray tda39a3 = vqs.toUtf8(); QtWidgets_PackedString vqsPacked = { const_cast<char*>(tda39a3.prepend("WHITESPACE").constData()+10), tda39a3.size()-10 };callbackQFontComboBox_SetWindowTitle(this, vqsPacked); };
 	bool close() { return callbackQFontComboBox_Close(this) != 0; };
 	void closeEvent(QCloseEvent * event) { callbackQFontComboBox_CloseEvent(this, event); };
 	bool focusNextPrevChild(bool next) { return callbackQFontComboBox_FocusNextPrevChild(this, next) != 0; };
@@ -24703,7 +24703,7 @@ public:
 	void lower() { callbackQFontComboBox_Lower(this); };
 	void mouseDoubleClickEvent(QMouseEvent * event) { callbackQFontComboBox_MouseDoubleClickEvent(this, event); };
 	void mouseMoveEvent(QMouseEvent * event) { callbackQFontComboBox_MouseMoveEvent(this, event); };
-	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQFontComboBox_NativeEvent(this, const_cast<char*>(eventType.toHex().prepend("WHITESPACE").constData()+10), message, *result) != 0; };
+	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQFontComboBox_NativeEvent(this, const_cast<QByteArray*>(&eventType), message, *result) != 0; };
 	void raise() { callbackQFontComboBox_Raise(this); };
 	void repaint() { callbackQFontComboBox_Repaint(this); };
 	void setDisabled(bool disable) { callbackQFontComboBox_SetDisabled(this, disable); };
@@ -25249,14 +25249,14 @@ void QFontComboBox_MouseMoveEventDefault(void* ptr, void* event)
 	static_cast<QFontComboBox*>(ptr)->QFontComboBox::mouseMoveEvent(static_cast<QMouseEvent*>(event));
 }
 
-char QFontComboBox_NativeEvent(void* ptr, char* eventType, void* message, long result)
+char QFontComboBox_NativeEvent(void* ptr, void* eventType, void* message, long result)
 {
-	return static_cast<QFontComboBox*>(ptr)->nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
+	return static_cast<QFontComboBox*>(ptr)->nativeEvent(*static_cast<QByteArray*>(eventType), message, &result);
 }
 
-char QFontComboBox_NativeEventDefault(void* ptr, char* eventType, void* message, long result)
+char QFontComboBox_NativeEventDefault(void* ptr, void* eventType, void* message, long result)
 {
-	return static_cast<QFontComboBox*>(ptr)->QFontComboBox::nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
+	return static_cast<QFontComboBox*>(ptr)->QFontComboBox::nativeEvent(*static_cast<QByteArray*>(eventType), message, &result);
 }
 
 void QFontComboBox_Raise(void* ptr)
@@ -25502,9 +25502,9 @@ public:
 	void moveEvent(QMoveEvent * event) { callbackQFontDialog_MoveEvent(this, event); };
 	void paintEvent(QPaintEvent * event) { callbackQFontDialog_PaintEvent(this, event); };
 	void setEnabled(bool vbo) { callbackQFontDialog_SetEnabled(this, vbo); };
-	void setStyleSheet(const QString & styleSheet) { callbackQFontDialog_SetStyleSheet(this, const_cast<char*>(styleSheet.toUtf8().prepend("WHITESPACE").constData()+10)); };
+	void setStyleSheet(const QString & styleSheet) { QByteArray t728ae7 = styleSheet.toUtf8(); QtWidgets_PackedString styleSheetPacked = { const_cast<char*>(t728ae7.prepend("WHITESPACE").constData()+10), t728ae7.size()-10 };callbackQFontDialog_SetStyleSheet(this, styleSheetPacked); };
 	void setWindowModified(bool vbo) { callbackQFontDialog_SetWindowModified(this, vbo); };
-	void setWindowTitle(const QString & vqs) { callbackQFontDialog_SetWindowTitle(this, const_cast<char*>(vqs.toUtf8().prepend("WHITESPACE").constData()+10)); };
+	void setWindowTitle(const QString & vqs) { QByteArray tda39a3 = vqs.toUtf8(); QtWidgets_PackedString vqsPacked = { const_cast<char*>(tda39a3.prepend("WHITESPACE").constData()+10), tda39a3.size()-10 };callbackQFontDialog_SetWindowTitle(this, vqsPacked); };
 	bool close() { return callbackQFontDialog_Close(this) != 0; };
 	bool focusNextPrevChild(bool next) { return callbackQFontDialog_FocusNextPrevChild(this, next) != 0; };
 	bool hasHeightForWidth() const { return callbackQFontDialog_HasHeightForWidth(const_cast<MyQFontDialog*>(this)) != 0; };
@@ -25518,7 +25518,7 @@ public:
 	void mouseMoveEvent(QMouseEvent * event) { callbackQFontDialog_MouseMoveEvent(this, event); };
 	void mousePressEvent(QMouseEvent * event) { callbackQFontDialog_MousePressEvent(this, event); };
 	void mouseReleaseEvent(QMouseEvent * event) { callbackQFontDialog_MouseReleaseEvent(this, event); };
-	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQFontDialog_NativeEvent(this, const_cast<char*>(eventType.toHex().prepend("WHITESPACE").constData()+10), message, *result) != 0; };
+	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQFontDialog_NativeEvent(this, const_cast<QByteArray*>(&eventType), message, *result) != 0; };
 	void raise() { callbackQFontDialog_Raise(this); };
 	void repaint() { callbackQFontDialog_Repaint(this); };
 	void setDisabled(bool disable) { callbackQFontDialog_SetDisabled(this, disable); };
@@ -26056,14 +26056,14 @@ void QFontDialog_MouseReleaseEventDefault(void* ptr, void* event)
 	static_cast<QFontDialog*>(ptr)->QFontDialog::mouseReleaseEvent(static_cast<QMouseEvent*>(event));
 }
 
-char QFontDialog_NativeEvent(void* ptr, char* eventType, void* message, long result)
+char QFontDialog_NativeEvent(void* ptr, void* eventType, void* message, long result)
 {
-	return static_cast<QFontDialog*>(ptr)->nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
+	return static_cast<QFontDialog*>(ptr)->nativeEvent(*static_cast<QByteArray*>(eventType), message, &result);
 }
 
-char QFontDialog_NativeEventDefault(void* ptr, char* eventType, void* message, long result)
+char QFontDialog_NativeEventDefault(void* ptr, void* eventType, void* message, long result)
 {
-	return static_cast<QFontDialog*>(ptr)->QFontDialog::nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
+	return static_cast<QFontDialog*>(ptr)->QFontDialog::nativeEvent(*static_cast<QByteArray*>(eventType), message, &result);
 }
 
 void QFontDialog_Raise(void* ptr)
@@ -26785,10 +26785,10 @@ public:
 	QSize minimumSizeHint() const { return *static_cast<QSize*>(callbackQFrame_MinimumSizeHint(const_cast<MyQFrame*>(this))); };
 	void moveEvent(QMoveEvent * event) { callbackQFrame_MoveEvent(this, event); };
 	void setEnabled(bool vbo) { callbackQFrame_SetEnabled(this, vbo); };
-	void setStyleSheet(const QString & styleSheet) { callbackQFrame_SetStyleSheet(this, const_cast<char*>(styleSheet.toUtf8().prepend("WHITESPACE").constData()+10)); };
+	void setStyleSheet(const QString & styleSheet) { QByteArray t728ae7 = styleSheet.toUtf8(); QtWidgets_PackedString styleSheetPacked = { const_cast<char*>(t728ae7.prepend("WHITESPACE").constData()+10), t728ae7.size()-10 };callbackQFrame_SetStyleSheet(this, styleSheetPacked); };
 	void setVisible(bool visible) { callbackQFrame_SetVisible(this, visible); };
 	void setWindowModified(bool vbo) { callbackQFrame_SetWindowModified(this, vbo); };
-	void setWindowTitle(const QString & vqs) { callbackQFrame_SetWindowTitle(this, const_cast<char*>(vqs.toUtf8().prepend("WHITESPACE").constData()+10)); };
+	void setWindowTitle(const QString & vqs) { QByteArray tda39a3 = vqs.toUtf8(); QtWidgets_PackedString vqsPacked = { const_cast<char*>(tda39a3.prepend("WHITESPACE").constData()+10), tda39a3.size()-10 };callbackQFrame_SetWindowTitle(this, vqsPacked); };
 	void showEvent(QShowEvent * event) { callbackQFrame_ShowEvent(this, event); };
 	bool close() { return callbackQFrame_Close(this) != 0; };
 	void closeEvent(QCloseEvent * event) { callbackQFrame_CloseEvent(this, event); };
@@ -26806,7 +26806,7 @@ public:
 	void mouseMoveEvent(QMouseEvent * event) { callbackQFrame_MouseMoveEvent(this, event); };
 	void mousePressEvent(QMouseEvent * event) { callbackQFrame_MousePressEvent(this, event); };
 	void mouseReleaseEvent(QMouseEvent * event) { callbackQFrame_MouseReleaseEvent(this, event); };
-	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQFrame_NativeEvent(this, const_cast<char*>(eventType.toHex().prepend("WHITESPACE").constData()+10), message, *result) != 0; };
+	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQFrame_NativeEvent(this, const_cast<QByteArray*>(&eventType), message, *result) != 0; };
 	void raise() { callbackQFrame_Raise(this); };
 	void repaint() { callbackQFrame_Repaint(this); };
 	void resizeEvent(QResizeEvent * event) { callbackQFrame_ResizeEvent(this, event); };
@@ -27289,14 +27289,14 @@ void QFrame_MouseReleaseEventDefault(void* ptr, void* event)
 	static_cast<QFrame*>(ptr)->QFrame::mouseReleaseEvent(static_cast<QMouseEvent*>(event));
 }
 
-char QFrame_NativeEvent(void* ptr, char* eventType, void* message, long result)
+char QFrame_NativeEvent(void* ptr, void* eventType, void* message, long result)
 {
-	return static_cast<QFrame*>(ptr)->nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
+	return static_cast<QFrame*>(ptr)->nativeEvent(*static_cast<QByteArray*>(eventType), message, &result);
 }
 
-char QFrame_NativeEventDefault(void* ptr, char* eventType, void* message, long result)
+char QFrame_NativeEventDefault(void* ptr, void* eventType, void* message, long result)
 {
-	return static_cast<QFrame*>(ptr)->QFrame::nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
+	return static_cast<QFrame*>(ptr)->QFrame::nativeEvent(*static_cast<QByteArray*>(eventType), message, &result);
 }
 
 void QFrame_Raise(void* ptr)
@@ -30825,9 +30825,9 @@ void* QGraphicsItem_ToGraphicsObject2(void* ptr)
 	return const_cast<QGraphicsObject*>(static_cast<QGraphicsItem*>(ptr)->toGraphicsObject());
 }
 
-char* QGraphicsItem_ToolTip(void* ptr)
+struct QtWidgets_PackedString QGraphicsItem_ToolTip(void* ptr)
 {
-	return const_cast<char*>(static_cast<QGraphicsItem*>(ptr)->toolTip().toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray t7daf65 = static_cast<QGraphicsItem*>(ptr)->toolTip().toUtf8(); QtWidgets_PackedString { const_cast<char*>(t7daf65.prepend("WHITESPACE").constData()+10), t7daf65.size()-10 }; });
 }
 
 void* QGraphicsItem_TopLevelItem(void* ptr)
@@ -37183,9 +37183,9 @@ void* QGraphicsSimpleTextItem_ShapeDefault(void* ptr)
 	return new QPainterPath(static_cast<QGraphicsSimpleTextItem*>(ptr)->QGraphicsSimpleTextItem::shape());
 }
 
-char* QGraphicsSimpleTextItem_Text(void* ptr)
+struct QtWidgets_PackedString QGraphicsSimpleTextItem_Text(void* ptr)
 {
-	return const_cast<char*>(static_cast<QGraphicsSimpleTextItem*>(ptr)->text().toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray tb2ceed = static_cast<QGraphicsSimpleTextItem*>(ptr)->text().toUtf8(); QtWidgets_PackedString { const_cast<char*>(tb2ceed.prepend("WHITESPACE").constData()+10), tb2ceed.size()-10 }; });
 }
 
 int QGraphicsSimpleTextItem_Type(void* ptr)
@@ -37475,8 +37475,8 @@ public:
 	bool isObscuredBy(const QGraphicsItem * item) const { return callbackQGraphicsTextItem_IsObscuredBy(const_cast<MyQGraphicsTextItem*>(this), const_cast<QGraphicsItem*>(item)) != 0; };
 	void keyPressEvent(QKeyEvent * event) { callbackQGraphicsTextItem_KeyPressEvent(this, event); };
 	void keyReleaseEvent(QKeyEvent * event) { callbackQGraphicsTextItem_KeyReleaseEvent(this, event); };
-	void Signal_LinkActivated(const QString & link) { callbackQGraphicsTextItem_LinkActivated(this, const_cast<char*>(link.toUtf8().prepend("WHITESPACE").constData()+10)); };
-	void Signal_LinkHovered(const QString & link) { callbackQGraphicsTextItem_LinkHovered(this, const_cast<char*>(link.toUtf8().prepend("WHITESPACE").constData()+10)); };
+	void Signal_LinkActivated(const QString & link) { QByteArray t4f0aa5 = link.toUtf8(); QtWidgets_PackedString linkPacked = { const_cast<char*>(t4f0aa5.prepend("WHITESPACE").constData()+10), t4f0aa5.size()-10 };callbackQGraphicsTextItem_LinkActivated(this, linkPacked); };
+	void Signal_LinkHovered(const QString & link) { QByteArray t4f0aa5 = link.toUtf8(); QtWidgets_PackedString linkPacked = { const_cast<char*>(t4f0aa5.prepend("WHITESPACE").constData()+10), t4f0aa5.size()-10 };callbackQGraphicsTextItem_LinkHovered(this, linkPacked); };
 	void mouseDoubleClickEvent(QGraphicsSceneMouseEvent * event) { callbackQGraphicsTextItem_MouseDoubleClickEvent(this, event); };
 	void mouseMoveEvent(QGraphicsSceneMouseEvent * event) { callbackQGraphicsTextItem_MouseMoveEvent(this, event); };
 	void mousePressEvent(QGraphicsSceneMouseEvent * event) { callbackQGraphicsTextItem_MousePressEvent(this, event); };
@@ -37888,14 +37888,14 @@ double QGraphicsTextItem_TextWidth(void* ptr)
 	return static_cast<QGraphicsTextItem*>(ptr)->textWidth();
 }
 
-char* QGraphicsTextItem_ToHtml(void* ptr)
+struct QtWidgets_PackedString QGraphicsTextItem_ToHtml(void* ptr)
 {
-	return const_cast<char*>(static_cast<QGraphicsTextItem*>(ptr)->toHtml().toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray t880d4e = static_cast<QGraphicsTextItem*>(ptr)->toHtml().toUtf8(); QtWidgets_PackedString { const_cast<char*>(t880d4e.prepend("WHITESPACE").constData()+10), t880d4e.size()-10 }; });
 }
 
-char* QGraphicsTextItem_ToPlainText(void* ptr)
+struct QtWidgets_PackedString QGraphicsTextItem_ToPlainText(void* ptr)
 {
-	return const_cast<char*>(static_cast<QGraphicsTextItem*>(ptr)->toPlainText().toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray t3e9441 = static_cast<QGraphicsTextItem*>(ptr)->toPlainText().toUtf8(); QtWidgets_PackedString { const_cast<char*>(t3e9441.prepend("WHITESPACE").constData()+10), t3e9441.size()-10 }; });
 }
 
 int QGraphicsTextItem_Type(void* ptr)
@@ -38233,17 +38233,17 @@ public:
 	void leaveEvent(QEvent * event) { callbackQGraphicsView_LeaveEvent(this, event); };
 	void moveEvent(QMoveEvent * event) { callbackQGraphicsView_MoveEvent(this, event); };
 	void setEnabled(bool vbo) { callbackQGraphicsView_SetEnabled(this, vbo); };
-	void setStyleSheet(const QString & styleSheet) { callbackQGraphicsView_SetStyleSheet(this, const_cast<char*>(styleSheet.toUtf8().prepend("WHITESPACE").constData()+10)); };
+	void setStyleSheet(const QString & styleSheet) { QByteArray t728ae7 = styleSheet.toUtf8(); QtWidgets_PackedString styleSheetPacked = { const_cast<char*>(t728ae7.prepend("WHITESPACE").constData()+10), t728ae7.size()-10 };callbackQGraphicsView_SetStyleSheet(this, styleSheetPacked); };
 	void setVisible(bool visible) { callbackQGraphicsView_SetVisible(this, visible); };
 	void setWindowModified(bool vbo) { callbackQGraphicsView_SetWindowModified(this, vbo); };
-	void setWindowTitle(const QString & vqs) { callbackQGraphicsView_SetWindowTitle(this, const_cast<char*>(vqs.toUtf8().prepend("WHITESPACE").constData()+10)); };
+	void setWindowTitle(const QString & vqs) { QByteArray tda39a3 = vqs.toUtf8(); QtWidgets_PackedString vqsPacked = { const_cast<char*>(tda39a3.prepend("WHITESPACE").constData()+10), tda39a3.size()-10 };callbackQGraphicsView_SetWindowTitle(this, vqsPacked); };
 	bool close() { return callbackQGraphicsView_Close(this) != 0; };
 	void closeEvent(QCloseEvent * event) { callbackQGraphicsView_CloseEvent(this, event); };
 	bool hasHeightForWidth() const { return callbackQGraphicsView_HasHeightForWidth(const_cast<MyQGraphicsView*>(this)) != 0; };
 	int heightForWidth(int w) const { return callbackQGraphicsView_HeightForWidth(const_cast<MyQGraphicsView*>(this), w); };
 	void hide() { callbackQGraphicsView_Hide(this); };
 	void lower() { callbackQGraphicsView_Lower(this); };
-	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQGraphicsView_NativeEvent(this, const_cast<char*>(eventType.toHex().prepend("WHITESPACE").constData()+10), message, *result) != 0; };
+	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQGraphicsView_NativeEvent(this, const_cast<QByteArray*>(&eventType), message, *result) != 0; };
 	void raise() { callbackQGraphicsView_Raise(this); };
 	void repaint() { callbackQGraphicsView_Repaint(this); };
 	void setDisabled(bool disable) { callbackQGraphicsView_SetDisabled(this, disable); };
@@ -39099,14 +39099,14 @@ void QGraphicsView_LowerDefault(void* ptr)
 	static_cast<QGraphicsView*>(ptr)->QGraphicsView::lower();
 }
 
-char QGraphicsView_NativeEvent(void* ptr, char* eventType, void* message, long result)
+char QGraphicsView_NativeEvent(void* ptr, void* eventType, void* message, long result)
 {
-	return static_cast<QGraphicsView*>(ptr)->nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
+	return static_cast<QGraphicsView*>(ptr)->nativeEvent(*static_cast<QByteArray*>(eventType), message, &result);
 }
 
-char QGraphicsView_NativeEventDefault(void* ptr, char* eventType, void* message, long result)
+char QGraphicsView_NativeEventDefault(void* ptr, void* eventType, void* message, long result)
 {
-	return static_cast<QGraphicsView*>(ptr)->QGraphicsView::nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
+	return static_cast<QGraphicsView*>(ptr)->QGraphicsView::nativeEvent(*static_cast<QByteArray*>(eventType), message, &result);
 }
 
 void QGraphicsView_Raise(void* ptr)
@@ -39483,9 +39483,9 @@ long long QGraphicsWidget_WindowFlags(void* ptr)
 	return static_cast<QGraphicsWidget*>(ptr)->windowFlags();
 }
 
-char* QGraphicsWidget_WindowTitle(void* ptr)
+struct QtWidgets_PackedString QGraphicsWidget_WindowTitle(void* ptr)
 {
-	return const_cast<char*>(static_cast<QGraphicsWidget*>(ptr)->windowTitle().toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray t8cb41d = static_cast<QGraphicsWidget*>(ptr)->windowTitle().toUtf8(); QtWidgets_PackedString { const_cast<char*>(t8cb41d.prepend("WHITESPACE").constData()+10), t8cb41d.size()-10 }; });
 }
 
 void* QGraphicsWidget_NewQGraphicsWidget(void* parent, long long wFlags)
@@ -40787,10 +40787,10 @@ public:
 	void leaveEvent(QEvent * event) { callbackQGroupBox_LeaveEvent(this, event); };
 	void moveEvent(QMoveEvent * event) { callbackQGroupBox_MoveEvent(this, event); };
 	void setEnabled(bool vbo) { callbackQGroupBox_SetEnabled(this, vbo); };
-	void setStyleSheet(const QString & styleSheet) { callbackQGroupBox_SetStyleSheet(this, const_cast<char*>(styleSheet.toUtf8().prepend("WHITESPACE").constData()+10)); };
+	void setStyleSheet(const QString & styleSheet) { QByteArray t728ae7 = styleSheet.toUtf8(); QtWidgets_PackedString styleSheetPacked = { const_cast<char*>(t728ae7.prepend("WHITESPACE").constData()+10), t728ae7.size()-10 };callbackQGroupBox_SetStyleSheet(this, styleSheetPacked); };
 	void setVisible(bool visible) { callbackQGroupBox_SetVisible(this, visible); };
 	void setWindowModified(bool vbo) { callbackQGroupBox_SetWindowModified(this, vbo); };
-	void setWindowTitle(const QString & vqs) { callbackQGroupBox_SetWindowTitle(this, const_cast<char*>(vqs.toUtf8().prepend("WHITESPACE").constData()+10)); };
+	void setWindowTitle(const QString & vqs) { QByteArray tda39a3 = vqs.toUtf8(); QtWidgets_PackedString vqsPacked = { const_cast<char*>(tda39a3.prepend("WHITESPACE").constData()+10), tda39a3.size()-10 };callbackQGroupBox_SetWindowTitle(this, vqsPacked); };
 	void showEvent(QShowEvent * event) { callbackQGroupBox_ShowEvent(this, event); };
 	QSize sizeHint() const { return *static_cast<QSize*>(callbackQGroupBox_SizeHint(const_cast<MyQGroupBox*>(this))); };
 	bool close() { return callbackQGroupBox_Close(this) != 0; };
@@ -40806,7 +40806,7 @@ public:
 	void keyReleaseEvent(QKeyEvent * event) { callbackQGroupBox_KeyReleaseEvent(this, event); };
 	void lower() { callbackQGroupBox_Lower(this); };
 	void mouseDoubleClickEvent(QMouseEvent * event) { callbackQGroupBox_MouseDoubleClickEvent(this, event); };
-	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQGroupBox_NativeEvent(this, const_cast<char*>(eventType.toHex().prepend("WHITESPACE").constData()+10), message, *result) != 0; };
+	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQGroupBox_NativeEvent(this, const_cast<QByteArray*>(&eventType), message, *result) != 0; };
 	void raise() { callbackQGroupBox_Raise(this); };
 	void repaint() { callbackQGroupBox_Repaint(this); };
 	void setDisabled(bool disable) { callbackQGroupBox_SetDisabled(this, disable); };
@@ -40875,9 +40875,9 @@ void QGroupBox_SetTitle(void* ptr, char* title)
 	static_cast<QGroupBox*>(ptr)->setTitle(QString(title));
 }
 
-char* QGroupBox_Title(void* ptr)
+struct QtWidgets_PackedString QGroupBox_Title(void* ptr)
 {
-	return const_cast<char*>(static_cast<QGroupBox*>(ptr)->title().toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray t937a1b = static_cast<QGroupBox*>(ptr)->title().toUtf8(); QtWidgets_PackedString { const_cast<char*>(t937a1b.prepend("WHITESPACE").constData()+10), t937a1b.size()-10 }; });
 }
 
 void* QGroupBox_NewQGroupBox(void* parent)
@@ -41322,14 +41322,14 @@ void QGroupBox_MouseDoubleClickEventDefault(void* ptr, void* event)
 	static_cast<QGroupBox*>(ptr)->QGroupBox::mouseDoubleClickEvent(static_cast<QMouseEvent*>(event));
 }
 
-char QGroupBox_NativeEvent(void* ptr, char* eventType, void* message, long result)
+char QGroupBox_NativeEvent(void* ptr, void* eventType, void* message, long result)
 {
-	return static_cast<QGroupBox*>(ptr)->nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
+	return static_cast<QGroupBox*>(ptr)->nativeEvent(*static_cast<QByteArray*>(eventType), message, &result);
 }
 
-char QGroupBox_NativeEventDefault(void* ptr, char* eventType, void* message, long result)
+char QGroupBox_NativeEventDefault(void* ptr, void* eventType, void* message, long result)
 {
-	return static_cast<QGroupBox*>(ptr)->QGroupBox::nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
+	return static_cast<QGroupBox*>(ptr)->QGroupBox::nativeEvent(*static_cast<QByteArray*>(eventType), message, &result);
 }
 
 void QGroupBox_Raise(void* ptr)
@@ -41893,7 +41893,7 @@ public:
 	QVariant inputMethodQuery(Qt::InputMethodQuery query) const { return *static_cast<QVariant*>(callbackQHeaderView_InputMethodQuery(const_cast<MyQHeaderView*>(this), query)); };
 	bool isIndexHidden(const QModelIndex & index) const { return callbackQHeaderView_IsIndexHidden(const_cast<MyQHeaderView*>(this), const_cast<QModelIndex*>(&index)) != 0; };
 	void keyPressEvent(QKeyEvent * event) { callbackQHeaderView_KeyPressEvent(this, event); };
-	void keyboardSearch(const QString & search) { callbackQHeaderView_KeyboardSearch(this, const_cast<char*>(search.toUtf8().prepend("WHITESPACE").constData()+10)); };
+	void keyboardSearch(const QString & search) { QByteArray t3559d7 = search.toUtf8(); QtWidgets_PackedString searchPacked = { const_cast<char*>(t3559d7.prepend("WHITESPACE").constData()+10), t3559d7.size()-10 };callbackQHeaderView_KeyboardSearch(this, searchPacked); };
 	QModelIndex moveCursor(QAbstractItemView::CursorAction cursorAction, Qt::KeyboardModifiers modifiers) { return *static_cast<QModelIndex*>(callbackQHeaderView_MoveCursor(this, cursorAction, modifiers)); };
 	void resizeEvent(QResizeEvent * event) { callbackQHeaderView_ResizeEvent(this, event); };
 	void rowsAboutToBeRemoved(const QModelIndex & parent, int start, int end) { callbackQHeaderView_RowsAboutToBeRemoved(this, const_cast<QModelIndex*>(&parent), start, end); };
@@ -41928,9 +41928,9 @@ public:
 	void leaveEvent(QEvent * event) { callbackQHeaderView_LeaveEvent(this, event); };
 	void moveEvent(QMoveEvent * event) { callbackQHeaderView_MoveEvent(this, event); };
 	void setEnabled(bool vbo) { callbackQHeaderView_SetEnabled(this, vbo); };
-	void setStyleSheet(const QString & styleSheet) { callbackQHeaderView_SetStyleSheet(this, const_cast<char*>(styleSheet.toUtf8().prepend("WHITESPACE").constData()+10)); };
+	void setStyleSheet(const QString & styleSheet) { QByteArray t728ae7 = styleSheet.toUtf8(); QtWidgets_PackedString styleSheetPacked = { const_cast<char*>(t728ae7.prepend("WHITESPACE").constData()+10), t728ae7.size()-10 };callbackQHeaderView_SetStyleSheet(this, styleSheetPacked); };
 	void setWindowModified(bool vbo) { callbackQHeaderView_SetWindowModified(this, vbo); };
-	void setWindowTitle(const QString & vqs) { callbackQHeaderView_SetWindowTitle(this, const_cast<char*>(vqs.toUtf8().prepend("WHITESPACE").constData()+10)); };
+	void setWindowTitle(const QString & vqs) { QByteArray tda39a3 = vqs.toUtf8(); QtWidgets_PackedString vqsPacked = { const_cast<char*>(tda39a3.prepend("WHITESPACE").constData()+10), tda39a3.size()-10 };callbackQHeaderView_SetWindowTitle(this, vqsPacked); };
 	void showEvent(QShowEvent * event) { callbackQHeaderView_ShowEvent(this, event); };
 	bool close() { return callbackQHeaderView_Close(this) != 0; };
 	void closeEvent(QCloseEvent * event) { callbackQHeaderView_CloseEvent(this, event); };
@@ -41939,7 +41939,7 @@ public:
 	void hide() { callbackQHeaderView_Hide(this); };
 	void keyReleaseEvent(QKeyEvent * event) { callbackQHeaderView_KeyReleaseEvent(this, event); };
 	void lower() { callbackQHeaderView_Lower(this); };
-	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQHeaderView_NativeEvent(this, const_cast<char*>(eventType.toHex().prepend("WHITESPACE").constData()+10), message, *result) != 0; };
+	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQHeaderView_NativeEvent(this, const_cast<QByteArray*>(&eventType), message, *result) != 0; };
 	void raise() { callbackQHeaderView_Raise(this); };
 	void repaint() { callbackQHeaderView_Repaint(this); };
 	void setDisabled(bool disable) { callbackQHeaderView_SetDisabled(this, disable); };
@@ -42256,14 +42256,14 @@ void QHeaderView_ResizeSections2(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QHeaderView*>(ptr), "resizeSections");
 }
 
-char QHeaderView_RestoreState(void* ptr, char* state)
+char QHeaderView_RestoreState(void* ptr, void* state)
 {
-	return static_cast<QHeaderView*>(ptr)->restoreState(QByteArray::fromHex(QString(state).toUtf8()));
+	return static_cast<QHeaderView*>(ptr)->restoreState(*static_cast<QByteArray*>(state));
 }
 
-char* QHeaderView_SaveState(void* ptr)
+void* QHeaderView_SaveState(void* ptr)
 {
-	return const_cast<char*>(static_cast<QHeaderView*>(ptr)->saveState().toHex().prepend("WHITESPACE").constData()+10);
+	return new QByteArray(static_cast<QHeaderView*>(ptr)->saveState());
 }
 
 void QHeaderView_ConnectSectionClicked(void* ptr)
@@ -43258,14 +43258,14 @@ void QHeaderView_LowerDefault(void* ptr)
 	static_cast<QHeaderView*>(ptr)->QHeaderView::lower();
 }
 
-char QHeaderView_NativeEvent(void* ptr, char* eventType, void* message, long result)
+char QHeaderView_NativeEvent(void* ptr, void* eventType, void* message, long result)
 {
-	return static_cast<QHeaderView*>(ptr)->nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
+	return static_cast<QHeaderView*>(ptr)->nativeEvent(*static_cast<QByteArray*>(eventType), message, &result);
 }
 
-char QHeaderView_NativeEventDefault(void* ptr, char* eventType, void* message, long result)
+char QHeaderView_NativeEventDefault(void* ptr, void* eventType, void* message, long result)
 {
-	return static_cast<QHeaderView*>(ptr)->QHeaderView::nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
+	return static_cast<QHeaderView*>(ptr)->QHeaderView::nativeEvent(*static_cast<QByteArray*>(eventType), message, &result);
 }
 
 void QHeaderView_Raise(void* ptr)
@@ -43470,8 +43470,8 @@ public:
 	QSize minimumSizeHint() const { return *static_cast<QSize*>(callbackQInputDialog_MinimumSizeHint(const_cast<MyQInputDialog*>(this))); };
 	void setVisible(bool visible) { callbackQInputDialog_SetVisible(this, visible); };
 	QSize sizeHint() const { return *static_cast<QSize*>(callbackQInputDialog_SizeHint(const_cast<MyQInputDialog*>(this))); };
-	void Signal_TextValueChanged(const QString & text) { callbackQInputDialog_TextValueChanged(this, const_cast<char*>(text.toUtf8().prepend("WHITESPACE").constData()+10)); };
-	void Signal_TextValueSelected(const QString & text) { callbackQInputDialog_TextValueSelected(this, const_cast<char*>(text.toUtf8().prepend("WHITESPACE").constData()+10)); };
+	void Signal_TextValueChanged(const QString & text) { QByteArray t372ea0 = text.toUtf8(); QtWidgets_PackedString textPacked = { const_cast<char*>(t372ea0.prepend("WHITESPACE").constData()+10), t372ea0.size()-10 };callbackQInputDialog_TextValueChanged(this, textPacked); };
+	void Signal_TextValueSelected(const QString & text) { QByteArray t372ea0 = text.toUtf8(); QtWidgets_PackedString textPacked = { const_cast<char*>(t372ea0.prepend("WHITESPACE").constData()+10), t372ea0.size()-10 };callbackQInputDialog_TextValueSelected(this, textPacked); };
 	void accept() { callbackQInputDialog_Accept(this); };
 	void closeEvent(QCloseEvent * e) { callbackQInputDialog_CloseEvent(this, e); };
 	void contextMenuEvent(QContextMenuEvent * e) { callbackQInputDialog_ContextMenuEvent(this, e); };
@@ -43493,9 +43493,9 @@ public:
 	void moveEvent(QMoveEvent * event) { callbackQInputDialog_MoveEvent(this, event); };
 	void paintEvent(QPaintEvent * event) { callbackQInputDialog_PaintEvent(this, event); };
 	void setEnabled(bool vbo) { callbackQInputDialog_SetEnabled(this, vbo); };
-	void setStyleSheet(const QString & styleSheet) { callbackQInputDialog_SetStyleSheet(this, const_cast<char*>(styleSheet.toUtf8().prepend("WHITESPACE").constData()+10)); };
+	void setStyleSheet(const QString & styleSheet) { QByteArray t728ae7 = styleSheet.toUtf8(); QtWidgets_PackedString styleSheetPacked = { const_cast<char*>(t728ae7.prepend("WHITESPACE").constData()+10), t728ae7.size()-10 };callbackQInputDialog_SetStyleSheet(this, styleSheetPacked); };
 	void setWindowModified(bool vbo) { callbackQInputDialog_SetWindowModified(this, vbo); };
-	void setWindowTitle(const QString & vqs) { callbackQInputDialog_SetWindowTitle(this, const_cast<char*>(vqs.toUtf8().prepend("WHITESPACE").constData()+10)); };
+	void setWindowTitle(const QString & vqs) { QByteArray tda39a3 = vqs.toUtf8(); QtWidgets_PackedString vqsPacked = { const_cast<char*>(tda39a3.prepend("WHITESPACE").constData()+10), tda39a3.size()-10 };callbackQInputDialog_SetWindowTitle(this, vqsPacked); };
 	void changeEvent(QEvent * event) { callbackQInputDialog_ChangeEvent(this, event); };
 	bool close() { return callbackQInputDialog_Close(this) != 0; };
 	bool focusNextPrevChild(bool next) { return callbackQInputDialog_FocusNextPrevChild(this, next) != 0; };
@@ -43510,7 +43510,7 @@ public:
 	void mouseMoveEvent(QMouseEvent * event) { callbackQInputDialog_MouseMoveEvent(this, event); };
 	void mousePressEvent(QMouseEvent * event) { callbackQInputDialog_MousePressEvent(this, event); };
 	void mouseReleaseEvent(QMouseEvent * event) { callbackQInputDialog_MouseReleaseEvent(this, event); };
-	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQInputDialog_NativeEvent(this, const_cast<char*>(eventType.toHex().prepend("WHITESPACE").constData()+10), message, *result) != 0; };
+	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQInputDialog_NativeEvent(this, const_cast<QByteArray*>(&eventType), message, *result) != 0; };
 	void raise() { callbackQInputDialog_Raise(this); };
 	void repaint() { callbackQInputDialog_Repaint(this); };
 	void setDisabled(bool disable) { callbackQInputDialog_SetDisabled(this, disable); };
@@ -43534,14 +43534,14 @@ public:
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQInputDialog_MetaObject(const_cast<MyQInputDialog*>(this))); };
 };
 
-char* QInputDialog_CancelButtonText(void* ptr)
+struct QtWidgets_PackedString QInputDialog_CancelButtonText(void* ptr)
 {
-	return const_cast<char*>(static_cast<QInputDialog*>(ptr)->cancelButtonText().toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray t24ff21 = static_cast<QInputDialog*>(ptr)->cancelButtonText().toUtf8(); QtWidgets_PackedString { const_cast<char*>(t24ff21.prepend("WHITESPACE").constData()+10), t24ff21.size()-10 }; });
 }
 
-char* QInputDialog_ComboBoxItems(void* ptr)
+struct QtWidgets_PackedString QInputDialog_ComboBoxItems(void* ptr)
 {
-	return const_cast<char*>(static_cast<QInputDialog*>(ptr)->comboBoxItems().join("|").toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray t976d54 = static_cast<QInputDialog*>(ptr)->comboBoxItems().join("|").toUtf8(); QtWidgets_PackedString { const_cast<char*>(t976d54.prepend("WHITESPACE").constData()+10), t976d54.size()-10 }; });
 }
 
 int QInputDialog_DoubleDecimals(void* ptr)
@@ -43594,14 +43594,14 @@ char QInputDialog_IsComboBoxEditable(void* ptr)
 	return static_cast<QInputDialog*>(ptr)->isComboBoxEditable();
 }
 
-char* QInputDialog_LabelText(void* ptr)
+struct QtWidgets_PackedString QInputDialog_LabelText(void* ptr)
 {
-	return const_cast<char*>(static_cast<QInputDialog*>(ptr)->labelText().toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray tf75eaa = static_cast<QInputDialog*>(ptr)->labelText().toUtf8(); QtWidgets_PackedString { const_cast<char*>(tf75eaa.prepend("WHITESPACE").constData()+10), tf75eaa.size()-10 }; });
 }
 
-char* QInputDialog_OkButtonText(void* ptr)
+struct QtWidgets_PackedString QInputDialog_OkButtonText(void* ptr)
 {
-	return const_cast<char*>(static_cast<QInputDialog*>(ptr)->okButtonText().toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray t1d4e9a = static_cast<QInputDialog*>(ptr)->okButtonText().toUtf8(); QtWidgets_PackedString { const_cast<char*>(t1d4e9a.prepend("WHITESPACE").constData()+10), t1d4e9a.size()-10 }; });
 }
 
 long long QInputDialog_Options(void* ptr)
@@ -43699,9 +43699,9 @@ long long QInputDialog_TextEchoMode(void* ptr)
 	return static_cast<QInputDialog*>(ptr)->textEchoMode();
 }
 
-char* QInputDialog_TextValue(void* ptr)
+struct QtWidgets_PackedString QInputDialog_TextValue(void* ptr)
 {
-	return const_cast<char*>(static_cast<QInputDialog*>(ptr)->textValue().toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray t1ee8b9 = static_cast<QInputDialog*>(ptr)->textValue().toUtf8(); QtWidgets_PackedString { const_cast<char*>(t1ee8b9.prepend("WHITESPACE").constData()+10), t1ee8b9.size()-10 }; });
 }
 
 void* QInputDialog_NewQInputDialog(void* parent, long long flags)
@@ -43759,19 +43759,19 @@ int QInputDialog_QInputDialog_GetInt(void* parent, char* title, char* label, int
 	return QInputDialog::getInt(static_cast<QWidget*>(parent), QString(title), QString(label), value, min, max, step, NULL, static_cast<Qt::WindowType>(flags));
 }
 
-char* QInputDialog_QInputDialog_GetItem(void* parent, char* title, char* label, char* items, int current, char editable, char ok, long long flags, long long inputMethodHints)
+struct QtWidgets_PackedString QInputDialog_QInputDialog_GetItem(void* parent, char* title, char* label, char* items, int current, char editable, char ok, long long flags, long long inputMethodHints)
 {
-	return const_cast<char*>(QInputDialog::getItem(static_cast<QWidget*>(parent), QString(title), QString(label), QString(items).split("|", QString::SkipEmptyParts), current, editable != 0, NULL, static_cast<Qt::WindowType>(flags), static_cast<Qt::InputMethodHint>(inputMethodHints)).toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray t17f816 = QInputDialog::getItem(static_cast<QWidget*>(parent), QString(title), QString(label), QString(items).split("|", QString::SkipEmptyParts), current, editable != 0, NULL, static_cast<Qt::WindowType>(flags), static_cast<Qt::InputMethodHint>(inputMethodHints)).toUtf8(); QtWidgets_PackedString { const_cast<char*>(t17f816.prepend("WHITESPACE").constData()+10), t17f816.size()-10 }; });
 }
 
-char* QInputDialog_QInputDialog_GetMultiLineText(void* parent, char* title, char* label, char* text, char ok, long long flags, long long inputMethodHints)
+struct QtWidgets_PackedString QInputDialog_QInputDialog_GetMultiLineText(void* parent, char* title, char* label, char* text, char ok, long long flags, long long inputMethodHints)
 {
-	return const_cast<char*>(QInputDialog::getMultiLineText(static_cast<QWidget*>(parent), QString(title), QString(label), QString(text), NULL, static_cast<Qt::WindowType>(flags), static_cast<Qt::InputMethodHint>(inputMethodHints)).toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray t808af0 = QInputDialog::getMultiLineText(static_cast<QWidget*>(parent), QString(title), QString(label), QString(text), NULL, static_cast<Qt::WindowType>(flags), static_cast<Qt::InputMethodHint>(inputMethodHints)).toUtf8(); QtWidgets_PackedString { const_cast<char*>(t808af0.prepend("WHITESPACE").constData()+10), t808af0.size()-10 }; });
 }
 
-char* QInputDialog_QInputDialog_GetText(void* parent, char* title, char* label, long long mode, char* text, char ok, long long flags, long long inputMethodHints)
+struct QtWidgets_PackedString QInputDialog_QInputDialog_GetText(void* parent, char* title, char* label, long long mode, char* text, char ok, long long flags, long long inputMethodHints)
 {
-	return const_cast<char*>(QInputDialog::getText(static_cast<QWidget*>(parent), QString(title), QString(label), static_cast<QLineEdit::EchoMode>(mode), QString(text), NULL, static_cast<Qt::WindowType>(flags), static_cast<Qt::InputMethodHint>(inputMethodHints)).toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray t06a16f = QInputDialog::getText(static_cast<QWidget*>(parent), QString(title), QString(label), static_cast<QLineEdit::EchoMode>(mode), QString(text), NULL, static_cast<Qt::WindowType>(flags), static_cast<Qt::InputMethodHint>(inputMethodHints)).toUtf8(); QtWidgets_PackedString { const_cast<char*>(t06a16f.prepend("WHITESPACE").constData()+10), t06a16f.size()-10 }; });
 }
 
 void QInputDialog_ConnectIntValueChanged(void* ptr)
@@ -44278,14 +44278,14 @@ void QInputDialog_MouseReleaseEventDefault(void* ptr, void* event)
 	static_cast<QInputDialog*>(ptr)->QInputDialog::mouseReleaseEvent(static_cast<QMouseEvent*>(event));
 }
 
-char QInputDialog_NativeEvent(void* ptr, char* eventType, void* message, long result)
+char QInputDialog_NativeEvent(void* ptr, void* eventType, void* message, long result)
 {
-	return static_cast<QInputDialog*>(ptr)->nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
+	return static_cast<QInputDialog*>(ptr)->nativeEvent(*static_cast<QByteArray*>(eventType), message, &result);
 }
 
-char QInputDialog_NativeEventDefault(void* ptr, char* eventType, void* message, long result)
+char QInputDialog_NativeEventDefault(void* ptr, void* eventType, void* message, long result)
 {
-	return static_cast<QInputDialog*>(ptr)->QInputDialog::nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
+	return static_cast<QInputDialog*>(ptr)->QInputDialog::nativeEvent(*static_cast<QByteArray*>(eventType), message, &result);
 }
 
 void QInputDialog_Raise(void* ptr)
@@ -44505,7 +44505,7 @@ public:
 	QWidget * createEditor(QWidget * parent, const QStyleOptionViewItem & option, const QModelIndex & index) const { return static_cast<QWidget*>(callbackQItemDelegate_CreateEditor(const_cast<MyQItemDelegate*>(this), parent, const_cast<QStyleOptionViewItem*>(&option), const_cast<QModelIndex*>(&index))); };
 	void drawCheck(QPainter * painter, const QStyleOptionViewItem & option, const QRect & rect, Qt::CheckState state) const { callbackQItemDelegate_DrawCheck(const_cast<MyQItemDelegate*>(this), painter, const_cast<QStyleOptionViewItem*>(&option), const_cast<QRect*>(&rect), state); };
 	void drawDecoration(QPainter * painter, const QStyleOptionViewItem & option, const QRect & rect, const QPixmap & pixmap) const { callbackQItemDelegate_DrawDecoration(const_cast<MyQItemDelegate*>(this), painter, const_cast<QStyleOptionViewItem*>(&option), const_cast<QRect*>(&rect), const_cast<QPixmap*>(&pixmap)); };
-	void drawDisplay(QPainter * painter, const QStyleOptionViewItem & option, const QRect & rect, const QString & text) const { callbackQItemDelegate_DrawDisplay(const_cast<MyQItemDelegate*>(this), painter, const_cast<QStyleOptionViewItem*>(&option), const_cast<QRect*>(&rect), const_cast<char*>(text.toUtf8().prepend("WHITESPACE").constData()+10)); };
+	void drawDisplay(QPainter * painter, const QStyleOptionViewItem & option, const QRect & rect, const QString & text) const { QByteArray t372ea0 = text.toUtf8(); QtWidgets_PackedString textPacked = { const_cast<char*>(t372ea0.prepend("WHITESPACE").constData()+10), t372ea0.size()-10 };callbackQItemDelegate_DrawDisplay(const_cast<MyQItemDelegate*>(this), painter, const_cast<QStyleOptionViewItem*>(&option), const_cast<QRect*>(&rect), textPacked); };
 	void drawFocus(QPainter * painter, const QStyleOptionViewItem & option, const QRect & rect) const { callbackQItemDelegate_DrawFocus(const_cast<MyQItemDelegate*>(this), painter, const_cast<QStyleOptionViewItem*>(&option), const_cast<QRect*>(&rect)); };
 	bool editorEvent(QEvent * event, QAbstractItemModel * model, const QStyleOptionViewItem & option, const QModelIndex & index) { return callbackQItemDelegate_EditorEvent(this, event, model, const_cast<QStyleOptionViewItem*>(&option), const_cast<QModelIndex*>(&index)) != 0; };
 	void paint(QPainter * painter, const QStyleOptionViewItem & option, const QModelIndex & index) const { callbackQItemDelegate_Paint(const_cast<MyQItemDelegate*>(this), painter, const_cast<QStyleOptionViewItem*>(&option), const_cast<QModelIndex*>(&index)); };
@@ -44780,7 +44780,7 @@ class MyQItemEditorCreatorBase: public QItemEditorCreatorBase
 public:
 	 ~MyQItemEditorCreatorBase() { callbackQItemEditorCreatorBase_DestroyQItemEditorCreatorBase(this); };
 	QWidget * createWidget(QWidget * parent) const { return static_cast<QWidget*>(callbackQItemEditorCreatorBase_CreateWidget(const_cast<MyQItemEditorCreatorBase*>(this), parent)); };
-	QByteArray valuePropertyName() const { return QByteArray::fromHex(QString(callbackQItemEditorCreatorBase_ValuePropertyName(const_cast<MyQItemEditorCreatorBase*>(this))).toUtf8()); };
+	QByteArray valuePropertyName() const { return *static_cast<QByteArray*>(callbackQItemEditorCreatorBase_ValuePropertyName(const_cast<MyQItemEditorCreatorBase*>(this))); };
 };
 
 void QItemEditorCreatorBase_DestroyQItemEditorCreatorBase(void* ptr)
@@ -44798,9 +44798,9 @@ void* QItemEditorCreatorBase_CreateWidget(void* ptr, void* parent)
 	return static_cast<QItemEditorCreatorBase*>(ptr)->createWidget(static_cast<QWidget*>(parent));
 }
 
-char* QItemEditorCreatorBase_ValuePropertyName(void* ptr)
+void* QItemEditorCreatorBase_ValuePropertyName(void* ptr)
 {
-	return const_cast<char*>(static_cast<QItemEditorCreatorBase*>(ptr)->valuePropertyName().toHex().prepend("WHITESPACE").constData()+10);
+	return new QByteArray(static_cast<QItemEditorCreatorBase*>(ptr)->valuePropertyName());
 }
 
 class MyQItemEditorFactory: public QItemEditorFactory
@@ -44808,7 +44808,7 @@ class MyQItemEditorFactory: public QItemEditorFactory
 public:
 	MyQItemEditorFactory() : QItemEditorFactory() {};
 	QWidget * createEditor(int userType, QWidget * parent) const { return static_cast<QWidget*>(callbackQItemEditorFactory_CreateEditor(const_cast<MyQItemEditorFactory*>(this), userType, parent)); };
-	QByteArray valuePropertyName(int userType) const { return QByteArray::fromHex(QString(callbackQItemEditorFactory_ValuePropertyName(const_cast<MyQItemEditorFactory*>(this), userType)).toUtf8()); };
+	QByteArray valuePropertyName(int userType) const { return *static_cast<QByteArray*>(callbackQItemEditorFactory_ValuePropertyName(const_cast<MyQItemEditorFactory*>(this), userType)); };
 	 ~MyQItemEditorFactory() { callbackQItemEditorFactory_DestroyQItemEditorFactory(this); };
 };
 
@@ -44842,14 +44842,14 @@ void QItemEditorFactory_QItemEditorFactory_SetDefaultFactory(void* factory)
 	QItemEditorFactory::setDefaultFactory(static_cast<QItemEditorFactory*>(factory));
 }
 
-char* QItemEditorFactory_ValuePropertyName(void* ptr, int userType)
+void* QItemEditorFactory_ValuePropertyName(void* ptr, int userType)
 {
-	return const_cast<char*>(static_cast<QItemEditorFactory*>(ptr)->valuePropertyName(userType).toHex().prepend("WHITESPACE").constData()+10);
+	return new QByteArray(static_cast<QItemEditorFactory*>(ptr)->valuePropertyName(userType));
 }
 
-char* QItemEditorFactory_ValuePropertyNameDefault(void* ptr, int userType)
+void* QItemEditorFactory_ValuePropertyNameDefault(void* ptr, int userType)
 {
-	return const_cast<char*>(static_cast<QItemEditorFactory*>(ptr)->QItemEditorFactory::valuePropertyName(userType).toHex().prepend("WHITESPACE").constData()+10);
+	return new QByteArray(static_cast<QItemEditorFactory*>(ptr)->QItemEditorFactory::valuePropertyName(userType));
 }
 
 void QItemEditorFactory_DestroyQItemEditorFactory(void* ptr)
@@ -45022,10 +45022,10 @@ public:
 	void moveEvent(QMoveEvent * event) { callbackQKeySequenceEdit_MoveEvent(this, event); };
 	void paintEvent(QPaintEvent * event) { callbackQKeySequenceEdit_PaintEvent(this, event); };
 	void setEnabled(bool vbo) { callbackQKeySequenceEdit_SetEnabled(this, vbo); };
-	void setStyleSheet(const QString & styleSheet) { callbackQKeySequenceEdit_SetStyleSheet(this, const_cast<char*>(styleSheet.toUtf8().prepend("WHITESPACE").constData()+10)); };
+	void setStyleSheet(const QString & styleSheet) { QByteArray t728ae7 = styleSheet.toUtf8(); QtWidgets_PackedString styleSheetPacked = { const_cast<char*>(t728ae7.prepend("WHITESPACE").constData()+10), t728ae7.size()-10 };callbackQKeySequenceEdit_SetStyleSheet(this, styleSheetPacked); };
 	void setVisible(bool visible) { callbackQKeySequenceEdit_SetVisible(this, visible); };
 	void setWindowModified(bool vbo) { callbackQKeySequenceEdit_SetWindowModified(this, vbo); };
-	void setWindowTitle(const QString & vqs) { callbackQKeySequenceEdit_SetWindowTitle(this, const_cast<char*>(vqs.toUtf8().prepend("WHITESPACE").constData()+10)); };
+	void setWindowTitle(const QString & vqs) { QByteArray tda39a3 = vqs.toUtf8(); QtWidgets_PackedString vqsPacked = { const_cast<char*>(tda39a3.prepend("WHITESPACE").constData()+10), tda39a3.size()-10 };callbackQKeySequenceEdit_SetWindowTitle(this, vqsPacked); };
 	void showEvent(QShowEvent * event) { callbackQKeySequenceEdit_ShowEvent(this, event); };
 	QSize sizeHint() const { return *static_cast<QSize*>(callbackQKeySequenceEdit_SizeHint(const_cast<MyQKeySequenceEdit*>(this))); };
 	void changeEvent(QEvent * event) { callbackQKeySequenceEdit_ChangeEvent(this, event); };
@@ -45043,7 +45043,7 @@ public:
 	void mouseMoveEvent(QMouseEvent * event) { callbackQKeySequenceEdit_MouseMoveEvent(this, event); };
 	void mousePressEvent(QMouseEvent * event) { callbackQKeySequenceEdit_MousePressEvent(this, event); };
 	void mouseReleaseEvent(QMouseEvent * event) { callbackQKeySequenceEdit_MouseReleaseEvent(this, event); };
-	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQKeySequenceEdit_NativeEvent(this, const_cast<char*>(eventType.toHex().prepend("WHITESPACE").constData()+10), message, *result) != 0; };
+	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQKeySequenceEdit_NativeEvent(this, const_cast<QByteArray*>(&eventType), message, *result) != 0; };
 	void raise() { callbackQKeySequenceEdit_Raise(this); };
 	void repaint() { callbackQKeySequenceEdit_Repaint(this); };
 	void resizeEvent(QResizeEvent * event) { callbackQKeySequenceEdit_ResizeEvent(this, event); };
@@ -45510,14 +45510,14 @@ void QKeySequenceEdit_MouseReleaseEventDefault(void* ptr, void* event)
 	static_cast<QKeySequenceEdit*>(ptr)->QKeySequenceEdit::mouseReleaseEvent(static_cast<QMouseEvent*>(event));
 }
 
-char QKeySequenceEdit_NativeEvent(void* ptr, char* eventType, void* message, long result)
+char QKeySequenceEdit_NativeEvent(void* ptr, void* eventType, void* message, long result)
 {
-	return static_cast<QKeySequenceEdit*>(ptr)->nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
+	return static_cast<QKeySequenceEdit*>(ptr)->nativeEvent(*static_cast<QByteArray*>(eventType), message, &result);
 }
 
-char QKeySequenceEdit_NativeEventDefault(void* ptr, char* eventType, void* message, long result)
+char QKeySequenceEdit_NativeEventDefault(void* ptr, void* eventType, void* message, long result)
 {
-	return static_cast<QKeySequenceEdit*>(ptr)->QKeySequenceEdit::nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
+	return static_cast<QKeySequenceEdit*>(ptr)->QKeySequenceEdit::nativeEvent(*static_cast<QByteArray*>(eventType), message, &result);
 }
 
 void QKeySequenceEdit_Raise(void* ptr)
@@ -45746,7 +45746,7 @@ public:
 	MyQLCDNumber(QWidget *parent) : QLCDNumber(parent) {};
 	MyQLCDNumber(uint numDigits, QWidget *parent) : QLCDNumber(numDigits, parent) {};
 	void setSmallDecimalPoint(bool vbo) { callbackQLCDNumber_SetSmallDecimalPoint(this, vbo); };
-	void display(const QString & s) { callbackQLCDNumber_Display(this, const_cast<char*>(s.toUtf8().prepend("WHITESPACE").constData()+10)); };
+	void display(const QString & s) { QByteArray ta0f149 = s.toUtf8(); QtWidgets_PackedString sPacked = { const_cast<char*>(ta0f149.prepend("WHITESPACE").constData()+10), ta0f149.size()-10 };callbackQLCDNumber_Display(this, sPacked); };
 	void display(double num) { callbackQLCDNumber_Display3(this, num); };
 	void display(int num) { callbackQLCDNumber_Display2(this, num); };
 	void Signal_Overflow() { callbackQLCDNumber_Overflow(this); };
@@ -45770,10 +45770,10 @@ public:
 	QSize minimumSizeHint() const { return *static_cast<QSize*>(callbackQLCDNumber_MinimumSizeHint(const_cast<MyQLCDNumber*>(this))); };
 	void moveEvent(QMoveEvent * event) { callbackQLCDNumber_MoveEvent(this, event); };
 	void setEnabled(bool vbo) { callbackQLCDNumber_SetEnabled(this, vbo); };
-	void setStyleSheet(const QString & styleSheet) { callbackQLCDNumber_SetStyleSheet(this, const_cast<char*>(styleSheet.toUtf8().prepend("WHITESPACE").constData()+10)); };
+	void setStyleSheet(const QString & styleSheet) { QByteArray t728ae7 = styleSheet.toUtf8(); QtWidgets_PackedString styleSheetPacked = { const_cast<char*>(t728ae7.prepend("WHITESPACE").constData()+10), t728ae7.size()-10 };callbackQLCDNumber_SetStyleSheet(this, styleSheetPacked); };
 	void setVisible(bool visible) { callbackQLCDNumber_SetVisible(this, visible); };
 	void setWindowModified(bool vbo) { callbackQLCDNumber_SetWindowModified(this, vbo); };
-	void setWindowTitle(const QString & vqs) { callbackQLCDNumber_SetWindowTitle(this, const_cast<char*>(vqs.toUtf8().prepend("WHITESPACE").constData()+10)); };
+	void setWindowTitle(const QString & vqs) { QByteArray tda39a3 = vqs.toUtf8(); QtWidgets_PackedString vqsPacked = { const_cast<char*>(tda39a3.prepend("WHITESPACE").constData()+10), tda39a3.size()-10 };callbackQLCDNumber_SetWindowTitle(this, vqsPacked); };
 	void showEvent(QShowEvent * event) { callbackQLCDNumber_ShowEvent(this, event); };
 	bool close() { return callbackQLCDNumber_Close(this) != 0; };
 	void closeEvent(QCloseEvent * event) { callbackQLCDNumber_CloseEvent(this, event); };
@@ -45791,7 +45791,7 @@ public:
 	void mouseMoveEvent(QMouseEvent * event) { callbackQLCDNumber_MouseMoveEvent(this, event); };
 	void mousePressEvent(QMouseEvent * event) { callbackQLCDNumber_MousePressEvent(this, event); };
 	void mouseReleaseEvent(QMouseEvent * event) { callbackQLCDNumber_MouseReleaseEvent(this, event); };
-	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQLCDNumber_NativeEvent(this, const_cast<char*>(eventType.toHex().prepend("WHITESPACE").constData()+10), message, *result) != 0; };
+	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQLCDNumber_NativeEvent(this, const_cast<QByteArray*>(&eventType), message, *result) != 0; };
 	void raise() { callbackQLCDNumber_Raise(this); };
 	void repaint() { callbackQLCDNumber_Repaint(this); };
 	void resizeEvent(QResizeEvent * event) { callbackQLCDNumber_ResizeEvent(this, event); };
@@ -46319,14 +46319,14 @@ void QLCDNumber_MouseReleaseEventDefault(void* ptr, void* event)
 	static_cast<QLCDNumber*>(ptr)->QLCDNumber::mouseReleaseEvent(static_cast<QMouseEvent*>(event));
 }
 
-char QLCDNumber_NativeEvent(void* ptr, char* eventType, void* message, long result)
+char QLCDNumber_NativeEvent(void* ptr, void* eventType, void* message, long result)
 {
-	return static_cast<QLCDNumber*>(ptr)->nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
+	return static_cast<QLCDNumber*>(ptr)->nativeEvent(*static_cast<QByteArray*>(eventType), message, &result);
 }
 
-char QLCDNumber_NativeEventDefault(void* ptr, char* eventType, void* message, long result)
+char QLCDNumber_NativeEventDefault(void* ptr, void* eventType, void* message, long result)
 {
-	return static_cast<QLCDNumber*>(ptr)->QLCDNumber::nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
+	return static_cast<QLCDNumber*>(ptr)->QLCDNumber::nativeEvent(*static_cast<QByteArray*>(eventType), message, &result);
 }
 
 void QLCDNumber_Raise(void* ptr)
@@ -46565,7 +46565,7 @@ public:
 	MyQLabel(QWidget *parent, Qt::WindowFlags f) : QLabel(parent, f) {};
 	MyQLabel(const QString &text, QWidget *parent, Qt::WindowFlags f) : QLabel(text, parent, f) {};
 	void setPixmap(const QPixmap & vqp) { callbackQLabel_SetPixmap(this, const_cast<QPixmap*>(&vqp)); };
-	void setText(const QString & vqs) { callbackQLabel_SetText(this, const_cast<char*>(vqs.toUtf8().prepend("WHITESPACE").constData()+10)); };
+	void setText(const QString & vqs) { QByteArray tda39a3 = vqs.toUtf8(); QtWidgets_PackedString vqsPacked = { const_cast<char*>(tda39a3.prepend("WHITESPACE").constData()+10), tda39a3.size()-10 };callbackQLabel_SetText(this, vqsPacked); };
 	void changeEvent(QEvent * ev) { callbackQLabel_ChangeEvent(this, ev); };
 	void clear() { callbackQLabel_Clear(this); };
 	void contextMenuEvent(QContextMenuEvent * ev) { callbackQLabel_ContextMenuEvent(this, ev); };
@@ -46574,8 +46574,8 @@ public:
 	void focusOutEvent(QFocusEvent * ev) { callbackQLabel_FocusOutEvent(this, ev); };
 	int heightForWidth(int w) const { return callbackQLabel_HeightForWidth(const_cast<MyQLabel*>(this), w); };
 	void keyPressEvent(QKeyEvent * ev) { callbackQLabel_KeyPressEvent(this, ev); };
-	void Signal_LinkActivated(const QString & link) { callbackQLabel_LinkActivated(this, const_cast<char*>(link.toUtf8().prepend("WHITESPACE").constData()+10)); };
-	void Signal_LinkHovered(const QString & link) { callbackQLabel_LinkHovered(this, const_cast<char*>(link.toUtf8().prepend("WHITESPACE").constData()+10)); };
+	void Signal_LinkActivated(const QString & link) { QByteArray t4f0aa5 = link.toUtf8(); QtWidgets_PackedString linkPacked = { const_cast<char*>(t4f0aa5.prepend("WHITESPACE").constData()+10), t4f0aa5.size()-10 };callbackQLabel_LinkActivated(this, linkPacked); };
+	void Signal_LinkHovered(const QString & link) { QByteArray t4f0aa5 = link.toUtf8(); QtWidgets_PackedString linkPacked = { const_cast<char*>(t4f0aa5.prepend("WHITESPACE").constData()+10), t4f0aa5.size()-10 };callbackQLabel_LinkHovered(this, linkPacked); };
 	QSize minimumSizeHint() const { return *static_cast<QSize*>(callbackQLabel_MinimumSizeHint(const_cast<MyQLabel*>(this))); };
 	void mouseMoveEvent(QMouseEvent * ev) { callbackQLabel_MouseMoveEvent(this, ev); };
 	void mousePressEvent(QMouseEvent * ev) { callbackQLabel_MousePressEvent(this, ev); };
@@ -46596,10 +46596,10 @@ public:
 	void leaveEvent(QEvent * event) { callbackQLabel_LeaveEvent(this, event); };
 	void moveEvent(QMoveEvent * event) { callbackQLabel_MoveEvent(this, event); };
 	void setEnabled(bool vbo) { callbackQLabel_SetEnabled(this, vbo); };
-	void setStyleSheet(const QString & styleSheet) { callbackQLabel_SetStyleSheet(this, const_cast<char*>(styleSheet.toUtf8().prepend("WHITESPACE").constData()+10)); };
+	void setStyleSheet(const QString & styleSheet) { QByteArray t728ae7 = styleSheet.toUtf8(); QtWidgets_PackedString styleSheetPacked = { const_cast<char*>(t728ae7.prepend("WHITESPACE").constData()+10), t728ae7.size()-10 };callbackQLabel_SetStyleSheet(this, styleSheetPacked); };
 	void setVisible(bool visible) { callbackQLabel_SetVisible(this, visible); };
 	void setWindowModified(bool vbo) { callbackQLabel_SetWindowModified(this, vbo); };
-	void setWindowTitle(const QString & vqs) { callbackQLabel_SetWindowTitle(this, const_cast<char*>(vqs.toUtf8().prepend("WHITESPACE").constData()+10)); };
+	void setWindowTitle(const QString & vqs) { QByteArray tda39a3 = vqs.toUtf8(); QtWidgets_PackedString vqsPacked = { const_cast<char*>(tda39a3.prepend("WHITESPACE").constData()+10), tda39a3.size()-10 };callbackQLabel_SetWindowTitle(this, vqsPacked); };
 	void showEvent(QShowEvent * event) { callbackQLabel_ShowEvent(this, event); };
 	bool close() { return callbackQLabel_Close(this) != 0; };
 	void closeEvent(QCloseEvent * event) { callbackQLabel_CloseEvent(this, event); };
@@ -46610,7 +46610,7 @@ public:
 	void keyReleaseEvent(QKeyEvent * event) { callbackQLabel_KeyReleaseEvent(this, event); };
 	void lower() { callbackQLabel_Lower(this); };
 	void mouseDoubleClickEvent(QMouseEvent * event) { callbackQLabel_MouseDoubleClickEvent(this, event); };
-	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQLabel_NativeEvent(this, const_cast<char*>(eventType.toHex().prepend("WHITESPACE").constData()+10), message, *result) != 0; };
+	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQLabel_NativeEvent(this, const_cast<QByteArray*>(&eventType), message, *result) != 0; };
 	void raise() { callbackQLabel_Raise(this); };
 	void repaint() { callbackQLabel_Repaint(this); };
 	void resizeEvent(QResizeEvent * event) { callbackQLabel_ResizeEvent(this, event); };
@@ -46671,9 +46671,9 @@ void* QLabel_Pixmap(void* ptr)
 	return const_cast<QPixmap*>(static_cast<QLabel*>(ptr)->pixmap());
 }
 
-char* QLabel_SelectedText(void* ptr)
+struct QtWidgets_PackedString QLabel_SelectedText(void* ptr)
 {
-	return const_cast<char*>(static_cast<QLabel*>(ptr)->selectedText().toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray t8b2afb = static_cast<QLabel*>(ptr)->selectedText().toUtf8(); QtWidgets_PackedString { const_cast<char*>(t8b2afb.prepend("WHITESPACE").constData()+10), t8b2afb.size()-10 }; });
 }
 
 void QLabel_SetAlignment(void* ptr, long long vqt)
@@ -46726,9 +46726,9 @@ void QLabel_SetWordWrap(void* ptr, char on)
 	static_cast<QLabel*>(ptr)->setWordWrap(on != 0);
 }
 
-char* QLabel_Text(void* ptr)
+struct QtWidgets_PackedString QLabel_Text(void* ptr)
 {
-	return const_cast<char*>(static_cast<QLabel*>(ptr)->text().toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray t0d779d = static_cast<QLabel*>(ptr)->text().toUtf8(); QtWidgets_PackedString { const_cast<char*>(t0d779d.prepend("WHITESPACE").constData()+10), t0d779d.size()-10 }; });
 }
 
 long long QLabel_TextFormat(void* ptr)
@@ -47223,14 +47223,14 @@ void QLabel_MouseDoubleClickEventDefault(void* ptr, void* event)
 	static_cast<QLabel*>(ptr)->QLabel::mouseDoubleClickEvent(static_cast<QMouseEvent*>(event));
 }
 
-char QLabel_NativeEvent(void* ptr, char* eventType, void* message, long result)
+char QLabel_NativeEvent(void* ptr, void* eventType, void* message, long result)
 {
-	return static_cast<QLabel*>(ptr)->nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
+	return static_cast<QLabel*>(ptr)->nativeEvent(*static_cast<QByteArray*>(eventType), message, &result);
 }
 
-char QLabel_NativeEventDefault(void* ptr, char* eventType, void* message, long result)
+char QLabel_NativeEventDefault(void* ptr, void* eventType, void* message, long result)
 {
-	return static_cast<QLabel*>(ptr)->QLabel::nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
+	return static_cast<QLabel*>(ptr)->QLabel::nativeEvent(*static_cast<QByteArray*>(eventType), message, &result);
 }
 
 void QLabel_Raise(void* ptr)
@@ -48077,7 +48077,7 @@ class MyQLineEdit: public QLineEdit
 public:
 	MyQLineEdit(QWidget *parent) : QLineEdit(parent) {};
 	MyQLineEdit(const QString &contents, QWidget *parent) : QLineEdit(contents, parent) {};
-	void setText(const QString & vqs) { callbackQLineEdit_SetText(this, const_cast<char*>(vqs.toUtf8().prepend("WHITESPACE").constData()+10)); };
+	void setText(const QString & vqs) { QByteArray tda39a3 = vqs.toUtf8(); QtWidgets_PackedString vqsPacked = { const_cast<char*>(tda39a3.prepend("WHITESPACE").constData()+10), tda39a3.size()-10 };callbackQLineEdit_SetText(this, vqsPacked); };
 	void changeEvent(QEvent * ev) { callbackQLineEdit_ChangeEvent(this, ev); };
 	void clear() { callbackQLineEdit_Clear(this); };
 	void contextMenuEvent(QContextMenuEvent * event) { callbackQLineEdit_ContextMenuEvent(this, event); };
@@ -48106,8 +48106,8 @@ public:
 	void selectAll() { callbackQLineEdit_SelectAll(this); };
 	void Signal_SelectionChanged() { callbackQLineEdit_SelectionChanged(this); };
 	QSize sizeHint() const { return *static_cast<QSize*>(callbackQLineEdit_SizeHint(const_cast<MyQLineEdit*>(this))); };
-	void Signal_TextChanged(const QString & text) { callbackQLineEdit_TextChanged(this, const_cast<char*>(text.toUtf8().prepend("WHITESPACE").constData()+10)); };
-	void Signal_TextEdited(const QString & text) { callbackQLineEdit_TextEdited(this, const_cast<char*>(text.toUtf8().prepend("WHITESPACE").constData()+10)); };
+	void Signal_TextChanged(const QString & text) { QByteArray t372ea0 = text.toUtf8(); QtWidgets_PackedString textPacked = { const_cast<char*>(t372ea0.prepend("WHITESPACE").constData()+10), t372ea0.size()-10 };callbackQLineEdit_TextChanged(this, textPacked); };
+	void Signal_TextEdited(const QString & text) { QByteArray t372ea0 = text.toUtf8(); QtWidgets_PackedString textPacked = { const_cast<char*>(t372ea0.prepend("WHITESPACE").constData()+10), t372ea0.size()-10 };callbackQLineEdit_TextEdited(this, textPacked); };
 	void undo() { callbackQLineEdit_Undo(this); };
 	void actionEvent(QActionEvent * event) { callbackQLineEdit_ActionEvent(this, event); };
 	void enterEvent(QEvent * event) { callbackQLineEdit_EnterEvent(this, event); };
@@ -48115,10 +48115,10 @@ public:
 	void leaveEvent(QEvent * event) { callbackQLineEdit_LeaveEvent(this, event); };
 	void moveEvent(QMoveEvent * event) { callbackQLineEdit_MoveEvent(this, event); };
 	void setEnabled(bool vbo) { callbackQLineEdit_SetEnabled(this, vbo); };
-	void setStyleSheet(const QString & styleSheet) { callbackQLineEdit_SetStyleSheet(this, const_cast<char*>(styleSheet.toUtf8().prepend("WHITESPACE").constData()+10)); };
+	void setStyleSheet(const QString & styleSheet) { QByteArray t728ae7 = styleSheet.toUtf8(); QtWidgets_PackedString styleSheetPacked = { const_cast<char*>(t728ae7.prepend("WHITESPACE").constData()+10), t728ae7.size()-10 };callbackQLineEdit_SetStyleSheet(this, styleSheetPacked); };
 	void setVisible(bool visible) { callbackQLineEdit_SetVisible(this, visible); };
 	void setWindowModified(bool vbo) { callbackQLineEdit_SetWindowModified(this, vbo); };
-	void setWindowTitle(const QString & vqs) { callbackQLineEdit_SetWindowTitle(this, const_cast<char*>(vqs.toUtf8().prepend("WHITESPACE").constData()+10)); };
+	void setWindowTitle(const QString & vqs) { QByteArray tda39a3 = vqs.toUtf8(); QtWidgets_PackedString vqsPacked = { const_cast<char*>(tda39a3.prepend("WHITESPACE").constData()+10), tda39a3.size()-10 };callbackQLineEdit_SetWindowTitle(this, vqsPacked); };
 	void showEvent(QShowEvent * event) { callbackQLineEdit_ShowEvent(this, event); };
 	bool close() { return callbackQLineEdit_Close(this) != 0; };
 	void closeEvent(QCloseEvent * event) { callbackQLineEdit_CloseEvent(this, event); };
@@ -48128,7 +48128,7 @@ public:
 	void hide() { callbackQLineEdit_Hide(this); };
 	void keyReleaseEvent(QKeyEvent * event) { callbackQLineEdit_KeyReleaseEvent(this, event); };
 	void lower() { callbackQLineEdit_Lower(this); };
-	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQLineEdit_NativeEvent(this, const_cast<char*>(eventType.toHex().prepend("WHITESPACE").constData()+10), message, *result) != 0; };
+	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQLineEdit_NativeEvent(this, const_cast<QByteArray*>(&eventType), message, *result) != 0; };
 	void raise() { callbackQLineEdit_Raise(this); };
 	void repaint() { callbackQLineEdit_Repaint(this); };
 	void resizeEvent(QResizeEvent * event) { callbackQLineEdit_ResizeEvent(this, event); };
@@ -48169,9 +48169,9 @@ int QLineEdit_CursorPosition(void* ptr)
 	return static_cast<QLineEdit*>(ptr)->cursorPosition();
 }
 
-char* QLineEdit_DisplayText(void* ptr)
+struct QtWidgets_PackedString QLineEdit_DisplayText(void* ptr)
 {
-	return const_cast<char*>(static_cast<QLineEdit*>(ptr)->displayText().toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray t6ee01b = static_cast<QLineEdit*>(ptr)->displayText().toUtf8(); QtWidgets_PackedString { const_cast<char*>(t6ee01b.prepend("WHITESPACE").constData()+10), t6ee01b.size()-10 }; });
 }
 
 char QLineEdit_DragEnabled(void* ptr)
@@ -48199,9 +48199,9 @@ char QLineEdit_HasSelectedText(void* ptr)
 	return static_cast<QLineEdit*>(ptr)->hasSelectedText();
 }
 
-char* QLineEdit_InputMask(void* ptr)
+struct QtWidgets_PackedString QLineEdit_InputMask(void* ptr)
 {
-	return const_cast<char*>(static_cast<QLineEdit*>(ptr)->inputMask().toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray taabe0f = static_cast<QLineEdit*>(ptr)->inputMask().toUtf8(); QtWidgets_PackedString { const_cast<char*>(taabe0f.prepend("WHITESPACE").constData()+10), taabe0f.size()-10 }; });
 }
 
 char QLineEdit_IsClearButtonEnabled(void* ptr)
@@ -48234,14 +48234,14 @@ int QLineEdit_MaxLength(void* ptr)
 	return static_cast<QLineEdit*>(ptr)->maxLength();
 }
 
-char* QLineEdit_PlaceholderText(void* ptr)
+struct QtWidgets_PackedString QLineEdit_PlaceholderText(void* ptr)
 {
-	return const_cast<char*>(static_cast<QLineEdit*>(ptr)->placeholderText().toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray t749e76 = static_cast<QLineEdit*>(ptr)->placeholderText().toUtf8(); QtWidgets_PackedString { const_cast<char*>(t749e76.prepend("WHITESPACE").constData()+10), t749e76.size()-10 }; });
 }
 
-char* QLineEdit_SelectedText(void* ptr)
+struct QtWidgets_PackedString QLineEdit_SelectedText(void* ptr)
 {
-	return const_cast<char*>(static_cast<QLineEdit*>(ptr)->selectedText().toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray t1e6e00 = static_cast<QLineEdit*>(ptr)->selectedText().toUtf8(); QtWidgets_PackedString { const_cast<char*>(t1e6e00.prepend("WHITESPACE").constData()+10), t1e6e00.size()-10 }; });
 }
 
 void QLineEdit_SetAlignment(void* ptr, long long flag)
@@ -48309,9 +48309,9 @@ void QLineEdit_SetText(void* ptr, char* vqs)
 	QMetaObject::invokeMethod(static_cast<QLineEdit*>(ptr), "setText", Q_ARG(QString, QString(vqs)));
 }
 
-char* QLineEdit_Text(void* ptr)
+struct QtWidgets_PackedString QLineEdit_Text(void* ptr)
 {
-	return const_cast<char*>(static_cast<QLineEdit*>(ptr)->text().toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray te2605d = static_cast<QLineEdit*>(ptr)->text().toUtf8(); QtWidgets_PackedString { const_cast<char*>(te2605d.prepend("WHITESPACE").constData()+10), te2605d.size()-10 }; });
 }
 
 void* QLineEdit_NewQLineEdit(void* parent)
@@ -48961,14 +48961,14 @@ void QLineEdit_LowerDefault(void* ptr)
 	static_cast<QLineEdit*>(ptr)->QLineEdit::lower();
 }
 
-char QLineEdit_NativeEvent(void* ptr, char* eventType, void* message, long result)
+char QLineEdit_NativeEvent(void* ptr, void* eventType, void* message, long result)
 {
-	return static_cast<QLineEdit*>(ptr)->nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
+	return static_cast<QLineEdit*>(ptr)->nativeEvent(*static_cast<QByteArray*>(eventType), message, &result);
 }
 
-char QLineEdit_NativeEventDefault(void* ptr, char* eventType, void* message, long result)
+char QLineEdit_NativeEventDefault(void* ptr, void* eventType, void* message, long result)
 {
-	return static_cast<QLineEdit*>(ptr)->QLineEdit::nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
+	return static_cast<QLineEdit*>(ptr)->QLineEdit::nativeEvent(*static_cast<QByteArray*>(eventType), message, &result);
 }
 
 void QLineEdit_Raise(void* ptr)
@@ -49244,7 +49244,7 @@ public:
 	void inputMethodEvent(QInputMethodEvent * event) { callbackQListView_InputMethodEvent(this, event); };
 	QVariant inputMethodQuery(Qt::InputMethodQuery query) const { return *static_cast<QVariant*>(callbackQListView_InputMethodQuery(const_cast<MyQListView*>(this), query)); };
 	void keyPressEvent(QKeyEvent * event) { callbackQListView_KeyPressEvent(this, event); };
-	void keyboardSearch(const QString & search) { callbackQListView_KeyboardSearch(this, const_cast<char*>(search.toUtf8().prepend("WHITESPACE").constData()+10)); };
+	void keyboardSearch(const QString & search) { QByteArray t3559d7 = search.toUtf8(); QtWidgets_PackedString searchPacked = { const_cast<char*>(t3559d7.prepend("WHITESPACE").constData()+10), t3559d7.size()-10 };callbackQListView_KeyboardSearch(this, searchPacked); };
 	void mouseDoubleClickEvent(QMouseEvent * event) { callbackQListView_MouseDoubleClickEvent(this, event); };
 	void mousePressEvent(QMouseEvent * event) { callbackQListView_MousePressEvent(this, event); };
 	void reset() { callbackQListView_Reset(this); };
@@ -49271,10 +49271,10 @@ public:
 	void leaveEvent(QEvent * event) { callbackQListView_LeaveEvent(this, event); };
 	void moveEvent(QMoveEvent * event) { callbackQListView_MoveEvent(this, event); };
 	void setEnabled(bool vbo) { callbackQListView_SetEnabled(this, vbo); };
-	void setStyleSheet(const QString & styleSheet) { callbackQListView_SetStyleSheet(this, const_cast<char*>(styleSheet.toUtf8().prepend("WHITESPACE").constData()+10)); };
+	void setStyleSheet(const QString & styleSheet) { QByteArray t728ae7 = styleSheet.toUtf8(); QtWidgets_PackedString styleSheetPacked = { const_cast<char*>(t728ae7.prepend("WHITESPACE").constData()+10), t728ae7.size()-10 };callbackQListView_SetStyleSheet(this, styleSheetPacked); };
 	void setVisible(bool visible) { callbackQListView_SetVisible(this, visible); };
 	void setWindowModified(bool vbo) { callbackQListView_SetWindowModified(this, vbo); };
-	void setWindowTitle(const QString & vqs) { callbackQListView_SetWindowTitle(this, const_cast<char*>(vqs.toUtf8().prepend("WHITESPACE").constData()+10)); };
+	void setWindowTitle(const QString & vqs) { QByteArray tda39a3 = vqs.toUtf8(); QtWidgets_PackedString vqsPacked = { const_cast<char*>(tda39a3.prepend("WHITESPACE").constData()+10), tda39a3.size()-10 };callbackQListView_SetWindowTitle(this, vqsPacked); };
 	void showEvent(QShowEvent * event) { callbackQListView_ShowEvent(this, event); };
 	bool close() { return callbackQListView_Close(this) != 0; };
 	void closeEvent(QCloseEvent * event) { callbackQListView_CloseEvent(this, event); };
@@ -49283,7 +49283,7 @@ public:
 	void hide() { callbackQListView_Hide(this); };
 	void keyReleaseEvent(QKeyEvent * event) { callbackQListView_KeyReleaseEvent(this, event); };
 	void lower() { callbackQListView_Lower(this); };
-	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQListView_NativeEvent(this, const_cast<char*>(eventType.toHex().prepend("WHITESPACE").constData()+10), message, *result) != 0; };
+	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQListView_NativeEvent(this, const_cast<QByteArray*>(&eventType), message, *result) != 0; };
 	void raise() { callbackQListView_Raise(this); };
 	void repaint() { callbackQListView_Repaint(this); };
 	void setDisabled(bool disable) { callbackQListView_SetDisabled(this, disable); };
@@ -50262,14 +50262,14 @@ void QListView_LowerDefault(void* ptr)
 	static_cast<QListView*>(ptr)->QListView::lower();
 }
 
-char QListView_NativeEvent(void* ptr, char* eventType, void* message, long result)
+char QListView_NativeEvent(void* ptr, void* eventType, void* message, long result)
 {
-	return static_cast<QListView*>(ptr)->nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
+	return static_cast<QListView*>(ptr)->nativeEvent(*static_cast<QByteArray*>(eventType), message, &result);
 }
 
-char QListView_NativeEventDefault(void* ptr, char* eventType, void* message, long result)
+char QListView_NativeEventDefault(void* ptr, void* eventType, void* message, long result)
 {
-	return static_cast<QListView*>(ptr)->QListView::nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
+	return static_cast<QListView*>(ptr)->QListView::nativeEvent(*static_cast<QByteArray*>(eventType), message, &result);
 }
 
 void QListView_Raise(void* ptr)
@@ -50469,7 +50469,7 @@ public:
 	void clear() { callbackQListWidget_Clear(this); };
 	void Signal_CurrentItemChanged(QListWidgetItem * current, QListWidgetItem * previous) { callbackQListWidget_CurrentItemChanged(this, current, previous); };
 	void Signal_CurrentRowChanged(int currentRow) { callbackQListWidget_CurrentRowChanged(this, currentRow); };
-	void Signal_CurrentTextChanged(const QString & currentText) { callbackQListWidget_CurrentTextChanged(this, const_cast<char*>(currentText.toUtf8().prepend("WHITESPACE").constData()+10)); };
+	void Signal_CurrentTextChanged(const QString & currentText) { QByteArray t5a0ada = currentText.toUtf8(); QtWidgets_PackedString currentTextPacked = { const_cast<char*>(t5a0ada.prepend("WHITESPACE").constData()+10), t5a0ada.size()-10 };callbackQListWidget_CurrentTextChanged(this, currentTextPacked); };
 	void dropEvent(QDropEvent * event) { callbackQListWidget_DropEvent(this, event); };
 	bool dropMimeData(int index, const QMimeData * data, Qt::DropAction action) { return callbackQListWidget_DropMimeData(this, index, const_cast<QMimeData*>(data), action) != 0; };
 	void Signal_ItemActivated(QListWidgetItem * item) { callbackQListWidget_ItemActivated(this, item); };
@@ -50521,7 +50521,7 @@ public:
 	void inputMethodEvent(QInputMethodEvent * event) { callbackQListWidget_InputMethodEvent(this, event); };
 	QVariant inputMethodQuery(Qt::InputMethodQuery query) const { return *static_cast<QVariant*>(callbackQListWidget_InputMethodQuery(const_cast<MyQListWidget*>(this), query)); };
 	void keyPressEvent(QKeyEvent * event) { callbackQListWidget_KeyPressEvent(this, event); };
-	void keyboardSearch(const QString & search) { callbackQListWidget_KeyboardSearch(this, const_cast<char*>(search.toUtf8().prepend("WHITESPACE").constData()+10)); };
+	void keyboardSearch(const QString & search) { QByteArray t3559d7 = search.toUtf8(); QtWidgets_PackedString searchPacked = { const_cast<char*>(t3559d7.prepend("WHITESPACE").constData()+10), t3559d7.size()-10 };callbackQListWidget_KeyboardSearch(this, searchPacked); };
 	void mouseDoubleClickEvent(QMouseEvent * event) { callbackQListWidget_MouseDoubleClickEvent(this, event); };
 	void mousePressEvent(QMouseEvent * event) { callbackQListWidget_MousePressEvent(this, event); };
 	void reset() { callbackQListWidget_Reset(this); };
@@ -50547,10 +50547,10 @@ public:
 	void leaveEvent(QEvent * event) { callbackQListWidget_LeaveEvent(this, event); };
 	void moveEvent(QMoveEvent * event) { callbackQListWidget_MoveEvent(this, event); };
 	void setEnabled(bool vbo) { callbackQListWidget_SetEnabled(this, vbo); };
-	void setStyleSheet(const QString & styleSheet) { callbackQListWidget_SetStyleSheet(this, const_cast<char*>(styleSheet.toUtf8().prepend("WHITESPACE").constData()+10)); };
+	void setStyleSheet(const QString & styleSheet) { QByteArray t728ae7 = styleSheet.toUtf8(); QtWidgets_PackedString styleSheetPacked = { const_cast<char*>(t728ae7.prepend("WHITESPACE").constData()+10), t728ae7.size()-10 };callbackQListWidget_SetStyleSheet(this, styleSheetPacked); };
 	void setVisible(bool visible) { callbackQListWidget_SetVisible(this, visible); };
 	void setWindowModified(bool vbo) { callbackQListWidget_SetWindowModified(this, vbo); };
-	void setWindowTitle(const QString & vqs) { callbackQListWidget_SetWindowTitle(this, const_cast<char*>(vqs.toUtf8().prepend("WHITESPACE").constData()+10)); };
+	void setWindowTitle(const QString & vqs) { QByteArray tda39a3 = vqs.toUtf8(); QtWidgets_PackedString vqsPacked = { const_cast<char*>(tda39a3.prepend("WHITESPACE").constData()+10), tda39a3.size()-10 };callbackQListWidget_SetWindowTitle(this, vqsPacked); };
 	void showEvent(QShowEvent * event) { callbackQListWidget_ShowEvent(this, event); };
 	bool close() { return callbackQListWidget_Close(this) != 0; };
 	void closeEvent(QCloseEvent * event) { callbackQListWidget_CloseEvent(this, event); };
@@ -50559,7 +50559,7 @@ public:
 	void hide() { callbackQListWidget_Hide(this); };
 	void keyReleaseEvent(QKeyEvent * event) { callbackQListWidget_KeyReleaseEvent(this, event); };
 	void lower() { callbackQListWidget_Lower(this); };
-	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQListWidget_NativeEvent(this, const_cast<char*>(eventType.toHex().prepend("WHITESPACE").constData()+10), message, *result) != 0; };
+	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQListWidget_NativeEvent(this, const_cast<QByteArray*>(&eventType), message, *result) != 0; };
 	void raise() { callbackQListWidget_Raise(this); };
 	void repaint() { callbackQListWidget_Repaint(this); };
 	void setDisabled(bool disable) { callbackQListWidget_SetDisabled(this, disable); };
@@ -50866,14 +50866,14 @@ void* QListWidget_ItemWidget(void* ptr, void* item)
 	return static_cast<QListWidget*>(ptr)->itemWidget(static_cast<QListWidgetItem*>(item));
 }
 
-char* QListWidget_MimeTypes(void* ptr)
+struct QtWidgets_PackedString QListWidget_MimeTypes(void* ptr)
 {
-	return const_cast<char*>(static_cast<QListWidget*>(ptr)->mimeTypes().join("|").toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray t46fd45 = static_cast<QListWidget*>(ptr)->mimeTypes().join("|").toUtf8(); QtWidgets_PackedString { const_cast<char*>(t46fd45.prepend("WHITESPACE").constData()+10), t46fd45.size()-10 }; });
 }
 
-char* QListWidget_MimeTypesDefault(void* ptr)
+struct QtWidgets_PackedString QListWidget_MimeTypesDefault(void* ptr)
 {
-	return const_cast<char*>(static_cast<QListWidget*>(ptr)->QListWidget::mimeTypes().join("|").toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray tc474fd = static_cast<QListWidget*>(ptr)->QListWidget::mimeTypes().join("|").toUtf8(); QtWidgets_PackedString { const_cast<char*>(tc474fd.prepend("WHITESPACE").constData()+10), tc474fd.size()-10 }; });
 }
 
 void QListWidget_OpenPersistentEditor(void* ptr, void* item)
@@ -51718,14 +51718,14 @@ void QListWidget_LowerDefault(void* ptr)
 	static_cast<QListWidget*>(ptr)->QListWidget::lower();
 }
 
-char QListWidget_NativeEvent(void* ptr, char* eventType, void* message, long result)
+char QListWidget_NativeEvent(void* ptr, void* eventType, void* message, long result)
 {
-	return static_cast<QListWidget*>(ptr)->nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
+	return static_cast<QListWidget*>(ptr)->nativeEvent(*static_cast<QByteArray*>(eventType), message, &result);
 }
 
-char QListWidget_NativeEventDefault(void* ptr, char* eventType, void* message, long result)
+char QListWidget_NativeEventDefault(void* ptr, void* eventType, void* message, long result)
 {
-	return static_cast<QListWidget*>(ptr)->QListWidget::nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
+	return static_cast<QListWidget*>(ptr)->QListWidget::nativeEvent(*static_cast<QByteArray*>(eventType), message, &result);
 }
 
 void QListWidget_Raise(void* ptr)
@@ -52101,14 +52101,14 @@ void* QListWidgetItem_SizeHint(void* ptr)
 	return ({ QSize tmpValue = static_cast<QListWidgetItem*>(ptr)->sizeHint(); new QSize(tmpValue.width(), tmpValue.height()); });
 }
 
-char* QListWidgetItem_StatusTip(void* ptr)
+struct QtWidgets_PackedString QListWidgetItem_StatusTip(void* ptr)
 {
-	return const_cast<char*>(static_cast<QListWidgetItem*>(ptr)->statusTip().toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray t97b7ce = static_cast<QListWidgetItem*>(ptr)->statusTip().toUtf8(); QtWidgets_PackedString { const_cast<char*>(t97b7ce.prepend("WHITESPACE").constData()+10), t97b7ce.size()-10 }; });
 }
 
-char* QListWidgetItem_Text(void* ptr)
+struct QtWidgets_PackedString QListWidgetItem_Text(void* ptr)
 {
-	return const_cast<char*>(static_cast<QListWidgetItem*>(ptr)->text().toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray t3d0f8a = static_cast<QListWidgetItem*>(ptr)->text().toUtf8(); QtWidgets_PackedString { const_cast<char*>(t3d0f8a.prepend("WHITESPACE").constData()+10), t3d0f8a.size()-10 }; });
 }
 
 int QListWidgetItem_TextAlignment(void* ptr)
@@ -52116,9 +52116,9 @@ int QListWidgetItem_TextAlignment(void* ptr)
 	return static_cast<QListWidgetItem*>(ptr)->textAlignment();
 }
 
-char* QListWidgetItem_ToolTip(void* ptr)
+struct QtWidgets_PackedString QListWidgetItem_ToolTip(void* ptr)
 {
-	return const_cast<char*>(static_cast<QListWidgetItem*>(ptr)->toolTip().toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray tc8991e = static_cast<QListWidgetItem*>(ptr)->toolTip().toUtf8(); QtWidgets_PackedString { const_cast<char*>(tc8991e.prepend("WHITESPACE").constData()+10), tc8991e.size()-10 }; });
 }
 
 int QListWidgetItem_Type(void* ptr)
@@ -52126,9 +52126,9 @@ int QListWidgetItem_Type(void* ptr)
 	return static_cast<QListWidgetItem*>(ptr)->type();
 }
 
-char* QListWidgetItem_WhatsThis(void* ptr)
+struct QtWidgets_PackedString QListWidgetItem_WhatsThis(void* ptr)
 {
-	return const_cast<char*>(static_cast<QListWidgetItem*>(ptr)->whatsThis().toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray tf613a8 = static_cast<QListWidgetItem*>(ptr)->whatsThis().toUtf8(); QtWidgets_PackedString { const_cast<char*>(tf613a8.prepend("WHITESPACE").constData()+10), tf613a8.size()-10 }; });
 }
 
 void QListWidgetItem_DestroyQListWidgetItem(void* ptr)
@@ -52159,10 +52159,10 @@ public:
 	void moveEvent(QMoveEvent * event) { callbackQMacCocoaViewContainer_MoveEvent(this, event); };
 	void paintEvent(QPaintEvent * event) { callbackQMacCocoaViewContainer_PaintEvent(this, event); };
 	void setEnabled(bool vbo) { callbackQMacCocoaViewContainer_SetEnabled(this, vbo); };
-	void setStyleSheet(const QString & styleSheet) { callbackQMacCocoaViewContainer_SetStyleSheet(this, const_cast<char*>(styleSheet.toUtf8().prepend("WHITESPACE").constData()+10)); };
+	void setStyleSheet(const QString & styleSheet) { QByteArray t728ae7 = styleSheet.toUtf8(); QtWidgets_PackedString styleSheetPacked = { const_cast<char*>(t728ae7.prepend("WHITESPACE").constData()+10), t728ae7.size()-10 };callbackQMacCocoaViewContainer_SetStyleSheet(this, styleSheetPacked); };
 	void setVisible(bool visible) { callbackQMacCocoaViewContainer_SetVisible(this, visible); };
 	void setWindowModified(bool vbo) { callbackQMacCocoaViewContainer_SetWindowModified(this, vbo); };
-	void setWindowTitle(const QString & vqs) { callbackQMacCocoaViewContainer_SetWindowTitle(this, const_cast<char*>(vqs.toUtf8().prepend("WHITESPACE").constData()+10)); };
+	void setWindowTitle(const QString & vqs) { QByteArray tda39a3 = vqs.toUtf8(); QtWidgets_PackedString vqsPacked = { const_cast<char*>(tda39a3.prepend("WHITESPACE").constData()+10), tda39a3.size()-10 };callbackQMacCocoaViewContainer_SetWindowTitle(this, vqsPacked); };
 	void showEvent(QShowEvent * event) { callbackQMacCocoaViewContainer_ShowEvent(this, event); };
 	QSize sizeHint() const { return *static_cast<QSize*>(callbackQMacCocoaViewContainer_SizeHint(const_cast<MyQMacCocoaViewContainer*>(this))); };
 	void changeEvent(QEvent * event) { callbackQMacCocoaViewContainer_ChangeEvent(this, event); };
@@ -52182,7 +52182,7 @@ public:
 	void mouseMoveEvent(QMouseEvent * event) { callbackQMacCocoaViewContainer_MouseMoveEvent(this, event); };
 	void mousePressEvent(QMouseEvent * event) { callbackQMacCocoaViewContainer_MousePressEvent(this, event); };
 	void mouseReleaseEvent(QMouseEvent * event) { callbackQMacCocoaViewContainer_MouseReleaseEvent(this, event); };
-	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQMacCocoaViewContainer_NativeEvent(this, const_cast<char*>(eventType.toHex().prepend("WHITESPACE").constData()+10), message, *result) != 0; };
+	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQMacCocoaViewContainer_NativeEvent(this, const_cast<QByteArray*>(&eventType), message, *result) != 0; };
 	void raise() { callbackQMacCocoaViewContainer_Raise(this); };
 	void repaint() { callbackQMacCocoaViewContainer_Repaint(this); };
 	void resizeEvent(QResizeEvent * event) { callbackQMacCocoaViewContainer_ResizeEvent(this, event); };
@@ -52680,15 +52680,15 @@ void QMacCocoaViewContainer_MouseReleaseEventDefault(void* ptr, void* event)
 #endif
 }
 
-char QMacCocoaViewContainer_NativeEvent(void* ptr, char* eventType, void* message, long result)
+char QMacCocoaViewContainer_NativeEvent(void* ptr, void* eventType, void* message, long result)
 {
-	return static_cast<QMacCocoaViewContainer*>(ptr)->nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
+	return static_cast<QMacCocoaViewContainer*>(ptr)->nativeEvent(*static_cast<QByteArray*>(eventType), message, &result);
 }
 
-char QMacCocoaViewContainer_NativeEventDefault(void* ptr, char* eventType, void* message, long result)
+char QMacCocoaViewContainer_NativeEventDefault(void* ptr, void* eventType, void* message, long result)
 {
 #ifdef Q_OS_OSX
-	return static_cast<QMacCocoaViewContainer*>(ptr)->QMacCocoaViewContainer::nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
+	return static_cast<QMacCocoaViewContainer*>(ptr)->QMacCocoaViewContainer::nativeEvent(*static_cast<QByteArray*>(eventType), message, &result);
 #else
 	return false;
 #endif
@@ -52992,10 +52992,10 @@ public:
 	void moveEvent(QMoveEvent * event) { callbackQMacNativeWidget_MoveEvent(this, event); };
 	void paintEvent(QPaintEvent * event) { callbackQMacNativeWidget_PaintEvent(this, event); };
 	void setEnabled(bool vbo) { callbackQMacNativeWidget_SetEnabled(this, vbo); };
-	void setStyleSheet(const QString & styleSheet) { callbackQMacNativeWidget_SetStyleSheet(this, const_cast<char*>(styleSheet.toUtf8().prepend("WHITESPACE").constData()+10)); };
+	void setStyleSheet(const QString & styleSheet) { QByteArray t728ae7 = styleSheet.toUtf8(); QtWidgets_PackedString styleSheetPacked = { const_cast<char*>(t728ae7.prepend("WHITESPACE").constData()+10), t728ae7.size()-10 };callbackQMacNativeWidget_SetStyleSheet(this, styleSheetPacked); };
 	void setVisible(bool visible) { callbackQMacNativeWidget_SetVisible(this, visible); };
 	void setWindowModified(bool vbo) { callbackQMacNativeWidget_SetWindowModified(this, vbo); };
-	void setWindowTitle(const QString & vqs) { callbackQMacNativeWidget_SetWindowTitle(this, const_cast<char*>(vqs.toUtf8().prepend("WHITESPACE").constData()+10)); };
+	void setWindowTitle(const QString & vqs) { QByteArray tda39a3 = vqs.toUtf8(); QtWidgets_PackedString vqsPacked = { const_cast<char*>(tda39a3.prepend("WHITESPACE").constData()+10), tda39a3.size()-10 };callbackQMacNativeWidget_SetWindowTitle(this, vqsPacked); };
 	void showEvent(QShowEvent * event) { callbackQMacNativeWidget_ShowEvent(this, event); };
 	void changeEvent(QEvent * event) { callbackQMacNativeWidget_ChangeEvent(this, event); };
 	bool close() { return callbackQMacNativeWidget_Close(this) != 0; };
@@ -53014,7 +53014,7 @@ public:
 	void mouseMoveEvent(QMouseEvent * event) { callbackQMacNativeWidget_MouseMoveEvent(this, event); };
 	void mousePressEvent(QMouseEvent * event) { callbackQMacNativeWidget_MousePressEvent(this, event); };
 	void mouseReleaseEvent(QMouseEvent * event) { callbackQMacNativeWidget_MouseReleaseEvent(this, event); };
-	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQMacNativeWidget_NativeEvent(this, const_cast<char*>(eventType.toHex().prepend("WHITESPACE").constData()+10), message, *result) != 0; };
+	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQMacNativeWidget_NativeEvent(this, const_cast<QByteArray*>(&eventType), message, *result) != 0; };
 	void raise() { callbackQMacNativeWidget_Raise(this); };
 	void repaint() { callbackQMacNativeWidget_Repaint(this); };
 	void resizeEvent(QResizeEvent * event) { callbackQMacNativeWidget_ResizeEvent(this, event); };
@@ -53510,15 +53510,15 @@ void QMacNativeWidget_MouseReleaseEventDefault(void* ptr, void* event)
 #endif
 }
 
-char QMacNativeWidget_NativeEvent(void* ptr, char* eventType, void* message, long result)
+char QMacNativeWidget_NativeEvent(void* ptr, void* eventType, void* message, long result)
 {
-	return static_cast<QMacNativeWidget*>(ptr)->nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
+	return static_cast<QMacNativeWidget*>(ptr)->nativeEvent(*static_cast<QByteArray*>(eventType), message, &result);
 }
 
-char QMacNativeWidget_NativeEventDefault(void* ptr, char* eventType, void* message, long result)
+char QMacNativeWidget_NativeEventDefault(void* ptr, void* eventType, void* message, long result)
 {
 #ifdef Q_OS_OSX
-	return static_cast<QMacNativeWidget*>(ptr)->QMacNativeWidget::nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
+	return static_cast<QMacNativeWidget*>(ptr)->QMacNativeWidget::nativeEvent(*static_cast<QByteArray*>(eventType), message, &result);
 #else
 	return false;
 #endif
@@ -53829,10 +53829,10 @@ public:
 	void moveEvent(QMoveEvent * event) { callbackQMainWindow_MoveEvent(this, event); };
 	void paintEvent(QPaintEvent * event) { callbackQMainWindow_PaintEvent(this, event); };
 	void setEnabled(bool vbo) { callbackQMainWindow_SetEnabled(this, vbo); };
-	void setStyleSheet(const QString & styleSheet) { callbackQMainWindow_SetStyleSheet(this, const_cast<char*>(styleSheet.toUtf8().prepend("WHITESPACE").constData()+10)); };
+	void setStyleSheet(const QString & styleSheet) { QByteArray t728ae7 = styleSheet.toUtf8(); QtWidgets_PackedString styleSheetPacked = { const_cast<char*>(t728ae7.prepend("WHITESPACE").constData()+10), t728ae7.size()-10 };callbackQMainWindow_SetStyleSheet(this, styleSheetPacked); };
 	void setVisible(bool visible) { callbackQMainWindow_SetVisible(this, visible); };
 	void setWindowModified(bool vbo) { callbackQMainWindow_SetWindowModified(this, vbo); };
-	void setWindowTitle(const QString & vqs) { callbackQMainWindow_SetWindowTitle(this, const_cast<char*>(vqs.toUtf8().prepend("WHITESPACE").constData()+10)); };
+	void setWindowTitle(const QString & vqs) { QByteArray tda39a3 = vqs.toUtf8(); QtWidgets_PackedString vqsPacked = { const_cast<char*>(tda39a3.prepend("WHITESPACE").constData()+10), tda39a3.size()-10 };callbackQMainWindow_SetWindowTitle(this, vqsPacked); };
 	void showEvent(QShowEvent * event) { callbackQMainWindow_ShowEvent(this, event); };
 	QSize sizeHint() const { return *static_cast<QSize*>(callbackQMainWindow_SizeHint(const_cast<MyQMainWindow*>(this))); };
 	void changeEvent(QEvent * event) { callbackQMainWindow_ChangeEvent(this, event); };
@@ -53851,7 +53851,7 @@ public:
 	void mouseMoveEvent(QMouseEvent * event) { callbackQMainWindow_MouseMoveEvent(this, event); };
 	void mousePressEvent(QMouseEvent * event) { callbackQMainWindow_MousePressEvent(this, event); };
 	void mouseReleaseEvent(QMouseEvent * event) { callbackQMainWindow_MouseReleaseEvent(this, event); };
-	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQMainWindow_NativeEvent(this, const_cast<char*>(eventType.toHex().prepend("WHITESPACE").constData()+10), message, *result) != 0; };
+	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQMainWindow_NativeEvent(this, const_cast<QByteArray*>(&eventType), message, *result) != 0; };
 	void raise() { callbackQMainWindow_Raise(this); };
 	void repaint() { callbackQMainWindow_Repaint(this); };
 	void resizeEvent(QResizeEvent * event) { callbackQMainWindow_ResizeEvent(this, event); };
@@ -54097,14 +54097,14 @@ char QMainWindow_RestoreDockWidget(void* ptr, void* dockwidget)
 	return static_cast<QMainWindow*>(ptr)->restoreDockWidget(static_cast<QDockWidget*>(dockwidget));
 }
 
-char QMainWindow_RestoreState(void* ptr, char* state, int version)
+char QMainWindow_RestoreState(void* ptr, void* state, int version)
 {
-	return static_cast<QMainWindow*>(ptr)->restoreState(QByteArray::fromHex(QString(state).toUtf8()), version);
+	return static_cast<QMainWindow*>(ptr)->restoreState(*static_cast<QByteArray*>(state), version);
 }
 
-char* QMainWindow_SaveState(void* ptr, int version)
+void* QMainWindow_SaveState(void* ptr, int version)
 {
-	return const_cast<char*>(static_cast<QMainWindow*>(ptr)->saveState(version).toHex().prepend("WHITESPACE").constData()+10);
+	return new QByteArray(static_cast<QMainWindow*>(ptr)->saveState(version));
 }
 
 void QMainWindow_SetCentralWidget(void* ptr, void* widget)
@@ -54544,14 +54544,14 @@ void QMainWindow_MouseReleaseEventDefault(void* ptr, void* event)
 	static_cast<QMainWindow*>(ptr)->QMainWindow::mouseReleaseEvent(static_cast<QMouseEvent*>(event));
 }
 
-char QMainWindow_NativeEvent(void* ptr, char* eventType, void* message, long result)
+char QMainWindow_NativeEvent(void* ptr, void* eventType, void* message, long result)
 {
-	return static_cast<QMainWindow*>(ptr)->nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
+	return static_cast<QMainWindow*>(ptr)->nativeEvent(*static_cast<QByteArray*>(eventType), message, &result);
 }
 
-char QMainWindow_NativeEventDefault(void* ptr, char* eventType, void* message, long result)
+char QMainWindow_NativeEventDefault(void* ptr, void* eventType, void* message, long result)
 {
-	return static_cast<QMainWindow*>(ptr)->QMainWindow::nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
+	return static_cast<QMainWindow*>(ptr)->QMainWindow::nativeEvent(*static_cast<QByteArray*>(eventType), message, &result);
 }
 
 void QMainWindow_Raise(void* ptr)
@@ -54825,10 +54825,10 @@ public:
 	void leaveEvent(QEvent * event) { callbackQMdiArea_LeaveEvent(this, event); };
 	void moveEvent(QMoveEvent * event) { callbackQMdiArea_MoveEvent(this, event); };
 	void setEnabled(bool vbo) { callbackQMdiArea_SetEnabled(this, vbo); };
-	void setStyleSheet(const QString & styleSheet) { callbackQMdiArea_SetStyleSheet(this, const_cast<char*>(styleSheet.toUtf8().prepend("WHITESPACE").constData()+10)); };
+	void setStyleSheet(const QString & styleSheet) { QByteArray t728ae7 = styleSheet.toUtf8(); QtWidgets_PackedString styleSheetPacked = { const_cast<char*>(t728ae7.prepend("WHITESPACE").constData()+10), t728ae7.size()-10 };callbackQMdiArea_SetStyleSheet(this, styleSheetPacked); };
 	void setVisible(bool visible) { callbackQMdiArea_SetVisible(this, visible); };
 	void setWindowModified(bool vbo) { callbackQMdiArea_SetWindowModified(this, vbo); };
-	void setWindowTitle(const QString & vqs) { callbackQMdiArea_SetWindowTitle(this, const_cast<char*>(vqs.toUtf8().prepend("WHITESPACE").constData()+10)); };
+	void setWindowTitle(const QString & vqs) { QByteArray tda39a3 = vqs.toUtf8(); QtWidgets_PackedString vqsPacked = { const_cast<char*>(tda39a3.prepend("WHITESPACE").constData()+10), tda39a3.size()-10 };callbackQMdiArea_SetWindowTitle(this, vqsPacked); };
 	bool close() { return callbackQMdiArea_Close(this) != 0; };
 	void closeEvent(QCloseEvent * event) { callbackQMdiArea_CloseEvent(this, event); };
 	bool focusNextPrevChild(bool next) { return callbackQMdiArea_FocusNextPrevChild(this, next) != 0; };
@@ -54839,7 +54839,7 @@ public:
 	QVariant inputMethodQuery(Qt::InputMethodQuery query) const { return *static_cast<QVariant*>(callbackQMdiArea_InputMethodQuery(const_cast<MyQMdiArea*>(this), query)); };
 	void keyReleaseEvent(QKeyEvent * event) { callbackQMdiArea_KeyReleaseEvent(this, event); };
 	void lower() { callbackQMdiArea_Lower(this); };
-	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQMdiArea_NativeEvent(this, const_cast<char*>(eventType.toHex().prepend("WHITESPACE").constData()+10), message, *result) != 0; };
+	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQMdiArea_NativeEvent(this, const_cast<QByteArray*>(&eventType), message, *result) != 0; };
 	void raise() { callbackQMdiArea_Raise(this); };
 	void repaint() { callbackQMdiArea_Repaint(this); };
 	void setDisabled(bool disable) { callbackQMdiArea_SetDisabled(this, disable); };
@@ -55482,14 +55482,14 @@ void QMdiArea_LowerDefault(void* ptr)
 	static_cast<QMdiArea*>(ptr)->QMdiArea::lower();
 }
 
-char QMdiArea_NativeEvent(void* ptr, char* eventType, void* message, long result)
+char QMdiArea_NativeEvent(void* ptr, void* eventType, void* message, long result)
 {
-	return static_cast<QMdiArea*>(ptr)->nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
+	return static_cast<QMdiArea*>(ptr)->nativeEvent(*static_cast<QByteArray*>(eventType), message, &result);
 }
 
-char QMdiArea_NativeEventDefault(void* ptr, char* eventType, void* message, long result)
+char QMdiArea_NativeEventDefault(void* ptr, void* eventType, void* message, long result)
 {
-	return static_cast<QMdiArea*>(ptr)->QMdiArea::nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
+	return static_cast<QMdiArea*>(ptr)->QMdiArea::nativeEvent(*static_cast<QByteArray*>(eventType), message, &result);
 }
 
 void QMdiArea_Raise(void* ptr)
@@ -55705,10 +55705,10 @@ public:
 	void dropEvent(QDropEvent * event) { callbackQMdiSubWindow_DropEvent(this, event); };
 	void enterEvent(QEvent * event) { callbackQMdiSubWindow_EnterEvent(this, event); };
 	void setEnabled(bool vbo) { callbackQMdiSubWindow_SetEnabled(this, vbo); };
-	void setStyleSheet(const QString & styleSheet) { callbackQMdiSubWindow_SetStyleSheet(this, const_cast<char*>(styleSheet.toUtf8().prepend("WHITESPACE").constData()+10)); };
+	void setStyleSheet(const QString & styleSheet) { QByteArray t728ae7 = styleSheet.toUtf8(); QtWidgets_PackedString styleSheetPacked = { const_cast<char*>(t728ae7.prepend("WHITESPACE").constData()+10), t728ae7.size()-10 };callbackQMdiSubWindow_SetStyleSheet(this, styleSheetPacked); };
 	void setVisible(bool visible) { callbackQMdiSubWindow_SetVisible(this, visible); };
 	void setWindowModified(bool vbo) { callbackQMdiSubWindow_SetWindowModified(this, vbo); };
-	void setWindowTitle(const QString & vqs) { callbackQMdiSubWindow_SetWindowTitle(this, const_cast<char*>(vqs.toUtf8().prepend("WHITESPACE").constData()+10)); };
+	void setWindowTitle(const QString & vqs) { QByteArray tda39a3 = vqs.toUtf8(); QtWidgets_PackedString vqsPacked = { const_cast<char*>(tda39a3.prepend("WHITESPACE").constData()+10), tda39a3.size()-10 };callbackQMdiSubWindow_SetWindowTitle(this, vqsPacked); };
 	bool close() { return callbackQMdiSubWindow_Close(this) != 0; };
 	bool focusNextPrevChild(bool next) { return callbackQMdiSubWindow_FocusNextPrevChild(this, next) != 0; };
 	bool hasHeightForWidth() const { return callbackQMdiSubWindow_HasHeightForWidth(const_cast<MyQMdiSubWindow*>(this)) != 0; };
@@ -55718,7 +55718,7 @@ public:
 	QVariant inputMethodQuery(Qt::InputMethodQuery query) const { return *static_cast<QVariant*>(callbackQMdiSubWindow_InputMethodQuery(const_cast<MyQMdiSubWindow*>(this), query)); };
 	void keyReleaseEvent(QKeyEvent * event) { callbackQMdiSubWindow_KeyReleaseEvent(this, event); };
 	void lower() { callbackQMdiSubWindow_Lower(this); };
-	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQMdiSubWindow_NativeEvent(this, const_cast<char*>(eventType.toHex().prepend("WHITESPACE").constData()+10), message, *result) != 0; };
+	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQMdiSubWindow_NativeEvent(this, const_cast<QByteArray*>(&eventType), message, *result) != 0; };
 	void raise() { callbackQMdiSubWindow_Raise(this); };
 	void repaint() { callbackQMdiSubWindow_Repaint(this); };
 	void setDisabled(bool disable) { callbackQMdiSubWindow_SetDisabled(this, disable); };
@@ -56252,14 +56252,14 @@ void QMdiSubWindow_LowerDefault(void* ptr)
 	static_cast<QMdiSubWindow*>(ptr)->QMdiSubWindow::lower();
 }
 
-char QMdiSubWindow_NativeEvent(void* ptr, char* eventType, void* message, long result)
+char QMdiSubWindow_NativeEvent(void* ptr, void* eventType, void* message, long result)
 {
-	return static_cast<QMdiSubWindow*>(ptr)->nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
+	return static_cast<QMdiSubWindow*>(ptr)->nativeEvent(*static_cast<QByteArray*>(eventType), message, &result);
 }
 
-char QMdiSubWindow_NativeEventDefault(void* ptr, char* eventType, void* message, long result)
+char QMdiSubWindow_NativeEventDefault(void* ptr, void* eventType, void* message, long result)
 {
-	return static_cast<QMdiSubWindow*>(ptr)->QMdiSubWindow::nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
+	return static_cast<QMdiSubWindow*>(ptr)->QMdiSubWindow::nativeEvent(*static_cast<QByteArray*>(eventType), message, &result);
 }
 
 void QMdiSubWindow_Raise(void* ptr)
@@ -56483,10 +56483,10 @@ public:
 	QSize minimumSizeHint() const { return *static_cast<QSize*>(callbackQMenu_MinimumSizeHint(const_cast<MyQMenu*>(this))); };
 	void moveEvent(QMoveEvent * event) { callbackQMenu_MoveEvent(this, event); };
 	void setEnabled(bool vbo) { callbackQMenu_SetEnabled(this, vbo); };
-	void setStyleSheet(const QString & styleSheet) { callbackQMenu_SetStyleSheet(this, const_cast<char*>(styleSheet.toUtf8().prepend("WHITESPACE").constData()+10)); };
+	void setStyleSheet(const QString & styleSheet) { QByteArray t728ae7 = styleSheet.toUtf8(); QtWidgets_PackedString styleSheetPacked = { const_cast<char*>(t728ae7.prepend("WHITESPACE").constData()+10), t728ae7.size()-10 };callbackQMenu_SetStyleSheet(this, styleSheetPacked); };
 	void setVisible(bool visible) { callbackQMenu_SetVisible(this, visible); };
 	void setWindowModified(bool vbo) { callbackQMenu_SetWindowModified(this, vbo); };
-	void setWindowTitle(const QString & vqs) { callbackQMenu_SetWindowTitle(this, const_cast<char*>(vqs.toUtf8().prepend("WHITESPACE").constData()+10)); };
+	void setWindowTitle(const QString & vqs) { QByteArray tda39a3 = vqs.toUtf8(); QtWidgets_PackedString vqsPacked = { const_cast<char*>(tda39a3.prepend("WHITESPACE").constData()+10), tda39a3.size()-10 };callbackQMenu_SetWindowTitle(this, vqsPacked); };
 	void showEvent(QShowEvent * event) { callbackQMenu_ShowEvent(this, event); };
 	bool close() { return callbackQMenu_Close(this) != 0; };
 	void closeEvent(QCloseEvent * event) { callbackQMenu_CloseEvent(this, event); };
@@ -56499,7 +56499,7 @@ public:
 	void keyReleaseEvent(QKeyEvent * event) { callbackQMenu_KeyReleaseEvent(this, event); };
 	void lower() { callbackQMenu_Lower(this); };
 	void mouseDoubleClickEvent(QMouseEvent * event) { callbackQMenu_MouseDoubleClickEvent(this, event); };
-	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQMenu_NativeEvent(this, const_cast<char*>(eventType.toHex().prepend("WHITESPACE").constData()+10), message, *result) != 0; };
+	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQMenu_NativeEvent(this, const_cast<QByteArray*>(&eventType), message, *result) != 0; };
 	void raise() { callbackQMenu_Raise(this); };
 	void repaint() { callbackQMenu_Repaint(this); };
 	void resizeEvent(QResizeEvent * event) { callbackQMenu_ResizeEvent(this, event); };
@@ -56563,9 +56563,9 @@ void QMenu_SetToolTipsVisible(void* ptr, char visible)
 	static_cast<QMenu*>(ptr)->setToolTipsVisible(visible != 0);
 }
 
-char* QMenu_Title(void* ptr)
+struct QtWidgets_PackedString QMenu_Title(void* ptr)
 {
-	return const_cast<char*>(static_cast<QMenu*>(ptr)->title().toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray tbbbdf8 = static_cast<QMenu*>(ptr)->title().toUtf8(); QtWidgets_PackedString { const_cast<char*>(tbbbdf8.prepend("WHITESPACE").constData()+10), tbbbdf8.size()-10 }; });
 }
 
 char QMenu_ToolTipsVisible(void* ptr)
@@ -57207,14 +57207,14 @@ void QMenu_MouseDoubleClickEventDefault(void* ptr, void* event)
 	static_cast<QMenu*>(ptr)->QMenu::mouseDoubleClickEvent(static_cast<QMouseEvent*>(event));
 }
 
-char QMenu_NativeEvent(void* ptr, char* eventType, void* message, long result)
+char QMenu_NativeEvent(void* ptr, void* eventType, void* message, long result)
 {
-	return static_cast<QMenu*>(ptr)->nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
+	return static_cast<QMenu*>(ptr)->nativeEvent(*static_cast<QByteArray*>(eventType), message, &result);
 }
 
-char QMenu_NativeEventDefault(void* ptr, char* eventType, void* message, long result)
+char QMenu_NativeEventDefault(void* ptr, void* eventType, void* message, long result)
 {
-	return static_cast<QMenu*>(ptr)->QMenu::nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
+	return static_cast<QMenu*>(ptr)->QMenu::nativeEvent(*static_cast<QByteArray*>(eventType), message, &result);
 }
 
 void QMenu_Raise(void* ptr)
@@ -57456,9 +57456,9 @@ public:
 	void hideEvent(QHideEvent * event) { callbackQMenuBar_HideEvent(this, event); };
 	void moveEvent(QMoveEvent * event) { callbackQMenuBar_MoveEvent(this, event); };
 	void setEnabled(bool vbo) { callbackQMenuBar_SetEnabled(this, vbo); };
-	void setStyleSheet(const QString & styleSheet) { callbackQMenuBar_SetStyleSheet(this, const_cast<char*>(styleSheet.toUtf8().prepend("WHITESPACE").constData()+10)); };
+	void setStyleSheet(const QString & styleSheet) { QByteArray t728ae7 = styleSheet.toUtf8(); QtWidgets_PackedString styleSheetPacked = { const_cast<char*>(t728ae7.prepend("WHITESPACE").constData()+10), t728ae7.size()-10 };callbackQMenuBar_SetStyleSheet(this, styleSheetPacked); };
 	void setWindowModified(bool vbo) { callbackQMenuBar_SetWindowModified(this, vbo); };
-	void setWindowTitle(const QString & vqs) { callbackQMenuBar_SetWindowTitle(this, const_cast<char*>(vqs.toUtf8().prepend("WHITESPACE").constData()+10)); };
+	void setWindowTitle(const QString & vqs) { QByteArray tda39a3 = vqs.toUtf8(); QtWidgets_PackedString vqsPacked = { const_cast<char*>(tda39a3.prepend("WHITESPACE").constData()+10), tda39a3.size()-10 };callbackQMenuBar_SetWindowTitle(this, vqsPacked); };
 	void showEvent(QShowEvent * event) { callbackQMenuBar_ShowEvent(this, event); };
 	bool close() { return callbackQMenuBar_Close(this) != 0; };
 	void closeEvent(QCloseEvent * event) { callbackQMenuBar_CloseEvent(this, event); };
@@ -57471,7 +57471,7 @@ public:
 	void keyReleaseEvent(QKeyEvent * event) { callbackQMenuBar_KeyReleaseEvent(this, event); };
 	void lower() { callbackQMenuBar_Lower(this); };
 	void mouseDoubleClickEvent(QMouseEvent * event) { callbackQMenuBar_MouseDoubleClickEvent(this, event); };
-	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQMenuBar_NativeEvent(this, const_cast<char*>(eventType.toHex().prepend("WHITESPACE").constData()+10), message, *result) != 0; };
+	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQMenuBar_NativeEvent(this, const_cast<QByteArray*>(&eventType), message, *result) != 0; };
 	void raise() { callbackQMenuBar_Raise(this); };
 	void repaint() { callbackQMenuBar_Repaint(this); };
 	void setDisabled(bool disable) { callbackQMenuBar_SetDisabled(this, disable); };
@@ -58047,14 +58047,14 @@ void QMenuBar_MouseDoubleClickEventDefault(void* ptr, void* event)
 	static_cast<QMenuBar*>(ptr)->QMenuBar::mouseDoubleClickEvent(static_cast<QMouseEvent*>(event));
 }
 
-char QMenuBar_NativeEvent(void* ptr, char* eventType, void* message, long result)
+char QMenuBar_NativeEvent(void* ptr, void* eventType, void* message, long result)
 {
-	return static_cast<QMenuBar*>(ptr)->nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
+	return static_cast<QMenuBar*>(ptr)->nativeEvent(*static_cast<QByteArray*>(eventType), message, &result);
 }
 
-char QMenuBar_NativeEventDefault(void* ptr, char* eventType, void* message, long result)
+char QMenuBar_NativeEventDefault(void* ptr, void* eventType, void* message, long result)
 {
-	return static_cast<QMenuBar*>(ptr)->QMenuBar::nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
+	return static_cast<QMenuBar*>(ptr)->QMenuBar::nativeEvent(*static_cast<QByteArray*>(eventType), message, &result);
 }
 
 void QMenuBar_Raise(void* ptr)
@@ -58294,7 +58294,7 @@ public:
 	void moveEvent(QMoveEvent * event) { callbackQMessageBox_MoveEvent(this, event); };
 	void paintEvent(QPaintEvent * event) { callbackQMessageBox_PaintEvent(this, event); };
 	void setEnabled(bool vbo) { callbackQMessageBox_SetEnabled(this, vbo); };
-	void setStyleSheet(const QString & styleSheet) { callbackQMessageBox_SetStyleSheet(this, const_cast<char*>(styleSheet.toUtf8().prepend("WHITESPACE").constData()+10)); };
+	void setStyleSheet(const QString & styleSheet) { QByteArray t728ae7 = styleSheet.toUtf8(); QtWidgets_PackedString styleSheetPacked = { const_cast<char*>(t728ae7.prepend("WHITESPACE").constData()+10), t728ae7.size()-10 };callbackQMessageBox_SetStyleSheet(this, styleSheetPacked); };
 	void setWindowModified(bool vbo) { callbackQMessageBox_SetWindowModified(this, vbo); };
 	bool close() { return callbackQMessageBox_Close(this) != 0; };
 	bool focusNextPrevChild(bool next) { return callbackQMessageBox_FocusNextPrevChild(this, next) != 0; };
@@ -58309,7 +58309,7 @@ public:
 	void mouseMoveEvent(QMouseEvent * event) { callbackQMessageBox_MouseMoveEvent(this, event); };
 	void mousePressEvent(QMouseEvent * event) { callbackQMessageBox_MousePressEvent(this, event); };
 	void mouseReleaseEvent(QMouseEvent * event) { callbackQMessageBox_MouseReleaseEvent(this, event); };
-	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQMessageBox_NativeEvent(this, const_cast<char*>(eventType.toHex().prepend("WHITESPACE").constData()+10), message, *result) != 0; };
+	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQMessageBox_NativeEvent(this, const_cast<QByteArray*>(&eventType), message, *result) != 0; };
 	void raise() { callbackQMessageBox_Raise(this); };
 	void repaint() { callbackQMessageBox_Repaint(this); };
 	void setDisabled(bool disable) { callbackQMessageBox_SetDisabled(this, disable); };
@@ -58333,9 +58333,9 @@ public:
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQMessageBox_MetaObject(const_cast<MyQMessageBox*>(this))); };
 };
 
-char* QMessageBox_DetailedText(void* ptr)
+struct QtWidgets_PackedString QMessageBox_DetailedText(void* ptr)
 {
-	return const_cast<char*>(static_cast<QMessageBox*>(ptr)->detailedText().toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray t9d0340 = static_cast<QMessageBox*>(ptr)->detailedText().toUtf8(); QtWidgets_PackedString { const_cast<char*>(t9d0340.prepend("WHITESPACE").constData()+10), t9d0340.size()-10 }; });
 }
 
 long long QMessageBox_Icon(void* ptr)
@@ -58348,9 +58348,9 @@ void* QMessageBox_IconPixmap(void* ptr)
 	return new QPixmap(static_cast<QMessageBox*>(ptr)->iconPixmap());
 }
 
-char* QMessageBox_InformativeText(void* ptr)
+struct QtWidgets_PackedString QMessageBox_InformativeText(void* ptr)
 {
-	return const_cast<char*>(static_cast<QMessageBox*>(ptr)->informativeText().toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray t0d44bc = static_cast<QMessageBox*>(ptr)->informativeText().toUtf8(); QtWidgets_PackedString { const_cast<char*>(t0d44bc.prepend("WHITESPACE").constData()+10), t0d44bc.size()-10 }; });
 }
 
 void QMessageBox_SetDetailedText(void* ptr, char* text)
@@ -58398,9 +58398,9 @@ long long QMessageBox_StandardButtons(void* ptr)
 	return static_cast<QMessageBox*>(ptr)->standardButtons();
 }
 
-char* QMessageBox_Text(void* ptr)
+struct QtWidgets_PackedString QMessageBox_Text(void* ptr)
 {
-	return const_cast<char*>(static_cast<QMessageBox*>(ptr)->text().toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray te2bb59 = static_cast<QMessageBox*>(ptr)->text().toUtf8(); QtWidgets_PackedString { const_cast<char*>(te2bb59.prepend("WHITESPACE").constData()+10), te2bb59.size()-10 }; });
 }
 
 long long QMessageBox_TextFormat(void* ptr)
@@ -58987,14 +58987,14 @@ void QMessageBox_MouseReleaseEventDefault(void* ptr, void* event)
 	static_cast<QMessageBox*>(ptr)->QMessageBox::mouseReleaseEvent(static_cast<QMouseEvent*>(event));
 }
 
-char QMessageBox_NativeEvent(void* ptr, char* eventType, void* message, long result)
+char QMessageBox_NativeEvent(void* ptr, void* eventType, void* message, long result)
 {
-	return static_cast<QMessageBox*>(ptr)->nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
+	return static_cast<QMessageBox*>(ptr)->nativeEvent(*static_cast<QByteArray*>(eventType), message, &result);
 }
 
-char QMessageBox_NativeEventDefault(void* ptr, char* eventType, void* message, long result)
+char QMessageBox_NativeEventDefault(void* ptr, void* eventType, void* message, long result)
 {
-	return static_cast<QMessageBox*>(ptr)->QMessageBox::nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
+	return static_cast<QMessageBox*>(ptr)->QMessageBox::nativeEvent(*static_cast<QByteArray*>(eventType), message, &result);
 }
 
 void QMessageBox_Raise(void* ptr)
@@ -59846,8 +59846,8 @@ public:
 	void redo() { callbackQPlainTextEdit_Redo(this); };
 	void zoomIn(int ran) { callbackQPlainTextEdit_ZoomIn(this, ran); };
 	void zoomOut(int ran) { callbackQPlainTextEdit_ZoomOut(this, ran); };
-	void appendHtml(const QString & html) { callbackQPlainTextEdit_AppendHtml(this, const_cast<char*>(html.toUtf8().prepend("WHITESPACE").constData()+10)); };
-	void appendPlainText(const QString & text) { callbackQPlainTextEdit_AppendPlainText(this, const_cast<char*>(text.toUtf8().prepend("WHITESPACE").constData()+10)); };
+	void appendHtml(const QString & html) { QByteArray t950a39 = html.toUtf8(); QtWidgets_PackedString htmlPacked = { const_cast<char*>(t950a39.prepend("WHITESPACE").constData()+10), t950a39.size()-10 };callbackQPlainTextEdit_AppendHtml(this, htmlPacked); };
+	void appendPlainText(const QString & text) { QByteArray t372ea0 = text.toUtf8(); QtWidgets_PackedString textPacked = { const_cast<char*>(t372ea0.prepend("WHITESPACE").constData()+10), t372ea0.size()-10 };callbackQPlainTextEdit_AppendPlainText(this, textPacked); };
 	void Signal_BlockCountChanged(int newBlockCount) { callbackQPlainTextEdit_BlockCountChanged(this, newBlockCount); };
 	bool canInsertFromMimeData(const QMimeData * source) const { return callbackQPlainTextEdit_CanInsertFromMimeData(const_cast<MyQPlainTextEdit*>(this), const_cast<QMimeData*>(source)) != 0; };
 	void centerCursor() { callbackQPlainTextEdit_CenterCursor(this); };
@@ -59868,7 +59868,7 @@ public:
 	void inputMethodEvent(QInputMethodEvent * e) { callbackQPlainTextEdit_InputMethodEvent(this, e); };
 	QVariant inputMethodQuery(Qt::InputMethodQuery property) const { return *static_cast<QVariant*>(callbackQPlainTextEdit_InputMethodQuery(const_cast<MyQPlainTextEdit*>(this), property)); };
 	void insertFromMimeData(const QMimeData * source) { callbackQPlainTextEdit_InsertFromMimeData(this, const_cast<QMimeData*>(source)); };
-	void insertPlainText(const QString & text) { callbackQPlainTextEdit_InsertPlainText(this, const_cast<char*>(text.toUtf8().prepend("WHITESPACE").constData()+10)); };
+	void insertPlainText(const QString & text) { QByteArray t372ea0 = text.toUtf8(); QtWidgets_PackedString textPacked = { const_cast<char*>(t372ea0.prepend("WHITESPACE").constData()+10), t372ea0.size()-10 };callbackQPlainTextEdit_InsertPlainText(this, textPacked); };
 	void keyPressEvent(QKeyEvent * e) { callbackQPlainTextEdit_KeyPressEvent(this, e); };
 	void keyReleaseEvent(QKeyEvent * e) { callbackQPlainTextEdit_KeyReleaseEvent(this, e); };
 	QVariant loadResource(int ty, const QUrl & name) { return *static_cast<QVariant*>(callbackQPlainTextEdit_LoadResource(this, ty, const_cast<QUrl*>(&name))); };
@@ -59884,7 +59884,7 @@ public:
 	void scrollContentsBy(int dx, int dy) { callbackQPlainTextEdit_ScrollContentsBy(this, dx, dy); };
 	void selectAll() { callbackQPlainTextEdit_SelectAll(this); };
 	void Signal_SelectionChanged() { callbackQPlainTextEdit_SelectionChanged(this); };
-	void setPlainText(const QString & text) { callbackQPlainTextEdit_SetPlainText(this, const_cast<char*>(text.toUtf8().prepend("WHITESPACE").constData()+10)); };
+	void setPlainText(const QString & text) { QByteArray t372ea0 = text.toUtf8(); QtWidgets_PackedString textPacked = { const_cast<char*>(t372ea0.prepend("WHITESPACE").constData()+10), t372ea0.size()-10 };callbackQPlainTextEdit_SetPlainText(this, textPacked); };
 	void showEvent(QShowEvent * vqs) { callbackQPlainTextEdit_ShowEvent(this, vqs); };
 	void Signal_TextChanged() { callbackQPlainTextEdit_TextChanged(this); };
 	void undo() { callbackQPlainTextEdit_Undo(this); };
@@ -59903,17 +59903,17 @@ public:
 	void leaveEvent(QEvent * event) { callbackQPlainTextEdit_LeaveEvent(this, event); };
 	void moveEvent(QMoveEvent * event) { callbackQPlainTextEdit_MoveEvent(this, event); };
 	void setEnabled(bool vbo) { callbackQPlainTextEdit_SetEnabled(this, vbo); };
-	void setStyleSheet(const QString & styleSheet) { callbackQPlainTextEdit_SetStyleSheet(this, const_cast<char*>(styleSheet.toUtf8().prepend("WHITESPACE").constData()+10)); };
+	void setStyleSheet(const QString & styleSheet) { QByteArray t728ae7 = styleSheet.toUtf8(); QtWidgets_PackedString styleSheetPacked = { const_cast<char*>(t728ae7.prepend("WHITESPACE").constData()+10), t728ae7.size()-10 };callbackQPlainTextEdit_SetStyleSheet(this, styleSheetPacked); };
 	void setVisible(bool visible) { callbackQPlainTextEdit_SetVisible(this, visible); };
 	void setWindowModified(bool vbo) { callbackQPlainTextEdit_SetWindowModified(this, vbo); };
-	void setWindowTitle(const QString & vqs) { callbackQPlainTextEdit_SetWindowTitle(this, const_cast<char*>(vqs.toUtf8().prepend("WHITESPACE").constData()+10)); };
+	void setWindowTitle(const QString & vqs) { QByteArray tda39a3 = vqs.toUtf8(); QtWidgets_PackedString vqsPacked = { const_cast<char*>(tda39a3.prepend("WHITESPACE").constData()+10), tda39a3.size()-10 };callbackQPlainTextEdit_SetWindowTitle(this, vqsPacked); };
 	bool close() { return callbackQPlainTextEdit_Close(this) != 0; };
 	void closeEvent(QCloseEvent * event) { callbackQPlainTextEdit_CloseEvent(this, event); };
 	bool hasHeightForWidth() const { return callbackQPlainTextEdit_HasHeightForWidth(const_cast<MyQPlainTextEdit*>(this)) != 0; };
 	int heightForWidth(int w) const { return callbackQPlainTextEdit_HeightForWidth(const_cast<MyQPlainTextEdit*>(this), w); };
 	void hide() { callbackQPlainTextEdit_Hide(this); };
 	void lower() { callbackQPlainTextEdit_Lower(this); };
-	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQPlainTextEdit_NativeEvent(this, const_cast<char*>(eventType.toHex().prepend("WHITESPACE").constData()+10), message, *result) != 0; };
+	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQPlainTextEdit_NativeEvent(this, const_cast<QByteArray*>(&eventType), message, *result) != 0; };
 	void raise() { callbackQPlainTextEdit_Raise(this); };
 	void repaint() { callbackQPlainTextEdit_Repaint(this); };
 	void setDisabled(bool disable) { callbackQPlainTextEdit_SetDisabled(this, disable); };
@@ -59987,9 +59987,9 @@ char QPlainTextEdit_OverwriteMode(void* ptr)
 	return static_cast<QPlainTextEdit*>(ptr)->overwriteMode();
 }
 
-char* QPlainTextEdit_PlaceholderText(void* ptr)
+struct QtWidgets_PackedString QPlainTextEdit_PlaceholderText(void* ptr)
 {
-	return const_cast<char*>(static_cast<QPlainTextEdit*>(ptr)->placeholderText().toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray tb4d3fc = static_cast<QPlainTextEdit*>(ptr)->placeholderText().toUtf8(); QtWidgets_PackedString { const_cast<char*>(tb4d3fc.prepend("WHITESPACE").constData()+10), tb4d3fc.size()-10 }; });
 }
 
 void QPlainTextEdit_Redo(void* ptr)
@@ -60092,9 +60092,9 @@ void* QPlainTextEdit_NewQPlainTextEdit2(char* text, void* parent)
 	return new MyQPlainTextEdit(QString(text), static_cast<QWidget*>(parent));
 }
 
-char* QPlainTextEdit_AnchorAt(void* ptr, void* pos)
+struct QtWidgets_PackedString QPlainTextEdit_AnchorAt(void* ptr, void* pos)
 {
-	return const_cast<char*>(static_cast<QPlainTextEdit*>(ptr)->anchorAt(*static_cast<QPoint*>(pos)).toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray t8a0984 = static_cast<QPlainTextEdit*>(ptr)->anchorAt(*static_cast<QPoint*>(pos)).toUtf8(); QtWidgets_PackedString { const_cast<char*>(t8a0984.prepend("WHITESPACE").constData()+10), t8a0984.size()-10 }; });
 }
 
 void QPlainTextEdit_AppendHtml(void* ptr, char* html)
@@ -60252,9 +60252,9 @@ void* QPlainTextEdit_Document(void* ptr)
 	return static_cast<QPlainTextEdit*>(ptr)->document();
 }
 
-char* QPlainTextEdit_DocumentTitle(void* ptr)
+struct QtWidgets_PackedString QPlainTextEdit_DocumentTitle(void* ptr)
 {
-	return const_cast<char*>(static_cast<QPlainTextEdit*>(ptr)->documentTitle().toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray tba0a66 = static_cast<QPlainTextEdit*>(ptr)->documentTitle().toUtf8(); QtWidgets_PackedString { const_cast<char*>(tba0a66.prepend("WHITESPACE").constData()+10), tba0a66.size()-10 }; });
 }
 
 void QPlainTextEdit_DragEnterEvent(void* ptr, void* e)
@@ -60624,9 +60624,9 @@ void* QPlainTextEdit_TextCursor(void* ptr)
 	return new QTextCursor(static_cast<QPlainTextEdit*>(ptr)->textCursor());
 }
 
-char* QPlainTextEdit_ToPlainText(void* ptr)
+struct QtWidgets_PackedString QPlainTextEdit_ToPlainText(void* ptr)
 {
-	return const_cast<char*>(static_cast<QPlainTextEdit*>(ptr)->toPlainText().toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray t3c8ca8 = static_cast<QPlainTextEdit*>(ptr)->toPlainText().toUtf8(); QtWidgets_PackedString { const_cast<char*>(t3c8ca8.prepend("WHITESPACE").constData()+10), t3c8ca8.size()-10 }; });
 }
 
 void QPlainTextEdit_Undo(void* ptr)
@@ -60896,14 +60896,14 @@ void QPlainTextEdit_LowerDefault(void* ptr)
 	static_cast<QPlainTextEdit*>(ptr)->QPlainTextEdit::lower();
 }
 
-char QPlainTextEdit_NativeEvent(void* ptr, char* eventType, void* message, long result)
+char QPlainTextEdit_NativeEvent(void* ptr, void* eventType, void* message, long result)
 {
-	return static_cast<QPlainTextEdit*>(ptr)->nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
+	return static_cast<QPlainTextEdit*>(ptr)->nativeEvent(*static_cast<QByteArray*>(eventType), message, &result);
 }
 
-char QPlainTextEdit_NativeEventDefault(void* ptr, char* eventType, void* message, long result)
+char QPlainTextEdit_NativeEventDefault(void* ptr, void* eventType, void* message, long result)
 {
-	return static_cast<QPlainTextEdit*>(ptr)->QPlainTextEdit::nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
+	return static_cast<QPlainTextEdit*>(ptr)->QPlainTextEdit::nativeEvent(*static_cast<QByteArray*>(eventType), message, &result);
 }
 
 void QPlainTextEdit_Raise(void* ptr)
@@ -61143,10 +61143,10 @@ public:
 	void leaveEvent(QEvent * event) { callbackQProgressBar_LeaveEvent(this, event); };
 	void moveEvent(QMoveEvent * event) { callbackQProgressBar_MoveEvent(this, event); };
 	void setEnabled(bool vbo) { callbackQProgressBar_SetEnabled(this, vbo); };
-	void setStyleSheet(const QString & styleSheet) { callbackQProgressBar_SetStyleSheet(this, const_cast<char*>(styleSheet.toUtf8().prepend("WHITESPACE").constData()+10)); };
+	void setStyleSheet(const QString & styleSheet) { QByteArray t728ae7 = styleSheet.toUtf8(); QtWidgets_PackedString styleSheetPacked = { const_cast<char*>(t728ae7.prepend("WHITESPACE").constData()+10), t728ae7.size()-10 };callbackQProgressBar_SetStyleSheet(this, styleSheetPacked); };
 	void setVisible(bool visible) { callbackQProgressBar_SetVisible(this, visible); };
 	void setWindowModified(bool vbo) { callbackQProgressBar_SetWindowModified(this, vbo); };
-	void setWindowTitle(const QString & vqs) { callbackQProgressBar_SetWindowTitle(this, const_cast<char*>(vqs.toUtf8().prepend("WHITESPACE").constData()+10)); };
+	void setWindowTitle(const QString & vqs) { QByteArray tda39a3 = vqs.toUtf8(); QtWidgets_PackedString vqsPacked = { const_cast<char*>(tda39a3.prepend("WHITESPACE").constData()+10), tda39a3.size()-10 };callbackQProgressBar_SetWindowTitle(this, vqsPacked); };
 	void showEvent(QShowEvent * event) { callbackQProgressBar_ShowEvent(this, event); };
 	void changeEvent(QEvent * event) { callbackQProgressBar_ChangeEvent(this, event); };
 	bool close() { return callbackQProgressBar_Close(this) != 0; };
@@ -61165,7 +61165,7 @@ public:
 	void mouseMoveEvent(QMouseEvent * event) { callbackQProgressBar_MouseMoveEvent(this, event); };
 	void mousePressEvent(QMouseEvent * event) { callbackQProgressBar_MousePressEvent(this, event); };
 	void mouseReleaseEvent(QMouseEvent * event) { callbackQProgressBar_MouseReleaseEvent(this, event); };
-	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQProgressBar_NativeEvent(this, const_cast<char*>(eventType.toHex().prepend("WHITESPACE").constData()+10), message, *result) != 0; };
+	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQProgressBar_NativeEvent(this, const_cast<QByteArray*>(&eventType), message, *result) != 0; };
 	void raise() { callbackQProgressBar_Raise(this); };
 	void repaint() { callbackQProgressBar_Repaint(this); };
 	void resizeEvent(QResizeEvent * event) { callbackQProgressBar_ResizeEvent(this, event); };
@@ -61196,9 +61196,9 @@ long long QProgressBar_Alignment(void* ptr)
 	return static_cast<QProgressBar*>(ptr)->alignment();
 }
 
-char* QProgressBar_Format(void* ptr)
+struct QtWidgets_PackedString QProgressBar_Format(void* ptr)
 {
-	return const_cast<char*>(static_cast<QProgressBar*>(ptr)->format().toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray tfbdd88 = static_cast<QProgressBar*>(ptr)->format().toUtf8(); QtWidgets_PackedString { const_cast<char*>(tfbdd88.prepend("WHITESPACE").constData()+10), tfbdd88.size()-10 }; });
 }
 
 char QProgressBar_InvertedAppearance(void* ptr)
@@ -61276,14 +61276,14 @@ void QProgressBar_SetValue(void* ptr, int value)
 	QMetaObject::invokeMethod(static_cast<QProgressBar*>(ptr), "setValue", Q_ARG(int, value));
 }
 
-char* QProgressBar_Text(void* ptr)
+struct QtWidgets_PackedString QProgressBar_Text(void* ptr)
 {
-	return const_cast<char*>(static_cast<QProgressBar*>(ptr)->text().toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray tffaa7f = static_cast<QProgressBar*>(ptr)->text().toUtf8(); QtWidgets_PackedString { const_cast<char*>(tffaa7f.prepend("WHITESPACE").constData()+10), tffaa7f.size()-10 }; });
 }
 
-char* QProgressBar_TextDefault(void* ptr)
+struct QtWidgets_PackedString QProgressBar_TextDefault(void* ptr)
 {
-	return const_cast<char*>(static_cast<QProgressBar*>(ptr)->QProgressBar::text().toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray t6f1b9c = static_cast<QProgressBar*>(ptr)->QProgressBar::text().toUtf8(); QtWidgets_PackedString { const_cast<char*>(t6f1b9c.prepend("WHITESPACE").constData()+10), t6f1b9c.size()-10 }; });
 }
 
 long long QProgressBar_TextDirection(void* ptr)
@@ -61713,14 +61713,14 @@ void QProgressBar_MouseReleaseEventDefault(void* ptr, void* event)
 	static_cast<QProgressBar*>(ptr)->QProgressBar::mouseReleaseEvent(static_cast<QMouseEvent*>(event));
 }
 
-char QProgressBar_NativeEvent(void* ptr, char* eventType, void* message, long result)
+char QProgressBar_NativeEvent(void* ptr, void* eventType, void* message, long result)
 {
-	return static_cast<QProgressBar*>(ptr)->nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
+	return static_cast<QProgressBar*>(ptr)->nativeEvent(*static_cast<QByteArray*>(eventType), message, &result);
 }
 
-char QProgressBar_NativeEventDefault(void* ptr, char* eventType, void* message, long result)
+char QProgressBar_NativeEventDefault(void* ptr, void* eventType, void* message, long result)
 {
-	return static_cast<QProgressBar*>(ptr)->QProgressBar::nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
+	return static_cast<QProgressBar*>(ptr)->QProgressBar::nativeEvent(*static_cast<QByteArray*>(eventType), message, &result);
 }
 
 void QProgressBar_Raise(void* ptr)
@@ -61958,7 +61958,7 @@ class MyQProgressDialog: public QProgressDialog
 public:
 	MyQProgressDialog(QWidget *parent, Qt::WindowFlags f) : QProgressDialog(parent, f) {};
 	MyQProgressDialog(const QString &labelText, const QString &cancelButtonText, int minimum, int maximum, QWidget *parent, Qt::WindowFlags f) : QProgressDialog(labelText, cancelButtonText, minimum, maximum, parent, f) {};
-	void setLabelText(const QString & text) { callbackQProgressDialog_SetLabelText(this, const_cast<char*>(text.toUtf8().prepend("WHITESPACE").constData()+10)); };
+	void setLabelText(const QString & text) { QByteArray t372ea0 = text.toUtf8(); QtWidgets_PackedString textPacked = { const_cast<char*>(t372ea0.prepend("WHITESPACE").constData()+10), t372ea0.size()-10 };callbackQProgressDialog_SetLabelText(this, textPacked); };
 	void setMaximum(int maximum) { callbackQProgressDialog_SetMaximum(this, maximum); };
 	void setMinimum(int minimum) { callbackQProgressDialog_SetMinimum(this, minimum); };
 	void setMinimumDuration(int ms) { callbackQProgressDialog_SetMinimumDuration(this, ms); };
@@ -61970,7 +61970,7 @@ public:
 	void forceShow() { callbackQProgressDialog_ForceShow(this); };
 	void reset() { callbackQProgressDialog_Reset(this); };
 	void resizeEvent(QResizeEvent * event) { callbackQProgressDialog_ResizeEvent(this, event); };
-	void setCancelButtonText(const QString & cancelButtonText) { callbackQProgressDialog_SetCancelButtonText(this, const_cast<char*>(cancelButtonText.toUtf8().prepend("WHITESPACE").constData()+10)); };
+	void setCancelButtonText(const QString & cancelButtonText) { QByteArray td2e1e2 = cancelButtonText.toUtf8(); QtWidgets_PackedString cancelButtonTextPacked = { const_cast<char*>(td2e1e2.prepend("WHITESPACE").constData()+10), td2e1e2.size()-10 };callbackQProgressDialog_SetCancelButtonText(this, cancelButtonTextPacked); };
 	void setRange(int minimum, int maximum) { callbackQProgressDialog_SetRange(this, minimum, maximum); };
 	void showEvent(QShowEvent * e) { callbackQProgressDialog_ShowEvent(this, e); };
 	QSize sizeHint() const { return *static_cast<QSize*>(callbackQProgressDialog_SizeHint(const_cast<MyQProgressDialog*>(this))); };
@@ -61995,9 +61995,9 @@ public:
 	void moveEvent(QMoveEvent * event) { callbackQProgressDialog_MoveEvent(this, event); };
 	void paintEvent(QPaintEvent * event) { callbackQProgressDialog_PaintEvent(this, event); };
 	void setEnabled(bool vbo) { callbackQProgressDialog_SetEnabled(this, vbo); };
-	void setStyleSheet(const QString & styleSheet) { callbackQProgressDialog_SetStyleSheet(this, const_cast<char*>(styleSheet.toUtf8().prepend("WHITESPACE").constData()+10)); };
+	void setStyleSheet(const QString & styleSheet) { QByteArray t728ae7 = styleSheet.toUtf8(); QtWidgets_PackedString styleSheetPacked = { const_cast<char*>(t728ae7.prepend("WHITESPACE").constData()+10), t728ae7.size()-10 };callbackQProgressDialog_SetStyleSheet(this, styleSheetPacked); };
 	void setWindowModified(bool vbo) { callbackQProgressDialog_SetWindowModified(this, vbo); };
-	void setWindowTitle(const QString & vqs) { callbackQProgressDialog_SetWindowTitle(this, const_cast<char*>(vqs.toUtf8().prepend("WHITESPACE").constData()+10)); };
+	void setWindowTitle(const QString & vqs) { QByteArray tda39a3 = vqs.toUtf8(); QtWidgets_PackedString vqsPacked = { const_cast<char*>(tda39a3.prepend("WHITESPACE").constData()+10), tda39a3.size()-10 };callbackQProgressDialog_SetWindowTitle(this, vqsPacked); };
 	bool close() { return callbackQProgressDialog_Close(this) != 0; };
 	bool focusNextPrevChild(bool next) { return callbackQProgressDialog_FocusNextPrevChild(this, next) != 0; };
 	bool hasHeightForWidth() const { return callbackQProgressDialog_HasHeightForWidth(const_cast<MyQProgressDialog*>(this)) != 0; };
@@ -62011,7 +62011,7 @@ public:
 	void mouseMoveEvent(QMouseEvent * event) { callbackQProgressDialog_MouseMoveEvent(this, event); };
 	void mousePressEvent(QMouseEvent * event) { callbackQProgressDialog_MousePressEvent(this, event); };
 	void mouseReleaseEvent(QMouseEvent * event) { callbackQProgressDialog_MouseReleaseEvent(this, event); };
-	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQProgressDialog_NativeEvent(this, const_cast<char*>(eventType.toHex().prepend("WHITESPACE").constData()+10), message, *result) != 0; };
+	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQProgressDialog_NativeEvent(this, const_cast<QByteArray*>(&eventType), message, *result) != 0; };
 	void raise() { callbackQProgressDialog_Raise(this); };
 	void repaint() { callbackQProgressDialog_Repaint(this); };
 	void setDisabled(bool disable) { callbackQProgressDialog_SetDisabled(this, disable); };
@@ -62045,9 +62045,9 @@ char QProgressDialog_AutoReset(void* ptr)
 	return static_cast<QProgressDialog*>(ptr)->autoReset();
 }
 
-char* QProgressDialog_LabelText(void* ptr)
+struct QtWidgets_PackedString QProgressDialog_LabelText(void* ptr)
 {
-	return const_cast<char*>(static_cast<QProgressDialog*>(ptr)->labelText().toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray t2a151b = static_cast<QProgressDialog*>(ptr)->labelText().toUtf8(); QtWidgets_PackedString { const_cast<char*>(t2a151b.prepend("WHITESPACE").constData()+10), t2a151b.size()-10 }; });
 }
 
 int QProgressDialog_Maximum(void* ptr)
@@ -62609,14 +62609,14 @@ void QProgressDialog_MouseReleaseEventDefault(void* ptr, void* event)
 	static_cast<QProgressDialog*>(ptr)->QProgressDialog::mouseReleaseEvent(static_cast<QMouseEvent*>(event));
 }
 
-char QProgressDialog_NativeEvent(void* ptr, char* eventType, void* message, long result)
+char QProgressDialog_NativeEvent(void* ptr, void* eventType, void* message, long result)
 {
-	return static_cast<QProgressDialog*>(ptr)->nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
+	return static_cast<QProgressDialog*>(ptr)->nativeEvent(*static_cast<QByteArray*>(eventType), message, &result);
 }
 
-char QProgressDialog_NativeEventDefault(void* ptr, char* eventType, void* message, long result)
+char QProgressDialog_NativeEventDefault(void* ptr, void* eventType, void* message, long result)
 {
-	return static_cast<QProgressDialog*>(ptr)->QProgressDialog::nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
+	return static_cast<QProgressDialog*>(ptr)->QProgressDialog::nativeEvent(*static_cast<QByteArray*>(eventType), message, &result);
 }
 
 void QProgressDialog_Raise(void* ptr)
@@ -62837,12 +62837,12 @@ public:
 	void drawComplexControl(QStyle::ComplexControl control, const QStyleOptionComplex * option, QPainter * painter, const QWidget * widget) const { callbackQProxyStyle_DrawComplexControl(const_cast<MyQProxyStyle*>(this), control, const_cast<QStyleOptionComplex*>(option), painter, const_cast<QWidget*>(widget)); };
 	void drawControl(QStyle::ControlElement element, const QStyleOption * option, QPainter * painter, const QWidget * widget) const { callbackQProxyStyle_DrawControl(const_cast<MyQProxyStyle*>(this), element, const_cast<QStyleOption*>(option), painter, const_cast<QWidget*>(widget)); };
 	void drawItemPixmap(QPainter * painter, const QRect & rect, int alignment, const QPixmap & pixmap) const { callbackQProxyStyle_DrawItemPixmap(const_cast<MyQProxyStyle*>(this), painter, const_cast<QRect*>(&rect), alignment, const_cast<QPixmap*>(&pixmap)); };
-	void drawItemText(QPainter * painter, const QRect & rect, int flags, const QPalette & pal, bool enabled, const QString & text, QPalette::ColorRole textRole) const { callbackQProxyStyle_DrawItemText(const_cast<MyQProxyStyle*>(this), painter, const_cast<QRect*>(&rect), flags, const_cast<QPalette*>(&pal), enabled, const_cast<char*>(text.toUtf8().prepend("WHITESPACE").constData()+10), textRole); };
+	void drawItemText(QPainter * painter, const QRect & rect, int flags, const QPalette & pal, bool enabled, const QString & text, QPalette::ColorRole textRole) const { QByteArray t372ea0 = text.toUtf8(); QtWidgets_PackedString textPacked = { const_cast<char*>(t372ea0.prepend("WHITESPACE").constData()+10), t372ea0.size()-10 };callbackQProxyStyle_DrawItemText(const_cast<MyQProxyStyle*>(this), painter, const_cast<QRect*>(&rect), flags, const_cast<QPalette*>(&pal), enabled, textPacked, textRole); };
 	void drawPrimitive(QStyle::PrimitiveElement element, const QStyleOption * option, QPainter * painter, const QWidget * widget) const { callbackQProxyStyle_DrawPrimitive(const_cast<MyQProxyStyle*>(this), element, const_cast<QStyleOption*>(option), painter, const_cast<QWidget*>(widget)); };
 	QPixmap generatedIconPixmap(QIcon::Mode iconMode, const QPixmap & pixmap, const QStyleOption * opt) const { return *static_cast<QPixmap*>(callbackQProxyStyle_GeneratedIconPixmap(const_cast<MyQProxyStyle*>(this), iconMode, const_cast<QPixmap*>(&pixmap), const_cast<QStyleOption*>(opt))); };
 	SubControl hitTestComplexControl(QStyle::ComplexControl control, const QStyleOptionComplex * option, const QPoint & pos, const QWidget * widget) const { return static_cast<QStyle::SubControl>(callbackQProxyStyle_HitTestComplexControl(const_cast<MyQProxyStyle*>(this), control, const_cast<QStyleOptionComplex*>(option), const_cast<QPoint*>(&pos), const_cast<QWidget*>(widget))); };
 	QRect itemPixmapRect(const QRect & r, int flags, const QPixmap & pixmap) const { return *static_cast<QRect*>(callbackQProxyStyle_ItemPixmapRect(const_cast<MyQProxyStyle*>(this), const_cast<QRect*>(&r), flags, const_cast<QPixmap*>(&pixmap))); };
-	QRect itemTextRect(const QFontMetrics & fm, const QRect & r, int flags, bool enabled, const QString & text) const { return *static_cast<QRect*>(callbackQProxyStyle_ItemTextRect(const_cast<MyQProxyStyle*>(this), const_cast<QFontMetrics*>(&fm), const_cast<QRect*>(&r), flags, enabled, const_cast<char*>(text.toUtf8().prepend("WHITESPACE").constData()+10))); };
+	QRect itemTextRect(const QFontMetrics & fm, const QRect & r, int flags, bool enabled, const QString & text) const { QByteArray t372ea0 = text.toUtf8(); QtWidgets_PackedString textPacked = { const_cast<char*>(t372ea0.prepend("WHITESPACE").constData()+10), t372ea0.size()-10 };return *static_cast<QRect*>(callbackQProxyStyle_ItemTextRect(const_cast<MyQProxyStyle*>(this), const_cast<QFontMetrics*>(&fm), const_cast<QRect*>(&r), flags, enabled, textPacked)); };
 	int layoutSpacing(QSizePolicy::ControlType control1, QSizePolicy::ControlType control2, Qt::Orientation orientation, const QStyleOption * option, const QWidget * widget) const { return callbackQProxyStyle_LayoutSpacing(const_cast<MyQProxyStyle*>(this), control1, control2, orientation, const_cast<QStyleOption*>(option), const_cast<QWidget*>(widget)); };
 	int pixelMetric(QStyle::PixelMetric metric, const QStyleOption * option, const QWidget * widget) const { return callbackQProxyStyle_PixelMetric(const_cast<MyQProxyStyle*>(this), metric, const_cast<QStyleOption*>(option), const_cast<QWidget*>(widget)); };
 	void polish(QApplication * app) { callbackQProxyStyle_Polish3(this, app); };
@@ -63243,10 +63243,10 @@ public:
 	void leaveEvent(QEvent * event) { callbackQPushButton_LeaveEvent(this, event); };
 	void moveEvent(QMoveEvent * event) { callbackQPushButton_MoveEvent(this, event); };
 	void setEnabled(bool vbo) { callbackQPushButton_SetEnabled(this, vbo); };
-	void setStyleSheet(const QString & styleSheet) { callbackQPushButton_SetStyleSheet(this, const_cast<char*>(styleSheet.toUtf8().prepend("WHITESPACE").constData()+10)); };
+	void setStyleSheet(const QString & styleSheet) { QByteArray t728ae7 = styleSheet.toUtf8(); QtWidgets_PackedString styleSheetPacked = { const_cast<char*>(t728ae7.prepend("WHITESPACE").constData()+10), t728ae7.size()-10 };callbackQPushButton_SetStyleSheet(this, styleSheetPacked); };
 	void setVisible(bool visible) { callbackQPushButton_SetVisible(this, visible); };
 	void setWindowModified(bool vbo) { callbackQPushButton_SetWindowModified(this, vbo); };
-	void setWindowTitle(const QString & vqs) { callbackQPushButton_SetWindowTitle(this, const_cast<char*>(vqs.toUtf8().prepend("WHITESPACE").constData()+10)); };
+	void setWindowTitle(const QString & vqs) { QByteArray tda39a3 = vqs.toUtf8(); QtWidgets_PackedString vqsPacked = { const_cast<char*>(tda39a3.prepend("WHITESPACE").constData()+10), tda39a3.size()-10 };callbackQPushButton_SetWindowTitle(this, vqsPacked); };
 	void showEvent(QShowEvent * event) { callbackQPushButton_ShowEvent(this, event); };
 	bool close() { return callbackQPushButton_Close(this) != 0; };
 	void closeEvent(QCloseEvent * event) { callbackQPushButton_CloseEvent(this, event); };
@@ -63259,7 +63259,7 @@ public:
 	QVariant inputMethodQuery(Qt::InputMethodQuery query) const { return *static_cast<QVariant*>(callbackQPushButton_InputMethodQuery(const_cast<MyQPushButton*>(this), query)); };
 	void lower() { callbackQPushButton_Lower(this); };
 	void mouseDoubleClickEvent(QMouseEvent * event) { callbackQPushButton_MouseDoubleClickEvent(this, event); };
-	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQPushButton_NativeEvent(this, const_cast<char*>(eventType.toHex().prepend("WHITESPACE").constData()+10), message, *result) != 0; };
+	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQPushButton_NativeEvent(this, const_cast<QByteArray*>(&eventType), message, *result) != 0; };
 	void raise() { callbackQPushButton_Raise(this); };
 	void repaint() { callbackQPushButton_Repaint(this); };
 	void resizeEvent(QResizeEvent * event) { callbackQPushButton_ResizeEvent(this, event); };
@@ -63811,14 +63811,14 @@ void QPushButton_MouseDoubleClickEventDefault(void* ptr, void* event)
 	static_cast<QPushButton*>(ptr)->QPushButton::mouseDoubleClickEvent(static_cast<QMouseEvent*>(event));
 }
 
-char QPushButton_NativeEvent(void* ptr, char* eventType, void* message, long result)
+char QPushButton_NativeEvent(void* ptr, void* eventType, void* message, long result)
 {
-	return static_cast<QPushButton*>(ptr)->nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
+	return static_cast<QPushButton*>(ptr)->nativeEvent(*static_cast<QByteArray*>(eventType), message, &result);
 }
 
-char QPushButton_NativeEventDefault(void* ptr, char* eventType, void* message, long result)
+char QPushButton_NativeEventDefault(void* ptr, void* eventType, void* message, long result)
 {
-	return static_cast<QPushButton*>(ptr)->QPushButton::nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
+	return static_cast<QPushButton*>(ptr)->QPushButton::nativeEvent(*static_cast<QByteArray*>(eventType), message, &result);
 }
 
 void QPushButton_Raise(void* ptr)
@@ -64075,10 +64075,10 @@ public:
 	void leaveEvent(QEvent * event) { callbackQRadioButton_LeaveEvent(this, event); };
 	void moveEvent(QMoveEvent * event) { callbackQRadioButton_MoveEvent(this, event); };
 	void setEnabled(bool vbo) { callbackQRadioButton_SetEnabled(this, vbo); };
-	void setStyleSheet(const QString & styleSheet) { callbackQRadioButton_SetStyleSheet(this, const_cast<char*>(styleSheet.toUtf8().prepend("WHITESPACE").constData()+10)); };
+	void setStyleSheet(const QString & styleSheet) { QByteArray t728ae7 = styleSheet.toUtf8(); QtWidgets_PackedString styleSheetPacked = { const_cast<char*>(t728ae7.prepend("WHITESPACE").constData()+10), t728ae7.size()-10 };callbackQRadioButton_SetStyleSheet(this, styleSheetPacked); };
 	void setVisible(bool visible) { callbackQRadioButton_SetVisible(this, visible); };
 	void setWindowModified(bool vbo) { callbackQRadioButton_SetWindowModified(this, vbo); };
-	void setWindowTitle(const QString & vqs) { callbackQRadioButton_SetWindowTitle(this, const_cast<char*>(vqs.toUtf8().prepend("WHITESPACE").constData()+10)); };
+	void setWindowTitle(const QString & vqs) { QByteArray tda39a3 = vqs.toUtf8(); QtWidgets_PackedString vqsPacked = { const_cast<char*>(tda39a3.prepend("WHITESPACE").constData()+10), tda39a3.size()-10 };callbackQRadioButton_SetWindowTitle(this, vqsPacked); };
 	void showEvent(QShowEvent * event) { callbackQRadioButton_ShowEvent(this, event); };
 	bool close() { return callbackQRadioButton_Close(this) != 0; };
 	void closeEvent(QCloseEvent * event) { callbackQRadioButton_CloseEvent(this, event); };
@@ -64091,7 +64091,7 @@ public:
 	QVariant inputMethodQuery(Qt::InputMethodQuery query) const { return *static_cast<QVariant*>(callbackQRadioButton_InputMethodQuery(const_cast<MyQRadioButton*>(this), query)); };
 	void lower() { callbackQRadioButton_Lower(this); };
 	void mouseDoubleClickEvent(QMouseEvent * event) { callbackQRadioButton_MouseDoubleClickEvent(this, event); };
-	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQRadioButton_NativeEvent(this, const_cast<char*>(eventType.toHex().prepend("WHITESPACE").constData()+10), message, *result) != 0; };
+	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQRadioButton_NativeEvent(this, const_cast<QByteArray*>(&eventType), message, *result) != 0; };
 	void raise() { callbackQRadioButton_Raise(this); };
 	void repaint() { callbackQRadioButton_Repaint(this); };
 	void resizeEvent(QResizeEvent * event) { callbackQRadioButton_ResizeEvent(this, event); };
@@ -64593,14 +64593,14 @@ void QRadioButton_MouseDoubleClickEventDefault(void* ptr, void* event)
 	static_cast<QRadioButton*>(ptr)->QRadioButton::mouseDoubleClickEvent(static_cast<QMouseEvent*>(event));
 }
 
-char QRadioButton_NativeEvent(void* ptr, char* eventType, void* message, long result)
+char QRadioButton_NativeEvent(void* ptr, void* eventType, void* message, long result)
 {
-	return static_cast<QRadioButton*>(ptr)->nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
+	return static_cast<QRadioButton*>(ptr)->nativeEvent(*static_cast<QByteArray*>(eventType), message, &result);
 }
 
-char QRadioButton_NativeEventDefault(void* ptr, char* eventType, void* message, long result)
+char QRadioButton_NativeEventDefault(void* ptr, void* eventType, void* message, long result)
 {
-	return static_cast<QRadioButton*>(ptr)->QRadioButton::nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
+	return static_cast<QRadioButton*>(ptr)->QRadioButton::nativeEvent(*static_cast<QByteArray*>(eventType), message, &result);
 }
 
 void QRadioButton_Raise(void* ptr)
@@ -64844,10 +64844,10 @@ public:
 	void leaveEvent(QEvent * event) { callbackQRubberBand_LeaveEvent(this, event); };
 	QSize minimumSizeHint() const { return *static_cast<QSize*>(callbackQRubberBand_MinimumSizeHint(const_cast<MyQRubberBand*>(this))); };
 	void setEnabled(bool vbo) { callbackQRubberBand_SetEnabled(this, vbo); };
-	void setStyleSheet(const QString & styleSheet) { callbackQRubberBand_SetStyleSheet(this, const_cast<char*>(styleSheet.toUtf8().prepend("WHITESPACE").constData()+10)); };
+	void setStyleSheet(const QString & styleSheet) { QByteArray t728ae7 = styleSheet.toUtf8(); QtWidgets_PackedString styleSheetPacked = { const_cast<char*>(t728ae7.prepend("WHITESPACE").constData()+10), t728ae7.size()-10 };callbackQRubberBand_SetStyleSheet(this, styleSheetPacked); };
 	void setVisible(bool visible) { callbackQRubberBand_SetVisible(this, visible); };
 	void setWindowModified(bool vbo) { callbackQRubberBand_SetWindowModified(this, vbo); };
-	void setWindowTitle(const QString & vqs) { callbackQRubberBand_SetWindowTitle(this, const_cast<char*>(vqs.toUtf8().prepend("WHITESPACE").constData()+10)); };
+	void setWindowTitle(const QString & vqs) { QByteArray tda39a3 = vqs.toUtf8(); QtWidgets_PackedString vqsPacked = { const_cast<char*>(tda39a3.prepend("WHITESPACE").constData()+10), tda39a3.size()-10 };callbackQRubberBand_SetWindowTitle(this, vqsPacked); };
 	QSize sizeHint() const { return *static_cast<QSize*>(callbackQRubberBand_SizeHint(const_cast<MyQRubberBand*>(this))); };
 	bool close() { return callbackQRubberBand_Close(this) != 0; };
 	void closeEvent(QCloseEvent * event) { callbackQRubberBand_CloseEvent(this, event); };
@@ -64865,7 +64865,7 @@ public:
 	void mouseMoveEvent(QMouseEvent * event) { callbackQRubberBand_MouseMoveEvent(this, event); };
 	void mousePressEvent(QMouseEvent * event) { callbackQRubberBand_MousePressEvent(this, event); };
 	void mouseReleaseEvent(QMouseEvent * event) { callbackQRubberBand_MouseReleaseEvent(this, event); };
-	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQRubberBand_NativeEvent(this, const_cast<char*>(eventType.toHex().prepend("WHITESPACE").constData()+10), message, *result) != 0; };
+	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQRubberBand_NativeEvent(this, const_cast<QByteArray*>(&eventType), message, *result) != 0; };
 	void raise() { callbackQRubberBand_Raise(this); };
 	void repaint() { callbackQRubberBand_Repaint(this); };
 	void setDisabled(bool disable) { callbackQRubberBand_SetDisabled(this, disable); };
@@ -65327,14 +65327,14 @@ void QRubberBand_MouseReleaseEventDefault(void* ptr, void* event)
 	static_cast<QRubberBand*>(ptr)->QRubberBand::mouseReleaseEvent(static_cast<QMouseEvent*>(event));
 }
 
-char QRubberBand_NativeEvent(void* ptr, char* eventType, void* message, long result)
+char QRubberBand_NativeEvent(void* ptr, void* eventType, void* message, long result)
 {
-	return static_cast<QRubberBand*>(ptr)->nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
+	return static_cast<QRubberBand*>(ptr)->nativeEvent(*static_cast<QByteArray*>(eventType), message, &result);
 }
 
-char QRubberBand_NativeEventDefault(void* ptr, char* eventType, void* message, long result)
+char QRubberBand_NativeEventDefault(void* ptr, void* eventType, void* message, long result)
 {
-	return static_cast<QRubberBand*>(ptr)->QRubberBand::nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
+	return static_cast<QRubberBand*>(ptr)->QRubberBand::nativeEvent(*static_cast<QByteArray*>(eventType), message, &result);
 }
 
 void QRubberBand_Raise(void* ptr)
@@ -65590,10 +65590,10 @@ public:
 	void leaveEvent(QEvent * event) { callbackQScrollArea_LeaveEvent(this, event); };
 	void moveEvent(QMoveEvent * event) { callbackQScrollArea_MoveEvent(this, event); };
 	void setEnabled(bool vbo) { callbackQScrollArea_SetEnabled(this, vbo); };
-	void setStyleSheet(const QString & styleSheet) { callbackQScrollArea_SetStyleSheet(this, const_cast<char*>(styleSheet.toUtf8().prepend("WHITESPACE").constData()+10)); };
+	void setStyleSheet(const QString & styleSheet) { QByteArray t728ae7 = styleSheet.toUtf8(); QtWidgets_PackedString styleSheetPacked = { const_cast<char*>(t728ae7.prepend("WHITESPACE").constData()+10), t728ae7.size()-10 };callbackQScrollArea_SetStyleSheet(this, styleSheetPacked); };
 	void setVisible(bool visible) { callbackQScrollArea_SetVisible(this, visible); };
 	void setWindowModified(bool vbo) { callbackQScrollArea_SetWindowModified(this, vbo); };
-	void setWindowTitle(const QString & vqs) { callbackQScrollArea_SetWindowTitle(this, const_cast<char*>(vqs.toUtf8().prepend("WHITESPACE").constData()+10)); };
+	void setWindowTitle(const QString & vqs) { QByteArray tda39a3 = vqs.toUtf8(); QtWidgets_PackedString vqsPacked = { const_cast<char*>(tda39a3.prepend("WHITESPACE").constData()+10), tda39a3.size()-10 };callbackQScrollArea_SetWindowTitle(this, vqsPacked); };
 	void showEvent(QShowEvent * event) { callbackQScrollArea_ShowEvent(this, event); };
 	bool close() { return callbackQScrollArea_Close(this) != 0; };
 	void closeEvent(QCloseEvent * event) { callbackQScrollArea_CloseEvent(this, event); };
@@ -65604,7 +65604,7 @@ public:
 	QVariant inputMethodQuery(Qt::InputMethodQuery query) const { return *static_cast<QVariant*>(callbackQScrollArea_InputMethodQuery(const_cast<MyQScrollArea*>(this), query)); };
 	void keyReleaseEvent(QKeyEvent * event) { callbackQScrollArea_KeyReleaseEvent(this, event); };
 	void lower() { callbackQScrollArea_Lower(this); };
-	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQScrollArea_NativeEvent(this, const_cast<char*>(eventType.toHex().prepend("WHITESPACE").constData()+10), message, *result) != 0; };
+	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQScrollArea_NativeEvent(this, const_cast<QByteArray*>(&eventType), message, *result) != 0; };
 	void raise() { callbackQScrollArea_Raise(this); };
 	void repaint() { callbackQScrollArea_Repaint(this); };
 	void setDisabled(bool disable) { callbackQScrollArea_SetDisabled(this, disable); };
@@ -66124,14 +66124,14 @@ void QScrollArea_LowerDefault(void* ptr)
 	static_cast<QScrollArea*>(ptr)->QScrollArea::lower();
 }
 
-char QScrollArea_NativeEvent(void* ptr, char* eventType, void* message, long result)
+char QScrollArea_NativeEvent(void* ptr, void* eventType, void* message, long result)
 {
-	return static_cast<QScrollArea*>(ptr)->nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
+	return static_cast<QScrollArea*>(ptr)->nativeEvent(*static_cast<QByteArray*>(eventType), message, &result);
 }
 
-char QScrollArea_NativeEventDefault(void* ptr, char* eventType, void* message, long result)
+char QScrollArea_NativeEventDefault(void* ptr, void* eventType, void* message, long result)
 {
-	return static_cast<QScrollArea*>(ptr)->QScrollArea::nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
+	return static_cast<QScrollArea*>(ptr)->QScrollArea::nativeEvent(*static_cast<QByteArray*>(eventType), message, &result);
 }
 
 void QScrollArea_Raise(void* ptr)
@@ -66365,10 +66365,10 @@ public:
 	QSize minimumSizeHint() const { return *static_cast<QSize*>(callbackQScrollBar_MinimumSizeHint(const_cast<MyQScrollBar*>(this))); };
 	void moveEvent(QMoveEvent * event) { callbackQScrollBar_MoveEvent(this, event); };
 	void setEnabled(bool vbo) { callbackQScrollBar_SetEnabled(this, vbo); };
-	void setStyleSheet(const QString & styleSheet) { callbackQScrollBar_SetStyleSheet(this, const_cast<char*>(styleSheet.toUtf8().prepend("WHITESPACE").constData()+10)); };
+	void setStyleSheet(const QString & styleSheet) { QByteArray t728ae7 = styleSheet.toUtf8(); QtWidgets_PackedString styleSheetPacked = { const_cast<char*>(t728ae7.prepend("WHITESPACE").constData()+10), t728ae7.size()-10 };callbackQScrollBar_SetStyleSheet(this, styleSheetPacked); };
 	void setVisible(bool visible) { callbackQScrollBar_SetVisible(this, visible); };
 	void setWindowModified(bool vbo) { callbackQScrollBar_SetWindowModified(this, vbo); };
-	void setWindowTitle(const QString & vqs) { callbackQScrollBar_SetWindowTitle(this, const_cast<char*>(vqs.toUtf8().prepend("WHITESPACE").constData()+10)); };
+	void setWindowTitle(const QString & vqs) { QByteArray tda39a3 = vqs.toUtf8(); QtWidgets_PackedString vqsPacked = { const_cast<char*>(tda39a3.prepend("WHITESPACE").constData()+10), tda39a3.size()-10 };callbackQScrollBar_SetWindowTitle(this, vqsPacked); };
 	void showEvent(QShowEvent * event) { callbackQScrollBar_ShowEvent(this, event); };
 	bool close() { return callbackQScrollBar_Close(this) != 0; };
 	void closeEvent(QCloseEvent * event) { callbackQScrollBar_CloseEvent(this, event); };
@@ -66381,7 +66381,7 @@ public:
 	void keyReleaseEvent(QKeyEvent * event) { callbackQScrollBar_KeyReleaseEvent(this, event); };
 	void lower() { callbackQScrollBar_Lower(this); };
 	void mouseDoubleClickEvent(QMouseEvent * event) { callbackQScrollBar_MouseDoubleClickEvent(this, event); };
-	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQScrollBar_NativeEvent(this, const_cast<char*>(eventType.toHex().prepend("WHITESPACE").constData()+10), message, *result) != 0; };
+	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQScrollBar_NativeEvent(this, const_cast<QByteArray*>(&eventType), message, *result) != 0; };
 	void raise() { callbackQScrollBar_Raise(this); };
 	void repaint() { callbackQScrollBar_Repaint(this); };
 	void resizeEvent(QResizeEvent * event) { callbackQScrollBar_ResizeEvent(this, event); };
@@ -66852,14 +66852,14 @@ void QScrollBar_MouseDoubleClickEventDefault(void* ptr, void* event)
 	static_cast<QScrollBar*>(ptr)->QScrollBar::mouseDoubleClickEvent(static_cast<QMouseEvent*>(event));
 }
 
-char QScrollBar_NativeEvent(void* ptr, char* eventType, void* message, long result)
+char QScrollBar_NativeEvent(void* ptr, void* eventType, void* message, long result)
 {
-	return static_cast<QScrollBar*>(ptr)->nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
+	return static_cast<QScrollBar*>(ptr)->nativeEvent(*static_cast<QByteArray*>(eventType), message, &result);
 }
 
-char QScrollBar_NativeEventDefault(void* ptr, char* eventType, void* message, long result)
+char QScrollBar_NativeEventDefault(void* ptr, void* eventType, void* message, long result)
 {
-	return static_cast<QScrollBar*>(ptr)->QScrollBar::nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
+	return static_cast<QScrollBar*>(ptr)->QScrollBar::nativeEvent(*static_cast<QByteArray*>(eventType), message, &result);
 }
 
 void QScrollBar_Raise(void* ptr)
@@ -67435,9 +67435,9 @@ void QShortcut_SetWhatsThis(void* ptr, char* text)
 	static_cast<QShortcut*>(ptr)->setWhatsThis(QString(text));
 }
 
-char* QShortcut_WhatsThis(void* ptr)
+struct QtWidgets_PackedString QShortcut_WhatsThis(void* ptr)
 {
-	return const_cast<char*>(static_cast<QShortcut*>(ptr)->whatsThis().toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray t714906 = static_cast<QShortcut*>(ptr)->whatsThis().toUtf8(); QtWidgets_PackedString { const_cast<char*>(t714906.prepend("WHITESPACE").constData()+10), t714906.size()-10 }; });
 }
 
 void* QShortcut_NewQShortcut(void* parent)
@@ -67609,9 +67609,9 @@ public:
 	void leaveEvent(QEvent * event) { callbackQSizeGrip_LeaveEvent(this, event); };
 	QSize minimumSizeHint() const { return *static_cast<QSize*>(callbackQSizeGrip_MinimumSizeHint(const_cast<MyQSizeGrip*>(this))); };
 	void setEnabled(bool vbo) { callbackQSizeGrip_SetEnabled(this, vbo); };
-	void setStyleSheet(const QString & styleSheet) { callbackQSizeGrip_SetStyleSheet(this, const_cast<char*>(styleSheet.toUtf8().prepend("WHITESPACE").constData()+10)); };
+	void setStyleSheet(const QString & styleSheet) { QByteArray t728ae7 = styleSheet.toUtf8(); QtWidgets_PackedString styleSheetPacked = { const_cast<char*>(t728ae7.prepend("WHITESPACE").constData()+10), t728ae7.size()-10 };callbackQSizeGrip_SetStyleSheet(this, styleSheetPacked); };
 	void setWindowModified(bool vbo) { callbackQSizeGrip_SetWindowModified(this, vbo); };
-	void setWindowTitle(const QString & vqs) { callbackQSizeGrip_SetWindowTitle(this, const_cast<char*>(vqs.toUtf8().prepend("WHITESPACE").constData()+10)); };
+	void setWindowTitle(const QString & vqs) { QByteArray tda39a3 = vqs.toUtf8(); QtWidgets_PackedString vqsPacked = { const_cast<char*>(tda39a3.prepend("WHITESPACE").constData()+10), tda39a3.size()-10 };callbackQSizeGrip_SetWindowTitle(this, vqsPacked); };
 	void changeEvent(QEvent * event) { callbackQSizeGrip_ChangeEvent(this, event); };
 	bool close() { return callbackQSizeGrip_Close(this) != 0; };
 	void closeEvent(QCloseEvent * event) { callbackQSizeGrip_CloseEvent(this, event); };
@@ -67626,7 +67626,7 @@ public:
 	void keyReleaseEvent(QKeyEvent * event) { callbackQSizeGrip_KeyReleaseEvent(this, event); };
 	void lower() { callbackQSizeGrip_Lower(this); };
 	void mouseDoubleClickEvent(QMouseEvent * event) { callbackQSizeGrip_MouseDoubleClickEvent(this, event); };
-	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQSizeGrip_NativeEvent(this, const_cast<char*>(eventType.toHex().prepend("WHITESPACE").constData()+10), message, *result) != 0; };
+	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQSizeGrip_NativeEvent(this, const_cast<QByteArray*>(&eventType), message, *result) != 0; };
 	void raise() { callbackQSizeGrip_Raise(this); };
 	void repaint() { callbackQSizeGrip_Repaint(this); };
 	void resizeEvent(QResizeEvent * event) { callbackQSizeGrip_ResizeEvent(this, event); };
@@ -68043,14 +68043,14 @@ void QSizeGrip_MouseDoubleClickEventDefault(void* ptr, void* event)
 	static_cast<QSizeGrip*>(ptr)->QSizeGrip::mouseDoubleClickEvent(static_cast<QMouseEvent*>(event));
 }
 
-char QSizeGrip_NativeEvent(void* ptr, char* eventType, void* message, long result)
+char QSizeGrip_NativeEvent(void* ptr, void* eventType, void* message, long result)
 {
-	return static_cast<QSizeGrip*>(ptr)->nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
+	return static_cast<QSizeGrip*>(ptr)->nativeEvent(*static_cast<QByteArray*>(eventType), message, &result);
 }
 
-char QSizeGrip_NativeEventDefault(void* ptr, char* eventType, void* message, long result)
+char QSizeGrip_NativeEventDefault(void* ptr, void* eventType, void* message, long result)
 {
-	return static_cast<QSizeGrip*>(ptr)->QSizeGrip::nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
+	return static_cast<QSizeGrip*>(ptr)->QSizeGrip::nativeEvent(*static_cast<QByteArray*>(eventType), message, &result);
 }
 
 void QSizeGrip_Raise(void* ptr)
@@ -68403,10 +68403,10 @@ public:
 	void leaveEvent(QEvent * event) { callbackQSlider_LeaveEvent(this, event); };
 	void moveEvent(QMoveEvent * event) { callbackQSlider_MoveEvent(this, event); };
 	void setEnabled(bool vbo) { callbackQSlider_SetEnabled(this, vbo); };
-	void setStyleSheet(const QString & styleSheet) { callbackQSlider_SetStyleSheet(this, const_cast<char*>(styleSheet.toUtf8().prepend("WHITESPACE").constData()+10)); };
+	void setStyleSheet(const QString & styleSheet) { QByteArray t728ae7 = styleSheet.toUtf8(); QtWidgets_PackedString styleSheetPacked = { const_cast<char*>(t728ae7.prepend("WHITESPACE").constData()+10), t728ae7.size()-10 };callbackQSlider_SetStyleSheet(this, styleSheetPacked); };
 	void setVisible(bool visible) { callbackQSlider_SetVisible(this, visible); };
 	void setWindowModified(bool vbo) { callbackQSlider_SetWindowModified(this, vbo); };
-	void setWindowTitle(const QString & vqs) { callbackQSlider_SetWindowTitle(this, const_cast<char*>(vqs.toUtf8().prepend("WHITESPACE").constData()+10)); };
+	void setWindowTitle(const QString & vqs) { QByteArray tda39a3 = vqs.toUtf8(); QtWidgets_PackedString vqsPacked = { const_cast<char*>(tda39a3.prepend("WHITESPACE").constData()+10), tda39a3.size()-10 };callbackQSlider_SetWindowTitle(this, vqsPacked); };
 	void showEvent(QShowEvent * event) { callbackQSlider_ShowEvent(this, event); };
 	bool close() { return callbackQSlider_Close(this) != 0; };
 	void closeEvent(QCloseEvent * event) { callbackQSlider_CloseEvent(this, event); };
@@ -68420,7 +68420,7 @@ public:
 	void keyReleaseEvent(QKeyEvent * event) { callbackQSlider_KeyReleaseEvent(this, event); };
 	void lower() { callbackQSlider_Lower(this); };
 	void mouseDoubleClickEvent(QMouseEvent * event) { callbackQSlider_MouseDoubleClickEvent(this, event); };
-	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQSlider_NativeEvent(this, const_cast<char*>(eventType.toHex().prepend("WHITESPACE").constData()+10), message, *result) != 0; };
+	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQSlider_NativeEvent(this, const_cast<QByteArray*>(&eventType), message, *result) != 0; };
 	void raise() { callbackQSlider_Raise(this); };
 	void repaint() { callbackQSlider_Repaint(this); };
 	void resizeEvent(QResizeEvent * event) { callbackQSlider_ResizeEvent(this, event); };
@@ -68911,14 +68911,14 @@ void QSlider_MouseDoubleClickEventDefault(void* ptr, void* event)
 	static_cast<QSlider*>(ptr)->QSlider::mouseDoubleClickEvent(static_cast<QMouseEvent*>(event));
 }
 
-char QSlider_NativeEvent(void* ptr, char* eventType, void* message, long result)
+char QSlider_NativeEvent(void* ptr, void* eventType, void* message, long result)
 {
-	return static_cast<QSlider*>(ptr)->nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
+	return static_cast<QSlider*>(ptr)->nativeEvent(*static_cast<QByteArray*>(eventType), message, &result);
 }
 
-char QSlider_NativeEventDefault(void* ptr, char* eventType, void* message, long result)
+char QSlider_NativeEventDefault(void* ptr, void* eventType, void* message, long result)
 {
-	return static_cast<QSlider*>(ptr)->QSlider::nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
+	return static_cast<QSlider*>(ptr)->QSlider::nativeEvent(*static_cast<QByteArray*>(eventType), message, &result);
 }
 
 void QSlider_Raise(void* ptr)
@@ -69322,11 +69322,11 @@ class MyQSpinBox: public QSpinBox
 public:
 	MyQSpinBox(QWidget *parent) : QSpinBox(parent) {};
 	void setValue(int val) { callbackQSpinBox_SetValue(this, val); };
-	int valueFromText(const QString & text) const { return callbackQSpinBox_ValueFromText(const_cast<MyQSpinBox*>(this), const_cast<char*>(text.toUtf8().prepend("WHITESPACE").constData()+10)); };
-	void fixup(QString & input) const { callbackQSpinBox_Fixup(const_cast<MyQSpinBox*>(this), const_cast<char*>(input.toUtf8().prepend("WHITESPACE").constData()+10)); };
+	int valueFromText(const QString & text) const { QByteArray t372ea0 = text.toUtf8(); QtWidgets_PackedString textPacked = { const_cast<char*>(t372ea0.prepend("WHITESPACE").constData()+10), t372ea0.size()-10 };return callbackQSpinBox_ValueFromText(const_cast<MyQSpinBox*>(this), textPacked); };
+	void fixup(QString & input) const { QByteArray t140f86 = input.toUtf8(); QtWidgets_PackedString inputPacked = { const_cast<char*>(t140f86.prepend("WHITESPACE").constData()+10), t140f86.size()-10 };callbackQSpinBox_Fixup(const_cast<MyQSpinBox*>(this), inputPacked); };
 	QString textFromValue(int value) const { return QString(callbackQSpinBox_TextFromValue(const_cast<MyQSpinBox*>(this), value)); };
-	QValidator::State validate(QString & text, int & pos) const { return static_cast<QValidator::State>(callbackQSpinBox_Validate(const_cast<MyQSpinBox*>(this), const_cast<char*>(text.toUtf8().prepend("WHITESPACE").constData()+10), pos)); };
-	void Signal_ValueChanged2(const QString & text) { callbackQSpinBox_ValueChanged2(this, const_cast<char*>(text.toUtf8().prepend("WHITESPACE").constData()+10)); };
+	QValidator::State validate(QString & text, int & pos) const { QByteArray t372ea0 = text.toUtf8(); QtWidgets_PackedString textPacked = { const_cast<char*>(t372ea0.prepend("WHITESPACE").constData()+10), t372ea0.size()-10 };return static_cast<QValidator::State>(callbackQSpinBox_Validate(const_cast<MyQSpinBox*>(this), textPacked, pos)); };
+	void Signal_ValueChanged2(const QString & text) { QByteArray t372ea0 = text.toUtf8(); QtWidgets_PackedString textPacked = { const_cast<char*>(t372ea0.prepend("WHITESPACE").constData()+10), t372ea0.size()-10 };callbackQSpinBox_ValueChanged2(this, textPacked); };
 	void Signal_ValueChanged(int i) { callbackQSpinBox_ValueChanged(this, i); };
 	void changeEvent(QEvent * event) { callbackQSpinBox_ChangeEvent(this, event); };
 	void clear() { callbackQSpinBox_Clear(this); };
@@ -69361,10 +69361,10 @@ public:
 	void leaveEvent(QEvent * event) { callbackQSpinBox_LeaveEvent(this, event); };
 	void moveEvent(QMoveEvent * event) { callbackQSpinBox_MoveEvent(this, event); };
 	void setEnabled(bool vbo) { callbackQSpinBox_SetEnabled(this, vbo); };
-	void setStyleSheet(const QString & styleSheet) { callbackQSpinBox_SetStyleSheet(this, const_cast<char*>(styleSheet.toUtf8().prepend("WHITESPACE").constData()+10)); };
+	void setStyleSheet(const QString & styleSheet) { QByteArray t728ae7 = styleSheet.toUtf8(); QtWidgets_PackedString styleSheetPacked = { const_cast<char*>(t728ae7.prepend("WHITESPACE").constData()+10), t728ae7.size()-10 };callbackQSpinBox_SetStyleSheet(this, styleSheetPacked); };
 	void setVisible(bool visible) { callbackQSpinBox_SetVisible(this, visible); };
 	void setWindowModified(bool vbo) { callbackQSpinBox_SetWindowModified(this, vbo); };
-	void setWindowTitle(const QString & vqs) { callbackQSpinBox_SetWindowTitle(this, const_cast<char*>(vqs.toUtf8().prepend("WHITESPACE").constData()+10)); };
+	void setWindowTitle(const QString & vqs) { QByteArray tda39a3 = vqs.toUtf8(); QtWidgets_PackedString vqsPacked = { const_cast<char*>(tda39a3.prepend("WHITESPACE").constData()+10), tda39a3.size()-10 };callbackQSpinBox_SetWindowTitle(this, vqsPacked); };
 	bool close() { return callbackQSpinBox_Close(this) != 0; };
 	bool focusNextPrevChild(bool next) { return callbackQSpinBox_FocusNextPrevChild(this, next) != 0; };
 	bool hasHeightForWidth() const { return callbackQSpinBox_HasHeightForWidth(const_cast<MyQSpinBox*>(this)) != 0; };
@@ -69373,7 +69373,7 @@ public:
 	void inputMethodEvent(QInputMethodEvent * event) { callbackQSpinBox_InputMethodEvent(this, event); };
 	void lower() { callbackQSpinBox_Lower(this); };
 	void mouseDoubleClickEvent(QMouseEvent * event) { callbackQSpinBox_MouseDoubleClickEvent(this, event); };
-	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQSpinBox_NativeEvent(this, const_cast<char*>(eventType.toHex().prepend("WHITESPACE").constData()+10), message, *result) != 0; };
+	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQSpinBox_NativeEvent(this, const_cast<QByteArray*>(&eventType), message, *result) != 0; };
 	void raise() { callbackQSpinBox_Raise(this); };
 	void repaint() { callbackQSpinBox_Repaint(this); };
 	void setDisabled(bool disable) { callbackQSpinBox_SetDisabled(this, disable); };
@@ -69396,9 +69396,9 @@ public:
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQSpinBox_MetaObject(const_cast<MyQSpinBox*>(this))); };
 };
 
-char* QSpinBox_CleanText(void* ptr)
+struct QtWidgets_PackedString QSpinBox_CleanText(void* ptr)
 {
-	return const_cast<char*>(static_cast<QSpinBox*>(ptr)->cleanText().toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray t9d04b9 = static_cast<QSpinBox*>(ptr)->cleanText().toUtf8(); QtWidgets_PackedString { const_cast<char*>(t9d04b9.prepend("WHITESPACE").constData()+10), t9d04b9.size()-10 }; });
 }
 
 int QSpinBox_DisplayIntegerBase(void* ptr)
@@ -69416,9 +69416,9 @@ int QSpinBox_Minimum(void* ptr)
 	return static_cast<QSpinBox*>(ptr)->minimum();
 }
 
-char* QSpinBox_Prefix(void* ptr)
+struct QtWidgets_PackedString QSpinBox_Prefix(void* ptr)
 {
-	return const_cast<char*>(static_cast<QSpinBox*>(ptr)->prefix().toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray t9d23c1 = static_cast<QSpinBox*>(ptr)->prefix().toUtf8(); QtWidgets_PackedString { const_cast<char*>(t9d23c1.prepend("WHITESPACE").constData()+10), t9d23c1.size()-10 }; });
 }
 
 void QSpinBox_SetDisplayIntegerBase(void* ptr, int base)
@@ -69461,9 +69461,9 @@ int QSpinBox_SingleStep(void* ptr)
 	return static_cast<QSpinBox*>(ptr)->singleStep();
 }
 
-char* QSpinBox_Suffix(void* ptr)
+struct QtWidgets_PackedString QSpinBox_Suffix(void* ptr)
 {
-	return const_cast<char*>(static_cast<QSpinBox*>(ptr)->suffix().toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray t38bf82 = static_cast<QSpinBox*>(ptr)->suffix().toUtf8(); QtWidgets_PackedString { const_cast<char*>(t38bf82.prepend("WHITESPACE").constData()+10), t38bf82.size()-10 }; });
 }
 
 int QSpinBox_Value(void* ptr)
@@ -69506,14 +69506,14 @@ void QSpinBox_SetRange(void* ptr, int minimum, int maximum)
 	static_cast<QSpinBox*>(ptr)->setRange(minimum, maximum);
 }
 
-char* QSpinBox_TextFromValue(void* ptr, int value)
+struct QtWidgets_PackedString QSpinBox_TextFromValue(void* ptr, int value)
 {
-	return const_cast<char*>(static_cast<QSpinBox*>(ptr)->textFromValue(value).toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray tf53a0d = static_cast<QSpinBox*>(ptr)->textFromValue(value).toUtf8(); QtWidgets_PackedString { const_cast<char*>(tf53a0d.prepend("WHITESPACE").constData()+10), tf53a0d.size()-10 }; });
 }
 
-char* QSpinBox_TextFromValueDefault(void* ptr, int value)
+struct QtWidgets_PackedString QSpinBox_TextFromValueDefault(void* ptr, int value)
 {
-	return const_cast<char*>(static_cast<QSpinBox*>(ptr)->QSpinBox::textFromValue(value).toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray td11815 = static_cast<QSpinBox*>(ptr)->QSpinBox::textFromValue(value).toUtf8(); QtWidgets_PackedString { const_cast<char*>(td11815.prepend("WHITESPACE").constData()+10), td11815.size()-10 }; });
 }
 
 long long QSpinBox_Validate(void* ptr, char* text, int pos)
@@ -70013,14 +70013,14 @@ void QSpinBox_MouseDoubleClickEventDefault(void* ptr, void* event)
 	static_cast<QSpinBox*>(ptr)->QSpinBox::mouseDoubleClickEvent(static_cast<QMouseEvent*>(event));
 }
 
-char QSpinBox_NativeEvent(void* ptr, char* eventType, void* message, long result)
+char QSpinBox_NativeEvent(void* ptr, void* eventType, void* message, long result)
 {
-	return static_cast<QSpinBox*>(ptr)->nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
+	return static_cast<QSpinBox*>(ptr)->nativeEvent(*static_cast<QByteArray*>(eventType), message, &result);
 }
 
-char QSpinBox_NativeEventDefault(void* ptr, char* eventType, void* message, long result)
+char QSpinBox_NativeEventDefault(void* ptr, void* eventType, void* message, long result)
 {
-	return static_cast<QSpinBox*>(ptr)->QSpinBox::nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
+	return static_cast<QSpinBox*>(ptr)->QSpinBox::nativeEvent(*static_cast<QByteArray*>(eventType), message, &result);
 }
 
 void QSpinBox_Raise(void* ptr)
@@ -70230,9 +70230,9 @@ public:
 	MyQSplashScreen(const QPixmap &pixmap, Qt::WindowFlags f) : QSplashScreen(pixmap, f) {};
 	void clearMessage() { callbackQSplashScreen_ClearMessage(this); };
 	void drawContents(QPainter * painter) { callbackQSplashScreen_DrawContents(this, painter); };
-	void Signal_MessageChanged(const QString & message) { callbackQSplashScreen_MessageChanged(this, const_cast<char*>(message.toUtf8().prepend("WHITESPACE").constData()+10)); };
+	void Signal_MessageChanged(const QString & message) { QByteArray t6f9b9a = message.toUtf8(); QtWidgets_PackedString messagePacked = { const_cast<char*>(t6f9b9a.prepend("WHITESPACE").constData()+10), t6f9b9a.size()-10 };callbackQSplashScreen_MessageChanged(this, messagePacked); };
 	void mousePressEvent(QMouseEvent * vqm) { callbackQSplashScreen_MousePressEvent(this, vqm); };
-	void showMessage(const QString & message, int alignment, const QColor & color) { callbackQSplashScreen_ShowMessage(this, const_cast<char*>(message.toUtf8().prepend("WHITESPACE").constData()+10), alignment, const_cast<QColor*>(&color)); };
+	void showMessage(const QString & message, int alignment, const QColor & color) { QByteArray t6f9b9a = message.toUtf8(); QtWidgets_PackedString messagePacked = { const_cast<char*>(t6f9b9a.prepend("WHITESPACE").constData()+10), t6f9b9a.size()-10 };callbackQSplashScreen_ShowMessage(this, messagePacked, alignment, const_cast<QColor*>(&color)); };
 	 ~MyQSplashScreen() { callbackQSplashScreen_DestroyQSplashScreen(this); };
 	void actionEvent(QActionEvent * event) { callbackQSplashScreen_ActionEvent(this, event); };
 	void dragEnterEvent(QDragEnterEvent * event) { callbackQSplashScreen_DragEnterEvent(this, event); };
@@ -70248,10 +70248,10 @@ public:
 	void moveEvent(QMoveEvent * event) { callbackQSplashScreen_MoveEvent(this, event); };
 	void paintEvent(QPaintEvent * event) { callbackQSplashScreen_PaintEvent(this, event); };
 	void setEnabled(bool vbo) { callbackQSplashScreen_SetEnabled(this, vbo); };
-	void setStyleSheet(const QString & styleSheet) { callbackQSplashScreen_SetStyleSheet(this, const_cast<char*>(styleSheet.toUtf8().prepend("WHITESPACE").constData()+10)); };
+	void setStyleSheet(const QString & styleSheet) { QByteArray t728ae7 = styleSheet.toUtf8(); QtWidgets_PackedString styleSheetPacked = { const_cast<char*>(t728ae7.prepend("WHITESPACE").constData()+10), t728ae7.size()-10 };callbackQSplashScreen_SetStyleSheet(this, styleSheetPacked); };
 	void setVisible(bool visible) { callbackQSplashScreen_SetVisible(this, visible); };
 	void setWindowModified(bool vbo) { callbackQSplashScreen_SetWindowModified(this, vbo); };
-	void setWindowTitle(const QString & vqs) { callbackQSplashScreen_SetWindowTitle(this, const_cast<char*>(vqs.toUtf8().prepend("WHITESPACE").constData()+10)); };
+	void setWindowTitle(const QString & vqs) { QByteArray tda39a3 = vqs.toUtf8(); QtWidgets_PackedString vqsPacked = { const_cast<char*>(tda39a3.prepend("WHITESPACE").constData()+10), tda39a3.size()-10 };callbackQSplashScreen_SetWindowTitle(this, vqsPacked); };
 	void showEvent(QShowEvent * event) { callbackQSplashScreen_ShowEvent(this, event); };
 	QSize sizeHint() const { return *static_cast<QSize*>(callbackQSplashScreen_SizeHint(const_cast<MyQSplashScreen*>(this))); };
 	void changeEvent(QEvent * event) { callbackQSplashScreen_ChangeEvent(this, event); };
@@ -70270,7 +70270,7 @@ public:
 	void mouseDoubleClickEvent(QMouseEvent * event) { callbackQSplashScreen_MouseDoubleClickEvent(this, event); };
 	void mouseMoveEvent(QMouseEvent * event) { callbackQSplashScreen_MouseMoveEvent(this, event); };
 	void mouseReleaseEvent(QMouseEvent * event) { callbackQSplashScreen_MouseReleaseEvent(this, event); };
-	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQSplashScreen_NativeEvent(this, const_cast<char*>(eventType.toHex().prepend("WHITESPACE").constData()+10), message, *result) != 0; };
+	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQSplashScreen_NativeEvent(this, const_cast<QByteArray*>(&eventType), message, *result) != 0; };
 	void raise() { callbackQSplashScreen_Raise(this); };
 	void resizeEvent(QResizeEvent * event) { callbackQSplashScreen_ResizeEvent(this, event); };
 	void setDisabled(bool disable) { callbackQSplashScreen_SetDisabled(this, disable); };
@@ -70330,9 +70330,9 @@ void QSplashScreen_Finish(void* ptr, void* mainWin)
 	static_cast<QSplashScreen*>(ptr)->finish(static_cast<QWidget*>(mainWin));
 }
 
-char* QSplashScreen_Message(void* ptr)
+struct QtWidgets_PackedString QSplashScreen_Message(void* ptr)
 {
-	return const_cast<char*>(static_cast<QSplashScreen*>(ptr)->message().toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray tbae626 = static_cast<QSplashScreen*>(ptr)->message().toUtf8(); QtWidgets_PackedString { const_cast<char*>(tbae626.prepend("WHITESPACE").constData()+10), tbae626.size()-10 }; });
 }
 
 void QSplashScreen_ConnectMessageChanged(void* ptr)
@@ -70752,14 +70752,14 @@ void QSplashScreen_MouseReleaseEventDefault(void* ptr, void* event)
 	static_cast<QSplashScreen*>(ptr)->QSplashScreen::mouseReleaseEvent(static_cast<QMouseEvent*>(event));
 }
 
-char QSplashScreen_NativeEvent(void* ptr, char* eventType, void* message, long result)
+char QSplashScreen_NativeEvent(void* ptr, void* eventType, void* message, long result)
 {
-	return static_cast<QSplashScreen*>(ptr)->nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
+	return static_cast<QSplashScreen*>(ptr)->nativeEvent(*static_cast<QByteArray*>(eventType), message, &result);
 }
 
-char QSplashScreen_NativeEventDefault(void* ptr, char* eventType, void* message, long result)
+char QSplashScreen_NativeEventDefault(void* ptr, void* eventType, void* message, long result)
 {
-	return static_cast<QSplashScreen*>(ptr)->QSplashScreen::nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
+	return static_cast<QSplashScreen*>(ptr)->QSplashScreen::nativeEvent(*static_cast<QByteArray*>(eventType), message, &result);
 }
 
 void QSplashScreen_Raise(void* ptr)
@@ -71006,10 +71006,10 @@ public:
 	void leaveEvent(QEvent * event) { callbackQSplitter_LeaveEvent(this, event); };
 	void moveEvent(QMoveEvent * event) { callbackQSplitter_MoveEvent(this, event); };
 	void setEnabled(bool vbo) { callbackQSplitter_SetEnabled(this, vbo); };
-	void setStyleSheet(const QString & styleSheet) { callbackQSplitter_SetStyleSheet(this, const_cast<char*>(styleSheet.toUtf8().prepend("WHITESPACE").constData()+10)); };
+	void setStyleSheet(const QString & styleSheet) { QByteArray t728ae7 = styleSheet.toUtf8(); QtWidgets_PackedString styleSheetPacked = { const_cast<char*>(t728ae7.prepend("WHITESPACE").constData()+10), t728ae7.size()-10 };callbackQSplitter_SetStyleSheet(this, styleSheetPacked); };
 	void setVisible(bool visible) { callbackQSplitter_SetVisible(this, visible); };
 	void setWindowModified(bool vbo) { callbackQSplitter_SetWindowModified(this, vbo); };
-	void setWindowTitle(const QString & vqs) { callbackQSplitter_SetWindowTitle(this, const_cast<char*>(vqs.toUtf8().prepend("WHITESPACE").constData()+10)); };
+	void setWindowTitle(const QString & vqs) { QByteArray tda39a3 = vqs.toUtf8(); QtWidgets_PackedString vqsPacked = { const_cast<char*>(tda39a3.prepend("WHITESPACE").constData()+10), tda39a3.size()-10 };callbackQSplitter_SetWindowTitle(this, vqsPacked); };
 	void showEvent(QShowEvent * event) { callbackQSplitter_ShowEvent(this, event); };
 	bool close() { return callbackQSplitter_Close(this) != 0; };
 	void closeEvent(QCloseEvent * event) { callbackQSplitter_CloseEvent(this, event); };
@@ -71027,7 +71027,7 @@ public:
 	void mouseMoveEvent(QMouseEvent * event) { callbackQSplitter_MouseMoveEvent(this, event); };
 	void mousePressEvent(QMouseEvent * event) { callbackQSplitter_MousePressEvent(this, event); };
 	void mouseReleaseEvent(QMouseEvent * event) { callbackQSplitter_MouseReleaseEvent(this, event); };
-	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQSplitter_NativeEvent(this, const_cast<char*>(eventType.toHex().prepend("WHITESPACE").constData()+10), message, *result) != 0; };
+	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQSplitter_NativeEvent(this, const_cast<QByteArray*>(&eventType), message, *result) != 0; };
 	void raise() { callbackQSplitter_Raise(this); };
 	void repaint() { callbackQSplitter_Repaint(this); };
 	void setDisabled(bool disable) { callbackQSplitter_SetDisabled(this, disable); };
@@ -71201,14 +71201,14 @@ void QSplitter_ResizeEventDefault(void* ptr, void* vqr)
 	static_cast<QSplitter*>(ptr)->QSplitter::resizeEvent(static_cast<QResizeEvent*>(vqr));
 }
 
-char QSplitter_RestoreState(void* ptr, char* state)
+char QSplitter_RestoreState(void* ptr, void* state)
 {
-	return static_cast<QSplitter*>(ptr)->restoreState(QByteArray::fromHex(QString(state).toUtf8()));
+	return static_cast<QSplitter*>(ptr)->restoreState(*static_cast<QByteArray*>(state));
 }
 
-char* QSplitter_SaveState(void* ptr)
+void* QSplitter_SaveState(void* ptr)
 {
-	return const_cast<char*>(static_cast<QSplitter*>(ptr)->saveState().toHex().prepend("WHITESPACE").constData()+10);
+	return new QByteArray(static_cast<QSplitter*>(ptr)->saveState());
 }
 
 void QSplitter_SetCollapsible(void* ptr, int index, char collapse)
@@ -71603,14 +71603,14 @@ void QSplitter_MouseReleaseEventDefault(void* ptr, void* event)
 	static_cast<QSplitter*>(ptr)->QSplitter::mouseReleaseEvent(static_cast<QMouseEvent*>(event));
 }
 
-char QSplitter_NativeEvent(void* ptr, char* eventType, void* message, long result)
+char QSplitter_NativeEvent(void* ptr, void* eventType, void* message, long result)
 {
-	return static_cast<QSplitter*>(ptr)->nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
+	return static_cast<QSplitter*>(ptr)->nativeEvent(*static_cast<QByteArray*>(eventType), message, &result);
 }
 
-char QSplitter_NativeEventDefault(void* ptr, char* eventType, void* message, long result)
+char QSplitter_NativeEventDefault(void* ptr, void* eventType, void* message, long result)
 {
-	return static_cast<QSplitter*>(ptr)->QSplitter::nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
+	return static_cast<QSplitter*>(ptr)->QSplitter::nativeEvent(*static_cast<QByteArray*>(eventType), message, &result);
 }
 
 void QSplitter_Raise(void* ptr)
@@ -71846,10 +71846,10 @@ public:
 	QSize minimumSizeHint() const { return *static_cast<QSize*>(callbackQSplitterHandle_MinimumSizeHint(const_cast<MyQSplitterHandle*>(this))); };
 	void moveEvent(QMoveEvent * event) { callbackQSplitterHandle_MoveEvent(this, event); };
 	void setEnabled(bool vbo) { callbackQSplitterHandle_SetEnabled(this, vbo); };
-	void setStyleSheet(const QString & styleSheet) { callbackQSplitterHandle_SetStyleSheet(this, const_cast<char*>(styleSheet.toUtf8().prepend("WHITESPACE").constData()+10)); };
+	void setStyleSheet(const QString & styleSheet) { QByteArray t728ae7 = styleSheet.toUtf8(); QtWidgets_PackedString styleSheetPacked = { const_cast<char*>(t728ae7.prepend("WHITESPACE").constData()+10), t728ae7.size()-10 };callbackQSplitterHandle_SetStyleSheet(this, styleSheetPacked); };
 	void setVisible(bool visible) { callbackQSplitterHandle_SetVisible(this, visible); };
 	void setWindowModified(bool vbo) { callbackQSplitterHandle_SetWindowModified(this, vbo); };
-	void setWindowTitle(const QString & vqs) { callbackQSplitterHandle_SetWindowTitle(this, const_cast<char*>(vqs.toUtf8().prepend("WHITESPACE").constData()+10)); };
+	void setWindowTitle(const QString & vqs) { QByteArray tda39a3 = vqs.toUtf8(); QtWidgets_PackedString vqsPacked = { const_cast<char*>(tda39a3.prepend("WHITESPACE").constData()+10), tda39a3.size()-10 };callbackQSplitterHandle_SetWindowTitle(this, vqsPacked); };
 	void showEvent(QShowEvent * event) { callbackQSplitterHandle_ShowEvent(this, event); };
 	void changeEvent(QEvent * event) { callbackQSplitterHandle_ChangeEvent(this, event); };
 	bool close() { return callbackQSplitterHandle_Close(this) != 0; };
@@ -71865,7 +71865,7 @@ public:
 	void keyReleaseEvent(QKeyEvent * event) { callbackQSplitterHandle_KeyReleaseEvent(this, event); };
 	void lower() { callbackQSplitterHandle_Lower(this); };
 	void mouseDoubleClickEvent(QMouseEvent * event) { callbackQSplitterHandle_MouseDoubleClickEvent(this, event); };
-	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQSplitterHandle_NativeEvent(this, const_cast<char*>(eventType.toHex().prepend("WHITESPACE").constData()+10), message, *result) != 0; };
+	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQSplitterHandle_NativeEvent(this, const_cast<QByteArray*>(&eventType), message, *result) != 0; };
 	void raise() { callbackQSplitterHandle_Raise(this); };
 	void repaint() { callbackQSplitterHandle_Repaint(this); };
 	void setDisabled(bool disable) { callbackQSplitterHandle_SetDisabled(this, disable); };
@@ -72317,14 +72317,14 @@ void QSplitterHandle_MouseDoubleClickEventDefault(void* ptr, void* event)
 	static_cast<QSplitterHandle*>(ptr)->QSplitterHandle::mouseDoubleClickEvent(static_cast<QMouseEvent*>(event));
 }
 
-char QSplitterHandle_NativeEvent(void* ptr, char* eventType, void* message, long result)
+char QSplitterHandle_NativeEvent(void* ptr, void* eventType, void* message, long result)
 {
-	return static_cast<QSplitterHandle*>(ptr)->nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
+	return static_cast<QSplitterHandle*>(ptr)->nativeEvent(*static_cast<QByteArray*>(eventType), message, &result);
 }
 
-char QSplitterHandle_NativeEventDefault(void* ptr, char* eventType, void* message, long result)
+char QSplitterHandle_NativeEventDefault(void* ptr, void* eventType, void* message, long result)
 {
-	return static_cast<QSplitterHandle*>(ptr)->QSplitterHandle::nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
+	return static_cast<QSplitterHandle*>(ptr)->QSplitterHandle::nativeEvent(*static_cast<QByteArray*>(eventType), message, &result);
 }
 
 void QSplitterHandle_Raise(void* ptr)
@@ -72975,10 +72975,10 @@ public:
 	QSize minimumSizeHint() const { return *static_cast<QSize*>(callbackQStackedWidget_MinimumSizeHint(const_cast<MyQStackedWidget*>(this))); };
 	void moveEvent(QMoveEvent * event) { callbackQStackedWidget_MoveEvent(this, event); };
 	void setEnabled(bool vbo) { callbackQStackedWidget_SetEnabled(this, vbo); };
-	void setStyleSheet(const QString & styleSheet) { callbackQStackedWidget_SetStyleSheet(this, const_cast<char*>(styleSheet.toUtf8().prepend("WHITESPACE").constData()+10)); };
+	void setStyleSheet(const QString & styleSheet) { QByteArray t728ae7 = styleSheet.toUtf8(); QtWidgets_PackedString styleSheetPacked = { const_cast<char*>(t728ae7.prepend("WHITESPACE").constData()+10), t728ae7.size()-10 };callbackQStackedWidget_SetStyleSheet(this, styleSheetPacked); };
 	void setVisible(bool visible) { callbackQStackedWidget_SetVisible(this, visible); };
 	void setWindowModified(bool vbo) { callbackQStackedWidget_SetWindowModified(this, vbo); };
-	void setWindowTitle(const QString & vqs) { callbackQStackedWidget_SetWindowTitle(this, const_cast<char*>(vqs.toUtf8().prepend("WHITESPACE").constData()+10)); };
+	void setWindowTitle(const QString & vqs) { QByteArray tda39a3 = vqs.toUtf8(); QtWidgets_PackedString vqsPacked = { const_cast<char*>(tda39a3.prepend("WHITESPACE").constData()+10), tda39a3.size()-10 };callbackQStackedWidget_SetWindowTitle(this, vqsPacked); };
 	void showEvent(QShowEvent * event) { callbackQStackedWidget_ShowEvent(this, event); };
 	bool close() { return callbackQStackedWidget_Close(this) != 0; };
 	void closeEvent(QCloseEvent * event) { callbackQStackedWidget_CloseEvent(this, event); };
@@ -72996,7 +72996,7 @@ public:
 	void mouseMoveEvent(QMouseEvent * event) { callbackQStackedWidget_MouseMoveEvent(this, event); };
 	void mousePressEvent(QMouseEvent * event) { callbackQStackedWidget_MousePressEvent(this, event); };
 	void mouseReleaseEvent(QMouseEvent * event) { callbackQStackedWidget_MouseReleaseEvent(this, event); };
-	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQStackedWidget_NativeEvent(this, const_cast<char*>(eventType.toHex().prepend("WHITESPACE").constData()+10), message, *result) != 0; };
+	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQStackedWidget_NativeEvent(this, const_cast<QByteArray*>(&eventType), message, *result) != 0; };
 	void raise() { callbackQStackedWidget_Raise(this); };
 	void repaint() { callbackQStackedWidget_Repaint(this); };
 	void resizeEvent(QResizeEvent * event) { callbackQStackedWidget_ResizeEvent(this, event); };
@@ -73489,14 +73489,14 @@ void QStackedWidget_MouseReleaseEventDefault(void* ptr, void* event)
 	static_cast<QStackedWidget*>(ptr)->QStackedWidget::mouseReleaseEvent(static_cast<QMouseEvent*>(event));
 }
 
-char QStackedWidget_NativeEvent(void* ptr, char* eventType, void* message, long result)
+char QStackedWidget_NativeEvent(void* ptr, void* eventType, void* message, long result)
 {
-	return static_cast<QStackedWidget*>(ptr)->nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
+	return static_cast<QStackedWidget*>(ptr)->nativeEvent(*static_cast<QByteArray*>(eventType), message, &result);
 }
 
-char QStackedWidget_NativeEventDefault(void* ptr, char* eventType, void* message, long result)
+char QStackedWidget_NativeEventDefault(void* ptr, void* eventType, void* message, long result)
 {
-	return static_cast<QStackedWidget*>(ptr)->QStackedWidget::nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
+	return static_cast<QStackedWidget*>(ptr)->QStackedWidget::nativeEvent(*static_cast<QByteArray*>(eventType), message, &result);
 }
 
 void QStackedWidget_Raise(void* ptr)
@@ -73735,10 +73735,10 @@ public:
 	MyQStatusBar(QWidget *parent) : QStatusBar(parent) {};
 	void paintEvent(QPaintEvent * event) { callbackQStatusBar_PaintEvent(this, event); };
 	void clearMessage() { callbackQStatusBar_ClearMessage(this); };
-	void Signal_MessageChanged(const QString & message) { callbackQStatusBar_MessageChanged(this, const_cast<char*>(message.toUtf8().prepend("WHITESPACE").constData()+10)); };
+	void Signal_MessageChanged(const QString & message) { QByteArray t6f9b9a = message.toUtf8(); QtWidgets_PackedString messagePacked = { const_cast<char*>(t6f9b9a.prepend("WHITESPACE").constData()+10), t6f9b9a.size()-10 };callbackQStatusBar_MessageChanged(this, messagePacked); };
 	void resizeEvent(QResizeEvent * e) { callbackQStatusBar_ResizeEvent(this, e); };
 	void showEvent(QShowEvent * vqs) { callbackQStatusBar_ShowEvent(this, vqs); };
-	void showMessage(const QString & message, int timeout) { callbackQStatusBar_ShowMessage(this, const_cast<char*>(message.toUtf8().prepend("WHITESPACE").constData()+10), timeout); };
+	void showMessage(const QString & message, int timeout) { QByteArray t6f9b9a = message.toUtf8(); QtWidgets_PackedString messagePacked = { const_cast<char*>(t6f9b9a.prepend("WHITESPACE").constData()+10), t6f9b9a.size()-10 };callbackQStatusBar_ShowMessage(this, messagePacked, timeout); };
 	 ~MyQStatusBar() { callbackQStatusBar_DestroyQStatusBar(this); };
 	void actionEvent(QActionEvent * event) { callbackQStatusBar_ActionEvent(this, event); };
 	void dragEnterEvent(QDragEnterEvent * event) { callbackQStatusBar_DragEnterEvent(this, event); };
@@ -73753,10 +73753,10 @@ public:
 	QSize minimumSizeHint() const { return *static_cast<QSize*>(callbackQStatusBar_MinimumSizeHint(const_cast<MyQStatusBar*>(this))); };
 	void moveEvent(QMoveEvent * event) { callbackQStatusBar_MoveEvent(this, event); };
 	void setEnabled(bool vbo) { callbackQStatusBar_SetEnabled(this, vbo); };
-	void setStyleSheet(const QString & styleSheet) { callbackQStatusBar_SetStyleSheet(this, const_cast<char*>(styleSheet.toUtf8().prepend("WHITESPACE").constData()+10)); };
+	void setStyleSheet(const QString & styleSheet) { QByteArray t728ae7 = styleSheet.toUtf8(); QtWidgets_PackedString styleSheetPacked = { const_cast<char*>(t728ae7.prepend("WHITESPACE").constData()+10), t728ae7.size()-10 };callbackQStatusBar_SetStyleSheet(this, styleSheetPacked); };
 	void setVisible(bool visible) { callbackQStatusBar_SetVisible(this, visible); };
 	void setWindowModified(bool vbo) { callbackQStatusBar_SetWindowModified(this, vbo); };
-	void setWindowTitle(const QString & vqs) { callbackQStatusBar_SetWindowTitle(this, const_cast<char*>(vqs.toUtf8().prepend("WHITESPACE").constData()+10)); };
+	void setWindowTitle(const QString & vqs) { QByteArray tda39a3 = vqs.toUtf8(); QtWidgets_PackedString vqsPacked = { const_cast<char*>(tda39a3.prepend("WHITESPACE").constData()+10), tda39a3.size()-10 };callbackQStatusBar_SetWindowTitle(this, vqsPacked); };
 	QSize sizeHint() const { return *static_cast<QSize*>(callbackQStatusBar_SizeHint(const_cast<MyQStatusBar*>(this))); };
 	void changeEvent(QEvent * event) { callbackQStatusBar_ChangeEvent(this, event); };
 	bool close() { return callbackQStatusBar_Close(this) != 0; };
@@ -73775,7 +73775,7 @@ public:
 	void mouseMoveEvent(QMouseEvent * event) { callbackQStatusBar_MouseMoveEvent(this, event); };
 	void mousePressEvent(QMouseEvent * event) { callbackQStatusBar_MousePressEvent(this, event); };
 	void mouseReleaseEvent(QMouseEvent * event) { callbackQStatusBar_MouseReleaseEvent(this, event); };
-	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQStatusBar_NativeEvent(this, const_cast<char*>(eventType.toHex().prepend("WHITESPACE").constData()+10), message, *result) != 0; };
+	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQStatusBar_NativeEvent(this, const_cast<QByteArray*>(&eventType), message, *result) != 0; };
 	void raise() { callbackQStatusBar_Raise(this); };
 	void repaint() { callbackQStatusBar_Repaint(this); };
 	void setDisabled(bool disable) { callbackQStatusBar_SetDisabled(this, disable); };
@@ -73840,9 +73840,9 @@ void QStatusBar_ClearMessage(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QStatusBar*>(ptr), "clearMessage");
 }
 
-char* QStatusBar_CurrentMessage(void* ptr)
+struct QtWidgets_PackedString QStatusBar_CurrentMessage(void* ptr)
 {
-	return const_cast<char*>(static_cast<QStatusBar*>(ptr)->currentMessage().toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray t40367b = static_cast<QStatusBar*>(ptr)->currentMessage().toUtf8(); QtWidgets_PackedString { const_cast<char*>(t40367b.prepend("WHITESPACE").constData()+10), t40367b.size()-10 }; });
 }
 
 char QStatusBar_Event(void* ptr, void* e)
@@ -74277,14 +74277,14 @@ void QStatusBar_MouseReleaseEventDefault(void* ptr, void* event)
 	static_cast<QStatusBar*>(ptr)->QStatusBar::mouseReleaseEvent(static_cast<QMouseEvent*>(event));
 }
 
-char QStatusBar_NativeEvent(void* ptr, char* eventType, void* message, long result)
+char QStatusBar_NativeEvent(void* ptr, void* eventType, void* message, long result)
 {
-	return static_cast<QStatusBar*>(ptr)->nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
+	return static_cast<QStatusBar*>(ptr)->nativeEvent(*static_cast<QByteArray*>(eventType), message, &result);
 }
 
-char QStatusBar_NativeEventDefault(void* ptr, char* eventType, void* message, long result)
+char QStatusBar_NativeEventDefault(void* ptr, void* eventType, void* message, long result)
 {
-	return static_cast<QStatusBar*>(ptr)->QStatusBar::nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
+	return static_cast<QStatusBar*>(ptr)->QStatusBar::nativeEvent(*static_cast<QByteArray*>(eventType), message, &result);
 }
 
 void QStatusBar_Raise(void* ptr)
@@ -76393,9 +76393,9 @@ class MyQStyle: public QStyle
 public:
 	MyQStyle() : QStyle() {};
 	void drawItemPixmap(QPainter * painter, const QRect & rectangle, int alignment, const QPixmap & pixmap) const { callbackQStyle_DrawItemPixmap(const_cast<MyQStyle*>(this), painter, const_cast<QRect*>(&rectangle), alignment, const_cast<QPixmap*>(&pixmap)); };
-	void drawItemText(QPainter * painter, const QRect & rectangle, int alignment, const QPalette & palette, bool enabled, const QString & text, QPalette::ColorRole textRole) const { callbackQStyle_DrawItemText(const_cast<MyQStyle*>(this), painter, const_cast<QRect*>(&rectangle), alignment, const_cast<QPalette*>(&palette), enabled, const_cast<char*>(text.toUtf8().prepend("WHITESPACE").constData()+10), textRole); };
+	void drawItemText(QPainter * painter, const QRect & rectangle, int alignment, const QPalette & palette, bool enabled, const QString & text, QPalette::ColorRole textRole) const { QByteArray t372ea0 = text.toUtf8(); QtWidgets_PackedString textPacked = { const_cast<char*>(t372ea0.prepend("WHITESPACE").constData()+10), t372ea0.size()-10 };callbackQStyle_DrawItemText(const_cast<MyQStyle*>(this), painter, const_cast<QRect*>(&rectangle), alignment, const_cast<QPalette*>(&palette), enabled, textPacked, textRole); };
 	QRect itemPixmapRect(const QRect & rectangle, int alignment, const QPixmap & pixmap) const { return *static_cast<QRect*>(callbackQStyle_ItemPixmapRect(const_cast<MyQStyle*>(this), const_cast<QRect*>(&rectangle), alignment, const_cast<QPixmap*>(&pixmap))); };
-	QRect itemTextRect(const QFontMetrics & metrics, const QRect & rectangle, int alignment, bool enabled, const QString & text) const { return *static_cast<QRect*>(callbackQStyle_ItemTextRect(const_cast<MyQStyle*>(this), const_cast<QFontMetrics*>(&metrics), const_cast<QRect*>(&rectangle), alignment, enabled, const_cast<char*>(text.toUtf8().prepend("WHITESPACE").constData()+10))); };
+	QRect itemTextRect(const QFontMetrics & metrics, const QRect & rectangle, int alignment, bool enabled, const QString & text) const { QByteArray t372ea0 = text.toUtf8(); QtWidgets_PackedString textPacked = { const_cast<char*>(t372ea0.prepend("WHITESPACE").constData()+10), t372ea0.size()-10 };return *static_cast<QRect*>(callbackQStyle_ItemTextRect(const_cast<MyQStyle*>(this), const_cast<QFontMetrics*>(&metrics), const_cast<QRect*>(&rectangle), alignment, enabled, textPacked)); };
 	void polish(QApplication * application) { callbackQStyle_Polish2(this, application); };
 	void polish(QPalette & palette) { callbackQStyle_Polish3(this, new QPalette(palette)); };
 	void unpolish(QApplication * application) { callbackQStyle_Unpolish2(this, application); };
@@ -76742,9 +76742,9 @@ void* QStyleFactory_QStyleFactory_Create(char* key)
 	return QStyleFactory::create(QString(key));
 }
 
-char* QStyleFactory_QStyleFactory_Keys()
+struct QtWidgets_PackedString QStyleFactory_QStyleFactory_Keys()
 {
-	return const_cast<char*>(QStyleFactory::keys().join("|").toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray t733aa8 = QStyleFactory::keys().join("|").toUtf8(); QtWidgets_PackedString { const_cast<char*>(t733aa8.prepend("WHITESPACE").constData()+10), t733aa8.size()-10 }; });
 }
 
 int QStyleHintReturn_SH_Mask_Type()
@@ -77005,9 +77005,9 @@ void QStyleOptionButton_SetIconSize(void* ptr, void* vqs)
 	static_cast<QStyleOptionButton*>(ptr)->iconSize = *static_cast<QSize*>(vqs);
 }
 
-char* QStyleOptionButton_Text(void* ptr)
+struct QtWidgets_PackedString QStyleOptionButton_Text(void* ptr)
 {
-	return const_cast<char*>(static_cast<QStyleOptionButton*>(ptr)->text.toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray t3af65e = static_cast<QStyleOptionButton*>(ptr)->text.toUtf8(); QtWidgets_PackedString { const_cast<char*>(t3af65e.prepend("WHITESPACE").constData()+10), t3af65e.size()-10 }; });
 }
 
 void QStyleOptionButton_SetText(void* ptr, char* vqs)
@@ -77035,9 +77035,9 @@ void QStyleOptionComboBox_SetCurrentIcon(void* ptr, void* vqi)
 	static_cast<QStyleOptionComboBox*>(ptr)->currentIcon = *static_cast<QIcon*>(vqi);
 }
 
-char* QStyleOptionComboBox_CurrentText(void* ptr)
+struct QtWidgets_PackedString QStyleOptionComboBox_CurrentText(void* ptr)
 {
-	return const_cast<char*>(static_cast<QStyleOptionComboBox*>(ptr)->currentText.toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray t049c82 = static_cast<QStyleOptionComboBox*>(ptr)->currentText.toUtf8(); QtWidgets_PackedString { const_cast<char*>(t049c82.prepend("WHITESPACE").constData()+10), t049c82.size()-10 }; });
 }
 
 void QStyleOptionComboBox_SetCurrentText(void* ptr, char* vqs)
@@ -77155,9 +77155,9 @@ void QStyleOptionDockWidget_SetMovable(void* ptr, char vbo)
 	static_cast<QStyleOptionDockWidget*>(ptr)->movable = vbo != 0;
 }
 
-char* QStyleOptionDockWidget_Title(void* ptr)
+struct QtWidgets_PackedString QStyleOptionDockWidget_Title(void* ptr)
 {
-	return const_cast<char*>(static_cast<QStyleOptionDockWidget*>(ptr)->title.toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray t0c6191 = static_cast<QStyleOptionDockWidget*>(ptr)->title.toUtf8(); QtWidgets_PackedString { const_cast<char*>(t0c6191.prepend("WHITESPACE").constData()+10), t0c6191.size()-10 }; });
 }
 
 void QStyleOptionDockWidget_SetTitle(void* ptr, char* vqs)
@@ -77310,9 +77310,9 @@ void QStyleOptionGroupBox_SetMidLineWidth(void* ptr, int vin)
 	static_cast<QStyleOptionGroupBox*>(ptr)->midLineWidth = vin;
 }
 
-char* QStyleOptionGroupBox_Text(void* ptr)
+struct QtWidgets_PackedString QStyleOptionGroupBox_Text(void* ptr)
 {
-	return const_cast<char*>(static_cast<QStyleOptionGroupBox*>(ptr)->text.toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray t33bfde = static_cast<QStyleOptionGroupBox*>(ptr)->text.toUtf8(); QtWidgets_PackedString { const_cast<char*>(t33bfde.prepend("WHITESPACE").constData()+10), t33bfde.size()-10 }; });
 }
 
 void QStyleOptionGroupBox_SetText(void* ptr, char* vqs)
@@ -77420,9 +77420,9 @@ void QStyleOptionHeader_SetSortIndicator(void* ptr, long long vso)
 	static_cast<QStyleOptionHeader*>(ptr)->sortIndicator = static_cast<QStyleOptionHeader::SortIndicator>(vso);
 }
 
-char* QStyleOptionHeader_Text(void* ptr)
+struct QtWidgets_PackedString QStyleOptionHeader_Text(void* ptr)
 {
-	return const_cast<char*>(static_cast<QStyleOptionHeader*>(ptr)->text.toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray t8df14e = static_cast<QStyleOptionHeader*>(ptr)->text.toUtf8(); QtWidgets_PackedString { const_cast<char*>(t8df14e.prepend("WHITESPACE").constData()+10), t8df14e.size()-10 }; });
 }
 
 void QStyleOptionHeader_SetText(void* ptr, char* vqs)
@@ -77540,9 +77540,9 @@ void QStyleOptionMenuItem_SetTabWidth(void* ptr, int vin)
 	static_cast<QStyleOptionMenuItem*>(ptr)->tabWidth = vin;
 }
 
-char* QStyleOptionMenuItem_Text(void* ptr)
+struct QtWidgets_PackedString QStyleOptionMenuItem_Text(void* ptr)
 {
-	return const_cast<char*>(static_cast<QStyleOptionMenuItem*>(ptr)->text.toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray t61111c = static_cast<QStyleOptionMenuItem*>(ptr)->text.toUtf8(); QtWidgets_PackedString { const_cast<char*>(t61111c.prepend("WHITESPACE").constData()+10), t61111c.size()-10 }; });
 }
 
 void QStyleOptionMenuItem_SetText(void* ptr, char* vqs)
@@ -77610,9 +77610,9 @@ void QStyleOptionProgressBar_SetProgress(void* ptr, int vin)
 	static_cast<QStyleOptionProgressBar*>(ptr)->progress = vin;
 }
 
-char* QStyleOptionProgressBar_Text(void* ptr)
+struct QtWidgets_PackedString QStyleOptionProgressBar_Text(void* ptr)
 {
-	return const_cast<char*>(static_cast<QStyleOptionProgressBar*>(ptr)->text.toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray tfa5615 = static_cast<QStyleOptionProgressBar*>(ptr)->text.toUtf8(); QtWidgets_PackedString { const_cast<char*>(tfa5615.prepend("WHITESPACE").constData()+10), tfa5615.size()-10 }; });
 }
 
 void QStyleOptionProgressBar_SetText(void* ptr, char* vqs)
@@ -77980,9 +77980,9 @@ void QStyleOptionTab_SetShape(void* ptr, long long vqt)
 	static_cast<QStyleOptionTab*>(ptr)->shape = static_cast<QTabBar::Shape>(vqt);
 }
 
-char* QStyleOptionTab_Text(void* ptr)
+struct QtWidgets_PackedString QStyleOptionTab_Text(void* ptr)
 {
-	return const_cast<char*>(static_cast<QStyleOptionTab*>(ptr)->text.toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray t12932f = static_cast<QStyleOptionTab*>(ptr)->text.toUtf8(); QtWidgets_PackedString { const_cast<char*>(t12932f.prepend("WHITESPACE").constData()+10), t12932f.size()-10 }; });
 }
 
 void QStyleOptionTab_SetText(void* ptr, char* vqs)
@@ -78150,9 +78150,9 @@ void QStyleOptionTitleBar_SetIcon(void* ptr, void* vqi)
 	static_cast<QStyleOptionTitleBar*>(ptr)->icon = *static_cast<QIcon*>(vqi);
 }
 
-char* QStyleOptionTitleBar_Text(void* ptr)
+struct QtWidgets_PackedString QStyleOptionTitleBar_Text(void* ptr)
 {
-	return const_cast<char*>(static_cast<QStyleOptionTitleBar*>(ptr)->text.toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray tfebd0b = static_cast<QStyleOptionTitleBar*>(ptr)->text.toUtf8(); QtWidgets_PackedString { const_cast<char*>(tfebd0b.prepend("WHITESPACE").constData()+10), tfebd0b.size()-10 }; });
 }
 
 void QStyleOptionTitleBar_SetText(void* ptr, char* vqs)
@@ -78290,9 +78290,9 @@ void QStyleOptionToolBox_SetSelectedPosition(void* ptr, long long vse)
 	static_cast<QStyleOptionToolBox*>(ptr)->selectedPosition = static_cast<QStyleOptionToolBox::SelectedPosition>(vse);
 }
 
-char* QStyleOptionToolBox_Text(void* ptr)
+struct QtWidgets_PackedString QStyleOptionToolBox_Text(void* ptr)
 {
-	return const_cast<char*>(static_cast<QStyleOptionToolBox*>(ptr)->text.toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray t86be6c = static_cast<QStyleOptionToolBox*>(ptr)->text.toUtf8(); QtWidgets_PackedString { const_cast<char*>(t86be6c.prepend("WHITESPACE").constData()+10), t86be6c.size()-10 }; });
 }
 
 void QStyleOptionToolBox_SetText(void* ptr, char* vqs)
@@ -78370,9 +78370,9 @@ void QStyleOptionToolButton_SetPos(void* ptr, void* vqp)
 	static_cast<QStyleOptionToolButton*>(ptr)->pos = *static_cast<QPoint*>(vqp);
 }
 
-char* QStyleOptionToolButton_Text(void* ptr)
+struct QtWidgets_PackedString QStyleOptionToolButton_Text(void* ptr)
 {
-	return const_cast<char*>(static_cast<QStyleOptionToolButton*>(ptr)->text.toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray t245424 = static_cast<QStyleOptionToolButton*>(ptr)->text.toUtf8(); QtWidgets_PackedString { const_cast<char*>(t245424.prepend("WHITESPACE").constData()+10), t245424.size()-10 }; });
 }
 
 void QStyleOptionToolButton_SetText(void* ptr, char* vqs)
@@ -78520,9 +78520,9 @@ void QStyleOptionViewItem_SetShowDecorationSelected(void* ptr, char vbo)
 	static_cast<QStyleOptionViewItem*>(ptr)->showDecorationSelected = vbo != 0;
 }
 
-char* QStyleOptionViewItem_Text(void* ptr)
+struct QtWidgets_PackedString QStyleOptionViewItem_Text(void* ptr)
 {
-	return const_cast<char*>(static_cast<QStyleOptionViewItem*>(ptr)->text.toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray t3c2585 = static_cast<QStyleOptionViewItem*>(ptr)->text.toUtf8(); QtWidgets_PackedString { const_cast<char*>(t3c2585.prepend("WHITESPACE").constData()+10), t3c2585.size()-10 }; });
 }
 
 void QStyleOptionViewItem_SetText(void* ptr, char* vqs)
@@ -78614,7 +78614,7 @@ class MyQStylePlugin: public QStylePlugin
 {
 public:
 	MyQStylePlugin(QObject *parent) : QStylePlugin(parent) {};
-	QStyle * create(const QString & key) { return static_cast<QStyle*>(callbackQStylePlugin_Create(this, const_cast<char*>(key.toUtf8().prepend("WHITESPACE").constData()+10))); };
+	QStyle * create(const QString & key) { QByteArray ta62f22 = key.toUtf8(); QtWidgets_PackedString keyPacked = { const_cast<char*>(ta62f22.prepend("WHITESPACE").constData()+10), ta62f22.size()-10 };return static_cast<QStyle*>(callbackQStylePlugin_Create(this, keyPacked)); };
 	void timerEvent(QTimerEvent * event) { callbackQStylePlugin_TimerEvent(this, event); };
 	void childEvent(QChildEvent * event) { callbackQStylePlugin_ChildEvent(this, event); };
 	void connectNotify(const QMetaMethod & sign) { callbackQStylePlugin_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
@@ -78776,14 +78776,14 @@ void* QStyledItemDelegate_CreateEditorDefault(void* ptr, void* parent, void* opt
 	return static_cast<QStyledItemDelegate*>(ptr)->QStyledItemDelegate::createEditor(static_cast<QWidget*>(parent), *static_cast<QStyleOptionViewItem*>(option), *static_cast<QModelIndex*>(index));
 }
 
-char* QStyledItemDelegate_DisplayText(void* ptr, void* value, void* locale)
+struct QtWidgets_PackedString QStyledItemDelegate_DisplayText(void* ptr, void* value, void* locale)
 {
-	return const_cast<char*>(static_cast<QStyledItemDelegate*>(ptr)->displayText(*static_cast<QVariant*>(value), *static_cast<QLocale*>(locale)).toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray t4b31fe = static_cast<QStyledItemDelegate*>(ptr)->displayText(*static_cast<QVariant*>(value), *static_cast<QLocale*>(locale)).toUtf8(); QtWidgets_PackedString { const_cast<char*>(t4b31fe.prepend("WHITESPACE").constData()+10), t4b31fe.size()-10 }; });
 }
 
-char* QStyledItemDelegate_DisplayTextDefault(void* ptr, void* value, void* locale)
+struct QtWidgets_PackedString QStyledItemDelegate_DisplayTextDefault(void* ptr, void* value, void* locale)
 {
-	return const_cast<char*>(static_cast<QStyledItemDelegate*>(ptr)->QStyledItemDelegate::displayText(*static_cast<QVariant*>(value), *static_cast<QLocale*>(locale)).toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray tfa980a = static_cast<QStyledItemDelegate*>(ptr)->QStyledItemDelegate::displayText(*static_cast<QVariant*>(value), *static_cast<QLocale*>(locale)).toUtf8(); QtWidgets_PackedString { const_cast<char*>(tfa980a.prepend("WHITESPACE").constData()+10), tfa980a.size()-10 }; });
 }
 
 char QStyledItemDelegate_EditorEvent(void* ptr, void* event, void* model, void* option, void* index)
@@ -79092,7 +79092,7 @@ public:
 	MyQSystemTrayIcon(QObject *parent) : QSystemTrayIcon(parent) {};
 	MyQSystemTrayIcon(const QIcon &icon, QObject *parent) : QSystemTrayIcon(icon, parent) {};
 	void setVisible(bool visible) { callbackQSystemTrayIcon_SetVisible(this, visible); };
-	void showMessage(const QString & title, const QString & message, QSystemTrayIcon::MessageIcon icon, int millisecondsTimeoutHint) { callbackQSystemTrayIcon_ShowMessage(this, const_cast<char*>(title.toUtf8().prepend("WHITESPACE").constData()+10), const_cast<char*>(message.toUtf8().prepend("WHITESPACE").constData()+10), icon, millisecondsTimeoutHint); };
+	void showMessage(const QString & title, const QString & message, QSystemTrayIcon::MessageIcon icon, int millisecondsTimeoutHint) { QByteArray t3c6de1 = title.toUtf8(); QtWidgets_PackedString titlePacked = { const_cast<char*>(t3c6de1.prepend("WHITESPACE").constData()+10), t3c6de1.size()-10 };QByteArray t6f9b9a = message.toUtf8(); QtWidgets_PackedString messagePacked = { const_cast<char*>(t6f9b9a.prepend("WHITESPACE").constData()+10), t6f9b9a.size()-10 };callbackQSystemTrayIcon_ShowMessage(this, titlePacked, messagePacked, icon, millisecondsTimeoutHint); };
 	void Signal_Activated(QSystemTrayIcon::ActivationReason reason) { callbackQSystemTrayIcon_Activated(this, reason); };
 	void hide() { callbackQSystemTrayIcon_Hide(this); };
 	void Signal_MessageClicked() { callbackQSystemTrayIcon_MessageClicked(this); };
@@ -79137,9 +79137,9 @@ void QSystemTrayIcon_ShowMessage(void* ptr, char* title, char* message, long lon
 	QMetaObject::invokeMethod(static_cast<QSystemTrayIcon*>(ptr), "showMessage", Q_ARG(QString, QString(title)), Q_ARG(QString, QString(message)), Q_ARG(QSystemTrayIcon::MessageIcon, static_cast<QSystemTrayIcon::MessageIcon>(icon)), Q_ARG(int, millisecondsTimeoutHint));
 }
 
-char* QSystemTrayIcon_ToolTip(void* ptr)
+struct QtWidgets_PackedString QSystemTrayIcon_ToolTip(void* ptr)
 {
-	return const_cast<char*>(static_cast<QSystemTrayIcon*>(ptr)->toolTip().toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray t27041f = static_cast<QSystemTrayIcon*>(ptr)->toolTip().toUtf8(); QtWidgets_PackedString { const_cast<char*>(t27041f.prepend("WHITESPACE").constData()+10), t27041f.size()-10 }; });
 }
 
 void* QSystemTrayIcon_NewQSystemTrayIcon(void* parent)
@@ -79345,10 +79345,10 @@ public:
 	void leaveEvent(QEvent * event) { callbackQTabBar_LeaveEvent(this, event); };
 	void moveEvent(QMoveEvent * event) { callbackQTabBar_MoveEvent(this, event); };
 	void setEnabled(bool vbo) { callbackQTabBar_SetEnabled(this, vbo); };
-	void setStyleSheet(const QString & styleSheet) { callbackQTabBar_SetStyleSheet(this, const_cast<char*>(styleSheet.toUtf8().prepend("WHITESPACE").constData()+10)); };
+	void setStyleSheet(const QString & styleSheet) { QByteArray t728ae7 = styleSheet.toUtf8(); QtWidgets_PackedString styleSheetPacked = { const_cast<char*>(t728ae7.prepend("WHITESPACE").constData()+10), t728ae7.size()-10 };callbackQTabBar_SetStyleSheet(this, styleSheetPacked); };
 	void setVisible(bool visible) { callbackQTabBar_SetVisible(this, visible); };
 	void setWindowModified(bool vbo) { callbackQTabBar_SetWindowModified(this, vbo); };
-	void setWindowTitle(const QString & vqs) { callbackQTabBar_SetWindowTitle(this, const_cast<char*>(vqs.toUtf8().prepend("WHITESPACE").constData()+10)); };
+	void setWindowTitle(const QString & vqs) { QByteArray tda39a3 = vqs.toUtf8(); QtWidgets_PackedString vqsPacked = { const_cast<char*>(tda39a3.prepend("WHITESPACE").constData()+10), tda39a3.size()-10 };callbackQTabBar_SetWindowTitle(this, vqsPacked); };
 	bool close() { return callbackQTabBar_Close(this) != 0; };
 	void closeEvent(QCloseEvent * event) { callbackQTabBar_CloseEvent(this, event); };
 	void contextMenuEvent(QContextMenuEvent * event) { callbackQTabBar_ContextMenuEvent(this, event); };
@@ -79361,7 +79361,7 @@ public:
 	void keyReleaseEvent(QKeyEvent * event) { callbackQTabBar_KeyReleaseEvent(this, event); };
 	void lower() { callbackQTabBar_Lower(this); };
 	void mouseDoubleClickEvent(QMouseEvent * event) { callbackQTabBar_MouseDoubleClickEvent(this, event); };
-	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQTabBar_NativeEvent(this, const_cast<char*>(eventType.toHex().prepend("WHITESPACE").constData()+10), message, *result) != 0; };
+	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQTabBar_NativeEvent(this, const_cast<QByteArray*>(&eventType), message, *result) != 0; };
 	void raise() { callbackQTabBar_Raise(this); };
 	void repaint() { callbackQTabBar_Repaint(this); };
 	void setDisabled(bool disable) { callbackQTabBar_SetDisabled(this, disable); };
@@ -79869,9 +79869,9 @@ void* QTabBar_TabSizeHintDefault(void* ptr, int index)
 	return ({ QSize tmpValue = static_cast<QTabBar*>(ptr)->QTabBar::tabSizeHint(index); new QSize(tmpValue.width(), tmpValue.height()); });
 }
 
-char* QTabBar_TabText(void* ptr, int index)
+struct QtWidgets_PackedString QTabBar_TabText(void* ptr, int index)
 {
-	return const_cast<char*>(static_cast<QTabBar*>(ptr)->tabText(index).toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray t67599e = static_cast<QTabBar*>(ptr)->tabText(index).toUtf8(); QtWidgets_PackedString { const_cast<char*>(t67599e.prepend("WHITESPACE").constData()+10), t67599e.size()-10 }; });
 }
 
 void* QTabBar_TabTextColor(void* ptr, int index)
@@ -79879,14 +79879,14 @@ void* QTabBar_TabTextColor(void* ptr, int index)
 	return new QColor(static_cast<QTabBar*>(ptr)->tabTextColor(index));
 }
 
-char* QTabBar_TabToolTip(void* ptr, int index)
+struct QtWidgets_PackedString QTabBar_TabToolTip(void* ptr, int index)
 {
-	return const_cast<char*>(static_cast<QTabBar*>(ptr)->tabToolTip(index).toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray t1438d1 = static_cast<QTabBar*>(ptr)->tabToolTip(index).toUtf8(); QtWidgets_PackedString { const_cast<char*>(t1438d1.prepend("WHITESPACE").constData()+10), t1438d1.size()-10 }; });
 }
 
-char* QTabBar_TabWhatsThis(void* ptr, int index)
+struct QtWidgets_PackedString QTabBar_TabWhatsThis(void* ptr, int index)
 {
-	return const_cast<char*>(static_cast<QTabBar*>(ptr)->tabWhatsThis(index).toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray t61711f = static_cast<QTabBar*>(ptr)->tabWhatsThis(index).toUtf8(); QtWidgets_PackedString { const_cast<char*>(t61711f.prepend("WHITESPACE").constData()+10), t61711f.size()-10 }; });
 }
 
 void QTabBar_TimerEvent(void* ptr, void* event)
@@ -80181,14 +80181,14 @@ void QTabBar_MouseDoubleClickEventDefault(void* ptr, void* event)
 	static_cast<QTabBar*>(ptr)->QTabBar::mouseDoubleClickEvent(static_cast<QMouseEvent*>(event));
 }
 
-char QTabBar_NativeEvent(void* ptr, char* eventType, void* message, long result)
+char QTabBar_NativeEvent(void* ptr, void* eventType, void* message, long result)
 {
-	return static_cast<QTabBar*>(ptr)->nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
+	return static_cast<QTabBar*>(ptr)->nativeEvent(*static_cast<QByteArray*>(eventType), message, &result);
 }
 
-char QTabBar_NativeEventDefault(void* ptr, char* eventType, void* message, long result)
+char QTabBar_NativeEventDefault(void* ptr, void* eventType, void* message, long result)
 {
-	return static_cast<QTabBar*>(ptr)->QTabBar::nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
+	return static_cast<QTabBar*>(ptr)->QTabBar::nativeEvent(*static_cast<QByteArray*>(eventType), message, &result);
 }
 
 void QTabBar_Raise(void* ptr)
@@ -80424,10 +80424,10 @@ public:
 	void leaveEvent(QEvent * event) { callbackQTabWidget_LeaveEvent(this, event); };
 	void moveEvent(QMoveEvent * event) { callbackQTabWidget_MoveEvent(this, event); };
 	void setEnabled(bool vbo) { callbackQTabWidget_SetEnabled(this, vbo); };
-	void setStyleSheet(const QString & styleSheet) { callbackQTabWidget_SetStyleSheet(this, const_cast<char*>(styleSheet.toUtf8().prepend("WHITESPACE").constData()+10)); };
+	void setStyleSheet(const QString & styleSheet) { QByteArray t728ae7 = styleSheet.toUtf8(); QtWidgets_PackedString styleSheetPacked = { const_cast<char*>(t728ae7.prepend("WHITESPACE").constData()+10), t728ae7.size()-10 };callbackQTabWidget_SetStyleSheet(this, styleSheetPacked); };
 	void setVisible(bool visible) { callbackQTabWidget_SetVisible(this, visible); };
 	void setWindowModified(bool vbo) { callbackQTabWidget_SetWindowModified(this, vbo); };
-	void setWindowTitle(const QString & vqs) { callbackQTabWidget_SetWindowTitle(this, const_cast<char*>(vqs.toUtf8().prepend("WHITESPACE").constData()+10)); };
+	void setWindowTitle(const QString & vqs) { QByteArray tda39a3 = vqs.toUtf8(); QtWidgets_PackedString vqsPacked = { const_cast<char*>(tda39a3.prepend("WHITESPACE").constData()+10), tda39a3.size()-10 };callbackQTabWidget_SetWindowTitle(this, vqsPacked); };
 	bool close() { return callbackQTabWidget_Close(this) != 0; };
 	void closeEvent(QCloseEvent * event) { callbackQTabWidget_CloseEvent(this, event); };
 	void contextMenuEvent(QContextMenuEvent * event) { callbackQTabWidget_ContextMenuEvent(this, event); };
@@ -80441,7 +80441,7 @@ public:
 	void mouseMoveEvent(QMouseEvent * event) { callbackQTabWidget_MouseMoveEvent(this, event); };
 	void mousePressEvent(QMouseEvent * event) { callbackQTabWidget_MousePressEvent(this, event); };
 	void mouseReleaseEvent(QMouseEvent * event) { callbackQTabWidget_MouseReleaseEvent(this, event); };
-	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQTabWidget_NativeEvent(this, const_cast<char*>(eventType.toHex().prepend("WHITESPACE").constData()+10), message, *result) != 0; };
+	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQTabWidget_NativeEvent(this, const_cast<QByteArray*>(&eventType), message, *result) != 0; };
 	void raise() { callbackQTabWidget_Raise(this); };
 	void repaint() { callbackQTabWidget_Repaint(this); };
 	void setDisabled(bool disable) { callbackQTabWidget_SetDisabled(this, disable); };
@@ -80856,19 +80856,19 @@ void QTabWidget_TabRemovedDefault(void* ptr, int index)
 	static_cast<QTabWidget*>(ptr)->QTabWidget::tabRemoved(index);
 }
 
-char* QTabWidget_TabText(void* ptr, int index)
+struct QtWidgets_PackedString QTabWidget_TabText(void* ptr, int index)
 {
-	return const_cast<char*>(static_cast<QTabWidget*>(ptr)->tabText(index).toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray t5dcd8a = static_cast<QTabWidget*>(ptr)->tabText(index).toUtf8(); QtWidgets_PackedString { const_cast<char*>(t5dcd8a.prepend("WHITESPACE").constData()+10), t5dcd8a.size()-10 }; });
 }
 
-char* QTabWidget_TabToolTip(void* ptr, int index)
+struct QtWidgets_PackedString QTabWidget_TabToolTip(void* ptr, int index)
 {
-	return const_cast<char*>(static_cast<QTabWidget*>(ptr)->tabToolTip(index).toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray t2994f0 = static_cast<QTabWidget*>(ptr)->tabToolTip(index).toUtf8(); QtWidgets_PackedString { const_cast<char*>(t2994f0.prepend("WHITESPACE").constData()+10), t2994f0.size()-10 }; });
 }
 
-char* QTabWidget_TabWhatsThis(void* ptr, int index)
+struct QtWidgets_PackedString QTabWidget_TabWhatsThis(void* ptr, int index)
 {
-	return const_cast<char*>(static_cast<QTabWidget*>(ptr)->tabWhatsThis(index).toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray ta4a3c3 = static_cast<QTabWidget*>(ptr)->tabWhatsThis(index).toUtf8(); QtWidgets_PackedString { const_cast<char*>(ta4a3c3.prepend("WHITESPACE").constData()+10), ta4a3c3.size()-10 }; });
 }
 
 void* QTabWidget_Widget(void* ptr, int index)
@@ -81173,14 +81173,14 @@ void QTabWidget_MouseReleaseEventDefault(void* ptr, void* event)
 	static_cast<QTabWidget*>(ptr)->QTabWidget::mouseReleaseEvent(static_cast<QMouseEvent*>(event));
 }
 
-char QTabWidget_NativeEvent(void* ptr, char* eventType, void* message, long result)
+char QTabWidget_NativeEvent(void* ptr, void* eventType, void* message, long result)
 {
-	return static_cast<QTabWidget*>(ptr)->nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
+	return static_cast<QTabWidget*>(ptr)->nativeEvent(*static_cast<QByteArray*>(eventType), message, &result);
 }
 
-char QTabWidget_NativeEventDefault(void* ptr, char* eventType, void* message, long result)
+char QTabWidget_NativeEventDefault(void* ptr, void* eventType, void* message, long result)
 {
-	return static_cast<QTabWidget*>(ptr)->QTabWidget::nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
+	return static_cast<QTabWidget*>(ptr)->QTabWidget::nativeEvent(*static_cast<QByteArray*>(eventType), message, &result);
 }
 
 void QTabWidget_Raise(void* ptr)
@@ -81458,7 +81458,7 @@ public:
 	void inputMethodEvent(QInputMethodEvent * event) { callbackQTableView_InputMethodEvent(this, event); };
 	QVariant inputMethodQuery(Qt::InputMethodQuery query) const { return *static_cast<QVariant*>(callbackQTableView_InputMethodQuery(const_cast<MyQTableView*>(this), query)); };
 	void keyPressEvent(QKeyEvent * event) { callbackQTableView_KeyPressEvent(this, event); };
-	void keyboardSearch(const QString & search) { callbackQTableView_KeyboardSearch(this, const_cast<char*>(search.toUtf8().prepend("WHITESPACE").constData()+10)); };
+	void keyboardSearch(const QString & search) { QByteArray t3559d7 = search.toUtf8(); QtWidgets_PackedString searchPacked = { const_cast<char*>(t3559d7.prepend("WHITESPACE").constData()+10), t3559d7.size()-10 };callbackQTableView_KeyboardSearch(this, searchPacked); };
 	void mouseDoubleClickEvent(QMouseEvent * event) { callbackQTableView_MouseDoubleClickEvent(this, event); };
 	void mouseMoveEvent(QMouseEvent * event) { callbackQTableView_MouseMoveEvent(this, event); };
 	void mousePressEvent(QMouseEvent * event) { callbackQTableView_MousePressEvent(this, event); };
@@ -81490,10 +81490,10 @@ public:
 	void leaveEvent(QEvent * event) { callbackQTableView_LeaveEvent(this, event); };
 	void moveEvent(QMoveEvent * event) { callbackQTableView_MoveEvent(this, event); };
 	void setEnabled(bool vbo) { callbackQTableView_SetEnabled(this, vbo); };
-	void setStyleSheet(const QString & styleSheet) { callbackQTableView_SetStyleSheet(this, const_cast<char*>(styleSheet.toUtf8().prepend("WHITESPACE").constData()+10)); };
+	void setStyleSheet(const QString & styleSheet) { QByteArray t728ae7 = styleSheet.toUtf8(); QtWidgets_PackedString styleSheetPacked = { const_cast<char*>(t728ae7.prepend("WHITESPACE").constData()+10), t728ae7.size()-10 };callbackQTableView_SetStyleSheet(this, styleSheetPacked); };
 	void setVisible(bool visible) { callbackQTableView_SetVisible(this, visible); };
 	void setWindowModified(bool vbo) { callbackQTableView_SetWindowModified(this, vbo); };
-	void setWindowTitle(const QString & vqs) { callbackQTableView_SetWindowTitle(this, const_cast<char*>(vqs.toUtf8().prepend("WHITESPACE").constData()+10)); };
+	void setWindowTitle(const QString & vqs) { QByteArray tda39a3 = vqs.toUtf8(); QtWidgets_PackedString vqsPacked = { const_cast<char*>(tda39a3.prepend("WHITESPACE").constData()+10), tda39a3.size()-10 };callbackQTableView_SetWindowTitle(this, vqsPacked); };
 	void showEvent(QShowEvent * event) { callbackQTableView_ShowEvent(this, event); };
 	bool close() { return callbackQTableView_Close(this) != 0; };
 	void closeEvent(QCloseEvent * event) { callbackQTableView_CloseEvent(this, event); };
@@ -81502,7 +81502,7 @@ public:
 	void hide() { callbackQTableView_Hide(this); };
 	void keyReleaseEvent(QKeyEvent * event) { callbackQTableView_KeyReleaseEvent(this, event); };
 	void lower() { callbackQTableView_Lower(this); };
-	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQTableView_NativeEvent(this, const_cast<char*>(eventType.toHex().prepend("WHITESPACE").constData()+10), message, *result) != 0; };
+	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQTableView_NativeEvent(this, const_cast<QByteArray*>(&eventType), message, *result) != 0; };
 	void raise() { callbackQTableView_Raise(this); };
 	void repaint() { callbackQTableView_Repaint(this); };
 	void setDisabled(bool disable) { callbackQTableView_SetDisabled(this, disable); };
@@ -82556,14 +82556,14 @@ void QTableView_LowerDefault(void* ptr)
 	static_cast<QTableView*>(ptr)->QTableView::lower();
 }
 
-char QTableView_NativeEvent(void* ptr, char* eventType, void* message, long result)
+char QTableView_NativeEvent(void* ptr, void* eventType, void* message, long result)
 {
-	return static_cast<QTableView*>(ptr)->nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
+	return static_cast<QTableView*>(ptr)->nativeEvent(*static_cast<QByteArray*>(eventType), message, &result);
 }
 
-char QTableView_NativeEventDefault(void* ptr, char* eventType, void* message, long result)
+char QTableView_NativeEventDefault(void* ptr, void* eventType, void* message, long result)
 {
-	return static_cast<QTableView*>(ptr)->QTableView::nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
+	return static_cast<QTableView*>(ptr)->QTableView::nativeEvent(*static_cast<QByteArray*>(eventType), message, &result);
 }
 
 void QTableView_Raise(void* ptr)
@@ -82837,7 +82837,7 @@ public:
 	void inputMethodEvent(QInputMethodEvent * event) { callbackQTableWidget_InputMethodEvent(this, event); };
 	QVariant inputMethodQuery(Qt::InputMethodQuery query) const { return *static_cast<QVariant*>(callbackQTableWidget_InputMethodQuery(const_cast<MyQTableWidget*>(this), query)); };
 	void keyPressEvent(QKeyEvent * event) { callbackQTableWidget_KeyPressEvent(this, event); };
-	void keyboardSearch(const QString & search) { callbackQTableWidget_KeyboardSearch(this, const_cast<char*>(search.toUtf8().prepend("WHITESPACE").constData()+10)); };
+	void keyboardSearch(const QString & search) { QByteArray t3559d7 = search.toUtf8(); QtWidgets_PackedString searchPacked = { const_cast<char*>(t3559d7.prepend("WHITESPACE").constData()+10), t3559d7.size()-10 };callbackQTableWidget_KeyboardSearch(this, searchPacked); };
 	void mouseDoubleClickEvent(QMouseEvent * event) { callbackQTableWidget_MouseDoubleClickEvent(this, event); };
 	void mouseMoveEvent(QMouseEvent * event) { callbackQTableWidget_MouseMoveEvent(this, event); };
 	void mousePressEvent(QMouseEvent * event) { callbackQTableWidget_MousePressEvent(this, event); };
@@ -82869,10 +82869,10 @@ public:
 	void leaveEvent(QEvent * event) { callbackQTableWidget_LeaveEvent(this, event); };
 	void moveEvent(QMoveEvent * event) { callbackQTableWidget_MoveEvent(this, event); };
 	void setEnabled(bool vbo) { callbackQTableWidget_SetEnabled(this, vbo); };
-	void setStyleSheet(const QString & styleSheet) { callbackQTableWidget_SetStyleSheet(this, const_cast<char*>(styleSheet.toUtf8().prepend("WHITESPACE").constData()+10)); };
+	void setStyleSheet(const QString & styleSheet) { QByteArray t728ae7 = styleSheet.toUtf8(); QtWidgets_PackedString styleSheetPacked = { const_cast<char*>(t728ae7.prepend("WHITESPACE").constData()+10), t728ae7.size()-10 };callbackQTableWidget_SetStyleSheet(this, styleSheetPacked); };
 	void setVisible(bool visible) { callbackQTableWidget_SetVisible(this, visible); };
 	void setWindowModified(bool vbo) { callbackQTableWidget_SetWindowModified(this, vbo); };
-	void setWindowTitle(const QString & vqs) { callbackQTableWidget_SetWindowTitle(this, const_cast<char*>(vqs.toUtf8().prepend("WHITESPACE").constData()+10)); };
+	void setWindowTitle(const QString & vqs) { QByteArray tda39a3 = vqs.toUtf8(); QtWidgets_PackedString vqsPacked = { const_cast<char*>(tda39a3.prepend("WHITESPACE").constData()+10), tda39a3.size()-10 };callbackQTableWidget_SetWindowTitle(this, vqsPacked); };
 	void showEvent(QShowEvent * event) { callbackQTableWidget_ShowEvent(this, event); };
 	bool close() { return callbackQTableWidget_Close(this) != 0; };
 	void closeEvent(QCloseEvent * event) { callbackQTableWidget_CloseEvent(this, event); };
@@ -82881,7 +82881,7 @@ public:
 	void hide() { callbackQTableWidget_Hide(this); };
 	void keyReleaseEvent(QKeyEvent * event) { callbackQTableWidget_KeyReleaseEvent(this, event); };
 	void lower() { callbackQTableWidget_Lower(this); };
-	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQTableWidget_NativeEvent(this, const_cast<char*>(eventType.toHex().prepend("WHITESPACE").constData()+10), message, *result) != 0; };
+	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQTableWidget_NativeEvent(this, const_cast<QByteArray*>(&eventType), message, *result) != 0; };
 	void raise() { callbackQTableWidget_Raise(this); };
 	void repaint() { callbackQTableWidget_Repaint(this); };
 	void setDisabled(bool disable) { callbackQTableWidget_SetDisabled(this, disable); };
@@ -83258,14 +83258,14 @@ void QTableWidget_ItemSelectionChanged(void* ptr)
 	static_cast<QTableWidget*>(ptr)->itemSelectionChanged();
 }
 
-char* QTableWidget_MimeTypes(void* ptr)
+struct QtWidgets_PackedString QTableWidget_MimeTypes(void* ptr)
 {
-	return const_cast<char*>(static_cast<QTableWidget*>(ptr)->mimeTypes().join("|").toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray t94a601 = static_cast<QTableWidget*>(ptr)->mimeTypes().join("|").toUtf8(); QtWidgets_PackedString { const_cast<char*>(t94a601.prepend("WHITESPACE").constData()+10), t94a601.size()-10 }; });
 }
 
-char* QTableWidget_MimeTypesDefault(void* ptr)
+struct QtWidgets_PackedString QTableWidget_MimeTypesDefault(void* ptr)
 {
-	return const_cast<char*>(static_cast<QTableWidget*>(ptr)->QTableWidget::mimeTypes().join("|").toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray t43ec64 = static_cast<QTableWidget*>(ptr)->QTableWidget::mimeTypes().join("|").toUtf8(); QtWidgets_PackedString { const_cast<char*>(t43ec64.prepend("WHITESPACE").constData()+10), t43ec64.size()-10 }; });
 }
 
 void QTableWidget_OpenPersistentEditor(void* ptr, void* item)
@@ -84370,14 +84370,14 @@ void QTableWidget_LowerDefault(void* ptr)
 	static_cast<QTableWidget*>(ptr)->QTableWidget::lower();
 }
 
-char QTableWidget_NativeEvent(void* ptr, char* eventType, void* message, long result)
+char QTableWidget_NativeEvent(void* ptr, void* eventType, void* message, long result)
 {
-	return static_cast<QTableWidget*>(ptr)->nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
+	return static_cast<QTableWidget*>(ptr)->nativeEvent(*static_cast<QByteArray*>(eventType), message, &result);
 }
 
-char QTableWidget_NativeEventDefault(void* ptr, char* eventType, void* message, long result)
+char QTableWidget_NativeEventDefault(void* ptr, void* eventType, void* message, long result)
 {
-	return static_cast<QTableWidget*>(ptr)->QTableWidget::nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
+	return static_cast<QTableWidget*>(ptr)->QTableWidget::nativeEvent(*static_cast<QByteArray*>(eventType), message, &result);
 }
 
 void QTableWidget_Raise(void* ptr)
@@ -84748,9 +84748,9 @@ void* QTableWidgetItem_SizeHint(void* ptr)
 	return ({ QSize tmpValue = static_cast<QTableWidgetItem*>(ptr)->sizeHint(); new QSize(tmpValue.width(), tmpValue.height()); });
 }
 
-char* QTableWidgetItem_StatusTip(void* ptr)
+struct QtWidgets_PackedString QTableWidgetItem_StatusTip(void* ptr)
 {
-	return const_cast<char*>(static_cast<QTableWidgetItem*>(ptr)->statusTip().toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray t934149 = static_cast<QTableWidgetItem*>(ptr)->statusTip().toUtf8(); QtWidgets_PackedString { const_cast<char*>(t934149.prepend("WHITESPACE").constData()+10), t934149.size()-10 }; });
 }
 
 void* QTableWidgetItem_TableWidget(void* ptr)
@@ -84758,9 +84758,9 @@ void* QTableWidgetItem_TableWidget(void* ptr)
 	return static_cast<QTableWidgetItem*>(ptr)->tableWidget();
 }
 
-char* QTableWidgetItem_Text(void* ptr)
+struct QtWidgets_PackedString QTableWidgetItem_Text(void* ptr)
 {
-	return const_cast<char*>(static_cast<QTableWidgetItem*>(ptr)->text().toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray tbdfc6c = static_cast<QTableWidgetItem*>(ptr)->text().toUtf8(); QtWidgets_PackedString { const_cast<char*>(tbdfc6c.prepend("WHITESPACE").constData()+10), tbdfc6c.size()-10 }; });
 }
 
 int QTableWidgetItem_TextAlignment(void* ptr)
@@ -84768,9 +84768,9 @@ int QTableWidgetItem_TextAlignment(void* ptr)
 	return static_cast<QTableWidgetItem*>(ptr)->textAlignment();
 }
 
-char* QTableWidgetItem_ToolTip(void* ptr)
+struct QtWidgets_PackedString QTableWidgetItem_ToolTip(void* ptr)
 {
-	return const_cast<char*>(static_cast<QTableWidgetItem*>(ptr)->toolTip().toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray t8fa9fe = static_cast<QTableWidgetItem*>(ptr)->toolTip().toUtf8(); QtWidgets_PackedString { const_cast<char*>(t8fa9fe.prepend("WHITESPACE").constData()+10), t8fa9fe.size()-10 }; });
 }
 
 int QTableWidgetItem_Type(void* ptr)
@@ -84778,9 +84778,9 @@ int QTableWidgetItem_Type(void* ptr)
 	return static_cast<QTableWidgetItem*>(ptr)->type();
 }
 
-char* QTableWidgetItem_WhatsThis(void* ptr)
+struct QtWidgets_PackedString QTableWidgetItem_WhatsThis(void* ptr)
 {
-	return const_cast<char*>(static_cast<QTableWidgetItem*>(ptr)->whatsThis().toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray t4664fc = static_cast<QTableWidgetItem*>(ptr)->whatsThis().toUtf8(); QtWidgets_PackedString { const_cast<char*>(t4664fc.prepend("WHITESPACE").constData()+10), t4664fc.size()-10 }; });
 }
 
 void QTableWidgetItem_DestroyQTableWidgetItem(void* ptr)
@@ -85076,7 +85076,7 @@ public:
 	void focusOutEvent(QFocusEvent * ev) { callbackQTextBrowser_FocusOutEvent(this, ev); };
 	void forward() { callbackQTextBrowser_Forward(this); };
 	void Signal_ForwardAvailable(bool available) { callbackQTextBrowser_ForwardAvailable(this, available); };
-	void Signal_Highlighted2(const QString & link) { callbackQTextBrowser_Highlighted2(this, const_cast<char*>(link.toUtf8().prepend("WHITESPACE").constData()+10)); };
+	void Signal_Highlighted2(const QString & link) { QByteArray t4f0aa5 = link.toUtf8(); QtWidgets_PackedString linkPacked = { const_cast<char*>(t4f0aa5.prepend("WHITESPACE").constData()+10), t4f0aa5.size()-10 };callbackQTextBrowser_Highlighted2(this, linkPacked); };
 	void Signal_Highlighted(const QUrl & link) { callbackQTextBrowser_Highlighted(this, const_cast<QUrl*>(&link)); };
 	void Signal_HistoryChanged() { callbackQTextBrowser_HistoryChanged(this); };
 	void home() { callbackQTextBrowser_Home(this); };
@@ -85091,10 +85091,10 @@ public:
 	void contextMenuEvent(QContextMenuEvent * event) { callbackQTextBrowser_ContextMenuEvent(this, event); };
 	void redo() { callbackQTextBrowser_Redo(this); };
 	void setFontWeight(int weight) { callbackQTextBrowser_SetFontWeight(this, weight); };
-	void setHtml(const QString & text) { callbackQTextBrowser_SetHtml(this, const_cast<char*>(text.toUtf8().prepend("WHITESPACE").constData()+10)); };
+	void setHtml(const QString & text) { QByteArray t372ea0 = text.toUtf8(); QtWidgets_PackedString textPacked = { const_cast<char*>(t372ea0.prepend("WHITESPACE").constData()+10), t372ea0.size()-10 };callbackQTextBrowser_SetHtml(this, textPacked); };
 	void zoomIn(int ran) { callbackQTextBrowser_ZoomIn(this, ran); };
 	void zoomOut(int ran) { callbackQTextBrowser_ZoomOut(this, ran); };
-	void append(const QString & text) { callbackQTextBrowser_Append(this, const_cast<char*>(text.toUtf8().prepend("WHITESPACE").constData()+10)); };
+	void append(const QString & text) { QByteArray t372ea0 = text.toUtf8(); QtWidgets_PackedString textPacked = { const_cast<char*>(t372ea0.prepend("WHITESPACE").constData()+10), t372ea0.size()-10 };callbackQTextBrowser_Append(this, textPacked); };
 	bool canInsertFromMimeData(const QMimeData * source) const { return callbackQTextBrowser_CanInsertFromMimeData(const_cast<MyQTextBrowser*>(this), const_cast<QMimeData*>(source)) != 0; };
 	void changeEvent(QEvent * e) { callbackQTextBrowser_ChangeEvent(this, e); };
 	void clear() { callbackQTextBrowser_Clear(this); };
@@ -85109,23 +85109,23 @@ public:
 	void inputMethodEvent(QInputMethodEvent * e) { callbackQTextBrowser_InputMethodEvent(this, e); };
 	QVariant inputMethodQuery(Qt::InputMethodQuery property) const { return *static_cast<QVariant*>(callbackQTextBrowser_InputMethodQuery(const_cast<MyQTextBrowser*>(this), property)); };
 	void insertFromMimeData(const QMimeData * source) { callbackQTextBrowser_InsertFromMimeData(this, const_cast<QMimeData*>(source)); };
-	void insertHtml(const QString & text) { callbackQTextBrowser_InsertHtml(this, const_cast<char*>(text.toUtf8().prepend("WHITESPACE").constData()+10)); };
-	void insertPlainText(const QString & text) { callbackQTextBrowser_InsertPlainText(this, const_cast<char*>(text.toUtf8().prepend("WHITESPACE").constData()+10)); };
+	void insertHtml(const QString & text) { QByteArray t372ea0 = text.toUtf8(); QtWidgets_PackedString textPacked = { const_cast<char*>(t372ea0.prepend("WHITESPACE").constData()+10), t372ea0.size()-10 };callbackQTextBrowser_InsertHtml(this, textPacked); };
+	void insertPlainText(const QString & text) { QByteArray t372ea0 = text.toUtf8(); QtWidgets_PackedString textPacked = { const_cast<char*>(t372ea0.prepend("WHITESPACE").constData()+10), t372ea0.size()-10 };callbackQTextBrowser_InsertPlainText(this, textPacked); };
 	void keyReleaseEvent(QKeyEvent * e) { callbackQTextBrowser_KeyReleaseEvent(this, e); };
 	void mouseDoubleClickEvent(QMouseEvent * e) { callbackQTextBrowser_MouseDoubleClickEvent(this, e); };
 	void paste() { callbackQTextBrowser_Paste(this); };
 	void resizeEvent(QResizeEvent * e) { callbackQTextBrowser_ResizeEvent(this, e); };
 	void scrollContentsBy(int dx, int dy) { callbackQTextBrowser_ScrollContentsBy(this, dx, dy); };
-	void scrollToAnchor(const QString & name) { callbackQTextBrowser_ScrollToAnchor(this, const_cast<char*>(name.toUtf8().prepend("WHITESPACE").constData()+10)); };
+	void scrollToAnchor(const QString & name) { QByteArray t6ae999 = name.toUtf8(); QtWidgets_PackedString namePacked = { const_cast<char*>(t6ae999.prepend("WHITESPACE").constData()+10), t6ae999.size()-10 };callbackQTextBrowser_ScrollToAnchor(this, namePacked); };
 	void selectAll() { callbackQTextBrowser_SelectAll(this); };
 	void setAlignment(Qt::Alignment a) { callbackQTextBrowser_SetAlignment(this, a); };
 	void setCurrentFont(const QFont & f) { callbackQTextBrowser_SetCurrentFont(this, const_cast<QFont*>(&f)); };
-	void setFontFamily(const QString & fontFamily) { callbackQTextBrowser_SetFontFamily(this, const_cast<char*>(fontFamily.toUtf8().prepend("WHITESPACE").constData()+10)); };
+	void setFontFamily(const QString & fontFamily) { QByteArray t5db177 = fontFamily.toUtf8(); QtWidgets_PackedString fontFamilyPacked = { const_cast<char*>(t5db177.prepend("WHITESPACE").constData()+10), t5db177.size()-10 };callbackQTextBrowser_SetFontFamily(this, fontFamilyPacked); };
 	void setFontItalic(bool italic) { callbackQTextBrowser_SetFontItalic(this, italic); };
 	void setFontPointSize(qreal s) { callbackQTextBrowser_SetFontPointSize(this, s); };
 	void setFontUnderline(bool underline) { callbackQTextBrowser_SetFontUnderline(this, underline); };
-	void setPlainText(const QString & text) { callbackQTextBrowser_SetPlainText(this, const_cast<char*>(text.toUtf8().prepend("WHITESPACE").constData()+10)); };
-	void setText(const QString & text) { callbackQTextBrowser_SetText(this, const_cast<char*>(text.toUtf8().prepend("WHITESPACE").constData()+10)); };
+	void setPlainText(const QString & text) { QByteArray t372ea0 = text.toUtf8(); QtWidgets_PackedString textPacked = { const_cast<char*>(t372ea0.prepend("WHITESPACE").constData()+10), t372ea0.size()-10 };callbackQTextBrowser_SetPlainText(this, textPacked); };
+	void setText(const QString & text) { QByteArray t372ea0 = text.toUtf8(); QtWidgets_PackedString textPacked = { const_cast<char*>(t372ea0.prepend("WHITESPACE").constData()+10), t372ea0.size()-10 };callbackQTextBrowser_SetText(this, textPacked); };
 	void setTextBackgroundColor(const QColor & c) { callbackQTextBrowser_SetTextBackgroundColor(this, const_cast<QColor*>(&c)); };
 	void setTextColor(const QColor & c) { callbackQTextBrowser_SetTextColor(this, const_cast<QColor*>(&c)); };
 	void showEvent(QShowEvent * vqs) { callbackQTextBrowser_ShowEvent(this, vqs); };
@@ -85142,17 +85142,17 @@ public:
 	void leaveEvent(QEvent * event) { callbackQTextBrowser_LeaveEvent(this, event); };
 	void moveEvent(QMoveEvent * event) { callbackQTextBrowser_MoveEvent(this, event); };
 	void setEnabled(bool vbo) { callbackQTextBrowser_SetEnabled(this, vbo); };
-	void setStyleSheet(const QString & styleSheet) { callbackQTextBrowser_SetStyleSheet(this, const_cast<char*>(styleSheet.toUtf8().prepend("WHITESPACE").constData()+10)); };
+	void setStyleSheet(const QString & styleSheet) { QByteArray t728ae7 = styleSheet.toUtf8(); QtWidgets_PackedString styleSheetPacked = { const_cast<char*>(t728ae7.prepend("WHITESPACE").constData()+10), t728ae7.size()-10 };callbackQTextBrowser_SetStyleSheet(this, styleSheetPacked); };
 	void setVisible(bool visible) { callbackQTextBrowser_SetVisible(this, visible); };
 	void setWindowModified(bool vbo) { callbackQTextBrowser_SetWindowModified(this, vbo); };
-	void setWindowTitle(const QString & vqs) { callbackQTextBrowser_SetWindowTitle(this, const_cast<char*>(vqs.toUtf8().prepend("WHITESPACE").constData()+10)); };
+	void setWindowTitle(const QString & vqs) { QByteArray tda39a3 = vqs.toUtf8(); QtWidgets_PackedString vqsPacked = { const_cast<char*>(tda39a3.prepend("WHITESPACE").constData()+10), tda39a3.size()-10 };callbackQTextBrowser_SetWindowTitle(this, vqsPacked); };
 	bool close() { return callbackQTextBrowser_Close(this) != 0; };
 	void closeEvent(QCloseEvent * event) { callbackQTextBrowser_CloseEvent(this, event); };
 	bool hasHeightForWidth() const { return callbackQTextBrowser_HasHeightForWidth(const_cast<MyQTextBrowser*>(this)) != 0; };
 	int heightForWidth(int w) const { return callbackQTextBrowser_HeightForWidth(const_cast<MyQTextBrowser*>(this), w); };
 	void hide() { callbackQTextBrowser_Hide(this); };
 	void lower() { callbackQTextBrowser_Lower(this); };
-	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQTextBrowser_NativeEvent(this, const_cast<char*>(eventType.toHex().prepend("WHITESPACE").constData()+10), message, *result) != 0; };
+	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQTextBrowser_NativeEvent(this, const_cast<QByteArray*>(&eventType), message, *result) != 0; };
 	void raise() { callbackQTextBrowser_Raise(this); };
 	void repaint() { callbackQTextBrowser_Repaint(this); };
 	void setDisabled(bool disable) { callbackQTextBrowser_SetDisabled(this, disable); };
@@ -85186,9 +85186,9 @@ char QTextBrowser_OpenLinks(void* ptr)
 	return static_cast<QTextBrowser*>(ptr)->openLinks();
 }
 
-char* QTextBrowser_SearchPaths(void* ptr)
+struct QtWidgets_PackedString QTextBrowser_SearchPaths(void* ptr)
 {
-	return const_cast<char*>(static_cast<QTextBrowser*>(ptr)->searchPaths().join("|").toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray t6868fa = static_cast<QTextBrowser*>(ptr)->searchPaths().join("|").toUtf8(); QtWidgets_PackedString { const_cast<char*>(t6868fa.prepend("WHITESPACE").constData()+10), t6868fa.size()-10 }; });
 }
 
 void QTextBrowser_SetOpenExternalLinks(void* ptr, char open)
@@ -85381,9 +85381,9 @@ void QTextBrowser_HistoryChanged(void* ptr)
 	static_cast<QTextBrowser*>(ptr)->historyChanged();
 }
 
-char* QTextBrowser_HistoryTitle(void* ptr, int i)
+struct QtWidgets_PackedString QTextBrowser_HistoryTitle(void* ptr, int i)
 {
-	return const_cast<char*>(static_cast<QTextBrowser*>(ptr)->historyTitle(i).toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray tc73fc4 = static_cast<QTextBrowser*>(ptr)->historyTitle(i).toUtf8(); QtWidgets_PackedString { const_cast<char*>(tc73fc4.prepend("WHITESPACE").constData()+10), tc73fc4.size()-10 }; });
 }
 
 void* QTextBrowser_HistoryUrl(void* ptr, int i)
@@ -86158,14 +86158,14 @@ void QTextBrowser_LowerDefault(void* ptr)
 	static_cast<QTextBrowser*>(ptr)->QTextBrowser::lower();
 }
 
-char QTextBrowser_NativeEvent(void* ptr, char* eventType, void* message, long result)
+char QTextBrowser_NativeEvent(void* ptr, void* eventType, void* message, long result)
 {
-	return static_cast<QTextBrowser*>(ptr)->nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
+	return static_cast<QTextBrowser*>(ptr)->nativeEvent(*static_cast<QByteArray*>(eventType), message, &result);
 }
 
-char QTextBrowser_NativeEventDefault(void* ptr, char* eventType, void* message, long result)
+char QTextBrowser_NativeEventDefault(void* ptr, void* eventType, void* message, long result)
 {
-	return static_cast<QTextBrowser*>(ptr)->QTextBrowser::nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
+	return static_cast<QTextBrowser*>(ptr)->QTextBrowser::nativeEvent(*static_cast<QByteArray*>(eventType), message, &result);
 }
 
 void QTextBrowser_Raise(void* ptr)
@@ -86387,10 +86387,10 @@ public:
 	void paintEvent(QPaintEvent * event) { callbackQTextEdit_PaintEvent(this, event); };
 	void redo() { callbackQTextEdit_Redo(this); };
 	void setFontWeight(int weight) { callbackQTextEdit_SetFontWeight(this, weight); };
-	void setHtml(const QString & text) { callbackQTextEdit_SetHtml(this, const_cast<char*>(text.toUtf8().prepend("WHITESPACE").constData()+10)); };
+	void setHtml(const QString & text) { QByteArray t372ea0 = text.toUtf8(); QtWidgets_PackedString textPacked = { const_cast<char*>(t372ea0.prepend("WHITESPACE").constData()+10), t372ea0.size()-10 };callbackQTextEdit_SetHtml(this, textPacked); };
 	void zoomIn(int ran) { callbackQTextEdit_ZoomIn(this, ran); };
 	void zoomOut(int ran) { callbackQTextEdit_ZoomOut(this, ran); };
-	void append(const QString & text) { callbackQTextEdit_Append(this, const_cast<char*>(text.toUtf8().prepend("WHITESPACE").constData()+10)); };
+	void append(const QString & text) { QByteArray t372ea0 = text.toUtf8(); QtWidgets_PackedString textPacked = { const_cast<char*>(t372ea0.prepend("WHITESPACE").constData()+10), t372ea0.size()-10 };callbackQTextEdit_Append(this, textPacked); };
 	bool canInsertFromMimeData(const QMimeData * source) const { return callbackQTextEdit_CanInsertFromMimeData(const_cast<MyQTextEdit*>(this), const_cast<QMimeData*>(source)) != 0; };
 	void changeEvent(QEvent * e) { callbackQTextEdit_ChangeEvent(this, e); };
 	void clear() { callbackQTextEdit_Clear(this); };
@@ -86410,8 +86410,8 @@ public:
 	void inputMethodEvent(QInputMethodEvent * e) { callbackQTextEdit_InputMethodEvent(this, e); };
 	QVariant inputMethodQuery(Qt::InputMethodQuery property) const { return *static_cast<QVariant*>(callbackQTextEdit_InputMethodQuery(const_cast<MyQTextEdit*>(this), property)); };
 	void insertFromMimeData(const QMimeData * source) { callbackQTextEdit_InsertFromMimeData(this, const_cast<QMimeData*>(source)); };
-	void insertHtml(const QString & text) { callbackQTextEdit_InsertHtml(this, const_cast<char*>(text.toUtf8().prepend("WHITESPACE").constData()+10)); };
-	void insertPlainText(const QString & text) { callbackQTextEdit_InsertPlainText(this, const_cast<char*>(text.toUtf8().prepend("WHITESPACE").constData()+10)); };
+	void insertHtml(const QString & text) { QByteArray t372ea0 = text.toUtf8(); QtWidgets_PackedString textPacked = { const_cast<char*>(t372ea0.prepend("WHITESPACE").constData()+10), t372ea0.size()-10 };callbackQTextEdit_InsertHtml(this, textPacked); };
+	void insertPlainText(const QString & text) { QByteArray t372ea0 = text.toUtf8(); QtWidgets_PackedString textPacked = { const_cast<char*>(t372ea0.prepend("WHITESPACE").constData()+10), t372ea0.size()-10 };callbackQTextEdit_InsertPlainText(this, textPacked); };
 	void keyPressEvent(QKeyEvent * e) { callbackQTextEdit_KeyPressEvent(this, e); };
 	void keyReleaseEvent(QKeyEvent * e) { callbackQTextEdit_KeyReleaseEvent(this, e); };
 	QVariant loadResource(int ty, const QUrl & name) { return *static_cast<QVariant*>(callbackQTextEdit_LoadResource(this, ty, const_cast<QUrl*>(&name))); };
@@ -86423,17 +86423,17 @@ public:
 	void Signal_RedoAvailable(bool available) { callbackQTextEdit_RedoAvailable(this, available); };
 	void resizeEvent(QResizeEvent * e) { callbackQTextEdit_ResizeEvent(this, e); };
 	void scrollContentsBy(int dx, int dy) { callbackQTextEdit_ScrollContentsBy(this, dx, dy); };
-	void scrollToAnchor(const QString & name) { callbackQTextEdit_ScrollToAnchor(this, const_cast<char*>(name.toUtf8().prepend("WHITESPACE").constData()+10)); };
+	void scrollToAnchor(const QString & name) { QByteArray t6ae999 = name.toUtf8(); QtWidgets_PackedString namePacked = { const_cast<char*>(t6ae999.prepend("WHITESPACE").constData()+10), t6ae999.size()-10 };callbackQTextEdit_ScrollToAnchor(this, namePacked); };
 	void selectAll() { callbackQTextEdit_SelectAll(this); };
 	void Signal_SelectionChanged() { callbackQTextEdit_SelectionChanged(this); };
 	void setAlignment(Qt::Alignment a) { callbackQTextEdit_SetAlignment(this, a); };
 	void setCurrentFont(const QFont & f) { callbackQTextEdit_SetCurrentFont(this, const_cast<QFont*>(&f)); };
-	void setFontFamily(const QString & fontFamily) { callbackQTextEdit_SetFontFamily(this, const_cast<char*>(fontFamily.toUtf8().prepend("WHITESPACE").constData()+10)); };
+	void setFontFamily(const QString & fontFamily) { QByteArray t5db177 = fontFamily.toUtf8(); QtWidgets_PackedString fontFamilyPacked = { const_cast<char*>(t5db177.prepend("WHITESPACE").constData()+10), t5db177.size()-10 };callbackQTextEdit_SetFontFamily(this, fontFamilyPacked); };
 	void setFontItalic(bool italic) { callbackQTextEdit_SetFontItalic(this, italic); };
 	void setFontPointSize(qreal s) { callbackQTextEdit_SetFontPointSize(this, s); };
 	void setFontUnderline(bool underline) { callbackQTextEdit_SetFontUnderline(this, underline); };
-	void setPlainText(const QString & text) { callbackQTextEdit_SetPlainText(this, const_cast<char*>(text.toUtf8().prepend("WHITESPACE").constData()+10)); };
-	void setText(const QString & text) { callbackQTextEdit_SetText(this, const_cast<char*>(text.toUtf8().prepend("WHITESPACE").constData()+10)); };
+	void setPlainText(const QString & text) { QByteArray t372ea0 = text.toUtf8(); QtWidgets_PackedString textPacked = { const_cast<char*>(t372ea0.prepend("WHITESPACE").constData()+10), t372ea0.size()-10 };callbackQTextEdit_SetPlainText(this, textPacked); };
+	void setText(const QString & text) { QByteArray t372ea0 = text.toUtf8(); QtWidgets_PackedString textPacked = { const_cast<char*>(t372ea0.prepend("WHITESPACE").constData()+10), t372ea0.size()-10 };callbackQTextEdit_SetText(this, textPacked); };
 	void setTextBackgroundColor(const QColor & c) { callbackQTextEdit_SetTextBackgroundColor(this, const_cast<QColor*>(&c)); };
 	void setTextColor(const QColor & c) { callbackQTextEdit_SetTextColor(this, const_cast<QColor*>(&c)); };
 	void showEvent(QShowEvent * vqs) { callbackQTextEdit_ShowEvent(this, vqs); };
@@ -86453,17 +86453,17 @@ public:
 	void leaveEvent(QEvent * event) { callbackQTextEdit_LeaveEvent(this, event); };
 	void moveEvent(QMoveEvent * event) { callbackQTextEdit_MoveEvent(this, event); };
 	void setEnabled(bool vbo) { callbackQTextEdit_SetEnabled(this, vbo); };
-	void setStyleSheet(const QString & styleSheet) { callbackQTextEdit_SetStyleSheet(this, const_cast<char*>(styleSheet.toUtf8().prepend("WHITESPACE").constData()+10)); };
+	void setStyleSheet(const QString & styleSheet) { QByteArray t728ae7 = styleSheet.toUtf8(); QtWidgets_PackedString styleSheetPacked = { const_cast<char*>(t728ae7.prepend("WHITESPACE").constData()+10), t728ae7.size()-10 };callbackQTextEdit_SetStyleSheet(this, styleSheetPacked); };
 	void setVisible(bool visible) { callbackQTextEdit_SetVisible(this, visible); };
 	void setWindowModified(bool vbo) { callbackQTextEdit_SetWindowModified(this, vbo); };
-	void setWindowTitle(const QString & vqs) { callbackQTextEdit_SetWindowTitle(this, const_cast<char*>(vqs.toUtf8().prepend("WHITESPACE").constData()+10)); };
+	void setWindowTitle(const QString & vqs) { QByteArray tda39a3 = vqs.toUtf8(); QtWidgets_PackedString vqsPacked = { const_cast<char*>(tda39a3.prepend("WHITESPACE").constData()+10), tda39a3.size()-10 };callbackQTextEdit_SetWindowTitle(this, vqsPacked); };
 	bool close() { return callbackQTextEdit_Close(this) != 0; };
 	void closeEvent(QCloseEvent * event) { callbackQTextEdit_CloseEvent(this, event); };
 	bool hasHeightForWidth() const { return callbackQTextEdit_HasHeightForWidth(const_cast<MyQTextEdit*>(this)) != 0; };
 	int heightForWidth(int w) const { return callbackQTextEdit_HeightForWidth(const_cast<MyQTextEdit*>(this), w); };
 	void hide() { callbackQTextEdit_Hide(this); };
 	void lower() { callbackQTextEdit_Lower(this); };
-	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQTextEdit_NativeEvent(this, const_cast<char*>(eventType.toHex().prepend("WHITESPACE").constData()+10), message, *result) != 0; };
+	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQTextEdit_NativeEvent(this, const_cast<QByteArray*>(&eventType), message, *result) != 0; };
 	void raise() { callbackQTextEdit_Raise(this); };
 	void repaint() { callbackQTextEdit_Repaint(this); };
 	void setDisabled(bool disable) { callbackQTextEdit_SetDisabled(this, disable); };
@@ -86552,9 +86552,9 @@ void QTextEdit_PaintEventDefault(void* ptr, void* event)
 	static_cast<QTextEdit*>(ptr)->QTextEdit::paintEvent(static_cast<QPaintEvent*>(event));
 }
 
-char* QTextEdit_PlaceholderText(void* ptr)
+struct QtWidgets_PackedString QTextEdit_PlaceholderText(void* ptr)
 {
-	return const_cast<char*>(static_cast<QTextEdit*>(ptr)->placeholderText().toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray t79a2c0 = static_cast<QTextEdit*>(ptr)->placeholderText().toUtf8(); QtWidgets_PackedString { const_cast<char*>(t79a2c0.prepend("WHITESPACE").constData()+10), t79a2c0.size()-10 }; });
 }
 
 void QTextEdit_Redo(void* ptr)
@@ -86652,9 +86652,9 @@ long long QTextEdit_TextInteractionFlags(void* ptr)
 	return static_cast<QTextEdit*>(ptr)->textInteractionFlags();
 }
 
-char* QTextEdit_ToHtml(void* ptr)
+struct QtWidgets_PackedString QTextEdit_ToHtml(void* ptr)
 {
-	return const_cast<char*>(static_cast<QTextEdit*>(ptr)->toHtml().toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray t9adf2b = static_cast<QTextEdit*>(ptr)->toHtml().toUtf8(); QtWidgets_PackedString { const_cast<char*>(t9adf2b.prepend("WHITESPACE").constData()+10), t9adf2b.size()-10 }; });
 }
 
 long long QTextEdit_WordWrapMode(void* ptr)
@@ -86687,9 +86687,9 @@ long long QTextEdit_Alignment(void* ptr)
 	return static_cast<QTextEdit*>(ptr)->alignment();
 }
 
-char* QTextEdit_AnchorAt(void* ptr, void* pos)
+struct QtWidgets_PackedString QTextEdit_AnchorAt(void* ptr, void* pos)
 {
-	return const_cast<char*>(static_cast<QTextEdit*>(ptr)->anchorAt(*static_cast<QPoint*>(pos)).toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray t883a22 = static_cast<QTextEdit*>(ptr)->anchorAt(*static_cast<QPoint*>(pos)).toUtf8(); QtWidgets_PackedString { const_cast<char*>(t883a22.prepend("WHITESPACE").constData()+10), t883a22.size()-10 }; });
 }
 
 void QTextEdit_Append(void* ptr, char* text)
@@ -86822,9 +86822,9 @@ void QTextEdit_Cut(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QTextEdit*>(ptr), "cut");
 }
 
-char* QTextEdit_DocumentTitle(void* ptr)
+struct QtWidgets_PackedString QTextEdit_DocumentTitle(void* ptr)
 {
-	return const_cast<char*>(static_cast<QTextEdit*>(ptr)->documentTitle().toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray td339b8 = static_cast<QTextEdit*>(ptr)->documentTitle().toUtf8(); QtWidgets_PackedString { const_cast<char*>(td339b8.prepend("WHITESPACE").constData()+10), td339b8.size()-10 }; });
 }
 
 void QTextEdit_DragEnterEvent(void* ptr, void* e)
@@ -86907,9 +86907,9 @@ void QTextEdit_FocusOutEventDefault(void* ptr, void* e)
 	static_cast<QTextEdit*>(ptr)->QTextEdit::focusOutEvent(static_cast<QFocusEvent*>(e));
 }
 
-char* QTextEdit_FontFamily(void* ptr)
+struct QtWidgets_PackedString QTextEdit_FontFamily(void* ptr)
 {
-	return const_cast<char*>(static_cast<QTextEdit*>(ptr)->fontFamily().toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray tf50401 = static_cast<QTextEdit*>(ptr)->fontFamily().toUtf8(); QtWidgets_PackedString { const_cast<char*>(tf50401.prepend("WHITESPACE").constData()+10), tf50401.size()-10 }; });
 }
 
 char QTextEdit_FontItalic(void* ptr)
@@ -87239,9 +87239,9 @@ void* QTextEdit_TextCursor(void* ptr)
 	return new QTextCursor(static_cast<QTextEdit*>(ptr)->textCursor());
 }
 
-char* QTextEdit_ToPlainText(void* ptr)
+struct QtWidgets_PackedString QTextEdit_ToPlainText(void* ptr)
 {
-	return const_cast<char*>(static_cast<QTextEdit*>(ptr)->toPlainText().toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray te62381 = static_cast<QTextEdit*>(ptr)->toPlainText().toUtf8(); QtWidgets_PackedString { const_cast<char*>(te62381.prepend("WHITESPACE").constData()+10), te62381.size()-10 }; });
 }
 
 void QTextEdit_Undo(void* ptr)
@@ -87496,14 +87496,14 @@ void QTextEdit_LowerDefault(void* ptr)
 	static_cast<QTextEdit*>(ptr)->QTextEdit::lower();
 }
 
-char QTextEdit_NativeEvent(void* ptr, char* eventType, void* message, long result)
+char QTextEdit_NativeEvent(void* ptr, void* eventType, void* message, long result)
 {
-	return static_cast<QTextEdit*>(ptr)->nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
+	return static_cast<QTextEdit*>(ptr)->nativeEvent(*static_cast<QByteArray*>(eventType), message, &result);
 }
 
-char QTextEdit_NativeEventDefault(void* ptr, char* eventType, void* message, long result)
+char QTextEdit_NativeEventDefault(void* ptr, void* eventType, void* message, long result)
 {
-	return static_cast<QTextEdit*>(ptr)->QTextEdit::nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
+	return static_cast<QTextEdit*>(ptr)->QTextEdit::nativeEvent(*static_cast<QByteArray*>(eventType), message, &result);
 }
 
 void QTextEdit_Raise(void* ptr)
@@ -87901,14 +87901,14 @@ long long QTimeEdit_StepEnabledDefault(void* ptr)
 	return static_cast<QTimeEdit*>(ptr)->QTimeEdit::stepEnabled();
 }
 
-char* QTimeEdit_TextFromDateTime(void* ptr, void* dateTime)
+struct QtWidgets_PackedString QTimeEdit_TextFromDateTime(void* ptr, void* dateTime)
 {
-	return const_cast<char*>(static_cast<QTimeEdit*>(ptr)->textFromDateTime(*static_cast<QDateTime*>(dateTime)).toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray tffb495 = static_cast<QTimeEdit*>(ptr)->textFromDateTime(*static_cast<QDateTime*>(dateTime)).toUtf8(); QtWidgets_PackedString { const_cast<char*>(tffb495.prepend("WHITESPACE").constData()+10), tffb495.size()-10 }; });
 }
 
-char* QTimeEdit_TextFromDateTimeDefault(void* ptr, void* dateTime)
+struct QtWidgets_PackedString QTimeEdit_TextFromDateTimeDefault(void* ptr, void* dateTime)
 {
-	return const_cast<char*>(static_cast<QTimeEdit*>(ptr)->QTimeEdit::textFromDateTime(*static_cast<QDateTime*>(dateTime)).toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray t4bb49a = static_cast<QTimeEdit*>(ptr)->QTimeEdit::textFromDateTime(*static_cast<QDateTime*>(dateTime)).toUtf8(); QtWidgets_PackedString { const_cast<char*>(t4bb49a.prepend("WHITESPACE").constData()+10), t4bb49a.size()-10 }; });
 }
 
 long long QTimeEdit_Validate(void* ptr, char* text, int pos)
@@ -88283,14 +88283,14 @@ void QTimeEdit_MouseDoubleClickEventDefault(void* ptr, void* event)
 	static_cast<QTimeEdit*>(ptr)->QTimeEdit::mouseDoubleClickEvent(static_cast<QMouseEvent*>(event));
 }
 
-char QTimeEdit_NativeEvent(void* ptr, char* eventType, void* message, long result)
+char QTimeEdit_NativeEvent(void* ptr, void* eventType, void* message, long result)
 {
-	return static_cast<QTimeEdit*>(ptr)->nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
+	return static_cast<QTimeEdit*>(ptr)->nativeEvent(*static_cast<QByteArray*>(eventType), message, &result);
 }
 
-char QTimeEdit_NativeEventDefault(void* ptr, char* eventType, void* message, long result)
+char QTimeEdit_NativeEventDefault(void* ptr, void* eventType, void* message, long result)
 {
-	return static_cast<QTimeEdit*>(ptr)->QTimeEdit::nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
+	return static_cast<QTimeEdit*>(ptr)->QTimeEdit::nativeEvent(*static_cast<QByteArray*>(eventType), message, &result);
 }
 
 void QTimeEdit_Raise(void* ptr)
@@ -88523,10 +88523,10 @@ public:
 	QSize minimumSizeHint() const { return *static_cast<QSize*>(callbackQToolBar_MinimumSizeHint(const_cast<MyQToolBar*>(this))); };
 	void moveEvent(QMoveEvent * event) { callbackQToolBar_MoveEvent(this, event); };
 	void setEnabled(bool vbo) { callbackQToolBar_SetEnabled(this, vbo); };
-	void setStyleSheet(const QString & styleSheet) { callbackQToolBar_SetStyleSheet(this, const_cast<char*>(styleSheet.toUtf8().prepend("WHITESPACE").constData()+10)); };
+	void setStyleSheet(const QString & styleSheet) { QByteArray t728ae7 = styleSheet.toUtf8(); QtWidgets_PackedString styleSheetPacked = { const_cast<char*>(t728ae7.prepend("WHITESPACE").constData()+10), t728ae7.size()-10 };callbackQToolBar_SetStyleSheet(this, styleSheetPacked); };
 	void setVisible(bool visible) { callbackQToolBar_SetVisible(this, visible); };
 	void setWindowModified(bool vbo) { callbackQToolBar_SetWindowModified(this, vbo); };
-	void setWindowTitle(const QString & vqs) { callbackQToolBar_SetWindowTitle(this, const_cast<char*>(vqs.toUtf8().prepend("WHITESPACE").constData()+10)); };
+	void setWindowTitle(const QString & vqs) { QByteArray tda39a3 = vqs.toUtf8(); QtWidgets_PackedString vqsPacked = { const_cast<char*>(tda39a3.prepend("WHITESPACE").constData()+10), tda39a3.size()-10 };callbackQToolBar_SetWindowTitle(this, vqsPacked); };
 	void showEvent(QShowEvent * event) { callbackQToolBar_ShowEvent(this, event); };
 	QSize sizeHint() const { return *static_cast<QSize*>(callbackQToolBar_SizeHint(const_cast<MyQToolBar*>(this))); };
 	bool close() { return callbackQToolBar_Close(this) != 0; };
@@ -88545,7 +88545,7 @@ public:
 	void mouseMoveEvent(QMouseEvent * event) { callbackQToolBar_MouseMoveEvent(this, event); };
 	void mousePressEvent(QMouseEvent * event) { callbackQToolBar_MousePressEvent(this, event); };
 	void mouseReleaseEvent(QMouseEvent * event) { callbackQToolBar_MouseReleaseEvent(this, event); };
-	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQToolBar_NativeEvent(this, const_cast<char*>(eventType.toHex().prepend("WHITESPACE").constData()+10), message, *result) != 0; };
+	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQToolBar_NativeEvent(this, const_cast<QByteArray*>(&eventType), message, *result) != 0; };
 	void raise() { callbackQToolBar_Raise(this); };
 	void repaint() { callbackQToolBar_Repaint(this); };
 	void resizeEvent(QResizeEvent * event) { callbackQToolBar_ResizeEvent(this, event); };
@@ -89218,14 +89218,14 @@ void QToolBar_MouseReleaseEventDefault(void* ptr, void* event)
 	static_cast<QToolBar*>(ptr)->QToolBar::mouseReleaseEvent(static_cast<QMouseEvent*>(event));
 }
 
-char QToolBar_NativeEvent(void* ptr, char* eventType, void* message, long result)
+char QToolBar_NativeEvent(void* ptr, void* eventType, void* message, long result)
 {
-	return static_cast<QToolBar*>(ptr)->nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
+	return static_cast<QToolBar*>(ptr)->nativeEvent(*static_cast<QByteArray*>(eventType), message, &result);
 }
 
-char QToolBar_NativeEventDefault(void* ptr, char* eventType, void* message, long result)
+char QToolBar_NativeEventDefault(void* ptr, void* eventType, void* message, long result)
 {
-	return static_cast<QToolBar*>(ptr)->QToolBar::nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
+	return static_cast<QToolBar*>(ptr)->QToolBar::nativeEvent(*static_cast<QByteArray*>(eventType), message, &result);
 }
 
 void QToolBar_Raise(void* ptr)
@@ -89484,10 +89484,10 @@ public:
 	QSize minimumSizeHint() const { return *static_cast<QSize*>(callbackQToolBox_MinimumSizeHint(const_cast<MyQToolBox*>(this))); };
 	void moveEvent(QMoveEvent * event) { callbackQToolBox_MoveEvent(this, event); };
 	void setEnabled(bool vbo) { callbackQToolBox_SetEnabled(this, vbo); };
-	void setStyleSheet(const QString & styleSheet) { callbackQToolBox_SetStyleSheet(this, const_cast<char*>(styleSheet.toUtf8().prepend("WHITESPACE").constData()+10)); };
+	void setStyleSheet(const QString & styleSheet) { QByteArray t728ae7 = styleSheet.toUtf8(); QtWidgets_PackedString styleSheetPacked = { const_cast<char*>(t728ae7.prepend("WHITESPACE").constData()+10), t728ae7.size()-10 };callbackQToolBox_SetStyleSheet(this, styleSheetPacked); };
 	void setVisible(bool visible) { callbackQToolBox_SetVisible(this, visible); };
 	void setWindowModified(bool vbo) { callbackQToolBox_SetWindowModified(this, vbo); };
-	void setWindowTitle(const QString & vqs) { callbackQToolBox_SetWindowTitle(this, const_cast<char*>(vqs.toUtf8().prepend("WHITESPACE").constData()+10)); };
+	void setWindowTitle(const QString & vqs) { QByteArray tda39a3 = vqs.toUtf8(); QtWidgets_PackedString vqsPacked = { const_cast<char*>(tda39a3.prepend("WHITESPACE").constData()+10), tda39a3.size()-10 };callbackQToolBox_SetWindowTitle(this, vqsPacked); };
 	bool close() { return callbackQToolBox_Close(this) != 0; };
 	void closeEvent(QCloseEvent * event) { callbackQToolBox_CloseEvent(this, event); };
 	void contextMenuEvent(QContextMenuEvent * event) { callbackQToolBox_ContextMenuEvent(this, event); };
@@ -89504,7 +89504,7 @@ public:
 	void mouseMoveEvent(QMouseEvent * event) { callbackQToolBox_MouseMoveEvent(this, event); };
 	void mousePressEvent(QMouseEvent * event) { callbackQToolBox_MousePressEvent(this, event); };
 	void mouseReleaseEvent(QMouseEvent * event) { callbackQToolBox_MouseReleaseEvent(this, event); };
-	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQToolBox_NativeEvent(this, const_cast<char*>(eventType.toHex().prepend("WHITESPACE").constData()+10), message, *result) != 0; };
+	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQToolBox_NativeEvent(this, const_cast<QByteArray*>(&eventType), message, *result) != 0; };
 	void raise() { callbackQToolBox_Raise(this); };
 	void repaint() { callbackQToolBox_Repaint(this); };
 	void resizeEvent(QResizeEvent * event) { callbackQToolBox_ResizeEvent(this, event); };
@@ -89640,14 +89640,14 @@ void QToolBox_ItemRemovedDefault(void* ptr, int index)
 	static_cast<QToolBox*>(ptr)->QToolBox::itemRemoved(index);
 }
 
-char* QToolBox_ItemText(void* ptr, int index)
+struct QtWidgets_PackedString QToolBox_ItemText(void* ptr, int index)
 {
-	return const_cast<char*>(static_cast<QToolBox*>(ptr)->itemText(index).toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray tbfa329 = static_cast<QToolBox*>(ptr)->itemText(index).toUtf8(); QtWidgets_PackedString { const_cast<char*>(tbfa329.prepend("WHITESPACE").constData()+10), tbfa329.size()-10 }; });
 }
 
-char* QToolBox_ItemToolTip(void* ptr, int index)
+struct QtWidgets_PackedString QToolBox_ItemToolTip(void* ptr, int index)
 {
-	return const_cast<char*>(static_cast<QToolBox*>(ptr)->itemToolTip(index).toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray ta445d4 = static_cast<QToolBox*>(ptr)->itemToolTip(index).toUtf8(); QtWidgets_PackedString { const_cast<char*>(ta445d4.prepend("WHITESPACE").constData()+10), ta445d4.size()-10 }; });
 }
 
 void QToolBox_RemoveItem(void* ptr, int index)
@@ -90052,14 +90052,14 @@ void QToolBox_MouseReleaseEventDefault(void* ptr, void* event)
 	static_cast<QToolBox*>(ptr)->QToolBox::mouseReleaseEvent(static_cast<QMouseEvent*>(event));
 }
 
-char QToolBox_NativeEvent(void* ptr, char* eventType, void* message, long result)
+char QToolBox_NativeEvent(void* ptr, void* eventType, void* message, long result)
 {
-	return static_cast<QToolBox*>(ptr)->nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
+	return static_cast<QToolBox*>(ptr)->nativeEvent(*static_cast<QByteArray*>(eventType), message, &result);
 }
 
-char QToolBox_NativeEventDefault(void* ptr, char* eventType, void* message, long result)
+char QToolBox_NativeEventDefault(void* ptr, void* eventType, void* message, long result)
 {
-	return static_cast<QToolBox*>(ptr)->QToolBox::nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
+	return static_cast<QToolBox*>(ptr)->QToolBox::nativeEvent(*static_cast<QByteArray*>(eventType), message, &result);
 }
 
 void QToolBox_Raise(void* ptr)
@@ -90329,10 +90329,10 @@ public:
 	void hideEvent(QHideEvent * event) { callbackQToolButton_HideEvent(this, event); };
 	void moveEvent(QMoveEvent * event) { callbackQToolButton_MoveEvent(this, event); };
 	void setEnabled(bool vbo) { callbackQToolButton_SetEnabled(this, vbo); };
-	void setStyleSheet(const QString & styleSheet) { callbackQToolButton_SetStyleSheet(this, const_cast<char*>(styleSheet.toUtf8().prepend("WHITESPACE").constData()+10)); };
+	void setStyleSheet(const QString & styleSheet) { QByteArray t728ae7 = styleSheet.toUtf8(); QtWidgets_PackedString styleSheetPacked = { const_cast<char*>(t728ae7.prepend("WHITESPACE").constData()+10), t728ae7.size()-10 };callbackQToolButton_SetStyleSheet(this, styleSheetPacked); };
 	void setVisible(bool visible) { callbackQToolButton_SetVisible(this, visible); };
 	void setWindowModified(bool vbo) { callbackQToolButton_SetWindowModified(this, vbo); };
-	void setWindowTitle(const QString & vqs) { callbackQToolButton_SetWindowTitle(this, const_cast<char*>(vqs.toUtf8().prepend("WHITESPACE").constData()+10)); };
+	void setWindowTitle(const QString & vqs) { QByteArray tda39a3 = vqs.toUtf8(); QtWidgets_PackedString vqsPacked = { const_cast<char*>(tda39a3.prepend("WHITESPACE").constData()+10), tda39a3.size()-10 };callbackQToolButton_SetWindowTitle(this, vqsPacked); };
 	void showEvent(QShowEvent * event) { callbackQToolButton_ShowEvent(this, event); };
 	bool close() { return callbackQToolButton_Close(this) != 0; };
 	void closeEvent(QCloseEvent * event) { callbackQToolButton_CloseEvent(this, event); };
@@ -90345,7 +90345,7 @@ public:
 	QVariant inputMethodQuery(Qt::InputMethodQuery query) const { return *static_cast<QVariant*>(callbackQToolButton_InputMethodQuery(const_cast<MyQToolButton*>(this), query)); };
 	void lower() { callbackQToolButton_Lower(this); };
 	void mouseDoubleClickEvent(QMouseEvent * event) { callbackQToolButton_MouseDoubleClickEvent(this, event); };
-	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQToolButton_NativeEvent(this, const_cast<char*>(eventType.toHex().prepend("WHITESPACE").constData()+10), message, *result) != 0; };
+	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQToolButton_NativeEvent(this, const_cast<QByteArray*>(&eventType), message, *result) != 0; };
 	void raise() { callbackQToolButton_Raise(this); };
 	void repaint() { callbackQToolButton_Repaint(this); };
 	void resizeEvent(QResizeEvent * event) { callbackQToolButton_ResizeEvent(this, event); };
@@ -90927,14 +90927,14 @@ void QToolButton_MouseDoubleClickEventDefault(void* ptr, void* event)
 	static_cast<QToolButton*>(ptr)->QToolButton::mouseDoubleClickEvent(static_cast<QMouseEvent*>(event));
 }
 
-char QToolButton_NativeEvent(void* ptr, char* eventType, void* message, long result)
+char QToolButton_NativeEvent(void* ptr, void* eventType, void* message, long result)
 {
-	return static_cast<QToolButton*>(ptr)->nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
+	return static_cast<QToolButton*>(ptr)->nativeEvent(*static_cast<QByteArray*>(eventType), message, &result);
 }
 
-char QToolButton_NativeEventDefault(void* ptr, char* eventType, void* message, long result)
+char QToolButton_NativeEventDefault(void* ptr, void* eventType, void* message, long result)
 {
-	return static_cast<QToolButton*>(ptr)->QToolButton::nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
+	return static_cast<QToolButton*>(ptr)->QToolButton::nativeEvent(*static_cast<QByteArray*>(eventType), message, &result);
 }
 
 void QToolButton_Raise(void* ptr)
@@ -91202,9 +91202,9 @@ void QToolTip_QToolTip_ShowText3(void* pos, char* text, void* w, void* rect, int
 	QToolTip::showText(*static_cast<QPoint*>(pos), QString(text), static_cast<QWidget*>(w), *static_cast<QRect*>(rect), msecDisplayTime);
 }
 
-char* QToolTip_QToolTip_Text()
+struct QtWidgets_PackedString QToolTip_QToolTip_Text()
 {
-	return const_cast<char*>(QToolTip::text().toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray tdd5458 = QToolTip::text().toUtf8(); QtWidgets_PackedString { const_cast<char*>(tdd5458.prepend("WHITESPACE").constData()+10), tdd5458.size()-10 }; });
 }
 
 class MyQTreeView: public QTreeView
@@ -91230,7 +91230,7 @@ public:
 	QModelIndex indexAt(const QPoint & point) const { return *static_cast<QModelIndex*>(callbackQTreeView_IndexAt(const_cast<MyQTreeView*>(this), const_cast<QPoint*>(&point))); };
 	bool isIndexHidden(const QModelIndex & index) const { return callbackQTreeView_IsIndexHidden(const_cast<MyQTreeView*>(this), const_cast<QModelIndex*>(&index)) != 0; };
 	void keyPressEvent(QKeyEvent * event) { callbackQTreeView_KeyPressEvent(this, event); };
-	void keyboardSearch(const QString & search) { callbackQTreeView_KeyboardSearch(this, const_cast<char*>(search.toUtf8().prepend("WHITESPACE").constData()+10)); };
+	void keyboardSearch(const QString & search) { QByteArray t3559d7 = search.toUtf8(); QtWidgets_PackedString searchPacked = { const_cast<char*>(t3559d7.prepend("WHITESPACE").constData()+10), t3559d7.size()-10 };callbackQTreeView_KeyboardSearch(this, searchPacked); };
 	void mouseDoubleClickEvent(QMouseEvent * event) { callbackQTreeView_MouseDoubleClickEvent(this, event); };
 	void mouseMoveEvent(QMouseEvent * event) { callbackQTreeView_MouseMoveEvent(this, event); };
 	void mousePressEvent(QMouseEvent * event) { callbackQTreeView_MousePressEvent(this, event); };
@@ -91293,10 +91293,10 @@ public:
 	void leaveEvent(QEvent * event) { callbackQTreeView_LeaveEvent(this, event); };
 	void moveEvent(QMoveEvent * event) { callbackQTreeView_MoveEvent(this, event); };
 	void setEnabled(bool vbo) { callbackQTreeView_SetEnabled(this, vbo); };
-	void setStyleSheet(const QString & styleSheet) { callbackQTreeView_SetStyleSheet(this, const_cast<char*>(styleSheet.toUtf8().prepend("WHITESPACE").constData()+10)); };
+	void setStyleSheet(const QString & styleSheet) { QByteArray t728ae7 = styleSheet.toUtf8(); QtWidgets_PackedString styleSheetPacked = { const_cast<char*>(t728ae7.prepend("WHITESPACE").constData()+10), t728ae7.size()-10 };callbackQTreeView_SetStyleSheet(this, styleSheetPacked); };
 	void setVisible(bool visible) { callbackQTreeView_SetVisible(this, visible); };
 	void setWindowModified(bool vbo) { callbackQTreeView_SetWindowModified(this, vbo); };
-	void setWindowTitle(const QString & vqs) { callbackQTreeView_SetWindowTitle(this, const_cast<char*>(vqs.toUtf8().prepend("WHITESPACE").constData()+10)); };
+	void setWindowTitle(const QString & vqs) { QByteArray tda39a3 = vqs.toUtf8(); QtWidgets_PackedString vqsPacked = { const_cast<char*>(tda39a3.prepend("WHITESPACE").constData()+10), tda39a3.size()-10 };callbackQTreeView_SetWindowTitle(this, vqsPacked); };
 	void showEvent(QShowEvent * event) { callbackQTreeView_ShowEvent(this, event); };
 	bool close() { return callbackQTreeView_Close(this) != 0; };
 	void closeEvent(QCloseEvent * event) { callbackQTreeView_CloseEvent(this, event); };
@@ -91305,7 +91305,7 @@ public:
 	void hide() { callbackQTreeView_Hide(this); };
 	void keyReleaseEvent(QKeyEvent * event) { callbackQTreeView_KeyReleaseEvent(this, event); };
 	void lower() { callbackQTreeView_Lower(this); };
-	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQTreeView_NativeEvent(this, const_cast<char*>(eventType.toHex().prepend("WHITESPACE").constData()+10), message, *result) != 0; };
+	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQTreeView_NativeEvent(this, const_cast<QByteArray*>(&eventType), message, *result) != 0; };
 	void raise() { callbackQTreeView_Raise(this); };
 	void repaint() { callbackQTreeView_Repaint(this); };
 	void setDisabled(bool disable) { callbackQTreeView_SetDisabled(this, disable); };
@@ -92459,14 +92459,14 @@ void QTreeView_LowerDefault(void* ptr)
 	static_cast<QTreeView*>(ptr)->QTreeView::lower();
 }
 
-char QTreeView_NativeEvent(void* ptr, char* eventType, void* message, long result)
+char QTreeView_NativeEvent(void* ptr, void* eventType, void* message, long result)
 {
-	return static_cast<QTreeView*>(ptr)->nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
+	return static_cast<QTreeView*>(ptr)->nativeEvent(*static_cast<QByteArray*>(eventType), message, &result);
 }
 
-char QTreeView_NativeEventDefault(void* ptr, char* eventType, void* message, long result)
+char QTreeView_NativeEventDefault(void* ptr, void* eventType, void* message, long result)
 {
-	return static_cast<QTreeView*>(ptr)->QTreeView::nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
+	return static_cast<QTreeView*>(ptr)->QTreeView::nativeEvent(*static_cast<QByteArray*>(eventType), message, &result);
 }
 
 void QTreeView_Raise(void* ptr)
@@ -92699,7 +92699,7 @@ public:
 	QModelIndex indexAt(const QPoint & point) const { return *static_cast<QModelIndex*>(callbackQTreeWidget_IndexAt(const_cast<MyQTreeWidget*>(this), const_cast<QPoint*>(&point))); };
 	bool isIndexHidden(const QModelIndex & index) const { return callbackQTreeWidget_IsIndexHidden(const_cast<MyQTreeWidget*>(this), const_cast<QModelIndex*>(&index)) != 0; };
 	void keyPressEvent(QKeyEvent * event) { callbackQTreeWidget_KeyPressEvent(this, event); };
-	void keyboardSearch(const QString & search) { callbackQTreeWidget_KeyboardSearch(this, const_cast<char*>(search.toUtf8().prepend("WHITESPACE").constData()+10)); };
+	void keyboardSearch(const QString & search) { QByteArray t3559d7 = search.toUtf8(); QtWidgets_PackedString searchPacked = { const_cast<char*>(t3559d7.prepend("WHITESPACE").constData()+10), t3559d7.size()-10 };callbackQTreeWidget_KeyboardSearch(this, searchPacked); };
 	void mouseDoubleClickEvent(QMouseEvent * event) { callbackQTreeWidget_MouseDoubleClickEvent(this, event); };
 	void mouseMoveEvent(QMouseEvent * event) { callbackQTreeWidget_MouseMoveEvent(this, event); };
 	void mousePressEvent(QMouseEvent * event) { callbackQTreeWidget_MousePressEvent(this, event); };
@@ -92760,10 +92760,10 @@ public:
 	void leaveEvent(QEvent * event) { callbackQTreeWidget_LeaveEvent(this, event); };
 	void moveEvent(QMoveEvent * event) { callbackQTreeWidget_MoveEvent(this, event); };
 	void setEnabled(bool vbo) { callbackQTreeWidget_SetEnabled(this, vbo); };
-	void setStyleSheet(const QString & styleSheet) { callbackQTreeWidget_SetStyleSheet(this, const_cast<char*>(styleSheet.toUtf8().prepend("WHITESPACE").constData()+10)); };
+	void setStyleSheet(const QString & styleSheet) { QByteArray t728ae7 = styleSheet.toUtf8(); QtWidgets_PackedString styleSheetPacked = { const_cast<char*>(t728ae7.prepend("WHITESPACE").constData()+10), t728ae7.size()-10 };callbackQTreeWidget_SetStyleSheet(this, styleSheetPacked); };
 	void setVisible(bool visible) { callbackQTreeWidget_SetVisible(this, visible); };
 	void setWindowModified(bool vbo) { callbackQTreeWidget_SetWindowModified(this, vbo); };
-	void setWindowTitle(const QString & vqs) { callbackQTreeWidget_SetWindowTitle(this, const_cast<char*>(vqs.toUtf8().prepend("WHITESPACE").constData()+10)); };
+	void setWindowTitle(const QString & vqs) { QByteArray tda39a3 = vqs.toUtf8(); QtWidgets_PackedString vqsPacked = { const_cast<char*>(tda39a3.prepend("WHITESPACE").constData()+10), tda39a3.size()-10 };callbackQTreeWidget_SetWindowTitle(this, vqsPacked); };
 	void showEvent(QShowEvent * event) { callbackQTreeWidget_ShowEvent(this, event); };
 	bool close() { return callbackQTreeWidget_Close(this) != 0; };
 	void closeEvent(QCloseEvent * event) { callbackQTreeWidget_CloseEvent(this, event); };
@@ -92772,7 +92772,7 @@ public:
 	void hide() { callbackQTreeWidget_Hide(this); };
 	void keyReleaseEvent(QKeyEvent * event) { callbackQTreeWidget_KeyReleaseEvent(this, event); };
 	void lower() { callbackQTreeWidget_Lower(this); };
-	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQTreeWidget_NativeEvent(this, const_cast<char*>(eventType.toHex().prepend("WHITESPACE").constData()+10), message, *result) != 0; };
+	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQTreeWidget_NativeEvent(this, const_cast<QByteArray*>(&eventType), message, *result) != 0; };
 	void raise() { callbackQTreeWidget_Raise(this); };
 	void repaint() { callbackQTreeWidget_Repaint(this); };
 	void setDisabled(bool disable) { callbackQTreeWidget_SetDisabled(this, disable); };
@@ -93089,14 +93089,14 @@ void* QTreeWidget_ItemWidget(void* ptr, void* item, int column)
 	return static_cast<QTreeWidget*>(ptr)->itemWidget(static_cast<QTreeWidgetItem*>(item), column);
 }
 
-char* QTreeWidget_MimeTypes(void* ptr)
+struct QtWidgets_PackedString QTreeWidget_MimeTypes(void* ptr)
 {
-	return const_cast<char*>(static_cast<QTreeWidget*>(ptr)->mimeTypes().join("|").toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray t212f68 = static_cast<QTreeWidget*>(ptr)->mimeTypes().join("|").toUtf8(); QtWidgets_PackedString { const_cast<char*>(t212f68.prepend("WHITESPACE").constData()+10), t212f68.size()-10 }; });
 }
 
-char* QTreeWidget_MimeTypesDefault(void* ptr)
+struct QtWidgets_PackedString QTreeWidget_MimeTypesDefault(void* ptr)
 {
-	return const_cast<char*>(static_cast<QTreeWidget*>(ptr)->QTreeWidget::mimeTypes().join("|").toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray te2438e = static_cast<QTreeWidget*>(ptr)->QTreeWidget::mimeTypes().join("|").toUtf8(); QtWidgets_PackedString { const_cast<char*>(te2438e.prepend("WHITESPACE").constData()+10), te2438e.size()-10 }; });
 }
 
 void QTreeWidget_OpenPersistentEditor(void* ptr, void* item, int column)
@@ -94106,14 +94106,14 @@ void QTreeWidget_LowerDefault(void* ptr)
 	static_cast<QTreeWidget*>(ptr)->QTreeWidget::lower();
 }
 
-char QTreeWidget_NativeEvent(void* ptr, char* eventType, void* message, long result)
+char QTreeWidget_NativeEvent(void* ptr, void* eventType, void* message, long result)
 {
-	return static_cast<QTreeWidget*>(ptr)->nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
+	return static_cast<QTreeWidget*>(ptr)->nativeEvent(*static_cast<QByteArray*>(eventType), message, &result);
 }
 
-char QTreeWidget_NativeEventDefault(void* ptr, char* eventType, void* message, long result)
+char QTreeWidget_NativeEventDefault(void* ptr, void* eventType, void* message, long result)
 {
-	return static_cast<QTreeWidget*>(ptr)->QTreeWidget::nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
+	return static_cast<QTreeWidget*>(ptr)->QTreeWidget::nativeEvent(*static_cast<QByteArray*>(eventType), message, &result);
 }
 
 void QTreeWidget_Raise(void* ptr)
@@ -94604,9 +94604,9 @@ void QTreeWidgetItem_SortChildren(void* ptr, int column, long long order)
 	static_cast<QTreeWidgetItem*>(ptr)->sortChildren(column, static_cast<Qt::SortOrder>(order));
 }
 
-char* QTreeWidgetItem_StatusTip(void* ptr, int column)
+struct QtWidgets_PackedString QTreeWidgetItem_StatusTip(void* ptr, int column)
 {
-	return const_cast<char*>(static_cast<QTreeWidgetItem*>(ptr)->statusTip(column).toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray t848a1d = static_cast<QTreeWidgetItem*>(ptr)->statusTip(column).toUtf8(); QtWidgets_PackedString { const_cast<char*>(t848a1d.prepend("WHITESPACE").constData()+10), t848a1d.size()-10 }; });
 }
 
 void* QTreeWidgetItem_TakeChild(void* ptr, int index)
@@ -94614,9 +94614,9 @@ void* QTreeWidgetItem_TakeChild(void* ptr, int index)
 	return static_cast<QTreeWidgetItem*>(ptr)->takeChild(index);
 }
 
-char* QTreeWidgetItem_Text(void* ptr, int column)
+struct QtWidgets_PackedString QTreeWidgetItem_Text(void* ptr, int column)
 {
-	return const_cast<char*>(static_cast<QTreeWidgetItem*>(ptr)->text(column).toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray t0b76f8 = static_cast<QTreeWidgetItem*>(ptr)->text(column).toUtf8(); QtWidgets_PackedString { const_cast<char*>(t0b76f8.prepend("WHITESPACE").constData()+10), t0b76f8.size()-10 }; });
 }
 
 int QTreeWidgetItem_TextAlignment(void* ptr, int column)
@@ -94624,9 +94624,9 @@ int QTreeWidgetItem_TextAlignment(void* ptr, int column)
 	return static_cast<QTreeWidgetItem*>(ptr)->textAlignment(column);
 }
 
-char* QTreeWidgetItem_ToolTip(void* ptr, int column)
+struct QtWidgets_PackedString QTreeWidgetItem_ToolTip(void* ptr, int column)
 {
-	return const_cast<char*>(static_cast<QTreeWidgetItem*>(ptr)->toolTip(column).toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray tdec4c7 = static_cast<QTreeWidgetItem*>(ptr)->toolTip(column).toUtf8(); QtWidgets_PackedString { const_cast<char*>(tdec4c7.prepend("WHITESPACE").constData()+10), tdec4c7.size()-10 }; });
 }
 
 void* QTreeWidgetItem_TreeWidget(void* ptr)
@@ -94639,9 +94639,9 @@ int QTreeWidgetItem_Type(void* ptr)
 	return static_cast<QTreeWidgetItem*>(ptr)->type();
 }
 
-char* QTreeWidgetItem_WhatsThis(void* ptr, int column)
+struct QtWidgets_PackedString QTreeWidgetItem_WhatsThis(void* ptr, int column)
 {
-	return const_cast<char*>(static_cast<QTreeWidgetItem*>(ptr)->whatsThis(column).toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray te93ad0 = static_cast<QTreeWidgetItem*>(ptr)->whatsThis(column).toUtf8(); QtWidgets_PackedString { const_cast<char*>(te93ad0.prepend("WHITESPACE").constData()+10), te93ad0.size()-10 }; });
 }
 
 void QTreeWidgetItem_DestroyQTreeWidgetItem(void* ptr)
@@ -94676,9 +94676,9 @@ void* QUndoCommand_NewQUndoCommand2(char* text, void* parent)
 	return new MyQUndoCommand(QString(text), static_cast<QUndoCommand*>(parent));
 }
 
-char* QUndoCommand_ActionText(void* ptr)
+struct QtWidgets_PackedString QUndoCommand_ActionText(void* ptr)
 {
-	return const_cast<char*>(static_cast<QUndoCommand*>(ptr)->actionText().toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray t4cb828 = static_cast<QUndoCommand*>(ptr)->actionText().toUtf8(); QtWidgets_PackedString { const_cast<char*>(t4cb828.prepend("WHITESPACE").constData()+10), t4cb828.size()-10 }; });
 }
 
 void* QUndoCommand_Child(void* ptr, int index)
@@ -94726,9 +94726,9 @@ void QUndoCommand_SetText(void* ptr, char* text)
 	static_cast<QUndoCommand*>(ptr)->setText(QString(text));
 }
 
-char* QUndoCommand_Text(void* ptr)
+struct QtWidgets_PackedString QUndoCommand_Text(void* ptr)
 {
-	return const_cast<char*>(static_cast<QUndoCommand*>(ptr)->text().toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray t68d93e = static_cast<QUndoCommand*>(ptr)->text().toUtf8(); QtWidgets_PackedString { const_cast<char*>(t68d93e.prepend("WHITESPACE").constData()+10), t68d93e.size()-10 }; });
 }
 
 void QUndoCommand_Undo(void* ptr)
@@ -94761,10 +94761,10 @@ public:
 	void Signal_CleanChanged(bool clean) { callbackQUndoGroup_CleanChanged(this, clean); };
 	void Signal_IndexChanged(int idx) { callbackQUndoGroup_IndexChanged(this, idx); };
 	void redo() { callbackQUndoGroup_Redo(this); };
-	void Signal_RedoTextChanged(const QString & redoText) { callbackQUndoGroup_RedoTextChanged(this, const_cast<char*>(redoText.toUtf8().prepend("WHITESPACE").constData()+10)); };
+	void Signal_RedoTextChanged(const QString & redoText) { QByteArray te82275 = redoText.toUtf8(); QtWidgets_PackedString redoTextPacked = { const_cast<char*>(te82275.prepend("WHITESPACE").constData()+10), te82275.size()-10 };callbackQUndoGroup_RedoTextChanged(this, redoTextPacked); };
 	void setActiveStack(QUndoStack * stack) { callbackQUndoGroup_SetActiveStack(this, stack); };
 	void undo() { callbackQUndoGroup_Undo(this); };
-	void Signal_UndoTextChanged(const QString & undoText) { callbackQUndoGroup_UndoTextChanged(this, const_cast<char*>(undoText.toUtf8().prepend("WHITESPACE").constData()+10)); };
+	void Signal_UndoTextChanged(const QString & undoText) { QByteArray t66d0aa = undoText.toUtf8(); QtWidgets_PackedString undoTextPacked = { const_cast<char*>(t66d0aa.prepend("WHITESPACE").constData()+10), t66d0aa.size()-10 };callbackQUndoGroup_UndoTextChanged(this, undoTextPacked); };
 	void timerEvent(QTimerEvent * event) { callbackQUndoGroup_TimerEvent(this, event); };
 	void childEvent(QChildEvent * event) { callbackQUndoGroup_ChildEvent(this, event); };
 	void connectNotify(const QMetaMethod & sign) { callbackQUndoGroup_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
@@ -94896,9 +94896,9 @@ void QUndoGroup_Redo(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QUndoGroup*>(ptr), "redo");
 }
 
-char* QUndoGroup_RedoText(void* ptr)
+struct QtWidgets_PackedString QUndoGroup_RedoText(void* ptr)
 {
-	return const_cast<char*>(static_cast<QUndoGroup*>(ptr)->redoText().toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray tafd4da = static_cast<QUndoGroup*>(ptr)->redoText().toUtf8(); QtWidgets_PackedString { const_cast<char*>(tafd4da.prepend("WHITESPACE").constData()+10), tafd4da.size()-10 }; });
 }
 
 void QUndoGroup_ConnectRedoTextChanged(void* ptr)
@@ -94931,9 +94931,9 @@ void QUndoGroup_Undo(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QUndoGroup*>(ptr), "undo");
 }
 
-char* QUndoGroup_UndoText(void* ptr)
+struct QtWidgets_PackedString QUndoGroup_UndoText(void* ptr)
 {
-	return const_cast<char*>(static_cast<QUndoGroup*>(ptr)->undoText().toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray t39b3cc = static_cast<QUndoGroup*>(ptr)->undoText().toUtf8(); QtWidgets_PackedString { const_cast<char*>(t39b3cc.prepend("WHITESPACE").constData()+10), t39b3cc.size()-10 }; });
 }
 
 void QUndoGroup_ConnectUndoTextChanged(void* ptr)
@@ -95056,11 +95056,11 @@ public:
 	void Signal_CleanChanged(bool clean) { callbackQUndoStack_CleanChanged(this, clean); };
 	void Signal_IndexChanged(int idx) { callbackQUndoStack_IndexChanged(this, idx); };
 	void redo() { callbackQUndoStack_Redo(this); };
-	void Signal_RedoTextChanged(const QString & redoText) { callbackQUndoStack_RedoTextChanged(this, const_cast<char*>(redoText.toUtf8().prepend("WHITESPACE").constData()+10)); };
+	void Signal_RedoTextChanged(const QString & redoText) { QByteArray te82275 = redoText.toUtf8(); QtWidgets_PackedString redoTextPacked = { const_cast<char*>(te82275.prepend("WHITESPACE").constData()+10), te82275.size()-10 };callbackQUndoStack_RedoTextChanged(this, redoTextPacked); };
 	void setClean() { callbackQUndoStack_SetClean(this); };
 	void setIndex(int idx) { callbackQUndoStack_SetIndex(this, idx); };
 	void undo() { callbackQUndoStack_Undo(this); };
-	void Signal_UndoTextChanged(const QString & undoText) { callbackQUndoStack_UndoTextChanged(this, const_cast<char*>(undoText.toUtf8().prepend("WHITESPACE").constData()+10)); };
+	void Signal_UndoTextChanged(const QString & undoText) { QByteArray t66d0aa = undoText.toUtf8(); QtWidgets_PackedString undoTextPacked = { const_cast<char*>(t66d0aa.prepend("WHITESPACE").constData()+10), t66d0aa.size()-10 };callbackQUndoStack_UndoTextChanged(this, undoTextPacked); };
 	void timerEvent(QTimerEvent * event) { callbackQUndoStack_TimerEvent(this, event); };
 	void childEvent(QChildEvent * event) { callbackQUndoStack_ChildEvent(this, event); };
 	void connectNotify(const QMetaMethod & sign) { callbackQUndoStack_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
@@ -95227,9 +95227,9 @@ void QUndoStack_Redo(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QUndoStack*>(ptr), "redo");
 }
 
-char* QUndoStack_RedoText(void* ptr)
+struct QtWidgets_PackedString QUndoStack_RedoText(void* ptr)
 {
-	return const_cast<char*>(static_cast<QUndoStack*>(ptr)->redoText().toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray t792834 = static_cast<QUndoStack*>(ptr)->redoText().toUtf8(); QtWidgets_PackedString { const_cast<char*>(t792834.prepend("WHITESPACE").constData()+10), t792834.size()-10 }; });
 }
 
 void QUndoStack_ConnectRedoTextChanged(void* ptr)
@@ -95257,9 +95257,9 @@ void QUndoStack_SetIndex(void* ptr, int idx)
 	QMetaObject::invokeMethod(static_cast<QUndoStack*>(ptr), "setIndex", Q_ARG(int, idx));
 }
 
-char* QUndoStack_Text(void* ptr, int idx)
+struct QtWidgets_PackedString QUndoStack_Text(void* ptr, int idx)
 {
-	return const_cast<char*>(static_cast<QUndoStack*>(ptr)->text(idx).toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray t2bc9dc = static_cast<QUndoStack*>(ptr)->text(idx).toUtf8(); QtWidgets_PackedString { const_cast<char*>(t2bc9dc.prepend("WHITESPACE").constData()+10), t2bc9dc.size()-10 }; });
 }
 
 void QUndoStack_Undo(void* ptr)
@@ -95267,9 +95267,9 @@ void QUndoStack_Undo(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QUndoStack*>(ptr), "undo");
 }
 
-char* QUndoStack_UndoText(void* ptr)
+struct QtWidgets_PackedString QUndoStack_UndoText(void* ptr)
 {
-	return const_cast<char*>(static_cast<QUndoStack*>(ptr)->undoText().toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray t399a88 = static_cast<QUndoStack*>(ptr)->undoText().toUtf8(); QtWidgets_PackedString { const_cast<char*>(t399a88.prepend("WHITESPACE").constData()+10), t399a88.size()-10 }; });
 }
 
 void QUndoStack_ConnectUndoTextChanged(void* ptr)
@@ -95429,7 +95429,7 @@ public:
 	void inputMethodEvent(QInputMethodEvent * event) { callbackQUndoView_InputMethodEvent(this, event); };
 	QVariant inputMethodQuery(Qt::InputMethodQuery query) const { return *static_cast<QVariant*>(callbackQUndoView_InputMethodQuery(const_cast<MyQUndoView*>(this), query)); };
 	void keyPressEvent(QKeyEvent * event) { callbackQUndoView_KeyPressEvent(this, event); };
-	void keyboardSearch(const QString & search) { callbackQUndoView_KeyboardSearch(this, const_cast<char*>(search.toUtf8().prepend("WHITESPACE").constData()+10)); };
+	void keyboardSearch(const QString & search) { QByteArray t3559d7 = search.toUtf8(); QtWidgets_PackedString searchPacked = { const_cast<char*>(t3559d7.prepend("WHITESPACE").constData()+10), t3559d7.size()-10 };callbackQUndoView_KeyboardSearch(this, searchPacked); };
 	void mouseDoubleClickEvent(QMouseEvent * event) { callbackQUndoView_MouseDoubleClickEvent(this, event); };
 	void mousePressEvent(QMouseEvent * event) { callbackQUndoView_MousePressEvent(this, event); };
 	void reset() { callbackQUndoView_Reset(this); };
@@ -95456,10 +95456,10 @@ public:
 	void leaveEvent(QEvent * event) { callbackQUndoView_LeaveEvent(this, event); };
 	void moveEvent(QMoveEvent * event) { callbackQUndoView_MoveEvent(this, event); };
 	void setEnabled(bool vbo) { callbackQUndoView_SetEnabled(this, vbo); };
-	void setStyleSheet(const QString & styleSheet) { callbackQUndoView_SetStyleSheet(this, const_cast<char*>(styleSheet.toUtf8().prepend("WHITESPACE").constData()+10)); };
+	void setStyleSheet(const QString & styleSheet) { QByteArray t728ae7 = styleSheet.toUtf8(); QtWidgets_PackedString styleSheetPacked = { const_cast<char*>(t728ae7.prepend("WHITESPACE").constData()+10), t728ae7.size()-10 };callbackQUndoView_SetStyleSheet(this, styleSheetPacked); };
 	void setVisible(bool visible) { callbackQUndoView_SetVisible(this, visible); };
 	void setWindowModified(bool vbo) { callbackQUndoView_SetWindowModified(this, vbo); };
-	void setWindowTitle(const QString & vqs) { callbackQUndoView_SetWindowTitle(this, const_cast<char*>(vqs.toUtf8().prepend("WHITESPACE").constData()+10)); };
+	void setWindowTitle(const QString & vqs) { QByteArray tda39a3 = vqs.toUtf8(); QtWidgets_PackedString vqsPacked = { const_cast<char*>(tda39a3.prepend("WHITESPACE").constData()+10), tda39a3.size()-10 };callbackQUndoView_SetWindowTitle(this, vqsPacked); };
 	void showEvent(QShowEvent * event) { callbackQUndoView_ShowEvent(this, event); };
 	bool close() { return callbackQUndoView_Close(this) != 0; };
 	void closeEvent(QCloseEvent * event) { callbackQUndoView_CloseEvent(this, event); };
@@ -95468,7 +95468,7 @@ public:
 	void hide() { callbackQUndoView_Hide(this); };
 	void keyReleaseEvent(QKeyEvent * event) { callbackQUndoView_KeyReleaseEvent(this, event); };
 	void lower() { callbackQUndoView_Lower(this); };
-	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQUndoView_NativeEvent(this, const_cast<char*>(eventType.toHex().prepend("WHITESPACE").constData()+10), message, *result) != 0; };
+	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQUndoView_NativeEvent(this, const_cast<QByteArray*>(&eventType), message, *result) != 0; };
 	void raise() { callbackQUndoView_Raise(this); };
 	void repaint() { callbackQUndoView_Repaint(this); };
 	void setDisabled(bool disable) { callbackQUndoView_SetDisabled(this, disable); };
@@ -95495,9 +95495,9 @@ void* QUndoView_CleanIcon(void* ptr)
 	return new QIcon(static_cast<QUndoView*>(ptr)->cleanIcon());
 }
 
-char* QUndoView_EmptyLabel(void* ptr)
+struct QtWidgets_PackedString QUndoView_EmptyLabel(void* ptr)
 {
-	return const_cast<char*>(static_cast<QUndoView*>(ptr)->emptyLabel().toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray tc33a41 = static_cast<QUndoView*>(ptr)->emptyLabel().toUtf8(); QtWidgets_PackedString { const_cast<char*>(tc33a41.prepend("WHITESPACE").constData()+10), tc33a41.size()-10 }; });
 }
 
 void QUndoView_SetCleanIcon(void* ptr, void* icon)
@@ -96332,14 +96332,14 @@ void QUndoView_LowerDefault(void* ptr)
 	static_cast<QUndoView*>(ptr)->QUndoView::lower();
 }
 
-char QUndoView_NativeEvent(void* ptr, char* eventType, void* message, long result)
+char QUndoView_NativeEvent(void* ptr, void* eventType, void* message, long result)
 {
-	return static_cast<QUndoView*>(ptr)->nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
+	return static_cast<QUndoView*>(ptr)->nativeEvent(*static_cast<QByteArray*>(eventType), message, &result);
 }
 
-char QUndoView_NativeEventDefault(void* ptr, char* eventType, void* message, long result)
+char QUndoView_NativeEventDefault(void* ptr, void* eventType, void* message, long result)
 {
-	return static_cast<QUndoView*>(ptr)->QUndoView::nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
+	return static_cast<QUndoView*>(ptr)->QUndoView::nativeEvent(*static_cast<QByteArray*>(eventType), message, &result);
 }
 
 void QUndoView_Raise(void* ptr)
@@ -96875,10 +96875,10 @@ public:
 	void moveEvent(QMoveEvent * event) { callbackQWidget_MoveEvent(this, event); };
 	void paintEvent(QPaintEvent * event) { callbackQWidget_PaintEvent(this, event); };
 	void setEnabled(bool vbo) { callbackQWidget_SetEnabled(this, vbo); };
-	void setStyleSheet(const QString & styleSheet) { callbackQWidget_SetStyleSheet(this, const_cast<char*>(styleSheet.toUtf8().prepend("WHITESPACE").constData()+10)); };
+	void setStyleSheet(const QString & styleSheet) { QByteArray t728ae7 = styleSheet.toUtf8(); QtWidgets_PackedString styleSheetPacked = { const_cast<char*>(t728ae7.prepend("WHITESPACE").constData()+10), t728ae7.size()-10 };callbackQWidget_SetStyleSheet(this, styleSheetPacked); };
 	void setVisible(bool visible) { callbackQWidget_SetVisible(this, visible); };
 	void setWindowModified(bool vbo) { callbackQWidget_SetWindowModified(this, vbo); };
-	void setWindowTitle(const QString & vqs) { callbackQWidget_SetWindowTitle(this, const_cast<char*>(vqs.toUtf8().prepend("WHITESPACE").constData()+10)); };
+	void setWindowTitle(const QString & vqs) { QByteArray tda39a3 = vqs.toUtf8(); QtWidgets_PackedString vqsPacked = { const_cast<char*>(tda39a3.prepend("WHITESPACE").constData()+10), tda39a3.size()-10 };callbackQWidget_SetWindowTitle(this, vqsPacked); };
 	void showEvent(QShowEvent * event) { callbackQWidget_ShowEvent(this, event); };
 	QSize sizeHint() const { return *static_cast<QSize*>(callbackQWidget_SizeHint(const_cast<MyQWidget*>(this))); };
 	void changeEvent(QEvent * event) { callbackQWidget_ChangeEvent(this, event); };
@@ -96899,7 +96899,7 @@ public:
 	void mouseMoveEvent(QMouseEvent * event) { callbackQWidget_MouseMoveEvent(this, event); };
 	void mousePressEvent(QMouseEvent * event) { callbackQWidget_MousePressEvent(this, event); };
 	void mouseReleaseEvent(QMouseEvent * event) { callbackQWidget_MouseReleaseEvent(this, event); };
-	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQWidget_NativeEvent(this, const_cast<char*>(eventType.toHex().prepend("WHITESPACE").constData()+10), message, *result) != 0; };
+	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQWidget_NativeEvent(this, const_cast<QByteArray*>(&eventType), message, *result) != 0; };
 	void raise() { callbackQWidget_Raise(this); };
 	void repaint() { callbackQWidget_Repaint(this); };
 	void resizeEvent(QResizeEvent * event) { callbackQWidget_ResizeEvent(this, event); };
@@ -96916,7 +96916,7 @@ public:
 	void updateMicroFocus() { callbackQWidget_UpdateMicroFocus(this); };
 	void wheelEvent(QWheelEvent * event) { callbackQWidget_WheelEvent(this, event); };
 	void Signal_WindowIconChanged(const QIcon & icon) { callbackQWidget_WindowIconChanged(this, const_cast<QIcon*>(&icon)); };
-	void Signal_WindowTitleChanged(const QString & title) { callbackQWidget_WindowTitleChanged(this, const_cast<char*>(title.toUtf8().prepend("WHITESPACE").constData()+10)); };
+	void Signal_WindowTitleChanged(const QString & title) { QByteArray t3c6de1 = title.toUtf8(); QtWidgets_PackedString titlePacked = { const_cast<char*>(t3c6de1.prepend("WHITESPACE").constData()+10), t3c6de1.size()-10 };callbackQWidget_WindowTitleChanged(this, titlePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQWidget_TimerEvent(this, event); };
 	void childEvent(QChildEvent * event) { callbackQWidget_ChildEvent(this, event); };
 	void connectNotify(const QMetaMethod & sign) { callbackQWidget_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
@@ -96932,14 +96932,14 @@ char QWidget_AcceptDrops(void* ptr)
 	return static_cast<QWidget*>(ptr)->acceptDrops();
 }
 
-char* QWidget_AccessibleDescription(void* ptr)
+struct QtWidgets_PackedString QWidget_AccessibleDescription(void* ptr)
 {
-	return const_cast<char*>(static_cast<QWidget*>(ptr)->accessibleDescription().toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray tb88bc9 = static_cast<QWidget*>(ptr)->accessibleDescription().toUtf8(); QtWidgets_PackedString { const_cast<char*>(tb88bc9.prepend("WHITESPACE").constData()+10), tb88bc9.size()-10 }; });
 }
 
-char* QWidget_AccessibleName(void* ptr)
+struct QtWidgets_PackedString QWidget_AccessibleName(void* ptr)
 {
-	return const_cast<char*>(static_cast<QWidget*>(ptr)->accessibleName().toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray t32cbb8 = static_cast<QWidget*>(ptr)->accessibleName().toUtf8(); QtWidgets_PackedString { const_cast<char*>(t32cbb8.prepend("WHITESPACE").constData()+10), t32cbb8.size()-10 }; });
 }
 
 void QWidget_ActionEvent(void* ptr, void* event)
@@ -97499,19 +97499,19 @@ void* QWidget_SizeIncrement(void* ptr)
 	return ({ QSize tmpValue = static_cast<QWidget*>(ptr)->sizeIncrement(); new QSize(tmpValue.width(), tmpValue.height()); });
 }
 
-char* QWidget_StatusTip(void* ptr)
+struct QtWidgets_PackedString QWidget_StatusTip(void* ptr)
 {
-	return const_cast<char*>(static_cast<QWidget*>(ptr)->statusTip().toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray t96d9a1 = static_cast<QWidget*>(ptr)->statusTip().toUtf8(); QtWidgets_PackedString { const_cast<char*>(t96d9a1.prepend("WHITESPACE").constData()+10), t96d9a1.size()-10 }; });
 }
 
-char* QWidget_StyleSheet(void* ptr)
+struct QtWidgets_PackedString QWidget_StyleSheet(void* ptr)
 {
-	return const_cast<char*>(static_cast<QWidget*>(ptr)->styleSheet().toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray tb180d7 = static_cast<QWidget*>(ptr)->styleSheet().toUtf8(); QtWidgets_PackedString { const_cast<char*>(tb180d7.prepend("WHITESPACE").constData()+10), tb180d7.size()-10 }; });
 }
 
-char* QWidget_ToolTip(void* ptr)
+struct QtWidgets_PackedString QWidget_ToolTip(void* ptr)
 {
-	return const_cast<char*>(static_cast<QWidget*>(ptr)->toolTip().toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray t791287 = static_cast<QWidget*>(ptr)->toolTip().toUtf8(); QtWidgets_PackedString { const_cast<char*>(t791287.prepend("WHITESPACE").constData()+10), t791287.size()-10 }; });
 }
 
 int QWidget_ToolTipDuration(void* ptr)
@@ -97534,9 +97534,9 @@ void QWidget_UnsetLocale(void* ptr)
 	static_cast<QWidget*>(ptr)->unsetLocale();
 }
 
-char* QWidget_WhatsThis(void* ptr)
+struct QtWidgets_PackedString QWidget_WhatsThis(void* ptr)
 {
-	return const_cast<char*>(static_cast<QWidget*>(ptr)->whatsThis().toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray tb9ec26 = static_cast<QWidget*>(ptr)->whatsThis().toUtf8(); QtWidgets_PackedString { const_cast<char*>(tb9ec26.prepend("WHITESPACE").constData()+10), tb9ec26.size()-10 }; });
 }
 
 uintptr_t QWidget_WinId(void* ptr)
@@ -97544,9 +97544,9 @@ uintptr_t QWidget_WinId(void* ptr)
 	return static_cast<QWidget*>(ptr)->winId();
 }
 
-char* QWidget_WindowFilePath(void* ptr)
+struct QtWidgets_PackedString QWidget_WindowFilePath(void* ptr)
 {
-	return const_cast<char*>(static_cast<QWidget*>(ptr)->windowFilePath().toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray tc809cf = static_cast<QWidget*>(ptr)->windowFilePath().toUtf8(); QtWidgets_PackedString { const_cast<char*>(tc809cf.prepend("WHITESPACE").constData()+10), tc809cf.size()-10 }; });
 }
 
 void* QWidget_WindowIcon(void* ptr)
@@ -97554,9 +97554,9 @@ void* QWidget_WindowIcon(void* ptr)
 	return new QIcon(static_cast<QWidget*>(ptr)->windowIcon());
 }
 
-char* QWidget_WindowIconText(void* ptr)
+struct QtWidgets_PackedString QWidget_WindowIconText(void* ptr)
 {
-	return const_cast<char*>(static_cast<QWidget*>(ptr)->windowIconText().toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray t309e48 = static_cast<QWidget*>(ptr)->windowIconText().toUtf8(); QtWidgets_PackedString { const_cast<char*>(t309e48.prepend("WHITESPACE").constData()+10), t309e48.size()-10 }; });
 }
 
 long long QWidget_WindowModality(void* ptr)
@@ -97569,9 +97569,9 @@ double QWidget_WindowOpacity(void* ptr)
 	return static_cast<QWidget*>(ptr)->windowOpacity();
 }
 
-char* QWidget_WindowTitle(void* ptr)
+struct QtWidgets_PackedString QWidget_WindowTitle(void* ptr)
 {
-	return const_cast<char*>(static_cast<QWidget*>(ptr)->windowTitle().toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray tf3cd6c = static_cast<QWidget*>(ptr)->windowTitle().toUtf8(); QtWidgets_PackedString { const_cast<char*>(tf3cd6c.prepend("WHITESPACE").constData()+10), tf3cd6c.size()-10 }; });
 }
 
 int QWidget_X(void* ptr)
@@ -98030,14 +98030,14 @@ void QWidget_Move2(void* ptr, int x, int y)
 	static_cast<QWidget*>(ptr)->move(x, y);
 }
 
-char QWidget_NativeEvent(void* ptr, char* eventType, void* message, long result)
+char QWidget_NativeEvent(void* ptr, void* eventType, void* message, long result)
 {
-	return static_cast<QWidget*>(ptr)->nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
+	return static_cast<QWidget*>(ptr)->nativeEvent(*static_cast<QByteArray*>(eventType), message, &result);
 }
 
-char QWidget_NativeEventDefault(void* ptr, char* eventType, void* message, long result)
+char QWidget_NativeEventDefault(void* ptr, void* eventType, void* message, long result)
 {
-	return static_cast<QWidget*>(ptr)->QWidget::nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
+	return static_cast<QWidget*>(ptr)->QWidget::nativeEvent(*static_cast<QByteArray*>(eventType), message, &result);
 }
 
 void* QWidget_NativeParentWidget(void* ptr)
@@ -98130,14 +98130,14 @@ void QWidget_ResizeEventDefault(void* ptr, void* event)
 	static_cast<QWidget*>(ptr)->QWidget::resizeEvent(static_cast<QResizeEvent*>(event));
 }
 
-char QWidget_RestoreGeometry(void* ptr, char* geometry)
+char QWidget_RestoreGeometry(void* ptr, void* geometry)
 {
-	return static_cast<QWidget*>(ptr)->restoreGeometry(QByteArray::fromHex(QString(geometry).toUtf8()));
+	return static_cast<QWidget*>(ptr)->restoreGeometry(*static_cast<QByteArray*>(geometry));
 }
 
-char* QWidget_SaveGeometry(void* ptr)
+void* QWidget_SaveGeometry(void* ptr)
 {
-	return const_cast<char*>(static_cast<QWidget*>(ptr)->saveGeometry().toHex().prepend("WHITESPACE").constData()+10);
+	return new QByteArray(static_cast<QWidget*>(ptr)->saveGeometry());
 }
 
 void QWidget_Scroll(void* ptr, int dx, int dy)
@@ -98467,9 +98467,9 @@ void QWidget_WindowIconChanged(void* ptr, void* icon)
 	static_cast<QWidget*>(ptr)->windowIconChanged(*static_cast<QIcon*>(icon));
 }
 
-char* QWidget_WindowRole(void* ptr)
+struct QtWidgets_PackedString QWidget_WindowRole(void* ptr)
 {
-	return const_cast<char*>(static_cast<QWidget*>(ptr)->windowRole().toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray t64c9c6 = static_cast<QWidget*>(ptr)->windowRole().toUtf8(); QtWidgets_PackedString { const_cast<char*>(t64c9c6.prepend("WHITESPACE").constData()+10), t64c9c6.size()-10 }; });
 }
 
 long long QWidget_WindowState(void* ptr)
@@ -99029,7 +99029,7 @@ public:
 	void Signal_CustomButtonClicked(int which) { callbackQWizard_CustomButtonClicked(this, which); };
 	void done(int result) { callbackQWizard_Done(this, result); };
 	void Signal_HelpRequested() { callbackQWizard_HelpRequested(this); };
-	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQWizard_NativeEvent(this, const_cast<char*>(eventType.toHex().prepend("WHITESPACE").constData()+10), message, *result) != 0; };
+	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQWizard_NativeEvent(this, const_cast<QByteArray*>(&eventType), message, *result) != 0; };
 	void next() { callbackQWizard_Next(this); };
 	int nextId() const { return callbackQWizard_NextId(const_cast<MyQWizard*>(this)); };
 	void Signal_PageAdded(int id) { callbackQWizard_PageAdded(this, id); };
@@ -99061,9 +99061,9 @@ public:
 	void leaveEvent(QEvent * event) { callbackQWizard_LeaveEvent(this, event); };
 	void moveEvent(QMoveEvent * event) { callbackQWizard_MoveEvent(this, event); };
 	void setEnabled(bool vbo) { callbackQWizard_SetEnabled(this, vbo); };
-	void setStyleSheet(const QString & styleSheet) { callbackQWizard_SetStyleSheet(this, const_cast<char*>(styleSheet.toUtf8().prepend("WHITESPACE").constData()+10)); };
+	void setStyleSheet(const QString & styleSheet) { QByteArray t728ae7 = styleSheet.toUtf8(); QtWidgets_PackedString styleSheetPacked = { const_cast<char*>(t728ae7.prepend("WHITESPACE").constData()+10), t728ae7.size()-10 };callbackQWizard_SetStyleSheet(this, styleSheetPacked); };
 	void setWindowModified(bool vbo) { callbackQWizard_SetWindowModified(this, vbo); };
-	void setWindowTitle(const QString & vqs) { callbackQWizard_SetWindowTitle(this, const_cast<char*>(vqs.toUtf8().prepend("WHITESPACE").constData()+10)); };
+	void setWindowTitle(const QString & vqs) { QByteArray tda39a3 = vqs.toUtf8(); QtWidgets_PackedString vqsPacked = { const_cast<char*>(tda39a3.prepend("WHITESPACE").constData()+10), tda39a3.size()-10 };callbackQWizard_SetWindowTitle(this, vqsPacked); };
 	void changeEvent(QEvent * event) { callbackQWizard_ChangeEvent(this, event); };
 	bool close() { return callbackQWizard_Close(this) != 0; };
 	bool focusNextPrevChild(bool next) { return callbackQWizard_FocusNextPrevChild(this, next) != 0; };
@@ -99211,9 +99211,9 @@ void* QWizard_Button(void* ptr, long long which)
 	return static_cast<QWizard*>(ptr)->button(static_cast<QWizard::WizardButton>(which));
 }
 
-char* QWizard_ButtonText(void* ptr, long long which)
+struct QtWidgets_PackedString QWizard_ButtonText(void* ptr, long long which)
 {
-	return const_cast<char*>(static_cast<QWizard*>(ptr)->buttonText(static_cast<QWizard::WizardButton>(which)).toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray tdb6a3d = static_cast<QWizard*>(ptr)->buttonText(static_cast<QWizard::WizardButton>(which)).toUtf8(); QtWidgets_PackedString { const_cast<char*>(tdb6a3d.prepend("WHITESPACE").constData()+10), tdb6a3d.size()-10 }; });
 }
 
 void QWizard_ConnectCurrentIdChanged(void* ptr)
@@ -99286,14 +99286,14 @@ void QWizard_HelpRequested(void* ptr)
 	static_cast<QWizard*>(ptr)->helpRequested();
 }
 
-char QWizard_NativeEvent(void* ptr, char* eventType, void* message, long result)
+char QWizard_NativeEvent(void* ptr, void* eventType, void* message, long result)
 {
-	return static_cast<QWizard*>(ptr)->nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
+	return static_cast<QWizard*>(ptr)->nativeEvent(*static_cast<QByteArray*>(eventType), message, &result);
 }
 
-char QWizard_NativeEventDefault(void* ptr, char* eventType, void* message, long result)
+char QWizard_NativeEventDefault(void* ptr, void* eventType, void* message, long result)
 {
-	return static_cast<QWizard*>(ptr)->QWizard::nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
+	return static_cast<QWizard*>(ptr)->QWizard::nativeEvent(*static_cast<QByteArray*>(eventType), message, &result);
 }
 
 void QWizard_Next(void* ptr)
@@ -100074,10 +100074,10 @@ public:
 	void moveEvent(QMoveEvent * event) { callbackQWizardPage_MoveEvent(this, event); };
 	void paintEvent(QPaintEvent * event) { callbackQWizardPage_PaintEvent(this, event); };
 	void setEnabled(bool vbo) { callbackQWizardPage_SetEnabled(this, vbo); };
-	void setStyleSheet(const QString & styleSheet) { callbackQWizardPage_SetStyleSheet(this, const_cast<char*>(styleSheet.toUtf8().prepend("WHITESPACE").constData()+10)); };
+	void setStyleSheet(const QString & styleSheet) { QByteArray t728ae7 = styleSheet.toUtf8(); QtWidgets_PackedString styleSheetPacked = { const_cast<char*>(t728ae7.prepend("WHITESPACE").constData()+10), t728ae7.size()-10 };callbackQWizardPage_SetStyleSheet(this, styleSheetPacked); };
 	void setVisible(bool visible) { callbackQWizardPage_SetVisible(this, visible); };
 	void setWindowModified(bool vbo) { callbackQWizardPage_SetWindowModified(this, vbo); };
-	void setWindowTitle(const QString & vqs) { callbackQWizardPage_SetWindowTitle(this, const_cast<char*>(vqs.toUtf8().prepend("WHITESPACE").constData()+10)); };
+	void setWindowTitle(const QString & vqs) { QByteArray tda39a3 = vqs.toUtf8(); QtWidgets_PackedString vqsPacked = { const_cast<char*>(tda39a3.prepend("WHITESPACE").constData()+10), tda39a3.size()-10 };callbackQWizardPage_SetWindowTitle(this, vqsPacked); };
 	void showEvent(QShowEvent * event) { callbackQWizardPage_ShowEvent(this, event); };
 	QSize sizeHint() const { return *static_cast<QSize*>(callbackQWizardPage_SizeHint(const_cast<MyQWizardPage*>(this))); };
 	void changeEvent(QEvent * event) { callbackQWizardPage_ChangeEvent(this, event); };
@@ -100097,7 +100097,7 @@ public:
 	void mouseMoveEvent(QMouseEvent * event) { callbackQWizardPage_MouseMoveEvent(this, event); };
 	void mousePressEvent(QMouseEvent * event) { callbackQWizardPage_MousePressEvent(this, event); };
 	void mouseReleaseEvent(QMouseEvent * event) { callbackQWizardPage_MouseReleaseEvent(this, event); };
-	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQWizardPage_NativeEvent(this, const_cast<char*>(eventType.toHex().prepend("WHITESPACE").constData()+10), message, *result) != 0; };
+	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQWizardPage_NativeEvent(this, const_cast<QByteArray*>(&eventType), message, *result) != 0; };
 	void raise() { callbackQWizardPage_Raise(this); };
 	void repaint() { callbackQWizardPage_Repaint(this); };
 	void resizeEvent(QResizeEvent * event) { callbackQWizardPage_ResizeEvent(this, event); };
@@ -100133,14 +100133,14 @@ void QWizardPage_SetTitle(void* ptr, char* title)
 	static_cast<QWizardPage*>(ptr)->setTitle(QString(title));
 }
 
-char* QWizardPage_SubTitle(void* ptr)
+struct QtWidgets_PackedString QWizardPage_SubTitle(void* ptr)
 {
-	return const_cast<char*>(static_cast<QWizardPage*>(ptr)->subTitle().toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray t00cff1 = static_cast<QWizardPage*>(ptr)->subTitle().toUtf8(); QtWidgets_PackedString { const_cast<char*>(t00cff1.prepend("WHITESPACE").constData()+10), t00cff1.size()-10 }; });
 }
 
-char* QWizardPage_Title(void* ptr)
+struct QtWidgets_PackedString QWizardPage_Title(void* ptr)
 {
-	return const_cast<char*>(static_cast<QWizardPage*>(ptr)->title().toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray tf87e47 = static_cast<QWizardPage*>(ptr)->title().toUtf8(); QtWidgets_PackedString { const_cast<char*>(tf87e47.prepend("WHITESPACE").constData()+10), tf87e47.size()-10 }; });
 }
 
 void* QWizardPage_NewQWizardPage(void* parent)
@@ -100148,9 +100148,9 @@ void* QWizardPage_NewQWizardPage(void* parent)
 	return new MyQWizardPage(static_cast<QWidget*>(parent));
 }
 
-char* QWizardPage_ButtonText(void* ptr, long long which)
+struct QtWidgets_PackedString QWizardPage_ButtonText(void* ptr, long long which)
 {
-	return const_cast<char*>(static_cast<QWizardPage*>(ptr)->buttonText(static_cast<QWizard::WizardButton>(which)).toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray t060d80 = static_cast<QWizardPage*>(ptr)->buttonText(static_cast<QWizard::WizardButton>(which)).toUtf8(); QtWidgets_PackedString { const_cast<char*>(t060d80.prepend("WHITESPACE").constData()+10), t060d80.size()-10 }; });
 }
 
 void QWizardPage_CleanupPage(void* ptr)
@@ -100650,14 +100650,14 @@ void QWizardPage_MouseReleaseEventDefault(void* ptr, void* event)
 	static_cast<QWizardPage*>(ptr)->QWizardPage::mouseReleaseEvent(static_cast<QMouseEvent*>(event));
 }
 
-char QWizardPage_NativeEvent(void* ptr, char* eventType, void* message, long result)
+char QWizardPage_NativeEvent(void* ptr, void* eventType, void* message, long result)
 {
-	return static_cast<QWizardPage*>(ptr)->nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
+	return static_cast<QWizardPage*>(ptr)->nativeEvent(*static_cast<QByteArray*>(eventType), message, &result);
 }
 
-char QWizardPage_NativeEventDefault(void* ptr, char* eventType, void* message, long result)
+char QWizardPage_NativeEventDefault(void* ptr, void* eventType, void* message, long result)
 {
-	return static_cast<QWizardPage*>(ptr)->QWizardPage::nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
+	return static_cast<QWizardPage*>(ptr)->QWizardPage::nativeEvent(*static_cast<QByteArray*>(eventType), message, &result);
 }
 
 void QWizardPage_Raise(void* ptr)

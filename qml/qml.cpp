@@ -404,9 +404,9 @@ void* QJSValue_ToQObject(void* ptr)
 	return static_cast<QJSValue*>(ptr)->toQObject();
 }
 
-char* QJSValue_ToString(void* ptr)
+struct QtQml_PackedString QJSValue_ToString(void* ptr)
 {
-	return const_cast<char*>(static_cast<QJSValue*>(ptr)->toString().toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray t6adf54 = static_cast<QJSValue*>(ptr)->toString().toUtf8(); QtQml_PackedString { const_cast<char*>(t6adf54.prepend("WHITESPACE").constData()+10), t6adf54.size()-10 }; });
 }
 
 unsigned int QJSValue_ToUInt(void* ptr)
@@ -458,9 +458,9 @@ public:
 	MyQQmlApplicationEngine(QObject *parent) : QQmlApplicationEngine(parent) {};
 	MyQQmlApplicationEngine(const QString &filePath, QObject *parent) : QQmlApplicationEngine(filePath, parent) {};
 	MyQQmlApplicationEngine(const QUrl &url, QObject *parent) : QQmlApplicationEngine(url, parent) {};
-	void load(const QString & filePath) { callbackQQmlApplicationEngine_Load2(this, const_cast<char*>(filePath.toUtf8().prepend("WHITESPACE").constData()+10)); };
+	void load(const QString & filePath) { QByteArray t7df503 = filePath.toUtf8(); QtQml_PackedString filePathPacked = { const_cast<char*>(t7df503.prepend("WHITESPACE").constData()+10), t7df503.size()-10 };callbackQQmlApplicationEngine_Load2(this, filePathPacked); };
 	void load(const QUrl & url) { callbackQQmlApplicationEngine_Load(this, const_cast<QUrl*>(&url)); };
-	void loadData(const QByteArray & data, const QUrl & url) { callbackQQmlApplicationEngine_LoadData(this, const_cast<char*>(data.toHex().prepend("WHITESPACE").constData()+10), const_cast<QUrl*>(&url)); };
+	void loadData(const QByteArray & data, const QUrl & url) { callbackQQmlApplicationEngine_LoadData(this, const_cast<QByteArray*>(&data), const_cast<QUrl*>(&url)); };
 	void Signal_ObjectCreated(QObject * object, const QUrl & url) { callbackQQmlApplicationEngine_ObjectCreated(this, object, const_cast<QUrl*>(&url)); };
 	bool event(QEvent * e) { return callbackQQmlApplicationEngine_Event(this, e) != 0; };
 	void timerEvent(QTimerEvent * event) { callbackQQmlApplicationEngine_TimerEvent(this, event); };
@@ -498,9 +498,9 @@ void QQmlApplicationEngine_Load(void* ptr, void* url)
 	QMetaObject::invokeMethod(static_cast<QQmlApplicationEngine*>(ptr), "load", Q_ARG(QUrl, *static_cast<QUrl*>(url)));
 }
 
-void QQmlApplicationEngine_LoadData(void* ptr, char* data, void* url)
+void QQmlApplicationEngine_LoadData(void* ptr, void* data, void* url)
 {
-	QMetaObject::invokeMethod(static_cast<QQmlApplicationEngine*>(ptr), "loadData", Q_ARG(QByteArray, QByteArray::fromHex(QString(data).toUtf8())), Q_ARG(QUrl, *static_cast<QUrl*>(url)));
+	QMetaObject::invokeMethod(static_cast<QQmlApplicationEngine*>(ptr), "loadData", Q_ARG(QByteArray, *static_cast<QByteArray*>(data)), Q_ARG(QUrl, *static_cast<QUrl*>(url)));
 }
 
 void QQmlApplicationEngine_ConnectObjectCreated(void* ptr)
@@ -627,7 +627,7 @@ public:
 	void loadUrl(const QUrl & url) { callbackQQmlComponent_LoadUrl(this, const_cast<QUrl*>(&url)); };
 	void loadUrl(const QUrl & url, QQmlComponent::CompilationMode mode) { callbackQQmlComponent_LoadUrl2(this, const_cast<QUrl*>(&url), mode); };
 	void Signal_ProgressChanged(qreal progress) { callbackQQmlComponent_ProgressChanged(this, progress); };
-	void setData(const QByteArray & data, const QUrl & url) { callbackQQmlComponent_SetData(this, const_cast<char*>(data.toHex().prepend("WHITESPACE").constData()+10), const_cast<QUrl*>(&url)); };
+	void setData(const QByteArray & data, const QUrl & url) { callbackQQmlComponent_SetData(this, const_cast<QByteArray*>(&data), const_cast<QUrl*>(&url)); };
 	void Signal_StatusChanged(QQmlComponent::Status status) { callbackQQmlComponent_StatusChanged(this, status); };
 	 ~MyQQmlComponent() { callbackQQmlComponent_DestroyQQmlComponent(this); };
 	void timerEvent(QTimerEvent * event) { callbackQQmlComponent_TimerEvent(this, event); };
@@ -766,9 +766,9 @@ void QQmlComponent_ProgressChanged(void* ptr, double progress)
 	static_cast<QQmlComponent*>(ptr)->progressChanged(progress);
 }
 
-void QQmlComponent_SetData(void* ptr, char* data, void* url)
+void QQmlComponent_SetData(void* ptr, void* data, void* url)
 {
-	QMetaObject::invokeMethod(static_cast<QQmlComponent*>(ptr), "setData", Q_ARG(QByteArray, QByteArray::fromHex(QString(data).toUtf8())), Q_ARG(QUrl, *static_cast<QUrl*>(url)));
+	QMetaObject::invokeMethod(static_cast<QQmlComponent*>(ptr), "setData", Q_ARG(QByteArray, *static_cast<QByteArray*>(data)), Q_ARG(QUrl, *static_cast<QUrl*>(url)));
 }
 
 void QQmlComponent_ConnectStatusChanged(void* ptr)
@@ -938,9 +938,9 @@ char QQmlContext_IsValid(void* ptr)
 	return static_cast<QQmlContext*>(ptr)->isValid();
 }
 
-char* QQmlContext_NameForObject(void* ptr, void* object)
+struct QtQml_PackedString QQmlContext_NameForObject(void* ptr, void* object)
 {
-	return const_cast<char*>(static_cast<QQmlContext*>(ptr)->nameForObject(static_cast<QObject*>(object)).toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray t183ce4 = static_cast<QQmlContext*>(ptr)->nameForObject(static_cast<QObject*>(object)).toUtf8(); QtQml_PackedString { const_cast<char*>(t183ce4.prepend("WHITESPACE").constData()+10), t183ce4.size()-10 }; });
 }
 
 void* QQmlContext_ParentContext(void* ptr)
@@ -1090,9 +1090,9 @@ public:
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQQmlEngine_MetaObject(const_cast<MyQQmlEngine*>(this))); };
 };
 
-char* QQmlEngine_OfflineStoragePath(void* ptr)
+struct QtQml_PackedString QQmlEngine_OfflineStoragePath(void* ptr)
 {
-	return const_cast<char*>(static_cast<QQmlEngine*>(ptr)->offlineStoragePath().toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray t6f33d6 = static_cast<QQmlEngine*>(ptr)->offlineStoragePath().toUtf8(); QtQml_PackedString { const_cast<char*>(t6f33d6.prepend("WHITESPACE").constData()+10), t6f33d6.size()-10 }; });
 }
 
 void QQmlEngine_SetOfflineStoragePath(void* ptr, char* dir)
@@ -1150,9 +1150,9 @@ void* QQmlEngine_ImageProvider(void* ptr, char* providerId)
 	return static_cast<QQmlEngine*>(ptr)->imageProvider(QString(providerId));
 }
 
-char* QQmlEngine_ImportPathList(void* ptr)
+struct QtQml_PackedString QQmlEngine_ImportPathList(void* ptr)
 {
-	return const_cast<char*>(static_cast<QQmlEngine*>(ptr)->importPathList().join("|").toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray t32e5da = static_cast<QQmlEngine*>(ptr)->importPathList().join("|").toUtf8(); QtQml_PackedString { const_cast<char*>(t32e5da.prepend("WHITESPACE").constData()+10), t32e5da.size()-10 }; });
 }
 
 void* QQmlEngine_IncubationController(void* ptr)
@@ -1180,9 +1180,9 @@ char QQmlEngine_OutputWarningsToStandardError(void* ptr)
 	return static_cast<QQmlEngine*>(ptr)->outputWarningsToStandardError();
 }
 
-char* QQmlEngine_PluginPathList(void* ptr)
+struct QtQml_PackedString QQmlEngine_PluginPathList(void* ptr)
 {
-	return const_cast<char*>(static_cast<QQmlEngine*>(ptr)->pluginPathList().join("|").toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray t04b834 = static_cast<QQmlEngine*>(ptr)->pluginPathList().join("|").toUtf8(); QtQml_PackedString { const_cast<char*>(t04b834.prepend("WHITESPACE").constData()+10), t04b834.size()-10 }; });
 }
 
 void QQmlEngine_ConnectQuit(void* ptr)
@@ -1360,9 +1360,9 @@ int QQmlError_Column(void* ptr)
 	return static_cast<QQmlError*>(ptr)->column();
 }
 
-char* QQmlError_Description(void* ptr)
+struct QtQml_PackedString QQmlError_Description(void* ptr)
 {
-	return const_cast<char*>(static_cast<QQmlError*>(ptr)->description().toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray tff8552 = static_cast<QQmlError*>(ptr)->description().toUtf8(); QtQml_PackedString { const_cast<char*>(tff8552.prepend("WHITESPACE").constData()+10), tff8552.size()-10 }; });
 }
 
 char QQmlError_IsValid(void* ptr)
@@ -1405,9 +1405,9 @@ void QQmlError_SetUrl(void* ptr, void* url)
 	static_cast<QQmlError*>(ptr)->setUrl(*static_cast<QUrl*>(url));
 }
 
-char* QQmlError_ToString(void* ptr)
+struct QtQml_PackedString QQmlError_ToString(void* ptr)
 {
-	return const_cast<char*>(static_cast<QQmlError*>(ptr)->toString().toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray t77ab7b = static_cast<QQmlError*>(ptr)->toString().toUtf8(); QtQml_PackedString { const_cast<char*>(t77ab7b.prepend("WHITESPACE").constData()+10), t77ab7b.size()-10 }; });
 }
 
 void* QQmlError_Url(void* ptr)
@@ -1479,9 +1479,9 @@ void* QQmlExpression_Evaluate(void* ptr, char valueIsUndefined)
 	return new QVariant(static_cast<QQmlExpression*>(ptr)->evaluate(NULL));
 }
 
-char* QQmlExpression_Expression(void* ptr)
+struct QtQml_PackedString QQmlExpression_Expression(void* ptr)
 {
-	return const_cast<char*>(static_cast<QQmlExpression*>(ptr)->expression().toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray t1c3c3e = static_cast<QQmlExpression*>(ptr)->expression().toUtf8(); QtQml_PackedString { const_cast<char*>(t1c3c3e.prepend("WHITESPACE").constData()+10), t1c3c3e.size()-10 }; });
 }
 
 char QQmlExpression_HasError(void* ptr)
@@ -1519,9 +1519,9 @@ void QQmlExpression_SetSourceLocation(void* ptr, char* url, int line, int column
 	static_cast<QQmlExpression*>(ptr)->setSourceLocation(QString(url), line, column);
 }
 
-char* QQmlExpression_SourceFile(void* ptr)
+struct QtQml_PackedString QQmlExpression_SourceFile(void* ptr)
 {
-	return const_cast<char*>(static_cast<QQmlExpression*>(ptr)->sourceFile().toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray t4b188b = static_cast<QQmlExpression*>(ptr)->sourceFile().toUtf8(); QtQml_PackedString { const_cast<char*>(t4b188b.prepend("WHITESPACE").constData()+10), t4b188b.size()-10 }; });
 }
 
 void QQmlExpression_ConnectValueChanged(void* ptr)
@@ -1643,8 +1643,8 @@ class MyQQmlExtensionPlugin: public QQmlExtensionPlugin
 {
 public:
 	MyQQmlExtensionPlugin(QObject *parent) : QQmlExtensionPlugin(parent) {};
-	void initializeEngine(QQmlEngine * engine, const char * uri) { callbackQQmlExtensionPlugin_InitializeEngine(this, engine, const_cast<char*>(QString(uri).toUtf8().prepend("WHITESPACE").constData()+10)); };
-	void registerTypes(const char * uri) { callbackQQmlExtensionPlugin_RegisterTypes(this, const_cast<char*>(QString(uri).toUtf8().prepend("WHITESPACE").constData()+10)); };
+	void initializeEngine(QQmlEngine * engine, const char * uri) { QtQml_PackedString uriPacked = { const_cast<char*>(uri), -1 };callbackQQmlExtensionPlugin_InitializeEngine(this, engine, uriPacked); };
+	void registerTypes(const char * uri) { QtQml_PackedString uriPacked = { const_cast<char*>(uri), -1 };callbackQQmlExtensionPlugin_RegisterTypes(this, uriPacked); };
 	void timerEvent(QTimerEvent * event) { callbackQQmlExtensionPlugin_TimerEvent(this, event); };
 	void childEvent(QChildEvent * event) { callbackQQmlExtensionPlugin_ChildEvent(this, event); };
 	void connectNotify(const QMetaMethod & sign) { callbackQQmlExtensionPlugin_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
@@ -2237,9 +2237,9 @@ void* QQmlProperty_Method(void* ptr)
 	return new QMetaMethod(static_cast<QQmlProperty*>(ptr)->method());
 }
 
-char* QQmlProperty_Name(void* ptr)
+struct QtQml_PackedString QQmlProperty_Name(void* ptr)
 {
-	return const_cast<char*>(static_cast<QQmlProperty*>(ptr)->name().toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray t576900 = static_cast<QQmlProperty*>(ptr)->name().toUtf8(); QtQml_PackedString { const_cast<char*>(t576900.prepend("WHITESPACE").constData()+10), t576900.size()-10 }; });
 }
 
 char QQmlProperty_NeedsNotifySignal(void* ptr)
@@ -2262,9 +2262,9 @@ long long QQmlProperty_PropertyTypeCategory(void* ptr)
 	return static_cast<QQmlProperty*>(ptr)->propertyTypeCategory();
 }
 
-char* QQmlProperty_PropertyTypeName(void* ptr)
+struct QtQml_PackedString QQmlProperty_PropertyTypeName(void* ptr)
 {
-	return const_cast<char*>(QString(static_cast<QQmlProperty*>(ptr)->propertyTypeName()).toUtf8().prepend("WHITESPACE").constData()+10);
+	return QtQml_PackedString { const_cast<char*>(static_cast<QQmlProperty*>(ptr)->propertyTypeName()), -1 };
 }
 
 void* QQmlProperty_QQmlProperty_Read2(void* object, char* name)
@@ -2321,8 +2321,8 @@ class MyQQmlPropertyMap: public QQmlPropertyMap
 {
 public:
 	MyQQmlPropertyMap(QObject *parent) : QQmlPropertyMap(parent) {};
-	QVariant updateValue(const QString & key, const QVariant & input) { return *static_cast<QVariant*>(callbackQQmlPropertyMap_UpdateValue(this, const_cast<char*>(key.toUtf8().prepend("WHITESPACE").constData()+10), const_cast<QVariant*>(&input))); };
-	void Signal_ValueChanged(const QString & key, const QVariant & value) { callbackQQmlPropertyMap_ValueChanged(this, const_cast<char*>(key.toUtf8().prepend("WHITESPACE").constData()+10), const_cast<QVariant*>(&value)); };
+	QVariant updateValue(const QString & key, const QVariant & input) { QByteArray ta62f22 = key.toUtf8(); QtQml_PackedString keyPacked = { const_cast<char*>(ta62f22.prepend("WHITESPACE").constData()+10), ta62f22.size()-10 };return *static_cast<QVariant*>(callbackQQmlPropertyMap_UpdateValue(this, keyPacked, const_cast<QVariant*>(&input))); };
+	void Signal_ValueChanged(const QString & key, const QVariant & value) { QByteArray ta62f22 = key.toUtf8(); QtQml_PackedString keyPacked = { const_cast<char*>(ta62f22.prepend("WHITESPACE").constData()+10), ta62f22.size()-10 };callbackQQmlPropertyMap_ValueChanged(this, keyPacked, const_cast<QVariant*>(&value)); };
 	 ~MyQQmlPropertyMap() { callbackQQmlPropertyMap_DestroyQQmlPropertyMap(this); };
 	void timerEvent(QTimerEvent * event) { callbackQQmlPropertyMap_TimerEvent(this, event); };
 	void childEvent(QChildEvent * event) { callbackQQmlPropertyMap_ChildEvent(this, event); };
@@ -2365,9 +2365,9 @@ char QQmlPropertyMap_IsEmpty(void* ptr)
 	return static_cast<QQmlPropertyMap*>(ptr)->isEmpty();
 }
 
-char* QQmlPropertyMap_Keys(void* ptr)
+struct QtQml_PackedString QQmlPropertyMap_Keys(void* ptr)
 {
-	return const_cast<char*>(static_cast<QQmlPropertyMap*>(ptr)->keys().join("|").toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray t4c814d = static_cast<QQmlPropertyMap*>(ptr)->keys().join("|").toUtf8(); QtQml_PackedString { const_cast<char*>(t4c814d.prepend("WHITESPACE").constData()+10), t4c814d.size()-10 }; });
 }
 
 int QQmlPropertyMap_Size(void* ptr)
@@ -2568,8 +2568,8 @@ double QQmlScriptString_NumberLiteral(void* ptr, char ok)
 	return static_cast<QQmlScriptString*>(ptr)->numberLiteral(NULL);
 }
 
-char* QQmlScriptString_StringLiteral(void* ptr)
+struct QtQml_PackedString QQmlScriptString_StringLiteral(void* ptr)
 {
-	return const_cast<char*>(static_cast<QQmlScriptString*>(ptr)->stringLiteral().toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray t77944a = static_cast<QQmlScriptString*>(ptr)->stringLiteral().toUtf8(); QtQml_PackedString { const_cast<char*>(t77944a.prepend("WHITESPACE").constData()+10), t77944a.size()-10 }; });
 }
 

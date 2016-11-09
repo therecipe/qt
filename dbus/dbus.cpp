@@ -6,6 +6,7 @@
 #include "dbus.h"
 #include "_cgo_export.h"
 
+#include <QByteArray>
 #include <QChildEvent>
 #include <QDBusAbstractAdaptor>
 #include <QDBusAbstractInterface>
@@ -176,9 +177,9 @@ void* QDBusAbstractInterface_Connection(void* ptr)
 	return new QDBusConnection(static_cast<QDBusAbstractInterface*>(ptr)->connection());
 }
 
-char* QDBusAbstractInterface_Interface(void* ptr)
+struct QtDBus_PackedString QDBusAbstractInterface_Interface(void* ptr)
 {
-	return const_cast<char*>(static_cast<QDBusAbstractInterface*>(ptr)->interface().toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray t8d0ae4 = static_cast<QDBusAbstractInterface*>(ptr)->interface().toUtf8(); QtDBus_PackedString { const_cast<char*>(t8d0ae4.prepend("WHITESPACE").constData()+10), t8d0ae4.size()-10 }; });
 }
 
 char QDBusAbstractInterface_IsValid(void* ptr)
@@ -191,14 +192,14 @@ void* QDBusAbstractInterface_LastError(void* ptr)
 	return new QDBusError(static_cast<QDBusAbstractInterface*>(ptr)->lastError());
 }
 
-char* QDBusAbstractInterface_Path(void* ptr)
+struct QtDBus_PackedString QDBusAbstractInterface_Path(void* ptr)
 {
-	return const_cast<char*>(static_cast<QDBusAbstractInterface*>(ptr)->path().toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray tff3773 = static_cast<QDBusAbstractInterface*>(ptr)->path().toUtf8(); QtDBus_PackedString { const_cast<char*>(tff3773.prepend("WHITESPACE").constData()+10), tff3773.size()-10 }; });
 }
 
-char* QDBusAbstractInterface_Service(void* ptr)
+struct QtDBus_PackedString QDBusAbstractInterface_Service(void* ptr)
 {
-	return const_cast<char*>(static_cast<QDBusAbstractInterface*>(ptr)->service().toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray t0c0f21 = static_cast<QDBusAbstractInterface*>(ptr)->service().toUtf8(); QtDBus_PackedString { const_cast<char*>(t0c0f21.prepend("WHITESPACE").constData()+10), t0c0f21.size()-10 }; });
 }
 
 void QDBusAbstractInterface_SetTimeout(void* ptr, int timeout)
@@ -456,9 +457,9 @@ void* QDBusConnection_NewQDBusConnection(char* name)
 	return new QDBusConnection(QString(name));
 }
 
-char* QDBusConnection_BaseService(void* ptr)
+struct QtDBus_PackedString QDBusConnection_BaseService(void* ptr)
 {
-	return const_cast<char*>(static_cast<QDBusConnection*>(ptr)->baseService().toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray tcfa988 = static_cast<QDBusConnection*>(ptr)->baseService().toUtf8(); QtDBus_PackedString { const_cast<char*>(tcfa988.prepend("WHITESPACE").constData()+10), tcfa988.size()-10 }; });
 }
 
 void* QDBusConnection_AsyncCall(void* ptr, void* message, int timeout)
@@ -546,14 +547,14 @@ void* QDBusConnection_LastError(void* ptr)
 	return new QDBusError(static_cast<QDBusConnection*>(ptr)->lastError());
 }
 
-char* QDBusConnection_QDBusConnection_LocalMachineId()
+void* QDBusConnection_QDBusConnection_LocalMachineId()
 {
-	return const_cast<char*>(QDBusConnection::localMachineId().toHex().prepend("WHITESPACE").constData()+10);
+	return new QByteArray(QDBusConnection::localMachineId());
 }
 
-char* QDBusConnection_Name(void* ptr)
+struct QtDBus_PackedString QDBusConnection_Name(void* ptr)
 {
-	return const_cast<char*>(static_cast<QDBusConnection*>(ptr)->name().toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray tc0189b = static_cast<QDBusConnection*>(ptr)->name().toUtf8(); QtDBus_PackedString { const_cast<char*>(tc0189b.prepend("WHITESPACE").constData()+10), tc0189b.size()-10 }; });
 }
 
 void* QDBusConnection_ObjectRegisteredAt(void* ptr, char* path)
@@ -605,8 +606,8 @@ class MyQDBusConnectionInterface: public QDBusConnectionInterface
 {
 public:
 	void Signal_CallWithCallbackFailed(const QDBusError & error, const QDBusMessage & call) { callbackQDBusConnectionInterface_CallWithCallbackFailed(this, const_cast<QDBusError*>(&error), const_cast<QDBusMessage*>(&call)); };
-	void Signal_ServiceRegistered(const QString & serviceName) { callbackQDBusConnectionInterface_ServiceRegistered(this, const_cast<char*>(serviceName.toUtf8().prepend("WHITESPACE").constData()+10)); };
-	void Signal_ServiceUnregistered(const QString & serviceName) { callbackQDBusConnectionInterface_ServiceUnregistered(this, const_cast<char*>(serviceName.toUtf8().prepend("WHITESPACE").constData()+10)); };
+	void Signal_ServiceRegistered(const QString & serviceName) { QByteArray tc151ab = serviceName.toUtf8(); QtDBus_PackedString serviceNamePacked = { const_cast<char*>(tc151ab.prepend("WHITESPACE").constData()+10), tc151ab.size()-10 };callbackQDBusConnectionInterface_ServiceRegistered(this, serviceNamePacked); };
+	void Signal_ServiceUnregistered(const QString & serviceName) { QByteArray tc151ab = serviceName.toUtf8(); QtDBus_PackedString serviceNamePacked = { const_cast<char*>(tc151ab.prepend("WHITESPACE").constData()+10), tc151ab.size()-10 };callbackQDBusConnectionInterface_ServiceUnregistered(this, serviceNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQDBusConnectionInterface_TimerEvent(this, event); };
 	void childEvent(QChildEvent * event) { callbackQDBusConnectionInterface_ChildEvent(this, event); };
 	void connectNotify(const QMetaMethod & sign) { callbackQDBusConnectionInterface_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
@@ -803,9 +804,9 @@ void* QDBusError_NewQDBusError(void* other)
 	return new QDBusError(*static_cast<QDBusError*>(other));
 }
 
-char* QDBusError_QDBusError_ErrorString(long long error)
+struct QtDBus_PackedString QDBusError_QDBusError_ErrorString(long long error)
 {
-	return const_cast<char*>(QDBusError::errorString(static_cast<QDBusError::ErrorType>(error)).toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray t5f2f4f = QDBusError::errorString(static_cast<QDBusError::ErrorType>(error)).toUtf8(); QtDBus_PackedString { const_cast<char*>(t5f2f4f.prepend("WHITESPACE").constData()+10), t5f2f4f.size()-10 }; });
 }
 
 char QDBusError_IsValid(void* ptr)
@@ -813,14 +814,14 @@ char QDBusError_IsValid(void* ptr)
 	return static_cast<QDBusError*>(ptr)->isValid();
 }
 
-char* QDBusError_Message(void* ptr)
+struct QtDBus_PackedString QDBusError_Message(void* ptr)
 {
-	return const_cast<char*>(static_cast<QDBusError*>(ptr)->message().toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray t8f05f3 = static_cast<QDBusError*>(ptr)->message().toUtf8(); QtDBus_PackedString { const_cast<char*>(t8f05f3.prepend("WHITESPACE").constData()+10), t8f05f3.size()-10 }; });
 }
 
-char* QDBusError_Name(void* ptr)
+struct QtDBus_PackedString QDBusError_Name(void* ptr)
 {
-	return const_cast<char*>(static_cast<QDBusError*>(ptr)->name().toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray t93fa91 = static_cast<QDBusError*>(ptr)->name().toUtf8(); QtDBus_PackedString { const_cast<char*>(t93fa91.prepend("WHITESPACE").constData()+10), t93fa91.size()-10 }; });
 }
 
 void QDBusError_Swap(void* ptr, void* other)
@@ -998,19 +999,19 @@ void* QDBusMessage_QDBusMessage_CreateTargetedSignal(char* service, char* path, 
 	return new QDBusMessage(QDBusMessage::createTargetedSignal(QString(service), QString(path), QString(interfa), QString(name)));
 }
 
-char* QDBusMessage_ErrorMessage(void* ptr)
+struct QtDBus_PackedString QDBusMessage_ErrorMessage(void* ptr)
 {
-	return const_cast<char*>(static_cast<QDBusMessage*>(ptr)->errorMessage().toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray tc477a7 = static_cast<QDBusMessage*>(ptr)->errorMessage().toUtf8(); QtDBus_PackedString { const_cast<char*>(tc477a7.prepend("WHITESPACE").constData()+10), tc477a7.size()-10 }; });
 }
 
-char* QDBusMessage_ErrorName(void* ptr)
+struct QtDBus_PackedString QDBusMessage_ErrorName(void* ptr)
 {
-	return const_cast<char*>(static_cast<QDBusMessage*>(ptr)->errorName().toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray td5d165 = static_cast<QDBusMessage*>(ptr)->errorName().toUtf8(); QtDBus_PackedString { const_cast<char*>(td5d165.prepend("WHITESPACE").constData()+10), td5d165.size()-10 }; });
 }
 
-char* QDBusMessage_Interface(void* ptr)
+struct QtDBus_PackedString QDBusMessage_Interface(void* ptr)
 {
-	return const_cast<char*>(static_cast<QDBusMessage*>(ptr)->interface().toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray tf9de81 = static_cast<QDBusMessage*>(ptr)->interface().toUtf8(); QtDBus_PackedString { const_cast<char*>(tf9de81.prepend("WHITESPACE").constData()+10), tf9de81.size()-10 }; });
 }
 
 char QDBusMessage_IsDelayedReply(void* ptr)
@@ -1023,19 +1024,19 @@ char QDBusMessage_IsReplyRequired(void* ptr)
 	return static_cast<QDBusMessage*>(ptr)->isReplyRequired();
 }
 
-char* QDBusMessage_Member(void* ptr)
+struct QtDBus_PackedString QDBusMessage_Member(void* ptr)
 {
-	return const_cast<char*>(static_cast<QDBusMessage*>(ptr)->member().toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray t2721ac = static_cast<QDBusMessage*>(ptr)->member().toUtf8(); QtDBus_PackedString { const_cast<char*>(t2721ac.prepend("WHITESPACE").constData()+10), t2721ac.size()-10 }; });
 }
 
-char* QDBusMessage_Path(void* ptr)
+struct QtDBus_PackedString QDBusMessage_Path(void* ptr)
 {
-	return const_cast<char*>(static_cast<QDBusMessage*>(ptr)->path().toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray t513da4 = static_cast<QDBusMessage*>(ptr)->path().toUtf8(); QtDBus_PackedString { const_cast<char*>(t513da4.prepend("WHITESPACE").constData()+10), t513da4.size()-10 }; });
 }
 
-char* QDBusMessage_Service(void* ptr)
+struct QtDBus_PackedString QDBusMessage_Service(void* ptr)
 {
-	return const_cast<char*>(static_cast<QDBusMessage*>(ptr)->service().toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray te30c43 = static_cast<QDBusMessage*>(ptr)->service().toUtf8(); QtDBus_PackedString { const_cast<char*>(te30c43.prepend("WHITESPACE").constData()+10), te30c43.size()-10 }; });
 }
 
 void QDBusMessage_SetAutoStartService(void* ptr, char enable)
@@ -1048,9 +1049,9 @@ void QDBusMessage_SetDelayedReply(void* ptr, char enable)
 	static_cast<QDBusMessage*>(ptr)->setDelayedReply(enable != 0);
 }
 
-char* QDBusMessage_Signature(void* ptr)
+struct QtDBus_PackedString QDBusMessage_Signature(void* ptr)
 {
-	return const_cast<char*>(static_cast<QDBusMessage*>(ptr)->signature().toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray tb0ac7d = static_cast<QDBusMessage*>(ptr)->signature().toUtf8(); QtDBus_PackedString { const_cast<char*>(tb0ac7d.prepend("WHITESPACE").constData()+10), tb0ac7d.size()-10 }; });
 }
 
 void QDBusMessage_Swap(void* ptr, void* other)
@@ -1093,9 +1094,9 @@ void* QDBusObjectPath_NewQDBusObjectPath2(char* path)
 	return new QDBusObjectPath(const_cast<const char*>(path));
 }
 
-char* QDBusObjectPath_Path(void* ptr)
+struct QtDBus_PackedString QDBusObjectPath_Path(void* ptr)
 {
-	return const_cast<char*>(static_cast<QDBusObjectPath*>(ptr)->path().toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray t6519e6 = static_cast<QDBusObjectPath*>(ptr)->path().toUtf8(); QtDBus_PackedString { const_cast<char*>(t6519e6.prepend("WHITESPACE").constData()+10), t6519e6.size()-10 }; });
 }
 
 void QDBusObjectPath_SetPath(void* ptr, char* path)
@@ -1302,9 +1303,9 @@ void* QDBusServer_NewQDBusServer(char* address, void* parent)
 	return new MyQDBusServer(QString(address), static_cast<QObject*>(parent));
 }
 
-char* QDBusServer_Address(void* ptr)
+struct QtDBus_PackedString QDBusServer_Address(void* ptr)
 {
-	return const_cast<char*>(static_cast<QDBusServer*>(ptr)->address().toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray t8337f2 = static_cast<QDBusServer*>(ptr)->address().toUtf8(); QtDBus_PackedString { const_cast<char*>(t8337f2.prepend("WHITESPACE").constData()+10), t8337f2.size()-10 }; });
 }
 
 char QDBusServer_IsAnonymousAuthenticationAllowed(void* ptr)
@@ -1447,9 +1448,9 @@ class MyQDBusServiceWatcher: public QDBusServiceWatcher
 public:
 	MyQDBusServiceWatcher(QObject *parent) : QDBusServiceWatcher(parent) {};
 	MyQDBusServiceWatcher(const QString &service, const QDBusConnection &connection, WatchMode watchMode, QObject *parent) : QDBusServiceWatcher(service, connection, watchMode, parent) {};
-	void Signal_ServiceOwnerChanged(const QString & serviceName, const QString & oldOwner, const QString & newOwner) { callbackQDBusServiceWatcher_ServiceOwnerChanged(this, const_cast<char*>(serviceName.toUtf8().prepend("WHITESPACE").constData()+10), const_cast<char*>(oldOwner.toUtf8().prepend("WHITESPACE").constData()+10), const_cast<char*>(newOwner.toUtf8().prepend("WHITESPACE").constData()+10)); };
-	void Signal_ServiceRegistered(const QString & serviceName) { callbackQDBusServiceWatcher_ServiceRegistered(this, const_cast<char*>(serviceName.toUtf8().prepend("WHITESPACE").constData()+10)); };
-	void Signal_ServiceUnregistered(const QString & serviceName) { callbackQDBusServiceWatcher_ServiceUnregistered(this, const_cast<char*>(serviceName.toUtf8().prepend("WHITESPACE").constData()+10)); };
+	void Signal_ServiceOwnerChanged(const QString & serviceName, const QString & oldOwner, const QString & newOwner) { QByteArray tc151ab = serviceName.toUtf8(); QtDBus_PackedString serviceNamePacked = { const_cast<char*>(tc151ab.prepend("WHITESPACE").constData()+10), tc151ab.size()-10 };QByteArray t9456b1 = oldOwner.toUtf8(); QtDBus_PackedString oldOwnerPacked = { const_cast<char*>(t9456b1.prepend("WHITESPACE").constData()+10), t9456b1.size()-10 };QByteArray t157d45 = newOwner.toUtf8(); QtDBus_PackedString newOwnerPacked = { const_cast<char*>(t157d45.prepend("WHITESPACE").constData()+10), t157d45.size()-10 };callbackQDBusServiceWatcher_ServiceOwnerChanged(this, serviceNamePacked, oldOwnerPacked, newOwnerPacked); };
+	void Signal_ServiceRegistered(const QString & serviceName) { QByteArray tc151ab = serviceName.toUtf8(); QtDBus_PackedString serviceNamePacked = { const_cast<char*>(tc151ab.prepend("WHITESPACE").constData()+10), tc151ab.size()-10 };callbackQDBusServiceWatcher_ServiceRegistered(this, serviceNamePacked); };
+	void Signal_ServiceUnregistered(const QString & serviceName) { QByteArray tc151ab = serviceName.toUtf8(); QtDBus_PackedString serviceNamePacked = { const_cast<char*>(tc151ab.prepend("WHITESPACE").constData()+10), tc151ab.size()-10 };callbackQDBusServiceWatcher_ServiceUnregistered(this, serviceNamePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQDBusServiceWatcher_TimerEvent(this, event); };
 	void childEvent(QChildEvent * event) { callbackQDBusServiceWatcher_ChildEvent(this, event); };
 	void connectNotify(const QMetaMethod & sign) { callbackQDBusServiceWatcher_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
@@ -1551,9 +1552,9 @@ void QDBusServiceWatcher_SetWatchedServices(void* ptr, char* services)
 	static_cast<QDBusServiceWatcher*>(ptr)->setWatchedServices(QString(services).split("|", QString::SkipEmptyParts));
 }
 
-char* QDBusServiceWatcher_WatchedServices(void* ptr)
+struct QtDBus_PackedString QDBusServiceWatcher_WatchedServices(void* ptr)
 {
-	return const_cast<char*>(static_cast<QDBusServiceWatcher*>(ptr)->watchedServices().join("|").toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray t4599ca = static_cast<QDBusServiceWatcher*>(ptr)->watchedServices().join("|").toUtf8(); QtDBus_PackedString { const_cast<char*>(t4599ca.prepend("WHITESPACE").constData()+10), t4599ca.size()-10 }; });
 }
 
 void QDBusServiceWatcher_DestroyQDBusServiceWatcher(void* ptr)
@@ -1681,9 +1682,9 @@ void QDBusSignature_SetSignature(void* ptr, char* signature)
 	static_cast<QDBusSignature*>(ptr)->setSignature(QString(signature));
 }
 
-char* QDBusSignature_Signature(void* ptr)
+struct QtDBus_PackedString QDBusSignature_Signature(void* ptr)
 {
-	return const_cast<char*>(static_cast<QDBusSignature*>(ptr)->signature().toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray t4b8ef7 = static_cast<QDBusSignature*>(ptr)->signature().toUtf8(); QtDBus_PackedString { const_cast<char*>(t4b8ef7.prepend("WHITESPACE").constData()+10), t4b8ef7.size()-10 }; });
 }
 
 void QDBusSignature_Swap(void* ptr, void* other)
@@ -1771,7 +1772,7 @@ class MyQDBusVirtualObject: public QDBusVirtualObject
 public:
 	MyQDBusVirtualObject(QObject *parent) : QDBusVirtualObject(parent) {};
 	bool handleMessage(const QDBusMessage & message, const QDBusConnection & connection) { return callbackQDBusVirtualObject_HandleMessage(this, const_cast<QDBusMessage*>(&message), const_cast<QDBusConnection*>(&connection)) != 0; };
-	QString introspect(const QString & path) const { return QString(callbackQDBusVirtualObject_Introspect(const_cast<MyQDBusVirtualObject*>(this), const_cast<char*>(path.toUtf8().prepend("WHITESPACE").constData()+10))); };
+	QString introspect(const QString & path) const { QByteArray t3150ec = path.toUtf8(); QtDBus_PackedString pathPacked = { const_cast<char*>(t3150ec.prepend("WHITESPACE").constData()+10), t3150ec.size()-10 };return QString(callbackQDBusVirtualObject_Introspect(const_cast<MyQDBusVirtualObject*>(this), pathPacked)); };
 	 ~MyQDBusVirtualObject() { callbackQDBusVirtualObject_DestroyQDBusVirtualObject(this); };
 	void timerEvent(QTimerEvent * event) { callbackQDBusVirtualObject_TimerEvent(this, event); };
 	void childEvent(QChildEvent * event) { callbackQDBusVirtualObject_ChildEvent(this, event); };
@@ -1794,9 +1795,9 @@ char QDBusVirtualObject_HandleMessage(void* ptr, void* message, void* connection
 	return static_cast<QDBusVirtualObject*>(ptr)->handleMessage(*static_cast<QDBusMessage*>(message), *static_cast<QDBusConnection*>(connection));
 }
 
-char* QDBusVirtualObject_Introspect(void* ptr, char* path)
+struct QtDBus_PackedString QDBusVirtualObject_Introspect(void* ptr, char* path)
 {
-	return const_cast<char*>(static_cast<QDBusVirtualObject*>(ptr)->introspect(QString(path)).toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray t027267 = static_cast<QDBusVirtualObject*>(ptr)->introspect(QString(path)).toUtf8(); QtDBus_PackedString { const_cast<char*>(t027267.prepend("WHITESPACE").constData()+10), t027267.size()-10 }; });
 }
 
 void QDBusVirtualObject_DestroyQDBusVirtualObject(void* ptr)

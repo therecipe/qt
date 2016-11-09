@@ -13,6 +13,13 @@ import (
 	"unsafe"
 )
 
+func cGoUnpackString(s C.struct_QtGamepad_PackedString) string {
+	if len := int(s.len); len == -1 {
+		return C.GoString(s.data)
+	}
+	return C.GoStringN(s.data, C.int(s.len))
+}
+
 type QGamepad struct {
 	core.QObject
 }
@@ -221,7 +228,7 @@ func (ptr *QGamepad) IsConnected() bool {
 
 func (ptr *QGamepad) Name() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QGamepad_Name(ptr.Pointer()))
+		return cGoUnpackString(C.QGamepad_Name(ptr.Pointer()))
 	}
 	return ""
 }
@@ -959,10 +966,10 @@ func (ptr *QGamepad) DeviceIdChanged(value int) {
 }
 
 //export callbackQGamepad_NameChanged
-func callbackQGamepad_NameChanged(ptr unsafe.Pointer, value *C.char) {
+func callbackQGamepad_NameChanged(ptr unsafe.Pointer, value C.struct_QtGamepad_PackedString) {
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QGamepad::nameChanged"); signal != nil {
-		signal.(func(string))(C.GoString(value))
+		signal.(func(string))(cGoUnpackString(value))
 	}
 
 }

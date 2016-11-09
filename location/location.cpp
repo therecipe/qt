@@ -6,6 +6,7 @@
 #include "location.h"
 #include "_cgo_export.h"
 
+#include <QByteArray>
 #include <QChildEvent>
 #include <QEvent>
 #include <QGeoCoordinate>
@@ -48,9 +49,9 @@ double QGeoManeuver_DistanceToNextInstruction(void* ptr)
 	return static_cast<QGeoManeuver*>(ptr)->distanceToNextInstruction();
 }
 
-char* QGeoManeuver_InstructionText(void* ptr)
+struct QtLocation_PackedString QGeoManeuver_InstructionText(void* ptr)
 {
-	return const_cast<char*>(static_cast<QGeoManeuver*>(ptr)->instructionText().toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray t4cc4b3 = static_cast<QGeoManeuver*>(ptr)->instructionText().toUtf8(); QtLocation_PackedString { const_cast<char*>(t4cc4b3.prepend("WHITESPACE").constData()+10), t4cc4b3.size()-10 }; });
 }
 
 char QGeoManeuver_IsValid(void* ptr)
@@ -138,9 +139,9 @@ void* QGeoRoute_Request(void* ptr)
 	return new QGeoRouteRequest(static_cast<QGeoRoute*>(ptr)->request());
 }
 
-char* QGeoRoute_RouteId(void* ptr)
+struct QtLocation_PackedString QGeoRoute_RouteId(void* ptr)
 {
-	return const_cast<char*>(static_cast<QGeoRoute*>(ptr)->routeId().toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray t7492be = static_cast<QGeoRoute*>(ptr)->routeId().toUtf8(); QtLocation_PackedString { const_cast<char*>(t7492be.prepend("WHITESPACE").constData()+10), t7492be.size()-10 }; });
 }
 
 void QGeoRoute_SetBounds(void* ptr, void* bounds)
@@ -199,7 +200,7 @@ public:
 	MyQGeoRouteReply(Error error, const QString &errorString, QObject *parent) : QGeoRouteReply(error, errorString, parent) {};
 	MyQGeoRouteReply(const QGeoRouteRequest &request, QObject *parent) : QGeoRouteReply(request, parent) {};
 	void abort() { callbackQGeoRouteReply_Abort(this); };
-	void Signal_Error2(QGeoRouteReply::Error error, const QString & errorString) { callbackQGeoRouteReply_Error2(this, error, const_cast<char*>(errorString.toUtf8().prepend("WHITESPACE").constData()+10)); };
+	void Signal_Error2(QGeoRouteReply::Error error, const QString & errorString) { QByteArray tc8b6bd = errorString.toUtf8(); QtLocation_PackedString errorStringPacked = { const_cast<char*>(tc8b6bd.prepend("WHITESPACE").constData()+10), tc8b6bd.size()-10 };callbackQGeoRouteReply_Error2(this, error, errorStringPacked); };
 	void Signal_Finished() { callbackQGeoRouteReply_Finished(this); };
 	 ~MyQGeoRouteReply() { callbackQGeoRouteReply_DestroyQGeoRouteReply(this); };
 	void timerEvent(QTimerEvent * event) { callbackQGeoRouteReply_TimerEvent(this, event); };
@@ -253,9 +254,9 @@ long long QGeoRouteReply_Error(void* ptr)
 	return static_cast<QGeoRouteReply*>(ptr)->error();
 }
 
-char* QGeoRouteReply_ErrorString(void* ptr)
+struct QtLocation_PackedString QGeoRouteReply_ErrorString(void* ptr)
 {
-	return const_cast<char*>(static_cast<QGeoRouteReply*>(ptr)->errorString().toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray t834aee = static_cast<QGeoRouteReply*>(ptr)->errorString().toUtf8(); QtLocation_PackedString { const_cast<char*>(t834aee.prepend("WHITESPACE").constData()+10), t834aee.size()-10 }; });
 }
 
 void QGeoRouteReply_ConnectFinished(void* ptr)
@@ -531,7 +532,7 @@ void QGeoRouteSegment_DestroyQGeoRouteSegment(void* ptr)
 class MyQGeoRoutingManager: public QGeoRoutingManager
 {
 public:
-	void Signal_Error(QGeoRouteReply * reply, QGeoRouteReply::Error error, QString errorString) { callbackQGeoRoutingManager_Error(this, reply, error, const_cast<char*>(errorString.toUtf8().prepend("WHITESPACE").constData()+10)); };
+	void Signal_Error(QGeoRouteReply * reply, QGeoRouteReply::Error error, QString errorString) { QByteArray tc8b6bd = errorString.toUtf8(); QtLocation_PackedString errorStringPacked = { const_cast<char*>(tc8b6bd.prepend("WHITESPACE").constData()+10), tc8b6bd.size()-10 };callbackQGeoRoutingManager_Error(this, reply, error, errorStringPacked); };
 	void Signal_Finished(QGeoRouteReply * reply) { callbackQGeoRoutingManager_Finished(this, reply); };
 	void timerEvent(QTimerEvent * event) { callbackQGeoRoutingManager_TimerEvent(this, event); };
 	void childEvent(QChildEvent * event) { callbackQGeoRoutingManager_ChildEvent(this, event); };
@@ -584,9 +585,9 @@ void* QGeoRoutingManager_Locale(void* ptr)
 	return new QLocale(static_cast<QGeoRoutingManager*>(ptr)->locale());
 }
 
-char* QGeoRoutingManager_ManagerName(void* ptr)
+struct QtLocation_PackedString QGeoRoutingManager_ManagerName(void* ptr)
 {
-	return const_cast<char*>(static_cast<QGeoRoutingManager*>(ptr)->managerName().toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray t48ee82 = static_cast<QGeoRoutingManager*>(ptr)->managerName().toUtf8(); QtLocation_PackedString { const_cast<char*>(t48ee82.prepend("WHITESPACE").constData()+10), t48ee82.size()-10 }; });
 }
 
 int QGeoRoutingManager_ManagerVersion(void* ptr)
@@ -743,7 +744,7 @@ class MyQGeoRoutingManagerEngine: public QGeoRoutingManagerEngine
 {
 public:
 	QGeoRouteReply * calculateRoute(const QGeoRouteRequest & request) { return static_cast<QGeoRouteReply*>(callbackQGeoRoutingManagerEngine_CalculateRoute(this, const_cast<QGeoRouteRequest*>(&request))); };
-	void Signal_Error(QGeoRouteReply * reply, QGeoRouteReply::Error error, QString errorString) { callbackQGeoRoutingManagerEngine_Error(this, reply, error, const_cast<char*>(errorString.toUtf8().prepend("WHITESPACE").constData()+10)); };
+	void Signal_Error(QGeoRouteReply * reply, QGeoRouteReply::Error error, QString errorString) { QByteArray tc8b6bd = errorString.toUtf8(); QtLocation_PackedString errorStringPacked = { const_cast<char*>(tc8b6bd.prepend("WHITESPACE").constData()+10), tc8b6bd.size()-10 };callbackQGeoRoutingManagerEngine_Error(this, reply, error, errorStringPacked); };
 	void Signal_Finished(QGeoRouteReply * reply) { callbackQGeoRoutingManagerEngine_Finished(this, reply); };
 	QGeoRouteReply * updateRoute(const QGeoRoute & route, const QGeoCoordinate & position) { return static_cast<QGeoRouteReply*>(callbackQGeoRoutingManagerEngine_UpdateRoute(this, const_cast<QGeoRoute*>(&route), const_cast<QGeoCoordinate*>(&position))); };
 	 ~MyQGeoRoutingManagerEngine() { callbackQGeoRoutingManagerEngine_DestroyQGeoRoutingManagerEngine(this); };
@@ -798,9 +799,9 @@ void* QGeoRoutingManagerEngine_Locale(void* ptr)
 	return new QLocale(static_cast<QGeoRoutingManagerEngine*>(ptr)->locale());
 }
 
-char* QGeoRoutingManagerEngine_ManagerName(void* ptr)
+struct QtLocation_PackedString QGeoRoutingManagerEngine_ManagerName(void* ptr)
 {
-	return const_cast<char*>(static_cast<QGeoRoutingManagerEngine*>(ptr)->managerName().toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray tce87b5 = static_cast<QGeoRoutingManagerEngine*>(ptr)->managerName().toUtf8(); QtLocation_PackedString { const_cast<char*>(tce87b5.prepend("WHITESPACE").constData()+10), tce87b5.size()-10 }; });
 }
 
 int QGeoRoutingManagerEngine_ManagerVersion(void* ptr)
@@ -1133,9 +1134,9 @@ int QGeoServiceProvider_AnyRoutingFeatures_Type()
 	return QGeoServiceProvider::AnyRoutingFeatures;
 }
 
-char* QGeoServiceProvider_QGeoServiceProvider_AvailableServiceProviders()
+struct QtLocation_PackedString QGeoServiceProvider_QGeoServiceProvider_AvailableServiceProviders()
 {
-	return const_cast<char*>(QGeoServiceProvider::availableServiceProviders().join("|").toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray teec3ca = QGeoServiceProvider::availableServiceProviders().join("|").toUtf8(); QtLocation_PackedString { const_cast<char*>(teec3ca.prepend("WHITESPACE").constData()+10), teec3ca.size()-10 }; });
 }
 
 long long QGeoServiceProvider_Error(void* ptr)
@@ -1143,9 +1144,9 @@ long long QGeoServiceProvider_Error(void* ptr)
 	return static_cast<QGeoServiceProvider*>(ptr)->error();
 }
 
-char* QGeoServiceProvider_ErrorString(void* ptr)
+struct QtLocation_PackedString QGeoServiceProvider_ErrorString(void* ptr)
 {
-	return const_cast<char*>(static_cast<QGeoServiceProvider*>(ptr)->errorString().toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray t90b712 = static_cast<QGeoServiceProvider*>(ptr)->errorString().toUtf8(); QtLocation_PackedString { const_cast<char*>(t90b712.prepend("WHITESPACE").constData()+10), t90b712.size()-10 }; });
 }
 
 long long QGeoServiceProvider_GeocodingFeatures(void* ptr)

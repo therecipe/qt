@@ -6,6 +6,7 @@
 #include "script.h"
 #include "_cgo_export.h"
 
+#include <QByteArray>
 #include <QChildEvent>
 #include <QDate>
 #include <QDateTime>
@@ -70,14 +71,14 @@ void* QScriptClass_ExtensionDefault(void* ptr, long long extension, void* argume
 	return new QVariant(static_cast<QScriptClass*>(ptr)->QScriptClass::extension(static_cast<QScriptClass::Extension>(extension), *static_cast<QVariant*>(argument)));
 }
 
-char* QScriptClass_Name(void* ptr)
+struct QtScript_PackedString QScriptClass_Name(void* ptr)
 {
-	return const_cast<char*>(static_cast<QScriptClass*>(ptr)->name().toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray t130656 = static_cast<QScriptClass*>(ptr)->name().toUtf8(); QtScript_PackedString { const_cast<char*>(t130656.prepend("WHITESPACE").constData()+10), t130656.size()-10 }; });
 }
 
-char* QScriptClass_NameDefault(void* ptr)
+struct QtScript_PackedString QScriptClass_NameDefault(void* ptr)
 {
-	return const_cast<char*>(static_cast<QScriptClass*>(ptr)->QScriptClass::name().toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray t9c2133 = static_cast<QScriptClass*>(ptr)->QScriptClass::name().toUtf8(); QtScript_PackedString { const_cast<char*>(t9c2133.prepend("WHITESPACE").constData()+10), t9c2133.size()-10 }; });
 }
 
 void* QScriptClass_NewIterator(void* ptr, void* object)
@@ -180,9 +181,9 @@ void* QScriptContext_ArgumentsObject(void* ptr)
 	return new QScriptValue(static_cast<QScriptContext*>(ptr)->argumentsObject());
 }
 
-char* QScriptContext_Backtrace(void* ptr)
+struct QtScript_PackedString QScriptContext_Backtrace(void* ptr)
 {
-	return const_cast<char*>(static_cast<QScriptContext*>(ptr)->backtrace().join("|").toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray t5c5475 = static_cast<QScriptContext*>(ptr)->backtrace().join("|").toUtf8(); QtScript_PackedString { const_cast<char*>(t5c5475.prepend("WHITESPACE").constData()+10), t5c5475.size()-10 }; });
 }
 
 void* QScriptContext_Callee(void* ptr)
@@ -240,9 +241,9 @@ void* QScriptContext_ThrowValue(void* ptr, void* value)
 	return new QScriptValue(static_cast<QScriptContext*>(ptr)->throwValue(*static_cast<QScriptValue*>(value)));
 }
 
-char* QScriptContext_ToString(void* ptr)
+struct QtScript_PackedString QScriptContext_ToString(void* ptr)
 {
-	return const_cast<char*>(static_cast<QScriptContext*>(ptr)->toString().toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray t23b7ea = static_cast<QScriptContext*>(ptr)->toString().toUtf8(); QtScript_PackedString { const_cast<char*>(t23b7ea.prepend("WHITESPACE").constData()+10), t23b7ea.size()-10 }; });
 }
 
 void QScriptContext_DestroyQScriptContext(void* ptr)
@@ -265,9 +266,9 @@ void* QScriptContextInfo_NewQScriptContextInfo2(void* other)
 	return new QScriptContextInfo(*static_cast<QScriptContextInfo*>(other));
 }
 
-char* QScriptContextInfo_FileName(void* ptr)
+struct QtScript_PackedString QScriptContextInfo_FileName(void* ptr)
 {
-	return const_cast<char*>(static_cast<QScriptContextInfo*>(ptr)->fileName().toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray tb20c89 = static_cast<QScriptContextInfo*>(ptr)->fileName().toUtf8(); QtScript_PackedString { const_cast<char*>(tb20c89.prepend("WHITESPACE").constData()+10), tb20c89.size()-10 }; });
 }
 
 int QScriptContextInfo_FunctionEndLineNumber(void* ptr)
@@ -280,14 +281,14 @@ int QScriptContextInfo_FunctionMetaIndex(void* ptr)
 	return static_cast<QScriptContextInfo*>(ptr)->functionMetaIndex();
 }
 
-char* QScriptContextInfo_FunctionName(void* ptr)
+struct QtScript_PackedString QScriptContextInfo_FunctionName(void* ptr)
 {
-	return const_cast<char*>(static_cast<QScriptContextInfo*>(ptr)->functionName().toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray tacfaa1 = static_cast<QScriptContextInfo*>(ptr)->functionName().toUtf8(); QtScript_PackedString { const_cast<char*>(tacfaa1.prepend("WHITESPACE").constData()+10), tacfaa1.size()-10 }; });
 }
 
-char* QScriptContextInfo_FunctionParameterNames(void* ptr)
+struct QtScript_PackedString QScriptContextInfo_FunctionParameterNames(void* ptr)
 {
-	return const_cast<char*>(static_cast<QScriptContextInfo*>(ptr)->functionParameterNames().join("|").toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray te54f54 = static_cast<QScriptContextInfo*>(ptr)->functionParameterNames().join("|").toUtf8(); QtScript_PackedString { const_cast<char*>(te54f54.prepend("WHITESPACE").constData()+10), te54f54.size()-10 }; });
 }
 
 int QScriptContextInfo_FunctionStartLineNumber(void* ptr)
@@ -358,9 +359,9 @@ void* QScriptEngine_Agent(void* ptr)
 	return static_cast<QScriptEngine*>(ptr)->agent();
 }
 
-char* QScriptEngine_AvailableExtensions(void* ptr)
+struct QtScript_PackedString QScriptEngine_AvailableExtensions(void* ptr)
 {
-	return const_cast<char*>(static_cast<QScriptEngine*>(ptr)->availableExtensions().join("|").toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray tf41e6e = static_cast<QScriptEngine*>(ptr)->availableExtensions().join("|").toUtf8(); QtScript_PackedString { const_cast<char*>(tf41e6e.prepend("WHITESPACE").constData()+10), tf41e6e.size()-10 }; });
 }
 
 void* QScriptEngine_QScriptEngine_CheckSyntax(char* program)
@@ -413,9 +414,9 @@ void* QScriptEngine_ImportExtension(void* ptr, char* extension)
 	return new QScriptValue(static_cast<QScriptEngine*>(ptr)->importExtension(QString(extension)));
 }
 
-char* QScriptEngine_ImportedExtensions(void* ptr)
+struct QtScript_PackedString QScriptEngine_ImportedExtensions(void* ptr)
 {
-	return const_cast<char*>(static_cast<QScriptEngine*>(ptr)->importedExtensions().join("|").toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray td77625 = static_cast<QScriptEngine*>(ptr)->importedExtensions().join("|").toUtf8(); QtScript_PackedString { const_cast<char*>(td77625.prepend("WHITESPACE").constData()+10), td77625.size()-10 }; });
 }
 
 void QScriptEngine_InstallTranslatorFunctions(void* ptr, void* object)
@@ -558,9 +559,9 @@ void* QScriptEngine_UncaughtException(void* ptr)
 	return new QScriptValue(static_cast<QScriptEngine*>(ptr)->uncaughtException());
 }
 
-char* QScriptEngine_UncaughtExceptionBacktrace(void* ptr)
+struct QtScript_PackedString QScriptEngine_UncaughtExceptionBacktrace(void* ptr)
 {
-	return const_cast<char*>(static_cast<QScriptEngine*>(ptr)->uncaughtExceptionBacktrace().join("|").toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray t6a16bc = static_cast<QScriptEngine*>(ptr)->uncaughtExceptionBacktrace().join("|").toUtf8(); QtScript_PackedString { const_cast<char*>(t6a16bc.prepend("WHITESPACE").constData()+10), t6a16bc.size()-10 }; });
 }
 
 int QScriptEngine_UncaughtExceptionLineNumber(void* ptr)
@@ -685,7 +686,7 @@ public:
 	void functionEntry(qint64 scriptId) { callbackQScriptEngineAgent_FunctionEntry(this, scriptId); };
 	void functionExit(qint64 scriptId, const QScriptValue & returnValue) { callbackQScriptEngineAgent_FunctionExit(this, scriptId, const_cast<QScriptValue*>(&returnValue)); };
 	void positionChange(qint64 scriptId, int lineNumber, int columnNumber) { callbackQScriptEngineAgent_PositionChange(this, scriptId, lineNumber, columnNumber); };
-	void scriptLoad(qint64 id, const QString & program, const QString & fileName, int baseLineNumber) { callbackQScriptEngineAgent_ScriptLoad(this, id, const_cast<char*>(program.toUtf8().prepend("WHITESPACE").constData()+10), const_cast<char*>(fileName.toUtf8().prepend("WHITESPACE").constData()+10), baseLineNumber); };
+	void scriptLoad(qint64 id, const QString & program, const QString & fileName, int baseLineNumber) { QByteArray t81d9ae = program.toUtf8(); QtScript_PackedString programPacked = { const_cast<char*>(t81d9ae.prepend("WHITESPACE").constData()+10), t81d9ae.size()-10 };QByteArray td83e09 = fileName.toUtf8(); QtScript_PackedString fileNamePacked = { const_cast<char*>(td83e09.prepend("WHITESPACE").constData()+10), td83e09.size()-10 };callbackQScriptEngineAgent_ScriptLoad(this, id, programPacked, fileNamePacked, baseLineNumber); };
 	void scriptUnload(qint64 id) { callbackQScriptEngineAgent_ScriptUnload(this, id); };
 	bool supportsExtension(QScriptEngineAgent::Extension extension) const { return callbackQScriptEngineAgent_SupportsExtension(const_cast<MyQScriptEngineAgent*>(this), extension) != 0; };
 	 ~MyQScriptEngineAgent() { callbackQScriptEngineAgent_DestroyQScriptEngineAgent(this); };
@@ -825,7 +826,7 @@ class MyQScriptExtensionPlugin: public QScriptExtensionPlugin
 {
 public:
 	MyQScriptExtensionPlugin(QObject *parent) : QScriptExtensionPlugin(parent) {};
-	void initialize(const QString & key, QScriptEngine * engine) { callbackQScriptExtensionPlugin_Initialize(this, const_cast<char*>(key.toUtf8().prepend("WHITESPACE").constData()+10), engine); };
+	void initialize(const QString & key, QScriptEngine * engine) { QByteArray ta62f22 = key.toUtf8(); QtScript_PackedString keyPacked = { const_cast<char*>(ta62f22.prepend("WHITESPACE").constData()+10), ta62f22.size()-10 };callbackQScriptExtensionPlugin_Initialize(this, keyPacked, engine); };
 	QStringList keys() const { return QString(callbackQScriptExtensionPlugin_Keys(const_cast<MyQScriptExtensionPlugin*>(this))).split("|", QString::SkipEmptyParts); };
 	void timerEvent(QTimerEvent * event) { callbackQScriptExtensionPlugin_TimerEvent(this, event); };
 	void childEvent(QChildEvent * event) { callbackQScriptExtensionPlugin_ChildEvent(this, event); };
@@ -848,9 +849,9 @@ void QScriptExtensionPlugin_Initialize(void* ptr, char* key, void* engine)
 	static_cast<QScriptExtensionPlugin*>(ptr)->initialize(QString(key), static_cast<QScriptEngine*>(engine));
 }
 
-char* QScriptExtensionPlugin_Keys(void* ptr)
+struct QtScript_PackedString QScriptExtensionPlugin_Keys(void* ptr)
 {
-	return const_cast<char*>(static_cast<QScriptExtensionPlugin*>(ptr)->keys().join("|").toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray tcd9b88 = static_cast<QScriptExtensionPlugin*>(ptr)->keys().join("|").toUtf8(); QtScript_PackedString { const_cast<char*>(tcd9b88.prepend("WHITESPACE").constData()+10), tcd9b88.size()-10 }; });
 }
 
 void* QScriptExtensionPlugin_SetupPackage(void* ptr, char* key, void* engine)
@@ -968,9 +969,9 @@ void* QScriptProgram_NewQScriptProgram2(char* sourceCode, char* fileName, int fi
 	return new QScriptProgram(QString(sourceCode), QString(fileName), firstLineNumber);
 }
 
-char* QScriptProgram_FileName(void* ptr)
+struct QtScript_PackedString QScriptProgram_FileName(void* ptr)
 {
-	return const_cast<char*>(static_cast<QScriptProgram*>(ptr)->fileName().toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray t3d5784 = static_cast<QScriptProgram*>(ptr)->fileName().toUtf8(); QtScript_PackedString { const_cast<char*>(t3d5784.prepend("WHITESPACE").constData()+10), t3d5784.size()-10 }; });
 }
 
 int QScriptProgram_FirstLineNumber(void* ptr)
@@ -983,9 +984,9 @@ char QScriptProgram_IsNull(void* ptr)
 	return static_cast<QScriptProgram*>(ptr)->isNull();
 }
 
-char* QScriptProgram_SourceCode(void* ptr)
+struct QtScript_PackedString QScriptProgram_SourceCode(void* ptr)
 {
-	return const_cast<char*>(static_cast<QScriptProgram*>(ptr)->sourceCode().toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray t385173 = static_cast<QScriptProgram*>(ptr)->sourceCode().toUtf8(); QtScript_PackedString { const_cast<char*>(t385173.prepend("WHITESPACE").constData()+10), t385173.size()-10 }; });
 }
 
 void QScriptProgram_DestroyQScriptProgram(void* ptr)
@@ -1013,9 +1014,9 @@ unsigned int QScriptString_ToArrayIndex(void* ptr, char ok)
 	return static_cast<QScriptString*>(ptr)->toArrayIndex(NULL);
 }
 
-char* QScriptString_ToString(void* ptr)
+struct QtScript_PackedString QScriptString_ToString(void* ptr)
 {
-	return const_cast<char*>(static_cast<QScriptString*>(ptr)->toString().toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray t12c6d8 = static_cast<QScriptString*>(ptr)->toString().toUtf8(); QtScript_PackedString { const_cast<char*>(t12c6d8.prepend("WHITESPACE").constData()+10), t12c6d8.size()-10 }; });
 }
 
 void QScriptString_DestroyQScriptString(void* ptr)
@@ -1038,9 +1039,9 @@ int QScriptSyntaxCheckResult_ErrorLineNumber(void* ptr)
 	return static_cast<QScriptSyntaxCheckResult*>(ptr)->errorLineNumber();
 }
 
-char* QScriptSyntaxCheckResult_ErrorMessage(void* ptr)
+struct QtScript_PackedString QScriptSyntaxCheckResult_ErrorMessage(void* ptr)
 {
-	return const_cast<char*>(static_cast<QScriptSyntaxCheckResult*>(ptr)->errorMessage().toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray t5bd6f3 = static_cast<QScriptSyntaxCheckResult*>(ptr)->errorMessage().toUtf8(); QtScript_PackedString { const_cast<char*>(t5bd6f3.prepend("WHITESPACE").constData()+10), t5bd6f3.size()-10 }; });
 }
 
 long long QScriptSyntaxCheckResult_State(void* ptr)
@@ -1308,9 +1309,9 @@ void* QScriptValue_ToRegExp(void* ptr)
 	return new QRegExp(static_cast<QScriptValue*>(ptr)->toRegExp());
 }
 
-char* QScriptValue_ToString(void* ptr)
+struct QtScript_PackedString QScriptValue_ToString(void* ptr)
 {
-	return const_cast<char*>(static_cast<QScriptValue*>(ptr)->toString().toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray t3ccbbf = static_cast<QScriptValue*>(ptr)->toString().toUtf8(); QtScript_PackedString { const_cast<char*>(t3ccbbf.prepend("WHITESPACE").constData()+10), t3ccbbf.size()-10 }; });
 }
 
 unsigned short QScriptValue_ToUInt16(void* ptr)

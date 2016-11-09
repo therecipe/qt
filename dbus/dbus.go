@@ -15,6 +15,13 @@ import (
 	"unsafe"
 )
 
+func cGoUnpackString(s C.struct_QtDBus_PackedString) string {
+	if len := int(s.len); len == -1 {
+		return C.GoString(s.data)
+	}
+	return C.GoStringN(s.data, C.int(s.len))
+}
+
 type QDBusAbstractAdaptor struct {
 	core.QObject
 }
@@ -486,7 +493,7 @@ func (ptr *QDBusAbstractInterface) Connection() *QDBusConnection {
 
 func (ptr *QDBusAbstractInterface) Interface() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QDBusAbstractInterface_Interface(ptr.Pointer()))
+		return cGoUnpackString(C.QDBusAbstractInterface_Interface(ptr.Pointer()))
 	}
 	return ""
 }
@@ -509,14 +516,14 @@ func (ptr *QDBusAbstractInterface) LastError() *QDBusError {
 
 func (ptr *QDBusAbstractInterface) Path() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QDBusAbstractInterface_Path(ptr.Pointer()))
+		return cGoUnpackString(C.QDBusAbstractInterface_Path(ptr.Pointer()))
 	}
 	return ""
 }
 
 func (ptr *QDBusAbstractInterface) Service() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QDBusAbstractInterface_Service(ptr.Pointer()))
+		return cGoUnpackString(C.QDBusAbstractInterface_Service(ptr.Pointer()))
 	}
 	return ""
 }
@@ -1237,7 +1244,7 @@ func NewQDBusConnection(name string) *QDBusConnection {
 
 func (ptr *QDBusConnection) BaseService() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QDBusConnection_BaseService(ptr.Pointer()))
+		return cGoUnpackString(C.QDBusConnection_BaseService(ptr.Pointer()))
 	}
 	return ""
 }
@@ -1490,17 +1497,21 @@ func (ptr *QDBusConnection) LastError() *QDBusError {
 	return nil
 }
 
-func QDBusConnection_LocalMachineId() string {
-	return qt.HexDecodeToString(C.GoString(C.QDBusConnection_QDBusConnection_LocalMachineId()))
+func QDBusConnection_LocalMachineId() *core.QByteArray {
+	var tmpValue = core.NewQByteArrayFromPointer(C.QDBusConnection_QDBusConnection_LocalMachineId())
+	runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+	return tmpValue
 }
 
-func (ptr *QDBusConnection) LocalMachineId() string {
-	return qt.HexDecodeToString(C.GoString(C.QDBusConnection_QDBusConnection_LocalMachineId()))
+func (ptr *QDBusConnection) LocalMachineId() *core.QByteArray {
+	var tmpValue = core.NewQByteArrayFromPointer(C.QDBusConnection_QDBusConnection_LocalMachineId())
+	runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+	return tmpValue
 }
 
 func (ptr *QDBusConnection) Name() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QDBusConnection_Name(ptr.Pointer()))
+		return cGoUnpackString(C.QDBusConnection_Name(ptr.Pointer()))
 	}
 	return ""
 }
@@ -1685,10 +1696,10 @@ func (ptr *QDBusConnectionInterface) CallWithCallbackFailed(error QDBusError_ITF
 }
 
 //export callbackQDBusConnectionInterface_ServiceRegistered
-func callbackQDBusConnectionInterface_ServiceRegistered(ptr unsafe.Pointer, serviceName *C.char) {
+func callbackQDBusConnectionInterface_ServiceRegistered(ptr unsafe.Pointer, serviceName C.struct_QtDBus_PackedString) {
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QDBusConnectionInterface::serviceRegistered"); signal != nil {
-		signal.(func(string))(C.GoString(serviceName))
+		signal.(func(string))(cGoUnpackString(serviceName))
 	}
 
 }
@@ -1716,10 +1727,10 @@ func (ptr *QDBusConnectionInterface) ServiceRegistered(serviceName string) {
 }
 
 //export callbackQDBusConnectionInterface_ServiceUnregistered
-func callbackQDBusConnectionInterface_ServiceUnregistered(ptr unsafe.Pointer, serviceName *C.char) {
+func callbackQDBusConnectionInterface_ServiceUnregistered(ptr unsafe.Pointer, serviceName C.struct_QtDBus_PackedString) {
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QDBusConnectionInterface::serviceUnregistered"); signal != nil {
-		signal.(func(string))(C.GoString(serviceName))
+		signal.(func(string))(cGoUnpackString(serviceName))
 	}
 
 }
@@ -2267,11 +2278,11 @@ func NewQDBusError(other QDBusError_ITF) *QDBusError {
 }
 
 func QDBusError_ErrorString(error QDBusError__ErrorType) string {
-	return C.GoString(C.QDBusError_QDBusError_ErrorString(C.longlong(error)))
+	return cGoUnpackString(C.QDBusError_QDBusError_ErrorString(C.longlong(error)))
 }
 
 func (ptr *QDBusError) ErrorString(error QDBusError__ErrorType) string {
-	return C.GoString(C.QDBusError_QDBusError_ErrorString(C.longlong(error)))
+	return cGoUnpackString(C.QDBusError_QDBusError_ErrorString(C.longlong(error)))
 }
 
 func (ptr *QDBusError) IsValid() bool {
@@ -2283,14 +2294,14 @@ func (ptr *QDBusError) IsValid() bool {
 
 func (ptr *QDBusError) Message() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QDBusError_Message(ptr.Pointer()))
+		return cGoUnpackString(C.QDBusError_Message(ptr.Pointer()))
 	}
 	return ""
 }
 
 func (ptr *QDBusError) Name() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QDBusError_Name(ptr.Pointer()))
+		return cGoUnpackString(C.QDBusError_Name(ptr.Pointer()))
 	}
 	return ""
 }
@@ -2940,21 +2951,21 @@ func (ptr *QDBusMessage) CreateTargetedSignal(service string, path string, inter
 
 func (ptr *QDBusMessage) ErrorMessage() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QDBusMessage_ErrorMessage(ptr.Pointer()))
+		return cGoUnpackString(C.QDBusMessage_ErrorMessage(ptr.Pointer()))
 	}
 	return ""
 }
 
 func (ptr *QDBusMessage) ErrorName() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QDBusMessage_ErrorName(ptr.Pointer()))
+		return cGoUnpackString(C.QDBusMessage_ErrorName(ptr.Pointer()))
 	}
 	return ""
 }
 
 func (ptr *QDBusMessage) Interface() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QDBusMessage_Interface(ptr.Pointer()))
+		return cGoUnpackString(C.QDBusMessage_Interface(ptr.Pointer()))
 	}
 	return ""
 }
@@ -2975,21 +2986,21 @@ func (ptr *QDBusMessage) IsReplyRequired() bool {
 
 func (ptr *QDBusMessage) Member() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QDBusMessage_Member(ptr.Pointer()))
+		return cGoUnpackString(C.QDBusMessage_Member(ptr.Pointer()))
 	}
 	return ""
 }
 
 func (ptr *QDBusMessage) Path() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QDBusMessage_Path(ptr.Pointer()))
+		return cGoUnpackString(C.QDBusMessage_Path(ptr.Pointer()))
 	}
 	return ""
 }
 
 func (ptr *QDBusMessage) Service() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QDBusMessage_Service(ptr.Pointer()))
+		return cGoUnpackString(C.QDBusMessage_Service(ptr.Pointer()))
 	}
 	return ""
 }
@@ -3008,7 +3019,7 @@ func (ptr *QDBusMessage) SetDelayedReply(enable bool) {
 
 func (ptr *QDBusMessage) Signature() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QDBusMessage_Signature(ptr.Pointer()))
+		return cGoUnpackString(C.QDBusMessage_Signature(ptr.Pointer()))
 	}
 	return ""
 }
@@ -3114,7 +3125,7 @@ func NewQDBusObjectPath2(path string) *QDBusObjectPath {
 
 func (ptr *QDBusObjectPath) Path() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QDBusObjectPath_Path(ptr.Pointer()))
+		return cGoUnpackString(C.QDBusObjectPath_Path(ptr.Pointer()))
 	}
 	return ""
 }
@@ -3790,7 +3801,7 @@ func NewQDBusServer(address string, parent core.QObject_ITF) *QDBusServer {
 
 func (ptr *QDBusServer) Address() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QDBusServer_Address(ptr.Pointer()))
+		return cGoUnpackString(C.QDBusServer_Address(ptr.Pointer()))
 	}
 	return ""
 }
@@ -4331,10 +4342,10 @@ func (ptr *QDBusServiceWatcher) RemoveWatchedService(service string) bool {
 }
 
 //export callbackQDBusServiceWatcher_ServiceOwnerChanged
-func callbackQDBusServiceWatcher_ServiceOwnerChanged(ptr unsafe.Pointer, serviceName *C.char, oldOwner *C.char, newOwner *C.char) {
+func callbackQDBusServiceWatcher_ServiceOwnerChanged(ptr unsafe.Pointer, serviceName C.struct_QtDBus_PackedString, oldOwner C.struct_QtDBus_PackedString, newOwner C.struct_QtDBus_PackedString) {
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QDBusServiceWatcher::serviceOwnerChanged"); signal != nil {
-		signal.(func(string, string, string))(C.GoString(serviceName), C.GoString(oldOwner), C.GoString(newOwner))
+		signal.(func(string, string, string))(cGoUnpackString(serviceName), cGoUnpackString(oldOwner), cGoUnpackString(newOwner))
 	}
 
 }
@@ -4366,10 +4377,10 @@ func (ptr *QDBusServiceWatcher) ServiceOwnerChanged(serviceName string, oldOwner
 }
 
 //export callbackQDBusServiceWatcher_ServiceRegistered
-func callbackQDBusServiceWatcher_ServiceRegistered(ptr unsafe.Pointer, serviceName *C.char) {
+func callbackQDBusServiceWatcher_ServiceRegistered(ptr unsafe.Pointer, serviceName C.struct_QtDBus_PackedString) {
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QDBusServiceWatcher::serviceRegistered"); signal != nil {
-		signal.(func(string))(C.GoString(serviceName))
+		signal.(func(string))(cGoUnpackString(serviceName))
 	}
 
 }
@@ -4397,10 +4408,10 @@ func (ptr *QDBusServiceWatcher) ServiceRegistered(serviceName string) {
 }
 
 //export callbackQDBusServiceWatcher_ServiceUnregistered
-func callbackQDBusServiceWatcher_ServiceUnregistered(ptr unsafe.Pointer, serviceName *C.char) {
+func callbackQDBusServiceWatcher_ServiceUnregistered(ptr unsafe.Pointer, serviceName C.struct_QtDBus_PackedString) {
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QDBusServiceWatcher::serviceUnregistered"); signal != nil {
-		signal.(func(string))(C.GoString(serviceName))
+		signal.(func(string))(cGoUnpackString(serviceName))
 	}
 
 }
@@ -4443,7 +4454,7 @@ func (ptr *QDBusServiceWatcher) SetWatchedServices(services []string) {
 
 func (ptr *QDBusServiceWatcher) WatchedServices() []string {
 	if ptr.Pointer() != nil {
-		return strings.Split(C.GoString(C.QDBusServiceWatcher_WatchedServices(ptr.Pointer())), "|")
+		return strings.Split(cGoUnpackString(C.QDBusServiceWatcher_WatchedServices(ptr.Pointer())), "|")
 	}
 	return make([]string, 0)
 }
@@ -4878,7 +4889,7 @@ func (ptr *QDBusSignature) SetSignature(signature string) {
 
 func (ptr *QDBusSignature) Signature() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QDBusSignature_Signature(ptr.Pointer()))
+		return cGoUnpackString(C.QDBusSignature_Signature(ptr.Pointer()))
 	}
 	return ""
 }
@@ -5145,10 +5156,10 @@ func (ptr *QDBusVirtualObject) HandleMessage(message QDBusMessage_ITF, connectio
 }
 
 //export callbackQDBusVirtualObject_Introspect
-func callbackQDBusVirtualObject_Introspect(ptr unsafe.Pointer, path *C.char) *C.char {
+func callbackQDBusVirtualObject_Introspect(ptr unsafe.Pointer, path C.struct_QtDBus_PackedString) *C.char {
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QDBusVirtualObject::introspect"); signal != nil {
-		return C.CString(signal.(func(string) string)(C.GoString(path)))
+		return C.CString(signal.(func(string) string)(cGoUnpackString(path)))
 	}
 
 	return C.CString("")
@@ -5172,7 +5183,7 @@ func (ptr *QDBusVirtualObject) Introspect(path string) string {
 	if ptr.Pointer() != nil {
 		var pathC = C.CString(path)
 		defer C.free(unsafe.Pointer(pathC))
-		return C.GoString(C.QDBusVirtualObject_Introspect(ptr.Pointer(), pathC))
+		return cGoUnpackString(C.QDBusVirtualObject_Introspect(ptr.Pointer(), pathC))
 	}
 	return ""
 }

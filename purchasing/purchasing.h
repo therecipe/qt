@@ -11,11 +11,12 @@
 extern "C" {
 #endif
 
-char* QInAppProduct_Description(void* ptr);
-char* QInAppProduct_Identifier(void* ptr);
-char* QInAppProduct_Price(void* ptr);
+struct QtPurchasing_PackedString { char* data; long long len; };
+struct QtPurchasing_PackedString QInAppProduct_Description(void* ptr);
+struct QtPurchasing_PackedString QInAppProduct_Identifier(void* ptr);
+struct QtPurchasing_PackedString QInAppProduct_Price(void* ptr);
 long long QInAppProduct_ProductType(void* ptr);
-char* QInAppProduct_Title(void* ptr);
+struct QtPurchasing_PackedString QInAppProduct_Title(void* ptr);
 void QInAppProduct_Purchase(void* ptr);
 void QInAppProduct_TimerEvent(void* ptr, void* event);
 void QInAppProduct_TimerEventDefault(void* ptr, void* event);
@@ -68,19 +69,19 @@ char QInAppStore_EventFilter(void* ptr, void* watched, void* event);
 char QInAppStore_EventFilterDefault(void* ptr, void* watched, void* event);
 void* QInAppStore_MetaObject(void* ptr);
 void* QInAppStore_MetaObjectDefault(void* ptr);
-char* QInAppTransaction_ErrorString(void* ptr);
-char* QInAppTransaction_ErrorStringDefault(void* ptr);
+struct QtPurchasing_PackedString QInAppTransaction_ErrorString(void* ptr);
+struct QtPurchasing_PackedString QInAppTransaction_ErrorStringDefault(void* ptr);
 long long QInAppTransaction_FailureReason(void* ptr);
 long long QInAppTransaction_FailureReasonDefault(void* ptr);
-char* QInAppTransaction_OrderId(void* ptr);
-char* QInAppTransaction_OrderIdDefault(void* ptr);
+struct QtPurchasing_PackedString QInAppTransaction_OrderId(void* ptr);
+struct QtPurchasing_PackedString QInAppTransaction_OrderIdDefault(void* ptr);
 void* QInAppTransaction_Product(void* ptr);
 long long QInAppTransaction_Status(void* ptr);
 void* QInAppTransaction_Timestamp(void* ptr);
 void* QInAppTransaction_TimestampDefault(void* ptr);
 void QInAppTransaction_Finalize(void* ptr);
-char* QInAppTransaction_PlatformProperty(void* ptr, char* propertyName);
-char* QInAppTransaction_PlatformPropertyDefault(void* ptr, char* propertyName);
+struct QtPurchasing_PackedString QInAppTransaction_PlatformProperty(void* ptr, char* propertyName);
+struct QtPurchasing_PackedString QInAppTransaction_PlatformPropertyDefault(void* ptr, char* propertyName);
 void QInAppTransaction_TimerEvent(void* ptr, void* event);
 void QInAppTransaction_TimerEventDefault(void* ptr, void* event);
 void QInAppTransaction_ChildEvent(void* ptr, void* event);

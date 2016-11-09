@@ -15,6 +15,13 @@ import (
 	"unsafe"
 )
 
+func cGoUnpackString(s C.struct_QtTestLib_PackedString) string {
+	if len := int(s.len); len == -1 {
+		return C.GoString(s.data)
+	}
+	return C.GoStringN(s.data, C.int(s.len))
+}
+
 type QSignalSpy struct {
 	core.QObject
 	core.QList
@@ -80,11 +87,13 @@ func (ptr *QSignalSpy) IsValid() bool {
 	return false
 }
 
-func (ptr *QSignalSpy) Signal() string {
+func (ptr *QSignalSpy) Signal() *core.QByteArray {
 	if ptr.Pointer() != nil {
-		return qt.HexDecodeToString(C.GoString(C.QSignalSpy_Signal(ptr.Pointer())))
+		var tmpValue = core.NewQByteArrayFromPointer(C.QSignalSpy_Signal(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		return tmpValue
 	}
-	return ""
+	return nil
 }
 
 func (ptr *QSignalSpy) Wait(timeout int) bool {

@@ -11,12 +11,13 @@
 extern "C" {
 #endif
 
+struct QtMacExtras_PackedString { char* data; long long len; };
 char QMacPasteboardMime_CanConvert(void* ptr, char* mime, char* flav);
-char* QMacPasteboardMime_ConvertorName(void* ptr);
+struct QtMacExtras_PackedString QMacPasteboardMime_ConvertorName(void* ptr);
 int QMacPasteboardMime_Count(void* ptr, void* mimeData);
 int QMacPasteboardMime_CountDefault(void* ptr, void* mimeData);
-char* QMacPasteboardMime_FlavorFor(void* ptr, char* mime);
-char* QMacPasteboardMime_MimeFor(void* ptr, char* flav);
+struct QtMacExtras_PackedString QMacPasteboardMime_FlavorFor(void* ptr, char* mime);
+struct QtMacExtras_PackedString QMacPasteboardMime_MimeFor(void* ptr, char* flav);
 void QMacPasteboardMime_DestroyQMacPasteboardMime(void* ptr);
 void QMacPasteboardMime_DestroyQMacPasteboardMimeDefault(void* ptr);
 void* QMacToolBar_NewQMacToolBar(void* parent);
@@ -58,7 +59,7 @@ void QMacToolBarItem_SetSelectable(void* ptr, char selectable);
 void QMacToolBarItem_SetStandardItem(void* ptr, long long standardItem);
 void QMacToolBarItem_SetText(void* ptr, char* text);
 long long QMacToolBarItem_StandardItem(void* ptr);
-char* QMacToolBarItem_Text(void* ptr);
+struct QtMacExtras_PackedString QMacToolBarItem_Text(void* ptr);
 void QMacToolBarItem_TimerEvent(void* ptr, void* event);
 void QMacToolBarItem_TimerEventDefault(void* ptr, void* event);
 void QMacToolBarItem_ChildEvent(void* ptr, void* event);

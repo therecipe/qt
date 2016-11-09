@@ -7,13 +7,19 @@ package nfc
 //#include "nfc.h"
 import "C"
 import (
-	"encoding/hex"
 	"fmt"
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
 	"runtime"
 	"unsafe"
 )
+
+func cGoUnpackString(s C.struct_QtNfc_PackedString) string {
+	if len := int(s.len); len == -1 {
+		return C.GoString(s.data)
+	}
+	return C.GoStringN(s.data, C.int(s.len))
+}
 
 type QNdefFilter struct {
 	ptr unsafe.Pointer
@@ -64,11 +70,9 @@ func NewQNdefFilter2(other QNdefFilter_ITF) *QNdefFilter {
 	return tmpValue
 }
 
-func (ptr *QNdefFilter) AppendRecord2(typeNameFormat QNdefRecord__TypeNameFormat, ty string, min uint, max uint) {
+func (ptr *QNdefFilter) AppendRecord2(typeNameFormat QNdefRecord__TypeNameFormat, ty core.QByteArray_ITF, min uint, max uint) {
 	if ptr.Pointer() != nil {
-		var tyC = C.CString(hex.EncodeToString([]byte(ty)))
-		defer C.free(unsafe.Pointer(tyC))
-		C.QNdefFilter_AppendRecord2(ptr.Pointer(), C.longlong(typeNameFormat), tyC, C.uint(uint32(min)), C.uint(uint32(max)))
+		C.QNdefFilter_AppendRecord2(ptr.Pointer(), C.longlong(typeNameFormat), core.PointerFromQByteArray(ty), C.uint(uint32(min)), C.uint(uint32(max)))
 	}
 }
 
@@ -167,27 +171,25 @@ func NewQNdefMessage2(record QNdefRecord_ITF) *QNdefMessage {
 	return tmpValue
 }
 
-func QNdefMessage_FromByteArray(message string) *QNdefMessage {
-	var messageC = C.CString(hex.EncodeToString([]byte(message)))
-	defer C.free(unsafe.Pointer(messageC))
-	var tmpValue = NewQNdefMessageFromPointer(C.QNdefMessage_QNdefMessage_FromByteArray(messageC))
+func QNdefMessage_FromByteArray(message core.QByteArray_ITF) *QNdefMessage {
+	var tmpValue = NewQNdefMessageFromPointer(C.QNdefMessage_QNdefMessage_FromByteArray(core.PointerFromQByteArray(message)))
 	runtime.SetFinalizer(tmpValue, (*QNdefMessage).DestroyQNdefMessage)
 	return tmpValue
 }
 
-func (ptr *QNdefMessage) FromByteArray(message string) *QNdefMessage {
-	var messageC = C.CString(hex.EncodeToString([]byte(message)))
-	defer C.free(unsafe.Pointer(messageC))
-	var tmpValue = NewQNdefMessageFromPointer(C.QNdefMessage_QNdefMessage_FromByteArray(messageC))
+func (ptr *QNdefMessage) FromByteArray(message core.QByteArray_ITF) *QNdefMessage {
+	var tmpValue = NewQNdefMessageFromPointer(C.QNdefMessage_QNdefMessage_FromByteArray(core.PointerFromQByteArray(message)))
 	runtime.SetFinalizer(tmpValue, (*QNdefMessage).DestroyQNdefMessage)
 	return tmpValue
 }
 
-func (ptr *QNdefMessage) ToByteArray() string {
+func (ptr *QNdefMessage) ToByteArray() *core.QByteArray {
 	if ptr.Pointer() != nil {
-		return qt.HexDecodeToString(C.GoString(C.QNdefMessage_ToByteArray(ptr.Pointer())))
+		var tmpValue = core.NewQByteArrayFromPointer(C.QNdefMessage_ToByteArray(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		return tmpValue
 	}
-	return ""
+	return nil
 }
 
 //QNdefNfcSmartPosterRecord::Action
@@ -263,13 +265,9 @@ func (ptr *QNdefNfcSmartPosterRecord) Action() QNdefNfcSmartPosterRecord__Action
 	return 0
 }
 
-func (ptr *QNdefNfcSmartPosterRecord) AddIcon2(ty string, data string) {
+func (ptr *QNdefNfcSmartPosterRecord) AddIcon2(ty core.QByteArray_ITF, data core.QByteArray_ITF) {
 	if ptr.Pointer() != nil {
-		var tyC = C.CString(hex.EncodeToString([]byte(ty)))
-		defer C.free(unsafe.Pointer(tyC))
-		var dataC = C.CString(hex.EncodeToString([]byte(data)))
-		defer C.free(unsafe.Pointer(dataC))
-		C.QNdefNfcSmartPosterRecord_AddIcon2(ptr.Pointer(), tyC, dataC)
+		C.QNdefNfcSmartPosterRecord_AddIcon2(ptr.Pointer(), core.PointerFromQByteArray(ty), core.PointerFromQByteArray(data))
 	}
 }
 
@@ -298,11 +296,9 @@ func (ptr *QNdefNfcSmartPosterRecord) HasAction() bool {
 	return false
 }
 
-func (ptr *QNdefNfcSmartPosterRecord) HasIcon(mimetype string) bool {
+func (ptr *QNdefNfcSmartPosterRecord) HasIcon(mimetype core.QByteArray_ITF) bool {
 	if ptr.Pointer() != nil {
-		var mimetypeC = C.CString(hex.EncodeToString([]byte(mimetype)))
-		defer C.free(unsafe.Pointer(mimetypeC))
-		return C.QNdefNfcSmartPosterRecord_HasIcon(ptr.Pointer(), mimetypeC) != 0
+		return C.QNdefNfcSmartPosterRecord_HasIcon(ptr.Pointer(), core.PointerFromQByteArray(mimetype)) != 0
 	}
 	return false
 }
@@ -330,13 +326,13 @@ func (ptr *QNdefNfcSmartPosterRecord) HasTypeInfo() bool {
 	return false
 }
 
-func (ptr *QNdefNfcSmartPosterRecord) Icon(mimetype string) string {
+func (ptr *QNdefNfcSmartPosterRecord) Icon(mimetype core.QByteArray_ITF) *core.QByteArray {
 	if ptr.Pointer() != nil {
-		var mimetypeC = C.CString(hex.EncodeToString([]byte(mimetype)))
-		defer C.free(unsafe.Pointer(mimetypeC))
-		return qt.HexDecodeToString(C.GoString(C.QNdefNfcSmartPosterRecord_Icon(ptr.Pointer(), mimetypeC)))
+		var tmpValue = core.NewQByteArrayFromPointer(C.QNdefNfcSmartPosterRecord_Icon(ptr.Pointer(), core.PointerFromQByteArray(mimetype)))
+		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		return tmpValue
 	}
-	return ""
+	return nil
 }
 
 func (ptr *QNdefNfcSmartPosterRecord) IconCount() int {
@@ -346,11 +342,9 @@ func (ptr *QNdefNfcSmartPosterRecord) IconCount() int {
 	return 0
 }
 
-func (ptr *QNdefNfcSmartPosterRecord) RemoveIcon2(ty string) bool {
+func (ptr *QNdefNfcSmartPosterRecord) RemoveIcon2(ty core.QByteArray_ITF) bool {
 	if ptr.Pointer() != nil {
-		var tyC = C.CString(hex.EncodeToString([]byte(ty)))
-		defer C.free(unsafe.Pointer(tyC))
-		return C.QNdefNfcSmartPosterRecord_RemoveIcon2(ptr.Pointer(), tyC) != 0
+		return C.QNdefNfcSmartPosterRecord_RemoveIcon2(ptr.Pointer(), core.PointerFromQByteArray(ty)) != 0
 	}
 	return false
 }
@@ -383,11 +377,9 @@ func (ptr *QNdefNfcSmartPosterRecord) SetSize(size uint) {
 	}
 }
 
-func (ptr *QNdefNfcSmartPosterRecord) SetTypeInfo(ty string) {
+func (ptr *QNdefNfcSmartPosterRecord) SetTypeInfo(ty core.QByteArray_ITF) {
 	if ptr.Pointer() != nil {
-		var tyC = C.CString(hex.EncodeToString([]byte(ty)))
-		defer C.free(unsafe.Pointer(tyC))
-		C.QNdefNfcSmartPosterRecord_SetTypeInfo(ptr.Pointer(), tyC)
+		C.QNdefNfcSmartPosterRecord_SetTypeInfo(ptr.Pointer(), core.PointerFromQByteArray(ty))
 	}
 }
 
@@ -414,7 +406,7 @@ func (ptr *QNdefNfcSmartPosterRecord) Title(locale string) string {
 	if ptr.Pointer() != nil {
 		var localeC = C.CString(locale)
 		defer C.free(unsafe.Pointer(localeC))
-		return C.GoString(C.QNdefNfcSmartPosterRecord_Title(ptr.Pointer(), localeC))
+		return cGoUnpackString(C.QNdefNfcSmartPosterRecord_Title(ptr.Pointer(), localeC))
 	}
 	return ""
 }
@@ -426,11 +418,13 @@ func (ptr *QNdefNfcSmartPosterRecord) TitleCount() int {
 	return 0
 }
 
-func (ptr *QNdefNfcSmartPosterRecord) TypeInfo() string {
+func (ptr *QNdefNfcSmartPosterRecord) TypeInfo() *core.QByteArray {
 	if ptr.Pointer() != nil {
-		return qt.HexDecodeToString(C.GoString(C.QNdefNfcSmartPosterRecord_TypeInfo(ptr.Pointer())))
+		var tmpValue = core.NewQByteArrayFromPointer(C.QNdefNfcSmartPosterRecord_TypeInfo(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		return tmpValue
 	}
-	return ""
+	return nil
 }
 
 func (ptr *QNdefNfcSmartPosterRecord) Uri() *core.QUrl {
@@ -522,7 +516,7 @@ func (ptr *QNdefNfcTextRecord) Encoding() QNdefNfcTextRecord__Encoding {
 
 func (ptr *QNdefNfcTextRecord) Locale() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QNdefNfcTextRecord_Locale(ptr.Pointer()))
+		return cGoUnpackString(C.QNdefNfcTextRecord_Locale(ptr.Pointer()))
 	}
 	return ""
 }
@@ -551,7 +545,7 @@ func (ptr *QNdefNfcTextRecord) SetText(text string) {
 
 func (ptr *QNdefNfcTextRecord) Text() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QNdefNfcTextRecord_Text(ptr.Pointer()))
+		return cGoUnpackString(C.QNdefNfcTextRecord_Text(ptr.Pointer()))
 	}
 	return ""
 }
@@ -688,11 +682,13 @@ func NewQNdefRecord2(other QNdefRecord_ITF) *QNdefRecord {
 	return tmpValue
 }
 
-func (ptr *QNdefRecord) Id() string {
+func (ptr *QNdefRecord) Id() *core.QByteArray {
 	if ptr.Pointer() != nil {
-		return qt.HexDecodeToString(C.GoString(C.QNdefRecord_Id(ptr.Pointer())))
+		var tmpValue = core.NewQByteArrayFromPointer(C.QNdefRecord_Id(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		return tmpValue
 	}
-	return ""
+	return nil
 }
 
 func (ptr *QNdefRecord) IsEmpty() bool {
@@ -702,34 +698,30 @@ func (ptr *QNdefRecord) IsEmpty() bool {
 	return false
 }
 
-func (ptr *QNdefRecord) Payload() string {
+func (ptr *QNdefRecord) Payload() *core.QByteArray {
 	if ptr.Pointer() != nil {
-		return qt.HexDecodeToString(C.GoString(C.QNdefRecord_Payload(ptr.Pointer())))
+		var tmpValue = core.NewQByteArrayFromPointer(C.QNdefRecord_Payload(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		return tmpValue
 	}
-	return ""
+	return nil
 }
 
-func (ptr *QNdefRecord) SetId(id string) {
+func (ptr *QNdefRecord) SetId(id core.QByteArray_ITF) {
 	if ptr.Pointer() != nil {
-		var idC = C.CString(hex.EncodeToString([]byte(id)))
-		defer C.free(unsafe.Pointer(idC))
-		C.QNdefRecord_SetId(ptr.Pointer(), idC)
-	}
-}
-
-func (ptr *QNdefRecord) SetPayload(payload string) {
-	if ptr.Pointer() != nil {
-		var payloadC = C.CString(hex.EncodeToString([]byte(payload)))
-		defer C.free(unsafe.Pointer(payloadC))
-		C.QNdefRecord_SetPayload(ptr.Pointer(), payloadC)
+		C.QNdefRecord_SetId(ptr.Pointer(), core.PointerFromQByteArray(id))
 	}
 }
 
-func (ptr *QNdefRecord) SetType(ty string) {
+func (ptr *QNdefRecord) SetPayload(payload core.QByteArray_ITF) {
 	if ptr.Pointer() != nil {
-		var tyC = C.CString(hex.EncodeToString([]byte(ty)))
-		defer C.free(unsafe.Pointer(tyC))
-		C.QNdefRecord_SetType(ptr.Pointer(), tyC)
+		C.QNdefRecord_SetPayload(ptr.Pointer(), core.PointerFromQByteArray(payload))
+	}
+}
+
+func (ptr *QNdefRecord) SetType(ty core.QByteArray_ITF) {
+	if ptr.Pointer() != nil {
+		C.QNdefRecord_SetType(ptr.Pointer(), core.PointerFromQByteArray(ty))
 	}
 }
 
@@ -739,11 +731,13 @@ func (ptr *QNdefRecord) SetTypeNameFormat(typeNameFormat QNdefRecord__TypeNameFo
 	}
 }
 
-func (ptr *QNdefRecord) Type() string {
+func (ptr *QNdefRecord) Type() *core.QByteArray {
 	if ptr.Pointer() != nil {
-		return qt.HexDecodeToString(C.GoString(C.QNdefRecord_Type(ptr.Pointer())))
+		var tmpValue = core.NewQByteArrayFromPointer(C.QNdefRecord_Type(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		return tmpValue
 	}
-	return ""
+	return nil
 }
 
 func (ptr *QNdefRecord) TypeNameFormat() QNdefRecord__TypeNameFormat {
@@ -839,13 +833,11 @@ func (ptr *QNearFieldManager) IsAvailable() bool {
 	return false
 }
 
-func (ptr *QNearFieldManager) RegisterNdefMessageHandler2(typeNameFormat QNdefRecord__TypeNameFormat, ty string, object core.QObject_ITF, method string) int {
+func (ptr *QNearFieldManager) RegisterNdefMessageHandler2(typeNameFormat QNdefRecord__TypeNameFormat, ty core.QByteArray_ITF, object core.QObject_ITF, method string) int {
 	if ptr.Pointer() != nil {
-		var tyC = C.CString(hex.EncodeToString([]byte(ty)))
-		defer C.free(unsafe.Pointer(tyC))
 		var methodC = C.CString(method)
 		defer C.free(unsafe.Pointer(methodC))
-		return int(int32(C.QNearFieldManager_RegisterNdefMessageHandler2(ptr.Pointer(), C.longlong(typeNameFormat), tyC, core.PointerFromQObject(object), methodC)))
+		return int(int32(C.QNearFieldManager_RegisterNdefMessageHandler2(ptr.Pointer(), C.longlong(typeNameFormat), core.PointerFromQByteArray(ty), core.PointerFromQObject(object), methodC)))
 	}
 	return 0
 }
@@ -2559,16 +2551,16 @@ func (ptr *QNearFieldTarget) Type() QNearFieldTarget__Type {
 }
 
 //export callbackQNearFieldTarget_Uid
-func callbackQNearFieldTarget_Uid(ptr unsafe.Pointer) *C.char {
+func callbackQNearFieldTarget_Uid(ptr unsafe.Pointer) unsafe.Pointer {
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QNearFieldTarget::uid"); signal != nil {
-		return C.CString(hex.EncodeToString([]byte(signal.(func() string)())))
+		return core.PointerFromQByteArray(signal.(func() *core.QByteArray)())
 	}
 
-	return C.CString(hex.EncodeToString([]byte("")))
+	return core.PointerFromQByteArray(nil)
 }
 
-func (ptr *QNearFieldTarget) ConnectUid(f func() string) {
+func (ptr *QNearFieldTarget) ConnectUid(f func() *core.QByteArray) {
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QNearFieldTarget::uid", f)
@@ -2582,11 +2574,13 @@ func (ptr *QNearFieldTarget) DisconnectUid() {
 	}
 }
 
-func (ptr *QNearFieldTarget) Uid() string {
+func (ptr *QNearFieldTarget) Uid() *core.QByteArray {
 	if ptr.Pointer() != nil {
-		return qt.HexDecodeToString(C.GoString(C.QNearFieldTarget_Uid(ptr.Pointer())))
+		var tmpValue = core.NewQByteArrayFromPointer(C.QNearFieldTarget_Uid(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		return tmpValue
 	}
-	return ""
+	return nil
 }
 
 //export callbackQNearFieldTarget_Url
@@ -3137,7 +3131,7 @@ func (ptr *QQmlNdefRecord) SetTypeNameFormat(newTypeNameFormat QQmlNdefRecord__T
 
 func (ptr *QQmlNdefRecord) Type() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QQmlNdefRecord_Type(ptr.Pointer()))
+		return cGoUnpackString(C.QQmlNdefRecord_Type(ptr.Pointer()))
 	}
 	return ""
 }

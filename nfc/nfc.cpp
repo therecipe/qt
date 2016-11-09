@@ -39,9 +39,9 @@ void* QNdefFilter_NewQNdefFilter2(void* other)
 	return new QNdefFilter(*static_cast<QNdefFilter*>(other));
 }
 
-void QNdefFilter_AppendRecord2(void* ptr, long long typeNameFormat, char* ty, unsigned int min, unsigned int max)
+void QNdefFilter_AppendRecord2(void* ptr, long long typeNameFormat, void* ty, unsigned int min, unsigned int max)
 {
-	static_cast<QNdefFilter*>(ptr)->appendRecord(static_cast<QNdefRecord::TypeNameFormat>(typeNameFormat), QByteArray::fromHex(QString(ty).toUtf8()), min, max);
+	static_cast<QNdefFilter*>(ptr)->appendRecord(static_cast<QNdefRecord::TypeNameFormat>(typeNameFormat), *static_cast<QByteArray*>(ty), min, max);
 }
 
 void QNdefFilter_Clear(void* ptr)
@@ -84,14 +84,14 @@ void* QNdefMessage_NewQNdefMessage2(void* record)
 	return new QNdefMessage(*static_cast<QNdefRecord*>(record));
 }
 
-void* QNdefMessage_QNdefMessage_FromByteArray(char* message)
+void* QNdefMessage_QNdefMessage_FromByteArray(void* message)
 {
-	return new QNdefMessage(QNdefMessage::fromByteArray(QByteArray::fromHex(QString(message).toUtf8())));
+	return new QNdefMessage(QNdefMessage::fromByteArray(*static_cast<QByteArray*>(message)));
 }
 
-char* QNdefMessage_ToByteArray(void* ptr)
+void* QNdefMessage_ToByteArray(void* ptr)
 {
-	return const_cast<char*>(static_cast<QNdefMessage*>(ptr)->toByteArray().toHex().prepend("WHITESPACE").constData()+10);
+	return new QByteArray(static_cast<QNdefMessage*>(ptr)->toByteArray());
 }
 
 void* QNdefNfcSmartPosterRecord_NewQNdefNfcSmartPosterRecord()
@@ -114,9 +114,9 @@ long long QNdefNfcSmartPosterRecord_Action(void* ptr)
 	return static_cast<QNdefNfcSmartPosterRecord*>(ptr)->action();
 }
 
-void QNdefNfcSmartPosterRecord_AddIcon2(void* ptr, char* ty, char* data)
+void QNdefNfcSmartPosterRecord_AddIcon2(void* ptr, void* ty, void* data)
 {
-	static_cast<QNdefNfcSmartPosterRecord*>(ptr)->addIcon(QByteArray::fromHex(QString(ty).toUtf8()), QByteArray::fromHex(QString(data).toUtf8()));
+	static_cast<QNdefNfcSmartPosterRecord*>(ptr)->addIcon(*static_cast<QByteArray*>(ty), *static_cast<QByteArray*>(data));
 }
 
 char QNdefNfcSmartPosterRecord_AddTitle(void* ptr, void* text)
@@ -134,9 +134,9 @@ char QNdefNfcSmartPosterRecord_HasAction(void* ptr)
 	return static_cast<QNdefNfcSmartPosterRecord*>(ptr)->hasAction();
 }
 
-char QNdefNfcSmartPosterRecord_HasIcon(void* ptr, char* mimetype)
+char QNdefNfcSmartPosterRecord_HasIcon(void* ptr, void* mimetype)
 {
-	return static_cast<QNdefNfcSmartPosterRecord*>(ptr)->hasIcon(QByteArray::fromHex(QString(mimetype).toUtf8()));
+	return static_cast<QNdefNfcSmartPosterRecord*>(ptr)->hasIcon(*static_cast<QByteArray*>(mimetype));
 }
 
 char QNdefNfcSmartPosterRecord_HasSize(void* ptr)
@@ -154,9 +154,9 @@ char QNdefNfcSmartPosterRecord_HasTypeInfo(void* ptr)
 	return static_cast<QNdefNfcSmartPosterRecord*>(ptr)->hasTypeInfo();
 }
 
-char* QNdefNfcSmartPosterRecord_Icon(void* ptr, char* mimetype)
+void* QNdefNfcSmartPosterRecord_Icon(void* ptr, void* mimetype)
 {
-	return const_cast<char*>(static_cast<QNdefNfcSmartPosterRecord*>(ptr)->icon(QByteArray::fromHex(QString(mimetype).toUtf8())).toHex().prepend("WHITESPACE").constData()+10);
+	return new QByteArray(static_cast<QNdefNfcSmartPosterRecord*>(ptr)->icon(*static_cast<QByteArray*>(mimetype)));
 }
 
 int QNdefNfcSmartPosterRecord_IconCount(void* ptr)
@@ -164,9 +164,9 @@ int QNdefNfcSmartPosterRecord_IconCount(void* ptr)
 	return static_cast<QNdefNfcSmartPosterRecord*>(ptr)->iconCount();
 }
 
-char QNdefNfcSmartPosterRecord_RemoveIcon2(void* ptr, char* ty)
+char QNdefNfcSmartPosterRecord_RemoveIcon2(void* ptr, void* ty)
 {
-	return static_cast<QNdefNfcSmartPosterRecord*>(ptr)->removeIcon(QByteArray::fromHex(QString(ty).toUtf8()));
+	return static_cast<QNdefNfcSmartPosterRecord*>(ptr)->removeIcon(*static_cast<QByteArray*>(ty));
 }
 
 char QNdefNfcSmartPosterRecord_RemoveTitle(void* ptr, void* text)
@@ -189,9 +189,9 @@ void QNdefNfcSmartPosterRecord_SetSize(void* ptr, unsigned int size)
 	static_cast<QNdefNfcSmartPosterRecord*>(ptr)->setSize(size);
 }
 
-void QNdefNfcSmartPosterRecord_SetTypeInfo(void* ptr, char* ty)
+void QNdefNfcSmartPosterRecord_SetTypeInfo(void* ptr, void* ty)
 {
-	static_cast<QNdefNfcSmartPosterRecord*>(ptr)->setTypeInfo(QByteArray::fromHex(QString(ty).toUtf8()));
+	static_cast<QNdefNfcSmartPosterRecord*>(ptr)->setTypeInfo(*static_cast<QByteArray*>(ty));
 }
 
 void QNdefNfcSmartPosterRecord_SetUri(void* ptr, void* url)
@@ -209,9 +209,9 @@ unsigned int QNdefNfcSmartPosterRecord_Size(void* ptr)
 	return static_cast<QNdefNfcSmartPosterRecord*>(ptr)->size();
 }
 
-char* QNdefNfcSmartPosterRecord_Title(void* ptr, char* locale)
+struct QtNfc_PackedString QNdefNfcSmartPosterRecord_Title(void* ptr, char* locale)
 {
-	return const_cast<char*>(static_cast<QNdefNfcSmartPosterRecord*>(ptr)->title(QString(locale)).toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray t827ac1 = static_cast<QNdefNfcSmartPosterRecord*>(ptr)->title(QString(locale)).toUtf8(); QtNfc_PackedString { const_cast<char*>(t827ac1.prepend("WHITESPACE").constData()+10), t827ac1.size()-10 }; });
 }
 
 int QNdefNfcSmartPosterRecord_TitleCount(void* ptr)
@@ -219,9 +219,9 @@ int QNdefNfcSmartPosterRecord_TitleCount(void* ptr)
 	return static_cast<QNdefNfcSmartPosterRecord*>(ptr)->titleCount();
 }
 
-char* QNdefNfcSmartPosterRecord_TypeInfo(void* ptr)
+void* QNdefNfcSmartPosterRecord_TypeInfo(void* ptr)
 {
-	return const_cast<char*>(static_cast<QNdefNfcSmartPosterRecord*>(ptr)->typeInfo().toHex().prepend("WHITESPACE").constData()+10);
+	return new QByteArray(static_cast<QNdefNfcSmartPosterRecord*>(ptr)->typeInfo());
 }
 
 void* QNdefNfcSmartPosterRecord_Uri(void* ptr)
@@ -249,9 +249,9 @@ long long QNdefNfcTextRecord_Encoding(void* ptr)
 	return static_cast<QNdefNfcTextRecord*>(ptr)->encoding();
 }
 
-char* QNdefNfcTextRecord_Locale(void* ptr)
+struct QtNfc_PackedString QNdefNfcTextRecord_Locale(void* ptr)
 {
-	return const_cast<char*>(static_cast<QNdefNfcTextRecord*>(ptr)->locale().toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray tb8fb0c = static_cast<QNdefNfcTextRecord*>(ptr)->locale().toUtf8(); QtNfc_PackedString { const_cast<char*>(tb8fb0c.prepend("WHITESPACE").constData()+10), tb8fb0c.size()-10 }; });
 }
 
 void QNdefNfcTextRecord_SetEncoding(void* ptr, long long encoding)
@@ -269,9 +269,9 @@ void QNdefNfcTextRecord_SetText(void* ptr, char* text)
 	static_cast<QNdefNfcTextRecord*>(ptr)->setText(QString(text));
 }
 
-char* QNdefNfcTextRecord_Text(void* ptr)
+struct QtNfc_PackedString QNdefNfcTextRecord_Text(void* ptr)
 {
-	return const_cast<char*>(static_cast<QNdefNfcTextRecord*>(ptr)->text().toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray tbe9455 = static_cast<QNdefNfcTextRecord*>(ptr)->text().toUtf8(); QtNfc_PackedString { const_cast<char*>(tbe9455.prepend("WHITESPACE").constData()+10), tbe9455.size()-10 }; });
 }
 
 void* QNdefNfcUriRecord_NewQNdefNfcUriRecord()
@@ -304,9 +304,9 @@ void* QNdefRecord_NewQNdefRecord2(void* other)
 	return new QNdefRecord(*static_cast<QNdefRecord*>(other));
 }
 
-char* QNdefRecord_Id(void* ptr)
+void* QNdefRecord_Id(void* ptr)
 {
-	return const_cast<char*>(static_cast<QNdefRecord*>(ptr)->id().toHex().prepend("WHITESPACE").constData()+10);
+	return new QByteArray(static_cast<QNdefRecord*>(ptr)->id());
 }
 
 char QNdefRecord_IsEmpty(void* ptr)
@@ -314,24 +314,24 @@ char QNdefRecord_IsEmpty(void* ptr)
 	return static_cast<QNdefRecord*>(ptr)->isEmpty();
 }
 
-char* QNdefRecord_Payload(void* ptr)
+void* QNdefRecord_Payload(void* ptr)
 {
-	return const_cast<char*>(static_cast<QNdefRecord*>(ptr)->payload().toHex().prepend("WHITESPACE").constData()+10);
+	return new QByteArray(static_cast<QNdefRecord*>(ptr)->payload());
 }
 
-void QNdefRecord_SetId(void* ptr, char* id)
+void QNdefRecord_SetId(void* ptr, void* id)
 {
-	static_cast<QNdefRecord*>(ptr)->setId(QByteArray::fromHex(QString(id).toUtf8()));
+	static_cast<QNdefRecord*>(ptr)->setId(*static_cast<QByteArray*>(id));
 }
 
-void QNdefRecord_SetPayload(void* ptr, char* payload)
+void QNdefRecord_SetPayload(void* ptr, void* payload)
 {
-	static_cast<QNdefRecord*>(ptr)->setPayload(QByteArray::fromHex(QString(payload).toUtf8()));
+	static_cast<QNdefRecord*>(ptr)->setPayload(*static_cast<QByteArray*>(payload));
 }
 
-void QNdefRecord_SetType(void* ptr, char* ty)
+void QNdefRecord_SetType(void* ptr, void* ty)
 {
-	static_cast<QNdefRecord*>(ptr)->setType(QByteArray::fromHex(QString(ty).toUtf8()));
+	static_cast<QNdefRecord*>(ptr)->setType(*static_cast<QByteArray*>(ty));
 }
 
 void QNdefRecord_SetTypeNameFormat(void* ptr, long long typeNameFormat)
@@ -339,9 +339,9 @@ void QNdefRecord_SetTypeNameFormat(void* ptr, long long typeNameFormat)
 	static_cast<QNdefRecord*>(ptr)->setTypeNameFormat(static_cast<QNdefRecord::TypeNameFormat>(typeNameFormat));
 }
 
-char* QNdefRecord_Type(void* ptr)
+void* QNdefRecord_Type(void* ptr)
 {
-	return const_cast<char*>(static_cast<QNdefRecord*>(ptr)->type().toHex().prepend("WHITESPACE").constData()+10);
+	return new QByteArray(static_cast<QNdefRecord*>(ptr)->type());
 }
 
 long long QNdefRecord_TypeNameFormat(void* ptr)
@@ -391,9 +391,9 @@ char QNearFieldManager_IsAvailable(void* ptr)
 	return static_cast<QNearFieldManager*>(ptr)->isAvailable();
 }
 
-int QNearFieldManager_RegisterNdefMessageHandler2(void* ptr, long long typeNameFormat, char* ty, void* object, char* method)
+int QNearFieldManager_RegisterNdefMessageHandler2(void* ptr, long long typeNameFormat, void* ty, void* object, char* method)
 {
-	return static_cast<QNearFieldManager*>(ptr)->registerNdefMessageHandler(static_cast<QNdefRecord::TypeNameFormat>(typeNameFormat), QByteArray::fromHex(QString(ty).toUtf8()), static_cast<QObject*>(object), const_cast<const char*>(method));
+	return static_cast<QNearFieldManager*>(ptr)->registerNdefMessageHandler(static_cast<QNdefRecord::TypeNameFormat>(typeNameFormat), *static_cast<QByteArray*>(ty), static_cast<QObject*>(object), const_cast<const char*>(method));
 }
 
 int QNearFieldManager_RegisterNdefMessageHandler3(void* ptr, void* filter, void* object, char* method)
@@ -905,7 +905,7 @@ public:
 	void Signal_NdefMessageRead(const QNdefMessage & message) { callbackQNearFieldTarget_NdefMessageRead(this, const_cast<QNdefMessage*>(&message)); };
 	void Signal_NdefMessagesWritten() { callbackQNearFieldTarget_NdefMessagesWritten(this); };
 	Type type() const { return static_cast<QNearFieldTarget::Type>(callbackQNearFieldTarget_Type(const_cast<MyQNearFieldTarget*>(this))); };
-	QByteArray uid() const { return QByteArray::fromHex(QString(callbackQNearFieldTarget_Uid(const_cast<MyQNearFieldTarget*>(this))).toUtf8()); };
+	QByteArray uid() const { return *static_cast<QByteArray*>(callbackQNearFieldTarget_Uid(const_cast<MyQNearFieldTarget*>(this))); };
 	QUrl url() const { return *static_cast<QUrl*>(callbackQNearFieldTarget_Url(const_cast<MyQNearFieldTarget*>(this))); };
 	 ~MyQNearFieldTarget() { callbackQNearFieldTarget_DestroyQNearFieldTarget(this); };
 	void timerEvent(QTimerEvent * event) { callbackQNearFieldTarget_TimerEvent(this, event); };
@@ -994,9 +994,9 @@ long long QNearFieldTarget_Type(void* ptr)
 	return static_cast<QNearFieldTarget*>(ptr)->type();
 }
 
-char* QNearFieldTarget_Uid(void* ptr)
+void* QNearFieldTarget_Uid(void* ptr)
 {
-	return const_cast<char*>(static_cast<QNearFieldTarget*>(ptr)->uid().toHex().prepend("WHITESPACE").constData()+10);
+	return new QByteArray(static_cast<QNearFieldTarget*>(ptr)->uid());
 }
 
 void* QNearFieldTarget_Url(void* ptr)
@@ -1178,9 +1178,9 @@ void QQmlNdefRecord_SetTypeNameFormat(void* ptr, long long newTypeNameFormat)
 	static_cast<QQmlNdefRecord*>(ptr)->setTypeNameFormat(static_cast<QQmlNdefRecord::TypeNameFormat>(newTypeNameFormat));
 }
 
-char* QQmlNdefRecord_Type(void* ptr)
+struct QtNfc_PackedString QQmlNdefRecord_Type(void* ptr)
 {
-	return const_cast<char*>(static_cast<QQmlNdefRecord*>(ptr)->type().toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray t9a31a1 = static_cast<QQmlNdefRecord*>(ptr)->type().toUtf8(); QtNfc_PackedString { const_cast<char*>(t9a31a1.prepend("WHITESPACE").constData()+10), t9a31a1.size()-10 }; });
 }
 
 void QQmlNdefRecord_ConnectTypeChanged(void* ptr)

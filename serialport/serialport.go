@@ -14,6 +14,13 @@ import (
 	"unsafe"
 )
 
+func cGoUnpackString(s C.struct_QtSerialPort_PackedString) string {
+	if len := int(s.len); len == -1 {
+		return C.GoString(s.data)
+	}
+	return C.GoStringN(s.data, C.int(s.len))
+}
+
 //QSerialPort::BaudRate
 type QSerialPort__BaudRate int64
 
@@ -581,7 +588,7 @@ func (ptr *QSerialPort) PinoutSignals() QSerialPort__PinoutSignal {
 
 func (ptr *QSerialPort) PortName() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QSerialPort_PortName(ptr.Pointer()))
+		return cGoUnpackString(C.QSerialPort_PortName(ptr.Pointer()))
 	}
 	return ""
 }
@@ -1299,7 +1306,7 @@ func NewQSerialPortInfo3(name string) *QSerialPortInfo {
 
 func (ptr *QSerialPortInfo) Description() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QSerialPortInfo_Description(ptr.Pointer()))
+		return cGoUnpackString(C.QSerialPortInfo_Description(ptr.Pointer()))
 	}
 	return ""
 }
@@ -1327,14 +1334,14 @@ func (ptr *QSerialPortInfo) IsNull() bool {
 
 func (ptr *QSerialPortInfo) Manufacturer() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QSerialPortInfo_Manufacturer(ptr.Pointer()))
+		return cGoUnpackString(C.QSerialPortInfo_Manufacturer(ptr.Pointer()))
 	}
 	return ""
 }
 
 func (ptr *QSerialPortInfo) PortName() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QSerialPortInfo_PortName(ptr.Pointer()))
+		return cGoUnpackString(C.QSerialPortInfo_PortName(ptr.Pointer()))
 	}
 	return ""
 }
@@ -1348,14 +1355,14 @@ func (ptr *QSerialPortInfo) ProductIdentifier() uint16 {
 
 func (ptr *QSerialPortInfo) SerialNumber() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QSerialPortInfo_SerialNumber(ptr.Pointer()))
+		return cGoUnpackString(C.QSerialPortInfo_SerialNumber(ptr.Pointer()))
 	}
 	return ""
 }
 
 func (ptr *QSerialPortInfo) SystemLocation() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QSerialPortInfo_SystemLocation(ptr.Pointer()))
+		return cGoUnpackString(C.QSerialPortInfo_SystemLocation(ptr.Pointer()))
 	}
 	return ""
 }

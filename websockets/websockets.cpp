@@ -166,8 +166,8 @@ class MyQWebSocket: public QWebSocket
 {
 public:
 	void Signal_AboutToClose() { callbackQWebSocket_AboutToClose(this); };
-	void Signal_BinaryFrameReceived(const QByteArray & frame, bool isLastFrame) { callbackQWebSocket_BinaryFrameReceived(this, const_cast<char*>(frame.toHex().prepend("WHITESPACE").constData()+10), isLastFrame); };
-	void Signal_BinaryMessageReceived(const QByteArray & message) { callbackQWebSocket_BinaryMessageReceived(this, const_cast<char*>(message.toHex().prepend("WHITESPACE").constData()+10)); };
+	void Signal_BinaryFrameReceived(const QByteArray & frame, bool isLastFrame) { callbackQWebSocket_BinaryFrameReceived(this, const_cast<QByteArray*>(&frame), isLastFrame); };
+	void Signal_BinaryMessageReceived(const QByteArray & message) { callbackQWebSocket_BinaryMessageReceived(this, const_cast<QByteArray*>(&message)); };
 	void Signal_BytesWritten(qint64 bytes) { callbackQWebSocket_BytesWritten(this, bytes); };
 	void Signal_Connected() { callbackQWebSocket_Connected(this); };
 	void Signal_Disconnected() { callbackQWebSocket_Disconnected(this); };
@@ -175,13 +175,13 @@ public:
 	void ignoreSslErrors() { callbackQWebSocket_IgnoreSslErrors(this); };
 	void open(const QNetworkRequest & request) { callbackQWebSocket_Open2(this, const_cast<QNetworkRequest*>(&request)); };
 	void open(const QUrl & url) { callbackQWebSocket_Open(this, const_cast<QUrl*>(&url)); };
-	void ping(const QByteArray & payload) { callbackQWebSocket_Ping(this, const_cast<char*>(payload.toHex().prepend("WHITESPACE").constData()+10)); };
-	void Signal_Pong(quint64 elapsedTime, const QByteArray & payload) { callbackQWebSocket_Pong(this, elapsedTime, const_cast<char*>(payload.toHex().prepend("WHITESPACE").constData()+10)); };
+	void ping(const QByteArray & payload) { callbackQWebSocket_Ping(this, const_cast<QByteArray*>(&payload)); };
+	void Signal_Pong(quint64 elapsedTime, const QByteArray & payload) { callbackQWebSocket_Pong(this, elapsedTime, const_cast<QByteArray*>(&payload)); };
 	void Signal_ProxyAuthenticationRequired(const QNetworkProxy & proxy, QAuthenticator * authenticator) { callbackQWebSocket_ProxyAuthenticationRequired(this, const_cast<QNetworkProxy*>(&proxy), authenticator); };
 	void Signal_ReadChannelFinished() { callbackQWebSocket_ReadChannelFinished(this); };
 	void Signal_StateChanged(QAbstractSocket::SocketState state) { callbackQWebSocket_StateChanged(this, state); };
-	void Signal_TextFrameReceived(const QString & frame, bool isLastFrame) { callbackQWebSocket_TextFrameReceived(this, const_cast<char*>(frame.toUtf8().prepend("WHITESPACE").constData()+10), isLastFrame); };
-	void Signal_TextMessageReceived(const QString & message) { callbackQWebSocket_TextMessageReceived(this, const_cast<char*>(message.toUtf8().prepend("WHITESPACE").constData()+10)); };
+	void Signal_TextFrameReceived(const QString & frame, bool isLastFrame) { QByteArray t39d88b = frame.toUtf8(); QtWebSockets_PackedString framePacked = { const_cast<char*>(t39d88b.prepend("WHITESPACE").constData()+10), t39d88b.size()-10 };callbackQWebSocket_TextFrameReceived(this, framePacked, isLastFrame); };
+	void Signal_TextMessageReceived(const QString & message) { QByteArray t6f9b9a = message.toUtf8(); QtWebSockets_PackedString messagePacked = { const_cast<char*>(t6f9b9a.prepend("WHITESPACE").constData()+10), t6f9b9a.size()-10 };callbackQWebSocket_TextMessageReceived(this, messagePacked); };
 	 ~MyQWebSocket() { callbackQWebSocket_DestroyQWebSocket(this); };
 	void timerEvent(QTimerEvent * event) { callbackQWebSocket_TimerEvent(this, event); };
 	void childEvent(QChildEvent * event) { callbackQWebSocket_ChildEvent(this, event); };
@@ -224,9 +224,9 @@ void QWebSocket_DisconnectBinaryFrameReceived(void* ptr)
 	QObject::disconnect(static_cast<QWebSocket*>(ptr), static_cast<void (QWebSocket::*)(const QByteArray &, bool)>(&QWebSocket::binaryFrameReceived), static_cast<MyQWebSocket*>(ptr), static_cast<void (MyQWebSocket::*)(const QByteArray &, bool)>(&MyQWebSocket::Signal_BinaryFrameReceived));
 }
 
-void QWebSocket_BinaryFrameReceived(void* ptr, char* frame, char isLastFrame)
+void QWebSocket_BinaryFrameReceived(void* ptr, void* frame, char isLastFrame)
 {
-	static_cast<QWebSocket*>(ptr)->binaryFrameReceived(QByteArray::fromHex(QString(frame).toUtf8()), isLastFrame != 0);
+	static_cast<QWebSocket*>(ptr)->binaryFrameReceived(*static_cast<QByteArray*>(frame), isLastFrame != 0);
 }
 
 void QWebSocket_ConnectBinaryMessageReceived(void* ptr)
@@ -239,9 +239,9 @@ void QWebSocket_DisconnectBinaryMessageReceived(void* ptr)
 	QObject::disconnect(static_cast<QWebSocket*>(ptr), static_cast<void (QWebSocket::*)(const QByteArray &)>(&QWebSocket::binaryMessageReceived), static_cast<MyQWebSocket*>(ptr), static_cast<void (MyQWebSocket::*)(const QByteArray &)>(&MyQWebSocket::Signal_BinaryMessageReceived));
 }
 
-void QWebSocket_BinaryMessageReceived(void* ptr, char* message)
+void QWebSocket_BinaryMessageReceived(void* ptr, void* message)
 {
-	static_cast<QWebSocket*>(ptr)->binaryMessageReceived(QByteArray::fromHex(QString(message).toUtf8()));
+	static_cast<QWebSocket*>(ptr)->binaryMessageReceived(*static_cast<QByteArray*>(message));
 }
 
 void QWebSocket_ConnectBytesWritten(void* ptr)
@@ -259,9 +259,9 @@ void QWebSocket_BytesWritten(void* ptr, long long bytes)
 	static_cast<QWebSocket*>(ptr)->bytesWritten(bytes);
 }
 
-char* QWebSocket_CloseReason(void* ptr)
+struct QtWebSockets_PackedString QWebSocket_CloseReason(void* ptr)
 {
-	return const_cast<char*>(static_cast<QWebSocket*>(ptr)->closeReason().toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray t003333 = static_cast<QWebSocket*>(ptr)->closeReason().toUtf8(); QtWebSockets_PackedString { const_cast<char*>(t003333.prepend("WHITESPACE").constData()+10), t003333.size()-10 }; });
 }
 
 void QWebSocket_ConnectConnected(void* ptr)
@@ -314,9 +314,9 @@ long long QWebSocket_Error(void* ptr)
 	return static_cast<QWebSocket*>(ptr)->error();
 }
 
-char* QWebSocket_ErrorString(void* ptr)
+struct QtWebSockets_PackedString QWebSocket_ErrorString(void* ptr)
 {
-	return const_cast<char*>(static_cast<QWebSocket*>(ptr)->errorString().toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray t67d61f = static_cast<QWebSocket*>(ptr)->errorString().toUtf8(); QtWebSockets_PackedString { const_cast<char*>(t67d61f.prepend("WHITESPACE").constData()+10), t67d61f.size()-10 }; });
 }
 
 char QWebSocket_Flush(void* ptr)
@@ -359,9 +359,9 @@ void QWebSocket_Open(void* ptr, void* url)
 	QMetaObject::invokeMethod(static_cast<QWebSocket*>(ptr), "open", Q_ARG(QUrl, *static_cast<QUrl*>(url)));
 }
 
-char* QWebSocket_Origin(void* ptr)
+struct QtWebSockets_PackedString QWebSocket_Origin(void* ptr)
 {
-	return const_cast<char*>(static_cast<QWebSocket*>(ptr)->origin().toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray t74f689 = static_cast<QWebSocket*>(ptr)->origin().toUtf8(); QtWebSockets_PackedString { const_cast<char*>(t74f689.prepend("WHITESPACE").constData()+10), t74f689.size()-10 }; });
 }
 
 long long QWebSocket_PauseMode(void* ptr)
@@ -374,9 +374,9 @@ void* QWebSocket_PeerAddress(void* ptr)
 	return new QHostAddress(static_cast<QWebSocket*>(ptr)->peerAddress());
 }
 
-char* QWebSocket_PeerName(void* ptr)
+struct QtWebSockets_PackedString QWebSocket_PeerName(void* ptr)
 {
-	return const_cast<char*>(static_cast<QWebSocket*>(ptr)->peerName().toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray tc206d7 = static_cast<QWebSocket*>(ptr)->peerName().toUtf8(); QtWebSockets_PackedString { const_cast<char*>(tc206d7.prepend("WHITESPACE").constData()+10), tc206d7.size()-10 }; });
 }
 
 unsigned short QWebSocket_PeerPort(void* ptr)
@@ -384,9 +384,9 @@ unsigned short QWebSocket_PeerPort(void* ptr)
 	return static_cast<QWebSocket*>(ptr)->peerPort();
 }
 
-void QWebSocket_Ping(void* ptr, char* payload)
+void QWebSocket_Ping(void* ptr, void* payload)
 {
-	QMetaObject::invokeMethod(static_cast<QWebSocket*>(ptr), "ping", Q_ARG(QByteArray, QByteArray::fromHex(QString(payload).toUtf8())));
+	QMetaObject::invokeMethod(static_cast<QWebSocket*>(ptr), "ping", Q_ARG(QByteArray, *static_cast<QByteArray*>(payload)));
 }
 
 void QWebSocket_ConnectPong(void* ptr)
@@ -399,9 +399,9 @@ void QWebSocket_DisconnectPong(void* ptr)
 	QObject::disconnect(static_cast<QWebSocket*>(ptr), static_cast<void (QWebSocket::*)(quint64, const QByteArray &)>(&QWebSocket::pong), static_cast<MyQWebSocket*>(ptr), static_cast<void (MyQWebSocket::*)(quint64, const QByteArray &)>(&MyQWebSocket::Signal_Pong));
 }
 
-void QWebSocket_Pong(void* ptr, unsigned long long elapsedTime, char* payload)
+void QWebSocket_Pong(void* ptr, unsigned long long elapsedTime, void* payload)
 {
-	static_cast<QWebSocket*>(ptr)->pong(elapsedTime, QByteArray::fromHex(QString(payload).toUtf8()));
+	static_cast<QWebSocket*>(ptr)->pong(elapsedTime, *static_cast<QByteArray*>(payload));
 }
 
 void* QWebSocket_Proxy(void* ptr)
@@ -454,9 +454,9 @@ void* QWebSocket_RequestUrl(void* ptr)
 	return new QUrl(static_cast<QWebSocket*>(ptr)->requestUrl());
 }
 
-char* QWebSocket_ResourceName(void* ptr)
+struct QtWebSockets_PackedString QWebSocket_ResourceName(void* ptr)
 {
-	return const_cast<char*>(static_cast<QWebSocket*>(ptr)->resourceName().toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray t1e5662 = static_cast<QWebSocket*>(ptr)->resourceName().toUtf8(); QtWebSockets_PackedString { const_cast<char*>(t1e5662.prepend("WHITESPACE").constData()+10), t1e5662.size()-10 }; });
 }
 
 void QWebSocket_Resume(void* ptr)
@@ -464,9 +464,9 @@ void QWebSocket_Resume(void* ptr)
 	static_cast<QWebSocket*>(ptr)->resume();
 }
 
-long long QWebSocket_SendBinaryMessage(void* ptr, char* data)
+long long QWebSocket_SendBinaryMessage(void* ptr, void* data)
 {
-	return static_cast<QWebSocket*>(ptr)->sendBinaryMessage(QByteArray::fromHex(QString(data).toUtf8()));
+	return static_cast<QWebSocket*>(ptr)->sendBinaryMessage(*static_cast<QByteArray*>(data));
 }
 
 long long QWebSocket_SendTextMessage(void* ptr, char* message)
@@ -674,9 +674,9 @@ char QWebSocketCorsAuthenticator_Allowed(void* ptr)
 	return static_cast<QWebSocketCorsAuthenticator*>(ptr)->allowed();
 }
 
-char* QWebSocketCorsAuthenticator_Origin(void* ptr)
+struct QtWebSockets_PackedString QWebSocketCorsAuthenticator_Origin(void* ptr)
 {
-	return const_cast<char*>(static_cast<QWebSocketCorsAuthenticator*>(ptr)->origin().toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray tde65a2 = static_cast<QWebSocketCorsAuthenticator*>(ptr)->origin().toUtf8(); QtWebSockets_PackedString { const_cast<char*>(tde65a2.prepend("WHITESPACE").constData()+10), tde65a2.size()-10 }; });
 }
 
 void QWebSocketCorsAuthenticator_SetAllowed(void* ptr, char allowed)
@@ -756,9 +756,9 @@ void QWebSocketServer_Closed(void* ptr)
 	static_cast<QWebSocketServer*>(ptr)->closed();
 }
 
-char* QWebSocketServer_ErrorString(void* ptr)
+struct QtWebSockets_PackedString QWebSocketServer_ErrorString(void* ptr)
 {
-	return const_cast<char*>(static_cast<QWebSocketServer*>(ptr)->errorString().toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray t92e239 = static_cast<QWebSocketServer*>(ptr)->errorString().toUtf8(); QtWebSockets_PackedString { const_cast<char*>(t92e239.prepend("WHITESPACE").constData()+10), t92e239.size()-10 }; });
 }
 
 char QWebSocketServer_HasPendingConnections(void* ptr)
@@ -861,9 +861,9 @@ void* QWebSocketServer_ServerAddress(void* ptr)
 	return new QHostAddress(static_cast<QWebSocketServer*>(ptr)->serverAddress());
 }
 
-char* QWebSocketServer_ServerName(void* ptr)
+struct QtWebSockets_PackedString QWebSocketServer_ServerName(void* ptr)
 {
-	return const_cast<char*>(static_cast<QWebSocketServer*>(ptr)->serverName().toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray tf9a582 = static_cast<QWebSocketServer*>(ptr)->serverName().toUtf8(); QtWebSockets_PackedString { const_cast<char*>(tf9a582.prepend("WHITESPACE").constData()+10), tf9a582.size()-10 }; });
 }
 
 unsigned short QWebSocketServer_ServerPort(void* ptr)

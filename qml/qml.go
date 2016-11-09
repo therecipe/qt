@@ -7,7 +7,6 @@ package qml
 //#include "qml.h"
 import "C"
 import (
-	"encoding/hex"
 	"fmt"
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
@@ -16,6 +15,13 @@ import (
 	"strings"
 	"unsafe"
 )
+
+func cGoUnpackString(s C.struct_QtQml_PackedString) string {
+	if len := int(s.len); len == -1 {
+		return C.GoString(s.data)
+	}
+	return C.GoStringN(s.data, C.int(s.len))
+}
 
 //QJSEngine::Extension
 type QJSEngine__Extension int64
@@ -848,7 +854,7 @@ func (ptr *QJSValue) ToQObject() *core.QObject {
 
 func (ptr *QJSValue) ToString() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QJSValue_ToString(ptr.Pointer()))
+		return cGoUnpackString(C.QJSValue_ToString(ptr.Pointer()))
 	}
 	return ""
 }
@@ -1103,9 +1109,9 @@ func NewQQmlApplicationEngine2(url core.QUrl_ITF, parent core.QObject_ITF) *QQml
 }
 
 //export callbackQQmlApplicationEngine_Load2
-func callbackQQmlApplicationEngine_Load2(ptr unsafe.Pointer, filePath *C.char) {
+func callbackQQmlApplicationEngine_Load2(ptr unsafe.Pointer, filePath C.struct_QtQml_PackedString) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QQmlApplicationEngine::load2"); signal != nil {
-		signal.(func(string))(C.GoString(filePath))
+		signal.(func(string))(cGoUnpackString(filePath))
 	}
 
 }
@@ -1161,32 +1167,30 @@ func (ptr *QQmlApplicationEngine) Load(url core.QUrl_ITF) {
 }
 
 //export callbackQQmlApplicationEngine_LoadData
-func callbackQQmlApplicationEngine_LoadData(ptr unsafe.Pointer, data *C.char, url unsafe.Pointer) {
+func callbackQQmlApplicationEngine_LoadData(ptr unsafe.Pointer, data unsafe.Pointer, url unsafe.Pointer) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QQmlApplicationEngine::loadData"); signal != nil {
-		signal.(func(string, *core.QUrl))(qt.HexDecodeToString(C.GoString(data)), core.NewQUrlFromPointer(url))
+		signal.(func(*core.QByteArray, *core.QUrl))(core.NewQByteArrayFromPointer(data), core.NewQUrlFromPointer(url))
 	}
 
 }
 
-func (ptr *QQmlApplicationEngine) ConnectLoadData(f func(data string, url *core.QUrl)) {
+func (ptr *QQmlApplicationEngine) ConnectLoadData(f func(data *core.QByteArray, url *core.QUrl)) {
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QQmlApplicationEngine::loadData", f)
 	}
 }
 
-func (ptr *QQmlApplicationEngine) DisconnectLoadData(data string, url core.QUrl_ITF) {
+func (ptr *QQmlApplicationEngine) DisconnectLoadData(data core.QByteArray_ITF, url core.QUrl_ITF) {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QQmlApplicationEngine::loadData")
 	}
 }
 
-func (ptr *QQmlApplicationEngine) LoadData(data string, url core.QUrl_ITF) {
+func (ptr *QQmlApplicationEngine) LoadData(data core.QByteArray_ITF, url core.QUrl_ITF) {
 	if ptr.Pointer() != nil {
-		var dataC = C.CString(hex.EncodeToString([]byte(data)))
-		defer C.free(unsafe.Pointer(dataC))
-		C.QQmlApplicationEngine_LoadData(ptr.Pointer(), dataC, core.PointerFromQUrl(url))
+		C.QQmlApplicationEngine_LoadData(ptr.Pointer(), core.PointerFromQByteArray(data), core.PointerFromQUrl(url))
 	}
 }
 
@@ -1942,32 +1946,30 @@ func (ptr *QQmlComponent) ProgressChanged(progress float64) {
 }
 
 //export callbackQQmlComponent_SetData
-func callbackQQmlComponent_SetData(ptr unsafe.Pointer, data *C.char, url unsafe.Pointer) {
+func callbackQQmlComponent_SetData(ptr unsafe.Pointer, data unsafe.Pointer, url unsafe.Pointer) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QQmlComponent::setData"); signal != nil {
-		signal.(func(string, *core.QUrl))(qt.HexDecodeToString(C.GoString(data)), core.NewQUrlFromPointer(url))
+		signal.(func(*core.QByteArray, *core.QUrl))(core.NewQByteArrayFromPointer(data), core.NewQUrlFromPointer(url))
 	}
 
 }
 
-func (ptr *QQmlComponent) ConnectSetData(f func(data string, url *core.QUrl)) {
+func (ptr *QQmlComponent) ConnectSetData(f func(data *core.QByteArray, url *core.QUrl)) {
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QQmlComponent::setData", f)
 	}
 }
 
-func (ptr *QQmlComponent) DisconnectSetData(data string, url core.QUrl_ITF) {
+func (ptr *QQmlComponent) DisconnectSetData(data core.QByteArray_ITF, url core.QUrl_ITF) {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QQmlComponent::setData")
 	}
 }
 
-func (ptr *QQmlComponent) SetData(data string, url core.QUrl_ITF) {
+func (ptr *QQmlComponent) SetData(data core.QByteArray_ITF, url core.QUrl_ITF) {
 	if ptr.Pointer() != nil {
-		var dataC = C.CString(hex.EncodeToString([]byte(data)))
-		defer C.free(unsafe.Pointer(dataC))
-		C.QQmlComponent_SetData(ptr.Pointer(), dataC, core.PointerFromQUrl(url))
+		C.QQmlComponent_SetData(ptr.Pointer(), core.PointerFromQByteArray(data), core.PointerFromQUrl(url))
 	}
 }
 
@@ -2478,7 +2480,7 @@ func (ptr *QQmlContext) IsValid() bool {
 
 func (ptr *QQmlContext) NameForObject(object core.QObject_ITF) string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QQmlContext_NameForObject(ptr.Pointer(), core.PointerFromQObject(object)))
+		return cGoUnpackString(C.QQmlContext_NameForObject(ptr.Pointer(), core.PointerFromQObject(object)))
 	}
 	return ""
 }
@@ -2952,7 +2954,7 @@ func NewQQmlEngineFromPointer(ptr unsafe.Pointer) *QQmlEngine {
 }
 func (ptr *QQmlEngine) OfflineStoragePath() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QQmlEngine_OfflineStoragePath(ptr.Pointer()))
+		return cGoUnpackString(C.QQmlEngine_OfflineStoragePath(ptr.Pointer()))
 	}
 	return ""
 }
@@ -3077,7 +3079,7 @@ func (ptr *QQmlEngine) ImageProvider(providerId string) *QQmlImageProviderBase {
 
 func (ptr *QQmlEngine) ImportPathList() []string {
 	if ptr.Pointer() != nil {
-		return strings.Split(C.GoString(C.QQmlEngine_ImportPathList(ptr.Pointer())), "|")
+		return strings.Split(cGoUnpackString(C.QQmlEngine_ImportPathList(ptr.Pointer())), "|")
 	}
 	return make([]string, 0)
 }
@@ -3124,7 +3126,7 @@ func (ptr *QQmlEngine) OutputWarningsToStandardError() bool {
 
 func (ptr *QQmlEngine) PluginPathList() []string {
 	if ptr.Pointer() != nil {
-		return strings.Split(C.GoString(C.QQmlEngine_PluginPathList(ptr.Pointer())), "|")
+		return strings.Split(cGoUnpackString(C.QQmlEngine_PluginPathList(ptr.Pointer())), "|")
 	}
 	return make([]string, 0)
 }
@@ -3638,7 +3640,7 @@ func (ptr *QQmlError) Column() int {
 
 func (ptr *QQmlError) Description() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QQmlError_Description(ptr.Pointer()))
+		return cGoUnpackString(C.QQmlError_Description(ptr.Pointer()))
 	}
 	return ""
 }
@@ -3702,7 +3704,7 @@ func (ptr *QQmlError) SetUrl(url core.QUrl_ITF) {
 
 func (ptr *QQmlError) ToString() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QQmlError_ToString(ptr.Pointer()))
+		return cGoUnpackString(C.QQmlError_ToString(ptr.Pointer()))
 	}
 	return ""
 }
@@ -3835,7 +3837,7 @@ func (ptr *QQmlExpression) Evaluate(valueIsUndefined bool) *core.QVariant {
 
 func (ptr *QQmlExpression) Expression() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QQmlExpression_Expression(ptr.Pointer()))
+		return cGoUnpackString(C.QQmlExpression_Expression(ptr.Pointer()))
 	}
 	return ""
 }
@@ -3896,7 +3898,7 @@ func (ptr *QQmlExpression) SetSourceLocation(url string, line int, column int) {
 
 func (ptr *QQmlExpression) SourceFile() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QQmlExpression_SourceFile(ptr.Pointer()))
+		return cGoUnpackString(C.QQmlExpression_SourceFile(ptr.Pointer()))
 	}
 	return ""
 }
@@ -4349,12 +4351,12 @@ func (ptr *QQmlExtensionPlugin) DestroyQQmlExtensionPlugin() {
 }
 
 //export callbackQQmlExtensionPlugin_InitializeEngine
-func callbackQQmlExtensionPlugin_InitializeEngine(ptr unsafe.Pointer, engine unsafe.Pointer, uri *C.char) {
+func callbackQQmlExtensionPlugin_InitializeEngine(ptr unsafe.Pointer, engine unsafe.Pointer, uri C.struct_QtQml_PackedString) {
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QQmlExtensionPlugin::initializeEngine"); signal != nil {
-		signal.(func(*QQmlEngine, string))(NewQQmlEngineFromPointer(engine), C.GoString(uri))
+		signal.(func(*QQmlEngine, string))(NewQQmlEngineFromPointer(engine), cGoUnpackString(uri))
 	} else {
-		NewQQmlExtensionPluginFromPointer(ptr).InitializeEngineDefault(NewQQmlEngineFromPointer(engine), C.GoString(uri))
+		NewQQmlExtensionPluginFromPointer(ptr).InitializeEngineDefault(NewQQmlEngineFromPointer(engine), cGoUnpackString(uri))
 	}
 }
 
@@ -4406,10 +4408,10 @@ func (ptr *QQmlExtensionPlugin) BaseUrl() *core.QUrl {
 }
 
 //export callbackQQmlExtensionPlugin_RegisterTypes
-func callbackQQmlExtensionPlugin_RegisterTypes(ptr unsafe.Pointer, uri *C.char) {
+func callbackQQmlExtensionPlugin_RegisterTypes(ptr unsafe.Pointer, uri C.struct_QtQml_PackedString) {
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QQmlExtensionPlugin::registerTypes"); signal != nil {
-		signal.(func(string))(C.GoString(uri))
+		signal.(func(string))(cGoUnpackString(uri))
 	}
 
 }
@@ -6254,7 +6256,7 @@ func (ptr *QQmlProperty) Method() *core.QMetaMethod {
 
 func (ptr *QQmlProperty) Name() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QQmlProperty_Name(ptr.Pointer()))
+		return cGoUnpackString(C.QQmlProperty_Name(ptr.Pointer()))
 	}
 	return ""
 }
@@ -6293,7 +6295,7 @@ func (ptr *QQmlProperty) PropertyTypeCategory() QQmlProperty__PropertyTypeCatego
 
 func (ptr *QQmlProperty) PropertyTypeName() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QQmlProperty_PropertyTypeName(ptr.Pointer()))
+		return cGoUnpackString(C.QQmlProperty_PropertyTypeName(ptr.Pointer()))
 	}
 	return ""
 }
@@ -6499,7 +6501,7 @@ func (ptr *QQmlPropertyMap) IsEmpty() bool {
 
 func (ptr *QQmlPropertyMap) Keys() []string {
 	if ptr.Pointer() != nil {
-		return strings.Split(C.GoString(C.QQmlPropertyMap_Keys(ptr.Pointer())), "|")
+		return strings.Split(cGoUnpackString(C.QQmlPropertyMap_Keys(ptr.Pointer())), "|")
 	}
 	return make([]string, 0)
 }
@@ -6512,13 +6514,13 @@ func (ptr *QQmlPropertyMap) Size() int {
 }
 
 //export callbackQQmlPropertyMap_UpdateValue
-func callbackQQmlPropertyMap_UpdateValue(ptr unsafe.Pointer, key *C.char, input unsafe.Pointer) unsafe.Pointer {
+func callbackQQmlPropertyMap_UpdateValue(ptr unsafe.Pointer, key C.struct_QtQml_PackedString, input unsafe.Pointer) unsafe.Pointer {
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QQmlPropertyMap::updateValue"); signal != nil {
-		return core.PointerFromQVariant(signal.(func(string, *core.QVariant) *core.QVariant)(C.GoString(key), core.NewQVariantFromPointer(input)))
+		return core.PointerFromQVariant(signal.(func(string, *core.QVariant) *core.QVariant)(cGoUnpackString(key), core.NewQVariantFromPointer(input)))
 	}
 
-	return core.PointerFromQVariant(NewQQmlPropertyMapFromPointer(ptr).UpdateValueDefault(C.GoString(key), core.NewQVariantFromPointer(input)))
+	return core.PointerFromQVariant(NewQQmlPropertyMapFromPointer(ptr).UpdateValueDefault(cGoUnpackString(key), core.NewQVariantFromPointer(input)))
 }
 
 func (ptr *QQmlPropertyMap) ConnectUpdateValue(f func(key string, input *core.QVariant) *core.QVariant) {
@@ -6569,10 +6571,10 @@ func (ptr *QQmlPropertyMap) Value(key string) *core.QVariant {
 }
 
 //export callbackQQmlPropertyMap_ValueChanged
-func callbackQQmlPropertyMap_ValueChanged(ptr unsafe.Pointer, key *C.char, value unsafe.Pointer) {
+func callbackQQmlPropertyMap_ValueChanged(ptr unsafe.Pointer, key C.struct_QtQml_PackedString, value unsafe.Pointer) {
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QQmlPropertyMap::valueChanged"); signal != nil {
-		signal.(func(string, *core.QVariant))(C.GoString(key), core.NewQVariantFromPointer(value))
+		signal.(func(string, *core.QVariant))(cGoUnpackString(key), core.NewQVariantFromPointer(value))
 	}
 
 }
@@ -7174,7 +7176,7 @@ func (ptr *QQmlScriptString) NumberLiteral(ok bool) float64 {
 
 func (ptr *QQmlScriptString) StringLiteral() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QQmlScriptString_StringLiteral(ptr.Pointer()))
+		return cGoUnpackString(C.QQmlScriptString_StringLiteral(ptr.Pointer()))
 	}
 	return ""
 }

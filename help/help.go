@@ -7,7 +7,6 @@ package help
 //#include "help.h"
 import "C"
 import (
-	"encoding/hex"
 	"fmt"
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
@@ -17,6 +16,13 @@ import (
 	"strings"
 	"unsafe"
 )
+
+func cGoUnpackString(s C.struct_QtHelp_PackedString) string {
+	if len := int(s.len); len == -1 {
+		return C.GoString(s.data)
+	}
+	return C.GoStringN(s.data, C.int(s.len))
+}
 
 type QHelpContentItem struct {
 	ptr unsafe.Pointer
@@ -92,7 +98,7 @@ func (ptr *QHelpContentItem) Row() int {
 
 func (ptr *QHelpContentItem) Title() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QHelpContentItem_Title(ptr.Pointer()))
+		return cGoUnpackString(C.QHelpContentItem_Title(ptr.Pointer()))
 	}
 	return ""
 }
@@ -734,14 +740,14 @@ func (ptr *QHelpContentModel) DisconnectMimeTypes() {
 
 func (ptr *QHelpContentModel) MimeTypes() []string {
 	if ptr.Pointer() != nil {
-		return strings.Split(C.GoString(C.QHelpContentModel_MimeTypes(ptr.Pointer())), "|")
+		return strings.Split(cGoUnpackString(C.QHelpContentModel_MimeTypes(ptr.Pointer())), "|")
 	}
 	return make([]string, 0)
 }
 
 func (ptr *QHelpContentModel) MimeTypesDefault() []string {
 	if ptr.Pointer() != nil {
-		return strings.Split(C.GoString(C.QHelpContentModel_MimeTypesDefault(ptr.Pointer())), "|")
+		return strings.Split(cGoUnpackString(C.QHelpContentModel_MimeTypesDefault(ptr.Pointer())), "|")
 	}
 	return make([]string, 0)
 }
@@ -2265,12 +2271,12 @@ func (ptr *QHelpContentWidget) KeyPressEventDefault(event gui.QKeyEvent_ITF) {
 }
 
 //export callbackQHelpContentWidget_KeyboardSearch
-func callbackQHelpContentWidget_KeyboardSearch(ptr unsafe.Pointer, search *C.char) {
+func callbackQHelpContentWidget_KeyboardSearch(ptr unsafe.Pointer, search C.struct_QtHelp_PackedString) {
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentWidget::keyboardSearch"); signal != nil {
-		signal.(func(string))(C.GoString(search))
+		signal.(func(string))(cGoUnpackString(search))
 	} else {
-		NewQHelpContentWidgetFromPointer(ptr).KeyboardSearchDefault(C.GoString(search))
+		NewQHelpContentWidgetFromPointer(ptr).KeyboardSearchDefault(cGoUnpackString(search))
 	}
 }
 
@@ -4586,11 +4592,11 @@ func (ptr *QHelpContentWidget) SetEnabledDefault(vbo bool) {
 }
 
 //export callbackQHelpContentWidget_SetStyleSheet
-func callbackQHelpContentWidget_SetStyleSheet(ptr unsafe.Pointer, styleSheet *C.char) {
+func callbackQHelpContentWidget_SetStyleSheet(ptr unsafe.Pointer, styleSheet C.struct_QtHelp_PackedString) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentWidget::setStyleSheet"); signal != nil {
-		signal.(func(string))(C.GoString(styleSheet))
+		signal.(func(string))(cGoUnpackString(styleSheet))
 	} else {
-		NewQHelpContentWidgetFromPointer(ptr).SetStyleSheetDefault(C.GoString(styleSheet))
+		NewQHelpContentWidgetFromPointer(ptr).SetStyleSheetDefault(cGoUnpackString(styleSheet))
 	}
 }
 
@@ -4695,11 +4701,11 @@ func (ptr *QHelpContentWidget) SetWindowModifiedDefault(vbo bool) {
 }
 
 //export callbackQHelpContentWidget_SetWindowTitle
-func callbackQHelpContentWidget_SetWindowTitle(ptr unsafe.Pointer, vqs *C.char) {
+func callbackQHelpContentWidget_SetWindowTitle(ptr unsafe.Pointer, vqs C.struct_QtHelp_PackedString) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentWidget::setWindowTitle"); signal != nil {
-		signal.(func(string))(C.GoString(vqs))
+		signal.(func(string))(cGoUnpackString(vqs))
 	} else {
-		NewQHelpContentWidgetFromPointer(ptr).SetWindowTitleDefault(C.GoString(vqs))
+		NewQHelpContentWidgetFromPointer(ptr).SetWindowTitleDefault(cGoUnpackString(vqs))
 	}
 }
 
@@ -5025,16 +5031,16 @@ func (ptr *QHelpContentWidget) LowerDefault() {
 }
 
 //export callbackQHelpContentWidget_NativeEvent
-func callbackQHelpContentWidget_NativeEvent(ptr unsafe.Pointer, eventType *C.char, message unsafe.Pointer, result C.long) C.char {
+func callbackQHelpContentWidget_NativeEvent(ptr unsafe.Pointer, eventType unsafe.Pointer, message unsafe.Pointer, result C.long) C.char {
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentWidget::nativeEvent"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt(signal.(func(string, unsafe.Pointer, int) bool)(qt.HexDecodeToString(C.GoString(eventType)), message, int(int32(result))))))
+		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QByteArray, unsafe.Pointer, int) bool)(core.NewQByteArrayFromPointer(eventType), message, int(int32(result))))))
 	}
 
-	return C.char(int8(qt.GoBoolToInt(NewQHelpContentWidgetFromPointer(ptr).NativeEventDefault(qt.HexDecodeToString(C.GoString(eventType)), message, int(int32(result))))))
+	return C.char(int8(qt.GoBoolToInt(NewQHelpContentWidgetFromPointer(ptr).NativeEventDefault(core.NewQByteArrayFromPointer(eventType), message, int(int32(result))))))
 }
 
-func (ptr *QHelpContentWidget) ConnectNativeEvent(f func(eventType string, message unsafe.Pointer, result int) bool) {
+func (ptr *QHelpContentWidget) ConnectNativeEvent(f func(eventType *core.QByteArray, message unsafe.Pointer, result int) bool) {
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentWidget::nativeEvent", f)
@@ -5048,20 +5054,16 @@ func (ptr *QHelpContentWidget) DisconnectNativeEvent() {
 	}
 }
 
-func (ptr *QHelpContentWidget) NativeEvent(eventType string, message unsafe.Pointer, result int) bool {
+func (ptr *QHelpContentWidget) NativeEvent(eventType core.QByteArray_ITF, message unsafe.Pointer, result int) bool {
 	if ptr.Pointer() != nil {
-		var eventTypeC = C.CString(hex.EncodeToString([]byte(eventType)))
-		defer C.free(unsafe.Pointer(eventTypeC))
-		return C.QHelpContentWidget_NativeEvent(ptr.Pointer(), eventTypeC, message, C.long(int32(result))) != 0
+		return C.QHelpContentWidget_NativeEvent(ptr.Pointer(), core.PointerFromQByteArray(eventType), message, C.long(int32(result))) != 0
 	}
 	return false
 }
 
-func (ptr *QHelpContentWidget) NativeEventDefault(eventType string, message unsafe.Pointer, result int) bool {
+func (ptr *QHelpContentWidget) NativeEventDefault(eventType core.QByteArray_ITF, message unsafe.Pointer, result int) bool {
 	if ptr.Pointer() != nil {
-		var eventTypeC = C.CString(hex.EncodeToString([]byte(eventType)))
-		defer C.free(unsafe.Pointer(eventTypeC))
-		return C.QHelpContentWidget_NativeEventDefault(ptr.Pointer(), eventTypeC, message, C.long(int32(result))) != 0
+		return C.QHelpContentWidget_NativeEventDefault(ptr.Pointer(), core.PointerFromQByteArray(eventType), message, C.long(int32(result))) != 0
 	}
 	return false
 }
@@ -6237,14 +6239,14 @@ func (ptr *QHelpEngineCore) AutoSaveFilter() bool {
 
 func (ptr *QHelpEngineCore) CollectionFile() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QHelpEngineCore_CollectionFile(ptr.Pointer()))
+		return cGoUnpackString(C.QHelpEngineCore_CollectionFile(ptr.Pointer()))
 	}
 	return ""
 }
 
 func (ptr *QHelpEngineCore) CurrentFilter() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QHelpEngineCore_CurrentFilter(ptr.Pointer()))
+		return cGoUnpackString(C.QHelpEngineCore_CurrentFilter(ptr.Pointer()))
 	}
 	return ""
 }
@@ -6302,10 +6304,10 @@ func (ptr *QHelpEngineCore) CopyCollectionFile(fileName string) bool {
 }
 
 //export callbackQHelpEngineCore_CurrentFilterChanged
-func callbackQHelpEngineCore_CurrentFilterChanged(ptr unsafe.Pointer, newFilter *C.char) {
+func callbackQHelpEngineCore_CurrentFilterChanged(ptr unsafe.Pointer, newFilter C.struct_QtHelp_PackedString) {
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpEngineCore::currentFilterChanged"); signal != nil {
-		signal.(func(string))(C.GoString(newFilter))
+		signal.(func(string))(cGoUnpackString(newFilter))
 	}
 
 }
@@ -6334,7 +6336,7 @@ func (ptr *QHelpEngineCore) CurrentFilterChanged(newFilter string) {
 
 func (ptr *QHelpEngineCore) CustomFilters() []string {
 	if ptr.Pointer() != nil {
-		return strings.Split(C.GoString(C.QHelpEngineCore_CustomFilters(ptr.Pointer())), "|")
+		return strings.Split(cGoUnpackString(C.QHelpEngineCore_CustomFilters(ptr.Pointer())), "|")
 	}
 	return make([]string, 0)
 }
@@ -6354,28 +6356,30 @@ func (ptr *QHelpEngineCore) DocumentationFileName(namespaceName string) string {
 	if ptr.Pointer() != nil {
 		var namespaceNameC = C.CString(namespaceName)
 		defer C.free(unsafe.Pointer(namespaceNameC))
-		return C.GoString(C.QHelpEngineCore_DocumentationFileName(ptr.Pointer(), namespaceNameC))
+		return cGoUnpackString(C.QHelpEngineCore_DocumentationFileName(ptr.Pointer(), namespaceNameC))
 	}
 	return ""
 }
 
 func (ptr *QHelpEngineCore) Error() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QHelpEngineCore_Error(ptr.Pointer()))
+		return cGoUnpackString(C.QHelpEngineCore_Error(ptr.Pointer()))
 	}
 	return ""
 }
 
-func (ptr *QHelpEngineCore) FileData(url core.QUrl_ITF) string {
+func (ptr *QHelpEngineCore) FileData(url core.QUrl_ITF) *core.QByteArray {
 	if ptr.Pointer() != nil {
-		return qt.HexDecodeToString(C.GoString(C.QHelpEngineCore_FileData(ptr.Pointer(), core.PointerFromQUrl(url))))
+		var tmpValue = core.NewQByteArrayFromPointer(C.QHelpEngineCore_FileData(ptr.Pointer(), core.PointerFromQUrl(url)))
+		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		return tmpValue
 	}
-	return ""
+	return nil
 }
 
 func (ptr *QHelpEngineCore) FilterAttributes() []string {
 	if ptr.Pointer() != nil {
-		return strings.Split(C.GoString(C.QHelpEngineCore_FilterAttributes(ptr.Pointer())), "|")
+		return strings.Split(cGoUnpackString(C.QHelpEngineCore_FilterAttributes(ptr.Pointer())), "|")
 	}
 	return make([]string, 0)
 }
@@ -6384,7 +6388,7 @@ func (ptr *QHelpEngineCore) FilterAttributes2(filterName string) []string {
 	if ptr.Pointer() != nil {
 		var filterNameC = C.CString(filterName)
 		defer C.free(unsafe.Pointer(filterNameC))
-		return strings.Split(C.GoString(C.QHelpEngineCore_FilterAttributes2(ptr.Pointer(), filterNameC)), "|")
+		return strings.Split(cGoUnpackString(C.QHelpEngineCore_FilterAttributes2(ptr.Pointer(), filterNameC)), "|")
 	}
 	return make([]string, 0)
 }
@@ -6421,13 +6425,13 @@ func (ptr *QHelpEngineCore) MetaData(documentationFileName string, name string) 
 func QHelpEngineCore_NamespaceName(documentationFileName string) string {
 	var documentationFileNameC = C.CString(documentationFileName)
 	defer C.free(unsafe.Pointer(documentationFileNameC))
-	return C.GoString(C.QHelpEngineCore_QHelpEngineCore_NamespaceName(documentationFileNameC))
+	return cGoUnpackString(C.QHelpEngineCore_QHelpEngineCore_NamespaceName(documentationFileNameC))
 }
 
 func (ptr *QHelpEngineCore) NamespaceName(documentationFileName string) string {
 	var documentationFileNameC = C.CString(documentationFileName)
 	defer C.free(unsafe.Pointer(documentationFileNameC))
-	return C.GoString(C.QHelpEngineCore_QHelpEngineCore_NamespaceName(documentationFileNameC))
+	return cGoUnpackString(C.QHelpEngineCore_QHelpEngineCore_NamespaceName(documentationFileNameC))
 }
 
 //export callbackQHelpEngineCore_ReadersAboutToBeInvalidated
@@ -6470,7 +6474,7 @@ func (ptr *QHelpEngineCore) RegisterDocumentation(documentationFileName string) 
 
 func (ptr *QHelpEngineCore) RegisteredDocumentations() []string {
 	if ptr.Pointer() != nil {
-		return strings.Split(C.GoString(C.QHelpEngineCore_RegisteredDocumentations(ptr.Pointer())), "|")
+		return strings.Split(cGoUnpackString(C.QHelpEngineCore_RegisteredDocumentations(ptr.Pointer())), "|")
 	}
 	return make([]string, 0)
 }
@@ -6577,10 +6581,10 @@ func (ptr *QHelpEngineCore) UnregisterDocumentation(namespaceName string) bool {
 }
 
 //export callbackQHelpEngineCore_Warning
-func callbackQHelpEngineCore_Warning(ptr unsafe.Pointer, msg *C.char) {
+func callbackQHelpEngineCore_Warning(ptr unsafe.Pointer, msg C.struct_QtHelp_PackedString) {
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpEngineCore::warning"); signal != nil {
-		signal.(func(string))(C.GoString(msg))
+		signal.(func(string))(cGoUnpackString(msg))
 	}
 
 }
@@ -7875,14 +7879,14 @@ func (ptr *QHelpIndexModel) DisconnectMimeTypes() {
 
 func (ptr *QHelpIndexModel) MimeTypes() []string {
 	if ptr.Pointer() != nil {
-		return strings.Split(C.GoString(C.QHelpIndexModel_MimeTypes(ptr.Pointer())), "|")
+		return strings.Split(cGoUnpackString(C.QHelpIndexModel_MimeTypes(ptr.Pointer())), "|")
 	}
 	return make([]string, 0)
 }
 
 func (ptr *QHelpIndexModel) MimeTypesDefault() []string {
 	if ptr.Pointer() != nil {
-		return strings.Split(C.GoString(C.QHelpIndexModel_MimeTypesDefault(ptr.Pointer())), "|")
+		return strings.Split(cGoUnpackString(C.QHelpIndexModel_MimeTypesDefault(ptr.Pointer())), "|")
 	}
 	return make([]string, 0)
 }
@@ -8675,9 +8679,9 @@ func (ptr *QHelpIndexWidget) ActivateCurrentItem() {
 }
 
 //export callbackQHelpIndexWidget_FilterIndices
-func callbackQHelpIndexWidget_FilterIndices(ptr unsafe.Pointer, filter *C.char, wildcard *C.char) {
+func callbackQHelpIndexWidget_FilterIndices(ptr unsafe.Pointer, filter C.struct_QtHelp_PackedString, wildcard C.struct_QtHelp_PackedString) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpIndexWidget::filterIndices"); signal != nil {
-		signal.(func(string, string))(C.GoString(filter), C.GoString(wildcard))
+		signal.(func(string, string))(cGoUnpackString(filter), cGoUnpackString(wildcard))
 	}
 
 }
@@ -8707,10 +8711,10 @@ func (ptr *QHelpIndexWidget) FilterIndices(filter string, wildcard string) {
 }
 
 //export callbackQHelpIndexWidget_LinkActivated
-func callbackQHelpIndexWidget_LinkActivated(ptr unsafe.Pointer, link unsafe.Pointer, keyword *C.char) {
+func callbackQHelpIndexWidget_LinkActivated(ptr unsafe.Pointer, link unsafe.Pointer, keyword C.struct_QtHelp_PackedString) {
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpIndexWidget::linkActivated"); signal != nil {
-		signal.(func(*core.QUrl, string))(core.NewQUrlFromPointer(link), C.GoString(keyword))
+		signal.(func(*core.QUrl, string))(core.NewQUrlFromPointer(link), cGoUnpackString(keyword))
 	}
 
 }
@@ -10191,12 +10195,12 @@ func (ptr *QHelpIndexWidget) KeyPressEventDefault(event gui.QKeyEvent_ITF) {
 }
 
 //export callbackQHelpIndexWidget_KeyboardSearch
-func callbackQHelpIndexWidget_KeyboardSearch(ptr unsafe.Pointer, search *C.char) {
+func callbackQHelpIndexWidget_KeyboardSearch(ptr unsafe.Pointer, search C.struct_QtHelp_PackedString) {
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpIndexWidget::keyboardSearch"); signal != nil {
-		signal.(func(string))(C.GoString(search))
+		signal.(func(string))(cGoUnpackString(search))
 	} else {
-		NewQHelpIndexWidgetFromPointer(ptr).KeyboardSearchDefault(C.GoString(search))
+		NewQHelpIndexWidgetFromPointer(ptr).KeyboardSearchDefault(cGoUnpackString(search))
 	}
 }
 
@@ -11177,11 +11181,11 @@ func (ptr *QHelpIndexWidget) SetEnabledDefault(vbo bool) {
 }
 
 //export callbackQHelpIndexWidget_SetStyleSheet
-func callbackQHelpIndexWidget_SetStyleSheet(ptr unsafe.Pointer, styleSheet *C.char) {
+func callbackQHelpIndexWidget_SetStyleSheet(ptr unsafe.Pointer, styleSheet C.struct_QtHelp_PackedString) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpIndexWidget::setStyleSheet"); signal != nil {
-		signal.(func(string))(C.GoString(styleSheet))
+		signal.(func(string))(cGoUnpackString(styleSheet))
 	} else {
-		NewQHelpIndexWidgetFromPointer(ptr).SetStyleSheetDefault(C.GoString(styleSheet))
+		NewQHelpIndexWidgetFromPointer(ptr).SetStyleSheetDefault(cGoUnpackString(styleSheet))
 	}
 }
 
@@ -11286,11 +11290,11 @@ func (ptr *QHelpIndexWidget) SetWindowModifiedDefault(vbo bool) {
 }
 
 //export callbackQHelpIndexWidget_SetWindowTitle
-func callbackQHelpIndexWidget_SetWindowTitle(ptr unsafe.Pointer, vqs *C.char) {
+func callbackQHelpIndexWidget_SetWindowTitle(ptr unsafe.Pointer, vqs C.struct_QtHelp_PackedString) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpIndexWidget::setWindowTitle"); signal != nil {
-		signal.(func(string))(C.GoString(vqs))
+		signal.(func(string))(cGoUnpackString(vqs))
 	} else {
-		NewQHelpIndexWidgetFromPointer(ptr).SetWindowTitleDefault(C.GoString(vqs))
+		NewQHelpIndexWidgetFromPointer(ptr).SetWindowTitleDefault(cGoUnpackString(vqs))
 	}
 }
 
@@ -11616,16 +11620,16 @@ func (ptr *QHelpIndexWidget) LowerDefault() {
 }
 
 //export callbackQHelpIndexWidget_NativeEvent
-func callbackQHelpIndexWidget_NativeEvent(ptr unsafe.Pointer, eventType *C.char, message unsafe.Pointer, result C.long) C.char {
+func callbackQHelpIndexWidget_NativeEvent(ptr unsafe.Pointer, eventType unsafe.Pointer, message unsafe.Pointer, result C.long) C.char {
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpIndexWidget::nativeEvent"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt(signal.(func(string, unsafe.Pointer, int) bool)(qt.HexDecodeToString(C.GoString(eventType)), message, int(int32(result))))))
+		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QByteArray, unsafe.Pointer, int) bool)(core.NewQByteArrayFromPointer(eventType), message, int(int32(result))))))
 	}
 
-	return C.char(int8(qt.GoBoolToInt(NewQHelpIndexWidgetFromPointer(ptr).NativeEventDefault(qt.HexDecodeToString(C.GoString(eventType)), message, int(int32(result))))))
+	return C.char(int8(qt.GoBoolToInt(NewQHelpIndexWidgetFromPointer(ptr).NativeEventDefault(core.NewQByteArrayFromPointer(eventType), message, int(int32(result))))))
 }
 
-func (ptr *QHelpIndexWidget) ConnectNativeEvent(f func(eventType string, message unsafe.Pointer, result int) bool) {
+func (ptr *QHelpIndexWidget) ConnectNativeEvent(f func(eventType *core.QByteArray, message unsafe.Pointer, result int) bool) {
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexWidget::nativeEvent", f)
@@ -11639,20 +11643,16 @@ func (ptr *QHelpIndexWidget) DisconnectNativeEvent() {
 	}
 }
 
-func (ptr *QHelpIndexWidget) NativeEvent(eventType string, message unsafe.Pointer, result int) bool {
+func (ptr *QHelpIndexWidget) NativeEvent(eventType core.QByteArray_ITF, message unsafe.Pointer, result int) bool {
 	if ptr.Pointer() != nil {
-		var eventTypeC = C.CString(hex.EncodeToString([]byte(eventType)))
-		defer C.free(unsafe.Pointer(eventTypeC))
-		return C.QHelpIndexWidget_NativeEvent(ptr.Pointer(), eventTypeC, message, C.long(int32(result))) != 0
+		return C.QHelpIndexWidget_NativeEvent(ptr.Pointer(), core.PointerFromQByteArray(eventType), message, C.long(int32(result))) != 0
 	}
 	return false
 }
 
-func (ptr *QHelpIndexWidget) NativeEventDefault(eventType string, message unsafe.Pointer, result int) bool {
+func (ptr *QHelpIndexWidget) NativeEventDefault(eventType core.QByteArray_ITF, message unsafe.Pointer, result int) bool {
 	if ptr.Pointer() != nil {
-		var eventTypeC = C.CString(hex.EncodeToString([]byte(eventType)))
-		defer C.free(unsafe.Pointer(eventTypeC))
-		return C.QHelpIndexWidget_NativeEventDefault(ptr.Pointer(), eventTypeC, message, C.long(int32(result))) != 0
+		return C.QHelpIndexWidget_NativeEventDefault(ptr.Pointer(), core.PointerFromQByteArray(eventType), message, C.long(int32(result))) != 0
 	}
 	return false
 }
@@ -13037,7 +13037,7 @@ func (ptr *QHelpSearchQuery) SetFieldName(vfi QHelpSearchQuery__FieldName) {
 
 func (ptr *QHelpSearchQuery) WordList() []string {
 	if ptr.Pointer() != nil {
-		return strings.Split(C.GoString(C.QHelpSearchQuery_WordList(ptr.Pointer())), "|")
+		return strings.Split(cGoUnpackString(C.QHelpSearchQuery_WordList(ptr.Pointer())), "|")
 	}
 	return make([]string, 0)
 }
@@ -13662,11 +13662,11 @@ func (ptr *QHelpSearchQueryWidget) SetEnabledDefault(vbo bool) {
 }
 
 //export callbackQHelpSearchQueryWidget_SetStyleSheet
-func callbackQHelpSearchQueryWidget_SetStyleSheet(ptr unsafe.Pointer, styleSheet *C.char) {
+func callbackQHelpSearchQueryWidget_SetStyleSheet(ptr unsafe.Pointer, styleSheet C.struct_QtHelp_PackedString) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpSearchQueryWidget::setStyleSheet"); signal != nil {
-		signal.(func(string))(C.GoString(styleSheet))
+		signal.(func(string))(cGoUnpackString(styleSheet))
 	} else {
-		NewQHelpSearchQueryWidgetFromPointer(ptr).SetStyleSheetDefault(C.GoString(styleSheet))
+		NewQHelpSearchQueryWidgetFromPointer(ptr).SetStyleSheetDefault(cGoUnpackString(styleSheet))
 	}
 }
 
@@ -13771,11 +13771,11 @@ func (ptr *QHelpSearchQueryWidget) SetWindowModifiedDefault(vbo bool) {
 }
 
 //export callbackQHelpSearchQueryWidget_SetWindowTitle
-func callbackQHelpSearchQueryWidget_SetWindowTitle(ptr unsafe.Pointer, vqs *C.char) {
+func callbackQHelpSearchQueryWidget_SetWindowTitle(ptr unsafe.Pointer, vqs C.struct_QtHelp_PackedString) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpSearchQueryWidget::setWindowTitle"); signal != nil {
-		signal.(func(string))(C.GoString(vqs))
+		signal.(func(string))(cGoUnpackString(vqs))
 	} else {
-		NewQHelpSearchQueryWidgetFromPointer(ptr).SetWindowTitleDefault(C.GoString(vqs))
+		NewQHelpSearchQueryWidgetFromPointer(ptr).SetWindowTitleDefault(cGoUnpackString(vqs))
 	}
 }
 
@@ -14511,16 +14511,16 @@ func (ptr *QHelpSearchQueryWidget) MouseReleaseEventDefault(event gui.QMouseEven
 }
 
 //export callbackQHelpSearchQueryWidget_NativeEvent
-func callbackQHelpSearchQueryWidget_NativeEvent(ptr unsafe.Pointer, eventType *C.char, message unsafe.Pointer, result C.long) C.char {
+func callbackQHelpSearchQueryWidget_NativeEvent(ptr unsafe.Pointer, eventType unsafe.Pointer, message unsafe.Pointer, result C.long) C.char {
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpSearchQueryWidget::nativeEvent"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt(signal.(func(string, unsafe.Pointer, int) bool)(qt.HexDecodeToString(C.GoString(eventType)), message, int(int32(result))))))
+		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QByteArray, unsafe.Pointer, int) bool)(core.NewQByteArrayFromPointer(eventType), message, int(int32(result))))))
 	}
 
-	return C.char(int8(qt.GoBoolToInt(NewQHelpSearchQueryWidgetFromPointer(ptr).NativeEventDefault(qt.HexDecodeToString(C.GoString(eventType)), message, int(int32(result))))))
+	return C.char(int8(qt.GoBoolToInt(NewQHelpSearchQueryWidgetFromPointer(ptr).NativeEventDefault(core.NewQByteArrayFromPointer(eventType), message, int(int32(result))))))
 }
 
-func (ptr *QHelpSearchQueryWidget) ConnectNativeEvent(f func(eventType string, message unsafe.Pointer, result int) bool) {
+func (ptr *QHelpSearchQueryWidget) ConnectNativeEvent(f func(eventType *core.QByteArray, message unsafe.Pointer, result int) bool) {
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchQueryWidget::nativeEvent", f)
@@ -14534,20 +14534,16 @@ func (ptr *QHelpSearchQueryWidget) DisconnectNativeEvent() {
 	}
 }
 
-func (ptr *QHelpSearchQueryWidget) NativeEvent(eventType string, message unsafe.Pointer, result int) bool {
+func (ptr *QHelpSearchQueryWidget) NativeEvent(eventType core.QByteArray_ITF, message unsafe.Pointer, result int) bool {
 	if ptr.Pointer() != nil {
-		var eventTypeC = C.CString(hex.EncodeToString([]byte(eventType)))
-		defer C.free(unsafe.Pointer(eventTypeC))
-		return C.QHelpSearchQueryWidget_NativeEvent(ptr.Pointer(), eventTypeC, message, C.long(int32(result))) != 0
+		return C.QHelpSearchQueryWidget_NativeEvent(ptr.Pointer(), core.PointerFromQByteArray(eventType), message, C.long(int32(result))) != 0
 	}
 	return false
 }
 
-func (ptr *QHelpSearchQueryWidget) NativeEventDefault(eventType string, message unsafe.Pointer, result int) bool {
+func (ptr *QHelpSearchQueryWidget) NativeEventDefault(eventType core.QByteArray_ITF, message unsafe.Pointer, result int) bool {
 	if ptr.Pointer() != nil {
-		var eventTypeC = C.CString(hex.EncodeToString([]byte(eventType)))
-		defer C.free(unsafe.Pointer(eventTypeC))
-		return C.QHelpSearchQueryWidget_NativeEventDefault(ptr.Pointer(), eventTypeC, message, C.long(int32(result))) != 0
+		return C.QHelpSearchQueryWidget_NativeEventDefault(ptr.Pointer(), core.PointerFromQByteArray(eventType), message, C.long(int32(result))) != 0
 	}
 	return false
 }
@@ -15969,11 +15965,11 @@ func (ptr *QHelpSearchResultWidget) SetEnabledDefault(vbo bool) {
 }
 
 //export callbackQHelpSearchResultWidget_SetStyleSheet
-func callbackQHelpSearchResultWidget_SetStyleSheet(ptr unsafe.Pointer, styleSheet *C.char) {
+func callbackQHelpSearchResultWidget_SetStyleSheet(ptr unsafe.Pointer, styleSheet C.struct_QtHelp_PackedString) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpSearchResultWidget::setStyleSheet"); signal != nil {
-		signal.(func(string))(C.GoString(styleSheet))
+		signal.(func(string))(cGoUnpackString(styleSheet))
 	} else {
-		NewQHelpSearchResultWidgetFromPointer(ptr).SetStyleSheetDefault(C.GoString(styleSheet))
+		NewQHelpSearchResultWidgetFromPointer(ptr).SetStyleSheetDefault(cGoUnpackString(styleSheet))
 	}
 }
 
@@ -16078,11 +16074,11 @@ func (ptr *QHelpSearchResultWidget) SetWindowModifiedDefault(vbo bool) {
 }
 
 //export callbackQHelpSearchResultWidget_SetWindowTitle
-func callbackQHelpSearchResultWidget_SetWindowTitle(ptr unsafe.Pointer, vqs *C.char) {
+func callbackQHelpSearchResultWidget_SetWindowTitle(ptr unsafe.Pointer, vqs C.struct_QtHelp_PackedString) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpSearchResultWidget::setWindowTitle"); signal != nil {
-		signal.(func(string))(C.GoString(vqs))
+		signal.(func(string))(cGoUnpackString(vqs))
 	} else {
-		NewQHelpSearchResultWidgetFromPointer(ptr).SetWindowTitleDefault(C.GoString(vqs))
+		NewQHelpSearchResultWidgetFromPointer(ptr).SetWindowTitleDefault(cGoUnpackString(vqs))
 	}
 }
 
@@ -16818,16 +16814,16 @@ func (ptr *QHelpSearchResultWidget) MouseReleaseEventDefault(event gui.QMouseEve
 }
 
 //export callbackQHelpSearchResultWidget_NativeEvent
-func callbackQHelpSearchResultWidget_NativeEvent(ptr unsafe.Pointer, eventType *C.char, message unsafe.Pointer, result C.long) C.char {
+func callbackQHelpSearchResultWidget_NativeEvent(ptr unsafe.Pointer, eventType unsafe.Pointer, message unsafe.Pointer, result C.long) C.char {
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpSearchResultWidget::nativeEvent"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt(signal.(func(string, unsafe.Pointer, int) bool)(qt.HexDecodeToString(C.GoString(eventType)), message, int(int32(result))))))
+		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QByteArray, unsafe.Pointer, int) bool)(core.NewQByteArrayFromPointer(eventType), message, int(int32(result))))))
 	}
 
-	return C.char(int8(qt.GoBoolToInt(NewQHelpSearchResultWidgetFromPointer(ptr).NativeEventDefault(qt.HexDecodeToString(C.GoString(eventType)), message, int(int32(result))))))
+	return C.char(int8(qt.GoBoolToInt(NewQHelpSearchResultWidgetFromPointer(ptr).NativeEventDefault(core.NewQByteArrayFromPointer(eventType), message, int(int32(result))))))
 }
 
-func (ptr *QHelpSearchResultWidget) ConnectNativeEvent(f func(eventType string, message unsafe.Pointer, result int) bool) {
+func (ptr *QHelpSearchResultWidget) ConnectNativeEvent(f func(eventType *core.QByteArray, message unsafe.Pointer, result int) bool) {
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpSearchResultWidget::nativeEvent", f)
@@ -16841,20 +16837,16 @@ func (ptr *QHelpSearchResultWidget) DisconnectNativeEvent() {
 	}
 }
 
-func (ptr *QHelpSearchResultWidget) NativeEvent(eventType string, message unsafe.Pointer, result int) bool {
+func (ptr *QHelpSearchResultWidget) NativeEvent(eventType core.QByteArray_ITF, message unsafe.Pointer, result int) bool {
 	if ptr.Pointer() != nil {
-		var eventTypeC = C.CString(hex.EncodeToString([]byte(eventType)))
-		defer C.free(unsafe.Pointer(eventTypeC))
-		return C.QHelpSearchResultWidget_NativeEvent(ptr.Pointer(), eventTypeC, message, C.long(int32(result))) != 0
+		return C.QHelpSearchResultWidget_NativeEvent(ptr.Pointer(), core.PointerFromQByteArray(eventType), message, C.long(int32(result))) != 0
 	}
 	return false
 }
 
-func (ptr *QHelpSearchResultWidget) NativeEventDefault(eventType string, message unsafe.Pointer, result int) bool {
+func (ptr *QHelpSearchResultWidget) NativeEventDefault(eventType core.QByteArray_ITF, message unsafe.Pointer, result int) bool {
 	if ptr.Pointer() != nil {
-		var eventTypeC = C.CString(hex.EncodeToString([]byte(eventType)))
-		defer C.free(unsafe.Pointer(eventTypeC))
-		return C.QHelpSearchResultWidget_NativeEventDefault(ptr.Pointer(), eventTypeC, message, C.long(int32(result))) != 0
+		return C.QHelpSearchResultWidget_NativeEventDefault(ptr.Pointer(), core.PointerFromQByteArray(eventType), message, C.long(int32(result))) != 0
 	}
 	return false
 }

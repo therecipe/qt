@@ -8,6 +8,7 @@
 
 #include <QAbstractItemModel>
 #include <QAbstractItemView>
+#include <QByteArray>
 #include <QChildEvent>
 #include <QEvent>
 #include <QHelpEvent>
@@ -92,19 +93,19 @@ char QSqlDatabase_Commit(void* ptr)
 	return static_cast<QSqlDatabase*>(ptr)->commit();
 }
 
-char* QSqlDatabase_ConnectOptions(void* ptr)
+struct QtSql_PackedString QSqlDatabase_ConnectOptions(void* ptr)
 {
-	return const_cast<char*>(static_cast<QSqlDatabase*>(ptr)->connectOptions().toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray t27c06b = static_cast<QSqlDatabase*>(ptr)->connectOptions().toUtf8(); QtSql_PackedString { const_cast<char*>(t27c06b.prepend("WHITESPACE").constData()+10), t27c06b.size()-10 }; });
 }
 
-char* QSqlDatabase_ConnectionName(void* ptr)
+struct QtSql_PackedString QSqlDatabase_ConnectionName(void* ptr)
 {
-	return const_cast<char*>(static_cast<QSqlDatabase*>(ptr)->connectionName().toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray tb2dc55 = static_cast<QSqlDatabase*>(ptr)->connectionName().toUtf8(); QtSql_PackedString { const_cast<char*>(tb2dc55.prepend("WHITESPACE").constData()+10), tb2dc55.size()-10 }; });
 }
 
-char* QSqlDatabase_QSqlDatabase_ConnectionNames()
+struct QtSql_PackedString QSqlDatabase_QSqlDatabase_ConnectionNames()
 {
-	return const_cast<char*>(QSqlDatabase::connectionNames().join("|").toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray t34c9e9 = QSqlDatabase::connectionNames().join("|").toUtf8(); QtSql_PackedString { const_cast<char*>(t34c9e9.prepend("WHITESPACE").constData()+10), t34c9e9.size()-10 }; });
 }
 
 char QSqlDatabase_QSqlDatabase_Contains(char* connectionName)
@@ -117,9 +118,9 @@ void* QSqlDatabase_QSqlDatabase_Database(char* connectionName, char open)
 	return new QSqlDatabase(QSqlDatabase::database(QString(connectionName), open != 0));
 }
 
-char* QSqlDatabase_DatabaseName(void* ptr)
+struct QtSql_PackedString QSqlDatabase_DatabaseName(void* ptr)
 {
-	return const_cast<char*>(static_cast<QSqlDatabase*>(ptr)->databaseName().toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray t15dc5d = static_cast<QSqlDatabase*>(ptr)->databaseName().toUtf8(); QtSql_PackedString { const_cast<char*>(t15dc5d.prepend("WHITESPACE").constData()+10), t15dc5d.size()-10 }; });
 }
 
 void* QSqlDatabase_Driver(void* ptr)
@@ -127,14 +128,14 @@ void* QSqlDatabase_Driver(void* ptr)
 	return static_cast<QSqlDatabase*>(ptr)->driver();
 }
 
-char* QSqlDatabase_DriverName(void* ptr)
+struct QtSql_PackedString QSqlDatabase_DriverName(void* ptr)
 {
-	return const_cast<char*>(static_cast<QSqlDatabase*>(ptr)->driverName().toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray t58c861 = static_cast<QSqlDatabase*>(ptr)->driverName().toUtf8(); QtSql_PackedString { const_cast<char*>(t58c861.prepend("WHITESPACE").constData()+10), t58c861.size()-10 }; });
 }
 
-char* QSqlDatabase_QSqlDatabase_Drivers()
+struct QtSql_PackedString QSqlDatabase_QSqlDatabase_Drivers()
 {
-	return const_cast<char*>(QSqlDatabase::drivers().join("|").toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray tf3b332 = QSqlDatabase::drivers().join("|").toUtf8(); QtSql_PackedString { const_cast<char*>(tf3b332.prepend("WHITESPACE").constData()+10), tf3b332.size()-10 }; });
 }
 
 void* QSqlDatabase_Exec(void* ptr, char* query)
@@ -142,9 +143,9 @@ void* QSqlDatabase_Exec(void* ptr, char* query)
 	return new QSqlQuery(static_cast<QSqlDatabase*>(ptr)->exec(QString(query)));
 }
 
-char* QSqlDatabase_HostName(void* ptr)
+struct QtSql_PackedString QSqlDatabase_HostName(void* ptr)
 {
-	return const_cast<char*>(static_cast<QSqlDatabase*>(ptr)->hostName().toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray taeb29f = static_cast<QSqlDatabase*>(ptr)->hostName().toUtf8(); QtSql_PackedString { const_cast<char*>(taeb29f.prepend("WHITESPACE").constData()+10), taeb29f.size()-10 }; });
 }
 
 char QSqlDatabase_QSqlDatabase_IsDriverAvailable(char* name)
@@ -182,9 +183,9 @@ char QSqlDatabase_Open2(void* ptr, char* user, char* password)
 	return static_cast<QSqlDatabase*>(ptr)->open(QString(user), QString(password));
 }
 
-char* QSqlDatabase_Password(void* ptr)
+struct QtSql_PackedString QSqlDatabase_Password(void* ptr)
 {
-	return const_cast<char*>(static_cast<QSqlDatabase*>(ptr)->password().toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray t136367 = static_cast<QSqlDatabase*>(ptr)->password().toUtf8(); QtSql_PackedString { const_cast<char*>(t136367.prepend("WHITESPACE").constData()+10), t136367.size()-10 }; });
 }
 
 int QSqlDatabase_Port(void* ptr)
@@ -252,9 +253,9 @@ char QSqlDatabase_Transaction(void* ptr)
 	return static_cast<QSqlDatabase*>(ptr)->transaction();
 }
 
-char* QSqlDatabase_UserName(void* ptr)
+struct QtSql_PackedString QSqlDatabase_UserName(void* ptr)
 {
-	return const_cast<char*>(static_cast<QSqlDatabase*>(ptr)->userName().toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray t7a5cf4 = static_cast<QSqlDatabase*>(ptr)->userName().toUtf8(); QtSql_PackedString { const_cast<char*>(t7a5cf4.prepend("WHITESPACE").constData()+10), t7a5cf4.size()-10 }; });
 }
 
 void QSqlDatabase_DestroyQSqlDatabase(void* ptr)
@@ -262,9 +263,9 @@ void QSqlDatabase_DestroyQSqlDatabase(void* ptr)
 	static_cast<QSqlDatabase*>(ptr)->~QSqlDatabase();
 }
 
-char* QSqlDatabase_QSqlDatabase_DefaultConnection()
+struct QtSql_PackedString QSqlDatabase_QSqlDatabase_DefaultConnection()
 {
-	return const_cast<char*>(QString(QSqlDatabase::defaultConnection).toUtf8().prepend("WHITESPACE").constData()+10);
+	return QtSql_PackedString { const_cast<char*>(QSqlDatabase::defaultConnection), -1 };
 }
 
 class MyQSqlDriver: public QSqlDriver
@@ -275,26 +276,26 @@ public:
 	void close() { callbackQSqlDriver_Close(this); };
 	bool commitTransaction() { return callbackQSqlDriver_CommitTransaction(this) != 0; };
 	QSqlResult * createResult() const { return static_cast<QSqlResult*>(callbackQSqlDriver_CreateResult(const_cast<MyQSqlDriver*>(this))); };
-	QString escapeIdentifier(const QString & identifier, QSqlDriver::IdentifierType ty) const { return QString(callbackQSqlDriver_EscapeIdentifier(const_cast<MyQSqlDriver*>(this), const_cast<char*>(identifier.toUtf8().prepend("WHITESPACE").constData()+10), ty)); };
+	QString escapeIdentifier(const QString & identifier, QSqlDriver::IdentifierType ty) const { QByteArray tfae9fd = identifier.toUtf8(); QtSql_PackedString identifierPacked = { const_cast<char*>(tfae9fd.prepend("WHITESPACE").constData()+10), tfae9fd.size()-10 };return QString(callbackQSqlDriver_EscapeIdentifier(const_cast<MyQSqlDriver*>(this), identifierPacked, ty)); };
 	QString formatValue(const QSqlField & field, bool trimStrings) const { return QString(callbackQSqlDriver_FormatValue(const_cast<MyQSqlDriver*>(this), const_cast<QSqlField*>(&field), trimStrings)); };
 	QVariant handle() const { return *static_cast<QVariant*>(callbackQSqlDriver_Handle(const_cast<MyQSqlDriver*>(this))); };
 	bool hasFeature(QSqlDriver::DriverFeature feature) const { return callbackQSqlDriver_HasFeature(const_cast<MyQSqlDriver*>(this), feature) != 0; };
-	bool isIdentifierEscaped(const QString & identifier, QSqlDriver::IdentifierType ty) const { return callbackQSqlDriver_IsIdentifierEscaped(const_cast<MyQSqlDriver*>(this), const_cast<char*>(identifier.toUtf8().prepend("WHITESPACE").constData()+10), ty) != 0; };
+	bool isIdentifierEscaped(const QString & identifier, QSqlDriver::IdentifierType ty) const { QByteArray tfae9fd = identifier.toUtf8(); QtSql_PackedString identifierPacked = { const_cast<char*>(tfae9fd.prepend("WHITESPACE").constData()+10), tfae9fd.size()-10 };return callbackQSqlDriver_IsIdentifierEscaped(const_cast<MyQSqlDriver*>(this), identifierPacked, ty) != 0; };
 	bool isOpen() const { return callbackQSqlDriver_IsOpen(const_cast<MyQSqlDriver*>(this)) != 0; };
-	void Signal_Notification(const QString & name) { callbackQSqlDriver_Notification(this, const_cast<char*>(name.toUtf8().prepend("WHITESPACE").constData()+10)); };
-	void Signal_Notification2(const QString & name, QSqlDriver::NotificationSource source, const QVariant & payload) { callbackQSqlDriver_Notification2(this, const_cast<char*>(name.toUtf8().prepend("WHITESPACE").constData()+10), source, const_cast<QVariant*>(&payload)); };
-	bool open(const QString & db, const QString & user, const QString & password, const QString & host, int port, const QString & options) { return callbackQSqlDriver_Open(this, const_cast<char*>(db.toUtf8().prepend("WHITESPACE").constData()+10), const_cast<char*>(user.toUtf8().prepend("WHITESPACE").constData()+10), const_cast<char*>(password.toUtf8().prepend("WHITESPACE").constData()+10), const_cast<char*>(host.toUtf8().prepend("WHITESPACE").constData()+10), port, const_cast<char*>(options.toUtf8().prepend("WHITESPACE").constData()+10)) != 0; };
-	QSqlIndex primaryIndex(const QString & tableName) const { return *static_cast<QSqlIndex*>(callbackQSqlDriver_PrimaryIndex(const_cast<MyQSqlDriver*>(this), const_cast<char*>(tableName.toUtf8().prepend("WHITESPACE").constData()+10))); };
-	QSqlRecord record(const QString & tableName) const { return *static_cast<QSqlRecord*>(callbackQSqlDriver_Record(const_cast<MyQSqlDriver*>(this), const_cast<char*>(tableName.toUtf8().prepend("WHITESPACE").constData()+10))); };
+	void Signal_Notification(const QString & name) { QByteArray t6ae999 = name.toUtf8(); QtSql_PackedString namePacked = { const_cast<char*>(t6ae999.prepend("WHITESPACE").constData()+10), t6ae999.size()-10 };callbackQSqlDriver_Notification(this, namePacked); };
+	void Signal_Notification2(const QString & name, QSqlDriver::NotificationSource source, const QVariant & payload) { QByteArray t6ae999 = name.toUtf8(); QtSql_PackedString namePacked = { const_cast<char*>(t6ae999.prepend("WHITESPACE").constData()+10), t6ae999.size()-10 };callbackQSqlDriver_Notification2(this, namePacked, source, const_cast<QVariant*>(&payload)); };
+	bool open(const QString & db, const QString & user, const QString & password, const QString & host, int port, const QString & options) { QByteArray t0352a8 = db.toUtf8(); QtSql_PackedString dbPacked = { const_cast<char*>(t0352a8.prepend("WHITESPACE").constData()+10), t0352a8.size()-10 };QByteArray t12dea9 = user.toUtf8(); QtSql_PackedString userPacked = { const_cast<char*>(t12dea9.prepend("WHITESPACE").constData()+10), t12dea9.size()-10 };QByteArray t5baa61 = password.toUtf8(); QtSql_PackedString passwordPacked = { const_cast<char*>(t5baa61.prepend("WHITESPACE").constData()+10), t5baa61.size()-10 };QByteArray t86dd1c = host.toUtf8(); QtSql_PackedString hostPacked = { const_cast<char*>(t86dd1c.prepend("WHITESPACE").constData()+10), t86dd1c.size()-10 };QByteArray t513f8d = options.toUtf8(); QtSql_PackedString optionsPacked = { const_cast<char*>(t513f8d.prepend("WHITESPACE").constData()+10), t513f8d.size()-10 };return callbackQSqlDriver_Open(this, dbPacked, userPacked, passwordPacked, hostPacked, port, optionsPacked) != 0; };
+	QSqlIndex primaryIndex(const QString & tableName) const { QByteArray t3e7060 = tableName.toUtf8(); QtSql_PackedString tableNamePacked = { const_cast<char*>(t3e7060.prepend("WHITESPACE").constData()+10), t3e7060.size()-10 };return *static_cast<QSqlIndex*>(callbackQSqlDriver_PrimaryIndex(const_cast<MyQSqlDriver*>(this), tableNamePacked)); };
+	QSqlRecord record(const QString & tableName) const { QByteArray t3e7060 = tableName.toUtf8(); QtSql_PackedString tableNamePacked = { const_cast<char*>(t3e7060.prepend("WHITESPACE").constData()+10), t3e7060.size()-10 };return *static_cast<QSqlRecord*>(callbackQSqlDriver_Record(const_cast<MyQSqlDriver*>(this), tableNamePacked)); };
 	bool rollbackTransaction() { return callbackQSqlDriver_RollbackTransaction(this) != 0; };
 	void setLastError(const QSqlError & error) { callbackQSqlDriver_SetLastError(this, const_cast<QSqlError*>(&error)); };
 	void setOpen(bool open) { callbackQSqlDriver_SetOpen(this, open); };
 	void setOpenError(bool error) { callbackQSqlDriver_SetOpenError(this, error); };
-	QString sqlStatement(QSqlDriver::StatementType ty, const QString & tableName, const QSqlRecord & rec, bool preparedStatement) const { return QString(callbackQSqlDriver_SqlStatement(const_cast<MyQSqlDriver*>(this), ty, const_cast<char*>(tableName.toUtf8().prepend("WHITESPACE").constData()+10), const_cast<QSqlRecord*>(&rec), preparedStatement)); };
-	QString stripDelimiters(const QString & identifier, QSqlDriver::IdentifierType ty) const { return QString(callbackQSqlDriver_StripDelimiters(const_cast<MyQSqlDriver*>(this), const_cast<char*>(identifier.toUtf8().prepend("WHITESPACE").constData()+10), ty)); };
-	bool subscribeToNotification(const QString & name) { return callbackQSqlDriver_SubscribeToNotification(this, const_cast<char*>(name.toUtf8().prepend("WHITESPACE").constData()+10)) != 0; };
+	QString sqlStatement(QSqlDriver::StatementType ty, const QString & tableName, const QSqlRecord & rec, bool preparedStatement) const { QByteArray t3e7060 = tableName.toUtf8(); QtSql_PackedString tableNamePacked = { const_cast<char*>(t3e7060.prepend("WHITESPACE").constData()+10), t3e7060.size()-10 };return QString(callbackQSqlDriver_SqlStatement(const_cast<MyQSqlDriver*>(this), ty, tableNamePacked, const_cast<QSqlRecord*>(&rec), preparedStatement)); };
+	QString stripDelimiters(const QString & identifier, QSqlDriver::IdentifierType ty) const { QByteArray tfae9fd = identifier.toUtf8(); QtSql_PackedString identifierPacked = { const_cast<char*>(tfae9fd.prepend("WHITESPACE").constData()+10), tfae9fd.size()-10 };return QString(callbackQSqlDriver_StripDelimiters(const_cast<MyQSqlDriver*>(this), identifierPacked, ty)); };
+	bool subscribeToNotification(const QString & name) { QByteArray t6ae999 = name.toUtf8(); QtSql_PackedString namePacked = { const_cast<char*>(t6ae999.prepend("WHITESPACE").constData()+10), t6ae999.size()-10 };return callbackQSqlDriver_SubscribeToNotification(this, namePacked) != 0; };
 	QStringList subscribedToNotifications() const { return QString(callbackQSqlDriver_SubscribedToNotifications(const_cast<MyQSqlDriver*>(this))).split("|", QString::SkipEmptyParts); };
-	bool unsubscribeFromNotification(const QString & name) { return callbackQSqlDriver_UnsubscribeFromNotification(this, const_cast<char*>(name.toUtf8().prepend("WHITESPACE").constData()+10)) != 0; };
+	bool unsubscribeFromNotification(const QString & name) { QByteArray t6ae999 = name.toUtf8(); QtSql_PackedString namePacked = { const_cast<char*>(t6ae999.prepend("WHITESPACE").constData()+10), t6ae999.size()-10 };return callbackQSqlDriver_UnsubscribeFromNotification(this, namePacked) != 0; };
 	void timerEvent(QTimerEvent * event) { callbackQSqlDriver_TimerEvent(this, event); };
 	void childEvent(QChildEvent * event) { callbackQSqlDriver_ChildEvent(this, event); };
 	void connectNotify(const QMetaMethod & sign) { callbackQSqlDriver_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
@@ -346,24 +347,24 @@ long long QSqlDriver_DbmsType(void* ptr)
 	return static_cast<QSqlDriver*>(ptr)->dbmsType();
 }
 
-char* QSqlDriver_EscapeIdentifier(void* ptr, char* identifier, long long ty)
+struct QtSql_PackedString QSqlDriver_EscapeIdentifier(void* ptr, char* identifier, long long ty)
 {
-	return const_cast<char*>(static_cast<QSqlDriver*>(ptr)->escapeIdentifier(QString(identifier), static_cast<QSqlDriver::IdentifierType>(ty)).toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray t83477e = static_cast<QSqlDriver*>(ptr)->escapeIdentifier(QString(identifier), static_cast<QSqlDriver::IdentifierType>(ty)).toUtf8(); QtSql_PackedString { const_cast<char*>(t83477e.prepend("WHITESPACE").constData()+10), t83477e.size()-10 }; });
 }
 
-char* QSqlDriver_EscapeIdentifierDefault(void* ptr, char* identifier, long long ty)
+struct QtSql_PackedString QSqlDriver_EscapeIdentifierDefault(void* ptr, char* identifier, long long ty)
 {
-	return const_cast<char*>(static_cast<QSqlDriver*>(ptr)->QSqlDriver::escapeIdentifier(QString(identifier), static_cast<QSqlDriver::IdentifierType>(ty)).toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray t7908f7 = static_cast<QSqlDriver*>(ptr)->QSqlDriver::escapeIdentifier(QString(identifier), static_cast<QSqlDriver::IdentifierType>(ty)).toUtf8(); QtSql_PackedString { const_cast<char*>(t7908f7.prepend("WHITESPACE").constData()+10), t7908f7.size()-10 }; });
 }
 
-char* QSqlDriver_FormatValue(void* ptr, void* field, char trimStrings)
+struct QtSql_PackedString QSqlDriver_FormatValue(void* ptr, void* field, char trimStrings)
 {
-	return const_cast<char*>(static_cast<QSqlDriver*>(ptr)->formatValue(*static_cast<QSqlField*>(field), trimStrings != 0).toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray t09cd9b = static_cast<QSqlDriver*>(ptr)->formatValue(*static_cast<QSqlField*>(field), trimStrings != 0).toUtf8(); QtSql_PackedString { const_cast<char*>(t09cd9b.prepend("WHITESPACE").constData()+10), t09cd9b.size()-10 }; });
 }
 
-char* QSqlDriver_FormatValueDefault(void* ptr, void* field, char trimStrings)
+struct QtSql_PackedString QSqlDriver_FormatValueDefault(void* ptr, void* field, char trimStrings)
 {
-	return const_cast<char*>(static_cast<QSqlDriver*>(ptr)->QSqlDriver::formatValue(*static_cast<QSqlField*>(field), trimStrings != 0).toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray tcdc4d9 = static_cast<QSqlDriver*>(ptr)->QSqlDriver::formatValue(*static_cast<QSqlField*>(field), trimStrings != 0).toUtf8(); QtSql_PackedString { const_cast<char*>(tcdc4d9.prepend("WHITESPACE").constData()+10), tcdc4d9.size()-10 }; });
 }
 
 void* QSqlDriver_Handle(void* ptr)
@@ -506,24 +507,24 @@ void QSqlDriver_SetOpenErrorDefault(void* ptr, char error)
 	static_cast<QSqlDriver*>(ptr)->QSqlDriver::setOpenError(error != 0);
 }
 
-char* QSqlDriver_SqlStatement(void* ptr, long long ty, char* tableName, void* rec, char preparedStatement)
+struct QtSql_PackedString QSqlDriver_SqlStatement(void* ptr, long long ty, char* tableName, void* rec, char preparedStatement)
 {
-	return const_cast<char*>(static_cast<QSqlDriver*>(ptr)->sqlStatement(static_cast<QSqlDriver::StatementType>(ty), QString(tableName), *static_cast<QSqlRecord*>(rec), preparedStatement != 0).toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray t1bee39 = static_cast<QSqlDriver*>(ptr)->sqlStatement(static_cast<QSqlDriver::StatementType>(ty), QString(tableName), *static_cast<QSqlRecord*>(rec), preparedStatement != 0).toUtf8(); QtSql_PackedString { const_cast<char*>(t1bee39.prepend("WHITESPACE").constData()+10), t1bee39.size()-10 }; });
 }
 
-char* QSqlDriver_SqlStatementDefault(void* ptr, long long ty, char* tableName, void* rec, char preparedStatement)
+struct QtSql_PackedString QSqlDriver_SqlStatementDefault(void* ptr, long long ty, char* tableName, void* rec, char preparedStatement)
 {
-	return const_cast<char*>(static_cast<QSqlDriver*>(ptr)->QSqlDriver::sqlStatement(static_cast<QSqlDriver::StatementType>(ty), QString(tableName), *static_cast<QSqlRecord*>(rec), preparedStatement != 0).toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray td11842 = static_cast<QSqlDriver*>(ptr)->QSqlDriver::sqlStatement(static_cast<QSqlDriver::StatementType>(ty), QString(tableName), *static_cast<QSqlRecord*>(rec), preparedStatement != 0).toUtf8(); QtSql_PackedString { const_cast<char*>(td11842.prepend("WHITESPACE").constData()+10), td11842.size()-10 }; });
 }
 
-char* QSqlDriver_StripDelimiters(void* ptr, char* identifier, long long ty)
+struct QtSql_PackedString QSqlDriver_StripDelimiters(void* ptr, char* identifier, long long ty)
 {
-	return const_cast<char*>(static_cast<QSqlDriver*>(ptr)->stripDelimiters(QString(identifier), static_cast<QSqlDriver::IdentifierType>(ty)).toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray td6b7fd = static_cast<QSqlDriver*>(ptr)->stripDelimiters(QString(identifier), static_cast<QSqlDriver::IdentifierType>(ty)).toUtf8(); QtSql_PackedString { const_cast<char*>(td6b7fd.prepend("WHITESPACE").constData()+10), td6b7fd.size()-10 }; });
 }
 
-char* QSqlDriver_StripDelimitersDefault(void* ptr, char* identifier, long long ty)
+struct QtSql_PackedString QSqlDriver_StripDelimitersDefault(void* ptr, char* identifier, long long ty)
 {
-	return const_cast<char*>(static_cast<QSqlDriver*>(ptr)->QSqlDriver::stripDelimiters(QString(identifier), static_cast<QSqlDriver::IdentifierType>(ty)).toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray tdbe1ce = static_cast<QSqlDriver*>(ptr)->QSqlDriver::stripDelimiters(QString(identifier), static_cast<QSqlDriver::IdentifierType>(ty)).toUtf8(); QtSql_PackedString { const_cast<char*>(tdbe1ce.prepend("WHITESPACE").constData()+10), tdbe1ce.size()-10 }; });
 }
 
 char QSqlDriver_SubscribeToNotification(void* ptr, char* name)
@@ -536,14 +537,14 @@ char QSqlDriver_SubscribeToNotificationDefault(void* ptr, char* name)
 	return static_cast<QSqlDriver*>(ptr)->QSqlDriver::subscribeToNotification(QString(name));
 }
 
-char* QSqlDriver_SubscribedToNotifications(void* ptr)
+struct QtSql_PackedString QSqlDriver_SubscribedToNotifications(void* ptr)
 {
-	return const_cast<char*>(static_cast<QSqlDriver*>(ptr)->subscribedToNotifications().join("|").toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray t545d09 = static_cast<QSqlDriver*>(ptr)->subscribedToNotifications().join("|").toUtf8(); QtSql_PackedString { const_cast<char*>(t545d09.prepend("WHITESPACE").constData()+10), t545d09.size()-10 }; });
 }
 
-char* QSqlDriver_SubscribedToNotificationsDefault(void* ptr)
+struct QtSql_PackedString QSqlDriver_SubscribedToNotificationsDefault(void* ptr)
 {
-	return const_cast<char*>(static_cast<QSqlDriver*>(ptr)->QSqlDriver::subscribedToNotifications().join("|").toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray t063c3c = static_cast<QSqlDriver*>(ptr)->QSqlDriver::subscribedToNotifications().join("|").toUtf8(); QtSql_PackedString { const_cast<char*>(t063c3c.prepend("WHITESPACE").constData()+10), t063c3c.size()-10 }; });
 }
 
 char QSqlDriver_UnsubscribeFromNotification(void* ptr, char* name)
@@ -677,7 +678,7 @@ class MyQSqlDriverPlugin: public QSqlDriverPlugin
 {
 public:
 	MyQSqlDriverPlugin(QObject *parent) : QSqlDriverPlugin(parent) {};
-	QSqlDriver * create(const QString & key) { return static_cast<QSqlDriver*>(callbackQSqlDriverPlugin_Create(this, const_cast<char*>(key.toUtf8().prepend("WHITESPACE").constData()+10))); };
+	QSqlDriver * create(const QString & key) { QByteArray ta62f22 = key.toUtf8(); QtSql_PackedString keyPacked = { const_cast<char*>(ta62f22.prepend("WHITESPACE").constData()+10), ta62f22.size()-10 };return static_cast<QSqlDriver*>(callbackQSqlDriverPlugin_Create(this, keyPacked)); };
 	void timerEvent(QTimerEvent * event) { callbackQSqlDriverPlugin_TimerEvent(this, event); };
 	void childEvent(QChildEvent * event) { callbackQSqlDriverPlugin_ChildEvent(this, event); };
 	void connectNotify(const QMetaMethod & sign) { callbackQSqlDriverPlugin_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
@@ -804,14 +805,14 @@ void* QSqlError_NewQSqlError(char* driverText, char* databaseText, long long ty,
 	return new QSqlError(QString(driverText), QString(databaseText), static_cast<QSqlError::ErrorType>(ty), QString(code));
 }
 
-char* QSqlError_DatabaseText(void* ptr)
+struct QtSql_PackedString QSqlError_DatabaseText(void* ptr)
 {
-	return const_cast<char*>(static_cast<QSqlError*>(ptr)->databaseText().toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray t7edaa1 = static_cast<QSqlError*>(ptr)->databaseText().toUtf8(); QtSql_PackedString { const_cast<char*>(t7edaa1.prepend("WHITESPACE").constData()+10), t7edaa1.size()-10 }; });
 }
 
-char* QSqlError_DriverText(void* ptr)
+struct QtSql_PackedString QSqlError_DriverText(void* ptr)
 {
-	return const_cast<char*>(static_cast<QSqlError*>(ptr)->driverText().toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray tf41ece = static_cast<QSqlError*>(ptr)->driverText().toUtf8(); QtSql_PackedString { const_cast<char*>(tf41ece.prepend("WHITESPACE").constData()+10), tf41ece.size()-10 }; });
 }
 
 char QSqlError_IsValid(void* ptr)
@@ -819,14 +820,14 @@ char QSqlError_IsValid(void* ptr)
 	return static_cast<QSqlError*>(ptr)->isValid();
 }
 
-char* QSqlError_NativeErrorCode(void* ptr)
+struct QtSql_PackedString QSqlError_NativeErrorCode(void* ptr)
 {
-	return const_cast<char*>(static_cast<QSqlError*>(ptr)->nativeErrorCode().toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray t468473 = static_cast<QSqlError*>(ptr)->nativeErrorCode().toUtf8(); QtSql_PackedString { const_cast<char*>(t468473.prepend("WHITESPACE").constData()+10), t468473.size()-10 }; });
 }
 
-char* QSqlError_Text(void* ptr)
+struct QtSql_PackedString QSqlError_Text(void* ptr)
 {
-	return const_cast<char*>(static_cast<QSqlError*>(ptr)->text().toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray t22e689 = static_cast<QSqlError*>(ptr)->text().toUtf8(); QtSql_PackedString { const_cast<char*>(t22e689.prepend("WHITESPACE").constData()+10), t22e689.size()-10 }; });
 }
 
 long long QSqlError_Type(void* ptr)
@@ -884,9 +885,9 @@ int QSqlField_Length(void* ptr)
 	return static_cast<QSqlField*>(ptr)->length();
 }
 
-char* QSqlField_Name(void* ptr)
+struct QtSql_PackedString QSqlField_Name(void* ptr)
 {
-	return const_cast<char*>(static_cast<QSqlField*>(ptr)->name().toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray t784037 = static_cast<QSqlField*>(ptr)->name().toUtf8(); QtSql_PackedString { const_cast<char*>(t784037.prepend("WHITESPACE").constData()+10), t784037.size()-10 }; });
 }
 
 int QSqlField_Precision(void* ptr)
@@ -979,9 +980,9 @@ void QSqlIndex_Append2(void* ptr, void* field, char desc)
 	static_cast<QSqlIndex*>(ptr)->append(*static_cast<QSqlField*>(field), desc != 0);
 }
 
-char* QSqlIndex_CursorName(void* ptr)
+struct QtSql_PackedString QSqlIndex_CursorName(void* ptr)
 {
-	return const_cast<char*>(static_cast<QSqlIndex*>(ptr)->cursorName().toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray t1764a5 = static_cast<QSqlIndex*>(ptr)->cursorName().toUtf8(); QtSql_PackedString { const_cast<char*>(t1764a5.prepend("WHITESPACE").constData()+10), t1764a5.size()-10 }; });
 }
 
 char QSqlIndex_IsDescending(void* ptr, int i)
@@ -989,9 +990,9 @@ char QSqlIndex_IsDescending(void* ptr, int i)
 	return static_cast<QSqlIndex*>(ptr)->isDescending(i);
 }
 
-char* QSqlIndex_Name(void* ptr)
+struct QtSql_PackedString QSqlIndex_Name(void* ptr)
 {
-	return const_cast<char*>(static_cast<QSqlIndex*>(ptr)->name().toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray tdb3ffc = static_cast<QSqlIndex*>(ptr)->name().toUtf8(); QtSql_PackedString { const_cast<char*>(tdb3ffc.prepend("WHITESPACE").constData()+10), tdb3ffc.size()-10 }; });
 }
 
 void QSqlIndex_SetCursorName(void* ptr, char* cursorName)
@@ -1074,9 +1075,9 @@ char QSqlQuery_ExecBatch(void* ptr, long long mode)
 	return static_cast<QSqlQuery*>(ptr)->execBatch(static_cast<QSqlQuery::BatchExecutionMode>(mode));
 }
 
-char* QSqlQuery_ExecutedQuery(void* ptr)
+struct QtSql_PackedString QSqlQuery_ExecutedQuery(void* ptr)
 {
-	return const_cast<char*>(static_cast<QSqlQuery*>(ptr)->executedQuery().toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray tc2ded8 = static_cast<QSqlQuery*>(ptr)->executedQuery().toUtf8(); QtSql_PackedString { const_cast<char*>(tc2ded8.prepend("WHITESPACE").constData()+10), tc2ded8.size()-10 }; });
 }
 
 void QSqlQuery_Finish(void* ptr)
@@ -1134,9 +1135,9 @@ void* QSqlQuery_LastInsertId(void* ptr)
 	return new QVariant(static_cast<QSqlQuery*>(ptr)->lastInsertId());
 }
 
-char* QSqlQuery_LastQuery(void* ptr)
+struct QtSql_PackedString QSqlQuery_LastQuery(void* ptr)
 {
-	return const_cast<char*>(static_cast<QSqlQuery*>(ptr)->lastQuery().toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray t0d33b2 = static_cast<QSqlQuery*>(ptr)->lastQuery().toUtf8(); QtSql_PackedString { const_cast<char*>(t0d33b2.prepend("WHITESPACE").constData()+10), t0d33b2.size()-10 }; });
 }
 
 char QSqlQuery_Next(void* ptr)
@@ -1449,14 +1450,14 @@ char QSqlQueryModel_InsertRowsDefault(void* ptr, int row, int count, void* paren
 	return static_cast<QSqlQueryModel*>(ptr)->QSqlQueryModel::insertRows(row, count, *static_cast<QModelIndex*>(parent));
 }
 
-char* QSqlQueryModel_MimeTypes(void* ptr)
+struct QtSql_PackedString QSqlQueryModel_MimeTypes(void* ptr)
 {
-	return const_cast<char*>(static_cast<QSqlQueryModel*>(ptr)->mimeTypes().join("|").toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray t1df073 = static_cast<QSqlQueryModel*>(ptr)->mimeTypes().join("|").toUtf8(); QtSql_PackedString { const_cast<char*>(t1df073.prepend("WHITESPACE").constData()+10), t1df073.size()-10 }; });
 }
 
-char* QSqlQueryModel_MimeTypesDefault(void* ptr)
+struct QtSql_PackedString QSqlQueryModel_MimeTypesDefault(void* ptr)
 {
-	return const_cast<char*>(static_cast<QSqlQueryModel*>(ptr)->QSqlQueryModel::mimeTypes().join("|").toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray t026d85 = static_cast<QSqlQueryModel*>(ptr)->QSqlQueryModel::mimeTypes().join("|").toUtf8(); QtSql_PackedString { const_cast<char*>(t026d85.prepend("WHITESPACE").constData()+10), t026d85.size()-10 }; });
 }
 
 char QSqlQueryModel_MoveColumns(void* ptr, void* sourceParent, int sourceColumn, int count, void* destinationParent, int destinationChild)
@@ -1716,9 +1717,9 @@ void* QSqlRecord_Field(void* ptr, int index)
 	return new QSqlField(static_cast<QSqlRecord*>(ptr)->field(index));
 }
 
-char* QSqlRecord_FieldName(void* ptr, int index)
+struct QtSql_PackedString QSqlRecord_FieldName(void* ptr, int index)
 {
-	return const_cast<char*>(static_cast<QSqlRecord*>(ptr)->fieldName(index).toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray te132cb = static_cast<QSqlRecord*>(ptr)->fieldName(index).toUtf8(); QtSql_PackedString { const_cast<char*>(te132cb.prepend("WHITESPACE").constData()+10), te132cb.size()-10 }; });
 }
 
 int QSqlRecord_IndexOf(void* ptr, char* name)
@@ -1826,14 +1827,14 @@ void* QSqlRelation_NewQSqlRelation2(char* tableName, char* indexColumn, char* di
 	return new QSqlRelation(QString(tableName), QString(indexColumn), QString(displayColumn));
 }
 
-char* QSqlRelation_DisplayColumn(void* ptr)
+struct QtSql_PackedString QSqlRelation_DisplayColumn(void* ptr)
 {
-	return const_cast<char*>(static_cast<QSqlRelation*>(ptr)->displayColumn().toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray t5efc39 = static_cast<QSqlRelation*>(ptr)->displayColumn().toUtf8(); QtSql_PackedString { const_cast<char*>(t5efc39.prepend("WHITESPACE").constData()+10), t5efc39.size()-10 }; });
 }
 
-char* QSqlRelation_IndexColumn(void* ptr)
+struct QtSql_PackedString QSqlRelation_IndexColumn(void* ptr)
 {
-	return const_cast<char*>(static_cast<QSqlRelation*>(ptr)->indexColumn().toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray t3d4445 = static_cast<QSqlRelation*>(ptr)->indexColumn().toUtf8(); QtSql_PackedString { const_cast<char*>(t3d4445.prepend("WHITESPACE").constData()+10), t3d4445.size()-10 }; });
 }
 
 char QSqlRelation_IsValid(void* ptr)
@@ -1841,9 +1842,9 @@ char QSqlRelation_IsValid(void* ptr)
 	return static_cast<QSqlRelation*>(ptr)->isValid();
 }
 
-char* QSqlRelation_TableName(void* ptr)
+struct QtSql_PackedString QSqlRelation_TableName(void* ptr)
 {
-	return const_cast<char*>(static_cast<QSqlRelation*>(ptr)->tableName().toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray t33aa41 = static_cast<QSqlRelation*>(ptr)->tableName().toUtf8(); QtSql_PackedString { const_cast<char*>(t33aa41.prepend("WHITESPACE").constData()+10), t33aa41.size()-10 }; });
 }
 
 void* QSqlRelationalDelegate_NewQSqlRelationalDelegate(void* parent)
@@ -2068,7 +2069,7 @@ public:
 	bool select() { return callbackQSqlRelationalTableModel_Select(this) != 0; };
 	QString selectStatement() const { return QString(callbackQSqlRelationalTableModel_SelectStatement(const_cast<MyQSqlRelationalTableModel*>(this))); };
 	void setRelation(int column, const QSqlRelation & relation) { callbackQSqlRelationalTableModel_SetRelation(this, column, const_cast<QSqlRelation*>(&relation)); };
-	void setTable(const QString & table) { callbackQSqlRelationalTableModel_SetTable(this, const_cast<char*>(table.toUtf8().prepend("WHITESPACE").constData()+10)); };
+	void setTable(const QString & table) { QByteArray tc3ee13 = table.toUtf8(); QtSql_PackedString tablePacked = { const_cast<char*>(tc3ee13.prepend("WHITESPACE").constData()+10), tc3ee13.size()-10 };callbackQSqlRelationalTableModel_SetTable(this, tablePacked); };
 	bool updateRowInTable(int row, const QSqlRecord & values) { return callbackQSqlRelationalTableModel_UpdateRowInTable(this, row, const_cast<QSqlRecord*>(&values)) != 0; };
 	 ~MyQSqlRelationalTableModel() { callbackQSqlRelationalTableModel_DestroyQSqlRelationalTableModel(this); };
 	bool deleteRowFromTable(int row) { return callbackQSqlRelationalTableModel_DeleteRowFromTable(this, row) != 0; };
@@ -2077,7 +2078,7 @@ public:
 	void revertAll() { callbackQSqlRelationalTableModel_RevertAll(this); };
 	bool selectRow(int row) { return callbackQSqlRelationalTableModel_SelectRow(this, row) != 0; };
 	void setEditStrategy(QSqlTableModel::EditStrategy strategy) { callbackQSqlRelationalTableModel_SetEditStrategy(this, strategy); };
-	void setFilter(const QString & filter) { callbackQSqlRelationalTableModel_SetFilter(this, const_cast<char*>(filter.toUtf8().prepend("WHITESPACE").constData()+10)); };
+	void setFilter(const QString & filter) { QByteArray t4bb4ca = filter.toUtf8(); QtSql_PackedString filterPacked = { const_cast<char*>(t4bb4ca.prepend("WHITESPACE").constData()+10), t4bb4ca.size()-10 };callbackQSqlRelationalTableModel_SetFilter(this, filterPacked); };
 	void setSort(int column, Qt::SortOrder order) { callbackQSqlRelationalTableModel_SetSort(this, column, order); };
 	bool submit() { return callbackQSqlRelationalTableModel_Submit(this) != 0; };
 	bool submitAll() { return callbackQSqlRelationalTableModel_SubmitAll(this) != 0; };
@@ -2137,14 +2138,14 @@ char QSqlRelationalTableModel_InsertRowIntoTableDefault(void* ptr, void* values)
 	return static_cast<QSqlRelationalTableModel*>(ptr)->QSqlRelationalTableModel::insertRowIntoTable(*static_cast<QSqlRecord*>(values));
 }
 
-char* QSqlRelationalTableModel_OrderByClause(void* ptr)
+struct QtSql_PackedString QSqlRelationalTableModel_OrderByClause(void* ptr)
 {
-	return const_cast<char*>(static_cast<QSqlRelationalTableModel*>(ptr)->orderByClause().toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray tfcdde7 = static_cast<QSqlRelationalTableModel*>(ptr)->orderByClause().toUtf8(); QtSql_PackedString { const_cast<char*>(tfcdde7.prepend("WHITESPACE").constData()+10), tfcdde7.size()-10 }; });
 }
 
-char* QSqlRelationalTableModel_OrderByClauseDefault(void* ptr)
+struct QtSql_PackedString QSqlRelationalTableModel_OrderByClauseDefault(void* ptr)
 {
-	return const_cast<char*>(static_cast<QSqlRelationalTableModel*>(ptr)->QSqlRelationalTableModel::orderByClause().toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray tbe9e07 = static_cast<QSqlRelationalTableModel*>(ptr)->QSqlRelationalTableModel::orderByClause().toUtf8(); QtSql_PackedString { const_cast<char*>(tbe9e07.prepend("WHITESPACE").constData()+10), tbe9e07.size()-10 }; });
 }
 
 void* QSqlRelationalTableModel_RelationModel(void* ptr, int column)
@@ -2182,14 +2183,14 @@ char QSqlRelationalTableModel_SelectDefault(void* ptr)
 	return static_cast<QSqlRelationalTableModel*>(ptr)->QSqlRelationalTableModel::select();
 }
 
-char* QSqlRelationalTableModel_SelectStatement(void* ptr)
+struct QtSql_PackedString QSqlRelationalTableModel_SelectStatement(void* ptr)
 {
-	return const_cast<char*>(static_cast<QSqlRelationalTableModel*>(ptr)->selectStatement().toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray t93d923 = static_cast<QSqlRelationalTableModel*>(ptr)->selectStatement().toUtf8(); QtSql_PackedString { const_cast<char*>(t93d923.prepend("WHITESPACE").constData()+10), t93d923.size()-10 }; });
 }
 
-char* QSqlRelationalTableModel_SelectStatementDefault(void* ptr)
+struct QtSql_PackedString QSqlRelationalTableModel_SelectStatementDefault(void* ptr)
 {
-	return const_cast<char*>(static_cast<QSqlRelationalTableModel*>(ptr)->QSqlRelationalTableModel::selectStatement().toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray t089ec7 = static_cast<QSqlRelationalTableModel*>(ptr)->QSqlRelationalTableModel::selectStatement().toUtf8(); QtSql_PackedString { const_cast<char*>(t089ec7.prepend("WHITESPACE").constData()+10), t089ec7.size()-10 }; });
 }
 
 char QSqlRelationalTableModel_SetData(void* ptr, void* index, void* value, int role)
@@ -2418,14 +2419,14 @@ char QSqlRelationalTableModel_HasChildrenDefault(void* ptr, void* parent)
 	return static_cast<QSqlRelationalTableModel*>(ptr)->QSqlRelationalTableModel::hasChildren(*static_cast<QModelIndex*>(parent));
 }
 
-char* QSqlRelationalTableModel_MimeTypes(void* ptr)
+struct QtSql_PackedString QSqlRelationalTableModel_MimeTypes(void* ptr)
 {
-	return const_cast<char*>(static_cast<QSqlRelationalTableModel*>(ptr)->mimeTypes().join("|").toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray te5a031 = static_cast<QSqlRelationalTableModel*>(ptr)->mimeTypes().join("|").toUtf8(); QtSql_PackedString { const_cast<char*>(te5a031.prepend("WHITESPACE").constData()+10), te5a031.size()-10 }; });
 }
 
-char* QSqlRelationalTableModel_MimeTypesDefault(void* ptr)
+struct QtSql_PackedString QSqlRelationalTableModel_MimeTypesDefault(void* ptr)
 {
-	return const_cast<char*>(static_cast<QSqlRelationalTableModel*>(ptr)->QSqlRelationalTableModel::mimeTypes().join("|").toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray t385a7c = static_cast<QSqlRelationalTableModel*>(ptr)->QSqlRelationalTableModel::mimeTypes().join("|").toUtf8(); QtSql_PackedString { const_cast<char*>(t385a7c.prepend("WHITESPACE").constData()+10), t385a7c.size()-10 }; });
 }
 
 char QSqlRelationalTableModel_MoveColumns(void* ptr, void* sourceParent, int sourceColumn, int count, void* destinationParent, int destinationChild)
@@ -2603,15 +2604,15 @@ public:
 	bool isNull(int index) { return callbackQSqlResult_IsNull(this, index) != 0; };
 	QVariant lastInsertId() const { return *static_cast<QVariant*>(callbackQSqlResult_LastInsertId(const_cast<MyQSqlResult*>(this))); };
 	int numRowsAffected() { return callbackQSqlResult_NumRowsAffected(this); };
-	bool prepare(const QString & query) { return callbackQSqlResult_Prepare(this, const_cast<char*>(query.toUtf8().prepend("WHITESPACE").constData()+10)) != 0; };
+	bool prepare(const QString & query) { QByteArray t7cd914 = query.toUtf8(); QtSql_PackedString queryPacked = { const_cast<char*>(t7cd914.prepend("WHITESPACE").constData()+10), t7cd914.size()-10 };return callbackQSqlResult_Prepare(this, queryPacked) != 0; };
 	QSqlRecord record() const { return *static_cast<QSqlRecord*>(callbackQSqlResult_Record(const_cast<MyQSqlResult*>(this))); };
-	bool reset(const QString & query) { return callbackQSqlResult_Reset(this, const_cast<char*>(query.toUtf8().prepend("WHITESPACE").constData()+10)) != 0; };
-	bool savePrepare(const QString & query) { return callbackQSqlResult_SavePrepare(this, const_cast<char*>(query.toUtf8().prepend("WHITESPACE").constData()+10)) != 0; };
+	bool reset(const QString & query) { QByteArray t7cd914 = query.toUtf8(); QtSql_PackedString queryPacked = { const_cast<char*>(t7cd914.prepend("WHITESPACE").constData()+10), t7cd914.size()-10 };return callbackQSqlResult_Reset(this, queryPacked) != 0; };
+	bool savePrepare(const QString & query) { QByteArray t7cd914 = query.toUtf8(); QtSql_PackedString queryPacked = { const_cast<char*>(t7cd914.prepend("WHITESPACE").constData()+10), t7cd914.size()-10 };return callbackQSqlResult_SavePrepare(this, queryPacked) != 0; };
 	void setActive(bool active) { callbackQSqlResult_SetActive(this, active); };
 	void setAt(int index) { callbackQSqlResult_SetAt(this, index); };
 	void setForwardOnly(bool forward) { callbackQSqlResult_SetForwardOnly(this, forward); };
 	void setLastError(const QSqlError & error) { callbackQSqlResult_SetLastError(this, const_cast<QSqlError*>(&error)); };
-	void setQuery(const QString & query) { callbackQSqlResult_SetQuery(this, const_cast<char*>(query.toUtf8().prepend("WHITESPACE").constData()+10)); };
+	void setQuery(const QString & query) { QByteArray t7cd914 = query.toUtf8(); QtSql_PackedString queryPacked = { const_cast<char*>(t7cd914.prepend("WHITESPACE").constData()+10), t7cd914.size()-10 };callbackQSqlResult_SetQuery(this, queryPacked); };
 	void setSelect(bool sele) { callbackQSqlResult_SetSelect(this, sele); };
 	int size() { return callbackQSqlResult_Size(this); };
 	 ~MyQSqlResult() { callbackQSqlResult_DestroyQSqlResult(this); };
@@ -2647,9 +2648,9 @@ int QSqlResult_BoundValueCount(void* ptr)
 	return static_cast<QSqlResult*>(ptr)->boundValueCount();
 }
 
-char* QSqlResult_BoundValueName(void* ptr, int index)
+struct QtSql_PackedString QSqlResult_BoundValueName(void* ptr, int index)
 {
-	return const_cast<char*>(static_cast<QSqlResult*>(ptr)->boundValueName(index).toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray t669294 = static_cast<QSqlResult*>(ptr)->boundValueName(index).toUtf8(); QtSql_PackedString { const_cast<char*>(t669294.prepend("WHITESPACE").constData()+10), t669294.size()-10 }; });
 }
 
 void QSqlResult_Clear(void* ptr)
@@ -2677,9 +2678,9 @@ char QSqlResult_ExecDefault(void* ptr)
 	return static_cast<QSqlResult*>(ptr)->QSqlResult::exec();
 }
 
-char* QSqlResult_ExecutedQuery(void* ptr)
+struct QtSql_PackedString QSqlResult_ExecutedQuery(void* ptr)
 {
-	return const_cast<char*>(static_cast<QSqlResult*>(ptr)->executedQuery().toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray t35c395 = static_cast<QSqlResult*>(ptr)->executedQuery().toUtf8(); QtSql_PackedString { const_cast<char*>(t35c395.prepend("WHITESPACE").constData()+10), t35c395.size()-10 }; });
 }
 
 char QSqlResult_Fetch(void* ptr, int index)
@@ -2772,9 +2773,9 @@ void* QSqlResult_LastInsertIdDefault(void* ptr)
 	return new QVariant(static_cast<QSqlResult*>(ptr)->QSqlResult::lastInsertId());
 }
 
-char* QSqlResult_LastQuery(void* ptr)
+struct QtSql_PackedString QSqlResult_LastQuery(void* ptr)
 {
-	return const_cast<char*>(static_cast<QSqlResult*>(ptr)->lastQuery().toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray t9bd7f1 = static_cast<QSqlResult*>(ptr)->lastQuery().toUtf8(); QtSql_PackedString { const_cast<char*>(t9bd7f1.prepend("WHITESPACE").constData()+10), t9bd7f1.size()-10 }; });
 }
 
 int QSqlResult_NumRowsAffected(void* ptr)
@@ -2917,9 +2918,9 @@ public:
 	bool selectRow(int row) { return callbackQSqlTableModel_SelectRow(this, row) != 0; };
 	QString selectStatement() const { return QString(callbackQSqlTableModel_SelectStatement(const_cast<MyQSqlTableModel*>(this))); };
 	void setEditStrategy(QSqlTableModel::EditStrategy strategy) { callbackQSqlTableModel_SetEditStrategy(this, strategy); };
-	void setFilter(const QString & filter) { callbackQSqlTableModel_SetFilter(this, const_cast<char*>(filter.toUtf8().prepend("WHITESPACE").constData()+10)); };
+	void setFilter(const QString & filter) { QByteArray t4bb4ca = filter.toUtf8(); QtSql_PackedString filterPacked = { const_cast<char*>(t4bb4ca.prepend("WHITESPACE").constData()+10), t4bb4ca.size()-10 };callbackQSqlTableModel_SetFilter(this, filterPacked); };
 	void setSort(int column, Qt::SortOrder order) { callbackQSqlTableModel_SetSort(this, column, order); };
-	void setTable(const QString & tableName) { callbackQSqlTableModel_SetTable(this, const_cast<char*>(tableName.toUtf8().prepend("WHITESPACE").constData()+10)); };
+	void setTable(const QString & tableName) { QByteArray t3e7060 = tableName.toUtf8(); QtSql_PackedString tableNamePacked = { const_cast<char*>(t3e7060.prepend("WHITESPACE").constData()+10), t3e7060.size()-10 };callbackQSqlTableModel_SetTable(this, tableNamePacked); };
 	bool submit() { return callbackQSqlTableModel_Submit(this) != 0; };
 	bool submitAll() { return callbackQSqlTableModel_SubmitAll(this) != 0; };
 	bool updateRowInTable(int row, const QSqlRecord & values) { return callbackQSqlTableModel_UpdateRowInTable(this, row, const_cast<QSqlRecord*>(&values)) != 0; };
@@ -3040,9 +3041,9 @@ int QSqlTableModel_FieldIndex(void* ptr, char* fieldName)
 	return static_cast<QSqlTableModel*>(ptr)->fieldIndex(QString(fieldName));
 }
 
-char* QSqlTableModel_Filter(void* ptr)
+struct QtSql_PackedString QSqlTableModel_Filter(void* ptr)
 {
-	return const_cast<char*>(static_cast<QSqlTableModel*>(ptr)->filter().toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray td0370f = static_cast<QSqlTableModel*>(ptr)->filter().toUtf8(); QtSql_PackedString { const_cast<char*>(td0370f.prepend("WHITESPACE").constData()+10), td0370f.size()-10 }; });
 }
 
 long long QSqlTableModel_Flags(void* ptr, void* index)
@@ -3095,14 +3096,14 @@ char QSqlTableModel_IsDirty(void* ptr, void* index)
 	return static_cast<QSqlTableModel*>(ptr)->isDirty(*static_cast<QModelIndex*>(index));
 }
 
-char* QSqlTableModel_OrderByClause(void* ptr)
+struct QtSql_PackedString QSqlTableModel_OrderByClause(void* ptr)
 {
-	return const_cast<char*>(static_cast<QSqlTableModel*>(ptr)->orderByClause().toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray tca221a = static_cast<QSqlTableModel*>(ptr)->orderByClause().toUtf8(); QtSql_PackedString { const_cast<char*>(tca221a.prepend("WHITESPACE").constData()+10), tca221a.size()-10 }; });
 }
 
-char* QSqlTableModel_OrderByClauseDefault(void* ptr)
+struct QtSql_PackedString QSqlTableModel_OrderByClauseDefault(void* ptr)
 {
-	return const_cast<char*>(static_cast<QSqlTableModel*>(ptr)->QSqlTableModel::orderByClause().toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray t5a4e03 = static_cast<QSqlTableModel*>(ptr)->QSqlTableModel::orderByClause().toUtf8(); QtSql_PackedString { const_cast<char*>(t5a4e03.prepend("WHITESPACE").constData()+10), t5a4e03.size()-10 }; });
 }
 
 void* QSqlTableModel_PrimaryKey(void* ptr)
@@ -3199,14 +3200,14 @@ char QSqlTableModel_SelectRowDefault(void* ptr, int row)
 	return static_cast<QSqlTableModel*>(ptr)->QSqlTableModel::selectRow(row);
 }
 
-char* QSqlTableModel_SelectStatement(void* ptr)
+struct QtSql_PackedString QSqlTableModel_SelectStatement(void* ptr)
 {
-	return const_cast<char*>(static_cast<QSqlTableModel*>(ptr)->selectStatement().toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray tf1b779 = static_cast<QSqlTableModel*>(ptr)->selectStatement().toUtf8(); QtSql_PackedString { const_cast<char*>(tf1b779.prepend("WHITESPACE").constData()+10), tf1b779.size()-10 }; });
 }
 
-char* QSqlTableModel_SelectStatementDefault(void* ptr)
+struct QtSql_PackedString QSqlTableModel_SelectStatementDefault(void* ptr)
 {
-	return const_cast<char*>(static_cast<QSqlTableModel*>(ptr)->QSqlTableModel::selectStatement().toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray t5344b7 = static_cast<QSqlTableModel*>(ptr)->QSqlTableModel::selectStatement().toUtf8(); QtSql_PackedString { const_cast<char*>(t5344b7.prepend("WHITESPACE").constData()+10), t5344b7.size()-10 }; });
 }
 
 char QSqlTableModel_SetData(void* ptr, void* index, void* value, int role)
@@ -3288,9 +3289,9 @@ char QSqlTableModel_SubmitAll(void* ptr)
 	return returnArg;
 }
 
-char* QSqlTableModel_TableName(void* ptr)
+struct QtSql_PackedString QSqlTableModel_TableName(void* ptr)
 {
-	return const_cast<char*>(static_cast<QSqlTableModel*>(ptr)->tableName().toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray tefb63d = static_cast<QSqlTableModel*>(ptr)->tableName().toUtf8(); QtSql_PackedString { const_cast<char*>(tefb63d.prepend("WHITESPACE").constData()+10), tefb63d.size()-10 }; });
 }
 
 char QSqlTableModel_UpdateRowInTable(void* ptr, int row, void* values)
@@ -3383,14 +3384,14 @@ char QSqlTableModel_HasChildrenDefault(void* ptr, void* parent)
 	return static_cast<QSqlTableModel*>(ptr)->QSqlTableModel::hasChildren(*static_cast<QModelIndex*>(parent));
 }
 
-char* QSqlTableModel_MimeTypes(void* ptr)
+struct QtSql_PackedString QSqlTableModel_MimeTypes(void* ptr)
 {
-	return const_cast<char*>(static_cast<QSqlTableModel*>(ptr)->mimeTypes().join("|").toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray tabeef0 = static_cast<QSqlTableModel*>(ptr)->mimeTypes().join("|").toUtf8(); QtSql_PackedString { const_cast<char*>(tabeef0.prepend("WHITESPACE").constData()+10), tabeef0.size()-10 }; });
 }
 
-char* QSqlTableModel_MimeTypesDefault(void* ptr)
+struct QtSql_PackedString QSqlTableModel_MimeTypesDefault(void* ptr)
 {
-	return const_cast<char*>(static_cast<QSqlTableModel*>(ptr)->QSqlTableModel::mimeTypes().join("|").toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray t97b0b0 = static_cast<QSqlTableModel*>(ptr)->QSqlTableModel::mimeTypes().join("|").toUtf8(); QtSql_PackedString { const_cast<char*>(t97b0b0.prepend("WHITESPACE").constData()+10), t97b0b0.size()-10 }; });
 }
 
 char QSqlTableModel_MoveColumns(void* ptr, void* sourceParent, int sourceColumn, int count, void* destinationParent, int destinationChild)

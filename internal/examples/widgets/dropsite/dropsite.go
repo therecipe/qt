@@ -68,7 +68,7 @@ func main() {
 
 			default:
 				{
-					var data = []byte(mimeData.Data(format))
+					var data = []byte(mimeData.Data(format).ConstData())
 					text = fmt.Sprintf("len %v: %v", len(data), data)
 				}
 			}

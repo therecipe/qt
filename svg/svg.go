@@ -7,7 +7,6 @@ package svg
 //#include "svg.h"
 import "C"
 import (
-	"encoding/hex"
 	"fmt"
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
@@ -16,6 +15,13 @@ import (
 	"runtime"
 	"unsafe"
 )
+
+func cGoUnpackString(s C.struct_QtSvg_PackedString) string {
+	if len := int(s.len); len == -1 {
+		return C.GoString(s.data)
+	}
+	return C.GoStringN(s.data, C.int(s.len))
+}
 
 type QGraphicsSvgItem struct {
 	widgets.QGraphicsObject
@@ -124,7 +130,7 @@ func (ptr *QGraphicsSvgItem) BoundingRectDefault() *core.QRectF {
 
 func (ptr *QGraphicsSvgItem) ElementId() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QGraphicsSvgItem_ElementId(ptr.Pointer()))
+		return cGoUnpackString(C.QGraphicsSvgItem_ElementId(ptr.Pointer()))
 	}
 	return ""
 }
@@ -1693,14 +1699,14 @@ func NewQSvgGeneratorFromPointer(ptr unsafe.Pointer) *QSvgGenerator {
 }
 func (ptr *QSvgGenerator) Description() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QSvgGenerator_Description(ptr.Pointer()))
+		return cGoUnpackString(C.QSvgGenerator_Description(ptr.Pointer()))
 	}
 	return ""
 }
 
 func (ptr *QSvgGenerator) FileName() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QSvgGenerator_FileName(ptr.Pointer()))
+		return cGoUnpackString(C.QSvgGenerator_FileName(ptr.Pointer()))
 	}
 	return ""
 }
@@ -1788,7 +1794,7 @@ func (ptr *QSvgGenerator) Size() *core.QSize {
 
 func (ptr *QSvgGenerator) Title() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QSvgGenerator_Title(ptr.Pointer()))
+		return cGoUnpackString(C.QSvgGenerator_Title(ptr.Pointer()))
 	}
 	return ""
 }
@@ -1926,10 +1932,8 @@ func NewQSvgRenderer4(contents core.QXmlStreamReader_ITF, parent core.QObject_IT
 	return tmpValue
 }
 
-func NewQSvgRenderer3(contents string, parent core.QObject_ITF) *QSvgRenderer {
-	var contentsC = C.CString(hex.EncodeToString([]byte(contents)))
-	defer C.free(unsafe.Pointer(contentsC))
-	var tmpValue = NewQSvgRendererFromPointer(C.QSvgRenderer_NewQSvgRenderer3(contentsC, core.PointerFromQObject(parent)))
+func NewQSvgRenderer3(contents core.QByteArray_ITF, parent core.QObject_ITF) *QSvgRenderer {
+	var tmpValue = NewQSvgRendererFromPointer(C.QSvgRenderer_NewQSvgRenderer3(core.PointerFromQByteArray(contents), core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
@@ -2020,41 +2024,39 @@ func (ptr *QSvgRenderer) Load3(contents core.QXmlStreamReader_ITF) bool {
 }
 
 //export callbackQSvgRenderer_Load2
-func callbackQSvgRenderer_Load2(ptr unsafe.Pointer, contents *C.char) C.char {
+func callbackQSvgRenderer_Load2(ptr unsafe.Pointer, contents unsafe.Pointer) C.char {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSvgRenderer::load2"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt(signal.(func(string) bool)(qt.HexDecodeToString(C.GoString(contents))))))
+		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QByteArray) bool)(core.NewQByteArrayFromPointer(contents)))))
 	}
 
 	return C.char(int8(qt.GoBoolToInt(false)))
 }
 
-func (ptr *QSvgRenderer) ConnectLoad2(f func(contents string) bool) {
+func (ptr *QSvgRenderer) ConnectLoad2(f func(contents *core.QByteArray) bool) {
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QSvgRenderer::load2", f)
 	}
 }
 
-func (ptr *QSvgRenderer) DisconnectLoad2(contents string) {
+func (ptr *QSvgRenderer) DisconnectLoad2(contents core.QByteArray_ITF) {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSvgRenderer::load2")
 	}
 }
 
-func (ptr *QSvgRenderer) Load2(contents string) bool {
+func (ptr *QSvgRenderer) Load2(contents core.QByteArray_ITF) bool {
 	if ptr.Pointer() != nil {
-		var contentsC = C.CString(hex.EncodeToString([]byte(contents)))
-		defer C.free(unsafe.Pointer(contentsC))
-		return C.QSvgRenderer_Load2(ptr.Pointer(), contentsC) != 0
+		return C.QSvgRenderer_Load2(ptr.Pointer(), core.PointerFromQByteArray(contents)) != 0
 	}
 	return false
 }
 
 //export callbackQSvgRenderer_Load
-func callbackQSvgRenderer_Load(ptr unsafe.Pointer, filename *C.char) C.char {
+func callbackQSvgRenderer_Load(ptr unsafe.Pointer, filename C.struct_QtSvg_PackedString) C.char {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSvgRenderer::load"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt(signal.(func(string) bool)(C.GoString(filename)))))
+		return C.char(int8(qt.GoBoolToInt(signal.(func(string) bool)(cGoUnpackString(filename)))))
 	}
 
 	return C.char(int8(qt.GoBoolToInt(false)))
@@ -2140,9 +2142,9 @@ func (ptr *QSvgRenderer) Render2(painter gui.QPainter_ITF, bounds core.QRectF_IT
 }
 
 //export callbackQSvgRenderer_Render3
-func callbackQSvgRenderer_Render3(ptr unsafe.Pointer, painter unsafe.Pointer, elementId *C.char, bounds unsafe.Pointer) {
+func callbackQSvgRenderer_Render3(ptr unsafe.Pointer, painter unsafe.Pointer, elementId C.struct_QtSvg_PackedString, bounds unsafe.Pointer) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSvgRenderer::render3"); signal != nil {
-		signal.(func(*gui.QPainter, string, *core.QRectF))(gui.NewQPainterFromPointer(painter), C.GoString(elementId), core.NewQRectFFromPointer(bounds))
+		signal.(func(*gui.QPainter, string, *core.QRectF))(gui.NewQPainterFromPointer(painter), cGoUnpackString(elementId), core.NewQRectFFromPointer(bounds))
 	}
 
 }
@@ -2605,39 +2607,37 @@ func NewQSvgWidget2(file string, parent widgets.QWidget_ITF) *QSvgWidget {
 }
 
 //export callbackQSvgWidget_Load2
-func callbackQSvgWidget_Load2(ptr unsafe.Pointer, contents *C.char) {
+func callbackQSvgWidget_Load2(ptr unsafe.Pointer, contents unsafe.Pointer) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSvgWidget::load2"); signal != nil {
-		signal.(func(string))(qt.HexDecodeToString(C.GoString(contents)))
+		signal.(func(*core.QByteArray))(core.NewQByteArrayFromPointer(contents))
 	}
 
 }
 
-func (ptr *QSvgWidget) ConnectLoad2(f func(contents string)) {
+func (ptr *QSvgWidget) ConnectLoad2(f func(contents *core.QByteArray)) {
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QSvgWidget::load2", f)
 	}
 }
 
-func (ptr *QSvgWidget) DisconnectLoad2(contents string) {
+func (ptr *QSvgWidget) DisconnectLoad2(contents core.QByteArray_ITF) {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSvgWidget::load2")
 	}
 }
 
-func (ptr *QSvgWidget) Load2(contents string) {
+func (ptr *QSvgWidget) Load2(contents core.QByteArray_ITF) {
 	if ptr.Pointer() != nil {
-		var contentsC = C.CString(hex.EncodeToString([]byte(contents)))
-		defer C.free(unsafe.Pointer(contentsC))
-		C.QSvgWidget_Load2(ptr.Pointer(), contentsC)
+		C.QSvgWidget_Load2(ptr.Pointer(), core.PointerFromQByteArray(contents))
 	}
 }
 
 //export callbackQSvgWidget_Load
-func callbackQSvgWidget_Load(ptr unsafe.Pointer, file *C.char) {
+func callbackQSvgWidget_Load(ptr unsafe.Pointer, file C.struct_QtSvg_PackedString) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSvgWidget::load"); signal != nil {
-		signal.(func(string))(C.GoString(file))
+		signal.(func(string))(cGoUnpackString(file))
 	}
 
 }
@@ -3172,11 +3172,11 @@ func (ptr *QSvgWidget) SetEnabledDefault(vbo bool) {
 }
 
 //export callbackQSvgWidget_SetStyleSheet
-func callbackQSvgWidget_SetStyleSheet(ptr unsafe.Pointer, styleSheet *C.char) {
+func callbackQSvgWidget_SetStyleSheet(ptr unsafe.Pointer, styleSheet C.struct_QtSvg_PackedString) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSvgWidget::setStyleSheet"); signal != nil {
-		signal.(func(string))(C.GoString(styleSheet))
+		signal.(func(string))(cGoUnpackString(styleSheet))
 	} else {
-		NewQSvgWidgetFromPointer(ptr).SetStyleSheetDefault(C.GoString(styleSheet))
+		NewQSvgWidgetFromPointer(ptr).SetStyleSheetDefault(cGoUnpackString(styleSheet))
 	}
 }
 
@@ -3281,11 +3281,11 @@ func (ptr *QSvgWidget) SetWindowModifiedDefault(vbo bool) {
 }
 
 //export callbackQSvgWidget_SetWindowTitle
-func callbackQSvgWidget_SetWindowTitle(ptr unsafe.Pointer, vqs *C.char) {
+func callbackQSvgWidget_SetWindowTitle(ptr unsafe.Pointer, vqs C.struct_QtSvg_PackedString) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSvgWidget::setWindowTitle"); signal != nil {
-		signal.(func(string))(C.GoString(vqs))
+		signal.(func(string))(cGoUnpackString(vqs))
 	} else {
-		NewQSvgWidgetFromPointer(ptr).SetWindowTitleDefault(C.GoString(vqs))
+		NewQSvgWidgetFromPointer(ptr).SetWindowTitleDefault(cGoUnpackString(vqs))
 	}
 }
 
@@ -3979,16 +3979,16 @@ func (ptr *QSvgWidget) MouseReleaseEventDefault(event gui.QMouseEvent_ITF) {
 }
 
 //export callbackQSvgWidget_NativeEvent
-func callbackQSvgWidget_NativeEvent(ptr unsafe.Pointer, eventType *C.char, message unsafe.Pointer, result C.long) C.char {
+func callbackQSvgWidget_NativeEvent(ptr unsafe.Pointer, eventType unsafe.Pointer, message unsafe.Pointer, result C.long) C.char {
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSvgWidget::nativeEvent"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt(signal.(func(string, unsafe.Pointer, int) bool)(qt.HexDecodeToString(C.GoString(eventType)), message, int(int32(result))))))
+		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QByteArray, unsafe.Pointer, int) bool)(core.NewQByteArrayFromPointer(eventType), message, int(int32(result))))))
 	}
 
-	return C.char(int8(qt.GoBoolToInt(NewQSvgWidgetFromPointer(ptr).NativeEventDefault(qt.HexDecodeToString(C.GoString(eventType)), message, int(int32(result))))))
+	return C.char(int8(qt.GoBoolToInt(NewQSvgWidgetFromPointer(ptr).NativeEventDefault(core.NewQByteArrayFromPointer(eventType), message, int(int32(result))))))
 }
 
-func (ptr *QSvgWidget) ConnectNativeEvent(f func(eventType string, message unsafe.Pointer, result int) bool) {
+func (ptr *QSvgWidget) ConnectNativeEvent(f func(eventType *core.QByteArray, message unsafe.Pointer, result int) bool) {
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QSvgWidget::nativeEvent", f)
@@ -4002,20 +4002,16 @@ func (ptr *QSvgWidget) DisconnectNativeEvent() {
 	}
 }
 
-func (ptr *QSvgWidget) NativeEvent(eventType string, message unsafe.Pointer, result int) bool {
+func (ptr *QSvgWidget) NativeEvent(eventType core.QByteArray_ITF, message unsafe.Pointer, result int) bool {
 	if ptr.Pointer() != nil {
-		var eventTypeC = C.CString(hex.EncodeToString([]byte(eventType)))
-		defer C.free(unsafe.Pointer(eventTypeC))
-		return C.QSvgWidget_NativeEvent(ptr.Pointer(), eventTypeC, message, C.long(int32(result))) != 0
+		return C.QSvgWidget_NativeEvent(ptr.Pointer(), core.PointerFromQByteArray(eventType), message, C.long(int32(result))) != 0
 	}
 	return false
 }
 
-func (ptr *QSvgWidget) NativeEventDefault(eventType string, message unsafe.Pointer, result int) bool {
+func (ptr *QSvgWidget) NativeEventDefault(eventType core.QByteArray_ITF, message unsafe.Pointer, result int) bool {
 	if ptr.Pointer() != nil {
-		var eventTypeC = C.CString(hex.EncodeToString([]byte(eventType)))
-		defer C.free(unsafe.Pointer(eventTypeC))
-		return C.QSvgWidget_NativeEventDefault(ptr.Pointer(), eventTypeC, message, C.long(int32(result))) != 0
+		return C.QSvgWidget_NativeEventDefault(ptr.Pointer(), core.PointerFromQByteArray(eventType), message, C.long(int32(result))) != 0
 	}
 	return false
 }

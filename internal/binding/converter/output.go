@@ -1,6 +1,8 @@
 package converter
 
 import (
+	"crypto/sha1"
+	"encoding/hex"
 	"fmt"
 	"strings"
 
@@ -16,17 +18,12 @@ func goOutput(name, value string, f *parser.Function) string {
 	switch value {
 	case "char", "qint8", "uchar", "quint8", "QString":
 		{
-			return fmt.Sprintf("C.GoString(%v)", name)
-		}
-
-	case "QByteArray":
-		{
-			return fmt.Sprintf("qt.HexDecodeToString(C.GoString(%v))", name)
+			return fmt.Sprintf("cGoUnpackString(%v)", name)
 		}
 
 	case "QStringList":
 		{
-			return fmt.Sprintf("strings.Split(C.GoString(%v), \"|\")", name)
+			return fmt.Sprintf("strings.Split(cGoUnpackString(%v), \"|\")", name)
 		}
 
 	case "void", "":
@@ -158,7 +155,7 @@ func goOutputFailed(value string, f *parser.Function) string {
 	value = CleanValue(value)
 
 	switch value {
-	case "char", "qint8", "uchar", "quint8", "QString", "QByteArray":
+	case "char", "qint8", "uchar", "quint8", "QString":
 		{
 			return "\"\""
 		}
@@ -258,17 +255,12 @@ func cgoOutput(name, value string, f *parser.Function) string {
 	switch value {
 	case "char", "qint8", "uchar", "quint8", "QString":
 		{
-			return fmt.Sprintf("C.GoString(%v)", name)
-		}
-
-	case "QByteArray":
-		{
-			return fmt.Sprintf("qt.HexDecodeToString(C.GoString(%v))", name)
+			return fmt.Sprintf("cGoUnpackString(%v)", name)
 		}
 
 	case "QStringList":
 		{
-			return fmt.Sprintf("strings.Split(C.GoString(%v), \"|\")", name)
+			return fmt.Sprintf("strings.Split(cGoUnpackString(%v), \"|\")", name)
 		}
 
 	case "void", "":
@@ -373,8 +365,37 @@ func CppOutput(name, value string, f *parser.Function) string {
 	return cppOutput(name, value, f)
 }
 
+func cppOutputPack(name, value string, f *parser.Function) string {
+	var out = cppOutput(name, value, f)
+
+	if strings.Contains(out, "_PackedString") {
+		var out = strings.Replace(out, "({ ", "", -1)
+		out = strings.Replace(out, " })", "", -1)
+		if !strings.HasSuffix(out, ";") {
+			out = fmt.Sprintf("%v;", out)
+		}
+		return strings.Replace(out, "_PackedString", fmt.Sprintf("_PackedString %vPacked =", cleanName(name, value)), -1)
+	}
+
+	return ""
+}
+
+func cppOutputPacked(name, value string, f *parser.Function) string {
+	var out = cppOutput(name, value, f)
+
+	if strings.Contains(out, "_PackedString") {
+		return fmt.Sprintf("%vPacked", cleanName(name, value))
+	}
+
+	return out
+}
+
 func cppOutput(name, value string, f *parser.Function) string {
 	var vOld = value
+
+	var tHash = sha1.New()
+	tHash.Write([]byte(name))
+	var tHashName = hex.EncodeToString(tHash.Sum(nil)[:3])
 
 	name = cleanName(name, value)
 	value = CleanValue(value)
@@ -382,35 +403,62 @@ func cppOutput(name, value string, f *parser.Function) string {
 	switch value {
 	case "char", "qint8":
 		{
-			return cppOutput(fmt.Sprintf("QString(%v)", name), "QString", f)
+			if strings.Contains(vOld, "*") {
+
+				var fSizeVariable string
+				for _, p := range f.Parameters {
+					if strings.Contains(p.Value, "int") {
+						fSizeVariable = p.Name
+						break
+					}
+				}
+
+				if fSizeVariable == "" && strings.Contains(strings.ToLower(f.Name), "data") && parser.ClassMap[f.Class()].HasFunctionWithName("size") {
+					fSizeVariable = fmt.Sprintf("static_cast<%v*>(ptr)->size()", f.Class())
+				}
+
+				if strings.Contains(vOld, "const") {
+					if fSizeVariable != "" {
+						return fmt.Sprintf("%v_PackedString { const_cast<char*>(%v), %v }", strings.Title(parser.ClassMap[f.Class()].Module), name, fSizeVariable)
+					}
+					return fmt.Sprintf("%v_PackedString { const_cast<char*>(%v), -1 }", strings.Title(parser.ClassMap[f.Class()].Module), name)
+				} else {
+					if fSizeVariable != "" {
+						return fmt.Sprintf("%v_PackedString { %v, %v }", strings.Title(parser.ClassMap[f.Class()].Module), name, fSizeVariable)
+					}
+					return fmt.Sprintf("%v_PackedString { %v, -1 }", strings.Title(parser.ClassMap[f.Class()].Module), name)
+				}
+			}
+
+			return fmt.Sprintf("({ char t%v = %v; %v_PackedString { &t%v, -1 }; })", tHashName, name, strings.Title(parser.ClassMap[f.Class()].Module), tHashName)
 		}
 
 	case "uchar", "quint8":
 		{
 			if strings.Contains(vOld, "*") {
-				return cppOutput(fmt.Sprintf("QString(QChar(*%v))", name), "QString", f)
+				if strings.Contains(vOld, "const") {
+					return fmt.Sprintf("({ char* t%v = static_cast<char*>(static_cast<void*>(const_cast<%v*>(%v))); %v_PackedString { t%v, -1 }; })", tHashName, value, name, strings.Title(parser.ClassMap[f.Class()].Module), tHashName)
+				}
+				return fmt.Sprintf("({ char* t%v = static_cast<char*>(static_cast<void*>(%v)); %v_PackedString { t%v, -1 }; })", tHashName, name, strings.Title(parser.ClassMap[f.Class()].Module), tHashName)
 			}
 
-			return cppOutput(fmt.Sprintf("QString(QChar(%v))", name), "QString", f)
+			return fmt.Sprintf("({ %v pret%v = %v; char* t%v = static_cast<char*>(static_cast<void*>(&pret%v)); %v_PackedString { t%v, -1 }; })", vOld, tHashName, name, tHashName, tHashName, strings.Title(parser.ClassMap[f.Class()].Module), tHashName)
 		}
 
 	case "QString":
 		{
 			if strings.Contains(vOld, "*") {
-				return fmt.Sprintf("const_cast<char*>(%v->toUtf8().prepend(\"WHITESPACE\").constData()+10)", name)
+				return fmt.Sprintf("({ QByteArray t%v = %v->toUtf8(); %v_PackedString { const_cast<char*>(t%v.prepend(\"WHITESPACE\").constData()+10), t%v.size()-10 }; })", tHashName, name, strings.Title(parser.ClassMap[f.Class()].Module), tHashName, tHashName)
 			}
-
-			return fmt.Sprintf("const_cast<char*>(%v.toUtf8().prepend(\"WHITESPACE\").constData()+10)", name)
-		}
-
-	case "QByteArray":
-		{
-			return fmt.Sprintf("const_cast<char*>(%v.toHex().prepend(\"WHITESPACE\").constData()+10)", name)
+			return fmt.Sprintf("({ QByteArray t%v = %v.toUtf8(); %v_PackedString { const_cast<char*>(t%v.prepend(\"WHITESPACE\").constData()+10), t%v.size()-10 }; })", tHashName, name, strings.Title(parser.ClassMap[f.Class()].Module), tHashName, tHashName)
 		}
 
 	case "QStringList":
 		{
-			return cppOutput(fmt.Sprintf("%v.join(\"|\")", name), "QString", f)
+			if strings.Contains(vOld, "*") {
+				return fmt.Sprintf("({ QByteArray t%v = %v->join(\"|\").toUtf8(); %v_PackedString { const_cast<char*>(t%v.prepend(\"WHITESPACE\").constData()+10), t%v.size()-10 }; })", tHashName, name, strings.Title(parser.ClassMap[f.Class()].Module), tHashName, tHashName)
+			}
+			return fmt.Sprintf("({ QByteArray t%v = %v.join(\"|\").toUtf8(); %v_PackedString { const_cast<char*>(t%v.prepend(\"WHITESPACE\").constData()+10), t%v.size()-10 }; })", tHashName, name, strings.Title(parser.ClassMap[f.Class()].Module), tHashName, tHashName)
 		}
 
 	case

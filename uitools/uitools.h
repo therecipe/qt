@@ -11,10 +11,11 @@
 extern "C" {
 #endif
 
+struct QtUiTools_PackedString { char* data; long long len; };
 void* QUiLoader_NewQUiLoader(void* parent);
 void QUiLoader_AddPluginPath(void* ptr, char* path);
-char* QUiLoader_AvailableLayouts(void* ptr);
-char* QUiLoader_AvailableWidgets(void* ptr);
+struct QtUiTools_PackedString QUiLoader_AvailableLayouts(void* ptr);
+struct QtUiTools_PackedString QUiLoader_AvailableWidgets(void* ptr);
 void QUiLoader_ClearPluginPaths(void* ptr);
 void* QUiLoader_CreateAction(void* ptr, void* parent, char* name);
 void* QUiLoader_CreateActionDefault(void* ptr, void* parent, char* name);
@@ -24,10 +25,10 @@ void* QUiLoader_CreateLayout(void* ptr, char* className, void* parent, char* nam
 void* QUiLoader_CreateLayoutDefault(void* ptr, char* className, void* parent, char* name);
 void* QUiLoader_CreateWidget(void* ptr, char* className, void* parent, char* name);
 void* QUiLoader_CreateWidgetDefault(void* ptr, char* className, void* parent, char* name);
-char* QUiLoader_ErrorString(void* ptr);
+struct QtUiTools_PackedString QUiLoader_ErrorString(void* ptr);
 char QUiLoader_IsLanguageChangeEnabled(void* ptr);
 void* QUiLoader_Load(void* ptr, void* device, void* parentWidget);
-char* QUiLoader_PluginPaths(void* ptr);
+struct QtUiTools_PackedString QUiLoader_PluginPaths(void* ptr);
 void QUiLoader_SetLanguageChangeEnabled(void* ptr, char enabled);
 void QUiLoader_SetWorkingDirectory(void* ptr, void* dir);
 void* QUiLoader_WorkingDirectory(void* ptr);

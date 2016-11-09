@@ -19,7 +19,7 @@ void* SailfishApp_SailfishApp_Application(int argc, char* argv)
 
 	QList<QByteArray> aList = QByteArray(argv).split('|');
 	for (int i = 0; i < argcs; i++)
-		argvs[i] = (new QByteArray(aList.at(i)))->prepend("WHITESPACE").data()+10;
+		argvs[i] = (new QByteArray(aList.at(i)))->data();
 
 	return SailfishApp::application(argcs, argvs);
 }
@@ -31,7 +31,7 @@ int SailfishApp_SailfishApp_Main(int argc, char* argv)
 
 	QList<QByteArray> aList = QByteArray(argv).split('|');
 	for (int i = 0; i < argcs; i++)
-		argvs[i] = (new QByteArray(aList.at(i)))->prepend("WHITESPACE").data()+10;
+		argvs[i] = (new QByteArray(aList.at(i)))->data();
 
 	return SailfishApp::main(argcs, argvs);
 }

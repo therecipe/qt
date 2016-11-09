@@ -6,6 +6,7 @@
 #include "purchasing.h"
 #include "_cgo_export.h"
 
+#include <QByteArray>
 #include <QChildEvent>
 #include <QDate>
 #include <QDateTime>
@@ -36,19 +37,19 @@ public:
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQInAppProduct_MetaObject(const_cast<MyQInAppProduct*>(this))); };
 };
 
-char* QInAppProduct_Description(void* ptr)
+struct QtPurchasing_PackedString QInAppProduct_Description(void* ptr)
 {
-	return const_cast<char*>(static_cast<QInAppProduct*>(ptr)->description().toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray t8de023 = static_cast<QInAppProduct*>(ptr)->description().toUtf8(); QtPurchasing_PackedString { const_cast<char*>(t8de023.prepend("WHITESPACE").constData()+10), t8de023.size()-10 }; });
 }
 
-char* QInAppProduct_Identifier(void* ptr)
+struct QtPurchasing_PackedString QInAppProduct_Identifier(void* ptr)
 {
-	return const_cast<char*>(static_cast<QInAppProduct*>(ptr)->identifier().toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray t1115c2 = static_cast<QInAppProduct*>(ptr)->identifier().toUtf8(); QtPurchasing_PackedString { const_cast<char*>(t1115c2.prepend("WHITESPACE").constData()+10), t1115c2.size()-10 }; });
 }
 
-char* QInAppProduct_Price(void* ptr)
+struct QtPurchasing_PackedString QInAppProduct_Price(void* ptr)
 {
-	return const_cast<char*>(static_cast<QInAppProduct*>(ptr)->price().toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray tb111f7 = static_cast<QInAppProduct*>(ptr)->price().toUtf8(); QtPurchasing_PackedString { const_cast<char*>(tb111f7.prepend("WHITESPACE").constData()+10), tb111f7.size()-10 }; });
 }
 
 long long QInAppProduct_ProductType(void* ptr)
@@ -56,9 +57,9 @@ long long QInAppProduct_ProductType(void* ptr)
 	return static_cast<QInAppProduct*>(ptr)->productType();
 }
 
-char* QInAppProduct_Title(void* ptr)
+struct QtPurchasing_PackedString QInAppProduct_Title(void* ptr)
 {
-	return const_cast<char*>(static_cast<QInAppProduct*>(ptr)->title().toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray t2b6ee0 = static_cast<QInAppProduct*>(ptr)->title().toUtf8(); QtPurchasing_PackedString { const_cast<char*>(t2b6ee0.prepend("WHITESPACE").constData()+10), t2b6ee0.size()-10 }; });
 }
 
 void QInAppProduct_Purchase(void* ptr)
@@ -161,7 +162,7 @@ class MyQInAppStore: public QInAppStore
 public:
 	MyQInAppStore(QObject *parent) : QInAppStore(parent) {};
 	void Signal_ProductRegistered(QInAppProduct * product) { callbackQInAppStore_ProductRegistered(this, product); };
-	void Signal_ProductUnknown(QInAppProduct::ProductType productType, const QString & identifier) { callbackQInAppStore_ProductUnknown(this, productType, const_cast<char*>(identifier.toUtf8().prepend("WHITESPACE").constData()+10)); };
+	void Signal_ProductUnknown(QInAppProduct::ProductType productType, const QString & identifier) { QByteArray tfae9fd = identifier.toUtf8(); QtPurchasing_PackedString identifierPacked = { const_cast<char*>(tfae9fd.prepend("WHITESPACE").constData()+10), tfae9fd.size()-10 };callbackQInAppStore_ProductUnknown(this, productType, identifierPacked); };
 	void Signal_TransactionReady(QInAppTransaction * transaction) { callbackQInAppStore_TransactionReady(this, transaction); };
 	void timerEvent(QTimerEvent * event) { callbackQInAppStore_TimerEvent(this, event); };
 	void childEvent(QChildEvent * event) { callbackQInAppStore_ChildEvent(this, event); };
@@ -347,7 +348,7 @@ public:
 	QString orderId() const { return QString(callbackQInAppTransaction_OrderId(const_cast<MyQInAppTransaction*>(this))); };
 	QDateTime timestamp() const { return *static_cast<QDateTime*>(callbackQInAppTransaction_Timestamp(const_cast<MyQInAppTransaction*>(this))); };
 	void finalize() { callbackQInAppTransaction_Finalize(this); };
-	QString platformProperty(const QString & propertyName) const { return QString(callbackQInAppTransaction_PlatformProperty(const_cast<MyQInAppTransaction*>(this), const_cast<char*>(propertyName.toUtf8().prepend("WHITESPACE").constData()+10))); };
+	QString platformProperty(const QString & propertyName) const { QByteArray tdeaeb2 = propertyName.toUtf8(); QtPurchasing_PackedString propertyNamePacked = { const_cast<char*>(tdeaeb2.prepend("WHITESPACE").constData()+10), tdeaeb2.size()-10 };return QString(callbackQInAppTransaction_PlatformProperty(const_cast<MyQInAppTransaction*>(this), propertyNamePacked)); };
 	void timerEvent(QTimerEvent * event) { callbackQInAppTransaction_TimerEvent(this, event); };
 	void childEvent(QChildEvent * event) { callbackQInAppTransaction_ChildEvent(this, event); };
 	void connectNotify(const QMetaMethod & sign) { callbackQInAppTransaction_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
@@ -359,14 +360,14 @@ public:
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQInAppTransaction_MetaObject(const_cast<MyQInAppTransaction*>(this))); };
 };
 
-char* QInAppTransaction_ErrorString(void* ptr)
+struct QtPurchasing_PackedString QInAppTransaction_ErrorString(void* ptr)
 {
-	return const_cast<char*>(static_cast<QInAppTransaction*>(ptr)->errorString().toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray t910a82 = static_cast<QInAppTransaction*>(ptr)->errorString().toUtf8(); QtPurchasing_PackedString { const_cast<char*>(t910a82.prepend("WHITESPACE").constData()+10), t910a82.size()-10 }; });
 }
 
-char* QInAppTransaction_ErrorStringDefault(void* ptr)
+struct QtPurchasing_PackedString QInAppTransaction_ErrorStringDefault(void* ptr)
 {
-	return const_cast<char*>(static_cast<QInAppTransaction*>(ptr)->QInAppTransaction::errorString().toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray tb31c41 = static_cast<QInAppTransaction*>(ptr)->QInAppTransaction::errorString().toUtf8(); QtPurchasing_PackedString { const_cast<char*>(tb31c41.prepend("WHITESPACE").constData()+10), tb31c41.size()-10 }; });
 }
 
 long long QInAppTransaction_FailureReason(void* ptr)
@@ -379,14 +380,14 @@ long long QInAppTransaction_FailureReasonDefault(void* ptr)
 	return static_cast<QInAppTransaction*>(ptr)->QInAppTransaction::failureReason();
 }
 
-char* QInAppTransaction_OrderId(void* ptr)
+struct QtPurchasing_PackedString QInAppTransaction_OrderId(void* ptr)
 {
-	return const_cast<char*>(static_cast<QInAppTransaction*>(ptr)->orderId().toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray t614537 = static_cast<QInAppTransaction*>(ptr)->orderId().toUtf8(); QtPurchasing_PackedString { const_cast<char*>(t614537.prepend("WHITESPACE").constData()+10), t614537.size()-10 }; });
 }
 
-char* QInAppTransaction_OrderIdDefault(void* ptr)
+struct QtPurchasing_PackedString QInAppTransaction_OrderIdDefault(void* ptr)
 {
-	return const_cast<char*>(static_cast<QInAppTransaction*>(ptr)->QInAppTransaction::orderId().toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray t9740f5 = static_cast<QInAppTransaction*>(ptr)->QInAppTransaction::orderId().toUtf8(); QtPurchasing_PackedString { const_cast<char*>(t9740f5.prepend("WHITESPACE").constData()+10), t9740f5.size()-10 }; });
 }
 
 void* QInAppTransaction_Product(void* ptr)
@@ -414,14 +415,14 @@ void QInAppTransaction_Finalize(void* ptr)
 	static_cast<QInAppTransaction*>(ptr)->finalize();
 }
 
-char* QInAppTransaction_PlatformProperty(void* ptr, char* propertyName)
+struct QtPurchasing_PackedString QInAppTransaction_PlatformProperty(void* ptr, char* propertyName)
 {
-	return const_cast<char*>(static_cast<QInAppTransaction*>(ptr)->platformProperty(QString(propertyName)).toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray t620381 = static_cast<QInAppTransaction*>(ptr)->platformProperty(QString(propertyName)).toUtf8(); QtPurchasing_PackedString { const_cast<char*>(t620381.prepend("WHITESPACE").constData()+10), t620381.size()-10 }; });
 }
 
-char* QInAppTransaction_PlatformPropertyDefault(void* ptr, char* propertyName)
+struct QtPurchasing_PackedString QInAppTransaction_PlatformPropertyDefault(void* ptr, char* propertyName)
 {
-	return const_cast<char*>(static_cast<QInAppTransaction*>(ptr)->QInAppTransaction::platformProperty(QString(propertyName)).toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray tce28f9 = static_cast<QInAppTransaction*>(ptr)->QInAppTransaction::platformProperty(QString(propertyName)).toUtf8(); QtPurchasing_PackedString { const_cast<char*>(tce28f9.prepend("WHITESPACE").constData()+10), tce28f9.size()-10 }; });
 }
 
 void QInAppTransaction_TimerEvent(void* ptr, void* event)

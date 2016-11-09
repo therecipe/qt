@@ -13,6 +13,13 @@ import (
 	"unsafe"
 )
 
+func cGoUnpackString(s C.struct_QtAndroidExtras_PackedString) string {
+	if len := int(s.len); len == -1 {
+		return C.GoString(s.data)
+	}
+	return C.GoStringN(s.data, C.int(s.len))
+}
+
 type QAndroidActivityResultReceiver struct {
 	ptr unsafe.Pointer
 }
@@ -1410,7 +1417,7 @@ func (ptr *QAndroidJniObject) IsValid() bool {
 
 func (ptr *QAndroidJniObject) ToString() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QAndroidJniObject_ToString(ptr.Pointer()))
+		return cGoUnpackString(C.QAndroidJniObject_ToString(ptr.Pointer()))
 	}
 	return ""
 }

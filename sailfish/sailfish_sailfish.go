@@ -17,6 +17,13 @@ import (
 	"unsafe"
 )
 
+func cGoUnpackString(s C.struct_QtSailfish_PackedString) string {
+	if len := int(s.len); len == -1 {
+		return C.GoString(s.data)
+	}
+	return C.GoStringN(s.data, C.int(s.len))
+}
+
 type SailfishApp struct {
 	ptr unsafe.Pointer
 }

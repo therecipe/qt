@@ -59,6 +59,8 @@ extern "C" {
 		strings.ToUpper(module),
 		strings.ToUpper(module))
 
+	fmt.Fprintf(bb, "struct %v_PackedString { char* data; long long len; };\n", strings.Title(module))
+
 	for _, class := range getSortedClassesForModule(module) {
 		var implementedVirtuals = make(map[string]bool)
 

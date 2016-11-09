@@ -11,6 +11,7 @@
 extern "C" {
 #endif
 
+struct QtAndroidExtras_PackedString { char* data; long long len; };
 void QAndroidActivityResultReceiver_HandleActivityResult(void* ptr, int receiverRequestCode, int resultCode, void* data);
 void* QAndroidJniEnvironment_NewQAndroidJniEnvironment();
 void* QAndroidJniEnvironment_QAndroidJniEnvironment_JavaVM();
@@ -73,7 +74,7 @@ void* QAndroidJniObject_QAndroidJniObject_GetStaticObjectField4(void* clazz, cha
 void* QAndroidJniObject_QAndroidJniObject_GetStaticFieldString4(void* clazz, char* fieldName, char* signature);
 char QAndroidJniObject_QAndroidJniObject_IsClassAvailable(char* className);
 char QAndroidJniObject_IsValid(void* ptr);
-char* QAndroidJniObject_ToString(void* ptr);
+struct QtAndroidExtras_PackedString QAndroidJniObject_ToString(void* ptr);
 void* QAndroidJniObject_Object(void* ptr);
 void QAndroidJniObject_SetField(void* ptr, char* fieldName, void* value);
 void QAndroidJniObject_SetField2(void* ptr, char* fieldName, char* signature, void* value);

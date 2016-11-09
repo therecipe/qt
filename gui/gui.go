@@ -7,7 +7,6 @@ package gui
 //#include "gui.h"
 import "C"
 import (
-	"encoding/hex"
 	"fmt"
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
@@ -15,6 +14,13 @@ import (
 	"strings"
 	"unsafe"
 )
+
+func cGoUnpackString(s C.struct_QtGui_PackedString) string {
+	if len := int(s.len); len == -1 {
+		return C.GoString(s.data)
+	}
+	return C.GoStringN(s.data, C.int(s.len))
+}
 
 type QAbstractOpenGLFunctions struct {
 	ptr unsafe.Pointer
@@ -101,7 +107,7 @@ func (ptr *QAbstractTextDocumentLayout) DestroyQAbstractTextDocumentLayout() {
 
 func (ptr *QAbstractTextDocumentLayout) AnchorAt(position core.QPointF_ITF) string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QAbstractTextDocumentLayout_AnchorAt(ptr.Pointer(), core.PointerFromQPointF(position)))
+		return cGoUnpackString(C.QAbstractTextDocumentLayout_AnchorAt(ptr.Pointer(), core.PointerFromQPointF(position)))
 	}
 	return ""
 }
@@ -1107,13 +1113,13 @@ func NewQAccessibleActionInterfaceFromPointer(ptr unsafe.Pointer) *QAccessibleAc
 }
 
 //export callbackQAccessibleActionInterface_LocalizedActionDescription
-func callbackQAccessibleActionInterface_LocalizedActionDescription(ptr unsafe.Pointer, actionName *C.char) *C.char {
+func callbackQAccessibleActionInterface_LocalizedActionDescription(ptr unsafe.Pointer, actionName C.struct_QtGui_PackedString) *C.char {
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAccessibleActionInterface::localizedActionDescription"); signal != nil {
-		return C.CString(signal.(func(string) string)(C.GoString(actionName)))
+		return C.CString(signal.(func(string) string)(cGoUnpackString(actionName)))
 	}
 
-	return C.CString(NewQAccessibleActionInterfaceFromPointer(ptr).LocalizedActionDescriptionDefault(C.GoString(actionName)))
+	return C.CString(NewQAccessibleActionInterfaceFromPointer(ptr).LocalizedActionDescriptionDefault(cGoUnpackString(actionName)))
 }
 
 func (ptr *QAccessibleActionInterface) ConnectLocalizedActionDescription(f func(actionName string) string) {
@@ -1134,7 +1140,7 @@ func (ptr *QAccessibleActionInterface) LocalizedActionDescription(actionName str
 	if ptr.Pointer() != nil {
 		var actionNameC = C.CString(actionName)
 		defer C.free(unsafe.Pointer(actionNameC))
-		return C.GoString(C.QAccessibleActionInterface_LocalizedActionDescription(ptr.Pointer(), actionNameC))
+		return cGoUnpackString(C.QAccessibleActionInterface_LocalizedActionDescription(ptr.Pointer(), actionNameC))
 	}
 	return ""
 }
@@ -1143,19 +1149,19 @@ func (ptr *QAccessibleActionInterface) LocalizedActionDescriptionDefault(actionN
 	if ptr.Pointer() != nil {
 		var actionNameC = C.CString(actionName)
 		defer C.free(unsafe.Pointer(actionNameC))
-		return C.GoString(C.QAccessibleActionInterface_LocalizedActionDescriptionDefault(ptr.Pointer(), actionNameC))
+		return cGoUnpackString(C.QAccessibleActionInterface_LocalizedActionDescriptionDefault(ptr.Pointer(), actionNameC))
 	}
 	return ""
 }
 
 //export callbackQAccessibleActionInterface_LocalizedActionName
-func callbackQAccessibleActionInterface_LocalizedActionName(ptr unsafe.Pointer, actionName *C.char) *C.char {
+func callbackQAccessibleActionInterface_LocalizedActionName(ptr unsafe.Pointer, actionName C.struct_QtGui_PackedString) *C.char {
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAccessibleActionInterface::localizedActionName"); signal != nil {
-		return C.CString(signal.(func(string) string)(C.GoString(actionName)))
+		return C.CString(signal.(func(string) string)(cGoUnpackString(actionName)))
 	}
 
-	return C.CString(NewQAccessibleActionInterfaceFromPointer(ptr).LocalizedActionNameDefault(C.GoString(actionName)))
+	return C.CString(NewQAccessibleActionInterfaceFromPointer(ptr).LocalizedActionNameDefault(cGoUnpackString(actionName)))
 }
 
 func (ptr *QAccessibleActionInterface) ConnectLocalizedActionName(f func(actionName string) string) {
@@ -1176,7 +1182,7 @@ func (ptr *QAccessibleActionInterface) LocalizedActionName(actionName string) st
 	if ptr.Pointer() != nil {
 		var actionNameC = C.CString(actionName)
 		defer C.free(unsafe.Pointer(actionNameC))
-		return C.GoString(C.QAccessibleActionInterface_LocalizedActionName(ptr.Pointer(), actionNameC))
+		return cGoUnpackString(C.QAccessibleActionInterface_LocalizedActionName(ptr.Pointer(), actionNameC))
 	}
 	return ""
 }
@@ -1185,7 +1191,7 @@ func (ptr *QAccessibleActionInterface) LocalizedActionNameDefault(actionName str
 	if ptr.Pointer() != nil {
 		var actionNameC = C.CString(actionName)
 		defer C.free(unsafe.Pointer(actionNameC))
-		return C.GoString(C.QAccessibleActionInterface_LocalizedActionNameDefault(ptr.Pointer(), actionNameC))
+		return cGoUnpackString(C.QAccessibleActionInterface_LocalizedActionNameDefault(ptr.Pointer(), actionNameC))
 	}
 	return ""
 }
@@ -1216,24 +1222,24 @@ func (ptr *QAccessibleActionInterface) DisconnectActionNames() {
 
 func (ptr *QAccessibleActionInterface) ActionNames() []string {
 	if ptr.Pointer() != nil {
-		return strings.Split(C.GoString(C.QAccessibleActionInterface_ActionNames(ptr.Pointer())), "|")
+		return strings.Split(cGoUnpackString(C.QAccessibleActionInterface_ActionNames(ptr.Pointer())), "|")
 	}
 	return make([]string, 0)
 }
 
 func QAccessibleActionInterface_DecreaseAction() string {
-	return C.GoString(C.QAccessibleActionInterface_QAccessibleActionInterface_DecreaseAction())
+	return cGoUnpackString(C.QAccessibleActionInterface_QAccessibleActionInterface_DecreaseAction())
 }
 
 func (ptr *QAccessibleActionInterface) DecreaseAction() string {
-	return C.GoString(C.QAccessibleActionInterface_QAccessibleActionInterface_DecreaseAction())
+	return cGoUnpackString(C.QAccessibleActionInterface_QAccessibleActionInterface_DecreaseAction())
 }
 
 //export callbackQAccessibleActionInterface_DoAction
-func callbackQAccessibleActionInterface_DoAction(ptr unsafe.Pointer, actionName *C.char) {
+func callbackQAccessibleActionInterface_DoAction(ptr unsafe.Pointer, actionName C.struct_QtGui_PackedString) {
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAccessibleActionInterface::doAction"); signal != nil {
-		signal.(func(string))(C.GoString(actionName))
+		signal.(func(string))(cGoUnpackString(actionName))
 	}
 
 }
@@ -1261,18 +1267,18 @@ func (ptr *QAccessibleActionInterface) DoAction(actionName string) {
 }
 
 func QAccessibleActionInterface_IncreaseAction() string {
-	return C.GoString(C.QAccessibleActionInterface_QAccessibleActionInterface_IncreaseAction())
+	return cGoUnpackString(C.QAccessibleActionInterface_QAccessibleActionInterface_IncreaseAction())
 }
 
 func (ptr *QAccessibleActionInterface) IncreaseAction() string {
-	return C.GoString(C.QAccessibleActionInterface_QAccessibleActionInterface_IncreaseAction())
+	return cGoUnpackString(C.QAccessibleActionInterface_QAccessibleActionInterface_IncreaseAction())
 }
 
 //export callbackQAccessibleActionInterface_KeyBindingsForAction
-func callbackQAccessibleActionInterface_KeyBindingsForAction(ptr unsafe.Pointer, actionName *C.char) *C.char {
+func callbackQAccessibleActionInterface_KeyBindingsForAction(ptr unsafe.Pointer, actionName C.struct_QtGui_PackedString) *C.char {
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAccessibleActionInterface::keyBindingsForAction"); signal != nil {
-		return C.CString(strings.Join(signal.(func(string) []string)(C.GoString(actionName)), "|"))
+		return C.CString(strings.Join(signal.(func(string) []string)(cGoUnpackString(actionName)), "|"))
 	}
 
 	return C.CString(strings.Join(make([]string, 0), "|"))
@@ -1296,89 +1302,89 @@ func (ptr *QAccessibleActionInterface) KeyBindingsForAction(actionName string) [
 	if ptr.Pointer() != nil {
 		var actionNameC = C.CString(actionName)
 		defer C.free(unsafe.Pointer(actionNameC))
-		return strings.Split(C.GoString(C.QAccessibleActionInterface_KeyBindingsForAction(ptr.Pointer(), actionNameC)), "|")
+		return strings.Split(cGoUnpackString(C.QAccessibleActionInterface_KeyBindingsForAction(ptr.Pointer(), actionNameC)), "|")
 	}
 	return make([]string, 0)
 }
 
 func QAccessibleActionInterface_NextPageAction() string {
-	return C.GoString(C.QAccessibleActionInterface_QAccessibleActionInterface_NextPageAction())
+	return cGoUnpackString(C.QAccessibleActionInterface_QAccessibleActionInterface_NextPageAction())
 }
 
 func (ptr *QAccessibleActionInterface) NextPageAction() string {
-	return C.GoString(C.QAccessibleActionInterface_QAccessibleActionInterface_NextPageAction())
+	return cGoUnpackString(C.QAccessibleActionInterface_QAccessibleActionInterface_NextPageAction())
 }
 
 func QAccessibleActionInterface_PressAction() string {
-	return C.GoString(C.QAccessibleActionInterface_QAccessibleActionInterface_PressAction())
+	return cGoUnpackString(C.QAccessibleActionInterface_QAccessibleActionInterface_PressAction())
 }
 
 func (ptr *QAccessibleActionInterface) PressAction() string {
-	return C.GoString(C.QAccessibleActionInterface_QAccessibleActionInterface_PressAction())
+	return cGoUnpackString(C.QAccessibleActionInterface_QAccessibleActionInterface_PressAction())
 }
 
 func QAccessibleActionInterface_PreviousPageAction() string {
-	return C.GoString(C.QAccessibleActionInterface_QAccessibleActionInterface_PreviousPageAction())
+	return cGoUnpackString(C.QAccessibleActionInterface_QAccessibleActionInterface_PreviousPageAction())
 }
 
 func (ptr *QAccessibleActionInterface) PreviousPageAction() string {
-	return C.GoString(C.QAccessibleActionInterface_QAccessibleActionInterface_PreviousPageAction())
+	return cGoUnpackString(C.QAccessibleActionInterface_QAccessibleActionInterface_PreviousPageAction())
 }
 
 func QAccessibleActionInterface_ScrollDownAction() string {
-	return C.GoString(C.QAccessibleActionInterface_QAccessibleActionInterface_ScrollDownAction())
+	return cGoUnpackString(C.QAccessibleActionInterface_QAccessibleActionInterface_ScrollDownAction())
 }
 
 func (ptr *QAccessibleActionInterface) ScrollDownAction() string {
-	return C.GoString(C.QAccessibleActionInterface_QAccessibleActionInterface_ScrollDownAction())
+	return cGoUnpackString(C.QAccessibleActionInterface_QAccessibleActionInterface_ScrollDownAction())
 }
 
 func QAccessibleActionInterface_ScrollLeftAction() string {
-	return C.GoString(C.QAccessibleActionInterface_QAccessibleActionInterface_ScrollLeftAction())
+	return cGoUnpackString(C.QAccessibleActionInterface_QAccessibleActionInterface_ScrollLeftAction())
 }
 
 func (ptr *QAccessibleActionInterface) ScrollLeftAction() string {
-	return C.GoString(C.QAccessibleActionInterface_QAccessibleActionInterface_ScrollLeftAction())
+	return cGoUnpackString(C.QAccessibleActionInterface_QAccessibleActionInterface_ScrollLeftAction())
 }
 
 func QAccessibleActionInterface_ScrollRightAction() string {
-	return C.GoString(C.QAccessibleActionInterface_QAccessibleActionInterface_ScrollRightAction())
+	return cGoUnpackString(C.QAccessibleActionInterface_QAccessibleActionInterface_ScrollRightAction())
 }
 
 func (ptr *QAccessibleActionInterface) ScrollRightAction() string {
-	return C.GoString(C.QAccessibleActionInterface_QAccessibleActionInterface_ScrollRightAction())
+	return cGoUnpackString(C.QAccessibleActionInterface_QAccessibleActionInterface_ScrollRightAction())
 }
 
 func QAccessibleActionInterface_ScrollUpAction() string {
-	return C.GoString(C.QAccessibleActionInterface_QAccessibleActionInterface_ScrollUpAction())
+	return cGoUnpackString(C.QAccessibleActionInterface_QAccessibleActionInterface_ScrollUpAction())
 }
 
 func (ptr *QAccessibleActionInterface) ScrollUpAction() string {
-	return C.GoString(C.QAccessibleActionInterface_QAccessibleActionInterface_ScrollUpAction())
+	return cGoUnpackString(C.QAccessibleActionInterface_QAccessibleActionInterface_ScrollUpAction())
 }
 
 func QAccessibleActionInterface_SetFocusAction() string {
-	return C.GoString(C.QAccessibleActionInterface_QAccessibleActionInterface_SetFocusAction())
+	return cGoUnpackString(C.QAccessibleActionInterface_QAccessibleActionInterface_SetFocusAction())
 }
 
 func (ptr *QAccessibleActionInterface) SetFocusAction() string {
-	return C.GoString(C.QAccessibleActionInterface_QAccessibleActionInterface_SetFocusAction())
+	return cGoUnpackString(C.QAccessibleActionInterface_QAccessibleActionInterface_SetFocusAction())
 }
 
 func QAccessibleActionInterface_ShowMenuAction() string {
-	return C.GoString(C.QAccessibleActionInterface_QAccessibleActionInterface_ShowMenuAction())
+	return cGoUnpackString(C.QAccessibleActionInterface_QAccessibleActionInterface_ShowMenuAction())
 }
 
 func (ptr *QAccessibleActionInterface) ShowMenuAction() string {
-	return C.GoString(C.QAccessibleActionInterface_QAccessibleActionInterface_ShowMenuAction())
+	return cGoUnpackString(C.QAccessibleActionInterface_QAccessibleActionInterface_ShowMenuAction())
 }
 
 func QAccessibleActionInterface_ToggleAction() string {
-	return C.GoString(C.QAccessibleActionInterface_QAccessibleActionInterface_ToggleAction())
+	return cGoUnpackString(C.QAccessibleActionInterface_QAccessibleActionInterface_ToggleAction())
 }
 
 func (ptr *QAccessibleActionInterface) ToggleAction() string {
-	return C.GoString(C.QAccessibleActionInterface_QAccessibleActionInterface_ToggleAction())
+	return cGoUnpackString(C.QAccessibleActionInterface_QAccessibleActionInterface_ToggleAction())
 }
 
 //export callbackQAccessibleActionInterface_DestroyQAccessibleActionInterface
@@ -1489,10 +1495,10 @@ func (ptr *QAccessibleEditableTextInterface) DeleteText(startOffset int, endOffs
 }
 
 //export callbackQAccessibleEditableTextInterface_InsertText
-func callbackQAccessibleEditableTextInterface_InsertText(ptr unsafe.Pointer, offset C.int, text *C.char) {
+func callbackQAccessibleEditableTextInterface_InsertText(ptr unsafe.Pointer, offset C.int, text C.struct_QtGui_PackedString) {
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAccessibleEditableTextInterface::insertText"); signal != nil {
-		signal.(func(int, string))(int(int32(offset)), C.GoString(text))
+		signal.(func(int, string))(int(int32(offset)), cGoUnpackString(text))
 	}
 
 }
@@ -1520,10 +1526,10 @@ func (ptr *QAccessibleEditableTextInterface) InsertText(offset int, text string)
 }
 
 //export callbackQAccessibleEditableTextInterface_ReplaceText
-func callbackQAccessibleEditableTextInterface_ReplaceText(ptr unsafe.Pointer, startOffset C.int, endOffset C.int, text *C.char) {
+func callbackQAccessibleEditableTextInterface_ReplaceText(ptr unsafe.Pointer, startOffset C.int, endOffset C.int, text C.struct_QtGui_PackedString) {
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAccessibleEditableTextInterface::replaceText"); signal != nil {
-		signal.(func(int, int, string))(int(int32(startOffset)), int(int32(endOffset)), C.GoString(text))
+		signal.(func(int, int, string))(int(int32(startOffset)), int(int32(endOffset)), cGoUnpackString(text))
 	}
 
 }
@@ -2264,10 +2270,10 @@ func (ptr *QAccessibleInterface) Role() QAccessible__Role {
 }
 
 //export callbackQAccessibleInterface_SetText
-func callbackQAccessibleInterface_SetText(ptr unsafe.Pointer, t C.longlong, text *C.char) {
+func callbackQAccessibleInterface_SetText(ptr unsafe.Pointer, t C.longlong, text C.struct_QtGui_PackedString) {
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAccessibleInterface::setText"); signal != nil {
-		signal.(func(QAccessible__Text, string))(QAccessible__Text(t), C.GoString(text))
+		signal.(func(QAccessible__Text, string))(QAccessible__Text(t), cGoUnpackString(text))
 	}
 
 }
@@ -2334,7 +2340,7 @@ func (ptr *QAccessibleInterface) DisconnectText(t QAccessible__Text) {
 
 func (ptr *QAccessibleInterface) Text(t QAccessible__Text) string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QAccessibleInterface_Text(ptr.Pointer(), C.longlong(t)))
+		return cGoUnpackString(C.QAccessibleInterface_Text(ptr.Pointer(), C.longlong(t)))
 	}
 	return ""
 }
@@ -2643,12 +2649,12 @@ func (ptr *QAccessibleObject) RectDefault() *core.QRect {
 }
 
 //export callbackQAccessibleObject_SetText
-func callbackQAccessibleObject_SetText(ptr unsafe.Pointer, t C.longlong, text *C.char) {
+func callbackQAccessibleObject_SetText(ptr unsafe.Pointer, t C.longlong, text C.struct_QtGui_PackedString) {
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAccessibleObject::setText"); signal != nil {
-		signal.(func(QAccessible__Text, string))(QAccessible__Text(t), C.GoString(text))
+		signal.(func(QAccessible__Text, string))(QAccessible__Text(t), cGoUnpackString(text))
 	} else {
-		NewQAccessibleObjectFromPointer(ptr).SetTextDefault(QAccessible__Text(t), C.GoString(text))
+		NewQAccessibleObjectFromPointer(ptr).SetTextDefault(QAccessible__Text(t), cGoUnpackString(text))
 	}
 }
 
@@ -3063,7 +3069,7 @@ func (ptr *QAccessibleObject) DisconnectText() {
 
 func (ptr *QAccessibleObject) Text(t QAccessible__Text) string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QAccessibleObject_Text(ptr.Pointer(), C.longlong(t)))
+		return cGoUnpackString(C.QAccessibleObject_Text(ptr.Pointer(), C.longlong(t)))
 	}
 	return ""
 }
@@ -3161,10 +3167,10 @@ func NewQAccessiblePlugin(parent core.QObject_ITF) *QAccessiblePlugin {
 }
 
 //export callbackQAccessiblePlugin_Create
-func callbackQAccessiblePlugin_Create(ptr unsafe.Pointer, key *C.char, object unsafe.Pointer) unsafe.Pointer {
+func callbackQAccessiblePlugin_Create(ptr unsafe.Pointer, key C.struct_QtGui_PackedString, object unsafe.Pointer) unsafe.Pointer {
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAccessiblePlugin::create"); signal != nil {
-		return PointerFromQAccessibleInterface(signal.(func(string, *core.QObject) *QAccessibleInterface)(C.GoString(key), core.NewQObjectFromPointer(object)))
+		return PointerFromQAccessibleInterface(signal.(func(string, *core.QObject) *QAccessibleInterface)(cGoUnpackString(key), core.NewQObjectFromPointer(object)))
 	}
 
 	return PointerFromQAccessibleInterface(nil)
@@ -4037,7 +4043,7 @@ func (ptr *QAccessibleTableInterface) DisconnectColumnDescription(column int) {
 
 func (ptr *QAccessibleTableInterface) ColumnDescription(column int) string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QAccessibleTableInterface_ColumnDescription(ptr.Pointer(), C.int(int32(column))))
+		return cGoUnpackString(C.QAccessibleTableInterface_ColumnDescription(ptr.Pointer(), C.int(int32(column))))
 	}
 	return ""
 }
@@ -4190,7 +4196,7 @@ func (ptr *QAccessibleTableInterface) DisconnectRowDescription(row int) {
 
 func (ptr *QAccessibleTableInterface) RowDescription(row int) string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QAccessibleTableInterface_RowDescription(ptr.Pointer(), C.int(int32(row))))
+		return cGoUnpackString(C.QAccessibleTableInterface_RowDescription(ptr.Pointer(), C.int(int32(row))))
 	}
 	return ""
 }
@@ -4908,7 +4914,7 @@ func (ptr *QAccessibleTextInsertEvent) ChangePosition() int {
 
 func (ptr *QAccessibleTextInsertEvent) TextInserted() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QAccessibleTextInsertEvent_TextInserted(ptr.Pointer()))
+		return cGoUnpackString(C.QAccessibleTextInsertEvent_TextInserted(ptr.Pointer()))
 	}
 	return ""
 }
@@ -4928,7 +4934,7 @@ func (ptr *QAccessibleTextInsertEvent) SetM_position(vin int) {
 
 func (ptr *QAccessibleTextInsertEvent) M_text() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QAccessibleTextInsertEvent_M_text(ptr.Pointer()))
+		return cGoUnpackString(C.QAccessibleTextInsertEvent_M_text(ptr.Pointer()))
 	}
 	return ""
 }
@@ -5072,7 +5078,7 @@ func (ptr *QAccessibleTextInterface) DisconnectAttributes(offset int, startOffse
 
 func (ptr *QAccessibleTextInterface) Attributes(offset int, startOffset int, endOffset int) string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QAccessibleTextInterface_Attributes(ptr.Pointer(), C.int(int32(offset)), C.int(int32(startOffset)), C.int(int32(endOffset))))
+		return cGoUnpackString(C.QAccessibleTextInterface_Attributes(ptr.Pointer(), C.int(int32(offset)), C.int(int32(startOffset)), C.int(int32(endOffset))))
 	}
 	return ""
 }
@@ -5405,7 +5411,7 @@ func (ptr *QAccessibleTextInterface) DisconnectText(startOffset int, endOffset i
 
 func (ptr *QAccessibleTextInterface) Text(startOffset int, endOffset int) string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QAccessibleTextInterface_Text(ptr.Pointer(), C.int(int32(startOffset)), C.int(int32(endOffset))))
+		return cGoUnpackString(C.QAccessibleTextInterface_Text(ptr.Pointer(), C.int(int32(startOffset)), C.int(int32(endOffset))))
 	}
 	return ""
 }
@@ -5436,14 +5442,14 @@ func (ptr *QAccessibleTextInterface) DisconnectTextAfterOffset() {
 
 func (ptr *QAccessibleTextInterface) TextAfterOffset(offset int, boundaryType QAccessible__TextBoundaryType, startOffset int, endOffset int) string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QAccessibleTextInterface_TextAfterOffset(ptr.Pointer(), C.int(int32(offset)), C.longlong(boundaryType), C.int(int32(startOffset)), C.int(int32(endOffset))))
+		return cGoUnpackString(C.QAccessibleTextInterface_TextAfterOffset(ptr.Pointer(), C.int(int32(offset)), C.longlong(boundaryType), C.int(int32(startOffset)), C.int(int32(endOffset))))
 	}
 	return ""
 }
 
 func (ptr *QAccessibleTextInterface) TextAfterOffsetDefault(offset int, boundaryType QAccessible__TextBoundaryType, startOffset int, endOffset int) string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QAccessibleTextInterface_TextAfterOffsetDefault(ptr.Pointer(), C.int(int32(offset)), C.longlong(boundaryType), C.int(int32(startOffset)), C.int(int32(endOffset))))
+		return cGoUnpackString(C.QAccessibleTextInterface_TextAfterOffsetDefault(ptr.Pointer(), C.int(int32(offset)), C.longlong(boundaryType), C.int(int32(startOffset)), C.int(int32(endOffset))))
 	}
 	return ""
 }
@@ -5474,14 +5480,14 @@ func (ptr *QAccessibleTextInterface) DisconnectTextAtOffset() {
 
 func (ptr *QAccessibleTextInterface) TextAtOffset(offset int, boundaryType QAccessible__TextBoundaryType, startOffset int, endOffset int) string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QAccessibleTextInterface_TextAtOffset(ptr.Pointer(), C.int(int32(offset)), C.longlong(boundaryType), C.int(int32(startOffset)), C.int(int32(endOffset))))
+		return cGoUnpackString(C.QAccessibleTextInterface_TextAtOffset(ptr.Pointer(), C.int(int32(offset)), C.longlong(boundaryType), C.int(int32(startOffset)), C.int(int32(endOffset))))
 	}
 	return ""
 }
 
 func (ptr *QAccessibleTextInterface) TextAtOffsetDefault(offset int, boundaryType QAccessible__TextBoundaryType, startOffset int, endOffset int) string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QAccessibleTextInterface_TextAtOffsetDefault(ptr.Pointer(), C.int(int32(offset)), C.longlong(boundaryType), C.int(int32(startOffset)), C.int(int32(endOffset))))
+		return cGoUnpackString(C.QAccessibleTextInterface_TextAtOffsetDefault(ptr.Pointer(), C.int(int32(offset)), C.longlong(boundaryType), C.int(int32(startOffset)), C.int(int32(endOffset))))
 	}
 	return ""
 }
@@ -5512,14 +5518,14 @@ func (ptr *QAccessibleTextInterface) DisconnectTextBeforeOffset() {
 
 func (ptr *QAccessibleTextInterface) TextBeforeOffset(offset int, boundaryType QAccessible__TextBoundaryType, startOffset int, endOffset int) string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QAccessibleTextInterface_TextBeforeOffset(ptr.Pointer(), C.int(int32(offset)), C.longlong(boundaryType), C.int(int32(startOffset)), C.int(int32(endOffset))))
+		return cGoUnpackString(C.QAccessibleTextInterface_TextBeforeOffset(ptr.Pointer(), C.int(int32(offset)), C.longlong(boundaryType), C.int(int32(startOffset)), C.int(int32(endOffset))))
 	}
 	return ""
 }
 
 func (ptr *QAccessibleTextInterface) TextBeforeOffsetDefault(offset int, boundaryType QAccessible__TextBoundaryType, startOffset int, endOffset int) string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QAccessibleTextInterface_TextBeforeOffsetDefault(ptr.Pointer(), C.int(int32(offset)), C.longlong(boundaryType), C.int(int32(startOffset)), C.int(int32(endOffset))))
+		return cGoUnpackString(C.QAccessibleTextInterface_TextBeforeOffsetDefault(ptr.Pointer(), C.int(int32(offset)), C.longlong(boundaryType), C.int(int32(startOffset)), C.int(int32(endOffset))))
 	}
 	return ""
 }
@@ -5633,7 +5639,7 @@ func (ptr *QAccessibleTextRemoveEvent) ChangePosition() int {
 
 func (ptr *QAccessibleTextRemoveEvent) TextRemoved() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QAccessibleTextRemoveEvent_TextRemoved(ptr.Pointer()))
+		return cGoUnpackString(C.QAccessibleTextRemoveEvent_TextRemoved(ptr.Pointer()))
 	}
 	return ""
 }
@@ -5653,7 +5659,7 @@ func (ptr *QAccessibleTextRemoveEvent) SetM_position(vin int) {
 
 func (ptr *QAccessibleTextRemoveEvent) M_text() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QAccessibleTextRemoveEvent_M_text(ptr.Pointer()))
+		return cGoUnpackString(C.QAccessibleTextRemoveEvent_M_text(ptr.Pointer()))
 	}
 	return ""
 }
@@ -5917,21 +5923,21 @@ func (ptr *QAccessibleTextUpdateEvent) ChangePosition() int {
 
 func (ptr *QAccessibleTextUpdateEvent) TextInserted() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QAccessibleTextUpdateEvent_TextInserted(ptr.Pointer()))
+		return cGoUnpackString(C.QAccessibleTextUpdateEvent_TextInserted(ptr.Pointer()))
 	}
 	return ""
 }
 
 func (ptr *QAccessibleTextUpdateEvent) TextRemoved() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QAccessibleTextUpdateEvent_TextRemoved(ptr.Pointer()))
+		return cGoUnpackString(C.QAccessibleTextUpdateEvent_TextRemoved(ptr.Pointer()))
 	}
 	return ""
 }
 
 func (ptr *QAccessibleTextUpdateEvent) M_oldText() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QAccessibleTextUpdateEvent_M_oldText(ptr.Pointer()))
+		return cGoUnpackString(C.QAccessibleTextUpdateEvent_M_oldText(ptr.Pointer()))
 	}
 	return ""
 }
@@ -5959,7 +5965,7 @@ func (ptr *QAccessibleTextUpdateEvent) SetM_position(vin int) {
 
 func (ptr *QAccessibleTextUpdateEvent) M_text() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QAccessibleTextUpdateEvent_M_text(ptr.Pointer()))
+		return cGoUnpackString(C.QAccessibleTextUpdateEvent_M_text(ptr.Pointer()))
 	}
 	return ""
 }
@@ -6651,6 +6657,22 @@ func (ptr *QBitmap) Clear() {
 	}
 }
 
+func QBitmap_FromData(size core.QSize_ITF, bits string, monoFormat QImage__Format) *QBitmap {
+	var bitsC = C.CString(bits)
+	defer C.free(unsafe.Pointer(bitsC))
+	var tmpValue = NewQBitmapFromPointer(C.QBitmap_QBitmap_FromData(core.PointerFromQSize(size), bitsC, C.longlong(monoFormat)))
+	runtime.SetFinalizer(tmpValue, (*QBitmap).DestroyQBitmap)
+	return tmpValue
+}
+
+func (ptr *QBitmap) FromData(size core.QSize_ITF, bits string, monoFormat QImage__Format) *QBitmap {
+	var bitsC = C.CString(bits)
+	defer C.free(unsafe.Pointer(bitsC))
+	var tmpValue = NewQBitmapFromPointer(C.QBitmap_QBitmap_FromData(core.PointerFromQSize(size), bitsC, C.longlong(monoFormat)))
+	runtime.SetFinalizer(tmpValue, (*QBitmap).DestroyQBitmap)
+	return tmpValue
+}
+
 func QBitmap_FromImage(image QImage_ITF, flags core.Qt__ImageConversionFlag) *QBitmap {
 	var tmpValue = NewQBitmapFromPointer(C.QBitmap_QBitmap_FromImage(PointerFromQImage(image), C.longlong(flags)))
 	runtime.SetFinalizer(tmpValue, (*QBitmap).DestroyQBitmap)
@@ -7231,7 +7253,7 @@ func (ptr *QClipboard) SupportsSelection() bool {
 
 func (ptr *QClipboard) Text(mode QClipboard__Mode) string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QClipboard_Text(ptr.Pointer(), C.longlong(mode)))
+		return cGoUnpackString(C.QClipboard_Text(ptr.Pointer(), C.longlong(mode)))
 	}
 	return ""
 }
@@ -7240,7 +7262,7 @@ func (ptr *QClipboard) Text2(subtype string, mode QClipboard__Mode) string {
 	if ptr.Pointer() != nil {
 		var subtypeC = C.CString(subtype)
 		defer C.free(unsafe.Pointer(subtypeC))
-		return C.GoString(C.QClipboard_Text2(ptr.Pointer(), subtypeC, C.longlong(mode)))
+		return cGoUnpackString(C.QClipboard_Text2(ptr.Pointer(), subtypeC, C.longlong(mode)))
 	}
 	return ""
 }
@@ -7800,11 +7822,11 @@ func (ptr *QColor) BlueF() float64 {
 }
 
 func QColor_ColorNames() []string {
-	return strings.Split(C.GoString(C.QColor_QColor_ColorNames()), "|")
+	return strings.Split(cGoUnpackString(C.QColor_QColor_ColorNames()), "|")
 }
 
 func (ptr *QColor) ColorNames() []string {
-	return strings.Split(C.GoString(C.QColor_QColor_ColorNames()), "|")
+	return strings.Split(cGoUnpackString(C.QColor_QColor_ColorNames()), "|")
 }
 
 func (ptr *QColor) Cyan() int {
@@ -8140,14 +8162,14 @@ func (ptr *QColor) MagentaF() float64 {
 
 func (ptr *QColor) Name() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QColor_Name(ptr.Pointer()))
+		return cGoUnpackString(C.QColor_Name(ptr.Pointer()))
 	}
 	return ""
 }
 
 func (ptr *QColor) Name2(format QColor__NameFormat) string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QColor_Name2(ptr.Pointer(), C.longlong(format)))
+		return cGoUnpackString(C.QColor_Name2(ptr.Pointer(), C.longlong(format)))
 	}
 	return ""
 }
@@ -8945,13 +8967,13 @@ func (ptr *QDoubleValidator) SetTop(vdo float64) {
 }
 
 //export callbackQDoubleValidator_Validate
-func callbackQDoubleValidator_Validate(ptr unsafe.Pointer, input *C.char, pos C.int) C.longlong {
+func callbackQDoubleValidator_Validate(ptr unsafe.Pointer, input C.struct_QtGui_PackedString, pos C.int) C.longlong {
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QDoubleValidator::validate"); signal != nil {
-		return C.longlong(signal.(func(string, int) QValidator__State)(C.GoString(input), int(int32(pos))))
+		return C.longlong(signal.(func(string, int) QValidator__State)(cGoUnpackString(input), int(int32(pos))))
 	}
 
-	return C.longlong(NewQDoubleValidatorFromPointer(ptr).ValidateDefault(C.GoString(input), int(int32(pos))))
+	return C.longlong(NewQDoubleValidatorFromPointer(ptr).ValidateDefault(cGoUnpackString(input), int(int32(pos))))
 }
 
 func (ptr *QDoubleValidator) ConnectValidate(f func(input string, pos int) QValidator__State) {
@@ -9068,12 +9090,12 @@ func (ptr *QDoubleValidator) DestroyQDoubleValidator() {
 }
 
 //export callbackQDoubleValidator_Fixup
-func callbackQDoubleValidator_Fixup(ptr unsafe.Pointer, input *C.char) {
+func callbackQDoubleValidator_Fixup(ptr unsafe.Pointer, input C.struct_QtGui_PackedString) {
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QDoubleValidator::fixup"); signal != nil {
-		signal.(func(string))(C.GoString(input))
+		signal.(func(string))(cGoUnpackString(input))
 	} else {
-		NewQDoubleValidatorFromPointer(ptr).FixupDefault(C.GoString(input))
+		NewQDoubleValidatorFromPointer(ptr).FixupDefault(cGoUnpackString(input))
 	}
 }
 
@@ -10672,7 +10694,7 @@ func (ptr *QFileOpenEvent) OpenFile(file core.QFile_ITF, flags core.QIODevice__O
 
 func (ptr *QFileOpenEvent) File() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QFileOpenEvent_File(ptr.Pointer()))
+		return cGoUnpackString(C.QFileOpenEvent_File(ptr.Pointer()))
 	}
 	return ""
 }
@@ -10902,21 +10924,21 @@ func NewQFontFromPointer(ptr unsafe.Pointer) *QFont {
 }
 func (ptr *QFont) DefaultFamily() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QFont_DefaultFamily(ptr.Pointer()))
+		return cGoUnpackString(C.QFont_DefaultFamily(ptr.Pointer()))
 	}
 	return ""
 }
 
 func (ptr *QFont) LastResortFamily() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QFont_LastResortFamily(ptr.Pointer()))
+		return cGoUnpackString(C.QFont_LastResortFamily(ptr.Pointer()))
 	}
 	return ""
 }
 
 func (ptr *QFont) LastResortFont() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QFont_LastResortFont(ptr.Pointer()))
+		return cGoUnpackString(C.QFont_LastResortFont(ptr.Pointer()))
 	}
 	return ""
 }
@@ -10970,7 +10992,7 @@ func (ptr *QFont) ExactMatch() bool {
 
 func (ptr *QFont) Family() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QFont_Family(ptr.Pointer()))
+		return cGoUnpackString(C.QFont_Family(ptr.Pointer()))
 	}
 	return ""
 }
@@ -11053,7 +11075,7 @@ func (ptr *QFont) Kerning() bool {
 
 func (ptr *QFont) Key() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QFont_Key(ptr.Pointer()))
+		return cGoUnpackString(C.QFont_Key(ptr.Pointer()))
 	}
 	return ""
 }
@@ -11281,7 +11303,7 @@ func (ptr *QFont) StyleHint() QFont__StyleHint {
 
 func (ptr *QFont) StyleName() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QFont_StyleName(ptr.Pointer()))
+		return cGoUnpackString(C.QFont_StyleName(ptr.Pointer()))
 	}
 	return ""
 }
@@ -11296,33 +11318,33 @@ func (ptr *QFont) StyleStrategy() QFont__StyleStrategy {
 func QFont_Substitute(familyName string) string {
 	var familyNameC = C.CString(familyName)
 	defer C.free(unsafe.Pointer(familyNameC))
-	return C.GoString(C.QFont_QFont_Substitute(familyNameC))
+	return cGoUnpackString(C.QFont_QFont_Substitute(familyNameC))
 }
 
 func (ptr *QFont) Substitute(familyName string) string {
 	var familyNameC = C.CString(familyName)
 	defer C.free(unsafe.Pointer(familyNameC))
-	return C.GoString(C.QFont_QFont_Substitute(familyNameC))
+	return cGoUnpackString(C.QFont_QFont_Substitute(familyNameC))
 }
 
 func QFont_Substitutes(familyName string) []string {
 	var familyNameC = C.CString(familyName)
 	defer C.free(unsafe.Pointer(familyNameC))
-	return strings.Split(C.GoString(C.QFont_QFont_Substitutes(familyNameC)), "|")
+	return strings.Split(cGoUnpackString(C.QFont_QFont_Substitutes(familyNameC)), "|")
 }
 
 func (ptr *QFont) Substitutes(familyName string) []string {
 	var familyNameC = C.CString(familyName)
 	defer C.free(unsafe.Pointer(familyNameC))
-	return strings.Split(C.GoString(C.QFont_QFont_Substitutes(familyNameC)), "|")
+	return strings.Split(cGoUnpackString(C.QFont_QFont_Substitutes(familyNameC)), "|")
 }
 
 func QFont_Substitutions() []string {
-	return strings.Split(C.GoString(C.QFont_QFont_Substitutions()), "|")
+	return strings.Split(cGoUnpackString(C.QFont_QFont_Substitutions()), "|")
 }
 
 func (ptr *QFont) Substitutions() []string {
-	return strings.Split(C.GoString(C.QFont_QFont_Substitutions()), "|")
+	return strings.Split(cGoUnpackString(C.QFont_QFont_Substitutions()), "|")
 }
 
 func (ptr *QFont) Swap(other QFont_ITF) {
@@ -11333,7 +11355,7 @@ func (ptr *QFont) Swap(other QFont_ITF) {
 
 func (ptr *QFont) ToString() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QFont_ToString(ptr.Pointer()))
+		return cGoUnpackString(C.QFont_ToString(ptr.Pointer()))
 	}
 	return ""
 }
@@ -11495,24 +11517,20 @@ func (ptr *QFontDatabase) AddApplicationFont(fileName string) int {
 	return int(int32(C.QFontDatabase_QFontDatabase_AddApplicationFont(fileNameC)))
 }
 
-func QFontDatabase_AddApplicationFontFromData(fontData string) int {
-	var fontDataC = C.CString(hex.EncodeToString([]byte(fontData)))
-	defer C.free(unsafe.Pointer(fontDataC))
-	return int(int32(C.QFontDatabase_QFontDatabase_AddApplicationFontFromData(fontDataC)))
+func QFontDatabase_AddApplicationFontFromData(fontData core.QByteArray_ITF) int {
+	return int(int32(C.QFontDatabase_QFontDatabase_AddApplicationFontFromData(core.PointerFromQByteArray(fontData))))
 }
 
-func (ptr *QFontDatabase) AddApplicationFontFromData(fontData string) int {
-	var fontDataC = C.CString(hex.EncodeToString([]byte(fontData)))
-	defer C.free(unsafe.Pointer(fontDataC))
-	return int(int32(C.QFontDatabase_QFontDatabase_AddApplicationFontFromData(fontDataC)))
+func (ptr *QFontDatabase) AddApplicationFontFromData(fontData core.QByteArray_ITF) int {
+	return int(int32(C.QFontDatabase_QFontDatabase_AddApplicationFontFromData(core.PointerFromQByteArray(fontData))))
 }
 
 func QFontDatabase_ApplicationFontFamilies(id int) []string {
-	return strings.Split(C.GoString(C.QFontDatabase_QFontDatabase_ApplicationFontFamilies(C.int(int32(id)))), "|")
+	return strings.Split(cGoUnpackString(C.QFontDatabase_QFontDatabase_ApplicationFontFamilies(C.int(int32(id)))), "|")
 }
 
 func (ptr *QFontDatabase) ApplicationFontFamilies(id int) []string {
-	return strings.Split(C.GoString(C.QFontDatabase_QFontDatabase_ApplicationFontFamilies(C.int(int32(id)))), "|")
+	return strings.Split(cGoUnpackString(C.QFontDatabase_QFontDatabase_ApplicationFontFamilies(C.int(int32(id)))), "|")
 }
 
 func (ptr *QFontDatabase) Bold(family string, style string) bool {
@@ -11528,7 +11546,7 @@ func (ptr *QFontDatabase) Bold(family string, style string) bool {
 
 func (ptr *QFontDatabase) Families(writingSystem QFontDatabase__WritingSystem) []string {
 	if ptr.Pointer() != nil {
-		return strings.Split(C.GoString(C.QFontDatabase_Families(ptr.Pointer(), C.longlong(writingSystem))), "|")
+		return strings.Split(cGoUnpackString(C.QFontDatabase_Families(ptr.Pointer(), C.longlong(writingSystem))), "|")
 	}
 	return make([]string, 0)
 }
@@ -11612,14 +11630,14 @@ func (ptr *QFontDatabase) Italic(family string, style string) bool {
 
 func (ptr *QFontDatabase) StyleString(font QFont_ITF) string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QFontDatabase_StyleString(ptr.Pointer(), PointerFromQFont(font)))
+		return cGoUnpackString(C.QFontDatabase_StyleString(ptr.Pointer(), PointerFromQFont(font)))
 	}
 	return ""
 }
 
 func (ptr *QFontDatabase) StyleString2(fontInfo QFontInfo_ITF) string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QFontDatabase_StyleString2(ptr.Pointer(), PointerFromQFontInfo(fontInfo)))
+		return cGoUnpackString(C.QFontDatabase_StyleString2(ptr.Pointer(), PointerFromQFontInfo(fontInfo)))
 	}
 	return ""
 }
@@ -11628,7 +11646,7 @@ func (ptr *QFontDatabase) Styles(family string) []string {
 	if ptr.Pointer() != nil {
 		var familyC = C.CString(family)
 		defer C.free(unsafe.Pointer(familyC))
-		return strings.Split(C.GoString(C.QFontDatabase_Styles(ptr.Pointer(), familyC)), "|")
+		return strings.Split(cGoUnpackString(C.QFontDatabase_Styles(ptr.Pointer(), familyC)), "|")
 	}
 	return make([]string, 0)
 }
@@ -11657,19 +11675,19 @@ func (ptr *QFontDatabase) Weight(family string, style string) int {
 }
 
 func QFontDatabase_WritingSystemName(writingSystem QFontDatabase__WritingSystem) string {
-	return C.GoString(C.QFontDatabase_QFontDatabase_WritingSystemName(C.longlong(writingSystem)))
+	return cGoUnpackString(C.QFontDatabase_QFontDatabase_WritingSystemName(C.longlong(writingSystem)))
 }
 
 func (ptr *QFontDatabase) WritingSystemName(writingSystem QFontDatabase__WritingSystem) string {
-	return C.GoString(C.QFontDatabase_QFontDatabase_WritingSystemName(C.longlong(writingSystem)))
+	return cGoUnpackString(C.QFontDatabase_QFontDatabase_WritingSystemName(C.longlong(writingSystem)))
 }
 
 func QFontDatabase_WritingSystemSample(writingSystem QFontDatabase__WritingSystem) string {
-	return C.GoString(C.QFontDatabase_QFontDatabase_WritingSystemSample(C.longlong(writingSystem)))
+	return cGoUnpackString(C.QFontDatabase_QFontDatabase_WritingSystemSample(C.longlong(writingSystem)))
 }
 
 func (ptr *QFontDatabase) WritingSystemSample(writingSystem QFontDatabase__WritingSystem) string {
-	return C.GoString(C.QFontDatabase_QFontDatabase_WritingSystemSample(C.longlong(writingSystem)))
+	return cGoUnpackString(C.QFontDatabase_QFontDatabase_WritingSystemSample(C.longlong(writingSystem)))
 }
 
 type QFontInfo struct {
@@ -11737,7 +11755,7 @@ func (ptr *QFontInfo) ExactMatch() bool {
 
 func (ptr *QFontInfo) Family() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QFontInfo_Family(ptr.Pointer()))
+		return cGoUnpackString(C.QFontInfo_Family(ptr.Pointer()))
 	}
 	return ""
 }
@@ -11786,7 +11804,7 @@ func (ptr *QFontInfo) Style() QFont__Style {
 
 func (ptr *QFontInfo) StyleName() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QFontInfo_StyleName(ptr.Pointer()))
+		return cGoUnpackString(C.QFontInfo_StyleName(ptr.Pointer()))
 	}
 	return ""
 }
@@ -11940,7 +11958,7 @@ func (ptr *QFontMetrics) ElidedText(text string, mode core.Qt__TextElideMode, wi
 	if ptr.Pointer() != nil {
 		var textC = C.CString(text)
 		defer C.free(unsafe.Pointer(textC))
-		return C.GoString(C.QFontMetrics_ElidedText(ptr.Pointer(), textC, C.longlong(mode), C.int(int32(width)), C.int(int32(flags))))
+		return cGoUnpackString(C.QFontMetrics_ElidedText(ptr.Pointer(), textC, C.longlong(mode), C.int(int32(width)), C.int(int32(flags))))
 	}
 	return ""
 }
@@ -12225,7 +12243,7 @@ func (ptr *QFontMetricsF) ElidedText(text string, mode core.Qt__TextElideMode, w
 	if ptr.Pointer() != nil {
 		var textC = C.CString(text)
 		defer C.free(unsafe.Pointer(textC))
-		return C.GoString(C.QFontMetricsF_ElidedText(ptr.Pointer(), textC, C.longlong(mode), C.double(width), C.int(int32(flags))))
+		return cGoUnpackString(C.QFontMetricsF_ElidedText(ptr.Pointer(), textC, C.longlong(mode), C.double(width), C.int(int32(flags))))
 	}
 	return ""
 }
@@ -12469,10 +12487,10 @@ func NewQGenericPlugin(parent core.QObject_ITF) *QGenericPlugin {
 }
 
 //export callbackQGenericPlugin_Create
-func callbackQGenericPlugin_Create(ptr unsafe.Pointer, key *C.char, specification *C.char) unsafe.Pointer {
+func callbackQGenericPlugin_Create(ptr unsafe.Pointer, key C.struct_QtGui_PackedString, specification C.struct_QtGui_PackedString) unsafe.Pointer {
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QGenericPlugin::create"); signal != nil {
-		return core.PointerFromQObject(signal.(func(string, string) *core.QObject)(C.GoString(key), C.GoString(specification)))
+		return core.PointerFromQObject(signal.(func(string, string) *core.QObject)(cGoUnpackString(key), cGoUnpackString(specification)))
 	}
 
 	return core.PointerFromQObject(nil)
@@ -12916,11 +12934,11 @@ func (ptr *QGenericPluginFactory) Create(key string, specification string) *core
 }
 
 func QGenericPluginFactory_Keys() []string {
-	return strings.Split(C.GoString(C.QGenericPluginFactory_QGenericPluginFactory_Keys()), "|")
+	return strings.Split(cGoUnpackString(C.QGenericPluginFactory_QGenericPluginFactory_Keys()), "|")
 }
 
 func (ptr *QGenericPluginFactory) Keys() []string {
-	return strings.Split(C.GoString(C.QGenericPluginFactory_QGenericPluginFactory_Keys()), "|")
+	return strings.Split(cGoUnpackString(C.QGenericPluginFactory_QGenericPluginFactory_Keys()), "|")
 }
 
 //QGlyphRun::GlyphRunFlag
@@ -13265,11 +13283,11 @@ func NewQGuiApplicationFromPointer(ptr unsafe.Pointer) *QGuiApplication {
 	return n
 }
 func QGuiApplication_ApplicationDisplayName() string {
-	return C.GoString(C.QGuiApplication_QGuiApplication_ApplicationDisplayName())
+	return cGoUnpackString(C.QGuiApplication_QGuiApplication_ApplicationDisplayName())
 }
 
 func (ptr *QGuiApplication) ApplicationDisplayName() string {
-	return C.GoString(C.QGuiApplication_QGuiApplication_ApplicationDisplayName())
+	return cGoUnpackString(C.QGuiApplication_QGuiApplication_ApplicationDisplayName())
 }
 
 func QGuiApplication_ApplicationState() core.Qt__ApplicationState {
@@ -13281,11 +13299,11 @@ func (ptr *QGuiApplication) ApplicationState() core.Qt__ApplicationState {
 }
 
 func QGuiApplication_DesktopFileName() string {
-	return C.GoString(C.QGuiApplication_QGuiApplication_DesktopFileName())
+	return cGoUnpackString(C.QGuiApplication_QGuiApplication_DesktopFileName())
 }
 
 func (ptr *QGuiApplication) DesktopFileName() string {
-	return C.GoString(C.QGuiApplication_QGuiApplication_DesktopFileName())
+	return cGoUnpackString(C.QGuiApplication_QGuiApplication_DesktopFileName())
 }
 
 func (ptr *QGuiApplication) IsSavingSession() bool {
@@ -13319,11 +13337,11 @@ func (ptr *QGuiApplication) OverrideCursor() *QCursor {
 }
 
 func QGuiApplication_PlatformName() string {
-	return C.GoString(C.QGuiApplication_QGuiApplication_PlatformName())
+	return cGoUnpackString(C.QGuiApplication_QGuiApplication_PlatformName())
 }
 
 func (ptr *QGuiApplication) PlatformName() string {
-	return C.GoString(C.QGuiApplication_QGuiApplication_PlatformName())
+	return cGoUnpackString(C.QGuiApplication_QGuiApplication_PlatformName())
 }
 
 func QGuiApplication_PrimaryScreen() *QScreen {
@@ -13368,14 +13386,14 @@ func (ptr *QGuiApplication) RestoreOverrideCursor() {
 
 func (ptr *QGuiApplication) SessionId() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QGuiApplication_SessionId(ptr.Pointer()))
+		return cGoUnpackString(C.QGuiApplication_SessionId(ptr.Pointer()))
 	}
 	return ""
 }
 
 func (ptr *QGuiApplication) SessionKey() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QGuiApplication_SessionKey(ptr.Pointer()))
+		return cGoUnpackString(C.QGuiApplication_SessionKey(ptr.Pointer()))
 	}
 	return ""
 }
@@ -14788,7 +14806,7 @@ func (ptr *QIcon) IsNull() bool {
 
 func (ptr *QIcon) Name() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QIcon_Name(ptr.Pointer()))
+		return cGoUnpackString(C.QIcon_Name(ptr.Pointer()))
 	}
 	return ""
 }
@@ -14878,19 +14896,19 @@ func (ptr *QIcon) Swap(other QIcon_ITF) {
 }
 
 func QIcon_ThemeName() string {
-	return C.GoString(C.QIcon_QIcon_ThemeName())
+	return cGoUnpackString(C.QIcon_QIcon_ThemeName())
 }
 
 func (ptr *QIcon) ThemeName() string {
-	return C.GoString(C.QIcon_QIcon_ThemeName())
+	return cGoUnpackString(C.QIcon_QIcon_ThemeName())
 }
 
 func QIcon_ThemeSearchPaths() []string {
-	return strings.Split(C.GoString(C.QIcon_QIcon_ThemeSearchPaths()), "|")
+	return strings.Split(cGoUnpackString(C.QIcon_QIcon_ThemeSearchPaths()), "|")
 }
 
 func (ptr *QIcon) ThemeSearchPaths() []string {
-	return strings.Split(C.GoString(C.QIcon_QIcon_ThemeSearchPaths()), "|")
+	return strings.Split(cGoUnpackString(C.QIcon_QIcon_ThemeSearchPaths()), "|")
 }
 
 func (ptr *QIcon) DestroyQIcon() {
@@ -15043,12 +15061,12 @@ func (ptr *QIconEngine) ActualSizeDefault(size core.QSize_ITF, mode QIcon__Mode,
 }
 
 //export callbackQIconEngine_AddFile
-func callbackQIconEngine_AddFile(ptr unsafe.Pointer, fileName *C.char, size unsafe.Pointer, mode C.longlong, state C.longlong) {
+func callbackQIconEngine_AddFile(ptr unsafe.Pointer, fileName C.struct_QtGui_PackedString, size unsafe.Pointer, mode C.longlong, state C.longlong) {
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QIconEngine::addFile"); signal != nil {
-		signal.(func(string, *core.QSize, QIcon__Mode, QIcon__State))(C.GoString(fileName), core.NewQSizeFromPointer(size), QIcon__Mode(mode), QIcon__State(state))
+		signal.(func(string, *core.QSize, QIcon__Mode, QIcon__State))(cGoUnpackString(fileName), core.NewQSizeFromPointer(size), QIcon__Mode(mode), QIcon__State(state))
 	} else {
-		NewQIconEngineFromPointer(ptr).AddFileDefault(C.GoString(fileName), core.NewQSizeFromPointer(size), QIcon__Mode(mode), QIcon__State(state))
+		NewQIconEngineFromPointer(ptr).AddFileDefault(cGoUnpackString(fileName), core.NewQSizeFromPointer(size), QIcon__Mode(mode), QIcon__State(state))
 	}
 }
 
@@ -15175,14 +15193,14 @@ func (ptr *QIconEngine) DisconnectIconName() {
 
 func (ptr *QIconEngine) IconName() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QIconEngine_IconName(ptr.Pointer()))
+		return cGoUnpackString(C.QIconEngine_IconName(ptr.Pointer()))
 	}
 	return ""
 }
 
 func (ptr *QIconEngine) IconNameDefault() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QIconEngine_IconNameDefault(ptr.Pointer()))
+		return cGoUnpackString(C.QIconEngine_IconNameDefault(ptr.Pointer()))
 	}
 	return ""
 }
@@ -15220,14 +15238,14 @@ func (ptr *QIconEngine) DisconnectKey() {
 
 func (ptr *QIconEngine) Key() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QIconEngine_Key(ptr.Pointer()))
+		return cGoUnpackString(C.QIconEngine_Key(ptr.Pointer()))
 	}
 	return ""
 }
 
 func (ptr *QIconEngine) KeyDefault() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QIconEngine_KeyDefault(ptr.Pointer()))
+		return cGoUnpackString(C.QIconEngine_KeyDefault(ptr.Pointer()))
 	}
 	return ""
 }
@@ -15426,10 +15444,10 @@ func NewQIconEnginePlugin(parent core.QObject_ITF) *QIconEnginePlugin {
 }
 
 //export callbackQIconEnginePlugin_Create
-func callbackQIconEnginePlugin_Create(ptr unsafe.Pointer, filename *C.char) unsafe.Pointer {
+func callbackQIconEnginePlugin_Create(ptr unsafe.Pointer, filename C.struct_QtGui_PackedString) unsafe.Pointer {
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QIconEnginePlugin::create"); signal != nil {
-		return PointerFromQIconEngine(signal.(func(string) *QIconEngine)(C.GoString(filename)))
+		return PointerFromQIconEngine(signal.(func(string) *QIconEngine)(cGoUnpackString(filename)))
 	}
 
 	return PointerFromQIconEngine(nil)
@@ -15910,6 +15928,26 @@ func (ptr *QImage) Fill(pixelValue uint) {
 	}
 }
 
+func QImage_FromData(data string, size int, format string) *QImage {
+	var dataC = C.CString(data)
+	defer C.free(unsafe.Pointer(dataC))
+	var formatC = C.CString(format)
+	defer C.free(unsafe.Pointer(formatC))
+	var tmpValue = NewQImageFromPointer(C.QImage_QImage_FromData(dataC, C.int(int32(size)), formatC))
+	runtime.SetFinalizer(tmpValue, (*QImage).DestroyQImage)
+	return tmpValue
+}
+
+func (ptr *QImage) FromData(data string, size int, format string) *QImage {
+	var dataC = C.CString(data)
+	defer C.free(unsafe.Pointer(dataC))
+	var formatC = C.CString(format)
+	defer C.free(unsafe.Pointer(formatC))
+	var tmpValue = NewQImageFromPointer(C.QImage_QImage_FromData(dataC, C.int(int32(size)), formatC))
+	runtime.SetFinalizer(tmpValue, (*QImage).DestroyQImage)
+	return tmpValue
+}
+
 func (ptr *QImage) Height() int {
 	if ptr.Pointer() != nil {
 		return int(int32(C.QImage_Height(ptr.Pointer())))
@@ -15920,6 +15958,17 @@ func (ptr *QImage) Height() int {
 func (ptr *QImage) IsNull() bool {
 	if ptr.Pointer() != nil {
 		return C.QImage_IsNull(ptr.Pointer()) != 0
+	}
+	return false
+}
+
+func (ptr *QImage) LoadFromData(data string, len int, format string) bool {
+	if ptr.Pointer() != nil {
+		var dataC = C.CString(data)
+		defer C.free(unsafe.Pointer(dataC))
+		var formatC = C.CString(format)
+		defer C.free(unsafe.Pointer(formatC))
+		return C.QImage_LoadFromData(ptr.Pointer(), dataC, C.int(int32(len)), formatC) != 0
 	}
 	return false
 }
@@ -16069,14 +16118,14 @@ func (ptr *QImage) BitPlaneCount() int {
 
 func (ptr *QImage) Bits() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QImage_Bits(ptr.Pointer()))
+		return cGoUnpackString(C.QImage_Bits(ptr.Pointer()))
 	}
 	return ""
 }
 
 func (ptr *QImage) Bits2() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QImage_Bits2(ptr.Pointer()))
+		return cGoUnpackString(C.QImage_Bits2(ptr.Pointer()))
 	}
 	return ""
 }
@@ -16104,14 +16153,14 @@ func (ptr *QImage) CacheKey() int64 {
 
 func (ptr *QImage) ConstBits() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QImage_ConstBits(ptr.Pointer()))
+		return cGoUnpackString(C.QImage_ConstBits(ptr.Pointer()))
 	}
 	return ""
 }
 
 func (ptr *QImage) ConstScanLine(i int) string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QImage_ConstScanLine(ptr.Pointer(), C.int(int32(i))))
+		return cGoUnpackString(C.QImage_ConstScanLine(ptr.Pointer(), C.int(int32(i))))
 	}
 	return ""
 }
@@ -16178,22 +16227,18 @@ func (ptr *QImage) Format() QImage__Format {
 	return 0
 }
 
-func QImage_FromData2(data string, format string) *QImage {
-	var dataC = C.CString(hex.EncodeToString([]byte(data)))
-	defer C.free(unsafe.Pointer(dataC))
+func QImage_FromData2(data core.QByteArray_ITF, format string) *QImage {
 	var formatC = C.CString(format)
 	defer C.free(unsafe.Pointer(formatC))
-	var tmpValue = NewQImageFromPointer(C.QImage_QImage_FromData2(dataC, formatC))
+	var tmpValue = NewQImageFromPointer(C.QImage_QImage_FromData2(core.PointerFromQByteArray(data), formatC))
 	runtime.SetFinalizer(tmpValue, (*QImage).DestroyQImage)
 	return tmpValue
 }
 
-func (ptr *QImage) FromData2(data string, format string) *QImage {
-	var dataC = C.CString(hex.EncodeToString([]byte(data)))
-	defer C.free(unsafe.Pointer(dataC))
+func (ptr *QImage) FromData2(data core.QByteArray_ITF, format string) *QImage {
 	var formatC = C.CString(format)
 	defer C.free(unsafe.Pointer(formatC))
-	var tmpValue = NewQImageFromPointer(C.QImage_QImage_FromData2(dataC, formatC))
+	var tmpValue = NewQImageFromPointer(C.QImage_QImage_FromData2(core.PointerFromQByteArray(data), formatC))
 	runtime.SetFinalizer(tmpValue, (*QImage).DestroyQImage)
 	return tmpValue
 }
@@ -16238,13 +16283,11 @@ func (ptr *QImage) Load(fileName string, format string) bool {
 	return false
 }
 
-func (ptr *QImage) LoadFromData2(data string, format string) bool {
+func (ptr *QImage) LoadFromData2(data core.QByteArray_ITF, format string) bool {
 	if ptr.Pointer() != nil {
-		var dataC = C.CString(hex.EncodeToString([]byte(data)))
-		defer C.free(unsafe.Pointer(dataC))
 		var formatC = C.CString(format)
 		defer C.free(unsafe.Pointer(formatC))
-		return C.QImage_LoadFromData2(ptr.Pointer(), dataC, formatC) != 0
+		return C.QImage_LoadFromData2(ptr.Pointer(), core.PointerFromQByteArray(data), formatC) != 0
 	}
 	return false
 }
@@ -16312,14 +16355,14 @@ func (ptr *QImage) Scaled2(width int, height int, aspectRatioMode core.Qt__Aspec
 
 func (ptr *QImage) ScanLine(i int) string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QImage_ScanLine(ptr.Pointer(), C.int(int32(i))))
+		return cGoUnpackString(C.QImage_ScanLine(ptr.Pointer(), C.int(int32(i))))
 	}
 	return ""
 }
 
 func (ptr *QImage) ScanLine2(i int) string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QImage_ScanLine2(ptr.Pointer(), C.int(int32(i))))
+		return cGoUnpackString(C.QImage_ScanLine2(ptr.Pointer(), C.int(int32(i))))
 	}
 	return ""
 }
@@ -16391,14 +16434,14 @@ func (ptr *QImage) Text(key string) string {
 	if ptr.Pointer() != nil {
 		var keyC = C.CString(key)
 		defer C.free(unsafe.Pointer(keyC))
-		return C.GoString(C.QImage_Text(ptr.Pointer(), keyC))
+		return cGoUnpackString(C.QImage_Text(ptr.Pointer(), keyC))
 	}
 	return ""
 }
 
 func (ptr *QImage) TextKeys() []string {
 	if ptr.Pointer() != nil {
-		return strings.Split(C.GoString(C.QImage_TextKeys(ptr.Pointer())), "|")
+		return strings.Split(cGoUnpackString(C.QImage_TextKeys(ptr.Pointer())), "|")
 	}
 	return make([]string, 0)
 }
@@ -16747,11 +16790,13 @@ func (ptr *QImageIOHandler) Device() *core.QIODevice {
 	return nil
 }
 
-func (ptr *QImageIOHandler) Format() string {
+func (ptr *QImageIOHandler) Format() *core.QByteArray {
 	if ptr.Pointer() != nil {
-		return qt.HexDecodeToString(C.GoString(C.QImageIOHandler_Format(ptr.Pointer())))
+		var tmpValue = core.NewQByteArrayFromPointer(C.QImageIOHandler_Format(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		return tmpValue
 	}
-	return ""
+	return nil
 }
 
 //export callbackQImageIOHandler_ImageCount
@@ -17023,19 +17068,15 @@ func (ptr *QImageIOHandler) SetDevice(device core.QIODevice_ITF) {
 	}
 }
 
-func (ptr *QImageIOHandler) SetFormat(format string) {
+func (ptr *QImageIOHandler) SetFormat(format core.QByteArray_ITF) {
 	if ptr.Pointer() != nil {
-		var formatC = C.CString(hex.EncodeToString([]byte(format)))
-		defer C.free(unsafe.Pointer(formatC))
-		C.QImageIOHandler_SetFormat(ptr.Pointer(), formatC)
+		C.QImageIOHandler_SetFormat(ptr.Pointer(), core.PointerFromQByteArray(format))
 	}
 }
 
-func (ptr *QImageIOHandler) SetFormat2(format string) {
+func (ptr *QImageIOHandler) SetFormat2(format core.QByteArray_ITF) {
 	if ptr.Pointer() != nil {
-		var formatC = C.CString(hex.EncodeToString([]byte(format)))
-		defer C.free(unsafe.Pointer(formatC))
-		C.QImageIOHandler_SetFormat2(ptr.Pointer(), formatC)
+		C.QImageIOHandler_SetFormat2(ptr.Pointer(), core.PointerFromQByteArray(format))
 	}
 }
 
@@ -17247,67 +17288,63 @@ func NewQImageIOPlugin(parent core.QObject_ITF) *QImageIOPlugin {
 }
 
 //export callbackQImageIOPlugin_Capabilities
-func callbackQImageIOPlugin_Capabilities(ptr unsafe.Pointer, device unsafe.Pointer, format *C.char) C.longlong {
+func callbackQImageIOPlugin_Capabilities(ptr unsafe.Pointer, device unsafe.Pointer, format unsafe.Pointer) C.longlong {
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QImageIOPlugin::capabilities"); signal != nil {
-		return C.longlong(signal.(func(*core.QIODevice, string) QImageIOPlugin__Capability)(core.NewQIODeviceFromPointer(device), qt.HexDecodeToString(C.GoString(format))))
+		return C.longlong(signal.(func(*core.QIODevice, *core.QByteArray) QImageIOPlugin__Capability)(core.NewQIODeviceFromPointer(device), core.NewQByteArrayFromPointer(format)))
 	}
 
 	return C.longlong(0)
 }
 
-func (ptr *QImageIOPlugin) ConnectCapabilities(f func(device *core.QIODevice, format string) QImageIOPlugin__Capability) {
+func (ptr *QImageIOPlugin) ConnectCapabilities(f func(device *core.QIODevice, format *core.QByteArray) QImageIOPlugin__Capability) {
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QImageIOPlugin::capabilities", f)
 	}
 }
 
-func (ptr *QImageIOPlugin) DisconnectCapabilities(device core.QIODevice_ITF, format string) {
+func (ptr *QImageIOPlugin) DisconnectCapabilities(device core.QIODevice_ITF, format core.QByteArray_ITF) {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QImageIOPlugin::capabilities")
 	}
 }
 
-func (ptr *QImageIOPlugin) Capabilities(device core.QIODevice_ITF, format string) QImageIOPlugin__Capability {
+func (ptr *QImageIOPlugin) Capabilities(device core.QIODevice_ITF, format core.QByteArray_ITF) QImageIOPlugin__Capability {
 	if ptr.Pointer() != nil {
-		var formatC = C.CString(hex.EncodeToString([]byte(format)))
-		defer C.free(unsafe.Pointer(formatC))
-		return QImageIOPlugin__Capability(C.QImageIOPlugin_Capabilities(ptr.Pointer(), core.PointerFromQIODevice(device), formatC))
+		return QImageIOPlugin__Capability(C.QImageIOPlugin_Capabilities(ptr.Pointer(), core.PointerFromQIODevice(device), core.PointerFromQByteArray(format)))
 	}
 	return 0
 }
 
 //export callbackQImageIOPlugin_Create
-func callbackQImageIOPlugin_Create(ptr unsafe.Pointer, device unsafe.Pointer, format *C.char) unsafe.Pointer {
+func callbackQImageIOPlugin_Create(ptr unsafe.Pointer, device unsafe.Pointer, format unsafe.Pointer) unsafe.Pointer {
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QImageIOPlugin::create"); signal != nil {
-		return PointerFromQImageIOHandler(signal.(func(*core.QIODevice, string) *QImageIOHandler)(core.NewQIODeviceFromPointer(device), qt.HexDecodeToString(C.GoString(format))))
+		return PointerFromQImageIOHandler(signal.(func(*core.QIODevice, *core.QByteArray) *QImageIOHandler)(core.NewQIODeviceFromPointer(device), core.NewQByteArrayFromPointer(format)))
 	}
 
 	return PointerFromQImageIOHandler(nil)
 }
 
-func (ptr *QImageIOPlugin) ConnectCreate(f func(device *core.QIODevice, format string) *QImageIOHandler) {
+func (ptr *QImageIOPlugin) ConnectCreate(f func(device *core.QIODevice, format *core.QByteArray) *QImageIOHandler) {
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QImageIOPlugin::create", f)
 	}
 }
 
-func (ptr *QImageIOPlugin) DisconnectCreate(device core.QIODevice_ITF, format string) {
+func (ptr *QImageIOPlugin) DisconnectCreate(device core.QIODevice_ITF, format core.QByteArray_ITF) {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QImageIOPlugin::create")
 	}
 }
 
-func (ptr *QImageIOPlugin) Create(device core.QIODevice_ITF, format string) *QImageIOHandler {
+func (ptr *QImageIOPlugin) Create(device core.QIODevice_ITF, format core.QByteArray_ITF) *QImageIOHandler {
 	if ptr.Pointer() != nil {
-		var formatC = C.CString(hex.EncodeToString([]byte(format)))
-		defer C.free(unsafe.Pointer(formatC))
-		return NewQImageIOHandlerFromPointer(C.QImageIOPlugin_Create(ptr.Pointer(), core.PointerFromQIODevice(device), formatC))
+		return NewQImageIOHandlerFromPointer(C.QImageIOPlugin_Create(ptr.Pointer(), core.PointerFromQIODevice(device), core.PointerFromQByteArray(format)))
 	}
 	return nil
 }
@@ -17739,20 +17776,16 @@ func NewQImageReader() *QImageReader {
 	return tmpValue
 }
 
-func NewQImageReader2(device core.QIODevice_ITF, format string) *QImageReader {
-	var formatC = C.CString(hex.EncodeToString([]byte(format)))
-	defer C.free(unsafe.Pointer(formatC))
-	var tmpValue = NewQImageReaderFromPointer(C.QImageReader_NewQImageReader2(core.PointerFromQIODevice(device), formatC))
+func NewQImageReader2(device core.QIODevice_ITF, format core.QByteArray_ITF) *QImageReader {
+	var tmpValue = NewQImageReaderFromPointer(C.QImageReader_NewQImageReader2(core.PointerFromQIODevice(device), core.PointerFromQByteArray(format)))
 	runtime.SetFinalizer(tmpValue, (*QImageReader).DestroyQImageReader)
 	return tmpValue
 }
 
-func NewQImageReader3(fileName string, format string) *QImageReader {
+func NewQImageReader3(fileName string, format core.QByteArray_ITF) *QImageReader {
 	var fileNameC = C.CString(fileName)
 	defer C.free(unsafe.Pointer(fileNameC))
-	var formatC = C.CString(hex.EncodeToString([]byte(format)))
-	defer C.free(unsafe.Pointer(formatC))
-	var tmpValue = NewQImageReaderFromPointer(C.QImageReader_NewQImageReader3(fileNameC, formatC))
+	var tmpValue = NewQImageReaderFromPointer(C.QImageReader_NewQImageReader3(fileNameC, core.PointerFromQByteArray(format)))
 	runtime.SetFinalizer(tmpValue, (*QImageReader).DestroyQImageReader)
 	return tmpValue
 }
@@ -17839,23 +17872,25 @@ func (ptr *QImageReader) Error() QImageReader__ImageReaderError {
 
 func (ptr *QImageReader) ErrorString() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QImageReader_ErrorString(ptr.Pointer()))
+		return cGoUnpackString(C.QImageReader_ErrorString(ptr.Pointer()))
 	}
 	return ""
 }
 
 func (ptr *QImageReader) FileName() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QImageReader_FileName(ptr.Pointer()))
+		return cGoUnpackString(C.QImageReader_FileName(ptr.Pointer()))
 	}
 	return ""
 }
 
-func (ptr *QImageReader) Format() string {
+func (ptr *QImageReader) Format() *core.QByteArray {
 	if ptr.Pointer() != nil {
-		return qt.HexDecodeToString(C.GoString(C.QImageReader_Format(ptr.Pointer())))
+		var tmpValue = core.NewQByteArrayFromPointer(C.QImageReader_Format(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		return tmpValue
 	}
-	return ""
+	return nil
 }
 
 func (ptr *QImageReader) Gamma() float32 {
@@ -17872,24 +17907,32 @@ func (ptr *QImageReader) ImageCount() int {
 	return 0
 }
 
-func QImageReader_ImageFormat3(device core.QIODevice_ITF) string {
-	return qt.HexDecodeToString(C.GoString(C.QImageReader_QImageReader_ImageFormat3(core.PointerFromQIODevice(device))))
+func QImageReader_ImageFormat3(device core.QIODevice_ITF) *core.QByteArray {
+	var tmpValue = core.NewQByteArrayFromPointer(C.QImageReader_QImageReader_ImageFormat3(core.PointerFromQIODevice(device)))
+	runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+	return tmpValue
 }
 
-func (ptr *QImageReader) ImageFormat3(device core.QIODevice_ITF) string {
-	return qt.HexDecodeToString(C.GoString(C.QImageReader_QImageReader_ImageFormat3(core.PointerFromQIODevice(device))))
+func (ptr *QImageReader) ImageFormat3(device core.QIODevice_ITF) *core.QByteArray {
+	var tmpValue = core.NewQByteArrayFromPointer(C.QImageReader_QImageReader_ImageFormat3(core.PointerFromQIODevice(device)))
+	runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+	return tmpValue
 }
 
-func QImageReader_ImageFormat2(fileName string) string {
+func QImageReader_ImageFormat2(fileName string) *core.QByteArray {
 	var fileNameC = C.CString(fileName)
 	defer C.free(unsafe.Pointer(fileNameC))
-	return qt.HexDecodeToString(C.GoString(C.QImageReader_QImageReader_ImageFormat2(fileNameC)))
+	var tmpValue = core.NewQByteArrayFromPointer(C.QImageReader_QImageReader_ImageFormat2(fileNameC))
+	runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+	return tmpValue
 }
 
-func (ptr *QImageReader) ImageFormat2(fileName string) string {
+func (ptr *QImageReader) ImageFormat2(fileName string) *core.QByteArray {
 	var fileNameC = C.CString(fileName)
 	defer C.free(unsafe.Pointer(fileNameC))
-	return qt.HexDecodeToString(C.GoString(C.QImageReader_QImageReader_ImageFormat2(fileNameC)))
+	var tmpValue = core.NewQByteArrayFromPointer(C.QImageReader_QImageReader_ImageFormat2(fileNameC))
+	runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+	return tmpValue
 }
 
 func (ptr *QImageReader) ImageFormat() QImage__Format {
@@ -18012,11 +18055,9 @@ func (ptr *QImageReader) SetFileName(fileName string) {
 	}
 }
 
-func (ptr *QImageReader) SetFormat(format string) {
+func (ptr *QImageReader) SetFormat(format core.QByteArray_ITF) {
 	if ptr.Pointer() != nil {
-		var formatC = C.CString(hex.EncodeToString([]byte(format)))
-		defer C.free(unsafe.Pointer(formatC))
-		C.QImageReader_SetFormat(ptr.Pointer(), formatC)
+		C.QImageReader_SetFormat(ptr.Pointer(), core.PointerFromQByteArray(format))
 	}
 }
 
@@ -18053,11 +18094,13 @@ func (ptr *QImageReader) Size() *core.QSize {
 	return nil
 }
 
-func (ptr *QImageReader) SubType() string {
+func (ptr *QImageReader) SubType() *core.QByteArray {
 	if ptr.Pointer() != nil {
-		return qt.HexDecodeToString(C.GoString(C.QImageReader_SubType(ptr.Pointer())))
+		var tmpValue = core.NewQByteArrayFromPointer(C.QImageReader_SubType(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		return tmpValue
 	}
-	return ""
+	return nil
 }
 
 func (ptr *QImageReader) SupportsAnimation() bool {
@@ -18078,14 +18121,14 @@ func (ptr *QImageReader) Text(key string) string {
 	if ptr.Pointer() != nil {
 		var keyC = C.CString(key)
 		defer C.free(unsafe.Pointer(keyC))
-		return C.GoString(C.QImageReader_Text(ptr.Pointer(), keyC))
+		return cGoUnpackString(C.QImageReader_Text(ptr.Pointer(), keyC))
 	}
 	return ""
 }
 
 func (ptr *QImageReader) TextKeys() []string {
 	if ptr.Pointer() != nil {
-		return strings.Split(C.GoString(C.QImageReader_TextKeys(ptr.Pointer())), "|")
+		return strings.Split(cGoUnpackString(C.QImageReader_TextKeys(ptr.Pointer())), "|")
 	}
 	return make([]string, 0)
 }
@@ -18156,20 +18199,16 @@ func NewQImageWriter() *QImageWriter {
 	return tmpValue
 }
 
-func NewQImageWriter2(device core.QIODevice_ITF, format string) *QImageWriter {
-	var formatC = C.CString(hex.EncodeToString([]byte(format)))
-	defer C.free(unsafe.Pointer(formatC))
-	var tmpValue = NewQImageWriterFromPointer(C.QImageWriter_NewQImageWriter2(core.PointerFromQIODevice(device), formatC))
+func NewQImageWriter2(device core.QIODevice_ITF, format core.QByteArray_ITF) *QImageWriter {
+	var tmpValue = NewQImageWriterFromPointer(C.QImageWriter_NewQImageWriter2(core.PointerFromQIODevice(device), core.PointerFromQByteArray(format)))
 	runtime.SetFinalizer(tmpValue, (*QImageWriter).DestroyQImageWriter)
 	return tmpValue
 }
 
-func NewQImageWriter3(fileName string, format string) *QImageWriter {
+func NewQImageWriter3(fileName string, format core.QByteArray_ITF) *QImageWriter {
 	var fileNameC = C.CString(fileName)
 	defer C.free(unsafe.Pointer(fileNameC))
-	var formatC = C.CString(hex.EncodeToString([]byte(format)))
-	defer C.free(unsafe.Pointer(formatC))
-	var tmpValue = NewQImageWriterFromPointer(C.QImageWriter_NewQImageWriter3(fileNameC, formatC))
+	var tmpValue = NewQImageWriterFromPointer(C.QImageWriter_NewQImageWriter3(fileNameC, core.PointerFromQByteArray(format)))
 	runtime.SetFinalizer(tmpValue, (*QImageWriter).DestroyQImageWriter)
 	return tmpValue
 }
@@ -18208,23 +18247,25 @@ func (ptr *QImageWriter) Error() QImageWriter__ImageWriterError {
 
 func (ptr *QImageWriter) ErrorString() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QImageWriter_ErrorString(ptr.Pointer()))
+		return cGoUnpackString(C.QImageWriter_ErrorString(ptr.Pointer()))
 	}
 	return ""
 }
 
 func (ptr *QImageWriter) FileName() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QImageWriter_FileName(ptr.Pointer()))
+		return cGoUnpackString(C.QImageWriter_FileName(ptr.Pointer()))
 	}
 	return ""
 }
 
-func (ptr *QImageWriter) Format() string {
+func (ptr *QImageWriter) Format() *core.QByteArray {
 	if ptr.Pointer() != nil {
-		return qt.HexDecodeToString(C.GoString(C.QImageWriter_Format(ptr.Pointer())))
+		var tmpValue = core.NewQByteArrayFromPointer(C.QImageWriter_Format(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		return tmpValue
 	}
-	return ""
+	return nil
 }
 
 func (ptr *QImageWriter) Gamma() float32 {
@@ -18275,11 +18316,9 @@ func (ptr *QImageWriter) SetFileName(fileName string) {
 	}
 }
 
-func (ptr *QImageWriter) SetFormat(format string) {
+func (ptr *QImageWriter) SetFormat(format core.QByteArray_ITF) {
 	if ptr.Pointer() != nil {
-		var formatC = C.CString(hex.EncodeToString([]byte(format)))
-		defer C.free(unsafe.Pointer(formatC))
-		C.QImageWriter_SetFormat(ptr.Pointer(), formatC)
+		C.QImageWriter_SetFormat(ptr.Pointer(), core.PointerFromQByteArray(format))
 	}
 }
 
@@ -18307,11 +18346,9 @@ func (ptr *QImageWriter) SetQuality(quality int) {
 	}
 }
 
-func (ptr *QImageWriter) SetSubType(ty string) {
+func (ptr *QImageWriter) SetSubType(ty core.QByteArray_ITF) {
 	if ptr.Pointer() != nil {
-		var tyC = C.CString(hex.EncodeToString([]byte(ty)))
-		defer C.free(unsafe.Pointer(tyC))
-		C.QImageWriter_SetSubType(ptr.Pointer(), tyC)
+		C.QImageWriter_SetSubType(ptr.Pointer(), core.PointerFromQByteArray(ty))
 	}
 }
 
@@ -18331,11 +18368,13 @@ func (ptr *QImageWriter) SetTransformation(transform QImageIOHandler__Transforma
 	}
 }
 
-func (ptr *QImageWriter) SubType() string {
+func (ptr *QImageWriter) SubType() *core.QByteArray {
 	if ptr.Pointer() != nil {
-		return qt.HexDecodeToString(C.GoString(C.QImageWriter_SubType(ptr.Pointer())))
+		var tmpValue = core.NewQByteArrayFromPointer(C.QImageWriter_SubType(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		return tmpValue
 	}
-	return ""
+	return nil
 }
 
 func (ptr *QImageWriter) SupportsOption(option QImageIOHandler__ImageOption) bool {
@@ -19420,14 +19459,14 @@ func NewQInputMethodEvent3(other QInputMethodEvent_ITF) *QInputMethodEvent {
 
 func (ptr *QInputMethodEvent) CommitString() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QInputMethodEvent_CommitString(ptr.Pointer()))
+		return cGoUnpackString(C.QInputMethodEvent_CommitString(ptr.Pointer()))
 	}
 	return ""
 }
 
 func (ptr *QInputMethodEvent) PreeditString() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QInputMethodEvent_PreeditString(ptr.Pointer()))
+		return cGoUnpackString(C.QInputMethodEvent_PreeditString(ptr.Pointer()))
 	}
 	return ""
 }
@@ -19577,13 +19616,13 @@ func (ptr *QIntValidator) SetTop(vin int) {
 }
 
 //export callbackQIntValidator_Validate
-func callbackQIntValidator_Validate(ptr unsafe.Pointer, input *C.char, pos C.int) C.longlong {
+func callbackQIntValidator_Validate(ptr unsafe.Pointer, input C.struct_QtGui_PackedString, pos C.int) C.longlong {
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QIntValidator::validate"); signal != nil {
-		return C.longlong(signal.(func(string, int) QValidator__State)(C.GoString(input), int(int32(pos))))
+		return C.longlong(signal.(func(string, int) QValidator__State)(cGoUnpackString(input), int(int32(pos))))
 	}
 
-	return C.longlong(NewQIntValidatorFromPointer(ptr).ValidateDefault(C.GoString(input), int(int32(pos))))
+	return C.longlong(NewQIntValidatorFromPointer(ptr).ValidateDefault(cGoUnpackString(input), int(int32(pos))))
 }
 
 func (ptr *QIntValidator) ConnectValidate(f func(input string, pos int) QValidator__State) {
@@ -19642,12 +19681,12 @@ func (ptr *QIntValidator) Bottom() int {
 }
 
 //export callbackQIntValidator_Fixup
-func callbackQIntValidator_Fixup(ptr unsafe.Pointer, input *C.char) {
+func callbackQIntValidator_Fixup(ptr unsafe.Pointer, input C.struct_QtGui_PackedString) {
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QIntValidator::fixup"); signal != nil {
-		signal.(func(string))(C.GoString(input))
+		signal.(func(string))(cGoUnpackString(input))
 	} else {
-		NewQIntValidatorFromPointer(ptr).FixupDefault(C.GoString(input))
+		NewQIntValidatorFromPointer(ptr).FixupDefault(cGoUnpackString(input))
 	}
 }
 
@@ -20183,7 +20222,7 @@ func (ptr *QKeyEvent) NativeVirtualKey() uint {
 
 func (ptr *QKeyEvent) Text() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QKeyEvent_Text(ptr.Pointer()))
+		return cGoUnpackString(C.QKeyEvent_Text(ptr.Pointer()))
 	}
 	return ""
 }
@@ -20255,7 +20294,7 @@ func (ptr *QKeyEvent) SetNVirtualKey(vqu uint) {
 
 func (ptr *QKeyEvent) Txt() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QKeyEvent_Txt(ptr.Pointer()))
+		return cGoUnpackString(C.QKeyEvent_Txt(ptr.Pointer()))
 	}
 	return ""
 }
@@ -20492,7 +20531,7 @@ func (ptr *QKeySequence) Swap(other QKeySequence_ITF) {
 
 func (ptr *QKeySequence) ToString(format QKeySequence__SequenceFormat) string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QKeySequence_ToString(ptr.Pointer(), C.longlong(format)))
+		return cGoUnpackString(C.QKeySequence_ToString(ptr.Pointer(), C.longlong(format)))
 	}
 	return ""
 }
@@ -21290,10 +21329,8 @@ func (ptr *QMovie) Speed() int {
 	return 0
 }
 
-func NewQMovie2(device core.QIODevice_ITF, format string, parent core.QObject_ITF) *QMovie {
-	var formatC = C.CString(hex.EncodeToString([]byte(format)))
-	defer C.free(unsafe.Pointer(formatC))
-	var tmpValue = NewQMovieFromPointer(C.QMovie_NewQMovie2(core.PointerFromQIODevice(device), formatC, core.PointerFromQObject(parent)))
+func NewQMovie2(device core.QIODevice_ITF, format core.QByteArray_ITF, parent core.QObject_ITF) *QMovie {
+	var tmpValue = NewQMovieFromPointer(C.QMovie_NewQMovie2(core.PointerFromQIODevice(device), core.PointerFromQByteArray(format), core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
@@ -21308,12 +21345,10 @@ func NewQMovie(parent core.QObject_ITF) *QMovie {
 	return tmpValue
 }
 
-func NewQMovie3(fileName string, format string, parent core.QObject_ITF) *QMovie {
+func NewQMovie3(fileName string, format core.QByteArray_ITF, parent core.QObject_ITF) *QMovie {
 	var fileNameC = C.CString(fileName)
 	defer C.free(unsafe.Pointer(fileNameC))
-	var formatC = C.CString(hex.EncodeToString([]byte(format)))
-	defer C.free(unsafe.Pointer(formatC))
-	var tmpValue = NewQMovieFromPointer(C.QMovie_NewQMovie3(fileNameC, formatC, core.PointerFromQObject(parent)))
+	var tmpValue = NewQMovieFromPointer(C.QMovie_NewQMovie3(fileNameC, core.PointerFromQByteArray(format), core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
@@ -21396,7 +21431,7 @@ func (ptr *QMovie) Error(error QImageReader__ImageReaderError) {
 
 func (ptr *QMovie) FileName() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QMovie_FileName(ptr.Pointer()))
+		return cGoUnpackString(C.QMovie_FileName(ptr.Pointer()))
 	}
 	return ""
 }
@@ -21430,11 +21465,13 @@ func (ptr *QMovie) Finished() {
 	}
 }
 
-func (ptr *QMovie) Format() string {
+func (ptr *QMovie) Format() *core.QByteArray {
 	if ptr.Pointer() != nil {
-		return qt.HexDecodeToString(C.GoString(C.QMovie_Format(ptr.Pointer())))
+		var tmpValue = core.NewQByteArrayFromPointer(C.QMovie_Format(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		return tmpValue
 	}
-	return ""
+	return nil
 }
 
 //export callbackQMovie_FrameChanged
@@ -21598,11 +21635,9 @@ func (ptr *QMovie) SetFileName(fileName string) {
 	}
 }
 
-func (ptr *QMovie) SetFormat(format string) {
+func (ptr *QMovie) SetFormat(format core.QByteArray_ITF) {
 	if ptr.Pointer() != nil {
-		var formatC = C.CString(hex.EncodeToString([]byte(format)))
-		defer C.free(unsafe.Pointer(formatC))
-		C.QMovie_SetFormat(ptr.Pointer(), formatC)
+		C.QMovie_SetFormat(ptr.Pointer(), core.PointerFromQByteArray(format))
 	}
 }
 
@@ -25883,31 +25918,31 @@ func (ptr *QPageSize) IsValid() bool {
 }
 
 func QPageSize_Key2(pageSizeId QPageSize__PageSizeId) string {
-	return C.GoString(C.QPageSize_QPageSize_Key2(C.longlong(pageSizeId)))
+	return cGoUnpackString(C.QPageSize_QPageSize_Key2(C.longlong(pageSizeId)))
 }
 
 func (ptr *QPageSize) Key2(pageSizeId QPageSize__PageSizeId) string {
-	return C.GoString(C.QPageSize_QPageSize_Key2(C.longlong(pageSizeId)))
+	return cGoUnpackString(C.QPageSize_QPageSize_Key2(C.longlong(pageSizeId)))
 }
 
 func (ptr *QPageSize) Key() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QPageSize_Key(ptr.Pointer()))
+		return cGoUnpackString(C.QPageSize_Key(ptr.Pointer()))
 	}
 	return ""
 }
 
 func QPageSize_Name2(pageSizeId QPageSize__PageSizeId) string {
-	return C.GoString(C.QPageSize_QPageSize_Name2(C.longlong(pageSizeId)))
+	return cGoUnpackString(C.QPageSize_QPageSize_Name2(C.longlong(pageSizeId)))
 }
 
 func (ptr *QPageSize) Name2(pageSizeId QPageSize__PageSizeId) string {
-	return C.GoString(C.QPageSize_QPageSize_Name2(C.longlong(pageSizeId)))
+	return cGoUnpackString(C.QPageSize_QPageSize_Name2(C.longlong(pageSizeId)))
 }
 
 func (ptr *QPageSize) Name() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QPageSize_Name(ptr.Pointer()))
+		return cGoUnpackString(C.QPageSize_Name(ptr.Pointer()))
 	}
 	return ""
 }
@@ -27017,11 +27052,11 @@ func (ptr *QPaintDeviceWindow) SetMinimumWidthDefault(w int) {
 }
 
 //export callbackQPaintDeviceWindow_SetTitle
-func callbackQPaintDeviceWindow_SetTitle(ptr unsafe.Pointer, vqs *C.char) {
+func callbackQPaintDeviceWindow_SetTitle(ptr unsafe.Pointer, vqs C.struct_QtGui_PackedString) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPaintDeviceWindow::setTitle"); signal != nil {
-		signal.(func(string))(C.GoString(vqs))
+		signal.(func(string))(cGoUnpackString(vqs))
 	} else {
-		NewQPaintDeviceWindowFromPointer(ptr).SetTitleDefault(C.GoString(vqs))
+		NewQPaintDeviceWindowFromPointer(ptr).SetTitleDefault(cGoUnpackString(vqs))
 	}
 }
 
@@ -27860,16 +27895,16 @@ func (ptr *QPaintDeviceWindow) MoveEventDefault(ev QMoveEvent_ITF) {
 }
 
 //export callbackQPaintDeviceWindow_NativeEvent
-func callbackQPaintDeviceWindow_NativeEvent(ptr unsafe.Pointer, eventType *C.char, message unsafe.Pointer, result C.long) C.char {
+func callbackQPaintDeviceWindow_NativeEvent(ptr unsafe.Pointer, eventType unsafe.Pointer, message unsafe.Pointer, result C.long) C.char {
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPaintDeviceWindow::nativeEvent"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt(signal.(func(string, unsafe.Pointer, int) bool)(qt.HexDecodeToString(C.GoString(eventType)), message, int(int32(result))))))
+		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QByteArray, unsafe.Pointer, int) bool)(core.NewQByteArrayFromPointer(eventType), message, int(int32(result))))))
 	}
 
-	return C.char(int8(qt.GoBoolToInt(NewQPaintDeviceWindowFromPointer(ptr).NativeEventDefault(qt.HexDecodeToString(C.GoString(eventType)), message, int(int32(result))))))
+	return C.char(int8(qt.GoBoolToInt(NewQPaintDeviceWindowFromPointer(ptr).NativeEventDefault(core.NewQByteArrayFromPointer(eventType), message, int(int32(result))))))
 }
 
-func (ptr *QPaintDeviceWindow) ConnectNativeEvent(f func(eventType string, message unsafe.Pointer, result int) bool) {
+func (ptr *QPaintDeviceWindow) ConnectNativeEvent(f func(eventType *core.QByteArray, message unsafe.Pointer, result int) bool) {
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPaintDeviceWindow::nativeEvent", f)
@@ -27883,20 +27918,16 @@ func (ptr *QPaintDeviceWindow) DisconnectNativeEvent() {
 	}
 }
 
-func (ptr *QPaintDeviceWindow) NativeEvent(eventType string, message unsafe.Pointer, result int) bool {
+func (ptr *QPaintDeviceWindow) NativeEvent(eventType core.QByteArray_ITF, message unsafe.Pointer, result int) bool {
 	if ptr.Pointer() != nil {
-		var eventTypeC = C.CString(hex.EncodeToString([]byte(eventType)))
-		defer C.free(unsafe.Pointer(eventTypeC))
-		return C.QPaintDeviceWindow_NativeEvent(ptr.Pointer(), eventTypeC, message, C.long(int32(result))) != 0
+		return C.QPaintDeviceWindow_NativeEvent(ptr.Pointer(), core.PointerFromQByteArray(eventType), message, C.long(int32(result))) != 0
 	}
 	return false
 }
 
-func (ptr *QPaintDeviceWindow) NativeEventDefault(eventType string, message unsafe.Pointer, result int) bool {
+func (ptr *QPaintDeviceWindow) NativeEventDefault(eventType core.QByteArray_ITF, message unsafe.Pointer, result int) bool {
 	if ptr.Pointer() != nil {
-		var eventTypeC = C.CString(hex.EncodeToString([]byte(eventType)))
-		defer C.free(unsafe.Pointer(eventTypeC))
-		return C.QPaintDeviceWindow_NativeEventDefault(ptr.Pointer(), eventTypeC, message, C.long(int32(result))) != 0
+		return C.QPaintDeviceWindow_NativeEventDefault(ptr.Pointer(), core.PointerFromQByteArray(eventType), message, C.long(int32(result))) != 0
 	}
 	return false
 }
@@ -32322,7 +32353,7 @@ func NewQPdfWriter(filename string) *QPdfWriter {
 
 func (ptr *QPdfWriter) Creator() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QPdfWriter_Creator(ptr.Pointer()))
+		return cGoUnpackString(C.QPdfWriter_Creator(ptr.Pointer()))
 	}
 	return ""
 }
@@ -32478,7 +32509,7 @@ func (ptr *QPdfWriter) SetTitle(title string) {
 
 func (ptr *QPdfWriter) Title() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QPdfWriter_Title(ptr.Pointer()))
+		return cGoUnpackString(C.QPdfWriter_Title(ptr.Pointer()))
 	}
 	return ""
 }
@@ -33201,7 +33232,7 @@ func NewQPictureFromPointer(ptr unsafe.Pointer) *QPicture {
 }
 func (ptr *QPicture) Data() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QPicture_Data(ptr.Pointer()))
+		return cGoUnpackString(C.QPicture_Data(ptr.Pointer()))
 	}
 	return ""
 }
@@ -33291,12 +33322,12 @@ func (ptr *QPicture) SetBoundingRect(r core.QRect_ITF) {
 }
 
 //export callbackQPicture_SetData
-func callbackQPicture_SetData(ptr unsafe.Pointer, data *C.char, size C.uint) {
+func callbackQPicture_SetData(ptr unsafe.Pointer, data C.struct_QtGui_PackedString, size C.uint) {
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPicture::setData"); signal != nil {
-		signal.(func(string, uint))(C.GoString(data), uint(uint32(size)))
+		signal.(func(string, uint))(cGoUnpackString(data), uint(uint32(size)))
 	} else {
-		NewQPictureFromPointer(ptr).SetDataDefault(C.GoString(data), uint(uint32(size)))
+		NewQPictureFromPointer(ptr).SetDataDefault(cGoUnpackString(data), uint(uint32(size)))
 	}
 }
 
@@ -33549,6 +33580,26 @@ func NewQPixelFormat() *QPixelFormat {
 	return tmpValue
 }
 
+func NewQPixelFormat2(colorModel QPixelFormat__ColorModel, firstSize string, secondSize string, thirdSize string, fourthSize string, fifthSize string, alphaSize string, alphaUsage QPixelFormat__AlphaUsage, alphaPosition QPixelFormat__AlphaPosition, premultiplied QPixelFormat__AlphaPremultiplied, typeInterpretation QPixelFormat__TypeInterpretation, byteOrder QPixelFormat__ByteOrder, subEnum string) *QPixelFormat {
+	var firstSizeC = C.CString(firstSize)
+	defer C.free(unsafe.Pointer(firstSizeC))
+	var secondSizeC = C.CString(secondSize)
+	defer C.free(unsafe.Pointer(secondSizeC))
+	var thirdSizeC = C.CString(thirdSize)
+	defer C.free(unsafe.Pointer(thirdSizeC))
+	var fourthSizeC = C.CString(fourthSize)
+	defer C.free(unsafe.Pointer(fourthSizeC))
+	var fifthSizeC = C.CString(fifthSize)
+	defer C.free(unsafe.Pointer(fifthSizeC))
+	var alphaSizeC = C.CString(alphaSize)
+	defer C.free(unsafe.Pointer(alphaSizeC))
+	var subEnumC = C.CString(subEnum)
+	defer C.free(unsafe.Pointer(subEnumC))
+	var tmpValue = NewQPixelFormatFromPointer(C.QPixelFormat_NewQPixelFormat2(C.longlong(colorModel), firstSizeC, secondSizeC, thirdSizeC, fourthSizeC, fifthSizeC, alphaSizeC, C.longlong(alphaUsage), C.longlong(alphaPosition), C.longlong(premultiplied), C.longlong(typeInterpretation), C.longlong(byteOrder), subEnumC))
+	runtime.SetFinalizer(tmpValue, (*QPixelFormat).DestroyQPixelFormat)
+	return tmpValue
+}
+
 func (ptr *QPixelFormat) AlphaPosition() QPixelFormat__AlphaPosition {
 	if ptr.Pointer() != nil {
 		return QPixelFormat__AlphaPosition(C.QPixelFormat_AlphaPosition(ptr.Pointer()))
@@ -33558,7 +33609,7 @@ func (ptr *QPixelFormat) AlphaPosition() QPixelFormat__AlphaPosition {
 
 func (ptr *QPixelFormat) AlphaSize() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QPixelFormat_AlphaSize(ptr.Pointer()))
+		return cGoUnpackString(C.QPixelFormat_AlphaSize(ptr.Pointer()))
 	}
 	return ""
 }
@@ -33572,28 +33623,28 @@ func (ptr *QPixelFormat) AlphaUsage() QPixelFormat__AlphaUsage {
 
 func (ptr *QPixelFormat) BitsPerPixel() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QPixelFormat_BitsPerPixel(ptr.Pointer()))
+		return cGoUnpackString(C.QPixelFormat_BitsPerPixel(ptr.Pointer()))
 	}
 	return ""
 }
 
 func (ptr *QPixelFormat) BlackSize() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QPixelFormat_BlackSize(ptr.Pointer()))
+		return cGoUnpackString(C.QPixelFormat_BlackSize(ptr.Pointer()))
 	}
 	return ""
 }
 
 func (ptr *QPixelFormat) BlueSize() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QPixelFormat_BlueSize(ptr.Pointer()))
+		return cGoUnpackString(C.QPixelFormat_BlueSize(ptr.Pointer()))
 	}
 	return ""
 }
 
 func (ptr *QPixelFormat) BrightnessSize() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QPixelFormat_BrightnessSize(ptr.Pointer()))
+		return cGoUnpackString(C.QPixelFormat_BrightnessSize(ptr.Pointer()))
 	}
 	return ""
 }
@@ -33607,7 +33658,7 @@ func (ptr *QPixelFormat) ByteOrder() QPixelFormat__ByteOrder {
 
 func (ptr *QPixelFormat) ChannelCount() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QPixelFormat_ChannelCount(ptr.Pointer()))
+		return cGoUnpackString(C.QPixelFormat_ChannelCount(ptr.Pointer()))
 	}
 	return ""
 }
@@ -33621,35 +33672,35 @@ func (ptr *QPixelFormat) ColorModel() QPixelFormat__ColorModel {
 
 func (ptr *QPixelFormat) CyanSize() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QPixelFormat_CyanSize(ptr.Pointer()))
+		return cGoUnpackString(C.QPixelFormat_CyanSize(ptr.Pointer()))
 	}
 	return ""
 }
 
 func (ptr *QPixelFormat) GreenSize() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QPixelFormat_GreenSize(ptr.Pointer()))
+		return cGoUnpackString(C.QPixelFormat_GreenSize(ptr.Pointer()))
 	}
 	return ""
 }
 
 func (ptr *QPixelFormat) HueSize() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QPixelFormat_HueSize(ptr.Pointer()))
+		return cGoUnpackString(C.QPixelFormat_HueSize(ptr.Pointer()))
 	}
 	return ""
 }
 
 func (ptr *QPixelFormat) LightnessSize() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QPixelFormat_LightnessSize(ptr.Pointer()))
+		return cGoUnpackString(C.QPixelFormat_LightnessSize(ptr.Pointer()))
 	}
 	return ""
 }
 
 func (ptr *QPixelFormat) MagentaSize() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QPixelFormat_MagentaSize(ptr.Pointer()))
+		return cGoUnpackString(C.QPixelFormat_MagentaSize(ptr.Pointer()))
 	}
 	return ""
 }
@@ -33663,14 +33714,14 @@ func (ptr *QPixelFormat) Premultiplied() QPixelFormat__AlphaPremultiplied {
 
 func (ptr *QPixelFormat) RedSize() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QPixelFormat_RedSize(ptr.Pointer()))
+		return cGoUnpackString(C.QPixelFormat_RedSize(ptr.Pointer()))
 	}
 	return ""
 }
 
 func (ptr *QPixelFormat) SaturationSize() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QPixelFormat_SaturationSize(ptr.Pointer()))
+		return cGoUnpackString(C.QPixelFormat_SaturationSize(ptr.Pointer()))
 	}
 	return ""
 }
@@ -33684,7 +33735,7 @@ func (ptr *QPixelFormat) TypeInterpretation() QPixelFormat__TypeInterpretation {
 
 func (ptr *QPixelFormat) YellowSize() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QPixelFormat_YellowSize(ptr.Pointer()))
+		return cGoUnpackString(C.QPixelFormat_YellowSize(ptr.Pointer()))
 	}
 	return ""
 }
@@ -33797,6 +33848,17 @@ func (ptr *QPixmap) IsNull() bool {
 func (ptr *QPixmap) IsQBitmap() bool {
 	if ptr.Pointer() != nil {
 		return C.QPixmap_IsQBitmap(ptr.Pointer()) != 0
+	}
+	return false
+}
+
+func (ptr *QPixmap) LoadFromData(data string, len uint, format string, flags core.Qt__ImageConversionFlag) bool {
+	if ptr.Pointer() != nil {
+		var dataC = C.CString(data)
+		defer C.free(unsafe.Pointer(dataC))
+		var formatC = C.CString(format)
+		defer C.free(unsafe.Pointer(formatC))
+		return C.QPixmap_LoadFromData(ptr.Pointer(), dataC, C.uint(uint32(len)), formatC, C.longlong(flags)) != 0
 	}
 	return false
 }
@@ -34007,13 +34069,11 @@ func (ptr *QPixmap) Load(fileName string, format string, flags core.Qt__ImageCon
 	return false
 }
 
-func (ptr *QPixmap) LoadFromData2(data string, format string, flags core.Qt__ImageConversionFlag) bool {
+func (ptr *QPixmap) LoadFromData2(data core.QByteArray_ITF, format string, flags core.Qt__ImageConversionFlag) bool {
 	if ptr.Pointer() != nil {
-		var dataC = C.CString(hex.EncodeToString([]byte(data)))
-		defer C.free(unsafe.Pointer(dataC))
 		var formatC = C.CString(format)
 		defer C.free(unsafe.Pointer(formatC))
-		return C.QPixmap_LoadFromData2(ptr.Pointer(), dataC, formatC, C.longlong(flags)) != 0
+		return C.QPixmap_LoadFromData2(ptr.Pointer(), core.PointerFromQByteArray(data), formatC, C.longlong(flags)) != 0
 	}
 	return false
 }
@@ -35555,11 +35615,11 @@ func (ptr *QRasterWindow) SetMinimumWidthDefault(w int) {
 }
 
 //export callbackQRasterWindow_SetTitle
-func callbackQRasterWindow_SetTitle(ptr unsafe.Pointer, vqs *C.char) {
+func callbackQRasterWindow_SetTitle(ptr unsafe.Pointer, vqs C.struct_QtGui_PackedString) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QRasterWindow::setTitle"); signal != nil {
-		signal.(func(string))(C.GoString(vqs))
+		signal.(func(string))(cGoUnpackString(vqs))
 	} else {
-		NewQRasterWindowFromPointer(ptr).SetTitleDefault(C.GoString(vqs))
+		NewQRasterWindowFromPointer(ptr).SetTitleDefault(cGoUnpackString(vqs))
 	}
 }
 
@@ -36398,16 +36458,16 @@ func (ptr *QRasterWindow) MoveEventDefault(ev QMoveEvent_ITF) {
 }
 
 //export callbackQRasterWindow_NativeEvent
-func callbackQRasterWindow_NativeEvent(ptr unsafe.Pointer, eventType *C.char, message unsafe.Pointer, result C.long) C.char {
+func callbackQRasterWindow_NativeEvent(ptr unsafe.Pointer, eventType unsafe.Pointer, message unsafe.Pointer, result C.long) C.char {
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QRasterWindow::nativeEvent"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt(signal.(func(string, unsafe.Pointer, int) bool)(qt.HexDecodeToString(C.GoString(eventType)), message, int(int32(result))))))
+		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QByteArray, unsafe.Pointer, int) bool)(core.NewQByteArrayFromPointer(eventType), message, int(int32(result))))))
 	}
 
-	return C.char(int8(qt.GoBoolToInt(NewQRasterWindowFromPointer(ptr).NativeEventDefault(qt.HexDecodeToString(C.GoString(eventType)), message, int(int32(result))))))
+	return C.char(int8(qt.GoBoolToInt(NewQRasterWindowFromPointer(ptr).NativeEventDefault(core.NewQByteArrayFromPointer(eventType), message, int(int32(result))))))
 }
 
-func (ptr *QRasterWindow) ConnectNativeEvent(f func(eventType string, message unsafe.Pointer, result int) bool) {
+func (ptr *QRasterWindow) ConnectNativeEvent(f func(eventType *core.QByteArray, message unsafe.Pointer, result int) bool) {
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QRasterWindow::nativeEvent", f)
@@ -36421,20 +36481,16 @@ func (ptr *QRasterWindow) DisconnectNativeEvent() {
 	}
 }
 
-func (ptr *QRasterWindow) NativeEvent(eventType string, message unsafe.Pointer, result int) bool {
+func (ptr *QRasterWindow) NativeEvent(eventType core.QByteArray_ITF, message unsafe.Pointer, result int) bool {
 	if ptr.Pointer() != nil {
-		var eventTypeC = C.CString(hex.EncodeToString([]byte(eventType)))
-		defer C.free(unsafe.Pointer(eventTypeC))
-		return C.QRasterWindow_NativeEvent(ptr.Pointer(), eventTypeC, message, C.long(int32(result))) != 0
+		return C.QRasterWindow_NativeEvent(ptr.Pointer(), core.PointerFromQByteArray(eventType), message, C.long(int32(result))) != 0
 	}
 	return false
 }
 
-func (ptr *QRasterWindow) NativeEventDefault(eventType string, message unsafe.Pointer, result int) bool {
+func (ptr *QRasterWindow) NativeEventDefault(eventType core.QByteArray_ITF, message unsafe.Pointer, result int) bool {
 	if ptr.Pointer() != nil {
-		var eventTypeC = C.CString(hex.EncodeToString([]byte(eventType)))
-		defer C.free(unsafe.Pointer(eventTypeC))
-		return C.QRasterWindow_NativeEventDefault(ptr.Pointer(), eventTypeC, message, C.long(int32(result))) != 0
+		return C.QRasterWindow_NativeEventDefault(ptr.Pointer(), core.PointerFromQByteArray(eventType), message, C.long(int32(result))) != 0
 	}
 	return false
 }
@@ -37410,10 +37466,8 @@ func NewQRawFont() *QRawFont {
 	return tmpValue
 }
 
-func NewQRawFont3(fontData string, pixelSize float64, hintingPreference QFont__HintingPreference) *QRawFont {
-	var fontDataC = C.CString(hex.EncodeToString([]byte(fontData)))
-	defer C.free(unsafe.Pointer(fontDataC))
-	var tmpValue = NewQRawFontFromPointer(C.QRawFont_NewQRawFont3(fontDataC, C.double(pixelSize), C.longlong(hintingPreference)))
+func NewQRawFont3(fontData core.QByteArray_ITF, pixelSize float64, hintingPreference QFont__HintingPreference) *QRawFont {
+	var tmpValue = NewQRawFontFromPointer(C.QRawFont_NewQRawFont3(core.PointerFromQByteArray(fontData), C.double(pixelSize), C.longlong(hintingPreference)))
 	runtime.SetFinalizer(tmpValue, (*QRawFont).DestroyQRawFont)
 	return tmpValue
 }
@@ -37487,18 +37541,20 @@ func (ptr *QRawFont) Descent() float64 {
 
 func (ptr *QRawFont) FamilyName() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QRawFont_FamilyName(ptr.Pointer()))
+		return cGoUnpackString(C.QRawFont_FamilyName(ptr.Pointer()))
 	}
 	return ""
 }
 
-func (ptr *QRawFont) FontTable(tagName string) string {
+func (ptr *QRawFont) FontTable(tagName string) *core.QByteArray {
 	if ptr.Pointer() != nil {
 		var tagNameC = C.CString(tagName)
 		defer C.free(unsafe.Pointer(tagNameC))
-		return qt.HexDecodeToString(C.GoString(C.QRawFont_FontTable(ptr.Pointer(), tagNameC)))
+		var tmpValue = core.NewQByteArrayFromPointer(C.QRawFont_FontTable(ptr.Pointer(), tagNameC))
+		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		return tmpValue
 	}
-	return ""
+	return nil
 }
 
 func QRawFont_FromFont(font QFont_ITF, writingSystem QFontDatabase__WritingSystem) *QRawFont {
@@ -37548,11 +37604,9 @@ func (ptr *QRawFont) LineThickness() float64 {
 	return 0
 }
 
-func (ptr *QRawFont) LoadFromData(fontData string, pixelSize float64, hintingPreference QFont__HintingPreference) {
+func (ptr *QRawFont) LoadFromData(fontData core.QByteArray_ITF, pixelSize float64, hintingPreference QFont__HintingPreference) {
 	if ptr.Pointer() != nil {
-		var fontDataC = C.CString(hex.EncodeToString([]byte(fontData)))
-		defer C.free(unsafe.Pointer(fontDataC))
-		C.QRawFont_LoadFromData(ptr.Pointer(), fontDataC, C.double(pixelSize), C.longlong(hintingPreference))
+		C.QRawFont_LoadFromData(ptr.Pointer(), core.PointerFromQByteArray(fontData), C.double(pixelSize), C.longlong(hintingPreference))
 	}
 }
 
@@ -37602,7 +37656,7 @@ func (ptr *QRawFont) Style() QFont__Style {
 
 func (ptr *QRawFont) StyleName() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QRawFont_StyleName(ptr.Pointer()))
+		return cGoUnpackString(C.QRawFont_StyleName(ptr.Pointer()))
 	}
 	return ""
 }
@@ -37730,13 +37784,13 @@ func (ptr *QRegExpValidator) RegExp() *core.QRegExp {
 }
 
 //export callbackQRegExpValidator_Validate
-func callbackQRegExpValidator_Validate(ptr unsafe.Pointer, input *C.char, pos C.int) C.longlong {
+func callbackQRegExpValidator_Validate(ptr unsafe.Pointer, input C.struct_QtGui_PackedString, pos C.int) C.longlong {
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QRegExpValidator::validate"); signal != nil {
-		return C.longlong(signal.(func(string, int) QValidator__State)(C.GoString(input), int(int32(pos))))
+		return C.longlong(signal.(func(string, int) QValidator__State)(cGoUnpackString(input), int(int32(pos))))
 	}
 
-	return C.longlong(NewQRegExpValidatorFromPointer(ptr).ValidateDefault(C.GoString(input), int(int32(pos))))
+	return C.longlong(NewQRegExpValidatorFromPointer(ptr).ValidateDefault(cGoUnpackString(input), int(int32(pos))))
 }
 
 func (ptr *QRegExpValidator) ConnectValidate(f func(input string, pos int) QValidator__State) {
@@ -37780,12 +37834,12 @@ func (ptr *QRegExpValidator) DestroyQRegExpValidator() {
 }
 
 //export callbackQRegExpValidator_Fixup
-func callbackQRegExpValidator_Fixup(ptr unsafe.Pointer, input *C.char) {
+func callbackQRegExpValidator_Fixup(ptr unsafe.Pointer, input C.struct_QtGui_PackedString) {
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QRegExpValidator::fixup"); signal != nil {
-		signal.(func(string))(C.GoString(input))
+		signal.(func(string))(cGoUnpackString(input))
 	} else {
-		NewQRegExpValidatorFromPointer(ptr).FixupDefault(C.GoString(input))
+		NewQRegExpValidatorFromPointer(ptr).FixupDefault(cGoUnpackString(input))
 	}
 }
 
@@ -38520,13 +38574,13 @@ func (ptr *QRegularExpressionValidator) RegularExpressionChanged(re core.QRegula
 }
 
 //export callbackQRegularExpressionValidator_Validate
-func callbackQRegularExpressionValidator_Validate(ptr unsafe.Pointer, input *C.char, pos C.int) C.longlong {
+func callbackQRegularExpressionValidator_Validate(ptr unsafe.Pointer, input C.struct_QtGui_PackedString, pos C.int) C.longlong {
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QRegularExpressionValidator::validate"); signal != nil {
-		return C.longlong(signal.(func(string, int) QValidator__State)(C.GoString(input), int(int32(pos))))
+		return C.longlong(signal.(func(string, int) QValidator__State)(cGoUnpackString(input), int(int32(pos))))
 	}
 
-	return C.longlong(NewQRegularExpressionValidatorFromPointer(ptr).ValidateDefault(C.GoString(input), int(int32(pos))))
+	return C.longlong(NewQRegularExpressionValidatorFromPointer(ptr).ValidateDefault(cGoUnpackString(input), int(int32(pos))))
 }
 
 func (ptr *QRegularExpressionValidator) ConnectValidate(f func(input string, pos int) QValidator__State) {
@@ -38570,12 +38624,12 @@ func (ptr *QRegularExpressionValidator) DestroyQRegularExpressionValidator() {
 }
 
 //export callbackQRegularExpressionValidator_Fixup
-func callbackQRegularExpressionValidator_Fixup(ptr unsafe.Pointer, input *C.char) {
+func callbackQRegularExpressionValidator_Fixup(ptr unsafe.Pointer, input C.struct_QtGui_PackedString) {
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QRegularExpressionValidator::fixup"); signal != nil {
-		signal.(func(string))(C.GoString(input))
+		signal.(func(string))(cGoUnpackString(input))
 	} else {
-		NewQRegularExpressionValidatorFromPointer(ptr).FixupDefault(C.GoString(input))
+		NewQRegularExpressionValidatorFromPointer(ptr).FixupDefault(cGoUnpackString(input))
 	}
 }
 
@@ -39058,7 +39112,7 @@ func (ptr *QRgba64) Alpha() uint16 {
 
 func (ptr *QRgba64) Alpha8() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QRgba64_Alpha8(ptr.Pointer()))
+		return cGoUnpackString(C.QRgba64_Alpha8(ptr.Pointer()))
 	}
 	return ""
 }
@@ -39072,7 +39126,7 @@ func (ptr *QRgba64) Blue() uint16 {
 
 func (ptr *QRgba64) Blue8() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QRgba64_Blue8(ptr.Pointer()))
+		return cGoUnpackString(C.QRgba64_Blue8(ptr.Pointer()))
 	}
 	return ""
 }
@@ -39086,7 +39140,7 @@ func (ptr *QRgba64) Green() uint16 {
 
 func (ptr *QRgba64) Green8() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QRgba64_Green8(ptr.Pointer()))
+		return cGoUnpackString(C.QRgba64_Green8(ptr.Pointer()))
 	}
 	return ""
 }
@@ -39114,7 +39168,7 @@ func (ptr *QRgba64) Red() uint16 {
 
 func (ptr *QRgba64) Red8() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QRgba64_Red8(ptr.Pointer()))
+		return cGoUnpackString(C.QRgba64_Red8(ptr.Pointer()))
 	}
 	return ""
 }
@@ -39277,7 +39331,7 @@ func (ptr *QScreen) LogicalDotsPerInchY() float64 {
 
 func (ptr *QScreen) Name() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QScreen_Name(ptr.Pointer()))
+		return cGoUnpackString(C.QScreen_Name(ptr.Pointer()))
 	}
 	return ""
 }
@@ -40284,7 +40338,7 @@ func (ptr *QSessionManager) RestartHint() QSessionManager__RestartHint {
 
 func (ptr *QSessionManager) SessionKey() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QSessionManager_SessionKey(ptr.Pointer()))
+		return cGoUnpackString(C.QSessionManager_SessionKey(ptr.Pointer()))
 	}
 	return ""
 }
@@ -40311,7 +40365,7 @@ func (ptr *QSessionManager) Cancel() {
 
 func (ptr *QSessionManager) DiscardCommand() []string {
 	if ptr.Pointer() != nil {
-		return strings.Split(C.GoString(C.QSessionManager_DiscardCommand(ptr.Pointer())), "|")
+		return strings.Split(cGoUnpackString(C.QSessionManager_DiscardCommand(ptr.Pointer())), "|")
 	}
 	return make([]string, 0)
 }
@@ -40337,14 +40391,14 @@ func (ptr *QSessionManager) RequestPhase2() {
 
 func (ptr *QSessionManager) RestartCommand() []string {
 	if ptr.Pointer() != nil {
-		return strings.Split(C.GoString(C.QSessionManager_RestartCommand(ptr.Pointer())), "|")
+		return strings.Split(cGoUnpackString(C.QSessionManager_RestartCommand(ptr.Pointer())), "|")
 	}
 	return make([]string, 0)
 }
 
 func (ptr *QSessionManager) SessionId() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QSessionManager_SessionId(ptr.Pointer()))
+		return cGoUnpackString(C.QSessionManager_SessionId(ptr.Pointer()))
 	}
 	return ""
 }
@@ -40958,14 +41012,14 @@ func NewQStandardItem5(other QStandardItem_ITF) *QStandardItem {
 
 func (ptr *QStandardItem) AccessibleDescription() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QStandardItem_AccessibleDescription(ptr.Pointer()))
+		return cGoUnpackString(C.QStandardItem_AccessibleDescription(ptr.Pointer()))
 	}
 	return ""
 }
 
 func (ptr *QStandardItem) AccessibleText() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QStandardItem_AccessibleText(ptr.Pointer()))
+		return cGoUnpackString(C.QStandardItem_AccessibleText(ptr.Pointer()))
 	}
 	return ""
 }
@@ -41500,7 +41554,7 @@ func (ptr *QStandardItem) SortChildren(column int, order core.Qt__SortOrder) {
 
 func (ptr *QStandardItem) StatusTip() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QStandardItem_StatusTip(ptr.Pointer()))
+		return cGoUnpackString(C.QStandardItem_StatusTip(ptr.Pointer()))
 	}
 	return ""
 }
@@ -41514,7 +41568,7 @@ func (ptr *QStandardItem) TakeChild(row int, column int) *QStandardItem {
 
 func (ptr *QStandardItem) Text() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QStandardItem_Text(ptr.Pointer()))
+		return cGoUnpackString(C.QStandardItem_Text(ptr.Pointer()))
 	}
 	return ""
 }
@@ -41528,7 +41582,7 @@ func (ptr *QStandardItem) TextAlignment() core.Qt__AlignmentFlag {
 
 func (ptr *QStandardItem) ToolTip() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QStandardItem_ToolTip(ptr.Pointer()))
+		return cGoUnpackString(C.QStandardItem_ToolTip(ptr.Pointer()))
 	}
 	return ""
 }
@@ -41573,7 +41627,7 @@ func (ptr *QStandardItem) TypeDefault() int {
 
 func (ptr *QStandardItem) WhatsThis() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QStandardItem_WhatsThis(ptr.Pointer()))
+		return cGoUnpackString(C.QStandardItem_WhatsThis(ptr.Pointer()))
 	}
 	return ""
 }
@@ -41861,7 +41915,7 @@ func (ptr *QStandardItemModel) ItemPrototype() *QStandardItem {
 
 func (ptr *QStandardItemModel) MimeTypes() []string {
 	if ptr.Pointer() != nil {
-		return strings.Split(C.GoString(C.QStandardItemModel_MimeTypes(ptr.Pointer())), "|")
+		return strings.Split(cGoUnpackString(C.QStandardItemModel_MimeTypes(ptr.Pointer())), "|")
 	}
 	return make([]string, 0)
 }
@@ -42903,7 +42957,7 @@ func (ptr *QStaticText) Swap(other QStaticText_ITF) {
 
 func (ptr *QStaticText) Text() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QStaticText_Text(ptr.Pointer()))
+		return cGoUnpackString(C.QStaticText_Text(ptr.Pointer()))
 	}
 	return ""
 }
@@ -42992,7 +43046,7 @@ func NewQStatusTipEvent(tip string) *QStatusTipEvent {
 
 func (ptr *QStatusTipEvent) Tip() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QStatusTipEvent_Tip(ptr.Pointer()))
+		return cGoUnpackString(C.QStatusTipEvent_Tip(ptr.Pointer()))
 	}
 	return ""
 }
@@ -44378,10 +44432,10 @@ func (ptr *QSyntaxHighlighter) Document() *QTextDocument {
 }
 
 //export callbackQSyntaxHighlighter_HighlightBlock
-func callbackQSyntaxHighlighter_HighlightBlock(ptr unsafe.Pointer, text *C.char) {
+func callbackQSyntaxHighlighter_HighlightBlock(ptr unsafe.Pointer, text C.struct_QtGui_PackedString) {
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSyntaxHighlighter::highlightBlock"); signal != nil {
-		signal.(func(string))(C.GoString(text))
+		signal.(func(string))(cGoUnpackString(text))
 	}
 
 }
@@ -45330,7 +45384,7 @@ func (ptr *QTextBlock) SetVisible(visible bool) {
 
 func (ptr *QTextBlock) Text() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QTextBlock_Text(ptr.Pointer()))
+		return cGoUnpackString(C.QTextBlock_Text(ptr.Pointer()))
 	}
 	return ""
 }
@@ -46239,7 +46293,7 @@ func NewQTextCharFormat() *QTextCharFormat {
 
 func (ptr *QTextCharFormat) AnchorNames() []string {
 	if ptr.Pointer() != nil {
-		return strings.Split(C.GoString(C.QTextCharFormat_AnchorNames(ptr.Pointer())), "|")
+		return strings.Split(cGoUnpackString(C.QTextCharFormat_AnchorNames(ptr.Pointer())), "|")
 	}
 	return make([]string, 0)
 }
@@ -46259,7 +46313,7 @@ func (ptr *QTextCharFormat) SetUnderlineStyle(style QTextCharFormat__UnderlineSt
 
 func (ptr *QTextCharFormat) AnchorHref() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QTextCharFormat_AnchorHref(ptr.Pointer()))
+		return cGoUnpackString(C.QTextCharFormat_AnchorHref(ptr.Pointer()))
 	}
 	return ""
 }
@@ -46282,7 +46336,7 @@ func (ptr *QTextCharFormat) FontCapitalization() QFont__Capitalization {
 
 func (ptr *QTextCharFormat) FontFamily() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QTextCharFormat_FontFamily(ptr.Pointer()))
+		return cGoUnpackString(C.QTextCharFormat_FontFamily(ptr.Pointer()))
 	}
 	return ""
 }
@@ -46574,7 +46628,7 @@ func (ptr *QTextCharFormat) TextOutline() *QPen {
 
 func (ptr *QTextCharFormat) ToolTip() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QTextCharFormat_ToolTip(ptr.Pointer()))
+		return cGoUnpackString(C.QTextCharFormat_ToolTip(ptr.Pointer()))
 	}
 	return ""
 }
@@ -47103,7 +47157,7 @@ func (ptr *QTextCursor) SelectedTableCells(firstRow int, numRows int, firstColum
 
 func (ptr *QTextCursor) SelectedText() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QTextCursor_SelectedText(ptr.Pointer()))
+		return cGoUnpackString(C.QTextCursor_SelectedText(ptr.Pointer()))
 	}
 	return ""
 }
@@ -47338,7 +47392,7 @@ func (ptr *QTextDocument) CreateObjectDefault(format QTextFormat_ITF) *QTextObje
 
 func (ptr *QTextDocument) DefaultStyleSheet() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QTextDocument_DefaultStyleSheet(ptr.Pointer()))
+		return cGoUnpackString(C.QTextDocument_DefaultStyleSheet(ptr.Pointer()))
 	}
 	return ""
 }
@@ -48014,7 +48068,7 @@ func (ptr *QTextDocument) LoadResourceDefault(ty int, name core.QUrl_ITF) *core.
 
 func (ptr *QTextDocument) MetaInformation(info QTextDocument__MetaInformation) string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QTextDocument_MetaInformation(ptr.Pointer(), C.longlong(info)))
+		return cGoUnpackString(C.QTextDocument_MetaInformation(ptr.Pointer(), C.longlong(info)))
 	}
 	return ""
 }
@@ -48227,18 +48281,16 @@ func (ptr *QTextDocument) SetPlainText(text string) {
 	}
 }
 
-func (ptr *QTextDocument) ToHtml(encoding string) string {
+func (ptr *QTextDocument) ToHtml(encoding core.QByteArray_ITF) string {
 	if ptr.Pointer() != nil {
-		var encodingC = C.CString(hex.EncodeToString([]byte(encoding)))
-		defer C.free(unsafe.Pointer(encodingC))
-		return C.GoString(C.QTextDocument_ToHtml(ptr.Pointer(), encodingC))
+		return cGoUnpackString(C.QTextDocument_ToHtml(ptr.Pointer(), core.PointerFromQByteArray(encoding)))
 	}
 	return ""
 }
 
 func (ptr *QTextDocument) ToPlainText() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QTextDocument_ToPlainText(ptr.Pointer()))
+		return cGoUnpackString(C.QTextDocument_ToPlainText(ptr.Pointer()))
 	}
 	return ""
 }
@@ -48792,18 +48844,16 @@ func (ptr *QTextDocumentFragment) IsEmpty() bool {
 	return false
 }
 
-func (ptr *QTextDocumentFragment) ToHtml(encoding string) string {
+func (ptr *QTextDocumentFragment) ToHtml(encoding core.QByteArray_ITF) string {
 	if ptr.Pointer() != nil {
-		var encodingC = C.CString(hex.EncodeToString([]byte(encoding)))
-		defer C.free(unsafe.Pointer(encodingC))
-		return C.GoString(C.QTextDocumentFragment_ToHtml(ptr.Pointer(), encodingC))
+		return cGoUnpackString(C.QTextDocumentFragment_ToHtml(ptr.Pointer(), core.PointerFromQByteArray(encoding)))
 	}
 	return ""
 }
 
 func (ptr *QTextDocumentFragment) ToPlainText() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QTextDocumentFragment_ToPlainText(ptr.Pointer()))
+		return cGoUnpackString(C.QTextDocumentFragment_ToPlainText(ptr.Pointer()))
 	}
 	return ""
 }
@@ -48858,20 +48908,16 @@ func NewQTextDocumentWriter() *QTextDocumentWriter {
 	return tmpValue
 }
 
-func NewQTextDocumentWriter2(device core.QIODevice_ITF, format string) *QTextDocumentWriter {
-	var formatC = C.CString(hex.EncodeToString([]byte(format)))
-	defer C.free(unsafe.Pointer(formatC))
-	var tmpValue = NewQTextDocumentWriterFromPointer(C.QTextDocumentWriter_NewQTextDocumentWriter2(core.PointerFromQIODevice(device), formatC))
+func NewQTextDocumentWriter2(device core.QIODevice_ITF, format core.QByteArray_ITF) *QTextDocumentWriter {
+	var tmpValue = NewQTextDocumentWriterFromPointer(C.QTextDocumentWriter_NewQTextDocumentWriter2(core.PointerFromQIODevice(device), core.PointerFromQByteArray(format)))
 	runtime.SetFinalizer(tmpValue, (*QTextDocumentWriter).DestroyQTextDocumentWriter)
 	return tmpValue
 }
 
-func NewQTextDocumentWriter3(fileName string, format string) *QTextDocumentWriter {
+func NewQTextDocumentWriter3(fileName string, format core.QByteArray_ITF) *QTextDocumentWriter {
 	var fileNameC = C.CString(fileName)
 	defer C.free(unsafe.Pointer(fileNameC))
-	var formatC = C.CString(hex.EncodeToString([]byte(format)))
-	defer C.free(unsafe.Pointer(formatC))
-	var tmpValue = NewQTextDocumentWriterFromPointer(C.QTextDocumentWriter_NewQTextDocumentWriter3(fileNameC, formatC))
+	var tmpValue = NewQTextDocumentWriterFromPointer(C.QTextDocumentWriter_NewQTextDocumentWriter3(fileNameC, core.PointerFromQByteArray(format)))
 	runtime.SetFinalizer(tmpValue, (*QTextDocumentWriter).DestroyQTextDocumentWriter)
 	return tmpValue
 }
@@ -48896,16 +48942,18 @@ func (ptr *QTextDocumentWriter) Device() *core.QIODevice {
 
 func (ptr *QTextDocumentWriter) FileName() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QTextDocumentWriter_FileName(ptr.Pointer()))
+		return cGoUnpackString(C.QTextDocumentWriter_FileName(ptr.Pointer()))
 	}
 	return ""
 }
 
-func (ptr *QTextDocumentWriter) Format() string {
+func (ptr *QTextDocumentWriter) Format() *core.QByteArray {
 	if ptr.Pointer() != nil {
-		return qt.HexDecodeToString(C.GoString(C.QTextDocumentWriter_Format(ptr.Pointer())))
+		var tmpValue = core.NewQByteArrayFromPointer(C.QTextDocumentWriter_Format(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		return tmpValue
 	}
-	return ""
+	return nil
 }
 
 func (ptr *QTextDocumentWriter) SetCodec(codec core.QTextCodec_ITF) {
@@ -48928,11 +48976,9 @@ func (ptr *QTextDocumentWriter) SetFileName(fileName string) {
 	}
 }
 
-func (ptr *QTextDocumentWriter) SetFormat(format string) {
+func (ptr *QTextDocumentWriter) SetFormat(format core.QByteArray_ITF) {
 	if ptr.Pointer() != nil {
-		var formatC = C.CString(hex.EncodeToString([]byte(format)))
-		defer C.free(unsafe.Pointer(formatC))
-		C.QTextDocumentWriter_SetFormat(ptr.Pointer(), formatC)
+		C.QTextDocumentWriter_SetFormat(ptr.Pointer(), core.PointerFromQByteArray(format))
 	}
 }
 
@@ -49368,7 +49414,7 @@ func (ptr *QTextFormat) SetProperty(propertyId int, value core.QVariant_ITF) {
 
 func (ptr *QTextFormat) StringProperty(propertyId int) string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QTextFormat_StringProperty(ptr.Pointer(), C.int(int32(propertyId))))
+		return cGoUnpackString(C.QTextFormat_StringProperty(ptr.Pointer(), C.int(int32(propertyId))))
 	}
 	return ""
 }
@@ -49485,7 +49531,7 @@ func (ptr *QTextFragment) Position() int {
 
 func (ptr *QTextFragment) Text() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QTextFragment_Text(ptr.Pointer()))
+		return cGoUnpackString(C.QTextFragment_Text(ptr.Pointer()))
 	}
 	return ""
 }
@@ -50244,7 +50290,7 @@ func (ptr *QTextImageFormat) IsValid() bool {
 
 func (ptr *QTextImageFormat) Name() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QTextImageFormat_Name(ptr.Pointer()))
+		return cGoUnpackString(C.QTextImageFormat_Name(ptr.Pointer()))
 	}
 	return ""
 }
@@ -50497,7 +50543,7 @@ func (ptr *QTextItem) RenderFlags() QTextItem__RenderFlag {
 
 func (ptr *QTextItem) Text() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QTextItem_Text(ptr.Pointer()))
+		return cGoUnpackString(C.QTextItem_Text(ptr.Pointer()))
 	}
 	return ""
 }
@@ -50704,7 +50750,7 @@ func (ptr *QTextLayout) PreeditAreaPosition() int {
 
 func (ptr *QTextLayout) PreeditAreaText() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QTextLayout_PreeditAreaText(ptr.Pointer()))
+		return cGoUnpackString(C.QTextLayout_PreeditAreaText(ptr.Pointer()))
 	}
 	return ""
 }
@@ -50771,7 +50817,7 @@ func (ptr *QTextLayout) SetTextOption(option QTextOption_ITF) {
 
 func (ptr *QTextLayout) Text() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QTextLayout_Text(ptr.Pointer()))
+		return cGoUnpackString(C.QTextLayout_Text(ptr.Pointer()))
 	}
 	return ""
 }
@@ -51170,7 +51216,7 @@ func (ptr *QTextList) ItemNumber(block QTextBlock_ITF) int {
 
 func (ptr *QTextList) ItemText(block QTextBlock_ITF) string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QTextList_ItemText(ptr.Pointer(), PointerFromQTextBlock(block)))
+		return cGoUnpackString(C.QTextList_ItemText(ptr.Pointer(), PointerFromQTextBlock(block)))
 	}
 	return ""
 }
@@ -51737,14 +51783,14 @@ func (ptr *QTextListFormat) IsValid() bool {
 
 func (ptr *QTextListFormat) NumberPrefix() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QTextListFormat_NumberPrefix(ptr.Pointer()))
+		return cGoUnpackString(C.QTextListFormat_NumberPrefix(ptr.Pointer()))
 	}
 	return ""
 }
 
 func (ptr *QTextListFormat) NumberSuffix() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QTextListFormat_NumberSuffix(ptr.Pointer()))
+		return cGoUnpackString(C.QTextListFormat_NumberSuffix(ptr.Pointer()))
 	}
 	return ""
 }
@@ -53466,7 +53512,7 @@ func (ptr *QTouchDevice) MaximumTouchPoints() int {
 
 func (ptr *QTouchDevice) Name() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QTouchDevice_Name(ptr.Pointer()))
+		return cGoUnpackString(C.QTouchDevice_Name(ptr.Pointer()))
 	}
 	return ""
 }
@@ -54162,12 +54208,12 @@ func NewQValidatorFromPointer(ptr unsafe.Pointer) *QValidator {
 }
 
 //export callbackQValidator_Fixup
-func callbackQValidator_Fixup(ptr unsafe.Pointer, input *C.char) {
+func callbackQValidator_Fixup(ptr unsafe.Pointer, input C.struct_QtGui_PackedString) {
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QValidator::fixup"); signal != nil {
-		signal.(func(string))(C.GoString(input))
+		signal.(func(string))(cGoUnpackString(input))
 	} else {
-		NewQValidatorFromPointer(ptr).FixupDefault(C.GoString(input))
+		NewQValidatorFromPointer(ptr).FixupDefault(cGoUnpackString(input))
 	}
 }
 
@@ -54254,10 +54300,10 @@ func (ptr *QValidator) SetLocale(locale core.QLocale_ITF) {
 }
 
 //export callbackQValidator_Validate
-func callbackQValidator_Validate(ptr unsafe.Pointer, input *C.char, pos C.int) C.longlong {
+func callbackQValidator_Validate(ptr unsafe.Pointer, input C.struct_QtGui_PackedString, pos C.int) C.longlong {
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QValidator::validate"); signal != nil {
-		return C.longlong(signal.(func(string, int) QValidator__State)(C.GoString(input), int(int32(pos))))
+		return C.longlong(signal.(func(string, int) QValidator__State)(cGoUnpackString(input), int(int32(pos))))
 	}
 
 	return C.longlong(0)
@@ -55254,7 +55300,7 @@ func NewQWhatsThisClickedEvent(href string) *QWhatsThisClickedEvent {
 
 func (ptr *QWhatsThisClickedEvent) Href() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QWhatsThisClickedEvent_Href(ptr.Pointer()))
+		return cGoUnpackString(C.QWhatsThisClickedEvent_Href(ptr.Pointer()))
 	}
 	return ""
 }
@@ -55819,9 +55865,9 @@ func (ptr *QWindow) SetOpacity(level float64) {
 }
 
 //export callbackQWindow_SetTitle
-func callbackQWindow_SetTitle(ptr unsafe.Pointer, vqs *C.char) {
+func callbackQWindow_SetTitle(ptr unsafe.Pointer, vqs C.struct_QtGui_PackedString) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWindow::setTitle"); signal != nil {
-		signal.(func(string))(C.GoString(vqs))
+		signal.(func(string))(cGoUnpackString(vqs))
 	}
 
 }
@@ -55968,7 +56014,7 @@ func (ptr *QWindow) SetY(arg int) {
 
 func (ptr *QWindow) Title() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QWindow_Title(ptr.Pointer()))
+		return cGoUnpackString(C.QWindow_Title(ptr.Pointer()))
 	}
 	return ""
 }
@@ -56225,7 +56271,7 @@ func (ptr *QWindow) ExposeEventDefault(ev QExposeEvent_ITF) {
 
 func (ptr *QWindow) FilePath() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QWindow_FilePath(ptr.Pointer()))
+		return cGoUnpackString(C.QWindow_FilePath(ptr.Pointer()))
 	}
 	return ""
 }
@@ -57096,16 +57142,16 @@ func (ptr *QWindow) MoveEventDefault(ev QMoveEvent_ITF) {
 }
 
 //export callbackQWindow_NativeEvent
-func callbackQWindow_NativeEvent(ptr unsafe.Pointer, eventType *C.char, message unsafe.Pointer, result C.long) C.char {
+func callbackQWindow_NativeEvent(ptr unsafe.Pointer, eventType unsafe.Pointer, message unsafe.Pointer, result C.long) C.char {
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWindow::nativeEvent"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt(signal.(func(string, unsafe.Pointer, int) bool)(qt.HexDecodeToString(C.GoString(eventType)), message, int(int32(result))))))
+		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QByteArray, unsafe.Pointer, int) bool)(core.NewQByteArrayFromPointer(eventType), message, int(int32(result))))))
 	}
 
-	return C.char(int8(qt.GoBoolToInt(NewQWindowFromPointer(ptr).NativeEventDefault(qt.HexDecodeToString(C.GoString(eventType)), message, int(int32(result))))))
+	return C.char(int8(qt.GoBoolToInt(NewQWindowFromPointer(ptr).NativeEventDefault(core.NewQByteArrayFromPointer(eventType), message, int(int32(result))))))
 }
 
-func (ptr *QWindow) ConnectNativeEvent(f func(eventType string, message unsafe.Pointer, result int) bool) {
+func (ptr *QWindow) ConnectNativeEvent(f func(eventType *core.QByteArray, message unsafe.Pointer, result int) bool) {
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QWindow::nativeEvent", f)
@@ -57119,20 +57165,16 @@ func (ptr *QWindow) DisconnectNativeEvent() {
 	}
 }
 
-func (ptr *QWindow) NativeEvent(eventType string, message unsafe.Pointer, result int) bool {
+func (ptr *QWindow) NativeEvent(eventType core.QByteArray_ITF, message unsafe.Pointer, result int) bool {
 	if ptr.Pointer() != nil {
-		var eventTypeC = C.CString(hex.EncodeToString([]byte(eventType)))
-		defer C.free(unsafe.Pointer(eventTypeC))
-		return C.QWindow_NativeEvent(ptr.Pointer(), eventTypeC, message, C.long(int32(result))) != 0
+		return C.QWindow_NativeEvent(ptr.Pointer(), core.PointerFromQByteArray(eventType), message, C.long(int32(result))) != 0
 	}
 	return false
 }
 
-func (ptr *QWindow) NativeEventDefault(eventType string, message unsafe.Pointer, result int) bool {
+func (ptr *QWindow) NativeEventDefault(eventType core.QByteArray_ITF, message unsafe.Pointer, result int) bool {
 	if ptr.Pointer() != nil {
-		var eventTypeC = C.CString(hex.EncodeToString([]byte(eventType)))
-		defer C.free(unsafe.Pointer(eventTypeC))
-		return C.QWindow_NativeEventDefault(ptr.Pointer(), eventTypeC, message, C.long(int32(result))) != 0
+		return C.QWindow_NativeEventDefault(ptr.Pointer(), core.PointerFromQByteArray(eventType), message, C.long(int32(result))) != 0
 	}
 	return false
 }
@@ -58032,10 +58074,10 @@ func (ptr *QWindow) WindowStateChanged(windowState core.Qt__WindowState) {
 }
 
 //export callbackQWindow_WindowTitleChanged
-func callbackQWindow_WindowTitleChanged(ptr unsafe.Pointer, title *C.char) {
+func callbackQWindow_WindowTitleChanged(ptr unsafe.Pointer, title C.struct_QtGui_PackedString) {
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWindow::windowTitleChanged"); signal != nil {
-		signal.(func(string))(C.GoString(title))
+		signal.(func(string))(cGoUnpackString(title))
 	}
 
 }

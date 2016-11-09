@@ -15,6 +15,13 @@ import (
 	"unsafe"
 )
 
+func cGoUnpackString(s C.struct_QtScriptTools_PackedString) string {
+	if len := int(s.len); len == -1 {
+		return C.GoString(s.data)
+	}
+	return C.GoStringN(s.data, C.int(s.len))
+}
+
 //QScriptEngineDebugger::DebuggerAction
 type QScriptEngineDebugger__DebuggerAction int64
 

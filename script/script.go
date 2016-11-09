@@ -15,6 +15,13 @@ import (
 	"unsafe"
 )
 
+func cGoUnpackString(s C.struct_QtScript_PackedString) string {
+	if len := int(s.len); len == -1 {
+		return C.GoString(s.data)
+	}
+	return C.GoStringN(s.data, C.int(s.len))
+}
+
 //QScriptClass::Extension
 type QScriptClass__Extension int64
 
@@ -151,14 +158,14 @@ func (ptr *QScriptClass) DisconnectName() {
 
 func (ptr *QScriptClass) Name() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QScriptClass_Name(ptr.Pointer()))
+		return cGoUnpackString(C.QScriptClass_Name(ptr.Pointer()))
 	}
 	return ""
 }
 
 func (ptr *QScriptClass) NameDefault() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QScriptClass_NameDefault(ptr.Pointer()))
+		return cGoUnpackString(C.QScriptClass_NameDefault(ptr.Pointer()))
 	}
 	return ""
 }
@@ -606,7 +613,7 @@ func (ptr *QScriptContext) ArgumentsObject() *QScriptValue {
 
 func (ptr *QScriptContext) Backtrace() []string {
 	if ptr.Pointer() != nil {
-		return strings.Split(C.GoString(C.QScriptContext_Backtrace(ptr.Pointer())), "|")
+		return strings.Split(cGoUnpackString(C.QScriptContext_Backtrace(ptr.Pointer())), "|")
 	}
 	return make([]string, 0)
 }
@@ -706,7 +713,7 @@ func (ptr *QScriptContext) ThrowValue(value QScriptValue_ITF) *QScriptValue {
 
 func (ptr *QScriptContext) ToString() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QScriptContext_ToString(ptr.Pointer()))
+		return cGoUnpackString(C.QScriptContext_ToString(ptr.Pointer()))
 	}
 	return ""
 }
@@ -785,7 +792,7 @@ func NewQScriptContextInfo2(other QScriptContextInfo_ITF) *QScriptContextInfo {
 
 func (ptr *QScriptContextInfo) FileName() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QScriptContextInfo_FileName(ptr.Pointer()))
+		return cGoUnpackString(C.QScriptContextInfo_FileName(ptr.Pointer()))
 	}
 	return ""
 }
@@ -806,14 +813,14 @@ func (ptr *QScriptContextInfo) FunctionMetaIndex() int {
 
 func (ptr *QScriptContextInfo) FunctionName() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QScriptContextInfo_FunctionName(ptr.Pointer()))
+		return cGoUnpackString(C.QScriptContextInfo_FunctionName(ptr.Pointer()))
 	}
 	return ""
 }
 
 func (ptr *QScriptContextInfo) FunctionParameterNames() []string {
 	if ptr.Pointer() != nil {
-		return strings.Split(C.GoString(C.QScriptContextInfo_FunctionParameterNames(ptr.Pointer())), "|")
+		return strings.Split(cGoUnpackString(C.QScriptContextInfo_FunctionParameterNames(ptr.Pointer())), "|")
 	}
 	return make([]string, 0)
 }
@@ -953,7 +960,7 @@ func (ptr *QScriptEngine) Agent() *QScriptEngineAgent {
 
 func (ptr *QScriptEngine) AvailableExtensions() []string {
 	if ptr.Pointer() != nil {
-		return strings.Split(C.GoString(C.QScriptEngine_AvailableExtensions(ptr.Pointer())), "|")
+		return strings.Split(cGoUnpackString(C.QScriptEngine_AvailableExtensions(ptr.Pointer())), "|")
 	}
 	return make([]string, 0)
 }
@@ -1053,7 +1060,7 @@ func (ptr *QScriptEngine) ImportExtension(extension string) *QScriptValue {
 
 func (ptr *QScriptEngine) ImportedExtensions() []string {
 	if ptr.Pointer() != nil {
-		return strings.Split(C.GoString(C.QScriptEngine_ImportedExtensions(ptr.Pointer())), "|")
+		return strings.Split(cGoUnpackString(C.QScriptEngine_ImportedExtensions(ptr.Pointer())), "|")
 	}
 	return make([]string, 0)
 }
@@ -1293,7 +1300,7 @@ func (ptr *QScriptEngine) UncaughtException() *QScriptValue {
 
 func (ptr *QScriptEngine) UncaughtExceptionBacktrace() []string {
 	if ptr.Pointer() != nil {
-		return strings.Split(C.GoString(C.QScriptEngine_UncaughtExceptionBacktrace(ptr.Pointer())), "|")
+		return strings.Split(cGoUnpackString(C.QScriptEngine_UncaughtExceptionBacktrace(ptr.Pointer())), "|")
 	}
 	return make([]string, 0)
 }
@@ -2041,12 +2048,12 @@ func (ptr *QScriptEngineAgent) PositionChangeDefault(scriptId int64, lineNumber 
 }
 
 //export callbackQScriptEngineAgent_ScriptLoad
-func callbackQScriptEngineAgent_ScriptLoad(ptr unsafe.Pointer, id C.longlong, program *C.char, fileName *C.char, baseLineNumber C.int) {
+func callbackQScriptEngineAgent_ScriptLoad(ptr unsafe.Pointer, id C.longlong, program C.struct_QtScript_PackedString, fileName C.struct_QtScript_PackedString, baseLineNumber C.int) {
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QScriptEngineAgent::scriptLoad"); signal != nil {
-		signal.(func(int64, string, string, int))(int64(id), C.GoString(program), C.GoString(fileName), int(int32(baseLineNumber)))
+		signal.(func(int64, string, string, int))(int64(id), cGoUnpackString(program), cGoUnpackString(fileName), int(int32(baseLineNumber)))
 	} else {
-		NewQScriptEngineAgentFromPointer(ptr).ScriptLoadDefault(int64(id), C.GoString(program), C.GoString(fileName), int(int32(baseLineNumber)))
+		NewQScriptEngineAgentFromPointer(ptr).ScriptLoadDefault(int64(id), cGoUnpackString(program), cGoUnpackString(fileName), int(int32(baseLineNumber)))
 	}
 }
 
@@ -2245,10 +2252,10 @@ func NewQScriptExtensionPlugin(parent core.QObject_ITF) *QScriptExtensionPlugin 
 }
 
 //export callbackQScriptExtensionPlugin_Initialize
-func callbackQScriptExtensionPlugin_Initialize(ptr unsafe.Pointer, key *C.char, engine unsafe.Pointer) {
+func callbackQScriptExtensionPlugin_Initialize(ptr unsafe.Pointer, key C.struct_QtScript_PackedString, engine unsafe.Pointer) {
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QScriptExtensionPlugin::initialize"); signal != nil {
-		signal.(func(string, *QScriptEngine))(C.GoString(key), NewQScriptEngineFromPointer(engine))
+		signal.(func(string, *QScriptEngine))(cGoUnpackString(key), NewQScriptEngineFromPointer(engine))
 	}
 
 }
@@ -2301,7 +2308,7 @@ func (ptr *QScriptExtensionPlugin) DisconnectKeys() {
 
 func (ptr *QScriptExtensionPlugin) Keys() []string {
 	if ptr.Pointer() != nil {
-		return strings.Split(C.GoString(C.QScriptExtensionPlugin_Keys(ptr.Pointer())), "|")
+		return strings.Split(cGoUnpackString(C.QScriptExtensionPlugin_Keys(ptr.Pointer())), "|")
 	}
 	return make([]string, 0)
 }
@@ -2719,7 +2726,7 @@ func NewQScriptProgram2(sourceCode string, fileName string, firstLineNumber int)
 
 func (ptr *QScriptProgram) FileName() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QScriptProgram_FileName(ptr.Pointer()))
+		return cGoUnpackString(C.QScriptProgram_FileName(ptr.Pointer()))
 	}
 	return ""
 }
@@ -2740,7 +2747,7 @@ func (ptr *QScriptProgram) IsNull() bool {
 
 func (ptr *QScriptProgram) SourceCode() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QScriptProgram_SourceCode(ptr.Pointer()))
+		return cGoUnpackString(C.QScriptProgram_SourceCode(ptr.Pointer()))
 	}
 	return ""
 }
@@ -2817,7 +2824,7 @@ func (ptr *QScriptString) ToArrayIndex(ok bool) uint {
 
 func (ptr *QScriptString) ToString() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QScriptString_ToString(ptr.Pointer()))
+		return cGoUnpackString(C.QScriptString_ToString(ptr.Pointer()))
 	}
 	return ""
 }
@@ -2897,7 +2904,7 @@ func (ptr *QScriptSyntaxCheckResult) ErrorLineNumber() int {
 
 func (ptr *QScriptSyntaxCheckResult) ErrorMessage() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QScriptSyntaxCheckResult_ErrorMessage(ptr.Pointer()))
+		return cGoUnpackString(C.QScriptSyntaxCheckResult_ErrorMessage(ptr.Pointer()))
 	}
 	return ""
 }
@@ -3365,7 +3372,7 @@ func (ptr *QScriptValue) ToRegExp() *core.QRegExp {
 
 func (ptr *QScriptValue) ToString() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QScriptValue_ToString(ptr.Pointer()))
+		return cGoUnpackString(C.QScriptValue_ToString(ptr.Pointer()))
 	}
 	return ""
 }

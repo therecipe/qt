@@ -70,7 +70,9 @@ func cppFunctionCallbackHeader(function *parser.Function) string {
 }
 
 func cppFunctionCallbackBody(function *parser.Function) string {
-	return fmt.Sprintf("%v%v;",
+	return fmt.Sprintf("%v%v%v;",
+
+		converter.CppInputParametersForCallbackBodyPrePack(function),
 
 		func() string {
 			if converter.CppHeaderOutput(function) != parser.VOID {
@@ -182,7 +184,7 @@ func cppFunctionBody(function *parser.Function) string {
 
 	QList<QByteArray> aList = QByteArray(argv).split('|');
 	for (int i = 0; i < argcs; i++)
-		argvs[i] = (new QByteArray(aList.at(i)))->prepend("WHITESPACE").data()+10;
+		argvs[i] = (new QByteArray(aList.at(i)))->data();
 
 `
 					}
@@ -258,7 +260,7 @@ func cppFunctionBody(function *parser.Function) string {
 
 	QList<QByteArray> aList = QByteArray(argv).split('|');
 	for (int i = 0; i < argcs; i++)
-		argvs[i] = (new QByteArray(aList.at(i)))->prepend("WHITESPACE").data()+10;
+		argvs[i] = (new QByteArray(aList.at(i)))->data();
 
 	return %v(%v);`,
 

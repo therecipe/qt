@@ -7,13 +7,19 @@ package serialbus
 //#include "serialbus.h"
 import "C"
 import (
-	"encoding/hex"
 	"fmt"
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
 	"runtime"
 	"unsafe"
 )
+
+func cGoUnpackString(s C.struct_QtSerialBus_PackedString) string {
+	if len := int(s.len); len == -1 {
+		return C.GoString(s.data)
+	}
+	return C.GoStringN(s.data, C.int(s.len))
+}
 
 type QCanBus struct {
 	core.QObject
@@ -60,13 +66,11 @@ func (ptr *QCanBus) DestroyQCanBus() {
 	ptr.SetPointer(nil)
 }
 
-func (ptr *QCanBus) CreateDevice(plugin string, interfaceName string) *QCanBusDevice {
+func (ptr *QCanBus) CreateDevice(plugin core.QByteArray_ITF, interfaceName string) *QCanBusDevice {
 	if ptr.Pointer() != nil {
-		var pluginC = C.CString(hex.EncodeToString([]byte(plugin)))
-		defer C.free(unsafe.Pointer(pluginC))
 		var interfaceNameC = C.CString(interfaceName)
 		defer C.free(unsafe.Pointer(interfaceNameC))
-		var tmpValue = NewQCanBusDeviceFromPointer(C.QCanBus_CreateDevice(ptr.Pointer(), pluginC, interfaceNameC))
+		var tmpValue = NewQCanBusDeviceFromPointer(C.QCanBus_CreateDevice(ptr.Pointer(), core.PointerFromQByteArray(plugin), interfaceNameC))
 		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
@@ -621,7 +625,7 @@ func (ptr *QCanBusDevice) ErrorOccurred(error QCanBusDevice__CanBusError) {
 
 func (ptr *QCanBusDevice) ErrorString() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QCanBusDevice_ErrorString(ptr.Pointer()))
+		return cGoUnpackString(C.QCanBusDevice_ErrorString(ptr.Pointer()))
 	}
 	return ""
 }
@@ -717,7 +721,7 @@ func (ptr *QCanBusDevice) DisconnectInterpretErrorFrame(frame QCanBusFrame_ITF) 
 
 func (ptr *QCanBusDevice) InterpretErrorFrame(frame QCanBusFrame_ITF) string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QCanBusDevice_InterpretErrorFrame(ptr.Pointer(), PointerFromQCanBusFrame(frame)))
+		return cGoUnpackString(C.QCanBusDevice_InterpretErrorFrame(ptr.Pointer(), PointerFromQCanBusFrame(frame)))
 	}
 	return ""
 }
@@ -1248,10 +1252,10 @@ func (ptr *QCanBusFactory) DestroyQCanBusFactory() {
 }
 
 //export callbackQCanBusFactory_CreateDevice
-func callbackQCanBusFactory_CreateDevice(ptr unsafe.Pointer, interfaceName *C.char) unsafe.Pointer {
+func callbackQCanBusFactory_CreateDevice(ptr unsafe.Pointer, interfaceName C.struct_QtSerialBus_PackedString) unsafe.Pointer {
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCanBusFactory::createDevice"); signal != nil {
-		return PointerFromQCanBusDevice(signal.(func(string) *QCanBusDevice)(C.GoString(interfaceName)))
+		return PointerFromQCanBusDevice(signal.(func(string) *QCanBusDevice)(cGoUnpackString(interfaceName)))
 	}
 
 	return PointerFromQCanBusDevice(nil)
@@ -1362,10 +1366,8 @@ func NewQCanBusFrame(ty QCanBusFrame__FrameType) *QCanBusFrame {
 	return tmpValue
 }
 
-func NewQCanBusFrame2(identifier uint, data string) *QCanBusFrame {
-	var dataC = C.CString(hex.EncodeToString([]byte(data)))
-	defer C.free(unsafe.Pointer(dataC))
-	var tmpValue = NewQCanBusFrameFromPointer(C.QCanBusFrame_NewQCanBusFrame2(C.uint(uint32(identifier)), dataC))
+func NewQCanBusFrame2(identifier uint, data core.QByteArray_ITF) *QCanBusFrame {
+	var tmpValue = NewQCanBusFrameFromPointer(C.QCanBusFrame_NewQCanBusFrame2(C.uint(uint32(identifier)), core.PointerFromQByteArray(data)))
 	runtime.SetFinalizer(tmpValue, (*QCanBusFrame).DestroyQCanBusFrame)
 	return tmpValue
 }
@@ -1405,11 +1407,13 @@ func (ptr *QCanBusFrame) IsValid() bool {
 	return false
 }
 
-func (ptr *QCanBusFrame) Payload() string {
+func (ptr *QCanBusFrame) Payload() *core.QByteArray {
 	if ptr.Pointer() != nil {
-		return qt.HexDecodeToString(C.GoString(C.QCanBusFrame_Payload(ptr.Pointer())))
+		var tmpValue = core.NewQByteArrayFromPointer(C.QCanBusFrame_Payload(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		return tmpValue
 	}
-	return ""
+	return nil
 }
 
 func (ptr *QCanBusFrame) SetError(error QCanBusFrame__FrameError) {
@@ -1436,11 +1440,9 @@ func (ptr *QCanBusFrame) SetFrameType(newType QCanBusFrame__FrameType) {
 	}
 }
 
-func (ptr *QCanBusFrame) SetPayload(data string) {
+func (ptr *QCanBusFrame) SetPayload(data core.QByteArray_ITF) {
 	if ptr.Pointer() != nil {
-		var dataC = C.CString(hex.EncodeToString([]byte(data)))
-		defer C.free(unsafe.Pointer(dataC))
-		C.QCanBusFrame_SetPayload(ptr.Pointer(), dataC)
+		C.QCanBusFrame_SetPayload(ptr.Pointer(), core.PointerFromQByteArray(data))
 	}
 }
 
@@ -2371,7 +2373,7 @@ func (ptr *QModbusDevice) ErrorOccurred(error QModbusDevice__Error) {
 
 func (ptr *QModbusDevice) ErrorString() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QModbusDevice_ErrorString(ptr.Pointer()))
+		return cGoUnpackString(C.QModbusDevice_ErrorString(ptr.Pointer()))
 	}
 	return ""
 }
@@ -2905,11 +2907,9 @@ func (ptr *QModbusDeviceIdentification) Contains(objectId uint) bool {
 	return false
 }
 
-func (ptr *QModbusDeviceIdentification) Insert(objectId uint, value string) bool {
+func (ptr *QModbusDeviceIdentification) Insert(objectId uint, value core.QByteArray_ITF) bool {
 	if ptr.Pointer() != nil {
-		var valueC = C.CString(hex.EncodeToString([]byte(value)))
-		defer C.free(unsafe.Pointer(valueC))
-		return C.QModbusDeviceIdentification_Insert(ptr.Pointer(), C.uint(uint32(objectId)), valueC) != 0
+		return C.QModbusDeviceIdentification_Insert(ptr.Pointer(), C.uint(uint32(objectId)), core.PointerFromQByteArray(value)) != 0
 	}
 	return false
 }
@@ -2933,11 +2933,13 @@ func (ptr *QModbusDeviceIdentification) SetConformityLevel(level QModbusDeviceId
 	}
 }
 
-func (ptr *QModbusDeviceIdentification) Value(objectId uint) string {
+func (ptr *QModbusDeviceIdentification) Value(objectId uint) *core.QByteArray {
 	if ptr.Pointer() != nil {
-		return qt.HexDecodeToString(C.GoString(C.QModbusDeviceIdentification_Value(ptr.Pointer(), C.uint(uint32(objectId)))))
+		var tmpValue = core.NewQByteArrayFromPointer(C.QModbusDeviceIdentification_Value(ptr.Pointer(), C.uint(uint32(objectId))))
+		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		return tmpValue
 	}
-	return ""
+	return nil
 }
 
 type QModbusExceptionResponse struct {
@@ -3124,10 +3126,8 @@ func NewQModbusPdu() *QModbusPdu {
 	return NewQModbusPduFromPointer(C.QModbusPdu_NewQModbusPdu())
 }
 
-func NewQModbusPdu2(code QModbusPdu__FunctionCode, data string) *QModbusPdu {
-	var dataC = C.CString(hex.EncodeToString([]byte(data)))
-	defer C.free(unsafe.Pointer(dataC))
-	return NewQModbusPduFromPointer(C.QModbusPdu_NewQModbusPdu2(C.longlong(code), dataC))
+func NewQModbusPdu2(code QModbusPdu__FunctionCode, data core.QByteArray_ITF) *QModbusPdu {
+	return NewQModbusPduFromPointer(C.QModbusPdu_NewQModbusPdu2(C.longlong(code), core.PointerFromQByteArray(data)))
 }
 
 func NewQModbusPdu3(other QModbusPdu_ITF) *QModbusPdu {
@@ -3141,11 +3141,13 @@ func (ptr *QModbusPdu) DataSize() int16 {
 	return 0
 }
 
-func (ptr *QModbusPdu) Data() string {
+func (ptr *QModbusPdu) Data() *core.QByteArray {
 	if ptr.Pointer() != nil {
-		return qt.HexDecodeToString(C.GoString(C.QModbusPdu_Data(ptr.Pointer())))
+		var tmpValue = core.NewQByteArrayFromPointer(C.QModbusPdu_Data(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		return tmpValue
 	}
-	return ""
+	return nil
 }
 
 func (ptr *QModbusPdu) ExceptionCode() QModbusPdu__ExceptionCode {
@@ -3176,11 +3178,9 @@ func (ptr *QModbusPdu) IsValid() bool {
 	return false
 }
 
-func (ptr *QModbusPdu) SetData(data string) {
+func (ptr *QModbusPdu) SetData(data core.QByteArray_ITF) {
 	if ptr.Pointer() != nil {
-		var dataC = C.CString(hex.EncodeToString([]byte(data)))
-		defer C.free(unsafe.Pointer(dataC))
-		C.QModbusPdu_SetData(ptr.Pointer(), dataC)
+		C.QModbusPdu_SetData(ptr.Pointer(), core.PointerFromQByteArray(data))
 	}
 }
 
@@ -3366,7 +3366,7 @@ func (ptr *QModbusReply) ErrorOccurred(error QModbusDevice__Error) {
 
 func (ptr *QModbusReply) ErrorString() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QModbusReply_ErrorString(ptr.Pointer()))
+		return cGoUnpackString(C.QModbusReply_ErrorString(ptr.Pointer()))
 	}
 	return ""
 }
@@ -3804,10 +3804,8 @@ func NewQModbusRequest() *QModbusRequest {
 	return tmpValue
 }
 
-func NewQModbusRequest3(code QModbusPdu__FunctionCode, data string) *QModbusRequest {
-	var dataC = C.CString(hex.EncodeToString([]byte(data)))
-	defer C.free(unsafe.Pointer(dataC))
-	var tmpValue = NewQModbusRequestFromPointer(C.QModbusRequest_NewQModbusRequest3(C.longlong(code), dataC))
+func NewQModbusRequest3(code QModbusPdu__FunctionCode, data core.QByteArray_ITF) *QModbusRequest {
+	var tmpValue = NewQModbusRequestFromPointer(C.QModbusRequest_NewQModbusRequest3(C.longlong(code), core.PointerFromQByteArray(data)))
 	runtime.SetFinalizer(tmpValue, (*QModbusRequest).DestroyQModbusRequest)
 	return tmpValue
 }
@@ -3920,10 +3918,8 @@ func NewQModbusResponse() *QModbusResponse {
 	return tmpValue
 }
 
-func NewQModbusResponse3(code QModbusPdu__FunctionCode, data string) *QModbusResponse {
-	var dataC = C.CString(hex.EncodeToString([]byte(data)))
-	defer C.free(unsafe.Pointer(dataC))
-	var tmpValue = NewQModbusResponseFromPointer(C.QModbusResponse_NewQModbusResponse3(C.longlong(code), dataC))
+func NewQModbusResponse3(code QModbusPdu__FunctionCode, data core.QByteArray_ITF) *QModbusResponse {
+	var tmpValue = NewQModbusResponseFromPointer(C.QModbusResponse_NewQModbusResponse3(C.longlong(code), core.PointerFromQByteArray(data)))
 	runtime.SetFinalizer(tmpValue, (*QModbusResponse).DestroyQModbusResponse)
 	return tmpValue
 }

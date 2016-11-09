@@ -15,6 +15,10 @@ func GoTemplate(module string, stub bool) []byte {
 	var bb = new(bytes.Buffer)
 	defer bb.Reset()
 
+	if !(UseStub() || stub) {
+		fmt.Fprintf(bb, "func cGoUnpackString(s C.struct_%v_PackedString) string { if len := int(s.len); len == -1 {\n return C.GoString(s.data)\n }\n return C.GoStringN(s.data, C.int(s.len)) }\n", strings.Title(module))
+	}
+
 	for _, class := range getSortedClassesForModule(module) {
 
 		//all class enums
@@ -373,18 +377,13 @@ import (
 		)
 	}
 
-	for _, m := range append(Libs, "qt", "strings", "unsafe", "log", "runtime", "hex", "fmt") {
+	for _, m := range append(Libs, "qt", "strings", "unsafe", "log", "runtime", "fmt") {
 		m = strings.ToLower(m)
 		if strings.Contains(string(input), fmt.Sprintf("%v.", m)) {
 			switch m {
 			case "strings", "unsafe", "log", "runtime", "fmt":
 				{
 					fmt.Fprintf(bb, "\"%v\"\n", m)
-				}
-
-			case "hex":
-				{
-					fmt.Fprintln(bb, "\"encoding/hex\"")
 				}
 
 			case "qt":

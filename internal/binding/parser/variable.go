@@ -61,7 +61,7 @@ func (v *Variable) propertyToFunctions(c *Class) []*Function {
 		return funcs
 	}
 
-	if !(c.hasFunctionWithName(v.Name) || c.hasFunctionWithName(fmt.Sprintf("is%v", strings.Title(v.Name))) || c.hasFunctionWithName(fmt.Sprintf("has%v", strings.Title(v.Name)))) && len(v.Getter) == 0 {
+	if !(c.HasFunctionWithName(v.Name) || c.HasFunctionWithName(fmt.Sprintf("is%v", strings.Title(v.Name))) || c.HasFunctionWithName(fmt.Sprintf("has%v", strings.Title(v.Name)))) && len(v.Getter) == 0 {
 
 		var tmpV = *v
 
@@ -101,7 +101,7 @@ func (v *Variable) propertyToFunctions(c *Class) []*Function {
 		})
 	}
 
-	if !c.hasFunctionWithName(fmt.Sprintf("set%v", strings.Title(v.Name))) && len(v.Getter) == 0 && len(v.Setter) == 0 {
+	if !c.HasFunctionWithName(fmt.Sprintf("set%v", strings.Title(v.Name))) && len(v.Getter) == 0 && len(v.Setter) == 0 {
 
 		switch v.Fullname {
 		case "QGraphicsObject::z":

@@ -26,7 +26,7 @@ func (m *Module) Prepare() {
 		for _, c := range m.Namespace.Classes {
 			c.register(m.Project)
 			for _, v := range c.Variables {
-				if !c.hasFunctionWithName(v.Name) {
+				if !c.HasFunctionWithName(v.Name) {
 					c.Functions = append(c.Functions, v.variableToFunction(GETTER))
 					if !strings.Contains(v.Output, "const") {
 						c.Functions = append(c.Functions, v.variableToFunction(SETTER))

@@ -479,7 +479,7 @@ var LibDeps = map[string][]string{
 	"build_ios": {"Core", "Gui", "Network", "Sql", "Xml", "DBus", "Nfc", "Script", "Sensors", "Positioning", "Widgets", "Qml", "WebSockets", "XmlPatterns", "Bluetooth", "WebChannel", "Svg", "Multimedia", "Quick", "Help", "Location", "ScriptTools", "MultimediaWidgets", "UiTools", "PrintSupport"},
 }
 
-func (c *Class) hasFunctionWithName(name string) bool {
+func (c *Class) HasFunctionWithName(name string) bool {
 	for _, f := range c.Functions {
 		if strings.ToLower(f.Name) == strings.ToLower(name) {
 			return true

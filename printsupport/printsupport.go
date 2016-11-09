@@ -7,7 +7,6 @@ package printsupport
 //#include "printsupport.h"
 import "C"
 import (
-	"encoding/hex"
 	"fmt"
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
@@ -17,6 +16,13 @@ import (
 	"strings"
 	"unsafe"
 )
+
+func cGoUnpackString(s C.struct_QtPrintSupport_PackedString) string {
+	if len := int(s.len); len == -1 {
+		return C.GoString(s.data)
+	}
+	return C.GoStringN(s.data, C.int(s.len))
+}
 
 //QAbstractPrintDialog::PrintDialogOption
 type QAbstractPrintDialog__PrintDialogOption int64
@@ -1094,11 +1100,11 @@ func (ptr *QAbstractPrintDialog) SetEnabledDefault(vbo bool) {
 }
 
 //export callbackQAbstractPrintDialog_SetStyleSheet
-func callbackQAbstractPrintDialog_SetStyleSheet(ptr unsafe.Pointer, styleSheet *C.char) {
+func callbackQAbstractPrintDialog_SetStyleSheet(ptr unsafe.Pointer, styleSheet C.struct_QtPrintSupport_PackedString) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractPrintDialog::setStyleSheet"); signal != nil {
-		signal.(func(string))(C.GoString(styleSheet))
+		signal.(func(string))(cGoUnpackString(styleSheet))
 	} else {
-		NewQAbstractPrintDialogFromPointer(ptr).SetStyleSheetDefault(C.GoString(styleSheet))
+		NewQAbstractPrintDialogFromPointer(ptr).SetStyleSheetDefault(cGoUnpackString(styleSheet))
 	}
 }
 
@@ -1168,11 +1174,11 @@ func (ptr *QAbstractPrintDialog) SetWindowModifiedDefault(vbo bool) {
 }
 
 //export callbackQAbstractPrintDialog_SetWindowTitle
-func callbackQAbstractPrintDialog_SetWindowTitle(ptr unsafe.Pointer, vqs *C.char) {
+func callbackQAbstractPrintDialog_SetWindowTitle(ptr unsafe.Pointer, vqs C.struct_QtPrintSupport_PackedString) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractPrintDialog::setWindowTitle"); signal != nil {
-		signal.(func(string))(C.GoString(vqs))
+		signal.(func(string))(cGoUnpackString(vqs))
 	} else {
-		NewQAbstractPrintDialogFromPointer(ptr).SetWindowTitleDefault(C.GoString(vqs))
+		NewQAbstractPrintDialogFromPointer(ptr).SetWindowTitleDefault(cGoUnpackString(vqs))
 	}
 }
 
@@ -1722,16 +1728,16 @@ func (ptr *QAbstractPrintDialog) MouseReleaseEventDefault(event gui.QMouseEvent_
 }
 
 //export callbackQAbstractPrintDialog_NativeEvent
-func callbackQAbstractPrintDialog_NativeEvent(ptr unsafe.Pointer, eventType *C.char, message unsafe.Pointer, result C.long) C.char {
+func callbackQAbstractPrintDialog_NativeEvent(ptr unsafe.Pointer, eventType unsafe.Pointer, message unsafe.Pointer, result C.long) C.char {
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractPrintDialog::nativeEvent"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt(signal.(func(string, unsafe.Pointer, int) bool)(qt.HexDecodeToString(C.GoString(eventType)), message, int(int32(result))))))
+		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QByteArray, unsafe.Pointer, int) bool)(core.NewQByteArrayFromPointer(eventType), message, int(int32(result))))))
 	}
 
-	return C.char(int8(qt.GoBoolToInt(NewQAbstractPrintDialogFromPointer(ptr).NativeEventDefault(qt.HexDecodeToString(C.GoString(eventType)), message, int(int32(result))))))
+	return C.char(int8(qt.GoBoolToInt(NewQAbstractPrintDialogFromPointer(ptr).NativeEventDefault(core.NewQByteArrayFromPointer(eventType), message, int(int32(result))))))
 }
 
-func (ptr *QAbstractPrintDialog) ConnectNativeEvent(f func(eventType string, message unsafe.Pointer, result int) bool) {
+func (ptr *QAbstractPrintDialog) ConnectNativeEvent(f func(eventType *core.QByteArray, message unsafe.Pointer, result int) bool) {
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractPrintDialog::nativeEvent", f)
@@ -1745,20 +1751,16 @@ func (ptr *QAbstractPrintDialog) DisconnectNativeEvent() {
 	}
 }
 
-func (ptr *QAbstractPrintDialog) NativeEvent(eventType string, message unsafe.Pointer, result int) bool {
+func (ptr *QAbstractPrintDialog) NativeEvent(eventType core.QByteArray_ITF, message unsafe.Pointer, result int) bool {
 	if ptr.Pointer() != nil {
-		var eventTypeC = C.CString(hex.EncodeToString([]byte(eventType)))
-		defer C.free(unsafe.Pointer(eventTypeC))
-		return C.QAbstractPrintDialog_NativeEvent(ptr.Pointer(), eventTypeC, message, C.long(int32(result))) != 0
+		return C.QAbstractPrintDialog_NativeEvent(ptr.Pointer(), core.PointerFromQByteArray(eventType), message, C.long(int32(result))) != 0
 	}
 	return false
 }
 
-func (ptr *QAbstractPrintDialog) NativeEventDefault(eventType string, message unsafe.Pointer, result int) bool {
+func (ptr *QAbstractPrintDialog) NativeEventDefault(eventType core.QByteArray_ITF, message unsafe.Pointer, result int) bool {
 	if ptr.Pointer() != nil {
-		var eventTypeC = C.CString(hex.EncodeToString([]byte(eventType)))
-		defer C.free(unsafe.Pointer(eventTypeC))
-		return C.QAbstractPrintDialog_NativeEventDefault(ptr.Pointer(), eventTypeC, message, C.long(int32(result))) != 0
+		return C.QAbstractPrintDialog_NativeEventDefault(ptr.Pointer(), core.PointerFromQByteArray(eventType), message, C.long(int32(result))) != 0
 	}
 	return false
 }
@@ -3410,11 +3412,11 @@ func (ptr *QPageSetupDialog) SetEnabledDefault(vbo bool) {
 }
 
 //export callbackQPageSetupDialog_SetStyleSheet
-func callbackQPageSetupDialog_SetStyleSheet(ptr unsafe.Pointer, styleSheet *C.char) {
+func callbackQPageSetupDialog_SetStyleSheet(ptr unsafe.Pointer, styleSheet C.struct_QtPrintSupport_PackedString) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPageSetupDialog::setStyleSheet"); signal != nil {
-		signal.(func(string))(C.GoString(styleSheet))
+		signal.(func(string))(cGoUnpackString(styleSheet))
 	} else {
-		NewQPageSetupDialogFromPointer(ptr).SetStyleSheetDefault(C.GoString(styleSheet))
+		NewQPageSetupDialogFromPointer(ptr).SetStyleSheetDefault(cGoUnpackString(styleSheet))
 	}
 }
 
@@ -3484,11 +3486,11 @@ func (ptr *QPageSetupDialog) SetWindowModifiedDefault(vbo bool) {
 }
 
 //export callbackQPageSetupDialog_SetWindowTitle
-func callbackQPageSetupDialog_SetWindowTitle(ptr unsafe.Pointer, vqs *C.char) {
+func callbackQPageSetupDialog_SetWindowTitle(ptr unsafe.Pointer, vqs C.struct_QtPrintSupport_PackedString) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPageSetupDialog::setWindowTitle"); signal != nil {
-		signal.(func(string))(C.GoString(vqs))
+		signal.(func(string))(cGoUnpackString(vqs))
 	} else {
-		NewQPageSetupDialogFromPointer(ptr).SetWindowTitleDefault(C.GoString(vqs))
+		NewQPageSetupDialogFromPointer(ptr).SetWindowTitleDefault(cGoUnpackString(vqs))
 	}
 }
 
@@ -4038,16 +4040,16 @@ func (ptr *QPageSetupDialog) MouseReleaseEventDefault(event gui.QMouseEvent_ITF)
 }
 
 //export callbackQPageSetupDialog_NativeEvent
-func callbackQPageSetupDialog_NativeEvent(ptr unsafe.Pointer, eventType *C.char, message unsafe.Pointer, result C.long) C.char {
+func callbackQPageSetupDialog_NativeEvent(ptr unsafe.Pointer, eventType unsafe.Pointer, message unsafe.Pointer, result C.long) C.char {
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPageSetupDialog::nativeEvent"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt(signal.(func(string, unsafe.Pointer, int) bool)(qt.HexDecodeToString(C.GoString(eventType)), message, int(int32(result))))))
+		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QByteArray, unsafe.Pointer, int) bool)(core.NewQByteArrayFromPointer(eventType), message, int(int32(result))))))
 	}
 
-	return C.char(int8(qt.GoBoolToInt(NewQPageSetupDialogFromPointer(ptr).NativeEventDefault(qt.HexDecodeToString(C.GoString(eventType)), message, int(int32(result))))))
+	return C.char(int8(qt.GoBoolToInt(NewQPageSetupDialogFromPointer(ptr).NativeEventDefault(core.NewQByteArrayFromPointer(eventType), message, int(int32(result))))))
 }
 
-func (ptr *QPageSetupDialog) ConnectNativeEvent(f func(eventType string, message unsafe.Pointer, result int) bool) {
+func (ptr *QPageSetupDialog) ConnectNativeEvent(f func(eventType *core.QByteArray, message unsafe.Pointer, result int) bool) {
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPageSetupDialog::nativeEvent", f)
@@ -4061,20 +4063,16 @@ func (ptr *QPageSetupDialog) DisconnectNativeEvent() {
 	}
 }
 
-func (ptr *QPageSetupDialog) NativeEvent(eventType string, message unsafe.Pointer, result int) bool {
+func (ptr *QPageSetupDialog) NativeEvent(eventType core.QByteArray_ITF, message unsafe.Pointer, result int) bool {
 	if ptr.Pointer() != nil {
-		var eventTypeC = C.CString(hex.EncodeToString([]byte(eventType)))
-		defer C.free(unsafe.Pointer(eventTypeC))
-		return C.QPageSetupDialog_NativeEvent(ptr.Pointer(), eventTypeC, message, C.long(int32(result))) != 0
+		return C.QPageSetupDialog_NativeEvent(ptr.Pointer(), core.PointerFromQByteArray(eventType), message, C.long(int32(result))) != 0
 	}
 	return false
 }
 
-func (ptr *QPageSetupDialog) NativeEventDefault(eventType string, message unsafe.Pointer, result int) bool {
+func (ptr *QPageSetupDialog) NativeEventDefault(eventType core.QByteArray_ITF, message unsafe.Pointer, result int) bool {
 	if ptr.Pointer() != nil {
-		var eventTypeC = C.CString(hex.EncodeToString([]byte(eventType)))
-		defer C.free(unsafe.Pointer(eventTypeC))
-		return C.QPageSetupDialog_NativeEventDefault(ptr.Pointer(), eventTypeC, message, C.long(int32(result))) != 0
+		return C.QPageSetupDialog_NativeEventDefault(ptr.Pointer(), core.PointerFromQByteArray(eventType), message, C.long(int32(result))) != 0
 	}
 	return false
 }
@@ -5812,11 +5810,11 @@ func (ptr *QPrintDialog) SetEnabledDefault(vbo bool) {
 }
 
 //export callbackQPrintDialog_SetStyleSheet
-func callbackQPrintDialog_SetStyleSheet(ptr unsafe.Pointer, styleSheet *C.char) {
+func callbackQPrintDialog_SetStyleSheet(ptr unsafe.Pointer, styleSheet C.struct_QtPrintSupport_PackedString) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintDialog::setStyleSheet"); signal != nil {
-		signal.(func(string))(C.GoString(styleSheet))
+		signal.(func(string))(cGoUnpackString(styleSheet))
 	} else {
-		NewQPrintDialogFromPointer(ptr).SetStyleSheetDefault(C.GoString(styleSheet))
+		NewQPrintDialogFromPointer(ptr).SetStyleSheetDefault(cGoUnpackString(styleSheet))
 	}
 }
 
@@ -5886,11 +5884,11 @@ func (ptr *QPrintDialog) SetWindowModifiedDefault(vbo bool) {
 }
 
 //export callbackQPrintDialog_SetWindowTitle
-func callbackQPrintDialog_SetWindowTitle(ptr unsafe.Pointer, vqs *C.char) {
+func callbackQPrintDialog_SetWindowTitle(ptr unsafe.Pointer, vqs C.struct_QtPrintSupport_PackedString) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintDialog::setWindowTitle"); signal != nil {
-		signal.(func(string))(C.GoString(vqs))
+		signal.(func(string))(cGoUnpackString(vqs))
 	} else {
-		NewQPrintDialogFromPointer(ptr).SetWindowTitleDefault(C.GoString(vqs))
+		NewQPrintDialogFromPointer(ptr).SetWindowTitleDefault(cGoUnpackString(vqs))
 	}
 }
 
@@ -6440,16 +6438,16 @@ func (ptr *QPrintDialog) MouseReleaseEventDefault(event gui.QMouseEvent_ITF) {
 }
 
 //export callbackQPrintDialog_NativeEvent
-func callbackQPrintDialog_NativeEvent(ptr unsafe.Pointer, eventType *C.char, message unsafe.Pointer, result C.long) C.char {
+func callbackQPrintDialog_NativeEvent(ptr unsafe.Pointer, eventType unsafe.Pointer, message unsafe.Pointer, result C.long) C.char {
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintDialog::nativeEvent"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt(signal.(func(string, unsafe.Pointer, int) bool)(qt.HexDecodeToString(C.GoString(eventType)), message, int(int32(result))))))
+		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QByteArray, unsafe.Pointer, int) bool)(core.NewQByteArrayFromPointer(eventType), message, int(int32(result))))))
 	}
 
-	return C.char(int8(qt.GoBoolToInt(NewQPrintDialogFromPointer(ptr).NativeEventDefault(qt.HexDecodeToString(C.GoString(eventType)), message, int(int32(result))))))
+	return C.char(int8(qt.GoBoolToInt(NewQPrintDialogFromPointer(ptr).NativeEventDefault(core.NewQByteArrayFromPointer(eventType), message, int(int32(result))))))
 }
 
-func (ptr *QPrintDialog) ConnectNativeEvent(f func(eventType string, message unsafe.Pointer, result int) bool) {
+func (ptr *QPrintDialog) ConnectNativeEvent(f func(eventType *core.QByteArray, message unsafe.Pointer, result int) bool) {
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintDialog::nativeEvent", f)
@@ -6463,20 +6461,16 @@ func (ptr *QPrintDialog) DisconnectNativeEvent() {
 	}
 }
 
-func (ptr *QPrintDialog) NativeEvent(eventType string, message unsafe.Pointer, result int) bool {
+func (ptr *QPrintDialog) NativeEvent(eventType core.QByteArray_ITF, message unsafe.Pointer, result int) bool {
 	if ptr.Pointer() != nil {
-		var eventTypeC = C.CString(hex.EncodeToString([]byte(eventType)))
-		defer C.free(unsafe.Pointer(eventTypeC))
-		return C.QPrintDialog_NativeEvent(ptr.Pointer(), eventTypeC, message, C.long(int32(result))) != 0
+		return C.QPrintDialog_NativeEvent(ptr.Pointer(), core.PointerFromQByteArray(eventType), message, C.long(int32(result))) != 0
 	}
 	return false
 }
 
-func (ptr *QPrintDialog) NativeEventDefault(eventType string, message unsafe.Pointer, result int) bool {
+func (ptr *QPrintDialog) NativeEventDefault(eventType core.QByteArray_ITF, message unsafe.Pointer, result int) bool {
 	if ptr.Pointer() != nil {
-		var eventTypeC = C.CString(hex.EncodeToString([]byte(eventType)))
-		defer C.free(unsafe.Pointer(eventTypeC))
-		return C.QPrintDialog_NativeEventDefault(ptr.Pointer(), eventTypeC, message, C.long(int32(result))) != 0
+		return C.QPrintDialog_NativeEventDefault(ptr.Pointer(), core.PointerFromQByteArray(eventType), message, C.long(int32(result))) != 0
 	}
 	return false
 }
@@ -8489,11 +8483,11 @@ func (ptr *QPrintPreviewDialog) SetEnabledDefault(vbo bool) {
 }
 
 //export callbackQPrintPreviewDialog_SetStyleSheet
-func callbackQPrintPreviewDialog_SetStyleSheet(ptr unsafe.Pointer, styleSheet *C.char) {
+func callbackQPrintPreviewDialog_SetStyleSheet(ptr unsafe.Pointer, styleSheet C.struct_QtPrintSupport_PackedString) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewDialog::setStyleSheet"); signal != nil {
-		signal.(func(string))(C.GoString(styleSheet))
+		signal.(func(string))(cGoUnpackString(styleSheet))
 	} else {
-		NewQPrintPreviewDialogFromPointer(ptr).SetStyleSheetDefault(C.GoString(styleSheet))
+		NewQPrintPreviewDialogFromPointer(ptr).SetStyleSheetDefault(cGoUnpackString(styleSheet))
 	}
 }
 
@@ -8563,11 +8557,11 @@ func (ptr *QPrintPreviewDialog) SetWindowModifiedDefault(vbo bool) {
 }
 
 //export callbackQPrintPreviewDialog_SetWindowTitle
-func callbackQPrintPreviewDialog_SetWindowTitle(ptr unsafe.Pointer, vqs *C.char) {
+func callbackQPrintPreviewDialog_SetWindowTitle(ptr unsafe.Pointer, vqs C.struct_QtPrintSupport_PackedString) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewDialog::setWindowTitle"); signal != nil {
-		signal.(func(string))(C.GoString(vqs))
+		signal.(func(string))(cGoUnpackString(vqs))
 	} else {
-		NewQPrintPreviewDialogFromPointer(ptr).SetWindowTitleDefault(C.GoString(vqs))
+		NewQPrintPreviewDialogFromPointer(ptr).SetWindowTitleDefault(cGoUnpackString(vqs))
 	}
 }
 
@@ -9117,16 +9111,16 @@ func (ptr *QPrintPreviewDialog) MouseReleaseEventDefault(event gui.QMouseEvent_I
 }
 
 //export callbackQPrintPreviewDialog_NativeEvent
-func callbackQPrintPreviewDialog_NativeEvent(ptr unsafe.Pointer, eventType *C.char, message unsafe.Pointer, result C.long) C.char {
+func callbackQPrintPreviewDialog_NativeEvent(ptr unsafe.Pointer, eventType unsafe.Pointer, message unsafe.Pointer, result C.long) C.char {
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewDialog::nativeEvent"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt(signal.(func(string, unsafe.Pointer, int) bool)(qt.HexDecodeToString(C.GoString(eventType)), message, int(int32(result))))))
+		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QByteArray, unsafe.Pointer, int) bool)(core.NewQByteArrayFromPointer(eventType), message, int(int32(result))))))
 	}
 
-	return C.char(int8(qt.GoBoolToInt(NewQPrintPreviewDialogFromPointer(ptr).NativeEventDefault(qt.HexDecodeToString(C.GoString(eventType)), message, int(int32(result))))))
+	return C.char(int8(qt.GoBoolToInt(NewQPrintPreviewDialogFromPointer(ptr).NativeEventDefault(core.NewQByteArrayFromPointer(eventType), message, int(int32(result))))))
 }
 
-func (ptr *QPrintPreviewDialog) ConnectNativeEvent(f func(eventType string, message unsafe.Pointer, result int) bool) {
+func (ptr *QPrintPreviewDialog) ConnectNativeEvent(f func(eventType *core.QByteArray, message unsafe.Pointer, result int) bool) {
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewDialog::nativeEvent", f)
@@ -9140,20 +9134,16 @@ func (ptr *QPrintPreviewDialog) DisconnectNativeEvent() {
 	}
 }
 
-func (ptr *QPrintPreviewDialog) NativeEvent(eventType string, message unsafe.Pointer, result int) bool {
+func (ptr *QPrintPreviewDialog) NativeEvent(eventType core.QByteArray_ITF, message unsafe.Pointer, result int) bool {
 	if ptr.Pointer() != nil {
-		var eventTypeC = C.CString(hex.EncodeToString([]byte(eventType)))
-		defer C.free(unsafe.Pointer(eventTypeC))
-		return C.QPrintPreviewDialog_NativeEvent(ptr.Pointer(), eventTypeC, message, C.long(int32(result))) != 0
+		return C.QPrintPreviewDialog_NativeEvent(ptr.Pointer(), core.PointerFromQByteArray(eventType), message, C.long(int32(result))) != 0
 	}
 	return false
 }
 
-func (ptr *QPrintPreviewDialog) NativeEventDefault(eventType string, message unsafe.Pointer, result int) bool {
+func (ptr *QPrintPreviewDialog) NativeEventDefault(eventType core.QByteArray_ITF, message unsafe.Pointer, result int) bool {
 	if ptr.Pointer() != nil {
-		var eventTypeC = C.CString(hex.EncodeToString([]byte(eventType)))
-		defer C.free(unsafe.Pointer(eventTypeC))
-		return C.QPrintPreviewDialog_NativeEventDefault(ptr.Pointer(), eventTypeC, message, C.long(int32(result))) != 0
+		return C.QPrintPreviewDialog_NativeEventDefault(ptr.Pointer(), core.PointerFromQByteArray(eventType), message, C.long(int32(result))) != 0
 	}
 	return false
 }
@@ -11051,11 +11041,11 @@ func (ptr *QPrintPreviewWidget) SetEnabledDefault(vbo bool) {
 }
 
 //export callbackQPrintPreviewWidget_SetStyleSheet
-func callbackQPrintPreviewWidget_SetStyleSheet(ptr unsafe.Pointer, styleSheet *C.char) {
+func callbackQPrintPreviewWidget_SetStyleSheet(ptr unsafe.Pointer, styleSheet C.struct_QtPrintSupport_PackedString) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewWidget::setStyleSheet"); signal != nil {
-		signal.(func(string))(C.GoString(styleSheet))
+		signal.(func(string))(cGoUnpackString(styleSheet))
 	} else {
-		NewQPrintPreviewWidgetFromPointer(ptr).SetStyleSheetDefault(C.GoString(styleSheet))
+		NewQPrintPreviewWidgetFromPointer(ptr).SetStyleSheetDefault(cGoUnpackString(styleSheet))
 	}
 }
 
@@ -11125,11 +11115,11 @@ func (ptr *QPrintPreviewWidget) SetWindowModifiedDefault(vbo bool) {
 }
 
 //export callbackQPrintPreviewWidget_SetWindowTitle
-func callbackQPrintPreviewWidget_SetWindowTitle(ptr unsafe.Pointer, vqs *C.char) {
+func callbackQPrintPreviewWidget_SetWindowTitle(ptr unsafe.Pointer, vqs C.struct_QtPrintSupport_PackedString) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewWidget::setWindowTitle"); signal != nil {
-		signal.(func(string))(C.GoString(vqs))
+		signal.(func(string))(cGoUnpackString(vqs))
 	} else {
-		NewQPrintPreviewWidgetFromPointer(ptr).SetWindowTitleDefault(C.GoString(vqs))
+		NewQPrintPreviewWidgetFromPointer(ptr).SetWindowTitleDefault(cGoUnpackString(vqs))
 	}
 }
 
@@ -11865,16 +11855,16 @@ func (ptr *QPrintPreviewWidget) MouseReleaseEventDefault(event gui.QMouseEvent_I
 }
 
 //export callbackQPrintPreviewWidget_NativeEvent
-func callbackQPrintPreviewWidget_NativeEvent(ptr unsafe.Pointer, eventType *C.char, message unsafe.Pointer, result C.long) C.char {
+func callbackQPrintPreviewWidget_NativeEvent(ptr unsafe.Pointer, eventType unsafe.Pointer, message unsafe.Pointer, result C.long) C.char {
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewWidget::nativeEvent"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt(signal.(func(string, unsafe.Pointer, int) bool)(qt.HexDecodeToString(C.GoString(eventType)), message, int(int32(result))))))
+		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QByteArray, unsafe.Pointer, int) bool)(core.NewQByteArrayFromPointer(eventType), message, int(int32(result))))))
 	}
 
-	return C.char(int8(qt.GoBoolToInt(NewQPrintPreviewWidgetFromPointer(ptr).NativeEventDefault(qt.HexDecodeToString(C.GoString(eventType)), message, int(int32(result))))))
+	return C.char(int8(qt.GoBoolToInt(NewQPrintPreviewWidgetFromPointer(ptr).NativeEventDefault(core.NewQByteArrayFromPointer(eventType), message, int(int32(result))))))
 }
 
-func (ptr *QPrintPreviewWidget) ConnectNativeEvent(f func(eventType string, message unsafe.Pointer, result int) bool) {
+func (ptr *QPrintPreviewWidget) ConnectNativeEvent(f func(eventType *core.QByteArray, message unsafe.Pointer, result int) bool) {
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::nativeEvent", f)
@@ -11888,20 +11878,16 @@ func (ptr *QPrintPreviewWidget) DisconnectNativeEvent() {
 	}
 }
 
-func (ptr *QPrintPreviewWidget) NativeEvent(eventType string, message unsafe.Pointer, result int) bool {
+func (ptr *QPrintPreviewWidget) NativeEvent(eventType core.QByteArray_ITF, message unsafe.Pointer, result int) bool {
 	if ptr.Pointer() != nil {
-		var eventTypeC = C.CString(hex.EncodeToString([]byte(eventType)))
-		defer C.free(unsafe.Pointer(eventTypeC))
-		return C.QPrintPreviewWidget_NativeEvent(ptr.Pointer(), eventTypeC, message, C.long(int32(result))) != 0
+		return C.QPrintPreviewWidget_NativeEvent(ptr.Pointer(), core.PointerFromQByteArray(eventType), message, C.long(int32(result))) != 0
 	}
 	return false
 }
 
-func (ptr *QPrintPreviewWidget) NativeEventDefault(eventType string, message unsafe.Pointer, result int) bool {
+func (ptr *QPrintPreviewWidget) NativeEventDefault(eventType core.QByteArray_ITF, message unsafe.Pointer, result int) bool {
 	if ptr.Pointer() != nil {
-		var eventTypeC = C.CString(hex.EncodeToString([]byte(eventType)))
-		defer C.free(unsafe.Pointer(eventTypeC))
-		return C.QPrintPreviewWidget_NativeEventDefault(ptr.Pointer(), eventTypeC, message, C.long(int32(result))) != 0
+		return C.QPrintPreviewWidget_NativeEventDefault(ptr.Pointer(), core.PointerFromQByteArray(eventType), message, C.long(int32(result))) != 0
 	}
 	return false
 }
@@ -13016,14 +13002,14 @@ func (ptr *QPrinter) FromPage() int {
 
 func (ptr *QPrinter) OutputFileName() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QPrinter_OutputFileName(ptr.Pointer()))
+		return cGoUnpackString(C.QPrinter_OutputFileName(ptr.Pointer()))
 	}
 	return ""
 }
 
 func (ptr *QPrinter) PrinterSelectionOption() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QPrinter_PrinterSelectionOption(ptr.Pointer()))
+		return cGoUnpackString(C.QPrinter_PrinterSelectionOption(ptr.Pointer()))
 	}
 	return ""
 }
@@ -13078,14 +13064,14 @@ func (ptr *QPrinter) CopyCount() int {
 
 func (ptr *QPrinter) Creator() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QPrinter_Creator(ptr.Pointer()))
+		return cGoUnpackString(C.QPrinter_Creator(ptr.Pointer()))
 	}
 	return ""
 }
 
 func (ptr *QPrinter) DocName() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QPrinter_DocName(ptr.Pointer()))
+		return cGoUnpackString(C.QPrinter_DocName(ptr.Pointer()))
 	}
 	return ""
 }
@@ -13189,7 +13175,7 @@ func (ptr *QPrinter) PrintEngine() *QPrintEngine {
 
 func (ptr *QPrinter) PrintProgram() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QPrinter_PrintProgram(ptr.Pointer()))
+		return cGoUnpackString(C.QPrinter_PrintProgram(ptr.Pointer()))
 	}
 	return ""
 }
@@ -13203,7 +13189,7 @@ func (ptr *QPrinter) PrintRange() QPrinter__PrintRange {
 
 func (ptr *QPrinter) PrinterName() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QPrinter_PrinterName(ptr.Pointer()))
+		return cGoUnpackString(C.QPrinter_PrinterName(ptr.Pointer()))
 	}
 	return ""
 }
@@ -13562,11 +13548,11 @@ func NewQPrinterInfo2(other QPrinterInfo_ITF) *QPrinterInfo {
 }
 
 func QPrinterInfo_AvailablePrinterNames() []string {
-	return strings.Split(C.GoString(C.QPrinterInfo_QPrinterInfo_AvailablePrinterNames()), "|")
+	return strings.Split(cGoUnpackString(C.QPrinterInfo_QPrinterInfo_AvailablePrinterNames()), "|")
 }
 
 func (ptr *QPrinterInfo) AvailablePrinterNames() []string {
-	return strings.Split(C.GoString(C.QPrinterInfo_QPrinterInfo_AvailablePrinterNames()), "|")
+	return strings.Split(cGoUnpackString(C.QPrinterInfo_QPrinterInfo_AvailablePrinterNames()), "|")
 }
 
 func (ptr *QPrinterInfo) DefaultDuplexMode() QPrinter__DuplexMode {
@@ -13598,16 +13584,16 @@ func (ptr *QPrinterInfo) DefaultPrinter() *QPrinterInfo {
 }
 
 func QPrinterInfo_DefaultPrinterName() string {
-	return C.GoString(C.QPrinterInfo_QPrinterInfo_DefaultPrinterName())
+	return cGoUnpackString(C.QPrinterInfo_QPrinterInfo_DefaultPrinterName())
 }
 
 func (ptr *QPrinterInfo) DefaultPrinterName() string {
-	return C.GoString(C.QPrinterInfo_QPrinterInfo_DefaultPrinterName())
+	return cGoUnpackString(C.QPrinterInfo_QPrinterInfo_DefaultPrinterName())
 }
 
 func (ptr *QPrinterInfo) Description() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QPrinterInfo_Description(ptr.Pointer()))
+		return cGoUnpackString(C.QPrinterInfo_Description(ptr.Pointer()))
 	}
 	return ""
 }
@@ -13635,14 +13621,14 @@ func (ptr *QPrinterInfo) IsRemote() bool {
 
 func (ptr *QPrinterInfo) Location() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QPrinterInfo_Location(ptr.Pointer()))
+		return cGoUnpackString(C.QPrinterInfo_Location(ptr.Pointer()))
 	}
 	return ""
 }
 
 func (ptr *QPrinterInfo) MakeAndModel() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QPrinterInfo_MakeAndModel(ptr.Pointer()))
+		return cGoUnpackString(C.QPrinterInfo_MakeAndModel(ptr.Pointer()))
 	}
 	return ""
 }
@@ -13683,7 +13669,7 @@ func (ptr *QPrinterInfo) PrinterInfo(printerName string) *QPrinterInfo {
 
 func (ptr *QPrinterInfo) PrinterName() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QPrinterInfo_PrinterName(ptr.Pointer()))
+		return cGoUnpackString(C.QPrinterInfo_PrinterName(ptr.Pointer()))
 	}
 	return ""
 }

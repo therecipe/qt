@@ -6,6 +6,7 @@
 #include "testlib.h"
 #include "_cgo_export.h"
 
+#include <QByteArray>
 #include <QChildEvent>
 #include <QEvent>
 #include <QMetaMethod>
@@ -30,9 +31,9 @@ char QSignalSpy_IsValid(void* ptr)
 	return static_cast<QSignalSpy*>(ptr)->isValid();
 }
 
-char* QSignalSpy_Signal(void* ptr)
+void* QSignalSpy_Signal(void* ptr)
 {
-	return const_cast<char*>(static_cast<QSignalSpy*>(ptr)->signal().toHex().prepend("WHITESPACE").constData()+10);
+	return new QByteArray(static_cast<QSignalSpy*>(ptr)->signal());
 }
 
 char QSignalSpy_Wait(void* ptr, int timeout)

@@ -14,6 +14,13 @@ import (
 	"unsafe"
 )
 
+func cGoUnpackString(s C.struct_QtPurchasing_PackedString) string {
+	if len := int(s.len); len == -1 {
+		return C.GoString(s.data)
+	}
+	return C.GoStringN(s.data, C.int(s.len))
+}
+
 //QInAppProduct::ProductType
 type QInAppProduct__ProductType int64
 
@@ -69,21 +76,21 @@ func (ptr *QInAppProduct) DestroyQInAppProduct() {
 
 func (ptr *QInAppProduct) Description() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QInAppProduct_Description(ptr.Pointer()))
+		return cGoUnpackString(C.QInAppProduct_Description(ptr.Pointer()))
 	}
 	return ""
 }
 
 func (ptr *QInAppProduct) Identifier() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QInAppProduct_Identifier(ptr.Pointer()))
+		return cGoUnpackString(C.QInAppProduct_Identifier(ptr.Pointer()))
 	}
 	return ""
 }
 
 func (ptr *QInAppProduct) Price() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QInAppProduct_Price(ptr.Pointer()))
+		return cGoUnpackString(C.QInAppProduct_Price(ptr.Pointer()))
 	}
 	return ""
 }
@@ -97,7 +104,7 @@ func (ptr *QInAppProduct) ProductType() QInAppProduct__ProductType {
 
 func (ptr *QInAppProduct) Title() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QInAppProduct_Title(ptr.Pointer()))
+		return cGoUnpackString(C.QInAppProduct_Title(ptr.Pointer()))
 	}
 	return ""
 }
@@ -540,10 +547,10 @@ func (ptr *QInAppStore) ProductRegistered(product QInAppProduct_ITF) {
 }
 
 //export callbackQInAppStore_ProductUnknown
-func callbackQInAppStore_ProductUnknown(ptr unsafe.Pointer, productType C.longlong, identifier *C.char) {
+func callbackQInAppStore_ProductUnknown(ptr unsafe.Pointer, productType C.longlong, identifier C.struct_QtPurchasing_PackedString) {
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QInAppStore::productUnknown"); signal != nil {
-		signal.(func(QInAppProduct__ProductType, string))(QInAppProduct__ProductType(productType), C.GoString(identifier))
+		signal.(func(QInAppProduct__ProductType, string))(QInAppProduct__ProductType(productType), cGoUnpackString(identifier))
 	}
 
 }
@@ -1067,14 +1074,14 @@ func (ptr *QInAppTransaction) DisconnectErrorString() {
 
 func (ptr *QInAppTransaction) ErrorString() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QInAppTransaction_ErrorString(ptr.Pointer()))
+		return cGoUnpackString(C.QInAppTransaction_ErrorString(ptr.Pointer()))
 	}
 	return ""
 }
 
 func (ptr *QInAppTransaction) ErrorStringDefault() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QInAppTransaction_ErrorStringDefault(ptr.Pointer()))
+		return cGoUnpackString(C.QInAppTransaction_ErrorStringDefault(ptr.Pointer()))
 	}
 	return ""
 }
@@ -1143,14 +1150,14 @@ func (ptr *QInAppTransaction) DisconnectOrderId() {
 
 func (ptr *QInAppTransaction) OrderId() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QInAppTransaction_OrderId(ptr.Pointer()))
+		return cGoUnpackString(C.QInAppTransaction_OrderId(ptr.Pointer()))
 	}
 	return ""
 }
 
 func (ptr *QInAppTransaction) OrderIdDefault() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QInAppTransaction_OrderIdDefault(ptr.Pointer()))
+		return cGoUnpackString(C.QInAppTransaction_OrderIdDefault(ptr.Pointer()))
 	}
 	return ""
 }
@@ -1245,13 +1252,13 @@ func (ptr *QInAppTransaction) Finalize() {
 }
 
 //export callbackQInAppTransaction_PlatformProperty
-func callbackQInAppTransaction_PlatformProperty(ptr unsafe.Pointer, propertyName *C.char) *C.char {
+func callbackQInAppTransaction_PlatformProperty(ptr unsafe.Pointer, propertyName C.struct_QtPurchasing_PackedString) *C.char {
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QInAppTransaction::platformProperty"); signal != nil {
-		return C.CString(signal.(func(string) string)(C.GoString(propertyName)))
+		return C.CString(signal.(func(string) string)(cGoUnpackString(propertyName)))
 	}
 
-	return C.CString(NewQInAppTransactionFromPointer(ptr).PlatformPropertyDefault(C.GoString(propertyName)))
+	return C.CString(NewQInAppTransactionFromPointer(ptr).PlatformPropertyDefault(cGoUnpackString(propertyName)))
 }
 
 func (ptr *QInAppTransaction) ConnectPlatformProperty(f func(propertyName string) string) {
@@ -1272,7 +1279,7 @@ func (ptr *QInAppTransaction) PlatformProperty(propertyName string) string {
 	if ptr.Pointer() != nil {
 		var propertyNameC = C.CString(propertyName)
 		defer C.free(unsafe.Pointer(propertyNameC))
-		return C.GoString(C.QInAppTransaction_PlatformProperty(ptr.Pointer(), propertyNameC))
+		return cGoUnpackString(C.QInAppTransaction_PlatformProperty(ptr.Pointer(), propertyNameC))
 	}
 	return ""
 }
@@ -1281,7 +1288,7 @@ func (ptr *QInAppTransaction) PlatformPropertyDefault(propertyName string) strin
 	if ptr.Pointer() != nil {
 		var propertyNameC = C.CString(propertyName)
 		defer C.free(unsafe.Pointer(propertyNameC))
-		return C.GoString(C.QInAppTransaction_PlatformPropertyDefault(ptr.Pointer(), propertyNameC))
+		return cGoUnpackString(C.QInAppTransaction_PlatformPropertyDefault(ptr.Pointer(), propertyNameC))
 	}
 	return ""
 }

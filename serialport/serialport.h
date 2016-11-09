@@ -11,6 +11,7 @@
 extern "C" {
 #endif
 
+struct QtSerialPort_PackedString { char* data; long long len; };
 int QSerialPort_BaudRate(void* ptr, long long directions);
 void QSerialPort_ClearError(void* ptr);
 long long QSerialPort_DataBits(void* ptr);
@@ -63,7 +64,7 @@ void QSerialPort_ConnectParityChanged(void* ptr);
 void QSerialPort_DisconnectParityChanged(void* ptr);
 void QSerialPort_ParityChanged(void* ptr, long long parity);
 long long QSerialPort_PinoutSignals(void* ptr);
-char* QSerialPort_PortName(void* ptr);
+struct QtSerialPort_PackedString QSerialPort_PortName(void* ptr);
 long long QSerialPort_ReadBufferSize(void* ptr);
 long long QSerialPort_ReadLineData(void* ptr, char* data, long long maxSize);
 void QSerialPort_ConnectRequestToSendChanged(void* ptr);
@@ -111,15 +112,15 @@ void* QSerialPortInfo_NewQSerialPortInfo();
 void* QSerialPortInfo_NewQSerialPortInfo2(void* port);
 void* QSerialPortInfo_NewQSerialPortInfo4(void* other);
 void* QSerialPortInfo_NewQSerialPortInfo3(char* name);
-char* QSerialPortInfo_Description(void* ptr);
+struct QtSerialPort_PackedString QSerialPortInfo_Description(void* ptr);
 char QSerialPortInfo_HasProductIdentifier(void* ptr);
 char QSerialPortInfo_HasVendorIdentifier(void* ptr);
 char QSerialPortInfo_IsNull(void* ptr);
-char* QSerialPortInfo_Manufacturer(void* ptr);
-char* QSerialPortInfo_PortName(void* ptr);
+struct QtSerialPort_PackedString QSerialPortInfo_Manufacturer(void* ptr);
+struct QtSerialPort_PackedString QSerialPortInfo_PortName(void* ptr);
 unsigned short QSerialPortInfo_ProductIdentifier(void* ptr);
-char* QSerialPortInfo_SerialNumber(void* ptr);
-char* QSerialPortInfo_SystemLocation(void* ptr);
+struct QtSerialPort_PackedString QSerialPortInfo_SerialNumber(void* ptr);
+struct QtSerialPort_PackedString QSerialPortInfo_SystemLocation(void* ptr);
 unsigned short QSerialPortInfo_VendorIdentifier(void* ptr);
 void QSerialPortInfo_DestroyQSerialPortInfo(void* ptr);
 char QSerialPortInfo_IsBusy(void* ptr);

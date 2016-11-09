@@ -78,7 +78,7 @@ func GoHeaderOutput(f *parser.Function) string {
 	switch f.SignalMode {
 	case parser.CALLBACK:
 		{
-			return cgoType(f, f.Output)
+			return cgoTypeOutput(f, f.Output)
 		}
 
 	case parser.CONNECT, parser.DISCONNECT:
@@ -216,7 +216,7 @@ func CppHeaderInput(f *parser.Function) string {
 	}
 
 	for _, p := range f.Parameters {
-		if v := cppType(f, p.Value); !(v == "") {
+		if v := cppTypeInput(f, p.Value); v != "" {
 			tmp = append(tmp, fmt.Sprintf("%v %v", v, cleanName(p.Name, p.Value)))
 		} else {
 			f.Access = "unsupported_CppHeaderInput"

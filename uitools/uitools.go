@@ -16,6 +16,13 @@ import (
 	"unsafe"
 )
 
+func cGoUnpackString(s C.struct_QtUiTools_PackedString) string {
+	if len := int(s.len); len == -1 {
+		return C.GoString(s.data)
+	}
+	return C.GoStringN(s.data, C.int(s.len))
+}
+
 type QUiLoader struct {
 	core.QObject
 }
@@ -72,14 +79,14 @@ func (ptr *QUiLoader) AddPluginPath(path string) {
 
 func (ptr *QUiLoader) AvailableLayouts() []string {
 	if ptr.Pointer() != nil {
-		return strings.Split(C.GoString(C.QUiLoader_AvailableLayouts(ptr.Pointer())), "|")
+		return strings.Split(cGoUnpackString(C.QUiLoader_AvailableLayouts(ptr.Pointer())), "|")
 	}
 	return make([]string, 0)
 }
 
 func (ptr *QUiLoader) AvailableWidgets() []string {
 	if ptr.Pointer() != nil {
-		return strings.Split(C.GoString(C.QUiLoader_AvailableWidgets(ptr.Pointer())), "|")
+		return strings.Split(cGoUnpackString(C.QUiLoader_AvailableWidgets(ptr.Pointer())), "|")
 	}
 	return make([]string, 0)
 }
@@ -91,13 +98,13 @@ func (ptr *QUiLoader) ClearPluginPaths() {
 }
 
 //export callbackQUiLoader_CreateAction
-func callbackQUiLoader_CreateAction(ptr unsafe.Pointer, parent unsafe.Pointer, name *C.char) unsafe.Pointer {
+func callbackQUiLoader_CreateAction(ptr unsafe.Pointer, parent unsafe.Pointer, name C.struct_QtUiTools_PackedString) unsafe.Pointer {
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QUiLoader::createAction"); signal != nil {
-		return widgets.PointerFromQAction(signal.(func(*core.QObject, string) *widgets.QAction)(core.NewQObjectFromPointer(parent), C.GoString(name)))
+		return widgets.PointerFromQAction(signal.(func(*core.QObject, string) *widgets.QAction)(core.NewQObjectFromPointer(parent), cGoUnpackString(name)))
 	}
 
-	return widgets.PointerFromQAction(NewQUiLoaderFromPointer(ptr).CreateActionDefault(core.NewQObjectFromPointer(parent), C.GoString(name)))
+	return widgets.PointerFromQAction(NewQUiLoaderFromPointer(ptr).CreateActionDefault(core.NewQObjectFromPointer(parent), cGoUnpackString(name)))
 }
 
 func (ptr *QUiLoader) ConnectCreateAction(f func(parent *core.QObject, name string) *widgets.QAction) {
@@ -141,13 +148,13 @@ func (ptr *QUiLoader) CreateActionDefault(parent core.QObject_ITF, name string) 
 }
 
 //export callbackQUiLoader_CreateActionGroup
-func callbackQUiLoader_CreateActionGroup(ptr unsafe.Pointer, parent unsafe.Pointer, name *C.char) unsafe.Pointer {
+func callbackQUiLoader_CreateActionGroup(ptr unsafe.Pointer, parent unsafe.Pointer, name C.struct_QtUiTools_PackedString) unsafe.Pointer {
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QUiLoader::createActionGroup"); signal != nil {
-		return widgets.PointerFromQActionGroup(signal.(func(*core.QObject, string) *widgets.QActionGroup)(core.NewQObjectFromPointer(parent), C.GoString(name)))
+		return widgets.PointerFromQActionGroup(signal.(func(*core.QObject, string) *widgets.QActionGroup)(core.NewQObjectFromPointer(parent), cGoUnpackString(name)))
 	}
 
-	return widgets.PointerFromQActionGroup(NewQUiLoaderFromPointer(ptr).CreateActionGroupDefault(core.NewQObjectFromPointer(parent), C.GoString(name)))
+	return widgets.PointerFromQActionGroup(NewQUiLoaderFromPointer(ptr).CreateActionGroupDefault(core.NewQObjectFromPointer(parent), cGoUnpackString(name)))
 }
 
 func (ptr *QUiLoader) ConnectCreateActionGroup(f func(parent *core.QObject, name string) *widgets.QActionGroup) {
@@ -191,13 +198,13 @@ func (ptr *QUiLoader) CreateActionGroupDefault(parent core.QObject_ITF, name str
 }
 
 //export callbackQUiLoader_CreateLayout
-func callbackQUiLoader_CreateLayout(ptr unsafe.Pointer, className *C.char, parent unsafe.Pointer, name *C.char) unsafe.Pointer {
+func callbackQUiLoader_CreateLayout(ptr unsafe.Pointer, className C.struct_QtUiTools_PackedString, parent unsafe.Pointer, name C.struct_QtUiTools_PackedString) unsafe.Pointer {
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QUiLoader::createLayout"); signal != nil {
-		return widgets.PointerFromQLayout(signal.(func(string, *core.QObject, string) *widgets.QLayout)(C.GoString(className), core.NewQObjectFromPointer(parent), C.GoString(name)))
+		return widgets.PointerFromQLayout(signal.(func(string, *core.QObject, string) *widgets.QLayout)(cGoUnpackString(className), core.NewQObjectFromPointer(parent), cGoUnpackString(name)))
 	}
 
-	return widgets.PointerFromQLayout(NewQUiLoaderFromPointer(ptr).CreateLayoutDefault(C.GoString(className), core.NewQObjectFromPointer(parent), C.GoString(name)))
+	return widgets.PointerFromQLayout(NewQUiLoaderFromPointer(ptr).CreateLayoutDefault(cGoUnpackString(className), core.NewQObjectFromPointer(parent), cGoUnpackString(name)))
 }
 
 func (ptr *QUiLoader) ConnectCreateLayout(f func(className string, parent *core.QObject, name string) *widgets.QLayout) {
@@ -245,13 +252,13 @@ func (ptr *QUiLoader) CreateLayoutDefault(className string, parent core.QObject_
 }
 
 //export callbackQUiLoader_CreateWidget
-func callbackQUiLoader_CreateWidget(ptr unsafe.Pointer, className *C.char, parent unsafe.Pointer, name *C.char) unsafe.Pointer {
+func callbackQUiLoader_CreateWidget(ptr unsafe.Pointer, className C.struct_QtUiTools_PackedString, parent unsafe.Pointer, name C.struct_QtUiTools_PackedString) unsafe.Pointer {
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QUiLoader::createWidget"); signal != nil {
-		return widgets.PointerFromQWidget(signal.(func(string, *widgets.QWidget, string) *widgets.QWidget)(C.GoString(className), widgets.NewQWidgetFromPointer(parent), C.GoString(name)))
+		return widgets.PointerFromQWidget(signal.(func(string, *widgets.QWidget, string) *widgets.QWidget)(cGoUnpackString(className), widgets.NewQWidgetFromPointer(parent), cGoUnpackString(name)))
 	}
 
-	return widgets.PointerFromQWidget(NewQUiLoaderFromPointer(ptr).CreateWidgetDefault(C.GoString(className), widgets.NewQWidgetFromPointer(parent), C.GoString(name)))
+	return widgets.PointerFromQWidget(NewQUiLoaderFromPointer(ptr).CreateWidgetDefault(cGoUnpackString(className), widgets.NewQWidgetFromPointer(parent), cGoUnpackString(name)))
 }
 
 func (ptr *QUiLoader) ConnectCreateWidget(f func(className string, parent *widgets.QWidget, name string) *widgets.QWidget) {
@@ -300,7 +307,7 @@ func (ptr *QUiLoader) CreateWidgetDefault(className string, parent widgets.QWidg
 
 func (ptr *QUiLoader) ErrorString() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QUiLoader_ErrorString(ptr.Pointer()))
+		return cGoUnpackString(C.QUiLoader_ErrorString(ptr.Pointer()))
 	}
 	return ""
 }
@@ -325,7 +332,7 @@ func (ptr *QUiLoader) Load(device core.QIODevice_ITF, parentWidget widgets.QWidg
 
 func (ptr *QUiLoader) PluginPaths() []string {
 	if ptr.Pointer() != nil {
-		return strings.Split(C.GoString(C.QUiLoader_PluginPaths(ptr.Pointer())), "|")
+		return strings.Split(cGoUnpackString(C.QUiLoader_PluginPaths(ptr.Pointer())), "|")
 	}
 	return make([]string, 0)
 }

@@ -6,6 +6,7 @@
 #include "serialport.h"
 #include "_cgo_export.h"
 
+#include <QByteArray>
 #include <QChildEvent>
 #include <QEvent>
 #include <QIODevice>
@@ -310,9 +311,9 @@ long long QSerialPort_PinoutSignals(void* ptr)
 	return static_cast<QSerialPort*>(ptr)->pinoutSignals();
 }
 
-char* QSerialPort_PortName(void* ptr)
+struct QtSerialPort_PackedString QSerialPort_PortName(void* ptr)
 {
-	return const_cast<char*>(static_cast<QSerialPort*>(ptr)->portName().toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray t212a26 = static_cast<QSerialPort*>(ptr)->portName().toUtf8(); QtSerialPort_PackedString { const_cast<char*>(t212a26.prepend("WHITESPACE").constData()+10), t212a26.size()-10 }; });
 }
 
 long long QSerialPort_ReadBufferSize(void* ptr)
@@ -550,9 +551,9 @@ void* QSerialPortInfo_NewQSerialPortInfo3(char* name)
 	return new QSerialPortInfo(QString(name));
 }
 
-char* QSerialPortInfo_Description(void* ptr)
+struct QtSerialPort_PackedString QSerialPortInfo_Description(void* ptr)
 {
-	return const_cast<char*>(static_cast<QSerialPortInfo*>(ptr)->description().toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray t2edb91 = static_cast<QSerialPortInfo*>(ptr)->description().toUtf8(); QtSerialPort_PackedString { const_cast<char*>(t2edb91.prepend("WHITESPACE").constData()+10), t2edb91.size()-10 }; });
 }
 
 char QSerialPortInfo_HasProductIdentifier(void* ptr)
@@ -570,14 +571,14 @@ char QSerialPortInfo_IsNull(void* ptr)
 	return static_cast<QSerialPortInfo*>(ptr)->isNull();
 }
 
-char* QSerialPortInfo_Manufacturer(void* ptr)
+struct QtSerialPort_PackedString QSerialPortInfo_Manufacturer(void* ptr)
 {
-	return const_cast<char*>(static_cast<QSerialPortInfo*>(ptr)->manufacturer().toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray ta0f36d = static_cast<QSerialPortInfo*>(ptr)->manufacturer().toUtf8(); QtSerialPort_PackedString { const_cast<char*>(ta0f36d.prepend("WHITESPACE").constData()+10), ta0f36d.size()-10 }; });
 }
 
-char* QSerialPortInfo_PortName(void* ptr)
+struct QtSerialPort_PackedString QSerialPortInfo_PortName(void* ptr)
 {
-	return const_cast<char*>(static_cast<QSerialPortInfo*>(ptr)->portName().toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray tea4d96 = static_cast<QSerialPortInfo*>(ptr)->portName().toUtf8(); QtSerialPort_PackedString { const_cast<char*>(tea4d96.prepend("WHITESPACE").constData()+10), tea4d96.size()-10 }; });
 }
 
 unsigned short QSerialPortInfo_ProductIdentifier(void* ptr)
@@ -585,14 +586,14 @@ unsigned short QSerialPortInfo_ProductIdentifier(void* ptr)
 	return static_cast<QSerialPortInfo*>(ptr)->productIdentifier();
 }
 
-char* QSerialPortInfo_SerialNumber(void* ptr)
+struct QtSerialPort_PackedString QSerialPortInfo_SerialNumber(void* ptr)
 {
-	return const_cast<char*>(static_cast<QSerialPortInfo*>(ptr)->serialNumber().toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray tb01b4d = static_cast<QSerialPortInfo*>(ptr)->serialNumber().toUtf8(); QtSerialPort_PackedString { const_cast<char*>(tb01b4d.prepend("WHITESPACE").constData()+10), tb01b4d.size()-10 }; });
 }
 
-char* QSerialPortInfo_SystemLocation(void* ptr)
+struct QtSerialPort_PackedString QSerialPortInfo_SystemLocation(void* ptr)
 {
-	return const_cast<char*>(static_cast<QSerialPortInfo*>(ptr)->systemLocation().toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray te47b34 = static_cast<QSerialPortInfo*>(ptr)->systemLocation().toUtf8(); QtSerialPort_PackedString { const_cast<char*>(te47b34.prepend("WHITESPACE").constData()+10), te47b34.size()-10 }; });
 }
 
 unsigned short QSerialPortInfo_VendorIdentifier(void* ptr)

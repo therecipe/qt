@@ -6,6 +6,7 @@
 #include "gamepad.h"
 #include "_cgo_export.h"
 
+#include <QByteArray>
 #include <QChildEvent>
 #include <QEvent>
 #include <QGamepad>
@@ -46,7 +47,7 @@ public:
 	void Signal_ButtonYChanged(bool value) { callbackQGamepad_ButtonYChanged(this, value); };
 	void Signal_ConnectedChanged(bool value) { callbackQGamepad_ConnectedChanged(this, value); };
 	void Signal_DeviceIdChanged(int value) { callbackQGamepad_DeviceIdChanged(this, value); };
-	void Signal_NameChanged(QString value) { callbackQGamepad_NameChanged(this, const_cast<char*>(value.toUtf8().prepend("WHITESPACE").constData()+10)); };
+	void Signal_NameChanged(QString value) { QByteArray tf32b67 = value.toUtf8(); QtGamepad_PackedString valuePacked = { const_cast<char*>(tf32b67.prepend("WHITESPACE").constData()+10), tf32b67.size()-10 };callbackQGamepad_NameChanged(this, valuePacked); };
 	void timerEvent(QTimerEvent * event) { callbackQGamepad_TimerEvent(this, event); };
 	void childEvent(QChildEvent * event) { callbackQGamepad_ChildEvent(this, event); };
 	void connectNotify(const QMetaMethod & sign) { callbackQGamepad_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
@@ -178,9 +179,9 @@ char QGamepad_IsConnected(void* ptr)
 	return static_cast<QGamepad*>(ptr)->isConnected();
 }
 
-char* QGamepad_Name(void* ptr)
+struct QtGamepad_PackedString QGamepad_Name(void* ptr)
 {
-	return const_cast<char*>(static_cast<QGamepad*>(ptr)->name().toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray t4fe02c = static_cast<QGamepad*>(ptr)->name().toUtf8(); QtGamepad_PackedString { const_cast<char*>(t4fe02c.prepend("WHITESPACE").constData()+10), t4fe02c.size()-10 }; });
 }
 
 void QGamepad_SetDeviceId(void* ptr, int number)

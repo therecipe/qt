@@ -11,9 +11,10 @@
 extern "C" {
 #endif
 
+struct QtTestLib_PackedString { char* data; long long len; };
 void* QSignalSpy_NewQSignalSpy(void* object, char* sign);
 char QSignalSpy_IsValid(void* ptr);
-char* QSignalSpy_Signal(void* ptr);
+void* QSignalSpy_Signal(void* ptr);
 char QSignalSpy_Wait(void* ptr, int timeout);
 void QSignalSpy_TimerEvent(void* ptr, void* event);
 void QSignalSpy_TimerEventDefault(void* ptr, void* event);

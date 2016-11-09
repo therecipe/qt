@@ -118,7 +118,7 @@ func classIsSupported(c *parser.Class) bool {
 
 	switch c.Name {
 	case
-		"QString", "QStringList", "QByteArray", //mapped to primitive
+		"QString", "QStringList", //mapped to primitive
 
 		"QExplicitlySharedDataPointer", "QFuture", "QDBusPendingReply", "QDBusReply", "QFutureSynchronizer", //needs template
 		"QGlobalStatic", "QMultiHash", "QQueue", "QMultiMap", "QScopedPointer", "QSharedDataPointer",

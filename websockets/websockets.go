@@ -7,7 +7,6 @@ package websockets
 //#include "websockets.h"
 import "C"
 import (
-	"encoding/hex"
 	"fmt"
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
@@ -15,6 +14,13 @@ import (
 	"runtime"
 	"unsafe"
 )
+
+func cGoUnpackString(s C.struct_QtWebSockets_PackedString) string {
+	if len := int(s.len); len == -1 {
+		return C.GoString(s.data)
+	}
+	return C.GoStringN(s.data, C.int(s.len))
+}
 
 type QMaskGenerator struct {
 	core.QObject
@@ -571,15 +577,15 @@ func (ptr *QWebSocket) AboutToClose() {
 }
 
 //export callbackQWebSocket_BinaryFrameReceived
-func callbackQWebSocket_BinaryFrameReceived(ptr unsafe.Pointer, frame *C.char, isLastFrame C.char) {
+func callbackQWebSocket_BinaryFrameReceived(ptr unsafe.Pointer, frame unsafe.Pointer, isLastFrame C.char) {
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebSocket::binaryFrameReceived"); signal != nil {
-		signal.(func(string, bool))(qt.HexDecodeToString(C.GoString(frame)), int8(isLastFrame) != 0)
+		signal.(func(*core.QByteArray, bool))(core.NewQByteArrayFromPointer(frame), int8(isLastFrame) != 0)
 	}
 
 }
 
-func (ptr *QWebSocket) ConnectBinaryFrameReceived(f func(frame string, isLastFrame bool)) {
+func (ptr *QWebSocket) ConnectBinaryFrameReceived(f func(frame *core.QByteArray, isLastFrame bool)) {
 	if ptr.Pointer() != nil {
 		C.QWebSocket_ConnectBinaryFrameReceived(ptr.Pointer())
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QWebSocket::binaryFrameReceived", f)
@@ -593,24 +599,22 @@ func (ptr *QWebSocket) DisconnectBinaryFrameReceived() {
 	}
 }
 
-func (ptr *QWebSocket) BinaryFrameReceived(frame string, isLastFrame bool) {
+func (ptr *QWebSocket) BinaryFrameReceived(frame core.QByteArray_ITF, isLastFrame bool) {
 	if ptr.Pointer() != nil {
-		var frameC = C.CString(hex.EncodeToString([]byte(frame)))
-		defer C.free(unsafe.Pointer(frameC))
-		C.QWebSocket_BinaryFrameReceived(ptr.Pointer(), frameC, C.char(int8(qt.GoBoolToInt(isLastFrame))))
+		C.QWebSocket_BinaryFrameReceived(ptr.Pointer(), core.PointerFromQByteArray(frame), C.char(int8(qt.GoBoolToInt(isLastFrame))))
 	}
 }
 
 //export callbackQWebSocket_BinaryMessageReceived
-func callbackQWebSocket_BinaryMessageReceived(ptr unsafe.Pointer, message *C.char) {
+func callbackQWebSocket_BinaryMessageReceived(ptr unsafe.Pointer, message unsafe.Pointer) {
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebSocket::binaryMessageReceived"); signal != nil {
-		signal.(func(string))(qt.HexDecodeToString(C.GoString(message)))
+		signal.(func(*core.QByteArray))(core.NewQByteArrayFromPointer(message))
 	}
 
 }
 
-func (ptr *QWebSocket) ConnectBinaryMessageReceived(f func(message string)) {
+func (ptr *QWebSocket) ConnectBinaryMessageReceived(f func(message *core.QByteArray)) {
 	if ptr.Pointer() != nil {
 		C.QWebSocket_ConnectBinaryMessageReceived(ptr.Pointer())
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QWebSocket::binaryMessageReceived", f)
@@ -624,11 +628,9 @@ func (ptr *QWebSocket) DisconnectBinaryMessageReceived() {
 	}
 }
 
-func (ptr *QWebSocket) BinaryMessageReceived(message string) {
+func (ptr *QWebSocket) BinaryMessageReceived(message core.QByteArray_ITF) {
 	if ptr.Pointer() != nil {
-		var messageC = C.CString(hex.EncodeToString([]byte(message)))
-		defer C.free(unsafe.Pointer(messageC))
-		C.QWebSocket_BinaryMessageReceived(ptr.Pointer(), messageC)
+		C.QWebSocket_BinaryMessageReceived(ptr.Pointer(), core.PointerFromQByteArray(message))
 	}
 }
 
@@ -663,7 +665,7 @@ func (ptr *QWebSocket) BytesWritten(bytes int64) {
 
 func (ptr *QWebSocket) CloseReason() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QWebSocket_CloseReason(ptr.Pointer()))
+		return cGoUnpackString(C.QWebSocket_CloseReason(ptr.Pointer()))
 	}
 	return ""
 }
@@ -764,7 +766,7 @@ func (ptr *QWebSocket) Error() network.QAbstractSocket__SocketError {
 
 func (ptr *QWebSocket) ErrorString() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QWebSocket_ErrorString(ptr.Pointer()))
+		return cGoUnpackString(C.QWebSocket_ErrorString(ptr.Pointer()))
 	}
 	return ""
 }
@@ -896,7 +898,7 @@ func (ptr *QWebSocket) Open(url core.QUrl_ITF) {
 
 func (ptr *QWebSocket) Origin() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QWebSocket_Origin(ptr.Pointer()))
+		return cGoUnpackString(C.QWebSocket_Origin(ptr.Pointer()))
 	}
 	return ""
 }
@@ -919,7 +921,7 @@ func (ptr *QWebSocket) PeerAddress() *network.QHostAddress {
 
 func (ptr *QWebSocket) PeerName() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QWebSocket_PeerName(ptr.Pointer()))
+		return cGoUnpackString(C.QWebSocket_PeerName(ptr.Pointer()))
 	}
 	return ""
 }
@@ -932,45 +934,43 @@ func (ptr *QWebSocket) PeerPort() uint16 {
 }
 
 //export callbackQWebSocket_Ping
-func callbackQWebSocket_Ping(ptr unsafe.Pointer, payload *C.char) {
+func callbackQWebSocket_Ping(ptr unsafe.Pointer, payload unsafe.Pointer) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebSocket::ping"); signal != nil {
-		signal.(func(string))(qt.HexDecodeToString(C.GoString(payload)))
+		signal.(func(*core.QByteArray))(core.NewQByteArrayFromPointer(payload))
 	}
 
 }
 
-func (ptr *QWebSocket) ConnectPing(f func(payload string)) {
+func (ptr *QWebSocket) ConnectPing(f func(payload *core.QByteArray)) {
 	if ptr.Pointer() != nil {
 
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QWebSocket::ping", f)
 	}
 }
 
-func (ptr *QWebSocket) DisconnectPing(payload string) {
+func (ptr *QWebSocket) DisconnectPing(payload core.QByteArray_ITF) {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QWebSocket::ping")
 	}
 }
 
-func (ptr *QWebSocket) Ping(payload string) {
+func (ptr *QWebSocket) Ping(payload core.QByteArray_ITF) {
 	if ptr.Pointer() != nil {
-		var payloadC = C.CString(hex.EncodeToString([]byte(payload)))
-		defer C.free(unsafe.Pointer(payloadC))
-		C.QWebSocket_Ping(ptr.Pointer(), payloadC)
+		C.QWebSocket_Ping(ptr.Pointer(), core.PointerFromQByteArray(payload))
 	}
 }
 
 //export callbackQWebSocket_Pong
-func callbackQWebSocket_Pong(ptr unsafe.Pointer, elapsedTime C.ulonglong, payload *C.char) {
+func callbackQWebSocket_Pong(ptr unsafe.Pointer, elapsedTime C.ulonglong, payload unsafe.Pointer) {
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebSocket::pong"); signal != nil {
-		signal.(func(uint64, string))(uint64(elapsedTime), qt.HexDecodeToString(C.GoString(payload)))
+		signal.(func(uint64, *core.QByteArray))(uint64(elapsedTime), core.NewQByteArrayFromPointer(payload))
 	}
 
 }
 
-func (ptr *QWebSocket) ConnectPong(f func(elapsedTime uint64, payload string)) {
+func (ptr *QWebSocket) ConnectPong(f func(elapsedTime uint64, payload *core.QByteArray)) {
 	if ptr.Pointer() != nil {
 		C.QWebSocket_ConnectPong(ptr.Pointer())
 		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QWebSocket::pong", f)
@@ -984,11 +984,9 @@ func (ptr *QWebSocket) DisconnectPong() {
 	}
 }
 
-func (ptr *QWebSocket) Pong(elapsedTime uint64, payload string) {
+func (ptr *QWebSocket) Pong(elapsedTime uint64, payload core.QByteArray_ITF) {
 	if ptr.Pointer() != nil {
-		var payloadC = C.CString(hex.EncodeToString([]byte(payload)))
-		defer C.free(unsafe.Pointer(payloadC))
-		C.QWebSocket_Pong(ptr.Pointer(), C.ulonglong(elapsedTime), payloadC)
+		C.QWebSocket_Pong(ptr.Pointer(), C.ulonglong(elapsedTime), core.PointerFromQByteArray(payload))
 	}
 }
 
@@ -1086,7 +1084,7 @@ func (ptr *QWebSocket) RequestUrl() *core.QUrl {
 
 func (ptr *QWebSocket) ResourceName() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QWebSocket_ResourceName(ptr.Pointer()))
+		return cGoUnpackString(C.QWebSocket_ResourceName(ptr.Pointer()))
 	}
 	return ""
 }
@@ -1097,11 +1095,9 @@ func (ptr *QWebSocket) Resume() {
 	}
 }
 
-func (ptr *QWebSocket) SendBinaryMessage(data string) int64 {
+func (ptr *QWebSocket) SendBinaryMessage(data core.QByteArray_ITF) int64 {
 	if ptr.Pointer() != nil {
-		var dataC = C.CString(hex.EncodeToString([]byte(data)))
-		defer C.free(unsafe.Pointer(dataC))
-		return int64(C.QWebSocket_SendBinaryMessage(ptr.Pointer(), dataC))
+		return int64(C.QWebSocket_SendBinaryMessage(ptr.Pointer(), core.PointerFromQByteArray(data)))
 	}
 	return 0
 }
@@ -1191,10 +1187,10 @@ func (ptr *QWebSocket) StateChanged(state network.QAbstractSocket__SocketState) 
 }
 
 //export callbackQWebSocket_TextFrameReceived
-func callbackQWebSocket_TextFrameReceived(ptr unsafe.Pointer, frame *C.char, isLastFrame C.char) {
+func callbackQWebSocket_TextFrameReceived(ptr unsafe.Pointer, frame C.struct_QtWebSockets_PackedString, isLastFrame C.char) {
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebSocket::textFrameReceived"); signal != nil {
-		signal.(func(string, bool))(C.GoString(frame), int8(isLastFrame) != 0)
+		signal.(func(string, bool))(cGoUnpackString(frame), int8(isLastFrame) != 0)
 	}
 
 }
@@ -1222,10 +1218,10 @@ func (ptr *QWebSocket) TextFrameReceived(frame string, isLastFrame bool) {
 }
 
 //export callbackQWebSocket_TextMessageReceived
-func callbackQWebSocket_TextMessageReceived(ptr unsafe.Pointer, message *C.char) {
+func callbackQWebSocket_TextMessageReceived(ptr unsafe.Pointer, message C.struct_QtWebSockets_PackedString) {
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebSocket::textMessageReceived"); signal != nil {
-		signal.(func(string))(C.GoString(message))
+		signal.(func(string))(cGoUnpackString(message))
 	}
 
 }
@@ -1691,7 +1687,7 @@ func (ptr *QWebSocketCorsAuthenticator) Allowed() bool {
 
 func (ptr *QWebSocketCorsAuthenticator) Origin() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QWebSocketCorsAuthenticator_Origin(ptr.Pointer()))
+		return cGoUnpackString(C.QWebSocketCorsAuthenticator_Origin(ptr.Pointer()))
 	}
 	return ""
 }
@@ -1837,7 +1833,7 @@ func (ptr *QWebSocketServer) Closed() {
 
 func (ptr *QWebSocketServer) ErrorString() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QWebSocketServer_ErrorString(ptr.Pointer()))
+		return cGoUnpackString(C.QWebSocketServer_ErrorString(ptr.Pointer()))
 	}
 	return ""
 }
@@ -2042,7 +2038,7 @@ func (ptr *QWebSocketServer) ServerAddress() *network.QHostAddress {
 
 func (ptr *QWebSocketServer) ServerName() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QWebSocketServer_ServerName(ptr.Pointer()))
+		return cGoUnpackString(C.QWebSocketServer_ServerName(ptr.Pointer()))
 	}
 	return ""
 }

@@ -98,14 +98,14 @@ public:
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQQuickWebEngineProfile_MetaObject(const_cast<MyQQuickWebEngineProfile*>(this))); };
 };
 
-char* QQuickWebEngineProfile_CachePath(void* ptr)
+struct QtWebEngine_PackedString QQuickWebEngineProfile_CachePath(void* ptr)
 {
-	return const_cast<char*>(static_cast<QQuickWebEngineProfile*>(ptr)->cachePath().toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray t8a236f = static_cast<QQuickWebEngineProfile*>(ptr)->cachePath().toUtf8(); QtWebEngine_PackedString { const_cast<char*>(t8a236f.prepend("WHITESPACE").constData()+10), t8a236f.size()-10 }; });
 }
 
-char* QQuickWebEngineProfile_HttpAcceptLanguage(void* ptr)
+struct QtWebEngine_PackedString QQuickWebEngineProfile_HttpAcceptLanguage(void* ptr)
 {
-	return const_cast<char*>(static_cast<QQuickWebEngineProfile*>(ptr)->httpAcceptLanguage().toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray taf6551 = static_cast<QQuickWebEngineProfile*>(ptr)->httpAcceptLanguage().toUtf8(); QtWebEngine_PackedString { const_cast<char*>(taf6551.prepend("WHITESPACE").constData()+10), taf6551.size()-10 }; });
 }
 
 int QQuickWebEngineProfile_HttpCacheMaximumSize(void* ptr)
@@ -118,9 +118,9 @@ long long QQuickWebEngineProfile_HttpCacheType(void* ptr)
 	return static_cast<QQuickWebEngineProfile*>(ptr)->httpCacheType();
 }
 
-char* QQuickWebEngineProfile_HttpUserAgent(void* ptr)
+struct QtWebEngine_PackedString QQuickWebEngineProfile_HttpUserAgent(void* ptr)
 {
-	return const_cast<char*>(static_cast<QQuickWebEngineProfile*>(ptr)->httpUserAgent().toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray t7ee5e9 = static_cast<QQuickWebEngineProfile*>(ptr)->httpUserAgent().toUtf8(); QtWebEngine_PackedString { const_cast<char*>(t7ee5e9.prepend("WHITESPACE").constData()+10), t7ee5e9.size()-10 }; });
 }
 
 char QQuickWebEngineProfile_IsOffTheRecord(void* ptr)
@@ -133,9 +133,9 @@ long long QQuickWebEngineProfile_PersistentCookiesPolicy(void* ptr)
 	return static_cast<QQuickWebEngineProfile*>(ptr)->persistentCookiesPolicy();
 }
 
-char* QQuickWebEngineProfile_PersistentStoragePath(void* ptr)
+struct QtWebEngine_PackedString QQuickWebEngineProfile_PersistentStoragePath(void* ptr)
 {
-	return const_cast<char*>(static_cast<QQuickWebEngineProfile*>(ptr)->persistentStoragePath().toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray t5eccf6 = static_cast<QQuickWebEngineProfile*>(ptr)->persistentStoragePath().toUtf8(); QtWebEngine_PackedString { const_cast<char*>(t5eccf6.prepend("WHITESPACE").constData()+10), t5eccf6.size()-10 }; });
 }
 
 void QQuickWebEngineProfile_SetCachePath(void* ptr, char* path)
@@ -183,9 +183,9 @@ void QQuickWebEngineProfile_SetStorageName(void* ptr, char* name)
 	static_cast<QQuickWebEngineProfile*>(ptr)->setStorageName(QString(name));
 }
 
-char* QQuickWebEngineProfile_StorageName(void* ptr)
+struct QtWebEngine_PackedString QQuickWebEngineProfile_StorageName(void* ptr)
 {
-	return const_cast<char*>(static_cast<QQuickWebEngineProfile*>(ptr)->storageName().toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray t6af56e = static_cast<QQuickWebEngineProfile*>(ptr)->storageName().toUtf8(); QtWebEngine_PackedString { const_cast<char*>(t6af56e.prepend("WHITESPACE").constData()+10), t6af56e.size()-10 }; });
 }
 
 void* QQuickWebEngineProfile_NewQQuickWebEngineProfile(void* parent)
@@ -283,9 +283,9 @@ void QQuickWebEngineProfile_HttpUserAgentChanged(void* ptr)
 	static_cast<QQuickWebEngineProfile*>(ptr)->httpUserAgentChanged();
 }
 
-void QQuickWebEngineProfile_InstallUrlSchemeHandler(void* ptr, char* scheme, void* handler)
+void QQuickWebEngineProfile_InstallUrlSchemeHandler(void* ptr, void* scheme, void* handler)
 {
-	static_cast<QQuickWebEngineProfile*>(ptr)->installUrlSchemeHandler(QByteArray::fromHex(QString(scheme).toUtf8()), static_cast<QWebEngineUrlSchemeHandler*>(handler));
+	static_cast<QQuickWebEngineProfile*>(ptr)->installUrlSchemeHandler(*static_cast<QByteArray*>(scheme), static_cast<QWebEngineUrlSchemeHandler*>(handler));
 }
 
 void QQuickWebEngineProfile_ConnectOffTheRecordChanged(void* ptr)
@@ -338,9 +338,9 @@ void QQuickWebEngineProfile_RemoveAllUrlSchemeHandlers(void* ptr)
 	static_cast<QQuickWebEngineProfile*>(ptr)->removeAllUrlSchemeHandlers();
 }
 
-void QQuickWebEngineProfile_RemoveUrlScheme(void* ptr, char* scheme)
+void QQuickWebEngineProfile_RemoveUrlScheme(void* ptr, void* scheme)
 {
-	static_cast<QQuickWebEngineProfile*>(ptr)->removeUrlScheme(QByteArray::fromHex(QString(scheme).toUtf8()));
+	static_cast<QQuickWebEngineProfile*>(ptr)->removeUrlScheme(*static_cast<QByteArray*>(scheme));
 }
 
 void QQuickWebEngineProfile_RemoveUrlSchemeHandler(void* ptr, void* handler)
@@ -368,9 +368,9 @@ void QQuickWebEngineProfile_StorageNameChanged(void* ptr)
 	static_cast<QQuickWebEngineProfile*>(ptr)->storageNameChanged();
 }
 
-void* QQuickWebEngineProfile_UrlSchemeHandler(void* ptr, char* scheme)
+void* QQuickWebEngineProfile_UrlSchemeHandler(void* ptr, void* scheme)
 {
-	return const_cast<QWebEngineUrlSchemeHandler*>(static_cast<QQuickWebEngineProfile*>(ptr)->urlSchemeHandler(QByteArray::fromHex(QString(scheme).toUtf8())));
+	return const_cast<QWebEngineUrlSchemeHandler*>(static_cast<QQuickWebEngineProfile*>(ptr)->urlSchemeHandler(*static_cast<QByteArray*>(scheme)));
 }
 
 void QQuickWebEngineProfile_TimerEvent(void* ptr, void* event)
@@ -468,9 +468,9 @@ long long QWebEngineCertificateError_Error(void* ptr)
 	return static_cast<QWebEngineCertificateError*>(ptr)->error();
 }
 
-char* QWebEngineCertificateError_ErrorDescription(void* ptr)
+struct QtWebEngine_PackedString QWebEngineCertificateError_ErrorDescription(void* ptr)
 {
-	return const_cast<char*>(static_cast<QWebEngineCertificateError*>(ptr)->errorDescription().toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray t3bb4ec = static_cast<QWebEngineCertificateError*>(ptr)->errorDescription().toUtf8(); QtWebEngine_PackedString { const_cast<char*>(t3bb4ec.prepend("WHITESPACE").constData()+10), t3bb4ec.size()-10 }; });
 }
 
 char QWebEngineCertificateError_IsOverridable(void* ptr)
@@ -503,9 +503,9 @@ char QWebEngineContextMenuData_IsValid(void* ptr)
 	return static_cast<QWebEngineContextMenuData*>(ptr)->isValid();
 }
 
-char* QWebEngineContextMenuData_LinkText(void* ptr)
+struct QtWebEngine_PackedString QWebEngineContextMenuData_LinkText(void* ptr)
 {
-	return const_cast<char*>(static_cast<QWebEngineContextMenuData*>(ptr)->linkText().toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray t0eae08 = static_cast<QWebEngineContextMenuData*>(ptr)->linkText().toUtf8(); QtWebEngine_PackedString { const_cast<char*>(t0eae08.prepend("WHITESPACE").constData()+10), t0eae08.size()-10 }; });
 }
 
 void* QWebEngineContextMenuData_LinkUrl(void* ptr)
@@ -528,9 +528,9 @@ void* QWebEngineContextMenuData_Position(void* ptr)
 	return ({ QPoint tmpValue = static_cast<QWebEngineContextMenuData*>(ptr)->position(); new QPoint(tmpValue.x(), tmpValue.y()); });
 }
 
-char* QWebEngineContextMenuData_SelectedText(void* ptr)
+struct QtWebEngine_PackedString QWebEngineContextMenuData_SelectedText(void* ptr)
 {
-	return const_cast<char*>(static_cast<QWebEngineContextMenuData*>(ptr)->selectedText().toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray t9d2c70 = static_cast<QWebEngineContextMenuData*>(ptr)->selectedText().toUtf8(); QtWebEngine_PackedString { const_cast<char*>(t9d2c70.prepend("WHITESPACE").constData()+10), t9d2c70.size()-10 }; });
 }
 
 void QWebEngineContextMenuData_DestroyQWebEngineContextMenuData(void* ptr)
@@ -779,14 +779,14 @@ char QWebEngineDownloadItem_IsFinished(void* ptr)
 	return static_cast<QWebEngineDownloadItem*>(ptr)->isFinished();
 }
 
-char* QWebEngineDownloadItem_MimeType(void* ptr)
+struct QtWebEngine_PackedString QWebEngineDownloadItem_MimeType(void* ptr)
 {
-	return const_cast<char*>(static_cast<QWebEngineDownloadItem*>(ptr)->mimeType().toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray t158c86 = static_cast<QWebEngineDownloadItem*>(ptr)->mimeType().toUtf8(); QtWebEngine_PackedString { const_cast<char*>(t158c86.prepend("WHITESPACE").constData()+10), t158c86.size()-10 }; });
 }
 
-char* QWebEngineDownloadItem_Path(void* ptr)
+struct QtWebEngine_PackedString QWebEngineDownloadItem_Path(void* ptr)
 {
-	return const_cast<char*>(static_cast<QWebEngineDownloadItem*>(ptr)->path().toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray ta9b8b3 = static_cast<QWebEngineDownloadItem*>(ptr)->path().toUtf8(); QtWebEngine_PackedString { const_cast<char*>(ta9b8b3.prepend("WHITESPACE").constData()+10), ta9b8b3.size()-10 }; });
 }
 
 long long QWebEngineDownloadItem_ReceivedBytes(void* ptr)
@@ -1029,9 +1029,9 @@ void* QWebEngineHistoryItem_OriginalUrl(void* ptr)
 	return new QUrl(static_cast<QWebEngineHistoryItem*>(ptr)->originalUrl());
 }
 
-char* QWebEngineHistoryItem_Title(void* ptr)
+struct QtWebEngine_PackedString QWebEngineHistoryItem_Title(void* ptr)
 {
-	return const_cast<char*>(static_cast<QWebEngineHistoryItem*>(ptr)->title().toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray tda127c = static_cast<QWebEngineHistoryItem*>(ptr)->title().toUtf8(); QtWebEngine_PackedString { const_cast<char*>(tda127c.prepend("WHITESPACE").constData()+10), tda127c.size()-10 }; });
 }
 
 void* QWebEngineHistoryItem_Url(void* ptr)
@@ -1061,12 +1061,12 @@ public:
 	MyQWebEnginePage(QWebEngineProfile *profile, QObject *parent) : QWebEnginePage(profile, parent) {};
 	bool acceptNavigationRequest(const QUrl & url, QWebEnginePage::NavigationType ty, bool isMainFrame) { return callbackQWebEnginePage_AcceptNavigationRequest(this, const_cast<QUrl*>(&url), ty, isMainFrame) != 0; };
 	bool certificateError(const QWebEngineCertificateError & certificateError) { return callbackQWebEnginePage_CertificateError(this, const_cast<QWebEngineCertificateError*>(&certificateError)) != 0; };
-	QStringList chooseFiles(QWebEnginePage::FileSelectionMode mode, const QStringList & oldFiles, const QStringList & acceptedMimeTypes) { return QString(callbackQWebEnginePage_ChooseFiles(this, mode, const_cast<char*>(oldFiles.join("|").toUtf8().prepend("WHITESPACE").constData()+10), const_cast<char*>(acceptedMimeTypes.join("|").toUtf8().prepend("WHITESPACE").constData()+10))).split("|", QString::SkipEmptyParts); };
+	QStringList chooseFiles(QWebEnginePage::FileSelectionMode mode, const QStringList & oldFiles, const QStringList & acceptedMimeTypes) { QByteArray t76015f = oldFiles.join("|").toUtf8(); QtWebEngine_PackedString oldFilesPacked = { const_cast<char*>(t76015f.prepend("WHITESPACE").constData()+10), t76015f.size()-10 };QByteArray t541092 = acceptedMimeTypes.join("|").toUtf8(); QtWebEngine_PackedString acceptedMimeTypesPacked = { const_cast<char*>(t541092.prepend("WHITESPACE").constData()+10), t541092.size()-10 };return QString(callbackQWebEnginePage_ChooseFiles(this, mode, oldFilesPacked, acceptedMimeTypesPacked)).split("|", QString::SkipEmptyParts); };
 	QWebEnginePage * createWindow(QWebEnginePage::WebWindowType ty) { return static_cast<QWebEnginePage*>(callbackQWebEnginePage_CreateWindow(this, ty)); };
-	void javaScriptAlert(const QUrl & securityOrigin, const QString & msg) { callbackQWebEnginePage_JavaScriptAlert(this, const_cast<QUrl*>(&securityOrigin), const_cast<char*>(msg.toUtf8().prepend("WHITESPACE").constData()+10)); };
-	bool javaScriptConfirm(const QUrl & securityOrigin, const QString & msg) { return callbackQWebEnginePage_JavaScriptConfirm(this, const_cast<QUrl*>(&securityOrigin), const_cast<char*>(msg.toUtf8().prepend("WHITESPACE").constData()+10)) != 0; };
-	void javaScriptConsoleMessage(QWebEnginePage::JavaScriptConsoleMessageLevel level, const QString & message, int lineNumber, const QString & sourceID) { callbackQWebEnginePage_JavaScriptConsoleMessage(this, level, const_cast<char*>(message.toUtf8().prepend("WHITESPACE").constData()+10), lineNumber, const_cast<char*>(sourceID.toUtf8().prepend("WHITESPACE").constData()+10)); };
-	bool javaScriptPrompt(const QUrl & securityOrigin, const QString & msg, const QString & defaultValue, QString * result) { return callbackQWebEnginePage_JavaScriptPrompt(this, const_cast<QUrl*>(&securityOrigin), const_cast<char*>(msg.toUtf8().prepend("WHITESPACE").constData()+10), const_cast<char*>(defaultValue.toUtf8().prepend("WHITESPACE").constData()+10), const_cast<char*>(result->toUtf8().prepend("WHITESPACE").constData()+10)) != 0; };
+	void javaScriptAlert(const QUrl & securityOrigin, const QString & msg) { QByteArray t19f34e = msg.toUtf8(); QtWebEngine_PackedString msgPacked = { const_cast<char*>(t19f34e.prepend("WHITESPACE").constData()+10), t19f34e.size()-10 };callbackQWebEnginePage_JavaScriptAlert(this, const_cast<QUrl*>(&securityOrigin), msgPacked); };
+	bool javaScriptConfirm(const QUrl & securityOrigin, const QString & msg) { QByteArray t19f34e = msg.toUtf8(); QtWebEngine_PackedString msgPacked = { const_cast<char*>(t19f34e.prepend("WHITESPACE").constData()+10), t19f34e.size()-10 };return callbackQWebEnginePage_JavaScriptConfirm(this, const_cast<QUrl*>(&securityOrigin), msgPacked) != 0; };
+	void javaScriptConsoleMessage(QWebEnginePage::JavaScriptConsoleMessageLevel level, const QString & message, int lineNumber, const QString & sourceID) { QByteArray t6f9b9a = message.toUtf8(); QtWebEngine_PackedString messagePacked = { const_cast<char*>(t6f9b9a.prepend("WHITESPACE").constData()+10), t6f9b9a.size()-10 };QByteArray tf767e3 = sourceID.toUtf8(); QtWebEngine_PackedString sourceIDPacked = { const_cast<char*>(tf767e3.prepend("WHITESPACE").constData()+10), tf767e3.size()-10 };callbackQWebEnginePage_JavaScriptConsoleMessage(this, level, messagePacked, lineNumber, sourceIDPacked); };
+	bool javaScriptPrompt(const QUrl & securityOrigin, const QString & msg, const QString & defaultValue, QString * result) { QByteArray t19f34e = msg.toUtf8(); QtWebEngine_PackedString msgPacked = { const_cast<char*>(t19f34e.prepend("WHITESPACE").constData()+10), t19f34e.size()-10 };QByteArray te940d2 = defaultValue.toUtf8(); QtWebEngine_PackedString defaultValuePacked = { const_cast<char*>(te940d2.prepend("WHITESPACE").constData()+10), te940d2.size()-10 };QByteArray t37a530 = result->toUtf8(); QtWebEngine_PackedString resultPacked = { const_cast<char*>(t37a530.prepend("WHITESPACE").constData()+10), t37a530.size()-10 };return callbackQWebEnginePage_JavaScriptPrompt(this, const_cast<QUrl*>(&securityOrigin), msgPacked, defaultValuePacked, resultPacked) != 0; };
 	void triggerAction(QWebEnginePage::WebAction action, bool checked) { callbackQWebEnginePage_TriggerAction(this, action, checked); };
 	void Signal_AudioMutedChanged(bool muted) { callbackQWebEnginePage_AudioMutedChanged(this, muted); };
 	void Signal_AuthenticationRequired(const QUrl & requestUrl, QAuthenticator * authenticator) { callbackQWebEnginePage_AuthenticationRequired(this, const_cast<QUrl*>(&requestUrl), authenticator); };
@@ -1077,16 +1077,16 @@ public:
 	void Signal_GeometryChangeRequested(const QRect & geom) { callbackQWebEnginePage_GeometryChangeRequested(this, const_cast<QRect*>(&geom)); };
 	void Signal_IconChanged(const QIcon & icon) { callbackQWebEnginePage_IconChanged(this, const_cast<QIcon*>(&icon)); };
 	void Signal_IconUrlChanged(const QUrl & url) { callbackQWebEnginePage_IconUrlChanged(this, const_cast<QUrl*>(&url)); };
-	void Signal_LinkHovered(const QString & url) { callbackQWebEnginePage_LinkHovered(this, const_cast<char*>(url.toUtf8().prepend("WHITESPACE").constData()+10)); };
+	void Signal_LinkHovered(const QString & url) { QByteArray t817363 = url.toUtf8(); QtWebEngine_PackedString urlPacked = { const_cast<char*>(t817363.prepend("WHITESPACE").constData()+10), t817363.size()-10 };callbackQWebEnginePage_LinkHovered(this, urlPacked); };
 	void Signal_LoadFinished(bool ok) { callbackQWebEnginePage_LoadFinished(this, ok); };
 	void Signal_LoadProgress(int progress) { callbackQWebEnginePage_LoadProgress(this, progress); };
 	void Signal_LoadStarted() { callbackQWebEnginePage_LoadStarted(this); };
-	void Signal_ProxyAuthenticationRequired(const QUrl & requestUrl, QAuthenticator * authenticator, const QString & proxyHost) { callbackQWebEnginePage_ProxyAuthenticationRequired(this, const_cast<QUrl*>(&requestUrl), authenticator, const_cast<char*>(proxyHost.toUtf8().prepend("WHITESPACE").constData()+10)); };
+	void Signal_ProxyAuthenticationRequired(const QUrl & requestUrl, QAuthenticator * authenticator, const QString & proxyHost) { QByteArray teddfac = proxyHost.toUtf8(); QtWebEngine_PackedString proxyHostPacked = { const_cast<char*>(teddfac.prepend("WHITESPACE").constData()+10), teddfac.size()-10 };callbackQWebEnginePage_ProxyAuthenticationRequired(this, const_cast<QUrl*>(&requestUrl), authenticator, proxyHostPacked); };
 	void Signal_RecentlyAudibleChanged(bool recentlyAudible) { callbackQWebEnginePage_RecentlyAudibleChanged(this, recentlyAudible); };
 	void Signal_RenderProcessTerminated(QWebEnginePage::RenderProcessTerminationStatus terminationStatus, int exitCode) { callbackQWebEnginePage_RenderProcessTerminated(this, terminationStatus, exitCode); };
 	void Signal_ScrollPositionChanged(const QPointF & position) { callbackQWebEnginePage_ScrollPositionChanged(this, const_cast<QPointF*>(&position)); };
 	void Signal_SelectionChanged() { callbackQWebEnginePage_SelectionChanged(this); };
-	void Signal_TitleChanged(const QString & title) { callbackQWebEnginePage_TitleChanged(this, const_cast<char*>(title.toUtf8().prepend("WHITESPACE").constData()+10)); };
+	void Signal_TitleChanged(const QString & title) { QByteArray t3c6de1 = title.toUtf8(); QtWebEngine_PackedString titlePacked = { const_cast<char*>(t3c6de1.prepend("WHITESPACE").constData()+10), t3c6de1.size()-10 };callbackQWebEnginePage_TitleChanged(this, titlePacked); };
 	void Signal_UrlChanged(const QUrl & url) { callbackQWebEnginePage_UrlChanged(this, const_cast<QUrl*>(&url)); };
 	void Signal_WindowCloseRequested() { callbackQWebEnginePage_WindowCloseRequested(this); };
 	void timerEvent(QTimerEvent * event) { callbackQWebEnginePage_TimerEvent(this, event); };
@@ -1134,14 +1134,14 @@ char QWebEnginePage_CertificateErrorDefault(void* ptr, void* certificateError)
 	return static_cast<QWebEnginePage*>(ptr)->QWebEnginePage::certificateError(*static_cast<QWebEngineCertificateError*>(certificateError));
 }
 
-char* QWebEnginePage_ChooseFiles(void* ptr, long long mode, char* oldFiles, char* acceptedMimeTypes)
+struct QtWebEngine_PackedString QWebEnginePage_ChooseFiles(void* ptr, long long mode, char* oldFiles, char* acceptedMimeTypes)
 {
-	return const_cast<char*>(static_cast<QWebEnginePage*>(ptr)->chooseFiles(static_cast<QWebEnginePage::FileSelectionMode>(mode), QString(oldFiles).split("|", QString::SkipEmptyParts), QString(acceptedMimeTypes).split("|", QString::SkipEmptyParts)).join("|").toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray tbef4f3 = static_cast<QWebEnginePage*>(ptr)->chooseFiles(static_cast<QWebEnginePage::FileSelectionMode>(mode), QString(oldFiles).split("|", QString::SkipEmptyParts), QString(acceptedMimeTypes).split("|", QString::SkipEmptyParts)).join("|").toUtf8(); QtWebEngine_PackedString { const_cast<char*>(tbef4f3.prepend("WHITESPACE").constData()+10), tbef4f3.size()-10 }; });
 }
 
-char* QWebEnginePage_ChooseFilesDefault(void* ptr, long long mode, char* oldFiles, char* acceptedMimeTypes)
+struct QtWebEngine_PackedString QWebEnginePage_ChooseFilesDefault(void* ptr, long long mode, char* oldFiles, char* acceptedMimeTypes)
 {
-	return const_cast<char*>(static_cast<QWebEnginePage*>(ptr)->QWebEnginePage::chooseFiles(static_cast<QWebEnginePage::FileSelectionMode>(mode), QString(oldFiles).split("|", QString::SkipEmptyParts), QString(acceptedMimeTypes).split("|", QString::SkipEmptyParts)).join("|").toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray te5a7b3 = static_cast<QWebEnginePage*>(ptr)->QWebEnginePage::chooseFiles(static_cast<QWebEnginePage::FileSelectionMode>(mode), QString(oldFiles).split("|", QString::SkipEmptyParts), QString(acceptedMimeTypes).split("|", QString::SkipEmptyParts)).join("|").toUtf8(); QtWebEngine_PackedString { const_cast<char*>(te5a7b3.prepend("WHITESPACE").constData()+10), te5a7b3.size()-10 }; });
 }
 
 void* QWebEnginePage_ContentsSize(void* ptr)
@@ -1259,9 +1259,9 @@ void* QWebEnginePage_ScrollPosition(void* ptr)
 	return ({ QPointF tmpValue = static_cast<QWebEnginePage*>(ptr)->scrollPosition(); new QPointF(tmpValue.x(), tmpValue.y()); });
 }
 
-char* QWebEnginePage_SelectedText(void* ptr)
+struct QtWebEngine_PackedString QWebEnginePage_SelectedText(void* ptr)
 {
-	return const_cast<char*>(static_cast<QWebEnginePage*>(ptr)->selectedText().toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray t729dfc = static_cast<QWebEnginePage*>(ptr)->selectedText().toUtf8(); QtWebEngine_PackedString { const_cast<char*>(t729dfc.prepend("WHITESPACE").constData()+10), t729dfc.size()-10 }; });
 }
 
 void QWebEnginePage_SetAudioMuted(void* ptr, char muted)
@@ -1274,9 +1274,9 @@ void QWebEnginePage_SetBackgroundColor(void* ptr, void* color)
 	static_cast<QWebEnginePage*>(ptr)->setBackgroundColor(*static_cast<QColor*>(color));
 }
 
-void QWebEnginePage_SetContent(void* ptr, char* data, char* mimeType, void* baseUrl)
+void QWebEnginePage_SetContent(void* ptr, void* data, char* mimeType, void* baseUrl)
 {
-	static_cast<QWebEnginePage*>(ptr)->setContent(QByteArray::fromHex(QString(data).toUtf8()), QString(mimeType), *static_cast<QUrl*>(baseUrl));
+	static_cast<QWebEnginePage*>(ptr)->setContent(*static_cast<QByteArray*>(data), QString(mimeType), *static_cast<QUrl*>(baseUrl));
 }
 
 void QWebEnginePage_SetFeaturePermission(void* ptr, void* securityOrigin, long long feature, long long policy)
@@ -1309,9 +1309,9 @@ void* QWebEnginePage_Settings(void* ptr)
 	return static_cast<QWebEnginePage*>(ptr)->settings();
 }
 
-char* QWebEnginePage_Title(void* ptr)
+struct QtWebEngine_PackedString QWebEnginePage_Title(void* ptr)
 {
-	return const_cast<char*>(static_cast<QWebEnginePage*>(ptr)->title().toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray t311622 = static_cast<QWebEnginePage*>(ptr)->title().toUtf8(); QtWebEngine_PackedString { const_cast<char*>(t311622.prepend("WHITESPACE").constData()+10), t311622.size()-10 }; });
 }
 
 void QWebEnginePage_TriggerAction(void* ptr, long long action, char checked)
@@ -1801,9 +1801,9 @@ void* QWebEngineProfile_NewQWebEngineProfile2(char* storageName, void* parent)
 	return new MyQWebEngineProfile(QString(storageName), static_cast<QObject*>(parent));
 }
 
-char* QWebEngineProfile_CachePath(void* ptr)
+struct QtWebEngine_PackedString QWebEngineProfile_CachePath(void* ptr)
 {
-	return const_cast<char*>(static_cast<QWebEngineProfile*>(ptr)->cachePath().toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray td354e7 = static_cast<QWebEngineProfile*>(ptr)->cachePath().toUtf8(); QtWebEngine_PackedString { const_cast<char*>(td354e7.prepend("WHITESPACE").constData()+10), td354e7.size()-10 }; });
 }
 
 void QWebEngineProfile_ClearAllVisitedLinks(void* ptr)
@@ -1841,9 +1841,9 @@ void QWebEngineProfile_DownloadRequested(void* ptr, void* download)
 	static_cast<QWebEngineProfile*>(ptr)->downloadRequested(static_cast<QWebEngineDownloadItem*>(download));
 }
 
-char* QWebEngineProfile_HttpAcceptLanguage(void* ptr)
+struct QtWebEngine_PackedString QWebEngineProfile_HttpAcceptLanguage(void* ptr)
 {
-	return const_cast<char*>(static_cast<QWebEngineProfile*>(ptr)->httpAcceptLanguage().toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray t46ad8d = static_cast<QWebEngineProfile*>(ptr)->httpAcceptLanguage().toUtf8(); QtWebEngine_PackedString { const_cast<char*>(t46ad8d.prepend("WHITESPACE").constData()+10), t46ad8d.size()-10 }; });
 }
 
 int QWebEngineProfile_HttpCacheMaximumSize(void* ptr)
@@ -1856,14 +1856,14 @@ long long QWebEngineProfile_HttpCacheType(void* ptr)
 	return static_cast<QWebEngineProfile*>(ptr)->httpCacheType();
 }
 
-char* QWebEngineProfile_HttpUserAgent(void* ptr)
+struct QtWebEngine_PackedString QWebEngineProfile_HttpUserAgent(void* ptr)
 {
-	return const_cast<char*>(static_cast<QWebEngineProfile*>(ptr)->httpUserAgent().toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray t5c173a = static_cast<QWebEngineProfile*>(ptr)->httpUserAgent().toUtf8(); QtWebEngine_PackedString { const_cast<char*>(t5c173a.prepend("WHITESPACE").constData()+10), t5c173a.size()-10 }; });
 }
 
-void QWebEngineProfile_InstallUrlSchemeHandler(void* ptr, char* scheme, void* handler)
+void QWebEngineProfile_InstallUrlSchemeHandler(void* ptr, void* scheme, void* handler)
 {
-	static_cast<QWebEngineProfile*>(ptr)->installUrlSchemeHandler(QByteArray::fromHex(QString(scheme).toUtf8()), static_cast<QWebEngineUrlSchemeHandler*>(handler));
+	static_cast<QWebEngineProfile*>(ptr)->installUrlSchemeHandler(*static_cast<QByteArray*>(scheme), static_cast<QWebEngineUrlSchemeHandler*>(handler));
 }
 
 char QWebEngineProfile_IsOffTheRecord(void* ptr)
@@ -1876,9 +1876,9 @@ long long QWebEngineProfile_PersistentCookiesPolicy(void* ptr)
 	return static_cast<QWebEngineProfile*>(ptr)->persistentCookiesPolicy();
 }
 
-char* QWebEngineProfile_PersistentStoragePath(void* ptr)
+struct QtWebEngine_PackedString QWebEngineProfile_PersistentStoragePath(void* ptr)
 {
-	return const_cast<char*>(static_cast<QWebEngineProfile*>(ptr)->persistentStoragePath().toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray t1c9837 = static_cast<QWebEngineProfile*>(ptr)->persistentStoragePath().toUtf8(); QtWebEngine_PackedString { const_cast<char*>(t1c9837.prepend("WHITESPACE").constData()+10), t1c9837.size()-10 }; });
 }
 
 void QWebEngineProfile_RemoveAllUrlSchemeHandlers(void* ptr)
@@ -1886,9 +1886,9 @@ void QWebEngineProfile_RemoveAllUrlSchemeHandlers(void* ptr)
 	static_cast<QWebEngineProfile*>(ptr)->removeAllUrlSchemeHandlers();
 }
 
-void QWebEngineProfile_RemoveUrlScheme(void* ptr, char* scheme)
+void QWebEngineProfile_RemoveUrlScheme(void* ptr, void* scheme)
 {
-	static_cast<QWebEngineProfile*>(ptr)->removeUrlScheme(QByteArray::fromHex(QString(scheme).toUtf8()));
+	static_cast<QWebEngineProfile*>(ptr)->removeUrlScheme(*static_cast<QByteArray*>(scheme));
 }
 
 void QWebEngineProfile_RemoveUrlSchemeHandler(void* ptr, void* handler)
@@ -1946,14 +1946,14 @@ void* QWebEngineProfile_Settings(void* ptr)
 	return static_cast<QWebEngineProfile*>(ptr)->settings();
 }
 
-char* QWebEngineProfile_StorageName(void* ptr)
+struct QtWebEngine_PackedString QWebEngineProfile_StorageName(void* ptr)
 {
-	return const_cast<char*>(static_cast<QWebEngineProfile*>(ptr)->storageName().toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray tcbe040 = static_cast<QWebEngineProfile*>(ptr)->storageName().toUtf8(); QtWebEngine_PackedString { const_cast<char*>(tcbe040.prepend("WHITESPACE").constData()+10), tcbe040.size()-10 }; });
 }
 
-void* QWebEngineProfile_UrlSchemeHandler(void* ptr, char* scheme)
+void* QWebEngineProfile_UrlSchemeHandler(void* ptr, void* scheme)
 {
-	return const_cast<QWebEngineUrlSchemeHandler*>(static_cast<QWebEngineProfile*>(ptr)->urlSchemeHandler(QByteArray::fromHex(QString(scheme).toUtf8())));
+	return const_cast<QWebEngineUrlSchemeHandler*>(static_cast<QWebEngineProfile*>(ptr)->urlSchemeHandler(*static_cast<QByteArray*>(scheme)));
 }
 
 char QWebEngineProfile_VisitedLinksContainsUrl(void* ptr, void* url)
@@ -2071,9 +2071,9 @@ char QWebEngineScript_IsNull(void* ptr)
 	return static_cast<QWebEngineScript*>(ptr)->isNull();
 }
 
-char* QWebEngineScript_Name(void* ptr)
+struct QtWebEngine_PackedString QWebEngineScript_Name(void* ptr)
 {
-	return const_cast<char*>(static_cast<QWebEngineScript*>(ptr)->name().toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray te185e9 = static_cast<QWebEngineScript*>(ptr)->name().toUtf8(); QtWebEngine_PackedString { const_cast<char*>(te185e9.prepend("WHITESPACE").constData()+10), te185e9.size()-10 }; });
 }
 
 char QWebEngineScript_RunsOnSubFrames(void* ptr)
@@ -2106,9 +2106,9 @@ void QWebEngineScript_SetWorldId(void* ptr, unsigned int id)
 	static_cast<QWebEngineScript*>(ptr)->setWorldId(id);
 }
 
-char* QWebEngineScript_SourceCode(void* ptr)
+struct QtWebEngine_PackedString QWebEngineScript_SourceCode(void* ptr)
 {
-	return const_cast<char*>(static_cast<QWebEngineScript*>(ptr)->sourceCode().toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray t7bcb57 = static_cast<QWebEngineScript*>(ptr)->sourceCode().toUtf8(); QtWebEngine_PackedString { const_cast<char*>(t7bcb57.prepend("WHITESPACE").constData()+10), t7bcb57.size()-10 }; });
 }
 
 void QWebEngineScript_Swap(void* ptr, void* other)
@@ -2171,14 +2171,14 @@ void QWebEngineScriptCollection_DestroyQWebEngineScriptCollection(void* ptr)
 	static_cast<QWebEngineScriptCollection*>(ptr)->~QWebEngineScriptCollection();
 }
 
-char* QWebEngineSettings_DefaultTextEncoding(void* ptr)
+struct QtWebEngine_PackedString QWebEngineSettings_DefaultTextEncoding(void* ptr)
 {
-	return const_cast<char*>(static_cast<QWebEngineSettings*>(ptr)->defaultTextEncoding().toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray t01cf63 = static_cast<QWebEngineSettings*>(ptr)->defaultTextEncoding().toUtf8(); QtWebEngine_PackedString { const_cast<char*>(t01cf63.prepend("WHITESPACE").constData()+10), t01cf63.size()-10 }; });
 }
 
-char* QWebEngineSettings_FontFamily(void* ptr, long long which)
+struct QtWebEngine_PackedString QWebEngineSettings_FontFamily(void* ptr, long long which)
 {
-	return const_cast<char*>(static_cast<QWebEngineSettings*>(ptr)->fontFamily(static_cast<QWebEngineSettings::FontFamily>(which)).toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray t118959 = static_cast<QWebEngineSettings*>(ptr)->fontFamily(static_cast<QWebEngineSettings::FontFamily>(which)).toUtf8(); QtWebEngine_PackedString { const_cast<char*>(t118959.prepend("WHITESPACE").constData()+10), t118959.size()-10 }; });
 }
 
 int QWebEngineSettings_FontSize(void* ptr, long long ty)
@@ -2256,9 +2256,9 @@ void QWebEngineUrlRequestInfo_Redirect(void* ptr, void* url)
 	static_cast<QWebEngineUrlRequestInfo*>(ptr)->redirect(*static_cast<QUrl*>(url));
 }
 
-char* QWebEngineUrlRequestInfo_RequestMethod(void* ptr)
+void* QWebEngineUrlRequestInfo_RequestMethod(void* ptr)
 {
-	return const_cast<char*>(static_cast<QWebEngineUrlRequestInfo*>(ptr)->requestMethod().toHex().prepend("WHITESPACE").constData()+10);
+	return new QByteArray(static_cast<QWebEngineUrlRequestInfo*>(ptr)->requestMethod());
 }
 
 void* QWebEngineUrlRequestInfo_RequestUrl(void* ptr)
@@ -2271,9 +2271,9 @@ long long QWebEngineUrlRequestInfo_ResourceType(void* ptr)
 	return static_cast<QWebEngineUrlRequestInfo*>(ptr)->resourceType();
 }
 
-void QWebEngineUrlRequestInfo_SetHttpHeader(void* ptr, char* name, char* value)
+void QWebEngineUrlRequestInfo_SetHttpHeader(void* ptr, void* name, void* value)
 {
-	static_cast<QWebEngineUrlRequestInfo*>(ptr)->setHttpHeader(QByteArray::fromHex(QString(name).toUtf8()), QByteArray::fromHex(QString(value).toUtf8()));
+	static_cast<QWebEngineUrlRequestInfo*>(ptr)->setHttpHeader(*static_cast<QByteArray*>(name), *static_cast<QByteArray*>(value));
 }
 
 class MyQWebEngineUrlRequestInterceptor: public QWebEngineUrlRequestInterceptor
@@ -2390,14 +2390,14 @@ void QWebEngineUrlRequestJob_Redirect(void* ptr, void* url)
 	static_cast<QWebEngineUrlRequestJob*>(ptr)->redirect(*static_cast<QUrl*>(url));
 }
 
-void QWebEngineUrlRequestJob_Reply(void* ptr, char* contentType, void* device)
+void QWebEngineUrlRequestJob_Reply(void* ptr, void* contentType, void* device)
 {
-	static_cast<QWebEngineUrlRequestJob*>(ptr)->reply(QByteArray::fromHex(QString(contentType).toUtf8()), static_cast<QIODevice*>(device));
+	static_cast<QWebEngineUrlRequestJob*>(ptr)->reply(*static_cast<QByteArray*>(contentType), static_cast<QIODevice*>(device));
 }
 
-char* QWebEngineUrlRequestJob_RequestMethod(void* ptr)
+void* QWebEngineUrlRequestJob_RequestMethod(void* ptr)
 {
-	return const_cast<char*>(static_cast<QWebEngineUrlRequestJob*>(ptr)->requestMethod().toHex().prepend("WHITESPACE").constData()+10);
+	return new QByteArray(static_cast<QWebEngineUrlRequestJob*>(ptr)->requestMethod());
 }
 
 void* QWebEngineUrlRequestJob_RequestUrl(void* ptr)
@@ -2638,7 +2638,7 @@ public:
 	void Signal_SelectionChanged() { callbackQWebEngineView_SelectionChanged(this); };
 	void showEvent(QShowEvent * event) { callbackQWebEngineView_ShowEvent(this, event); };
 	QSize sizeHint() const { return *static_cast<QSize*>(callbackQWebEngineView_SizeHint(const_cast<MyQWebEngineView*>(this))); };
-	void Signal_TitleChanged(const QString & title) { callbackQWebEngineView_TitleChanged(this, const_cast<char*>(title.toUtf8().prepend("WHITESPACE").constData()+10)); };
+	void Signal_TitleChanged(const QString & title) { QByteArray t3c6de1 = title.toUtf8(); QtWebEngine_PackedString titlePacked = { const_cast<char*>(t3c6de1.prepend("WHITESPACE").constData()+10), t3c6de1.size()-10 };callbackQWebEngineView_TitleChanged(this, titlePacked); };
 	void Signal_UrlChanged(const QUrl & url) { callbackQWebEngineView_UrlChanged(this, const_cast<QUrl*>(&url)); };
 	void actionEvent(QActionEvent * event) { callbackQWebEngineView_ActionEvent(this, event); };
 	void enterEvent(QEvent * event) { callbackQWebEngineView_EnterEvent(this, event); };
@@ -2649,10 +2649,10 @@ public:
 	void moveEvent(QMoveEvent * event) { callbackQWebEngineView_MoveEvent(this, event); };
 	void paintEvent(QPaintEvent * event) { callbackQWebEngineView_PaintEvent(this, event); };
 	void setEnabled(bool vbo) { callbackQWebEngineView_SetEnabled(this, vbo); };
-	void setStyleSheet(const QString & styleSheet) { callbackQWebEngineView_SetStyleSheet(this, const_cast<char*>(styleSheet.toUtf8().prepend("WHITESPACE").constData()+10)); };
+	void setStyleSheet(const QString & styleSheet) { QByteArray t728ae7 = styleSheet.toUtf8(); QtWebEngine_PackedString styleSheetPacked = { const_cast<char*>(t728ae7.prepend("WHITESPACE").constData()+10), t728ae7.size()-10 };callbackQWebEngineView_SetStyleSheet(this, styleSheetPacked); };
 	void setVisible(bool visible) { callbackQWebEngineView_SetVisible(this, visible); };
 	void setWindowModified(bool vbo) { callbackQWebEngineView_SetWindowModified(this, vbo); };
-	void setWindowTitle(const QString & vqs) { callbackQWebEngineView_SetWindowTitle(this, const_cast<char*>(vqs.toUtf8().prepend("WHITESPACE").constData()+10)); };
+	void setWindowTitle(const QString & vqs) { QByteArray tda39a3 = vqs.toUtf8(); QtWebEngine_PackedString vqsPacked = { const_cast<char*>(tda39a3.prepend("WHITESPACE").constData()+10), tda39a3.size()-10 };callbackQWebEngineView_SetWindowTitle(this, vqsPacked); };
 	void changeEvent(QEvent * event) { callbackQWebEngineView_ChangeEvent(this, event); };
 	bool close() { return callbackQWebEngineView_Close(this) != 0; };
 	void closeEvent(QCloseEvent * event) { callbackQWebEngineView_CloseEvent(this, event); };
@@ -2669,7 +2669,7 @@ public:
 	void mouseMoveEvent(QMouseEvent * event) { callbackQWebEngineView_MouseMoveEvent(this, event); };
 	void mousePressEvent(QMouseEvent * event) { callbackQWebEngineView_MousePressEvent(this, event); };
 	void mouseReleaseEvent(QMouseEvent * event) { callbackQWebEngineView_MouseReleaseEvent(this, event); };
-	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQWebEngineView_NativeEvent(this, const_cast<char*>(eventType.toHex().prepend("WHITESPACE").constData()+10), message, *result) != 0; };
+	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQWebEngineView_NativeEvent(this, const_cast<QByteArray*>(&eventType), message, *result) != 0; };
 	void raise() { callbackQWebEngineView_Raise(this); };
 	void repaint() { callbackQWebEngineView_Repaint(this); };
 	void resizeEvent(QResizeEvent * event) { callbackQWebEngineView_ResizeEvent(this, event); };
@@ -2760,14 +2760,14 @@ void QWebEngineView_Reload(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QWebEngineView*>(ptr), "reload");
 }
 
-char* QWebEngineView_SelectedText(void* ptr)
+struct QtWebEngine_PackedString QWebEngineView_SelectedText(void* ptr)
 {
-	return const_cast<char*>(static_cast<QWebEngineView*>(ptr)->selectedText().toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray t0a8997 = static_cast<QWebEngineView*>(ptr)->selectedText().toUtf8(); QtWebEngine_PackedString { const_cast<char*>(t0a8997.prepend("WHITESPACE").constData()+10), t0a8997.size()-10 }; });
 }
 
-void QWebEngineView_SetContent(void* ptr, char* data, char* mimeType, void* baseUrl)
+void QWebEngineView_SetContent(void* ptr, void* data, char* mimeType, void* baseUrl)
 {
-	static_cast<QWebEngineView*>(ptr)->setContent(QByteArray::fromHex(QString(data).toUtf8()), QString(mimeType), *static_cast<QUrl*>(baseUrl));
+	static_cast<QWebEngineView*>(ptr)->setContent(*static_cast<QByteArray*>(data), QString(mimeType), *static_cast<QUrl*>(baseUrl));
 }
 
 void QWebEngineView_SetHtml(void* ptr, char* html, void* baseUrl)
@@ -2800,9 +2800,9 @@ void QWebEngineView_Stop(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QWebEngineView*>(ptr), "stop");
 }
 
-char* QWebEngineView_Title(void* ptr)
+struct QtWebEngine_PackedString QWebEngineView_Title(void* ptr)
 {
-	return const_cast<char*>(static_cast<QWebEngineView*>(ptr)->title().toUtf8().prepend("WHITESPACE").constData()+10);
+	return ({ QByteArray t838611 = static_cast<QWebEngineView*>(ptr)->title().toUtf8(); QtWebEngine_PackedString { const_cast<char*>(t838611.prepend("WHITESPACE").constData()+10), t838611.size()-10 }; });
 }
 
 void QWebEngineView_TriggerPageAction(void* ptr, long long action, char checked)
@@ -3332,14 +3332,14 @@ void QWebEngineView_MouseReleaseEventDefault(void* ptr, void* event)
 	static_cast<QWebEngineView*>(ptr)->QWebEngineView::mouseReleaseEvent(static_cast<QMouseEvent*>(event));
 }
 
-char QWebEngineView_NativeEvent(void* ptr, char* eventType, void* message, long result)
+char QWebEngineView_NativeEvent(void* ptr, void* eventType, void* message, long result)
 {
-	return static_cast<QWebEngineView*>(ptr)->nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
+	return static_cast<QWebEngineView*>(ptr)->nativeEvent(*static_cast<QByteArray*>(eventType), message, &result);
 }
 
-char QWebEngineView_NativeEventDefault(void* ptr, char* eventType, void* message, long result)
+char QWebEngineView_NativeEventDefault(void* ptr, void* eventType, void* message, long result)
 {
-	return static_cast<QWebEngineView*>(ptr)->QWebEngineView::nativeEvent(QByteArray::fromHex(QString(eventType).toUtf8()), message, &result);
+	return static_cast<QWebEngineView*>(ptr)->QWebEngineView::nativeEvent(*static_cast<QByteArray*>(eventType), message, &result);
 }
 
 void QWebEngineView_Raise(void* ptr)

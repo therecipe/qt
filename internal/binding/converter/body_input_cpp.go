@@ -89,7 +89,6 @@ func CppInputParametersForCallbackHeader(function *parser.Function) string {
 }
 
 func CppInputParametersForCallbackBody(function *parser.Function) string {
-
 	var input = make([]string, len(function.Parameters)+1)
 
 	if strings.Contains(strings.Split(function.Signature, ")")[1], "const") {
@@ -110,8 +109,20 @@ func CppInputParametersForCallbackBody(function *parser.Function) string {
 	}
 
 	for i, parameter := range function.Parameters {
-		input[i+1] = cppOutput(parameter.Name, parameter.Value, function)
+		input[i+1] = cppOutputPacked(parameter.Name, parameter.Value, function)
 	}
 
 	return strings.Join(input, ", ")
+}
+
+func CppInputParametersForCallbackBodyPrePack(function *parser.Function) string {
+	var input = make([]string, 0)
+
+	for _, parameter := range function.Parameters {
+		if packed := cppOutputPack(parameter.Name, parameter.Value, function); packed != "" {
+			input = append(input, packed)
+		}
+	}
+
+	return strings.Join(input, "")
 }

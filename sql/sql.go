@@ -17,6 +17,13 @@ import (
 	"unsafe"
 )
 
+func cGoUnpackString(s C.struct_QtSql_PackedString) string {
+	if len := int(s.len); len == -1 {
+		return C.GoString(s.data)
+	}
+	return C.GoStringN(s.data, C.int(s.len))
+}
+
 type QSqlDatabase struct {
 	ptr unsafe.Pointer
 }
@@ -147,24 +154,24 @@ func (ptr *QSqlDatabase) Commit() bool {
 
 func (ptr *QSqlDatabase) ConnectOptions() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QSqlDatabase_ConnectOptions(ptr.Pointer()))
+		return cGoUnpackString(C.QSqlDatabase_ConnectOptions(ptr.Pointer()))
 	}
 	return ""
 }
 
 func (ptr *QSqlDatabase) ConnectionName() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QSqlDatabase_ConnectionName(ptr.Pointer()))
+		return cGoUnpackString(C.QSqlDatabase_ConnectionName(ptr.Pointer()))
 	}
 	return ""
 }
 
 func QSqlDatabase_ConnectionNames() []string {
-	return strings.Split(C.GoString(C.QSqlDatabase_QSqlDatabase_ConnectionNames()), "|")
+	return strings.Split(cGoUnpackString(C.QSqlDatabase_QSqlDatabase_ConnectionNames()), "|")
 }
 
 func (ptr *QSqlDatabase) ConnectionNames() []string {
-	return strings.Split(C.GoString(C.QSqlDatabase_QSqlDatabase_ConnectionNames()), "|")
+	return strings.Split(cGoUnpackString(C.QSqlDatabase_QSqlDatabase_ConnectionNames()), "|")
 }
 
 func QSqlDatabase_Contains(connectionName string) bool {
@@ -197,7 +204,7 @@ func (ptr *QSqlDatabase) Database(connectionName string, open bool) *QSqlDatabas
 
 func (ptr *QSqlDatabase) DatabaseName() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QSqlDatabase_DatabaseName(ptr.Pointer()))
+		return cGoUnpackString(C.QSqlDatabase_DatabaseName(ptr.Pointer()))
 	}
 	return ""
 }
@@ -215,17 +222,17 @@ func (ptr *QSqlDatabase) Driver() *QSqlDriver {
 
 func (ptr *QSqlDatabase) DriverName() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QSqlDatabase_DriverName(ptr.Pointer()))
+		return cGoUnpackString(C.QSqlDatabase_DriverName(ptr.Pointer()))
 	}
 	return ""
 }
 
 func QSqlDatabase_Drivers() []string {
-	return strings.Split(C.GoString(C.QSqlDatabase_QSqlDatabase_Drivers()), "|")
+	return strings.Split(cGoUnpackString(C.QSqlDatabase_QSqlDatabase_Drivers()), "|")
 }
 
 func (ptr *QSqlDatabase) Drivers() []string {
-	return strings.Split(C.GoString(C.QSqlDatabase_QSqlDatabase_Drivers()), "|")
+	return strings.Split(cGoUnpackString(C.QSqlDatabase_QSqlDatabase_Drivers()), "|")
 }
 
 func (ptr *QSqlDatabase) Exec(query string) *QSqlQuery {
@@ -241,7 +248,7 @@ func (ptr *QSqlDatabase) Exec(query string) *QSqlQuery {
 
 func (ptr *QSqlDatabase) HostName() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QSqlDatabase_HostName(ptr.Pointer()))
+		return cGoUnpackString(C.QSqlDatabase_HostName(ptr.Pointer()))
 	}
 	return ""
 }
@@ -308,7 +315,7 @@ func (ptr *QSqlDatabase) Open2(user string, password string) bool {
 
 func (ptr *QSqlDatabase) Password() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QSqlDatabase_Password(ptr.Pointer()))
+		return cGoUnpackString(C.QSqlDatabase_Password(ptr.Pointer()))
 	}
 	return ""
 }
@@ -428,7 +435,7 @@ func (ptr *QSqlDatabase) Transaction() bool {
 
 func (ptr *QSqlDatabase) UserName() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QSqlDatabase_UserName(ptr.Pointer()))
+		return cGoUnpackString(C.QSqlDatabase_UserName(ptr.Pointer()))
 	}
 	return ""
 }
@@ -441,11 +448,11 @@ func (ptr *QSqlDatabase) DestroyQSqlDatabase() {
 }
 
 func QSqlDatabase_DefaultConnection() string {
-	return C.GoString(C.QSqlDatabase_QSqlDatabase_DefaultConnection())
+	return cGoUnpackString(C.QSqlDatabase_QSqlDatabase_DefaultConnection())
 }
 
 func (ptr *QSqlDatabase) DefaultConnection() string {
-	return C.GoString(C.QSqlDatabase_QSqlDatabase_DefaultConnection())
+	return cGoUnpackString(C.QSqlDatabase_QSqlDatabase_DefaultConnection())
 }
 
 //QSqlDriver::DbmsType
@@ -702,13 +709,13 @@ func (ptr *QSqlDriver) DbmsType() QSqlDriver__DbmsType {
 }
 
 //export callbackQSqlDriver_EscapeIdentifier
-func callbackQSqlDriver_EscapeIdentifier(ptr unsafe.Pointer, identifier *C.char, ty C.longlong) *C.char {
+func callbackQSqlDriver_EscapeIdentifier(ptr unsafe.Pointer, identifier C.struct_QtSql_PackedString, ty C.longlong) *C.char {
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSqlDriver::escapeIdentifier"); signal != nil {
-		return C.CString(signal.(func(string, QSqlDriver__IdentifierType) string)(C.GoString(identifier), QSqlDriver__IdentifierType(ty)))
+		return C.CString(signal.(func(string, QSqlDriver__IdentifierType) string)(cGoUnpackString(identifier), QSqlDriver__IdentifierType(ty)))
 	}
 
-	return C.CString(NewQSqlDriverFromPointer(ptr).EscapeIdentifierDefault(C.GoString(identifier), QSqlDriver__IdentifierType(ty)))
+	return C.CString(NewQSqlDriverFromPointer(ptr).EscapeIdentifierDefault(cGoUnpackString(identifier), QSqlDriver__IdentifierType(ty)))
 }
 
 func (ptr *QSqlDriver) ConnectEscapeIdentifier(f func(identifier string, ty QSqlDriver__IdentifierType) string) {
@@ -729,7 +736,7 @@ func (ptr *QSqlDriver) EscapeIdentifier(identifier string, ty QSqlDriver__Identi
 	if ptr.Pointer() != nil {
 		var identifierC = C.CString(identifier)
 		defer C.free(unsafe.Pointer(identifierC))
-		return C.GoString(C.QSqlDriver_EscapeIdentifier(ptr.Pointer(), identifierC, C.longlong(ty)))
+		return cGoUnpackString(C.QSqlDriver_EscapeIdentifier(ptr.Pointer(), identifierC, C.longlong(ty)))
 	}
 	return ""
 }
@@ -738,7 +745,7 @@ func (ptr *QSqlDriver) EscapeIdentifierDefault(identifier string, ty QSqlDriver_
 	if ptr.Pointer() != nil {
 		var identifierC = C.CString(identifier)
 		defer C.free(unsafe.Pointer(identifierC))
-		return C.GoString(C.QSqlDriver_EscapeIdentifierDefault(ptr.Pointer(), identifierC, C.longlong(ty)))
+		return cGoUnpackString(C.QSqlDriver_EscapeIdentifierDefault(ptr.Pointer(), identifierC, C.longlong(ty)))
 	}
 	return ""
 }
@@ -769,14 +776,14 @@ func (ptr *QSqlDriver) DisconnectFormatValue() {
 
 func (ptr *QSqlDriver) FormatValue(field QSqlField_ITF, trimStrings bool) string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QSqlDriver_FormatValue(ptr.Pointer(), PointerFromQSqlField(field), C.char(int8(qt.GoBoolToInt(trimStrings)))))
+		return cGoUnpackString(C.QSqlDriver_FormatValue(ptr.Pointer(), PointerFromQSqlField(field), C.char(int8(qt.GoBoolToInt(trimStrings)))))
 	}
 	return ""
 }
 
 func (ptr *QSqlDriver) FormatValueDefault(field QSqlField_ITF, trimStrings bool) string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QSqlDriver_FormatValueDefault(ptr.Pointer(), PointerFromQSqlField(field), C.char(int8(qt.GoBoolToInt(trimStrings)))))
+		return cGoUnpackString(C.QSqlDriver_FormatValueDefault(ptr.Pointer(), PointerFromQSqlField(field), C.char(int8(qt.GoBoolToInt(trimStrings)))))
 	}
 	return ""
 }
@@ -855,13 +862,13 @@ func (ptr *QSqlDriver) HasFeature(feature QSqlDriver__DriverFeature) bool {
 }
 
 //export callbackQSqlDriver_IsIdentifierEscaped
-func callbackQSqlDriver_IsIdentifierEscaped(ptr unsafe.Pointer, identifier *C.char, ty C.longlong) C.char {
+func callbackQSqlDriver_IsIdentifierEscaped(ptr unsafe.Pointer, identifier C.struct_QtSql_PackedString, ty C.longlong) C.char {
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSqlDriver::isIdentifierEscaped"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt(signal.(func(string, QSqlDriver__IdentifierType) bool)(C.GoString(identifier), QSqlDriver__IdentifierType(ty)))))
+		return C.char(int8(qt.GoBoolToInt(signal.(func(string, QSqlDriver__IdentifierType) bool)(cGoUnpackString(identifier), QSqlDriver__IdentifierType(ty)))))
 	}
 
-	return C.char(int8(qt.GoBoolToInt(NewQSqlDriverFromPointer(ptr).IsIdentifierEscapedDefault(C.GoString(identifier), QSqlDriver__IdentifierType(ty)))))
+	return C.char(int8(qt.GoBoolToInt(NewQSqlDriverFromPointer(ptr).IsIdentifierEscapedDefault(cGoUnpackString(identifier), QSqlDriver__IdentifierType(ty)))))
 }
 
 func (ptr *QSqlDriver) ConnectIsIdentifierEscaped(f func(identifier string, ty QSqlDriver__IdentifierType) bool) {
@@ -951,10 +958,10 @@ func (ptr *QSqlDriver) LastError() *QSqlError {
 }
 
 //export callbackQSqlDriver_Notification
-func callbackQSqlDriver_Notification(ptr unsafe.Pointer, name *C.char) {
+func callbackQSqlDriver_Notification(ptr unsafe.Pointer, name C.struct_QtSql_PackedString) {
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSqlDriver::notification"); signal != nil {
-		signal.(func(string))(C.GoString(name))
+		signal.(func(string))(cGoUnpackString(name))
 	}
 
 }
@@ -982,10 +989,10 @@ func (ptr *QSqlDriver) Notification(name string) {
 }
 
 //export callbackQSqlDriver_Notification2
-func callbackQSqlDriver_Notification2(ptr unsafe.Pointer, name *C.char, source C.longlong, payload unsafe.Pointer) {
+func callbackQSqlDriver_Notification2(ptr unsafe.Pointer, name C.struct_QtSql_PackedString, source C.longlong, payload unsafe.Pointer) {
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSqlDriver::notification2"); signal != nil {
-		signal.(func(string, QSqlDriver__NotificationSource, *core.QVariant))(C.GoString(name), QSqlDriver__NotificationSource(source), core.NewQVariantFromPointer(payload))
+		signal.(func(string, QSqlDriver__NotificationSource, *core.QVariant))(cGoUnpackString(name), QSqlDriver__NotificationSource(source), core.NewQVariantFromPointer(payload))
 	}
 
 }
@@ -1013,10 +1020,10 @@ func (ptr *QSqlDriver) Notification2(name string, source QSqlDriver__Notificatio
 }
 
 //export callbackQSqlDriver_Open
-func callbackQSqlDriver_Open(ptr unsafe.Pointer, db *C.char, user *C.char, password *C.char, host *C.char, port C.int, options *C.char) C.char {
+func callbackQSqlDriver_Open(ptr unsafe.Pointer, db C.struct_QtSql_PackedString, user C.struct_QtSql_PackedString, password C.struct_QtSql_PackedString, host C.struct_QtSql_PackedString, port C.int, options C.struct_QtSql_PackedString) C.char {
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSqlDriver::open"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt(signal.(func(string, string, string, string, int, string) bool)(C.GoString(db), C.GoString(user), C.GoString(password), C.GoString(host), int(int32(port)), C.GoString(options)))))
+		return C.char(int8(qt.GoBoolToInt(signal.(func(string, string, string, string, int, string) bool)(cGoUnpackString(db), cGoUnpackString(user), cGoUnpackString(password), cGoUnpackString(host), int(int32(port)), cGoUnpackString(options)))))
 	}
 
 	return C.char(int8(qt.GoBoolToInt(false)))
@@ -1054,13 +1061,13 @@ func (ptr *QSqlDriver) Open(db string, user string, password string, host string
 }
 
 //export callbackQSqlDriver_PrimaryIndex
-func callbackQSqlDriver_PrimaryIndex(ptr unsafe.Pointer, tableName *C.char) unsafe.Pointer {
+func callbackQSqlDriver_PrimaryIndex(ptr unsafe.Pointer, tableName C.struct_QtSql_PackedString) unsafe.Pointer {
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSqlDriver::primaryIndex"); signal != nil {
-		return PointerFromQSqlIndex(signal.(func(string) *QSqlIndex)(C.GoString(tableName)))
+		return PointerFromQSqlIndex(signal.(func(string) *QSqlIndex)(cGoUnpackString(tableName)))
 	}
 
-	return PointerFromQSqlIndex(NewQSqlDriverFromPointer(ptr).PrimaryIndexDefault(C.GoString(tableName)))
+	return PointerFromQSqlIndex(NewQSqlDriverFromPointer(ptr).PrimaryIndexDefault(cGoUnpackString(tableName)))
 }
 
 func (ptr *QSqlDriver) ConnectPrimaryIndex(f func(tableName string) *QSqlIndex) {
@@ -1100,13 +1107,13 @@ func (ptr *QSqlDriver) PrimaryIndexDefault(tableName string) *QSqlIndex {
 }
 
 //export callbackQSqlDriver_Record
-func callbackQSqlDriver_Record(ptr unsafe.Pointer, tableName *C.char) unsafe.Pointer {
+func callbackQSqlDriver_Record(ptr unsafe.Pointer, tableName C.struct_QtSql_PackedString) unsafe.Pointer {
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSqlDriver::record"); signal != nil {
-		return PointerFromQSqlRecord(signal.(func(string) *QSqlRecord)(C.GoString(tableName)))
+		return PointerFromQSqlRecord(signal.(func(string) *QSqlRecord)(cGoUnpackString(tableName)))
 	}
 
-	return PointerFromQSqlRecord(NewQSqlDriverFromPointer(ptr).RecordDefault(C.GoString(tableName)))
+	return PointerFromQSqlRecord(NewQSqlDriverFromPointer(ptr).RecordDefault(cGoUnpackString(tableName)))
 }
 
 func (ptr *QSqlDriver) ConnectRecord(f func(tableName string) *QSqlRecord) {
@@ -1292,13 +1299,13 @@ func (ptr *QSqlDriver) SetOpenErrorDefault(error bool) {
 }
 
 //export callbackQSqlDriver_SqlStatement
-func callbackQSqlDriver_SqlStatement(ptr unsafe.Pointer, ty C.longlong, tableName *C.char, rec unsafe.Pointer, preparedStatement C.char) *C.char {
+func callbackQSqlDriver_SqlStatement(ptr unsafe.Pointer, ty C.longlong, tableName C.struct_QtSql_PackedString, rec unsafe.Pointer, preparedStatement C.char) *C.char {
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSqlDriver::sqlStatement"); signal != nil {
-		return C.CString(signal.(func(QSqlDriver__StatementType, string, *QSqlRecord, bool) string)(QSqlDriver__StatementType(ty), C.GoString(tableName), NewQSqlRecordFromPointer(rec), int8(preparedStatement) != 0))
+		return C.CString(signal.(func(QSqlDriver__StatementType, string, *QSqlRecord, bool) string)(QSqlDriver__StatementType(ty), cGoUnpackString(tableName), NewQSqlRecordFromPointer(rec), int8(preparedStatement) != 0))
 	}
 
-	return C.CString(NewQSqlDriverFromPointer(ptr).SqlStatementDefault(QSqlDriver__StatementType(ty), C.GoString(tableName), NewQSqlRecordFromPointer(rec), int8(preparedStatement) != 0))
+	return C.CString(NewQSqlDriverFromPointer(ptr).SqlStatementDefault(QSqlDriver__StatementType(ty), cGoUnpackString(tableName), NewQSqlRecordFromPointer(rec), int8(preparedStatement) != 0))
 }
 
 func (ptr *QSqlDriver) ConnectSqlStatement(f func(ty QSqlDriver__StatementType, tableName string, rec *QSqlRecord, preparedStatement bool) string) {
@@ -1319,7 +1326,7 @@ func (ptr *QSqlDriver) SqlStatement(ty QSqlDriver__StatementType, tableName stri
 	if ptr.Pointer() != nil {
 		var tableNameC = C.CString(tableName)
 		defer C.free(unsafe.Pointer(tableNameC))
-		return C.GoString(C.QSqlDriver_SqlStatement(ptr.Pointer(), C.longlong(ty), tableNameC, PointerFromQSqlRecord(rec), C.char(int8(qt.GoBoolToInt(preparedStatement)))))
+		return cGoUnpackString(C.QSqlDriver_SqlStatement(ptr.Pointer(), C.longlong(ty), tableNameC, PointerFromQSqlRecord(rec), C.char(int8(qt.GoBoolToInt(preparedStatement)))))
 	}
 	return ""
 }
@@ -1328,19 +1335,19 @@ func (ptr *QSqlDriver) SqlStatementDefault(ty QSqlDriver__StatementType, tableNa
 	if ptr.Pointer() != nil {
 		var tableNameC = C.CString(tableName)
 		defer C.free(unsafe.Pointer(tableNameC))
-		return C.GoString(C.QSqlDriver_SqlStatementDefault(ptr.Pointer(), C.longlong(ty), tableNameC, PointerFromQSqlRecord(rec), C.char(int8(qt.GoBoolToInt(preparedStatement)))))
+		return cGoUnpackString(C.QSqlDriver_SqlStatementDefault(ptr.Pointer(), C.longlong(ty), tableNameC, PointerFromQSqlRecord(rec), C.char(int8(qt.GoBoolToInt(preparedStatement)))))
 	}
 	return ""
 }
 
 //export callbackQSqlDriver_StripDelimiters
-func callbackQSqlDriver_StripDelimiters(ptr unsafe.Pointer, identifier *C.char, ty C.longlong) *C.char {
+func callbackQSqlDriver_StripDelimiters(ptr unsafe.Pointer, identifier C.struct_QtSql_PackedString, ty C.longlong) *C.char {
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSqlDriver::stripDelimiters"); signal != nil {
-		return C.CString(signal.(func(string, QSqlDriver__IdentifierType) string)(C.GoString(identifier), QSqlDriver__IdentifierType(ty)))
+		return C.CString(signal.(func(string, QSqlDriver__IdentifierType) string)(cGoUnpackString(identifier), QSqlDriver__IdentifierType(ty)))
 	}
 
-	return C.CString(NewQSqlDriverFromPointer(ptr).StripDelimitersDefault(C.GoString(identifier), QSqlDriver__IdentifierType(ty)))
+	return C.CString(NewQSqlDriverFromPointer(ptr).StripDelimitersDefault(cGoUnpackString(identifier), QSqlDriver__IdentifierType(ty)))
 }
 
 func (ptr *QSqlDriver) ConnectStripDelimiters(f func(identifier string, ty QSqlDriver__IdentifierType) string) {
@@ -1361,7 +1368,7 @@ func (ptr *QSqlDriver) StripDelimiters(identifier string, ty QSqlDriver__Identif
 	if ptr.Pointer() != nil {
 		var identifierC = C.CString(identifier)
 		defer C.free(unsafe.Pointer(identifierC))
-		return C.GoString(C.QSqlDriver_StripDelimiters(ptr.Pointer(), identifierC, C.longlong(ty)))
+		return cGoUnpackString(C.QSqlDriver_StripDelimiters(ptr.Pointer(), identifierC, C.longlong(ty)))
 	}
 	return ""
 }
@@ -1370,19 +1377,19 @@ func (ptr *QSqlDriver) StripDelimitersDefault(identifier string, ty QSqlDriver__
 	if ptr.Pointer() != nil {
 		var identifierC = C.CString(identifier)
 		defer C.free(unsafe.Pointer(identifierC))
-		return C.GoString(C.QSqlDriver_StripDelimitersDefault(ptr.Pointer(), identifierC, C.longlong(ty)))
+		return cGoUnpackString(C.QSqlDriver_StripDelimitersDefault(ptr.Pointer(), identifierC, C.longlong(ty)))
 	}
 	return ""
 }
 
 //export callbackQSqlDriver_SubscribeToNotification
-func callbackQSqlDriver_SubscribeToNotification(ptr unsafe.Pointer, name *C.char) C.char {
+func callbackQSqlDriver_SubscribeToNotification(ptr unsafe.Pointer, name C.struct_QtSql_PackedString) C.char {
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSqlDriver::subscribeToNotification"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt(signal.(func(string) bool)(C.GoString(name)))))
+		return C.char(int8(qt.GoBoolToInt(signal.(func(string) bool)(cGoUnpackString(name)))))
 	}
 
-	return C.char(int8(qt.GoBoolToInt(NewQSqlDriverFromPointer(ptr).SubscribeToNotificationDefault(C.GoString(name)))))
+	return C.char(int8(qt.GoBoolToInt(NewQSqlDriverFromPointer(ptr).SubscribeToNotificationDefault(cGoUnpackString(name)))))
 }
 
 func (ptr *QSqlDriver) ConnectSubscribeToNotification(f func(name string) bool) {
@@ -1443,26 +1450,26 @@ func (ptr *QSqlDriver) DisconnectSubscribedToNotifications() {
 
 func (ptr *QSqlDriver) SubscribedToNotifications() []string {
 	if ptr.Pointer() != nil {
-		return strings.Split(C.GoString(C.QSqlDriver_SubscribedToNotifications(ptr.Pointer())), "|")
+		return strings.Split(cGoUnpackString(C.QSqlDriver_SubscribedToNotifications(ptr.Pointer())), "|")
 	}
 	return make([]string, 0)
 }
 
 func (ptr *QSqlDriver) SubscribedToNotificationsDefault() []string {
 	if ptr.Pointer() != nil {
-		return strings.Split(C.GoString(C.QSqlDriver_SubscribedToNotificationsDefault(ptr.Pointer())), "|")
+		return strings.Split(cGoUnpackString(C.QSqlDriver_SubscribedToNotificationsDefault(ptr.Pointer())), "|")
 	}
 	return make([]string, 0)
 }
 
 //export callbackQSqlDriver_UnsubscribeFromNotification
-func callbackQSqlDriver_UnsubscribeFromNotification(ptr unsafe.Pointer, name *C.char) C.char {
+func callbackQSqlDriver_UnsubscribeFromNotification(ptr unsafe.Pointer, name C.struct_QtSql_PackedString) C.char {
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSqlDriver::unsubscribeFromNotification"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt(signal.(func(string) bool)(C.GoString(name)))))
+		return C.char(int8(qt.GoBoolToInt(signal.(func(string) bool)(cGoUnpackString(name)))))
 	}
 
-	return C.char(int8(qt.GoBoolToInt(NewQSqlDriverFromPointer(ptr).UnsubscribeFromNotificationDefault(C.GoString(name)))))
+	return C.char(int8(qt.GoBoolToInt(NewQSqlDriverFromPointer(ptr).UnsubscribeFromNotificationDefault(cGoUnpackString(name)))))
 }
 
 func (ptr *QSqlDriver) ConnectUnsubscribeFromNotification(f func(name string) bool) {
@@ -2043,10 +2050,10 @@ func NewQSqlDriverPlugin(parent core.QObject_ITF) *QSqlDriverPlugin {
 }
 
 //export callbackQSqlDriverPlugin_Create
-func callbackQSqlDriverPlugin_Create(ptr unsafe.Pointer, key *C.char) unsafe.Pointer {
+func callbackQSqlDriverPlugin_Create(ptr unsafe.Pointer, key C.struct_QtSql_PackedString) unsafe.Pointer {
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSqlDriverPlugin::create"); signal != nil {
-		return PointerFromQSqlDriver(signal.(func(string) *QSqlDriver)(C.GoString(key)))
+		return PointerFromQSqlDriver(signal.(func(string) *QSqlDriver)(cGoUnpackString(key)))
 	}
 
 	return PointerFromQSqlDriver(nil)
@@ -2488,14 +2495,14 @@ func NewQSqlError(driverText string, databaseText string, ty QSqlError__ErrorTyp
 
 func (ptr *QSqlError) DatabaseText() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QSqlError_DatabaseText(ptr.Pointer()))
+		return cGoUnpackString(C.QSqlError_DatabaseText(ptr.Pointer()))
 	}
 	return ""
 }
 
 func (ptr *QSqlError) DriverText() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QSqlError_DriverText(ptr.Pointer()))
+		return cGoUnpackString(C.QSqlError_DriverText(ptr.Pointer()))
 	}
 	return ""
 }
@@ -2509,14 +2516,14 @@ func (ptr *QSqlError) IsValid() bool {
 
 func (ptr *QSqlError) NativeErrorCode() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QSqlError_NativeErrorCode(ptr.Pointer()))
+		return cGoUnpackString(C.QSqlError_NativeErrorCode(ptr.Pointer()))
 	}
 	return ""
 }
 
 func (ptr *QSqlError) Text() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QSqlError_Text(ptr.Pointer()))
+		return cGoUnpackString(C.QSqlError_Text(ptr.Pointer()))
 	}
 	return ""
 }
@@ -2646,7 +2653,7 @@ func (ptr *QSqlField) Length() int {
 
 func (ptr *QSqlField) Name() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QSqlField_Name(ptr.Pointer()))
+		return cGoUnpackString(C.QSqlField_Name(ptr.Pointer()))
 	}
 	return ""
 }
@@ -2811,7 +2818,7 @@ func (ptr *QSqlIndex) Append2(field QSqlField_ITF, desc bool) {
 
 func (ptr *QSqlIndex) CursorName() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QSqlIndex_CursorName(ptr.Pointer()))
+		return cGoUnpackString(C.QSqlIndex_CursorName(ptr.Pointer()))
 	}
 	return ""
 }
@@ -2825,7 +2832,7 @@ func (ptr *QSqlIndex) IsDescending(i int) bool {
 
 func (ptr *QSqlIndex) Name() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QSqlIndex_Name(ptr.Pointer()))
+		return cGoUnpackString(C.QSqlIndex_Name(ptr.Pointer()))
 	}
 	return ""
 }
@@ -2999,7 +3006,7 @@ func (ptr *QSqlQuery) ExecBatch(mode QSqlQuery__BatchExecutionMode) bool {
 
 func (ptr *QSqlQuery) ExecutedQuery() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QSqlQuery_ExecutedQuery(ptr.Pointer()))
+		return cGoUnpackString(C.QSqlQuery_ExecutedQuery(ptr.Pointer()))
 	}
 	return ""
 }
@@ -3088,7 +3095,7 @@ func (ptr *QSqlQuery) LastInsertId() *core.QVariant {
 
 func (ptr *QSqlQuery) LastQuery() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QSqlQuery_LastQuery(ptr.Pointer()))
+		return cGoUnpackString(C.QSqlQuery_LastQuery(ptr.Pointer()))
 	}
 	return ""
 }
@@ -3857,14 +3864,14 @@ func (ptr *QSqlQueryModel) DisconnectMimeTypes() {
 
 func (ptr *QSqlQueryModel) MimeTypes() []string {
 	if ptr.Pointer() != nil {
-		return strings.Split(C.GoString(C.QSqlQueryModel_MimeTypes(ptr.Pointer())), "|")
+		return strings.Split(cGoUnpackString(C.QSqlQueryModel_MimeTypes(ptr.Pointer())), "|")
 	}
 	return make([]string, 0)
 }
 
 func (ptr *QSqlQueryModel) MimeTypesDefault() []string {
 	if ptr.Pointer() != nil {
-		return strings.Split(C.GoString(C.QSqlQueryModel_MimeTypesDefault(ptr.Pointer())), "|")
+		return strings.Split(cGoUnpackString(C.QSqlQueryModel_MimeTypesDefault(ptr.Pointer())), "|")
 	}
 	return make([]string, 0)
 }
@@ -4762,7 +4769,7 @@ func (ptr *QSqlRecord) Field(index int) *QSqlField {
 
 func (ptr *QSqlRecord) FieldName(index int) string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QSqlRecord_FieldName(ptr.Pointer(), C.int(int32(index))))
+		return cGoUnpackString(C.QSqlRecord_FieldName(ptr.Pointer(), C.int(int32(index))))
 	}
 	return ""
 }
@@ -4974,14 +4981,14 @@ func NewQSqlRelation2(tableName string, indexColumn string, displayColumn string
 
 func (ptr *QSqlRelation) DisplayColumn() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QSqlRelation_DisplayColumn(ptr.Pointer()))
+		return cGoUnpackString(C.QSqlRelation_DisplayColumn(ptr.Pointer()))
 	}
 	return ""
 }
 
 func (ptr *QSqlRelation) IndexColumn() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QSqlRelation_IndexColumn(ptr.Pointer()))
+		return cGoUnpackString(C.QSqlRelation_IndexColumn(ptr.Pointer()))
 	}
 	return ""
 }
@@ -4995,7 +5002,7 @@ func (ptr *QSqlRelation) IsValid() bool {
 
 func (ptr *QSqlRelation) TableName() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QSqlRelation_TableName(ptr.Pointer()))
+		return cGoUnpackString(C.QSqlRelation_TableName(ptr.Pointer()))
 	}
 	return ""
 }
@@ -5144,12 +5151,12 @@ func (ptr *QSqlRelationalDelegate) DrawDecorationDefault(painter gui.QPainter_IT
 }
 
 //export callbackQSqlRelationalDelegate_DrawDisplay
-func callbackQSqlRelationalDelegate_DrawDisplay(ptr unsafe.Pointer, painter unsafe.Pointer, option unsafe.Pointer, rect unsafe.Pointer, text *C.char) {
+func callbackQSqlRelationalDelegate_DrawDisplay(ptr unsafe.Pointer, painter unsafe.Pointer, option unsafe.Pointer, rect unsafe.Pointer, text C.struct_QtSql_PackedString) {
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSqlRelationalDelegate::drawDisplay"); signal != nil {
-		signal.(func(*gui.QPainter, *widgets.QStyleOptionViewItem, *core.QRect, string))(gui.NewQPainterFromPointer(painter), widgets.NewQStyleOptionViewItemFromPointer(option), core.NewQRectFromPointer(rect), C.GoString(text))
+		signal.(func(*gui.QPainter, *widgets.QStyleOptionViewItem, *core.QRect, string))(gui.NewQPainterFromPointer(painter), widgets.NewQStyleOptionViewItemFromPointer(option), core.NewQRectFromPointer(rect), cGoUnpackString(text))
 	} else {
-		NewQSqlRelationalDelegateFromPointer(ptr).DrawDisplayDefault(gui.NewQPainterFromPointer(painter), widgets.NewQStyleOptionViewItemFromPointer(option), core.NewQRectFromPointer(rect), C.GoString(text))
+		NewQSqlRelationalDelegateFromPointer(ptr).DrawDisplayDefault(gui.NewQPainterFromPointer(painter), widgets.NewQStyleOptionViewItemFromPointer(option), core.NewQRectFromPointer(rect), cGoUnpackString(text))
 	}
 }
 
@@ -5939,14 +5946,14 @@ func (ptr *QSqlRelationalTableModel) DisconnectOrderByClause() {
 
 func (ptr *QSqlRelationalTableModel) OrderByClause() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QSqlRelationalTableModel_OrderByClause(ptr.Pointer()))
+		return cGoUnpackString(C.QSqlRelationalTableModel_OrderByClause(ptr.Pointer()))
 	}
 	return ""
 }
 
 func (ptr *QSqlRelationalTableModel) OrderByClauseDefault() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QSqlRelationalTableModel_OrderByClauseDefault(ptr.Pointer()))
+		return cGoUnpackString(C.QSqlRelationalTableModel_OrderByClauseDefault(ptr.Pointer()))
 	}
 	return ""
 }
@@ -6103,14 +6110,14 @@ func (ptr *QSqlRelationalTableModel) DisconnectSelectStatement() {
 
 func (ptr *QSqlRelationalTableModel) SelectStatement() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QSqlRelationalTableModel_SelectStatement(ptr.Pointer()))
+		return cGoUnpackString(C.QSqlRelationalTableModel_SelectStatement(ptr.Pointer()))
 	}
 	return ""
 }
 
 func (ptr *QSqlRelationalTableModel) SelectStatementDefault() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QSqlRelationalTableModel_SelectStatementDefault(ptr.Pointer()))
+		return cGoUnpackString(C.QSqlRelationalTableModel_SelectStatementDefault(ptr.Pointer()))
 	}
 	return ""
 }
@@ -6165,12 +6172,12 @@ func (ptr *QSqlRelationalTableModel) SetRelationDefault(column int, relation QSq
 }
 
 //export callbackQSqlRelationalTableModel_SetTable
-func callbackQSqlRelationalTableModel_SetTable(ptr unsafe.Pointer, table *C.char) {
+func callbackQSqlRelationalTableModel_SetTable(ptr unsafe.Pointer, table C.struct_QtSql_PackedString) {
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSqlRelationalTableModel::setTable"); signal != nil {
-		signal.(func(string))(C.GoString(table))
+		signal.(func(string))(cGoUnpackString(table))
 	} else {
-		NewQSqlRelationalTableModelFromPointer(ptr).SetTableDefault(C.GoString(table))
+		NewQSqlRelationalTableModelFromPointer(ptr).SetTableDefault(cGoUnpackString(table))
 	}
 }
 
@@ -6506,12 +6513,12 @@ func (ptr *QSqlRelationalTableModel) SetEditStrategyDefault(strategy QSqlTableMo
 }
 
 //export callbackQSqlRelationalTableModel_SetFilter
-func callbackQSqlRelationalTableModel_SetFilter(ptr unsafe.Pointer, filter *C.char) {
+func callbackQSqlRelationalTableModel_SetFilter(ptr unsafe.Pointer, filter C.struct_QtSql_PackedString) {
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSqlRelationalTableModel::setFilter"); signal != nil {
-		signal.(func(string))(C.GoString(filter))
+		signal.(func(string))(cGoUnpackString(filter))
 	} else {
-		NewQSqlRelationalTableModelFromPointer(ptr).SetFilterDefault(C.GoString(filter))
+		NewQSqlRelationalTableModelFromPointer(ptr).SetFilterDefault(cGoUnpackString(filter))
 	}
 }
 
@@ -6957,14 +6964,14 @@ func (ptr *QSqlRelationalTableModel) DisconnectMimeTypes() {
 
 func (ptr *QSqlRelationalTableModel) MimeTypes() []string {
 	if ptr.Pointer() != nil {
-		return strings.Split(C.GoString(C.QSqlRelationalTableModel_MimeTypes(ptr.Pointer())), "|")
+		return strings.Split(cGoUnpackString(C.QSqlRelationalTableModel_MimeTypes(ptr.Pointer())), "|")
 	}
 	return make([]string, 0)
 }
 
 func (ptr *QSqlRelationalTableModel) MimeTypesDefault() []string {
 	if ptr.Pointer() != nil {
-		return strings.Split(C.GoString(C.QSqlRelationalTableModel_MimeTypesDefault(ptr.Pointer())), "|")
+		return strings.Split(cGoUnpackString(C.QSqlRelationalTableModel_MimeTypesDefault(ptr.Pointer())), "|")
 	}
 	return make([]string, 0)
 }
@@ -7665,7 +7672,7 @@ func (ptr *QSqlResult) BoundValueCount() int {
 
 func (ptr *QSqlResult) BoundValueName(index int) string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QSqlResult_BoundValueName(ptr.Pointer(), C.int(int32(index))))
+		return cGoUnpackString(C.QSqlResult_BoundValueName(ptr.Pointer(), C.int(int32(index))))
 	}
 	return ""
 }
@@ -7760,7 +7767,7 @@ func (ptr *QSqlResult) ExecDefault() bool {
 
 func (ptr *QSqlResult) ExecutedQuery() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QSqlResult_ExecutedQuery(ptr.Pointer()))
+		return cGoUnpackString(C.QSqlResult_ExecutedQuery(ptr.Pointer()))
 	}
 	return ""
 }
@@ -8095,7 +8102,7 @@ func (ptr *QSqlResult) LastInsertIdDefault() *core.QVariant {
 
 func (ptr *QSqlResult) LastQuery() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QSqlResult_LastQuery(ptr.Pointer()))
+		return cGoUnpackString(C.QSqlResult_LastQuery(ptr.Pointer()))
 	}
 	return ""
 }
@@ -8132,13 +8139,13 @@ func (ptr *QSqlResult) NumRowsAffected() int {
 }
 
 //export callbackQSqlResult_Prepare
-func callbackQSqlResult_Prepare(ptr unsafe.Pointer, query *C.char) C.char {
+func callbackQSqlResult_Prepare(ptr unsafe.Pointer, query C.struct_QtSql_PackedString) C.char {
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSqlResult::prepare"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt(signal.(func(string) bool)(C.GoString(query)))))
+		return C.char(int8(qt.GoBoolToInt(signal.(func(string) bool)(cGoUnpackString(query)))))
 	}
 
-	return C.char(int8(qt.GoBoolToInt(NewQSqlResultFromPointer(ptr).PrepareDefault(C.GoString(query)))))
+	return C.char(int8(qt.GoBoolToInt(NewQSqlResultFromPointer(ptr).PrepareDefault(cGoUnpackString(query)))))
 }
 
 func (ptr *QSqlResult) ConnectPrepare(f func(query string) bool) {
@@ -8216,10 +8223,10 @@ func (ptr *QSqlResult) RecordDefault() *QSqlRecord {
 }
 
 //export callbackQSqlResult_Reset
-func callbackQSqlResult_Reset(ptr unsafe.Pointer, query *C.char) C.char {
+func callbackQSqlResult_Reset(ptr unsafe.Pointer, query C.struct_QtSql_PackedString) C.char {
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSqlResult::reset"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt(signal.(func(string) bool)(C.GoString(query)))))
+		return C.char(int8(qt.GoBoolToInt(signal.(func(string) bool)(cGoUnpackString(query)))))
 	}
 
 	return C.char(int8(qt.GoBoolToInt(false)))
@@ -8255,13 +8262,13 @@ func (ptr *QSqlResult) ResetBindCount() {
 }
 
 //export callbackQSqlResult_SavePrepare
-func callbackQSqlResult_SavePrepare(ptr unsafe.Pointer, query *C.char) C.char {
+func callbackQSqlResult_SavePrepare(ptr unsafe.Pointer, query C.struct_QtSql_PackedString) C.char {
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSqlResult::savePrepare"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt(signal.(func(string) bool)(C.GoString(query)))))
+		return C.char(int8(qt.GoBoolToInt(signal.(func(string) bool)(cGoUnpackString(query)))))
 	}
 
-	return C.char(int8(qt.GoBoolToInt(NewQSqlResultFromPointer(ptr).SavePrepareDefault(C.GoString(query)))))
+	return C.char(int8(qt.GoBoolToInt(NewQSqlResultFromPointer(ptr).SavePrepareDefault(cGoUnpackString(query)))))
 }
 
 func (ptr *QSqlResult) ConnectSavePrepare(f func(query string) bool) {
@@ -8441,12 +8448,12 @@ func (ptr *QSqlResult) SetLastErrorDefault(error QSqlError_ITF) {
 }
 
 //export callbackQSqlResult_SetQuery
-func callbackQSqlResult_SetQuery(ptr unsafe.Pointer, query *C.char) {
+func callbackQSqlResult_SetQuery(ptr unsafe.Pointer, query C.struct_QtSql_PackedString) {
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSqlResult::setQuery"); signal != nil {
-		signal.(func(string))(C.GoString(query))
+		signal.(func(string))(cGoUnpackString(query))
 	} else {
-		NewQSqlResultFromPointer(ptr).SetQueryDefault(C.GoString(query))
+		NewQSqlResultFromPointer(ptr).SetQueryDefault(cGoUnpackString(query))
 	}
 }
 
@@ -8839,7 +8846,7 @@ func (ptr *QSqlTableModel) FieldIndex(fieldName string) int {
 
 func (ptr *QSqlTableModel) Filter() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QSqlTableModel_Filter(ptr.Pointer()))
+		return cGoUnpackString(C.QSqlTableModel_Filter(ptr.Pointer()))
 	}
 	return ""
 }
@@ -8994,14 +9001,14 @@ func (ptr *QSqlTableModel) DisconnectOrderByClause() {
 
 func (ptr *QSqlTableModel) OrderByClause() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QSqlTableModel_OrderByClause(ptr.Pointer()))
+		return cGoUnpackString(C.QSqlTableModel_OrderByClause(ptr.Pointer()))
 	}
 	return ""
 }
 
 func (ptr *QSqlTableModel) OrderByClauseDefault() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QSqlTableModel_OrderByClauseDefault(ptr.Pointer()))
+		return cGoUnpackString(C.QSqlTableModel_OrderByClauseDefault(ptr.Pointer()))
 	}
 	return ""
 }
@@ -9284,14 +9291,14 @@ func (ptr *QSqlTableModel) DisconnectSelectStatement() {
 
 func (ptr *QSqlTableModel) SelectStatement() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QSqlTableModel_SelectStatement(ptr.Pointer()))
+		return cGoUnpackString(C.QSqlTableModel_SelectStatement(ptr.Pointer()))
 	}
 	return ""
 }
 
 func (ptr *QSqlTableModel) SelectStatementDefault() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QSqlTableModel_SelectStatementDefault(ptr.Pointer()))
+		return cGoUnpackString(C.QSqlTableModel_SelectStatementDefault(ptr.Pointer()))
 	}
 	return ""
 }
@@ -9340,12 +9347,12 @@ func (ptr *QSqlTableModel) SetEditStrategyDefault(strategy QSqlTableModel__EditS
 }
 
 //export callbackQSqlTableModel_SetFilter
-func callbackQSqlTableModel_SetFilter(ptr unsafe.Pointer, filter *C.char) {
+func callbackQSqlTableModel_SetFilter(ptr unsafe.Pointer, filter C.struct_QtSql_PackedString) {
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSqlTableModel::setFilter"); signal != nil {
-		signal.(func(string))(C.GoString(filter))
+		signal.(func(string))(cGoUnpackString(filter))
 	} else {
-		NewQSqlTableModelFromPointer(ptr).SetFilterDefault(C.GoString(filter))
+		NewQSqlTableModelFromPointer(ptr).SetFilterDefault(cGoUnpackString(filter))
 	}
 }
 
@@ -9435,12 +9442,12 @@ func (ptr *QSqlTableModel) SetSortDefault(column int, order core.Qt__SortOrder) 
 }
 
 //export callbackQSqlTableModel_SetTable
-func callbackQSqlTableModel_SetTable(ptr unsafe.Pointer, tableName *C.char) {
+func callbackQSqlTableModel_SetTable(ptr unsafe.Pointer, tableName C.struct_QtSql_PackedString) {
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSqlTableModel::setTable"); signal != nil {
-		signal.(func(string))(C.GoString(tableName))
+		signal.(func(string))(cGoUnpackString(tableName))
 	} else {
-		NewQSqlTableModelFromPointer(ptr).SetTableDefault(C.GoString(tableName))
+		NewQSqlTableModelFromPointer(ptr).SetTableDefault(cGoUnpackString(tableName))
 	}
 }
 
@@ -9542,7 +9549,7 @@ func (ptr *QSqlTableModel) SubmitAll() bool {
 
 func (ptr *QSqlTableModel) TableName() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QSqlTableModel_TableName(ptr.Pointer()))
+		return cGoUnpackString(C.QSqlTableModel_TableName(ptr.Pointer()))
 	}
 	return ""
 }
@@ -9927,14 +9934,14 @@ func (ptr *QSqlTableModel) DisconnectMimeTypes() {
 
 func (ptr *QSqlTableModel) MimeTypes() []string {
 	if ptr.Pointer() != nil {
-		return strings.Split(C.GoString(C.QSqlTableModel_MimeTypes(ptr.Pointer())), "|")
+		return strings.Split(cGoUnpackString(C.QSqlTableModel_MimeTypes(ptr.Pointer())), "|")
 	}
 	return make([]string, 0)
 }
 
 func (ptr *QSqlTableModel) MimeTypesDefault() []string {
 	if ptr.Pointer() != nil {
-		return strings.Split(C.GoString(C.QSqlTableModel_MimeTypesDefault(ptr.Pointer())), "|")
+		return strings.Split(cGoUnpackString(C.QSqlTableModel_MimeTypesDefault(ptr.Pointer())), "|")
 	}
 	return make([]string, 0)
 }

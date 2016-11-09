@@ -7,7 +7,6 @@ package sensors
 //#include "sensors.h"
 import "C"
 import (
-	"encoding/hex"
 	"fmt"
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
@@ -15,6 +14,13 @@ import (
 	"strings"
 	"unsafe"
 )
+
+func cGoUnpackString(s C.struct_QtSensors_PackedString) string {
+	if len := int(s.len); len == -1 {
+		return C.GoString(s.data)
+	}
+	return C.GoStringN(s.data, C.int(s.len))
+}
 
 //QAccelerometer::AccelerationMode
 type QAccelerometer__AccelerationMode int64
@@ -165,11 +171,11 @@ func (ptr *QAccelerometer) DestroyQAccelerometerDefault() {
 }
 
 func QAccelerometer_Type() string {
-	return C.GoString(C.QAccelerometer_QAccelerometer_Type())
+	return cGoUnpackString(C.QAccelerometer_QAccelerometer_Type())
 }
 
 func (ptr *QAccelerometer) Type() string {
-	return C.GoString(C.QAccelerometer_QAccelerometer_Type())
+	return cGoUnpackString(C.QAccelerometer_QAccelerometer_Type())
 }
 
 //export callbackQAccelerometer_Start
@@ -1136,11 +1142,11 @@ func (ptr *QAltimeter) DestroyQAltimeter() {
 }
 
 func QAltimeter_Type() string {
-	return C.GoString(C.QAltimeter_QAltimeter_Type())
+	return cGoUnpackString(C.QAltimeter_QAltimeter_Type())
 }
 
 func (ptr *QAltimeter) Type() string {
-	return C.GoString(C.QAltimeter_QAltimeter_Type())
+	return cGoUnpackString(C.QAltimeter_QAltimeter_Type())
 }
 
 //export callbackQAltimeter_Start
@@ -2592,11 +2598,11 @@ func (ptr *QAmbientLightSensor) DestroyQAmbientLightSensorDefault() {
 }
 
 func QAmbientLightSensor_Type() string {
-	return C.GoString(C.QAmbientLightSensor_QAmbientLightSensor_Type())
+	return cGoUnpackString(C.QAmbientLightSensor_QAmbientLightSensor_Type())
 }
 
 func (ptr *QAmbientLightSensor) Type() string {
-	return C.GoString(C.QAmbientLightSensor_QAmbientLightSensor_Type())
+	return cGoUnpackString(C.QAmbientLightSensor_QAmbientLightSensor_Type())
 }
 
 //export callbackQAmbientLightSensor_Start
@@ -3537,11 +3543,11 @@ func (ptr *QAmbientTemperatureSensor) DestroyQAmbientTemperatureSensor() {
 }
 
 func QAmbientTemperatureSensor_Type() string {
-	return C.GoString(C.QAmbientTemperatureSensor_QAmbientTemperatureSensor_Type())
+	return cGoUnpackString(C.QAmbientTemperatureSensor_QAmbientTemperatureSensor_Type())
 }
 
 func (ptr *QAmbientTemperatureSensor) Type() string {
-	return C.GoString(C.QAmbientTemperatureSensor_QAmbientTemperatureSensor_Type())
+	return cGoUnpackString(C.QAmbientTemperatureSensor_QAmbientTemperatureSensor_Type())
 }
 
 //export callbackQAmbientTemperatureSensor_Start
@@ -4047,11 +4053,11 @@ func (ptr *QCompass) DestroyQCompassDefault() {
 }
 
 func QCompass_Type() string {
-	return C.GoString(C.QCompass_QCompass_Type())
+	return cGoUnpackString(C.QCompass_QCompass_Type())
 }
 
 func (ptr *QCompass) Type() string {
-	return C.GoString(C.QCompass_QCompass_Type())
+	return cGoUnpackString(C.QCompass_QCompass_Type())
 }
 
 //export callbackQCompass_Start
@@ -5472,11 +5478,11 @@ func (ptr *QDistanceSensor) DestroyQDistanceSensor() {
 }
 
 func QDistanceSensor_Type() string {
-	return C.GoString(C.QDistanceSensor_QDistanceSensor_Type())
+	return cGoUnpackString(C.QDistanceSensor_QDistanceSensor_Type())
 }
 
 func (ptr *QDistanceSensor) Type() string {
-	return C.GoString(C.QDistanceSensor_QDistanceSensor_Type())
+	return cGoUnpackString(C.QDistanceSensor_QDistanceSensor_Type())
 }
 
 //export callbackQDistanceSensor_Start
@@ -5982,11 +5988,11 @@ func (ptr *QGyroscope) DestroyQGyroscopeDefault() {
 }
 
 func QGyroscope_Type() string {
-	return C.GoString(C.QGyroscope_QGyroscope_Type())
+	return cGoUnpackString(C.QGyroscope_QGyroscope_Type())
 }
 
 func (ptr *QGyroscope) Type() string {
-	return C.GoString(C.QGyroscope_QGyroscope_Type())
+	return cGoUnpackString(C.QGyroscope_QGyroscope_Type())
 }
 
 //export callbackQGyroscope_Start
@@ -7420,11 +7426,11 @@ func (ptr *QHolsterSensor) DestroyQHolsterSensor() {
 }
 
 func QHolsterSensor_Type() string {
-	return C.GoString(C.QHolsterSensor_QHolsterSensor_Type())
+	return cGoUnpackString(C.QHolsterSensor_QHolsterSensor_Type())
 }
 
 func (ptr *QHolsterSensor) Type() string {
-	return C.GoString(C.QHolsterSensor_QHolsterSensor_Type())
+	return cGoUnpackString(C.QHolsterSensor_QHolsterSensor_Type())
 }
 
 //export callbackQHolsterSensor_Start
@@ -8397,11 +8403,11 @@ func (ptr *QIRProximitySensor) DestroyQIRProximitySensorDefault() {
 }
 
 func QIRProximitySensor_Type() string {
-	return C.GoString(C.QIRProximitySensor_QIRProximitySensor_Type())
+	return cGoUnpackString(C.QIRProximitySensor_QIRProximitySensor_Type())
 }
 
 func (ptr *QIRProximitySensor) Type() string {
-	return C.GoString(C.QIRProximitySensor_QIRProximitySensor_Type())
+	return cGoUnpackString(C.QIRProximitySensor_QIRProximitySensor_Type())
 }
 
 //export callbackQIRProximitySensor_Start
@@ -9416,11 +9422,11 @@ func (ptr *QLightSensor) DestroyQLightSensorDefault() {
 }
 
 func QLightSensor_Type() string {
-	return C.GoString(C.QLightSensor_QLightSensor_Type())
+	return cGoUnpackString(C.QLightSensor_QLightSensor_Type())
 }
 
 func (ptr *QLightSensor) Type() string {
-	return C.GoString(C.QLightSensor_QLightSensor_Type())
+	return cGoUnpackString(C.QLightSensor_QLightSensor_Type())
 }
 
 //export callbackQLightSensor_Start
@@ -9968,11 +9974,11 @@ func (ptr *QMagnetometer) DestroyQMagnetometerDefault() {
 }
 
 func QMagnetometer_Type() string {
-	return C.GoString(C.QMagnetometer_QMagnetometer_Type())
+	return cGoUnpackString(C.QMagnetometer_QMagnetometer_Type())
 }
 
 func (ptr *QMagnetometer) Type() string {
-	return C.GoString(C.QMagnetometer_QMagnetometer_Type())
+	return cGoUnpackString(C.QMagnetometer_QMagnetometer_Type())
 }
 
 //export callbackQMagnetometer_Start
@@ -11464,11 +11470,11 @@ func (ptr *QOrientationSensor) DestroyQOrientationSensorDefault() {
 }
 
 func QOrientationSensor_Type() string {
-	return C.GoString(C.QOrientationSensor_QOrientationSensor_Type())
+	return cGoUnpackString(C.QOrientationSensor_QOrientationSensor_Type())
 }
 
 func (ptr *QOrientationSensor) Type() string {
-	return C.GoString(C.QOrientationSensor_QOrientationSensor_Type())
+	return cGoUnpackString(C.QOrientationSensor_QOrientationSensor_Type())
 }
 
 //export callbackQOrientationSensor_Start
@@ -12422,11 +12428,11 @@ func (ptr *QPressureSensor) DestroyQPressureSensor() {
 }
 
 func QPressureSensor_Type() string {
-	return C.GoString(C.QPressureSensor_QPressureSensor_Type())
+	return cGoUnpackString(C.QPressureSensor_QPressureSensor_Type())
 }
 
 func (ptr *QPressureSensor) Type() string {
-	return C.GoString(C.QPressureSensor_QPressureSensor_Type())
+	return cGoUnpackString(C.QPressureSensor_QPressureSensor_Type())
 }
 
 //export callbackQPressureSensor_Start
@@ -13399,11 +13405,11 @@ func (ptr *QProximitySensor) DestroyQProximitySensorDefault() {
 }
 
 func QProximitySensor_Type() string {
-	return C.GoString(C.QProximitySensor_QProximitySensor_Type())
+	return cGoUnpackString(C.QProximitySensor_QProximitySensor_Type())
 }
 
 func (ptr *QProximitySensor) Type() string {
-	return C.GoString(C.QProximitySensor_QProximitySensor_Type())
+	return cGoUnpackString(C.QProximitySensor_QProximitySensor_Type())
 }
 
 //export callbackQProximitySensor_Start
@@ -14432,11 +14438,11 @@ func (ptr *QRotationSensor) DestroyQRotationSensorDefault() {
 }
 
 func QRotationSensor_Type() string {
-	return C.GoString(C.QRotationSensor_QRotationSensor_Type())
+	return cGoUnpackString(C.QRotationSensor_QRotationSensor_Type())
 }
 
 func (ptr *QRotationSensor) Type() string {
-	return C.GoString(C.QRotationSensor_QRotationSensor_Type())
+	return cGoUnpackString(C.QRotationSensor_QRotationSensor_Type())
 }
 
 //export callbackQRotationSensor_Start
@@ -14936,7 +14942,7 @@ func (ptr *QSensor) DataRate() int {
 
 func (ptr *QSensor) Description() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QSensor_Description(ptr.Pointer()))
+		return cGoUnpackString(C.QSensor_Description(ptr.Pointer()))
 	}
 	return ""
 }
@@ -14955,11 +14961,13 @@ func (ptr *QSensor) Error() int {
 	return 0
 }
 
-func (ptr *QSensor) Identifier() string {
+func (ptr *QSensor) Identifier() *core.QByteArray {
 	if ptr.Pointer() != nil {
-		return qt.HexDecodeToString(C.GoString(C.QSensor_Identifier(ptr.Pointer())))
+		var tmpValue = core.NewQByteArrayFromPointer(C.QSensor_Identifier(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		return tmpValue
 	}
-	return ""
+	return nil
 }
 
 func (ptr *QSensor) IsActive() bool {
@@ -15045,11 +15053,9 @@ func (ptr *QSensor) SetDataRate(rate int) {
 	}
 }
 
-func (ptr *QSensor) SetIdentifier(identifier string) {
+func (ptr *QSensor) SetIdentifier(identifier core.QByteArray_ITF) {
 	if ptr.Pointer() != nil {
-		var identifierC = C.CString(hex.EncodeToString([]byte(identifier)))
-		defer C.free(unsafe.Pointer(identifierC))
-		C.QSensor_SetIdentifier(ptr.Pointer(), identifierC)
+		C.QSensor_SetIdentifier(ptr.Pointer(), core.PointerFromQByteArray(identifier))
 	}
 }
 
@@ -15072,11 +15078,13 @@ func (ptr *QSensor) SkipDuplicates() bool {
 	return false
 }
 
-func (ptr *QSensor) Type() string {
+func (ptr *QSensor) Type() *core.QByteArray {
 	if ptr.Pointer() != nil {
-		return qt.HexDecodeToString(C.GoString(C.QSensor_Type(ptr.Pointer())))
+		var tmpValue = core.NewQByteArrayFromPointer(C.QSensor_Type(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		return tmpValue
 	}
-	return ""
+	return nil
 }
 
 func (ptr *QSensor) UserOrientation() int {
@@ -15086,10 +15094,8 @@ func (ptr *QSensor) UserOrientation() int {
 	return 0
 }
 
-func NewQSensor(ty string, parent core.QObject_ITF) *QSensor {
-	var tyC = C.CString(hex.EncodeToString([]byte(ty)))
-	defer C.free(unsafe.Pointer(tyC))
-	var tmpValue = NewQSensorFromPointer(C.QSensor_NewQSensor(tyC, core.PointerFromQObject(parent)))
+func NewQSensor(ty core.QByteArray_ITF, parent core.QObject_ITF) *QSensor {
+	var tmpValue = NewQSensorFromPointer(C.QSensor_NewQSensor(core.PointerFromQByteArray(ty), core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
@@ -15341,16 +15347,16 @@ func (ptr *QSensor) DataRateChanged() {
 	}
 }
 
-func QSensor_DefaultSensorForType(ty string) string {
-	var tyC = C.CString(hex.EncodeToString([]byte(ty)))
-	defer C.free(unsafe.Pointer(tyC))
-	return qt.HexDecodeToString(C.GoString(C.QSensor_QSensor_DefaultSensorForType(tyC)))
+func QSensor_DefaultSensorForType(ty core.QByteArray_ITF) *core.QByteArray {
+	var tmpValue = core.NewQByteArrayFromPointer(C.QSensor_QSensor_DefaultSensorForType(core.PointerFromQByteArray(ty)))
+	runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+	return tmpValue
 }
 
-func (ptr *QSensor) DefaultSensorForType(ty string) string {
-	var tyC = C.CString(hex.EncodeToString([]byte(ty)))
-	defer C.free(unsafe.Pointer(tyC))
-	return qt.HexDecodeToString(C.GoString(C.QSensor_QSensor_DefaultSensorForType(tyC)))
+func (ptr *QSensor) DefaultSensorForType(ty core.QByteArray_ITF) *core.QByteArray {
+	var tmpValue = core.NewQByteArrayFromPointer(C.QSensor_QSensor_DefaultSensorForType(core.PointerFromQByteArray(ty)))
+	runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+	return tmpValue
 }
 
 //export callbackQSensor_EfficientBufferSizeChanged
@@ -16868,10 +16874,10 @@ func NewQSensorGesture(ids []string, parent core.QObject_ITF) *QSensorGesture {
 }
 
 //export callbackQSensorGesture_Detected
-func callbackQSensorGesture_Detected(ptr unsafe.Pointer, gestureId *C.char) {
+func callbackQSensorGesture_Detected(ptr unsafe.Pointer, gestureId C.struct_QtSensors_PackedString) {
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSensorGesture::detected"); signal != nil {
-		signal.(func(string))(C.GoString(gestureId))
+		signal.(func(string))(cGoUnpackString(gestureId))
 	}
 
 }
@@ -16900,14 +16906,14 @@ func (ptr *QSensorGesture) Detected(gestureId string) {
 
 func (ptr *QSensorGesture) GestureSignals() []string {
 	if ptr.Pointer() != nil {
-		return strings.Split(C.GoString(C.QSensorGesture_GestureSignals(ptr.Pointer())), "|")
+		return strings.Split(cGoUnpackString(C.QSensorGesture_GestureSignals(ptr.Pointer())), "|")
 	}
 	return make([]string, 0)
 }
 
 func (ptr *QSensorGesture) InvalidIds() []string {
 	if ptr.Pointer() != nil {
-		return strings.Split(C.GoString(C.QSensorGesture_InvalidIds(ptr.Pointer())), "|")
+		return strings.Split(cGoUnpackString(C.QSensorGesture_InvalidIds(ptr.Pointer())), "|")
 	}
 	return make([]string, 0)
 }
@@ -16933,7 +16939,7 @@ func (ptr *QSensorGesture) StopDetection() {
 
 func (ptr *QSensorGesture) ValidIds() []string {
 	if ptr.Pointer() != nil {
-		return strings.Split(C.GoString(C.QSensorGesture_ValidIds(ptr.Pointer())), "|")
+		return strings.Split(cGoUnpackString(C.QSensorGesture_ValidIds(ptr.Pointer())), "|")
 	}
 	return make([]string, 0)
 }
@@ -17327,7 +17333,7 @@ func NewQSensorGestureManager(parent core.QObject_ITF) *QSensorGestureManager {
 
 func (ptr *QSensorGestureManager) GestureIds() []string {
 	if ptr.Pointer() != nil {
-		return strings.Split(C.GoString(C.QSensorGestureManager_GestureIds(ptr.Pointer())), "|")
+		return strings.Split(cGoUnpackString(C.QSensorGestureManager_GestureIds(ptr.Pointer())), "|")
 	}
 	return make([]string, 0)
 }
@@ -17365,7 +17371,7 @@ func (ptr *QSensorGestureManager) RecognizerSignals(gestureId string) []string {
 	if ptr.Pointer() != nil {
 		var gestureIdC = C.CString(gestureId)
 		defer C.free(unsafe.Pointer(gestureIdC))
-		return strings.Split(C.GoString(C.QSensorGestureManager_RecognizerSignals(ptr.Pointer(), gestureIdC)), "|")
+		return strings.Split(cGoUnpackString(C.QSensorGestureManager_RecognizerSignals(ptr.Pointer(), gestureIdC)), "|")
 	}
 	return make([]string, 0)
 }
@@ -17802,7 +17808,7 @@ func (ptr *QSensorGesturePluginInterface) DisconnectName() {
 
 func (ptr *QSensorGesturePluginInterface) Name() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QSensorGesturePluginInterface_Name(ptr.Pointer()))
+		return cGoUnpackString(C.QSensorGesturePluginInterface_Name(ptr.Pointer()))
 	}
 	return ""
 }
@@ -17833,7 +17839,7 @@ func (ptr *QSensorGesturePluginInterface) DisconnectSupportedIds() {
 
 func (ptr *QSensorGesturePluginInterface) SupportedIds() []string {
 	if ptr.Pointer() != nil {
-		return strings.Split(C.GoString(C.QSensorGesturePluginInterface_SupportedIds(ptr.Pointer())), "|")
+		return strings.Split(cGoUnpackString(C.QSensorGesturePluginInterface_SupportedIds(ptr.Pointer())), "|")
 	}
 	return make([]string, 0)
 }
@@ -17960,10 +17966,10 @@ func (ptr *QSensorGestureRecognizer) CreateBackend() {
 }
 
 //export callbackQSensorGestureRecognizer_Detected
-func callbackQSensorGestureRecognizer_Detected(ptr unsafe.Pointer, gestureId *C.char) {
+func callbackQSensorGestureRecognizer_Detected(ptr unsafe.Pointer, gestureId C.struct_QtSensors_PackedString) {
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSensorGestureRecognizer::detected"); signal != nil {
-		signal.(func(string))(C.GoString(gestureId))
+		signal.(func(string))(cGoUnpackString(gestureId))
 	}
 
 }
@@ -17992,7 +17998,7 @@ func (ptr *QSensorGestureRecognizer) Detected(gestureId string) {
 
 func (ptr *QSensorGestureRecognizer) GestureSignals() []string {
 	if ptr.Pointer() != nil {
-		return strings.Split(C.GoString(C.QSensorGestureRecognizer_GestureSignals(ptr.Pointer())), "|")
+		return strings.Split(cGoUnpackString(C.QSensorGestureRecognizer_GestureSignals(ptr.Pointer())), "|")
 	}
 	return make([]string, 0)
 }
@@ -18023,7 +18029,7 @@ func (ptr *QSensorGestureRecognizer) DisconnectId() {
 
 func (ptr *QSensorGestureRecognizer) Id() string {
 	if ptr.Pointer() != nil {
-		return C.GoString(C.QSensorGestureRecognizer_Id(ptr.Pointer()))
+		return cGoUnpackString(C.QSensorGestureRecognizer_Id(ptr.Pointer()))
 	}
 	return ""
 }
@@ -18565,68 +18571,36 @@ func (ptr *QSensorManager) CreateBackend(sensor QSensor_ITF) *QSensorBackend {
 	return tmpValue
 }
 
-func QSensorManager_IsBackendRegistered(ty string, identifier string) bool {
-	var tyC = C.CString(hex.EncodeToString([]byte(ty)))
-	defer C.free(unsafe.Pointer(tyC))
-	var identifierC = C.CString(hex.EncodeToString([]byte(identifier)))
-	defer C.free(unsafe.Pointer(identifierC))
-	return C.QSensorManager_QSensorManager_IsBackendRegistered(tyC, identifierC) != 0
+func QSensorManager_IsBackendRegistered(ty core.QByteArray_ITF, identifier core.QByteArray_ITF) bool {
+	return C.QSensorManager_QSensorManager_IsBackendRegistered(core.PointerFromQByteArray(ty), core.PointerFromQByteArray(identifier)) != 0
 }
 
-func (ptr *QSensorManager) IsBackendRegistered(ty string, identifier string) bool {
-	var tyC = C.CString(hex.EncodeToString([]byte(ty)))
-	defer C.free(unsafe.Pointer(tyC))
-	var identifierC = C.CString(hex.EncodeToString([]byte(identifier)))
-	defer C.free(unsafe.Pointer(identifierC))
-	return C.QSensorManager_QSensorManager_IsBackendRegistered(tyC, identifierC) != 0
+func (ptr *QSensorManager) IsBackendRegistered(ty core.QByteArray_ITF, identifier core.QByteArray_ITF) bool {
+	return C.QSensorManager_QSensorManager_IsBackendRegistered(core.PointerFromQByteArray(ty), core.PointerFromQByteArray(identifier)) != 0
 }
 
-func QSensorManager_RegisterBackend(ty string, identifier string, factory QSensorBackendFactory_ITF) {
-	var tyC = C.CString(hex.EncodeToString([]byte(ty)))
-	defer C.free(unsafe.Pointer(tyC))
-	var identifierC = C.CString(hex.EncodeToString([]byte(identifier)))
-	defer C.free(unsafe.Pointer(identifierC))
-	C.QSensorManager_QSensorManager_RegisterBackend(tyC, identifierC, PointerFromQSensorBackendFactory(factory))
+func QSensorManager_RegisterBackend(ty core.QByteArray_ITF, identifier core.QByteArray_ITF, factory QSensorBackendFactory_ITF) {
+	C.QSensorManager_QSensorManager_RegisterBackend(core.PointerFromQByteArray(ty), core.PointerFromQByteArray(identifier), PointerFromQSensorBackendFactory(factory))
 }
 
-func (ptr *QSensorManager) RegisterBackend(ty string, identifier string, factory QSensorBackendFactory_ITF) {
-	var tyC = C.CString(hex.EncodeToString([]byte(ty)))
-	defer C.free(unsafe.Pointer(tyC))
-	var identifierC = C.CString(hex.EncodeToString([]byte(identifier)))
-	defer C.free(unsafe.Pointer(identifierC))
-	C.QSensorManager_QSensorManager_RegisterBackend(tyC, identifierC, PointerFromQSensorBackendFactory(factory))
+func (ptr *QSensorManager) RegisterBackend(ty core.QByteArray_ITF, identifier core.QByteArray_ITF, factory QSensorBackendFactory_ITF) {
+	C.QSensorManager_QSensorManager_RegisterBackend(core.PointerFromQByteArray(ty), core.PointerFromQByteArray(identifier), PointerFromQSensorBackendFactory(factory))
 }
 
-func QSensorManager_SetDefaultBackend(ty string, identifier string) {
-	var tyC = C.CString(hex.EncodeToString([]byte(ty)))
-	defer C.free(unsafe.Pointer(tyC))
-	var identifierC = C.CString(hex.EncodeToString([]byte(identifier)))
-	defer C.free(unsafe.Pointer(identifierC))
-	C.QSensorManager_QSensorManager_SetDefaultBackend(tyC, identifierC)
+func QSensorManager_SetDefaultBackend(ty core.QByteArray_ITF, identifier core.QByteArray_ITF) {
+	C.QSensorManager_QSensorManager_SetDefaultBackend(core.PointerFromQByteArray(ty), core.PointerFromQByteArray(identifier))
 }
 
-func (ptr *QSensorManager) SetDefaultBackend(ty string, identifier string) {
-	var tyC = C.CString(hex.EncodeToString([]byte(ty)))
-	defer C.free(unsafe.Pointer(tyC))
-	var identifierC = C.CString(hex.EncodeToString([]byte(identifier)))
-	defer C.free(unsafe.Pointer(identifierC))
-	C.QSensorManager_QSensorManager_SetDefaultBackend(tyC, identifierC)
+func (ptr *QSensorManager) SetDefaultBackend(ty core.QByteArray_ITF, identifier core.QByteArray_ITF) {
+	C.QSensorManager_QSensorManager_SetDefaultBackend(core.PointerFromQByteArray(ty), core.PointerFromQByteArray(identifier))
 }
 
-func QSensorManager_UnregisterBackend(ty string, identifier string) {
-	var tyC = C.CString(hex.EncodeToString([]byte(ty)))
-	defer C.free(unsafe.Pointer(tyC))
-	var identifierC = C.CString(hex.EncodeToString([]byte(identifier)))
-	defer C.free(unsafe.Pointer(identifierC))
-	C.QSensorManager_QSensorManager_UnregisterBackend(tyC, identifierC)
+func QSensorManager_UnregisterBackend(ty core.QByteArray_ITF, identifier core.QByteArray_ITF) {
+	C.QSensorManager_QSensorManager_UnregisterBackend(core.PointerFromQByteArray(ty), core.PointerFromQByteArray(identifier))
 }
 
-func (ptr *QSensorManager) UnregisterBackend(ty string, identifier string) {
-	var tyC = C.CString(hex.EncodeToString([]byte(ty)))
-	defer C.free(unsafe.Pointer(tyC))
-	var identifierC = C.CString(hex.EncodeToString([]byte(identifier)))
-	defer C.free(unsafe.Pointer(identifierC))
-	C.QSensorManager_QSensorManager_UnregisterBackend(tyC, identifierC)
+func (ptr *QSensorManager) UnregisterBackend(ty core.QByteArray_ITF, identifier core.QByteArray_ITF) {
+	C.QSensorManager_QSensorManager_UnregisterBackend(core.PointerFromQByteArray(ty), core.PointerFromQByteArray(identifier))
 }
 
 type QSensorPluginInterface struct {
@@ -19748,11 +19722,11 @@ func (ptr *QTapSensor) DestroyQTapSensorDefault() {
 }
 
 func QTapSensor_Type() string {
-	return C.GoString(C.QTapSensor_QTapSensor_Type())
+	return cGoUnpackString(C.QTapSensor_QTapSensor_Type())
 }
 
 func (ptr *QTapSensor) Type() string {
-	return C.GoString(C.QTapSensor_QTapSensor_Type())
+	return cGoUnpackString(C.QTapSensor_QTapSensor_Type())
 }
 
 //export callbackQTapSensor_Start
@@ -20712,11 +20686,11 @@ func (ptr *QTiltSensor) Calibrate() {
 }
 
 func QTiltSensor_Type() string {
-	return C.GoString(C.QTiltSensor_QTiltSensor_Type())
+	return cGoUnpackString(C.QTiltSensor_QTiltSensor_Type())
 }
 
 func (ptr *QTiltSensor) Type() string {
-	return C.GoString(C.QTiltSensor_QTiltSensor_Type())
+	return cGoUnpackString(C.QTiltSensor_QTiltSensor_Type())
 }
 
 //export callbackQTiltSensor_Start

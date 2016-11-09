@@ -1,7 +1,6 @@
 package qt
 
 import (
-	"encoding/hex"
 	"fmt"
 	"log"
 	"os"
@@ -93,13 +92,4 @@ func Debug(fn ...interface{}) {
 	if strings.ToLower(os.Getenv("QT_DEBUG")) == "true" {
 		Logger.Println(fn...)
 	}
-}
-
-func HexDecodeToString(in string) string {
-	var out, err = hex.DecodeString(in)
-	if err != nil {
-		Debug("failed to decode hex:", in)
-		return ""
-	}
-	return string(out)
 }

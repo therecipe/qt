@@ -11,6 +11,7 @@
 extern "C" {
 #endif
 
+struct QtGamepad_PackedString { char* data; long long len; };
 double QGamepad_AxisLeftX(void* ptr);
 double QGamepad_AxisLeftY(void* ptr);
 double QGamepad_AxisRightX(void* ptr);
@@ -35,7 +36,7 @@ char QGamepad_ButtonX(void* ptr);
 char QGamepad_ButtonY(void* ptr);
 int QGamepad_DeviceId(void* ptr);
 char QGamepad_IsConnected(void* ptr);
-char* QGamepad_Name(void* ptr);
+struct QtGamepad_PackedString QGamepad_Name(void* ptr);
 void QGamepad_SetDeviceId(void* ptr, int number);
 void* QGamepad_NewQGamepad(int deviceId, void* parent);
 void QGamepad_ConnectAxisLeftXChanged(void* ptr);
