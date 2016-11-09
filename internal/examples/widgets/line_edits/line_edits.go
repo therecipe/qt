@@ -15,7 +15,7 @@ func main() {
 
 	var (
 		echoGroup    = widgets.NewQGroupBox2("Echo", nil)
-		echoLabel    = widgets.NewQLabel2("Mode", nil, 0)
+		echoLabel    = widgets.NewQLabel2("Mode:", nil, 0)
 		echoComboBox = widgets.NewQComboBox(nil)
 		echoLineEdit = widgets.NewQLineEdit(nil)
 	)
