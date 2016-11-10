@@ -19,6 +19,7 @@ func prep() {
 	}
 
 	utils.RunCmd(exec.Command("go", "get", "-v", "github.com/emirpasic/gods/lists/arraylist"), "install arraylist pkg") //needed for widgets/table example
+	utils.RunCmd(exec.Command("go", "get", "-v", "github.com/fogleman/ln/ln"), "install ln pkg")                        //needed for widgets/renderer example
 
 	for _, app := range []string{"qtdeploy", "qtmoc", "qtrcc", "qtminimal"} {
 		switch runtime.GOOS {
