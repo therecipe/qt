@@ -18,8 +18,9 @@ func prep() {
 		utils.RunCmdOptional(exec.Command("cmd", "/C", "mklink", "/H", filepath.Join(os.Getenv("QT_MSYS2_DIR"), "usr", "bin", "go.exe"), filepath.Join(runtime.GOROOT(), "bin", "go.exe")), fmt.Sprintf("create go symlink in your QT_MSYS2_DIR/usr/bin (%v)", filepath.Join(utils.QT_MSYS2_DIR(), "..", "usr", "bin")))
 	}
 
-	utils.RunCmd(exec.Command("go", "get", "-v", "github.com/emirpasic/gods/lists/arraylist"), "install arraylist pkg") //needed for widgets/table example
-	utils.RunCmd(exec.Command("go", "get", "-v", "github.com/fogleman/ln/ln"), "install ln pkg")                        //needed for widgets/renderer example
+	utils.RunCmd(exec.Command("go", "get", "-v", "github.com/emirpasic/gods/lists/arraylist"), "install emirpasic/gods") //needed for widgets/table example
+	utils.RunCmd(exec.Command("go", "get", "-v", "github.com/fogleman/ln/ln"), "install fogleman/ln")                    //needed for widgets/renderer example
+	utils.RunCmd(exec.Command("go", "get", "-v", "github.com/fogleman/pt/pt"), "install fogleman/pt")                    //needed for widgets/renderer example
 
 	for _, app := range []string{"qtdeploy", "qtmoc", "qtrcc", "qtminimal"} {
 		switch runtime.GOOS {
