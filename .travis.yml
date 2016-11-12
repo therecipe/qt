@@ -13,7 +13,10 @@ matrix:
       env: DESKTOP=true ANDROID=false QT_PKG_CONFIG=true PKG_CONFIG_PATH=/opt/qt57/lib/pkgconfig QT_DOC_DIR=/opt/qt57/doc QT_MISC_DIR=/opt/qt57
 
     - os: linux
-      env: DESKTOP=true ANDROID=true QT_WINDOWS_CC=true
+      env: DESKTOP=true ANDROID=true QT_WINDOWS_CC=true QT_MXE_ARCH=386
+
+    - os: linux
+      env: DESKTOP=true ANDROID=true QT_WINDOWS_CC=true QT_MXE_ARCH=amd64
 
     - os: osx
       env: DESKTOP=true ANDROID=false

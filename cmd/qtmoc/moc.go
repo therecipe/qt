@@ -47,7 +47,7 @@ func main() {
 	}
 
 	var walkFunc = func(path string, info os.FileInfo, err error) error {
-		if info.IsDir() && !isBlacklisted(appPath, filepath.Join(path, info.Name())) {
+		if err == nil && info.IsDir() && !isBlacklisted(appPath, filepath.Join(path, info.Name())) {
 			moc(path)
 
 			for className, class := range parser.ClassMap {
@@ -88,7 +88,7 @@ func moc(appPath string) {
 	var module = &parser.Module{Project: parser.MOC, Namespace: &parser.Namespace{Classes: make([]*parser.Class, 0)}}
 
 	var walkFunc = func(path string, info os.FileInfo, err error) error {
-		if !strings.HasPrefix(info.Name(), "moc") && strings.HasSuffix(info.Name(), ".go") && filepath.Dir(path) == appPath && !info.IsDir() {
+		if err == nil && !strings.HasPrefix(info.Name(), "moc") && strings.HasSuffix(info.Name(), ".go") && filepath.Dir(path) == appPath && !info.IsDir() && !isBlacklisted(appPath, filepath.Dir(filepath.Join(path, info.Name()))) {
 
 			src, err := ioutil.ReadFile(path)
 			if err != nil {
@@ -462,7 +462,7 @@ func getCppTypeFromGoType(t string) string {
 
 func isBlacklisted(appPath, currentPath string) bool {
 
-	for _, n := range []string{"deploy", "qml", "android", "ios", "ios-simulator", "sailfish", "sailfish-emulator", "rpi1", "rpi2", "rpi3"} {
+	for _, n := range []string{"deploy", "qml", "android", "ios", "ios-simulator", "sailfish", "sailfish-emulator", "rpi1", "rpi2", "rpi3", "node_modules", ".git"} {
 		if strings.Contains(filepath.Join(currentPath), filepath.Join(appPath, n)) {
 			return true
 		}

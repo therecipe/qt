@@ -196,15 +196,15 @@ func args() {
 }
 
 func moc() {
-	utils.RunCmd(exec.Command(filepath.Join(utils.MustGoPath(), "bin", "qtmoc"), appPath, "cleanup"), fmt.Sprintf("execute qtmoc for %v on %v", buildTarget, runtime.GOOS))
+	utils.RunCmd(exec.Command(filepath.Join(utils.MustGoBin(), "qtmoc"), appPath, "cleanup"), fmt.Sprintf("execute qtmoc for %v on %v", buildTarget, runtime.GOOS))
 }
 
 func qrc() {
-	utils.RunCmd(exec.Command(filepath.Join(utils.MustGoPath(), "bin", "qtrcc"), appPath), fmt.Sprintf("execute qtrcc for %v on %v", buildTarget, runtime.GOOS))
+	utils.RunCmd(exec.Command(filepath.Join(utils.MustGoBin(), "qtrcc"), appPath), fmt.Sprintf("execute qtrcc for %v on %v", buildTarget, runtime.GOOS))
 }
 
 func minimal() {
-	utils.RunCmd(exec.Command(filepath.Join(utils.MustGoPath(), "bin", "qtminimal"), buildTarget, appPath), fmt.Sprintf("execute qtminimal for %v on %v", buildTarget, runtime.GOOS))
+	utils.RunCmd(exec.Command(filepath.Join(utils.MustGoBin(), "qtminimal"), buildTarget, appPath), fmt.Sprintf("execute qtminimal for %v on %v", buildTarget, runtime.GOOS))
 }
 
 func build() {
@@ -1022,6 +1022,9 @@ func deployDocker() {
 			case "windows":
 				{
 					dockerImage = "base_windows"
+					if utils.QT_MXE_ARCH() == "amd64" {
+						dockerImage = "base_windows_64"
+					}
 				}
 
 			case "darwin":
@@ -1039,6 +1042,9 @@ func deployDocker() {
 	case "windows":
 		{
 			dockerImage = "base_windows"
+			if utils.QT_MXE_ARCH() == "amd64" {
+				dockerImage = "base_windows_64"
+			}
 		}
 
 	case "darwin":
@@ -1082,7 +1088,7 @@ func run() {
 
 	case /*"ios",*/ "ios-simulator":
 		{
-			utils.RunCmdOptional(exec.Command("xcrun", "instruments", "-w", "iPhone 7 Plus (10.0)#"), fmt.Sprintf("start simulator for %v on %v", buildTarget, runtime.GOOS))
+			utils.RunCmdOptional(exec.Command("xcrun", "instruments", "-w", "iPhone 7 Plus (10.1)#"), fmt.Sprintf("start simulator for %v on %v", buildTarget, runtime.GOOS))
 			utils.RunCmd(exec.Command("xcrun", "simctl", "uninstall", "booted", filepath.Join(depPath, "main.app")), fmt.Sprintf("uninstall app for %v on %v", buildTarget, runtime.GOOS))
 			utils.RunCmd(exec.Command("xcrun", "simctl", "install", "booted", filepath.Join(depPath, "main.app")), fmt.Sprintf("install app for %v on %v", buildTarget, runtime.GOOS))
 			utils.RunCmd(exec.Command("xcrun", "simctl", "launch", "booted", fmt.Sprintf("com.identifier.%v", appName)), fmt.Sprintf("launch app for %v on %v", buildTarget, runtime.GOOS))

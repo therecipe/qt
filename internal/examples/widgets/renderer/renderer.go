@@ -104,10 +104,7 @@ func main() {
 			}
 		}
 
-		sliderX.SetValue(sliderX.Minimum())
-		sliderY.SetValue(sliderY.Minimum())
-		sliderZ.SetValue(sliderZ.Minimum())
-
+		timedCB.SetChecked(false)
 		render(scene)
 	})
 	hLayout.AddWidget(exampleCB, 0, 0)

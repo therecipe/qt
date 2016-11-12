@@ -14,6 +14,13 @@ const packageName = "github.com/therecipe/qt"
 
 var goPath *string
 
+func MustGoBin() string {
+	if dir := os.Getenv("GOBIN"); dir != "" {
+		return filepath.Clean(dir)
+	}
+	return filepath.Join(MustGoPath(), "bin")
+}
+
 // MustGoPath is same as GoPath but exits if any error ocurres
 // it also caches the result
 func MustGoPath() string {

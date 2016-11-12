@@ -26,7 +26,7 @@ func test(buildTarget string) {
 
 			utils.Log.Infoln("testing", example)
 
-			utils.RunCmd(exec.Command(filepath.Join(utils.MustGoPath(), "bin", "qtdeploy"),
+			utils.RunCmd(exec.Command(filepath.Join(utils.MustGoBin(), "qtdeploy"),
 
 				"test",
 

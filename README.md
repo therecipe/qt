@@ -29,16 +29,16 @@ The full installation requires at least **8gb** free ram and takes 20 min.
 
 The stub installation requires only **1gb** free ram and takes 10 min. (**experimental**)
 
-The only differnce between those two version is, that you **won't** be able to use `go run/build` to build your applications if you choose to install the stub version.
+The only difference between those two version is, that you **won't** be able to use `go run/build` to build your applications if you choose to install the stub version.
 You are therefore **limited** to the use of `qtdeploy` to build your application.
 
-To build the stub version export `QT_STUB=true` system wide and procede with the installation as usuall.
+To build the stub version export `QT_STUB=true` system wide and proceed with the installation as usual.
 
 #### Environmental variables
 
-If you define enviormental variables during the installation export them system wide, as they are needed not only during the installation but also later.
+If you define environmental variables during the installation export them system wide, as they are needed not only during the installation but also later.
 
-Add the enviormental variables into your `$HOME/.bash_profile` or `$HOME/.profile` on macOS or Linux.
+Add the environmental variables into your `$HOME/.bash_profile` or `$HOME/.profile` on macOS or Linux.
 
 Or if you are on Windows simply use the advanced system settings.
 
@@ -429,9 +429,13 @@ And make sure your Project folder is in your **GOPATH**.
 
 * For cross compiling to Windows:
 
-	* `docker pull therecipe/qt:base_windows`
+	* `docker pull therecipe/qt:base_windows` (to deploy 32-bit applications)
+
+	* `docker pull therecipe/qt:base_windows_64` (to deploy 64-bit applications)
 
 	* **Optional:** Install [Wine](https://www.winehq.org) to test your applications.
+
+	* define `QT_MXE_ARCH=386` to deploy 32-bit applications or `QT_MXE_ARCH=amd64` to deploy 64-bit applications
 
 	* `$GOPATH/bin/qtsetup windows-docker`
 

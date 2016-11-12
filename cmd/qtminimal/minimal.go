@@ -43,7 +43,7 @@ func main() {
 	)
 
 	var walkFuncImports = func(appPath string, info os.FileInfo, err error) error {
-		if err == nil && !strings.HasPrefix(info.Name(), "moc") && !strings.HasPrefix(info.Name(), "rcc") && strings.HasSuffix(info.Name(), ".go") && !info.IsDir() {
+		if err == nil && !strings.HasPrefix(info.Name(), "moc") && !strings.HasPrefix(info.Name(), "rcc") && strings.HasSuffix(info.Name(), ".go") && !info.IsDir() && !isBlacklisted(appPath, filepath.Dir(filepath.Join(appPath, info.Name()))) {
 			var pFile, errParse = goparser.ParseFile(token.NewFileSet(), appPath, nil, 0)
 			if errParse != nil {
 				utils.Log.WithError(errParse).Panicf("failed to parser file %v", appPath)
@@ -81,7 +81,7 @@ func main() {
 	}
 
 	var walkFunc = func(appPath string, info os.FileInfo, err error) error {
-		if err == nil && strings.HasSuffix(info.Name(), ".go") && !info.IsDir() {
+		if err == nil && strings.HasSuffix(info.Name(), ".go") && !info.IsDir() && !isBlacklisted(appPath, filepath.Dir(filepath.Join(appPath, info.Name()))) {
 
 			if file := utils.Load(appPath); strings.Contains(file, "github.com/therecipe/qt/") &&
 				!(strings.Contains(file, "github.com/therecipe/qt/androidextras") && strings.Count(file, "github.com/therecipe/qt/") == 1) {
@@ -235,5 +235,16 @@ func isImported(imported []string, appPath string) bool {
 			return true
 		}
 	}
+	return false
+}
+
+func isBlacklisted(appPath, currentPath string) bool {
+
+	for _, n := range []string{"deploy", "qml", "android", "ios", "ios-simulator", "sailfish", "sailfish-emulator", "rpi1", "rpi2", "rpi3", "node_modules", ".git"} {
+		if strings.Contains(filepath.Join(currentPath), filepath.Join(appPath, n)) {
+			return true
+		}
+	}
+
 	return false
 }

@@ -59,6 +59,7 @@ func check(buildTarget string) {
 	utils.Log.Infoln("GOVERSION:", runtime.Version())
 	utils.Log.Infoln("GOROOT:", runtime.GOROOT())
 	utils.Log.Infoln("GOPATH:", utils.MustGoPath())
+	utils.Log.Infoln("GOBIN:", utils.MustGoBin())
 
 	var hash = exec.Command("git", "rev-parse", "--verify", "HEAD")
 	hash.Dir = utils.GoQtPkgPath()
@@ -92,7 +93,6 @@ func check(buildTarget string) {
 						utils.Log.Infoln("QT_DOC_DIR:", utils.QT_DOC_DIR())
 						utils.Log.Infoln("QT_MISC_DIR:", utils.QT_MISC_DIR())
 					}
-					utils.Log.Infoln("QT_MXE_ARCH:", os.Getenv("QT_MXE_ARCH"))
 				}
 
 			case "windows":
@@ -125,6 +125,11 @@ func check(buildTarget string) {
 			utils.Log.Infoln("RPI1_SYSROOT_DIR:", utils.RPI1_SYSROOT_DIR())
 			utils.Log.Infoln("RPI2_SYSROOT_DIR:", utils.RPI2_SYSROOT_DIR())
 			utils.Log.Infoln("RPI3_SYSROOT_DIR:", utils.RPI3_SYSROOT_DIR())
+		}
+
+	case "windows":
+		{
+			utils.Log.Infoln("QT_MXE_ARCH:", os.Getenv("QT_MXE_ARCH"))
 		}
 
 	case "windows-docker", "linux-docker", "android-docker":
