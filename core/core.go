@@ -36024,9 +36024,11 @@ func (ptr *QMimeData) Html() string {
 	return ""
 }
 
-func (ptr *QMimeData) ImageData() unsafe.Pointer {
+func (ptr *QMimeData) ImageData() *QVariant {
 	if ptr.Pointer() != nil {
-		return unsafe.Pointer(C.QMimeData_ImageData(ptr.Pointer()))
+		var tmpValue = NewQVariantFromPointer(C.QMimeData_ImageData(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
+		return tmpValue
 	}
 	return nil
 }
@@ -64649,6 +64651,27 @@ func (ptr *QVariant) UserType() int {
 		return int(int32(C.QVariant_UserType(ptr.Pointer())))
 	}
 	return 0
+}
+
+func (ptr *QVariant) ToColor() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QVariant_ToColor(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QVariant) ToFont() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QVariant_ToFont(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QVariant) ToImage() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QVariant_ToImage(ptr.Pointer()))
+	}
+	return nil
 }
 
 type QVariantAnimation struct {

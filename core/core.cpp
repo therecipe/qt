@@ -27,6 +27,7 @@
 #include <QChildEvent>
 #include <QCollator>
 #include <QCollatorSortKey>
+#include <QColor>
 #include <QCommandLineOption>
 #include <QCommandLineParser>
 #include <QCoreApplication>
@@ -51,6 +52,7 @@
 #include <QFileSystemWatcher>
 #include <QFinalState>
 #include <QFlag>
+#include <QFont>
 #include <QGenericArgument>
 #include <QGenericReturnArgument>
 #include <QHistoryState>
@@ -12845,7 +12847,7 @@ struct QtCore_PackedString QMimeData_Html(void* ptr)
 
 void* QMimeData_ImageData(void* ptr)
 {
-	return new QImage(qvariant_cast<QImage>(static_cast<QMimeData*>(ptr)->imageData()));
+	return new QVariant(static_cast<QMimeData*>(ptr)->imageData());
 }
 
 void QMimeData_RemoveFormat(void* ptr, char* mimeType)
@@ -23534,6 +23536,21 @@ struct QtCore_PackedString QVariant_QVariant_TypeToName(int typeId)
 int QVariant_UserType(void* ptr)
 {
 	return static_cast<QVariant*>(ptr)->userType();
+}
+
+void* QVariant_ToColor(void* ptr)
+{
+	return new QColor(qvariant_cast<QColor>(*static_cast<QVariant*>(ptr)));
+}
+
+void* QVariant_ToFont(void* ptr)
+{
+	return new QFont(qvariant_cast<QFont>(*static_cast<QVariant*>(ptr)));
+}
+
+void* QVariant_ToImage(void* ptr)
+{
+	return new QImage(qvariant_cast<QImage>(*static_cast<QVariant*>(ptr)));
 }
 
 class MyQVariantAnimation: public QVariantAnimation

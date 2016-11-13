@@ -8,12 +8,11 @@ package gui
 import "C"
 import (
 	"fmt"
+	"github.com/therecipe/qt"
+	"github.com/therecipe/qt/core"
 	"runtime"
 	"strings"
 	"unsafe"
-
-	"github.com/therecipe/qt"
-	"github.com/therecipe/qt/core"
 )
 
 func cGoUnpackString(s C.struct_QtGui_PackedString) string {
@@ -7780,12 +7779,6 @@ func NewQColor3(r int, g int, b int, a int) *QColor {
 	return tmpValue
 }
 
-func (ptr *QColor) ToQVariant() *core.QVariant {
-	var tmpValue = core.NewQVariantFromPointer(C.QColor_ToQVariant(ptr.Pointer()))
-	runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
-	return tmpValue
-}
-
 func (ptr *QColor) Alpha() int {
 	if ptr.Pointer() != nil {
 		return int(int32(C.QColor_Alpha(ptr.Pointer())))
@@ -8382,6 +8375,15 @@ func (ptr *QColor) YellowF() float64 {
 		return float64(C.QColor_YellowF(ptr.Pointer()))
 	}
 	return 0
+}
+
+func (ptr *QColor) ToVariant() *core.QVariant {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQVariantFromPointer(C.QColor_ToVariant(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		return tmpValue
+	}
+	return nil
 }
 
 type QConicalGradient struct {
@@ -10976,12 +10978,6 @@ func NewQFont2(family string, pointSize int, weight int, italic bool) *QFont {
 	return tmpValue
 }
 
-func (ptr *QFont) ToQVariant() *core.QVariant {
-	var tmpValue = core.NewQVariantFromPointer(C.QFont_ToQVariant(ptr.Pointer()))
-	runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
-	return tmpValue
-}
-
 func (ptr *QFont) Bold() bool {
 	if ptr.Pointer() != nil {
 		return C.QFont_Bold(ptr.Pointer()) != 0
@@ -11399,6 +11395,15 @@ func (ptr *QFont) DestroyQFont() {
 		C.QFont_DestroyQFont(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
+}
+
+func (ptr *QFont) ToVariant() *core.QVariant {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQVariantFromPointer(C.QFont_ToVariant(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		return tmpValue
+	}
+	return nil
 }
 
 //QFontDatabase::SystemFont
@@ -16519,6 +16524,15 @@ func (ptr *QImage) RgbSwapped() *QImage {
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQImageFromPointer(C.QImage_RgbSwapped(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*QImage).DestroyQImage)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QImage) ToVariant() *core.QVariant {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQVariantFromPointer(C.QImage_ToVariant(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
 	}
 	return nil

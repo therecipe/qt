@@ -55,6 +55,7 @@ func (m *Module) Prepare() {
 			c.fix()
 			c.removeFunctions()
 			c.removeEnums()
+			c.add()
 		}
 	}
 

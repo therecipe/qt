@@ -49,10 +49,6 @@ func (f *Function) fix() {
 		f.Parameters = make([]*Parameter, 0)
 	}
 
-	if f.Fullname == "QMimeData::imageData" {
-		f.Output = "void*"
-	}
-
 	if f.Fullname == "QScxmlCppDataModel::setScxmlEvent" {
 		f.Virtual = "non"
 	}

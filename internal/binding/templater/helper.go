@@ -414,6 +414,7 @@ func manualWeakLink(module string) {
 		switch class.Module {
 		case "QtCore":
 			{
+				class.WeakLink["QtGui"] = true
 				class.WeakLink["QtWidgets"] = true
 			}
 

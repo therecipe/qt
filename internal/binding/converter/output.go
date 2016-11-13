@@ -492,10 +492,6 @@ func cppOutput(name, value string, f *parser.Function) string {
 
 	case "void", "", "T", "JavaVM", "jclass", "jobject":
 		{
-			if f.Fullname == "QMimeData::imageData" {
-				return fmt.Sprintf("new QImage(qvariant_cast<QImage>(%v))", name)
-			}
-
 			if value == "void" || value == "T" {
 				if strings.Contains(vOld, "*") && strings.Contains(vOld, "const") {
 					return fmt.Sprintf("const_cast<void*>(%v)", name)
@@ -563,6 +559,19 @@ func cppOutput(name, value string, f *parser.Function) string {
 			case "QMargins", "QMarginsF":
 				{
 					return fmt.Sprintf("({ %v tmpValue = %v; new %v(tmpValue.left(), tmpValue.top(), tmpValue.right(), tmpValue.bottom()); })", value, name, value)
+				}
+			}
+
+			switch f.Fullname {
+			case "QColor::toVariant", "QFont::toVariant", "QImage::toVariant":
+				{
+					return fmt.Sprintf("new %v(*%v)", value, strings.Split(name, "->")[0])
+				}
+
+			case "QVariant::toColor", "QVariant::toFont", "QVariant::toImage":
+				{
+					f.NeedsFinalizer = false
+					return fmt.Sprintf("new %v(qvariant_cast<%v>(*%v))", value, value, strings.Split(name, "->")[0])
 				}
 			}
 

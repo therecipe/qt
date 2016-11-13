@@ -2512,11 +2512,6 @@ void* QColor_NewQColor3(int r, int g, int b, int a)
 	return new QColor(r, g, b, a);
 }
 
-void* QColor_ToQVariant(void* color)
-{
-	return new QVariant(*static_cast<QColor*>(color));
-}
-
 int QColor_Alpha(void* ptr)
 {
 	return static_cast<QColor*>(ptr)->alpha();
@@ -2910,6 +2905,11 @@ int QColor_Yellow(void* ptr)
 double QColor_YellowF(void* ptr)
 {
 	return static_cast<QColor*>(ptr)->yellowF();
+}
+
+void* QColor_ToVariant(void* ptr)
+{
+	return new QVariant(*static_cast<QColor*>(ptr));
 }
 
 void* QConicalGradient_NewQConicalGradient()
@@ -3913,11 +3913,6 @@ void* QFont_NewQFont2(char* family, int pointSize, int weight, char italic)
 	return new QFont(QString(family), pointSize, weight, italic != 0);
 }
 
-void* QFont_ToQVariant(void* font)
-{
-	return new QVariant(*static_cast<QFont*>(font));
-}
-
 char QFont_Bold(void* ptr)
 {
 	return static_cast<QFont*>(ptr)->bold();
@@ -4201,6 +4196,11 @@ double QFont_WordSpacing(void* ptr)
 void QFont_DestroyQFont(void* ptr)
 {
 	static_cast<QFont*>(ptr)->~QFont();
+}
+
+void* QFont_ToVariant(void* ptr)
+{
+	return new QVariant(*static_cast<QFont*>(ptr));
 }
 
 int QFontDatabase_Ogham_Type()
@@ -6362,6 +6362,11 @@ void* QImage_Mirrored(void* ptr, char horizontal, char vertical)
 void* QImage_RgbSwapped(void* ptr)
 {
 	return new QImage(static_cast<QImage*>(ptr)->rgbSwapped());
+}
+
+void* QImage_ToVariant(void* ptr)
+{
+	return new QVariant(*static_cast<QImage*>(ptr));
 }
 
 int QImage_Metric(void* ptr, long long metric)
@@ -23098,3 +23103,4 @@ long long QWindowStateChangeEvent_OldState(void* ptr)
 {
 	return static_cast<QWindowStateChangeEvent*>(ptr)->oldState();
 }
+

@@ -149,7 +149,7 @@ func initDropArea() *DropArea {
 		switch {
 		case mimeData.HasImage():
 			{
-				dropArea.SetPixmap(gui.QPixmap_FromImage(gui.NewQImageFromPointer(mimeData.ImageData()), 0))
+				dropArea.SetPixmap(gui.QPixmap_FromImage(gui.NewQImageFromPointer(mimeData.ImageData().ToImage()), 0))
 			}
 
 		case mimeData.HasHtml():

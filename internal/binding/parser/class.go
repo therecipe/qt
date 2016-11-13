@@ -136,6 +136,42 @@ func (c *Class) IsQObjectSubClass() bool {
 	return false
 }
 
+func (c *Class) add() {
+	switch c.Name {
+	case "QColor", "QFont", "QImage":
+		{
+			c.Functions = append(c.Functions, &Function{
+				Name:       "toVariant",
+				Fullname:   fmt.Sprintf("%v::toVariant", c.Name),
+				Access:     "public",
+				Virtual:    "non",
+				Meta:       PLAIN,
+				Output:     "QVariant",
+				Parameters: []*Parameter{},
+				Signature:  "()",
+				Export:     true,
+			})
+		}
+
+	case "QVariant":
+		{
+			for _, name := range []string{"toColor", "toFont", "toImage"} {
+				c.Functions = append(c.Functions, &Function{
+					Name:       name,
+					Fullname:   fmt.Sprintf("%v::%v", c.Name, name),
+					Access:     "public",
+					Virtual:    "non",
+					Meta:       PLAIN,
+					Output:     strings.Replace(name, "to", "Q", -1),
+					Parameters: []*Parameter{},
+					Signature:  "()",
+					Export:     true,
+				})
+			}
+		}
+	}
+}
+
 func (c *Class) fix() {
 	if c.Name == "QStyle" {
 
