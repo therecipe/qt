@@ -94,7 +94,7 @@ func main() {
 
 	case "generate":
 		{
-			generate()
+			generate(buildTarget)
 		}
 
 	case "install":

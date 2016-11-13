@@ -8,11 +8,11 @@ import (
 	"github.com/therecipe/qt/internal/utils"
 )
 
-func generate() {
+func generate(buildTarget string) {
 	utils.Log.Info("running setup/generate")
 
 	if testFile := utils.GoQtPkgPath("core", "cgo_desktop_darwin_amd64.go"); utils.Exists(testFile) && strings.Contains(utils.Load(testFile), utils.QT_DIR()) {
-		if utils.QT_STUB() &&
+		if buildTarget != "desktop" && utils.QT_STUB() &&
 			!utils.Exists(utils.GoQtPkgPath("core", "core.h")) &&
 			!utils.Exists(utils.GoQtPkgPath("core", "core.cpp")) {
 
@@ -20,7 +20,7 @@ func generate() {
 			return
 		}
 
-		if !utils.QT_STUB() &&
+		if buildTarget != "desktop" && !utils.QT_STUB() &&
 			utils.Exists(utils.GoQtPkgPath("core", "core.h")) &&
 			utils.Exists(utils.GoQtPkgPath("core", "core.cpp")) {
 

@@ -6,6 +6,7 @@ machine:
     DESKTOP: true
     ANDROID: true
     QT_WINDOWS_CC: true
+    QT_MXE_ARCH: 386
     GOROOT: /usr/local/go
     GOPATH: /home/ubuntu/.go_project
     JDK_DIR: /usr/lib/jvm/java-8-openjdk-amd64
