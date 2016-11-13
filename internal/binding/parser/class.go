@@ -149,7 +149,6 @@ func (c *Class) add() {
 				Output:     "QVariant",
 				Parameters: []*Parameter{},
 				Signature:  "()",
-				Export:     true,
 			})
 		}
 
@@ -165,7 +164,6 @@ func (c *Class) add() {
 					Output:     strings.Replace(name, "to", "Q", -1),
 					Parameters: []*Parameter{},
 					Signature:  "()",
-					Export:     true,
 				})
 			}
 		}
@@ -217,7 +215,6 @@ func (c *Class) fix() {
 						Value: "bool*",
 					}},
 				Signature: "()",
-				Export:    true,
 			})
 		}
 
@@ -242,7 +239,6 @@ func (c *Class) fix() {
 					Value: "ForeachLoopBody*",
 				}},
 			Signature: "()",
-			Export:    true,
 		})
 	}
 }
