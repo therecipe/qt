@@ -2512,6 +2512,11 @@ void* QColor_NewQColor3(int r, int g, int b, int a)
 	return new QColor(r, g, b, a);
 }
 
+void* QColor_ToQVariant(void* color)
+{
+	return new QVariant(*static_cast<QColor*>(color));
+}
+
 int QColor_Alpha(void* ptr)
 {
 	return static_cast<QColor*>(ptr)->alpha();
@@ -3906,6 +3911,11 @@ void* QFont_NewQFont3(void* font, void* pd)
 void* QFont_NewQFont2(char* family, int pointSize, int weight, char italic)
 {
 	return new QFont(QString(family), pointSize, weight, italic != 0);
+}
+
+void* QFont_ToQVariant(void* font)
+{
+	return new QVariant(*static_cast<QFont*>(font));
 }
 
 char QFont_Bold(void* ptr)
@@ -23088,4 +23098,3 @@ long long QWindowStateChangeEvent_OldState(void* ptr)
 {
 	return static_cast<QWindowStateChangeEvent*>(ptr)->oldState();
 }
-

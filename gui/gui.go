@@ -8,11 +8,12 @@ package gui
 import "C"
 import (
 	"fmt"
-	"github.com/therecipe/qt"
-	"github.com/therecipe/qt/core"
 	"runtime"
 	"strings"
 	"unsafe"
+
+	"github.com/therecipe/qt"
+	"github.com/therecipe/qt/core"
 )
 
 func cGoUnpackString(s C.struct_QtGui_PackedString) string {
@@ -7779,6 +7780,12 @@ func NewQColor3(r int, g int, b int, a int) *QColor {
 	return tmpValue
 }
 
+func (ptr *QColor) ToQVariant() *core.QVariant {
+	var tmpValue = core.NewQVariantFromPointer(C.QColor_ToQVariant(ptr.Pointer()))
+	runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+	return tmpValue
+}
+
 func (ptr *QColor) Alpha() int {
 	if ptr.Pointer() != nil {
 		return int(int32(C.QColor_Alpha(ptr.Pointer())))
@@ -10966,6 +10973,12 @@ func NewQFont2(family string, pointSize int, weight int, italic bool) *QFont {
 	defer C.free(unsafe.Pointer(familyC))
 	var tmpValue = NewQFontFromPointer(C.QFont_NewQFont2(familyC, C.int(int32(pointSize)), C.int(int32(weight)), C.char(int8(qt.GoBoolToInt(italic)))))
 	runtime.SetFinalizer(tmpValue, (*QFont).DestroyQFont)
+	return tmpValue
+}
+
+func (ptr *QFont) ToQVariant() *core.QVariant {
+	var tmpValue = core.NewQVariantFromPointer(C.QFont_ToQVariant(ptr.Pointer()))
+	runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 	return tmpValue
 }
 
