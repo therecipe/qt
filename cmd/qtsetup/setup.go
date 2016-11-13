@@ -77,7 +77,7 @@ func main() {
 		{
 			prep()
 			check(buildTarget)
-			generate()
+			generate(buildTarget)
 			install(buildTarget)
 			test(buildTarget)
 		}
