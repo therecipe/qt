@@ -28,9 +28,9 @@ func NewCalculatorForm() *widgets.QWidget {
 	file.Close()
 
 	var (
-		ui_inputSpinBox1 = widgets.NewQSpinBoxFromPointer(widget.FindChild("inputSpinBox1", core.Qt__FindChildrenRecursively))
-		ui_inputSpinBox2 = widgets.NewQSpinBoxFromPointer(widget.FindChild("inputSpinBox2", core.Qt__FindChildrenRecursively))
-		ui_outputWidget  = widgets.NewQLabelFromPointer(widget.FindChild("outputWidget", core.Qt__FindChildrenRecursively))
+		ui_inputSpinBox1 = widgets.NewQSpinBoxFromPointer(widget.FindChild("inputSpinBox1", core.Qt__FindChildrenRecursively).Pointer())
+		ui_inputSpinBox2 = widgets.NewQSpinBoxFromPointer(widget.FindChild("inputSpinBox2", core.Qt__FindChildrenRecursively).Pointer())
+		ui_outputWidget  = widgets.NewQLabelFromPointer(widget.FindChild("outputWidget", core.Qt__FindChildrenRecursively).Pointer())
 	)
 
 	ui_inputSpinBox1.ConnectValueChanged(func(value int) {
