@@ -12,6 +12,7 @@ extern "C" {
 #endif
 
 struct QtMacExtras_PackedString { char* data; long long len; };
+struct QtMacExtras_PackedList { void* data; long long len; };
 char QMacPasteboardMime_CanConvert(void* ptr, char* mime, char* flav);
 struct QtMacExtras_PackedString QMacPasteboardMime_ConvertorName(void* ptr);
 int QMacPasteboardMime_Count(void* ptr, void* mimeData);
@@ -20,14 +21,19 @@ struct QtMacExtras_PackedString QMacPasteboardMime_FlavorFor(void* ptr, char* mi
 struct QtMacExtras_PackedString QMacPasteboardMime_MimeFor(void* ptr, char* flav);
 void QMacPasteboardMime_DestroyQMacPasteboardMime(void* ptr);
 void QMacPasteboardMime_DestroyQMacPasteboardMimeDefault(void* ptr);
+void* QMacPasteboardMime_convertFromMime_atList(void* ptr, int i);
 void* QMacToolBar_NewQMacToolBar(void* parent);
 void* QMacToolBar_NewQMacToolBar2(char* identifier, void* parent);
 void* QMacToolBar_AddAllowedItem(void* ptr, void* icon, char* text);
 void* QMacToolBar_AddItem(void* ptr, void* icon, char* text);
 void QMacToolBar_AddSeparator(void* ptr);
+struct QtMacExtras_PackedList QMacToolBar_AllowedItems(void* ptr);
 void QMacToolBar_AttachToWindow(void* ptr, void* window);
 void QMacToolBar_DetachFromWindow(void* ptr);
+struct QtMacExtras_PackedList QMacToolBar_Items(void* ptr);
 void QMacToolBar_DestroyQMacToolBar(void* ptr);
+void* QMacToolBar_allowedItems_atList(void* ptr, int i);
+void* QMacToolBar_items_atList(void* ptr, int i);
 void QMacToolBar_TimerEvent(void* ptr, void* event);
 void QMacToolBar_TimerEventDefault(void* ptr, void* event);
 void QMacToolBar_ChildEvent(void* ptr, void* event);

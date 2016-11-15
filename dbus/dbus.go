@@ -2783,6 +2783,19 @@ func NewQDBusMessage2(other QDBusMessage_ITF) *QDBusMessage {
 	return tmpValue
 }
 
+func (ptr *QDBusMessage) Arguments() []*core.QVariant {
+	if ptr.Pointer() != nil {
+		return func(l C.struct_QtDBus_PackedList) []*core.QVariant {
+			var out = make([]*core.QVariant, int(l.len))
+			for i := 0; i < int(l.len); i++ {
+				out[i] = NewQDBusMessageFromPointer(l.data).arguments_atList(i)
+			}
+			return out
+		}(C.QDBusMessage_Arguments(ptr.Pointer()))
+	}
+	return nil
+}
+
 func (ptr *QDBusMessage) AutoStartService() bool {
 	if ptr.Pointer() != nil {
 		return C.QDBusMessage_AutoStartService(ptr.Pointer()) != 0
@@ -3042,6 +3055,15 @@ func (ptr *QDBusMessage) DestroyQDBusMessage() {
 		C.QDBusMessage_DestroyQDBusMessage(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
+}
+
+func (ptr *QDBusMessage) arguments_atList(i int) *core.QVariant {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQVariantFromPointer(C.QDBusMessage_arguments_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		return tmpValue
+	}
+	return nil
 }
 
 type QDBusObjectPath struct {

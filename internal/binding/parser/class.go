@@ -168,6 +168,101 @@ func (c *Class) add() {
 			}
 		}
 	}
+
+	for _, f := range c.Functions {
+		switch f.Output {
+		case "QModelIndexList":
+			{
+				f.Output = "QList<QModelIndex>"
+			}
+
+		case "QVariantList":
+			{
+				f.Output = "QList<QVariant>"
+			}
+
+		case "QObjectList":
+			{
+				f.Output = "QList<QObject *>"
+			}
+
+		case "QMediaResourceList":
+			{
+				f.Output = "QList<QMediaResource>"
+			}
+
+		case "QFileInfoList":
+			{
+				f.Output = "QList<QFileInfo>"
+			}
+
+		case "QWidgetList":
+			{
+				f.Output = "QList<QWidget *>"
+			}
+
+		case "QCameraFocusZoneList":
+			{
+				f.Output = "QList<QCameraFocusZone *>"
+			}
+
+			//generics
+
+		case "QList<T>":
+			{
+				f.TemplateModeGo = "QObject*"
+				f.Output = "QList<QObject*>"
+			}
+
+		case "T":
+			{
+				if f.Class() == "QObject" || f.Class() == "QMediaService" {
+					f.TemplateModeGo = fmt.Sprintf("%v*", f.Class())
+					f.Output = fmt.Sprintf("%v*", f.Class())
+				}
+			}
+		}
+
+		if IsPackedList(f.Output) {
+			var b bool
+			for _, p := range f.Parameters {
+				if strings.ContainsAny(p.Value, "<>") {
+					b = true
+					break
+				}
+			}
+
+			if !b && !c.HasFunctionWithName(fmt.Sprintf("%v_atList", f.Name)) {
+				var newF = &Function{
+					Name:       fmt.Sprintf("%v_atList", f.Name),
+					Fullname:   fmt.Sprintf("%v::%v_atList", c.Name, f.Name),
+					Access:     "public",
+					Virtual:    "non",
+					Meta:       PLAIN,
+					Output:     fmt.Sprintf("const %v", strings.Split(strings.Split(f.Output, "<")[1], ">")[0]),
+					Parameters: []*Parameter{{Name: "i", Value: "int"}},
+					Signature:  "()",
+					Container:  strings.Split(f.Output, "<")[0],
+				}
+				c.Functions = append(c.Functions, newF)
+				f.Child = newF
+			}
+		}
+	}
+}
+
+func IsPackedList(value string) bool {
+	return (strings.HasPrefix(value, "QList<Q") || strings.HasPrefix(value, "QVector<Q") || strings.HasPrefix(value, "QStack<Q") || strings.HasPrefix(value, "QQueue<Q")) && strings.Count(value, "<") == 1 && !strings.Contains(value, ":") && ClassMap[UnpackedList(value)] != nil
+}
+
+func UnpackedList(value string) string {
+	var CleanValue = func(value string) string {
+		for _, b := range []string{"*", "const", "&amp", "&", ";"} {
+			value = strings.Replace(value, b, "", -1)
+		}
+		return strings.TrimSpace(value)
+	}
+	return CleanValue(strings.Split(strings.Split(value, "<")[1], ">")[0])
 }
 
 func (c *Class) fix() {

@@ -12,6 +12,7 @@ extern "C" {
 #endif
 
 struct QtSerialPort_PackedString { char* data; long long len; };
+struct QtSerialPort_PackedList { void* data; long long len; };
 int QSerialPort_BaudRate(void* ptr, long long directions);
 void QSerialPort_ClearError(void* ptr);
 long long QSerialPort_DataBits(void* ptr);
@@ -123,7 +124,9 @@ struct QtSerialPort_PackedString QSerialPortInfo_SerialNumber(void* ptr);
 struct QtSerialPort_PackedString QSerialPortInfo_SystemLocation(void* ptr);
 unsigned short QSerialPortInfo_VendorIdentifier(void* ptr);
 void QSerialPortInfo_DestroyQSerialPortInfo(void* ptr);
+struct QtSerialPort_PackedList QSerialPortInfo_QSerialPortInfo_AvailablePorts();
 char QSerialPortInfo_IsBusy(void* ptr);
+void* QSerialPortInfo_availablePorts_atList(void* ptr, int i);
 
 #ifdef __cplusplus
 }

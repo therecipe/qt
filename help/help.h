@@ -12,6 +12,7 @@ extern "C" {
 #endif
 
 struct QtHelp_PackedString { char* data; long long len; };
+struct QtHelp_PackedList { void* data; long long len; };
 void* QHelpContentItem_Child(void* ptr, int row);
 int QHelpContentItem_ChildCount(void* ptr);
 int QHelpContentItem_ChildPosition(void* ptr, void* child);
@@ -373,6 +374,7 @@ void* QHelpEngineCore_CustomValue(void* ptr, char* key, void* defaultValue);
 struct QtHelp_PackedString QHelpEngineCore_DocumentationFileName(void* ptr, char* namespaceName);
 struct QtHelp_PackedString QHelpEngineCore_Error(void* ptr);
 void* QHelpEngineCore_FileData(void* ptr, void* url);
+struct QtHelp_PackedList QHelpEngineCore_Files(void* ptr, char* namespaceName, char* filterAttributes, char* extensionFilter);
 struct QtHelp_PackedString QHelpEngineCore_FilterAttributes(void* ptr);
 struct QtHelp_PackedString QHelpEngineCore_FilterAttributes2(void* ptr, char* filterName);
 void* QHelpEngineCore_FindFile(void* ptr, void* url);
@@ -399,6 +401,8 @@ void QHelpEngineCore_DisconnectWarning(void* ptr);
 void QHelpEngineCore_Warning(void* ptr, char* msg);
 void QHelpEngineCore_DestroyQHelpEngineCore(void* ptr);
 void QHelpEngineCore_DestroyQHelpEngineCoreDefault(void* ptr);
+void* QHelpEngineCore_files_atList(void* ptr, int i);
+struct QtHelp_PackedString QHelpEngineCore_filterAttributeSets_atList(void* ptr, int i);
 void QHelpEngineCore_TimerEvent(void* ptr, void* event);
 void QHelpEngineCore_TimerEventDefault(void* ptr, void* event);
 void QHelpEngineCore_ChildEvent(void* ptr, void* event);

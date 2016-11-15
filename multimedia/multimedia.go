@@ -4114,6 +4114,26 @@ func NewQAudioDeviceInfo2(other QAudioDeviceInfo_ITF) *QAudioDeviceInfo {
 	return tmpValue
 }
 
+func QAudioDeviceInfo_AvailableDevices(mode QAudio__Mode) []*QAudioDeviceInfo {
+	return func(l C.struct_QtMultimedia_PackedList) []*QAudioDeviceInfo {
+		var out = make([]*QAudioDeviceInfo, int(l.len))
+		for i := 0; i < int(l.len); i++ {
+			out[i] = NewQAudioDeviceInfoFromPointer(l.data).availableDevices_atList(i)
+		}
+		return out
+	}(C.QAudioDeviceInfo_QAudioDeviceInfo_AvailableDevices(C.longlong(mode)))
+}
+
+func (ptr *QAudioDeviceInfo) AvailableDevices(mode QAudio__Mode) []*QAudioDeviceInfo {
+	return func(l C.struct_QtMultimedia_PackedList) []*QAudioDeviceInfo {
+		var out = make([]*QAudioDeviceInfo, int(l.len))
+		for i := 0; i < int(l.len); i++ {
+			out[i] = NewQAudioDeviceInfoFromPointer(l.data).availableDevices_atList(i)
+		}
+		return out
+	}(C.QAudioDeviceInfo_QAudioDeviceInfo_AvailableDevices(C.longlong(mode)))
+}
+
 func QAudioDeviceInfo_DefaultInputDevice() *QAudioDeviceInfo {
 	var tmpValue = NewQAudioDeviceInfoFromPointer(C.QAudioDeviceInfo_QAudioDeviceInfo_DefaultInputDevice())
 	runtime.SetFinalizer(tmpValue, (*QAudioDeviceInfo).DestroyQAudioDeviceInfo)
@@ -4189,6 +4209,15 @@ func (ptr *QAudioDeviceInfo) DestroyQAudioDeviceInfo() {
 		C.QAudioDeviceInfo_DestroyQAudioDeviceInfo(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
+}
+
+func (ptr *QAudioDeviceInfo) availableDevices_atList(i int) *QAudioDeviceInfo {
+	if ptr.Pointer() != nil {
+		var tmpValue = NewQAudioDeviceInfoFromPointer(C.QAudioDeviceInfo_availableDevices_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*QAudioDeviceInfo).DestroyQAudioDeviceInfo)
+		return tmpValue
+	}
+	return nil
 }
 
 type QAudioEncoderSettings struct {
@@ -5920,6 +5949,13 @@ func (ptr *QAudioInputSelectorControl) DestroyQAudioInputSelectorControlDefault(
 	}
 }
 
+func (ptr *QAudioInputSelectorControl) availableInputs_atList(i int) string {
+	if ptr.Pointer() != nil {
+		return cGoUnpackString(C.QAudioInputSelectorControl_availableInputs_atList(ptr.Pointer(), C.int(int32(i))))
+	}
+	return ""
+}
+
 //export callbackQAudioInputSelectorControl_TimerEvent
 func callbackQAudioInputSelectorControl_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 
@@ -7085,6 +7121,13 @@ func (ptr *QAudioOutputSelectorControl) DestroyQAudioOutputSelectorControlDefaul
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
+}
+
+func (ptr *QAudioOutputSelectorControl) availableOutputs_atList(i int) string {
+	if ptr.Pointer() != nil {
+		return cGoUnpackString(C.QAudioOutputSelectorControl_availableOutputs_atList(ptr.Pointer(), C.int(int32(i))))
+	}
+	return ""
 }
 
 //export callbackQAudioOutputSelectorControl_TimerEvent
@@ -9871,6 +9914,32 @@ func (ptr *QCamera) SupportedLocks() QCamera__LockType {
 	return 0
 }
 
+func (ptr *QCamera) SupportedViewfinderResolutions(settings QCameraViewfinderSettings_ITF) []*core.QSize {
+	if ptr.Pointer() != nil {
+		return func(l C.struct_QtMultimedia_PackedList) []*core.QSize {
+			var out = make([]*core.QSize, int(l.len))
+			for i := 0; i < int(l.len); i++ {
+				out[i] = NewQCameraFromPointer(l.data).supportedViewfinderResolutions_atList(i)
+			}
+			return out
+		}(C.QCamera_SupportedViewfinderResolutions(ptr.Pointer(), PointerFromQCameraViewfinderSettings(settings)))
+	}
+	return nil
+}
+
+func (ptr *QCamera) SupportedViewfinderSettings(settings QCameraViewfinderSettings_ITF) []*QCameraViewfinderSettings {
+	if ptr.Pointer() != nil {
+		return func(l C.struct_QtMultimedia_PackedList) []*QCameraViewfinderSettings {
+			var out = make([]*QCameraViewfinderSettings, int(l.len))
+			for i := 0; i < int(l.len); i++ {
+				out[i] = NewQCameraFromPointer(l.data).supportedViewfinderSettings_atList(i)
+			}
+			return out
+		}(C.QCamera_SupportedViewfinderSettings(ptr.Pointer(), PointerFromQCameraViewfinderSettings(settings)))
+	}
+	return nil
+}
+
 //export callbackQCamera_Unload
 func callbackQCamera_Unload(ptr unsafe.Pointer) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCamera::unload"); signal != nil {
@@ -9970,6 +10039,24 @@ func (ptr *QCamera) DestroyQCamera() {
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
+}
+
+func (ptr *QCamera) supportedViewfinderResolutions_atList(i int) *core.QSize {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQSizeFromPointer(C.QCamera_supportedViewfinderResolutions_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QCamera) supportedViewfinderSettings_atList(i int) *QCameraViewfinderSettings {
+	if ptr.Pointer() != nil {
+		var tmpValue = NewQCameraViewfinderSettingsFromPointer(C.QCamera_supportedViewfinderSettings_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*QCameraViewfinderSettings).DestroyQCameraViewfinderSettings)
+		return tmpValue
+	}
+	return nil
 }
 
 //export callbackQCamera_Bind
@@ -13481,6 +13568,15 @@ func (ptr *QCameraExposureControl) DestroyQCameraExposureControl() {
 	}
 }
 
+func (ptr *QCameraExposureControl) supportedParameterRange_atList(i int) *core.QVariant {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQVariantFromPointer(C.QCameraExposureControl_supportedParameterRange_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		return tmpValue
+	}
+	return nil
+}
+
 //export callbackQCameraExposureControl_TimerEvent
 func callbackQCameraExposureControl_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 
@@ -15008,6 +15104,19 @@ func (ptr *QCameraFocus) FocusPointMode() QCameraFocus__FocusPointMode {
 	return 0
 }
 
+func (ptr *QCameraFocus) FocusZones() []*QCameraFocusZone {
+	if ptr.Pointer() != nil {
+		return func(l C.struct_QtMultimedia_PackedList) []*QCameraFocusZone {
+			var out = make([]*QCameraFocusZone, int(l.len))
+			for i := 0; i < int(l.len); i++ {
+				out[i] = NewQCameraFocusFromPointer(l.data).focusZones_atList(i)
+			}
+			return out
+		}(C.QCameraFocus_FocusZones(ptr.Pointer()))
+	}
+	return nil
+}
+
 func (ptr *QCameraFocus) OpticalZoom() float64 {
 	if ptr.Pointer() != nil {
 		return float64(C.QCameraFocus_OpticalZoom(ptr.Pointer()))
@@ -15217,6 +15326,13 @@ func (ptr *QCameraFocus) ZoomTo(optical float64, digital float64) {
 	if ptr.Pointer() != nil {
 		C.QCameraFocus_ZoomTo(ptr.Pointer(), C.double(optical), C.double(digital))
 	}
+}
+
+func (ptr *QCameraFocus) focusZones_atList(i int) *QCameraFocusZone {
+	if ptr.Pointer() != nil {
+		return NewQCameraFocusZoneFromPointer(C.QCameraFocus_focusZones_atList(ptr.Pointer(), C.int(int32(i))))
+	}
+	return nil
 }
 
 //export callbackQCameraFocus_TimerEvent
@@ -15957,6 +16073,13 @@ func (ptr *QCameraFocusControl) DestroyQCameraFocusControl() {
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
+}
+
+func (ptr *QCameraFocusControl) focusZones_atList(i int) *QCameraFocusZone {
+	if ptr.Pointer() != nil {
+		return NewQCameraFocusZoneFromPointer(C.QCameraFocusControl_focusZones_atList(ptr.Pointer(), C.int(int32(i))))
+	}
+	return nil
 }
 
 //export callbackQCameraFocusControl_TimerEvent
@@ -16961,12 +17084,34 @@ func (ptr *QCameraImageCapture) SupportedImageCodecs() []string {
 	return make([]string, 0)
 }
 
+func (ptr *QCameraImageCapture) SupportedResolutions(settings QImageEncoderSettings_ITF, continuous bool) []*core.QSize {
+	if ptr.Pointer() != nil {
+		return func(l C.struct_QtMultimedia_PackedList) []*core.QSize {
+			var out = make([]*core.QSize, int(l.len))
+			for i := 0; i < int(l.len); i++ {
+				out[i] = NewQCameraImageCaptureFromPointer(l.data).supportedResolutions_atList(i)
+			}
+			return out
+		}(C.QCameraImageCapture_SupportedResolutions(ptr.Pointer(), PointerFromQImageEncoderSettings(settings), C.char(int8(qt.GoBoolToInt(continuous)))))
+	}
+	return nil
+}
+
 func (ptr *QCameraImageCapture) DestroyQCameraImageCapture() {
 	if ptr.Pointer() != nil {
 		C.QCameraImageCapture_DestroyQCameraImageCapture(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
+}
+
+func (ptr *QCameraImageCapture) supportedResolutions_atList(i int) *core.QSize {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQSizeFromPointer(C.QCameraImageCapture_supportedResolutions_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
+		return tmpValue
+	}
+	return nil
 }
 
 //export callbackQCameraImageCapture_TimerEvent
@@ -19172,6 +19317,26 @@ func NewQCameraInfo3(other QCameraInfo_ITF) *QCameraInfo {
 	return tmpValue
 }
 
+func QCameraInfo_AvailableCameras(position QCamera__Position) []*QCameraInfo {
+	return func(l C.struct_QtMultimedia_PackedList) []*QCameraInfo {
+		var out = make([]*QCameraInfo, int(l.len))
+		for i := 0; i < int(l.len); i++ {
+			out[i] = NewQCameraInfoFromPointer(l.data).availableCameras_atList(i)
+		}
+		return out
+	}(C.QCameraInfo_QCameraInfo_AvailableCameras(C.longlong(position)))
+}
+
+func (ptr *QCameraInfo) AvailableCameras(position QCamera__Position) []*QCameraInfo {
+	return func(l C.struct_QtMultimedia_PackedList) []*QCameraInfo {
+		var out = make([]*QCameraInfo, int(l.len))
+		for i := 0; i < int(l.len); i++ {
+			out[i] = NewQCameraInfoFromPointer(l.data).availableCameras_atList(i)
+		}
+		return out
+	}(C.QCameraInfo_QCameraInfo_AvailableCameras(C.longlong(position)))
+}
+
 func QCameraInfo_DefaultCamera() *QCameraInfo {
 	var tmpValue = NewQCameraInfoFromPointer(C.QCameraInfo_QCameraInfo_DefaultCamera())
 	runtime.SetFinalizer(tmpValue, (*QCameraInfo).DestroyQCameraInfo)
@@ -19224,6 +19389,15 @@ func (ptr *QCameraInfo) DestroyQCameraInfo() {
 		C.QCameraInfo_DestroyQCameraInfo(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
+}
+
+func (ptr *QCameraInfo) availableCameras_atList(i int) *QCameraInfo {
+	if ptr.Pointer() != nil {
+		var tmpValue = NewQCameraInfoFromPointer(C.QCameraInfo_availableCameras_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*QCameraInfo).DestroyQCameraInfo)
+		return tmpValue
+	}
+	return nil
 }
 
 type QCameraInfoControl struct {
@@ -23375,6 +23549,15 @@ func (ptr *QCameraViewfinderSettingsControl2) DestroyQCameraViewfinderSettingsCo
 	}
 }
 
+func (ptr *QCameraViewfinderSettingsControl2) supportedViewfinderSettings_atList(i int) *QCameraViewfinderSettings {
+	if ptr.Pointer() != nil {
+		var tmpValue = NewQCameraViewfinderSettingsFromPointer(C.QCameraViewfinderSettingsControl2_supportedViewfinderSettings_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*QCameraViewfinderSettings).DestroyQCameraViewfinderSettings)
+		return tmpValue
+	}
+	return nil
+}
+
 //export callbackQCameraViewfinderSettingsControl2_TimerEvent
 func callbackQCameraViewfinderSettingsControl2_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 
@@ -26375,6 +26558,15 @@ func (ptr *QImageEncoderControl) DestroyQImageEncoderControlDefault() {
 	}
 }
 
+func (ptr *QImageEncoderControl) supportedResolutions_atList(i int) *core.QSize {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQSizeFromPointer(C.QImageEncoderControl_supportedResolutions_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
+		return tmpValue
+	}
+	return nil
+}
+
 //export callbackQImageEncoderControl_TimerEvent
 func callbackQImageEncoderControl_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 
@@ -28570,11 +28762,33 @@ func (ptr *QMediaContent) Playlist() *QMediaPlaylist {
 	return nil
 }
 
+func (ptr *QMediaContent) Resources() []*QMediaResource {
+	if ptr.Pointer() != nil {
+		return func(l C.struct_QtMultimedia_PackedList) []*QMediaResource {
+			var out = make([]*QMediaResource, int(l.len))
+			for i := 0; i < int(l.len); i++ {
+				out[i] = NewQMediaContentFromPointer(l.data).resources_atList(i)
+			}
+			return out
+		}(C.QMediaContent_Resources(ptr.Pointer()))
+	}
+	return nil
+}
+
 func (ptr *QMediaContent) DestroyQMediaContent() {
 	if ptr.Pointer() != nil {
 		C.QMediaContent_DestroyQMediaContent(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
+}
+
+func (ptr *QMediaContent) resources_atList(i int) *QMediaResource {
+	if ptr.Pointer() != nil {
+		var tmpValue = NewQMediaResourceFromPointer(C.QMediaContent_resources_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*QMediaResource).DestroyQMediaResource)
+		return tmpValue
+	}
+	return nil
 }
 
 type QMediaControl struct {
@@ -35830,6 +36044,19 @@ func (ptr *QMediaRecorder) SupportedContainers() []string {
 	return make([]string, 0)
 }
 
+func (ptr *QMediaRecorder) SupportedResolutions(settings QVideoEncoderSettings_ITF, continuous bool) []*core.QSize {
+	if ptr.Pointer() != nil {
+		return func(l C.struct_QtMultimedia_PackedList) []*core.QSize {
+			var out = make([]*core.QSize, int(l.len))
+			for i := 0; i < int(l.len); i++ {
+				out[i] = NewQMediaRecorderFromPointer(l.data).supportedResolutions_atList(i)
+			}
+			return out
+		}(C.QMediaRecorder_SupportedResolutions(ptr.Pointer(), PointerFromQVideoEncoderSettings(settings), C.char(int8(qt.GoBoolToInt(continuous)))))
+	}
+	return nil
+}
+
 func (ptr *QMediaRecorder) SupportedVideoCodecs() []string {
 	if ptr.Pointer() != nil {
 		return strings.Split(cGoUnpackString(C.QMediaRecorder_SupportedVideoCodecs(ptr.Pointer())), "|")
@@ -35890,6 +36117,15 @@ func (ptr *QMediaRecorder) DestroyQMediaRecorder() {
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
+}
+
+func (ptr *QMediaRecorder) supportedResolutions_atList(i int) *core.QSize {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQSizeFromPointer(C.QMediaRecorder_supportedResolutions_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
+		return tmpValue
+	}
+	return nil
 }
 
 //export callbackQMediaRecorder_TimerEvent
@@ -37566,9 +37802,13 @@ func (ptr *QMediaService) RequestControl(interfa string) *QMediaControl {
 	return nil
 }
 
-func (ptr *QMediaService) RequestControl2() unsafe.Pointer {
+func (ptr *QMediaService) RequestControl2() *QMediaService {
 	if ptr.Pointer() != nil {
-		return unsafe.Pointer(C.QMediaService_RequestControl2(ptr.Pointer()))
+		var tmpValue = NewQMediaServiceFromPointer(C.QMediaService_RequestControl2(ptr.Pointer()))
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
 	return nil
 }
@@ -38796,6 +39036,15 @@ func (ptr *QMediaServiceSupportedDevicesInterface) DestroyQMediaServiceSupported
 	}
 }
 
+func (ptr *QMediaServiceSupportedDevicesInterface) devices_atList(i int) *core.QByteArray {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQByteArrayFromPointer(C.QMediaServiceSupportedDevicesInterface_devices_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		return tmpValue
+	}
+	return nil
+}
+
 type QMediaServiceSupportedFormatsInterface struct {
 	ptr unsafe.Pointer
 }
@@ -39791,6 +40040,19 @@ func (ptr *QMediaTimeRange) EarliestTime() int64 {
 	return 0
 }
 
+func (ptr *QMediaTimeRange) Intervals() []*QMediaTimeInterval {
+	if ptr.Pointer() != nil {
+		return func(l C.struct_QtMultimedia_PackedList) []*QMediaTimeInterval {
+			var out = make([]*QMediaTimeInterval, int(l.len))
+			for i := 0; i < int(l.len); i++ {
+				out[i] = NewQMediaTimeRangeFromPointer(l.data).intervals_atList(i)
+			}
+			return out
+		}(C.QMediaTimeRange_Intervals(ptr.Pointer()))
+	}
+	return nil
+}
+
 func (ptr *QMediaTimeRange) IsContinuous() bool {
 	if ptr.Pointer() != nil {
 		return C.QMediaTimeRange_IsContinuous(ptr.Pointer()) != 0
@@ -39835,6 +40097,15 @@ func (ptr *QMediaTimeRange) DestroyQMediaTimeRange() {
 		C.QMediaTimeRange_DestroyQMediaTimeRange(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
+}
+
+func (ptr *QMediaTimeRange) intervals_atList(i int) *QMediaTimeInterval {
+	if ptr.Pointer() != nil {
+		var tmpValue = NewQMediaTimeIntervalFromPointer(C.QMediaTimeRange_intervals_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*QMediaTimeInterval).DestroyQMediaTimeInterval)
+		return tmpValue
+	}
+	return nil
 }
 
 type QMediaVideoProbeControl struct {
@@ -48546,6 +48817,15 @@ func (ptr *QVideoEncoderSettingsControl) DestroyQVideoEncoderSettingsControlDefa
 	}
 }
 
+func (ptr *QVideoEncoderSettingsControl) supportedResolutions_atList(i int) *core.QSize {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQSizeFromPointer(C.QVideoEncoderSettingsControl_supportedResolutions_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
+		return tmpValue
+	}
+	return nil
+}
+
 //export callbackQVideoEncoderSettingsControl_TimerEvent
 func callbackQVideoEncoderSettingsControl_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 
@@ -50374,6 +50654,19 @@ func (ptr *QVideoSurfaceFormat) Property(name string) *core.QVariant {
 	return nil
 }
 
+func (ptr *QVideoSurfaceFormat) PropertyNames() []*core.QByteArray {
+	if ptr.Pointer() != nil {
+		return func(l C.struct_QtMultimedia_PackedList) []*core.QByteArray {
+			var out = make([]*core.QByteArray, int(l.len))
+			for i := 0; i < int(l.len); i++ {
+				out[i] = NewQVideoSurfaceFormatFromPointer(l.data).propertyNames_atList(i)
+			}
+			return out
+		}(C.QVideoSurfaceFormat_PropertyNames(ptr.Pointer()))
+	}
+	return nil
+}
+
 func (ptr *QVideoSurfaceFormat) ScanLineDirection() QVideoSurfaceFormat__Direction {
 	if ptr.Pointer() != nil {
 		return QVideoSurfaceFormat__Direction(C.QVideoSurfaceFormat_ScanLineDirection(ptr.Pointer()))
@@ -50467,6 +50760,15 @@ func (ptr *QVideoSurfaceFormat) DestroyQVideoSurfaceFormat() {
 		C.QVideoSurfaceFormat_DestroyQVideoSurfaceFormat(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
+}
+
+func (ptr *QVideoSurfaceFormat) propertyNames_atList(i int) *core.QByteArray {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQByteArrayFromPointer(C.QVideoSurfaceFormat_propertyNames_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		return tmpValue
+	}
+	return nil
 }
 
 type QVideoWidget struct {

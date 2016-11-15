@@ -189,7 +189,7 @@ ptr.SetPointer(nil)
 						{
 							for _, mode := range converter.CppOutputParametersJNIGenericModes(function) {
 								var function = *function
-								function.TemplateMode = mode
+								function.TemplateModeJNI = mode
 
 								fmt.Fprintf(bb, "%v\n\n", goFunction(&function))
 							}

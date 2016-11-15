@@ -1223,12 +1223,36 @@ func (ptr *QQmlApplicationEngine) ObjectCreated(object core.QObject_ITF, url cor
 	}
 }
 
+func (ptr *QQmlApplicationEngine) RootObjects() []*core.QObject {
+	if ptr.Pointer() != nil {
+		return func(l C.struct_QtQml_PackedList) []*core.QObject {
+			var out = make([]*core.QObject, int(l.len))
+			for i := 0; i < int(l.len); i++ {
+				out[i] = NewQQmlApplicationEngineFromPointer(l.data).rootObjects_atList(i)
+			}
+			return out
+		}(C.QQmlApplicationEngine_RootObjects(ptr.Pointer()))
+	}
+	return nil
+}
+
 func (ptr *QQmlApplicationEngine) DestroyQQmlApplicationEngine() {
 	if ptr.Pointer() != nil {
 		C.QQmlApplicationEngine_DestroyQQmlApplicationEngine(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
+}
+
+func (ptr *QQmlApplicationEngine) rootObjects_atList(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQObjectFromPointer(C.QQmlApplicationEngine_rootObjects_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
 }
 
 //export callbackQQmlApplicationEngine_Event
@@ -1832,6 +1856,19 @@ func (ptr *QQmlComponent) CreationContext() *QQmlContext {
 	return nil
 }
 
+func (ptr *QQmlComponent) Errors() []*QQmlError {
+	if ptr.Pointer() != nil {
+		return func(l C.struct_QtQml_PackedList) []*QQmlError {
+			var out = make([]*QQmlError, int(l.len))
+			for i := 0; i < int(l.len); i++ {
+				out[i] = NewQQmlComponentFromPointer(l.data).errors_atList(i)
+			}
+			return out
+		}(C.QQmlComponent_Errors(ptr.Pointer()))
+	}
+	return nil
+}
+
 func (ptr *QQmlComponent) IsError() bool {
 	if ptr.Pointer() != nil {
 		return C.QQmlComponent_IsError(ptr.Pointer()) != 0
@@ -2040,6 +2077,15 @@ func (ptr *QQmlComponent) DestroyQQmlComponentDefault() {
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
+}
+
+func (ptr *QQmlComponent) errors_atList(i int) *QQmlError {
+	if ptr.Pointer() != nil {
+		var tmpValue = NewQQmlErrorFromPointer(C.QQmlComponent_errors_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*QQmlError).DestroyQQmlError)
+		return tmpValue
+	}
+	return nil
 }
 
 //export callbackQQmlComponent_TimerEvent
@@ -5512,6 +5558,19 @@ func (ptr *QQmlIncubator) Clear() {
 	}
 }
 
+func (ptr *QQmlIncubator) Errors() []*QQmlError {
+	if ptr.Pointer() != nil {
+		return func(l C.struct_QtQml_PackedList) []*QQmlError {
+			var out = make([]*QQmlError, int(l.len))
+			for i := 0; i < int(l.len); i++ {
+				out[i] = NewQQmlIncubatorFromPointer(l.data).errors_atList(i)
+			}
+			return out
+		}(C.QQmlIncubator_Errors(ptr.Pointer()))
+	}
+	return nil
+}
+
 func (ptr *QQmlIncubator) ForceCompletion() {
 	if ptr.Pointer() != nil {
 		C.QQmlIncubator_ForceCompletion(ptr.Pointer())
@@ -5641,6 +5700,15 @@ func (ptr *QQmlIncubator) StatusChangedDefault(status QQmlIncubator__Status) {
 	if ptr.Pointer() != nil {
 		C.QQmlIncubator_StatusChangedDefault(ptr.Pointer(), C.longlong(status))
 	}
+}
+
+func (ptr *QQmlIncubator) errors_atList(i int) *QQmlError {
+	if ptr.Pointer() != nil {
+		var tmpValue = NewQQmlErrorFromPointer(C.QQmlIncubator_errors_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*QQmlError).DestroyQQmlError)
+		return tmpValue
+	}
+	return nil
 }
 
 type QQmlListProperty struct {

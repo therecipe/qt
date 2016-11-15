@@ -95,6 +95,28 @@ func (ptr *QCanBus) Instance() *QCanBus {
 	return tmpValue
 }
 
+func (ptr *QCanBus) Plugins() []*core.QByteArray {
+	if ptr.Pointer() != nil {
+		return func(l C.struct_QtSerialBus_PackedList) []*core.QByteArray {
+			var out = make([]*core.QByteArray, int(l.len))
+			for i := 0; i < int(l.len); i++ {
+				out[i] = NewQCanBusFromPointer(l.data).plugins_atList(i)
+			}
+			return out
+		}(C.QCanBus_Plugins(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QCanBus) plugins_atList(i int) *core.QByteArray {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQByteArrayFromPointer(C.QCanBus_plugins_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		return tmpValue
+	}
+	return nil
+}
+
 //export callbackQCanBus_TimerEvent
 func callbackQCanBus_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 

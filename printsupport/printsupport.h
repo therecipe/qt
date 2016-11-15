@@ -12,6 +12,7 @@ extern "C" {
 #endif
 
 struct QtPrintSupport_PackedString { char* data; long long len; };
+struct QtPrintSupport_PackedList { void* data; long long len; };
 void* QAbstractPrintDialog_NewQAbstractPrintDialog(void* printer, void* parent);
 int QAbstractPrintDialog_Exec(void* ptr);
 int QAbstractPrintDialog_FromPage(void* ptr);
@@ -779,6 +780,7 @@ void* QPrinterInfo_NewQPrinterInfo();
 void* QPrinterInfo_NewQPrinterInfo3(void* printer);
 void* QPrinterInfo_NewQPrinterInfo2(void* other);
 struct QtPrintSupport_PackedString QPrinterInfo_QPrinterInfo_AvailablePrinterNames();
+struct QtPrintSupport_PackedList QPrinterInfo_QPrinterInfo_AvailablePrinters();
 long long QPrinterInfo_DefaultDuplexMode(void* ptr);
 void* QPrinterInfo_DefaultPageSize(void* ptr);
 void* QPrinterInfo_QPrinterInfo_DefaultPrinter();
@@ -794,8 +796,11 @@ void* QPrinterInfo_MinimumPhysicalPageSize(void* ptr);
 void* QPrinterInfo_QPrinterInfo_PrinterInfo(char* printerName);
 struct QtPrintSupport_PackedString QPrinterInfo_PrinterName(void* ptr);
 long long QPrinterInfo_State(void* ptr);
+struct QtPrintSupport_PackedList QPrinterInfo_SupportedPageSizes(void* ptr);
 char QPrinterInfo_SupportsCustomPageSizes(void* ptr);
 void QPrinterInfo_DestroyQPrinterInfo(void* ptr);
+void* QPrinterInfo_availablePrinters_atList(void* ptr, int i);
+void* QPrinterInfo_supportedPageSizes_atList(void* ptr, int i);
 
 #ifdef __cplusplus
 }

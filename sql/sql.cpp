@@ -46,6 +46,7 @@
 #include <QTimer>
 #include <QTimerEvent>
 #include <QVariant>
+#include <QVector>
 #include <QWidget>
 
 void* QSqlDatabase_QSqlDatabase_AddDatabase2(void* driver, char* connectionName)
@@ -2653,6 +2654,11 @@ struct QtSql_PackedString QSqlResult_BoundValueName(void* ptr, int index)
 	return ({ QByteArray t669294 = static_cast<QSqlResult*>(ptr)->boundValueName(index).toUtf8(); QtSql_PackedString { const_cast<char*>(t669294.prepend("WHITESPACE").constData()+10), t669294.size()-10 }; });
 }
 
+struct QtSql_PackedList QSqlResult_BoundValues(void* ptr)
+{
+	return ({ QVector<QVariant>* tmpValue = new QVector<QVariant>(static_cast<QSqlResult*>(ptr)->boundValues()); QtSql_PackedList { tmpValue, tmpValue->size() }; });
+}
+
 void QSqlResult_Clear(void* ptr)
 {
 	static_cast<QSqlResult*>(ptr)->clear();
@@ -2896,6 +2902,11 @@ void QSqlResult_DestroyQSqlResult(void* ptr)
 void QSqlResult_DestroyQSqlResultDefault(void* ptr)
 {
 
+}
+
+void* QSqlResult_boundValues_atList(void* ptr, int i)
+{
+	return new QVariant(static_cast<QVector<QVariant>*>(ptr)->at(i));
 }
 
 class MyQSqlTableModel: public QSqlTableModel

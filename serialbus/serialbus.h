@@ -12,8 +12,11 @@ extern "C" {
 #endif
 
 struct QtSerialBus_PackedString { char* data; long long len; };
+struct QtSerialBus_PackedList { void* data; long long len; };
 void* QCanBus_CreateDevice(void* ptr, void* plugin, char* interfaceName);
 void* QCanBus_QCanBus_Instance();
+struct QtSerialBus_PackedList QCanBus_Plugins(void* ptr);
+void* QCanBus_plugins_atList(void* ptr, int i);
 void QCanBus_TimerEvent(void* ptr, void* event);
 void QCanBus_TimerEventDefault(void* ptr, void* event);
 void QCanBus_ChildEvent(void* ptr, void* event);

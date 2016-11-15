@@ -39,6 +39,7 @@
 #include <QLightFilter>
 #include <QLightReading>
 #include <QLightSensor>
+#include <QList>
 #include <QMagnetometer>
 #include <QMagnetometerFilter>
 #include <QMagnetometerReading>
@@ -4478,6 +4479,11 @@ void QSensor_EfficientBufferSizeChanged(void* ptr, int efficientBufferSize)
 	static_cast<QSensor*>(ptr)->efficientBufferSizeChanged(efficientBufferSize);
 }
 
+struct QtSensors_PackedList QSensor_Filters(void* ptr)
+{
+	return ({ QList<QSensorFilter *>* tmpValue = new QList<QSensorFilter *>(static_cast<QSensor*>(ptr)->filters()); QtSensors_PackedList { tmpValue, tmpValue->size() }; });
+}
+
 char QSensor_IsFeatureSupported(void* ptr, long long feature)
 {
 	return static_cast<QSensor*>(ptr)->isFeatureSupported(static_cast<QSensor::Feature>(feature));
@@ -4531,6 +4537,16 @@ void QSensor_DisconnectSensorError(void* ptr)
 void QSensor_SensorError(void* ptr, int error)
 {
 	static_cast<QSensor*>(ptr)->sensorError(error);
+}
+
+struct QtSensors_PackedList QSensor_QSensor_SensorTypes()
+{
+	return ({ QList<QByteArray>* tmpValue = new QList<QByteArray>(QSensor::sensorTypes()); QtSensors_PackedList { tmpValue, tmpValue->size() }; });
+}
+
+struct QtSensors_PackedList QSensor_QSensor_SensorsForType(void* ty)
+{
+	return ({ QList<QByteArray>* tmpValue = new QList<QByteArray>(QSensor::sensorsForType(*static_cast<QByteArray*>(ty))); QtSensors_PackedList { tmpValue, tmpValue->size() }; });
 }
 
 void QSensor_SetCurrentOrientation(void* ptr, int currentOrientation)
@@ -4603,6 +4619,21 @@ void QSensor_DestroyQSensor(void* ptr)
 void QSensor_DestroyQSensorDefault(void* ptr)
 {
 
+}
+
+void* QSensor_filters_atList(void* ptr, int i)
+{
+	return const_cast<QSensorFilter*>(static_cast<QList<QSensorFilter *>*>(ptr)->at(i));
+}
+
+void* QSensor_sensorTypes_atList(void* ptr, int i)
+{
+	return new QByteArray(static_cast<QList<QByteArray>*>(ptr)->at(i));
+}
+
+void* QSensor_sensorsForType_atList(void* ptr, int i)
+{
+	return new QByteArray(static_cast<QList<QByteArray>*>(ptr)->at(i));
 }
 
 void QSensor_TimerEvent(void* ptr, void* event)
@@ -5272,6 +5303,11 @@ void QSensorGesturePluginInterface_DestroyQSensorGesturePluginInterface(void* pt
 void QSensorGesturePluginInterface_DestroyQSensorGesturePluginInterfaceDefault(void* ptr)
 {
 
+}
+
+void* QSensorGesturePluginInterface_createRecognizers_atList(void* ptr, int i)
+{
+	return const_cast<QSensorGestureRecognizer*>(static_cast<QList<QSensorGestureRecognizer *>*>(ptr)->at(i));
 }
 
 class MyQSensorGestureRecognizer: public QSensorGestureRecognizer

@@ -63,7 +63,10 @@ func main() {
 
 			case "text/uri-list":
 				{
-					text = mimeData.Text()
+					var urlList = mimeData.Urls()
+					for i := 0; i < len(urlList) && i < 32; i++ {
+						text += urlList[i].ToString(0) + " "
+					}
 				}
 
 			default:
@@ -158,13 +161,19 @@ func initDropArea() *DropArea {
 				dropArea.SetTextFormat(core.Qt__RichText)
 			}
 
-		case mimeData.HasText():
+		case mimeData.HasUrls():
 			{
-				dropArea.SetText(mimeData.Text())
-				dropArea.SetTextFormat(core.Qt__PlainText)
+				var (
+					urlList = mimeData.Urls()
+					text    string
+				)
+				for i := 0; i < len(urlList) && i < 32; i++ {
+					text += urlList[i].Path(0) + "\n"
+				}
+				dropArea.SetText(text)
 			}
 
-		case mimeData.HasUrls():
+		case mimeData.HasText():
 			{
 				dropArea.SetText(mimeData.Text())
 				dropArea.SetTextFormat(core.Qt__PlainText)

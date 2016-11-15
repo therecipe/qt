@@ -12,6 +12,7 @@ extern "C" {
 #endif
 
 struct QtNfc_PackedString { char* data; long long len; };
+struct QtNfc_PackedList { void* data; long long len; };
 void* QNdefFilter_NewQNdefFilter();
 void* QNdefFilter_NewQNdefFilter2(void* other);
 void QNdefFilter_AppendRecord2(void* ptr, long long typeNameFormat, void* ty, unsigned int min, unsigned int max);

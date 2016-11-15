@@ -392,6 +392,19 @@ func (ptr *QGeoRoute) FirstRouteSegment() *QGeoRouteSegment {
 	return nil
 }
 
+func (ptr *QGeoRoute) Path() []*positioning.QGeoCoordinate {
+	if ptr.Pointer() != nil {
+		return func(l C.struct_QtLocation_PackedList) []*positioning.QGeoCoordinate {
+			var out = make([]*positioning.QGeoCoordinate, int(l.len))
+			for i := 0; i < int(l.len); i++ {
+				out[i] = NewQGeoRouteFromPointer(l.data).path_atList(i)
+			}
+			return out
+		}(C.QGeoRoute_Path(ptr.Pointer()))
+	}
+	return nil
+}
+
 func (ptr *QGeoRoute) Request() *QGeoRouteRequest {
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQGeoRouteRequestFromPointer(C.QGeoRoute_Request(ptr.Pointer()))
@@ -471,6 +484,15 @@ func (ptr *QGeoRoute) DestroyQGeoRoute() {
 		C.QGeoRoute_DestroyQGeoRoute(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
+}
+
+func (ptr *QGeoRoute) path_atList(i int) *positioning.QGeoCoordinate {
+	if ptr.Pointer() != nil {
+		var tmpValue = positioning.NewQGeoCoordinateFromPointer(C.QGeoRoute_path_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*positioning.QGeoCoordinate).DestroyQGeoCoordinate)
+		return tmpValue
+	}
+	return nil
 }
 
 //QGeoRouteReply::Error
@@ -667,6 +689,19 @@ func (ptr *QGeoRouteReply) Request() *QGeoRouteRequest {
 	return nil
 }
 
+func (ptr *QGeoRouteReply) Routes() []*QGeoRoute {
+	if ptr.Pointer() != nil {
+		return func(l C.struct_QtLocation_PackedList) []*QGeoRoute {
+			var out = make([]*QGeoRoute, int(l.len))
+			for i := 0; i < int(l.len); i++ {
+				out[i] = NewQGeoRouteReplyFromPointer(l.data).routes_atList(i)
+			}
+			return out
+		}(C.QGeoRouteReply_Routes(ptr.Pointer()))
+	}
+	return nil
+}
+
 func (ptr *QGeoRouteReply) SetError(error QGeoRouteReply__Error, errorString string) {
 	if ptr.Pointer() != nil {
 		var errorStringC = C.CString(errorString)
@@ -719,6 +754,15 @@ func (ptr *QGeoRouteReply) DestroyQGeoRouteReplyDefault() {
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
+}
+
+func (ptr *QGeoRouteReply) routes_atList(i int) *QGeoRoute {
+	if ptr.Pointer() != nil {
+		var tmpValue = NewQGeoRouteFromPointer(C.QGeoRouteReply_routes_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*QGeoRoute).DestroyQGeoRoute)
+		return tmpValue
+	}
+	return nil
 }
 
 //export callbackQGeoRouteReply_TimerEvent
@@ -1166,6 +1210,19 @@ func NewQGeoRouteRequest3(other QGeoRouteRequest_ITF) *QGeoRouteRequest {
 	return tmpValue
 }
 
+func (ptr *QGeoRouteRequest) ExcludeAreas() []*positioning.QGeoRectangle {
+	if ptr.Pointer() != nil {
+		return func(l C.struct_QtLocation_PackedList) []*positioning.QGeoRectangle {
+			var out = make([]*positioning.QGeoRectangle, int(l.len))
+			for i := 0; i < int(l.len); i++ {
+				out[i] = NewQGeoRouteRequestFromPointer(l.data).excludeAreas_atList(i)
+			}
+			return out
+		}(C.QGeoRouteRequest_ExcludeAreas(ptr.Pointer()))
+	}
+	return nil
+}
+
 func (ptr *QGeoRouteRequest) FeatureWeight(featureType QGeoRouteRequest__FeatureType) QGeoRouteRequest__FeatureWeight {
 	if ptr.Pointer() != nil {
 		return QGeoRouteRequest__FeatureWeight(C.QGeoRouteRequest_FeatureWeight(ptr.Pointer(), C.longlong(featureType)))
@@ -1244,11 +1301,42 @@ func (ptr *QGeoRouteRequest) TravelModes() QGeoRouteRequest__TravelMode {
 	return 0
 }
 
+func (ptr *QGeoRouteRequest) Waypoints() []*positioning.QGeoCoordinate {
+	if ptr.Pointer() != nil {
+		return func(l C.struct_QtLocation_PackedList) []*positioning.QGeoCoordinate {
+			var out = make([]*positioning.QGeoCoordinate, int(l.len))
+			for i := 0; i < int(l.len); i++ {
+				out[i] = NewQGeoRouteRequestFromPointer(l.data).waypoints_atList(i)
+			}
+			return out
+		}(C.QGeoRouteRequest_Waypoints(ptr.Pointer()))
+	}
+	return nil
+}
+
 func (ptr *QGeoRouteRequest) DestroyQGeoRouteRequest() {
 	if ptr.Pointer() != nil {
 		C.QGeoRouteRequest_DestroyQGeoRouteRequest(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
+}
+
+func (ptr *QGeoRouteRequest) excludeAreas_atList(i int) *positioning.QGeoRectangle {
+	if ptr.Pointer() != nil {
+		var tmpValue = positioning.NewQGeoRectangleFromPointer(C.QGeoRouteRequest_excludeAreas_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*positioning.QGeoRectangle).DestroyQGeoRectangle)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QGeoRouteRequest) waypoints_atList(i int) *positioning.QGeoCoordinate {
+	if ptr.Pointer() != nil {
+		var tmpValue = positioning.NewQGeoCoordinateFromPointer(C.QGeoRouteRequest_waypoints_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*positioning.QGeoCoordinate).DestroyQGeoCoordinate)
+		return tmpValue
+	}
+	return nil
 }
 
 type QGeoRouteSegment struct {
@@ -1332,6 +1420,19 @@ func (ptr *QGeoRouteSegment) NextRouteSegment() *QGeoRouteSegment {
 	return nil
 }
 
+func (ptr *QGeoRouteSegment) Path() []*positioning.QGeoCoordinate {
+	if ptr.Pointer() != nil {
+		return func(l C.struct_QtLocation_PackedList) []*positioning.QGeoCoordinate {
+			var out = make([]*positioning.QGeoCoordinate, int(l.len))
+			for i := 0; i < int(l.len); i++ {
+				out[i] = NewQGeoRouteSegmentFromPointer(l.data).path_atList(i)
+			}
+			return out
+		}(C.QGeoRouteSegment_Path(ptr.Pointer()))
+	}
+	return nil
+}
+
 func (ptr *QGeoRouteSegment) SetDistance(distance float64) {
 	if ptr.Pointer() != nil {
 		C.QGeoRouteSegment_SetDistance(ptr.Pointer(), C.double(distance))
@@ -1368,6 +1469,15 @@ func (ptr *QGeoRouteSegment) DestroyQGeoRouteSegment() {
 		C.QGeoRouteSegment_DestroyQGeoRouteSegment(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
+}
+
+func (ptr *QGeoRouteSegment) path_atList(i int) *positioning.QGeoCoordinate {
+	if ptr.Pointer() != nil {
+		var tmpValue = positioning.NewQGeoCoordinateFromPointer(C.QGeoRouteSegment_path_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*positioning.QGeoCoordinate).DestroyQGeoCoordinate)
+		return tmpValue
+	}
+	return nil
 }
 
 type QGeoRoutingManager struct {

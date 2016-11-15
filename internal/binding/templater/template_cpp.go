@@ -234,7 +234,7 @@ func CppTemplate(module string) []byte {
 						{
 							for _, mode := range converter.CppOutputParametersJNIGenericModes(function) {
 								var function = *function
-								function.TemplateMode = mode
+								function.TemplateModeJNI = mode
 
 								fmt.Fprintf(bb, "%v\n\n", cppFunction(&function))
 							}

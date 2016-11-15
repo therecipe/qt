@@ -60,6 +60,7 @@ extern "C" {
 		strings.ToUpper(module))
 
 	fmt.Fprintf(bb, "struct %v_PackedString { char* data; long long len; };\n", strings.Title(module))
+	fmt.Fprintf(bb, "struct %v_PackedList { void* data; long long len; };\n", strings.Title(module))
 
 	for _, class := range getSortedClassesForModule(module) {
 		var implementedVirtuals = make(map[string]bool)
@@ -116,7 +117,7 @@ extern "C" {
 						{
 							for _, mode := range converter.CppOutputParametersJNIGenericModes(function) {
 								var function = *function
-								function.TemplateMode = mode
+								function.TemplateModeJNI = mode
 
 								fmt.Fprintf(bb, "%v;\n", cppFunctionHeader(&function))
 							}

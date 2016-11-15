@@ -10,6 +10,7 @@
 #include <QChildEvent>
 #include <QEvent>
 #include <QIcon>
+#include <QList>
 #include <QMacPasteboardMime>
 #include <QMacToolBar>
 #include <QMacToolBarItem>
@@ -80,6 +81,11 @@ void QMacPasteboardMime_DestroyQMacPasteboardMimeDefault(void* ptr)
 #endif
 }
 
+void* QMacPasteboardMime_convertFromMime_atList(void* ptr, int i)
+{
+	return new QByteArray(static_cast<QList<QByteArray>*>(ptr)->at(i));
+}
+
 void* QMacToolBar_NewQMacToolBar(void* parent)
 {
 	return new QMacToolBar(static_cast<QObject*>(parent));
@@ -105,6 +111,11 @@ void QMacToolBar_AddSeparator(void* ptr)
 	static_cast<QMacToolBar*>(ptr)->addSeparator();
 }
 
+struct QtMacExtras_PackedList QMacToolBar_AllowedItems(void* ptr)
+{
+	return ({ QList<QMacToolBarItem *>* tmpValue = new QList<QMacToolBarItem *>(static_cast<QMacToolBar*>(ptr)->allowedItems()); QtMacExtras_PackedList { tmpValue, tmpValue->size() }; });
+}
+
 void QMacToolBar_AttachToWindow(void* ptr, void* window)
 {
 	static_cast<QMacToolBar*>(ptr)->attachToWindow(static_cast<QWindow*>(window));
@@ -115,9 +126,24 @@ void QMacToolBar_DetachFromWindow(void* ptr)
 	static_cast<QMacToolBar*>(ptr)->detachFromWindow();
 }
 
+struct QtMacExtras_PackedList QMacToolBar_Items(void* ptr)
+{
+	return ({ QList<QMacToolBarItem *>* tmpValue = new QList<QMacToolBarItem *>(static_cast<QMacToolBar*>(ptr)->items()); QtMacExtras_PackedList { tmpValue, tmpValue->size() }; });
+}
+
 void QMacToolBar_DestroyQMacToolBar(void* ptr)
 {
 	static_cast<QMacToolBar*>(ptr)->~QMacToolBar();
+}
+
+void* QMacToolBar_allowedItems_atList(void* ptr, int i)
+{
+	return const_cast<QMacToolBarItem*>(static_cast<QList<QMacToolBarItem *>*>(ptr)->at(i));
+}
+
+void* QMacToolBar_items_atList(void* ptr, int i)
+{
+	return const_cast<QMacToolBarItem*>(static_cast<QList<QMacToolBarItem *>*>(ptr)->at(i));
 }
 
 void QMacToolBar_TimerEvent(void* ptr, void* event)

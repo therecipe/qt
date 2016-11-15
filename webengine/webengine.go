@@ -2363,6 +2363,19 @@ func (ptr *QWebEngineHistory) BackItem() *QWebEngineHistoryItem {
 	return nil
 }
 
+func (ptr *QWebEngineHistory) BackItems(maxItems int) []*QWebEngineHistoryItem {
+	if ptr.Pointer() != nil {
+		return func(l C.struct_QtWebEngine_PackedList) []*QWebEngineHistoryItem {
+			var out = make([]*QWebEngineHistoryItem, int(l.len))
+			for i := 0; i < int(l.len); i++ {
+				out[i] = NewQWebEngineHistoryFromPointer(l.data).backItems_atList(i)
+			}
+			return out
+		}(C.QWebEngineHistory_BackItems(ptr.Pointer(), C.int(int32(maxItems))))
+	}
+	return nil
+}
+
 func (ptr *QWebEngineHistory) CanGoBack() bool {
 	if ptr.Pointer() != nil {
 		return C.QWebEngineHistory_CanGoBack(ptr.Pointer()) != 0
@@ -2421,6 +2434,19 @@ func (ptr *QWebEngineHistory) ForwardItem() *QWebEngineHistoryItem {
 	return nil
 }
 
+func (ptr *QWebEngineHistory) ForwardItems(maxItems int) []*QWebEngineHistoryItem {
+	if ptr.Pointer() != nil {
+		return func(l C.struct_QtWebEngine_PackedList) []*QWebEngineHistoryItem {
+			var out = make([]*QWebEngineHistoryItem, int(l.len))
+			for i := 0; i < int(l.len); i++ {
+				out[i] = NewQWebEngineHistoryFromPointer(l.data).forwardItems_atList(i)
+			}
+			return out
+		}(C.QWebEngineHistory_ForwardItems(ptr.Pointer(), C.int(int32(maxItems))))
+	}
+	return nil
+}
+
 func (ptr *QWebEngineHistory) GoToItem(item QWebEngineHistoryItem_ITF) {
 	if ptr.Pointer() != nil {
 		C.QWebEngineHistory_GoToItem(ptr.Pointer(), PointerFromQWebEngineHistoryItem(item))
@@ -2430,6 +2456,46 @@ func (ptr *QWebEngineHistory) GoToItem(item QWebEngineHistoryItem_ITF) {
 func (ptr *QWebEngineHistory) ItemAt(i int) *QWebEngineHistoryItem {
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQWebEngineHistoryItemFromPointer(C.QWebEngineHistory_ItemAt(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*QWebEngineHistoryItem).DestroyQWebEngineHistoryItem)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QWebEngineHistory) Items() []*QWebEngineHistoryItem {
+	if ptr.Pointer() != nil {
+		return func(l C.struct_QtWebEngine_PackedList) []*QWebEngineHistoryItem {
+			var out = make([]*QWebEngineHistoryItem, int(l.len))
+			for i := 0; i < int(l.len); i++ {
+				out[i] = NewQWebEngineHistoryFromPointer(l.data).items_atList(i)
+			}
+			return out
+		}(C.QWebEngineHistory_Items(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QWebEngineHistory) backItems_atList(i int) *QWebEngineHistoryItem {
+	if ptr.Pointer() != nil {
+		var tmpValue = NewQWebEngineHistoryItemFromPointer(C.QWebEngineHistory_backItems_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*QWebEngineHistoryItem).DestroyQWebEngineHistoryItem)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QWebEngineHistory) forwardItems_atList(i int) *QWebEngineHistoryItem {
+	if ptr.Pointer() != nil {
+		var tmpValue = NewQWebEngineHistoryItemFromPointer(C.QWebEngineHistory_forwardItems_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*QWebEngineHistoryItem).DestroyQWebEngineHistoryItem)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QWebEngineHistory) items_atList(i int) *QWebEngineHistoryItem {
+	if ptr.Pointer() != nil {
+		var tmpValue = NewQWebEngineHistoryItemFromPointer(C.QWebEngineHistory_items_atList(ptr.Pointer(), C.int(int32(i))))
 		runtime.SetFinalizer(tmpValue, (*QWebEngineHistoryItem).DestroyQWebEngineHistoryItem)
 		return tmpValue
 	}
@@ -5184,6 +5250,21 @@ func (ptr *QWebEngineScriptCollection) FindScript(name string) *QWebEngineScript
 	return nil
 }
 
+func (ptr *QWebEngineScriptCollection) FindScripts(name string) []*QWebEngineScript {
+	if ptr.Pointer() != nil {
+		var nameC = C.CString(name)
+		defer C.free(unsafe.Pointer(nameC))
+		return func(l C.struct_QtWebEngine_PackedList) []*QWebEngineScript {
+			var out = make([]*QWebEngineScript, int(l.len))
+			for i := 0; i < int(l.len); i++ {
+				out[i] = NewQWebEngineScriptCollectionFromPointer(l.data).findScripts_atList(i)
+			}
+			return out
+		}(C.QWebEngineScriptCollection_FindScripts(ptr.Pointer(), nameC))
+	}
+	return nil
+}
+
 func (ptr *QWebEngineScriptCollection) Insert(s QWebEngineScript_ITF) {
 	if ptr.Pointer() != nil {
 		C.QWebEngineScriptCollection_Insert(ptr.Pointer(), PointerFromQWebEngineScript(s))
@@ -5211,11 +5292,42 @@ func (ptr *QWebEngineScriptCollection) Size() int {
 	return 0
 }
 
+func (ptr *QWebEngineScriptCollection) ToList() []*QWebEngineScript {
+	if ptr.Pointer() != nil {
+		return func(l C.struct_QtWebEngine_PackedList) []*QWebEngineScript {
+			var out = make([]*QWebEngineScript, int(l.len))
+			for i := 0; i < int(l.len); i++ {
+				out[i] = NewQWebEngineScriptCollectionFromPointer(l.data).toList_atList(i)
+			}
+			return out
+		}(C.QWebEngineScriptCollection_ToList(ptr.Pointer()))
+	}
+	return nil
+}
+
 func (ptr *QWebEngineScriptCollection) DestroyQWebEngineScriptCollection() {
 	if ptr.Pointer() != nil {
 		C.QWebEngineScriptCollection_DestroyQWebEngineScriptCollection(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
+}
+
+func (ptr *QWebEngineScriptCollection) findScripts_atList(i int) *QWebEngineScript {
+	if ptr.Pointer() != nil {
+		var tmpValue = NewQWebEngineScriptFromPointer(C.QWebEngineScriptCollection_findScripts_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*QWebEngineScript).DestroyQWebEngineScript)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QWebEngineScriptCollection) toList_atList(i int) *QWebEngineScript {
+	if ptr.Pointer() != nil {
+		var tmpValue = NewQWebEngineScriptFromPointer(C.QWebEngineScriptCollection_toList_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*QWebEngineScript).DestroyQWebEngineScript)
+		return tmpValue
+	}
+	return nil
 }
 
 //QWebEngineSettings::FontFamily

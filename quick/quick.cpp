@@ -28,6 +28,7 @@
 #include <QInputMethod>
 #include <QInputMethodEvent>
 #include <QKeyEvent>
+#include <QList>
 #include <QMatrix4x4>
 #include <QMetaMethod>
 #include <QMetaObject>
@@ -43,6 +44,7 @@
 #include <QPoint>
 #include <QPointF>
 #include <QQmlEngine>
+#include <QQmlError>
 #include <QQmlImageProviderBase>
 #include <QQuickAsyncImageProvider>
 #include <QQuickFramebufferObject>
@@ -1174,6 +1176,11 @@ void* QQuickItem_ChildAt(void* ptr, double x, double y)
 	return static_cast<QQuickItem*>(ptr)->childAt(x, y);
 }
 
+struct QtQuick_PackedList QQuickItem_ChildItems(void* ptr)
+{
+	return ({ QList<QQuickItem *>* tmpValue = new QList<QQuickItem *>(static_cast<QQuickItem*>(ptr)->childItems()); QtQuick_PackedList { tmpValue, tmpValue->size() }; });
+}
+
 char QQuickItem_ChildMouseEventFilter(void* ptr, void* item, void* event)
 {
 	return static_cast<QQuickItem*>(ptr)->childMouseEventFilter(static_cast<QQuickItem*>(item), static_cast<QEvent*>(event));
@@ -1687,6 +1694,11 @@ void QQuickItem_DestroyQQuickItem(void* ptr)
 void QQuickItem_DestroyQQuickItemDefault(void* ptr)
 {
 
+}
+
+void* QQuickItem_childItems_atList(void* ptr, int i)
+{
+	return const_cast<QQuickItem*>(static_cast<QList<QQuickItem *>*>(ptr)->at(i));
 }
 
 void QQuickItem_TimerEvent(void* ptr, void* event)
@@ -3047,6 +3059,11 @@ void* QQuickView_Engine(void* ptr)
 	return static_cast<QQuickView*>(ptr)->engine();
 }
 
+struct QtQuick_PackedList QQuickView_Errors(void* ptr)
+{
+	return ({ QList<QQmlError>* tmpValue = new QList<QQmlError>(static_cast<QQuickView*>(ptr)->errors()); QtQuick_PackedList { tmpValue, tmpValue->size() }; });
+}
+
 void* QQuickView_InitialSize(void* ptr)
 {
 	return ({ QSize tmpValue = static_cast<QQuickView*>(ptr)->initialSize(); new QSize(tmpValue.width(), tmpValue.height()); });
@@ -3120,6 +3137,11 @@ void QQuickView_DestroyQQuickView(void* ptr)
 void QQuickView_DestroyQQuickViewDefault(void* ptr)
 {
 
+}
+
+void* QQuickView_errors_atList(void* ptr, int i)
+{
+	return new QQmlError(static_cast<QList<QQmlError>*>(ptr)->at(i));
 }
 
 void QQuickView_ReleaseResources(void* ptr)
@@ -3672,6 +3694,11 @@ void* QQuickWidget_Engine(void* ptr)
 	return static_cast<QQuickWidget*>(ptr)->engine();
 }
 
+struct QtQuick_PackedList QQuickWidget_Errors(void* ptr)
+{
+	return ({ QList<QQmlError>* tmpValue = new QList<QQmlError>(static_cast<QQuickWidget*>(ptr)->errors()); QtQuick_PackedList { tmpValue, tmpValue->size() }; });
+}
+
 char QQuickWidget_Event(void* ptr, void* e)
 {
 	return static_cast<QQuickWidget*>(ptr)->event(static_cast<QEvent*>(e));
@@ -3875,6 +3902,11 @@ void QQuickWidget_DestroyQQuickWidget(void* ptr)
 void QQuickWidget_DestroyQQuickWidgetDefault(void* ptr)
 {
 
+}
+
+void* QQuickWidget_errors_atList(void* ptr, int i)
+{
+	return new QQmlError(static_cast<QList<QQmlError>*>(ptr)->at(i));
 }
 
 void QQuickWidget_ActionEvent(void* ptr, void* event)

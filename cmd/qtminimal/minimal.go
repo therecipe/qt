@@ -216,6 +216,10 @@ func exportFunction(class *parser.Class, function *parser.Function) {
 					parser.ClassMap[bc].Export = true
 				}
 			}
+
+			if function.Child != nil {
+				exportFunction(class, function.Child)
+			}
 		}
 	}
 }

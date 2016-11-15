@@ -285,7 +285,14 @@ func cppFunctionBody(function *parser.Function) string {
 						if function.Static {
 							return fmt.Sprintf("%v::", function.Class())
 						}
-						return fmt.Sprintf("static_cast<%v*>(ptr)->", function.Class())
+						return fmt.Sprintf("static_cast<%v*>(ptr)->",
+							func() string {
+								if strings.HasSuffix(function.Name, "_atList") {
+									return fmt.Sprintf("%v<%v>", function.Container, strings.TrimPrefix(function.Output, "const "))
+								}
+								return function.Class()
+							}(),
+						)
 					}(),
 
 					func() string {

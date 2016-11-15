@@ -28,6 +28,7 @@
 #include <QTimer>
 #include <QTimerEvent>
 #include <QVariant>
+#include <QVector>
 #include <QXmlStreamReader>
 
 class MyQScxmlCppDataModel: public QScxmlCppDataModel
@@ -856,6 +857,11 @@ void QScxmlParser_AddError(void* ptr, char* msg)
 	static_cast<QScxmlParser*>(ptr)->addError(QString(msg));
 }
 
+struct QtScxml_PackedList QScxmlParser_Errors(void* ptr)
+{
+	return ({ QVector<QScxmlError>* tmpValue = new QVector<QScxmlError>(static_cast<QScxmlParser*>(ptr)->errors()); QtScxml_PackedList { tmpValue, tmpValue->size() }; });
+}
+
 struct QtScxml_PackedString QScxmlParser_FileName(void* ptr)
 {
 	return ({ QByteArray t0fecdd = static_cast<QScxmlParser*>(ptr)->fileName().toUtf8(); QtScxml_PackedString { const_cast<char*>(t0fecdd.prepend("WHITESPACE").constData()+10), t0fecdd.size()-10 }; });
@@ -894,6 +900,11 @@ void QScxmlParser_SetQtMode(void* ptr, long long mode)
 void QScxmlParser_DestroyQScxmlParser(void* ptr)
 {
 	static_cast<QScxmlParser*>(ptr)->~QScxmlParser();
+}
+
+void* QScxmlParser_errors_atList(void* ptr, int i)
+{
+	return new QScxmlError(static_cast<QVector<QScxmlError>*>(ptr)->at(i));
 }
 
 class MyQScxmlStateMachine: public QScxmlStateMachine
@@ -1083,6 +1094,11 @@ struct QtScxml_PackedString QScxmlStateMachine_Name(void* ptr)
 	return ({ QByteArray t9dc494 = static_cast<QScxmlStateMachine*>(ptr)->name().toUtf8(); QtScxml_PackedString { const_cast<char*>(t9dc494.prepend("WHITESPACE").constData()+10), t9dc494.size()-10 }; });
 }
 
+struct QtScxml_PackedList QScxmlStateMachine_ParseErrors(void* ptr)
+{
+	return ({ QVector<QScxmlError>* tmpValue = new QVector<QScxmlError>(static_cast<QScxmlStateMachine*>(ptr)->parseErrors()); QtScxml_PackedList { tmpValue, tmpValue->size() }; });
+}
+
 void QScxmlStateMachine_ConnectReachedStableState(void* ptr)
 {
 	QObject::connect(static_cast<QScxmlStateMachine*>(ptr), static_cast<void (QScxmlStateMachine::*)()>(&QScxmlStateMachine::reachedStableState), static_cast<MyQScxmlStateMachine*>(ptr), static_cast<void (MyQScxmlStateMachine::*)()>(&MyQScxmlStateMachine::Signal_ReachedStableState));
@@ -1171,6 +1187,11 @@ void QScxmlStateMachine_SubmitEvent2(void* ptr, char* eventName)
 void QScxmlStateMachine_SubmitEvent3(void* ptr, char* eventName, void* data)
 {
 	static_cast<QScxmlStateMachine*>(ptr)->submitEvent(QString(eventName), *static_cast<QVariant*>(data));
+}
+
+void* QScxmlStateMachine_parseErrors_atList(void* ptr, int i)
+{
+	return new QScxmlError(static_cast<QVector<QScxmlError>*>(ptr)->at(i));
 }
 
 void QScxmlStateMachine_TimerEvent(void* ptr, void* event)

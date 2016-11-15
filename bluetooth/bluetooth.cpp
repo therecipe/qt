@@ -23,6 +23,7 @@
 #include <QChildEvent>
 #include <QEvent>
 #include <QIODevice>
+#include <QList>
 #include <QLowEnergyAdvertisingData>
 #include <QLowEnergyAdvertisingParameters>
 #include <QLowEnergyCharacteristic>
@@ -180,6 +181,11 @@ void* QBluetoothDeviceDiscoveryAgent_NewQBluetoothDeviceDiscoveryAgent2(void* de
 	return new MyQBluetoothDeviceDiscoveryAgent(*static_cast<QBluetoothAddress*>(deviceAdapter), static_cast<QObject*>(parent));
 }
 
+struct QtBluetooth_PackedList QBluetoothDeviceDiscoveryAgent_DiscoveredDevices(void* ptr)
+{
+	return ({ QList<QBluetoothDeviceInfo>* tmpValue = new QList<QBluetoothDeviceInfo>(static_cast<QBluetoothDeviceDiscoveryAgent*>(ptr)->discoveredDevices()); QtBluetooth_PackedList { tmpValue, tmpValue->size() }; });
+}
+
 long long QBluetoothDeviceDiscoveryAgent_Error(void* ptr)
 {
 	return static_cast<QBluetoothDeviceDiscoveryAgent*>(ptr)->error();
@@ -218,6 +224,11 @@ void QBluetoothDeviceDiscoveryAgent_Stop(void* ptr)
 void QBluetoothDeviceDiscoveryAgent_DestroyQBluetoothDeviceDiscoveryAgent(void* ptr)
 {
 	static_cast<QBluetoothDeviceDiscoveryAgent*>(ptr)->~QBluetoothDeviceDiscoveryAgent();
+}
+
+void* QBluetoothDeviceDiscoveryAgent_discoveredDevices_atList(void* ptr, int i)
+{
+	return new QBluetoothDeviceInfo(static_cast<QList<QBluetoothDeviceInfo>*>(ptr)->at(i));
 }
 
 void QBluetoothDeviceDiscoveryAgent_TimerEvent(void* ptr, void* event)
@@ -408,6 +419,11 @@ void QBluetoothDeviceInfo_SetRssi(void* ptr, short sign)
 void QBluetoothDeviceInfo_DestroyQBluetoothDeviceInfo(void* ptr)
 {
 	static_cast<QBluetoothDeviceInfo*>(ptr)->~QBluetoothDeviceInfo();
+}
+
+void* QBluetoothDeviceInfo_serviceUuids_atList(void* ptr, int i)
+{
+	return new QBluetoothUuid(static_cast<QList<QBluetoothUuid>*>(ptr)->at(i));
 }
 
 void* QBluetoothHostInfo_NewQBluetoothHostInfo()
@@ -605,6 +621,16 @@ void* QBluetoothLocalDevice_Address(void* ptr)
 	return new QBluetoothAddress(static_cast<QBluetoothLocalDevice*>(ptr)->address());
 }
 
+struct QtBluetooth_PackedList QBluetoothLocalDevice_QBluetoothLocalDevice_AllDevices()
+{
+	return ({ QList<QBluetoothHostInfo>* tmpValue = new QList<QBluetoothHostInfo>(QBluetoothLocalDevice::allDevices()); QtBluetooth_PackedList { tmpValue, tmpValue->size() }; });
+}
+
+struct QtBluetooth_PackedList QBluetoothLocalDevice_ConnectedDevices(void* ptr)
+{
+	return ({ QList<QBluetoothAddress>* tmpValue = new QList<QBluetoothAddress>(static_cast<QBluetoothLocalDevice*>(ptr)->connectedDevices()); QtBluetooth_PackedList { tmpValue, tmpValue->size() }; });
+}
+
 long long QBluetoothLocalDevice_HostMode(void* ptr)
 {
 	return static_cast<QBluetoothLocalDevice*>(ptr)->hostMode();
@@ -638,6 +664,16 @@ void QBluetoothLocalDevice_RequestPairing(void* ptr, void* address, long long pa
 void QBluetoothLocalDevice_SetHostMode(void* ptr, long long mode)
 {
 	static_cast<QBluetoothLocalDevice*>(ptr)->setHostMode(static_cast<QBluetoothLocalDevice::HostMode>(mode));
+}
+
+void* QBluetoothLocalDevice_allDevices_atList(void* ptr, int i)
+{
+	return new QBluetoothHostInfo(static_cast<QList<QBluetoothHostInfo>*>(ptr)->at(i));
+}
+
+void* QBluetoothLocalDevice_connectedDevices_atList(void* ptr, int i)
+{
+	return new QBluetoothAddress(static_cast<QList<QBluetoothAddress>*>(ptr)->at(i));
 }
 
 void QBluetoothLocalDevice_TimerEvent(void* ptr, void* event)
@@ -1035,6 +1071,11 @@ void QBluetoothServiceDiscoveryAgent_Clear(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QBluetoothServiceDiscoveryAgent*>(ptr), "clear");
 }
 
+struct QtBluetooth_PackedList QBluetoothServiceDiscoveryAgent_DiscoveredServices(void* ptr)
+{
+	return ({ QList<QBluetoothServiceInfo>* tmpValue = new QList<QBluetoothServiceInfo>(static_cast<QBluetoothServiceDiscoveryAgent*>(ptr)->discoveredServices()); QtBluetooth_PackedList { tmpValue, tmpValue->size() }; });
+}
+
 long long QBluetoothServiceDiscoveryAgent_Error(void* ptr)
 {
 	return static_cast<QBluetoothServiceDiscoveryAgent*>(ptr)->error();
@@ -1075,9 +1116,24 @@ void QBluetoothServiceDiscoveryAgent_Stop(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QBluetoothServiceDiscoveryAgent*>(ptr), "stop");
 }
 
+struct QtBluetooth_PackedList QBluetoothServiceDiscoveryAgent_UuidFilter(void* ptr)
+{
+	return ({ QList<QBluetoothUuid>* tmpValue = new QList<QBluetoothUuid>(static_cast<QBluetoothServiceDiscoveryAgent*>(ptr)->uuidFilter()); QtBluetooth_PackedList { tmpValue, tmpValue->size() }; });
+}
+
 void QBluetoothServiceDiscoveryAgent_DestroyQBluetoothServiceDiscoveryAgent(void* ptr)
 {
 	static_cast<QBluetoothServiceDiscoveryAgent*>(ptr)->~QBluetoothServiceDiscoveryAgent();
+}
+
+void* QBluetoothServiceDiscoveryAgent_discoveredServices_atList(void* ptr, int i)
+{
+	return new QBluetoothServiceInfo(static_cast<QList<QBluetoothServiceInfo>*>(ptr)->at(i));
+}
+
+void* QBluetoothServiceDiscoveryAgent_uuidFilter_atList(void* ptr, int i)
+{
+	return new QBluetoothUuid(static_cast<QList<QBluetoothUuid>*>(ptr)->at(i));
 }
 
 void QBluetoothServiceDiscoveryAgent_TimerEvent(void* ptr, void* event)
@@ -1300,6 +1356,11 @@ int QBluetoothServiceInfo_ServerChannel(void* ptr)
 	return static_cast<QBluetoothServiceInfo*>(ptr)->serverChannel();
 }
 
+struct QtBluetooth_PackedList QBluetoothServiceInfo_ServiceClassUuids(void* ptr)
+{
+	return ({ QList<QBluetoothUuid>* tmpValue = new QList<QBluetoothUuid>(static_cast<QBluetoothServiceInfo*>(ptr)->serviceClassUuids()); QtBluetooth_PackedList { tmpValue, tmpValue->size() }; });
+}
+
 void QBluetoothServiceInfo_SetAttribute(void* ptr, unsigned short attributeId, void* value)
 {
 	static_cast<QBluetoothServiceInfo*>(ptr)->setAttribute(attributeId, *static_cast<QVariant*>(value));
@@ -1323,6 +1384,11 @@ char QBluetoothServiceInfo_UnregisterService(void* ptr)
 void QBluetoothServiceInfo_DestroyQBluetoothServiceInfo(void* ptr)
 {
 	static_cast<QBluetoothServiceInfo*>(ptr)->~QBluetoothServiceInfo();
+}
+
+void* QBluetoothServiceInfo_serviceClassUuids_atList(void* ptr, int i)
+{
+	return new QBluetoothUuid(static_cast<QList<QBluetoothUuid>*>(ptr)->at(i));
 }
 
 class MyQBluetoothSocket: public QBluetoothSocket
@@ -2289,6 +2355,11 @@ void* QLowEnergyAdvertisingData_RawData(void* ptr)
 	return new QByteArray(static_cast<QLowEnergyAdvertisingData*>(ptr)->rawData());
 }
 
+struct QtBluetooth_PackedList QLowEnergyAdvertisingData_Services(void* ptr)
+{
+	return ({ QList<QBluetoothUuid>* tmpValue = new QList<QBluetoothUuid>(static_cast<QLowEnergyAdvertisingData*>(ptr)->services()); QtBluetooth_PackedList { tmpValue, tmpValue->size() }; });
+}
+
 void QLowEnergyAdvertisingData_SetDiscoverability(void* ptr, long long mode)
 {
 	static_cast<QLowEnergyAdvertisingData*>(ptr)->setDiscoverability(static_cast<QLowEnergyAdvertisingData::Discoverability>(mode));
@@ -2322,6 +2393,11 @@ void QLowEnergyAdvertisingData_Swap(void* ptr, void* other)
 void QLowEnergyAdvertisingData_DestroyQLowEnergyAdvertisingData(void* ptr)
 {
 	static_cast<QLowEnergyAdvertisingData*>(ptr)->~QLowEnergyAdvertisingData();
+}
+
+void* QLowEnergyAdvertisingData_services_atList(void* ptr, int i)
+{
+	return new QBluetoothUuid(static_cast<QList<QBluetoothUuid>*>(ptr)->at(i));
 }
 
 void* QLowEnergyAdvertisingParameters_NewQLowEnergyAdvertisingParameters()
@@ -2389,6 +2465,11 @@ void* QLowEnergyCharacteristic_Descriptor(void* ptr, void* uuid)
 	return new QLowEnergyDescriptor(static_cast<QLowEnergyCharacteristic*>(ptr)->descriptor(*static_cast<QBluetoothUuid*>(uuid)));
 }
 
+struct QtBluetooth_PackedList QLowEnergyCharacteristic_Descriptors(void* ptr)
+{
+	return ({ QList<QLowEnergyDescriptor>* tmpValue = new QList<QLowEnergyDescriptor>(static_cast<QLowEnergyCharacteristic*>(ptr)->descriptors()); QtBluetooth_PackedList { tmpValue, tmpValue->size() }; });
+}
+
 char QLowEnergyCharacteristic_IsValid(void* ptr)
 {
 	return static_cast<QLowEnergyCharacteristic*>(ptr)->isValid();
@@ -2419,6 +2500,11 @@ void QLowEnergyCharacteristic_DestroyQLowEnergyCharacteristic(void* ptr)
 	static_cast<QLowEnergyCharacteristic*>(ptr)->~QLowEnergyCharacteristic();
 }
 
+void* QLowEnergyCharacteristic_descriptors_atList(void* ptr, int i)
+{
+	return new QLowEnergyDescriptor(static_cast<QList<QLowEnergyDescriptor>*>(ptr)->at(i));
+}
+
 void* QLowEnergyCharacteristicData_NewQLowEnergyCharacteristicData()
 {
 	return new QLowEnergyCharacteristicData();
@@ -2432,6 +2518,11 @@ void* QLowEnergyCharacteristicData_NewQLowEnergyCharacteristicData2(void* other)
 void QLowEnergyCharacteristicData_AddDescriptor(void* ptr, void* descriptor)
 {
 	static_cast<QLowEnergyCharacteristicData*>(ptr)->addDescriptor(*static_cast<QLowEnergyDescriptorData*>(descriptor));
+}
+
+struct QtBluetooth_PackedList QLowEnergyCharacteristicData_Descriptors(void* ptr)
+{
+	return ({ QList<QLowEnergyDescriptorData>* tmpValue = new QList<QLowEnergyDescriptorData>(static_cast<QLowEnergyCharacteristicData*>(ptr)->descriptors()); QtBluetooth_PackedList { tmpValue, tmpValue->size() }; });
 }
 
 char QLowEnergyCharacteristicData_IsValid(void* ptr)
@@ -2492,6 +2583,11 @@ void* QLowEnergyCharacteristicData_Value(void* ptr)
 void QLowEnergyCharacteristicData_DestroyQLowEnergyCharacteristicData(void* ptr)
 {
 	static_cast<QLowEnergyCharacteristicData*>(ptr)->~QLowEnergyCharacteristicData();
+}
+
+void* QLowEnergyCharacteristicData_descriptors_atList(void* ptr, int i)
+{
+	return new QLowEnergyDescriptorData(static_cast<QList<QLowEnergyDescriptorData>*>(ptr)->at(i));
 }
 
 void* QLowEnergyConnectionParameters_NewQLowEnergyConnectionParameters()
@@ -2750,6 +2846,11 @@ long long QLowEnergyController_Role(void* ptr)
 	return static_cast<QLowEnergyController*>(ptr)->role();
 }
 
+struct QtBluetooth_PackedList QLowEnergyController_Services(void* ptr)
+{
+	return ({ QList<QBluetoothUuid>* tmpValue = new QList<QBluetoothUuid>(static_cast<QLowEnergyController*>(ptr)->services()); QtBluetooth_PackedList { tmpValue, tmpValue->size() }; });
+}
+
 void QLowEnergyController_SetRemoteAddressType(void* ptr, long long ty)
 {
 	static_cast<QLowEnergyController*>(ptr)->setRemoteAddressType(static_cast<QLowEnergyController::RemoteAddressType>(ty));
@@ -2773,6 +2874,11 @@ void QLowEnergyController_StopAdvertising(void* ptr)
 void QLowEnergyController_DestroyQLowEnergyController(void* ptr)
 {
 	static_cast<QLowEnergyController*>(ptr)->~QLowEnergyController();
+}
+
+void* QLowEnergyController_services_atList(void* ptr, int i)
+{
+	return new QBluetoothUuid(static_cast<QList<QBluetoothUuid>*>(ptr)->at(i));
 }
 
 void QLowEnergyController_TimerEvent(void* ptr, void* event)
@@ -3096,6 +3202,11 @@ void* QLowEnergyService_Characteristic(void* ptr, void* uuid)
 	return new QLowEnergyCharacteristic(static_cast<QLowEnergyService*>(ptr)->characteristic(*static_cast<QBluetoothUuid*>(uuid)));
 }
 
+struct QtBluetooth_PackedList QLowEnergyService_Characteristics(void* ptr)
+{
+	return ({ QList<QLowEnergyCharacteristic>* tmpValue = new QList<QLowEnergyCharacteristic>(static_cast<QLowEnergyService*>(ptr)->characteristics()); QtBluetooth_PackedList { tmpValue, tmpValue->size() }; });
+}
+
 char QLowEnergyService_Contains(void* ptr, void* characteristic)
 {
 	return static_cast<QLowEnergyService*>(ptr)->contains(*static_cast<QLowEnergyCharacteristic*>(characteristic));
@@ -3114,6 +3225,11 @@ void QLowEnergyService_DiscoverDetails(void* ptr)
 long long QLowEnergyService_Error(void* ptr)
 {
 	return static_cast<QLowEnergyService*>(ptr)->error();
+}
+
+struct QtBluetooth_PackedList QLowEnergyService_IncludedServices(void* ptr)
+{
+	return ({ QList<QBluetoothUuid>* tmpValue = new QList<QBluetoothUuid>(static_cast<QLowEnergyService*>(ptr)->includedServices()); QtBluetooth_PackedList { tmpValue, tmpValue->size() }; });
 }
 
 void QLowEnergyService_ReadCharacteristic(void* ptr, void* characteristic)
@@ -3159,6 +3275,16 @@ void QLowEnergyService_WriteDescriptor(void* ptr, void* descriptor, void* newVal
 void QLowEnergyService_DestroyQLowEnergyService(void* ptr)
 {
 	static_cast<QLowEnergyService*>(ptr)->~QLowEnergyService();
+}
+
+void* QLowEnergyService_characteristics_atList(void* ptr, int i)
+{
+	return new QLowEnergyCharacteristic(static_cast<QList<QLowEnergyCharacteristic>*>(ptr)->at(i));
+}
+
+void* QLowEnergyService_includedServices_atList(void* ptr, int i)
+{
+	return new QBluetoothUuid(static_cast<QList<QBluetoothUuid>*>(ptr)->at(i));
 }
 
 void QLowEnergyService_TimerEvent(void* ptr, void* event)
@@ -3271,6 +3397,16 @@ void QLowEnergyServiceData_AddIncludedService(void* ptr, void* service)
 	static_cast<QLowEnergyServiceData*>(ptr)->addIncludedService(static_cast<QLowEnergyService*>(service));
 }
 
+struct QtBluetooth_PackedList QLowEnergyServiceData_Characteristics(void* ptr)
+{
+	return ({ QList<QLowEnergyCharacteristicData>* tmpValue = new QList<QLowEnergyCharacteristicData>(static_cast<QLowEnergyServiceData*>(ptr)->characteristics()); QtBluetooth_PackedList { tmpValue, tmpValue->size() }; });
+}
+
+struct QtBluetooth_PackedList QLowEnergyServiceData_IncludedServices(void* ptr)
+{
+	return ({ QList<QLowEnergyService *>* tmpValue = new QList<QLowEnergyService *>(static_cast<QLowEnergyServiceData*>(ptr)->includedServices()); QtBluetooth_PackedList { tmpValue, tmpValue->size() }; });
+}
+
 char QLowEnergyServiceData_IsValid(void* ptr)
 {
 	return static_cast<QLowEnergyServiceData*>(ptr)->isValid();
@@ -3304,5 +3440,15 @@ void* QLowEnergyServiceData_Uuid(void* ptr)
 void QLowEnergyServiceData_DestroyQLowEnergyServiceData(void* ptr)
 {
 	static_cast<QLowEnergyServiceData*>(ptr)->~QLowEnergyServiceData();
+}
+
+void* QLowEnergyServiceData_characteristics_atList(void* ptr, int i)
+{
+	return new QLowEnergyCharacteristicData(static_cast<QList<QLowEnergyCharacteristicData>*>(ptr)->at(i));
+}
+
+void* QLowEnergyServiceData_includedServices_atList(void* ptr, int i)
+{
+	return const_cast<QLowEnergyService*>(static_cast<QList<QLowEnergyService *>*>(ptr)->at(i));
 }
 

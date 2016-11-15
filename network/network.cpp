@@ -26,6 +26,7 @@
 #include <QHttpMultiPart>
 #include <QHttpPart>
 #include <QIODevice>
+#include <QList>
 #include <QLocalServer>
 #include <QLocalSocket>
 #include <QMetaMethod>
@@ -989,6 +990,11 @@ void QDnsLookup_Abort(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QDnsLookup*>(ptr), "abort");
 }
 
+struct QtNetwork_PackedList QDnsLookup_CanonicalNameRecords(void* ptr)
+{
+	return ({ QList<QDnsDomainNameRecord>* tmpValue = new QList<QDnsDomainNameRecord>(static_cast<QDnsLookup*>(ptr)->canonicalNameRecords()); QtNetwork_PackedList { tmpValue, tmpValue->size() }; });
+}
+
 void QDnsLookup_ConnectFinished(void* ptr)
 {
 	QObject::connect(static_cast<QDnsLookup*>(ptr), static_cast<void (QDnsLookup::*)()>(&QDnsLookup::finished), static_cast<MyQDnsLookup*>(ptr), static_cast<void (MyQDnsLookup::*)()>(&MyQDnsLookup::Signal_Finished));
@@ -1004,6 +1010,11 @@ void QDnsLookup_Finished(void* ptr)
 	static_cast<QDnsLookup*>(ptr)->finished();
 }
 
+struct QtNetwork_PackedList QDnsLookup_HostAddressRecords(void* ptr)
+{
+	return ({ QList<QDnsHostAddressRecord>* tmpValue = new QList<QDnsHostAddressRecord>(static_cast<QDnsLookup*>(ptr)->hostAddressRecords()); QtNetwork_PackedList { tmpValue, tmpValue->size() }; });
+}
+
 char QDnsLookup_IsFinished(void* ptr)
 {
 	return static_cast<QDnsLookup*>(ptr)->isFinished();
@@ -1012,6 +1023,11 @@ char QDnsLookup_IsFinished(void* ptr)
 void QDnsLookup_Lookup(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QDnsLookup*>(ptr), "lookup");
+}
+
+struct QtNetwork_PackedList QDnsLookup_MailExchangeRecords(void* ptr)
+{
+	return ({ QList<QDnsMailExchangeRecord>* tmpValue = new QList<QDnsMailExchangeRecord>(static_cast<QDnsLookup*>(ptr)->mailExchangeRecords()); QtNetwork_PackedList { tmpValue, tmpValue->size() }; });
 }
 
 void QDnsLookup_ConnectNameChanged(void* ptr)
@@ -1029,6 +1045,11 @@ void QDnsLookup_NameChanged(void* ptr, char* name)
 	static_cast<QDnsLookup*>(ptr)->nameChanged(QString(name));
 }
 
+struct QtNetwork_PackedList QDnsLookup_NameServerRecords(void* ptr)
+{
+	return ({ QList<QDnsDomainNameRecord>* tmpValue = new QList<QDnsDomainNameRecord>(static_cast<QDnsLookup*>(ptr)->nameServerRecords()); QtNetwork_PackedList { tmpValue, tmpValue->size() }; });
+}
+
 void QDnsLookup_ConnectNameserverChanged(void* ptr)
 {
 	QObject::connect(static_cast<QDnsLookup*>(ptr), static_cast<void (QDnsLookup::*)(const QHostAddress &)>(&QDnsLookup::nameserverChanged), static_cast<MyQDnsLookup*>(ptr), static_cast<void (MyQDnsLookup::*)(const QHostAddress &)>(&MyQDnsLookup::Signal_NameserverChanged));
@@ -1042,6 +1063,21 @@ void QDnsLookup_DisconnectNameserverChanged(void* ptr)
 void QDnsLookup_NameserverChanged(void* ptr, void* nameserver)
 {
 	static_cast<QDnsLookup*>(ptr)->nameserverChanged(*static_cast<QHostAddress*>(nameserver));
+}
+
+struct QtNetwork_PackedList QDnsLookup_PointerRecords(void* ptr)
+{
+	return ({ QList<QDnsDomainNameRecord>* tmpValue = new QList<QDnsDomainNameRecord>(static_cast<QDnsLookup*>(ptr)->pointerRecords()); QtNetwork_PackedList { tmpValue, tmpValue->size() }; });
+}
+
+struct QtNetwork_PackedList QDnsLookup_ServiceRecords(void* ptr)
+{
+	return ({ QList<QDnsServiceRecord>* tmpValue = new QList<QDnsServiceRecord>(static_cast<QDnsLookup*>(ptr)->serviceRecords()); QtNetwork_PackedList { tmpValue, tmpValue->size() }; });
+}
+
+struct QtNetwork_PackedList QDnsLookup_TextRecords(void* ptr)
+{
+	return ({ QList<QDnsTextRecord>* tmpValue = new QList<QDnsTextRecord>(static_cast<QDnsLookup*>(ptr)->textRecords()); QtNetwork_PackedList { tmpValue, tmpValue->size() }; });
 }
 
 void QDnsLookup_ConnectTypeChanged(void* ptr)
@@ -1062,6 +1098,41 @@ void QDnsLookup_TypeChanged(void* ptr, long long ty)
 void QDnsLookup_DestroyQDnsLookup(void* ptr)
 {
 	static_cast<QDnsLookup*>(ptr)->~QDnsLookup();
+}
+
+void* QDnsLookup_canonicalNameRecords_atList(void* ptr, int i)
+{
+	return new QDnsDomainNameRecord(static_cast<QList<QDnsDomainNameRecord>*>(ptr)->at(i));
+}
+
+void* QDnsLookup_hostAddressRecords_atList(void* ptr, int i)
+{
+	return new QDnsHostAddressRecord(static_cast<QList<QDnsHostAddressRecord>*>(ptr)->at(i));
+}
+
+void* QDnsLookup_mailExchangeRecords_atList(void* ptr, int i)
+{
+	return new QDnsMailExchangeRecord(static_cast<QList<QDnsMailExchangeRecord>*>(ptr)->at(i));
+}
+
+void* QDnsLookup_nameServerRecords_atList(void* ptr, int i)
+{
+	return new QDnsDomainNameRecord(static_cast<QList<QDnsDomainNameRecord>*>(ptr)->at(i));
+}
+
+void* QDnsLookup_pointerRecords_atList(void* ptr, int i)
+{
+	return new QDnsDomainNameRecord(static_cast<QList<QDnsDomainNameRecord>*>(ptr)->at(i));
+}
+
+void* QDnsLookup_serviceRecords_atList(void* ptr, int i)
+{
+	return new QDnsServiceRecord(static_cast<QList<QDnsServiceRecord>*>(ptr)->at(i));
+}
+
+void* QDnsLookup_textRecords_atList(void* ptr, int i)
+{
+	return new QDnsTextRecord(static_cast<QList<QDnsTextRecord>*>(ptr)->at(i));
 }
 
 void QDnsLookup_TimerEvent(void* ptr, void* event)
@@ -1269,9 +1340,19 @@ unsigned int QDnsTextRecord_TimeToLive(void* ptr)
 	return static_cast<QDnsTextRecord*>(ptr)->timeToLive();
 }
 
+struct QtNetwork_PackedList QDnsTextRecord_Values(void* ptr)
+{
+	return ({ QList<QByteArray>* tmpValue = new QList<QByteArray>(static_cast<QDnsTextRecord*>(ptr)->values()); QtNetwork_PackedList { tmpValue, tmpValue->size() }; });
+}
+
 void QDnsTextRecord_DestroyQDnsTextRecord(void* ptr)
 {
 	static_cast<QDnsTextRecord*>(ptr)->~QDnsTextRecord();
+}
+
+void* QDnsTextRecord_values_atList(void* ptr, int i)
+{
+	return new QByteArray(static_cast<QList<QByteArray>*>(ptr)->at(i));
 }
 
 void* QHostAddress_NewQHostAddress()
@@ -1414,6 +1495,11 @@ void QHostInfo_QHostInfo_AbortHostLookup(int id)
 	QHostInfo::abortHostLookup(id);
 }
 
+struct QtNetwork_PackedList QHostInfo_Addresses(void* ptr)
+{
+	return ({ QList<QHostAddress>* tmpValue = new QList<QHostAddress>(static_cast<QHostInfo*>(ptr)->addresses()); QtNetwork_PackedList { tmpValue, tmpValue->size() }; });
+}
+
 long long QHostInfo_Error(void* ptr)
 {
 	return static_cast<QHostInfo*>(ptr)->error();
@@ -1472,6 +1558,11 @@ void QHostInfo_DestroyQHostInfo(void* ptr)
 struct QtNetwork_PackedString QHostInfo_QHostInfo_LocalDomainName()
 {
 	return ({ QByteArray t5517d9 = QHostInfo::localDomainName().toUtf8(); QtNetwork_PackedString { const_cast<char*>(t5517d9.prepend("WHITESPACE").constData()+10), t5517d9.size()-10 }; });
+}
+
+void* QHostInfo_addresses_atList(void* ptr, int i)
+{
+	return new QHostAddress(static_cast<QList<QHostAddress>*>(ptr)->at(i));
 }
 
 void* QHttpMultiPart_NewQHttpMultiPart2(long long contentType, void* parent)
@@ -2790,6 +2881,11 @@ struct QtNetwork_PackedString QNetworkConfiguration_BearerTypeName(void* ptr)
 	return ({ QByteArray t89aad8 = static_cast<QNetworkConfiguration*>(ptr)->bearerTypeName().toUtf8(); QtNetwork_PackedString { const_cast<char*>(t89aad8.prepend("WHITESPACE").constData()+10), t89aad8.size()-10 }; });
 }
 
+struct QtNetwork_PackedList QNetworkConfiguration_Children(void* ptr)
+{
+	return ({ QList<QNetworkConfiguration>* tmpValue = new QList<QNetworkConfiguration>(static_cast<QNetworkConfiguration*>(ptr)->children()); QtNetwork_PackedList { tmpValue, tmpValue->size() }; });
+}
+
 struct QtNetwork_PackedString QNetworkConfiguration_Identifier(void* ptr)
 {
 	return ({ QByteArray tae5c30 = static_cast<QNetworkConfiguration*>(ptr)->identifier().toUtf8(); QtNetwork_PackedString { const_cast<char*>(tae5c30.prepend("WHITESPACE").constData()+10), tae5c30.size()-10 }; });
@@ -2835,6 +2931,11 @@ void QNetworkConfiguration_DestroyQNetworkConfiguration(void* ptr)
 	static_cast<QNetworkConfiguration*>(ptr)->~QNetworkConfiguration();
 }
 
+void* QNetworkConfiguration_children_atList(void* ptr, int i)
+{
+	return new QNetworkConfiguration(static_cast<QList<QNetworkConfiguration>*>(ptr)->at(i));
+}
+
 class MyQNetworkConfigurationManager: public QNetworkConfigurationManager
 {
 public:
@@ -2860,6 +2961,11 @@ public:
 void* QNetworkConfigurationManager_NewQNetworkConfigurationManager(void* parent)
 {
 	return new MyQNetworkConfigurationManager(static_cast<QObject*>(parent));
+}
+
+struct QtNetwork_PackedList QNetworkConfigurationManager_AllConfigurations(void* ptr, long long filter)
+{
+	return ({ QList<QNetworkConfiguration>* tmpValue = new QList<QNetworkConfiguration>(static_cast<QNetworkConfigurationManager*>(ptr)->allConfigurations(static_cast<QNetworkConfiguration::StateFlag>(filter))); QtNetwork_PackedList { tmpValue, tmpValue->size() }; });
 }
 
 long long QNetworkConfigurationManager_Capabilities(void* ptr)
@@ -2970,6 +3076,11 @@ void QNetworkConfigurationManager_DestroyQNetworkConfigurationManager(void* ptr)
 void QNetworkConfigurationManager_DestroyQNetworkConfigurationManagerDefault(void* ptr)
 {
 
+}
+
+void* QNetworkConfigurationManager_allConfigurations_atList(void* ptr, int i)
+{
+	return new QNetworkConfiguration(static_cast<QList<QNetworkConfiguration>*>(ptr)->at(i));
 }
 
 void QNetworkConfigurationManager_TimerEvent(void* ptr, void* event)
@@ -3112,6 +3223,11 @@ void QNetworkCookie_Normalize(void* ptr, void* url)
 	static_cast<QNetworkCookie*>(ptr)->normalize(*static_cast<QUrl*>(url));
 }
 
+struct QtNetwork_PackedList QNetworkCookie_QNetworkCookie_ParseCookies(void* cookieString)
+{
+	return ({ QList<QNetworkCookie>* tmpValue = new QList<QNetworkCookie>(QNetworkCookie::parseCookies(*static_cast<QByteArray*>(cookieString))); QtNetwork_PackedList { tmpValue, tmpValue->size() }; });
+}
+
 struct QtNetwork_PackedString QNetworkCookie_Path(void* ptr)
 {
 	return ({ QByteArray tc58c07 = static_cast<QNetworkCookie*>(ptr)->path().toUtf8(); QtNetwork_PackedString { const_cast<char*>(tc58c07.prepend("WHITESPACE").constData()+10), tc58c07.size()-10 }; });
@@ -3172,6 +3288,11 @@ void QNetworkCookie_DestroyQNetworkCookie(void* ptr)
 	static_cast<QNetworkCookie*>(ptr)->~QNetworkCookie();
 }
 
+void* QNetworkCookie_parseCookies_atList(void* ptr, int i)
+{
+	return new QNetworkCookie(static_cast<QList<QNetworkCookie>*>(ptr)->at(i));
+}
+
 class MyQNetworkCookieJar: public QNetworkCookieJar
 {
 public:
@@ -3195,6 +3316,11 @@ public:
 void* QNetworkCookieJar_NewQNetworkCookieJar(void* parent)
 {
 	return new MyQNetworkCookieJar(static_cast<QObject*>(parent));
+}
+
+struct QtNetwork_PackedList QNetworkCookieJar_AllCookies(void* ptr)
+{
+	return ({ QList<QNetworkCookie>* tmpValue = new QList<QNetworkCookie>(static_cast<QNetworkCookieJar*>(ptr)->allCookies()); QtNetwork_PackedList { tmpValue, tmpValue->size() }; });
 }
 
 char QNetworkCookieJar_DeleteCookie(void* ptr, void* cookie)
@@ -3245,6 +3371,16 @@ void QNetworkCookieJar_DestroyQNetworkCookieJar(void* ptr)
 void QNetworkCookieJar_DestroyQNetworkCookieJarDefault(void* ptr)
 {
 
+}
+
+void* QNetworkCookieJar_allCookies_atList(void* ptr, int i)
+{
+	return new QNetworkCookie(static_cast<QList<QNetworkCookie>*>(ptr)->at(i));
+}
+
+void* QNetworkCookieJar_cookiesForUrl_atList(void* ptr, int i)
+{
+	return new QNetworkCookie(static_cast<QList<QNetworkCookie>*>(ptr)->at(i));
 }
 
 void QNetworkCookieJar_TimerEvent(void* ptr, void* event)
@@ -3586,6 +3722,21 @@ void* QNetworkInterface_NewQNetworkInterface2(void* other)
 	return new QNetworkInterface(*static_cast<QNetworkInterface*>(other));
 }
 
+struct QtNetwork_PackedList QNetworkInterface_AddressEntries(void* ptr)
+{
+	return ({ QList<QNetworkAddressEntry>* tmpValue = new QList<QNetworkAddressEntry>(static_cast<QNetworkInterface*>(ptr)->addressEntries()); QtNetwork_PackedList { tmpValue, tmpValue->size() }; });
+}
+
+struct QtNetwork_PackedList QNetworkInterface_QNetworkInterface_AllAddresses()
+{
+	return ({ QList<QHostAddress>* tmpValue = new QList<QHostAddress>(QNetworkInterface::allAddresses()); QtNetwork_PackedList { tmpValue, tmpValue->size() }; });
+}
+
+struct QtNetwork_PackedList QNetworkInterface_QNetworkInterface_AllInterfaces()
+{
+	return ({ QList<QNetworkInterface>* tmpValue = new QList<QNetworkInterface>(QNetworkInterface::allInterfaces()); QtNetwork_PackedList { tmpValue, tmpValue->size() }; });
+}
+
 long long QNetworkInterface_Flags(void* ptr)
 {
 	return static_cast<QNetworkInterface*>(ptr)->flags();
@@ -3644,6 +3795,21 @@ void QNetworkInterface_Swap(void* ptr, void* other)
 void QNetworkInterface_DestroyQNetworkInterface(void* ptr)
 {
 	static_cast<QNetworkInterface*>(ptr)->~QNetworkInterface();
+}
+
+void* QNetworkInterface_addressEntries_atList(void* ptr, int i)
+{
+	return new QNetworkAddressEntry(static_cast<QList<QNetworkAddressEntry>*>(ptr)->at(i));
+}
+
+void* QNetworkInterface_allAddresses_atList(void* ptr, int i)
+{
+	return new QHostAddress(static_cast<QList<QHostAddress>*>(ptr)->at(i));
+}
+
+void* QNetworkInterface_allInterfaces_atList(void* ptr, int i)
+{
+	return new QNetworkInterface(static_cast<QList<QNetworkInterface>*>(ptr)->at(i));
 }
 
 void* QNetworkProxy_NewQNetworkProxy()
@@ -3711,6 +3877,11 @@ void* QNetworkProxy_RawHeader(void* ptr, void* headerName)
 	return new QByteArray(static_cast<QNetworkProxy*>(ptr)->rawHeader(*static_cast<QByteArray*>(headerName)));
 }
 
+struct QtNetwork_PackedList QNetworkProxy_RawHeaderList(void* ptr)
+{
+	return ({ QList<QByteArray>* tmpValue = new QList<QByteArray>(static_cast<QNetworkProxy*>(ptr)->rawHeaderList()); QtNetwork_PackedList { tmpValue, tmpValue->size() }; });
+}
+
 void QNetworkProxy_QNetworkProxy_SetApplicationProxy(void* networkProxy)
 {
 	QNetworkProxy::setApplicationProxy(*static_cast<QNetworkProxy*>(networkProxy));
@@ -3776,11 +3947,21 @@ void QNetworkProxy_DestroyQNetworkProxy(void* ptr)
 	static_cast<QNetworkProxy*>(ptr)->~QNetworkProxy();
 }
 
+void* QNetworkProxy_rawHeaderList_atList(void* ptr, int i)
+{
+	return new QByteArray(static_cast<QList<QByteArray>*>(ptr)->at(i));
+}
+
 class MyQNetworkProxyFactory: public QNetworkProxyFactory
 {
 public:
 	 ~MyQNetworkProxyFactory() { callbackQNetworkProxyFactory_DestroyQNetworkProxyFactory(this); };
 };
+
+struct QtNetwork_PackedList QNetworkProxyFactory_QNetworkProxyFactory_ProxyForQuery(void* query)
+{
+	return ({ QList<QNetworkProxy>* tmpValue = new QList<QNetworkProxy>(QNetworkProxyFactory::proxyForQuery(*static_cast<QNetworkProxyQuery*>(query))); QtNetwork_PackedList { tmpValue, tmpValue->size() }; });
+}
 
 void QNetworkProxyFactory_QNetworkProxyFactory_SetApplicationProxyFactory(void* factory)
 {
@@ -3800,6 +3981,26 @@ void QNetworkProxyFactory_DestroyQNetworkProxyFactory(void* ptr)
 void QNetworkProxyFactory_DestroyQNetworkProxyFactoryDefault(void* ptr)
 {
 
+}
+
+struct QtNetwork_PackedList QNetworkProxyFactory_QNetworkProxyFactory_SystemProxyForQuery(void* query)
+{
+	return ({ QList<QNetworkProxy>* tmpValue = new QList<QNetworkProxy>(QNetworkProxyFactory::systemProxyForQuery(*static_cast<QNetworkProxyQuery*>(query))); QtNetwork_PackedList { tmpValue, tmpValue->size() }; });
+}
+
+void* QNetworkProxyFactory_proxyForQuery_atList(void* ptr, int i)
+{
+	return new QNetworkProxy(static_cast<QList<QNetworkProxy>*>(ptr)->at(i));
+}
+
+void* QNetworkProxyFactory_queryProxy_atList(void* ptr, int i)
+{
+	return new QNetworkProxy(static_cast<QList<QNetworkProxy>*>(ptr)->at(i));
+}
+
+void* QNetworkProxyFactory_systemProxyForQuery_atList(void* ptr, int i)
+{
+	return new QNetworkProxy(static_cast<QList<QNetworkProxy>*>(ptr)->at(i));
 }
 
 void* QNetworkProxyQuery_NewQNetworkProxyQuery()
@@ -4144,6 +4345,11 @@ void* QNetworkReply_RawHeader(void* ptr, void* headerName)
 	return new QByteArray(static_cast<QNetworkReply*>(ptr)->rawHeader(*static_cast<QByteArray*>(headerName)));
 }
 
+struct QtNetwork_PackedList QNetworkReply_RawHeaderList(void* ptr)
+{
+	return ({ QList<QByteArray>* tmpValue = new QList<QByteArray>(static_cast<QNetworkReply*>(ptr)->rawHeaderList()); QtNetwork_PackedList { tmpValue, tmpValue->size() }; });
+}
+
 long long QNetworkReply_ReadBufferSize(void* ptr)
 {
 	return static_cast<QNetworkReply*>(ptr)->readBufferSize();
@@ -4252,6 +4458,11 @@ void* QNetworkReply_Url(void* ptr)
 void QNetworkReply_DestroyQNetworkReply(void* ptr)
 {
 	static_cast<QNetworkReply*>(ptr)->~QNetworkReply();
+}
+
+void* QNetworkReply_rawHeaderList_atList(void* ptr, int i)
+{
+	return new QByteArray(static_cast<QList<QByteArray>*>(ptr)->at(i));
 }
 
 char QNetworkReply_AtEnd(void* ptr)
@@ -4529,6 +4740,11 @@ void* QNetworkRequest_RawHeader(void* ptr, void* headerName)
 	return new QByteArray(static_cast<QNetworkRequest*>(ptr)->rawHeader(*static_cast<QByteArray*>(headerName)));
 }
 
+struct QtNetwork_PackedList QNetworkRequest_RawHeaderList(void* ptr)
+{
+	return ({ QList<QByteArray>* tmpValue = new QList<QByteArray>(static_cast<QNetworkRequest*>(ptr)->rawHeaderList()); QtNetwork_PackedList { tmpValue, tmpValue->size() }; });
+}
+
 void QNetworkRequest_SetAttribute(void* ptr, long long code, void* value)
 {
 	static_cast<QNetworkRequest*>(ptr)->setAttribute(static_cast<QNetworkRequest::Attribute>(code), *static_cast<QVariant*>(value));
@@ -4587,6 +4803,11 @@ void* QNetworkRequest_Url(void* ptr)
 void QNetworkRequest_DestroyQNetworkRequest(void* ptr)
 {
 	static_cast<QNetworkRequest*>(ptr)->~QNetworkRequest();
+}
+
+void* QNetworkRequest_rawHeaderList_atList(void* ptr, int i)
+{
+	return new QByteArray(static_cast<QList<QByteArray>*>(ptr)->at(i));
 }
 
 class MyQNetworkSession: public QNetworkSession
@@ -4969,6 +5190,11 @@ void* QSslCertificate_ExpiryDate(void* ptr)
 	return new QDateTime(static_cast<QSslCertificate*>(ptr)->expiryDate());
 }
 
+struct QtNetwork_PackedList QSslCertificate_Extensions(void* ptr)
+{
+	return ({ QList<QSslCertificateExtension>* tmpValue = new QList<QSslCertificateExtension>(static_cast<QSslCertificate*>(ptr)->extensions()); QtNetwork_PackedList { tmpValue, tmpValue->size() }; });
+}
+
 char QSslCertificate_IsNull(void* ptr)
 {
 	return static_cast<QSslCertificate*>(ptr)->isNull();
@@ -4987,6 +5213,11 @@ struct QtNetwork_PackedString QSslCertificate_IssuerInfo(void* ptr, long long su
 struct QtNetwork_PackedString QSslCertificate_IssuerInfo2(void* ptr, void* attribute)
 {
 	return ({ QByteArray tc820f1 = static_cast<QSslCertificate*>(ptr)->issuerInfo(*static_cast<QByteArray*>(attribute)).join("|").toUtf8(); QtNetwork_PackedString { const_cast<char*>(tc820f1.prepend("WHITESPACE").constData()+10), tc820f1.size()-10 }; });
+}
+
+struct QtNetwork_PackedList QSslCertificate_IssuerInfoAttributes(void* ptr)
+{
+	return ({ QList<QByteArray>* tmpValue = new QList<QByteArray>(static_cast<QSslCertificate*>(ptr)->issuerInfoAttributes()); QtNetwork_PackedList { tmpValue, tmpValue->size() }; });
 }
 
 void* QSslCertificate_PublicKey(void* ptr)
@@ -5009,6 +5240,11 @@ struct QtNetwork_PackedString QSslCertificate_SubjectInfo2(void* ptr, void* attr
 	return ({ QByteArray tc13a73 = static_cast<QSslCertificate*>(ptr)->subjectInfo(*static_cast<QByteArray*>(attribute)).join("|").toUtf8(); QtNetwork_PackedString { const_cast<char*>(tc13a73.prepend("WHITESPACE").constData()+10), tc13a73.size()-10 }; });
 }
 
+struct QtNetwork_PackedList QSslCertificate_SubjectInfoAttributes(void* ptr)
+{
+	return ({ QList<QByteArray>* tmpValue = new QList<QByteArray>(static_cast<QSslCertificate*>(ptr)->subjectInfoAttributes()); QtNetwork_PackedList { tmpValue, tmpValue->size() }; });
+}
+
 void* QSslCertificate_ToDer(void* ptr)
 {
 	return new QByteArray(static_cast<QSslCertificate*>(ptr)->toDer());
@@ -5027,6 +5263,36 @@ struct QtNetwork_PackedString QSslCertificate_ToText(void* ptr)
 void* QSslCertificate_Version(void* ptr)
 {
 	return new QByteArray(static_cast<QSslCertificate*>(ptr)->version());
+}
+
+void* QSslCertificate_fromData_atList(void* ptr, int i)
+{
+	return new QSslCertificate(static_cast<QList<QSslCertificate>*>(ptr)->at(i));
+}
+
+void* QSslCertificate_fromDevice_atList(void* ptr, int i)
+{
+	return new QSslCertificate(static_cast<QList<QSslCertificate>*>(ptr)->at(i));
+}
+
+void* QSslCertificate_fromPath_atList(void* ptr, int i)
+{
+	return new QSslCertificate(static_cast<QList<QSslCertificate>*>(ptr)->at(i));
+}
+
+void* QSslCertificate_extensions_atList(void* ptr, int i)
+{
+	return new QSslCertificateExtension(static_cast<QList<QSslCertificateExtension>*>(ptr)->at(i));
+}
+
+void* QSslCertificate_issuerInfoAttributes_atList(void* ptr, int i)
+{
+	return new QByteArray(static_cast<QList<QByteArray>*>(ptr)->at(i));
+}
+
+void* QSslCertificate_subjectInfoAttributes_atList(void* ptr, int i)
+{
+	return new QByteArray(static_cast<QList<QByteArray>*>(ptr)->at(i));
 }
 
 void* QSslCertificateExtension_NewQSslCertificateExtension()
@@ -5149,6 +5415,21 @@ void* QSslConfiguration_NewQSslConfiguration2(void* other)
 	return new QSslConfiguration(*static_cast<QSslConfiguration*>(other));
 }
 
+struct QtNetwork_PackedList QSslConfiguration_AllowedNextProtocols(void* ptr)
+{
+	return ({ QList<QByteArray>* tmpValue = new QList<QByteArray>(static_cast<QSslConfiguration*>(ptr)->allowedNextProtocols()); QtNetwork_PackedList { tmpValue, tmpValue->size() }; });
+}
+
+struct QtNetwork_PackedList QSslConfiguration_CaCertificates(void* ptr)
+{
+	return ({ QList<QSslCertificate>* tmpValue = new QList<QSslCertificate>(static_cast<QSslConfiguration*>(ptr)->caCertificates()); QtNetwork_PackedList { tmpValue, tmpValue->size() }; });
+}
+
+struct QtNetwork_PackedList QSslConfiguration_Ciphers(void* ptr)
+{
+	return ({ QList<QSslCipher>* tmpValue = new QList<QSslCipher>(static_cast<QSslConfiguration*>(ptr)->ciphers()); QtNetwork_PackedList { tmpValue, tmpValue->size() }; });
+}
+
 void* QSslConfiguration_QSslConfiguration_DefaultConfiguration()
 {
 	return new QSslConfiguration(QSslConfiguration::defaultConfiguration());
@@ -5169,6 +5450,11 @@ void* QSslConfiguration_LocalCertificate(void* ptr)
 	return new QSslCertificate(static_cast<QSslConfiguration*>(ptr)->localCertificate());
 }
 
+struct QtNetwork_PackedList QSslConfiguration_LocalCertificateChain(void* ptr)
+{
+	return ({ QList<QSslCertificate>* tmpValue = new QList<QSslCertificate>(static_cast<QSslConfiguration*>(ptr)->localCertificateChain()); QtNetwork_PackedList { tmpValue, tmpValue->size() }; });
+}
+
 void* QSslConfiguration_NextNegotiatedProtocol(void* ptr)
 {
 	return new QByteArray(static_cast<QSslConfiguration*>(ptr)->nextNegotiatedProtocol());
@@ -5182,6 +5468,11 @@ long long QSslConfiguration_NextProtocolNegotiationStatus(void* ptr)
 void* QSslConfiguration_PeerCertificate(void* ptr)
 {
 	return new QSslCertificate(static_cast<QSslConfiguration*>(ptr)->peerCertificate());
+}
+
+struct QtNetwork_PackedList QSslConfiguration_PeerCertificateChain(void* ptr)
+{
+	return ({ QList<QSslCertificate>* tmpValue = new QList<QSslCertificate>(static_cast<QSslConfiguration*>(ptr)->peerCertificateChain()); QtNetwork_PackedList { tmpValue, tmpValue->size() }; });
 }
 
 int QSslConfiguration_PeerVerifyDepth(void* ptr)
@@ -5244,14 +5535,59 @@ void QSslConfiguration_SetSessionTicket(void* ptr, void* sessionTicket)
 	static_cast<QSslConfiguration*>(ptr)->setSessionTicket(*static_cast<QByteArray*>(sessionTicket));
 }
 
+struct QtNetwork_PackedList QSslConfiguration_QSslConfiguration_SupportedCiphers()
+{
+	return ({ QList<QSslCipher>* tmpValue = new QList<QSslCipher>(QSslConfiguration::supportedCiphers()); QtNetwork_PackedList { tmpValue, tmpValue->size() }; });
+}
+
 void QSslConfiguration_Swap(void* ptr, void* other)
 {
 	static_cast<QSslConfiguration*>(ptr)->swap(*static_cast<QSslConfiguration*>(other));
 }
 
+struct QtNetwork_PackedList QSslConfiguration_QSslConfiguration_SystemCaCertificates()
+{
+	return ({ QList<QSslCertificate>* tmpValue = new QList<QSslCertificate>(QSslConfiguration::systemCaCertificates()); QtNetwork_PackedList { tmpValue, tmpValue->size() }; });
+}
+
 void QSslConfiguration_DestroyQSslConfiguration(void* ptr)
 {
 	static_cast<QSslConfiguration*>(ptr)->~QSslConfiguration();
+}
+
+void* QSslConfiguration_allowedNextProtocols_atList(void* ptr, int i)
+{
+	return new QByteArray(static_cast<QList<QByteArray>*>(ptr)->at(i));
+}
+
+void* QSslConfiguration_caCertificates_atList(void* ptr, int i)
+{
+	return new QSslCertificate(static_cast<QList<QSslCertificate>*>(ptr)->at(i));
+}
+
+void* QSslConfiguration_ciphers_atList(void* ptr, int i)
+{
+	return new QSslCipher(static_cast<QList<QSslCipher>*>(ptr)->at(i));
+}
+
+void* QSslConfiguration_localCertificateChain_atList(void* ptr, int i)
+{
+	return new QSslCertificate(static_cast<QList<QSslCertificate>*>(ptr)->at(i));
+}
+
+void* QSslConfiguration_peerCertificateChain_atList(void* ptr, int i)
+{
+	return new QSslCertificate(static_cast<QList<QSslCertificate>*>(ptr)->at(i));
+}
+
+void* QSslConfiguration_supportedCiphers_atList(void* ptr, int i)
+{
+	return new QSslCipher(static_cast<QList<QSslCipher>*>(ptr)->at(i));
+}
+
+void* QSslConfiguration_systemCaCertificates_atList(void* ptr, int i)
+{
+	return new QSslCertificate(static_cast<QList<QSslCertificate>*>(ptr)->at(i));
 }
 
 void* QSslEllipticCurve_NewQSslEllipticCurve()
@@ -5576,6 +5912,11 @@ void* QSslSocket_LocalCertificate(void* ptr)
 	return new QSslCertificate(static_cast<QSslSocket*>(ptr)->localCertificate());
 }
 
+struct QtNetwork_PackedList QSslSocket_LocalCertificateChain(void* ptr)
+{
+	return ({ QList<QSslCertificate>* tmpValue = new QList<QSslCertificate>(static_cast<QSslSocket*>(ptr)->localCertificateChain()); QtNetwork_PackedList { tmpValue, tmpValue->size() }; });
+}
+
 long long QSslSocket_Mode(void* ptr)
 {
 	return static_cast<QSslSocket*>(ptr)->mode();
@@ -5599,6 +5940,11 @@ void QSslSocket_ModeChanged(void* ptr, long long mode)
 void* QSslSocket_PeerCertificate(void* ptr)
 {
 	return new QSslCertificate(static_cast<QSslSocket*>(ptr)->peerCertificate());
+}
+
+struct QtNetwork_PackedList QSslSocket_PeerCertificateChain(void* ptr)
+{
+	return ({ QList<QSslCertificate>* tmpValue = new QList<QSslCertificate>(static_cast<QSslSocket*>(ptr)->peerCertificateChain()); QtNetwork_PackedList { tmpValue, tmpValue->size() }; });
 }
 
 int QSslSocket_PeerVerifyDepth(void* ptr)
@@ -5731,6 +6077,11 @@ void* QSslSocket_SslConfiguration(void* ptr)
 	return new QSslConfiguration(static_cast<QSslSocket*>(ptr)->sslConfiguration());
 }
 
+struct QtNetwork_PackedList QSslSocket_SslErrors(void* ptr)
+{
+	return ({ QList<QSslError>* tmpValue = new QList<QSslError>(static_cast<QSslSocket*>(ptr)->sslErrors()); QtNetwork_PackedList { tmpValue, tmpValue->size() }; });
+}
+
 long QSslSocket_QSslSocket_SslLibraryBuildVersionNumber()
 {
 	return QSslSocket::sslLibraryBuildVersionNumber();
@@ -5809,6 +6160,21 @@ long long QSslSocket_WriteData(void* ptr, char* data, long long len)
 void QSslSocket_DestroyQSslSocket(void* ptr)
 {
 	static_cast<QSslSocket*>(ptr)->~QSslSocket();
+}
+
+void* QSslSocket_localCertificateChain_atList(void* ptr, int i)
+{
+	return new QSslCertificate(static_cast<QList<QSslCertificate>*>(ptr)->at(i));
+}
+
+void* QSslSocket_peerCertificateChain_atList(void* ptr, int i)
+{
+	return new QSslCertificate(static_cast<QList<QSslCertificate>*>(ptr)->at(i));
+}
+
+void* QSslSocket_sslErrors_atList(void* ptr, int i)
+{
+	return new QSslError(static_cast<QList<QSslError>*>(ptr)->at(i));
 }
 
 void QSslSocket_ConnectToHost2(void* ptr, void* address, unsigned short port, long long openMode)

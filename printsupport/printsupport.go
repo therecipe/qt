@@ -13555,6 +13555,26 @@ func (ptr *QPrinterInfo) AvailablePrinterNames() []string {
 	return strings.Split(cGoUnpackString(C.QPrinterInfo_QPrinterInfo_AvailablePrinterNames()), "|")
 }
 
+func QPrinterInfo_AvailablePrinters() []*QPrinterInfo {
+	return func(l C.struct_QtPrintSupport_PackedList) []*QPrinterInfo {
+		var out = make([]*QPrinterInfo, int(l.len))
+		for i := 0; i < int(l.len); i++ {
+			out[i] = NewQPrinterInfoFromPointer(l.data).availablePrinters_atList(i)
+		}
+		return out
+	}(C.QPrinterInfo_QPrinterInfo_AvailablePrinters())
+}
+
+func (ptr *QPrinterInfo) AvailablePrinters() []*QPrinterInfo {
+	return func(l C.struct_QtPrintSupport_PackedList) []*QPrinterInfo {
+		var out = make([]*QPrinterInfo, int(l.len))
+		for i := 0; i < int(l.len); i++ {
+			out[i] = NewQPrinterInfoFromPointer(l.data).availablePrinters_atList(i)
+		}
+		return out
+	}(C.QPrinterInfo_QPrinterInfo_AvailablePrinters())
+}
+
 func (ptr *QPrinterInfo) DefaultDuplexMode() QPrinter__DuplexMode {
 	if ptr.Pointer() != nil {
 		return QPrinter__DuplexMode(C.QPrinterInfo_DefaultDuplexMode(ptr.Pointer()))
@@ -13681,6 +13701,19 @@ func (ptr *QPrinterInfo) State() QPrinter__PrinterState {
 	return 0
 }
 
+func (ptr *QPrinterInfo) SupportedPageSizes() []*gui.QPageSize {
+	if ptr.Pointer() != nil {
+		return func(l C.struct_QtPrintSupport_PackedList) []*gui.QPageSize {
+			var out = make([]*gui.QPageSize, int(l.len))
+			for i := 0; i < int(l.len); i++ {
+				out[i] = NewQPrinterInfoFromPointer(l.data).supportedPageSizes_atList(i)
+			}
+			return out
+		}(C.QPrinterInfo_SupportedPageSizes(ptr.Pointer()))
+	}
+	return nil
+}
+
 func (ptr *QPrinterInfo) SupportsCustomPageSizes() bool {
 	if ptr.Pointer() != nil {
 		return C.QPrinterInfo_SupportsCustomPageSizes(ptr.Pointer()) != 0
@@ -13693,4 +13726,22 @@ func (ptr *QPrinterInfo) DestroyQPrinterInfo() {
 		C.QPrinterInfo_DestroyQPrinterInfo(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
+}
+
+func (ptr *QPrinterInfo) availablePrinters_atList(i int) *QPrinterInfo {
+	if ptr.Pointer() != nil {
+		var tmpValue = NewQPrinterInfoFromPointer(C.QPrinterInfo_availablePrinters_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*QPrinterInfo).DestroyQPrinterInfo)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QPrinterInfo) supportedPageSizes_atList(i int) *gui.QPageSize {
+	if ptr.Pointer() != nil {
+		var tmpValue = gui.NewQPageSizeFromPointer(C.QPrinterInfo_supportedPageSizes_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*gui.QPageSize).DestroyQPageSize)
+		return tmpValue
+	}
+	return nil
 }

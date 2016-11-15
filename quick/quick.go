@@ -3081,6 +3081,19 @@ func (ptr *QQuickItem) ChildAt(x float64, y float64) *QQuickItem {
 	return nil
 }
 
+func (ptr *QQuickItem) ChildItems() []*QQuickItem {
+	if ptr.Pointer() != nil {
+		return func(l C.struct_QtQuick_PackedList) []*QQuickItem {
+			var out = make([]*QQuickItem, int(l.len))
+			for i := 0; i < int(l.len); i++ {
+				out[i] = NewQQuickItemFromPointer(l.data).childItems_atList(i)
+			}
+			return out
+		}(C.QQuickItem_ChildItems(ptr.Pointer()))
+	}
+	return nil
+}
+
 //export callbackQQuickItem_ChildMouseEventFilter
 func callbackQQuickItem_ChildMouseEventFilter(ptr unsafe.Pointer, item unsafe.Pointer, event unsafe.Pointer) C.char {
 
@@ -4451,6 +4464,17 @@ func (ptr *QQuickItem) DestroyQQuickItemDefault() {
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
+}
+
+func (ptr *QQuickItem) childItems_atList(i int) *QQuickItem {
+	if ptr.Pointer() != nil {
+		var tmpValue = NewQQuickItemFromPointer(C.QQuickItem_childItems_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
 }
 
 //export callbackQQuickItem_TimerEvent
@@ -8556,6 +8580,19 @@ func (ptr *QQuickView) Engine() *qml.QQmlEngine {
 	return nil
 }
 
+func (ptr *QQuickView) Errors() []*qml.QQmlError {
+	if ptr.Pointer() != nil {
+		return func(l C.struct_QtQuick_PackedList) []*qml.QQmlError {
+			var out = make([]*qml.QQmlError, int(l.len))
+			for i := 0; i < int(l.len); i++ {
+				out[i] = NewQQuickViewFromPointer(l.data).errors_atList(i)
+			}
+			return out
+		}(C.QQuickView_Errors(ptr.Pointer()))
+	}
+	return nil
+}
+
 func (ptr *QQuickView) InitialSize() *core.QSize {
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQSizeFromPointer(C.QQuickView_InitialSize(ptr.Pointer()))
@@ -8721,6 +8758,15 @@ func (ptr *QQuickView) DestroyQQuickViewDefault() {
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
+}
+
+func (ptr *QQuickView) errors_atList(i int) *qml.QQmlError {
+	if ptr.Pointer() != nil {
+		var tmpValue = qml.NewQQmlErrorFromPointer(C.QQuickView_errors_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*qml.QQmlError).DestroyQQmlError)
+		return tmpValue
+	}
+	return nil
 }
 
 //export callbackQQuickView_ReleaseResources
@@ -10433,6 +10479,19 @@ func (ptr *QQuickWidget) Engine() *qml.QQmlEngine {
 	return nil
 }
 
+func (ptr *QQuickWidget) Errors() []*qml.QQmlError {
+	if ptr.Pointer() != nil {
+		return func(l C.struct_QtQuick_PackedList) []*qml.QQmlError {
+			var out = make([]*qml.QQmlError, int(l.len))
+			for i := 0; i < int(l.len); i++ {
+				out[i] = NewQQuickWidgetFromPointer(l.data).errors_atList(i)
+			}
+			return out
+		}(C.QQuickWidget_Errors(ptr.Pointer()))
+	}
+	return nil
+}
+
 func (ptr *QQuickWidget) Event(e core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
 		return C.QQuickWidget_Event(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
@@ -11043,6 +11102,15 @@ func (ptr *QQuickWidget) DestroyQQuickWidgetDefault() {
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
+}
+
+func (ptr *QQuickWidget) errors_atList(i int) *qml.QQmlError {
+	if ptr.Pointer() != nil {
+		var tmpValue = qml.NewQQmlErrorFromPointer(C.QQuickWidget_errors_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*qml.QQmlError).DestroyQQmlError)
+		return tmpValue
+	}
+	return nil
 }
 
 //export callbackQQuickWidget_ActionEvent

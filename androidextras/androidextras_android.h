@@ -12,6 +12,7 @@ extern "C" {
 #endif
 
 struct QtAndroidExtras_PackedString { char* data; long long len; };
+struct QtAndroidExtras_PackedList { void* data; long long len; };
 void QAndroidActivityResultReceiver_HandleActivityResult(void* ptr, int receiverRequestCode, int resultCode, void* data);
 void* QAndroidJniEnvironment_NewQAndroidJniEnvironment();
 void* QAndroidJniEnvironment_QAndroidJniEnvironment_JavaVM();

@@ -13,6 +13,7 @@
 #include <QCanBusFrame>
 #include <QChildEvent>
 #include <QEvent>
+#include <QList>
 #include <QMetaMethod>
 #include <QMetaObject>
 #include <QModbusClient>
@@ -44,6 +45,16 @@ void* QCanBus_CreateDevice(void* ptr, void* plugin, char* interfaceName)
 void* QCanBus_QCanBus_Instance()
 {
 	return QCanBus::instance();
+}
+
+struct QtSerialBus_PackedList QCanBus_Plugins(void* ptr)
+{
+	return ({ QList<QByteArray>* tmpValue = new QList<QByteArray>(static_cast<QCanBus*>(ptr)->plugins()); QtSerialBus_PackedList { tmpValue, tmpValue->size() }; });
+}
+
+void* QCanBus_plugins_atList(void* ptr, int i)
+{
+	return new QByteArray(static_cast<QList<QByteArray>*>(ptr)->at(i));
 }
 
 void QCanBus_TimerEvent(void* ptr, void* event)

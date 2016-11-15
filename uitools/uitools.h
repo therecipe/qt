@@ -12,6 +12,7 @@ extern "C" {
 #endif
 
 struct QtUiTools_PackedString { char* data; long long len; };
+struct QtUiTools_PackedList { void* data; long long len; };
 void* QUiLoader_NewQUiLoader(void* parent);
 void QUiLoader_AddPluginPath(void* ptr, char* path);
 struct QtUiTools_PackedString QUiLoader_AvailableLayouts(void* ptr);

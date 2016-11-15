@@ -10,6 +10,7 @@
 #include <QChildEvent>
 #include <QEvent>
 #include <QIODevice>
+#include <QList>
 #include <QMetaMethod>
 #include <QMetaObject>
 #include <QObject>
@@ -606,8 +607,18 @@ void QSerialPortInfo_DestroyQSerialPortInfo(void* ptr)
 	static_cast<QSerialPortInfo*>(ptr)->~QSerialPortInfo();
 }
 
+struct QtSerialPort_PackedList QSerialPortInfo_QSerialPortInfo_AvailablePorts()
+{
+	return ({ QList<QSerialPortInfo>* tmpValue = new QList<QSerialPortInfo>(QSerialPortInfo::availablePorts()); QtSerialPort_PackedList { tmpValue, tmpValue->size() }; });
+}
+
 char QSerialPortInfo_IsBusy(void* ptr)
 {
 	return static_cast<QSerialPortInfo*>(ptr)->isBusy();
+}
+
+void* QSerialPortInfo_availablePorts_atList(void* ptr, int i)
+{
+	return new QSerialPortInfo(static_cast<QList<QSerialPortInfo>*>(ptr)->at(i));
 }
 

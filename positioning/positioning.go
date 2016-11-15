@@ -866,6 +866,15 @@ func (ptr *QGeoAreaMonitorSource) DestroyQGeoAreaMonitorSourceDefault() {
 	}
 }
 
+func (ptr *QGeoAreaMonitorSource) activeMonitors_atList(i int) *QGeoAreaMonitorInfo {
+	if ptr.Pointer() != nil {
+		var tmpValue = NewQGeoAreaMonitorInfoFromPointer(C.QGeoAreaMonitorSource_activeMonitors_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*QGeoAreaMonitorInfo).DestroyQGeoAreaMonitorInfo)
+		return tmpValue
+	}
+	return nil
+}
+
 //export callbackQGeoAreaMonitorSource_TimerEvent
 func callbackQGeoAreaMonitorSource_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 

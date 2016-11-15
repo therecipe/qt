@@ -51,9 +51,31 @@ func functionIsSupported(_ *parser.Class, f *parser.Function) bool {
 
 		f.Name == "QDesignerFormWindowInterface" || f.Name == "QDesignerFormWindowManagerInterface" || f.Name == "QDesignerWidgetBoxInterface", //unimplemented virtual
 
-		strings.Contains(f.Access, "unsupported"), strings.ContainsAny(f.Signature, "<>"):
+		f.Fullname == "QNdefNfcSmartPosterRecord::titleRecords", //T<T> output with unsupported output for *_atList
+		f.Fullname == "QHelpEngineCore::filterAttributeSets", f.Fullname == "QHelpSearchEngine::query", f.Fullname == "QHelpSearchQueryWidget::query",
+		f.Fullname == "QPluginLoader::staticPlugins", f.Fullname == "QSslConfiguration::ellipticCurves", f.Fullname == "QSslConfiguration::supportedEllipticCurves",
+		f.Fullname == "QTextFormat::lengthVectorProperty", f.Fullname == "QTextTableFormat::columnWidthConstraints",
 
+		strings.Contains(f.Access, "unsupported"):
 		{
+			if !strings.Contains(f.Access, "unsupported") {
+				f.Access = "unsupported_isBlockedFunction"
+			}
+			return false
+		}
+	}
+
+	if strings.ContainsAny(f.Signature, "<>") {
+		if parser.IsPackedList(f.Output) {
+			for _, p := range f.Parameters {
+				if strings.ContainsAny(p.Value, "<>") {
+					if !strings.Contains(f.Access, "unsupported") {
+						f.Access = "unsupported_isBlockedFunction"
+					}
+					return false
+				}
+			}
+		} else {
 			if !strings.Contains(f.Access, "unsupported") {
 				f.Access = "unsupported_isBlockedFunction"
 			}

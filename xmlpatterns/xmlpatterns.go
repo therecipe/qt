@@ -1334,6 +1334,24 @@ func (ptr *QAbstractXmlNodeModel) DestroyQAbstractXmlNodeModelDefault() {
 	}
 }
 
+func (ptr *QAbstractXmlNodeModel) attributes_atList(i int) *QXmlNodeModelIndex {
+	if ptr.Pointer() != nil {
+		var tmpValue = NewQXmlNodeModelIndexFromPointer(C.QAbstractXmlNodeModel_attributes_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*QXmlNodeModelIndex).DestroyQXmlNodeModelIndex)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QAbstractXmlNodeModel) nodesByIdref_atList(i int) *QXmlNodeModelIndex {
+	if ptr.Pointer() != nil {
+		var tmpValue = NewQXmlNodeModelIndexFromPointer(C.QAbstractXmlNodeModel_nodesByIdref_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*QXmlNodeModelIndex).DestroyQXmlNodeModelIndex)
+		return tmpValue
+	}
+	return nil
+}
+
 type QAbstractXmlReceiver struct {
 	ptr unsafe.Pointer
 }
@@ -1975,6 +1993,15 @@ func (ptr *QSimpleXmlNodeModel) DestroyQSimpleXmlNodeModelDefault() {
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
+}
+
+func (ptr *QSimpleXmlNodeModel) nodesByIdref_atList(i int) *QXmlNodeModelIndex {
+	if ptr.Pointer() != nil {
+		var tmpValue = NewQXmlNodeModelIndexFromPointer(C.QSimpleXmlNodeModel_nodesByIdref_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*QXmlNodeModelIndex).DestroyQXmlNodeModelIndex)
+		return tmpValue
+	}
+	return nil
 }
 
 //export callbackQSimpleXmlNodeModel_CompareOrder

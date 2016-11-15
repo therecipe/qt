@@ -12,6 +12,7 @@ extern "C" {
 #endif
 
 struct QtPurchasing_PackedString { char* data; long long len; };
+struct QtPurchasing_PackedList { void* data; long long len; };
 struct QtPurchasing_PackedString QInAppProduct_Description(void* ptr);
 struct QtPurchasing_PackedString QInAppProduct_Identifier(void* ptr);
 struct QtPurchasing_PackedString QInAppProduct_Price(void* ptr);

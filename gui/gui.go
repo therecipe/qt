@@ -3886,6 +3886,20 @@ func (ptr *QAccessibleTableCellInterface) DestroyQAccessibleTableCellInterfaceDe
 	}
 }
 
+func (ptr *QAccessibleTableCellInterface) columnHeaderCells_atList(i int) *QAccessibleInterface {
+	if ptr.Pointer() != nil {
+		return NewQAccessibleInterfaceFromPointer(C.QAccessibleTableCellInterface_columnHeaderCells_atList(ptr.Pointer(), C.int(int32(i))))
+	}
+	return nil
+}
+
+func (ptr *QAccessibleTableCellInterface) rowHeaderCells_atList(i int) *QAccessibleInterface {
+	if ptr.Pointer() != nil {
+		return NewQAccessibleInterfaceFromPointer(C.QAccessibleTableCellInterface_rowHeaderCells_atList(ptr.Pointer(), C.int(int32(i))))
+	}
+	return nil
+}
+
 type QAccessibleTableInterface struct {
 	ptr unsafe.Pointer
 }
@@ -4487,6 +4501,13 @@ func (ptr *QAccessibleTableInterface) DestroyQAccessibleTableInterfaceDefault() 
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
+}
+
+func (ptr *QAccessibleTableInterface) selectedCells_atList(i int) *QAccessibleInterface {
+	if ptr.Pointer() != nil {
+		return NewQAccessibleInterfaceFromPointer(C.QAccessibleTableInterface_selectedCells_atList(ptr.Pointer(), C.int(int32(i))))
+	}
+	return nil
 }
 
 //QAccessibleTableModelChangeEvent::ModelChangeType
@@ -13062,6 +13083,19 @@ func (ptr *QGlyphRun) Overline() bool {
 	return false
 }
 
+func (ptr *QGlyphRun) Positions() []*core.QPointF {
+	if ptr.Pointer() != nil {
+		return func(l C.struct_QtGui_PackedList) []*core.QPointF {
+			var out = make([]*core.QPointF, int(l.len))
+			for i := 0; i < int(l.len); i++ {
+				out[i] = NewQGlyphRunFromPointer(l.data).positions_atList(i)
+			}
+			return out
+		}(C.QGlyphRun_Positions(ptr.Pointer()))
+	}
+	return nil
+}
+
 func (ptr *QGlyphRun) RawFont() *QRawFont {
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQRawFontFromPointer(C.QGlyphRun_RawFont(ptr.Pointer()))
@@ -13150,6 +13184,15 @@ func (ptr *QGlyphRun) DestroyQGlyphRun() {
 		C.QGlyphRun_DestroyQGlyphRun(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
+}
+
+func (ptr *QGlyphRun) positions_atList(i int) *core.QPointF {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQPointFFromPointer(C.QGlyphRun_positions_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QPointF).DestroyQPointF)
+		return tmpValue
+	}
+	return nil
 }
 
 //QGradient::CoordinateMode
@@ -13966,6 +14009,26 @@ func (ptr *QGuiApplication) ScreenRemoved(screen QScreen_ITF) {
 	}
 }
 
+func QGuiApplication_Screens() []*QScreen {
+	return func(l C.struct_QtGui_PackedList) []*QScreen {
+		var out = make([]*QScreen, int(l.len))
+		for i := 0; i < int(l.len); i++ {
+			out[i] = NewQGuiApplicationFromPointer(l.data).screens_atList(i)
+		}
+		return out
+	}(C.QGuiApplication_QGuiApplication_Screens())
+}
+
+func (ptr *QGuiApplication) Screens() []*QScreen {
+	return func(l C.struct_QtGui_PackedList) []*QScreen {
+		var out = make([]*QScreen, int(l.len))
+		for i := 0; i < int(l.len); i++ {
+			out[i] = NewQGuiApplicationFromPointer(l.data).screens_atList(i)
+		}
+		return out
+	}(C.QGuiApplication_QGuiApplication_Screens())
+}
+
 func QGuiApplication_SetDesktopSettingsAware(on bool) {
 	C.QGuiApplication_QGuiApplication_SetDesktopSettingsAware(C.char(int8(qt.GoBoolToInt(on))))
 }
@@ -14076,6 +14139,17 @@ func (ptr *QGuiApplication) DestroyQGuiApplicationDefault() {
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
+}
+
+func (ptr *QGuiApplication) screens_atList(i int) *QScreen {
+	if ptr.Pointer() != nil {
+		var tmpValue = NewQScreenFromPointer(C.QGuiApplication_screens_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
 }
 
 //export callbackQGuiApplication_Quit
@@ -14757,6 +14831,19 @@ func (ptr *QIcon) AddPixmap(pixmap QPixmap_ITF, mode QIcon__Mode, state QIcon__S
 	}
 }
 
+func (ptr *QIcon) AvailableSizes(mode QIcon__Mode, state QIcon__State) []*core.QSize {
+	if ptr.Pointer() != nil {
+		return func(l C.struct_QtGui_PackedList) []*core.QSize {
+			var out = make([]*core.QSize, int(l.len))
+			for i := 0; i < int(l.len); i++ {
+				out[i] = NewQIconFromPointer(l.data).availableSizes_atList(i)
+			}
+			return out
+		}(C.QIcon_AvailableSizes(ptr.Pointer(), C.longlong(mode), C.longlong(state)))
+	}
+	return nil
+}
+
 func (ptr *QIcon) CacheKey() int64 {
 	if ptr.Pointer() != nil {
 		return int64(C.QIcon_CacheKey(ptr.Pointer()))
@@ -14934,6 +15021,15 @@ func (ptr *QIcon) DestroyQIcon() {
 		C.QIcon_DestroyQIcon(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
+}
+
+func (ptr *QIcon) availableSizes_atList(i int) *core.QSize {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQSizeFromPointer(C.QIcon_availableSizes_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
+		return tmpValue
+	}
+	return nil
 }
 
 type QIconDragEvent struct {
@@ -15413,6 +15509,15 @@ func (ptr *QIconEngine) DestroyQIconEngineDefault() {
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
+}
+
+func (ptr *QIconEngine) availableSizes_atList(i int) *core.QSize {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQSizeFromPointer(C.QIconEngine_availableSizes_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
+		return tmpValue
+	}
+	return nil
 }
 
 type QIconEnginePlugin struct {
@@ -18130,6 +18235,59 @@ func (ptr *QImageReader) SubType() *core.QByteArray {
 	return nil
 }
 
+func QImageReader_SupportedImageFormats() []*core.QByteArray {
+	return func(l C.struct_QtGui_PackedList) []*core.QByteArray {
+		var out = make([]*core.QByteArray, int(l.len))
+		for i := 0; i < int(l.len); i++ {
+			out[i] = NewQImageReaderFromPointer(l.data).supportedImageFormats_atList(i)
+		}
+		return out
+	}(C.QImageReader_QImageReader_SupportedImageFormats())
+}
+
+func (ptr *QImageReader) SupportedImageFormats() []*core.QByteArray {
+	return func(l C.struct_QtGui_PackedList) []*core.QByteArray {
+		var out = make([]*core.QByteArray, int(l.len))
+		for i := 0; i < int(l.len); i++ {
+			out[i] = NewQImageReaderFromPointer(l.data).supportedImageFormats_atList(i)
+		}
+		return out
+	}(C.QImageReader_QImageReader_SupportedImageFormats())
+}
+
+func QImageReader_SupportedMimeTypes() []*core.QByteArray {
+	return func(l C.struct_QtGui_PackedList) []*core.QByteArray {
+		var out = make([]*core.QByteArray, int(l.len))
+		for i := 0; i < int(l.len); i++ {
+			out[i] = NewQImageReaderFromPointer(l.data).supportedMimeTypes_atList(i)
+		}
+		return out
+	}(C.QImageReader_QImageReader_SupportedMimeTypes())
+}
+
+func (ptr *QImageReader) SupportedMimeTypes() []*core.QByteArray {
+	return func(l C.struct_QtGui_PackedList) []*core.QByteArray {
+		var out = make([]*core.QByteArray, int(l.len))
+		for i := 0; i < int(l.len); i++ {
+			out[i] = NewQImageReaderFromPointer(l.data).supportedMimeTypes_atList(i)
+		}
+		return out
+	}(C.QImageReader_QImageReader_SupportedMimeTypes())
+}
+
+func (ptr *QImageReader) SupportedSubTypes() []*core.QByteArray {
+	if ptr.Pointer() != nil {
+		return func(l C.struct_QtGui_PackedList) []*core.QByteArray {
+			var out = make([]*core.QByteArray, int(l.len))
+			for i := 0; i < int(l.len); i++ {
+				out[i] = NewQImageReaderFromPointer(l.data).supportedSubTypes_atList(i)
+			}
+			return out
+		}(C.QImageReader_SupportedSubTypes(ptr.Pointer()))
+	}
+	return nil
+}
+
 func (ptr *QImageReader) SupportsAnimation() bool {
 	if ptr.Pointer() != nil {
 		return C.QImageReader_SupportsAnimation(ptr.Pointer()) != 0
@@ -18172,6 +18330,33 @@ func (ptr *QImageReader) DestroyQImageReader() {
 		C.QImageReader_DestroyQImageReader(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
+}
+
+func (ptr *QImageReader) supportedImageFormats_atList(i int) *core.QByteArray {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQByteArrayFromPointer(C.QImageReader_supportedImageFormats_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QImageReader) supportedMimeTypes_atList(i int) *core.QByteArray {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQByteArrayFromPointer(C.QImageReader_supportedMimeTypes_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QImageReader) supportedSubTypes_atList(i int) *core.QByteArray {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQByteArrayFromPointer(C.QImageReader_supportedSubTypes_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		return tmpValue
+	}
+	return nil
 }
 
 //QImageWriter::ImageWriterError
@@ -18404,6 +18589,59 @@ func (ptr *QImageWriter) SubType() *core.QByteArray {
 	return nil
 }
 
+func QImageWriter_SupportedImageFormats() []*core.QByteArray {
+	return func(l C.struct_QtGui_PackedList) []*core.QByteArray {
+		var out = make([]*core.QByteArray, int(l.len))
+		for i := 0; i < int(l.len); i++ {
+			out[i] = NewQImageWriterFromPointer(l.data).supportedImageFormats_atList(i)
+		}
+		return out
+	}(C.QImageWriter_QImageWriter_SupportedImageFormats())
+}
+
+func (ptr *QImageWriter) SupportedImageFormats() []*core.QByteArray {
+	return func(l C.struct_QtGui_PackedList) []*core.QByteArray {
+		var out = make([]*core.QByteArray, int(l.len))
+		for i := 0; i < int(l.len); i++ {
+			out[i] = NewQImageWriterFromPointer(l.data).supportedImageFormats_atList(i)
+		}
+		return out
+	}(C.QImageWriter_QImageWriter_SupportedImageFormats())
+}
+
+func QImageWriter_SupportedMimeTypes() []*core.QByteArray {
+	return func(l C.struct_QtGui_PackedList) []*core.QByteArray {
+		var out = make([]*core.QByteArray, int(l.len))
+		for i := 0; i < int(l.len); i++ {
+			out[i] = NewQImageWriterFromPointer(l.data).supportedMimeTypes_atList(i)
+		}
+		return out
+	}(C.QImageWriter_QImageWriter_SupportedMimeTypes())
+}
+
+func (ptr *QImageWriter) SupportedMimeTypes() []*core.QByteArray {
+	return func(l C.struct_QtGui_PackedList) []*core.QByteArray {
+		var out = make([]*core.QByteArray, int(l.len))
+		for i := 0; i < int(l.len); i++ {
+			out[i] = NewQImageWriterFromPointer(l.data).supportedMimeTypes_atList(i)
+		}
+		return out
+	}(C.QImageWriter_QImageWriter_SupportedMimeTypes())
+}
+
+func (ptr *QImageWriter) SupportedSubTypes() []*core.QByteArray {
+	if ptr.Pointer() != nil {
+		return func(l C.struct_QtGui_PackedList) []*core.QByteArray {
+			var out = make([]*core.QByteArray, int(l.len))
+			for i := 0; i < int(l.len); i++ {
+				out[i] = NewQImageWriterFromPointer(l.data).supportedSubTypes_atList(i)
+			}
+			return out
+		}(C.QImageWriter_SupportedSubTypes(ptr.Pointer()))
+	}
+	return nil
+}
+
 func (ptr *QImageWriter) SupportsOption(option QImageIOHandler__ImageOption) bool {
 	if ptr.Pointer() != nil {
 		return C.QImageWriter_SupportsOption(ptr.Pointer(), C.longlong(option)) != 0
@@ -18430,6 +18668,33 @@ func (ptr *QImageWriter) DestroyQImageWriter() {
 		C.QImageWriter_DestroyQImageWriter(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
+}
+
+func (ptr *QImageWriter) supportedImageFormats_atList(i int) *core.QByteArray {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQByteArrayFromPointer(C.QImageWriter_supportedImageFormats_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QImageWriter) supportedMimeTypes_atList(i int) *core.QByteArray {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQByteArrayFromPointer(C.QImageWriter_supportedMimeTypes_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QImageWriter) supportedSubTypes_atList(i int) *core.QByteArray {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQByteArrayFromPointer(C.QImageWriter_supportedSubTypes_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		return tmpValue
+	}
+	return nil
 }
 
 type QInputEvent struct {
@@ -20527,6 +20792,50 @@ func (ptr *QKeySequence) IsEmpty() bool {
 	return false
 }
 
+func QKeySequence_KeyBindings(key QKeySequence__StandardKey) []*QKeySequence {
+	return func(l C.struct_QtGui_PackedList) []*QKeySequence {
+		var out = make([]*QKeySequence, int(l.len))
+		for i := 0; i < int(l.len); i++ {
+			out[i] = NewQKeySequenceFromPointer(l.data).keyBindings_atList(i)
+		}
+		return out
+	}(C.QKeySequence_QKeySequence_KeyBindings(C.longlong(key)))
+}
+
+func (ptr *QKeySequence) KeyBindings(key QKeySequence__StandardKey) []*QKeySequence {
+	return func(l C.struct_QtGui_PackedList) []*QKeySequence {
+		var out = make([]*QKeySequence, int(l.len))
+		for i := 0; i < int(l.len); i++ {
+			out[i] = NewQKeySequenceFromPointer(l.data).keyBindings_atList(i)
+		}
+		return out
+	}(C.QKeySequence_QKeySequence_KeyBindings(C.longlong(key)))
+}
+
+func QKeySequence_ListFromString(str string, format QKeySequence__SequenceFormat) []*QKeySequence {
+	var strC = C.CString(str)
+	defer C.free(unsafe.Pointer(strC))
+	return func(l C.struct_QtGui_PackedList) []*QKeySequence {
+		var out = make([]*QKeySequence, int(l.len))
+		for i := 0; i < int(l.len); i++ {
+			out[i] = NewQKeySequenceFromPointer(l.data).listFromString_atList(i)
+		}
+		return out
+	}(C.QKeySequence_QKeySequence_ListFromString(strC, C.longlong(format)))
+}
+
+func (ptr *QKeySequence) ListFromString(str string, format QKeySequence__SequenceFormat) []*QKeySequence {
+	var strC = C.CString(str)
+	defer C.free(unsafe.Pointer(strC))
+	return func(l C.struct_QtGui_PackedList) []*QKeySequence {
+		var out = make([]*QKeySequence, int(l.len))
+		for i := 0; i < int(l.len); i++ {
+			out[i] = NewQKeySequenceFromPointer(l.data).listFromString_atList(i)
+		}
+		return out
+	}(C.QKeySequence_QKeySequence_ListFromString(strC, C.longlong(format)))
+}
+
 func (ptr *QKeySequence) Matches(seq QKeySequence_ITF) QKeySequence__SequenceMatch {
 	if ptr.Pointer() != nil {
 		return QKeySequence__SequenceMatch(C.QKeySequence_Matches(ptr.Pointer(), PointerFromQKeySequence(seq)))
@@ -20568,6 +20877,24 @@ func (ptr *QKeySequence) DestroyQKeySequence() {
 		C.QKeySequence_DestroyQKeySequence(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
+}
+
+func (ptr *QKeySequence) keyBindings_atList(i int) *QKeySequence {
+	if ptr.Pointer() != nil {
+		var tmpValue = NewQKeySequenceFromPointer(C.QKeySequence_keyBindings_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*QKeySequence).DestroyQKeySequence)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QKeySequence) listFromString_atList(i int) *QKeySequence {
+	if ptr.Pointer() != nil {
+		var tmpValue = NewQKeySequenceFromPointer(C.QKeySequence_listFromString_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*QKeySequence).DestroyQKeySequence)
+		return tmpValue
+	}
+	return nil
 }
 
 type QLinearGradient struct {
@@ -21823,6 +22150,26 @@ func (ptr *QMovie) Stop() {
 	}
 }
 
+func QMovie_SupportedFormats() []*core.QByteArray {
+	return func(l C.struct_QtGui_PackedList) []*core.QByteArray {
+		var out = make([]*core.QByteArray, int(l.len))
+		for i := 0; i < int(l.len); i++ {
+			out[i] = NewQMovieFromPointer(l.data).supportedFormats_atList(i)
+		}
+		return out
+	}(C.QMovie_QMovie_SupportedFormats())
+}
+
+func (ptr *QMovie) SupportedFormats() []*core.QByteArray {
+	return func(l C.struct_QtGui_PackedList) []*core.QByteArray {
+		var out = make([]*core.QByteArray, int(l.len))
+		for i := 0; i < int(l.len); i++ {
+			out[i] = NewQMovieFromPointer(l.data).supportedFormats_atList(i)
+		}
+		return out
+	}(C.QMovie_QMovie_SupportedFormats())
+}
+
 //export callbackQMovie_Updated
 func callbackQMovie_Updated(ptr unsafe.Pointer, rect unsafe.Pointer) {
 
@@ -21858,6 +22205,15 @@ func (ptr *QMovie) DestroyQMovie() {
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
+}
+
+func (ptr *QMovie) supportedFormats_atList(i int) *core.QByteArray {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQByteArrayFromPointer(C.QMovie_supportedFormats_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		return tmpValue
+	}
+	return nil
 }
 
 //export callbackQMovie_TimerEvent
@@ -31740,11 +32096,37 @@ func (ptr *QPainterPath) ToFillPolygon(matrix QTransform_ITF) *QPolygonF {
 	return nil
 }
 
+func (ptr *QPainterPath) ToFillPolygons(matrix QTransform_ITF) []*QPolygonF {
+	if ptr.Pointer() != nil {
+		return func(l C.struct_QtGui_PackedList) []*QPolygonF {
+			var out = make([]*QPolygonF, int(l.len))
+			for i := 0; i < int(l.len); i++ {
+				out[i] = NewQPainterPathFromPointer(l.data).toFillPolygons_atList(i)
+			}
+			return out
+		}(C.QPainterPath_ToFillPolygons(ptr.Pointer(), PointerFromQTransform(matrix)))
+	}
+	return nil
+}
+
 func (ptr *QPainterPath) ToReversed() *QPainterPath {
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQPainterPathFromPointer(C.QPainterPath_ToReversed(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*QPainterPath).DestroyQPainterPath)
 		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QPainterPath) ToSubpathPolygons(matrix QTransform_ITF) []*QPolygonF {
+	if ptr.Pointer() != nil {
+		return func(l C.struct_QtGui_PackedList) []*QPolygonF {
+			var out = make([]*QPolygonF, int(l.len))
+			for i := 0; i < int(l.len); i++ {
+				out[i] = NewQPainterPathFromPointer(l.data).toSubpathPolygons_atList(i)
+			}
+			return out
+		}(C.QPainterPath_ToSubpathPolygons(ptr.Pointer(), PointerFromQTransform(matrix)))
 	}
 	return nil
 }
@@ -31793,6 +32175,24 @@ func (ptr *QPainterPath) DestroyQPainterPath() {
 		C.QPainterPath_DestroyQPainterPath(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
+}
+
+func (ptr *QPainterPath) toFillPolygons_atList(i int) *QPolygonF {
+	if ptr.Pointer() != nil {
+		var tmpValue = NewQPolygonFFromPointer(C.QPainterPath_toFillPolygons_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*QPolygonF).DestroyQPolygonF)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QPainterPath) toSubpathPolygons_atList(i int) *QPolygonF {
+	if ptr.Pointer() != nil {
+		var tmpValue = NewQPolygonFFromPointer(C.QPainterPath_toSubpathPolygons_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*QPolygonF).DestroyQPolygonF)
+		return tmpValue
+	}
+	return nil
 }
 
 type QPainterPathStroker struct {
@@ -38383,6 +38783,19 @@ func (ptr *QRegion) RectCount() int {
 	return 0
 }
 
+func (ptr *QRegion) Rects() []*core.QRect {
+	if ptr.Pointer() != nil {
+		return func(l C.struct_QtGui_PackedList) []*core.QRect {
+			var out = make([]*core.QRect, int(l.len))
+			for i := 0; i < int(l.len); i++ {
+				out[i] = NewQRegionFromPointer(l.data).rects_atList(i)
+			}
+			return out
+		}(C.QRegion_Rects(ptr.Pointer()))
+	}
+	return nil
+}
+
 func (ptr *QRegion) SetRects(rects core.QRect_ITF, number int) {
 	if ptr.Pointer() != nil {
 		C.QRegion_SetRects(ptr.Pointer(), core.PointerFromQRect(rects), C.int(int32(number)))
@@ -38475,6 +38888,15 @@ func (ptr *QRegion) Translated(dx int, dy int) *QRegion {
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQRegionFromPointer(C.QRegion_Translated(ptr.Pointer(), C.int(int32(dx)), C.int(int32(dy))))
 		runtime.SetFinalizer(tmpValue, (*QRegion).DestroyQRegion)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QRegion) rects_atList(i int) *core.QRect {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQRectFromPointer(C.QRegion_rects_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QRect).DestroyQRect)
 		return tmpValue
 	}
 	return nil
@@ -39770,12 +40192,36 @@ func (ptr *QScreen) VirtualGeometryChanged(rect core.QRect_ITF) {
 	}
 }
 
+func (ptr *QScreen) VirtualSiblings() []*QScreen {
+	if ptr.Pointer() != nil {
+		return func(l C.struct_QtGui_PackedList) []*QScreen {
+			var out = make([]*QScreen, int(l.len))
+			for i := 0; i < int(l.len); i++ {
+				out[i] = NewQScreenFromPointer(l.data).virtualSiblings_atList(i)
+			}
+			return out
+		}(C.QScreen_VirtualSiblings(ptr.Pointer()))
+	}
+	return nil
+}
+
 func (ptr *QScreen) DestroyQScreen() {
 	if ptr.Pointer() != nil {
 		C.QScreen_DestroyQScreen(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
+}
+
+func (ptr *QScreen) virtualSiblings_atList(i int) *QScreen {
+	if ptr.Pointer() != nil {
+		var tmpValue = NewQScreenFromPointer(C.QScreen_virtualSiblings_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
 }
 
 //export callbackQScreen_TimerEvent
@@ -41593,6 +42039,32 @@ func (ptr *QStandardItem) TakeChild(row int, column int) *QStandardItem {
 	return nil
 }
 
+func (ptr *QStandardItem) TakeColumn(column int) []*QStandardItem {
+	if ptr.Pointer() != nil {
+		return func(l C.struct_QtGui_PackedList) []*QStandardItem {
+			var out = make([]*QStandardItem, int(l.len))
+			for i := 0; i < int(l.len); i++ {
+				out[i] = NewQStandardItemFromPointer(l.data).takeColumn_atList(i)
+			}
+			return out
+		}(C.QStandardItem_TakeColumn(ptr.Pointer(), C.int(int32(column))))
+	}
+	return nil
+}
+
+func (ptr *QStandardItem) TakeRow(row int) []*QStandardItem {
+	if ptr.Pointer() != nil {
+		return func(l C.struct_QtGui_PackedList) []*QStandardItem {
+			var out = make([]*QStandardItem, int(l.len))
+			for i := 0; i < int(l.len); i++ {
+				out[i] = NewQStandardItemFromPointer(l.data).takeRow_atList(i)
+			}
+			return out
+		}(C.QStandardItem_TakeRow(ptr.Pointer(), C.int(int32(row))))
+	}
+	return nil
+}
+
 func (ptr *QStandardItem) Text() string {
 	if ptr.Pointer() != nil {
 		return cGoUnpackString(C.QStandardItem_Text(ptr.Pointer()))
@@ -41699,6 +42171,20 @@ func (ptr *QStandardItem) DestroyQStandardItemDefault() {
 	}
 }
 
+func (ptr *QStandardItem) takeColumn_atList(i int) *QStandardItem {
+	if ptr.Pointer() != nil {
+		return NewQStandardItemFromPointer(C.QStandardItem_takeColumn_atList(ptr.Pointer(), C.int(int32(i))))
+	}
+	return nil
+}
+
+func (ptr *QStandardItem) takeRow_atList(i int) *QStandardItem {
+	if ptr.Pointer() != nil {
+		return NewQStandardItemFromPointer(C.QStandardItem_takeRow_atList(ptr.Pointer(), C.int(int32(i))))
+	}
+	return nil
+}
+
 type QStandardItemModel struct {
 	core.QAbstractItemModel
 }
@@ -41799,6 +42285,21 @@ func (ptr *QStandardItemModel) DropMimeData(data core.QMimeData_ITF, action core
 		return C.QStandardItemModel_DropMimeData(ptr.Pointer(), core.PointerFromQMimeData(data), C.longlong(action), C.int(int32(row)), C.int(int32(column)), core.PointerFromQModelIndex(parent)) != 0
 	}
 	return false
+}
+
+func (ptr *QStandardItemModel) FindItems(text string, flags core.Qt__MatchFlag, column int) []*QStandardItem {
+	if ptr.Pointer() != nil {
+		var textC = C.CString(text)
+		defer C.free(unsafe.Pointer(textC))
+		return func(l C.struct_QtGui_PackedList) []*QStandardItem {
+			var out = make([]*QStandardItem, int(l.len))
+			for i := 0; i < int(l.len); i++ {
+				out[i] = NewQStandardItemModelFromPointer(l.data).findItems_atList(i)
+			}
+			return out
+		}(C.QStandardItemModel_FindItems(ptr.Pointer(), textC, C.longlong(flags), C.int(int32(column))))
+	}
+	return nil
 }
 
 func (ptr *QStandardItemModel) Flags(index core.QModelIndex_ITF) core.Qt__ItemFlag {
@@ -42071,6 +42572,19 @@ func (ptr *QStandardItemModel) SupportedDropActions() core.Qt__DropAction {
 	return 0
 }
 
+func (ptr *QStandardItemModel) TakeColumn(column int) []*QStandardItem {
+	if ptr.Pointer() != nil {
+		return func(l C.struct_QtGui_PackedList) []*QStandardItem {
+			var out = make([]*QStandardItem, int(l.len))
+			for i := 0; i < int(l.len); i++ {
+				out[i] = NewQStandardItemModelFromPointer(l.data).takeColumn_atList(i)
+			}
+			return out
+		}(C.QStandardItemModel_TakeColumn(ptr.Pointer(), C.int(int32(column))))
+	}
+	return nil
+}
+
 func (ptr *QStandardItemModel) TakeHorizontalHeaderItem(column int) *QStandardItem {
 	if ptr.Pointer() != nil {
 		return NewQStandardItemFromPointer(C.QStandardItemModel_TakeHorizontalHeaderItem(ptr.Pointer(), C.int(int32(column))))
@@ -42081,6 +42595,19 @@ func (ptr *QStandardItemModel) TakeHorizontalHeaderItem(column int) *QStandardIt
 func (ptr *QStandardItemModel) TakeItem(row int, column int) *QStandardItem {
 	if ptr.Pointer() != nil {
 		return NewQStandardItemFromPointer(C.QStandardItemModel_TakeItem(ptr.Pointer(), C.int(int32(row)), C.int(int32(column))))
+	}
+	return nil
+}
+
+func (ptr *QStandardItemModel) TakeRow(row int) []*QStandardItem {
+	if ptr.Pointer() != nil {
+		return func(l C.struct_QtGui_PackedList) []*QStandardItem {
+			var out = make([]*QStandardItem, int(l.len))
+			for i := 0; i < int(l.len); i++ {
+				out[i] = NewQStandardItemModelFromPointer(l.data).takeRow_atList(i)
+			}
+			return out
+		}(C.QStandardItemModel_TakeRow(ptr.Pointer(), C.int(int32(row))))
 	}
 	return nil
 }
@@ -42105,6 +42632,27 @@ func (ptr *QStandardItemModel) DestroyQStandardItemModel() {
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
+}
+
+func (ptr *QStandardItemModel) findItems_atList(i int) *QStandardItem {
+	if ptr.Pointer() != nil {
+		return NewQStandardItemFromPointer(C.QStandardItemModel_findItems_atList(ptr.Pointer(), C.int(int32(i))))
+	}
+	return nil
+}
+
+func (ptr *QStandardItemModel) takeColumn_atList(i int) *QStandardItem {
+	if ptr.Pointer() != nil {
+		return NewQStandardItemFromPointer(C.QStandardItemModel_takeColumn_atList(ptr.Pointer(), C.int(int32(i))))
+	}
+	return nil
+}
+
+func (ptr *QStandardItemModel) takeRow_atList(i int) *QStandardItem {
+	if ptr.Pointer() != nil {
+		return NewQStandardItemFromPointer(C.QStandardItemModel_takeRow_atList(ptr.Pointer(), C.int(int32(i))))
+	}
+	return nil
 }
 
 //export callbackQStandardItemModel_Buddy
@@ -45778,6 +46326,19 @@ func (ptr *QTextBlockGroup) BlockInsertedDefault(block QTextBlock_ITF) {
 	}
 }
 
+func (ptr *QTextBlockGroup) BlockList() []*QTextBlock {
+	if ptr.Pointer() != nil {
+		return func(l C.struct_QtGui_PackedList) []*QTextBlock {
+			var out = make([]*QTextBlock, int(l.len))
+			for i := 0; i < int(l.len); i++ {
+				out[i] = NewQTextBlockGroupFromPointer(l.data).blockList_atList(i)
+			}
+			return out
+		}(C.QTextBlockGroup_BlockList(ptr.Pointer()))
+	}
+	return nil
+}
+
 //export callbackQTextBlockGroup_BlockRemoved
 func callbackQTextBlockGroup_BlockRemoved(ptr unsafe.Pointer, block unsafe.Pointer) {
 
@@ -45820,6 +46381,15 @@ func (ptr *QTextBlockGroup) DestroyQTextBlockGroup() {
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
+}
+
+func (ptr *QTextBlockGroup) blockList_atList(i int) *QTextBlock {
+	if ptr.Pointer() != nil {
+		var tmpValue = NewQTextBlockFromPointer(C.QTextBlockGroup_blockList_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*QTextBlock).DestroyQTextBlock)
+		return tmpValue
+	}
+	return nil
 }
 
 //export callbackQTextBlockGroup_TimerEvent
@@ -47616,6 +48186,19 @@ func (ptr *QTextDocument) AdjustSize() {
 	}
 }
 
+func (ptr *QTextDocument) AllFormats() []*QTextFormat {
+	if ptr.Pointer() != nil {
+		return func(l C.struct_QtGui_PackedList) []*QTextFormat {
+			var out = make([]*QTextFormat, int(l.len))
+			for i := 0; i < int(l.len); i++ {
+				out[i] = NewQTextDocumentFromPointer(l.data).allFormats_atList(i)
+			}
+			return out
+		}(C.QTextDocument_AllFormats(ptr.Pointer()))
+	}
+	return nil
+}
+
 func (ptr *QTextDocument) AvailableRedoSteps() int {
 	if ptr.Pointer() != nil {
 		return int(int32(C.QTextDocument_AvailableRedoSteps(ptr.Pointer())))
@@ -48422,6 +49005,15 @@ func (ptr *QTextDocument) DestroyQTextDocument() {
 	}
 }
 
+func (ptr *QTextDocument) allFormats_atList(i int) *QTextFormat {
+	if ptr.Pointer() != nil {
+		var tmpValue = NewQTextFormatFromPointer(C.QTextDocument_allFormats_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*QTextFormat).DestroyQTextFormat)
+		return tmpValue
+	}
+	return nil
+}
+
 //export callbackQTextDocument_TimerEvent
 func callbackQTextDocument_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 
@@ -49009,6 +49601,26 @@ func (ptr *QTextDocumentWriter) SetFormat(format core.QByteArray_ITF) {
 	}
 }
 
+func QTextDocumentWriter_SupportedDocumentFormats() []*core.QByteArray {
+	return func(l C.struct_QtGui_PackedList) []*core.QByteArray {
+		var out = make([]*core.QByteArray, int(l.len))
+		for i := 0; i < int(l.len); i++ {
+			out[i] = NewQTextDocumentWriterFromPointer(l.data).supportedDocumentFormats_atList(i)
+		}
+		return out
+	}(C.QTextDocumentWriter_QTextDocumentWriter_SupportedDocumentFormats())
+}
+
+func (ptr *QTextDocumentWriter) SupportedDocumentFormats() []*core.QByteArray {
+	return func(l C.struct_QtGui_PackedList) []*core.QByteArray {
+		var out = make([]*core.QByteArray, int(l.len))
+		for i := 0; i < int(l.len); i++ {
+			out[i] = NewQTextDocumentWriterFromPointer(l.data).supportedDocumentFormats_atList(i)
+		}
+		return out
+	}(C.QTextDocumentWriter_QTextDocumentWriter_SupportedDocumentFormats())
+}
+
 func (ptr *QTextDocumentWriter) Write(document QTextDocument_ITF) bool {
 	if ptr.Pointer() != nil {
 		return C.QTextDocumentWriter_Write(ptr.Pointer(), PointerFromQTextDocument(document)) != 0
@@ -49028,6 +49640,15 @@ func (ptr *QTextDocumentWriter) DestroyQTextDocumentWriter() {
 		C.QTextDocumentWriter_DestroyQTextDocumentWriter(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
+}
+
+func (ptr *QTextDocumentWriter) supportedDocumentFormats_atList(i int) *core.QByteArray {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQByteArrayFromPointer(C.QTextDocumentWriter_supportedDocumentFormats_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		return tmpValue
+	}
+	return nil
 }
 
 //QTextFormat::FormatType
@@ -49535,6 +50156,19 @@ func (ptr *QTextFragment) Contains(position int) bool {
 	return false
 }
 
+func (ptr *QTextFragment) GlyphRuns(pos int, len int) []*QGlyphRun {
+	if ptr.Pointer() != nil {
+		return func(l C.struct_QtGui_PackedList) []*QGlyphRun {
+			var out = make([]*QGlyphRun, int(l.len))
+			for i := 0; i < int(l.len); i++ {
+				out[i] = NewQTextFragmentFromPointer(l.data).glyphRuns_atList(i)
+			}
+			return out
+		}(C.QTextFragment_GlyphRuns(ptr.Pointer(), C.int(int32(pos)), C.int(int32(len))))
+	}
+	return nil
+}
+
 func (ptr *QTextFragment) IsValid() bool {
 	if ptr.Pointer() != nil {
 		return C.QTextFragment_IsValid(ptr.Pointer()) != 0
@@ -49561,6 +50195,15 @@ func (ptr *QTextFragment) Text() string {
 		return cGoUnpackString(C.QTextFragment_Text(ptr.Pointer()))
 	}
 	return ""
+}
+
+func (ptr *QTextFragment) glyphRuns_atList(i int) *QGlyphRun {
+	if ptr.Pointer() != nil {
+		var tmpValue = NewQGlyphRunFromPointer(C.QTextFragment_glyphRuns_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*QGlyphRun).DestroyQGlyphRun)
+		return tmpValue
+	}
+	return nil
 }
 
 type QTextFrame struct {
@@ -49607,6 +50250,19 @@ func NewQTextFrame(document QTextDocument_ITF) *QTextFrame {
 		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 	}
 	return tmpValue
+}
+
+func (ptr *QTextFrame) ChildFrames() []*QTextFrame {
+	if ptr.Pointer() != nil {
+		return func(l C.struct_QtGui_PackedList) []*QTextFrame {
+			var out = make([]*QTextFrame, int(l.len))
+			for i := 0; i < int(l.len); i++ {
+				out[i] = NewQTextFrameFromPointer(l.data).childFrames_atList(i)
+			}
+			return out
+		}(C.QTextFrame_ChildFrames(ptr.Pointer()))
+	}
+	return nil
 }
 
 func (ptr *QTextFrame) FirstCursorPosition() *QTextCursor {
@@ -49664,6 +50320,17 @@ func (ptr *QTextFrame) DestroyQTextFrame() {
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
+}
+
+func (ptr *QTextFrame) childFrames_atList(i int) *QTextFrame {
+	if ptr.Pointer() != nil {
+		var tmpValue = NewQTextFrameFromPointer(C.QTextFrame_childFrames_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
 }
 
 //export callbackQTextFrame_TimerEvent
@@ -50717,6 +51384,19 @@ func (ptr *QTextLayout) Font() *QFont {
 	return nil
 }
 
+func (ptr *QTextLayout) GlyphRuns(from int, length int) []*QGlyphRun {
+	if ptr.Pointer() != nil {
+		return func(l C.struct_QtGui_PackedList) []*QGlyphRun {
+			var out = make([]*QGlyphRun, int(l.len))
+			for i := 0; i < int(l.len); i++ {
+				out[i] = NewQTextLayoutFromPointer(l.data).glyphRuns_atList(i)
+			}
+			return out
+		}(C.QTextLayout_GlyphRuns(ptr.Pointer(), C.int(int32(from)), C.int(int32(length))))
+	}
+	return nil
+}
+
 func (ptr *QTextLayout) IsValidCursorPosition(pos int) bool {
 	if ptr.Pointer() != nil {
 		return C.QTextLayout_IsValidCursorPosition(ptr.Pointer(), C.int(int32(pos))) != 0
@@ -50861,6 +51541,15 @@ func (ptr *QTextLayout) DestroyQTextLayout() {
 		C.QTextLayout_DestroyQTextLayout(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
+}
+
+func (ptr *QTextLayout) glyphRuns_atList(i int) *QGlyphRun {
+	if ptr.Pointer() != nil {
+		var tmpValue = NewQGlyphRunFromPointer(C.QTextLayout_glyphRuns_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*QGlyphRun).DestroyQGlyphRun)
+		return tmpValue
+	}
+	return nil
 }
 
 //QTextLength::Type
@@ -51048,6 +51737,19 @@ func (ptr *QTextLine) Descent() float64 {
 	return 0
 }
 
+func (ptr *QTextLine) GlyphRuns(from int, length int) []*QGlyphRun {
+	if ptr.Pointer() != nil {
+		return func(l C.struct_QtGui_PackedList) []*QGlyphRun {
+			var out = make([]*QGlyphRun, int(l.len))
+			for i := 0; i < int(l.len); i++ {
+				out[i] = NewQTextLineFromPointer(l.data).glyphRuns_atList(i)
+			}
+			return out
+		}(C.QTextLine_GlyphRuns(ptr.Pointer(), C.int(int32(from)), C.int(int32(length))))
+	}
+	return nil
+}
+
 func (ptr *QTextLine) Height() float64 {
 	if ptr.Pointer() != nil {
 		return float64(C.QTextLine_Height(ptr.Pointer()))
@@ -51187,6 +51889,15 @@ func (ptr *QTextLine) Y() float64 {
 		return float64(C.QTextLine_Y(ptr.Pointer()))
 	}
 	return 0
+}
+
+func (ptr *QTextLine) glyphRuns_atList(i int) *QGlyphRun {
+	if ptr.Pointer() != nil {
+		var tmpValue = NewQGlyphRunFromPointer(C.QTextLine_glyphRuns_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*QGlyphRun).DestroyQGlyphRun)
+		return tmpValue
+	}
+	return nil
 }
 
 type QTextList struct {

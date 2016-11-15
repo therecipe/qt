@@ -95,7 +95,7 @@ func goType(f *parser.Function, value string) string {
 
 	case "T":
 		{
-			switch f.TemplateMode {
+			switch f.TemplateModeJNI {
 			case "Boolean":
 				{
 					return "bool"
@@ -153,11 +153,23 @@ func goType(f *parser.Function, value string) string {
 				return fmt.Sprintf("%v.%v", m, value)
 			}
 
-			if f.TemplateMode == "String" {
+			if f.TemplateModeJNI == "String" {
 				return "string"
 			}
 
 			return value
+		}
+
+	case parser.IsPackedList(value):
+		{
+			value = parser.UnpackedList(value)
+			if m := module(parser.ClassMap[value].Module); m != module(f) {
+				if parser.ClassMap[f.Class()].WeakLink[parser.ClassMap[value].Module] {
+					return "[]unsafe.Pointer"
+				}
+				return fmt.Sprintf("[]*%v.%v", m, value)
+			}
+			return fmt.Sprintf("[]*%v", value)
 		}
 	}
 
@@ -375,7 +387,7 @@ func cppType(f *parser.Function, value string) string {
 
 	case "T":
 		{
-			switch f.TemplateMode {
+			switch f.TemplateModeJNI {
 			case "Boolean":
 				{
 					return "char"
@@ -423,6 +435,11 @@ func cppType(f *parser.Function, value string) string {
 	case isClass(value):
 		{
 			return "void*"
+		}
+
+	case parser.IsPackedList(value):
+		{
+			return fmt.Sprintf("struct %v_PackedList", strings.Title(parser.ClassMap[f.Class()].Module))
 		}
 	}
 

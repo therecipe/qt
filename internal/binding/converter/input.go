@@ -108,7 +108,7 @@ func goInput(name, value string, f *parser.Function) string {
 
 	case "T":
 		{
-			switch f.TemplateMode {
+			switch f.TemplateModeJNI {
 			case "Boolean":
 				{
 					return fmt.Sprintf("C.char(int8(qt.GoBoolToInt(%v)))", name)
@@ -279,7 +279,7 @@ func cppInput(name, value string, f *parser.Function) string {
 
 	case "T":
 		{
-			switch f.TemplateMode {
+			switch f.TemplateModeJNI {
 			case "Boolean", "Int":
 				{
 					return name

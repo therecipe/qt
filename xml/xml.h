@@ -12,6 +12,7 @@ extern "C" {
 #endif
 
 struct QtXml_PackedString { char* data; long long len; };
+struct QtXml_PackedList { void* data; long long len; };
 void* QDomAttr_NewQDomAttr();
 void* QDomAttr_NewQDomAttr2(void* x);
 struct QtXml_PackedString QDomAttr_Name(void* ptr);

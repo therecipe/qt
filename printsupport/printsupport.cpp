@@ -24,6 +24,7 @@
 #include <QInputMethod>
 #include <QInputMethodEvent>
 #include <QKeyEvent>
+#include <QList>
 #include <QMargins>
 #include <QMarginsF>
 #include <QMetaMethod>
@@ -4214,6 +4215,11 @@ struct QtPrintSupport_PackedString QPrinterInfo_QPrinterInfo_AvailablePrinterNam
 	return ({ QByteArray tb6ad9e = QPrinterInfo::availablePrinterNames().join("|").toUtf8(); QtPrintSupport_PackedString { const_cast<char*>(tb6ad9e.prepend("WHITESPACE").constData()+10), tb6ad9e.size()-10 }; });
 }
 
+struct QtPrintSupport_PackedList QPrinterInfo_QPrinterInfo_AvailablePrinters()
+{
+	return ({ QList<QPrinterInfo>* tmpValue = new QList<QPrinterInfo>(QPrinterInfo::availablePrinters()); QtPrintSupport_PackedList { tmpValue, tmpValue->size() }; });
+}
+
 long long QPrinterInfo_DefaultDuplexMode(void* ptr)
 {
 	return static_cast<QPrinterInfo*>(ptr)->defaultDuplexMode();
@@ -4289,6 +4295,11 @@ long long QPrinterInfo_State(void* ptr)
 	return static_cast<QPrinterInfo*>(ptr)->state();
 }
 
+struct QtPrintSupport_PackedList QPrinterInfo_SupportedPageSizes(void* ptr)
+{
+	return ({ QList<QPageSize>* tmpValue = new QList<QPageSize>(static_cast<QPrinterInfo*>(ptr)->supportedPageSizes()); QtPrintSupport_PackedList { tmpValue, tmpValue->size() }; });
+}
+
 char QPrinterInfo_SupportsCustomPageSizes(void* ptr)
 {
 	return static_cast<QPrinterInfo*>(ptr)->supportsCustomPageSizes();
@@ -4297,5 +4308,15 @@ char QPrinterInfo_SupportsCustomPageSizes(void* ptr)
 void QPrinterInfo_DestroyQPrinterInfo(void* ptr)
 {
 	static_cast<QPrinterInfo*>(ptr)->~QPrinterInfo();
+}
+
+void* QPrinterInfo_availablePrinters_atList(void* ptr, int i)
+{
+	return new QPrinterInfo(static_cast<QList<QPrinterInfo>*>(ptr)->at(i));
+}
+
+void* QPrinterInfo_supportedPageSizes_atList(void* ptr, int i)
+{
+	return new QPageSize(static_cast<QList<QPageSize>*>(ptr)->at(i));
 }
 

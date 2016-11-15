@@ -29,6 +29,7 @@
 #include <QInputMethod>
 #include <QInputMethodEvent>
 #include <QKeyEvent>
+#include <QList>
 #include <QMetaMethod>
 #include <QMetaObject>
 #include <QMouseEvent>
@@ -959,6 +960,11 @@ void* QWebEngineHistory_BackItem(void* ptr)
 	return new QWebEngineHistoryItem(static_cast<QWebEngineHistory*>(ptr)->backItem());
 }
 
+struct QtWebEngine_PackedList QWebEngineHistory_BackItems(void* ptr, int maxItems)
+{
+	return ({ QList<QWebEngineHistoryItem>* tmpValue = new QList<QWebEngineHistoryItem>(static_cast<QWebEngineHistory*>(ptr)->backItems(maxItems)); QtWebEngine_PackedList { tmpValue, tmpValue->size() }; });
+}
+
 char QWebEngineHistory_CanGoBack(void* ptr)
 {
 	return static_cast<QWebEngineHistory*>(ptr)->canGoBack();
@@ -999,6 +1005,11 @@ void* QWebEngineHistory_ForwardItem(void* ptr)
 	return new QWebEngineHistoryItem(static_cast<QWebEngineHistory*>(ptr)->forwardItem());
 }
 
+struct QtWebEngine_PackedList QWebEngineHistory_ForwardItems(void* ptr, int maxItems)
+{
+	return ({ QList<QWebEngineHistoryItem>* tmpValue = new QList<QWebEngineHistoryItem>(static_cast<QWebEngineHistory*>(ptr)->forwardItems(maxItems)); QtWebEngine_PackedList { tmpValue, tmpValue->size() }; });
+}
+
 void QWebEngineHistory_GoToItem(void* ptr, void* item)
 {
 	static_cast<QWebEngineHistory*>(ptr)->goToItem(*static_cast<QWebEngineHistoryItem*>(item));
@@ -1007,6 +1018,26 @@ void QWebEngineHistory_GoToItem(void* ptr, void* item)
 void* QWebEngineHistory_ItemAt(void* ptr, int i)
 {
 	return new QWebEngineHistoryItem(static_cast<QWebEngineHistory*>(ptr)->itemAt(i));
+}
+
+struct QtWebEngine_PackedList QWebEngineHistory_Items(void* ptr)
+{
+	return ({ QList<QWebEngineHistoryItem>* tmpValue = new QList<QWebEngineHistoryItem>(static_cast<QWebEngineHistory*>(ptr)->items()); QtWebEngine_PackedList { tmpValue, tmpValue->size() }; });
+}
+
+void* QWebEngineHistory_backItems_atList(void* ptr, int i)
+{
+	return new QWebEngineHistoryItem(static_cast<QList<QWebEngineHistoryItem>*>(ptr)->at(i));
+}
+
+void* QWebEngineHistory_forwardItems_atList(void* ptr, int i)
+{
+	return new QWebEngineHistoryItem(static_cast<QList<QWebEngineHistoryItem>*>(ptr)->at(i));
+}
+
+void* QWebEngineHistory_items_atList(void* ptr, int i)
+{
+	return new QWebEngineHistoryItem(static_cast<QList<QWebEngineHistoryItem>*>(ptr)->at(i));
 }
 
 void* QWebEngineHistoryItem_NewQWebEngineHistoryItem(void* other)
@@ -2146,6 +2177,11 @@ void* QWebEngineScriptCollection_FindScript(void* ptr, char* name)
 	return new QWebEngineScript(static_cast<QWebEngineScriptCollection*>(ptr)->findScript(QString(name)));
 }
 
+struct QtWebEngine_PackedList QWebEngineScriptCollection_FindScripts(void* ptr, char* name)
+{
+	return ({ QList<QWebEngineScript>* tmpValue = new QList<QWebEngineScript>(static_cast<QWebEngineScriptCollection*>(ptr)->findScripts(QString(name))); QtWebEngine_PackedList { tmpValue, tmpValue->size() }; });
+}
+
 void QWebEngineScriptCollection_Insert(void* ptr, void* s)
 {
 	static_cast<QWebEngineScriptCollection*>(ptr)->insert(*static_cast<QWebEngineScript*>(s));
@@ -2166,9 +2202,24 @@ int QWebEngineScriptCollection_Size(void* ptr)
 	return static_cast<QWebEngineScriptCollection*>(ptr)->size();
 }
 
+struct QtWebEngine_PackedList QWebEngineScriptCollection_ToList(void* ptr)
+{
+	return ({ QList<QWebEngineScript>* tmpValue = new QList<QWebEngineScript>(static_cast<QWebEngineScriptCollection*>(ptr)->toList()); QtWebEngine_PackedList { tmpValue, tmpValue->size() }; });
+}
+
 void QWebEngineScriptCollection_DestroyQWebEngineScriptCollection(void* ptr)
 {
 	static_cast<QWebEngineScriptCollection*>(ptr)->~QWebEngineScriptCollection();
+}
+
+void* QWebEngineScriptCollection_findScripts_atList(void* ptr, int i)
+{
+	return new QWebEngineScript(static_cast<QList<QWebEngineScript>*>(ptr)->at(i));
+}
+
+void* QWebEngineScriptCollection_toList_atList(void* ptr, int i)
+{
+	return new QWebEngineScript(static_cast<QList<QWebEngineScript>*>(ptr)->at(i));
 }
 
 struct QtWebEngine_PackedString QWebEngineSettings_DefaultTextEncoding(void* ptr)

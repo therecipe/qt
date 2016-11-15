@@ -12,6 +12,7 @@ extern "C" {
 #endif
 
 struct QtDesigner_PackedString { char* data; long long len; };
+struct QtDesigner_PackedList { void* data; long long len; };
 void* QAbstractExtensionFactory_Extension(void* ptr, void* object, char* iid);
 void QAbstractExtensionFactory_DestroyQAbstractExtensionFactory(void* ptr);
 void QAbstractExtensionFactory_DestroyQAbstractExtensionFactoryDefault(void* ptr);
@@ -175,6 +176,7 @@ void QDesignerContainerExtension_DestroyQDesignerContainerExtension(void* ptr);
 void QDesignerContainerExtension_DestroyQDesignerContainerExtensionDefault(void* ptr);
 void QDesignerCustomWidgetCollectionInterface_DestroyQDesignerCustomWidgetCollectionInterface(void* ptr);
 void QDesignerCustomWidgetCollectionInterface_DestroyQDesignerCustomWidgetCollectionInterfaceDefault(void* ptr);
+void* QDesignerCustomWidgetCollectionInterface_customWidgets_atList(void* ptr, int i);
 struct QtDesigner_PackedString QDesignerCustomWidgetInterface_CodeTemplate(void* ptr);
 struct QtDesigner_PackedString QDesignerCustomWidgetInterface_CodeTemplateDefault(void* ptr);
 void* QDesignerCustomWidgetInterface_CreateWidget(void* ptr, void* parent);
@@ -519,6 +521,8 @@ void QDesignerMemberSheetExtension_SetVisible(void* ptr, int index, char visible
 struct QtDesigner_PackedString QDesignerMemberSheetExtension_Signature(void* ptr, int index);
 void QDesignerMemberSheetExtension_DestroyQDesignerMemberSheetExtension(void* ptr);
 void QDesignerMemberSheetExtension_DestroyQDesignerMemberSheetExtensionDefault(void* ptr);
+void* QDesignerMemberSheetExtension_parameterNames_atList(void* ptr, int i);
+void* QDesignerMemberSheetExtension_parameterTypes_atList(void* ptr, int i);
 void* QDesignerObjectInspectorInterface_NewQDesignerObjectInspectorInterface(void* parent, long long flags);
 void* QDesignerObjectInspectorInterface_Core(void* ptr);
 void* QDesignerObjectInspectorInterface_CoreDefault(void* ptr);
@@ -806,6 +810,7 @@ void* QDesignerTaskMenuExtension_PreferredEditAction(void* ptr);
 void* QDesignerTaskMenuExtension_PreferredEditActionDefault(void* ptr);
 void QDesignerTaskMenuExtension_DestroyQDesignerTaskMenuExtension(void* ptr);
 void QDesignerTaskMenuExtension_DestroyQDesignerTaskMenuExtensionDefault(void* ptr);
+void* QDesignerTaskMenuExtension_taskActions_atList(void* ptr, int i);
 struct QtDesigner_PackedString QDesignerWidgetBoxInterface_FileName(void* ptr);
 char QDesignerWidgetBoxInterface_Load(void* ptr);
 char QDesignerWidgetBoxInterface_Save(void* ptr);
@@ -985,12 +990,14 @@ char QExtensionManager_EventFilterDefault(void* ptr, void* watched, void* event)
 void* QExtensionManager_MetaObject(void* ptr);
 void* QExtensionManager_MetaObjectDefault(void* ptr);
 void* QFormBuilder_NewQFormBuilder();
+struct QtDesigner_PackedList QFormBuilder_CustomWidgets(void* ptr);
 void QFormBuilder_AddPluginPath(void* ptr, char* pluginPath);
 void QFormBuilder_ClearPluginPaths(void* ptr);
 struct QtDesigner_PackedString QFormBuilder_PluginPaths(void* ptr);
 void QFormBuilder_SetPluginPath(void* ptr, char* pluginPaths);
 void QFormBuilder_DestroyQFormBuilder(void* ptr);
 void QFormBuilder_DestroyQFormBuilderDefault(void* ptr);
+void* QFormBuilder_customWidgets_atList(void* ptr, int i);
 void* QFormBuilder_Load(void* ptr, void* device, void* parent);
 void* QFormBuilder_LoadDefault(void* ptr, void* device, void* parent);
 void QFormBuilder_Save(void* ptr, void* device, void* widget);

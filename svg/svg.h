@@ -12,6 +12,7 @@ extern "C" {
 #endif
 
 struct QtSvg_PackedString { char* data; long long len; };
+struct QtSvg_PackedList { void* data; long long len; };
 void* QGraphicsSvgItem_NewQGraphicsSvgItem(void* parent);
 void* QGraphicsSvgItem_NewQGraphicsSvgItem2(char* fileName, void* parent);
 void* QGraphicsSvgItem_BoundingRect(void* ptr);

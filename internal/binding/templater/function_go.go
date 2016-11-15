@@ -78,7 +78,7 @@ func goFunctionBody(function *parser.Function) string {
 	}
 
 	for _, parameter := range function.Parameters {
-		if parameter.Value == "..." || (parameter.Value == "T" && parser.ClassMap[function.Class()].Module == "QtAndroidExtras" && function.TemplateMode == "") {
+		if parameter.Value == "..." || (parameter.Value == "T" && parser.ClassMap[function.Class()].Module == "QtAndroidExtras" && function.TemplateModeJNI == "") {
 			for i := 0; i < 10; i++ {
 				if parameter.Value == "T" {
 					fmt.Fprintf(bb, "var p%v, d%v = assertion(%v, %v)\n", i, i, i, parameter.Name)
@@ -120,7 +120,7 @@ func goFunctionBody(function *parser.Function) string {
 									body,
 
 									func() string {
-										if function.TemplateMode != "" {
+										if function.TemplateModeJNI != "" {
 											return fmt.Sprintf("*%v", converter.CleanValue(function.Output))
 										}
 										return converter.GoHeaderOutput(function)
@@ -134,7 +134,7 @@ func goFunctionBody(function *parser.Function) string {
 									}(),
 
 									func() string {
-										if function.TemplateMode == "String" {
+										if function.TemplateModeJNI == "String" {
 											return ".ToString()"
 										}
 										return ""

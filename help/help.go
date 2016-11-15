@@ -6377,6 +6377,25 @@ func (ptr *QHelpEngineCore) FileData(url core.QUrl_ITF) *core.QByteArray {
 	return nil
 }
 
+func (ptr *QHelpEngineCore) Files(namespaceName string, filterAttributes []string, extensionFilter string) []*core.QUrl {
+	if ptr.Pointer() != nil {
+		var namespaceNameC = C.CString(namespaceName)
+		defer C.free(unsafe.Pointer(namespaceNameC))
+		var filterAttributesC = C.CString(strings.Join(filterAttributes, "|"))
+		defer C.free(unsafe.Pointer(filterAttributesC))
+		var extensionFilterC = C.CString(extensionFilter)
+		defer C.free(unsafe.Pointer(extensionFilterC))
+		return func(l C.struct_QtHelp_PackedList) []*core.QUrl {
+			var out = make([]*core.QUrl, int(l.len))
+			for i := 0; i < int(l.len); i++ {
+				out[i] = NewQHelpEngineCoreFromPointer(l.data).files_atList(i)
+			}
+			return out
+		}(C.QHelpEngineCore_Files(ptr.Pointer(), namespaceNameC, filterAttributesC, extensionFilterC))
+	}
+	return nil
+}
+
 func (ptr *QHelpEngineCore) FilterAttributes() []string {
 	if ptr.Pointer() != nil {
 		return strings.Split(cGoUnpackString(C.QHelpEngineCore_FilterAttributes(ptr.Pointer())), "|")
@@ -6649,6 +6668,22 @@ func (ptr *QHelpEngineCore) DestroyQHelpEngineCoreDefault() {
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
+}
+
+func (ptr *QHelpEngineCore) files_atList(i int) *core.QUrl {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQUrlFromPointer(C.QHelpEngineCore_files_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QUrl).DestroyQUrl)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QHelpEngineCore) filterAttributeSets_atList(i int) []string {
+	if ptr.Pointer() != nil {
+		return strings.Split(cGoUnpackString(C.QHelpEngineCore_filterAttributeSets_atList(ptr.Pointer(), C.int(int32(i)))), "|")
+	}
+	return make([]string, 0)
 }
 
 //export callbackQHelpEngineCore_TimerEvent

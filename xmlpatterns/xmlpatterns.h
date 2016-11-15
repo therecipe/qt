@@ -12,6 +12,7 @@ extern "C" {
 #endif
 
 struct QtXmlPatterns_PackedString { char* data; long long len; };
+struct QtXmlPatterns_PackedList { void* data; long long len; };
 void QAbstractMessageHandler_DestroyQAbstractMessageHandler(void* ptr);
 void QAbstractMessageHandler_DestroyQAbstractMessageHandlerDefault(void* ptr);
 void QAbstractMessageHandler_TimerEvent(void* ptr, void* event);
@@ -70,6 +71,8 @@ struct QtXmlPatterns_PackedString QAbstractXmlNodeModel_StringValue(void* ptr, v
 void* QAbstractXmlNodeModel_TypedValue(void* ptr, void* node);
 void QAbstractXmlNodeModel_DestroyQAbstractXmlNodeModel(void* ptr);
 void QAbstractXmlNodeModel_DestroyQAbstractXmlNodeModelDefault(void* ptr);
+void* QAbstractXmlNodeModel_attributes_atList(void* ptr, int i);
+void* QAbstractXmlNodeModel_nodesByIdref_atList(void* ptr, int i);
 void* QAbstractXmlReceiver_NewQAbstractXmlReceiver();
 void QAbstractXmlReceiver_AtomicValue(void* ptr, void* value);
 void QAbstractXmlReceiver_Attribute(void* ptr, void* name, void* value);
@@ -94,6 +97,7 @@ struct QtXmlPatterns_PackedString QSimpleXmlNodeModel_StringValue(void* ptr, voi
 struct QtXmlPatterns_PackedString QSimpleXmlNodeModel_StringValueDefault(void* ptr, void* node);
 void QSimpleXmlNodeModel_DestroyQSimpleXmlNodeModel(void* ptr);
 void QSimpleXmlNodeModel_DestroyQSimpleXmlNodeModelDefault(void* ptr);
+void* QSimpleXmlNodeModel_nodesByIdref_atList(void* ptr, int i);
 long long QSimpleXmlNodeModel_CompareOrder(void* ptr, void* ni1, void* ni2);
 ;
 void* QSimpleXmlNodeModel_DocumentUri(void* ptr, void* n);

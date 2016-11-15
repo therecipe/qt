@@ -12,6 +12,7 @@ extern "C" {
 #endif
 
 struct QtSql_PackedString { char* data; long long len; };
+struct QtSql_PackedList { void* data; long long len; };
 void* QSqlDatabase_QSqlDatabase_AddDatabase2(void* driver, char* connectionName);
 void* QSqlDatabase_QSqlDatabase_AddDatabase(char* ty, char* connectionName);
 void* QSqlDatabase_NewQSqlDatabase();
@@ -495,6 +496,7 @@ void* QSqlResult_BoundValue2(void* ptr, char* placeholder);
 void* QSqlResult_BoundValue(void* ptr, int index);
 int QSqlResult_BoundValueCount(void* ptr);
 struct QtSql_PackedString QSqlResult_BoundValueName(void* ptr, int index);
+struct QtSql_PackedList QSqlResult_BoundValues(void* ptr);
 void QSqlResult_Clear(void* ptr);
 void* QSqlResult_Data(void* ptr, int index);
 void* QSqlResult_Driver(void* ptr);
@@ -544,6 +546,7 @@ void QSqlResult_SetSelectDefault(void* ptr, char sele);
 int QSqlResult_Size(void* ptr);
 void QSqlResult_DestroyQSqlResult(void* ptr);
 void QSqlResult_DestroyQSqlResultDefault(void* ptr);
+void* QSqlResult_boundValues_atList(void* ptr, int i);
 void* QSqlTableModel_NewQSqlTableModel(void* parent, void* db);
 void QSqlTableModel_ConnectBeforeDelete(void* ptr);
 void QSqlTableModel_DisconnectBeforeDelete(void* ptr);

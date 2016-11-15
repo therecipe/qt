@@ -24,6 +24,7 @@
 #include <QGeoSatelliteInfoSource>
 #include <QGeoShape>
 #include <QIODevice>
+#include <QList>
 #include <QMetaMethod>
 #include <QMetaObject>
 #include <QNmeaPositionInfoSource>
@@ -377,6 +378,11 @@ void QGeoAreaMonitorSource_DestroyQGeoAreaMonitorSource(void* ptr)
 void QGeoAreaMonitorSource_DestroyQGeoAreaMonitorSourceDefault(void* ptr)
 {
 
+}
+
+void* QGeoAreaMonitorSource_activeMonitors_atList(void* ptr, int i)
+{
+	return new QGeoAreaMonitorInfo(static_cast<QList<QGeoAreaMonitorInfo>*>(ptr)->at(i));
 }
 
 void QGeoAreaMonitorSource_TimerEvent(void* ptr, void* event)

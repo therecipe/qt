@@ -12,6 +12,7 @@ extern "C" {
 #endif
 
 struct QtScript_PackedString { char* data; long long len; };
+struct QtScript_PackedList { void* data; long long len; };
 void* QScriptClass_NewQScriptClass(void* engine);
 void* QScriptClass_Engine(void* ptr);
 void* QScriptClass_Extension(void* ptr, long long extension, void* argument);

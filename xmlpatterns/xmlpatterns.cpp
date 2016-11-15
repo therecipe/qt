@@ -29,6 +29,7 @@
 #include <QTimerEvent>
 #include <QUrl>
 #include <QVariant>
+#include <QVector>
 #include <QXmlFormatter>
 #include <QXmlItem>
 #include <QXmlName>
@@ -375,6 +376,16 @@ void QAbstractXmlNodeModel_DestroyQAbstractXmlNodeModelDefault(void* ptr)
 
 }
 
+void* QAbstractXmlNodeModel_attributes_atList(void* ptr, int i)
+{
+	return new QXmlNodeModelIndex(static_cast<QVector<QXmlNodeModelIndex>*>(ptr)->at(i));
+}
+
+void* QAbstractXmlNodeModel_nodesByIdref_atList(void* ptr, int i)
+{
+	return new QXmlNodeModelIndex(static_cast<QVector<QXmlNodeModelIndex>*>(ptr)->at(i));
+}
+
 class MyQAbstractXmlReceiver: public QAbstractXmlReceiver
 {
 public:
@@ -528,6 +539,11 @@ void QSimpleXmlNodeModel_DestroyQSimpleXmlNodeModel(void* ptr)
 void QSimpleXmlNodeModel_DestroyQSimpleXmlNodeModelDefault(void* ptr)
 {
 
+}
+
+void* QSimpleXmlNodeModel_nodesByIdref_atList(void* ptr, int i)
+{
+	return new QXmlNodeModelIndex(static_cast<QVector<QXmlNodeModelIndex>*>(ptr)->at(i));
 }
 
 long long QSimpleXmlNodeModel_CompareOrder(void* ptr, void* ni1, void* ni2)

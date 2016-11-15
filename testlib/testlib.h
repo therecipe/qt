@@ -12,6 +12,7 @@ extern "C" {
 #endif
 
 struct QtTestLib_PackedString { char* data; long long len; };
+struct QtTestLib_PackedList { void* data; long long len; };
 void* QSignalSpy_NewQSignalSpy(void* object, char* sign);
 char QSignalSpy_IsValid(void* ptr);
 void* QSignalSpy_Signal(void* ptr);

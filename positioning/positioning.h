@@ -12,6 +12,7 @@ extern "C" {
 #endif
 
 struct QtPositioning_PackedString { char* data; long long len; };
+struct QtPositioning_PackedList { void* data; long long len; };
 void* QGeoAddress_NewQGeoAddress();
 void* QGeoAddress_NewQGeoAddress2(void* other);
 struct QtPositioning_PackedString QGeoAddress_City(void* ptr);
@@ -76,6 +77,7 @@ char QGeoAreaMonitorSource_StopMonitoring(void* ptr, void* monitor);
 long long QGeoAreaMonitorSource_SupportedAreaMonitorFeatures(void* ptr);
 void QGeoAreaMonitorSource_DestroyQGeoAreaMonitorSource(void* ptr);
 void QGeoAreaMonitorSource_DestroyQGeoAreaMonitorSourceDefault(void* ptr);
+void* QGeoAreaMonitorSource_activeMonitors_atList(void* ptr, int i);
 void QGeoAreaMonitorSource_TimerEvent(void* ptr, void* event);
 void QGeoAreaMonitorSource_TimerEventDefault(void* ptr, void* event);
 void QGeoAreaMonitorSource_ChildEvent(void* ptr, void* event);

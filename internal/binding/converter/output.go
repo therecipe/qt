@@ -99,7 +99,7 @@ func goOutput(name, value string, f *parser.Function) string {
 
 	case "T", "JavaVM", "jclass", "jobject":
 		{
-			switch f.TemplateMode {
+			switch f.TemplateModeJNI {
 			case "Boolean":
 				{
 					return fmt.Sprintf("int8(%v) != 0", name)
@@ -142,6 +142,11 @@ func goOutput(name, value string, f *parser.Function) string {
 			}
 
 			return fmt.Sprintf("New%vFromPointer(%v)", strings.Title(value), name)
+		}
+
+	case parser.IsPackedList(value):
+		{
+			return fmt.Sprintf("func(l C.struct_%v_PackedList)%v{var out = make(%v, int(l.len))\nfor i:=0;i<int(l.len);i++{ out[i] = New%vFromPointer(l.data).%v_atList(i) }\nreturn out}(%v)", parser.ClassMap[f.Class()].Module, goType(f, value), goType(f, value), f.Class(), f.Name, name)
 		}
 	}
 
@@ -204,7 +209,7 @@ func goOutputFailed(value string, f *parser.Function) string {
 
 	case "T", "JavaVM", "jclass", "jobject":
 		{
-			switch f.TemplateMode {
+			switch f.TemplateModeJNI {
 			case "Boolean":
 				{
 					return "false"
@@ -233,10 +238,15 @@ func goOutputFailed(value string, f *parser.Function) string {
 
 	case isClass(value):
 		{
-			if f.TemplateMode == "String" {
+			if f.TemplateModeJNI == "String" {
 				return "\"\""
 			}
 
+			return "nil"
+		}
+
+	case parser.IsPackedList(value):
+		{
 			return "nil"
 		}
 	}
@@ -362,11 +372,14 @@ func cgoOutput(name, value string, f *parser.Function) string {
 }
 
 func CppOutput(name, value string, f *parser.Function) string {
+	if strings.HasSuffix(f.Name, "_atList") {
+		return cppOutput(fmt.Sprintf("%v->at%v", strings.Split(name, "->")[0], strings.Split(name, "_atList")[1]), value, f)
+	}
 	return cppOutput(name, value, f)
 }
 
 func cppOutputPack(name, value string, f *parser.Function) string {
-	var out = cppOutput(name, value, f)
+	var out = CppOutput(name, value, f)
 
 	if strings.Contains(out, "_PackedString") {
 		var out = strings.Replace(out, "({ ", "", -1)
@@ -381,7 +394,7 @@ func cppOutputPack(name, value string, f *parser.Function) string {
 }
 
 func cppOutputPacked(name, value string, f *parser.Function) string {
-	var out = cppOutput(name, value, f)
+	var out = CppOutput(name, value, f)
 
 	if strings.Contains(out, "_PackedString") {
 		return fmt.Sprintf("%vPacked", cleanName(name, value))
@@ -584,6 +597,12 @@ func cppOutput(name, value string, f *parser.Function) string {
 					}
 				}
 			}
+		}
+
+	case parser.IsPackedList(value):
+		{
+			vOld = strings.Replace(vOld, " &", "", -1)
+			return fmt.Sprintf("({ %v* tmpValue = new %v(%v); %v_PackedList { tmpValue, tmpValue->size() }; })", vOld, vOld, name, strings.Title(parser.ClassMap[f.Class()].Module))
 		}
 	}
 

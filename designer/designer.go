@@ -3384,6 +3384,13 @@ func (ptr *QDesignerCustomWidgetCollectionInterface) DestroyQDesignerCustomWidge
 	}
 }
 
+func (ptr *QDesignerCustomWidgetCollectionInterface) customWidgets_atList(i int) *QDesignerCustomWidgetInterface {
+	if ptr.Pointer() != nil {
+		return NewQDesignerCustomWidgetInterfaceFromPointer(C.QDesignerCustomWidgetCollectionInterface_customWidgets_atList(ptr.Pointer(), C.int(int32(i))))
+	}
+	return nil
+}
+
 type QDesignerCustomWidgetInterface struct {
 	ptr unsafe.Pointer
 }
@@ -10698,6 +10705,24 @@ func (ptr *QDesignerMemberSheetExtension) DestroyQDesignerMemberSheetExtensionDe
 	}
 }
 
+func (ptr *QDesignerMemberSheetExtension) parameterNames_atList(i int) *core.QByteArray {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQByteArrayFromPointer(C.QDesignerMemberSheetExtension_parameterNames_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QDesignerMemberSheetExtension) parameterTypes_atList(i int) *core.QByteArray {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQByteArrayFromPointer(C.QDesignerMemberSheetExtension_parameterTypes_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		return tmpValue
+	}
+	return nil
+}
+
 type QDesignerObjectInspectorInterface struct {
 	widgets.QWidget
 }
@@ -16343,6 +16368,17 @@ func (ptr *QDesignerTaskMenuExtension) DestroyQDesignerTaskMenuExtensionDefault(
 	}
 }
 
+func (ptr *QDesignerTaskMenuExtension) taskActions_atList(i int) *widgets.QAction {
+	if ptr.Pointer() != nil {
+		var tmpValue = widgets.NewQActionFromPointer(C.QDesignerTaskMenuExtension_taskActions_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
 type QDesignerWidgetBoxInterface struct {
 	widgets.QWidget
 }
@@ -19827,6 +19863,19 @@ func NewQFormBuilder() *QFormBuilder {
 	return NewQFormBuilderFromPointer(C.QFormBuilder_NewQFormBuilder())
 }
 
+func (ptr *QFormBuilder) CustomWidgets() []*QDesignerCustomWidgetInterface {
+	if ptr.Pointer() != nil {
+		return func(l C.struct_QtDesigner_PackedList) []*QDesignerCustomWidgetInterface {
+			var out = make([]*QDesignerCustomWidgetInterface, int(l.len))
+			for i := 0; i < int(l.len); i++ {
+				out[i] = NewQFormBuilderFromPointer(l.data).customWidgets_atList(i)
+			}
+			return out
+		}(C.QFormBuilder_CustomWidgets(ptr.Pointer()))
+	}
+	return nil
+}
+
 func (ptr *QFormBuilder) AddPluginPath(pluginPath string) {
 	if ptr.Pointer() != nil {
 		var pluginPathC = C.CString(pluginPath)
@@ -19894,6 +19943,13 @@ func (ptr *QFormBuilder) DestroyQFormBuilderDefault() {
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
+}
+
+func (ptr *QFormBuilder) customWidgets_atList(i int) *QDesignerCustomWidgetInterface {
+	if ptr.Pointer() != nil {
+		return NewQDesignerCustomWidgetInterfaceFromPointer(C.QFormBuilder_customWidgets_atList(ptr.Pointer(), C.int(int32(i))))
+	}
+	return nil
 }
 
 //export callbackQFormBuilder_Load

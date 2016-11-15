@@ -2877,6 +2877,19 @@ func (ptr *QAbstractItemModel) Parent(index QModelIndex_ITF) *QModelIndex {
 	return nil
 }
 
+func (ptr *QAbstractItemModel) PersistentIndexList() []*QModelIndex {
+	if ptr.Pointer() != nil {
+		return func(l C.struct_QtCore_PackedList) []*QModelIndex {
+			var out = make([]*QModelIndex, int(l.len))
+			for i := 0; i < int(l.len); i++ {
+				out[i] = NewQAbstractItemModelFromPointer(l.data).persistentIndexList_atList(i)
+			}
+			return out
+		}(C.QAbstractItemModel_PersistentIndexList(ptr.Pointer()))
+	}
+	return nil
+}
+
 func (ptr *QAbstractItemModel) RemoveColumn(column int, parent QModelIndex_ITF) bool {
 	if ptr.Pointer() != nil {
 		return C.QAbstractItemModel_RemoveColumn(ptr.Pointer(), C.int(int32(column)), PointerFromQModelIndex(parent)) != 0
@@ -3504,6 +3517,24 @@ func (ptr *QAbstractItemModel) DestroyQAbstractItemModelDefault() {
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
+}
+
+func (ptr *QAbstractItemModel) match_atList(i int) *QModelIndex {
+	if ptr.Pointer() != nil {
+		var tmpValue = NewQModelIndexFromPointer(C.QAbstractItemModel_match_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*QModelIndex).DestroyQModelIndex)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QAbstractItemModel) persistentIndexList_atList(i int) *QModelIndex {
+	if ptr.Pointer() != nil {
+		var tmpValue = NewQModelIndexFromPointer(C.QAbstractItemModel_persistentIndexList_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*QModelIndex).DestroyQModelIndex)
+		return tmpValue
+	}
+	return nil
 }
 
 //export callbackQAbstractItemModel_TimerEvent
@@ -9338,6 +9369,19 @@ func (ptr *QAbstractTransition) AddAnimation(animation QAbstractAnimation_ITF) {
 	}
 }
 
+func (ptr *QAbstractTransition) Animations() []*QAbstractAnimation {
+	if ptr.Pointer() != nil {
+		return func(l C.struct_QtCore_PackedList) []*QAbstractAnimation {
+			var out = make([]*QAbstractAnimation, int(l.len))
+			for i := 0; i < int(l.len); i++ {
+				out[i] = NewQAbstractTransitionFromPointer(l.data).animations_atList(i)
+			}
+			return out
+		}(C.QAbstractTransition_Animations(ptr.Pointer()))
+	}
+	return nil
+}
+
 //export callbackQAbstractTransition_Event
 func callbackQAbstractTransition_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
 
@@ -9510,6 +9554,19 @@ func (ptr *QAbstractTransition) DisconnectTargetStateChanged() {
 	}
 }
 
+func (ptr *QAbstractTransition) TargetStates() []*QAbstractState {
+	if ptr.Pointer() != nil {
+		return func(l C.struct_QtCore_PackedList) []*QAbstractState {
+			var out = make([]*QAbstractState, int(l.len))
+			for i := 0; i < int(l.len); i++ {
+				out[i] = NewQAbstractTransitionFromPointer(l.data).targetStates_atList(i)
+			}
+			return out
+		}(C.QAbstractTransition_TargetStates(ptr.Pointer()))
+	}
+	return nil
+}
+
 //export callbackQAbstractTransition_TargetStatesChanged
 func callbackQAbstractTransition_TargetStatesChanged(ptr unsafe.Pointer) {
 
@@ -9601,6 +9658,28 @@ func (ptr *QAbstractTransition) DestroyQAbstractTransitionDefault() {
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
+}
+
+func (ptr *QAbstractTransition) animations_atList(i int) *QAbstractAnimation {
+	if ptr.Pointer() != nil {
+		var tmpValue = NewQAbstractAnimationFromPointer(C.QAbstractTransition_animations_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+			tmpValue.ConnectDestroyed(func(*QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QAbstractTransition) targetStates_atList(i int) *QAbstractState {
+	if ptr.Pointer() != nil {
+		var tmpValue = NewQAbstractStateFromPointer(C.QAbstractTransition_targetStates_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+			tmpValue.ConnectDestroyed(func(*QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
 }
 
 //export callbackQAbstractTransition_TimerEvent
@@ -13153,6 +13232,21 @@ func (ptr *QByteArray) Size() int {
 	return 0
 }
 
+func (ptr *QByteArray) Split(sep string) []*QByteArray {
+	if ptr.Pointer() != nil {
+		var sepC = C.CString(sep)
+		defer C.free(unsafe.Pointer(sepC))
+		return func(l C.struct_QtCore_PackedList) []*QByteArray {
+			var out = make([]*QByteArray, int(l.len))
+			for i := 0; i < int(l.len); i++ {
+				out[i] = NewQByteArrayFromPointer(l.data).split_atList(i)
+			}
+			return out
+		}(C.QByteArray_Split(ptr.Pointer(), sepC))
+	}
+	return nil
+}
+
 func (ptr *QByteArray) Squeeze() {
 	if ptr.Pointer() != nil {
 		C.QByteArray_Squeeze(ptr.Pointer())
@@ -13341,6 +13435,15 @@ func (ptr *QByteArray) ToUpper() *QByteArray {
 func (ptr *QByteArray) Trimmed() *QByteArray {
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQByteArrayFromPointer(C.QByteArray_Trimmed(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QByteArray) split_atList(i int) *QByteArray {
+	if ptr.Pointer() != nil {
+		var tmpValue = NewQByteArrayFromPointer(C.QByteArray_split_atList(ptr.Pointer(), C.int(int32(i))))
 		runtime.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
 		return tmpValue
 	}
@@ -17545,6 +17648,54 @@ func (ptr *QDir) DirName() string {
 	return ""
 }
 
+func QDir_Drives() []*QFileInfo {
+	return func(l C.struct_QtCore_PackedList) []*QFileInfo {
+		var out = make([]*QFileInfo, int(l.len))
+		for i := 0; i < int(l.len); i++ {
+			out[i] = NewQDirFromPointer(l.data).drives_atList(i)
+		}
+		return out
+	}(C.QDir_QDir_Drives())
+}
+
+func (ptr *QDir) Drives() []*QFileInfo {
+	return func(l C.struct_QtCore_PackedList) []*QFileInfo {
+		var out = make([]*QFileInfo, int(l.len))
+		for i := 0; i < int(l.len); i++ {
+			out[i] = NewQDirFromPointer(l.data).drives_atList(i)
+		}
+		return out
+	}(C.QDir_QDir_Drives())
+}
+
+func (ptr *QDir) EntryInfoList2(filters QDir__Filter, sort QDir__SortFlag) []*QFileInfo {
+	if ptr.Pointer() != nil {
+		return func(l C.struct_QtCore_PackedList) []*QFileInfo {
+			var out = make([]*QFileInfo, int(l.len))
+			for i := 0; i < int(l.len); i++ {
+				out[i] = NewQDirFromPointer(l.data).entryInfoList_atList(i)
+			}
+			return out
+		}(C.QDir_EntryInfoList2(ptr.Pointer(), C.longlong(filters), C.longlong(sort)))
+	}
+	return nil
+}
+
+func (ptr *QDir) EntryInfoList(nameFilters []string, filters QDir__Filter, sort QDir__SortFlag) []*QFileInfo {
+	if ptr.Pointer() != nil {
+		var nameFiltersC = C.CString(strings.Join(nameFilters, "|"))
+		defer C.free(unsafe.Pointer(nameFiltersC))
+		return func(l C.struct_QtCore_PackedList) []*QFileInfo {
+			var out = make([]*QFileInfo, int(l.len))
+			for i := 0; i < int(l.len); i++ {
+				out[i] = NewQDirFromPointer(l.data).entryInfoList_atList(i)
+			}
+			return out
+		}(C.QDir_EntryInfoList(ptr.Pointer(), nameFiltersC, C.longlong(filters), C.longlong(sort)))
+	}
+	return nil
+}
+
 func (ptr *QDir) EntryList2(filters QDir__Filter, sort QDir__SortFlag) []string {
 	if ptr.Pointer() != nil {
 		return strings.Split(cGoUnpackString(C.QDir_EntryList2(ptr.Pointer(), C.longlong(filters), C.longlong(sort))), "|")
@@ -17948,6 +18099,24 @@ func (ptr *QDir) DestroyQDir() {
 	}
 }
 
+func (ptr *QDir) drives_atList(i int) *QFileInfo {
+	if ptr.Pointer() != nil {
+		var tmpValue = NewQFileInfoFromPointer(C.QDir_drives_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*QFileInfo).DestroyQFileInfo)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QDir) entryInfoList_atList(i int) *QFileInfo {
+	if ptr.Pointer() != nil {
+		var tmpValue = NewQFileInfoFromPointer(C.QDir_entryInfoList_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*QFileInfo).DestroyQFileInfo)
+		return tmpValue
+	}
+	return nil
+}
+
 //QDirIterator::IteratorFlag
 type QDirIterator__IteratorFlag int64
 
@@ -18227,6 +18396,19 @@ func (ptr *QEasingCurve) Swap(other QEasingCurve_ITF) {
 	}
 }
 
+func (ptr *QEasingCurve) ToCubicSpline() []*QPointF {
+	if ptr.Pointer() != nil {
+		return func(l C.struct_QtCore_PackedList) []*QPointF {
+			var out = make([]*QPointF, int(l.len))
+			for i := 0; i < int(l.len); i++ {
+				out[i] = NewQEasingCurveFromPointer(l.data).toCubicSpline_atList(i)
+			}
+			return out
+		}(C.QEasingCurve_ToCubicSpline(ptr.Pointer()))
+	}
+	return nil
+}
+
 func (ptr *QEasingCurve) Type() QEasingCurve__Type {
 	if ptr.Pointer() != nil {
 		return QEasingCurve__Type(C.QEasingCurve_Type(ptr.Pointer()))
@@ -18246,6 +18428,15 @@ func (ptr *QEasingCurve) DestroyQEasingCurve() {
 		C.QEasingCurve_DestroyQEasingCurve(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
+}
+
+func (ptr *QEasingCurve) toCubicSpline_atList(i int) *QPointF {
+	if ptr.Pointer() != nil {
+		var tmpValue = NewQPointFFromPointer(C.QEasingCurve_toCubicSpline_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*QPointF).DestroyQPointF)
+		return tmpValue
+	}
+	return nil
 }
 
 //QElapsedTimer::ClockType
@@ -27474,6 +27665,15 @@ func (ptr *QIdentityProxyModel) DestroyQIdentityProxyModel() {
 	}
 }
 
+func (ptr *QIdentityProxyModel) match_atList(i int) *QModelIndex {
+	if ptr.Pointer() != nil {
+		var tmpValue = NewQModelIndexFromPointer(C.QIdentityProxyModel_match_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*QModelIndex).DestroyQModelIndex)
+		return tmpValue
+	}
+	return nil
+}
+
 //export callbackQIdentityProxyModel_Buddy
 func callbackQIdentityProxyModel_Buddy(ptr unsafe.Pointer, index unsafe.Pointer) unsafe.Pointer {
 
@@ -28595,6 +28795,19 @@ func (ptr *QItemSelection) Contains(index QModelIndex_ITF) bool {
 	return false
 }
 
+func (ptr *QItemSelection) Indexes() []*QModelIndex {
+	if ptr.Pointer() != nil {
+		return func(l C.struct_QtCore_PackedList) []*QModelIndex {
+			var out = make([]*QModelIndex, int(l.len))
+			for i := 0; i < int(l.len); i++ {
+				out[i] = NewQItemSelectionFromPointer(l.data).indexes_atList(i)
+			}
+			return out
+		}(C.QItemSelection_Indexes(ptr.Pointer()))
+	}
+	return nil
+}
+
 func (ptr *QItemSelection) Merge(other QItemSelection_ITF, command QItemSelectionModel__SelectionFlag) {
 	if ptr.Pointer() != nil {
 		C.QItemSelection_Merge(ptr.Pointer(), PointerFromQItemSelection(other), C.longlong(command))
@@ -28613,6 +28826,15 @@ func QItemSelection_Split(ran QItemSelectionRange_ITF, other QItemSelectionRange
 
 func (ptr *QItemSelection) Split(ran QItemSelectionRange_ITF, other QItemSelectionRange_ITF, result QItemSelection_ITF) {
 	C.QItemSelection_QItemSelection_Split(PointerFromQItemSelectionRange(ran), PointerFromQItemSelectionRange(other), PointerFromQItemSelection(result))
+}
+
+func (ptr *QItemSelection) indexes_atList(i int) *QModelIndex {
+	if ptr.Pointer() != nil {
+		var tmpValue = NewQModelIndexFromPointer(C.QItemSelection_indexes_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*QModelIndex).DestroyQModelIndex)
+		return tmpValue
+	}
+	return nil
 }
 
 //QItemSelectionModel::SelectionFlag
@@ -29084,6 +29306,45 @@ func (ptr *QItemSelectionModel) SelectDefault(index QModelIndex_ITF, command QIt
 	}
 }
 
+func (ptr *QItemSelectionModel) SelectedColumns(row int) []*QModelIndex {
+	if ptr.Pointer() != nil {
+		return func(l C.struct_QtCore_PackedList) []*QModelIndex {
+			var out = make([]*QModelIndex, int(l.len))
+			for i := 0; i < int(l.len); i++ {
+				out[i] = NewQItemSelectionModelFromPointer(l.data).selectedColumns_atList(i)
+			}
+			return out
+		}(C.QItemSelectionModel_SelectedColumns(ptr.Pointer(), C.int(int32(row))))
+	}
+	return nil
+}
+
+func (ptr *QItemSelectionModel) SelectedIndexes() []*QModelIndex {
+	if ptr.Pointer() != nil {
+		return func(l C.struct_QtCore_PackedList) []*QModelIndex {
+			var out = make([]*QModelIndex, int(l.len))
+			for i := 0; i < int(l.len); i++ {
+				out[i] = NewQItemSelectionModelFromPointer(l.data).selectedIndexes_atList(i)
+			}
+			return out
+		}(C.QItemSelectionModel_SelectedIndexes(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QItemSelectionModel) SelectedRows(column int) []*QModelIndex {
+	if ptr.Pointer() != nil {
+		return func(l C.struct_QtCore_PackedList) []*QModelIndex {
+			var out = make([]*QModelIndex, int(l.len))
+			for i := 0; i < int(l.len); i++ {
+				out[i] = NewQItemSelectionModelFromPointer(l.data).selectedRows_atList(i)
+			}
+			return out
+		}(C.QItemSelectionModel_SelectedRows(ptr.Pointer(), C.int(int32(column))))
+	}
+	return nil
+}
+
 func (ptr *QItemSelectionModel) Selection() *QItemSelection {
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQItemSelectionFromPointer(C.QItemSelectionModel_Selection(ptr.Pointer()))
@@ -29201,6 +29462,33 @@ func (ptr *QItemSelectionModel) DestroyQItemSelectionModelDefault() {
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
+}
+
+func (ptr *QItemSelectionModel) selectedColumns_atList(i int) *QModelIndex {
+	if ptr.Pointer() != nil {
+		var tmpValue = NewQModelIndexFromPointer(C.QItemSelectionModel_selectedColumns_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*QModelIndex).DestroyQModelIndex)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QItemSelectionModel) selectedIndexes_atList(i int) *QModelIndex {
+	if ptr.Pointer() != nil {
+		var tmpValue = NewQModelIndexFromPointer(C.QItemSelectionModel_selectedIndexes_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*QModelIndex).DestroyQModelIndex)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QItemSelectionModel) selectedRows_atList(i int) *QModelIndex {
+	if ptr.Pointer() != nil {
+		var tmpValue = NewQModelIndexFromPointer(C.QItemSelectionModel_selectedRows_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*QModelIndex).DestroyQModelIndex)
+		return tmpValue
+	}
+	return nil
 }
 
 //export callbackQItemSelectionModel_TimerEvent
@@ -29660,6 +29948,19 @@ func (ptr *QItemSelectionRange) Height() int {
 	return 0
 }
 
+func (ptr *QItemSelectionRange) Indexes() []*QModelIndex {
+	if ptr.Pointer() != nil {
+		return func(l C.struct_QtCore_PackedList) []*QModelIndex {
+			var out = make([]*QModelIndex, int(l.len))
+			for i := 0; i < int(l.len); i++ {
+				out[i] = NewQItemSelectionRangeFromPointer(l.data).indexes_atList(i)
+			}
+			return out
+		}(C.QItemSelectionRange_Indexes(ptr.Pointer()))
+	}
+	return nil
+}
+
 func (ptr *QItemSelectionRange) IsEmpty() bool {
 	if ptr.Pointer() != nil {
 		return C.QItemSelectionRange_IsEmpty(ptr.Pointer()) != 0
@@ -29733,6 +30034,15 @@ func (ptr *QItemSelectionRange) Width() int {
 		return int(int32(C.QItemSelectionRange_Width(ptr.Pointer())))
 	}
 	return 0
+}
+
+func (ptr *QItemSelectionRange) indexes_atList(i int) *QModelIndex {
+	if ptr.Pointer() != nil {
+		var tmpValue = NewQModelIndexFromPointer(C.QItemSelectionRange_indexes_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*QModelIndex).DestroyQModelIndex)
+		return tmpValue
+	}
+	return nil
 }
 
 type QJsonArray struct {
@@ -29937,11 +30247,33 @@ func (ptr *QJsonArray) TakeAt(i int) *QJsonValue {
 	return nil
 }
 
+func (ptr *QJsonArray) ToVariantList() []*QVariant {
+	if ptr.Pointer() != nil {
+		return func(l C.struct_QtCore_PackedList) []*QVariant {
+			var out = make([]*QVariant, int(l.len))
+			for i := 0; i < int(l.len); i++ {
+				out[i] = NewQJsonArrayFromPointer(l.data).toVariantList_atList(i)
+			}
+			return out
+		}(C.QJsonArray_ToVariantList(ptr.Pointer()))
+	}
+	return nil
+}
+
 func (ptr *QJsonArray) DestroyQJsonArray() {
 	if ptr.Pointer() != nil {
 		C.QJsonArray_DestroyQJsonArray(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
+}
+
+func (ptr *QJsonArray) toVariantList_atList(i int) *QVariant {
+	if ptr.Pointer() != nil {
+		var tmpValue = NewQVariantFromPointer(C.QJsonArray_toVariantList_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
+		return tmpValue
+	}
+	return nil
 }
 
 //QJsonDocument::DataValidation
@@ -33127,6 +33459,26 @@ func (ptr *QLocale) LanguageToString(language QLocale__Language) string {
 	return cGoUnpackString(C.QLocale_QLocale_LanguageToString(C.longlong(language)))
 }
 
+func QLocale_MatchingLocales(language QLocale__Language, script QLocale__Script, country QLocale__Country) []*QLocale {
+	return func(l C.struct_QtCore_PackedList) []*QLocale {
+		var out = make([]*QLocale, int(l.len))
+		for i := 0; i < int(l.len); i++ {
+			out[i] = NewQLocaleFromPointer(l.data).matchingLocales_atList(i)
+		}
+		return out
+	}(C.QLocale_QLocale_MatchingLocales(C.longlong(language), C.longlong(script), C.longlong(country)))
+}
+
+func (ptr *QLocale) MatchingLocales(language QLocale__Language, script QLocale__Script, country QLocale__Country) []*QLocale {
+	return func(l C.struct_QtCore_PackedList) []*QLocale {
+		var out = make([]*QLocale, int(l.len))
+		for i := 0; i < int(l.len); i++ {
+			out[i] = NewQLocaleFromPointer(l.data).matchingLocales_atList(i)
+		}
+		return out
+	}(C.QLocale_QLocale_MatchingLocales(C.longlong(language), C.longlong(script), C.longlong(country)))
+}
+
 func (ptr *QLocale) MeasurementSystem() QLocale__MeasurementSystem {
 	if ptr.Pointer() != nil {
 		return QLocale__MeasurementSystem(C.QLocale_MeasurementSystem(ptr.Pointer()))
@@ -33647,6 +33999,15 @@ func (ptr *QLocale) DestroyQLocale() {
 		C.QLocale_DestroyQLocale(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
+}
+
+func (ptr *QLocale) matchingLocales_atList(i int) *QLocale {
+	if ptr.Pointer() != nil {
+		var tmpValue = NewQLocaleFromPointer(C.QLocale_matchingLocales_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*QLocale).DestroyQLocale)
+		return tmpValue
+	}
+	return nil
 }
 
 //QLockFile::LockError
@@ -34884,11 +35245,37 @@ func (ptr *QMetaMethod) ParameterCount() int {
 	return 0
 }
 
+func (ptr *QMetaMethod) ParameterNames() []*QByteArray {
+	if ptr.Pointer() != nil {
+		return func(l C.struct_QtCore_PackedList) []*QByteArray {
+			var out = make([]*QByteArray, int(l.len))
+			for i := 0; i < int(l.len); i++ {
+				out[i] = NewQMetaMethodFromPointer(l.data).parameterNames_atList(i)
+			}
+			return out
+		}(C.QMetaMethod_ParameterNames(ptr.Pointer()))
+	}
+	return nil
+}
+
 func (ptr *QMetaMethod) ParameterType(index int) int {
 	if ptr.Pointer() != nil {
 		return int(int32(C.QMetaMethod_ParameterType(ptr.Pointer(), C.int(int32(index)))))
 	}
 	return 0
+}
+
+func (ptr *QMetaMethod) ParameterTypes() []*QByteArray {
+	if ptr.Pointer() != nil {
+		return func(l C.struct_QtCore_PackedList) []*QByteArray {
+			var out = make([]*QByteArray, int(l.len))
+			for i := 0; i < int(l.len); i++ {
+				out[i] = NewQMetaMethodFromPointer(l.data).parameterTypes_atList(i)
+			}
+			return out
+		}(C.QMetaMethod_ParameterTypes(ptr.Pointer()))
+	}
+	return nil
 }
 
 func (ptr *QMetaMethod) ReturnType() int {
@@ -34917,6 +35304,24 @@ func (ptr *QMetaMethod) TypeName() string {
 		return cGoUnpackString(C.QMetaMethod_TypeName(ptr.Pointer()))
 	}
 	return ""
+}
+
+func (ptr *QMetaMethod) parameterNames_atList(i int) *QByteArray {
+	if ptr.Pointer() != nil {
+		var tmpValue = NewQByteArrayFromPointer(C.QMetaMethod_parameterNames_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QMetaMethod) parameterTypes_atList(i int) *QByteArray {
+	if ptr.Pointer() != nil {
+		var tmpValue = NewQByteArrayFromPointer(C.QMetaMethod_parameterTypes_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
+		return tmpValue
+	}
+	return nil
 }
 
 type QMetaObject struct {
@@ -36084,12 +36489,34 @@ func (ptr *QMimeData) Text() string {
 	return ""
 }
 
+func (ptr *QMimeData) Urls() []*QUrl {
+	if ptr.Pointer() != nil {
+		return func(l C.struct_QtCore_PackedList) []*QUrl {
+			var out = make([]*QUrl, int(l.len))
+			for i := 0; i < int(l.len); i++ {
+				out[i] = NewQMimeDataFromPointer(l.data).urls_atList(i)
+			}
+			return out
+		}(C.QMimeData_Urls(ptr.Pointer()))
+	}
+	return nil
+}
+
 func (ptr *QMimeData) DestroyQMimeData() {
 	if ptr.Pointer() != nil {
 		C.QMimeData_DestroyQMimeData(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
+}
+
+func (ptr *QMimeData) urls_atList(i int) *QUrl {
+	if ptr.Pointer() != nil {
+		var tmpValue = NewQUrlFromPointer(C.QMimeData_urls_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*QUrl).DestroyQUrl)
+		return tmpValue
+	}
+	return nil
 }
 
 //export callbackQMimeData_TimerEvent
@@ -36495,6 +36922,19 @@ func (ptr *QMimeDatabase) DestroyQMimeDatabase() {
 	}
 }
 
+func (ptr *QMimeDatabase) AllMimeTypes() []*QMimeType {
+	if ptr.Pointer() != nil {
+		return func(l C.struct_QtCore_PackedList) []*QMimeType {
+			var out = make([]*QMimeType, int(l.len))
+			for i := 0; i < int(l.len); i++ {
+				out[i] = NewQMimeDatabaseFromPointer(l.data).allMimeTypes_atList(i)
+			}
+			return out
+		}(C.QMimeDatabase_AllMimeTypes(ptr.Pointer()))
+	}
+	return nil
+}
+
 func (ptr *QMimeDatabase) MimeTypeForData2(device QIODevice_ITF) *QMimeType {
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQMimeTypeFromPointer(C.QMimeDatabase_MimeTypeForData2(ptr.Pointer(), PointerFromQIODevice(device)))
@@ -36564,6 +37004,21 @@ func (ptr *QMimeDatabase) MimeTypeForUrl(url QUrl_ITF) *QMimeType {
 	return nil
 }
 
+func (ptr *QMimeDatabase) MimeTypesForFileName(fileName string) []*QMimeType {
+	if ptr.Pointer() != nil {
+		var fileNameC = C.CString(fileName)
+		defer C.free(unsafe.Pointer(fileNameC))
+		return func(l C.struct_QtCore_PackedList) []*QMimeType {
+			var out = make([]*QMimeType, int(l.len))
+			for i := 0; i < int(l.len); i++ {
+				out[i] = NewQMimeDatabaseFromPointer(l.data).mimeTypesForFileName_atList(i)
+			}
+			return out
+		}(C.QMimeDatabase_MimeTypesForFileName(ptr.Pointer(), fileNameC))
+	}
+	return nil
+}
+
 func (ptr *QMimeDatabase) SuffixForFileName(fileName string) string {
 	if ptr.Pointer() != nil {
 		var fileNameC = C.CString(fileName)
@@ -36571,6 +37026,24 @@ func (ptr *QMimeDatabase) SuffixForFileName(fileName string) string {
 		return cGoUnpackString(C.QMimeDatabase_SuffixForFileName(ptr.Pointer(), fileNameC))
 	}
 	return ""
+}
+
+func (ptr *QMimeDatabase) allMimeTypes_atList(i int) *QMimeType {
+	if ptr.Pointer() != nil {
+		var tmpValue = NewQMimeTypeFromPointer(C.QMimeDatabase_allMimeTypes_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*QMimeType).DestroyQMimeType)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QMimeDatabase) mimeTypesForFileName_atList(i int) *QMimeType {
+	if ptr.Pointer() != nil {
+		var tmpValue = NewQMimeTypeFromPointer(C.QMimeDatabase_mimeTypesForFileName_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*QMimeType).DestroyQMimeType)
+		return tmpValue
+	}
+	return nil
 }
 
 type QMimeType struct {
@@ -37793,6 +38266,19 @@ func (ptr *QObject) DumpObjectTree() {
 	}
 }
 
+func (ptr *QObject) DynamicPropertyNames() []*QByteArray {
+	if ptr.Pointer() != nil {
+		return func(l C.struct_QtCore_PackedList) []*QByteArray {
+			var out = make([]*QByteArray, int(l.len))
+			for i := 0; i < int(l.len); i++ {
+				out[i] = NewQObjectFromPointer(l.data).dynamicPropertyNames_atList(i)
+			}
+			return out
+		}(C.QObject_DynamicPropertyNames(ptr.Pointer()))
+	}
+	return nil
+}
+
 //export callbackQObject_Event
 func callbackQObject_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
 
@@ -37869,11 +38355,56 @@ func (ptr *QObject) EventFilterDefault(watched QObject_ITF, event QEvent_ITF) bo
 	return false
 }
 
-func (ptr *QObject) FindChild(name string, options Qt__FindChildOption) unsafe.Pointer {
+func (ptr *QObject) FindChild(name string, options Qt__FindChildOption) *QObject {
 	if ptr.Pointer() != nil {
 		var nameC = C.CString(name)
 		defer C.free(unsafe.Pointer(nameC))
-		return unsafe.Pointer(C.QObject_FindChild(ptr.Pointer(), nameC, C.longlong(options)))
+		var tmpValue = NewQObjectFromPointer(C.QObject_FindChild(ptr.Pointer(), nameC, C.longlong(options)))
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+			tmpValue.ConnectDestroyed(func(*QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QObject) FindChildren2(regExp QRegExp_ITF, options Qt__FindChildOption) []*QObject {
+	if ptr.Pointer() != nil {
+		return func(l C.struct_QtCore_PackedList) []*QObject {
+			var out = make([]*QObject, int(l.len))
+			for i := 0; i < int(l.len); i++ {
+				out[i] = NewQObjectFromPointer(l.data).findChildren_atList(i)
+			}
+			return out
+		}(C.QObject_FindChildren2(ptr.Pointer(), PointerFromQRegExp(regExp), C.longlong(options)))
+	}
+	return nil
+}
+
+func (ptr *QObject) FindChildren3(re QRegularExpression_ITF, options Qt__FindChildOption) []*QObject {
+	if ptr.Pointer() != nil {
+		return func(l C.struct_QtCore_PackedList) []*QObject {
+			var out = make([]*QObject, int(l.len))
+			for i := 0; i < int(l.len); i++ {
+				out[i] = NewQObjectFromPointer(l.data).findChildren_atList(i)
+			}
+			return out
+		}(C.QObject_FindChildren3(ptr.Pointer(), PointerFromQRegularExpression(re), C.longlong(options)))
+	}
+	return nil
+}
+
+func (ptr *QObject) FindChildren(name string, options Qt__FindChildOption) []*QObject {
+	if ptr.Pointer() != nil {
+		var nameC = C.CString(name)
+		defer C.free(unsafe.Pointer(nameC))
+		return func(l C.struct_QtCore_PackedList) []*QObject {
+			var out = make([]*QObject, int(l.len))
+			for i := 0; i < int(l.len); i++ {
+				out[i] = NewQObjectFromPointer(l.data).findChildren_atList(i)
+			}
+			return out
+		}(C.QObject_FindChildren(ptr.Pointer(), nameC, C.longlong(options)))
 	}
 	return nil
 }
@@ -38130,6 +38661,26 @@ func (ptr *QObject) DestroyQObjectDefault() {
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
+}
+
+func (ptr *QObject) dynamicPropertyNames_atList(i int) *QByteArray {
+	if ptr.Pointer() != nil {
+		var tmpValue = NewQByteArrayFromPointer(C.QObject_dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QObject) findChildren_atList(i int) *QObject {
+	if ptr.Pointer() != nil {
+		var tmpValue = NewQObjectFromPointer(C.QObject_findChildren_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+			tmpValue.ConnectDestroyed(func(*QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
 }
 
 type QObjectCleanupHandler struct {
@@ -40360,6 +40911,26 @@ func (ptr *QPluginLoader) MetaData() *QJsonObject {
 	return nil
 }
 
+func QPluginLoader_StaticInstances() []*QObject {
+	return func(l C.struct_QtCore_PackedList) []*QObject {
+		var out = make([]*QObject, int(l.len))
+		for i := 0; i < int(l.len); i++ {
+			out[i] = NewQPluginLoaderFromPointer(l.data).staticInstances_atList(i)
+		}
+		return out
+	}(C.QPluginLoader_QPluginLoader_StaticInstances())
+}
+
+func (ptr *QPluginLoader) StaticInstances() []*QObject {
+	return func(l C.struct_QtCore_PackedList) []*QObject {
+		var out = make([]*QObject, int(l.len))
+		for i := 0; i < int(l.len); i++ {
+			out[i] = NewQPluginLoaderFromPointer(l.data).staticInstances_atList(i)
+		}
+		return out
+	}(C.QPluginLoader_QPluginLoader_StaticInstances())
+}
+
 func (ptr *QPluginLoader) Unload() bool {
 	if ptr.Pointer() != nil {
 		return C.QPluginLoader_Unload(ptr.Pointer()) != 0
@@ -40373,6 +40944,17 @@ func (ptr *QPluginLoader) DestroyQPluginLoader() {
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
+}
+
+func (ptr *QPluginLoader) staticInstances_atList(i int) *QObject {
+	if ptr.Pointer() != nil {
+		var tmpValue = NewQObjectFromPointer(C.QPluginLoader_staticInstances_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+			tmpValue.ConnectDestroyed(func(*QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
 }
 
 //export callbackQPluginLoader_TimerEvent
@@ -51551,6 +52133,15 @@ func (ptr *QSortFilterProxyModel) DestroyQSortFilterProxyModel() {
 	}
 }
 
+func (ptr *QSortFilterProxyModel) match_atList(i int) *QModelIndex {
+	if ptr.Pointer() != nil {
+		var tmpValue = NewQModelIndexFromPointer(C.QSortFilterProxyModel_match_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*QModelIndex).DestroyQModelIndex)
+		return tmpValue
+	}
+	return nil
+}
+
 //export callbackQSortFilterProxyModel_CanDropMimeData
 func callbackQSortFilterProxyModel_CanDropMimeData(ptr unsafe.Pointer, data unsafe.Pointer, action C.longlong, row C.int, column C.int, parent unsafe.Pointer) C.char {
 
@@ -52724,12 +53315,36 @@ func (ptr *QState) SetInitialState(state QAbstractState_ITF) {
 	}
 }
 
+func (ptr *QState) Transitions() []*QAbstractTransition {
+	if ptr.Pointer() != nil {
+		return func(l C.struct_QtCore_PackedList) []*QAbstractTransition {
+			var out = make([]*QAbstractTransition, int(l.len))
+			for i := 0; i < int(l.len); i++ {
+				out[i] = NewQStateFromPointer(l.data).transitions_atList(i)
+			}
+			return out
+		}(C.QState_Transitions(ptr.Pointer()))
+	}
+	return nil
+}
+
 func (ptr *QState) DestroyQState() {
 	if ptr.Pointer() != nil {
 		C.QState_DestroyQState(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
+}
+
+func (ptr *QState) transitions_atList(i int) *QAbstractTransition {
+	if ptr.Pointer() != nil {
+		var tmpValue = NewQAbstractTransitionFromPointer(C.QState_transitions_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+			tmpValue.ConnectDestroyed(func(*QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
 }
 
 //export callbackQState_TimerEvent
@@ -53146,6 +53761,19 @@ func (ptr *QStateMachine) AddState(state QAbstractState_ITF) {
 	}
 }
 
+func (ptr *QStateMachine) DefaultAnimations() []*QAbstractAnimation {
+	if ptr.Pointer() != nil {
+		return func(l C.struct_QtCore_PackedList) []*QAbstractAnimation {
+			var out = make([]*QAbstractAnimation, int(l.len))
+			for i := 0; i < int(l.len); i++ {
+				out[i] = NewQStateMachineFromPointer(l.data).defaultAnimations_atList(i)
+			}
+			return out
+		}(C.QStateMachine_DefaultAnimations(ptr.Pointer()))
+	}
+	return nil
+}
+
 func (ptr *QStateMachine) CancelDelayedEvent(id int) bool {
 	if ptr.Pointer() != nil {
 		return C.QStateMachine_CancelDelayedEvent(ptr.Pointer(), C.int(int32(id))) != 0
@@ -53509,6 +54137,17 @@ func (ptr *QStateMachine) DestroyQStateMachine() {
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
+}
+
+func (ptr *QStateMachine) defaultAnimations_atList(i int) *QAbstractAnimation {
+	if ptr.Pointer() != nil {
+		var tmpValue = NewQAbstractAnimationFromPointer(C.QStateMachine_defaultAnimations_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+			tmpValue.ConnectDestroyed(func(*QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
 }
 
 //export callbackQStateMachine_TimerEvent
@@ -53982,6 +54621,26 @@ func (ptr *QStorageInfo) IsValid() bool {
 	return false
 }
 
+func QStorageInfo_MountedVolumes() []*QStorageInfo {
+	return func(l C.struct_QtCore_PackedList) []*QStorageInfo {
+		var out = make([]*QStorageInfo, int(l.len))
+		for i := 0; i < int(l.len); i++ {
+			out[i] = NewQStorageInfoFromPointer(l.data).mountedVolumes_atList(i)
+		}
+		return out
+	}(C.QStorageInfo_QStorageInfo_MountedVolumes())
+}
+
+func (ptr *QStorageInfo) MountedVolumes() []*QStorageInfo {
+	return func(l C.struct_QtCore_PackedList) []*QStorageInfo {
+		var out = make([]*QStorageInfo, int(l.len))
+		for i := 0; i < int(l.len); i++ {
+			out[i] = NewQStorageInfoFromPointer(l.data).mountedVolumes_atList(i)
+		}
+		return out
+	}(C.QStorageInfo_QStorageInfo_MountedVolumes())
+}
+
 func (ptr *QStorageInfo) Name() string {
 	if ptr.Pointer() != nil {
 		return cGoUnpackString(C.QStorageInfo_Name(ptr.Pointer()))
@@ -54033,6 +54692,15 @@ func (ptr *QStorageInfo) DestroyQStorageInfo() {
 		C.QStorageInfo_DestroyQStorageInfo(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
+}
+
+func (ptr *QStorageInfo) mountedVolumes_atList(i int) *QStorageInfo {
+	if ptr.Pointer() != nil {
+		var tmpValue = NewQStorageInfoFromPointer(C.QStorageInfo_mountedVolumes_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*QStorageInfo).DestroyQStorageInfo)
+		return tmpValue
+	}
+	return nil
 }
 
 //QString::NormalizationForm
@@ -56243,6 +56911,34 @@ func (ptr *QStringRef) Size() int {
 	return 0
 }
 
+func (ptr *QStringRef) Split2(sep QChar_ITF, behavior QString__SplitBehavior, cs Qt__CaseSensitivity) []*QStringRef {
+	if ptr.Pointer() != nil {
+		return func(l C.struct_QtCore_PackedList) []*QStringRef {
+			var out = make([]*QStringRef, int(l.len))
+			for i := 0; i < int(l.len); i++ {
+				out[i] = NewQStringRefFromPointer(l.data).split_atList(i)
+			}
+			return out
+		}(C.QStringRef_Split2(ptr.Pointer(), PointerFromQChar(sep), C.longlong(behavior), C.longlong(cs)))
+	}
+	return nil
+}
+
+func (ptr *QStringRef) Split(sep string, behavior QString__SplitBehavior, cs Qt__CaseSensitivity) []*QStringRef {
+	if ptr.Pointer() != nil {
+		var sepC = C.CString(sep)
+		defer C.free(unsafe.Pointer(sepC))
+		return func(l C.struct_QtCore_PackedList) []*QStringRef {
+			var out = make([]*QStringRef, int(l.len))
+			for i := 0; i < int(l.len); i++ {
+				out[i] = NewQStringRefFromPointer(l.data).split_atList(i)
+			}
+			return out
+		}(C.QStringRef_Split(ptr.Pointer(), sepC, C.longlong(behavior), C.longlong(cs)))
+	}
+	return nil
+}
+
 func (ptr *QStringRef) StartsWith3(ch QChar_ITF, cs Qt__CaseSensitivity) bool {
 	if ptr.Pointer() != nil {
 		return C.QStringRef_StartsWith3(ptr.Pointer(), PointerFromQChar(ch), C.longlong(cs)) != 0
@@ -56397,6 +57093,15 @@ func (ptr *QStringRef) DestroyQStringRef() {
 		C.QStringRef_DestroyQStringRef(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
+}
+
+func (ptr *QStringRef) split_atList(i int) *QStringRef {
+	if ptr.Pointer() != nil {
+		var tmpValue = NewQStringRefFromPointer(C.QStringRef_split_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*QStringRef).DestroyQStringRef)
+		return tmpValue
+	}
+	return nil
 }
 
 //QSysInfo::Endian
@@ -58272,6 +58977,26 @@ func NewQTextCodecFromPointer(ptr unsafe.Pointer) *QTextCodec {
 	n.SetPointer(ptr)
 	return n
 }
+func QTextCodec_AvailableCodecs() []*QByteArray {
+	return func(l C.struct_QtCore_PackedList) []*QByteArray {
+		var out = make([]*QByteArray, int(l.len))
+		for i := 0; i < int(l.len); i++ {
+			out[i] = NewQTextCodecFromPointer(l.data).availableCodecs_atList(i)
+		}
+		return out
+	}(C.QTextCodec_QTextCodec_AvailableCodecs())
+}
+
+func (ptr *QTextCodec) AvailableCodecs() []*QByteArray {
+	return func(l C.struct_QtCore_PackedList) []*QByteArray {
+		var out = make([]*QByteArray, int(l.len))
+		for i := 0; i < int(l.len); i++ {
+			out[i] = NewQTextCodecFromPointer(l.data).availableCodecs_atList(i)
+		}
+		return out
+	}(C.QTextCodec_QTextCodec_AvailableCodecs())
+}
+
 func (ptr *QTextCodec) CanEncode(ch QChar_ITF) bool {
 	if ptr.Pointer() != nil {
 		return C.QTextCodec_CanEncode(ptr.Pointer(), PointerFromQChar(ch)) != 0
@@ -58507,6 +59232,24 @@ func (ptr *QTextCodec) DestroyQTextCodecDefault() {
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
+}
+
+func (ptr *QTextCodec) aliases_atList(i int) *QByteArray {
+	if ptr.Pointer() != nil {
+		var tmpValue = NewQByteArrayFromPointer(C.QTextCodec_aliases_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QTextCodec) availableCodecs_atList(i int) *QByteArray {
+	if ptr.Pointer() != nil {
+		var tmpValue = NewQByteArrayFromPointer(C.QTextCodec_availableCodecs_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
+		return tmpValue
+	}
+	return nil
 }
 
 type QTextDecoder struct {
@@ -61479,6 +62222,66 @@ func (ptr *QTimeZone) Abbreviation(atDateTime QDateTime_ITF) string {
 	return ""
 }
 
+func QTimeZone_AvailableTimeZoneIds() []*QByteArray {
+	return func(l C.struct_QtCore_PackedList) []*QByteArray {
+		var out = make([]*QByteArray, int(l.len))
+		for i := 0; i < int(l.len); i++ {
+			out[i] = NewQTimeZoneFromPointer(l.data).availableTimeZoneIds_atList(i)
+		}
+		return out
+	}(C.QTimeZone_QTimeZone_AvailableTimeZoneIds())
+}
+
+func (ptr *QTimeZone) AvailableTimeZoneIds() []*QByteArray {
+	return func(l C.struct_QtCore_PackedList) []*QByteArray {
+		var out = make([]*QByteArray, int(l.len))
+		for i := 0; i < int(l.len); i++ {
+			out[i] = NewQTimeZoneFromPointer(l.data).availableTimeZoneIds_atList(i)
+		}
+		return out
+	}(C.QTimeZone_QTimeZone_AvailableTimeZoneIds())
+}
+
+func QTimeZone_AvailableTimeZoneIds2(country QLocale__Country) []*QByteArray {
+	return func(l C.struct_QtCore_PackedList) []*QByteArray {
+		var out = make([]*QByteArray, int(l.len))
+		for i := 0; i < int(l.len); i++ {
+			out[i] = NewQTimeZoneFromPointer(l.data).availableTimeZoneIds_atList(i)
+		}
+		return out
+	}(C.QTimeZone_QTimeZone_AvailableTimeZoneIds2(C.longlong(country)))
+}
+
+func (ptr *QTimeZone) AvailableTimeZoneIds2(country QLocale__Country) []*QByteArray {
+	return func(l C.struct_QtCore_PackedList) []*QByteArray {
+		var out = make([]*QByteArray, int(l.len))
+		for i := 0; i < int(l.len); i++ {
+			out[i] = NewQTimeZoneFromPointer(l.data).availableTimeZoneIds_atList(i)
+		}
+		return out
+	}(C.QTimeZone_QTimeZone_AvailableTimeZoneIds2(C.longlong(country)))
+}
+
+func QTimeZone_AvailableTimeZoneIds3(offsetSeconds int) []*QByteArray {
+	return func(l C.struct_QtCore_PackedList) []*QByteArray {
+		var out = make([]*QByteArray, int(l.len))
+		for i := 0; i < int(l.len); i++ {
+			out[i] = NewQTimeZoneFromPointer(l.data).availableTimeZoneIds_atList(i)
+		}
+		return out
+	}(C.QTimeZone_QTimeZone_AvailableTimeZoneIds3(C.int(int32(offsetSeconds))))
+}
+
+func (ptr *QTimeZone) AvailableTimeZoneIds3(offsetSeconds int) []*QByteArray {
+	return func(l C.struct_QtCore_PackedList) []*QByteArray {
+		var out = make([]*QByteArray, int(l.len))
+		for i := 0; i < int(l.len); i++ {
+			out[i] = NewQTimeZoneFromPointer(l.data).availableTimeZoneIds_atList(i)
+		}
+		return out
+	}(C.QTimeZone_QTimeZone_AvailableTimeZoneIds3(C.int(int32(offsetSeconds))))
+}
+
 func (ptr *QTimeZone) Comment() string {
 	if ptr.Pointer() != nil {
 		return cGoUnpackString(C.QTimeZone_Comment(ptr.Pointer()))
@@ -61651,11 +62454,69 @@ func (ptr *QTimeZone) WindowsIdToDefaultIanaId2(windowsId QByteArray_ITF, countr
 	return tmpValue
 }
 
+func QTimeZone_WindowsIdToIanaIds(windowsId QByteArray_ITF) []*QByteArray {
+	return func(l C.struct_QtCore_PackedList) []*QByteArray {
+		var out = make([]*QByteArray, int(l.len))
+		for i := 0; i < int(l.len); i++ {
+			out[i] = NewQTimeZoneFromPointer(l.data).windowsIdToIanaIds_atList(i)
+		}
+		return out
+	}(C.QTimeZone_QTimeZone_WindowsIdToIanaIds(PointerFromQByteArray(windowsId)))
+}
+
+func (ptr *QTimeZone) WindowsIdToIanaIds(windowsId QByteArray_ITF) []*QByteArray {
+	return func(l C.struct_QtCore_PackedList) []*QByteArray {
+		var out = make([]*QByteArray, int(l.len))
+		for i := 0; i < int(l.len); i++ {
+			out[i] = NewQTimeZoneFromPointer(l.data).windowsIdToIanaIds_atList(i)
+		}
+		return out
+	}(C.QTimeZone_QTimeZone_WindowsIdToIanaIds(PointerFromQByteArray(windowsId)))
+}
+
+func QTimeZone_WindowsIdToIanaIds2(windowsId QByteArray_ITF, country QLocale__Country) []*QByteArray {
+	return func(l C.struct_QtCore_PackedList) []*QByteArray {
+		var out = make([]*QByteArray, int(l.len))
+		for i := 0; i < int(l.len); i++ {
+			out[i] = NewQTimeZoneFromPointer(l.data).windowsIdToIanaIds_atList(i)
+		}
+		return out
+	}(C.QTimeZone_QTimeZone_WindowsIdToIanaIds2(PointerFromQByteArray(windowsId), C.longlong(country)))
+}
+
+func (ptr *QTimeZone) WindowsIdToIanaIds2(windowsId QByteArray_ITF, country QLocale__Country) []*QByteArray {
+	return func(l C.struct_QtCore_PackedList) []*QByteArray {
+		var out = make([]*QByteArray, int(l.len))
+		for i := 0; i < int(l.len); i++ {
+			out[i] = NewQTimeZoneFromPointer(l.data).windowsIdToIanaIds_atList(i)
+		}
+		return out
+	}(C.QTimeZone_QTimeZone_WindowsIdToIanaIds2(PointerFromQByteArray(windowsId), C.longlong(country)))
+}
+
 func (ptr *QTimeZone) DestroyQTimeZone() {
 	if ptr.Pointer() != nil {
 		C.QTimeZone_DestroyQTimeZone(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
+}
+
+func (ptr *QTimeZone) availableTimeZoneIds_atList(i int) *QByteArray {
+	if ptr.Pointer() != nil {
+		var tmpValue = NewQByteArrayFromPointer(C.QTimeZone_availableTimeZoneIds_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QTimeZone) windowsIdToIanaIds_atList(i int) *QByteArray {
+	if ptr.Pointer() != nil {
+		var tmpValue = NewQByteArrayFromPointer(C.QTimeZone_windowsIdToIanaIds_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
+		return tmpValue
+	}
+	return nil
 }
 
 type QTimer struct {
@@ -63268,6 +64129,30 @@ func (ptr *QUrl) FromPercentEncoding(input QByteArray_ITF) string {
 	return cGoUnpackString(C.QUrl_QUrl_FromPercentEncoding(PointerFromQByteArray(input)))
 }
 
+func QUrl_FromStringList(urls []string, mode QUrl__ParsingMode) []*QUrl {
+	var urlsC = C.CString(strings.Join(urls, "|"))
+	defer C.free(unsafe.Pointer(urlsC))
+	return func(l C.struct_QtCore_PackedList) []*QUrl {
+		var out = make([]*QUrl, int(l.len))
+		for i := 0; i < int(l.len); i++ {
+			out[i] = NewQUrlFromPointer(l.data).fromStringList_atList(i)
+		}
+		return out
+	}(C.QUrl_QUrl_FromStringList(urlsC, C.longlong(mode)))
+}
+
+func (ptr *QUrl) FromStringList(urls []string, mode QUrl__ParsingMode) []*QUrl {
+	var urlsC = C.CString(strings.Join(urls, "|"))
+	defer C.free(unsafe.Pointer(urlsC))
+	return func(l C.struct_QtCore_PackedList) []*QUrl {
+		var out = make([]*QUrl, int(l.len))
+		for i := 0; i < int(l.len); i++ {
+			out[i] = NewQUrlFromPointer(l.data).fromStringList_atList(i)
+		}
+		return out
+	}(C.QUrl_QUrl_FromStringList(urlsC, C.longlong(mode)))
+}
+
 func QUrl_FromUserInput(userInput string) *QUrl {
 	var userInputC = C.CString(userInput)
 	defer C.free(unsafe.Pointer(userInputC))
@@ -63624,6 +64509,15 @@ func (ptr *QUrl) DestroyQUrl() {
 		C.QUrl_DestroyQUrl(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
+}
+
+func (ptr *QUrl) fromStringList_atList(i int) *QUrl {
+	if ptr.Pointer() != nil {
+		var tmpValue = NewQUrlFromPointer(C.QUrl_fromStringList_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*QUrl).DestroyQUrl)
+		return tmpValue
+	}
+	return nil
 }
 
 type QUrlQuery struct {
@@ -64578,6 +65472,19 @@ func (ptr *QVariant) ToJsonValue() *QJsonValue {
 	return nil
 }
 
+func (ptr *QVariant) ToList() []*QVariant {
+	if ptr.Pointer() != nil {
+		return func(l C.struct_QtCore_PackedList) []*QVariant {
+			var out = make([]*QVariant, int(l.len))
+			for i := 0; i < int(l.len); i++ {
+				out[i] = NewQVariantFromPointer(l.data).toList_atList(i)
+			}
+			return out
+		}(C.QVariant_ToList(ptr.Pointer()))
+	}
+	return nil
+}
+
 func (ptr *QVariant) ToLongLong(ok bool) int64 {
 	if ptr.Pointer() != nil {
 		return int64(C.QVariant_ToLongLong(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(ok)))))
@@ -64670,6 +65577,15 @@ func (ptr *QVariant) ToFont() unsafe.Pointer {
 func (ptr *QVariant) ToImage() unsafe.Pointer {
 	if ptr.Pointer() != nil {
 		return unsafe.Pointer(C.QVariant_ToImage(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QVariant) toList_atList(i int) *QVariant {
+	if ptr.Pointer() != nil {
+		var tmpValue = NewQVariantFromPointer(C.QVariant_toList_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
+		return tmpValue
 	}
 	return nil
 }

@@ -12,6 +12,7 @@ extern "C" {
 #endif
 
 struct QtDBus_PackedString { char* data; long long len; };
+struct QtDBus_PackedList { void* data; long long len; };
 void* QDBusAbstractAdaptor_NewQDBusAbstractAdaptor(void* obj);
 char QDBusAbstractAdaptor_AutoRelaySignals(void* ptr);
 void QDBusAbstractAdaptor_SetAutoRelaySignals(void* ptr, char enable);
@@ -188,6 +189,7 @@ void* QDBusInterface_MetaObjectDefault(void* ptr);
 void* QDBusMessage_CreateErrorReply3(void* ptr, long long ty, char* msg);
 void* QDBusMessage_NewQDBusMessage();
 void* QDBusMessage_NewQDBusMessage2(void* other);
+struct QtDBus_PackedList QDBusMessage_Arguments(void* ptr);
 char QDBusMessage_AutoStartService(void* ptr);
 void* QDBusMessage_QDBusMessage_CreateError3(long long ty, char* msg);
 void* QDBusMessage_QDBusMessage_CreateError2(void* error);
@@ -212,6 +214,7 @@ struct QtDBus_PackedString QDBusMessage_Signature(void* ptr);
 void QDBusMessage_Swap(void* ptr, void* other);
 long long QDBusMessage_Type(void* ptr);
 void QDBusMessage_DestroyQDBusMessage(void* ptr);
+void* QDBusMessage_arguments_atList(void* ptr, int i);
 void* QDBusObjectPath_NewQDBusObjectPath();
 void* QDBusObjectPath_NewQDBusObjectPath3(void* path);
 void* QDBusObjectPath_NewQDBusObjectPath5(char* p);

@@ -2736,6 +2736,19 @@ func (ptr *QScxmlParser) AddError(msg string) {
 	}
 }
 
+func (ptr *QScxmlParser) Errors() []*QScxmlError {
+	if ptr.Pointer() != nil {
+		return func(l C.struct_QtScxml_PackedList) []*QScxmlError {
+			var out = make([]*QScxmlError, int(l.len))
+			for i := 0; i < int(l.len); i++ {
+				out[i] = NewQScxmlParserFromPointer(l.data).errors_atList(i)
+			}
+			return out
+		}(C.QScxmlParser_Errors(ptr.Pointer()))
+	}
+	return nil
+}
+
 func (ptr *QScxmlParser) FileName() string {
 	if ptr.Pointer() != nil {
 		return cGoUnpackString(C.QScxmlParser_FileName(ptr.Pointer()))
@@ -2792,6 +2805,15 @@ func (ptr *QScxmlParser) DestroyQScxmlParser() {
 		C.QScxmlParser_DestroyQScxmlParser(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
+}
+
+func (ptr *QScxmlParser) errors_atList(i int) *QScxmlError {
+	if ptr.Pointer() != nil {
+		var tmpValue = NewQScxmlErrorFromPointer(C.QScxmlParser_errors_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*QScxmlError).DestroyQScxmlError)
+		return tmpValue
+	}
+	return nil
 }
 
 //QScxmlStateMachine::BindingMethod
@@ -3186,6 +3208,19 @@ func (ptr *QScxmlStateMachine) Name() string {
 	return ""
 }
 
+func (ptr *QScxmlStateMachine) ParseErrors() []*QScxmlError {
+	if ptr.Pointer() != nil {
+		return func(l C.struct_QtScxml_PackedList) []*QScxmlError {
+			var out = make([]*QScxmlError, int(l.len))
+			for i := 0; i < int(l.len); i++ {
+				out[i] = NewQScxmlStateMachineFromPointer(l.data).parseErrors_atList(i)
+			}
+			return out
+		}(C.QScxmlStateMachine_ParseErrors(ptr.Pointer()))
+	}
+	return nil
+}
+
 //export callbackQScxmlStateMachine_ReachedStableState
 func callbackQScxmlStateMachine_ReachedStableState(ptr unsafe.Pointer) {
 
@@ -3367,6 +3402,15 @@ func (ptr *QScxmlStateMachine) SubmitEvent3(eventName string, data core.QVariant
 		defer C.free(unsafe.Pointer(eventNameC))
 		C.QScxmlStateMachine_SubmitEvent3(ptr.Pointer(), eventNameC, core.PointerFromQVariant(data))
 	}
+}
+
+func (ptr *QScxmlStateMachine) parseErrors_atList(i int) *QScxmlError {
+	if ptr.Pointer() != nil {
+		var tmpValue = NewQScxmlErrorFromPointer(C.QScxmlStateMachine_parseErrors_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*QScxmlError).DestroyQScxmlError)
+		return tmpValue
+	}
+	return nil
 }
 
 //export callbackQScxmlStateMachine_TimerEvent

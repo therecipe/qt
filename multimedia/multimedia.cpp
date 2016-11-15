@@ -77,6 +77,7 @@
 #include <QInputMethod>
 #include <QInputMethodEvent>
 #include <QKeyEvent>
+#include <QList>
 #include <QMediaAudioProbeControl>
 #include <QMediaAvailabilityControl>
 #include <QMediaBindableInterface>
@@ -1514,6 +1515,11 @@ void* QAudioDeviceInfo_NewQAudioDeviceInfo2(void* other)
 	return new QAudioDeviceInfo(*static_cast<QAudioDeviceInfo*>(other));
 }
 
+struct QtMultimedia_PackedList QAudioDeviceInfo_QAudioDeviceInfo_AvailableDevices(long long mode)
+{
+	return ({ QList<QAudioDeviceInfo>* tmpValue = new QList<QAudioDeviceInfo>(QAudioDeviceInfo::availableDevices(static_cast<QAudio::Mode>(mode))); QtMultimedia_PackedList { tmpValue, tmpValue->size() }; });
+}
+
 void* QAudioDeviceInfo_QAudioDeviceInfo_DefaultInputDevice()
 {
 	return new QAudioDeviceInfo(QAudioDeviceInfo::defaultInputDevice());
@@ -1557,6 +1563,11 @@ struct QtMultimedia_PackedString QAudioDeviceInfo_SupportedCodecs(void* ptr)
 void QAudioDeviceInfo_DestroyQAudioDeviceInfo(void* ptr)
 {
 	static_cast<QAudioDeviceInfo*>(ptr)->~QAudioDeviceInfo();
+}
+
+void* QAudioDeviceInfo_availableDevices_atList(void* ptr, int i)
+{
+	return new QAudioDeviceInfo(static_cast<QList<QAudioDeviceInfo>*>(ptr)->at(i));
 }
 
 void* QAudioEncoderSettings_NewQAudioEncoderSettings()
@@ -2216,6 +2227,11 @@ void QAudioInputSelectorControl_DestroyQAudioInputSelectorControlDefault(void* p
 
 }
 
+struct QtMultimedia_PackedString QAudioInputSelectorControl_availableInputs_atList(void* ptr, int i)
+{
+	return ({ QByteArray t29def6 = static_cast<QList<QString>*>(ptr)->at(i).toUtf8(); QtMultimedia_PackedString { const_cast<char*>(t29def6.prepend("WHITESPACE").constData()+10), t29def6.size()-10 }; });
+}
+
 void QAudioInputSelectorControl_TimerEvent(void* ptr, void* event)
 {
 	static_cast<QAudioInputSelectorControl*>(ptr)->timerEvent(static_cast<QTimerEvent*>(event));
@@ -2627,6 +2643,11 @@ void QAudioOutputSelectorControl_DestroyQAudioOutputSelectorControl(void* ptr)
 void QAudioOutputSelectorControl_DestroyQAudioOutputSelectorControlDefault(void* ptr)
 {
 
+}
+
+struct QtMultimedia_PackedString QAudioOutputSelectorControl_availableOutputs_atList(void* ptr, int i)
+{
+	return ({ QByteArray t29def6 = static_cast<QList<QString>*>(ptr)->at(i).toUtf8(); QtMultimedia_PackedString { const_cast<char*>(t29def6.prepend("WHITESPACE").constData()+10), t29def6.size()-10 }; });
 }
 
 void QAudioOutputSelectorControl_TimerEvent(void* ptr, void* event)
@@ -3579,6 +3600,16 @@ long long QCamera_SupportedLocks(void* ptr)
 	return static_cast<QCamera*>(ptr)->supportedLocks();
 }
 
+struct QtMultimedia_PackedList QCamera_SupportedViewfinderResolutions(void* ptr, void* settings)
+{
+	return ({ QList<QSize>* tmpValue = new QList<QSize>(static_cast<QCamera*>(ptr)->supportedViewfinderResolutions(*static_cast<QCameraViewfinderSettings*>(settings))); QtMultimedia_PackedList { tmpValue, tmpValue->size() }; });
+}
+
+struct QtMultimedia_PackedList QCamera_SupportedViewfinderSettings(void* ptr, void* settings)
+{
+	return ({ QList<QCameraViewfinderSettings>* tmpValue = new QList<QCameraViewfinderSettings>(static_cast<QCamera*>(ptr)->supportedViewfinderSettings(*static_cast<QCameraViewfinderSettings*>(settings))); QtMultimedia_PackedList { tmpValue, tmpValue->size() }; });
+}
+
 void QCamera_Unload(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QCamera*>(ptr), "unload");
@@ -3602,6 +3633,16 @@ void* QCamera_ViewfinderSettings(void* ptr)
 void QCamera_DestroyQCamera(void* ptr)
 {
 	static_cast<QCamera*>(ptr)->~QCamera();
+}
+
+void* QCamera_supportedViewfinderResolutions_atList(void* ptr, int i)
+{
+	return ({ QSize tmpValue = static_cast<QList<QSize>*>(ptr)->at(i); new QSize(tmpValue.width(), tmpValue.height()); });
+}
+
+void* QCamera_supportedViewfinderSettings_atList(void* ptr, int i)
+{
+	return new QCameraViewfinderSettings(static_cast<QList<QCameraViewfinderSettings>*>(ptr)->at(i));
 }
 
 char QCamera_Bind(void* ptr, void* object)
@@ -4693,6 +4734,11 @@ void QCameraExposureControl_DestroyQCameraExposureControl(void* ptr)
 	static_cast<QCameraExposureControl*>(ptr)->~QCameraExposureControl();
 }
 
+void* QCameraExposureControl_supportedParameterRange_atList(void* ptr, int i)
+{
+	return new QVariant(static_cast<QList<QVariant>*>(ptr)->at(i));
+}
+
 void QCameraExposureControl_TimerEvent(void* ptr, void* event)
 {
 	static_cast<QCameraExposureControl*>(ptr)->timerEvent(static_cast<QTimerEvent*>(event));
@@ -5122,6 +5168,11 @@ long long QCameraFocus_FocusPointMode(void* ptr)
 	return static_cast<QCameraFocus*>(ptr)->focusPointMode();
 }
 
+struct QtMultimedia_PackedList QCameraFocus_FocusZones(void* ptr)
+{
+	return ({ QList<QCameraFocusZone *>* tmpValue = new QList<QCameraFocusZone *>(static_cast<QCameraFocus*>(ptr)->focusZones()); QtMultimedia_PackedList { tmpValue, tmpValue->size() }; });
+}
+
 double QCameraFocus_OpticalZoom(void* ptr)
 {
 	return static_cast<QCameraFocus*>(ptr)->opticalZoom();
@@ -5245,6 +5296,11 @@ void QCameraFocus_OpticalZoomChanged(void* ptr, double value)
 void QCameraFocus_ZoomTo(void* ptr, double optical, double digital)
 {
 	static_cast<QCameraFocus*>(ptr)->zoomTo(optical, digital);
+}
+
+void* QCameraFocus_focusZones_atList(void* ptr, int i)
+{
+	return const_cast<QCameraFocusZone*>(static_cast<QList<QCameraFocusZone *>*>(ptr)->at(i));
 }
 
 void QCameraFocus_TimerEvent(void* ptr, void* event)
@@ -5466,6 +5522,11 @@ void QCameraFocusControl_SetFocusPointMode(void* ptr, long long mode)
 void QCameraFocusControl_DestroyQCameraFocusControl(void* ptr)
 {
 	static_cast<QCameraFocusControl*>(ptr)->~QCameraFocusControl();
+}
+
+void* QCameraFocusControl_focusZones_atList(void* ptr, int i)
+{
+	return const_cast<QCameraFocusZone*>(static_cast<QList<QCameraFocusZone *>*>(ptr)->at(i));
 }
 
 void QCameraFocusControl_TimerEvent(void* ptr, void* event)
@@ -5853,9 +5914,19 @@ struct QtMultimedia_PackedString QCameraImageCapture_SupportedImageCodecs(void* 
 	return ({ QByteArray t52ceb4 = static_cast<QCameraImageCapture*>(ptr)->supportedImageCodecs().join("|").toUtf8(); QtMultimedia_PackedString { const_cast<char*>(t52ceb4.prepend("WHITESPACE").constData()+10), t52ceb4.size()-10 }; });
 }
 
+struct QtMultimedia_PackedList QCameraImageCapture_SupportedResolutions(void* ptr, void* settings, char continuous)
+{
+	return ({ QList<QSize>* tmpValue = new QList<QSize>(static_cast<QCameraImageCapture*>(ptr)->supportedResolutions(*static_cast<QImageEncoderSettings*>(settings), NULL)); QtMultimedia_PackedList { tmpValue, tmpValue->size() }; });
+}
+
 void QCameraImageCapture_DestroyQCameraImageCapture(void* ptr)
 {
 	static_cast<QCameraImageCapture*>(ptr)->~QCameraImageCapture();
+}
+
+void* QCameraImageCapture_supportedResolutions_atList(void* ptr, int i)
+{
+	return ({ QSize tmpValue = static_cast<QList<QSize>*>(ptr)->at(i); new QSize(tmpValue.width(), tmpValue.height()); });
 }
 
 void QCameraImageCapture_TimerEvent(void* ptr, void* event)
@@ -6544,6 +6615,11 @@ void* QCameraInfo_NewQCameraInfo3(void* other)
 	return new QCameraInfo(*static_cast<QCameraInfo*>(other));
 }
 
+struct QtMultimedia_PackedList QCameraInfo_QCameraInfo_AvailableCameras(long long position)
+{
+	return ({ QList<QCameraInfo>* tmpValue = new QList<QCameraInfo>(QCameraInfo::availableCameras(static_cast<QCamera::Position>(position))); QtMultimedia_PackedList { tmpValue, tmpValue->size() }; });
+}
+
 void* QCameraInfo_QCameraInfo_DefaultCamera()
 {
 	return new QCameraInfo(QCameraInfo::defaultCamera());
@@ -6577,6 +6653,11 @@ long long QCameraInfo_Position(void* ptr)
 void QCameraInfo_DestroyQCameraInfo(void* ptr)
 {
 	static_cast<QCameraInfo*>(ptr)->~QCameraInfo();
+}
+
+void* QCameraInfo_availableCameras_atList(void* ptr, int i)
+{
+	return new QCameraInfo(static_cast<QList<QCameraInfo>*>(ptr)->at(i));
 }
 
 class MyQCameraInfoControl: public QCameraInfoControl
@@ -7833,6 +7914,11 @@ void QCameraViewfinderSettingsControl2_DestroyQCameraViewfinderSettingsControl2D
 
 }
 
+void* QCameraViewfinderSettingsControl2_supportedViewfinderSettings_atList(void* ptr, int i)
+{
+	return new QCameraViewfinderSettings(static_cast<QList<QCameraViewfinderSettings>*>(ptr)->at(i));
+}
+
 void QCameraViewfinderSettingsControl2_TimerEvent(void* ptr, void* event)
 {
 	static_cast<QCameraViewfinderSettingsControl2*>(ptr)->timerEvent(static_cast<QTimerEvent*>(event));
@@ -8753,6 +8839,11 @@ void QImageEncoderControl_DestroyQImageEncoderControlDefault(void* ptr)
 
 }
 
+void* QImageEncoderControl_supportedResolutions_atList(void* ptr, int i)
+{
+	return ({ QSize tmpValue = static_cast<QList<QSize>*>(ptr)->at(i); new QSize(tmpValue.width(), tmpValue.height()); });
+}
+
 void QImageEncoderControl_TimerEvent(void* ptr, void* event)
 {
 	static_cast<QImageEncoderControl*>(ptr)->timerEvent(static_cast<QTimerEvent*>(event));
@@ -9426,9 +9517,19 @@ void* QMediaContent_Playlist(void* ptr)
 	return static_cast<QMediaContent*>(ptr)->playlist();
 }
 
+struct QtMultimedia_PackedList QMediaContent_Resources(void* ptr)
+{
+	return ({ QList<QMediaResource>* tmpValue = new QList<QMediaResource>(static_cast<QMediaContent*>(ptr)->resources()); QtMultimedia_PackedList { tmpValue, tmpValue->size() }; });
+}
+
 void QMediaContent_DestroyQMediaContent(void* ptr)
 {
 	static_cast<QMediaContent*>(ptr)->~QMediaContent();
+}
+
+void* QMediaContent_resources_atList(void* ptr, int i)
+{
+	return new QMediaResource(static_cast<QList<QMediaResource>*>(ptr)->at(i));
 }
 
 void* QMediaControl_NewQMediaControl(void* parent)
@@ -12071,6 +12172,11 @@ struct QtMultimedia_PackedString QMediaRecorder_SupportedContainers(void* ptr)
 	return ({ QByteArray t948956 = static_cast<QMediaRecorder*>(ptr)->supportedContainers().join("|").toUtf8(); QtMultimedia_PackedString { const_cast<char*>(t948956.prepend("WHITESPACE").constData()+10), t948956.size()-10 }; });
 }
 
+struct QtMultimedia_PackedList QMediaRecorder_SupportedResolutions(void* ptr, void* settings, char continuous)
+{
+	return ({ QList<QSize>* tmpValue = new QList<QSize>(static_cast<QMediaRecorder*>(ptr)->supportedResolutions(*static_cast<QVideoEncoderSettings*>(settings), NULL)); QtMultimedia_PackedList { tmpValue, tmpValue->size() }; });
+}
+
 struct QtMultimedia_PackedString QMediaRecorder_SupportedVideoCodecs(void* ptr)
 {
 	return ({ QByteArray tb262ef = static_cast<QMediaRecorder*>(ptr)->supportedVideoCodecs().join("|").toUtf8(); QtMultimedia_PackedString { const_cast<char*>(tb262ef.prepend("WHITESPACE").constData()+10), tb262ef.size()-10 }; });
@@ -12104,6 +12210,11 @@ void QMediaRecorder_VolumeChanged(void* ptr, double volume)
 void QMediaRecorder_DestroyQMediaRecorder(void* ptr)
 {
 	static_cast<QMediaRecorder*>(ptr)->~QMediaRecorder();
+}
+
+void* QMediaRecorder_supportedResolutions_atList(void* ptr, int i)
+{
+	return ({ QSize tmpValue = static_cast<QList<QSize>*>(ptr)->at(i); new QSize(tmpValue.width(), tmpValue.height()); });
 }
 
 void QMediaRecorder_TimerEvent(void* ptr, void* event)
@@ -12981,6 +13092,11 @@ void QMediaServiceSupportedDevicesInterface_DestroyQMediaServiceSupportedDevices
 
 }
 
+void* QMediaServiceSupportedDevicesInterface_devices_atList(void* ptr, int i)
+{
+	return new QByteArray(static_cast<QList<QByteArray>*>(ptr)->at(i));
+}
+
 class MyQMediaServiceSupportedFormatsInterface: public QMediaServiceSupportedFormatsInterface
 {
 public:
@@ -13287,6 +13403,11 @@ long long QMediaTimeRange_EarliestTime(void* ptr)
 	return static_cast<QMediaTimeRange*>(ptr)->earliestTime();
 }
 
+struct QtMultimedia_PackedList QMediaTimeRange_Intervals(void* ptr)
+{
+	return ({ QList<QMediaTimeInterval>* tmpValue = new QList<QMediaTimeInterval>(static_cast<QMediaTimeRange*>(ptr)->intervals()); QtMultimedia_PackedList { tmpValue, tmpValue->size() }; });
+}
+
 char QMediaTimeRange_IsContinuous(void* ptr)
 {
 	return static_cast<QMediaTimeRange*>(ptr)->isContinuous();
@@ -13320,6 +13441,11 @@ void QMediaTimeRange_RemoveTimeRange(void* ptr, void* ran)
 void QMediaTimeRange_DestroyQMediaTimeRange(void* ptr)
 {
 	static_cast<QMediaTimeRange*>(ptr)->~QMediaTimeRange();
+}
+
+void* QMediaTimeRange_intervals_atList(void* ptr, int i)
+{
+	return new QMediaTimeInterval(static_cast<QList<QMediaTimeInterval>*>(ptr)->at(i));
 }
 
 class MyQMediaVideoProbeControl: public QMediaVideoProbeControl
@@ -16224,6 +16350,11 @@ void QVideoEncoderSettingsControl_DestroyQVideoEncoderSettingsControlDefault(voi
 
 }
 
+void* QVideoEncoderSettingsControl_supportedResolutions_atList(void* ptr, int i)
+{
+	return ({ QSize tmpValue = static_cast<QList<QSize>*>(ptr)->at(i); new QSize(tmpValue.width(), tmpValue.height()); });
+}
+
 void QVideoEncoderSettingsControl_TimerEvent(void* ptr, void* event)
 {
 	static_cast<QVideoEncoderSettingsControl*>(ptr)->timerEvent(static_cast<QTimerEvent*>(event));
@@ -16859,6 +16990,11 @@ void* QVideoSurfaceFormat_Property(void* ptr, char* name)
 	return new QVariant(static_cast<QVideoSurfaceFormat*>(ptr)->property(const_cast<const char*>(name)));
 }
 
+struct QtMultimedia_PackedList QVideoSurfaceFormat_PropertyNames(void* ptr)
+{
+	return ({ QList<QByteArray>* tmpValue = new QList<QByteArray>(static_cast<QVideoSurfaceFormat*>(ptr)->propertyNames()); QtMultimedia_PackedList { tmpValue, tmpValue->size() }; });
+}
+
 long long QVideoSurfaceFormat_ScanLineDirection(void* ptr)
 {
 	return static_cast<QVideoSurfaceFormat*>(ptr)->scanLineDirection();
@@ -16927,6 +17063,11 @@ long long QVideoSurfaceFormat_YCbCrColorSpace(void* ptr)
 void QVideoSurfaceFormat_DestroyQVideoSurfaceFormat(void* ptr)
 {
 	static_cast<QVideoSurfaceFormat*>(ptr)->~QVideoSurfaceFormat();
+}
+
+void* QVideoSurfaceFormat_propertyNames_atList(void* ptr, int i)
+{
+	return new QByteArray(static_cast<QList<QByteArray>*>(ptr)->at(i));
 }
 
 class MyQVideoWidget: public QVideoWidget

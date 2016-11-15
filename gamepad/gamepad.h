@@ -12,6 +12,7 @@ extern "C" {
 #endif
 
 struct QtGamepad_PackedString { char* data; long long len; };
+struct QtGamepad_PackedList { void* data; long long len; };
 double QGamepad_AxisLeftX(void* ptr);
 double QGamepad_AxisLeftY(void* ptr);
 double QGamepad_AxisRightX(void* ptr);

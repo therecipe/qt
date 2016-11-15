@@ -2827,6 +2827,11 @@ void QAbstractItemView_DestroyQAbstractItemView(void* ptr)
 	static_cast<QAbstractItemView*>(ptr)->~QAbstractItemView();
 }
 
+void* QAbstractItemView_selectedIndexes_atList(void* ptr, int i)
+{
+	return new QModelIndex(static_cast<QList<QModelIndex>*>(ptr)->at(i));
+}
+
 void QAbstractItemView_PaintEvent(void* ptr, void* event)
 {
 	static_cast<QAbstractItemView*>(ptr)->paintEvent(static_cast<QPaintEvent*>(event));
@@ -3560,6 +3565,11 @@ void QAbstractScrollArea_MouseReleaseEventDefault(void* ptr, void* e)
 	static_cast<QAbstractScrollArea*>(ptr)->QAbstractScrollArea::mouseReleaseEvent(static_cast<QMouseEvent*>(e));
 }
 
+struct QtWidgets_PackedList QAbstractScrollArea_ScrollBarWidgets(void* ptr, long long alignment)
+{
+	return ({ QList<QWidget *>* tmpValue = new QList<QWidget *>(static_cast<QAbstractScrollArea*>(ptr)->scrollBarWidgets(static_cast<Qt::AlignmentFlag>(alignment))); QtWidgets_PackedList { tmpValue, tmpValue->size() }; });
+}
+
 void QAbstractScrollArea_ScrollContentsBy(void* ptr, int dx, int dy)
 {
 	static_cast<QAbstractScrollArea*>(ptr)->scrollContentsBy(dx, dy);
@@ -3658,6 +3668,11 @@ void QAbstractScrollArea_WheelEventDefault(void* ptr, void* e)
 void QAbstractScrollArea_DestroyQAbstractScrollArea(void* ptr)
 {
 	static_cast<QAbstractScrollArea*>(ptr)->~QAbstractScrollArea();
+}
+
+void* QAbstractScrollArea_scrollBarWidgets_atList(void* ptr, int i)
+{
+	return const_cast<QWidget*>(static_cast<QList<QWidget *>*>(ptr)->at(i));
 }
 
 void QAbstractScrollArea_ChangeEvent(void* ptr, void* ev)
@@ -6334,6 +6349,16 @@ void QAction_Activate(void* ptr, long long event)
 	static_cast<QAction*>(ptr)->activate(static_cast<QAction::ActionEvent>(event));
 }
 
+struct QtWidgets_PackedList QAction_AssociatedGraphicsWidgets(void* ptr)
+{
+	return ({ QList<QGraphicsWidget *>* tmpValue = new QList<QGraphicsWidget *>(static_cast<QAction*>(ptr)->associatedGraphicsWidgets()); QtWidgets_PackedList { tmpValue, tmpValue->size() }; });
+}
+
+struct QtWidgets_PackedList QAction_AssociatedWidgets(void* ptr)
+{
+	return ({ QList<QWidget *>* tmpValue = new QList<QWidget *>(static_cast<QAction*>(ptr)->associatedWidgets()); QtWidgets_PackedList { tmpValue, tmpValue->size() }; });
+}
+
 void QAction_ConnectChanged(void* ptr)
 {
 	QObject::connect(static_cast<QAction*>(ptr), static_cast<void (QAction::*)()>(&QAction::changed), static_cast<MyQAction*>(ptr), static_cast<void (MyQAction::*)()>(&MyQAction::Signal_Changed));
@@ -6424,6 +6449,11 @@ void* QAction_Shortcut(void* ptr)
 	return new QKeySequence(static_cast<QAction*>(ptr)->shortcut());
 }
 
+struct QtWidgets_PackedList QAction_Shortcuts(void* ptr)
+{
+	return ({ QList<QKeySequence>* tmpValue = new QList<QKeySequence>(static_cast<QAction*>(ptr)->shortcuts()); QtWidgets_PackedList { tmpValue, tmpValue->size() }; });
+}
+
 char QAction_ShowStatusText(void* ptr, void* widget)
 {
 	return static_cast<QAction*>(ptr)->showStatusText(static_cast<QWidget*>(widget));
@@ -6467,6 +6497,21 @@ void QAction_Triggered(void* ptr, char checked)
 void QAction_DestroyQAction(void* ptr)
 {
 	static_cast<QAction*>(ptr)->~QAction();
+}
+
+void* QAction_associatedGraphicsWidgets_atList(void* ptr, int i)
+{
+	return const_cast<QGraphicsWidget*>(static_cast<QList<QGraphicsWidget *>*>(ptr)->at(i));
+}
+
+void* QAction_associatedWidgets_atList(void* ptr, int i)
+{
+	return const_cast<QWidget*>(static_cast<QList<QWidget *>*>(ptr)->at(i));
+}
+
+void* QAction_shortcuts_atList(void* ptr, int i)
+{
+	return new QKeySequence(static_cast<QList<QKeySequence>*>(ptr)->at(i));
 }
 
 void QAction_TimerEvent(void* ptr, void* event)
@@ -6610,6 +6655,11 @@ void* QActionGroup_NewQActionGroup(void* parent)
 	return new MyQActionGroup(static_cast<QObject*>(parent));
 }
 
+struct QtWidgets_PackedList QActionGroup_Actions(void* ptr)
+{
+	return ({ QList<QAction *>* tmpValue = new QList<QAction *>(static_cast<QActionGroup*>(ptr)->actions()); QtWidgets_PackedList { tmpValue, tmpValue->size() }; });
+}
+
 void* QActionGroup_AddAction3(void* ptr, void* icon, char* text)
 {
 	return static_cast<QActionGroup*>(ptr)->addAction(*static_cast<QIcon*>(icon), QString(text));
@@ -6668,6 +6718,11 @@ void QActionGroup_Triggered(void* ptr, void* action)
 void QActionGroup_DestroyQActionGroup(void* ptr)
 {
 	static_cast<QActionGroup*>(ptr)->~QActionGroup();
+}
+
+void* QActionGroup_actions_atList(void* ptr, int i)
+{
+	return const_cast<QAction*>(static_cast<QList<QAction *>*>(ptr)->at(i));
 }
 
 void QActionGroup_TimerEvent(void* ptr, void* event)
@@ -6970,6 +7025,11 @@ void* QApplication_QApplication_ActiveWindow()
 	return QApplication::activeWindow();
 }
 
+struct QtWidgets_PackedList QApplication_QApplication_AllWidgets()
+{
+	return ({ QList<QWidget *>* tmpValue = new QList<QWidget *>(QApplication::allWidgets()); QtWidgets_PackedList { tmpValue, tmpValue->size() }; });
+}
+
 void QApplication_CloseAllWindows(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QApplication*>(ptr), "closeAllWindows");
@@ -7091,6 +7151,11 @@ void* QApplication_QApplication_TopLevelAt2(int x, int y)
 	return QApplication::topLevelAt(x, y);
 }
 
+struct QtWidgets_PackedList QApplication_QApplication_TopLevelWidgets()
+{
+	return ({ QList<QWidget *>* tmpValue = new QList<QWidget *>(QApplication::topLevelWidgets()); QtWidgets_PackedList { tmpValue, tmpValue->size() }; });
+}
+
 void* QApplication_QApplication_WidgetAt2(int x, int y)
 {
 	return QApplication::widgetAt(x, y);
@@ -7104,6 +7169,16 @@ void QApplication_DestroyQApplication(void* ptr)
 void QApplication_DestroyQApplicationDefault(void* ptr)
 {
 
+}
+
+void* QApplication_allWidgets_atList(void* ptr, int i)
+{
+	return const_cast<QWidget*>(static_cast<QList<QWidget *>*>(ptr)->at(i));
+}
+
+void* QApplication_topLevelWidgets_atList(void* ptr, int i)
+{
+	return const_cast<QWidget*>(static_cast<QList<QWidget *>*>(ptr)->at(i));
 }
 
 void QApplication_Quit(void* ptr)
@@ -7788,6 +7863,11 @@ void QButtonGroup_ButtonToggled2(void* ptr, int id, char checked)
 	static_cast<QButtonGroup*>(ptr)->buttonToggled(id, checked != 0);
 }
 
+struct QtWidgets_PackedList QButtonGroup_Buttons(void* ptr)
+{
+	return ({ QList<QAbstractButton *>* tmpValue = new QList<QAbstractButton *>(static_cast<QButtonGroup*>(ptr)->buttons()); QtWidgets_PackedList { tmpValue, tmpValue->size() }; });
+}
+
 void* QButtonGroup_CheckedButton(void* ptr)
 {
 	return static_cast<QButtonGroup*>(ptr)->checkedButton();
@@ -7816,6 +7896,11 @@ void QButtonGroup_SetId(void* ptr, void* button, int id)
 void QButtonGroup_DestroyQButtonGroup(void* ptr)
 {
 	static_cast<QButtonGroup*>(ptr)->~QButtonGroup();
+}
+
+void* QButtonGroup_buttons_atList(void* ptr, int i)
+{
+	return const_cast<QAbstractButton*>(static_cast<QList<QAbstractButton *>*>(ptr)->at(i));
 }
 
 void QButtonGroup_TimerEvent(void* ptr, void* event)
@@ -19003,6 +19088,11 @@ long long QDialogButtonBox_ButtonRole(void* ptr, void* button)
 	return static_cast<QDialogButtonBox*>(ptr)->buttonRole(static_cast<QAbstractButton*>(button));
 }
 
+struct QtWidgets_PackedList QDialogButtonBox_Buttons(void* ptr)
+{
+	return ({ QList<QAbstractButton *>* tmpValue = new QList<QAbstractButton *>(static_cast<QDialogButtonBox*>(ptr)->buttons()); QtWidgets_PackedList { tmpValue, tmpValue->size() }; });
+}
+
 void QDialogButtonBox_ChangeEvent(void* ptr, void* event)
 {
 	static_cast<QDialogButtonBox*>(ptr)->changeEvent(static_cast<QEvent*>(event));
@@ -19081,6 +19171,11 @@ long long QDialogButtonBox_StandardButton(void* ptr, void* button)
 void QDialogButtonBox_DestroyQDialogButtonBox(void* ptr)
 {
 	static_cast<QDialogButtonBox*>(ptr)->~QDialogButtonBox();
+}
+
+void* QDialogButtonBox_buttons_atList(void* ptr, int i)
+{
+	return const_cast<QAbstractButton*>(static_cast<QList<QAbstractButton *>*>(ptr)->at(i));
 }
 
 void QDialogButtonBox_ActionEvent(void* ptr, void* event)
@@ -22547,6 +22642,11 @@ void* QFileDialog_QFileDialog_GetOpenFileUrl(void* parent, char* caption, void* 
 	return new QUrl(QFileDialog::getOpenFileUrl(static_cast<QWidget*>(parent), QString(caption), *static_cast<QUrl*>(dir), QString(filter), new QString(selectedFilter), static_cast<QFileDialog::Option>(options), QString(supportedSchemes).split("|", QString::SkipEmptyParts)));
 }
 
+struct QtWidgets_PackedList QFileDialog_QFileDialog_GetOpenFileUrls(void* parent, char* caption, void* dir, char* filter, char* selectedFilter, long long options, char* supportedSchemes)
+{
+	return ({ QList<QUrl>* tmpValue = new QList<QUrl>(QFileDialog::getOpenFileUrls(static_cast<QWidget*>(parent), QString(caption), *static_cast<QUrl*>(dir), QString(filter), new QString(selectedFilter), static_cast<QFileDialog::Option>(options), QString(supportedSchemes).split("|", QString::SkipEmptyParts))); QtWidgets_PackedList { tmpValue, tmpValue->size() }; });
+}
+
 struct QtWidgets_PackedString QFileDialog_QFileDialog_GetSaveFileName(void* parent, char* caption, char* dir, char* filter, char* selectedFilter, long long options)
 {
 	return ({ QByteArray t897f02 = QFileDialog::getSaveFileName(static_cast<QWidget*>(parent), QString(caption), QString(dir), QString(filter), new QString(selectedFilter), static_cast<QFileDialog::Option>(options)).toUtf8(); QtWidgets_PackedString { const_cast<char*>(t897f02.prepend("WHITESPACE").constData()+10), t897f02.size()-10 }; });
@@ -22637,6 +22737,11 @@ struct QtWidgets_PackedString QFileDialog_SelectedNameFilter(void* ptr)
 	return ({ QByteArray tca1caa = static_cast<QFileDialog*>(ptr)->selectedNameFilter().toUtf8(); QtWidgets_PackedString { const_cast<char*>(tca1caa.prepend("WHITESPACE").constData()+10), tca1caa.size()-10 }; });
 }
 
+struct QtWidgets_PackedList QFileDialog_SelectedUrls(void* ptr)
+{
+	return ({ QList<QUrl>* tmpValue = new QList<QUrl>(static_cast<QFileDialog*>(ptr)->selectedUrls()); QtWidgets_PackedList { tmpValue, tmpValue->size() }; });
+}
+
 void QFileDialog_SetDirectory2(void* ptr, void* directory)
 {
 	static_cast<QFileDialog*>(ptr)->setDirectory(*static_cast<QDir*>(directory));
@@ -22712,6 +22817,11 @@ void QFileDialog_SetVisibleDefault(void* ptr, char visible)
 	static_cast<QFileDialog*>(ptr)->QFileDialog::setVisible(visible != 0);
 }
 
+struct QtWidgets_PackedList QFileDialog_SidebarUrls(void* ptr)
+{
+	return ({ QList<QUrl>* tmpValue = new QList<QUrl>(static_cast<QFileDialog*>(ptr)->sidebarUrls()); QtWidgets_PackedList { tmpValue, tmpValue->size() }; });
+}
+
 char QFileDialog_TestOption(void* ptr, long long option)
 {
 	return static_cast<QFileDialog*>(ptr)->testOption(static_cast<QFileDialog::Option>(option));
@@ -22735,6 +22845,21 @@ void QFileDialog_UrlSelected(void* ptr, void* url)
 void QFileDialog_DestroyQFileDialog(void* ptr)
 {
 	static_cast<QFileDialog*>(ptr)->~QFileDialog();
+}
+
+void* QFileDialog_getOpenFileUrls_atList(void* ptr, int i)
+{
+	return new QUrl(static_cast<QList<QUrl>*>(ptr)->at(i));
+}
+
+void* QFileDialog_selectedUrls_atList(void* ptr, int i)
+{
+	return new QUrl(static_cast<QList<QUrl>*>(ptr)->at(i));
+}
+
+void* QFileDialog_sidebarUrls_atList(void* ptr, int i)
+{
+	return new QUrl(static_cast<QList<QUrl>*>(ptr)->at(i));
 }
 
 void QFileDialog_CloseEvent(void* ptr, void* e)
@@ -27679,9 +27804,24 @@ void QGestureEvent_Accept2(void* ptr, long long gestureType)
 	static_cast<QGestureEvent*>(ptr)->accept(static_cast<Qt::GestureType>(gestureType));
 }
 
+struct QtWidgets_PackedList QGestureEvent_ActiveGestures(void* ptr)
+{
+	return ({ QList<QGesture *>* tmpValue = new QList<QGesture *>(static_cast<QGestureEvent*>(ptr)->activeGestures()); QtWidgets_PackedList { tmpValue, tmpValue->size() }; });
+}
+
+struct QtWidgets_PackedList QGestureEvent_CanceledGestures(void* ptr)
+{
+	return ({ QList<QGesture *>* tmpValue = new QList<QGesture *>(static_cast<QGestureEvent*>(ptr)->canceledGestures()); QtWidgets_PackedList { tmpValue, tmpValue->size() }; });
+}
+
 void* QGestureEvent_Gesture(void* ptr, long long ty)
 {
 	return static_cast<QGestureEvent*>(ptr)->gesture(static_cast<Qt::GestureType>(ty));
+}
+
+struct QtWidgets_PackedList QGestureEvent_Gestures(void* ptr)
+{
+	return ({ QList<QGesture *>* tmpValue = new QList<QGesture *>(static_cast<QGestureEvent*>(ptr)->gestures()); QtWidgets_PackedList { tmpValue, tmpValue->size() }; });
 }
 
 void QGestureEvent_Ignore(void* ptr, void* gesture)
@@ -27727,6 +27867,21 @@ void* QGestureEvent_Widget(void* ptr)
 void QGestureEvent_DestroyQGestureEvent(void* ptr)
 {
 	static_cast<QGestureEvent*>(ptr)->~QGestureEvent();
+}
+
+void* QGestureEvent_activeGestures_atList(void* ptr, int i)
+{
+	return const_cast<QGesture*>(static_cast<QList<QGesture *>*>(ptr)->at(i));
+}
+
+void* QGestureEvent_canceledGestures_atList(void* ptr, int i)
+{
+	return const_cast<QGesture*>(static_cast<QList<QGesture *>*>(ptr)->at(i));
+}
+
+void* QGestureEvent_gestures_atList(void* ptr, int i)
+{
+	return const_cast<QGesture*>(static_cast<QList<QGesture *>*>(ptr)->at(i));
 }
 
 class MyQGestureRecognizer: public QGestureRecognizer
@@ -29845,6 +30000,11 @@ long long QGraphicsItem_CacheMode(void* ptr)
 	return static_cast<QGraphicsItem*>(ptr)->cacheMode();
 }
 
+struct QtWidgets_PackedList QGraphicsItem_ChildItems(void* ptr)
+{
+	return ({ QList<QGraphicsItem *>* tmpValue = new QList<QGraphicsItem *>(static_cast<QGraphicsItem*>(ptr)->childItems()); QtWidgets_PackedList { tmpValue, tmpValue->size() }; });
+}
+
 void* QGraphicsItem_ChildrenBoundingRect(void* ptr)
 {
 	return ({ QRectF tmpValue = static_cast<QGraphicsItem*>(ptr)->childrenBoundingRect(); new QRectF(tmpValue.x(), tmpValue.y(), tmpValue.width(), tmpValue.height()); });
@@ -29878,6 +30038,11 @@ char QGraphicsItem_CollidesWithPath(void* ptr, void* path, long long mode)
 char QGraphicsItem_CollidesWithPathDefault(void* ptr, void* path, long long mode)
 {
 	return static_cast<QGraphicsItem*>(ptr)->QGraphicsItem::collidesWithPath(*static_cast<QPainterPath*>(path), static_cast<Qt::ItemSelectionMode>(mode));
+}
+
+struct QtWidgets_PackedList QGraphicsItem_CollidingItems(void* ptr, long long mode)
+{
+	return ({ QList<QGraphicsItem *>* tmpValue = new QList<QGraphicsItem *>(static_cast<QGraphicsItem*>(ptr)->collidingItems(static_cast<Qt::ItemSelectionMode>(mode))); QtWidgets_PackedList { tmpValue, tmpValue->size() }; });
 }
 
 void* QGraphicsItem_CommonAncestorItem(void* ptr, void* other)
@@ -30850,6 +31015,11 @@ void* QGraphicsItem_TransformOriginPoint(void* ptr)
 	return ({ QPointF tmpValue = static_cast<QGraphicsItem*>(ptr)->transformOriginPoint(); new QPointF(tmpValue.x(), tmpValue.y()); });
 }
 
+struct QtWidgets_PackedList QGraphicsItem_Transformations(void* ptr)
+{
+	return ({ QList<QGraphicsTransform *>* tmpValue = new QList<QGraphicsTransform *>(static_cast<QGraphicsItem*>(ptr)->transformations()); QtWidgets_PackedList { tmpValue, tmpValue->size() }; });
+}
+
 int QGraphicsItem_Type(void* ptr)
 {
 	return static_cast<QGraphicsItem*>(ptr)->type();
@@ -30933,6 +31103,21 @@ void QGraphicsItem_DestroyQGraphicsItemDefault(void* ptr)
 int QGraphicsItem_QGraphicsItem_UserType()
 {
 	return QGraphicsItem::UserType;
+}
+
+void* QGraphicsItem_childItems_atList(void* ptr, int i)
+{
+	return const_cast<QGraphicsItem*>(static_cast<QList<QGraphicsItem *>*>(ptr)->at(i));
+}
+
+void* QGraphicsItem_collidingItems_atList(void* ptr, int i)
+{
+	return const_cast<QGraphicsItem*>(static_cast<QList<QGraphicsItem *>*>(ptr)->at(i));
+}
+
+void* QGraphicsItem_transformations_atList(void* ptr, int i)
+{
+	return const_cast<QGraphicsTransform*>(static_cast<QList<QGraphicsTransform *>*>(ptr)->at(i));
 }
 
 class MyQGraphicsItemGroup: public QGraphicsItemGroup
@@ -36087,6 +36272,26 @@ long long QGraphicsScene_ItemIndexMethod(void* ptr)
 	return static_cast<QGraphicsScene*>(ptr)->itemIndexMethod();
 }
 
+struct QtWidgets_PackedList QGraphicsScene_Items5(void* ptr, void* path, long long mode, long long order, void* deviceTransform)
+{
+	return ({ QList<QGraphicsItem *>* tmpValue = new QList<QGraphicsItem *>(static_cast<QGraphicsScene*>(ptr)->items(*static_cast<QPainterPath*>(path), static_cast<Qt::ItemSelectionMode>(mode), static_cast<Qt::SortOrder>(order), *static_cast<QTransform*>(deviceTransform))); QtWidgets_PackedList { tmpValue, tmpValue->size() }; });
+}
+
+struct QtWidgets_PackedList QGraphicsScene_Items2(void* ptr, void* pos, long long mode, long long order, void* deviceTransform)
+{
+	return ({ QList<QGraphicsItem *>* tmpValue = new QList<QGraphicsItem *>(static_cast<QGraphicsScene*>(ptr)->items(*static_cast<QPointF*>(pos), static_cast<Qt::ItemSelectionMode>(mode), static_cast<Qt::SortOrder>(order), *static_cast<QTransform*>(deviceTransform))); QtWidgets_PackedList { tmpValue, tmpValue->size() }; });
+}
+
+struct QtWidgets_PackedList QGraphicsScene_Items4(void* ptr, void* polygon, long long mode, long long order, void* deviceTransform)
+{
+	return ({ QList<QGraphicsItem *>* tmpValue = new QList<QGraphicsItem *>(static_cast<QGraphicsScene*>(ptr)->items(*static_cast<QPolygonF*>(polygon), static_cast<Qt::ItemSelectionMode>(mode), static_cast<Qt::SortOrder>(order), *static_cast<QTransform*>(deviceTransform))); QtWidgets_PackedList { tmpValue, tmpValue->size() }; });
+}
+
+struct QtWidgets_PackedList QGraphicsScene_Items3(void* ptr, void* rect, long long mode, long long order, void* deviceTransform)
+{
+	return ({ QList<QGraphicsItem *>* tmpValue = new QList<QGraphicsItem *>(static_cast<QGraphicsScene*>(ptr)->items(*static_cast<QRectF*>(rect), static_cast<Qt::ItemSelectionMode>(mode), static_cast<Qt::SortOrder>(order), *static_cast<QTransform*>(deviceTransform))); QtWidgets_PackedList { tmpValue, tmpValue->size() }; });
+}
+
 double QGraphicsScene_MinimumRenderSize(void* ptr)
 {
 	return static_cast<QGraphicsScene*>(ptr)->minimumRenderSize();
@@ -36270,6 +36475,11 @@ void QGraphicsScene_ClearFocus(void* ptr)
 void QGraphicsScene_ClearSelection(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QGraphicsScene*>(ptr), "clearSelection");
+}
+
+struct QtWidgets_PackedList QGraphicsScene_CollidingItems(void* ptr, void* item, long long mode)
+{
+	return ({ QList<QGraphicsItem *>* tmpValue = new QList<QGraphicsItem *>(static_cast<QGraphicsScene*>(ptr)->collidingItems(static_cast<QGraphicsItem*>(item), static_cast<Qt::ItemSelectionMode>(mode))); QtWidgets_PackedList { tmpValue, tmpValue->size() }; });
 }
 
 void QGraphicsScene_ContextMenuEvent(void* ptr, void* contextMenuEvent)
@@ -36474,6 +36684,16 @@ void* QGraphicsScene_ItemAt4(void* ptr, double x, double y, void* deviceTransfor
 	return static_cast<QGraphicsScene*>(ptr)->itemAt(x, y, *static_cast<QTransform*>(deviceTransform));
 }
 
+struct QtWidgets_PackedList QGraphicsScene_Items(void* ptr, long long order)
+{
+	return ({ QList<QGraphicsItem *>* tmpValue = new QList<QGraphicsItem *>(static_cast<QGraphicsScene*>(ptr)->items(static_cast<Qt::SortOrder>(order))); QtWidgets_PackedList { tmpValue, tmpValue->size() }; });
+}
+
+struct QtWidgets_PackedList QGraphicsScene_Items7(void* ptr, double x, double y, double w, double h, long long mode, long long order, void* deviceTransform)
+{
+	return ({ QList<QGraphicsItem *>* tmpValue = new QList<QGraphicsItem *>(static_cast<QGraphicsScene*>(ptr)->items(x, y, w, h, static_cast<Qt::ItemSelectionMode>(mode), static_cast<Qt::SortOrder>(order), *static_cast<QTransform*>(deviceTransform))); QtWidgets_PackedList { tmpValue, tmpValue->size() }; });
+}
+
 void* QGraphicsScene_ItemsBoundingRect(void* ptr)
 {
 	return ({ QRectF tmpValue = static_cast<QGraphicsScene*>(ptr)->itemsBoundingRect(); new QRectF(tmpValue.x(), tmpValue.y(), tmpValue.width(), tmpValue.height()); });
@@ -36569,6 +36789,11 @@ void QGraphicsScene_SceneRectChanged(void* ptr, void* rect)
 	static_cast<QGraphicsScene*>(ptr)->sceneRectChanged(*static_cast<QRectF*>(rect));
 }
 
+struct QtWidgets_PackedList QGraphicsScene_SelectedItems(void* ptr)
+{
+	return ({ QList<QGraphicsItem *>* tmpValue = new QList<QGraphicsItem *>(static_cast<QGraphicsScene*>(ptr)->selectedItems()); QtWidgets_PackedList { tmpValue, tmpValue->size() }; });
+}
+
 void* QGraphicsScene_SelectionArea(void* ptr)
 {
 	return new QPainterPath(static_cast<QGraphicsScene*>(ptr)->selectionArea());
@@ -36649,6 +36874,11 @@ void QGraphicsScene_Update2(void* ptr, double x, double y, double w, double h)
 	static_cast<QGraphicsScene*>(ptr)->update(x, y, w, h);
 }
 
+struct QtWidgets_PackedList QGraphicsScene_Views(void* ptr)
+{
+	return ({ QList<QGraphicsView *>* tmpValue = new QList<QGraphicsView *>(static_cast<QGraphicsScene*>(ptr)->views()); QtWidgets_PackedList { tmpValue, tmpValue->size() }; });
+}
+
 void QGraphicsScene_WheelEvent(void* ptr, void* wheelEvent)
 {
 	static_cast<QGraphicsScene*>(ptr)->wheelEvent(static_cast<QGraphicsSceneWheelEvent*>(wheelEvent));
@@ -36672,6 +36902,26 @@ void QGraphicsScene_DestroyQGraphicsScene(void* ptr)
 void QGraphicsScene_DestroyQGraphicsSceneDefault(void* ptr)
 {
 
+}
+
+void* QGraphicsScene_items_atList(void* ptr, int i)
+{
+	return const_cast<QGraphicsItem*>(static_cast<QList<QGraphicsItem *>*>(ptr)->at(i));
+}
+
+void* QGraphicsScene_collidingItems_atList(void* ptr, int i)
+{
+	return const_cast<QGraphicsItem*>(static_cast<QList<QGraphicsItem *>*>(ptr)->at(i));
+}
+
+void* QGraphicsScene_selectedItems_atList(void* ptr, int i)
+{
+	return const_cast<QGraphicsItem*>(static_cast<QList<QGraphicsItem *>*>(ptr)->at(i));
+}
+
+void* QGraphicsScene_views_atList(void* ptr, int i)
+{
+	return const_cast<QGraphicsView*>(static_cast<QList<QGraphicsView *>*>(ptr)->at(i));
 }
 
 void QGraphicsScene_TimerEvent(void* ptr, void* event)
@@ -38597,6 +38847,41 @@ void* QGraphicsView_ItemAt2(void* ptr, int x, int y)
 	return static_cast<QGraphicsView*>(ptr)->itemAt(x, y);
 }
 
+struct QtWidgets_PackedList QGraphicsView_Items(void* ptr)
+{
+	return ({ QList<QGraphicsItem *>* tmpValue = new QList<QGraphicsItem *>(static_cast<QGraphicsView*>(ptr)->items()); QtWidgets_PackedList { tmpValue, tmpValue->size() }; });
+}
+
+struct QtWidgets_PackedList QGraphicsView_Items7(void* ptr, void* path, long long mode)
+{
+	return ({ QList<QGraphicsItem *>* tmpValue = new QList<QGraphicsItem *>(static_cast<QGraphicsView*>(ptr)->items(*static_cast<QPainterPath*>(path), static_cast<Qt::ItemSelectionMode>(mode))); QtWidgets_PackedList { tmpValue, tmpValue->size() }; });
+}
+
+struct QtWidgets_PackedList QGraphicsView_Items2(void* ptr, void* pos)
+{
+	return ({ QList<QGraphicsItem *>* tmpValue = new QList<QGraphicsItem *>(static_cast<QGraphicsView*>(ptr)->items(*static_cast<QPoint*>(pos))); QtWidgets_PackedList { tmpValue, tmpValue->size() }; });
+}
+
+struct QtWidgets_PackedList QGraphicsView_Items6(void* ptr, void* polygon, long long mode)
+{
+	return ({ QList<QGraphicsItem *>* tmpValue = new QList<QGraphicsItem *>(static_cast<QGraphicsView*>(ptr)->items(*static_cast<QPolygon*>(polygon), static_cast<Qt::ItemSelectionMode>(mode))); QtWidgets_PackedList { tmpValue, tmpValue->size() }; });
+}
+
+struct QtWidgets_PackedList QGraphicsView_Items4(void* ptr, void* rect, long long mode)
+{
+	return ({ QList<QGraphicsItem *>* tmpValue = new QList<QGraphicsItem *>(static_cast<QGraphicsView*>(ptr)->items(*static_cast<QRect*>(rect), static_cast<Qt::ItemSelectionMode>(mode))); QtWidgets_PackedList { tmpValue, tmpValue->size() }; });
+}
+
+struct QtWidgets_PackedList QGraphicsView_Items3(void* ptr, int x, int y)
+{
+	return ({ QList<QGraphicsItem *>* tmpValue = new QList<QGraphicsItem *>(static_cast<QGraphicsView*>(ptr)->items(x, y)); QtWidgets_PackedList { tmpValue, tmpValue->size() }; });
+}
+
+struct QtWidgets_PackedList QGraphicsView_Items5(void* ptr, int x, int y, int w, int h, long long mode)
+{
+	return ({ QList<QGraphicsItem *>* tmpValue = new QList<QGraphicsItem *>(static_cast<QGraphicsView*>(ptr)->items(x, y, w, h, static_cast<Qt::ItemSelectionMode>(mode))); QtWidgets_PackedList { tmpValue, tmpValue->size() }; });
+}
+
 void QGraphicsView_KeyPressEvent(void* ptr, void* event)
 {
 	static_cast<QGraphicsView*>(ptr)->keyPressEvent(static_cast<QKeyEvent*>(event));
@@ -38905,6 +39190,11 @@ void QGraphicsView_WheelEventDefault(void* ptr, void* event)
 void QGraphicsView_DestroyQGraphicsView(void* ptr)
 {
 	static_cast<QGraphicsView*>(ptr)->~QGraphicsView();
+}
+
+void* QGraphicsView_items_atList(void* ptr, int i)
+{
+	return const_cast<QGraphicsItem*>(static_cast<QList<QGraphicsItem *>*>(ptr)->at(i));
 }
 
 void* QGraphicsView_MinimumSizeHint(void* ptr)
@@ -39493,6 +39783,11 @@ void* QGraphicsWidget_NewQGraphicsWidget(void* parent, long long wFlags)
 	return new MyQGraphicsWidget(static_cast<QGraphicsItem*>(parent), static_cast<Qt::WindowType>(wFlags));
 }
 
+struct QtWidgets_PackedList QGraphicsWidget_Actions(void* ptr)
+{
+	return ({ QList<QAction *>* tmpValue = new QList<QAction *>(static_cast<QGraphicsWidget*>(ptr)->actions()); QtWidgets_PackedList { tmpValue, tmpValue->size() }; });
+}
+
 void QGraphicsWidget_AddAction(void* ptr, void* action)
 {
 	static_cast<QGraphicsWidget*>(ptr)->addAction(static_cast<QAction*>(action));
@@ -39988,6 +40283,11 @@ void QGraphicsWidget_SetSizePolicy(void* ptr, void* vqs)
 void QGraphicsWidget_SetSizePolicy2(void* ptr, long long hPolicy, long long vPolicy, long long controlType)
 {
 	static_cast<QGraphicsWidget*>(ptr)->setSizePolicy(static_cast<QSizePolicy::Policy>(hPolicy), static_cast<QSizePolicy::Policy>(vPolicy), static_cast<QSizePolicy::ControlType>(controlType));
+}
+
+void* QGraphicsWidget_actions_atList(void* ptr, int i)
+{
+	return const_cast<QAction*>(static_cast<QList<QAction *>*>(ptr)->at(i));
 }
 
 void QGraphicsWidget_UpdateMicroFocus(void* ptr)
@@ -49730,6 +50030,11 @@ void QListView_DestroyQListView(void* ptr)
 	static_cast<QListView*>(ptr)->~QListView();
 }
 
+void* QListView_selectedIndexes_atList(void* ptr, int i)
+{
+	return new QModelIndex(static_cast<QList<QModelIndex>*>(ptr)->at(i));
+}
+
 char QListView_ViewportEvent(void* ptr, void* event)
 {
 	return static_cast<QListView*>(ptr)->viewportEvent(static_cast<QEvent*>(event));
@@ -50716,6 +51021,11 @@ char QListWidget_Event(void* ptr, void* e)
 	return static_cast<QListWidget*>(ptr)->event(static_cast<QEvent*>(e));
 }
 
+struct QtWidgets_PackedList QListWidget_FindItems(void* ptr, char* text, long long flags)
+{
+	return ({ QList<QListWidgetItem *>* tmpValue = new QList<QListWidgetItem *>(static_cast<QListWidget*>(ptr)->findItems(QString(text), static_cast<Qt::MatchFlag>(flags))); QtWidgets_PackedList { tmpValue, tmpValue->size() }; });
+}
+
 void* QListWidget_IndexFromItem(void* ptr, void* item)
 {
 	return new QModelIndex(static_cast<QListWidget*>(ptr)->indexFromItem(static_cast<QListWidgetItem*>(item)));
@@ -50866,6 +51176,11 @@ void* QListWidget_ItemWidget(void* ptr, void* item)
 	return static_cast<QListWidget*>(ptr)->itemWidget(static_cast<QListWidgetItem*>(item));
 }
 
+struct QtWidgets_PackedList QListWidget_Items(void* ptr, void* data)
+{
+	return ({ QList<QListWidgetItem *>* tmpValue = new QList<QListWidgetItem *>(static_cast<QListWidget*>(ptr)->items(static_cast<QMimeData*>(data))); QtWidgets_PackedList { tmpValue, tmpValue->size() }; });
+}
+
 struct QtWidgets_PackedString QListWidget_MimeTypes(void* ptr)
 {
 	return ({ QByteArray t46fd45 = static_cast<QListWidget*>(ptr)->mimeTypes().join("|").toUtf8(); QtWidgets_PackedString { const_cast<char*>(t46fd45.prepend("WHITESPACE").constData()+10), t46fd45.size()-10 }; });
@@ -50894,6 +51209,11 @@ int QListWidget_Row(void* ptr, void* item)
 void QListWidget_ScrollToItem(void* ptr, void* item, long long hint)
 {
 	QMetaObject::invokeMethod(static_cast<QListWidget*>(ptr), "scrollToItem", Q_ARG(QListWidgetItem*, static_cast<QListWidgetItem*>(item)), Q_ARG(QAbstractItemView::ScrollHint, static_cast<QAbstractItemView::ScrollHint>(hint)));
+}
+
+struct QtWidgets_PackedList QListWidget_SelectedItems(void* ptr)
+{
+	return ({ QList<QListWidgetItem *>* tmpValue = new QList<QListWidgetItem *>(static_cast<QListWidget*>(ptr)->selectedItems()); QtWidgets_PackedList { tmpValue, tmpValue->size() }; });
 }
 
 void QListWidget_SetCurrentItem(void* ptr, void* item)
@@ -50954,6 +51274,21 @@ void* QListWidget_VisualItemRect(void* ptr, void* item)
 void QListWidget_DestroyQListWidget(void* ptr)
 {
 	static_cast<QListWidget*>(ptr)->~QListWidget();
+}
+
+void* QListWidget_findItems_atList(void* ptr, int i)
+{
+	return const_cast<QListWidgetItem*>(static_cast<QList<QListWidgetItem *>*>(ptr)->at(i));
+}
+
+void* QListWidget_items_atList(void* ptr, int i)
+{
+	return const_cast<QListWidgetItem*>(static_cast<QList<QListWidgetItem *>*>(ptr)->at(i));
+}
+
+void* QListWidget_selectedItems_atList(void* ptr, int i)
+{
+	return const_cast<QListWidgetItem*>(static_cast<QList<QListWidgetItem *>*>(ptr)->at(i));
 }
 
 void QListWidget_CurrentChanged(void* ptr, void* current, void* previous)
@@ -53952,6 +54287,11 @@ long long QMainWindow_TabShape(void* ptr)
 	return static_cast<QMainWindow*>(ptr)->tabShape();
 }
 
+struct QtWidgets_PackedList QMainWindow_TabifiedDockWidgets(void* ptr, void* dockwidget)
+{
+	return ({ QList<QDockWidget *>* tmpValue = new QList<QDockWidget *>(static_cast<QMainWindow*>(ptr)->tabifiedDockWidgets(static_cast<QDockWidget*>(dockwidget))); QtWidgets_PackedList { tmpValue, tmpValue->size() }; });
+}
+
 void QMainWindow_TabifyDockWidget(void* ptr, void* first, void* second)
 {
 	static_cast<QMainWindow*>(ptr)->tabifyDockWidget(static_cast<QDockWidget*>(first), static_cast<QDockWidget*>(second));
@@ -54180,6 +54520,11 @@ void QMainWindow_ToolButtonStyleChanged(void* ptr, long long toolButtonStyle)
 void QMainWindow_DestroyQMainWindow(void* ptr)
 {
 	static_cast<QMainWindow*>(ptr)->~QMainWindow();
+}
+
+void* QMainWindow_tabifiedDockWidgets_atList(void* ptr, int i)
+{
+	return const_cast<QDockWidget*>(static_cast<QList<QDockWidget *>*>(ptr)->at(i));
 }
 
 void QMainWindow_ActionEvent(void* ptr, void* event)
@@ -55100,6 +55445,11 @@ void QMdiArea_SubWindowActivated(void* ptr, void* window)
 	static_cast<QMdiArea*>(ptr)->subWindowActivated(static_cast<QMdiSubWindow*>(window));
 }
 
+struct QtWidgets_PackedList QMdiArea_SubWindowList(void* ptr, long long order)
+{
+	return ({ QList<QMdiSubWindow *>* tmpValue = new QList<QMdiSubWindow *>(static_cast<QMdiArea*>(ptr)->subWindowList(static_cast<QMdiArea::WindowOrder>(order))); QtWidgets_PackedList { tmpValue, tmpValue->size() }; });
+}
+
 char QMdiArea_TestOption(void* ptr, long long option)
 {
 	return static_cast<QMdiArea*>(ptr)->testOption(static_cast<QMdiArea::AreaOption>(option));
@@ -55128,6 +55478,11 @@ char QMdiArea_ViewportEventDefault(void* ptr, void* event)
 void QMdiArea_DestroyQMdiArea(void* ptr)
 {
 	static_cast<QMdiArea*>(ptr)->~QMdiArea();
+}
+
+void* QMdiArea_subWindowList_atList(void* ptr, int i)
+{
+	return const_cast<QMdiSubWindow*>(static_cast<QList<QMdiSubWindow *>*>(ptr)->at(i));
 }
 
 void QMdiArea_DragEnterEvent(void* ptr, void* event)
@@ -58473,6 +58828,11 @@ long long QMessageBox_ButtonRole(void* ptr, void* button)
 	return static_cast<QMessageBox*>(ptr)->buttonRole(static_cast<QAbstractButton*>(button));
 }
 
+struct QtWidgets_PackedList QMessageBox_Buttons(void* ptr)
+{
+	return ({ QList<QAbstractButton *>* tmpValue = new QList<QAbstractButton *>(static_cast<QMessageBox*>(ptr)->buttons()); QtWidgets_PackedList { tmpValue, tmpValue->size() }; });
+}
+
 void QMessageBox_ChangeEvent(void* ptr, void* ev)
 {
 	static_cast<QMessageBox*>(ptr)->changeEvent(static_cast<QEvent*>(ev));
@@ -58643,6 +59003,11 @@ long long QMessageBox_QMessageBox_Warning(void* parent, char* title, char* text,
 void QMessageBox_DestroyQMessageBox(void* ptr)
 {
 	static_cast<QMessageBox*>(ptr)->~QMessageBox();
+}
+
+void* QMessageBox_buttons_atList(void* ptr, int i)
+{
+	return const_cast<QAbstractButton*>(static_cast<QList<QAbstractButton *>*>(ptr)->at(i));
 }
 
 void QMessageBox_Accept(void* ptr)
@@ -67109,6 +67474,11 @@ long long QScroller_State(void* ptr)
 	return static_cast<QScroller*>(ptr)->state();
 }
 
+struct QtWidgets_PackedList QScroller_QScroller_ActiveScrollers()
+{
+	return ({ QList<QScroller *>* tmpValue = new QList<QScroller *>(QScroller::activeScrollers()); QtWidgets_PackedList { tmpValue, tmpValue->size() }; });
+}
+
 void QScroller_EnsureVisible(void* ptr, void* rect, double xmargin, double ymargin)
 {
 	QMetaObject::invokeMethod(static_cast<QScroller*>(ptr), "ensureVisible", Q_ARG(QRectF, *static_cast<QRectF*>(rect)), Q_ARG(qreal, xmargin), Q_ARG(qreal, ymargin));
@@ -67232,6 +67602,11 @@ void QScroller_QScroller_UngrabGesture(void* target)
 void* QScroller_Velocity(void* ptr)
 {
 	return ({ QPointF tmpValue = static_cast<QScroller*>(ptr)->velocity(); new QPointF(tmpValue.x(), tmpValue.y()); });
+}
+
+void* QScroller_activeScrollers_atList(void* ptr, int i)
+{
+	return const_cast<QScroller*>(static_cast<QList<QScroller *>*>(ptr)->at(i));
 }
 
 void QScroller_TimerEvent(void* ptr, void* event)
@@ -81944,6 +82319,11 @@ void QTableView_DestroyQTableView(void* ptr)
 	static_cast<QTableView*>(ptr)->~QTableView();
 }
 
+void* QTableView_selectedIndexes_atList(void* ptr, int i)
+{
+	return new QModelIndex(static_cast<QList<QModelIndex>*>(ptr)->at(i));
+}
+
 void QTableView_DragLeaveEvent(void* ptr, void* event)
 {
 	static_cast<QTableView*>(ptr)->dragLeaveEvent(static_cast<QDragLeaveEvent*>(event));
@@ -83113,6 +83493,11 @@ char QTableWidget_Event(void* ptr, void* e)
 	return static_cast<QTableWidget*>(ptr)->event(static_cast<QEvent*>(e));
 }
 
+struct QtWidgets_PackedList QTableWidget_FindItems(void* ptr, char* text, long long flags)
+{
+	return ({ QList<QTableWidgetItem *>* tmpValue = new QList<QTableWidgetItem *>(static_cast<QTableWidget*>(ptr)->findItems(QString(text), static_cast<Qt::MatchFlag>(flags))); QtWidgets_PackedList { tmpValue, tmpValue->size() }; });
+}
+
 void* QTableWidget_HorizontalHeaderItem(void* ptr, int column)
 {
 	return static_cast<QTableWidget*>(ptr)->horizontalHeaderItem(column);
@@ -83258,6 +83643,11 @@ void QTableWidget_ItemSelectionChanged(void* ptr)
 	static_cast<QTableWidget*>(ptr)->itemSelectionChanged();
 }
 
+struct QtWidgets_PackedList QTableWidget_Items(void* ptr, void* data)
+{
+	return ({ QList<QTableWidgetItem *>* tmpValue = new QList<QTableWidgetItem *>(static_cast<QTableWidget*>(ptr)->items(static_cast<QMimeData*>(data))); QtWidgets_PackedList { tmpValue, tmpValue->size() }; });
+}
+
 struct QtWidgets_PackedString QTableWidget_MimeTypes(void* ptr)
 {
 	return ({ QByteArray t94a601 = static_cast<QTableWidget*>(ptr)->mimeTypes().join("|").toUtf8(); QtWidgets_PackedString { const_cast<char*>(t94a601.prepend("WHITESPACE").constData()+10), t94a601.size()-10 }; });
@@ -83301,6 +83691,16 @@ int QTableWidget_RowCount(void* ptr)
 void QTableWidget_ScrollToItem(void* ptr, void* item, long long hint)
 {
 	QMetaObject::invokeMethod(static_cast<QTableWidget*>(ptr), "scrollToItem", Q_ARG(QTableWidgetItem*, static_cast<QTableWidgetItem*>(item)), Q_ARG(QAbstractItemView::ScrollHint, static_cast<QAbstractItemView::ScrollHint>(hint)));
+}
+
+struct QtWidgets_PackedList QTableWidget_SelectedItems(void* ptr)
+{
+	return ({ QList<QTableWidgetItem *>* tmpValue = new QList<QTableWidgetItem *>(static_cast<QTableWidget*>(ptr)->selectedItems()); QtWidgets_PackedList { tmpValue, tmpValue->size() }; });
+}
+
+struct QtWidgets_PackedList QTableWidget_SelectedRanges(void* ptr)
+{
+	return ({ QList<QTableWidgetSelectionRange>* tmpValue = new QList<QTableWidgetSelectionRange>(static_cast<QTableWidget*>(ptr)->selectedRanges()); QtWidgets_PackedList { tmpValue, tmpValue->size() }; });
 }
 
 void QTableWidget_SetCellWidget(void* ptr, int row, int column, void* widget)
@@ -83426,6 +83826,26 @@ int QTableWidget_VisualRow(void* ptr, int logicalRow)
 void QTableWidget_DestroyQTableWidget(void* ptr)
 {
 	static_cast<QTableWidget*>(ptr)->~QTableWidget();
+}
+
+void* QTableWidget_findItems_atList(void* ptr, int i)
+{
+	return const_cast<QTableWidgetItem*>(static_cast<QList<QTableWidgetItem *>*>(ptr)->at(i));
+}
+
+void* QTableWidget_items_atList(void* ptr, int i)
+{
+	return const_cast<QTableWidgetItem*>(static_cast<QList<QTableWidgetItem *>*>(ptr)->at(i));
+}
+
+void* QTableWidget_selectedItems_atList(void* ptr, int i)
+{
+	return const_cast<QTableWidgetItem*>(static_cast<QList<QTableWidgetItem *>*>(ptr)->at(i));
+}
+
+void* QTableWidget_selectedRanges_atList(void* ptr, int i)
+{
+	return new QTableWidgetSelectionRange(static_cast<QList<QTableWidgetSelectionRange>*>(ptr)->at(i));
 }
 
 void* QTableWidget_MoveCursor(void* ptr, long long cursorAction, long long modifiers)
@@ -91987,6 +92407,11 @@ void QTreeView_DestroyQTreeView(void* ptr)
 	static_cast<QTreeView*>(ptr)->~QTreeView();
 }
 
+void* QTreeView_selectedIndexes_atList(void* ptr, int i)
+{
+	return new QModelIndex(static_cast<QList<QModelIndex>*>(ptr)->at(i));
+}
+
 void QTreeView_DragLeaveEvent(void* ptr, void* event)
 {
 	static_cast<QTreeView*>(ptr)->dragLeaveEvent(static_cast<QDragLeaveEvent*>(event));
@@ -92894,6 +93319,11 @@ void QTreeWidget_ExpandItem(void* ptr, void* item)
 	QMetaObject::invokeMethod(static_cast<QTreeWidget*>(ptr), "expandItem", Q_ARG(QTreeWidgetItem*, static_cast<QTreeWidgetItem*>(item)));
 }
 
+struct QtWidgets_PackedList QTreeWidget_FindItems(void* ptr, char* text, long long flags, int column)
+{
+	return ({ QList<QTreeWidgetItem *>* tmpValue = new QList<QTreeWidgetItem *>(static_cast<QTreeWidget*>(ptr)->findItems(QString(text), static_cast<Qt::MatchFlag>(flags), column)); QtWidgets_PackedList { tmpValue, tmpValue->size() }; });
+}
+
 void* QTreeWidget_HeaderItem(void* ptr)
 {
 	return static_cast<QTreeWidget*>(ptr)->headerItem();
@@ -93114,6 +93544,11 @@ void QTreeWidget_ScrollToItem(void* ptr, void* item, long long hint)
 	QMetaObject::invokeMethod(static_cast<QTreeWidget*>(ptr), "scrollToItem", Q_ARG(QTreeWidgetItem*, static_cast<QTreeWidgetItem*>(item)), Q_ARG(QAbstractItemView::ScrollHint, static_cast<QAbstractItemView::ScrollHint>(hint)));
 }
 
+struct QtWidgets_PackedList QTreeWidget_SelectedItems(void* ptr)
+{
+	return ({ QList<QTreeWidgetItem *>* tmpValue = new QList<QTreeWidgetItem *>(static_cast<QTreeWidget*>(ptr)->selectedItems()); QtWidgets_PackedList { tmpValue, tmpValue->size() }; });
+}
+
 void QTreeWidget_SetCurrentItem(void* ptr, void* item)
 {
 	static_cast<QTreeWidget*>(ptr)->setCurrentItem(static_cast<QTreeWidgetItem*>(item));
@@ -93202,6 +93637,16 @@ void* QTreeWidget_VisualItemRect(void* ptr, void* item)
 void QTreeWidget_DestroyQTreeWidget(void* ptr)
 {
 	static_cast<QTreeWidget*>(ptr)->~QTreeWidget();
+}
+
+void* QTreeWidget_findItems_atList(void* ptr, int i)
+{
+	return const_cast<QTreeWidgetItem*>(static_cast<QList<QTreeWidgetItem *>*>(ptr)->at(i));
+}
+
+void* QTreeWidget_selectedItems_atList(void* ptr, int i)
+{
+	return const_cast<QTreeWidgetItem*>(static_cast<QList<QTreeWidgetItem *>*>(ptr)->at(i));
 }
 
 void QTreeWidget_Collapse(void* ptr, void* index)
@@ -94614,6 +95059,11 @@ void* QTreeWidgetItem_TakeChild(void* ptr, int index)
 	return static_cast<QTreeWidgetItem*>(ptr)->takeChild(index);
 }
 
+struct QtWidgets_PackedList QTreeWidgetItem_TakeChildren(void* ptr)
+{
+	return ({ QList<QTreeWidgetItem *>* tmpValue = new QList<QTreeWidgetItem *>(static_cast<QTreeWidgetItem*>(ptr)->takeChildren()); QtWidgets_PackedList { tmpValue, tmpValue->size() }; });
+}
+
 struct QtWidgets_PackedString QTreeWidgetItem_Text(void* ptr, int column)
 {
 	return ({ QByteArray t0b76f8 = static_cast<QTreeWidgetItem*>(ptr)->text(column).toUtf8(); QtWidgets_PackedString { const_cast<char*>(t0b76f8.prepend("WHITESPACE").constData()+10), t0b76f8.size()-10 }; });
@@ -94652,6 +95102,11 @@ void QTreeWidgetItem_DestroyQTreeWidgetItem(void* ptr)
 void QTreeWidgetItem_DestroyQTreeWidgetItemDefault(void* ptr)
 {
 
+}
+
+void* QTreeWidgetItem_takeChildren_atList(void* ptr, int i)
+{
+	return const_cast<QTreeWidgetItem*>(static_cast<QList<QTreeWidgetItem *>*>(ptr)->at(i));
 }
 
 class MyQUndoCommand: public QUndoCommand
@@ -94926,6 +95381,11 @@ void QUndoGroup_SetActiveStack(void* ptr, void* stack)
 	QMetaObject::invokeMethod(static_cast<QUndoGroup*>(ptr), "setActiveStack", Q_ARG(QUndoStack*, static_cast<QUndoStack*>(stack)));
 }
 
+struct QtWidgets_PackedList QUndoGroup_Stacks(void* ptr)
+{
+	return ({ QList<QUndoStack *>* tmpValue = new QList<QUndoStack *>(static_cast<QUndoGroup*>(ptr)->stacks()); QtWidgets_PackedList { tmpValue, tmpValue->size() }; });
+}
+
 void QUndoGroup_Undo(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QUndoGroup*>(ptr), "undo");
@@ -94954,6 +95414,11 @@ void QUndoGroup_UndoTextChanged(void* ptr, char* undoText)
 void QUndoGroup_DestroyQUndoGroup(void* ptr)
 {
 	static_cast<QUndoGroup*>(ptr)->~QUndoGroup();
+}
+
+void* QUndoGroup_stacks_atList(void* ptr, int i)
+{
+	return const_cast<QUndoStack*>(static_cast<QList<QUndoStack *>*>(ptr)->at(i));
 }
 
 void QUndoGroup_TimerEvent(void* ptr, void* event)
@@ -97589,6 +98054,11 @@ void* QWidget_NewQWidget(void* parent, long long f)
 	return new MyQWidget(static_cast<QWidget*>(parent), static_cast<Qt::WindowType>(f));
 }
 
+struct QtWidgets_PackedList QWidget_Actions(void* ptr)
+{
+	return ({ QList<QAction *>* tmpValue = new QList<QAction *>(static_cast<QWidget*>(ptr)->actions()); QtWidgets_PackedList { tmpValue, tmpValue->size() }; });
+}
+
 void QWidget_AddAction(void* ptr, void* action)
 {
 	static_cast<QWidget*>(ptr)->addAction(static_cast<QAction*>(action));
@@ -98507,6 +98977,11 @@ void* QWidget_QWidget_CreateWindowContainer(void* window, void* parent, long lon
 	return QWidget::createWindowContainer(static_cast<QWindow*>(window), static_cast<QWidget*>(parent), static_cast<Qt::WindowType>(flags));
 }
 
+void* QWidget_actions_atList(void* ptr, int i)
+{
+	return const_cast<QAction*>(static_cast<QList<QAction *>*>(ptr)->at(i));
+}
+
 void QWidget_TimerEvent(void* ptr, void* event)
 {
 	static_cast<QWidget*>(ptr)->timerEvent(static_cast<QTimerEvent*>(event));
@@ -98627,6 +99102,11 @@ void* QWidgetAction_CreateWidgetDefault(void* ptr, void* parent)
 	return static_cast<QWidgetAction*>(ptr)->QWidgetAction::createWidget(static_cast<QWidget*>(parent));
 }
 
+struct QtWidgets_PackedList QWidgetAction_CreatedWidgets(void* ptr)
+{
+	return ({ QList<QWidget *>* tmpValue = new QList<QWidget *>(static_cast<QWidgetAction*>(ptr)->createdWidgets()); QtWidgets_PackedList { tmpValue, tmpValue->size() }; });
+}
+
 void* QWidgetAction_DefaultWidget(void* ptr)
 {
 	return static_cast<QWidgetAction*>(ptr)->defaultWidget();
@@ -98685,6 +99165,11 @@ void QWidgetAction_DestroyQWidgetAction(void* ptr)
 void QWidgetAction_DestroyQWidgetActionDefault(void* ptr)
 {
 
+}
+
+void* QWidgetAction_createdWidgets_atList(void* ptr, int i)
+{
+	return const_cast<QWidget*>(static_cast<QList<QWidget *>*>(ptr)->at(i));
 }
 
 void QWidgetAction_SetChecked(void* ptr, char vbo)

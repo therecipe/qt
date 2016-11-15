@@ -28,6 +28,7 @@
 #include <QDBusVirtualObject>
 #include <QEvent>
 #include <QLatin1String>
+#include <QList>
 #include <QMetaMethod>
 #include <QMetaObject>
 #include <QObject>
@@ -949,6 +950,11 @@ void* QDBusMessage_NewQDBusMessage2(void* other)
 	return new QDBusMessage(*static_cast<QDBusMessage*>(other));
 }
 
+struct QtDBus_PackedList QDBusMessage_Arguments(void* ptr)
+{
+	return ({ QList<QVariant>* tmpValue = new QList<QVariant>(static_cast<QDBusMessage*>(ptr)->arguments()); QtDBus_PackedList { tmpValue, tmpValue->size() }; });
+}
+
 char QDBusMessage_AutoStartService(void* ptr)
 {
 	return static_cast<QDBusMessage*>(ptr)->autoStartService();
@@ -1067,6 +1073,11 @@ long long QDBusMessage_Type(void* ptr)
 void QDBusMessage_DestroyQDBusMessage(void* ptr)
 {
 	static_cast<QDBusMessage*>(ptr)->~QDBusMessage();
+}
+
+void* QDBusMessage_arguments_atList(void* ptr, int i)
+{
+	return new QVariant(static_cast<QList<QVariant>*>(ptr)->at(i));
 }
 
 void* QDBusObjectPath_NewQDBusObjectPath()

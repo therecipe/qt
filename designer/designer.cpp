@@ -48,6 +48,7 @@
 #include <QInputMethod>
 #include <QInputMethodEvent>
 #include <QKeyEvent>
+#include <QList>
 #include <QMetaMethod>
 #include <QMetaObject>
 #include <QMouseEvent>
@@ -1002,6 +1003,11 @@ void QDesignerCustomWidgetCollectionInterface_DestroyQDesignerCustomWidgetCollec
 void QDesignerCustomWidgetCollectionInterface_DestroyQDesignerCustomWidgetCollectionInterfaceDefault(void* ptr)
 {
 
+}
+
+void* QDesignerCustomWidgetCollectionInterface_customWidgets_atList(void* ptr, int i)
+{
+	return const_cast<QDesignerCustomWidgetInterface*>(static_cast<QList<QDesignerCustomWidgetInterface *>*>(ptr)->at(i));
 }
 
 class MyQDesignerCustomWidgetInterface: public QDesignerCustomWidgetInterface
@@ -2967,6 +2973,16 @@ void QDesignerMemberSheetExtension_DestroyQDesignerMemberSheetExtensionDefault(v
 
 }
 
+void* QDesignerMemberSheetExtension_parameterNames_atList(void* ptr, int i)
+{
+	return new QByteArray(static_cast<QList<QByteArray>*>(ptr)->at(i));
+}
+
+void* QDesignerMemberSheetExtension_parameterTypes_atList(void* ptr, int i)
+{
+	return new QByteArray(static_cast<QList<QByteArray>*>(ptr)->at(i));
+}
+
 class MyQDesignerObjectInspectorInterface: public QDesignerObjectInspectorInterface
 {
 public:
@@ -4581,6 +4597,11 @@ void QDesignerTaskMenuExtension_DestroyQDesignerTaskMenuExtensionDefault(void* p
 
 }
 
+void* QDesignerTaskMenuExtension_taskActions_atList(void* ptr, int i)
+{
+	return const_cast<QAction*>(static_cast<QList<QAction *>*>(ptr)->at(i));
+}
+
 class MyQDesignerWidgetBoxInterface: public QDesignerWidgetBoxInterface
 {
 public:
@@ -5593,6 +5614,11 @@ void* QFormBuilder_NewQFormBuilder()
 	return new MyQFormBuilder();
 }
 
+struct QtDesigner_PackedList QFormBuilder_CustomWidgets(void* ptr)
+{
+	return ({ QList<QDesignerCustomWidgetInterface *>* tmpValue = new QList<QDesignerCustomWidgetInterface *>(static_cast<QFormBuilder*>(ptr)->customWidgets()); QtDesigner_PackedList { tmpValue, tmpValue->size() }; });
+}
+
 void QFormBuilder_AddPluginPath(void* ptr, char* pluginPath)
 {
 	static_cast<QFormBuilder*>(ptr)->addPluginPath(QString(pluginPath));
@@ -5621,6 +5647,11 @@ void QFormBuilder_DestroyQFormBuilder(void* ptr)
 void QFormBuilder_DestroyQFormBuilderDefault(void* ptr)
 {
 
+}
+
+void* QFormBuilder_customWidgets_atList(void* ptr, int i)
+{
+	return const_cast<QDesignerCustomWidgetInterface*>(static_cast<QList<QDesignerCustomWidgetInterface *>*>(ptr)->at(i));
 }
 
 void* QFormBuilder_Load(void* ptr, void* device, void* parent)

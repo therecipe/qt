@@ -7677,6 +7677,19 @@ func (ptr *QSqlResult) BoundValueName(index int) string {
 	return ""
 }
 
+func (ptr *QSqlResult) BoundValues() []*core.QVariant {
+	if ptr.Pointer() != nil {
+		return func(l C.struct_QtSql_PackedList) []*core.QVariant {
+			var out = make([]*core.QVariant, int(l.len))
+			for i := 0; i < int(l.len); i++ {
+				out[i] = NewQSqlResultFromPointer(l.data).boundValues_atList(i)
+			}
+			return out
+		}(C.QSqlResult_BoundValues(ptr.Pointer()))
+	}
+	return nil
+}
+
 func (ptr *QSqlResult) Clear() {
 	if ptr.Pointer() != nil {
 		C.QSqlResult_Clear(ptr.Pointer())
@@ -8592,6 +8605,15 @@ func (ptr *QSqlResult) DestroyQSqlResultDefault() {
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
+}
+
+func (ptr *QSqlResult) boundValues_atList(i int) *core.QVariant {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQVariantFromPointer(C.QSqlResult_boundValues_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		return tmpValue
+	}
+	return nil
 }
 
 //QSqlTableModel::EditStrategy

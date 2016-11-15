@@ -12,6 +12,7 @@ extern "C" {
 #endif
 
 struct QtScriptTools_PackedString { char* data; long long len; };
+struct QtScriptTools_PackedList { void* data; long long len; };
 void* QScriptEngineDebugger_NewQScriptEngineDebugger(void* parent);
 void* QScriptEngineDebugger_Action(void* ptr, long long action);
 void QScriptEngineDebugger_AttachTo(void* ptr, void* engine);

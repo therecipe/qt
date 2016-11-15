@@ -8,9 +8,9 @@ import (
 
 func CppOutputParameters(function *parser.Function, name string) string {
 	if function.Meta == parser.CONSTRUCTOR {
-		return cppOutput(name, function.Name, function)
+		return CppOutput(name, function.Name, function)
 	}
-	return cppOutput(name, function.Output, function)
+	return CppOutput(name, function.Output, function)
 }
 
 func CppOutputParametersFailed(function *parser.Function) string {
@@ -23,13 +23,11 @@ func CppOutputParametersFailed(function *parser.Function) string {
 
 func CppOutputParametersDeducedFromGeneric(function *parser.Function) string {
 
-	if function.Output == "T" {
-		if function.Class() == "QObject" || function.Class() == "QMediaService" {
-			return fmt.Sprintf("<%v*>", function.Class())
-		}
+	if function.TemplateModeGo != "" {
+		return fmt.Sprintf("<%v>", function.TemplateModeGo)
 	}
 
-	switch function.TemplateMode {
+	switch function.TemplateModeJNI {
 	case "Int":
 		{
 			return "<jint>"

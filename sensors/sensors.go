@@ -15388,6 +15388,19 @@ func (ptr *QSensor) EfficientBufferSizeChanged(efficientBufferSize int) {
 	}
 }
 
+func (ptr *QSensor) Filters() []*QSensorFilter {
+	if ptr.Pointer() != nil {
+		return func(l C.struct_QtSensors_PackedList) []*QSensorFilter {
+			var out = make([]*QSensorFilter, int(l.len))
+			for i := 0; i < int(l.len); i++ {
+				out[i] = NewQSensorFromPointer(l.data).filters_atList(i)
+			}
+			return out
+		}(C.QSensor_Filters(ptr.Pointer()))
+	}
+	return nil
+}
+
 func (ptr *QSensor) IsFeatureSupported(feature QSensor__Feature) bool {
 	if ptr.Pointer() != nil {
 		return C.QSensor_IsFeatureSupported(ptr.Pointer(), C.longlong(feature)) != 0
@@ -15486,6 +15499,46 @@ func (ptr *QSensor) SensorError(error int) {
 	if ptr.Pointer() != nil {
 		C.QSensor_SensorError(ptr.Pointer(), C.int(int32(error)))
 	}
+}
+
+func QSensor_SensorTypes() []*core.QByteArray {
+	return func(l C.struct_QtSensors_PackedList) []*core.QByteArray {
+		var out = make([]*core.QByteArray, int(l.len))
+		for i := 0; i < int(l.len); i++ {
+			out[i] = NewQSensorFromPointer(l.data).sensorTypes_atList(i)
+		}
+		return out
+	}(C.QSensor_QSensor_SensorTypes())
+}
+
+func (ptr *QSensor) SensorTypes() []*core.QByteArray {
+	return func(l C.struct_QtSensors_PackedList) []*core.QByteArray {
+		var out = make([]*core.QByteArray, int(l.len))
+		for i := 0; i < int(l.len); i++ {
+			out[i] = NewQSensorFromPointer(l.data).sensorTypes_atList(i)
+		}
+		return out
+	}(C.QSensor_QSensor_SensorTypes())
+}
+
+func QSensor_SensorsForType(ty core.QByteArray_ITF) []*core.QByteArray {
+	return func(l C.struct_QtSensors_PackedList) []*core.QByteArray {
+		var out = make([]*core.QByteArray, int(l.len))
+		for i := 0; i < int(l.len); i++ {
+			out[i] = NewQSensorFromPointer(l.data).sensorsForType_atList(i)
+		}
+		return out
+	}(C.QSensor_QSensor_SensorsForType(core.PointerFromQByteArray(ty)))
+}
+
+func (ptr *QSensor) SensorsForType(ty core.QByteArray_ITF) []*core.QByteArray {
+	return func(l C.struct_QtSensors_PackedList) []*core.QByteArray {
+		var out = make([]*core.QByteArray, int(l.len))
+		for i := 0; i < int(l.len); i++ {
+			out[i] = NewQSensorFromPointer(l.data).sensorsForType_atList(i)
+		}
+		return out
+	}(C.QSensor_QSensor_SensorsForType(core.PointerFromQByteArray(ty)))
 }
 
 func (ptr *QSensor) SetCurrentOrientation(currentOrientation int) {
@@ -15666,6 +15719,31 @@ func (ptr *QSensor) DestroyQSensorDefault() {
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
+}
+
+func (ptr *QSensor) filters_atList(i int) *QSensorFilter {
+	if ptr.Pointer() != nil {
+		return NewQSensorFilterFromPointer(C.QSensor_filters_atList(ptr.Pointer(), C.int(int32(i))))
+	}
+	return nil
+}
+
+func (ptr *QSensor) sensorTypes_atList(i int) *core.QByteArray {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQByteArrayFromPointer(C.QSensor_sensorTypes_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QSensor) sensorsForType_atList(i int) *core.QByteArray {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQByteArrayFromPointer(C.QSensor_sensorsForType_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		return tmpValue
+	}
+	return nil
 }
 
 //export callbackQSensor_TimerEvent
@@ -17882,6 +17960,17 @@ func (ptr *QSensorGesturePluginInterface) DestroyQSensorGesturePluginInterfaceDe
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
+}
+
+func (ptr *QSensorGesturePluginInterface) createRecognizers_atList(i int) *QSensorGestureRecognizer {
+	if ptr.Pointer() != nil {
+		var tmpValue = NewQSensorGestureRecognizerFromPointer(C.QSensorGesturePluginInterface_createRecognizers_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
 }
 
 type QSensorGestureRecognizer struct {

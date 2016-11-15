@@ -39,6 +39,7 @@
 #include <QItemSelection>
 #include <QItemSelectionModel>
 #include <QKeyEvent>
+#include <QList>
 #include <QMetaMethod>
 #include <QMetaObject>
 #include <QMimeData>
@@ -2057,6 +2058,11 @@ void* QHelpEngineCore_FileData(void* ptr, void* url)
 	return new QByteArray(static_cast<QHelpEngineCore*>(ptr)->fileData(*static_cast<QUrl*>(url)));
 }
 
+struct QtHelp_PackedList QHelpEngineCore_Files(void* ptr, char* namespaceName, char* filterAttributes, char* extensionFilter)
+{
+	return ({ QList<QUrl>* tmpValue = new QList<QUrl>(static_cast<QHelpEngineCore*>(ptr)->files(QString(namespaceName), QString(filterAttributes).split("|", QString::SkipEmptyParts), QString(extensionFilter))); QtHelp_PackedList { tmpValue, tmpValue->size() }; });
+}
+
 struct QtHelp_PackedString QHelpEngineCore_FilterAttributes(void* ptr)
 {
 	return ({ QByteArray t22f9b0 = static_cast<QHelpEngineCore*>(ptr)->filterAttributes().join("|").toUtf8(); QtHelp_PackedString { const_cast<char*>(t22f9b0.prepend("WHITESPACE").constData()+10), t22f9b0.size()-10 }; });
@@ -2185,6 +2191,16 @@ void QHelpEngineCore_DestroyQHelpEngineCore(void* ptr)
 void QHelpEngineCore_DestroyQHelpEngineCoreDefault(void* ptr)
 {
 
+}
+
+void* QHelpEngineCore_files_atList(void* ptr, int i)
+{
+	return new QUrl(static_cast<QList<QUrl>*>(ptr)->at(i));
+}
+
+struct QtHelp_PackedString QHelpEngineCore_filterAttributeSets_atList(void* ptr, int i)
+{
+	return ({ QByteArray t5372d5 = static_cast<QList<QStringList>*>(ptr)->at(i).join("|").toUtf8(); QtHelp_PackedString { const_cast<char*>(t5372d5.prepend("WHITESPACE").constData()+10), t5372d5.size()-10 }; });
 }
 
 void QHelpEngineCore_TimerEvent(void* ptr, void* event)

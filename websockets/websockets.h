@@ -12,6 +12,7 @@ extern "C" {
 #endif
 
 struct QtWebSockets_PackedString { char* data; long long len; };
+struct QtWebSockets_PackedList { void* data; long long len; };
 void* QMaskGenerator_NewQMaskGenerator(void* parent);
 unsigned int QMaskGenerator_NextMask(void* ptr);
 char QMaskGenerator_Seed(void* ptr);

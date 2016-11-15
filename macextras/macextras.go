@@ -270,6 +270,15 @@ func (ptr *QMacPasteboardMime) DestroyQMacPasteboardMimeDefault() {
 	}
 }
 
+func (ptr *QMacPasteboardMime) convertFromMime_atList(i int) *core.QByteArray {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQByteArrayFromPointer(C.QMacPasteboardMime_convertFromMime_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		return tmpValue
+	}
+	return nil
+}
+
 type QMacToolBar struct {
 	core.QObject
 }
@@ -358,6 +367,19 @@ func (ptr *QMacToolBar) AddSeparator() {
 	}
 }
 
+func (ptr *QMacToolBar) AllowedItems() []*QMacToolBarItem {
+	if ptr.Pointer() != nil {
+		return func(l C.struct_QtMacExtras_PackedList) []*QMacToolBarItem {
+			var out = make([]*QMacToolBarItem, int(l.len))
+			for i := 0; i < int(l.len); i++ {
+				out[i] = NewQMacToolBarFromPointer(l.data).allowedItems_atList(i)
+			}
+			return out
+		}(C.QMacToolBar_AllowedItems(ptr.Pointer()))
+	}
+	return nil
+}
+
 func (ptr *QMacToolBar) AttachToWindow(window gui.QWindow_ITF) {
 	if ptr.Pointer() != nil {
 		C.QMacToolBar_AttachToWindow(ptr.Pointer(), gui.PointerFromQWindow(window))
@@ -370,12 +392,47 @@ func (ptr *QMacToolBar) DetachFromWindow() {
 	}
 }
 
+func (ptr *QMacToolBar) Items() []*QMacToolBarItem {
+	if ptr.Pointer() != nil {
+		return func(l C.struct_QtMacExtras_PackedList) []*QMacToolBarItem {
+			var out = make([]*QMacToolBarItem, int(l.len))
+			for i := 0; i < int(l.len); i++ {
+				out[i] = NewQMacToolBarFromPointer(l.data).items_atList(i)
+			}
+			return out
+		}(C.QMacToolBar_Items(ptr.Pointer()))
+	}
+	return nil
+}
+
 func (ptr *QMacToolBar) DestroyQMacToolBar() {
 	if ptr.Pointer() != nil {
 		C.QMacToolBar_DestroyQMacToolBar(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
+}
+
+func (ptr *QMacToolBar) allowedItems_atList(i int) *QMacToolBarItem {
+	if ptr.Pointer() != nil {
+		var tmpValue = NewQMacToolBarItemFromPointer(C.QMacToolBar_allowedItems_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QMacToolBar) items_atList(i int) *QMacToolBarItem {
+	if ptr.Pointer() != nil {
+		var tmpValue = NewQMacToolBarItemFromPointer(C.QMacToolBar_items_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
 }
 
 //export callbackQMacToolBar_TimerEvent
