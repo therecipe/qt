@@ -15104,19 +15104,6 @@ func (ptr *QCameraFocus) FocusPointMode() QCameraFocus__FocusPointMode {
 	return 0
 }
 
-func (ptr *QCameraFocus) FocusZones() []*QCameraFocusZone {
-	if ptr.Pointer() != nil {
-		return func(l C.struct_QtMultimedia_PackedList) []*QCameraFocusZone {
-			var out = make([]*QCameraFocusZone, int(l.len))
-			for i := 0; i < int(l.len); i++ {
-				out[i] = NewQCameraFocusFromPointer(l.data).focusZones_atList(i)
-			}
-			return out
-		}(C.QCameraFocus_FocusZones(ptr.Pointer()))
-	}
-	return nil
-}
-
 func (ptr *QCameraFocus) OpticalZoom() float64 {
 	if ptr.Pointer() != nil {
 		return float64(C.QCameraFocus_OpticalZoom(ptr.Pointer()))
@@ -15326,13 +15313,6 @@ func (ptr *QCameraFocus) ZoomTo(optical float64, digital float64) {
 	if ptr.Pointer() != nil {
 		C.QCameraFocus_ZoomTo(ptr.Pointer(), C.double(optical), C.double(digital))
 	}
-}
-
-func (ptr *QCameraFocus) focusZones_atList(i int) *QCameraFocusZone {
-	if ptr.Pointer() != nil {
-		return NewQCameraFocusZoneFromPointer(C.QCameraFocus_focusZones_atList(ptr.Pointer(), C.int(int32(i))))
-	}
-	return nil
 }
 
 //export callbackQCameraFocus_TimerEvent
@@ -16073,13 +16053,6 @@ func (ptr *QCameraFocusControl) DestroyQCameraFocusControl() {
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
-}
-
-func (ptr *QCameraFocusControl) focusZones_atList(i int) *QCameraFocusZone {
-	if ptr.Pointer() != nil {
-		return NewQCameraFocusZoneFromPointer(C.QCameraFocusControl_focusZones_atList(ptr.Pointer(), C.int(int32(i))))
-	}
-	return nil
 }
 
 //export callbackQCameraFocusControl_TimerEvent

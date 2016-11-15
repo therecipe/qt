@@ -5168,11 +5168,6 @@ long long QCameraFocus_FocusPointMode(void* ptr)
 	return static_cast<QCameraFocus*>(ptr)->focusPointMode();
 }
 
-struct QtMultimedia_PackedList QCameraFocus_FocusZones(void* ptr)
-{
-	return ({ QList<QCameraFocusZone *>* tmpValue = new QList<QCameraFocusZone *>(static_cast<QCameraFocus*>(ptr)->focusZones()); QtMultimedia_PackedList { tmpValue, tmpValue->size() }; });
-}
-
 double QCameraFocus_OpticalZoom(void* ptr)
 {
 	return static_cast<QCameraFocus*>(ptr)->opticalZoom();
@@ -5296,11 +5291,6 @@ void QCameraFocus_OpticalZoomChanged(void* ptr, double value)
 void QCameraFocus_ZoomTo(void* ptr, double optical, double digital)
 {
 	static_cast<QCameraFocus*>(ptr)->zoomTo(optical, digital);
-}
-
-void* QCameraFocus_focusZones_atList(void* ptr, int i)
-{
-	return const_cast<QCameraFocusZone*>(static_cast<QList<QCameraFocusZone *>*>(ptr)->at(i));
 }
 
 void QCameraFocus_TimerEvent(void* ptr, void* event)
@@ -5522,11 +5512,6 @@ void QCameraFocusControl_SetFocusPointMode(void* ptr, long long mode)
 void QCameraFocusControl_DestroyQCameraFocusControl(void* ptr)
 {
 	static_cast<QCameraFocusControl*>(ptr)->~QCameraFocusControl();
-}
-
-void* QCameraFocusControl_focusZones_atList(void* ptr, int i)
-{
-	return const_cast<QCameraFocusZone*>(static_cast<QList<QCameraFocusZone *>*>(ptr)->at(i));
 }
 
 void QCameraFocusControl_TimerEvent(void* ptr, void* event)

@@ -201,12 +201,14 @@ func (c *Class) add() {
 				f.Output = "QList<QWidget *>"
 			}
 
+		/* TODO:
 		case "QCameraFocusZoneList":
-			{
-				f.Output = "QList<QCameraFocusZone *>"
-			}
+		{
+			f.Output = "QList<QCameraFocusZone *>"
+		}
+		*/
 
-			//generics
+		//generics
 
 		case "QList<T>":
 			{
