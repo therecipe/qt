@@ -152,7 +152,7 @@ func moc(appPath string) {
 											)
 											f.Parameters = getParameters(_type)
 											if f.Meta == parser.SLOT {
-												f.Output = getCppTypeFromGoType(strings.TrimSpace(strings.Split(_type, ")")[1]))
+												f.Output = strings.TrimSpace(strings.Split(_type, ")")[1])
 											}
 											class.Functions = append(class.Functions, f)
 										}
@@ -230,6 +230,7 @@ func moc(appPath string) {
 					for _, p := range f.Parameters {
 						p.Value = getCppTypeFromGoType(p.Value)
 					}
+					f.Output = getCppTypeFromGoType(f.Output)
 				}
 			}
 		}
