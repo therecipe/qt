@@ -25,6 +25,9 @@ func main() {
 
 		} else {
 			fmt.Println("failed with status:", status)
+			for _, e := range mainComponent.Errors() {
+				fmt.Println("error:", e.ToString())
+			}
 		}
 	})
 

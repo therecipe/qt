@@ -533,6 +533,7 @@ func predeploy() {
 			utils.RunCmd(exec.Command(copyCmd, filepath.Join(qtLibPath, "libQt5Network.so"), libPath), fmt.Sprintf("copy libQt5Network for %v on %v", buildTarget, runtime.GOOS))
 			utils.RunCmd(exec.Command(copyCmd, filepath.Join(qtLibPath, "libQt5AndroidExtras.so"), libPath), fmt.Sprintf("copy libQt5AndroidExtras for %v on %v", buildTarget, runtime.GOOS))
 			utils.RunCmd(exec.Command(copyCmd, filepath.Join(qtLibPath, "libQt5Qml.so"), libPath), fmt.Sprintf("copy libQt5Qml for %v on %v", buildTarget, runtime.GOOS))
+			utils.RunCmd(exec.Command(copyCmd, filepath.Join(qtLibPath, "libQt5Quick.so"), libPath), fmt.Sprintf("copy libQt5Quick for %v on %v", buildTarget, runtime.GOOS))
 
 			var out, err = json.Marshal(&struct {
 				Qt                            string `json:"qt"`

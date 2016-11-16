@@ -173,12 +173,9 @@ func renderWith(scene *widgets.QGraphicsScene, frameX, frameY, frameZ int) []byt
 		}
 	}
 
-	var pix = gui.QPixmap_FromImage(gui.QImage_FromData2(core.NewQByteArray2(string(data), len(data)), func() string {
-		if svgCB.IsChecked() && exampleCB.CurrentIndex() <= 1 {
-			return "SVG"
-		}
-		return "PNG"
-	}()), 0)
+	//var pix = gui.QPixmap_FromImage(gui.QImage_FromData2(core.NewQByteArray2(string(data), len(data)), ""), 0)
+	var pix = gui.NewQPixmap()
+	pix.LoadFromData(string(data), uint(len(data)), "", 0)
 
 	scene.AddPixmap(pix)
 	scene.SetSceneRect(core.NewQRectF5(pix.Rect()))
