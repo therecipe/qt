@@ -146,7 +146,7 @@ func goOutput(name, value string, f *parser.Function) string {
 
 	case parser.IsPackedList(value):
 		{
-			return fmt.Sprintf("func(l C.struct_%v_PackedList)%v{var out = make(%v, int(l.len))\nfor i:=0;i<int(l.len);i++{ out[i] = New%vFromPointer(l.data).%v_atList(i) }\nreturn out}(%v)", parser.ClassMap[f.Class()].Module, goType(f, value), goType(f, value), f.Class(), f.Name, name)
+			return fmt.Sprintf("func(l C.struct_%v_PackedList)%v{var out = make(%v, int(l.len))\nfor i:=0;i<int(l.len);i++{ out[i] = New%vFromPointer(l.data).%v_atList(i) }\nreturn out}(%v)", strings.Title(parser.ClassMap[f.Class()].Module), goType(f, value), goType(f, value), f.Class(), f.Name, name)
 		}
 	}
 
