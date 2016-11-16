@@ -54,6 +54,20 @@ To cross compile to Windows, Linux and Android.
 
 You can export `QT_DEBUG=true` before "qtdeploying" your application to enable printing of the current function name at runtime.
 
+#### Speedup your development
+
+Instead of using `qtdeploy` during development, you might want to use `qtrcc`, `qtmoc`, `qtminimal` manually with `go build/run -tags=minimal ...`
+
+In general `qtminimal` should always be called after the use of the optional use of `qtrcc` and `qtmoc`.
+
+`qtrcc` is used to bundle your `project/qml` folder so you can access the files within by using the `qrc` prefix, like this `qrc:///qml/somefile` from various Qt functions.
+
+`qtmoc` is used to subclass core.QObject based classes and to add your own signals/slots as shown in some examples.
+
+`qtminimal` is used to create a small subset of the binding tailored to your code to reduce the binary size. (Use the `-tags=minimal` flag to make use of it)
+
+If you use the STUB version, you are forced to use `qtminimal` otherwise it's optional like `qtrcc` and `qtmoc`.
+
 #### Instructions
 
 * Desktop
