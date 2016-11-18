@@ -30,6 +30,8 @@ type Function struct {
 	Container       string
 	TemplateModeGo  string
 	Child           *Function
+	NonMember       bool
+	NonMoc          bool
 }
 
 type Parameter struct {

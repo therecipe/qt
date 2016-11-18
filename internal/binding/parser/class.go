@@ -235,6 +235,31 @@ func (c *Class) add() {
 					}
 				}
 			}
+
+			//add generic qRegisterMetaType functions
+			if !c.HasFunctionWithName("qRegisterMetaType") {
+				var tmpF = &Function{
+					Name:           "qRegisterMetaType",
+					Fullname:       fmt.Sprintf("%v::qRegisterMetaType", c.Name),
+					Access:         "public",
+					Virtual:        "non",
+					Meta:           PLAIN,
+					NonMember:      true,
+					NonMoc:         true,
+					Output:         fmt.Sprintf("int"),
+					Parameters:     []*Parameter{},
+					Signature:      "()",
+					TemplateModeGo: fmt.Sprintf("%v*", c.Name),
+				}
+				c.Functions = append(c.Functions, tmpF)
+
+				var f = *tmpF
+				f.Overload = true
+				f.OverloadNumber = "2"
+				f.Parameters = []*Parameter{{Name: "typeName", Value: "const char *"}}
+				f.Signature = "(const char *typeName)"
+				c.Functions = append(c.Functions, &f)
+			}
 		}
 
 		if IsPackedList(f.Output) {

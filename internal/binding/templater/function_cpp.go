@@ -282,6 +282,9 @@ func cppFunctionBody(function *parser.Function) string {
 				converter.CppOutputParameters(function, fmt.Sprintf("%v%v%v(%v)",
 
 					func() string {
+						if function.NonMember {
+							return ""
+						}
 						if function.Static {
 							return fmt.Sprintf("%v::", function.Class())
 						}

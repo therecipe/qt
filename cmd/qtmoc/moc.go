@@ -227,10 +227,12 @@ func moc(appPath string) {
 		for _, c := range parser.ClassMap {
 			if c.Module == parser.MOC {
 				for _, f := range c.Functions {
-					for _, p := range f.Parameters {
-						p.Value = getCppTypeFromGoType(p.Value)
+					if !f.NonMoc {
+						for _, p := range f.Parameters {
+							p.Value = getCppTypeFromGoType(p.Value)
+						}
+						f.Output = getCppTypeFromGoType(f.Output)
 					}
-					f.Output = getCppTypeFromGoType(f.Output)
 				}
 			}
 		}

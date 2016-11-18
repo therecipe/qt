@@ -190,6 +190,9 @@ func CppTemplate(module string) []byte {
 
 				fmt.Fprint(bb, "};\n\n")
 			}
+			if class.Module == parser.MOC {
+				fmt.Fprintf(bb, "Q_DECLARE_METATYPE(%v*)\n\n", class.Name)
+			}
 
 			implementedVirtuals = make(map[string]bool)
 
