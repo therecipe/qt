@@ -225,6 +225,18 @@ func (c *Class) add() {
 			}
 		}
 
+		//TODO: needed until input + cgo support for generic Containers<T> to ignore virtuals with moc
+		if c.Module == MOC {
+			for _, sbc := range c.GetBases() {
+				for _, sbcf := range ClassMap[sbc].Functions {
+					if IsPackedList(sbcf.Output) {
+						sbcf.Virtual = "non"
+						sbcf.Meta = PLAIN
+					}
+				}
+			}
+		}
+
 		if IsPackedList(f.Output) {
 			var b bool
 			for _, p := range f.Parameters {

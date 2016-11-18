@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	goparser "go/parser"
 	"go/token"
 	"io/ioutil"
@@ -217,8 +218,12 @@ func exportFunction(class *parser.Class, function *parser.Function) {
 				}
 			}
 
-			if function.Child != nil {
-				exportFunction(class, function.Child)
+			if parser.IsPackedList(f.Output) {
+				for _, f := range class.Functions {
+					if f.Name == fmt.Sprintf("%v_atList", function.Name) {
+						exportFunction(class, f)
+					}
+				}
 			}
 		}
 	}
