@@ -247,7 +247,7 @@ func build() {
 				{
 					env = map[string]string{
 						"PATH":   os.Getenv("PATH"),
-						"GOPATH": utils.MustGoPath(),
+						"GOPATH": os.Getenv("GOPATH"),
 						"GOROOT": runtime.GOROOT(),
 
 						"TMP":  os.Getenv("TMP"),
@@ -294,7 +294,7 @@ func build() {
 
 			env = map[string]string{
 				"PATH":   os.Getenv("PATH"),
-				"GOPATH": utils.MustGoPath(),
+				"GOPATH": os.Getenv("GOPATH"),
 				"GOROOT": runtime.GOROOT(),
 
 				"GOOS":   runtime.GOOS,
@@ -329,7 +329,7 @@ func build() {
 					outputFile = filepath.Join(depPath, appName)
 					env = map[string]string{
 						"PATH":   os.Getenv("PATH"),
-						"GOPATH": utils.MustGoPath(),
+						"GOPATH": os.Getenv("GOPATH"),
 						"GOROOT": runtime.GOROOT(),
 
 						"TMP":  os.Getenv("TMP"),
@@ -401,7 +401,7 @@ func build() {
 
 			env = map[string]string{
 				"PATH":   os.Getenv("PATH"),
-				"GOPATH": utils.MustGoPath(),
+				"GOPATH": os.Getenv("GOPATH"),
 				"GOROOT": runtime.GOROOT(),
 
 				"GOOS":   "linux",
@@ -427,7 +427,7 @@ func build() {
 
 				env = map[string]string{
 					"PATH":   os.Getenv("PATH"),
-					"GOPATH": utils.MustGoPath(),
+					"GOPATH": os.Getenv("GOPATH"),
 					"GOROOT": runtime.GOROOT(),
 
 					"GOOS":   "windows",
