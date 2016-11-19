@@ -69,19 +69,21 @@ func GoQtPkgPath(s ...string) string {
 }
 
 func RunCmd(cmd *exec.Cmd, name string) string {
-	fields := logrus.Fields{"func": "RunCmd", "name": name, "cmd": strings.Join(cmd.Args, "")}
-        Log.WithFields(fields).Debug("Execute")
+	fields := logrus.Fields{"func": "RunCmd", "name": name, "cmd": strings.Join(cmd.Args, " ")}
+	Log.WithFields(fields).Debug("Execute")
 	var out, err = cmd.CombinedOutput()
 	if err != nil {
-		Log.WithError(err).WithFields(fields).WithField("output", out).Panic("failed to run command")
+		Log.WithError(err).WithFields(fields).WithField("output", string(out)).Panic("failed to run command")
 	}
 	return string(out)
 }
 
 func RunCmdOptional(cmd *exec.Cmd, name string) string {
+	fields := logrus.Fields{"func": "RunCmdOptional", "name": name, "cmd": strings.Join(cmd.Args, " ")}
+	Log.WithFields(fields).Debug("Execute")
 	var out, err = cmd.CombinedOutput()
 	if err != nil {
-		Log.WithError(err).Errorf("failed to %v\nerror: %s\ncmd: %v", name, out, cmd)
+		Log.WithError(err).WithFields(fields).WithField("output", string(out)).Error("failed to run command")
 	}
 	return string(out)
 }
