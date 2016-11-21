@@ -13,9 +13,14 @@ import (
 )
 
 var (
-	MocAppPath string
+	mocAppPath string
 	MocModule  string
 )
+
+func CopyCgoForMoc(module, appPath string) {
+	mocAppPath = appPath
+	CopyCgo(module)
+}
 
 func CopyCgo(module string) {
 
@@ -123,7 +128,7 @@ func cgoDarwin(module string) {
 	switch {
 	case module == parser.MOC:
 		{
-			utils.SaveBytes(filepath.Join(MocAppPath, "moc_cgo_desktop_darwin_amd64.go"), bb.Bytes())
+			utils.SaveBytes(filepath.Join(mocAppPath, "moc_cgo_desktop_darwin_amd64.go"), bb.Bytes())
 		}
 
 	case Minimal:
@@ -196,7 +201,7 @@ func cgoWindows(module string) {
 	switch {
 	case module == parser.MOC:
 		{
-			utils.SaveBytes(filepath.Join(MocAppPath, "moc_cgo_desktop_windows_386.go"), bb.Bytes())
+			utils.SaveBytes(filepath.Join(mocAppPath, "moc_cgo_desktop_windows_386.go"), bb.Bytes())
 		}
 
 	case Minimal:
@@ -272,8 +277,8 @@ func cgoWindowsForLinux(module string) {
 	switch {
 	case module == parser.MOC:
 		{
-			utils.Save(filepath.Join(MocAppPath, "moc_cgo_desktop_windows_amd64.go"), tmp64)
-			utils.SaveBytes(filepath.Join(MocAppPath, "moc_cgo_desktop_windows_386.go"), bb.Bytes())
+			utils.Save(filepath.Join(mocAppPath, "moc_cgo_desktop_windows_amd64.go"), tmp64)
+			utils.SaveBytes(filepath.Join(mocAppPath, "moc_cgo_desktop_windows_386.go"), bb.Bytes())
 		}
 
 	case Minimal:
@@ -352,8 +357,8 @@ func cgoWindowsMsys2(module string) {
 	switch {
 	case module == parser.MOC:
 		{
-			utils.Save(filepath.Join(MocAppPath, "moc_cgo_desktop_windows_amd64.go"), tmp64)
-			utils.SaveBytes(filepath.Join(MocAppPath, "moc_cgo_desktop_windows_386.go"), bb.Bytes())
+			utils.Save(filepath.Join(mocAppPath, "moc_cgo_desktop_windows_amd64.go"), tmp64)
+			utils.SaveBytes(filepath.Join(mocAppPath, "moc_cgo_desktop_windows_386.go"), bb.Bytes())
 		}
 
 	case Minimal:
@@ -426,7 +431,7 @@ func cgoLinux(module string) {
 	switch {
 	case module == parser.MOC:
 		{
-			utils.SaveBytes(filepath.Join(MocAppPath, "moc_cgo_desktop_linux_amd64.go"), bb.Bytes())
+			utils.SaveBytes(filepath.Join(mocAppPath, "moc_cgo_desktop_linux_amd64.go"), bb.Bytes())
 		}
 
 	case Minimal:
@@ -503,7 +508,7 @@ func cgoLinuxPkgConfig(module string) {
 	switch {
 	case module == parser.MOC:
 		{
-			utils.SaveBytes(filepath.Join(MocAppPath, "moc_cgo_desktop_linux_amd64.go"), bb.Bytes())
+			utils.SaveBytes(filepath.Join(mocAppPath, "moc_cgo_desktop_linux_amd64.go"), bb.Bytes())
 		}
 
 	case Minimal:
@@ -580,7 +585,7 @@ func cgoAndroid(module string) {
 	switch {
 	case module == parser.MOC:
 		{
-			utils.SaveBytes(filepath.Join(MocAppPath, "moc_cgo_android_linux_arm.go"), bb.Bytes())
+			utils.SaveBytes(filepath.Join(mocAppPath, "moc_cgo_android_linux_arm.go"), bb.Bytes())
 		}
 
 	case Minimal:
@@ -701,7 +706,7 @@ func cgoIos(module string) string {
 		switch {
 		case module == parser.MOC:
 			{
-				return MocAppPath, "moc_"
+				return mocAppPath, "moc_"
 			}
 
 		case Minimal:
@@ -801,7 +806,7 @@ func cgoSailfish(module string) {
 	switch {
 	case module == parser.MOC:
 		{
-			utils.Save(filepath.Join(MocAppPath, "moc_cgo_sailfish_emulator_linux_386.go"), tmp)
+			utils.Save(filepath.Join(mocAppPath, "moc_cgo_sailfish_emulator_linux_386.go"), tmp)
 		}
 
 	case Minimal:
@@ -822,7 +827,7 @@ func cgoSailfish(module string) {
 	switch {
 	case module == parser.MOC:
 		{
-			utils.Save(filepath.Join(MocAppPath, "moc_cgo_sailfish_linux_arm.go"), tmp)
+			utils.Save(filepath.Join(mocAppPath, "moc_cgo_sailfish_linux_arm.go"), tmp)
 		}
 
 	case Minimal:
@@ -898,7 +903,7 @@ func cgoRaspberryPi1(module string) {
 	switch {
 	case module == parser.MOC:
 		{
-			utils.Save(filepath.Join(MocAppPath, "moc_cgo_rpi1_linux_arm.go"), tmp)
+			utils.Save(filepath.Join(mocAppPath, "moc_cgo_rpi1_linux_arm.go"), tmp)
 		}
 
 	case Minimal:
@@ -974,7 +979,7 @@ func cgoRaspberryPi2(module string) {
 	switch {
 	case module == parser.MOC:
 		{
-			utils.Save(filepath.Join(MocAppPath, "moc_cgo_rpi2_linux_arm.go"), tmp)
+			utils.Save(filepath.Join(mocAppPath, "moc_cgo_rpi2_linux_arm.go"), tmp)
 		}
 
 	case Minimal:
@@ -1050,7 +1055,7 @@ func cgoRaspberryPi3(module string) {
 	switch {
 	case module == parser.MOC:
 		{
-			utils.Save(filepath.Join(MocAppPath, "moc_cgo_rpi3_linux_arm.go"), tmp)
+			utils.Save(filepath.Join(mocAppPath, "moc_cgo_rpi3_linux_arm.go"), tmp)
 		}
 
 	case Minimal:

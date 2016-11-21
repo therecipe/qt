@@ -117,22 +117,19 @@ func (c *Class) getAllBases(input []string) []string {
 	return input
 }
 
-func (c *Class) IsQObjectSubClass() bool {
+func (c *Class) IsQObjectSubClass() bool { return c.IsSubClass("QObject") }
 
+func (c *Class) IsSubClass(class string) bool {
 	if c != nil {
-
-		if c.Name == "QObject" {
+		if c.Name == class {
 			return true
 		}
-
 		for _, b := range c.GetAllBases() {
-			if b == "QObject" {
+			if b == class {
 				return true
 			}
 		}
-
 	}
-
 	return false
 }
 
@@ -141,10 +138,12 @@ func (c *Class) add() {
 	//TODO: needed until input + cgo support for generic Containers<T> to ignore virtuals with moc
 	if c.Module == MOC {
 		for _, sbc := range c.GetBases() {
-			for _, sbcf := range ClassMap[sbc].Functions {
-				if IsPackedList(sbcf.Output) {
-					sbcf.Virtual = "non"
-					sbcf.Meta = PLAIN
+			if _, exists := ClassMap[sbc]; exists {
+				for _, sbcf := range ClassMap[sbc].Functions {
+					if IsPackedList(sbcf.Output) {
+						sbcf.Virtual = "non"
+						sbcf.Meta = PLAIN
+					}
 				}
 			}
 		}
@@ -158,7 +157,8 @@ func (c *Class) add() {
 				Virtual:        "non",
 				Meta:           PLAIN,
 				NonMember:      true,
-				NonMoc:         true,
+				NoMocDeduce:    true,
+				Static:         true,
 				Output:         fmt.Sprintf("int"),
 				Parameters:     []*Parameter{},
 				Signature:      "()",

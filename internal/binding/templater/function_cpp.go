@@ -178,7 +178,7 @@ func cppFunctionBody(function *parser.Function) string {
 		{
 			return fmt.Sprintf("%v\treturn new %v%v(%v);",
 				func() string {
-					if function.Name == "QCoreApplication" || function.Name == "QGuiApplication" || function.Name == "QApplication" {
+					if parser.ClassMap[function.Class()].IsSubClass("QCoreApplication") {
 						return `	static int argcs = argc;
 	static char** argvs = static_cast<char**>(malloc(argcs * sizeof(char*)));
 

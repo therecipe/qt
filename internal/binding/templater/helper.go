@@ -40,7 +40,7 @@ func functionIsSupported(_ *parser.Class, f *parser.Function) bool {
 
 		f.Fullname == "QSignalBlocker::QSignalBlocker" && f.OverloadNumber == "3", //undefined symbol
 
-		(f.Class() == "QCoreApplication" || f.Class() == "QGuiApplication" || f.Class() == "QApplication" ||
+		(parser.ClassMap[f.Class()].IsSubClass("QCoreApplication") ||
 			f.Class() == "QAudioInput" || f.Class() == "QAudioOutput") && f.Name == "notify", //redeclared (name collision with QObject)
 
 		f.Fullname == "QGraphicsItem::isBlockedByModalPanel", //** problem
@@ -127,6 +127,11 @@ func functionIsSupportedDefault(f *parser.Function) bool {
 		{
 			return false
 		}
+	}
+
+	//needed for moc
+	if parser.ClassMap[f.Class()].IsSubClass("QCoreApplication") && (f.Name == "autoMaximizeThreshold" || f.Name == "setAutoMaximizeThreshold") {
+		return false
 	}
 
 	if Minimal {
@@ -459,5 +464,5 @@ func classNeedsDestructor(c *parser.Class) bool {
 }
 
 func UseStub() bool {
-	return utils.QT_STUB() && !Minimal && !UsedFromMoc && !(CurrentModule == "AndroidExtras" || CurrentModule == "Sailfish")
+	return utils.QT_STUB() && !Minimal && !Moc && !(CurrentModule == "AndroidExtras" || CurrentModule == "Sailfish")
 }

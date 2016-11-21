@@ -8,7 +8,7 @@ import (
 
 var (
 	Minimal       bool
-	UsedFromMoc   bool
+	Moc   bool
 	CurrentModule string
 )
 

@@ -31,7 +31,7 @@ type Function struct {
 	TemplateModeGo  string
 	Child           *Function
 	NonMember       bool
-	NonMoc          bool
+	NoMocDeduce          bool
 }
 
 type Parameter struct {
