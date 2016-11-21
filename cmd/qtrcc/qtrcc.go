@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"io/ioutil"
 	"os"
 	"os/exec"
 	"path/filepath"
@@ -12,23 +13,21 @@ import (
 )
 
 func main() {
-	var appPath string
+	var appPath, _ = os.Getwd()
 
 	switch len(os.Args) {
-	case 1:
-		{
-			appPath, _ = os.Getwd()
-		}
-
 	case 2:
 		{
 			appPath = os.Args[1]
 		}
 	}
-
 	if !filepath.IsAbs(appPath) {
 		appPath = utils.GetAbsPath(appPath)
 	}
+	if _, err := ioutil.ReadDir(appPath); err != nil {
+		utils.Log.Fatalln("usage:", "qtrcc", filepath.Join("path", "to", "project"))
+	}
+
 	var appName = filepath.Base(appPath)
 
 	utils.MakeFolder(filepath.Join(appPath, "qml"))

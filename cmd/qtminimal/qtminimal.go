@@ -36,6 +36,9 @@ func main() {
 	if !filepath.IsAbs(appPath) {
 		appPath = utils.GetAbsPath(appPath)
 	}
+	if _, err := ioutil.ReadDir(appPath); err != nil {
+		utils.Log.Fatalln("usage:", "qtminimal", "[ desktop | android | ... ]", filepath.Join("path", "to", "project"))
+	}
 
 	var (
 		imported       []string

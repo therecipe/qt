@@ -24,16 +24,11 @@ func init() { templater.Moc = true }
 
 func main() {
 	var (
-		appPath string
-		cleanup bool
+		appPath, _ = os.Getwd()
+		cleanup    bool
 	)
 
 	switch len(os.Args) {
-	case 1:
-		{
-			appPath, _ = os.Getwd()
-		}
-
 	case 2, 3:
 		{
 			appPath = os.Args[1]
@@ -177,7 +172,8 @@ func moc(appPath string) error {
 	})
 
 	if len(module.Namespace.Classes) == 0 {
-		utils.Log.Fatal("failed to find moc structs")
+		utils.Log.Debugf("failed to find moc structs in %v", appPath)
+		return nil
 	}
 
 	//cache modules
@@ -210,7 +206,8 @@ func moc(appPath string) error {
 		}
 	}
 	if !atLeastOneMocClass {
-		utils.Log.Fatal("failed to find at least one valid moc struct")
+		utils.Log.Debugf("failed to find at least one valid moc struct in %v", appPath)
+		return nil
 	}
 
 	for _, c := range module.Namespace.Classes {
