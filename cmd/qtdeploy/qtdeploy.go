@@ -228,7 +228,7 @@ func build() {
 				{
 					env = map[string]string{
 						"PATH":   os.Getenv("PATH"),
-						"GOPATH": utils.MustGoPath(),
+						"GOPATH": os.Getenv("GOPATH"),
 						"GOROOT": runtime.GOROOT(),
 
 						"GOOS":   "android",
