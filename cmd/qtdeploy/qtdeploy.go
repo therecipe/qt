@@ -552,7 +552,7 @@ func predeploy() {
 			}{
 				Qt:  filepath.Join(utils.QT_DIR(), "5.7", "android_armv7"),
 				Sdk: utils.ANDROID_SDK_DIR(),
-				SdkBuildToolsRevision: "25.0.0",
+				SdkBuildToolsRevision: "25.0.1",
 				Ndk:                           utils.ANDROID_NDK_DIR(),
 				Toolchainprefix:               "arm-linux-androideabi",
 				Toolprefix:                    "arm-linux-androideabi",

@@ -232,7 +232,7 @@ If you use the STUB version, you are forced to use `qtminimal` otherwise it's op
 
 3. Install the SDK dependencies with `C:\android-sdk-windows\tools\android.bat` or `$HOME/android-sdk-{ macosx | linux }/tools/android`
 	* Tools
-		* Android SDK Build-tools (25.0.0)
+		* Android SDK Build-tools (25.0.1)
 	* Android 7.1.1 (API 25)
 		* SDK Platform
 	* Extras (Windows only)
