@@ -339,7 +339,10 @@ long long QAbstractXmlNodeModel_Kind(void* ptr, void* ni)
 	return static_cast<QAbstractXmlNodeModel*>(ptr)->kind(*static_cast<QXmlNodeModelIndex*>(ni));
 }
 
-
+void* QAbstractXmlNodeModel_Name(void* ptr, void* ni)
+{
+	return new QXmlName(static_cast<QAbstractXmlNodeModel*>(ptr)->name(*static_cast<QXmlNodeModelIndex*>(ni)));
+}
 
 void* QAbstractXmlNodeModel_NextFromSimpleAxis(void* ptr, long long axis, void* origin)
 {
@@ -379,6 +382,11 @@ void QAbstractXmlNodeModel_DestroyQAbstractXmlNodeModelDefault(void* ptr)
 void* QAbstractXmlNodeModel_attributes_atList(void* ptr, int i)
 {
 	return new QXmlNodeModelIndex(static_cast<QVector<QXmlNodeModelIndex>*>(ptr)->at(i));
+}
+
+void* QAbstractXmlNodeModel_namespaceBindings_atList(void* ptr, int i)
+{
+	return new QXmlName(static_cast<QVector<QXmlName>*>(ptr)->at(i));
 }
 
 void* QAbstractXmlNodeModel_nodesByIdref_atList(void* ptr, int i)
@@ -541,6 +549,11 @@ void QSimpleXmlNodeModel_DestroyQSimpleXmlNodeModelDefault(void* ptr)
 
 }
 
+void* QSimpleXmlNodeModel_namespaceBindings_atList(void* ptr, int i)
+{
+	return new QXmlName(static_cast<QVector<QXmlName>*>(ptr)->at(i));
+}
+
 void* QSimpleXmlNodeModel_nodesByIdref_atList(void* ptr, int i)
 {
 	return new QXmlNodeModelIndex(static_cast<QVector<QXmlNodeModelIndex>*>(ptr)->at(i));
@@ -567,7 +580,10 @@ long long QSimpleXmlNodeModel_Kind(void* ptr, void* ni)
 
 
 
-
+void* QSimpleXmlNodeModel_Name(void* ptr, void* ni)
+{
+	return new QXmlName(static_cast<QSimpleXmlNodeModel*>(ptr)->name(*static_cast<QXmlNodeModelIndex*>(ni)));
+}
 
 
 
@@ -860,6 +876,11 @@ void* QXmlName_NewQXmlName2(void* namePool, char* localName, char* namespaceURI,
 	return new QXmlName(*static_cast<QXmlNamePool*>(namePool), QString(localName), QString(namespaceURI), QString(prefix));
 }
 
+void* QXmlName_QXmlName_FromClarkName(char* clarkName, void* namePool)
+{
+	return new QXmlName(QXmlName::fromClarkName(QString(clarkName), *static_cast<QXmlNamePool*>(namePool)));
+}
+
 char QXmlName_QXmlName_IsNCName(char* candidate)
 {
 	return QXmlName::isNCName(QString(candidate));
@@ -1013,6 +1034,11 @@ char QXmlQuery_EvaluateTo3(void* ptr, char* target)
 void QXmlQuery_EvaluateTo(void* ptr, void* result)
 {
 	static_cast<QXmlQuery*>(ptr)->evaluateTo(static_cast<QXmlResultItems*>(result));
+}
+
+void* QXmlQuery_InitialTemplateName(void* ptr)
+{
+	return new QXmlName(static_cast<QXmlQuery*>(ptr)->initialTemplateName());
 }
 
 char QXmlQuery_IsValid(void* ptr)

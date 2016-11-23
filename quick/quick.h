@@ -962,6 +962,7 @@ void* QQuickWindow_MetaObjectDefault(void* ptr);
 void* QSGAbstractRenderer_ClearColor(void* ptr);
 long long QSGAbstractRenderer_ClearMode(void* ptr);
 void* QSGAbstractRenderer_DeviceRect(void* ptr);
+void* QSGAbstractRenderer_ProjectionMatrix(void* ptr);
 void QSGAbstractRenderer_ConnectSceneGraphChanged(void* ptr);
 void QSGAbstractRenderer_DisconnectSceneGraphChanged(void* ptr);
 void QSGAbstractRenderer_SceneGraphChanged(void* ptr);

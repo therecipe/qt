@@ -112,6 +112,15 @@ func (ptr *QAbstractTextDocumentLayout) AnchorAt(position core.QPointF_ITF) stri
 	return ""
 }
 
+func (ptr *QAbstractTextDocumentLayout) Format(position int) *QTextCharFormat {
+	if ptr.Pointer() != nil {
+		var tmpValue = NewQTextCharFormatFromPointer(C.QAbstractTextDocumentLayout_Format(ptr.Pointer(), C.int(int32(position))))
+		runtime.SetFinalizer(tmpValue, (*QTextCharFormat).DestroyQTextCharFormat)
+		return tmpValue
+	}
+	return nil
+}
+
 //export callbackQAbstractTextDocumentLayout_BlockBoundingRect
 func callbackQAbstractTextDocumentLayout_BlockBoundingRect(ptr unsafe.Pointer, block unsafe.Pointer) unsafe.Pointer {
 
@@ -16433,6 +16442,15 @@ func (ptr *QImage) PixelColor2(x int, y int) *QColor {
 	return nil
 }
 
+func (ptr *QImage) PixelFormat() *QPixelFormat {
+	if ptr.Pointer() != nil {
+		var tmpValue = NewQPixelFormatFromPointer(C.QImage_PixelFormat(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*QPixelFormat).DestroyQPixelFormat)
+		return tmpValue
+	}
+	return nil
+}
+
 func (ptr *QImage) PixelIndex(position core.QPoint_ITF) int {
 	if ptr.Pointer() != nil {
 		return int(int32(C.QImage_PixelIndex(ptr.Pointer(), core.PointerFromQPoint(position))))
@@ -16575,6 +16593,18 @@ func QImage_ToImageFormat(format QPixelFormat_ITF) QImage__Format {
 
 func (ptr *QImage) ToImageFormat(format QPixelFormat_ITF) QImage__Format {
 	return QImage__Format(C.QImage_QImage_ToImageFormat(PointerFromQPixelFormat(format)))
+}
+
+func QImage_ToPixelFormat(format QImage__Format) *QPixelFormat {
+	var tmpValue = NewQPixelFormatFromPointer(C.QImage_QImage_ToPixelFormat(C.longlong(format)))
+	runtime.SetFinalizer(tmpValue, (*QPixelFormat).DestroyQPixelFormat)
+	return tmpValue
+}
+
+func (ptr *QImage) ToPixelFormat(format QImage__Format) *QPixelFormat {
+	var tmpValue = NewQPixelFormatFromPointer(C.QImage_QImage_ToPixelFormat(C.longlong(format)))
+	runtime.SetFinalizer(tmpValue, (*QPixelFormat).DestroyQPixelFormat)
+	return tmpValue
 }
 
 func (ptr *QImage) Transformed2(matrix QTransform_ITF, mode core.Qt__TransformationMode) *QImage {
@@ -21075,6 +21105,15 @@ func (ptr *QMatrix4x4) Determinant() float64 {
 	return 0
 }
 
+func (ptr *QMatrix4x4) Column(index int) *QVector4D {
+	if ptr.Pointer() != nil {
+		var tmpValue = NewQVector4DFromPointer(C.QMatrix4x4_Column(ptr.Pointer(), C.int(int32(index))))
+		runtime.SetFinalizer(tmpValue, (*QVector4D).DestroyQVector4D)
+		return tmpValue
+	}
+	return nil
+}
+
 func (ptr *QMatrix4x4) ConstData() float32 {
 	if ptr.Pointer() != nil {
 		return float32(C.QMatrix4x4_ConstData(ptr.Pointer()))
@@ -21112,6 +21151,15 @@ func (ptr *QMatrix4x4) Frustum(left float32, right float32, bottom float32, top 
 	if ptr.Pointer() != nil {
 		C.QMatrix4x4_Frustum(ptr.Pointer(), C.float(left), C.float(right), C.float(bottom), C.float(top), C.float(nearPlane), C.float(farPlane))
 	}
+}
+
+func (ptr *QMatrix4x4) Inverted(invertible bool) *QMatrix4x4 {
+	if ptr.Pointer() != nil {
+		var tmpValue = NewQMatrix4x4FromPointer(C.QMatrix4x4_Inverted(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(invertible)))))
+		runtime.SetFinalizer(tmpValue, (*QMatrix4x4).DestroyQMatrix4x4)
+		return tmpValue
+	}
+	return nil
 }
 
 func (ptr *QMatrix4x4) IsAffine() bool {
@@ -21152,6 +21200,24 @@ func (ptr *QMatrix4x4) Map2(point core.QPointF_ITF) *core.QPointF {
 	return nil
 }
 
+func (ptr *QMatrix4x4) Map3(point QVector3D_ITF) *QVector3D {
+	if ptr.Pointer() != nil {
+		var tmpValue = NewQVector3DFromPointer(C.QMatrix4x4_Map3(ptr.Pointer(), PointerFromQVector3D(point)))
+		runtime.SetFinalizer(tmpValue, (*QVector3D).DestroyQVector3D)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QMatrix4x4) Map4(point QVector4D_ITF) *QVector4D {
+	if ptr.Pointer() != nil {
+		var tmpValue = NewQVector4DFromPointer(C.QMatrix4x4_Map4(ptr.Pointer(), PointerFromQVector4D(point)))
+		runtime.SetFinalizer(tmpValue, (*QVector4D).DestroyQVector4D)
+		return tmpValue
+	}
+	return nil
+}
+
 func (ptr *QMatrix4x4) MapRect(rect core.QRect_ITF) *core.QRect {
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQRectFromPointer(C.QMatrix4x4_MapRect(ptr.Pointer(), core.PointerFromQRect(rect)))
@@ -21165,6 +21231,15 @@ func (ptr *QMatrix4x4) MapRect2(rect core.QRectF_ITF) *core.QRectF {
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQRectFFromPointer(C.QMatrix4x4_MapRect2(ptr.Pointer(), core.PointerFromQRectF(rect)))
 		runtime.SetFinalizer(tmpValue, (*core.QRectF).DestroyQRectF)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QMatrix4x4) MapVector(vector QVector3D_ITF) *QVector3D {
+	if ptr.Pointer() != nil {
+		var tmpValue = NewQVector3DFromPointer(C.QMatrix4x4_MapVector(ptr.Pointer(), PointerFromQVector3D(vector)))
+		runtime.SetFinalizer(tmpValue, (*QVector3D).DestroyQVector3D)
 		return tmpValue
 	}
 	return nil
@@ -21216,6 +21291,15 @@ func (ptr *QMatrix4x4) Rotate2(angle float32, x float32, y float32, z float32) {
 	if ptr.Pointer() != nil {
 		C.QMatrix4x4_Rotate2(ptr.Pointer(), C.float(angle), C.float(x), C.float(y), C.float(z))
 	}
+}
+
+func (ptr *QMatrix4x4) Row(index int) *QVector4D {
+	if ptr.Pointer() != nil {
+		var tmpValue = NewQVector4DFromPointer(C.QMatrix4x4_Row(ptr.Pointer(), C.int(int32(index))))
+		runtime.SetFinalizer(tmpValue, (*QVector4D).DestroyQVector4D)
+		return tmpValue
+	}
+	return nil
 }
 
 func (ptr *QMatrix4x4) Scale(vector QVector3D_ITF) {
@@ -21294,6 +21378,15 @@ func (ptr *QMatrix4x4) Translate3(x float32, y float32, z float32) {
 	if ptr.Pointer() != nil {
 		C.QMatrix4x4_Translate3(ptr.Pointer(), C.float(x), C.float(y), C.float(z))
 	}
+}
+
+func (ptr *QMatrix4x4) Transposed() *QMatrix4x4 {
+	if ptr.Pointer() != nil {
+		var tmpValue = NewQMatrix4x4FromPointer(C.QMatrix4x4_Transposed(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*QMatrix4x4).DestroyQMatrix4x4)
+		return tmpValue
+	}
+	return nil
 }
 
 func (ptr *QMatrix4x4) Viewport2(rect core.QRectF_ITF) {
@@ -21508,6 +21601,15 @@ func (ptr *QMouseEvent) SetMouseState(vqt core.Qt__MouseButton) {
 	if ptr.Pointer() != nil {
 		C.QMouseEvent_SetMouseState(ptr.Pointer(), C.longlong(vqt))
 	}
+}
+
+func (ptr *QMouseEvent) Velocity() *QVector2D {
+	if ptr.Pointer() != nil {
+		var tmpValue = NewQVector2DFromPointer(C.QMouseEvent_Velocity(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*QVector2D).DestroyQVector2D)
+		return tmpValue
+	}
+	return nil
 }
 
 func (ptr *QMouseEvent) SetVelocity(vqv QVector2D_ITF) {
@@ -35406,12 +35508,93 @@ func NewQQuaternion3(scalar float32, xpos float32, ypos float32, zpos float32) *
 	return tmpValue
 }
 
+func (ptr *QQuaternion) Conjugated() *QQuaternion {
+	if ptr.Pointer() != nil {
+		var tmpValue = NewQQuaternionFromPointer(C.QQuaternion_Conjugated(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*QQuaternion).DestroyQQuaternion)
+		return tmpValue
+	}
+	return nil
+}
+
 func QQuaternion_DotProduct(q1 QQuaternion_ITF, q2 QQuaternion_ITF) float32 {
 	return float32(C.QQuaternion_QQuaternion_DotProduct(PointerFromQQuaternion(q1), PointerFromQQuaternion(q2)))
 }
 
 func (ptr *QQuaternion) DotProduct(q1 QQuaternion_ITF, q2 QQuaternion_ITF) float32 {
 	return float32(C.QQuaternion_QQuaternion_DotProduct(PointerFromQQuaternion(q1), PointerFromQQuaternion(q2)))
+}
+
+func QQuaternion_FromAxes(xAxis QVector3D_ITF, yAxis QVector3D_ITF, zAxis QVector3D_ITF) *QQuaternion {
+	var tmpValue = NewQQuaternionFromPointer(C.QQuaternion_QQuaternion_FromAxes(PointerFromQVector3D(xAxis), PointerFromQVector3D(yAxis), PointerFromQVector3D(zAxis)))
+	runtime.SetFinalizer(tmpValue, (*QQuaternion).DestroyQQuaternion)
+	return tmpValue
+}
+
+func (ptr *QQuaternion) FromAxes(xAxis QVector3D_ITF, yAxis QVector3D_ITF, zAxis QVector3D_ITF) *QQuaternion {
+	var tmpValue = NewQQuaternionFromPointer(C.QQuaternion_QQuaternion_FromAxes(PointerFromQVector3D(xAxis), PointerFromQVector3D(yAxis), PointerFromQVector3D(zAxis)))
+	runtime.SetFinalizer(tmpValue, (*QQuaternion).DestroyQQuaternion)
+	return tmpValue
+}
+
+func QQuaternion_FromAxisAndAngle(axis QVector3D_ITF, angle float32) *QQuaternion {
+	var tmpValue = NewQQuaternionFromPointer(C.QQuaternion_QQuaternion_FromAxisAndAngle(PointerFromQVector3D(axis), C.float(angle)))
+	runtime.SetFinalizer(tmpValue, (*QQuaternion).DestroyQQuaternion)
+	return tmpValue
+}
+
+func (ptr *QQuaternion) FromAxisAndAngle(axis QVector3D_ITF, angle float32) *QQuaternion {
+	var tmpValue = NewQQuaternionFromPointer(C.QQuaternion_QQuaternion_FromAxisAndAngle(PointerFromQVector3D(axis), C.float(angle)))
+	runtime.SetFinalizer(tmpValue, (*QQuaternion).DestroyQQuaternion)
+	return tmpValue
+}
+
+func QQuaternion_FromAxisAndAngle2(x float32, y float32, z float32, angle float32) *QQuaternion {
+	var tmpValue = NewQQuaternionFromPointer(C.QQuaternion_QQuaternion_FromAxisAndAngle2(C.float(x), C.float(y), C.float(z), C.float(angle)))
+	runtime.SetFinalizer(tmpValue, (*QQuaternion).DestroyQQuaternion)
+	return tmpValue
+}
+
+func (ptr *QQuaternion) FromAxisAndAngle2(x float32, y float32, z float32, angle float32) *QQuaternion {
+	var tmpValue = NewQQuaternionFromPointer(C.QQuaternion_QQuaternion_FromAxisAndAngle2(C.float(x), C.float(y), C.float(z), C.float(angle)))
+	runtime.SetFinalizer(tmpValue, (*QQuaternion).DestroyQQuaternion)
+	return tmpValue
+}
+
+func QQuaternion_FromDirection(direction QVector3D_ITF, up QVector3D_ITF) *QQuaternion {
+	var tmpValue = NewQQuaternionFromPointer(C.QQuaternion_QQuaternion_FromDirection(PointerFromQVector3D(direction), PointerFromQVector3D(up)))
+	runtime.SetFinalizer(tmpValue, (*QQuaternion).DestroyQQuaternion)
+	return tmpValue
+}
+
+func (ptr *QQuaternion) FromDirection(direction QVector3D_ITF, up QVector3D_ITF) *QQuaternion {
+	var tmpValue = NewQQuaternionFromPointer(C.QQuaternion_QQuaternion_FromDirection(PointerFromQVector3D(direction), PointerFromQVector3D(up)))
+	runtime.SetFinalizer(tmpValue, (*QQuaternion).DestroyQQuaternion)
+	return tmpValue
+}
+
+func QQuaternion_FromEulerAngles2(eulerAngles QVector3D_ITF) *QQuaternion {
+	var tmpValue = NewQQuaternionFromPointer(C.QQuaternion_QQuaternion_FromEulerAngles2(PointerFromQVector3D(eulerAngles)))
+	runtime.SetFinalizer(tmpValue, (*QQuaternion).DestroyQQuaternion)
+	return tmpValue
+}
+
+func (ptr *QQuaternion) FromEulerAngles2(eulerAngles QVector3D_ITF) *QQuaternion {
+	var tmpValue = NewQQuaternionFromPointer(C.QQuaternion_QQuaternion_FromEulerAngles2(PointerFromQVector3D(eulerAngles)))
+	runtime.SetFinalizer(tmpValue, (*QQuaternion).DestroyQQuaternion)
+	return tmpValue
+}
+
+func QQuaternion_FromEulerAngles(pitch float32, yaw float32, roll float32) *QQuaternion {
+	var tmpValue = NewQQuaternionFromPointer(C.QQuaternion_QQuaternion_FromEulerAngles(C.float(pitch), C.float(yaw), C.float(roll)))
+	runtime.SetFinalizer(tmpValue, (*QQuaternion).DestroyQQuaternion)
+	return tmpValue
+}
+
+func (ptr *QQuaternion) FromEulerAngles(pitch float32, yaw float32, roll float32) *QQuaternion {
+	var tmpValue = NewQQuaternionFromPointer(C.QQuaternion_QQuaternion_FromEulerAngles(C.float(pitch), C.float(yaw), C.float(roll)))
+	runtime.SetFinalizer(tmpValue, (*QQuaternion).DestroyQQuaternion)
+	return tmpValue
 }
 
 func (ptr *QQuaternion) GetAxes(xAxis QVector3D_ITF, yAxis QVector3D_ITF, zAxis QVector3D_ITF) {
@@ -35436,6 +35619,15 @@ func (ptr *QQuaternion) GetEulerAngles(pitch float32, yaw float32, roll float32)
 	if ptr.Pointer() != nil {
 		C.QQuaternion_GetEulerAngles(ptr.Pointer(), C.float(pitch), C.float(yaw), C.float(roll))
 	}
+}
+
+func (ptr *QQuaternion) Inverted() *QQuaternion {
+	if ptr.Pointer() != nil {
+		var tmpValue = NewQQuaternionFromPointer(C.QQuaternion_Inverted(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*QQuaternion).DestroyQQuaternion)
+		return tmpValue
+	}
+	return nil
 }
 
 func (ptr *QQuaternion) IsIdentity() bool {
@@ -35466,10 +35658,52 @@ func (ptr *QQuaternion) LengthSquared() float32 {
 	return 0
 }
 
+func QQuaternion_Nlerp(q1 QQuaternion_ITF, q2 QQuaternion_ITF, t float32) *QQuaternion {
+	var tmpValue = NewQQuaternionFromPointer(C.QQuaternion_QQuaternion_Nlerp(PointerFromQQuaternion(q1), PointerFromQQuaternion(q2), C.float(t)))
+	runtime.SetFinalizer(tmpValue, (*QQuaternion).DestroyQQuaternion)
+	return tmpValue
+}
+
+func (ptr *QQuaternion) Nlerp(q1 QQuaternion_ITF, q2 QQuaternion_ITF, t float32) *QQuaternion {
+	var tmpValue = NewQQuaternionFromPointer(C.QQuaternion_QQuaternion_Nlerp(PointerFromQQuaternion(q1), PointerFromQQuaternion(q2), C.float(t)))
+	runtime.SetFinalizer(tmpValue, (*QQuaternion).DestroyQQuaternion)
+	return tmpValue
+}
+
 func (ptr *QQuaternion) Normalize() {
 	if ptr.Pointer() != nil {
 		C.QQuaternion_Normalize(ptr.Pointer())
 	}
+}
+
+func (ptr *QQuaternion) Normalized() *QQuaternion {
+	if ptr.Pointer() != nil {
+		var tmpValue = NewQQuaternionFromPointer(C.QQuaternion_Normalized(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*QQuaternion).DestroyQQuaternion)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QQuaternion) RotatedVector(vector QVector3D_ITF) *QVector3D {
+	if ptr.Pointer() != nil {
+		var tmpValue = NewQVector3DFromPointer(C.QQuaternion_RotatedVector(ptr.Pointer(), PointerFromQVector3D(vector)))
+		runtime.SetFinalizer(tmpValue, (*QVector3D).DestroyQVector3D)
+		return tmpValue
+	}
+	return nil
+}
+
+func QQuaternion_RotationTo(from QVector3D_ITF, to QVector3D_ITF) *QQuaternion {
+	var tmpValue = NewQQuaternionFromPointer(C.QQuaternion_QQuaternion_RotationTo(PointerFromQVector3D(from), PointerFromQVector3D(to)))
+	runtime.SetFinalizer(tmpValue, (*QQuaternion).DestroyQQuaternion)
+	return tmpValue
+}
+
+func (ptr *QQuaternion) RotationTo(from QVector3D_ITF, to QVector3D_ITF) *QQuaternion {
+	var tmpValue = NewQQuaternionFromPointer(C.QQuaternion_QQuaternion_RotationTo(PointerFromQVector3D(from), PointerFromQVector3D(to)))
+	runtime.SetFinalizer(tmpValue, (*QQuaternion).DestroyQQuaternion)
+	return tmpValue
 }
 
 func (ptr *QQuaternion) Scalar() float32 {
@@ -35513,6 +35747,45 @@ func (ptr *QQuaternion) SetZ(z float32) {
 	if ptr.Pointer() != nil {
 		C.QQuaternion_SetZ(ptr.Pointer(), C.float(z))
 	}
+}
+
+func QQuaternion_Slerp(q1 QQuaternion_ITF, q2 QQuaternion_ITF, t float32) *QQuaternion {
+	var tmpValue = NewQQuaternionFromPointer(C.QQuaternion_QQuaternion_Slerp(PointerFromQQuaternion(q1), PointerFromQQuaternion(q2), C.float(t)))
+	runtime.SetFinalizer(tmpValue, (*QQuaternion).DestroyQQuaternion)
+	return tmpValue
+}
+
+func (ptr *QQuaternion) Slerp(q1 QQuaternion_ITF, q2 QQuaternion_ITF, t float32) *QQuaternion {
+	var tmpValue = NewQQuaternionFromPointer(C.QQuaternion_QQuaternion_Slerp(PointerFromQQuaternion(q1), PointerFromQQuaternion(q2), C.float(t)))
+	runtime.SetFinalizer(tmpValue, (*QQuaternion).DestroyQQuaternion)
+	return tmpValue
+}
+
+func (ptr *QQuaternion) ToEulerAngles() *QVector3D {
+	if ptr.Pointer() != nil {
+		var tmpValue = NewQVector3DFromPointer(C.QQuaternion_ToEulerAngles(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*QVector3D).DestroyQVector3D)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QQuaternion) ToVector4D() *QVector4D {
+	if ptr.Pointer() != nil {
+		var tmpValue = NewQVector4DFromPointer(C.QQuaternion_ToVector4D(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*QVector4D).DestroyQVector4D)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QQuaternion) Vector() *QVector3D {
+	if ptr.Pointer() != nil {
+		var tmpValue = NewQVector3DFromPointer(C.QQuaternion_Vector(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*QVector3D).DestroyQVector3D)
+		return tmpValue
+	}
+	return nil
 }
 
 func (ptr *QQuaternion) X() float32 {
@@ -43713,6 +43986,15 @@ func (ptr *QStyleHints) MousePressAndHoldInterval() int {
 	return 0
 }
 
+func (ptr *QStyleHints) PasswordMaskCharacter() *core.QChar {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQCharFromPointer(C.QStyleHints_PasswordMaskCharacter(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*core.QChar).DestroyQChar)
+		return tmpValue
+	}
+	return nil
+}
+
 func (ptr *QStyleHints) PasswordMaskDelay() int {
 	if ptr.Pointer() != nil {
 		return int(int32(C.QStyleHints_PasswordMaskDelay(ptr.Pointer())))
@@ -44956,6 +45238,15 @@ func NewQSyntaxHighlighterFromPointer(ptr unsafe.Pointer) *QSyntaxHighlighter {
 	n.SetPointer(ptr)
 	return n
 }
+func (ptr *QSyntaxHighlighter) Format(position int) *QTextCharFormat {
+	if ptr.Pointer() != nil {
+		var tmpValue = NewQTextCharFormatFromPointer(C.QSyntaxHighlighter_Format(ptr.Pointer(), C.int(int32(position))))
+		runtime.SetFinalizer(tmpValue, (*QTextCharFormat).DestroyQTextCharFormat)
+		return tmpValue
+	}
+	return nil
+}
+
 func NewQSyntaxHighlighter(parent core.QObject_ITF) *QSyntaxHighlighter {
 	var tmpValue = NewQSyntaxHighlighterFromPointer(C.QSyntaxHighlighter_NewQSyntaxHighlighter(core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
@@ -45815,11 +46106,29 @@ func NewQTextBlock(other QTextBlock_ITF) *QTextBlock {
 	return tmpValue
 }
 
+func (ptr *QTextBlock) BlockFormat() *QTextBlockFormat {
+	if ptr.Pointer() != nil {
+		var tmpValue = NewQTextBlockFormatFromPointer(C.QTextBlock_BlockFormat(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*QTextBlockFormat).DestroyQTextBlockFormat)
+		return tmpValue
+	}
+	return nil
+}
+
 func (ptr *QTextBlock) BlockFormatIndex() int {
 	if ptr.Pointer() != nil {
 		return int(int32(C.QTextBlock_BlockFormatIndex(ptr.Pointer())))
 	}
 	return 0
+}
+
+func (ptr *QTextBlock) CharFormat() *QTextCharFormat {
+	if ptr.Pointer() != nil {
+		var tmpValue = NewQTextCharFormatFromPointer(C.QTextBlock_CharFormat(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*QTextCharFormat).DestroyQTextCharFormat)
+		return tmpValue
+	}
+	return nil
 }
 
 func (ptr *QTextBlock) CharFormatIndex() int {
@@ -47462,11 +47771,38 @@ func (ptr *QTextCursor) Block() *QTextBlock {
 	return nil
 }
 
+func (ptr *QTextCursor) BlockCharFormat() *QTextCharFormat {
+	if ptr.Pointer() != nil {
+		var tmpValue = NewQTextCharFormatFromPointer(C.QTextCursor_BlockCharFormat(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*QTextCharFormat).DestroyQTextCharFormat)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QTextCursor) BlockFormat() *QTextBlockFormat {
+	if ptr.Pointer() != nil {
+		var tmpValue = NewQTextBlockFormatFromPointer(C.QTextCursor_BlockFormat(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*QTextBlockFormat).DestroyQTextBlockFormat)
+		return tmpValue
+	}
+	return nil
+}
+
 func (ptr *QTextCursor) BlockNumber() int {
 	if ptr.Pointer() != nil {
 		return int(int32(C.QTextCursor_BlockNumber(ptr.Pointer())))
 	}
 	return 0
+}
+
+func (ptr *QTextCursor) CharFormat() *QTextCharFormat {
+	if ptr.Pointer() != nil {
+		var tmpValue = NewQTextCharFormatFromPointer(C.QTextCursor_CharFormat(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*QTextCharFormat).DestroyQTextCharFormat)
+		return tmpValue
+	}
+	return nil
 }
 
 func (ptr *QTextCursor) ClearSelection() {
@@ -48278,6 +48614,15 @@ func (ptr *QTextDocument) BlockCountChanged(newBlockCount int) {
 	if ptr.Pointer() != nil {
 		C.QTextDocument_BlockCountChanged(ptr.Pointer(), C.int(int32(newBlockCount)))
 	}
+}
+
+func (ptr *QTextDocument) CharacterAt(pos int) *core.QChar {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQCharFromPointer(C.QTextDocument_CharacterAt(ptr.Pointer(), C.int(int32(pos))))
+		runtime.SetFinalizer(tmpValue, (*core.QChar).DestroyQChar)
+		return tmpValue
+	}
+	return nil
 }
 
 func (ptr *QTextDocument) CharacterCount() int {
@@ -49985,6 +50330,15 @@ func (ptr *QTextFormat) LayoutDirection() core.Qt__LayoutDirection {
 	return 0
 }
 
+func (ptr *QTextFormat) LengthProperty(propertyId int) *QTextLength {
+	if ptr.Pointer() != nil {
+		var tmpValue = NewQTextLengthFromPointer(C.QTextFormat_LengthProperty(ptr.Pointer(), C.int(int32(propertyId))))
+		runtime.SetFinalizer(tmpValue, (*QTextLength).DestroyQTextLength)
+		return tmpValue
+	}
+	return nil
+}
+
 func (ptr *QTextFormat) Merge(other QTextFormat_ITF) {
 	if ptr.Pointer() != nil {
 		C.QTextFormat_Merge(ptr.Pointer(), PointerFromQTextFormat(other))
@@ -50073,6 +50427,69 @@ func (ptr *QTextFormat) Swap(other QTextFormat_ITF) {
 	}
 }
 
+func (ptr *QTextFormat) ToBlockFormat() *QTextBlockFormat {
+	if ptr.Pointer() != nil {
+		var tmpValue = NewQTextBlockFormatFromPointer(C.QTextFormat_ToBlockFormat(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*QTextBlockFormat).DestroyQTextBlockFormat)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QTextFormat) ToCharFormat() *QTextCharFormat {
+	if ptr.Pointer() != nil {
+		var tmpValue = NewQTextCharFormatFromPointer(C.QTextFormat_ToCharFormat(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*QTextCharFormat).DestroyQTextCharFormat)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QTextFormat) ToFrameFormat() *QTextFrameFormat {
+	if ptr.Pointer() != nil {
+		var tmpValue = NewQTextFrameFormatFromPointer(C.QTextFormat_ToFrameFormat(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*QTextFrameFormat).DestroyQTextFrameFormat)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QTextFormat) ToImageFormat() *QTextImageFormat {
+	if ptr.Pointer() != nil {
+		var tmpValue = NewQTextImageFormatFromPointer(C.QTextFormat_ToImageFormat(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*QTextImageFormat).DestroyQTextImageFormat)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QTextFormat) ToListFormat() *QTextListFormat {
+	if ptr.Pointer() != nil {
+		var tmpValue = NewQTextListFormatFromPointer(C.QTextFormat_ToListFormat(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*QTextListFormat).DestroyQTextListFormat)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QTextFormat) ToTableCellFormat() *QTextTableCellFormat {
+	if ptr.Pointer() != nil {
+		var tmpValue = NewQTextTableCellFormatFromPointer(C.QTextFormat_ToTableCellFormat(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*QTextTableCellFormat).DestroyQTextTableCellFormat)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QTextFormat) ToTableFormat() *QTextTableFormat {
+	if ptr.Pointer() != nil {
+		var tmpValue = NewQTextTableFormatFromPointer(C.QTextFormat_ToTableFormat(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*QTextTableFormat).DestroyQTextTableFormat)
+		return tmpValue
+	}
+	return nil
+}
+
 func (ptr *QTextFormat) Type() int {
 	if ptr.Pointer() != nil {
 		return int(int32(C.QTextFormat_Type(ptr.Pointer())))
@@ -50085,6 +50502,15 @@ func (ptr *QTextFormat) DestroyQTextFormat() {
 		C.QTextFormat_DestroyQTextFormat(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
+}
+
+func (ptr *QTextFormat) lengthVectorProperty_atList(i int) *QTextLength {
+	if ptr.Pointer() != nil {
+		var tmpValue = NewQTextLengthFromPointer(C.QTextFormat_lengthVectorProperty_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*QTextLength).DestroyQTextLength)
+		return tmpValue
+	}
+	return nil
 }
 
 type QTextFragment struct {
@@ -50140,6 +50566,15 @@ func NewQTextFragment3(other QTextFragment_ITF) *QTextFragment {
 	var tmpValue = NewQTextFragmentFromPointer(C.QTextFragment_NewQTextFragment3(PointerFromQTextFragment(other)))
 	runtime.SetFinalizer(tmpValue, (*QTextFragment).DestroyQTextFragment)
 	return tmpValue
+}
+
+func (ptr *QTextFragment) CharFormat() *QTextCharFormat {
+	if ptr.Pointer() != nil {
+		var tmpValue = NewQTextCharFormatFromPointer(C.QTextFragment_CharFormat(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*QTextCharFormat).DestroyQTextCharFormat)
+		return tmpValue
+	}
+	return nil
 }
 
 func (ptr *QTextFragment) CharFormatIndex() int {
@@ -50279,6 +50714,15 @@ func (ptr *QTextFrame) FirstPosition() int {
 		return int(int32(C.QTextFrame_FirstPosition(ptr.Pointer())))
 	}
 	return 0
+}
+
+func (ptr *QTextFrame) FrameFormat() *QTextFrameFormat {
+	if ptr.Pointer() != nil {
+		var tmpValue = NewQTextFrameFormatFromPointer(C.QTextFrame_FrameFormat(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*QTextFrameFormat).DestroyQTextFrameFormat)
+		return tmpValue
+	}
+	return nil
 }
 
 func (ptr *QTextFrame) LastCursorPosition() *QTextCursor {
@@ -50799,6 +51243,15 @@ func (ptr *QTextFrameFormat) BorderStyle() QTextFrameFormat__BorderStyle {
 	return 0
 }
 
+func (ptr *QTextFrameFormat) Height() *QTextLength {
+	if ptr.Pointer() != nil {
+		var tmpValue = NewQTextLengthFromPointer(C.QTextFrameFormat_Height(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*QTextLength).DestroyQTextLength)
+		return tmpValue
+	}
+	return nil
+}
+
 func (ptr *QTextFrameFormat) IsValid() bool {
 	if ptr.Pointer() != nil {
 		return C.QTextFrameFormat_IsValid(ptr.Pointer()) != 0
@@ -50916,6 +51369,15 @@ func (ptr *QTextFrameFormat) SetWidth2(width float64) {
 	if ptr.Pointer() != nil {
 		C.QTextFrameFormat_SetWidth2(ptr.Pointer(), C.double(width))
 	}
+}
+
+func (ptr *QTextFrameFormat) Width() *QTextLength {
+	if ptr.Pointer() != nil {
+		var tmpValue = NewQTextLengthFromPointer(C.QTextFrameFormat_Width(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*QTextLength).DestroyQTextLength)
+		return tmpValue
+	}
+	return nil
 }
 
 type QTextImageFormat struct {
@@ -51328,6 +51790,15 @@ func NewQTextLayout3(text string, font QFont_ITF, paintdevice QPaintDevice_ITF) 
 	return tmpValue
 }
 
+func (ptr *QTextLayout) CreateLine() *QTextLine {
+	if ptr.Pointer() != nil {
+		var tmpValue = NewQTextLineFromPointer(C.QTextLayout_CreateLine(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*QTextLine).DestroyQTextLine)
+		return tmpValue
+	}
+	return nil
+}
+
 func (ptr *QTextLayout) BeginLayout() {
 	if ptr.Pointer() != nil {
 		C.QTextLayout_BeginLayout(ptr.Pointer())
@@ -51411,11 +51882,29 @@ func (ptr *QTextLayout) LeftCursorPosition(oldPos int) int {
 	return 0
 }
 
+func (ptr *QTextLayout) LineAt(i int) *QTextLine {
+	if ptr.Pointer() != nil {
+		var tmpValue = NewQTextLineFromPointer(C.QTextLayout_LineAt(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*QTextLine).DestroyQTextLine)
+		return tmpValue
+	}
+	return nil
+}
+
 func (ptr *QTextLayout) LineCount() int {
 	if ptr.Pointer() != nil {
 		return int(int32(C.QTextLayout_LineCount(ptr.Pointer())))
 	}
 	return 0
+}
+
+func (ptr *QTextLayout) LineForTextPosition(pos int) *QTextLine {
+	if ptr.Pointer() != nil {
+		var tmpValue = NewQTextLineFromPointer(C.QTextLayout_LineForTextPosition(ptr.Pointer(), C.int(int32(pos))))
+		runtime.SetFinalizer(tmpValue, (*QTextLine).DestroyQTextLine)
+		return tmpValue
+	}
+	return nil
 }
 
 func (ptr *QTextLayout) MaximumWidth() float64 {
@@ -51970,6 +52459,15 @@ func (ptr *QTextList) Count() int {
 		return int(int32(C.QTextList_Count(ptr.Pointer())))
 	}
 	return 0
+}
+
+func (ptr *QTextList) Format() *QTextListFormat {
+	if ptr.Pointer() != nil {
+		var tmpValue = NewQTextListFormatFromPointer(C.QTextList_Format(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*QTextListFormat).DestroyQTextListFormat)
+		return tmpValue
+	}
+	return nil
 }
 
 func (ptr *QTextList) Item(i int) *QTextBlock {
@@ -53453,6 +53951,15 @@ func (ptr *QTextTable) Columns() int {
 	return 0
 }
 
+func (ptr *QTextTable) Format() *QTextTableFormat {
+	if ptr.Pointer() != nil {
+		var tmpValue = NewQTextTableFormatFromPointer(C.QTextTable_Format(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*QTextTableFormat).DestroyQTextTableFormat)
+		return tmpValue
+	}
+	return nil
+}
+
 func (ptr *QTextTable) MergeCells2(cursor QTextCursor_ITF) {
 	if ptr.Pointer() != nil {
 		C.QTextTable_MergeCells2(ptr.Pointer(), PointerFromQTextCursor(cursor))
@@ -53883,6 +54390,15 @@ func (ptr *QTextTableCell) FirstCursorPosition() *QTextCursor {
 	return nil
 }
 
+func (ptr *QTextTableCell) Format() *QTextCharFormat {
+	if ptr.Pointer() != nil {
+		var tmpValue = NewQTextCharFormatFromPointer(C.QTextTableCell_Format(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*QTextCharFormat).DestroyQTextCharFormat)
+		return tmpValue
+	}
+	return nil
+}
+
 func (ptr *QTextTableCell) IsValid() bool {
 	if ptr.Pointer() != nil {
 		return C.QTextTableCell_IsValid(ptr.Pointer()) != 0
@@ -54168,6 +54684,15 @@ func (ptr *QTextTableFormat) SetHeaderRowCount(count int) {
 	if ptr.Pointer() != nil {
 		C.QTextTableFormat_SetHeaderRowCount(ptr.Pointer(), C.int(int32(count)))
 	}
+}
+
+func (ptr *QTextTableFormat) columnWidthConstraints_atList(i int) *QTextLength {
+	if ptr.Pointer() != nil {
+		var tmpValue = NewQTextLengthFromPointer(C.QTextTableFormat_columnWidthConstraints_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*QTextLength).DestroyQTextLength)
+		return tmpValue
+	}
+	return nil
 }
 
 //QTouchDevice::CapabilityFlag
@@ -55539,6 +56064,15 @@ func (ptr *QVector2D) Normalize() {
 	}
 }
 
+func (ptr *QVector2D) Normalized() *QVector2D {
+	if ptr.Pointer() != nil {
+		var tmpValue = NewQVector2DFromPointer(C.QVector2D_Normalized(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*QVector2D).DestroyQVector2D)
+		return tmpValue
+	}
+	return nil
+}
+
 func (ptr *QVector2D) SetX(x float32) {
 	if ptr.Pointer() != nil {
 		C.QVector2D_SetX(ptr.Pointer(), C.float(x))
@@ -55564,6 +56098,24 @@ func (ptr *QVector2D) ToPointF() *core.QPointF {
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQPointFFromPointer(C.QVector2D_ToPointF(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*core.QPointF).DestroyQPointF)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QVector2D) ToVector3D() *QVector3D {
+	if ptr.Pointer() != nil {
+		var tmpValue = NewQVector3DFromPointer(C.QVector2D_ToVector3D(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*QVector3D).DestroyQVector3D)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QVector2D) ToVector4D() *QVector4D {
+	if ptr.Pointer() != nil {
+		var tmpValue = NewQVector4DFromPointer(C.QVector2D_ToVector4D(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*QVector4D).DestroyQVector4D)
 		return tmpValue
 	}
 	return nil
@@ -55668,6 +56220,18 @@ func NewQVector3D3(xpos float32, ypos float32, zpos float32) *QVector3D {
 	return tmpValue
 }
 
+func QVector3D_CrossProduct(v1 QVector3D_ITF, v2 QVector3D_ITF) *QVector3D {
+	var tmpValue = NewQVector3DFromPointer(C.QVector3D_QVector3D_CrossProduct(PointerFromQVector3D(v1), PointerFromQVector3D(v2)))
+	runtime.SetFinalizer(tmpValue, (*QVector3D).DestroyQVector3D)
+	return tmpValue
+}
+
+func (ptr *QVector3D) CrossProduct(v1 QVector3D_ITF, v2 QVector3D_ITF) *QVector3D {
+	var tmpValue = NewQVector3DFromPointer(C.QVector3D_QVector3D_CrossProduct(PointerFromQVector3D(v1), PointerFromQVector3D(v2)))
+	runtime.SetFinalizer(tmpValue, (*QVector3D).DestroyQVector3D)
+	return tmpValue
+}
+
 func (ptr *QVector3D) DistanceToLine(point QVector3D_ITF, direction QVector3D_ITF) float32 {
 	if ptr.Pointer() != nil {
 		return float32(C.QVector3D_DistanceToLine(ptr.Pointer(), PointerFromQVector3D(point), PointerFromQVector3D(direction)))
@@ -55725,10 +56289,52 @@ func (ptr *QVector3D) LengthSquared() float32 {
 	return 0
 }
 
+func QVector3D_Normal(v1 QVector3D_ITF, v2 QVector3D_ITF) *QVector3D {
+	var tmpValue = NewQVector3DFromPointer(C.QVector3D_QVector3D_Normal(PointerFromQVector3D(v1), PointerFromQVector3D(v2)))
+	runtime.SetFinalizer(tmpValue, (*QVector3D).DestroyQVector3D)
+	return tmpValue
+}
+
+func (ptr *QVector3D) Normal(v1 QVector3D_ITF, v2 QVector3D_ITF) *QVector3D {
+	var tmpValue = NewQVector3DFromPointer(C.QVector3D_QVector3D_Normal(PointerFromQVector3D(v1), PointerFromQVector3D(v2)))
+	runtime.SetFinalizer(tmpValue, (*QVector3D).DestroyQVector3D)
+	return tmpValue
+}
+
+func QVector3D_Normal2(v1 QVector3D_ITF, v2 QVector3D_ITF, v3 QVector3D_ITF) *QVector3D {
+	var tmpValue = NewQVector3DFromPointer(C.QVector3D_QVector3D_Normal2(PointerFromQVector3D(v1), PointerFromQVector3D(v2), PointerFromQVector3D(v3)))
+	runtime.SetFinalizer(tmpValue, (*QVector3D).DestroyQVector3D)
+	return tmpValue
+}
+
+func (ptr *QVector3D) Normal2(v1 QVector3D_ITF, v2 QVector3D_ITF, v3 QVector3D_ITF) *QVector3D {
+	var tmpValue = NewQVector3DFromPointer(C.QVector3D_QVector3D_Normal2(PointerFromQVector3D(v1), PointerFromQVector3D(v2), PointerFromQVector3D(v3)))
+	runtime.SetFinalizer(tmpValue, (*QVector3D).DestroyQVector3D)
+	return tmpValue
+}
+
 func (ptr *QVector3D) Normalize() {
 	if ptr.Pointer() != nil {
 		C.QVector3D_Normalize(ptr.Pointer())
 	}
+}
+
+func (ptr *QVector3D) Normalized() *QVector3D {
+	if ptr.Pointer() != nil {
+		var tmpValue = NewQVector3DFromPointer(C.QVector3D_Normalized(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*QVector3D).DestroyQVector3D)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QVector3D) Project(modelView QMatrix4x4_ITF, projection QMatrix4x4_ITF, viewport core.QRect_ITF) *QVector3D {
+	if ptr.Pointer() != nil {
+		var tmpValue = NewQVector3DFromPointer(C.QVector3D_Project(ptr.Pointer(), PointerFromQMatrix4x4(modelView), PointerFromQMatrix4x4(projection), core.PointerFromQRect(viewport)))
+		runtime.SetFinalizer(tmpValue, (*QVector3D).DestroyQVector3D)
+		return tmpValue
+	}
+	return nil
 }
 
 func (ptr *QVector3D) SetX(x float32) {
@@ -55762,6 +56368,33 @@ func (ptr *QVector3D) ToPointF() *core.QPointF {
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQPointFFromPointer(C.QVector3D_ToPointF(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*core.QPointF).DestroyQPointF)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QVector3D) ToVector2D() *QVector2D {
+	if ptr.Pointer() != nil {
+		var tmpValue = NewQVector2DFromPointer(C.QVector3D_ToVector2D(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*QVector2D).DestroyQVector2D)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QVector3D) ToVector4D() *QVector4D {
+	if ptr.Pointer() != nil {
+		var tmpValue = NewQVector4DFromPointer(C.QVector3D_ToVector4D(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*QVector4D).DestroyQVector4D)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QVector3D) Unproject(modelView QMatrix4x4_ITF, projection QMatrix4x4_ITF, viewport core.QRect_ITF) *QVector3D {
+	if ptr.Pointer() != nil {
+		var tmpValue = NewQVector3DFromPointer(C.QVector3D_Unproject(ptr.Pointer(), PointerFromQMatrix4x4(modelView), PointerFromQMatrix4x4(projection), core.PointerFromQRect(viewport)))
+		runtime.SetFinalizer(tmpValue, (*QVector3D).DestroyQVector3D)
 		return tmpValue
 	}
 	return nil
@@ -55914,6 +56547,15 @@ func (ptr *QVector4D) Normalize() {
 	}
 }
 
+func (ptr *QVector4D) Normalized() *QVector4D {
+	if ptr.Pointer() != nil {
+		var tmpValue = NewQVector4DFromPointer(C.QVector4D_Normalized(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*QVector4D).DestroyQVector4D)
+		return tmpValue
+	}
+	return nil
+}
+
 func (ptr *QVector4D) SetW(w float32) {
 	if ptr.Pointer() != nil {
 		C.QVector4D_SetW(ptr.Pointer(), C.float(w))
@@ -55951,6 +56593,42 @@ func (ptr *QVector4D) ToPointF() *core.QPointF {
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQPointFFromPointer(C.QVector4D_ToPointF(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*core.QPointF).DestroyQPointF)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QVector4D) ToVector2D() *QVector2D {
+	if ptr.Pointer() != nil {
+		var tmpValue = NewQVector2DFromPointer(C.QVector4D_ToVector2D(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*QVector2D).DestroyQVector2D)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QVector4D) ToVector2DAffine() *QVector2D {
+	if ptr.Pointer() != nil {
+		var tmpValue = NewQVector2DFromPointer(C.QVector4D_ToVector2DAffine(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*QVector2D).DestroyQVector2D)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QVector4D) ToVector3D() *QVector3D {
+	if ptr.Pointer() != nil {
+		var tmpValue = NewQVector3DFromPointer(C.QVector4D_ToVector3D(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*QVector3D).DestroyQVector3D)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QVector4D) ToVector3DAffine() *QVector3D {
+	if ptr.Pointer() != nil {
+		var tmpValue = NewQVector3DFromPointer(C.QVector4D_ToVector3DAffine(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*QVector3D).DestroyQVector3D)
 		return tmpValue
 	}
 	return nil

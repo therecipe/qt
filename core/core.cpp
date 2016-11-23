@@ -4788,6 +4788,11 @@ long long QChar_Direction(void* ptr)
 	return static_cast<QChar*>(ptr)->direction();
 }
 
+void* QChar_QChar_FromLatin1(char* c)
+{
+	return new QChar(QChar::fromLatin1(*c));
+}
+
 char QChar_QChar_HasMirrored2(unsigned int ucs4)
 {
 	return QChar::hasMirrored(ucs4);
@@ -4988,6 +4993,11 @@ unsigned int QChar_QChar_MirroredChar2(unsigned int ucs4)
 	return QChar::mirroredChar(ucs4);
 }
 
+void* QChar_MirroredChar(void* ptr)
+{
+	return new QChar(static_cast<QChar*>(ptr)->mirroredChar());
+}
+
 char QChar_QChar_RequiresSurrogates(unsigned int ucs4)
 {
 	return QChar::requiresSurrogates(ucs4);
@@ -5023,6 +5033,11 @@ unsigned int QChar_QChar_ToCaseFolded2(unsigned int ucs4)
 	return QChar::toCaseFolded(ucs4);
 }
 
+void* QChar_ToCaseFolded(void* ptr)
+{
+	return new QChar(static_cast<QChar*>(ptr)->toCaseFolded());
+}
+
 struct QtCore_PackedString QChar_ToLatin1(void* ptr)
 {
 	return ({ char t24c86e = static_cast<QChar*>(ptr)->toLatin1(); QtCore_PackedString { &t24c86e, -1 }; });
@@ -5033,14 +5048,29 @@ unsigned int QChar_QChar_ToLower2(unsigned int ucs4)
 	return QChar::toLower(ucs4);
 }
 
+void* QChar_ToLower(void* ptr)
+{
+	return new QChar(static_cast<QChar*>(ptr)->toLower());
+}
+
 unsigned int QChar_QChar_ToTitleCase2(unsigned int ucs4)
 {
 	return QChar::toTitleCase(ucs4);
 }
 
+void* QChar_ToTitleCase(void* ptr)
+{
+	return new QChar(static_cast<QChar*>(ptr)->toTitleCase());
+}
+
 unsigned int QChar_QChar_ToUpper2(unsigned int ucs4)
 {
 	return QChar::toUpper(ucs4);
+}
+
+void* QChar_ToUpper(void* ptr)
+{
+	return new QChar(static_cast<QChar*>(ptr)->toUpper());
 }
 
 unsigned short QChar_Unicode2(void* ptr)
@@ -5932,6 +5962,21 @@ void QDataStream_DestroyQDataStream(void* ptr)
 	static_cast<QDataStream*>(ptr)->~QDataStream();
 }
 
+void* QDate_QDate_CurrentDate()
+{
+	return new QDate(QDate::currentDate());
+}
+
+void* QDate_QDate_FromString(char* stri, long long format)
+{
+	return new QDate(QDate::fromString(QString(stri), static_cast<Qt::DateFormat>(format)));
+}
+
+void* QDate_QDate_FromString2(char* stri, char* format)
+{
+	return new QDate(QDate::fromString(QString(stri), QString(format)));
+}
+
 char QDate_QDate_IsLeapYear(int year)
 {
 	return QDate::isLeapYear(year);
@@ -5950,6 +5995,21 @@ void* QDate_NewQDate()
 void* QDate_NewQDate3(int y, int m, int d)
 {
 	return new QDate(y, m, d);
+}
+
+void* QDate_AddDays(void* ptr, long long ndays)
+{
+	return new QDate(static_cast<QDate*>(ptr)->addDays(ndays));
+}
+
+void* QDate_AddMonths(void* ptr, int nmonths)
+{
+	return new QDate(static_cast<QDate*>(ptr)->addMonths(nmonths));
+}
+
+void* QDate_AddYears(void* ptr, int nyears)
+{
+	return new QDate(static_cast<QDate*>(ptr)->addYears(nyears));
 }
 
 int QDate_Day(void* ptr)
@@ -5980,6 +6040,11 @@ int QDate_DaysInYear(void* ptr)
 long long QDate_DaysTo(void* ptr, void* d)
 {
 	return static_cast<QDate*>(ptr)->daysTo(*static_cast<QDate*>(d));
+}
+
+void* QDate_QDate_FromJulianDay(long long jd)
+{
+	return new QDate(QDate::fromJulianDay(jd));
 }
 
 void QDate_GetDate(void* ptr, int year, int month, int day)
@@ -6152,6 +6217,11 @@ void* QDateTime_AddYears(void* ptr, int nyears)
 	return new QDateTime(static_cast<QDateTime*>(ptr)->addYears(nyears));
 }
 
+void* QDateTime_Date(void* ptr)
+{
+	return new QDate(static_cast<QDateTime*>(ptr)->date());
+}
+
 long long QDateTime_DaysTo(void* ptr, void* other)
 {
 	return static_cast<QDateTime*>(ptr)->daysTo(*static_cast<QDateTime*>(other));
@@ -6250,6 +6320,11 @@ void QDateTime_SetTimeZone(void* ptr, void* toZone)
 void QDateTime_Swap(void* ptr, void* other)
 {
 	static_cast<QDateTime*>(ptr)->swap(*static_cast<QDateTime*>(other));
+}
+
+void* QDateTime_Time(void* ptr)
+{
+	return new QTime(static_cast<QDateTime*>(ptr)->time());
 }
 
 long long QDateTime_TimeSpec(void* ptr)
@@ -6552,6 +6627,11 @@ char QDir_IsRoot(void* ptr)
 	return static_cast<QDir*>(ptr)->isRoot();
 }
 
+void* QDir_QDir_ListSeparator()
+{
+	return new QChar(QDir::listSeparator());
+}
+
 char QDir_MakeAbsolute(void* ptr)
 {
 	return static_cast<QDir*>(ptr)->makeAbsolute();
@@ -6635,6 +6715,11 @@ struct QtCore_PackedString QDir_QDir_RootPath()
 struct QtCore_PackedString QDir_QDir_SearchPaths(char* prefix)
 {
 	return ({ QByteArray tb60468 = QDir::searchPaths(QString(prefix)).join("|").toUtf8(); QtCore_PackedString { const_cast<char*>(tb60468.prepend("WHITESPACE").constData()+10), tb60468.size()-10 }; });
+}
+
+void* QDir_QDir_Separator()
+{
+	return new QChar(QDir::separator());
 }
 
 char QDir_QDir_SetCurrent(char* path)
@@ -11629,9 +11714,24 @@ struct QtCore_PackedString QLocale_DayName(void* ptr, int day, long long ty)
 	return ({ QByteArray t4220d0 = static_cast<QLocale*>(ptr)->dayName(day, static_cast<QLocale::FormatType>(ty)).toUtf8(); QtCore_PackedString { const_cast<char*>(t4220d0.prepend("WHITESPACE").constData()+10), t4220d0.size()-10 }; });
 }
 
+void* QLocale_DecimalPoint(void* ptr)
+{
+	return new QChar(static_cast<QLocale*>(ptr)->decimalPoint());
+}
+
+void* QLocale_Exponential(void* ptr)
+{
+	return new QChar(static_cast<QLocale*>(ptr)->exponential());
+}
+
 long long QLocale_FirstDayOfWeek(void* ptr)
 {
 	return static_cast<QLocale*>(ptr)->firstDayOfWeek();
+}
+
+void* QLocale_GroupSeparator(void* ptr)
+{
+	return new QChar(static_cast<QLocale*>(ptr)->groupSeparator());
 }
 
 long long QLocale_Language(void* ptr)
@@ -11674,14 +11774,29 @@ struct QtCore_PackedString QLocale_NativeLanguageName(void* ptr)
 	return ({ QByteArray t34cbe6 = static_cast<QLocale*>(ptr)->nativeLanguageName().toUtf8(); QtCore_PackedString { const_cast<char*>(t34cbe6.prepend("WHITESPACE").constData()+10), t34cbe6.size()-10 }; });
 }
 
+void* QLocale_NegativeSign(void* ptr)
+{
+	return new QChar(static_cast<QLocale*>(ptr)->negativeSign());
+}
+
 long long QLocale_NumberOptions(void* ptr)
 {
 	return static_cast<QLocale*>(ptr)->numberOptions();
 }
 
+void* QLocale_Percent(void* ptr)
+{
+	return new QChar(static_cast<QLocale*>(ptr)->percent());
+}
+
 struct QtCore_PackedString QLocale_PmText(void* ptr)
 {
 	return ({ QByteArray t37d9b2 = static_cast<QLocale*>(ptr)->pmText().toUtf8(); QtCore_PackedString { const_cast<char*>(t37d9b2.prepend("WHITESPACE").constData()+10), t37d9b2.size()-10 }; });
+}
+
+void* QLocale_PositiveSign(void* ptr)
+{
+	return new QChar(static_cast<QLocale*>(ptr)->positiveSign());
 }
 
 struct QtCore_PackedString QLocale_QuoteString(void* ptr, char* str, long long style)
@@ -11792,6 +11907,16 @@ struct QtCore_PackedString QLocale_ToCurrencyString6(void* ptr, unsigned int val
 struct QtCore_PackedString QLocale_ToCurrencyString4(void* ptr, unsigned short value, char* symbol)
 {
 	return ({ QByteArray t41cf3c = static_cast<QLocale*>(ptr)->toCurrencyString(value, QString(symbol)).toUtf8(); QtCore_PackedString { const_cast<char*>(t41cf3c.prepend("WHITESPACE").constData()+10), t41cf3c.size()-10 }; });
+}
+
+void* QLocale_ToDate(void* ptr, char* stri, long long format)
+{
+	return new QDate(static_cast<QLocale*>(ptr)->toDate(QString(stri), static_cast<QLocale::FormatType>(format)));
+}
+
+void* QLocale_ToDate2(void* ptr, char* stri, char* format)
+{
+	return new QDate(static_cast<QLocale*>(ptr)->toDate(QString(stri), QString(format)));
 }
 
 void* QLocale_ToDateTime(void* ptr, char* stri, long long format)
@@ -11929,6 +12054,16 @@ struct QtCore_PackedString QLocale_ToString4(void* ptr, unsigned short i)
 	return ({ QByteArray teea9c2 = static_cast<QLocale*>(ptr)->toString(i).toUtf8(); QtCore_PackedString { const_cast<char*>(teea9c2.prepend("WHITESPACE").constData()+10), teea9c2.size()-10 }; });
 }
 
+void* QLocale_ToTime(void* ptr, char* stri, long long format)
+{
+	return new QTime(static_cast<QLocale*>(ptr)->toTime(QString(stri), static_cast<QLocale::FormatType>(format)));
+}
+
+void* QLocale_ToTime2(void* ptr, char* stri, char* format)
+{
+	return new QTime(static_cast<QLocale*>(ptr)->toTime(QString(stri), QString(format)));
+}
+
 unsigned int QLocale_ToUInt(void* ptr, char* s, char ok)
 {
 	return static_cast<QLocale*>(ptr)->toUInt(QString(s), NULL);
@@ -11967,6 +12102,11 @@ struct QtCore_PackedString QLocale_ToUpper(void* ptr, char* str)
 struct QtCore_PackedString QLocale_UiLanguages(void* ptr)
 {
 	return ({ QByteArray tf4f58b = static_cast<QLocale*>(ptr)->uiLanguages().join("|").toUtf8(); QtCore_PackedString { const_cast<char*>(tf4f58b.prepend("WHITESPACE").constData()+10), tf4f58b.size()-10 }; });
+}
+
+void* QLocale_ZeroDigit(void* ptr)
+{
+	return new QChar(static_cast<QLocale*>(ptr)->zeroDigit());
 }
 
 void QLocale_DestroyQLocale(void* ptr)
@@ -20046,6 +20186,11 @@ void* QStringRef_AppendTo(void* ptr, char* stri)
 	return new QStringRef(static_cast<QStringRef*>(ptr)->appendTo(new QString(stri)));
 }
 
+void* QStringRef_At(void* ptr, int position)
+{
+	return new QChar(static_cast<QStringRef*>(ptr)->at(position));
+}
+
 void QStringRef_Clear(void* ptr)
 {
 	static_cast<QStringRef*>(ptr)->clear();
@@ -21475,6 +21620,11 @@ long long QTextStream_NumberFlags(void* ptr)
 	return static_cast<QTextStream*>(ptr)->numberFlags();
 }
 
+void* QTextStream_PadChar(void* ptr)
+{
+	return new QChar(static_cast<QTextStream*>(ptr)->padChar());
+}
+
 long long QTextStream_Pos(void* ptr)
 {
 	return static_cast<QTextStream*>(ptr)->pos();
@@ -22061,6 +22211,21 @@ void* QThreadPool_MetaObjectDefault(void* ptr)
 	return const_cast<QMetaObject*>(static_cast<QThreadPool*>(ptr)->QThreadPool::metaObject());
 }
 
+void* QTime_QTime_CurrentTime()
+{
+	return new QTime(QTime::currentTime());
+}
+
+void* QTime_QTime_FromString(char* stri, long long format)
+{
+	return new QTime(QTime::fromString(QString(stri), static_cast<Qt::DateFormat>(format)));
+}
+
+void* QTime_QTime_FromString2(char* stri, char* format)
+{
+	return new QTime(QTime::fromString(QString(stri), QString(format)));
+}
+
 void* QTime_NewQTime()
 {
 	return new QTime();
@@ -22071,9 +22236,24 @@ void* QTime_NewQTime3(int h, int m, int s, int ms)
 	return new QTime(h, m, s, ms);
 }
 
+void* QTime_AddMSecs(void* ptr, int ms)
+{
+	return new QTime(static_cast<QTime*>(ptr)->addMSecs(ms));
+}
+
+void* QTime_AddSecs(void* ptr, int s)
+{
+	return new QTime(static_cast<QTime*>(ptr)->addSecs(s));
+}
+
 int QTime_Elapsed(void* ptr)
 {
 	return static_cast<QTime*>(ptr)->elapsed();
+}
+
+void* QTime_QTime_FromMSecsSinceStartOfDay(int msecs)
+{
+	return new QTime(QTime::fromMSecsSinceStartOfDay(msecs));
 }
 
 int QTime_Hour(void* ptr)
@@ -23344,6 +23524,16 @@ void QUrlQuery_Clear(void* ptr)
 	static_cast<QUrlQuery*>(ptr)->clear();
 }
 
+void* QUrlQuery_QUrlQuery_DefaultQueryPairDelimiter()
+{
+	return new QChar(QUrlQuery::defaultQueryPairDelimiter());
+}
+
+void* QUrlQuery_QUrlQuery_DefaultQueryValueDelimiter()
+{
+	return new QChar(QUrlQuery::defaultQueryValueDelimiter());
+}
+
 char QUrlQuery_HasQueryItem(void* ptr, char* key)
 {
 	return static_cast<QUrlQuery*>(ptr)->hasQueryItem(QString(key));
@@ -23362,6 +23552,16 @@ struct QtCore_PackedString QUrlQuery_Query(void* ptr, long long encoding)
 struct QtCore_PackedString QUrlQuery_QueryItemValue(void* ptr, char* key, long long encoding)
 {
 	return ({ QByteArray tee0580 = static_cast<QUrlQuery*>(ptr)->queryItemValue(QString(key), static_cast<QUrl::ComponentFormattingOption>(encoding)).toUtf8(); QtCore_PackedString { const_cast<char*>(tee0580.prepend("WHITESPACE").constData()+10), tee0580.size()-10 }; });
+}
+
+void* QUrlQuery_QueryPairDelimiter(void* ptr)
+{
+	return new QChar(static_cast<QUrlQuery*>(ptr)->queryPairDelimiter());
+}
+
+void* QUrlQuery_QueryValueDelimiter(void* ptr)
+{
+	return new QChar(static_cast<QUrlQuery*>(ptr)->queryValueDelimiter());
 }
 
 void QUrlQuery_RemoveAllQueryItems(void* ptr, char* key)
@@ -23399,6 +23599,21 @@ void QUrlQuery_DestroyQUrlQuery(void* ptr)
 	static_cast<QUrlQuery*>(ptr)->~QUrlQuery();
 }
 
+void* QUuid_QUuid_CreateUuid()
+{
+	return new QUuid(QUuid::createUuid());
+}
+
+void* QUuid_QUuid_CreateUuidV3(void* ns, void* baseData)
+{
+	return new QUuid(QUuid::createUuidV3(*static_cast<QUuid*>(ns), *static_cast<QByteArray*>(baseData)));
+}
+
+void* QUuid_QUuid_CreateUuidV5(void* ns, void* baseData)
+{
+	return new QUuid(QUuid::createUuidV5(*static_cast<QUuid*>(ns), *static_cast<QByteArray*>(baseData)));
+}
+
 long long QUuid_Variant(void* ptr)
 {
 	return static_cast<QUuid*>(ptr)->variant();
@@ -23427,6 +23642,21 @@ void* QUuid_NewQUuid3(char* text)
 void* QUuid_NewQUuid2(unsigned int l, unsigned short w1, unsigned short w2, char* b1, char* b2, char* b3, char* b4, char* b5, char* b6, char* b7, char* b8)
 {
 	return new QUuid(l, w1, w2, *static_cast<uchar*>(static_cast<void*>(b1)), *static_cast<uchar*>(static_cast<void*>(b2)), *static_cast<uchar*>(static_cast<void*>(b3)), *static_cast<uchar*>(static_cast<void*>(b4)), *static_cast<uchar*>(static_cast<void*>(b5)), *static_cast<uchar*>(static_cast<void*>(b6)), *static_cast<uchar*>(static_cast<void*>(b7)), *static_cast<uchar*>(static_cast<void*>(b8)));
+}
+
+void* QUuid_QUuid_CreateUuidV32(void* ns, char* baseData)
+{
+	return new QUuid(QUuid::createUuidV3(*static_cast<QUuid*>(ns), QString(baseData)));
+}
+
+void* QUuid_QUuid_CreateUuidV52(void* ns, char* baseData)
+{
+	return new QUuid(QUuid::createUuidV5(*static_cast<QUuid*>(ns), QString(baseData)));
+}
+
+void* QUuid_QUuid_FromRfc4122(void* bytes)
+{
+	return new QUuid(QUuid::fromRfc4122(*static_cast<QByteArray*>(bytes)));
 }
 
 char QUuid_IsNull(void* ptr)
@@ -23679,6 +23909,16 @@ void* QVariant_ToByteArray(void* ptr)
 	return new QByteArray(static_cast<QVariant*>(ptr)->toByteArray());
 }
 
+void* QVariant_ToChar(void* ptr)
+{
+	return new QChar(static_cast<QVariant*>(ptr)->toChar());
+}
+
+void* QVariant_ToDate(void* ptr)
+{
+	return new QDate(static_cast<QVariant*>(ptr)->toDate());
+}
+
 void* QVariant_ToDateTime(void* ptr)
 {
 	return new QDateTime(static_cast<QVariant*>(ptr)->toDateTime());
@@ -23747,6 +23987,11 @@ void* QVariant_ToSizeF(void* ptr)
 struct QtCore_PackedString QVariant_ToStringList(void* ptr)
 {
 	return ({ QByteArray tf99cb6 = static_cast<QVariant*>(ptr)->toStringList().join("|").toUtf8(); QtCore_PackedString { const_cast<char*>(tf99cb6.prepend("WHITESPACE").constData()+10), tf99cb6.size()-10 }; });
+}
+
+void* QVariant_ToTime(void* ptr)
+{
+	return new QTime(static_cast<QVariant*>(ptr)->toTime());
 }
 
 void* QVariant_ToUrl(void* ptr)
@@ -23882,6 +24127,11 @@ unsigned int QVariant_ToUInt(void* ptr, char ok)
 unsigned long long QVariant_ToULongLong(void* ptr, char ok)
 {
 	return static_cast<QVariant*>(ptr)->toULongLong(NULL);
+}
+
+void* QVariant_ToUuid(void* ptr)
+{
+	return new QUuid(static_cast<QVariant*>(ptr)->toUuid());
 }
 
 struct QtCore_PackedString QVariant_TypeName(void* ptr)
@@ -24237,9 +24487,19 @@ int QVersionNumber_QVersionNumber_Compare(void* v1, void* v2)
 	return QVersionNumber::compare(*static_cast<QVersionNumber*>(v1), *static_cast<QVersionNumber*>(v2));
 }
 
+void* QVersionNumber_QVersionNumber_FromString(char* stri, int suffixIndex)
+{
+	return new QVersionNumber(QVersionNumber::fromString(QString(stri), &suffixIndex));
+}
+
 char QVersionNumber_IsPrefixOf(void* ptr, void* other)
 {
 	return static_cast<QVersionNumber*>(ptr)->isPrefixOf(*static_cast<QVersionNumber*>(other));
+}
+
+void* QVersionNumber_Normalized(void* ptr)
+{
+	return new QVersionNumber(static_cast<QVersionNumber*>(ptr)->normalized());
 }
 
 struct QtCore_PackedString QVersionNumber_ToString(void* ptr)
@@ -24265,6 +24525,11 @@ void* QVersionNumber_NewQVersionNumber6(int maj, int min)
 void* QVersionNumber_NewQVersionNumber7(int maj, int min, int mic)
 {
 	return new QVersionNumber(maj, min, mic);
+}
+
+void* QVersionNumber_QVersionNumber_CommonPrefix(void* v1, void* v2)
+{
+	return new QVersionNumber(QVersionNumber::commonPrefix(*static_cast<QVersionNumber*>(v1), *static_cast<QVersionNumber*>(v2)));
 }
 
 char QVersionNumber_IsNormalized(void* ptr)
@@ -24672,6 +24937,11 @@ void QXmlStreamReader_AddExtraNamespaceDeclaration(void* ptr, void* extraNamespa
 char QXmlStreamReader_AtEnd(void* ptr)
 {
 	return static_cast<QXmlStreamReader*>(ptr)->atEnd();
+}
+
+void* QXmlStreamReader_Attributes(void* ptr)
+{
+	return new QXmlStreamAttributes(static_cast<QXmlStreamReader*>(ptr)->attributes());
 }
 
 long long QXmlStreamReader_CharacterOffset(void* ptr)

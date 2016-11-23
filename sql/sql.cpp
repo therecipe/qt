@@ -2149,6 +2149,11 @@ struct QtSql_PackedString QSqlRelationalTableModel_OrderByClauseDefault(void* pt
 	return ({ QByteArray tbe9e07 = static_cast<QSqlRelationalTableModel*>(ptr)->QSqlRelationalTableModel::orderByClause().toUtf8(); QtSql_PackedString { const_cast<char*>(tbe9e07.prepend("WHITESPACE").constData()+10), tbe9e07.size()-10 }; });
 }
 
+void* QSqlRelationalTableModel_Relation(void* ptr, int column)
+{
+	return new QSqlRelation(static_cast<QSqlRelationalTableModel*>(ptr)->relation(column));
+}
+
 void* QSqlRelationalTableModel_RelationModel(void* ptr, int column)
 {
 	return static_cast<QSqlRelationalTableModel*>(ptr)->relationModel(column);

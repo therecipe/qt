@@ -4011,6 +4011,11 @@ void QHelpSearchEngine_DestroyQHelpSearchEngine(void* ptr)
 	static_cast<QHelpSearchEngine*>(ptr)->~QHelpSearchEngine();
 }
 
+void* QHelpSearchEngine_query_atList(void* ptr, int i)
+{
+	return new QHelpSearchQuery(static_cast<QList<QHelpSearchQuery>*>(ptr)->at(i));
+}
+
 void QHelpSearchEngine_TimerEvent(void* ptr, void* event)
 {
 	static_cast<QHelpSearchEngine*>(ptr)->timerEvent(static_cast<QTimerEvent*>(event));
@@ -4237,6 +4242,11 @@ void QHelpSearchQueryWidget_Search(void* ptr)
 void QHelpSearchQueryWidget_DestroyQHelpSearchQueryWidget(void* ptr)
 {
 	static_cast<QHelpSearchQueryWidget*>(ptr)->~QHelpSearchQueryWidget();
+}
+
+void* QHelpSearchQueryWidget_query_atList(void* ptr, int i)
+{
+	return new QHelpSearchQuery(static_cast<QList<QHelpSearchQuery>*>(ptr)->at(i));
 }
 
 void QHelpSearchQueryWidget_ActionEvent(void* ptr, void* event)

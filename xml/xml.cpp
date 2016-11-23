@@ -1883,9 +1883,15 @@ struct QtXml_PackedString QXmlInputSource_FromRawDataDefault(void* ptr, void* da
 	return ({ QByteArray tded04d = static_cast<QXmlInputSource*>(ptr)->QXmlInputSource::fromRawData(*static_cast<QByteArray*>(data), beginning != 0).toUtf8(); QtXml_PackedString { const_cast<char*>(tded04d.prepend("WHITESPACE").constData()+10), tded04d.size()-10 }; });
 }
 
+void* QXmlInputSource_Next(void* ptr)
+{
+	return new QChar(static_cast<QXmlInputSource*>(ptr)->next());
+}
 
-
-
+void* QXmlInputSource_NextDefault(void* ptr)
+{
+	return new QChar(static_cast<QXmlInputSource*>(ptr)->QXmlInputSource::next());
+}
 
 void QXmlInputSource_Reset(void* ptr)
 {

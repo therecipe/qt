@@ -48,6 +48,9 @@ func CppInputParametersForSlotArguments(function *parser.Function, parameter *pa
 
 	case isEnum(function.Class(), parameter.Value):
 		{
+			if function.Meta == parser.SLOT && function.SignalMode == "" && CleanValue(parameter.Value) == "Qt::Alignment" {
+				return CleanValue(parameter.Value)
+			}
 			return cppEnum(function, parameter.Value, false)
 		}
 

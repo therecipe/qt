@@ -9,6 +9,7 @@
 #include <QByteArray>
 #include <QChildEvent>
 #include <QEvent>
+#include <QList>
 #include <QMetaMethod>
 #include <QMetaObject>
 #include <QNdefFilter>
@@ -219,6 +220,11 @@ int QNdefNfcSmartPosterRecord_TitleCount(void* ptr)
 	return static_cast<QNdefNfcSmartPosterRecord*>(ptr)->titleCount();
 }
 
+void* QNdefNfcSmartPosterRecord_TitleRecord(void* ptr, int index)
+{
+	return new QNdefNfcTextRecord(static_cast<QNdefNfcSmartPosterRecord*>(ptr)->titleRecord(index));
+}
+
 void* QNdefNfcSmartPosterRecord_TypeInfo(void* ptr)
 {
 	return new QByteArray(static_cast<QNdefNfcSmartPosterRecord*>(ptr)->typeInfo());
@@ -229,9 +235,19 @@ void* QNdefNfcSmartPosterRecord_Uri(void* ptr)
 	return new QUrl(static_cast<QNdefNfcSmartPosterRecord*>(ptr)->uri());
 }
 
+void* QNdefNfcSmartPosterRecord_UriRecord(void* ptr)
+{
+	return new QNdefNfcUriRecord(static_cast<QNdefNfcSmartPosterRecord*>(ptr)->uriRecord());
+}
+
 void QNdefNfcSmartPosterRecord_DestroyQNdefNfcSmartPosterRecord(void* ptr)
 {
 	static_cast<QNdefNfcSmartPosterRecord*>(ptr)->~QNdefNfcSmartPosterRecord();
+}
+
+void* QNdefNfcSmartPosterRecord_titleRecords_atList(void* ptr, int i)
+{
+	return new QNdefNfcTextRecord(static_cast<QList<QNdefNfcTextRecord>*>(ptr)->at(i));
 }
 
 void* QNdefNfcTextRecord_NewQNdefNfcTextRecord()

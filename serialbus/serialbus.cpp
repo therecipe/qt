@@ -1030,6 +1030,11 @@ char QModbusDeviceIdentification_Contains(void* ptr, unsigned int objectId)
 	return static_cast<QModbusDeviceIdentification*>(ptr)->contains(objectId);
 }
 
+void* QModbusDeviceIdentification_QModbusDeviceIdentification_FromByteArray(void* ba)
+{
+	return new QModbusDeviceIdentification(QModbusDeviceIdentification::fromByteArray(*static_cast<QByteArray*>(ba)));
+}
+
 char QModbusDeviceIdentification_Insert(void* ptr, unsigned int objectId, void* value)
 {
 	return static_cast<QModbusDeviceIdentification*>(ptr)->insert(objectId, *static_cast<QByteArray*>(value));
@@ -1244,6 +1249,16 @@ void QModbusReply_Finished(void* ptr)
 char QModbusReply_IsFinished(void* ptr)
 {
 	return static_cast<QModbusReply*>(ptr)->isFinished();
+}
+
+void* QModbusReply_RawResult(void* ptr)
+{
+	return new QModbusResponse(static_cast<QModbusReply*>(ptr)->rawResult());
+}
+
+void* QModbusReply_Result(void* ptr)
+{
+	return new QModbusDataUnit(static_cast<QModbusReply*>(ptr)->result());
 }
 
 int QModbusReply_ServerAddress(void* ptr)
@@ -1571,13 +1586,25 @@ void QModbusRtuSerialSlave_DestroyQModbusRtuSerialSlave(void* ptr)
 	static_cast<QModbusRtuSerialSlave*>(ptr)->~QModbusRtuSerialSlave();
 }
 
+void* QModbusRtuSerialSlave_ProcessPrivateRequest(void* ptr, void* request)
+{
+	return new QModbusResponse(static_cast<QModbusRtuSerialSlave*>(ptr)->processPrivateRequest(*static_cast<QModbusPdu*>(request)));
+}
 
+void* QModbusRtuSerialSlave_ProcessPrivateRequestDefault(void* ptr, void* request)
+{
+	return new QModbusResponse(static_cast<QModbusRtuSerialSlave*>(ptr)->QModbusRtuSerialSlave::processPrivateRequest(*static_cast<QModbusPdu*>(request)));
+}
 
+void* QModbusRtuSerialSlave_ProcessRequest(void* ptr, void* request)
+{
+	return new QModbusResponse(static_cast<QModbusRtuSerialSlave*>(ptr)->processRequest(*static_cast<QModbusPdu*>(request)));
+}
 
-
-
-
-
+void* QModbusRtuSerialSlave_ProcessRequestDefault(void* ptr, void* request)
+{
+	return new QModbusResponse(static_cast<QModbusRtuSerialSlave*>(ptr)->QModbusRtuSerialSlave::processRequest(*static_cast<QModbusPdu*>(request)));
+}
 
 char QModbusRtuSerialSlave_ProcessesBroadcast(void* ptr)
 {
@@ -1783,13 +1810,25 @@ void QModbusServer_DataWritten(void* ptr, long long regist, int address, int siz
 	static_cast<QModbusServer*>(ptr)->dataWritten(static_cast<QModbusDataUnit::RegisterType>(regist), address, size);
 }
 
+void* QModbusServer_ProcessPrivateRequest(void* ptr, void* request)
+{
+	return new QModbusResponse(static_cast<QModbusServer*>(ptr)->processPrivateRequest(*static_cast<QModbusPdu*>(request)));
+}
 
+void* QModbusServer_ProcessPrivateRequestDefault(void* ptr, void* request)
+{
+	return new QModbusResponse(static_cast<QModbusServer*>(ptr)->QModbusServer::processPrivateRequest(*static_cast<QModbusPdu*>(request)));
+}
 
+void* QModbusServer_ProcessRequest(void* ptr, void* request)
+{
+	return new QModbusResponse(static_cast<QModbusServer*>(ptr)->processRequest(*static_cast<QModbusPdu*>(request)));
+}
 
-
-
-
-
+void* QModbusServer_ProcessRequestDefault(void* ptr, void* request)
+{
+	return new QModbusResponse(static_cast<QModbusServer*>(ptr)->QModbusServer::processRequest(*static_cast<QModbusPdu*>(request)));
+}
 
 char QModbusServer_ProcessesBroadcast(void* ptr)
 {
@@ -2105,13 +2144,25 @@ void QModbusTcpServer_DestroyQModbusTcpServer(void* ptr)
 	static_cast<QModbusTcpServer*>(ptr)->~QModbusTcpServer();
 }
 
+void* QModbusTcpServer_ProcessPrivateRequest(void* ptr, void* request)
+{
+	return new QModbusResponse(static_cast<QModbusTcpServer*>(ptr)->processPrivateRequest(*static_cast<QModbusPdu*>(request)));
+}
 
+void* QModbusTcpServer_ProcessPrivateRequestDefault(void* ptr, void* request)
+{
+	return new QModbusResponse(static_cast<QModbusTcpServer*>(ptr)->QModbusTcpServer::processPrivateRequest(*static_cast<QModbusPdu*>(request)));
+}
 
+void* QModbusTcpServer_ProcessRequest(void* ptr, void* request)
+{
+	return new QModbusResponse(static_cast<QModbusTcpServer*>(ptr)->processRequest(*static_cast<QModbusPdu*>(request)));
+}
 
-
-
-
-
+void* QModbusTcpServer_ProcessRequestDefault(void* ptr, void* request)
+{
+	return new QModbusResponse(static_cast<QModbusTcpServer*>(ptr)->QModbusTcpServer::processRequest(*static_cast<QModbusPdu*>(request)));
+}
 
 char QModbusTcpServer_ProcessesBroadcast(void* ptr)
 {

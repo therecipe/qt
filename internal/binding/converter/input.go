@@ -314,6 +314,9 @@ func cppInput(name, value string, f *parser.Function) string {
 	case isEnum(f.Class(), value):
 		{
 			if !strings.Contains(vOld, "*") {
+				if f.Meta == parser.SLOT && f.SignalMode == "" && value == "Qt::Alignment" {
+					return fmt.Sprintf("static_cast<%v>(static_cast<%v>(%v))", value, cppEnum(f, value, false), name)
+				}
 				return fmt.Sprintf("static_cast<%v>(%v)", cppEnum(f, value, false), name)
 			}
 		}

@@ -15130,6 +15130,15 @@ func (ptr *QSGAbstractRenderer) DeviceRect() *core.QRect {
 	return nil
 }
 
+func (ptr *QSGAbstractRenderer) ProjectionMatrix() *gui.QMatrix4x4 {
+	if ptr.Pointer() != nil {
+		var tmpValue = gui.NewQMatrix4x4FromPointer(C.QSGAbstractRenderer_ProjectionMatrix(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*gui.QMatrix4x4).DestroyQMatrix4x4)
+		return tmpValue
+	}
+	return nil
+}
+
 //export callbackQSGAbstractRenderer_SceneGraphChanged
 func callbackQSGAbstractRenderer_SceneGraphChanged(ptr unsafe.Pointer) {
 

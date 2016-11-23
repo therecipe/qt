@@ -235,6 +235,11 @@ struct QtGui_PackedString QAbstractTextDocumentLayout_AnchorAt(void* ptr, void* 
 	return ({ QByteArray t81dfdf = static_cast<QAbstractTextDocumentLayout*>(ptr)->anchorAt(*static_cast<QPointF*>(position)).toUtf8(); QtGui_PackedString { const_cast<char*>(t81dfdf.prepend("WHITESPACE").constData()+10), t81dfdf.size()-10 }; });
 }
 
+void* QAbstractTextDocumentLayout_Format(void* ptr, int position)
+{
+	return new QTextCharFormat(static_cast<QAbstractTextDocumentLayout*>(ptr)->format(position));
+}
+
 void* QAbstractTextDocumentLayout_BlockBoundingRect(void* ptr, void* block)
 {
 	return ({ QRectF tmpValue = static_cast<QAbstractTextDocumentLayout*>(ptr)->blockBoundingRect(*static_cast<QTextBlock*>(block)); new QRectF(tmpValue.x(), tmpValue.y(), tmpValue.width(), tmpValue.height()); });
@@ -6279,6 +6284,11 @@ void* QImage_PixelColor2(void* ptr, int x, int y)
 	return new QColor(static_cast<QImage*>(ptr)->pixelColor(x, y));
 }
 
+void* QImage_PixelFormat(void* ptr)
+{
+	return new QPixelFormat(static_cast<QImage*>(ptr)->pixelFormat());
+}
+
 int QImage_PixelIndex(void* ptr, void* position)
 {
 	return static_cast<QImage*>(ptr)->pixelIndex(*static_cast<QPoint*>(position));
@@ -6377,6 +6387,11 @@ struct QtGui_PackedString QImage_TextKeys(void* ptr)
 long long QImage_QImage_ToImageFormat(void* format)
 {
 	return QImage::toImageFormat(*static_cast<QPixelFormat*>(format));
+}
+
+void* QImage_QImage_ToPixelFormat(long long format)
+{
+	return new QPixelFormat(QImage::toPixelFormat(static_cast<QImage::Format>(format)));
 }
 
 void* QImage_Transformed2(void* ptr, void* matrix, long long mode)
@@ -8084,6 +8099,11 @@ double QMatrix4x4_Determinant(void* ptr)
 	return static_cast<QMatrix4x4*>(ptr)->determinant();
 }
 
+void* QMatrix4x4_Column(void* ptr, int index)
+{
+	return new QVector4D(static_cast<QMatrix4x4*>(ptr)->column(index));
+}
+
 float QMatrix4x4_ConstData(void* ptr)
 {
 	return *static_cast<QMatrix4x4*>(ptr)->constData();
@@ -8114,6 +8134,11 @@ void QMatrix4x4_Frustum(void* ptr, float left, float right, float bottom, float 
 	static_cast<QMatrix4x4*>(ptr)->frustum(left, right, bottom, top, nearPlane, farPlane);
 }
 
+void* QMatrix4x4_Inverted(void* ptr, char invertible)
+{
+	return new QMatrix4x4(static_cast<QMatrix4x4*>(ptr)->inverted(NULL));
+}
+
 char QMatrix4x4_IsAffine(void* ptr)
 {
 	return static_cast<QMatrix4x4*>(ptr)->isAffine();
@@ -8139,6 +8164,16 @@ void* QMatrix4x4_Map2(void* ptr, void* point)
 	return ({ QPointF tmpValue = static_cast<QMatrix4x4*>(ptr)->map(*static_cast<QPointF*>(point)); new QPointF(tmpValue.x(), tmpValue.y()); });
 }
 
+void* QMatrix4x4_Map3(void* ptr, void* point)
+{
+	return new QVector3D(static_cast<QMatrix4x4*>(ptr)->map(*static_cast<QVector3D*>(point)));
+}
+
+void* QMatrix4x4_Map4(void* ptr, void* point)
+{
+	return new QVector4D(static_cast<QMatrix4x4*>(ptr)->map(*static_cast<QVector4D*>(point)));
+}
+
 void* QMatrix4x4_MapRect(void* ptr, void* rect)
 {
 	return ({ QRect tmpValue = static_cast<QMatrix4x4*>(ptr)->mapRect(*static_cast<QRect*>(rect)); new QRect(tmpValue.x(), tmpValue.y(), tmpValue.width(), tmpValue.height()); });
@@ -8147,6 +8182,11 @@ void* QMatrix4x4_MapRect(void* ptr, void* rect)
 void* QMatrix4x4_MapRect2(void* ptr, void* rect)
 {
 	return ({ QRectF tmpValue = static_cast<QMatrix4x4*>(ptr)->mapRect(*static_cast<QRectF*>(rect)); new QRectF(tmpValue.x(), tmpValue.y(), tmpValue.width(), tmpValue.height()); });
+}
+
+void* QMatrix4x4_MapVector(void* ptr, void* vector)
+{
+	return new QVector3D(static_cast<QMatrix4x4*>(ptr)->mapVector(*static_cast<QVector3D*>(vector)));
 }
 
 void QMatrix4x4_Optimize(void* ptr)
@@ -8187,6 +8227,11 @@ void QMatrix4x4_Rotate(void* ptr, float angle, void* vector)
 void QMatrix4x4_Rotate2(void* ptr, float angle, float x, float y, float z)
 {
 	static_cast<QMatrix4x4*>(ptr)->rotate(angle, x, y, z);
+}
+
+void* QMatrix4x4_Row(void* ptr, int index)
+{
+	return new QVector4D(static_cast<QMatrix4x4*>(ptr)->row(index));
 }
 
 void QMatrix4x4_Scale(void* ptr, void* vector)
@@ -8247,6 +8292,11 @@ void QMatrix4x4_Translate2(void* ptr, float x, float y)
 void QMatrix4x4_Translate3(void* ptr, float x, float y, float z)
 {
 	static_cast<QMatrix4x4*>(ptr)->translate(x, y, z);
+}
+
+void* QMatrix4x4_Transposed(void* ptr)
+{
+	return new QMatrix4x4(static_cast<QMatrix4x4*>(ptr)->transposed());
 }
 
 void QMatrix4x4_Viewport2(void* ptr, void* rect)
@@ -8372,6 +8422,11 @@ long long QMouseEvent_MouseState(void* ptr)
 void QMouseEvent_SetMouseState(void* ptr, long long vqt)
 {
 	static_cast<QMouseEvent*>(ptr)->mouseState = static_cast<Qt::MouseButton>(vqt);
+}
+
+void* QMouseEvent_Velocity(void* ptr)
+{
+	return new QVector2D(static_cast<QMouseEvent*>(ptr)->velocity);
 }
 
 void QMouseEvent_SetVelocity(void* ptr, void* vqv)
@@ -13357,9 +13412,44 @@ void* QQuaternion_NewQQuaternion3(float scalar, float xpos, float ypos, float zp
 	return new QQuaternion(scalar, xpos, ypos, zpos);
 }
 
+void* QQuaternion_Conjugated(void* ptr)
+{
+	return new QQuaternion(static_cast<QQuaternion*>(ptr)->conjugated());
+}
+
 float QQuaternion_QQuaternion_DotProduct(void* q1, void* q2)
 {
 	return QQuaternion::dotProduct(*static_cast<QQuaternion*>(q1), *static_cast<QQuaternion*>(q2));
+}
+
+void* QQuaternion_QQuaternion_FromAxes(void* xAxis, void* yAxis, void* zAxis)
+{
+	return new QQuaternion(QQuaternion::fromAxes(*static_cast<QVector3D*>(xAxis), *static_cast<QVector3D*>(yAxis), *static_cast<QVector3D*>(zAxis)));
+}
+
+void* QQuaternion_QQuaternion_FromAxisAndAngle(void* axis, float angle)
+{
+	return new QQuaternion(QQuaternion::fromAxisAndAngle(*static_cast<QVector3D*>(axis), angle));
+}
+
+void* QQuaternion_QQuaternion_FromAxisAndAngle2(float x, float y, float z, float angle)
+{
+	return new QQuaternion(QQuaternion::fromAxisAndAngle(x, y, z, angle));
+}
+
+void* QQuaternion_QQuaternion_FromDirection(void* direction, void* up)
+{
+	return new QQuaternion(QQuaternion::fromDirection(*static_cast<QVector3D*>(direction), *static_cast<QVector3D*>(up)));
+}
+
+void* QQuaternion_QQuaternion_FromEulerAngles2(void* eulerAngles)
+{
+	return new QQuaternion(QQuaternion::fromEulerAngles(*static_cast<QVector3D*>(eulerAngles)));
+}
+
+void* QQuaternion_QQuaternion_FromEulerAngles(float pitch, float yaw, float roll)
+{
+	return new QQuaternion(QQuaternion::fromEulerAngles(pitch, yaw, roll));
 }
 
 void QQuaternion_GetAxes(void* ptr, void* xAxis, void* yAxis, void* zAxis)
@@ -13382,6 +13472,11 @@ void QQuaternion_GetEulerAngles(void* ptr, float pitch, float yaw, float roll)
 	static_cast<QQuaternion*>(ptr)->getEulerAngles(&pitch, &yaw, &roll);
 }
 
+void* QQuaternion_Inverted(void* ptr)
+{
+	return new QQuaternion(static_cast<QQuaternion*>(ptr)->inverted());
+}
+
 char QQuaternion_IsIdentity(void* ptr)
 {
 	return static_cast<QQuaternion*>(ptr)->isIdentity();
@@ -13402,9 +13497,29 @@ float QQuaternion_LengthSquared(void* ptr)
 	return static_cast<QQuaternion*>(ptr)->lengthSquared();
 }
 
+void* QQuaternion_QQuaternion_Nlerp(void* q1, void* q2, float t)
+{
+	return new QQuaternion(QQuaternion::nlerp(*static_cast<QQuaternion*>(q1), *static_cast<QQuaternion*>(q2), t));
+}
+
 void QQuaternion_Normalize(void* ptr)
 {
 	static_cast<QQuaternion*>(ptr)->normalize();
+}
+
+void* QQuaternion_Normalized(void* ptr)
+{
+	return new QQuaternion(static_cast<QQuaternion*>(ptr)->normalized());
+}
+
+void* QQuaternion_RotatedVector(void* ptr, void* vector)
+{
+	return new QVector3D(static_cast<QQuaternion*>(ptr)->rotatedVector(*static_cast<QVector3D*>(vector)));
+}
+
+void* QQuaternion_QQuaternion_RotationTo(void* from, void* to)
+{
+	return new QQuaternion(QQuaternion::rotationTo(*static_cast<QVector3D*>(from), *static_cast<QVector3D*>(to)));
 }
 
 float QQuaternion_Scalar(void* ptr)
@@ -13440,6 +13555,26 @@ void QQuaternion_SetY(void* ptr, float y)
 void QQuaternion_SetZ(void* ptr, float z)
 {
 	static_cast<QQuaternion*>(ptr)->setZ(z);
+}
+
+void* QQuaternion_QQuaternion_Slerp(void* q1, void* q2, float t)
+{
+	return new QQuaternion(QQuaternion::slerp(*static_cast<QQuaternion*>(q1), *static_cast<QQuaternion*>(q2), t));
+}
+
+void* QQuaternion_ToEulerAngles(void* ptr)
+{
+	return new QVector3D(static_cast<QQuaternion*>(ptr)->toEulerAngles());
+}
+
+void* QQuaternion_ToVector4D(void* ptr)
+{
+	return new QVector4D(static_cast<QQuaternion*>(ptr)->toVector4D());
+}
+
+void* QQuaternion_Vector(void* ptr)
+{
+	return new QVector3D(static_cast<QQuaternion*>(ptr)->vector());
 }
 
 float QQuaternion_X(void* ptr)
@@ -16681,6 +16816,11 @@ int QStyleHints_MousePressAndHoldInterval(void* ptr)
 	return static_cast<QStyleHints*>(ptr)->mousePressAndHoldInterval();
 }
 
+void* QStyleHints_PasswordMaskCharacter(void* ptr)
+{
+	return new QChar(static_cast<QStyleHints*>(ptr)->passwordMaskCharacter());
+}
+
 int QStyleHints_PasswordMaskDelay(void* ptr)
 {
 	return static_cast<QStyleHints*>(ptr)->passwordMaskDelay();
@@ -17200,6 +17340,11 @@ public:
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQSyntaxHighlighter_MetaObject(const_cast<MyQSyntaxHighlighter*>(this))); };
 };
 
+void* QSyntaxHighlighter_Format(void* ptr, int position)
+{
+	return new QTextCharFormat(static_cast<QSyntaxHighlighter*>(ptr)->format(position));
+}
+
 void* QSyntaxHighlighter_NewQSyntaxHighlighter(void* parent)
 {
 	return new MyQSyntaxHighlighter(static_cast<QObject*>(parent));
@@ -17520,9 +17665,19 @@ void* QTextBlock_NewQTextBlock(void* other)
 	return new QTextBlock(*static_cast<QTextBlock*>(other));
 }
 
+void* QTextBlock_BlockFormat(void* ptr)
+{
+	return new QTextBlockFormat(static_cast<QTextBlock*>(ptr)->blockFormat());
+}
+
 int QTextBlock_BlockFormatIndex(void* ptr)
 {
 	return static_cast<QTextBlock*>(ptr)->blockFormatIndex();
+}
+
+void* QTextBlock_CharFormat(void* ptr)
+{
+	return new QTextCharFormat(static_cast<QTextBlock*>(ptr)->charFormat());
 }
 
 int QTextBlock_CharFormatIndex(void* ptr)
@@ -18299,9 +18454,24 @@ void* QTextCursor_Block(void* ptr)
 	return new QTextBlock(static_cast<QTextCursor*>(ptr)->block());
 }
 
+void* QTextCursor_BlockCharFormat(void* ptr)
+{
+	return new QTextCharFormat(static_cast<QTextCursor*>(ptr)->blockCharFormat());
+}
+
+void* QTextCursor_BlockFormat(void* ptr)
+{
+	return new QTextBlockFormat(static_cast<QTextCursor*>(ptr)->blockFormat());
+}
+
 int QTextCursor_BlockNumber(void* ptr)
 {
 	return static_cast<QTextCursor*>(ptr)->blockNumber();
+}
+
+void* QTextCursor_CharFormat(void* ptr)
+{
+	return new QTextCharFormat(static_cast<QTextCursor*>(ptr)->charFormat());
 }
 
 void QTextCursor_ClearSelection(void* ptr)
@@ -18789,6 +18959,11 @@ void QTextDocument_DisconnectBlockCountChanged(void* ptr)
 void QTextDocument_BlockCountChanged(void* ptr, int newBlockCount)
 {
 	static_cast<QTextDocument*>(ptr)->blockCountChanged(newBlockCount);
+}
+
+void* QTextDocument_CharacterAt(void* ptr, int pos)
+{
+	return new QChar(static_cast<QTextDocument*>(ptr)->characterAt(pos));
 }
 
 int QTextDocument_CharacterCount(void* ptr)
@@ -19523,6 +19698,11 @@ long long QTextFormat_LayoutDirection(void* ptr)
 	return static_cast<QTextFormat*>(ptr)->layoutDirection();
 }
 
+void* QTextFormat_LengthProperty(void* ptr, int propertyId)
+{
+	return new QTextLength(static_cast<QTextFormat*>(ptr)->lengthProperty(propertyId));
+}
+
 void QTextFormat_Merge(void* ptr, void* other)
 {
 	static_cast<QTextFormat*>(ptr)->merge(*static_cast<QTextFormat*>(other));
@@ -19588,6 +19768,41 @@ void QTextFormat_Swap(void* ptr, void* other)
 	static_cast<QTextFormat*>(ptr)->swap(*static_cast<QTextFormat*>(other));
 }
 
+void* QTextFormat_ToBlockFormat(void* ptr)
+{
+	return new QTextBlockFormat(static_cast<QTextFormat*>(ptr)->toBlockFormat());
+}
+
+void* QTextFormat_ToCharFormat(void* ptr)
+{
+	return new QTextCharFormat(static_cast<QTextFormat*>(ptr)->toCharFormat());
+}
+
+void* QTextFormat_ToFrameFormat(void* ptr)
+{
+	return new QTextFrameFormat(static_cast<QTextFormat*>(ptr)->toFrameFormat());
+}
+
+void* QTextFormat_ToImageFormat(void* ptr)
+{
+	return new QTextImageFormat(static_cast<QTextFormat*>(ptr)->toImageFormat());
+}
+
+void* QTextFormat_ToListFormat(void* ptr)
+{
+	return new QTextListFormat(static_cast<QTextFormat*>(ptr)->toListFormat());
+}
+
+void* QTextFormat_ToTableCellFormat(void* ptr)
+{
+	return new QTextTableCellFormat(static_cast<QTextFormat*>(ptr)->toTableCellFormat());
+}
+
+void* QTextFormat_ToTableFormat(void* ptr)
+{
+	return new QTextTableFormat(static_cast<QTextFormat*>(ptr)->toTableFormat());
+}
+
 int QTextFormat_Type(void* ptr)
 {
 	return static_cast<QTextFormat*>(ptr)->type();
@@ -19598,6 +19813,11 @@ void QTextFormat_DestroyQTextFormat(void* ptr)
 	static_cast<QTextFormat*>(ptr)->~QTextFormat();
 }
 
+void* QTextFormat_lengthVectorProperty_atList(void* ptr, int i)
+{
+	return new QTextLength(static_cast<QVector<QTextLength>*>(ptr)->at(i));
+}
+
 void* QTextFragment_NewQTextFragment()
 {
 	return new QTextFragment();
@@ -19606,6 +19826,11 @@ void* QTextFragment_NewQTextFragment()
 void* QTextFragment_NewQTextFragment3(void* other)
 {
 	return new QTextFragment(*static_cast<QTextFragment*>(other));
+}
+
+void* QTextFragment_CharFormat(void* ptr)
+{
+	return new QTextCharFormat(static_cast<QTextFragment*>(ptr)->charFormat());
 }
 
 int QTextFragment_CharFormatIndex(void* ptr)
@@ -19666,6 +19891,11 @@ void* QTextFrame_FirstCursorPosition(void* ptr)
 int QTextFrame_FirstPosition(void* ptr)
 {
 	return static_cast<QTextFrame*>(ptr)->firstPosition();
+}
+
+void* QTextFrame_FrameFormat(void* ptr)
+{
+	return new QTextFrameFormat(static_cast<QTextFrame*>(ptr)->frameFormat());
 }
 
 void* QTextFrame_LastCursorPosition(void* ptr)
@@ -19833,6 +20063,11 @@ long long QTextFrameFormat_BorderStyle(void* ptr)
 	return static_cast<QTextFrameFormat*>(ptr)->borderStyle();
 }
 
+void* QTextFrameFormat_Height(void* ptr)
+{
+	return new QTextLength(static_cast<QTextFrameFormat*>(ptr)->height());
+}
+
 char QTextFrameFormat_IsValid(void* ptr)
 {
 	return static_cast<QTextFrameFormat*>(ptr)->isValid();
@@ -19926,6 +20161,11 @@ void QTextFrameFormat_SetWidth(void* ptr, void* width)
 void QTextFrameFormat_SetWidth2(void* ptr, double width)
 {
 	static_cast<QTextFrameFormat*>(ptr)->setWidth(width);
+}
+
+void* QTextFrameFormat_Width(void* ptr)
+{
+	return new QTextLength(static_cast<QTextFrameFormat*>(ptr)->width());
 }
 
 void* QTextImageFormat_NewQTextImageFormat()
@@ -20088,6 +20328,11 @@ void* QTextLayout_NewQTextLayout3(char* text, void* font, void* paintdevice)
 	return new QTextLayout(QString(text), *static_cast<QFont*>(font), static_cast<QPaintDevice*>(paintdevice));
 }
 
+void* QTextLayout_CreateLine(void* ptr)
+{
+	return new QTextLine(static_cast<QTextLayout*>(ptr)->createLine());
+}
+
 void QTextLayout_BeginLayout(void* ptr)
 {
 	static_cast<QTextLayout*>(ptr)->beginLayout();
@@ -20143,9 +20388,19 @@ int QTextLayout_LeftCursorPosition(void* ptr, int oldPos)
 	return static_cast<QTextLayout*>(ptr)->leftCursorPosition(oldPos);
 }
 
+void* QTextLayout_LineAt(void* ptr, int i)
+{
+	return new QTextLine(static_cast<QTextLayout*>(ptr)->lineAt(i));
+}
+
 int QTextLayout_LineCount(void* ptr)
 {
 	return static_cast<QTextLayout*>(ptr)->lineCount();
+}
+
+void* QTextLayout_LineForTextPosition(void* ptr, int pos)
+{
+	return new QTextLine(static_cast<QTextLayout*>(ptr)->lineForTextPosition(pos));
 }
 
 double QTextLayout_MaximumWidth(void* ptr)
@@ -20426,6 +20681,11 @@ void QTextList_Add(void* ptr, void* block)
 int QTextList_Count(void* ptr)
 {
 	return static_cast<QTextList*>(ptr)->count();
+}
+
+void* QTextList_Format(void* ptr)
+{
+	return new QTextListFormat(static_cast<QTextList*>(ptr)->format());
 }
 
 void* QTextList_Item(void* ptr, int i)
@@ -20921,6 +21181,11 @@ int QTextTable_Columns(void* ptr)
 	return static_cast<QTextTable*>(ptr)->columns();
 }
 
+void* QTextTable_Format(void* ptr)
+{
+	return new QTextTableFormat(static_cast<QTextTable*>(ptr)->format());
+}
+
 void QTextTable_MergeCells2(void* ptr, void* cursor)
 {
 	static_cast<QTextTable*>(ptr)->mergeCells(*static_cast<QTextCursor*>(cursor));
@@ -21054,6 +21319,11 @@ int QTextTableCell_ColumnSpan(void* ptr)
 void* QTextTableCell_FirstCursorPosition(void* ptr)
 {
 	return new QTextCursor(static_cast<QTextTableCell*>(ptr)->firstCursorPosition());
+}
+
+void* QTextTableCell_Format(void* ptr)
+{
+	return new QTextCharFormat(static_cast<QTextTableCell*>(ptr)->format());
 }
 
 char QTextTableCell_IsValid(void* ptr)
@@ -21204,6 +21474,11 @@ void QTextTableFormat_SetCellSpacing(void* ptr, double spacing)
 void QTextTableFormat_SetHeaderRowCount(void* ptr, int count)
 {
 	static_cast<QTextTableFormat*>(ptr)->setHeaderRowCount(count);
+}
+
+void* QTextTableFormat_columnWidthConstraints_atList(void* ptr, int i)
+{
+	return new QTextLength(static_cast<QVector<QTextLength>*>(ptr)->at(i));
 }
 
 void* QTouchDevice_NewQTouchDevice()
@@ -21804,6 +22079,11 @@ void QVector2D_Normalize(void* ptr)
 	static_cast<QVector2D*>(ptr)->normalize();
 }
 
+void* QVector2D_Normalized(void* ptr)
+{
+	return new QVector2D(static_cast<QVector2D*>(ptr)->normalized());
+}
+
 void QVector2D_SetX(void* ptr, float x)
 {
 	static_cast<QVector2D*>(ptr)->setX(x);
@@ -21822,6 +22102,16 @@ void* QVector2D_ToPoint(void* ptr)
 void* QVector2D_ToPointF(void* ptr)
 {
 	return ({ QPointF tmpValue = static_cast<QVector2D*>(ptr)->toPointF(); new QPointF(tmpValue.x(), tmpValue.y()); });
+}
+
+void* QVector2D_ToVector3D(void* ptr)
+{
+	return new QVector3D(static_cast<QVector2D*>(ptr)->toVector3D());
+}
+
+void* QVector2D_ToVector4D(void* ptr)
+{
+	return new QVector4D(static_cast<QVector2D*>(ptr)->toVector4D());
 }
 
 float QVector2D_X(void* ptr)
@@ -21869,6 +22159,11 @@ void* QVector3D_NewQVector3D3(float xpos, float ypos, float zpos)
 	return new QVector3D(xpos, ypos, zpos);
 }
 
+void* QVector3D_QVector3D_CrossProduct(void* v1, void* v2)
+{
+	return new QVector3D(QVector3D::crossProduct(*static_cast<QVector3D*>(v1), *static_cast<QVector3D*>(v2)));
+}
+
 float QVector3D_DistanceToLine(void* ptr, void* point, void* direction)
 {
 	return static_cast<QVector3D*>(ptr)->distanceToLine(*static_cast<QVector3D*>(point), *static_cast<QVector3D*>(direction));
@@ -21909,9 +22204,29 @@ float QVector3D_LengthSquared(void* ptr)
 	return static_cast<QVector3D*>(ptr)->lengthSquared();
 }
 
+void* QVector3D_QVector3D_Normal(void* v1, void* v2)
+{
+	return new QVector3D(QVector3D::normal(*static_cast<QVector3D*>(v1), *static_cast<QVector3D*>(v2)));
+}
+
+void* QVector3D_QVector3D_Normal2(void* v1, void* v2, void* v3)
+{
+	return new QVector3D(QVector3D::normal(*static_cast<QVector3D*>(v1), *static_cast<QVector3D*>(v2), *static_cast<QVector3D*>(v3)));
+}
+
 void QVector3D_Normalize(void* ptr)
 {
 	static_cast<QVector3D*>(ptr)->normalize();
+}
+
+void* QVector3D_Normalized(void* ptr)
+{
+	return new QVector3D(static_cast<QVector3D*>(ptr)->normalized());
+}
+
+void* QVector3D_Project(void* ptr, void* modelView, void* projection, void* viewport)
+{
+	return new QVector3D(static_cast<QVector3D*>(ptr)->project(*static_cast<QMatrix4x4*>(modelView), *static_cast<QMatrix4x4*>(projection), *static_cast<QRect*>(viewport)));
 }
 
 void QVector3D_SetX(void* ptr, float x)
@@ -21937,6 +22252,21 @@ void* QVector3D_ToPoint(void* ptr)
 void* QVector3D_ToPointF(void* ptr)
 {
 	return ({ QPointF tmpValue = static_cast<QVector3D*>(ptr)->toPointF(); new QPointF(tmpValue.x(), tmpValue.y()); });
+}
+
+void* QVector3D_ToVector2D(void* ptr)
+{
+	return new QVector2D(static_cast<QVector3D*>(ptr)->toVector2D());
+}
+
+void* QVector3D_ToVector4D(void* ptr)
+{
+	return new QVector4D(static_cast<QVector3D*>(ptr)->toVector4D());
+}
+
+void* QVector3D_Unproject(void* ptr, void* modelView, void* projection, void* viewport)
+{
+	return new QVector3D(static_cast<QVector3D*>(ptr)->unproject(*static_cast<QMatrix4x4*>(modelView), *static_cast<QMatrix4x4*>(projection), *static_cast<QRect*>(viewport)));
 }
 
 float QVector3D_X(void* ptr)
@@ -22019,6 +22349,11 @@ void QVector4D_Normalize(void* ptr)
 	static_cast<QVector4D*>(ptr)->normalize();
 }
 
+void* QVector4D_Normalized(void* ptr)
+{
+	return new QVector4D(static_cast<QVector4D*>(ptr)->normalized());
+}
+
 void QVector4D_SetW(void* ptr, float w)
 {
 	static_cast<QVector4D*>(ptr)->setW(w);
@@ -22047,6 +22382,26 @@ void* QVector4D_ToPoint(void* ptr)
 void* QVector4D_ToPointF(void* ptr)
 {
 	return ({ QPointF tmpValue = static_cast<QVector4D*>(ptr)->toPointF(); new QPointF(tmpValue.x(), tmpValue.y()); });
+}
+
+void* QVector4D_ToVector2D(void* ptr)
+{
+	return new QVector2D(static_cast<QVector4D*>(ptr)->toVector2D());
+}
+
+void* QVector4D_ToVector2DAffine(void* ptr)
+{
+	return new QVector2D(static_cast<QVector4D*>(ptr)->toVector2DAffine());
+}
+
+void* QVector4D_ToVector3D(void* ptr)
+{
+	return new QVector3D(static_cast<QVector4D*>(ptr)->toVector3D());
+}
+
+void* QVector4D_ToVector3DAffine(void* ptr)
+{
+	return new QVector3D(static_cast<QVector4D*>(ptr)->toVector3DAffine());
 }
 
 float QVector4D_W(void* ptr)

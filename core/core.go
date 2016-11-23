@@ -14147,6 +14147,22 @@ func (ptr *QChar) Direction() QChar__Direction {
 	return 0
 }
 
+func QChar_FromLatin1(c string) *QChar {
+	var cC = C.CString(c)
+	defer C.free(unsafe.Pointer(cC))
+	var tmpValue = NewQCharFromPointer(C.QChar_QChar_FromLatin1(cC))
+	runtime.SetFinalizer(tmpValue, (*QChar).DestroyQChar)
+	return tmpValue
+}
+
+func (ptr *QChar) FromLatin1(c string) *QChar {
+	var cC = C.CString(c)
+	defer C.free(unsafe.Pointer(cC))
+	var tmpValue = NewQCharFromPointer(C.QChar_QChar_FromLatin1(cC))
+	runtime.SetFinalizer(tmpValue, (*QChar).DestroyQChar)
+	return tmpValue
+}
+
 func QChar_HasMirrored2(ucs4 uint) bool {
 	return C.QChar_QChar_HasMirrored2(C.uint(uint32(ucs4))) != 0
 }
@@ -14448,6 +14464,15 @@ func (ptr *QChar) MirroredChar2(ucs4 uint) uint {
 	return uint(uint32(C.QChar_QChar_MirroredChar2(C.uint(uint32(ucs4)))))
 }
 
+func (ptr *QChar) MirroredChar() *QChar {
+	if ptr.Pointer() != nil {
+		var tmpValue = NewQCharFromPointer(C.QChar_MirroredChar(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*QChar).DestroyQChar)
+		return tmpValue
+	}
+	return nil
+}
+
 func QChar_RequiresSurrogates(ucs4 uint) bool {
 	return C.QChar_QChar_RequiresSurrogates(C.uint(uint32(ucs4))) != 0
 }
@@ -14502,6 +14527,15 @@ func (ptr *QChar) ToCaseFolded2(ucs4 uint) uint {
 	return uint(uint32(C.QChar_QChar_ToCaseFolded2(C.uint(uint32(ucs4)))))
 }
 
+func (ptr *QChar) ToCaseFolded() *QChar {
+	if ptr.Pointer() != nil {
+		var tmpValue = NewQCharFromPointer(C.QChar_ToCaseFolded(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*QChar).DestroyQChar)
+		return tmpValue
+	}
+	return nil
+}
+
 func (ptr *QChar) ToLatin1() string {
 	if ptr.Pointer() != nil {
 		return cGoUnpackString(C.QChar_ToLatin1(ptr.Pointer()))
@@ -14517,6 +14551,15 @@ func (ptr *QChar) ToLower2(ucs4 uint) uint {
 	return uint(uint32(C.QChar_QChar_ToLower2(C.uint(uint32(ucs4)))))
 }
 
+func (ptr *QChar) ToLower() *QChar {
+	if ptr.Pointer() != nil {
+		var tmpValue = NewQCharFromPointer(C.QChar_ToLower(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*QChar).DestroyQChar)
+		return tmpValue
+	}
+	return nil
+}
+
 func QChar_ToTitleCase2(ucs4 uint) uint {
 	return uint(uint32(C.QChar_QChar_ToTitleCase2(C.uint(uint32(ucs4)))))
 }
@@ -14525,12 +14568,30 @@ func (ptr *QChar) ToTitleCase2(ucs4 uint) uint {
 	return uint(uint32(C.QChar_QChar_ToTitleCase2(C.uint(uint32(ucs4)))))
 }
 
+func (ptr *QChar) ToTitleCase() *QChar {
+	if ptr.Pointer() != nil {
+		var tmpValue = NewQCharFromPointer(C.QChar_ToTitleCase(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*QChar).DestroyQChar)
+		return tmpValue
+	}
+	return nil
+}
+
 func QChar_ToUpper2(ucs4 uint) uint {
 	return uint(uint32(C.QChar_QChar_ToUpper2(C.uint(uint32(ucs4)))))
 }
 
 func (ptr *QChar) ToUpper2(ucs4 uint) uint {
 	return uint(uint32(C.QChar_QChar_ToUpper2(C.uint(uint32(ucs4)))))
+}
+
+func (ptr *QChar) ToUpper() *QChar {
+	if ptr.Pointer() != nil {
+		var tmpValue = NewQCharFromPointer(C.QChar_ToUpper(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*QChar).DestroyQChar)
+		return tmpValue
+	}
+	return nil
 }
 
 func (ptr *QChar) Unicode2() uint16 {
@@ -16598,6 +16659,54 @@ func (ptr *QDate) DestroyQDate() {
 	ptr.SetPointer(nil)
 }
 
+func QDate_CurrentDate() *QDate {
+	var tmpValue = NewQDateFromPointer(C.QDate_QDate_CurrentDate())
+	runtime.SetFinalizer(tmpValue, (*QDate).DestroyQDate)
+	return tmpValue
+}
+
+func (ptr *QDate) CurrentDate() *QDate {
+	var tmpValue = NewQDateFromPointer(C.QDate_QDate_CurrentDate())
+	runtime.SetFinalizer(tmpValue, (*QDate).DestroyQDate)
+	return tmpValue
+}
+
+func QDate_FromString(stri string, format Qt__DateFormat) *QDate {
+	var striC = C.CString(stri)
+	defer C.free(unsafe.Pointer(striC))
+	var tmpValue = NewQDateFromPointer(C.QDate_QDate_FromString(striC, C.longlong(format)))
+	runtime.SetFinalizer(tmpValue, (*QDate).DestroyQDate)
+	return tmpValue
+}
+
+func (ptr *QDate) FromString(stri string, format Qt__DateFormat) *QDate {
+	var striC = C.CString(stri)
+	defer C.free(unsafe.Pointer(striC))
+	var tmpValue = NewQDateFromPointer(C.QDate_QDate_FromString(striC, C.longlong(format)))
+	runtime.SetFinalizer(tmpValue, (*QDate).DestroyQDate)
+	return tmpValue
+}
+
+func QDate_FromString2(stri string, format string) *QDate {
+	var striC = C.CString(stri)
+	defer C.free(unsafe.Pointer(striC))
+	var formatC = C.CString(format)
+	defer C.free(unsafe.Pointer(formatC))
+	var tmpValue = NewQDateFromPointer(C.QDate_QDate_FromString2(striC, formatC))
+	runtime.SetFinalizer(tmpValue, (*QDate).DestroyQDate)
+	return tmpValue
+}
+
+func (ptr *QDate) FromString2(stri string, format string) *QDate {
+	var striC = C.CString(stri)
+	defer C.free(unsafe.Pointer(striC))
+	var formatC = C.CString(format)
+	defer C.free(unsafe.Pointer(formatC))
+	var tmpValue = NewQDateFromPointer(C.QDate_QDate_FromString2(striC, formatC))
+	runtime.SetFinalizer(tmpValue, (*QDate).DestroyQDate)
+	return tmpValue
+}
+
 func QDate_IsLeapYear(year int) bool {
 	return C.QDate_QDate_IsLeapYear(C.int(int32(year))) != 0
 }
@@ -16623,6 +16732,33 @@ func NewQDate3(y int, m int, d int) *QDate {
 	var tmpValue = NewQDateFromPointer(C.QDate_NewQDate3(C.int(int32(y)), C.int(int32(m)), C.int(int32(d))))
 	runtime.SetFinalizer(tmpValue, (*QDate).DestroyQDate)
 	return tmpValue
+}
+
+func (ptr *QDate) AddDays(ndays int64) *QDate {
+	if ptr.Pointer() != nil {
+		var tmpValue = NewQDateFromPointer(C.QDate_AddDays(ptr.Pointer(), C.longlong(ndays)))
+		runtime.SetFinalizer(tmpValue, (*QDate).DestroyQDate)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QDate) AddMonths(nmonths int) *QDate {
+	if ptr.Pointer() != nil {
+		var tmpValue = NewQDateFromPointer(C.QDate_AddMonths(ptr.Pointer(), C.int(int32(nmonths))))
+		runtime.SetFinalizer(tmpValue, (*QDate).DestroyQDate)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QDate) AddYears(nyears int) *QDate {
+	if ptr.Pointer() != nil {
+		var tmpValue = NewQDateFromPointer(C.QDate_AddYears(ptr.Pointer(), C.int(int32(nyears))))
+		runtime.SetFinalizer(tmpValue, (*QDate).DestroyQDate)
+		return tmpValue
+	}
+	return nil
 }
 
 func (ptr *QDate) Day() int {
@@ -16665,6 +16801,18 @@ func (ptr *QDate) DaysTo(d QDate_ITF) int64 {
 		return int64(C.QDate_DaysTo(ptr.Pointer(), PointerFromQDate(d)))
 	}
 	return 0
+}
+
+func QDate_FromJulianDay(jd int64) *QDate {
+	var tmpValue = NewQDateFromPointer(C.QDate_QDate_FromJulianDay(C.longlong(jd)))
+	runtime.SetFinalizer(tmpValue, (*QDate).DestroyQDate)
+	return tmpValue
+}
+
+func (ptr *QDate) FromJulianDay(jd int64) *QDate {
+	var tmpValue = NewQDateFromPointer(C.QDate_QDate_FromJulianDay(C.longlong(jd)))
+	runtime.SetFinalizer(tmpValue, (*QDate).DestroyQDate)
+	return tmpValue
 }
 
 func (ptr *QDate) GetDate(year int, month int, day int) {
@@ -16988,6 +17136,15 @@ func (ptr *QDateTime) AddYears(nyears int) *QDateTime {
 	return nil
 }
 
+func (ptr *QDateTime) Date() *QDate {
+	if ptr.Pointer() != nil {
+		var tmpValue = NewQDateFromPointer(C.QDateTime_Date(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*QDate).DestroyQDate)
+		return tmpValue
+	}
+	return nil
+}
+
 func (ptr *QDateTime) DaysTo(other QDateTime_ITF) int64 {
 	if ptr.Pointer() != nil {
 		return int64(C.QDateTime_DaysTo(ptr.Pointer(), PointerFromQDateTime(other)))
@@ -17149,6 +17306,15 @@ func (ptr *QDateTime) Swap(other QDateTime_ITF) {
 	if ptr.Pointer() != nil {
 		C.QDateTime_Swap(ptr.Pointer(), PointerFromQDateTime(other))
 	}
+}
+
+func (ptr *QDateTime) Time() *QTime {
+	if ptr.Pointer() != nil {
+		var tmpValue = NewQTimeFromPointer(C.QDateTime_Time(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*QTime).DestroyQTime)
+		return tmpValue
+	}
+	return nil
 }
 
 func (ptr *QDateTime) TimeSpec() Qt__TimeSpec {
@@ -17828,6 +17994,18 @@ func (ptr *QDir) IsRoot() bool {
 	return false
 }
 
+func QDir_ListSeparator() *QChar {
+	var tmpValue = NewQCharFromPointer(C.QDir_QDir_ListSeparator())
+	runtime.SetFinalizer(tmpValue, (*QChar).DestroyQChar)
+	return tmpValue
+}
+
+func (ptr *QDir) ListSeparator() *QChar {
+	var tmpValue = NewQCharFromPointer(C.QDir_QDir_ListSeparator())
+	runtime.SetFinalizer(tmpValue, (*QChar).DestroyQChar)
+	return tmpValue
+}
+
 func (ptr *QDir) MakeAbsolute() bool {
 	if ptr.Pointer() != nil {
 		return C.QDir_MakeAbsolute(ptr.Pointer()) != 0
@@ -17989,6 +18167,18 @@ func (ptr *QDir) SearchPaths(prefix string) []string {
 	var prefixC = C.CString(prefix)
 	defer C.free(unsafe.Pointer(prefixC))
 	return strings.Split(cGoUnpackString(C.QDir_QDir_SearchPaths(prefixC)), "|")
+}
+
+func QDir_Separator() *QChar {
+	var tmpValue = NewQCharFromPointer(C.QDir_QDir_Separator())
+	runtime.SetFinalizer(tmpValue, (*QChar).DestroyQChar)
+	return tmpValue
+}
+
+func (ptr *QDir) Separator() *QChar {
+	var tmpValue = NewQCharFromPointer(C.QDir_QDir_Separator())
+	runtime.SetFinalizer(tmpValue, (*QChar).DestroyQChar)
+	return tmpValue
 }
 
 func QDir_SetCurrent(path string) bool {
@@ -33437,11 +33627,38 @@ func (ptr *QLocale) DayName(day int, ty QLocale__FormatType) string {
 	return ""
 }
 
+func (ptr *QLocale) DecimalPoint() *QChar {
+	if ptr.Pointer() != nil {
+		var tmpValue = NewQCharFromPointer(C.QLocale_DecimalPoint(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*QChar).DestroyQChar)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QLocale) Exponential() *QChar {
+	if ptr.Pointer() != nil {
+		var tmpValue = NewQCharFromPointer(C.QLocale_Exponential(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*QChar).DestroyQChar)
+		return tmpValue
+	}
+	return nil
+}
+
 func (ptr *QLocale) FirstDayOfWeek() Qt__DayOfWeek {
 	if ptr.Pointer() != nil {
 		return Qt__DayOfWeek(C.QLocale_FirstDayOfWeek(ptr.Pointer()))
 	}
 	return 0
+}
+
+func (ptr *QLocale) GroupSeparator() *QChar {
+	if ptr.Pointer() != nil {
+		var tmpValue = NewQCharFromPointer(C.QLocale_GroupSeparator(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*QChar).DestroyQChar)
+		return tmpValue
+	}
+	return nil
 }
 
 func (ptr *QLocale) Language() QLocale__Language {
@@ -33514,6 +33731,15 @@ func (ptr *QLocale) NativeLanguageName() string {
 	return ""
 }
 
+func (ptr *QLocale) NegativeSign() *QChar {
+	if ptr.Pointer() != nil {
+		var tmpValue = NewQCharFromPointer(C.QLocale_NegativeSign(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*QChar).DestroyQChar)
+		return tmpValue
+	}
+	return nil
+}
+
 func (ptr *QLocale) NumberOptions() QLocale__NumberOption {
 	if ptr.Pointer() != nil {
 		return QLocale__NumberOption(C.QLocale_NumberOptions(ptr.Pointer()))
@@ -33521,11 +33747,29 @@ func (ptr *QLocale) NumberOptions() QLocale__NumberOption {
 	return 0
 }
 
+func (ptr *QLocale) Percent() *QChar {
+	if ptr.Pointer() != nil {
+		var tmpValue = NewQCharFromPointer(C.QLocale_Percent(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*QChar).DestroyQChar)
+		return tmpValue
+	}
+	return nil
+}
+
 func (ptr *QLocale) PmText() string {
 	if ptr.Pointer() != nil {
 		return cGoUnpackString(C.QLocale_PmText(ptr.Pointer()))
 	}
 	return ""
+}
+
+func (ptr *QLocale) PositiveSign() *QChar {
+	if ptr.Pointer() != nil {
+		var tmpValue = NewQCharFromPointer(C.QLocale_PositiveSign(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*QChar).DestroyQChar)
+		return tmpValue
+	}
+	return nil
 }
 
 func (ptr *QLocale) QuoteString(str string, style QLocale__QuotationStyle) string {
@@ -33707,6 +33951,30 @@ func (ptr *QLocale) ToCurrencyString4(value uint16, symbol string) string {
 		return cGoUnpackString(C.QLocale_ToCurrencyString4(ptr.Pointer(), C.ushort(value), symbolC))
 	}
 	return ""
+}
+
+func (ptr *QLocale) ToDate(stri string, format QLocale__FormatType) *QDate {
+	if ptr.Pointer() != nil {
+		var striC = C.CString(stri)
+		defer C.free(unsafe.Pointer(striC))
+		var tmpValue = NewQDateFromPointer(C.QLocale_ToDate(ptr.Pointer(), striC, C.longlong(format)))
+		runtime.SetFinalizer(tmpValue, (*QDate).DestroyQDate)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QLocale) ToDate2(stri string, format string) *QDate {
+	if ptr.Pointer() != nil {
+		var striC = C.CString(stri)
+		defer C.free(unsafe.Pointer(striC))
+		var formatC = C.CString(format)
+		defer C.free(unsafe.Pointer(formatC))
+		var tmpValue = NewQDateFromPointer(C.QLocale_ToDate2(ptr.Pointer(), striC, formatC))
+		runtime.SetFinalizer(tmpValue, (*QDate).DestroyQDate)
+		return tmpValue
+	}
+	return nil
 }
 
 func (ptr *QLocale) ToDateTime(stri string, format QLocale__FormatType) *QDateTime {
@@ -33930,6 +34198,30 @@ func (ptr *QLocale) ToString4(i uint16) string {
 	return ""
 }
 
+func (ptr *QLocale) ToTime(stri string, format QLocale__FormatType) *QTime {
+	if ptr.Pointer() != nil {
+		var striC = C.CString(stri)
+		defer C.free(unsafe.Pointer(striC))
+		var tmpValue = NewQTimeFromPointer(C.QLocale_ToTime(ptr.Pointer(), striC, C.longlong(format)))
+		runtime.SetFinalizer(tmpValue, (*QTime).DestroyQTime)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QLocale) ToTime2(stri string, format string) *QTime {
+	if ptr.Pointer() != nil {
+		var striC = C.CString(stri)
+		defer C.free(unsafe.Pointer(striC))
+		var formatC = C.CString(format)
+		defer C.free(unsafe.Pointer(formatC))
+		var tmpValue = NewQTimeFromPointer(C.QLocale_ToTime2(ptr.Pointer(), striC, formatC))
+		runtime.SetFinalizer(tmpValue, (*QTime).DestroyQTime)
+		return tmpValue
+	}
+	return nil
+}
+
 func (ptr *QLocale) ToUInt(s string, ok bool) uint {
 	if ptr.Pointer() != nil {
 		var sC = C.CString(s)
@@ -33992,6 +34284,15 @@ func (ptr *QLocale) UiLanguages() []string {
 		return strings.Split(cGoUnpackString(C.QLocale_UiLanguages(ptr.Pointer())), "|")
 	}
 	return make([]string, 0)
+}
+
+func (ptr *QLocale) ZeroDigit() *QChar {
+	if ptr.Pointer() != nil {
+		var tmpValue = NewQCharFromPointer(C.QLocale_ZeroDigit(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*QChar).DestroyQChar)
+		return tmpValue
+	}
+	return nil
 }
 
 func (ptr *QLocale) DestroyQLocale() {
@@ -56619,6 +56920,15 @@ func (ptr *QStringRef) AppendTo(stri string) *QStringRef {
 	return nil
 }
 
+func (ptr *QStringRef) At(position int) *QChar {
+	if ptr.Pointer() != nil {
+		var tmpValue = NewQCharFromPointer(C.QStringRef_At(ptr.Pointer(), C.int(int32(position))))
+		runtime.SetFinalizer(tmpValue, (*QChar).DestroyQChar)
+		return tmpValue
+	}
+	return nil
+}
+
 func (ptr *QStringRef) Clear() {
 	if ptr.Pointer() != nil {
 		C.QStringRef_Clear(ptr.Pointer())
@@ -59591,6 +59901,15 @@ func (ptr *QTextStream) NumberFlags() QTextStream__NumberFlag {
 	return 0
 }
 
+func (ptr *QTextStream) PadChar() *QChar {
+	if ptr.Pointer() != nil {
+		var tmpValue = NewQCharFromPointer(C.QTextStream_PadChar(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*QChar).DestroyQChar)
+		return tmpValue
+	}
+	return nil
+}
+
 func (ptr *QTextStream) Pos() int64 {
 	if ptr.Pointer() != nil {
 		return int64(C.QTextStream_Pos(ptr.Pointer()))
@@ -61104,6 +61423,54 @@ func (ptr *QTime) DestroyQTime() {
 	ptr.SetPointer(nil)
 }
 
+func QTime_CurrentTime() *QTime {
+	var tmpValue = NewQTimeFromPointer(C.QTime_QTime_CurrentTime())
+	runtime.SetFinalizer(tmpValue, (*QTime).DestroyQTime)
+	return tmpValue
+}
+
+func (ptr *QTime) CurrentTime() *QTime {
+	var tmpValue = NewQTimeFromPointer(C.QTime_QTime_CurrentTime())
+	runtime.SetFinalizer(tmpValue, (*QTime).DestroyQTime)
+	return tmpValue
+}
+
+func QTime_FromString(stri string, format Qt__DateFormat) *QTime {
+	var striC = C.CString(stri)
+	defer C.free(unsafe.Pointer(striC))
+	var tmpValue = NewQTimeFromPointer(C.QTime_QTime_FromString(striC, C.longlong(format)))
+	runtime.SetFinalizer(tmpValue, (*QTime).DestroyQTime)
+	return tmpValue
+}
+
+func (ptr *QTime) FromString(stri string, format Qt__DateFormat) *QTime {
+	var striC = C.CString(stri)
+	defer C.free(unsafe.Pointer(striC))
+	var tmpValue = NewQTimeFromPointer(C.QTime_QTime_FromString(striC, C.longlong(format)))
+	runtime.SetFinalizer(tmpValue, (*QTime).DestroyQTime)
+	return tmpValue
+}
+
+func QTime_FromString2(stri string, format string) *QTime {
+	var striC = C.CString(stri)
+	defer C.free(unsafe.Pointer(striC))
+	var formatC = C.CString(format)
+	defer C.free(unsafe.Pointer(formatC))
+	var tmpValue = NewQTimeFromPointer(C.QTime_QTime_FromString2(striC, formatC))
+	runtime.SetFinalizer(tmpValue, (*QTime).DestroyQTime)
+	return tmpValue
+}
+
+func (ptr *QTime) FromString2(stri string, format string) *QTime {
+	var striC = C.CString(stri)
+	defer C.free(unsafe.Pointer(striC))
+	var formatC = C.CString(format)
+	defer C.free(unsafe.Pointer(formatC))
+	var tmpValue = NewQTimeFromPointer(C.QTime_QTime_FromString2(striC, formatC))
+	runtime.SetFinalizer(tmpValue, (*QTime).DestroyQTime)
+	return tmpValue
+}
+
 func NewQTime() *QTime {
 	var tmpValue = NewQTimeFromPointer(C.QTime_NewQTime())
 	runtime.SetFinalizer(tmpValue, (*QTime).DestroyQTime)
@@ -61116,11 +61483,41 @@ func NewQTime3(h int, m int, s int, ms int) *QTime {
 	return tmpValue
 }
 
+func (ptr *QTime) AddMSecs(ms int) *QTime {
+	if ptr.Pointer() != nil {
+		var tmpValue = NewQTimeFromPointer(C.QTime_AddMSecs(ptr.Pointer(), C.int(int32(ms))))
+		runtime.SetFinalizer(tmpValue, (*QTime).DestroyQTime)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QTime) AddSecs(s int) *QTime {
+	if ptr.Pointer() != nil {
+		var tmpValue = NewQTimeFromPointer(C.QTime_AddSecs(ptr.Pointer(), C.int(int32(s))))
+		runtime.SetFinalizer(tmpValue, (*QTime).DestroyQTime)
+		return tmpValue
+	}
+	return nil
+}
+
 func (ptr *QTime) Elapsed() int {
 	if ptr.Pointer() != nil {
 		return int(int32(C.QTime_Elapsed(ptr.Pointer())))
 	}
 	return 0
+}
+
+func QTime_FromMSecsSinceStartOfDay(msecs int) *QTime {
+	var tmpValue = NewQTimeFromPointer(C.QTime_QTime_FromMSecsSinceStartOfDay(C.int(int32(msecs))))
+	runtime.SetFinalizer(tmpValue, (*QTime).DestroyQTime)
+	return tmpValue
+}
+
+func (ptr *QTime) FromMSecsSinceStartOfDay(msecs int) *QTime {
+	var tmpValue = NewQTimeFromPointer(C.QTime_QTime_FromMSecsSinceStartOfDay(C.int(int32(msecs))))
+	runtime.SetFinalizer(tmpValue, (*QTime).DestroyQTime)
+	return tmpValue
 }
 
 func (ptr *QTime) Hour() int {
@@ -64608,6 +65005,30 @@ func (ptr *QUrlQuery) Clear() {
 	}
 }
 
+func QUrlQuery_DefaultQueryPairDelimiter() *QChar {
+	var tmpValue = NewQCharFromPointer(C.QUrlQuery_QUrlQuery_DefaultQueryPairDelimiter())
+	runtime.SetFinalizer(tmpValue, (*QChar).DestroyQChar)
+	return tmpValue
+}
+
+func (ptr *QUrlQuery) DefaultQueryPairDelimiter() *QChar {
+	var tmpValue = NewQCharFromPointer(C.QUrlQuery_QUrlQuery_DefaultQueryPairDelimiter())
+	runtime.SetFinalizer(tmpValue, (*QChar).DestroyQChar)
+	return tmpValue
+}
+
+func QUrlQuery_DefaultQueryValueDelimiter() *QChar {
+	var tmpValue = NewQCharFromPointer(C.QUrlQuery_QUrlQuery_DefaultQueryValueDelimiter())
+	runtime.SetFinalizer(tmpValue, (*QChar).DestroyQChar)
+	return tmpValue
+}
+
+func (ptr *QUrlQuery) DefaultQueryValueDelimiter() *QChar {
+	var tmpValue = NewQCharFromPointer(C.QUrlQuery_QUrlQuery_DefaultQueryValueDelimiter())
+	runtime.SetFinalizer(tmpValue, (*QChar).DestroyQChar)
+	return tmpValue
+}
+
 func (ptr *QUrlQuery) HasQueryItem(key string) bool {
 	if ptr.Pointer() != nil {
 		var keyC = C.CString(key)
@@ -64638,6 +65059,24 @@ func (ptr *QUrlQuery) QueryItemValue(key string, encoding QUrl__ComponentFormatt
 		return cGoUnpackString(C.QUrlQuery_QueryItemValue(ptr.Pointer(), keyC, C.longlong(encoding)))
 	}
 	return ""
+}
+
+func (ptr *QUrlQuery) QueryPairDelimiter() *QChar {
+	if ptr.Pointer() != nil {
+		var tmpValue = NewQCharFromPointer(C.QUrlQuery_QueryPairDelimiter(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*QChar).DestroyQChar)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QUrlQuery) QueryValueDelimiter() *QChar {
+	if ptr.Pointer() != nil {
+		var tmpValue = NewQCharFromPointer(C.QUrlQuery_QueryValueDelimiter(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*QChar).DestroyQChar)
+		return tmpValue
+	}
+	return nil
 }
 
 func (ptr *QUrlQuery) RemoveAllQueryItems(key string) {
@@ -64757,6 +65196,42 @@ func (ptr *QUuid) DestroyQUuid() {
 	ptr.SetPointer(nil)
 }
 
+func QUuid_CreateUuid() *QUuid {
+	var tmpValue = NewQUuidFromPointer(C.QUuid_QUuid_CreateUuid())
+	runtime.SetFinalizer(tmpValue, (*QUuid).DestroyQUuid)
+	return tmpValue
+}
+
+func (ptr *QUuid) CreateUuid() *QUuid {
+	var tmpValue = NewQUuidFromPointer(C.QUuid_QUuid_CreateUuid())
+	runtime.SetFinalizer(tmpValue, (*QUuid).DestroyQUuid)
+	return tmpValue
+}
+
+func QUuid_CreateUuidV3(ns QUuid_ITF, baseData QByteArray_ITF) *QUuid {
+	var tmpValue = NewQUuidFromPointer(C.QUuid_QUuid_CreateUuidV3(PointerFromQUuid(ns), PointerFromQByteArray(baseData)))
+	runtime.SetFinalizer(tmpValue, (*QUuid).DestroyQUuid)
+	return tmpValue
+}
+
+func (ptr *QUuid) CreateUuidV3(ns QUuid_ITF, baseData QByteArray_ITF) *QUuid {
+	var tmpValue = NewQUuidFromPointer(C.QUuid_QUuid_CreateUuidV3(PointerFromQUuid(ns), PointerFromQByteArray(baseData)))
+	runtime.SetFinalizer(tmpValue, (*QUuid).DestroyQUuid)
+	return tmpValue
+}
+
+func QUuid_CreateUuidV5(ns QUuid_ITF, baseData QByteArray_ITF) *QUuid {
+	var tmpValue = NewQUuidFromPointer(C.QUuid_QUuid_CreateUuidV5(PointerFromQUuid(ns), PointerFromQByteArray(baseData)))
+	runtime.SetFinalizer(tmpValue, (*QUuid).DestroyQUuid)
+	return tmpValue
+}
+
+func (ptr *QUuid) CreateUuidV5(ns QUuid_ITF, baseData QByteArray_ITF) *QUuid {
+	var tmpValue = NewQUuidFromPointer(C.QUuid_QUuid_CreateUuidV5(PointerFromQUuid(ns), PointerFromQByteArray(baseData)))
+	runtime.SetFinalizer(tmpValue, (*QUuid).DestroyQUuid)
+	return tmpValue
+}
+
 func (ptr *QUuid) Variant() QUuid__Variant {
 	if ptr.Pointer() != nil {
 		return QUuid__Variant(C.QUuid_Variant(ptr.Pointer()))
@@ -64809,6 +65284,50 @@ func NewQUuid2(l uint, w1 uint16, w2 uint16, b1 string, b2 string, b3 string, b4
 	var b8C = C.CString(b8)
 	defer C.free(unsafe.Pointer(b8C))
 	var tmpValue = NewQUuidFromPointer(C.QUuid_NewQUuid2(C.uint(uint32(l)), C.ushort(w1), C.ushort(w2), b1C, b2C, b3C, b4C, b5C, b6C, b7C, b8C))
+	runtime.SetFinalizer(tmpValue, (*QUuid).DestroyQUuid)
+	return tmpValue
+}
+
+func QUuid_CreateUuidV32(ns QUuid_ITF, baseData string) *QUuid {
+	var baseDataC = C.CString(baseData)
+	defer C.free(unsafe.Pointer(baseDataC))
+	var tmpValue = NewQUuidFromPointer(C.QUuid_QUuid_CreateUuidV32(PointerFromQUuid(ns), baseDataC))
+	runtime.SetFinalizer(tmpValue, (*QUuid).DestroyQUuid)
+	return tmpValue
+}
+
+func (ptr *QUuid) CreateUuidV32(ns QUuid_ITF, baseData string) *QUuid {
+	var baseDataC = C.CString(baseData)
+	defer C.free(unsafe.Pointer(baseDataC))
+	var tmpValue = NewQUuidFromPointer(C.QUuid_QUuid_CreateUuidV32(PointerFromQUuid(ns), baseDataC))
+	runtime.SetFinalizer(tmpValue, (*QUuid).DestroyQUuid)
+	return tmpValue
+}
+
+func QUuid_CreateUuidV52(ns QUuid_ITF, baseData string) *QUuid {
+	var baseDataC = C.CString(baseData)
+	defer C.free(unsafe.Pointer(baseDataC))
+	var tmpValue = NewQUuidFromPointer(C.QUuid_QUuid_CreateUuidV52(PointerFromQUuid(ns), baseDataC))
+	runtime.SetFinalizer(tmpValue, (*QUuid).DestroyQUuid)
+	return tmpValue
+}
+
+func (ptr *QUuid) CreateUuidV52(ns QUuid_ITF, baseData string) *QUuid {
+	var baseDataC = C.CString(baseData)
+	defer C.free(unsafe.Pointer(baseDataC))
+	var tmpValue = NewQUuidFromPointer(C.QUuid_QUuid_CreateUuidV52(PointerFromQUuid(ns), baseDataC))
+	runtime.SetFinalizer(tmpValue, (*QUuid).DestroyQUuid)
+	return tmpValue
+}
+
+func QUuid_FromRfc4122(bytes QByteArray_ITF) *QUuid {
+	var tmpValue = NewQUuidFromPointer(C.QUuid_QUuid_FromRfc4122(PointerFromQByteArray(bytes)))
+	runtime.SetFinalizer(tmpValue, (*QUuid).DestroyQUuid)
+	return tmpValue
+}
+
+func (ptr *QUuid) FromRfc4122(bytes QByteArray_ITF) *QUuid {
+	var tmpValue = NewQUuidFromPointer(C.QUuid_QUuid_FromRfc4122(PointerFromQByteArray(bytes)))
 	runtime.SetFinalizer(tmpValue, (*QUuid).DestroyQUuid)
 	return tmpValue
 }
@@ -65208,6 +65727,24 @@ func (ptr *QVariant) ToByteArray() *QByteArray {
 	return nil
 }
 
+func (ptr *QVariant) ToChar() *QChar {
+	if ptr.Pointer() != nil {
+		var tmpValue = NewQCharFromPointer(C.QVariant_ToChar(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*QChar).DestroyQChar)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QVariant) ToDate() *QDate {
+	if ptr.Pointer() != nil {
+		var tmpValue = NewQDateFromPointer(C.QVariant_ToDate(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*QDate).DestroyQDate)
+		return tmpValue
+	}
+	return nil
+}
+
 func (ptr *QVariant) ToDateTime() *QDateTime {
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQDateTimeFromPointer(C.QVariant_ToDateTime(ptr.Pointer()))
@@ -65330,6 +65867,15 @@ func (ptr *QVariant) ToStringList() []string {
 		return strings.Split(cGoUnpackString(C.QVariant_ToStringList(ptr.Pointer())), "|")
 	}
 	return make([]string, 0)
+}
+
+func (ptr *QVariant) ToTime() *QTime {
+	if ptr.Pointer() != nil {
+		var tmpValue = NewQTimeFromPointer(C.QVariant_ToTime(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*QTime).DestroyQTime)
+		return tmpValue
+	}
+	return nil
 }
 
 func (ptr *QVariant) ToUrl() *QUrl {
@@ -65536,6 +66082,15 @@ func (ptr *QVariant) ToULongLong(ok bool) uint64 {
 		return uint64(C.QVariant_ToULongLong(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(ok)))))
 	}
 	return 0
+}
+
+func (ptr *QVariant) ToUuid() *QUuid {
+	if ptr.Pointer() != nil {
+		var tmpValue = NewQUuidFromPointer(C.QVariant_ToUuid(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*QUuid).DestroyQUuid)
+		return tmpValue
+	}
+	return nil
 }
 
 func (ptr *QVariant) TypeName() string {
@@ -66647,11 +67202,36 @@ func (ptr *QVersionNumber) Compare(v1 QVersionNumber_ITF, v2 QVersionNumber_ITF)
 	return int(int32(C.QVersionNumber_QVersionNumber_Compare(PointerFromQVersionNumber(v1), PointerFromQVersionNumber(v2))))
 }
 
+func QVersionNumber_FromString(stri string, suffixIndex int) *QVersionNumber {
+	var striC = C.CString(stri)
+	defer C.free(unsafe.Pointer(striC))
+	var tmpValue = NewQVersionNumberFromPointer(C.QVersionNumber_QVersionNumber_FromString(striC, C.int(int32(suffixIndex))))
+	runtime.SetFinalizer(tmpValue, (*QVersionNumber).DestroyQVersionNumber)
+	return tmpValue
+}
+
+func (ptr *QVersionNumber) FromString(stri string, suffixIndex int) *QVersionNumber {
+	var striC = C.CString(stri)
+	defer C.free(unsafe.Pointer(striC))
+	var tmpValue = NewQVersionNumberFromPointer(C.QVersionNumber_QVersionNumber_FromString(striC, C.int(int32(suffixIndex))))
+	runtime.SetFinalizer(tmpValue, (*QVersionNumber).DestroyQVersionNumber)
+	return tmpValue
+}
+
 func (ptr *QVersionNumber) IsPrefixOf(other QVersionNumber_ITF) bool {
 	if ptr.Pointer() != nil {
 		return C.QVersionNumber_IsPrefixOf(ptr.Pointer(), PointerFromQVersionNumber(other)) != 0
 	}
 	return false
+}
+
+func (ptr *QVersionNumber) Normalized() *QVersionNumber {
+	if ptr.Pointer() != nil {
+		var tmpValue = NewQVersionNumberFromPointer(C.QVersionNumber_Normalized(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*QVersionNumber).DestroyQVersionNumber)
+		return tmpValue
+	}
+	return nil
 }
 
 func (ptr *QVersionNumber) ToString() string {
@@ -66681,6 +67261,18 @@ func NewQVersionNumber6(maj int, min int) *QVersionNumber {
 
 func NewQVersionNumber7(maj int, min int, mic int) *QVersionNumber {
 	var tmpValue = NewQVersionNumberFromPointer(C.QVersionNumber_NewQVersionNumber7(C.int(int32(maj)), C.int(int32(min)), C.int(int32(mic))))
+	runtime.SetFinalizer(tmpValue, (*QVersionNumber).DestroyQVersionNumber)
+	return tmpValue
+}
+
+func QVersionNumber_CommonPrefix(v1 QVersionNumber_ITF, v2 QVersionNumber_ITF) *QVersionNumber {
+	var tmpValue = NewQVersionNumberFromPointer(C.QVersionNumber_QVersionNumber_CommonPrefix(PointerFromQVersionNumber(v1), PointerFromQVersionNumber(v2)))
+	runtime.SetFinalizer(tmpValue, (*QVersionNumber).DestroyQVersionNumber)
+	return tmpValue
+}
+
+func (ptr *QVersionNumber) CommonPrefix(v1 QVersionNumber_ITF, v2 QVersionNumber_ITF) *QVersionNumber {
+	var tmpValue = NewQVersionNumberFromPointer(C.QVersionNumber_QVersionNumber_CommonPrefix(PointerFromQVersionNumber(v1), PointerFromQVersionNumber(v2)))
 	runtime.SetFinalizer(tmpValue, (*QVersionNumber).DestroyQVersionNumber)
 	return tmpValue
 }
@@ -67804,6 +68396,15 @@ func (ptr *QXmlStreamReader) AtEnd() bool {
 		return C.QXmlStreamReader_AtEnd(ptr.Pointer()) != 0
 	}
 	return false
+}
+
+func (ptr *QXmlStreamReader) Attributes() *QXmlStreamAttributes {
+	if ptr.Pointer() != nil {
+		var tmpValue = NewQXmlStreamAttributesFromPointer(C.QXmlStreamReader_Attributes(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*QXmlStreamAttributes).DestroyQXmlStreamAttributes)
+		return tmpValue
+	}
+	return nil
 }
 
 func (ptr *QXmlStreamReader) CharacterOffset() int64 {

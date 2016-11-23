@@ -1150,7 +1150,9 @@ func (ptr *QAbstractXmlNodeModel) DisconnectName(ni QXmlNodeModelIndex_ITF) {
 
 func (ptr *QAbstractXmlNodeModel) Name(ni QXmlNodeModelIndex_ITF) *QXmlName {
 	if ptr.Pointer() != nil {
-
+		var tmpValue = NewQXmlNameFromPointer(C.QAbstractXmlNodeModel_Name(ptr.Pointer(), PointerFromQXmlNodeModelIndex(ni)))
+		runtime.SetFinalizer(tmpValue, (*QXmlName).DestroyQXmlName)
+		return tmpValue
 	}
 	return nil
 }
@@ -1338,6 +1340,15 @@ func (ptr *QAbstractXmlNodeModel) attributes_atList(i int) *QXmlNodeModelIndex {
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQXmlNodeModelIndexFromPointer(C.QAbstractXmlNodeModel_attributes_atList(ptr.Pointer(), C.int(int32(i))))
 		runtime.SetFinalizer(tmpValue, (*QXmlNodeModelIndex).DestroyQXmlNodeModelIndex)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QAbstractXmlNodeModel) namespaceBindings_atList(i int) *QXmlName {
+	if ptr.Pointer() != nil {
+		var tmpValue = NewQXmlNameFromPointer(C.QAbstractXmlNodeModel_namespaceBindings_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*QXmlName).DestroyQXmlName)
 		return tmpValue
 	}
 	return nil
@@ -1995,6 +2006,15 @@ func (ptr *QSimpleXmlNodeModel) DestroyQSimpleXmlNodeModelDefault() {
 	}
 }
 
+func (ptr *QSimpleXmlNodeModel) namespaceBindings_atList(i int) *QXmlName {
+	if ptr.Pointer() != nil {
+		var tmpValue = NewQXmlNameFromPointer(C.QSimpleXmlNodeModel_namespaceBindings_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*QXmlName).DestroyQXmlName)
+		return tmpValue
+	}
+	return nil
+}
+
 func (ptr *QSimpleXmlNodeModel) nodesByIdref_atList(i int) *QXmlNodeModelIndex {
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQXmlNodeModelIndexFromPointer(C.QSimpleXmlNodeModel_nodesByIdref_atList(ptr.Pointer(), C.int(int32(i))))
@@ -2106,7 +2126,7 @@ func callbackQSimpleXmlNodeModel_Name(ptr unsafe.Pointer, ni unsafe.Pointer) uns
 		return PointerFromQXmlName(signal.(func(*QXmlNodeModelIndex) *QXmlName)(NewQXmlNodeModelIndexFromPointer(ni)))
 	}
 
-	return PointerFromQXmlName(NewQSimpleXmlNodeModelFromPointer(ptr).NameDefault(NewQXmlNodeModelIndexFromPointer(ni)))
+	return PointerFromQXmlName(nil)
 }
 
 func (ptr *QSimpleXmlNodeModel) ConnectName(f func(ni *QXmlNodeModelIndex) *QXmlName) {
@@ -2125,14 +2145,9 @@ func (ptr *QSimpleXmlNodeModel) DisconnectName() {
 
 func (ptr *QSimpleXmlNodeModel) Name(ni QXmlNodeModelIndex_ITF) *QXmlName {
 	if ptr.Pointer() != nil {
-
-	}
-	return nil
-}
-
-func (ptr *QSimpleXmlNodeModel) NameDefault(ni QXmlNodeModelIndex_ITF) *QXmlName {
-	if ptr.Pointer() != nil {
-
+		var tmpValue = NewQXmlNameFromPointer(C.QSimpleXmlNodeModel_Name(ptr.Pointer(), PointerFromQXmlNodeModelIndex(ni)))
+		runtime.SetFinalizer(tmpValue, (*QXmlName).DestroyQXmlName)
+		return tmpValue
 	}
 	return nil
 }
@@ -3016,6 +3031,22 @@ func NewQXmlName2(namePool QXmlNamePool_ITF, localName string, namespaceURI stri
 	return tmpValue
 }
 
+func QXmlName_FromClarkName(clarkName string, namePool QXmlNamePool_ITF) *QXmlName {
+	var clarkNameC = C.CString(clarkName)
+	defer C.free(unsafe.Pointer(clarkNameC))
+	var tmpValue = NewQXmlNameFromPointer(C.QXmlName_QXmlName_FromClarkName(clarkNameC, PointerFromQXmlNamePool(namePool)))
+	runtime.SetFinalizer(tmpValue, (*QXmlName).DestroyQXmlName)
+	return tmpValue
+}
+
+func (ptr *QXmlName) FromClarkName(clarkName string, namePool QXmlNamePool_ITF) *QXmlName {
+	var clarkNameC = C.CString(clarkName)
+	defer C.free(unsafe.Pointer(clarkNameC))
+	var tmpValue = NewQXmlNameFromPointer(C.QXmlName_QXmlName_FromClarkName(clarkNameC, PointerFromQXmlNamePool(namePool)))
+	runtime.SetFinalizer(tmpValue, (*QXmlName).DestroyQXmlName)
+	return tmpValue
+}
+
 func QXmlName_IsNCName(candidate string) bool {
 	var candidateC = C.CString(candidate)
 	defer C.free(unsafe.Pointer(candidateC))
@@ -3381,6 +3412,15 @@ func (ptr *QXmlQuery) EvaluateTo(result QXmlResultItems_ITF) {
 	if ptr.Pointer() != nil {
 		C.QXmlQuery_EvaluateTo(ptr.Pointer(), PointerFromQXmlResultItems(result))
 	}
+}
+
+func (ptr *QXmlQuery) InitialTemplateName() *QXmlName {
+	if ptr.Pointer() != nil {
+		var tmpValue = NewQXmlNameFromPointer(C.QXmlQuery_InitialTemplateName(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*QXmlName).DestroyQXmlName)
+		return tmpValue
+	}
+	return nil
 }
 
 func (ptr *QXmlQuery) IsValid() bool {

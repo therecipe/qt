@@ -14491,6 +14491,15 @@ func (ptr *QSslConfiguration) ciphers_atList(i int) *QSslCipher {
 	return nil
 }
 
+func (ptr *QSslConfiguration) ellipticCurves_atList(i int) *QSslEllipticCurve {
+	if ptr.Pointer() != nil {
+		var tmpValue = NewQSslEllipticCurveFromPointer(C.QSslConfiguration_ellipticCurves_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*QSslEllipticCurve).DestroyQSslEllipticCurve)
+		return tmpValue
+	}
+	return nil
+}
+
 func (ptr *QSslConfiguration) localCertificateChain_atList(i int) *QSslCertificate {
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQSslCertificateFromPointer(C.QSslConfiguration_localCertificateChain_atList(ptr.Pointer(), C.int(int32(i))))
@@ -14513,6 +14522,15 @@ func (ptr *QSslConfiguration) supportedCiphers_atList(i int) *QSslCipher {
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQSslCipherFromPointer(C.QSslConfiguration_supportedCiphers_atList(ptr.Pointer(), C.int(int32(i))))
 		runtime.SetFinalizer(tmpValue, (*QSslCipher).DestroyQSslCipher)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QSslConfiguration) supportedEllipticCurves_atList(i int) *QSslEllipticCurve {
+	if ptr.Pointer() != nil {
+		var tmpValue = NewQSslEllipticCurveFromPointer(C.QSslConfiguration_supportedEllipticCurves_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*QSslEllipticCurve).DestroyQSslEllipticCurve)
 		return tmpValue
 	}
 	return nil
@@ -14581,6 +14599,38 @@ func (ptr *QSslEllipticCurve) IsValid() bool {
 		return C.QSslEllipticCurve_IsValid(ptr.Pointer()) != 0
 	}
 	return false
+}
+
+func QSslEllipticCurve_FromLongName(name string) *QSslEllipticCurve {
+	var nameC = C.CString(name)
+	defer C.free(unsafe.Pointer(nameC))
+	var tmpValue = NewQSslEllipticCurveFromPointer(C.QSslEllipticCurve_QSslEllipticCurve_FromLongName(nameC))
+	runtime.SetFinalizer(tmpValue, (*QSslEllipticCurve).DestroyQSslEllipticCurve)
+	return tmpValue
+}
+
+func (ptr *QSslEllipticCurve) FromLongName(name string) *QSslEllipticCurve {
+	var nameC = C.CString(name)
+	defer C.free(unsafe.Pointer(nameC))
+	var tmpValue = NewQSslEllipticCurveFromPointer(C.QSslEllipticCurve_QSslEllipticCurve_FromLongName(nameC))
+	runtime.SetFinalizer(tmpValue, (*QSslEllipticCurve).DestroyQSslEllipticCurve)
+	return tmpValue
+}
+
+func QSslEllipticCurve_FromShortName(name string) *QSslEllipticCurve {
+	var nameC = C.CString(name)
+	defer C.free(unsafe.Pointer(nameC))
+	var tmpValue = NewQSslEllipticCurveFromPointer(C.QSslEllipticCurve_QSslEllipticCurve_FromShortName(nameC))
+	runtime.SetFinalizer(tmpValue, (*QSslEllipticCurve).DestroyQSslEllipticCurve)
+	return tmpValue
+}
+
+func (ptr *QSslEllipticCurve) FromShortName(name string) *QSslEllipticCurve {
+	var nameC = C.CString(name)
+	defer C.free(unsafe.Pointer(nameC))
+	var tmpValue = NewQSslEllipticCurveFromPointer(C.QSslEllipticCurve_QSslEllipticCurve_FromShortName(nameC))
+	runtime.SetFinalizer(tmpValue, (*QSslEllipticCurve).DestroyQSslEllipticCurve)
+	return tmpValue
 }
 
 func (ptr *QSslEllipticCurve) IsTlsNamedCurve() bool {

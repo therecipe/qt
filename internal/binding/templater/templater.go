@@ -8,7 +8,7 @@ import (
 
 var (
 	Minimal       bool
-	Moc   bool
+	Moc           bool
 	CurrentModule string
 )
 

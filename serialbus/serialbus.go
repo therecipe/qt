@@ -2929,6 +2929,18 @@ func (ptr *QModbusDeviceIdentification) Contains(objectId uint) bool {
 	return false
 }
 
+func QModbusDeviceIdentification_FromByteArray(ba core.QByteArray_ITF) *QModbusDeviceIdentification {
+	var tmpValue = NewQModbusDeviceIdentificationFromPointer(C.QModbusDeviceIdentification_QModbusDeviceIdentification_FromByteArray(core.PointerFromQByteArray(ba)))
+	runtime.SetFinalizer(tmpValue, (*QModbusDeviceIdentification).DestroyQModbusDeviceIdentification)
+	return tmpValue
+}
+
+func (ptr *QModbusDeviceIdentification) FromByteArray(ba core.QByteArray_ITF) *QModbusDeviceIdentification {
+	var tmpValue = NewQModbusDeviceIdentificationFromPointer(C.QModbusDeviceIdentification_QModbusDeviceIdentification_FromByteArray(core.PointerFromQByteArray(ba)))
+	runtime.SetFinalizer(tmpValue, (*QModbusDeviceIdentification).DestroyQModbusDeviceIdentification)
+	return tmpValue
+}
+
 func (ptr *QModbusDeviceIdentification) Insert(objectId uint, value core.QByteArray_ITF) bool {
 	if ptr.Pointer() != nil {
 		return C.QModbusDeviceIdentification_Insert(ptr.Pointer(), C.uint(uint32(objectId)), core.PointerFromQByteArray(value)) != 0
@@ -3427,6 +3439,24 @@ func (ptr *QModbusReply) IsFinished() bool {
 		return C.QModbusReply_IsFinished(ptr.Pointer()) != 0
 	}
 	return false
+}
+
+func (ptr *QModbusReply) RawResult() *QModbusResponse {
+	if ptr.Pointer() != nil {
+		var tmpValue = NewQModbusResponseFromPointer(C.QModbusReply_RawResult(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*QModbusResponse).DestroyQModbusResponse)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QModbusReply) Result() *QModbusDataUnit {
+	if ptr.Pointer() != nil {
+		var tmpValue = NewQModbusDataUnitFromPointer(C.QModbusReply_Result(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*QModbusDataUnit).DestroyQModbusDataUnit)
+		return tmpValue
+	}
+	return nil
 }
 
 func (ptr *QModbusReply) ServerAddress() int {
@@ -4633,14 +4663,18 @@ func (ptr *QModbusRtuSerialSlave) DisconnectProcessPrivateRequest() {
 
 func (ptr *QModbusRtuSerialSlave) ProcessPrivateRequest(request QModbusPdu_ITF) *QModbusResponse {
 	if ptr.Pointer() != nil {
-
+		var tmpValue = NewQModbusResponseFromPointer(C.QModbusRtuSerialSlave_ProcessPrivateRequest(ptr.Pointer(), PointerFromQModbusPdu(request)))
+		runtime.SetFinalizer(tmpValue, (*QModbusResponse).DestroyQModbusResponse)
+		return tmpValue
 	}
 	return nil
 }
 
 func (ptr *QModbusRtuSerialSlave) ProcessPrivateRequestDefault(request QModbusPdu_ITF) *QModbusResponse {
 	if ptr.Pointer() != nil {
-
+		var tmpValue = NewQModbusResponseFromPointer(C.QModbusRtuSerialSlave_ProcessPrivateRequestDefault(ptr.Pointer(), PointerFromQModbusPdu(request)))
+		runtime.SetFinalizer(tmpValue, (*QModbusResponse).DestroyQModbusResponse)
+		return tmpValue
 	}
 	return nil
 }
@@ -4671,14 +4705,18 @@ func (ptr *QModbusRtuSerialSlave) DisconnectProcessRequest() {
 
 func (ptr *QModbusRtuSerialSlave) ProcessRequest(request QModbusPdu_ITF) *QModbusResponse {
 	if ptr.Pointer() != nil {
-
+		var tmpValue = NewQModbusResponseFromPointer(C.QModbusRtuSerialSlave_ProcessRequest(ptr.Pointer(), PointerFromQModbusPdu(request)))
+		runtime.SetFinalizer(tmpValue, (*QModbusResponse).DestroyQModbusResponse)
+		return tmpValue
 	}
 	return nil
 }
 
 func (ptr *QModbusRtuSerialSlave) ProcessRequestDefault(request QModbusPdu_ITF) *QModbusResponse {
 	if ptr.Pointer() != nil {
-
+		var tmpValue = NewQModbusResponseFromPointer(C.QModbusRtuSerialSlave_ProcessRequestDefault(ptr.Pointer(), PointerFromQModbusPdu(request)))
+		runtime.SetFinalizer(tmpValue, (*QModbusResponse).DestroyQModbusResponse)
+		return tmpValue
 	}
 	return nil
 }
@@ -5384,14 +5422,18 @@ func (ptr *QModbusServer) DisconnectProcessPrivateRequest() {
 
 func (ptr *QModbusServer) ProcessPrivateRequest(request QModbusPdu_ITF) *QModbusResponse {
 	if ptr.Pointer() != nil {
-
+		var tmpValue = NewQModbusResponseFromPointer(C.QModbusServer_ProcessPrivateRequest(ptr.Pointer(), PointerFromQModbusPdu(request)))
+		runtime.SetFinalizer(tmpValue, (*QModbusResponse).DestroyQModbusResponse)
+		return tmpValue
 	}
 	return nil
 }
 
 func (ptr *QModbusServer) ProcessPrivateRequestDefault(request QModbusPdu_ITF) *QModbusResponse {
 	if ptr.Pointer() != nil {
-
+		var tmpValue = NewQModbusResponseFromPointer(C.QModbusServer_ProcessPrivateRequestDefault(ptr.Pointer(), PointerFromQModbusPdu(request)))
+		runtime.SetFinalizer(tmpValue, (*QModbusResponse).DestroyQModbusResponse)
+		return tmpValue
 	}
 	return nil
 }
@@ -5422,14 +5464,18 @@ func (ptr *QModbusServer) DisconnectProcessRequest() {
 
 func (ptr *QModbusServer) ProcessRequest(request QModbusPdu_ITF) *QModbusResponse {
 	if ptr.Pointer() != nil {
-
+		var tmpValue = NewQModbusResponseFromPointer(C.QModbusServer_ProcessRequest(ptr.Pointer(), PointerFromQModbusPdu(request)))
+		runtime.SetFinalizer(tmpValue, (*QModbusResponse).DestroyQModbusResponse)
+		return tmpValue
 	}
 	return nil
 }
 
 func (ptr *QModbusServer) ProcessRequestDefault(request QModbusPdu_ITF) *QModbusResponse {
 	if ptr.Pointer() != nil {
-
+		var tmpValue = NewQModbusResponseFromPointer(C.QModbusServer_ProcessRequestDefault(ptr.Pointer(), PointerFromQModbusPdu(request)))
+		runtime.SetFinalizer(tmpValue, (*QModbusResponse).DestroyQModbusResponse)
+		return tmpValue
 	}
 	return nil
 }
@@ -6628,14 +6674,18 @@ func (ptr *QModbusTcpServer) DisconnectProcessPrivateRequest() {
 
 func (ptr *QModbusTcpServer) ProcessPrivateRequest(request QModbusPdu_ITF) *QModbusResponse {
 	if ptr.Pointer() != nil {
-
+		var tmpValue = NewQModbusResponseFromPointer(C.QModbusTcpServer_ProcessPrivateRequest(ptr.Pointer(), PointerFromQModbusPdu(request)))
+		runtime.SetFinalizer(tmpValue, (*QModbusResponse).DestroyQModbusResponse)
+		return tmpValue
 	}
 	return nil
 }
 
 func (ptr *QModbusTcpServer) ProcessPrivateRequestDefault(request QModbusPdu_ITF) *QModbusResponse {
 	if ptr.Pointer() != nil {
-
+		var tmpValue = NewQModbusResponseFromPointer(C.QModbusTcpServer_ProcessPrivateRequestDefault(ptr.Pointer(), PointerFromQModbusPdu(request)))
+		runtime.SetFinalizer(tmpValue, (*QModbusResponse).DestroyQModbusResponse)
+		return tmpValue
 	}
 	return nil
 }
@@ -6666,14 +6716,18 @@ func (ptr *QModbusTcpServer) DisconnectProcessRequest() {
 
 func (ptr *QModbusTcpServer) ProcessRequest(request QModbusPdu_ITF) *QModbusResponse {
 	if ptr.Pointer() != nil {
-
+		var tmpValue = NewQModbusResponseFromPointer(C.QModbusTcpServer_ProcessRequest(ptr.Pointer(), PointerFromQModbusPdu(request)))
+		runtime.SetFinalizer(tmpValue, (*QModbusResponse).DestroyQModbusResponse)
+		return tmpValue
 	}
 	return nil
 }
 
 func (ptr *QModbusTcpServer) ProcessRequestDefault(request QModbusPdu_ITF) *QModbusResponse {
 	if ptr.Pointer() != nil {
-
+		var tmpValue = NewQModbusResponseFromPointer(C.QModbusTcpServer_ProcessRequestDefault(ptr.Pointer(), PointerFromQModbusPdu(request)))
+		runtime.SetFinalizer(tmpValue, (*QModbusResponse).DestroyQModbusResponse)
+		return tmpValue
 	}
 	return nil
 }

@@ -5561,14 +5561,18 @@ func (ptr *QXmlInputSource) DisconnectNext() {
 
 func (ptr *QXmlInputSource) Next() *core.QChar {
 	if ptr.Pointer() != nil {
-
+		var tmpValue = core.NewQCharFromPointer(C.QXmlInputSource_Next(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*core.QChar).DestroyQChar)
+		return tmpValue
 	}
 	return nil
 }
 
 func (ptr *QXmlInputSource) NextDefault() *core.QChar {
 	if ptr.Pointer() != nil {
-
+		var tmpValue = core.NewQCharFromPointer(C.QXmlInputSource_NextDefault(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*core.QChar).DestroyQChar)
+		return tmpValue
 	}
 	return nil
 }

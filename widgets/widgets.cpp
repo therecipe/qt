@@ -8105,6 +8105,21 @@ char QCalendarWidget_IsNavigationBarVisible(void* ptr)
 	return static_cast<QCalendarWidget*>(ptr)->isNavigationBarVisible();
 }
 
+void* QCalendarWidget_MaximumDate(void* ptr)
+{
+	return new QDate(static_cast<QCalendarWidget*>(ptr)->maximumDate());
+}
+
+void* QCalendarWidget_MinimumDate(void* ptr)
+{
+	return new QDate(static_cast<QCalendarWidget*>(ptr)->minimumDate());
+}
+
+void* QCalendarWidget_SelectedDate(void* ptr)
+{
+	return new QDate(static_cast<QCalendarWidget*>(ptr)->selectedDate());
+}
+
 long long QCalendarWidget_SelectionMode(void* ptr)
 {
 	return static_cast<QCalendarWidget*>(ptr)->selectionMode();
@@ -8220,6 +8235,11 @@ void QCalendarWidget_CurrentPageChanged(void* ptr, int year, int month)
 	static_cast<QCalendarWidget*>(ptr)->currentPageChanged(year, month);
 }
 
+void* QCalendarWidget_DateTextFormat2(void* ptr, void* date)
+{
+	return new QTextCharFormat(static_cast<QCalendarWidget*>(ptr)->dateTextFormat(*static_cast<QDate*>(date)));
+}
+
 char QCalendarWidget_Event(void* ptr, void* event)
 {
 	return static_cast<QCalendarWidget*>(ptr)->event(static_cast<QEvent*>(event));
@@ -8228,6 +8248,11 @@ char QCalendarWidget_Event(void* ptr, void* event)
 char QCalendarWidget_EventFilter(void* ptr, void* watched, void* event)
 {
 	return static_cast<QCalendarWidget*>(ptr)->eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+}
+
+void* QCalendarWidget_HeaderTextFormat(void* ptr)
+{
+	return new QTextCharFormat(static_cast<QCalendarWidget*>(ptr)->headerTextFormat());
 }
 
 void QCalendarWidget_KeyPressEvent(void* ptr, void* event)
@@ -8373,6 +8398,11 @@ void QCalendarWidget_UpdateCell(void* ptr, void* date)
 void QCalendarWidget_UpdateCells(void* ptr)
 {
 	static_cast<QCalendarWidget*>(ptr)->updateCells();
+}
+
+void* QCalendarWidget_WeekdayTextFormat(void* ptr, long long dayOfWeek)
+{
+	return new QTextCharFormat(static_cast<QCalendarWidget*>(ptr)->weekdayTextFormat(static_cast<Qt::DayOfWeek>(dayOfWeek)));
 }
 
 int QCalendarWidget_YearShown(void* ptr)
@@ -15633,14 +15663,34 @@ long long QDateTimeEdit_DisplayedSections(void* ptr)
 	return static_cast<QDateTimeEdit*>(ptr)->displayedSections();
 }
 
+void* QDateTimeEdit_MaximumDate(void* ptr)
+{
+	return new QDate(static_cast<QDateTimeEdit*>(ptr)->maximumDate());
+}
+
 void* QDateTimeEdit_MaximumDateTime(void* ptr)
 {
 	return new QDateTime(static_cast<QDateTimeEdit*>(ptr)->maximumDateTime());
 }
 
+void* QDateTimeEdit_MaximumTime(void* ptr)
+{
+	return new QTime(static_cast<QDateTimeEdit*>(ptr)->maximumTime());
+}
+
+void* QDateTimeEdit_MinimumDate(void* ptr)
+{
+	return new QDate(static_cast<QDateTimeEdit*>(ptr)->minimumDate());
+}
+
 void* QDateTimeEdit_MinimumDateTime(void* ptr)
 {
 	return new QDateTime(static_cast<QDateTimeEdit*>(ptr)->minimumDateTime());
+}
+
+void* QDateTimeEdit_MinimumTime(void* ptr)
+{
+	return new QTime(static_cast<QDateTimeEdit*>(ptr)->minimumTime());
 }
 
 int QDateTimeEdit_SectionCount(void* ptr)
@@ -15751,6 +15801,11 @@ void QDateTimeEdit_Clear(void* ptr)
 void QDateTimeEdit_ClearDefault(void* ptr)
 {
 	static_cast<QDateTimeEdit*>(ptr)->QDateTimeEdit::clear();
+}
+
+void* QDateTimeEdit_Date(void* ptr)
+{
+	return new QDate(static_cast<QDateTimeEdit*>(ptr)->date());
 }
 
 void QDateTimeEdit_ConnectDateChanged(void* ptr)
@@ -15931,6 +15986,11 @@ struct QtWidgets_PackedString QDateTimeEdit_TextFromDateTime(void* ptr, void* da
 struct QtWidgets_PackedString QDateTimeEdit_TextFromDateTimeDefault(void* ptr, void* dateTime)
 {
 	return ({ QByteArray t15f412 = static_cast<QDateTimeEdit*>(ptr)->QDateTimeEdit::textFromDateTime(*static_cast<QDateTime*>(dateTime)).toUtf8(); QtWidgets_PackedString { const_cast<char*>(t15f412.prepend("WHITESPACE").constData()+10), t15f412.size()-10 }; });
+}
+
+void* QDateTimeEdit_Time(void* ptr)
+{
+	return new QTime(static_cast<QDateTimeEdit*>(ptr)->time());
 }
 
 void QDateTimeEdit_ConnectTimeChanged(void* ptr)
@@ -31821,6 +31881,11 @@ void* QGraphicsLayoutItem_SizeHint(void* ptr, long long which, void* constraint)
 	return ({ QSizeF tmpValue = static_cast<QGraphicsLayoutItem*>(ptr)->sizeHint(static_cast<Qt::SizeHint>(which), *static_cast<QSizeF*>(constraint)); new QSizeF(tmpValue.width(), tmpValue.height()); });
 }
 
+void* QGraphicsLayoutItem_SizePolicy(void* ptr)
+{
+	return new QSizePolicy(static_cast<QGraphicsLayoutItem*>(ptr)->sizePolicy());
+}
+
 void QGraphicsLayoutItem_UpdateGeometry(void* ptr)
 {
 	static_cast<QGraphicsLayoutItem*>(ptr)->updateGeometry();
@@ -35761,6 +35826,16 @@ double QGraphicsRotation_Angle(void* ptr)
 	return static_cast<QGraphicsRotation*>(ptr)->angle();
 }
 
+void* QGraphicsRotation_Axis(void* ptr)
+{
+	return new QVector3D(static_cast<QGraphicsRotation*>(ptr)->axis());
+}
+
+void* QGraphicsRotation_Origin(void* ptr)
+{
+	return new QVector3D(static_cast<QGraphicsRotation*>(ptr)->origin());
+}
+
 void QGraphicsRotation_SetAngle(void* ptr, double vqr)
 {
 	static_cast<QGraphicsRotation*>(ptr)->setAngle(vqr);
@@ -35967,6 +36042,11 @@ public:
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQGraphicsScale_EventFilter(this, watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQGraphicsScale_MetaObject(const_cast<MyQGraphicsScale*>(this))); };
 };
+
+void* QGraphicsScale_Origin(void* ptr)
+{
+	return new QVector3D(static_cast<QGraphicsScale*>(ptr)->origin());
+}
 
 void QGraphicsScale_SetOrigin(void* ptr, void* point)
 {
@@ -40273,6 +40353,11 @@ void* QGraphicsWidget_PreferredSize(void* ptr)
 void QGraphicsWidget_SetPreferredSize(void* ptr, void* vqs)
 {
 	static_cast<QGraphicsWidget*>(ptr)->setPreferredSize(*static_cast<QSizeF*>(vqs));
+}
+
+void* QGraphicsWidget_SizePolicy(void* ptr)
+{
+	return new QSizePolicy(static_cast<QGraphicsWidget*>(ptr)->sizePolicy());
 }
 
 void QGraphicsWidget_SetSizePolicy(void* ptr, void* vqs)
@@ -60577,6 +60662,11 @@ void* QPlainTextEdit_CreateStandardContextMenu2(void* ptr, void* position)
 	return static_cast<QPlainTextEdit*>(ptr)->createStandardContextMenu(*static_cast<QPoint*>(position));
 }
 
+void* QPlainTextEdit_CurrentCharFormat(void* ptr)
+{
+	return new QTextCharFormat(static_cast<QPlainTextEdit*>(ptr)->currentCharFormat());
+}
+
 void* QPlainTextEdit_CursorForPosition(void* ptr, void* pos)
 {
 	return new QTextCursor(static_cast<QPlainTextEdit*>(ptr)->cursorForPosition(*static_cast<QPoint*>(pos)));
@@ -69605,6 +69695,11 @@ void* QSpacerItem_SizeHint(void* ptr)
 void* QSpacerItem_SizeHintDefault(void* ptr)
 {
 	return ({ QSize tmpValue = static_cast<QSpacerItem*>(ptr)->QSpacerItem::sizeHint(); new QSize(tmpValue.width(), tmpValue.height()); });
+}
+
+void* QSpacerItem_SizePolicy(void* ptr)
+{
+	return new QSizePolicy(static_cast<QSpacerItem*>(ptr)->sizePolicy());
 }
 
 void* QSpacerItem_SpacerItem(void* ptr)
@@ -86238,7 +86333,7 @@ void QTextBrowser_SelectAllDefault(void* ptr)
 
 void QTextBrowser_SetAlignment(void* ptr, long long a)
 {
-	QMetaObject::invokeMethod(static_cast<QTextBrowser*>(ptr), "setAlignment", Q_ARG(Qt::AlignmentFlag, static_cast<Qt::AlignmentFlag>(a)));
+	QMetaObject::invokeMethod(static_cast<QTextBrowser*>(ptr), "setAlignment", Q_ARG(Qt::Alignment, static_cast<Qt::Alignment>(static_cast<Qt::AlignmentFlag>(a))));
 }
 
 void QTextBrowser_SetAlignmentDefault(void* ptr, long long a)
@@ -87187,6 +87282,11 @@ void* QTextEdit_CreateStandardContextMenu2(void* ptr, void* position)
 	return static_cast<QTextEdit*>(ptr)->createStandardContextMenu(*static_cast<QPoint*>(position));
 }
 
+void* QTextEdit_CurrentCharFormat(void* ptr)
+{
+	return new QTextCharFormat(static_cast<QTextEdit*>(ptr)->currentCharFormat());
+}
+
 void QTextEdit_ConnectCurrentCharFormatChanged(void* ptr)
 {
 	QObject::connect(static_cast<QTextEdit*>(ptr), static_cast<void (QTextEdit::*)(const QTextCharFormat &)>(&QTextEdit::currentCharFormatChanged), static_cast<MyQTextEdit*>(ptr), static_cast<void (MyQTextEdit::*)(const QTextCharFormat &)>(&MyQTextEdit::Signal_CurrentCharFormatChanged));
@@ -87551,7 +87651,7 @@ void QTextEdit_SelectionChanged(void* ptr)
 
 void QTextEdit_SetAlignment(void* ptr, long long a)
 {
-	QMetaObject::invokeMethod(static_cast<QTextEdit*>(ptr), "setAlignment", Q_ARG(Qt::AlignmentFlag, static_cast<Qt::AlignmentFlag>(a)));
+	QMetaObject::invokeMethod(static_cast<QTextEdit*>(ptr), "setAlignment", Q_ARG(Qt::Alignment, static_cast<Qt::Alignment>(static_cast<Qt::AlignmentFlag>(a))));
 }
 
 void QTextEdit_SetCurrentCharFormat(void* ptr, void* format)
@@ -97962,6 +98062,11 @@ void* QWidget_SizeHintDefault(void* ptr)
 void* QWidget_SizeIncrement(void* ptr)
 {
 	return ({ QSize tmpValue = static_cast<QWidget*>(ptr)->sizeIncrement(); new QSize(tmpValue.width(), tmpValue.height()); });
+}
+
+void* QWidget_SizePolicy(void* ptr)
+{
+	return new QSizePolicy(static_cast<QWidget*>(ptr)->sizePolicy());
 }
 
 struct QtWidgets_PackedString QWidget_StatusTip(void* ptr)

@@ -5958,6 +5958,15 @@ func (ptr *QSqlRelationalTableModel) OrderByClauseDefault() string {
 	return ""
 }
 
+func (ptr *QSqlRelationalTableModel) Relation(column int) *QSqlRelation {
+	if ptr.Pointer() != nil {
+		var tmpValue = NewQSqlRelationFromPointer(C.QSqlRelationalTableModel_Relation(ptr.Pointer(), C.int(int32(column))))
+		runtime.SetFinalizer(tmpValue, (*QSqlRelation).DestroyQSqlRelation)
+		return tmpValue
+	}
+	return nil
+}
+
 //export callbackQSqlRelationalTableModel_RelationModel
 func callbackQSqlRelationalTableModel_RelationModel(ptr unsafe.Pointer, column C.int) unsafe.Pointer {
 

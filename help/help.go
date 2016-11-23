@@ -12655,6 +12655,15 @@ func (ptr *QHelpSearchEngine) DestroyQHelpSearchEngine() {
 	}
 }
 
+func (ptr *QHelpSearchEngine) query_atList(i int) *QHelpSearchQuery {
+	if ptr.Pointer() != nil {
+		var tmpValue = NewQHelpSearchQueryFromPointer(C.QHelpSearchEngine_query_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*QHelpSearchQuery).DestroyQHelpSearchQuery)
+		return tmpValue
+	}
+	return nil
+}
+
 //export callbackQHelpSearchEngine_TimerEvent
 func callbackQHelpSearchEngine_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 
@@ -13185,6 +13194,15 @@ func (ptr *QHelpSearchQueryWidget) DestroyQHelpSearchQueryWidget() {
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
+}
+
+func (ptr *QHelpSearchQueryWidget) query_atList(i int) *QHelpSearchQuery {
+	if ptr.Pointer() != nil {
+		var tmpValue = NewQHelpSearchQueryFromPointer(C.QHelpSearchQueryWidget_query_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*QHelpSearchQuery).DestroyQHelpSearchQuery)
+		return tmpValue
+	}
+	return nil
 }
 
 //export callbackQHelpSearchQueryWidget_ActionEvent

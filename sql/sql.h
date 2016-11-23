@@ -402,6 +402,7 @@ char QSqlRelationalTableModel_InsertRowIntoTable(void* ptr, void* values);
 char QSqlRelationalTableModel_InsertRowIntoTableDefault(void* ptr, void* values);
 struct QtSql_PackedString QSqlRelationalTableModel_OrderByClause(void* ptr);
 struct QtSql_PackedString QSqlRelationalTableModel_OrderByClauseDefault(void* ptr);
+void* QSqlRelationalTableModel_Relation(void* ptr, int column);
 void* QSqlRelationalTableModel_RelationModel(void* ptr, int column);
 void* QSqlRelationalTableModel_RelationModelDefault(void* ptr, int column);
 char QSqlRelationalTableModel_RemoveColumns(void* ptr, int column, int count, void* parent);

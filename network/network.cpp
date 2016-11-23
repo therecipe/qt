@@ -66,6 +66,7 @@
 #include <QUdpSocket>
 #include <QUrl>
 #include <QVariant>
+#include <QVector>
 
 class MyQAbstractNetworkCache: public QAbstractNetworkCache
 {
@@ -5570,6 +5571,11 @@ void* QSslConfiguration_ciphers_atList(void* ptr, int i)
 	return new QSslCipher(static_cast<QList<QSslCipher>*>(ptr)->at(i));
 }
 
+void* QSslConfiguration_ellipticCurves_atList(void* ptr, int i)
+{
+	return new QSslEllipticCurve(static_cast<QVector<QSslEllipticCurve>*>(ptr)->at(i));
+}
+
 void* QSslConfiguration_localCertificateChain_atList(void* ptr, int i)
 {
 	return new QSslCertificate(static_cast<QList<QSslCertificate>*>(ptr)->at(i));
@@ -5585,6 +5591,11 @@ void* QSslConfiguration_supportedCiphers_atList(void* ptr, int i)
 	return new QSslCipher(static_cast<QList<QSslCipher>*>(ptr)->at(i));
 }
 
+void* QSslConfiguration_supportedEllipticCurves_atList(void* ptr, int i)
+{
+	return new QSslEllipticCurve(static_cast<QVector<QSslEllipticCurve>*>(ptr)->at(i));
+}
+
 void* QSslConfiguration_systemCaCertificates_atList(void* ptr, int i)
 {
 	return new QSslCertificate(static_cast<QList<QSslCertificate>*>(ptr)->at(i));
@@ -5598,6 +5609,16 @@ void* QSslEllipticCurve_NewQSslEllipticCurve()
 char QSslEllipticCurve_IsValid(void* ptr)
 {
 	return static_cast<QSslEllipticCurve*>(ptr)->isValid();
+}
+
+void* QSslEllipticCurve_QSslEllipticCurve_FromLongName(char* name)
+{
+	return new QSslEllipticCurve(QSslEllipticCurve::fromLongName(QString(name)));
+}
+
+void* QSslEllipticCurve_QSslEllipticCurve_FromShortName(char* name)
+{
+	return new QSslEllipticCurve(QSslEllipticCurve::fromShortName(QString(name)));
 }
 
 char QSslEllipticCurve_IsTlsNamedCurve(void* ptr)

@@ -590,9 +590,21 @@ func cppOutput(name, value string, f *parser.Function) string {
 
 			for _, f := range parser.ClassMap[value].Functions {
 				if f.Meta == parser.CONSTRUCTOR {
-					if len(f.Parameters) == 1 {
-						if CleanValue(f.Parameters[0].Value) == value {
-							return fmt.Sprintf("new %v(%v)", value, name)
+					switch len(f.Parameters) {
+					case 0:
+						{
+							if value == "QDataStream" {
+
+							} else {
+								return fmt.Sprintf("new %v(%v)", value, name)
+							}
+						}
+
+					case 1:
+						{
+							if CleanValue(f.Parameters[0].Value) == value {
+								return fmt.Sprintf("new %v(%v)", value, name)
+							}
 						}
 					}
 				}

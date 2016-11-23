@@ -122,7 +122,9 @@ func functionIsSupportedDefault(f *parser.Function) bool {
 		"QSGDynamicTexture::textureSize", "QSGDynamicTexture::hasAlphaChannel",
 		"QSGDynamicTexture::textureId",
 
-		"QModbusClient::open", "QModbusClient::close", "QModbusServer::open", "QModbusServer::close":
+		"QModbusClient::open", "QModbusClient::close", "QModbusServer::open", "QModbusServer::close",
+
+		"QSimpleXmlNodeModel::name":
 
 		{
 			return false
@@ -142,6 +144,9 @@ func functionIsSupportedDefault(f *parser.Function) bool {
 }
 
 func classIsSupported(c *parser.Class) bool {
+	if c == nil {
+		return false
+	}
 
 	switch c.Name {
 	case

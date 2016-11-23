@@ -418,6 +418,15 @@ func (ptr *QNdefNfcSmartPosterRecord) TitleCount() int {
 	return 0
 }
 
+func (ptr *QNdefNfcSmartPosterRecord) TitleRecord(index int) *QNdefNfcTextRecord {
+	if ptr.Pointer() != nil {
+		var tmpValue = NewQNdefNfcTextRecordFromPointer(C.QNdefNfcSmartPosterRecord_TitleRecord(ptr.Pointer(), C.int(int32(index))))
+		runtime.SetFinalizer(tmpValue, (*QNdefNfcTextRecord).DestroyQNdefNfcTextRecord)
+		return tmpValue
+	}
+	return nil
+}
+
 func (ptr *QNdefNfcSmartPosterRecord) TypeInfo() *core.QByteArray {
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQByteArrayFromPointer(C.QNdefNfcSmartPosterRecord_TypeInfo(ptr.Pointer()))
@@ -436,11 +445,29 @@ func (ptr *QNdefNfcSmartPosterRecord) Uri() *core.QUrl {
 	return nil
 }
 
+func (ptr *QNdefNfcSmartPosterRecord) UriRecord() *QNdefNfcUriRecord {
+	if ptr.Pointer() != nil {
+		var tmpValue = NewQNdefNfcUriRecordFromPointer(C.QNdefNfcSmartPosterRecord_UriRecord(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*QNdefNfcUriRecord).DestroyQNdefNfcUriRecord)
+		return tmpValue
+	}
+	return nil
+}
+
 func (ptr *QNdefNfcSmartPosterRecord) DestroyQNdefNfcSmartPosterRecord() {
 	if ptr.Pointer() != nil {
 		C.QNdefNfcSmartPosterRecord_DestroyQNdefNfcSmartPosterRecord(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
+}
+
+func (ptr *QNdefNfcSmartPosterRecord) titleRecords_atList(i int) *QNdefNfcTextRecord {
+	if ptr.Pointer() != nil {
+		var tmpValue = NewQNdefNfcTextRecordFromPointer(C.QNdefNfcSmartPosterRecord_titleRecords_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*QNdefNfcTextRecord).DestroyQNdefNfcTextRecord)
+		return tmpValue
+	}
+	return nil
 }
 
 //QNdefNfcTextRecord::Encoding

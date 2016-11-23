@@ -5283,6 +5283,11 @@ void* QSGAbstractRenderer_DeviceRect(void* ptr)
 	return ({ QRect tmpValue = static_cast<QSGAbstractRenderer*>(ptr)->deviceRect(); new QRect(tmpValue.x(), tmpValue.y(), tmpValue.width(), tmpValue.height()); });
 }
 
+void* QSGAbstractRenderer_ProjectionMatrix(void* ptr)
+{
+	return new QMatrix4x4(static_cast<QSGAbstractRenderer*>(ptr)->projectionMatrix());
+}
+
 void QSGAbstractRenderer_ConnectSceneGraphChanged(void* ptr)
 {
 	QObject::connect(static_cast<QSGAbstractRenderer*>(ptr), static_cast<void (QSGAbstractRenderer::*)()>(&QSGAbstractRenderer::sceneGraphChanged), static_cast<MyQSGAbstractRenderer*>(ptr), static_cast<void (MyQSGAbstractRenderer::*)()>(&MyQSGAbstractRenderer::Signal_SceneGraphChanged));
