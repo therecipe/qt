@@ -5,7 +5,7 @@ machine:
     QT_STUB: true
     DESKTOP: true
     ANDROID: true
-    QT_WINDOWS_CC: true
+    QT_WINDOWS_CC: false
     QT_MXE_ARCH: 386
     GOROOT: /usr/local/go
     GOPATH: /home/ubuntu/.go_project

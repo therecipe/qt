@@ -13,10 +13,10 @@ matrix:
       env: DESKTOP=true ANDROID=false QT_PKG_CONFIG=true PKG_CONFIG_PATH=/opt/qt57/lib/pkgconfig QT_DOC_DIR=/opt/qt57/doc QT_MISC_DIR=/opt/qt57
 
     - os: linux
-      env: DESKTOP=true ANDROID=true QT_WINDOWS_CC=true QT_MXE_ARCH=386
+      env: DESKTOP=true ANDROID=true QT_WINDOWS_CC=false QT_MXE_ARCH=386
 
     - os: linux
-      env: DESKTOP=true ANDROID=true QT_WINDOWS_CC=true QT_MXE_ARCH=amd64
+      env: DESKTOP=true ANDROID=true QT_WINDOWS_CC=false QT_MXE_ARCH=amd64
 
     - os: osx
       env: DESKTOP=true ANDROID=false
@@ -25,7 +25,7 @@ matrix:
       env: DESKTOP=false ANDROID=true
 
     - os: osx
-      osx_image: xcode8.2
+      osx_image: xcode8.1
       env: DESKTOP=true ANDROID=false QT_HOMEBREW=true
 
     - os: osx
@@ -37,7 +37,7 @@ matrix:
       env: DESKTOP=true ANDROID=false QT_HOMEBREW=true
 
     - os: osx
-      osx_image: xcode8.2
+      osx_image: xcode8.1
       env: DESKTOP=false ANDROID=false IOS=true
 
     - os: osx
@@ -49,7 +49,7 @@ matrix:
       env: DESKTOP=false ANDROID=false IOS=true
 
     - os: osx
-      osx_image: xcode8.2
+      osx_image: xcode8.1
       env: DESKTOP=false ANDROID=false IOS_SIMULATOR=true
 
     - os: osx
