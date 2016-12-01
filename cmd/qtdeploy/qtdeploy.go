@@ -445,7 +445,7 @@ func build() {
 		}
 	}
 
-	var cmd = exec.Command("go", "build", "-v", "-x", "-a", ldFlags, "-o", outputFile+ending)
+	var cmd = exec.Command("go", "build", "-v", ldFlags, "-o", outputFile+ending)
 	cmd.Dir = appPath
 
 	if tagFlags != "" {
