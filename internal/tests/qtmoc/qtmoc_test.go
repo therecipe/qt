@@ -1,4 +1,4 @@
-package moc
+package qtmoc
 
 import (
 	"os"
@@ -9,7 +9,7 @@ import (
 	"github.com/therecipe/qt/core"
 	"github.com/therecipe/qt/widgets"
 
-	"github.com/therecipe/qt/internal/ci/tests/moc/sub"
+	"github.com/therecipe/qt/internal/tests/qtmoc/sub"
 )
 
 //go:generate qtmoc

@@ -10962,6 +10962,7 @@ void* QPlainTextDocumentLayout_NewQPlainTextDocumentLayout(void* document);
 void* QPlainTextDocumentLayout_BlockBoundingRect(void* ptr, void* block);
 void QPlainTextDocumentLayout_DocumentChanged(void* ptr, int from, int charsRemoved, int charsAdded);
 void* QPlainTextDocumentLayout_DocumentSize(void* ptr);
+void QPlainTextDocumentLayout_Draw(void* ptr, void* vqp, void* vpa);
 void QPlainTextDocumentLayout_EnsureBlockLayout(void* ptr, void* block);
 void* QPlainTextDocumentLayout_FrameBoundingRect(void* ptr, void* vqt);
 int QPlainTextDocumentLayout_HitTest(void* ptr, void* vqp, long long vqt);

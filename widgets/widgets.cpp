@@ -15,6 +15,7 @@
 #include <QAbstractScrollArea>
 #include <QAbstractSlider>
 #include <QAbstractSpinBox>
+#include <QAbstractTextDocumentLayout>
 #include <QAccessible>
 #include <QAccessibleInterface>
 #include <QAccessibleWidget>
@@ -60165,6 +60166,11 @@ void QPlainTextDocumentLayout_DocumentChanged(void* ptr, int from, int charsRemo
 void* QPlainTextDocumentLayout_DocumentSize(void* ptr)
 {
 	return ({ QSizeF tmpValue = static_cast<QPlainTextDocumentLayout*>(ptr)->documentSize(); new QSizeF(tmpValue.width(), tmpValue.height()); });
+}
+
+void QPlainTextDocumentLayout_Draw(void* ptr, void* vqp, void* vpa)
+{
+	static_cast<QPlainTextDocumentLayout*>(ptr)->draw(static_cast<QPainter*>(vqp), *static_cast<QAbstractTextDocumentLayout::PaintContext*>(vpa));
 }
 
 void QPlainTextDocumentLayout_EnsureBlockLayout(void* ptr, void* block)

@@ -327,6 +327,10 @@ func cppInput(name, value string, f *parser.Function) string {
 				break
 			}
 
+			if parser.ClassMap[value].Fullname != "" {
+				value = parser.ClassMap[value].Fullname
+			}
+
 			if strings.Contains(vOld, "*") {
 				return fmt.Sprintf("static_cast<%v*>(%v)", value, name)
 			}

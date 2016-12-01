@@ -407,9 +407,20 @@ import (
 
 	bb.Write(input)
 
-	var out, err = format.Source(bb.Bytes())
+	var out, err = format.Source(renameSubClasses(bb.Bytes(), "_"))
 	if err != nil {
 		utils.Log.WithError(err).Panicln("failed to format:", module)
 	}
 	return out
+}
+
+func renameSubClasses(in []byte, r string) []byte {
+	for _, c := range parser.ClassMap {
+		if c.Fullname != "" {
+			in = []byte(strings.Replace(string(in), c.Name, strings.Replace(c.Fullname, "::", r, -1), -1))
+			in = []byte(strings.Replace(string(in), "C."+strings.Replace(c.Fullname, "::", r, -1), "C."+c.Name, -1))
+			in = []byte(strings.Replace(string(in), "_New"+strings.Replace(c.Fullname, "::", r, -1), "_New"+c.Name, -1))
+		}
+	}
+	return in
 }

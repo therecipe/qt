@@ -22,6 +22,98 @@ func cGoUnpackString(s C.struct_QtGui_PackedString) string {
 	return C.GoStringN(s.data, C.int(s.len))
 }
 
+type QAbstractTextDocumentLayout_PaintContext struct {
+	ptr unsafe.Pointer
+}
+
+type QAbstractTextDocumentLayout_PaintContext_ITF interface {
+	QAbstractTextDocumentLayout_PaintContext_PTR() *QAbstractTextDocumentLayout_PaintContext
+}
+
+func (p *QAbstractTextDocumentLayout_PaintContext) QAbstractTextDocumentLayout_PaintContext_PTR() *QAbstractTextDocumentLayout_PaintContext {
+	return p
+}
+
+func (p *QAbstractTextDocumentLayout_PaintContext) Pointer() unsafe.Pointer {
+	if p != nil {
+		return p.ptr
+	}
+	return nil
+}
+
+func (p *QAbstractTextDocumentLayout_PaintContext) SetPointer(ptr unsafe.Pointer) {
+	if p != nil {
+		p.ptr = ptr
+	}
+}
+
+func PointerFromQAbstractTextDocumentLayout_PaintContext(ptr QAbstractTextDocumentLayout_PaintContext_ITF) unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QAbstractTextDocumentLayout_PaintContext_PTR().Pointer()
+	}
+	return nil
+}
+
+func NewQAbstractTextDocumentLayout_PaintContextFromPointer(ptr unsafe.Pointer) *QAbstractTextDocumentLayout_PaintContext {
+	var n = new(QAbstractTextDocumentLayout_PaintContext)
+	n.SetPointer(ptr)
+	return n
+}
+
+func (ptr *QAbstractTextDocumentLayout_PaintContext) DestroyQAbstractTextDocumentLayout_PaintContext() {
+	C.free(ptr.Pointer())
+	ptr.SetPointer(nil)
+}
+
+func NewQAbstractTextDocumentLayout_PaintContext() *QAbstractTextDocumentLayout_PaintContext {
+	var tmpValue = NewQAbstractTextDocumentLayout_PaintContextFromPointer(C.PaintContext_NewPaintContext())
+	runtime.SetFinalizer(tmpValue, (*QAbstractTextDocumentLayout_PaintContext).DestroyQAbstractTextDocumentLayout_PaintContext)
+	return tmpValue
+}
+
+func (ptr *QAbstractTextDocumentLayout_PaintContext) Clip() *core.QRectF {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQRectFFromPointer(C.PaintContext_Clip(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*core.QRectF).DestroyQRectF)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QAbstractTextDocumentLayout_PaintContext) SetClip(vqr core.QRectF_ITF) {
+	if ptr.Pointer() != nil {
+		C.PaintContext_SetClip(ptr.Pointer(), core.PointerFromQRectF(vqr))
+	}
+}
+
+func (ptr *QAbstractTextDocumentLayout_PaintContext) CursorPosition() int {
+	if ptr.Pointer() != nil {
+		return int(int32(C.PaintContext_CursorPosition(ptr.Pointer())))
+	}
+	return 0
+}
+
+func (ptr *QAbstractTextDocumentLayout_PaintContext) SetCursorPosition(vin int) {
+	if ptr.Pointer() != nil {
+		C.PaintContext_SetCursorPosition(ptr.Pointer(), C.int(int32(vin)))
+	}
+}
+
+func (ptr *QAbstractTextDocumentLayout_PaintContext) Palette() *QPalette {
+	if ptr.Pointer() != nil {
+		var tmpValue = NewQPaletteFromPointer(C.PaintContext_Palette(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*QPalette).DestroyQPalette)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QAbstractTextDocumentLayout_PaintContext) SetPalette(vqp QPalette_ITF) {
+	if ptr.Pointer() != nil {
+		C.PaintContext_SetPalette(ptr.Pointer(), PointerFromQPalette(vqp))
+	}
+}
+
 type QAbstractOpenGLFunctions struct {
 	ptr unsafe.Pointer
 }
@@ -119,6 +211,14 @@ func (ptr *QAbstractTextDocumentLayout) Format(position int) *QTextCharFormat {
 		return tmpValue
 	}
 	return nil
+}
+
+func NewQAbstractTextDocumentLayout(document QTextDocument_ITF) *QAbstractTextDocumentLayout {
+	var tmpValue = NewQAbstractTextDocumentLayoutFromPointer(C.QAbstractTextDocumentLayout_NewQAbstractTextDocumentLayout(PointerFromQTextDocument(document)))
+	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+	}
+	return tmpValue
 }
 
 //export callbackQAbstractTextDocumentLayout_BlockBoundingRect
@@ -253,6 +353,35 @@ func (ptr *QAbstractTextDocumentLayout) DisconnectDocumentSizeChanged() {
 func (ptr *QAbstractTextDocumentLayout) DocumentSizeChanged(newSize core.QSizeF_ITF) {
 	if ptr.Pointer() != nil {
 		C.QAbstractTextDocumentLayout_DocumentSizeChanged(ptr.Pointer(), core.PointerFromQSizeF(newSize))
+	}
+}
+
+//export callbackQAbstractTextDocumentLayout_Draw
+func callbackQAbstractTextDocumentLayout_Draw(ptr unsafe.Pointer, painter unsafe.Pointer, context unsafe.Pointer) {
+
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractTextDocumentLayout::draw"); signal != nil {
+		signal.(func(*QPainter, *QAbstractTextDocumentLayout_PaintContext))(NewQPainterFromPointer(painter), NewQAbstractTextDocumentLayout_PaintContextFromPointer(context))
+	}
+
+}
+
+func (ptr *QAbstractTextDocumentLayout) ConnectDraw(f func(painter *QPainter, context *QAbstractTextDocumentLayout_PaintContext)) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractTextDocumentLayout::draw", f)
+	}
+}
+
+func (ptr *QAbstractTextDocumentLayout) DisconnectDraw(painter QPainter_ITF, context QAbstractTextDocumentLayout_PaintContext_ITF) {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractTextDocumentLayout::draw")
+	}
+}
+
+func (ptr *QAbstractTextDocumentLayout) Draw(painter QPainter_ITF, context QAbstractTextDocumentLayout_PaintContext_ITF) {
+	if ptr.Pointer() != nil {
+		C.QAbstractTextDocumentLayout_Draw(ptr.Pointer(), PointerFromQPainter(painter), PointerFromQAbstractTextDocumentLayout_PaintContext(context))
 	}
 }
 
@@ -54766,6 +54895,26 @@ func (ptr *QTouchDevice) Capabilities() QTouchDevice__CapabilityFlag {
 	return 0
 }
 
+func QTouchDevice_Devices() []*QTouchDevice {
+	return func(l C.struct_QtGui_PackedList) []*QTouchDevice {
+		var out = make([]*QTouchDevice, int(l.len))
+		for i := 0; i < int(l.len); i++ {
+			out[i] = NewQTouchDeviceFromPointer(l.data).devices_atList(i)
+		}
+		return out
+	}(C.QTouchDevice_QTouchDevice_Devices())
+}
+
+func (ptr *QTouchDevice) Devices() []*QTouchDevice {
+	return func(l C.struct_QtGui_PackedList) []*QTouchDevice {
+		var out = make([]*QTouchDevice, int(l.len))
+		for i := 0; i < int(l.len); i++ {
+			out[i] = NewQTouchDeviceFromPointer(l.data).devices_atList(i)
+		}
+		return out
+	}(C.QTouchDevice_QTouchDevice_Devices())
+}
+
 func (ptr *QTouchDevice) MaximumTouchPoints() int {
 	if ptr.Pointer() != nil {
 		return int(int32(C.QTouchDevice_MaximumTouchPoints(ptr.Pointer())))
@@ -54818,6 +54967,13 @@ func (ptr *QTouchDevice) DestroyQTouchDevice() {
 		C.QTouchDevice_DestroyQTouchDevice(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
+}
+
+func (ptr *QTouchDevice) devices_atList(i int) *QTouchDevice {
+	if ptr.Pointer() != nil {
+		return NewQTouchDeviceFromPointer(C.QTouchDevice_devices_atList(ptr.Pointer(), C.int(int32(i))))
+	}
+	return nil
 }
 
 type QTouchEvent struct {

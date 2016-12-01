@@ -21,7 +21,13 @@ type Variable struct {
 type getter struct{}
 type setter struct{}
 
-func (v *Variable) Class() string { return strings.Split(v.Fullname, "::")[0] }
+func (v *Variable) Class() string {
+	var s = strings.Split(v.Fullname, "::")
+	if len(s) == 3 {
+		return s[1]
+	}
+	return s[0]
+}
 
 func (v *Variable) variableToFunction(meta string) *Function {
 	if meta == GETTER {

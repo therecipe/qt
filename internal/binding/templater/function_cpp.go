@@ -201,7 +201,12 @@ func cppFunctionBody(function *parser.Function) string {
 					return ""
 				}(),
 
-				function.Class(),
+				func() string {
+					if c := parser.ClassMap[function.Class()]; c != nil && c.Fullname != "" {
+						return c.Fullname
+					}
+					return function.Class()
+				}(),
 
 				converter.CppInputParameters(function),
 			)
@@ -290,6 +295,9 @@ func cppFunctionBody(function *parser.Function) string {
 						}
 						return fmt.Sprintf("static_cast<%v*>(ptr)->",
 							func() string {
+								if c := parser.ClassMap[function.Class()]; c != nil && c.Fullname != "" {
+									return c.Fullname
+								}
 								if strings.HasSuffix(function.Name, "_atList") {
 									return fmt.Sprintf("%v<%v>", function.Container, strings.TrimPrefix(function.Output, "const "))
 								}
@@ -319,7 +327,12 @@ func cppFunctionBody(function *parser.Function) string {
 					if function.Static {
 						return function.Fullname
 					}
-					return fmt.Sprintf("static_cast<%v*>(ptr)->%v", function.Class(), function.Name)
+					return fmt.Sprintf("static_cast<%v*>(ptr)->%v", func() string {
+						if c := parser.ClassMap[function.Class()]; c != nil && c.Fullname != "" {
+							return c.Fullname
+						}
+						return function.Class()
+					}(), function.Name)
 				}()))
 		}
 
@@ -334,7 +347,12 @@ func cppFunctionBody(function *parser.Function) string {
 					if function.Static {
 						return function.Fullname
 					}
-					return fmt.Sprintf("static_cast<%v*>(ptr)->%v", function.Class(), function.Name)
+					return fmt.Sprintf("static_cast<%v*>(ptr)->%v", func() string {
+						if c := parser.ClassMap[function.Class()]; c != nil && c.Fullname != "" {
+							return c.Fullname
+						}
+						return function.Class()
+					}(), function.Name)
 				}()),
 
 				converter.CppInputParameters(&function),

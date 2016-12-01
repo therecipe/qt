@@ -23,16 +23,61 @@ type Class struct {
 	Enums      []*Enum     `xml:"enum"`
 	Variables  []*Variable `xml:"variable"`
 	Properties []*Variable `xml:"property"`
-	DocModule  string
-	Stub       bool
-	WeakLink   map[string]bool
-	Export     bool
+	Classes    []*Class    `xml:"class"`
+
+	DocModule string
+	Stub      bool
+	WeakLink  map[string]bool
+	Export    bool
+	Fullname  string
 }
 
 func (c *Class) register(module string) {
 	c.DocModule = c.Module
 	c.Module = module
 	ClassMap[c.Name] = c
+
+	for _, sc := range c.Classes {
+		if sc.Name == "PaintContext" {
+			var hasConstructor bool
+
+			sc.Fullname = fmt.Sprintf("%v::%v", c.Name, sc.Name)
+			for _, scf := range sc.Functions {
+				if scf.Meta == COPY_CONSTRUCTOR || scf.Meta == MOVE_CONSTRUCTOR || scf.Meta == CONSTRUCTOR {
+					scf.Status = "active"
+					scf.Access = "public"
+					hasConstructor = true
+				}
+			}
+			if !hasConstructor {
+				sc.Functions = append(sc.Functions, &Function{
+					Name:       sc.Name,
+					Fullname:   fmt.Sprintf("%v::%v", sc.Fullname, sc.Name),
+					Access:     "public",
+					Virtual:    "non",
+					Meta:       CONSTRUCTOR,
+					Output:     "",
+					Parameters: []*Parameter{},
+					Signature:  "()",
+				})
+			}
+			sc.register(module)
+		}
+	}
+}
+
+func (c *Class) registerVarsAndProps() {
+	for _, v := range c.Variables {
+		if !c.HasFunctionWithName(v.Name) && !IsPackedList(v.Output) {
+			c.Functions = append(c.Functions, v.variableToFunction(GETTER))
+			if !strings.Contains(v.Output, "const") {
+				c.Functions = append(c.Functions, v.variableToFunction(SETTER))
+			}
+		}
+	}
+	for _, p := range c.Properties {
+		c.Functions = append(c.Functions, p.propertyToFunctions(c)...)
+	}
 }
 
 func (c *Class) removeFunctions() {
@@ -292,7 +337,7 @@ func (c *Class) add() {
 }
 
 func IsPackedList(value string) bool {
-	return (strings.HasPrefix(value, "QList<Q") || strings.HasPrefix(value, "QVector<Q") || strings.HasPrefix(value, "QStack<Q") || strings.HasPrefix(value, "QQueue<Q")) && strings.Count(value, "<") == 1 && !strings.Contains(value, ":") && ClassMap[UnpackedList(value)] != nil
+	return (strings.HasPrefix(value, "QList<") || strings.HasPrefix(value, "QVector<") || strings.HasPrefix(value, "QStack<") || strings.HasPrefix(value, "QQueue<")) && strings.Count(value, "<") == 1 && !strings.Contains(value, ":") && ClassMap[UnpackedList(value)] != nil
 }
 
 func UnpackedList(value string) string {
@@ -511,7 +556,7 @@ func (c *Class) fixBases() {
 			}
 		}
 
-		if !found && c.Name != "SailfishApp" {
+		if !found && c.Name != "SailfishApp" && c.Fullname == "" {
 			utils.Log.Errorln("failed to find header file for:", c.Name, c.Module)
 		}
 

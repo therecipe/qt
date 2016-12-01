@@ -374,7 +374,9 @@ func preambleCpp(module string, input []byte) []byte {
 		if class == "SailfishApp" {
 			fmt.Fprintln(bb, "#include <sailfishapp.h>")
 		} else {
-			fmt.Fprintf(bb, "#include <%v>\n", class)
+			if strings.HasPrefix(class, "Q") {
+				fmt.Fprintf(bb, "#include <%v>\n", class)
+			}
 		}
 	}
 	fmt.Fprint(bb, "\n")

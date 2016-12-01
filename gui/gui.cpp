@@ -206,13 +206,50 @@
 #include <QWindow>
 #include <QWindowStateChangeEvent>
 
+void* PaintContext_NewPaintContext()
+{
+	return new QAbstractTextDocumentLayout::PaintContext();
+}
+
+void* PaintContext_Clip(void* ptr)
+{
+	return ({ QRectF tmpValue = static_cast<QAbstractTextDocumentLayout::PaintContext*>(ptr)->clip; new QRectF(tmpValue.x(), tmpValue.y(), tmpValue.width(), tmpValue.height()); });
+}
+
+void PaintContext_SetClip(void* ptr, void* vqr)
+{
+	static_cast<QAbstractTextDocumentLayout::PaintContext*>(ptr)->clip = *static_cast<QRectF*>(vqr);
+}
+
+int PaintContext_CursorPosition(void* ptr)
+{
+	return static_cast<QAbstractTextDocumentLayout::PaintContext*>(ptr)->cursorPosition;
+}
+
+void PaintContext_SetCursorPosition(void* ptr, int vin)
+{
+	static_cast<QAbstractTextDocumentLayout::PaintContext*>(ptr)->cursorPosition = vin;
+}
+
+void* PaintContext_Palette(void* ptr)
+{
+	return new QPalette(static_cast<QAbstractTextDocumentLayout::PaintContext*>(ptr)->palette);
+}
+
+void PaintContext_SetPalette(void* ptr, void* vqp)
+{
+	static_cast<QAbstractTextDocumentLayout::PaintContext*>(ptr)->palette = *static_cast<QPalette*>(vqp);
+}
+
 class MyQAbstractTextDocumentLayout: public QAbstractTextDocumentLayout
 {
 public:
+	MyQAbstractTextDocumentLayout(QTextDocument *document) : QAbstractTextDocumentLayout(document) {};
 	QRectF blockBoundingRect(const QTextBlock & block) const { return *static_cast<QRectF*>(callbackQAbstractTextDocumentLayout_BlockBoundingRect(const_cast<MyQAbstractTextDocumentLayout*>(this), const_cast<QTextBlock*>(&block))); };
 	void documentChanged(int position, int charsRemoved, int charsAdded) { callbackQAbstractTextDocumentLayout_DocumentChanged(this, position, charsRemoved, charsAdded); };
 	QSizeF documentSize() const { return *static_cast<QSizeF*>(callbackQAbstractTextDocumentLayout_DocumentSize(const_cast<MyQAbstractTextDocumentLayout*>(this))); };
 	void Signal_DocumentSizeChanged(const QSizeF & newSize) { callbackQAbstractTextDocumentLayout_DocumentSizeChanged(this, const_cast<QSizeF*>(&newSize)); };
+	void draw(QPainter * painter, const PaintContext & context) { callbackQAbstractTextDocumentLayout_Draw(this, painter, const_cast<PaintContext*>(&context)); };
 	QRectF frameBoundingRect(QTextFrame * frame) const { return *static_cast<QRectF*>(callbackQAbstractTextDocumentLayout_FrameBoundingRect(const_cast<MyQAbstractTextDocumentLayout*>(this), frame)); };
 	int hitTest(const QPointF & point, Qt::HitTestAccuracy accuracy) const { return callbackQAbstractTextDocumentLayout_HitTest(const_cast<MyQAbstractTextDocumentLayout*>(this), const_cast<QPointF*>(&point), accuracy); };
 	int pageCount() const { return callbackQAbstractTextDocumentLayout_PageCount(const_cast<MyQAbstractTextDocumentLayout*>(this)); };
@@ -238,6 +275,11 @@ struct QtGui_PackedString QAbstractTextDocumentLayout_AnchorAt(void* ptr, void* 
 void* QAbstractTextDocumentLayout_Format(void* ptr, int position)
 {
 	return new QTextCharFormat(static_cast<QAbstractTextDocumentLayout*>(ptr)->format(position));
+}
+
+void* QAbstractTextDocumentLayout_NewQAbstractTextDocumentLayout(void* document)
+{
+	return new MyQAbstractTextDocumentLayout(static_cast<QTextDocument*>(document));
 }
 
 void* QAbstractTextDocumentLayout_BlockBoundingRect(void* ptr, void* block)
@@ -273,6 +315,11 @@ void QAbstractTextDocumentLayout_DisconnectDocumentSizeChanged(void* ptr)
 void QAbstractTextDocumentLayout_DocumentSizeChanged(void* ptr, void* newSize)
 {
 	static_cast<QAbstractTextDocumentLayout*>(ptr)->documentSizeChanged(*static_cast<QSizeF*>(newSize));
+}
+
+void QAbstractTextDocumentLayout_Draw(void* ptr, void* painter, void* context)
+{
+	static_cast<QAbstractTextDocumentLayout*>(ptr)->draw(static_cast<QPainter*>(painter), *static_cast<QAbstractTextDocumentLayout::PaintContext*>(context));
 }
 
 void* QAbstractTextDocumentLayout_FrameBoundingRect(void* ptr, void* frame)
@@ -21491,6 +21538,11 @@ long long QTouchDevice_Capabilities(void* ptr)
 	return static_cast<QTouchDevice*>(ptr)->capabilities();
 }
 
+struct QtGui_PackedList QTouchDevice_QTouchDevice_Devices()
+{
+	return ({ QList<const QTouchDevice *>* tmpValue = new QList<const QTouchDevice *>(QTouchDevice::devices()); QtGui_PackedList { tmpValue, tmpValue->size() }; });
+}
+
 int QTouchDevice_MaximumTouchPoints(void* ptr)
 {
 	return static_cast<QTouchDevice*>(ptr)->maximumTouchPoints();
@@ -21529,6 +21581,11 @@ long long QTouchDevice_Type(void* ptr)
 void QTouchDevice_DestroyQTouchDevice(void* ptr)
 {
 	static_cast<QTouchDevice*>(ptr)->~QTouchDevice();
+}
+
+void* QTouchDevice_devices_atList(void* ptr, int i)
+{
+	return const_cast<QTouchDevice*>(static_cast<QList<const QTouchDevice *>*>(ptr)->at(i));
 }
 
 void* QTouchEvent_Device(void* ptr)

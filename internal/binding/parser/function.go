@@ -31,7 +31,7 @@ type Function struct {
 	TemplateModeGo  string
 	Child           *Function
 	NonMember       bool
-	NoMocDeduce          bool
+	NoMocDeduce     bool
 }
 
 type Parameter struct {
@@ -39,7 +39,13 @@ type Parameter struct {
 	Value string `xml:"left,attr"`
 }
 
-func (f *Function) Class() string { return strings.Split(f.Fullname, "::")[0] }
+func (f *Function) Class() string {
+	var s = strings.Split(f.Fullname, "::")
+	if len(s) == 3 {
+		return s[1]
+	}
+	return s[0]
+}
 
 func (f *Function) register(module string) {
 	if c, exists := ClassMap[f.Class()]; !exists {

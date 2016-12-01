@@ -614,6 +614,9 @@ func cppOutput(name, value string, f *parser.Function) string {
 	case parser.IsPackedList(value):
 		{
 			vOld = strings.Replace(vOld, " &", "", -1)
+			if con := parser.UnpackedList(value); parser.ClassMap[con] != nil && parser.ClassMap[con].Fullname != "" {
+				vOld = strings.Replace(value, con, parser.ClassMap[con].Fullname, -1)
+			}
 			return fmt.Sprintf("({ %v* tmpValue = new %v(%v); %v_PackedList { tmpValue, tmpValue->size() }; })", vOld, vOld, name, strings.Title(parser.ClassMap[f.Class()].Module))
 		}
 	}
