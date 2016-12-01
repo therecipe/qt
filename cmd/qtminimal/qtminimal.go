@@ -44,6 +44,7 @@ func main() {
 		imported       []string
 		cached         []string
 		importedPkgMap = make(map[string]bool)
+		goPaths = strings.Split(os.Getenv("GOPATH"), string(os.PathListSeparator))
 	)
 
 	var walkFuncImports = func(appPath string, info os.FileInfo, err error) error {
@@ -54,10 +55,12 @@ func main() {
 			} else {
 				for _, i := range pFile.Imports {
 					if !strings.Contains(i.Path.Value, "github.com/therecipe/qt") {
-						var appPath = filepath.Join(utils.MustGoPath(), "src", strings.Replace(i.Path.Value, "\"", "", -1))
-						if _, err := ioutil.ReadDir(appPath); err == nil {
-							if !isImported(imported, appPath) {
-								imported = append(imported, appPath)
+						for _, goPath := range goPaths {
+							var appPath = filepath.Join(goPath, "src", strings.Replace(i.Path.Value, "\"", "", -1))
+							if _, err := ioutil.ReadDir(appPath); err == nil {
+								if !isImported(imported, appPath) {
+									imported = append(imported, appPath)
+								}
 							}
 						}
 					} else {
