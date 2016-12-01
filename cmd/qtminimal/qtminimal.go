@@ -44,7 +44,7 @@ func main() {
 		imported       []string
 		cached         []string
 		importedPkgMap = make(map[string]bool)
-		goPaths = strings.Split(os.Getenv("GOPATH"), ":")
+		goPaths = strings.Split(os.Getenv("GOPATH"), string(os.PathListSeparator))
 	)
 
 	var walkFuncImports = func(appPath string, info os.FileInfo, err error) error {
