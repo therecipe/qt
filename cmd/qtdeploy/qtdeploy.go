@@ -196,7 +196,7 @@ func args() {
 }
 
 func moc() {
-	utils.RunCmd(exec.Command(filepath.Join(utils.MustGoBin(), "qtmoc"), appPath, "-cleanup"), fmt.Sprintf("execute qtmoc for %v on %v", buildTarget, runtime.GOOS))
+	utils.RunCmd(exec.Command(filepath.Join(utils.MustGoBin(), "qtmoc"), "-cleanup", appPath), fmt.Sprintf("execute qtmoc for %v on %v", buildTarget, runtime.GOOS))
 }
 
 func qrc() {
