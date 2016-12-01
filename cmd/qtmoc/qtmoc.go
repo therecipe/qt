@@ -67,6 +67,7 @@ func main() {
 		appPath = flag.Args()[0]
 	default:
 		fmt.Println("Only specify one path")
+		fmt.Printf("%s path/to/app\n", os.Args[0])
 		flag.PrintDefaults()
 		os.Exit(1)
 	}
