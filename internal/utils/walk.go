@@ -54,6 +54,16 @@ func WalkOnlyDirectory(f filepath.WalkFunc) filepath.WalkFunc {
 	}
 }
 
+// WalkOnlyFile is opposite of WalkFilterDirectory, it only allow file
+func WalkOnlyFile(f  filepath.WalkFunc) filepath.WalkFunc {
+	return func(path string, info os.FileInfo, err error) error {
+		if !info.IsDir() {
+			return f(path, info, err)
+		}
+		return nil
+	}
+}
+
 // WalkFilterError only process when no error occured
 func WalkFilterError(f filepath.WalkFunc) filepath.WalkFunc {
 	return func(path string, info os.FileInfo, err error) error {

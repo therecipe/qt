@@ -108,6 +108,21 @@ func TestWalkOnlyDirectory(t *testing.T) {
 	assert.Equal(t, output[1], "dir")
 }
 
+func TestWalkOnlyFile(t *testing.T) {
+	tempDir := mktemp(t)
+	defer func() {
+		_ = os.RemoveAll(tempDir)
+	}()
+	createSimpleFilesystem(tempDir, t)
+
+	result := newWalkResult(tempDir)
+	assert.NoError(t, filepath.Walk(tempDir, WalkOnlyFile(result.accumulate)))
+	output := result.sorted()
+	assert.Len(t, output, 2)
+	assert.Equal(t, output[0], "dir/subfile")
+	assert.Equal(t, output[1], "file")
+}
+
 func TestWalkFilterError(t *testing.T) {
 	tempDir := mktemp(t)
 	defer func() {
