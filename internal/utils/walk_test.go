@@ -123,19 +123,6 @@ func TestWalkOnlyFile(t *testing.T) {
 	assert.Equal(t, "file.txt", output[1])
 }
 
-func TestWalkFilterError(t *testing.T) {
-	tempDir := mktemp(t)
-	defer func() {
-		_ = os.RemoveAll(tempDir)
-	}()
-	createSimpleFilesystem(tempDir, t)
-
-	result := newWalkResult(tempDir)
-	assert.NoError(t, filepath.Walk(tempDir, WalkFilterError(result.accumulate)))
-	output := result.sorted()
-	assert.Len(t, output, 4)
-}
-
 func TestWalkFilterPrefix(t *testing.T) {
 	tempDir := mktemp(t)
 	defer func() {

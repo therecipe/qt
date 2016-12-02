@@ -28,8 +28,11 @@ var (
 // WalkFilterBlacklist filter out blacklisted file
 func WalkFilterBlacklist(root string, f filepath.WalkFunc) filepath.WalkFunc {
 	return func(path string, info os.FileInfo, err error) error {
-		relPath, relErr := filepath.Rel(root, path)
 		if err != nil {
+			return err
+		}
+		relPath, relErr := filepath.Rel(root, path)
+		if relErr != nil {
 			return relErr
 		}
 		for _, n := range blacklist {
@@ -48,6 +51,9 @@ func WalkFilterBlacklist(root string, f filepath.WalkFunc) filepath.WalkFunc {
 // WalkFilterDirectory only allow directory
 func WalkOnlyDirectory(f filepath.WalkFunc) filepath.WalkFunc {
 	return func(path string, info os.FileInfo, err error) error {
+		if err != nil {
+			return err
+		}
 		if info.IsDir() {
 			return f(path, info, err)
 		}
@@ -58,17 +64,10 @@ func WalkOnlyDirectory(f filepath.WalkFunc) filepath.WalkFunc {
 // WalkOnlyFile is opposite of WalkFilterDirectory, it only allow file
 func WalkOnlyFile(f filepath.WalkFunc) filepath.WalkFunc {
 	return func(path string, info os.FileInfo, err error) error {
-		if !info.IsDir() {
-			return f(path, info, err)
+		if err != nil {
+			return err
 		}
-		return nil
-	}
-}
-
-// WalkFilterError only process when no error occured
-func WalkFilterError(f filepath.WalkFunc) filepath.WalkFunc {
-	return func(path string, info os.FileInfo, err error) error {
-		if err == nil {
+		if !info.IsDir() {
 			return f(path, info, err)
 		}
 		return nil
@@ -78,6 +77,9 @@ func WalkFilterError(f filepath.WalkFunc) filepath.WalkFunc {
 // WalkFilterPrefix only process file that do not have specified prefix
 func WalkFilterPrefix(f filepath.WalkFunc, prefixes ...string) filepath.WalkFunc {
 	return func(path string, info os.FileInfo, err error) error {
+		if err != nil {
+			return err
+		}
 		name := info.Name()
 		for index := range prefixes {
 			if strings.HasPrefix(name, prefixes[index]) {
@@ -99,6 +101,9 @@ func WalkOnlyExtension(f filepath.WalkFunc, extensions ...string) filepath.WalkF
 		compiled[index] = fmt.Sprintf(".%s", extensions[index])
 	}
 	return func(path string, info os.FileInfo, err error) error {
+		if err != nil {
+			return err
+		}
 		if info.IsDir() {
 			return f(path, info, err)
 		}
