@@ -2,8 +2,8 @@ package utils
 
 import (
 	"os"
-
 	"path/filepath"
+	"strings"
 )
 
 var (
@@ -71,5 +71,21 @@ func WalkFilterError(f filepath.WalkFunc) filepath.WalkFunc {
 			return f(path, info, err)
 		}
 		return nil
+	}
+}
+
+// WalkFilterPrefix only process file that do not have specified prefix
+func WalkFilterPrefix(f filepath.WalkFunc, prefixes ...string) filepath.WalkFunc {
+	return func(path string, info os.FileInfo, err error) error {
+		name := info.Name()
+		for index := range prefixes {
+			if strings.HasPrefix(name, prefixes[index]) {
+				if info.IsDir() {
+					return filepath.SkipDir
+				}
+				return nil
+			}
+		}
+		return f(path, info, err)
 	}
 }
