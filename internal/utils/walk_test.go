@@ -5,15 +5,43 @@ import (
 	"io/ioutil"
 	"os"
 	"path/filepath"
+	"sort"
 
 	assert "github.com/stretchr/testify/require"
 	"github.com/Sirupsen/logrus"
-	"sort"
 )
+
+var 	dummyData = []byte{0, 1, 2}
 
 func init() {
 	logrus.SetLevel(logrus.DebugLevel)
 	Log.Level  = logrus.DebugLevel
+}
+
+type walkResult struct {
+	output []string
+	root string
+}
+
+func (w *walkResult) accumulate(path string, info os.FileInfo, err error) error {
+	if err == nil {
+		relPath, relErr := filepath.Rel(w.root, path)
+		if relErr != nil {
+			return relErr
+		}
+		w.output = append(w.output, relPath)
+	}
+	return err
+}
+
+func (w *walkResult) sorted() []string {
+	output := w.output
+	sort.Strings(output)
+	return output
+}
+
+func newWalkResult(root string) *walkResult {
+	return &walkResult{root: root}
 }
 
 func TestWalkFilterBlacklist(t *testing.T) {
@@ -23,8 +51,6 @@ func TestWalkFilterBlacklist(t *testing.T) {
 	defer func() {
 		_ = os.RemoveAll(tempDir)
 	}()
-
-	dummyData := []byte{0, 1, 2}
 
 	blackListedFilename := filepath.Join(tempDir, "ios")
 	assert.NoError(t, ioutil.WriteFile(blackListedFilename, dummyData, 0644))
@@ -42,22 +68,36 @@ func TestWalkFilterBlacklist(t *testing.T) {
 	whiteListedSubFilename := filepath.Join(whiteListedDirectory, "whiteListedSubFilename")
 	assert.NoError(t, ioutil.WriteFile(whiteListedSubFilename, dummyData, 0644))
 
-	var whiteListed []string
-	err = filepath.Walk(tempDir, WalkFilterBlacklist(tempDir, func(path string, info os.FileInfo, err error) error {
-		if err != nil {
-			t.Logf("%s is blacklisted", path)
-		} else {
-			relPath, relErr := filepath.Rel(tempDir, path)
-			assert.NoError(t, relErr)
-			whiteListed = append(whiteListed, relPath)
-		}
-		return nil
-	}))
+	result := newWalkResult(tempDir)
+	assert.NoError(t, filepath.Walk(tempDir, WalkFilterBlacklist(tempDir, result.accumulate)))
+	output := result.sorted()
+	assert.Len(t, output, 4)
+	assert.Equal(t, output[0], ".")
+	assert.Equal(t, output[1], "whiteListedDir")
+	assert.Equal(t, output[2], "whiteListedDir/whiteListedSubFilename")
+	assert.Equal(t, output[3], "whiteListedFile.dat")
+}
+
+func TestWalkOnlyDirectory(t *testing.T) {
+	tempDir, err := ioutil.TempDir("", "TestWalkOnlyDirectory")
 	assert.NoError(t, err)
-	assert.Len(t, whiteListed, 4)
-	sort.Strings(whiteListed)
-	assert.Equal(t, whiteListed[0], ".")
-	assert.Equal(t, whiteListed[1], "whiteListedDir")
-	assert.Equal(t, whiteListed[2], "whiteListedDir/whiteListedSubFilename")
-	assert.Equal(t, whiteListed[3], "whiteListedFile.dat")
+	assert.NotEmpty(t, tempDir)
+	defer func() {
+		_ = os.RemoveAll(tempDir)
+	}()
+
+	file := filepath.Join(tempDir, "file")
+	assert.NoError(t, ioutil.WriteFile(file, dummyData, 0644))
+
+	dir := filepath.Join(tempDir, "dir")
+	assert.NoError(t, os.Mkdir(dir, 0755))
+	subFile := filepath.Join(dir, "subfile")
+	assert.NoError(t, ioutil.WriteFile(subFile, dummyData, 0644))
+
+	result := newWalkResult(tempDir)
+	assert.NoError(t, filepath.Walk(tempDir, WalkOnlyDirectory(result.accumulate)))
+	output := result.sorted()
+	assert.Len(t, output, 2)
+	assert.Equal(t, output[0], ".")
+	assert.Equal(t, output[1], "dir")
 }

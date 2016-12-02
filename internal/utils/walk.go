@@ -43,3 +43,13 @@ func WalkFilterBlacklist(root string, f filepath.WalkFunc) filepath.WalkFunc {
 		return f(path, info, err)
 	}
 }
+
+// WalkFilterDirectory only allow directory
+func WalkOnlyDirectory(f filepath.WalkFunc) filepath.WalkFunc {
+	return func(path string, info os.FileInfo, err error) error {
+		if info.IsDir() {
+			return f(path, info, err)
+		}
+		return nil
+	}
+}
