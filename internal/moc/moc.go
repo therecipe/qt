@@ -476,16 +476,17 @@ func getCppTypeFromGoType(t string) string {
 func MocTree(appPath string) error {
 	return filepath.Walk(
 		appPath,
-		utils.WalkFilterError(
-			utils.WalkOnlyDirectory(
-				utils.WalkFilterBlacklist(appPath, func(path string, info os.FileInfo, err error) error {
-					am := newAppMoc(path)
-					if cErr := am.cleanup(); cErr != nil {
-						return cErr
-					}
-					return am.generate()
-				}),
-			),
+		utils.WalkOnlyDirectory(
+			utils.WalkFilterBlacklist(appPath, func(path string, info os.FileInfo, err error) error {
+				if err != nil {
+					return err
+				}
+				am := newAppMoc(path)
+				if cErr := am.cleanup(); cErr != nil {
+					return cErr
+				}
+				return am.generate()
+			}),
 		),
 	)
 }
