@@ -1,26 +1,26 @@
 package utils
 
 import (
-	"testing"
 	"io/ioutil"
 	"os"
 	"path/filepath"
 	"sort"
+	"testing"
 
-	assert "github.com/stretchr/testify/require"
 	"github.com/Sirupsen/logrus"
+	assert "github.com/stretchr/testify/require"
 )
 
-var 	dummyData = []byte{0, 1, 2}
+var dummyData = []byte{0, 1, 2}
 
 func init() {
 	logrus.SetLevel(logrus.DebugLevel)
-	Log.Level  = logrus.DebugLevel
+	Log.Level = logrus.DebugLevel
 }
 
 type walkResult struct {
 	output []string
-	root string
+	root   string
 }
 
 func (w *walkResult) accumulate(path string, info os.FileInfo, err error) error {
@@ -77,19 +77,19 @@ func TestWalkFilterBlacklist(t *testing.T) {
 	assert.NoError(t, filepath.Walk(tempDir, WalkFilterBlacklist(tempDir, result.accumulate)))
 	output := result.sorted()
 	assert.Len(t, output, 4)
-	assert.Equal(t, output[0], ".")
-	assert.Equal(t, output[1], "whiteListedDir")
-	assert.Equal(t, output[2], "whiteListedDir/whiteListedSubFilename")
-	assert.Equal(t, output[3], "whiteListedFile.dat")
+	assert.Equal(t, ".", output[0])
+	assert.Equal(t, "whiteListedDir", output[1])
+	assert.Equal(t, "whiteListedDir/whiteListedSubFilename", output[2])
+	assert.Equal(t, "whiteListedFile.dat", output[3])
 }
 
 func createSimpleFilesystem(tempDir string, t *testing.T) {
-	file := filepath.Join(tempDir, "file")
+	file := filepath.Join(tempDir, "file.txt")
 	assert.NoError(t, ioutil.WriteFile(file, dummyData, 0644))
 
-	dir := filepath.Join(tempDir, "dir")
+	dir := filepath.Join(tempDir, "dir.dirext")
 	assert.NoError(t, os.Mkdir(dir, 0755))
-	subFile := filepath.Join(dir, "subfile")
+	subFile := filepath.Join(dir, "subfile.png")
 	assert.NoError(t, ioutil.WriteFile(subFile, dummyData, 0644))
 }
 
@@ -104,8 +104,8 @@ func TestWalkOnlyDirectory(t *testing.T) {
 	assert.NoError(t, filepath.Walk(tempDir, WalkOnlyDirectory(result.accumulate)))
 	output := result.sorted()
 	assert.Len(t, output, 2)
-	assert.Equal(t, output[0], ".")
-	assert.Equal(t, output[1], "dir")
+	assert.Equal(t, ".", output[0])
+	assert.Equal(t, "dir.dirext", output[1])
 }
 
 func TestWalkOnlyFile(t *testing.T) {
@@ -119,8 +119,8 @@ func TestWalkOnlyFile(t *testing.T) {
 	assert.NoError(t, filepath.Walk(tempDir, WalkOnlyFile(result.accumulate)))
 	output := result.sorted()
 	assert.Len(t, output, 2)
-	assert.Equal(t, output[0], "dir/subfile")
-	assert.Equal(t, output[1], "file")
+	assert.Equal(t, "dir.dirext/subfile.png", output[0])
+	assert.Equal(t, "file.txt", output[1])
 }
 
 func TestWalkFilterError(t *testing.T) {
@@ -147,6 +147,22 @@ func TestWalkFilterPrefix(t *testing.T) {
 	assert.NoError(t, filepath.Walk(tempDir, WalkFilterPrefix(result.accumulate, "dir")))
 	output := result.sorted()
 	assert.Len(t, output, 2)
-	assert.Equal(t, output[0], ".")
-	assert.Equal(t, output[1], "file")
+	assert.Equal(t, ".", output[0])
+	assert.Equal(t, "file.txt", output[1])
+}
+
+func TestWalkOnlyExtension(t *testing.T) {
+	tempDir := mktemp(t)
+	defer func() {
+		_ = os.RemoveAll(tempDir)
+	}()
+	createSimpleFilesystem(tempDir, t)
+
+	result := newWalkResult(tempDir)
+	assert.NoError(t, filepath.Walk(tempDir, WalkOnlyExtension(result.accumulate, "txt")))
+	output := result.sorted()
+	assert.Len(t, output, 3)
+	assert.Equal(t, ".", output[0])
+	assert.Equal(t, "dir.dirext", output[1])
+	assert.Equal(t, "file.txt", output[2])
 }

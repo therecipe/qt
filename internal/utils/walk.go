@@ -1,6 +1,7 @@
 package utils
 
 import (
+	"fmt"
 	"os"
 	"path/filepath"
 	"strings"
@@ -55,7 +56,7 @@ func WalkOnlyDirectory(f filepath.WalkFunc) filepath.WalkFunc {
 }
 
 // WalkOnlyFile is opposite of WalkFilterDirectory, it only allow file
-func WalkOnlyFile(f  filepath.WalkFunc) filepath.WalkFunc {
+func WalkOnlyFile(f filepath.WalkFunc) filepath.WalkFunc {
 	return func(path string, info os.FileInfo, err error) error {
 		if !info.IsDir() {
 			return f(path, info, err)
@@ -87,5 +88,26 @@ func WalkFilterPrefix(f filepath.WalkFunc, prefixes ...string) filepath.WalkFunc
 			}
 		}
 		return f(path, info, err)
+	}
+}
+
+// WalkOnlyExtension only process file (not directory) that their extension is
+// specified, without the `.`  such as `go` or `html`.
+func WalkOnlyExtension(f filepath.WalkFunc, extensions ...string) filepath.WalkFunc {
+	compiled := make([]string, len(extensions))
+	for index := range extensions {
+		compiled[index] = fmt.Sprintf(".%s", extensions[index])
+	}
+	return func(path string, info os.FileInfo, err error) error {
+		if info.IsDir() {
+			return f(path, info, err)
+		}
+		extension := filepath.Ext(info.Name())
+		for index := range compiled {
+			if extension == compiled[index] {
+				return f(path, info, err)
+			}
+		}
+		return nil
 	}
 }
