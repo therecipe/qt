@@ -44,10 +44,15 @@ func newWalkResult(root string) *walkResult {
 	return &walkResult{root: root}
 }
 
-func TestWalkFilterBlacklist(t *testing.T) {
-	tempDir, err := ioutil.TempDir("", "TestWalkFilterBlacklist")
+func mktemp(t *testing.T) string {
+	tempDir, err := ioutil.TempDir("", "walk_test")
 	assert.NoError(t, err)
 	assert.NotEmpty(t, tempDir)
+	return tempDir
+}
+
+func TestWalkFilterBlacklist(t *testing.T) {
+	tempDir := mktemp(t)
 	defer func() {
 		_ = os.RemoveAll(tempDir)
 	}()
@@ -78,14 +83,7 @@ func TestWalkFilterBlacklist(t *testing.T) {
 	assert.Equal(t, output[3], "whiteListedFile.dat")
 }
 
-func TestWalkOnlyDirectory(t *testing.T) {
-	tempDir, err := ioutil.TempDir("", "TestWalkOnlyDirectory")
-	assert.NoError(t, err)
-	assert.NotEmpty(t, tempDir)
-	defer func() {
-		_ = os.RemoveAll(tempDir)
-	}()
-
+func createSimpleFilesystem(tempDir string, t *testing.T) {
 	file := filepath.Join(tempDir, "file")
 	assert.NoError(t, ioutil.WriteFile(file, dummyData, 0644))
 
@@ -93,6 +91,14 @@ func TestWalkOnlyDirectory(t *testing.T) {
 	assert.NoError(t, os.Mkdir(dir, 0755))
 	subFile := filepath.Join(dir, "subfile")
 	assert.NoError(t, ioutil.WriteFile(subFile, dummyData, 0644))
+}
+
+func TestWalkOnlyDirectory(t *testing.T) {
+	tempDir := mktemp(t)
+	defer func() {
+		_ = os.RemoveAll(tempDir)
+	}()
+	createSimpleFilesystem(tempDir, t)
 
 	result := newWalkResult(tempDir)
 	assert.NoError(t, filepath.Walk(tempDir, WalkOnlyDirectory(result.accumulate)))
@@ -100,4 +106,17 @@ func TestWalkOnlyDirectory(t *testing.T) {
 	assert.Len(t, output, 2)
 	assert.Equal(t, output[0], ".")
 	assert.Equal(t, output[1], "dir")
+}
+
+func TestWalkFilterError(t *testing.T) {
+	tempDir := mktemp(t)
+	defer func() {
+		_ = os.RemoveAll(tempDir)
+	}()
+	createSimpleFilesystem(tempDir, t)
+
+	result := newWalkResult(tempDir)
+	assert.NoError(t, filepath.Walk(tempDir, WalkFilterError(result.accumulate)))
+	output := result.sorted()
+	assert.Len(t, output, 4)
 }

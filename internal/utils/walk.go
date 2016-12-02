@@ -53,3 +53,13 @@ func WalkOnlyDirectory(f filepath.WalkFunc) filepath.WalkFunc {
 		return nil
 	}
 }
+
+// WalkFilterError only process when no error occured
+func WalkFilterError(f filepath.WalkFunc) filepath.WalkFunc {
+	return func(path string, info os.FileInfo, err error) error {
+		if err == nil {
+			return f(path, info, err)
+		}
+		return nil
+	}
+}
