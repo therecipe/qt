@@ -58,10 +58,6 @@ func cacheModules() (err error) {
 	if len(parser.ClassMap) == 0 {
 		for _, module := range templater.GetLibs() {
 			modName := strings.ToLower(module)
-			loopFields := logrus.Fields{
-				"module": fmt.Sprintf("qt/%v", modName),
-			}
-			utils.Log.WithFields(fields).WithFields(loopFields).Debug("loading module")
 			if _, err = parser.GetModule(modName); err != nil {
 				return
 			}

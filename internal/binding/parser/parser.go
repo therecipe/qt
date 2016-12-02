@@ -7,6 +7,7 @@ import (
 	"strings"
 
 	"github.com/therecipe/qt/internal/utils"
+	"github.com/Sirupsen/logrus"
 )
 
 const (
@@ -42,6 +43,11 @@ var (
 
 func GetModule(s string) (m *Module, err error) {
 	s = strings.ToLower(s)
+	fields := logrus.Fields{
+		"module": fmt.Sprintf("qt/%v", s),
+		"func": "GetModule",
+	}
+	utils.Log.WithFields(fields).Debug("loading module")
 
 	var goPath = utils.MustGoPath()
 
