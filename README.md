@@ -71,14 +71,14 @@ If you use the STUB version, you are forced to use `qtminimal` otherwise it's op
 #### Instructions
 
 * Desktop
-	* [Windows](#windows-1)
-	* [macOS](#macos-1)
-	* [Linux](#linux-1)
+	* [Windows](#windows)
+	* [macOS](#macos)
+	* [Linux](#linux)
 
 * Mobile
-	* [Android](#android-1)
-	* [iOS](#ios-1)
-	* [Sailfish OS](#sailfish-os-1)
+	* [Android](#android)
+	* [iOS](#ios)
+	* [Sailfish OS](#sailfish-os)
 
 * Embedded
 	* [Raspberry Pi](#raspberry-pi)
@@ -223,7 +223,7 @@ If you use the STUB version, you are forced to use `qtminimal` otherwise it's op
 
 ## Android
 
-1. Install the desktop version for [Windows](#windows-1), [macOS](#macos-1) or [Linux](#linux-1)
+1. Install the desktop version for [Windows](#windows), [macOS](#macos) or [Linux](#linux)
 
 2. Unzip the Android SDK in `C:\` or `$HOME`; you can also define a custom location with **ANDROID_SDK_DIR**
 	* https://dl.google.com/android/android-sdk_r24.4.1-windows.zip
@@ -262,7 +262,7 @@ If you use the STUB version, you are forced to use `qtminimal` otherwise it's op
 
 ## iOS
 
-1. Install the desktop version for [macOS](#macos-1)
+1. Install the desktop version for [macOS](#macos)
 
 2. Install and test (20 min)
 
@@ -274,7 +274,7 @@ If you use the STUB version, you are forced to use `qtminimal` otherwise it's op
 
 ## Sailfish OS
 
-1. Install the desktop version for [Windows](#windows-1), [macOS](#macos-1) or [Linux](#linux-1)
+1. Install the desktop version for [Windows](#windows), [macOS](#macos) or [Linux](#linux)
 
 2. Install VirtualBox; you can also define a custom location with **VIRTUALBOX_DIR**
 	* http://download.virtualbox.org/virtualbox/5.1.8/VirtualBox-5.1.8-111374-Win.exe
@@ -302,7 +302,7 @@ If you use the STUB version, you are forced to use `qtminimal` otherwise it's op
 
 ## Raspberry Pi
 
-1. Install the desktop version for [Linux](#linux-1)
+1. Install the desktop version for [Linux](#linux)
 
 2. Create a folder `$HOME/raspi`
 
@@ -431,7 +431,7 @@ If you use the STUB version, you are forced to use `qtminimal` otherwise it's op
 
 ## Docker
 
-1. Install the desktop version for [Windows](#windows-1), [macOS](#macos-1) or [Linux](#linux-1)
+1. Install the desktop version for [Windows](#windows), [macOS](#macos) or [Linux](#linux)
 
 2. Install and start [Docker](https://www.docker.com)
 
