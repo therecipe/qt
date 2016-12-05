@@ -16,6 +16,7 @@ import (
 
 	"github.com/therecipe/qt/internal/binding/parser"
 	"github.com/therecipe/qt/internal/binding/templater"
+	mocpkg "github.com/therecipe/qt/internal/moc"
 	"github.com/therecipe/qt/internal/utils"
 )
 
@@ -196,7 +197,7 @@ func args() {
 }
 
 func moc() {
-	utils.RunCmd(exec.Command(filepath.Join(utils.MustGoBin(), "qtmoc"), "-cleanup", appPath), fmt.Sprintf("execute qtmoc for %v on %v", buildTarget, runtime.GOOS))
+	utils.RunCmd(exec.Command(filepath.Join(utils.MustGoBin(), "qtmoc"), appPath), fmt.Sprintf("execute qtmoc for %v on %v", buildTarget, runtime.GOOS))
 }
 
 func qrc() {
@@ -999,18 +1000,13 @@ func pastdeploy() {
 	}
 }
 
-func cleanup() {
+func cleanup() error {
 	utils.RemoveAll(filepath.Join(appPath, "rrc.go"))
 	utils.RemoveAll(filepath.Join(appPath, "rrc.qrc"))
 	utils.RemoveAll(filepath.Join(appPath, "rrc.cpp"))
 	utils.RemoveAll(filepath.Join(appPath, "cgo_main_wrapper.go"))
 
-	var tmpMocFiles []string
-	json.Unmarshal([]byte(utils.Load(filepath.Join(appPath, "moc_cleanup.json"))), &tmpMocFiles)
-	for _, mf := range tmpMocFiles {
-		utils.RemoveAll(mf)
-	}
-	utils.RemoveAll(filepath.Join(appPath, "moc_cleanup.json"))
+	return mocpkg.CleanPath(appPath)
 }
 
 func deployDocker() {

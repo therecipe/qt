@@ -12,22 +12,13 @@ import (
 	"path/filepath"
 	"runtime"
 	"strings"
-	"encoding/json"
 
 	"github.com/Sirupsen/logrus"
+
 	"github.com/therecipe/qt/internal/binding/parser"
 	"github.com/therecipe/qt/internal/binding/templater"
 	"github.com/therecipe/qt/internal/utils"
 )
-
-var temporaryFiles = []string{
-	"moc.h", "moc.go", "moc.cpp", "moc_moc.h",
-	"moc_cgo_desktop_darwin_amd64.go", "moc_cgo_desktop_windows_386.go", "moc_cgo_desktop_windows_amd64.go", "moc_cgo_desktop_linux_amd64.go",
-	"moc_cgo_android_linux_arm.go",
-	"moc_cgo_ios_simulator_darwin_amd64.go", "moc_cgo_ios_simulator_darwin_386.go", "moc_cgo_ios_darwin_arm64.go", "moc_cgo_ios_darwin_arm.go",
-	"moc_cgo_sailfish_emulator_linux_386.go", "moc_cgo_sailfish_linux_arm.go",
-	"moc_cgo_rpi1_linux_arm.go", "moc_cgo_rpi2_linux_arm.go", "moc_cgo_rpi3_linux_arm.go",
-}
 
 func init() {
 	// TODO: dangerous
@@ -41,10 +32,9 @@ type appMoc struct {
 
 func newAppMoc(appPath string) *appMoc {
 	return &appMoc{
-		//tmpFiles: make([]string, 0),
 		appPath: appPath,
 		module: &parser.Module{
-			Project:   parser.MOC,
+			Project: parser.MOC,
 			Namespace: &parser.Namespace{
 				Classes: make([]*parser.Class, 0),
 			},
@@ -53,19 +43,18 @@ func newAppMoc(appPath string) *appMoc {
 }
 
 func cacheModules() (err error) {
-	fields := logrus.Fields{
-		"func": "cacheModules",
+
+	if len(parser.ClassMap) != 0 {
+		utils.Log.WithField("func", "cacheModules").Debug("modules already cached, skipping caching of modules")
+		return
 	}
-	if len(parser.ClassMap) == 0 {
-		for _, module := range templater.GetLibs() {
-			modName := strings.ToLower(module)
-			if _, err = parser.GetModule(modName); err != nil {
-				return
-			}
+
+	for _, module := range templater.GetLibs() {
+		if _, err = parser.GetModule(module); err != nil {
+			return
 		}
-	} else {
-		utils.Log.WithFields(fields).Warn("empty ClassMap")
 	}
+
 	return
 }
 
@@ -78,7 +67,7 @@ func (m *appMoc) cleanupClassMap() (size int) {
 			size++
 		}
 	}
-	return size
+	return
 }
 
 func (m *appMoc) parseGo(path string) error {
@@ -181,19 +170,57 @@ func (m *appMoc) parseGo(path string) error {
 	return nil
 }
 
-func (m *appMoc) cleanup() (err error) {
-	fields := logrus.Fields{"func": "Moc.cleanup"}
-	files := append(temporaryFiles, "moc_cleanup.json")
-	for _, n := range files {
-		absoluteFilename := filepath.Join(m.appPath, n)
-		if utils.Exists(absoluteFilename) {
-			utils.Log.WithFields(fields).WithField("filename", n).Debug("File already exists, cleanup")
-			if err = os.Remove(absoluteFilename); err != nil {
-				return
-			}
+func CleanPath(path string) (err error) {
+	var (
+		tmpFileNames = []string{
+			"moc_cleanup.json",
+			"moc.h", "moc.go", "moc.cpp", "moc_moc.h",
+			"moc_cgo_desktop_darwin_amd64.go", "moc_cgo_desktop_windows_386.go", "moc_cgo_desktop_windows_amd64.go", "moc_cgo_desktop_linux_amd64.go",
+			"moc_cgo_android_linux_arm.go",
+			"moc_cgo_ios_simulator_darwin_amd64.go", "moc_cgo_ios_simulator_darwin_386.go", "moc_cgo_ios_darwin_arm64.go", "moc_cgo_ios_darwin_arm.go",
+			"moc_cgo_sailfish_emulator_linux_386.go", "moc_cgo_sailfish_linux_arm.go",
+			"moc_cgo_rpi1_linux_arm.go", "moc_cgo_rpi2_linux_arm.go", "moc_cgo_rpi3_linux_arm.go",
 		}
+
+		fields = logrus.Fields{"func": "CleanPath", "path": path}
+	)
+
+	pathInfo, err := os.Stat(path)
+	if err != nil {
+		utils.Log.WithFields(fields).Error("Invalid path")
+		return err
 	}
-	return nil
+	if !pathInfo.IsDir() {
+		utils.Log.WithFields(fields).Error("Path is not a directory")
+		return errors.New("Path is not a directory")
+	}
+
+	err = filepath.Walk(
+		path,
+
+		utils.WalkOnlyFile(
+			func(path string, info os.FileInfo, err error) error {
+				if err != nil {
+					return err
+				}
+
+				for _, tFile := range tmpFileNames {
+					if tFile == info.Name() {
+						utils.Log.WithFields(fields).WithField("filename", tFile).Debug("Remove file")
+						return os.RemoveAll(path)
+					}
+				}
+
+				return nil
+			},
+		),
+	)
+
+	if err != nil {
+		utils.Log.WithFields(fields).WithError(err).Error("Failed to cleanup temp moc files")
+	}
+
+	return
 }
 
 func (m *appMoc) runQtMoc() (err error) {
@@ -277,7 +304,7 @@ func (m *appMoc) generate() error {
 	}
 
 	structsSize := len(m.module.Namespace.Classes)
-	if structsSize  == 0 {
+	if structsSize == 0 {
 		utils.Log.WithFields(fields).Warning("failed to find moc structs")
 		return nil
 	}
@@ -288,7 +315,7 @@ func (m *appMoc) generate() error {
 		return err
 	}
 
-	// ?
+	//find valid base classes for the moc classes in moc namespace and global namespace
 	for _, c := range m.module.Namespace.Classes {
 		for _, bc := range c.GetBases() {
 			if isInClassArray(m.module.Namespace.Classes, bc) || isInClassMap(parser.ClassMap, bc) {
@@ -301,8 +328,9 @@ func (m *appMoc) generate() error {
 	m.module.Prepare()
 
 	if m.cleanupClassMap() == 0 {
-		//utils.Log.WithFields(fields).Debug("failed to find at least one valid moc struct")
-		return errors.New("failed to find at least one valid moc struct")
+		utils.Log.WithFields(fields).Debug("failed to find at least one valid moc struct")
+		return nil
+		//return errors.New("failed to find at least one valid moc struct")
 	}
 
 	for _, c := range m.module.Namespace.Classes {
@@ -470,33 +498,18 @@ func getCppTypeFromGoType(t string) string {
 }
 
 // MocTree process an application and all it's sub-packages and create moc files
-func MocTree(appPath string, cleanup bool) error {
-	err := filepath.Walk(
+func MocTree(appPath string) (err error) {
+	err = filepath.Walk(
 		appPath,
 		utils.WalkOnlyDirectory(
 			utils.WalkFilterBlacklist(appPath, func(path string, info os.FileInfo, err error) error {
 				if err != nil {
 					return err
 				}
-				am := newAppMoc(path)
-				if cErr := am.cleanup(); cErr != nil {
-					return cErr
-				}
-				return am.generate()
+				return newAppMoc(path).generate()
 			}),
 		),
 	)
-	if err != nil {
-		return err
-	}
 
-	// TODO: what cleanup is used for?
-	if cleanup {
-		b, err := json.Marshal(temporaryFiles)
-		if err != nil {
-			return err
-		}
-		err = utils.SaveBytes(filepath.Join(appPath, "moc_cleanup.json"), b)
-	}
 	return err
 }
