@@ -246,12 +246,14 @@ func (m *appMoc) runQtMoc() (err error) {
 		}
 	}
 
-	if info, err = os.Stat(mocPath); err != nil {
-		return
-	}
-	if info.IsDir() {
-		err = fmt.Errorf("%s is a directory", mocPath)
-		return
+	if runtime.GOOS != "windows" { //TODO: os.Stat fails on windows
+		if info, err = os.Stat(mocPath); err != nil {
+			return
+		}
+		if info.IsDir() {
+			err = fmt.Errorf("%s is a directory", mocPath)
+			return
+		}
 	}
 
 	if err = os.Chdir(m.appPath); err != nil {
