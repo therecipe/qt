@@ -12,6 +12,7 @@ import (
 	"path/filepath"
 	"runtime"
 	"strings"
+	"encoding/json"
 
 	"github.com/Sirupsen/logrus"
 	"github.com/therecipe/qt/internal/binding/parser"
@@ -469,8 +470,8 @@ func getCppTypeFromGoType(t string) string {
 }
 
 // MocTree process an application and all it's sub-packages and create moc files
-func MocTree(appPath string) error {
-	return filepath.Walk(
+func MocTree(appPath string, cleanup bool) error {
+	err := filepath.Walk(
 		appPath,
 		utils.WalkOnlyDirectory(
 			utils.WalkFilterBlacklist(appPath, func(path string, info os.FileInfo, err error) error {
@@ -485,4 +486,17 @@ func MocTree(appPath string) error {
 			}),
 		),
 	)
+	if err != nil {
+		return err
+	}
+
+	// TODO: what cleanup is used for?
+	if cleanup {
+		b, err := json.Marshal(temporaryFiles)
+		if err != nil {
+			return err
+		}
+		err = utils.SaveBytes(filepath.Join(appPath, "moc_cleanup.json"), b)
+	}
+	return err
 }

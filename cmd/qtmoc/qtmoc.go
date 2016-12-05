@@ -58,20 +58,8 @@ func main() {
 	}
 
 	utils.Log.WithFields(fields).Debug("Running...")
-	if err = moc.MocTree(appPath); err != nil {
+	if err = moc.MocTree(appPath, cleanup); err != nil {
 		fmt.Println(err.Error())
 		os.Exit(1)
 	}
-
-	// TODO: what cleanup is used for?
-	/*
-	if cleanup {
-		var b, err = json.Marshal(temporaryFiles)
-		if err == nil {
-			utils.SaveBytes(filepath.Join(appPath, "moc_cleanup.json"), b)
-		} else {
-			utils.Log.WithError(err).WithFields(fields).Error("failed to save moc_cleanup.json")
-		}
-	}
-	*/
 }
