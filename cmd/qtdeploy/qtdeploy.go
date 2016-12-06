@@ -569,7 +569,7 @@ func predeploy() {
 				utils.Log.WithError(err).Panicf("failed to create json-config file for androiddeployqt on %v", runtime.GOOS)
 			}
 
-			utils.Save(filepath.Join(depPath, "android-libgo.so-deployment-settings.json"), strings.Replace(string(out), "\\", "/", -1))
+			utils.Save(filepath.Join(depPath, "android-libgo.so-deployment-settings.json"), strings.Replace(string(out), `\\`, `/`, -1))
 		}
 
 	case "ios", "ios-simulator":
