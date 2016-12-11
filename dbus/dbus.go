@@ -22,6 +22,59 @@ func cGoUnpackString(s C.struct_QtDBus_PackedString) string {
 	return C.GoStringN(s.data, C.int(s.len))
 }
 
+//QDBus::CallMode
+type QDBus__CallMode int64
+
+const (
+	QDBus__NoBlock      = QDBus__CallMode(0)
+	QDBus__Block        = QDBus__CallMode(1)
+	QDBus__BlockWithGui = QDBus__CallMode(2)
+	QDBus__AutoDetect   = QDBus__CallMode(3)
+)
+
+type QDBus struct {
+	ptr unsafe.Pointer
+}
+
+type QDBus_ITF interface {
+	QDBus_PTR() *QDBus
+}
+
+func (p *QDBus) QDBus_PTR() *QDBus {
+	return p
+}
+
+func (p *QDBus) Pointer() unsafe.Pointer {
+	if p != nil {
+		return p.ptr
+	}
+	return nil
+}
+
+func (p *QDBus) SetPointer(ptr unsafe.Pointer) {
+	if p != nil {
+		p.ptr = ptr
+	}
+}
+
+func PointerFromQDBus(ptr QDBus_ITF) unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QDBus_PTR().Pointer()
+	}
+	return nil
+}
+
+func NewQDBusFromPointer(ptr unsafe.Pointer) *QDBus {
+	var n = new(QDBus)
+	n.SetPointer(ptr)
+	return n
+}
+
+func (ptr *QDBus) DestroyQDBus() {
+	C.free(ptr.Pointer())
+	ptr.SetPointer(nil)
+}
+
 type QDBusAbstractAdaptor struct {
 	core.QObject
 }
@@ -466,6 +519,17 @@ func (ptr *QDBusAbstractInterface) AsyncCall(method string, arg1 core.QVariant_I
 		defer C.free(unsafe.Pointer(methodC))
 		var tmpValue = NewQDBusPendingCallFromPointer(C.QDBusAbstractInterface_AsyncCall(ptr.Pointer(), methodC, core.PointerFromQVariant(arg1), core.PointerFromQVariant(arg2), core.PointerFromQVariant(arg3), core.PointerFromQVariant(arg4), core.PointerFromQVariant(arg5), core.PointerFromQVariant(arg6), core.PointerFromQVariant(arg7), core.PointerFromQVariant(arg8)))
 		runtime.SetFinalizer(tmpValue, (*QDBusPendingCall).DestroyQDBusPendingCall)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QDBusAbstractInterface) Call2(mode QDBus__CallMode, method string, arg1 core.QVariant_ITF, arg2 core.QVariant_ITF, arg3 core.QVariant_ITF, arg4 core.QVariant_ITF, arg5 core.QVariant_ITF, arg6 core.QVariant_ITF, arg7 core.QVariant_ITF, arg8 core.QVariant_ITF) *QDBusMessage {
+	if ptr.Pointer() != nil {
+		var methodC = C.CString(method)
+		defer C.free(unsafe.Pointer(methodC))
+		var tmpValue = NewQDBusMessageFromPointer(C.QDBusAbstractInterface_Call2(ptr.Pointer(), C.longlong(mode), methodC, core.PointerFromQVariant(arg1), core.PointerFromQVariant(arg2), core.PointerFromQVariant(arg3), core.PointerFromQVariant(arg4), core.PointerFromQVariant(arg5), core.PointerFromQVariant(arg6), core.PointerFromQVariant(arg7), core.PointerFromQVariant(arg8)))
+		runtime.SetFinalizer(tmpValue, (*QDBusMessage).DestroyQDBusMessage)
 		return tmpValue
 	}
 	return nil
@@ -1253,6 +1317,15 @@ func (ptr *QDBusConnection) AsyncCall(message QDBusMessage_ITF, timeout int) *QD
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQDBusPendingCallFromPointer(C.QDBusConnection_AsyncCall(ptr.Pointer(), PointerFromQDBusMessage(message), C.int(int32(timeout))))
 		runtime.SetFinalizer(tmpValue, (*QDBusPendingCall).DestroyQDBusPendingCall)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QDBusConnection) Call(message QDBusMessage_ITF, mode QDBus__CallMode, timeout int) *QDBusMessage {
+	if ptr.Pointer() != nil {
+		var tmpValue = NewQDBusMessageFromPointer(C.QDBusConnection_Call(ptr.Pointer(), PointerFromQDBusMessage(message), C.longlong(mode), C.int(int32(timeout))))
+		runtime.SetFinalizer(tmpValue, (*QDBusMessage).DestroyQDBusMessage)
 		return tmpValue
 	}
 	return nil
@@ -5016,6 +5089,57 @@ func (ptr *QDBusUnixFileDescriptor) DestroyQDBusUnixFileDescriptor() {
 		C.QDBusUnixFileDescriptor_DestroyQDBusUnixFileDescriptor(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
+}
+
+//QDBusUtil::AllowEmptyFlag
+type QDBusUtil__AllowEmptyFlag int64
+
+const (
+	QDBusUtil__EmptyAllowed    = QDBusUtil__AllowEmptyFlag(0)
+	QDBusUtil__EmptyNotAllowed = QDBusUtil__AllowEmptyFlag(1)
+)
+
+type QDBusUtil struct {
+	ptr unsafe.Pointer
+}
+
+type QDBusUtil_ITF interface {
+	QDBusUtil_PTR() *QDBusUtil
+}
+
+func (p *QDBusUtil) QDBusUtil_PTR() *QDBusUtil {
+	return p
+}
+
+func (p *QDBusUtil) Pointer() unsafe.Pointer {
+	if p != nil {
+		return p.ptr
+	}
+	return nil
+}
+
+func (p *QDBusUtil) SetPointer(ptr unsafe.Pointer) {
+	if p != nil {
+		p.ptr = ptr
+	}
+}
+
+func PointerFromQDBusUtil(ptr QDBusUtil_ITF) unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QDBusUtil_PTR().Pointer()
+	}
+	return nil
+}
+
+func NewQDBusUtilFromPointer(ptr unsafe.Pointer) *QDBusUtil {
+	var n = new(QDBusUtil)
+	n.SetPointer(ptr)
+	return n
+}
+
+func (ptr *QDBusUtil) DestroyQDBusUtil() {
+	C.free(ptr.Pointer())
+	ptr.SetPointer(nil)
 }
 
 type QDBusVariant struct {

@@ -4826,6 +4826,112 @@ func (ptr *QPageSetupDialog) MetaObjectDefault() *core.QMetaObject {
 	return nil
 }
 
+//QPrint::ColorMode
+type QPrint__ColorMode int64
+
+const (
+	QPrint__GrayScale = QPrint__ColorMode(0)
+	QPrint__Color     = QPrint__ColorMode(1)
+)
+
+//QPrint::DeviceState
+type QPrint__DeviceState int64
+
+const (
+	QPrint__Idle    = QPrint__DeviceState(0)
+	QPrint__Active  = QPrint__DeviceState(1)
+	QPrint__Aborted = QPrint__DeviceState(2)
+	QPrint__Error   = QPrint__DeviceState(3)
+)
+
+//QPrint::DuplexMode
+type QPrint__DuplexMode int64
+
+const (
+	QPrint__DuplexNone      = QPrint__DuplexMode(0)
+	QPrint__DuplexAuto      = QPrint__DuplexMode(1)
+	QPrint__DuplexLongSide  = QPrint__DuplexMode(2)
+	QPrint__DuplexShortSide = QPrint__DuplexMode(3)
+)
+
+//QPrint::InputSlotId
+type QPrint__InputSlotId int64
+
+const (
+	QPrint__Upper           = QPrint__InputSlotId(0)
+	QPrint__Lower           = QPrint__InputSlotId(1)
+	QPrint__Middle          = QPrint__InputSlotId(2)
+	QPrint__Manual          = QPrint__InputSlotId(3)
+	QPrint__Envelope        = QPrint__InputSlotId(4)
+	QPrint__EnvelopeManual  = QPrint__InputSlotId(5)
+	QPrint__Auto            = QPrint__InputSlotId(6)
+	QPrint__Tractor         = QPrint__InputSlotId(7)
+	QPrint__SmallFormat     = QPrint__InputSlotId(8)
+	QPrint__LargeFormat     = QPrint__InputSlotId(9)
+	QPrint__LargeCapacity   = QPrint__InputSlotId(10)
+	QPrint__Cassette        = QPrint__InputSlotId(11)
+	QPrint__FormSource      = QPrint__InputSlotId(12)
+	QPrint__MaxPageSource   = QPrint__InputSlotId(13)
+	QPrint__CustomInputSlot = QPrint__InputSlotId(14)
+	QPrint__LastInputSlot   = QPrint__InputSlotId(QPrint__CustomInputSlot)
+	QPrint__OnlyOne         = QPrint__InputSlotId(QPrint__Upper)
+)
+
+//QPrint::OutputBinId
+type QPrint__OutputBinId int64
+
+const (
+	QPrint__AutoOutputBin   = QPrint__OutputBinId(0)
+	QPrint__UpperBin        = QPrint__OutputBinId(1)
+	QPrint__LowerBin        = QPrint__OutputBinId(2)
+	QPrint__RearBin         = QPrint__OutputBinId(3)
+	QPrint__CustomOutputBin = QPrint__OutputBinId(4)
+	QPrint__LastOutputBin   = QPrint__OutputBinId(QPrint__CustomOutputBin)
+)
+
+type QPrint struct {
+	ptr unsafe.Pointer
+}
+
+type QPrint_ITF interface {
+	QPrint_PTR() *QPrint
+}
+
+func (p *QPrint) QPrint_PTR() *QPrint {
+	return p
+}
+
+func (p *QPrint) Pointer() unsafe.Pointer {
+	if p != nil {
+		return p.ptr
+	}
+	return nil
+}
+
+func (p *QPrint) SetPointer(ptr unsafe.Pointer) {
+	if p != nil {
+		p.ptr = ptr
+	}
+}
+
+func PointerFromQPrint(ptr QPrint_ITF) unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QPrint_PTR().Pointer()
+	}
+	return nil
+}
+
+func NewQPrintFromPointer(ptr unsafe.Pointer) *QPrint {
+	var n = new(QPrint)
+	n.SetPointer(ptr)
+	return n
+}
+
+func (ptr *QPrint) DestroyQPrint() {
+	C.free(ptr.Pointer())
+	ptr.SetPointer(nil)
+}
+
 type QPrintDialog struct {
 	QAbstractPrintDialog
 }

@@ -15697,6 +15697,57 @@ func (ptr *QSGBasicGeometryNode) PreprocessDefault() {
 	}
 }
 
+//QSGBatchRenderer::BatchCompatibility
+type QSGBatchRenderer__BatchCompatibility int64
+
+const (
+	QSGBatchRenderer__BatchBreaksOnCompare = QSGBatchRenderer__BatchCompatibility(0)
+	QSGBatchRenderer__BatchIsCompatible    = QSGBatchRenderer__BatchCompatibility(1)
+)
+
+type QSGBatchRenderer struct {
+	ptr unsafe.Pointer
+}
+
+type QSGBatchRenderer_ITF interface {
+	QSGBatchRenderer_PTR() *QSGBatchRenderer
+}
+
+func (p *QSGBatchRenderer) QSGBatchRenderer_PTR() *QSGBatchRenderer {
+	return p
+}
+
+func (p *QSGBatchRenderer) Pointer() unsafe.Pointer {
+	if p != nil {
+		return p.ptr
+	}
+	return nil
+}
+
+func (p *QSGBatchRenderer) SetPointer(ptr unsafe.Pointer) {
+	if p != nil {
+		p.ptr = ptr
+	}
+}
+
+func PointerFromQSGBatchRenderer(ptr QSGBatchRenderer_ITF) unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QSGBatchRenderer_PTR().Pointer()
+	}
+	return nil
+}
+
+func NewQSGBatchRendererFromPointer(ptr unsafe.Pointer) *QSGBatchRenderer {
+	var n = new(QSGBatchRenderer)
+	n.SetPointer(ptr)
+	return n
+}
+
+func (ptr *QSGBatchRenderer) DestroyQSGBatchRenderer() {
+	C.free(ptr.Pointer())
+	ptr.SetPointer(nil)
+}
+
 type QSGClipNode struct {
 	QSGBasicGeometryNode
 }

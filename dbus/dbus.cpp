@@ -168,6 +168,11 @@ void* QDBusAbstractInterface_AsyncCall(void* ptr, char* method, void* arg1, void
 	return new QDBusPendingCall(static_cast<QDBusAbstractInterface*>(ptr)->asyncCall(QString(method), *static_cast<QVariant*>(arg1), *static_cast<QVariant*>(arg2), *static_cast<QVariant*>(arg3), *static_cast<QVariant*>(arg4), *static_cast<QVariant*>(arg5), *static_cast<QVariant*>(arg6), *static_cast<QVariant*>(arg7), *static_cast<QVariant*>(arg8)));
 }
 
+void* QDBusAbstractInterface_Call2(void* ptr, long long mode, char* method, void* arg1, void* arg2, void* arg3, void* arg4, void* arg5, void* arg6, void* arg7, void* arg8)
+{
+	return new QDBusMessage(static_cast<QDBusAbstractInterface*>(ptr)->call(static_cast<QDBus::CallMode>(mode), QString(method), *static_cast<QVariant*>(arg1), *static_cast<QVariant*>(arg2), *static_cast<QVariant*>(arg3), *static_cast<QVariant*>(arg4), *static_cast<QVariant*>(arg5), *static_cast<QVariant*>(arg6), *static_cast<QVariant*>(arg7), *static_cast<QVariant*>(arg8)));
+}
+
 void* QDBusAbstractInterface_Call(void* ptr, char* method, void* arg1, void* arg2, void* arg3, void* arg4, void* arg5, void* arg6, void* arg7, void* arg8)
 {
 	return new QDBusMessage(static_cast<QDBusAbstractInterface*>(ptr)->call(QString(method), *static_cast<QVariant*>(arg1), *static_cast<QVariant*>(arg2), *static_cast<QVariant*>(arg3), *static_cast<QVariant*>(arg4), *static_cast<QVariant*>(arg5), *static_cast<QVariant*>(arg6), *static_cast<QVariant*>(arg7), *static_cast<QVariant*>(arg8)));
@@ -466,6 +471,11 @@ struct QtDBus_PackedString QDBusConnection_BaseService(void* ptr)
 void* QDBusConnection_AsyncCall(void* ptr, void* message, int timeout)
 {
 	return new QDBusPendingCall(static_cast<QDBusConnection*>(ptr)->asyncCall(*static_cast<QDBusMessage*>(message), timeout));
+}
+
+void* QDBusConnection_Call(void* ptr, void* message, long long mode, int timeout)
+{
+	return new QDBusMessage(static_cast<QDBusConnection*>(ptr)->call(*static_cast<QDBusMessage*>(message), static_cast<QDBus::CallMode>(mode), timeout));
 }
 
 char QDBusConnection_CallWithCallback(void* ptr, void* message, void* receiver, char* returnMethod, char* errorMethod, int timeout)

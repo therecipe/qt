@@ -22,6 +22,72 @@ func cGoUnpackString(s C.struct_QtSensors_PackedString) string {
 	return C.GoStringN(s.data, C.int(s.len))
 }
 
+//AndroidSensors::AndroidSensorType
+type AndroidSensors__AndroidSensorType int64
+
+const (
+	AndroidSensors__TYPE_ACCELEROMETER               = AndroidSensors__AndroidSensorType(1)
+	AndroidSensors__TYPE_AMBIENT_TEMPERATURE         = AndroidSensors__AndroidSensorType(13)
+	AndroidSensors__TYPE_GAME_ROTATION_VECTOR        = AndroidSensors__AndroidSensorType(15)
+	AndroidSensors__TYPE_GRAVITY                     = AndroidSensors__AndroidSensorType(9)
+	AndroidSensors__TYPE_GYROSCOPE                   = AndroidSensors__AndroidSensorType(4)
+	AndroidSensors__TYPE_GYROSCOPE_UNCALIBRATED      = AndroidSensors__AndroidSensorType(16)
+	AndroidSensors__TYPE_LIGHT                       = AndroidSensors__AndroidSensorType(5)
+	AndroidSensors__TYPE_LINEAR_ACCELERATION         = AndroidSensors__AndroidSensorType(10)
+	AndroidSensors__TYPE_MAGNETIC_FIELD              = AndroidSensors__AndroidSensorType(2)
+	AndroidSensors__TYPE_MAGNETIC_FIELD_UNCALIBRATED = AndroidSensors__AndroidSensorType(14)
+	AndroidSensors__TYPE_ORIENTATION                 = AndroidSensors__AndroidSensorType(3)
+	AndroidSensors__TYPE_PRESSURE                    = AndroidSensors__AndroidSensorType(6)
+	AndroidSensors__TYPE_PROXIMITY                   = AndroidSensors__AndroidSensorType(8)
+	AndroidSensors__TYPE_RELATIVE_HUMIDITY           = AndroidSensors__AndroidSensorType(12)
+	AndroidSensors__TYPE_ROTATION_VECTOR             = AndroidSensors__AndroidSensorType(11)
+	AndroidSensors__TYPE_SIGNIFICANT_MOTION          = AndroidSensors__AndroidSensorType(17)
+	AndroidSensors__TYPE_TEMPERATURE                 = AndroidSensors__AndroidSensorType(7)
+)
+
+type AndroidSensors struct {
+	ptr unsafe.Pointer
+}
+
+type AndroidSensors_ITF interface {
+	AndroidSensors_PTR() *AndroidSensors
+}
+
+func (p *AndroidSensors) AndroidSensors_PTR() *AndroidSensors {
+	return p
+}
+
+func (p *AndroidSensors) Pointer() unsafe.Pointer {
+	if p != nil {
+		return p.ptr
+	}
+	return nil
+}
+
+func (p *AndroidSensors) SetPointer(ptr unsafe.Pointer) {
+	if p != nil {
+		p.ptr = ptr
+	}
+}
+
+func PointerFromAndroidSensors(ptr AndroidSensors_ITF) unsafe.Pointer {
+	if ptr != nil {
+		return ptr.AndroidSensors_PTR().Pointer()
+	}
+	return nil
+}
+
+func NewAndroidSensorsFromPointer(ptr unsafe.Pointer) *AndroidSensors {
+	var n = new(AndroidSensors)
+	n.SetPointer(ptr)
+	return n
+}
+
+func (ptr *AndroidSensors) DestroyAndroidSensors() {
+	C.free(ptr.Pointer())
+	ptr.SetPointer(nil)
+}
+
 //QAccelerometer::AccelerationMode
 type QAccelerometer__AccelerationMode int64
 
@@ -21185,4 +21251,59 @@ func (ptr *QTiltSensor) MetaObjectDefault() *core.QMetaObject {
 		return core.NewQMetaObjectFromPointer(C.QTiltSensor_MetaObjectDefault(ptr.Pointer()))
 	}
 	return nil
+}
+
+//QtMobility::SimulatorLightLevel
+type QtMobility__SimulatorLightLevel int64
+
+const (
+	QtMobility__Undefined = QtMobility__SimulatorLightLevel(0)
+	QtMobility__Dark      = QtMobility__SimulatorLightLevel(1)
+	QtMobility__Twilight  = QtMobility__SimulatorLightLevel(2)
+	QtMobility__Light     = QtMobility__SimulatorLightLevel(3)
+	QtMobility__Bright    = QtMobility__SimulatorLightLevel(4)
+	QtMobility__Sunny     = QtMobility__SimulatorLightLevel(5)
+)
+
+type QtMobility struct {
+	ptr unsafe.Pointer
+}
+
+type QtMobility_ITF interface {
+	QtMobility_PTR() *QtMobility
+}
+
+func (p *QtMobility) QtMobility_PTR() *QtMobility {
+	return p
+}
+
+func (p *QtMobility) Pointer() unsafe.Pointer {
+	if p != nil {
+		return p.ptr
+	}
+	return nil
+}
+
+func (p *QtMobility) SetPointer(ptr unsafe.Pointer) {
+	if p != nil {
+		p.ptr = ptr
+	}
+}
+
+func PointerFromQtMobility(ptr QtMobility_ITF) unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QtMobility_PTR().Pointer()
+	}
+	return nil
+}
+
+func NewQtMobilityFromPointer(ptr unsafe.Pointer) *QtMobility {
+	var n = new(QtMobility)
+	n.SetPointer(ptr)
+	return n
+}
+
+func (ptr *QtMobility) DestroyQtMobility() {
+	C.free(ptr.Pointer())
+	ptr.SetPointer(nil)
 }

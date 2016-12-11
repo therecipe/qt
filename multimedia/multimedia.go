@@ -10041,6 +10041,15 @@ func (ptr *QCamera) DestroyQCamera() {
 	}
 }
 
+func (ptr *QCamera) availableDevices_atList(i int) *core.QByteArray {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQByteArrayFromPointer(C.QCamera_availableDevices_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		return tmpValue
+	}
+	return nil
+}
+
 func (ptr *QCamera) supportedViewfinderResolutions_atList(i int) *core.QSize {
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQSizeFromPointer(C.QCamera_supportedViewfinderResolutions_atList(ptr.Pointer(), C.int(int32(i))))

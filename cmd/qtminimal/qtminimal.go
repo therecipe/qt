@@ -34,7 +34,7 @@ func main() {
 		}
 	}
 	if !filepath.IsAbs(appPath) {
-		appPath = utils.GetAbsPath(appPath)
+		appPath, _ = utils.Abs(appPath)
 	}
 	if _, err := ioutil.ReadDir(appPath); err != nil {
 		utils.Log.Fatalln("usage:", "qtminimal", "[ desktop | android | ... ]", filepath.Join("path", "to", "project"))
@@ -43,8 +43,8 @@ func main() {
 	var (
 		imported       []string
 		cached         []string
-		importedPkgMap = make(map[string]bool)
-		goPaths = strings.Split(os.Getenv("GOPATH"), string(os.PathListSeparator))
+		importedPkgMap = make(map[string]struct{})
+		goPaths        = strings.Split(os.Getenv("GOPATH"), string(os.PathListSeparator))
 	)
 
 	var walkFuncImports = func(appPath string, info os.FileInfo, err error) error {
@@ -66,16 +66,16 @@ func main() {
 					} else {
 						if iPath := strings.Replace(i.Path.Value, "\"", "", -1); iPath != "github.com/therecipe/qt" {
 							var pkg string
-							for _, pkgs := range templater.Libs {
+							for _, pkgs := range parser.Libs {
 								if strings.ToLower(pkgs) == strings.TrimPrefix(iPath, "github.com/therecipe/qt/") {
 									pkg = pkgs
 								}
 							}
-							if _, exists := templater.LibDeps[pkg]; exists {
-								importedPkgMap[pkg] = true
-								for _, dep := range templater.LibDeps[pkg] {
-									if _, exists := templater.LibDeps[dep]; exists {
-										importedPkgMap[dep] = true
+							if _, exists := parser.LibDeps[pkg]; exists {
+								importedPkgMap[pkg] = struct{}{}
+								for _, dep := range parser.LibDeps[pkg] {
+									if _, exists := parser.LibDeps[dep]; exists {
+										importedPkgMap[dep] = struct{}{}
 									}
 								}
 							}
@@ -110,22 +110,21 @@ func main() {
 	}
 
 	var importedPkgs []string
-	for _, dep := range templater.Libs {
+	for _, dep := range parser.Libs {
 		if _, exist := importedPkgMap[dep]; exist {
 			importedPkgs = append(importedPkgs, dep)
 		}
 	}
 
 	for _, module := range importedPkgs {
-		utils.Log.Debugf("loading qt/%v", strings.ToLower(module))
-		if _, err := parser.GetModule(module); err != nil {
-			utils.Log.WithError(err).Errorf("failed to load qt/%v", strings.ToLower(module))
+		if err := parser.LoadModule(module); err != nil {
+			return //err
 		}
 	}
 
 	var file = strings.Join(cached, "")
 
-	for className, c := range parser.ClassMap {
+	for className, c := range parser.CurrentState.ClassMap {
 		if strings.Contains(file, className) {
 			c.Export = true
 
@@ -138,7 +137,7 @@ func main() {
 			}
 
 			for _, bc := range c.GetAllBases() {
-				parser.ClassMap[bc].Export = true
+				parser.CurrentState.ClassMap[bc].Export = true
 			}
 		}
 
@@ -179,15 +178,15 @@ func main() {
 	}
 
 	if buildTarget == "sailfish" || buildTarget == "sailfish-emulator" {
-		parser.ClassMap["QQuickWidget"].Export = false
+		parser.CurrentState.ClassMap["QQuickWidget"].Export = false
 	}
 
 	if buildTarget == "ios" || buildTarget == "ios-simulator" {
-		parser.ClassMap["QProcess"].Export = false
-		parser.ClassMap["QProcessEnvironment"].Export = false
+		parser.CurrentState.ClassMap["QProcess"].Export = false
+		parser.CurrentState.ClassMap["QProcessEnvironment"].Export = false
 	}
 
-	templater.Minimal = true
+	parser.CurrentState.Minimal = true
 	for _, module := range importedPkgs {
 		utils.Log.Debugf("generating minimal qt/%v", strings.ToLower(module))
 		templater.GenModule(strings.Title(module))
@@ -203,24 +202,24 @@ func exportFunction(class *parser.Class, function *parser.Function) {
 			class.Export = true
 
 			for _, bc := range class.GetAllBases() {
-				parser.ClassMap[bc].Export = true
+				parser.CurrentState.ClassMap[bc].Export = true
 			}
 
 			for _, p := range f.Parameters {
-				if class, exists := parser.ClassMap[converter.CleanValue(p.Value)]; exists {
+				if class, exists := parser.CurrentState.ClassMap[converter.CleanValue(p.Value)]; exists {
 					class.Export = true
 
 					for _, bc := range class.GetAllBases() {
-						parser.ClassMap[bc].Export = true
+						parser.CurrentState.ClassMap[bc].Export = true
 					}
 				}
 			}
 
-			if class, exists := parser.ClassMap[converter.CleanValue(f.Output)]; exists {
+			if class, exists := parser.CurrentState.ClassMap[converter.CleanValue(f.Output)]; exists {
 				class.Export = true
 
 				for _, bc := range class.GetAllBases() {
-					parser.ClassMap[bc].Export = true
+					parser.CurrentState.ClassMap[bc].Export = true
 				}
 			}
 
@@ -236,7 +235,7 @@ func exportFunction(class *parser.Class, function *parser.Function) {
 }
 
 func hasPureVirtualFunctions(className string) bool {
-	for _, f := range parser.ClassMap[className].Functions {
+	for _, f := range parser.CurrentState.ClassMap[className].Functions {
 		if f.Virtual == parser.PURE {
 			return true
 		}

@@ -20,7 +20,7 @@ func CppTemplate(module string) []byte {
 		var items = make(map[string]string)
 
 		for _, class := range tmpArray {
-			items[class] = parser.ClassMap[class].Bases
+			items[class] = parser.CurrentState.ClassMap[class].Bases
 		}
 
 		var provided = make([]string, 0)
@@ -28,7 +28,7 @@ func CppTemplate(module string) []byte {
 		for len(items) > 0 {
 			for item, dependency := range items {
 				var existsInOtherModule bool
-				if parser.ClassMap[dependency].Module != parser.MOC {
+				if parser.CurrentState.ClassMap[dependency].Module != parser.MOC {
 					existsInOtherModule = true
 				}
 				var existsInCurrentOrder bool
@@ -49,7 +49,7 @@ func CppTemplate(module string) []byte {
 	}
 
 	for _, className := range tmpArray {
-		var class = parser.ClassMap[className]
+		var class = parser.CurrentState.ClassMap[className]
 
 		//all class enums
 		for _, enum := range class.Enums {
@@ -61,7 +61,7 @@ func CppTemplate(module string) []byte {
 		}
 
 		if classIsSupported(class) {
-			var implementedVirtuals = make(map[string]bool)
+			var implementedVirtuals = make(map[string]struct{})
 
 			if classNeedsCallbackFunctions(class) || class.Module == parser.MOC {
 
@@ -116,7 +116,7 @@ func CppTemplate(module string) []byte {
 										return "My"
 									}(),
 
-									function.Class(),
+									function.ClassName(),
 
 									strings.Split(strings.Split(function.Signature, "(")[1], ")")[0],
 
@@ -124,7 +124,7 @@ func CppTemplate(module string) []byte {
 										if module == parser.MOC {
 											return class.GetBases()[0]
 										}
-										return function.Class()
+										return function.ClassName()
 									}(),
 
 									strings.Join(input, ", "),
@@ -137,7 +137,7 @@ func CppTemplate(module string) []byte {
 
 				//all class functions
 				for _, function := range class.Functions {
-					implementedVirtuals[fmt.Sprint(function.Fullname, function.OverloadNumber)] = true
+					implementedVirtuals[fmt.Sprint(function.Fullname, function.OverloadNumber)] = struct{}{}
 					if functionIsSupported(class, function) && !strings.Contains(function.Meta, "constructor") {
 						if function.Virtual == parser.IMPURE || function.Virtual == parser.PURE || function.Meta == parser.SIGNAL || function.Meta == parser.SLOT {
 							if !(module == parser.MOC && function.Meta == parser.SLOT) {
@@ -149,12 +149,12 @@ func CppTemplate(module string) []byte {
 
 				//virtual parent functions
 				for _, parentClassName := range class.GetAllBases() {
-					var parentClass = parser.ClassMap[parentClassName]
+					var parentClass = parser.CurrentState.ClassMap[parentClassName]
 					if classIsSupported(parentClass) {
 
 						for _, function := range parentClass.Functions {
 							if _, exists := implementedVirtuals[fmt.Sprint(fmt.Sprintf("%v::%v", class.Name, function.Name), function.OverloadNumber)]; !exists {
-								implementedVirtuals[fmt.Sprint(fmt.Sprintf("%v::%v", class.Name, function.Name), function.OverloadNumber)] = true
+								implementedVirtuals[fmt.Sprint(fmt.Sprintf("%v::%v", class.Name, function.Name), function.OverloadNumber)] = struct{}{}
 								if functionIsSupported(class, function) && !strings.Contains(function.Meta, "structor") {
 
 									var function = *function
@@ -194,96 +194,7 @@ func CppTemplate(module string) []byte {
 				fmt.Fprintf(bb, "Q_DECLARE_METATYPE(%v*)\n\n", class.Name)
 			}
 
-			implementedVirtuals = make(map[string]bool)
-
-			//all class functions
-			for _, function := range class.Functions {
-				implementedVirtuals[fmt.Sprint(function.Fullname, function.OverloadNumber)] = true
-				if functionIsSupported(class, function) {
-
-					switch {
-					case function.Meta == parser.SIGNAL:
-						{
-							for _, signalMode := range []string{parser.CONNECT, parser.DISCONNECT} {
-								var function = *function
-								function.SignalMode = signalMode
-
-								fmt.Fprintf(bb, "%v\n\n", cppFunction(&function))
-							}
-
-							var function = *function
-							function.Meta = parser.PLAIN
-							if !converter.IsPrivateSignal(&function) {
-								fmt.Fprintf(bb, "%v\n\n", cppFunction(&function))
-							}
-						}
-
-					case (function.Virtual == parser.IMPURE || function.Virtual == parser.PURE) && !strings.Contains(function.Meta, "constructor"):
-						{
-							var function = *function
-							if function.Meta != parser.SLOT {
-								function.Meta = parser.PLAIN
-							}
-
-							fmt.Fprintf(bb, "%v\n\n", cppFunction(&function))
-							if function.Virtual == parser.IMPURE {
-								function.Meta = parser.PLAIN
-								function.Default = true
-								fmt.Fprintf(bb, "%v\n\n", cppFunction(&function))
-							}
-						}
-
-					case isGeneric(function):
-						{
-							for _, mode := range converter.CppOutputParametersJNIGenericModes(function) {
-								var function = *function
-								function.TemplateModeJNI = mode
-
-								fmt.Fprintf(bb, "%v\n\n", cppFunction(&function))
-							}
-						}
-
-					default:
-						{
-							if !(function.Meta == parser.CONSTRUCTOR && hasUnimplementedPureVirtualFunctions(class.Name)) {
-								fmt.Fprintf(bb, "%v\n\n", cppFunction(function))
-							}
-						}
-					}
-				}
-			}
-
-			//virtual parent functions
-			for _, parentClassName := range class.GetAllBases() {
-				var parentClass = parser.ClassMap[parentClassName]
-				if classIsSupported(parentClass) {
-
-					for _, function := range parentClass.Functions {
-						if _, exists := implementedVirtuals[fmt.Sprint(fmt.Sprintf("%v::%v", class.Name, function.Name), function.OverloadNumber)]; !exists {
-							implementedVirtuals[fmt.Sprint(fmt.Sprintf("%v::%v", class.Name, function.Name), function.OverloadNumber)] = true
-
-							if functionIsSupported(parentClass, function) {
-								if function.Meta != parser.SIGNAL && (function.Virtual == parser.IMPURE || function.Virtual == parser.PURE || function.Meta == parser.SLOT) && !strings.Contains(function.Meta, "structor") {
-
-									var function = *function
-									function.Fullname = fmt.Sprintf("%v::%v", class.Name, function.Name)
-									if function.Meta != parser.SLOT {
-										function.Meta = parser.PLAIN
-									}
-									fmt.Fprintf(bb, "%v\n\n", cppFunction(&function))
-
-									function.Meta = parser.PLAIN
-									function.Default = true
-									fmt.Fprintf(bb, "%v\n\n", cppFunction(&function))
-
-								}
-							}
-
-						}
-					}
-
-				}
-			}
+			test(bb, class, cppFunction, "\n\n")
 
 		}
 
@@ -307,7 +218,7 @@ func preambleCpp(module string, input []byte) []byte {
 `,
 		func() string {
 			switch {
-			case Minimal:
+			case parser.CurrentState.Minimal:
 				{
 					return "// +build minimal"
 				}
@@ -353,7 +264,7 @@ func preambleCpp(module string, input []byte) []byte {
 
 			default:
 				{
-					if Minimal {
+					if parser.CurrentState.Minimal {
 						return fmt.Sprintf("%v-minimal", shortModule(module))
 					}
 					return shortModule(module)
@@ -363,7 +274,7 @@ func preambleCpp(module string, input []byte) []byte {
 	)
 
 	var classes = make([]string, 0)
-	for _, class := range parser.ClassMap {
+	for _, class := range parser.CurrentState.ClassMap {
 		if strings.Contains(string(input), class.Name) && !(strings.HasPrefix(class.Name, "Qt") || class.Module == parser.MOC) {
 			classes = append(classes, class.Name)
 		}
@@ -374,7 +285,7 @@ func preambleCpp(module string, input []byte) []byte {
 		if class == "SailfishApp" {
 			fmt.Fprintln(bb, "#include <sailfishapp.h>")
 		} else {
-			if strings.HasPrefix(class, "Q") {
+			if strings.HasPrefix(class, "Q") && !(class == "QBluetooth" || class == "QDBus" || class == "QCss" || class == "QPdf" || class == "QSsl" || class == "QPrint" || class == "QScript" || class == "QSql" || class == "QTest" || class == "QWebSocketProtocol") {
 				fmt.Fprintf(bb, "#include <%v>\n", class)
 			}
 		}

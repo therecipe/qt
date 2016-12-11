@@ -3317,6 +3317,59 @@ func (ptr *QGeoServiceProviderFactory) DestroyQGeoServiceProviderFactoryDefault(
 	}
 }
 
+//QLocation::Visibility
+type QLocation__Visibility int64
+
+const (
+	QLocation__UnspecifiedVisibility = QLocation__Visibility(0x00)
+	QLocation__DeviceVisibility      = QLocation__Visibility(0x01)
+	QLocation__PrivateVisibility     = QLocation__Visibility(0x02)
+	QLocation__PublicVisibility      = QLocation__Visibility(0x04)
+)
+
+type QLocation struct {
+	ptr unsafe.Pointer
+}
+
+type QLocation_ITF interface {
+	QLocation_PTR() *QLocation
+}
+
+func (p *QLocation) QLocation_PTR() *QLocation {
+	return p
+}
+
+func (p *QLocation) Pointer() unsafe.Pointer {
+	if p != nil {
+		return p.ptr
+	}
+	return nil
+}
+
+func (p *QLocation) SetPointer(ptr unsafe.Pointer) {
+	if p != nil {
+		p.ptr = ptr
+	}
+}
+
+func PointerFromQLocation(ptr QLocation_ITF) unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QLocation_PTR().Pointer()
+	}
+	return nil
+}
+
+func NewQLocationFromPointer(ptr unsafe.Pointer) *QLocation {
+	var n = new(QLocation)
+	n.SetPointer(ptr)
+	return n
+}
+
+func (ptr *QLocation) DestroyQLocation() {
+	C.free(ptr.Pointer())
+	ptr.SetPointer(nil)
+}
+
 type QPlace struct {
 	ptr unsafe.Pointer
 }

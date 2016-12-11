@@ -31,5 +31,5 @@ func QT_MSYS2_DIR() string {
 }
 
 func IsMsys2QtDir() bool {
-	return Exists(filepath.Join(os.Getenv("QT_MSYS2_DIR"), "msys2.exe"))
+	return ExistsFile(filepath.Join(os.Getenv("QT_MSYS2_DIR"), "msys2.exe"))
 }

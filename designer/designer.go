@@ -4297,6 +4297,17 @@ func (ptr *QDesignerFormEditorInterface) DestroyQDesignerFormEditorInterfaceDefa
 	}
 }
 
+func (ptr *QDesignerFormEditorInterface) pluginInstances_atList(i int) *core.QObject {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQObjectFromPointer(C.QDesignerFormEditorInterface_pluginInstances_atList(ptr.Pointer(), C.int(int32(i))))
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
+	}
+	return nil
+}
+
 //export callbackQDesignerFormEditorInterface_TimerEvent
 func callbackQDesignerFormEditorInterface_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 
@@ -20032,4 +20043,106 @@ func (ptr *QFormBuilder) SaveDefault(device core.QIODevice_ITF, widget widgets.Q
 	if ptr.Pointer() != nil {
 		C.QFormBuilder_SaveDefault(ptr.Pointer(), core.PointerFromQIODevice(device), widgets.PointerFromQWidget(widget))
 	}
+}
+
+//qdesigner_internal::SpecialProperty
+type qdesigner_internal__SpecialProperty int64
+
+const (
+	qdesigner_internal__SP_None            = qdesigner_internal__SpecialProperty(0)
+	qdesigner_internal__SP_ObjectName      = qdesigner_internal__SpecialProperty(1)
+	qdesigner_internal__SP_LayoutName      = qdesigner_internal__SpecialProperty(2)
+	qdesigner_internal__SP_SpacerName      = qdesigner_internal__SpecialProperty(3)
+	qdesigner_internal__SP_WindowTitle     = qdesigner_internal__SpecialProperty(4)
+	qdesigner_internal__SP_MinimumSize     = qdesigner_internal__SpecialProperty(5)
+	qdesigner_internal__SP_MaximumSize     = qdesigner_internal__SpecialProperty(6)
+	qdesigner_internal__SP_Geometry        = qdesigner_internal__SpecialProperty(7)
+	qdesigner_internal__SP_Icon            = qdesigner_internal__SpecialProperty(8)
+	qdesigner_internal__SP_CurrentTabName  = qdesigner_internal__SpecialProperty(9)
+	qdesigner_internal__SP_CurrentItemName = qdesigner_internal__SpecialProperty(10)
+	qdesigner_internal__SP_CurrentPageName = qdesigner_internal__SpecialProperty(11)
+	qdesigner_internal__SP_AutoDefault     = qdesigner_internal__SpecialProperty(12)
+	qdesigner_internal__SP_Alignment       = qdesigner_internal__SpecialProperty(13)
+	qdesigner_internal__SP_Shortcut        = qdesigner_internal__SpecialProperty(14)
+	qdesigner_internal__SP_Orientation     = qdesigner_internal__SpecialProperty(15)
+)
+
+//qdesigner_internal::AuxiliaryItemDataRoles
+type qdesigner_internal__AuxiliaryItemDataRoles int64
+
+const (
+	qdesigner_internal__ItemFlagsShadowRole = qdesigner_internal__AuxiliaryItemDataRoles(0x13370551)
+)
+
+//qdesigner_internal::ContainerType
+type qdesigner_internal__ContainerType int64
+
+const (
+	qdesigner_internal__PageContainer   = qdesigner_internal__ContainerType(0)
+	qdesigner_internal__MdiContainer    = qdesigner_internal__ContainerType(1)
+	qdesigner_internal__WizardContainer = qdesigner_internal__ContainerType(2)
+)
+
+//qdesigner_internal::TextPropertyValidationMode
+type qdesigner_internal__TextPropertyValidationMode int64
+
+const (
+	qdesigner_internal__ValidationMultiLine       = qdesigner_internal__TextPropertyValidationMode(0)
+	qdesigner_internal__ValidationRichText        = qdesigner_internal__TextPropertyValidationMode(1)
+	qdesigner_internal__ValidationStyleSheet      = qdesigner_internal__TextPropertyValidationMode(2)
+	qdesigner_internal__ValidationSingleLine      = qdesigner_internal__TextPropertyValidationMode(3)
+	qdesigner_internal__ValidationObjectName      = qdesigner_internal__TextPropertyValidationMode(4)
+	qdesigner_internal__ValidationObjectNameScope = qdesigner_internal__TextPropertyValidationMode(5)
+	qdesigner_internal__ValidationURL             = qdesigner_internal__TextPropertyValidationMode(6)
+)
+
+//qdesigner_internal::IncludeType
+type qdesigner_internal__IncludeType int64
+
+const (
+	qdesigner_internal__IncludeLocal  = qdesigner_internal__IncludeType(0)
+	qdesigner_internal__IncludeGlobal = qdesigner_internal__IncludeType(1)
+)
+
+type qdesigner_internal struct {
+	ptr unsafe.Pointer
+}
+
+type qdesigner_internal_ITF interface {
+	qdesigner_internal_PTR() *qdesigner_internal
+}
+
+func (p *qdesigner_internal) qdesigner_internal_PTR() *qdesigner_internal {
+	return p
+}
+
+func (p *qdesigner_internal) Pointer() unsafe.Pointer {
+	if p != nil {
+		return p.ptr
+	}
+	return nil
+}
+
+func (p *qdesigner_internal) SetPointer(ptr unsafe.Pointer) {
+	if p != nil {
+		p.ptr = ptr
+	}
+}
+
+func PointerFromQdesigner_internal(ptr qdesigner_internal_ITF) unsafe.Pointer {
+	if ptr != nil {
+		return ptr.qdesigner_internal_PTR().Pointer()
+	}
+	return nil
+}
+
+func NewQdesigner_internalFromPointer(ptr unsafe.Pointer) *qdesigner_internal {
+	var n = new(qdesigner_internal)
+	n.SetPointer(ptr)
+	return n
+}
+
+func (ptr *qdesigner_internal) Destroyqdesigner_internal() {
+	C.free(ptr.Pointer())
+	ptr.SetPointer(nil)
 }

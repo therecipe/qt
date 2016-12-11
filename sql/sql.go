@@ -24,6 +24,87 @@ func cGoUnpackString(s C.struct_QtSql_PackedString) string {
 	return C.GoStringN(s.data, C.int(s.len))
 }
 
+//QSql::Location
+type QSql__Location int64
+
+const (
+	QSql__BeforeFirstRow = QSql__Location(-1)
+	QSql__AfterLastRow   = QSql__Location(-2)
+)
+
+//QSql::NumericalPrecisionPolicy
+type QSql__NumericalPrecisionPolicy int64
+
+const (
+	QSql__LowPrecisionInt32  = QSql__NumericalPrecisionPolicy(0x01)
+	QSql__LowPrecisionInt64  = QSql__NumericalPrecisionPolicy(0x02)
+	QSql__LowPrecisionDouble = QSql__NumericalPrecisionPolicy(0x04)
+	QSql__HighPrecision      = QSql__NumericalPrecisionPolicy(0)
+)
+
+//QSql::ParamTypeFlag
+type QSql__ParamTypeFlag int64
+
+const (
+	QSql__In     = QSql__ParamTypeFlag(0x00000001)
+	QSql__Out    = QSql__ParamTypeFlag(0x00000002)
+	QSql__InOut  = QSql__ParamTypeFlag(QSql__In | QSql__Out)
+	QSql__Binary = QSql__ParamTypeFlag(0x00000004)
+)
+
+//QSql::TableType
+type QSql__TableType int64
+
+const (
+	QSql__Tables       = QSql__TableType(0x01)
+	QSql__SystemTables = QSql__TableType(0x02)
+	QSql__Views        = QSql__TableType(0x04)
+	QSql__AllTables    = QSql__TableType(0xff)
+)
+
+type QSql struct {
+	ptr unsafe.Pointer
+}
+
+type QSql_ITF interface {
+	QSql_PTR() *QSql
+}
+
+func (p *QSql) QSql_PTR() *QSql {
+	return p
+}
+
+func (p *QSql) Pointer() unsafe.Pointer {
+	if p != nil {
+		return p.ptr
+	}
+	return nil
+}
+
+func (p *QSql) SetPointer(ptr unsafe.Pointer) {
+	if p != nil {
+		p.ptr = ptr
+	}
+}
+
+func PointerFromQSql(ptr QSql_ITF) unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QSql_PTR().Pointer()
+	}
+	return nil
+}
+
+func NewQSqlFromPointer(ptr unsafe.Pointer) *QSql {
+	var n = new(QSql)
+	n.SetPointer(ptr)
+	return n
+}
+
+func (ptr *QSql) DestroyQSql() {
+	C.free(ptr.Pointer())
+	ptr.SetPointer(nil)
+}
+
 type QSqlDatabase struct {
 	ptr unsafe.Pointer
 }
@@ -295,6 +376,13 @@ func (ptr *QSqlDatabase) LastError() *QSqlError {
 	return nil
 }
 
+func (ptr *QSqlDatabase) NumericalPrecisionPolicy() QSql__NumericalPrecisionPolicy {
+	if ptr.Pointer() != nil {
+		return QSql__NumericalPrecisionPolicy(C.QSqlDatabase_NumericalPrecisionPolicy(ptr.Pointer()))
+	}
+	return 0
+}
+
 func (ptr *QSqlDatabase) Open() bool {
 	if ptr.Pointer() != nil {
 		return C.QSqlDatabase_Open(ptr.Pointer()) != 0
@@ -404,6 +492,12 @@ func (ptr *QSqlDatabase) SetHostName(host string) {
 	}
 }
 
+func (ptr *QSqlDatabase) SetNumericalPrecisionPolicy(precisionPolicy QSql__NumericalPrecisionPolicy) {
+	if ptr.Pointer() != nil {
+		C.QSqlDatabase_SetNumericalPrecisionPolicy(ptr.Pointer(), C.longlong(precisionPolicy))
+	}
+}
+
 func (ptr *QSqlDatabase) SetPassword(password string) {
 	if ptr.Pointer() != nil {
 		var passwordC = C.CString(password)
@@ -424,6 +518,13 @@ func (ptr *QSqlDatabase) SetUserName(name string) {
 		defer C.free(unsafe.Pointer(nameC))
 		C.QSqlDatabase_SetUserName(ptr.Pointer(), nameC)
 	}
+}
+
+func (ptr *QSqlDatabase) Tables(ty QSql__TableType) []string {
+	if ptr.Pointer() != nil {
+		return strings.Split(cGoUnpackString(C.QSqlDatabase_Tables(ptr.Pointer(), C.longlong(ty))), "|")
+	}
+	return make([]string, 0)
 }
 
 func (ptr *QSqlDatabase) Transaction() bool {
@@ -1019,6 +1120,13 @@ func (ptr *QSqlDriver) Notification2(name string, source QSqlDriver__Notificatio
 	}
 }
 
+func (ptr *QSqlDriver) NumericalPrecisionPolicy() QSql__NumericalPrecisionPolicy {
+	if ptr.Pointer() != nil {
+		return QSql__NumericalPrecisionPolicy(C.QSqlDriver_NumericalPrecisionPolicy(ptr.Pointer()))
+	}
+	return 0
+}
+
 //export callbackQSqlDriver_Open
 func callbackQSqlDriver_Open(ptr unsafe.Pointer, db C.struct_QtSql_PackedString, user C.struct_QtSql_PackedString, password C.struct_QtSql_PackedString, host C.struct_QtSql_PackedString, port C.int, options C.struct_QtSql_PackedString) C.char {
 
@@ -1223,6 +1331,12 @@ func (ptr *QSqlDriver) SetLastError(error QSqlError_ITF) {
 func (ptr *QSqlDriver) SetLastErrorDefault(error QSqlError_ITF) {
 	if ptr.Pointer() != nil {
 		C.QSqlDriver_SetLastErrorDefault(ptr.Pointer(), PointerFromQSqlError(error))
+	}
+}
+
+func (ptr *QSqlDriver) SetNumericalPrecisionPolicy(precisionPolicy QSql__NumericalPrecisionPolicy) {
+	if ptr.Pointer() != nil {
+		C.QSqlDriver_SetNumericalPrecisionPolicy(ptr.Pointer(), C.longlong(precisionPolicy))
 	}
 }
 
@@ -1458,6 +1572,44 @@ func (ptr *QSqlDriver) SubscribedToNotifications() []string {
 func (ptr *QSqlDriver) SubscribedToNotificationsDefault() []string {
 	if ptr.Pointer() != nil {
 		return strings.Split(cGoUnpackString(C.QSqlDriver_SubscribedToNotificationsDefault(ptr.Pointer())), "|")
+	}
+	return make([]string, 0)
+}
+
+//export callbackQSqlDriver_Tables
+func callbackQSqlDriver_Tables(ptr unsafe.Pointer, tableType C.longlong) *C.char {
+
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSqlDriver::tables"); signal != nil {
+		return C.CString(strings.Join(signal.(func(QSql__TableType) []string)(QSql__TableType(tableType)), "|"))
+	}
+
+	return C.CString(strings.Join(NewQSqlDriverFromPointer(ptr).TablesDefault(QSql__TableType(tableType)), "|"))
+}
+
+func (ptr *QSqlDriver) ConnectTables(f func(tableType QSql__TableType) []string) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QSqlDriver::tables", f)
+	}
+}
+
+func (ptr *QSqlDriver) DisconnectTables() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSqlDriver::tables")
+	}
+}
+
+func (ptr *QSqlDriver) Tables(tableType QSql__TableType) []string {
+	if ptr.Pointer() != nil {
+		return strings.Split(cGoUnpackString(C.QSqlDriver_Tables(ptr.Pointer(), C.longlong(tableType))), "|")
+	}
+	return make([]string, 0)
+}
+
+func (ptr *QSqlDriver) TablesDefault(tableType QSql__TableType) []string {
+	if ptr.Pointer() != nil {
+		return strings.Split(cGoUnpackString(C.QSqlDriver_TablesDefault(ptr.Pointer(), C.longlong(tableType))), "|")
 	}
 	return make([]string, 0)
 }
@@ -2937,11 +3089,31 @@ func NewQSqlQuery2(query string, db QSqlDatabase_ITF) *QSqlQuery {
 	return tmpValue
 }
 
+func (ptr *QSqlQuery) AddBindValue(val core.QVariant_ITF, paramType QSql__ParamTypeFlag) {
+	if ptr.Pointer() != nil {
+		C.QSqlQuery_AddBindValue(ptr.Pointer(), core.PointerFromQVariant(val), C.longlong(paramType))
+	}
+}
+
 func (ptr *QSqlQuery) At() int {
 	if ptr.Pointer() != nil {
 		return int(int32(C.QSqlQuery_At(ptr.Pointer())))
 	}
 	return 0
+}
+
+func (ptr *QSqlQuery) BindValue(placeholder string, val core.QVariant_ITF, paramType QSql__ParamTypeFlag) {
+	if ptr.Pointer() != nil {
+		var placeholderC = C.CString(placeholder)
+		defer C.free(unsafe.Pointer(placeholderC))
+		C.QSqlQuery_BindValue(ptr.Pointer(), placeholderC, core.PointerFromQVariant(val), C.longlong(paramType))
+	}
+}
+
+func (ptr *QSqlQuery) BindValue2(pos int, val core.QVariant_ITF, paramType QSql__ParamTypeFlag) {
+	if ptr.Pointer() != nil {
+		C.QSqlQuery_BindValue2(ptr.Pointer(), C.int(int32(pos)), core.PointerFromQVariant(val), C.longlong(paramType))
+	}
 }
 
 func (ptr *QSqlQuery) BoundValue(placeholder string) *core.QVariant {
@@ -3121,6 +3293,13 @@ func (ptr *QSqlQuery) NumRowsAffected() int {
 	return 0
 }
 
+func (ptr *QSqlQuery) NumericalPrecisionPolicy() QSql__NumericalPrecisionPolicy {
+	if ptr.Pointer() != nil {
+		return QSql__NumericalPrecisionPolicy(C.QSqlQuery_NumericalPrecisionPolicy(ptr.Pointer()))
+	}
+	return 0
+}
+
 func (ptr *QSqlQuery) Prepare(query string) bool {
 	if ptr.Pointer() != nil {
 		var queryC = C.CString(query)
@@ -3163,6 +3342,12 @@ func (ptr *QSqlQuery) Seek(index int, relative bool) bool {
 func (ptr *QSqlQuery) SetForwardOnly(forward bool) {
 	if ptr.Pointer() != nil {
 		C.QSqlQuery_SetForwardOnly(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(forward))))
+	}
+}
+
+func (ptr *QSqlQuery) SetNumericalPrecisionPolicy(precisionPolicy QSql__NumericalPrecisionPolicy) {
+	if ptr.Pointer() != nil {
+		C.QSqlQuery_SetNumericalPrecisionPolicy(ptr.Pointer(), C.longlong(precisionPolicy))
 	}
 }
 
@@ -7638,9 +7823,107 @@ func NewQSqlResult(db QSqlDriver_ITF) *QSqlResult {
 	return NewQSqlResultFromPointer(C.QSqlResult_NewQSqlResult(PointerFromQSqlDriver(db)))
 }
 
+func (ptr *QSqlResult) AddBindValue(val core.QVariant_ITF, paramType QSql__ParamTypeFlag) {
+	if ptr.Pointer() != nil {
+		C.QSqlResult_AddBindValue(ptr.Pointer(), core.PointerFromQVariant(val), C.longlong(paramType))
+	}
+}
+
 func (ptr *QSqlResult) At() int {
 	if ptr.Pointer() != nil {
 		return int(int32(C.QSqlResult_At(ptr.Pointer())))
+	}
+	return 0
+}
+
+//export callbackQSqlResult_BindValue2
+func callbackQSqlResult_BindValue2(ptr unsafe.Pointer, placeholder C.struct_QtSql_PackedString, val unsafe.Pointer, paramType C.longlong) {
+
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSqlResult::bindValue2"); signal != nil {
+		signal.(func(string, *core.QVariant, QSql__ParamTypeFlag))(cGoUnpackString(placeholder), core.NewQVariantFromPointer(val), QSql__ParamTypeFlag(paramType))
+	} else {
+		NewQSqlResultFromPointer(ptr).BindValue2Default(cGoUnpackString(placeholder), core.NewQVariantFromPointer(val), QSql__ParamTypeFlag(paramType))
+	}
+}
+
+func (ptr *QSqlResult) ConnectBindValue2(f func(placeholder string, val *core.QVariant, paramType QSql__ParamTypeFlag)) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QSqlResult::bindValue2", f)
+	}
+}
+
+func (ptr *QSqlResult) DisconnectBindValue2() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSqlResult::bindValue2")
+	}
+}
+
+func (ptr *QSqlResult) BindValue2(placeholder string, val core.QVariant_ITF, paramType QSql__ParamTypeFlag) {
+	if ptr.Pointer() != nil {
+		var placeholderC = C.CString(placeholder)
+		defer C.free(unsafe.Pointer(placeholderC))
+		C.QSqlResult_BindValue2(ptr.Pointer(), placeholderC, core.PointerFromQVariant(val), C.longlong(paramType))
+	}
+}
+
+func (ptr *QSqlResult) BindValue2Default(placeholder string, val core.QVariant_ITF, paramType QSql__ParamTypeFlag) {
+	if ptr.Pointer() != nil {
+		var placeholderC = C.CString(placeholder)
+		defer C.free(unsafe.Pointer(placeholderC))
+		C.QSqlResult_BindValue2Default(ptr.Pointer(), placeholderC, core.PointerFromQVariant(val), C.longlong(paramType))
+	}
+}
+
+//export callbackQSqlResult_BindValue
+func callbackQSqlResult_BindValue(ptr unsafe.Pointer, index C.int, val unsafe.Pointer, paramType C.longlong) {
+
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSqlResult::bindValue"); signal != nil {
+		signal.(func(int, *core.QVariant, QSql__ParamTypeFlag))(int(int32(index)), core.NewQVariantFromPointer(val), QSql__ParamTypeFlag(paramType))
+	} else {
+		NewQSqlResultFromPointer(ptr).BindValueDefault(int(int32(index)), core.NewQVariantFromPointer(val), QSql__ParamTypeFlag(paramType))
+	}
+}
+
+func (ptr *QSqlResult) ConnectBindValue(f func(index int, val *core.QVariant, paramType QSql__ParamTypeFlag)) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QSqlResult::bindValue", f)
+	}
+}
+
+func (ptr *QSqlResult) DisconnectBindValue() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSqlResult::bindValue")
+	}
+}
+
+func (ptr *QSqlResult) BindValue(index int, val core.QVariant_ITF, paramType QSql__ParamTypeFlag) {
+	if ptr.Pointer() != nil {
+		C.QSqlResult_BindValue(ptr.Pointer(), C.int(int32(index)), core.PointerFromQVariant(val), C.longlong(paramType))
+	}
+}
+
+func (ptr *QSqlResult) BindValueDefault(index int, val core.QVariant_ITF, paramType QSql__ParamTypeFlag) {
+	if ptr.Pointer() != nil {
+		C.QSqlResult_BindValueDefault(ptr.Pointer(), C.int(int32(index)), core.PointerFromQVariant(val), C.longlong(paramType))
+	}
+}
+
+func (ptr *QSqlResult) BindValueType2(placeholder string) QSql__ParamTypeFlag {
+	if ptr.Pointer() != nil {
+		var placeholderC = C.CString(placeholder)
+		defer C.free(unsafe.Pointer(placeholderC))
+		return QSql__ParamTypeFlag(C.QSqlResult_BindValueType2(ptr.Pointer(), placeholderC))
+	}
+	return 0
+}
+
+func (ptr *QSqlResult) BindValueType(index int) QSql__ParamTypeFlag {
+	if ptr.Pointer() != nil {
+		return QSql__ParamTypeFlag(C.QSqlResult_BindValueType(ptr.Pointer(), C.int(int32(index))))
 	}
 	return 0
 }

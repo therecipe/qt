@@ -22,7 +22,7 @@ func main() {
 		}
 	}
 	if !filepath.IsAbs(appPath) {
-		appPath = utils.GetAbsPath(appPath)
+		appPath, _ = utils.Abs(appPath)
 	}
 	if _, err := ioutil.ReadDir(appPath); err != nil {
 		utils.Log.Fatalln("usage:", "qtrcc", filepath.Join("path", "to", "project"))
@@ -30,7 +30,7 @@ func main() {
 
 	var appName = filepath.Base(appPath)
 
-	utils.MakeFolder(filepath.Join(appPath, "qml"))
+	utils.MkdirAll(filepath.Join(appPath, "qml"))
 
 	var (
 		rccPath string
@@ -72,7 +72,7 @@ func main() {
 
 	utils.Save(qmlQrc, strings.Replace(utils.Load(qmlQrc), "<file>./", "<file>qml/", -1))
 
-	if utils.Exists(filepath.Join(appPath, "qtquickcontrols2.conf")) {
+	if utils.ExistsFile(filepath.Join(appPath, "qtquickcontrols2.conf")) {
 		utils.Save(qmlQrc, strings.Replace(utils.Load(qmlQrc), "<qresource>", "<qresource>\n<file>qtquickcontrols2.conf</file>", -1))
 	}
 

@@ -216,6 +216,7 @@ void* QDesignerFormEditorInterface_TopLevel(void* ptr);
 void* QDesignerFormEditorInterface_WidgetBox(void* ptr);
 void QDesignerFormEditorInterface_DestroyQDesignerFormEditorInterface(void* ptr);
 void QDesignerFormEditorInterface_DestroyQDesignerFormEditorInterfaceDefault(void* ptr);
+void* QDesignerFormEditorInterface_pluginInstances_atList(void* ptr, int i);
 void QDesignerFormEditorInterface_TimerEvent(void* ptr, void* event);
 void QDesignerFormEditorInterface_TimerEventDefault(void* ptr, void* event);
 void QDesignerFormEditorInterface_ChildEvent(void* ptr, void* event);

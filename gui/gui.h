@@ -1092,6 +1092,7 @@ void QIconEngine_AddFile(void* ptr, char* fileName, void* size, long long mode, 
 void QIconEngine_AddFileDefault(void* ptr, char* fileName, void* size, long long mode, long long state);
 void QIconEngine_AddPixmap(void* ptr, void* pixmap, long long mode, long long state);
 void QIconEngine_AddPixmapDefault(void* ptr, void* pixmap, long long mode, long long state);
+struct QtGui_PackedList QIconEngine_AvailableSizes(void* ptr, long long mode, long long state);
 void* QIconEngine_Clone(void* ptr);
 struct QtGui_PackedString QIconEngine_IconName(void* ptr);
 struct QtGui_PackedString QIconEngine_IconNameDefault(void* ptr);
@@ -2417,6 +2418,8 @@ void QPicture_SetData(void* ptr, char* data, unsigned int size);
 void QPicture_SetDataDefault(void* ptr, char* data, unsigned int size);
 void QPicture_Swap(void* ptr, void* other);
 void QPicture_DestroyQPicture(void* ptr);
+void* QPicture_inputFormats_atList(void* ptr, int i);
+void* QPicture_outputFormats_atList(void* ptr, int i);
 int QPicture_Metric(void* ptr, long long metric);
 int QPicture_MetricDefault(void* ptr, long long metric);
 void* QPicture_PaintEngine(void* ptr);

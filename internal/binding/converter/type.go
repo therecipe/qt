@@ -126,17 +126,17 @@ func goType(f *parser.Function, value string) string {
 
 	case "...":
 		{
-			if parser.ClassMap[f.Class()].Module == "QtAndroidExtras" {
+			if parser.CurrentState.ClassMap[f.ClassName()].Module == "QtAndroidExtras" {
 				return "...interface{}"
 			}
 		}
 	}
 
 	switch {
-	case isEnum(f.Class(), value):
+	case isEnum(f.ClassName(), value):
 		{
-			if c, exists := parser.ClassMap[class(cppEnum(f, value, false))]; exists && module(c.Module) != module(f) && module(c.Module) != "" {
-				if parser.ClassMap[f.Class()].WeakLink[c.Module] {
+			if c, exists := parser.CurrentState.ClassMap[class(cppEnum(f, value, false))]; exists && module(c.Module) != module(f) && module(c.Module) != "" {
+				if _, exists := parser.CurrentState.ClassMap[f.ClassName()].WeakLink[c.Module]; exists {
 					return "int64"
 				}
 				return fmt.Sprintf("%v.%v", module(c.Module), goEnum(f, value))
@@ -146,8 +146,8 @@ func goType(f *parser.Function, value string) string {
 
 	case isClass(value):
 		{
-			if m := module(parser.ClassMap[value].Module); m != module(f) {
-				if parser.ClassMap[f.Class()].WeakLink[parser.ClassMap[value].Module] {
+			if m := module(parser.CurrentState.ClassMap[value].Module); m != module(f) {
+				if _, exists := parser.CurrentState.ClassMap[f.ClassName()].WeakLink[parser.CurrentState.ClassMap[value].Module]; exists {
 					return "unsafe.Pointer"
 				}
 				return fmt.Sprintf("%v.%v", m, value)
@@ -163,8 +163,8 @@ func goType(f *parser.Function, value string) string {
 	case parser.IsPackedList(value):
 		{
 			value = parser.UnpackedList(value)
-			if m := module(parser.ClassMap[value].Module); m != module(f) {
-				if parser.ClassMap[f.Class()].WeakLink[parser.ClassMap[value].Module] {
+			if m := module(parser.CurrentState.ClassMap[value].Module); m != module(f) {
+				if _, exists := parser.CurrentState.ClassMap[f.ClassName()].WeakLink[parser.CurrentState.ClassMap[value].Module]; exists {
 					return "[]unsafe.Pointer"
 				}
 				return fmt.Sprintf("[]*%v.%v", m, value)
@@ -200,7 +200,7 @@ func cgoType(f *parser.Function, value string) string {
 	switch value {
 	case "char", "qint8", "uchar", "quint8", "QString", "QStringList":
 		{
-			return fmt.Sprintf("C.struct_%v_PackedString", strings.Title(parser.ClassMap[f.Class()].Module))
+			return fmt.Sprintf("C.struct_%v_PackedString", strings.Title(parser.CurrentState.ClassMap[f.ClassName()].Module))
 		}
 
 	case "void", "":
@@ -274,7 +274,7 @@ func cgoType(f *parser.Function, value string) string {
 	}
 
 	switch {
-	case isEnum(f.Class(), value):
+	case isEnum(f.ClassName(), value):
 		{
 			return "C.longlong"
 		}
@@ -311,7 +311,7 @@ func cppType(f *parser.Function, value string) string {
 	switch value {
 	case "char", "qint8", "uchar", "quint8", "QString", "QStringList":
 		{
-			return fmt.Sprintf("struct %v_PackedString", strings.Title(parser.ClassMap[f.Class()].Module))
+			return fmt.Sprintf("struct %v_PackedString", strings.Title(parser.CurrentState.ClassMap[f.ClassName()].Module))
 		}
 
 	case "void", "":
@@ -427,7 +427,7 @@ func cppType(f *parser.Function, value string) string {
 	}
 
 	switch {
-	case isEnum(f.Class(), value):
+	case isEnum(f.ClassName(), value):
 		{
 			return "long long"
 		}
@@ -439,7 +439,7 @@ func cppType(f *parser.Function, value string) string {
 
 	case parser.IsPackedList(value):
 		{
-			return fmt.Sprintf("struct %v_PackedList", strings.Title(parser.ClassMap[f.Class()].Module))
+			return fmt.Sprintf("struct %v_PackedList", strings.Title(parser.CurrentState.ClassMap[f.ClassName()].Module))
 		}
 	}
 

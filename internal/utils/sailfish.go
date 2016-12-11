@@ -21,10 +21,7 @@ func VIRTUALBOX_DIR() string {
 		Log.WithError(err).Error("failed to find vboxmanage in your PATH")
 	}
 
-	path, err = filepath.Abs(filepath.Dir(path))
-	if err != nil {
-		Log.WithError(err).Errorf("failed to create absolute path for %v", path)
-	}
+	path, err = Abs(filepath.Dir(path))
 
 	return path
 }

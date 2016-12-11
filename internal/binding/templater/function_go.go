@@ -12,7 +12,7 @@ import (
 
 func goFunction(function *parser.Function) string {
 	var output = fmt.Sprintf("%v{\n%v\n}", goFunctionHeader(function), goFunctionBody(function))
-	if functionIsSupported(parser.ClassMap[function.Class()], function) {
+	if functionIsSupported(parser.CurrentState.ClassMap[function.ClassName()], function) {
 		if UseStub() {
 			if function.SignalMode != parser.CALLBACK {
 				return output
@@ -30,7 +30,7 @@ func goFunctionHeader(function *parser.Function) string {
 			if function.Static || function.Meta == parser.CONSTRUCTOR || function.SignalMode == parser.CALLBACK {
 				return ""
 			}
-			return fmt.Sprintf("(ptr *%v)", function.Class())
+			return fmt.Sprintf("(ptr *%v)", function.ClassName())
 		}(),
 
 		converter.GoHeaderName(function),
@@ -47,26 +47,26 @@ func goFunctionBody(function *parser.Function) string {
 
 	if strings.ToLower(os.Getenv("QT_DEBUG")) == "true" {
 		fmt.Fprintf(bb, "defer qt.Recover(\"\t%v%v%v(%v) %v\")\n",
-			function.Class(),
+			function.ClassName(),
 
 			func() string {
-				return strings.Repeat(" ", 45-len(function.Class()))
+				return strings.Repeat(" ", 45-len(function.ClassName()))
 			}(),
 
 			converter.GoHeaderName(function), converter.GoHeaderInput(function), converter.GoHeaderOutput(function))
 
 		fmt.Fprintf(bb, "qt.Debug(\"\t%v%v%v(%v) %v\")\n",
 
-			function.Class(),
+			function.ClassName(),
 
 			func() string {
-				return strings.Repeat(" ", 45-len(function.Class()))
+				return strings.Repeat(" ", 45-len(function.ClassName()))
 			}(),
 
 			converter.GoHeaderName(function), converter.GoHeaderInput(function), converter.GoHeaderOutput(function))
 	}
 
-	if parser.ClassMap[function.Class()].Stub {
+	if parser.CurrentState.ClassMap[function.ClassName()].Stub {
 		if converter.GoHeaderOutput(function) != "" {
 			return fmt.Sprintf("\nreturn %v", converter.GoOutputParametersFromCFailed(function))
 		}
@@ -78,7 +78,7 @@ func goFunctionBody(function *parser.Function) string {
 	}
 
 	for _, parameter := range function.Parameters {
-		if parameter.Value == "..." || (parameter.Value == "T" && parser.ClassMap[function.Class()].Module == "QtAndroidExtras" && function.TemplateModeJNI == "") {
+		if parameter.Value == "..." || (parameter.Value == "T" && parser.CurrentState.ClassMap[function.ClassName()].Module == "QtAndroidExtras" && function.TemplateModeJNI == "") {
 			for i := 0; i < 10; i++ {
 				if parameter.Value == "T" {
 					fmt.Fprintf(bb, "var p%v, d%v = assertion(%v, %v)\n", i, i, i, parameter.Name)
@@ -101,9 +101,9 @@ func goFunctionBody(function *parser.Function) string {
 		(function.Meta == parser.GETTER || function.Meta == parser.SETTER) {
 
 		//TODO:
-		if functionIsSupported(parser.ClassMap[function.Class()], function) {
+		if functionIsSupported(parser.CurrentState.ClassMap[function.ClassName()], function) {
 			cppFunction(function)
-			if functionIsSupported(parser.ClassMap[function.Class()], function) {
+			if functionIsSupported(parser.CurrentState.ClassMap[function.ClassName()], function) {
 
 				for _, alloc := range converter.GoInputParametersForCAlloc(function) {
 					fmt.Fprint(bb, alloc)
@@ -113,7 +113,7 @@ func goFunctionBody(function *parser.Function) string {
 				fmt.Fprint(bb, func() string {
 					if converter.GoHeaderOutput(function) != "" {
 						switch {
-						case function.NeedsFinalizer && classIsSupported(parser.ClassMap[converter.CleanValue(function.Output)]) || function.Meta == parser.CONSTRUCTOR && !(classNeedsCallbackFunctions(parser.ClassMap[function.Name]) || parser.ClassMap[function.Name].IsQObjectSubClass()):
+						case function.NeedsFinalizer && classIsSupported(parser.CurrentState.ClassMap[converter.CleanValue(function.Output)]) || function.Meta == parser.CONSTRUCTOR && !(classNeedsCallbackFunctions(parser.CurrentState.ClassMap[function.Name]) || parser.CurrentState.ClassMap[function.Name].IsSubClassOfQObject()):
 							{
 								return fmt.Sprintf("var tmpValue = %v\nruntime.SetFinalizer(tmpValue, (%v).Destroy%v)\nreturn tmpValue%v",
 
@@ -141,14 +141,14 @@ func goFunctionBody(function *parser.Function) string {
 									}())
 							}
 
-						case parser.ClassMap[converter.CleanValue(function.Output)].IsQObjectSubClass() && converter.GoHeaderOutput(function) != "unsafe.Pointer" || function.Meta == parser.CONSTRUCTOR && parser.ClassMap[converter.CleanValue(function.Name)].IsQObjectSubClass():
+						case parser.CurrentState.ClassMap[converter.CleanValue(function.Output)].IsSubClassOfQObject() && converter.GoHeaderOutput(function) != "unsafe.Pointer" || function.Meta == parser.CONSTRUCTOR && parser.CurrentState.ClassMap[converter.CleanValue(function.Name)].IsSubClassOfQObject():
 							{
 								return fmt.Sprintf("var tmpValue = %v\nif !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), \"QObject::destroyed\") {\ntmpValue.ConnectDestroyed(func(%v){ tmpValue.SetPointer(nil) })\n}\nreturn tmpValue",
 
 									body,
 
 									func() string {
-										if parser.ClassMap[function.Class()].Module == "QtCore" {
+										if parser.CurrentState.ClassMap[function.ClassName()].Module == "QtCore" {
 											return "*QObject"
 										}
 										return "*core.QObject"
@@ -179,7 +179,7 @@ func goFunctionBody(function *parser.Function) string {
 						return "\n"
 					}
 					return ""
-				}(), function.Class(), function.Name, function.OverloadNumber)
+				}(), function.ClassName(), function.Name, function.OverloadNumber)
 
 			if converter.GoHeaderOutput(function) == "" {
 				fmt.Fprintf(bb, "signal.(%v)(%v)", converter.GoHeaderInputSignalFunction(function), converter.GoInputParametersForCallback(function))
@@ -199,14 +199,24 @@ func goFunctionBody(function *parser.Function) string {
 			)
 
 			if converter.GoHeaderOutput(function) == "" {
-				if function.Virtual == parser.IMPURE && functionIsSupportedDefault(function) {
-					fmt.Fprintf(bb, "New%vFromPointer(ptr).%v%vDefault(%v)", strings.Title(function.Class()), strings.Replace(strings.Title(function.Name), parser.TILDE, "Destroy", -1), function.OverloadNumber, converter.GoInputParametersForCallback(function))
+				var class, _ = function.Class()
+				if class.Module == parser.MOC && function.PureBaseFunction {
+
+				} else {
+					if function.Virtual == parser.IMPURE && functionIsSupportedDefault(function) {
+						fmt.Fprintf(bb, "New%vFromPointer(ptr).%v%vDefault(%v)", strings.Title(function.ClassName()), strings.Replace(strings.Title(function.Name), parser.TILDE, "Destroy", -1), function.OverloadNumber, converter.GoInputParametersForCallback(function))
+					}
 				}
 			} else {
-				if function.Virtual == parser.IMPURE && functionIsSupportedDefault(function) {
-					fmt.Fprintf(bb, "\nreturn %v", converter.GoInput(fmt.Sprintf("New%vFromPointer(ptr).%v%vDefault(%v)", strings.Title(function.Class()), strings.Replace(strings.Title(function.Name), parser.TILDE, "Destroy", -1), function.OverloadNumber, converter.GoInputParametersForCallback(function)), function.Output, function))
-				} else {
+				var class, _ = function.Class()
+				if class.Module == parser.MOC && function.PureBaseFunction {
 					fmt.Fprintf(bb, "\nreturn %v", converter.GoInput(converter.GoOutputParametersFromCFailed(function), function.Output, function))
+				} else {
+					if function.Virtual == parser.IMPURE && functionIsSupportedDefault(function) {
+						fmt.Fprintf(bb, "\nreturn %v", converter.GoInput(fmt.Sprintf("New%vFromPointer(ptr).%v%vDefault(%v)", strings.Title(function.ClassName()), strings.Replace(strings.Title(function.Name), parser.TILDE, "Destroy", -1), function.OverloadNumber, converter.GoInputParametersForCallback(function)), function.Output, function))
+					} else {
+						fmt.Fprintf(bb, "\nreturn %v", converter.GoInput(converter.GoOutputParametersFromCFailed(function), function.Output, function))
+					}
 				}
 			}
 
@@ -228,7 +238,7 @@ func goFunctionBody(function *parser.Function) string {
 			fmt.Fprintf(bb, "\nqt.%vSignal(fmt.Sprint(ptr.Pointer()), \"%v::%v%v\"%v)",
 				function.SignalMode,
 
-				function.Class(),
+				function.ClassName(),
 
 				function.Name,
 
@@ -245,7 +255,7 @@ func goFunctionBody(function *parser.Function) string {
 	}
 
 	if (function.Meta == parser.DESTRUCTOR || strings.Contains(function.Name, "deleteLater") || strings.HasPrefix(function.Name, parser.TILDE)) && function.SignalMode == "" {
-		if classNeedsCallbackFunctions(parser.ClassMap[function.Class()]) || parser.ClassMap[function.Class()].IsQObjectSubClass() {
+		if classNeedsCallbackFunctions(parser.CurrentState.ClassMap[function.ClassName()]) || parser.CurrentState.ClassMap[function.ClassName()].IsSubClassOfQObject() {
 			fmt.Fprint(bb, "\nqt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))")
 		}
 		fmt.Fprint(bb, "\nptr.SetPointer(nil)")

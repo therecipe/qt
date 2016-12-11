@@ -1250,6 +1250,11 @@ void QDesignerFormEditorInterface_DestroyQDesignerFormEditorInterfaceDefault(voi
 
 }
 
+void* QDesignerFormEditorInterface_pluginInstances_atList(void* ptr, int i)
+{
+	return const_cast<QObject*>(static_cast<QList<QObject *>*>(ptr)->at(i));
+}
+
 void QDesignerFormEditorInterface_TimerEvent(void* ptr, void* event)
 {
 	static_cast<QDesignerFormEditorInterface*>(ptr)->timerEvent(static_cast<QTimerEvent*>(event));

@@ -2670,6 +2670,19 @@ func (ptr *QAbstractItemModel) InsertRowsDefault(row int, count int, parent QMod
 	return false
 }
 
+func (ptr *QAbstractItemModel) Match(start QModelIndex_ITF, role int, value QVariant_ITF, hits int, flags Qt__MatchFlag) []*QModelIndex {
+	if ptr.Pointer() != nil {
+		return func(l C.struct_QtCore_PackedList) []*QModelIndex {
+			var out = make([]*QModelIndex, int(l.len))
+			for i := 0; i < int(l.len); i++ {
+				out[i] = NewQAbstractItemModelFromPointer(l.data).match_atList(i)
+			}
+			return out
+		}(C.QAbstractItemModel_Match(ptr.Pointer(), PointerFromQModelIndex(start), C.int(int32(role)), PointerFromQVariant(value), C.int(int32(hits)), C.longlong(flags)))
+	}
+	return nil
+}
+
 //export callbackQAbstractItemModel_MimeTypes
 func callbackQAbstractItemModel_MimeTypes(ptr unsafe.Pointer) *C.char {
 
@@ -18620,6 +18633,15 @@ func (ptr *QEasingCurve) DestroyQEasingCurve() {
 	}
 }
 
+func (ptr *QEasingCurve) cubicBezierSpline_atList(i int) *QPointF {
+	if ptr.Pointer() != nil {
+		var tmpValue = NewQPointFFromPointer(C.QEasingCurve_cubicBezierSpline_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*QPointF).DestroyQPointF)
+		return tmpValue
+	}
+	return nil
+}
+
 func (ptr *QEasingCurve) toCubicSpline_atList(i int) *QPointF {
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQPointFFromPointer(C.QEasingCurve_toCubicSpline_atList(ptr.Pointer(), C.int(int32(i))))
@@ -27609,6 +27631,19 @@ func (ptr *QIdentityProxyModel) MapToSourceDefault(proxyIndex QModelIndex_ITF) *
 		var tmpValue = NewQModelIndexFromPointer(C.QIdentityProxyModel_MapToSourceDefault(ptr.Pointer(), PointerFromQModelIndex(proxyIndex)))
 		runtime.SetFinalizer(tmpValue, (*QModelIndex).DestroyQModelIndex)
 		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QIdentityProxyModel) Match(start QModelIndex_ITF, role int, value QVariant_ITF, hits int, flags Qt__MatchFlag) []*QModelIndex {
+	if ptr.Pointer() != nil {
+		return func(l C.struct_QtCore_PackedList) []*QModelIndex {
+			var out = make([]*QModelIndex, int(l.len))
+			for i := 0; i < int(l.len); i++ {
+				out[i] = NewQIdentityProxyModelFromPointer(l.data).match_atList(i)
+			}
+			return out
+		}(C.QIdentityProxyModel_Match(ptr.Pointer(), PointerFromQModelIndex(start), C.int(int32(role)), PointerFromQVariant(value), C.int(int32(hits)), C.longlong(flags)))
 	}
 	return nil
 }
@@ -51858,6 +51893,19 @@ func (ptr *QSortFilterProxyModel) MapToSourceDefault(proxyIndex QModelIndex_ITF)
 	return nil
 }
 
+func (ptr *QSortFilterProxyModel) Match(start QModelIndex_ITF, role int, value QVariant_ITF, hits int, flags Qt__MatchFlag) []*QModelIndex {
+	if ptr.Pointer() != nil {
+		return func(l C.struct_QtCore_PackedList) []*QModelIndex {
+			var out = make([]*QModelIndex, int(l.len))
+			for i := 0; i < int(l.len); i++ {
+				out[i] = NewQSortFilterProxyModelFromPointer(l.data).match_atList(i)
+			}
+			return out
+		}(C.QSortFilterProxyModel_Match(ptr.Pointer(), PointerFromQModelIndex(start), C.int(int32(role)), PointerFromQVariant(value), C.int(int32(hits)), C.longlong(flags)))
+	}
+	return nil
+}
+
 //export callbackQSortFilterProxyModel_MimeTypes
 func callbackQSortFilterProxyModel_MimeTypes(ptr unsafe.Pointer) *C.char {
 
@@ -59287,6 +59335,19 @@ func NewQTextCodecFromPointer(ptr unsafe.Pointer) *QTextCodec {
 	n.SetPointer(ptr)
 	return n
 }
+func (ptr *QTextCodec) Aliases() []*QByteArray {
+	if ptr.Pointer() != nil {
+		return func(l C.struct_QtCore_PackedList) []*QByteArray {
+			var out = make([]*QByteArray, int(l.len))
+			for i := 0; i < int(l.len); i++ {
+				out[i] = NewQTextCodecFromPointer(l.data).aliases_atList(i)
+			}
+			return out
+		}(C.QTextCodec_Aliases(ptr.Pointer()))
+	}
+	return nil
+}
+
 func QTextCodec_AvailableCodecs() []*QByteArray {
 	return func(l C.struct_QtCore_PackedList) []*QByteArray {
 		var out = make([]*QByteArray, int(l.len))
@@ -64906,6 +64967,15 @@ func (ptr *QUrl) DestroyQUrl() {
 		C.QUrl_DestroyQUrl(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
+}
+
+func (ptr *QUrl) allEncodedQueryItemValues_atList(i int) *QByteArray {
+	if ptr.Pointer() != nil {
+		var tmpValue = NewQByteArrayFromPointer(C.QUrl_allEncodedQueryItemValues_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*QByteArray).DestroyQByteArray)
+		return tmpValue
+	}
+	return nil
 }
 
 func (ptr *QUrl) fromStringList_atList(i int) *QUrl {

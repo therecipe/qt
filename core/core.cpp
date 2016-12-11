@@ -1094,6 +1094,11 @@ char QAbstractItemModel_InsertRowsDefault(void* ptr, int row, int count, void* p
 	return static_cast<QAbstractItemModel*>(ptr)->QAbstractItemModel::insertRows(row, count, *static_cast<QModelIndex*>(parent));
 }
 
+struct QtCore_PackedList QAbstractItemModel_Match(void* ptr, void* start, int role, void* value, int hits, long long flags)
+{
+	return ({ QList<QModelIndex>* tmpValue = new QList<QModelIndex>(static_cast<QAbstractItemModel*>(ptr)->match(*static_cast<QModelIndex*>(start), role, *static_cast<QVariant*>(value), hits, static_cast<Qt::MatchFlag>(flags))); QtCore_PackedList { tmpValue, tmpValue->size() }; });
+}
+
 struct QtCore_PackedString QAbstractItemModel_MimeTypes(void* ptr)
 {
 	return ({ QByteArray ta50262 = static_cast<QAbstractItemModel*>(ptr)->mimeTypes().join("|").toUtf8(); QtCore_PackedString { const_cast<char*>(ta50262.prepend("WHITESPACE").constData()+10), ta50262.size()-10 }; });
@@ -6887,6 +6892,11 @@ void QEasingCurve_DestroyQEasingCurve(void* ptr)
 	static_cast<QEasingCurve*>(ptr)->~QEasingCurve();
 }
 
+void* QEasingCurve_cubicBezierSpline_atList(void* ptr, int i)
+{
+	return ({ QPointF tmpValue = static_cast<QList<QPointF>*>(ptr)->at(i); new QPointF(tmpValue.x(), tmpValue.y()); });
+}
+
 void* QEasingCurve_toCubicSpline_atList(void* ptr, int i)
 {
 	return ({ QPointF tmpValue = static_cast<QVector<QPointF>*>(ptr)->at(i); new QPointF(tmpValue.x(), tmpValue.y()); });
@@ -9768,6 +9778,11 @@ void* QIdentityProxyModel_MapToSource(void* ptr, void* proxyIndex)
 void* QIdentityProxyModel_MapToSourceDefault(void* ptr, void* proxyIndex)
 {
 	return new QModelIndex(static_cast<QIdentityProxyModel*>(ptr)->QIdentityProxyModel::mapToSource(*static_cast<QModelIndex*>(proxyIndex)));
+}
+
+struct QtCore_PackedList QIdentityProxyModel_Match(void* ptr, void* start, int role, void* value, int hits, long long flags)
+{
+	return ({ QList<QModelIndex>* tmpValue = new QList<QModelIndex>(static_cast<QIdentityProxyModel*>(ptr)->match(*static_cast<QModelIndex*>(start), role, *static_cast<QVariant*>(value), hits, static_cast<Qt::MatchFlag>(flags))); QtCore_PackedList { tmpValue, tmpValue->size() }; });
 }
 
 void* QIdentityProxyModel_Parent(void* ptr, void* child)
@@ -18586,6 +18601,11 @@ void* QSortFilterProxyModel_MapToSourceDefault(void* ptr, void* proxyIndex)
 	return new QModelIndex(static_cast<QSortFilterProxyModel*>(ptr)->QSortFilterProxyModel::mapToSource(*static_cast<QModelIndex*>(proxyIndex)));
 }
 
+struct QtCore_PackedList QSortFilterProxyModel_Match(void* ptr, void* start, int role, void* value, int hits, long long flags)
+{
+	return ({ QList<QModelIndex>* tmpValue = new QList<QModelIndex>(static_cast<QSortFilterProxyModel*>(ptr)->match(*static_cast<QModelIndex*>(start), role, *static_cast<QVariant*>(value), hits, static_cast<Qt::MatchFlag>(flags))); QtCore_PackedList { tmpValue, tmpValue->size() }; });
+}
+
 struct QtCore_PackedString QSortFilterProxyModel_MimeTypes(void* ptr)
 {
 	return ({ QByteArray t6364b8 = static_cast<QSortFilterProxyModel*>(ptr)->mimeTypes().join("|").toUtf8(); QtCore_PackedString { const_cast<char*>(t6364b8.prepend("WHITESPACE").constData()+10), t6364b8.size()-10 }; });
@@ -21359,6 +21379,11 @@ public:
 	 ~MyQTextCodec() { callbackQTextCodec_DestroyQTextCodec(this); };
 };
 
+struct QtCore_PackedList QTextCodec_Aliases(void* ptr)
+{
+	return ({ QList<QByteArray>* tmpValue = new QList<QByteArray>(static_cast<QTextCodec*>(ptr)->aliases()); QtCore_PackedList { tmpValue, tmpValue->size() }; });
+}
+
 struct QtCore_PackedList QTextCodec_QTextCodec_AvailableCodecs()
 {
 	return ({ QList<QByteArray>* tmpValue = new QList<QByteArray>(QTextCodec::availableCodecs()); QtCore_PackedList { tmpValue, tmpValue->size() }; });
@@ -23482,6 +23507,11 @@ struct QtCore_PackedString QUrl_UserName(void* ptr, long long options)
 void QUrl_DestroyQUrl(void* ptr)
 {
 	static_cast<QUrl*>(ptr)->~QUrl();
+}
+
+void* QUrl_allEncodedQueryItemValues_atList(void* ptr, int i)
+{
+	return new QByteArray(static_cast<QList<QByteArray>*>(ptr)->at(i));
 }
 
 void* QUrl_fromStringList_atList(void* ptr, int i)

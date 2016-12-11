@@ -529,6 +529,16 @@ void* QSimpleXmlNodeModel_NamePool(void* ptr)
 	return new QXmlNamePool(static_cast<QSimpleXmlNodeModel*>(ptr)->namePool());
 }
 
+struct QtXmlPatterns_PackedList QSimpleXmlNodeModel_NamespaceBindings(void* ptr, void* node)
+{
+	return ({ QVector<QXmlName>* tmpValue = new QVector<QXmlName>(static_cast<QSimpleXmlNodeModel*>(ptr)->namespaceBindings(*static_cast<QXmlNodeModelIndex*>(node))); QtXmlPatterns_PackedList { tmpValue, tmpValue->size() }; });
+}
+
+struct QtXmlPatterns_PackedList QSimpleXmlNodeModel_NodesByIdref(void* ptr, void* idref)
+{
+	return ({ QVector<QXmlNodeModelIndex>* tmpValue = new QVector<QXmlNodeModelIndex>(static_cast<QSimpleXmlNodeModel*>(ptr)->nodesByIdref(*static_cast<QXmlName*>(idref))); QtXmlPatterns_PackedList { tmpValue, tmpValue->size() }; });
+}
+
 struct QtXmlPatterns_PackedString QSimpleXmlNodeModel_StringValue(void* ptr, void* node)
 {
 	return ({ QByteArray t8d99fb = static_cast<QSimpleXmlNodeModel*>(ptr)->stringValue(*static_cast<QXmlNodeModelIndex*>(node)).toUtf8(); QtXmlPatterns_PackedString { const_cast<char*>(t8d99fb.prepend("WHITESPACE").constData()+10), t8d99fb.size()-10 }; });
@@ -959,6 +969,11 @@ char QXmlNodeModelIndex_IsNull(void* ptr)
 void* QXmlNodeModelIndex_Model(void* ptr)
 {
 	return const_cast<QAbstractXmlNodeModel*>(static_cast<QXmlNodeModelIndex*>(ptr)->model());
+}
+
+void* QXmlNodeModelIndex_namespaceBindings_atList(void* ptr, int i)
+{
+	return new QXmlName(static_cast<QVector<QXmlName>*>(ptr)->at(i));
 }
 
 void* QXmlQuery_NewQXmlQuery()

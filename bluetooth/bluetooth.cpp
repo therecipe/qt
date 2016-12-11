@@ -868,6 +868,11 @@ void* QBluetoothServer_NextPendingConnection(void* ptr)
 	return static_cast<QBluetoothServer*>(ptr)->nextPendingConnection();
 }
 
+long long QBluetoothServer_SecurityFlags(void* ptr)
+{
+	return static_cast<QBluetoothServer*>(ptr)->securityFlags();
+}
+
 void* QBluetoothServer_ServerAddress(void* ptr)
 {
 	return new QBluetoothAddress(static_cast<QBluetoothServer*>(ptr)->serverAddress());
@@ -881,6 +886,11 @@ unsigned short QBluetoothServer_ServerPort(void* ptr)
 void QBluetoothServer_SetMaxPendingConnections(void* ptr, int numConnections)
 {
 	static_cast<QBluetoothServer*>(ptr)->setMaxPendingConnections(numConnections);
+}
+
+void QBluetoothServer_SetSecurityFlags(void* ptr, long long security)
+{
+	static_cast<QBluetoothServer*>(ptr)->setSecurityFlags(static_cast<QBluetooth::Security>(security));
 }
 
 void QBluetoothServer_TimerEvent(void* ptr, void* event)
@@ -1609,6 +1619,16 @@ struct QtBluetooth_PackedString QBluetoothSocket_PeerName(void* ptr)
 unsigned short QBluetoothSocket_PeerPort(void* ptr)
 {
 	return static_cast<QBluetoothSocket*>(ptr)->peerPort();
+}
+
+long long QBluetoothSocket_PreferredSecurityFlags(void* ptr)
+{
+	return static_cast<QBluetoothSocket*>(ptr)->preferredSecurityFlags();
+}
+
+void QBluetoothSocket_SetPreferredSecurityFlags(void* ptr, long long flags)
+{
+	static_cast<QBluetoothSocket*>(ptr)->setPreferredSecurityFlags(static_cast<QBluetooth::Security>(flags));
 }
 
 char QBluetoothSocket_SetSocketDescriptor(void* ptr, int socketDescriptor, long long socketType, long long socketState, long long openMode)
@@ -2545,9 +2565,19 @@ long long QLowEnergyCharacteristicData_Properties(void* ptr)
 	return static_cast<QLowEnergyCharacteristicData*>(ptr)->properties();
 }
 
+long long QLowEnergyCharacteristicData_ReadConstraints(void* ptr)
+{
+	return static_cast<QLowEnergyCharacteristicData*>(ptr)->readConstraints();
+}
+
 void QLowEnergyCharacteristicData_SetProperties(void* ptr, long long properties)
 {
 	static_cast<QLowEnergyCharacteristicData*>(ptr)->setProperties(static_cast<QLowEnergyCharacteristic::PropertyType>(properties));
+}
+
+void QLowEnergyCharacteristicData_SetReadConstraints(void* ptr, long long constraints)
+{
+	static_cast<QLowEnergyCharacteristicData*>(ptr)->setReadConstraints(static_cast<QBluetooth::AttAccessConstraint>(constraints));
 }
 
 void QLowEnergyCharacteristicData_SetUuid(void* ptr, void* uuid)
@@ -2565,6 +2595,11 @@ void QLowEnergyCharacteristicData_SetValueLength(void* ptr, int minimum, int max
 	static_cast<QLowEnergyCharacteristicData*>(ptr)->setValueLength(minimum, maximum);
 }
 
+void QLowEnergyCharacteristicData_SetWriteConstraints(void* ptr, long long constraints)
+{
+	static_cast<QLowEnergyCharacteristicData*>(ptr)->setWriteConstraints(static_cast<QBluetooth::AttAccessConstraint>(constraints));
+}
+
 void QLowEnergyCharacteristicData_Swap(void* ptr, void* other)
 {
 	static_cast<QLowEnergyCharacteristicData*>(ptr)->swap(*static_cast<QLowEnergyCharacteristicData*>(other));
@@ -2578,6 +2613,11 @@ void* QLowEnergyCharacteristicData_Uuid(void* ptr)
 void* QLowEnergyCharacteristicData_Value(void* ptr)
 {
 	return new QByteArray(static_cast<QLowEnergyCharacteristicData*>(ptr)->value());
+}
+
+long long QLowEnergyCharacteristicData_WriteConstraints(void* ptr)
+{
+	return static_cast<QLowEnergyCharacteristicData*>(ptr)->writeConstraints();
 }
 
 void QLowEnergyCharacteristicData_DestroyQLowEnergyCharacteristicData(void* ptr)
@@ -3041,6 +3081,16 @@ char QLowEnergyDescriptorData_IsWritable(void* ptr)
 	return static_cast<QLowEnergyDescriptorData*>(ptr)->isWritable();
 }
 
+long long QLowEnergyDescriptorData_ReadConstraints(void* ptr)
+{
+	return static_cast<QLowEnergyDescriptorData*>(ptr)->readConstraints();
+}
+
+void QLowEnergyDescriptorData_SetReadPermissions(void* ptr, char readable, long long constraints)
+{
+	static_cast<QLowEnergyDescriptorData*>(ptr)->setReadPermissions(readable != 0, static_cast<QBluetooth::AttAccessConstraint>(constraints));
+}
+
 void QLowEnergyDescriptorData_SetUuid(void* ptr, void* uuid)
 {
 	static_cast<QLowEnergyDescriptorData*>(ptr)->setUuid(*static_cast<QBluetoothUuid*>(uuid));
@@ -3049,6 +3099,11 @@ void QLowEnergyDescriptorData_SetUuid(void* ptr, void* uuid)
 void QLowEnergyDescriptorData_SetValue(void* ptr, void* value)
 {
 	static_cast<QLowEnergyDescriptorData*>(ptr)->setValue(*static_cast<QByteArray*>(value));
+}
+
+void QLowEnergyDescriptorData_SetWritePermissions(void* ptr, char writable, long long constraints)
+{
+	static_cast<QLowEnergyDescriptorData*>(ptr)->setWritePermissions(writable != 0, static_cast<QBluetooth::AttAccessConstraint>(constraints));
 }
 
 void QLowEnergyDescriptorData_Swap(void* ptr, void* other)
@@ -3064,6 +3119,11 @@ void* QLowEnergyDescriptorData_Uuid(void* ptr)
 void* QLowEnergyDescriptorData_Value(void* ptr)
 {
 	return new QByteArray(static_cast<QLowEnergyDescriptorData*>(ptr)->value());
+}
+
+long long QLowEnergyDescriptorData_WriteConstraints(void* ptr)
+{
+	return static_cast<QLowEnergyDescriptorData*>(ptr)->writeConstraints();
 }
 
 void QLowEnergyDescriptorData_DestroyQLowEnergyDescriptorData(void* ptr)

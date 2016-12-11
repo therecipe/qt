@@ -5885,6 +5885,11 @@ void QIconEngine_AddPixmapDefault(void* ptr, void* pixmap, long long mode, long 
 	static_cast<QIconEngine*>(ptr)->QIconEngine::addPixmap(*static_cast<QPixmap*>(pixmap), static_cast<QIcon::Mode>(mode), static_cast<QIcon::State>(state));
 }
 
+struct QtGui_PackedList QIconEngine_AvailableSizes(void* ptr, long long mode, long long state)
+{
+	return ({ QList<QSize>* tmpValue = new QList<QSize>(static_cast<QIconEngine*>(ptr)->availableSizes(static_cast<QIcon::Mode>(mode), static_cast<QIcon::State>(state))); QtGui_PackedList { tmpValue, tmpValue->size() }; });
+}
+
 void* QIconEngine_Clone(void* ptr)
 {
 	return static_cast<QIconEngine*>(ptr)->clone();
@@ -12797,6 +12802,16 @@ void QPicture_Swap(void* ptr, void* other)
 void QPicture_DestroyQPicture(void* ptr)
 {
 	static_cast<QPicture*>(ptr)->~QPicture();
+}
+
+void* QPicture_inputFormats_atList(void* ptr, int i)
+{
+	return new QByteArray(static_cast<QList<QByteArray>*>(ptr)->at(i));
+}
+
+void* QPicture_outputFormats_atList(void* ptr, int i)
+{
+	return new QByteArray(static_cast<QList<QByteArray>*>(ptr)->at(i));
 }
 
 int QPicture_Metric(void* ptr, long long metric)

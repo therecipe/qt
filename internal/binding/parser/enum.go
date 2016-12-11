@@ -17,26 +17,28 @@ type Value struct {
 	Value string `xml:"value,attr"`
 }
 
-func (e *Enum) Class() string { return strings.Split(e.Fullname, "::")[0] }
-
-func (e *Enum) register(module string) {
-	SubnamespaceMap[e.Class()] = true
-	if c, exists := ClassMap[e.Class()]; !exists {
-		ClassMap[e.Class()] = &Class{Name: e.Class(), Status: "commendable", Module: module, Access: "public", Enums: []*Enum{e}}
-	} else {
-		if !e.isRegistered() {
-			c.Enums = append(c.Enums, e)
-		}
-	}
+func (e *Enum) Class() (*Class, bool) {
+	var class, exists = CurrentState.ClassMap[e.ClassName()]
+	return class, exists
 }
 
-func (e *Enum) isRegistered() bool {
-	for _, c := range ClassMap {
-		for _, ce := range c.Enums {
-			if e.Fullname == ce.Fullname {
-				return true
-			}
+func (e *Enum) ClassName() string {
+	return strings.Split(e.Fullname, "::")[0]
+}
+
+func (e *Enum) register(m string) {
+
+	CurrentState.EnumMap[e.ClassName()] = struct{}{}
+
+	if c, exists := e.Class(); !exists {
+		CurrentState.ClassMap[e.ClassName()] = &Class{
+			Name:   e.ClassName(),
+			Status: "commendable",
+			Module: m,
+			Access: "public",
+			Enums:  []*Enum{e},
 		}
+	} else {
+		c.Enums = append(c.Enums, e)
 	}
-	return false
 }

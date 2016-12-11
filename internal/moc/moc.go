@@ -22,7 +22,7 @@ import (
 
 func init() {
 	// TODO: dangerous
-	templater.Moc = true
+	parser.CurrentState.Moc = true
 }
 
 type appMoc struct {
@@ -44,16 +44,12 @@ func newAppMoc(appPath string) *appMoc {
 
 func cacheModules() (err error) {
 
-	if len(parser.ClassMap) != 0 {
+	if len(parser.CurrentState.ClassMap) != 0 {
 		utils.Log.WithField("func", "cacheModules").Debug("modules already cached, skipping caching of modules")
 		return
 	}
 
-	for _, module := range templater.GetLibs() {
-		if _, err = parser.GetModule(module); err != nil {
-			return
-		}
-	}
+	parser.LoadModules()
 
 	return
 }
@@ -61,8 +57,8 @@ func cacheModules() (err error) {
 // return how many moc classes are in module, delete those that are not
 func (m *appMoc) cleanupClassMap() (size int) {
 	for _, class := range m.module.Namespace.Classes {
-		if !class.IsQObjectSubClass() {
-			delete(parser.ClassMap, class.Name)
+		if !class.IsSubClassOfQObject() {
+			delete(parser.CurrentState.ClassMap, class.Name)
 		} else {
 			size++
 		}
@@ -81,7 +77,7 @@ func (m *appMoc) parseGo(path string) error {
 		return errParse
 	}
 
-	templater.MocModule = file.Name.String()
+	parser.CurrentState.MocModule = file.Name.String()
 
 	for _, d := range file.Decls {
 		typeDecl, ok := d.(*ast.GenDecl)
@@ -207,7 +203,7 @@ func CleanPath(path string) (err error) {
 				for _, tFile := range tmpFileNames {
 					if tFile == info.Name() {
 						utils.Log.WithFields(fields).WithField("filename", tFile).Debug("Remove file")
-						return os.RemoveAll(path)
+						return utils.RemoveAll(path)
 					}
 				}
 
@@ -320,7 +316,7 @@ func (m *appMoc) generate() error {
 	//find valid base classes for the moc classes in moc namespace and global namespace
 	for _, c := range m.module.Namespace.Classes {
 		for _, bc := range c.GetBases() {
-			if isInClassArray(m.module.Namespace.Classes, bc) || isInClassMap(parser.ClassMap, bc) {
+			if isInClassArray(m.module.Namespace.Classes, bc) || isInClassMap(parser.CurrentState.ClassMap, bc) {
 				c.Bases = bc
 				break
 			}
@@ -349,12 +345,12 @@ func (m *appMoc) generate() error {
 	//copy constructor and destructor
 	for _ = range m.module.Namespace.Classes {
 		for _, c := range m.module.Namespace.Classes {
-			if bc, exists := parser.ClassMap[c.Bases]; exists {
+			if bc, exists := parser.CurrentState.ClassMap[c.Bases]; exists {
 				for _, bcf := range bc.Functions {
 					if bcf.Meta == parser.CONSTRUCTOR || bcf.Meta == parser.DESTRUCTOR {
 						var f = *bcf
-						f.Name = strings.Replace(f.Name, bcf.Class(), c.Name, -1)
-						f.Fullname = strings.Replace(f.Fullname, bcf.Class(), c.Name, -1)
+						f.Name = strings.Replace(f.Name, bcf.ClassName(), c.Name, -1)
+						f.Fullname = strings.Replace(f.Fullname, bcf.ClassName(), c.Name, -1)
 
 						if !c.HasFunctionWithName(f.Name) {
 							c.Functions = append(c.Functions, &f)
@@ -365,22 +361,22 @@ func (m *appMoc) generate() error {
 		}
 	}
 
-	if err = ioutil.WriteFile(filepath.Join(m.appPath, "moc.cpp"), templater.CppTemplate(parser.MOC), 0644); err != nil {
+	if err = utils.SaveBytes(filepath.Join(m.appPath, "moc.cpp"), templater.CppTemplate(parser.MOC)); err != nil {
 		return err
 	}
 
-	if err = ioutil.WriteFile(filepath.Join(m.appPath, "moc.h"), templater.HTemplate(parser.MOC), 0644); err != nil {
+	if err = utils.SaveBytes(filepath.Join(m.appPath, "moc.h"), templater.HTemplate(parser.MOC)); err != nil {
 		return err
 	}
 
-	if err = ioutil.WriteFile(filepath.Join(m.appPath, "moc.go"), templater.GoTemplate(parser.MOC, false), 0644); err != nil {
+	if err = utils.SaveBytes(filepath.Join(m.appPath, "moc.go"), templater.GoTemplate(parser.MOC, false)); err != nil {
 		return err
 	}
-	templater.CopyCgoForMoc(parser.MOC, m.appPath)
+	templater.CopyCgo(parser.MOC, m.appPath)
 
-	for _, c := range parser.ClassMap {
+	for _, c := range parser.CurrentState.ClassMap {
 		if c.Module == parser.MOC {
-			delete(parser.ClassMap, c.Name)
+			delete(parser.CurrentState.ClassMap, c.Name)
 		}
 	}
 
@@ -487,8 +483,8 @@ func getCppTypeFromGoType(t string) string {
 		return strings.Replace(t, "_", ":", -1)
 	}
 
-	if _, exists := parser.ClassMap[t]; exists {
-		if parser.ClassMap[t].IsQObjectSubClass() {
+	if _, exists := parser.CurrentState.ClassMap[t]; exists {
+		if parser.CurrentState.ClassMap[t].IsSubClassOfQObject() {
 			return t + "*"
 		}
 		return t

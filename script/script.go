@@ -22,6 +22,133 @@ func cGoUnpackString(s C.struct_QtScript_PackedString) string {
 	return C.GoStringN(s.data, C.int(s.len))
 }
 
+//QSOperator::Op
+type QSOperator__Op int64
+
+const (
+	QSOperator__Add                = QSOperator__Op(0)
+	QSOperator__And                = QSOperator__Op(1)
+	QSOperator__InplaceAnd         = QSOperator__Op(2)
+	QSOperator__Assign             = QSOperator__Op(3)
+	QSOperator__BitAnd             = QSOperator__Op(4)
+	QSOperator__BitOr              = QSOperator__Op(5)
+	QSOperator__BitXor             = QSOperator__Op(6)
+	QSOperator__InplaceSub         = QSOperator__Op(7)
+	QSOperator__Div                = QSOperator__Op(8)
+	QSOperator__InplaceDiv         = QSOperator__Op(9)
+	QSOperator__Equal              = QSOperator__Op(10)
+	QSOperator__Ge                 = QSOperator__Op(11)
+	QSOperator__Gt                 = QSOperator__Op(12)
+	QSOperator__In                 = QSOperator__Op(13)
+	QSOperator__InplaceAdd         = QSOperator__Op(14)
+	QSOperator__InstanceOf         = QSOperator__Op(15)
+	QSOperator__Le                 = QSOperator__Op(16)
+	QSOperator__LShift             = QSOperator__Op(17)
+	QSOperator__InplaceLeftShift   = QSOperator__Op(18)
+	QSOperator__Lt                 = QSOperator__Op(19)
+	QSOperator__Mod                = QSOperator__Op(20)
+	QSOperator__InplaceMod         = QSOperator__Op(21)
+	QSOperator__Mul                = QSOperator__Op(22)
+	QSOperator__InplaceMul         = QSOperator__Op(23)
+	QSOperator__NotEqual           = QSOperator__Op(24)
+	QSOperator__Or                 = QSOperator__Op(25)
+	QSOperator__InplaceOr          = QSOperator__Op(26)
+	QSOperator__RShift             = QSOperator__Op(27)
+	QSOperator__InplaceRightShift  = QSOperator__Op(28)
+	QSOperator__StrictEqual        = QSOperator__Op(29)
+	QSOperator__StrictNotEqual     = QSOperator__Op(30)
+	QSOperator__Sub                = QSOperator__Op(31)
+	QSOperator__URShift            = QSOperator__Op(32)
+	QSOperator__InplaceURightShift = QSOperator__Op(33)
+	QSOperator__InplaceXor         = QSOperator__Op(34)
+)
+
+type QSOperator struct {
+	ptr unsafe.Pointer
+}
+
+type QSOperator_ITF interface {
+	QSOperator_PTR() *QSOperator
+}
+
+func (p *QSOperator) QSOperator_PTR() *QSOperator {
+	return p
+}
+
+func (p *QSOperator) Pointer() unsafe.Pointer {
+	if p != nil {
+		return p.ptr
+	}
+	return nil
+}
+
+func (p *QSOperator) SetPointer(ptr unsafe.Pointer) {
+	if p != nil {
+		p.ptr = ptr
+	}
+}
+
+func PointerFromQSOperator(ptr QSOperator_ITF) unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QSOperator_PTR().Pointer()
+	}
+	return nil
+}
+
+func NewQSOperatorFromPointer(ptr unsafe.Pointer) *QSOperator {
+	var n = new(QSOperator)
+	n.SetPointer(ptr)
+	return n
+}
+
+func (ptr *QSOperator) DestroyQSOperator() {
+	C.free(ptr.Pointer())
+	ptr.SetPointer(nil)
+}
+
+type QScript struct {
+	ptr unsafe.Pointer
+}
+
+type QScript_ITF interface {
+	QScript_PTR() *QScript
+}
+
+func (p *QScript) QScript_PTR() *QScript {
+	return p
+}
+
+func (p *QScript) Pointer() unsafe.Pointer {
+	if p != nil {
+		return p.ptr
+	}
+	return nil
+}
+
+func (p *QScript) SetPointer(ptr unsafe.Pointer) {
+	if p != nil {
+		p.ptr = ptr
+	}
+}
+
+func PointerFromQScript(ptr QScript_ITF) unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QScript_PTR().Pointer()
+	}
+	return nil
+}
+
+func NewQScriptFromPointer(ptr unsafe.Pointer) *QScript {
+	var n = new(QScript)
+	n.SetPointer(ptr)
+	return n
+}
+
+func (ptr *QScript) DestroyQScript() {
+	C.free(ptr.Pointer())
+	ptr.SetPointer(nil)
+}
+
 //QScriptClass::Extension
 type QScriptClass__Extension int64
 

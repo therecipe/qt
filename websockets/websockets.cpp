@@ -165,10 +165,12 @@ void* QMaskGenerator_MetaObjectDefault(void* ptr)
 class MyQWebSocket: public QWebSocket
 {
 public:
+	MyQWebSocket(const QString &origin, QWebSocketProtocol::Version version, QObject *parent) : QWebSocket(origin, version, parent) {};
 	void Signal_AboutToClose() { callbackQWebSocket_AboutToClose(this); };
 	void Signal_BinaryFrameReceived(const QByteArray & frame, bool isLastFrame) { callbackQWebSocket_BinaryFrameReceived(this, const_cast<QByteArray*>(&frame), isLastFrame); };
 	void Signal_BinaryMessageReceived(const QByteArray & message) { callbackQWebSocket_BinaryMessageReceived(this, const_cast<QByteArray*>(&message)); };
 	void Signal_BytesWritten(qint64 bytes) { callbackQWebSocket_BytesWritten(this, bytes); };
+	void close(QWebSocketProtocol::CloseCode closeCode, const QString & reason) { QByteArray t7947e9 = reason.toUtf8(); QtWebSockets_PackedString reasonPacked = { const_cast<char*>(t7947e9.prepend("WHITESPACE").constData()+10), t7947e9.size()-10 };callbackQWebSocket_Close(this, closeCode, reasonPacked); };
 	void Signal_Connected() { callbackQWebSocket_Connected(this); };
 	void Signal_Disconnected() { callbackQWebSocket_Disconnected(this); };
 	void Signal_Error2(QAbstractSocket::SocketError error) { callbackQWebSocket_Error2(this, error); };
@@ -193,6 +195,11 @@ public:
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQWebSocket_EventFilter(this, watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQWebSocket_MetaObject(const_cast<MyQWebSocket*>(this))); };
 };
+
+void* QWebSocket_NewQWebSocket(char* origin, long long version, void* parent)
+{
+	return new MyQWebSocket(QString(origin), static_cast<QWebSocketProtocol::Version>(version), static_cast<QObject*>(parent));
+}
 
 void QWebSocket_Abort(void* ptr)
 {
@@ -257,6 +264,16 @@ void QWebSocket_DisconnectBytesWritten(void* ptr)
 void QWebSocket_BytesWritten(void* ptr, long long bytes)
 {
 	static_cast<QWebSocket*>(ptr)->bytesWritten(bytes);
+}
+
+void QWebSocket_Close(void* ptr, long long closeCode, char* reason)
+{
+	QMetaObject::invokeMethod(static_cast<QWebSocket*>(ptr), "close", Q_ARG(QWebSocketProtocol::CloseCode, static_cast<QWebSocketProtocol::CloseCode>(closeCode)), Q_ARG(QString, QString(reason)));
+}
+
+long long QWebSocket_CloseCode(void* ptr)
+{
+	return static_cast<QWebSocket*>(ptr)->closeCode();
 }
 
 struct QtWebSockets_PackedString QWebSocket_CloseReason(void* ptr)
@@ -554,6 +571,11 @@ void QWebSocket_TextMessageReceived(void* ptr, char* message)
 	static_cast<QWebSocket*>(ptr)->textMessageReceived(QString(message));
 }
 
+long long QWebSocket_Version(void* ptr)
+{
+	return static_cast<QWebSocket*>(ptr)->version();
+}
+
 void QWebSocket_DestroyQWebSocket(void* ptr)
 {
 	static_cast<QWebSocket*>(ptr)->~QWebSocket();
@@ -704,6 +726,7 @@ public:
 	QWebSocket * nextPendingConnection() { return static_cast<QWebSocket*>(callbackQWebSocketServer_NextPendingConnection(this)); };
 	void Signal_OriginAuthenticationRequired(QWebSocketCorsAuthenticator * authenticator) { callbackQWebSocketServer_OriginAuthenticationRequired(this, authenticator); };
 	void Signal_PeerVerifyError(const QSslError & error) { callbackQWebSocketServer_PeerVerifyError(this, const_cast<QSslError*>(&error)); };
+	void Signal_ServerError(QWebSocketProtocol::CloseCode closeCode) { callbackQWebSocketServer_ServerError(this, closeCode); };
 	 ~MyQWebSocketServer() { callbackQWebSocketServer_DestroyQWebSocketServer(this); };
 	void timerEvent(QTimerEvent * event) { callbackQWebSocketServer_TimerEvent(this, event); };
 	void childEvent(QChildEvent * event) { callbackQWebSocketServer_ChildEvent(this, event); };
@@ -754,6 +777,11 @@ void QWebSocketServer_DisconnectClosed(void* ptr)
 void QWebSocketServer_Closed(void* ptr)
 {
 	static_cast<QWebSocketServer*>(ptr)->closed();
+}
+
+long long QWebSocketServer_Error(void* ptr)
+{
+	return static_cast<QWebSocketServer*>(ptr)->error();
 }
 
 struct QtWebSockets_PackedString QWebSocketServer_ErrorString(void* ptr)
@@ -859,6 +887,21 @@ long long QWebSocketServer_SecureMode(void* ptr)
 void* QWebSocketServer_ServerAddress(void* ptr)
 {
 	return new QHostAddress(static_cast<QWebSocketServer*>(ptr)->serverAddress());
+}
+
+void QWebSocketServer_ConnectServerError(void* ptr)
+{
+	QObject::connect(static_cast<QWebSocketServer*>(ptr), static_cast<void (QWebSocketServer::*)(QWebSocketProtocol::CloseCode)>(&QWebSocketServer::serverError), static_cast<MyQWebSocketServer*>(ptr), static_cast<void (MyQWebSocketServer::*)(QWebSocketProtocol::CloseCode)>(&MyQWebSocketServer::Signal_ServerError));
+}
+
+void QWebSocketServer_DisconnectServerError(void* ptr)
+{
+	QObject::disconnect(static_cast<QWebSocketServer*>(ptr), static_cast<void (QWebSocketServer::*)(QWebSocketProtocol::CloseCode)>(&QWebSocketServer::serverError), static_cast<MyQWebSocketServer*>(ptr), static_cast<void (MyQWebSocketServer::*)(QWebSocketProtocol::CloseCode)>(&MyQWebSocketServer::Signal_ServerError));
+}
+
+void QWebSocketServer_ServerError(void* ptr, long long closeCode)
+{
+	static_cast<QWebSocketServer*>(ptr)->serverError(static_cast<QWebSocketProtocol::CloseCode>(closeCode));
 }
 
 struct QtWebSockets_PackedString QWebSocketServer_ServerName(void* ptr)

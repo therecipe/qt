@@ -8791,6 +8791,49 @@ func (ptr *QContextMenuEvent) SetP(vqp core.QPoint_ITF) {
 	}
 }
 
+type QCss struct {
+	ptr unsafe.Pointer
+}
+
+type QCss_ITF interface {
+	QCss_PTR() *QCss
+}
+
+func (p *QCss) QCss_PTR() *QCss {
+	return p
+}
+
+func (p *QCss) Pointer() unsafe.Pointer {
+	if p != nil {
+		return p.ptr
+	}
+	return nil
+}
+
+func (p *QCss) SetPointer(ptr unsafe.Pointer) {
+	if p != nil {
+		p.ptr = ptr
+	}
+}
+
+func PointerFromQCss(ptr QCss_ITF) unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QCss_PTR().Pointer()
+	}
+	return nil
+}
+
+func NewQCssFromPointer(ptr unsafe.Pointer) *QCss {
+	var n = new(QCss)
+	n.SetPointer(ptr)
+	return n
+}
+
+func (ptr *QCss) DestroyQCss() {
+	C.free(ptr.Pointer())
+	ptr.SetPointer(nil)
+}
+
 type QCursor struct {
 	ptr unsafe.Pointer
 }
@@ -15386,6 +15429,19 @@ func (ptr *QIconEngine) AddPixmapDefault(pixmap QPixmap_ITF, mode QIcon__Mode, s
 	if ptr.Pointer() != nil {
 		C.QIconEngine_AddPixmapDefault(ptr.Pointer(), PointerFromQPixmap(pixmap), C.longlong(mode), C.longlong(state))
 	}
+}
+
+func (ptr *QIconEngine) AvailableSizes(mode QIcon__Mode, state QIcon__State) []*core.QSize {
+	if ptr.Pointer() != nil {
+		return func(l C.struct_QtGui_PackedList) []*core.QSize {
+			var out = make([]*core.QSize, int(l.len))
+			for i := 0; i < int(l.len); i++ {
+				out[i] = NewQIconEngineFromPointer(l.data).availableSizes_atList(i)
+			}
+			return out
+		}(C.QIconEngine_AvailableSizes(ptr.Pointer(), C.longlong(mode), C.longlong(state)))
+	}
+	return nil
 }
 
 //export callbackQIconEngine_Clone
@@ -32950,6 +33006,59 @@ func (ptr *QPalette) DestroyQPalette() {
 	}
 }
 
+//QPdf::PathFlags
+type QPdf__PathFlags int64
+
+const (
+	QPdf__ClipPath          = QPdf__PathFlags(0)
+	QPdf__FillPath          = QPdf__PathFlags(1)
+	QPdf__StrokePath        = QPdf__PathFlags(2)
+	QPdf__FillAndStrokePath = QPdf__PathFlags(3)
+)
+
+type QPdf struct {
+	ptr unsafe.Pointer
+}
+
+type QPdf_ITF interface {
+	QPdf_PTR() *QPdf
+}
+
+func (p *QPdf) QPdf_PTR() *QPdf {
+	return p
+}
+
+func (p *QPdf) Pointer() unsafe.Pointer {
+	if p != nil {
+		return p.ptr
+	}
+	return nil
+}
+
+func (p *QPdf) SetPointer(ptr unsafe.Pointer) {
+	if p != nil {
+		p.ptr = ptr
+	}
+}
+
+func PointerFromQPdf(ptr QPdf_ITF) unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QPdf_PTR().Pointer()
+	}
+	return nil
+}
+
+func NewQPdfFromPointer(ptr unsafe.Pointer) *QPdf {
+	var n = new(QPdf)
+	n.SetPointer(ptr)
+	return n
+}
+
+func (ptr *QPdf) DestroyQPdf() {
+	C.free(ptr.Pointer())
+	ptr.SetPointer(nil)
+}
+
 type QPdfWriter struct {
 	core.QObject
 	QPagedPaintDevice
@@ -34031,6 +34140,24 @@ func (ptr *QPicture) DestroyQPicture() {
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
+}
+
+func (ptr *QPicture) inputFormats_atList(i int) *core.QByteArray {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQByteArrayFromPointer(C.QPicture_inputFormats_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QPicture) outputFormats_atList(i int) *core.QByteArray {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQByteArrayFromPointer(C.QPicture_outputFormats_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*core.QByteArray).DestroyQByteArray)
+		return tmpValue
+	}
+	return nil
 }
 
 //export callbackQPicture_Metric

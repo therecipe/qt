@@ -46,7 +46,7 @@ func CppInputParametersForSlotArguments(function *parser.Function, parameter *pa
 			return fmt.Sprintf("%v*", CleanValue(parameter.Value))
 		}
 
-	case isEnum(function.Class(), parameter.Value):
+	case isEnum(function.ClassName(), parameter.Value):
 		{
 			if function.Meta == parser.SLOT && function.SignalMode == "" && CleanValue(parameter.Value) == "Qt::Alignment" {
 				return CleanValue(parameter.Value)
@@ -66,7 +66,7 @@ func CppInputParametersForSignalConnect(function *parser.Function) string {
 	var input = make([]string, len(function.Parameters))
 
 	for i, parameter := range function.Parameters {
-		if isEnum(function.Class(), parameter.Value) {
+		if isEnum(function.ClassName(), parameter.Value) {
 			input[i] = cppEnum(function, parameter.Value, true)
 		} else {
 			input[i] = parameter.Value
@@ -81,7 +81,7 @@ func CppInputParametersForCallbackHeader(function *parser.Function) string {
 	var input = make([]string, len(function.Parameters))
 
 	for i, parameter := range function.Parameters {
-		if isEnum(function.Class(), parameter.Value) {
+		if isEnum(function.ClassName(), parameter.Value) {
 			input[i] = fmt.Sprintf("%v %v", cppEnum(function, parameter.Value, true), cleanName(parameter.Name, parameter.Value))
 		} else {
 			input[i] = fmt.Sprintf("%v %v", parameter.Value, cleanName(parameter.Name, parameter.Value))
@@ -99,13 +99,13 @@ func CppInputParametersForCallbackBody(function *parser.Function) string {
 		input[0] = fmt.Sprintf("const_cast<%v%v*>(this)",
 
 			func() string {
-				if parser.ClassMap[function.Class()].Module == parser.MOC {
+				if parser.CurrentState.ClassMap[function.ClassName()].Module == parser.MOC {
 					return ""
 				}
 				return "My"
 			}(),
 
-			function.Class())
+			function.ClassName())
 
 	} else {
 		input[0] = "this"

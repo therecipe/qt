@@ -6125,6 +6125,71 @@ func (ptr *QQmlParserStatus) ComponentComplete() {
 	}
 }
 
+//QQmlPrivate::AutoParentResult
+type QQmlPrivate__AutoParentResult int64
+
+const (
+	QQmlPrivate__Parented           = QQmlPrivate__AutoParentResult(0)
+	QQmlPrivate__IncompatibleObject = QQmlPrivate__AutoParentResult(1)
+	QQmlPrivate__IncompatibleParent = QQmlPrivate__AutoParentResult(2)
+)
+
+//QQmlPrivate::RegistrationType
+type QQmlPrivate__RegistrationType int64
+
+const (
+	QQmlPrivate__TypeRegistration               = QQmlPrivate__RegistrationType(0)
+	QQmlPrivate__InterfaceRegistration          = QQmlPrivate__RegistrationType(1)
+	QQmlPrivate__AutoParentRegistration         = QQmlPrivate__RegistrationType(2)
+	QQmlPrivate__SingletonRegistration          = QQmlPrivate__RegistrationType(3)
+	QQmlPrivate__CompositeRegistration          = QQmlPrivate__RegistrationType(4)
+	QQmlPrivate__CompositeSingletonRegistration = QQmlPrivate__RegistrationType(5)
+	QQmlPrivate__QmlUnitCacheHookRegistration   = QQmlPrivate__RegistrationType(6)
+)
+
+type QQmlPrivate struct {
+	ptr unsafe.Pointer
+}
+
+type QQmlPrivate_ITF interface {
+	QQmlPrivate_PTR() *QQmlPrivate
+}
+
+func (p *QQmlPrivate) QQmlPrivate_PTR() *QQmlPrivate {
+	return p
+}
+
+func (p *QQmlPrivate) Pointer() unsafe.Pointer {
+	if p != nil {
+		return p.ptr
+	}
+	return nil
+}
+
+func (p *QQmlPrivate) SetPointer(ptr unsafe.Pointer) {
+	if p != nil {
+		p.ptr = ptr
+	}
+}
+
+func PointerFromQQmlPrivate(ptr QQmlPrivate_ITF) unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QQmlPrivate_PTR().Pointer()
+	}
+	return nil
+}
+
+func NewQQmlPrivateFromPointer(ptr unsafe.Pointer) *QQmlPrivate {
+	var n = new(QQmlPrivate)
+	n.SetPointer(ptr)
+	return n
+}
+
+func (ptr *QQmlPrivate) DestroyQQmlPrivate() {
+	C.free(ptr.Pointer())
+	ptr.SetPointer(nil)
+}
+
 //QQmlProperty::PropertyTypeCategory
 type QQmlProperty__PropertyTypeCategory int64
 
@@ -7247,4 +7312,69 @@ func (ptr *QQmlScriptString) StringLiteral() string {
 		return cGoUnpackString(C.QQmlScriptString_StringLiteral(ptr.Pointer()))
 	}
 	return ""
+}
+
+//QV4::PropertyFlag
+type QV4__PropertyFlag int64
+
+const (
+	QV4__Attr_Data            = QV4__PropertyFlag(0)
+	QV4__Attr_Accessor        = QV4__PropertyFlag(0x1)
+	QV4__Attr_NotWritable     = QV4__PropertyFlag(0x2)
+	QV4__Attr_NotEnumerable   = QV4__PropertyFlag(0x4)
+	QV4__Attr_NotConfigurable = QV4__PropertyFlag(0x8)
+	QV4__Attr_ReadOnly        = QV4__PropertyFlag(QV4__Attr_NotWritable | QV4__Attr_NotEnumerable | QV4__Attr_NotConfigurable)
+	QV4__Attr_Invalid         = QV4__PropertyFlag(0xff)
+)
+
+//QV4::TypeHint
+type QV4__TypeHint int64
+
+const (
+	QV4__PREFERREDTYPE_HINT = QV4__TypeHint(0)
+	QV4__NUMBER_HINT        = QV4__TypeHint(1)
+	QV4__STRING_HINT        = QV4__TypeHint(2)
+)
+
+type QV4 struct {
+	ptr unsafe.Pointer
+}
+
+type QV4_ITF interface {
+	QV4_PTR() *QV4
+}
+
+func (p *QV4) QV4_PTR() *QV4 {
+	return p
+}
+
+func (p *QV4) Pointer() unsafe.Pointer {
+	if p != nil {
+		return p.ptr
+	}
+	return nil
+}
+
+func (p *QV4) SetPointer(ptr unsafe.Pointer) {
+	if p != nil {
+		p.ptr = ptr
+	}
+}
+
+func PointerFromQV4(ptr QV4_ITF) unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QV4_PTR().Pointer()
+	}
+	return nil
+}
+
+func NewQV4FromPointer(ptr unsafe.Pointer) *QV4 {
+	var n = new(QV4)
+	n.SetPointer(ptr)
+	return n
+}
+
+func (ptr *QV4) DestroyQV4() {
+	C.free(ptr.Pointer())
+	ptr.SetPointer(nil)
 }

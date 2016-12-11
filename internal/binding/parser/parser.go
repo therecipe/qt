@@ -6,78 +6,67 @@ import (
 	"path/filepath"
 	"strings"
 
-	"github.com/therecipe/qt/internal/utils"
 	"github.com/Sirupsen/logrus"
+	"github.com/therecipe/qt/internal/utils"
 )
 
-const (
-	SIGNAL = "signal"
-	SLOT   = "slot"
+type State struct {
+	ClassMap map[string]*Class
+	EnumMap  map[string]struct{}
 
-	IMPURE = "impure"
-	PURE   = "pure"
+	Moc     bool
+	Minimal bool
 
-	MOC              = "main"
-	PLAIN            = "plain"
-	CONSTRUCTOR      = "constructor"
-	COPY_CONSTRUCTOR = "copy-constructor"
-	MOVE_CONSTRUCTOR = "move-constructor"
-	DESTRUCTOR       = "destructor"
+	MocModule     string
+	CurrentModule string
+}
 
-	CONNECT    = "Connect"
-	DISCONNECT = "Disconnect"
-	CALLBACK   = "callback"
+var CurrentState = &State{
+	ClassMap: make(map[string]*Class),
+	EnumMap:  make(map[string]struct{}),
+}
 
-	GETTER = "getter"
-	SETTER = "setter"
-
-	VOID = "void"
-
-	TILDE = "~"
-)
-
-var (
-	ClassMap        = make(map[string]*Class)
-	SubnamespaceMap = make(map[string]bool)
-)
-
-func GetModule(s string) (m *Module, err error) {
-	s = strings.ToLower(s)
-	fields := logrus.Fields{
-		"module": fmt.Sprintf("qt/%v", s),
-		"func": "GetModule",
+func LoadModules() {
+	for _, m := range GetLibs() {
+		_ = LoadModule(m)
 	}
-	utils.Log.WithFields(fields).Debug("loading module")
+}
 
-	var goPath = utils.MustGoPath()
+func LoadModule(m string) error {
+	var (
+		logName   = "parser.LoadModule"
+		logFields = logrus.Fields{"0_module": m}
+	)
+	utils.Log.WithFields(logFields).Debug(logName)
 
-	if s == "sailfish" {
-		m = sailfishModule()
-		m.Prepare()
-		return m, nil
+	if m == "Sailfish" {
+		return sailfishModule().Prepare()
 	}
 
-	m = new(Module)
+	var (
+		module = new(Module)
+		err    error
+	)
 	switch {
 	case utils.UseHomeBrew(), utils.UseMsys2():
 		{
-			err = xml.Unmarshal([]byte(utils.Load(filepath.Join(goPath, "src", "github.com", "therecipe", "qt", "internal", "binding", "files", "docs", "5.7.0", fmt.Sprintf("qt%v.index", s)))), &m)
+			err = xml.Unmarshal([]byte(utils.Load(filepath.Join(utils.MustGoPath(), "src", "github.com", "therecipe", "qt", "internal", "binding", "files", "docs", "5.7.0", fmt.Sprintf("qt%v.index", strings.ToLower(m))))), &module)
 		}
 
 	case utils.UsePkgConfig():
 		{
-			err = xml.Unmarshal([]byte(utils.Load(filepath.Join(utils.QT_DOC_DIR(), fmt.Sprintf("qt%v", s), fmt.Sprintf("qt%v.index", s)))), &m)
+			err = xml.Unmarshal([]byte(utils.Load(filepath.Join(utils.QT_DOC_DIR(), fmt.Sprintf("qt%v", strings.ToLower(m)), fmt.Sprintf("qt%v.index", strings.ToLower(m))))), &module)
 		}
 
 	default:
 		{
-			err = xml.Unmarshal([]byte(utils.Load(filepath.Join(utils.QT_DIR(), "Docs", "Qt-5.7", fmt.Sprintf("qt%v", s), fmt.Sprintf("qt%v.index", s)))), &m)
+			err = xml.Unmarshal([]byte(utils.Load(filepath.Join(utils.QT_DIR(), "Docs", "Qt-5.7", fmt.Sprintf("qt%v", strings.ToLower(m)), fmt.Sprintf("qt%v.index", strings.ToLower(m))))), &module)
 		}
 	}
 	if err != nil {
-		return nil, err
+		utils.Log.WithFields(logFields).WithError(err).Warn(logName)
+		return err
 	}
 
-	m.Prepare()
-	return m, nil
+	return module.Prepare()
 }

@@ -110,7 +110,7 @@ If you use the STUB version, you are forced to use `qtminimal` otherwise it's op
 
 4. Download the binding
 
-	* `go get -v github.com/therecipe/qt/cmd/...`
+	* `go get -u -v github.com/therecipe/qt/cmd/...`
 
 5. Generate, install and test (20 min) (MSYS2: run within the MSYS2 MinGW 32-bit or MSYS2 MinGW 64-bit shell)
 
@@ -143,7 +143,7 @@ If you use the STUB version, you are forced to use `qtminimal` otherwise it's op
 
 4. Download the binding
 
-	* `go get -v github.com/therecipe/qt/cmd/...`
+	* `go get -u -v github.com/therecipe/qt/cmd/...`
 
 5. Generate, install and test (20 min)
 
@@ -185,7 +185,7 @@ If you use the STUB version, you are forced to use `qtminimal` otherwise it's op
 
 4. Download the binding
 
-	* `go get -v github.com/therecipe/qt/cmd/...`
+	* `go get -u -v github.com/therecipe/qt/cmd/...`
 
 5. Generate, install and test (20 min)
 

@@ -8581,6 +8581,19 @@ func (ptr *QNetworkCookieJar) AllCookies() []*QNetworkCookie {
 	return nil
 }
 
+func (ptr *QNetworkCookieJar) CookiesForUrl(url core.QUrl_ITF) []*QNetworkCookie {
+	if ptr.Pointer() != nil {
+		return func(l C.struct_QtNetwork_PackedList) []*QNetworkCookie {
+			var out = make([]*QNetworkCookie, int(l.len))
+			for i := 0; i < int(l.len); i++ {
+				out[i] = NewQNetworkCookieJarFromPointer(l.data).cookiesForUrl_atList(i)
+			}
+			return out
+		}(C.QNetworkCookieJar_CookiesForUrl(ptr.Pointer(), core.PointerFromQUrl(url)))
+	}
+	return nil
+}
+
 //export callbackQNetworkCookieJar_DeleteCookie
 func callbackQNetworkCookieJar_DeleteCookie(ptr unsafe.Pointer, cookie unsafe.Pointer) C.char {
 
@@ -13617,6 +13630,116 @@ func (ptr *QNetworkSession) MetaObjectDefault() *core.QMetaObject {
 	return nil
 }
 
+//QSsl::AlternativeNameEntryType
+type QSsl__AlternativeNameEntryType int64
+
+const (
+	QSsl__EmailEntry = QSsl__AlternativeNameEntryType(0)
+	QSsl__DnsEntry   = QSsl__AlternativeNameEntryType(1)
+)
+
+//QSsl::EncodingFormat
+type QSsl__EncodingFormat int64
+
+const (
+	QSsl__Pem = QSsl__EncodingFormat(0)
+	QSsl__Der = QSsl__EncodingFormat(1)
+)
+
+//QSsl::KeyAlgorithm
+type QSsl__KeyAlgorithm int64
+
+const (
+	QSsl__Opaque = QSsl__KeyAlgorithm(0)
+	QSsl__Rsa    = QSsl__KeyAlgorithm(1)
+	QSsl__Dsa    = QSsl__KeyAlgorithm(2)
+	QSsl__Ec     = QSsl__KeyAlgorithm(3)
+)
+
+//QSsl::KeyType
+type QSsl__KeyType int64
+
+const (
+	QSsl__PrivateKey = QSsl__KeyType(0)
+	QSsl__PublicKey  = QSsl__KeyType(1)
+)
+
+//QSsl::SslOption
+type QSsl__SslOption int64
+
+const (
+	QSsl__SslOptionDisableEmptyFragments         = QSsl__SslOption(0x01)
+	QSsl__SslOptionDisableSessionTickets         = QSsl__SslOption(0x02)
+	QSsl__SslOptionDisableCompression            = QSsl__SslOption(0x04)
+	QSsl__SslOptionDisableServerNameIndication   = QSsl__SslOption(0x08)
+	QSsl__SslOptionDisableLegacyRenegotiation    = QSsl__SslOption(0x10)
+	QSsl__SslOptionDisableSessionSharing         = QSsl__SslOption(0x20)
+	QSsl__SslOptionDisableSessionPersistence     = QSsl__SslOption(0x40)
+	QSsl__SslOptionDisableServerCipherPreference = QSsl__SslOption(0x80)
+)
+
+//QSsl::SslProtocol
+type QSsl__SslProtocol int64
+
+var (
+	QSsl__SslV3           = QSsl__SslProtocol(0)
+	QSsl__SslV2           = QSsl__SslProtocol(1)
+	QSsl__TlsV1_0         = QSsl__SslProtocol(2)
+	QSsl__TlsV1           = QSsl__SslProtocol(QSsl__TlsV1_0)
+	QSsl__TlsV1_1         = QSsl__SslProtocol(C.QSsl_TlsV1_1_Type())
+	QSsl__TlsV1_2         = QSsl__SslProtocol(C.QSsl_TlsV1_2_Type())
+	QSsl__AnyProtocol     = QSsl__SslProtocol(C.QSsl_AnyProtocol_Type())
+	QSsl__TlsV1SslV3      = QSsl__SslProtocol(C.QSsl_TlsV1SslV3_Type())
+	QSsl__SecureProtocols = QSsl__SslProtocol(C.QSsl_SecureProtocols_Type())
+	QSsl__TlsV1_0OrLater  = QSsl__SslProtocol(C.QSsl_TlsV1_0OrLater_Type())
+	QSsl__TlsV1_1OrLater  = QSsl__SslProtocol(C.QSsl_TlsV1_1OrLater_Type())
+	QSsl__TlsV1_2OrLater  = QSsl__SslProtocol(C.QSsl_TlsV1_2OrLater_Type())
+	QSsl__UnknownProtocol = QSsl__SslProtocol(-1)
+)
+
+type QSsl struct {
+	ptr unsafe.Pointer
+}
+
+type QSsl_ITF interface {
+	QSsl_PTR() *QSsl
+}
+
+func (p *QSsl) QSsl_PTR() *QSsl {
+	return p
+}
+
+func (p *QSsl) Pointer() unsafe.Pointer {
+	if p != nil {
+		return p.ptr
+	}
+	return nil
+}
+
+func (p *QSsl) SetPointer(ptr unsafe.Pointer) {
+	if p != nil {
+		p.ptr = ptr
+	}
+}
+
+func PointerFromQSsl(ptr QSsl_ITF) unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QSsl_PTR().Pointer()
+	}
+	return nil
+}
+
+func NewQSslFromPointer(ptr unsafe.Pointer) *QSsl {
+	var n = new(QSsl)
+	n.SetPointer(ptr)
+	return n
+}
+
+func (ptr *QSsl) DestroyQSsl() {
+	C.free(ptr.Pointer())
+	ptr.SetPointer(nil)
+}
+
 //QSslCertificate::SubjectInfo
 type QSslCertificate__SubjectInfo int64
 
@@ -13669,6 +13792,18 @@ func NewQSslCertificateFromPointer(ptr unsafe.Pointer) *QSslCertificate {
 	n.SetPointer(ptr)
 	return n
 }
+func NewQSslCertificate(device core.QIODevice_ITF, format QSsl__EncodingFormat) *QSslCertificate {
+	var tmpValue = NewQSslCertificateFromPointer(C.QSslCertificate_NewQSslCertificate(core.PointerFromQIODevice(device), C.longlong(format)))
+	runtime.SetFinalizer(tmpValue, (*QSslCertificate).DestroyQSslCertificate)
+	return tmpValue
+}
+
+func NewQSslCertificate2(data core.QByteArray_ITF, format QSsl__EncodingFormat) *QSslCertificate {
+	var tmpValue = NewQSslCertificateFromPointer(C.QSslCertificate_NewQSslCertificate2(core.PointerFromQByteArray(data), C.longlong(format)))
+	runtime.SetFinalizer(tmpValue, (*QSslCertificate).DestroyQSslCertificate)
+	return tmpValue
+}
+
 func NewQSslCertificate3(other QSslCertificate_ITF) *QSslCertificate {
 	var tmpValue = NewQSslCertificateFromPointer(C.QSslCertificate_NewQSslCertificate3(PointerFromQSslCertificate(other)))
 	runtime.SetFinalizer(tmpValue, (*QSslCertificate).DestroyQSslCertificate)
@@ -13688,6 +13823,70 @@ func (ptr *QSslCertificate) Digest(algorithm core.QCryptographicHash__Algorithm)
 		return tmpValue
 	}
 	return nil
+}
+
+func QSslCertificate_FromData(data core.QByteArray_ITF, format QSsl__EncodingFormat) []*QSslCertificate {
+	return func(l C.struct_QtNetwork_PackedList) []*QSslCertificate {
+		var out = make([]*QSslCertificate, int(l.len))
+		for i := 0; i < int(l.len); i++ {
+			out[i] = NewQSslCertificateFromPointer(l.data).fromData_atList(i)
+		}
+		return out
+	}(C.QSslCertificate_QSslCertificate_FromData(core.PointerFromQByteArray(data), C.longlong(format)))
+}
+
+func (ptr *QSslCertificate) FromData(data core.QByteArray_ITF, format QSsl__EncodingFormat) []*QSslCertificate {
+	return func(l C.struct_QtNetwork_PackedList) []*QSslCertificate {
+		var out = make([]*QSslCertificate, int(l.len))
+		for i := 0; i < int(l.len); i++ {
+			out[i] = NewQSslCertificateFromPointer(l.data).fromData_atList(i)
+		}
+		return out
+	}(C.QSslCertificate_QSslCertificate_FromData(core.PointerFromQByteArray(data), C.longlong(format)))
+}
+
+func QSslCertificate_FromDevice(device core.QIODevice_ITF, format QSsl__EncodingFormat) []*QSslCertificate {
+	return func(l C.struct_QtNetwork_PackedList) []*QSslCertificate {
+		var out = make([]*QSslCertificate, int(l.len))
+		for i := 0; i < int(l.len); i++ {
+			out[i] = NewQSslCertificateFromPointer(l.data).fromDevice_atList(i)
+		}
+		return out
+	}(C.QSslCertificate_QSslCertificate_FromDevice(core.PointerFromQIODevice(device), C.longlong(format)))
+}
+
+func (ptr *QSslCertificate) FromDevice(device core.QIODevice_ITF, format QSsl__EncodingFormat) []*QSslCertificate {
+	return func(l C.struct_QtNetwork_PackedList) []*QSslCertificate {
+		var out = make([]*QSslCertificate, int(l.len))
+		for i := 0; i < int(l.len); i++ {
+			out[i] = NewQSslCertificateFromPointer(l.data).fromDevice_atList(i)
+		}
+		return out
+	}(C.QSslCertificate_QSslCertificate_FromDevice(core.PointerFromQIODevice(device), C.longlong(format)))
+}
+
+func QSslCertificate_FromPath(path string, format QSsl__EncodingFormat, syntax core.QRegExp__PatternSyntax) []*QSslCertificate {
+	var pathC = C.CString(path)
+	defer C.free(unsafe.Pointer(pathC))
+	return func(l C.struct_QtNetwork_PackedList) []*QSslCertificate {
+		var out = make([]*QSslCertificate, int(l.len))
+		for i := 0; i < int(l.len); i++ {
+			out[i] = NewQSslCertificateFromPointer(l.data).fromPath_atList(i)
+		}
+		return out
+	}(C.QSslCertificate_QSslCertificate_FromPath(pathC, C.longlong(format), C.longlong(syntax)))
+}
+
+func (ptr *QSslCertificate) FromPath(path string, format QSsl__EncodingFormat, syntax core.QRegExp__PatternSyntax) []*QSslCertificate {
+	var pathC = C.CString(path)
+	defer C.free(unsafe.Pointer(pathC))
+	return func(l C.struct_QtNetwork_PackedList) []*QSslCertificate {
+		var out = make([]*QSslCertificate, int(l.len))
+		for i := 0; i < int(l.len); i++ {
+			out[i] = NewQSslCertificateFromPointer(l.data).fromPath_atList(i)
+		}
+		return out
+	}(C.QSslCertificate_QSslCertificate_FromPath(pathC, C.longlong(format), C.longlong(syntax)))
 }
 
 func (ptr *QSslCertificate) IsBlacklisted() bool {
@@ -14071,6 +14270,14 @@ func NewQSslCipher2(name string) *QSslCipher {
 	return tmpValue
 }
 
+func NewQSslCipher3(name string, protocol QSsl__SslProtocol) *QSslCipher {
+	var nameC = C.CString(name)
+	defer C.free(unsafe.Pointer(nameC))
+	var tmpValue = NewQSslCipherFromPointer(C.QSslCipher_NewQSslCipher3(nameC, C.longlong(protocol)))
+	runtime.SetFinalizer(tmpValue, (*QSslCipher).DestroyQSslCipher)
+	return tmpValue
+}
+
 func (ptr *QSslCipher) AuthenticationMethod() string {
 	if ptr.Pointer() != nil {
 		return cGoUnpackString(C.QSslCipher_AuthenticationMethod(ptr.Pointer()))
@@ -14104,6 +14311,13 @@ func (ptr *QSslCipher) Name() string {
 		return cGoUnpackString(C.QSslCipher_Name(ptr.Pointer()))
 	}
 	return ""
+}
+
+func (ptr *QSslCipher) Protocol() QSsl__SslProtocol {
+	if ptr.Pointer() != nil {
+		return QSsl__SslProtocol(C.QSslCipher_Protocol(ptr.Pointer()))
+	}
+	return 0
 }
 
 func (ptr *QSslCipher) ProtocolString() string {
@@ -14348,6 +14562,13 @@ func (ptr *QSslConfiguration) PrivateKey() *QSslKey {
 	return nil
 }
 
+func (ptr *QSslConfiguration) Protocol() QSsl__SslProtocol {
+	if ptr.Pointer() != nil {
+		return QSsl__SslProtocol(C.QSslConfiguration_Protocol(ptr.Pointer()))
+	}
+	return 0
+}
+
 func (ptr *QSslConfiguration) SessionCipher() *QSslCipher {
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQSslCipherFromPointer(C.QSslConfiguration_SessionCipher(ptr.Pointer()))
@@ -14355,6 +14576,13 @@ func (ptr *QSslConfiguration) SessionCipher() *QSslCipher {
 		return tmpValue
 	}
 	return nil
+}
+
+func (ptr *QSslConfiguration) SessionProtocol() QSsl__SslProtocol {
+	if ptr.Pointer() != nil {
+		return QSsl__SslProtocol(C.QSslConfiguration_SessionProtocol(ptr.Pointer()))
+	}
+	return 0
 }
 
 func (ptr *QSslConfiguration) SessionTicket() *core.QByteArray {
@@ -14405,9 +14633,21 @@ func (ptr *QSslConfiguration) SetPrivateKey(key QSslKey_ITF) {
 	}
 }
 
+func (ptr *QSslConfiguration) SetProtocol(protocol QSsl__SslProtocol) {
+	if ptr.Pointer() != nil {
+		C.QSslConfiguration_SetProtocol(ptr.Pointer(), C.longlong(protocol))
+	}
+}
+
 func (ptr *QSslConfiguration) SetSessionTicket(sessionTicket core.QByteArray_ITF) {
 	if ptr.Pointer() != nil {
 		C.QSslConfiguration_SetSessionTicket(ptr.Pointer(), core.PointerFromQByteArray(sessionTicket))
+	}
+}
+
+func (ptr *QSslConfiguration) SetSslOption(option QSsl__SslOption, on bool) {
+	if ptr.Pointer() != nil {
+		C.QSslConfiguration_SetSslOption(ptr.Pointer(), C.longlong(option), C.char(int8(qt.GoBoolToInt(on))))
 	}
 }
 
@@ -14455,6 +14695,13 @@ func (ptr *QSslConfiguration) SystemCaCertificates() []*QSslCertificate {
 		}
 		return out
 	}(C.QSslConfiguration_QSslConfiguration_SystemCaCertificates())
+}
+
+func (ptr *QSslConfiguration) TestSslOption(option QSsl__SslOption) bool {
+	if ptr.Pointer() != nil {
+		return C.QSslConfiguration_TestSslOption(ptr.Pointer(), C.longlong(option)) != 0
+	}
+	return false
 }
 
 func (ptr *QSslConfiguration) DestroyQSslConfiguration() {
@@ -14826,10 +15073,29 @@ func NewQSslKey() *QSslKey {
 	return tmpValue
 }
 
+func NewQSslKey3(device core.QIODevice_ITF, algorithm QSsl__KeyAlgorithm, encoding QSsl__EncodingFormat, ty QSsl__KeyType, passPhrase core.QByteArray_ITF) *QSslKey {
+	var tmpValue = NewQSslKeyFromPointer(C.QSslKey_NewQSslKey3(core.PointerFromQIODevice(device), C.longlong(algorithm), C.longlong(encoding), C.longlong(ty), core.PointerFromQByteArray(passPhrase)))
+	runtime.SetFinalizer(tmpValue, (*QSslKey).DestroyQSslKey)
+	return tmpValue
+}
+
+func NewQSslKey2(encoded core.QByteArray_ITF, algorithm QSsl__KeyAlgorithm, encoding QSsl__EncodingFormat, ty QSsl__KeyType, passPhrase core.QByteArray_ITF) *QSslKey {
+	var tmpValue = NewQSslKeyFromPointer(C.QSslKey_NewQSslKey2(core.PointerFromQByteArray(encoded), C.longlong(algorithm), C.longlong(encoding), C.longlong(ty), core.PointerFromQByteArray(passPhrase)))
+	runtime.SetFinalizer(tmpValue, (*QSslKey).DestroyQSslKey)
+	return tmpValue
+}
+
 func NewQSslKey5(other QSslKey_ITF) *QSslKey {
 	var tmpValue = NewQSslKeyFromPointer(C.QSslKey_NewQSslKey5(PointerFromQSslKey(other)))
 	runtime.SetFinalizer(tmpValue, (*QSslKey).DestroyQSslKey)
 	return tmpValue
+}
+
+func (ptr *QSslKey) Algorithm() QSsl__KeyAlgorithm {
+	if ptr.Pointer() != nil {
+		return QSsl__KeyAlgorithm(C.QSslKey_Algorithm(ptr.Pointer()))
+	}
+	return 0
 }
 
 func (ptr *QSslKey) Clear() {
@@ -14874,6 +15140,13 @@ func (ptr *QSslKey) ToPem(passPhrase core.QByteArray_ITF) *core.QByteArray {
 		return tmpValue
 	}
 	return nil
+}
+
+func (ptr *QSslKey) Type() QSsl__KeyType {
+	if ptr.Pointer() != nil {
+		return QSsl__KeyType(C.QSslKey_Type(ptr.Pointer()))
+	}
+	return 0
 }
 
 func (ptr *QSslKey) DestroyQSslKey() {
@@ -15075,12 +15348,33 @@ func (ptr *QSslSocket) AddCaCertificate(certificate QSslCertificate_ITF) {
 	}
 }
 
+func (ptr *QSslSocket) AddCaCertificates(path string, format QSsl__EncodingFormat, syntax core.QRegExp__PatternSyntax) bool {
+	if ptr.Pointer() != nil {
+		var pathC = C.CString(path)
+		defer C.free(unsafe.Pointer(pathC))
+		return C.QSslSocket_AddCaCertificates(ptr.Pointer(), pathC, C.longlong(format), C.longlong(syntax)) != 0
+	}
+	return false
+}
+
 func QSslSocket_AddDefaultCaCertificate(certificate QSslCertificate_ITF) {
 	C.QSslSocket_QSslSocket_AddDefaultCaCertificate(PointerFromQSslCertificate(certificate))
 }
 
 func (ptr *QSslSocket) AddDefaultCaCertificate(certificate QSslCertificate_ITF) {
 	C.QSslSocket_QSslSocket_AddDefaultCaCertificate(PointerFromQSslCertificate(certificate))
+}
+
+func QSslSocket_AddDefaultCaCertificates(path string, encoding QSsl__EncodingFormat, syntax core.QRegExp__PatternSyntax) bool {
+	var pathC = C.CString(path)
+	defer C.free(unsafe.Pointer(pathC))
+	return C.QSslSocket_QSslSocket_AddDefaultCaCertificates(pathC, C.longlong(encoding), C.longlong(syntax)) != 0
+}
+
+func (ptr *QSslSocket) AddDefaultCaCertificates(path string, encoding QSsl__EncodingFormat, syntax core.QRegExp__PatternSyntax) bool {
+	var pathC = C.CString(path)
+	defer C.free(unsafe.Pointer(pathC))
+	return C.QSslSocket_QSslSocket_AddDefaultCaCertificates(pathC, C.longlong(encoding), C.longlong(syntax)) != 0
 }
 
 func (ptr *QSslSocket) AtEnd() bool {
@@ -15417,6 +15711,13 @@ func (ptr *QSslSocket) PrivateKey() *QSslKey {
 	return nil
 }
 
+func (ptr *QSslSocket) Protocol() QSsl__SslProtocol {
+	if ptr.Pointer() != nil {
+		return QSsl__SslProtocol(C.QSslSocket_Protocol(ptr.Pointer()))
+	}
+	return 0
+}
+
 //export callbackQSslSocket_Resume
 func callbackQSslSocket_Resume(ptr unsafe.Pointer) {
 
@@ -15462,9 +15763,24 @@ func (ptr *QSslSocket) SessionCipher() *QSslCipher {
 	return nil
 }
 
+func (ptr *QSslSocket) SessionProtocol() QSsl__SslProtocol {
+	if ptr.Pointer() != nil {
+		return QSsl__SslProtocol(C.QSslSocket_SessionProtocol(ptr.Pointer()))
+	}
+	return 0
+}
+
 func (ptr *QSslSocket) SetLocalCertificate(certificate QSslCertificate_ITF) {
 	if ptr.Pointer() != nil {
 		C.QSslSocket_SetLocalCertificate(ptr.Pointer(), PointerFromQSslCertificate(certificate))
+	}
+}
+
+func (ptr *QSslSocket) SetLocalCertificate2(path string, format QSsl__EncodingFormat) {
+	if ptr.Pointer() != nil {
+		var pathC = C.CString(path)
+		defer C.free(unsafe.Pointer(pathC))
+		C.QSslSocket_SetLocalCertificate2(ptr.Pointer(), pathC, C.longlong(format))
 	}
 }
 
@@ -15491,6 +15807,20 @@ func (ptr *QSslSocket) SetPeerVerifyName(hostName string) {
 func (ptr *QSslSocket) SetPrivateKey(key QSslKey_ITF) {
 	if ptr.Pointer() != nil {
 		C.QSslSocket_SetPrivateKey(ptr.Pointer(), PointerFromQSslKey(key))
+	}
+}
+
+func (ptr *QSslSocket) SetPrivateKey2(fileName string, algorithm QSsl__KeyAlgorithm, format QSsl__EncodingFormat, passPhrase core.QByteArray_ITF) {
+	if ptr.Pointer() != nil {
+		var fileNameC = C.CString(fileName)
+		defer C.free(unsafe.Pointer(fileNameC))
+		C.QSslSocket_SetPrivateKey2(ptr.Pointer(), fileNameC, C.longlong(algorithm), C.longlong(format), core.PointerFromQByteArray(passPhrase))
+	}
+}
+
+func (ptr *QSslSocket) SetProtocol(protocol QSsl__SslProtocol) {
+	if ptr.Pointer() != nil {
+		C.QSslSocket_SetProtocol(ptr.Pointer(), C.longlong(protocol))
 	}
 }
 
@@ -15846,6 +16176,42 @@ func (ptr *QSslSocket) DestroyQSslSocket() {
 	}
 }
 
+func (ptr *QSslSocket) caCertificates_atList(i int) *QSslCertificate {
+	if ptr.Pointer() != nil {
+		var tmpValue = NewQSslCertificateFromPointer(C.QSslSocket_caCertificates_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*QSslCertificate).DestroyQSslCertificate)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QSslSocket) ciphers_atList(i int) *QSslCipher {
+	if ptr.Pointer() != nil {
+		var tmpValue = NewQSslCipherFromPointer(C.QSslSocket_ciphers_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*QSslCipher).DestroyQSslCipher)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QSslSocket) defaultCaCertificates_atList(i int) *QSslCertificate {
+	if ptr.Pointer() != nil {
+		var tmpValue = NewQSslCertificateFromPointer(C.QSslSocket_defaultCaCertificates_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*QSslCertificate).DestroyQSslCertificate)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QSslSocket) defaultCiphers_atList(i int) *QSslCipher {
+	if ptr.Pointer() != nil {
+		var tmpValue = NewQSslCipherFromPointer(C.QSslSocket_defaultCiphers_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*QSslCipher).DestroyQSslCipher)
+		return tmpValue
+	}
+	return nil
+}
+
 func (ptr *QSslSocket) localCertificateChain_atList(i int) *QSslCertificate {
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQSslCertificateFromPointer(C.QSslSocket_localCertificateChain_atList(ptr.Pointer(), C.int(int32(i))))
@@ -15868,6 +16234,24 @@ func (ptr *QSslSocket) sslErrors_atList(i int) *QSslError {
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQSslErrorFromPointer(C.QSslSocket_sslErrors_atList(ptr.Pointer(), C.int(int32(i))))
 		runtime.SetFinalizer(tmpValue, (*QSslError).DestroyQSslError)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QSslSocket) supportedCiphers_atList(i int) *QSslCipher {
+	if ptr.Pointer() != nil {
+		var tmpValue = NewQSslCipherFromPointer(C.QSslSocket_supportedCiphers_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*QSslCipher).DestroyQSslCipher)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QSslSocket) systemCaCertificates_atList(i int) *QSslCertificate {
+	if ptr.Pointer() != nil {
+		var tmpValue = NewQSslCertificateFromPointer(C.QSslSocket_systemCaCertificates_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*QSslCertificate).DestroyQSslCertificate)
 		return tmpValue
 	}
 	return nil

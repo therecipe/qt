@@ -16,7 +16,7 @@ func module(input interface{}) string {
 	switch input.(type) {
 	case *parser.Enum, *parser.Function:
 		{
-			return module(parser.ClassMap[class(input)].Module)
+			return module(parser.CurrentState.ClassMap[class(input)].Module)
 		}
 
 	case string:
@@ -96,7 +96,7 @@ func isClass(value string) bool {
 		return isClass(strings.Split(value, ".")[1])
 	}
 
-	var _, exists = parser.ClassMap[value]
+	var _, exists = parser.CurrentState.ClassMap[value]
 	return exists
 }
 
@@ -112,7 +112,7 @@ func isEnum(class, value string) bool {
 func findEnum(className, value string, byValue bool) (string, string) {
 
 	//look in given class
-	if c, exists := parser.ClassMap[class(value)]; exists {
+	if c, exists := parser.CurrentState.ClassMap[class(value)]; exists {
 		for _, e := range c.Enums {
 			if outE, outT := findEnumH(e, value, byValue); outE != "" {
 				return outE, outT
@@ -121,7 +121,7 @@ func findEnum(className, value string, byValue bool) (string, string) {
 	}
 
 	//look in same class
-	if c, exists := parser.ClassMap[className]; exists {
+	if c, exists := parser.CurrentState.ClassMap[className]; exists {
 		for _, e := range c.Enums {
 			if outE, outT := findEnumH(e, value, byValue); outE != "" {
 				return outE, outT
@@ -130,9 +130,9 @@ func findEnum(className, value string, byValue bool) (string, string) {
 	}
 
 	//look in super classes
-	if c, exists := parser.ClassMap[className]; exists {
+	if c, exists := parser.CurrentState.ClassMap[className]; exists {
 		for _, s := range c.GetAllBases() {
-			if sc, exists := parser.ClassMap[s]; exists {
+			if sc, exists := parser.CurrentState.ClassMap[s]; exists {
 				for _, e := range sc.Enums {
 					if outE, outT := findEnumH(e, value, byValue); outE != "" {
 						return outE, outT
@@ -143,8 +143,8 @@ func findEnum(className, value string, byValue bool) (string, string) {
 	}
 
 	//look in namespaces
-	for m := range parser.SubnamespaceMap {
-		if c, exists := parser.ClassMap[m]; exists {
+	for m := range parser.CurrentState.EnumMap {
+		if c, exists := parser.CurrentState.ClassMap[m]; exists {
 			for _, e := range c.Enums {
 				if outE, outT := findEnumH(e, value, byValue); outE != "" {
 					return outE, outT
@@ -266,7 +266,7 @@ func cppEnumExact(value, outE, outT string) string {
 
 func IsPrivateSignal(f *parser.Function) bool {
 
-	if parser.ClassMap[f.Class()].Module == "QtCore" {
+	if parser.CurrentState.ClassMap[f.ClassName()].Module == "QtCore" {
 
 		var (
 			fData string
@@ -281,24 +281,24 @@ func IsPrivateSignal(f *parser.Function) bool {
 		switch runtime.GOOS {
 		case "darwin":
 			{
-				fData = utils.Load(filepath.Join(utils.QT_DARWIN_DIR(), "lib", fmt.Sprintf("%v.framework", strings.Title(parser.ClassMap[f.Class()].DocModule)), "Versions", "5", "Headers", fPath))
+				fData = utils.Load(filepath.Join(utils.QT_DARWIN_DIR(), "lib", fmt.Sprintf("%v.framework", strings.Title(parser.CurrentState.ClassMap[f.ClassName()].DocModule)), "Versions", "5", "Headers", fPath))
 			}
 
 		case "windows":
 			{
 				if utils.UseMsys2() {
-					fData = utils.Load(filepath.Join(utils.QT_MSYS2_DIR(), "include", strings.Title(parser.ClassMap[f.Class()].DocModule), fPath))
+					fData = utils.Load(filepath.Join(utils.QT_MSYS2_DIR(), "include", strings.Title(parser.CurrentState.ClassMap[f.ClassName()].DocModule), fPath))
 				} else {
-					fData = utils.Load(filepath.Join(utils.QT_DIR(), "5.7", "mingw53_32", "include", strings.Title(parser.ClassMap[f.Class()].DocModule), fPath))
+					fData = utils.Load(filepath.Join(utils.QT_DIR(), "5.7", "mingw53_32", "include", strings.Title(parser.CurrentState.ClassMap[f.ClassName()].DocModule), fPath))
 				}
 			}
 
 		case "linux":
 			{
 				if utils.UsePkgConfig() {
-					fData = utils.Load(filepath.Join(strings.TrimSpace(utils.RunCmd(exec.Command("pkg-config", "--variable=includedir", "Qt5Core"), "convert.IsPrivateSignal_includeDir")), strings.Title(parser.ClassMap[f.Class()].DocModule), fPath))
+					fData = utils.Load(filepath.Join(strings.TrimSpace(utils.RunCmd(exec.Command("pkg-config", "--variable=includedir", "Qt5Core"), "convert.IsPrivateSignal_includeDir")), strings.Title(parser.CurrentState.ClassMap[f.ClassName()].DocModule), fPath))
 				} else {
-					fData = utils.Load(filepath.Join(utils.QT_DIR(), "5.7", "gcc_64", "include", strings.Title(parser.ClassMap[f.Class()].DocModule), fPath))
+					fData = utils.Load(filepath.Join(utils.QT_DIR(), "5.7", "gcc_64", "include", strings.Title(parser.CurrentState.ClassMap[f.ClassName()].DocModule), fPath))
 				}
 			}
 		}
@@ -314,7 +314,7 @@ func IsPrivateSignal(f *parser.Function) bool {
 			}
 		}
 
-		utils.Log.Debugln("converter.IsPrivateSignal", f.Class())
+		utils.Log.Debugln("converter.IsPrivateSignal", f.ClassName())
 	}
 
 	return false

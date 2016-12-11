@@ -436,6 +436,152 @@ func (ptr *QSignalSpy) MetaObjectDefault() *core.QMetaObject {
 	return nil
 }
 
+//QTest::QBenchmarkMetric
+type QTest__QBenchmarkMetric int64
+
+const (
+	QTest__FramesPerSecond      = QTest__QBenchmarkMetric(0)
+	QTest__BitsPerSecond        = QTest__QBenchmarkMetric(1)
+	QTest__BytesPerSecond       = QTest__QBenchmarkMetric(2)
+	QTest__WalltimeMilliseconds = QTest__QBenchmarkMetric(3)
+	QTest__CPUTicks             = QTest__QBenchmarkMetric(4)
+	QTest__InstructionReads     = QTest__QBenchmarkMetric(5)
+	QTest__Events               = QTest__QBenchmarkMetric(6)
+	QTest__WalltimeNanoseconds  = QTest__QBenchmarkMetric(7)
+	QTest__BytesAllocated       = QTest__QBenchmarkMetric(8)
+	QTest__CPUMigrations        = QTest__QBenchmarkMetric(9)
+	QTest__CPUCycles            = QTest__QBenchmarkMetric(10)
+	QTest__BusCycles            = QTest__QBenchmarkMetric(11)
+	QTest__StalledCycles        = QTest__QBenchmarkMetric(12)
+	QTest__Instructions         = QTest__QBenchmarkMetric(13)
+	QTest__BranchInstructions   = QTest__QBenchmarkMetric(14)
+	QTest__BranchMisses         = QTest__QBenchmarkMetric(15)
+	QTest__CacheReferences      = QTest__QBenchmarkMetric(16)
+	QTest__CacheReads           = QTest__QBenchmarkMetric(17)
+	QTest__CacheWrites          = QTest__QBenchmarkMetric(18)
+	QTest__CachePrefetches      = QTest__QBenchmarkMetric(19)
+	QTest__CacheMisses          = QTest__QBenchmarkMetric(20)
+	QTest__CacheReadMisses      = QTest__QBenchmarkMetric(21)
+	QTest__CacheWriteMisses     = QTest__QBenchmarkMetric(22)
+	QTest__CachePrefetchMisses  = QTest__QBenchmarkMetric(23)
+	QTest__ContextSwitches      = QTest__QBenchmarkMetric(24)
+	QTest__PageFaults           = QTest__QBenchmarkMetric(25)
+	QTest__MinorPageFaults      = QTest__QBenchmarkMetric(26)
+	QTest__MajorPageFaults      = QTest__QBenchmarkMetric(27)
+	QTest__AlignmentFaults      = QTest__QBenchmarkMetric(28)
+	QTest__EmulationFaults      = QTest__QBenchmarkMetric(29)
+)
+
+//QTest::TestFailMode
+type QTest__TestFailMode int64
+
+const (
+	QTest__Abort    = QTest__TestFailMode(1)
+	QTest__Continue = QTest__TestFailMode(2)
+)
+
+//QTest::AttributeIndex
+type QTest__AttributeIndex int64
+
+const (
+	QTest__AI_Undefined     = QTest__AttributeIndex(-1)
+	QTest__AI_Name          = QTest__AttributeIndex(0)
+	QTest__AI_Result        = QTest__AttributeIndex(1)
+	QTest__AI_Tests         = QTest__AttributeIndex(2)
+	QTest__AI_Failures      = QTest__AttributeIndex(3)
+	QTest__AI_Errors        = QTest__AttributeIndex(4)
+	QTest__AI_Type          = QTest__AttributeIndex(5)
+	QTest__AI_Description   = QTest__AttributeIndex(6)
+	QTest__AI_PropertyValue = QTest__AttributeIndex(7)
+	QTest__AI_QTestVersion  = QTest__AttributeIndex(8)
+	QTest__AI_QtVersion     = QTest__AttributeIndex(9)
+	QTest__AI_File          = QTest__AttributeIndex(10)
+	QTest__AI_Line          = QTest__AttributeIndex(11)
+	QTest__AI_Metric        = QTest__AttributeIndex(12)
+	QTest__AI_Tag           = QTest__AttributeIndex(13)
+	QTest__AI_Value         = QTest__AttributeIndex(14)
+	QTest__AI_Iterations    = QTest__AttributeIndex(15)
+)
+
+//QTest::LogElementType
+type QTest__LogElementType int64
+
+const (
+	QTest__LET_Undefined   = QTest__LogElementType(-1)
+	QTest__LET_Property    = QTest__LogElementType(0)
+	QTest__LET_Properties  = QTest__LogElementType(1)
+	QTest__LET_Failure     = QTest__LogElementType(2)
+	QTest__LET_Error       = QTest__LogElementType(3)
+	QTest__LET_TestCase    = QTest__LogElementType(4)
+	QTest__LET_TestSuite   = QTest__LogElementType(5)
+	QTest__LET_Benchmark   = QTest__LogElementType(6)
+	QTest__LET_SystemError = QTest__LogElementType(7)
+)
+
+//QTest::KeyAction
+type QTest__KeyAction int64
+
+const (
+	QTest__Press    = QTest__KeyAction(0)
+	QTest__Release  = QTest__KeyAction(1)
+	QTest__Click    = QTest__KeyAction(2)
+	QTest__Shortcut = QTest__KeyAction(3)
+)
+
+//QTest::MouseAction
+type QTest__MouseAction int64
+
+const (
+	QTest__MousePress   = QTest__MouseAction(0)
+	QTest__MouseRelease = QTest__MouseAction(1)
+	QTest__MouseClick   = QTest__MouseAction(2)
+	QTest__MouseDClick  = QTest__MouseAction(3)
+	QTest__MouseMove    = QTest__MouseAction(4)
+)
+
+type QTest struct {
+	ptr unsafe.Pointer
+}
+
+type QTest_ITF interface {
+	QTest_PTR() *QTest
+}
+
+func (p *QTest) QTest_PTR() *QTest {
+	return p
+}
+
+func (p *QTest) Pointer() unsafe.Pointer {
+	if p != nil {
+		return p.ptr
+	}
+	return nil
+}
+
+func (p *QTest) SetPointer(ptr unsafe.Pointer) {
+	if p != nil {
+		p.ptr = ptr
+	}
+}
+
+func PointerFromQTest(ptr QTest_ITF) unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QTest_PTR().Pointer()
+	}
+	return nil
+}
+
+func NewQTestFromPointer(ptr unsafe.Pointer) *QTest {
+	var n = new(QTest)
+	n.SetPointer(ptr)
+	return n
+}
+
+func (ptr *QTest) DestroyQTest() {
+	C.free(ptr.Pointer())
+	ptr.SetPointer(nil)
+}
+
 type QTestEventList struct {
 	core.QList
 }

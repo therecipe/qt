@@ -9659,3 +9659,54 @@ func (ptr *QWebEngineView) MetaObjectDefault() *core.QMetaObject {
 	}
 	return nil
 }
+
+//QtWebEngineCore::TextureTarget
+type QtWebEngineCore__TextureTarget int64
+
+const (
+	QtWebEngineCore__ExternalTarget  = QtWebEngineCore__TextureTarget(0)
+	QtWebEngineCore__RectangleTarget = QtWebEngineCore__TextureTarget(1)
+)
+
+type QtWebEngineCore struct {
+	ptr unsafe.Pointer
+}
+
+type QtWebEngineCore_ITF interface {
+	QtWebEngineCore_PTR() *QtWebEngineCore
+}
+
+func (p *QtWebEngineCore) QtWebEngineCore_PTR() *QtWebEngineCore {
+	return p
+}
+
+func (p *QtWebEngineCore) Pointer() unsafe.Pointer {
+	if p != nil {
+		return p.ptr
+	}
+	return nil
+}
+
+func (p *QtWebEngineCore) SetPointer(ptr unsafe.Pointer) {
+	if p != nil {
+		p.ptr = ptr
+	}
+}
+
+func PointerFromQtWebEngineCore(ptr QtWebEngineCore_ITF) unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QtWebEngineCore_PTR().Pointer()
+	}
+	return nil
+}
+
+func NewQtWebEngineCoreFromPointer(ptr unsafe.Pointer) *QtWebEngineCore {
+	var n = new(QtWebEngineCore)
+	n.SetPointer(ptr)
+	return n
+}
+
+func (ptr *QtWebEngineCore) DestroyQtWebEngineCore() {
+	C.free(ptr.Pointer())
+	ptr.SetPointer(nil)
+}

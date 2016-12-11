@@ -21,6 +21,121 @@ func cGoUnpackString(s C.struct_QtSerialBus_PackedString) string {
 	return C.GoStringN(s.data, C.int(s.len))
 }
 
+//Diagnostics::SubFunctionCode
+type Diagnostics__SubFunctionCode int64
+
+const (
+	Diagnostics__ReturnQueryData                    = Diagnostics__SubFunctionCode(0x0000)
+	Diagnostics__RestartCommunicationsOption        = Diagnostics__SubFunctionCode(0x0001)
+	Diagnostics__ReturnDiagnosticRegister           = Diagnostics__SubFunctionCode(0x0002)
+	Diagnostics__ChangeAsciiInputDelimiter          = Diagnostics__SubFunctionCode(0x0003)
+	Diagnostics__ForceListenOnlyMode                = Diagnostics__SubFunctionCode(0x0004)
+	Diagnostics__ClearCountersAndDiagnosticRegister = Diagnostics__SubFunctionCode(0x000a)
+	Diagnostics__ReturnBusMessageCount              = Diagnostics__SubFunctionCode(0x000b)
+	Diagnostics__ReturnBusCommunicationErrorCount   = Diagnostics__SubFunctionCode(0x000c)
+	Diagnostics__ReturnBusExceptionErrorCount       = Diagnostics__SubFunctionCode(0x000d)
+	Diagnostics__ReturnServerMessageCount           = Diagnostics__SubFunctionCode(0x000e)
+	Diagnostics__ReturnServerNoResponseCount        = Diagnostics__SubFunctionCode(0x000f)
+	Diagnostics__ReturnServerNAKCount               = Diagnostics__SubFunctionCode(0x0010)
+	Diagnostics__ReturnServerBusyCount              = Diagnostics__SubFunctionCode(0x0011)
+	Diagnostics__ReturnBusCharacterOverrunCount     = Diagnostics__SubFunctionCode(0x0012)
+	Diagnostics__ClearOverrunCounterAndFlag         = Diagnostics__SubFunctionCode(0x0014)
+)
+
+type Diagnostics struct {
+	ptr unsafe.Pointer
+}
+
+type Diagnostics_ITF interface {
+	Diagnostics_PTR() *Diagnostics
+}
+
+func (p *Diagnostics) Diagnostics_PTR() *Diagnostics {
+	return p
+}
+
+func (p *Diagnostics) Pointer() unsafe.Pointer {
+	if p != nil {
+		return p.ptr
+	}
+	return nil
+}
+
+func (p *Diagnostics) SetPointer(ptr unsafe.Pointer) {
+	if p != nil {
+		p.ptr = ptr
+	}
+}
+
+func PointerFromDiagnostics(ptr Diagnostics_ITF) unsafe.Pointer {
+	if ptr != nil {
+		return ptr.Diagnostics_PTR().Pointer()
+	}
+	return nil
+}
+
+func NewDiagnosticsFromPointer(ptr unsafe.Pointer) *Diagnostics {
+	var n = new(Diagnostics)
+	n.SetPointer(ptr)
+	return n
+}
+
+func (ptr *Diagnostics) DestroyDiagnostics() {
+	C.free(ptr.Pointer())
+	ptr.SetPointer(nil)
+}
+
+//EncapsulatedInterfaceTransport::SubFunctionCode
+type EncapsulatedInterfaceTransport__SubFunctionCode int64
+
+const (
+	EncapsulatedInterfaceTransport__CanOpenGeneralReference  = EncapsulatedInterfaceTransport__SubFunctionCode(0x0D)
+	EncapsulatedInterfaceTransport__ReadDeviceIdentification = EncapsulatedInterfaceTransport__SubFunctionCode(0x0E)
+)
+
+type EncapsulatedInterfaceTransport struct {
+	ptr unsafe.Pointer
+}
+
+type EncapsulatedInterfaceTransport_ITF interface {
+	EncapsulatedInterfaceTransport_PTR() *EncapsulatedInterfaceTransport
+}
+
+func (p *EncapsulatedInterfaceTransport) EncapsulatedInterfaceTransport_PTR() *EncapsulatedInterfaceTransport {
+	return p
+}
+
+func (p *EncapsulatedInterfaceTransport) Pointer() unsafe.Pointer {
+	if p != nil {
+		return p.ptr
+	}
+	return nil
+}
+
+func (p *EncapsulatedInterfaceTransport) SetPointer(ptr unsafe.Pointer) {
+	if p != nil {
+		p.ptr = ptr
+	}
+}
+
+func PointerFromEncapsulatedInterfaceTransport(ptr EncapsulatedInterfaceTransport_ITF) unsafe.Pointer {
+	if ptr != nil {
+		return ptr.EncapsulatedInterfaceTransport_PTR().Pointer()
+	}
+	return nil
+}
+
+func NewEncapsulatedInterfaceTransportFromPointer(ptr unsafe.Pointer) *EncapsulatedInterfaceTransport {
+	var n = new(EncapsulatedInterfaceTransport)
+	n.SetPointer(ptr)
+	return n
+}
+
+func (ptr *EncapsulatedInterfaceTransport) DestroyEncapsulatedInterfaceTransport() {
+	C.free(ptr.Pointer())
+	ptr.SetPointer(nil)
+}
+
 type QCanBus struct {
 	core.QObject
 }

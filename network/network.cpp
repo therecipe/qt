@@ -47,6 +47,7 @@
 #include <QNetworkRequest>
 #include <QNetworkSession>
 #include <QObject>
+#include <QRegExp>
 #include <QSslCertificate>
 #include <QSslCertificateExtension>
 #include <QSslCipher>
@@ -3324,6 +3325,11 @@ struct QtNetwork_PackedList QNetworkCookieJar_AllCookies(void* ptr)
 	return ({ QList<QNetworkCookie>* tmpValue = new QList<QNetworkCookie>(static_cast<QNetworkCookieJar*>(ptr)->allCookies()); QtNetwork_PackedList { tmpValue, tmpValue->size() }; });
 }
 
+struct QtNetwork_PackedList QNetworkCookieJar_CookiesForUrl(void* ptr, void* url)
+{
+	return ({ QList<QNetworkCookie>* tmpValue = new QList<QNetworkCookie>(static_cast<QNetworkCookieJar*>(ptr)->cookiesForUrl(*static_cast<QUrl*>(url))); QtNetwork_PackedList { tmpValue, tmpValue->size() }; });
+}
+
 char QNetworkCookieJar_DeleteCookie(void* ptr, void* cookie)
 {
 	return static_cast<QNetworkCookieJar*>(ptr)->deleteCookie(*static_cast<QNetworkCookie*>(cookie));
@@ -5151,6 +5157,56 @@ void* QNetworkSession_MetaObjectDefault(void* ptr)
 	return const_cast<QMetaObject*>(static_cast<QNetworkSession*>(ptr)->QNetworkSession::metaObject());
 }
 
+int QSsl_TlsV1_1_Type()
+{
+	return QSsl::TlsV1_1;
+}
+
+int QSsl_TlsV1_2_Type()
+{
+	return QSsl::TlsV1_2;
+}
+
+int QSsl_AnyProtocol_Type()
+{
+	return QSsl::AnyProtocol;
+}
+
+int QSsl_TlsV1SslV3_Type()
+{
+	return QSsl::TlsV1SslV3;
+}
+
+int QSsl_SecureProtocols_Type()
+{
+	return QSsl::SecureProtocols;
+}
+
+int QSsl_TlsV1_0OrLater_Type()
+{
+	return QSsl::TlsV1_0OrLater;
+}
+
+int QSsl_TlsV1_1OrLater_Type()
+{
+	return QSsl::TlsV1_1OrLater;
+}
+
+int QSsl_TlsV1_2OrLater_Type()
+{
+	return QSsl::TlsV1_2OrLater;
+}
+
+void* QSslCertificate_NewQSslCertificate(void* device, long long format)
+{
+	return new QSslCertificate(static_cast<QIODevice*>(device), static_cast<QSsl::EncodingFormat>(format));
+}
+
+void* QSslCertificate_NewQSslCertificate2(void* data, long long format)
+{
+	return new QSslCertificate(*static_cast<QByteArray*>(data), static_cast<QSsl::EncodingFormat>(format));
+}
+
 void* QSslCertificate_NewQSslCertificate3(void* other)
 {
 	return new QSslCertificate(*static_cast<QSslCertificate*>(other));
@@ -5164,6 +5220,21 @@ void QSslCertificate_Clear(void* ptr)
 void* QSslCertificate_Digest(void* ptr, long long algorithm)
 {
 	return new QByteArray(static_cast<QSslCertificate*>(ptr)->digest(static_cast<QCryptographicHash::Algorithm>(algorithm)));
+}
+
+struct QtNetwork_PackedList QSslCertificate_QSslCertificate_FromData(void* data, long long format)
+{
+	return ({ QList<QSslCertificate>* tmpValue = new QList<QSslCertificate>(QSslCertificate::fromData(*static_cast<QByteArray*>(data), static_cast<QSsl::EncodingFormat>(format))); QtNetwork_PackedList { tmpValue, tmpValue->size() }; });
+}
+
+struct QtNetwork_PackedList QSslCertificate_QSslCertificate_FromDevice(void* device, long long format)
+{
+	return ({ QList<QSslCertificate>* tmpValue = new QList<QSslCertificate>(QSslCertificate::fromDevice(static_cast<QIODevice*>(device), static_cast<QSsl::EncodingFormat>(format))); QtNetwork_PackedList { tmpValue, tmpValue->size() }; });
+}
+
+struct QtNetwork_PackedList QSslCertificate_QSslCertificate_FromPath(char* path, long long format, long long syntax)
+{
+	return ({ QList<QSslCertificate>* tmpValue = new QList<QSslCertificate>(QSslCertificate::fromPath(QString(path), static_cast<QSsl::EncodingFormat>(format), static_cast<QRegExp::PatternSyntax>(syntax))); QtNetwork_PackedList { tmpValue, tmpValue->size() }; });
 }
 
 char QSslCertificate_IsBlacklisted(void* ptr)
@@ -5356,6 +5427,11 @@ void* QSslCipher_NewQSslCipher2(char* name)
 	return new QSslCipher(QString(name));
 }
 
+void* QSslCipher_NewQSslCipher3(char* name, long long protocol)
+{
+	return new QSslCipher(QString(name), static_cast<QSsl::SslProtocol>(protocol));
+}
+
 struct QtNetwork_PackedString QSslCipher_AuthenticationMethod(void* ptr)
 {
 	return ({ QByteArray tfc1f5a = static_cast<QSslCipher*>(ptr)->authenticationMethod().toUtf8(); QtNetwork_PackedString { const_cast<char*>(tfc1f5a.prepend("WHITESPACE").constData()+10), tfc1f5a.size()-10 }; });
@@ -5379,6 +5455,11 @@ struct QtNetwork_PackedString QSslCipher_KeyExchangeMethod(void* ptr)
 struct QtNetwork_PackedString QSslCipher_Name(void* ptr)
 {
 	return ({ QByteArray t9ef3a9 = static_cast<QSslCipher*>(ptr)->name().toUtf8(); QtNetwork_PackedString { const_cast<char*>(t9ef3a9.prepend("WHITESPACE").constData()+10), t9ef3a9.size()-10 }; });
+}
+
+long long QSslCipher_Protocol(void* ptr)
+{
+	return static_cast<QSslCipher*>(ptr)->protocol();
 }
 
 struct QtNetwork_PackedString QSslCipher_ProtocolString(void* ptr)
@@ -5491,9 +5572,19 @@ void* QSslConfiguration_PrivateKey(void* ptr)
 	return new QSslKey(static_cast<QSslConfiguration*>(ptr)->privateKey());
 }
 
+long long QSslConfiguration_Protocol(void* ptr)
+{
+	return static_cast<QSslConfiguration*>(ptr)->protocol();
+}
+
 void* QSslConfiguration_SessionCipher(void* ptr)
 {
 	return new QSslCipher(static_cast<QSslConfiguration*>(ptr)->sessionCipher());
+}
+
+long long QSslConfiguration_SessionProtocol(void* ptr)
+{
+	return static_cast<QSslConfiguration*>(ptr)->sessionProtocol();
 }
 
 void* QSslConfiguration_SessionTicket(void* ptr)
@@ -5531,9 +5622,19 @@ void QSslConfiguration_SetPrivateKey(void* ptr, void* key)
 	static_cast<QSslConfiguration*>(ptr)->setPrivateKey(*static_cast<QSslKey*>(key));
 }
 
+void QSslConfiguration_SetProtocol(void* ptr, long long protocol)
+{
+	static_cast<QSslConfiguration*>(ptr)->setProtocol(static_cast<QSsl::SslProtocol>(protocol));
+}
+
 void QSslConfiguration_SetSessionTicket(void* ptr, void* sessionTicket)
 {
 	static_cast<QSslConfiguration*>(ptr)->setSessionTicket(*static_cast<QByteArray*>(sessionTicket));
+}
+
+void QSslConfiguration_SetSslOption(void* ptr, long long option, char on)
+{
+	static_cast<QSslConfiguration*>(ptr)->setSslOption(static_cast<QSsl::SslOption>(option), on != 0);
 }
 
 struct QtNetwork_PackedList QSslConfiguration_QSslConfiguration_SupportedCiphers()
@@ -5549,6 +5650,11 @@ void QSslConfiguration_Swap(void* ptr, void* other)
 struct QtNetwork_PackedList QSslConfiguration_QSslConfiguration_SystemCaCertificates()
 {
 	return ({ QList<QSslCertificate>* tmpValue = new QList<QSslCertificate>(QSslConfiguration::systemCaCertificates()); QtNetwork_PackedList { tmpValue, tmpValue->size() }; });
+}
+
+char QSslConfiguration_TestSslOption(void* ptr, long long option)
+{
+	return static_cast<QSslConfiguration*>(ptr)->testSslOption(static_cast<QSsl::SslOption>(option));
 }
 
 void QSslConfiguration_DestroyQSslConfiguration(void* ptr)
@@ -5686,9 +5792,24 @@ void* QSslKey_NewQSslKey()
 	return new QSslKey();
 }
 
+void* QSslKey_NewQSslKey3(void* device, long long algorithm, long long encoding, long long ty, void* passPhrase)
+{
+	return new QSslKey(static_cast<QIODevice*>(device), static_cast<QSsl::KeyAlgorithm>(algorithm), static_cast<QSsl::EncodingFormat>(encoding), static_cast<QSsl::KeyType>(ty), *static_cast<QByteArray*>(passPhrase));
+}
+
+void* QSslKey_NewQSslKey2(void* encoded, long long algorithm, long long encoding, long long ty, void* passPhrase)
+{
+	return new QSslKey(*static_cast<QByteArray*>(encoded), static_cast<QSsl::KeyAlgorithm>(algorithm), static_cast<QSsl::EncodingFormat>(encoding), static_cast<QSsl::KeyType>(ty), *static_cast<QByteArray*>(passPhrase));
+}
+
 void* QSslKey_NewQSslKey5(void* other)
 {
 	return new QSslKey(*static_cast<QSslKey*>(other));
+}
+
+long long QSslKey_Algorithm(void* ptr)
+{
+	return static_cast<QSslKey*>(ptr)->algorithm();
 }
 
 void QSslKey_Clear(void* ptr)
@@ -5719,6 +5840,11 @@ void* QSslKey_ToDer(void* ptr, void* passPhrase)
 void* QSslKey_ToPem(void* ptr, void* passPhrase)
 {
 	return new QByteArray(static_cast<QSslKey*>(ptr)->toPem(*static_cast<QByteArray*>(passPhrase)));
+}
+
+long long QSslKey_Type(void* ptr)
+{
+	return static_cast<QSslKey*>(ptr)->type();
 }
 
 void QSslKey_DestroyQSslKey(void* ptr)
@@ -5833,9 +5959,19 @@ void QSslSocket_AddCaCertificate(void* ptr, void* certificate)
 	static_cast<QSslSocket*>(ptr)->addCaCertificate(*static_cast<QSslCertificate*>(certificate));
 }
 
+char QSslSocket_AddCaCertificates(void* ptr, char* path, long long format, long long syntax)
+{
+	return static_cast<QSslSocket*>(ptr)->addCaCertificates(QString(path), static_cast<QSsl::EncodingFormat>(format), static_cast<QRegExp::PatternSyntax>(syntax));
+}
+
 void QSslSocket_QSslSocket_AddDefaultCaCertificate(void* certificate)
 {
 	QSslSocket::addDefaultCaCertificate(*static_cast<QSslCertificate*>(certificate));
+}
+
+char QSslSocket_QSslSocket_AddDefaultCaCertificates(char* path, long long encoding, long long syntax)
+{
+	return QSslSocket::addDefaultCaCertificates(QString(path), static_cast<QSsl::EncodingFormat>(encoding), static_cast<QRegExp::PatternSyntax>(syntax));
 }
 
 char QSslSocket_AtEnd(void* ptr)
@@ -6018,6 +6154,11 @@ void* QSslSocket_PrivateKey(void* ptr)
 	return new QSslKey(static_cast<QSslSocket*>(ptr)->privateKey());
 }
 
+long long QSslSocket_Protocol(void* ptr)
+{
+	return static_cast<QSslSocket*>(ptr)->protocol();
+}
+
 void QSslSocket_Resume(void* ptr)
 {
 	static_cast<QSslSocket*>(ptr)->resume();
@@ -6033,9 +6174,19 @@ void* QSslSocket_SessionCipher(void* ptr)
 	return new QSslCipher(static_cast<QSslSocket*>(ptr)->sessionCipher());
 }
 
+long long QSslSocket_SessionProtocol(void* ptr)
+{
+	return static_cast<QSslSocket*>(ptr)->sessionProtocol();
+}
+
 void QSslSocket_SetLocalCertificate(void* ptr, void* certificate)
 {
 	static_cast<QSslSocket*>(ptr)->setLocalCertificate(*static_cast<QSslCertificate*>(certificate));
+}
+
+void QSslSocket_SetLocalCertificate2(void* ptr, char* path, long long format)
+{
+	static_cast<QSslSocket*>(ptr)->setLocalCertificate(QString(path), static_cast<QSsl::EncodingFormat>(format));
 }
 
 void QSslSocket_SetPeerVerifyDepth(void* ptr, int depth)
@@ -6056,6 +6207,16 @@ void QSslSocket_SetPeerVerifyName(void* ptr, char* hostName)
 void QSslSocket_SetPrivateKey(void* ptr, void* key)
 {
 	static_cast<QSslSocket*>(ptr)->setPrivateKey(*static_cast<QSslKey*>(key));
+}
+
+void QSslSocket_SetPrivateKey2(void* ptr, char* fileName, long long algorithm, long long format, void* passPhrase)
+{
+	static_cast<QSslSocket*>(ptr)->setPrivateKey(QString(fileName), static_cast<QSsl::KeyAlgorithm>(algorithm), static_cast<QSsl::EncodingFormat>(format), *static_cast<QByteArray*>(passPhrase));
+}
+
+void QSslSocket_SetProtocol(void* ptr, long long protocol)
+{
+	static_cast<QSslSocket*>(ptr)->setProtocol(static_cast<QSsl::SslProtocol>(protocol));
 }
 
 void QSslSocket_SetReadBufferSize(void* ptr, long long size)
@@ -6183,6 +6344,26 @@ void QSslSocket_DestroyQSslSocket(void* ptr)
 	static_cast<QSslSocket*>(ptr)->~QSslSocket();
 }
 
+void* QSslSocket_caCertificates_atList(void* ptr, int i)
+{
+	return new QSslCertificate(static_cast<QList<QSslCertificate>*>(ptr)->at(i));
+}
+
+void* QSslSocket_ciphers_atList(void* ptr, int i)
+{
+	return new QSslCipher(static_cast<QList<QSslCipher>*>(ptr)->at(i));
+}
+
+void* QSslSocket_defaultCaCertificates_atList(void* ptr, int i)
+{
+	return new QSslCertificate(static_cast<QList<QSslCertificate>*>(ptr)->at(i));
+}
+
+void* QSslSocket_defaultCiphers_atList(void* ptr, int i)
+{
+	return new QSslCipher(static_cast<QList<QSslCipher>*>(ptr)->at(i));
+}
+
 void* QSslSocket_localCertificateChain_atList(void* ptr, int i)
 {
 	return new QSslCertificate(static_cast<QList<QSslCertificate>*>(ptr)->at(i));
@@ -6196,6 +6377,16 @@ void* QSslSocket_peerCertificateChain_atList(void* ptr, int i)
 void* QSslSocket_sslErrors_atList(void* ptr, int i)
 {
 	return new QSslError(static_cast<QList<QSslError>*>(ptr)->at(i));
+}
+
+void* QSslSocket_supportedCiphers_atList(void* ptr, int i)
+{
+	return new QSslCipher(static_cast<QList<QSslCipher>*>(ptr)->at(i));
+}
+
+void* QSslSocket_systemCaCertificates_atList(void* ptr, int i)
+{
+	return new QSslCertificate(static_cast<QList<QSslCertificate>*>(ptr)->at(i));
 }
 
 void QSslSocket_ConnectToHost2(void* ptr, void* address, unsigned short port, long long openMode)

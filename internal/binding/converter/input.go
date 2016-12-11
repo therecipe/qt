@@ -141,15 +141,15 @@ func goInput(name, value string, f *parser.Function) string {
 	}
 
 	switch {
-	case isEnum(f.Class(), value):
+	case isEnum(f.ClassName(), value):
 		{
 			return fmt.Sprintf("C.longlong(%v)", name)
 		}
 
 	case isClass(value):
 		{
-			if m := module(parser.ClassMap[value].Module); m != module(f) {
-				if parser.ClassMap[f.Class()].WeakLink[parser.ClassMap[value].Module] {
+			if m := module(parser.CurrentState.ClassMap[value].Module); m != module(f) {
+				if _, exists := parser.CurrentState.ClassMap[f.ClassName()].WeakLink[parser.CurrentState.ClassMap[value].Module]; exists {
 					return name
 				}
 				return fmt.Sprintf("%v.PointerFrom%v(%v)", m, strings.Title(value), name)
@@ -311,7 +311,7 @@ func cppInput(name, value string, f *parser.Function) string {
 	}
 
 	switch {
-	case isEnum(f.Class(), value):
+	case isEnum(f.ClassName(), value):
 		{
 			if !strings.Contains(vOld, "*") {
 				if f.Meta == parser.SLOT && f.SignalMode == "" && value == "Qt::Alignment" {
@@ -327,8 +327,8 @@ func cppInput(name, value string, f *parser.Function) string {
 				break
 			}
 
-			if parser.ClassMap[value].Fullname != "" {
-				value = parser.ClassMap[value].Fullname
+			if parser.CurrentState.ClassMap[value].Fullname != "" {
+				value = parser.CurrentState.ClassMap[value].Fullname
 			}
 
 			if strings.Contains(vOld, "*") {

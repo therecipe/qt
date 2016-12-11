@@ -28,7 +28,7 @@ func GoTemplate(module string, stub bool) []byte {
 
 		class.Stub = UseStub() || stub
 
-		if !Minimal || (Minimal && class.Export) {
+		if !parser.CurrentState.Minimal || (parser.CurrentState.Minimal && class.Export) {
 
 			if module != parser.MOC {
 				fmt.Fprintf(bb, "type %v struct {\n%v\n}\n\n",
@@ -44,7 +44,7 @@ func GoTemplate(module string, stub bool) []byte {
 						defer bb.Reset()
 
 						for _, parentClassName := range class.GetBases() {
-							var parentClass = parser.ClassMap[parentClassName]
+							var parentClass = parser.CurrentState.ClassMap[parentClassName]
 							if parentClass.Module == class.Module {
 								fmt.Fprintf(bb, "%v\n", parentClassName)
 							} else {
@@ -66,7 +66,7 @@ func GoTemplate(module string, stub bool) []byte {
 					defer bb.Reset()
 
 					for _, parentClassName := range class.GetBases() {
-						var parentClass = parser.ClassMap[parentClassName]
+						var parentClass = parser.CurrentState.ClassMap[parentClassName]
 						if parentClass.Module == class.Module {
 							fmt.Fprintf(bb, "%v_ITF\n", parentClassName)
 						} else {
@@ -135,7 +135,7 @@ ptr.SetPointer(nil)
 }
 
 `, class.Name, class.Name, func() string {
-						if classNeedsCallbackFunctions(class) || class.IsQObjectSubClass() {
+						if classNeedsCallbackFunctions(class) || class.IsSubClassOfQObject() {
 							return "\nqt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))"
 						}
 						return ""
@@ -146,11 +146,11 @@ ptr.SetPointer(nil)
 
 		if classIsSupported(class) {
 
-			var implementedVirtuals = make(map[string]bool)
+			var implementedVirtuals = make(map[string]struct{})
 
 			//all class functions
 			for _, function := range class.Functions {
-				implementedVirtuals[fmt.Sprint(function.Name, function.OverloadNumber)] = true
+				implementedVirtuals[fmt.Sprint(function.Name, function.OverloadNumber)] = struct{}{}
 
 				if functionIsSupported(class, function) {
 
@@ -218,21 +218,24 @@ ptr.SetPointer(nil)
 
 			//virtual parent functions
 			for _, parentClassName := range class.GetAllBases() {
-				var parentClass = parser.ClassMap[parentClassName]
+				var parentClass = parser.CurrentState.ClassMap[parentClassName]
 				if classIsSupported(parentClass) {
 
 					for _, function := range parentClass.Functions {
 						if _, exists := implementedVirtuals[fmt.Sprint(function.Name, function.OverloadNumber)]; !exists {
-							implementedVirtuals[fmt.Sprint(function.Name, function.OverloadNumber)] = true
+							implementedVirtuals[fmt.Sprint(function.Name, function.OverloadNumber)] = struct{}{}
 
 							if functionIsSupported(parentClass, function) {
 								if function.Meta != parser.SIGNAL && (function.Virtual == parser.IMPURE || function.Virtual == parser.PURE || function.Meta == parser.SLOT) && !strings.Contains(function.Meta, "structor") {
 
 									for _, signalMode := range []string{parser.CALLBACK, parser.CONNECT, parser.DISCONNECT} {
+										var pbf = function.Virtual == parser.PURE
+
 										var function = *function
 										function.Fullname = fmt.Sprintf("%v::%v", class.Name, function.Name)
 										function.Virtual = parser.IMPURE
 										function.SignalMode = signalMode
+										function.PureBaseFunction = pbf
 
 										fmt.Fprintf(bb, "%v%v\n\n",
 											func() string {
@@ -252,6 +255,11 @@ ptr.SetPointer(nil)
 										function.Meta = parser.PLAIN
 									}
 									fmt.Fprintf(bb, "%v\n\n", goFunction(&function))
+
+									var class, exist = function.Class()
+									if !exist || (class.Module == parser.MOC && function.Virtual == parser.PURE) {
+										continue
+									}
 
 									function.Meta = parser.PLAIN
 									function.Default = true
@@ -285,8 +293,8 @@ package %v
 import "C"
 import (
 `, func() string {
-			if MocModule != "" {
-				return MocModule
+			if parser.CurrentState.MocModule != "" {
+				return parser.CurrentState.MocModule
 			}
 			return module
 		}())
@@ -313,7 +321,7 @@ import (
 						return "// +build !sailfish,!sailfish_emulator"
 					}
 
-				case Minimal:
+				case parser.CurrentState.Minimal:
 					{
 						return "// +build minimal"
 					}
@@ -341,14 +349,14 @@ import (
 			}(),
 
 			func() string {
-				if MocModule != "" {
-					return MocModule
+				if parser.CurrentState.MocModule != "" {
+					return parser.CurrentState.MocModule
 				}
 				return module
 			}(),
 
 			func() string {
-				if Minimal {
+				if parser.CurrentState.Minimal {
 					return fmt.Sprintf("%v-minimal", module)
 				}
 
@@ -377,7 +385,7 @@ import (
 		)
 	}
 
-	for _, m := range append(Libs, "qt", "strings", "unsafe", "log", "runtime", "fmt") {
+	for _, m := range append(parser.Libs, "qt", "strings", "unsafe", "log", "runtime", "fmt") {
 		m = strings.ToLower(m)
 		if strings.Contains(string(input), fmt.Sprintf("%v.", m)) {
 			switch m {
@@ -396,7 +404,7 @@ import (
 					fmt.Fprintf(bb, "\"github.com/therecipe/qt/%v\"\n", m)
 
 					if module == parser.MOC {
-						LibDeps[parser.MOC] = append(LibDeps[parser.MOC], strings.Title(m))
+						parser.LibDeps[parser.MOC] = append(parser.LibDeps[parser.MOC], strings.Title(m))
 					}
 				}
 			}
@@ -415,7 +423,7 @@ import (
 }
 
 func renameSubClasses(in []byte, r string) []byte {
-	for _, c := range parser.ClassMap {
+	for _, c := range parser.CurrentState.ClassMap {
 		if c.Fullname != "" {
 			in = []byte(strings.Replace(string(in), c.Name, strings.Replace(c.Fullname, "::", r, -1), -1))
 			in = []byte(strings.Replace(string(in), "C."+strings.Replace(c.Fullname, "::", r, -1), "C."+c.Name, -1))

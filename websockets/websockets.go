@@ -541,6 +541,16 @@ func NewQWebSocketFromPointer(ptr unsafe.Pointer) *QWebSocket {
 	n.SetPointer(ptr)
 	return n
 }
+func NewQWebSocket(origin string, version QWebSocketProtocol__Version, parent core.QObject_ITF) *QWebSocket {
+	var originC = C.CString(origin)
+	defer C.free(unsafe.Pointer(originC))
+	var tmpValue = NewQWebSocketFromPointer(C.QWebSocket_NewQWebSocket(originC, C.longlong(version), core.PointerFromQObject(parent)))
+	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+		tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
+	}
+	return tmpValue
+}
+
 func (ptr *QWebSocket) Abort() {
 	if ptr.Pointer() != nil {
 		C.QWebSocket_Abort(ptr.Pointer())
@@ -661,6 +671,43 @@ func (ptr *QWebSocket) BytesWritten(bytes int64) {
 	if ptr.Pointer() != nil {
 		C.QWebSocket_BytesWritten(ptr.Pointer(), C.longlong(bytes))
 	}
+}
+
+//export callbackQWebSocket_Close
+func callbackQWebSocket_Close(ptr unsafe.Pointer, closeCode C.longlong, reason C.struct_QtWebSockets_PackedString) {
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebSocket::close"); signal != nil {
+		signal.(func(QWebSocketProtocol__CloseCode, string))(QWebSocketProtocol__CloseCode(closeCode), cGoUnpackString(reason))
+	}
+
+}
+
+func (ptr *QWebSocket) ConnectClose(f func(closeCode QWebSocketProtocol__CloseCode, reason string)) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QWebSocket::close", f)
+	}
+}
+
+func (ptr *QWebSocket) DisconnectClose(closeCode QWebSocketProtocol__CloseCode, reason string) {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QWebSocket::close")
+	}
+}
+
+func (ptr *QWebSocket) Close(closeCode QWebSocketProtocol__CloseCode, reason string) {
+	if ptr.Pointer() != nil {
+		var reasonC = C.CString(reason)
+		defer C.free(unsafe.Pointer(reasonC))
+		C.QWebSocket_Close(ptr.Pointer(), C.longlong(closeCode), reasonC)
+	}
+}
+
+func (ptr *QWebSocket) CloseCode() QWebSocketProtocol__CloseCode {
+	if ptr.Pointer() != nil {
+		return QWebSocketProtocol__CloseCode(C.QWebSocket_CloseCode(ptr.Pointer()))
+	}
+	return 0
 }
 
 func (ptr *QWebSocket) CloseReason() string {
@@ -1248,6 +1295,13 @@ func (ptr *QWebSocket) TextMessageReceived(message string) {
 	}
 }
 
+func (ptr *QWebSocket) Version() QWebSocketProtocol__Version {
+	if ptr.Pointer() != nil {
+		return QWebSocketProtocol__Version(C.QWebSocket_Version(ptr.Pointer()))
+	}
+	return 0
+}
+
 //export callbackQWebSocket_DestroyQWebSocket
 func callbackQWebSocket_DestroyQWebSocket(ptr unsafe.Pointer) {
 
@@ -1711,6 +1765,83 @@ func (ptr *QWebSocketCorsAuthenticator) DestroyQWebSocketCorsAuthenticator() {
 	}
 }
 
+//QWebSocketProtocol::CloseCode
+type QWebSocketProtocol__CloseCode int64
+
+const (
+	QWebSocketProtocol__CloseCodeNormal                = QWebSocketProtocol__CloseCode(1000)
+	QWebSocketProtocol__CloseCodeGoingAway             = QWebSocketProtocol__CloseCode(1001)
+	QWebSocketProtocol__CloseCodeProtocolError         = QWebSocketProtocol__CloseCode(1002)
+	QWebSocketProtocol__CloseCodeDatatypeNotSupported  = QWebSocketProtocol__CloseCode(1003)
+	QWebSocketProtocol__CloseCodeReserved1004          = QWebSocketProtocol__CloseCode(1004)
+	QWebSocketProtocol__CloseCodeMissingStatusCode     = QWebSocketProtocol__CloseCode(1005)
+	QWebSocketProtocol__CloseCodeAbnormalDisconnection = QWebSocketProtocol__CloseCode(1006)
+	QWebSocketProtocol__CloseCodeWrongDatatype         = QWebSocketProtocol__CloseCode(1007)
+	QWebSocketProtocol__CloseCodePolicyViolated        = QWebSocketProtocol__CloseCode(1008)
+	QWebSocketProtocol__CloseCodeTooMuchData           = QWebSocketProtocol__CloseCode(1009)
+	QWebSocketProtocol__CloseCodeMissingExtension      = QWebSocketProtocol__CloseCode(1010)
+	QWebSocketProtocol__CloseCodeBadOperation          = QWebSocketProtocol__CloseCode(1011)
+	QWebSocketProtocol__CloseCodeTlsHandshakeFailed    = QWebSocketProtocol__CloseCode(1015)
+)
+
+//QWebSocketProtocol::Version
+type QWebSocketProtocol__Version int64
+
+const (
+	QWebSocketProtocol__VersionUnknown = QWebSocketProtocol__Version(-1)
+	QWebSocketProtocol__Version0       = QWebSocketProtocol__Version(0)
+	QWebSocketProtocol__Version4       = QWebSocketProtocol__Version(4)
+	QWebSocketProtocol__Version5       = QWebSocketProtocol__Version(5)
+	QWebSocketProtocol__Version6       = QWebSocketProtocol__Version(6)
+	QWebSocketProtocol__Version7       = QWebSocketProtocol__Version(7)
+	QWebSocketProtocol__Version8       = QWebSocketProtocol__Version(8)
+	QWebSocketProtocol__Version13      = QWebSocketProtocol__Version(13)
+	QWebSocketProtocol__VersionLatest  = QWebSocketProtocol__Version(QWebSocketProtocol__Version13)
+)
+
+type QWebSocketProtocol struct {
+	ptr unsafe.Pointer
+}
+
+type QWebSocketProtocol_ITF interface {
+	QWebSocketProtocol_PTR() *QWebSocketProtocol
+}
+
+func (p *QWebSocketProtocol) QWebSocketProtocol_PTR() *QWebSocketProtocol {
+	return p
+}
+
+func (p *QWebSocketProtocol) Pointer() unsafe.Pointer {
+	if p != nil {
+		return p.ptr
+	}
+	return nil
+}
+
+func (p *QWebSocketProtocol) SetPointer(ptr unsafe.Pointer) {
+	if p != nil {
+		p.ptr = ptr
+	}
+}
+
+func PointerFromQWebSocketProtocol(ptr QWebSocketProtocol_ITF) unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QWebSocketProtocol_PTR().Pointer()
+	}
+	return nil
+}
+
+func NewQWebSocketProtocolFromPointer(ptr unsafe.Pointer) *QWebSocketProtocol {
+	var n = new(QWebSocketProtocol)
+	n.SetPointer(ptr)
+	return n
+}
+
+func (ptr *QWebSocketProtocol) DestroyQWebSocketProtocol() {
+	C.free(ptr.Pointer())
+	ptr.SetPointer(nil)
+}
+
 //QWebSocketServer::SslMode
 type QWebSocketServer__SslMode int64
 
@@ -1829,6 +1960,13 @@ func (ptr *QWebSocketServer) Closed() {
 	if ptr.Pointer() != nil {
 		C.QWebSocketServer_Closed(ptr.Pointer())
 	}
+}
+
+func (ptr *QWebSocketServer) Error() QWebSocketProtocol__CloseCode {
+	if ptr.Pointer() != nil {
+		return QWebSocketProtocol__CloseCode(C.QWebSocketServer_Error(ptr.Pointer()))
+	}
+	return 0
 }
 
 func (ptr *QWebSocketServer) ErrorString() string {
@@ -2034,6 +2172,35 @@ func (ptr *QWebSocketServer) ServerAddress() *network.QHostAddress {
 		return tmpValue
 	}
 	return nil
+}
+
+//export callbackQWebSocketServer_ServerError
+func callbackQWebSocketServer_ServerError(ptr unsafe.Pointer, closeCode C.longlong) {
+
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebSocketServer::serverError"); signal != nil {
+		signal.(func(QWebSocketProtocol__CloseCode))(QWebSocketProtocol__CloseCode(closeCode))
+	}
+
+}
+
+func (ptr *QWebSocketServer) ConnectServerError(f func(closeCode QWebSocketProtocol__CloseCode)) {
+	if ptr.Pointer() != nil {
+		C.QWebSocketServer_ConnectServerError(ptr.Pointer())
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QWebSocketServer::serverError", f)
+	}
+}
+
+func (ptr *QWebSocketServer) DisconnectServerError() {
+	if ptr.Pointer() != nil {
+		C.QWebSocketServer_DisconnectServerError(ptr.Pointer())
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QWebSocketServer::serverError")
+	}
+}
+
+func (ptr *QWebSocketServer) ServerError(closeCode QWebSocketProtocol__CloseCode) {
+	if ptr.Pointer() != nil {
+		C.QWebSocketServer_ServerError(ptr.Pointer(), C.longlong(closeCode))
+	}
 }
 
 func (ptr *QWebSocketServer) ServerName() string {

@@ -36,6 +36,7 @@ char QDBusAbstractAdaptor_EventFilterDefault(void* ptr, void* watched, void* eve
 void* QDBusAbstractAdaptor_MetaObject(void* ptr);
 void* QDBusAbstractAdaptor_MetaObjectDefault(void* ptr);
 void* QDBusAbstractInterface_AsyncCall(void* ptr, char* method, void* arg1, void* arg2, void* arg3, void* arg4, void* arg5, void* arg6, void* arg7, void* arg8);
+void* QDBusAbstractInterface_Call2(void* ptr, long long mode, char* method, void* arg1, void* arg2, void* arg3, void* arg4, void* arg5, void* arg6, void* arg7, void* arg8);
 void* QDBusAbstractInterface_Call(void* ptr, char* method, void* arg1, void* arg2, void* arg3, void* arg4, void* arg5, void* arg6, void* arg7, void* arg8);
 void* QDBusAbstractInterface_Connection(void* ptr);
 struct QtDBus_PackedString QDBusAbstractInterface_Interface(void* ptr);
@@ -96,6 +97,7 @@ void* QDBusConnection_NewQDBusConnection2(void* other);
 void* QDBusConnection_NewQDBusConnection(char* name);
 struct QtDBus_PackedString QDBusConnection_BaseService(void* ptr);
 void* QDBusConnection_AsyncCall(void* ptr, void* message, int timeout);
+void* QDBusConnection_Call(void* ptr, void* message, long long mode, int timeout);
 char QDBusConnection_CallWithCallback(void* ptr, void* message, void* receiver, char* returnMethod, char* errorMethod, int timeout);
 char QDBusConnection_Connect(void* ptr, char* service, char* path, char* interfa, char* name, void* receiver, char* slot);
 char QDBusConnection_Connect2(void* ptr, char* service, char* path, char* interfa, char* name, char* signature, void* receiver, char* slot);

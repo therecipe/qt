@@ -11,7 +11,7 @@ import (
 func GoHeaderName(f *parser.Function) string {
 
 	if f.SignalMode == parser.CALLBACK {
-		return fmt.Sprintf("callback%v_%v%v", f.Class(), strings.Replace(strings.Title(f.Name), parser.TILDE, "Destroy", -1), f.OverloadNumber)
+		return fmt.Sprintf("callback%v_%v%v", f.ClassName(), strings.Replace(strings.Title(f.Name), parser.TILDE, "Destroy", -1), f.OverloadNumber)
 	}
 
 	var bb = new(bytes.Buffer)
@@ -80,7 +80,7 @@ func GoHeaderName(f *parser.Function) string {
 }
 
 func CppHeaderName(f *parser.Function) string {
-	return fmt.Sprintf("%v_%v", f.Class(), GoHeaderName(f))
+	return fmt.Sprintf("%v_%v", f.ClassName(), GoHeaderName(f))
 }
 
 func GoHeaderOutput(f *parser.Function) string {

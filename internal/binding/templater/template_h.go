@@ -29,7 +29,7 @@ extern "C" {
 `,
 		func() string {
 			switch {
-			case Minimal:
+			case parser.CurrentState.Minimal:
 				{
 					return "// +build minimal"
 				}
@@ -63,7 +63,6 @@ extern "C" {
 	fmt.Fprintf(bb, "struct %v_PackedList { void* data; long long len; };\n", strings.Title(module))
 
 	for _, class := range getSortedClassesForModule(module) {
-		var implementedVirtuals = make(map[string]bool)
 
 		//all class enums
 		for _, enum := range class.Enums {
@@ -76,95 +75,7 @@ extern "C" {
 
 		if classIsSupported(class) {
 
-			//all class functions
-			for _, function := range class.Functions {
-				implementedVirtuals[fmt.Sprint(function.Name, function.OverloadNumber)] = true
-				if functionIsSupported(class, function) {
-
-					switch {
-					case function.Meta == parser.SIGNAL:
-						{
-							for _, signalMode := range []string{parser.CONNECT, parser.DISCONNECT} {
-								var function = *function
-								function.SignalMode = signalMode
-
-								fmt.Fprintf(bb, "%v;\n", cppFunctionHeader(&function))
-							}
-
-							var function = *function
-							function.Meta = parser.PLAIN
-							if !converter.IsPrivateSignal(&function) {
-								fmt.Fprintf(bb, "%v;\n", cppFunctionHeader(&function))
-							}
-						}
-
-					case (function.Virtual == parser.IMPURE || function.Virtual == parser.PURE) && !strings.Contains(function.Meta, "constructor"):
-						{
-							var function = *function
-							if function.Meta != parser.SLOT {
-								function.Meta = parser.PLAIN
-							}
-
-							fmt.Fprintf(bb, "%v;\n", cppFunctionHeader(&function))
-							if function.Virtual == parser.IMPURE {
-								function.Meta = parser.PLAIN
-								function.Default = true
-								fmt.Fprintf(bb, "%v;\n", cppFunctionHeader(&function))
-							}
-						}
-
-					case isGeneric(function):
-						{
-							for _, mode := range converter.CppOutputParametersJNIGenericModes(function) {
-								var function = *function
-								function.TemplateModeJNI = mode
-
-								fmt.Fprintf(bb, "%v;\n", cppFunctionHeader(&function))
-							}
-						}
-
-					default:
-						{
-							if !(function.Meta == parser.CONSTRUCTOR && hasUnimplementedPureVirtualFunctions(class.Name)) {
-								fmt.Fprintf(bb, "%v;\n", cppFunctionHeader(function))
-							}
-						}
-					}
-
-				}
-			}
-
-			//virtual parent functions
-			for _, parentClassName := range class.GetAllBases() {
-				var parentClass = parser.ClassMap[parentClassName]
-				if classIsSupported(parentClass) {
-
-					for _, function := range parentClass.Functions {
-						if _, exists := implementedVirtuals[fmt.Sprint(function.Name, function.OverloadNumber)]; !exists {
-							implementedVirtuals[fmt.Sprint(function.Name, function.OverloadNumber)] = true
-
-							if functionIsSupported(parentClass, function) {
-								if function.Meta != parser.SIGNAL && (function.Virtual == parser.IMPURE || function.Virtual == parser.PURE || function.Meta == parser.SLOT) && !strings.Contains(function.Meta, "structor") {
-
-									var function = *function
-									function.Fullname = fmt.Sprintf("%v::%v", class.Name, function.Name)
-									if function.Meta != parser.SLOT {
-										function.Meta = parser.PLAIN
-									}
-									fmt.Fprintf(bb, "%v;\n", cppFunctionHeader(&function))
-
-									function.Meta = parser.PLAIN
-									function.Default = true
-									fmt.Fprintf(bb, "%v;\n", cppFunctionHeader(&function))
-
-								}
-							}
-
-						}
-					}
-
-				}
-			}
+			test(bb, class, cppFunctionHeader, ";\n")
 
 		}
 

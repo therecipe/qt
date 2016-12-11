@@ -9,6 +9,7 @@ import (
 	"runtime"
 	"strings"
 
+	"github.com/therecipe/qt/internal/binding/parser"
 	"github.com/therecipe/qt/internal/binding/templater"
 	"github.com/therecipe/qt/internal/utils"
 )
@@ -71,7 +72,7 @@ func install(buildTarget string) {
 		return ""
 	}())
 
-	for _, module := range templater.GetLibs() {
+	for _, module := range parser.GetLibs() {
 		if templater.ShouldBuild(module) {
 
 			if !(buildTarget == "android" && (module == "DBus" || module == "WebEngine" || module == "Designer" || (strings.HasSuffix(module, "Extras") && module != "AndroidExtras"))) &&

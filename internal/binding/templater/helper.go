@@ -1,7 +1,6 @@
 package templater
 
 import (
-	"runtime"
 	"sort"
 	"strings"
 
@@ -13,8 +12,8 @@ func functionIsSupported(_ *parser.Class, f *parser.Function) bool {
 
 	switch {
 	case
-		(f.Class() == "QAccessibleObject" || f.Class() == "QAccessibleInterface" || f.Class() == "QAccessibleWidget" || //QAccessible::State -> quint64
-			f.Class() == "QAccessibleStateChangeEvent") && (f.Name == "state" || f.Name == "changedStates" || f.Name == "m_changedStates" || f.Name == "setM_changedStates" || f.Meta == parser.CONSTRUCTOR),
+		(f.ClassName() == "QAccessibleObject" || f.ClassName() == "QAccessibleInterface" || f.ClassName() == "QAccessibleWidget" || //QAccessible::State -> quint64
+			f.ClassName() == "QAccessibleStateChangeEvent") && (f.Name == "state" || f.Name == "changedStates" || f.Name == "m_changedStates" || f.Name == "setM_changedStates" || f.Meta == parser.CONSTRUCTOR),
 
 		f.Fullname == "QPixmapCache::find" && f.OverloadNumber == "4", //Qt::Key -> int
 		(f.Fullname == "QPixmapCache::remove" || f.Fullname == "QPixmapCache::insert") && f.OverloadNumber == "2",
@@ -22,26 +21,26 @@ func functionIsSupported(_ *parser.Class, f *parser.Function) bool {
 
 		f.Fullname == "QNdefFilter::appendRecord" && !f.Overload, //QNdefRecord::TypeNameFormat -> uint
 
-		f.Class() == "QSimpleXmlNodeModel" && f.Meta == parser.CONSTRUCTOR,
+		f.ClassName() == "QSimpleXmlNodeModel" && f.Meta == parser.CONSTRUCTOR,
 
 		f.Fullname == "QSGMaterialShader::attributeNames",
 
-		f.Class() == "QVariant" && (f.Name == "value" || f.Name == "canConvert"), //needs template
+		f.ClassName() == "QVariant" && (f.Name == "value" || f.Name == "canConvert"), //needs template
 
 		f.Fullname == "QNdefRecord::isRecordType", f.Fullname == "QScriptEngine::scriptValueFromQMetaObject", //needs template
 		f.Fullname == "QScriptEngine::fromScriptValue", f.Fullname == "QJSEngine::fromScriptValue",
 
-		f.Class() == "QMetaType" && //needs template
+		f.ClassName() == "QMetaType" && //needs template
 			(f.Name == "hasRegisteredComparators" || f.Name == "registerComparators" ||
 				f.Name == "hasRegisteredConverterFunction" || f.Name == "registerConverter" ||
 				f.Name == "registerEqualsComparator"),
 
-		parser.ClassMap[f.Class()].Module == parser.MOC && f.Name == "metaObject", //needed for qtmoc
+		parser.CurrentState.ClassMap[f.ClassName()].Module == parser.MOC && f.Name == "metaObject", //needed for qtmoc
 
 		f.Fullname == "QSignalBlocker::QSignalBlocker" && f.OverloadNumber == "3", //undefined symbol
 
-		(parser.ClassMap[f.Class()].IsSubClass("QCoreApplication") ||
-			f.Class() == "QAudioInput" || f.Class() == "QAudioOutput") && f.Name == "notify", //redeclared (name collision with QObject)
+		(parser.CurrentState.ClassMap[f.ClassName()].IsSubClassOf("QCoreApplication") ||
+			f.ClassName() == "QAudioInput" || f.ClassName() == "QAudioOutput") && f.Name == "notify", //redeclared (name collision with QObject)
 
 		f.Fullname == "QGraphicsItem::isBlockedByModalPanel", //** problem
 
@@ -87,7 +86,7 @@ func functionIsSupported(_ *parser.Class, f *parser.Function) bool {
 		return functionIsSupportedDefault(f)
 	}
 
-	if Minimal {
+	if parser.CurrentState.Minimal {
 		return f.Export || f.Meta == parser.DESTRUCTOR || f.Fullname == "QObject::destroyed" || strings.HasPrefix(f.Name, parser.TILDE)
 	}
 
@@ -132,11 +131,11 @@ func functionIsSupportedDefault(f *parser.Function) bool {
 	}
 
 	//needed for moc
-	if parser.ClassMap[f.Class()].IsSubClass("QCoreApplication") && (f.Name == "autoMaximizeThreshold" || f.Name == "setAutoMaximizeThreshold") {
+	if parser.CurrentState.ClassMap[f.ClassName()].IsSubClassOf("QCoreApplication") && (f.Name == "autoMaximizeThreshold" || f.Name == "setAutoMaximizeThreshold") {
 		return false
 	}
 
-	if Minimal {
+	if parser.CurrentState.Minimal {
 		return f.Export
 	}
 
@@ -185,7 +184,7 @@ func classIsSupported(c *parser.Class) bool {
 		}
 	}
 
-	if Minimal {
+	if parser.CurrentState.Minimal {
 		return c.Export
 	}
 
@@ -193,11 +192,11 @@ func classIsSupported(c *parser.Class) bool {
 }
 
 func hasUnimplementedPureVirtualFunctions(className string) bool {
-	for _, f := range parser.ClassMap[className].Functions {
+	for _, f := range parser.CurrentState.ClassMap[className].Functions {
 		var f = *f
 		cppFunction(&f)
 
-		if f.Virtual == parser.PURE && !functionIsSupported(parser.ClassMap[className], &f) {
+		if f.Virtual == parser.PURE && !functionIsSupported(parser.CurrentState.ClassMap[className], &f) {
 			return true
 		}
 	}
@@ -254,121 +253,9 @@ var Build = map[string]bool{
 	"Sailfish": false,
 }
 
-var Libs = []string{
-	"Core",
-	"AndroidExtras",
-	"Gui",
-	"Network",
-	"Xml",
-	"DBus",
-	"Nfc",
-	"Script", //depreached (planned) in 5.6
-	"Sensors",
-	"Positioning",
-	"Widgets",
-	"Sql",
-	"MacExtras",
-	"Qml",
-	"WebSockets",
-	"XmlPatterns",
-	"Bluetooth",
-	"WebChannel",
-	"Svg",
-	"Multimedia",
-	"Quick",
-	"Help",
-	"Location",
-	"ScriptTools", //depreached (planned) in 5.6
-	"UiTools",
-	"X11Extras",
-	"WinExtras",
-	"WebEngine",
-	"TestLib",
-	"SerialPort",
-	"SerialBus",
-	"PrintSupport",
-	//"PlatformHeaders", //missing imports/guards
-	"Designer",
-	"Scxml",
-	"Gamepad",
-
-	"Purchasing", //GPLv3 & LGPLv3
-	//"DataVisualization", //GPLv3
-	//"Charts",            //GPLv3
-	//"Quick2DRenderer",   //GPLv3
-
-	"Sailfish",
-}
-
-func GetLibs() []string {
-	for i := len(Libs) - 1; i >= 0; i-- {
-		switch {
-		case
-			!(runtime.GOOS == "darwin" || runtime.GOOS == "linux") && Libs[i] == "WebEngine",
-			runtime.GOOS != "windows" && Libs[i] == "WinExtras",
-			runtime.GOOS != "darwin" && Libs[i] == "MacExtras",
-			runtime.GOOS != "linux" && Libs[i] == "X11Extras":
-			{
-				Libs = append(Libs[:i], Libs[i+1:]...)
-			}
-		}
-	}
-
-	return Libs
-}
-
-var LibDeps = map[string][]string{
-	"Core":          {"Widgets", "Gui"}, //Widgets, Gui
-	"AndroidExtras": {"Core"},
-	"Gui":           {"Widgets", "Core"}, //Widgets
-	"Network":       {"Core"},
-	"Xml":           {"XmlPatterns", "Core"}, //XmlPatterns
-	"DBus":          {"Core"},
-	"Nfc":           {"Core"},
-	"Script":        {"Core"},
-	"Sensors":       {"Core"},
-	"Positioning":   {"Core"},
-	"Widgets":       {"Gui", "Core"},
-	"Sql":           {"Widgets", "Gui", "Core"}, //Widgets, Gui
-	"MacExtras":     {"Gui", "Core"},
-	"Qml":           {"Network", "Core"},
-	"WebSockets":    {"Network", "Core"},
-	"XmlPatterns":   {"Network", "Core"},
-	"Bluetooth":     {"Core"},
-	"WebChannel":    {"Network", "Qml", "Core"}, //Network (needed for static linking ios)
-	"Svg":           {"Widgets", "Gui", "Core"},
-	"Multimedia":    {"MultimediaWidgets", "Widgets", "Network", "Gui", "Core"},   //MultimediaWidgets, Widgets
-	"Quick":         {"QuickWidgets", "Widgets", "Network", "Qml", "Gui", "Core"}, //QuickWidgets, Widgets, Network (needed for static linking ios)
-	"Help":          {"Sql", "CLucene", "Network", "Widgets", "Gui", "Core"},      //Sql + CLucene + Network (needed for static linking ios)
-	"Location":      {"Positioning", "Quick", "Gui", "Core"},
-	"ScriptTools":   {"Script", "Widgets", "Core"}, //Script, Widgets
-	"UiTools":       {"Widgets", "Gui", "Core"},
-	"X11Extras":     {"Gui", "Core"},
-	"WinExtras":     {"Gui", "Core"},
-	"WebEngine":     {"Widgets", "WebEngineWidgets", "WebChannel", "Network", "WebEngineCore", "Quick", "Gui", "Qml", "Core"}, //Widgets, WebEngineWidgets, WebChannel, Network
-	"TestLib":       {"Widgets", "Gui", "Core"},                                                                               //Widgets, Gui
-	"SerialPort":    {"Core"},
-	"SerialBus":     {"Core"},
-	"PrintSupport":  {"Widgets", "Gui", "Core"},
-	//"PlatformHeaders": []string{}, //TODO:
-	"Designer": {"UiPlugin", "Widgets", "Gui", "Xml", "Core"},
-	"Scxml":    {"Network", "Qml", "Core"}, //Network (needed for static linking ios)
-	"Gamepad":  {"Gui", "Core"},
-
-	"Purchasing": {"Core"},
-	//"DataVisualization": []string{"Gui", "Core"},
-	//"Charts":            []string{"Widgets", "Gui", "Core"},
-	//"Quick2DRenderer":   []string{}, //TODO:
-
-	"Sailfish": {"Core"},
-
-	parser.MOC:  make([]string, 0),
-	"build_ios": {"Core", "Gui", "Network", "Sql", "Xml", "DBus", "Nfc", "Script", "Sensors", "Positioning", "Widgets", "Qml", "WebSockets", "XmlPatterns", "Bluetooth", "WebChannel", "Svg", "Multimedia", "Quick", "Help", "Location", "ScriptTools", "MultimediaWidgets", "UiTools", "PrintSupport"},
-}
-
 func isGeneric(f *parser.Function) bool {
 
-	if f.Class() == "QAndroidJniObject" {
+	if f.ClassName() == "QAndroidJniObject" {
 		switch f.Name {
 		case
 			"callMethod",
@@ -419,7 +306,7 @@ func shortModule(module string) string {
 
 func getSortedClassNamesForModule(module string) []string {
 	var output = make([]string, 0)
-	for _, class := range parser.ClassMap {
+	for _, class := range parser.CurrentState.ClassMap {
 		if class.Module == module {
 			output = append(output, class.Name)
 		}
@@ -434,29 +321,9 @@ func getSortedClassesForModule(module string) []*parser.Class {
 		output     = make([]*parser.Class, len(classNames))
 	)
 	for i, name := range classNames {
-		output[i] = parser.ClassMap[name]
+		output[i] = parser.CurrentState.ClassMap[name]
 	}
 	return output
-}
-
-func manualWeakLink(module string) {
-	for _, class := range getSortedClassesForModule(module) {
-		class.WeakLink = make(map[string]bool)
-
-		switch class.Module {
-		case "QtCore":
-			{
-				class.WeakLink["QtGui"] = true
-				class.WeakLink["QtWidgets"] = true
-			}
-
-		case "QtGui":
-			{
-				class.WeakLink["QtWidgets"] = true
-				class.WeakLink["QtMultimedia"] = true
-			}
-		}
-	}
 }
 
 func classNeedsDestructor(c *parser.Class) bool {
@@ -469,5 +336,5 @@ func classNeedsDestructor(c *parser.Class) bool {
 }
 
 func UseStub() bool {
-	return utils.QT_STUB() && !Minimal && !Moc && !(CurrentModule == "AndroidExtras" || CurrentModule == "Sailfish")
+	return utils.QT_STUB() && !parser.CurrentState.Minimal && !parser.CurrentState.Moc && !(parser.CurrentState.CurrentModule == "AndroidExtras" || parser.CurrentState.CurrentModule == "Sailfish")
 }

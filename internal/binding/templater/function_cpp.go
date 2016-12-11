@@ -11,7 +11,7 @@ import (
 
 func cppFunctionCallback(function *parser.Function) string {
 	var output = fmt.Sprintf("%v { %v };", cppFunctionCallbackHeader(function), cppFunctionCallbackBody(function))
-	if functionIsSupported(parser.ClassMap[function.Class()], function) {
+	if functionIsSupported(parser.CurrentState.ClassMap[function.ClassName()], function) {
 		return cppFunctionCallbackWithGuards(function, output)
 	}
 	return ""
@@ -45,7 +45,7 @@ func cppFunctionCallbackHeader(function *parser.Function) string {
 			if function.Meta == parser.SIGNAL {
 				return fmt.Sprintf("Signal_%v", strings.Title(function.Name))
 			}
-			if strings.HasPrefix(function.Name, parser.TILDE) && parser.ClassMap[function.Class()].Module != parser.MOC {
+			if strings.HasPrefix(function.Name, parser.TILDE) && parser.CurrentState.ClassMap[function.ClassName()].Module != parser.MOC {
 				return strings.Replace(function.Name, parser.TILDE, fmt.Sprintf("%vMy", parser.TILDE), -1)
 			}
 			return function.Name
@@ -82,7 +82,7 @@ func cppFunctionCallbackBody(function *parser.Function) string {
 		}(),
 
 		func() string {
-			var output = fmt.Sprintf("callback%v_%v%v(%v)", function.Class(), strings.Replace(strings.Title(function.Name), parser.TILDE, "Destroy", -1), function.OverloadNumber, converter.CppInputParametersForCallbackBody(function))
+			var output = fmt.Sprintf("callback%v_%v%v(%v)", function.ClassName(), strings.Replace(strings.Title(function.Name), parser.TILDE, "Destroy", -1), function.OverloadNumber, converter.CppInputParametersForCallbackBody(function))
 
 			if converter.CppHeaderOutput(function) != parser.VOID {
 				output = converter.CppInput(output, function.Output, function)
@@ -114,7 +114,7 @@ func cppFunctionBodyWithGuards(function *parser.Function) string {
 	if function.Default {
 		switch {
 		case
-			strings.HasPrefix(function.Class(), "QMac") && !strings.HasPrefix(parser.ClassMap[function.Class()].Module, "QMac"):
+			strings.HasPrefix(function.ClassName(), "QMac") && !strings.HasPrefix(parser.CurrentState.ClassMap[function.ClassName()].Module, "QMac"):
 			{
 				return fmt.Sprintf("#ifdef Q_OS_OSX\n%v%v\n#endif", cppFunctionBody(function), cppFunctionBodyFailed(function))
 			}
@@ -178,7 +178,7 @@ func cppFunctionBody(function *parser.Function) string {
 		{
 			return fmt.Sprintf("%v\treturn new %v%v(%v);",
 				func() string {
-					if parser.ClassMap[function.Class()].IsSubClass("QCoreApplication") {
+					if parser.CurrentState.ClassMap[function.ClassName()].IsSubClassOf("QCoreApplication") {
 						return `	static int argcs = argc;
 	static char** argvs = static_cast<char**>(malloc(argcs * sizeof(char*)));
 
@@ -192,7 +192,7 @@ func cppFunctionBody(function *parser.Function) string {
 				}(),
 
 				func() string {
-					var class = parser.ClassMap[function.Class()]
+					var class = parser.CurrentState.ClassMap[function.ClassName()]
 					if class.Module != parser.MOC {
 						if classNeedsCallbackFunctions(class) {
 							return "My"
@@ -202,10 +202,10 @@ func cppFunctionBody(function *parser.Function) string {
 				}(),
 
 				func() string {
-					if c := parser.ClassMap[function.Class()]; c != nil && c.Fullname != "" {
+					if c := parser.CurrentState.ClassMap[function.ClassName()]; c != nil && c.Fullname != "" {
 						return c.Fullname
 					}
-					return function.Class()
+					return function.ClassName()
 				}(),
 
 				converter.CppInputParameters(function),
@@ -224,7 +224,7 @@ func cppFunctionBody(function *parser.Function) string {
 
 			if converter.CppHeaderOutput(function) != parser.VOID {
 				functionOutputType = converter.CppInputParametersForSlotArguments(function, &parser.Parameter{Name: "returnArg", Value: function.Output})
-				if function.Output != "void*" && !parser.ClassMap[strings.TrimSuffix(functionOutputType, "*")].IsQObjectSubClass() {
+				if function.Output != "void*" && !parser.CurrentState.ClassMap[strings.TrimSuffix(functionOutputType, "*")].IsSubClassOfQObject() {
 					functionOutputType = strings.TrimSuffix(functionOutputType, "*")
 				}
 				fmt.Fprintf(bb, "%v returnArg;\n\t", functionOutputType)
@@ -232,7 +232,7 @@ func cppFunctionBody(function *parser.Function) string {
 
 			fmt.Fprintf(bb, "QMetaObject::invokeMethod(static_cast<%v*>(ptr), \"%v\"%v%v);",
 
-				function.Class(),
+				function.ClassName(),
 
 				function.Name,
 
@@ -291,27 +291,27 @@ func cppFunctionBody(function *parser.Function) string {
 							return ""
 						}
 						if function.Static {
-							return fmt.Sprintf("%v::", function.Class())
+							return fmt.Sprintf("%v::", function.ClassName())
 						}
 						return fmt.Sprintf("static_cast<%v*>(ptr)->",
 							func() string {
-								if c := parser.ClassMap[function.Class()]; c != nil && c.Fullname != "" {
+								if c := parser.CurrentState.ClassMap[function.ClassName()]; c != nil && c.Fullname != "" {
 									return c.Fullname
 								}
 								if strings.HasSuffix(function.Name, "_atList") {
 									return fmt.Sprintf("%v<%v>", function.Container, strings.TrimPrefix(function.Output, "const "))
 								}
-								return function.Class()
+								return function.ClassName()
 							}(),
 						)
 					}(),
 
 					func() string {
 						if function.Default {
-							if parser.ClassMap[function.Class()].Module == parser.MOC {
-								return fmt.Sprintf("%v::%v", parser.ClassMap[function.Class()].GetBases()[0], function.Name)
+							if parser.CurrentState.ClassMap[function.ClassName()].Module == parser.MOC {
+								return fmt.Sprintf("%v::%v", parser.CurrentState.ClassMap[function.ClassName()].GetBases()[0], function.Name)
 							} else {
-								return fmt.Sprintf("%v::%v", function.Class(), function.Name)
+								return fmt.Sprintf("%v::%v", function.ClassName(), function.Name)
 							}
 						}
 						return function.Name
@@ -328,10 +328,10 @@ func cppFunctionBody(function *parser.Function) string {
 						return function.Fullname
 					}
 					return fmt.Sprintf("static_cast<%v*>(ptr)->%v", func() string {
-						if c := parser.ClassMap[function.Class()]; c != nil && c.Fullname != "" {
+						if c := parser.CurrentState.ClassMap[function.ClassName()]; c != nil && c.Fullname != "" {
 							return c.Fullname
 						}
-						return function.Class()
+						return function.ClassName()
 					}(), function.Name)
 				}()))
 		}
@@ -340,7 +340,7 @@ func cppFunctionBody(function *parser.Function) string {
 		{
 			var function = *function
 			function.Name = function.TmpName
-			function.Fullname = fmt.Sprintf("%v::%v", function.Class(), function.Name)
+			function.Fullname = fmt.Sprintf("%v::%v", function.ClassName(), function.Name)
 
 			return fmt.Sprintf("\t%v = %v;", converter.CppOutputParameters(&function,
 				func() string {
@@ -348,10 +348,10 @@ func cppFunctionBody(function *parser.Function) string {
 						return function.Fullname
 					}
 					return fmt.Sprintf("static_cast<%v*>(ptr)->%v", func() string {
-						if c := parser.ClassMap[function.Class()]; c != nil && c.Fullname != "" {
+						if c := parser.CurrentState.ClassMap[function.ClassName()]; c != nil && c.Fullname != "" {
 							return c.Fullname
 						}
-						return function.Class()
+						return function.ClassName()
 					}(), function.Name)
 				}()),
 
@@ -362,18 +362,18 @@ func cppFunctionBody(function *parser.Function) string {
 	case parser.SIGNAL:
 		{
 			var my string
-			if parser.ClassMap[function.Class()].Module != parser.MOC {
+			if parser.CurrentState.ClassMap[function.ClassName()].Module != parser.MOC {
 				my = "My"
 			}
 			if converter.IsPrivateSignal(function) {
-				return fmt.Sprintf("\tQObject::%v(static_cast<%v*>(ptr), &%v::%v, static_cast<%v%v*>(ptr), static_cast<%v (%v%v::*)(%v)>(&%v%v::Signal_%v%v));", strings.ToLower(function.SignalMode), function.Class(), function.Class(), function.Name, my, function.Class(), function.Output, my, function.Class(), converter.CppInputParametersForSignalConnect(function), my, function.Class(), strings.Title(function.Name), function.OverloadNumber)
+				return fmt.Sprintf("\tQObject::%v(static_cast<%v*>(ptr), &%v::%v, static_cast<%v%v*>(ptr), static_cast<%v (%v%v::*)(%v)>(&%v%v::Signal_%v%v));", strings.ToLower(function.SignalMode), function.ClassName(), function.ClassName(), function.Name, my, function.ClassName(), function.Output, my, function.ClassName(), converter.CppInputParametersForSignalConnect(function), my, function.ClassName(), strings.Title(function.Name), function.OverloadNumber)
 			}
 			return fmt.Sprintf("\tQObject::%v(static_cast<%v*>(ptr), static_cast<%v (%v::*)(%v)>(&%v::%v), static_cast<%v%v*>(ptr), static_cast<%v (%v%v::*)(%v)>(&%v%v::Signal_%v%v));",
 				strings.ToLower(function.SignalMode),
 
-				function.Class(), function.Output, function.Class(), converter.CppInputParametersForSignalConnect(function), function.Class(), function.Name,
+				function.ClassName(), function.Output, function.ClassName(), converter.CppInputParametersForSignalConnect(function), function.ClassName(), function.Name,
 
-				my, function.Class(), function.Output, my, function.Class(), converter.CppInputParametersForSignalConnect(function), my, function.Class(), strings.Title(function.Name), function.OverloadNumber)
+				my, function.ClassName(), function.Output, my, function.ClassName(), converter.CppInputParametersForSignalConnect(function), my, function.ClassName(), strings.Title(function.Name), function.OverloadNumber)
 		}
 	}
 

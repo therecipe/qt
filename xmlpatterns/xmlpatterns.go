@@ -1796,6 +1796,93 @@ func (ptr *QAbstractXmlReceiver) DestroyQAbstractXmlReceiverDefault() {
 	}
 }
 
+//QPatternist::DerivedIntegerLimitsUsage
+type QPatternist__DerivedIntegerLimitsUsage int64
+
+const (
+	QPatternist__None           = QPatternist__DerivedIntegerLimitsUsage(1)
+	QPatternist__LimitUpwards   = QPatternist__DerivedIntegerLimitsUsage(2)
+	QPatternist__LimitDownwards = QPatternist__DerivedIntegerLimitsUsage(4)
+	QPatternist__LimitBoth      = QPatternist__DerivedIntegerLimitsUsage(QPatternist__LimitUpwards | QPatternist__LimitDownwards)
+)
+
+//QPatternist::TypeOfDerivedInteger
+type QPatternist__TypeOfDerivedInteger int64
+
+const (
+	QPatternist__TypeByte               = QPatternist__TypeOfDerivedInteger(0)
+	QPatternist__TypeInt                = QPatternist__TypeOfDerivedInteger(1)
+	QPatternist__TypeLong               = QPatternist__TypeOfDerivedInteger(2)
+	QPatternist__TypeNegativeInteger    = QPatternist__TypeOfDerivedInteger(3)
+	QPatternist__TypeNonNegativeInteger = QPatternist__TypeOfDerivedInteger(4)
+	QPatternist__TypeNonPositiveInteger = QPatternist__TypeOfDerivedInteger(5)
+	QPatternist__TypePositiveInteger    = QPatternist__TypeOfDerivedInteger(6)
+	QPatternist__TypeShort              = QPatternist__TypeOfDerivedInteger(7)
+	QPatternist__TypeUnsignedByte       = QPatternist__TypeOfDerivedInteger(8)
+	QPatternist__TypeUnsignedInt        = QPatternist__TypeOfDerivedInteger(9)
+	QPatternist__TypeUnsignedLong       = QPatternist__TypeOfDerivedInteger(10)
+	QPatternist__TypeUnsignedShort      = QPatternist__TypeOfDerivedInteger(11)
+)
+
+//QPatternist::TypeOfDerivedString
+type QPatternist__TypeOfDerivedString int64
+
+const (
+	QPatternist__TypeString           = QPatternist__TypeOfDerivedString(0)
+	QPatternist__TypeNormalizedString = QPatternist__TypeOfDerivedString(1)
+	QPatternist__TypeToken            = QPatternist__TypeOfDerivedString(2)
+	QPatternist__TypeLanguage         = QPatternist__TypeOfDerivedString(3)
+	QPatternist__TypeNMTOKEN          = QPatternist__TypeOfDerivedString(4)
+	QPatternist__TypeName             = QPatternist__TypeOfDerivedString(5)
+	QPatternist__TypeNCName           = QPatternist__TypeOfDerivedString(6)
+	QPatternist__TypeID               = QPatternist__TypeOfDerivedString(7)
+	QPatternist__TypeIDREF            = QPatternist__TypeOfDerivedString(8)
+	QPatternist__TypeENTITY           = QPatternist__TypeOfDerivedString(9)
+)
+
+type QPatternist struct {
+	ptr unsafe.Pointer
+}
+
+type QPatternist_ITF interface {
+	QPatternist_PTR() *QPatternist
+}
+
+func (p *QPatternist) QPatternist_PTR() *QPatternist {
+	return p
+}
+
+func (p *QPatternist) Pointer() unsafe.Pointer {
+	if p != nil {
+		return p.ptr
+	}
+	return nil
+}
+
+func (p *QPatternist) SetPointer(ptr unsafe.Pointer) {
+	if p != nil {
+		p.ptr = ptr
+	}
+}
+
+func PointerFromQPatternist(ptr QPatternist_ITF) unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QPatternist_PTR().Pointer()
+	}
+	return nil
+}
+
+func NewQPatternistFromPointer(ptr unsafe.Pointer) *QPatternist {
+	var n = new(QPatternist)
+	n.SetPointer(ptr)
+	return n
+}
+
+func (ptr *QPatternist) DestroyQPatternist() {
+	C.free(ptr.Pointer())
+	ptr.SetPointer(nil)
+}
+
 type QSimpleXmlNodeModel struct {
 	QAbstractXmlNodeModel
 }
@@ -1924,6 +2011,32 @@ func (ptr *QSimpleXmlNodeModel) NamePool() *QXmlNamePool {
 		var tmpValue = NewQXmlNamePoolFromPointer(C.QSimpleXmlNodeModel_NamePool(ptr.Pointer()))
 		runtime.SetFinalizer(tmpValue, (*QXmlNamePool).DestroyQXmlNamePool)
 		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QSimpleXmlNodeModel) NamespaceBindings(node QXmlNodeModelIndex_ITF) []*QXmlName {
+	if ptr.Pointer() != nil {
+		return func(l C.struct_QtXmlPatterns_PackedList) []*QXmlName {
+			var out = make([]*QXmlName, int(l.len))
+			for i := 0; i < int(l.len); i++ {
+				out[i] = NewQSimpleXmlNodeModelFromPointer(l.data).namespaceBindings_atList(i)
+			}
+			return out
+		}(C.QSimpleXmlNodeModel_NamespaceBindings(ptr.Pointer(), PointerFromQXmlNodeModelIndex(node)))
+	}
+	return nil
+}
+
+func (ptr *QSimpleXmlNodeModel) NodesByIdref(idref QXmlName_ITF) []*QXmlNodeModelIndex {
+	if ptr.Pointer() != nil {
+		return func(l C.struct_QtXmlPatterns_PackedList) []*QXmlNodeModelIndex {
+			var out = make([]*QXmlNodeModelIndex, int(l.len))
+			for i := 0; i < int(l.len); i++ {
+				out[i] = NewQSimpleXmlNodeModelFromPointer(l.data).nodesByIdref_atList(i)
+			}
+			return out
+		}(C.QSimpleXmlNodeModel_NodesByIdref(ptr.Pointer(), PointerFromQXmlName(idref)))
 	}
 	return nil
 }
@@ -3258,6 +3371,15 @@ func (ptr *QXmlNodeModelIndex) IsNull() bool {
 func (ptr *QXmlNodeModelIndex) Model() *QAbstractXmlNodeModel {
 	if ptr.Pointer() != nil {
 		return NewQAbstractXmlNodeModelFromPointer(C.QXmlNodeModelIndex_Model(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QXmlNodeModelIndex) namespaceBindings_atList(i int) *QXmlName {
+	if ptr.Pointer() != nil {
+		var tmpValue = NewQXmlNameFromPointer(C.QXmlNodeModelIndex_namespaceBindings_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*QXmlName).DestroyQXmlName)
+		return tmpValue
 	}
 	return nil
 }

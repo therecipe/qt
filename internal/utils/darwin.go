@@ -60,7 +60,7 @@ func UseHomeBrew() bool {
 }
 
 func IsHomeBrewQtDir() bool {
-	return Exists(filepath.Join(QT_DIR(), "INSTALL_RECEIPT.json"))
+	return ExistsFile(filepath.Join(QT_DIR(), "INSTALL_RECEIPT.json"))
 }
 
 func QT_DARWIN_DIR() string {

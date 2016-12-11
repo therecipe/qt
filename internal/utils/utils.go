@@ -10,15 +10,20 @@ import (
 	"github.com/Sirupsen/logrus"
 )
 
-func Exists(name string) bool {
+func ExistsFile(name string) bool {
 	var _, err = ioutil.ReadFile(name)
 	return err == nil
 }
 
-func MakeFolder(dir string) error {
+func ExistsDir(name string) bool {
+	var _, err = ioutil.ReadDir(name)
+	return err == nil
+}
+
+func MkdirAll(dir string) error {
 	var err = os.MkdirAll(dir, 0777)
 	if err != nil {
-		Log.WithError(err).Panicf("failed to create folder %v", dir)
+		Log.WithError(err).Panicf("failed to create dir %v", dir)
 	}
 	return err
 }
@@ -56,12 +61,12 @@ func Load(name string) string {
 	return string(out)
 }
 
-func GetAbsPath(appPath string) string {
+func Abs(appPath string) (string, error) {
 	var path, err = filepath.Abs(appPath)
 	if err != nil {
 		Log.WithError(err).Panicf("failed to get absolute path for %v", appPath)
 	}
-	return path
+	return path, err
 }
 
 func GoQtPkgPath(s ...string) string {

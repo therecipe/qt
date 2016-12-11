@@ -162,7 +162,7 @@ func args() {
 	}
 
 	if !filepath.IsAbs(appPath) {
-		appPath = utils.GetAbsPath(appPath)
+		appPath, _ = utils.Abs(appPath)
 	}
 	appName = filepath.Base(appPath)
 
@@ -187,7 +187,7 @@ func args() {
 	case "build", "test":
 		{
 			utils.RemoveAll(depPath)
-			utils.MakeFolder(depPath)
+			utils.MkdirAll(depPath)
 		}
 	}
 
@@ -505,10 +505,10 @@ func predeploy() {
 	switch buildTarget {
 	case "android":
 		{
-			utils.MakeFolder(filepath.Join(appPath, "android"))
+			utils.MkdirAll(filepath.Join(appPath, "android"))
 
 			var libPath = filepath.Join(depPath, "build", "libs", "armeabi-v7a")
-			utils.MakeFolder(libPath)
+			utils.MkdirAll(libPath)
 
 			var compiler = filepath.Join(utils.ANDROID_NDK_DIR(), "toolchains", "arm-linux-androideabi-4.9", "prebuilt", runtime.GOOS+"-x86_64", "bin", "arm-linux-androideabi-g++")
 
@@ -574,11 +574,11 @@ func predeploy() {
 
 	case "ios", "ios-simulator":
 		{
-			utils.MakeFolder(filepath.Join(appPath, buildTarget))
+			utils.MkdirAll(filepath.Join(appPath, buildTarget))
 
 			var buildPath = filepath.Join(depPath, "build")
-			utils.MakeFolder(filepath.Join(buildPath, "project.xcodeproj"))
-			utils.MakeFolder(filepath.Join(buildPath, "Images.xcassets", "AppIcon.appiconset"))
+			utils.MkdirAll(filepath.Join(buildPath, "project.xcodeproj"))
+			utils.MkdirAll(filepath.Join(buildPath, "Images.xcassets", "AppIcon.appiconset"))
 
 			//add c_main_wrappers
 			utils.Save(filepath.Join(depPath, "c_main_wrapper.cpp"), "#include \"libgo.h\"\nint main(int argc, char *argv[]) { go_main_wrapper(); }")
@@ -654,10 +654,10 @@ func predeploy() {
 
 	case "sailfish", "sailfish-emulator":
 		{
-			utils.MakeFolder(filepath.Join(appPath, buildTarget))
+			utils.MkdirAll(filepath.Join(appPath, buildTarget))
 
 			//create default assets
-			utils.MakeFolder(filepath.Join(depPath, "rpm"))
+			utils.MkdirAll(filepath.Join(depPath, "rpm"))
 			utils.Save(filepath.Join(depPath, "rpm", appName+".spec"), sailfishSpec())
 			utils.Save(filepath.Join(depPath, appName+".desktop"), sailfishDesktop())
 
@@ -704,7 +704,7 @@ func deploy() {
 				"--gradle",
 			)
 
-			if utils.Exists(filepath.Join(appPath, "android", appName+".keystore")) {
+			if utils.ExistsFile(filepath.Join(appPath, "android", appName+".keystore")) {
 				deploy.Args = append(deploy.Args,
 					"--sign", filepath.Join(appPath, "android", appName+".keystore"),
 					strings.TrimSpace(utils.Load(filepath.Join(appPath, "android", "alias.txt"))),
@@ -769,7 +769,7 @@ func deploy() {
 						} else {
 							output = utils.RunCmd(exec.Command("/usr/lib/mxe/usr/bin/i686-w64-mingw32.shared-objdump", "-x", filepath.Join(depPath, appName+ending)), fmt.Sprintf("objdump binary for %v on %v", buildTarget, runtime.GOOS))
 						}
-						for lib, deps := range templater.LibDeps {
+						for lib, deps := range parser.LibDeps {
 							if strings.Contains(output, lib) && lib != parser.MOC {
 								for _, lib := range append(deps, lib) {
 									utils.RunCmd(exec.Command("cp", filepath.Join(libraryPath, fmt.Sprintf("Qt5%v.dll", lib)), depPath), fmt.Sprintf("copy %v for %v on %v", lib, buildTarget, runtime.GOOS))
@@ -818,7 +818,7 @@ func deploy() {
 
 					libraryPath = filepath.Join(utils.QT_MSYS2_DIR(), "bin")
 					var output = utils.RunCmd(exec.Command(filepath.Join(utils.QT_MSYS2_DIR(), "bin", "objdump"), "-x", filepath.Join(depPath, appName+ending)), fmt.Sprintf("objdump binary for %v on %v", buildTarget, runtime.GOOS))
-					for lib, deps := range templater.LibDeps {
+					for lib, deps := range parser.LibDeps {
 						if strings.Contains(output, lib) && lib != parser.MOC {
 							for _, lib := range append(deps, lib) {
 								utils.RunCmd(exec.Command(copyCmd, filepath.Join(libraryPath, fmt.Sprintf("Qt5%v.dll", lib)), depPath), fmt.Sprintf("copy %v for %v on %v", lib, buildTarget, runtime.GOOS))
@@ -867,7 +867,7 @@ func deploy() {
 						return
 					}
 
-					utils.MakeFolder(filepath.Join(depPath, "lib"))
+					utils.MkdirAll(filepath.Join(depPath, "lib"))
 
 					var (
 						libraryPath string
@@ -899,18 +899,18 @@ func deploy() {
 								}
 							}
 
-							if utils.Exists(filepath.Join(libraryPath, libName)) {
+							if utils.ExistsFile(filepath.Join(libraryPath, libName)) {
 								utils.RunCmd(exec.Command("cp", "-L", filepath.Join(libraryPath, libName), filepath.Join(depPath, "lib", libName)), fmt.Sprintf("copy %v for %v on %v", libName, buildTarget, runtime.GOOS))
 							}
 						}
 					}
 
 					for _, libName := range []string{"DBus", "XcbQpa", "Quick", "Widgets", "EglDeviceIntegration", "EglFsKmsSupport", "OpenGL", "WaylandClient", "WaylandCompositor", "QuickControls2", "QuickTemplates2", "QuickWidgets", "QuickParticles", "CLucene", "Concurrent"} {
-						if utils.Exists(filepath.Join(libraryPath, fmt.Sprintf("libQt5%v.so.5", libName))) {
+						if utils.ExistsFile(filepath.Join(libraryPath, fmt.Sprintf("libQt5%v.so.5", libName))) {
 							utils.RunCmd(exec.Command("cp", "-L", filepath.Join(libraryPath, fmt.Sprintf("libQt5%v.so.5", libName)), filepath.Join(depPath, "lib", fmt.Sprintf("libQt5%v.so.5", libName))), fmt.Sprintf("copy %v for %v on %v", libName, buildTarget, runtime.GOOS))
 						}
 					}
-					if utils.Exists(filepath.Join(libraryPath, "libqgsttools_p.so.1.0.0")) {
+					if utils.ExistsFile(filepath.Join(libraryPath, "libqgsttools_p.so.1.0.0")) {
 						utils.RunCmd(exec.Command("cp", "-L", filepath.Join(libraryPath, "libqgsttools_p.so.1.0.0"), filepath.Join(depPath, "lib", "libqgsttools_p.so.1")), fmt.Sprintf("copy libqgsttools_p.so.1 for %v on %v", buildTarget, runtime.GOOS))
 					}
 
@@ -964,7 +964,7 @@ func pastdeploy() {
 				}
 			}
 
-			if utils.Exists(filepath.Join(appPath, "android", appName+".keystore")) {
+			if utils.ExistsFile(filepath.Join(appPath, "android", appName+".keystore")) {
 				utils.RunCmd(exec.Command(copyCmd, filepath.Join(depPath, "build", "build", "outputs", "apk", "build-release-signed.apk"), filepath.Join(depPath, fmt.Sprintf("%v.%v", appName, apkEnding))), fmt.Sprintf("copy release apk for %v on %v", buildTarget, runtime.GOOS))
 			} else {
 				utils.RunCmd(exec.Command(copyCmd, filepath.Join(depPath, "build", "build", "outputs", "apk", "build-debug.apk"), filepath.Join(depPath, fmt.Sprintf("%v.%v", appName, apkEnding))), fmt.Sprintf("copy debug apk for %v on %v", buildTarget, runtime.GOOS))

@@ -186,6 +186,16 @@ void* QAbstractPlanarVideoBuffer_HandleDefault(void* ptr)
 	return new QVariant(static_cast<QAbstractPlanarVideoBuffer*>(ptr)->QAbstractPlanarVideoBuffer::handle());
 }
 
+struct QtMultimedia_PackedString QAbstractPlanarVideoBuffer_Map(void* ptr, long long mode, int numBytes, int bytesPerLine)
+{
+	return ({ char* t63420a = static_cast<char*>(static_cast<void*>(static_cast<QAbstractPlanarVideoBuffer*>(ptr)->map(static_cast<QAbstractVideoBuffer::MapMode>(mode), &numBytes, &bytesPerLine))); QtMultimedia_PackedString { t63420a, -1 }; });
+}
+
+struct QtMultimedia_PackedString QAbstractPlanarVideoBuffer_MapDefault(void* ptr, long long mode, int numBytes, int bytesPerLine)
+{
+	return ({ char* tbdd456 = static_cast<char*>(static_cast<void*>(static_cast<QAbstractPlanarVideoBuffer*>(ptr)->QAbstractPlanarVideoBuffer::map(static_cast<QAbstractVideoBuffer::MapMode>(mode), &numBytes, &bytesPerLine))); QtMultimedia_PackedString { tbdd456, -1 }; });
+}
+
 long long QAbstractPlanarVideoBuffer_MapMode(void* ptr)
 {
 	return static_cast<QAbstractPlanarVideoBuffer*>(ptr)->mapMode();
@@ -3633,6 +3643,11 @@ void* QCamera_ViewfinderSettings(void* ptr)
 void QCamera_DestroyQCamera(void* ptr)
 {
 	static_cast<QCamera*>(ptr)->~QCamera();
+}
+
+void* QCamera_availableDevices_atList(void* ptr, int i)
+{
+	return new QByteArray(static_cast<QList<QByteArray>*>(ptr)->at(i));
 }
 
 void* QCamera_supportedViewfinderResolutions_atList(void* ptr, int i)

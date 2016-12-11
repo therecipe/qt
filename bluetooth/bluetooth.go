@@ -22,6 +22,136 @@ func cGoUnpackString(s C.struct_QtBluetooth_PackedString) string {
 	return C.GoStringN(s.data, C.int(s.len))
 }
 
+//OSXBluetooth::CentralManagerState
+type OSXBluetooth__CentralManagerState int64
+
+const (
+	OSXBluetooth__CentralManagerIdle          = OSXBluetooth__CentralManagerState(0)
+	OSXBluetooth__CentralManagerUpdating      = OSXBluetooth__CentralManagerState(1)
+	OSXBluetooth__CentralManagerConnecting    = OSXBluetooth__CentralManagerState(2)
+	OSXBluetooth__CentralManagerDiscovering   = OSXBluetooth__CentralManagerState(3)
+	OSXBluetooth__CentralManagerDisconnecting = OSXBluetooth__CentralManagerState(4)
+)
+
+//OSXBluetooth::OBEXRequest
+type OSXBluetooth__OBEXRequest int64
+
+const (
+	OSXBluetooth__OBEXNoop       = OSXBluetooth__OBEXRequest(0)
+	OSXBluetooth__OBEXConnect    = OSXBluetooth__OBEXRequest(1)
+	OSXBluetooth__OBEXDisconnect = OSXBluetooth__OBEXRequest(2)
+	OSXBluetooth__OBEXPut        = OSXBluetooth__OBEXRequest(3)
+	OSXBluetooth__OBEXGet        = OSXBluetooth__OBEXRequest(4)
+	OSXBluetooth__OBEXSetPath    = OSXBluetooth__OBEXRequest(5)
+	OSXBluetooth__OBEXAbort      = OSXBluetooth__OBEXRequest(6)
+)
+
+type OSXBluetooth struct {
+	ptr unsafe.Pointer
+}
+
+type OSXBluetooth_ITF interface {
+	OSXBluetooth_PTR() *OSXBluetooth
+}
+
+func (p *OSXBluetooth) OSXBluetooth_PTR() *OSXBluetooth {
+	return p
+}
+
+func (p *OSXBluetooth) Pointer() unsafe.Pointer {
+	if p != nil {
+		return p.ptr
+	}
+	return nil
+}
+
+func (p *OSXBluetooth) SetPointer(ptr unsafe.Pointer) {
+	if p != nil {
+		p.ptr = ptr
+	}
+}
+
+func PointerFromOSXBluetooth(ptr OSXBluetooth_ITF) unsafe.Pointer {
+	if ptr != nil {
+		return ptr.OSXBluetooth_PTR().Pointer()
+	}
+	return nil
+}
+
+func NewOSXBluetoothFromPointer(ptr unsafe.Pointer) *OSXBluetooth {
+	var n = new(OSXBluetooth)
+	n.SetPointer(ptr)
+	return n
+}
+
+func (ptr *OSXBluetooth) DestroyOSXBluetooth() {
+	C.free(ptr.Pointer())
+	ptr.SetPointer(nil)
+}
+
+//QBluetooth::AttAccessConstraint
+type QBluetooth__AttAccessConstraint int64
+
+const (
+	QBluetooth__AttAuthorizationRequired  = QBluetooth__AttAccessConstraint(0x1)
+	QBluetooth__AttAuthenticationRequired = QBluetooth__AttAccessConstraint(0x2)
+	QBluetooth__AttEncryptionRequired     = QBluetooth__AttAccessConstraint(0x4)
+)
+
+//QBluetooth::Security
+type QBluetooth__Security int64
+
+const (
+	QBluetooth__NoSecurity     = QBluetooth__Security(0x00)
+	QBluetooth__Authorization  = QBluetooth__Security(0x01)
+	QBluetooth__Authentication = QBluetooth__Security(0x02)
+	QBluetooth__Encryption     = QBluetooth__Security(0x04)
+	QBluetooth__Secure         = QBluetooth__Security(0x08)
+)
+
+type QBluetooth struct {
+	ptr unsafe.Pointer
+}
+
+type QBluetooth_ITF interface {
+	QBluetooth_PTR() *QBluetooth
+}
+
+func (p *QBluetooth) QBluetooth_PTR() *QBluetooth {
+	return p
+}
+
+func (p *QBluetooth) Pointer() unsafe.Pointer {
+	if p != nil {
+		return p.ptr
+	}
+	return nil
+}
+
+func (p *QBluetooth) SetPointer(ptr unsafe.Pointer) {
+	if p != nil {
+		p.ptr = ptr
+	}
+}
+
+func PointerFromQBluetooth(ptr QBluetooth_ITF) unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QBluetooth_PTR().Pointer()
+	}
+	return nil
+}
+
+func NewQBluetoothFromPointer(ptr unsafe.Pointer) *QBluetooth {
+	var n = new(QBluetooth)
+	n.SetPointer(ptr)
+	return n
+}
+
+func (ptr *QBluetooth) DestroyQBluetooth() {
+	C.free(ptr.Pointer())
+	ptr.SetPointer(nil)
+}
+
 type QBluetoothAddress struct {
 	ptr unsafe.Pointer
 }
@@ -2212,6 +2342,13 @@ func (ptr *QBluetoothServer) NextPendingConnection() *QBluetoothSocket {
 	return nil
 }
 
+func (ptr *QBluetoothServer) SecurityFlags() QBluetooth__Security {
+	if ptr.Pointer() != nil {
+		return QBluetooth__Security(C.QBluetoothServer_SecurityFlags(ptr.Pointer()))
+	}
+	return 0
+}
+
 func (ptr *QBluetoothServer) ServerAddress() *QBluetoothAddress {
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQBluetoothAddressFromPointer(C.QBluetoothServer_ServerAddress(ptr.Pointer()))
@@ -2231,6 +2368,12 @@ func (ptr *QBluetoothServer) ServerPort() uint16 {
 func (ptr *QBluetoothServer) SetMaxPendingConnections(numConnections int) {
 	if ptr.Pointer() != nil {
 		C.QBluetoothServer_SetMaxPendingConnections(ptr.Pointer(), C.int(int32(numConnections)))
+	}
+}
+
+func (ptr *QBluetoothServer) SetSecurityFlags(security QBluetooth__Security) {
+	if ptr.Pointer() != nil {
+		C.QBluetoothServer_SetSecurityFlags(ptr.Pointer(), C.longlong(security))
 	}
 }
 
@@ -4008,6 +4151,19 @@ func (ptr *QBluetoothSocket) PeerPort() uint16 {
 		return uint16(C.QBluetoothSocket_PeerPort(ptr.Pointer()))
 	}
 	return 0
+}
+
+func (ptr *QBluetoothSocket) PreferredSecurityFlags() QBluetooth__Security {
+	if ptr.Pointer() != nil {
+		return QBluetooth__Security(C.QBluetoothSocket_PreferredSecurityFlags(ptr.Pointer()))
+	}
+	return 0
+}
+
+func (ptr *QBluetoothSocket) SetPreferredSecurityFlags(flags QBluetooth__Security) {
+	if ptr.Pointer() != nil {
+		C.QBluetoothSocket_SetPreferredSecurityFlags(ptr.Pointer(), C.longlong(flags))
+	}
 }
 
 func (ptr *QBluetoothSocket) SetSocketDescriptor(socketDescriptor int, socketType QBluetoothServiceInfo__Protocol, socketState QBluetoothSocket__SocketState, openMode core.QIODevice__OpenModeFlag) bool {
@@ -6989,9 +7145,22 @@ func (ptr *QLowEnergyCharacteristicData) Properties() QLowEnergyCharacteristic__
 	return 0
 }
 
+func (ptr *QLowEnergyCharacteristicData) ReadConstraints() QBluetooth__AttAccessConstraint {
+	if ptr.Pointer() != nil {
+		return QBluetooth__AttAccessConstraint(C.QLowEnergyCharacteristicData_ReadConstraints(ptr.Pointer()))
+	}
+	return 0
+}
+
 func (ptr *QLowEnergyCharacteristicData) SetProperties(properties QLowEnergyCharacteristic__PropertyType) {
 	if ptr.Pointer() != nil {
 		C.QLowEnergyCharacteristicData_SetProperties(ptr.Pointer(), C.longlong(properties))
+	}
+}
+
+func (ptr *QLowEnergyCharacteristicData) SetReadConstraints(constraints QBluetooth__AttAccessConstraint) {
+	if ptr.Pointer() != nil {
+		C.QLowEnergyCharacteristicData_SetReadConstraints(ptr.Pointer(), C.longlong(constraints))
 	}
 }
 
@@ -7010,6 +7179,12 @@ func (ptr *QLowEnergyCharacteristicData) SetValue(value core.QByteArray_ITF) {
 func (ptr *QLowEnergyCharacteristicData) SetValueLength(minimum int, maximum int) {
 	if ptr.Pointer() != nil {
 		C.QLowEnergyCharacteristicData_SetValueLength(ptr.Pointer(), C.int(int32(minimum)), C.int(int32(maximum)))
+	}
+}
+
+func (ptr *QLowEnergyCharacteristicData) SetWriteConstraints(constraints QBluetooth__AttAccessConstraint) {
+	if ptr.Pointer() != nil {
+		C.QLowEnergyCharacteristicData_SetWriteConstraints(ptr.Pointer(), C.longlong(constraints))
 	}
 }
 
@@ -7035,6 +7210,13 @@ func (ptr *QLowEnergyCharacteristicData) Value() *core.QByteArray {
 		return tmpValue
 	}
 	return nil
+}
+
+func (ptr *QLowEnergyCharacteristicData) WriteConstraints() QBluetooth__AttAccessConstraint {
+	if ptr.Pointer() != nil {
+		return QBluetooth__AttAccessConstraint(C.QLowEnergyCharacteristicData_WriteConstraints(ptr.Pointer()))
+	}
+	return 0
 }
 
 func (ptr *QLowEnergyCharacteristicData) DestroyQLowEnergyCharacteristicData() {
@@ -8135,6 +8317,19 @@ func (ptr *QLowEnergyDescriptorData) IsWritable() bool {
 	return false
 }
 
+func (ptr *QLowEnergyDescriptorData) ReadConstraints() QBluetooth__AttAccessConstraint {
+	if ptr.Pointer() != nil {
+		return QBluetooth__AttAccessConstraint(C.QLowEnergyDescriptorData_ReadConstraints(ptr.Pointer()))
+	}
+	return 0
+}
+
+func (ptr *QLowEnergyDescriptorData) SetReadPermissions(readable bool, constraints QBluetooth__AttAccessConstraint) {
+	if ptr.Pointer() != nil {
+		C.QLowEnergyDescriptorData_SetReadPermissions(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(readable))), C.longlong(constraints))
+	}
+}
+
 func (ptr *QLowEnergyDescriptorData) SetUuid(uuid QBluetoothUuid_ITF) {
 	if ptr.Pointer() != nil {
 		C.QLowEnergyDescriptorData_SetUuid(ptr.Pointer(), PointerFromQBluetoothUuid(uuid))
@@ -8144,6 +8339,12 @@ func (ptr *QLowEnergyDescriptorData) SetUuid(uuid QBluetoothUuid_ITF) {
 func (ptr *QLowEnergyDescriptorData) SetValue(value core.QByteArray_ITF) {
 	if ptr.Pointer() != nil {
 		C.QLowEnergyDescriptorData_SetValue(ptr.Pointer(), core.PointerFromQByteArray(value))
+	}
+}
+
+func (ptr *QLowEnergyDescriptorData) SetWritePermissions(writable bool, constraints QBluetooth__AttAccessConstraint) {
+	if ptr.Pointer() != nil {
+		C.QLowEnergyDescriptorData_SetWritePermissions(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(writable))), C.longlong(constraints))
 	}
 }
 
@@ -8169,6 +8370,13 @@ func (ptr *QLowEnergyDescriptorData) Value() *core.QByteArray {
 		return tmpValue
 	}
 	return nil
+}
+
+func (ptr *QLowEnergyDescriptorData) WriteConstraints() QBluetooth__AttAccessConstraint {
+	if ptr.Pointer() != nil {
+		return QBluetooth__AttAccessConstraint(C.QLowEnergyDescriptorData_WriteConstraints(ptr.Pointer()))
+	}
+	return 0
 }
 
 func (ptr *QLowEnergyDescriptorData) DestroyQLowEnergyDescriptorData() {

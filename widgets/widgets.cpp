@@ -2618,6 +2618,11 @@ void QAbstractItemView_SelectAllDefault(void* ptr)
 	static_cast<QAbstractItemView*>(ptr)->QAbstractItemView::selectAll();
 }
 
+struct QtWidgets_PackedList QAbstractItemView_SelectedIndexes(void* ptr)
+{
+	return ({ QList<QModelIndex>* tmpValue = new QList<QModelIndex>(static_cast<QAbstractItemView*>(ptr)->selectedIndexes()); QtWidgets_PackedList { tmpValue, tmpValue->size() }; });
+}
+
 void QAbstractItemView_SelectionChanged(void* ptr, void* selected, void* deselected)
 {
 	QMetaObject::invokeMethod(static_cast<QAbstractItemView*>(ptr), "selectionChanged", Q_ARG(QItemSelection, *static_cast<QItemSelection*>(selected)), Q_ARG(QItemSelection, *static_cast<QItemSelection*>(deselected)));
@@ -31171,6 +31176,11 @@ void* QGraphicsItem_childItems_atList(void* ptr, int i)
 	return const_cast<QGraphicsItem*>(static_cast<QList<QGraphicsItem *>*>(ptr)->at(i));
 }
 
+void* QGraphicsItem_children_atList(void* ptr, int i)
+{
+	return const_cast<QGraphicsItem*>(static_cast<QList<QGraphicsItem *>*>(ptr)->at(i));
+}
+
 void* QGraphicsItem_collidingItems_atList(void* ptr, int i)
 {
 	return const_cast<QGraphicsItem*>(static_cast<QList<QGraphicsItem *>*>(ptr)->at(i));
@@ -49994,6 +50004,11 @@ void QListView_ScrollTo(void* ptr, void* index, long long hint)
 void QListView_ScrollToDefault(void* ptr, void* index, long long hint)
 {
 	static_cast<QListView*>(ptr)->QListView::scrollTo(*static_cast<QModelIndex*>(index), static_cast<QAbstractItemView::ScrollHint>(hint));
+}
+
+struct QtWidgets_PackedList QListView_SelectedIndexes(void* ptr)
+{
+	return ({ QList<QModelIndex>* tmpValue = new QList<QModelIndex>(static_cast<QListView*>(ptr)->selectedIndexes()); QtWidgets_PackedList { tmpValue, tmpValue->size() }; });
 }
 
 void QListView_SelectionChanged(void* ptr, void* selected, void* deselected)
@@ -82255,6 +82270,11 @@ void QTableView_SelectRow(void* ptr, int row)
 	QMetaObject::invokeMethod(static_cast<QTableView*>(ptr), "selectRow", Q_ARG(int, row));
 }
 
+struct QtWidgets_PackedList QTableView_SelectedIndexes(void* ptr)
+{
+	return ({ QList<QModelIndex>* tmpValue = new QList<QModelIndex>(static_cast<QTableView*>(ptr)->selectedIndexes()); QtWidgets_PackedList { tmpValue, tmpValue->size() }; });
+}
+
 void QTableView_SelectionChanged(void* ptr, void* selected, void* deselected)
 {
 	static_cast<QTableView*>(ptr)->selectionChanged(*static_cast<QItemSelection*>(selected), *static_cast<QItemSelection*>(deselected));
@@ -92333,6 +92353,11 @@ void QTreeView_SelectAllDefault(void* ptr)
 	static_cast<QTreeView*>(ptr)->QTreeView::selectAll();
 }
 
+struct QtWidgets_PackedList QTreeView_SelectedIndexes(void* ptr)
+{
+	return ({ QList<QModelIndex>* tmpValue = new QList<QModelIndex>(static_cast<QTreeView*>(ptr)->selectedIndexes()); QtWidgets_PackedList { tmpValue, tmpValue->size() }; });
+}
+
 void QTreeView_SelectionChanged(void* ptr, void* selected, void* deselected)
 {
 	static_cast<QTreeView*>(ptr)->selectionChanged(*static_cast<QItemSelection*>(selected), *static_cast<QItemSelection*>(deselected));
@@ -93746,6 +93771,11 @@ void QTreeWidget_DestroyQTreeWidget(void* ptr)
 }
 
 void* QTreeWidget_findItems_atList(void* ptr, int i)
+{
+	return const_cast<QTreeWidgetItem*>(static_cast<QList<QTreeWidgetItem *>*>(ptr)->at(i));
+}
+
+void* QTreeWidget_items_atList(void* ptr, int i)
 {
 	return const_cast<QTreeWidgetItem*>(static_cast<QList<QTreeWidgetItem *>*>(ptr)->at(i));
 }

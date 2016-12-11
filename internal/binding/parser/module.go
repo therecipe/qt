@@ -7,145 +7,43 @@ type Module struct {
 
 type Namespace struct {
 	Classes []*Class `xml:"class"`
-	//Functions    []*Function   `xml:"function"`
+	//Functions    []*Function   `xml:"function"` //TODO: uncomment
 	SubNamespace *SubNamespace `xml:"namespace"`
 }
 
 type SubNamespace struct {
-	//Classes   []*Class    `xml:"class"`
-	//Functions []*Function `xml:"function"`
+	//Classes   []*Class    `xml:"class"`    //TODO: uncomment
+	//Functions []*Function `xml:"function"` //TODO: uncomment
 	Enums []*Enum `xml:"enum"`
 }
 
-func (m *Module) Prepare() {
+func (m *Module) Prepare() error {
 
-	//register namespace
-	if m.Namespace != nil {
-		for _, c := range m.Namespace.Classes {
-			c.register(m.Project)
-			c.registerVarsAndProps()
-			for _, sc := range c.Classes {
-				sc.registerVarsAndProps()
-			}
+	//register classes from namespace
+	for _, c := range m.Namespace.Classes {
+		c.register(m.Project)
+	}
+
+	//register enums from subnamespace
+	if m.Namespace.SubNamespace != nil {
+		for _, e := range m.Namespace.SubNamespace.Enums {
+			e.register(m.Project)
 		}
 	}
 
-	//register subnamespace
-	if m.Project == "QtCore" || m.Project == "QtMultimedia" {
-		if m.Namespace.SubNamespace != nil {
-			for _, e := range m.Namespace.SubNamespace.Enums {
-				e.register(m.Project)
-			}
+	//mutate classmap
+	m.remove()
+
+	//mutate classes
+	for _, c := range CurrentState.ClassMap {
+		if c.Module != m.Project {
+			continue
 		}
+
+		c.add()
+		c.fix()
+		c.remove()
 	}
 
-	//remove obsolete and private
-	m.removeClasses()
-	for _, c := range ClassMap {
-		if c.Module == m.Project {
-			c.fix()
-			c.removeFunctions()
-			c.removeEnums()
-			c.add()
-		}
-	}
-
-	for _, c := range ClassMap {
-		if c.Module == m.Project {
-			c.fixBases()
-
-			for _, f := range c.Functions {
-				f.fix()
-				f.fixOverload()
-
-				if f.Virtual == "virtual" {
-					f.Virtual = IMPURE
-				}
-				if f.Meta == COPY_CONSTRUCTOR || f.Meta == MOVE_CONSTRUCTOR {
-					f.Meta = CONSTRUCTOR
-				}
-			}
-		}
-	}
-}
-
-func (m *Module) removeClasses() {
-	for _, c := range ClassMap {
-		if (c.Status == "obsolete" || c.Status == "compat") || !(c.Access == "public" || c.Access == "protected") || c.Name == "qoutputrange" {
-			delete(ClassMap, c.Name)
-		}
-	}
-}
-
-func sailfishModule() *Module {
-	//TODO: should be in Namespace.Functions
-	return &Module{Project: "QtSailfish", Namespace: &Namespace{Classes: []*Class{{
-		Name:   "SailfishApp",
-		Access: "public",
-		Module: "QtSailfish",
-		Functions: []*Function{
-			{
-				Name:      "application",
-				Fullname:  "SailfishApp::application",
-				Access:    "public",
-				Virtual:   "non",
-				Meta:      PLAIN,
-				Static:    true,
-				Output:    "QGuiApplication*",
-				Signature: "()",
-				Parameters: []*Parameter{
-					{
-						Name:  "argc",
-						Value: "int &",
-					},
-					{
-						Name:  "argv",
-						Value: "char **",
-					},
-				}},
-			{
-				Name:      "main",
-				Fullname:  "SailfishApp::main",
-				Access:    "public",
-				Virtual:   "non",
-				Meta:      PLAIN,
-				Static:    true,
-				Output:    "int",
-				Signature: "()",
-				Parameters: []*Parameter{
-					{
-						Name:  "argc",
-						Value: "int &",
-					},
-					{
-						Name:  "argv",
-						Value: "char **",
-					},
-				}},
-			{
-				Name:      "createView",
-				Fullname:  "SailfishApp::createView",
-				Access:    "public",
-				Virtual:   "non",
-				Meta:      PLAIN,
-				Static:    true,
-				Output:    "QQuickView*",
-				Signature: "()",
-			},
-			{
-				Name:      "pathTo",
-				Fullname:  "SailfishApp::pathTo",
-				Access:    "public",
-				Virtual:   "non",
-				Meta:      PLAIN,
-				Static:    true,
-				Output:    "QUrl",
-				Signature: "pathTo(const QString &filename)",
-				Parameters: []*Parameter{
-					{
-						Name:  "filename",
-						Value: "QString &",
-					},
-				}},
-		}}}}}
+	return nil
 }

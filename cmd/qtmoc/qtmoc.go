@@ -42,7 +42,7 @@ func main() {
 
 	// validate that path is readable and a directory
 	if !filepath.IsAbs(appPath) {
-		appPath = utils.GetAbsPath(appPath)
+		appPath, _ = utils.Abs(appPath)
 	}
 	fields["app_path"] = appPath
 

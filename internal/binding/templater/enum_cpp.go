@@ -12,7 +12,7 @@ func cppEnum(enum *parser.Enum, value *parser.Value) string {
 }
 
 func cppEnumHeader(enum *parser.Enum, value *parser.Value) string {
-	return fmt.Sprintf("int %v_%v_Type()", enum.Class(), value.Name)
+	return fmt.Sprintf("int %v_%v_Type()", enum.ClassName(), value.Name)
 }
 
 func cppEnumBody(enum *parser.Enum, value *parser.Value) string {
@@ -22,7 +22,7 @@ func cppEnumBody(enum *parser.Enum, value *parser.Value) string {
 		return %v::%v;
 	#else
 		return 0;
-	#endif`, enum.Class(), value.Name)
+	#endif`, enum.ClassName(), value.Name)
 	}
 
 	//needed for msys2 with 5.7 docs
@@ -31,8 +31,8 @@ func cppEnumBody(enum *parser.Enum, value *parser.Value) string {
 		return %v::%v;
 	#else
 		return 0;
-	#endif`, enum.Class(), value.Name)
+	#endif`, enum.ClassName(), value.Name)
 	}
 
-	return fmt.Sprintf("return %v::%v;", enum.Class(), value.Name)
+	return fmt.Sprintf("return %v::%v;", enum.ClassName(), value.Name)
 }

@@ -6,22 +6,24 @@ import (
 )
 
 type Variable struct {
-	Name     string    `xml:"name,attr"`
-	Fullname string    `xml:"fullname,attr"`
-	Href     string    `xml:"href,attr"`
-	Status   string    `xml:"status,attr"`
-	Access   string    `xml:"access,attr"`
-	Filepath string    `xml:"filepath,attr"`
-	Static   bool      `xml:"static,attr"`
-	Output   string    `xml:"type,attr"`
-	Brief    string    `xml:"brief,attr"`
-	Getter   []*getter `xml:"getter"`
-	Setter   []*setter `xml:"setter"`
+	Name     string     `xml:"name,attr"`
+	Fullname string     `xml:"fullname,attr"`
+	Href     string     `xml:"href,attr"`
+	Status   string     `xml:"status,attr"`
+	Access   string     `xml:"access,attr"`
+	Filepath string     `xml:"filepath,attr"`
+	Static   bool       `xml:"static,attr"`
+	Output   string     `xml:"type,attr"`
+	Brief    string     `xml:"brief,attr"`
+	Getter   []struct{} `xml:"getter"`
+	Setter   []struct{} `xml:"setter"`
 }
-type getter struct{}
-type setter struct{}
 
-func (v *Variable) Class() string {
+func (v *Variable) Class() (*Class, bool) {
+	var class, exists = CurrentState.ClassMap[v.ClassName()]
+	return class, exists
+}
+func (v *Variable) ClassName() string {
 	var s = strings.Split(v.Fullname, "::")
 	if len(s) == 3 {
 		return s[1]
@@ -29,136 +31,118 @@ func (v *Variable) Class() string {
 	return s[0]
 }
 
-func (v *Variable) variableToFunction(meta string) *Function {
-	if meta == GETTER {
-		return &Function{
-			Name:     v.Name,
-			Fullname: v.Fullname,
-			Href:     v.Href,
-			Status:   v.Status,
-			Access:   v.Access,
-			Filepath: v.Filepath,
-			Static:   v.Static,
-			Output:   v.Output,
-			Meta:     meta,
-			Brief:    v.Brief,
-		}
+func (v *Variable) varToFunc() []*Function {
+	var funcs = make([]*Function, 0)
+
+	var class, exist = v.Class()
+	if !exist || class.HasFunctionWithName(v.Name) {
+		return funcs
 	}
-	return &Function{
+
+	funcs = append(funcs, &Function{
+		Name:     v.Name,
+		Fullname: v.Fullname,
+		Href:     v.Href,
+		Status:   v.Status,
+		Access:   v.Access,
+		Filepath: v.Filepath,
+		Static:   v.Static,
+		Output:   v.Output,
+		Meta:     GETTER,
+		Brief:    v.Brief,
+	})
+
+	if strings.Contains(v.Output, "const") {
+		return funcs
+	}
+
+	funcs = append(funcs, &Function{
 		Name:       fmt.Sprintf("set%v", strings.Title(v.Name)),
-		Fullname:   fmt.Sprintf("%v::set%v", v.Class(), strings.Title(v.Name)),
+		Fullname:   fmt.Sprintf("%v::set%v", v.ClassName(), strings.Title(v.Name)),
 		Href:       v.Href,
 		Status:     v.Status,
 		Access:     v.Access,
 		Filepath:   v.Filepath,
 		Static:     v.Static,
 		Output:     "void",
-		Meta:       meta,
+		Meta:       SETTER,
 		Parameters: []*Parameter{{Value: v.Output}},
 		TmpName:    v.Name,
 		Brief:      v.Brief,
-	}
+	})
+
+	return funcs
 }
 
-func (v *Variable) propertyToFunctions(c *Class) []*Function {
-	var funcs []*Function
+func (v *Variable) propToFunc(c *Class) []*Function {
+	var funcs = make([]*Function, 0)
 
-	if v.Fullname == "QTextBrowser::modified" {
+	if len(v.Getter) != 0 {
 		return funcs
 	}
 
-	if !(c.HasFunctionWithName(v.Name) || c.HasFunctionWithName(fmt.Sprintf("is%v", strings.Title(v.Name))) || c.HasFunctionWithName(fmt.Sprintf("has%v", strings.Title(v.Name)))) && len(v.Getter) == 0 {
+	if !(c.HasFunctionWithName(v.Name) ||
+		c.HasFunctionWithName(fmt.Sprintf("is%v", strings.Title(v.Name))) ||
+		c.HasFunctionWithName(fmt.Sprintf("has%v", strings.Title(v.Name)))) {
 
-		var tmpV = *v
-
-		switch tmpV.Fullname {
-		case "QGraphicsObject::z":
-			{
-				tmpV.Name = "zValue"
-				tmpV.Fullname = fmt.Sprintf("%v::%v", tmpV.Class(), tmpV.Name)
-			}
-
-		case "QGraphicsObject::effect":
-			{
-				tmpV.Name = "graphicsEffect"
-				tmpV.Fullname = fmt.Sprintf("%v::%v", tmpV.Class(), tmpV.Name)
-			}
-
-		default:
-			{
-				if tmpV.Output == "bool" {
-					tmpV.Name = fmt.Sprintf("is%v", strings.Title(tmpV.Name))
-					tmpV.Fullname = fmt.Sprintf("%v::%v", tmpV.Class(), tmpV.Name)
-				}
-			}
+		var tmpF = &Function{
+			Name:      v.Name,
+			Fullname:  v.Fullname,
+			Href:      v.Href,
+			Status:    v.Status,
+			Access:    v.Access,
+			Filepath:  v.Filepath,
+			Static:    v.Static,
+			Output:    v.Output,
+			Meta:      PLAIN,
+			Signature: "()",
 		}
 
-		funcs = append(funcs, &Function{
-			Name:     tmpV.Name,
-			Fullname: tmpV.Fullname,
-			Href:     tmpV.Href,
-			Status:   tmpV.Status,
-			Access:   tmpV.Access,
-			Filepath: tmpV.Filepath,
-			Static:   tmpV.Static,
-			Output:   tmpV.Output,
-			Meta:     PLAIN,
-			Brief:    tmpV.Brief,
-		})
+		if tmpF.Output == "bool" {
+			tmpF.Name = fmt.Sprintf("is%v", strings.Title(tmpF.Name))
+			tmpF.Fullname = fmt.Sprintf("%v::%v", tmpF.ClassName(), tmpF.Name)
+		}
+
+		funcs = append(funcs, tmpF)
 	}
 
-	if !c.HasFunctionWithName(fmt.Sprintf("set%v", strings.Title(v.Name))) && len(v.Getter) == 0 && len(v.Setter) == 0 {
+	if len(v.Setter) != 0 || c.HasFunctionWithName(fmt.Sprintf("set%v", strings.Title(v.Name))) {
+		return funcs
+	}
 
-		switch v.Fullname {
-		case "QGraphicsObject::z":
-			{
-				v.Name = "zValue"
-				v.Fullname = fmt.Sprintf("%v::%v", v.Class(), v.Name)
-			}
+	funcs = append(funcs, &Function{
+		Name:       fmt.Sprintf("set%v", strings.Title(v.Name)),
+		Fullname:   fmt.Sprintf("%v::set%v", v.ClassName(), strings.Title(v.Name)),
+		Href:       v.Href,
+		Status:     v.Status,
+		Access:     v.Access,
+		Filepath:   v.Filepath,
+		Static:     v.Static,
+		Output:     "void",
+		Meta:       PLAIN,
+		Parameters: []*Parameter{{Value: v.Output}},
+		Signature:  "()",
+	})
 
-		case "QGraphicsObject::effect":
-			{
-				v.Name = "graphicsEffect"
-				v.Fullname = fmt.Sprintf("%v::%v", v.Class(), v.Name)
-			}
+	//add all overloaded property functions from base classes
+
+	for _, bc := range c.GetAllBases() {
+		var bclass, exist = CurrentState.ClassMap[bc]
+		if !exist {
+			continue
 		}
 
-		funcs = append(funcs,
-			&Function{
-				Name:       fmt.Sprintf("set%v", strings.Title(v.Name)),
-				Fullname:   fmt.Sprintf("%v::set%v", v.Class(), strings.Title(v.Name)),
-				Href:       v.Href,
-				Status:     v.Status,
-				Access:     v.Access,
-				Filepath:   v.Filepath,
-				Static:     v.Static,
-				Output:     "void",
-				Meta:       PLAIN,
-				Parameters: []*Parameter{{Value: v.Output}},
-				Brief:      v.Brief,
-			})
-
-		for _, bc := range c.GetAllBases() {
-			for _, bcf := range ClassMap[bc].Functions {
-				if bcf.Name == fmt.Sprintf("set%v", strings.Title(v.Name)) && bcf.Overload {
-					funcs = append(funcs,
-						&Function{
-							Name:           fmt.Sprintf("set%v", strings.Title(v.Name)),
-							Fullname:       fmt.Sprintf("%v::set%v", v.Class(), strings.Title(v.Name)),
-							Href:           bcf.Href,
-							Status:         bcf.Status,
-							Access:         bcf.Access,
-							Filepath:       bcf.Filepath,
-							Static:         bcf.Static,
-							Output:         "void",
-							Meta:           PLAIN,
-							Parameters:     bcf.Parameters,
-							Brief:          bcf.Brief,
-							Overload:       true,
-							OverloadNumber: bcf.OverloadNumber,
-						})
-				}
+		for _, bcf := range bclass.Functions {
+			if bcf.Name != fmt.Sprintf("set%v", strings.Title(v.Name)) || !bcf.Overload {
+				continue
 			}
+
+			var tmpF = *bcf
+
+			tmpF.Name = fmt.Sprintf("set%v", strings.Title(v.Name))
+			tmpF.Fullname = fmt.Sprintf("%v::%v", v.ClassName(), tmpF.Name)
+
+			funcs = append(funcs, &tmpF)
 		}
 	}
 
