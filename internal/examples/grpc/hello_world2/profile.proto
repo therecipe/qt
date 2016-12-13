@@ -1,0 +1,44 @@
+syntax = "proto3";
+
+package main;
+
+import "google/api/annotations.proto";
+
+message EmptyMessage {}
+message IDMessage {
+  string id                = 1;
+}
+
+message ProfileMessage {
+  string id                = 1;
+  enum ProfileType {
+   USER                    = 0;
+   ADMIN                   = 1;
+  }
+  ProfileType profile_type = 2;
+  string name              = 3;
+}
+
+service ProfileService {
+  // List returns all available profiles associated with the account.
+  rpc List(EmptyMessage) returns (stream ProfileMessage) {
+    option (google.api.http) = {
+      get: "/v0/p"
+    };
+  }
+
+  // Get
+  rpc Get(IDMessage) returns (ProfileMessage) {
+    option (google.api.http) = {
+      get: "/v0/p/{id}"
+    };
+  }
+
+  // Update saves profile.
+  rpc Update(ProfileMessage) returns (IDMessage) {
+    option (google.api.http) = {
+      put: "/v0/p/{id}"
+      body: "*"
+    };
+  }
+}
