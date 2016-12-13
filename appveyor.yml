@@ -19,9 +19,9 @@ install:
     DEL %TMP%\%QT% /Q
 
 
-    set SDK=android-sdk_r24.4.1-windows.zip
+    set SDK=tools_r25.2.3-windows.zip
 
-    curl -sL --retry 10 --retry-delay 10 -o %TMP%\%SDK% https://dl.google.com/android/%SDK%
+    curl -sL --retry 10 --retry-delay 10 -o %TMP%\%SDK% https://dl.google.com/android/repository/%SDK%
 
     7z x %TMP%\%SDK% -oC:\
 
@@ -33,7 +33,7 @@ install:
     echo y | C:\android-sdk-windows\tools\android.bat -s update sdk -f -u -t 1,2,3,5
 
 
-    set NDK=android-ndk-r12b-windows-x86_64.zip
+    set NDK=android-ndk-r13b-windows-x86_64.zip
 
     curl -sL --retry 10 --retry-delay 10 -o %TMP%\%NDK% https://dl.google.com/android/repository/%NDK%
 

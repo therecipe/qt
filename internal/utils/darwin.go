@@ -19,7 +19,7 @@ func XCODE_DIR() string {
 func MACOS_SDK_DIR() string {
 	if runtime.GOOS == "darwin" {
 		var basePath = filepath.Join(XCODE_DIR(), "Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs")
-		for _, i := range []string{"12", "11", "10"} {
+		for _, i := range []string{"13", "12", "11", "10"} {
 			if _, err := ioutil.ReadDir(filepath.Join(basePath, fmt.Sprintf("MacOSX10.%v.sdk", i))); err == nil {
 				return fmt.Sprintf("MacOSX10.%v.sdk", i)
 			}
@@ -32,7 +32,7 @@ func MACOS_SDK_DIR() string {
 func IPHONEOS_SDK_DIR() string {
 	if runtime.GOOS == "darwin" {
 		var basePath = filepath.Join(XCODE_DIR(), "Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs")
-		for _, i := range []string{"10.1", "10.0", "9.3", "9.2", "9.1", "9.0"} {
+		for _, i := range []string{"10.3", "10.2", "10.1", "10.0", "9.3", "9.2", "9.1", "9.0"} {
 			if _, err := ioutil.ReadDir(filepath.Join(basePath, fmt.Sprintf("iPhoneOS%v.sdk", i))); err == nil {
 				return fmt.Sprintf("iPhoneOS%v.sdk", i)
 			}
@@ -45,7 +45,7 @@ func IPHONEOS_SDK_DIR() string {
 func IPHONESIMULATOR_SDK_DIR() string {
 	if runtime.GOOS == "darwin" {
 		var basePath = filepath.Join(XCODE_DIR(), "Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs")
-		for _, i := range []string{"10.1", "10.0", "9.3", "9.2", "9.1", "9.0"} {
+		for _, i := range []string{"10.3", "10.2", "10.1", "10.0", "9.3", "9.2", "9.1", "9.0"} {
 			if _, err := ioutil.ReadDir(filepath.Join(basePath, fmt.Sprintf("iPhoneSimulator%v.sdk", i))); err == nil {
 				return fmt.Sprintf("iPhoneSimulator%v.sdk", i)
 			}

@@ -49,8 +49,8 @@ then
 fi
 
 #download and install android sdk
-SDK=android-sdk_r24.4.1-linux.tgz
-curl -sL --retry 10 --retry-delay 10 -o /tmp/$SDK https://dl.google.com/android/$SDK
+SDK=tools_r25.2.3-linux.tgz
+curl -sL --retry 10 --retry-delay 10 -o /tmp/$SDK https://dl.google.com/android/repository/$SDK
 tar -xzf /tmp/$SDK -C $HOME
 rm -f /tmp/$SDK
 
@@ -59,7 +59,7 @@ $HOME/android-sdk-linux/tools/android list sdk
 echo "y" | $HOME/android-sdk-linux/tools/android -s update sdk -f -u -t 1,2,3,5
 
 #download and install android ndk
-NDK=android-ndk-r12b-linux-x86_64.zip
+NDK=android-ndk-r13b-linux-x86_64.zip
 curl -sL --retry 10 --retry-delay 10 -o /tmp/$NDK https://dl.google.com/android/repository/$NDK
 unzip -qq /tmp/$NDK -d $HOME
 rm -f /tmp/$NDK

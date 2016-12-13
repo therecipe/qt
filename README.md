@@ -89,7 +89,7 @@ If you use the STUB version, you are forced to use `qtminimal` otherwise it's op
 
 1. Install Go >= 1.7.1 and setup a proper [**GOPATH**](https://golang.org/doc/code.html#GOPATH)
 
-	* https://golang.org/doc/install?download=go1.7.3.windows-amd64.msi
+	* https://golang.org/doc/install?download=go1.7.4.windows-amd64.msi
 
 2. Install Qt 5.7.0
 
@@ -124,7 +124,7 @@ If you use the STUB version, you are forced to use `qtminimal` otherwise it's op
 
 1. Install Go >= 1.7.1 and setup a proper [**GOPATH**](https://golang.org/doc/code.html#GOPATH)
 
-	* https://golang.org/doc/install?download=go1.7.3.darwin-amd64.pkg
+	* https://golang.org/doc/install?download=go1.7.4.darwin-amd64.pkg
 
 2. Install Qt 5.7.0
 
@@ -157,7 +157,7 @@ If you use the STUB version, you are forced to use `qtminimal` otherwise it's op
 
 1. Install Go >= 1.7.1 and setup a proper [**GOPATH**](https://golang.org/doc/code.html#GOPATH)
 
-	* https://golang.org/doc/install?download=go1.7.3.linux-amd64.tar.gz
+	* https://golang.org/doc/install?download=go1.7.4.linux-amd64.tar.gz
 
 2. Install Qt 5.7.0
 
@@ -226,22 +226,22 @@ If you use the STUB version, you are forced to use `qtminimal` otherwise it's op
 1. Install the desktop version for [Windows](#windows), [macOS](#macos) or [Linux](#linux)
 
 2. Unzip the Android SDK in `C:\` or `$HOME`; you can also define a custom location with **ANDROID_SDK_DIR**
-	* https://dl.google.com/android/android-sdk_r24.4.1-windows.zip
-	* https://dl.google.com/android/android-sdk_r24.4.1-macosx.zip
-	* https://dl.google.com/android/android-sdk_r24.4.1-linux.tgz
+	* https://dl.google.com/android/repository/tools_r25.2.3-windows.zip
+	* https://dl.google.com/android/repository/tools_r25.2.3-macosx.zip
+	* https://dl.google.com/android/repository/tools_r25.2.3-linux.tgz
 
 3. Install the SDK dependencies with `C:\android-sdk-windows\tools\android.bat` or `$HOME/android-sdk-{ macosx | linux }/tools/android`
 	* Tools
-		* Android SDK Build-tools (25.0.1)
+		* Android SDK Build-tools (25.0.2)
 	* Android 7.1.1 (API 25)
 		* SDK Platform
 	* Extras (Windows only)
 		* Google USB Driver
 
 4. Unzip the Android NDK in `C:\` or `$HOME`; you can also define a custom location with **ANDROID_NDK_DIR**
-	* https://dl.google.com/android/repository/android-ndk-r12b-windows-x86_64.zip
-	* https://dl.google.com/android/repository/android-ndk-r12b-darwin-x86_64.zip
-	* https://dl.google.com/android/repository/android-ndk-r12b-linux-x86_64.zip
+	* https://dl.google.com/android/repository/android-ndk-r13b-windows-x86_64.zip
+	* https://dl.google.com/android/repository/android-ndk-r13b-darwin-x86_64.zip
+	* https://dl.google.com/android/repository/android-ndk-r13b-linux-x86_64.zip
 
 5. Install Java SE Development Kit >= 8 (Linux: install in `$HOME/jdk/`); you can also define a custom location with **JDK_DIR**
 	* https://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html
@@ -277,14 +277,14 @@ If you use the STUB version, you are forced to use `qtminimal` otherwise it's op
 1. Install the desktop version for [Windows](#windows), [macOS](#macos) or [Linux](#linux)
 
 2. Install VirtualBox; you can also define a custom location with **VIRTUALBOX_DIR**
-	* http://download.virtualbox.org/virtualbox/5.1.8/VirtualBox-5.1.8-111374-Win.exe
-	* http://download.virtualbox.org/virtualbox/5.1.8/VirtualBox-5.1.8-111374-OSX.dmg
-	* http://download.virtualbox.org/virtualbox/5.1.8/VirtualBox-5.1.8-111374-Linux_amd64.run
+	* http://download.virtualbox.org/virtualbox/5.1.10/VirtualBox-5.1.10-112026-Win.exe
+	* http://download.virtualbox.org/virtualbox/5.1.10/VirtualBox-5.1.10-112026-OSX.dmg
+	* http://download.virtualbox.org/virtualbox/5.1.10/VirtualBox-5.1.10-112026-Linux_amd64.run
 
 3. Install the Sailfish OS SDK; you can also define a custom location with **SAILFISH_DIR**
-	* https://releases.sailfishos.org/sdk/installers/1608/SailfishOSSDK-Beta-1608-Qt5-windows-offline.exe
-	* https://releases.sailfishos.org/sdk/installers/1608/SailfishOSSDK-Beta-1608-Qt5-mac-offline.dmg
-	* https://releases.sailfishos.org/sdk/installers/1608/SailfishOSSDK-Beta-1608-Qt5-linux-64-offline.run
+	* https://releases.sailfishos.org/sdk/installers/1611/SailfishOSSDK-Beta-1611-Qt5-windows-offline.exe
+	* https://releases.sailfishos.org/sdk/installers/1611/SailfishOSSDK-Beta-1611-Qt5-mac-offline.dmg
+	* https://releases.sailfishos.org/sdk/installers/1611/SailfishOSSDK-Beta-1611-Qt5-linux-64-offline.run
 
 4. You may need to `chmod` your `$GOROOT` dir or run the setup as **root**
 
