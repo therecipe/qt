@@ -6,7 +6,7 @@ RUN add-apt-repository -y ppa:openjdk-r/ppa && apt-get -qq update && apt-get -y 
 
 
 ENV SDK tools_r25.2.4-linux.zip
-RUN curl -sL --retry 10 --retry-delay 10 -o /tmp/$SDK https://dl.google.com/android/repository/$SDK && unzip -qq /tmp/$SDK -d $HOME/android-sdk-linux/ && rm -f /tmp/$SDK && $HOME/android-sdk-linux/tools/android list sdk && echo "y" | $HOME/android-sdk-linux/tools/android -s update sdk -f -u -t 1,2,3,5 && rm -f /tmp/$SDK
+RUN curl -sL --retry 10 --retry-delay 10 -o /tmp/$SDK https://dl.google.com/android/repository/$SDK && unzip -qq /tmp/$SDK -d $HOME/android-sdk-linux/ && rm -f /tmp/$SDK && $HOME/android-sdk-linux/tools/android list sdk && echo "y" | $HOME/android-sdk-linux/tools/android -s update sdk -f -u -t 1,2,3,4,5,6 && rm -f /tmp/$SDK
 
 
 ENV NDK android-ndk-r13b-linux-x86_64.zip

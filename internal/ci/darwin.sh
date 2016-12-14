@@ -39,7 +39,7 @@ then
 
   #install deps for android sdk
   $HOME/android-sdk-macosx/tools/android list sdk
-  echo "y" | $HOME/android-sdk-macosx/tools/android -s update sdk -f -u -t 1,2,3,5
+  echo "y" | $HOME/android-sdk-macosx/tools/android -s update sdk -f -u -t 1,2,3,4,5,6
 
   #download and install android ndk
   NDK=android-ndk-r13b-darwin-x86_64.zip
