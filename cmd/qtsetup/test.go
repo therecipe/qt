@@ -10,7 +10,8 @@ import (
 )
 
 var exampleApps = []struct {
-	path []string
+	path        []string
+	desktopOnly bool
 }{
 	{path: []string{"widgets", "line_edits"}},
 	{path: []string{"widgets", "video_player"}},
@@ -41,33 +42,41 @@ var exampleApps = []struct {
 func test(buildTarget string) {
 	utils.Log.Infof("running setup/test %v (~10min)", buildTarget)
 
+	skipExample := func(example string) bool {
+		if (buildTarget == "sailfish" || buildTarget == "sailfish-emulator") && (!strings.Contains(example, "quick") || (example == filepath.Join("quick", "dynamic") || example == filepath.Join("quick", "tableview") || example == filepath.Join("quick", "bridge") || example == filepath.Join("quick", "dialog"))) {
+			return true
+		} else if !(buildTarget == "sailfish" || buildTarget == "sailfish-emulator") && example == filepath.Join("quick", "sailfish") {
+			return true
+		} else if buildTarget != "desktop" && example == filepath.Join("widgets", "textedit") {
+			return true
+		}
+		return false
+	}
+
 	//TODO: cleanup
 	for _, app := range exampleApps {
 		example := filepath.Join(app.path...)
 
-		if (buildTarget == "sailfish" || buildTarget == "sailfish-emulator") && (!strings.Contains(example, "quick") || (example == filepath.Join("quick", "dynamic") || example == filepath.Join("quick", "tableview") || example == filepath.Join("quick", "bridge") || example == filepath.Join("quick", "dialog"))) {
-		} else if !(buildTarget == "sailfish" || buildTarget == "sailfish-emulator") && example == filepath.Join("quick", "sailfish") {
-		} else if buildTarget != "desktop" && example == filepath.Join("widgets", "textedit") {
-		} else {
-
-			utils.Log.Infoln("testing", example)
-
-			utils.RunCmd(exec.Command(filepath.Join(utils.MustGoBin(), "qtdeploy"),
-
-				"test",
-
-				strings.TrimSuffix(buildTarget, "-docker"),
-
-				filepath.Join(utils.GoQtPkgPath("internal", "examples"), example),
-
-				func() string {
-					if strings.HasSuffix(buildTarget, "-docker") {
-						return "docker"
-					}
-					return ""
-				}()),
-
-				fmt.Sprintf("test %v", example))
+		if skipExample(example) {
+			utils.Log.Infoln("skipping example", example)
+			continue
 		}
+
+		utils.Log.Infoln("testing", example)
+
+		cmdName := filepath.Join(utils.MustGoBin(), "qtdeploy")
+		cmdArgs := []string{
+			"test",
+			strings.TrimSuffix(buildTarget, "-docker"),
+			filepath.Join(utils.GoQtPkgPath("internal", "examples"), example),
+		}
+
+		if strings.HasSuffix(buildTarget, "-docker") {
+			cmdArgs = append(cmdArgs, "docker")
+		}
+
+		cmd := exec.Command(cmdName, cmdArgs...)
+
+		utils.RunCmd(cmd, fmt.Sprintf("test %v", example))
 	}
 }
