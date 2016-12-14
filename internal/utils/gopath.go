@@ -48,17 +48,17 @@ func gopath() (goPath string, err error) {
 	for _, path := range strings.Split(goPaths, string(os.PathListSeparator)) {
 		if _, err = ioutil.ReadDir(path); err != nil {
 			err = fmt.Errorf("GOPATH %q point to a non-existing directory", path)
-			return
+			continue
 		}
 
 		if strings.HasPrefix(fmt.Sprintf("%v%v", path, string(os.PathSeparator)), fmt.Sprintf("%v%v", runtime.GOROOT(), string(os.PathSeparator))) {
 			err = fmt.Errorf("GOPATH %q is or contains GOROOT", path)
-			return
+			continue
 		}
 
 		if strings.HasPrefix(fmt.Sprintf("%v%v", runtime.GOROOT(), string(os.PathSeparator)), fmt.Sprintf("%v%v", path, string(os.PathSeparator))) {
 			err = fmt.Errorf("GOROOT %q is or contains GOPATH", path)
-			return
+			continue
 		}
 
 		var packageDir = filepath.Join(path, "src", packageName)
@@ -68,6 +68,8 @@ func gopath() (goPath string, err error) {
 				return
 			}
 			goPath = path
+			err = nil
+			break
 		} else {
 			tries = append(tries, packageDir)
 		}
