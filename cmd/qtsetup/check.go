@@ -54,6 +54,7 @@ func check(buildTarget string) {
 		}
 	}
 
+	utils.Log.Infoln("VERSION:", "0.0.1")
 	utils.Log.Infoln("GOOS:", runtime.GOOS)
 	utils.Log.Infoln("GOARCH:", runtime.GOARCH)
 	utils.Log.Infoln("GOVERSION:", runtime.Version())
@@ -69,7 +70,7 @@ func check(buildTarget string) {
 	utils.Log.Infoln("QT_STUB:", utils.QT_STUB())
 
 	switch buildTarget {
-	case "desktop":
+	case "desktop", "ios", "ios-simulator":
 		{
 			switch runtime.GOOS {
 			case "darwin":

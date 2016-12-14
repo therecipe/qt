@@ -19,11 +19,11 @@ install:
     DEL %TMP%\%QT% /Q
 
 
-    set SDK=tools_r25.2.3-windows.zip
+    set SDK=tools_r25.2.4-windows.zip
 
     curl -sL --retry 10 --retry-delay 10 -o %TMP%\%SDK% https://dl.google.com/android/repository/%SDK%
 
-    7z x %TMP%\%SDK% -oC:\
+    7z x %TMP%\%SDK% -oC:\android-sdk-windows\
 
     DEL %TMP%\%SDK% /Q
 

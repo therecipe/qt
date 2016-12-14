@@ -225,10 +225,10 @@ If you use the STUB version, you are forced to use `qtminimal` otherwise it's op
 
 1. Install the desktop version for [Windows](#windows), [macOS](#macos) or [Linux](#linux)
 
-2. Unzip the Android SDK in `C:\` or `$HOME`; you can also define a custom location with **ANDROID_SDK_DIR**
-	* https://dl.google.com/android/repository/tools_r25.2.3-windows.zip
-	* https://dl.google.com/android/repository/tools_r25.2.3-macosx.zip
-	* https://dl.google.com/android/repository/tools_r25.2.3-linux.zip
+2. Unzip the Android SDK in `C:\android-sdk-windows\` or `$HOME/android-sdk-macosx/` or `$HOME/android-sdk-linux/`; you can also define a custom location with **ANDROID_SDK_DIR**
+	* https://dl.google.com/android/repository/tools_r25.2.4-windows.zip
+	* https://dl.google.com/android/repository/tools_r25.2.4-macosx.zip
+	* https://dl.google.com/android/repository/tools_r25.2.4-linux.zip
 
 3. Install the SDK dependencies with `C:\android-sdk-windows\tools\android.bat` or `$HOME/android-sdk-{ macosx | linux }/tools/android`
 	* Tools

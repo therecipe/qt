@@ -49,9 +49,9 @@ then
 fi
 
 #download and install android sdk
-SDK=tools_r25.2.3-linux.zip
+SDK=tools_r25.2.4-linux.zip
 curl -sL --retry 10 --retry-delay 10 -o /tmp/$SDK https://dl.google.com/android/repository/$SDK
-unzip -qq /tmp/$SDK -d $HOME
+unzip -qq /tmp/$SDK -d $HOME/android-sdk-linux/
 rm -f /tmp/$SDK
 
 #install deps for android sdk
