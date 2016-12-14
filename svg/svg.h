@@ -41,6 +41,8 @@ void QGraphicsSvgItem_DeleteLater(void* ptr);
 void QGraphicsSvgItem_DeleteLaterDefault(void* ptr);
 void QGraphicsSvgItem_DisconnectNotify(void* ptr, void* sign);
 void QGraphicsSvgItem_DisconnectNotifyDefault(void* ptr, void* sign);
+char QGraphicsSvgItem_Event(void* ptr, void* e);
+char QGraphicsSvgItem_EventDefault(void* ptr, void* e);
 char QGraphicsSvgItem_EventFilter(void* ptr, void* watched, void* event);
 char QGraphicsSvgItem_EventFilterDefault(void* ptr, void* watched, void* event);
 void* QGraphicsSvgItem_MetaObject(void* ptr);
@@ -288,10 +290,16 @@ void QSvgWidget_DeleteLater(void* ptr);
 void QSvgWidget_DeleteLaterDefault(void* ptr);
 void QSvgWidget_DisconnectNotify(void* ptr, void* sign);
 void QSvgWidget_DisconnectNotifyDefault(void* ptr, void* sign);
+char QSvgWidget_Event(void* ptr, void* e);
+char QSvgWidget_EventDefault(void* ptr, void* e);
 char QSvgWidget_EventFilter(void* ptr, void* watched, void* event);
 char QSvgWidget_EventFilterDefault(void* ptr, void* watched, void* event);
 void* QSvgWidget_MetaObject(void* ptr);
 void* QSvgWidget_MetaObjectDefault(void* ptr);
+int QSvgWidget_Metric(void* ptr, long long metric);
+int QSvgWidget_MetricDefault(void* ptr, long long metric);
+void* QSvgWidget_PaintEngine(void* ptr);
+void* QSvgWidget_PaintEngineDefault(void* ptr);
 
 #ifdef __cplusplus
 }

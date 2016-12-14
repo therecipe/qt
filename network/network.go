@@ -16369,6 +16369,44 @@ func (ptr *QSslSocket) DisconnectFromHostDefault() {
 	}
 }
 
+//export callbackQSslSocket_IsSequential
+func callbackQSslSocket_IsSequential(ptr unsafe.Pointer) C.char {
+
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSslSocket::isSequential"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func() bool)())))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQSslSocketFromPointer(ptr).IsSequentialDefault())))
+}
+
+func (ptr *QSslSocket) ConnectIsSequential(f func() bool) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QSslSocket::isSequential", f)
+	}
+}
+
+func (ptr *QSslSocket) DisconnectIsSequential() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSslSocket::isSequential")
+	}
+}
+
+func (ptr *QSslSocket) IsSequential() bool {
+	if ptr.Pointer() != nil {
+		return C.QSslSocket_IsSequential(ptr.Pointer()) != 0
+	}
+	return false
+}
+
+func (ptr *QSslSocket) IsSequentialDefault() bool {
+	if ptr.Pointer() != nil {
+		return C.QSslSocket_IsSequentialDefault(ptr.Pointer()) != 0
+	}
+	return false
+}
+
 //export callbackQSslSocket_Open
 func callbackQSslSocket_Open(ptr unsafe.Pointer, mode C.longlong) C.char {
 
@@ -16441,6 +16479,48 @@ func (ptr *QSslSocket) Pos() int64 {
 func (ptr *QSslSocket) PosDefault() int64 {
 	if ptr.Pointer() != nil {
 		return int64(C.QSslSocket_PosDefault(ptr.Pointer()))
+	}
+	return 0
+}
+
+//export callbackQSslSocket_ReadLineData
+func callbackQSslSocket_ReadLineData(ptr unsafe.Pointer, data C.struct_QtNetwork_PackedString, maxSize C.longlong) C.longlong {
+
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSslSocket::readLineData"); signal != nil {
+		return C.longlong(signal.(func(string, int64) int64)(cGoUnpackString(data), int64(maxSize)))
+	}
+
+	return C.longlong(NewQSslSocketFromPointer(ptr).ReadLineDataDefault(cGoUnpackString(data), int64(maxSize)))
+}
+
+func (ptr *QSslSocket) ConnectReadLineData(f func(data string, maxSize int64) int64) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QSslSocket::readLineData", f)
+	}
+}
+
+func (ptr *QSslSocket) DisconnectReadLineData() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSslSocket::readLineData")
+	}
+}
+
+func (ptr *QSslSocket) ReadLineData(data string, maxSize int64) int64 {
+	if ptr.Pointer() != nil {
+		var dataC = C.CString(data)
+		defer C.free(unsafe.Pointer(dataC))
+		return int64(C.QSslSocket_ReadLineData(ptr.Pointer(), dataC, C.longlong(maxSize)))
+	}
+	return 0
+}
+
+func (ptr *QSslSocket) ReadLineDataDefault(data string, maxSize int64) int64 {
+	if ptr.Pointer() != nil {
+		var dataC = C.CString(data)
+		defer C.free(unsafe.Pointer(dataC))
+		return int64(C.QSslSocket_ReadLineDataDefault(ptr.Pointer(), dataC, C.longlong(maxSize)))
 	}
 	return 0
 }
@@ -17980,6 +18060,232 @@ func (ptr *QTcpSocket) WaitForDisconnectedDefault(msecs int) bool {
 	return false
 }
 
+//export callbackQTcpSocket_AtEnd
+func callbackQTcpSocket_AtEnd(ptr unsafe.Pointer) C.char {
+
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QTcpSocket::atEnd"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func() bool)())))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQTcpSocketFromPointer(ptr).AtEndDefault())))
+}
+
+func (ptr *QTcpSocket) ConnectAtEnd(f func() bool) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QTcpSocket::atEnd", f)
+	}
+}
+
+func (ptr *QTcpSocket) DisconnectAtEnd() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QTcpSocket::atEnd")
+	}
+}
+
+func (ptr *QTcpSocket) AtEnd() bool {
+	if ptr.Pointer() != nil {
+		return C.QTcpSocket_AtEnd(ptr.Pointer()) != 0
+	}
+	return false
+}
+
+func (ptr *QTcpSocket) AtEndDefault() bool {
+	if ptr.Pointer() != nil {
+		return C.QTcpSocket_AtEndDefault(ptr.Pointer()) != 0
+	}
+	return false
+}
+
+//export callbackQTcpSocket_BytesAvailable
+func callbackQTcpSocket_BytesAvailable(ptr unsafe.Pointer) C.longlong {
+
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QTcpSocket::bytesAvailable"); signal != nil {
+		return C.longlong(signal.(func() int64)())
+	}
+
+	return C.longlong(NewQTcpSocketFromPointer(ptr).BytesAvailableDefault())
+}
+
+func (ptr *QTcpSocket) ConnectBytesAvailable(f func() int64) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QTcpSocket::bytesAvailable", f)
+	}
+}
+
+func (ptr *QTcpSocket) DisconnectBytesAvailable() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QTcpSocket::bytesAvailable")
+	}
+}
+
+func (ptr *QTcpSocket) BytesAvailable() int64 {
+	if ptr.Pointer() != nil {
+		return int64(C.QTcpSocket_BytesAvailable(ptr.Pointer()))
+	}
+	return 0
+}
+
+func (ptr *QTcpSocket) BytesAvailableDefault() int64 {
+	if ptr.Pointer() != nil {
+		return int64(C.QTcpSocket_BytesAvailableDefault(ptr.Pointer()))
+	}
+	return 0
+}
+
+//export callbackQTcpSocket_BytesToWrite
+func callbackQTcpSocket_BytesToWrite(ptr unsafe.Pointer) C.longlong {
+
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QTcpSocket::bytesToWrite"); signal != nil {
+		return C.longlong(signal.(func() int64)())
+	}
+
+	return C.longlong(NewQTcpSocketFromPointer(ptr).BytesToWriteDefault())
+}
+
+func (ptr *QTcpSocket) ConnectBytesToWrite(f func() int64) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QTcpSocket::bytesToWrite", f)
+	}
+}
+
+func (ptr *QTcpSocket) DisconnectBytesToWrite() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QTcpSocket::bytesToWrite")
+	}
+}
+
+func (ptr *QTcpSocket) BytesToWrite() int64 {
+	if ptr.Pointer() != nil {
+		return int64(C.QTcpSocket_BytesToWrite(ptr.Pointer()))
+	}
+	return 0
+}
+
+func (ptr *QTcpSocket) BytesToWriteDefault() int64 {
+	if ptr.Pointer() != nil {
+		return int64(C.QTcpSocket_BytesToWriteDefault(ptr.Pointer()))
+	}
+	return 0
+}
+
+//export callbackQTcpSocket_CanReadLine
+func callbackQTcpSocket_CanReadLine(ptr unsafe.Pointer) C.char {
+
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QTcpSocket::canReadLine"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func() bool)())))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQTcpSocketFromPointer(ptr).CanReadLineDefault())))
+}
+
+func (ptr *QTcpSocket) ConnectCanReadLine(f func() bool) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QTcpSocket::canReadLine", f)
+	}
+}
+
+func (ptr *QTcpSocket) DisconnectCanReadLine() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QTcpSocket::canReadLine")
+	}
+}
+
+func (ptr *QTcpSocket) CanReadLine() bool {
+	if ptr.Pointer() != nil {
+		return C.QTcpSocket_CanReadLine(ptr.Pointer()) != 0
+	}
+	return false
+}
+
+func (ptr *QTcpSocket) CanReadLineDefault() bool {
+	if ptr.Pointer() != nil {
+		return C.QTcpSocket_CanReadLineDefault(ptr.Pointer()) != 0
+	}
+	return false
+}
+
+//export callbackQTcpSocket_Close
+func callbackQTcpSocket_Close(ptr unsafe.Pointer) {
+
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QTcpSocket::close"); signal != nil {
+		signal.(func())()
+	} else {
+		NewQTcpSocketFromPointer(ptr).CloseDefault()
+	}
+}
+
+func (ptr *QTcpSocket) ConnectClose(f func()) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QTcpSocket::close", f)
+	}
+}
+
+func (ptr *QTcpSocket) DisconnectClose() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QTcpSocket::close")
+	}
+}
+
+func (ptr *QTcpSocket) Close() {
+	if ptr.Pointer() != nil {
+		C.QTcpSocket_Close(ptr.Pointer())
+	}
+}
+
+func (ptr *QTcpSocket) CloseDefault() {
+	if ptr.Pointer() != nil {
+		C.QTcpSocket_CloseDefault(ptr.Pointer())
+	}
+}
+
+//export callbackQTcpSocket_IsSequential
+func callbackQTcpSocket_IsSequential(ptr unsafe.Pointer) C.char {
+
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QTcpSocket::isSequential"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func() bool)())))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQTcpSocketFromPointer(ptr).IsSequentialDefault())))
+}
+
+func (ptr *QTcpSocket) ConnectIsSequential(f func() bool) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QTcpSocket::isSequential", f)
+	}
+}
+
+func (ptr *QTcpSocket) DisconnectIsSequential() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QTcpSocket::isSequential")
+	}
+}
+
+func (ptr *QTcpSocket) IsSequential() bool {
+	if ptr.Pointer() != nil {
+		return C.QTcpSocket_IsSequential(ptr.Pointer()) != 0
+	}
+	return false
+}
+
+func (ptr *QTcpSocket) IsSequentialDefault() bool {
+	if ptr.Pointer() != nil {
+		return C.QTcpSocket_IsSequentialDefault(ptr.Pointer()) != 0
+	}
+	return false
+}
+
 //export callbackQTcpSocket_Open
 func callbackQTcpSocket_Open(ptr unsafe.Pointer, mode C.longlong) C.char {
 
@@ -18052,6 +18358,48 @@ func (ptr *QTcpSocket) Pos() int64 {
 func (ptr *QTcpSocket) PosDefault() int64 {
 	if ptr.Pointer() != nil {
 		return int64(C.QTcpSocket_PosDefault(ptr.Pointer()))
+	}
+	return 0
+}
+
+//export callbackQTcpSocket_ReadLineData
+func callbackQTcpSocket_ReadLineData(ptr unsafe.Pointer, data C.struct_QtNetwork_PackedString, maxSize C.longlong) C.longlong {
+
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QTcpSocket::readLineData"); signal != nil {
+		return C.longlong(signal.(func(string, int64) int64)(cGoUnpackString(data), int64(maxSize)))
+	}
+
+	return C.longlong(NewQTcpSocketFromPointer(ptr).ReadLineDataDefault(cGoUnpackString(data), int64(maxSize)))
+}
+
+func (ptr *QTcpSocket) ConnectReadLineData(f func(data string, maxSize int64) int64) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QTcpSocket::readLineData", f)
+	}
+}
+
+func (ptr *QTcpSocket) DisconnectReadLineData() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QTcpSocket::readLineData")
+	}
+}
+
+func (ptr *QTcpSocket) ReadLineData(data string, maxSize int64) int64 {
+	if ptr.Pointer() != nil {
+		var dataC = C.CString(data)
+		defer C.free(unsafe.Pointer(dataC))
+		return int64(C.QTcpSocket_ReadLineData(ptr.Pointer(), dataC, C.longlong(maxSize)))
+	}
+	return 0
+}
+
+func (ptr *QTcpSocket) ReadLineDataDefault(data string, maxSize int64) int64 {
+	if ptr.Pointer() != nil {
+		var dataC = C.CString(data)
+		defer C.free(unsafe.Pointer(dataC))
+		return int64(C.QTcpSocket_ReadLineDataDefault(ptr.Pointer(), dataC, C.longlong(maxSize)))
 	}
 	return 0
 }
@@ -18166,6 +18514,124 @@ func (ptr *QTcpSocket) Size() int64 {
 func (ptr *QTcpSocket) SizeDefault() int64 {
 	if ptr.Pointer() != nil {
 		return int64(C.QTcpSocket_SizeDefault(ptr.Pointer()))
+	}
+	return 0
+}
+
+//export callbackQTcpSocket_WaitForBytesWritten
+func callbackQTcpSocket_WaitForBytesWritten(ptr unsafe.Pointer, msecs C.int) C.char {
+
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QTcpSocket::waitForBytesWritten"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(int) bool)(int(int32(msecs))))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQTcpSocketFromPointer(ptr).WaitForBytesWrittenDefault(int(int32(msecs))))))
+}
+
+func (ptr *QTcpSocket) ConnectWaitForBytesWritten(f func(msecs int) bool) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QTcpSocket::waitForBytesWritten", f)
+	}
+}
+
+func (ptr *QTcpSocket) DisconnectWaitForBytesWritten() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QTcpSocket::waitForBytesWritten")
+	}
+}
+
+func (ptr *QTcpSocket) WaitForBytesWritten(msecs int) bool {
+	if ptr.Pointer() != nil {
+		return C.QTcpSocket_WaitForBytesWritten(ptr.Pointer(), C.int(int32(msecs))) != 0
+	}
+	return false
+}
+
+func (ptr *QTcpSocket) WaitForBytesWrittenDefault(msecs int) bool {
+	if ptr.Pointer() != nil {
+		return C.QTcpSocket_WaitForBytesWrittenDefault(ptr.Pointer(), C.int(int32(msecs))) != 0
+	}
+	return false
+}
+
+//export callbackQTcpSocket_WaitForReadyRead
+func callbackQTcpSocket_WaitForReadyRead(ptr unsafe.Pointer, msecs C.int) C.char {
+
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QTcpSocket::waitForReadyRead"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(int) bool)(int(int32(msecs))))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQTcpSocketFromPointer(ptr).WaitForReadyReadDefault(int(int32(msecs))))))
+}
+
+func (ptr *QTcpSocket) ConnectWaitForReadyRead(f func(msecs int) bool) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QTcpSocket::waitForReadyRead", f)
+	}
+}
+
+func (ptr *QTcpSocket) DisconnectWaitForReadyRead() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QTcpSocket::waitForReadyRead")
+	}
+}
+
+func (ptr *QTcpSocket) WaitForReadyRead(msecs int) bool {
+	if ptr.Pointer() != nil {
+		return C.QTcpSocket_WaitForReadyRead(ptr.Pointer(), C.int(int32(msecs))) != 0
+	}
+	return false
+}
+
+func (ptr *QTcpSocket) WaitForReadyReadDefault(msecs int) bool {
+	if ptr.Pointer() != nil {
+		return C.QTcpSocket_WaitForReadyReadDefault(ptr.Pointer(), C.int(int32(msecs))) != 0
+	}
+	return false
+}
+
+//export callbackQTcpSocket_WriteData
+func callbackQTcpSocket_WriteData(ptr unsafe.Pointer, data C.struct_QtNetwork_PackedString, maxSize C.longlong) C.longlong {
+
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QTcpSocket::writeData"); signal != nil {
+		return C.longlong(signal.(func(string, int64) int64)(cGoUnpackString(data), int64(maxSize)))
+	}
+
+	return C.longlong(NewQTcpSocketFromPointer(ptr).WriteDataDefault(cGoUnpackString(data), int64(maxSize)))
+}
+
+func (ptr *QTcpSocket) ConnectWriteData(f func(data string, maxSize int64) int64) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QTcpSocket::writeData", f)
+	}
+}
+
+func (ptr *QTcpSocket) DisconnectWriteData() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QTcpSocket::writeData")
+	}
+}
+
+func (ptr *QTcpSocket) WriteData(data string, maxSize int64) int64 {
+	if ptr.Pointer() != nil {
+		var dataC = C.CString(data)
+		defer C.free(unsafe.Pointer(dataC))
+		return int64(C.QTcpSocket_WriteData(ptr.Pointer(), dataC, C.longlong(maxSize)))
+	}
+	return 0
+}
+
+func (ptr *QTcpSocket) WriteDataDefault(data string, maxSize int64) int64 {
+	if ptr.Pointer() != nil {
+		var dataC = C.CString(data)
+		defer C.free(unsafe.Pointer(dataC))
+		return int64(C.QTcpSocket_WriteDataDefault(ptr.Pointer(), dataC, C.longlong(maxSize)))
 	}
 	return 0
 }
@@ -19009,6 +19475,232 @@ func (ptr *QUdpSocket) WaitForDisconnectedDefault(msecs int) bool {
 	return false
 }
 
+//export callbackQUdpSocket_AtEnd
+func callbackQUdpSocket_AtEnd(ptr unsafe.Pointer) C.char {
+
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QUdpSocket::atEnd"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func() bool)())))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQUdpSocketFromPointer(ptr).AtEndDefault())))
+}
+
+func (ptr *QUdpSocket) ConnectAtEnd(f func() bool) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QUdpSocket::atEnd", f)
+	}
+}
+
+func (ptr *QUdpSocket) DisconnectAtEnd() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QUdpSocket::atEnd")
+	}
+}
+
+func (ptr *QUdpSocket) AtEnd() bool {
+	if ptr.Pointer() != nil {
+		return C.QUdpSocket_AtEnd(ptr.Pointer()) != 0
+	}
+	return false
+}
+
+func (ptr *QUdpSocket) AtEndDefault() bool {
+	if ptr.Pointer() != nil {
+		return C.QUdpSocket_AtEndDefault(ptr.Pointer()) != 0
+	}
+	return false
+}
+
+//export callbackQUdpSocket_BytesAvailable
+func callbackQUdpSocket_BytesAvailable(ptr unsafe.Pointer) C.longlong {
+
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QUdpSocket::bytesAvailable"); signal != nil {
+		return C.longlong(signal.(func() int64)())
+	}
+
+	return C.longlong(NewQUdpSocketFromPointer(ptr).BytesAvailableDefault())
+}
+
+func (ptr *QUdpSocket) ConnectBytesAvailable(f func() int64) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QUdpSocket::bytesAvailable", f)
+	}
+}
+
+func (ptr *QUdpSocket) DisconnectBytesAvailable() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QUdpSocket::bytesAvailable")
+	}
+}
+
+func (ptr *QUdpSocket) BytesAvailable() int64 {
+	if ptr.Pointer() != nil {
+		return int64(C.QUdpSocket_BytesAvailable(ptr.Pointer()))
+	}
+	return 0
+}
+
+func (ptr *QUdpSocket) BytesAvailableDefault() int64 {
+	if ptr.Pointer() != nil {
+		return int64(C.QUdpSocket_BytesAvailableDefault(ptr.Pointer()))
+	}
+	return 0
+}
+
+//export callbackQUdpSocket_BytesToWrite
+func callbackQUdpSocket_BytesToWrite(ptr unsafe.Pointer) C.longlong {
+
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QUdpSocket::bytesToWrite"); signal != nil {
+		return C.longlong(signal.(func() int64)())
+	}
+
+	return C.longlong(NewQUdpSocketFromPointer(ptr).BytesToWriteDefault())
+}
+
+func (ptr *QUdpSocket) ConnectBytesToWrite(f func() int64) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QUdpSocket::bytesToWrite", f)
+	}
+}
+
+func (ptr *QUdpSocket) DisconnectBytesToWrite() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QUdpSocket::bytesToWrite")
+	}
+}
+
+func (ptr *QUdpSocket) BytesToWrite() int64 {
+	if ptr.Pointer() != nil {
+		return int64(C.QUdpSocket_BytesToWrite(ptr.Pointer()))
+	}
+	return 0
+}
+
+func (ptr *QUdpSocket) BytesToWriteDefault() int64 {
+	if ptr.Pointer() != nil {
+		return int64(C.QUdpSocket_BytesToWriteDefault(ptr.Pointer()))
+	}
+	return 0
+}
+
+//export callbackQUdpSocket_CanReadLine
+func callbackQUdpSocket_CanReadLine(ptr unsafe.Pointer) C.char {
+
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QUdpSocket::canReadLine"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func() bool)())))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQUdpSocketFromPointer(ptr).CanReadLineDefault())))
+}
+
+func (ptr *QUdpSocket) ConnectCanReadLine(f func() bool) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QUdpSocket::canReadLine", f)
+	}
+}
+
+func (ptr *QUdpSocket) DisconnectCanReadLine() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QUdpSocket::canReadLine")
+	}
+}
+
+func (ptr *QUdpSocket) CanReadLine() bool {
+	if ptr.Pointer() != nil {
+		return C.QUdpSocket_CanReadLine(ptr.Pointer()) != 0
+	}
+	return false
+}
+
+func (ptr *QUdpSocket) CanReadLineDefault() bool {
+	if ptr.Pointer() != nil {
+		return C.QUdpSocket_CanReadLineDefault(ptr.Pointer()) != 0
+	}
+	return false
+}
+
+//export callbackQUdpSocket_Close
+func callbackQUdpSocket_Close(ptr unsafe.Pointer) {
+
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QUdpSocket::close"); signal != nil {
+		signal.(func())()
+	} else {
+		NewQUdpSocketFromPointer(ptr).CloseDefault()
+	}
+}
+
+func (ptr *QUdpSocket) ConnectClose(f func()) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QUdpSocket::close", f)
+	}
+}
+
+func (ptr *QUdpSocket) DisconnectClose() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QUdpSocket::close")
+	}
+}
+
+func (ptr *QUdpSocket) Close() {
+	if ptr.Pointer() != nil {
+		C.QUdpSocket_Close(ptr.Pointer())
+	}
+}
+
+func (ptr *QUdpSocket) CloseDefault() {
+	if ptr.Pointer() != nil {
+		C.QUdpSocket_CloseDefault(ptr.Pointer())
+	}
+}
+
+//export callbackQUdpSocket_IsSequential
+func callbackQUdpSocket_IsSequential(ptr unsafe.Pointer) C.char {
+
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QUdpSocket::isSequential"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func() bool)())))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQUdpSocketFromPointer(ptr).IsSequentialDefault())))
+}
+
+func (ptr *QUdpSocket) ConnectIsSequential(f func() bool) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QUdpSocket::isSequential", f)
+	}
+}
+
+func (ptr *QUdpSocket) DisconnectIsSequential() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QUdpSocket::isSequential")
+	}
+}
+
+func (ptr *QUdpSocket) IsSequential() bool {
+	if ptr.Pointer() != nil {
+		return C.QUdpSocket_IsSequential(ptr.Pointer()) != 0
+	}
+	return false
+}
+
+func (ptr *QUdpSocket) IsSequentialDefault() bool {
+	if ptr.Pointer() != nil {
+		return C.QUdpSocket_IsSequentialDefault(ptr.Pointer()) != 0
+	}
+	return false
+}
+
 //export callbackQUdpSocket_Open
 func callbackQUdpSocket_Open(ptr unsafe.Pointer, mode C.longlong) C.char {
 
@@ -19081,6 +19773,48 @@ func (ptr *QUdpSocket) Pos() int64 {
 func (ptr *QUdpSocket) PosDefault() int64 {
 	if ptr.Pointer() != nil {
 		return int64(C.QUdpSocket_PosDefault(ptr.Pointer()))
+	}
+	return 0
+}
+
+//export callbackQUdpSocket_ReadLineData
+func callbackQUdpSocket_ReadLineData(ptr unsafe.Pointer, data C.struct_QtNetwork_PackedString, maxSize C.longlong) C.longlong {
+
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QUdpSocket::readLineData"); signal != nil {
+		return C.longlong(signal.(func(string, int64) int64)(cGoUnpackString(data), int64(maxSize)))
+	}
+
+	return C.longlong(NewQUdpSocketFromPointer(ptr).ReadLineDataDefault(cGoUnpackString(data), int64(maxSize)))
+}
+
+func (ptr *QUdpSocket) ConnectReadLineData(f func(data string, maxSize int64) int64) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QUdpSocket::readLineData", f)
+	}
+}
+
+func (ptr *QUdpSocket) DisconnectReadLineData() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QUdpSocket::readLineData")
+	}
+}
+
+func (ptr *QUdpSocket) ReadLineData(data string, maxSize int64) int64 {
+	if ptr.Pointer() != nil {
+		var dataC = C.CString(data)
+		defer C.free(unsafe.Pointer(dataC))
+		return int64(C.QUdpSocket_ReadLineData(ptr.Pointer(), dataC, C.longlong(maxSize)))
+	}
+	return 0
+}
+
+func (ptr *QUdpSocket) ReadLineDataDefault(data string, maxSize int64) int64 {
+	if ptr.Pointer() != nil {
+		var dataC = C.CString(data)
+		defer C.free(unsafe.Pointer(dataC))
+		return int64(C.QUdpSocket_ReadLineDataDefault(ptr.Pointer(), dataC, C.longlong(maxSize)))
 	}
 	return 0
 }
@@ -19195,6 +19929,124 @@ func (ptr *QUdpSocket) Size() int64 {
 func (ptr *QUdpSocket) SizeDefault() int64 {
 	if ptr.Pointer() != nil {
 		return int64(C.QUdpSocket_SizeDefault(ptr.Pointer()))
+	}
+	return 0
+}
+
+//export callbackQUdpSocket_WaitForBytesWritten
+func callbackQUdpSocket_WaitForBytesWritten(ptr unsafe.Pointer, msecs C.int) C.char {
+
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QUdpSocket::waitForBytesWritten"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(int) bool)(int(int32(msecs))))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQUdpSocketFromPointer(ptr).WaitForBytesWrittenDefault(int(int32(msecs))))))
+}
+
+func (ptr *QUdpSocket) ConnectWaitForBytesWritten(f func(msecs int) bool) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QUdpSocket::waitForBytesWritten", f)
+	}
+}
+
+func (ptr *QUdpSocket) DisconnectWaitForBytesWritten() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QUdpSocket::waitForBytesWritten")
+	}
+}
+
+func (ptr *QUdpSocket) WaitForBytesWritten(msecs int) bool {
+	if ptr.Pointer() != nil {
+		return C.QUdpSocket_WaitForBytesWritten(ptr.Pointer(), C.int(int32(msecs))) != 0
+	}
+	return false
+}
+
+func (ptr *QUdpSocket) WaitForBytesWrittenDefault(msecs int) bool {
+	if ptr.Pointer() != nil {
+		return C.QUdpSocket_WaitForBytesWrittenDefault(ptr.Pointer(), C.int(int32(msecs))) != 0
+	}
+	return false
+}
+
+//export callbackQUdpSocket_WaitForReadyRead
+func callbackQUdpSocket_WaitForReadyRead(ptr unsafe.Pointer, msecs C.int) C.char {
+
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QUdpSocket::waitForReadyRead"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(int) bool)(int(int32(msecs))))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQUdpSocketFromPointer(ptr).WaitForReadyReadDefault(int(int32(msecs))))))
+}
+
+func (ptr *QUdpSocket) ConnectWaitForReadyRead(f func(msecs int) bool) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QUdpSocket::waitForReadyRead", f)
+	}
+}
+
+func (ptr *QUdpSocket) DisconnectWaitForReadyRead() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QUdpSocket::waitForReadyRead")
+	}
+}
+
+func (ptr *QUdpSocket) WaitForReadyRead(msecs int) bool {
+	if ptr.Pointer() != nil {
+		return C.QUdpSocket_WaitForReadyRead(ptr.Pointer(), C.int(int32(msecs))) != 0
+	}
+	return false
+}
+
+func (ptr *QUdpSocket) WaitForReadyReadDefault(msecs int) bool {
+	if ptr.Pointer() != nil {
+		return C.QUdpSocket_WaitForReadyReadDefault(ptr.Pointer(), C.int(int32(msecs))) != 0
+	}
+	return false
+}
+
+//export callbackQUdpSocket_WriteData
+func callbackQUdpSocket_WriteData(ptr unsafe.Pointer, data C.struct_QtNetwork_PackedString, maxSize C.longlong) C.longlong {
+
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QUdpSocket::writeData"); signal != nil {
+		return C.longlong(signal.(func(string, int64) int64)(cGoUnpackString(data), int64(maxSize)))
+	}
+
+	return C.longlong(NewQUdpSocketFromPointer(ptr).WriteDataDefault(cGoUnpackString(data), int64(maxSize)))
+}
+
+func (ptr *QUdpSocket) ConnectWriteData(f func(data string, maxSize int64) int64) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QUdpSocket::writeData", f)
+	}
+}
+
+func (ptr *QUdpSocket) DisconnectWriteData() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QUdpSocket::writeData")
+	}
+}
+
+func (ptr *QUdpSocket) WriteData(data string, maxSize int64) int64 {
+	if ptr.Pointer() != nil {
+		var dataC = C.CString(data)
+		defer C.free(unsafe.Pointer(dataC))
+		return int64(C.QUdpSocket_WriteData(ptr.Pointer(), dataC, C.longlong(maxSize)))
+	}
+	return 0
+}
+
+func (ptr *QUdpSocket) WriteDataDefault(data string, maxSize int64) int64 {
+	if ptr.Pointer() != nil {
+		var dataC = C.CString(data)
+		defer C.free(unsafe.Pointer(dataC))
+		return int64(C.QUdpSocket_WriteDataDefault(ptr.Pointer(), dataC, C.longlong(maxSize)))
 	}
 	return 0
 }

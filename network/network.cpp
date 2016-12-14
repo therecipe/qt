@@ -5928,8 +5928,10 @@ public:
 	void connectToHost(const QHostAddress & address, quint16 port, QIODevice::OpenMode openMode) { callbackQSslSocket_ConnectToHost2(this, const_cast<QHostAddress*>(&address), port, openMode); };
 	void connectToHost(const QString & hostName, quint16 port, QIODevice::OpenMode openMode, QAbstractSocket::NetworkLayerProtocol protocol) { QByteArray tcf2288 = hostName.toUtf8(); QtNetwork_PackedString hostNamePacked = { const_cast<char*>(tcf2288.prepend("WHITESPACE").constData()+10), tcf2288.size()-10 };callbackQSslSocket_ConnectToHost(this, hostNamePacked, port, openMode, protocol); };
 	void disconnectFromHost() { callbackQSslSocket_DisconnectFromHost(this); };
+	bool isSequential() const { return callbackQSslSocket_IsSequential(const_cast<MyQSslSocket*>(this)) != 0; };
 	bool open(QIODevice::OpenMode mode) { return callbackQSslSocket_Open(this, mode) != 0; };
 	qint64 pos() const { return callbackQSslSocket_Pos(const_cast<MyQSslSocket*>(this)); };
+	qint64 readLineData(char * data, qint64 maxSize) { QtNetwork_PackedString dataPacked = { data, maxSize };return callbackQSslSocket_ReadLineData(this, dataPacked, maxSize); };
 	bool reset() { return callbackQSslSocket_Reset(this) != 0; };
 	bool seek(qint64 pos) { return callbackQSslSocket_Seek(this, pos) != 0; };
 	qint64 size() const { return callbackQSslSocket_Size(const_cast<MyQSslSocket*>(this)); };
@@ -6419,6 +6421,16 @@ void QSslSocket_DisconnectFromHostDefault(void* ptr)
 	static_cast<QSslSocket*>(ptr)->QSslSocket::disconnectFromHost();
 }
 
+char QSslSocket_IsSequential(void* ptr)
+{
+	return static_cast<QSslSocket*>(ptr)->isSequential();
+}
+
+char QSslSocket_IsSequentialDefault(void* ptr)
+{
+	return static_cast<QSslSocket*>(ptr)->QSslSocket::isSequential();
+}
+
 char QSslSocket_Open(void* ptr, long long mode)
 {
 	return static_cast<QSslSocket*>(ptr)->open(static_cast<QIODevice::OpenModeFlag>(mode));
@@ -6437,6 +6449,16 @@ long long QSslSocket_Pos(void* ptr)
 long long QSslSocket_PosDefault(void* ptr)
 {
 	return static_cast<QSslSocket*>(ptr)->QSslSocket::pos();
+}
+
+long long QSslSocket_ReadLineData(void* ptr, char* data, long long maxSize)
+{
+	return static_cast<QSslSocket*>(ptr)->readLineData(data, maxSize);
+}
+
+long long QSslSocket_ReadLineDataDefault(void* ptr, char* data, long long maxSize)
+{
+	return static_cast<QSslSocket*>(ptr)->QSslSocket::readLineData(data, maxSize);
 }
 
 char QSslSocket_Reset(void* ptr)
@@ -6823,11 +6845,21 @@ public:
 	QVariant socketOption(QAbstractSocket::SocketOption option) { return *static_cast<QVariant*>(callbackQTcpSocket_SocketOption(this, option)); };
 	bool waitForConnected(int msecs) { return callbackQTcpSocket_WaitForConnected(this, msecs) != 0; };
 	bool waitForDisconnected(int msecs) { return callbackQTcpSocket_WaitForDisconnected(this, msecs) != 0; };
+	bool atEnd() const { return callbackQTcpSocket_AtEnd(const_cast<MyQTcpSocket*>(this)) != 0; };
+	qint64 bytesAvailable() const { return callbackQTcpSocket_BytesAvailable(const_cast<MyQTcpSocket*>(this)); };
+	qint64 bytesToWrite() const { return callbackQTcpSocket_BytesToWrite(const_cast<MyQTcpSocket*>(this)); };
+	bool canReadLine() const { return callbackQTcpSocket_CanReadLine(const_cast<MyQTcpSocket*>(this)) != 0; };
+	void close() { callbackQTcpSocket_Close(this); };
+	bool isSequential() const { return callbackQTcpSocket_IsSequential(const_cast<MyQTcpSocket*>(this)) != 0; };
 	bool open(QIODevice::OpenMode mode) { return callbackQTcpSocket_Open(this, mode) != 0; };
 	qint64 pos() const { return callbackQTcpSocket_Pos(const_cast<MyQTcpSocket*>(this)); };
+	qint64 readLineData(char * data, qint64 maxSize) { QtNetwork_PackedString dataPacked = { data, maxSize };return callbackQTcpSocket_ReadLineData(this, dataPacked, maxSize); };
 	bool reset() { return callbackQTcpSocket_Reset(this) != 0; };
 	bool seek(qint64 pos) { return callbackQTcpSocket_Seek(this, pos) != 0; };
 	qint64 size() const { return callbackQTcpSocket_Size(const_cast<MyQTcpSocket*>(this)); };
+	bool waitForBytesWritten(int msecs) { return callbackQTcpSocket_WaitForBytesWritten(this, msecs) != 0; };
+	bool waitForReadyRead(int msecs) { return callbackQTcpSocket_WaitForReadyRead(this, msecs) != 0; };
+	qint64 writeData(const char * data, qint64 maxSize) { QtNetwork_PackedString dataPacked = { const_cast<char*>(data), maxSize };return callbackQTcpSocket_WriteData(this, dataPacked, maxSize); };
 	void timerEvent(QTimerEvent * event) { callbackQTcpSocket_TimerEvent(this, event); };
 	void childEvent(QChildEvent * event) { callbackQTcpSocket_ChildEvent(this, event); };
 	void connectNotify(const QMetaMethod & sign) { callbackQTcpSocket_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
@@ -6944,6 +6976,66 @@ char QTcpSocket_WaitForDisconnectedDefault(void* ptr, int msecs)
 	return static_cast<QTcpSocket*>(ptr)->QTcpSocket::waitForDisconnected(msecs);
 }
 
+char QTcpSocket_AtEnd(void* ptr)
+{
+	return static_cast<QTcpSocket*>(ptr)->atEnd();
+}
+
+char QTcpSocket_AtEndDefault(void* ptr)
+{
+	return static_cast<QTcpSocket*>(ptr)->QTcpSocket::atEnd();
+}
+
+long long QTcpSocket_BytesAvailable(void* ptr)
+{
+	return static_cast<QTcpSocket*>(ptr)->bytesAvailable();
+}
+
+long long QTcpSocket_BytesAvailableDefault(void* ptr)
+{
+	return static_cast<QTcpSocket*>(ptr)->QTcpSocket::bytesAvailable();
+}
+
+long long QTcpSocket_BytesToWrite(void* ptr)
+{
+	return static_cast<QTcpSocket*>(ptr)->bytesToWrite();
+}
+
+long long QTcpSocket_BytesToWriteDefault(void* ptr)
+{
+	return static_cast<QTcpSocket*>(ptr)->QTcpSocket::bytesToWrite();
+}
+
+char QTcpSocket_CanReadLine(void* ptr)
+{
+	return static_cast<QTcpSocket*>(ptr)->canReadLine();
+}
+
+char QTcpSocket_CanReadLineDefault(void* ptr)
+{
+	return static_cast<QTcpSocket*>(ptr)->QTcpSocket::canReadLine();
+}
+
+void QTcpSocket_Close(void* ptr)
+{
+	static_cast<QTcpSocket*>(ptr)->close();
+}
+
+void QTcpSocket_CloseDefault(void* ptr)
+{
+	static_cast<QTcpSocket*>(ptr)->QTcpSocket::close();
+}
+
+char QTcpSocket_IsSequential(void* ptr)
+{
+	return static_cast<QTcpSocket*>(ptr)->isSequential();
+}
+
+char QTcpSocket_IsSequentialDefault(void* ptr)
+{
+	return static_cast<QTcpSocket*>(ptr)->QTcpSocket::isSequential();
+}
+
 char QTcpSocket_Open(void* ptr, long long mode)
 {
 	return static_cast<QTcpSocket*>(ptr)->open(static_cast<QIODevice::OpenModeFlag>(mode));
@@ -6962,6 +7054,16 @@ long long QTcpSocket_Pos(void* ptr)
 long long QTcpSocket_PosDefault(void* ptr)
 {
 	return static_cast<QTcpSocket*>(ptr)->QTcpSocket::pos();
+}
+
+long long QTcpSocket_ReadLineData(void* ptr, char* data, long long maxSize)
+{
+	return static_cast<QTcpSocket*>(ptr)->readLineData(data, maxSize);
+}
+
+long long QTcpSocket_ReadLineDataDefault(void* ptr, char* data, long long maxSize)
+{
+	return static_cast<QTcpSocket*>(ptr)->QTcpSocket::readLineData(data, maxSize);
 }
 
 char QTcpSocket_Reset(void* ptr)
@@ -6992,6 +7094,36 @@ long long QTcpSocket_Size(void* ptr)
 long long QTcpSocket_SizeDefault(void* ptr)
 {
 	return static_cast<QTcpSocket*>(ptr)->QTcpSocket::size();
+}
+
+char QTcpSocket_WaitForBytesWritten(void* ptr, int msecs)
+{
+	return static_cast<QTcpSocket*>(ptr)->waitForBytesWritten(msecs);
+}
+
+char QTcpSocket_WaitForBytesWrittenDefault(void* ptr, int msecs)
+{
+	return static_cast<QTcpSocket*>(ptr)->QTcpSocket::waitForBytesWritten(msecs);
+}
+
+char QTcpSocket_WaitForReadyRead(void* ptr, int msecs)
+{
+	return static_cast<QTcpSocket*>(ptr)->waitForReadyRead(msecs);
+}
+
+char QTcpSocket_WaitForReadyReadDefault(void* ptr, int msecs)
+{
+	return static_cast<QTcpSocket*>(ptr)->QTcpSocket::waitForReadyRead(msecs);
+}
+
+long long QTcpSocket_WriteData(void* ptr, char* data, long long maxSize)
+{
+	return static_cast<QTcpSocket*>(ptr)->writeData(const_cast<const char*>(data), maxSize);
+}
+
+long long QTcpSocket_WriteDataDefault(void* ptr, char* data, long long maxSize)
+{
+	return static_cast<QTcpSocket*>(ptr)->QTcpSocket::writeData(const_cast<const char*>(data), maxSize);
 }
 
 void QTcpSocket_TimerEvent(void* ptr, void* event)
@@ -7098,11 +7230,21 @@ public:
 	QVariant socketOption(QAbstractSocket::SocketOption option) { return *static_cast<QVariant*>(callbackQUdpSocket_SocketOption(this, option)); };
 	bool waitForConnected(int msecs) { return callbackQUdpSocket_WaitForConnected(this, msecs) != 0; };
 	bool waitForDisconnected(int msecs) { return callbackQUdpSocket_WaitForDisconnected(this, msecs) != 0; };
+	bool atEnd() const { return callbackQUdpSocket_AtEnd(const_cast<MyQUdpSocket*>(this)) != 0; };
+	qint64 bytesAvailable() const { return callbackQUdpSocket_BytesAvailable(const_cast<MyQUdpSocket*>(this)); };
+	qint64 bytesToWrite() const { return callbackQUdpSocket_BytesToWrite(const_cast<MyQUdpSocket*>(this)); };
+	bool canReadLine() const { return callbackQUdpSocket_CanReadLine(const_cast<MyQUdpSocket*>(this)) != 0; };
+	void close() { callbackQUdpSocket_Close(this); };
+	bool isSequential() const { return callbackQUdpSocket_IsSequential(const_cast<MyQUdpSocket*>(this)) != 0; };
 	bool open(QIODevice::OpenMode mode) { return callbackQUdpSocket_Open(this, mode) != 0; };
 	qint64 pos() const { return callbackQUdpSocket_Pos(const_cast<MyQUdpSocket*>(this)); };
+	qint64 readLineData(char * data, qint64 maxSize) { QtNetwork_PackedString dataPacked = { data, maxSize };return callbackQUdpSocket_ReadLineData(this, dataPacked, maxSize); };
 	bool reset() { return callbackQUdpSocket_Reset(this) != 0; };
 	bool seek(qint64 pos) { return callbackQUdpSocket_Seek(this, pos) != 0; };
 	qint64 size() const { return callbackQUdpSocket_Size(const_cast<MyQUdpSocket*>(this)); };
+	bool waitForBytesWritten(int msecs) { return callbackQUdpSocket_WaitForBytesWritten(this, msecs) != 0; };
+	bool waitForReadyRead(int msecs) { return callbackQUdpSocket_WaitForReadyRead(this, msecs) != 0; };
+	qint64 writeData(const char * data, qint64 maxSize) { QtNetwork_PackedString dataPacked = { const_cast<char*>(data), maxSize };return callbackQUdpSocket_WriteData(this, dataPacked, maxSize); };
 	void timerEvent(QTimerEvent * event) { callbackQUdpSocket_TimerEvent(this, event); };
 	void childEvent(QChildEvent * event) { callbackQUdpSocket_ChildEvent(this, event); };
 	void connectNotify(const QMetaMethod & sign) { callbackQUdpSocket_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
@@ -7274,6 +7416,66 @@ char QUdpSocket_WaitForDisconnectedDefault(void* ptr, int msecs)
 	return static_cast<QUdpSocket*>(ptr)->QUdpSocket::waitForDisconnected(msecs);
 }
 
+char QUdpSocket_AtEnd(void* ptr)
+{
+	return static_cast<QUdpSocket*>(ptr)->atEnd();
+}
+
+char QUdpSocket_AtEndDefault(void* ptr)
+{
+	return static_cast<QUdpSocket*>(ptr)->QUdpSocket::atEnd();
+}
+
+long long QUdpSocket_BytesAvailable(void* ptr)
+{
+	return static_cast<QUdpSocket*>(ptr)->bytesAvailable();
+}
+
+long long QUdpSocket_BytesAvailableDefault(void* ptr)
+{
+	return static_cast<QUdpSocket*>(ptr)->QUdpSocket::bytesAvailable();
+}
+
+long long QUdpSocket_BytesToWrite(void* ptr)
+{
+	return static_cast<QUdpSocket*>(ptr)->bytesToWrite();
+}
+
+long long QUdpSocket_BytesToWriteDefault(void* ptr)
+{
+	return static_cast<QUdpSocket*>(ptr)->QUdpSocket::bytesToWrite();
+}
+
+char QUdpSocket_CanReadLine(void* ptr)
+{
+	return static_cast<QUdpSocket*>(ptr)->canReadLine();
+}
+
+char QUdpSocket_CanReadLineDefault(void* ptr)
+{
+	return static_cast<QUdpSocket*>(ptr)->QUdpSocket::canReadLine();
+}
+
+void QUdpSocket_Close(void* ptr)
+{
+	static_cast<QUdpSocket*>(ptr)->close();
+}
+
+void QUdpSocket_CloseDefault(void* ptr)
+{
+	static_cast<QUdpSocket*>(ptr)->QUdpSocket::close();
+}
+
+char QUdpSocket_IsSequential(void* ptr)
+{
+	return static_cast<QUdpSocket*>(ptr)->isSequential();
+}
+
+char QUdpSocket_IsSequentialDefault(void* ptr)
+{
+	return static_cast<QUdpSocket*>(ptr)->QUdpSocket::isSequential();
+}
+
 char QUdpSocket_Open(void* ptr, long long mode)
 {
 	return static_cast<QUdpSocket*>(ptr)->open(static_cast<QIODevice::OpenModeFlag>(mode));
@@ -7292,6 +7494,16 @@ long long QUdpSocket_Pos(void* ptr)
 long long QUdpSocket_PosDefault(void* ptr)
 {
 	return static_cast<QUdpSocket*>(ptr)->QUdpSocket::pos();
+}
+
+long long QUdpSocket_ReadLineData(void* ptr, char* data, long long maxSize)
+{
+	return static_cast<QUdpSocket*>(ptr)->readLineData(data, maxSize);
+}
+
+long long QUdpSocket_ReadLineDataDefault(void* ptr, char* data, long long maxSize)
+{
+	return static_cast<QUdpSocket*>(ptr)->QUdpSocket::readLineData(data, maxSize);
 }
 
 char QUdpSocket_Reset(void* ptr)
@@ -7322,6 +7534,36 @@ long long QUdpSocket_Size(void* ptr)
 long long QUdpSocket_SizeDefault(void* ptr)
 {
 	return static_cast<QUdpSocket*>(ptr)->QUdpSocket::size();
+}
+
+char QUdpSocket_WaitForBytesWritten(void* ptr, int msecs)
+{
+	return static_cast<QUdpSocket*>(ptr)->waitForBytesWritten(msecs);
+}
+
+char QUdpSocket_WaitForBytesWrittenDefault(void* ptr, int msecs)
+{
+	return static_cast<QUdpSocket*>(ptr)->QUdpSocket::waitForBytesWritten(msecs);
+}
+
+char QUdpSocket_WaitForReadyRead(void* ptr, int msecs)
+{
+	return static_cast<QUdpSocket*>(ptr)->waitForReadyRead(msecs);
+}
+
+char QUdpSocket_WaitForReadyReadDefault(void* ptr, int msecs)
+{
+	return static_cast<QUdpSocket*>(ptr)->QUdpSocket::waitForReadyRead(msecs);
+}
+
+long long QUdpSocket_WriteData(void* ptr, char* data, long long maxSize)
+{
+	return static_cast<QUdpSocket*>(ptr)->writeData(const_cast<const char*>(data), maxSize);
+}
+
+long long QUdpSocket_WriteDataDefault(void* ptr, char* data, long long maxSize)
+{
+	return static_cast<QUdpSocket*>(ptr)->QUdpSocket::writeData(const_cast<const char*>(data), maxSize);
 }
 
 void QUdpSocket_TimerEvent(void* ptr, void* event)

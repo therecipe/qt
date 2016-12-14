@@ -37,6 +37,8 @@
 #include <QNetworkCookie>
 #include <QObject>
 #include <QPageLayout>
+#include <QPaintDevice>
+#include <QPaintEngine>
 #include <QPaintEvent>
 #include <QPoint>
 #include <QPointF>
@@ -2744,6 +2746,8 @@ public:
 	void disconnectNotify(const QMetaMethod & sign) { callbackQWebEngineView_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQWebEngineView_EventFilter(this, watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQWebEngineView_MetaObject(const_cast<MyQWebEngineView*>(this))); };
+	int metric(QPaintDevice::PaintDeviceMetric metric) const { return callbackQWebEngineView_Metric(const_cast<MyQWebEngineView*>(this), metric); };
+	QPaintEngine * paintEngine() const { return static_cast<QPaintEngine*>(callbackQWebEngineView_PaintEngine(const_cast<MyQWebEngineView*>(this))); };
 };
 
 void* QWebEngineView_NewQWebEngineView(void* parent)
@@ -3621,5 +3625,25 @@ void* QWebEngineView_MetaObject(void* ptr)
 void* QWebEngineView_MetaObjectDefault(void* ptr)
 {
 	return const_cast<QMetaObject*>(static_cast<QWebEngineView*>(ptr)->QWebEngineView::metaObject());
+}
+
+int QWebEngineView_Metric(void* ptr, long long metric)
+{
+	return static_cast<QWebEngineView*>(ptr)->metric(static_cast<QPaintDevice::PaintDeviceMetric>(metric));
+}
+
+int QWebEngineView_MetricDefault(void* ptr, long long metric)
+{
+	return static_cast<QWebEngineView*>(ptr)->QWebEngineView::metric(static_cast<QPaintDevice::PaintDeviceMetric>(metric));
+}
+
+void* QWebEngineView_PaintEngine(void* ptr)
+{
+	return static_cast<QWebEngineView*>(ptr)->paintEngine();
+}
+
+void* QWebEngineView_PaintEngineDefault(void* ptr)
+{
+	return static_cast<QWebEngineView*>(ptr)->QWebEngineView::paintEngine();
 }
 

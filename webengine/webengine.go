@@ -9660,6 +9660,82 @@ func (ptr *QWebEngineView) MetaObjectDefault() *core.QMetaObject {
 	return nil
 }
 
+//export callbackQWebEngineView_Metric
+func callbackQWebEngineView_Metric(ptr unsafe.Pointer, metric C.longlong) C.int {
+
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineView::metric"); signal != nil {
+		return C.int(int32(signal.(func(gui.QPaintDevice__PaintDeviceMetric) int)(gui.QPaintDevice__PaintDeviceMetric(metric))))
+	}
+
+	return C.int(int32(NewQWebEngineViewFromPointer(ptr).MetricDefault(gui.QPaintDevice__PaintDeviceMetric(metric))))
+}
+
+func (ptr *QWebEngineView) ConnectMetric(f func(metric gui.QPaintDevice__PaintDeviceMetric) int) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineView::metric", f)
+	}
+}
+
+func (ptr *QWebEngineView) DisconnectMetric() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineView::metric")
+	}
+}
+
+func (ptr *QWebEngineView) Metric(metric gui.QPaintDevice__PaintDeviceMetric) int {
+	if ptr.Pointer() != nil {
+		return int(int32(C.QWebEngineView_Metric(ptr.Pointer(), C.longlong(metric))))
+	}
+	return 0
+}
+
+func (ptr *QWebEngineView) MetricDefault(metric gui.QPaintDevice__PaintDeviceMetric) int {
+	if ptr.Pointer() != nil {
+		return int(int32(C.QWebEngineView_MetricDefault(ptr.Pointer(), C.longlong(metric))))
+	}
+	return 0
+}
+
+//export callbackQWebEngineView_PaintEngine
+func callbackQWebEngineView_PaintEngine(ptr unsafe.Pointer) unsafe.Pointer {
+
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineView::paintEngine"); signal != nil {
+		return gui.PointerFromQPaintEngine(signal.(func() *gui.QPaintEngine)())
+	}
+
+	return gui.PointerFromQPaintEngine(NewQWebEngineViewFromPointer(ptr).PaintEngineDefault())
+}
+
+func (ptr *QWebEngineView) ConnectPaintEngine(f func() *gui.QPaintEngine) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineView::paintEngine", f)
+	}
+}
+
+func (ptr *QWebEngineView) DisconnectPaintEngine() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineView::paintEngine")
+	}
+}
+
+func (ptr *QWebEngineView) PaintEngine() *gui.QPaintEngine {
+	if ptr.Pointer() != nil {
+		return gui.NewQPaintEngineFromPointer(C.QWebEngineView_PaintEngine(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QWebEngineView) PaintEngineDefault() *gui.QPaintEngine {
+	if ptr.Pointer() != nil {
+		return gui.NewQPaintEngineFromPointer(C.QWebEngineView_PaintEngineDefault(ptr.Pointer()))
+	}
+	return nil
+}
+
 //QtWebEngineCore::TextureTarget
 type QtWebEngineCore__TextureTarget int64
 

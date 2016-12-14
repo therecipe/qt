@@ -146,6 +146,44 @@ func (ptr *QAbstractPlanarVideoBuffer) HandleDefault() *core.QVariant {
 	return nil
 }
 
+//export callbackQAbstractPlanarVideoBuffer_Map
+func callbackQAbstractPlanarVideoBuffer_Map(ptr unsafe.Pointer, mode C.longlong, numBytes C.int, bytesPerLine C.int) *C.char {
+
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractPlanarVideoBuffer::map"); signal != nil {
+		return C.CString(signal.(func(QAbstractVideoBuffer__MapMode, int, int) string)(QAbstractVideoBuffer__MapMode(mode), int(int32(numBytes)), int(int32(bytesPerLine))))
+	}
+
+	return C.CString(NewQAbstractPlanarVideoBufferFromPointer(ptr).MapDefault(QAbstractVideoBuffer__MapMode(mode), int(int32(numBytes)), int(int32(bytesPerLine))))
+}
+
+func (ptr *QAbstractPlanarVideoBuffer) ConnectMap(f func(mode QAbstractVideoBuffer__MapMode, numBytes int, bytesPerLine int) string) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractPlanarVideoBuffer::map", f)
+	}
+}
+
+func (ptr *QAbstractPlanarVideoBuffer) DisconnectMap() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractPlanarVideoBuffer::map")
+	}
+}
+
+func (ptr *QAbstractPlanarVideoBuffer) Map(mode QAbstractVideoBuffer__MapMode, numBytes int, bytesPerLine int) string {
+	if ptr.Pointer() != nil {
+		return cGoUnpackString(C.QAbstractPlanarVideoBuffer_Map(ptr.Pointer(), C.longlong(mode), C.int(int32(numBytes)), C.int(int32(bytesPerLine))))
+	}
+	return ""
+}
+
+func (ptr *QAbstractPlanarVideoBuffer) MapDefault(mode QAbstractVideoBuffer__MapMode, numBytes int, bytesPerLine int) string {
+	if ptr.Pointer() != nil {
+		return cGoUnpackString(C.QAbstractPlanarVideoBuffer_MapDefault(ptr.Pointer(), C.longlong(mode), C.int(int32(numBytes)), C.int(int32(bytesPerLine))))
+	}
+	return ""
+}
+
 //export callbackQAbstractPlanarVideoBuffer_MapMode
 func callbackQAbstractPlanarVideoBuffer_MapMode(ptr unsafe.Pointer) C.longlong {
 
@@ -21039,6 +21077,42 @@ func (ptr *QCameraViewfinder) FocusOutEventDefault(event gui.QFocusEvent_ITF) {
 	}
 }
 
+//export callbackQCameraViewfinder_HideEvent
+func callbackQCameraViewfinder_HideEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
+
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraViewfinder::hideEvent"); signal != nil {
+		signal.(func(*gui.QHideEvent))(gui.NewQHideEventFromPointer(event))
+	} else {
+		NewQCameraViewfinderFromPointer(ptr).HideEventDefault(gui.NewQHideEventFromPointer(event))
+	}
+}
+
+func (ptr *QCameraViewfinder) ConnectHideEvent(f func(event *gui.QHideEvent)) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QCameraViewfinder::hideEvent", f)
+	}
+}
+
+func (ptr *QCameraViewfinder) DisconnectHideEvent() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QCameraViewfinder::hideEvent")
+	}
+}
+
+func (ptr *QCameraViewfinder) HideEvent(event gui.QHideEvent_ITF) {
+	if ptr.Pointer() != nil {
+		C.QCameraViewfinder_HideEvent(ptr.Pointer(), gui.PointerFromQHideEvent(event))
+	}
+}
+
+func (ptr *QCameraViewfinder) HideEventDefault(event gui.QHideEvent_ITF) {
+	if ptr.Pointer() != nil {
+		C.QCameraViewfinder_HideEventDefault(ptr.Pointer(), gui.PointerFromQHideEvent(event))
+	}
+}
+
 //export callbackQCameraViewfinder_LeaveEvent
 func callbackQCameraViewfinder_LeaveEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 
@@ -21115,6 +21189,78 @@ func (ptr *QCameraViewfinder) MinimumSizeHintDefault() *core.QSize {
 		return tmpValue
 	}
 	return nil
+}
+
+//export callbackQCameraViewfinder_MoveEvent
+func callbackQCameraViewfinder_MoveEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
+
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraViewfinder::moveEvent"); signal != nil {
+		signal.(func(*gui.QMoveEvent))(gui.NewQMoveEventFromPointer(event))
+	} else {
+		NewQCameraViewfinderFromPointer(ptr).MoveEventDefault(gui.NewQMoveEventFromPointer(event))
+	}
+}
+
+func (ptr *QCameraViewfinder) ConnectMoveEvent(f func(event *gui.QMoveEvent)) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QCameraViewfinder::moveEvent", f)
+	}
+}
+
+func (ptr *QCameraViewfinder) DisconnectMoveEvent() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QCameraViewfinder::moveEvent")
+	}
+}
+
+func (ptr *QCameraViewfinder) MoveEvent(event gui.QMoveEvent_ITF) {
+	if ptr.Pointer() != nil {
+		C.QCameraViewfinder_MoveEvent(ptr.Pointer(), gui.PointerFromQMoveEvent(event))
+	}
+}
+
+func (ptr *QCameraViewfinder) MoveEventDefault(event gui.QMoveEvent_ITF) {
+	if ptr.Pointer() != nil {
+		C.QCameraViewfinder_MoveEventDefault(ptr.Pointer(), gui.PointerFromQMoveEvent(event))
+	}
+}
+
+//export callbackQCameraViewfinder_PaintEvent
+func callbackQCameraViewfinder_PaintEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
+
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraViewfinder::paintEvent"); signal != nil {
+		signal.(func(*gui.QPaintEvent))(gui.NewQPaintEventFromPointer(event))
+	} else {
+		NewQCameraViewfinderFromPointer(ptr).PaintEventDefault(gui.NewQPaintEventFromPointer(event))
+	}
+}
+
+func (ptr *QCameraViewfinder) ConnectPaintEvent(f func(event *gui.QPaintEvent)) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QCameraViewfinder::paintEvent", f)
+	}
+}
+
+func (ptr *QCameraViewfinder) DisconnectPaintEvent() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QCameraViewfinder::paintEvent")
+	}
+}
+
+func (ptr *QCameraViewfinder) PaintEvent(event gui.QPaintEvent_ITF) {
+	if ptr.Pointer() != nil {
+		C.QCameraViewfinder_PaintEvent(ptr.Pointer(), gui.PointerFromQPaintEvent(event))
+	}
+}
+
+func (ptr *QCameraViewfinder) PaintEventDefault(event gui.QPaintEvent_ITF) {
+	if ptr.Pointer() != nil {
+		C.QCameraViewfinder_PaintEventDefault(ptr.Pointer(), gui.PointerFromQPaintEvent(event))
+	}
 }
 
 //export callbackQCameraViewfinder_SetEnabled
@@ -21298,6 +21444,84 @@ func (ptr *QCameraViewfinder) SetWindowTitleDefault(vqs string) {
 		defer C.free(unsafe.Pointer(vqsC))
 		C.QCameraViewfinder_SetWindowTitleDefault(ptr.Pointer(), vqsC)
 	}
+}
+
+//export callbackQCameraViewfinder_ShowEvent
+func callbackQCameraViewfinder_ShowEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
+
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraViewfinder::showEvent"); signal != nil {
+		signal.(func(*gui.QShowEvent))(gui.NewQShowEventFromPointer(event))
+	} else {
+		NewQCameraViewfinderFromPointer(ptr).ShowEventDefault(gui.NewQShowEventFromPointer(event))
+	}
+}
+
+func (ptr *QCameraViewfinder) ConnectShowEvent(f func(event *gui.QShowEvent)) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QCameraViewfinder::showEvent", f)
+	}
+}
+
+func (ptr *QCameraViewfinder) DisconnectShowEvent() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QCameraViewfinder::showEvent")
+	}
+}
+
+func (ptr *QCameraViewfinder) ShowEvent(event gui.QShowEvent_ITF) {
+	if ptr.Pointer() != nil {
+		C.QCameraViewfinder_ShowEvent(ptr.Pointer(), gui.PointerFromQShowEvent(event))
+	}
+}
+
+func (ptr *QCameraViewfinder) ShowEventDefault(event gui.QShowEvent_ITF) {
+	if ptr.Pointer() != nil {
+		C.QCameraViewfinder_ShowEventDefault(ptr.Pointer(), gui.PointerFromQShowEvent(event))
+	}
+}
+
+//export callbackQCameraViewfinder_SizeHint
+func callbackQCameraViewfinder_SizeHint(ptr unsafe.Pointer) unsafe.Pointer {
+
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraViewfinder::sizeHint"); signal != nil {
+		return core.PointerFromQSize(signal.(func() *core.QSize)())
+	}
+
+	return core.PointerFromQSize(NewQCameraViewfinderFromPointer(ptr).SizeHintDefault())
+}
+
+func (ptr *QCameraViewfinder) ConnectSizeHint(f func() *core.QSize) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QCameraViewfinder::sizeHint", f)
+	}
+}
+
+func (ptr *QCameraViewfinder) DisconnectSizeHint() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QCameraViewfinder::sizeHint")
+	}
+}
+
+func (ptr *QCameraViewfinder) SizeHint() *core.QSize {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQSizeFromPointer(C.QCameraViewfinder_SizeHint(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QCameraViewfinder) SizeHintDefault() *core.QSize {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQSizeFromPointer(C.QCameraViewfinder_SizeHintDefault(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*core.QSize).DestroyQSize)
+		return tmpValue
+	}
+	return nil
 }
 
 //export callbackQCameraViewfinder_ChangeEvent
@@ -22031,6 +22255,42 @@ func (ptr *QCameraViewfinder) RepaintDefault() {
 	}
 }
 
+//export callbackQCameraViewfinder_ResizeEvent
+func callbackQCameraViewfinder_ResizeEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
+
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraViewfinder::resizeEvent"); signal != nil {
+		signal.(func(*gui.QResizeEvent))(gui.NewQResizeEventFromPointer(event))
+	} else {
+		NewQCameraViewfinderFromPointer(ptr).ResizeEventDefault(gui.NewQResizeEventFromPointer(event))
+	}
+}
+
+func (ptr *QCameraViewfinder) ConnectResizeEvent(f func(event *gui.QResizeEvent)) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QCameraViewfinder::resizeEvent", f)
+	}
+}
+
+func (ptr *QCameraViewfinder) DisconnectResizeEvent() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QCameraViewfinder::resizeEvent")
+	}
+}
+
+func (ptr *QCameraViewfinder) ResizeEvent(event gui.QResizeEvent_ITF) {
+	if ptr.Pointer() != nil {
+		C.QCameraViewfinder_ResizeEvent(ptr.Pointer(), gui.PointerFromQResizeEvent(event))
+	}
+}
+
+func (ptr *QCameraViewfinder) ResizeEventDefault(event gui.QResizeEvent_ITF) {
+	if ptr.Pointer() != nil {
+		C.QCameraViewfinder_ResizeEventDefault(ptr.Pointer(), gui.PointerFromQResizeEvent(event))
+	}
+}
+
 //export callbackQCameraViewfinder_SetDisabled
 func callbackQCameraViewfinder_SetDisabled(ptr unsafe.Pointer, disable C.char) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraViewfinder::setDisabled"); signal != nil {
@@ -22672,6 +22932,44 @@ func (ptr *QCameraViewfinder) DisconnectNotifyDefault(sign core.QMetaMethod_ITF)
 	}
 }
 
+//export callbackQCameraViewfinder_Event
+func callbackQCameraViewfinder_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
+
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraViewfinder::event"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQCameraViewfinderFromPointer(ptr).EventDefault(core.NewQEventFromPointer(e)))))
+}
+
+func (ptr *QCameraViewfinder) ConnectEvent(f func(e *core.QEvent) bool) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QCameraViewfinder::event", f)
+	}
+}
+
+func (ptr *QCameraViewfinder) DisconnectEvent() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QCameraViewfinder::event")
+	}
+}
+
+func (ptr *QCameraViewfinder) Event(e core.QEvent_ITF) bool {
+	if ptr.Pointer() != nil {
+		return C.QCameraViewfinder_Event(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+	}
+	return false
+}
+
+func (ptr *QCameraViewfinder) EventDefault(e core.QEvent_ITF) bool {
+	if ptr.Pointer() != nil {
+		return C.QCameraViewfinder_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+	}
+	return false
+}
+
 //export callbackQCameraViewfinder_EventFilter
 func callbackQCameraViewfinder_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
 
@@ -22744,6 +23042,82 @@ func (ptr *QCameraViewfinder) MetaObject() *core.QMetaObject {
 func (ptr *QCameraViewfinder) MetaObjectDefault() *core.QMetaObject {
 	if ptr.Pointer() != nil {
 		return core.NewQMetaObjectFromPointer(C.QCameraViewfinder_MetaObjectDefault(ptr.Pointer()))
+	}
+	return nil
+}
+
+//export callbackQCameraViewfinder_Metric
+func callbackQCameraViewfinder_Metric(ptr unsafe.Pointer, metric C.longlong) C.int {
+
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraViewfinder::metric"); signal != nil {
+		return C.int(int32(signal.(func(gui.QPaintDevice__PaintDeviceMetric) int)(gui.QPaintDevice__PaintDeviceMetric(metric))))
+	}
+
+	return C.int(int32(NewQCameraViewfinderFromPointer(ptr).MetricDefault(gui.QPaintDevice__PaintDeviceMetric(metric))))
+}
+
+func (ptr *QCameraViewfinder) ConnectMetric(f func(metric gui.QPaintDevice__PaintDeviceMetric) int) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QCameraViewfinder::metric", f)
+	}
+}
+
+func (ptr *QCameraViewfinder) DisconnectMetric() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QCameraViewfinder::metric")
+	}
+}
+
+func (ptr *QCameraViewfinder) Metric(metric gui.QPaintDevice__PaintDeviceMetric) int {
+	if ptr.Pointer() != nil {
+		return int(int32(C.QCameraViewfinder_Metric(ptr.Pointer(), C.longlong(metric))))
+	}
+	return 0
+}
+
+func (ptr *QCameraViewfinder) MetricDefault(metric gui.QPaintDevice__PaintDeviceMetric) int {
+	if ptr.Pointer() != nil {
+		return int(int32(C.QCameraViewfinder_MetricDefault(ptr.Pointer(), C.longlong(metric))))
+	}
+	return 0
+}
+
+//export callbackQCameraViewfinder_PaintEngine
+func callbackQCameraViewfinder_PaintEngine(ptr unsafe.Pointer) unsafe.Pointer {
+
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraViewfinder::paintEngine"); signal != nil {
+		return gui.PointerFromQPaintEngine(signal.(func() *gui.QPaintEngine)())
+	}
+
+	return gui.PointerFromQPaintEngine(NewQCameraViewfinderFromPointer(ptr).PaintEngineDefault())
+}
+
+func (ptr *QCameraViewfinder) ConnectPaintEngine(f func() *gui.QPaintEngine) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QCameraViewfinder::paintEngine", f)
+	}
+}
+
+func (ptr *QCameraViewfinder) DisconnectPaintEngine() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QCameraViewfinder::paintEngine")
+	}
+}
+
+func (ptr *QCameraViewfinder) PaintEngine() *gui.QPaintEngine {
+	if ptr.Pointer() != nil {
+		return gui.NewQPaintEngineFromPointer(C.QCameraViewfinder_PaintEngine(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QCameraViewfinder) PaintEngineDefault() *gui.QPaintEngine {
+	if ptr.Pointer() != nil {
+		return gui.NewQPaintEngineFromPointer(C.QCameraViewfinder_PaintEngineDefault(ptr.Pointer()))
 	}
 	return nil
 }
@@ -25101,6 +25475,44 @@ func (ptr *QGraphicsVideoItem) DisconnectNotifyDefault(sign core.QMetaMethod_ITF
 	if ptr.Pointer() != nil {
 		C.QGraphicsVideoItem_DisconnectNotifyDefault(ptr.Pointer(), core.PointerFromQMetaMethod(sign))
 	}
+}
+
+//export callbackQGraphicsVideoItem_Event
+func callbackQGraphicsVideoItem_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
+
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QGraphicsVideoItem::event"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQGraphicsVideoItemFromPointer(ptr).EventDefault(core.NewQEventFromPointer(e)))))
+}
+
+func (ptr *QGraphicsVideoItem) ConnectEvent(f func(e *core.QEvent) bool) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QGraphicsVideoItem::event", f)
+	}
+}
+
+func (ptr *QGraphicsVideoItem) DisconnectEvent() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QGraphicsVideoItem::event")
+	}
+}
+
+func (ptr *QGraphicsVideoItem) Event(e core.QEvent_ITF) bool {
+	if ptr.Pointer() != nil {
+		return C.QGraphicsVideoItem_Event(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+	}
+	return false
+}
+
+func (ptr *QGraphicsVideoItem) EventDefault(e core.QEvent_ITF) bool {
+	if ptr.Pointer() != nil {
+		return C.QGraphicsVideoItem_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+	}
+	return false
 }
 
 //export callbackQGraphicsVideoItem_EventFilter
@@ -53250,6 +53662,82 @@ func (ptr *QVideoWidget) MetaObject() *core.QMetaObject {
 func (ptr *QVideoWidget) MetaObjectDefault() *core.QMetaObject {
 	if ptr.Pointer() != nil {
 		return core.NewQMetaObjectFromPointer(C.QVideoWidget_MetaObjectDefault(ptr.Pointer()))
+	}
+	return nil
+}
+
+//export callbackQVideoWidget_Metric
+func callbackQVideoWidget_Metric(ptr unsafe.Pointer, metric C.longlong) C.int {
+
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QVideoWidget::metric"); signal != nil {
+		return C.int(int32(signal.(func(gui.QPaintDevice__PaintDeviceMetric) int)(gui.QPaintDevice__PaintDeviceMetric(metric))))
+	}
+
+	return C.int(int32(NewQVideoWidgetFromPointer(ptr).MetricDefault(gui.QPaintDevice__PaintDeviceMetric(metric))))
+}
+
+func (ptr *QVideoWidget) ConnectMetric(f func(metric gui.QPaintDevice__PaintDeviceMetric) int) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QVideoWidget::metric", f)
+	}
+}
+
+func (ptr *QVideoWidget) DisconnectMetric() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QVideoWidget::metric")
+	}
+}
+
+func (ptr *QVideoWidget) Metric(metric gui.QPaintDevice__PaintDeviceMetric) int {
+	if ptr.Pointer() != nil {
+		return int(int32(C.QVideoWidget_Metric(ptr.Pointer(), C.longlong(metric))))
+	}
+	return 0
+}
+
+func (ptr *QVideoWidget) MetricDefault(metric gui.QPaintDevice__PaintDeviceMetric) int {
+	if ptr.Pointer() != nil {
+		return int(int32(C.QVideoWidget_MetricDefault(ptr.Pointer(), C.longlong(metric))))
+	}
+	return 0
+}
+
+//export callbackQVideoWidget_PaintEngine
+func callbackQVideoWidget_PaintEngine(ptr unsafe.Pointer) unsafe.Pointer {
+
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QVideoWidget::paintEngine"); signal != nil {
+		return gui.PointerFromQPaintEngine(signal.(func() *gui.QPaintEngine)())
+	}
+
+	return gui.PointerFromQPaintEngine(NewQVideoWidgetFromPointer(ptr).PaintEngineDefault())
+}
+
+func (ptr *QVideoWidget) ConnectPaintEngine(f func() *gui.QPaintEngine) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QVideoWidget::paintEngine", f)
+	}
+}
+
+func (ptr *QVideoWidget) DisconnectPaintEngine() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QVideoWidget::paintEngine")
+	}
+}
+
+func (ptr *QVideoWidget) PaintEngine() *gui.QPaintEngine {
+	if ptr.Pointer() != nil {
+		return gui.NewQPaintEngineFromPointer(C.QVideoWidget_PaintEngine(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QVideoWidget) PaintEngineDefault() *gui.QPaintEngine {
+	if ptr.Pointer() != nil {
+		return gui.NewQPaintEngineFromPointer(C.QVideoWidget_PaintEngineDefault(ptr.Pointer()))
 	}
 	return nil
 }

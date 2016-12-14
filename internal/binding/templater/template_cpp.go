@@ -6,7 +6,6 @@ import (
 	"sort"
 	"strings"
 
-	"github.com/therecipe/qt/internal/binding/converter"
 	"github.com/therecipe/qt/internal/binding/parser"
 )
 
@@ -14,51 +13,8 @@ func CppTemplate(module string) []byte {
 	var bb = new(bytes.Buffer)
 	defer bb.Reset()
 
-	var tmpArray = getSortedClassNamesForModule(module)
-
-	if module == parser.MOC {
-		var items = make(map[string]string)
-
-		for _, class := range tmpArray {
-			items[class] = parser.CurrentState.ClassMap[class].Bases
-		}
-
-		var provided = make([]string, 0)
-
-		for len(items) > 0 {
-			for item, dependency := range items {
-				var existsInOtherModule bool
-				if parser.CurrentState.ClassMap[dependency].Module != parser.MOC {
-					existsInOtherModule = true
-				}
-				var existsInCurrentOrder bool
-				for _, providedItem := range provided {
-					if dependency == providedItem {
-						existsInCurrentOrder = true
-						break
-					}
-				}
-
-				if existsInOtherModule || existsInCurrentOrder {
-					provided = append(provided, item)
-					delete(items, item)
-				}
-			}
-		}
-		tmpArray = provided
-	}
-
-	for _, className := range tmpArray {
+	for _, className := range getSortedClassNamesForModule(module) {
 		var class = parser.CurrentState.ClassMap[className]
-
-		//all class enums
-		for _, enum := range class.Enums {
-			for _, value := range enum.Values {
-				if converter.EnumNeedsCppGlue(value.Value) {
-					fmt.Fprintf(bb, "%v\n\n", cppEnum(enum, value))
-				}
-			}
-		}
 
 		if classIsSupported(class) {
 			var implementedVirtuals = make(map[string]struct{})
@@ -138,7 +94,7 @@ func CppTemplate(module string) []byte {
 				//all class functions
 				for _, function := range class.Functions {
 					implementedVirtuals[fmt.Sprint(function.Fullname, function.OverloadNumber)] = struct{}{}
-					if functionIsSupported(class, function) && !strings.Contains(function.Meta, "constructor") {
+					if functionIsSupported(class, function) {
 						if function.Virtual == parser.IMPURE || function.Virtual == parser.PURE || function.Meta == parser.SIGNAL || function.Meta == parser.SLOT {
 							if !(module == parser.MOC && function.Meta == parser.SLOT) {
 								fmt.Fprintf(bb, "\t%v\n", cppFunctionCallback(function))
@@ -154,12 +110,12 @@ func CppTemplate(module string) []byte {
 
 						for _, function := range parentClass.Functions {
 							if _, exists := implementedVirtuals[fmt.Sprint(fmt.Sprintf("%v::%v", class.Name, function.Name), function.OverloadNumber)]; !exists {
-								implementedVirtuals[fmt.Sprint(fmt.Sprintf("%v::%v", class.Name, function.Name), function.OverloadNumber)] = struct{}{}
-								if functionIsSupported(class, function) && !strings.Contains(function.Meta, "structor") {
+								if functionIsSupported(class, function) && function.Meta != parser.DESTRUCTOR {
 
 									var function = *function
 									function.Fullname = fmt.Sprintf("%v::%v", class.Name, function.Name)
 									if function.Virtual == parser.IMPURE || function.Virtual == parser.PURE || function.Meta == parser.SLOT {
+										implementedVirtuals[fmt.Sprint(fmt.Sprintf("%v::%v", class.Name, function.Name), function.OverloadNumber)] = struct{}{}
 										fmt.Fprintf(bb, "\t%v\n", cppFunctionCallback(&function))
 									}
 
@@ -193,10 +149,9 @@ func CppTemplate(module string) []byte {
 			if class.Module == parser.MOC {
 				fmt.Fprintf(bb, "Q_DECLARE_METATYPE(%v*)\n\n", class.Name)
 			}
-
-			test(bb, class, cppFunction, "\n\n")
-
 		}
+
+		cTemplate(bb, class, cppEnum, cppFunction, "\n\n")
 
 	}
 
@@ -216,34 +171,7 @@ func preambleCpp(module string, input []byte) []byte {
 #include "_cgo_export.h"
 
 `,
-		func() string {
-			switch {
-			case parser.CurrentState.Minimal:
-				{
-					return "// +build minimal"
-				}
-
-			case module == parser.MOC:
-				{
-					return ""
-				}
-
-			case module == "QtAndroidExtras":
-				{
-					return "// +build android"
-				}
-
-			case module == "QtSailfish":
-				{
-					return "// +build sailfish sailfish_emulator"
-				}
-
-			default:
-				{
-					return "// +build !minimal"
-				}
-			}
-		}(),
+		buildTags(module),
 
 		func() string {
 			switch module {

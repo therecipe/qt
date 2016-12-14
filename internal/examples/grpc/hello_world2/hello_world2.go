@@ -17,7 +17,7 @@ type HelloClientRPC struct {
 }
 
 type HelloClientFactory struct {
-	HelloClientRPC //TODO: only needed until a bug is fixed (should be core.QObject)
+	core.QObject
 
 	_ func(msg string)      `signal:"info"`
 	_ func(err, msg string) `signal:"error"`

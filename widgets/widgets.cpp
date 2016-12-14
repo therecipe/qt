@@ -170,6 +170,7 @@
 #include <QObject>
 #include <QPagedPaintDevice>
 #include <QPaintDevice>
+#include <QPaintEngine>
 #include <QPaintEvent>
 #include <QPainter>
 #include <QPainterPath>
@@ -378,6 +379,8 @@ public:
 	void disconnectNotify(const QMetaMethod & sign) { callbackQAbstractButton_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQAbstractButton_EventFilter(this, watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQAbstractButton_MetaObject(const_cast<MyQAbstractButton*>(this))); };
+	int metric(QPaintDevice::PaintDeviceMetric metric) const { return callbackQAbstractButton_Metric(const_cast<MyQAbstractButton*>(this), metric); };
+	QPaintEngine * paintEngine() const { return static_cast<QPaintEngine*>(callbackQAbstractButton_PaintEngine(const_cast<MyQAbstractButton*>(this))); };
 };
 
 char QAbstractButton_AutoExclusive(void* ptr)
@@ -1217,6 +1220,26 @@ void* QAbstractButton_MetaObjectDefault(void* ptr)
 	return const_cast<QMetaObject*>(static_cast<QAbstractButton*>(ptr)->QAbstractButton::metaObject());
 }
 
+int QAbstractButton_Metric(void* ptr, long long metric)
+{
+	return static_cast<QAbstractButton*>(ptr)->metric(static_cast<QPaintDevice::PaintDeviceMetric>(metric));
+}
+
+int QAbstractButton_MetricDefault(void* ptr, long long metric)
+{
+	return static_cast<QAbstractButton*>(ptr)->QAbstractButton::metric(static_cast<QPaintDevice::PaintDeviceMetric>(metric));
+}
+
+void* QAbstractButton_PaintEngine(void* ptr)
+{
+	return static_cast<QAbstractButton*>(ptr)->paintEngine();
+}
+
+void* QAbstractButton_PaintEngineDefault(void* ptr)
+{
+	return static_cast<QAbstractButton*>(ptr)->QAbstractButton::paintEngine();
+}
+
 class MyQAbstractGraphicsShapeItem: public QAbstractGraphicsShapeItem
 {
 public:
@@ -1966,6 +1989,8 @@ public:
 	void disconnectNotify(const QMetaMethod & sign) { callbackQAbstractItemView_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQAbstractItemView_EventFilter(this, watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQAbstractItemView_MetaObject(const_cast<MyQAbstractItemView*>(this))); };
+	int metric(QPaintDevice::PaintDeviceMetric metric) const { return callbackQAbstractItemView_Metric(const_cast<MyQAbstractItemView*>(this), metric); };
+	QPaintEngine * paintEngine() const { return static_cast<QPaintEngine*>(callbackQAbstractItemView_PaintEngine(const_cast<MyQAbstractItemView*>(this))); };
 };
 
 char QAbstractItemView_AlternatingRowColors(void* ptr)
@@ -3300,6 +3325,26 @@ void* QAbstractItemView_MetaObjectDefault(void* ptr)
 	return const_cast<QMetaObject*>(static_cast<QAbstractItemView*>(ptr)->QAbstractItemView::metaObject());
 }
 
+int QAbstractItemView_Metric(void* ptr, long long metric)
+{
+	return static_cast<QAbstractItemView*>(ptr)->metric(static_cast<QPaintDevice::PaintDeviceMetric>(metric));
+}
+
+int QAbstractItemView_MetricDefault(void* ptr, long long metric)
+{
+	return static_cast<QAbstractItemView*>(ptr)->QAbstractItemView::metric(static_cast<QPaintDevice::PaintDeviceMetric>(metric));
+}
+
+void* QAbstractItemView_PaintEngine(void* ptr)
+{
+	return static_cast<QAbstractItemView*>(ptr)->paintEngine();
+}
+
+void* QAbstractItemView_PaintEngineDefault(void* ptr)
+{
+	return static_cast<QAbstractItemView*>(ptr)->QAbstractItemView::paintEngine();
+}
+
 class MyQAbstractScrollArea: public QAbstractScrollArea
 {
 public:
@@ -3369,6 +3414,8 @@ public:
 	void disconnectNotify(const QMetaMethod & sign) { callbackQAbstractScrollArea_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQAbstractScrollArea_EventFilter(this, watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQAbstractScrollArea_MetaObject(const_cast<MyQAbstractScrollArea*>(this))); };
+	int metric(QPaintDevice::PaintDeviceMetric metric) const { return callbackQAbstractScrollArea_Metric(const_cast<MyQAbstractScrollArea*>(this), metric); };
+	QPaintEngine * paintEngine() const { return static_cast<QPaintEngine*>(callbackQAbstractScrollArea_PaintEngine(const_cast<MyQAbstractScrollArea*>(this))); };
 };
 
 void QAbstractScrollArea_DragEnterEvent(void* ptr, void* event)
@@ -4143,6 +4190,26 @@ void* QAbstractScrollArea_MetaObjectDefault(void* ptr)
 	return const_cast<QMetaObject*>(static_cast<QAbstractScrollArea*>(ptr)->QAbstractScrollArea::metaObject());
 }
 
+int QAbstractScrollArea_Metric(void* ptr, long long metric)
+{
+	return static_cast<QAbstractScrollArea*>(ptr)->metric(static_cast<QPaintDevice::PaintDeviceMetric>(metric));
+}
+
+int QAbstractScrollArea_MetricDefault(void* ptr, long long metric)
+{
+	return static_cast<QAbstractScrollArea*>(ptr)->QAbstractScrollArea::metric(static_cast<QPaintDevice::PaintDeviceMetric>(metric));
+}
+
+void* QAbstractScrollArea_PaintEngine(void* ptr)
+{
+	return static_cast<QAbstractScrollArea*>(ptr)->paintEngine();
+}
+
+void* QAbstractScrollArea_PaintEngineDefault(void* ptr)
+{
+	return static_cast<QAbstractScrollArea*>(ptr)->QAbstractScrollArea::paintEngine();
+}
+
 class MyQAbstractSlider: public QAbstractSlider
 {
 public:
@@ -4217,6 +4284,8 @@ public:
 	void disconnectNotify(const QMetaMethod & sign) { callbackQAbstractSlider_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQAbstractSlider_EventFilter(this, watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQAbstractSlider_MetaObject(const_cast<MyQAbstractSlider*>(this))); };
+	int metric(QPaintDevice::PaintDeviceMetric metric) const { return callbackQAbstractSlider_Metric(const_cast<MyQAbstractSlider*>(this), metric); };
+	QPaintEngine * paintEngine() const { return static_cast<QPaintEngine*>(callbackQAbstractSlider_PaintEngine(const_cast<MyQAbstractSlider*>(this))); };
 };
 
 char QAbstractSlider_HasTracking(void* ptr)
@@ -5071,6 +5140,26 @@ void* QAbstractSlider_MetaObjectDefault(void* ptr)
 	return const_cast<QMetaObject*>(static_cast<QAbstractSlider*>(ptr)->QAbstractSlider::metaObject());
 }
 
+int QAbstractSlider_Metric(void* ptr, long long metric)
+{
+	return static_cast<QAbstractSlider*>(ptr)->metric(static_cast<QPaintDevice::PaintDeviceMetric>(metric));
+}
+
+int QAbstractSlider_MetricDefault(void* ptr, long long metric)
+{
+	return static_cast<QAbstractSlider*>(ptr)->QAbstractSlider::metric(static_cast<QPaintDevice::PaintDeviceMetric>(metric));
+}
+
+void* QAbstractSlider_PaintEngine(void* ptr)
+{
+	return static_cast<QAbstractSlider*>(ptr)->paintEngine();
+}
+
+void* QAbstractSlider_PaintEngineDefault(void* ptr)
+{
+	return static_cast<QAbstractSlider*>(ptr)->QAbstractSlider::paintEngine();
+}
+
 class MyQAbstractSpinBox: public QAbstractSpinBox
 {
 public:
@@ -5144,6 +5233,8 @@ public:
 	void disconnectNotify(const QMetaMethod & sign) { callbackQAbstractSpinBox_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQAbstractSpinBox_EventFilter(this, watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQAbstractSpinBox_MetaObject(const_cast<MyQAbstractSpinBox*>(this))); };
+	int metric(QPaintDevice::PaintDeviceMetric metric) const { return callbackQAbstractSpinBox_Metric(const_cast<MyQAbstractSpinBox*>(this), metric); };
+	QPaintEngine * paintEngine() const { return static_cast<QPaintEngine*>(callbackQAbstractSpinBox_PaintEngine(const_cast<MyQAbstractSpinBox*>(this))); };
 };
 
 long long QAbstractSpinBox_Alignment(void* ptr)
@@ -5976,6 +6067,26 @@ void* QAbstractSpinBox_MetaObject(void* ptr)
 void* QAbstractSpinBox_MetaObjectDefault(void* ptr)
 {
 	return const_cast<QMetaObject*>(static_cast<QAbstractSpinBox*>(ptr)->QAbstractSpinBox::metaObject());
+}
+
+int QAbstractSpinBox_Metric(void* ptr, long long metric)
+{
+	return static_cast<QAbstractSpinBox*>(ptr)->metric(static_cast<QPaintDevice::PaintDeviceMetric>(metric));
+}
+
+int QAbstractSpinBox_MetricDefault(void* ptr, long long metric)
+{
+	return static_cast<QAbstractSpinBox*>(ptr)->QAbstractSpinBox::metric(static_cast<QPaintDevice::PaintDeviceMetric>(metric));
+}
+
+void* QAbstractSpinBox_PaintEngine(void* ptr)
+{
+	return static_cast<QAbstractSpinBox*>(ptr)->paintEngine();
+}
+
+void* QAbstractSpinBox_PaintEngineDefault(void* ptr)
+{
+	return static_cast<QAbstractSpinBox*>(ptr)->QAbstractSpinBox::paintEngine();
 }
 
 struct QtWidgets_PackedString QAccessibleWidget_ActionNames(void* ptr)
@@ -7300,6 +7411,7 @@ public:
 	bool isEmpty() const { return callbackQBoxLayout_IsEmpty(const_cast<MyQBoxLayout*>(this)) != 0; };
 	QLayout * layout() { return static_cast<QLayout*>(callbackQBoxLayout_Layout(this)); };
 	void timerEvent(QTimerEvent * event) { callbackQBoxLayout_TimerEvent(this, event); };
+	void childEvent(QChildEvent * event) { callbackQBoxLayout_ChildEvent(this, event); };
 	void connectNotify(const QMetaMethod & sign) { callbackQBoxLayout_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	void customEvent(QEvent * event) { callbackQBoxLayout_CustomEvent(this, event); };
 	void deleteLater() { callbackQBoxLayout_DeleteLater(this); };
@@ -7609,6 +7721,16 @@ void QBoxLayout_TimerEvent(void* ptr, void* event)
 void QBoxLayout_TimerEventDefault(void* ptr, void* event)
 {
 	static_cast<QBoxLayout*>(ptr)->QBoxLayout::timerEvent(static_cast<QTimerEvent*>(event));
+}
+
+void QBoxLayout_ChildEvent(void* ptr, void* event)
+{
+	static_cast<QBoxLayout*>(ptr)->childEvent(static_cast<QChildEvent*>(event));
+}
+
+void QBoxLayout_ChildEventDefault(void* ptr, void* event)
+{
+	static_cast<QBoxLayout*>(ptr)->QBoxLayout::childEvent(static_cast<QChildEvent*>(event));
 }
 
 void QBoxLayout_ConnectNotify(void* ptr, void* sign)
@@ -8079,6 +8201,8 @@ public:
 	void deleteLater() { callbackQCalendarWidget_DeleteLater(this); };
 	void disconnectNotify(const QMetaMethod & sign) { callbackQCalendarWidget_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQCalendarWidget_MetaObject(const_cast<MyQCalendarWidget*>(this))); };
+	int metric(QPaintDevice::PaintDeviceMetric metric) const { return callbackQCalendarWidget_Metric(const_cast<MyQCalendarWidget*>(this), metric); };
+	QPaintEngine * paintEngine() const { return static_cast<QPaintEngine*>(callbackQCalendarWidget_PaintEngine(const_cast<MyQCalendarWidget*>(this))); };
 };
 
 int QCalendarWidget_DateEditAcceptDelay(void* ptr)
@@ -8973,6 +9097,26 @@ void* QCalendarWidget_MetaObjectDefault(void* ptr)
 	return const_cast<QMetaObject*>(static_cast<QCalendarWidget*>(ptr)->QCalendarWidget::metaObject());
 }
 
+int QCalendarWidget_Metric(void* ptr, long long metric)
+{
+	return static_cast<QCalendarWidget*>(ptr)->metric(static_cast<QPaintDevice::PaintDeviceMetric>(metric));
+}
+
+int QCalendarWidget_MetricDefault(void* ptr, long long metric)
+{
+	return static_cast<QCalendarWidget*>(ptr)->QCalendarWidget::metric(static_cast<QPaintDevice::PaintDeviceMetric>(metric));
+}
+
+void* QCalendarWidget_PaintEngine(void* ptr)
+{
+	return static_cast<QCalendarWidget*>(ptr)->paintEngine();
+}
+
+void* QCalendarWidget_PaintEngineDefault(void* ptr)
+{
+	return static_cast<QCalendarWidget*>(ptr)->QCalendarWidget::paintEngine();
+}
+
 class MyQCheckBox: public QCheckBox
 {
 public:
@@ -9040,6 +9184,7 @@ public:
 	void update() { callbackQCheckBox_Update(this); };
 	void updateMicroFocus() { callbackQCheckBox_UpdateMicroFocus(this); };
 	void wheelEvent(QWheelEvent * event) { callbackQCheckBox_WheelEvent(this, event); };
+	void timerEvent(QTimerEvent * event) { callbackQCheckBox_TimerEvent(this, event); };
 	void childEvent(QChildEvent * event) { callbackQCheckBox_ChildEvent(this, event); };
 	void connectNotify(const QMetaMethod & sign) { callbackQCheckBox_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	void customEvent(QEvent * event) { callbackQCheckBox_CustomEvent(this, event); };
@@ -9047,6 +9192,8 @@ public:
 	void disconnectNotify(const QMetaMethod & sign) { callbackQCheckBox_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQCheckBox_EventFilter(this, watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQCheckBox_MetaObject(const_cast<MyQCheckBox*>(this))); };
+	int metric(QPaintDevice::PaintDeviceMetric metric) const { return callbackQCheckBox_Metric(const_cast<MyQCheckBox*>(this), metric); };
+	QPaintEngine * paintEngine() const { return static_cast<QPaintEngine*>(callbackQCheckBox_PaintEngine(const_cast<MyQCheckBox*>(this))); };
 };
 
 char QCheckBox_IsTristate(void* ptr)
@@ -9721,6 +9868,16 @@ void QCheckBox_WheelEventDefault(void* ptr, void* event)
 	static_cast<QCheckBox*>(ptr)->QCheckBox::wheelEvent(static_cast<QWheelEvent*>(event));
 }
 
+void QCheckBox_TimerEvent(void* ptr, void* event)
+{
+	static_cast<QCheckBox*>(ptr)->timerEvent(static_cast<QTimerEvent*>(event));
+}
+
+void QCheckBox_TimerEventDefault(void* ptr, void* event)
+{
+	static_cast<QCheckBox*>(ptr)->QCheckBox::timerEvent(static_cast<QTimerEvent*>(event));
+}
+
 void QCheckBox_ChildEvent(void* ptr, void* event)
 {
 	static_cast<QCheckBox*>(ptr)->childEvent(static_cast<QChildEvent*>(event));
@@ -9789,6 +9946,26 @@ void* QCheckBox_MetaObject(void* ptr)
 void* QCheckBox_MetaObjectDefault(void* ptr)
 {
 	return const_cast<QMetaObject*>(static_cast<QCheckBox*>(ptr)->QCheckBox::metaObject());
+}
+
+int QCheckBox_Metric(void* ptr, long long metric)
+{
+	return static_cast<QCheckBox*>(ptr)->metric(static_cast<QPaintDevice::PaintDeviceMetric>(metric));
+}
+
+int QCheckBox_MetricDefault(void* ptr, long long metric)
+{
+	return static_cast<QCheckBox*>(ptr)->QCheckBox::metric(static_cast<QPaintDevice::PaintDeviceMetric>(metric));
+}
+
+void* QCheckBox_PaintEngine(void* ptr)
+{
+	return static_cast<QCheckBox*>(ptr)->paintEngine();
+}
+
+void* QCheckBox_PaintEngineDefault(void* ptr)
+{
+	return static_cast<QCheckBox*>(ptr)->QCheckBox::paintEngine();
 }
 
 class MyQColorDialog: public QColorDialog
@@ -9861,7 +10038,11 @@ public:
 	void customEvent(QEvent * event) { callbackQColorDialog_CustomEvent(this, event); };
 	void deleteLater() { callbackQColorDialog_DeleteLater(this); };
 	void disconnectNotify(const QMetaMethod & sign) { callbackQColorDialog_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
+	bool event(QEvent * e) { return callbackQColorDialog_Event(this, e) != 0; };
+	bool eventFilter(QObject * watched, QEvent * event) { return callbackQColorDialog_EventFilter(this, watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQColorDialog_MetaObject(const_cast<MyQColorDialog*>(this))); };
+	int metric(QPaintDevice::PaintDeviceMetric metric) const { return callbackQColorDialog_Metric(const_cast<MyQColorDialog*>(this), metric); };
+	QPaintEngine * paintEngine() const { return static_cast<QPaintEngine*>(callbackQColorDialog_PaintEngine(const_cast<MyQColorDialog*>(this))); };
 };
 
 void* QColorDialog_CurrentColor(void* ptr)
@@ -10613,6 +10794,26 @@ void QColorDialog_DisconnectNotifyDefault(void* ptr, void* sign)
 	static_cast<QColorDialog*>(ptr)->QColorDialog::disconnectNotify(*static_cast<QMetaMethod*>(sign));
 }
 
+char QColorDialog_Event(void* ptr, void* e)
+{
+	return static_cast<QColorDialog*>(ptr)->event(static_cast<QEvent*>(e));
+}
+
+char QColorDialog_EventDefault(void* ptr, void* e)
+{
+	return static_cast<QColorDialog*>(ptr)->QColorDialog::event(static_cast<QEvent*>(e));
+}
+
+char QColorDialog_EventFilter(void* ptr, void* watched, void* event)
+{
+	return static_cast<QColorDialog*>(ptr)->eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+}
+
+char QColorDialog_EventFilterDefault(void* ptr, void* watched, void* event)
+{
+	return static_cast<QColorDialog*>(ptr)->QColorDialog::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+}
+
 void* QColorDialog_MetaObject(void* ptr)
 {
 	return const_cast<QMetaObject*>(static_cast<QColorDialog*>(ptr)->metaObject());
@@ -10621,6 +10822,26 @@ void* QColorDialog_MetaObject(void* ptr)
 void* QColorDialog_MetaObjectDefault(void* ptr)
 {
 	return const_cast<QMetaObject*>(static_cast<QColorDialog*>(ptr)->QColorDialog::metaObject());
+}
+
+int QColorDialog_Metric(void* ptr, long long metric)
+{
+	return static_cast<QColorDialog*>(ptr)->metric(static_cast<QPaintDevice::PaintDeviceMetric>(metric));
+}
+
+int QColorDialog_MetricDefault(void* ptr, long long metric)
+{
+	return static_cast<QColorDialog*>(ptr)->QColorDialog::metric(static_cast<QPaintDevice::PaintDeviceMetric>(metric));
+}
+
+void* QColorDialog_PaintEngine(void* ptr)
+{
+	return static_cast<QColorDialog*>(ptr)->paintEngine();
+}
+
+void* QColorDialog_PaintEngineDefault(void* ptr)
+{
+	return static_cast<QColorDialog*>(ptr)->QColorDialog::paintEngine();
 }
 
 void* QColormap_NewQColormap(void* colormap)
@@ -10760,13 +10981,17 @@ public:
 	void showNormal() { callbackQColumnView_ShowNormal(this); };
 	void tabletEvent(QTabletEvent * event) { callbackQColumnView_TabletEvent(this, event); };
 	void updateMicroFocus() { callbackQColumnView_UpdateMicroFocus(this); };
+	void timerEvent(QTimerEvent * event) { callbackQColumnView_TimerEvent(this, event); };
 	void childEvent(QChildEvent * event) { callbackQColumnView_ChildEvent(this, event); };
 	void connectNotify(const QMetaMethod & sign) { callbackQColumnView_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	void customEvent(QEvent * event) { callbackQColumnView_CustomEvent(this, event); };
 	void deleteLater() { callbackQColumnView_DeleteLater(this); };
 	void disconnectNotify(const QMetaMethod & sign) { callbackQColumnView_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
+	bool event(QEvent * e) { return callbackQColumnView_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQColumnView_EventFilter(this, watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQColumnView_MetaObject(const_cast<MyQColumnView*>(this))); };
+	int metric(QPaintDevice::PaintDeviceMetric metric) const { return callbackQColumnView_Metric(const_cast<MyQColumnView*>(this), metric); };
+	QPaintEngine * paintEngine() const { return static_cast<QPaintEngine*>(callbackQColumnView_PaintEngine(const_cast<MyQColumnView*>(this))); };
 };
 
 char QColumnView_ResizeGripsVisible(void* ptr)
@@ -11741,6 +11966,16 @@ void QColumnView_UpdateMicroFocusDefault(void* ptr)
 	static_cast<QColumnView*>(ptr)->QColumnView::updateMicroFocus();
 }
 
+void QColumnView_TimerEvent(void* ptr, void* event)
+{
+	static_cast<QColumnView*>(ptr)->timerEvent(static_cast<QTimerEvent*>(event));
+}
+
+void QColumnView_TimerEventDefault(void* ptr, void* event)
+{
+	static_cast<QColumnView*>(ptr)->QColumnView::timerEvent(static_cast<QTimerEvent*>(event));
+}
+
 void QColumnView_ChildEvent(void* ptr, void* event)
 {
 	static_cast<QColumnView*>(ptr)->childEvent(static_cast<QChildEvent*>(event));
@@ -11791,6 +12026,16 @@ void QColumnView_DisconnectNotifyDefault(void* ptr, void* sign)
 	static_cast<QColumnView*>(ptr)->QColumnView::disconnectNotify(*static_cast<QMetaMethod*>(sign));
 }
 
+char QColumnView_Event(void* ptr, void* e)
+{
+	return static_cast<QColumnView*>(ptr)->event(static_cast<QEvent*>(e));
+}
+
+char QColumnView_EventDefault(void* ptr, void* e)
+{
+	return static_cast<QColumnView*>(ptr)->QColumnView::event(static_cast<QEvent*>(e));
+}
+
 char QColumnView_EventFilter(void* ptr, void* watched, void* event)
 {
 	return static_cast<QColumnView*>(ptr)->eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
@@ -11809,6 +12054,26 @@ void* QColumnView_MetaObject(void* ptr)
 void* QColumnView_MetaObjectDefault(void* ptr)
 {
 	return const_cast<QMetaObject*>(static_cast<QColumnView*>(ptr)->QColumnView::metaObject());
+}
+
+int QColumnView_Metric(void* ptr, long long metric)
+{
+	return static_cast<QColumnView*>(ptr)->metric(static_cast<QPaintDevice::PaintDeviceMetric>(metric));
+}
+
+int QColumnView_MetricDefault(void* ptr, long long metric)
+{
+	return static_cast<QColumnView*>(ptr)->QColumnView::metric(static_cast<QPaintDevice::PaintDeviceMetric>(metric));
+}
+
+void* QColumnView_PaintEngine(void* ptr)
+{
+	return static_cast<QColumnView*>(ptr)->paintEngine();
+}
+
+void* QColumnView_PaintEngineDefault(void* ptr)
+{
+	return static_cast<QColumnView*>(ptr)->QColumnView::paintEngine();
 }
 
 class MyQComboBox: public QComboBox
@@ -11891,6 +12156,8 @@ public:
 	void disconnectNotify(const QMetaMethod & sign) { callbackQComboBox_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQComboBox_EventFilter(this, watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQComboBox_MetaObject(const_cast<MyQComboBox*>(this))); };
+	int metric(QPaintDevice::PaintDeviceMetric metric) const { return callbackQComboBox_Metric(const_cast<MyQComboBox*>(this), metric); };
+	QPaintEngine * paintEngine() const { return static_cast<QPaintEngine*>(callbackQComboBox_PaintEngine(const_cast<MyQComboBox*>(this))); };
 };
 
 int QComboBox_Count(void* ptr)
@@ -12960,6 +13227,26 @@ void* QComboBox_MetaObjectDefault(void* ptr)
 	return const_cast<QMetaObject*>(static_cast<QComboBox*>(ptr)->QComboBox::metaObject());
 }
 
+int QComboBox_Metric(void* ptr, long long metric)
+{
+	return static_cast<QComboBox*>(ptr)->metric(static_cast<QPaintDevice::PaintDeviceMetric>(metric));
+}
+
+int QComboBox_MetricDefault(void* ptr, long long metric)
+{
+	return static_cast<QComboBox*>(ptr)->QComboBox::metric(static_cast<QPaintDevice::PaintDeviceMetric>(metric));
+}
+
+void* QComboBox_PaintEngine(void* ptr)
+{
+	return static_cast<QComboBox*>(ptr)->paintEngine();
+}
+
+void* QComboBox_PaintEngineDefault(void* ptr)
+{
+	return static_cast<QComboBox*>(ptr)->QComboBox::paintEngine();
+}
+
 class MyQCommandLinkButton: public QCommandLinkButton
 {
 public:
@@ -13028,6 +13315,7 @@ public:
 	void update() { callbackQCommandLinkButton_Update(this); };
 	void updateMicroFocus() { callbackQCommandLinkButton_UpdateMicroFocus(this); };
 	void wheelEvent(QWheelEvent * event) { callbackQCommandLinkButton_WheelEvent(this, event); };
+	void timerEvent(QTimerEvent * event) { callbackQCommandLinkButton_TimerEvent(this, event); };
 	void childEvent(QChildEvent * event) { callbackQCommandLinkButton_ChildEvent(this, event); };
 	void connectNotify(const QMetaMethod & sign) { callbackQCommandLinkButton_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	void customEvent(QEvent * event) { callbackQCommandLinkButton_CustomEvent(this, event); };
@@ -13035,6 +13323,8 @@ public:
 	void disconnectNotify(const QMetaMethod & sign) { callbackQCommandLinkButton_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQCommandLinkButton_EventFilter(this, watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQCommandLinkButton_MetaObject(const_cast<MyQCommandLinkButton*>(this))); };
+	int metric(QPaintDevice::PaintDeviceMetric metric) const { return callbackQCommandLinkButton_Metric(const_cast<MyQCommandLinkButton*>(this), metric); };
+	QPaintEngine * paintEngine() const { return static_cast<QPaintEngine*>(callbackQCommandLinkButton_PaintEngine(const_cast<MyQCommandLinkButton*>(this))); };
 };
 
 struct QtWidgets_PackedString QCommandLinkButton_Description(void* ptr)
@@ -13694,6 +13984,16 @@ void QCommandLinkButton_WheelEventDefault(void* ptr, void* event)
 	static_cast<QCommandLinkButton*>(ptr)->QCommandLinkButton::wheelEvent(static_cast<QWheelEvent*>(event));
 }
 
+void QCommandLinkButton_TimerEvent(void* ptr, void* event)
+{
+	static_cast<QCommandLinkButton*>(ptr)->timerEvent(static_cast<QTimerEvent*>(event));
+}
+
+void QCommandLinkButton_TimerEventDefault(void* ptr, void* event)
+{
+	static_cast<QCommandLinkButton*>(ptr)->QCommandLinkButton::timerEvent(static_cast<QTimerEvent*>(event));
+}
+
 void QCommandLinkButton_ChildEvent(void* ptr, void* event)
 {
 	static_cast<QCommandLinkButton*>(ptr)->childEvent(static_cast<QChildEvent*>(event));
@@ -13762,6 +14062,26 @@ void* QCommandLinkButton_MetaObject(void* ptr)
 void* QCommandLinkButton_MetaObjectDefault(void* ptr)
 {
 	return const_cast<QMetaObject*>(static_cast<QCommandLinkButton*>(ptr)->QCommandLinkButton::metaObject());
+}
+
+int QCommandLinkButton_Metric(void* ptr, long long metric)
+{
+	return static_cast<QCommandLinkButton*>(ptr)->metric(static_cast<QPaintDevice::PaintDeviceMetric>(metric));
+}
+
+int QCommandLinkButton_MetricDefault(void* ptr, long long metric)
+{
+	return static_cast<QCommandLinkButton*>(ptr)->QCommandLinkButton::metric(static_cast<QPaintDevice::PaintDeviceMetric>(metric));
+}
+
+void* QCommandLinkButton_PaintEngine(void* ptr)
+{
+	return static_cast<QCommandLinkButton*>(ptr)->paintEngine();
+}
+
+void* QCommandLinkButton_PaintEngineDefault(void* ptr)
+{
+	return static_cast<QCommandLinkButton*>(ptr)->QCommandLinkButton::paintEngine();
 }
 
 class MyQCommonStyle: public QCommonStyle
@@ -15444,6 +15764,16 @@ void QDateEdit_UpdateMicroFocusDefault(void* ptr)
 	static_cast<QDateEdit*>(ptr)->QDateEdit::updateMicroFocus();
 }
 
+void QDateEdit_TimerEvent(void* ptr, void* event)
+{
+	static_cast<QDateEdit*>(ptr)->timerEvent(static_cast<QTimerEvent*>(event));
+}
+
+void QDateEdit_TimerEventDefault(void* ptr, void* event)
+{
+	static_cast<QDateEdit*>(ptr)->QDateEdit::timerEvent(static_cast<QTimerEvent*>(event));
+}
+
 void QDateEdit_ChildEvent(void* ptr, void* event)
 {
 	static_cast<QDateEdit*>(ptr)->childEvent(static_cast<QChildEvent*>(event));
@@ -15494,6 +15824,16 @@ void QDateEdit_DisconnectNotifyDefault(void* ptr, void* sign)
 	static_cast<QDateEdit*>(ptr)->QDateEdit::disconnectNotify(*static_cast<QMetaMethod*>(sign));
 }
 
+char QDateEdit_Event(void* ptr, void* e)
+{
+	return static_cast<QDateEdit*>(ptr)->event(static_cast<QEvent*>(e));
+}
+
+char QDateEdit_EventDefault(void* ptr, void* e)
+{
+	return static_cast<QDateEdit*>(ptr)->QDateEdit::event(static_cast<QEvent*>(e));
+}
+
 char QDateEdit_EventFilter(void* ptr, void* watched, void* event)
 {
 	return static_cast<QDateEdit*>(ptr)->eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
@@ -15512,6 +15852,26 @@ void* QDateEdit_MetaObject(void* ptr)
 void* QDateEdit_MetaObjectDefault(void* ptr)
 {
 	return const_cast<QMetaObject*>(static_cast<QDateEdit*>(ptr)->QDateEdit::metaObject());
+}
+
+int QDateEdit_Metric(void* ptr, long long metric)
+{
+	return static_cast<QDateEdit*>(ptr)->metric(static_cast<QPaintDevice::PaintDeviceMetric>(metric));
+}
+
+int QDateEdit_MetricDefault(void* ptr, long long metric)
+{
+	return static_cast<QDateEdit*>(ptr)->QDateEdit::metric(static_cast<QPaintDevice::PaintDeviceMetric>(metric));
+}
+
+void* QDateEdit_PaintEngine(void* ptr)
+{
+	return static_cast<QDateEdit*>(ptr)->paintEngine();
+}
+
+void* QDateEdit_PaintEngineDefault(void* ptr)
+{
+	return static_cast<QDateEdit*>(ptr)->QDateEdit::paintEngine();
 }
 
 class MyQDateTimeEdit: public QDateTimeEdit
@@ -15590,6 +15950,7 @@ public:
 	void tabletEvent(QTabletEvent * event) { callbackQDateTimeEdit_TabletEvent(this, event); };
 	void update() { callbackQDateTimeEdit_Update(this); };
 	void updateMicroFocus() { callbackQDateTimeEdit_UpdateMicroFocus(this); };
+	void timerEvent(QTimerEvent * event) { callbackQDateTimeEdit_TimerEvent(this, event); };
 	void childEvent(QChildEvent * event) { callbackQDateTimeEdit_ChildEvent(this, event); };
 	void connectNotify(const QMetaMethod & sign) { callbackQDateTimeEdit_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	void customEvent(QEvent * event) { callbackQDateTimeEdit_CustomEvent(this, event); };
@@ -15597,6 +15958,8 @@ public:
 	void disconnectNotify(const QMetaMethod & sign) { callbackQDateTimeEdit_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQDateTimeEdit_EventFilter(this, watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQDateTimeEdit_MetaObject(const_cast<MyQDateTimeEdit*>(this))); };
+	int metric(QPaintDevice::PaintDeviceMetric metric) const { return callbackQDateTimeEdit_Metric(const_cast<MyQDateTimeEdit*>(this), metric); };
+	QPaintEngine * paintEngine() const { return static_cast<QPaintEngine*>(callbackQDateTimeEdit_PaintEngine(const_cast<MyQDateTimeEdit*>(this))); };
 };
 
 void* QDateTimeEdit_NewQDateTimeEdit3(void* date, void* parent)
@@ -16531,6 +16894,16 @@ void QDateTimeEdit_UpdateMicroFocusDefault(void* ptr)
 	static_cast<QDateTimeEdit*>(ptr)->QDateTimeEdit::updateMicroFocus();
 }
 
+void QDateTimeEdit_TimerEvent(void* ptr, void* event)
+{
+	static_cast<QDateTimeEdit*>(ptr)->timerEvent(static_cast<QTimerEvent*>(event));
+}
+
+void QDateTimeEdit_TimerEventDefault(void* ptr, void* event)
+{
+	static_cast<QDateTimeEdit*>(ptr)->QDateTimeEdit::timerEvent(static_cast<QTimerEvent*>(event));
+}
+
 void QDateTimeEdit_ChildEvent(void* ptr, void* event)
 {
 	static_cast<QDateTimeEdit*>(ptr)->childEvent(static_cast<QChildEvent*>(event));
@@ -16601,6 +16974,26 @@ void* QDateTimeEdit_MetaObjectDefault(void* ptr)
 	return const_cast<QMetaObject*>(static_cast<QDateTimeEdit*>(ptr)->QDateTimeEdit::metaObject());
 }
 
+int QDateTimeEdit_Metric(void* ptr, long long metric)
+{
+	return static_cast<QDateTimeEdit*>(ptr)->metric(static_cast<QPaintDevice::PaintDeviceMetric>(metric));
+}
+
+int QDateTimeEdit_MetricDefault(void* ptr, long long metric)
+{
+	return static_cast<QDateTimeEdit*>(ptr)->QDateTimeEdit::metric(static_cast<QPaintDevice::PaintDeviceMetric>(metric));
+}
+
+void* QDateTimeEdit_PaintEngine(void* ptr)
+{
+	return static_cast<QDateTimeEdit*>(ptr)->paintEngine();
+}
+
+void* QDateTimeEdit_PaintEngineDefault(void* ptr)
+{
+	return static_cast<QDateTimeEdit*>(ptr)->QDateTimeEdit::paintEngine();
+}
+
 class MyQDesktopWidget: public QDesktopWidget
 {
 public:
@@ -16667,8 +17060,11 @@ public:
 	void customEvent(QEvent * event) { callbackQDesktopWidget_CustomEvent(this, event); };
 	void deleteLater() { callbackQDesktopWidget_DeleteLater(this); };
 	void disconnectNotify(const QMetaMethod & sign) { callbackQDesktopWidget_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
+	bool event(QEvent * e) { return callbackQDesktopWidget_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQDesktopWidget_EventFilter(this, watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQDesktopWidget_MetaObject(const_cast<MyQDesktopWidget*>(this))); };
+	int metric(QPaintDevice::PaintDeviceMetric metric) const { return callbackQDesktopWidget_Metric(const_cast<MyQDesktopWidget*>(this), metric); };
+	QPaintEngine * paintEngine() const { return static_cast<QPaintEngine*>(callbackQDesktopWidget_PaintEngine(const_cast<MyQDesktopWidget*>(this))); };
 };
 
 void* QDesktopWidget_AvailableGeometry2(void* ptr, void* widget)
@@ -17383,6 +17779,16 @@ void QDesktopWidget_DisconnectNotifyDefault(void* ptr, void* sign)
 	static_cast<QDesktopWidget*>(ptr)->QDesktopWidget::disconnectNotify(*static_cast<QMetaMethod*>(sign));
 }
 
+char QDesktopWidget_Event(void* ptr, void* e)
+{
+	return static_cast<QDesktopWidget*>(ptr)->event(static_cast<QEvent*>(e));
+}
+
+char QDesktopWidget_EventDefault(void* ptr, void* e)
+{
+	return static_cast<QDesktopWidget*>(ptr)->QDesktopWidget::event(static_cast<QEvent*>(e));
+}
+
 char QDesktopWidget_EventFilter(void* ptr, void* watched, void* event)
 {
 	return static_cast<QDesktopWidget*>(ptr)->eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
@@ -17401,6 +17807,26 @@ void* QDesktopWidget_MetaObject(void* ptr)
 void* QDesktopWidget_MetaObjectDefault(void* ptr)
 {
 	return const_cast<QMetaObject*>(static_cast<QDesktopWidget*>(ptr)->QDesktopWidget::metaObject());
+}
+
+int QDesktopWidget_Metric(void* ptr, long long metric)
+{
+	return static_cast<QDesktopWidget*>(ptr)->metric(static_cast<QPaintDevice::PaintDeviceMetric>(metric));
+}
+
+int QDesktopWidget_MetricDefault(void* ptr, long long metric)
+{
+	return static_cast<QDesktopWidget*>(ptr)->QDesktopWidget::metric(static_cast<QPaintDevice::PaintDeviceMetric>(metric));
+}
+
+void* QDesktopWidget_PaintEngine(void* ptr)
+{
+	return static_cast<QDesktopWidget*>(ptr)->paintEngine();
+}
+
+void* QDesktopWidget_PaintEngineDefault(void* ptr)
+{
+	return static_cast<QDesktopWidget*>(ptr)->QDesktopWidget::paintEngine();
 }
 
 class MyQDial: public QDial
@@ -17466,6 +17892,7 @@ public:
 	void tabletEvent(QTabletEvent * event) { callbackQDial_TabletEvent(this, event); };
 	void update() { callbackQDial_Update(this); };
 	void updateMicroFocus() { callbackQDial_UpdateMicroFocus(this); };
+	void timerEvent(QTimerEvent * event) { callbackQDial_TimerEvent(this, event); };
 	void childEvent(QChildEvent * event) { callbackQDial_ChildEvent(this, event); };
 	void connectNotify(const QMetaMethod & sign) { callbackQDial_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	void customEvent(QEvent * event) { callbackQDial_CustomEvent(this, event); };
@@ -17473,6 +17900,8 @@ public:
 	void disconnectNotify(const QMetaMethod & sign) { callbackQDial_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQDial_EventFilter(this, watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQDial_MetaObject(const_cast<MyQDial*>(this))); };
+	int metric(QPaintDevice::PaintDeviceMetric metric) const { return callbackQDial_Metric(const_cast<MyQDial*>(this), metric); };
+	QPaintEngine * paintEngine() const { return static_cast<QPaintEngine*>(callbackQDial_PaintEngine(const_cast<MyQDial*>(this))); };
 };
 
 int QDial_NotchSize(void* ptr)
@@ -18102,6 +18531,16 @@ void QDial_UpdateMicroFocusDefault(void* ptr)
 	static_cast<QDial*>(ptr)->QDial::updateMicroFocus();
 }
 
+void QDial_TimerEvent(void* ptr, void* event)
+{
+	static_cast<QDial*>(ptr)->timerEvent(static_cast<QTimerEvent*>(event));
+}
+
+void QDial_TimerEventDefault(void* ptr, void* event)
+{
+	static_cast<QDial*>(ptr)->QDial::timerEvent(static_cast<QTimerEvent*>(event));
+}
+
 void QDial_ChildEvent(void* ptr, void* event)
 {
 	static_cast<QDial*>(ptr)->childEvent(static_cast<QChildEvent*>(event));
@@ -18170,6 +18609,26 @@ void* QDial_MetaObject(void* ptr)
 void* QDial_MetaObjectDefault(void* ptr)
 {
 	return const_cast<QMetaObject*>(static_cast<QDial*>(ptr)->QDial::metaObject());
+}
+
+int QDial_Metric(void* ptr, long long metric)
+{
+	return static_cast<QDial*>(ptr)->metric(static_cast<QPaintDevice::PaintDeviceMetric>(metric));
+}
+
+int QDial_MetricDefault(void* ptr, long long metric)
+{
+	return static_cast<QDial*>(ptr)->QDial::metric(static_cast<QPaintDevice::PaintDeviceMetric>(metric));
+}
+
+void* QDial_PaintEngine(void* ptr)
+{
+	return static_cast<QDial*>(ptr)->paintEngine();
+}
+
+void* QDial_PaintEngineDefault(void* ptr)
+{
+	return static_cast<QDial*>(ptr)->QDial::paintEngine();
 }
 
 class MyQDialog: public QDialog
@@ -18244,6 +18703,8 @@ public:
 	void deleteLater() { callbackQDialog_DeleteLater(this); };
 	void disconnectNotify(const QMetaMethod & sign) { callbackQDialog_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQDialog_MetaObject(const_cast<MyQDialog*>(this))); };
+	int metric(QPaintDevice::PaintDeviceMetric metric) const { return callbackQDialog_Metric(const_cast<MyQDialog*>(this), metric); };
+	QPaintEngine * paintEngine() const { return static_cast<QPaintEngine*>(callbackQDialog_PaintEngine(const_cast<MyQDialog*>(this))); };
 };
 
 char QDialog_IsSizeGripEnabled(void* ptr)
@@ -18990,6 +19451,26 @@ void* QDialog_MetaObjectDefault(void* ptr)
 	return const_cast<QMetaObject*>(static_cast<QDialog*>(ptr)->QDialog::metaObject());
 }
 
+int QDialog_Metric(void* ptr, long long metric)
+{
+	return static_cast<QDialog*>(ptr)->metric(static_cast<QPaintDevice::PaintDeviceMetric>(metric));
+}
+
+int QDialog_MetricDefault(void* ptr, long long metric)
+{
+	return static_cast<QDialog*>(ptr)->QDialog::metric(static_cast<QPaintDevice::PaintDeviceMetric>(metric));
+}
+
+void* QDialog_PaintEngine(void* ptr)
+{
+	return static_cast<QDialog*>(ptr)->paintEngine();
+}
+
+void* QDialog_PaintEngineDefault(void* ptr)
+{
+	return static_cast<QDialog*>(ptr)->QDialog::paintEngine();
+}
+
 class MyQDialogButtonBox: public QDialogButtonBox
 {
 public:
@@ -19062,6 +19543,8 @@ public:
 	void disconnectNotify(const QMetaMethod & sign) { callbackQDialogButtonBox_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQDialogButtonBox_EventFilter(this, watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQDialogButtonBox_MetaObject(const_cast<MyQDialogButtonBox*>(this))); };
+	int metric(QPaintDevice::PaintDeviceMetric metric) const { return callbackQDialogButtonBox_Metric(const_cast<MyQDialogButtonBox*>(this), metric); };
+	QPaintEngine * paintEngine() const { return static_cast<QPaintEngine*>(callbackQDialogButtonBox_PaintEngine(const_cast<MyQDialogButtonBox*>(this))); };
 };
 
 char QDialogButtonBox_CenterButtons(void* ptr)
@@ -19846,6 +20329,26 @@ void* QDialogButtonBox_MetaObjectDefault(void* ptr)
 	return const_cast<QMetaObject*>(static_cast<QDialogButtonBox*>(ptr)->QDialogButtonBox::metaObject());
 }
 
+int QDialogButtonBox_Metric(void* ptr, long long metric)
+{
+	return static_cast<QDialogButtonBox*>(ptr)->metric(static_cast<QPaintDevice::PaintDeviceMetric>(metric));
+}
+
+int QDialogButtonBox_MetricDefault(void* ptr, long long metric)
+{
+	return static_cast<QDialogButtonBox*>(ptr)->QDialogButtonBox::metric(static_cast<QPaintDevice::PaintDeviceMetric>(metric));
+}
+
+void* QDialogButtonBox_PaintEngine(void* ptr)
+{
+	return static_cast<QDialogButtonBox*>(ptr)->paintEngine();
+}
+
+void* QDialogButtonBox_PaintEngineDefault(void* ptr)
+{
+	return static_cast<QDialogButtonBox*>(ptr)->QDialogButtonBox::paintEngine();
+}
+
 class MyQDockWidget: public QDockWidget
 {
 public:
@@ -19917,6 +20420,8 @@ public:
 	void disconnectNotify(const QMetaMethod & sign) { callbackQDockWidget_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQDockWidget_EventFilter(this, watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQDockWidget_MetaObject(const_cast<MyQDockWidget*>(this))); };
+	int metric(QPaintDevice::PaintDeviceMetric metric) const { return callbackQDockWidget_Metric(const_cast<MyQDockWidget*>(this), metric); };
+	QPaintEngine * paintEngine() const { return static_cast<QPaintEngine*>(callbackQDockWidget_PaintEngine(const_cast<MyQDockWidget*>(this))); };
 };
 
 long long QDockWidget_AllowedAreas(void* ptr)
@@ -20691,6 +21196,26 @@ void* QDockWidget_MetaObjectDefault(void* ptr)
 	return const_cast<QMetaObject*>(static_cast<QDockWidget*>(ptr)->QDockWidget::metaObject());
 }
 
+int QDockWidget_Metric(void* ptr, long long metric)
+{
+	return static_cast<QDockWidget*>(ptr)->metric(static_cast<QPaintDevice::PaintDeviceMetric>(metric));
+}
+
+int QDockWidget_MetricDefault(void* ptr, long long metric)
+{
+	return static_cast<QDockWidget*>(ptr)->QDockWidget::metric(static_cast<QPaintDevice::PaintDeviceMetric>(metric));
+}
+
+void* QDockWidget_PaintEngine(void* ptr)
+{
+	return static_cast<QDockWidget*>(ptr)->paintEngine();
+}
+
+void* QDockWidget_PaintEngineDefault(void* ptr)
+{
+	return static_cast<QDockWidget*>(ptr)->QDockWidget::paintEngine();
+}
+
 class MyQDoubleSpinBox: public QDoubleSpinBox
 {
 public:
@@ -20761,13 +21286,17 @@ public:
 	void tabletEvent(QTabletEvent * event) { callbackQDoubleSpinBox_TabletEvent(this, event); };
 	void update() { callbackQDoubleSpinBox_Update(this); };
 	void updateMicroFocus() { callbackQDoubleSpinBox_UpdateMicroFocus(this); };
+	void timerEvent(QTimerEvent * event) { callbackQDoubleSpinBox_TimerEvent(this, event); };
 	void childEvent(QChildEvent * event) { callbackQDoubleSpinBox_ChildEvent(this, event); };
 	void connectNotify(const QMetaMethod & sign) { callbackQDoubleSpinBox_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	void customEvent(QEvent * event) { callbackQDoubleSpinBox_CustomEvent(this, event); };
 	void deleteLater() { callbackQDoubleSpinBox_DeleteLater(this); };
 	void disconnectNotify(const QMetaMethod & sign) { callbackQDoubleSpinBox_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
+	bool event(QEvent * e) { return callbackQDoubleSpinBox_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQDoubleSpinBox_EventFilter(this, watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQDoubleSpinBox_MetaObject(const_cast<MyQDoubleSpinBox*>(this))); };
+	int metric(QPaintDevice::PaintDeviceMetric metric) const { return callbackQDoubleSpinBox_Metric(const_cast<MyQDoubleSpinBox*>(this), metric); };
+	QPaintEngine * paintEngine() const { return static_cast<QPaintEngine*>(callbackQDoubleSpinBox_PaintEngine(const_cast<MyQDoubleSpinBox*>(this))); };
 };
 
 struct QtWidgets_PackedString QDoubleSpinBox_CleanText(void* ptr)
@@ -21522,6 +22051,16 @@ void QDoubleSpinBox_UpdateMicroFocusDefault(void* ptr)
 	static_cast<QDoubleSpinBox*>(ptr)->QDoubleSpinBox::updateMicroFocus();
 }
 
+void QDoubleSpinBox_TimerEvent(void* ptr, void* event)
+{
+	static_cast<QDoubleSpinBox*>(ptr)->timerEvent(static_cast<QTimerEvent*>(event));
+}
+
+void QDoubleSpinBox_TimerEventDefault(void* ptr, void* event)
+{
+	static_cast<QDoubleSpinBox*>(ptr)->QDoubleSpinBox::timerEvent(static_cast<QTimerEvent*>(event));
+}
+
 void QDoubleSpinBox_ChildEvent(void* ptr, void* event)
 {
 	static_cast<QDoubleSpinBox*>(ptr)->childEvent(static_cast<QChildEvent*>(event));
@@ -21572,6 +22111,16 @@ void QDoubleSpinBox_DisconnectNotifyDefault(void* ptr, void* sign)
 	static_cast<QDoubleSpinBox*>(ptr)->QDoubleSpinBox::disconnectNotify(*static_cast<QMetaMethod*>(sign));
 }
 
+char QDoubleSpinBox_Event(void* ptr, void* e)
+{
+	return static_cast<QDoubleSpinBox*>(ptr)->event(static_cast<QEvent*>(e));
+}
+
+char QDoubleSpinBox_EventDefault(void* ptr, void* e)
+{
+	return static_cast<QDoubleSpinBox*>(ptr)->QDoubleSpinBox::event(static_cast<QEvent*>(e));
+}
+
 char QDoubleSpinBox_EventFilter(void* ptr, void* watched, void* event)
 {
 	return static_cast<QDoubleSpinBox*>(ptr)->eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
@@ -21590,6 +22139,26 @@ void* QDoubleSpinBox_MetaObject(void* ptr)
 void* QDoubleSpinBox_MetaObjectDefault(void* ptr)
 {
 	return const_cast<QMetaObject*>(static_cast<QDoubleSpinBox*>(ptr)->QDoubleSpinBox::metaObject());
+}
+
+int QDoubleSpinBox_Metric(void* ptr, long long metric)
+{
+	return static_cast<QDoubleSpinBox*>(ptr)->metric(static_cast<QPaintDevice::PaintDeviceMetric>(metric));
+}
+
+int QDoubleSpinBox_MetricDefault(void* ptr, long long metric)
+{
+	return static_cast<QDoubleSpinBox*>(ptr)->QDoubleSpinBox::metric(static_cast<QPaintDevice::PaintDeviceMetric>(metric));
+}
+
+void* QDoubleSpinBox_PaintEngine(void* ptr)
+{
+	return static_cast<QDoubleSpinBox*>(ptr)->paintEngine();
+}
+
+void* QDoubleSpinBox_PaintEngineDefault(void* ptr)
+{
+	return static_cast<QDoubleSpinBox*>(ptr)->QDoubleSpinBox::paintEngine();
 }
 
 class MyQErrorMessage: public QErrorMessage
@@ -21662,7 +22231,11 @@ public:
 	void customEvent(QEvent * event) { callbackQErrorMessage_CustomEvent(this, event); };
 	void deleteLater() { callbackQErrorMessage_DeleteLater(this); };
 	void disconnectNotify(const QMetaMethod & sign) { callbackQErrorMessage_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
+	bool event(QEvent * e) { return callbackQErrorMessage_Event(this, e) != 0; };
+	bool eventFilter(QObject * watched, QEvent * event) { return callbackQErrorMessage_EventFilter(this, watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQErrorMessage_MetaObject(const_cast<MyQErrorMessage*>(this))); };
+	int metric(QPaintDevice::PaintDeviceMetric metric) const { return callbackQErrorMessage_Metric(const_cast<MyQErrorMessage*>(this), metric); };
+	QPaintEngine * paintEngine() const { return static_cast<QPaintEngine*>(callbackQErrorMessage_PaintEngine(const_cast<MyQErrorMessage*>(this))); };
 };
 
 void* QErrorMessage_NewQErrorMessage(void* parent)
@@ -22334,6 +22907,26 @@ void QErrorMessage_DisconnectNotifyDefault(void* ptr, void* sign)
 	static_cast<QErrorMessage*>(ptr)->QErrorMessage::disconnectNotify(*static_cast<QMetaMethod*>(sign));
 }
 
+char QErrorMessage_Event(void* ptr, void* e)
+{
+	return static_cast<QErrorMessage*>(ptr)->event(static_cast<QEvent*>(e));
+}
+
+char QErrorMessage_EventDefault(void* ptr, void* e)
+{
+	return static_cast<QErrorMessage*>(ptr)->QErrorMessage::event(static_cast<QEvent*>(e));
+}
+
+char QErrorMessage_EventFilter(void* ptr, void* watched, void* event)
+{
+	return static_cast<QErrorMessage*>(ptr)->eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+}
+
+char QErrorMessage_EventFilterDefault(void* ptr, void* watched, void* event)
+{
+	return static_cast<QErrorMessage*>(ptr)->QErrorMessage::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+}
+
 void* QErrorMessage_MetaObject(void* ptr)
 {
 	return const_cast<QMetaObject*>(static_cast<QErrorMessage*>(ptr)->metaObject());
@@ -22342,6 +22935,26 @@ void* QErrorMessage_MetaObject(void* ptr)
 void* QErrorMessage_MetaObjectDefault(void* ptr)
 {
 	return const_cast<QMetaObject*>(static_cast<QErrorMessage*>(ptr)->QErrorMessage::metaObject());
+}
+
+int QErrorMessage_Metric(void* ptr, long long metric)
+{
+	return static_cast<QErrorMessage*>(ptr)->metric(static_cast<QPaintDevice::PaintDeviceMetric>(metric));
+}
+
+int QErrorMessage_MetricDefault(void* ptr, long long metric)
+{
+	return static_cast<QErrorMessage*>(ptr)->QErrorMessage::metric(static_cast<QPaintDevice::PaintDeviceMetric>(metric));
+}
+
+void* QErrorMessage_PaintEngine(void* ptr)
+{
+	return static_cast<QErrorMessage*>(ptr)->paintEngine();
+}
+
+void* QErrorMessage_PaintEngineDefault(void* ptr)
+{
+	return static_cast<QErrorMessage*>(ptr)->QErrorMessage::paintEngine();
 }
 
 class MyQFileDialog: public QFileDialog
@@ -22420,7 +23033,11 @@ public:
 	void customEvent(QEvent * event) { callbackQFileDialog_CustomEvent(this, event); };
 	void deleteLater() { callbackQFileDialog_DeleteLater(this); };
 	void disconnectNotify(const QMetaMethod & sign) { callbackQFileDialog_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
+	bool event(QEvent * e) { return callbackQFileDialog_Event(this, e) != 0; };
+	bool eventFilter(QObject * watched, QEvent * event) { return callbackQFileDialog_EventFilter(this, watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQFileDialog_MetaObject(const_cast<MyQFileDialog*>(this))); };
+	int metric(QPaintDevice::PaintDeviceMetric metric) const { return callbackQFileDialog_Metric(const_cast<MyQFileDialog*>(this), metric); };
+	QPaintEngine * paintEngine() const { return static_cast<QPaintEngine*>(callbackQFileDialog_PaintEngine(const_cast<MyQFileDialog*>(this))); };
 };
 
 void* QFileDialog_NewQFileDialog(void* parent, long long flags)
@@ -23522,6 +24139,26 @@ void QFileDialog_DisconnectNotifyDefault(void* ptr, void* sign)
 	static_cast<QFileDialog*>(ptr)->QFileDialog::disconnectNotify(*static_cast<QMetaMethod*>(sign));
 }
 
+char QFileDialog_Event(void* ptr, void* e)
+{
+	return static_cast<QFileDialog*>(ptr)->event(static_cast<QEvent*>(e));
+}
+
+char QFileDialog_EventDefault(void* ptr, void* e)
+{
+	return static_cast<QFileDialog*>(ptr)->QFileDialog::event(static_cast<QEvent*>(e));
+}
+
+char QFileDialog_EventFilter(void* ptr, void* watched, void* event)
+{
+	return static_cast<QFileDialog*>(ptr)->eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+}
+
+char QFileDialog_EventFilterDefault(void* ptr, void* watched, void* event)
+{
+	return static_cast<QFileDialog*>(ptr)->QFileDialog::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+}
+
 void* QFileDialog_MetaObject(void* ptr)
 {
 	return const_cast<QMetaObject*>(static_cast<QFileDialog*>(ptr)->metaObject());
@@ -23530,6 +24167,26 @@ void* QFileDialog_MetaObject(void* ptr)
 void* QFileDialog_MetaObjectDefault(void* ptr)
 {
 	return const_cast<QMetaObject*>(static_cast<QFileDialog*>(ptr)->QFileDialog::metaObject());
+}
+
+int QFileDialog_Metric(void* ptr, long long metric)
+{
+	return static_cast<QFileDialog*>(ptr)->metric(static_cast<QPaintDevice::PaintDeviceMetric>(metric));
+}
+
+int QFileDialog_MetricDefault(void* ptr, long long metric)
+{
+	return static_cast<QFileDialog*>(ptr)->QFileDialog::metric(static_cast<QPaintDevice::PaintDeviceMetric>(metric));
+}
+
+void* QFileDialog_PaintEngine(void* ptr)
+{
+	return static_cast<QFileDialog*>(ptr)->paintEngine();
+}
+
+void* QFileDialog_PaintEngineDefault(void* ptr)
+{
+	return static_cast<QFileDialog*>(ptr)->QFileDialog::paintEngine();
 }
 
 class MyQFileIconProvider: public QFileIconProvider
@@ -23597,21 +24254,6 @@ void QFileIconProvider_DestroyQFileIconProviderDefault(void* ptr)
 
 }
 
-int QFileSystemModel_FilePathRole_Type()
-{
-	return QFileSystemModel::FilePathRole;
-}
-
-int QFileSystemModel_FileNameRole_Type()
-{
-	return QFileSystemModel::FileNameRole;
-}
-
-int QFileSystemModel_FilePermissions_Type()
-{
-	return QFileSystemModel::FilePermissions;
-}
-
 class MyQFileSystemModel: public QFileSystemModel
 {
 public:
@@ -23641,6 +24283,21 @@ public:
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQFileSystemModel_EventFilter(this, watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQFileSystemModel_MetaObject(const_cast<MyQFileSystemModel*>(this))); };
 };
+
+int QFileSystemModel_FilePathRole_Type()
+{
+	return QFileSystemModel::FilePathRole;
+}
+
+int QFileSystemModel_FileNameRole_Type()
+{
+	return QFileSystemModel::FileNameRole;
+}
+
+int QFileSystemModel_FilePermissions_Type()
+{
+	return QFileSystemModel::FilePermissions;
+}
 
 void* QFileSystemModel_FileInfo(void* ptr, void* index)
 {
@@ -24203,6 +24860,8 @@ public:
 	void deleteLater() { callbackQFocusFrame_DeleteLater(this); };
 	void disconnectNotify(const QMetaMethod & sign) { callbackQFocusFrame_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQFocusFrame_MetaObject(const_cast<MyQFocusFrame*>(this))); };
+	int metric(QPaintDevice::PaintDeviceMetric metric) const { return callbackQFocusFrame_Metric(const_cast<MyQFocusFrame*>(this), metric); };
+	QPaintEngine * paintEngine() const { return static_cast<QPaintEngine*>(callbackQFocusFrame_PaintEngine(const_cast<MyQFocusFrame*>(this))); };
 };
 
 void* QFocusFrame_NewQFocusFrame(void* parent)
@@ -24842,6 +25501,26 @@ void* QFocusFrame_MetaObjectDefault(void* ptr)
 	return const_cast<QMetaObject*>(static_cast<QFocusFrame*>(ptr)->QFocusFrame::metaObject());
 }
 
+int QFocusFrame_Metric(void* ptr, long long metric)
+{
+	return static_cast<QFocusFrame*>(ptr)->metric(static_cast<QPaintDevice::PaintDeviceMetric>(metric));
+}
+
+int QFocusFrame_MetricDefault(void* ptr, long long metric)
+{
+	return static_cast<QFocusFrame*>(ptr)->QFocusFrame::metric(static_cast<QPaintDevice::PaintDeviceMetric>(metric));
+}
+
+void* QFocusFrame_PaintEngine(void* ptr)
+{
+	return static_cast<QFocusFrame*>(ptr)->paintEngine();
+}
+
+void* QFocusFrame_PaintEngineDefault(void* ptr)
+{
+	return static_cast<QFocusFrame*>(ptr)->QFocusFrame::paintEngine();
+}
+
 class MyQFontComboBox: public QFontComboBox
 {
 public:
@@ -24916,6 +25595,8 @@ public:
 	void disconnectNotify(const QMetaMethod & sign) { callbackQFontComboBox_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQFontComboBox_EventFilter(this, watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQFontComboBox_MetaObject(const_cast<MyQFontComboBox*>(this))); };
+	int metric(QPaintDevice::PaintDeviceMetric metric) const { return callbackQFontComboBox_Metric(const_cast<MyQFontComboBox*>(this), metric); };
+	QPaintEngine * paintEngine() const { return static_cast<QPaintEngine*>(callbackQFontComboBox_PaintEngine(const_cast<MyQFontComboBox*>(this))); };
 };
 
 void* QFontComboBox_CurrentFont(void* ptr)
@@ -25660,6 +26341,26 @@ void* QFontComboBox_MetaObjectDefault(void* ptr)
 	return const_cast<QMetaObject*>(static_cast<QFontComboBox*>(ptr)->QFontComboBox::metaObject());
 }
 
+int QFontComboBox_Metric(void* ptr, long long metric)
+{
+	return static_cast<QFontComboBox*>(ptr)->metric(static_cast<QPaintDevice::PaintDeviceMetric>(metric));
+}
+
+int QFontComboBox_MetricDefault(void* ptr, long long metric)
+{
+	return static_cast<QFontComboBox*>(ptr)->QFontComboBox::metric(static_cast<QPaintDevice::PaintDeviceMetric>(metric));
+}
+
+void* QFontComboBox_PaintEngine(void* ptr)
+{
+	return static_cast<QFontComboBox*>(ptr)->paintEngine();
+}
+
+void* QFontComboBox_PaintEngineDefault(void* ptr)
+{
+	return static_cast<QFontComboBox*>(ptr)->QFontComboBox::paintEngine();
+}
+
 class MyQFontDialog: public QFontDialog
 {
 public:
@@ -25730,7 +26431,11 @@ public:
 	void customEvent(QEvent * event) { callbackQFontDialog_CustomEvent(this, event); };
 	void deleteLater() { callbackQFontDialog_DeleteLater(this); };
 	void disconnectNotify(const QMetaMethod & sign) { callbackQFontDialog_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
+	bool event(QEvent * e) { return callbackQFontDialog_Event(this, e) != 0; };
+	bool eventFilter(QObject * watched, QEvent * event) { return callbackQFontDialog_EventFilter(this, watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQFontDialog_MetaObject(const_cast<MyQFontDialog*>(this))); };
+	int metric(QPaintDevice::PaintDeviceMetric metric) const { return callbackQFontDialog_Metric(const_cast<MyQFontDialog*>(this), metric); };
+	QPaintEngine * paintEngine() const { return static_cast<QPaintEngine*>(callbackQFontDialog_PaintEngine(const_cast<MyQFontDialog*>(this))); };
 };
 
 long long QFontDialog_Options(void* ptr)
@@ -26457,6 +27162,26 @@ void QFontDialog_DisconnectNotifyDefault(void* ptr, void* sign)
 	static_cast<QFontDialog*>(ptr)->QFontDialog::disconnectNotify(*static_cast<QMetaMethod*>(sign));
 }
 
+char QFontDialog_Event(void* ptr, void* e)
+{
+	return static_cast<QFontDialog*>(ptr)->event(static_cast<QEvent*>(e));
+}
+
+char QFontDialog_EventDefault(void* ptr, void* e)
+{
+	return static_cast<QFontDialog*>(ptr)->QFontDialog::event(static_cast<QEvent*>(e));
+}
+
+char QFontDialog_EventFilter(void* ptr, void* watched, void* event)
+{
+	return static_cast<QFontDialog*>(ptr)->eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+}
+
+char QFontDialog_EventFilterDefault(void* ptr, void* watched, void* event)
+{
+	return static_cast<QFontDialog*>(ptr)->QFontDialog::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+}
+
 void* QFontDialog_MetaObject(void* ptr)
 {
 	return const_cast<QMetaObject*>(static_cast<QFontDialog*>(ptr)->metaObject());
@@ -26465,6 +27190,26 @@ void* QFontDialog_MetaObject(void* ptr)
 void* QFontDialog_MetaObjectDefault(void* ptr)
 {
 	return const_cast<QMetaObject*>(static_cast<QFontDialog*>(ptr)->QFontDialog::metaObject());
+}
+
+int QFontDialog_Metric(void* ptr, long long metric)
+{
+	return static_cast<QFontDialog*>(ptr)->metric(static_cast<QPaintDevice::PaintDeviceMetric>(metric));
+}
+
+int QFontDialog_MetricDefault(void* ptr, long long metric)
+{
+	return static_cast<QFontDialog*>(ptr)->QFontDialog::metric(static_cast<QPaintDevice::PaintDeviceMetric>(metric));
+}
+
+void* QFontDialog_PaintEngine(void* ptr)
+{
+	return static_cast<QFontDialog*>(ptr)->paintEngine();
+}
+
+void* QFontDialog_PaintEngineDefault(void* ptr)
+{
+	return static_cast<QFontDialog*>(ptr)->QFontDialog::paintEngine();
 }
 
 class MyQFormLayout: public QFormLayout
@@ -26489,6 +27234,7 @@ public:
 	QLayout * layout() { return static_cast<QLayout*>(callbackQFormLayout_Layout(this)); };
 	QSize maximumSize() const { return *static_cast<QSize*>(callbackQFormLayout_MaximumSize(const_cast<MyQFormLayout*>(this))); };
 	void timerEvent(QTimerEvent * event) { callbackQFormLayout_TimerEvent(this, event); };
+	void childEvent(QChildEvent * event) { callbackQFormLayout_ChildEvent(this, event); };
 	void connectNotify(const QMetaMethod & sign) { callbackQFormLayout_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	void customEvent(QEvent * event) { callbackQFormLayout_CustomEvent(this, event); };
 	void deleteLater() { callbackQFormLayout_DeleteLater(this); };
@@ -26856,6 +27602,16 @@ void QFormLayout_TimerEventDefault(void* ptr, void* event)
 	static_cast<QFormLayout*>(ptr)->QFormLayout::timerEvent(static_cast<QTimerEvent*>(event));
 }
 
+void QFormLayout_ChildEvent(void* ptr, void* event)
+{
+	static_cast<QFormLayout*>(ptr)->childEvent(static_cast<QChildEvent*>(event));
+}
+
+void QFormLayout_ChildEventDefault(void* ptr, void* event)
+{
+	static_cast<QFormLayout*>(ptr)->QFormLayout::childEvent(static_cast<QChildEvent*>(event));
+}
+
 void QFormLayout_ConnectNotify(void* ptr, void* sign)
 {
 	static_cast<QFormLayout*>(ptr)->connectNotify(*static_cast<QMetaMethod*>(sign));
@@ -27021,6 +27777,8 @@ public:
 	void disconnectNotify(const QMetaMethod & sign) { callbackQFrame_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQFrame_EventFilter(this, watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQFrame_MetaObject(const_cast<MyQFrame*>(this))); };
+	int metric(QPaintDevice::PaintDeviceMetric metric) const { return callbackQFrame_Metric(const_cast<MyQFrame*>(this), metric); };
+	QPaintEngine * paintEngine() const { return static_cast<QPaintEngine*>(callbackQFrame_PaintEngine(const_cast<MyQFrame*>(this))); };
 };
 
 void* QFrame_FrameRect(void* ptr)
@@ -27718,6 +28476,26 @@ void* QFrame_MetaObject(void* ptr)
 void* QFrame_MetaObjectDefault(void* ptr)
 {
 	return const_cast<QMetaObject*>(static_cast<QFrame*>(ptr)->QFrame::metaObject());
+}
+
+int QFrame_Metric(void* ptr, long long metric)
+{
+	return static_cast<QFrame*>(ptr)->metric(static_cast<QPaintDevice::PaintDeviceMetric>(metric));
+}
+
+int QFrame_MetricDefault(void* ptr, long long metric)
+{
+	return static_cast<QFrame*>(ptr)->QFrame::metric(static_cast<QPaintDevice::PaintDeviceMetric>(metric));
+}
+
+void* QFrame_PaintEngine(void* ptr)
+{
+	return static_cast<QFrame*>(ptr)->paintEngine();
+}
+
+void* QFrame_PaintEngineDefault(void* ptr)
+{
+	return static_cast<QFrame*>(ptr)->QFrame::paintEngine();
 }
 
 long long QGesture_GestureCancelPolicy(void* ptr)
@@ -37834,6 +38612,7 @@ public:
 	void customEvent(QEvent * event) { callbackQGraphicsTextItem_CustomEvent(this, event); };
 	void deleteLater() { callbackQGraphicsTextItem_DeleteLater(this); };
 	void disconnectNotify(const QMetaMethod & sign) { callbackQGraphicsTextItem_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
+	bool event(QEvent * e) { return callbackQGraphicsTextItem_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQGraphicsTextItem_EventFilter(this, watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQGraphicsTextItem_MetaObject(const_cast<MyQGraphicsTextItem*>(this))); };
 	void advance(int phase) { callbackQGraphicsTextItem_Advance(this, phase); };
@@ -38324,6 +39103,16 @@ void QGraphicsTextItem_DisconnectNotifyDefault(void* ptr, void* sign)
 	static_cast<QGraphicsTextItem*>(ptr)->QGraphicsTextItem::disconnectNotify(*static_cast<QMetaMethod*>(sign));
 }
 
+char QGraphicsTextItem_Event(void* ptr, void* e)
+{
+	return static_cast<QGraphicsTextItem*>(ptr)->event(static_cast<QEvent*>(e));
+}
+
+char QGraphicsTextItem_EventDefault(void* ptr, void* e)
+{
+	return static_cast<QGraphicsTextItem*>(ptr)->QGraphicsTextItem::event(static_cast<QEvent*>(e));
+}
+
 char QGraphicsTextItem_EventFilter(void* ptr, void* watched, void* event)
 {
 	return static_cast<QGraphicsTextItem*>(ptr)->eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
@@ -38606,6 +39395,8 @@ public:
 	void disconnectNotify(const QMetaMethod & sign) { callbackQGraphicsView_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQGraphicsView_EventFilter(this, watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQGraphicsView_MetaObject(const_cast<MyQGraphicsView*>(this))); };
+	int metric(QPaintDevice::PaintDeviceMetric metric) const { return callbackQGraphicsView_Metric(const_cast<MyQGraphicsView*>(this), metric); };
+	QPaintEngine * paintEngine() const { return static_cast<QPaintEngine*>(callbackQGraphicsView_PaintEngine(const_cast<MyQGraphicsView*>(this))); };
 };
 
 long long QGraphicsView_Alignment(void* ptr)
@@ -39700,6 +40491,26 @@ void* QGraphicsView_MetaObjectDefault(void* ptr)
 	return const_cast<QMetaObject*>(static_cast<QGraphicsView*>(ptr)->QGraphicsView::metaObject());
 }
 
+int QGraphicsView_Metric(void* ptr, long long metric)
+{
+	return static_cast<QGraphicsView*>(ptr)->metric(static_cast<QPaintDevice::PaintDeviceMetric>(metric));
+}
+
+int QGraphicsView_MetricDefault(void* ptr, long long metric)
+{
+	return static_cast<QGraphicsView*>(ptr)->QGraphicsView::metric(static_cast<QPaintDevice::PaintDeviceMetric>(metric));
+}
+
+void* QGraphicsView_PaintEngine(void* ptr)
+{
+	return static_cast<QGraphicsView*>(ptr)->paintEngine();
+}
+
+void* QGraphicsView_PaintEngineDefault(void* ptr)
+{
+	return static_cast<QGraphicsView*>(ptr)->QGraphicsView::paintEngine();
+}
+
 class MyQGraphicsWidget: public QGraphicsWidget
 {
 public:
@@ -40720,6 +41531,7 @@ public:
 	bool isEmpty() const { return callbackQGridLayout_IsEmpty(const_cast<MyQGridLayout*>(this)) != 0; };
 	QLayout * layout() { return static_cast<QLayout*>(callbackQGridLayout_Layout(this)); };
 	void timerEvent(QTimerEvent * event) { callbackQGridLayout_TimerEvent(this, event); };
+	void childEvent(QChildEvent * event) { callbackQGridLayout_ChildEvent(this, event); };
 	void connectNotify(const QMetaMethod & sign) { callbackQGridLayout_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	void customEvent(QEvent * event) { callbackQGridLayout_CustomEvent(this, event); };
 	void deleteLater() { callbackQGridLayout_DeleteLater(this); };
@@ -41066,6 +41878,16 @@ void QGridLayout_TimerEventDefault(void* ptr, void* event)
 	static_cast<QGridLayout*>(ptr)->QGridLayout::timerEvent(static_cast<QTimerEvent*>(event));
 }
 
+void QGridLayout_ChildEvent(void* ptr, void* event)
+{
+	static_cast<QGridLayout*>(ptr)->childEvent(static_cast<QChildEvent*>(event));
+}
+
+void QGridLayout_ChildEventDefault(void* ptr, void* event)
+{
+	static_cast<QGridLayout*>(ptr)->QGridLayout::childEvent(static_cast<QChildEvent*>(event));
+}
+
 void QGridLayout_ConnectNotify(void* ptr, void* sign)
 {
 	static_cast<QGridLayout*>(ptr)->connectNotify(*static_cast<QMetaMethod*>(sign));
@@ -41224,6 +42046,8 @@ public:
 	void disconnectNotify(const QMetaMethod & sign) { callbackQGroupBox_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQGroupBox_EventFilter(this, watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQGroupBox_MetaObject(const_cast<MyQGroupBox*>(this))); };
+	int metric(QPaintDevice::PaintDeviceMetric metric) const { return callbackQGroupBox_Metric(const_cast<MyQGroupBox*>(this), metric); };
+	QPaintEngine * paintEngine() const { return static_cast<QPaintEngine*>(callbackQGroupBox_PaintEngine(const_cast<MyQGroupBox*>(this))); };
 };
 
 long long QGroupBox_Alignment(void* ptr)
@@ -41938,6 +42762,26 @@ void* QGroupBox_MetaObjectDefault(void* ptr)
 	return const_cast<QMetaObject*>(static_cast<QGroupBox*>(ptr)->QGroupBox::metaObject());
 }
 
+int QGroupBox_Metric(void* ptr, long long metric)
+{
+	return static_cast<QGroupBox*>(ptr)->metric(static_cast<QPaintDevice::PaintDeviceMetric>(metric));
+}
+
+int QGroupBox_MetricDefault(void* ptr, long long metric)
+{
+	return static_cast<QGroupBox*>(ptr)->QGroupBox::metric(static_cast<QPaintDevice::PaintDeviceMetric>(metric));
+}
+
+void* QGroupBox_PaintEngine(void* ptr)
+{
+	return static_cast<QGroupBox*>(ptr)->paintEngine();
+}
+
+void* QGroupBox_PaintEngineDefault(void* ptr)
+{
+	return static_cast<QGroupBox*>(ptr)->QGroupBox::paintEngine();
+}
+
 void* QHBoxLayout_NewQHBoxLayout()
 {
 	return new QHBoxLayout();
@@ -42141,6 +42985,16 @@ void QHBoxLayout_TimerEvent(void* ptr, void* event)
 void QHBoxLayout_TimerEventDefault(void* ptr, void* event)
 {
 	static_cast<QHBoxLayout*>(ptr)->QHBoxLayout::timerEvent(static_cast<QTimerEvent*>(event));
+}
+
+void QHBoxLayout_ChildEvent(void* ptr, void* event)
+{
+	static_cast<QHBoxLayout*>(ptr)->childEvent(static_cast<QChildEvent*>(event));
+}
+
+void QHBoxLayout_ChildEventDefault(void* ptr, void* event)
+{
+	static_cast<QHBoxLayout*>(ptr)->QHBoxLayout::childEvent(static_cast<QChildEvent*>(event));
 }
 
 void QHBoxLayout_ConnectNotify(void* ptr, void* sign)
@@ -42348,6 +43202,7 @@ public:
 	void showNormal() { callbackQHeaderView_ShowNormal(this); };
 	void tabletEvent(QTabletEvent * event) { callbackQHeaderView_TabletEvent(this, event); };
 	void updateMicroFocus() { callbackQHeaderView_UpdateMicroFocus(this); };
+	void timerEvent(QTimerEvent * event) { callbackQHeaderView_TimerEvent(this, event); };
 	void childEvent(QChildEvent * event) { callbackQHeaderView_ChildEvent(this, event); };
 	void connectNotify(const QMetaMethod & sign) { callbackQHeaderView_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	void customEvent(QEvent * event) { callbackQHeaderView_CustomEvent(this, event); };
@@ -42355,6 +43210,8 @@ public:
 	void disconnectNotify(const QMetaMethod & sign) { callbackQHeaderView_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQHeaderView_EventFilter(this, watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQHeaderView_MetaObject(const_cast<MyQHeaderView*>(this))); };
+	int metric(QPaintDevice::PaintDeviceMetric metric) const { return callbackQHeaderView_Metric(const_cast<MyQHeaderView*>(this), metric); };
+	QPaintEngine * paintEngine() const { return static_cast<QPaintEngine*>(callbackQHeaderView_PaintEngine(const_cast<MyQHeaderView*>(this))); };
 };
 
 char QHeaderView_CascadingSectionResizes(void* ptr)
@@ -43784,6 +44641,16 @@ void QHeaderView_UpdateMicroFocusDefault(void* ptr)
 	static_cast<QHeaderView*>(ptr)->QHeaderView::updateMicroFocus();
 }
 
+void QHeaderView_TimerEvent(void* ptr, void* event)
+{
+	static_cast<QHeaderView*>(ptr)->timerEvent(static_cast<QTimerEvent*>(event));
+}
+
+void QHeaderView_TimerEventDefault(void* ptr, void* event)
+{
+	static_cast<QHeaderView*>(ptr)->QHeaderView::timerEvent(static_cast<QTimerEvent*>(event));
+}
+
 void QHeaderView_ChildEvent(void* ptr, void* event)
 {
 	static_cast<QHeaderView*>(ptr)->childEvent(static_cast<QChildEvent*>(event));
@@ -43852,6 +44719,26 @@ void* QHeaderView_MetaObject(void* ptr)
 void* QHeaderView_MetaObjectDefault(void* ptr)
 {
 	return const_cast<QMetaObject*>(static_cast<QHeaderView*>(ptr)->QHeaderView::metaObject());
+}
+
+int QHeaderView_Metric(void* ptr, long long metric)
+{
+	return static_cast<QHeaderView*>(ptr)->metric(static_cast<QPaintDevice::PaintDeviceMetric>(metric));
+}
+
+int QHeaderView_MetricDefault(void* ptr, long long metric)
+{
+	return static_cast<QHeaderView*>(ptr)->QHeaderView::metric(static_cast<QPaintDevice::PaintDeviceMetric>(metric));
+}
+
+void* QHeaderView_PaintEngine(void* ptr)
+{
+	return static_cast<QHeaderView*>(ptr)->paintEngine();
+}
+
+void* QHeaderView_PaintEngineDefault(void* ptr)
+{
+	return static_cast<QHeaderView*>(ptr)->QHeaderView::paintEngine();
 }
 
 class MyQInputDialog: public QInputDialog
@@ -43927,7 +44814,11 @@ public:
 	void customEvent(QEvent * event) { callbackQInputDialog_CustomEvent(this, event); };
 	void deleteLater() { callbackQInputDialog_DeleteLater(this); };
 	void disconnectNotify(const QMetaMethod & sign) { callbackQInputDialog_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
+	bool event(QEvent * e) { return callbackQInputDialog_Event(this, e) != 0; };
+	bool eventFilter(QObject * watched, QEvent * event) { return callbackQInputDialog_EventFilter(this, watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQInputDialog_MetaObject(const_cast<MyQInputDialog*>(this))); };
+	int metric(QPaintDevice::PaintDeviceMetric metric) const { return callbackQInputDialog_Metric(const_cast<MyQInputDialog*>(this), metric); };
+	QPaintEngine * paintEngine() const { return static_cast<QPaintEngine*>(callbackQInputDialog_PaintEngine(const_cast<MyQInputDialog*>(this))); };
 };
 
 struct QtWidgets_PackedString QInputDialog_CancelButtonText(void* ptr)
@@ -44884,6 +45775,26 @@ void QInputDialog_DisconnectNotifyDefault(void* ptr, void* sign)
 	static_cast<QInputDialog*>(ptr)->QInputDialog::disconnectNotify(*static_cast<QMetaMethod*>(sign));
 }
 
+char QInputDialog_Event(void* ptr, void* e)
+{
+	return static_cast<QInputDialog*>(ptr)->event(static_cast<QEvent*>(e));
+}
+
+char QInputDialog_EventDefault(void* ptr, void* e)
+{
+	return static_cast<QInputDialog*>(ptr)->QInputDialog::event(static_cast<QEvent*>(e));
+}
+
+char QInputDialog_EventFilter(void* ptr, void* watched, void* event)
+{
+	return static_cast<QInputDialog*>(ptr)->eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+}
+
+char QInputDialog_EventFilterDefault(void* ptr, void* watched, void* event)
+{
+	return static_cast<QInputDialog*>(ptr)->QInputDialog::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+}
+
 void* QInputDialog_MetaObject(void* ptr)
 {
 	return const_cast<QMetaObject*>(static_cast<QInputDialog*>(ptr)->metaObject());
@@ -44892,6 +45803,26 @@ void* QInputDialog_MetaObject(void* ptr)
 void* QInputDialog_MetaObjectDefault(void* ptr)
 {
 	return const_cast<QMetaObject*>(static_cast<QInputDialog*>(ptr)->QInputDialog::metaObject());
+}
+
+int QInputDialog_Metric(void* ptr, long long metric)
+{
+	return static_cast<QInputDialog*>(ptr)->metric(static_cast<QPaintDevice::PaintDeviceMetric>(metric));
+}
+
+int QInputDialog_MetricDefault(void* ptr, long long metric)
+{
+	return static_cast<QInputDialog*>(ptr)->QInputDialog::metric(static_cast<QPaintDevice::PaintDeviceMetric>(metric));
+}
+
+void* QInputDialog_PaintEngine(void* ptr)
+{
+	return static_cast<QInputDialog*>(ptr)->paintEngine();
+}
+
+void* QInputDialog_PaintEngineDefault(void* ptr)
+{
+	return static_cast<QInputDialog*>(ptr)->QInputDialog::paintEngine();
 }
 
 class MyQItemDelegate: public QItemDelegate
@@ -45462,6 +46393,8 @@ public:
 	void disconnectNotify(const QMetaMethod & sign) { callbackQKeySequenceEdit_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQKeySequenceEdit_EventFilter(this, watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQKeySequenceEdit_MetaObject(const_cast<MyQKeySequenceEdit*>(this))); };
+	int metric(QPaintDevice::PaintDeviceMetric metric) const { return callbackQKeySequenceEdit_Metric(const_cast<MyQKeySequenceEdit*>(this), metric); };
+	QPaintEngine * paintEngine() const { return static_cast<QPaintEngine*>(callbackQKeySequenceEdit_PaintEngine(const_cast<MyQKeySequenceEdit*>(this))); };
 };
 
 void* QKeySequenceEdit_KeySequence(void* ptr)
@@ -46136,6 +47069,26 @@ void* QKeySequenceEdit_MetaObjectDefault(void* ptr)
 	return const_cast<QMetaObject*>(static_cast<QKeySequenceEdit*>(ptr)->QKeySequenceEdit::metaObject());
 }
 
+int QKeySequenceEdit_Metric(void* ptr, long long metric)
+{
+	return static_cast<QKeySequenceEdit*>(ptr)->metric(static_cast<QPaintDevice::PaintDeviceMetric>(metric));
+}
+
+int QKeySequenceEdit_MetricDefault(void* ptr, long long metric)
+{
+	return static_cast<QKeySequenceEdit*>(ptr)->QKeySequenceEdit::metric(static_cast<QPaintDevice::PaintDeviceMetric>(metric));
+}
+
+void* QKeySequenceEdit_PaintEngine(void* ptr)
+{
+	return static_cast<QKeySequenceEdit*>(ptr)->paintEngine();
+}
+
+void* QKeySequenceEdit_PaintEngineDefault(void* ptr)
+{
+	return static_cast<QKeySequenceEdit*>(ptr)->QKeySequenceEdit::paintEngine();
+}
+
 class MyQLCDNumber: public QLCDNumber
 {
 public:
@@ -46211,6 +47164,8 @@ public:
 	void disconnectNotify(const QMetaMethod & sign) { callbackQLCDNumber_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQLCDNumber_EventFilter(this, watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQLCDNumber_MetaObject(const_cast<MyQLCDNumber*>(this))); };
+	int metric(QPaintDevice::PaintDeviceMetric metric) const { return callbackQLCDNumber_Metric(const_cast<MyQLCDNumber*>(this), metric); };
+	QPaintEngine * paintEngine() const { return static_cast<QPaintEngine*>(callbackQLCDNumber_PaintEngine(const_cast<MyQLCDNumber*>(this))); };
 };
 
 int QLCDNumber_IntValue(void* ptr)
@@ -46955,6 +47910,26 @@ void* QLCDNumber_MetaObjectDefault(void* ptr)
 	return const_cast<QMetaObject*>(static_cast<QLCDNumber*>(ptr)->QLCDNumber::metaObject());
 }
 
+int QLCDNumber_Metric(void* ptr, long long metric)
+{
+	return static_cast<QLCDNumber*>(ptr)->metric(static_cast<QPaintDevice::PaintDeviceMetric>(metric));
+}
+
+int QLCDNumber_MetricDefault(void* ptr, long long metric)
+{
+	return static_cast<QLCDNumber*>(ptr)->QLCDNumber::metric(static_cast<QPaintDevice::PaintDeviceMetric>(metric));
+}
+
+void* QLCDNumber_PaintEngine(void* ptr)
+{
+	return static_cast<QLCDNumber*>(ptr)->paintEngine();
+}
+
+void* QLCDNumber_PaintEngineDefault(void* ptr)
+{
+	return static_cast<QLCDNumber*>(ptr)->QLCDNumber::paintEngine();
+}
+
 class MyQLabel: public QLabel
 {
 public:
@@ -47030,6 +48005,8 @@ public:
 	void disconnectNotify(const QMetaMethod & sign) { callbackQLabel_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQLabel_EventFilter(this, watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQLabel_MetaObject(const_cast<MyQLabel*>(this))); };
+	int metric(QPaintDevice::PaintDeviceMetric metric) const { return callbackQLabel_Metric(const_cast<MyQLabel*>(this), metric); };
+	QPaintEngine * paintEngine() const { return static_cast<QPaintEngine*>(callbackQLabel_PaintEngine(const_cast<MyQLabel*>(this))); };
 };
 
 long long QLabel_Alignment(void* ptr)
@@ -47859,6 +48836,26 @@ void* QLabel_MetaObjectDefault(void* ptr)
 	return const_cast<QMetaObject*>(static_cast<QLabel*>(ptr)->QLabel::metaObject());
 }
 
+int QLabel_Metric(void* ptr, long long metric)
+{
+	return static_cast<QLabel*>(ptr)->metric(static_cast<QPaintDevice::PaintDeviceMetric>(metric));
+}
+
+int QLabel_MetricDefault(void* ptr, long long metric)
+{
+	return static_cast<QLabel*>(ptr)->QLabel::metric(static_cast<QPaintDevice::PaintDeviceMetric>(metric));
+}
+
+void* QLabel_PaintEngine(void* ptr)
+{
+	return static_cast<QLabel*>(ptr)->paintEngine();
+}
+
+void* QLabel_PaintEngineDefault(void* ptr)
+{
+	return static_cast<QLabel*>(ptr)->QLabel::paintEngine();
+}
+
 class MyQLayout: public QLayout
 {
 public:
@@ -48548,6 +49545,8 @@ public:
 	void disconnectNotify(const QMetaMethod & sign) { callbackQLineEdit_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQLineEdit_EventFilter(this, watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQLineEdit_MetaObject(const_cast<MyQLineEdit*>(this))); };
+	int metric(QPaintDevice::PaintDeviceMetric metric) const { return callbackQLineEdit_Metric(const_cast<MyQLineEdit*>(this), metric); };
+	QPaintEngine * paintEngine() const { return static_cast<QPaintEngine*>(callbackQLineEdit_PaintEngine(const_cast<MyQLineEdit*>(this))); };
 };
 
 long long QLineEdit_Alignment(void* ptr)
@@ -49597,6 +50596,26 @@ void* QLineEdit_MetaObjectDefault(void* ptr)
 	return const_cast<QMetaObject*>(static_cast<QLineEdit*>(ptr)->QLineEdit::metaObject());
 }
 
+int QLineEdit_Metric(void* ptr, long long metric)
+{
+	return static_cast<QLineEdit*>(ptr)->metric(static_cast<QPaintDevice::PaintDeviceMetric>(metric));
+}
+
+int QLineEdit_MetricDefault(void* ptr, long long metric)
+{
+	return static_cast<QLineEdit*>(ptr)->QLineEdit::metric(static_cast<QPaintDevice::PaintDeviceMetric>(metric));
+}
+
+void* QLineEdit_PaintEngine(void* ptr)
+{
+	return static_cast<QLineEdit*>(ptr)->paintEngine();
+}
+
+void* QLineEdit_PaintEngineDefault(void* ptr)
+{
+	return static_cast<QLineEdit*>(ptr)->QLineEdit::paintEngine();
+}
+
 class MyQListView: public QListView
 {
 public:
@@ -49699,6 +50718,8 @@ public:
 	void disconnectNotify(const QMetaMethod & sign) { callbackQListView_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQListView_EventFilter(this, watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQListView_MetaObject(const_cast<MyQListView*>(this))); };
+	int metric(QPaintDevice::PaintDeviceMetric metric) const { return callbackQListView_Metric(const_cast<MyQListView*>(this), metric); };
+	QPaintEngine * paintEngine() const { return static_cast<QPaintEngine*>(callbackQListView_PaintEngine(const_cast<MyQListView*>(this))); };
 };
 
 int QListView_BatchSize(void* ptr)
@@ -50868,6 +51889,26 @@ void* QListView_MetaObjectDefault(void* ptr)
 	return const_cast<QMetaObject*>(static_cast<QListView*>(ptr)->QListView::metaObject());
 }
 
+int QListView_Metric(void* ptr, long long metric)
+{
+	return static_cast<QListView*>(ptr)->metric(static_cast<QPaintDevice::PaintDeviceMetric>(metric));
+}
+
+int QListView_MetricDefault(void* ptr, long long metric)
+{
+	return static_cast<QListView*>(ptr)->QListView::metric(static_cast<QPaintDevice::PaintDeviceMetric>(metric));
+}
+
+void* QListView_PaintEngine(void* ptr)
+{
+	return static_cast<QListView*>(ptr)->paintEngine();
+}
+
+void* QListView_PaintEngineDefault(void* ptr)
+{
+	return static_cast<QListView*>(ptr)->QListView::paintEngine();
+}
+
 class MyQListWidget: public QListWidget
 {
 public:
@@ -50978,6 +52019,7 @@ public:
 	void showNormal() { callbackQListWidget_ShowNormal(this); };
 	void tabletEvent(QTabletEvent * event) { callbackQListWidget_TabletEvent(this, event); };
 	void updateMicroFocus() { callbackQListWidget_UpdateMicroFocus(this); };
+	void timerEvent(QTimerEvent * event) { callbackQListWidget_TimerEvent(this, event); };
 	void childEvent(QChildEvent * event) { callbackQListWidget_ChildEvent(this, event); };
 	void connectNotify(const QMetaMethod & sign) { callbackQListWidget_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	void customEvent(QEvent * event) { callbackQListWidget_CustomEvent(this, event); };
@@ -50985,6 +52027,8 @@ public:
 	void disconnectNotify(const QMetaMethod & sign) { callbackQListWidget_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQListWidget_EventFilter(this, watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQListWidget_MetaObject(const_cast<MyQListWidget*>(this))); };
+	int metric(QPaintDevice::PaintDeviceMetric metric) const { return callbackQListWidget_Metric(const_cast<MyQListWidget*>(this), metric); };
+	QPaintEngine * paintEngine() const { return static_cast<QPaintEngine*>(callbackQListWidget_PaintEngine(const_cast<MyQListWidget*>(this))); };
 };
 
 int QListWidget_Count(void* ptr)
@@ -52284,6 +53328,16 @@ void QListWidget_UpdateMicroFocusDefault(void* ptr)
 	static_cast<QListWidget*>(ptr)->QListWidget::updateMicroFocus();
 }
 
+void QListWidget_TimerEvent(void* ptr, void* event)
+{
+	static_cast<QListWidget*>(ptr)->timerEvent(static_cast<QTimerEvent*>(event));
+}
+
+void QListWidget_TimerEventDefault(void* ptr, void* event)
+{
+	static_cast<QListWidget*>(ptr)->QListWidget::timerEvent(static_cast<QTimerEvent*>(event));
+}
+
 void QListWidget_ChildEvent(void* ptr, void* event)
 {
 	static_cast<QListWidget*>(ptr)->childEvent(static_cast<QChildEvent*>(event));
@@ -52352,6 +53406,26 @@ void* QListWidget_MetaObject(void* ptr)
 void* QListWidget_MetaObjectDefault(void* ptr)
 {
 	return const_cast<QMetaObject*>(static_cast<QListWidget*>(ptr)->QListWidget::metaObject());
+}
+
+int QListWidget_Metric(void* ptr, long long metric)
+{
+	return static_cast<QListWidget*>(ptr)->metric(static_cast<QPaintDevice::PaintDeviceMetric>(metric));
+}
+
+int QListWidget_MetricDefault(void* ptr, long long metric)
+{
+	return static_cast<QListWidget*>(ptr)->QListWidget::metric(static_cast<QPaintDevice::PaintDeviceMetric>(metric));
+}
+
+void* QListWidget_PaintEngine(void* ptr)
+{
+	return static_cast<QListWidget*>(ptr)->paintEngine();
+}
+
+void* QListWidget_PaintEngineDefault(void* ptr)
+{
+	return static_cast<QListWidget*>(ptr)->QListWidget::paintEngine();
 }
 
 class MyQListWidgetItem: public QListWidgetItem
@@ -52640,8 +53714,11 @@ public:
 	void customEvent(QEvent * event) { callbackQMacCocoaViewContainer_CustomEvent(this, event); };
 	void deleteLater() { callbackQMacCocoaViewContainer_DeleteLater(this); };
 	void disconnectNotify(const QMetaMethod & sign) { callbackQMacCocoaViewContainer_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
+	bool event(QEvent * e) { return callbackQMacCocoaViewContainer_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQMacCocoaViewContainer_EventFilter(this, watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQMacCocoaViewContainer_MetaObject(const_cast<MyQMacCocoaViewContainer*>(this))); };
+	int metric(QPaintDevice::PaintDeviceMetric metric) const { return callbackQMacCocoaViewContainer_Metric(const_cast<MyQMacCocoaViewContainer*>(this), metric); };
+	QPaintEngine * paintEngine() const { return static_cast<QPaintEngine*>(callbackQMacCocoaViewContainer_PaintEngine(const_cast<MyQMacCocoaViewContainer*>(this))); };
 };
 
 void QMacCocoaViewContainer_DestroyQMacCocoaViewContainer(void* ptr)
@@ -53382,6 +54459,20 @@ void QMacCocoaViewContainer_DisconnectNotifyDefault(void* ptr, void* sign)
 #endif
 }
 
+char QMacCocoaViewContainer_Event(void* ptr, void* e)
+{
+	return static_cast<QMacCocoaViewContainer*>(ptr)->event(static_cast<QEvent*>(e));
+}
+
+char QMacCocoaViewContainer_EventDefault(void* ptr, void* e)
+{
+#ifdef Q_OS_OSX
+	return static_cast<QMacCocoaViewContainer*>(ptr)->QMacCocoaViewContainer::event(static_cast<QEvent*>(e));
+#else
+	return false;
+#endif
+}
+
 char QMacCocoaViewContainer_EventFilter(void* ptr, void* watched, void* event)
 {
 	return static_cast<QMacCocoaViewContainer*>(ptr)->eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
@@ -53405,6 +54496,34 @@ void* QMacCocoaViewContainer_MetaObjectDefault(void* ptr)
 {
 #ifdef Q_OS_OSX
 	return const_cast<QMetaObject*>(static_cast<QMacCocoaViewContainer*>(ptr)->QMacCocoaViewContainer::metaObject());
+#else
+	return NULL;
+#endif
+}
+
+int QMacCocoaViewContainer_Metric(void* ptr, long long metric)
+{
+	return static_cast<QMacCocoaViewContainer*>(ptr)->metric(static_cast<QPaintDevice::PaintDeviceMetric>(metric));
+}
+
+int QMacCocoaViewContainer_MetricDefault(void* ptr, long long metric)
+{
+#ifdef Q_OS_OSX
+	return static_cast<QMacCocoaViewContainer*>(ptr)->QMacCocoaViewContainer::metric(static_cast<QPaintDevice::PaintDeviceMetric>(metric));
+#else
+	return 0;
+#endif
+}
+
+void* QMacCocoaViewContainer_PaintEngine(void* ptr)
+{
+	return static_cast<QMacCocoaViewContainer*>(ptr)->paintEngine();
+}
+
+void* QMacCocoaViewContainer_PaintEngineDefault(void* ptr)
+{
+#ifdef Q_OS_OSX
+	return static_cast<QMacCocoaViewContainer*>(ptr)->QMacCocoaViewContainer::paintEngine();
 #else
 	return NULL;
 #endif
@@ -53474,6 +54593,8 @@ public:
 	void disconnectNotify(const QMetaMethod & sign) { callbackQMacNativeWidget_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQMacNativeWidget_EventFilter(this, watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQMacNativeWidget_MetaObject(const_cast<MyQMacNativeWidget*>(this))); };
+	int metric(QPaintDevice::PaintDeviceMetric metric) const { return callbackQMacNativeWidget_Metric(const_cast<MyQMacNativeWidget*>(this), metric); };
+	QPaintEngine * paintEngine() const { return static_cast<QPaintEngine*>(callbackQMacNativeWidget_PaintEngine(const_cast<MyQMacNativeWidget*>(this))); };
 };
 
 char QMacNativeWidget_Event(void* ptr, void* ev)
@@ -54240,6 +55361,34 @@ void* QMacNativeWidget_MetaObjectDefault(void* ptr)
 #endif
 }
 
+int QMacNativeWidget_Metric(void* ptr, long long metric)
+{
+	return static_cast<QMacNativeWidget*>(ptr)->metric(static_cast<QPaintDevice::PaintDeviceMetric>(metric));
+}
+
+int QMacNativeWidget_MetricDefault(void* ptr, long long metric)
+{
+#ifdef Q_OS_OSX
+	return static_cast<QMacNativeWidget*>(ptr)->QMacNativeWidget::metric(static_cast<QPaintDevice::PaintDeviceMetric>(metric));
+#else
+	return 0;
+#endif
+}
+
+void* QMacNativeWidget_PaintEngine(void* ptr)
+{
+	return static_cast<QMacNativeWidget*>(ptr)->paintEngine();
+}
+
+void* QMacNativeWidget_PaintEngineDefault(void* ptr)
+{
+#ifdef Q_OS_OSX
+	return static_cast<QMacNativeWidget*>(ptr)->QMacNativeWidget::paintEngine();
+#else
+	return NULL;
+#endif
+}
+
 class MyQMainWindow: public QMainWindow
 {
 public:
@@ -54311,6 +55460,8 @@ public:
 	void disconnectNotify(const QMetaMethod & sign) { callbackQMainWindow_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQMainWindow_EventFilter(this, watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQMainWindow_MetaObject(const_cast<MyQMainWindow*>(this))); };
+	int metric(QPaintDevice::PaintDeviceMetric metric) const { return callbackQMainWindow_Metric(const_cast<MyQMainWindow*>(this), metric); };
+	QPaintEngine * paintEngine() const { return static_cast<QPaintEngine*>(callbackQMainWindow_PaintEngine(const_cast<MyQMainWindow*>(this))); };
 };
 
 long long QMainWindow_DockOptions(void* ptr)
@@ -55230,6 +56381,26 @@ void* QMainWindow_MetaObjectDefault(void* ptr)
 	return const_cast<QMetaObject*>(static_cast<QMainWindow*>(ptr)->QMainWindow::metaObject());
 }
 
+int QMainWindow_Metric(void* ptr, long long metric)
+{
+	return static_cast<QMainWindow*>(ptr)->metric(static_cast<QPaintDevice::PaintDeviceMetric>(metric));
+}
+
+int QMainWindow_MetricDefault(void* ptr, long long metric)
+{
+	return static_cast<QMainWindow*>(ptr)->QMainWindow::metric(static_cast<QPaintDevice::PaintDeviceMetric>(metric));
+}
+
+void* QMainWindow_PaintEngine(void* ptr)
+{
+	return static_cast<QMainWindow*>(ptr)->paintEngine();
+}
+
+void* QMainWindow_PaintEngineDefault(void* ptr)
+{
+	return static_cast<QMainWindow*>(ptr)->QMainWindow::paintEngine();
+}
+
 class MyQMdiArea: public QMdiArea
 {
 public:
@@ -55304,6 +56475,8 @@ public:
 	void deleteLater() { callbackQMdiArea_DeleteLater(this); };
 	void disconnectNotify(const QMetaMethod & sign) { callbackQMdiArea_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQMdiArea_MetaObject(const_cast<MyQMdiArea*>(this))); };
+	int metric(QPaintDevice::PaintDeviceMetric metric) const { return callbackQMdiArea_Metric(const_cast<MyQMdiArea*>(this), metric); };
+	QPaintEngine * paintEngine() const { return static_cast<QPaintEngine*>(callbackQMdiArea_PaintEngine(const_cast<MyQMdiArea*>(this))); };
 };
 
 long long QMdiArea_ActivationOrder(void* ptr)
@@ -56128,6 +57301,26 @@ void* QMdiArea_MetaObjectDefault(void* ptr)
 	return const_cast<QMetaObject*>(static_cast<QMdiArea*>(ptr)->QMdiArea::metaObject());
 }
 
+int QMdiArea_Metric(void* ptr, long long metric)
+{
+	return static_cast<QMdiArea*>(ptr)->metric(static_cast<QPaintDevice::PaintDeviceMetric>(metric));
+}
+
+int QMdiArea_MetricDefault(void* ptr, long long metric)
+{
+	return static_cast<QMdiArea*>(ptr)->QMdiArea::metric(static_cast<QPaintDevice::PaintDeviceMetric>(metric));
+}
+
+void* QMdiArea_PaintEngine(void* ptr)
+{
+	return static_cast<QMdiArea*>(ptr)->paintEngine();
+}
+
+void* QMdiArea_PaintEngineDefault(void* ptr)
+{
+	return static_cast<QMdiArea*>(ptr)->QMdiArea::paintEngine();
+}
+
 class MyQMdiSubWindow: public QMdiSubWindow
 {
 public:
@@ -56194,6 +57387,8 @@ public:
 	void deleteLater() { callbackQMdiSubWindow_DeleteLater(this); };
 	void disconnectNotify(const QMetaMethod & sign) { callbackQMdiSubWindow_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQMdiSubWindow_MetaObject(const_cast<MyQMdiSubWindow*>(this))); };
+	int metric(QPaintDevice::PaintDeviceMetric metric) const { return callbackQMdiSubWindow_Metric(const_cast<MyQMdiSubWindow*>(this), metric); };
+	QPaintEngine * paintEngine() const { return static_cast<QPaintEngine*>(callbackQMdiSubWindow_PaintEngine(const_cast<MyQMdiSubWindow*>(this))); };
 };
 
 int QMdiSubWindow_KeyboardPageStep(void* ptr)
@@ -56908,6 +58103,26 @@ void* QMdiSubWindow_MetaObjectDefault(void* ptr)
 	return const_cast<QMetaObject*>(static_cast<QMdiSubWindow*>(ptr)->QMdiSubWindow::metaObject());
 }
 
+int QMdiSubWindow_Metric(void* ptr, long long metric)
+{
+	return static_cast<QMdiSubWindow*>(ptr)->metric(static_cast<QPaintDevice::PaintDeviceMetric>(metric));
+}
+
+int QMdiSubWindow_MetricDefault(void* ptr, long long metric)
+{
+	return static_cast<QMdiSubWindow*>(ptr)->QMdiSubWindow::metric(static_cast<QPaintDevice::PaintDeviceMetric>(metric));
+}
+
+void* QMdiSubWindow_PaintEngine(void* ptr)
+{
+	return static_cast<QMdiSubWindow*>(ptr)->paintEngine();
+}
+
+void* QMdiSubWindow_PaintEngineDefault(void* ptr)
+{
+	return static_cast<QMdiSubWindow*>(ptr)->QMdiSubWindow::paintEngine();
+}
+
 class MyQMenu: public QMenu
 {
 public:
@@ -56977,6 +58192,8 @@ public:
 	void disconnectNotify(const QMetaMethod & sign) { callbackQMenu_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQMenu_EventFilter(this, watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQMenu_MetaObject(const_cast<MyQMenu*>(this))); };
+	int metric(QPaintDevice::PaintDeviceMetric metric) const { return callbackQMenu_Metric(const_cast<MyQMenu*>(this), metric); };
+	QPaintEngine * paintEngine() const { return static_cast<QPaintEngine*>(callbackQMenu_PaintEngine(const_cast<MyQMenu*>(this))); };
 };
 
 void* QMenu_Icon(void* ptr)
@@ -57883,6 +59100,26 @@ void* QMenu_MetaObjectDefault(void* ptr)
 	return const_cast<QMetaObject*>(static_cast<QMenu*>(ptr)->QMenu::metaObject());
 }
 
+int QMenu_Metric(void* ptr, long long metric)
+{
+	return static_cast<QMenu*>(ptr)->metric(static_cast<QPaintDevice::PaintDeviceMetric>(metric));
+}
+
+int QMenu_MetricDefault(void* ptr, long long metric)
+{
+	return static_cast<QMenu*>(ptr)->QMenu::metric(static_cast<QPaintDevice::PaintDeviceMetric>(metric));
+}
+
+void* QMenu_PaintEngine(void* ptr)
+{
+	return static_cast<QMenu*>(ptr)->paintEngine();
+}
+
+void* QMenu_PaintEngineDefault(void* ptr)
+{
+	return static_cast<QMenu*>(ptr)->QMenu::paintEngine();
+}
+
 class MyQMenuBar: public QMenuBar
 {
 public:
@@ -57948,6 +59185,8 @@ public:
 	void deleteLater() { callbackQMenuBar_DeleteLater(this); };
 	void disconnectNotify(const QMetaMethod & sign) { callbackQMenuBar_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQMenuBar_MetaObject(const_cast<MyQMenuBar*>(this))); };
+	int metric(QPaintDevice::PaintDeviceMetric metric) const { return callbackQMenuBar_Metric(const_cast<MyQMenuBar*>(this), metric); };
+	QPaintEngine * paintEngine() const { return static_cast<QPaintEngine*>(callbackQMenuBar_PaintEngine(const_cast<MyQMenuBar*>(this))); };
 };
 
 char QMenuBar_IsDefaultUp(void* ptr)
@@ -58713,9 +59952,24 @@ void* QMenuBar_MetaObjectDefault(void* ptr)
 	return const_cast<QMetaObject*>(static_cast<QMenuBar*>(ptr)->QMenuBar::metaObject());
 }
 
-int QMessageBox_ButtonMask_Type()
+int QMenuBar_Metric(void* ptr, long long metric)
 {
-	return QMessageBox::ButtonMask;
+	return static_cast<QMenuBar*>(ptr)->metric(static_cast<QPaintDevice::PaintDeviceMetric>(metric));
+}
+
+int QMenuBar_MetricDefault(void* ptr, long long metric)
+{
+	return static_cast<QMenuBar*>(ptr)->QMenuBar::metric(static_cast<QPaintDevice::PaintDeviceMetric>(metric));
+}
+
+void* QMenuBar_PaintEngine(void* ptr)
+{
+	return static_cast<QMenuBar*>(ptr)->paintEngine();
+}
+
+void* QMenuBar_PaintEngineDefault(void* ptr)
+{
+	return static_cast<QMenuBar*>(ptr)->QMenuBar::paintEngine();
 }
 
 class MyQMessageBox: public QMessageBox
@@ -58786,8 +60040,16 @@ public:
 	void customEvent(QEvent * event) { callbackQMessageBox_CustomEvent(this, event); };
 	void deleteLater() { callbackQMessageBox_DeleteLater(this); };
 	void disconnectNotify(const QMetaMethod & sign) { callbackQMessageBox_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
+	bool eventFilter(QObject * watched, QEvent * event) { return callbackQMessageBox_EventFilter(this, watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQMessageBox_MetaObject(const_cast<MyQMessageBox*>(this))); };
+	int metric(QPaintDevice::PaintDeviceMetric metric) const { return callbackQMessageBox_Metric(const_cast<MyQMessageBox*>(this), metric); };
+	QPaintEngine * paintEngine() const { return static_cast<QPaintEngine*>(callbackQMessageBox_PaintEngine(const_cast<MyQMessageBox*>(this))); };
 };
+
+int QMessageBox_ButtonMask_Type()
+{
+	return QMessageBox::ButtonMask;
+}
 
 struct QtWidgets_PackedString QMessageBox_DetailedText(void* ptr)
 {
@@ -59663,6 +60925,16 @@ void QMessageBox_DisconnectNotifyDefault(void* ptr, void* sign)
 	static_cast<QMessageBox*>(ptr)->QMessageBox::disconnectNotify(*static_cast<QMetaMethod*>(sign));
 }
 
+char QMessageBox_EventFilter(void* ptr, void* watched, void* event)
+{
+	return static_cast<QMessageBox*>(ptr)->eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+}
+
+char QMessageBox_EventFilterDefault(void* ptr, void* watched, void* event)
+{
+	return static_cast<QMessageBox*>(ptr)->QMessageBox::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+}
+
 void* QMessageBox_MetaObject(void* ptr)
 {
 	return const_cast<QMetaObject*>(static_cast<QMessageBox*>(ptr)->metaObject());
@@ -59671,6 +60943,26 @@ void* QMessageBox_MetaObject(void* ptr)
 void* QMessageBox_MetaObjectDefault(void* ptr)
 {
 	return const_cast<QMetaObject*>(static_cast<QMessageBox*>(ptr)->QMessageBox::metaObject());
+}
+
+int QMessageBox_Metric(void* ptr, long long metric)
+{
+	return static_cast<QMessageBox*>(ptr)->metric(static_cast<QPaintDevice::PaintDeviceMetric>(metric));
+}
+
+int QMessageBox_MetricDefault(void* ptr, long long metric)
+{
+	return static_cast<QMessageBox*>(ptr)->QMessageBox::metric(static_cast<QPaintDevice::PaintDeviceMetric>(metric));
+}
+
+void* QMessageBox_PaintEngine(void* ptr)
+{
+	return static_cast<QMessageBox*>(ptr)->paintEngine();
+}
+
+void* QMessageBox_PaintEngineDefault(void* ptr)
+{
+	return static_cast<QMessageBox*>(ptr)->QMessageBox::paintEngine();
 }
 
 void* QMouseEventTransition_NewQMouseEventTransition2(void* object, long long ty, long long button, void* sourceState)
@@ -60404,8 +61696,11 @@ public:
 	void customEvent(QEvent * event) { callbackQPlainTextEdit_CustomEvent(this, event); };
 	void deleteLater() { callbackQPlainTextEdit_DeleteLater(this); };
 	void disconnectNotify(const QMetaMethod & sign) { callbackQPlainTextEdit_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
+	bool event(QEvent * e) { return callbackQPlainTextEdit_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQPlainTextEdit_EventFilter(this, watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQPlainTextEdit_MetaObject(const_cast<MyQPlainTextEdit*>(this))); };
+	int metric(QPaintDevice::PaintDeviceMetric metric) const { return callbackQPlainTextEdit_Metric(const_cast<MyQPlainTextEdit*>(this), metric); };
+	QPaintEngine * paintEngine() const { return static_cast<QPaintEngine*>(callbackQPlainTextEdit_PaintEngine(const_cast<MyQPlainTextEdit*>(this))); };
 };
 
 char QPlainTextEdit_BackgroundVisible(void* ptr)
@@ -61572,6 +62867,16 @@ void QPlainTextEdit_DisconnectNotifyDefault(void* ptr, void* sign)
 	static_cast<QPlainTextEdit*>(ptr)->QPlainTextEdit::disconnectNotify(*static_cast<QMetaMethod*>(sign));
 }
 
+char QPlainTextEdit_Event(void* ptr, void* e)
+{
+	return static_cast<QPlainTextEdit*>(ptr)->event(static_cast<QEvent*>(e));
+}
+
+char QPlainTextEdit_EventDefault(void* ptr, void* e)
+{
+	return static_cast<QPlainTextEdit*>(ptr)->QPlainTextEdit::event(static_cast<QEvent*>(e));
+}
+
 char QPlainTextEdit_EventFilter(void* ptr, void* watched, void* event)
 {
 	return static_cast<QPlainTextEdit*>(ptr)->eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
@@ -61590,6 +62895,26 @@ void* QPlainTextEdit_MetaObject(void* ptr)
 void* QPlainTextEdit_MetaObjectDefault(void* ptr)
 {
 	return const_cast<QMetaObject*>(static_cast<QPlainTextEdit*>(ptr)->QPlainTextEdit::metaObject());
+}
+
+int QPlainTextEdit_Metric(void* ptr, long long metric)
+{
+	return static_cast<QPlainTextEdit*>(ptr)->metric(static_cast<QPaintDevice::PaintDeviceMetric>(metric));
+}
+
+int QPlainTextEdit_MetricDefault(void* ptr, long long metric)
+{
+	return static_cast<QPlainTextEdit*>(ptr)->QPlainTextEdit::metric(static_cast<QPaintDevice::PaintDeviceMetric>(metric));
+}
+
+void* QPlainTextEdit_PaintEngine(void* ptr)
+{
+	return static_cast<QPlainTextEdit*>(ptr)->paintEngine();
+}
+
+void* QPlainTextEdit_PaintEngineDefault(void* ptr)
+{
+	return static_cast<QPlainTextEdit*>(ptr)->QPlainTextEdit::paintEngine();
 }
 
 class MyQProgressBar: public QProgressBar
@@ -61665,6 +62990,8 @@ public:
 	void disconnectNotify(const QMetaMethod & sign) { callbackQProgressBar_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQProgressBar_EventFilter(this, watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQProgressBar_MetaObject(const_cast<MyQProgressBar*>(this))); };
+	int metric(QPaintDevice::PaintDeviceMetric metric) const { return callbackQProgressBar_Metric(const_cast<MyQProgressBar*>(this), metric); };
+	QPaintEngine * paintEngine() const { return static_cast<QPaintEngine*>(callbackQProgressBar_PaintEngine(const_cast<MyQProgressBar*>(this))); };
 };
 
 long long QProgressBar_Alignment(void* ptr)
@@ -62429,6 +63756,26 @@ void* QProgressBar_MetaObjectDefault(void* ptr)
 	return const_cast<QMetaObject*>(static_cast<QProgressBar*>(ptr)->QProgressBar::metaObject());
 }
 
+int QProgressBar_Metric(void* ptr, long long metric)
+{
+	return static_cast<QProgressBar*>(ptr)->metric(static_cast<QPaintDevice::PaintDeviceMetric>(metric));
+}
+
+int QProgressBar_MetricDefault(void* ptr, long long metric)
+{
+	return static_cast<QProgressBar*>(ptr)->QProgressBar::metric(static_cast<QPaintDevice::PaintDeviceMetric>(metric));
+}
+
+void* QProgressBar_PaintEngine(void* ptr)
+{
+	return static_cast<QProgressBar*>(ptr)->paintEngine();
+}
+
+void* QProgressBar_PaintEngineDefault(void* ptr)
+{
+	return static_cast<QProgressBar*>(ptr)->QProgressBar::paintEngine();
+}
+
 class MyQProgressDialog: public QProgressDialog
 {
 public:
@@ -62508,7 +63855,11 @@ public:
 	void customEvent(QEvent * event) { callbackQProgressDialog_CustomEvent(this, event); };
 	void deleteLater() { callbackQProgressDialog_DeleteLater(this); };
 	void disconnectNotify(const QMetaMethod & sign) { callbackQProgressDialog_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
+	bool event(QEvent * e) { return callbackQProgressDialog_Event(this, e) != 0; };
+	bool eventFilter(QObject * watched, QEvent * event) { return callbackQProgressDialog_EventFilter(this, watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQProgressDialog_MetaObject(const_cast<MyQProgressDialog*>(this))); };
+	int metric(QPaintDevice::PaintDeviceMetric metric) const { return callbackQProgressDialog_Metric(const_cast<MyQProgressDialog*>(this), metric); };
+	QPaintEngine * paintEngine() const { return static_cast<QPaintEngine*>(callbackQProgressDialog_PaintEngine(const_cast<MyQProgressDialog*>(this))); };
 };
 
 char QProgressDialog_AutoClose(void* ptr)
@@ -63295,6 +64646,26 @@ void QProgressDialog_DisconnectNotifyDefault(void* ptr, void* sign)
 	static_cast<QProgressDialog*>(ptr)->QProgressDialog::disconnectNotify(*static_cast<QMetaMethod*>(sign));
 }
 
+char QProgressDialog_Event(void* ptr, void* e)
+{
+	return static_cast<QProgressDialog*>(ptr)->event(static_cast<QEvent*>(e));
+}
+
+char QProgressDialog_EventDefault(void* ptr, void* e)
+{
+	return static_cast<QProgressDialog*>(ptr)->QProgressDialog::event(static_cast<QEvent*>(e));
+}
+
+char QProgressDialog_EventFilter(void* ptr, void* watched, void* event)
+{
+	return static_cast<QProgressDialog*>(ptr)->eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+}
+
+char QProgressDialog_EventFilterDefault(void* ptr, void* watched, void* event)
+{
+	return static_cast<QProgressDialog*>(ptr)->QProgressDialog::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+}
+
 void* QProgressDialog_MetaObject(void* ptr)
 {
 	return const_cast<QMetaObject*>(static_cast<QProgressDialog*>(ptr)->metaObject());
@@ -63303,6 +64674,26 @@ void* QProgressDialog_MetaObject(void* ptr)
 void* QProgressDialog_MetaObjectDefault(void* ptr)
 {
 	return const_cast<QMetaObject*>(static_cast<QProgressDialog*>(ptr)->QProgressDialog::metaObject());
+}
+
+int QProgressDialog_Metric(void* ptr, long long metric)
+{
+	return static_cast<QProgressDialog*>(ptr)->metric(static_cast<QPaintDevice::PaintDeviceMetric>(metric));
+}
+
+int QProgressDialog_MetricDefault(void* ptr, long long metric)
+{
+	return static_cast<QProgressDialog*>(ptr)->QProgressDialog::metric(static_cast<QPaintDevice::PaintDeviceMetric>(metric));
+}
+
+void* QProgressDialog_PaintEngine(void* ptr)
+{
+	return static_cast<QProgressDialog*>(ptr)->paintEngine();
+}
+
+void* QProgressDialog_PaintEngineDefault(void* ptr)
+{
+	return static_cast<QProgressDialog*>(ptr)->QProgressDialog::paintEngine();
 }
 
 class MyQProxyStyle: public QProxyStyle
@@ -63751,6 +65142,7 @@ public:
 	void update() { callbackQPushButton_Update(this); };
 	void updateMicroFocus() { callbackQPushButton_UpdateMicroFocus(this); };
 	void wheelEvent(QWheelEvent * event) { callbackQPushButton_WheelEvent(this, event); };
+	void timerEvent(QTimerEvent * event) { callbackQPushButton_TimerEvent(this, event); };
 	void childEvent(QChildEvent * event) { callbackQPushButton_ChildEvent(this, event); };
 	void connectNotify(const QMetaMethod & sign) { callbackQPushButton_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	void customEvent(QEvent * event) { callbackQPushButton_CustomEvent(this, event); };
@@ -63758,6 +65150,8 @@ public:
 	void disconnectNotify(const QMetaMethod & sign) { callbackQPushButton_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQPushButton_EventFilter(this, watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQPushButton_MetaObject(const_cast<MyQPushButton*>(this))); };
+	int metric(QPaintDevice::PaintDeviceMetric metric) const { return callbackQPushButton_Metric(const_cast<MyQPushButton*>(this), metric); };
+	QPaintEngine * paintEngine() const { return static_cast<QPaintEngine*>(callbackQPushButton_PaintEngine(const_cast<MyQPushButton*>(this))); };
 };
 
 char QPushButton_AutoDefault(void* ptr)
@@ -64447,6 +65841,16 @@ void QPushButton_WheelEventDefault(void* ptr, void* event)
 	static_cast<QPushButton*>(ptr)->QPushButton::wheelEvent(static_cast<QWheelEvent*>(event));
 }
 
+void QPushButton_TimerEvent(void* ptr, void* event)
+{
+	static_cast<QPushButton*>(ptr)->timerEvent(static_cast<QTimerEvent*>(event));
+}
+
+void QPushButton_TimerEventDefault(void* ptr, void* event)
+{
+	static_cast<QPushButton*>(ptr)->QPushButton::timerEvent(static_cast<QTimerEvent*>(event));
+}
+
 void QPushButton_ChildEvent(void* ptr, void* event)
 {
 	static_cast<QPushButton*>(ptr)->childEvent(static_cast<QChildEvent*>(event));
@@ -64517,6 +65921,26 @@ void* QPushButton_MetaObjectDefault(void* ptr)
 	return const_cast<QMetaObject*>(static_cast<QPushButton*>(ptr)->QPushButton::metaObject());
 }
 
+int QPushButton_Metric(void* ptr, long long metric)
+{
+	return static_cast<QPushButton*>(ptr)->metric(static_cast<QPaintDevice::PaintDeviceMetric>(metric));
+}
+
+int QPushButton_MetricDefault(void* ptr, long long metric)
+{
+	return static_cast<QPushButton*>(ptr)->QPushButton::metric(static_cast<QPaintDevice::PaintDeviceMetric>(metric));
+}
+
+void* QPushButton_PaintEngine(void* ptr)
+{
+	return static_cast<QPushButton*>(ptr)->paintEngine();
+}
+
+void* QPushButton_PaintEngineDefault(void* ptr)
+{
+	return static_cast<QPushButton*>(ptr)->QPushButton::paintEngine();
+}
+
 class MyQRadioButton: public QRadioButton
 {
 public:
@@ -64583,6 +66007,7 @@ public:
 	void update() { callbackQRadioButton_Update(this); };
 	void updateMicroFocus() { callbackQRadioButton_UpdateMicroFocus(this); };
 	void wheelEvent(QWheelEvent * event) { callbackQRadioButton_WheelEvent(this, event); };
+	void timerEvent(QTimerEvent * event) { callbackQRadioButton_TimerEvent(this, event); };
 	void childEvent(QChildEvent * event) { callbackQRadioButton_ChildEvent(this, event); };
 	void connectNotify(const QMetaMethod & sign) { callbackQRadioButton_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	void customEvent(QEvent * event) { callbackQRadioButton_CustomEvent(this, event); };
@@ -64590,6 +66015,8 @@ public:
 	void disconnectNotify(const QMetaMethod & sign) { callbackQRadioButton_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQRadioButton_EventFilter(this, watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQRadioButton_MetaObject(const_cast<MyQRadioButton*>(this))); };
+	int metric(QPaintDevice::PaintDeviceMetric metric) const { return callbackQRadioButton_Metric(const_cast<MyQRadioButton*>(this), metric); };
+	QPaintEngine * paintEngine() const { return static_cast<QPaintEngine*>(callbackQRadioButton_PaintEngine(const_cast<MyQRadioButton*>(this))); };
 };
 
 void* QRadioButton_NewQRadioButton(void* parent)
@@ -65229,6 +66656,16 @@ void QRadioButton_WheelEventDefault(void* ptr, void* event)
 	static_cast<QRadioButton*>(ptr)->QRadioButton::wheelEvent(static_cast<QWheelEvent*>(event));
 }
 
+void QRadioButton_TimerEvent(void* ptr, void* event)
+{
+	static_cast<QRadioButton*>(ptr)->timerEvent(static_cast<QTimerEvent*>(event));
+}
+
+void QRadioButton_TimerEventDefault(void* ptr, void* event)
+{
+	static_cast<QRadioButton*>(ptr)->QRadioButton::timerEvent(static_cast<QTimerEvent*>(event));
+}
+
 void QRadioButton_ChildEvent(void* ptr, void* event)
 {
 	static_cast<QRadioButton*>(ptr)->childEvent(static_cast<QChildEvent*>(event));
@@ -65299,6 +66736,26 @@ void* QRadioButton_MetaObjectDefault(void* ptr)
 	return const_cast<QMetaObject*>(static_cast<QRadioButton*>(ptr)->QRadioButton::metaObject());
 }
 
+int QRadioButton_Metric(void* ptr, long long metric)
+{
+	return static_cast<QRadioButton*>(ptr)->metric(static_cast<QPaintDevice::PaintDeviceMetric>(metric));
+}
+
+int QRadioButton_MetricDefault(void* ptr, long long metric)
+{
+	return static_cast<QRadioButton*>(ptr)->QRadioButton::metric(static_cast<QPaintDevice::PaintDeviceMetric>(metric));
+}
+
+void* QRadioButton_PaintEngine(void* ptr)
+{
+	return static_cast<QRadioButton*>(ptr)->paintEngine();
+}
+
+void* QRadioButton_PaintEngineDefault(void* ptr)
+{
+	return static_cast<QRadioButton*>(ptr)->QRadioButton::paintEngine();
+}
+
 class MyQRubberBand: public QRubberBand
 {
 public:
@@ -65364,6 +66821,8 @@ public:
 	void disconnectNotify(const QMetaMethod & sign) { callbackQRubberBand_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQRubberBand_EventFilter(this, watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQRubberBand_MetaObject(const_cast<MyQRubberBand*>(this))); };
+	int metric(QPaintDevice::PaintDeviceMetric metric) const { return callbackQRubberBand_Metric(const_cast<MyQRubberBand*>(this), metric); };
+	QPaintEngine * paintEngine() const { return static_cast<QPaintEngine*>(callbackQRubberBand_PaintEngine(const_cast<MyQRubberBand*>(this))); };
 };
 
 void QRubberBand_SetGeometry(void* ptr, void* rect)
@@ -66033,6 +67492,26 @@ void* QRubberBand_MetaObjectDefault(void* ptr)
 	return const_cast<QMetaObject*>(static_cast<QRubberBand*>(ptr)->QRubberBand::metaObject());
 }
 
+int QRubberBand_Metric(void* ptr, long long metric)
+{
+	return static_cast<QRubberBand*>(ptr)->metric(static_cast<QPaintDevice::PaintDeviceMetric>(metric));
+}
+
+int QRubberBand_MetricDefault(void* ptr, long long metric)
+{
+	return static_cast<QRubberBand*>(ptr)->QRubberBand::metric(static_cast<QPaintDevice::PaintDeviceMetric>(metric));
+}
+
+void* QRubberBand_PaintEngine(void* ptr)
+{
+	return static_cast<QRubberBand*>(ptr)->paintEngine();
+}
+
+void* QRubberBand_PaintEngineDefault(void* ptr)
+{
+	return static_cast<QRubberBand*>(ptr)->QRubberBand::paintEngine();
+}
+
 class MyQScrollArea: public QScrollArea
 {
 public:
@@ -66101,6 +67580,8 @@ public:
 	void deleteLater() { callbackQScrollArea_DeleteLater(this); };
 	void disconnectNotify(const QMetaMethod & sign) { callbackQScrollArea_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQScrollArea_MetaObject(const_cast<MyQScrollArea*>(this))); };
+	int metric(QPaintDevice::PaintDeviceMetric metric) const { return callbackQScrollArea_Metric(const_cast<MyQScrollArea*>(this), metric); };
+	QPaintEngine * paintEngine() const { return static_cast<QPaintEngine*>(callbackQScrollArea_PaintEngine(const_cast<MyQScrollArea*>(this))); };
 };
 
 long long QScrollArea_Alignment(void* ptr)
@@ -66810,6 +68291,26 @@ void* QScrollArea_MetaObjectDefault(void* ptr)
 	return const_cast<QMetaObject*>(static_cast<QScrollArea*>(ptr)->QScrollArea::metaObject());
 }
 
+int QScrollArea_Metric(void* ptr, long long metric)
+{
+	return static_cast<QScrollArea*>(ptr)->metric(static_cast<QPaintDevice::PaintDeviceMetric>(metric));
+}
+
+int QScrollArea_MetricDefault(void* ptr, long long metric)
+{
+	return static_cast<QScrollArea*>(ptr)->QScrollArea::metric(static_cast<QPaintDevice::PaintDeviceMetric>(metric));
+}
+
+void* QScrollArea_PaintEngine(void* ptr)
+{
+	return static_cast<QScrollArea*>(ptr)->paintEngine();
+}
+
+void* QScrollArea_PaintEngineDefault(void* ptr)
+{
+	return static_cast<QScrollArea*>(ptr)->QScrollArea::paintEngine();
+}
+
 class MyQScrollBar: public QScrollBar
 {
 public:
@@ -66872,6 +68373,7 @@ public:
 	void tabletEvent(QTabletEvent * event) { callbackQScrollBar_TabletEvent(this, event); };
 	void update() { callbackQScrollBar_Update(this); };
 	void updateMicroFocus() { callbackQScrollBar_UpdateMicroFocus(this); };
+	void timerEvent(QTimerEvent * event) { callbackQScrollBar_TimerEvent(this, event); };
 	void childEvent(QChildEvent * event) { callbackQScrollBar_ChildEvent(this, event); };
 	void connectNotify(const QMetaMethod & sign) { callbackQScrollBar_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	void customEvent(QEvent * event) { callbackQScrollBar_CustomEvent(this, event); };
@@ -66879,6 +68381,8 @@ public:
 	void disconnectNotify(const QMetaMethod & sign) { callbackQScrollBar_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQScrollBar_EventFilter(this, watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQScrollBar_MetaObject(const_cast<MyQScrollBar*>(this))); };
+	int metric(QPaintDevice::PaintDeviceMetric metric) const { return callbackQScrollBar_Metric(const_cast<MyQScrollBar*>(this), metric); };
+	QPaintEngine * paintEngine() const { return static_cast<QPaintEngine*>(callbackQScrollBar_PaintEngine(const_cast<MyQScrollBar*>(this))); };
 };
 
 void* QScrollBar_NewQScrollBar(void* parent)
@@ -67478,6 +68982,16 @@ void QScrollBar_UpdateMicroFocusDefault(void* ptr)
 	static_cast<QScrollBar*>(ptr)->QScrollBar::updateMicroFocus();
 }
 
+void QScrollBar_TimerEvent(void* ptr, void* event)
+{
+	static_cast<QScrollBar*>(ptr)->timerEvent(static_cast<QTimerEvent*>(event));
+}
+
+void QScrollBar_TimerEventDefault(void* ptr, void* event)
+{
+	static_cast<QScrollBar*>(ptr)->QScrollBar::timerEvent(static_cast<QTimerEvent*>(event));
+}
+
 void QScrollBar_ChildEvent(void* ptr, void* event)
 {
 	static_cast<QScrollBar*>(ptr)->childEvent(static_cast<QChildEvent*>(event));
@@ -67546,6 +69060,26 @@ void* QScrollBar_MetaObject(void* ptr)
 void* QScrollBar_MetaObjectDefault(void* ptr)
 {
 	return const_cast<QMetaObject*>(static_cast<QScrollBar*>(ptr)->QScrollBar::metaObject());
+}
+
+int QScrollBar_Metric(void* ptr, long long metric)
+{
+	return static_cast<QScrollBar*>(ptr)->metric(static_cast<QPaintDevice::PaintDeviceMetric>(metric));
+}
+
+int QScrollBar_MetricDefault(void* ptr, long long metric)
+{
+	return static_cast<QScrollBar*>(ptr)->QScrollBar::metric(static_cast<QPaintDevice::PaintDeviceMetric>(metric));
+}
+
+void* QScrollBar_PaintEngine(void* ptr)
+{
+	return static_cast<QScrollBar*>(ptr)->paintEngine();
+}
+
+void* QScrollBar_PaintEngineDefault(void* ptr)
+{
+	return static_cast<QScrollBar*>(ptr)->QScrollBar::paintEngine();
 }
 
 class MyQScroller: public QScroller
@@ -68135,6 +69669,8 @@ public:
 	void deleteLater() { callbackQSizeGrip_DeleteLater(this); };
 	void disconnectNotify(const QMetaMethod & sign) { callbackQSizeGrip_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQSizeGrip_MetaObject(const_cast<MyQSizeGrip*>(this))); };
+	int metric(QPaintDevice::PaintDeviceMetric metric) const { return callbackQSizeGrip_Metric(const_cast<MyQSizeGrip*>(this), metric); };
+	QPaintEngine * paintEngine() const { return static_cast<QPaintEngine*>(callbackQSizeGrip_PaintEngine(const_cast<MyQSizeGrip*>(this))); };
 };
 
 void QSizeGrip_MouseMoveEvent(void* ptr, void* event)
@@ -68759,6 +70295,26 @@ void* QSizeGrip_MetaObjectDefault(void* ptr)
 	return const_cast<QMetaObject*>(static_cast<QSizeGrip*>(ptr)->QSizeGrip::metaObject());
 }
 
+int QSizeGrip_Metric(void* ptr, long long metric)
+{
+	return static_cast<QSizeGrip*>(ptr)->metric(static_cast<QPaintDevice::PaintDeviceMetric>(metric));
+}
+
+int QSizeGrip_MetricDefault(void* ptr, long long metric)
+{
+	return static_cast<QSizeGrip*>(ptr)->QSizeGrip::metric(static_cast<QPaintDevice::PaintDeviceMetric>(metric));
+}
+
+void* QSizeGrip_PaintEngine(void* ptr)
+{
+	return static_cast<QSizeGrip*>(ptr)->paintEngine();
+}
+
+void* QSizeGrip_PaintEngineDefault(void* ptr)
+{
+	return static_cast<QSizeGrip*>(ptr)->QSizeGrip::paintEngine();
+}
+
 void* QSizePolicy_NewQSizePolicy()
 {
 	return new QSizePolicy();
@@ -68921,6 +70477,7 @@ public:
 	void tabletEvent(QTabletEvent * event) { callbackQSlider_TabletEvent(this, event); };
 	void update() { callbackQSlider_Update(this); };
 	void updateMicroFocus() { callbackQSlider_UpdateMicroFocus(this); };
+	void timerEvent(QTimerEvent * event) { callbackQSlider_TimerEvent(this, event); };
 	void childEvent(QChildEvent * event) { callbackQSlider_ChildEvent(this, event); };
 	void connectNotify(const QMetaMethod & sign) { callbackQSlider_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	void customEvent(QEvent * event) { callbackQSlider_CustomEvent(this, event); };
@@ -68928,6 +70485,8 @@ public:
 	void disconnectNotify(const QMetaMethod & sign) { callbackQSlider_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQSlider_EventFilter(this, watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQSlider_MetaObject(const_cast<MyQSlider*>(this))); };
+	int metric(QPaintDevice::PaintDeviceMetric metric) const { return callbackQSlider_Metric(const_cast<MyQSlider*>(this), metric); };
+	QPaintEngine * paintEngine() const { return static_cast<QPaintEngine*>(callbackQSlider_PaintEngine(const_cast<MyQSlider*>(this))); };
 };
 
 void QSlider_SetTickInterval(void* ptr, int ti)
@@ -69547,6 +71106,16 @@ void QSlider_UpdateMicroFocusDefault(void* ptr)
 	static_cast<QSlider*>(ptr)->QSlider::updateMicroFocus();
 }
 
+void QSlider_TimerEvent(void* ptr, void* event)
+{
+	static_cast<QSlider*>(ptr)->timerEvent(static_cast<QTimerEvent*>(event));
+}
+
+void QSlider_TimerEventDefault(void* ptr, void* event)
+{
+	static_cast<QSlider*>(ptr)->QSlider::timerEvent(static_cast<QTimerEvent*>(event));
+}
+
 void QSlider_ChildEvent(void* ptr, void* event)
 {
 	static_cast<QSlider*>(ptr)->childEvent(static_cast<QChildEvent*>(event));
@@ -69615,6 +71184,26 @@ void* QSlider_MetaObject(void* ptr)
 void* QSlider_MetaObjectDefault(void* ptr)
 {
 	return const_cast<QMetaObject*>(static_cast<QSlider*>(ptr)->QSlider::metaObject());
+}
+
+int QSlider_Metric(void* ptr, long long metric)
+{
+	return static_cast<QSlider*>(ptr)->metric(static_cast<QPaintDevice::PaintDeviceMetric>(metric));
+}
+
+int QSlider_MetricDefault(void* ptr, long long metric)
+{
+	return static_cast<QSlider*>(ptr)->QSlider::metric(static_cast<QPaintDevice::PaintDeviceMetric>(metric));
+}
+
+void* QSlider_PaintEngine(void* ptr)
+{
+	return static_cast<QSlider*>(ptr)->paintEngine();
+}
+
+void* QSlider_PaintEngineDefault(void* ptr)
+{
+	return static_cast<QSlider*>(ptr)->QSlider::paintEngine();
 }
 
 class MyQSpacerItem: public QSpacerItem
@@ -69878,6 +71467,7 @@ public:
 	void tabletEvent(QTabletEvent * event) { callbackQSpinBox_TabletEvent(this, event); };
 	void update() { callbackQSpinBox_Update(this); };
 	void updateMicroFocus() { callbackQSpinBox_UpdateMicroFocus(this); };
+	void timerEvent(QTimerEvent * event) { callbackQSpinBox_TimerEvent(this, event); };
 	void childEvent(QChildEvent * event) { callbackQSpinBox_ChildEvent(this, event); };
 	void connectNotify(const QMetaMethod & sign) { callbackQSpinBox_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	void customEvent(QEvent * event) { callbackQSpinBox_CustomEvent(this, event); };
@@ -69885,6 +71475,8 @@ public:
 	void disconnectNotify(const QMetaMethod & sign) { callbackQSpinBox_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQSpinBox_EventFilter(this, watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQSpinBox_MetaObject(const_cast<MyQSpinBox*>(this))); };
+	int metric(QPaintDevice::PaintDeviceMetric metric) const { return callbackQSpinBox_Metric(const_cast<MyQSpinBox*>(this), metric); };
+	QPaintEngine * paintEngine() const { return static_cast<QPaintEngine*>(callbackQSpinBox_PaintEngine(const_cast<MyQSpinBox*>(this))); };
 };
 
 struct QtWidgets_PackedString QSpinBox_CleanText(void* ptr)
@@ -70644,6 +72236,16 @@ void QSpinBox_UpdateMicroFocusDefault(void* ptr)
 	static_cast<QSpinBox*>(ptr)->QSpinBox::updateMicroFocus();
 }
 
+void QSpinBox_TimerEvent(void* ptr, void* event)
+{
+	static_cast<QSpinBox*>(ptr)->timerEvent(static_cast<QTimerEvent*>(event));
+}
+
+void QSpinBox_TimerEventDefault(void* ptr, void* event)
+{
+	static_cast<QSpinBox*>(ptr)->QSpinBox::timerEvent(static_cast<QTimerEvent*>(event));
+}
+
 void QSpinBox_ChildEvent(void* ptr, void* event)
 {
 	static_cast<QSpinBox*>(ptr)->childEvent(static_cast<QChildEvent*>(event));
@@ -70712,6 +72314,26 @@ void* QSpinBox_MetaObject(void* ptr)
 void* QSpinBox_MetaObjectDefault(void* ptr)
 {
 	return const_cast<QMetaObject*>(static_cast<QSpinBox*>(ptr)->QSpinBox::metaObject());
+}
+
+int QSpinBox_Metric(void* ptr, long long metric)
+{
+	return static_cast<QSpinBox*>(ptr)->metric(static_cast<QPaintDevice::PaintDeviceMetric>(metric));
+}
+
+int QSpinBox_MetricDefault(void* ptr, long long metric)
+{
+	return static_cast<QSpinBox*>(ptr)->QSpinBox::metric(static_cast<QPaintDevice::PaintDeviceMetric>(metric));
+}
+
+void* QSpinBox_PaintEngine(void* ptr)
+{
+	return static_cast<QSpinBox*>(ptr)->paintEngine();
+}
+
+void* QSpinBox_PaintEngineDefault(void* ptr)
+{
+	return static_cast<QSpinBox*>(ptr)->QSpinBox::paintEngine();
 }
 
 class MyQSplashScreen: public QSplashScreen
@@ -70784,6 +72406,8 @@ public:
 	void disconnectNotify(const QMetaMethod & sign) { callbackQSplashScreen_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQSplashScreen_EventFilter(this, watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQSplashScreen_MetaObject(const_cast<MyQSplashScreen*>(this))); };
+	int metric(QPaintDevice::PaintDeviceMetric metric) const { return callbackQSplashScreen_Metric(const_cast<MyQSplashScreen*>(this), metric); };
+	QPaintEngine * paintEngine() const { return static_cast<QPaintEngine*>(callbackQSplashScreen_PaintEngine(const_cast<MyQSplashScreen*>(this))); };
 };
 
 void* QSplashScreen_NewQSplashScreen2(void* parent, void* pixmap, long long f)
@@ -71473,6 +73097,26 @@ void* QSplashScreen_MetaObjectDefault(void* ptr)
 	return const_cast<QMetaObject*>(static_cast<QSplashScreen*>(ptr)->QSplashScreen::metaObject());
 }
 
+int QSplashScreen_Metric(void* ptr, long long metric)
+{
+	return static_cast<QSplashScreen*>(ptr)->metric(static_cast<QPaintDevice::PaintDeviceMetric>(metric));
+}
+
+int QSplashScreen_MetricDefault(void* ptr, long long metric)
+{
+	return static_cast<QSplashScreen*>(ptr)->QSplashScreen::metric(static_cast<QPaintDevice::PaintDeviceMetric>(metric));
+}
+
+void* QSplashScreen_PaintEngine(void* ptr)
+{
+	return static_cast<QSplashScreen*>(ptr)->paintEngine();
+}
+
+void* QSplashScreen_PaintEngineDefault(void* ptr)
+{
+	return static_cast<QSplashScreen*>(ptr)->QSplashScreen::paintEngine();
+}
+
 class MyQSplitter: public QSplitter
 {
 public:
@@ -71540,6 +73184,8 @@ public:
 	void disconnectNotify(const QMetaMethod & sign) { callbackQSplitter_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQSplitter_EventFilter(this, watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQSplitter_MetaObject(const_cast<MyQSplitter*>(this))); };
+	int metric(QPaintDevice::PaintDeviceMetric metric) const { return callbackQSplitter_Metric(const_cast<MyQSplitter*>(this), metric); };
+	QPaintEngine * paintEngine() const { return static_cast<QPaintEngine*>(callbackQSplitter_PaintEngine(const_cast<MyQSplitter*>(this))); };
 };
 
 char QSplitter_ChildrenCollapsible(void* ptr)
@@ -72314,6 +73960,26 @@ void* QSplitter_MetaObjectDefault(void* ptr)
 	return const_cast<QMetaObject*>(static_cast<QSplitter*>(ptr)->QSplitter::metaObject());
 }
 
+int QSplitter_Metric(void* ptr, long long metric)
+{
+	return static_cast<QSplitter*>(ptr)->metric(static_cast<QPaintDevice::PaintDeviceMetric>(metric));
+}
+
+int QSplitter_MetricDefault(void* ptr, long long metric)
+{
+	return static_cast<QSplitter*>(ptr)->QSplitter::metric(static_cast<QPaintDevice::PaintDeviceMetric>(metric));
+}
+
+void* QSplitter_PaintEngine(void* ptr)
+{
+	return static_cast<QSplitter*>(ptr)->paintEngine();
+}
+
+void* QSplitter_PaintEngineDefault(void* ptr)
+{
+	return static_cast<QSplitter*>(ptr)->QSplitter::paintEngine();
+}
+
 class MyQSplitterHandle: public QSplitterHandle
 {
 public:
@@ -72379,6 +74045,8 @@ public:
 	void disconnectNotify(const QMetaMethod & sign) { callbackQSplitterHandle_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQSplitterHandle_EventFilter(this, watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQSplitterHandle_MetaObject(const_cast<MyQSplitterHandle*>(this))); };
+	int metric(QPaintDevice::PaintDeviceMetric metric) const { return callbackQSplitterHandle_Metric(const_cast<MyQSplitterHandle*>(this), metric); };
+	QPaintEngine * paintEngine() const { return static_cast<QPaintEngine*>(callbackQSplitterHandle_PaintEngine(const_cast<MyQSplitterHandle*>(this))); };
 };
 
 void* QSplitterHandle_NewQSplitterHandle(long long orientation, void* parent)
@@ -73038,6 +74706,26 @@ void* QSplitterHandle_MetaObjectDefault(void* ptr)
 	return const_cast<QMetaObject*>(static_cast<QSplitterHandle*>(ptr)->QSplitterHandle::metaObject());
 }
 
+int QSplitterHandle_Metric(void* ptr, long long metric)
+{
+	return static_cast<QSplitterHandle*>(ptr)->metric(static_cast<QPaintDevice::PaintDeviceMetric>(metric));
+}
+
+int QSplitterHandle_MetricDefault(void* ptr, long long metric)
+{
+	return static_cast<QSplitterHandle*>(ptr)->QSplitterHandle::metric(static_cast<QPaintDevice::PaintDeviceMetric>(metric));
+}
+
+void* QSplitterHandle_PaintEngine(void* ptr)
+{
+	return static_cast<QSplitterHandle*>(ptr)->paintEngine();
+}
+
+void* QSplitterHandle_PaintEngineDefault(void* ptr)
+{
+	return static_cast<QSplitterHandle*>(ptr)->QSplitterHandle::paintEngine();
+}
+
 class MyQStackedLayout: public QStackedLayout
 {
 public:
@@ -73066,6 +74754,7 @@ public:
 	QLayout * layout() { return static_cast<QLayout*>(callbackQStackedLayout_Layout(this)); };
 	QSize maximumSize() const { return *static_cast<QSize*>(callbackQStackedLayout_MaximumSize(const_cast<MyQStackedLayout*>(this))); };
 	void timerEvent(QTimerEvent * event) { callbackQStackedLayout_TimerEvent(this, event); };
+	void childEvent(QChildEvent * event) { callbackQStackedLayout_ChildEvent(this, event); };
 	void connectNotify(const QMetaMethod & sign) { callbackQStackedLayout_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	void customEvent(QEvent * event) { callbackQStackedLayout_CustomEvent(this, event); };
 	void deleteLater() { callbackQStackedLayout_DeleteLater(this); };
@@ -73352,6 +75041,16 @@ void QStackedLayout_TimerEventDefault(void* ptr, void* event)
 	static_cast<QStackedLayout*>(ptr)->QStackedLayout::timerEvent(static_cast<QTimerEvent*>(event));
 }
 
+void QStackedLayout_ChildEvent(void* ptr, void* event)
+{
+	static_cast<QStackedLayout*>(ptr)->childEvent(static_cast<QChildEvent*>(event));
+}
+
+void QStackedLayout_ChildEventDefault(void* ptr, void* event)
+{
+	static_cast<QStackedLayout*>(ptr)->QStackedLayout::childEvent(static_cast<QChildEvent*>(event));
+}
+
 void QStackedLayout_ConnectNotify(void* ptr, void* sign)
 {
 	static_cast<QStackedLayout*>(ptr)->connectNotify(*static_cast<QMetaMethod*>(sign));
@@ -73511,6 +75210,8 @@ public:
 	void disconnectNotify(const QMetaMethod & sign) { callbackQStackedWidget_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQStackedWidget_EventFilter(this, watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQStackedWidget_MetaObject(const_cast<MyQStackedWidget*>(this))); };
+	int metric(QPaintDevice::PaintDeviceMetric metric) const { return callbackQStackedWidget_Metric(const_cast<MyQStackedWidget*>(this), metric); };
+	QPaintEngine * paintEngine() const { return static_cast<QPaintEngine*>(callbackQStackedWidget_PaintEngine(const_cast<MyQStackedWidget*>(this))); };
 };
 
 int QStackedWidget_Count(void* ptr)
@@ -74220,6 +75921,26 @@ void* QStackedWidget_MetaObjectDefault(void* ptr)
 	return const_cast<QMetaObject*>(static_cast<QStackedWidget*>(ptr)->QStackedWidget::metaObject());
 }
 
+int QStackedWidget_Metric(void* ptr, long long metric)
+{
+	return static_cast<QStackedWidget*>(ptr)->metric(static_cast<QPaintDevice::PaintDeviceMetric>(metric));
+}
+
+int QStackedWidget_MetricDefault(void* ptr, long long metric)
+{
+	return static_cast<QStackedWidget*>(ptr)->QStackedWidget::metric(static_cast<QPaintDevice::PaintDeviceMetric>(metric));
+}
+
+void* QStackedWidget_PaintEngine(void* ptr)
+{
+	return static_cast<QStackedWidget*>(ptr)->paintEngine();
+}
+
+void* QStackedWidget_PaintEngineDefault(void* ptr)
+{
+	return static_cast<QStackedWidget*>(ptr)->QStackedWidget::paintEngine();
+}
+
 class MyQStatusBar: public QStatusBar
 {
 public:
@@ -74289,6 +76010,8 @@ public:
 	void disconnectNotify(const QMetaMethod & sign) { callbackQStatusBar_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQStatusBar_EventFilter(this, watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQStatusBar_MetaObject(const_cast<MyQStatusBar*>(this))); };
+	int metric(QPaintDevice::PaintDeviceMetric metric) const { return callbackQStatusBar_Metric(const_cast<MyQStatusBar*>(this), metric); };
+	QPaintEngine * paintEngine() const { return static_cast<QPaintEngine*>(callbackQStatusBar_PaintEngine(const_cast<MyQStatusBar*>(this))); };
 };
 
 char QStatusBar_IsSizeGripEnabled(void* ptr)
@@ -74997,6 +76720,65 @@ void* QStatusBar_MetaObjectDefault(void* ptr)
 {
 	return const_cast<QMetaObject*>(static_cast<QStatusBar*>(ptr)->QStatusBar::metaObject());
 }
+
+int QStatusBar_Metric(void* ptr, long long metric)
+{
+	return static_cast<QStatusBar*>(ptr)->metric(static_cast<QPaintDevice::PaintDeviceMetric>(metric));
+}
+
+int QStatusBar_MetricDefault(void* ptr, long long metric)
+{
+	return static_cast<QStatusBar*>(ptr)->QStatusBar::metric(static_cast<QPaintDevice::PaintDeviceMetric>(metric));
+}
+
+void* QStatusBar_PaintEngine(void* ptr)
+{
+	return static_cast<QStatusBar*>(ptr)->paintEngine();
+}
+
+void* QStatusBar_PaintEngineDefault(void* ptr)
+{
+	return static_cast<QStatusBar*>(ptr)->QStatusBar::paintEngine();
+}
+
+class MyQStyle: public QStyle
+{
+public:
+	MyQStyle() : QStyle() {};
+	void drawItemPixmap(QPainter * painter, const QRect & rectangle, int alignment, const QPixmap & pixmap) const { callbackQStyle_DrawItemPixmap(const_cast<MyQStyle*>(this), painter, const_cast<QRect*>(&rectangle), alignment, const_cast<QPixmap*>(&pixmap)); };
+	void drawItemText(QPainter * painter, const QRect & rectangle, int alignment, const QPalette & palette, bool enabled, const QString & text, QPalette::ColorRole textRole) const { QByteArray t372ea0 = text.toUtf8(); QtWidgets_PackedString textPacked = { const_cast<char*>(t372ea0.prepend("WHITESPACE").constData()+10), t372ea0.size()-10 };callbackQStyle_DrawItemText(const_cast<MyQStyle*>(this), painter, const_cast<QRect*>(&rectangle), alignment, const_cast<QPalette*>(&palette), enabled, textPacked, textRole); };
+	QRect itemPixmapRect(const QRect & rectangle, int alignment, const QPixmap & pixmap) const { return *static_cast<QRect*>(callbackQStyle_ItemPixmapRect(const_cast<MyQStyle*>(this), const_cast<QRect*>(&rectangle), alignment, const_cast<QPixmap*>(&pixmap))); };
+	QRect itemTextRect(const QFontMetrics & metrics, const QRect & rectangle, int alignment, bool enabled, const QString & text) const { QByteArray t372ea0 = text.toUtf8(); QtWidgets_PackedString textPacked = { const_cast<char*>(t372ea0.prepend("WHITESPACE").constData()+10), t372ea0.size()-10 };return *static_cast<QRect*>(callbackQStyle_ItemTextRect(const_cast<MyQStyle*>(this), const_cast<QFontMetrics*>(&metrics), const_cast<QRect*>(&rectangle), alignment, enabled, textPacked)); };
+	void polish(QApplication * application) { callbackQStyle_Polish2(this, application); };
+	void polish(QPalette & palette) { callbackQStyle_Polish3(this, new QPalette(palette)); };
+	void unpolish(QApplication * application) { callbackQStyle_Unpolish2(this, application); };
+	void drawComplexControl(QStyle::ComplexControl control, const QStyleOptionComplex * option, QPainter * painter, const QWidget * widget) const { callbackQStyle_DrawComplexControl(const_cast<MyQStyle*>(this), control, const_cast<QStyleOptionComplex*>(option), painter, const_cast<QWidget*>(widget)); };
+	void drawControl(QStyle::ControlElement element, const QStyleOption * option, QPainter * painter, const QWidget * widget) const { callbackQStyle_DrawControl(const_cast<MyQStyle*>(this), element, const_cast<QStyleOption*>(option), painter, const_cast<QWidget*>(widget)); };
+	void drawPrimitive(QStyle::PrimitiveElement element, const QStyleOption * option, QPainter * painter, const QWidget * widget) const { callbackQStyle_DrawPrimitive(const_cast<MyQStyle*>(this), element, const_cast<QStyleOption*>(option), painter, const_cast<QWidget*>(widget)); };
+	QPixmap generatedIconPixmap(QIcon::Mode iconMode, const QPixmap & pixmap, const QStyleOption * option) const { return *static_cast<QPixmap*>(callbackQStyle_GeneratedIconPixmap(const_cast<MyQStyle*>(this), iconMode, const_cast<QPixmap*>(&pixmap), const_cast<QStyleOption*>(option))); };
+	SubControl hitTestComplexControl(QStyle::ComplexControl control, const QStyleOptionComplex * option, const QPoint & position, const QWidget * widget) const { return static_cast<QStyle::SubControl>(callbackQStyle_HitTestComplexControl(const_cast<MyQStyle*>(this), control, const_cast<QStyleOptionComplex*>(option), const_cast<QPoint*>(&position), const_cast<QWidget*>(widget))); };
+	int layoutSpacing(QSizePolicy::ControlType control1, QSizePolicy::ControlType control2, Qt::Orientation orientation, const QStyleOption * option, const QWidget * widget) const { return callbackQStyle_LayoutSpacing(const_cast<MyQStyle*>(this), control1, control2, orientation, const_cast<QStyleOption*>(option), const_cast<QWidget*>(widget)); };
+	int pixelMetric(QStyle::PixelMetric metric, const QStyleOption * option, const QWidget * widget) const { return callbackQStyle_PixelMetric(const_cast<MyQStyle*>(this), metric, const_cast<QStyleOption*>(option), const_cast<QWidget*>(widget)); };
+	void polish(QWidget * widget) { callbackQStyle_Polish(this, widget); };
+	QSize sizeFromContents(QStyle::ContentsType ty, const QStyleOption * option, const QSize & contentsSize, const QWidget * widget) const { return *static_cast<QSize*>(callbackQStyle_SizeFromContents(const_cast<MyQStyle*>(this), ty, const_cast<QStyleOption*>(option), const_cast<QSize*>(&contentsSize), const_cast<QWidget*>(widget))); };
+	QIcon standardIcon(QStyle::StandardPixmap standardIcon, const QStyleOption * option, const QWidget * widget) const { return *static_cast<QIcon*>(callbackQStyle_StandardIcon(const_cast<MyQStyle*>(this), standardIcon, const_cast<QStyleOption*>(option), const_cast<QWidget*>(widget))); };
+	QPalette standardPalette() const { return *static_cast<QPalette*>(callbackQStyle_StandardPalette(const_cast<MyQStyle*>(this))); };
+	int styleHint(QStyle::StyleHint hint, const QStyleOption * option, const QWidget * widget, QStyleHintReturn * returnData) const { return callbackQStyle_StyleHint(const_cast<MyQStyle*>(this), hint, const_cast<QStyleOption*>(option), const_cast<QWidget*>(widget), returnData); };
+	QRect subControlRect(QStyle::ComplexControl control, const QStyleOptionComplex * option, QStyle::SubControl subControl, const QWidget * widget) const { return *static_cast<QRect*>(callbackQStyle_SubControlRect(const_cast<MyQStyle*>(this), control, const_cast<QStyleOptionComplex*>(option), subControl, const_cast<QWidget*>(widget))); };
+	QRect subElementRect(QStyle::SubElement element, const QStyleOption * option, const QWidget * widget) const { return *static_cast<QRect*>(callbackQStyle_SubElementRect(const_cast<MyQStyle*>(this), element, const_cast<QStyleOption*>(option), const_cast<QWidget*>(widget))); };
+	void unpolish(QWidget * widget) { callbackQStyle_Unpolish(this, widget); };
+	 ~MyQStyle() { callbackQStyle_DestroyQStyle(this); };
+	QPixmap standardPixmap(QStyle::StandardPixmap standardIcon, const QStyleOption * option, const QWidget * widget) const { return *static_cast<QPixmap*>(callbackQStyle_StandardPixmap(const_cast<MyQStyle*>(this), standardIcon, const_cast<QStyleOption*>(option), const_cast<QWidget*>(widget))); };
+	void timerEvent(QTimerEvent * event) { callbackQStyle_TimerEvent(this, event); };
+	void childEvent(QChildEvent * event) { callbackQStyle_ChildEvent(this, event); };
+	void connectNotify(const QMetaMethod & sign) { callbackQStyle_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
+	void customEvent(QEvent * event) { callbackQStyle_CustomEvent(this, event); };
+	void deleteLater() { callbackQStyle_DeleteLater(this); };
+	void disconnectNotify(const QMetaMethod & sign) { callbackQStyle_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
+	bool event(QEvent * e) { return callbackQStyle_Event(this, e) != 0; };
+	bool eventFilter(QObject * watched, QEvent * event) { return callbackQStyle_EventFilter(this, watched, event) != 0; };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQStyle_MetaObject(const_cast<MyQStyle*>(this))); };
+};
 
 int QStyle_PM_MdiSubWindowMinimizedWidth_Type()
 {
@@ -76878,45 +78660,6 @@ int QStyle_SE_TabBarTearIndicatorRight_Type()
 		return 0;
 	#endif
 }
-
-class MyQStyle: public QStyle
-{
-public:
-	MyQStyle() : QStyle() {};
-	void drawItemPixmap(QPainter * painter, const QRect & rectangle, int alignment, const QPixmap & pixmap) const { callbackQStyle_DrawItemPixmap(const_cast<MyQStyle*>(this), painter, const_cast<QRect*>(&rectangle), alignment, const_cast<QPixmap*>(&pixmap)); };
-	void drawItemText(QPainter * painter, const QRect & rectangle, int alignment, const QPalette & palette, bool enabled, const QString & text, QPalette::ColorRole textRole) const { QByteArray t372ea0 = text.toUtf8(); QtWidgets_PackedString textPacked = { const_cast<char*>(t372ea0.prepend("WHITESPACE").constData()+10), t372ea0.size()-10 };callbackQStyle_DrawItemText(const_cast<MyQStyle*>(this), painter, const_cast<QRect*>(&rectangle), alignment, const_cast<QPalette*>(&palette), enabled, textPacked, textRole); };
-	QRect itemPixmapRect(const QRect & rectangle, int alignment, const QPixmap & pixmap) const { return *static_cast<QRect*>(callbackQStyle_ItemPixmapRect(const_cast<MyQStyle*>(this), const_cast<QRect*>(&rectangle), alignment, const_cast<QPixmap*>(&pixmap))); };
-	QRect itemTextRect(const QFontMetrics & metrics, const QRect & rectangle, int alignment, bool enabled, const QString & text) const { QByteArray t372ea0 = text.toUtf8(); QtWidgets_PackedString textPacked = { const_cast<char*>(t372ea0.prepend("WHITESPACE").constData()+10), t372ea0.size()-10 };return *static_cast<QRect*>(callbackQStyle_ItemTextRect(const_cast<MyQStyle*>(this), const_cast<QFontMetrics*>(&metrics), const_cast<QRect*>(&rectangle), alignment, enabled, textPacked)); };
-	void polish(QApplication * application) { callbackQStyle_Polish2(this, application); };
-	void polish(QPalette & palette) { callbackQStyle_Polish3(this, new QPalette(palette)); };
-	void unpolish(QApplication * application) { callbackQStyle_Unpolish2(this, application); };
-	void drawComplexControl(QStyle::ComplexControl control, const QStyleOptionComplex * option, QPainter * painter, const QWidget * widget) const { callbackQStyle_DrawComplexControl(const_cast<MyQStyle*>(this), control, const_cast<QStyleOptionComplex*>(option), painter, const_cast<QWidget*>(widget)); };
-	void drawControl(QStyle::ControlElement element, const QStyleOption * option, QPainter * painter, const QWidget * widget) const { callbackQStyle_DrawControl(const_cast<MyQStyle*>(this), element, const_cast<QStyleOption*>(option), painter, const_cast<QWidget*>(widget)); };
-	void drawPrimitive(QStyle::PrimitiveElement element, const QStyleOption * option, QPainter * painter, const QWidget * widget) const { callbackQStyle_DrawPrimitive(const_cast<MyQStyle*>(this), element, const_cast<QStyleOption*>(option), painter, const_cast<QWidget*>(widget)); };
-	QPixmap generatedIconPixmap(QIcon::Mode iconMode, const QPixmap & pixmap, const QStyleOption * option) const { return *static_cast<QPixmap*>(callbackQStyle_GeneratedIconPixmap(const_cast<MyQStyle*>(this), iconMode, const_cast<QPixmap*>(&pixmap), const_cast<QStyleOption*>(option))); };
-	SubControl hitTestComplexControl(QStyle::ComplexControl control, const QStyleOptionComplex * option, const QPoint & position, const QWidget * widget) const { return static_cast<QStyle::SubControl>(callbackQStyle_HitTestComplexControl(const_cast<MyQStyle*>(this), control, const_cast<QStyleOptionComplex*>(option), const_cast<QPoint*>(&position), const_cast<QWidget*>(widget))); };
-	int layoutSpacing(QSizePolicy::ControlType control1, QSizePolicy::ControlType control2, Qt::Orientation orientation, const QStyleOption * option, const QWidget * widget) const { return callbackQStyle_LayoutSpacing(const_cast<MyQStyle*>(this), control1, control2, orientation, const_cast<QStyleOption*>(option), const_cast<QWidget*>(widget)); };
-	int pixelMetric(QStyle::PixelMetric metric, const QStyleOption * option, const QWidget * widget) const { return callbackQStyle_PixelMetric(const_cast<MyQStyle*>(this), metric, const_cast<QStyleOption*>(option), const_cast<QWidget*>(widget)); };
-	void polish(QWidget * widget) { callbackQStyle_Polish(this, widget); };
-	QSize sizeFromContents(QStyle::ContentsType ty, const QStyleOption * option, const QSize & contentsSize, const QWidget * widget) const { return *static_cast<QSize*>(callbackQStyle_SizeFromContents(const_cast<MyQStyle*>(this), ty, const_cast<QStyleOption*>(option), const_cast<QSize*>(&contentsSize), const_cast<QWidget*>(widget))); };
-	QIcon standardIcon(QStyle::StandardPixmap standardIcon, const QStyleOption * option, const QWidget * widget) const { return *static_cast<QIcon*>(callbackQStyle_StandardIcon(const_cast<MyQStyle*>(this), standardIcon, const_cast<QStyleOption*>(option), const_cast<QWidget*>(widget))); };
-	QPalette standardPalette() const { return *static_cast<QPalette*>(callbackQStyle_StandardPalette(const_cast<MyQStyle*>(this))); };
-	int styleHint(QStyle::StyleHint hint, const QStyleOption * option, const QWidget * widget, QStyleHintReturn * returnData) const { return callbackQStyle_StyleHint(const_cast<MyQStyle*>(this), hint, const_cast<QStyleOption*>(option), const_cast<QWidget*>(widget), returnData); };
-	QRect subControlRect(QStyle::ComplexControl control, const QStyleOptionComplex * option, QStyle::SubControl subControl, const QWidget * widget) const { return *static_cast<QRect*>(callbackQStyle_SubControlRect(const_cast<MyQStyle*>(this), control, const_cast<QStyleOptionComplex*>(option), subControl, const_cast<QWidget*>(widget))); };
-	QRect subElementRect(QStyle::SubElement element, const QStyleOption * option, const QWidget * widget) const { return *static_cast<QRect*>(callbackQStyle_SubElementRect(const_cast<MyQStyle*>(this), element, const_cast<QStyleOption*>(option), const_cast<QWidget*>(widget))); };
-	void unpolish(QWidget * widget) { callbackQStyle_Unpolish(this, widget); };
-	 ~MyQStyle() { callbackQStyle_DestroyQStyle(this); };
-	QPixmap standardPixmap(QStyle::StandardPixmap standardIcon, const QStyleOption * option, const QWidget * widget) const { return *static_cast<QPixmap*>(callbackQStyle_StandardPixmap(const_cast<MyQStyle*>(this), standardIcon, const_cast<QStyleOption*>(option), const_cast<QWidget*>(widget))); };
-	void timerEvent(QTimerEvent * event) { callbackQStyle_TimerEvent(this, event); };
-	void childEvent(QChildEvent * event) { callbackQStyle_ChildEvent(this, event); };
-	void connectNotify(const QMetaMethod & sign) { callbackQStyle_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
-	void customEvent(QEvent * event) { callbackQStyle_CustomEvent(this, event); };
-	void deleteLater() { callbackQStyle_DeleteLater(this); };
-	void disconnectNotify(const QMetaMethod & sign) { callbackQStyle_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
-	bool event(QEvent * e) { return callbackQStyle_Event(this, e) != 0; };
-	bool eventFilter(QObject * watched, QEvent * event) { return callbackQStyle_EventFilter(this, watched, event) != 0; };
-	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQStyle_MetaObject(const_cast<MyQStyle*>(this))); };
-};
 
 void QStyle_DrawItemPixmap(void* ptr, void* painter, void* rectangle, int alignment, void* pixmap)
 {
@@ -79873,6 +81616,8 @@ public:
 	void disconnectNotify(const QMetaMethod & sign) { callbackQTabBar_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQTabBar_EventFilter(this, watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQTabBar_MetaObject(const_cast<MyQTabBar*>(this))); };
+	int metric(QPaintDevice::PaintDeviceMetric metric) const { return callbackQTabBar_Metric(const_cast<MyQTabBar*>(this), metric); };
+	QPaintEngine * paintEngine() const { return static_cast<QPaintEngine*>(callbackQTabBar_PaintEngine(const_cast<MyQTabBar*>(this))); };
 };
 
 char QTabBar_AutoHide(void* ptr)
@@ -80882,6 +82627,26 @@ void* QTabBar_MetaObjectDefault(void* ptr)
 	return const_cast<QMetaObject*>(static_cast<QTabBar*>(ptr)->QTabBar::metaObject());
 }
 
+int QTabBar_Metric(void* ptr, long long metric)
+{
+	return static_cast<QTabBar*>(ptr)->metric(static_cast<QPaintDevice::PaintDeviceMetric>(metric));
+}
+
+int QTabBar_MetricDefault(void* ptr, long long metric)
+{
+	return static_cast<QTabBar*>(ptr)->QTabBar::metric(static_cast<QPaintDevice::PaintDeviceMetric>(metric));
+}
+
+void* QTabBar_PaintEngine(void* ptr)
+{
+	return static_cast<QTabBar*>(ptr)->paintEngine();
+}
+
+void* QTabBar_PaintEngineDefault(void* ptr)
+{
+	return static_cast<QTabBar*>(ptr)->QTabBar::paintEngine();
+}
+
 class MyQTabWidget: public QTabWidget
 {
 public:
@@ -80955,6 +82720,8 @@ public:
 	void disconnectNotify(const QMetaMethod & sign) { callbackQTabWidget_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQTabWidget_EventFilter(this, watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQTabWidget_MetaObject(const_cast<MyQTabWidget*>(this))); };
+	int metric(QPaintDevice::PaintDeviceMetric metric) const { return callbackQTabWidget_Metric(const_cast<MyQTabWidget*>(this), metric); };
+	QPaintEngine * paintEngine() const { return static_cast<QPaintEngine*>(callbackQTabWidget_PaintEngine(const_cast<MyQTabWidget*>(this))); };
 };
 
 int QTabWidget_AddTab2(void* ptr, void* page, void* icon, char* label)
@@ -81894,6 +83661,26 @@ void* QTabWidget_MetaObjectDefault(void* ptr)
 	return const_cast<QMetaObject*>(static_cast<QTabWidget*>(ptr)->QTabWidget::metaObject());
 }
 
+int QTabWidget_Metric(void* ptr, long long metric)
+{
+	return static_cast<QTabWidget*>(ptr)->metric(static_cast<QPaintDevice::PaintDeviceMetric>(metric));
+}
+
+int QTabWidget_MetricDefault(void* ptr, long long metric)
+{
+	return static_cast<QTabWidget*>(ptr)->QTabWidget::metric(static_cast<QPaintDevice::PaintDeviceMetric>(metric));
+}
+
+void* QTabWidget_PaintEngine(void* ptr)
+{
+	return static_cast<QTabWidget*>(ptr)->paintEngine();
+}
+
+void* QTabWidget_PaintEngineDefault(void* ptr)
+{
+	return static_cast<QTabWidget*>(ptr)->QTabWidget::paintEngine();
+}
+
 class MyQTableView: public QTableView
 {
 public:
@@ -82011,8 +83798,11 @@ public:
 	void customEvent(QEvent * event) { callbackQTableView_CustomEvent(this, event); };
 	void deleteLater() { callbackQTableView_DeleteLater(this); };
 	void disconnectNotify(const QMetaMethod & sign) { callbackQTableView_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
+	bool event(QEvent * e) { return callbackQTableView_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQTableView_EventFilter(this, watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQTableView_MetaObject(const_cast<MyQTableView*>(this))); };
+	int metric(QPaintDevice::PaintDeviceMetric metric) const { return callbackQTableView_Metric(const_cast<MyQTableView*>(this), metric); };
+	QPaintEngine * paintEngine() const { return static_cast<QPaintEngine*>(callbackQTableView_PaintEngine(const_cast<MyQTableView*>(this))); };
 };
 
 long long QTableView_GridStyle(void* ptr)
@@ -83237,6 +85027,16 @@ void QTableView_DisconnectNotifyDefault(void* ptr, void* sign)
 	static_cast<QTableView*>(ptr)->QTableView::disconnectNotify(*static_cast<QMetaMethod*>(sign));
 }
 
+char QTableView_Event(void* ptr, void* e)
+{
+	return static_cast<QTableView*>(ptr)->event(static_cast<QEvent*>(e));
+}
+
+char QTableView_EventDefault(void* ptr, void* e)
+{
+	return static_cast<QTableView*>(ptr)->QTableView::event(static_cast<QEvent*>(e));
+}
+
 char QTableView_EventFilter(void* ptr, void* watched, void* event)
 {
 	return static_cast<QTableView*>(ptr)->eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
@@ -83255,6 +85055,26 @@ void* QTableView_MetaObject(void* ptr)
 void* QTableView_MetaObjectDefault(void* ptr)
 {
 	return const_cast<QMetaObject*>(static_cast<QTableView*>(ptr)->QTableView::metaObject());
+}
+
+int QTableView_Metric(void* ptr, long long metric)
+{
+	return static_cast<QTableView*>(ptr)->metric(static_cast<QPaintDevice::PaintDeviceMetric>(metric));
+}
+
+int QTableView_MetricDefault(void* ptr, long long metric)
+{
+	return static_cast<QTableView*>(ptr)->QTableView::metric(static_cast<QPaintDevice::PaintDeviceMetric>(metric));
+}
+
+void* QTableView_PaintEngine(void* ptr)
+{
+	return static_cast<QTableView*>(ptr)->paintEngine();
+}
+
+void* QTableView_PaintEngineDefault(void* ptr)
+{
+	return static_cast<QTableView*>(ptr)->QTableView::paintEngine();
 }
 
 class MyQTableWidget: public QTableWidget
@@ -83395,6 +85215,7 @@ public:
 	void showNormal() { callbackQTableWidget_ShowNormal(this); };
 	void tabletEvent(QTabletEvent * event) { callbackQTableWidget_TabletEvent(this, event); };
 	void updateMicroFocus() { callbackQTableWidget_UpdateMicroFocus(this); };
+	void timerEvent(QTimerEvent * event) { callbackQTableWidget_TimerEvent(this, event); };
 	void childEvent(QChildEvent * event) { callbackQTableWidget_ChildEvent(this, event); };
 	void connectNotify(const QMetaMethod & sign) { callbackQTableWidget_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	void customEvent(QEvent * event) { callbackQTableWidget_CustomEvent(this, event); };
@@ -83402,6 +85223,8 @@ public:
 	void disconnectNotify(const QMetaMethod & sign) { callbackQTableWidget_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQTableWidget_EventFilter(this, watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQTableWidget_MetaObject(const_cast<MyQTableWidget*>(this))); };
+	int metric(QPaintDevice::PaintDeviceMetric metric) const { return callbackQTableWidget_Metric(const_cast<MyQTableWidget*>(this), metric); };
+	QPaintEngine * paintEngine() const { return static_cast<QPaintEngine*>(callbackQTableWidget_PaintEngine(const_cast<MyQTableWidget*>(this))); };
 };
 
 void* QTableWidget_ItemAt(void* ptr, void* point)
@@ -85041,6 +86864,16 @@ void QTableWidget_UpdateMicroFocusDefault(void* ptr)
 	static_cast<QTableWidget*>(ptr)->QTableWidget::updateMicroFocus();
 }
 
+void QTableWidget_TimerEvent(void* ptr, void* event)
+{
+	static_cast<QTableWidget*>(ptr)->timerEvent(static_cast<QTimerEvent*>(event));
+}
+
+void QTableWidget_TimerEventDefault(void* ptr, void* event)
+{
+	static_cast<QTableWidget*>(ptr)->QTableWidget::timerEvent(static_cast<QTimerEvent*>(event));
+}
+
 void QTableWidget_ChildEvent(void* ptr, void* event)
 {
 	static_cast<QTableWidget*>(ptr)->childEvent(static_cast<QChildEvent*>(event));
@@ -85109,6 +86942,26 @@ void* QTableWidget_MetaObject(void* ptr)
 void* QTableWidget_MetaObjectDefault(void* ptr)
 {
 	return const_cast<QMetaObject*>(static_cast<QTableWidget*>(ptr)->QTableWidget::metaObject());
+}
+
+int QTableWidget_Metric(void* ptr, long long metric)
+{
+	return static_cast<QTableWidget*>(ptr)->metric(static_cast<QPaintDevice::PaintDeviceMetric>(metric));
+}
+
+int QTableWidget_MetricDefault(void* ptr, long long metric)
+{
+	return static_cast<QTableWidget*>(ptr)->QTableWidget::metric(static_cast<QPaintDevice::PaintDeviceMetric>(metric));
+}
+
+void* QTableWidget_PaintEngine(void* ptr)
+{
+	return static_cast<QTableWidget*>(ptr)->paintEngine();
+}
+
+void* QTableWidget_PaintEngineDefault(void* ptr)
+{
+	return static_cast<QTableWidget*>(ptr)->QTableWidget::paintEngine();
 }
 
 class MyQTableWidgetItem: public QTableWidgetItem
@@ -85715,6 +87568,8 @@ public:
 	void disconnectNotify(const QMetaMethod & sign) { callbackQTextBrowser_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQTextBrowser_EventFilter(this, watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQTextBrowser_MetaObject(const_cast<MyQTextBrowser*>(this))); };
+	int metric(QPaintDevice::PaintDeviceMetric metric) const { return callbackQTextBrowser_Metric(const_cast<MyQTextBrowser*>(this), metric); };
+	QPaintEngine * paintEngine() const { return static_cast<QPaintEngine*>(callbackQTextBrowser_PaintEngine(const_cast<MyQTextBrowser*>(this))); };
 };
 
 char QTextBrowser_OpenExternalLinks(void* ptr)
@@ -86919,6 +88774,26 @@ void* QTextBrowser_MetaObjectDefault(void* ptr)
 	return const_cast<QMetaObject*>(static_cast<QTextBrowser*>(ptr)->QTextBrowser::metaObject());
 }
 
+int QTextBrowser_Metric(void* ptr, long long metric)
+{
+	return static_cast<QTextBrowser*>(ptr)->metric(static_cast<QPaintDevice::PaintDeviceMetric>(metric));
+}
+
+int QTextBrowser_MetricDefault(void* ptr, long long metric)
+{
+	return static_cast<QTextBrowser*>(ptr)->QTextBrowser::metric(static_cast<QPaintDevice::PaintDeviceMetric>(metric));
+}
+
+void* QTextBrowser_PaintEngine(void* ptr)
+{
+	return static_cast<QTextBrowser*>(ptr)->paintEngine();
+}
+
+void* QTextBrowser_PaintEngineDefault(void* ptr)
+{
+	return static_cast<QTextBrowser*>(ptr)->QTextBrowser::paintEngine();
+}
+
 class MyQTextEdit: public QTextEdit
 {
 public:
@@ -87024,8 +88899,11 @@ public:
 	void customEvent(QEvent * event) { callbackQTextEdit_CustomEvent(this, event); };
 	void deleteLater() { callbackQTextEdit_DeleteLater(this); };
 	void disconnectNotify(const QMetaMethod & sign) { callbackQTextEdit_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
+	bool event(QEvent * e) { return callbackQTextEdit_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQTextEdit_EventFilter(this, watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQTextEdit_MetaObject(const_cast<MyQTextEdit*>(this))); };
+	int metric(QPaintDevice::PaintDeviceMetric metric) const { return callbackQTextEdit_Metric(const_cast<MyQTextEdit*>(this), metric); };
+	QPaintEngine * paintEngine() const { return static_cast<QPaintEngine*>(callbackQTextEdit_PaintEngine(const_cast<MyQTextEdit*>(this))); };
 };
 
 char QTextEdit_AcceptRichText(void* ptr)
@@ -88242,6 +90120,16 @@ void QTextEdit_DisconnectNotifyDefault(void* ptr, void* sign)
 	static_cast<QTextEdit*>(ptr)->QTextEdit::disconnectNotify(*static_cast<QMetaMethod*>(sign));
 }
 
+char QTextEdit_Event(void* ptr, void* e)
+{
+	return static_cast<QTextEdit*>(ptr)->event(static_cast<QEvent*>(e));
+}
+
+char QTextEdit_EventDefault(void* ptr, void* e)
+{
+	return static_cast<QTextEdit*>(ptr)->QTextEdit::event(static_cast<QEvent*>(e));
+}
+
 char QTextEdit_EventFilter(void* ptr, void* watched, void* event)
 {
 	return static_cast<QTextEdit*>(ptr)->eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
@@ -88260,6 +90148,26 @@ void* QTextEdit_MetaObject(void* ptr)
 void* QTextEdit_MetaObjectDefault(void* ptr)
 {
 	return const_cast<QMetaObject*>(static_cast<QTextEdit*>(ptr)->QTextEdit::metaObject());
+}
+
+int QTextEdit_Metric(void* ptr, long long metric)
+{
+	return static_cast<QTextEdit*>(ptr)->metric(static_cast<QPaintDevice::PaintDeviceMetric>(metric));
+}
+
+int QTextEdit_MetricDefault(void* ptr, long long metric)
+{
+	return static_cast<QTextEdit*>(ptr)->QTextEdit::metric(static_cast<QPaintDevice::PaintDeviceMetric>(metric));
+}
+
+void* QTextEdit_PaintEngine(void* ptr)
+{
+	return static_cast<QTextEdit*>(ptr)->paintEngine();
+}
+
+void* QTextEdit_PaintEngineDefault(void* ptr)
+{
+	return static_cast<QTextEdit*>(ptr)->QTextEdit::paintEngine();
 }
 
 void* QTileRules_NewQTileRules(long long horizontalRule, long long verticalRule)
@@ -88969,6 +90877,16 @@ void QTimeEdit_UpdateMicroFocusDefault(void* ptr)
 	static_cast<QTimeEdit*>(ptr)->QTimeEdit::updateMicroFocus();
 }
 
+void QTimeEdit_TimerEvent(void* ptr, void* event)
+{
+	static_cast<QTimeEdit*>(ptr)->timerEvent(static_cast<QTimerEvent*>(event));
+}
+
+void QTimeEdit_TimerEventDefault(void* ptr, void* event)
+{
+	static_cast<QTimeEdit*>(ptr)->QTimeEdit::timerEvent(static_cast<QTimerEvent*>(event));
+}
+
 void QTimeEdit_ChildEvent(void* ptr, void* event)
 {
 	static_cast<QTimeEdit*>(ptr)->childEvent(static_cast<QChildEvent*>(event));
@@ -89019,6 +90937,16 @@ void QTimeEdit_DisconnectNotifyDefault(void* ptr, void* sign)
 	static_cast<QTimeEdit*>(ptr)->QTimeEdit::disconnectNotify(*static_cast<QMetaMethod*>(sign));
 }
 
+char QTimeEdit_Event(void* ptr, void* e)
+{
+	return static_cast<QTimeEdit*>(ptr)->event(static_cast<QEvent*>(e));
+}
+
+char QTimeEdit_EventDefault(void* ptr, void* e)
+{
+	return static_cast<QTimeEdit*>(ptr)->QTimeEdit::event(static_cast<QEvent*>(e));
+}
+
 char QTimeEdit_EventFilter(void* ptr, void* watched, void* event)
 {
 	return static_cast<QTimeEdit*>(ptr)->eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
@@ -89037,6 +90965,26 @@ void* QTimeEdit_MetaObject(void* ptr)
 void* QTimeEdit_MetaObjectDefault(void* ptr)
 {
 	return const_cast<QMetaObject*>(static_cast<QTimeEdit*>(ptr)->QTimeEdit::metaObject());
+}
+
+int QTimeEdit_Metric(void* ptr, long long metric)
+{
+	return static_cast<QTimeEdit*>(ptr)->metric(static_cast<QPaintDevice::PaintDeviceMetric>(metric));
+}
+
+int QTimeEdit_MetricDefault(void* ptr, long long metric)
+{
+	return static_cast<QTimeEdit*>(ptr)->QTimeEdit::metric(static_cast<QPaintDevice::PaintDeviceMetric>(metric));
+}
+
+void* QTimeEdit_PaintEngine(void* ptr)
+{
+	return static_cast<QTimeEdit*>(ptr)->paintEngine();
+}
+
+void* QTimeEdit_PaintEngineDefault(void* ptr)
+{
+	return static_cast<QTimeEdit*>(ptr)->QTimeEdit::paintEngine();
 }
 
 class MyQToolBar: public QToolBar
@@ -89115,6 +91063,8 @@ public:
 	void disconnectNotify(const QMetaMethod & sign) { callbackQToolBar_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQToolBar_EventFilter(this, watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQToolBar_MetaObject(const_cast<MyQToolBar*>(this))); };
+	int metric(QPaintDevice::PaintDeviceMetric metric) const { return callbackQToolBar_Metric(const_cast<MyQToolBar*>(this), metric); };
+	QPaintEngine * paintEngine() const { return static_cast<QPaintEngine*>(callbackQToolBar_PaintEngine(const_cast<MyQToolBar*>(this))); };
 };
 
 long long QToolBar_AllowedAreas(void* ptr)
@@ -90004,6 +91954,26 @@ void* QToolBar_MetaObjectDefault(void* ptr)
 	return const_cast<QMetaObject*>(static_cast<QToolBar*>(ptr)->QToolBar::metaObject());
 }
 
+int QToolBar_Metric(void* ptr, long long metric)
+{
+	return static_cast<QToolBar*>(ptr)->metric(static_cast<QPaintDevice::PaintDeviceMetric>(metric));
+}
+
+int QToolBar_MetricDefault(void* ptr, long long metric)
+{
+	return static_cast<QToolBar*>(ptr)->QToolBar::metric(static_cast<QPaintDevice::PaintDeviceMetric>(metric));
+}
+
+void* QToolBar_PaintEngine(void* ptr)
+{
+	return static_cast<QToolBar*>(ptr)->paintEngine();
+}
+
+void* QToolBar_PaintEngineDefault(void* ptr)
+{
+	return static_cast<QToolBar*>(ptr)->QToolBar::paintEngine();
+}
+
 class MyQToolBox: public QToolBox
 {
 public:
@@ -90074,6 +92044,8 @@ public:
 	void disconnectNotify(const QMetaMethod & sign) { callbackQToolBox_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQToolBox_EventFilter(this, watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQToolBox_MetaObject(const_cast<MyQToolBox*>(this))); };
+	int metric(QPaintDevice::PaintDeviceMetric metric) const { return callbackQToolBox_Metric(const_cast<MyQToolBox*>(this), metric); };
+	QPaintEngine * paintEngine() const { return static_cast<QPaintEngine*>(callbackQToolBox_PaintEngine(const_cast<MyQToolBox*>(this))); };
 };
 
 int QToolBox_Count(void* ptr)
@@ -90838,6 +92810,26 @@ void* QToolBox_MetaObjectDefault(void* ptr)
 	return const_cast<QMetaObject*>(static_cast<QToolBox*>(ptr)->QToolBox::metaObject());
 }
 
+int QToolBox_Metric(void* ptr, long long metric)
+{
+	return static_cast<QToolBox*>(ptr)->metric(static_cast<QPaintDevice::PaintDeviceMetric>(metric));
+}
+
+int QToolBox_MetricDefault(void* ptr, long long metric)
+{
+	return static_cast<QToolBox*>(ptr)->QToolBox::metric(static_cast<QPaintDevice::PaintDeviceMetric>(metric));
+}
+
+void* QToolBox_PaintEngine(void* ptr)
+{
+	return static_cast<QToolBox*>(ptr)->paintEngine();
+}
+
+void* QToolBox_PaintEngineDefault(void* ptr)
+{
+	return static_cast<QToolBox*>(ptr)->QToolBox::paintEngine();
+}
+
 class MyQToolButton: public QToolButton
 {
 public:
@@ -90914,6 +92906,8 @@ public:
 	void disconnectNotify(const QMetaMethod & sign) { callbackQToolButton_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQToolButton_EventFilter(this, watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQToolButton_MetaObject(const_cast<MyQToolButton*>(this))); };
+	int metric(QPaintDevice::PaintDeviceMetric metric) const { return callbackQToolButton_Metric(const_cast<MyQToolButton*>(this), metric); };
+	QPaintEngine * paintEngine() const { return static_cast<QPaintEngine*>(callbackQToolButton_PaintEngine(const_cast<MyQToolButton*>(this))); };
 };
 
 long long QToolButton_ArrowType(void* ptr)
@@ -91703,6 +93697,26 @@ void* QToolButton_MetaObjectDefault(void* ptr)
 	return const_cast<QMetaObject*>(static_cast<QToolButton*>(ptr)->QToolButton::metaObject());
 }
 
+int QToolButton_Metric(void* ptr, long long metric)
+{
+	return static_cast<QToolButton*>(ptr)->metric(static_cast<QPaintDevice::PaintDeviceMetric>(metric));
+}
+
+int QToolButton_MetricDefault(void* ptr, long long metric)
+{
+	return static_cast<QToolButton*>(ptr)->QToolButton::metric(static_cast<QPaintDevice::PaintDeviceMetric>(metric));
+}
+
+void* QToolButton_PaintEngine(void* ptr)
+{
+	return static_cast<QToolButton*>(ptr)->paintEngine();
+}
+
+void* QToolButton_PaintEngineDefault(void* ptr)
+{
+	return static_cast<QToolButton*>(ptr)->QToolButton::paintEngine();
+}
+
 void* QToolTip_QToolTip_Font()
 {
 	return new QFont(QToolTip::font());
@@ -91869,8 +93883,11 @@ public:
 	void customEvent(QEvent * event) { callbackQTreeView_CustomEvent(this, event); };
 	void deleteLater() { callbackQTreeView_DeleteLater(this); };
 	void disconnectNotify(const QMetaMethod & sign) { callbackQTreeView_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
+	bool event(QEvent * e) { return callbackQTreeView_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQTreeView_EventFilter(this, watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQTreeView_MetaObject(const_cast<MyQTreeView*>(this))); };
+	int metric(QPaintDevice::PaintDeviceMetric metric) const { return callbackQTreeView_Metric(const_cast<MyQTreeView*>(this), metric); };
+	QPaintEngine * paintEngine() const { return static_cast<QPaintEngine*>(callbackQTreeView_PaintEngine(const_cast<MyQTreeView*>(this))); };
 };
 
 char QTreeView_AllColumnsShowFocus(void* ptr)
@@ -93195,6 +95212,16 @@ void QTreeView_DisconnectNotifyDefault(void* ptr, void* sign)
 	static_cast<QTreeView*>(ptr)->QTreeView::disconnectNotify(*static_cast<QMetaMethod*>(sign));
 }
 
+char QTreeView_Event(void* ptr, void* e)
+{
+	return static_cast<QTreeView*>(ptr)->event(static_cast<QEvent*>(e));
+}
+
+char QTreeView_EventDefault(void* ptr, void* e)
+{
+	return static_cast<QTreeView*>(ptr)->QTreeView::event(static_cast<QEvent*>(e));
+}
+
 char QTreeView_EventFilter(void* ptr, void* watched, void* event)
 {
 	return static_cast<QTreeView*>(ptr)->eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
@@ -93213,6 +95240,26 @@ void* QTreeView_MetaObject(void* ptr)
 void* QTreeView_MetaObjectDefault(void* ptr)
 {
 	return const_cast<QMetaObject*>(static_cast<QTreeView*>(ptr)->QTreeView::metaObject());
+}
+
+int QTreeView_Metric(void* ptr, long long metric)
+{
+	return static_cast<QTreeView*>(ptr)->metric(static_cast<QPaintDevice::PaintDeviceMetric>(metric));
+}
+
+int QTreeView_MetricDefault(void* ptr, long long metric)
+{
+	return static_cast<QTreeView*>(ptr)->QTreeView::metric(static_cast<QPaintDevice::PaintDeviceMetric>(metric));
+}
+
+void* QTreeView_PaintEngine(void* ptr)
+{
+	return static_cast<QTreeView*>(ptr)->paintEngine();
+}
+
+void* QTreeView_PaintEngineDefault(void* ptr)
+{
+	return static_cast<QTreeView*>(ptr)->QTreeView::paintEngine();
 }
 
 class MyQTreeWidget: public QTreeWidget
@@ -93341,6 +95388,7 @@ public:
 	void showNormal() { callbackQTreeWidget_ShowNormal(this); };
 	void tabletEvent(QTabletEvent * event) { callbackQTreeWidget_TabletEvent(this, event); };
 	void updateMicroFocus() { callbackQTreeWidget_UpdateMicroFocus(this); };
+	void timerEvent(QTimerEvent * event) { callbackQTreeWidget_TimerEvent(this, event); };
 	void childEvent(QChildEvent * event) { callbackQTreeWidget_ChildEvent(this, event); };
 	void connectNotify(const QMetaMethod & sign) { callbackQTreeWidget_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	void customEvent(QEvent * event) { callbackQTreeWidget_CustomEvent(this, event); };
@@ -93348,6 +95396,8 @@ public:
 	void disconnectNotify(const QMetaMethod & sign) { callbackQTreeWidget_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQTreeWidget_EventFilter(this, watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQTreeWidget_MetaObject(const_cast<MyQTreeWidget*>(this))); };
+	int metric(QPaintDevice::PaintDeviceMetric metric) const { return callbackQTreeWidget_Metric(const_cast<MyQTreeWidget*>(this), metric); };
+	QPaintEngine * paintEngine() const { return static_cast<QPaintEngine*>(callbackQTreeWidget_PaintEngine(const_cast<MyQTreeWidget*>(this))); };
 };
 
 int QTreeWidget_ColumnCount(void* ptr)
@@ -94817,6 +96867,16 @@ void QTreeWidget_UpdateMicroFocusDefault(void* ptr)
 	static_cast<QTreeWidget*>(ptr)->QTreeWidget::updateMicroFocus();
 }
 
+void QTreeWidget_TimerEvent(void* ptr, void* event)
+{
+	static_cast<QTreeWidget*>(ptr)->timerEvent(static_cast<QTimerEvent*>(event));
+}
+
+void QTreeWidget_TimerEventDefault(void* ptr, void* event)
+{
+	static_cast<QTreeWidget*>(ptr)->QTreeWidget::timerEvent(static_cast<QTimerEvent*>(event));
+}
+
 void QTreeWidget_ChildEvent(void* ptr, void* event)
 {
 	static_cast<QTreeWidget*>(ptr)->childEvent(static_cast<QChildEvent*>(event));
@@ -94885,6 +96945,26 @@ void* QTreeWidget_MetaObject(void* ptr)
 void* QTreeWidget_MetaObjectDefault(void* ptr)
 {
 	return const_cast<QMetaObject*>(static_cast<QTreeWidget*>(ptr)->QTreeWidget::metaObject());
+}
+
+int QTreeWidget_Metric(void* ptr, long long metric)
+{
+	return static_cast<QTreeWidget*>(ptr)->metric(static_cast<QPaintDevice::PaintDeviceMetric>(metric));
+}
+
+int QTreeWidget_MetricDefault(void* ptr, long long metric)
+{
+	return static_cast<QTreeWidget*>(ptr)->QTreeWidget::metric(static_cast<QPaintDevice::PaintDeviceMetric>(metric));
+}
+
+void* QTreeWidget_PaintEngine(void* ptr)
+{
+	return static_cast<QTreeWidget*>(ptr)->paintEngine();
+}
+
+void* QTreeWidget_PaintEngineDefault(void* ptr)
+{
+	return static_cast<QTreeWidget*>(ptr)->QTreeWidget::paintEngine();
 }
 
 class MyQTreeWidgetItem: public QTreeWidgetItem
@@ -96082,13 +98162,17 @@ public:
 	void showNormal() { callbackQUndoView_ShowNormal(this); };
 	void tabletEvent(QTabletEvent * event) { callbackQUndoView_TabletEvent(this, event); };
 	void updateMicroFocus() { callbackQUndoView_UpdateMicroFocus(this); };
+	void timerEvent(QTimerEvent * event) { callbackQUndoView_TimerEvent(this, event); };
 	void childEvent(QChildEvent * event) { callbackQUndoView_ChildEvent(this, event); };
 	void connectNotify(const QMetaMethod & sign) { callbackQUndoView_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	void customEvent(QEvent * event) { callbackQUndoView_CustomEvent(this, event); };
 	void deleteLater() { callbackQUndoView_DeleteLater(this); };
 	void disconnectNotify(const QMetaMethod & sign) { callbackQUndoView_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
+	bool event(QEvent * e) { return callbackQUndoView_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQUndoView_EventFilter(this, watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQUndoView_MetaObject(const_cast<MyQUndoView*>(this))); };
+	int metric(QPaintDevice::PaintDeviceMetric metric) const { return callbackQUndoView_Metric(const_cast<MyQUndoView*>(this), metric); };
+	QPaintEngine * paintEngine() const { return static_cast<QPaintEngine*>(callbackQUndoView_PaintEngine(const_cast<MyQUndoView*>(this))); };
 };
 
 void* QUndoView_CleanIcon(void* ptr)
@@ -97063,6 +99147,16 @@ void QUndoView_UpdateMicroFocusDefault(void* ptr)
 	static_cast<QUndoView*>(ptr)->QUndoView::updateMicroFocus();
 }
 
+void QUndoView_TimerEvent(void* ptr, void* event)
+{
+	static_cast<QUndoView*>(ptr)->timerEvent(static_cast<QTimerEvent*>(event));
+}
+
+void QUndoView_TimerEventDefault(void* ptr, void* event)
+{
+	static_cast<QUndoView*>(ptr)->QUndoView::timerEvent(static_cast<QTimerEvent*>(event));
+}
+
 void QUndoView_ChildEvent(void* ptr, void* event)
 {
 	static_cast<QUndoView*>(ptr)->childEvent(static_cast<QChildEvent*>(event));
@@ -97113,6 +99207,16 @@ void QUndoView_DisconnectNotifyDefault(void* ptr, void* sign)
 	static_cast<QUndoView*>(ptr)->QUndoView::disconnectNotify(*static_cast<QMetaMethod*>(sign));
 }
 
+char QUndoView_Event(void* ptr, void* e)
+{
+	return static_cast<QUndoView*>(ptr)->event(static_cast<QEvent*>(e));
+}
+
+char QUndoView_EventDefault(void* ptr, void* e)
+{
+	return static_cast<QUndoView*>(ptr)->QUndoView::event(static_cast<QEvent*>(e));
+}
+
 char QUndoView_EventFilter(void* ptr, void* watched, void* event)
 {
 	return static_cast<QUndoView*>(ptr)->eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
@@ -97131,6 +99235,26 @@ void* QUndoView_MetaObject(void* ptr)
 void* QUndoView_MetaObjectDefault(void* ptr)
 {
 	return const_cast<QMetaObject*>(static_cast<QUndoView*>(ptr)->QUndoView::metaObject());
+}
+
+int QUndoView_Metric(void* ptr, long long metric)
+{
+	return static_cast<QUndoView*>(ptr)->metric(static_cast<QPaintDevice::PaintDeviceMetric>(metric));
+}
+
+int QUndoView_MetricDefault(void* ptr, long long metric)
+{
+	return static_cast<QUndoView*>(ptr)->QUndoView::metric(static_cast<QPaintDevice::PaintDeviceMetric>(metric));
+}
+
+void* QUndoView_PaintEngine(void* ptr)
+{
+	return static_cast<QUndoView*>(ptr)->paintEngine();
+}
+
+void* QUndoView_PaintEngineDefault(void* ptr)
+{
+	return static_cast<QUndoView*>(ptr)->QUndoView::paintEngine();
 }
 
 void* QVBoxLayout_NewQVBoxLayout()
@@ -97336,6 +99460,16 @@ void QVBoxLayout_TimerEvent(void* ptr, void* event)
 void QVBoxLayout_TimerEventDefault(void* ptr, void* event)
 {
 	static_cast<QVBoxLayout*>(ptr)->QVBoxLayout::timerEvent(static_cast<QTimerEvent*>(event));
+}
+
+void QVBoxLayout_ChildEvent(void* ptr, void* event)
+{
+	static_cast<QVBoxLayout*>(ptr)->childEvent(static_cast<QChildEvent*>(event));
+}
+
+void QVBoxLayout_ChildEventDefault(void* ptr, void* event)
+{
+	static_cast<QVBoxLayout*>(ptr)->QVBoxLayout::childEvent(static_cast<QChildEvent*>(event));
 }
 
 void QVBoxLayout_ConnectNotify(void* ptr, void* sign)
@@ -99724,7 +101858,10 @@ public:
 	void customEvent(QEvent * event) { callbackQWizard_CustomEvent(this, event); };
 	void deleteLater() { callbackQWizard_DeleteLater(this); };
 	void disconnectNotify(const QMetaMethod & sign) { callbackQWizard_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
+	bool eventFilter(QObject * watched, QEvent * event) { return callbackQWizard_EventFilter(this, watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQWizard_MetaObject(const_cast<MyQWizard*>(this))); };
+	int metric(QPaintDevice::PaintDeviceMetric metric) const { return callbackQWizard_Metric(const_cast<MyQWizard*>(this), metric); };
+	QPaintEngine * paintEngine() const { return static_cast<QPaintEngine*>(callbackQWizard_PaintEngine(const_cast<MyQWizard*>(this))); };
 };
 
 void QWizard_CleanupPage(void* ptr, int id)
@@ -100666,6 +102803,16 @@ void QWizard_DisconnectNotifyDefault(void* ptr, void* sign)
 	static_cast<QWizard*>(ptr)->QWizard::disconnectNotify(*static_cast<QMetaMethod*>(sign));
 }
 
+char QWizard_EventFilter(void* ptr, void* watched, void* event)
+{
+	return static_cast<QWizard*>(ptr)->eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+}
+
+char QWizard_EventFilterDefault(void* ptr, void* watched, void* event)
+{
+	return static_cast<QWizard*>(ptr)->QWizard::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+}
+
 void* QWizard_MetaObject(void* ptr)
 {
 	return const_cast<QMetaObject*>(static_cast<QWizard*>(ptr)->metaObject());
@@ -100674,6 +102821,26 @@ void* QWizard_MetaObject(void* ptr)
 void* QWizard_MetaObjectDefault(void* ptr)
 {
 	return const_cast<QMetaObject*>(static_cast<QWizard*>(ptr)->QWizard::metaObject());
+}
+
+int QWizard_Metric(void* ptr, long long metric)
+{
+	return static_cast<QWizard*>(ptr)->metric(static_cast<QPaintDevice::PaintDeviceMetric>(metric));
+}
+
+int QWizard_MetricDefault(void* ptr, long long metric)
+{
+	return static_cast<QWizard*>(ptr)->QWizard::metric(static_cast<QPaintDevice::PaintDeviceMetric>(metric));
+}
+
+void* QWizard_PaintEngine(void* ptr)
+{
+	return static_cast<QWizard*>(ptr)->paintEngine();
+}
+
+void* QWizard_PaintEngineDefault(void* ptr)
+{
+	return static_cast<QWizard*>(ptr)->QWizard::paintEngine();
 }
 
 class MyQWizardPage: public QWizardPage
@@ -100745,8 +102912,11 @@ public:
 	void customEvent(QEvent * event) { callbackQWizardPage_CustomEvent(this, event); };
 	void deleteLater() { callbackQWizardPage_DeleteLater(this); };
 	void disconnectNotify(const QMetaMethod & sign) { callbackQWizardPage_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
+	bool event(QEvent * e) { return callbackQWizardPage_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQWizardPage_EventFilter(this, watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQWizardPage_MetaObject(const_cast<MyQWizardPage*>(this))); };
+	int metric(QPaintDevice::PaintDeviceMetric metric) const { return callbackQWizardPage_Metric(const_cast<MyQWizardPage*>(this), metric); };
+	QPaintEngine * paintEngine() const { return static_cast<QPaintEngine*>(callbackQWizardPage_PaintEngine(const_cast<MyQWizardPage*>(this))); };
 };
 
 void QWizardPage_SetSubTitle(void* ptr, char* subTitle)
@@ -101496,6 +103666,16 @@ void QWizardPage_DisconnectNotifyDefault(void* ptr, void* sign)
 	static_cast<QWizardPage*>(ptr)->QWizardPage::disconnectNotify(*static_cast<QMetaMethod*>(sign));
 }
 
+char QWizardPage_Event(void* ptr, void* e)
+{
+	return static_cast<QWizardPage*>(ptr)->event(static_cast<QEvent*>(e));
+}
+
+char QWizardPage_EventDefault(void* ptr, void* e)
+{
+	return static_cast<QWizardPage*>(ptr)->QWizardPage::event(static_cast<QEvent*>(e));
+}
+
 char QWizardPage_EventFilter(void* ptr, void* watched, void* event)
 {
 	return static_cast<QWizardPage*>(ptr)->eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
@@ -101514,5 +103694,25 @@ void* QWizardPage_MetaObject(void* ptr)
 void* QWizardPage_MetaObjectDefault(void* ptr)
 {
 	return const_cast<QMetaObject*>(static_cast<QWizardPage*>(ptr)->QWizardPage::metaObject());
+}
+
+int QWizardPage_Metric(void* ptr, long long metric)
+{
+	return static_cast<QWizardPage*>(ptr)->metric(static_cast<QPaintDevice::PaintDeviceMetric>(metric));
+}
+
+int QWizardPage_MetricDefault(void* ptr, long long metric)
+{
+	return static_cast<QWizardPage*>(ptr)->QWizardPage::metric(static_cast<QPaintDevice::PaintDeviceMetric>(metric));
+}
+
+void* QWizardPage_PaintEngine(void* ptr)
+{
+	return static_cast<QWizardPage*>(ptr)->paintEngine();
+}
+
+void* QWizardPage_PaintEngineDefault(void* ptr)
+{
+	return static_cast<QWizardPage*>(ptr)->QWizardPage::paintEngine();
 }
 

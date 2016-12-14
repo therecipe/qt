@@ -150,12 +150,12 @@ ptr.SetPointer(nil)
 
 			//all class functions
 			for _, function := range class.Functions {
-				implementedVirtuals[fmt.Sprint(function.Name, function.OverloadNumber)] = struct{}{}
 
 				if functionIsSupported(class, function) {
 
+					implementedVirtuals[fmt.Sprint(function.Name, function.OverloadNumber)] = struct{}{}
 					switch {
-					case (function.Virtual == parser.IMPURE || function.Virtual == parser.PURE || function.Meta == parser.SIGNAL || function.Meta == parser.SLOT) && !strings.Contains(function.Meta, "constructor"):
+					case (function.Virtual == parser.IMPURE || function.Virtual == parser.PURE || function.Meta == parser.SIGNAL || function.Meta == parser.SLOT):
 						{
 							for _, signalMode := range []string{parser.CALLBACK, parser.CONNECT, parser.DISCONNECT} {
 								var function = *function
@@ -185,7 +185,7 @@ ptr.SetPointer(nil)
 							}
 						}
 
-					case isGeneric(function):
+					case isJNIGeneric(function):
 						{
 							for _, mode := range converter.CppOutputParametersJNIGenericModes(function) {
 								var function = *function
@@ -223,10 +223,10 @@ ptr.SetPointer(nil)
 
 					for _, function := range parentClass.Functions {
 						if _, exists := implementedVirtuals[fmt.Sprint(function.Name, function.OverloadNumber)]; !exists {
-							implementedVirtuals[fmt.Sprint(function.Name, function.OverloadNumber)] = struct{}{}
 
 							if functionIsSupported(parentClass, function) {
-								if function.Meta != parser.SIGNAL && (function.Virtual == parser.IMPURE || function.Virtual == parser.PURE || function.Meta == parser.SLOT) && !strings.Contains(function.Meta, "structor") {
+								if function.Meta != parser.SIGNAL && (function.Virtual == parser.IMPURE || function.Virtual == parser.PURE || function.Meta == parser.SLOT) && function.Meta != parser.DESTRUCTOR {
+									implementedVirtuals[fmt.Sprint(function.Name, function.OverloadNumber)] = struct{}{}
 
 									for _, signalMode := range []string{parser.CALLBACK, parser.CONNECT, parser.DISCONNECT} {
 										var pbf = function.Virtual == parser.PURE

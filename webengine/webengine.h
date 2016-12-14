@@ -676,6 +676,10 @@ char QWebEngineView_EventFilter(void* ptr, void* watched, void* event);
 char QWebEngineView_EventFilterDefault(void* ptr, void* watched, void* event);
 void* QWebEngineView_MetaObject(void* ptr);
 void* QWebEngineView_MetaObjectDefault(void* ptr);
+int QWebEngineView_Metric(void* ptr, long long metric);
+int QWebEngineView_MetricDefault(void* ptr, long long metric);
+void* QWebEngineView_PaintEngine(void* ptr);
+void* QWebEngineView_PaintEngineDefault(void* ptr);
 
 #ifdef __cplusplus
 }

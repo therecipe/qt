@@ -14,12 +14,21 @@ func (c *Class) remove() {
 
 func (c *Class) removeFunctions() {
 	for i := len(c.Functions) - 1; i >= 0; i-- {
-		if f := c.Functions[i]; (f.Status == "obsolete" || f.Status == "compat") ||
+		f := c.Functions[i]
+
+		switch {
+		case (f.Status == "obsolete" || f.Status == "compat") ||
 			!(f.Access == "public" || f.Access == "protected") ||
 			strings.ContainsAny(f.Name, "&<>=/!()[]{}^|*+-") ||
-			strings.Contains(f.Name, "Operator") {
+			strings.Contains(f.Name, "Operator"):
+			{
+				c.Functions = append(c.Functions[:i], c.Functions[i+1:]...)
+			}
 
-			c.Functions = append(c.Functions[:i], c.Functions[i+1:]...)
+		case (f.Virtual == IMPURE || f.Virtual == PURE) && f.Meta == CONSTRUCTOR:
+			{
+				c.Functions = append(c.Functions[:i], c.Functions[i+1:]...)
+			}
 		}
 	}
 }

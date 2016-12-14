@@ -253,7 +253,7 @@ var Build = map[string]bool{
 	"Sailfish": false,
 }
 
-func isGeneric(f *parser.Function) bool {
+func isJNIGeneric(f *parser.Function) bool {
 
 	if f.ClassName() == "QAndroidJniObject" {
 		switch f.Name {
@@ -337,4 +337,33 @@ func classNeedsDestructor(c *parser.Class) bool {
 
 func UseStub() bool {
 	return utils.QT_STUB() && !parser.CurrentState.Minimal && !parser.CurrentState.Moc && !(parser.CurrentState.CurrentModule == "AndroidExtras" || parser.CurrentState.CurrentModule == "Sailfish")
+}
+
+func buildTags(module string) string {
+	switch {
+	case parser.CurrentState.Minimal:
+		{
+			return "// +build minimal"
+		}
+
+	case module == parser.MOC:
+		{
+			return ""
+		}
+
+	case module == "QtAndroidExtras":
+		{
+			return "// +build android"
+		}
+
+	case module == "QtSailfish":
+		{
+			return "// +build sailfish sailfish_emulator"
+		}
+
+	default:
+		{
+			return "// +build !minimal"
+		}
+	}
 }

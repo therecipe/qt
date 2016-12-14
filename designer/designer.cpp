@@ -54,6 +54,8 @@
 #include <QMouseEvent>
 #include <QMoveEvent>
 #include <QObject>
+#include <QPaintDevice>
+#include <QPaintEngine>
 #include <QPaintEvent>
 #include <QPixmap>
 #include <QPoint>
@@ -253,8 +255,11 @@ public:
 	void customEvent(QEvent * event) { callbackQDesignerActionEditorInterface_CustomEvent(this, event); };
 	void deleteLater() { callbackQDesignerActionEditorInterface_DeleteLater(this); };
 	void disconnectNotify(const QMetaMethod & sign) { callbackQDesignerActionEditorInterface_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
+	bool event(QEvent * e) { return callbackQDesignerActionEditorInterface_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQDesignerActionEditorInterface_EventFilter(this, watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQDesignerActionEditorInterface_MetaObject(const_cast<MyQDesignerActionEditorInterface*>(this))); };
+	int metric(QPaintDevice::PaintDeviceMetric metric) const { return callbackQDesignerActionEditorInterface_Metric(const_cast<MyQDesignerActionEditorInterface*>(this), metric); };
+	QPaintEngine * paintEngine() const { return static_cast<QPaintEngine*>(callbackQDesignerActionEditorInterface_PaintEngine(const_cast<MyQDesignerActionEditorInterface*>(this))); };
 };
 
 void* QDesignerActionEditorInterface_NewQDesignerActionEditorInterface(void* parent, long long flags)
@@ -889,6 +894,16 @@ void QDesignerActionEditorInterface_DisconnectNotifyDefault(void* ptr, void* sig
 	static_cast<QDesignerActionEditorInterface*>(ptr)->QDesignerActionEditorInterface::disconnectNotify(*static_cast<QMetaMethod*>(sign));
 }
 
+char QDesignerActionEditorInterface_Event(void* ptr, void* e)
+{
+	return static_cast<QDesignerActionEditorInterface*>(ptr)->event(static_cast<QEvent*>(e));
+}
+
+char QDesignerActionEditorInterface_EventDefault(void* ptr, void* e)
+{
+	return static_cast<QDesignerActionEditorInterface*>(ptr)->QDesignerActionEditorInterface::event(static_cast<QEvent*>(e));
+}
+
 char QDesignerActionEditorInterface_EventFilter(void* ptr, void* watched, void* event)
 {
 	return static_cast<QDesignerActionEditorInterface*>(ptr)->eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
@@ -907,6 +922,26 @@ void* QDesignerActionEditorInterface_MetaObject(void* ptr)
 void* QDesignerActionEditorInterface_MetaObjectDefault(void* ptr)
 {
 	return const_cast<QMetaObject*>(static_cast<QDesignerActionEditorInterface*>(ptr)->QDesignerActionEditorInterface::metaObject());
+}
+
+int QDesignerActionEditorInterface_Metric(void* ptr, long long metric)
+{
+	return static_cast<QDesignerActionEditorInterface*>(ptr)->metric(static_cast<QPaintDevice::PaintDeviceMetric>(metric));
+}
+
+int QDesignerActionEditorInterface_MetricDefault(void* ptr, long long metric)
+{
+	return static_cast<QDesignerActionEditorInterface*>(ptr)->QDesignerActionEditorInterface::metric(static_cast<QPaintDevice::PaintDeviceMetric>(metric));
+}
+
+void* QDesignerActionEditorInterface_PaintEngine(void* ptr)
+{
+	return static_cast<QDesignerActionEditorInterface*>(ptr)->paintEngine();
+}
+
+void* QDesignerActionEditorInterface_PaintEngineDefault(void* ptr)
+{
+	return static_cast<QDesignerActionEditorInterface*>(ptr)->QDesignerActionEditorInterface::paintEngine();
 }
 
 class MyQDesignerContainerExtension: public QDesignerContainerExtension
@@ -1564,8 +1599,11 @@ public:
 	void customEvent(QEvent * event) { callbackQDesignerFormWindowInterface_CustomEvent(this, event); };
 	void deleteLater() { callbackQDesignerFormWindowInterface_DeleteLater(this); };
 	void disconnectNotify(const QMetaMethod & sign) { callbackQDesignerFormWindowInterface_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
+	bool event(QEvent * e) { return callbackQDesignerFormWindowInterface_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQDesignerFormWindowInterface_EventFilter(this, watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQDesignerFormWindowInterface_MetaObject(const_cast<MyQDesignerFormWindowInterface*>(this))); };
+	int metric(QPaintDevice::PaintDeviceMetric metric) const { return callbackQDesignerFormWindowInterface_Metric(const_cast<MyQDesignerFormWindowInterface*>(this), metric); };
+	QPaintEngine * paintEngine() const { return static_cast<QPaintEngine*>(callbackQDesignerFormWindowInterface_PaintEngine(const_cast<MyQDesignerFormWindowInterface*>(this))); };
 };
 
 void* QDesignerFormWindowInterface_QDesignerFormWindowInterface_FindFormWindow2(void* object)
@@ -2607,6 +2645,16 @@ void QDesignerFormWindowInterface_DisconnectNotifyDefault(void* ptr, void* sign)
 	static_cast<QDesignerFormWindowInterface*>(ptr)->QDesignerFormWindowInterface::disconnectNotify(*static_cast<QMetaMethod*>(sign));
 }
 
+char QDesignerFormWindowInterface_Event(void* ptr, void* e)
+{
+	return static_cast<QDesignerFormWindowInterface*>(ptr)->event(static_cast<QEvent*>(e));
+}
+
+char QDesignerFormWindowInterface_EventDefault(void* ptr, void* e)
+{
+	return static_cast<QDesignerFormWindowInterface*>(ptr)->QDesignerFormWindowInterface::event(static_cast<QEvent*>(e));
+}
+
 char QDesignerFormWindowInterface_EventFilter(void* ptr, void* watched, void* event)
 {
 	return static_cast<QDesignerFormWindowInterface*>(ptr)->eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
@@ -2625,6 +2673,26 @@ void* QDesignerFormWindowInterface_MetaObject(void* ptr)
 void* QDesignerFormWindowInterface_MetaObjectDefault(void* ptr)
 {
 	return const_cast<QMetaObject*>(static_cast<QDesignerFormWindowInterface*>(ptr)->QDesignerFormWindowInterface::metaObject());
+}
+
+int QDesignerFormWindowInterface_Metric(void* ptr, long long metric)
+{
+	return static_cast<QDesignerFormWindowInterface*>(ptr)->metric(static_cast<QPaintDevice::PaintDeviceMetric>(metric));
+}
+
+int QDesignerFormWindowInterface_MetricDefault(void* ptr, long long metric)
+{
+	return static_cast<QDesignerFormWindowInterface*>(ptr)->QDesignerFormWindowInterface::metric(static_cast<QPaintDevice::PaintDeviceMetric>(metric));
+}
+
+void* QDesignerFormWindowInterface_PaintEngine(void* ptr)
+{
+	return static_cast<QDesignerFormWindowInterface*>(ptr)->paintEngine();
+}
+
+void* QDesignerFormWindowInterface_PaintEngineDefault(void* ptr)
+{
+	return static_cast<QDesignerFormWindowInterface*>(ptr)->QDesignerFormWindowInterface::paintEngine();
 }
 
 class MyQDesignerFormWindowManagerInterface: public QDesignerFormWindowManagerInterface
@@ -3054,8 +3122,11 @@ public:
 	void customEvent(QEvent * event) { callbackQDesignerObjectInspectorInterface_CustomEvent(this, event); };
 	void deleteLater() { callbackQDesignerObjectInspectorInterface_DeleteLater(this); };
 	void disconnectNotify(const QMetaMethod & sign) { callbackQDesignerObjectInspectorInterface_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
+	bool event(QEvent * e) { return callbackQDesignerObjectInspectorInterface_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQDesignerObjectInspectorInterface_EventFilter(this, watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQDesignerObjectInspectorInterface_MetaObject(const_cast<MyQDesignerObjectInspectorInterface*>(this))); };
+	int metric(QPaintDevice::PaintDeviceMetric metric) const { return callbackQDesignerObjectInspectorInterface_Metric(const_cast<MyQDesignerObjectInspectorInterface*>(this), metric); };
+	QPaintEngine * paintEngine() const { return static_cast<QPaintEngine*>(callbackQDesignerObjectInspectorInterface_PaintEngine(const_cast<MyQDesignerObjectInspectorInterface*>(this))); };
 };
 
 void* QDesignerObjectInspectorInterface_NewQDesignerObjectInspectorInterface(void* parent, long long flags)
@@ -3680,6 +3751,16 @@ void QDesignerObjectInspectorInterface_DisconnectNotifyDefault(void* ptr, void* 
 	static_cast<QDesignerObjectInspectorInterface*>(ptr)->QDesignerObjectInspectorInterface::disconnectNotify(*static_cast<QMetaMethod*>(sign));
 }
 
+char QDesignerObjectInspectorInterface_Event(void* ptr, void* e)
+{
+	return static_cast<QDesignerObjectInspectorInterface*>(ptr)->event(static_cast<QEvent*>(e));
+}
+
+char QDesignerObjectInspectorInterface_EventDefault(void* ptr, void* e)
+{
+	return static_cast<QDesignerObjectInspectorInterface*>(ptr)->QDesignerObjectInspectorInterface::event(static_cast<QEvent*>(e));
+}
+
 char QDesignerObjectInspectorInterface_EventFilter(void* ptr, void* watched, void* event)
 {
 	return static_cast<QDesignerObjectInspectorInterface*>(ptr)->eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
@@ -3698,6 +3779,26 @@ void* QDesignerObjectInspectorInterface_MetaObject(void* ptr)
 void* QDesignerObjectInspectorInterface_MetaObjectDefault(void* ptr)
 {
 	return const_cast<QMetaObject*>(static_cast<QDesignerObjectInspectorInterface*>(ptr)->QDesignerObjectInspectorInterface::metaObject());
+}
+
+int QDesignerObjectInspectorInterface_Metric(void* ptr, long long metric)
+{
+	return static_cast<QDesignerObjectInspectorInterface*>(ptr)->metric(static_cast<QPaintDevice::PaintDeviceMetric>(metric));
+}
+
+int QDesignerObjectInspectorInterface_MetricDefault(void* ptr, long long metric)
+{
+	return static_cast<QDesignerObjectInspectorInterface*>(ptr)->QDesignerObjectInspectorInterface::metric(static_cast<QPaintDevice::PaintDeviceMetric>(metric));
+}
+
+void* QDesignerObjectInspectorInterface_PaintEngine(void* ptr)
+{
+	return static_cast<QDesignerObjectInspectorInterface*>(ptr)->paintEngine();
+}
+
+void* QDesignerObjectInspectorInterface_PaintEngineDefault(void* ptr)
+{
+	return static_cast<QDesignerObjectInspectorInterface*>(ptr)->QDesignerObjectInspectorInterface::paintEngine();
 }
 
 class MyQDesignerPropertyEditorInterface: public QDesignerPropertyEditorInterface
@@ -3772,8 +3873,11 @@ public:
 	void customEvent(QEvent * event) { callbackQDesignerPropertyEditorInterface_CustomEvent(this, event); };
 	void deleteLater() { callbackQDesignerPropertyEditorInterface_DeleteLater(this); };
 	void disconnectNotify(const QMetaMethod & sign) { callbackQDesignerPropertyEditorInterface_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
+	bool event(QEvent * e) { return callbackQDesignerPropertyEditorInterface_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQDesignerPropertyEditorInterface_EventFilter(this, watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQDesignerPropertyEditorInterface_MetaObject(const_cast<MyQDesignerPropertyEditorInterface*>(this))); };
+	int metric(QPaintDevice::PaintDeviceMetric metric) const { return callbackQDesignerPropertyEditorInterface_Metric(const_cast<MyQDesignerPropertyEditorInterface*>(this), metric); };
+	QPaintEngine * paintEngine() const { return static_cast<QPaintEngine*>(callbackQDesignerPropertyEditorInterface_PaintEngine(const_cast<MyQDesignerPropertyEditorInterface*>(this))); };
 };
 
 void* QDesignerPropertyEditorInterface_NewQDesignerPropertyEditorInterface(void* parent, long long flags)
@@ -4438,6 +4542,16 @@ void QDesignerPropertyEditorInterface_DisconnectNotifyDefault(void* ptr, void* s
 	static_cast<QDesignerPropertyEditorInterface*>(ptr)->QDesignerPropertyEditorInterface::disconnectNotify(*static_cast<QMetaMethod*>(sign));
 }
 
+char QDesignerPropertyEditorInterface_Event(void* ptr, void* e)
+{
+	return static_cast<QDesignerPropertyEditorInterface*>(ptr)->event(static_cast<QEvent*>(e));
+}
+
+char QDesignerPropertyEditorInterface_EventDefault(void* ptr, void* e)
+{
+	return static_cast<QDesignerPropertyEditorInterface*>(ptr)->QDesignerPropertyEditorInterface::event(static_cast<QEvent*>(e));
+}
+
 char QDesignerPropertyEditorInterface_EventFilter(void* ptr, void* watched, void* event)
 {
 	return static_cast<QDesignerPropertyEditorInterface*>(ptr)->eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
@@ -4456,6 +4570,26 @@ void* QDesignerPropertyEditorInterface_MetaObject(void* ptr)
 void* QDesignerPropertyEditorInterface_MetaObjectDefault(void* ptr)
 {
 	return const_cast<QMetaObject*>(static_cast<QDesignerPropertyEditorInterface*>(ptr)->QDesignerPropertyEditorInterface::metaObject());
+}
+
+int QDesignerPropertyEditorInterface_Metric(void* ptr, long long metric)
+{
+	return static_cast<QDesignerPropertyEditorInterface*>(ptr)->metric(static_cast<QPaintDevice::PaintDeviceMetric>(metric));
+}
+
+int QDesignerPropertyEditorInterface_MetricDefault(void* ptr, long long metric)
+{
+	return static_cast<QDesignerPropertyEditorInterface*>(ptr)->QDesignerPropertyEditorInterface::metric(static_cast<QPaintDevice::PaintDeviceMetric>(metric));
+}
+
+void* QDesignerPropertyEditorInterface_PaintEngine(void* ptr)
+{
+	return static_cast<QDesignerPropertyEditorInterface*>(ptr)->paintEngine();
+}
+
+void* QDesignerPropertyEditorInterface_PaintEngineDefault(void* ptr)
+{
+	return static_cast<QDesignerPropertyEditorInterface*>(ptr)->QDesignerPropertyEditorInterface::paintEngine();
 }
 
 class MyQDesignerPropertySheetExtension: public QDesignerPropertySheetExtension
@@ -4674,8 +4808,11 @@ public:
 	void customEvent(QEvent * event) { callbackQDesignerWidgetBoxInterface_CustomEvent(this, event); };
 	void deleteLater() { callbackQDesignerWidgetBoxInterface_DeleteLater(this); };
 	void disconnectNotify(const QMetaMethod & sign) { callbackQDesignerWidgetBoxInterface_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
+	bool event(QEvent * e) { return callbackQDesignerWidgetBoxInterface_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQDesignerWidgetBoxInterface_EventFilter(this, watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQDesignerWidgetBoxInterface_MetaObject(const_cast<MyQDesignerWidgetBoxInterface*>(this))); };
+	int metric(QPaintDevice::PaintDeviceMetric metric) const { return callbackQDesignerWidgetBoxInterface_Metric(const_cast<MyQDesignerWidgetBoxInterface*>(this), metric); };
+	QPaintEngine * paintEngine() const { return static_cast<QPaintEngine*>(callbackQDesignerWidgetBoxInterface_PaintEngine(const_cast<MyQDesignerWidgetBoxInterface*>(this))); };
 };
 
 struct QtDesigner_PackedString QDesignerWidgetBoxInterface_FileName(void* ptr)
@@ -5300,6 +5437,16 @@ void QDesignerWidgetBoxInterface_DisconnectNotifyDefault(void* ptr, void* sign)
 	static_cast<QDesignerWidgetBoxInterface*>(ptr)->QDesignerWidgetBoxInterface::disconnectNotify(*static_cast<QMetaMethod*>(sign));
 }
 
+char QDesignerWidgetBoxInterface_Event(void* ptr, void* e)
+{
+	return static_cast<QDesignerWidgetBoxInterface*>(ptr)->event(static_cast<QEvent*>(e));
+}
+
+char QDesignerWidgetBoxInterface_EventDefault(void* ptr, void* e)
+{
+	return static_cast<QDesignerWidgetBoxInterface*>(ptr)->QDesignerWidgetBoxInterface::event(static_cast<QEvent*>(e));
+}
+
 char QDesignerWidgetBoxInterface_EventFilter(void* ptr, void* watched, void* event)
 {
 	return static_cast<QDesignerWidgetBoxInterface*>(ptr)->eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
@@ -5318,6 +5465,26 @@ void* QDesignerWidgetBoxInterface_MetaObject(void* ptr)
 void* QDesignerWidgetBoxInterface_MetaObjectDefault(void* ptr)
 {
 	return const_cast<QMetaObject*>(static_cast<QDesignerWidgetBoxInterface*>(ptr)->QDesignerWidgetBoxInterface::metaObject());
+}
+
+int QDesignerWidgetBoxInterface_Metric(void* ptr, long long metric)
+{
+	return static_cast<QDesignerWidgetBoxInterface*>(ptr)->metric(static_cast<QPaintDevice::PaintDeviceMetric>(metric));
+}
+
+int QDesignerWidgetBoxInterface_MetricDefault(void* ptr, long long metric)
+{
+	return static_cast<QDesignerWidgetBoxInterface*>(ptr)->QDesignerWidgetBoxInterface::metric(static_cast<QPaintDevice::PaintDeviceMetric>(metric));
+}
+
+void* QDesignerWidgetBoxInterface_PaintEngine(void* ptr)
+{
+	return static_cast<QDesignerWidgetBoxInterface*>(ptr)->paintEngine();
+}
+
+void* QDesignerWidgetBoxInterface_PaintEngineDefault(void* ptr)
+{
+	return static_cast<QDesignerWidgetBoxInterface*>(ptr)->QDesignerWidgetBoxInterface::paintEngine();
 }
 
 class MyQExtensionFactory: public QExtensionFactory
