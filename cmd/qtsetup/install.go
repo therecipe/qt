@@ -24,29 +24,19 @@ func install(buildTarget string) {
 
 	var env, tagFlags = getEnvAndTagflags(buildTarget)
 
-	if buildTarget != "desktop" || (runtime.GOOS == "windows" && buildTarget == "desktop") {
-		if buildTarget == "sailfish" {
-			var _, err = ioutil.ReadDir(filepath.Join(runtime.GOROOT(), "bin", "linux_386"))
-			if err != nil {
-				var build = exec.Command(filepath.Join(runtime.GOROOT(), "src", func() string {
-					if runtime.GOOS == "windows" {
-						return "run.bat"
-					}
-					return "run.bash"
-				}()))
-				for key, value := range env {
-					build.Env = append(build.Env, fmt.Sprintf("%v=%v", key, value))
+	if buildTarget == "sailfish" {
+		var _, err = ioutil.ReadDir(filepath.Join(runtime.GOROOT(), "bin", "linux_386"))
+		if err != nil {
+			var build = exec.Command(filepath.Join(runtime.GOROOT(), "src", func() string {
+				if runtime.GOOS == "windows" {
+					return "run.bat"
 				}
-				build.Run()
+				return "run.bash"
+			}()))
+			for key, value := range env {
+				build.Env = append(build.Env, fmt.Sprintf("%v=%v", key, value))
 			}
-		}
-
-		utils.RunCmd(installPkgCmd(buildTarget, tagFlags, "std", env), "install.std")
-		//also install armv7 std
-		if buildTarget == "ios" {
-			var cmd = installPkgCmd(buildTarget, tagFlags, "std", env)
-			cmd.Env = append(strings.Split(strings.Replace(strings.Replace(strings.Join(cmd.Env, "|"), "-arch arm64", "-arch armv7", -1), "arm64", "arm", -1), "|"), "GOARM=7")
-			utils.RunCmd(cmd, "install.std")
+			build.Run()
 		}
 	}
 

@@ -57,7 +57,7 @@ func cacheModules() (err error) {
 // return how many moc classes are in module, delete those that are not
 func (m *appMoc) cleanupClassMap() (size int) {
 	for _, class := range m.module.Namespace.Classes {
-		if !class.IsSubClassOfQObject() {
+		if _, failed := class.GetAllBasesRecursiveCheckFailed(0); failed || !class.IsSubClassOfQObject() {
 			delete(parser.CurrentState.ClassMap, class.Name)
 		} else {
 			size++

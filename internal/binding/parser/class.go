@@ -74,6 +74,33 @@ func (c *Class) GetAllBases() []string {
 	return input
 }
 
+func (c *Class) GetAllBasesRecursiveCheckFailed(i int) ([]string, bool) {
+	var input = make([]string, 0)
+
+	i++
+	if i > 100 {
+		return input, true
+	}
+
+	for _, b := range c.GetBases() {
+		var bc, exists = CurrentState.ClassMap[b]
+		if !exists {
+			continue
+		}
+
+		input = append(input, b)
+		var bs, isRecursive = bc.GetAllBasesRecursiveCheckFailed(i)
+		if isRecursive {
+			return input, true
+		}
+		for _, sbc := range bs {
+			input = append(input, sbc)
+		}
+	}
+
+	return input, false
+}
+
 func (c *Class) IsSubClassOfQObject() bool {
 	return c.IsSubClassOf("QObject")
 }
