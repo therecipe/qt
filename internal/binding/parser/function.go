@@ -30,6 +30,7 @@ type Function struct {
 	NonMember        bool
 	NoMocDeduce      bool
 	PureBaseFunction bool
+	AsError          bool
 }
 
 type Parameter struct {

@@ -312,6 +312,41 @@ func getSortedClassNamesForModule(module string) []string {
 		}
 	}
 	sort.Stable(sort.StringSlice(output))
+
+	if module == parser.MOC {
+		var items = make(map[string]string)
+
+		for _, cn := range output {
+			if class, exist := parser.CurrentState.ClassMap[cn]; exist {
+				items[cn] = class.Bases
+			}
+		}
+
+		var tmpOutput = make([]string, 0)
+
+		for len(items) > 0 {
+			for item, dep := range items {
+
+				var c, exist = parser.CurrentState.ClassMap[dep]
+				if exist && c.Module != parser.MOC {
+					tmpOutput = append(tmpOutput, item)
+					delete(items, item)
+					continue
+				}
+
+				for _, key := range tmpOutput {
+					if key == dep {
+						tmpOutput = append(tmpOutput, item)
+						delete(items, item)
+						break
+					}
+				}
+
+			}
+		}
+		output = tmpOutput
+	}
+
 	return output
 }
 

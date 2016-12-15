@@ -335,9 +335,9 @@ func (m *appMoc) generate() error {
 		for _, f := range c.Functions {
 			if !f.NoMocDeduce {
 				for _, p := range f.Parameters {
-					p.Value = getCppTypeFromGoType(p.Value)
+					p.Value = getCppTypeFromGoType(f, p.Value)
 				}
-				f.Output = getCppTypeFromGoType(f.Output)
+				f.Output = getCppTypeFromGoType(f, f.Output)
 			}
 		}
 	}
@@ -440,10 +440,15 @@ func getParameters(tag string) []*parser.Parameter {
 	return out
 }
 
-func getCppTypeFromGoType(t string) string {
+func getCppTypeFromGoType(f *parser.Function, t string) string {
 	t = strings.TrimPrefix(t, "*")
+
+	if t == "error" {
+		f.AsError = true
+	}
+
 	switch t {
-	case "string":
+	case "string", "error":
 		return "QString"
 	case "[]string":
 		return "QStringList"

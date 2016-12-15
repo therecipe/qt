@@ -54,7 +54,7 @@ func check(buildTarget string) {
 		}
 	}
 
-	utils.Log.Infoln("VERSION:", "0.0.1")
+	utils.Log.Infoln("VERSION:", "0.0.2")
 	utils.Log.Infoln("GOOS:", runtime.GOOS)
 	utils.Log.Infoln("GOARCH:", runtime.GOARCH)
 	utils.Log.Infoln("GOVERSION:", runtime.Version())

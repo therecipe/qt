@@ -29,7 +29,12 @@ func goInput(name, value string, f *parser.Function) string {
 
 	case "uchar", "quint8", "QString":
 		{
-			return fmt.Sprintf("C.CString(%v)", name)
+			return fmt.Sprintf("C.CString(%v)", func() string {
+				if f.AsError {
+					return fmt.Sprintf("func() string { var tmp = %v\n if tmp != nil { return tmp.Error() }\n return \"\" }()", name)
+				}
+				return name
+			}())
 		}
 
 	case "QStringList":

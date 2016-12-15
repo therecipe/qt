@@ -385,11 +385,11 @@ import (
 		)
 	}
 
-	for _, m := range append(parser.Libs, "qt", "strings", "unsafe", "log", "runtime", "fmt") {
+	for _, m := range append(parser.Libs, "qt", "strings", "unsafe", "log", "runtime", "fmt", "errors") {
 		m = strings.ToLower(m)
 		if strings.Contains(string(input), fmt.Sprintf("%v.", m)) {
 			switch m {
-			case "strings", "unsafe", "log", "runtime", "fmt":
+			case "strings", "unsafe", "log", "runtime", "fmt", "errors":
 				{
 					fmt.Fprintf(bb, "\"%v\"\n", m)
 				}

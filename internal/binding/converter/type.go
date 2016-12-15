@@ -19,6 +19,10 @@ func goType(f *parser.Function, value string) string {
 				return "[]string"
 			}
 
+			if f.AsError {
+				return "error"
+			}
+
 			return "string"
 		}
 

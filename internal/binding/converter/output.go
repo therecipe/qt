@@ -18,7 +18,13 @@ func goOutput(name, value string, f *parser.Function) string {
 	switch value {
 	case "char", "qint8", "uchar", "quint8", "QString":
 		{
-			return fmt.Sprintf("cGoUnpackString(%v)", name)
+			return func() string {
+				var out = fmt.Sprintf("cGoUnpackString(%v)", name)
+				if f.AsError {
+					return fmt.Sprintf("errors.New(%v)", out)
+				}
+				return out
+			}()
 		}
 
 	case "QStringList":
@@ -162,6 +168,9 @@ func goOutputFailed(value string, f *parser.Function) string {
 	switch value {
 	case "char", "qint8", "uchar", "quint8", "QString":
 		{
+			if f.AsError {
+				return "errors.New(\"\")"
+			}
 			return "\"\""
 		}
 
@@ -265,7 +274,13 @@ func cgoOutput(name, value string, f *parser.Function) string {
 	switch value {
 	case "char", "qint8", "uchar", "quint8", "QString":
 		{
-			return fmt.Sprintf("cGoUnpackString(%v)", name)
+			return func() string {
+				var out = fmt.Sprintf("cGoUnpackString(%v)", name)
+				if f.AsError {
+					return fmt.Sprintf("errors.New(%v)", out)
+				}
+				return out
+			}()
 		}
 
 	case "QStringList":

@@ -14,7 +14,7 @@ type HelloClientRPC struct {
 	core.QObject
 
 	_ func(string) string `slot:"sayHello"` //TODO: should be func(string) []*core.QVariant, once generic containers/lists are supported
-	_ func() string       `slot:"shutdown"` //TODO: should be func() error, once "error" is mapped to QString
+	_ func() error        `slot:"shutdown"`
 }
 
 type HelloClientFactory struct {
@@ -53,12 +53,12 @@ func main() {
 			return string(rs)
 		})
 
-		ret.ConnectShutdown(func() string {
+		ret.ConnectShutdown(func() error {
 			var err = client.Shutdown()
 			if err != nil {
-				return err.Error()
+				return err
 			}
-			return ""
+			return nil
 		})
 
 		return ret

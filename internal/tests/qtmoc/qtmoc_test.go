@@ -1,6 +1,7 @@
 package qtmoc
 
 import (
+	"errors"
 	"os"
 	"strings"
 	"testing"
@@ -41,6 +42,7 @@ type testStruct struct {
 	_ func(uintptr, unsafe.Pointer)      `signal:"PointerSignalInput"`
 	_ func(core.QVariant, *core.QObject) `signal:"ObjectSignalInput"` // -> T (c++) *T
 	_ func(core.Qt__Key)                 `signal:"EnumSignalInput"`
+	_ func(error)                        `signal:"ErrorSignalInput"`
 
 	_ func(bool, bool)                   `slot:"BoolSlotInput"`
 	_ func(int8, uint8)                  `slot:"Int8SlotInput"` // -> string
@@ -53,6 +55,7 @@ type testStruct struct {
 	_ func(uintptr, unsafe.Pointer)      `slot:"PointerSlotInput"`
 	_ func(core.QVariant, *core.QObject) `slot:"ObjectSlotInput"` // -> T (c++) *T
 	_ func(core.Qt__Key)                 `slot:"EnumSlotInput"`
+	_ func(error)                        `slot:"ErrorSlotInput"`
 
 	_ func(bool) bool                     `slot:"BoolSlotOutput"`
 	_ func(bool) bool                     `slot:"BoolSlotOutput2"`
@@ -75,6 +78,7 @@ type testStruct struct {
 	_ func(core.QVariant) core.QVariant   `slot:"ObjectSlotOutput"`  // -> T (c++)
 	_ func(*core.QObject) *core.QObject   `slot:"ObjectSlotOutput2"` // -> *T
 	_ func(core.Qt__Key) core.Qt__Key     `slot:"EnumSlotOutput"`
+	_ func(error) error                   `slot:"ErrorSlotOutput"`
 	_ func(testStruct) testStruct         `slot:"returnTest"`  // -> *T
 	_ func(*testStruct) *testStruct       `slot:"returnTest2"` // -> *T
 	_ func(a0 string) (a1 string)         `slot:"returnName"`
@@ -134,6 +138,7 @@ var (
 	o1 *core.QObject
 
 	e0 core.Qt__Key = core.Qt__Key_Z
+	e1 error        = errors.New("test")
 )
 
 func init() { core.NewQCoreApplication(len(os.Args), os.Args) }
@@ -217,6 +222,12 @@ func TestSignalInput(t *testing.T) {
 		}
 	})
 
+	test.ConnectErrorSignalInput(func(v0 error) {
+		if v0.Error() != e1.Error() {
+			t.Fatal(v0, e1)
+		}
+	})
+
 	test.BoolSignalInput(b0, b1)
 	//test.Int8SignalInput(s0, s0)
 	test.Int16SignalInput(i0, i1)
@@ -233,6 +244,7 @@ func TestSignalInput(t *testing.T) {
 	test.ObjectSignalInput(o0, o1)
 
 	test.EnumSignalInput(e0)
+	test.ErrorSignalInput(e1)
 }
 
 func TestSlotInput(t *testing.T) {
@@ -304,6 +316,12 @@ func TestSlotInput(t *testing.T) {
 		}
 	})
 
+	test.ConnectErrorSlotInput(func(v0 error) {
+		if v0.Error() != e1.Error() {
+			t.Fatal(v0, e1)
+		}
+	})
+
 	test.BoolSlotInput(b0, b1)
 	//test.Int8SlotInput(s0, s0)
 	test.Int16SlotInput(i0, i1)
@@ -320,6 +338,7 @@ func TestSlotInput(t *testing.T) {
 	test.ObjectSlotInput(o0, o1)
 
 	test.EnumSlotInput(e0)
+	test.ErrorSlotInput(e1)
 }
 
 func TestSlotOutput(t *testing.T) {
@@ -356,6 +375,7 @@ func TestSlotOutput(t *testing.T) {
 	test.ConnectObjectSlotOutput2(func(v0 *core.QObject) *core.QObject { return v0 })
 
 	test.ConnectEnumSlotOutput(func(v0 core.Qt__Key) core.Qt__Key { return v0 })
+	test.ConnectErrorSlotOutput(func(v0 error) error { return v0 })
 
 	test.ConnectReturnTest(func(v0 *testStruct) *testStruct { return v0 })
 	test.ConnectReturnTest2(func(v0 *testStruct) *testStruct { return v0 })
@@ -441,6 +461,10 @@ func TestSlotOutput(t *testing.T) {
 
 	if test.EnumSlotOutput(e0) != e0 {
 		t.Fatal("EnumSlotOutput")
+	}
+
+	if test.ErrorSlotOutput(e1).Error() != e1.Error() {
+		t.Fatal("ErrorSlotOutput")
 	}
 
 	test.SetObjectName("testName")
