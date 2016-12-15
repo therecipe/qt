@@ -7,23 +7,22 @@ import (
 	"strings"
 )
 
-var (
-	// files that must be ignored
-	blacklist = []string{
-		"deploy",
-		"qml",
-		"android",
-		"ios",
-		"ios-simulator",
-		"sailfish",
-		"sailfish-emulator",
-		"rpi1",
-		"rpi2",
-		"rpi3",
-		"node_modules",
-		".git",
-	}
-)
+// files that must be ignored
+var blacklist = map[string]bool{
+	".git":              true,
+	"android":           true,
+	"deploy":            true,
+	"ios":               true,
+	"ios-simulator":     true,
+	"node_modules":      true,
+	"qml":               true,
+	"rpi1":              true,
+	"rpi2":              true,
+	"rpi3":              true,
+	"sailfish":          true,
+	"sailfish-emulator": true,
+	"vendor":            true,
+}
 
 // WalkFilterBlacklist filter out blacklisted file
 func WalkFilterBlacklist(root string, f filepath.WalkFunc) filepath.WalkFunc {
@@ -35,14 +34,12 @@ func WalkFilterBlacklist(root string, f filepath.WalkFunc) filepath.WalkFunc {
 		if relErr != nil {
 			return relErr
 		}
-		for _, n := range blacklist {
-			if n == relPath {
-				// as the directory is blacklisted, just ignore everything under it
-				if info.IsDir() {
-					return filepath.SkipDir
-				}
-				return nil
+		if blacklist[relPath] {
+			// as the directory is blacklisted, just ignore everything under it
+			if info.IsDir() {
+				return filepath.SkipDir
 			}
+			return nil
 		}
 		return f(path, info, err)
 	}
