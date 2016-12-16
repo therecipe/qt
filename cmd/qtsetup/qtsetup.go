@@ -2,8 +2,6 @@ package main
 
 import (
 	"os"
-	"runtime"
-	"strings"
 
 	"github.com/therecipe/qt/internal/utils"
 )
@@ -18,29 +16,7 @@ func main() {
 			"sailfish", "sailfish-emulator", "rpi1", "rpi2", "rpi3", "windows", "darwin", "linux",
 			"linux-docker", "windows-docker", "android-docker":
 			buildTarget = os.Args[1]
-			var buildDocker = strings.HasSuffix(buildTarget, "-docker")
-
-			switch buildTarget {
-			case "windows":
-				if runtime.GOOS == "windows" && !buildDocker {
-				} else if runtime.GOOS == "linux" || buildDocker {
-				} else {
-					utils.Log.Fatalf("%v is currently not supported as a deploy target on %v", buildTarget, runtime.GOOS)
-				}
-
-			case "darwin", "ios", "ios-simulator":
-				if runtime.GOOS == "darwin" && !buildDocker {
-				} else {
-					utils.Log.Fatalf("%v is currently not supported as a deploy target on %v (not even with docker)", buildTarget, runtime.GOOS)
-				}
-
-			case "linux":
-				if runtime.GOOS == "linux" && !buildDocker {
-				} else if buildDocker {
-				} else {
-					utils.Log.Fatalf("%v is currently not supported as a deploy target on %v", buildTarget, runtime.GOOS)
-				}
-			}
+			utils.CheckBuildTarget(buildTarget)
 
 		case "prep", "check", "generate", "install", "test", "full":
 			buildMode = os.Args[1]

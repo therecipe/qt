@@ -1086,7 +1086,7 @@ func run() {
 
 	case /*"ios",*/ "ios-simulator":
 		{
-			utils.RunCmdOptional(exec.Command("xcrun", "instruments", "-w", "iPhone 7 Plus (10.1)#"), fmt.Sprintf("start simulator for %v on %v", buildTarget, runtime.GOOS))
+			utils.RunCmdOptional(exec.Command("xcrun", "instruments", "-w", "iPhone 7 Plus (10.2)#"), fmt.Sprintf("start simulator for %v on %v", buildTarget, runtime.GOOS))
 			utils.RunCmd(exec.Command("xcrun", "simctl", "uninstall", "booted", filepath.Join(depPath, "main.app")), fmt.Sprintf("uninstall app for %v on %v", buildTarget, runtime.GOOS))
 			utils.RunCmd(exec.Command("xcrun", "simctl", "install", "booted", filepath.Join(depPath, "main.app")), fmt.Sprintf("install app for %v on %v", buildTarget, runtime.GOOS))
 			utils.RunCmd(exec.Command("xcrun", "simctl", "launch", "booted", fmt.Sprintf("com.identifier.%v", appName)), fmt.Sprintf("launch app for %v on %v", buildTarget, runtime.GOOS))

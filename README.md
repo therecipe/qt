@@ -246,9 +246,7 @@ If you use the STUB version, you are forced to use `qtminimal` otherwise it's op
 5. Install Java SE Development Kit >= 8 (Linux: install in `$HOME/jdk/`); you can also define a custom location with **JDK_DIR**
 	* https://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html
 
-6. You may need to `chmod` your `$GOROOT/pkg` dir or run the setup as **root**
-
-7. Install and test (20 min)
+6. Install and test (20 min)
 
 	* `%GOPATH%\bin\qtsetup android`
 
@@ -256,9 +254,9 @@ If you use the STUB version, you are forced to use `qtminimal` otherwise it's op
 
 	* `$GOPATH/bin/qtsetup android`
 
-8. Create your first [application](#example)
+7. Create your first [application](#example)
 
-9. Deploy applications with `[GOPATH]/bin/qtdeploy build android path/to/your/project`
+8. Deploy applications with `[GOPATH]/bin/qtdeploy build android path/to/your/project`
 
 ## iOS
 
@@ -286,9 +284,7 @@ If you use the STUB version, you are forced to use `qtminimal` otherwise it's op
 	* https://releases.sailfishos.org/sdk/installers/1611/SailfishOSSDK-Beta-1611-Qt5-mac-offline.dmg
 	* https://releases.sailfishos.org/sdk/installers/1611/SailfishOSSDK-Beta-1611-Qt5-linux-64-offline.run
 
-4. You may need to `chmod` your `$GOROOT` dir or run the setup as **root**
-
-5. Install and test (20 min)
+4. Install and test (20 min)
 
 	* `%GOPATH%\bin\qtsetup sailfish && %GOPATH%\bin\qtsetup sailfish-emulator`
 
@@ -296,9 +292,9 @@ If you use the STUB version, you are forced to use `qtminimal` otherwise it's op
 
 	* `$GOPATH/bin/qtsetup sailfish && $GOPATH/bin/qtsetup sailfish-emulator`
 
-6. Create your first [application](#example)
+5. Create your first [application](#example)
 
-7. Deploy applications with `[GOPATH]/bin/qtdeploy build sailfish path/to/your/project` or `[GOPATH]/bin/qtdeploy build sailfish-emulator path/to/your/project`
+6. Deploy applications with `[GOPATH]/bin/qtdeploy build sailfish path/to/your/project` or `[GOPATH]/bin/qtdeploy build sailfish-emulator path/to/your/project`
 
 ## Raspberry Pi
 
@@ -404,9 +400,7 @@ If you use the STUB version, you are forced to use `qtminimal` otherwise it's op
 
 	* `sudo chown -R $USER $HOME/Qt5.7.0/`
 
-14. You may need to `chmod` your `$GOROOT/pkg` dir or run the setup as **root**
-
-15. Install and test the binding (20 min)
+14. Install and test the binding (20 min)
 
 	* Raspberry Pi 1
 		* `$GOPATH/bin/qtsetup rpi1`
@@ -417,7 +411,7 @@ If you use the STUB version, you are forced to use `qtminimal` otherwise it's op
 	* Raspberry Pi 3
 		* `$GOPATH/bin/qtsetup rpi3`
 
-16. Notes
+15. Notes
 
 	* run `startx &` before starting an application with `-platform xcb` (qml/quick applications won't work; they may work with Qt 5.8)
 
@@ -425,9 +419,9 @@ If you use the STUB version, you are forced to use `qtminimal` otherwise it's op
 
 	* you can increase the available gpu memory by editing `/boot/config.txt`
 
-17. Create your first [application](#example)
+16. Create your first [application](#example)
 
-18. Deploy applications with `$GOPATH/bin/qtdeploy build rpiX path/to/your/project` (replace X with 1, 2 or 3)
+17. Deploy applications with `$GOPATH/bin/qtdeploy build rpiX path/to/your/project` (replace X with 1, 2 or 3)
 
 ## Docker
 

@@ -13,48 +13,9 @@ import (
 func check(buildTarget string) {
 	utils.Log.Infof("running setup/check %v", buildTarget)
 
-	switch buildTarget {
-	case "desktop", "android", "ios", "ios-simulator",
-		"sailfish", "sailfish-emulator", "rpi1", "rpi2", "rpi3", "windows", "darwin", "linux",
-		"linux-docker", "windows-docker", "android-docker":
-		{
-			var buildDocker = strings.HasSuffix(buildTarget, "-docker")
-			switch buildTarget {
-			case "windows":
-				{
-					if runtime.GOOS == "windows" && !buildDocker {
-					} else if runtime.GOOS == "linux" || buildDocker {
-					} else {
-						utils.Log.Fatalf("%v is currently not supported as a deploy target on %v", buildTarget, runtime.GOOS)
-					}
-				}
+	utils.CheckBuildTarget(buildTarget)
 
-			case "darwin", "ios", "ios-simulator":
-				{
-					if runtime.GOOS == "darwin" && !buildDocker {
-					} else {
-						utils.Log.Fatalf("%v is currently not supported as a deploy target on %v (not even with docker)", buildTarget, runtime.GOOS)
-					}
-				}
-
-			case "linux":
-				{
-					if runtime.GOOS == "linux" && !buildDocker {
-					} else if buildDocker {
-					} else {
-						utils.Log.Fatalf("%v is currently not supported as a deploy target on %v", buildTarget, runtime.GOOS)
-					}
-				}
-			}
-		}
-
-	default:
-		{
-			utils.Log.Panicf("failed to recognize build target %v", buildTarget)
-		}
-	}
-
-	utils.Log.Infoln("VERSION:", "0.0.2")
+	utils.Log.Infoln("VERSION:", "0.0.3")
 	utils.Log.Infoln("GOOS:", runtime.GOOS)
 	utils.Log.Infoln("GOARCH:", runtime.GOARCH)
 	utils.Log.Infoln("GOVERSION:", runtime.Version())

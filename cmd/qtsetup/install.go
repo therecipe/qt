@@ -25,6 +25,10 @@ func install(buildTarget string) {
 	var env, tagFlags = getEnvAndTagflags(buildTarget)
 
 	if buildTarget == "sailfish" {
+
+		env["GOARCH"] = "386"
+		delete(env, "GOARM")
+
 		var _, err = ioutil.ReadDir(filepath.Join(runtime.GOROOT(), "bin", "linux_386"))
 		if err != nil {
 			var build = exec.Command(filepath.Join(runtime.GOROOT(), "src", func() string {
@@ -104,46 +108,7 @@ func installPkgCmd(buildTarget, tagFlags, pkg string, env map[string]string) *ex
 }
 
 func getEnvAndTagflags(buildTarget string) (env map[string]string, tagFlags string) {
-	switch buildTarget {
-	case "desktop", "android", "ios", "ios-simulator",
-		"sailfish", "sailfish-emulator", "rpi1", "rpi2", "rpi3", "windows", "darwin", "linux",
-		"linux-docker", "windows-docker", "android-docker":
-		{
-			var buildDocker = strings.HasSuffix(buildTarget, "-docker")
-			switch buildTarget {
-			case "windows":
-				{
-					if runtime.GOOS == "windows" && !buildDocker {
-					} else if runtime.GOOS == "linux" || buildDocker {
-					} else {
-						utils.Log.Fatalf("%v is currently not supported as a deploy target on %v", buildTarget, runtime.GOOS)
-					}
-				}
-
-			case "darwin", "ios", "ios-simulator":
-				{
-					if runtime.GOOS == "darwin" && !buildDocker {
-					} else {
-						utils.Log.Fatalf("%v is currently not supported as a deploy target on %v (not even with docker)", buildTarget, runtime.GOOS)
-					}
-				}
-
-			case "linux":
-				{
-					if runtime.GOOS == "linux" && !buildDocker {
-					} else if buildDocker {
-					} else {
-						utils.Log.Fatalf("%v is currently not supported as a deploy target on %v", buildTarget, runtime.GOOS)
-					}
-				}
-			}
-		}
-
-	default:
-		{
-			utils.Log.Panicf("failed to recognize build target %v", buildTarget)
-		}
-	}
+	utils.CheckBuildTarget(buildTarget)
 
 	switch buildTarget {
 	case
