@@ -13,6 +13,13 @@ func CppTemplate(module string) []byte {
 	var bb = new(bytes.Buffer)
 	defer bb.Reset()
 
+	if module == "QtCharts" || module == "QtDataVisualization" {
+		for _, classname := range getSortedClassNamesForModule(module) {
+			fmt.Fprintf(bb, "typedef %v::%v %v;\n", module, classname, classname)
+		}
+		fmt.Fprint(bb, "\n")
+	}
+
 	for _, className := range getSortedClassNamesForModule(module) {
 		var class = parser.CurrentState.ClassMap[className]
 

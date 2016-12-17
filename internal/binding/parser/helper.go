@@ -94,10 +94,10 @@ var LibDeps = map[string][]string{
 	"Scxml":    {"Network", "Qml", "Core"}, //Network (needed for static linking ios)
 	"Gamepad":  {"Gui", "Core"},
 
-	"Purchasing": {"Core"},
-	//"DataVisualization": []string{"Gui", "Core"},            //TODO: uncomment
-	//"Charts":            []string{"Widgets", "Gui", "Core"}, //TODO: uncomment
-	//"Quick2DRenderer":   []string{},                         //TODO: uncomment
+	"Purchasing":        {"Core"},
+	"DataVisualization": {"Gui", "Core"},
+	"Charts":            {"Widgets", "Gui", "Core"},
+	//"Quick2DRenderer":   {},                         //TODO: uncomment
 
 	"Sailfish": {"Core"},
 
@@ -143,9 +143,9 @@ var Libs = []string{
 	"Scxml",
 	"Gamepad",
 
-	"Purchasing", //GPLv3 & LGPLv3
-	//"DataVisualization", //GPLv3
-	//"Charts",            //GPLv3
+	"Purchasing",        //GPLv3 & LGPLv3
+	"DataVisualization", //GPLv3
+	"Charts",            //GPLv3
 	//"Quick2DRenderer",   //GPLv3
 
 	"Sailfish",

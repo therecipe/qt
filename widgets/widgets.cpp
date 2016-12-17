@@ -41157,6 +41157,11 @@ void QGraphicsWidget_SetMaximumSize(void* ptr, void* vqs)
 	static_cast<QGraphicsWidget*>(ptr)->setMaximumSize(*static_cast<QSizeF*>(vqs));
 }
 
+void QGraphicsWidget_SetMaximumSize2(void* ptr, double w, double h)
+{
+	static_cast<QGraphicsWidget*>(ptr)->setMaximumSize(w, h);
+}
+
 void* QGraphicsWidget_MinimumSize(void* ptr)
 {
 	return ({ QSizeF tmpValue = static_cast<QGraphicsWidget*>(ptr)->minimumSize(); new QSizeF(tmpValue.width(), tmpValue.height()); });
@@ -41167,6 +41172,11 @@ void QGraphicsWidget_SetMinimumSize(void* ptr, void* vqs)
 	static_cast<QGraphicsWidget*>(ptr)->setMinimumSize(*static_cast<QSizeF*>(vqs));
 }
 
+void QGraphicsWidget_SetMinimumSize2(void* ptr, double w, double h)
+{
+	static_cast<QGraphicsWidget*>(ptr)->setMinimumSize(w, h);
+}
+
 void* QGraphicsWidget_PreferredSize(void* ptr)
 {
 	return ({ QSizeF tmpValue = static_cast<QGraphicsWidget*>(ptr)->preferredSize(); new QSizeF(tmpValue.width(), tmpValue.height()); });
@@ -41175,6 +41185,11 @@ void* QGraphicsWidget_PreferredSize(void* ptr)
 void QGraphicsWidget_SetPreferredSize(void* ptr, void* vqs)
 {
 	static_cast<QGraphicsWidget*>(ptr)->setPreferredSize(*static_cast<QSizeF*>(vqs));
+}
+
+void QGraphicsWidget_SetPreferredSize2(void* ptr, double w, double h)
+{
+	static_cast<QGraphicsWidget*>(ptr)->setPreferredSize(w, h);
 }
 
 void* QGraphicsWidget_SizePolicy(void* ptr)
