@@ -44,8 +44,10 @@ func main() {
 	window.SetMinimumSize2(512, 512)
 
 	var mainLayout = widgets.NewQVBoxLayout()
-	window.Layout().DestroyQObject()
-	window.SetLayout(mainLayout)
+
+	var centralWidget = widgets.NewQWidget(window, 0)
+	centralWidget.SetLayout(mainLayout)
+	window.SetCentralWidget(centralWidget)
 
 	var scene = widgets.NewQGraphicsScene(nil)
 

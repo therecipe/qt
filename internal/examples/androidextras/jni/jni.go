@@ -27,8 +27,10 @@ func main() {
 		runner.Run()
 	})
 
-	window.Layout().DestroyQObject()
-	window.SetLayout(vbox)
+	var centralWidget = widgets.NewQWidget(window, 0)
+	centralWidget.SetLayout(vbox)
+	window.SetCentralWidget(centralWidget)
+
 	window.Show()
 	widgets.QApplication_Exec()
 }

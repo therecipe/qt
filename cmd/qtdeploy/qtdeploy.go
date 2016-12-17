@@ -526,15 +526,9 @@ func predeploy() {
 			utils.RunCmd(exec.Command(copyCmd, filepath.Join(depPath, "libgo_base.so"), libPath), fmt.Sprintf("copy libgo_base for %v on %v", buildTarget, runtime.GOOS))
 			utils.RunCmd(exec.Command(copyCmd, filepath.Join(depPath, "libgo.so"), libPath), fmt.Sprintf("copy libgo for %v on %v", buildTarget, runtime.GOOS))
 
-			var qtLibPath = filepath.Join(utils.QT_DIR(), "5.7", "android_armv7", "lib")
-			utils.RunCmd(exec.Command(copyCmd, filepath.Join(qtLibPath, "libQt5Widgets.so"), libPath), fmt.Sprintf("copy libQt5Widgets for %v on %v", buildTarget, runtime.GOOS))
-			utils.RunCmd(exec.Command(copyCmd, filepath.Join(qtLibPath, "libQt5QuickWidgets.so"), libPath), fmt.Sprintf("copy libQt5QuickWidgets for %v on %v", buildTarget, runtime.GOOS))
-			utils.RunCmd(exec.Command(copyCmd, filepath.Join(qtLibPath, "libQt5MultimediaWidgets.so"), libPath), fmt.Sprintf("copy libQt5MultimediaWidgets for %v on %v", buildTarget, runtime.GOOS))
-			utils.RunCmd(exec.Command(copyCmd, filepath.Join(qtLibPath, "libQt5Multimedia.so"), libPath), fmt.Sprintf("copy libQt5Multimedia for %v on %v", buildTarget, runtime.GOOS))
-			utils.RunCmd(exec.Command(copyCmd, filepath.Join(qtLibPath, "libQt5Network.so"), libPath), fmt.Sprintf("copy libQt5Network for %v on %v", buildTarget, runtime.GOOS))
-			utils.RunCmd(exec.Command(copyCmd, filepath.Join(qtLibPath, "libQt5AndroidExtras.so"), libPath), fmt.Sprintf("copy libQt5AndroidExtras for %v on %v", buildTarget, runtime.GOOS))
-			utils.RunCmd(exec.Command(copyCmd, filepath.Join(qtLibPath, "libQt5Qml.so"), libPath), fmt.Sprintf("copy libQt5Qml for %v on %v", buildTarget, runtime.GOOS))
-			utils.RunCmd(exec.Command(copyCmd, filepath.Join(qtLibPath, "libQt5Quick.so"), libPath), fmt.Sprintf("copy libQt5Quick for %v on %v", buildTarget, runtime.GOOS))
+			//trick androiddeployqt into checking dependencies from libgo_base.so
+			utils.RemoveAll(filepath.Join(depPath, "libgo.so"))
+			utils.RunCmd(exec.Command(copyCmd, filepath.Join(depPath, "libgo_base.so"), filepath.Join(depPath, "libgo.so")), "")
 
 			var out, err = json.Marshal(&struct {
 				Qt                            string `json:"qt"`
@@ -702,6 +696,7 @@ func deploy() {
 				"--android-platform", "android-25",
 				"--jdk", utils.JDK_DIR(),
 				"--gradle",
+				"--verbose",
 			)
 
 			if utils.ExistsFile(filepath.Join(appPath, "android", appName+".keystore")) {

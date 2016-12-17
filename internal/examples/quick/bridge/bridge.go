@@ -32,8 +32,11 @@ func main() {
 	layout.AddWidget(newQmlWidget(), 0, 0)
 
 	var window = widgets.NewQMainWindow(nil, 0)
-	window.Layout().DestroyQObject()
-	window.SetLayout(layout)
+
+	var centralWidget = widgets.NewQWidget(window, 0)
+	centralWidget.SetLayout(layout)
+	window.SetCentralWidget(centralWidget)
+
 	window.Show()
 
 	widgets.QApplication_Exec()
@@ -54,7 +57,6 @@ func newCppWidget() *widgets.QWidget {
 	layout.AddWidget(manipulatedFromQml, 0, 0)
 
 	var widget = widgets.NewQWidget(nil, 0)
-	widget.Layout().DestroyQObject()
 	widget.SetLayout(layout)
 
 	return widget

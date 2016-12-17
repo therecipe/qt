@@ -31,8 +31,10 @@ func main() {
 		window       = widgets.NewQMainWindow(nil, 0)
 		windowLayout = widgets.NewQVBoxLayout()
 	)
-	window.Layout().DestroyQObject()
-	window.SetLayout(windowLayout)
+
+	var centralWidget = widgets.NewQWidget(window, 0)
+	centralWidget.SetLayout(windowLayout)
+	window.SetCentralWidget(centralWidget)
 
 	var addButton = widgets.NewQPushButton2("addItem", nil)
 	addButton.ConnectClicked(func(checked bool) {

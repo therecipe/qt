@@ -102,10 +102,11 @@ func main() {
 	layout.AddWidget(accessGroup, 1, 1, 0)
 
 	var window = widgets.NewQMainWindow(nil, 0)
-	window.Layout().DestroyQObject()
-	window.SetLayout(layout)
-
 	window.SetWindowTitle("Line Edits")
+
+	var centralWidget = widgets.NewQWidget(window, 0)
+	centralWidget.SetLayout(layout)
+	window.SetCentralWidget(centralWidget)
 
 	window.Show()
 
