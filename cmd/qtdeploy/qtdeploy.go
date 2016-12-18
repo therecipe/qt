@@ -528,7 +528,12 @@ func predeploy() {
 
 			//trick androiddeployqt into checking dependencies from libgo_base.so
 			utils.RemoveAll(filepath.Join(depPath, "libgo.so"))
-			utils.RunCmd(exec.Command(copyCmd, filepath.Join(depPath, "libgo_base.so"), filepath.Join(depPath, "libgo.so")), "")
+
+			if runtime.GOOS == "windows" {
+				utils.RunCmd(exec.Command(copyCmd, filepath.Join(depPath, "libgo_base.so"), filepath.Join(depPath, "libgo.so*")), "")
+			} else {
+				utils.RunCmd(exec.Command(copyCmd, filepath.Join(depPath, "libgo_base.so"), filepath.Join(depPath, "libgo.so")), "")
+			}
 
 			var out, err = json.Marshal(&struct {
 				Qt                            string `json:"qt"`
