@@ -1027,8 +1027,14 @@ void QDesignerContainerExtension_DestroyQDesignerContainerExtensionDefault(void*
 class MyQDesignerCustomWidgetCollectionInterface: public QDesignerCustomWidgetCollectionInterface
 {
 public:
+	
 	 ~MyQDesignerCustomWidgetCollectionInterface() { callbackQDesignerCustomWidgetCollectionInterface_DestroyQDesignerCustomWidgetCollectionInterface(this); };
 };
+
+struct QtDesigner_PackedList QDesignerCustomWidgetCollectionInterface_CustomWidgets(void* ptr)
+{
+	return ({ QList<QDesignerCustomWidgetInterface *>* tmpValue = new QList<QDesignerCustomWidgetInterface *>(static_cast<QDesignerCustomWidgetCollectionInterface*>(ptr)->customWidgets()); QtDesigner_PackedList { tmpValue, tmpValue->size() }; });
+}
 
 void QDesignerCustomWidgetCollectionInterface_DestroyQDesignerCustomWidgetCollectionInterface(void* ptr)
 {
@@ -2970,6 +2976,8 @@ public:
 	bool isVisible(int index) const { return callbackQDesignerMemberSheetExtension_IsVisible(const_cast<MyQDesignerMemberSheetExtension*>(this), index) != 0; };
 	QString memberGroup(int index) const { return QString(callbackQDesignerMemberSheetExtension_MemberGroup(const_cast<MyQDesignerMemberSheetExtension*>(this), index)); };
 	QString memberName(int index) const { return QString(callbackQDesignerMemberSheetExtension_MemberName(const_cast<MyQDesignerMemberSheetExtension*>(this), index)); };
+	
+	
 	void setMemberGroup(int index, const QString & group) { QByteArray t64292b = group.toUtf8(); QtDesigner_PackedString groupPacked = { const_cast<char*>(t64292b.prepend("WHITESPACE").constData()+10), t64292b.size()-10 };callbackQDesignerMemberSheetExtension_SetMemberGroup(this, index, groupPacked); };
 	void setVisible(int index, bool visible) { callbackQDesignerMemberSheetExtension_SetVisible(this, index, visible); };
 	QString signature(int index) const { return QString(callbackQDesignerMemberSheetExtension_Signature(const_cast<MyQDesignerMemberSheetExtension*>(this), index)); };
@@ -3019,6 +3027,16 @@ struct QtDesigner_PackedString QDesignerMemberSheetExtension_MemberGroup(void* p
 struct QtDesigner_PackedString QDesignerMemberSheetExtension_MemberName(void* ptr, int index)
 {
 	return ({ QByteArray ta1b0eb = static_cast<QDesignerMemberSheetExtension*>(ptr)->memberName(index).toUtf8(); QtDesigner_PackedString { const_cast<char*>(ta1b0eb.prepend("WHITESPACE").constData()+10), ta1b0eb.size()-10 }; });
+}
+
+struct QtDesigner_PackedList QDesignerMemberSheetExtension_ParameterNames(void* ptr, int index)
+{
+	return ({ QList<QByteArray>* tmpValue = new QList<QByteArray>(static_cast<QDesignerMemberSheetExtension*>(ptr)->parameterNames(index)); QtDesigner_PackedList { tmpValue, tmpValue->size() }; });
+}
+
+struct QtDesigner_PackedList QDesignerMemberSheetExtension_ParameterTypes(void* ptr, int index)
+{
+	return ({ QList<QByteArray>* tmpValue = new QList<QByteArray>(static_cast<QDesignerMemberSheetExtension*>(ptr)->parameterTypes(index)); QtDesigner_PackedList { tmpValue, tmpValue->size() }; });
 }
 
 void QDesignerMemberSheetExtension_SetMemberGroup(void* ptr, int index, char* group)
@@ -4713,6 +4731,7 @@ class MyQDesignerTaskMenuExtension: public QDesignerTaskMenuExtension
 {
 public:
 	QAction * preferredEditAction() const { return static_cast<QAction*>(callbackQDesignerTaskMenuExtension_PreferredEditAction(const_cast<MyQDesignerTaskMenuExtension*>(this))); };
+	
 	 ~MyQDesignerTaskMenuExtension() { callbackQDesignerTaskMenuExtension_DestroyQDesignerTaskMenuExtension(this); };
 };
 
@@ -4724,6 +4743,11 @@ void* QDesignerTaskMenuExtension_PreferredEditAction(void* ptr)
 void* QDesignerTaskMenuExtension_PreferredEditActionDefault(void* ptr)
 {
 	return static_cast<QDesignerTaskMenuExtension*>(ptr)->QDesignerTaskMenuExtension::preferredEditAction();
+}
+
+struct QtDesigner_PackedList QDesignerTaskMenuExtension_TaskActions(void* ptr)
+{
+	return ({ QList<QAction *>* tmpValue = new QList<QAction *>(static_cast<QDesignerTaskMenuExtension*>(ptr)->taskActions()); QtDesigner_PackedList { tmpValue, tmpValue->size() }; });
 }
 
 void QDesignerTaskMenuExtension_DestroyQDesignerTaskMenuExtension(void* ptr)

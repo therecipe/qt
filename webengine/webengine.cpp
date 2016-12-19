@@ -2332,6 +2332,8 @@ void QWebEngineUrlRequestInfo_SetHttpHeader(void* ptr, void* name, void* value)
 class MyQWebEngineUrlRequestInterceptor: public QWebEngineUrlRequestInterceptor
 {
 public:
+	MyQWebEngineUrlRequestInterceptor(QObject *p) : QWebEngineUrlRequestInterceptor(p) {};
+	void interceptRequest(QWebEngineUrlRequestInfo & info) { callbackQWebEngineUrlRequestInterceptor_InterceptRequest(this, static_cast<QWebEngineUrlRequestInfo*>(&info)); };
 	void timerEvent(QTimerEvent * event) { callbackQWebEngineUrlRequestInterceptor_TimerEvent(this, event); };
 	void childEvent(QChildEvent * event) { callbackQWebEngineUrlRequestInterceptor_ChildEvent(this, event); };
 	void connectNotify(const QMetaMethod & sign) { callbackQWebEngineUrlRequestInterceptor_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
@@ -2342,6 +2344,16 @@ public:
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQWebEngineUrlRequestInterceptor_EventFilter(this, watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQWebEngineUrlRequestInterceptor_MetaObject(const_cast<MyQWebEngineUrlRequestInterceptor*>(this))); };
 };
+
+void* QWebEngineUrlRequestInterceptor_NewQWebEngineUrlRequestInterceptor(void* p)
+{
+	return new MyQWebEngineUrlRequestInterceptor(static_cast<QObject*>(p));
+}
+
+void QWebEngineUrlRequestInterceptor_InterceptRequest(void* ptr, void* info)
+{
+	static_cast<QWebEngineUrlRequestInterceptor*>(ptr)->interceptRequest(*static_cast<QWebEngineUrlRequestInfo*>(info));
+}
 
 void QWebEngineUrlRequestInterceptor_TimerEvent(void* ptr, void* event)
 {

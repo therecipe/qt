@@ -4023,6 +4023,13 @@ func (ptr *QSqlQueryModel) InsertRowsDefault(row int, count int, parent core.QMo
 	return false
 }
 
+func (ptr *QSqlQueryModel) DisconnectMimeData() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSqlQueryModel::mimeData")
+	}
+}
+
 //export callbackQSqlQueryModel_MimeTypes
 func callbackQSqlQueryModel_MimeTypes(ptr unsafe.Pointer) *C.char {
 
@@ -7438,6 +7445,13 @@ func (ptr *QSqlRelationalTableModel) InsertRowsDefault(row int, count int, paren
 	return false
 }
 
+func (ptr *QSqlRelationalTableModel) DisconnectMimeData() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSqlRelationalTableModel::mimeData")
+	}
+}
+
 //export callbackQSqlRelationalTableModel_MimeTypes
 func callbackQSqlRelationalTableModel_MimeTypes(ptr unsafe.Pointer) *C.char {
 
@@ -10826,6 +10840,13 @@ func (ptr *QSqlTableModel) InsertColumnsDefault(column int, count int, parent co
 		return C.QSqlTableModel_InsertColumnsDefault(ptr.Pointer(), C.int(int32(column)), C.int(int32(count)), core.PointerFromQModelIndex(parent)) != 0
 	}
 	return false
+}
+
+func (ptr *QSqlTableModel) DisconnectMimeData() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSqlTableModel::mimeData")
+	}
 }
 
 //export callbackQSqlTableModel_MimeTypes

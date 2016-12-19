@@ -13,6 +13,7 @@ extern "C" {
 
 struct QtXmlPatterns_PackedString { char* data; long long len; };
 struct QtXmlPatterns_PackedList { void* data; long long len; };
+;
 void QAbstractMessageHandler_DestroyQAbstractMessageHandler(void* ptr);
 void QAbstractMessageHandler_DestroyQAbstractMessageHandlerDefault(void* ptr);
 void QAbstractMessageHandler_TimerEvent(void* ptr, void* event);
@@ -55,6 +56,7 @@ char QAbstractUriResolver_EventFilter(void* ptr, void* watched, void* event);
 char QAbstractUriResolver_EventFilterDefault(void* ptr, void* watched, void* event);
 void* QAbstractUriResolver_MetaObject(void* ptr);
 void* QAbstractUriResolver_MetaObjectDefault(void* ptr);
+struct QtXmlPatterns_PackedList QAbstractXmlNodeModel_Attributes(void* ptr, void* element);
 void* QAbstractXmlNodeModel_BaseUri(void* ptr, void* n);
 long long QAbstractXmlNodeModel_CompareOrder(void* ptr, void* ni1, void* ni2);
 void* QAbstractXmlNodeModel_CreateIndex(void* ptr, long long data);
@@ -63,8 +65,10 @@ void* QAbstractXmlNodeModel_CreateIndex2(void* ptr, void* pointer, long long add
 void* QAbstractXmlNodeModel_DocumentUri(void* ptr, void* n);
 void* QAbstractXmlNodeModel_ElementById(void* ptr, void* id);
 long long QAbstractXmlNodeModel_Kind(void* ptr, void* ni);
+struct QtXmlPatterns_PackedList QAbstractXmlNodeModel_NamespaceBindings(void* ptr, void* n);
 void* QAbstractXmlNodeModel_Name(void* ptr, void* ni);
 void* QAbstractXmlNodeModel_NextFromSimpleAxis(void* ptr, long long axis, void* origin);
+struct QtXmlPatterns_PackedList QAbstractXmlNodeModel_NodesByIdref(void* ptr, void* idref);
 void* QAbstractXmlNodeModel_Root(void* ptr, void* n);
 void* QAbstractXmlNodeModel_SourceLocation(void* ptr, void* index);
 struct QtXmlPatterns_PackedString QAbstractXmlNodeModel_StringValue(void* ptr, void* n);
@@ -102,6 +106,8 @@ void QSimpleXmlNodeModel_DestroyQSimpleXmlNodeModel(void* ptr);
 void QSimpleXmlNodeModel_DestroyQSimpleXmlNodeModelDefault(void* ptr);
 void* QSimpleXmlNodeModel_namespaceBindings_atList(void* ptr, int i);
 void* QSimpleXmlNodeModel_nodesByIdref_atList(void* ptr, int i);
+struct QtXmlPatterns_PackedList QSimpleXmlNodeModel_Attributes(void* ptr, void* element);
+;
 long long QSimpleXmlNodeModel_CompareOrder(void* ptr, void* ni1, void* ni2);
 ;
 void* QSimpleXmlNodeModel_DocumentUri(void* ptr, void* n);

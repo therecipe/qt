@@ -549,6 +549,9 @@ func cppOutput(name, value string, f *parser.Function) string {
 				if strings.Contains(vOld, "const") {
 					return fmt.Sprintf("const_cast<%v*>(&%v)", value, name)
 				}
+				if f.SignalMode == parser.CALLBACK {
+					return fmt.Sprintf("static_cast<%v*>(&%v)", value, name)
+				}
 			}
 
 			f.NeedsFinalizer = true

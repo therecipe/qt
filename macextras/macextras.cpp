@@ -22,12 +22,14 @@
 #include <QTime>
 #include <QTimer>
 #include <QTimerEvent>
+#include <QVariant>
 #include <QWindow>
 
 class MyQMacPasteboardMime: public QMacPasteboardMime
 {
 public:
 	bool canConvert(const QString & mime, QString flav) { QByteArray tc6d51a = mime.toUtf8(); QtMacExtras_PackedString mimePacked = { const_cast<char*>(tc6d51a.prepend("WHITESPACE").constData()+10), tc6d51a.size()-10 };QByteArray t81c607 = flav.toUtf8(); QtMacExtras_PackedString flavPacked = { const_cast<char*>(t81c607.prepend("WHITESPACE").constData()+10), t81c607.size()-10 };return callbackQMacPasteboardMime_CanConvert(this, mimePacked, flavPacked) != 0; };
+	
 	QString convertorName() { return QString(callbackQMacPasteboardMime_ConvertorName(this)); };
 	int count(QMimeData * mimeData) { return callbackQMacPasteboardMime_Count(this, mimeData); };
 	QString flavorFor(const QString & mime) { QByteArray tc6d51a = mime.toUtf8(); QtMacExtras_PackedString mimePacked = { const_cast<char*>(tc6d51a.prepend("WHITESPACE").constData()+10), tc6d51a.size()-10 };return QString(callbackQMacPasteboardMime_FlavorFor(this, mimePacked)); };
@@ -38,6 +40,11 @@ public:
 char QMacPasteboardMime_CanConvert(void* ptr, char* mime, char* flav)
 {
 	return static_cast<QMacPasteboardMime*>(ptr)->canConvert(QString(mime), QString(flav));
+}
+
+struct QtMacExtras_PackedList QMacPasteboardMime_ConvertFromMime(void* ptr, char* mime, void* data, char* flav)
+{
+	return ({ QList<QByteArray>* tmpValue = new QList<QByteArray>(static_cast<QMacPasteboardMime*>(ptr)->convertFromMime(QString(mime), *static_cast<QVariant*>(data), QString(flav))); QtMacExtras_PackedList { tmpValue, tmpValue->size() }; });
 }
 
 struct QtMacExtras_PackedString QMacPasteboardMime_ConvertorName(void* ptr)

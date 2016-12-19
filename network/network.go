@@ -1357,6 +1357,13 @@ func (ptr *QAbstractSocket) SetReadBufferSizeDefault(size int64) {
 	}
 }
 
+func (ptr *QAbstractSocket) DisconnectSetSocketDescriptor() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractSocket::setSocketDescriptor")
+	}
+}
+
 func (ptr *QAbstractSocket) SetSocketError(socketError QAbstractSocket__SocketError) {
 	if ptr.Pointer() != nil {
 		C.QAbstractSocket_SetSocketError(ptr.Pointer(), C.longlong(socketError))
@@ -1402,6 +1409,13 @@ func (ptr *QAbstractSocket) SetSocketOptionDefault(option QAbstractSocket__Socke
 func (ptr *QAbstractSocket) SetSocketState(state QAbstractSocket__SocketState) {
 	if ptr.Pointer() != nil {
 		C.QAbstractSocket_SetSocketState(ptr.Pointer(), C.longlong(state))
+	}
+}
+
+func (ptr *QAbstractSocket) DisconnectSocketDescriptor() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractSocket::socketDescriptor")
 	}
 }
 
@@ -10493,6 +10507,33 @@ func (ptr *QNetworkProxyFactory) ProxyForQuery(query QNetworkProxyQuery_ITF) []*
 	}(C.QNetworkProxyFactory_QNetworkProxyFactory_ProxyForQuery(PointerFromQNetworkProxyQuery(query)))
 }
 
+func (ptr *QNetworkProxyFactory) ConnectQueryProxy(f func(query *QNetworkProxyQuery) []*QNetworkProxy) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QNetworkProxyFactory::queryProxy", f)
+	}
+}
+
+func (ptr *QNetworkProxyFactory) DisconnectQueryProxy(query QNetworkProxyQuery_ITF) {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QNetworkProxyFactory::queryProxy")
+	}
+}
+
+func (ptr *QNetworkProxyFactory) QueryProxy(query QNetworkProxyQuery_ITF) []*QNetworkProxy {
+	if ptr.Pointer() != nil {
+		return func(l C.struct_QtNetwork_PackedList) []*QNetworkProxy {
+			var out = make([]*QNetworkProxy, int(l.len))
+			for i := 0; i < int(l.len); i++ {
+				out[i] = NewQNetworkProxyFactoryFromPointer(l.data).queryProxy_atList(i)
+			}
+			return out
+		}(C.QNetworkProxyFactory_QueryProxy(ptr.Pointer(), PointerFromQNetworkProxyQuery(query)))
+	}
+	return nil
+}
+
 func QNetworkProxyFactory_SetApplicationProxyFactory(factory QNetworkProxyFactory_ITF) {
 	C.QNetworkProxyFactory_QNetworkProxyFactory_SetApplicationProxyFactory(PointerFromQNetworkProxyFactory(factory))
 }
@@ -15860,6 +15901,13 @@ func (ptr *QSslSocket) SetReadBufferSizeDefault(size int64) {
 	}
 }
 
+func (ptr *QSslSocket) DisconnectSetSocketDescriptor() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSslSocket::setSocketDescriptor")
+	}
+}
+
 //export callbackQSslSocket_SetSocketOption
 func callbackQSslSocket_SetSocketOption(ptr unsafe.Pointer, option C.longlong, value unsafe.Pointer) {
 
@@ -16366,6 +16414,13 @@ func (ptr *QSslSocket) DisconnectFromHost() {
 func (ptr *QSslSocket) DisconnectFromHostDefault() {
 	if ptr.Pointer() != nil {
 		C.QSslSocket_DisconnectFromHostDefault(ptr.Pointer())
+	}
+}
+
+func (ptr *QSslSocket) DisconnectSocketDescriptor() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSslSocket::socketDescriptor")
 	}
 }
 
@@ -17102,6 +17157,13 @@ func (ptr *QTcpServer) HasPendingConnectionsDefault() bool {
 		return C.QTcpServer_HasPendingConnectionsDefault(ptr.Pointer()) != 0
 	}
 	return false
+}
+
+func (ptr *QTcpServer) DisconnectIncomingConnection() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QTcpServer::incomingConnection")
+	}
 }
 
 func (ptr *QTcpServer) IsListening() bool {
@@ -17906,6 +17968,13 @@ func (ptr *QTcpSocket) SetReadBufferSizeDefault(size int64) {
 	}
 }
 
+func (ptr *QTcpSocket) DisconnectSetSocketDescriptor() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QTcpSocket::setSocketDescriptor")
+	}
+}
+
 //export callbackQTcpSocket_SetSocketOption
 func callbackQTcpSocket_SetSocketOption(ptr unsafe.Pointer, option C.longlong, value unsafe.Pointer) {
 
@@ -17939,6 +18008,13 @@ func (ptr *QTcpSocket) SetSocketOption(option QAbstractSocket__SocketOption, val
 func (ptr *QTcpSocket) SetSocketOptionDefault(option QAbstractSocket__SocketOption, value core.QVariant_ITF) {
 	if ptr.Pointer() != nil {
 		C.QTcpSocket_SetSocketOptionDefault(ptr.Pointer(), C.longlong(option), core.PointerFromQVariant(value))
+	}
+}
+
+func (ptr *QTcpSocket) DisconnectSocketDescriptor() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QTcpSocket::socketDescriptor")
 	}
 }
 
@@ -19321,6 +19397,13 @@ func (ptr *QUdpSocket) SetReadBufferSizeDefault(size int64) {
 	}
 }
 
+func (ptr *QUdpSocket) DisconnectSetSocketDescriptor() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QUdpSocket::setSocketDescriptor")
+	}
+}
+
 //export callbackQUdpSocket_SetSocketOption
 func callbackQUdpSocket_SetSocketOption(ptr unsafe.Pointer, option C.longlong, value unsafe.Pointer) {
 
@@ -19354,6 +19437,13 @@ func (ptr *QUdpSocket) SetSocketOption(option QAbstractSocket__SocketOption, val
 func (ptr *QUdpSocket) SetSocketOptionDefault(option QAbstractSocket__SocketOption, value core.QVariant_ITF) {
 	if ptr.Pointer() != nil {
 		C.QUdpSocket_SetSocketOptionDefault(ptr.Pointer(), C.longlong(option), core.PointerFromQVariant(value))
+	}
+}
+
+func (ptr *QUdpSocket) DisconnectSocketDescriptor() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QUdpSocket::socketDescriptor")
 	}
 }
 

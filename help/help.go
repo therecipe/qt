@@ -714,6 +714,13 @@ func (ptr *QHelpContentModel) InsertRowsDefault(row int, count int, parent core.
 	return false
 }
 
+func (ptr *QHelpContentModel) DisconnectMimeData() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentModel::mimeData")
+	}
+}
+
 //export callbackQHelpContentModel_MimeTypes
 func callbackQHelpContentModel_MimeTypes(ptr unsafe.Pointer) *C.char {
 
@@ -8036,6 +8043,13 @@ func (ptr *QHelpIndexModel) InsertColumnsDefault(column int, count int, parent c
 		return C.QHelpIndexModel_InsertColumnsDefault(ptr.Pointer(), C.int(int32(column)), C.int(int32(count)), core.PointerFromQModelIndex(parent)) != 0
 	}
 	return false
+}
+
+func (ptr *QHelpIndexModel) DisconnectMimeData() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexModel::mimeData")
+	}
 }
 
 //export callbackQHelpIndexModel_MimeTypes

@@ -2683,6 +2683,13 @@ func (ptr *QAbstractItemModel) Match(start QModelIndex_ITF, role int, value QVar
 	return nil
 }
 
+func (ptr *QAbstractItemModel) DisconnectMimeData() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractItemModel::mimeData")
+	}
+}
+
 //export callbackQAbstractItemModel_MimeTypes
 func callbackQAbstractItemModel_MimeTypes(ptr unsafe.Pointer) *C.char {
 
@@ -4479,6 +4486,13 @@ func (ptr *QAbstractListModel) InsertRowsDefault(row int, count int, parent QMod
 	return false
 }
 
+func (ptr *QAbstractListModel) DisconnectMimeData() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractListModel::mimeData")
+	}
+}
+
 //export callbackQAbstractListModel_MimeTypes
 func callbackQAbstractListModel_MimeTypes(ptr unsafe.Pointer) *C.char {
 
@@ -6070,6 +6084,13 @@ func (ptr *QAbstractProxyModel) MapToSource(proxyIndex QModelIndex_ITF) *QModelI
 		return tmpValue
 	}
 	return nil
+}
+
+func (ptr *QAbstractProxyModel) DisconnectMimeData() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractProxyModel::mimeData")
+	}
 }
 
 //export callbackQAbstractProxyModel_MimeTypes
@@ -8387,6 +8408,13 @@ func (ptr *QAbstractTableModel) InsertRowsDefault(row int, count int, parent QMo
 		return C.QAbstractTableModel_InsertRowsDefault(ptr.Pointer(), C.int(int32(row)), C.int(int32(count)), PointerFromQModelIndex(parent)) != 0
 	}
 	return false
+}
+
+func (ptr *QAbstractTableModel) DisconnectMimeData() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractTableModel::mimeData")
+	}
 }
 
 //export callbackQAbstractTableModel_MimeTypes
@@ -28171,6 +28199,13 @@ func (ptr *QIdentityProxyModel) HasChildrenDefault(parent QModelIndex_ITF) bool 
 	return false
 }
 
+func (ptr *QIdentityProxyModel) DisconnectMimeData() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QIdentityProxyModel::mimeData")
+	}
+}
+
 //export callbackQIdentityProxyModel_MimeTypes
 func callbackQIdentityProxyModel_MimeTypes(ptr unsafe.Pointer) *C.char {
 
@@ -36779,6 +36814,13 @@ func (ptr *QMimeData) RemoveFormat(mimeType string) {
 		var mimeTypeC = C.CString(mimeType)
 		defer C.free(unsafe.Pointer(mimeTypeC))
 		C.QMimeData_RemoveFormat(ptr.Pointer(), mimeTypeC)
+	}
+}
+
+func (ptr *QMimeData) DisconnectRetrieveData() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QMimeData::retrieveData")
 	}
 }
 
@@ -51906,6 +51948,13 @@ func (ptr *QSortFilterProxyModel) Match(start QModelIndex_ITF, role int, value Q
 	return nil
 }
 
+func (ptr *QSortFilterProxyModel) DisconnectMimeData() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSortFilterProxyModel::mimeData")
+	}
+}
+
 //export callbackQSortFilterProxyModel_MimeTypes
 func callbackQSortFilterProxyModel_MimeTypes(ptr unsafe.Pointer) *C.char {
 
@@ -55977,6 +56026,13 @@ func (ptr *QStringListModel) InsertColumnsDefault(column int, count int, parent 
 		return C.QStringListModel_InsertColumnsDefault(ptr.Pointer(), C.int(int32(column)), C.int(int32(count)), PointerFromQModelIndex(parent)) != 0
 	}
 	return false
+}
+
+func (ptr *QStringListModel) DisconnectMimeData() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QStringListModel::mimeData")
+	}
 }
 
 //export callbackQStringListModel_MimeTypes

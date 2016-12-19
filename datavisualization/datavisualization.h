@@ -1501,6 +1501,8 @@ void* QValue3DAxisFormatter_CreateNewInstanceDefault(void* ptr);
 struct QtDataVisualization_PackedString QValue3DAxisFormatter_LabelStrings(void* ptr);
 void* QValue3DAxisFormatter_Locale(void* ptr);
 void QValue3DAxisFormatter_MarkDirty(void* ptr, char labelsChange);
+void QValue3DAxisFormatter_PopulateCopy(void* ptr, void* copy);
+void QValue3DAxisFormatter_PopulateCopyDefault(void* ptr, void* copy);
 float QValue3DAxisFormatter_PositionAt(void* ptr, float value);
 float QValue3DAxisFormatter_PositionAtDefault(void* ptr, float value);
 void QValue3DAxisFormatter_Recalculate(void* ptr);

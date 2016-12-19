@@ -224,6 +224,13 @@ func (ptr *QScxmlCppDataModel) SetScxmlPropertyDefault(name string, value core.Q
 	return false
 }
 
+func (ptr *QScxmlCppDataModel) DisconnectSetup() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QScxmlCppDataModel::setup")
+	}
+}
+
 //export callbackQScxmlCppDataModel_TimerEvent
 func callbackQScxmlCppDataModel_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 
@@ -1353,6 +1360,13 @@ func (ptr *QScxmlEcmaScriptDataModel) SetScxmlPropertyDefault(name string, value
 	return false
 }
 
+func (ptr *QScxmlEcmaScriptDataModel) DisconnectSetup() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QScxmlEcmaScriptDataModel::setup")
+	}
+}
+
 //export callbackQScxmlEcmaScriptDataModel_TimerEvent
 func callbackQScxmlEcmaScriptDataModel_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 
@@ -2341,6 +2355,13 @@ func (ptr *QScxmlNullDataModel) SetScxmlPropertyDefault(name string, value core.
 		return C.QScxmlNullDataModel_SetScxmlPropertyDefault(ptr.Pointer(), nameC, core.PointerFromQVariant(value), contextC) != 0
 	}
 	return false
+}
+
+func (ptr *QScxmlNullDataModel) DisconnectSetup() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QScxmlNullDataModel::setup")
+	}
 }
 
 //export callbackQScxmlNullDataModel_TimerEvent

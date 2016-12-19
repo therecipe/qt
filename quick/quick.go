@@ -433,6 +433,13 @@ func (ptr *QQuickFramebufferObject) TextureFollowsItemSize() bool {
 	return false
 }
 
+func (ptr *QQuickFramebufferObject) DisconnectCreateRenderer() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QQuickFramebufferObject::createRenderer")
+	}
+}
+
 //export callbackQQuickFramebufferObject_IsTextureProvider
 func callbackQQuickFramebufferObject_IsTextureProvider(ptr unsafe.Pointer) C.char {
 
@@ -1125,6 +1132,13 @@ func (ptr *QQuickFramebufferObject) InputMethodQueryDefault(query core.Qt__Input
 	return nil
 }
 
+func (ptr *QQuickFramebufferObject) DisconnectItemChange() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QQuickFramebufferObject::itemChange")
+	}
+}
+
 //export callbackQQuickFramebufferObject_KeyPressEvent
 func callbackQQuickFramebufferObject_KeyPressEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 
@@ -1481,6 +1495,13 @@ func (ptr *QQuickFramebufferObject) Update() {
 func (ptr *QQuickFramebufferObject) UpdateDefault() {
 	if ptr.Pointer() != nil {
 		C.QQuickFramebufferObject_UpdateDefault(ptr.Pointer())
+	}
+}
+
+func (ptr *QQuickFramebufferObject) DisconnectUpdatePaintNode() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QQuickFramebufferObject::updatePaintNode")
 	}
 }
 
@@ -3889,6 +3910,13 @@ func (ptr *QQuickItem) IsFocusScope() bool {
 	return false
 }
 
+func (ptr *QQuickItem) DisconnectItemChange() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QQuickItem::itemChange")
+	}
+}
+
 func (ptr *QQuickItem) KeepMouseGrab() bool {
 	if ptr.Pointer() != nil {
 		return C.QQuickItem_KeepMouseGrab(ptr.Pointer()) != 0
@@ -4490,6 +4518,13 @@ func (ptr *QQuickItem) Update() {
 func (ptr *QQuickItem) UpdateInputMethod(queries core.Qt__InputMethodQuery) {
 	if ptr.Pointer() != nil {
 		C.QQuickItem_UpdateInputMethod(ptr.Pointer(), C.longlong(queries))
+	}
+}
+
+func (ptr *QQuickItem) DisconnectUpdatePaintNode() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QQuickItem::updatePaintNode")
 	}
 }
 
@@ -5471,6 +5506,13 @@ func (ptr *QQuickPaintedItem) FillColor() *gui.QColor {
 	return nil
 }
 
+func (ptr *QQuickPaintedItem) DisconnectItemChange() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QQuickPaintedItem::itemChange")
+	}
+}
+
 func (ptr *QQuickPaintedItem) RenderTarget() QQuickPaintedItem__RenderTarget {
 	if ptr.Pointer() != nil {
 		return QQuickPaintedItem__RenderTarget(C.QQuickPaintedItem_RenderTarget(ptr.Pointer()))
@@ -5880,6 +5922,13 @@ func (ptr *QQuickPaintedItem) TextureSizeChanged() {
 func (ptr *QQuickPaintedItem) Update(rect core.QRect_ITF) {
 	if ptr.Pointer() != nil {
 		C.QQuickPaintedItem_Update(ptr.Pointer(), core.PointerFromQRect(rect))
+	}
+}
+
+func (ptr *QQuickPaintedItem) DisconnectUpdatePaintNode() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QQuickPaintedItem::updatePaintNode")
 	}
 }
 
@@ -18687,6 +18736,13 @@ func (ptr *QSGMaterialShader) Program() *gui.QOpenGLShaderProgram {
 		return tmpValue
 	}
 	return nil
+}
+
+func (ptr *QSGMaterialShader) DisconnectUpdateState() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSGMaterialShader::updateState")
+	}
 }
 
 //export callbackQSGMaterialShader_Compile

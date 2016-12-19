@@ -42,6 +42,7 @@
 #include <QCompleter>
 #include <QContextMenuEvent>
 #include <QCursor>
+#include <QDataStream>
 #include <QDataWidgetMapper>
 #include <QDate>
 #include <QDateEdit>
@@ -269,7 +270,9 @@
 #include <QTextCursor>
 #include <QTextDocument>
 #include <QTextEdit>
+#include <QTextFormat>
 #include <QTextFrame>
+#include <QTextInlineObject>
 #include <QTextOption>
 #include <QTileRules>
 #include <QTime>
@@ -14096,7 +14099,7 @@ public:
 	int layoutSpacing(QSizePolicy::ControlType control1, QSizePolicy::ControlType control2, Qt::Orientation orientation, const QStyleOption * option, const QWidget * widget) const { return callbackQCommonStyle_LayoutSpacing(const_cast<MyQCommonStyle*>(this), control1, control2, orientation, const_cast<QStyleOption*>(option), const_cast<QWidget*>(widget)); };
 	int pixelMetric(QStyle::PixelMetric m, const QStyleOption * opt, const QWidget * widget) const { return callbackQCommonStyle_PixelMetric(const_cast<MyQCommonStyle*>(this), m, const_cast<QStyleOption*>(opt), const_cast<QWidget*>(widget)); };
 	void polish(QApplication * app) { callbackQCommonStyle_Polish2(this, app); };
-	void polish(QPalette & pal) { callbackQCommonStyle_Polish(this, new QPalette(pal)); };
+	void polish(QPalette & pal) { callbackQCommonStyle_Polish(this, static_cast<QPalette*>(&pal)); };
 	void polish(QWidget * widget) { callbackQCommonStyle_Polish3(this, widget); };
 	QSize sizeFromContents(QStyle::ContentsType ct, const QStyleOption * opt, const QSize & csz, const QWidget * widget) const { return *static_cast<QSize*>(callbackQCommonStyle_SizeFromContents(const_cast<MyQCommonStyle*>(this), ct, const_cast<QStyleOption*>(opt), const_cast<QSize*>(&csz), const_cast<QWidget*>(widget))); };
 	QPixmap standardPixmap(QStyle::StandardPixmap sp, const QStyleOption * option, const QWidget * widget) const { return *static_cast<QPixmap*>(callbackQCommonStyle_StandardPixmap(const_cast<MyQCommonStyle*>(this), sp, const_cast<QStyleOption*>(option), const_cast<QWidget*>(widget))); };
@@ -24623,6 +24626,10 @@ char QFileSystemModel_InsertRowsDefault(void* ptr, int row, int count, void* par
 {
 	return static_cast<QFileSystemModel*>(ptr)->QFileSystemModel::insertRows(row, count, *static_cast<QModelIndex*>(parent));
 }
+
+
+
+
 
 char QFileSystemModel_MoveColumns(void* ptr, void* sourceParent, int sourceColumn, int count, void* destinationParent, int destinationChild)
 {
@@ -53452,7 +53459,9 @@ public:
 	MyQListWidgetItem(const QListWidgetItem &other) : QListWidgetItem(other) {};
 	QListWidgetItem * clone() const { return static_cast<QListWidgetItem*>(callbackQListWidgetItem_Clone(const_cast<MyQListWidgetItem*>(this))); };
 	QVariant data(int role) const { return *static_cast<QVariant*>(callbackQListWidgetItem_Data(const_cast<MyQListWidgetItem*>(this), role)); };
+	void read(QDataStream & in) { callbackQListWidgetItem_Read(this, static_cast<QDataStream*>(&in)); };
 	void setData(int role, const QVariant & value) { callbackQListWidgetItem_SetData(this, role, const_cast<QVariant*>(&value)); };
+	void write(QDataStream & out) const { callbackQListWidgetItem_Write(const_cast<MyQListWidgetItem*>(this), static_cast<QDataStream*>(&out)); };
 	 ~MyQListWidgetItem() { callbackQListWidgetItem_DestroyQListWidgetItem(this); };
 };
 
@@ -53544,6 +53553,16 @@ char QListWidgetItem_IsSelected(void* ptr)
 void* QListWidgetItem_ListWidget(void* ptr)
 {
 	return static_cast<QListWidgetItem*>(ptr)->listWidget();
+}
+
+void QListWidgetItem_Read(void* ptr, void* in)
+{
+	static_cast<QListWidgetItem*>(ptr)->read(*static_cast<QDataStream*>(in));
+}
+
+void QListWidgetItem_ReadDefault(void* ptr, void* in)
+{
+	static_cast<QListWidgetItem*>(ptr)->QListWidgetItem::read(*static_cast<QDataStream*>(in));
 }
 
 void QListWidgetItem_SetBackground(void* ptr, void* brush)
@@ -53654,6 +53673,16 @@ int QListWidgetItem_Type(void* ptr)
 struct QtWidgets_PackedString QListWidgetItem_WhatsThis(void* ptr)
 {
 	return ({ QByteArray tf613a8 = static_cast<QListWidgetItem*>(ptr)->whatsThis().toUtf8(); QtWidgets_PackedString { const_cast<char*>(tf613a8.prepend("WHITESPACE").constData()+10), tf613a8.size()-10 }; });
+}
+
+void QListWidgetItem_Write(void* ptr, void* out)
+{
+	static_cast<QListWidgetItem*>(ptr)->write(*static_cast<QDataStream*>(out));
+}
+
+void QListWidgetItem_WriteDefault(void* ptr, void* out)
+{
+	static_cast<QListWidgetItem*>(ptr)->QListWidgetItem::write(*static_cast<QDataStream*>(out));
 }
 
 void QListWidgetItem_DestroyQListWidgetItem(void* ptr)
@@ -61525,6 +61554,36 @@ void QPlainTextDocumentLayout_DestroyQPlainTextDocumentLayout(void* ptr)
 	static_cast<QPlainTextDocumentLayout*>(ptr)->~QPlainTextDocumentLayout();
 }
 
+void QPlainTextDocumentLayout_DrawInlineObject(void* ptr, void* painter, void* rect, void* object, int posInDocument, void* format)
+{
+	static_cast<QPlainTextDocumentLayout*>(ptr)->drawInlineObject(static_cast<QPainter*>(painter), *static_cast<QRectF*>(rect), *static_cast<QTextInlineObject*>(object), posInDocument, *static_cast<QTextFormat*>(format));
+}
+
+void QPlainTextDocumentLayout_DrawInlineObjectDefault(void* ptr, void* painter, void* rect, void* object, int posInDocument, void* format)
+{
+	static_cast<QPlainTextDocumentLayout*>(ptr)->QPlainTextDocumentLayout::drawInlineObject(static_cast<QPainter*>(painter), *static_cast<QRectF*>(rect), *static_cast<QTextInlineObject*>(object), posInDocument, *static_cast<QTextFormat*>(format));
+}
+
+void QPlainTextDocumentLayout_PositionInlineObject(void* ptr, void* item, int posInDocument, void* format)
+{
+	static_cast<QPlainTextDocumentLayout*>(ptr)->positionInlineObject(*static_cast<QTextInlineObject*>(item), posInDocument, *static_cast<QTextFormat*>(format));
+}
+
+void QPlainTextDocumentLayout_PositionInlineObjectDefault(void* ptr, void* item, int posInDocument, void* format)
+{
+	static_cast<QPlainTextDocumentLayout*>(ptr)->QPlainTextDocumentLayout::positionInlineObject(*static_cast<QTextInlineObject*>(item), posInDocument, *static_cast<QTextFormat*>(format));
+}
+
+void QPlainTextDocumentLayout_ResizeInlineObject(void* ptr, void* item, int posInDocument, void* format)
+{
+	static_cast<QPlainTextDocumentLayout*>(ptr)->resizeInlineObject(*static_cast<QTextInlineObject*>(item), posInDocument, *static_cast<QTextFormat*>(format));
+}
+
+void QPlainTextDocumentLayout_ResizeInlineObjectDefault(void* ptr, void* item, int posInDocument, void* format)
+{
+	static_cast<QPlainTextDocumentLayout*>(ptr)->QPlainTextDocumentLayout::resizeInlineObject(*static_cast<QTextInlineObject*>(item), posInDocument, *static_cast<QTextFormat*>(format));
+}
+
 void QPlainTextDocumentLayout_TimerEvent(void* ptr, void* event)
 {
 	static_cast<QPlainTextDocumentLayout*>(ptr)->timerEvent(static_cast<QTimerEvent*>(event));
@@ -64728,7 +64787,7 @@ public:
 	int layoutSpacing(QSizePolicy::ControlType control1, QSizePolicy::ControlType control2, Qt::Orientation orientation, const QStyleOption * option, const QWidget * widget) const { return callbackQProxyStyle_LayoutSpacing(const_cast<MyQProxyStyle*>(this), control1, control2, orientation, const_cast<QStyleOption*>(option), const_cast<QWidget*>(widget)); };
 	int pixelMetric(QStyle::PixelMetric metric, const QStyleOption * option, const QWidget * widget) const { return callbackQProxyStyle_PixelMetric(const_cast<MyQProxyStyle*>(this), metric, const_cast<QStyleOption*>(option), const_cast<QWidget*>(widget)); };
 	void polish(QApplication * app) { callbackQProxyStyle_Polish3(this, app); };
-	void polish(QPalette & pal) { callbackQProxyStyle_Polish2(this, new QPalette(pal)); };
+	void polish(QPalette & pal) { callbackQProxyStyle_Polish2(this, static_cast<QPalette*>(&pal)); };
 	void polish(QWidget * widget) { callbackQProxyStyle_Polish(this, widget); };
 	QSize sizeFromContents(QStyle::ContentsType ty, const QStyleOption * option, const QSize & size, const QWidget * widget) const { return *static_cast<QSize*>(callbackQProxyStyle_SizeFromContents(const_cast<MyQProxyStyle*>(this), ty, const_cast<QStyleOption*>(option), const_cast<QSize*>(&size), const_cast<QWidget*>(widget))); };
 	QIcon standardIcon(QStyle::StandardPixmap standardIcon, const QStyleOption * option, const QWidget * widget) const { return *static_cast<QIcon*>(callbackQProxyStyle_StandardIcon(const_cast<MyQProxyStyle*>(this), standardIcon, const_cast<QStyleOption*>(option), const_cast<QWidget*>(widget))); };
@@ -76765,7 +76824,7 @@ public:
 	QRect itemPixmapRect(const QRect & rectangle, int alignment, const QPixmap & pixmap) const { return *static_cast<QRect*>(callbackQStyle_ItemPixmapRect(const_cast<MyQStyle*>(this), const_cast<QRect*>(&rectangle), alignment, const_cast<QPixmap*>(&pixmap))); };
 	QRect itemTextRect(const QFontMetrics & metrics, const QRect & rectangle, int alignment, bool enabled, const QString & text) const { QByteArray t372ea0 = text.toUtf8(); QtWidgets_PackedString textPacked = { const_cast<char*>(t372ea0.prepend("WHITESPACE").constData()+10), t372ea0.size()-10 };return *static_cast<QRect*>(callbackQStyle_ItemTextRect(const_cast<MyQStyle*>(this), const_cast<QFontMetrics*>(&metrics), const_cast<QRect*>(&rectangle), alignment, enabled, textPacked)); };
 	void polish(QApplication * application) { callbackQStyle_Polish2(this, application); };
-	void polish(QPalette & palette) { callbackQStyle_Polish3(this, new QPalette(palette)); };
+	void polish(QPalette & palette) { callbackQStyle_Polish3(this, static_cast<QPalette*>(&palette)); };
 	void unpolish(QApplication * application) { callbackQStyle_Unpolish2(this, application); };
 	void drawComplexControl(QStyle::ComplexControl control, const QStyleOptionComplex * option, QPainter * painter, const QWidget * widget) const { callbackQStyle_DrawComplexControl(const_cast<MyQStyle*>(this), control, const_cast<QStyleOptionComplex*>(option), painter, const_cast<QWidget*>(widget)); };
 	void drawControl(QStyle::ControlElement element, const QStyleOption * option, QPainter * painter, const QWidget * widget) const { callbackQStyle_DrawControl(const_cast<MyQStyle*>(this), element, const_cast<QStyleOption*>(option), painter, const_cast<QWidget*>(widget)); };
@@ -86988,7 +87047,9 @@ public:
 	MyQTableWidgetItem(int type) : QTableWidgetItem(type) {};
 	QTableWidgetItem * clone() const { return static_cast<QTableWidgetItem*>(callbackQTableWidgetItem_Clone(const_cast<MyQTableWidgetItem*>(this))); };
 	QVariant data(int role) const { return *static_cast<QVariant*>(callbackQTableWidgetItem_Data(const_cast<MyQTableWidgetItem*>(this), role)); };
+	void read(QDataStream & in) { callbackQTableWidgetItem_Read(this, static_cast<QDataStream*>(&in)); };
 	void setData(int role, const QVariant & value) { callbackQTableWidgetItem_SetData(this, role, const_cast<QVariant*>(&value)); };
+	void write(QDataStream & out) const { callbackQTableWidgetItem_Write(const_cast<MyQTableWidgetItem*>(this), static_cast<QDataStream*>(&out)); };
 	 ~MyQTableWidgetItem() { callbackQTableWidgetItem_DestroyQTableWidgetItem(this); };
 };
 
@@ -87075,6 +87136,16 @@ void* QTableWidgetItem_Icon(void* ptr)
 char QTableWidgetItem_IsSelected(void* ptr)
 {
 	return static_cast<QTableWidgetItem*>(ptr)->isSelected();
+}
+
+void QTableWidgetItem_Read(void* ptr, void* in)
+{
+	static_cast<QTableWidgetItem*>(ptr)->read(*static_cast<QDataStream*>(in));
+}
+
+void QTableWidgetItem_ReadDefault(void* ptr, void* in)
+{
+	static_cast<QTableWidgetItem*>(ptr)->QTableWidgetItem::read(*static_cast<QDataStream*>(in));
 }
 
 int QTableWidgetItem_Row(void* ptr)
@@ -87190,6 +87261,16 @@ int QTableWidgetItem_Type(void* ptr)
 struct QtWidgets_PackedString QTableWidgetItem_WhatsThis(void* ptr)
 {
 	return ({ QByteArray t4664fc = static_cast<QTableWidgetItem*>(ptr)->whatsThis().toUtf8(); QtWidgets_PackedString { const_cast<char*>(t4664fc.prepend("WHITESPACE").constData()+10), t4664fc.size()-10 }; });
+}
+
+void QTableWidgetItem_Write(void* ptr, void* out)
+{
+	static_cast<QTableWidgetItem*>(ptr)->write(*static_cast<QDataStream*>(out));
+}
+
+void QTableWidgetItem_WriteDefault(void* ptr, void* out)
+{
+	static_cast<QTableWidgetItem*>(ptr)->QTableWidgetItem::write(*static_cast<QDataStream*>(out));
 }
 
 void QTableWidgetItem_DestroyQTableWidgetItem(void* ptr)
@@ -96996,7 +97077,9 @@ public:
 	MyQTreeWidgetItem(int type) : QTreeWidgetItem(type) {};
 	QVariant data(int column, int role) const { return *static_cast<QVariant*>(callbackQTreeWidgetItem_Data(const_cast<MyQTreeWidgetItem*>(this), column, role)); };
 	QTreeWidgetItem * clone() const { return static_cast<QTreeWidgetItem*>(callbackQTreeWidgetItem_Clone(const_cast<MyQTreeWidgetItem*>(this))); };
+	void read(QDataStream & in) { callbackQTreeWidgetItem_Read(this, static_cast<QDataStream*>(&in)); };
 	void setData(int column, int role, const QVariant & value) { callbackQTreeWidgetItem_SetData(this, column, role, const_cast<QVariant*>(&value)); };
+	void write(QDataStream & out) const { callbackQTreeWidgetItem_Write(const_cast<MyQTreeWidgetItem*>(this), static_cast<QDataStream*>(&out)); };
 	 ~MyQTreeWidgetItem() { callbackQTreeWidgetItem_DestroyQTreeWidgetItem(this); };
 };
 
@@ -97170,6 +97253,16 @@ void* QTreeWidgetItem_Parent(void* ptr)
 	return static_cast<QTreeWidgetItem*>(ptr)->parent();
 }
 
+void QTreeWidgetItem_Read(void* ptr, void* in)
+{
+	static_cast<QTreeWidgetItem*>(ptr)->read(*static_cast<QDataStream*>(in));
+}
+
+void QTreeWidgetItem_ReadDefault(void* ptr, void* in)
+{
+	static_cast<QTreeWidgetItem*>(ptr)->QTreeWidgetItem::read(*static_cast<QDataStream*>(in));
+}
+
 void QTreeWidgetItem_RemoveChild(void* ptr, void* child)
 {
 	static_cast<QTreeWidgetItem*>(ptr)->removeChild(static_cast<QTreeWidgetItem*>(child));
@@ -97323,6 +97416,16 @@ int QTreeWidgetItem_Type(void* ptr)
 struct QtWidgets_PackedString QTreeWidgetItem_WhatsThis(void* ptr, int column)
 {
 	return ({ QByteArray te93ad0 = static_cast<QTreeWidgetItem*>(ptr)->whatsThis(column).toUtf8(); QtWidgets_PackedString { const_cast<char*>(te93ad0.prepend("WHITESPACE").constData()+10), te93ad0.size()-10 }; });
+}
+
+void QTreeWidgetItem_Write(void* ptr, void* out)
+{
+	static_cast<QTreeWidgetItem*>(ptr)->write(*static_cast<QDataStream*>(out));
+}
+
+void QTreeWidgetItem_WriteDefault(void* ptr, void* out)
+{
+	static_cast<QTreeWidgetItem*>(ptr)->QTreeWidgetItem::write(*static_cast<QDataStream*>(out));
 }
 
 void QTreeWidgetItem_DestroyQTreeWidgetItem(void* ptr)

@@ -104,7 +104,9 @@ func CppTemplate(module string) []byte {
 					if functionIsSupported(class, function) {
 						if function.Virtual == parser.IMPURE || function.Virtual == parser.PURE || function.Meta == parser.SIGNAL || function.Meta == parser.SLOT {
 							if !(module == parser.MOC && function.Meta == parser.SLOT) {
-								fmt.Fprintf(bb, "\t%v\n", cppFunctionCallback(function))
+								var function = *function
+								function.SignalMode = parser.CALLBACK
+								fmt.Fprintf(bb, "\t%v\n", cppFunctionCallback(&function))
 							}
 						}
 					}
@@ -121,6 +123,7 @@ func CppTemplate(module string) []byte {
 
 									var function = *function
 									function.Fullname = fmt.Sprintf("%v::%v", class.Name, function.Name)
+									function.SignalMode = parser.CALLBACK
 									if function.Virtual == parser.IMPURE || function.Virtual == parser.PURE || function.Meta == parser.SLOT {
 										implementedVirtuals[fmt.Sprint(fmt.Sprintf("%v::%v", class.Name, function.Name), function.OverloadNumber)] = struct{}{}
 										fmt.Fprintf(bb, "\t%v\n", cppFunctionCallback(&function))

@@ -204,6 +204,42 @@ func (ptr *QAbstractTextDocumentLayout) AnchorAt(position core.QPointF_ITF) stri
 	return ""
 }
 
+//export callbackQAbstractTextDocumentLayout_DrawInlineObject
+func callbackQAbstractTextDocumentLayout_DrawInlineObject(ptr unsafe.Pointer, painter unsafe.Pointer, rect unsafe.Pointer, object unsafe.Pointer, posInDocument C.int, format unsafe.Pointer) {
+
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractTextDocumentLayout::drawInlineObject"); signal != nil {
+		signal.(func(*QPainter, *core.QRectF, *QTextInlineObject, int, *QTextFormat))(NewQPainterFromPointer(painter), core.NewQRectFFromPointer(rect), NewQTextInlineObjectFromPointer(object), int(int32(posInDocument)), NewQTextFormatFromPointer(format))
+	} else {
+		NewQAbstractTextDocumentLayoutFromPointer(ptr).DrawInlineObjectDefault(NewQPainterFromPointer(painter), core.NewQRectFFromPointer(rect), NewQTextInlineObjectFromPointer(object), int(int32(posInDocument)), NewQTextFormatFromPointer(format))
+	}
+}
+
+func (ptr *QAbstractTextDocumentLayout) ConnectDrawInlineObject(f func(painter *QPainter, rect *core.QRectF, object *QTextInlineObject, posInDocument int, format *QTextFormat)) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractTextDocumentLayout::drawInlineObject", f)
+	}
+}
+
+func (ptr *QAbstractTextDocumentLayout) DisconnectDrawInlineObject() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractTextDocumentLayout::drawInlineObject")
+	}
+}
+
+func (ptr *QAbstractTextDocumentLayout) DrawInlineObject(painter QPainter_ITF, rect core.QRectF_ITF, object QTextInlineObject_ITF, posInDocument int, format QTextFormat_ITF) {
+	if ptr.Pointer() != nil {
+		C.QAbstractTextDocumentLayout_DrawInlineObject(ptr.Pointer(), PointerFromQPainter(painter), core.PointerFromQRectF(rect), PointerFromQTextInlineObject(object), C.int(int32(posInDocument)), PointerFromQTextFormat(format))
+	}
+}
+
+func (ptr *QAbstractTextDocumentLayout) DrawInlineObjectDefault(painter QPainter_ITF, rect core.QRectF_ITF, object QTextInlineObject_ITF, posInDocument int, format QTextFormat_ITF) {
+	if ptr.Pointer() != nil {
+		C.QAbstractTextDocumentLayout_DrawInlineObjectDefault(ptr.Pointer(), PointerFromQPainter(painter), core.PointerFromQRectF(rect), PointerFromQTextInlineObject(object), C.int(int32(posInDocument)), PointerFromQTextFormat(format))
+	}
+}
+
 func (ptr *QAbstractTextDocumentLayout) Format(position int) *QTextCharFormat {
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQTextCharFormatFromPointer(C.QAbstractTextDocumentLayout_Format(ptr.Pointer(), C.int(int32(position))))
@@ -523,9 +559,81 @@ func (ptr *QAbstractTextDocumentLayout) PaintDevice() *QPaintDevice {
 	return nil
 }
 
+//export callbackQAbstractTextDocumentLayout_PositionInlineObject
+func callbackQAbstractTextDocumentLayout_PositionInlineObject(ptr unsafe.Pointer, item unsafe.Pointer, posInDocument C.int, format unsafe.Pointer) {
+
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractTextDocumentLayout::positionInlineObject"); signal != nil {
+		signal.(func(*QTextInlineObject, int, *QTextFormat))(NewQTextInlineObjectFromPointer(item), int(int32(posInDocument)), NewQTextFormatFromPointer(format))
+	} else {
+		NewQAbstractTextDocumentLayoutFromPointer(ptr).PositionInlineObjectDefault(NewQTextInlineObjectFromPointer(item), int(int32(posInDocument)), NewQTextFormatFromPointer(format))
+	}
+}
+
+func (ptr *QAbstractTextDocumentLayout) ConnectPositionInlineObject(f func(item *QTextInlineObject, posInDocument int, format *QTextFormat)) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractTextDocumentLayout::positionInlineObject", f)
+	}
+}
+
+func (ptr *QAbstractTextDocumentLayout) DisconnectPositionInlineObject() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractTextDocumentLayout::positionInlineObject")
+	}
+}
+
+func (ptr *QAbstractTextDocumentLayout) PositionInlineObject(item QTextInlineObject_ITF, posInDocument int, format QTextFormat_ITF) {
+	if ptr.Pointer() != nil {
+		C.QAbstractTextDocumentLayout_PositionInlineObject(ptr.Pointer(), PointerFromQTextInlineObject(item), C.int(int32(posInDocument)), PointerFromQTextFormat(format))
+	}
+}
+
+func (ptr *QAbstractTextDocumentLayout) PositionInlineObjectDefault(item QTextInlineObject_ITF, posInDocument int, format QTextFormat_ITF) {
+	if ptr.Pointer() != nil {
+		C.QAbstractTextDocumentLayout_PositionInlineObjectDefault(ptr.Pointer(), PointerFromQTextInlineObject(item), C.int(int32(posInDocument)), PointerFromQTextFormat(format))
+	}
+}
+
 func (ptr *QAbstractTextDocumentLayout) RegisterHandler(objectType int, component core.QObject_ITF) {
 	if ptr.Pointer() != nil {
 		C.QAbstractTextDocumentLayout_RegisterHandler(ptr.Pointer(), C.int(int32(objectType)), core.PointerFromQObject(component))
+	}
+}
+
+//export callbackQAbstractTextDocumentLayout_ResizeInlineObject
+func callbackQAbstractTextDocumentLayout_ResizeInlineObject(ptr unsafe.Pointer, item unsafe.Pointer, posInDocument C.int, format unsafe.Pointer) {
+
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractTextDocumentLayout::resizeInlineObject"); signal != nil {
+		signal.(func(*QTextInlineObject, int, *QTextFormat))(NewQTextInlineObjectFromPointer(item), int(int32(posInDocument)), NewQTextFormatFromPointer(format))
+	} else {
+		NewQAbstractTextDocumentLayoutFromPointer(ptr).ResizeInlineObjectDefault(NewQTextInlineObjectFromPointer(item), int(int32(posInDocument)), NewQTextFormatFromPointer(format))
+	}
+}
+
+func (ptr *QAbstractTextDocumentLayout) ConnectResizeInlineObject(f func(item *QTextInlineObject, posInDocument int, format *QTextFormat)) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractTextDocumentLayout::resizeInlineObject", f)
+	}
+}
+
+func (ptr *QAbstractTextDocumentLayout) DisconnectResizeInlineObject() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractTextDocumentLayout::resizeInlineObject")
+	}
+}
+
+func (ptr *QAbstractTextDocumentLayout) ResizeInlineObject(item QTextInlineObject_ITF, posInDocument int, format QTextFormat_ITF) {
+	if ptr.Pointer() != nil {
+		C.QAbstractTextDocumentLayout_ResizeInlineObject(ptr.Pointer(), PointerFromQTextInlineObject(item), C.int(int32(posInDocument)), PointerFromQTextFormat(format))
+	}
+}
+
+func (ptr *QAbstractTextDocumentLayout) ResizeInlineObjectDefault(item QTextInlineObject_ITF, posInDocument int, format QTextFormat_ITF) {
+	if ptr.Pointer() != nil {
+		C.QAbstractTextDocumentLayout_ResizeInlineObjectDefault(ptr.Pointer(), PointerFromQTextInlineObject(item), C.int(int32(posInDocument)), PointerFromQTextFormat(format))
 	}
 }
 
@@ -3829,6 +3937,33 @@ func (ptr *QAccessibleTableCellInterface) ColumnExtent() int {
 	return 0
 }
 
+func (ptr *QAccessibleTableCellInterface) ConnectColumnHeaderCells(f func() []*QAccessibleInterface) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAccessibleTableCellInterface::columnHeaderCells", f)
+	}
+}
+
+func (ptr *QAccessibleTableCellInterface) DisconnectColumnHeaderCells() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAccessibleTableCellInterface::columnHeaderCells")
+	}
+}
+
+func (ptr *QAccessibleTableCellInterface) ColumnHeaderCells() []*QAccessibleInterface {
+	if ptr.Pointer() != nil {
+		return func(l C.struct_QtGui_PackedList) []*QAccessibleInterface {
+			var out = make([]*QAccessibleInterface, int(l.len))
+			for i := 0; i < int(l.len); i++ {
+				out[i] = NewQAccessibleTableCellInterfaceFromPointer(l.data).columnHeaderCells_atList(i)
+			}
+			return out
+		}(C.QAccessibleTableCellInterface_ColumnHeaderCells(ptr.Pointer()))
+	}
+	return nil
+}
+
 //export callbackQAccessibleTableCellInterface_ColumnIndex
 func callbackQAccessibleTableCellInterface_ColumnIndex(ptr unsafe.Pointer) C.int {
 
@@ -3920,6 +4055,33 @@ func (ptr *QAccessibleTableCellInterface) RowExtent() int {
 		return int(int32(C.QAccessibleTableCellInterface_RowExtent(ptr.Pointer())))
 	}
 	return 0
+}
+
+func (ptr *QAccessibleTableCellInterface) ConnectRowHeaderCells(f func() []*QAccessibleInterface) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAccessibleTableCellInterface::rowHeaderCells", f)
+	}
+}
+
+func (ptr *QAccessibleTableCellInterface) DisconnectRowHeaderCells() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAccessibleTableCellInterface::rowHeaderCells")
+	}
+}
+
+func (ptr *QAccessibleTableCellInterface) RowHeaderCells() []*QAccessibleInterface {
+	if ptr.Pointer() != nil {
+		return func(l C.struct_QtGui_PackedList) []*QAccessibleInterface {
+			var out = make([]*QAccessibleInterface, int(l.len))
+			for i := 0; i < int(l.len); i++ {
+				out[i] = NewQAccessibleTableCellInterfaceFromPointer(l.data).rowHeaderCells_atList(i)
+			}
+			return out
+		}(C.QAccessibleTableCellInterface_RowHeaderCells(ptr.Pointer()))
+	}
+	return nil
 }
 
 //export callbackQAccessibleTableCellInterface_RowIndex
@@ -4444,6 +4606,33 @@ func (ptr *QAccessibleTableInterface) SelectedCellCount() int {
 		return int(int32(C.QAccessibleTableInterface_SelectedCellCount(ptr.Pointer())))
 	}
 	return 0
+}
+
+func (ptr *QAccessibleTableInterface) ConnectSelectedCells(f func() []*QAccessibleInterface) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAccessibleTableInterface::selectedCells", f)
+	}
+}
+
+func (ptr *QAccessibleTableInterface) DisconnectSelectedCells() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAccessibleTableInterface::selectedCells")
+	}
+}
+
+func (ptr *QAccessibleTableInterface) SelectedCells() []*QAccessibleInterface {
+	if ptr.Pointer() != nil {
+		return func(l C.struct_QtGui_PackedList) []*QAccessibleInterface {
+			var out = make([]*QAccessibleInterface, int(l.len))
+			for i := 0; i < int(l.len); i++ {
+				out[i] = NewQAccessibleTableInterfaceFromPointer(l.data).selectedCells_atList(i)
+			}
+			return out
+		}(C.QAccessibleTableInterface_SelectedCells(ptr.Pointer()))
+	}
+	return nil
 }
 
 //export callbackQAccessibleTableInterface_SelectedColumnCount
@@ -13771,6 +13960,35 @@ func (ptr *QGuiApplication) Clipboard() *QClipboard {
 	return tmpValue
 }
 
+//export callbackQGuiApplication_CommitDataRequest
+func callbackQGuiApplication_CommitDataRequest(ptr unsafe.Pointer, manager unsafe.Pointer) {
+
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QGuiApplication::commitDataRequest"); signal != nil {
+		signal.(func(*QSessionManager))(NewQSessionManagerFromPointer(manager))
+	}
+
+}
+
+func (ptr *QGuiApplication) ConnectCommitDataRequest(f func(manager *QSessionManager)) {
+	if ptr.Pointer() != nil {
+		C.QGuiApplication_ConnectCommitDataRequest(ptr.Pointer())
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QGuiApplication::commitDataRequest", f)
+	}
+}
+
+func (ptr *QGuiApplication) DisconnectCommitDataRequest() {
+	if ptr.Pointer() != nil {
+		C.QGuiApplication_DisconnectCommitDataRequest(ptr.Pointer())
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QGuiApplication::commitDataRequest")
+	}
+}
+
+func (ptr *QGuiApplication) CommitDataRequest(manager QSessionManager_ITF) {
+	if ptr.Pointer() != nil {
+		C.QGuiApplication_CommitDataRequest(ptr.Pointer(), PointerFromQSessionManager(manager))
+	}
+}
+
 func QGuiApplication_DesktopSettingsAware() bool {
 	return C.QGuiApplication_QGuiApplication_DesktopSettingsAware() != 0
 }
@@ -14129,6 +14347,35 @@ func (ptr *QGuiApplication) DisconnectPrimaryScreenChanged() {
 func (ptr *QGuiApplication) PrimaryScreenChanged(screen QScreen_ITF) {
 	if ptr.Pointer() != nil {
 		C.QGuiApplication_PrimaryScreenChanged(ptr.Pointer(), PointerFromQScreen(screen))
+	}
+}
+
+//export callbackQGuiApplication_SaveStateRequest
+func callbackQGuiApplication_SaveStateRequest(ptr unsafe.Pointer, manager unsafe.Pointer) {
+
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QGuiApplication::saveStateRequest"); signal != nil {
+		signal.(func(*QSessionManager))(NewQSessionManagerFromPointer(manager))
+	}
+
+}
+
+func (ptr *QGuiApplication) ConnectSaveStateRequest(f func(manager *QSessionManager)) {
+	if ptr.Pointer() != nil {
+		C.QGuiApplication_ConnectSaveStateRequest(ptr.Pointer())
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QGuiApplication::saveStateRequest", f)
+	}
+}
+
+func (ptr *QGuiApplication) DisconnectSaveStateRequest() {
+	if ptr.Pointer() != nil {
+		C.QGuiApplication_DisconnectSaveStateRequest(ptr.Pointer())
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QGuiApplication::saveStateRequest")
+	}
+}
+
+func (ptr *QGuiApplication) SaveStateRequest(manager QSessionManager_ITF) {
+	if ptr.Pointer() != nil {
+		C.QGuiApplication_SaveStateRequest(ptr.Pointer(), PointerFromQSessionManager(manager))
 	}
 }
 
@@ -15629,6 +15876,44 @@ func (ptr *QIconEngine) PixmapDefault(size core.QSize_ITF, mode QIcon__Mode, sta
 	return nil
 }
 
+//export callbackQIconEngine_Read
+func callbackQIconEngine_Read(ptr unsafe.Pointer, in unsafe.Pointer) C.char {
+
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QIconEngine::read"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QDataStream) bool)(core.NewQDataStreamFromPointer(in)))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQIconEngineFromPointer(ptr).ReadDefault(core.NewQDataStreamFromPointer(in)))))
+}
+
+func (ptr *QIconEngine) ConnectRead(f func(in *core.QDataStream) bool) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QIconEngine::read", f)
+	}
+}
+
+func (ptr *QIconEngine) DisconnectRead() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QIconEngine::read")
+	}
+}
+
+func (ptr *QIconEngine) Read(in core.QDataStream_ITF) bool {
+	if ptr.Pointer() != nil {
+		return C.QIconEngine_Read(ptr.Pointer(), core.PointerFromQDataStream(in)) != 0
+	}
+	return false
+}
+
+func (ptr *QIconEngine) ReadDefault(in core.QDataStream_ITF) bool {
+	if ptr.Pointer() != nil {
+		return C.QIconEngine_ReadDefault(ptr.Pointer(), core.PointerFromQDataStream(in)) != 0
+	}
+	return false
+}
+
 //export callbackQIconEngine_Virtual_hook
 func callbackQIconEngine_Virtual_hook(ptr unsafe.Pointer, id C.int, data unsafe.Pointer) {
 
@@ -15663,6 +15948,44 @@ func (ptr *QIconEngine) Virtual_hookDefault(id int, data unsafe.Pointer) {
 	if ptr.Pointer() != nil {
 		C.QIconEngine_Virtual_hookDefault(ptr.Pointer(), C.int(int32(id)), data)
 	}
+}
+
+//export callbackQIconEngine_Write
+func callbackQIconEngine_Write(ptr unsafe.Pointer, out unsafe.Pointer) C.char {
+
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QIconEngine::write"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QDataStream) bool)(core.NewQDataStreamFromPointer(out)))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQIconEngineFromPointer(ptr).WriteDefault(core.NewQDataStreamFromPointer(out)))))
+}
+
+func (ptr *QIconEngine) ConnectWrite(f func(out *core.QDataStream) bool) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QIconEngine::write", f)
+	}
+}
+
+func (ptr *QIconEngine) DisconnectWrite() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QIconEngine::write")
+	}
+}
+
+func (ptr *QIconEngine) Write(out core.QDataStream_ITF) bool {
+	if ptr.Pointer() != nil {
+		return C.QIconEngine_Write(ptr.Pointer(), core.PointerFromQDataStream(out)) != 0
+	}
+	return false
+}
+
+func (ptr *QIconEngine) WriteDefault(out core.QDataStream_ITF) bool {
+	if ptr.Pointer() != nil {
+		return C.QIconEngine_WriteDefault(ptr.Pointer(), core.PointerFromQDataStream(out)) != 0
+	}
+	return false
 }
 
 //export callbackQIconEngine_DestroyQIconEngine
@@ -26966,6 +27289,13 @@ func (ptr *QPagedPaintDevice) PageSizeMM() *core.QSizeF {
 	return nil
 }
 
+func (ptr *QPagedPaintDevice) DisconnectSetMargins() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPagedPaintDevice::setMargins")
+	}
+}
+
 func (ptr *QPagedPaintDevice) SetPageLayout(newPageLayout QPageLayout_ITF) bool {
 	if ptr.Pointer() != nil {
 		return C.QPagedPaintDevice_SetPageLayout(ptr.Pointer(), PointerFromQPageLayout(newPageLayout)) != 0
@@ -33620,6 +33950,13 @@ func (ptr *QPdfWriter) MetaObjectDefault() *core.QMetaObject {
 		return core.NewQMetaObjectFromPointer(C.QPdfWriter_MetaObjectDefault(ptr.Pointer()))
 	}
 	return nil
+}
+
+func (ptr *QPdfWriter) DisconnectSetMargins() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPdfWriter::setMargins")
+	}
 }
 
 //export callbackQPdfWriter_SetPageSize2
@@ -42297,6 +42634,42 @@ func (ptr *QStandardItem) Parent() *QStandardItem {
 	return nil
 }
 
+//export callbackQStandardItem_Read
+func callbackQStandardItem_Read(ptr unsafe.Pointer, in unsafe.Pointer) {
+
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QStandardItem::read"); signal != nil {
+		signal.(func(*core.QDataStream))(core.NewQDataStreamFromPointer(in))
+	} else {
+		NewQStandardItemFromPointer(ptr).ReadDefault(core.NewQDataStreamFromPointer(in))
+	}
+}
+
+func (ptr *QStandardItem) ConnectRead(f func(in *core.QDataStream)) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QStandardItem::read", f)
+	}
+}
+
+func (ptr *QStandardItem) DisconnectRead() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QStandardItem::read")
+	}
+}
+
+func (ptr *QStandardItem) Read(in core.QDataStream_ITF) {
+	if ptr.Pointer() != nil {
+		C.QStandardItem_Read(ptr.Pointer(), core.PointerFromQDataStream(in))
+	}
+}
+
+func (ptr *QStandardItem) ReadDefault(in core.QDataStream_ITF) {
+	if ptr.Pointer() != nil {
+		C.QStandardItem_ReadDefault(ptr.Pointer(), core.PointerFromQDataStream(in))
+	}
+}
+
 func (ptr *QStandardItem) RemoveColumn(column int) {
 	if ptr.Pointer() != nil {
 		C.QStandardItem_RemoveColumn(ptr.Pointer(), C.int(int32(column)))
@@ -42658,6 +43031,42 @@ func (ptr *QStandardItem) WhatsThis() string {
 		return cGoUnpackString(C.QStandardItem_WhatsThis(ptr.Pointer()))
 	}
 	return ""
+}
+
+//export callbackQStandardItem_Write
+func callbackQStandardItem_Write(ptr unsafe.Pointer, out unsafe.Pointer) {
+
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QStandardItem::write"); signal != nil {
+		signal.(func(*core.QDataStream))(core.NewQDataStreamFromPointer(out))
+	} else {
+		NewQStandardItemFromPointer(ptr).WriteDefault(core.NewQDataStreamFromPointer(out))
+	}
+}
+
+func (ptr *QStandardItem) ConnectWrite(f func(out *core.QDataStream)) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QStandardItem::write", f)
+	}
+}
+
+func (ptr *QStandardItem) DisconnectWrite() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QStandardItem::write")
+	}
+}
+
+func (ptr *QStandardItem) Write(out core.QDataStream_ITF) {
+	if ptr.Pointer() != nil {
+		C.QStandardItem_Write(ptr.Pointer(), core.PointerFromQDataStream(out))
+	}
+}
+
+func (ptr *QStandardItem) WriteDefault(out core.QDataStream_ITF) {
+	if ptr.Pointer() != nil {
+		C.QStandardItem_WriteDefault(ptr.Pointer(), core.PointerFromQDataStream(out))
+	}
 }
 
 //export callbackQStandardItem_DestroyQStandardItem
@@ -43335,6 +43744,13 @@ func (ptr *QStandardItemModel) FetchMore(parent core.QModelIndex_ITF) {
 func (ptr *QStandardItemModel) FetchMoreDefault(parent core.QModelIndex_ITF) {
 	if ptr.Pointer() != nil {
 		C.QStandardItemModel_FetchMoreDefault(ptr.Pointer(), core.PointerFromQModelIndex(parent))
+	}
+}
+
+func (ptr *QStandardItemModel) DisconnectMimeData() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QStandardItemModel::mimeData")
 	}
 }
 

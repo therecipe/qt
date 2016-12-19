@@ -969,6 +969,7 @@ char QSensorGestureManager_EventFilter(void* ptr, void* watched, void* event);
 char QSensorGestureManager_EventFilterDefault(void* ptr, void* watched, void* event);
 void* QSensorGestureManager_MetaObject(void* ptr);
 void* QSensorGestureManager_MetaObjectDefault(void* ptr);
+struct QtSensors_PackedList QSensorGesturePluginInterface_CreateRecognizers(void* ptr);
 struct QtSensors_PackedString QSensorGesturePluginInterface_Name(void* ptr);
 struct QtSensors_PackedString QSensorGesturePluginInterface_SupportedIds(void* ptr);
 void QSensorGesturePluginInterface_DestroyQSensorGesturePluginInterface(void* ptr);

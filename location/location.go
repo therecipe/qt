@@ -3277,6 +3277,27 @@ func NewQGeoServiceProviderFactoryFromPointer(ptr unsafe.Pointer) *QGeoServicePr
 	return n
 }
 
+func (ptr *QGeoServiceProviderFactory) DisconnectCreateGeocodingManagerEngine() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QGeoServiceProviderFactory::createGeocodingManagerEngine")
+	}
+}
+
+func (ptr *QGeoServiceProviderFactory) DisconnectCreatePlaceManagerEngine() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QGeoServiceProviderFactory::createPlaceManagerEngine")
+	}
+}
+
+func (ptr *QGeoServiceProviderFactory) DisconnectCreateRoutingManagerEngine() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QGeoServiceProviderFactory::createRoutingManagerEngine")
+	}
+}
+
 //export callbackQGeoServiceProviderFactory_DestroyQGeoServiceProviderFactory
 func callbackQGeoServiceProviderFactory_DestroyQGeoServiceProviderFactory(ptr unsafe.Pointer) {
 

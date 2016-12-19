@@ -17926,6 +17926,33 @@ func NewQSensorGesturePluginInterfaceFromPointer(ptr unsafe.Pointer) *QSensorGes
 	return n
 }
 
+func (ptr *QSensorGesturePluginInterface) ConnectCreateRecognizers(f func() []*QSensorGestureRecognizer) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QSensorGesturePluginInterface::createRecognizers", f)
+	}
+}
+
+func (ptr *QSensorGesturePluginInterface) DisconnectCreateRecognizers() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSensorGesturePluginInterface::createRecognizers")
+	}
+}
+
+func (ptr *QSensorGesturePluginInterface) CreateRecognizers() []*QSensorGestureRecognizer {
+	if ptr.Pointer() != nil {
+		return func(l C.struct_QtSensors_PackedList) []*QSensorGestureRecognizer {
+			var out = make([]*QSensorGestureRecognizer, int(l.len))
+			for i := 0; i < int(l.len); i++ {
+				out[i] = NewQSensorGesturePluginInterfaceFromPointer(l.data).createRecognizers_atList(i)
+			}
+			return out
+		}(C.QSensorGesturePluginInterface_CreateRecognizers(ptr.Pointer()))
+	}
+	return nil
+}
+
 //export callbackQSensorGesturePluginInterface_Name
 func callbackQSensorGesturePluginInterface_Name(ptr unsafe.Pointer) *C.char {
 

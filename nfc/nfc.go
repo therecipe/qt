@@ -2443,6 +2443,20 @@ func (ptr *QNearFieldTarget) Disconnected() {
 	}
 }
 
+func (ptr *QNearFieldTarget) DisconnectError() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QNearFieldTarget::error")
+	}
+}
+
+func (ptr *QNearFieldTarget) DisconnectHandleResponse() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QNearFieldTarget::handleResponse")
+	}
+}
+
 //export callbackQNearFieldTarget_HasNdefMessage
 func callbackQNearFieldTarget_HasNdefMessage(ptr unsafe.Pointer) C.char {
 
@@ -2543,6 +2557,27 @@ func (ptr *QNearFieldTarget) DisconnectNdefMessagesWritten() {
 func (ptr *QNearFieldTarget) NdefMessagesWritten() {
 	if ptr.Pointer() != nil {
 		C.QNearFieldTarget_NdefMessagesWritten(ptr.Pointer())
+	}
+}
+
+func (ptr *QNearFieldTarget) DisconnectReadNdefMessages() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QNearFieldTarget::readNdefMessages")
+	}
+}
+
+func (ptr *QNearFieldTarget) DisconnectRequestCompleted() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QNearFieldTarget::requestCompleted")
+	}
+}
+
+func (ptr *QNearFieldTarget) DisconnectSendCommand() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QNearFieldTarget::sendCommand")
 	}
 }
 
@@ -2650,6 +2685,13 @@ func (ptr *QNearFieldTarget) UrlDefault() *core.QUrl {
 		return tmpValue
 	}
 	return nil
+}
+
+func (ptr *QNearFieldTarget) DisconnectWaitForRequestCompleted() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QNearFieldTarget::waitForRequestCompleted")
+	}
 }
 
 //export callbackQNearFieldTarget_DestroyQNearFieldTarget

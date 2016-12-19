@@ -2140,6 +2140,13 @@ func (ptr *QAreaLegendMarker) SeriesDefault() *QAreaSeries {
 	return nil
 }
 
+func (ptr *QAreaLegendMarker) DisconnectType() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAreaLegendMarker::type")
+	}
+}
+
 //export callbackQAreaLegendMarker_DestroyQAreaLegendMarker
 func callbackQAreaLegendMarker_DestroyQAreaLegendMarker(ptr unsafe.Pointer) {
 
@@ -3131,6 +3138,13 @@ func (ptr *QBarCategoryAxis) SetRange(minCategory string, maxCategory string) {
 	}
 }
 
+func (ptr *QBarCategoryAxis) DisconnectType() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QBarCategoryAxis::type")
+	}
+}
+
 func (ptr *QBarCategoryAxis) DestroyQBarCategoryAxis() {
 	if ptr.Pointer() != nil {
 		C.QBarCategoryAxis_DestroyQBarCategoryAxis(ptr.Pointer())
@@ -3219,6 +3233,13 @@ func (ptr *QBarLegendMarker) SeriesDefault() *QAbstractBarSeries {
 		return NewQAbstractBarSeriesFromPointer(C.QBarLegendMarker_SeriesDefault(ptr.Pointer()))
 	}
 	return nil
+}
+
+func (ptr *QBarLegendMarker) DisconnectType() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QBarLegendMarker::type")
+	}
 }
 
 //export callbackQBarLegendMarker_DestroyQBarLegendMarker
@@ -4134,6 +4155,13 @@ func (ptr *QBoxPlotLegendMarker) SeriesDefault() *QBoxPlotSeries {
 		return NewQBoxPlotSeriesFromPointer(C.QBoxPlotLegendMarker_SeriesDefault(ptr.Pointer()))
 	}
 	return nil
+}
+
+func (ptr *QBoxPlotLegendMarker) DisconnectType() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QBoxPlotLegendMarker::type")
+	}
 }
 
 //export callbackQBoxPlotLegendMarker_DestroyQBoxPlotLegendMarker
@@ -5321,6 +5349,13 @@ func (ptr *QCategoryAxis) StartValue(categoryLabel string) float64 {
 	return 0
 }
 
+func (ptr *QCategoryAxis) DisconnectType() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QCategoryAxis::type")
+	}
+}
+
 func (ptr *QCategoryAxis) DestroyQCategoryAxis() {
 	if ptr.Pointer() != nil {
 		C.QCategoryAxis_DestroyQCategoryAxis(ptr.Pointer())
@@ -6245,6 +6280,13 @@ func (ptr *QDateTimeAxis) DisconnectTickCountChanged() {
 func (ptr *QDateTimeAxis) TickCountChanged(tickCount int) {
 	if ptr.Pointer() != nil {
 		C.QDateTimeAxis_TickCountChanged(ptr.Pointer(), C.int(int32(tickCount)))
+	}
+}
+
+func (ptr *QDateTimeAxis) DisconnectType() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QDateTimeAxis::type")
 	}
 }
 
@@ -8679,6 +8721,13 @@ func (ptr *QLogValueAxis) SetRange(min float64, max float64) {
 	}
 }
 
+func (ptr *QLogValueAxis) DisconnectType() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QLogValueAxis::type")
+	}
+}
+
 func (ptr *QLogValueAxis) DestroyQLogValueAxis() {
 	if ptr.Pointer() != nil {
 		C.QLogValueAxis_DestroyQLogValueAxis(ptr.Pointer())
@@ -8855,6 +8904,13 @@ func (ptr *QPieLegendMarker) Slice() *QPieSlice {
 		return NewQPieSliceFromPointer(C.QPieLegendMarker_Slice(ptr.Pointer()))
 	}
 	return nil
+}
+
+func (ptr *QPieLegendMarker) DisconnectType() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPieLegendMarker::type")
+	}
 }
 
 //export callbackQPieLegendMarker_DestroyQPieLegendMarker
@@ -12492,6 +12548,13 @@ func (ptr *QValueAxis) TickCountChanged(tickCount int) {
 	}
 }
 
+func (ptr *QValueAxis) DisconnectType() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QValueAxis::type")
+	}
+}
+
 func (ptr *QValueAxis) DestroyQValueAxis() {
 	if ptr.Pointer() != nil {
 		C.QValueAxis_DestroyQValueAxis(ptr.Pointer())
@@ -12574,6 +12637,13 @@ func (ptr *QXYLegendMarker) SeriesDefault() *QXYSeries {
 		return NewQXYSeriesFromPointer(C.QXYLegendMarker_SeriesDefault(ptr.Pointer()))
 	}
 	return nil
+}
+
+func (ptr *QXYLegendMarker) DisconnectType() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QXYLegendMarker::type")
+	}
 }
 
 //export callbackQXYLegendMarker_DestroyQXYLegendMarker

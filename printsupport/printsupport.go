@@ -14210,6 +14210,13 @@ func (ptr *QPrinter) DestroyQPrinter() {
 	}
 }
 
+func (ptr *QPrinter) DisconnectSetMargins() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrinter::setMargins")
+	}
+}
+
 //export callbackQPrinter_SetPageSize2
 func callbackQPrinter_SetPageSize2(ptr unsafe.Pointer, size C.longlong) {
 

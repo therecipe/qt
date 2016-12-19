@@ -420,6 +420,60 @@ func NewQGeoAreaMonitorSourceFromPointer(ptr unsafe.Pointer) *QGeoAreaMonitorSou
 	return n
 }
 
+func (ptr *QGeoAreaMonitorSource) ConnectActiveMonitors(f func() []*QGeoAreaMonitorInfo) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QGeoAreaMonitorSource::activeMonitors", f)
+	}
+}
+
+func (ptr *QGeoAreaMonitorSource) DisconnectActiveMonitors() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QGeoAreaMonitorSource::activeMonitors")
+	}
+}
+
+func (ptr *QGeoAreaMonitorSource) ActiveMonitors() []*QGeoAreaMonitorInfo {
+	if ptr.Pointer() != nil {
+		return func(l C.struct_QtPositioning_PackedList) []*QGeoAreaMonitorInfo {
+			var out = make([]*QGeoAreaMonitorInfo, int(l.len))
+			for i := 0; i < int(l.len); i++ {
+				out[i] = NewQGeoAreaMonitorSourceFromPointer(l.data).activeMonitors_atList(i)
+			}
+			return out
+		}(C.QGeoAreaMonitorSource_ActiveMonitors(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QGeoAreaMonitorSource) ConnectActiveMonitors2(f func(lookupArea *QGeoShape) []*QGeoAreaMonitorInfo) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QGeoAreaMonitorSource::activeMonitors2", f)
+	}
+}
+
+func (ptr *QGeoAreaMonitorSource) DisconnectActiveMonitors2(lookupArea QGeoShape_ITF) {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QGeoAreaMonitorSource::activeMonitors2")
+	}
+}
+
+func (ptr *QGeoAreaMonitorSource) ActiveMonitors2(lookupArea QGeoShape_ITF) []*QGeoAreaMonitorInfo {
+	if ptr.Pointer() != nil {
+		return func(l C.struct_QtPositioning_PackedList) []*QGeoAreaMonitorInfo {
+			var out = make([]*QGeoAreaMonitorInfo, int(l.len))
+			for i := 0; i < int(l.len); i++ {
+				out[i] = NewQGeoAreaMonitorSourceFromPointer(l.data).activeMonitors_atList(i)
+			}
+			return out
+		}(C.QGeoAreaMonitorSource_ActiveMonitors2(ptr.Pointer(), PointerFromQGeoShape(lookupArea)))
+	}
+	return nil
+}
+
 //export callbackQGeoAreaMonitorSource_AreaEntered
 func callbackQGeoAreaMonitorSource_AreaEntered(ptr unsafe.Pointer, monitor unsafe.Pointer, update unsafe.Pointer) {
 

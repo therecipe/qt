@@ -91,12 +91,12 @@ If you use the STUB version, you are forced to use `qtminimal` otherwise it's op
 
 	* https://golang.org/doc/install?download=go1.7.4.windows-amd64.msi
 
-2. Install Qt 5.7.0
+2. Install Qt 5.7.0 (with android support)
 
 	* Install the official prebuilt package; you can also define a custom location with **QT_DIR**.
 		* https://download.qt.io/official_releases/qt/5.7/5.7.0/qt-opensource-windows-x86-android-5.7.0.exe
 
-	or
+	or (without android support)
 
 	* Install the Qt-dev package with [MSYS2](http://msys2.github.io) and define **QT_MSYS2=true** or define a custom Qt location with **QT_MSYS2_DIR** (usually: C:\msys32\ or C:\msys64\);
 		* `pacman -Syyu`
@@ -126,13 +126,13 @@ If you use the STUB version, you are forced to use `qtminimal` otherwise it's op
 
 	* https://golang.org/doc/install?download=go1.7.4.darwin-amd64.pkg
 
-2. Install Qt 5.7.0
+2. Install Qt 5.7.0 (with android/iOS support)
 
 	* Install the official prebuilt package; you can also define a custom location with **QT_DIR**.
 		* without iOS https://download.qt.io/official_releases/qt/5.7/5.7.0/qt-opensource-mac-x64-android-5.7.0.dmg
 		* with iOS https://download.qt.io/official_releases/qt/5.7/5.7.0/qt-opensource-mac-x64-android-ios-5.7.0.dmg
 
-	or
+	or (without android/iOS support)
 
 	* Install the Qt-dev package with Homebrew and define **QT_HOMEBREW=true** or define a custom Qt location with **QT_DIR** (usually: /usr/local/opt/qt5/); if you want to link against homebrews Qt libs (**experimental**)
 		* `brew install qt5`
@@ -159,12 +159,12 @@ If you use the STUB version, you are forced to use `qtminimal` otherwise it's op
 
 	* https://golang.org/doc/install?download=go1.7.4.linux-amd64.tar.gz
 
-2. Install Qt 5.7.0
+2. Install Qt 5.7.0 (with android support)
 
 	* Install the official prebuilt package; you can also define a custom location with **QT_DIR**.
 		* https://download.qt.io/official_releases/qt/5.7/5.7.0/qt-opensource-linux-x64-android-5.7.0.run
 
-	or
+	or (without android support)
 
 	* Install the Qt-dev package with your system package manager; if you want to link against your system Qt libs (**experimental**)
 		* add **export QT_PKG_CONFIG=true** to your .profile or .bash_profile

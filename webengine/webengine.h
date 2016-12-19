@@ -439,6 +439,8 @@ void* QWebEngineUrlRequestInfo_RequestMethod(void* ptr);
 void* QWebEngineUrlRequestInfo_RequestUrl(void* ptr);
 long long QWebEngineUrlRequestInfo_ResourceType(void* ptr);
 void QWebEngineUrlRequestInfo_SetHttpHeader(void* ptr, void* name, void* value);
+void* QWebEngineUrlRequestInterceptor_NewQWebEngineUrlRequestInterceptor(void* p);
+void QWebEngineUrlRequestInterceptor_InterceptRequest(void* ptr, void* info);
 void QWebEngineUrlRequestInterceptor_TimerEvent(void* ptr, void* event);
 void QWebEngineUrlRequestInterceptor_TimerEventDefault(void* ptr, void* event);
 void QWebEngineUrlRequestInterceptor_ChildEvent(void* ptr, void* event);

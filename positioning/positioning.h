@@ -50,6 +50,8 @@ void QGeoAreaMonitorInfo_SetExpiration(void* ptr, void* expiry);
 void QGeoAreaMonitorInfo_SetName(void* ptr, char* name);
 void QGeoAreaMonitorInfo_SetPersistent(void* ptr, char isPersistent);
 void QGeoAreaMonitorInfo_DestroyQGeoAreaMonitorInfo(void* ptr);
+struct QtPositioning_PackedList QGeoAreaMonitorSource_ActiveMonitors(void* ptr);
+struct QtPositioning_PackedList QGeoAreaMonitorSource_ActiveMonitors2(void* ptr, void* lookupArea);
 void QGeoAreaMonitorSource_ConnectAreaEntered(void* ptr);
 void QGeoAreaMonitorSource_DisconnectAreaEntered(void* ptr);
 void QGeoAreaMonitorSource_AreaEntered(void* ptr, void* monitor, void* update);

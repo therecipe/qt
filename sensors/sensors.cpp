@@ -5280,10 +5280,16 @@ void* QSensorGestureManager_MetaObjectDefault(void* ptr)
 class MyQSensorGesturePluginInterface: public QSensorGesturePluginInterface
 {
 public:
+	
 	QString name() const { return QString(callbackQSensorGesturePluginInterface_Name(const_cast<MyQSensorGesturePluginInterface*>(this))); };
 	QStringList supportedIds() const { return QString(callbackQSensorGesturePluginInterface_SupportedIds(const_cast<MyQSensorGesturePluginInterface*>(this))).split("|", QString::SkipEmptyParts); };
 	 ~MyQSensorGesturePluginInterface() { callbackQSensorGesturePluginInterface_DestroyQSensorGesturePluginInterface(this); };
 };
+
+struct QtSensors_PackedList QSensorGesturePluginInterface_CreateRecognizers(void* ptr)
+{
+	return ({ QList<QSensorGestureRecognizer *>* tmpValue = new QList<QSensorGestureRecognizer *>(static_cast<QSensorGesturePluginInterface*>(ptr)->createRecognizers()); QtSensors_PackedList { tmpValue, tmpValue->size() }; });
+}
 
 struct QtSensors_PackedString QSensorGesturePluginInterface_Name(void* ptr)
 {

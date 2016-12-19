@@ -40,6 +40,7 @@
 #include <QConicalGradient>
 #include <QContextMenuEvent>
 #include <QCursor>
+#include <QDataStream>
 #include <QDesktopServices>
 #include <QDoubleValidator>
 #include <QDrag>
@@ -245,6 +246,7 @@ class MyQAbstractTextDocumentLayout: public QAbstractTextDocumentLayout
 {
 public:
 	MyQAbstractTextDocumentLayout(QTextDocument *document) : QAbstractTextDocumentLayout(document) {};
+	
 	QRectF blockBoundingRect(const QTextBlock & block) const { return *static_cast<QRectF*>(callbackQAbstractTextDocumentLayout_BlockBoundingRect(const_cast<MyQAbstractTextDocumentLayout*>(this), const_cast<QTextBlock*>(&block))); };
 	void documentChanged(int position, int charsRemoved, int charsAdded) { callbackQAbstractTextDocumentLayout_DocumentChanged(this, position, charsRemoved, charsAdded); };
 	QSizeF documentSize() const { return *static_cast<QSizeF*>(callbackQAbstractTextDocumentLayout_DocumentSize(const_cast<MyQAbstractTextDocumentLayout*>(this))); };
@@ -254,6 +256,8 @@ public:
 	int hitTest(const QPointF & point, Qt::HitTestAccuracy accuracy) const { return callbackQAbstractTextDocumentLayout_HitTest(const_cast<MyQAbstractTextDocumentLayout*>(this), const_cast<QPointF*>(&point), accuracy); };
 	int pageCount() const { return callbackQAbstractTextDocumentLayout_PageCount(const_cast<MyQAbstractTextDocumentLayout*>(this)); };
 	void Signal_PageCountChanged(int newPages) { callbackQAbstractTextDocumentLayout_PageCountChanged(this, newPages); };
+	
+	
 	void Signal_Update(const QRectF & rect) { callbackQAbstractTextDocumentLayout_Update(this, const_cast<QRectF*>(&rect)); };
 	void Signal_UpdateBlock(const QTextBlock & block) { callbackQAbstractTextDocumentLayout_UpdateBlock(this, const_cast<QTextBlock*>(&block)); };
 	void timerEvent(QTimerEvent * event) { callbackQAbstractTextDocumentLayout_TimerEvent(this, event); };
@@ -270,6 +274,16 @@ public:
 struct QtGui_PackedString QAbstractTextDocumentLayout_AnchorAt(void* ptr, void* position)
 {
 	return ({ QByteArray t81dfdf = static_cast<QAbstractTextDocumentLayout*>(ptr)->anchorAt(*static_cast<QPointF*>(position)).toUtf8(); QtGui_PackedString { const_cast<char*>(t81dfdf.prepend("WHITESPACE").constData()+10), t81dfdf.size()-10 }; });
+}
+
+void QAbstractTextDocumentLayout_DrawInlineObject(void* ptr, void* painter, void* rect, void* object, int posInDocument, void* format)
+{
+	static_cast<QAbstractTextDocumentLayout*>(ptr)->drawInlineObject(static_cast<QPainter*>(painter), *static_cast<QRectF*>(rect), *static_cast<QTextInlineObject*>(object), posInDocument, *static_cast<QTextFormat*>(format));
+}
+
+void QAbstractTextDocumentLayout_DrawInlineObjectDefault(void* ptr, void* painter, void* rect, void* object, int posInDocument, void* format)
+{
+	static_cast<QAbstractTextDocumentLayout*>(ptr)->QAbstractTextDocumentLayout::drawInlineObject(static_cast<QPainter*>(painter), *static_cast<QRectF*>(rect), *static_cast<QTextInlineObject*>(object), posInDocument, *static_cast<QTextFormat*>(format));
 }
 
 void* QAbstractTextDocumentLayout_Format(void* ptr, int position)
@@ -362,9 +376,29 @@ void* QAbstractTextDocumentLayout_PaintDevice(void* ptr)
 	return static_cast<QAbstractTextDocumentLayout*>(ptr)->paintDevice();
 }
 
+void QAbstractTextDocumentLayout_PositionInlineObject(void* ptr, void* item, int posInDocument, void* format)
+{
+	static_cast<QAbstractTextDocumentLayout*>(ptr)->positionInlineObject(*static_cast<QTextInlineObject*>(item), posInDocument, *static_cast<QTextFormat*>(format));
+}
+
+void QAbstractTextDocumentLayout_PositionInlineObjectDefault(void* ptr, void* item, int posInDocument, void* format)
+{
+	static_cast<QAbstractTextDocumentLayout*>(ptr)->QAbstractTextDocumentLayout::positionInlineObject(*static_cast<QTextInlineObject*>(item), posInDocument, *static_cast<QTextFormat*>(format));
+}
+
 void QAbstractTextDocumentLayout_RegisterHandler(void* ptr, int objectType, void* component)
 {
 	static_cast<QAbstractTextDocumentLayout*>(ptr)->registerHandler(objectType, static_cast<QObject*>(component));
+}
+
+void QAbstractTextDocumentLayout_ResizeInlineObject(void* ptr, void* item, int posInDocument, void* format)
+{
+	static_cast<QAbstractTextDocumentLayout*>(ptr)->resizeInlineObject(*static_cast<QTextInlineObject*>(item), posInDocument, *static_cast<QTextFormat*>(format));
+}
+
+void QAbstractTextDocumentLayout_ResizeInlineObjectDefault(void* ptr, void* item, int posInDocument, void* format)
+{
+	static_cast<QAbstractTextDocumentLayout*>(ptr)->QAbstractTextDocumentLayout::resizeInlineObject(*static_cast<QTextInlineObject*>(item), posInDocument, *static_cast<QTextFormat*>(format));
 }
 
 void QAbstractTextDocumentLayout_SetPaintDevice(void* ptr, void* device)
@@ -1222,9 +1256,11 @@ class MyQAccessibleTableCellInterface: public QAccessibleTableCellInterface
 {
 public:
 	int columnExtent() const { return callbackQAccessibleTableCellInterface_ColumnExtent(const_cast<MyQAccessibleTableCellInterface*>(this)); };
+	
 	int columnIndex() const { return callbackQAccessibleTableCellInterface_ColumnIndex(const_cast<MyQAccessibleTableCellInterface*>(this)); };
 	bool isSelected() const { return callbackQAccessibleTableCellInterface_IsSelected(const_cast<MyQAccessibleTableCellInterface*>(this)) != 0; };
 	int rowExtent() const { return callbackQAccessibleTableCellInterface_RowExtent(const_cast<MyQAccessibleTableCellInterface*>(this)); };
+	
 	int rowIndex() const { return callbackQAccessibleTableCellInterface_RowIndex(const_cast<MyQAccessibleTableCellInterface*>(this)); };
 	QAccessibleInterface * table() const { return static_cast<QAccessibleInterface*>(callbackQAccessibleTableCellInterface_Table(const_cast<MyQAccessibleTableCellInterface*>(this))); };
 	 ~MyQAccessibleTableCellInterface() { callbackQAccessibleTableCellInterface_DestroyQAccessibleTableCellInterface(this); };
@@ -1233,6 +1269,11 @@ public:
 int QAccessibleTableCellInterface_ColumnExtent(void* ptr)
 {
 	return static_cast<QAccessibleTableCellInterface*>(ptr)->columnExtent();
+}
+
+struct QtGui_PackedList QAccessibleTableCellInterface_ColumnHeaderCells(void* ptr)
+{
+	return ({ QList<QAccessibleInterface *>* tmpValue = new QList<QAccessibleInterface *>(static_cast<QAccessibleTableCellInterface*>(ptr)->columnHeaderCells()); QtGui_PackedList { tmpValue, tmpValue->size() }; });
 }
 
 int QAccessibleTableCellInterface_ColumnIndex(void* ptr)
@@ -1248,6 +1289,11 @@ char QAccessibleTableCellInterface_IsSelected(void* ptr)
 int QAccessibleTableCellInterface_RowExtent(void* ptr)
 {
 	return static_cast<QAccessibleTableCellInterface*>(ptr)->rowExtent();
+}
+
+struct QtGui_PackedList QAccessibleTableCellInterface_RowHeaderCells(void* ptr)
+{
+	return ({ QList<QAccessibleInterface *>* tmpValue = new QList<QAccessibleInterface *>(static_cast<QAccessibleTableCellInterface*>(ptr)->rowHeaderCells()); QtGui_PackedList { tmpValue, tmpValue->size() }; });
 }
 
 int QAccessibleTableCellInterface_RowIndex(void* ptr)
@@ -1295,6 +1341,7 @@ public:
 	bool selectColumn(int column) { return callbackQAccessibleTableInterface_SelectColumn(this, column) != 0; };
 	bool selectRow(int row) { return callbackQAccessibleTableInterface_SelectRow(this, row) != 0; };
 	int selectedCellCount() const { return callbackQAccessibleTableInterface_SelectedCellCount(const_cast<MyQAccessibleTableInterface*>(this)); };
+	
 	int selectedColumnCount() const { return callbackQAccessibleTableInterface_SelectedColumnCount(const_cast<MyQAccessibleTableInterface*>(this)); };
 	int selectedRowCount() const { return callbackQAccessibleTableInterface_SelectedRowCount(const_cast<MyQAccessibleTableInterface*>(this)); };
 	QAccessibleInterface * summary() const { return static_cast<QAccessibleInterface*>(callbackQAccessibleTableInterface_Summary(const_cast<MyQAccessibleTableInterface*>(this))); };
@@ -1361,6 +1408,11 @@ char QAccessibleTableInterface_SelectRow(void* ptr, int row)
 int QAccessibleTableInterface_SelectedCellCount(void* ptr)
 {
 	return static_cast<QAccessibleTableInterface*>(ptr)->selectedCellCount();
+}
+
+struct QtGui_PackedList QAccessibleTableInterface_SelectedCells(void* ptr)
+{
+	return ({ QList<QAccessibleInterface *>* tmpValue = new QList<QAccessibleInterface *>(static_cast<QAccessibleTableInterface*>(ptr)->selectedCells()); QtGui_PackedList { tmpValue, tmpValue->size() }; });
 }
 
 int QAccessibleTableInterface_SelectedColumnCount(void* ptr)
@@ -5086,6 +5138,7 @@ class MyQGuiApplication: public QGuiApplication
 public:
 	MyQGuiApplication(int &argc, char **argv) : QGuiApplication(argc, argv) {};
 	void Signal_ApplicationStateChanged(Qt::ApplicationState state) { callbackQGuiApplication_ApplicationStateChanged(this, state); };
+	void Signal_CommitDataRequest(QSessionManager & manager) { callbackQGuiApplication_CommitDataRequest(this, static_cast<QSessionManager*>(&manager)); };
 	void Signal_FocusObjectChanged(QObject * focusObject) { callbackQGuiApplication_FocusObjectChanged(this, focusObject); };
 	void Signal_FocusWindowChanged(QWindow * focusWindow) { callbackQGuiApplication_FocusWindowChanged(this, focusWindow); };
 	void Signal_FontDatabaseChanged() { callbackQGuiApplication_FontDatabaseChanged(this); };
@@ -5093,6 +5146,7 @@ public:
 	void Signal_LayoutDirectionChanged(Qt::LayoutDirection direction) { callbackQGuiApplication_LayoutDirectionChanged(this, direction); };
 	void Signal_PaletteChanged(const QPalette & palette) { callbackQGuiApplication_PaletteChanged(this, const_cast<QPalette*>(&palette)); };
 	void Signal_PrimaryScreenChanged(QScreen * screen) { callbackQGuiApplication_PrimaryScreenChanged(this, screen); };
+	void Signal_SaveStateRequest(QSessionManager & manager) { callbackQGuiApplication_SaveStateRequest(this, static_cast<QSessionManager*>(&manager)); };
 	void Signal_ScreenAdded(QScreen * screen) { callbackQGuiApplication_ScreenAdded(this, screen); };
 	void Signal_ScreenRemoved(QScreen * screen) { callbackQGuiApplication_ScreenRemoved(this, screen); };
 	 ~MyQGuiApplication() { callbackQGuiApplication_DestroyQGuiApplication(this); };
@@ -5247,6 +5301,21 @@ void QGuiApplication_QGuiApplication_ChangeOverrideCursor(void* cursor)
 void* QGuiApplication_QGuiApplication_Clipboard()
 {
 	return QGuiApplication::clipboard();
+}
+
+void QGuiApplication_ConnectCommitDataRequest(void* ptr)
+{
+	QObject::connect(static_cast<QGuiApplication*>(ptr), static_cast<void (QGuiApplication::*)(QSessionManager &)>(&QGuiApplication::commitDataRequest), static_cast<MyQGuiApplication*>(ptr), static_cast<void (MyQGuiApplication::*)(QSessionManager &)>(&MyQGuiApplication::Signal_CommitDataRequest));
+}
+
+void QGuiApplication_DisconnectCommitDataRequest(void* ptr)
+{
+	QObject::disconnect(static_cast<QGuiApplication*>(ptr), static_cast<void (QGuiApplication::*)(QSessionManager &)>(&QGuiApplication::commitDataRequest), static_cast<MyQGuiApplication*>(ptr), static_cast<void (MyQGuiApplication::*)(QSessionManager &)>(&MyQGuiApplication::Signal_CommitDataRequest));
+}
+
+void QGuiApplication_CommitDataRequest(void* ptr, void* manager)
+{
+	static_cast<QGuiApplication*>(ptr)->commitDataRequest(*static_cast<QSessionManager*>(manager));
 }
 
 char QGuiApplication_QGuiApplication_DesktopSettingsAware()
@@ -5427,6 +5496,21 @@ void QGuiApplication_DisconnectPrimaryScreenChanged(void* ptr)
 void QGuiApplication_PrimaryScreenChanged(void* ptr, void* screen)
 {
 	static_cast<QGuiApplication*>(ptr)->primaryScreenChanged(static_cast<QScreen*>(screen));
+}
+
+void QGuiApplication_ConnectSaveStateRequest(void* ptr)
+{
+	QObject::connect(static_cast<QGuiApplication*>(ptr), static_cast<void (QGuiApplication::*)(QSessionManager &)>(&QGuiApplication::saveStateRequest), static_cast<MyQGuiApplication*>(ptr), static_cast<void (MyQGuiApplication::*)(QSessionManager &)>(&MyQGuiApplication::Signal_SaveStateRequest));
+}
+
+void QGuiApplication_DisconnectSaveStateRequest(void* ptr)
+{
+	QObject::disconnect(static_cast<QGuiApplication*>(ptr), static_cast<void (QGuiApplication::*)(QSessionManager &)>(&QGuiApplication::saveStateRequest), static_cast<MyQGuiApplication*>(ptr), static_cast<void (MyQGuiApplication::*)(QSessionManager &)>(&MyQGuiApplication::Signal_SaveStateRequest));
+}
+
+void QGuiApplication_SaveStateRequest(void* ptr, void* manager)
+{
+	static_cast<QGuiApplication*>(ptr)->saveStateRequest(*static_cast<QSessionManager*>(manager));
 }
 
 void QGuiApplication_ConnectScreenAdded(void* ptr)
@@ -5846,7 +5930,9 @@ public:
 	QString key() const { return QString(callbackQIconEngine_Key(const_cast<MyQIconEngine*>(this))); };
 	void paint(QPainter * painter, const QRect & rect, QIcon::Mode mode, QIcon::State state) { callbackQIconEngine_Paint(this, painter, const_cast<QRect*>(&rect), mode, state); };
 	QPixmap pixmap(const QSize & size, QIcon::Mode mode, QIcon::State state) { return *static_cast<QPixmap*>(callbackQIconEngine_Pixmap(this, const_cast<QSize*>(&size), mode, state)); };
+	bool read(QDataStream & in) { return callbackQIconEngine_Read(this, static_cast<QDataStream*>(&in)) != 0; };
 	void virtual_hook(int id, void * data) { callbackQIconEngine_Virtual_hook(this, id, data); };
+	bool write(QDataStream & out) const { return callbackQIconEngine_Write(const_cast<MyQIconEngine*>(this), static_cast<QDataStream*>(&out)) != 0; };
 	 ~MyQIconEngine() { callbackQIconEngine_DestroyQIconEngine(this); };
 };
 
@@ -5935,6 +6021,16 @@ void* QIconEngine_PixmapDefault(void* ptr, void* size, long long mode, long long
 	return new QPixmap(static_cast<QIconEngine*>(ptr)->QIconEngine::pixmap(*static_cast<QSize*>(size), static_cast<QIcon::Mode>(mode), static_cast<QIcon::State>(state)));
 }
 
+char QIconEngine_Read(void* ptr, void* in)
+{
+	return static_cast<QIconEngine*>(ptr)->read(*static_cast<QDataStream*>(in));
+}
+
+char QIconEngine_ReadDefault(void* ptr, void* in)
+{
+	return static_cast<QIconEngine*>(ptr)->QIconEngine::read(*static_cast<QDataStream*>(in));
+}
+
 void QIconEngine_Virtual_hook(void* ptr, int id, void* data)
 {
 	static_cast<QIconEngine*>(ptr)->virtual_hook(id, data);
@@ -5943,6 +6039,16 @@ void QIconEngine_Virtual_hook(void* ptr, int id, void* data)
 void QIconEngine_Virtual_hookDefault(void* ptr, int id, void* data)
 {
 	static_cast<QIconEngine*>(ptr)->QIconEngine::virtual_hook(id, data);
+}
+
+char QIconEngine_Write(void* ptr, void* out)
+{
+	return static_cast<QIconEngine*>(ptr)->write(*static_cast<QDataStream*>(out));
+}
+
+char QIconEngine_WriteDefault(void* ptr, void* out)
+{
+	return static_cast<QIconEngine*>(ptr)->QIconEngine::write(*static_cast<QDataStream*>(out));
 }
 
 void QIconEngine_DestroyQIconEngine(void* ptr)
@@ -9552,6 +9658,7 @@ class MyQPagedPaintDevice: public QPagedPaintDevice
 public:
 	MyQPagedPaintDevice() : QPagedPaintDevice() {};
 	bool newPage() { return callbackQPagedPaintDevice_NewPage(this) != 0; };
+	
 	void setPageSize(QPagedPaintDevice::PageSize size) { callbackQPagedPaintDevice_SetPageSize2(this, size); };
 	void setPageSizeMM(const QSizeF & size) { callbackQPagedPaintDevice_SetPageSizeMM(this, const_cast<QSizeF*>(&size)); };
 	int metric(QPaintDevice::PaintDeviceMetric metric) const { return callbackQPagedPaintDevice_Metric(const_cast<MyQPagedPaintDevice*>(this), metric); };
@@ -9582,6 +9689,10 @@ void* QPagedPaintDevice_PageSizeMM(void* ptr)
 {
 	return ({ QSizeF tmpValue = static_cast<QPagedPaintDevice*>(ptr)->pageSizeMM(); new QSizeF(tmpValue.width(), tmpValue.height()); });
 }
+
+
+
+
 
 char QPagedPaintDevice_SetPageLayout(void* ptr, void* newPageLayout)
 {
@@ -12349,6 +12460,7 @@ public:
 	bool event(QEvent * e) { return callbackQPdfWriter_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQPdfWriter_EventFilter(this, watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQPdfWriter_MetaObject(const_cast<MyQPdfWriter*>(this))); };
+	
 	void setPageSize(QPagedPaintDevice::PageSize size) { callbackQPdfWriter_SetPageSize2(this, size); };
 	void setPageSizeMM(const QSizeF & size) { callbackQPdfWriter_SetPageSizeMM(this, const_cast<QSizeF*>(&size)); };
 	int metric(QPaintDevice::PaintDeviceMetric metric) const { return callbackQPdfWriter_Metric(const_cast<MyQPdfWriter*>(this), metric); };
@@ -12538,6 +12650,10 @@ void* QPdfWriter_MetaObjectDefault(void* ptr)
 {
 	return const_cast<QMetaObject*>(static_cast<QPdfWriter*>(ptr)->QPdfWriter::metaObject());
 }
+
+
+
+
 
 void QPdfWriter_SetPageSize2(void* ptr, long long size)
 {
@@ -15777,8 +15893,10 @@ public:
 	MyQStandardItem(const QStandardItem &other) : QStandardItem(other) {};
 	QStandardItem * clone() const { return static_cast<QStandardItem*>(callbackQStandardItem_Clone(const_cast<MyQStandardItem*>(this))); };
 	QVariant data(int role) const { return *static_cast<QVariant*>(callbackQStandardItem_Data(const_cast<MyQStandardItem*>(this), role)); };
+	void read(QDataStream & in) { callbackQStandardItem_Read(this, static_cast<QDataStream*>(&in)); };
 	void setData(const QVariant & value, int role) { callbackQStandardItem_SetData(this, const_cast<QVariant*>(&value), role); };
 	int type() const { return callbackQStandardItem_Type(const_cast<MyQStandardItem*>(this)); };
+	void write(QDataStream & out) const { callbackQStandardItem_Write(const_cast<MyQStandardItem*>(this), static_cast<QDataStream*>(&out)); };
 	 ~MyQStandardItem() { callbackQStandardItem_DestroyQStandardItem(this); };
 };
 
@@ -15965,6 +16083,16 @@ void* QStandardItem_Model(void* ptr)
 void* QStandardItem_Parent(void* ptr)
 {
 	return static_cast<QStandardItem*>(ptr)->parent();
+}
+
+void QStandardItem_Read(void* ptr, void* in)
+{
+	static_cast<QStandardItem*>(ptr)->read(*static_cast<QDataStream*>(in));
+}
+
+void QStandardItem_ReadDefault(void* ptr, void* in)
+{
+	static_cast<QStandardItem*>(ptr)->QStandardItem::read(*static_cast<QDataStream*>(in));
 }
 
 void QStandardItem_RemoveColumn(void* ptr, int column)
@@ -16195,6 +16323,16 @@ int QStandardItem_TypeDefault(void* ptr)
 struct QtGui_PackedString QStandardItem_WhatsThis(void* ptr)
 {
 	return ({ QByteArray taa28dd = static_cast<QStandardItem*>(ptr)->whatsThis().toUtf8(); QtGui_PackedString { const_cast<char*>(taa28dd.prepend("WHITESPACE").constData()+10), taa28dd.size()-10 }; });
+}
+
+void QStandardItem_Write(void* ptr, void* out)
+{
+	static_cast<QStandardItem*>(ptr)->write(*static_cast<QDataStream*>(out));
+}
+
+void QStandardItem_WriteDefault(void* ptr, void* out)
+{
+	static_cast<QStandardItem*>(ptr)->QStandardItem::write(*static_cast<QDataStream*>(out));
 }
 
 void QStandardItem_DestroyQStandardItem(void* ptr)
@@ -16569,6 +16707,10 @@ void QStandardItemModel_FetchMoreDefault(void* ptr, void* parent)
 {
 	static_cast<QStandardItemModel*>(ptr)->QStandardItemModel::fetchMore(*static_cast<QModelIndex*>(parent));
 }
+
+
+
+
 
 char QStandardItemModel_MoveColumns(void* ptr, void* sourceParent, int sourceColumn, int count, void* destinationParent, int destinationChild)
 {

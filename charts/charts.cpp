@@ -1244,6 +1244,7 @@ class MyQAreaLegendMarker: public QAreaLegendMarker
 {
 public:
 	QAreaSeries * series() { return static_cast<QAreaSeries*>(callbackQAreaLegendMarker_Series(this)); };
+	
 	 ~MyQAreaLegendMarker() { callbackQAreaLegendMarker_DestroyQAreaLegendMarker(this); };
 };
 
@@ -1256,6 +1257,10 @@ void* QAreaLegendMarker_SeriesDefault(void* ptr)
 {
 	return static_cast<QAreaLegendMarker*>(ptr)->QAreaLegendMarker::series();
 }
+
+
+
+
 
 void QAreaLegendMarker_DestroyQAreaLegendMarker(void* ptr)
 {
@@ -1637,6 +1642,7 @@ public:
 	void Signal_MaxChanged(const QString & max) { QByteArray t070602 = max.toUtf8(); QtCharts_PackedString maxPacked = { const_cast<char*>(t070602.prepend("WHITESPACE").constData()+10), t070602.size()-10 };callbackQBarCategoryAxis_MaxChanged(this, maxPacked); };
 	void Signal_MinChanged(const QString & min) { QByteArray tb6c935 = min.toUtf8(); QtCharts_PackedString minPacked = { const_cast<char*>(tb6c935.prepend("WHITESPACE").constData()+10), tb6c935.size()-10 };callbackQBarCategoryAxis_MinChanged(this, minPacked); };
 	void Signal_RangeChanged(const QString & min, const QString & max) { QByteArray tb6c935 = min.toUtf8(); QtCharts_PackedString minPacked = { const_cast<char*>(tb6c935.prepend("WHITESPACE").constData()+10), tb6c935.size()-10 };QByteArray t070602 = max.toUtf8(); QtCharts_PackedString maxPacked = { const_cast<char*>(t070602.prepend("WHITESPACE").constData()+10), t070602.size()-10 };callbackQBarCategoryAxis_RangeChanged(this, minPacked, maxPacked); };
+	
 };
 
 void* QBarCategoryAxis_NewQBarCategoryAxis(void* parent)
@@ -1794,6 +1800,10 @@ void QBarCategoryAxis_SetRange(void* ptr, char* minCategory, char* maxCategory)
 	static_cast<QBarCategoryAxis*>(ptr)->setRange(QString(minCategory), QString(maxCategory));
 }
 
+
+
+
+
 void QBarCategoryAxis_DestroyQBarCategoryAxis(void* ptr)
 {
 	static_cast<QBarCategoryAxis*>(ptr)->~QBarCategoryAxis();
@@ -1803,6 +1813,7 @@ class MyQBarLegendMarker: public QBarLegendMarker
 {
 public:
 	QAbstractBarSeries * series() { return static_cast<QAbstractBarSeries*>(callbackQBarLegendMarker_Series(this)); };
+	
 	 ~MyQBarLegendMarker() { callbackQBarLegendMarker_DestroyQBarLegendMarker(this); };
 };
 
@@ -1820,6 +1831,10 @@ void* QBarLegendMarker_SeriesDefault(void* ptr)
 {
 	return static_cast<QBarLegendMarker*>(ptr)->QBarLegendMarker::series();
 }
+
+
+
+
 
 void QBarLegendMarker_DestroyQBarLegendMarker(void* ptr)
 {
@@ -2255,6 +2270,7 @@ class MyQBoxPlotLegendMarker: public QBoxPlotLegendMarker
 {
 public:
 	QBoxPlotSeries * series() { return static_cast<QBoxPlotSeries*>(callbackQBoxPlotLegendMarker_Series(this)); };
+	
 	 ~MyQBoxPlotLegendMarker() { callbackQBoxPlotLegendMarker_DestroyQBoxPlotLegendMarker(this); };
 };
 
@@ -2267,6 +2283,10 @@ void* QBoxPlotLegendMarker_SeriesDefault(void* ptr)
 {
 	return static_cast<QBoxPlotLegendMarker*>(ptr)->QBoxPlotLegendMarker::series();
 }
+
+
+
+
 
 void QBoxPlotLegendMarker_DestroyQBoxPlotLegendMarker(void* ptr)
 {
@@ -2794,6 +2814,7 @@ public:
 	MyQCategoryAxis(QObject *parent) : QCategoryAxis(parent) {};
 	void Signal_CategoriesChanged() { callbackQCategoryAxis_CategoriesChanged(this); };
 	void Signal_LabelsPositionChanged(QCategoryAxis::AxisLabelsPosition position) { callbackQCategoryAxis_LabelsPositionChanged(this, position); };
+	
 };
 
 long long QCategoryAxis_LabelsPosition(void* ptr)
@@ -2880,6 +2901,10 @@ double QCategoryAxis_StartValue(void* ptr, char* categoryLabel)
 {
 	return static_cast<QCategoryAxis*>(ptr)->startValue(QString(categoryLabel));
 }
+
+
+
+
 
 void QCategoryAxis_DestroyQCategoryAxis(void* ptr)
 {
@@ -3292,6 +3317,7 @@ public:
 	void Signal_MinChanged(QDateTime min) { callbackQDateTimeAxis_MinChanged(this, new QDateTime(min)); };
 	void Signal_RangeChanged(QDateTime min, QDateTime max) { callbackQDateTimeAxis_RangeChanged(this, new QDateTime(min), new QDateTime(max)); };
 	void Signal_TickCountChanged(int tickCount) { callbackQDateTimeAxis_TickCountChanged(this, tickCount); };
+	
 };
 
 struct QtCharts_PackedString QDateTimeAxis_Format(void* ptr)
@@ -3418,6 +3444,10 @@ void QDateTimeAxis_TickCountChanged(void* ptr, int tickCount)
 {
 	static_cast<QDateTimeAxis*>(ptr)->tickCountChanged(tickCount);
 }
+
+
+
+
 
 void QDateTimeAxis_DestroyQDateTimeAxis(void* ptr)
 {
@@ -4515,6 +4545,7 @@ public:
 	void Signal_MaxChanged(qreal max) { callbackQLogValueAxis_MaxChanged(this, max); };
 	void Signal_MinChanged(qreal min) { callbackQLogValueAxis_MinChanged(this, min); };
 	void Signal_RangeChanged(qreal min, qreal max) { callbackQLogValueAxis_RangeChanged(this, min, max); };
+	
 };
 
 double QLogValueAxis_Base(void* ptr)
@@ -4642,6 +4673,10 @@ void QLogValueAxis_SetRange(void* ptr, double min, double max)
 	static_cast<QLogValueAxis*>(ptr)->setRange(min, max);
 }
 
+
+
+
+
 void QLogValueAxis_DestroyQLogValueAxis(void* ptr)
 {
 	static_cast<QLogValueAxis*>(ptr)->~QLogValueAxis();
@@ -4678,6 +4713,7 @@ class MyQPieLegendMarker: public QPieLegendMarker
 {
 public:
 	QPieSeries * series() { return static_cast<QPieSeries*>(callbackQPieLegendMarker_Series(this)); };
+	
 	 ~MyQPieLegendMarker() { callbackQPieLegendMarker_DestroyQPieLegendMarker(this); };
 };
 
@@ -4695,6 +4731,10 @@ void* QPieLegendMarker_Slice(void* ptr)
 {
 	return static_cast<QPieLegendMarker*>(ptr)->slice();
 }
+
+
+
+
 
 void QPieLegendMarker_DestroyQPieLegendMarker(void* ptr)
 {
@@ -6411,6 +6451,7 @@ public:
 	void Signal_MinorTickCountChanged(int minorTickCount) { callbackQValueAxis_MinorTickCountChanged(this, minorTickCount); };
 	void Signal_RangeChanged(qreal min, qreal max) { callbackQValueAxis_RangeChanged(this, min, max); };
 	void Signal_TickCountChanged(int tickCount) { callbackQValueAxis_TickCountChanged(this, tickCount); };
+	
 };
 
 struct QtCharts_PackedString QValueAxis_LabelFormat(void* ptr)
@@ -6568,6 +6609,10 @@ void QValueAxis_TickCountChanged(void* ptr, int tickCount)
 	static_cast<QValueAxis*>(ptr)->tickCountChanged(tickCount);
 }
 
+
+
+
+
 void QValueAxis_DestroyQValueAxis(void* ptr)
 {
 	static_cast<QValueAxis*>(ptr)->~QValueAxis();
@@ -6577,6 +6622,7 @@ class MyQXYLegendMarker: public QXYLegendMarker
 {
 public:
 	QXYSeries * series() { return static_cast<QXYSeries*>(callbackQXYLegendMarker_Series(this)); };
+	
 	 ~MyQXYLegendMarker() { callbackQXYLegendMarker_DestroyQXYLegendMarker(this); };
 };
 
@@ -6589,6 +6635,10 @@ void* QXYLegendMarker_SeriesDefault(void* ptr)
 {
 	return static_cast<QXYLegendMarker*>(ptr)->QXYLegendMarker::series();
 }
+
+
+
+
 
 void QXYLegendMarker_DestroyQXYLegendMarker(void* ptr)
 {

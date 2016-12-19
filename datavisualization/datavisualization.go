@@ -15172,6 +15172,42 @@ func (ptr *QValue3DAxisFormatter) MarkDirty(labelsChange bool) {
 	}
 }
 
+//export callbackQValue3DAxisFormatter_PopulateCopy
+func callbackQValue3DAxisFormatter_PopulateCopy(ptr unsafe.Pointer, copy unsafe.Pointer) {
+
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QValue3DAxisFormatter::populateCopy"); signal != nil {
+		signal.(func(*QValue3DAxisFormatter))(NewQValue3DAxisFormatterFromPointer(copy))
+	} else {
+		NewQValue3DAxisFormatterFromPointer(ptr).PopulateCopyDefault(NewQValue3DAxisFormatterFromPointer(copy))
+	}
+}
+
+func (ptr *QValue3DAxisFormatter) ConnectPopulateCopy(f func(copy *QValue3DAxisFormatter)) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QValue3DAxisFormatter::populateCopy", f)
+	}
+}
+
+func (ptr *QValue3DAxisFormatter) DisconnectPopulateCopy() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QValue3DAxisFormatter::populateCopy")
+	}
+}
+
+func (ptr *QValue3DAxisFormatter) PopulateCopy(copy QValue3DAxisFormatter_ITF) {
+	if ptr.Pointer() != nil {
+		C.QValue3DAxisFormatter_PopulateCopy(ptr.Pointer(), PointerFromQValue3DAxisFormatter(copy))
+	}
+}
+
+func (ptr *QValue3DAxisFormatter) PopulateCopyDefault(copy QValue3DAxisFormatter_ITF) {
+	if ptr.Pointer() != nil {
+		C.QValue3DAxisFormatter_PopulateCopyDefault(ptr.Pointer(), PointerFromQValue3DAxisFormatter(copy))
+	}
+}
+
 //export callbackQValue3DAxisFormatter_PositionAt
 func callbackQValue3DAxisFormatter_PositionAt(ptr unsafe.Pointer, value C.float) C.float {
 

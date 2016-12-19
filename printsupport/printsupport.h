@@ -808,6 +808,8 @@ void QPrinter_SetResolution(void* ptr, int dpi);
 char QPrinter_SupportsMultipleCopies(void* ptr);
 int QPrinter_ToPage(void* ptr);
 void QPrinter_DestroyQPrinter(void* ptr);
+;
+;
 void QPrinter_SetPageSize2(void* ptr, long long size);
 void QPrinter_SetPageSize2Default(void* ptr, long long size);
 void QPrinter_SetPageSizeMM(void* ptr, void* size);

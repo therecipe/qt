@@ -55,6 +55,10 @@ func functionIsSupported(_ *parser.Class, f *parser.Function) bool {
 		f.Fullname == "QPluginLoader::staticPlugins", f.Fullname == "QSslConfiguration::ellipticCurves", f.Fullname == "QSslConfiguration::supportedEllipticCurves",
 		f.Fullname == "QTextFormat::lengthVectorProperty", f.Fullname == "QTextTableFormat::columnWidthConstraints",
 
+		f.Fullname == "QListView::indexesMoved", f.Fullname == "QAudioInputSelectorControl::availableInputs", f.Fullname == "QScxmlStateMachine::initialValuesChanged",
+		f.Fullname == "QAudioOutputSelectorControl::availableOutputs", f.Fullname == "QQuickWebEngineProfile::downloadFinished",
+		f.Fullname == "QQuickWindow::closing", f.Fullname == "QQuickWebEngineProfile::downloadRequested", f.Fullname == "QWebEnginePage::fullScreenRequested",
+
 		strings.Contains(f.Access, "unsupported"):
 		{
 			if !strings.Contains(f.Access, "unsupported") {
@@ -123,7 +127,9 @@ func functionIsSupportedDefault(f *parser.Function) bool {
 
 		"QModbusClient::open", "QModbusClient::close", "QModbusServer::open", "QModbusServer::close",
 
-		"QSimpleXmlNodeModel::name":
+		"QSimpleXmlNodeModel::name",
+
+		"QSimpleXmlNodeModel::attributes", "QAbstractXmlNodeModel::attributes":
 
 		{
 			return false
@@ -196,7 +202,7 @@ func hasUnimplementedPureVirtualFunctions(className string) bool {
 		var f = *f
 		cppFunction(&f)
 
-		if f.Virtual == parser.PURE && !functionIsSupported(parser.CurrentState.ClassMap[className], &f) {
+		if f.Virtual == parser.PURE && (!functionIsSupported(parser.CurrentState.ClassMap[className], &f) || parser.IsPackedList(f.Output)) {
 			return true
 		}
 	}

@@ -4874,6 +4874,13 @@ func (ptr *QModbusRtuSerialSlave) ProcessesBroadcastDefault() bool {
 	return false
 }
 
+func (ptr *QModbusRtuSerialSlave) DisconnectSetMap() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QModbusRtuSerialSlave::setMap")
+	}
+}
+
 //export callbackQModbusRtuSerialSlave_SetValue
 func callbackQModbusRtuSerialSlave_SetValue(ptr unsafe.Pointer, option C.int, newValue unsafe.Pointer) C.char {
 
@@ -5652,6 +5659,13 @@ func (ptr *QModbusServer) SetData(newData QModbusDataUnit_ITF) bool {
 		return C.QModbusServer_SetData(ptr.Pointer(), PointerFromQModbusDataUnit(newData)) != 0
 	}
 	return false
+}
+
+func (ptr *QModbusServer) DisconnectSetMap() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QModbusServer::setMap")
+	}
 }
 
 func (ptr *QModbusServer) SetServerAddress(serverAddress int) {
@@ -6883,6 +6897,13 @@ func (ptr *QModbusTcpServer) ProcessesBroadcastDefault() bool {
 		return C.QModbusTcpServer_ProcessesBroadcastDefault(ptr.Pointer()) != 0
 	}
 	return false
+}
+
+func (ptr *QModbusTcpServer) DisconnectSetMap() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QModbusTcpServer::setMap")
+	}
 }
 
 //export callbackQModbusTcpServer_SetValue

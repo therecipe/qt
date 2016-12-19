@@ -14,6 +14,7 @@ extern "C" {
 struct QtMacExtras_PackedString { char* data; long long len; };
 struct QtMacExtras_PackedList { void* data; long long len; };
 char QMacPasteboardMime_CanConvert(void* ptr, char* mime, char* flav);
+struct QtMacExtras_PackedList QMacPasteboardMime_ConvertFromMime(void* ptr, char* mime, void* data, char* flav);
 struct QtMacExtras_PackedString QMacPasteboardMime_ConvertorName(void* ptr);
 int QMacPasteboardMime_Count(void* ptr, void* mimeData);
 int QMacPasteboardMime_CountDefault(void* ptr, void* mimeData);

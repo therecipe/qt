@@ -3458,6 +3458,33 @@ func NewQDesignerCustomWidgetCollectionInterfaceFromPointer(ptr unsafe.Pointer) 
 	return n
 }
 
+func (ptr *QDesignerCustomWidgetCollectionInterface) ConnectCustomWidgets(f func() []*QDesignerCustomWidgetInterface) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QDesignerCustomWidgetCollectionInterface::customWidgets", f)
+	}
+}
+
+func (ptr *QDesignerCustomWidgetCollectionInterface) DisconnectCustomWidgets() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QDesignerCustomWidgetCollectionInterface::customWidgets")
+	}
+}
+
+func (ptr *QDesignerCustomWidgetCollectionInterface) CustomWidgets() []*QDesignerCustomWidgetInterface {
+	if ptr.Pointer() != nil {
+		return func(l C.struct_QtDesigner_PackedList) []*QDesignerCustomWidgetInterface {
+			var out = make([]*QDesignerCustomWidgetInterface, int(l.len))
+			for i := 0; i < int(l.len); i++ {
+				out[i] = NewQDesignerCustomWidgetCollectionInterfaceFromPointer(l.data).customWidgets_atList(i)
+			}
+			return out
+		}(C.QDesignerCustomWidgetCollectionInterface_CustomWidgets(ptr.Pointer()))
+	}
+	return nil
+}
+
 //export callbackQDesignerCustomWidgetCollectionInterface_DestroyQDesignerCustomWidgetCollectionInterface
 func callbackQDesignerCustomWidgetCollectionInterface_DestroyQDesignerCustomWidgetCollectionInterface(ptr unsafe.Pointer) {
 
@@ -10813,6 +10840,60 @@ func (ptr *QDesignerMemberSheetExtension) MemberName(index int) string {
 	return ""
 }
 
+func (ptr *QDesignerMemberSheetExtension) ConnectParameterNames(f func(index int) *[]*core.QByteArray) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QDesignerMemberSheetExtension::parameterNames", f)
+	}
+}
+
+func (ptr *QDesignerMemberSheetExtension) DisconnectParameterNames(index int) {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QDesignerMemberSheetExtension::parameterNames")
+	}
+}
+
+func (ptr *QDesignerMemberSheetExtension) ParameterNames(index int) []*core.QByteArray {
+	if ptr.Pointer() != nil {
+		return func(l C.struct_QtDesigner_PackedList) []*core.QByteArray {
+			var out = make([]*core.QByteArray, int(l.len))
+			for i := 0; i < int(l.len); i++ {
+				out[i] = NewQDesignerMemberSheetExtensionFromPointer(l.data).parameterNames_atList(i)
+			}
+			return out
+		}(C.QDesignerMemberSheetExtension_ParameterNames(ptr.Pointer(), C.int(int32(index))))
+	}
+	return nil
+}
+
+func (ptr *QDesignerMemberSheetExtension) ConnectParameterTypes(f func(index int) *[]*core.QByteArray) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QDesignerMemberSheetExtension::parameterTypes", f)
+	}
+}
+
+func (ptr *QDesignerMemberSheetExtension) DisconnectParameterTypes(index int) {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QDesignerMemberSheetExtension::parameterTypes")
+	}
+}
+
+func (ptr *QDesignerMemberSheetExtension) ParameterTypes(index int) []*core.QByteArray {
+	if ptr.Pointer() != nil {
+		return func(l C.struct_QtDesigner_PackedList) []*core.QByteArray {
+			var out = make([]*core.QByteArray, int(l.len))
+			for i := 0; i < int(l.len); i++ {
+				out[i] = NewQDesignerMemberSheetExtensionFromPointer(l.data).parameterTypes_atList(i)
+			}
+			return out
+		}(C.QDesignerMemberSheetExtension_ParameterTypes(ptr.Pointer(), C.int(int32(index))))
+	}
+	return nil
+}
+
 //export callbackQDesignerMemberSheetExtension_SetMemberGroup
 func callbackQDesignerMemberSheetExtension_SetMemberGroup(ptr unsafe.Pointer, index C.int, group C.struct_QtDesigner_PackedString) {
 
@@ -16791,6 +16872,33 @@ func (ptr *QDesignerTaskMenuExtension) PreferredEditActionDefault() *widgets.QAc
 			tmpValue.ConnectDestroyed(func(*core.QObject) { tmpValue.SetPointer(nil) })
 		}
 		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QDesignerTaskMenuExtension) ConnectTaskActions(f func() *[]*widgets.QAction) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QDesignerTaskMenuExtension::taskActions", f)
+	}
+}
+
+func (ptr *QDesignerTaskMenuExtension) DisconnectTaskActions() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QDesignerTaskMenuExtension::taskActions")
+	}
+}
+
+func (ptr *QDesignerTaskMenuExtension) TaskActions() []*widgets.QAction {
+	if ptr.Pointer() != nil {
+		return func(l C.struct_QtDesigner_PackedList) []*widgets.QAction {
+			var out = make([]*widgets.QAction, int(l.len))
+			for i := 0; i < int(l.len); i++ {
+				out[i] = NewQDesignerTaskMenuExtensionFromPointer(l.data).taskActions_atList(i)
+			}
+			return out
+		}(C.QDesignerTaskMenuExtension_TaskActions(ptr.Pointer()))
 	}
 	return nil
 }

@@ -264,6 +264,12 @@ char QGeoServiceProvider_EventFilter(void* ptr, void* watched, void* event);
 char QGeoServiceProvider_EventFilterDefault(void* ptr, void* watched, void* event);
 void* QGeoServiceProvider_MetaObject(void* ptr);
 void* QGeoServiceProvider_MetaObjectDefault(void* ptr);
+;
+;
+;
+;
+;
+;
 void QGeoServiceProviderFactory_DestroyQGeoServiceProviderFactory(void* ptr);
 void QGeoServiceProviderFactory_DestroyQGeoServiceProviderFactoryDefault(void* ptr);
 

@@ -58,6 +58,8 @@ char QHelpContentModel_InsertColumns(void* ptr, int column, int count, void* par
 char QHelpContentModel_InsertColumnsDefault(void* ptr, int column, int count, void* parent);
 char QHelpContentModel_InsertRows(void* ptr, int row, int count, void* parent);
 char QHelpContentModel_InsertRowsDefault(void* ptr, int row, int count, void* parent);
+;
+;
 struct QtHelp_PackedString QHelpContentModel_MimeTypes(void* ptr);
 struct QtHelp_PackedString QHelpContentModel_MimeTypesDefault(void* ptr);
 char QHelpContentModel_MoveColumns(void* ptr, void* sourceParent, int sourceColumn, int count, void* destinationParent, int destinationChild);
@@ -476,6 +478,8 @@ void* QHelpIndexModel_HeaderData(void* ptr, int section, long long orientation, 
 void* QHelpIndexModel_HeaderDataDefault(void* ptr, int section, long long orientation, int role);
 char QHelpIndexModel_InsertColumns(void* ptr, int column, int count, void* parent);
 char QHelpIndexModel_InsertColumnsDefault(void* ptr, int column, int count, void* parent);
+;
+;
 struct QtHelp_PackedString QHelpIndexModel_MimeTypes(void* ptr);
 struct QtHelp_PackedString QHelpIndexModel_MimeTypesDefault(void* ptr);
 char QHelpIndexModel_MoveColumns(void* ptr, void* sourceParent, int sourceColumn, int count, void* destinationParent, int destinationChild);

@@ -163,7 +163,7 @@ ptr.SetPointer(nil)
 
 								fmt.Fprintf(bb, "%v%v\n\n",
 									func() string {
-										if signalMode == parser.CALLBACK {
+										if signalMode == parser.CALLBACK && goFunction(&function) != "" {
 											return fmt.Sprintf("//export %v\n", converter.GoHeaderName(&function))
 										}
 										return ""
@@ -239,7 +239,7 @@ ptr.SetPointer(nil)
 
 										fmt.Fprintf(bb, "%v%v\n\n",
 											func() string {
-												if signalMode == parser.CALLBACK {
+												if signalMode == parser.CALLBACK && goFunction(&function) != "" {
 													return fmt.Sprintf("//export %v\n", converter.GoHeaderName(&function))
 												}
 												return ""

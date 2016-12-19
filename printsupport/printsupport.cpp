@@ -4370,6 +4370,10 @@ void QPrinter_DestroyQPrinter(void* ptr)
 	static_cast<QPrinter*>(ptr)->~QPrinter();
 }
 
+
+
+
+
 void QPrinter_SetPageSize2(void* ptr, long long size)
 {
 	static_cast<QPrinter*>(ptr)->setPageSize(static_cast<QPagedPaintDevice::PageSize>(size));

@@ -95,6 +95,37 @@ func (ptr *QMacPasteboardMime) CanConvert(mime string, flav string) bool {
 	return false
 }
 
+func (ptr *QMacPasteboardMime) ConnectConvertFromMime(f func(mime string, data *core.QVariant, flav string) *[]*core.QByteArray) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QMacPasteboardMime::convertFromMime", f)
+	}
+}
+
+func (ptr *QMacPasteboardMime) DisconnectConvertFromMime(mime string, data core.QVariant_ITF, flav string) {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QMacPasteboardMime::convertFromMime")
+	}
+}
+
+func (ptr *QMacPasteboardMime) ConvertFromMime(mime string, data core.QVariant_ITF, flav string) []*core.QByteArray {
+	if ptr.Pointer() != nil {
+		var mimeC = C.CString(mime)
+		defer C.free(unsafe.Pointer(mimeC))
+		var flavC = C.CString(flav)
+		defer C.free(unsafe.Pointer(flavC))
+		return func(l C.struct_QtMacExtras_PackedList) []*core.QByteArray {
+			var out = make([]*core.QByteArray, int(l.len))
+			for i := 0; i < int(l.len); i++ {
+				out[i] = NewQMacPasteboardMimeFromPointer(l.data).convertFromMime_atList(i)
+			}
+			return out
+		}(C.QMacPasteboardMime_ConvertFromMime(ptr.Pointer(), mimeC, core.PointerFromQVariant(data), flavC))
+	}
+	return nil
+}
+
 //export callbackQMacPasteboardMime_ConvertorName
 func callbackQMacPasteboardMime_ConvertorName(ptr unsafe.Pointer) *C.char {
 

@@ -8005,6 +8005,7 @@ class MyQValue3DAxisFormatter: public QValue3DAxisFormatter
 public:
 	MyQValue3DAxisFormatter(QObject *parent) : QValue3DAxisFormatter(parent) {};
 	QValue3DAxisFormatter * createNewInstance() const { return static_cast<QValue3DAxisFormatter*>(callbackQValue3DAxisFormatter_CreateNewInstance(const_cast<MyQValue3DAxisFormatter*>(this))); };
+	void populateCopy(QValue3DAxisFormatter & copy) const { callbackQValue3DAxisFormatter_PopulateCopy(const_cast<MyQValue3DAxisFormatter*>(this), static_cast<QValue3DAxisFormatter*>(&copy)); };
 	float positionAt(float value) const { return callbackQValue3DAxisFormatter_PositionAt(const_cast<MyQValue3DAxisFormatter*>(this), value); };
 	void recalculate() { callbackQValue3DAxisFormatter_Recalculate(this); };
 	QString stringForValue(qreal value, const QString & format) const { QByteArray t785987 = format.toUtf8(); QtDataVisualization_PackedString formatPacked = { const_cast<char*>(t785987.prepend("WHITESPACE").constData()+10), t785987.size()-10 };return QString(callbackQValue3DAxisFormatter_StringForValue(const_cast<MyQValue3DAxisFormatter*>(this), value, formatPacked)); };
@@ -8055,6 +8056,16 @@ void* QValue3DAxisFormatter_Locale(void* ptr)
 void QValue3DAxisFormatter_MarkDirty(void* ptr, char labelsChange)
 {
 	static_cast<QValue3DAxisFormatter*>(ptr)->markDirty(labelsChange != 0);
+}
+
+void QValue3DAxisFormatter_PopulateCopy(void* ptr, void* copy)
+{
+	static_cast<QValue3DAxisFormatter*>(ptr)->populateCopy(*static_cast<QValue3DAxisFormatter*>(copy));
+}
+
+void QValue3DAxisFormatter_PopulateCopyDefault(void* ptr, void* copy)
+{
+	static_cast<QValue3DAxisFormatter*>(ptr)->QValue3DAxisFormatter::populateCopy(*static_cast<QValue3DAxisFormatter*>(copy));
 }
 
 float QValue3DAxisFormatter_PositionAt(void* ptr, float value)
