@@ -1,6 +1,9 @@
 package parser
 
-import "strings"
+import (
+	"sort"
+	"strings"
+)
 
 type Function struct {
 	Name             string       `xml:"name,attr"`
@@ -42,10 +45,54 @@ func (f *Function) Class() (*Class, bool) {
 	var class, exist = CurrentState.ClassMap[f.ClassName()]
 	return class, exist
 }
+
 func (f *Function) ClassName() string {
 	var s = strings.Split(f.Fullname, "::")
 	if len(s) == 3 {
 		return s[1]
 	}
 	return s[0]
+}
+
+//TODO: multipoly [][]string
+//TODO: connect/disconnect slot functions + add necessary SIGNAL_* functions (check first if really needed)
+//TODO: replace self poly deduction with overridden methods ?
+
+func (f *Function) PossiblePolymorphic(self bool) ([]string, string) {
+	var out = make([]string, 0)
+
+	var params = func() []*Parameter {
+		if self {
+			return []*Parameter{{Name: "ptr", Value: f.ClassName()}}
+		}
+		return f.Parameters
+	}()
+
+	var fc, _ = f.Class()
+
+	for _, p := range params {
+		var c, exist = CurrentState.ClassMap[CleanValue(p.Value)]
+		if !exist {
+			continue
+		}
+
+		for _, class := range CurrentState.ClassMap {
+			if class.Module != fc.Module {
+				continue
+			}
+
+			if class.IsPolymorphic() && class.IsSubClassOf(c.Name) {
+				out = append(out, class.Name)
+			}
+		}
+
+		//TODO: multipoly
+		if len(out) > 0 {
+			sort.Stable(sort.StringSlice(out))
+			out = append(out, c.Name)
+			return out, CleanName(p.Name, p.Value)
+		}
+	}
+
+	return out, ""
 }

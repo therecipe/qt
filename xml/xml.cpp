@@ -27,6 +27,7 @@
 #include <QDomText>
 #include <QIODevice>
 #include <QLatin1String>
+#include <QObject>
 #include <QString>
 #include <QTextStream>
 #include <QXmlAttributes>
@@ -1297,62 +1298,110 @@ public:
 
 char QXmlContentHandler_Characters(void* ptr, char* ch)
 {
-	return static_cast<QXmlContentHandler*>(ptr)->characters(QString(ch));
+	if (dynamic_cast<QXmlDefaultHandler*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QXmlDefaultHandler*>(ptr)->characters(QString(ch));
+	} else {
+		return static_cast<QXmlContentHandler*>(ptr)->characters(QString(ch));
+	}
 }
 
 char QXmlContentHandler_EndDocument(void* ptr)
 {
-	return static_cast<QXmlContentHandler*>(ptr)->endDocument();
+	if (dynamic_cast<QXmlDefaultHandler*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QXmlDefaultHandler*>(ptr)->endDocument();
+	} else {
+		return static_cast<QXmlContentHandler*>(ptr)->endDocument();
+	}
 }
 
 char QXmlContentHandler_EndElement(void* ptr, char* namespaceURI, char* localName, char* qName)
 {
-	return static_cast<QXmlContentHandler*>(ptr)->endElement(QString(namespaceURI), QString(localName), QString(qName));
+	if (dynamic_cast<QXmlDefaultHandler*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QXmlDefaultHandler*>(ptr)->endElement(QString(namespaceURI), QString(localName), QString(qName));
+	} else {
+		return static_cast<QXmlContentHandler*>(ptr)->endElement(QString(namespaceURI), QString(localName), QString(qName));
+	}
 }
 
 char QXmlContentHandler_EndPrefixMapping(void* ptr, char* prefix)
 {
-	return static_cast<QXmlContentHandler*>(ptr)->endPrefixMapping(QString(prefix));
+	if (dynamic_cast<QXmlDefaultHandler*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QXmlDefaultHandler*>(ptr)->endPrefixMapping(QString(prefix));
+	} else {
+		return static_cast<QXmlContentHandler*>(ptr)->endPrefixMapping(QString(prefix));
+	}
 }
 
 struct QtXml_PackedString QXmlContentHandler_ErrorString(void* ptr)
 {
-	return ({ QByteArray t3c3aa4 = static_cast<QXmlContentHandler*>(ptr)->errorString().toUtf8(); QtXml_PackedString { const_cast<char*>(t3c3aa4.prepend("WHITESPACE").constData()+10), t3c3aa4.size()-10 }; });
+	if (dynamic_cast<QXmlDefaultHandler*>(static_cast<QObject*>(ptr))) {
+		return ({ QByteArray t3c3aa4 = static_cast<QXmlDefaultHandler*>(ptr)->errorString().toUtf8(); QtXml_PackedString { const_cast<char*>(t3c3aa4.prepend("WHITESPACE").constData()+10), t3c3aa4.size()-10 }; });
+	} else {
+		return ({ QByteArray t3c3aa4 = static_cast<QXmlContentHandler*>(ptr)->errorString().toUtf8(); QtXml_PackedString { const_cast<char*>(t3c3aa4.prepend("WHITESPACE").constData()+10), t3c3aa4.size()-10 }; });
+	}
 }
 
 char QXmlContentHandler_IgnorableWhitespace(void* ptr, char* ch)
 {
-	return static_cast<QXmlContentHandler*>(ptr)->ignorableWhitespace(QString(ch));
+	if (dynamic_cast<QXmlDefaultHandler*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QXmlDefaultHandler*>(ptr)->ignorableWhitespace(QString(ch));
+	} else {
+		return static_cast<QXmlContentHandler*>(ptr)->ignorableWhitespace(QString(ch));
+	}
 }
 
 char QXmlContentHandler_ProcessingInstruction(void* ptr, char* target, char* data)
 {
-	return static_cast<QXmlContentHandler*>(ptr)->processingInstruction(QString(target), QString(data));
+	if (dynamic_cast<QXmlDefaultHandler*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QXmlDefaultHandler*>(ptr)->processingInstruction(QString(target), QString(data));
+	} else {
+		return static_cast<QXmlContentHandler*>(ptr)->processingInstruction(QString(target), QString(data));
+	}
 }
 
 void QXmlContentHandler_SetDocumentLocator(void* ptr, void* locator)
 {
-	static_cast<QXmlContentHandler*>(ptr)->setDocumentLocator(static_cast<QXmlLocator*>(locator));
+	if (dynamic_cast<QXmlDefaultHandler*>(static_cast<QObject*>(ptr))) {
+		static_cast<QXmlDefaultHandler*>(ptr)->setDocumentLocator(static_cast<QXmlLocator*>(locator));
+	} else {
+		static_cast<QXmlContentHandler*>(ptr)->setDocumentLocator(static_cast<QXmlLocator*>(locator));
+	}
 }
 
 char QXmlContentHandler_SkippedEntity(void* ptr, char* name)
 {
-	return static_cast<QXmlContentHandler*>(ptr)->skippedEntity(QString(name));
+	if (dynamic_cast<QXmlDefaultHandler*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QXmlDefaultHandler*>(ptr)->skippedEntity(QString(name));
+	} else {
+		return static_cast<QXmlContentHandler*>(ptr)->skippedEntity(QString(name));
+	}
 }
 
 char QXmlContentHandler_StartDocument(void* ptr)
 {
-	return static_cast<QXmlContentHandler*>(ptr)->startDocument();
+	if (dynamic_cast<QXmlDefaultHandler*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QXmlDefaultHandler*>(ptr)->startDocument();
+	} else {
+		return static_cast<QXmlContentHandler*>(ptr)->startDocument();
+	}
 }
 
 char QXmlContentHandler_StartElement(void* ptr, char* namespaceURI, char* localName, char* qName, void* atts)
 {
-	return static_cast<QXmlContentHandler*>(ptr)->startElement(QString(namespaceURI), QString(localName), QString(qName), *static_cast<QXmlAttributes*>(atts));
+	if (dynamic_cast<QXmlDefaultHandler*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QXmlDefaultHandler*>(ptr)->startElement(QString(namespaceURI), QString(localName), QString(qName), *static_cast<QXmlAttributes*>(atts));
+	} else {
+		return static_cast<QXmlContentHandler*>(ptr)->startElement(QString(namespaceURI), QString(localName), QString(qName), *static_cast<QXmlAttributes*>(atts));
+	}
 }
 
 char QXmlContentHandler_StartPrefixMapping(void* ptr, char* prefix, char* uri)
 {
-	return static_cast<QXmlContentHandler*>(ptr)->startPrefixMapping(QString(prefix), QString(uri));
+	if (dynamic_cast<QXmlDefaultHandler*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QXmlDefaultHandler*>(ptr)->startPrefixMapping(QString(prefix), QString(uri));
+	} else {
+		return static_cast<QXmlContentHandler*>(ptr)->startPrefixMapping(QString(prefix), QString(uri));
+	}
 }
 
 void QXmlContentHandler_DestroyQXmlContentHandler(void* ptr)
@@ -1376,17 +1425,29 @@ public:
 
 struct QtXml_PackedString QXmlDTDHandler_ErrorString(void* ptr)
 {
-	return ({ QByteArray t4437d5 = static_cast<QXmlDTDHandler*>(ptr)->errorString().toUtf8(); QtXml_PackedString { const_cast<char*>(t4437d5.prepend("WHITESPACE").constData()+10), t4437d5.size()-10 }; });
+	if (dynamic_cast<QXmlDefaultHandler*>(static_cast<QObject*>(ptr))) {
+		return ({ QByteArray t4437d5 = static_cast<QXmlDefaultHandler*>(ptr)->errorString().toUtf8(); QtXml_PackedString { const_cast<char*>(t4437d5.prepend("WHITESPACE").constData()+10), t4437d5.size()-10 }; });
+	} else {
+		return ({ QByteArray t4437d5 = static_cast<QXmlDTDHandler*>(ptr)->errorString().toUtf8(); QtXml_PackedString { const_cast<char*>(t4437d5.prepend("WHITESPACE").constData()+10), t4437d5.size()-10 }; });
+	}
 }
 
 char QXmlDTDHandler_NotationDecl(void* ptr, char* name, char* publicId, char* systemId)
 {
-	return static_cast<QXmlDTDHandler*>(ptr)->notationDecl(QString(name), QString(publicId), QString(systemId));
+	if (dynamic_cast<QXmlDefaultHandler*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QXmlDefaultHandler*>(ptr)->notationDecl(QString(name), QString(publicId), QString(systemId));
+	} else {
+		return static_cast<QXmlDTDHandler*>(ptr)->notationDecl(QString(name), QString(publicId), QString(systemId));
+	}
 }
 
 char QXmlDTDHandler_UnparsedEntityDecl(void* ptr, char* name, char* publicId, char* systemId, char* notationName)
 {
-	return static_cast<QXmlDTDHandler*>(ptr)->unparsedEntityDecl(QString(name), QString(publicId), QString(systemId), QString(notationName));
+	if (dynamic_cast<QXmlDefaultHandler*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QXmlDefaultHandler*>(ptr)->unparsedEntityDecl(QString(name), QString(publicId), QString(systemId), QString(notationName));
+	} else {
+		return static_cast<QXmlDTDHandler*>(ptr)->unparsedEntityDecl(QString(name), QString(publicId), QString(systemId), QString(notationName));
+	}
 }
 
 void QXmlDTDHandler_DestroyQXmlDTDHandler(void* ptr)
@@ -1411,22 +1472,38 @@ public:
 
 char QXmlDeclHandler_AttributeDecl(void* ptr, char* eName, char* aName, char* ty, char* valueDefault, char* value)
 {
-	return static_cast<QXmlDeclHandler*>(ptr)->attributeDecl(QString(eName), QString(aName), QString(ty), QString(valueDefault), QString(value));
+	if (dynamic_cast<QXmlDefaultHandler*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QXmlDefaultHandler*>(ptr)->attributeDecl(QString(eName), QString(aName), QString(ty), QString(valueDefault), QString(value));
+	} else {
+		return static_cast<QXmlDeclHandler*>(ptr)->attributeDecl(QString(eName), QString(aName), QString(ty), QString(valueDefault), QString(value));
+	}
 }
 
 struct QtXml_PackedString QXmlDeclHandler_ErrorString(void* ptr)
 {
-	return ({ QByteArray t70b5b5 = static_cast<QXmlDeclHandler*>(ptr)->errorString().toUtf8(); QtXml_PackedString { const_cast<char*>(t70b5b5.prepend("WHITESPACE").constData()+10), t70b5b5.size()-10 }; });
+	if (dynamic_cast<QXmlDefaultHandler*>(static_cast<QObject*>(ptr))) {
+		return ({ QByteArray t70b5b5 = static_cast<QXmlDefaultHandler*>(ptr)->errorString().toUtf8(); QtXml_PackedString { const_cast<char*>(t70b5b5.prepend("WHITESPACE").constData()+10), t70b5b5.size()-10 }; });
+	} else {
+		return ({ QByteArray t70b5b5 = static_cast<QXmlDeclHandler*>(ptr)->errorString().toUtf8(); QtXml_PackedString { const_cast<char*>(t70b5b5.prepend("WHITESPACE").constData()+10), t70b5b5.size()-10 }; });
+	}
 }
 
 char QXmlDeclHandler_ExternalEntityDecl(void* ptr, char* name, char* publicId, char* systemId)
 {
-	return static_cast<QXmlDeclHandler*>(ptr)->externalEntityDecl(QString(name), QString(publicId), QString(systemId));
+	if (dynamic_cast<QXmlDefaultHandler*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QXmlDefaultHandler*>(ptr)->externalEntityDecl(QString(name), QString(publicId), QString(systemId));
+	} else {
+		return static_cast<QXmlDeclHandler*>(ptr)->externalEntityDecl(QString(name), QString(publicId), QString(systemId));
+	}
 }
 
 char QXmlDeclHandler_InternalEntityDecl(void* ptr, char* name, char* value)
 {
-	return static_cast<QXmlDeclHandler*>(ptr)->internalEntityDecl(QString(name), QString(value));
+	if (dynamic_cast<QXmlDefaultHandler*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QXmlDefaultHandler*>(ptr)->internalEntityDecl(QString(name), QString(value));
+	} else {
+		return static_cast<QXmlDeclHandler*>(ptr)->internalEntityDecl(QString(name), QString(value));
+	}
 }
 
 void QXmlDeclHandler_DestroyQXmlDeclHandler(void* ptr)
@@ -1491,172 +1568,172 @@ void QXmlDefaultHandler_DestroyQXmlDefaultHandlerDefault(void* ptr)
 
 char QXmlDefaultHandler_AttributeDecl(void* ptr, char* eName, char* aName, char* ty, char* valueDefault, char* value)
 {
-	return static_cast<QXmlDefaultHandler*>(ptr)->attributeDecl(QString(eName), QString(aName), QString(ty), QString(valueDefault), QString(value));
+		return static_cast<QXmlDefaultHandler*>(ptr)->attributeDecl(QString(eName), QString(aName), QString(ty), QString(valueDefault), QString(value));
 }
 
 char QXmlDefaultHandler_AttributeDeclDefault(void* ptr, char* eName, char* aName, char* ty, char* valueDefault, char* value)
 {
-	return static_cast<QXmlDefaultHandler*>(ptr)->QXmlDefaultHandler::attributeDecl(QString(eName), QString(aName), QString(ty), QString(valueDefault), QString(value));
+		return static_cast<QXmlDefaultHandler*>(ptr)->QXmlDefaultHandler::attributeDecl(QString(eName), QString(aName), QString(ty), QString(valueDefault), QString(value));
 }
 
 char QXmlDefaultHandler_Characters(void* ptr, char* ch)
 {
-	return static_cast<QXmlDefaultHandler*>(ptr)->characters(QString(ch));
+		return static_cast<QXmlDefaultHandler*>(ptr)->characters(QString(ch));
 }
 
 char QXmlDefaultHandler_CharactersDefault(void* ptr, char* ch)
 {
-	return static_cast<QXmlDefaultHandler*>(ptr)->QXmlDefaultHandler::characters(QString(ch));
+		return static_cast<QXmlDefaultHandler*>(ptr)->QXmlDefaultHandler::characters(QString(ch));
 }
 
 char QXmlDefaultHandler_Comment(void* ptr, char* ch)
 {
-	return static_cast<QXmlDefaultHandler*>(ptr)->comment(QString(ch));
+		return static_cast<QXmlDefaultHandler*>(ptr)->comment(QString(ch));
 }
 
 char QXmlDefaultHandler_CommentDefault(void* ptr, char* ch)
 {
-	return static_cast<QXmlDefaultHandler*>(ptr)->QXmlDefaultHandler::comment(QString(ch));
+		return static_cast<QXmlDefaultHandler*>(ptr)->QXmlDefaultHandler::comment(QString(ch));
 }
 
 char QXmlDefaultHandler_EndCDATA(void* ptr)
 {
-	return static_cast<QXmlDefaultHandler*>(ptr)->endCDATA();
+		return static_cast<QXmlDefaultHandler*>(ptr)->endCDATA();
 }
 
 char QXmlDefaultHandler_EndCDATADefault(void* ptr)
 {
-	return static_cast<QXmlDefaultHandler*>(ptr)->QXmlDefaultHandler::endCDATA();
+		return static_cast<QXmlDefaultHandler*>(ptr)->QXmlDefaultHandler::endCDATA();
 }
 
 char QXmlDefaultHandler_EndDTD(void* ptr)
 {
-	return static_cast<QXmlDefaultHandler*>(ptr)->endDTD();
+		return static_cast<QXmlDefaultHandler*>(ptr)->endDTD();
 }
 
 char QXmlDefaultHandler_EndDTDDefault(void* ptr)
 {
-	return static_cast<QXmlDefaultHandler*>(ptr)->QXmlDefaultHandler::endDTD();
+		return static_cast<QXmlDefaultHandler*>(ptr)->QXmlDefaultHandler::endDTD();
 }
 
 char QXmlDefaultHandler_EndDocument(void* ptr)
 {
-	return static_cast<QXmlDefaultHandler*>(ptr)->endDocument();
+		return static_cast<QXmlDefaultHandler*>(ptr)->endDocument();
 }
 
 char QXmlDefaultHandler_EndDocumentDefault(void* ptr)
 {
-	return static_cast<QXmlDefaultHandler*>(ptr)->QXmlDefaultHandler::endDocument();
+		return static_cast<QXmlDefaultHandler*>(ptr)->QXmlDefaultHandler::endDocument();
 }
 
 char QXmlDefaultHandler_EndElement(void* ptr, char* namespaceURI, char* localName, char* qName)
 {
-	return static_cast<QXmlDefaultHandler*>(ptr)->endElement(QString(namespaceURI), QString(localName), QString(qName));
+		return static_cast<QXmlDefaultHandler*>(ptr)->endElement(QString(namespaceURI), QString(localName), QString(qName));
 }
 
 char QXmlDefaultHandler_EndElementDefault(void* ptr, char* namespaceURI, char* localName, char* qName)
 {
-	return static_cast<QXmlDefaultHandler*>(ptr)->QXmlDefaultHandler::endElement(QString(namespaceURI), QString(localName), QString(qName));
+		return static_cast<QXmlDefaultHandler*>(ptr)->QXmlDefaultHandler::endElement(QString(namespaceURI), QString(localName), QString(qName));
 }
 
 char QXmlDefaultHandler_EndEntity(void* ptr, char* name)
 {
-	return static_cast<QXmlDefaultHandler*>(ptr)->endEntity(QString(name));
+		return static_cast<QXmlDefaultHandler*>(ptr)->endEntity(QString(name));
 }
 
 char QXmlDefaultHandler_EndEntityDefault(void* ptr, char* name)
 {
-	return static_cast<QXmlDefaultHandler*>(ptr)->QXmlDefaultHandler::endEntity(QString(name));
+		return static_cast<QXmlDefaultHandler*>(ptr)->QXmlDefaultHandler::endEntity(QString(name));
 }
 
 char QXmlDefaultHandler_EndPrefixMapping(void* ptr, char* prefix)
 {
-	return static_cast<QXmlDefaultHandler*>(ptr)->endPrefixMapping(QString(prefix));
+		return static_cast<QXmlDefaultHandler*>(ptr)->endPrefixMapping(QString(prefix));
 }
 
 char QXmlDefaultHandler_EndPrefixMappingDefault(void* ptr, char* prefix)
 {
-	return static_cast<QXmlDefaultHandler*>(ptr)->QXmlDefaultHandler::endPrefixMapping(QString(prefix));
+		return static_cast<QXmlDefaultHandler*>(ptr)->QXmlDefaultHandler::endPrefixMapping(QString(prefix));
 }
 
 char QXmlDefaultHandler_Error(void* ptr, void* exception)
 {
-	return static_cast<QXmlDefaultHandler*>(ptr)->error(*static_cast<QXmlParseException*>(exception));
+		return static_cast<QXmlDefaultHandler*>(ptr)->error(*static_cast<QXmlParseException*>(exception));
 }
 
 char QXmlDefaultHandler_ErrorDefault(void* ptr, void* exception)
 {
-	return static_cast<QXmlDefaultHandler*>(ptr)->QXmlDefaultHandler::error(*static_cast<QXmlParseException*>(exception));
+		return static_cast<QXmlDefaultHandler*>(ptr)->QXmlDefaultHandler::error(*static_cast<QXmlParseException*>(exception));
 }
 
 struct QtXml_PackedString QXmlDefaultHandler_ErrorString(void* ptr)
 {
-	return ({ QByteArray tffa037 = static_cast<QXmlDefaultHandler*>(ptr)->errorString().toUtf8(); QtXml_PackedString { const_cast<char*>(tffa037.prepend("WHITESPACE").constData()+10), tffa037.size()-10 }; });
+		return ({ QByteArray tffa037 = static_cast<QXmlDefaultHandler*>(ptr)->errorString().toUtf8(); QtXml_PackedString { const_cast<char*>(tffa037.prepend("WHITESPACE").constData()+10), tffa037.size()-10 }; });
 }
 
 struct QtXml_PackedString QXmlDefaultHandler_ErrorStringDefault(void* ptr)
 {
-	return ({ QByteArray tdd1e32 = static_cast<QXmlDefaultHandler*>(ptr)->QXmlDefaultHandler::errorString().toUtf8(); QtXml_PackedString { const_cast<char*>(tdd1e32.prepend("WHITESPACE").constData()+10), tdd1e32.size()-10 }; });
+		return ({ QByteArray tdd1e32 = static_cast<QXmlDefaultHandler*>(ptr)->QXmlDefaultHandler::errorString().toUtf8(); QtXml_PackedString { const_cast<char*>(tdd1e32.prepend("WHITESPACE").constData()+10), tdd1e32.size()-10 }; });
 }
 
 char QXmlDefaultHandler_ExternalEntityDecl(void* ptr, char* name, char* publicId, char* systemId)
 {
-	return static_cast<QXmlDefaultHandler*>(ptr)->externalEntityDecl(QString(name), QString(publicId), QString(systemId));
+		return static_cast<QXmlDefaultHandler*>(ptr)->externalEntityDecl(QString(name), QString(publicId), QString(systemId));
 }
 
 char QXmlDefaultHandler_ExternalEntityDeclDefault(void* ptr, char* name, char* publicId, char* systemId)
 {
-	return static_cast<QXmlDefaultHandler*>(ptr)->QXmlDefaultHandler::externalEntityDecl(QString(name), QString(publicId), QString(systemId));
+		return static_cast<QXmlDefaultHandler*>(ptr)->QXmlDefaultHandler::externalEntityDecl(QString(name), QString(publicId), QString(systemId));
 }
 
 char QXmlDefaultHandler_FatalError(void* ptr, void* exception)
 {
-	return static_cast<QXmlDefaultHandler*>(ptr)->fatalError(*static_cast<QXmlParseException*>(exception));
+		return static_cast<QXmlDefaultHandler*>(ptr)->fatalError(*static_cast<QXmlParseException*>(exception));
 }
 
 char QXmlDefaultHandler_FatalErrorDefault(void* ptr, void* exception)
 {
-	return static_cast<QXmlDefaultHandler*>(ptr)->QXmlDefaultHandler::fatalError(*static_cast<QXmlParseException*>(exception));
+		return static_cast<QXmlDefaultHandler*>(ptr)->QXmlDefaultHandler::fatalError(*static_cast<QXmlParseException*>(exception));
 }
 
 char QXmlDefaultHandler_IgnorableWhitespace(void* ptr, char* ch)
 {
-	return static_cast<QXmlDefaultHandler*>(ptr)->ignorableWhitespace(QString(ch));
+		return static_cast<QXmlDefaultHandler*>(ptr)->ignorableWhitespace(QString(ch));
 }
 
 char QXmlDefaultHandler_IgnorableWhitespaceDefault(void* ptr, char* ch)
 {
-	return static_cast<QXmlDefaultHandler*>(ptr)->QXmlDefaultHandler::ignorableWhitespace(QString(ch));
+		return static_cast<QXmlDefaultHandler*>(ptr)->QXmlDefaultHandler::ignorableWhitespace(QString(ch));
 }
 
 char QXmlDefaultHandler_InternalEntityDecl(void* ptr, char* name, char* value)
 {
-	return static_cast<QXmlDefaultHandler*>(ptr)->internalEntityDecl(QString(name), QString(value));
+		return static_cast<QXmlDefaultHandler*>(ptr)->internalEntityDecl(QString(name), QString(value));
 }
 
 char QXmlDefaultHandler_InternalEntityDeclDefault(void* ptr, char* name, char* value)
 {
-	return static_cast<QXmlDefaultHandler*>(ptr)->QXmlDefaultHandler::internalEntityDecl(QString(name), QString(value));
+		return static_cast<QXmlDefaultHandler*>(ptr)->QXmlDefaultHandler::internalEntityDecl(QString(name), QString(value));
 }
 
 char QXmlDefaultHandler_NotationDecl(void* ptr, char* name, char* publicId, char* systemId)
 {
-	return static_cast<QXmlDefaultHandler*>(ptr)->notationDecl(QString(name), QString(publicId), QString(systemId));
+		return static_cast<QXmlDefaultHandler*>(ptr)->notationDecl(QString(name), QString(publicId), QString(systemId));
 }
 
 char QXmlDefaultHandler_NotationDeclDefault(void* ptr, char* name, char* publicId, char* systemId)
 {
-	return static_cast<QXmlDefaultHandler*>(ptr)->QXmlDefaultHandler::notationDecl(QString(name), QString(publicId), QString(systemId));
+		return static_cast<QXmlDefaultHandler*>(ptr)->QXmlDefaultHandler::notationDecl(QString(name), QString(publicId), QString(systemId));
 }
 
 char QXmlDefaultHandler_ProcessingInstruction(void* ptr, char* target, char* data)
 {
-	return static_cast<QXmlDefaultHandler*>(ptr)->processingInstruction(QString(target), QString(data));
+		return static_cast<QXmlDefaultHandler*>(ptr)->processingInstruction(QString(target), QString(data));
 }
 
 char QXmlDefaultHandler_ProcessingInstructionDefault(void* ptr, char* target, char* data)
 {
-	return static_cast<QXmlDefaultHandler*>(ptr)->QXmlDefaultHandler::processingInstruction(QString(target), QString(data));
+		return static_cast<QXmlDefaultHandler*>(ptr)->QXmlDefaultHandler::processingInstruction(QString(target), QString(data));
 }
 
 
@@ -1665,102 +1742,102 @@ char QXmlDefaultHandler_ProcessingInstructionDefault(void* ptr, char* target, ch
 
 void QXmlDefaultHandler_SetDocumentLocator(void* ptr, void* locator)
 {
-	static_cast<QXmlDefaultHandler*>(ptr)->setDocumentLocator(static_cast<QXmlLocator*>(locator));
+		static_cast<QXmlDefaultHandler*>(ptr)->setDocumentLocator(static_cast<QXmlLocator*>(locator));
 }
 
 void QXmlDefaultHandler_SetDocumentLocatorDefault(void* ptr, void* locator)
 {
-	static_cast<QXmlDefaultHandler*>(ptr)->QXmlDefaultHandler::setDocumentLocator(static_cast<QXmlLocator*>(locator));
+		static_cast<QXmlDefaultHandler*>(ptr)->QXmlDefaultHandler::setDocumentLocator(static_cast<QXmlLocator*>(locator));
 }
 
 char QXmlDefaultHandler_SkippedEntity(void* ptr, char* name)
 {
-	return static_cast<QXmlDefaultHandler*>(ptr)->skippedEntity(QString(name));
+		return static_cast<QXmlDefaultHandler*>(ptr)->skippedEntity(QString(name));
 }
 
 char QXmlDefaultHandler_SkippedEntityDefault(void* ptr, char* name)
 {
-	return static_cast<QXmlDefaultHandler*>(ptr)->QXmlDefaultHandler::skippedEntity(QString(name));
+		return static_cast<QXmlDefaultHandler*>(ptr)->QXmlDefaultHandler::skippedEntity(QString(name));
 }
 
 char QXmlDefaultHandler_StartCDATA(void* ptr)
 {
-	return static_cast<QXmlDefaultHandler*>(ptr)->startCDATA();
+		return static_cast<QXmlDefaultHandler*>(ptr)->startCDATA();
 }
 
 char QXmlDefaultHandler_StartCDATADefault(void* ptr)
 {
-	return static_cast<QXmlDefaultHandler*>(ptr)->QXmlDefaultHandler::startCDATA();
+		return static_cast<QXmlDefaultHandler*>(ptr)->QXmlDefaultHandler::startCDATA();
 }
 
 char QXmlDefaultHandler_StartDTD(void* ptr, char* name, char* publicId, char* systemId)
 {
-	return static_cast<QXmlDefaultHandler*>(ptr)->startDTD(QString(name), QString(publicId), QString(systemId));
+		return static_cast<QXmlDefaultHandler*>(ptr)->startDTD(QString(name), QString(publicId), QString(systemId));
 }
 
 char QXmlDefaultHandler_StartDTDDefault(void* ptr, char* name, char* publicId, char* systemId)
 {
-	return static_cast<QXmlDefaultHandler*>(ptr)->QXmlDefaultHandler::startDTD(QString(name), QString(publicId), QString(systemId));
+		return static_cast<QXmlDefaultHandler*>(ptr)->QXmlDefaultHandler::startDTD(QString(name), QString(publicId), QString(systemId));
 }
 
 char QXmlDefaultHandler_StartDocument(void* ptr)
 {
-	return static_cast<QXmlDefaultHandler*>(ptr)->startDocument();
+		return static_cast<QXmlDefaultHandler*>(ptr)->startDocument();
 }
 
 char QXmlDefaultHandler_StartDocumentDefault(void* ptr)
 {
-	return static_cast<QXmlDefaultHandler*>(ptr)->QXmlDefaultHandler::startDocument();
+		return static_cast<QXmlDefaultHandler*>(ptr)->QXmlDefaultHandler::startDocument();
 }
 
 char QXmlDefaultHandler_StartElement(void* ptr, char* namespaceURI, char* localName, char* qName, void* atts)
 {
-	return static_cast<QXmlDefaultHandler*>(ptr)->startElement(QString(namespaceURI), QString(localName), QString(qName), *static_cast<QXmlAttributes*>(atts));
+		return static_cast<QXmlDefaultHandler*>(ptr)->startElement(QString(namespaceURI), QString(localName), QString(qName), *static_cast<QXmlAttributes*>(atts));
 }
 
 char QXmlDefaultHandler_StartElementDefault(void* ptr, char* namespaceURI, char* localName, char* qName, void* atts)
 {
-	return static_cast<QXmlDefaultHandler*>(ptr)->QXmlDefaultHandler::startElement(QString(namespaceURI), QString(localName), QString(qName), *static_cast<QXmlAttributes*>(atts));
+		return static_cast<QXmlDefaultHandler*>(ptr)->QXmlDefaultHandler::startElement(QString(namespaceURI), QString(localName), QString(qName), *static_cast<QXmlAttributes*>(atts));
 }
 
 char QXmlDefaultHandler_StartEntity(void* ptr, char* name)
 {
-	return static_cast<QXmlDefaultHandler*>(ptr)->startEntity(QString(name));
+		return static_cast<QXmlDefaultHandler*>(ptr)->startEntity(QString(name));
 }
 
 char QXmlDefaultHandler_StartEntityDefault(void* ptr, char* name)
 {
-	return static_cast<QXmlDefaultHandler*>(ptr)->QXmlDefaultHandler::startEntity(QString(name));
+		return static_cast<QXmlDefaultHandler*>(ptr)->QXmlDefaultHandler::startEntity(QString(name));
 }
 
 char QXmlDefaultHandler_StartPrefixMapping(void* ptr, char* prefix, char* uri)
 {
-	return static_cast<QXmlDefaultHandler*>(ptr)->startPrefixMapping(QString(prefix), QString(uri));
+		return static_cast<QXmlDefaultHandler*>(ptr)->startPrefixMapping(QString(prefix), QString(uri));
 }
 
 char QXmlDefaultHandler_StartPrefixMappingDefault(void* ptr, char* prefix, char* uri)
 {
-	return static_cast<QXmlDefaultHandler*>(ptr)->QXmlDefaultHandler::startPrefixMapping(QString(prefix), QString(uri));
+		return static_cast<QXmlDefaultHandler*>(ptr)->QXmlDefaultHandler::startPrefixMapping(QString(prefix), QString(uri));
 }
 
 char QXmlDefaultHandler_UnparsedEntityDecl(void* ptr, char* name, char* publicId, char* systemId, char* notationName)
 {
-	return static_cast<QXmlDefaultHandler*>(ptr)->unparsedEntityDecl(QString(name), QString(publicId), QString(systemId), QString(notationName));
+		return static_cast<QXmlDefaultHandler*>(ptr)->unparsedEntityDecl(QString(name), QString(publicId), QString(systemId), QString(notationName));
 }
 
 char QXmlDefaultHandler_UnparsedEntityDeclDefault(void* ptr, char* name, char* publicId, char* systemId, char* notationName)
 {
-	return static_cast<QXmlDefaultHandler*>(ptr)->QXmlDefaultHandler::unparsedEntityDecl(QString(name), QString(publicId), QString(systemId), QString(notationName));
+		return static_cast<QXmlDefaultHandler*>(ptr)->QXmlDefaultHandler::unparsedEntityDecl(QString(name), QString(publicId), QString(systemId), QString(notationName));
 }
 
 char QXmlDefaultHandler_Warning(void* ptr, void* exception)
 {
-	return static_cast<QXmlDefaultHandler*>(ptr)->warning(*static_cast<QXmlParseException*>(exception));
+		return static_cast<QXmlDefaultHandler*>(ptr)->warning(*static_cast<QXmlParseException*>(exception));
 }
 
 char QXmlDefaultHandler_WarningDefault(void* ptr, void* exception)
 {
-	return static_cast<QXmlDefaultHandler*>(ptr)->QXmlDefaultHandler::warning(*static_cast<QXmlParseException*>(exception));
+		return static_cast<QXmlDefaultHandler*>(ptr)->QXmlDefaultHandler::warning(*static_cast<QXmlParseException*>(exception));
 }
 
 class MyQXmlEntityResolver: public QXmlEntityResolver
@@ -1773,7 +1850,11 @@ public:
 
 struct QtXml_PackedString QXmlEntityResolver_ErrorString(void* ptr)
 {
-	return ({ QByteArray te6feb0 = static_cast<QXmlEntityResolver*>(ptr)->errorString().toUtf8(); QtXml_PackedString { const_cast<char*>(te6feb0.prepend("WHITESPACE").constData()+10), te6feb0.size()-10 }; });
+	if (dynamic_cast<QXmlDefaultHandler*>(static_cast<QObject*>(ptr))) {
+		return ({ QByteArray te6feb0 = static_cast<QXmlDefaultHandler*>(ptr)->errorString().toUtf8(); QtXml_PackedString { const_cast<char*>(te6feb0.prepend("WHITESPACE").constData()+10), te6feb0.size()-10 }; });
+	} else {
+		return ({ QByteArray te6feb0 = static_cast<QXmlEntityResolver*>(ptr)->errorString().toUtf8(); QtXml_PackedString { const_cast<char*>(te6feb0.prepend("WHITESPACE").constData()+10), te6feb0.size()-10 }; });
+	}
 }
 
 
@@ -1800,22 +1881,38 @@ public:
 
 char QXmlErrorHandler_Error(void* ptr, void* exception)
 {
-	return static_cast<QXmlErrorHandler*>(ptr)->error(*static_cast<QXmlParseException*>(exception));
+	if (dynamic_cast<QXmlDefaultHandler*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QXmlDefaultHandler*>(ptr)->error(*static_cast<QXmlParseException*>(exception));
+	} else {
+		return static_cast<QXmlErrorHandler*>(ptr)->error(*static_cast<QXmlParseException*>(exception));
+	}
 }
 
 struct QtXml_PackedString QXmlErrorHandler_ErrorString(void* ptr)
 {
-	return ({ QByteArray t2e99c1 = static_cast<QXmlErrorHandler*>(ptr)->errorString().toUtf8(); QtXml_PackedString { const_cast<char*>(t2e99c1.prepend("WHITESPACE").constData()+10), t2e99c1.size()-10 }; });
+	if (dynamic_cast<QXmlDefaultHandler*>(static_cast<QObject*>(ptr))) {
+		return ({ QByteArray t2e99c1 = static_cast<QXmlDefaultHandler*>(ptr)->errorString().toUtf8(); QtXml_PackedString { const_cast<char*>(t2e99c1.prepend("WHITESPACE").constData()+10), t2e99c1.size()-10 }; });
+	} else {
+		return ({ QByteArray t2e99c1 = static_cast<QXmlErrorHandler*>(ptr)->errorString().toUtf8(); QtXml_PackedString { const_cast<char*>(t2e99c1.prepend("WHITESPACE").constData()+10), t2e99c1.size()-10 }; });
+	}
 }
 
 char QXmlErrorHandler_FatalError(void* ptr, void* exception)
 {
-	return static_cast<QXmlErrorHandler*>(ptr)->fatalError(*static_cast<QXmlParseException*>(exception));
+	if (dynamic_cast<QXmlDefaultHandler*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QXmlDefaultHandler*>(ptr)->fatalError(*static_cast<QXmlParseException*>(exception));
+	} else {
+		return static_cast<QXmlErrorHandler*>(ptr)->fatalError(*static_cast<QXmlParseException*>(exception));
+	}
 }
 
 char QXmlErrorHandler_Warning(void* ptr, void* exception)
 {
-	return static_cast<QXmlErrorHandler*>(ptr)->warning(*static_cast<QXmlParseException*>(exception));
+	if (dynamic_cast<QXmlDefaultHandler*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QXmlDefaultHandler*>(ptr)->warning(*static_cast<QXmlParseException*>(exception));
+	} else {
+		return static_cast<QXmlErrorHandler*>(ptr)->warning(*static_cast<QXmlParseException*>(exception));
+	}
 }
 
 void QXmlErrorHandler_DestroyQXmlErrorHandler(void* ptr)
@@ -1959,42 +2056,74 @@ public:
 
 char QXmlLexicalHandler_Comment(void* ptr, char* ch)
 {
-	return static_cast<QXmlLexicalHandler*>(ptr)->comment(QString(ch));
+	if (dynamic_cast<QXmlDefaultHandler*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QXmlDefaultHandler*>(ptr)->comment(QString(ch));
+	} else {
+		return static_cast<QXmlLexicalHandler*>(ptr)->comment(QString(ch));
+	}
 }
 
 char QXmlLexicalHandler_EndCDATA(void* ptr)
 {
-	return static_cast<QXmlLexicalHandler*>(ptr)->endCDATA();
+	if (dynamic_cast<QXmlDefaultHandler*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QXmlDefaultHandler*>(ptr)->endCDATA();
+	} else {
+		return static_cast<QXmlLexicalHandler*>(ptr)->endCDATA();
+	}
 }
 
 char QXmlLexicalHandler_EndDTD(void* ptr)
 {
-	return static_cast<QXmlLexicalHandler*>(ptr)->endDTD();
+	if (dynamic_cast<QXmlDefaultHandler*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QXmlDefaultHandler*>(ptr)->endDTD();
+	} else {
+		return static_cast<QXmlLexicalHandler*>(ptr)->endDTD();
+	}
 }
 
 char QXmlLexicalHandler_EndEntity(void* ptr, char* name)
 {
-	return static_cast<QXmlLexicalHandler*>(ptr)->endEntity(QString(name));
+	if (dynamic_cast<QXmlDefaultHandler*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QXmlDefaultHandler*>(ptr)->endEntity(QString(name));
+	} else {
+		return static_cast<QXmlLexicalHandler*>(ptr)->endEntity(QString(name));
+	}
 }
 
 struct QtXml_PackedString QXmlLexicalHandler_ErrorString(void* ptr)
 {
-	return ({ QByteArray t0032b9 = static_cast<QXmlLexicalHandler*>(ptr)->errorString().toUtf8(); QtXml_PackedString { const_cast<char*>(t0032b9.prepend("WHITESPACE").constData()+10), t0032b9.size()-10 }; });
+	if (dynamic_cast<QXmlDefaultHandler*>(static_cast<QObject*>(ptr))) {
+		return ({ QByteArray t0032b9 = static_cast<QXmlDefaultHandler*>(ptr)->errorString().toUtf8(); QtXml_PackedString { const_cast<char*>(t0032b9.prepend("WHITESPACE").constData()+10), t0032b9.size()-10 }; });
+	} else {
+		return ({ QByteArray t0032b9 = static_cast<QXmlLexicalHandler*>(ptr)->errorString().toUtf8(); QtXml_PackedString { const_cast<char*>(t0032b9.prepend("WHITESPACE").constData()+10), t0032b9.size()-10 }; });
+	}
 }
 
 char QXmlLexicalHandler_StartCDATA(void* ptr)
 {
-	return static_cast<QXmlLexicalHandler*>(ptr)->startCDATA();
+	if (dynamic_cast<QXmlDefaultHandler*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QXmlDefaultHandler*>(ptr)->startCDATA();
+	} else {
+		return static_cast<QXmlLexicalHandler*>(ptr)->startCDATA();
+	}
 }
 
 char QXmlLexicalHandler_StartDTD(void* ptr, char* name, char* publicId, char* systemId)
 {
-	return static_cast<QXmlLexicalHandler*>(ptr)->startDTD(QString(name), QString(publicId), QString(systemId));
+	if (dynamic_cast<QXmlDefaultHandler*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QXmlDefaultHandler*>(ptr)->startDTD(QString(name), QString(publicId), QString(systemId));
+	} else {
+		return static_cast<QXmlLexicalHandler*>(ptr)->startDTD(QString(name), QString(publicId), QString(systemId));
+	}
 }
 
 char QXmlLexicalHandler_StartEntity(void* ptr, char* name)
 {
-	return static_cast<QXmlLexicalHandler*>(ptr)->startEntity(QString(name));
+	if (dynamic_cast<QXmlDefaultHandler*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QXmlDefaultHandler*>(ptr)->startEntity(QString(name));
+	} else {
+		return static_cast<QXmlLexicalHandler*>(ptr)->startEntity(QString(name));
+	}
 }
 
 void QXmlLexicalHandler_DestroyQXmlLexicalHandler(void* ptr)
@@ -2223,27 +2352,47 @@ void* QXmlReader_Property(void* ptr, char* name, char ok)
 
 void QXmlReader_SetContentHandler(void* ptr, void* handler)
 {
-	static_cast<QXmlReader*>(ptr)->setContentHandler(static_cast<QXmlContentHandler*>(handler));
+	if (dynamic_cast<QXmlDefaultHandler*>(static_cast<QObject*>(handler))) {
+		static_cast<QXmlReader*>(ptr)->setContentHandler(static_cast<QXmlDefaultHandler*>(handler));
+	} else {
+		static_cast<QXmlReader*>(ptr)->setContentHandler(static_cast<QXmlContentHandler*>(handler));
+	}
 }
 
 void QXmlReader_SetDTDHandler(void* ptr, void* handler)
 {
-	static_cast<QXmlReader*>(ptr)->setDTDHandler(static_cast<QXmlDTDHandler*>(handler));
+	if (dynamic_cast<QXmlDefaultHandler*>(static_cast<QObject*>(handler))) {
+		static_cast<QXmlReader*>(ptr)->setDTDHandler(static_cast<QXmlDefaultHandler*>(handler));
+	} else {
+		static_cast<QXmlReader*>(ptr)->setDTDHandler(static_cast<QXmlDTDHandler*>(handler));
+	}
 }
 
 void QXmlReader_SetDeclHandler(void* ptr, void* handler)
 {
-	static_cast<QXmlReader*>(ptr)->setDeclHandler(static_cast<QXmlDeclHandler*>(handler));
+	if (dynamic_cast<QXmlDefaultHandler*>(static_cast<QObject*>(handler))) {
+		static_cast<QXmlReader*>(ptr)->setDeclHandler(static_cast<QXmlDefaultHandler*>(handler));
+	} else {
+		static_cast<QXmlReader*>(ptr)->setDeclHandler(static_cast<QXmlDeclHandler*>(handler));
+	}
 }
 
 void QXmlReader_SetEntityResolver(void* ptr, void* handler)
 {
-	static_cast<QXmlReader*>(ptr)->setEntityResolver(static_cast<QXmlEntityResolver*>(handler));
+	if (dynamic_cast<QXmlDefaultHandler*>(static_cast<QObject*>(handler))) {
+		static_cast<QXmlReader*>(ptr)->setEntityResolver(static_cast<QXmlDefaultHandler*>(handler));
+	} else {
+		static_cast<QXmlReader*>(ptr)->setEntityResolver(static_cast<QXmlEntityResolver*>(handler));
+	}
 }
 
 void QXmlReader_SetErrorHandler(void* ptr, void* handler)
 {
-	static_cast<QXmlReader*>(ptr)->setErrorHandler(static_cast<QXmlErrorHandler*>(handler));
+	if (dynamic_cast<QXmlDefaultHandler*>(static_cast<QObject*>(handler))) {
+		static_cast<QXmlReader*>(ptr)->setErrorHandler(static_cast<QXmlDefaultHandler*>(handler));
+	} else {
+		static_cast<QXmlReader*>(ptr)->setErrorHandler(static_cast<QXmlErrorHandler*>(handler));
+	}
 }
 
 void QXmlReader_SetFeature(void* ptr, char* name, char value)
@@ -2253,7 +2402,11 @@ void QXmlReader_SetFeature(void* ptr, char* name, char value)
 
 void QXmlReader_SetLexicalHandler(void* ptr, void* handler)
 {
-	static_cast<QXmlReader*>(ptr)->setLexicalHandler(static_cast<QXmlLexicalHandler*>(handler));
+	if (dynamic_cast<QXmlDefaultHandler*>(static_cast<QObject*>(handler))) {
+		static_cast<QXmlReader*>(ptr)->setLexicalHandler(static_cast<QXmlDefaultHandler*>(handler));
+	} else {
+		static_cast<QXmlReader*>(ptr)->setLexicalHandler(static_cast<QXmlLexicalHandler*>(handler));
+	}
 }
 
 void QXmlReader_SetProperty(void* ptr, char* name, void* value)
@@ -2447,52 +2600,92 @@ void* QXmlSimpleReader_PropertyDefault(void* ptr, char* name, char ok)
 
 void QXmlSimpleReader_SetContentHandler(void* ptr, void* handler)
 {
-	static_cast<QXmlSimpleReader*>(ptr)->setContentHandler(static_cast<QXmlContentHandler*>(handler));
+	if (dynamic_cast<QXmlDefaultHandler*>(static_cast<QObject*>(handler))) {
+		static_cast<QXmlSimpleReader*>(ptr)->setContentHandler(static_cast<QXmlDefaultHandler*>(handler));
+	} else {
+		static_cast<QXmlSimpleReader*>(ptr)->setContentHandler(static_cast<QXmlContentHandler*>(handler));
+	}
 }
 
 void QXmlSimpleReader_SetContentHandlerDefault(void* ptr, void* handler)
 {
-	static_cast<QXmlSimpleReader*>(ptr)->QXmlSimpleReader::setContentHandler(static_cast<QXmlContentHandler*>(handler));
+	if (dynamic_cast<QXmlDefaultHandler*>(static_cast<QObject*>(handler))) {
+		static_cast<QXmlSimpleReader*>(ptr)->QXmlSimpleReader::setContentHandler(static_cast<QXmlDefaultHandler*>(handler));
+	} else {
+		static_cast<QXmlSimpleReader*>(ptr)->QXmlSimpleReader::setContentHandler(static_cast<QXmlContentHandler*>(handler));
+	}
 }
 
 void QXmlSimpleReader_SetDTDHandler(void* ptr, void* handler)
 {
-	static_cast<QXmlSimpleReader*>(ptr)->setDTDHandler(static_cast<QXmlDTDHandler*>(handler));
+	if (dynamic_cast<QXmlDefaultHandler*>(static_cast<QObject*>(handler))) {
+		static_cast<QXmlSimpleReader*>(ptr)->setDTDHandler(static_cast<QXmlDefaultHandler*>(handler));
+	} else {
+		static_cast<QXmlSimpleReader*>(ptr)->setDTDHandler(static_cast<QXmlDTDHandler*>(handler));
+	}
 }
 
 void QXmlSimpleReader_SetDTDHandlerDefault(void* ptr, void* handler)
 {
-	static_cast<QXmlSimpleReader*>(ptr)->QXmlSimpleReader::setDTDHandler(static_cast<QXmlDTDHandler*>(handler));
+	if (dynamic_cast<QXmlDefaultHandler*>(static_cast<QObject*>(handler))) {
+		static_cast<QXmlSimpleReader*>(ptr)->QXmlSimpleReader::setDTDHandler(static_cast<QXmlDefaultHandler*>(handler));
+	} else {
+		static_cast<QXmlSimpleReader*>(ptr)->QXmlSimpleReader::setDTDHandler(static_cast<QXmlDTDHandler*>(handler));
+	}
 }
 
 void QXmlSimpleReader_SetDeclHandler(void* ptr, void* handler)
 {
-	static_cast<QXmlSimpleReader*>(ptr)->setDeclHandler(static_cast<QXmlDeclHandler*>(handler));
+	if (dynamic_cast<QXmlDefaultHandler*>(static_cast<QObject*>(handler))) {
+		static_cast<QXmlSimpleReader*>(ptr)->setDeclHandler(static_cast<QXmlDefaultHandler*>(handler));
+	} else {
+		static_cast<QXmlSimpleReader*>(ptr)->setDeclHandler(static_cast<QXmlDeclHandler*>(handler));
+	}
 }
 
 void QXmlSimpleReader_SetDeclHandlerDefault(void* ptr, void* handler)
 {
-	static_cast<QXmlSimpleReader*>(ptr)->QXmlSimpleReader::setDeclHandler(static_cast<QXmlDeclHandler*>(handler));
+	if (dynamic_cast<QXmlDefaultHandler*>(static_cast<QObject*>(handler))) {
+		static_cast<QXmlSimpleReader*>(ptr)->QXmlSimpleReader::setDeclHandler(static_cast<QXmlDefaultHandler*>(handler));
+	} else {
+		static_cast<QXmlSimpleReader*>(ptr)->QXmlSimpleReader::setDeclHandler(static_cast<QXmlDeclHandler*>(handler));
+	}
 }
 
 void QXmlSimpleReader_SetEntityResolver(void* ptr, void* handler)
 {
-	static_cast<QXmlSimpleReader*>(ptr)->setEntityResolver(static_cast<QXmlEntityResolver*>(handler));
+	if (dynamic_cast<QXmlDefaultHandler*>(static_cast<QObject*>(handler))) {
+		static_cast<QXmlSimpleReader*>(ptr)->setEntityResolver(static_cast<QXmlDefaultHandler*>(handler));
+	} else {
+		static_cast<QXmlSimpleReader*>(ptr)->setEntityResolver(static_cast<QXmlEntityResolver*>(handler));
+	}
 }
 
 void QXmlSimpleReader_SetEntityResolverDefault(void* ptr, void* handler)
 {
-	static_cast<QXmlSimpleReader*>(ptr)->QXmlSimpleReader::setEntityResolver(static_cast<QXmlEntityResolver*>(handler));
+	if (dynamic_cast<QXmlDefaultHandler*>(static_cast<QObject*>(handler))) {
+		static_cast<QXmlSimpleReader*>(ptr)->QXmlSimpleReader::setEntityResolver(static_cast<QXmlDefaultHandler*>(handler));
+	} else {
+		static_cast<QXmlSimpleReader*>(ptr)->QXmlSimpleReader::setEntityResolver(static_cast<QXmlEntityResolver*>(handler));
+	}
 }
 
 void QXmlSimpleReader_SetErrorHandler(void* ptr, void* handler)
 {
-	static_cast<QXmlSimpleReader*>(ptr)->setErrorHandler(static_cast<QXmlErrorHandler*>(handler));
+	if (dynamic_cast<QXmlDefaultHandler*>(static_cast<QObject*>(handler))) {
+		static_cast<QXmlSimpleReader*>(ptr)->setErrorHandler(static_cast<QXmlDefaultHandler*>(handler));
+	} else {
+		static_cast<QXmlSimpleReader*>(ptr)->setErrorHandler(static_cast<QXmlErrorHandler*>(handler));
+	}
 }
 
 void QXmlSimpleReader_SetErrorHandlerDefault(void* ptr, void* handler)
 {
-	static_cast<QXmlSimpleReader*>(ptr)->QXmlSimpleReader::setErrorHandler(static_cast<QXmlErrorHandler*>(handler));
+	if (dynamic_cast<QXmlDefaultHandler*>(static_cast<QObject*>(handler))) {
+		static_cast<QXmlSimpleReader*>(ptr)->QXmlSimpleReader::setErrorHandler(static_cast<QXmlDefaultHandler*>(handler));
+	} else {
+		static_cast<QXmlSimpleReader*>(ptr)->QXmlSimpleReader::setErrorHandler(static_cast<QXmlErrorHandler*>(handler));
+	}
 }
 
 void QXmlSimpleReader_SetFeature(void* ptr, char* name, char enable)
@@ -2507,12 +2700,20 @@ void QXmlSimpleReader_SetFeatureDefault(void* ptr, char* name, char enable)
 
 void QXmlSimpleReader_SetLexicalHandler(void* ptr, void* handler)
 {
-	static_cast<QXmlSimpleReader*>(ptr)->setLexicalHandler(static_cast<QXmlLexicalHandler*>(handler));
+	if (dynamic_cast<QXmlDefaultHandler*>(static_cast<QObject*>(handler))) {
+		static_cast<QXmlSimpleReader*>(ptr)->setLexicalHandler(static_cast<QXmlDefaultHandler*>(handler));
+	} else {
+		static_cast<QXmlSimpleReader*>(ptr)->setLexicalHandler(static_cast<QXmlLexicalHandler*>(handler));
+	}
 }
 
 void QXmlSimpleReader_SetLexicalHandlerDefault(void* ptr, void* handler)
 {
-	static_cast<QXmlSimpleReader*>(ptr)->QXmlSimpleReader::setLexicalHandler(static_cast<QXmlLexicalHandler*>(handler));
+	if (dynamic_cast<QXmlDefaultHandler*>(static_cast<QObject*>(handler))) {
+		static_cast<QXmlSimpleReader*>(ptr)->QXmlSimpleReader::setLexicalHandler(static_cast<QXmlDefaultHandler*>(handler));
+	} else {
+		static_cast<QXmlSimpleReader*>(ptr)->QXmlSimpleReader::setLexicalHandler(static_cast<QXmlLexicalHandler*>(handler));
+	}
 }
 
 void QXmlSimpleReader_SetProperty(void* ptr, char* name, void* value)

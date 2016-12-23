@@ -388,7 +388,17 @@ void QAbstractTextDocumentLayout_PositionInlineObjectDefault(void* ptr, void* it
 
 void QAbstractTextDocumentLayout_RegisterHandler(void* ptr, int objectType, void* component)
 {
-	static_cast<QAbstractTextDocumentLayout*>(ptr)->registerHandler(objectType, static_cast<QObject*>(component));
+	if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(component))) {
+		static_cast<QAbstractTextDocumentLayout*>(ptr)->registerHandler(objectType, static_cast<QOffscreenSurface*>(component));
+	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(component))) {
+		static_cast<QAbstractTextDocumentLayout*>(ptr)->registerHandler(objectType, static_cast<QPaintDeviceWindow*>(component));
+	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(component))) {
+		static_cast<QAbstractTextDocumentLayout*>(ptr)->registerHandler(objectType, static_cast<QPdfWriter*>(component));
+	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(component))) {
+		static_cast<QAbstractTextDocumentLayout*>(ptr)->registerHandler(objectType, static_cast<QWindow*>(component));
+	} else {
+		static_cast<QAbstractTextDocumentLayout*>(ptr)->registerHandler(objectType, static_cast<QObject*>(component));
+	}
 }
 
 void QAbstractTextDocumentLayout_ResizeInlineObject(void* ptr, void* item, int posInDocument, void* format)
@@ -403,12 +413,28 @@ void QAbstractTextDocumentLayout_ResizeInlineObjectDefault(void* ptr, void* item
 
 void QAbstractTextDocumentLayout_SetPaintDevice(void* ptr, void* device)
 {
-	static_cast<QAbstractTextDocumentLayout*>(ptr)->setPaintDevice(static_cast<QPaintDevice*>(device));
+	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(device))) {
+		static_cast<QAbstractTextDocumentLayout*>(ptr)->setPaintDevice(static_cast<QPaintDeviceWindow*>(device));
+	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(device))) {
+		static_cast<QAbstractTextDocumentLayout*>(ptr)->setPaintDevice(static_cast<QPdfWriter*>(device));
+	} else {
+		static_cast<QAbstractTextDocumentLayout*>(ptr)->setPaintDevice(static_cast<QPaintDevice*>(device));
+	}
 }
 
 void QAbstractTextDocumentLayout_UnregisterHandler(void* ptr, int objectType, void* component)
 {
-	static_cast<QAbstractTextDocumentLayout*>(ptr)->unregisterHandler(objectType, static_cast<QObject*>(component));
+	if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(component))) {
+		static_cast<QAbstractTextDocumentLayout*>(ptr)->unregisterHandler(objectType, static_cast<QOffscreenSurface*>(component));
+	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(component))) {
+		static_cast<QAbstractTextDocumentLayout*>(ptr)->unregisterHandler(objectType, static_cast<QPaintDeviceWindow*>(component));
+	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(component))) {
+		static_cast<QAbstractTextDocumentLayout*>(ptr)->unregisterHandler(objectType, static_cast<QPdfWriter*>(component));
+	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(component))) {
+		static_cast<QAbstractTextDocumentLayout*>(ptr)->unregisterHandler(objectType, static_cast<QWindow*>(component));
+	} else {
+		static_cast<QAbstractTextDocumentLayout*>(ptr)->unregisterHandler(objectType, static_cast<QObject*>(component));
+	}
 }
 
 void QAbstractTextDocumentLayout_ConnectUpdate(void* ptr)
@@ -513,12 +539,32 @@ char QAbstractTextDocumentLayout_EventDefault(void* ptr, void* e)
 
 char QAbstractTextDocumentLayout_EventFilter(void* ptr, void* watched, void* event)
 {
-	return static_cast<QAbstractTextDocumentLayout*>(ptr)->eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+	if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(watched))) {
+		return static_cast<QAbstractTextDocumentLayout*>(ptr)->eventFilter(static_cast<QOffscreenSurface*>(watched), static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(watched))) {
+		return static_cast<QAbstractTextDocumentLayout*>(ptr)->eventFilter(static_cast<QPaintDeviceWindow*>(watched), static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(watched))) {
+		return static_cast<QAbstractTextDocumentLayout*>(ptr)->eventFilter(static_cast<QPdfWriter*>(watched), static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(watched))) {
+		return static_cast<QAbstractTextDocumentLayout*>(ptr)->eventFilter(static_cast<QWindow*>(watched), static_cast<QEvent*>(event));
+	} else {
+		return static_cast<QAbstractTextDocumentLayout*>(ptr)->eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+	}
 }
 
 char QAbstractTextDocumentLayout_EventFilterDefault(void* ptr, void* watched, void* event)
 {
-	return static_cast<QAbstractTextDocumentLayout*>(ptr)->QAbstractTextDocumentLayout::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+	if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(watched))) {
+		return static_cast<QAbstractTextDocumentLayout*>(ptr)->QAbstractTextDocumentLayout::eventFilter(static_cast<QOffscreenSurface*>(watched), static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(watched))) {
+		return static_cast<QAbstractTextDocumentLayout*>(ptr)->QAbstractTextDocumentLayout::eventFilter(static_cast<QPaintDeviceWindow*>(watched), static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(watched))) {
+		return static_cast<QAbstractTextDocumentLayout*>(ptr)->QAbstractTextDocumentLayout::eventFilter(static_cast<QPdfWriter*>(watched), static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(watched))) {
+		return static_cast<QAbstractTextDocumentLayout*>(ptr)->QAbstractTextDocumentLayout::eventFilter(static_cast<QWindow*>(watched), static_cast<QEvent*>(event));
+	} else {
+		return static_cast<QAbstractTextDocumentLayout*>(ptr)->QAbstractTextDocumentLayout::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+	}
 }
 
 void* QAbstractTextDocumentLayout_MetaObject(void* ptr)
@@ -543,12 +589,32 @@ char QAccessible_QAccessible_IsActive()
 
 void* QAccessible_QAccessible_QueryAccessibleInterface(void* object)
 {
-	return QAccessible::queryAccessibleInterface(static_cast<QObject*>(object));
+	if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(object))) {
+		return QAccessible::queryAccessibleInterface(static_cast<QOffscreenSurface*>(object));
+	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(object))) {
+		return QAccessible::queryAccessibleInterface(static_cast<QPaintDeviceWindow*>(object));
+	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(object))) {
+		return QAccessible::queryAccessibleInterface(static_cast<QPdfWriter*>(object));
+	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(object))) {
+		return QAccessible::queryAccessibleInterface(static_cast<QWindow*>(object));
+	} else {
+		return QAccessible::queryAccessibleInterface(static_cast<QObject*>(object));
+	}
 }
 
 void QAccessible_QAccessible_SetRootObject(void* object)
 {
-	QAccessible::setRootObject(static_cast<QObject*>(object));
+	if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(object))) {
+		QAccessible::setRootObject(static_cast<QOffscreenSurface*>(object));
+	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(object))) {
+		QAccessible::setRootObject(static_cast<QPaintDeviceWindow*>(object));
+	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(object))) {
+		QAccessible::setRootObject(static_cast<QPdfWriter*>(object));
+	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(object))) {
+		QAccessible::setRootObject(static_cast<QWindow*>(object));
+	} else {
+		QAccessible::setRootObject(static_cast<QObject*>(object));
+	}
 }
 
 void QAccessible_QAccessible_UpdateAccessibility(void* event)
@@ -772,7 +838,7 @@ void* QAccessibleEvent_M_object(void* ptr)
 
 void QAccessibleEvent_SetM_object(void* ptr, void* vqo)
 {
-	static_cast<QAccessibleEvent*>(ptr)->m_object = static_cast<QObject*>(vqo);
+		static_cast<QAccessibleEvent*>(ptr)->m_object = static_cast<QObject*>(vqo);
 }
 
 long long QAccessibleEvent_M_type(void* ptr)
@@ -1144,7 +1210,17 @@ void* QAccessiblePlugin_NewQAccessiblePlugin(void* parent)
 
 void* QAccessiblePlugin_Create(void* ptr, char* key, void* object)
 {
-	return static_cast<QAccessiblePlugin*>(ptr)->create(QString(key), static_cast<QObject*>(object));
+	if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(object))) {
+		return static_cast<QAccessiblePlugin*>(ptr)->create(QString(key), static_cast<QOffscreenSurface*>(object));
+	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(object))) {
+		return static_cast<QAccessiblePlugin*>(ptr)->create(QString(key), static_cast<QPaintDeviceWindow*>(object));
+	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(object))) {
+		return static_cast<QAccessiblePlugin*>(ptr)->create(QString(key), static_cast<QPdfWriter*>(object));
+	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(object))) {
+		return static_cast<QAccessiblePlugin*>(ptr)->create(QString(key), static_cast<QWindow*>(object));
+	} else {
+		return static_cast<QAccessiblePlugin*>(ptr)->create(QString(key), static_cast<QObject*>(object));
+	}
 }
 
 void QAccessiblePlugin_DestroyQAccessiblePlugin(void* ptr)
@@ -1224,12 +1300,32 @@ char QAccessiblePlugin_EventDefault(void* ptr, void* e)
 
 char QAccessiblePlugin_EventFilter(void* ptr, void* watched, void* event)
 {
-	return static_cast<QAccessiblePlugin*>(ptr)->eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+	if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(watched))) {
+		return static_cast<QAccessiblePlugin*>(ptr)->eventFilter(static_cast<QOffscreenSurface*>(watched), static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(watched))) {
+		return static_cast<QAccessiblePlugin*>(ptr)->eventFilter(static_cast<QPaintDeviceWindow*>(watched), static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(watched))) {
+		return static_cast<QAccessiblePlugin*>(ptr)->eventFilter(static_cast<QPdfWriter*>(watched), static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(watched))) {
+		return static_cast<QAccessiblePlugin*>(ptr)->eventFilter(static_cast<QWindow*>(watched), static_cast<QEvent*>(event));
+	} else {
+		return static_cast<QAccessiblePlugin*>(ptr)->eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+	}
 }
 
 char QAccessiblePlugin_EventFilterDefault(void* ptr, void* watched, void* event)
 {
-	return static_cast<QAccessiblePlugin*>(ptr)->QAccessiblePlugin::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+	if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(watched))) {
+		return static_cast<QAccessiblePlugin*>(ptr)->QAccessiblePlugin::eventFilter(static_cast<QOffscreenSurface*>(watched), static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(watched))) {
+		return static_cast<QAccessiblePlugin*>(ptr)->QAccessiblePlugin::eventFilter(static_cast<QPaintDeviceWindow*>(watched), static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(watched))) {
+		return static_cast<QAccessiblePlugin*>(ptr)->QAccessiblePlugin::eventFilter(static_cast<QPdfWriter*>(watched), static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(watched))) {
+		return static_cast<QAccessiblePlugin*>(ptr)->QAccessiblePlugin::eventFilter(static_cast<QWindow*>(watched), static_cast<QEvent*>(event));
+	} else {
+		return static_cast<QAccessiblePlugin*>(ptr)->QAccessiblePlugin::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+	}
 }
 
 void* QAccessiblePlugin_MetaObject(void* ptr)
@@ -2085,7 +2181,11 @@ void QBackingStore_EndPaint(void* ptr)
 
 void QBackingStore_Flush(void* ptr, void* region, void* win, void* offset)
 {
-	static_cast<QBackingStore*>(ptr)->flush(*static_cast<QRegion*>(region), static_cast<QWindow*>(win), *static_cast<QPoint*>(offset));
+	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(win))) {
+		static_cast<QBackingStore*>(ptr)->flush(*static_cast<QRegion*>(region), static_cast<QPaintDeviceWindow*>(win), *static_cast<QPoint*>(offset));
+	} else {
+		static_cast<QBackingStore*>(ptr)->flush(*static_cast<QRegion*>(region), static_cast<QWindow*>(win), *static_cast<QPoint*>(offset));
+	}
 }
 
 char QBackingStore_HasStaticContents(void* ptr)
@@ -2558,12 +2658,32 @@ char QClipboard_EventDefault(void* ptr, void* e)
 
 char QClipboard_EventFilter(void* ptr, void* watched, void* event)
 {
-	return static_cast<QClipboard*>(ptr)->eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+	if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(watched))) {
+		return static_cast<QClipboard*>(ptr)->eventFilter(static_cast<QOffscreenSurface*>(watched), static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(watched))) {
+		return static_cast<QClipboard*>(ptr)->eventFilter(static_cast<QPaintDeviceWindow*>(watched), static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(watched))) {
+		return static_cast<QClipboard*>(ptr)->eventFilter(static_cast<QPdfWriter*>(watched), static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(watched))) {
+		return static_cast<QClipboard*>(ptr)->eventFilter(static_cast<QWindow*>(watched), static_cast<QEvent*>(event));
+	} else {
+		return static_cast<QClipboard*>(ptr)->eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+	}
 }
 
 char QClipboard_EventFilterDefault(void* ptr, void* watched, void* event)
 {
-	return static_cast<QClipboard*>(ptr)->QClipboard::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+	if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(watched))) {
+		return static_cast<QClipboard*>(ptr)->QClipboard::eventFilter(static_cast<QOffscreenSurface*>(watched), static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(watched))) {
+		return static_cast<QClipboard*>(ptr)->QClipboard::eventFilter(static_cast<QPaintDeviceWindow*>(watched), static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(watched))) {
+		return static_cast<QClipboard*>(ptr)->QClipboard::eventFilter(static_cast<QPdfWriter*>(watched), static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(watched))) {
+		return static_cast<QClipboard*>(ptr)->QClipboard::eventFilter(static_cast<QWindow*>(watched), static_cast<QEvent*>(event));
+	} else {
+		return static_cast<QClipboard*>(ptr)->QClipboard::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+	}
 }
 
 void* QClipboard_MetaObject(void* ptr)
@@ -3248,7 +3368,17 @@ char QDesktopServices_QDesktopServices_OpenUrl(void* url)
 
 void QDesktopServices_QDesktopServices_SetUrlHandler(char* scheme, void* receiver, char* method)
 {
-	QDesktopServices::setUrlHandler(QString(scheme), static_cast<QObject*>(receiver), const_cast<const char*>(method));
+	if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(receiver))) {
+		QDesktopServices::setUrlHandler(QString(scheme), static_cast<QOffscreenSurface*>(receiver), const_cast<const char*>(method));
+	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(receiver))) {
+		QDesktopServices::setUrlHandler(QString(scheme), static_cast<QPaintDeviceWindow*>(receiver), const_cast<const char*>(method));
+	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(receiver))) {
+		QDesktopServices::setUrlHandler(QString(scheme), static_cast<QPdfWriter*>(receiver), const_cast<const char*>(method));
+	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(receiver))) {
+		QDesktopServices::setUrlHandler(QString(scheme), static_cast<QWindow*>(receiver), const_cast<const char*>(method));
+	} else {
+		QDesktopServices::setUrlHandler(QString(scheme), static_cast<QObject*>(receiver), const_cast<const char*>(method));
+	}
 }
 
 void QDesktopServices_QDesktopServices_UnsetUrlHandler(char* scheme)
@@ -3432,12 +3562,32 @@ char QDoubleValidator_EventDefault(void* ptr, void* e)
 
 char QDoubleValidator_EventFilter(void* ptr, void* watched, void* event)
 {
-	return static_cast<QDoubleValidator*>(ptr)->eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+	if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(watched))) {
+		return static_cast<QDoubleValidator*>(ptr)->eventFilter(static_cast<QOffscreenSurface*>(watched), static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(watched))) {
+		return static_cast<QDoubleValidator*>(ptr)->eventFilter(static_cast<QPaintDeviceWindow*>(watched), static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(watched))) {
+		return static_cast<QDoubleValidator*>(ptr)->eventFilter(static_cast<QPdfWriter*>(watched), static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(watched))) {
+		return static_cast<QDoubleValidator*>(ptr)->eventFilter(static_cast<QWindow*>(watched), static_cast<QEvent*>(event));
+	} else {
+		return static_cast<QDoubleValidator*>(ptr)->eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+	}
 }
 
 char QDoubleValidator_EventFilterDefault(void* ptr, void* watched, void* event)
 {
-	return static_cast<QDoubleValidator*>(ptr)->QDoubleValidator::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+	if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(watched))) {
+		return static_cast<QDoubleValidator*>(ptr)->QDoubleValidator::eventFilter(static_cast<QOffscreenSurface*>(watched), static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(watched))) {
+		return static_cast<QDoubleValidator*>(ptr)->QDoubleValidator::eventFilter(static_cast<QPaintDeviceWindow*>(watched), static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(watched))) {
+		return static_cast<QDoubleValidator*>(ptr)->QDoubleValidator::eventFilter(static_cast<QPdfWriter*>(watched), static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(watched))) {
+		return static_cast<QDoubleValidator*>(ptr)->QDoubleValidator::eventFilter(static_cast<QWindow*>(watched), static_cast<QEvent*>(event));
+	} else {
+		return static_cast<QDoubleValidator*>(ptr)->QDoubleValidator::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+	}
 }
 
 void* QDoubleValidator_MetaObject(void* ptr)
@@ -3574,7 +3724,17 @@ void QDrag_DisconnectTargetChanged(void* ptr)
 
 void QDrag_TargetChanged(void* ptr, void* newTarget)
 {
-	static_cast<QDrag*>(ptr)->targetChanged(static_cast<QObject*>(newTarget));
+	if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(newTarget))) {
+		static_cast<QDrag*>(ptr)->targetChanged(static_cast<QOffscreenSurface*>(newTarget));
+	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(newTarget))) {
+		static_cast<QDrag*>(ptr)->targetChanged(static_cast<QPaintDeviceWindow*>(newTarget));
+	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(newTarget))) {
+		static_cast<QDrag*>(ptr)->targetChanged(static_cast<QPdfWriter*>(newTarget));
+	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(newTarget))) {
+		static_cast<QDrag*>(ptr)->targetChanged(static_cast<QWindow*>(newTarget));
+	} else {
+		static_cast<QDrag*>(ptr)->targetChanged(static_cast<QObject*>(newTarget));
+	}
 }
 
 void QDrag_DestroyQDrag(void* ptr)
@@ -3654,12 +3814,32 @@ char QDrag_EventDefault(void* ptr, void* e)
 
 char QDrag_EventFilter(void* ptr, void* watched, void* event)
 {
-	return static_cast<QDrag*>(ptr)->eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+	if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(watched))) {
+		return static_cast<QDrag*>(ptr)->eventFilter(static_cast<QOffscreenSurface*>(watched), static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(watched))) {
+		return static_cast<QDrag*>(ptr)->eventFilter(static_cast<QPaintDeviceWindow*>(watched), static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(watched))) {
+		return static_cast<QDrag*>(ptr)->eventFilter(static_cast<QPdfWriter*>(watched), static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(watched))) {
+		return static_cast<QDrag*>(ptr)->eventFilter(static_cast<QWindow*>(watched), static_cast<QEvent*>(event));
+	} else {
+		return static_cast<QDrag*>(ptr)->eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+	}
 }
 
 char QDrag_EventFilterDefault(void* ptr, void* watched, void* event)
 {
-	return static_cast<QDrag*>(ptr)->QDrag::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+	if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(watched))) {
+		return static_cast<QDrag*>(ptr)->QDrag::eventFilter(static_cast<QOffscreenSurface*>(watched), static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(watched))) {
+		return static_cast<QDrag*>(ptr)->QDrag::eventFilter(static_cast<QPaintDeviceWindow*>(watched), static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(watched))) {
+		return static_cast<QDrag*>(ptr)->QDrag::eventFilter(static_cast<QPdfWriter*>(watched), static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(watched))) {
+		return static_cast<QDrag*>(ptr)->QDrag::eventFilter(static_cast<QWindow*>(watched), static_cast<QEvent*>(event));
+	} else {
+		return static_cast<QDrag*>(ptr)->QDrag::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+	}
 }
 
 void* QDrag_MetaObject(void* ptr)
@@ -4955,12 +5135,32 @@ char QGenericPlugin_EventDefault(void* ptr, void* e)
 
 char QGenericPlugin_EventFilter(void* ptr, void* watched, void* event)
 {
-	return static_cast<QGenericPlugin*>(ptr)->eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+	if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(watched))) {
+		return static_cast<QGenericPlugin*>(ptr)->eventFilter(static_cast<QOffscreenSurface*>(watched), static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(watched))) {
+		return static_cast<QGenericPlugin*>(ptr)->eventFilter(static_cast<QPaintDeviceWindow*>(watched), static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(watched))) {
+		return static_cast<QGenericPlugin*>(ptr)->eventFilter(static_cast<QPdfWriter*>(watched), static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(watched))) {
+		return static_cast<QGenericPlugin*>(ptr)->eventFilter(static_cast<QWindow*>(watched), static_cast<QEvent*>(event));
+	} else {
+		return static_cast<QGenericPlugin*>(ptr)->eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+	}
 }
 
 char QGenericPlugin_EventFilterDefault(void* ptr, void* watched, void* event)
 {
-	return static_cast<QGenericPlugin*>(ptr)->QGenericPlugin::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+	if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(watched))) {
+		return static_cast<QGenericPlugin*>(ptr)->QGenericPlugin::eventFilter(static_cast<QOffscreenSurface*>(watched), static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(watched))) {
+		return static_cast<QGenericPlugin*>(ptr)->QGenericPlugin::eventFilter(static_cast<QPaintDeviceWindow*>(watched), static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(watched))) {
+		return static_cast<QGenericPlugin*>(ptr)->QGenericPlugin::eventFilter(static_cast<QPdfWriter*>(watched), static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(watched))) {
+		return static_cast<QGenericPlugin*>(ptr)->QGenericPlugin::eventFilter(static_cast<QWindow*>(watched), static_cast<QEvent*>(event));
+	} else {
+		return static_cast<QGenericPlugin*>(ptr)->QGenericPlugin::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+	}
 }
 
 void* QGenericPlugin_MetaObject(void* ptr)
@@ -5355,7 +5555,17 @@ void QGuiApplication_DisconnectFocusObjectChanged(void* ptr)
 
 void QGuiApplication_FocusObjectChanged(void* ptr, void* focusObject)
 {
-	static_cast<QGuiApplication*>(ptr)->focusObjectChanged(static_cast<QObject*>(focusObject));
+	if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(focusObject))) {
+		static_cast<QGuiApplication*>(ptr)->focusObjectChanged(static_cast<QOffscreenSurface*>(focusObject));
+	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(focusObject))) {
+		static_cast<QGuiApplication*>(ptr)->focusObjectChanged(static_cast<QPaintDeviceWindow*>(focusObject));
+	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(focusObject))) {
+		static_cast<QGuiApplication*>(ptr)->focusObjectChanged(static_cast<QPdfWriter*>(focusObject));
+	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(focusObject))) {
+		static_cast<QGuiApplication*>(ptr)->focusObjectChanged(static_cast<QWindow*>(focusObject));
+	} else {
+		static_cast<QGuiApplication*>(ptr)->focusObjectChanged(static_cast<QObject*>(focusObject));
+	}
 }
 
 void* QGuiApplication_QGuiApplication_FocusWindow()
@@ -5375,7 +5585,11 @@ void QGuiApplication_DisconnectFocusWindowChanged(void* ptr)
 
 void QGuiApplication_FocusWindowChanged(void* ptr, void* focusWindow)
 {
-	static_cast<QGuiApplication*>(ptr)->focusWindowChanged(static_cast<QWindow*>(focusWindow));
+	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(focusWindow))) {
+		static_cast<QGuiApplication*>(ptr)->focusWindowChanged(static_cast<QPaintDeviceWindow*>(focusWindow));
+	} else {
+		static_cast<QGuiApplication*>(ptr)->focusWindowChanged(static_cast<QWindow*>(focusWindow));
+	}
 }
 
 void* QGuiApplication_QGuiApplication_Font()
@@ -5670,12 +5884,32 @@ void QGuiApplication_DisconnectNotifyDefault(void* ptr, void* sign)
 
 char QGuiApplication_EventFilter(void* ptr, void* watched, void* event)
 {
-	return static_cast<QGuiApplication*>(ptr)->eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+	if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(watched))) {
+		return static_cast<QGuiApplication*>(ptr)->eventFilter(static_cast<QOffscreenSurface*>(watched), static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(watched))) {
+		return static_cast<QGuiApplication*>(ptr)->eventFilter(static_cast<QPaintDeviceWindow*>(watched), static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(watched))) {
+		return static_cast<QGuiApplication*>(ptr)->eventFilter(static_cast<QPdfWriter*>(watched), static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(watched))) {
+		return static_cast<QGuiApplication*>(ptr)->eventFilter(static_cast<QWindow*>(watched), static_cast<QEvent*>(event));
+	} else {
+		return static_cast<QGuiApplication*>(ptr)->eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+	}
 }
 
 char QGuiApplication_EventFilterDefault(void* ptr, void* watched, void* event)
 {
-	return static_cast<QGuiApplication*>(ptr)->QGuiApplication::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+	if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(watched))) {
+		return static_cast<QGuiApplication*>(ptr)->QGuiApplication::eventFilter(static_cast<QOffscreenSurface*>(watched), static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(watched))) {
+		return static_cast<QGuiApplication*>(ptr)->QGuiApplication::eventFilter(static_cast<QPaintDeviceWindow*>(watched), static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(watched))) {
+		return static_cast<QGuiApplication*>(ptr)->QGuiApplication::eventFilter(static_cast<QPdfWriter*>(watched), static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(watched))) {
+		return static_cast<QGuiApplication*>(ptr)->QGuiApplication::eventFilter(static_cast<QWindow*>(watched), static_cast<QEvent*>(event));
+	} else {
+		return static_cast<QGuiApplication*>(ptr)->QGuiApplication::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+	}
 }
 
 void* QGuiApplication_MetaObject(void* ptr)
@@ -5785,7 +6019,11 @@ void* QIcon_NewQIcon5(char* fileName)
 
 void* QIcon_ActualSize2(void* ptr, void* window, void* size, long long mode, long long state)
 {
-	return ({ QSize tmpValue = static_cast<QIcon*>(ptr)->actualSize(static_cast<QWindow*>(window), *static_cast<QSize*>(size), static_cast<QIcon::Mode>(mode), static_cast<QIcon::State>(state)); new QSize(tmpValue.width(), tmpValue.height()); });
+	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(window))) {
+		return ({ QSize tmpValue = static_cast<QIcon*>(ptr)->actualSize(static_cast<QPaintDeviceWindow*>(window), *static_cast<QSize*>(size), static_cast<QIcon::Mode>(mode), static_cast<QIcon::State>(state)); new QSize(tmpValue.width(), tmpValue.height()); });
+	} else {
+		return ({ QSize tmpValue = static_cast<QIcon*>(ptr)->actualSize(static_cast<QWindow*>(window), *static_cast<QSize*>(size), static_cast<QIcon::Mode>(mode), static_cast<QIcon::State>(state)); new QSize(tmpValue.width(), tmpValue.height()); });
+	}
 }
 
 void* QIcon_ActualSize(void* ptr, void* size, long long mode, long long state)
@@ -5855,7 +6093,11 @@ void QIcon_Paint2(void* ptr, void* painter, int x, int y, int w, int h, long lon
 
 void* QIcon_Pixmap4(void* ptr, void* window, void* size, long long mode, long long state)
 {
-	return new QPixmap(static_cast<QIcon*>(ptr)->pixmap(static_cast<QWindow*>(window), *static_cast<QSize*>(size), static_cast<QIcon::Mode>(mode), static_cast<QIcon::State>(state)));
+	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(window))) {
+		return new QPixmap(static_cast<QIcon*>(ptr)->pixmap(static_cast<QPaintDeviceWindow*>(window), *static_cast<QSize*>(size), static_cast<QIcon::Mode>(mode), static_cast<QIcon::State>(state)));
+	} else {
+		return new QPixmap(static_cast<QIcon*>(ptr)->pixmap(static_cast<QWindow*>(window), *static_cast<QSize*>(size), static_cast<QIcon::Mode>(mode), static_cast<QIcon::State>(state)));
+	}
 }
 
 void* QIcon_Pixmap(void* ptr, void* size, long long mode, long long state)
@@ -6169,12 +6411,32 @@ char QIconEnginePlugin_EventDefault(void* ptr, void* e)
 
 char QIconEnginePlugin_EventFilter(void* ptr, void* watched, void* event)
 {
-	return static_cast<QIconEnginePlugin*>(ptr)->eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+	if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(watched))) {
+		return static_cast<QIconEnginePlugin*>(ptr)->eventFilter(static_cast<QOffscreenSurface*>(watched), static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(watched))) {
+		return static_cast<QIconEnginePlugin*>(ptr)->eventFilter(static_cast<QPaintDeviceWindow*>(watched), static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(watched))) {
+		return static_cast<QIconEnginePlugin*>(ptr)->eventFilter(static_cast<QPdfWriter*>(watched), static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(watched))) {
+		return static_cast<QIconEnginePlugin*>(ptr)->eventFilter(static_cast<QWindow*>(watched), static_cast<QEvent*>(event));
+	} else {
+		return static_cast<QIconEnginePlugin*>(ptr)->eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+	}
 }
 
 char QIconEnginePlugin_EventFilterDefault(void* ptr, void* watched, void* event)
 {
-	return static_cast<QIconEnginePlugin*>(ptr)->QIconEnginePlugin::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+	if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(watched))) {
+		return static_cast<QIconEnginePlugin*>(ptr)->QIconEnginePlugin::eventFilter(static_cast<QOffscreenSurface*>(watched), static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(watched))) {
+		return static_cast<QIconEnginePlugin*>(ptr)->QIconEnginePlugin::eventFilter(static_cast<QPaintDeviceWindow*>(watched), static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(watched))) {
+		return static_cast<QIconEnginePlugin*>(ptr)->QIconEnginePlugin::eventFilter(static_cast<QPdfWriter*>(watched), static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(watched))) {
+		return static_cast<QIconEnginePlugin*>(ptr)->QIconEnginePlugin::eventFilter(static_cast<QWindow*>(watched), static_cast<QEvent*>(event));
+	} else {
+		return static_cast<QIconEnginePlugin*>(ptr)->QIconEnginePlugin::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+	}
 }
 
 void* QIconEnginePlugin_MetaObject(void* ptr)
@@ -6907,12 +7169,32 @@ char QImageIOPlugin_EventDefault(void* ptr, void* e)
 
 char QImageIOPlugin_EventFilter(void* ptr, void* watched, void* event)
 {
-	return static_cast<QImageIOPlugin*>(ptr)->eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+	if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(watched))) {
+		return static_cast<QImageIOPlugin*>(ptr)->eventFilter(static_cast<QOffscreenSurface*>(watched), static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(watched))) {
+		return static_cast<QImageIOPlugin*>(ptr)->eventFilter(static_cast<QPaintDeviceWindow*>(watched), static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(watched))) {
+		return static_cast<QImageIOPlugin*>(ptr)->eventFilter(static_cast<QPdfWriter*>(watched), static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(watched))) {
+		return static_cast<QImageIOPlugin*>(ptr)->eventFilter(static_cast<QWindow*>(watched), static_cast<QEvent*>(event));
+	} else {
+		return static_cast<QImageIOPlugin*>(ptr)->eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+	}
 }
 
 char QImageIOPlugin_EventFilterDefault(void* ptr, void* watched, void* event)
 {
-	return static_cast<QImageIOPlugin*>(ptr)->QImageIOPlugin::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+	if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(watched))) {
+		return static_cast<QImageIOPlugin*>(ptr)->QImageIOPlugin::eventFilter(static_cast<QOffscreenSurface*>(watched), static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(watched))) {
+		return static_cast<QImageIOPlugin*>(ptr)->QImageIOPlugin::eventFilter(static_cast<QPaintDeviceWindow*>(watched), static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(watched))) {
+		return static_cast<QImageIOPlugin*>(ptr)->QImageIOPlugin::eventFilter(static_cast<QPdfWriter*>(watched), static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(watched))) {
+		return static_cast<QImageIOPlugin*>(ptr)->QImageIOPlugin::eventFilter(static_cast<QWindow*>(watched), static_cast<QEvent*>(event));
+	} else {
+		return static_cast<QImageIOPlugin*>(ptr)->QImageIOPlugin::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+	}
 }
 
 void* QImageIOPlugin_MetaObject(void* ptr)
@@ -7735,12 +8017,32 @@ char QInputMethod_EventDefault(void* ptr, void* e)
 
 char QInputMethod_EventFilter(void* ptr, void* watched, void* event)
 {
-	return static_cast<QInputMethod*>(ptr)->eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+	if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(watched))) {
+		return static_cast<QInputMethod*>(ptr)->eventFilter(static_cast<QOffscreenSurface*>(watched), static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(watched))) {
+		return static_cast<QInputMethod*>(ptr)->eventFilter(static_cast<QPaintDeviceWindow*>(watched), static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(watched))) {
+		return static_cast<QInputMethod*>(ptr)->eventFilter(static_cast<QPdfWriter*>(watched), static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(watched))) {
+		return static_cast<QInputMethod*>(ptr)->eventFilter(static_cast<QWindow*>(watched), static_cast<QEvent*>(event));
+	} else {
+		return static_cast<QInputMethod*>(ptr)->eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+	}
 }
 
 char QInputMethod_EventFilterDefault(void* ptr, void* watched, void* event)
 {
-	return static_cast<QInputMethod*>(ptr)->QInputMethod::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+	if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(watched))) {
+		return static_cast<QInputMethod*>(ptr)->QInputMethod::eventFilter(static_cast<QOffscreenSurface*>(watched), static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(watched))) {
+		return static_cast<QInputMethod*>(ptr)->QInputMethod::eventFilter(static_cast<QPaintDeviceWindow*>(watched), static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(watched))) {
+		return static_cast<QInputMethod*>(ptr)->QInputMethod::eventFilter(static_cast<QPdfWriter*>(watched), static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(watched))) {
+		return static_cast<QInputMethod*>(ptr)->QInputMethod::eventFilter(static_cast<QWindow*>(watched), static_cast<QEvent*>(event));
+	} else {
+		return static_cast<QInputMethod*>(ptr)->QInputMethod::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+	}
 }
 
 void* QInputMethod_MetaObject(void* ptr)
@@ -7969,12 +8271,32 @@ char QIntValidator_EventDefault(void* ptr, void* e)
 
 char QIntValidator_EventFilter(void* ptr, void* watched, void* event)
 {
-	return static_cast<QIntValidator*>(ptr)->eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+	if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(watched))) {
+		return static_cast<QIntValidator*>(ptr)->eventFilter(static_cast<QOffscreenSurface*>(watched), static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(watched))) {
+		return static_cast<QIntValidator*>(ptr)->eventFilter(static_cast<QPaintDeviceWindow*>(watched), static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(watched))) {
+		return static_cast<QIntValidator*>(ptr)->eventFilter(static_cast<QPdfWriter*>(watched), static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(watched))) {
+		return static_cast<QIntValidator*>(ptr)->eventFilter(static_cast<QWindow*>(watched), static_cast<QEvent*>(event));
+	} else {
+		return static_cast<QIntValidator*>(ptr)->eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+	}
 }
 
 char QIntValidator_EventFilterDefault(void* ptr, void* watched, void* event)
 {
-	return static_cast<QIntValidator*>(ptr)->QIntValidator::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+	if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(watched))) {
+		return static_cast<QIntValidator*>(ptr)->QIntValidator::eventFilter(static_cast<QOffscreenSurface*>(watched), static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(watched))) {
+		return static_cast<QIntValidator*>(ptr)->QIntValidator::eventFilter(static_cast<QPaintDeviceWindow*>(watched), static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(watched))) {
+		return static_cast<QIntValidator*>(ptr)->QIntValidator::eventFilter(static_cast<QPdfWriter*>(watched), static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(watched))) {
+		return static_cast<QIntValidator*>(ptr)->QIntValidator::eventFilter(static_cast<QWindow*>(watched), static_cast<QEvent*>(event));
+	} else {
+		return static_cast<QIntValidator*>(ptr)->QIntValidator::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+	}
 }
 
 void* QIntValidator_MetaObject(void* ptr)
@@ -8985,12 +9307,32 @@ char QMovie_EventDefault(void* ptr, void* e)
 
 char QMovie_EventFilter(void* ptr, void* watched, void* event)
 {
-	return static_cast<QMovie*>(ptr)->eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+	if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(watched))) {
+		return static_cast<QMovie*>(ptr)->eventFilter(static_cast<QOffscreenSurface*>(watched), static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(watched))) {
+		return static_cast<QMovie*>(ptr)->eventFilter(static_cast<QPaintDeviceWindow*>(watched), static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(watched))) {
+		return static_cast<QMovie*>(ptr)->eventFilter(static_cast<QPdfWriter*>(watched), static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(watched))) {
+		return static_cast<QMovie*>(ptr)->eventFilter(static_cast<QWindow*>(watched), static_cast<QEvent*>(event));
+	} else {
+		return static_cast<QMovie*>(ptr)->eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+	}
 }
 
 char QMovie_EventFilterDefault(void* ptr, void* watched, void* event)
 {
-	return static_cast<QMovie*>(ptr)->QMovie::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+	if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(watched))) {
+		return static_cast<QMovie*>(ptr)->QMovie::eventFilter(static_cast<QOffscreenSurface*>(watched), static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(watched))) {
+		return static_cast<QMovie*>(ptr)->QMovie::eventFilter(static_cast<QPaintDeviceWindow*>(watched), static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(watched))) {
+		return static_cast<QMovie*>(ptr)->QMovie::eventFilter(static_cast<QPdfWriter*>(watched), static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(watched))) {
+		return static_cast<QMovie*>(ptr)->QMovie::eventFilter(static_cast<QWindow*>(watched), static_cast<QEvent*>(event));
+	} else {
+		return static_cast<QMovie*>(ptr)->QMovie::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+	}
 }
 
 void* QMovie_MetaObject(void* ptr)
@@ -9140,37 +9482,37 @@ void* QOffscreenSurface_NewQOffscreenSurface(void* targetScreen)
 
 void QOffscreenSurface_Create(void* ptr)
 {
-	static_cast<QOffscreenSurface*>(ptr)->create();
+		static_cast<QOffscreenSurface*>(ptr)->create();
 }
 
 void QOffscreenSurface_Destroy(void* ptr)
 {
-	static_cast<QOffscreenSurface*>(ptr)->destroy();
+		static_cast<QOffscreenSurface*>(ptr)->destroy();
 }
 
 void* QOffscreenSurface_Format(void* ptr)
 {
-	return new QSurfaceFormat(static_cast<QOffscreenSurface*>(ptr)->format());
+		return new QSurfaceFormat(static_cast<QOffscreenSurface*>(ptr)->format());
 }
 
 void* QOffscreenSurface_FormatDefault(void* ptr)
 {
-	return new QSurfaceFormat(static_cast<QOffscreenSurface*>(ptr)->QOffscreenSurface::format());
+		return new QSurfaceFormat(static_cast<QOffscreenSurface*>(ptr)->QOffscreenSurface::format());
 }
 
 char QOffscreenSurface_IsValid(void* ptr)
 {
-	return static_cast<QOffscreenSurface*>(ptr)->isValid();
+		return static_cast<QOffscreenSurface*>(ptr)->isValid();
 }
 
 void* QOffscreenSurface_RequestedFormat(void* ptr)
 {
-	return new QSurfaceFormat(static_cast<QOffscreenSurface*>(ptr)->requestedFormat());
+		return new QSurfaceFormat(static_cast<QOffscreenSurface*>(ptr)->requestedFormat());
 }
 
 void* QOffscreenSurface_Screen(void* ptr)
 {
-	return static_cast<QOffscreenSurface*>(ptr)->screen();
+		return static_cast<QOffscreenSurface*>(ptr)->screen();
 }
 
 void QOffscreenSurface_ConnectScreenChanged(void* ptr)
@@ -9185,37 +9527,37 @@ void QOffscreenSurface_DisconnectScreenChanged(void* ptr)
 
 void QOffscreenSurface_ScreenChanged(void* ptr, void* screen)
 {
-	static_cast<QOffscreenSurface*>(ptr)->screenChanged(static_cast<QScreen*>(screen));
+		static_cast<QOffscreenSurface*>(ptr)->screenChanged(static_cast<QScreen*>(screen));
 }
 
 void QOffscreenSurface_SetFormat(void* ptr, void* format)
 {
-	static_cast<QOffscreenSurface*>(ptr)->setFormat(*static_cast<QSurfaceFormat*>(format));
+		static_cast<QOffscreenSurface*>(ptr)->setFormat(*static_cast<QSurfaceFormat*>(format));
 }
 
 void QOffscreenSurface_SetScreen(void* ptr, void* newScreen)
 {
-	static_cast<QOffscreenSurface*>(ptr)->setScreen(static_cast<QScreen*>(newScreen));
+		static_cast<QOffscreenSurface*>(ptr)->setScreen(static_cast<QScreen*>(newScreen));
 }
 
 void* QOffscreenSurface_Size(void* ptr)
 {
-	return ({ QSize tmpValue = static_cast<QOffscreenSurface*>(ptr)->size(); new QSize(tmpValue.width(), tmpValue.height()); });
+		return ({ QSize tmpValue = static_cast<QOffscreenSurface*>(ptr)->size(); new QSize(tmpValue.width(), tmpValue.height()); });
 }
 
 void* QOffscreenSurface_SizeDefault(void* ptr)
 {
-	return ({ QSize tmpValue = static_cast<QOffscreenSurface*>(ptr)->QOffscreenSurface::size(); new QSize(tmpValue.width(), tmpValue.height()); });
+		return ({ QSize tmpValue = static_cast<QOffscreenSurface*>(ptr)->QOffscreenSurface::size(); new QSize(tmpValue.width(), tmpValue.height()); });
 }
 
 long long QOffscreenSurface_SurfaceType(void* ptr)
 {
-	return static_cast<QOffscreenSurface*>(ptr)->surfaceType();
+		return static_cast<QOffscreenSurface*>(ptr)->surfaceType();
 }
 
 long long QOffscreenSurface_SurfaceTypeDefault(void* ptr)
 {
-	return static_cast<QOffscreenSurface*>(ptr)->QOffscreenSurface::surfaceType();
+		return static_cast<QOffscreenSurface*>(ptr)->QOffscreenSurface::surfaceType();
 }
 
 void QOffscreenSurface_DestroyQOffscreenSurface(void* ptr)
@@ -9230,92 +9572,112 @@ void QOffscreenSurface_DestroyQOffscreenSurfaceDefault(void* ptr)
 
 void QOffscreenSurface_TimerEvent(void* ptr, void* event)
 {
-	static_cast<QOffscreenSurface*>(ptr)->timerEvent(static_cast<QTimerEvent*>(event));
+		static_cast<QOffscreenSurface*>(ptr)->timerEvent(static_cast<QTimerEvent*>(event));
 }
 
 void QOffscreenSurface_TimerEventDefault(void* ptr, void* event)
 {
-	static_cast<QOffscreenSurface*>(ptr)->QOffscreenSurface::timerEvent(static_cast<QTimerEvent*>(event));
+		static_cast<QOffscreenSurface*>(ptr)->QOffscreenSurface::timerEvent(static_cast<QTimerEvent*>(event));
 }
 
 void QOffscreenSurface_ChildEvent(void* ptr, void* event)
 {
-	static_cast<QOffscreenSurface*>(ptr)->childEvent(static_cast<QChildEvent*>(event));
+		static_cast<QOffscreenSurface*>(ptr)->childEvent(static_cast<QChildEvent*>(event));
 }
 
 void QOffscreenSurface_ChildEventDefault(void* ptr, void* event)
 {
-	static_cast<QOffscreenSurface*>(ptr)->QOffscreenSurface::childEvent(static_cast<QChildEvent*>(event));
+		static_cast<QOffscreenSurface*>(ptr)->QOffscreenSurface::childEvent(static_cast<QChildEvent*>(event));
 }
 
 void QOffscreenSurface_ConnectNotify(void* ptr, void* sign)
 {
-	static_cast<QOffscreenSurface*>(ptr)->connectNotify(*static_cast<QMetaMethod*>(sign));
+		static_cast<QOffscreenSurface*>(ptr)->connectNotify(*static_cast<QMetaMethod*>(sign));
 }
 
 void QOffscreenSurface_ConnectNotifyDefault(void* ptr, void* sign)
 {
-	static_cast<QOffscreenSurface*>(ptr)->QOffscreenSurface::connectNotify(*static_cast<QMetaMethod*>(sign));
+		static_cast<QOffscreenSurface*>(ptr)->QOffscreenSurface::connectNotify(*static_cast<QMetaMethod*>(sign));
 }
 
 void QOffscreenSurface_CustomEvent(void* ptr, void* event)
 {
-	static_cast<QOffscreenSurface*>(ptr)->customEvent(static_cast<QEvent*>(event));
+		static_cast<QOffscreenSurface*>(ptr)->customEvent(static_cast<QEvent*>(event));
 }
 
 void QOffscreenSurface_CustomEventDefault(void* ptr, void* event)
 {
-	static_cast<QOffscreenSurface*>(ptr)->QOffscreenSurface::customEvent(static_cast<QEvent*>(event));
+		static_cast<QOffscreenSurface*>(ptr)->QOffscreenSurface::customEvent(static_cast<QEvent*>(event));
 }
 
 void QOffscreenSurface_DeleteLater(void* ptr)
 {
-	QMetaObject::invokeMethod(static_cast<QOffscreenSurface*>(ptr), "deleteLater");
+		QMetaObject::invokeMethod(static_cast<QOffscreenSurface*>(ptr), "deleteLater");
 }
 
 void QOffscreenSurface_DeleteLaterDefault(void* ptr)
 {
-	static_cast<QOffscreenSurface*>(ptr)->QOffscreenSurface::deleteLater();
+		static_cast<QOffscreenSurface*>(ptr)->QOffscreenSurface::deleteLater();
 }
 
 void QOffscreenSurface_DisconnectNotify(void* ptr, void* sign)
 {
-	static_cast<QOffscreenSurface*>(ptr)->disconnectNotify(*static_cast<QMetaMethod*>(sign));
+		static_cast<QOffscreenSurface*>(ptr)->disconnectNotify(*static_cast<QMetaMethod*>(sign));
 }
 
 void QOffscreenSurface_DisconnectNotifyDefault(void* ptr, void* sign)
 {
-	static_cast<QOffscreenSurface*>(ptr)->QOffscreenSurface::disconnectNotify(*static_cast<QMetaMethod*>(sign));
+		static_cast<QOffscreenSurface*>(ptr)->QOffscreenSurface::disconnectNotify(*static_cast<QMetaMethod*>(sign));
 }
 
 char QOffscreenSurface_Event(void* ptr, void* e)
 {
-	return static_cast<QOffscreenSurface*>(ptr)->event(static_cast<QEvent*>(e));
+		return static_cast<QOffscreenSurface*>(ptr)->event(static_cast<QEvent*>(e));
 }
 
 char QOffscreenSurface_EventDefault(void* ptr, void* e)
 {
-	return static_cast<QOffscreenSurface*>(ptr)->QOffscreenSurface::event(static_cast<QEvent*>(e));
+		return static_cast<QOffscreenSurface*>(ptr)->QOffscreenSurface::event(static_cast<QEvent*>(e));
 }
 
 char QOffscreenSurface_EventFilter(void* ptr, void* watched, void* event)
 {
-	return static_cast<QOffscreenSurface*>(ptr)->eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+	if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(watched))) {
+		return static_cast<QOffscreenSurface*>(ptr)->eventFilter(static_cast<QOffscreenSurface*>(watched), static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(watched))) {
+		return static_cast<QOffscreenSurface*>(ptr)->eventFilter(static_cast<QPaintDeviceWindow*>(watched), static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(watched))) {
+		return static_cast<QOffscreenSurface*>(ptr)->eventFilter(static_cast<QPdfWriter*>(watched), static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(watched))) {
+		return static_cast<QOffscreenSurface*>(ptr)->eventFilter(static_cast<QWindow*>(watched), static_cast<QEvent*>(event));
+	} else {
+		return static_cast<QOffscreenSurface*>(ptr)->eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+	}
 }
 
 char QOffscreenSurface_EventFilterDefault(void* ptr, void* watched, void* event)
 {
-	return static_cast<QOffscreenSurface*>(ptr)->QOffscreenSurface::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+	if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(watched))) {
+		return static_cast<QOffscreenSurface*>(ptr)->QOffscreenSurface::eventFilter(static_cast<QOffscreenSurface*>(watched), static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(watched))) {
+		return static_cast<QOffscreenSurface*>(ptr)->QOffscreenSurface::eventFilter(static_cast<QPaintDeviceWindow*>(watched), static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(watched))) {
+		return static_cast<QOffscreenSurface*>(ptr)->QOffscreenSurface::eventFilter(static_cast<QPdfWriter*>(watched), static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(watched))) {
+		return static_cast<QOffscreenSurface*>(ptr)->QOffscreenSurface::eventFilter(static_cast<QWindow*>(watched), static_cast<QEvent*>(event));
+	} else {
+		return static_cast<QOffscreenSurface*>(ptr)->QOffscreenSurface::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+	}
 }
 
 void* QOffscreenSurface_MetaObject(void* ptr)
 {
-	return const_cast<QMetaObject*>(static_cast<QOffscreenSurface*>(ptr)->metaObject());
+		return const_cast<QMetaObject*>(static_cast<QOffscreenSurface*>(ptr)->metaObject());
 }
 
 void* QOffscreenSurface_MetaObjectDefault(void* ptr)
 {
-	return const_cast<QMetaObject*>(static_cast<QOffscreenSurface*>(ptr)->QOffscreenSurface::metaObject());
+		return const_cast<QMetaObject*>(static_cast<QOffscreenSurface*>(ptr)->QOffscreenSurface::metaObject());
 }
 
 void* QPageLayout_NewQPageLayout()
@@ -9672,22 +10034,38 @@ void* QPagedPaintDevice_NewQPagedPaintDevice()
 
 char QPagedPaintDevice_NewPage(void* ptr)
 {
-	return static_cast<QPagedPaintDevice*>(ptr)->newPage();
+	if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QPdfWriter*>(ptr)->newPage();
+	} else {
+		return static_cast<QPagedPaintDevice*>(ptr)->newPage();
+	}
 }
 
 void* QPagedPaintDevice_PageLayout(void* ptr)
 {
-	return new QPageLayout(static_cast<QPagedPaintDevice*>(ptr)->pageLayout());
+	if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(ptr))) {
+		return new QPageLayout(static_cast<QPdfWriter*>(ptr)->pageLayout());
+	} else {
+		return new QPageLayout(static_cast<QPagedPaintDevice*>(ptr)->pageLayout());
+	}
 }
 
 long long QPagedPaintDevice_PageSize(void* ptr)
 {
-	return static_cast<QPagedPaintDevice*>(ptr)->pageSize();
+	if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QPdfWriter*>(ptr)->pageSize();
+	} else {
+		return static_cast<QPagedPaintDevice*>(ptr)->pageSize();
+	}
 }
 
 void* QPagedPaintDevice_PageSizeMM(void* ptr)
 {
-	return ({ QSizeF tmpValue = static_cast<QPagedPaintDevice*>(ptr)->pageSizeMM(); new QSizeF(tmpValue.width(), tmpValue.height()); });
+	if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(ptr))) {
+		return ({ QSizeF tmpValue = static_cast<QPdfWriter*>(ptr)->pageSizeMM(); new QSizeF(tmpValue.width(), tmpValue.height()); });
+	} else {
+		return ({ QSizeF tmpValue = static_cast<QPagedPaintDevice*>(ptr)->pageSizeMM(); new QSizeF(tmpValue.width(), tmpValue.height()); });
+	}
 }
 
 
@@ -9696,47 +10074,83 @@ void* QPagedPaintDevice_PageSizeMM(void* ptr)
 
 char QPagedPaintDevice_SetPageLayout(void* ptr, void* newPageLayout)
 {
-	return static_cast<QPagedPaintDevice*>(ptr)->setPageLayout(*static_cast<QPageLayout*>(newPageLayout));
+	if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QPdfWriter*>(ptr)->setPageLayout(*static_cast<QPageLayout*>(newPageLayout));
+	} else {
+		return static_cast<QPagedPaintDevice*>(ptr)->setPageLayout(*static_cast<QPageLayout*>(newPageLayout));
+	}
 }
 
 char QPagedPaintDevice_SetPageMargins(void* ptr, void* margins)
 {
-	return static_cast<QPagedPaintDevice*>(ptr)->setPageMargins(*static_cast<QMarginsF*>(margins));
+	if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QPdfWriter*>(ptr)->setPageMargins(*static_cast<QMarginsF*>(margins));
+	} else {
+		return static_cast<QPagedPaintDevice*>(ptr)->setPageMargins(*static_cast<QMarginsF*>(margins));
+	}
 }
 
 char QPagedPaintDevice_SetPageMargins2(void* ptr, void* margins, long long units)
 {
-	return static_cast<QPagedPaintDevice*>(ptr)->setPageMargins(*static_cast<QMarginsF*>(margins), static_cast<QPageLayout::Unit>(units));
+	if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QPdfWriter*>(ptr)->setPageMargins(*static_cast<QMarginsF*>(margins), static_cast<QPageLayout::Unit>(units));
+	} else {
+		return static_cast<QPagedPaintDevice*>(ptr)->setPageMargins(*static_cast<QMarginsF*>(margins), static_cast<QPageLayout::Unit>(units));
+	}
 }
 
 char QPagedPaintDevice_SetPageOrientation(void* ptr, long long orientation)
 {
-	return static_cast<QPagedPaintDevice*>(ptr)->setPageOrientation(static_cast<QPageLayout::Orientation>(orientation));
+	if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QPdfWriter*>(ptr)->setPageOrientation(static_cast<QPageLayout::Orientation>(orientation));
+	} else {
+		return static_cast<QPagedPaintDevice*>(ptr)->setPageOrientation(static_cast<QPageLayout::Orientation>(orientation));
+	}
 }
 
 char QPagedPaintDevice_SetPageSize(void* ptr, void* pageSize)
 {
-	return static_cast<QPagedPaintDevice*>(ptr)->setPageSize(*static_cast<QPageSize*>(pageSize));
+	if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QPdfWriter*>(ptr)->setPageSize(*static_cast<QPageSize*>(pageSize));
+	} else {
+		return static_cast<QPagedPaintDevice*>(ptr)->setPageSize(*static_cast<QPageSize*>(pageSize));
+	}
 }
 
 void QPagedPaintDevice_SetPageSize2(void* ptr, long long size)
 {
-	static_cast<QPagedPaintDevice*>(ptr)->setPageSize(static_cast<QPagedPaintDevice::PageSize>(size));
+	if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(ptr))) {
+		static_cast<QPdfWriter*>(ptr)->setPageSize(static_cast<QPagedPaintDevice::PageSize>(size));
+	} else {
+		static_cast<QPagedPaintDevice*>(ptr)->setPageSize(static_cast<QPagedPaintDevice::PageSize>(size));
+	}
 }
 
 void QPagedPaintDevice_SetPageSize2Default(void* ptr, long long size)
 {
-	static_cast<QPagedPaintDevice*>(ptr)->QPagedPaintDevice::setPageSize(static_cast<QPagedPaintDevice::PageSize>(size));
+	if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(ptr))) {
+		static_cast<QPdfWriter*>(ptr)->QPagedPaintDevice::setPageSize(static_cast<QPagedPaintDevice::PageSize>(size));
+	} else {
+		static_cast<QPagedPaintDevice*>(ptr)->QPagedPaintDevice::setPageSize(static_cast<QPagedPaintDevice::PageSize>(size));
+	}
 }
 
 void QPagedPaintDevice_SetPageSizeMM(void* ptr, void* size)
 {
-	static_cast<QPagedPaintDevice*>(ptr)->setPageSizeMM(*static_cast<QSizeF*>(size));
+	if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(ptr))) {
+		static_cast<QPdfWriter*>(ptr)->setPageSizeMM(*static_cast<QSizeF*>(size));
+	} else {
+		static_cast<QPagedPaintDevice*>(ptr)->setPageSizeMM(*static_cast<QSizeF*>(size));
+	}
 }
 
 void QPagedPaintDevice_SetPageSizeMMDefault(void* ptr, void* size)
 {
-	static_cast<QPagedPaintDevice*>(ptr)->QPagedPaintDevice::setPageSizeMM(*static_cast<QSizeF*>(size));
+	if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(ptr))) {
+		static_cast<QPdfWriter*>(ptr)->QPagedPaintDevice::setPageSizeMM(*static_cast<QSizeF*>(size));
+	} else {
+		static_cast<QPagedPaintDevice*>(ptr)->QPagedPaintDevice::setPageSizeMM(*static_cast<QSizeF*>(size));
+	}
 }
 
 void QPagedPaintDevice_DestroyQPagedPaintDevice(void* ptr)
@@ -9746,17 +10160,29 @@ void QPagedPaintDevice_DestroyQPagedPaintDevice(void* ptr)
 
 int QPagedPaintDevice_Metric(void* ptr, long long metric)
 {
-	return static_cast<QPagedPaintDevice*>(ptr)->metric(static_cast<QPaintDevice::PaintDeviceMetric>(metric));
+	if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QPdfWriter*>(ptr)->metric(static_cast<QPaintDevice::PaintDeviceMetric>(metric));
+	} else {
+		return static_cast<QPagedPaintDevice*>(ptr)->metric(static_cast<QPaintDevice::PaintDeviceMetric>(metric));
+	}
 }
 
 int QPagedPaintDevice_MetricDefault(void* ptr, long long metric)
 {
-	return static_cast<QPagedPaintDevice*>(ptr)->QPagedPaintDevice::metric(static_cast<QPaintDevice::PaintDeviceMetric>(metric));
+	if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QPdfWriter*>(ptr)->QPagedPaintDevice::metric(static_cast<QPaintDevice::PaintDeviceMetric>(metric));
+	} else {
+		return static_cast<QPagedPaintDevice*>(ptr)->QPagedPaintDevice::metric(static_cast<QPaintDevice::PaintDeviceMetric>(metric));
+	}
 }
 
 void* QPagedPaintDevice_PaintEngine(void* ptr)
 {
-	return static_cast<QPagedPaintDevice*>(ptr)->paintEngine();
+	if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QPdfWriter*>(ptr)->paintEngine();
+	} else {
+		return static_cast<QPagedPaintDevice*>(ptr)->paintEngine();
+	}
 }
 
 
@@ -9777,12 +10203,24 @@ void* QPaintDevice_NewQPaintDevice()
 
 int QPaintDevice_Metric(void* ptr, long long metric)
 {
-	return static_cast<QPaintDevice*>(ptr)->metric(static_cast<QPaintDevice::PaintDeviceMetric>(metric));
+	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QPaintDeviceWindow*>(ptr)->metric(static_cast<QPaintDevice::PaintDeviceMetric>(metric));
+	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QPdfWriter*>(ptr)->metric(static_cast<QPaintDevice::PaintDeviceMetric>(metric));
+	} else {
+		return static_cast<QPaintDevice*>(ptr)->metric(static_cast<QPaintDevice::PaintDeviceMetric>(metric));
+	}
 }
 
 int QPaintDevice_MetricDefault(void* ptr, long long metric)
 {
-	return static_cast<QPaintDevice*>(ptr)->QPaintDevice::metric(static_cast<QPaintDevice::PaintDeviceMetric>(metric));
+	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QPaintDeviceWindow*>(ptr)->QPaintDevice::metric(static_cast<QPaintDevice::PaintDeviceMetric>(metric));
+	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QPdfWriter*>(ptr)->QPaintDevice::metric(static_cast<QPaintDevice::PaintDeviceMetric>(metric));
+	} else {
+		return static_cast<QPaintDevice*>(ptr)->QPaintDevice::metric(static_cast<QPaintDevice::PaintDeviceMetric>(metric));
+	}
 }
 
 void QPaintDevice_DestroyQPaintDevice(void* ptr)
@@ -9797,82 +10235,178 @@ void QPaintDevice_DestroyQPaintDeviceDefault(void* ptr)
 
 int QPaintDevice_ColorCount(void* ptr)
 {
-	return static_cast<QPaintDevice*>(ptr)->colorCount();
+	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QPaintDeviceWindow*>(ptr)->colorCount();
+	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QPdfWriter*>(ptr)->colorCount();
+	} else {
+		return static_cast<QPaintDevice*>(ptr)->colorCount();
+	}
 }
 
 int QPaintDevice_Depth(void* ptr)
 {
-	return static_cast<QPaintDevice*>(ptr)->depth();
+	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QPaintDeviceWindow*>(ptr)->depth();
+	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QPdfWriter*>(ptr)->depth();
+	} else {
+		return static_cast<QPaintDevice*>(ptr)->depth();
+	}
 }
 
 int QPaintDevice_Height(void* ptr)
 {
-	return static_cast<QPaintDevice*>(ptr)->height();
+	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QPaintDeviceWindow*>(ptr)->height();
+	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QPdfWriter*>(ptr)->height();
+	} else {
+		return static_cast<QPaintDevice*>(ptr)->height();
+	}
 }
 
 int QPaintDevice_DevicePixelRatio(void* ptr)
 {
-	return static_cast<QPaintDevice*>(ptr)->devicePixelRatio();
+	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QPaintDeviceWindow*>(ptr)->devicePixelRatio();
+	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QPdfWriter*>(ptr)->devicePixelRatio();
+	} else {
+		return static_cast<QPaintDevice*>(ptr)->devicePixelRatio();
+	}
 }
 
 double QPaintDevice_DevicePixelRatioF(void* ptr)
 {
-	return static_cast<QPaintDevice*>(ptr)->devicePixelRatioF();
+	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QPaintDeviceWindow*>(ptr)->devicePixelRatioF();
+	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QPdfWriter*>(ptr)->devicePixelRatioF();
+	} else {
+		return static_cast<QPaintDevice*>(ptr)->devicePixelRatioF();
+	}
 }
 
 int QPaintDevice_HeightMM(void* ptr)
 {
-	return static_cast<QPaintDevice*>(ptr)->heightMM();
+	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QPaintDeviceWindow*>(ptr)->heightMM();
+	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QPdfWriter*>(ptr)->heightMM();
+	} else {
+		return static_cast<QPaintDevice*>(ptr)->heightMM();
+	}
 }
 
 int QPaintDevice_LogicalDpiX(void* ptr)
 {
-	return static_cast<QPaintDevice*>(ptr)->logicalDpiX();
+	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QPaintDeviceWindow*>(ptr)->logicalDpiX();
+	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QPdfWriter*>(ptr)->logicalDpiX();
+	} else {
+		return static_cast<QPaintDevice*>(ptr)->logicalDpiX();
+	}
 }
 
 int QPaintDevice_LogicalDpiY(void* ptr)
 {
-	return static_cast<QPaintDevice*>(ptr)->logicalDpiY();
+	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QPaintDeviceWindow*>(ptr)->logicalDpiY();
+	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QPdfWriter*>(ptr)->logicalDpiY();
+	} else {
+		return static_cast<QPaintDevice*>(ptr)->logicalDpiY();
+	}
 }
 
 void* QPaintDevice_PaintEngine(void* ptr)
 {
-	return static_cast<QPaintDevice*>(ptr)->paintEngine();
+	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QPaintDeviceWindow*>(ptr)->paintEngine();
+	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QPdfWriter*>(ptr)->paintEngine();
+	} else {
+		return static_cast<QPaintDevice*>(ptr)->paintEngine();
+	}
 }
 
 char QPaintDevice_PaintingActive(void* ptr)
 {
-	return static_cast<QPaintDevice*>(ptr)->paintingActive();
+	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QPaintDeviceWindow*>(ptr)->paintingActive();
+	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QPdfWriter*>(ptr)->paintingActive();
+	} else {
+		return static_cast<QPaintDevice*>(ptr)->paintingActive();
+	}
 }
 
 int QPaintDevice_PhysicalDpiX(void* ptr)
 {
-	return static_cast<QPaintDevice*>(ptr)->physicalDpiX();
+	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QPaintDeviceWindow*>(ptr)->physicalDpiX();
+	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QPdfWriter*>(ptr)->physicalDpiX();
+	} else {
+		return static_cast<QPaintDevice*>(ptr)->physicalDpiX();
+	}
 }
 
 int QPaintDevice_PhysicalDpiY(void* ptr)
 {
-	return static_cast<QPaintDevice*>(ptr)->physicalDpiY();
+	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QPaintDeviceWindow*>(ptr)->physicalDpiY();
+	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QPdfWriter*>(ptr)->physicalDpiY();
+	} else {
+		return static_cast<QPaintDevice*>(ptr)->physicalDpiY();
+	}
 }
 
 int QPaintDevice_Width(void* ptr)
 {
-	return static_cast<QPaintDevice*>(ptr)->width();
+	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QPaintDeviceWindow*>(ptr)->width();
+	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QPdfWriter*>(ptr)->width();
+	} else {
+		return static_cast<QPaintDevice*>(ptr)->width();
+	}
 }
 
 int QPaintDevice_WidthMM(void* ptr)
 {
-	return static_cast<QPaintDevice*>(ptr)->widthMM();
+	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QPaintDeviceWindow*>(ptr)->widthMM();
+	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QPdfWriter*>(ptr)->widthMM();
+	} else {
+		return static_cast<QPaintDevice*>(ptr)->widthMM();
+	}
 }
 
 unsigned short QPaintDevice_Painters(void* ptr)
 {
-	return static_cast<QPaintDevice*>(ptr)->painters;
+	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QPaintDeviceWindow*>(ptr)->painters;
+	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QPdfWriter*>(ptr)->painters;
+	} else {
+		return static_cast<QPaintDevice*>(ptr)->painters;
+	}
 }
 
 void QPaintDevice_SetPainters(void* ptr, unsigned short vus)
 {
-	static_cast<QPaintDevice*>(ptr)->painters = vus;
+	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
+		static_cast<QPaintDeviceWindow*>(ptr)->painters = vus;
+	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(ptr))) {
+		static_cast<QPdfWriter*>(ptr)->painters = vus;
+	} else {
+		static_cast<QPaintDevice*>(ptr)->painters = vus;
+	}
 }
 
 class MyQPaintDeviceWindow: public QPaintDeviceWindow
@@ -9938,569 +10472,589 @@ public:
 
 void QPaintDeviceWindow_PaintEvent(void* ptr, void* event)
 {
-	static_cast<QPaintDeviceWindow*>(ptr)->paintEvent(static_cast<QPaintEvent*>(event));
+		static_cast<QPaintDeviceWindow*>(ptr)->paintEvent(static_cast<QPaintEvent*>(event));
 }
 
 void QPaintDeviceWindow_PaintEventDefault(void* ptr, void* event)
 {
-	static_cast<QPaintDeviceWindow*>(ptr)->QPaintDeviceWindow::paintEvent(static_cast<QPaintEvent*>(event));
+		static_cast<QPaintDeviceWindow*>(ptr)->QPaintDeviceWindow::paintEvent(static_cast<QPaintEvent*>(event));
 }
 
 void QPaintDeviceWindow_Update3(void* ptr)
 {
-	QMetaObject::invokeMethod(static_cast<QPaintDeviceWindow*>(ptr), "update");
+		QMetaObject::invokeMethod(static_cast<QPaintDeviceWindow*>(ptr), "update");
 }
 
 void QPaintDeviceWindow_Update(void* ptr, void* rect)
 {
-	static_cast<QPaintDeviceWindow*>(ptr)->update(*static_cast<QRect*>(rect));
+		static_cast<QPaintDeviceWindow*>(ptr)->update(*static_cast<QRect*>(rect));
 }
 
 void QPaintDeviceWindow_Update2(void* ptr, void* region)
 {
-	static_cast<QPaintDeviceWindow*>(ptr)->update(*static_cast<QRegion*>(region));
+		static_cast<QPaintDeviceWindow*>(ptr)->update(*static_cast<QRegion*>(region));
 }
 
 void QPaintDeviceWindow_SetHeight(void* ptr, int arg)
 {
-	QMetaObject::invokeMethod(static_cast<QPaintDeviceWindow*>(ptr), "setHeight", Q_ARG(int, arg));
+		QMetaObject::invokeMethod(static_cast<QPaintDeviceWindow*>(ptr), "setHeight", Q_ARG(int, arg));
 }
 
 void QPaintDeviceWindow_SetHeightDefault(void* ptr, int arg)
 {
-	static_cast<QPaintDeviceWindow*>(ptr)->QPaintDeviceWindow::setHeight(arg);
+		static_cast<QPaintDeviceWindow*>(ptr)->QPaintDeviceWindow::setHeight(arg);
 }
 
 void QPaintDeviceWindow_SetMaximumHeight(void* ptr, int h)
 {
-	QMetaObject::invokeMethod(static_cast<QPaintDeviceWindow*>(ptr), "setMaximumHeight", Q_ARG(int, h));
+		QMetaObject::invokeMethod(static_cast<QPaintDeviceWindow*>(ptr), "setMaximumHeight", Q_ARG(int, h));
 }
 
 void QPaintDeviceWindow_SetMaximumHeightDefault(void* ptr, int h)
 {
-	static_cast<QPaintDeviceWindow*>(ptr)->QPaintDeviceWindow::setMaximumHeight(h);
+		static_cast<QPaintDeviceWindow*>(ptr)->QPaintDeviceWindow::setMaximumHeight(h);
 }
 
 void QPaintDeviceWindow_SetMaximumWidth(void* ptr, int w)
 {
-	QMetaObject::invokeMethod(static_cast<QPaintDeviceWindow*>(ptr), "setMaximumWidth", Q_ARG(int, w));
+		QMetaObject::invokeMethod(static_cast<QPaintDeviceWindow*>(ptr), "setMaximumWidth", Q_ARG(int, w));
 }
 
 void QPaintDeviceWindow_SetMaximumWidthDefault(void* ptr, int w)
 {
-	static_cast<QPaintDeviceWindow*>(ptr)->QPaintDeviceWindow::setMaximumWidth(w);
+		static_cast<QPaintDeviceWindow*>(ptr)->QPaintDeviceWindow::setMaximumWidth(w);
 }
 
 void QPaintDeviceWindow_SetMinimumHeight(void* ptr, int h)
 {
-	QMetaObject::invokeMethod(static_cast<QPaintDeviceWindow*>(ptr), "setMinimumHeight", Q_ARG(int, h));
+		QMetaObject::invokeMethod(static_cast<QPaintDeviceWindow*>(ptr), "setMinimumHeight", Q_ARG(int, h));
 }
 
 void QPaintDeviceWindow_SetMinimumHeightDefault(void* ptr, int h)
 {
-	static_cast<QPaintDeviceWindow*>(ptr)->QPaintDeviceWindow::setMinimumHeight(h);
+		static_cast<QPaintDeviceWindow*>(ptr)->QPaintDeviceWindow::setMinimumHeight(h);
 }
 
 void QPaintDeviceWindow_SetMinimumWidth(void* ptr, int w)
 {
-	QMetaObject::invokeMethod(static_cast<QPaintDeviceWindow*>(ptr), "setMinimumWidth", Q_ARG(int, w));
+		QMetaObject::invokeMethod(static_cast<QPaintDeviceWindow*>(ptr), "setMinimumWidth", Q_ARG(int, w));
 }
 
 void QPaintDeviceWindow_SetMinimumWidthDefault(void* ptr, int w)
 {
-	static_cast<QPaintDeviceWindow*>(ptr)->QPaintDeviceWindow::setMinimumWidth(w);
+		static_cast<QPaintDeviceWindow*>(ptr)->QPaintDeviceWindow::setMinimumWidth(w);
 }
 
 void QPaintDeviceWindow_SetTitle(void* ptr, char* vqs)
 {
-	QMetaObject::invokeMethod(static_cast<QPaintDeviceWindow*>(ptr), "setTitle", Q_ARG(QString, QString(vqs)));
+		QMetaObject::invokeMethod(static_cast<QPaintDeviceWindow*>(ptr), "setTitle", Q_ARG(QString, QString(vqs)));
 }
 
 void QPaintDeviceWindow_SetTitleDefault(void* ptr, char* vqs)
 {
-	static_cast<QPaintDeviceWindow*>(ptr)->QPaintDeviceWindow::setTitle(QString(vqs));
+		static_cast<QPaintDeviceWindow*>(ptr)->QPaintDeviceWindow::setTitle(QString(vqs));
 }
 
 void QPaintDeviceWindow_SetVisible(void* ptr, char visible)
 {
-	QMetaObject::invokeMethod(static_cast<QPaintDeviceWindow*>(ptr), "setVisible", Q_ARG(bool, visible != 0));
+		QMetaObject::invokeMethod(static_cast<QPaintDeviceWindow*>(ptr), "setVisible", Q_ARG(bool, visible != 0));
 }
 
 void QPaintDeviceWindow_SetVisibleDefault(void* ptr, char visible)
 {
-	static_cast<QPaintDeviceWindow*>(ptr)->QPaintDeviceWindow::setVisible(visible != 0);
+		static_cast<QPaintDeviceWindow*>(ptr)->QPaintDeviceWindow::setVisible(visible != 0);
 }
 
 void QPaintDeviceWindow_SetWidth(void* ptr, int arg)
 {
-	QMetaObject::invokeMethod(static_cast<QPaintDeviceWindow*>(ptr), "setWidth", Q_ARG(int, arg));
+		QMetaObject::invokeMethod(static_cast<QPaintDeviceWindow*>(ptr), "setWidth", Q_ARG(int, arg));
 }
 
 void QPaintDeviceWindow_SetWidthDefault(void* ptr, int arg)
 {
-	static_cast<QPaintDeviceWindow*>(ptr)->QPaintDeviceWindow::setWidth(arg);
+		static_cast<QPaintDeviceWindow*>(ptr)->QPaintDeviceWindow::setWidth(arg);
 }
 
 void QPaintDeviceWindow_SetX(void* ptr, int arg)
 {
-	QMetaObject::invokeMethod(static_cast<QPaintDeviceWindow*>(ptr), "setX", Q_ARG(int, arg));
+		QMetaObject::invokeMethod(static_cast<QPaintDeviceWindow*>(ptr), "setX", Q_ARG(int, arg));
 }
 
 void QPaintDeviceWindow_SetXDefault(void* ptr, int arg)
 {
-	static_cast<QPaintDeviceWindow*>(ptr)->QPaintDeviceWindow::setX(arg);
+		static_cast<QPaintDeviceWindow*>(ptr)->QPaintDeviceWindow::setX(arg);
 }
 
 void QPaintDeviceWindow_SetY(void* ptr, int arg)
 {
-	QMetaObject::invokeMethod(static_cast<QPaintDeviceWindow*>(ptr), "setY", Q_ARG(int, arg));
+		QMetaObject::invokeMethod(static_cast<QPaintDeviceWindow*>(ptr), "setY", Q_ARG(int, arg));
 }
 
 void QPaintDeviceWindow_SetYDefault(void* ptr, int arg)
 {
-	static_cast<QPaintDeviceWindow*>(ptr)->QPaintDeviceWindow::setY(arg);
+		static_cast<QPaintDeviceWindow*>(ptr)->QPaintDeviceWindow::setY(arg);
 }
 
 void QPaintDeviceWindow_Alert(void* ptr, int msec)
 {
-	QMetaObject::invokeMethod(static_cast<QPaintDeviceWindow*>(ptr), "alert", Q_ARG(int, msec));
+		QMetaObject::invokeMethod(static_cast<QPaintDeviceWindow*>(ptr), "alert", Q_ARG(int, msec));
 }
 
 void QPaintDeviceWindow_AlertDefault(void* ptr, int msec)
 {
-	static_cast<QPaintDeviceWindow*>(ptr)->QPaintDeviceWindow::alert(msec);
+		static_cast<QPaintDeviceWindow*>(ptr)->QPaintDeviceWindow::alert(msec);
 }
 
 char QPaintDeviceWindow_Close(void* ptr)
 {
-	bool returnArg;
+		bool returnArg;
 	QMetaObject::invokeMethod(static_cast<QPaintDeviceWindow*>(ptr), "close", Q_RETURN_ARG(bool, returnArg));
 	return returnArg;
 }
 
 char QPaintDeviceWindow_CloseDefault(void* ptr)
 {
-	return static_cast<QPaintDeviceWindow*>(ptr)->QPaintDeviceWindow::close();
+		return static_cast<QPaintDeviceWindow*>(ptr)->QPaintDeviceWindow::close();
 }
 
 char QPaintDeviceWindow_Event(void* ptr, void* ev)
 {
-	return static_cast<QPaintDeviceWindow*>(ptr)->event(static_cast<QEvent*>(ev));
+		return static_cast<QPaintDeviceWindow*>(ptr)->event(static_cast<QEvent*>(ev));
 }
 
 char QPaintDeviceWindow_EventDefault(void* ptr, void* ev)
 {
-	return static_cast<QPaintDeviceWindow*>(ptr)->QPaintDeviceWindow::event(static_cast<QEvent*>(ev));
+		return static_cast<QPaintDeviceWindow*>(ptr)->QPaintDeviceWindow::event(static_cast<QEvent*>(ev));
 }
 
 void QPaintDeviceWindow_ExposeEvent(void* ptr, void* ev)
 {
-	static_cast<QPaintDeviceWindow*>(ptr)->exposeEvent(static_cast<QExposeEvent*>(ev));
+		static_cast<QPaintDeviceWindow*>(ptr)->exposeEvent(static_cast<QExposeEvent*>(ev));
 }
 
 void QPaintDeviceWindow_ExposeEventDefault(void* ptr, void* ev)
 {
-	static_cast<QPaintDeviceWindow*>(ptr)->QPaintDeviceWindow::exposeEvent(static_cast<QExposeEvent*>(ev));
+		static_cast<QPaintDeviceWindow*>(ptr)->QPaintDeviceWindow::exposeEvent(static_cast<QExposeEvent*>(ev));
 }
 
 void QPaintDeviceWindow_FocusInEvent(void* ptr, void* ev)
 {
-	static_cast<QPaintDeviceWindow*>(ptr)->focusInEvent(static_cast<QFocusEvent*>(ev));
+		static_cast<QPaintDeviceWindow*>(ptr)->focusInEvent(static_cast<QFocusEvent*>(ev));
 }
 
 void QPaintDeviceWindow_FocusInEventDefault(void* ptr, void* ev)
 {
-	static_cast<QPaintDeviceWindow*>(ptr)->QPaintDeviceWindow::focusInEvent(static_cast<QFocusEvent*>(ev));
+		static_cast<QPaintDeviceWindow*>(ptr)->QPaintDeviceWindow::focusInEvent(static_cast<QFocusEvent*>(ev));
 }
 
 void* QPaintDeviceWindow_FocusObject(void* ptr)
 {
-	return static_cast<QPaintDeviceWindow*>(ptr)->focusObject();
+		return static_cast<QPaintDeviceWindow*>(ptr)->focusObject();
 }
 
 void* QPaintDeviceWindow_FocusObjectDefault(void* ptr)
 {
-	return static_cast<QPaintDeviceWindow*>(ptr)->QPaintDeviceWindow::focusObject();
+		return static_cast<QPaintDeviceWindow*>(ptr)->QPaintDeviceWindow::focusObject();
 }
 
 void QPaintDeviceWindow_FocusOutEvent(void* ptr, void* ev)
 {
-	static_cast<QPaintDeviceWindow*>(ptr)->focusOutEvent(static_cast<QFocusEvent*>(ev));
+		static_cast<QPaintDeviceWindow*>(ptr)->focusOutEvent(static_cast<QFocusEvent*>(ev));
 }
 
 void QPaintDeviceWindow_FocusOutEventDefault(void* ptr, void* ev)
 {
-	static_cast<QPaintDeviceWindow*>(ptr)->QPaintDeviceWindow::focusOutEvent(static_cast<QFocusEvent*>(ev));
+		static_cast<QPaintDeviceWindow*>(ptr)->QPaintDeviceWindow::focusOutEvent(static_cast<QFocusEvent*>(ev));
 }
 
 void* QPaintDeviceWindow_Format(void* ptr)
 {
-	return new QSurfaceFormat(static_cast<QPaintDeviceWindow*>(ptr)->format());
+		return new QSurfaceFormat(static_cast<QPaintDeviceWindow*>(ptr)->format());
 }
 
 void* QPaintDeviceWindow_FormatDefault(void* ptr)
 {
-	return new QSurfaceFormat(static_cast<QPaintDeviceWindow*>(ptr)->QPaintDeviceWindow::format());
+		return new QSurfaceFormat(static_cast<QPaintDeviceWindow*>(ptr)->QPaintDeviceWindow::format());
 }
 
 void QPaintDeviceWindow_Hide(void* ptr)
 {
-	QMetaObject::invokeMethod(static_cast<QPaintDeviceWindow*>(ptr), "hide");
+		QMetaObject::invokeMethod(static_cast<QPaintDeviceWindow*>(ptr), "hide");
 }
 
 void QPaintDeviceWindow_HideDefault(void* ptr)
 {
-	static_cast<QPaintDeviceWindow*>(ptr)->QPaintDeviceWindow::hide();
+		static_cast<QPaintDeviceWindow*>(ptr)->QPaintDeviceWindow::hide();
 }
 
 void QPaintDeviceWindow_HideEvent(void* ptr, void* ev)
 {
-	static_cast<QPaintDeviceWindow*>(ptr)->hideEvent(static_cast<QHideEvent*>(ev));
+		static_cast<QPaintDeviceWindow*>(ptr)->hideEvent(static_cast<QHideEvent*>(ev));
 }
 
 void QPaintDeviceWindow_HideEventDefault(void* ptr, void* ev)
 {
-	static_cast<QPaintDeviceWindow*>(ptr)->QPaintDeviceWindow::hideEvent(static_cast<QHideEvent*>(ev));
+		static_cast<QPaintDeviceWindow*>(ptr)->QPaintDeviceWindow::hideEvent(static_cast<QHideEvent*>(ev));
 }
 
 void QPaintDeviceWindow_KeyPressEvent(void* ptr, void* ev)
 {
-	static_cast<QPaintDeviceWindow*>(ptr)->keyPressEvent(static_cast<QKeyEvent*>(ev));
+		static_cast<QPaintDeviceWindow*>(ptr)->keyPressEvent(static_cast<QKeyEvent*>(ev));
 }
 
 void QPaintDeviceWindow_KeyPressEventDefault(void* ptr, void* ev)
 {
-	static_cast<QPaintDeviceWindow*>(ptr)->QPaintDeviceWindow::keyPressEvent(static_cast<QKeyEvent*>(ev));
+		static_cast<QPaintDeviceWindow*>(ptr)->QPaintDeviceWindow::keyPressEvent(static_cast<QKeyEvent*>(ev));
 }
 
 void QPaintDeviceWindow_KeyReleaseEvent(void* ptr, void* ev)
 {
-	static_cast<QPaintDeviceWindow*>(ptr)->keyReleaseEvent(static_cast<QKeyEvent*>(ev));
+		static_cast<QPaintDeviceWindow*>(ptr)->keyReleaseEvent(static_cast<QKeyEvent*>(ev));
 }
 
 void QPaintDeviceWindow_KeyReleaseEventDefault(void* ptr, void* ev)
 {
-	static_cast<QPaintDeviceWindow*>(ptr)->QPaintDeviceWindow::keyReleaseEvent(static_cast<QKeyEvent*>(ev));
+		static_cast<QPaintDeviceWindow*>(ptr)->QPaintDeviceWindow::keyReleaseEvent(static_cast<QKeyEvent*>(ev));
 }
 
 void QPaintDeviceWindow_Lower(void* ptr)
 {
-	QMetaObject::invokeMethod(static_cast<QPaintDeviceWindow*>(ptr), "lower");
+		QMetaObject::invokeMethod(static_cast<QPaintDeviceWindow*>(ptr), "lower");
 }
 
 void QPaintDeviceWindow_LowerDefault(void* ptr)
 {
-	static_cast<QPaintDeviceWindow*>(ptr)->QPaintDeviceWindow::lower();
+		static_cast<QPaintDeviceWindow*>(ptr)->QPaintDeviceWindow::lower();
 }
 
 void QPaintDeviceWindow_MouseDoubleClickEvent(void* ptr, void* ev)
 {
-	static_cast<QPaintDeviceWindow*>(ptr)->mouseDoubleClickEvent(static_cast<QMouseEvent*>(ev));
+		static_cast<QPaintDeviceWindow*>(ptr)->mouseDoubleClickEvent(static_cast<QMouseEvent*>(ev));
 }
 
 void QPaintDeviceWindow_MouseDoubleClickEventDefault(void* ptr, void* ev)
 {
-	static_cast<QPaintDeviceWindow*>(ptr)->QPaintDeviceWindow::mouseDoubleClickEvent(static_cast<QMouseEvent*>(ev));
+		static_cast<QPaintDeviceWindow*>(ptr)->QPaintDeviceWindow::mouseDoubleClickEvent(static_cast<QMouseEvent*>(ev));
 }
 
 void QPaintDeviceWindow_MouseMoveEvent(void* ptr, void* ev)
 {
-	static_cast<QPaintDeviceWindow*>(ptr)->mouseMoveEvent(static_cast<QMouseEvent*>(ev));
+		static_cast<QPaintDeviceWindow*>(ptr)->mouseMoveEvent(static_cast<QMouseEvent*>(ev));
 }
 
 void QPaintDeviceWindow_MouseMoveEventDefault(void* ptr, void* ev)
 {
-	static_cast<QPaintDeviceWindow*>(ptr)->QPaintDeviceWindow::mouseMoveEvent(static_cast<QMouseEvent*>(ev));
+		static_cast<QPaintDeviceWindow*>(ptr)->QPaintDeviceWindow::mouseMoveEvent(static_cast<QMouseEvent*>(ev));
 }
 
 void QPaintDeviceWindow_MousePressEvent(void* ptr, void* ev)
 {
-	static_cast<QPaintDeviceWindow*>(ptr)->mousePressEvent(static_cast<QMouseEvent*>(ev));
+		static_cast<QPaintDeviceWindow*>(ptr)->mousePressEvent(static_cast<QMouseEvent*>(ev));
 }
 
 void QPaintDeviceWindow_MousePressEventDefault(void* ptr, void* ev)
 {
-	static_cast<QPaintDeviceWindow*>(ptr)->QPaintDeviceWindow::mousePressEvent(static_cast<QMouseEvent*>(ev));
+		static_cast<QPaintDeviceWindow*>(ptr)->QPaintDeviceWindow::mousePressEvent(static_cast<QMouseEvent*>(ev));
 }
 
 void QPaintDeviceWindow_MouseReleaseEvent(void* ptr, void* ev)
 {
-	static_cast<QPaintDeviceWindow*>(ptr)->mouseReleaseEvent(static_cast<QMouseEvent*>(ev));
+		static_cast<QPaintDeviceWindow*>(ptr)->mouseReleaseEvent(static_cast<QMouseEvent*>(ev));
 }
 
 void QPaintDeviceWindow_MouseReleaseEventDefault(void* ptr, void* ev)
 {
-	static_cast<QPaintDeviceWindow*>(ptr)->QPaintDeviceWindow::mouseReleaseEvent(static_cast<QMouseEvent*>(ev));
+		static_cast<QPaintDeviceWindow*>(ptr)->QPaintDeviceWindow::mouseReleaseEvent(static_cast<QMouseEvent*>(ev));
 }
 
 void QPaintDeviceWindow_MoveEvent(void* ptr, void* ev)
 {
-	static_cast<QPaintDeviceWindow*>(ptr)->moveEvent(static_cast<QMoveEvent*>(ev));
+		static_cast<QPaintDeviceWindow*>(ptr)->moveEvent(static_cast<QMoveEvent*>(ev));
 }
 
 void QPaintDeviceWindow_MoveEventDefault(void* ptr, void* ev)
 {
-	static_cast<QPaintDeviceWindow*>(ptr)->QPaintDeviceWindow::moveEvent(static_cast<QMoveEvent*>(ev));
+		static_cast<QPaintDeviceWindow*>(ptr)->QPaintDeviceWindow::moveEvent(static_cast<QMoveEvent*>(ev));
 }
 
 char QPaintDeviceWindow_NativeEvent(void* ptr, void* eventType, void* message, long result)
 {
-	return static_cast<QPaintDeviceWindow*>(ptr)->nativeEvent(*static_cast<QByteArray*>(eventType), message, &result);
+		return static_cast<QPaintDeviceWindow*>(ptr)->nativeEvent(*static_cast<QByteArray*>(eventType), message, &result);
 }
 
 char QPaintDeviceWindow_NativeEventDefault(void* ptr, void* eventType, void* message, long result)
 {
-	return static_cast<QPaintDeviceWindow*>(ptr)->QPaintDeviceWindow::nativeEvent(*static_cast<QByteArray*>(eventType), message, &result);
+		return static_cast<QPaintDeviceWindow*>(ptr)->QPaintDeviceWindow::nativeEvent(*static_cast<QByteArray*>(eventType), message, &result);
 }
 
 void QPaintDeviceWindow_Raise(void* ptr)
 {
-	QMetaObject::invokeMethod(static_cast<QPaintDeviceWindow*>(ptr), "raise");
+		QMetaObject::invokeMethod(static_cast<QPaintDeviceWindow*>(ptr), "raise");
 }
 
 void QPaintDeviceWindow_RaiseDefault(void* ptr)
 {
-	static_cast<QPaintDeviceWindow*>(ptr)->QPaintDeviceWindow::raise();
+		static_cast<QPaintDeviceWindow*>(ptr)->QPaintDeviceWindow::raise();
 }
 
 void QPaintDeviceWindow_RequestActivate(void* ptr)
 {
-	QMetaObject::invokeMethod(static_cast<QPaintDeviceWindow*>(ptr), "requestActivate");
+		QMetaObject::invokeMethod(static_cast<QPaintDeviceWindow*>(ptr), "requestActivate");
 }
 
 void QPaintDeviceWindow_RequestActivateDefault(void* ptr)
 {
-	static_cast<QPaintDeviceWindow*>(ptr)->QPaintDeviceWindow::requestActivate();
+		static_cast<QPaintDeviceWindow*>(ptr)->QPaintDeviceWindow::requestActivate();
 }
 
 void QPaintDeviceWindow_RequestUpdate(void* ptr)
 {
-	QMetaObject::invokeMethod(static_cast<QPaintDeviceWindow*>(ptr), "requestUpdate");
+		QMetaObject::invokeMethod(static_cast<QPaintDeviceWindow*>(ptr), "requestUpdate");
 }
 
 void QPaintDeviceWindow_RequestUpdateDefault(void* ptr)
 {
-	static_cast<QPaintDeviceWindow*>(ptr)->QPaintDeviceWindow::requestUpdate();
+		static_cast<QPaintDeviceWindow*>(ptr)->QPaintDeviceWindow::requestUpdate();
 }
 
 void QPaintDeviceWindow_ResizeEvent(void* ptr, void* ev)
 {
-	static_cast<QPaintDeviceWindow*>(ptr)->resizeEvent(static_cast<QResizeEvent*>(ev));
+		static_cast<QPaintDeviceWindow*>(ptr)->resizeEvent(static_cast<QResizeEvent*>(ev));
 }
 
 void QPaintDeviceWindow_ResizeEventDefault(void* ptr, void* ev)
 {
-	static_cast<QPaintDeviceWindow*>(ptr)->QPaintDeviceWindow::resizeEvent(static_cast<QResizeEvent*>(ev));
+		static_cast<QPaintDeviceWindow*>(ptr)->QPaintDeviceWindow::resizeEvent(static_cast<QResizeEvent*>(ev));
 }
 
 void QPaintDeviceWindow_Show(void* ptr)
 {
-	QMetaObject::invokeMethod(static_cast<QPaintDeviceWindow*>(ptr), "show");
+		QMetaObject::invokeMethod(static_cast<QPaintDeviceWindow*>(ptr), "show");
 }
 
 void QPaintDeviceWindow_ShowDefault(void* ptr)
 {
-	static_cast<QPaintDeviceWindow*>(ptr)->QPaintDeviceWindow::show();
+		static_cast<QPaintDeviceWindow*>(ptr)->QPaintDeviceWindow::show();
 }
 
 void QPaintDeviceWindow_ShowEvent(void* ptr, void* ev)
 {
-	static_cast<QPaintDeviceWindow*>(ptr)->showEvent(static_cast<QShowEvent*>(ev));
+		static_cast<QPaintDeviceWindow*>(ptr)->showEvent(static_cast<QShowEvent*>(ev));
 }
 
 void QPaintDeviceWindow_ShowEventDefault(void* ptr, void* ev)
 {
-	static_cast<QPaintDeviceWindow*>(ptr)->QPaintDeviceWindow::showEvent(static_cast<QShowEvent*>(ev));
+		static_cast<QPaintDeviceWindow*>(ptr)->QPaintDeviceWindow::showEvent(static_cast<QShowEvent*>(ev));
 }
 
 void QPaintDeviceWindow_ShowFullScreen(void* ptr)
 {
-	QMetaObject::invokeMethod(static_cast<QPaintDeviceWindow*>(ptr), "showFullScreen");
+		QMetaObject::invokeMethod(static_cast<QPaintDeviceWindow*>(ptr), "showFullScreen");
 }
 
 void QPaintDeviceWindow_ShowFullScreenDefault(void* ptr)
 {
-	static_cast<QPaintDeviceWindow*>(ptr)->QPaintDeviceWindow::showFullScreen();
+		static_cast<QPaintDeviceWindow*>(ptr)->QPaintDeviceWindow::showFullScreen();
 }
 
 void QPaintDeviceWindow_ShowMaximized(void* ptr)
 {
-	QMetaObject::invokeMethod(static_cast<QPaintDeviceWindow*>(ptr), "showMaximized");
+		QMetaObject::invokeMethod(static_cast<QPaintDeviceWindow*>(ptr), "showMaximized");
 }
 
 void QPaintDeviceWindow_ShowMaximizedDefault(void* ptr)
 {
-	static_cast<QPaintDeviceWindow*>(ptr)->QPaintDeviceWindow::showMaximized();
+		static_cast<QPaintDeviceWindow*>(ptr)->QPaintDeviceWindow::showMaximized();
 }
 
 void QPaintDeviceWindow_ShowMinimized(void* ptr)
 {
-	QMetaObject::invokeMethod(static_cast<QPaintDeviceWindow*>(ptr), "showMinimized");
+		QMetaObject::invokeMethod(static_cast<QPaintDeviceWindow*>(ptr), "showMinimized");
 }
 
 void QPaintDeviceWindow_ShowMinimizedDefault(void* ptr)
 {
-	static_cast<QPaintDeviceWindow*>(ptr)->QPaintDeviceWindow::showMinimized();
+		static_cast<QPaintDeviceWindow*>(ptr)->QPaintDeviceWindow::showMinimized();
 }
 
 void QPaintDeviceWindow_ShowNormal(void* ptr)
 {
-	QMetaObject::invokeMethod(static_cast<QPaintDeviceWindow*>(ptr), "showNormal");
+		QMetaObject::invokeMethod(static_cast<QPaintDeviceWindow*>(ptr), "showNormal");
 }
 
 void QPaintDeviceWindow_ShowNormalDefault(void* ptr)
 {
-	static_cast<QPaintDeviceWindow*>(ptr)->QPaintDeviceWindow::showNormal();
+		static_cast<QPaintDeviceWindow*>(ptr)->QPaintDeviceWindow::showNormal();
 }
 
 void* QPaintDeviceWindow_Size(void* ptr)
 {
-	return ({ QSize tmpValue = static_cast<QPaintDeviceWindow*>(ptr)->size(); new QSize(tmpValue.width(), tmpValue.height()); });
+		return ({ QSize tmpValue = static_cast<QPaintDeviceWindow*>(ptr)->size(); new QSize(tmpValue.width(), tmpValue.height()); });
 }
 
 void* QPaintDeviceWindow_SizeDefault(void* ptr)
 {
-	return ({ QSize tmpValue = static_cast<QPaintDeviceWindow*>(ptr)->QPaintDeviceWindow::size(); new QSize(tmpValue.width(), tmpValue.height()); });
+		return ({ QSize tmpValue = static_cast<QPaintDeviceWindow*>(ptr)->QPaintDeviceWindow::size(); new QSize(tmpValue.width(), tmpValue.height()); });
 }
 
 long long QPaintDeviceWindow_SurfaceType(void* ptr)
 {
-	return static_cast<QPaintDeviceWindow*>(ptr)->surfaceType();
+		return static_cast<QPaintDeviceWindow*>(ptr)->surfaceType();
 }
 
 long long QPaintDeviceWindow_SurfaceTypeDefault(void* ptr)
 {
-	return static_cast<QPaintDeviceWindow*>(ptr)->QPaintDeviceWindow::surfaceType();
+		return static_cast<QPaintDeviceWindow*>(ptr)->QPaintDeviceWindow::surfaceType();
 }
 
 void QPaintDeviceWindow_TabletEvent(void* ptr, void* ev)
 {
-	static_cast<QPaintDeviceWindow*>(ptr)->tabletEvent(static_cast<QTabletEvent*>(ev));
+		static_cast<QPaintDeviceWindow*>(ptr)->tabletEvent(static_cast<QTabletEvent*>(ev));
 }
 
 void QPaintDeviceWindow_TabletEventDefault(void* ptr, void* ev)
 {
-	static_cast<QPaintDeviceWindow*>(ptr)->QPaintDeviceWindow::tabletEvent(static_cast<QTabletEvent*>(ev));
+		static_cast<QPaintDeviceWindow*>(ptr)->QPaintDeviceWindow::tabletEvent(static_cast<QTabletEvent*>(ev));
 }
 
 void QPaintDeviceWindow_TouchEvent(void* ptr, void* ev)
 {
-	static_cast<QPaintDeviceWindow*>(ptr)->touchEvent(static_cast<QTouchEvent*>(ev));
+		static_cast<QPaintDeviceWindow*>(ptr)->touchEvent(static_cast<QTouchEvent*>(ev));
 }
 
 void QPaintDeviceWindow_TouchEventDefault(void* ptr, void* ev)
 {
-	static_cast<QPaintDeviceWindow*>(ptr)->QPaintDeviceWindow::touchEvent(static_cast<QTouchEvent*>(ev));
+		static_cast<QPaintDeviceWindow*>(ptr)->QPaintDeviceWindow::touchEvent(static_cast<QTouchEvent*>(ev));
 }
 
 void QPaintDeviceWindow_WheelEvent(void* ptr, void* ev)
 {
-	static_cast<QPaintDeviceWindow*>(ptr)->wheelEvent(static_cast<QWheelEvent*>(ev));
+		static_cast<QPaintDeviceWindow*>(ptr)->wheelEvent(static_cast<QWheelEvent*>(ev));
 }
 
 void QPaintDeviceWindow_WheelEventDefault(void* ptr, void* ev)
 {
-	static_cast<QPaintDeviceWindow*>(ptr)->QPaintDeviceWindow::wheelEvent(static_cast<QWheelEvent*>(ev));
+		static_cast<QPaintDeviceWindow*>(ptr)->QPaintDeviceWindow::wheelEvent(static_cast<QWheelEvent*>(ev));
 }
 
 void QPaintDeviceWindow_TimerEvent(void* ptr, void* event)
 {
-	static_cast<QPaintDeviceWindow*>(ptr)->timerEvent(static_cast<QTimerEvent*>(event));
+		static_cast<QPaintDeviceWindow*>(ptr)->timerEvent(static_cast<QTimerEvent*>(event));
 }
 
 void QPaintDeviceWindow_TimerEventDefault(void* ptr, void* event)
 {
-	static_cast<QPaintDeviceWindow*>(ptr)->QPaintDeviceWindow::timerEvent(static_cast<QTimerEvent*>(event));
+		static_cast<QPaintDeviceWindow*>(ptr)->QPaintDeviceWindow::timerEvent(static_cast<QTimerEvent*>(event));
 }
 
 void QPaintDeviceWindow_ChildEvent(void* ptr, void* event)
 {
-	static_cast<QPaintDeviceWindow*>(ptr)->childEvent(static_cast<QChildEvent*>(event));
+		static_cast<QPaintDeviceWindow*>(ptr)->childEvent(static_cast<QChildEvent*>(event));
 }
 
 void QPaintDeviceWindow_ChildEventDefault(void* ptr, void* event)
 {
-	static_cast<QPaintDeviceWindow*>(ptr)->QPaintDeviceWindow::childEvent(static_cast<QChildEvent*>(event));
+		static_cast<QPaintDeviceWindow*>(ptr)->QPaintDeviceWindow::childEvent(static_cast<QChildEvent*>(event));
 }
 
 void QPaintDeviceWindow_ConnectNotify(void* ptr, void* sign)
 {
-	static_cast<QPaintDeviceWindow*>(ptr)->connectNotify(*static_cast<QMetaMethod*>(sign));
+		static_cast<QPaintDeviceWindow*>(ptr)->connectNotify(*static_cast<QMetaMethod*>(sign));
 }
 
 void QPaintDeviceWindow_ConnectNotifyDefault(void* ptr, void* sign)
 {
-	static_cast<QPaintDeviceWindow*>(ptr)->QPaintDeviceWindow::connectNotify(*static_cast<QMetaMethod*>(sign));
+		static_cast<QPaintDeviceWindow*>(ptr)->QPaintDeviceWindow::connectNotify(*static_cast<QMetaMethod*>(sign));
 }
 
 void QPaintDeviceWindow_CustomEvent(void* ptr, void* event)
 {
-	static_cast<QPaintDeviceWindow*>(ptr)->customEvent(static_cast<QEvent*>(event));
+		static_cast<QPaintDeviceWindow*>(ptr)->customEvent(static_cast<QEvent*>(event));
 }
 
 void QPaintDeviceWindow_CustomEventDefault(void* ptr, void* event)
 {
-	static_cast<QPaintDeviceWindow*>(ptr)->QPaintDeviceWindow::customEvent(static_cast<QEvent*>(event));
+		static_cast<QPaintDeviceWindow*>(ptr)->QPaintDeviceWindow::customEvent(static_cast<QEvent*>(event));
 }
 
 void QPaintDeviceWindow_DeleteLater(void* ptr)
 {
-	QMetaObject::invokeMethod(static_cast<QPaintDeviceWindow*>(ptr), "deleteLater");
+		QMetaObject::invokeMethod(static_cast<QPaintDeviceWindow*>(ptr), "deleteLater");
 }
 
 void QPaintDeviceWindow_DeleteLaterDefault(void* ptr)
 {
-	static_cast<QPaintDeviceWindow*>(ptr)->QPaintDeviceWindow::deleteLater();
+		static_cast<QPaintDeviceWindow*>(ptr)->QPaintDeviceWindow::deleteLater();
 }
 
 void QPaintDeviceWindow_DisconnectNotify(void* ptr, void* sign)
 {
-	static_cast<QPaintDeviceWindow*>(ptr)->disconnectNotify(*static_cast<QMetaMethod*>(sign));
+		static_cast<QPaintDeviceWindow*>(ptr)->disconnectNotify(*static_cast<QMetaMethod*>(sign));
 }
 
 void QPaintDeviceWindow_DisconnectNotifyDefault(void* ptr, void* sign)
 {
-	static_cast<QPaintDeviceWindow*>(ptr)->QPaintDeviceWindow::disconnectNotify(*static_cast<QMetaMethod*>(sign));
+		static_cast<QPaintDeviceWindow*>(ptr)->QPaintDeviceWindow::disconnectNotify(*static_cast<QMetaMethod*>(sign));
 }
 
 char QPaintDeviceWindow_EventFilter(void* ptr, void* watched, void* event)
 {
-	return static_cast<QPaintDeviceWindow*>(ptr)->eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+	if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(watched))) {
+		return static_cast<QPaintDeviceWindow*>(ptr)->eventFilter(static_cast<QOffscreenSurface*>(watched), static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(watched))) {
+		return static_cast<QPaintDeviceWindow*>(ptr)->eventFilter(static_cast<QPaintDeviceWindow*>(watched), static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(watched))) {
+		return static_cast<QPaintDeviceWindow*>(ptr)->eventFilter(static_cast<QPdfWriter*>(watched), static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(watched))) {
+		return static_cast<QPaintDeviceWindow*>(ptr)->eventFilter(static_cast<QWindow*>(watched), static_cast<QEvent*>(event));
+	} else {
+		return static_cast<QPaintDeviceWindow*>(ptr)->eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+	}
 }
 
 char QPaintDeviceWindow_EventFilterDefault(void* ptr, void* watched, void* event)
 {
-	return static_cast<QPaintDeviceWindow*>(ptr)->QPaintDeviceWindow::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+	if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(watched))) {
+		return static_cast<QPaintDeviceWindow*>(ptr)->QPaintDeviceWindow::eventFilter(static_cast<QOffscreenSurface*>(watched), static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(watched))) {
+		return static_cast<QPaintDeviceWindow*>(ptr)->QPaintDeviceWindow::eventFilter(static_cast<QPaintDeviceWindow*>(watched), static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(watched))) {
+		return static_cast<QPaintDeviceWindow*>(ptr)->QPaintDeviceWindow::eventFilter(static_cast<QPdfWriter*>(watched), static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(watched))) {
+		return static_cast<QPaintDeviceWindow*>(ptr)->QPaintDeviceWindow::eventFilter(static_cast<QWindow*>(watched), static_cast<QEvent*>(event));
+	} else {
+		return static_cast<QPaintDeviceWindow*>(ptr)->QPaintDeviceWindow::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+	}
 }
 
 void* QPaintDeviceWindow_MetaObject(void* ptr)
 {
-	return const_cast<QMetaObject*>(static_cast<QPaintDeviceWindow*>(ptr)->metaObject());
+		return const_cast<QMetaObject*>(static_cast<QPaintDeviceWindow*>(ptr)->metaObject());
 }
 
 void* QPaintDeviceWindow_MetaObjectDefault(void* ptr)
 {
-	return const_cast<QMetaObject*>(static_cast<QPaintDeviceWindow*>(ptr)->QPaintDeviceWindow::metaObject());
+		return const_cast<QMetaObject*>(static_cast<QPaintDeviceWindow*>(ptr)->QPaintDeviceWindow::metaObject());
 }
 
 int QPaintDeviceWindow_Metric(void* ptr, long long metric)
 {
-	return static_cast<QPaintDeviceWindow*>(ptr)->metric(static_cast<QPaintDevice::PaintDeviceMetric>(metric));
+		return static_cast<QPaintDeviceWindow*>(ptr)->metric(static_cast<QPaintDevice::PaintDeviceMetric>(metric));
 }
 
 int QPaintDeviceWindow_MetricDefault(void* ptr, long long metric)
 {
-	return static_cast<QPaintDeviceWindow*>(ptr)->QPaintDeviceWindow::metric(static_cast<QPaintDevice::PaintDeviceMetric>(metric));
+		return static_cast<QPaintDeviceWindow*>(ptr)->QPaintDeviceWindow::metric(static_cast<QPaintDevice::PaintDeviceMetric>(metric));
 }
 
 void* QPaintDeviceWindow_PaintEngine(void* ptr)
 {
-	return static_cast<QPaintDeviceWindow*>(ptr)->paintEngine();
+		return static_cast<QPaintDeviceWindow*>(ptr)->paintEngine();
 }
 
 void* QPaintDeviceWindow_PaintEngineDefault(void* ptr)
 {
-	return static_cast<QPaintDeviceWindow*>(ptr)->QPaintDeviceWindow::paintEngine();
+		return static_cast<QPaintDeviceWindow*>(ptr)->QPaintDeviceWindow::paintEngine();
 }
 
 class MyQPaintEngine: public QPaintEngine
@@ -10566,7 +11120,13 @@ void* QPaintEngine_NewQPaintEngine(long long caps)
 
 char QPaintEngine_Begin(void* ptr, void* pdev)
 {
-	return static_cast<QPaintEngine*>(ptr)->begin(static_cast<QPaintDevice*>(pdev));
+	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(pdev))) {
+		return static_cast<QPaintEngine*>(ptr)->begin(static_cast<QPaintDeviceWindow*>(pdev));
+	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(pdev))) {
+		return static_cast<QPaintEngine*>(ptr)->begin(static_cast<QPdfWriter*>(pdev));
+	} else {
+		return static_cast<QPaintEngine*>(ptr)->begin(static_cast<QPaintDevice*>(pdev));
+	}
 }
 
 void QPaintEngine_DrawEllipse2(void* ptr, void* rect)
@@ -10911,7 +11471,13 @@ void* QPainter_NewQPainter2(void* device)
 
 char QPainter_Begin(void* ptr, void* device)
 {
-	return static_cast<QPainter*>(ptr)->begin(static_cast<QPaintDevice*>(device));
+	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(device))) {
+		return static_cast<QPainter*>(ptr)->begin(static_cast<QPaintDeviceWindow*>(device));
+	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(device))) {
+		return static_cast<QPainter*>(ptr)->begin(static_cast<QPdfWriter*>(device));
+	} else {
+		return static_cast<QPainter*>(ptr)->begin(static_cast<QPaintDevice*>(device));
+	}
 }
 
 void* QPainter_BoundingRect2(void* ptr, void* rectangle, int flags, char* text)
@@ -12478,82 +13044,82 @@ void* QPdfWriter_NewQPdfWriter(char* filename)
 
 struct QtGui_PackedString QPdfWriter_Creator(void* ptr)
 {
-	return ({ QByteArray te95fa2 = static_cast<QPdfWriter*>(ptr)->creator().toUtf8(); QtGui_PackedString { const_cast<char*>(te95fa2.prepend("WHITESPACE").constData()+10), te95fa2.size()-10 }; });
+		return ({ QByteArray te95fa2 = static_cast<QPdfWriter*>(ptr)->creator().toUtf8(); QtGui_PackedString { const_cast<char*>(te95fa2.prepend("WHITESPACE").constData()+10), te95fa2.size()-10 }; });
 }
 
 char QPdfWriter_NewPage(void* ptr)
 {
-	return static_cast<QPdfWriter*>(ptr)->newPage();
+		return static_cast<QPdfWriter*>(ptr)->newPage();
 }
 
 char QPdfWriter_NewPageDefault(void* ptr)
 {
-	return static_cast<QPdfWriter*>(ptr)->QPdfWriter::newPage();
+		return static_cast<QPdfWriter*>(ptr)->QPdfWriter::newPage();
 }
 
 void* QPdfWriter_PageLayout(void* ptr)
 {
-	return new QPageLayout(static_cast<QPdfWriter*>(ptr)->pageLayout());
+		return new QPageLayout(static_cast<QPdfWriter*>(ptr)->pageLayout());
 }
 
 void* QPdfWriter_PaintEngine(void* ptr)
 {
-	return static_cast<QPdfWriter*>(ptr)->paintEngine();
+		return static_cast<QPdfWriter*>(ptr)->paintEngine();
 }
 
 void* QPdfWriter_PaintEngineDefault(void* ptr)
 {
-	return static_cast<QPdfWriter*>(ptr)->QPdfWriter::paintEngine();
+		return static_cast<QPdfWriter*>(ptr)->QPdfWriter::paintEngine();
 }
 
 int QPdfWriter_Resolution(void* ptr)
 {
-	return static_cast<QPdfWriter*>(ptr)->resolution();
+		return static_cast<QPdfWriter*>(ptr)->resolution();
 }
 
 void QPdfWriter_SetCreator(void* ptr, char* creator)
 {
-	static_cast<QPdfWriter*>(ptr)->setCreator(QString(creator));
+		static_cast<QPdfWriter*>(ptr)->setCreator(QString(creator));
 }
 
 char QPdfWriter_SetPageLayout(void* ptr, void* newPageLayout)
 {
-	return static_cast<QPdfWriter*>(ptr)->setPageLayout(*static_cast<QPageLayout*>(newPageLayout));
+		return static_cast<QPdfWriter*>(ptr)->setPageLayout(*static_cast<QPageLayout*>(newPageLayout));
 }
 
 char QPdfWriter_SetPageMargins(void* ptr, void* margins)
 {
-	return static_cast<QPdfWriter*>(ptr)->setPageMargins(*static_cast<QMarginsF*>(margins));
+		return static_cast<QPdfWriter*>(ptr)->setPageMargins(*static_cast<QMarginsF*>(margins));
 }
 
 char QPdfWriter_SetPageMargins2(void* ptr, void* margins, long long units)
 {
-	return static_cast<QPdfWriter*>(ptr)->setPageMargins(*static_cast<QMarginsF*>(margins), static_cast<QPageLayout::Unit>(units));
+		return static_cast<QPdfWriter*>(ptr)->setPageMargins(*static_cast<QMarginsF*>(margins), static_cast<QPageLayout::Unit>(units));
 }
 
 char QPdfWriter_SetPageOrientation(void* ptr, long long orientation)
 {
-	return static_cast<QPdfWriter*>(ptr)->setPageOrientation(static_cast<QPageLayout::Orientation>(orientation));
+		return static_cast<QPdfWriter*>(ptr)->setPageOrientation(static_cast<QPageLayout::Orientation>(orientation));
 }
 
 char QPdfWriter_SetPageSize(void* ptr, void* pageSize)
 {
-	return static_cast<QPdfWriter*>(ptr)->setPageSize(*static_cast<QPageSize*>(pageSize));
+		return static_cast<QPdfWriter*>(ptr)->setPageSize(*static_cast<QPageSize*>(pageSize));
 }
 
 void QPdfWriter_SetResolution(void* ptr, int resolution)
 {
-	static_cast<QPdfWriter*>(ptr)->setResolution(resolution);
+		static_cast<QPdfWriter*>(ptr)->setResolution(resolution);
 }
 
 void QPdfWriter_SetTitle(void* ptr, char* title)
 {
-	static_cast<QPdfWriter*>(ptr)->setTitle(QString(title));
+		static_cast<QPdfWriter*>(ptr)->setTitle(QString(title));
 }
 
 struct QtGui_PackedString QPdfWriter_Title(void* ptr)
 {
-	return ({ QByteArray t5cd62a = static_cast<QPdfWriter*>(ptr)->title().toUtf8(); QtGui_PackedString { const_cast<char*>(t5cd62a.prepend("WHITESPACE").constData()+10), t5cd62a.size()-10 }; });
+		return ({ QByteArray t5cd62a = static_cast<QPdfWriter*>(ptr)->title().toUtf8(); QtGui_PackedString { const_cast<char*>(t5cd62a.prepend("WHITESPACE").constData()+10), t5cd62a.size()-10 }; });
 }
 
 void QPdfWriter_DestroyQPdfWriter(void* ptr)
@@ -12563,92 +13129,112 @@ void QPdfWriter_DestroyQPdfWriter(void* ptr)
 
 void QPdfWriter_TimerEvent(void* ptr, void* event)
 {
-	static_cast<QPdfWriter*>(ptr)->timerEvent(static_cast<QTimerEvent*>(event));
+		static_cast<QPdfWriter*>(ptr)->timerEvent(static_cast<QTimerEvent*>(event));
 }
 
 void QPdfWriter_TimerEventDefault(void* ptr, void* event)
 {
-	static_cast<QPdfWriter*>(ptr)->QPdfWriter::timerEvent(static_cast<QTimerEvent*>(event));
+		static_cast<QPdfWriter*>(ptr)->QPdfWriter::timerEvent(static_cast<QTimerEvent*>(event));
 }
 
 void QPdfWriter_ChildEvent(void* ptr, void* event)
 {
-	static_cast<QPdfWriter*>(ptr)->childEvent(static_cast<QChildEvent*>(event));
+		static_cast<QPdfWriter*>(ptr)->childEvent(static_cast<QChildEvent*>(event));
 }
 
 void QPdfWriter_ChildEventDefault(void* ptr, void* event)
 {
-	static_cast<QPdfWriter*>(ptr)->QPdfWriter::childEvent(static_cast<QChildEvent*>(event));
+		static_cast<QPdfWriter*>(ptr)->QPdfWriter::childEvent(static_cast<QChildEvent*>(event));
 }
 
 void QPdfWriter_ConnectNotify(void* ptr, void* sign)
 {
-	static_cast<QPdfWriter*>(ptr)->connectNotify(*static_cast<QMetaMethod*>(sign));
+		static_cast<QPdfWriter*>(ptr)->connectNotify(*static_cast<QMetaMethod*>(sign));
 }
 
 void QPdfWriter_ConnectNotifyDefault(void* ptr, void* sign)
 {
-	static_cast<QPdfWriter*>(ptr)->QPdfWriter::connectNotify(*static_cast<QMetaMethod*>(sign));
+		static_cast<QPdfWriter*>(ptr)->QPdfWriter::connectNotify(*static_cast<QMetaMethod*>(sign));
 }
 
 void QPdfWriter_CustomEvent(void* ptr, void* event)
 {
-	static_cast<QPdfWriter*>(ptr)->customEvent(static_cast<QEvent*>(event));
+		static_cast<QPdfWriter*>(ptr)->customEvent(static_cast<QEvent*>(event));
 }
 
 void QPdfWriter_CustomEventDefault(void* ptr, void* event)
 {
-	static_cast<QPdfWriter*>(ptr)->QPdfWriter::customEvent(static_cast<QEvent*>(event));
+		static_cast<QPdfWriter*>(ptr)->QPdfWriter::customEvent(static_cast<QEvent*>(event));
 }
 
 void QPdfWriter_DeleteLater(void* ptr)
 {
-	QMetaObject::invokeMethod(static_cast<QPdfWriter*>(ptr), "deleteLater");
+		QMetaObject::invokeMethod(static_cast<QPdfWriter*>(ptr), "deleteLater");
 }
 
 void QPdfWriter_DeleteLaterDefault(void* ptr)
 {
-	static_cast<QPdfWriter*>(ptr)->QPdfWriter::deleteLater();
+		static_cast<QPdfWriter*>(ptr)->QPdfWriter::deleteLater();
 }
 
 void QPdfWriter_DisconnectNotify(void* ptr, void* sign)
 {
-	static_cast<QPdfWriter*>(ptr)->disconnectNotify(*static_cast<QMetaMethod*>(sign));
+		static_cast<QPdfWriter*>(ptr)->disconnectNotify(*static_cast<QMetaMethod*>(sign));
 }
 
 void QPdfWriter_DisconnectNotifyDefault(void* ptr, void* sign)
 {
-	static_cast<QPdfWriter*>(ptr)->QPdfWriter::disconnectNotify(*static_cast<QMetaMethod*>(sign));
+		static_cast<QPdfWriter*>(ptr)->QPdfWriter::disconnectNotify(*static_cast<QMetaMethod*>(sign));
 }
 
 char QPdfWriter_Event(void* ptr, void* e)
 {
-	return static_cast<QPdfWriter*>(ptr)->event(static_cast<QEvent*>(e));
+		return static_cast<QPdfWriter*>(ptr)->event(static_cast<QEvent*>(e));
 }
 
 char QPdfWriter_EventDefault(void* ptr, void* e)
 {
-	return static_cast<QPdfWriter*>(ptr)->QPdfWriter::event(static_cast<QEvent*>(e));
+		return static_cast<QPdfWriter*>(ptr)->QPdfWriter::event(static_cast<QEvent*>(e));
 }
 
 char QPdfWriter_EventFilter(void* ptr, void* watched, void* event)
 {
-	return static_cast<QPdfWriter*>(ptr)->eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+	if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(watched))) {
+		return static_cast<QPdfWriter*>(ptr)->eventFilter(static_cast<QOffscreenSurface*>(watched), static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(watched))) {
+		return static_cast<QPdfWriter*>(ptr)->eventFilter(static_cast<QPaintDeviceWindow*>(watched), static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(watched))) {
+		return static_cast<QPdfWriter*>(ptr)->eventFilter(static_cast<QPdfWriter*>(watched), static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(watched))) {
+		return static_cast<QPdfWriter*>(ptr)->eventFilter(static_cast<QWindow*>(watched), static_cast<QEvent*>(event));
+	} else {
+		return static_cast<QPdfWriter*>(ptr)->eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+	}
 }
 
 char QPdfWriter_EventFilterDefault(void* ptr, void* watched, void* event)
 {
-	return static_cast<QPdfWriter*>(ptr)->QPdfWriter::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+	if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(watched))) {
+		return static_cast<QPdfWriter*>(ptr)->QPdfWriter::eventFilter(static_cast<QOffscreenSurface*>(watched), static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(watched))) {
+		return static_cast<QPdfWriter*>(ptr)->QPdfWriter::eventFilter(static_cast<QPaintDeviceWindow*>(watched), static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(watched))) {
+		return static_cast<QPdfWriter*>(ptr)->QPdfWriter::eventFilter(static_cast<QPdfWriter*>(watched), static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(watched))) {
+		return static_cast<QPdfWriter*>(ptr)->QPdfWriter::eventFilter(static_cast<QWindow*>(watched), static_cast<QEvent*>(event));
+	} else {
+		return static_cast<QPdfWriter*>(ptr)->QPdfWriter::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+	}
 }
 
 void* QPdfWriter_MetaObject(void* ptr)
 {
-	return const_cast<QMetaObject*>(static_cast<QPdfWriter*>(ptr)->metaObject());
+		return const_cast<QMetaObject*>(static_cast<QPdfWriter*>(ptr)->metaObject());
 }
 
 void* QPdfWriter_MetaObjectDefault(void* ptr)
 {
-	return const_cast<QMetaObject*>(static_cast<QPdfWriter*>(ptr)->QPdfWriter::metaObject());
+		return const_cast<QMetaObject*>(static_cast<QPdfWriter*>(ptr)->QPdfWriter::metaObject());
 }
 
 
@@ -12657,32 +13243,32 @@ void* QPdfWriter_MetaObjectDefault(void* ptr)
 
 void QPdfWriter_SetPageSize2(void* ptr, long long size)
 {
-	static_cast<QPdfWriter*>(ptr)->setPageSize(static_cast<QPagedPaintDevice::PageSize>(size));
+		static_cast<QPdfWriter*>(ptr)->setPageSize(static_cast<QPagedPaintDevice::PageSize>(size));
 }
 
 void QPdfWriter_SetPageSize2Default(void* ptr, long long size)
 {
-	static_cast<QPdfWriter*>(ptr)->QPdfWriter::setPageSize(static_cast<QPagedPaintDevice::PageSize>(size));
+		static_cast<QPdfWriter*>(ptr)->QPdfWriter::setPageSize(static_cast<QPagedPaintDevice::PageSize>(size));
 }
 
 void QPdfWriter_SetPageSizeMM(void* ptr, void* size)
 {
-	static_cast<QPdfWriter*>(ptr)->setPageSizeMM(*static_cast<QSizeF*>(size));
+		static_cast<QPdfWriter*>(ptr)->setPageSizeMM(*static_cast<QSizeF*>(size));
 }
 
 void QPdfWriter_SetPageSizeMMDefault(void* ptr, void* size)
 {
-	static_cast<QPdfWriter*>(ptr)->QPdfWriter::setPageSizeMM(*static_cast<QSizeF*>(size));
+		static_cast<QPdfWriter*>(ptr)->QPdfWriter::setPageSizeMM(*static_cast<QSizeF*>(size));
 }
 
 int QPdfWriter_Metric(void* ptr, long long metric)
 {
-	return static_cast<QPdfWriter*>(ptr)->metric(static_cast<QPaintDevice::PaintDeviceMetric>(metric));
+		return static_cast<QPdfWriter*>(ptr)->metric(static_cast<QPaintDevice::PaintDeviceMetric>(metric));
 }
 
 int QPdfWriter_MetricDefault(void* ptr, long long metric)
 {
-	return static_cast<QPdfWriter*>(ptr)->QPdfWriter::metric(static_cast<QPaintDevice::PaintDeviceMetric>(metric));
+		return static_cast<QPdfWriter*>(ptr)->QPdfWriter::metric(static_cast<QPaintDevice::PaintDeviceMetric>(metric));
 }
 
 void* QPen_NewQPen4(void* brush, double width, long long style, long long cap, long long join)
@@ -14394,12 +14980,32 @@ void QRasterWindow_DisconnectNotifyDefault(void* ptr, void* sign)
 
 char QRasterWindow_EventFilter(void* ptr, void* watched, void* event)
 {
-	return static_cast<QRasterWindow*>(ptr)->eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+	if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(watched))) {
+		return static_cast<QRasterWindow*>(ptr)->eventFilter(static_cast<QOffscreenSurface*>(watched), static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(watched))) {
+		return static_cast<QRasterWindow*>(ptr)->eventFilter(static_cast<QPaintDeviceWindow*>(watched), static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(watched))) {
+		return static_cast<QRasterWindow*>(ptr)->eventFilter(static_cast<QPdfWriter*>(watched), static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(watched))) {
+		return static_cast<QRasterWindow*>(ptr)->eventFilter(static_cast<QWindow*>(watched), static_cast<QEvent*>(event));
+	} else {
+		return static_cast<QRasterWindow*>(ptr)->eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+	}
 }
 
 char QRasterWindow_EventFilterDefault(void* ptr, void* watched, void* event)
 {
-	return static_cast<QRasterWindow*>(ptr)->QRasterWindow::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+	if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(watched))) {
+		return static_cast<QRasterWindow*>(ptr)->QRasterWindow::eventFilter(static_cast<QOffscreenSurface*>(watched), static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(watched))) {
+		return static_cast<QRasterWindow*>(ptr)->QRasterWindow::eventFilter(static_cast<QPaintDeviceWindow*>(watched), static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(watched))) {
+		return static_cast<QRasterWindow*>(ptr)->QRasterWindow::eventFilter(static_cast<QPdfWriter*>(watched), static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(watched))) {
+		return static_cast<QRasterWindow*>(ptr)->QRasterWindow::eventFilter(static_cast<QWindow*>(watched), static_cast<QEvent*>(event));
+	} else {
+		return static_cast<QRasterWindow*>(ptr)->QRasterWindow::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+	}
 }
 
 void* QRasterWindow_MetaObject(void* ptr)
@@ -14742,12 +15348,32 @@ char QRegExpValidator_EventDefault(void* ptr, void* e)
 
 char QRegExpValidator_EventFilter(void* ptr, void* watched, void* event)
 {
-	return static_cast<QRegExpValidator*>(ptr)->eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+	if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(watched))) {
+		return static_cast<QRegExpValidator*>(ptr)->eventFilter(static_cast<QOffscreenSurface*>(watched), static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(watched))) {
+		return static_cast<QRegExpValidator*>(ptr)->eventFilter(static_cast<QPaintDeviceWindow*>(watched), static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(watched))) {
+		return static_cast<QRegExpValidator*>(ptr)->eventFilter(static_cast<QPdfWriter*>(watched), static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(watched))) {
+		return static_cast<QRegExpValidator*>(ptr)->eventFilter(static_cast<QWindow*>(watched), static_cast<QEvent*>(event));
+	} else {
+		return static_cast<QRegExpValidator*>(ptr)->eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+	}
 }
 
 char QRegExpValidator_EventFilterDefault(void* ptr, void* watched, void* event)
 {
-	return static_cast<QRegExpValidator*>(ptr)->QRegExpValidator::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+	if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(watched))) {
+		return static_cast<QRegExpValidator*>(ptr)->QRegExpValidator::eventFilter(static_cast<QOffscreenSurface*>(watched), static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(watched))) {
+		return static_cast<QRegExpValidator*>(ptr)->QRegExpValidator::eventFilter(static_cast<QPaintDeviceWindow*>(watched), static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(watched))) {
+		return static_cast<QRegExpValidator*>(ptr)->QRegExpValidator::eventFilter(static_cast<QPdfWriter*>(watched), static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(watched))) {
+		return static_cast<QRegExpValidator*>(ptr)->QRegExpValidator::eventFilter(static_cast<QWindow*>(watched), static_cast<QEvent*>(event));
+	} else {
+		return static_cast<QRegExpValidator*>(ptr)->QRegExpValidator::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+	}
 }
 
 void* QRegExpValidator_MetaObject(void* ptr)
@@ -15057,12 +15683,32 @@ char QRegularExpressionValidator_EventDefault(void* ptr, void* e)
 
 char QRegularExpressionValidator_EventFilter(void* ptr, void* watched, void* event)
 {
-	return static_cast<QRegularExpressionValidator*>(ptr)->eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+	if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(watched))) {
+		return static_cast<QRegularExpressionValidator*>(ptr)->eventFilter(static_cast<QOffscreenSurface*>(watched), static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(watched))) {
+		return static_cast<QRegularExpressionValidator*>(ptr)->eventFilter(static_cast<QPaintDeviceWindow*>(watched), static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(watched))) {
+		return static_cast<QRegularExpressionValidator*>(ptr)->eventFilter(static_cast<QPdfWriter*>(watched), static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(watched))) {
+		return static_cast<QRegularExpressionValidator*>(ptr)->eventFilter(static_cast<QWindow*>(watched), static_cast<QEvent*>(event));
+	} else {
+		return static_cast<QRegularExpressionValidator*>(ptr)->eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+	}
 }
 
 char QRegularExpressionValidator_EventFilterDefault(void* ptr, void* watched, void* event)
 {
-	return static_cast<QRegularExpressionValidator*>(ptr)->QRegularExpressionValidator::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+	if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(watched))) {
+		return static_cast<QRegularExpressionValidator*>(ptr)->QRegularExpressionValidator::eventFilter(static_cast<QOffscreenSurface*>(watched), static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(watched))) {
+		return static_cast<QRegularExpressionValidator*>(ptr)->QRegularExpressionValidator::eventFilter(static_cast<QPaintDeviceWindow*>(watched), static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(watched))) {
+		return static_cast<QRegularExpressionValidator*>(ptr)->QRegularExpressionValidator::eventFilter(static_cast<QPdfWriter*>(watched), static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(watched))) {
+		return static_cast<QRegularExpressionValidator*>(ptr)->QRegularExpressionValidator::eventFilter(static_cast<QWindow*>(watched), static_cast<QEvent*>(event));
+	} else {
+		return static_cast<QRegularExpressionValidator*>(ptr)->QRegularExpressionValidator::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+	}
 }
 
 void* QRegularExpressionValidator_MetaObject(void* ptr)
@@ -15565,12 +16211,32 @@ char QScreen_EventDefault(void* ptr, void* e)
 
 char QScreen_EventFilter(void* ptr, void* watched, void* event)
 {
-	return static_cast<QScreen*>(ptr)->eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+	if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(watched))) {
+		return static_cast<QScreen*>(ptr)->eventFilter(static_cast<QOffscreenSurface*>(watched), static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(watched))) {
+		return static_cast<QScreen*>(ptr)->eventFilter(static_cast<QPaintDeviceWindow*>(watched), static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(watched))) {
+		return static_cast<QScreen*>(ptr)->eventFilter(static_cast<QPdfWriter*>(watched), static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(watched))) {
+		return static_cast<QScreen*>(ptr)->eventFilter(static_cast<QWindow*>(watched), static_cast<QEvent*>(event));
+	} else {
+		return static_cast<QScreen*>(ptr)->eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+	}
 }
 
 char QScreen_EventFilterDefault(void* ptr, void* watched, void* event)
 {
-	return static_cast<QScreen*>(ptr)->QScreen::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+	if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(watched))) {
+		return static_cast<QScreen*>(ptr)->QScreen::eventFilter(static_cast<QOffscreenSurface*>(watched), static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(watched))) {
+		return static_cast<QScreen*>(ptr)->QScreen::eventFilter(static_cast<QPaintDeviceWindow*>(watched), static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(watched))) {
+		return static_cast<QScreen*>(ptr)->QScreen::eventFilter(static_cast<QPdfWriter*>(watched), static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(watched))) {
+		return static_cast<QScreen*>(ptr)->QScreen::eventFilter(static_cast<QWindow*>(watched), static_cast<QEvent*>(event));
+	} else {
+		return static_cast<QScreen*>(ptr)->QScreen::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+	}
 }
 
 void* QScreen_MetaObject(void* ptr)
@@ -15805,12 +16471,32 @@ char QSessionManager_EventDefault(void* ptr, void* e)
 
 char QSessionManager_EventFilter(void* ptr, void* watched, void* event)
 {
-	return static_cast<QSessionManager*>(ptr)->eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+	if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(watched))) {
+		return static_cast<QSessionManager*>(ptr)->eventFilter(static_cast<QOffscreenSurface*>(watched), static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(watched))) {
+		return static_cast<QSessionManager*>(ptr)->eventFilter(static_cast<QPaintDeviceWindow*>(watched), static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(watched))) {
+		return static_cast<QSessionManager*>(ptr)->eventFilter(static_cast<QPdfWriter*>(watched), static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(watched))) {
+		return static_cast<QSessionManager*>(ptr)->eventFilter(static_cast<QWindow*>(watched), static_cast<QEvent*>(event));
+	} else {
+		return static_cast<QSessionManager*>(ptr)->eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+	}
 }
 
 char QSessionManager_EventFilterDefault(void* ptr, void* watched, void* event)
 {
-	return static_cast<QSessionManager*>(ptr)->QSessionManager::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+	if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(watched))) {
+		return static_cast<QSessionManager*>(ptr)->QSessionManager::eventFilter(static_cast<QOffscreenSurface*>(watched), static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(watched))) {
+		return static_cast<QSessionManager*>(ptr)->QSessionManager::eventFilter(static_cast<QPaintDeviceWindow*>(watched), static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(watched))) {
+		return static_cast<QSessionManager*>(ptr)->QSessionManager::eventFilter(static_cast<QPdfWriter*>(watched), static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(watched))) {
+		return static_cast<QSessionManager*>(ptr)->QSessionManager::eventFilter(static_cast<QWindow*>(watched), static_cast<QEvent*>(event));
+	} else {
+		return static_cast<QSessionManager*>(ptr)->QSessionManager::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+	}
 }
 
 void* QSessionManager_MetaObject(void* ptr)
@@ -16856,12 +17542,32 @@ char QStandardItemModel_EventDefault(void* ptr, void* e)
 
 char QStandardItemModel_EventFilter(void* ptr, void* watched, void* event)
 {
-	return static_cast<QStandardItemModel*>(ptr)->eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+	if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(watched))) {
+		return static_cast<QStandardItemModel*>(ptr)->eventFilter(static_cast<QOffscreenSurface*>(watched), static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(watched))) {
+		return static_cast<QStandardItemModel*>(ptr)->eventFilter(static_cast<QPaintDeviceWindow*>(watched), static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(watched))) {
+		return static_cast<QStandardItemModel*>(ptr)->eventFilter(static_cast<QPdfWriter*>(watched), static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(watched))) {
+		return static_cast<QStandardItemModel*>(ptr)->eventFilter(static_cast<QWindow*>(watched), static_cast<QEvent*>(event));
+	} else {
+		return static_cast<QStandardItemModel*>(ptr)->eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+	}
 }
 
 char QStandardItemModel_EventFilterDefault(void* ptr, void* watched, void* event)
 {
-	return static_cast<QStandardItemModel*>(ptr)->QStandardItemModel::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+	if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(watched))) {
+		return static_cast<QStandardItemModel*>(ptr)->QStandardItemModel::eventFilter(static_cast<QOffscreenSurface*>(watched), static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(watched))) {
+		return static_cast<QStandardItemModel*>(ptr)->QStandardItemModel::eventFilter(static_cast<QPaintDeviceWindow*>(watched), static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(watched))) {
+		return static_cast<QStandardItemModel*>(ptr)->QStandardItemModel::eventFilter(static_cast<QPdfWriter*>(watched), static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(watched))) {
+		return static_cast<QStandardItemModel*>(ptr)->QStandardItemModel::eventFilter(static_cast<QWindow*>(watched), static_cast<QEvent*>(event));
+	} else {
+		return static_cast<QStandardItemModel*>(ptr)->QStandardItemModel::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+	}
 }
 
 void* QStandardItemModel_MetaObject(void* ptr)
@@ -17252,12 +17958,32 @@ char QStyleHints_EventDefault(void* ptr, void* e)
 
 char QStyleHints_EventFilter(void* ptr, void* watched, void* event)
 {
-	return static_cast<QStyleHints*>(ptr)->eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+	if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(watched))) {
+		return static_cast<QStyleHints*>(ptr)->eventFilter(static_cast<QOffscreenSurface*>(watched), static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(watched))) {
+		return static_cast<QStyleHints*>(ptr)->eventFilter(static_cast<QPaintDeviceWindow*>(watched), static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(watched))) {
+		return static_cast<QStyleHints*>(ptr)->eventFilter(static_cast<QPdfWriter*>(watched), static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(watched))) {
+		return static_cast<QStyleHints*>(ptr)->eventFilter(static_cast<QWindow*>(watched), static_cast<QEvent*>(event));
+	} else {
+		return static_cast<QStyleHints*>(ptr)->eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+	}
 }
 
 char QStyleHints_EventFilterDefault(void* ptr, void* watched, void* event)
 {
-	return static_cast<QStyleHints*>(ptr)->QStyleHints::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+	if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(watched))) {
+		return static_cast<QStyleHints*>(ptr)->QStyleHints::eventFilter(static_cast<QOffscreenSurface*>(watched), static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(watched))) {
+		return static_cast<QStyleHints*>(ptr)->QStyleHints::eventFilter(static_cast<QPaintDeviceWindow*>(watched), static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(watched))) {
+		return static_cast<QStyleHints*>(ptr)->QStyleHints::eventFilter(static_cast<QPdfWriter*>(watched), static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(watched))) {
+		return static_cast<QStyleHints*>(ptr)->QStyleHints::eventFilter(static_cast<QWindow*>(watched), static_cast<QEvent*>(event));
+	} else {
+		return static_cast<QStyleHints*>(ptr)->QStyleHints::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+	}
 }
 
 void* QStyleHints_MetaObject(void* ptr)
@@ -17281,27 +18007,67 @@ public:
 
 void* QSurface_Format(void* ptr)
 {
-	return new QSurfaceFormat(static_cast<QSurface*>(ptr)->format());
+	if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(ptr))) {
+		return new QSurfaceFormat(static_cast<QOffscreenSurface*>(ptr)->format());
+	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
+		return new QSurfaceFormat(static_cast<QPaintDeviceWindow*>(ptr)->format());
+	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(ptr))) {
+		return new QSurfaceFormat(static_cast<QWindow*>(ptr)->format());
+	} else {
+		return new QSurfaceFormat(static_cast<QSurface*>(ptr)->format());
+	}
 }
 
 void* QSurface_Size(void* ptr)
 {
-	return ({ QSize tmpValue = static_cast<QSurface*>(ptr)->size(); new QSize(tmpValue.width(), tmpValue.height()); });
+	if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(ptr))) {
+		return ({ QSize tmpValue = static_cast<QOffscreenSurface*>(ptr)->size(); new QSize(tmpValue.width(), tmpValue.height()); });
+	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
+		return ({ QSize tmpValue = static_cast<QPaintDeviceWindow*>(ptr)->size(); new QSize(tmpValue.width(), tmpValue.height()); });
+	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(ptr))) {
+		return ({ QSize tmpValue = static_cast<QWindow*>(ptr)->size(); new QSize(tmpValue.width(), tmpValue.height()); });
+	} else {
+		return ({ QSize tmpValue = static_cast<QSurface*>(ptr)->size(); new QSize(tmpValue.width(), tmpValue.height()); });
+	}
 }
 
 char QSurface_SupportsOpenGL(void* ptr)
 {
-	return static_cast<QSurface*>(ptr)->supportsOpenGL();
+	if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QOffscreenSurface*>(ptr)->supportsOpenGL();
+	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QPaintDeviceWindow*>(ptr)->supportsOpenGL();
+	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QWindow*>(ptr)->supportsOpenGL();
+	} else {
+		return static_cast<QSurface*>(ptr)->supportsOpenGL();
+	}
 }
 
 long long QSurface_SurfaceClass(void* ptr)
 {
-	return static_cast<QSurface*>(ptr)->surfaceClass();
+	if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QOffscreenSurface*>(ptr)->surfaceClass();
+	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QPaintDeviceWindow*>(ptr)->surfaceClass();
+	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QWindow*>(ptr)->surfaceClass();
+	} else {
+		return static_cast<QSurface*>(ptr)->surfaceClass();
+	}
 }
 
 long long QSurface_SurfaceType(void* ptr)
 {
-	return static_cast<QSurface*>(ptr)->surfaceType();
+	if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QOffscreenSurface*>(ptr)->surfaceType();
+	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QPaintDeviceWindow*>(ptr)->surfaceType();
+	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QWindow*>(ptr)->surfaceType();
+	} else {
+		return static_cast<QSurface*>(ptr)->surfaceType();
+	}
 }
 
 void QSurface_DestroyQSurface(void* ptr)
@@ -17316,12 +18082,28 @@ void QSurface_DestroyQSurfaceDefault(void* ptr)
 
 long long QSurface_M_type(void* ptr)
 {
-	return static_cast<QSurface*>(ptr)->m_type;
+	if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QOffscreenSurface*>(ptr)->m_type;
+	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QPaintDeviceWindow*>(ptr)->m_type;
+	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QWindow*>(ptr)->m_type;
+	} else {
+		return static_cast<QSurface*>(ptr)->m_type;
+	}
 }
 
 void QSurface_SetM_type(void* ptr, long long vsu)
 {
-	static_cast<QSurface*>(ptr)->m_type = static_cast<QSurface::SurfaceClass>(vsu);
+	if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(ptr))) {
+		static_cast<QOffscreenSurface*>(ptr)->m_type = static_cast<QSurface::SurfaceClass>(vsu);
+	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
+		static_cast<QPaintDeviceWindow*>(ptr)->m_type = static_cast<QSurface::SurfaceClass>(vsu);
+	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(ptr))) {
+		static_cast<QWindow*>(ptr)->m_type = static_cast<QSurface::SurfaceClass>(vsu);
+	} else {
+		static_cast<QSurface*>(ptr)->m_type = static_cast<QSurface::SurfaceClass>(vsu);
+	}
 }
 
 void* QSurfaceFormat_NewQSurfaceFormat()
@@ -17711,12 +18493,32 @@ char QSyntaxHighlighter_EventDefault(void* ptr, void* e)
 
 char QSyntaxHighlighter_EventFilter(void* ptr, void* watched, void* event)
 {
-	return static_cast<QSyntaxHighlighter*>(ptr)->eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+	if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(watched))) {
+		return static_cast<QSyntaxHighlighter*>(ptr)->eventFilter(static_cast<QOffscreenSurface*>(watched), static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(watched))) {
+		return static_cast<QSyntaxHighlighter*>(ptr)->eventFilter(static_cast<QPaintDeviceWindow*>(watched), static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(watched))) {
+		return static_cast<QSyntaxHighlighter*>(ptr)->eventFilter(static_cast<QPdfWriter*>(watched), static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(watched))) {
+		return static_cast<QSyntaxHighlighter*>(ptr)->eventFilter(static_cast<QWindow*>(watched), static_cast<QEvent*>(event));
+	} else {
+		return static_cast<QSyntaxHighlighter*>(ptr)->eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+	}
 }
 
 char QSyntaxHighlighter_EventFilterDefault(void* ptr, void* watched, void* event)
 {
-	return static_cast<QSyntaxHighlighter*>(ptr)->QSyntaxHighlighter::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+	if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(watched))) {
+		return static_cast<QSyntaxHighlighter*>(ptr)->QSyntaxHighlighter::eventFilter(static_cast<QOffscreenSurface*>(watched), static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(watched))) {
+		return static_cast<QSyntaxHighlighter*>(ptr)->QSyntaxHighlighter::eventFilter(static_cast<QPaintDeviceWindow*>(watched), static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(watched))) {
+		return static_cast<QSyntaxHighlighter*>(ptr)->QSyntaxHighlighter::eventFilter(static_cast<QPdfWriter*>(watched), static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(watched))) {
+		return static_cast<QSyntaxHighlighter*>(ptr)->QSyntaxHighlighter::eventFilter(static_cast<QWindow*>(watched), static_cast<QEvent*>(event));
+	} else {
+		return static_cast<QSyntaxHighlighter*>(ptr)->QSyntaxHighlighter::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+	}
 }
 
 void* QSyntaxHighlighter_MetaObject(void* ptr)
@@ -18264,12 +19066,32 @@ char QTextBlockGroup_EventDefault(void* ptr, void* e)
 
 char QTextBlockGroup_EventFilter(void* ptr, void* watched, void* event)
 {
-	return static_cast<QTextBlockGroup*>(ptr)->eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+	if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(watched))) {
+		return static_cast<QTextBlockGroup*>(ptr)->eventFilter(static_cast<QOffscreenSurface*>(watched), static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(watched))) {
+		return static_cast<QTextBlockGroup*>(ptr)->eventFilter(static_cast<QPaintDeviceWindow*>(watched), static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(watched))) {
+		return static_cast<QTextBlockGroup*>(ptr)->eventFilter(static_cast<QPdfWriter*>(watched), static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(watched))) {
+		return static_cast<QTextBlockGroup*>(ptr)->eventFilter(static_cast<QWindow*>(watched), static_cast<QEvent*>(event));
+	} else {
+		return static_cast<QTextBlockGroup*>(ptr)->eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+	}
 }
 
 char QTextBlockGroup_EventFilterDefault(void* ptr, void* watched, void* event)
 {
-	return static_cast<QTextBlockGroup*>(ptr)->QTextBlockGroup::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+	if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(watched))) {
+		return static_cast<QTextBlockGroup*>(ptr)->QTextBlockGroup::eventFilter(static_cast<QOffscreenSurface*>(watched), static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(watched))) {
+		return static_cast<QTextBlockGroup*>(ptr)->QTextBlockGroup::eventFilter(static_cast<QPaintDeviceWindow*>(watched), static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(watched))) {
+		return static_cast<QTextBlockGroup*>(ptr)->QTextBlockGroup::eventFilter(static_cast<QPdfWriter*>(watched), static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(watched))) {
+		return static_cast<QTextBlockGroup*>(ptr)->QTextBlockGroup::eventFilter(static_cast<QWindow*>(watched), static_cast<QEvent*>(event));
+	} else {
+		return static_cast<QTextBlockGroup*>(ptr)->QTextBlockGroup::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+	}
 }
 
 void* QTextBlockGroup_MetaObject(void* ptr)
@@ -19192,7 +20014,17 @@ void QTextDocument_ClearUndoRedoStacks(void* ptr, long long stacksToClear)
 
 void* QTextDocument_Clone(void* ptr, void* parent)
 {
-	return static_cast<QTextDocument*>(ptr)->clone(static_cast<QObject*>(parent));
+	if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(parent))) {
+		return static_cast<QTextDocument*>(ptr)->clone(static_cast<QOffscreenSurface*>(parent));
+	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(parent))) {
+		return static_cast<QTextDocument*>(ptr)->clone(static_cast<QPaintDeviceWindow*>(parent));
+	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(parent))) {
+		return static_cast<QTextDocument*>(ptr)->clone(static_cast<QPdfWriter*>(parent));
+	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(parent))) {
+		return static_cast<QTextDocument*>(ptr)->clone(static_cast<QWindow*>(parent));
+	} else {
+		return static_cast<QTextDocument*>(ptr)->clone(static_cast<QObject*>(parent));
+	}
 }
 
 void QTextDocument_ConnectContentsChange(void* ptr)
@@ -19408,7 +20240,11 @@ int QTextDocument_PageCount(void* ptr)
 void QTextDocument_Print(void* ptr, void* printer)
 {
 #ifndef Q_OS_IOS
-	static_cast<QTextDocument*>(ptr)->print(static_cast<QPagedPaintDevice*>(printer));
+	if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(printer))) {
+		static_cast<QTextDocument*>(ptr)->print(static_cast<QPdfWriter*>(printer));
+	} else {
+		static_cast<QTextDocument*>(ptr)->print(static_cast<QPagedPaintDevice*>(printer));
+	}
 #endif
 }
 
@@ -19624,12 +20460,32 @@ char QTextDocument_EventDefault(void* ptr, void* e)
 
 char QTextDocument_EventFilter(void* ptr, void* watched, void* event)
 {
-	return static_cast<QTextDocument*>(ptr)->eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+	if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(watched))) {
+		return static_cast<QTextDocument*>(ptr)->eventFilter(static_cast<QOffscreenSurface*>(watched), static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(watched))) {
+		return static_cast<QTextDocument*>(ptr)->eventFilter(static_cast<QPaintDeviceWindow*>(watched), static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(watched))) {
+		return static_cast<QTextDocument*>(ptr)->eventFilter(static_cast<QPdfWriter*>(watched), static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(watched))) {
+		return static_cast<QTextDocument*>(ptr)->eventFilter(static_cast<QWindow*>(watched), static_cast<QEvent*>(event));
+	} else {
+		return static_cast<QTextDocument*>(ptr)->eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+	}
 }
 
 char QTextDocument_EventFilterDefault(void* ptr, void* watched, void* event)
 {
-	return static_cast<QTextDocument*>(ptr)->QTextDocument::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+	if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(watched))) {
+		return static_cast<QTextDocument*>(ptr)->QTextDocument::eventFilter(static_cast<QOffscreenSurface*>(watched), static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(watched))) {
+		return static_cast<QTextDocument*>(ptr)->QTextDocument::eventFilter(static_cast<QPaintDeviceWindow*>(watched), static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(watched))) {
+		return static_cast<QTextDocument*>(ptr)->QTextDocument::eventFilter(static_cast<QPdfWriter*>(watched), static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(watched))) {
+		return static_cast<QTextDocument*>(ptr)->QTextDocument::eventFilter(static_cast<QWindow*>(watched), static_cast<QEvent*>(event));
+	} else {
+		return static_cast<QTextDocument*>(ptr)->QTextDocument::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+	}
 }
 
 void* QTextDocument_MetaObject(void* ptr)
@@ -20204,12 +21060,32 @@ char QTextFrame_EventDefault(void* ptr, void* e)
 
 char QTextFrame_EventFilter(void* ptr, void* watched, void* event)
 {
-	return static_cast<QTextFrame*>(ptr)->eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+	if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(watched))) {
+		return static_cast<QTextFrame*>(ptr)->eventFilter(static_cast<QOffscreenSurface*>(watched), static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(watched))) {
+		return static_cast<QTextFrame*>(ptr)->eventFilter(static_cast<QPaintDeviceWindow*>(watched), static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(watched))) {
+		return static_cast<QTextFrame*>(ptr)->eventFilter(static_cast<QPdfWriter*>(watched), static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(watched))) {
+		return static_cast<QTextFrame*>(ptr)->eventFilter(static_cast<QWindow*>(watched), static_cast<QEvent*>(event));
+	} else {
+		return static_cast<QTextFrame*>(ptr)->eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+	}
 }
 
 char QTextFrame_EventFilterDefault(void* ptr, void* watched, void* event)
 {
-	return static_cast<QTextFrame*>(ptr)->QTextFrame::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+	if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(watched))) {
+		return static_cast<QTextFrame*>(ptr)->QTextFrame::eventFilter(static_cast<QOffscreenSurface*>(watched), static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(watched))) {
+		return static_cast<QTextFrame*>(ptr)->QTextFrame::eventFilter(static_cast<QPaintDeviceWindow*>(watched), static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(watched))) {
+		return static_cast<QTextFrame*>(ptr)->QTextFrame::eventFilter(static_cast<QPdfWriter*>(watched), static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(watched))) {
+		return static_cast<QTextFrame*>(ptr)->QTextFrame::eventFilter(static_cast<QWindow*>(watched), static_cast<QEvent*>(event));
+	} else {
+		return static_cast<QTextFrame*>(ptr)->QTextFrame::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+	}
 }
 
 void* QTextFrame_MetaObject(void* ptr)
@@ -21014,12 +21890,32 @@ char QTextList_EventDefault(void* ptr, void* e)
 
 char QTextList_EventFilter(void* ptr, void* watched, void* event)
 {
-	return static_cast<QTextList*>(ptr)->eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+	if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(watched))) {
+		return static_cast<QTextList*>(ptr)->eventFilter(static_cast<QOffscreenSurface*>(watched), static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(watched))) {
+		return static_cast<QTextList*>(ptr)->eventFilter(static_cast<QPaintDeviceWindow*>(watched), static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(watched))) {
+		return static_cast<QTextList*>(ptr)->eventFilter(static_cast<QPdfWriter*>(watched), static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(watched))) {
+		return static_cast<QTextList*>(ptr)->eventFilter(static_cast<QWindow*>(watched), static_cast<QEvent*>(event));
+	} else {
+		return static_cast<QTextList*>(ptr)->eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+	}
 }
 
 char QTextList_EventFilterDefault(void* ptr, void* watched, void* event)
 {
-	return static_cast<QTextList*>(ptr)->QTextList::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+	if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(watched))) {
+		return static_cast<QTextList*>(ptr)->QTextList::eventFilter(static_cast<QOffscreenSurface*>(watched), static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(watched))) {
+		return static_cast<QTextList*>(ptr)->QTextList::eventFilter(static_cast<QPaintDeviceWindow*>(watched), static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(watched))) {
+		return static_cast<QTextList*>(ptr)->QTextList::eventFilter(static_cast<QPdfWriter*>(watched), static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(watched))) {
+		return static_cast<QTextList*>(ptr)->QTextList::eventFilter(static_cast<QWindow*>(watched), static_cast<QEvent*>(event));
+	} else {
+		return static_cast<QTextList*>(ptr)->QTextList::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+	}
 }
 
 void* QTextList_MetaObject(void* ptr)
@@ -21189,12 +22085,32 @@ char QTextObject_EventDefault(void* ptr, void* e)
 
 char QTextObject_EventFilter(void* ptr, void* watched, void* event)
 {
-	return static_cast<QTextObject*>(ptr)->eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+	if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(watched))) {
+		return static_cast<QTextObject*>(ptr)->eventFilter(static_cast<QOffscreenSurface*>(watched), static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(watched))) {
+		return static_cast<QTextObject*>(ptr)->eventFilter(static_cast<QPaintDeviceWindow*>(watched), static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(watched))) {
+		return static_cast<QTextObject*>(ptr)->eventFilter(static_cast<QPdfWriter*>(watched), static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(watched))) {
+		return static_cast<QTextObject*>(ptr)->eventFilter(static_cast<QWindow*>(watched), static_cast<QEvent*>(event));
+	} else {
+		return static_cast<QTextObject*>(ptr)->eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+	}
 }
 
 char QTextObject_EventFilterDefault(void* ptr, void* watched, void* event)
 {
-	return static_cast<QTextObject*>(ptr)->QTextObject::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+	if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(watched))) {
+		return static_cast<QTextObject*>(ptr)->QTextObject::eventFilter(static_cast<QOffscreenSurface*>(watched), static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(watched))) {
+		return static_cast<QTextObject*>(ptr)->QTextObject::eventFilter(static_cast<QPaintDeviceWindow*>(watched), static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(watched))) {
+		return static_cast<QTextObject*>(ptr)->QTextObject::eventFilter(static_cast<QPdfWriter*>(watched), static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(watched))) {
+		return static_cast<QTextObject*>(ptr)->QTextObject::eventFilter(static_cast<QWindow*>(watched), static_cast<QEvent*>(event));
+	} else {
+		return static_cast<QTextObject*>(ptr)->QTextObject::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+	}
 }
 
 void* QTextObject_MetaObject(void* ptr)
@@ -21482,12 +22398,32 @@ char QTextTable_EventDefault(void* ptr, void* e)
 
 char QTextTable_EventFilter(void* ptr, void* watched, void* event)
 {
-	return static_cast<QTextTable*>(ptr)->eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+	if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(watched))) {
+		return static_cast<QTextTable*>(ptr)->eventFilter(static_cast<QOffscreenSurface*>(watched), static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(watched))) {
+		return static_cast<QTextTable*>(ptr)->eventFilter(static_cast<QPaintDeviceWindow*>(watched), static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(watched))) {
+		return static_cast<QTextTable*>(ptr)->eventFilter(static_cast<QPdfWriter*>(watched), static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(watched))) {
+		return static_cast<QTextTable*>(ptr)->eventFilter(static_cast<QWindow*>(watched), static_cast<QEvent*>(event));
+	} else {
+		return static_cast<QTextTable*>(ptr)->eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+	}
 }
 
 char QTextTable_EventFilterDefault(void* ptr, void* watched, void* event)
 {
-	return static_cast<QTextTable*>(ptr)->QTextTable::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+	if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(watched))) {
+		return static_cast<QTextTable*>(ptr)->QTextTable::eventFilter(static_cast<QOffscreenSurface*>(watched), static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(watched))) {
+		return static_cast<QTextTable*>(ptr)->QTextTable::eventFilter(static_cast<QPaintDeviceWindow*>(watched), static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(watched))) {
+		return static_cast<QTextTable*>(ptr)->QTextTable::eventFilter(static_cast<QPdfWriter*>(watched), static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(watched))) {
+		return static_cast<QTextTable*>(ptr)->QTextTable::eventFilter(static_cast<QWindow*>(watched), static_cast<QEvent*>(event));
+	} else {
+		return static_cast<QTextTable*>(ptr)->QTextTable::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+	}
 }
 
 void* QTextTable_MetaObject(void* ptr)
@@ -21787,7 +22723,7 @@ void* QTouchEvent__target(void* ptr)
 
 void QTouchEvent_Set_target(void* ptr, void* vqo)
 {
-	static_cast<QTouchEvent*>(ptr)->_target = static_cast<QObject*>(vqo);
+		static_cast<QTouchEvent*>(ptr)->_target = static_cast<QObject*>(vqo);
 }
 
 long long QTouchEvent__touchPointStates(void* ptr)
@@ -21807,7 +22743,7 @@ void* QTouchEvent__window(void* ptr)
 
 void QTouchEvent_Set_window(void* ptr, void* vqw)
 {
-	static_cast<QTouchEvent*>(ptr)->_window = static_cast<QWindow*>(vqw);
+		static_cast<QTouchEvent*>(ptr)->_window = static_cast<QWindow*>(vqw);
 }
 
 void* QTransform_NewQTransform3(double m11, double m12, double m13, double m21, double m22, double m23, double m31, double m32, double m33)
@@ -22210,12 +23146,32 @@ char QValidator_EventDefault(void* ptr, void* e)
 
 char QValidator_EventFilter(void* ptr, void* watched, void* event)
 {
-	return static_cast<QValidator*>(ptr)->eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+	if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(watched))) {
+		return static_cast<QValidator*>(ptr)->eventFilter(static_cast<QOffscreenSurface*>(watched), static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(watched))) {
+		return static_cast<QValidator*>(ptr)->eventFilter(static_cast<QPaintDeviceWindow*>(watched), static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(watched))) {
+		return static_cast<QValidator*>(ptr)->eventFilter(static_cast<QPdfWriter*>(watched), static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(watched))) {
+		return static_cast<QValidator*>(ptr)->eventFilter(static_cast<QWindow*>(watched), static_cast<QEvent*>(event));
+	} else {
+		return static_cast<QValidator*>(ptr)->eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+	}
 }
 
 char QValidator_EventFilterDefault(void* ptr, void* watched, void* event)
 {
-	return static_cast<QValidator*>(ptr)->QValidator::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+	if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(watched))) {
+		return static_cast<QValidator*>(ptr)->QValidator::eventFilter(static_cast<QOffscreenSurface*>(watched), static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(watched))) {
+		return static_cast<QValidator*>(ptr)->QValidator::eventFilter(static_cast<QPaintDeviceWindow*>(watched), static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(watched))) {
+		return static_cast<QValidator*>(ptr)->QValidator::eventFilter(static_cast<QPdfWriter*>(watched), static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(watched))) {
+		return static_cast<QValidator*>(ptr)->QValidator::eventFilter(static_cast<QWindow*>(watched), static_cast<QEvent*>(event));
+	} else {
+		return static_cast<QValidator*>(ptr)->QValidator::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+	}
 }
 
 void* QValidator_MetaObject(void* ptr)
@@ -22893,122 +23849,218 @@ public:
 
 long long QWindow_ContentOrientation(void* ptr)
 {
-	return static_cast<QWindow*>(ptr)->contentOrientation();
+	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QPaintDeviceWindow*>(ptr)->contentOrientation();
+	} else {
+		return static_cast<QWindow*>(ptr)->contentOrientation();
+	}
 }
 
 long long QWindow_Flags(void* ptr)
 {
-	return static_cast<QWindow*>(ptr)->flags();
+	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QPaintDeviceWindow*>(ptr)->flags();
+	} else {
+		return static_cast<QWindow*>(ptr)->flags();
+	}
 }
 
 char QWindow_IsVisible(void* ptr)
 {
-	return static_cast<QWindow*>(ptr)->isVisible();
+	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QPaintDeviceWindow*>(ptr)->isVisible();
+	} else {
+		return static_cast<QWindow*>(ptr)->isVisible();
+	}
 }
 
 void* QWindow_MapFromGlobal(void* ptr, void* pos)
 {
-	return ({ QPoint tmpValue = static_cast<QWindow*>(ptr)->mapFromGlobal(*static_cast<QPoint*>(pos)); new QPoint(tmpValue.x(), tmpValue.y()); });
+	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
+		return ({ QPoint tmpValue = static_cast<QPaintDeviceWindow*>(ptr)->mapFromGlobal(*static_cast<QPoint*>(pos)); new QPoint(tmpValue.x(), tmpValue.y()); });
+	} else {
+		return ({ QPoint tmpValue = static_cast<QWindow*>(ptr)->mapFromGlobal(*static_cast<QPoint*>(pos)); new QPoint(tmpValue.x(), tmpValue.y()); });
+	}
 }
 
 void* QWindow_MapToGlobal(void* ptr, void* pos)
 {
-	return ({ QPoint tmpValue = static_cast<QWindow*>(ptr)->mapToGlobal(*static_cast<QPoint*>(pos)); new QPoint(tmpValue.x(), tmpValue.y()); });
+	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
+		return ({ QPoint tmpValue = static_cast<QPaintDeviceWindow*>(ptr)->mapToGlobal(*static_cast<QPoint*>(pos)); new QPoint(tmpValue.x(), tmpValue.y()); });
+	} else {
+		return ({ QPoint tmpValue = static_cast<QWindow*>(ptr)->mapToGlobal(*static_cast<QPoint*>(pos)); new QPoint(tmpValue.x(), tmpValue.y()); });
+	}
 }
 
 long long QWindow_Modality(void* ptr)
 {
-	return static_cast<QWindow*>(ptr)->modality();
+	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QPaintDeviceWindow*>(ptr)->modality();
+	} else {
+		return static_cast<QWindow*>(ptr)->modality();
+	}
 }
 
 double QWindow_Opacity(void* ptr)
 {
-	return static_cast<QWindow*>(ptr)->opacity();
+	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QPaintDeviceWindow*>(ptr)->opacity();
+	} else {
+		return static_cast<QWindow*>(ptr)->opacity();
+	}
 }
 
 void QWindow_ReportContentOrientationChange(void* ptr, long long orientation)
 {
-	static_cast<QWindow*>(ptr)->reportContentOrientationChange(static_cast<Qt::ScreenOrientation>(orientation));
+	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
+		static_cast<QPaintDeviceWindow*>(ptr)->reportContentOrientationChange(static_cast<Qt::ScreenOrientation>(orientation));
+	} else {
+		static_cast<QWindow*>(ptr)->reportContentOrientationChange(static_cast<Qt::ScreenOrientation>(orientation));
+	}
 }
 
 void QWindow_SetFlags(void* ptr, long long flags)
 {
-	static_cast<QWindow*>(ptr)->setFlags(static_cast<Qt::WindowType>(flags));
+	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
+		static_cast<QPaintDeviceWindow*>(ptr)->setFlags(static_cast<Qt::WindowType>(flags));
+	} else {
+		static_cast<QWindow*>(ptr)->setFlags(static_cast<Qt::WindowType>(flags));
+	}
 }
 
 void QWindow_SetHeight(void* ptr, int arg)
 {
-	QMetaObject::invokeMethod(static_cast<QWindow*>(ptr), "setHeight", Q_ARG(int, arg));
+	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
+		QMetaObject::invokeMethod(static_cast<QPaintDeviceWindow*>(ptr), "setHeight", Q_ARG(int, arg));
+	} else {
+		QMetaObject::invokeMethod(static_cast<QWindow*>(ptr), "setHeight", Q_ARG(int, arg));
+	}
 }
 
 void QWindow_SetMaximumHeight(void* ptr, int h)
 {
-	QMetaObject::invokeMethod(static_cast<QWindow*>(ptr), "setMaximumHeight", Q_ARG(int, h));
+	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
+		QMetaObject::invokeMethod(static_cast<QPaintDeviceWindow*>(ptr), "setMaximumHeight", Q_ARG(int, h));
+	} else {
+		QMetaObject::invokeMethod(static_cast<QWindow*>(ptr), "setMaximumHeight", Q_ARG(int, h));
+	}
 }
 
 void QWindow_SetMaximumWidth(void* ptr, int w)
 {
-	QMetaObject::invokeMethod(static_cast<QWindow*>(ptr), "setMaximumWidth", Q_ARG(int, w));
+	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
+		QMetaObject::invokeMethod(static_cast<QPaintDeviceWindow*>(ptr), "setMaximumWidth", Q_ARG(int, w));
+	} else {
+		QMetaObject::invokeMethod(static_cast<QWindow*>(ptr), "setMaximumWidth", Q_ARG(int, w));
+	}
 }
 
 void QWindow_SetMinimumHeight(void* ptr, int h)
 {
-	QMetaObject::invokeMethod(static_cast<QWindow*>(ptr), "setMinimumHeight", Q_ARG(int, h));
+	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
+		QMetaObject::invokeMethod(static_cast<QPaintDeviceWindow*>(ptr), "setMinimumHeight", Q_ARG(int, h));
+	} else {
+		QMetaObject::invokeMethod(static_cast<QWindow*>(ptr), "setMinimumHeight", Q_ARG(int, h));
+	}
 }
 
 void QWindow_SetMinimumWidth(void* ptr, int w)
 {
-	QMetaObject::invokeMethod(static_cast<QWindow*>(ptr), "setMinimumWidth", Q_ARG(int, w));
+	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
+		QMetaObject::invokeMethod(static_cast<QPaintDeviceWindow*>(ptr), "setMinimumWidth", Q_ARG(int, w));
+	} else {
+		QMetaObject::invokeMethod(static_cast<QWindow*>(ptr), "setMinimumWidth", Q_ARG(int, w));
+	}
 }
 
 void QWindow_SetModality(void* ptr, long long modality)
 {
-	static_cast<QWindow*>(ptr)->setModality(static_cast<Qt::WindowModality>(modality));
+	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
+		static_cast<QPaintDeviceWindow*>(ptr)->setModality(static_cast<Qt::WindowModality>(modality));
+	} else {
+		static_cast<QWindow*>(ptr)->setModality(static_cast<Qt::WindowModality>(modality));
+	}
 }
 
 void QWindow_SetOpacity(void* ptr, double level)
 {
-	static_cast<QWindow*>(ptr)->setOpacity(level);
+	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
+		static_cast<QPaintDeviceWindow*>(ptr)->setOpacity(level);
+	} else {
+		static_cast<QWindow*>(ptr)->setOpacity(level);
+	}
 }
 
 void QWindow_SetTitle(void* ptr, char* vqs)
 {
-	QMetaObject::invokeMethod(static_cast<QWindow*>(ptr), "setTitle", Q_ARG(QString, QString(vqs)));
+	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
+		QMetaObject::invokeMethod(static_cast<QPaintDeviceWindow*>(ptr), "setTitle", Q_ARG(QString, QString(vqs)));
+	} else {
+		QMetaObject::invokeMethod(static_cast<QWindow*>(ptr), "setTitle", Q_ARG(QString, QString(vqs)));
+	}
 }
 
 void QWindow_SetVisibility(void* ptr, long long v)
 {
-	static_cast<QWindow*>(ptr)->setVisibility(static_cast<QWindow::Visibility>(v));
+	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
+		static_cast<QPaintDeviceWindow*>(ptr)->setVisibility(static_cast<QWindow::Visibility>(v));
+	} else {
+		static_cast<QWindow*>(ptr)->setVisibility(static_cast<QWindow::Visibility>(v));
+	}
 }
 
 void QWindow_SetVisible(void* ptr, char visible)
 {
-	QMetaObject::invokeMethod(static_cast<QWindow*>(ptr), "setVisible", Q_ARG(bool, visible != 0));
+	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
+		QMetaObject::invokeMethod(static_cast<QPaintDeviceWindow*>(ptr), "setVisible", Q_ARG(bool, visible != 0));
+	} else {
+		QMetaObject::invokeMethod(static_cast<QWindow*>(ptr), "setVisible", Q_ARG(bool, visible != 0));
+	}
 }
 
 void QWindow_SetWidth(void* ptr, int arg)
 {
-	QMetaObject::invokeMethod(static_cast<QWindow*>(ptr), "setWidth", Q_ARG(int, arg));
+	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
+		QMetaObject::invokeMethod(static_cast<QPaintDeviceWindow*>(ptr), "setWidth", Q_ARG(int, arg));
+	} else {
+		QMetaObject::invokeMethod(static_cast<QWindow*>(ptr), "setWidth", Q_ARG(int, arg));
+	}
 }
 
 void QWindow_SetX(void* ptr, int arg)
 {
-	QMetaObject::invokeMethod(static_cast<QWindow*>(ptr), "setX", Q_ARG(int, arg));
+	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
+		QMetaObject::invokeMethod(static_cast<QPaintDeviceWindow*>(ptr), "setX", Q_ARG(int, arg));
+	} else {
+		QMetaObject::invokeMethod(static_cast<QWindow*>(ptr), "setX", Q_ARG(int, arg));
+	}
 }
 
 void QWindow_SetY(void* ptr, int arg)
 {
-	QMetaObject::invokeMethod(static_cast<QWindow*>(ptr), "setY", Q_ARG(int, arg));
+	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
+		QMetaObject::invokeMethod(static_cast<QPaintDeviceWindow*>(ptr), "setY", Q_ARG(int, arg));
+	} else {
+		QMetaObject::invokeMethod(static_cast<QWindow*>(ptr), "setY", Q_ARG(int, arg));
+	}
 }
 
 struct QtGui_PackedString QWindow_Title(void* ptr)
 {
-	return ({ QByteArray t3f590b = static_cast<QWindow*>(ptr)->title().toUtf8(); QtGui_PackedString { const_cast<char*>(t3f590b.prepend("WHITESPACE").constData()+10), t3f590b.size()-10 }; });
+	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
+		return ({ QByteArray t3f590b = static_cast<QPaintDeviceWindow*>(ptr)->title().toUtf8(); QtGui_PackedString { const_cast<char*>(t3f590b.prepend("WHITESPACE").constData()+10), t3f590b.size()-10 }; });
+	} else {
+		return ({ QByteArray t3f590b = static_cast<QWindow*>(ptr)->title().toUtf8(); QtGui_PackedString { const_cast<char*>(t3f590b.prepend("WHITESPACE").constData()+10), t3f590b.size()-10 }; });
+	}
 }
 
 long long QWindow_Visibility(void* ptr)
 {
-	return static_cast<QWindow*>(ptr)->visibility();
+	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QPaintDeviceWindow*>(ptr)->visibility();
+	} else {
+		return static_cast<QWindow*>(ptr)->visibility();
+	}
 }
 
 void* QWindow_NewQWindow(void* targetScreen)
@@ -23033,24 +24085,42 @@ void QWindow_DisconnectActiveChanged(void* ptr)
 
 void QWindow_ActiveChanged(void* ptr)
 {
-	static_cast<QWindow*>(ptr)->activeChanged();
+	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
+		static_cast<QPaintDeviceWindow*>(ptr)->activeChanged();
+	} else {
+		static_cast<QWindow*>(ptr)->activeChanged();
+	}
 }
 
 void QWindow_Alert(void* ptr, int msec)
 {
-	QMetaObject::invokeMethod(static_cast<QWindow*>(ptr), "alert", Q_ARG(int, msec));
+	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
+		QMetaObject::invokeMethod(static_cast<QPaintDeviceWindow*>(ptr), "alert", Q_ARG(int, msec));
+	} else {
+		QMetaObject::invokeMethod(static_cast<QWindow*>(ptr), "alert", Q_ARG(int, msec));
+	}
 }
 
 void* QWindow_BaseSize(void* ptr)
 {
-	return ({ QSize tmpValue = static_cast<QWindow*>(ptr)->baseSize(); new QSize(tmpValue.width(), tmpValue.height()); });
+	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
+		return ({ QSize tmpValue = static_cast<QPaintDeviceWindow*>(ptr)->baseSize(); new QSize(tmpValue.width(), tmpValue.height()); });
+	} else {
+		return ({ QSize tmpValue = static_cast<QWindow*>(ptr)->baseSize(); new QSize(tmpValue.width(), tmpValue.height()); });
+	}
 }
 
 char QWindow_Close(void* ptr)
 {
-	bool returnArg;
-	QMetaObject::invokeMethod(static_cast<QWindow*>(ptr), "close", Q_RETURN_ARG(bool, returnArg));
-	return returnArg;
+	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
+			bool returnArg;
+		QMetaObject::invokeMethod(static_cast<QPaintDeviceWindow*>(ptr), "close", Q_RETURN_ARG(bool, returnArg));
+		return returnArg;
+	} else {
+			bool returnArg;
+		QMetaObject::invokeMethod(static_cast<QWindow*>(ptr), "close", Q_RETURN_ARG(bool, returnArg));
+		return returnArg;
+	}
 }
 
 void QWindow_ConnectContentOrientationChanged(void* ptr)
@@ -23065,72 +24135,128 @@ void QWindow_DisconnectContentOrientationChanged(void* ptr)
 
 void QWindow_ContentOrientationChanged(void* ptr, long long orientation)
 {
-	static_cast<QWindow*>(ptr)->contentOrientationChanged(static_cast<Qt::ScreenOrientation>(orientation));
+	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
+		static_cast<QPaintDeviceWindow*>(ptr)->contentOrientationChanged(static_cast<Qt::ScreenOrientation>(orientation));
+	} else {
+		static_cast<QWindow*>(ptr)->contentOrientationChanged(static_cast<Qt::ScreenOrientation>(orientation));
+	}
 }
 
 void QWindow_Create(void* ptr)
 {
-	static_cast<QWindow*>(ptr)->create();
+	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
+		static_cast<QPaintDeviceWindow*>(ptr)->create();
+	} else {
+		static_cast<QWindow*>(ptr)->create();
+	}
 }
 
 void* QWindow_Cursor(void* ptr)
 {
-	return new QCursor(static_cast<QWindow*>(ptr)->cursor());
+	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
+		return new QCursor(static_cast<QPaintDeviceWindow*>(ptr)->cursor());
+	} else {
+		return new QCursor(static_cast<QWindow*>(ptr)->cursor());
+	}
 }
 
 void QWindow_Destroy(void* ptr)
 {
-	static_cast<QWindow*>(ptr)->destroy();
+	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
+		static_cast<QPaintDeviceWindow*>(ptr)->destroy();
+	} else {
+		static_cast<QWindow*>(ptr)->destroy();
+	}
 }
 
 double QWindow_DevicePixelRatio(void* ptr)
 {
-	return static_cast<QWindow*>(ptr)->devicePixelRatio();
+	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QPaintDeviceWindow*>(ptr)->devicePixelRatio();
+	} else {
+		return static_cast<QWindow*>(ptr)->devicePixelRatio();
+	}
 }
 
 char QWindow_Event(void* ptr, void* ev)
 {
-	return static_cast<QWindow*>(ptr)->event(static_cast<QEvent*>(ev));
+	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QPaintDeviceWindow*>(ptr)->event(static_cast<QEvent*>(ev));
+	} else {
+		return static_cast<QWindow*>(ptr)->event(static_cast<QEvent*>(ev));
+	}
 }
 
 char QWindow_EventDefault(void* ptr, void* ev)
 {
-	return static_cast<QWindow*>(ptr)->QWindow::event(static_cast<QEvent*>(ev));
+	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QPaintDeviceWindow*>(ptr)->QWindow::event(static_cast<QEvent*>(ev));
+	} else {
+		return static_cast<QWindow*>(ptr)->QWindow::event(static_cast<QEvent*>(ev));
+	}
 }
 
 void QWindow_ExposeEvent(void* ptr, void* ev)
 {
-	static_cast<QWindow*>(ptr)->exposeEvent(static_cast<QExposeEvent*>(ev));
+	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
+		static_cast<QPaintDeviceWindow*>(ptr)->exposeEvent(static_cast<QExposeEvent*>(ev));
+	} else {
+		static_cast<QWindow*>(ptr)->exposeEvent(static_cast<QExposeEvent*>(ev));
+	}
 }
 
 void QWindow_ExposeEventDefault(void* ptr, void* ev)
 {
-	static_cast<QWindow*>(ptr)->QWindow::exposeEvent(static_cast<QExposeEvent*>(ev));
+	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
+		static_cast<QPaintDeviceWindow*>(ptr)->QWindow::exposeEvent(static_cast<QExposeEvent*>(ev));
+	} else {
+		static_cast<QWindow*>(ptr)->QWindow::exposeEvent(static_cast<QExposeEvent*>(ev));
+	}
 }
 
 struct QtGui_PackedString QWindow_FilePath(void* ptr)
 {
-	return ({ QByteArray t7116fb = static_cast<QWindow*>(ptr)->filePath().toUtf8(); QtGui_PackedString { const_cast<char*>(t7116fb.prepend("WHITESPACE").constData()+10), t7116fb.size()-10 }; });
+	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
+		return ({ QByteArray t7116fb = static_cast<QPaintDeviceWindow*>(ptr)->filePath().toUtf8(); QtGui_PackedString { const_cast<char*>(t7116fb.prepend("WHITESPACE").constData()+10), t7116fb.size()-10 }; });
+	} else {
+		return ({ QByteArray t7116fb = static_cast<QWindow*>(ptr)->filePath().toUtf8(); QtGui_PackedString { const_cast<char*>(t7116fb.prepend("WHITESPACE").constData()+10), t7116fb.size()-10 }; });
+	}
 }
 
 void QWindow_FocusInEvent(void* ptr, void* ev)
 {
-	static_cast<QWindow*>(ptr)->focusInEvent(static_cast<QFocusEvent*>(ev));
+	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
+		static_cast<QPaintDeviceWindow*>(ptr)->focusInEvent(static_cast<QFocusEvent*>(ev));
+	} else {
+		static_cast<QWindow*>(ptr)->focusInEvent(static_cast<QFocusEvent*>(ev));
+	}
 }
 
 void QWindow_FocusInEventDefault(void* ptr, void* ev)
 {
-	static_cast<QWindow*>(ptr)->QWindow::focusInEvent(static_cast<QFocusEvent*>(ev));
+	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
+		static_cast<QPaintDeviceWindow*>(ptr)->QWindow::focusInEvent(static_cast<QFocusEvent*>(ev));
+	} else {
+		static_cast<QWindow*>(ptr)->QWindow::focusInEvent(static_cast<QFocusEvent*>(ev));
+	}
 }
 
 void* QWindow_FocusObject(void* ptr)
 {
-	return static_cast<QWindow*>(ptr)->focusObject();
+	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QPaintDeviceWindow*>(ptr)->focusObject();
+	} else {
+		return static_cast<QWindow*>(ptr)->focusObject();
+	}
 }
 
 void* QWindow_FocusObjectDefault(void* ptr)
 {
-	return static_cast<QWindow*>(ptr)->QWindow::focusObject();
+	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QPaintDeviceWindow*>(ptr)->QWindow::focusObject();
+	} else {
+		return static_cast<QWindow*>(ptr)->QWindow::focusObject();
+	}
 }
 
 void QWindow_ConnectFocusObjectChanged(void* ptr)
@@ -23145,57 +24271,117 @@ void QWindow_DisconnectFocusObjectChanged(void* ptr)
 
 void QWindow_FocusObjectChanged(void* ptr, void* object)
 {
-	static_cast<QWindow*>(ptr)->focusObjectChanged(static_cast<QObject*>(object));
+	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
+		if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(object))) {
+			static_cast<QPaintDeviceWindow*>(ptr)->focusObjectChanged(static_cast<QOffscreenSurface*>(object));
+		} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(object))) {
+			static_cast<QPaintDeviceWindow*>(ptr)->focusObjectChanged(static_cast<QPaintDeviceWindow*>(object));
+		} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(object))) {
+			static_cast<QPaintDeviceWindow*>(ptr)->focusObjectChanged(static_cast<QPdfWriter*>(object));
+		} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(object))) {
+			static_cast<QPaintDeviceWindow*>(ptr)->focusObjectChanged(static_cast<QWindow*>(object));
+		} else {
+			static_cast<QPaintDeviceWindow*>(ptr)->focusObjectChanged(static_cast<QObject*>(object));
+		}
+	} else {
+		if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(object))) {
+			static_cast<QWindow*>(ptr)->focusObjectChanged(static_cast<QOffscreenSurface*>(object));
+		} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(object))) {
+			static_cast<QWindow*>(ptr)->focusObjectChanged(static_cast<QPaintDeviceWindow*>(object));
+		} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(object))) {
+			static_cast<QWindow*>(ptr)->focusObjectChanged(static_cast<QPdfWriter*>(object));
+		} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(object))) {
+			static_cast<QWindow*>(ptr)->focusObjectChanged(static_cast<QWindow*>(object));
+		} else {
+			static_cast<QWindow*>(ptr)->focusObjectChanged(static_cast<QObject*>(object));
+		}
+	}
 }
 
 void QWindow_FocusOutEvent(void* ptr, void* ev)
 {
-	static_cast<QWindow*>(ptr)->focusOutEvent(static_cast<QFocusEvent*>(ev));
+	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
+		static_cast<QPaintDeviceWindow*>(ptr)->focusOutEvent(static_cast<QFocusEvent*>(ev));
+	} else {
+		static_cast<QWindow*>(ptr)->focusOutEvent(static_cast<QFocusEvent*>(ev));
+	}
 }
 
 void QWindow_FocusOutEventDefault(void* ptr, void* ev)
 {
-	static_cast<QWindow*>(ptr)->QWindow::focusOutEvent(static_cast<QFocusEvent*>(ev));
+	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
+		static_cast<QPaintDeviceWindow*>(ptr)->QWindow::focusOutEvent(static_cast<QFocusEvent*>(ev));
+	} else {
+		static_cast<QWindow*>(ptr)->QWindow::focusOutEvent(static_cast<QFocusEvent*>(ev));
+	}
 }
 
 void* QWindow_Format(void* ptr)
 {
-	return new QSurfaceFormat(static_cast<QWindow*>(ptr)->format());
+	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
+		return new QSurfaceFormat(static_cast<QPaintDeviceWindow*>(ptr)->format());
+	} else {
+		return new QSurfaceFormat(static_cast<QWindow*>(ptr)->format());
+	}
 }
 
 void* QWindow_FormatDefault(void* ptr)
 {
-	return new QSurfaceFormat(static_cast<QWindow*>(ptr)->QWindow::format());
+	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
+		return new QSurfaceFormat(static_cast<QPaintDeviceWindow*>(ptr)->QWindow::format());
+	} else {
+		return new QSurfaceFormat(static_cast<QWindow*>(ptr)->QWindow::format());
+	}
 }
 
 void* QWindow_FrameGeometry(void* ptr)
 {
-	return ({ QRect tmpValue = static_cast<QWindow*>(ptr)->frameGeometry(); new QRect(tmpValue.x(), tmpValue.y(), tmpValue.width(), tmpValue.height()); });
+	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
+		return ({ QRect tmpValue = static_cast<QPaintDeviceWindow*>(ptr)->frameGeometry(); new QRect(tmpValue.x(), tmpValue.y(), tmpValue.width(), tmpValue.height()); });
+	} else {
+		return ({ QRect tmpValue = static_cast<QWindow*>(ptr)->frameGeometry(); new QRect(tmpValue.x(), tmpValue.y(), tmpValue.width(), tmpValue.height()); });
+	}
 }
 
 void* QWindow_FrameMargins(void* ptr)
 {
-	return ({ QMargins tmpValue = static_cast<QWindow*>(ptr)->frameMargins(); new QMargins(tmpValue.left(), tmpValue.top(), tmpValue.right(), tmpValue.bottom()); });
+	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
+		return ({ QMargins tmpValue = static_cast<QPaintDeviceWindow*>(ptr)->frameMargins(); new QMargins(tmpValue.left(), tmpValue.top(), tmpValue.right(), tmpValue.bottom()); });
+	} else {
+		return ({ QMargins tmpValue = static_cast<QWindow*>(ptr)->frameMargins(); new QMargins(tmpValue.left(), tmpValue.top(), tmpValue.right(), tmpValue.bottom()); });
+	}
 }
 
 void* QWindow_FramePosition(void* ptr)
 {
-	return ({ QPoint tmpValue = static_cast<QWindow*>(ptr)->framePosition(); new QPoint(tmpValue.x(), tmpValue.y()); });
+	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
+		return ({ QPoint tmpValue = static_cast<QPaintDeviceWindow*>(ptr)->framePosition(); new QPoint(tmpValue.x(), tmpValue.y()); });
+	} else {
+		return ({ QPoint tmpValue = static_cast<QWindow*>(ptr)->framePosition(); new QPoint(tmpValue.x(), tmpValue.y()); });
+	}
 }
 
 void* QWindow_QWindow_FromWinId(uintptr_t id)
 {
-	return QWindow::fromWinId(id);
+		return QWindow::fromWinId(id);
 }
 
 void* QWindow_Geometry(void* ptr)
 {
-	return ({ QRect tmpValue = static_cast<QWindow*>(ptr)->geometry(); new QRect(tmpValue.x(), tmpValue.y(), tmpValue.width(), tmpValue.height()); });
+	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
+		return ({ QRect tmpValue = static_cast<QPaintDeviceWindow*>(ptr)->geometry(); new QRect(tmpValue.x(), tmpValue.y(), tmpValue.width(), tmpValue.height()); });
+	} else {
+		return ({ QRect tmpValue = static_cast<QWindow*>(ptr)->geometry(); new QRect(tmpValue.x(), tmpValue.y(), tmpValue.width(), tmpValue.height()); });
+	}
 }
 
 int QWindow_Height(void* ptr)
 {
-	return static_cast<QWindow*>(ptr)->height();
+	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QPaintDeviceWindow*>(ptr)->height();
+	} else {
+		return static_cast<QWindow*>(ptr)->height();
+	}
 }
 
 void QWindow_ConnectHeightChanged(void* ptr)
@@ -23210,87 +24396,163 @@ void QWindow_DisconnectHeightChanged(void* ptr)
 
 void QWindow_HeightChanged(void* ptr, int arg)
 {
-	static_cast<QWindow*>(ptr)->heightChanged(arg);
+	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
+		static_cast<QPaintDeviceWindow*>(ptr)->heightChanged(arg);
+	} else {
+		static_cast<QWindow*>(ptr)->heightChanged(arg);
+	}
 }
 
 void QWindow_Hide(void* ptr)
 {
-	QMetaObject::invokeMethod(static_cast<QWindow*>(ptr), "hide");
+	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
+		QMetaObject::invokeMethod(static_cast<QPaintDeviceWindow*>(ptr), "hide");
+	} else {
+		QMetaObject::invokeMethod(static_cast<QWindow*>(ptr), "hide");
+	}
 }
 
 void QWindow_HideEvent(void* ptr, void* ev)
 {
-	static_cast<QWindow*>(ptr)->hideEvent(static_cast<QHideEvent*>(ev));
+	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
+		static_cast<QPaintDeviceWindow*>(ptr)->hideEvent(static_cast<QHideEvent*>(ev));
+	} else {
+		static_cast<QWindow*>(ptr)->hideEvent(static_cast<QHideEvent*>(ev));
+	}
 }
 
 void QWindow_HideEventDefault(void* ptr, void* ev)
 {
-	static_cast<QWindow*>(ptr)->QWindow::hideEvent(static_cast<QHideEvent*>(ev));
+	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
+		static_cast<QPaintDeviceWindow*>(ptr)->QWindow::hideEvent(static_cast<QHideEvent*>(ev));
+	} else {
+		static_cast<QWindow*>(ptr)->QWindow::hideEvent(static_cast<QHideEvent*>(ev));
+	}
 }
 
 void* QWindow_Icon(void* ptr)
 {
-	return new QIcon(static_cast<QWindow*>(ptr)->icon());
+	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
+		return new QIcon(static_cast<QPaintDeviceWindow*>(ptr)->icon());
+	} else {
+		return new QIcon(static_cast<QWindow*>(ptr)->icon());
+	}
 }
 
 char QWindow_IsActive(void* ptr)
 {
-	return static_cast<QWindow*>(ptr)->isActive();
+	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QPaintDeviceWindow*>(ptr)->isActive();
+	} else {
+		return static_cast<QWindow*>(ptr)->isActive();
+	}
 }
 
 char QWindow_IsAncestorOf(void* ptr, void* child, long long mode)
 {
-	return static_cast<QWindow*>(ptr)->isAncestorOf(static_cast<QWindow*>(child), static_cast<QWindow::AncestorMode>(mode));
+	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
+		if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(child))) {
+			return static_cast<QPaintDeviceWindow*>(ptr)->isAncestorOf(static_cast<QPaintDeviceWindow*>(child), static_cast<QWindow::AncestorMode>(mode));
+		} else {
+			return static_cast<QPaintDeviceWindow*>(ptr)->isAncestorOf(static_cast<QWindow*>(child), static_cast<QWindow::AncestorMode>(mode));
+		}
+	} else {
+		if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(child))) {
+			return static_cast<QWindow*>(ptr)->isAncestorOf(static_cast<QPaintDeviceWindow*>(child), static_cast<QWindow::AncestorMode>(mode));
+		} else {
+			return static_cast<QWindow*>(ptr)->isAncestorOf(static_cast<QWindow*>(child), static_cast<QWindow::AncestorMode>(mode));
+		}
+	}
 }
 
 char QWindow_IsExposed(void* ptr)
 {
-	return static_cast<QWindow*>(ptr)->isExposed();
+	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QPaintDeviceWindow*>(ptr)->isExposed();
+	} else {
+		return static_cast<QWindow*>(ptr)->isExposed();
+	}
 }
 
 char QWindow_IsModal(void* ptr)
 {
-	return static_cast<QWindow*>(ptr)->isModal();
+	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QPaintDeviceWindow*>(ptr)->isModal();
+	} else {
+		return static_cast<QWindow*>(ptr)->isModal();
+	}
 }
 
 char QWindow_IsTopLevel(void* ptr)
 {
-	return static_cast<QWindow*>(ptr)->isTopLevel();
+	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QPaintDeviceWindow*>(ptr)->isTopLevel();
+	} else {
+		return static_cast<QWindow*>(ptr)->isTopLevel();
+	}
 }
 
 void QWindow_KeyPressEvent(void* ptr, void* ev)
 {
-	static_cast<QWindow*>(ptr)->keyPressEvent(static_cast<QKeyEvent*>(ev));
+	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
+		static_cast<QPaintDeviceWindow*>(ptr)->keyPressEvent(static_cast<QKeyEvent*>(ev));
+	} else {
+		static_cast<QWindow*>(ptr)->keyPressEvent(static_cast<QKeyEvent*>(ev));
+	}
 }
 
 void QWindow_KeyPressEventDefault(void* ptr, void* ev)
 {
-	static_cast<QWindow*>(ptr)->QWindow::keyPressEvent(static_cast<QKeyEvent*>(ev));
+	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
+		static_cast<QPaintDeviceWindow*>(ptr)->QWindow::keyPressEvent(static_cast<QKeyEvent*>(ev));
+	} else {
+		static_cast<QWindow*>(ptr)->QWindow::keyPressEvent(static_cast<QKeyEvent*>(ev));
+	}
 }
 
 void QWindow_KeyReleaseEvent(void* ptr, void* ev)
 {
-	static_cast<QWindow*>(ptr)->keyReleaseEvent(static_cast<QKeyEvent*>(ev));
+	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
+		static_cast<QPaintDeviceWindow*>(ptr)->keyReleaseEvent(static_cast<QKeyEvent*>(ev));
+	} else {
+		static_cast<QWindow*>(ptr)->keyReleaseEvent(static_cast<QKeyEvent*>(ev));
+	}
 }
 
 void QWindow_KeyReleaseEventDefault(void* ptr, void* ev)
 {
-	static_cast<QWindow*>(ptr)->QWindow::keyReleaseEvent(static_cast<QKeyEvent*>(ev));
+	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
+		static_cast<QPaintDeviceWindow*>(ptr)->QWindow::keyReleaseEvent(static_cast<QKeyEvent*>(ev));
+	} else {
+		static_cast<QWindow*>(ptr)->QWindow::keyReleaseEvent(static_cast<QKeyEvent*>(ev));
+	}
 }
 
 void QWindow_Lower(void* ptr)
 {
-	QMetaObject::invokeMethod(static_cast<QWindow*>(ptr), "lower");
+	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
+		QMetaObject::invokeMethod(static_cast<QPaintDeviceWindow*>(ptr), "lower");
+	} else {
+		QMetaObject::invokeMethod(static_cast<QWindow*>(ptr), "lower");
+	}
 }
 
 void* QWindow_Mask(void* ptr)
 {
-	return new QRegion(static_cast<QWindow*>(ptr)->mask());
+	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
+		return new QRegion(static_cast<QPaintDeviceWindow*>(ptr)->mask());
+	} else {
+		return new QRegion(static_cast<QWindow*>(ptr)->mask());
+	}
 }
 
 int QWindow_MaximumHeight(void* ptr)
 {
-	return static_cast<QWindow*>(ptr)->maximumHeight();
+	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QPaintDeviceWindow*>(ptr)->maximumHeight();
+	} else {
+		return static_cast<QWindow*>(ptr)->maximumHeight();
+	}
 }
 
 void QWindow_ConnectMaximumHeightChanged(void* ptr)
@@ -23305,17 +24567,29 @@ void QWindow_DisconnectMaximumHeightChanged(void* ptr)
 
 void QWindow_MaximumHeightChanged(void* ptr, int arg)
 {
-	static_cast<QWindow*>(ptr)->maximumHeightChanged(arg);
+	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
+		static_cast<QPaintDeviceWindow*>(ptr)->maximumHeightChanged(arg);
+	} else {
+		static_cast<QWindow*>(ptr)->maximumHeightChanged(arg);
+	}
 }
 
 void* QWindow_MaximumSize(void* ptr)
 {
-	return ({ QSize tmpValue = static_cast<QWindow*>(ptr)->maximumSize(); new QSize(tmpValue.width(), tmpValue.height()); });
+	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
+		return ({ QSize tmpValue = static_cast<QPaintDeviceWindow*>(ptr)->maximumSize(); new QSize(tmpValue.width(), tmpValue.height()); });
+	} else {
+		return ({ QSize tmpValue = static_cast<QWindow*>(ptr)->maximumSize(); new QSize(tmpValue.width(), tmpValue.height()); });
+	}
 }
 
 int QWindow_MaximumWidth(void* ptr)
 {
-	return static_cast<QWindow*>(ptr)->maximumWidth();
+	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QPaintDeviceWindow*>(ptr)->maximumWidth();
+	} else {
+		return static_cast<QWindow*>(ptr)->maximumWidth();
+	}
 }
 
 void QWindow_ConnectMaximumWidthChanged(void* ptr)
@@ -23330,12 +24604,20 @@ void QWindow_DisconnectMaximumWidthChanged(void* ptr)
 
 void QWindow_MaximumWidthChanged(void* ptr, int arg)
 {
-	static_cast<QWindow*>(ptr)->maximumWidthChanged(arg);
+	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
+		static_cast<QPaintDeviceWindow*>(ptr)->maximumWidthChanged(arg);
+	} else {
+		static_cast<QWindow*>(ptr)->maximumWidthChanged(arg);
+	}
 }
 
 int QWindow_MinimumHeight(void* ptr)
 {
-	return static_cast<QWindow*>(ptr)->minimumHeight();
+	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QPaintDeviceWindow*>(ptr)->minimumHeight();
+	} else {
+		return static_cast<QWindow*>(ptr)->minimumHeight();
+	}
 }
 
 void QWindow_ConnectMinimumHeightChanged(void* ptr)
@@ -23350,17 +24632,29 @@ void QWindow_DisconnectMinimumHeightChanged(void* ptr)
 
 void QWindow_MinimumHeightChanged(void* ptr, int arg)
 {
-	static_cast<QWindow*>(ptr)->minimumHeightChanged(arg);
+	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
+		static_cast<QPaintDeviceWindow*>(ptr)->minimumHeightChanged(arg);
+	} else {
+		static_cast<QWindow*>(ptr)->minimumHeightChanged(arg);
+	}
 }
 
 void* QWindow_MinimumSize(void* ptr)
 {
-	return ({ QSize tmpValue = static_cast<QWindow*>(ptr)->minimumSize(); new QSize(tmpValue.width(), tmpValue.height()); });
+	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
+		return ({ QSize tmpValue = static_cast<QPaintDeviceWindow*>(ptr)->minimumSize(); new QSize(tmpValue.width(), tmpValue.height()); });
+	} else {
+		return ({ QSize tmpValue = static_cast<QWindow*>(ptr)->minimumSize(); new QSize(tmpValue.width(), tmpValue.height()); });
+	}
 }
 
 int QWindow_MinimumWidth(void* ptr)
 {
-	return static_cast<QWindow*>(ptr)->minimumWidth();
+	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QPaintDeviceWindow*>(ptr)->minimumWidth();
+	} else {
+		return static_cast<QWindow*>(ptr)->minimumWidth();
+	}
 }
 
 void QWindow_ConnectMinimumWidthChanged(void* ptr)
@@ -23375,7 +24669,11 @@ void QWindow_DisconnectMinimumWidthChanged(void* ptr)
 
 void QWindow_MinimumWidthChanged(void* ptr, int arg)
 {
-	static_cast<QWindow*>(ptr)->minimumWidthChanged(arg);
+	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
+		static_cast<QPaintDeviceWindow*>(ptr)->minimumWidthChanged(arg);
+	} else {
+		static_cast<QWindow*>(ptr)->minimumWidthChanged(arg);
+	}
 }
 
 void QWindow_ConnectModalityChanged(void* ptr)
@@ -23390,67 +24688,119 @@ void QWindow_DisconnectModalityChanged(void* ptr)
 
 void QWindow_ModalityChanged(void* ptr, long long modality)
 {
-	static_cast<QWindow*>(ptr)->modalityChanged(static_cast<Qt::WindowModality>(modality));
+	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
+		static_cast<QPaintDeviceWindow*>(ptr)->modalityChanged(static_cast<Qt::WindowModality>(modality));
+	} else {
+		static_cast<QWindow*>(ptr)->modalityChanged(static_cast<Qt::WindowModality>(modality));
+	}
 }
 
 void QWindow_MouseDoubleClickEvent(void* ptr, void* ev)
 {
-	static_cast<QWindow*>(ptr)->mouseDoubleClickEvent(static_cast<QMouseEvent*>(ev));
+	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
+		static_cast<QPaintDeviceWindow*>(ptr)->mouseDoubleClickEvent(static_cast<QMouseEvent*>(ev));
+	} else {
+		static_cast<QWindow*>(ptr)->mouseDoubleClickEvent(static_cast<QMouseEvent*>(ev));
+	}
 }
 
 void QWindow_MouseDoubleClickEventDefault(void* ptr, void* ev)
 {
-	static_cast<QWindow*>(ptr)->QWindow::mouseDoubleClickEvent(static_cast<QMouseEvent*>(ev));
+	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
+		static_cast<QPaintDeviceWindow*>(ptr)->QWindow::mouseDoubleClickEvent(static_cast<QMouseEvent*>(ev));
+	} else {
+		static_cast<QWindow*>(ptr)->QWindow::mouseDoubleClickEvent(static_cast<QMouseEvent*>(ev));
+	}
 }
 
 void QWindow_MouseMoveEvent(void* ptr, void* ev)
 {
-	static_cast<QWindow*>(ptr)->mouseMoveEvent(static_cast<QMouseEvent*>(ev));
+	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
+		static_cast<QPaintDeviceWindow*>(ptr)->mouseMoveEvent(static_cast<QMouseEvent*>(ev));
+	} else {
+		static_cast<QWindow*>(ptr)->mouseMoveEvent(static_cast<QMouseEvent*>(ev));
+	}
 }
 
 void QWindow_MouseMoveEventDefault(void* ptr, void* ev)
 {
-	static_cast<QWindow*>(ptr)->QWindow::mouseMoveEvent(static_cast<QMouseEvent*>(ev));
+	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
+		static_cast<QPaintDeviceWindow*>(ptr)->QWindow::mouseMoveEvent(static_cast<QMouseEvent*>(ev));
+	} else {
+		static_cast<QWindow*>(ptr)->QWindow::mouseMoveEvent(static_cast<QMouseEvent*>(ev));
+	}
 }
 
 void QWindow_MousePressEvent(void* ptr, void* ev)
 {
-	static_cast<QWindow*>(ptr)->mousePressEvent(static_cast<QMouseEvent*>(ev));
+	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
+		static_cast<QPaintDeviceWindow*>(ptr)->mousePressEvent(static_cast<QMouseEvent*>(ev));
+	} else {
+		static_cast<QWindow*>(ptr)->mousePressEvent(static_cast<QMouseEvent*>(ev));
+	}
 }
 
 void QWindow_MousePressEventDefault(void* ptr, void* ev)
 {
-	static_cast<QWindow*>(ptr)->QWindow::mousePressEvent(static_cast<QMouseEvent*>(ev));
+	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
+		static_cast<QPaintDeviceWindow*>(ptr)->QWindow::mousePressEvent(static_cast<QMouseEvent*>(ev));
+	} else {
+		static_cast<QWindow*>(ptr)->QWindow::mousePressEvent(static_cast<QMouseEvent*>(ev));
+	}
 }
 
 void QWindow_MouseReleaseEvent(void* ptr, void* ev)
 {
-	static_cast<QWindow*>(ptr)->mouseReleaseEvent(static_cast<QMouseEvent*>(ev));
+	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
+		static_cast<QPaintDeviceWindow*>(ptr)->mouseReleaseEvent(static_cast<QMouseEvent*>(ev));
+	} else {
+		static_cast<QWindow*>(ptr)->mouseReleaseEvent(static_cast<QMouseEvent*>(ev));
+	}
 }
 
 void QWindow_MouseReleaseEventDefault(void* ptr, void* ev)
 {
-	static_cast<QWindow*>(ptr)->QWindow::mouseReleaseEvent(static_cast<QMouseEvent*>(ev));
+	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
+		static_cast<QPaintDeviceWindow*>(ptr)->QWindow::mouseReleaseEvent(static_cast<QMouseEvent*>(ev));
+	} else {
+		static_cast<QWindow*>(ptr)->QWindow::mouseReleaseEvent(static_cast<QMouseEvent*>(ev));
+	}
 }
 
 void QWindow_MoveEvent(void* ptr, void* ev)
 {
-	static_cast<QWindow*>(ptr)->moveEvent(static_cast<QMoveEvent*>(ev));
+	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
+		static_cast<QPaintDeviceWindow*>(ptr)->moveEvent(static_cast<QMoveEvent*>(ev));
+	} else {
+		static_cast<QWindow*>(ptr)->moveEvent(static_cast<QMoveEvent*>(ev));
+	}
 }
 
 void QWindow_MoveEventDefault(void* ptr, void* ev)
 {
-	static_cast<QWindow*>(ptr)->QWindow::moveEvent(static_cast<QMoveEvent*>(ev));
+	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
+		static_cast<QPaintDeviceWindow*>(ptr)->QWindow::moveEvent(static_cast<QMoveEvent*>(ev));
+	} else {
+		static_cast<QWindow*>(ptr)->QWindow::moveEvent(static_cast<QMoveEvent*>(ev));
+	}
 }
 
 char QWindow_NativeEvent(void* ptr, void* eventType, void* message, long result)
 {
-	return static_cast<QWindow*>(ptr)->nativeEvent(*static_cast<QByteArray*>(eventType), message, &result);
+	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QPaintDeviceWindow*>(ptr)->nativeEvent(*static_cast<QByteArray*>(eventType), message, &result);
+	} else {
+		return static_cast<QWindow*>(ptr)->nativeEvent(*static_cast<QByteArray*>(eventType), message, &result);
+	}
 }
 
 char QWindow_NativeEventDefault(void* ptr, void* eventType, void* message, long result)
 {
-	return static_cast<QWindow*>(ptr)->QWindow::nativeEvent(*static_cast<QByteArray*>(eventType), message, &result);
+	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QPaintDeviceWindow*>(ptr)->QWindow::nativeEvent(*static_cast<QByteArray*>(eventType), message, &result);
+	} else {
+		return static_cast<QWindow*>(ptr)->QWindow::nativeEvent(*static_cast<QByteArray*>(eventType), message, &result);
+	}
 }
 
 void QWindow_ConnectOpacityChanged(void* ptr)
@@ -23465,62 +24815,110 @@ void QWindow_DisconnectOpacityChanged(void* ptr)
 
 void QWindow_OpacityChanged(void* ptr, double opacity)
 {
-	static_cast<QWindow*>(ptr)->opacityChanged(opacity);
+	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
+		static_cast<QPaintDeviceWindow*>(ptr)->opacityChanged(opacity);
+	} else {
+		static_cast<QWindow*>(ptr)->opacityChanged(opacity);
+	}
 }
 
 void* QWindow_Parent(void* ptr)
 {
-	return static_cast<QWindow*>(ptr)->parent();
+	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QPaintDeviceWindow*>(ptr)->parent();
+	} else {
+		return static_cast<QWindow*>(ptr)->parent();
+	}
 }
 
 void* QWindow_Position(void* ptr)
 {
-	return ({ QPoint tmpValue = static_cast<QWindow*>(ptr)->position(); new QPoint(tmpValue.x(), tmpValue.y()); });
+	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
+		return ({ QPoint tmpValue = static_cast<QPaintDeviceWindow*>(ptr)->position(); new QPoint(tmpValue.x(), tmpValue.y()); });
+	} else {
+		return ({ QPoint tmpValue = static_cast<QWindow*>(ptr)->position(); new QPoint(tmpValue.x(), tmpValue.y()); });
+	}
 }
 
 void QWindow_Raise(void* ptr)
 {
-	QMetaObject::invokeMethod(static_cast<QWindow*>(ptr), "raise");
+	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
+		QMetaObject::invokeMethod(static_cast<QPaintDeviceWindow*>(ptr), "raise");
+	} else {
+		QMetaObject::invokeMethod(static_cast<QWindow*>(ptr), "raise");
+	}
 }
 
 void QWindow_RequestActivate(void* ptr)
 {
-	QMetaObject::invokeMethod(static_cast<QWindow*>(ptr), "requestActivate");
+	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
+		QMetaObject::invokeMethod(static_cast<QPaintDeviceWindow*>(ptr), "requestActivate");
+	} else {
+		QMetaObject::invokeMethod(static_cast<QWindow*>(ptr), "requestActivate");
+	}
 }
 
 void QWindow_RequestUpdate(void* ptr)
 {
-	QMetaObject::invokeMethod(static_cast<QWindow*>(ptr), "requestUpdate");
+	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
+		QMetaObject::invokeMethod(static_cast<QPaintDeviceWindow*>(ptr), "requestUpdate");
+	} else {
+		QMetaObject::invokeMethod(static_cast<QWindow*>(ptr), "requestUpdate");
+	}
 }
 
 void* QWindow_RequestedFormat(void* ptr)
 {
-	return new QSurfaceFormat(static_cast<QWindow*>(ptr)->requestedFormat());
+	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
+		return new QSurfaceFormat(static_cast<QPaintDeviceWindow*>(ptr)->requestedFormat());
+	} else {
+		return new QSurfaceFormat(static_cast<QWindow*>(ptr)->requestedFormat());
+	}
 }
 
 void QWindow_Resize(void* ptr, void* newSize)
 {
-	static_cast<QWindow*>(ptr)->resize(*static_cast<QSize*>(newSize));
+	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
+		static_cast<QPaintDeviceWindow*>(ptr)->resize(*static_cast<QSize*>(newSize));
+	} else {
+		static_cast<QWindow*>(ptr)->resize(*static_cast<QSize*>(newSize));
+	}
 }
 
 void QWindow_Resize2(void* ptr, int w, int h)
 {
-	static_cast<QWindow*>(ptr)->resize(w, h);
+	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
+		static_cast<QPaintDeviceWindow*>(ptr)->resize(w, h);
+	} else {
+		static_cast<QWindow*>(ptr)->resize(w, h);
+	}
 }
 
 void QWindow_ResizeEvent(void* ptr, void* ev)
 {
-	static_cast<QWindow*>(ptr)->resizeEvent(static_cast<QResizeEvent*>(ev));
+	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
+		static_cast<QPaintDeviceWindow*>(ptr)->resizeEvent(static_cast<QResizeEvent*>(ev));
+	} else {
+		static_cast<QWindow*>(ptr)->resizeEvent(static_cast<QResizeEvent*>(ev));
+	}
 }
 
 void QWindow_ResizeEventDefault(void* ptr, void* ev)
 {
-	static_cast<QWindow*>(ptr)->QWindow::resizeEvent(static_cast<QResizeEvent*>(ev));
+	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
+		static_cast<QPaintDeviceWindow*>(ptr)->QWindow::resizeEvent(static_cast<QResizeEvent*>(ev));
+	} else {
+		static_cast<QWindow*>(ptr)->QWindow::resizeEvent(static_cast<QResizeEvent*>(ev));
+	}
 }
 
 void* QWindow_Screen(void* ptr)
 {
-	return static_cast<QWindow*>(ptr)->screen();
+	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QPaintDeviceWindow*>(ptr)->screen();
+	} else {
+		return static_cast<QWindow*>(ptr)->screen();
+	}
 }
 
 void QWindow_ConnectScreenChanged(void* ptr)
@@ -23535,207 +24933,387 @@ void QWindow_DisconnectScreenChanged(void* ptr)
 
 void QWindow_ScreenChanged(void* ptr, void* screen)
 {
-	static_cast<QWindow*>(ptr)->screenChanged(static_cast<QScreen*>(screen));
+	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
+		static_cast<QPaintDeviceWindow*>(ptr)->screenChanged(static_cast<QScreen*>(screen));
+	} else {
+		static_cast<QWindow*>(ptr)->screenChanged(static_cast<QScreen*>(screen));
+	}
 }
 
 void QWindow_SetBaseSize(void* ptr, void* size)
 {
-	static_cast<QWindow*>(ptr)->setBaseSize(*static_cast<QSize*>(size));
+	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
+		static_cast<QPaintDeviceWindow*>(ptr)->setBaseSize(*static_cast<QSize*>(size));
+	} else {
+		static_cast<QWindow*>(ptr)->setBaseSize(*static_cast<QSize*>(size));
+	}
 }
 
 void QWindow_SetCursor(void* ptr, void* cursor)
 {
-	static_cast<QWindow*>(ptr)->setCursor(*static_cast<QCursor*>(cursor));
+	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
+		static_cast<QPaintDeviceWindow*>(ptr)->setCursor(*static_cast<QCursor*>(cursor));
+	} else {
+		static_cast<QWindow*>(ptr)->setCursor(*static_cast<QCursor*>(cursor));
+	}
 }
 
 void QWindow_SetFilePath(void* ptr, char* filePath)
 {
-	static_cast<QWindow*>(ptr)->setFilePath(QString(filePath));
+	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
+		static_cast<QPaintDeviceWindow*>(ptr)->setFilePath(QString(filePath));
+	} else {
+		static_cast<QWindow*>(ptr)->setFilePath(QString(filePath));
+	}
 }
 
 void QWindow_SetFormat(void* ptr, void* format)
 {
-	static_cast<QWindow*>(ptr)->setFormat(*static_cast<QSurfaceFormat*>(format));
+	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
+		static_cast<QPaintDeviceWindow*>(ptr)->setFormat(*static_cast<QSurfaceFormat*>(format));
+	} else {
+		static_cast<QWindow*>(ptr)->setFormat(*static_cast<QSurfaceFormat*>(format));
+	}
 }
 
 void QWindow_SetFramePosition(void* ptr, void* point)
 {
-	static_cast<QWindow*>(ptr)->setFramePosition(*static_cast<QPoint*>(point));
+	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
+		static_cast<QPaintDeviceWindow*>(ptr)->setFramePosition(*static_cast<QPoint*>(point));
+	} else {
+		static_cast<QWindow*>(ptr)->setFramePosition(*static_cast<QPoint*>(point));
+	}
 }
 
 void QWindow_SetGeometry2(void* ptr, void* rect)
 {
-	static_cast<QWindow*>(ptr)->setGeometry(*static_cast<QRect*>(rect));
+	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
+		static_cast<QPaintDeviceWindow*>(ptr)->setGeometry(*static_cast<QRect*>(rect));
+	} else {
+		static_cast<QWindow*>(ptr)->setGeometry(*static_cast<QRect*>(rect));
+	}
 }
 
 void QWindow_SetGeometry(void* ptr, int posx, int posy, int w, int h)
 {
-	static_cast<QWindow*>(ptr)->setGeometry(posx, posy, w, h);
+	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
+		static_cast<QPaintDeviceWindow*>(ptr)->setGeometry(posx, posy, w, h);
+	} else {
+		static_cast<QWindow*>(ptr)->setGeometry(posx, posy, w, h);
+	}
 }
 
 void QWindow_SetIcon(void* ptr, void* icon)
 {
-	static_cast<QWindow*>(ptr)->setIcon(*static_cast<QIcon*>(icon));
+	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
+		static_cast<QPaintDeviceWindow*>(ptr)->setIcon(*static_cast<QIcon*>(icon));
+	} else {
+		static_cast<QWindow*>(ptr)->setIcon(*static_cast<QIcon*>(icon));
+	}
 }
 
 char QWindow_SetKeyboardGrabEnabled(void* ptr, char grab)
 {
-	return static_cast<QWindow*>(ptr)->setKeyboardGrabEnabled(grab != 0);
+	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QPaintDeviceWindow*>(ptr)->setKeyboardGrabEnabled(grab != 0);
+	} else {
+		return static_cast<QWindow*>(ptr)->setKeyboardGrabEnabled(grab != 0);
+	}
 }
 
 void QWindow_SetMask(void* ptr, void* region)
 {
-	static_cast<QWindow*>(ptr)->setMask(*static_cast<QRegion*>(region));
+	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
+		static_cast<QPaintDeviceWindow*>(ptr)->setMask(*static_cast<QRegion*>(region));
+	} else {
+		static_cast<QWindow*>(ptr)->setMask(*static_cast<QRegion*>(region));
+	}
 }
 
 void QWindow_SetMaximumSize(void* ptr, void* size)
 {
-	static_cast<QWindow*>(ptr)->setMaximumSize(*static_cast<QSize*>(size));
+	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
+		static_cast<QPaintDeviceWindow*>(ptr)->setMaximumSize(*static_cast<QSize*>(size));
+	} else {
+		static_cast<QWindow*>(ptr)->setMaximumSize(*static_cast<QSize*>(size));
+	}
 }
 
 void QWindow_SetMinimumSize(void* ptr, void* size)
 {
-	static_cast<QWindow*>(ptr)->setMinimumSize(*static_cast<QSize*>(size));
+	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
+		static_cast<QPaintDeviceWindow*>(ptr)->setMinimumSize(*static_cast<QSize*>(size));
+	} else {
+		static_cast<QWindow*>(ptr)->setMinimumSize(*static_cast<QSize*>(size));
+	}
 }
 
 char QWindow_SetMouseGrabEnabled(void* ptr, char grab)
 {
-	return static_cast<QWindow*>(ptr)->setMouseGrabEnabled(grab != 0);
+	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QPaintDeviceWindow*>(ptr)->setMouseGrabEnabled(grab != 0);
+	} else {
+		return static_cast<QWindow*>(ptr)->setMouseGrabEnabled(grab != 0);
+	}
 }
 
 void QWindow_SetParent(void* ptr, void* parent)
 {
-	static_cast<QWindow*>(ptr)->setParent(static_cast<QWindow*>(parent));
+	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
+		if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(parent))) {
+			static_cast<QPaintDeviceWindow*>(ptr)->setParent(static_cast<QPaintDeviceWindow*>(parent));
+		} else {
+			static_cast<QPaintDeviceWindow*>(ptr)->setParent(static_cast<QWindow*>(parent));
+		}
+	} else {
+		if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(parent))) {
+			static_cast<QWindow*>(ptr)->setParent(static_cast<QPaintDeviceWindow*>(parent));
+		} else {
+			static_cast<QWindow*>(ptr)->setParent(static_cast<QWindow*>(parent));
+		}
+	}
 }
 
 void QWindow_SetPosition(void* ptr, void* pt)
 {
-	static_cast<QWindow*>(ptr)->setPosition(*static_cast<QPoint*>(pt));
+	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
+		static_cast<QPaintDeviceWindow*>(ptr)->setPosition(*static_cast<QPoint*>(pt));
+	} else {
+		static_cast<QWindow*>(ptr)->setPosition(*static_cast<QPoint*>(pt));
+	}
 }
 
 void QWindow_SetPosition2(void* ptr, int posx, int posy)
 {
-	static_cast<QWindow*>(ptr)->setPosition(posx, posy);
+	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
+		static_cast<QPaintDeviceWindow*>(ptr)->setPosition(posx, posy);
+	} else {
+		static_cast<QWindow*>(ptr)->setPosition(posx, posy);
+	}
 }
 
 void QWindow_SetScreen(void* ptr, void* newScreen)
 {
-	static_cast<QWindow*>(ptr)->setScreen(static_cast<QScreen*>(newScreen));
+	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
+		static_cast<QPaintDeviceWindow*>(ptr)->setScreen(static_cast<QScreen*>(newScreen));
+	} else {
+		static_cast<QWindow*>(ptr)->setScreen(static_cast<QScreen*>(newScreen));
+	}
 }
 
 void QWindow_SetSizeIncrement(void* ptr, void* size)
 {
-	static_cast<QWindow*>(ptr)->setSizeIncrement(*static_cast<QSize*>(size));
+	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
+		static_cast<QPaintDeviceWindow*>(ptr)->setSizeIncrement(*static_cast<QSize*>(size));
+	} else {
+		static_cast<QWindow*>(ptr)->setSizeIncrement(*static_cast<QSize*>(size));
+	}
 }
 
 void QWindow_SetSurfaceType(void* ptr, long long surfaceType)
 {
-	static_cast<QWindow*>(ptr)->setSurfaceType(static_cast<QSurface::SurfaceType>(surfaceType));
+	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
+		static_cast<QPaintDeviceWindow*>(ptr)->setSurfaceType(static_cast<QSurface::SurfaceType>(surfaceType));
+	} else {
+		static_cast<QWindow*>(ptr)->setSurfaceType(static_cast<QSurface::SurfaceType>(surfaceType));
+	}
 }
 
 void QWindow_SetTransientParent(void* ptr, void* parent)
 {
-	static_cast<QWindow*>(ptr)->setTransientParent(static_cast<QWindow*>(parent));
+	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
+		if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(parent))) {
+			static_cast<QPaintDeviceWindow*>(ptr)->setTransientParent(static_cast<QPaintDeviceWindow*>(parent));
+		} else {
+			static_cast<QPaintDeviceWindow*>(ptr)->setTransientParent(static_cast<QWindow*>(parent));
+		}
+	} else {
+		if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(parent))) {
+			static_cast<QWindow*>(ptr)->setTransientParent(static_cast<QPaintDeviceWindow*>(parent));
+		} else {
+			static_cast<QWindow*>(ptr)->setTransientParent(static_cast<QWindow*>(parent));
+		}
+	}
 }
 
 void QWindow_SetWindowState(void* ptr, long long state)
 {
-	static_cast<QWindow*>(ptr)->setWindowState(static_cast<Qt::WindowState>(state));
+	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
+		static_cast<QPaintDeviceWindow*>(ptr)->setWindowState(static_cast<Qt::WindowState>(state));
+	} else {
+		static_cast<QWindow*>(ptr)->setWindowState(static_cast<Qt::WindowState>(state));
+	}
 }
 
 void QWindow_Show(void* ptr)
 {
-	QMetaObject::invokeMethod(static_cast<QWindow*>(ptr), "show");
+	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
+		QMetaObject::invokeMethod(static_cast<QPaintDeviceWindow*>(ptr), "show");
+	} else {
+		QMetaObject::invokeMethod(static_cast<QWindow*>(ptr), "show");
+	}
 }
 
 void QWindow_ShowEvent(void* ptr, void* ev)
 {
-	static_cast<QWindow*>(ptr)->showEvent(static_cast<QShowEvent*>(ev));
+	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
+		static_cast<QPaintDeviceWindow*>(ptr)->showEvent(static_cast<QShowEvent*>(ev));
+	} else {
+		static_cast<QWindow*>(ptr)->showEvent(static_cast<QShowEvent*>(ev));
+	}
 }
 
 void QWindow_ShowEventDefault(void* ptr, void* ev)
 {
-	static_cast<QWindow*>(ptr)->QWindow::showEvent(static_cast<QShowEvent*>(ev));
+	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
+		static_cast<QPaintDeviceWindow*>(ptr)->QWindow::showEvent(static_cast<QShowEvent*>(ev));
+	} else {
+		static_cast<QWindow*>(ptr)->QWindow::showEvent(static_cast<QShowEvent*>(ev));
+	}
 }
 
 void QWindow_ShowFullScreen(void* ptr)
 {
-	QMetaObject::invokeMethod(static_cast<QWindow*>(ptr), "showFullScreen");
+	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
+		QMetaObject::invokeMethod(static_cast<QPaintDeviceWindow*>(ptr), "showFullScreen");
+	} else {
+		QMetaObject::invokeMethod(static_cast<QWindow*>(ptr), "showFullScreen");
+	}
 }
 
 void QWindow_ShowMaximized(void* ptr)
 {
-	QMetaObject::invokeMethod(static_cast<QWindow*>(ptr), "showMaximized");
+	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
+		QMetaObject::invokeMethod(static_cast<QPaintDeviceWindow*>(ptr), "showMaximized");
+	} else {
+		QMetaObject::invokeMethod(static_cast<QWindow*>(ptr), "showMaximized");
+	}
 }
 
 void QWindow_ShowMinimized(void* ptr)
 {
-	QMetaObject::invokeMethod(static_cast<QWindow*>(ptr), "showMinimized");
+	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
+		QMetaObject::invokeMethod(static_cast<QPaintDeviceWindow*>(ptr), "showMinimized");
+	} else {
+		QMetaObject::invokeMethod(static_cast<QWindow*>(ptr), "showMinimized");
+	}
 }
 
 void QWindow_ShowNormal(void* ptr)
 {
-	QMetaObject::invokeMethod(static_cast<QWindow*>(ptr), "showNormal");
+	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
+		QMetaObject::invokeMethod(static_cast<QPaintDeviceWindow*>(ptr), "showNormal");
+	} else {
+		QMetaObject::invokeMethod(static_cast<QWindow*>(ptr), "showNormal");
+	}
 }
 
 void* QWindow_Size(void* ptr)
 {
-	return ({ QSize tmpValue = static_cast<QWindow*>(ptr)->size(); new QSize(tmpValue.width(), tmpValue.height()); });
+	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
+		return ({ QSize tmpValue = static_cast<QPaintDeviceWindow*>(ptr)->size(); new QSize(tmpValue.width(), tmpValue.height()); });
+	} else {
+		return ({ QSize tmpValue = static_cast<QWindow*>(ptr)->size(); new QSize(tmpValue.width(), tmpValue.height()); });
+	}
 }
 
 void* QWindow_SizeDefault(void* ptr)
 {
-	return ({ QSize tmpValue = static_cast<QWindow*>(ptr)->QWindow::size(); new QSize(tmpValue.width(), tmpValue.height()); });
+	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
+		return ({ QSize tmpValue = static_cast<QPaintDeviceWindow*>(ptr)->QWindow::size(); new QSize(tmpValue.width(), tmpValue.height()); });
+	} else {
+		return ({ QSize tmpValue = static_cast<QWindow*>(ptr)->QWindow::size(); new QSize(tmpValue.width(), tmpValue.height()); });
+	}
 }
 
 void* QWindow_SizeIncrement(void* ptr)
 {
-	return ({ QSize tmpValue = static_cast<QWindow*>(ptr)->sizeIncrement(); new QSize(tmpValue.width(), tmpValue.height()); });
+	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
+		return ({ QSize tmpValue = static_cast<QPaintDeviceWindow*>(ptr)->sizeIncrement(); new QSize(tmpValue.width(), tmpValue.height()); });
+	} else {
+		return ({ QSize tmpValue = static_cast<QWindow*>(ptr)->sizeIncrement(); new QSize(tmpValue.width(), tmpValue.height()); });
+	}
 }
 
 long long QWindow_SurfaceType(void* ptr)
 {
-	return static_cast<QWindow*>(ptr)->surfaceType();
+	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QPaintDeviceWindow*>(ptr)->surfaceType();
+	} else {
+		return static_cast<QWindow*>(ptr)->surfaceType();
+	}
 }
 
 long long QWindow_SurfaceTypeDefault(void* ptr)
 {
-	return static_cast<QWindow*>(ptr)->QWindow::surfaceType();
+	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QPaintDeviceWindow*>(ptr)->QWindow::surfaceType();
+	} else {
+		return static_cast<QWindow*>(ptr)->QWindow::surfaceType();
+	}
 }
 
 void QWindow_TabletEvent(void* ptr, void* ev)
 {
-	static_cast<QWindow*>(ptr)->tabletEvent(static_cast<QTabletEvent*>(ev));
+	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
+		static_cast<QPaintDeviceWindow*>(ptr)->tabletEvent(static_cast<QTabletEvent*>(ev));
+	} else {
+		static_cast<QWindow*>(ptr)->tabletEvent(static_cast<QTabletEvent*>(ev));
+	}
 }
 
 void QWindow_TabletEventDefault(void* ptr, void* ev)
 {
-	static_cast<QWindow*>(ptr)->QWindow::tabletEvent(static_cast<QTabletEvent*>(ev));
+	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
+		static_cast<QPaintDeviceWindow*>(ptr)->QWindow::tabletEvent(static_cast<QTabletEvent*>(ev));
+	} else {
+		static_cast<QWindow*>(ptr)->QWindow::tabletEvent(static_cast<QTabletEvent*>(ev));
+	}
 }
 
 void QWindow_TouchEvent(void* ptr, void* ev)
 {
-	static_cast<QWindow*>(ptr)->touchEvent(static_cast<QTouchEvent*>(ev));
+	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
+		static_cast<QPaintDeviceWindow*>(ptr)->touchEvent(static_cast<QTouchEvent*>(ev));
+	} else {
+		static_cast<QWindow*>(ptr)->touchEvent(static_cast<QTouchEvent*>(ev));
+	}
 }
 
 void QWindow_TouchEventDefault(void* ptr, void* ev)
 {
-	static_cast<QWindow*>(ptr)->QWindow::touchEvent(static_cast<QTouchEvent*>(ev));
+	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
+		static_cast<QPaintDeviceWindow*>(ptr)->QWindow::touchEvent(static_cast<QTouchEvent*>(ev));
+	} else {
+		static_cast<QWindow*>(ptr)->QWindow::touchEvent(static_cast<QTouchEvent*>(ev));
+	}
 }
 
 void* QWindow_TransientParent(void* ptr)
 {
-	return static_cast<QWindow*>(ptr)->transientParent();
+	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QPaintDeviceWindow*>(ptr)->transientParent();
+	} else {
+		return static_cast<QWindow*>(ptr)->transientParent();
+	}
 }
 
 long long QWindow_Type(void* ptr)
 {
-	return static_cast<QWindow*>(ptr)->type();
+	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QPaintDeviceWindow*>(ptr)->type();
+	} else {
+		return static_cast<QWindow*>(ptr)->type();
+	}
 }
 
 void QWindow_UnsetCursor(void* ptr)
 {
-	static_cast<QWindow*>(ptr)->unsetCursor();
+	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
+		static_cast<QPaintDeviceWindow*>(ptr)->unsetCursor();
+	} else {
+		static_cast<QWindow*>(ptr)->unsetCursor();
+	}
 }
 
 void QWindow_ConnectVisibilityChanged(void* ptr)
@@ -23750,7 +25328,11 @@ void QWindow_DisconnectVisibilityChanged(void* ptr)
 
 void QWindow_VisibilityChanged(void* ptr, long long visibility)
 {
-	static_cast<QWindow*>(ptr)->visibilityChanged(static_cast<QWindow::Visibility>(visibility));
+	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
+		static_cast<QPaintDeviceWindow*>(ptr)->visibilityChanged(static_cast<QWindow::Visibility>(visibility));
+	} else {
+		static_cast<QWindow*>(ptr)->visibilityChanged(static_cast<QWindow::Visibility>(visibility));
+	}
 }
 
 void QWindow_ConnectVisibleChanged(void* ptr)
@@ -23765,22 +25347,38 @@ void QWindow_DisconnectVisibleChanged(void* ptr)
 
 void QWindow_VisibleChanged(void* ptr, char arg)
 {
-	static_cast<QWindow*>(ptr)->visibleChanged(arg != 0);
+	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
+		static_cast<QPaintDeviceWindow*>(ptr)->visibleChanged(arg != 0);
+	} else {
+		static_cast<QWindow*>(ptr)->visibleChanged(arg != 0);
+	}
 }
 
 void QWindow_WheelEvent(void* ptr, void* ev)
 {
-	static_cast<QWindow*>(ptr)->wheelEvent(static_cast<QWheelEvent*>(ev));
+	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
+		static_cast<QPaintDeviceWindow*>(ptr)->wheelEvent(static_cast<QWheelEvent*>(ev));
+	} else {
+		static_cast<QWindow*>(ptr)->wheelEvent(static_cast<QWheelEvent*>(ev));
+	}
 }
 
 void QWindow_WheelEventDefault(void* ptr, void* ev)
 {
-	static_cast<QWindow*>(ptr)->QWindow::wheelEvent(static_cast<QWheelEvent*>(ev));
+	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
+		static_cast<QPaintDeviceWindow*>(ptr)->QWindow::wheelEvent(static_cast<QWheelEvent*>(ev));
+	} else {
+		static_cast<QWindow*>(ptr)->QWindow::wheelEvent(static_cast<QWheelEvent*>(ev));
+	}
 }
 
 int QWindow_Width(void* ptr)
 {
-	return static_cast<QWindow*>(ptr)->width();
+	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QPaintDeviceWindow*>(ptr)->width();
+	} else {
+		return static_cast<QWindow*>(ptr)->width();
+	}
 }
 
 void QWindow_ConnectWidthChanged(void* ptr)
@@ -23795,17 +25393,29 @@ void QWindow_DisconnectWidthChanged(void* ptr)
 
 void QWindow_WidthChanged(void* ptr, int arg)
 {
-	static_cast<QWindow*>(ptr)->widthChanged(arg);
+	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
+		static_cast<QPaintDeviceWindow*>(ptr)->widthChanged(arg);
+	} else {
+		static_cast<QWindow*>(ptr)->widthChanged(arg);
+	}
 }
 
 uintptr_t QWindow_WinId(void* ptr)
 {
-	return static_cast<QWindow*>(ptr)->winId();
+	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QPaintDeviceWindow*>(ptr)->winId();
+	} else {
+		return static_cast<QWindow*>(ptr)->winId();
+	}
 }
 
 long long QWindow_WindowState(void* ptr)
 {
-	return static_cast<QWindow*>(ptr)->windowState();
+	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QPaintDeviceWindow*>(ptr)->windowState();
+	} else {
+		return static_cast<QWindow*>(ptr)->windowState();
+	}
 }
 
 void QWindow_ConnectWindowStateChanged(void* ptr)
@@ -23820,7 +25430,11 @@ void QWindow_DisconnectWindowStateChanged(void* ptr)
 
 void QWindow_WindowStateChanged(void* ptr, long long windowState)
 {
-	static_cast<QWindow*>(ptr)->windowStateChanged(static_cast<Qt::WindowState>(windowState));
+	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
+		static_cast<QPaintDeviceWindow*>(ptr)->windowStateChanged(static_cast<Qt::WindowState>(windowState));
+	} else {
+		static_cast<QWindow*>(ptr)->windowStateChanged(static_cast<Qt::WindowState>(windowState));
+	}
 }
 
 void QWindow_ConnectWindowTitleChanged(void* ptr)
@@ -23835,12 +25449,20 @@ void QWindow_DisconnectWindowTitleChanged(void* ptr)
 
 void QWindow_WindowTitleChanged(void* ptr, char* title)
 {
-	static_cast<QWindow*>(ptr)->windowTitleChanged(QString(title));
+	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
+		static_cast<QPaintDeviceWindow*>(ptr)->windowTitleChanged(QString(title));
+	} else {
+		static_cast<QWindow*>(ptr)->windowTitleChanged(QString(title));
+	}
 }
 
 int QWindow_X(void* ptr)
 {
-	return static_cast<QWindow*>(ptr)->x();
+	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QPaintDeviceWindow*>(ptr)->x();
+	} else {
+		return static_cast<QWindow*>(ptr)->x();
+	}
 }
 
 void QWindow_ConnectXChanged(void* ptr)
@@ -23855,12 +25477,20 @@ void QWindow_DisconnectXChanged(void* ptr)
 
 void QWindow_XChanged(void* ptr, int arg)
 {
-	static_cast<QWindow*>(ptr)->xChanged(arg);
+	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
+		static_cast<QPaintDeviceWindow*>(ptr)->xChanged(arg);
+	} else {
+		static_cast<QWindow*>(ptr)->xChanged(arg);
+	}
 }
 
 int QWindow_Y(void* ptr)
 {
-	return static_cast<QWindow*>(ptr)->y();
+	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QPaintDeviceWindow*>(ptr)->y();
+	} else {
+		return static_cast<QWindow*>(ptr)->y();
+	}
 }
 
 void QWindow_ConnectYChanged(void* ptr)
@@ -23875,7 +25505,11 @@ void QWindow_DisconnectYChanged(void* ptr)
 
 void QWindow_YChanged(void* ptr, int arg)
 {
-	static_cast<QWindow*>(ptr)->yChanged(arg);
+	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
+		static_cast<QPaintDeviceWindow*>(ptr)->yChanged(arg);
+	} else {
+		static_cast<QWindow*>(ptr)->yChanged(arg);
+	}
 }
 
 void QWindow_DestroyQWindow(void* ptr)
@@ -23890,82 +25524,186 @@ void QWindow_DestroyQWindowDefault(void* ptr)
 
 void QWindow_TimerEvent(void* ptr, void* event)
 {
-	static_cast<QWindow*>(ptr)->timerEvent(static_cast<QTimerEvent*>(event));
+	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
+		static_cast<QPaintDeviceWindow*>(ptr)->timerEvent(static_cast<QTimerEvent*>(event));
+	} else {
+		static_cast<QWindow*>(ptr)->timerEvent(static_cast<QTimerEvent*>(event));
+	}
 }
 
 void QWindow_TimerEventDefault(void* ptr, void* event)
 {
-	static_cast<QWindow*>(ptr)->QWindow::timerEvent(static_cast<QTimerEvent*>(event));
+	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
+		static_cast<QPaintDeviceWindow*>(ptr)->QWindow::timerEvent(static_cast<QTimerEvent*>(event));
+	} else {
+		static_cast<QWindow*>(ptr)->QWindow::timerEvent(static_cast<QTimerEvent*>(event));
+	}
 }
 
 void QWindow_ChildEvent(void* ptr, void* event)
 {
-	static_cast<QWindow*>(ptr)->childEvent(static_cast<QChildEvent*>(event));
+	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
+		static_cast<QPaintDeviceWindow*>(ptr)->childEvent(static_cast<QChildEvent*>(event));
+	} else {
+		static_cast<QWindow*>(ptr)->childEvent(static_cast<QChildEvent*>(event));
+	}
 }
 
 void QWindow_ChildEventDefault(void* ptr, void* event)
 {
-	static_cast<QWindow*>(ptr)->QWindow::childEvent(static_cast<QChildEvent*>(event));
+	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
+		static_cast<QPaintDeviceWindow*>(ptr)->QWindow::childEvent(static_cast<QChildEvent*>(event));
+	} else {
+		static_cast<QWindow*>(ptr)->QWindow::childEvent(static_cast<QChildEvent*>(event));
+	}
 }
 
 void QWindow_ConnectNotify(void* ptr, void* sign)
 {
-	static_cast<QWindow*>(ptr)->connectNotify(*static_cast<QMetaMethod*>(sign));
+	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
+		static_cast<QPaintDeviceWindow*>(ptr)->connectNotify(*static_cast<QMetaMethod*>(sign));
+	} else {
+		static_cast<QWindow*>(ptr)->connectNotify(*static_cast<QMetaMethod*>(sign));
+	}
 }
 
 void QWindow_ConnectNotifyDefault(void* ptr, void* sign)
 {
-	static_cast<QWindow*>(ptr)->QWindow::connectNotify(*static_cast<QMetaMethod*>(sign));
+	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
+		static_cast<QPaintDeviceWindow*>(ptr)->QWindow::connectNotify(*static_cast<QMetaMethod*>(sign));
+	} else {
+		static_cast<QWindow*>(ptr)->QWindow::connectNotify(*static_cast<QMetaMethod*>(sign));
+	}
 }
 
 void QWindow_CustomEvent(void* ptr, void* event)
 {
-	static_cast<QWindow*>(ptr)->customEvent(static_cast<QEvent*>(event));
+	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
+		static_cast<QPaintDeviceWindow*>(ptr)->customEvent(static_cast<QEvent*>(event));
+	} else {
+		static_cast<QWindow*>(ptr)->customEvent(static_cast<QEvent*>(event));
+	}
 }
 
 void QWindow_CustomEventDefault(void* ptr, void* event)
 {
-	static_cast<QWindow*>(ptr)->QWindow::customEvent(static_cast<QEvent*>(event));
+	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
+		static_cast<QPaintDeviceWindow*>(ptr)->QWindow::customEvent(static_cast<QEvent*>(event));
+	} else {
+		static_cast<QWindow*>(ptr)->QWindow::customEvent(static_cast<QEvent*>(event));
+	}
 }
 
 void QWindow_DeleteLater(void* ptr)
 {
-	QMetaObject::invokeMethod(static_cast<QWindow*>(ptr), "deleteLater");
+	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
+		QMetaObject::invokeMethod(static_cast<QPaintDeviceWindow*>(ptr), "deleteLater");
+	} else {
+		QMetaObject::invokeMethod(static_cast<QWindow*>(ptr), "deleteLater");
+	}
 }
 
 void QWindow_DeleteLaterDefault(void* ptr)
 {
-	static_cast<QWindow*>(ptr)->QWindow::deleteLater();
+	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
+		static_cast<QPaintDeviceWindow*>(ptr)->QWindow::deleteLater();
+	} else {
+		static_cast<QWindow*>(ptr)->QWindow::deleteLater();
+	}
 }
 
 void QWindow_DisconnectNotify(void* ptr, void* sign)
 {
-	static_cast<QWindow*>(ptr)->disconnectNotify(*static_cast<QMetaMethod*>(sign));
+	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
+		static_cast<QPaintDeviceWindow*>(ptr)->disconnectNotify(*static_cast<QMetaMethod*>(sign));
+	} else {
+		static_cast<QWindow*>(ptr)->disconnectNotify(*static_cast<QMetaMethod*>(sign));
+	}
 }
 
 void QWindow_DisconnectNotifyDefault(void* ptr, void* sign)
 {
-	static_cast<QWindow*>(ptr)->QWindow::disconnectNotify(*static_cast<QMetaMethod*>(sign));
+	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
+		static_cast<QPaintDeviceWindow*>(ptr)->QWindow::disconnectNotify(*static_cast<QMetaMethod*>(sign));
+	} else {
+		static_cast<QWindow*>(ptr)->QWindow::disconnectNotify(*static_cast<QMetaMethod*>(sign));
+	}
 }
 
 char QWindow_EventFilter(void* ptr, void* watched, void* event)
 {
-	return static_cast<QWindow*>(ptr)->eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
+		if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(watched))) {
+			return static_cast<QPaintDeviceWindow*>(ptr)->eventFilter(static_cast<QOffscreenSurface*>(watched), static_cast<QEvent*>(event));
+		} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(watched))) {
+			return static_cast<QPaintDeviceWindow*>(ptr)->eventFilter(static_cast<QPaintDeviceWindow*>(watched), static_cast<QEvent*>(event));
+		} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(watched))) {
+			return static_cast<QPaintDeviceWindow*>(ptr)->eventFilter(static_cast<QPdfWriter*>(watched), static_cast<QEvent*>(event));
+		} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(watched))) {
+			return static_cast<QPaintDeviceWindow*>(ptr)->eventFilter(static_cast<QWindow*>(watched), static_cast<QEvent*>(event));
+		} else {
+			return static_cast<QPaintDeviceWindow*>(ptr)->eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+		}
+	} else {
+		if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(watched))) {
+			return static_cast<QWindow*>(ptr)->eventFilter(static_cast<QOffscreenSurface*>(watched), static_cast<QEvent*>(event));
+		} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(watched))) {
+			return static_cast<QWindow*>(ptr)->eventFilter(static_cast<QPaintDeviceWindow*>(watched), static_cast<QEvent*>(event));
+		} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(watched))) {
+			return static_cast<QWindow*>(ptr)->eventFilter(static_cast<QPdfWriter*>(watched), static_cast<QEvent*>(event));
+		} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(watched))) {
+			return static_cast<QWindow*>(ptr)->eventFilter(static_cast<QWindow*>(watched), static_cast<QEvent*>(event));
+		} else {
+			return static_cast<QWindow*>(ptr)->eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+		}
+	}
 }
 
 char QWindow_EventFilterDefault(void* ptr, void* watched, void* event)
 {
-	return static_cast<QWindow*>(ptr)->QWindow::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
+		if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(watched))) {
+			return static_cast<QPaintDeviceWindow*>(ptr)->QWindow::eventFilter(static_cast<QOffscreenSurface*>(watched), static_cast<QEvent*>(event));
+		} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(watched))) {
+			return static_cast<QPaintDeviceWindow*>(ptr)->QWindow::eventFilter(static_cast<QPaintDeviceWindow*>(watched), static_cast<QEvent*>(event));
+		} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(watched))) {
+			return static_cast<QPaintDeviceWindow*>(ptr)->QWindow::eventFilter(static_cast<QPdfWriter*>(watched), static_cast<QEvent*>(event));
+		} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(watched))) {
+			return static_cast<QPaintDeviceWindow*>(ptr)->QWindow::eventFilter(static_cast<QWindow*>(watched), static_cast<QEvent*>(event));
+		} else {
+			return static_cast<QPaintDeviceWindow*>(ptr)->QWindow::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+		}
+	} else {
+		if (dynamic_cast<QOffscreenSurface*>(static_cast<QObject*>(watched))) {
+			return static_cast<QWindow*>(ptr)->QWindow::eventFilter(static_cast<QOffscreenSurface*>(watched), static_cast<QEvent*>(event));
+		} else if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(watched))) {
+			return static_cast<QWindow*>(ptr)->QWindow::eventFilter(static_cast<QPaintDeviceWindow*>(watched), static_cast<QEvent*>(event));
+		} else if (dynamic_cast<QPdfWriter*>(static_cast<QObject*>(watched))) {
+			return static_cast<QWindow*>(ptr)->QWindow::eventFilter(static_cast<QPdfWriter*>(watched), static_cast<QEvent*>(event));
+		} else if (dynamic_cast<QWindow*>(static_cast<QObject*>(watched))) {
+			return static_cast<QWindow*>(ptr)->QWindow::eventFilter(static_cast<QWindow*>(watched), static_cast<QEvent*>(event));
+		} else {
+			return static_cast<QWindow*>(ptr)->QWindow::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+		}
+	}
 }
 
 void* QWindow_MetaObject(void* ptr)
 {
-	return const_cast<QMetaObject*>(static_cast<QWindow*>(ptr)->metaObject());
+	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
+		return const_cast<QMetaObject*>(static_cast<QPaintDeviceWindow*>(ptr)->metaObject());
+	} else {
+		return const_cast<QMetaObject*>(static_cast<QWindow*>(ptr)->metaObject());
+	}
 }
 
 void* QWindow_MetaObjectDefault(void* ptr)
 {
-	return const_cast<QMetaObject*>(static_cast<QWindow*>(ptr)->QWindow::metaObject());
+	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
+		return const_cast<QMetaObject*>(static_cast<QPaintDeviceWindow*>(ptr)->QWindow::metaObject());
+	} else {
+		return const_cast<QMetaObject*>(static_cast<QWindow*>(ptr)->QWindow::metaObject());
+	}
 }
 
 long long QWindowStateChangeEvent_OldState(void* ptr)

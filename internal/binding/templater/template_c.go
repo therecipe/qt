@@ -28,8 +28,6 @@ func cTemplateEnums(bb *bytes.Buffer, c *parser.Class, ef func(*parser.Enum, *pa
 
 func cTemplateFunctions(bb *bytes.Buffer, c *parser.Class, ff func(*parser.Function) string, del string) {
 
-	//TODO: put enum loop here
-
 	var implementedVirtuals = make(map[string]struct{})
 
 	for _, f := range c.Functions {
@@ -100,7 +98,7 @@ func cTemplateFunctions(bb *bytes.Buffer, c *parser.Class, ff func(*parser.Funct
 				continue
 			}
 
-			//TODO: signals and slots may not be needed
+			//TODO: signals and slots may not be needed -> poly problems ?
 			if f.Meta != parser.SIGNAL && (f.Virtual == parser.IMPURE || f.Virtual == parser.PURE || f.Meta == parser.SLOT) && f.Meta != parser.DESTRUCTOR {
 				implementedVirtuals[fmt.Sprint(f.Name, f.OverloadNumber)] = struct{}{}
 

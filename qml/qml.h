@@ -400,6 +400,7 @@ void* QQmlListReference_Object(void* ptr);
 void* QQmlNetworkAccessManagerFactory_Create(void* ptr, void* parent);
 void QQmlNetworkAccessManagerFactory_DestroyQQmlNetworkAccessManagerFactory(void* ptr);
 void QQmlNetworkAccessManagerFactory_DestroyQQmlNetworkAccessManagerFactoryDefault(void* ptr);
+void* QQmlNetworkAccessManagerFactory_NewQQmlNetworkAccessManagerFactory();
 void QQmlParserStatus_ClassBegin(void* ptr);
 void QQmlParserStatus_ComponentComplete(void* ptr);
 void* QQmlProperty_NewQQmlProperty();

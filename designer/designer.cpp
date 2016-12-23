@@ -81,7 +81,23 @@ public:
 
 void* QAbstractExtensionFactory_Extension(void* ptr, void* object, char* iid)
 {
-	return static_cast<QAbstractExtensionFactory*>(ptr)->extension(static_cast<QObject*>(object), QString(iid));
+	if (dynamic_cast<QExtensionFactory*>(static_cast<QObject*>(ptr))) {
+		if (dynamic_cast<QExtensionFactory*>(static_cast<QObject*>(object))) {
+			return static_cast<QExtensionFactory*>(ptr)->extension(static_cast<QExtensionFactory*>(object), QString(iid));
+		} else if (dynamic_cast<QExtensionManager*>(static_cast<QObject*>(object))) {
+			return static_cast<QExtensionFactory*>(ptr)->extension(static_cast<QExtensionManager*>(object), QString(iid));
+		} else {
+			return static_cast<QExtensionFactory*>(ptr)->extension(static_cast<QObject*>(object), QString(iid));
+		}
+	} else {
+		if (dynamic_cast<QExtensionFactory*>(static_cast<QObject*>(object))) {
+			return static_cast<QAbstractExtensionFactory*>(ptr)->extension(static_cast<QExtensionFactory*>(object), QString(iid));
+		} else if (dynamic_cast<QExtensionManager*>(static_cast<QObject*>(object))) {
+			return static_cast<QAbstractExtensionFactory*>(ptr)->extension(static_cast<QExtensionManager*>(object), QString(iid));
+		} else {
+			return static_cast<QAbstractExtensionFactory*>(ptr)->extension(static_cast<QObject*>(object), QString(iid));
+		}
+	}
 }
 
 void QAbstractExtensionFactory_DestroyQAbstractExtensionFactory(void* ptr)
@@ -105,17 +121,57 @@ public:
 
 void* QAbstractExtensionManager_Extension(void* ptr, void* object, char* iid)
 {
-	return static_cast<QAbstractExtensionManager*>(ptr)->extension(static_cast<QObject*>(object), QString(iid));
+	if (dynamic_cast<QExtensionManager*>(static_cast<QObject*>(ptr))) {
+		if (dynamic_cast<QExtensionFactory*>(static_cast<QObject*>(object))) {
+			return static_cast<QExtensionManager*>(ptr)->extension(static_cast<QExtensionFactory*>(object), QString(iid));
+		} else if (dynamic_cast<QExtensionManager*>(static_cast<QObject*>(object))) {
+			return static_cast<QExtensionManager*>(ptr)->extension(static_cast<QExtensionManager*>(object), QString(iid));
+		} else {
+			return static_cast<QExtensionManager*>(ptr)->extension(static_cast<QObject*>(object), QString(iid));
+		}
+	} else {
+		if (dynamic_cast<QExtensionFactory*>(static_cast<QObject*>(object))) {
+			return static_cast<QAbstractExtensionManager*>(ptr)->extension(static_cast<QExtensionFactory*>(object), QString(iid));
+		} else if (dynamic_cast<QExtensionManager*>(static_cast<QObject*>(object))) {
+			return static_cast<QAbstractExtensionManager*>(ptr)->extension(static_cast<QExtensionManager*>(object), QString(iid));
+		} else {
+			return static_cast<QAbstractExtensionManager*>(ptr)->extension(static_cast<QObject*>(object), QString(iid));
+		}
+	}
 }
 
 void QAbstractExtensionManager_RegisterExtensions(void* ptr, void* factory, char* iid)
 {
-	static_cast<QAbstractExtensionManager*>(ptr)->registerExtensions(static_cast<QAbstractExtensionFactory*>(factory), QString(iid));
+	if (dynamic_cast<QExtensionManager*>(static_cast<QObject*>(ptr))) {
+		if (dynamic_cast<QExtensionFactory*>(static_cast<QObject*>(factory))) {
+			static_cast<QExtensionManager*>(ptr)->registerExtensions(static_cast<QExtensionFactory*>(factory), QString(iid));
+		} else {
+			static_cast<QExtensionManager*>(ptr)->registerExtensions(static_cast<QAbstractExtensionFactory*>(factory), QString(iid));
+		}
+	} else {
+		if (dynamic_cast<QExtensionFactory*>(static_cast<QObject*>(factory))) {
+			static_cast<QAbstractExtensionManager*>(ptr)->registerExtensions(static_cast<QExtensionFactory*>(factory), QString(iid));
+		} else {
+			static_cast<QAbstractExtensionManager*>(ptr)->registerExtensions(static_cast<QAbstractExtensionFactory*>(factory), QString(iid));
+		}
+	}
 }
 
 void QAbstractExtensionManager_UnregisterExtensions(void* ptr, void* factory, char* iid)
 {
-	static_cast<QAbstractExtensionManager*>(ptr)->unregisterExtensions(static_cast<QAbstractExtensionFactory*>(factory), QString(iid));
+	if (dynamic_cast<QExtensionManager*>(static_cast<QObject*>(ptr))) {
+		if (dynamic_cast<QExtensionFactory*>(static_cast<QObject*>(factory))) {
+			static_cast<QExtensionManager*>(ptr)->unregisterExtensions(static_cast<QExtensionFactory*>(factory), QString(iid));
+		} else {
+			static_cast<QExtensionManager*>(ptr)->unregisterExtensions(static_cast<QAbstractExtensionFactory*>(factory), QString(iid));
+		}
+	} else {
+		if (dynamic_cast<QExtensionFactory*>(static_cast<QObject*>(factory))) {
+			static_cast<QAbstractExtensionManager*>(ptr)->unregisterExtensions(static_cast<QExtensionFactory*>(factory), QString(iid));
+		} else {
+			static_cast<QAbstractExtensionManager*>(ptr)->unregisterExtensions(static_cast<QAbstractExtensionFactory*>(factory), QString(iid));
+		}
+	}
 }
 
 void QAbstractExtensionManager_DestroyQAbstractExtensionManager(void* ptr)
@@ -906,12 +962,24 @@ char QDesignerActionEditorInterface_EventDefault(void* ptr, void* e)
 
 char QDesignerActionEditorInterface_EventFilter(void* ptr, void* watched, void* event)
 {
-	return static_cast<QDesignerActionEditorInterface*>(ptr)->eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+	if (dynamic_cast<QExtensionFactory*>(static_cast<QObject*>(watched))) {
+		return static_cast<QDesignerActionEditorInterface*>(ptr)->eventFilter(static_cast<QExtensionFactory*>(watched), static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QExtensionManager*>(static_cast<QObject*>(watched))) {
+		return static_cast<QDesignerActionEditorInterface*>(ptr)->eventFilter(static_cast<QExtensionManager*>(watched), static_cast<QEvent*>(event));
+	} else {
+		return static_cast<QDesignerActionEditorInterface*>(ptr)->eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+	}
 }
 
 char QDesignerActionEditorInterface_EventFilterDefault(void* ptr, void* watched, void* event)
 {
-	return static_cast<QDesignerActionEditorInterface*>(ptr)->QDesignerActionEditorInterface::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+	if (dynamic_cast<QExtensionFactory*>(static_cast<QObject*>(watched))) {
+		return static_cast<QDesignerActionEditorInterface*>(ptr)->QDesignerActionEditorInterface::eventFilter(static_cast<QExtensionFactory*>(watched), static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QExtensionManager*>(static_cast<QObject*>(watched))) {
+		return static_cast<QDesignerActionEditorInterface*>(ptr)->QDesignerActionEditorInterface::eventFilter(static_cast<QExtensionManager*>(watched), static_cast<QEvent*>(event));
+	} else {
+		return static_cast<QDesignerActionEditorInterface*>(ptr)->QDesignerActionEditorInterface::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+	}
 }
 
 void* QDesignerActionEditorInterface_MetaObject(void* ptr)
@@ -1368,12 +1436,24 @@ char QDesignerFormEditorInterface_EventDefault(void* ptr, void* e)
 
 char QDesignerFormEditorInterface_EventFilter(void* ptr, void* watched, void* event)
 {
-	return static_cast<QDesignerFormEditorInterface*>(ptr)->eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+	if (dynamic_cast<QExtensionFactory*>(static_cast<QObject*>(watched))) {
+		return static_cast<QDesignerFormEditorInterface*>(ptr)->eventFilter(static_cast<QExtensionFactory*>(watched), static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QExtensionManager*>(static_cast<QObject*>(watched))) {
+		return static_cast<QDesignerFormEditorInterface*>(ptr)->eventFilter(static_cast<QExtensionManager*>(watched), static_cast<QEvent*>(event));
+	} else {
+		return static_cast<QDesignerFormEditorInterface*>(ptr)->eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+	}
 }
 
 char QDesignerFormEditorInterface_EventFilterDefault(void* ptr, void* watched, void* event)
 {
-	return static_cast<QDesignerFormEditorInterface*>(ptr)->QDesignerFormEditorInterface::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+	if (dynamic_cast<QExtensionFactory*>(static_cast<QObject*>(watched))) {
+		return static_cast<QDesignerFormEditorInterface*>(ptr)->QDesignerFormEditorInterface::eventFilter(static_cast<QExtensionFactory*>(watched), static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QExtensionManager*>(static_cast<QObject*>(watched))) {
+		return static_cast<QDesignerFormEditorInterface*>(ptr)->QDesignerFormEditorInterface::eventFilter(static_cast<QExtensionManager*>(watched), static_cast<QEvent*>(event));
+	} else {
+		return static_cast<QDesignerFormEditorInterface*>(ptr)->QDesignerFormEditorInterface::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+	}
 }
 
 void* QDesignerFormEditorInterface_MetaObject(void* ptr)
@@ -1614,7 +1694,13 @@ public:
 
 void* QDesignerFormWindowInterface_QDesignerFormWindowInterface_FindFormWindow2(void* object)
 {
-	return QDesignerFormWindowInterface::findFormWindow(static_cast<QObject*>(object));
+	if (dynamic_cast<QExtensionFactory*>(static_cast<QObject*>(object))) {
+		return QDesignerFormWindowInterface::findFormWindow(static_cast<QExtensionFactory*>(object));
+	} else if (dynamic_cast<QExtensionManager*>(static_cast<QObject*>(object))) {
+		return QDesignerFormWindowInterface::findFormWindow(static_cast<QExtensionManager*>(object));
+	} else {
+		return QDesignerFormWindowInterface::findFormWindow(static_cast<QObject*>(object));
+	}
 }
 
 void* QDesignerFormWindowInterface_QDesignerFormWindowInterface_FindFormWindow(void* widget)
@@ -1864,7 +1950,13 @@ void QDesignerFormWindowInterface_DisconnectObjectRemoved(void* ptr)
 
 void QDesignerFormWindowInterface_ObjectRemoved(void* ptr, void* object)
 {
-	static_cast<QDesignerFormWindowInterface*>(ptr)->objectRemoved(static_cast<QObject*>(object));
+	if (dynamic_cast<QExtensionFactory*>(static_cast<QObject*>(object))) {
+		static_cast<QDesignerFormWindowInterface*>(ptr)->objectRemoved(static_cast<QExtensionFactory*>(object));
+	} else if (dynamic_cast<QExtensionManager*>(static_cast<QObject*>(object))) {
+		static_cast<QDesignerFormWindowInterface*>(ptr)->objectRemoved(static_cast<QExtensionManager*>(object));
+	} else {
+		static_cast<QDesignerFormWindowInterface*>(ptr)->objectRemoved(static_cast<QObject*>(object));
+	}
 }
 
 struct QtDesigner_PackedString QDesignerFormWindowInterface_PixmapFunction(void* ptr)
@@ -2663,12 +2755,24 @@ char QDesignerFormWindowInterface_EventDefault(void* ptr, void* e)
 
 char QDesignerFormWindowInterface_EventFilter(void* ptr, void* watched, void* event)
 {
-	return static_cast<QDesignerFormWindowInterface*>(ptr)->eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+	if (dynamic_cast<QExtensionFactory*>(static_cast<QObject*>(watched))) {
+		return static_cast<QDesignerFormWindowInterface*>(ptr)->eventFilter(static_cast<QExtensionFactory*>(watched), static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QExtensionManager*>(static_cast<QObject*>(watched))) {
+		return static_cast<QDesignerFormWindowInterface*>(ptr)->eventFilter(static_cast<QExtensionManager*>(watched), static_cast<QEvent*>(event));
+	} else {
+		return static_cast<QDesignerFormWindowInterface*>(ptr)->eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+	}
 }
 
 char QDesignerFormWindowInterface_EventFilterDefault(void* ptr, void* watched, void* event)
 {
-	return static_cast<QDesignerFormWindowInterface*>(ptr)->QDesignerFormWindowInterface::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+	if (dynamic_cast<QExtensionFactory*>(static_cast<QObject*>(watched))) {
+		return static_cast<QDesignerFormWindowInterface*>(ptr)->QDesignerFormWindowInterface::eventFilter(static_cast<QExtensionFactory*>(watched), static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QExtensionManager*>(static_cast<QObject*>(watched))) {
+		return static_cast<QDesignerFormWindowInterface*>(ptr)->QDesignerFormWindowInterface::eventFilter(static_cast<QExtensionManager*>(watched), static_cast<QEvent*>(event));
+	} else {
+		return static_cast<QDesignerFormWindowInterface*>(ptr)->QDesignerFormWindowInterface::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+	}
 }
 
 void* QDesignerFormWindowInterface_MetaObject(void* ptr)
@@ -2946,12 +3050,24 @@ char QDesignerFormWindowManagerInterface_EventDefault(void* ptr, void* e)
 
 char QDesignerFormWindowManagerInterface_EventFilter(void* ptr, void* watched, void* event)
 {
-	return static_cast<QDesignerFormWindowManagerInterface*>(ptr)->eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+	if (dynamic_cast<QExtensionFactory*>(static_cast<QObject*>(watched))) {
+		return static_cast<QDesignerFormWindowManagerInterface*>(ptr)->eventFilter(static_cast<QExtensionFactory*>(watched), static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QExtensionManager*>(static_cast<QObject*>(watched))) {
+		return static_cast<QDesignerFormWindowManagerInterface*>(ptr)->eventFilter(static_cast<QExtensionManager*>(watched), static_cast<QEvent*>(event));
+	} else {
+		return static_cast<QDesignerFormWindowManagerInterface*>(ptr)->eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+	}
 }
 
 char QDesignerFormWindowManagerInterface_EventFilterDefault(void* ptr, void* watched, void* event)
 {
-	return static_cast<QDesignerFormWindowManagerInterface*>(ptr)->QDesignerFormWindowManagerInterface::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+	if (dynamic_cast<QExtensionFactory*>(static_cast<QObject*>(watched))) {
+		return static_cast<QDesignerFormWindowManagerInterface*>(ptr)->QDesignerFormWindowManagerInterface::eventFilter(static_cast<QExtensionFactory*>(watched), static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QExtensionManager*>(static_cast<QObject*>(watched))) {
+		return static_cast<QDesignerFormWindowManagerInterface*>(ptr)->QDesignerFormWindowManagerInterface::eventFilter(static_cast<QExtensionManager*>(watched), static_cast<QEvent*>(event));
+	} else {
+		return static_cast<QDesignerFormWindowManagerInterface*>(ptr)->QDesignerFormWindowManagerInterface::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+	}
 }
 
 void* QDesignerFormWindowManagerInterface_MetaObject(void* ptr)
@@ -3781,12 +3897,24 @@ char QDesignerObjectInspectorInterface_EventDefault(void* ptr, void* e)
 
 char QDesignerObjectInspectorInterface_EventFilter(void* ptr, void* watched, void* event)
 {
-	return static_cast<QDesignerObjectInspectorInterface*>(ptr)->eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+	if (dynamic_cast<QExtensionFactory*>(static_cast<QObject*>(watched))) {
+		return static_cast<QDesignerObjectInspectorInterface*>(ptr)->eventFilter(static_cast<QExtensionFactory*>(watched), static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QExtensionManager*>(static_cast<QObject*>(watched))) {
+		return static_cast<QDesignerObjectInspectorInterface*>(ptr)->eventFilter(static_cast<QExtensionManager*>(watched), static_cast<QEvent*>(event));
+	} else {
+		return static_cast<QDesignerObjectInspectorInterface*>(ptr)->eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+	}
 }
 
 char QDesignerObjectInspectorInterface_EventFilterDefault(void* ptr, void* watched, void* event)
 {
-	return static_cast<QDesignerObjectInspectorInterface*>(ptr)->QDesignerObjectInspectorInterface::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+	if (dynamic_cast<QExtensionFactory*>(static_cast<QObject*>(watched))) {
+		return static_cast<QDesignerObjectInspectorInterface*>(ptr)->QDesignerObjectInspectorInterface::eventFilter(static_cast<QExtensionFactory*>(watched), static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QExtensionManager*>(static_cast<QObject*>(watched))) {
+		return static_cast<QDesignerObjectInspectorInterface*>(ptr)->QDesignerObjectInspectorInterface::eventFilter(static_cast<QExtensionManager*>(watched), static_cast<QEvent*>(event));
+	} else {
+		return static_cast<QDesignerObjectInspectorInterface*>(ptr)->QDesignerObjectInspectorInterface::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+	}
 }
 
 void* QDesignerObjectInspectorInterface_MetaObject(void* ptr)
@@ -3945,7 +4073,7 @@ void QDesignerPropertyEditorInterface_PropertyChanged(void* ptr, char* name, voi
 
 void QDesignerPropertyEditorInterface_SetObject(void* ptr, void* object)
 {
-	QMetaObject::invokeMethod(static_cast<QDesignerPropertyEditorInterface*>(ptr), "setObject", Q_ARG(QObject*, static_cast<QObject*>(object)));
+		QMetaObject::invokeMethod(static_cast<QDesignerPropertyEditorInterface*>(ptr), "setObject", Q_ARG(QObject*, static_cast<QObject*>(object)));
 }
 
 void QDesignerPropertyEditorInterface_SetPropertyValue(void* ptr, char* name, void* value, char changed)
@@ -4572,12 +4700,24 @@ char QDesignerPropertyEditorInterface_EventDefault(void* ptr, void* e)
 
 char QDesignerPropertyEditorInterface_EventFilter(void* ptr, void* watched, void* event)
 {
-	return static_cast<QDesignerPropertyEditorInterface*>(ptr)->eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+	if (dynamic_cast<QExtensionFactory*>(static_cast<QObject*>(watched))) {
+		return static_cast<QDesignerPropertyEditorInterface*>(ptr)->eventFilter(static_cast<QExtensionFactory*>(watched), static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QExtensionManager*>(static_cast<QObject*>(watched))) {
+		return static_cast<QDesignerPropertyEditorInterface*>(ptr)->eventFilter(static_cast<QExtensionManager*>(watched), static_cast<QEvent*>(event));
+	} else {
+		return static_cast<QDesignerPropertyEditorInterface*>(ptr)->eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+	}
 }
 
 char QDesignerPropertyEditorInterface_EventFilterDefault(void* ptr, void* watched, void* event)
 {
-	return static_cast<QDesignerPropertyEditorInterface*>(ptr)->QDesignerPropertyEditorInterface::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+	if (dynamic_cast<QExtensionFactory*>(static_cast<QObject*>(watched))) {
+		return static_cast<QDesignerPropertyEditorInterface*>(ptr)->QDesignerPropertyEditorInterface::eventFilter(static_cast<QExtensionFactory*>(watched), static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QExtensionManager*>(static_cast<QObject*>(watched))) {
+		return static_cast<QDesignerPropertyEditorInterface*>(ptr)->QDesignerPropertyEditorInterface::eventFilter(static_cast<QExtensionManager*>(watched), static_cast<QEvent*>(event));
+	} else {
+		return static_cast<QDesignerPropertyEditorInterface*>(ptr)->QDesignerPropertyEditorInterface::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+	}
 }
 
 void* QDesignerPropertyEditorInterface_MetaObject(void* ptr)
@@ -5473,12 +5613,24 @@ char QDesignerWidgetBoxInterface_EventDefault(void* ptr, void* e)
 
 char QDesignerWidgetBoxInterface_EventFilter(void* ptr, void* watched, void* event)
 {
-	return static_cast<QDesignerWidgetBoxInterface*>(ptr)->eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+	if (dynamic_cast<QExtensionFactory*>(static_cast<QObject*>(watched))) {
+		return static_cast<QDesignerWidgetBoxInterface*>(ptr)->eventFilter(static_cast<QExtensionFactory*>(watched), static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QExtensionManager*>(static_cast<QObject*>(watched))) {
+		return static_cast<QDesignerWidgetBoxInterface*>(ptr)->eventFilter(static_cast<QExtensionManager*>(watched), static_cast<QEvent*>(event));
+	} else {
+		return static_cast<QDesignerWidgetBoxInterface*>(ptr)->eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+	}
 }
 
 char QDesignerWidgetBoxInterface_EventFilterDefault(void* ptr, void* watched, void* event)
 {
-	return static_cast<QDesignerWidgetBoxInterface*>(ptr)->QDesignerWidgetBoxInterface::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+	if (dynamic_cast<QExtensionFactory*>(static_cast<QObject*>(watched))) {
+		return static_cast<QDesignerWidgetBoxInterface*>(ptr)->QDesignerWidgetBoxInterface::eventFilter(static_cast<QExtensionFactory*>(watched), static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QExtensionManager*>(static_cast<QObject*>(watched))) {
+		return static_cast<QDesignerWidgetBoxInterface*>(ptr)->QDesignerWidgetBoxInterface::eventFilter(static_cast<QExtensionManager*>(watched), static_cast<QEvent*>(event));
+	} else {
+		return static_cast<QDesignerWidgetBoxInterface*>(ptr)->QDesignerWidgetBoxInterface::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+	}
 }
 
 void* QDesignerWidgetBoxInterface_MetaObject(void* ptr)
@@ -5535,117 +5687,153 @@ void* QExtensionFactory_NewQExtensionFactory(void* parent)
 
 void* QExtensionFactory_CreateExtension(void* ptr, void* object, char* iid, void* parent)
 {
-	return static_cast<QExtensionFactory*>(ptr)->createExtension(static_cast<QObject*>(object), QString(iid), static_cast<QObject*>(parent));
+	if (dynamic_cast<QExtensionFactory*>(static_cast<QObject*>(object))) {
+		return static_cast<QExtensionFactory*>(ptr)->createExtension(static_cast<QExtensionFactory*>(object), QString(iid), static_cast<QObject*>(parent));
+	} else if (dynamic_cast<QExtensionManager*>(static_cast<QObject*>(object))) {
+		return static_cast<QExtensionFactory*>(ptr)->createExtension(static_cast<QExtensionManager*>(object), QString(iid), static_cast<QObject*>(parent));
+	} else {
+		return static_cast<QExtensionFactory*>(ptr)->createExtension(static_cast<QObject*>(object), QString(iid), static_cast<QObject*>(parent));
+	}
 }
 
 void* QExtensionFactory_CreateExtensionDefault(void* ptr, void* object, char* iid, void* parent)
 {
-	return static_cast<QExtensionFactory*>(ptr)->QExtensionFactory::createExtension(static_cast<QObject*>(object), QString(iid), static_cast<QObject*>(parent));
+	if (dynamic_cast<QExtensionFactory*>(static_cast<QObject*>(object))) {
+		return static_cast<QExtensionFactory*>(ptr)->QExtensionFactory::createExtension(static_cast<QExtensionFactory*>(object), QString(iid), static_cast<QObject*>(parent));
+	} else if (dynamic_cast<QExtensionManager*>(static_cast<QObject*>(object))) {
+		return static_cast<QExtensionFactory*>(ptr)->QExtensionFactory::createExtension(static_cast<QExtensionManager*>(object), QString(iid), static_cast<QObject*>(parent));
+	} else {
+		return static_cast<QExtensionFactory*>(ptr)->QExtensionFactory::createExtension(static_cast<QObject*>(object), QString(iid), static_cast<QObject*>(parent));
+	}
 }
 
 void* QExtensionFactory_Extension(void* ptr, void* object, char* iid)
 {
-	return static_cast<QExtensionFactory*>(ptr)->extension(static_cast<QObject*>(object), QString(iid));
+	if (dynamic_cast<QExtensionFactory*>(static_cast<QObject*>(object))) {
+		return static_cast<QExtensionFactory*>(ptr)->extension(static_cast<QExtensionFactory*>(object), QString(iid));
+	} else if (dynamic_cast<QExtensionManager*>(static_cast<QObject*>(object))) {
+		return static_cast<QExtensionFactory*>(ptr)->extension(static_cast<QExtensionManager*>(object), QString(iid));
+	} else {
+		return static_cast<QExtensionFactory*>(ptr)->extension(static_cast<QObject*>(object), QString(iid));
+	}
 }
 
 void* QExtensionFactory_ExtensionDefault(void* ptr, void* object, char* iid)
 {
-	return static_cast<QExtensionFactory*>(ptr)->QExtensionFactory::extension(static_cast<QObject*>(object), QString(iid));
+	if (dynamic_cast<QExtensionFactory*>(static_cast<QObject*>(object))) {
+		return static_cast<QExtensionFactory*>(ptr)->QExtensionFactory::extension(static_cast<QExtensionFactory*>(object), QString(iid));
+	} else if (dynamic_cast<QExtensionManager*>(static_cast<QObject*>(object))) {
+		return static_cast<QExtensionFactory*>(ptr)->QExtensionFactory::extension(static_cast<QExtensionManager*>(object), QString(iid));
+	} else {
+		return static_cast<QExtensionFactory*>(ptr)->QExtensionFactory::extension(static_cast<QObject*>(object), QString(iid));
+	}
 }
 
 void* QExtensionFactory_ExtensionManager(void* ptr)
 {
-	return static_cast<QExtensionFactory*>(ptr)->extensionManager();
+		return static_cast<QExtensionFactory*>(ptr)->extensionManager();
 }
 
 void QExtensionFactory_TimerEvent(void* ptr, void* event)
 {
-	static_cast<QExtensionFactory*>(ptr)->timerEvent(static_cast<QTimerEvent*>(event));
+		static_cast<QExtensionFactory*>(ptr)->timerEvent(static_cast<QTimerEvent*>(event));
 }
 
 void QExtensionFactory_TimerEventDefault(void* ptr, void* event)
 {
-	static_cast<QExtensionFactory*>(ptr)->QExtensionFactory::timerEvent(static_cast<QTimerEvent*>(event));
+		static_cast<QExtensionFactory*>(ptr)->QExtensionFactory::timerEvent(static_cast<QTimerEvent*>(event));
 }
 
 void QExtensionFactory_ChildEvent(void* ptr, void* event)
 {
-	static_cast<QExtensionFactory*>(ptr)->childEvent(static_cast<QChildEvent*>(event));
+		static_cast<QExtensionFactory*>(ptr)->childEvent(static_cast<QChildEvent*>(event));
 }
 
 void QExtensionFactory_ChildEventDefault(void* ptr, void* event)
 {
-	static_cast<QExtensionFactory*>(ptr)->QExtensionFactory::childEvent(static_cast<QChildEvent*>(event));
+		static_cast<QExtensionFactory*>(ptr)->QExtensionFactory::childEvent(static_cast<QChildEvent*>(event));
 }
 
 void QExtensionFactory_ConnectNotify(void* ptr, void* sign)
 {
-	static_cast<QExtensionFactory*>(ptr)->connectNotify(*static_cast<QMetaMethod*>(sign));
+		static_cast<QExtensionFactory*>(ptr)->connectNotify(*static_cast<QMetaMethod*>(sign));
 }
 
 void QExtensionFactory_ConnectNotifyDefault(void* ptr, void* sign)
 {
-	static_cast<QExtensionFactory*>(ptr)->QExtensionFactory::connectNotify(*static_cast<QMetaMethod*>(sign));
+		static_cast<QExtensionFactory*>(ptr)->QExtensionFactory::connectNotify(*static_cast<QMetaMethod*>(sign));
 }
 
 void QExtensionFactory_CustomEvent(void* ptr, void* event)
 {
-	static_cast<QExtensionFactory*>(ptr)->customEvent(static_cast<QEvent*>(event));
+		static_cast<QExtensionFactory*>(ptr)->customEvent(static_cast<QEvent*>(event));
 }
 
 void QExtensionFactory_CustomEventDefault(void* ptr, void* event)
 {
-	static_cast<QExtensionFactory*>(ptr)->QExtensionFactory::customEvent(static_cast<QEvent*>(event));
+		static_cast<QExtensionFactory*>(ptr)->QExtensionFactory::customEvent(static_cast<QEvent*>(event));
 }
 
 void QExtensionFactory_DeleteLater(void* ptr)
 {
-	QMetaObject::invokeMethod(static_cast<QExtensionFactory*>(ptr), "deleteLater");
+		QMetaObject::invokeMethod(static_cast<QExtensionFactory*>(ptr), "deleteLater");
 }
 
 void QExtensionFactory_DeleteLaterDefault(void* ptr)
 {
-	static_cast<QExtensionFactory*>(ptr)->QExtensionFactory::deleteLater();
+		static_cast<QExtensionFactory*>(ptr)->QExtensionFactory::deleteLater();
 }
 
 void QExtensionFactory_DisconnectNotify(void* ptr, void* sign)
 {
-	static_cast<QExtensionFactory*>(ptr)->disconnectNotify(*static_cast<QMetaMethod*>(sign));
+		static_cast<QExtensionFactory*>(ptr)->disconnectNotify(*static_cast<QMetaMethod*>(sign));
 }
 
 void QExtensionFactory_DisconnectNotifyDefault(void* ptr, void* sign)
 {
-	static_cast<QExtensionFactory*>(ptr)->QExtensionFactory::disconnectNotify(*static_cast<QMetaMethod*>(sign));
+		static_cast<QExtensionFactory*>(ptr)->QExtensionFactory::disconnectNotify(*static_cast<QMetaMethod*>(sign));
 }
 
 char QExtensionFactory_Event(void* ptr, void* e)
 {
-	return static_cast<QExtensionFactory*>(ptr)->event(static_cast<QEvent*>(e));
+		return static_cast<QExtensionFactory*>(ptr)->event(static_cast<QEvent*>(e));
 }
 
 char QExtensionFactory_EventDefault(void* ptr, void* e)
 {
-	return static_cast<QExtensionFactory*>(ptr)->QExtensionFactory::event(static_cast<QEvent*>(e));
+		return static_cast<QExtensionFactory*>(ptr)->QExtensionFactory::event(static_cast<QEvent*>(e));
 }
 
 char QExtensionFactory_EventFilter(void* ptr, void* watched, void* event)
 {
-	return static_cast<QExtensionFactory*>(ptr)->eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+	if (dynamic_cast<QExtensionFactory*>(static_cast<QObject*>(watched))) {
+		return static_cast<QExtensionFactory*>(ptr)->eventFilter(static_cast<QExtensionFactory*>(watched), static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QExtensionManager*>(static_cast<QObject*>(watched))) {
+		return static_cast<QExtensionFactory*>(ptr)->eventFilter(static_cast<QExtensionManager*>(watched), static_cast<QEvent*>(event));
+	} else {
+		return static_cast<QExtensionFactory*>(ptr)->eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+	}
 }
 
 char QExtensionFactory_EventFilterDefault(void* ptr, void* watched, void* event)
 {
-	return static_cast<QExtensionFactory*>(ptr)->QExtensionFactory::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+	if (dynamic_cast<QExtensionFactory*>(static_cast<QObject*>(watched))) {
+		return static_cast<QExtensionFactory*>(ptr)->QExtensionFactory::eventFilter(static_cast<QExtensionFactory*>(watched), static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QExtensionManager*>(static_cast<QObject*>(watched))) {
+		return static_cast<QExtensionFactory*>(ptr)->QExtensionFactory::eventFilter(static_cast<QExtensionManager*>(watched), static_cast<QEvent*>(event));
+	} else {
+		return static_cast<QExtensionFactory*>(ptr)->QExtensionFactory::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+	}
 }
 
 void* QExtensionFactory_MetaObject(void* ptr)
 {
-	return const_cast<QMetaObject*>(static_cast<QExtensionFactory*>(ptr)->metaObject());
+		return const_cast<QMetaObject*>(static_cast<QExtensionFactory*>(ptr)->metaObject());
 }
 
 void* QExtensionFactory_MetaObjectDefault(void* ptr)
 {
-	return const_cast<QMetaObject*>(static_cast<QExtensionFactory*>(ptr)->QExtensionFactory::metaObject());
+		return const_cast<QMetaObject*>(static_cast<QExtensionFactory*>(ptr)->QExtensionFactory::metaObject());
 }
 
 class MyQExtensionManager: public QExtensionManager
@@ -5673,32 +5861,60 @@ void* QExtensionManager_NewQExtensionManager(void* parent)
 
 void* QExtensionManager_Extension(void* ptr, void* object, char* iid)
 {
-	return static_cast<QExtensionManager*>(ptr)->extension(static_cast<QObject*>(object), QString(iid));
+	if (dynamic_cast<QExtensionFactory*>(static_cast<QObject*>(object))) {
+		return static_cast<QExtensionManager*>(ptr)->extension(static_cast<QExtensionFactory*>(object), QString(iid));
+	} else if (dynamic_cast<QExtensionManager*>(static_cast<QObject*>(object))) {
+		return static_cast<QExtensionManager*>(ptr)->extension(static_cast<QExtensionManager*>(object), QString(iid));
+	} else {
+		return static_cast<QExtensionManager*>(ptr)->extension(static_cast<QObject*>(object), QString(iid));
+	}
 }
 
 void* QExtensionManager_ExtensionDefault(void* ptr, void* object, char* iid)
 {
-	return static_cast<QExtensionManager*>(ptr)->QExtensionManager::extension(static_cast<QObject*>(object), QString(iid));
+	if (dynamic_cast<QExtensionFactory*>(static_cast<QObject*>(object))) {
+		return static_cast<QExtensionManager*>(ptr)->QExtensionManager::extension(static_cast<QExtensionFactory*>(object), QString(iid));
+	} else if (dynamic_cast<QExtensionManager*>(static_cast<QObject*>(object))) {
+		return static_cast<QExtensionManager*>(ptr)->QExtensionManager::extension(static_cast<QExtensionManager*>(object), QString(iid));
+	} else {
+		return static_cast<QExtensionManager*>(ptr)->QExtensionManager::extension(static_cast<QObject*>(object), QString(iid));
+	}
 }
 
 void QExtensionManager_RegisterExtensions(void* ptr, void* factory, char* iid)
 {
-	static_cast<QExtensionManager*>(ptr)->registerExtensions(static_cast<QAbstractExtensionFactory*>(factory), QString(iid));
+	if (dynamic_cast<QExtensionFactory*>(static_cast<QObject*>(factory))) {
+		static_cast<QExtensionManager*>(ptr)->registerExtensions(static_cast<QExtensionFactory*>(factory), QString(iid));
+	} else {
+		static_cast<QExtensionManager*>(ptr)->registerExtensions(static_cast<QAbstractExtensionFactory*>(factory), QString(iid));
+	}
 }
 
 void QExtensionManager_RegisterExtensionsDefault(void* ptr, void* factory, char* iid)
 {
-	static_cast<QExtensionManager*>(ptr)->QExtensionManager::registerExtensions(static_cast<QAbstractExtensionFactory*>(factory), QString(iid));
+	if (dynamic_cast<QExtensionFactory*>(static_cast<QObject*>(factory))) {
+		static_cast<QExtensionManager*>(ptr)->QExtensionManager::registerExtensions(static_cast<QExtensionFactory*>(factory), QString(iid));
+	} else {
+		static_cast<QExtensionManager*>(ptr)->QExtensionManager::registerExtensions(static_cast<QAbstractExtensionFactory*>(factory), QString(iid));
+	}
 }
 
 void QExtensionManager_UnregisterExtensions(void* ptr, void* factory, char* iid)
 {
-	static_cast<QExtensionManager*>(ptr)->unregisterExtensions(static_cast<QAbstractExtensionFactory*>(factory), QString(iid));
+	if (dynamic_cast<QExtensionFactory*>(static_cast<QObject*>(factory))) {
+		static_cast<QExtensionManager*>(ptr)->unregisterExtensions(static_cast<QExtensionFactory*>(factory), QString(iid));
+	} else {
+		static_cast<QExtensionManager*>(ptr)->unregisterExtensions(static_cast<QAbstractExtensionFactory*>(factory), QString(iid));
+	}
 }
 
 void QExtensionManager_UnregisterExtensionsDefault(void* ptr, void* factory, char* iid)
 {
-	static_cast<QExtensionManager*>(ptr)->QExtensionManager::unregisterExtensions(static_cast<QAbstractExtensionFactory*>(factory), QString(iid));
+	if (dynamic_cast<QExtensionFactory*>(static_cast<QObject*>(factory))) {
+		static_cast<QExtensionManager*>(ptr)->QExtensionManager::unregisterExtensions(static_cast<QExtensionFactory*>(factory), QString(iid));
+	} else {
+		static_cast<QExtensionManager*>(ptr)->QExtensionManager::unregisterExtensions(static_cast<QAbstractExtensionFactory*>(factory), QString(iid));
+	}
 }
 
 void QExtensionManager_DestroyQExtensionManager(void* ptr)
@@ -5708,92 +5924,104 @@ void QExtensionManager_DestroyQExtensionManager(void* ptr)
 
 void QExtensionManager_TimerEvent(void* ptr, void* event)
 {
-	static_cast<QExtensionManager*>(ptr)->timerEvent(static_cast<QTimerEvent*>(event));
+		static_cast<QExtensionManager*>(ptr)->timerEvent(static_cast<QTimerEvent*>(event));
 }
 
 void QExtensionManager_TimerEventDefault(void* ptr, void* event)
 {
-	static_cast<QExtensionManager*>(ptr)->QExtensionManager::timerEvent(static_cast<QTimerEvent*>(event));
+		static_cast<QExtensionManager*>(ptr)->QExtensionManager::timerEvent(static_cast<QTimerEvent*>(event));
 }
 
 void QExtensionManager_ChildEvent(void* ptr, void* event)
 {
-	static_cast<QExtensionManager*>(ptr)->childEvent(static_cast<QChildEvent*>(event));
+		static_cast<QExtensionManager*>(ptr)->childEvent(static_cast<QChildEvent*>(event));
 }
 
 void QExtensionManager_ChildEventDefault(void* ptr, void* event)
 {
-	static_cast<QExtensionManager*>(ptr)->QExtensionManager::childEvent(static_cast<QChildEvent*>(event));
+		static_cast<QExtensionManager*>(ptr)->QExtensionManager::childEvent(static_cast<QChildEvent*>(event));
 }
 
 void QExtensionManager_ConnectNotify(void* ptr, void* sign)
 {
-	static_cast<QExtensionManager*>(ptr)->connectNotify(*static_cast<QMetaMethod*>(sign));
+		static_cast<QExtensionManager*>(ptr)->connectNotify(*static_cast<QMetaMethod*>(sign));
 }
 
 void QExtensionManager_ConnectNotifyDefault(void* ptr, void* sign)
 {
-	static_cast<QExtensionManager*>(ptr)->QExtensionManager::connectNotify(*static_cast<QMetaMethod*>(sign));
+		static_cast<QExtensionManager*>(ptr)->QExtensionManager::connectNotify(*static_cast<QMetaMethod*>(sign));
 }
 
 void QExtensionManager_CustomEvent(void* ptr, void* event)
 {
-	static_cast<QExtensionManager*>(ptr)->customEvent(static_cast<QEvent*>(event));
+		static_cast<QExtensionManager*>(ptr)->customEvent(static_cast<QEvent*>(event));
 }
 
 void QExtensionManager_CustomEventDefault(void* ptr, void* event)
 {
-	static_cast<QExtensionManager*>(ptr)->QExtensionManager::customEvent(static_cast<QEvent*>(event));
+		static_cast<QExtensionManager*>(ptr)->QExtensionManager::customEvent(static_cast<QEvent*>(event));
 }
 
 void QExtensionManager_DeleteLater(void* ptr)
 {
-	QMetaObject::invokeMethod(static_cast<QExtensionManager*>(ptr), "deleteLater");
+		QMetaObject::invokeMethod(static_cast<QExtensionManager*>(ptr), "deleteLater");
 }
 
 void QExtensionManager_DeleteLaterDefault(void* ptr)
 {
-	static_cast<QExtensionManager*>(ptr)->QExtensionManager::deleteLater();
+		static_cast<QExtensionManager*>(ptr)->QExtensionManager::deleteLater();
 }
 
 void QExtensionManager_DisconnectNotify(void* ptr, void* sign)
 {
-	static_cast<QExtensionManager*>(ptr)->disconnectNotify(*static_cast<QMetaMethod*>(sign));
+		static_cast<QExtensionManager*>(ptr)->disconnectNotify(*static_cast<QMetaMethod*>(sign));
 }
 
 void QExtensionManager_DisconnectNotifyDefault(void* ptr, void* sign)
 {
-	static_cast<QExtensionManager*>(ptr)->QExtensionManager::disconnectNotify(*static_cast<QMetaMethod*>(sign));
+		static_cast<QExtensionManager*>(ptr)->QExtensionManager::disconnectNotify(*static_cast<QMetaMethod*>(sign));
 }
 
 char QExtensionManager_Event(void* ptr, void* e)
 {
-	return static_cast<QExtensionManager*>(ptr)->event(static_cast<QEvent*>(e));
+		return static_cast<QExtensionManager*>(ptr)->event(static_cast<QEvent*>(e));
 }
 
 char QExtensionManager_EventDefault(void* ptr, void* e)
 {
-	return static_cast<QExtensionManager*>(ptr)->QExtensionManager::event(static_cast<QEvent*>(e));
+		return static_cast<QExtensionManager*>(ptr)->QExtensionManager::event(static_cast<QEvent*>(e));
 }
 
 char QExtensionManager_EventFilter(void* ptr, void* watched, void* event)
 {
-	return static_cast<QExtensionManager*>(ptr)->eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+	if (dynamic_cast<QExtensionFactory*>(static_cast<QObject*>(watched))) {
+		return static_cast<QExtensionManager*>(ptr)->eventFilter(static_cast<QExtensionFactory*>(watched), static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QExtensionManager*>(static_cast<QObject*>(watched))) {
+		return static_cast<QExtensionManager*>(ptr)->eventFilter(static_cast<QExtensionManager*>(watched), static_cast<QEvent*>(event));
+	} else {
+		return static_cast<QExtensionManager*>(ptr)->eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+	}
 }
 
 char QExtensionManager_EventFilterDefault(void* ptr, void* watched, void* event)
 {
-	return static_cast<QExtensionManager*>(ptr)->QExtensionManager::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+	if (dynamic_cast<QExtensionFactory*>(static_cast<QObject*>(watched))) {
+		return static_cast<QExtensionManager*>(ptr)->QExtensionManager::eventFilter(static_cast<QExtensionFactory*>(watched), static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QExtensionManager*>(static_cast<QObject*>(watched))) {
+		return static_cast<QExtensionManager*>(ptr)->QExtensionManager::eventFilter(static_cast<QExtensionManager*>(watched), static_cast<QEvent*>(event));
+	} else {
+		return static_cast<QExtensionManager*>(ptr)->QExtensionManager::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+	}
 }
 
 void* QExtensionManager_MetaObject(void* ptr)
 {
-	return const_cast<QMetaObject*>(static_cast<QExtensionManager*>(ptr)->metaObject());
+		return const_cast<QMetaObject*>(static_cast<QExtensionManager*>(ptr)->metaObject());
 }
 
 void* QExtensionManager_MetaObjectDefault(void* ptr)
 {
-	return const_cast<QMetaObject*>(static_cast<QExtensionManager*>(ptr)->QExtensionManager::metaObject());
+		return const_cast<QMetaObject*>(static_cast<QExtensionManager*>(ptr)->QExtensionManager::metaObject());
 }
 
 class MyQFormBuilder: public QFormBuilder

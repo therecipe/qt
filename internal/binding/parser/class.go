@@ -134,3 +134,14 @@ func (c *Class) HasFunctionWithName(n string) bool {
 
 	return false
 }
+
+func (c *Class) IsPolymorphic() bool { return len(c.GetBases()) > 1 }
+
+func (c *Class) HasConstructor() bool {
+	for _, f := range c.Functions {
+		if f.Meta == CONSTRUCTOR || f.Meta == COPY_CONSTRUCTOR || f.Meta == MOVE_CONSTRUCTOR {
+			return true
+		}
+	}
+	return false
+}

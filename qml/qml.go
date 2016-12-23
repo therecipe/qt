@@ -6023,6 +6023,10 @@ func (ptr *QQmlNetworkAccessManagerFactory) DestroyQQmlNetworkAccessManagerFacto
 	}
 }
 
+func NewQQmlNetworkAccessManagerFactory() *QQmlNetworkAccessManagerFactory {
+	return NewQQmlNetworkAccessManagerFactoryFromPointer(C.QQmlNetworkAccessManagerFactory_NewQQmlNetworkAccessManagerFactory())
+}
+
 type QQmlParserStatus struct {
 	ptr unsafe.Pointer
 }

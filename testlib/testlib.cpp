@@ -28,107 +28,115 @@ void* QSignalSpy_NewQSignalSpy(void* object, char* sign)
 
 char QSignalSpy_IsValid(void* ptr)
 {
-	return static_cast<QSignalSpy*>(ptr)->isValid();
+		return static_cast<QSignalSpy*>(ptr)->isValid();
 }
 
 void* QSignalSpy_Signal(void* ptr)
 {
-	return new QByteArray(static_cast<QSignalSpy*>(ptr)->signal());
+		return new QByteArray(static_cast<QSignalSpy*>(ptr)->signal());
 }
 
 char QSignalSpy_Wait(void* ptr, int timeout)
 {
-	return static_cast<QSignalSpy*>(ptr)->wait(timeout);
+		return static_cast<QSignalSpy*>(ptr)->wait(timeout);
 }
 
 void QSignalSpy_TimerEvent(void* ptr, void* event)
 {
-	static_cast<QSignalSpy*>(ptr)->timerEvent(static_cast<QTimerEvent*>(event));
+		static_cast<QSignalSpy*>(ptr)->timerEvent(static_cast<QTimerEvent*>(event));
 }
 
 void QSignalSpy_TimerEventDefault(void* ptr, void* event)
 {
-	static_cast<QSignalSpy*>(ptr)->QSignalSpy::timerEvent(static_cast<QTimerEvent*>(event));
+		static_cast<QSignalSpy*>(ptr)->QSignalSpy::timerEvent(static_cast<QTimerEvent*>(event));
 }
 
 void QSignalSpy_ChildEvent(void* ptr, void* event)
 {
-	static_cast<QSignalSpy*>(ptr)->childEvent(static_cast<QChildEvent*>(event));
+		static_cast<QSignalSpy*>(ptr)->childEvent(static_cast<QChildEvent*>(event));
 }
 
 void QSignalSpy_ChildEventDefault(void* ptr, void* event)
 {
-	static_cast<QSignalSpy*>(ptr)->QSignalSpy::childEvent(static_cast<QChildEvent*>(event));
+		static_cast<QSignalSpy*>(ptr)->QSignalSpy::childEvent(static_cast<QChildEvent*>(event));
 }
 
 void QSignalSpy_ConnectNotify(void* ptr, void* sign)
 {
-	static_cast<QSignalSpy*>(ptr)->connectNotify(*static_cast<QMetaMethod*>(sign));
+		static_cast<QSignalSpy*>(ptr)->connectNotify(*static_cast<QMetaMethod*>(sign));
 }
 
 void QSignalSpy_ConnectNotifyDefault(void* ptr, void* sign)
 {
-	static_cast<QSignalSpy*>(ptr)->QSignalSpy::connectNotify(*static_cast<QMetaMethod*>(sign));
+		static_cast<QSignalSpy*>(ptr)->QSignalSpy::connectNotify(*static_cast<QMetaMethod*>(sign));
 }
 
 void QSignalSpy_CustomEvent(void* ptr, void* event)
 {
-	static_cast<QSignalSpy*>(ptr)->customEvent(static_cast<QEvent*>(event));
+		static_cast<QSignalSpy*>(ptr)->customEvent(static_cast<QEvent*>(event));
 }
 
 void QSignalSpy_CustomEventDefault(void* ptr, void* event)
 {
-	static_cast<QSignalSpy*>(ptr)->QSignalSpy::customEvent(static_cast<QEvent*>(event));
+		static_cast<QSignalSpy*>(ptr)->QSignalSpy::customEvent(static_cast<QEvent*>(event));
 }
 
 void QSignalSpy_DeleteLater(void* ptr)
 {
-	QMetaObject::invokeMethod(static_cast<QSignalSpy*>(ptr), "deleteLater");
+		QMetaObject::invokeMethod(static_cast<QSignalSpy*>(ptr), "deleteLater");
 }
 
 void QSignalSpy_DeleteLaterDefault(void* ptr)
 {
-	static_cast<QSignalSpy*>(ptr)->QSignalSpy::deleteLater();
+		static_cast<QSignalSpy*>(ptr)->QSignalSpy::deleteLater();
 }
 
 void QSignalSpy_DisconnectNotify(void* ptr, void* sign)
 {
-	static_cast<QSignalSpy*>(ptr)->disconnectNotify(*static_cast<QMetaMethod*>(sign));
+		static_cast<QSignalSpy*>(ptr)->disconnectNotify(*static_cast<QMetaMethod*>(sign));
 }
 
 void QSignalSpy_DisconnectNotifyDefault(void* ptr, void* sign)
 {
-	static_cast<QSignalSpy*>(ptr)->QSignalSpy::disconnectNotify(*static_cast<QMetaMethod*>(sign));
+		static_cast<QSignalSpy*>(ptr)->QSignalSpy::disconnectNotify(*static_cast<QMetaMethod*>(sign));
 }
 
 char QSignalSpy_Event(void* ptr, void* e)
 {
-	return static_cast<QSignalSpy*>(ptr)->event(static_cast<QEvent*>(e));
+		return static_cast<QSignalSpy*>(ptr)->event(static_cast<QEvent*>(e));
 }
 
 char QSignalSpy_EventDefault(void* ptr, void* e)
 {
-	return static_cast<QSignalSpy*>(ptr)->QSignalSpy::event(static_cast<QEvent*>(e));
+		return static_cast<QSignalSpy*>(ptr)->QSignalSpy::event(static_cast<QEvent*>(e));
 }
 
 char QSignalSpy_EventFilter(void* ptr, void* watched, void* event)
 {
-	return static_cast<QSignalSpy*>(ptr)->eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+	if (dynamic_cast<QSignalSpy*>(static_cast<QObject*>(watched))) {
+		return static_cast<QSignalSpy*>(ptr)->eventFilter(static_cast<QSignalSpy*>(watched), static_cast<QEvent*>(event));
+	} else {
+		return static_cast<QSignalSpy*>(ptr)->eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+	}
 }
 
 char QSignalSpy_EventFilterDefault(void* ptr, void* watched, void* event)
 {
-	return static_cast<QSignalSpy*>(ptr)->QSignalSpy::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+	if (dynamic_cast<QSignalSpy*>(static_cast<QObject*>(watched))) {
+		return static_cast<QSignalSpy*>(ptr)->QSignalSpy::eventFilter(static_cast<QSignalSpy*>(watched), static_cast<QEvent*>(event));
+	} else {
+		return static_cast<QSignalSpy*>(ptr)->QSignalSpy::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
+	}
 }
 
 void* QSignalSpy_MetaObject(void* ptr)
 {
-	return const_cast<QMetaObject*>(static_cast<QSignalSpy*>(ptr)->metaObject());
+		return const_cast<QMetaObject*>(static_cast<QSignalSpy*>(ptr)->metaObject());
 }
 
 void* QSignalSpy_MetaObjectDefault(void* ptr)
 {
-	return const_cast<QMetaObject*>(static_cast<QSignalSpy*>(ptr)->QSignalSpy::metaObject());
+		return const_cast<QMetaObject*>(static_cast<QSignalSpy*>(ptr)->QSignalSpy::metaObject());
 }
 
 void* QTestEventList_NewQTestEventList()

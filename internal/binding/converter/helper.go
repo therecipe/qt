@@ -54,42 +54,9 @@ func class(input interface{}) string {
 	return ""
 }
 
-func CleanValue(value string) string {
-	for _, b := range []string{"*", "const", "&amp", "&", ";"} {
-		value = strings.Replace(value, b, "", -1)
-	}
-	return strings.TrimSpace(value)
-}
+func CleanValue(value string) string { return parser.CleanValue(value) }
 
-func cleanName(name, value string) string {
-	switch name {
-	case
-		"type",
-		"func",
-		"range",
-		"string",
-		"int",
-		"map",
-		"const",
-		"interface",
-		"select",
-		"strings",
-		"new",
-		"signal",
-		"ptr",
-		"register":
-		{
-			return name[:len(name)-2]
-		}
-
-	case "":
-		{
-			return fmt.Sprintf("v%v", strings.Replace(strings.ToLower(CleanValue(value)[:2]), ".", "", -1))
-		}
-	}
-
-	return name
-}
+func cleanName(name, value string) string { return parser.CleanName(name, value) }
 
 func isClass(value string) bool {
 	if strings.Contains(value, ".") {

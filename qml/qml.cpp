@@ -2137,6 +2137,7 @@ void* QQmlListReference_Object(void* ptr)
 class MyQQmlNetworkAccessManagerFactory: public QQmlNetworkAccessManagerFactory
 {
 public:
+	MyQQmlNetworkAccessManagerFactory() : QQmlNetworkAccessManagerFactory() {};
 	QNetworkAccessManager * create(QObject * parent) { return static_cast<QNetworkAccessManager*>(callbackQQmlNetworkAccessManagerFactory_Create(this, parent)); };
 	 ~MyQQmlNetworkAccessManagerFactory() { callbackQQmlNetworkAccessManagerFactory_DestroyQQmlNetworkAccessManagerFactory(this); };
 };
@@ -2154,6 +2155,11 @@ void QQmlNetworkAccessManagerFactory_DestroyQQmlNetworkAccessManagerFactory(void
 void QQmlNetworkAccessManagerFactory_DestroyQQmlNetworkAccessManagerFactoryDefault(void* ptr)
 {
 
+}
+
+void* QQmlNetworkAccessManagerFactory_NewQQmlNetworkAccessManagerFactory()
+{
+	return new MyQQmlNetworkAccessManagerFactory();
 }
 
 class MyQQmlParserStatus: public QQmlParserStatus

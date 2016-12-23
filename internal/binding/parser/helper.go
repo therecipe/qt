@@ -46,13 +46,44 @@ func IsPackedList(v string) bool {
 		CurrentState.ClassMap[UnpackedList(v)] != nil
 }
 
-func UnpackedList(v string) string {
-	var CleanValue = func(v string) string {
-		for _, b := range []string{"*", "const", "&amp", "&", ";"} {
-			v = strings.Replace(v, b, "", -1)
-		}
-		return strings.TrimSpace(v)
+func CleanValue(v string) string {
+	for _, b := range []string{"*", "const", "&amp", "&", ";"} {
+		v = strings.Replace(v, b, "", -1)
 	}
+	return strings.TrimSpace(v)
+}
+
+func CleanName(name, value string) string {
+	switch name {
+	case
+		"type",
+		"func",
+		"range",
+		"string",
+		"int",
+		"map",
+		"const",
+		"interface",
+		"select",
+		"strings",
+		"new",
+		"signal",
+		"ptr",
+		"register":
+		{
+			return name[:len(name)-2]
+		}
+
+	case "":
+		{
+			return fmt.Sprintf("v%v", strings.Replace(strings.ToLower(CleanValue(value)[:2]), ".", "", -1))
+		}
+	}
+
+	return name
+}
+
+func UnpackedList(v string) string {
 	return CleanValue(strings.Split(strings.Split(v, "<")[1], ">")[0])
 }
 

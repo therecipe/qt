@@ -45,6 +45,18 @@ func (c *Class) addGeneralFuncs() {
 			}
 		}
 	}
+
+	if c.Name == "QQmlNetworkAccessManagerFactory" && !c.HasConstructor() {
+		c.Functions = append(c.Functions, &Function{
+			Name:       c.Name,
+			Fullname:   fmt.Sprintf("%v::%v", c.Name, c.Name),
+			Access:     "public",
+			Virtual:    "non",
+			Meta:       CONSTRUCTOR,
+			Parameters: []*Parameter{},
+			Signature:  "()",
+		})
+	}
 }
 
 func (c *Class) addVarAndPropFuncs() {

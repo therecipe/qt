@@ -173,6 +173,66 @@ func cppFunctionBodyFailed(function *parser.Function) string {
 
 func cppFunctionBody(function *parser.Function) string {
 
+	var polyinputs, polyName = function.PossiblePolymorphic(false)
+	var polyinputsSelf, _ = function.PossiblePolymorphic(true)
+
+	if (len(polyinputsSelf) == 0 && len(polyinputs) == 0) ||
+		!(function.Meta == parser.PLAIN || function.Meta == parser.GETTER || function.Meta == parser.SETTER || function.Meta == parser.SLOT) ||
+		strings.HasPrefix(function.Name, parser.TILDE) {
+
+		return cppFunctionBodyInternal(function)
+	}
+
+	var bb = new(bytes.Buffer)
+	defer bb.Reset()
+
+	bb.WriteString("\t")
+
+	var deduce = func(input []string, polyName string, inner bool, body string) string {
+		var bb = new(bytes.Buffer)
+		defer bb.Reset()
+		for _, polyType := range input {
+			if polyType == "QObject" || polyType == input[len(input)-1] {
+				continue
+			}
+			fmt.Fprintf(bb, "if (dynamic_cast<%v*>(static_cast<QObject*>(%v))) {\n", polyType, polyName)
+			fmt.Fprintf(bb, "\t%v\n", func() string {
+				var ibody = strings.Replace(body, "static_cast<"+input[len(input)-1]+"*>("+polyName+")", "static_cast<"+polyType+"*>("+polyName+")", -1)
+				if inner {
+					return ibody
+				}
+				if strings.Count(ibody, "\n") > 1 {
+					return "\t" + strings.Replace(ibody, "\n", "\n\t", -1)
+				}
+				return ibody
+			}())
+			fmt.Fprint(bb, "\t} else ")
+		}
+		if bb.String() == "" {
+			return body
+		}
+		fmt.Fprintf(bb, "{\n\t%v\n\t}", func() string {
+			if strings.Count(body, "\n") > 1 {
+				return "\t" + strings.Replace(body, "\n", "\n\t", -1)
+			}
+			return body
+		}())
+		return bb.String()
+	}
+
+	if function.Static {
+		fmt.Fprint(bb, deduce(polyinputs, polyName, true, cppFunctionBodyInternal(function)))
+	} else if function.Meta == parser.GETTER || function.Meta == parser.SETTER || function.Meta == parser.SLOT {
+		fmt.Fprint(bb, deduce(polyinputsSelf, "ptr", false, cppFunctionBodyInternal(function)))
+	} else {
+		fmt.Fprint(bb, deduce(polyinputsSelf, "ptr", false, deduce(polyinputs, polyName, true, cppFunctionBodyInternal(function))))
+	}
+
+	return bb.String()
+}
+
+func cppFunctionBodyInternal(function *parser.Function) string {
+
 	switch function.Meta {
 	case parser.CONSTRUCTOR:
 		{
