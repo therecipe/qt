@@ -352,7 +352,7 @@ func (m *appMoc) generate() error {
 						f.Name = strings.Replace(f.Name, bcf.ClassName(), c.Name, -1)
 						f.Fullname = strings.Replace(f.Fullname, bcf.ClassName(), c.Name, -1)
 
-						if !c.HasFunctionWithName(f.Name) {
+						if !c.HasFunctionWithNameAndOverloadNumber(f.Name, f.OverloadNumber) {
 							c.Functions = append(c.Functions, &f)
 						}
 					}

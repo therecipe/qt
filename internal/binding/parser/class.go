@@ -124,12 +124,14 @@ func (c *Class) IsSubClassOf(class string) bool {
 func (c *Class) isSubClass() bool { return c.Fullname != "" }
 
 func (c *Class) HasFunctionWithName(n string) bool {
-	for _, f := range c.Functions {
-		if strings.ToLower(f.Name) != strings.ToLower(n) {
-			continue
-		}
+	return c.HasFunctionWithNameAndOverloadNumber(n, "")
+}
 
-		return true
+func (c *Class) HasFunctionWithNameAndOverloadNumber(n string, num string) bool {
+	for _, f := range c.Functions {
+		if strings.ToLower(f.Name) == strings.ToLower(n) && f.OverloadNumber == num {
+			return true
+		}
 	}
 
 	return false
