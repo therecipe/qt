@@ -13,10 +13,14 @@ import (
 type QmlBridge struct {
 	core.QObject
 
-	_ func(title, author string) `signal:"addItem"`
-	_ func(index int)            `signal:"removeItem"`
+	//from golang to qml's onAddItem
+	_ func(title string, author string, famous bool) `signal:"addItem"`
 
-	_ func(row, role int, data *core.QObject) `slot:"editedModel"`
+	//from golang to qml's onRemoveItem
+	_ func(index int) `signal:"removeItem"`
+
+	//from qml to golang's ConnectEditedModel
+	_ func(row int, role int, data *core.QObject) `slot:"editedModel"`
 }
 
 func main() {
@@ -24,7 +28,17 @@ func main() {
 
 	var qmlBridge = NewQmlBridge(nil)
 	qmlBridge.ConnectEditedModel(func(row int, role int, data *core.QObject) {
-		fmt.Printf("row: %v role: %v title: %v author: %v\n", row, role, data.Property("title").ToString(), data.Property("author").ToString())
+		fmt.Printf("row: %v\n", row)
+		fmt.Printf("role: %v\n", role)
+
+		sTitle := data.Property("title").ToString()
+		fmt.Printf("title: %v\n", sTitle)
+
+		sAuthor := data.Property("author").ToString()
+		fmt.Printf("author: %v\n", sAuthor)
+
+		bFamous := data.Property("famous").ToBool()
+		fmt.Printf("famous: %v\n", bFamous)
 	})
 
 	var (
@@ -38,7 +52,7 @@ func main() {
 
 	var addButton = widgets.NewQPushButton2("addItem", nil)
 	addButton.ConnectClicked(func(checked bool) {
-		qmlBridge.AddItem("New Title", "New Author")
+		qmlBridge.AddItem("New Title", "New Author", false)
 	})
 	windowLayout.AddWidget(addButton, 0, 0)
 
