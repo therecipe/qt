@@ -19,7 +19,7 @@ TabButton {
             anchors.centerIn: parent
             horizontalAlignment: Image.AlignHCenter
             verticalAlignment: Image.AlignVCenter
-            source: "qrc:/qml/images/"+theIconFolder+"/"+modelData.icon
+            source: "qrc:/images/"+theIconFolder+"/"+modelData.icon
             opacity: colorOverlay.visible? 1.0 : theOpacity
         }
         ColorOverlay {

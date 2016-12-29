@@ -21,7 +21,7 @@ Image {
     }
     opacity: iconInactiveOpacity
     function calculatePath() {
-        var path = "qrc:/qml/images/"+currentIconFolder
+        var path = "qrc:/images/"+currentIconFolder
         switch(imageSize) {
             case 18:
                 path += "/x18/"

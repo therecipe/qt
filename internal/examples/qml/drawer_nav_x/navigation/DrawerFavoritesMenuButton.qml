@@ -23,7 +23,7 @@ ToolButton {
                 width: 24
                 verticalAlignment: Image.AlignTop
                 anchors.horizontalCenter: parent.horizontalCenter
-                source: "qrc:/qml/images/"+iconFolder+"/menu.png"
+                source: "qrc:/images/"+iconFolder+"/menu.png"
             }
         }
     }

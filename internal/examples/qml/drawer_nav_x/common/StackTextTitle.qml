@@ -12,10 +12,23 @@ ToolBar {
         focus: false
         spacing: 6
         anchors.fill: parent
+        ToolButton {
+            enabled: navPane.depth > 1
+            focusPolicy: Qt.NoFocus
+            Image {
+                id: backImageImage
+                visible: navPane.depth > 1
+                anchors.centerIn: parent
+                source: "qrc:/images/"+iconOnPrimaryFolder+"/arrow_back.png"
+            }
+            onClicked: {
+                navPane.popOnePage()
+            }
+        }
         LabelTitle {
             id: titleLabel
             text: "ekke"
-            leftPadding: 16
+            // leftPadding: 16
             elide: Label.ElideRight
             horizontalAlignment: Qt.AlignHCenter
             verticalAlignment: Qt.AlignVCenter
@@ -26,10 +39,10 @@ ToolBar {
             Image {
                 id: buttonImage
                 anchors.centerIn: parent
-                source: "qrc:/qml/images/"+iconOnPrimaryFolder+"/more_vert.png"
+                source: "qrc:/images/"+iconOnPrimaryFolder+"/more_vert.png"
             }
             onClicked: {
-                optionsMenu.open()   
+                optionsMenu.open()
             }
             Menu {
                 id: optionsMenu

@@ -16,7 +16,7 @@ func main() {
 	gui.NewQGuiApplication(len(os.Args), os.Args)
 
 	var translator = core.NewQTranslator(nil)
-	if translator.Load2(core.NewQLocale(), "drawer_nav_x", "_", ":///qml/translations", ".qm") {
+	if translator.Load2(core.NewQLocale(), "drawer_nav_x", "_", ":/translations", ".qm") {
 		core.QCoreApplication_InstallTranslator(translator)
 	} else {
 		println("cannot load translator", core.QLocale_System().Name(), "check content of translations.qrc")
@@ -29,7 +29,7 @@ func main() {
 	var context = engine.RootContext()
 	context.SetContextProperty("myApp", appui)
 
-	engine.Load(core.NewQUrl3("qrc:///qml/main.qml", 0))
+	engine.Load(core.NewQUrl3("qrc:/main.qml", 0))
 
 	gui.QGuiApplication_Exec()
 }

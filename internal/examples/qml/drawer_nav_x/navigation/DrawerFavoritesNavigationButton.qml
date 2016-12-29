@@ -28,7 +28,7 @@ ToolButton {
                 height: 24
                 verticalAlignment: Image.AlignTop
                 anchors.horizontalCenter: parent.horizontalCenter
-                source: "qrc:/qml/images/"+iconFolder+"/"+ navigationModel[modelData].icon
+                source: "qrc:/images/"+iconFolder+"/"+ navigationModel[modelData].icon
                 opacity: isActive? myBar.activeOpacity : myBar.inactiveOpacity
             }
             ColorOverlay {

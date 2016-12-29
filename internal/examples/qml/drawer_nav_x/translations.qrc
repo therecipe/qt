@@ -1,0 +1,7 @@
+<RCC>
+    <qresource prefix="/">
+        <file>translations/drawer_nav_x_de.qm</file>
+        <file>translations/drawer_nav_x_en.qm</file>
+        <file>translations/drawer_nav_x.qm</file>
+    </qresource>
+</RCC>

@@ -76,7 +76,21 @@ func main() {
 		utils.Save(qmlQrc, strings.Replace(utils.Load(qmlQrc), "<qresource>", "<qresource>\n<file>qtquickcontrols2.conf</file>", -1))
 	}
 
-	rcc = exec.Command(rccPath, "-name", appName, "-o", qmlCpp, qmlQrc)
+	var files, err = ioutil.ReadDir(appPath)
+	if err != nil {
+		utils.Log.WithError(err).Fatalln("failed to read dir")
+	}
+
+	var fileList = make([]string, 0)
+	for _, file := range files {
+		if !file.IsDir() && strings.HasSuffix(file.Name(), ".qrc") {
+			fileList = append(fileList, filepath.Join(appPath, file.Name()))
+		}
+	}
+
+	rcc = exec.Command(rccPath, "-o", qmlCpp)
+	rcc.Args = append(rcc.Args, fileList...)
+
 	utils.RunCmd(rcc, fmt.Sprintf("execute rcc.2 on %v", runtime.GOOS))
 }
 

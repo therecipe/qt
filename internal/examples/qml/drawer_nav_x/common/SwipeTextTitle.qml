@@ -7,22 +7,23 @@ import QtQuick.Controls.Material 2.0
 ToolBar {
     id: titleToolBar
     property alias text: titleLabel.text
+    property bool backToolButtonVisible: navPane.currentIndex > 0
 
     RowLayout {
         focus: false
         spacing: 6
         anchors.fill: parent
         ToolButton {
-            enabled: navPane.depth > 1
+            enabled: backToolButtonVisible
             focusPolicy: Qt.NoFocus
             Image {
                 id: backImageImage
-                visible: navPane.depth > 1
+                visible: backToolButtonVisible
                 anchors.centerIn: parent
-                source: "qrc:/qml/images/"+iconOnPrimaryFolder+"/arrow_back.png"
+                source: "qrc:/images/"+iconOnPrimaryFolder+"/arrow_back.png"
             }
             onClicked: {
-                navPane.popOnePage()
+                navPane.onePageBack()
             }
         }
         LabelTitle {
@@ -39,7 +40,7 @@ ToolBar {
             Image {
                 id: buttonImage
                 anchors.centerIn: parent
-                source: "qrc:/qml/images/"+iconOnPrimaryFolder+"/more_vert.png"
+                source: "qrc:/images/"+iconOnPrimaryFolder+"/more_vert.png"
             }
             onClicked: {
                 optionsMenu.open()

@@ -21,7 +21,7 @@ ToolBar {
             focusPolicy: Qt.NoFocus
             Image {
                 anchors.centerIn: parent
-                source: "qrc:/qml/images/"+iconOnPrimaryFolder+"/menu.png"
+                source: "qrc:/images/"+iconOnPrimaryFolder+"/menu.png"
             }
             onClicked: {
                 navigationBar.open()

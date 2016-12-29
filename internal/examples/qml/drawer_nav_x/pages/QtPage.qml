@@ -44,7 +44,7 @@ Flickable {
                         anchors.fill: parent
                         // anchors.verticalCenterOffset: -50
                         fillMode: Image.PreserveAspectFit
-                        source: "qrc:/qml/images/extra/qt-arrow.png"
+                        source: "qrc:/images/extra/qt-arrow.png"
                     }
                     MouseArea {
                         anchors.fill: parent

@@ -213,7 +213,7 @@ ApplicationWindow {
         // but in real life app loading first Page or Pane could took some time if heavy
         Loader {
             id: initialPlaceholder
-            source: "pages/InitialItemPage.qml"
+            source: "../pages/InitialItemPage.qml"
             active: true
             visible: false
             onLoaded: {

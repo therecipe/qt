@@ -561,7 +561,7 @@ func predeploy() {
 				Targetarchitecture:            "armeabi-v7a",
 				AndroidExtraLibs:              filepath.Join(depPath, "libgo_base.so"),
 				AndroidPackageSourceDirectory: filepath.Join(appPath, "android"),
-				Qmlrootpath:                   filepath.Join(appPath, "qml"),
+				Qmlrootpath:                   appPath,
 				Applicationbinary:             filepath.Join(depPath, "libgo.so"),
 			})
 			if err != nil {
@@ -790,7 +790,7 @@ func deploy() {
 					var deploy = exec.Command(filepath.Join(utils.QT_MSYS2_DIR(), "bin", "windeployqt"))
 					deploy.Args = append(deploy.Args,
 						filepath.Join(depPath, appName+ending),
-						fmt.Sprintf("-qmldir=%v", filepath.Join(appPath, "qml")),
+						fmt.Sprintf("-qmldir=%v", appPath),
 						"-force")
 					utils.RunCmd(deploy, fmt.Sprintf("depoy %v on %v", buildTarget, runtime.GOOS))
 
@@ -841,7 +841,7 @@ func deploy() {
 					var deploy = exec.Command(filepath.Join(utils.QT_DIR(), "5.7", "mingw53_32", "bin", "windeployqt"))
 					deploy.Args = append(deploy.Args,
 						filepath.Join(depPath, appName+ending),
-						fmt.Sprintf("-qmldir=%v", filepath.Join(appPath, "qml")),
+						fmt.Sprintf("-qmldir=%v", appPath),
 						"-force")
 					utils.RunCmd(deploy, fmt.Sprintf("depoy %v on %v", buildTarget, runtime.GOOS))
 				}
@@ -855,7 +855,7 @@ func deploy() {
 					var deploy = exec.Command(fmt.Sprintf("%v/bin/macdeployqt", utils.QT_DARWIN_DIR()))
 					deploy.Args = append(deploy.Args,
 						filepath.Join(depPath, fmt.Sprintf("%v.app/", appName)),
-						fmt.Sprintf("-qmldir=%v", filepath.Join(appPath, "qml")),
+						fmt.Sprintf("-qmldir=%v", appPath),
 						"-always-overwrite")
 					deploy.Dir = fmt.Sprintf("%v/bin/", utils.QT_DARWIN_DIR())
 					utils.RunCmd(deploy, fmt.Sprintf("deploy %v on %v", buildTarget, runtime.GOOS))
