@@ -550,3 +550,11 @@ func main() {
 6. Make yourself familiar with the [Qt documentation](https://doc.qt.io/qt-5/classes.html)
 
 7. Join our Slack Channel [#qt-binding](https://gophers.slack.com/messages/qt-binding/details/)
+
+## More extensive examples / demos / applications
+
+* [5k3105/AM](https://github.com/5k3105/AM)
+* [5k3105/Pipeline-Editor](https://github.com/5k3105/Pipeline-Editor)
+* [gen2brain/url2img](https://github.com/gen2brain/url2img)
+* [joeblew99/qt-archi](https://github.com/joeblew99/qt-archi)
+* [jordanorelli/grpc-ui](https://github.com/jordanorelli/grpc-ui)
