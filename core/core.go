@@ -39041,6 +39041,15 @@ func (ptr *QObject) DestroyQObjectDefault() {
 	}
 }
 
+func (ptr *QObject) ToVariant() *QVariant {
+	if ptr.Pointer() != nil {
+		var tmpValue = NewQVariantFromPointer(C.QObject_ToVariant(ptr.Pointer()))
+		runtime.SetFinalizer(tmpValue, (*QVariant).DestroyQVariant)
+		return tmpValue
+	}
+	return nil
+}
+
 func (ptr *QObject) dynamicPropertyNames_atList(i int) *QByteArray {
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQByteArrayFromPointer(C.QObject_dynamicPropertyNames_atList(ptr.Pointer(), C.int(int32(i))))
@@ -66258,6 +66267,17 @@ func (ptr *QVariant) ToFont() unsafe.Pointer {
 func (ptr *QVariant) ToImage() unsafe.Pointer {
 	if ptr.Pointer() != nil {
 		return unsafe.Pointer(C.QVariant_ToImage(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QVariant) ToObject() *QObject {
+	if ptr.Pointer() != nil {
+		var tmpValue = NewQObjectFromPointer(C.QVariant_ToObject(ptr.Pointer()))
+		if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+			tmpValue.ConnectDestroyed(func(*QObject) { tmpValue.SetPointer(nil) })
+		}
+		return tmpValue
 	}
 	return nil
 }

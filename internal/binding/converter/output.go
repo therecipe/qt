@@ -594,14 +594,21 @@ func cppOutput(name, value string, f *parser.Function) string {
 			}
 
 			switch f.Fullname {
-			case "QColor::toVariant", "QFont::toVariant", "QImage::toVariant":
+			case "QColor::toVariant", "QFont::toVariant", "QImage::toVariant", "QObject::toVariant":
 				{
+					if f.Fullname == "QObject::toVariant" {
+						return fmt.Sprintf("new %v(QVariant::fromValue(%v))", value, strings.Split(name, "->")[0])
+					}
 					return fmt.Sprintf("new %v(*%v)", value, strings.Split(name, "->")[0])
 				}
 
-			case "QVariant::toColor", "QVariant::toFont", "QVariant::toImage":
+			case "QVariant::toColor", "QVariant::toFont", "QVariant::toImage", "QVariant::toObject":
 				{
 					f.NeedsFinalizer = false
+
+					if f.Fullname == "QVariant::toObject" {
+						return fmt.Sprintf("qvariant_cast<%v*>(*%v)", value, strings.Split(name, "->")[0])
+					}
 					return fmt.Sprintf("new %v(qvariant_cast<%v>(*%v))", value, value, strings.Split(name, "->")[0])
 				}
 			}

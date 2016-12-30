@@ -13934,6 +13934,11 @@ void QObject_DestroyQObjectDefault(void* ptr)
 
 }
 
+void* QObject_ToVariant(void* ptr)
+{
+	return new QVariant(QVariant::fromValue(static_cast<QObject*>(ptr)));
+}
+
 void* QObject_dynamicPropertyNames_atList(void* ptr, int i)
 {
 	return new QByteArray(static_cast<QList<QByteArray>*>(ptr)->at(i));
@@ -24238,6 +24243,11 @@ void* QVariant_ToFont(void* ptr)
 void* QVariant_ToImage(void* ptr)
 {
 	return new QImage(qvariant_cast<QImage>(*static_cast<QVariant*>(ptr)));
+}
+
+void* QVariant_ToObject(void* ptr)
+{
+	return qvariant_cast<QObject*>(*static_cast<QVariant*>(ptr));
 }
 
 void* QVariant_toList_atList(void* ptr, int i)
