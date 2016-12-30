@@ -12,7 +12,7 @@ import (
 	"github.com/therecipe/qt/internal/utils"
 )
 
-func CopyCgo(module, mocPath string) {
+func CgoTemplate(module, mocPath string) {
 
 	if !(strings.Contains(module, "droid") || strings.Contains(module, "fish")) {
 		cgoDarwin(module, mocPath)

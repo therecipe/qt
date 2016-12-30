@@ -68,7 +68,7 @@ func cTemplateFunctions(bb *bytes.Buffer, c *parser.Class, ff func(*parser.Funct
 				}
 			}
 
-		case isJNIGeneric(f):
+		case f.IsJNIGeneric():
 			{
 				for _, m := range converter.CppOutputParametersJNIGenericModes(f) {
 					var f = *f

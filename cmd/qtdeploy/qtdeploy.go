@@ -16,7 +16,7 @@ import (
 
 	"github.com/therecipe/qt/internal/binding/parser"
 	"github.com/therecipe/qt/internal/binding/templater"
-	mocpkg "github.com/therecipe/qt/internal/moc"
+	mocpkg "github.com/therecipe/qt/internal/cmd/moc"
 	"github.com/therecipe/qt/internal/utils"
 )
 

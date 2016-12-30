@@ -258,42 +258,6 @@ func ShouldBuild(module string) bool {
 	}[module]
 }
 
-func isJNIGeneric(f *parser.Function) bool {
-
-	if f.ClassName() == "QAndroidJniObject" {
-		switch f.Name {
-		case
-			"callMethod",
-			"callStaticMethod",
-
-			"getField",
-			//"setField", -> uses interface{} if not generic
-
-			"getStaticField",
-			//"setStaticField", -> uses interface{} if not generic
-
-			"getObjectField",
-
-			"getStaticObjectField",
-
-			"callObjectMethod",
-			"callStaticObjectMethod":
-			{
-				return true
-			}
-
-		case "setStaticField":
-			{
-				if f.OverloadNumber == "2" || f.OverloadNumber == "4" {
-					return true
-				}
-			}
-		}
-	}
-
-	return false
-}
-
 func classNeedsCallbackFunctions(class *parser.Class) bool {
 
 	for _, function := range class.Functions {
@@ -364,15 +328,6 @@ func getSortedClassesForModule(module string) []*parser.Class {
 		output[i] = parser.CurrentState.ClassMap[name]
 	}
 	return output
-}
-
-func classNeedsDestructor(c *parser.Class) bool {
-	for _, f := range c.Functions {
-		if f.Meta == parser.DESTRUCTOR {
-			return false
-		}
-	}
-	return true
 }
 
 func UseStub() bool {

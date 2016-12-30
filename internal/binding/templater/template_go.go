@@ -15,6 +15,10 @@ func GoTemplate(module string, stub bool) []byte {
 	var bb = new(bytes.Buffer)
 	defer bb.Reset()
 
+	if module != parser.MOC {
+		module = "Qt" + module
+	}
+
 	if !(UseStub() || stub) {
 		fmt.Fprintf(bb, "func cGoUnpackString(s C.struct_%v_PackedString) string { if len := int(s.len); len == -1 {\n return C.GoString(s.data)\n }\n return C.GoStringN(s.data, C.int(s.len)) }\n", strings.Title(module))
 	}
@@ -122,7 +126,7 @@ return n
 }
 `, strings.Title(class.Name), class.Name, class.Name)
 
-			if classNeedsDestructor(class) {
+			if class.NeedsDestructor() {
 				if UseStub() {
 					fmt.Fprintf(bb, `
 			func (ptr *%v) Destroy%v() {}
@@ -185,7 +189,7 @@ ptr.SetPointer(nil)
 							}
 						}
 
-					case isJNIGeneric(function):
+					case function.IsJNIGeneric():
 						{
 							for _, mode := range converter.CppOutputParametersJNIGenericModes(function) {
 								var function = *function

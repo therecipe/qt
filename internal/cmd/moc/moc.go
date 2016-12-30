@@ -372,7 +372,7 @@ func (m *appMoc) generate() error {
 	if err = utils.SaveBytes(filepath.Join(m.appPath, "moc.go"), templater.GoTemplate(parser.MOC, false)); err != nil {
 		return err
 	}
-	templater.CopyCgo(parser.MOC, m.appPath)
+	templater.CgoTemplate(parser.MOC, m.appPath)
 
 	for _, c := range parser.CurrentState.ClassMap {
 		if c.Module == parser.MOC {

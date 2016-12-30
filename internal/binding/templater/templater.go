@@ -12,66 +12,68 @@ func GenModule(m string) {
 		return
 	}
 
-	var (
-		pkgName = strings.ToLower(m)
-		suffix  string
-	)
-
-	switch m {
-	case "AndroidExtras":
-		{
-			suffix = "_android"
-		}
-
-	case "Sailfish":
-		{
-			suffix = "_sailfish"
-		}
+	//prepare state
+	{
+		parser.CurrentState.CurrentModule = m
 	}
-
-	//cleanup
-	if !parser.CurrentState.Minimal {
-		utils.RemoveAll(utils.GoQtPkgPath(pkgName))
-		utils.MkdirAll(utils.GoQtPkgPath(pkgName))
-
-		if m == "AndroidExtras" {
-			//TODO: move into internal/runtime
-			utils.Save(utils.GoQtPkgPath(pkgName, "utils-androidextras_android.go"), utils.Load(utils.GoQtPkgPath("internal", "binding", "files", "utils-androidextras_android.go")))
-		}
-	}
-
-	//prepare
-	CopyCgo(m, "")
-
-	parser.CurrentState.CurrentModule = m
-
-	//dry run
-	CppTemplate("Qt" + m)
-	GoTemplate("Qt"+m, false)
 
 	//generate
-	if parser.CurrentState.Minimal {
-		if suffix != "" {
+	{
+		//TODO: remove dry run -->
+		CppTemplate(m)
+		GoTemplate(m, false)
+		//<--
+
+		var suffix = func() string {
+			switch m {
+			case "AndroidExtras":
+				{
+					return "_android"
+				}
+
+			case "Sailfish":
+				{
+					return "_sailfish"
+				}
+
+			default:
+				{
+					return ""
+				}
+			}
+		}()
+
+		utils.MkdirAll(utils.GoQtPkgPath(strings.ToLower(m)))
+
+		CgoTemplate(m, "")
+
+		if parser.CurrentState.Minimal {
+			if suffix != "" {
+				return
+			}
+
+			utils.SaveBytes(utils.GoQtPkgPath(strings.ToLower(m), strings.ToLower(m)+"-minimal.cpp"), CppTemplate(m))
+			utils.SaveBytes(utils.GoQtPkgPath(strings.ToLower(m), strings.ToLower(m)+"-minimal.h"), HTemplate(m))
+			utils.SaveBytes(utils.GoQtPkgPath(strings.ToLower(m), strings.ToLower(m)+"-minimal.go"), GoTemplate(m, false))
+
 			return
 		}
 
-		utils.SaveBytes(utils.GoQtPkgPath(pkgName, pkgName+"-minimal.cpp"), CppTemplate("Qt"+m))
-		utils.SaveBytes(utils.GoQtPkgPath(pkgName, pkgName+"-minimal.h"), HTemplate("Qt"+m))
-		utils.SaveBytes(utils.GoQtPkgPath(pkgName, pkgName+"-minimal.go"), GoTemplate("Qt"+m, false))
+		if m == "AndroidExtras" {
+			utils.Save(utils.GoQtPkgPath(strings.ToLower(m), "utils-androidextras_android.go"), utils.Load(utils.GoQtPkgPath("internal", "binding", "files", "utils-androidextras_android.go")))
+		}
 
-		return
+		if !UseStub() {
+			utils.SaveBytes(utils.GoQtPkgPath(strings.ToLower(m), strings.ToLower(m)+suffix+".cpp"), CppTemplate(m))
+			utils.SaveBytes(utils.GoQtPkgPath(strings.ToLower(m), strings.ToLower(m)+suffix+".h"), HTemplate(m))
+		}
+
+		//always generate full
+		if suffix != "" {
+			utils.SaveBytes(utils.GoQtPkgPath(strings.ToLower(m), strings.ToLower(m)+suffix+".go"), GoTemplate(m, false))
+		}
+
+		//may generate stub
+		utils.SaveBytes(utils.GoQtPkgPath(strings.ToLower(m), strings.ToLower(m)+".go"), GoTemplate(m, suffix != ""))
 	}
-
-	if !UseStub() {
-		utils.SaveBytes(utils.GoQtPkgPath(pkgName, pkgName+suffix+".cpp"), CppTemplate("Qt"+m))
-		utils.SaveBytes(utils.GoQtPkgPath(pkgName, pkgName+suffix+".h"), HTemplate("Qt"+m))
-	}
-
-	//always generate full
-	if suffix != "" {
-		utils.SaveBytes(utils.GoQtPkgPath(pkgName, pkgName+suffix+".go"), GoTemplate("Qt"+m, false))
-	}
-
-	//may generate stub
-	utils.SaveBytes(utils.GoQtPkgPath(pkgName, pkgName+".go"), GoTemplate("Qt"+m, suffix != ""))
 }

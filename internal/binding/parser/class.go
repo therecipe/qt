@@ -147,3 +147,12 @@ func (c *Class) HasConstructor() bool {
 	}
 	return false
 }
+
+func (c *Class) NeedsDestructor() bool {
+	for _, f := range c.Functions {
+		if f.Meta == DESTRUCTOR {
+			return false
+		}
+	}
+	return true
+}

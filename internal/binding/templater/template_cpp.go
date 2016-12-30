@@ -13,6 +13,10 @@ func CppTemplate(module string) []byte {
 	var bb = new(bytes.Buffer)
 	defer bb.Reset()
 
+	if module != parser.MOC {
+		module = "Qt" + module
+	}
+
 	if module == "QtCharts" || module == "QtDataVisualization" {
 		for _, classname := range getSortedClassNamesForModule(module) {
 			fmt.Fprintf(bb, "typedef %v::%v %v;\n", module, classname, classname)

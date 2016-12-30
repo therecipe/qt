@@ -96,3 +96,39 @@ func (f *Function) PossiblePolymorphic(self bool) ([]string, string) {
 
 	return out, ""
 }
+
+func (f *Function) IsJNIGeneric() bool {
+
+	if f.ClassName() == "QAndroidJniObject" {
+		switch f.Name {
+		case
+			"callMethod",
+			"callStaticMethod",
+
+			"getField",
+			//"setField", -> uses interface{} if not generic
+
+			"getStaticField",
+			//"setStaticField", -> uses interface{} if not generic
+
+			"getObjectField",
+
+			"getStaticObjectField",
+
+			"callObjectMethod",
+			"callStaticObjectMethod":
+			{
+				return true
+			}
+
+		case "setStaticField":
+			{
+				if f.OverloadNumber == "2" || f.OverloadNumber == "4" {
+					return true
+				}
+			}
+		}
+	}
+
+	return false
+}

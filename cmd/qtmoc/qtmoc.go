@@ -8,7 +8,7 @@ import (
 
 	"github.com/Sirupsen/logrus"
 
-	"github.com/therecipe/qt/internal/moc"
+	"github.com/therecipe/qt/internal/cmd/moc"
 	"github.com/therecipe/qt/internal/utils"
 )
 
