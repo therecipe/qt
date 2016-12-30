@@ -50,7 +50,7 @@ func LoadModule(m string) error {
 	switch {
 	case utils.UseHomeBrew(), utils.UseMsys2():
 		{
-			err = xml.Unmarshal([]byte(utils.Load(filepath.Join(utils.MustGoPath(), "src", "github.com", "therecipe", "qt", "internal", "binding", "files", "docs", "5.7.0", fmt.Sprintf("qt%v.index", strings.ToLower(m))))), &module)
+			err = xml.Unmarshal([]byte(utils.Load(filepath.Join(utils.MustGoPath(), "src", "github.com", "therecipe", "qt", "internal", "binding", "files", "docs", utils.QT_VERSION(), fmt.Sprintf("qt%v.index", strings.ToLower(m))))), &module)
 		}
 
 	case utils.UsePkgConfig():

@@ -197,7 +197,7 @@ func args() {
 }
 
 func moc() {
-	utils.RunCmd(exec.Command(filepath.Join(utils.MustGoBin(), "qtmoc"), appPath), fmt.Sprintf("execute qtmoc for %v on %v", buildTarget, runtime.GOOS))
+	mocpkg.MocTree(appPath)
 }
 
 func qrc() {

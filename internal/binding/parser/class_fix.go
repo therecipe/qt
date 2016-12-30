@@ -201,9 +201,9 @@ func (c *Class) fixBases() {
 	case "QPlatformSystemTrayIcon", "QPlatformGraphicsBuffer":
 		{
 			if utils.UsePkgConfig() {
-				c.Bases = getBasesFromHeader(utils.Load(filepath.Join(prefixPath, c.Module, "5.7.0", c.Module, "qpa", strings.ToLower(c.Name)+".h")), c.Name, c.Module)
+				c.Bases = getBasesFromHeader(utils.Load(filepath.Join(prefixPath, c.Module, utils.QT_VERSION(), c.Module, "qpa", strings.ToLower(c.Name)+".h")), c.Name, c.Module)
 			} else {
-				c.Bases = getBasesFromHeader(utils.Load(filepath.Join(prefixPath, infixPath, c.Module+suffixPath+"5.7.0", "QtGui", "qpa", strings.ToLower(c.Name)+".h")), c.Name, c.Module)
+				c.Bases = getBasesFromHeader(utils.Load(filepath.Join(prefixPath, infixPath, c.Module+suffixPath+utils.QT_VERSION(), "QtGui", "qpa", strings.ToLower(c.Name)+".h")), c.Name, c.Module)
 			}
 			return
 		}

@@ -7,14 +7,21 @@ import (
 	"strings"
 )
 
+func QT_VERSION() string {
+	if version := os.Getenv("QT_VERSION"); version != "" {
+		return version
+	}
+	return "5.7.0"
+}
+
 func QT_DIR() string {
 	if dir := os.Getenv("QT_DIR"); dir != "" {
 		return filepath.Clean(dir)
 	}
 	if runtime.GOOS == "windows" {
-		return "C:\\Qt\\Qt5.7.0"
+		return "C:\\Qt\\Qt" + QT_VERSION()
 	}
-	return filepath.Join(os.Getenv("HOME"), "Qt5.7.0")
+	return filepath.Join(os.Getenv("HOME"), "Qt"+QT_VERSION())
 }
 
 func QT_STUB() bool {

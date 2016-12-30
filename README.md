@@ -482,8 +482,8 @@ And make sure your Project folder is in your **GOPATH**.
     # custom IntelliJ IDEA VM options
 
     -Xms128m
-    -Xmx2000m
-    -XX:ReservedCodeCacheSize=240m
+    -Xmx4000m
+    -XX:ReservedCodeCacheSize=512m
     -XX:+UseCompressedOops
     ```
 

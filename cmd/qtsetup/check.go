@@ -15,7 +15,7 @@ func check(buildTarget string) {
 
 	utils.CheckBuildTarget(buildTarget)
 
-	utils.Log.Infoln("VERSION:", "0.0.3")
+	utils.Log.Infoln("VERSION:", "0.0.4")
 	utils.Log.Infoln("GOOS:", runtime.GOOS)
 	utils.Log.Infoln("GOARCH:", runtime.GOARCH)
 	utils.Log.Infoln("GOVERSION:", runtime.Version())
@@ -27,6 +27,7 @@ func check(buildTarget string) {
 	hash.Dir = utils.GoQtPkgPath()
 	utils.Log.Infoln("HASH:", strings.TrimSpace(utils.RunCmdOptional(hash, "get git hash")))
 
+	utils.Log.Infoln("QT_VERSION:", utils.QT_VERSION())
 	utils.Log.Infoln("QT_DIR:", utils.QT_DIR())
 	utils.Log.Infoln("QT_STUB:", utils.QT_STUB())
 
