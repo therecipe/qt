@@ -43,6 +43,7 @@ func GenModule(m string) {
 			}
 		}()
 
+		utils.RemoveAll(utils.GoQtPkgPath(strings.ToLower(m)))
 		utils.MkdirAll(utils.GoQtPkgPath(strings.ToLower(m)))
 
 		CgoTemplate(m, "")

@@ -9,7 +9,7 @@ import (
 )
 
 func UseMsys2() bool {
-	return strings.ToLower(os.Getenv("QT_MSYS2")) == "true" || IsMsys2QtDir()
+	return strings.ToLower(os.Getenv("QT_MSYS2")) == "true" || IsMsys2QtDir() || os.Getenv("MSYSTEM") != ""
 }
 
 func QT_MSYS2_DIR() string {

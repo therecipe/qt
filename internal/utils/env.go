@@ -25,7 +25,7 @@ func QT_DIR() string {
 }
 
 func QT_STUB() bool {
-	return strings.ToLower(os.Getenv("QT_STUB")) == "true"
+	return strings.ToLower(os.Getenv("QT_STUB")) == "true" || UseMsys2()
 }
 
 func CheckBuildTarget(buildTarget string) {
