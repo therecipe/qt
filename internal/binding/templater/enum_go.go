@@ -15,7 +15,7 @@ func goEnum(e *parser.Enum) string {
 
 	var t string
 
-	fmt.Fprintf(bb, "//%v\ntype %v int64\nconst (\n", e.Fullname, strings.Replace(e.Fullname, ":", "_", -1))
+	fmt.Fprintf(bb, "//go:generate stringer -type=%v\n//%v\ntype %v int64\nconst (\n", strings.Replace(e.Fullname, ":", "_", -1), e.Fullname, strings.Replace(e.Fullname, ":", "_", -1))
 
 	for _, v := range e.Values {
 		switch v.Name {
