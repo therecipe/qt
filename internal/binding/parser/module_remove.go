@@ -5,7 +5,7 @@ func (m *Module) remove() {
 }
 
 func (m *Module) removeClasses() {
-	for _, c := range CurrentState.ClassMap {
+	for _, c := range State.ClassMap {
 		if c.Module != m.Project {
 			continue
 		}
@@ -15,7 +15,7 @@ func (m *Module) removeClasses() {
 			!(c.Access == "public" || c.Access == "protected"),
 			c.Name == "qoutputrange":
 
-			delete(CurrentState.ClassMap, c.Name)
+			delete(State.ClassMap, c.Name)
 		}
 	}
 }

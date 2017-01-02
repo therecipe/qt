@@ -590,35 +590,36 @@ func (ptr *Q3DBars) seriesList_atList(i int) *QBar3DSeries {
 	return nil
 }
 
+//go:generate stringer -type=Q3DCamera__CameraPreset
 //Q3DCamera::CameraPreset
 type Q3DCamera__CameraPreset int64
 
 const (
-	Q3DCamera__CameraPresetNone               = Q3DCamera__CameraPreset(-1)
-	Q3DCamera__CameraPresetFrontLow           = Q3DCamera__CameraPreset(0)
-	Q3DCamera__CameraPresetFront              = Q3DCamera__CameraPreset(1)
-	Q3DCamera__CameraPresetFrontHigh          = Q3DCamera__CameraPreset(2)
-	Q3DCamera__CameraPresetLeftLow            = Q3DCamera__CameraPreset(3)
-	Q3DCamera__CameraPresetLeft               = Q3DCamera__CameraPreset(4)
-	Q3DCamera__CameraPresetLeftHigh           = Q3DCamera__CameraPreset(5)
-	Q3DCamera__CameraPresetRightLow           = Q3DCamera__CameraPreset(6)
-	Q3DCamera__CameraPresetRight              = Q3DCamera__CameraPreset(7)
-	Q3DCamera__CameraPresetRightHigh          = Q3DCamera__CameraPreset(8)
-	Q3DCamera__CameraPresetBehindLow          = Q3DCamera__CameraPreset(9)
-	Q3DCamera__CameraPresetBehind             = Q3DCamera__CameraPreset(10)
-	Q3DCamera__CameraPresetBehindHigh         = Q3DCamera__CameraPreset(11)
-	Q3DCamera__CameraPresetIsometricLeft      = Q3DCamera__CameraPreset(12)
-	Q3DCamera__CameraPresetIsometricLeftHigh  = Q3DCamera__CameraPreset(13)
-	Q3DCamera__CameraPresetIsometricRight     = Q3DCamera__CameraPreset(14)
-	Q3DCamera__CameraPresetIsometricRightHigh = Q3DCamera__CameraPreset(15)
-	Q3DCamera__CameraPresetDirectlyAbove      = Q3DCamera__CameraPreset(16)
-	Q3DCamera__CameraPresetDirectlyAboveCW45  = Q3DCamera__CameraPreset(17)
-	Q3DCamera__CameraPresetDirectlyAboveCCW45 = Q3DCamera__CameraPreset(18)
-	Q3DCamera__CameraPresetFrontBelow         = Q3DCamera__CameraPreset(19)
-	Q3DCamera__CameraPresetLeftBelow          = Q3DCamera__CameraPreset(20)
-	Q3DCamera__CameraPresetRightBelow         = Q3DCamera__CameraPreset(21)
-	Q3DCamera__CameraPresetBehindBelow        = Q3DCamera__CameraPreset(22)
-	Q3DCamera__CameraPresetDirectlyBelow      = Q3DCamera__CameraPreset(23)
+	Q3DCamera__CameraPresetNone               Q3DCamera__CameraPreset = Q3DCamera__CameraPreset(-1)
+	Q3DCamera__CameraPresetFrontLow           Q3DCamera__CameraPreset = Q3DCamera__CameraPreset(0)
+	Q3DCamera__CameraPresetFront              Q3DCamera__CameraPreset = Q3DCamera__CameraPreset(1)
+	Q3DCamera__CameraPresetFrontHigh          Q3DCamera__CameraPreset = Q3DCamera__CameraPreset(2)
+	Q3DCamera__CameraPresetLeftLow            Q3DCamera__CameraPreset = Q3DCamera__CameraPreset(3)
+	Q3DCamera__CameraPresetLeft               Q3DCamera__CameraPreset = Q3DCamera__CameraPreset(4)
+	Q3DCamera__CameraPresetLeftHigh           Q3DCamera__CameraPreset = Q3DCamera__CameraPreset(5)
+	Q3DCamera__CameraPresetRightLow           Q3DCamera__CameraPreset = Q3DCamera__CameraPreset(6)
+	Q3DCamera__CameraPresetRight              Q3DCamera__CameraPreset = Q3DCamera__CameraPreset(7)
+	Q3DCamera__CameraPresetRightHigh          Q3DCamera__CameraPreset = Q3DCamera__CameraPreset(8)
+	Q3DCamera__CameraPresetBehindLow          Q3DCamera__CameraPreset = Q3DCamera__CameraPreset(9)
+	Q3DCamera__CameraPresetBehind             Q3DCamera__CameraPreset = Q3DCamera__CameraPreset(10)
+	Q3DCamera__CameraPresetBehindHigh         Q3DCamera__CameraPreset = Q3DCamera__CameraPreset(11)
+	Q3DCamera__CameraPresetIsometricLeft      Q3DCamera__CameraPreset = Q3DCamera__CameraPreset(12)
+	Q3DCamera__CameraPresetIsometricLeftHigh  Q3DCamera__CameraPreset = Q3DCamera__CameraPreset(13)
+	Q3DCamera__CameraPresetIsometricRight     Q3DCamera__CameraPreset = Q3DCamera__CameraPreset(14)
+	Q3DCamera__CameraPresetIsometricRightHigh Q3DCamera__CameraPreset = Q3DCamera__CameraPreset(15)
+	Q3DCamera__CameraPresetDirectlyAbove      Q3DCamera__CameraPreset = Q3DCamera__CameraPreset(16)
+	Q3DCamera__CameraPresetDirectlyAboveCW45  Q3DCamera__CameraPreset = Q3DCamera__CameraPreset(17)
+	Q3DCamera__CameraPresetDirectlyAboveCCW45 Q3DCamera__CameraPreset = Q3DCamera__CameraPreset(18)
+	Q3DCamera__CameraPresetFrontBelow         Q3DCamera__CameraPreset = Q3DCamera__CameraPreset(19)
+	Q3DCamera__CameraPresetLeftBelow          Q3DCamera__CameraPreset = Q3DCamera__CameraPreset(20)
+	Q3DCamera__CameraPresetRightBelow         Q3DCamera__CameraPreset = Q3DCamera__CameraPreset(21)
+	Q3DCamera__CameraPresetBehindBelow        Q3DCamera__CameraPreset = Q3DCamera__CameraPreset(22)
+	Q3DCamera__CameraPresetDirectlyBelow      Q3DCamera__CameraPreset = Q3DCamera__CameraPreset(23)
 )
 
 type Q3DCamera struct {
@@ -2966,28 +2967,30 @@ func (ptr *Q3DSurface) seriesList_atList(i int) *QSurface3DSeries {
 	return nil
 }
 
+//go:generate stringer -type=Q3DTheme__ColorStyle
 //Q3DTheme::ColorStyle
 type Q3DTheme__ColorStyle int64
 
 var (
-	Q3DTheme__ColorStyleUniform        = Q3DTheme__ColorStyle(0)
-	Q3DTheme__ColorStyleObjectGradient = Q3DTheme__ColorStyle(1)
-	Q3DTheme__ColorStyleRangeGradient  = Q3DTheme__ColorStyle(2)
+	Q3DTheme__ColorStyleUniform        Q3DTheme__ColorStyle = Q3DTheme__ColorStyle(0)
+	Q3DTheme__ColorStyleObjectGradient Q3DTheme__ColorStyle = Q3DTheme__ColorStyle(1)
+	Q3DTheme__ColorStyleRangeGradient  Q3DTheme__ColorStyle = Q3DTheme__ColorStyle(2)
 )
 
+//go:generate stringer -type=Q3DTheme__Theme
 //Q3DTheme::Theme
 type Q3DTheme__Theme int64
 
 const (
-	Q3DTheme__ThemeQt            = Q3DTheme__Theme(0)
-	Q3DTheme__ThemePrimaryColors = Q3DTheme__Theme(1)
-	Q3DTheme__ThemeDigia         = Q3DTheme__Theme(2)
-	Q3DTheme__ThemeStoneMoss     = Q3DTheme__Theme(3)
-	Q3DTheme__ThemeArmyBlue      = Q3DTheme__Theme(4)
-	Q3DTheme__ThemeRetro         = Q3DTheme__Theme(5)
-	Q3DTheme__ThemeEbony         = Q3DTheme__Theme(6)
-	Q3DTheme__ThemeIsabelle      = Q3DTheme__Theme(7)
-	Q3DTheme__ThemeUserDefined   = Q3DTheme__Theme(8)
+	Q3DTheme__ThemeQt            Q3DTheme__Theme = Q3DTheme__Theme(0)
+	Q3DTheme__ThemePrimaryColors Q3DTheme__Theme = Q3DTheme__Theme(1)
+	Q3DTheme__ThemeDigia         Q3DTheme__Theme = Q3DTheme__Theme(2)
+	Q3DTheme__ThemeStoneMoss     Q3DTheme__Theme = Q3DTheme__Theme(3)
+	Q3DTheme__ThemeArmyBlue      Q3DTheme__Theme = Q3DTheme__Theme(4)
+	Q3DTheme__ThemeRetro         Q3DTheme__Theme = Q3DTheme__Theme(5)
+	Q3DTheme__ThemeEbony         Q3DTheme__Theme = Q3DTheme__Theme(6)
+	Q3DTheme__ThemeIsabelle      Q3DTheme__Theme = Q3DTheme__Theme(7)
+	Q3DTheme__ThemeUserDefined   Q3DTheme__Theme = Q3DTheme__Theme(8)
 )
 
 type Q3DTheme struct {
@@ -3981,23 +3984,25 @@ func (ptr *Q3DTheme) baseGradients_atList(i int) *gui.QLinearGradient {
 	return nil
 }
 
+//go:generate stringer -type=QAbstract3DAxis__AxisOrientation
 //QAbstract3DAxis::AxisOrientation
 type QAbstract3DAxis__AxisOrientation int64
 
 const (
-	QAbstract3DAxis__AxisOrientationNone = QAbstract3DAxis__AxisOrientation(0)
-	QAbstract3DAxis__AxisOrientationX    = QAbstract3DAxis__AxisOrientation(1)
-	QAbstract3DAxis__AxisOrientationY    = QAbstract3DAxis__AxisOrientation(2)
-	QAbstract3DAxis__AxisOrientationZ    = QAbstract3DAxis__AxisOrientation(4)
+	QAbstract3DAxis__AxisOrientationNone QAbstract3DAxis__AxisOrientation = QAbstract3DAxis__AxisOrientation(0)
+	QAbstract3DAxis__AxisOrientationX    QAbstract3DAxis__AxisOrientation = QAbstract3DAxis__AxisOrientation(1)
+	QAbstract3DAxis__AxisOrientationY    QAbstract3DAxis__AxisOrientation = QAbstract3DAxis__AxisOrientation(2)
+	QAbstract3DAxis__AxisOrientationZ    QAbstract3DAxis__AxisOrientation = QAbstract3DAxis__AxisOrientation(4)
 )
 
+//go:generate stringer -type=QAbstract3DAxis__AxisType
 //QAbstract3DAxis::AxisType
 type QAbstract3DAxis__AxisType int64
 
 const (
-	QAbstract3DAxis__AxisTypeNone     = QAbstract3DAxis__AxisType(0)
-	QAbstract3DAxis__AxisTypeCategory = QAbstract3DAxis__AxisType(1)
-	QAbstract3DAxis__AxisTypeValue    = QAbstract3DAxis__AxisType(2)
+	QAbstract3DAxis__AxisTypeNone     QAbstract3DAxis__AxisType = QAbstract3DAxis__AxisType(0)
+	QAbstract3DAxis__AxisTypeCategory QAbstract3DAxis__AxisType = QAbstract3DAxis__AxisType(1)
+	QAbstract3DAxis__AxisTypeValue    QAbstract3DAxis__AxisType = QAbstract3DAxis__AxisType(2)
 )
 
 type QAbstract3DAxis struct {
@@ -4497,53 +4502,57 @@ func (ptr *QAbstract3DAxis) DestroyQAbstract3DAxisDefault() {
 	}
 }
 
+//go:generate stringer -type=QAbstract3DGraph__ElementType
 //QAbstract3DGraph::ElementType
 type QAbstract3DGraph__ElementType int64
 
 const (
-	QAbstract3DGraph__ElementNone       = QAbstract3DGraph__ElementType(0)
-	QAbstract3DGraph__ElementSeries     = QAbstract3DGraph__ElementType(1)
-	QAbstract3DGraph__ElementAxisXLabel = QAbstract3DGraph__ElementType(2)
-	QAbstract3DGraph__ElementAxisYLabel = QAbstract3DGraph__ElementType(3)
-	QAbstract3DGraph__ElementAxisZLabel = QAbstract3DGraph__ElementType(4)
-	QAbstract3DGraph__ElementCustomItem = QAbstract3DGraph__ElementType(5)
+	QAbstract3DGraph__ElementNone       QAbstract3DGraph__ElementType = QAbstract3DGraph__ElementType(0)
+	QAbstract3DGraph__ElementSeries     QAbstract3DGraph__ElementType = QAbstract3DGraph__ElementType(1)
+	QAbstract3DGraph__ElementAxisXLabel QAbstract3DGraph__ElementType = QAbstract3DGraph__ElementType(2)
+	QAbstract3DGraph__ElementAxisYLabel QAbstract3DGraph__ElementType = QAbstract3DGraph__ElementType(3)
+	QAbstract3DGraph__ElementAxisZLabel QAbstract3DGraph__ElementType = QAbstract3DGraph__ElementType(4)
+	QAbstract3DGraph__ElementCustomItem QAbstract3DGraph__ElementType = QAbstract3DGraph__ElementType(5)
 )
 
+//go:generate stringer -type=QAbstract3DGraph__OptimizationHint
 //QAbstract3DGraph::OptimizationHint
 type QAbstract3DGraph__OptimizationHint int64
 
 const (
-	QAbstract3DGraph__OptimizationDefault = QAbstract3DGraph__OptimizationHint(0)
-	QAbstract3DGraph__OptimizationStatic  = QAbstract3DGraph__OptimizationHint(1)
+	QAbstract3DGraph__OptimizationDefault QAbstract3DGraph__OptimizationHint = QAbstract3DGraph__OptimizationHint(0)
+	QAbstract3DGraph__OptimizationStatic  QAbstract3DGraph__OptimizationHint = QAbstract3DGraph__OptimizationHint(1)
 )
 
+//go:generate stringer -type=QAbstract3DGraph__SelectionFlag
 //QAbstract3DGraph::SelectionFlag
 type QAbstract3DGraph__SelectionFlag int64
 
 const (
-	QAbstract3DGraph__SelectionNone             = QAbstract3DGraph__SelectionFlag(0)
-	QAbstract3DGraph__SelectionItem             = QAbstract3DGraph__SelectionFlag(1)
-	QAbstract3DGraph__SelectionRow              = QAbstract3DGraph__SelectionFlag(2)
-	QAbstract3DGraph__SelectionItemAndRow       = QAbstract3DGraph__SelectionFlag(QAbstract3DGraph__SelectionItem | QAbstract3DGraph__SelectionRow)
-	QAbstract3DGraph__SelectionColumn           = QAbstract3DGraph__SelectionFlag(4)
-	QAbstract3DGraph__SelectionItemAndColumn    = QAbstract3DGraph__SelectionFlag(QAbstract3DGraph__SelectionItem | QAbstract3DGraph__SelectionColumn)
-	QAbstract3DGraph__SelectionRowAndColumn     = QAbstract3DGraph__SelectionFlag(QAbstract3DGraph__SelectionRow | QAbstract3DGraph__SelectionColumn)
-	QAbstract3DGraph__SelectionItemRowAndColumn = QAbstract3DGraph__SelectionFlag(QAbstract3DGraph__SelectionItem | QAbstract3DGraph__SelectionRow | QAbstract3DGraph__SelectionColumn)
-	QAbstract3DGraph__SelectionSlice            = QAbstract3DGraph__SelectionFlag(8)
-	QAbstract3DGraph__SelectionMultiSeries      = QAbstract3DGraph__SelectionFlag(16)
+	QAbstract3DGraph__SelectionNone             QAbstract3DGraph__SelectionFlag = QAbstract3DGraph__SelectionFlag(0)
+	QAbstract3DGraph__SelectionItem             QAbstract3DGraph__SelectionFlag = QAbstract3DGraph__SelectionFlag(1)
+	QAbstract3DGraph__SelectionRow              QAbstract3DGraph__SelectionFlag = QAbstract3DGraph__SelectionFlag(2)
+	QAbstract3DGraph__SelectionItemAndRow       QAbstract3DGraph__SelectionFlag = QAbstract3DGraph__SelectionFlag(QAbstract3DGraph__SelectionItem | QAbstract3DGraph__SelectionRow)
+	QAbstract3DGraph__SelectionColumn           QAbstract3DGraph__SelectionFlag = QAbstract3DGraph__SelectionFlag(4)
+	QAbstract3DGraph__SelectionItemAndColumn    QAbstract3DGraph__SelectionFlag = QAbstract3DGraph__SelectionFlag(QAbstract3DGraph__SelectionItem | QAbstract3DGraph__SelectionColumn)
+	QAbstract3DGraph__SelectionRowAndColumn     QAbstract3DGraph__SelectionFlag = QAbstract3DGraph__SelectionFlag(QAbstract3DGraph__SelectionRow | QAbstract3DGraph__SelectionColumn)
+	QAbstract3DGraph__SelectionItemRowAndColumn QAbstract3DGraph__SelectionFlag = QAbstract3DGraph__SelectionFlag(QAbstract3DGraph__SelectionItem | QAbstract3DGraph__SelectionRow | QAbstract3DGraph__SelectionColumn)
+	QAbstract3DGraph__SelectionSlice            QAbstract3DGraph__SelectionFlag = QAbstract3DGraph__SelectionFlag(8)
+	QAbstract3DGraph__SelectionMultiSeries      QAbstract3DGraph__SelectionFlag = QAbstract3DGraph__SelectionFlag(16)
 )
 
+//go:generate stringer -type=QAbstract3DGraph__ShadowQuality
 //QAbstract3DGraph::ShadowQuality
 type QAbstract3DGraph__ShadowQuality int64
 
 const (
-	QAbstract3DGraph__ShadowQualityNone       = QAbstract3DGraph__ShadowQuality(0)
-	QAbstract3DGraph__ShadowQualityLow        = QAbstract3DGraph__ShadowQuality(1)
-	QAbstract3DGraph__ShadowQualityMedium     = QAbstract3DGraph__ShadowQuality(2)
-	QAbstract3DGraph__ShadowQualityHigh       = QAbstract3DGraph__ShadowQuality(3)
-	QAbstract3DGraph__ShadowQualitySoftLow    = QAbstract3DGraph__ShadowQuality(4)
-	QAbstract3DGraph__ShadowQualitySoftMedium = QAbstract3DGraph__ShadowQuality(5)
-	QAbstract3DGraph__ShadowQualitySoftHigh   = QAbstract3DGraph__ShadowQuality(6)
+	QAbstract3DGraph__ShadowQualityNone       QAbstract3DGraph__ShadowQuality = QAbstract3DGraph__ShadowQuality(0)
+	QAbstract3DGraph__ShadowQualityLow        QAbstract3DGraph__ShadowQuality = QAbstract3DGraph__ShadowQuality(1)
+	QAbstract3DGraph__ShadowQualityMedium     QAbstract3DGraph__ShadowQuality = QAbstract3DGraph__ShadowQuality(2)
+	QAbstract3DGraph__ShadowQualityHigh       QAbstract3DGraph__ShadowQuality = QAbstract3DGraph__ShadowQuality(3)
+	QAbstract3DGraph__ShadowQualitySoftLow    QAbstract3DGraph__ShadowQuality = QAbstract3DGraph__ShadowQuality(4)
+	QAbstract3DGraph__ShadowQualitySoftMedium QAbstract3DGraph__ShadowQuality = QAbstract3DGraph__ShadowQuality(5)
+	QAbstract3DGraph__ShadowQualitySoftHigh   QAbstract3DGraph__ShadowQuality = QAbstract3DGraph__ShadowQuality(6)
 )
 
 type QAbstract3DGraph struct {
@@ -5575,13 +5584,14 @@ func (ptr *QAbstract3DGraph) themes_atList(i int) *Q3DTheme {
 	return nil
 }
 
+//go:generate stringer -type=QAbstract3DInputHandler__InputView
 //QAbstract3DInputHandler::InputView
 type QAbstract3DInputHandler__InputView int64
 
 const (
-	QAbstract3DInputHandler__InputViewNone        = QAbstract3DInputHandler__InputView(0)
-	QAbstract3DInputHandler__InputViewOnPrimary   = QAbstract3DInputHandler__InputView(1)
-	QAbstract3DInputHandler__InputViewOnSecondary = QAbstract3DInputHandler__InputView(2)
+	QAbstract3DInputHandler__InputViewNone        QAbstract3DInputHandler__InputView = QAbstract3DInputHandler__InputView(0)
+	QAbstract3DInputHandler__InputViewOnPrimary   QAbstract3DInputHandler__InputView = QAbstract3DInputHandler__InputView(1)
+	QAbstract3DInputHandler__InputViewOnSecondary QAbstract3DInputHandler__InputView = QAbstract3DInputHandler__InputView(2)
 )
 
 type QAbstract3DInputHandler struct {
@@ -6037,32 +6047,34 @@ func (ptr *QAbstract3DInputHandler) DestroyQAbstract3DInputHandlerDefault() {
 	}
 }
 
+//go:generate stringer -type=QAbstract3DSeries__Mesh
 //QAbstract3DSeries::Mesh
 type QAbstract3DSeries__Mesh int64
 
 const (
-	QAbstract3DSeries__MeshUserDefined = QAbstract3DSeries__Mesh(0)
-	QAbstract3DSeries__MeshBar         = QAbstract3DSeries__Mesh(1)
-	QAbstract3DSeries__MeshCube        = QAbstract3DSeries__Mesh(2)
-	QAbstract3DSeries__MeshPyramid     = QAbstract3DSeries__Mesh(3)
-	QAbstract3DSeries__MeshCone        = QAbstract3DSeries__Mesh(4)
-	QAbstract3DSeries__MeshCylinder    = QAbstract3DSeries__Mesh(5)
-	QAbstract3DSeries__MeshBevelBar    = QAbstract3DSeries__Mesh(6)
-	QAbstract3DSeries__MeshBevelCube   = QAbstract3DSeries__Mesh(7)
-	QAbstract3DSeries__MeshSphere      = QAbstract3DSeries__Mesh(8)
-	QAbstract3DSeries__MeshMinimal     = QAbstract3DSeries__Mesh(9)
-	QAbstract3DSeries__MeshArrow       = QAbstract3DSeries__Mesh(10)
-	QAbstract3DSeries__MeshPoint       = QAbstract3DSeries__Mesh(11)
+	QAbstract3DSeries__MeshUserDefined QAbstract3DSeries__Mesh = QAbstract3DSeries__Mesh(0)
+	QAbstract3DSeries__MeshBar         QAbstract3DSeries__Mesh = QAbstract3DSeries__Mesh(1)
+	QAbstract3DSeries__MeshCube        QAbstract3DSeries__Mesh = QAbstract3DSeries__Mesh(2)
+	QAbstract3DSeries__MeshPyramid     QAbstract3DSeries__Mesh = QAbstract3DSeries__Mesh(3)
+	QAbstract3DSeries__MeshCone        QAbstract3DSeries__Mesh = QAbstract3DSeries__Mesh(4)
+	QAbstract3DSeries__MeshCylinder    QAbstract3DSeries__Mesh = QAbstract3DSeries__Mesh(5)
+	QAbstract3DSeries__MeshBevelBar    QAbstract3DSeries__Mesh = QAbstract3DSeries__Mesh(6)
+	QAbstract3DSeries__MeshBevelCube   QAbstract3DSeries__Mesh = QAbstract3DSeries__Mesh(7)
+	QAbstract3DSeries__MeshSphere      QAbstract3DSeries__Mesh = QAbstract3DSeries__Mesh(8)
+	QAbstract3DSeries__MeshMinimal     QAbstract3DSeries__Mesh = QAbstract3DSeries__Mesh(9)
+	QAbstract3DSeries__MeshArrow       QAbstract3DSeries__Mesh = QAbstract3DSeries__Mesh(10)
+	QAbstract3DSeries__MeshPoint       QAbstract3DSeries__Mesh = QAbstract3DSeries__Mesh(11)
 )
 
+//go:generate stringer -type=QAbstract3DSeries__SeriesType
 //QAbstract3DSeries::SeriesType
 type QAbstract3DSeries__SeriesType int64
 
 const (
-	QAbstract3DSeries__SeriesTypeNone    = QAbstract3DSeries__SeriesType(0)
-	QAbstract3DSeries__SeriesTypeBar     = QAbstract3DSeries__SeriesType(1)
-	QAbstract3DSeries__SeriesTypeScatter = QAbstract3DSeries__SeriesType(2)
-	QAbstract3DSeries__SeriesTypeSurface = QAbstract3DSeries__SeriesType(4)
+	QAbstract3DSeries__SeriesTypeNone    QAbstract3DSeries__SeriesType = QAbstract3DSeries__SeriesType(0)
+	QAbstract3DSeries__SeriesTypeBar     QAbstract3DSeries__SeriesType = QAbstract3DSeries__SeriesType(1)
+	QAbstract3DSeries__SeriesTypeScatter QAbstract3DSeries__SeriesType = QAbstract3DSeries__SeriesType(2)
+	QAbstract3DSeries__SeriesTypeSurface QAbstract3DSeries__SeriesType = QAbstract3DSeries__SeriesType(4)
 )
 
 type QAbstract3DSeries struct {
@@ -6849,14 +6861,15 @@ func (ptr *QAbstract3DSeries) DestroyQAbstract3DSeriesDefault() {
 	}
 }
 
+//go:generate stringer -type=QAbstractDataProxy__DataType
 //QAbstractDataProxy::DataType
 type QAbstractDataProxy__DataType int64
 
 const (
-	QAbstractDataProxy__DataTypeNone    = QAbstractDataProxy__DataType(0)
-	QAbstractDataProxy__DataTypeBar     = QAbstractDataProxy__DataType(1)
-	QAbstractDataProxy__DataTypeScatter = QAbstractDataProxy__DataType(2)
-	QAbstractDataProxy__DataTypeSurface = QAbstractDataProxy__DataType(4)
+	QAbstractDataProxy__DataTypeNone    QAbstractDataProxy__DataType = QAbstractDataProxy__DataType(0)
+	QAbstractDataProxy__DataTypeBar     QAbstractDataProxy__DataType = QAbstractDataProxy__DataType(1)
+	QAbstractDataProxy__DataTypeScatter QAbstractDataProxy__DataType = QAbstractDataProxy__DataType(2)
+	QAbstractDataProxy__DataTypeSurface QAbstractDataProxy__DataType = QAbstractDataProxy__DataType(4)
 )
 
 type QAbstractDataProxy struct {
@@ -9909,14 +9922,15 @@ func (ptr *QHeightMapSurfaceDataProxy) DestroyQHeightMapSurfaceDataProxyDefault(
 	}
 }
 
+//go:generate stringer -type=QItemModelBarDataProxy__MultiMatchBehavior
 //QItemModelBarDataProxy::MultiMatchBehavior
 type QItemModelBarDataProxy__MultiMatchBehavior int64
 
 const (
-	QItemModelBarDataProxy__MMBFirst      = QItemModelBarDataProxy__MultiMatchBehavior(0)
-	QItemModelBarDataProxy__MMBLast       = QItemModelBarDataProxy__MultiMatchBehavior(1)
-	QItemModelBarDataProxy__MMBAverage    = QItemModelBarDataProxy__MultiMatchBehavior(2)
-	QItemModelBarDataProxy__MMBCumulative = QItemModelBarDataProxy__MultiMatchBehavior(3)
+	QItemModelBarDataProxy__MMBFirst      QItemModelBarDataProxy__MultiMatchBehavior = QItemModelBarDataProxy__MultiMatchBehavior(0)
+	QItemModelBarDataProxy__MMBLast       QItemModelBarDataProxy__MultiMatchBehavior = QItemModelBarDataProxy__MultiMatchBehavior(1)
+	QItemModelBarDataProxy__MMBAverage    QItemModelBarDataProxy__MultiMatchBehavior = QItemModelBarDataProxy__MultiMatchBehavior(2)
+	QItemModelBarDataProxy__MMBCumulative QItemModelBarDataProxy__MultiMatchBehavior = QItemModelBarDataProxy__MultiMatchBehavior(3)
 )
 
 type QItemModelBarDataProxy struct {
@@ -11655,14 +11669,15 @@ func (ptr *QItemModelScatterDataProxy) DestroyQItemModelScatterDataProxyDefault(
 	}
 }
 
+//go:generate stringer -type=QItemModelSurfaceDataProxy__MultiMatchBehavior
 //QItemModelSurfaceDataProxy::MultiMatchBehavior
 type QItemModelSurfaceDataProxy__MultiMatchBehavior int64
 
 const (
-	QItemModelSurfaceDataProxy__MMBFirst       = QItemModelSurfaceDataProxy__MultiMatchBehavior(0)
-	QItemModelSurfaceDataProxy__MMBLast        = QItemModelSurfaceDataProxy__MultiMatchBehavior(1)
-	QItemModelSurfaceDataProxy__MMBAverage     = QItemModelSurfaceDataProxy__MultiMatchBehavior(2)
-	QItemModelSurfaceDataProxy__MMBCumulativeY = QItemModelSurfaceDataProxy__MultiMatchBehavior(3)
+	QItemModelSurfaceDataProxy__MMBFirst       QItemModelSurfaceDataProxy__MultiMatchBehavior = QItemModelSurfaceDataProxy__MultiMatchBehavior(0)
+	QItemModelSurfaceDataProxy__MMBLast        QItemModelSurfaceDataProxy__MultiMatchBehavior = QItemModelSurfaceDataProxy__MultiMatchBehavior(1)
+	QItemModelSurfaceDataProxy__MMBAverage     QItemModelSurfaceDataProxy__MultiMatchBehavior = QItemModelSurfaceDataProxy__MultiMatchBehavior(2)
+	QItemModelSurfaceDataProxy__MMBCumulativeY QItemModelSurfaceDataProxy__MultiMatchBehavior = QItemModelSurfaceDataProxy__MultiMatchBehavior(3)
 )
 
 type QItemModelSurfaceDataProxy struct {
@@ -13725,13 +13740,14 @@ func (ptr *QScatterDataProxy) DestroyQScatterDataProxyDefault() {
 	}
 }
 
+//go:generate stringer -type=QSurface3DSeries__DrawFlag
 //QSurface3DSeries::DrawFlag
 type QSurface3DSeries__DrawFlag int64
 
 const (
-	QSurface3DSeries__DrawWireframe           = QSurface3DSeries__DrawFlag(1)
-	QSurface3DSeries__DrawSurface             = QSurface3DSeries__DrawFlag(2)
-	QSurface3DSeries__DrawSurfaceAndWireframe = QSurface3DSeries__DrawFlag(QSurface3DSeries__DrawWireframe | QSurface3DSeries__DrawSurface)
+	QSurface3DSeries__DrawWireframe           QSurface3DSeries__DrawFlag = QSurface3DSeries__DrawFlag(1)
+	QSurface3DSeries__DrawSurface             QSurface3DSeries__DrawFlag = QSurface3DSeries__DrawFlag(2)
+	QSurface3DSeries__DrawSurfaceAndWireframe QSurface3DSeries__DrawFlag = QSurface3DSeries__DrawFlag(QSurface3DSeries__DrawWireframe | QSurface3DSeries__DrawSurface)
 )
 
 type QSurface3DSeries struct {

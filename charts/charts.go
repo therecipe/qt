@@ -24,16 +24,17 @@ func cGoUnpackString(s C.struct_QtCharts_PackedString) string {
 	return C.GoStringN(s.data, C.int(s.len))
 }
 
+//go:generate stringer -type=QAbstractAxis__AxisType
 //QAbstractAxis::AxisType
 type QAbstractAxis__AxisType int64
 
 const (
-	QAbstractAxis__AxisTypeNoAxis      = QAbstractAxis__AxisType(0x0)
-	QAbstractAxis__AxisTypeValue       = QAbstractAxis__AxisType(0x1)
-	QAbstractAxis__AxisTypeBarCategory = QAbstractAxis__AxisType(0x2)
-	QAbstractAxis__AxisTypeCategory    = QAbstractAxis__AxisType(0x4)
-	QAbstractAxis__AxisTypeDateTime    = QAbstractAxis__AxisType(0x8)
-	QAbstractAxis__AxisTypeLogValue    = QAbstractAxis__AxisType(0x10)
+	QAbstractAxis__AxisTypeNoAxis      QAbstractAxis__AxisType = QAbstractAxis__AxisType(0x0)
+	QAbstractAxis__AxisTypeValue       QAbstractAxis__AxisType = QAbstractAxis__AxisType(0x1)
+	QAbstractAxis__AxisTypeBarCategory QAbstractAxis__AxisType = QAbstractAxis__AxisType(0x2)
+	QAbstractAxis__AxisTypeCategory    QAbstractAxis__AxisType = QAbstractAxis__AxisType(0x4)
+	QAbstractAxis__AxisTypeDateTime    QAbstractAxis__AxisType = QAbstractAxis__AxisType(0x8)
+	QAbstractAxis__AxisTypeLogValue    QAbstractAxis__AxisType = QAbstractAxis__AxisType(0x10)
 )
 
 type QAbstractAxis struct {
@@ -1240,14 +1241,15 @@ func (ptr *QAbstractAxis) DestroyQAbstractAxis() {
 	}
 }
 
+//go:generate stringer -type=QAbstractBarSeries__LabelsPosition
 //QAbstractBarSeries::LabelsPosition
 type QAbstractBarSeries__LabelsPosition int64
 
 const (
-	QAbstractBarSeries__LabelsCenter     = QAbstractBarSeries__LabelsPosition(0)
-	QAbstractBarSeries__LabelsInsideEnd  = QAbstractBarSeries__LabelsPosition(1)
-	QAbstractBarSeries__LabelsInsideBase = QAbstractBarSeries__LabelsPosition(2)
-	QAbstractBarSeries__LabelsOutsideEnd = QAbstractBarSeries__LabelsPosition(3)
+	QAbstractBarSeries__LabelsCenter     QAbstractBarSeries__LabelsPosition = QAbstractBarSeries__LabelsPosition(0)
+	QAbstractBarSeries__LabelsInsideEnd  QAbstractBarSeries__LabelsPosition = QAbstractBarSeries__LabelsPosition(1)
+	QAbstractBarSeries__LabelsInsideBase QAbstractBarSeries__LabelsPosition = QAbstractBarSeries__LabelsPosition(2)
+	QAbstractBarSeries__LabelsOutsideEnd QAbstractBarSeries__LabelsPosition = QAbstractBarSeries__LabelsPosition(3)
 )
 
 type QAbstractBarSeries struct {
@@ -1747,22 +1749,23 @@ func (ptr *QAbstractBarSeries) barSets_atList(i int) *QBarSet {
 	return nil
 }
 
+//go:generate stringer -type=QAbstractSeries__SeriesType
 //QAbstractSeries::SeriesType
 type QAbstractSeries__SeriesType int64
 
 const (
-	QAbstractSeries__SeriesTypeLine                 = QAbstractSeries__SeriesType(0)
-	QAbstractSeries__SeriesTypeArea                 = QAbstractSeries__SeriesType(1)
-	QAbstractSeries__SeriesTypeBar                  = QAbstractSeries__SeriesType(2)
-	QAbstractSeries__SeriesTypeStackedBar           = QAbstractSeries__SeriesType(3)
-	QAbstractSeries__SeriesTypePercentBar           = QAbstractSeries__SeriesType(4)
-	QAbstractSeries__SeriesTypePie                  = QAbstractSeries__SeriesType(5)
-	QAbstractSeries__SeriesTypeScatter              = QAbstractSeries__SeriesType(6)
-	QAbstractSeries__SeriesTypeSpline               = QAbstractSeries__SeriesType(7)
-	QAbstractSeries__SeriesTypeHorizontalBar        = QAbstractSeries__SeriesType(8)
-	QAbstractSeries__SeriesTypeHorizontalStackedBar = QAbstractSeries__SeriesType(9)
-	QAbstractSeries__SeriesTypeHorizontalPercentBar = QAbstractSeries__SeriesType(10)
-	QAbstractSeries__SeriesTypeBoxPlot              = QAbstractSeries__SeriesType(11)
+	QAbstractSeries__SeriesTypeLine                 QAbstractSeries__SeriesType = QAbstractSeries__SeriesType(0)
+	QAbstractSeries__SeriesTypeArea                 QAbstractSeries__SeriesType = QAbstractSeries__SeriesType(1)
+	QAbstractSeries__SeriesTypeBar                  QAbstractSeries__SeriesType = QAbstractSeries__SeriesType(2)
+	QAbstractSeries__SeriesTypeStackedBar           QAbstractSeries__SeriesType = QAbstractSeries__SeriesType(3)
+	QAbstractSeries__SeriesTypePercentBar           QAbstractSeries__SeriesType = QAbstractSeries__SeriesType(4)
+	QAbstractSeries__SeriesTypePie                  QAbstractSeries__SeriesType = QAbstractSeries__SeriesType(5)
+	QAbstractSeries__SeriesTypeScatter              QAbstractSeries__SeriesType = QAbstractSeries__SeriesType(6)
+	QAbstractSeries__SeriesTypeSpline               QAbstractSeries__SeriesType = QAbstractSeries__SeriesType(7)
+	QAbstractSeries__SeriesTypeHorizontalBar        QAbstractSeries__SeriesType = QAbstractSeries__SeriesType(8)
+	QAbstractSeries__SeriesTypeHorizontalStackedBar QAbstractSeries__SeriesType = QAbstractSeries__SeriesType(9)
+	QAbstractSeries__SeriesTypeHorizontalPercentBar QAbstractSeries__SeriesType = QAbstractSeries__SeriesType(10)
+	QAbstractSeries__SeriesTypeBoxPlot              QAbstractSeries__SeriesType = QAbstractSeries__SeriesType(11)
 )
 
 type QAbstractSeries struct {
@@ -4698,15 +4701,16 @@ func (ptr *QBoxPlotSeries) boxSets_atList(i int) *QBoxSet {
 	return nil
 }
 
+//go:generate stringer -type=QBoxSet__ValuePositions
 //QBoxSet::ValuePositions
 type QBoxSet__ValuePositions int64
 
 const (
-	QBoxSet__LowerExtreme  = QBoxSet__ValuePositions(0)
-	QBoxSet__LowerQuartile = QBoxSet__ValuePositions(1)
-	QBoxSet__Median        = QBoxSet__ValuePositions(2)
-	QBoxSet__UpperQuartile = QBoxSet__ValuePositions(3)
-	QBoxSet__UpperExtreme  = QBoxSet__ValuePositions(4)
+	QBoxSet__LowerExtreme  QBoxSet__ValuePositions = QBoxSet__ValuePositions(0)
+	QBoxSet__LowerQuartile QBoxSet__ValuePositions = QBoxSet__ValuePositions(1)
+	QBoxSet__Median        QBoxSet__ValuePositions = QBoxSet__ValuePositions(2)
+	QBoxSet__UpperQuartile QBoxSet__ValuePositions = QBoxSet__ValuePositions(3)
+	QBoxSet__UpperExtreme  QBoxSet__ValuePositions = QBoxSet__ValuePositions(4)
 )
 
 type QBoxSet struct {
@@ -5165,12 +5169,13 @@ func (ptr *QBoxSet) DestroyQBoxSetDefault() {
 	}
 }
 
+//go:generate stringer -type=QCategoryAxis__AxisLabelsPosition
 //QCategoryAxis::AxisLabelsPosition
 type QCategoryAxis__AxisLabelsPosition int64
 
 const (
-	QCategoryAxis__AxisLabelsPositionCenter  = QCategoryAxis__AxisLabelsPosition(0x0)
-	QCategoryAxis__AxisLabelsPositionOnValue = QCategoryAxis__AxisLabelsPosition(0x1)
+	QCategoryAxis__AxisLabelsPositionCenter  QCategoryAxis__AxisLabelsPosition = QCategoryAxis__AxisLabelsPosition(0x0)
+	QCategoryAxis__AxisLabelsPositionOnValue QCategoryAxis__AxisLabelsPosition = QCategoryAxis__AxisLabelsPosition(0x1)
 )
 
 type QCategoryAxis struct {
@@ -5364,37 +5369,40 @@ func (ptr *QCategoryAxis) DestroyQCategoryAxis() {
 	}
 }
 
+//go:generate stringer -type=QChart__AnimationOption
 //QChart::AnimationOption
 type QChart__AnimationOption int64
 
 const (
-	QChart__NoAnimation        = QChart__AnimationOption(0x0)
-	QChart__GridAxisAnimations = QChart__AnimationOption(0x1)
-	QChart__SeriesAnimations   = QChart__AnimationOption(0x2)
-	QChart__AllAnimations      = QChart__AnimationOption(0x3)
+	QChart__NoAnimation        QChart__AnimationOption = QChart__AnimationOption(0x0)
+	QChart__GridAxisAnimations QChart__AnimationOption = QChart__AnimationOption(0x1)
+	QChart__SeriesAnimations   QChart__AnimationOption = QChart__AnimationOption(0x2)
+	QChart__AllAnimations      QChart__AnimationOption = QChart__AnimationOption(0x3)
 )
 
+//go:generate stringer -type=QChart__ChartTheme
 //QChart::ChartTheme
 type QChart__ChartTheme int64
 
 const (
-	QChart__ChartThemeLight        = QChart__ChartTheme(0)
-	QChart__ChartThemeBlueCerulean = QChart__ChartTheme(1)
-	QChart__ChartThemeDark         = QChart__ChartTheme(2)
-	QChart__ChartThemeBrownSand    = QChart__ChartTheme(3)
-	QChart__ChartThemeBlueNcs      = QChart__ChartTheme(4)
-	QChart__ChartThemeHighContrast = QChart__ChartTheme(5)
-	QChart__ChartThemeBlueIcy      = QChart__ChartTheme(6)
-	QChart__ChartThemeQt           = QChart__ChartTheme(7)
+	QChart__ChartThemeLight        QChart__ChartTheme = QChart__ChartTheme(0)
+	QChart__ChartThemeBlueCerulean QChart__ChartTheme = QChart__ChartTheme(1)
+	QChart__ChartThemeDark         QChart__ChartTheme = QChart__ChartTheme(2)
+	QChart__ChartThemeBrownSand    QChart__ChartTheme = QChart__ChartTheme(3)
+	QChart__ChartThemeBlueNcs      QChart__ChartTheme = QChart__ChartTheme(4)
+	QChart__ChartThemeHighContrast QChart__ChartTheme = QChart__ChartTheme(5)
+	QChart__ChartThemeBlueIcy      QChart__ChartTheme = QChart__ChartTheme(6)
+	QChart__ChartThemeQt           QChart__ChartTheme = QChart__ChartTheme(7)
 )
 
+//go:generate stringer -type=QChart__ChartType
 //QChart::ChartType
 type QChart__ChartType int64
 
 const (
-	QChart__ChartTypeUndefined = QChart__ChartType(0)
-	QChart__ChartTypeCartesian = QChart__ChartType(1)
-	QChart__ChartTypePolar     = QChart__ChartType(2)
+	QChart__ChartTypeUndefined QChart__ChartType = QChart__ChartType(0)
+	QChart__ChartTypeCartesian QChart__ChartType = QChart__ChartType(1)
+	QChart__ChartTypePolar     QChart__ChartType = QChart__ChartType(2)
 )
 
 type QChart struct {
@@ -5915,14 +5923,15 @@ func (ptr *QChart) series_atList(i int) *QAbstractSeries {
 	return nil
 }
 
+//go:generate stringer -type=QChartView__RubberBand
 //QChartView::RubberBand
 type QChartView__RubberBand int64
 
 const (
-	QChartView__NoRubberBand         = QChartView__RubberBand(0x0)
-	QChartView__VerticalRubberBand   = QChartView__RubberBand(0x1)
-	QChartView__HorizontalRubberBand = QChartView__RubberBand(0x2)
-	QChartView__RectangleRubberBand  = QChartView__RubberBand(0x3)
+	QChartView__NoRubberBand         QChartView__RubberBand = QChartView__RubberBand(0x0)
+	QChartView__VerticalRubberBand   QChartView__RubberBand = QChartView__RubberBand(0x1)
+	QChartView__HorizontalRubberBand QChartView__RubberBand = QChartView__RubberBand(0x2)
+	QChartView__RectangleRubberBand  QChartView__RubberBand = QChartView__RubberBand(0x3)
 )
 
 type QChartView struct {
@@ -7915,15 +7924,16 @@ func (ptr *QLegend) markers_atList(i int) *QLegendMarker {
 	return nil
 }
 
+//go:generate stringer -type=QLegendMarker__LegendMarkerType
 //QLegendMarker::LegendMarkerType
 type QLegendMarker__LegendMarkerType int64
 
 const (
-	QLegendMarker__LegendMarkerTypeArea    = QLegendMarker__LegendMarkerType(0)
-	QLegendMarker__LegendMarkerTypeBar     = QLegendMarker__LegendMarkerType(1)
-	QLegendMarker__LegendMarkerTypePie     = QLegendMarker__LegendMarkerType(2)
-	QLegendMarker__LegendMarkerTypeXY      = QLegendMarker__LegendMarkerType(3)
-	QLegendMarker__LegendMarkerTypeBoxPlot = QLegendMarker__LegendMarkerType(4)
+	QLegendMarker__LegendMarkerTypeArea    QLegendMarker__LegendMarkerType = QLegendMarker__LegendMarkerType(0)
+	QLegendMarker__LegendMarkerTypeBar     QLegendMarker__LegendMarkerType = QLegendMarker__LegendMarkerType(1)
+	QLegendMarker__LegendMarkerTypePie     QLegendMarker__LegendMarkerType = QLegendMarker__LegendMarkerType(2)
+	QLegendMarker__LegendMarkerTypeXY      QLegendMarker__LegendMarkerType = QLegendMarker__LegendMarkerType(3)
+	QLegendMarker__LegendMarkerTypeBoxPlot QLegendMarker__LegendMarkerType = QLegendMarker__LegendMarkerType(4)
 )
 
 type QLegendMarker struct {
@@ -9449,14 +9459,15 @@ func (ptr *QPieSeries) slices_atList(i int) *QPieSlice {
 	return nil
 }
 
+//go:generate stringer -type=QPieSlice__LabelPosition
 //QPieSlice::LabelPosition
 type QPieSlice__LabelPosition int64
 
 const (
-	QPieSlice__LabelOutside          = QPieSlice__LabelPosition(0)
-	QPieSlice__LabelInsideHorizontal = QPieSlice__LabelPosition(1)
-	QPieSlice__LabelInsideTangential = QPieSlice__LabelPosition(2)
-	QPieSlice__LabelInsideNormal     = QPieSlice__LabelPosition(3)
+	QPieSlice__LabelOutside          QPieSlice__LabelPosition = QPieSlice__LabelPosition(0)
+	QPieSlice__LabelInsideHorizontal QPieSlice__LabelPosition = QPieSlice__LabelPosition(1)
+	QPieSlice__LabelInsideTangential QPieSlice__LabelPosition = QPieSlice__LabelPosition(2)
+	QPieSlice__LabelInsideNormal     QPieSlice__LabelPosition = QPieSlice__LabelPosition(3)
 )
 
 type QPieSlice struct {
@@ -10336,12 +10347,13 @@ func (ptr *QPieSlice) DestroyQPieSliceDefault() {
 	}
 }
 
+//go:generate stringer -type=QPolarChart__PolarOrientation
 //QPolarChart::PolarOrientation
 type QPolarChart__PolarOrientation int64
 
 const (
-	QPolarChart__PolarOrientationRadial  = QPolarChart__PolarOrientation(0x1)
-	QPolarChart__PolarOrientationAngular = QPolarChart__PolarOrientation(0x2)
+	QPolarChart__PolarOrientationRadial  QPolarChart__PolarOrientation = QPolarChart__PolarOrientation(0x1)
+	QPolarChart__PolarOrientationAngular QPolarChart__PolarOrientation = QPolarChart__PolarOrientation(0x2)
 )
 
 type QPolarChart struct {
@@ -10428,12 +10440,13 @@ func (ptr *QPolarChart) axes_atList(i int) *QAbstractAxis {
 	return nil
 }
 
+//go:generate stringer -type=QScatterSeries__MarkerShape
 //QScatterSeries::MarkerShape
 type QScatterSeries__MarkerShape int64
 
 const (
-	QScatterSeries__MarkerShapeCircle    = QScatterSeries__MarkerShape(0)
-	QScatterSeries__MarkerShapeRectangle = QScatterSeries__MarkerShape(1)
+	QScatterSeries__MarkerShapeCircle    QScatterSeries__MarkerShape = QScatterSeries__MarkerShape(0)
+	QScatterSeries__MarkerShapeRectangle QScatterSeries__MarkerShape = QScatterSeries__MarkerShape(1)
 )
 
 type QScatterSeries struct {

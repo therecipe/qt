@@ -15,7 +15,7 @@ func GoTemplate(module string, stub bool) []byte {
 	var bb = new(bytes.Buffer)
 	defer bb.Reset()
 
-	if module != parser.MOC {
+	if !parser.State.Moc {
 		module = "Qt" + module
 	}
 
@@ -23,7 +23,7 @@ func GoTemplate(module string, stub bool) []byte {
 		fmt.Fprintf(bb, "func cGoUnpackString(s C.struct_%v_PackedString) string { if len := int(s.len); len == -1 {\n return C.GoString(s.data)\n }\n return C.GoStringN(s.data, C.int(s.len)) }\n", strings.Title(module))
 	}
 
-	for _, class := range getSortedClassesForModule(module) {
+	for _, class := range sortedClassesForModule(module) {
 
 		//all class enums
 		for _, enum := range class.Enums {
@@ -32,9 +32,9 @@ func GoTemplate(module string, stub bool) []byte {
 
 		class.Stub = UseStub() || stub
 
-		if !parser.CurrentState.Minimal || (parser.CurrentState.Minimal && class.Export) {
+		if !parser.State.Minimal || (parser.State.Minimal && class.Export) {
 
-			if module != parser.MOC {
+			if !parser.State.Moc {
 				fmt.Fprintf(bb, "type %v struct {\n%v\n}\n\n",
 
 					class.Name,
@@ -48,11 +48,11 @@ func GoTemplate(module string, stub bool) []byte {
 						defer bb.Reset()
 
 						for _, parentClassName := range class.GetBases() {
-							var parentClass = parser.CurrentState.ClassMap[parentClassName]
+							var parentClass = parser.State.ClassMap[parentClassName]
 							if parentClass.Module == class.Module {
 								fmt.Fprintf(bb, "%v\n", parentClassName)
 							} else {
-								fmt.Fprintf(bb, "%v.%v\n", shortModule(parentClass.Module), parentClassName)
+								fmt.Fprintf(bb, "%v.%v\n", goModule(parentClass.Module), parentClassName)
 							}
 						}
 
@@ -70,11 +70,11 @@ func GoTemplate(module string, stub bool) []byte {
 					defer bb.Reset()
 
 					for _, parentClassName := range class.GetBases() {
-						var parentClass = parser.CurrentState.ClassMap[parentClassName]
+						var parentClass = parser.State.ClassMap[parentClassName]
 						if parentClass.Module == class.Module {
 							fmt.Fprintf(bb, "%v_ITF\n", parentClassName)
 						} else {
-							fmt.Fprintf(bb, "%v.%v_ITF\n", shortModule(parentClass.Module), parentClassName)
+							fmt.Fprintf(bb, "%v.%v_ITF\n", goModule(parentClass.Module), parentClassName)
 						}
 					}
 
@@ -139,7 +139,7 @@ ptr.SetPointer(nil)
 }
 
 `, class.Name, class.Name, func() string {
-						if classNeedsCallbackFunctions(class) || class.IsSubClassOfQObject() {
+						if class.HasCallbackFunctions() || class.IsSubClassOfQObject() {
 							return "\nqt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))"
 						}
 						return ""
@@ -148,14 +148,14 @@ ptr.SetPointer(nil)
 			}
 		}
 
-		if classIsSupported(class) {
+		if class.IsSupported() {
 
 			var implementedVirtuals = make(map[string]struct{})
 
 			//all class functions
 			for _, function := range class.Functions {
 
-				if functionIsSupported(class, function) {
+				if function.IsSupported() {
 
 					implementedVirtuals[fmt.Sprint(function.Name, function.OverloadNumber)] = struct{}{}
 					switch {
@@ -222,13 +222,13 @@ ptr.SetPointer(nil)
 
 			//virtual parent functions
 			for _, parentClassName := range class.GetAllBases() {
-				var parentClass = parser.CurrentState.ClassMap[parentClassName]
-				if classIsSupported(parentClass) {
+				var parentClass = parser.State.ClassMap[parentClassName]
+				if parentClass.IsSupported() {
 
 					for _, function := range parentClass.Functions {
 						if _, exists := implementedVirtuals[fmt.Sprint(function.Name, function.OverloadNumber)]; !exists {
 
-							if functionIsSupported(parentClass, function) {
+							if function.IsSupported() {
 								if function.Meta != parser.SIGNAL && (function.Virtual == parser.IMPURE || function.Virtual == parser.PURE || function.Meta == parser.SLOT) && function.Meta != parser.DESTRUCTOR {
 									implementedVirtuals[fmt.Sprint(function.Name, function.OverloadNumber)] = struct{}{}
 
@@ -260,8 +260,7 @@ ptr.SetPointer(nil)
 									}
 									fmt.Fprintf(bb, "%v\n\n", goFunction(&function))
 
-									var class, exist = function.Class()
-									if !exist || (class.Module == parser.MOC && function.Virtual == parser.PURE) {
+									if parser.State.Moc && function.Virtual == parser.PURE {
 										continue
 									}
 
@@ -282,7 +281,7 @@ ptr.SetPointer(nil)
 
 	}
 
-	return preambleGo(shortModule(module), bb.Bytes(), stub)
+	return preambleGo(goModule(module), bb.Bytes(), stub)
 }
 
 func preambleGo(module string, input []byte, stub bool) []byte {
@@ -297,8 +296,8 @@ package %v
 import "C"
 import (
 `, func() string {
-			if parser.CurrentState.MocModule != "" {
-				return parser.CurrentState.MocModule
+			if parser.State.Moc {
+				return parser.State.Module
 			}
 			return module
 		}())
@@ -325,12 +324,12 @@ import (
 						return "// +build !sailfish,!sailfish_emulator"
 					}
 
-				case parser.CurrentState.Minimal:
+				case parser.State.Minimal:
 					{
 						return "// +build minimal"
 					}
 
-				case module == parser.MOC:
+				case parser.State.Moc:
 					{
 						return ""
 					}
@@ -353,23 +352,14 @@ import (
 			}(),
 
 			func() string {
-				if parser.CurrentState.MocModule != "" {
-					return parser.CurrentState.MocModule
+				if parser.State.Moc {
+					return parser.State.Module
 				}
 				return module
 			}(),
 
 			func() string {
-				if parser.CurrentState.Minimal {
-					return fmt.Sprintf("%v-minimal", module)
-				}
-
 				switch module {
-				case parser.MOC:
-					{
-						return "moc"
-					}
-
 				case "androidextras":
 					{
 						return fmt.Sprintf("%v_android", module)
@@ -382,6 +372,14 @@ import (
 
 				default:
 					{
+						if parser.State.Minimal {
+							return fmt.Sprintf("%v-minimal", module)
+						}
+
+						if parser.State.Moc {
+							return "moc"
+						}
+
 						return module
 					}
 				}
@@ -407,7 +405,7 @@ import (
 				{
 					fmt.Fprintf(bb, "\"github.com/therecipe/qt/%v\"\n", m)
 
-					if module == parser.MOC {
+					if parser.State.Moc {
 						parser.LibDeps[parser.MOC] = append(parser.LibDeps[parser.MOC], strings.Title(m))
 					}
 				}
@@ -427,7 +425,7 @@ import (
 }
 
 func renameSubClasses(in []byte, r string) []byte {
-	for _, c := range parser.CurrentState.ClassMap {
+	for _, c := range parser.State.ClassMap {
 		if c.Fullname != "" {
 			in = []byte(strings.Replace(string(in), c.Name, strings.Replace(c.Fullname, "::", r, -1), -1))
 			in = []byte(strings.Replace(string(in), "C."+strings.Replace(c.Fullname, "::", r, -1), "C."+c.Name, -1))

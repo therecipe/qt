@@ -22,7 +22,7 @@ import (
 
 func init() {
 	// TODO: dangerous
-	parser.CurrentState.Moc = true
+	parser.State.Moc = true
 }
 
 type appMoc struct {
@@ -44,7 +44,7 @@ func newAppMoc(appPath string) *appMoc {
 
 func cacheModules() (err error) {
 
-	if len(parser.CurrentState.ClassMap) != 0 {
+	if len(parser.State.ClassMap) != 0 {
 		utils.Log.WithField("func", "cacheModules").Debug("modules already cached, skipping caching of modules")
 		return
 	}
@@ -58,7 +58,7 @@ func cacheModules() (err error) {
 func (m *appMoc) cleanupClassMap() (size int) {
 	for _, class := range m.module.Namespace.Classes {
 		if _, failed := class.GetAllBasesRecursiveCheckFailed(0); failed || !class.IsSubClassOfQObject() {
-			delete(parser.CurrentState.ClassMap, class.Name)
+			delete(parser.State.ClassMap, class.Name)
 		} else {
 			size++
 		}
@@ -77,7 +77,7 @@ func (m *appMoc) parseGo(path string) error {
 		return errParse
 	}
 
-	parser.CurrentState.MocModule = file.Name.String()
+	parser.State.Module = file.Name.String()
 
 	for _, d := range file.Decls {
 		typeDecl, ok := d.(*ast.GenDecl)
@@ -316,7 +316,7 @@ func (m *appMoc) generate() error {
 	//find valid base classes for the moc classes in moc namespace and global namespace
 	for _, c := range m.module.Namespace.Classes {
 		for _, bc := range c.GetBases() {
-			if isInClassArray(m.module.Namespace.Classes, bc) || isInClassMap(parser.CurrentState.ClassMap, bc) {
+			if isInClassArray(m.module.Namespace.Classes, bc) || isInClassMap(parser.State.ClassMap, bc) {
 				c.Bases = bc
 				break
 			}
@@ -345,7 +345,7 @@ func (m *appMoc) generate() error {
 	//copy constructor and destructor
 	for _ = range m.module.Namespace.Classes {
 		for _, c := range m.module.Namespace.Classes {
-			if bc, exists := parser.CurrentState.ClassMap[c.Bases]; exists {
+			if bc, exists := parser.State.ClassMap[c.Bases]; exists {
 				for _, bcf := range bc.Functions {
 					if bcf.Meta == parser.CONSTRUCTOR || bcf.Meta == parser.DESTRUCTOR {
 						var f = *bcf
@@ -374,9 +374,9 @@ func (m *appMoc) generate() error {
 	}
 	templater.CgoTemplate(parser.MOC, m.appPath)
 
-	for _, c := range parser.CurrentState.ClassMap {
+	for _, c := range parser.State.ClassMap {
 		if c.Module == parser.MOC {
-			delete(parser.CurrentState.ClassMap, c.Name)
+			delete(parser.State.ClassMap, c.Name)
 		}
 	}
 
@@ -488,8 +488,8 @@ func getCppTypeFromGoType(f *parser.Function, t string) string {
 		return strings.Replace(t, "_", ":", -1)
 	}
 
-	if _, exists := parser.CurrentState.ClassMap[t]; exists {
-		if parser.CurrentState.ClassMap[t].IsSubClassOfQObject() {
+	if _, exists := parser.State.ClassMap[t]; exists {
+		if parser.State.ClassMap[t].IsSubClassOfQObject() {
 			return t + "*"
 		}
 		return t

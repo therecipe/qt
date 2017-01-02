@@ -8,13 +8,13 @@ import (
 )
 
 func GenModule(m string) {
-	if !ShouldBuild(m) {
+	if !parser.ShouldBuild(m) {
 		return
 	}
 
 	//prepare state
 	{
-		parser.CurrentState.CurrentModule = m
+		parser.State.Module = m
 	}
 
 	//generate
@@ -47,7 +47,7 @@ func GenModule(m string) {
 
 		CgoTemplate(m, "")
 
-		if parser.CurrentState.Minimal {
+		if parser.State.Minimal {
 			if suffix != "" {
 				return
 			}

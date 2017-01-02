@@ -24,42 +24,46 @@ func cGoUnpackString(s C.struct_QtSql_PackedString) string {
 	return C.GoStringN(s.data, C.int(s.len))
 }
 
+//go:generate stringer -type=QSql__Location
 //QSql::Location
 type QSql__Location int64
 
 const (
-	QSql__BeforeFirstRow = QSql__Location(-1)
-	QSql__AfterLastRow   = QSql__Location(-2)
+	QSql__BeforeFirstRow QSql__Location = QSql__Location(-1)
+	QSql__AfterLastRow   QSql__Location = QSql__Location(-2)
 )
 
+//go:generate stringer -type=QSql__NumericalPrecisionPolicy
 //QSql::NumericalPrecisionPolicy
 type QSql__NumericalPrecisionPolicy int64
 
 const (
-	QSql__LowPrecisionInt32  = QSql__NumericalPrecisionPolicy(0x01)
-	QSql__LowPrecisionInt64  = QSql__NumericalPrecisionPolicy(0x02)
-	QSql__LowPrecisionDouble = QSql__NumericalPrecisionPolicy(0x04)
-	QSql__HighPrecision      = QSql__NumericalPrecisionPolicy(0)
+	QSql__LowPrecisionInt32  QSql__NumericalPrecisionPolicy = QSql__NumericalPrecisionPolicy(0x01)
+	QSql__LowPrecisionInt64  QSql__NumericalPrecisionPolicy = QSql__NumericalPrecisionPolicy(0x02)
+	QSql__LowPrecisionDouble QSql__NumericalPrecisionPolicy = QSql__NumericalPrecisionPolicy(0x04)
+	QSql__HighPrecision      QSql__NumericalPrecisionPolicy = QSql__NumericalPrecisionPolicy(0)
 )
 
+//go:generate stringer -type=QSql__ParamTypeFlag
 //QSql::ParamTypeFlag
 type QSql__ParamTypeFlag int64
 
 const (
-	QSql__In     = QSql__ParamTypeFlag(0x00000001)
-	QSql__Out    = QSql__ParamTypeFlag(0x00000002)
-	QSql__InOut  = QSql__ParamTypeFlag(QSql__In | QSql__Out)
-	QSql__Binary = QSql__ParamTypeFlag(0x00000004)
+	QSql__In     QSql__ParamTypeFlag = QSql__ParamTypeFlag(0x00000001)
+	QSql__Out    QSql__ParamTypeFlag = QSql__ParamTypeFlag(0x00000002)
+	QSql__InOut  QSql__ParamTypeFlag = QSql__ParamTypeFlag(QSql__In | QSql__Out)
+	QSql__Binary QSql__ParamTypeFlag = QSql__ParamTypeFlag(0x00000004)
 )
 
+//go:generate stringer -type=QSql__TableType
 //QSql::TableType
 type QSql__TableType int64
 
 const (
-	QSql__Tables       = QSql__TableType(0x01)
-	QSql__SystemTables = QSql__TableType(0x02)
-	QSql__Views        = QSql__TableType(0x04)
-	QSql__AllTables    = QSql__TableType(0xff)
+	QSql__Tables       QSql__TableType = QSql__TableType(0x01)
+	QSql__SystemTables QSql__TableType = QSql__TableType(0x02)
+	QSql__Views        QSql__TableType = QSql__TableType(0x04)
+	QSql__AllTables    QSql__TableType = QSql__TableType(0xff)
 )
 
 type QSql struct {
@@ -556,68 +560,73 @@ func (ptr *QSqlDatabase) DefaultConnection() string {
 	return cGoUnpackString(C.QSqlDatabase_QSqlDatabase_DefaultConnection())
 }
 
+//go:generate stringer -type=QSqlDriver__DbmsType
 //QSqlDriver::DbmsType
 type QSqlDriver__DbmsType int64
 
 const (
-	QSqlDriver__UnknownDbms = QSqlDriver__DbmsType(0)
-	QSqlDriver__MSSqlServer = QSqlDriver__DbmsType(1)
-	QSqlDriver__MySqlServer = QSqlDriver__DbmsType(2)
-	QSqlDriver__PostgreSQL  = QSqlDriver__DbmsType(3)
-	QSqlDriver__Oracle      = QSqlDriver__DbmsType(4)
-	QSqlDriver__Sybase      = QSqlDriver__DbmsType(5)
-	QSqlDriver__SQLite      = QSqlDriver__DbmsType(6)
-	QSqlDriver__Interbase   = QSqlDriver__DbmsType(7)
-	QSqlDriver__DB2         = QSqlDriver__DbmsType(8)
+	QSqlDriver__UnknownDbms QSqlDriver__DbmsType = QSqlDriver__DbmsType(0)
+	QSqlDriver__MSSqlServer QSqlDriver__DbmsType = QSqlDriver__DbmsType(1)
+	QSqlDriver__MySqlServer QSqlDriver__DbmsType = QSqlDriver__DbmsType(2)
+	QSqlDriver__PostgreSQL  QSqlDriver__DbmsType = QSqlDriver__DbmsType(3)
+	QSqlDriver__Oracle      QSqlDriver__DbmsType = QSqlDriver__DbmsType(4)
+	QSqlDriver__Sybase      QSqlDriver__DbmsType = QSqlDriver__DbmsType(5)
+	QSqlDriver__SQLite      QSqlDriver__DbmsType = QSqlDriver__DbmsType(6)
+	QSqlDriver__Interbase   QSqlDriver__DbmsType = QSqlDriver__DbmsType(7)
+	QSqlDriver__DB2         QSqlDriver__DbmsType = QSqlDriver__DbmsType(8)
 )
 
+//go:generate stringer -type=QSqlDriver__DriverFeature
 //QSqlDriver::DriverFeature
 type QSqlDriver__DriverFeature int64
 
 const (
-	QSqlDriver__Transactions           = QSqlDriver__DriverFeature(0)
-	QSqlDriver__QuerySize              = QSqlDriver__DriverFeature(1)
-	QSqlDriver__BLOB                   = QSqlDriver__DriverFeature(2)
-	QSqlDriver__Unicode                = QSqlDriver__DriverFeature(3)
-	QSqlDriver__PreparedQueries        = QSqlDriver__DriverFeature(4)
-	QSqlDriver__NamedPlaceholders      = QSqlDriver__DriverFeature(5)
-	QSqlDriver__PositionalPlaceholders = QSqlDriver__DriverFeature(6)
-	QSqlDriver__LastInsertId           = QSqlDriver__DriverFeature(7)
-	QSqlDriver__BatchOperations        = QSqlDriver__DriverFeature(8)
-	QSqlDriver__SimpleLocking          = QSqlDriver__DriverFeature(9)
-	QSqlDriver__LowPrecisionNumbers    = QSqlDriver__DriverFeature(10)
-	QSqlDriver__EventNotifications     = QSqlDriver__DriverFeature(11)
-	QSqlDriver__FinishQuery            = QSqlDriver__DriverFeature(12)
-	QSqlDriver__MultipleResultSets     = QSqlDriver__DriverFeature(13)
-	QSqlDriver__CancelQuery            = QSqlDriver__DriverFeature(14)
+	QSqlDriver__Transactions           QSqlDriver__DriverFeature = QSqlDriver__DriverFeature(0)
+	QSqlDriver__QuerySize              QSqlDriver__DriverFeature = QSqlDriver__DriverFeature(1)
+	QSqlDriver__BLOB                   QSqlDriver__DriverFeature = QSqlDriver__DriverFeature(2)
+	QSqlDriver__Unicode                QSqlDriver__DriverFeature = QSqlDriver__DriverFeature(3)
+	QSqlDriver__PreparedQueries        QSqlDriver__DriverFeature = QSqlDriver__DriverFeature(4)
+	QSqlDriver__NamedPlaceholders      QSqlDriver__DriverFeature = QSqlDriver__DriverFeature(5)
+	QSqlDriver__PositionalPlaceholders QSqlDriver__DriverFeature = QSqlDriver__DriverFeature(6)
+	QSqlDriver__LastInsertId           QSqlDriver__DriverFeature = QSqlDriver__DriverFeature(7)
+	QSqlDriver__BatchOperations        QSqlDriver__DriverFeature = QSqlDriver__DriverFeature(8)
+	QSqlDriver__SimpleLocking          QSqlDriver__DriverFeature = QSqlDriver__DriverFeature(9)
+	QSqlDriver__LowPrecisionNumbers    QSqlDriver__DriverFeature = QSqlDriver__DriverFeature(10)
+	QSqlDriver__EventNotifications     QSqlDriver__DriverFeature = QSqlDriver__DriverFeature(11)
+	QSqlDriver__FinishQuery            QSqlDriver__DriverFeature = QSqlDriver__DriverFeature(12)
+	QSqlDriver__MultipleResultSets     QSqlDriver__DriverFeature = QSqlDriver__DriverFeature(13)
+	QSqlDriver__CancelQuery            QSqlDriver__DriverFeature = QSqlDriver__DriverFeature(14)
 )
 
+//go:generate stringer -type=QSqlDriver__IdentifierType
 //QSqlDriver::IdentifierType
 type QSqlDriver__IdentifierType int64
 
 const (
-	QSqlDriver__FieldName = QSqlDriver__IdentifierType(0)
-	QSqlDriver__TableName = QSqlDriver__IdentifierType(1)
+	QSqlDriver__FieldName QSqlDriver__IdentifierType = QSqlDriver__IdentifierType(0)
+	QSqlDriver__TableName QSqlDriver__IdentifierType = QSqlDriver__IdentifierType(1)
 )
 
+//go:generate stringer -type=QSqlDriver__NotificationSource
 //QSqlDriver::NotificationSource
 type QSqlDriver__NotificationSource int64
 
 const (
-	QSqlDriver__UnknownSource = QSqlDriver__NotificationSource(0)
-	QSqlDriver__SelfSource    = QSqlDriver__NotificationSource(1)
-	QSqlDriver__OtherSource   = QSqlDriver__NotificationSource(2)
+	QSqlDriver__UnknownSource QSqlDriver__NotificationSource = QSqlDriver__NotificationSource(0)
+	QSqlDriver__SelfSource    QSqlDriver__NotificationSource = QSqlDriver__NotificationSource(1)
+	QSqlDriver__OtherSource   QSqlDriver__NotificationSource = QSqlDriver__NotificationSource(2)
 )
 
+//go:generate stringer -type=QSqlDriver__StatementType
 //QSqlDriver::StatementType
 type QSqlDriver__StatementType int64
 
 const (
-	QSqlDriver__WhereStatement  = QSqlDriver__StatementType(0)
-	QSqlDriver__SelectStatement = QSqlDriver__StatementType(1)
-	QSqlDriver__UpdateStatement = QSqlDriver__StatementType(2)
-	QSqlDriver__InsertStatement = QSqlDriver__StatementType(3)
-	QSqlDriver__DeleteStatement = QSqlDriver__StatementType(4)
+	QSqlDriver__WhereStatement  QSqlDriver__StatementType = QSqlDriver__StatementType(0)
+	QSqlDriver__SelectStatement QSqlDriver__StatementType = QSqlDriver__StatementType(1)
+	QSqlDriver__UpdateStatement QSqlDriver__StatementType = QSqlDriver__StatementType(2)
+	QSqlDriver__InsertStatement QSqlDriver__StatementType = QSqlDriver__StatementType(3)
+	QSqlDriver__DeleteStatement QSqlDriver__StatementType = QSqlDriver__StatementType(4)
 )
 
 type QSqlDriver struct {
@@ -2579,15 +2588,16 @@ func (ptr *QSqlDriverPlugin) MetaObjectDefault() *core.QMetaObject {
 	return nil
 }
 
+//go:generate stringer -type=QSqlError__ErrorType
 //QSqlError::ErrorType
 type QSqlError__ErrorType int64
 
 const (
-	QSqlError__NoError          = QSqlError__ErrorType(0)
-	QSqlError__ConnectionError  = QSqlError__ErrorType(1)
-	QSqlError__StatementError   = QSqlError__ErrorType(2)
-	QSqlError__TransactionError = QSqlError__ErrorType(3)
-	QSqlError__UnknownError     = QSqlError__ErrorType(4)
+	QSqlError__NoError          QSqlError__ErrorType = QSqlError__ErrorType(0)
+	QSqlError__ConnectionError  QSqlError__ErrorType = QSqlError__ErrorType(1)
+	QSqlError__StatementError   QSqlError__ErrorType = QSqlError__ErrorType(2)
+	QSqlError__TransactionError QSqlError__ErrorType = QSqlError__ErrorType(3)
+	QSqlError__UnknownError     QSqlError__ErrorType = QSqlError__ErrorType(4)
 )
 
 type QSqlError struct {
@@ -2694,13 +2704,14 @@ func (ptr *QSqlError) DestroyQSqlError() {
 	}
 }
 
+//go:generate stringer -type=QSqlField__RequiredStatus
 //QSqlField::RequiredStatus
 type QSqlField__RequiredStatus int64
 
 const (
-	QSqlField__Unknown  = QSqlField__RequiredStatus(-1)
-	QSqlField__Optional = QSqlField__RequiredStatus(0)
-	QSqlField__Required = QSqlField__RequiredStatus(1)
+	QSqlField__Unknown  QSqlField__RequiredStatus = QSqlField__RequiredStatus(-1)
+	QSqlField__Optional QSqlField__RequiredStatus = QSqlField__RequiredStatus(0)
+	QSqlField__Required QSqlField__RequiredStatus = QSqlField__RequiredStatus(1)
 )
 
 type QSqlField struct {
@@ -3018,12 +3029,13 @@ func (ptr *QSqlIndex) DestroyQSqlIndex() {
 	}
 }
 
+//go:generate stringer -type=QSqlQuery__BatchExecutionMode
 //QSqlQuery::BatchExecutionMode
 type QSqlQuery__BatchExecutionMode int64
 
 const (
-	QSqlQuery__ValuesAsRows    = QSqlQuery__BatchExecutionMode(0)
-	QSqlQuery__ValuesAsColumns = QSqlQuery__BatchExecutionMode(1)
+	QSqlQuery__ValuesAsRows    QSqlQuery__BatchExecutionMode = QSqlQuery__BatchExecutionMode(0)
+	QSqlQuery__ValuesAsColumns QSqlQuery__BatchExecutionMode = QSqlQuery__BatchExecutionMode(1)
 )
 
 type QSqlQuery struct {
@@ -6013,12 +6025,13 @@ func (ptr *QSqlRelationalDelegate) MetaObjectDefault() *core.QMetaObject {
 	return nil
 }
 
+//go:generate stringer -type=QSqlRelationalTableModel__JoinMode
 //QSqlRelationalTableModel::JoinMode
 type QSqlRelationalTableModel__JoinMode int64
 
 const (
-	QSqlRelationalTableModel__InnerJoin = QSqlRelationalTableModel__JoinMode(0)
-	QSqlRelationalTableModel__LeftJoin  = QSqlRelationalTableModel__JoinMode(1)
+	QSqlRelationalTableModel__InnerJoin QSqlRelationalTableModel__JoinMode = QSqlRelationalTableModel__JoinMode(0)
+	QSqlRelationalTableModel__LeftJoin  QSqlRelationalTableModel__JoinMode = QSqlRelationalTableModel__JoinMode(1)
 )
 
 type QSqlRelationalTableModel struct {
@@ -8244,12 +8257,13 @@ func (ptr *QSqlRelationalTableModel) MetaObjectDefault() *core.QMetaObject {
 	return nil
 }
 
+//go:generate stringer -type=QSqlResult__BindingSyntax
 //QSqlResult::BindingSyntax
 type QSqlResult__BindingSyntax int64
 
 const (
-	QSqlResult__PositionalBinding = QSqlResult__BindingSyntax(0)
-	QSqlResult__NamedBinding      = QSqlResult__BindingSyntax(1)
+	QSqlResult__PositionalBinding QSqlResult__BindingSyntax = QSqlResult__BindingSyntax(0)
+	QSqlResult__NamedBinding      QSqlResult__BindingSyntax = QSqlResult__BindingSyntax(1)
 )
 
 type QSqlResult struct {
@@ -9378,13 +9392,14 @@ func (ptr *QSqlResult) boundValues_atList(i int) *core.QVariant {
 	return nil
 }
 
+//go:generate stringer -type=QSqlTableModel__EditStrategy
 //QSqlTableModel::EditStrategy
 type QSqlTableModel__EditStrategy int64
 
 const (
-	QSqlTableModel__OnFieldChange  = QSqlTableModel__EditStrategy(0)
-	QSqlTableModel__OnRowChange    = QSqlTableModel__EditStrategy(1)
-	QSqlTableModel__OnManualSubmit = QSqlTableModel__EditStrategy(2)
+	QSqlTableModel__OnFieldChange  QSqlTableModel__EditStrategy = QSqlTableModel__EditStrategy(0)
+	QSqlTableModel__OnRowChange    QSqlTableModel__EditStrategy = QSqlTableModel__EditStrategy(1)
+	QSqlTableModel__OnManualSubmit QSqlTableModel__EditStrategy = QSqlTableModel__EditStrategy(2)
 )
 
 type QSqlTableModel struct {

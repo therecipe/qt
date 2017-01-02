@@ -13311,16 +13311,17 @@ func (ptr *QHelpSearchEngine) MetaObjectDefault() *core.QMetaObject {
 	return nil
 }
 
+//go:generate stringer -type=QHelpSearchQuery__FieldName
 //QHelpSearchQuery::FieldName
 type QHelpSearchQuery__FieldName int64
 
 const (
-	QHelpSearchQuery__DEFAULT = QHelpSearchQuery__FieldName(0)
-	QHelpSearchQuery__FUZZY   = QHelpSearchQuery__FieldName(1)
-	QHelpSearchQuery__WITHOUT = QHelpSearchQuery__FieldName(2)
-	QHelpSearchQuery__PHRASE  = QHelpSearchQuery__FieldName(3)
-	QHelpSearchQuery__ALL     = QHelpSearchQuery__FieldName(4)
-	QHelpSearchQuery__ATLEAST = QHelpSearchQuery__FieldName(5)
+	QHelpSearchQuery__DEFAULT QHelpSearchQuery__FieldName = QHelpSearchQuery__FieldName(0)
+	QHelpSearchQuery__FUZZY   QHelpSearchQuery__FieldName = QHelpSearchQuery__FieldName(1)
+	QHelpSearchQuery__WITHOUT QHelpSearchQuery__FieldName = QHelpSearchQuery__FieldName(2)
+	QHelpSearchQuery__PHRASE  QHelpSearchQuery__FieldName = QHelpSearchQuery__FieldName(3)
+	QHelpSearchQuery__ALL     QHelpSearchQuery__FieldName = QHelpSearchQuery__FieldName(4)
+	QHelpSearchQuery__ATLEAST QHelpSearchQuery__FieldName = QHelpSearchQuery__FieldName(5)
 )
 
 type QHelpSearchQuery struct {

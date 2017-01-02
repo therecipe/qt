@@ -4782,27 +4782,29 @@ func (ptr *QDesignerFormEditorInterface) MetaObjectDefault() *core.QMetaObject {
 	return nil
 }
 
+//go:generate stringer -type=QDesignerFormWindowCursorInterface__MoveMode
 //QDesignerFormWindowCursorInterface::MoveMode
 type QDesignerFormWindowCursorInterface__MoveMode int64
 
 const (
-	QDesignerFormWindowCursorInterface__MoveAnchor = QDesignerFormWindowCursorInterface__MoveMode(0)
-	QDesignerFormWindowCursorInterface__KeepAnchor = QDesignerFormWindowCursorInterface__MoveMode(1)
+	QDesignerFormWindowCursorInterface__MoveAnchor QDesignerFormWindowCursorInterface__MoveMode = QDesignerFormWindowCursorInterface__MoveMode(0)
+	QDesignerFormWindowCursorInterface__KeepAnchor QDesignerFormWindowCursorInterface__MoveMode = QDesignerFormWindowCursorInterface__MoveMode(1)
 )
 
+//go:generate stringer -type=QDesignerFormWindowCursorInterface__MoveOperation
 //QDesignerFormWindowCursorInterface::MoveOperation
 type QDesignerFormWindowCursorInterface__MoveOperation int64
 
 const (
-	QDesignerFormWindowCursorInterface__NoMove = QDesignerFormWindowCursorInterface__MoveOperation(0)
-	QDesignerFormWindowCursorInterface__Start  = QDesignerFormWindowCursorInterface__MoveOperation(1)
-	QDesignerFormWindowCursorInterface__End    = QDesignerFormWindowCursorInterface__MoveOperation(2)
-	QDesignerFormWindowCursorInterface__Next   = QDesignerFormWindowCursorInterface__MoveOperation(3)
-	QDesignerFormWindowCursorInterface__Prev   = QDesignerFormWindowCursorInterface__MoveOperation(4)
-	QDesignerFormWindowCursorInterface__Left   = QDesignerFormWindowCursorInterface__MoveOperation(5)
-	QDesignerFormWindowCursorInterface__Right  = QDesignerFormWindowCursorInterface__MoveOperation(6)
-	QDesignerFormWindowCursorInterface__Up     = QDesignerFormWindowCursorInterface__MoveOperation(7)
-	QDesignerFormWindowCursorInterface__Down   = QDesignerFormWindowCursorInterface__MoveOperation(8)
+	QDesignerFormWindowCursorInterface__NoMove QDesignerFormWindowCursorInterface__MoveOperation = QDesignerFormWindowCursorInterface__MoveOperation(0)
+	QDesignerFormWindowCursorInterface__Start  QDesignerFormWindowCursorInterface__MoveOperation = QDesignerFormWindowCursorInterface__MoveOperation(1)
+	QDesignerFormWindowCursorInterface__End    QDesignerFormWindowCursorInterface__MoveOperation = QDesignerFormWindowCursorInterface__MoveOperation(2)
+	QDesignerFormWindowCursorInterface__Next   QDesignerFormWindowCursorInterface__MoveOperation = QDesignerFormWindowCursorInterface__MoveOperation(3)
+	QDesignerFormWindowCursorInterface__Prev   QDesignerFormWindowCursorInterface__MoveOperation = QDesignerFormWindowCursorInterface__MoveOperation(4)
+	QDesignerFormWindowCursorInterface__Left   QDesignerFormWindowCursorInterface__MoveOperation = QDesignerFormWindowCursorInterface__MoveOperation(5)
+	QDesignerFormWindowCursorInterface__Right  QDesignerFormWindowCursorInterface__MoveOperation = QDesignerFormWindowCursorInterface__MoveOperation(6)
+	QDesignerFormWindowCursorInterface__Up     QDesignerFormWindowCursorInterface__MoveOperation = QDesignerFormWindowCursorInterface__MoveOperation(7)
+	QDesignerFormWindowCursorInterface__Down   QDesignerFormWindowCursorInterface__MoveOperation = QDesignerFormWindowCursorInterface__MoveOperation(8)
 )
 
 type QDesignerFormWindowCursorInterface struct {
@@ -5307,23 +5309,25 @@ func (ptr *QDesignerFormWindowCursorInterface) DestroyQDesignerFormWindowCursorI
 	}
 }
 
+//go:generate stringer -type=QDesignerFormWindowInterface__FeatureFlag
 //QDesignerFormWindowInterface::FeatureFlag
 type QDesignerFormWindowInterface__FeatureFlag int64
 
 const (
-	QDesignerFormWindowInterface__EditFeature     = QDesignerFormWindowInterface__FeatureFlag(0x01)
-	QDesignerFormWindowInterface__GridFeature     = QDesignerFormWindowInterface__FeatureFlag(0x02)
-	QDesignerFormWindowInterface__TabOrderFeature = QDesignerFormWindowInterface__FeatureFlag(0x04)
-	QDesignerFormWindowInterface__DefaultFeature  = QDesignerFormWindowInterface__FeatureFlag(QDesignerFormWindowInterface__EditFeature | QDesignerFormWindowInterface__GridFeature)
+	QDesignerFormWindowInterface__EditFeature     QDesignerFormWindowInterface__FeatureFlag = QDesignerFormWindowInterface__FeatureFlag(0x01)
+	QDesignerFormWindowInterface__GridFeature     QDesignerFormWindowInterface__FeatureFlag = QDesignerFormWindowInterface__FeatureFlag(0x02)
+	QDesignerFormWindowInterface__TabOrderFeature QDesignerFormWindowInterface__FeatureFlag = QDesignerFormWindowInterface__FeatureFlag(0x04)
+	QDesignerFormWindowInterface__DefaultFeature  QDesignerFormWindowInterface__FeatureFlag = QDesignerFormWindowInterface__FeatureFlag(QDesignerFormWindowInterface__EditFeature | QDesignerFormWindowInterface__GridFeature)
 )
 
+//go:generate stringer -type=QDesignerFormWindowInterface__ResourceFileSaveMode
 //QDesignerFormWindowInterface::ResourceFileSaveMode
 type QDesignerFormWindowInterface__ResourceFileSaveMode int64
 
 const (
-	QDesignerFormWindowInterface__SaveAllResourceFiles      = QDesignerFormWindowInterface__ResourceFileSaveMode(0)
-	QDesignerFormWindowInterface__SaveOnlyUsedResourceFiles = QDesignerFormWindowInterface__ResourceFileSaveMode(1)
-	QDesignerFormWindowInterface__DontSaveResourceFiles     = QDesignerFormWindowInterface__ResourceFileSaveMode(2)
+	QDesignerFormWindowInterface__SaveAllResourceFiles      QDesignerFormWindowInterface__ResourceFileSaveMode = QDesignerFormWindowInterface__ResourceFileSaveMode(0)
+	QDesignerFormWindowInterface__SaveOnlyUsedResourceFiles QDesignerFormWindowInterface__ResourceFileSaveMode = QDesignerFormWindowInterface__ResourceFileSaveMode(1)
+	QDesignerFormWindowInterface__DontSaveResourceFiles     QDesignerFormWindowInterface__ResourceFileSaveMode = QDesignerFormWindowInterface__ResourceFileSaveMode(2)
 )
 
 type QDesignerFormWindowInterface struct {
@@ -9518,37 +9522,39 @@ func (ptr *QDesignerFormWindowInterface) PaintEngineDefault() *gui.QPaintEngine 
 	return nil
 }
 
+//go:generate stringer -type=QDesignerFormWindowManagerInterface__Action
 //QDesignerFormWindowManagerInterface::Action
 type QDesignerFormWindowManagerInterface__Action int64
 
 const (
-	QDesignerFormWindowManagerInterface__CutAction                      = QDesignerFormWindowManagerInterface__Action(100)
-	QDesignerFormWindowManagerInterface__CopyAction                     = QDesignerFormWindowManagerInterface__Action(101)
-	QDesignerFormWindowManagerInterface__PasteAction                    = QDesignerFormWindowManagerInterface__Action(102)
-	QDesignerFormWindowManagerInterface__DeleteAction                   = QDesignerFormWindowManagerInterface__Action(103)
-	QDesignerFormWindowManagerInterface__SelectAllAction                = QDesignerFormWindowManagerInterface__Action(104)
-	QDesignerFormWindowManagerInterface__LowerAction                    = QDesignerFormWindowManagerInterface__Action(200)
-	QDesignerFormWindowManagerInterface__RaiseAction                    = QDesignerFormWindowManagerInterface__Action(201)
-	QDesignerFormWindowManagerInterface__UndoAction                     = QDesignerFormWindowManagerInterface__Action(300)
-	QDesignerFormWindowManagerInterface__RedoAction                     = QDesignerFormWindowManagerInterface__Action(301)
-	QDesignerFormWindowManagerInterface__HorizontalLayoutAction         = QDesignerFormWindowManagerInterface__Action(400)
-	QDesignerFormWindowManagerInterface__VerticalLayoutAction           = QDesignerFormWindowManagerInterface__Action(401)
-	QDesignerFormWindowManagerInterface__SplitHorizontalAction          = QDesignerFormWindowManagerInterface__Action(402)
-	QDesignerFormWindowManagerInterface__SplitVerticalAction            = QDesignerFormWindowManagerInterface__Action(403)
-	QDesignerFormWindowManagerInterface__GridLayoutAction               = QDesignerFormWindowManagerInterface__Action(404)
-	QDesignerFormWindowManagerInterface__FormLayoutAction               = QDesignerFormWindowManagerInterface__Action(405)
-	QDesignerFormWindowManagerInterface__BreakLayoutAction              = QDesignerFormWindowManagerInterface__Action(406)
-	QDesignerFormWindowManagerInterface__AdjustSizeAction               = QDesignerFormWindowManagerInterface__Action(407)
-	QDesignerFormWindowManagerInterface__SimplifyLayoutAction           = QDesignerFormWindowManagerInterface__Action(408)
-	QDesignerFormWindowManagerInterface__DefaultPreviewAction           = QDesignerFormWindowManagerInterface__Action(500)
-	QDesignerFormWindowManagerInterface__FormWindowSettingsDialogAction = QDesignerFormWindowManagerInterface__Action(600)
+	QDesignerFormWindowManagerInterface__CutAction                      QDesignerFormWindowManagerInterface__Action = QDesignerFormWindowManagerInterface__Action(100)
+	QDesignerFormWindowManagerInterface__CopyAction                     QDesignerFormWindowManagerInterface__Action = QDesignerFormWindowManagerInterface__Action(101)
+	QDesignerFormWindowManagerInterface__PasteAction                    QDesignerFormWindowManagerInterface__Action = QDesignerFormWindowManagerInterface__Action(102)
+	QDesignerFormWindowManagerInterface__DeleteAction                   QDesignerFormWindowManagerInterface__Action = QDesignerFormWindowManagerInterface__Action(103)
+	QDesignerFormWindowManagerInterface__SelectAllAction                QDesignerFormWindowManagerInterface__Action = QDesignerFormWindowManagerInterface__Action(104)
+	QDesignerFormWindowManagerInterface__LowerAction                    QDesignerFormWindowManagerInterface__Action = QDesignerFormWindowManagerInterface__Action(200)
+	QDesignerFormWindowManagerInterface__RaiseAction                    QDesignerFormWindowManagerInterface__Action = QDesignerFormWindowManagerInterface__Action(201)
+	QDesignerFormWindowManagerInterface__UndoAction                     QDesignerFormWindowManagerInterface__Action = QDesignerFormWindowManagerInterface__Action(300)
+	QDesignerFormWindowManagerInterface__RedoAction                     QDesignerFormWindowManagerInterface__Action = QDesignerFormWindowManagerInterface__Action(301)
+	QDesignerFormWindowManagerInterface__HorizontalLayoutAction         QDesignerFormWindowManagerInterface__Action = QDesignerFormWindowManagerInterface__Action(400)
+	QDesignerFormWindowManagerInterface__VerticalLayoutAction           QDesignerFormWindowManagerInterface__Action = QDesignerFormWindowManagerInterface__Action(401)
+	QDesignerFormWindowManagerInterface__SplitHorizontalAction          QDesignerFormWindowManagerInterface__Action = QDesignerFormWindowManagerInterface__Action(402)
+	QDesignerFormWindowManagerInterface__SplitVerticalAction            QDesignerFormWindowManagerInterface__Action = QDesignerFormWindowManagerInterface__Action(403)
+	QDesignerFormWindowManagerInterface__GridLayoutAction               QDesignerFormWindowManagerInterface__Action = QDesignerFormWindowManagerInterface__Action(404)
+	QDesignerFormWindowManagerInterface__FormLayoutAction               QDesignerFormWindowManagerInterface__Action = QDesignerFormWindowManagerInterface__Action(405)
+	QDesignerFormWindowManagerInterface__BreakLayoutAction              QDesignerFormWindowManagerInterface__Action = QDesignerFormWindowManagerInterface__Action(406)
+	QDesignerFormWindowManagerInterface__AdjustSizeAction               QDesignerFormWindowManagerInterface__Action = QDesignerFormWindowManagerInterface__Action(407)
+	QDesignerFormWindowManagerInterface__SimplifyLayoutAction           QDesignerFormWindowManagerInterface__Action = QDesignerFormWindowManagerInterface__Action(408)
+	QDesignerFormWindowManagerInterface__DefaultPreviewAction           QDesignerFormWindowManagerInterface__Action = QDesignerFormWindowManagerInterface__Action(500)
+	QDesignerFormWindowManagerInterface__FormWindowSettingsDialogAction QDesignerFormWindowManagerInterface__Action = QDesignerFormWindowManagerInterface__Action(600)
 )
 
+//go:generate stringer -type=QDesignerFormWindowManagerInterface__ActionGroup
 //QDesignerFormWindowManagerInterface::ActionGroup
 type QDesignerFormWindowManagerInterface__ActionGroup int64
 
 const (
-	QDesignerFormWindowManagerInterface__StyledPreviewActionGroup = QDesignerFormWindowManagerInterface__ActionGroup(100)
+	QDesignerFormWindowManagerInterface__StyledPreviewActionGroup QDesignerFormWindowManagerInterface__ActionGroup = QDesignerFormWindowManagerInterface__ActionGroup(100)
 )
 
 type QDesignerFormWindowManagerInterface struct {
@@ -20723,63 +20729,68 @@ func (ptr *QFormBuilder) SaveDefault(device core.QIODevice_ITF, widget widgets.Q
 	}
 }
 
+//go:generate stringer -type=qdesigner_internal__SpecialProperty
 //qdesigner_internal::SpecialProperty
 type qdesigner_internal__SpecialProperty int64
 
 const (
-	qdesigner_internal__SP_None            = qdesigner_internal__SpecialProperty(0)
-	qdesigner_internal__SP_ObjectName      = qdesigner_internal__SpecialProperty(1)
-	qdesigner_internal__SP_LayoutName      = qdesigner_internal__SpecialProperty(2)
-	qdesigner_internal__SP_SpacerName      = qdesigner_internal__SpecialProperty(3)
-	qdesigner_internal__SP_WindowTitle     = qdesigner_internal__SpecialProperty(4)
-	qdesigner_internal__SP_MinimumSize     = qdesigner_internal__SpecialProperty(5)
-	qdesigner_internal__SP_MaximumSize     = qdesigner_internal__SpecialProperty(6)
-	qdesigner_internal__SP_Geometry        = qdesigner_internal__SpecialProperty(7)
-	qdesigner_internal__SP_Icon            = qdesigner_internal__SpecialProperty(8)
-	qdesigner_internal__SP_CurrentTabName  = qdesigner_internal__SpecialProperty(9)
-	qdesigner_internal__SP_CurrentItemName = qdesigner_internal__SpecialProperty(10)
-	qdesigner_internal__SP_CurrentPageName = qdesigner_internal__SpecialProperty(11)
-	qdesigner_internal__SP_AutoDefault     = qdesigner_internal__SpecialProperty(12)
-	qdesigner_internal__SP_Alignment       = qdesigner_internal__SpecialProperty(13)
-	qdesigner_internal__SP_Shortcut        = qdesigner_internal__SpecialProperty(14)
-	qdesigner_internal__SP_Orientation     = qdesigner_internal__SpecialProperty(15)
+	qdesigner_internal__SP_None            qdesigner_internal__SpecialProperty = qdesigner_internal__SpecialProperty(0)
+	qdesigner_internal__SP_ObjectName      qdesigner_internal__SpecialProperty = qdesigner_internal__SpecialProperty(1)
+	qdesigner_internal__SP_LayoutName      qdesigner_internal__SpecialProperty = qdesigner_internal__SpecialProperty(2)
+	qdesigner_internal__SP_SpacerName      qdesigner_internal__SpecialProperty = qdesigner_internal__SpecialProperty(3)
+	qdesigner_internal__SP_WindowTitle     qdesigner_internal__SpecialProperty = qdesigner_internal__SpecialProperty(4)
+	qdesigner_internal__SP_MinimumSize     qdesigner_internal__SpecialProperty = qdesigner_internal__SpecialProperty(5)
+	qdesigner_internal__SP_MaximumSize     qdesigner_internal__SpecialProperty = qdesigner_internal__SpecialProperty(6)
+	qdesigner_internal__SP_Geometry        qdesigner_internal__SpecialProperty = qdesigner_internal__SpecialProperty(7)
+	qdesigner_internal__SP_Icon            qdesigner_internal__SpecialProperty = qdesigner_internal__SpecialProperty(8)
+	qdesigner_internal__SP_CurrentTabName  qdesigner_internal__SpecialProperty = qdesigner_internal__SpecialProperty(9)
+	qdesigner_internal__SP_CurrentItemName qdesigner_internal__SpecialProperty = qdesigner_internal__SpecialProperty(10)
+	qdesigner_internal__SP_CurrentPageName qdesigner_internal__SpecialProperty = qdesigner_internal__SpecialProperty(11)
+	qdesigner_internal__SP_AutoDefault     qdesigner_internal__SpecialProperty = qdesigner_internal__SpecialProperty(12)
+	qdesigner_internal__SP_Alignment       qdesigner_internal__SpecialProperty = qdesigner_internal__SpecialProperty(13)
+	qdesigner_internal__SP_Shortcut        qdesigner_internal__SpecialProperty = qdesigner_internal__SpecialProperty(14)
+	qdesigner_internal__SP_Orientation     qdesigner_internal__SpecialProperty = qdesigner_internal__SpecialProperty(15)
 )
 
+//go:generate stringer -type=qdesigner_internal__AuxiliaryItemDataRoles
 //qdesigner_internal::AuxiliaryItemDataRoles
 type qdesigner_internal__AuxiliaryItemDataRoles int64
 
 const (
-	qdesigner_internal__ItemFlagsShadowRole = qdesigner_internal__AuxiliaryItemDataRoles(0x13370551)
+	qdesigner_internal__ItemFlagsShadowRole qdesigner_internal__AuxiliaryItemDataRoles = qdesigner_internal__AuxiliaryItemDataRoles(0x13370551)
 )
 
+//go:generate stringer -type=qdesigner_internal__ContainerType
 //qdesigner_internal::ContainerType
 type qdesigner_internal__ContainerType int64
 
 const (
-	qdesigner_internal__PageContainer   = qdesigner_internal__ContainerType(0)
-	qdesigner_internal__MdiContainer    = qdesigner_internal__ContainerType(1)
-	qdesigner_internal__WizardContainer = qdesigner_internal__ContainerType(2)
+	qdesigner_internal__PageContainer   qdesigner_internal__ContainerType = qdesigner_internal__ContainerType(0)
+	qdesigner_internal__MdiContainer    qdesigner_internal__ContainerType = qdesigner_internal__ContainerType(1)
+	qdesigner_internal__WizardContainer qdesigner_internal__ContainerType = qdesigner_internal__ContainerType(2)
 )
 
+//go:generate stringer -type=qdesigner_internal__TextPropertyValidationMode
 //qdesigner_internal::TextPropertyValidationMode
 type qdesigner_internal__TextPropertyValidationMode int64
 
 const (
-	qdesigner_internal__ValidationMultiLine       = qdesigner_internal__TextPropertyValidationMode(0)
-	qdesigner_internal__ValidationRichText        = qdesigner_internal__TextPropertyValidationMode(1)
-	qdesigner_internal__ValidationStyleSheet      = qdesigner_internal__TextPropertyValidationMode(2)
-	qdesigner_internal__ValidationSingleLine      = qdesigner_internal__TextPropertyValidationMode(3)
-	qdesigner_internal__ValidationObjectName      = qdesigner_internal__TextPropertyValidationMode(4)
-	qdesigner_internal__ValidationObjectNameScope = qdesigner_internal__TextPropertyValidationMode(5)
-	qdesigner_internal__ValidationURL             = qdesigner_internal__TextPropertyValidationMode(6)
+	qdesigner_internal__ValidationMultiLine       qdesigner_internal__TextPropertyValidationMode = qdesigner_internal__TextPropertyValidationMode(0)
+	qdesigner_internal__ValidationRichText        qdesigner_internal__TextPropertyValidationMode = qdesigner_internal__TextPropertyValidationMode(1)
+	qdesigner_internal__ValidationStyleSheet      qdesigner_internal__TextPropertyValidationMode = qdesigner_internal__TextPropertyValidationMode(2)
+	qdesigner_internal__ValidationSingleLine      qdesigner_internal__TextPropertyValidationMode = qdesigner_internal__TextPropertyValidationMode(3)
+	qdesigner_internal__ValidationObjectName      qdesigner_internal__TextPropertyValidationMode = qdesigner_internal__TextPropertyValidationMode(4)
+	qdesigner_internal__ValidationObjectNameScope qdesigner_internal__TextPropertyValidationMode = qdesigner_internal__TextPropertyValidationMode(5)
+	qdesigner_internal__ValidationURL             qdesigner_internal__TextPropertyValidationMode = qdesigner_internal__TextPropertyValidationMode(6)
 )
 
+//go:generate stringer -type=qdesigner_internal__IncludeType
 //qdesigner_internal::IncludeType
 type qdesigner_internal__IncludeType int64
 
 const (
-	qdesigner_internal__IncludeLocal  = qdesigner_internal__IncludeType(0)
-	qdesigner_internal__IncludeGlobal = qdesigner_internal__IncludeType(1)
+	qdesigner_internal__IncludeLocal  qdesigner_internal__IncludeType = qdesigner_internal__IncludeType(0)
+	qdesigner_internal__IncludeGlobal qdesigner_internal__IncludeType = qdesigner_internal__IncludeType(1)
 )
 
 type qdesigner_internal struct {

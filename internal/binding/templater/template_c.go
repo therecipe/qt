@@ -11,7 +11,7 @@ import (
 func cTemplate(bb *bytes.Buffer, c *parser.Class, ef func(*parser.Enum, *parser.Value) string, ff func(*parser.Function) string, del string) {
 	cTemplateEnums(bb, c, ef, del)
 
-	if classIsSupported(c) {
+	if c.IsSupported() {
 		cTemplateFunctions(bb, c, ff, del)
 	}
 }
@@ -31,7 +31,7 @@ func cTemplateFunctions(bb *bytes.Buffer, c *parser.Class, ff func(*parser.Funct
 	var implementedVirtuals = make(map[string]struct{})
 
 	for _, f := range c.Functions {
-		if !functionIsSupported(c, f) {
+		if !f.IsSupported() {
 			continue
 		}
 
@@ -87,14 +87,14 @@ func cTemplateFunctions(bb *bytes.Buffer, c *parser.Class, ff func(*parser.Funct
 	}
 
 	for _, bcn := range c.GetAllBases() {
-		var bc, exist = parser.CurrentState.ClassMap[bcn]
-		if !exist || !classIsSupported(bc) {
+		var bc, exist = parser.State.ClassMap[bcn]
+		if !exist || !bc.IsSupported() {
 			continue
 		}
 
 		for _, f := range bc.Functions {
 			var _, exists = implementedVirtuals[fmt.Sprint(f.Name, f.OverloadNumber)]
-			if exists || !functionIsSupported(bc, f) {
+			if exists || !f.IsSupported() {
 				continue
 			}
 
@@ -109,10 +109,10 @@ func cTemplateFunctions(bb *bytes.Buffer, c *parser.Class, ff func(*parser.Funct
 				}
 				fmt.Fprintf(bb, "%v%v", ff(&f), del)
 
-				var c, exist = f.Class()
-				if !exist || c.Module == parser.MOC && f.Virtual == parser.PURE {
+				if parser.State.Moc && f.Virtual == parser.PURE {
 					continue
 				}
+
 				f.Meta = parser.PLAIN
 				f.Default = true
 				fmt.Fprintf(bb, "%v%v", ff(&f), del)

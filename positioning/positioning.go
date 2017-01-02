@@ -363,22 +363,24 @@ func (ptr *QGeoAreaMonitorInfo) DestroyQGeoAreaMonitorInfo() {
 	}
 }
 
+//go:generate stringer -type=QGeoAreaMonitorSource__AreaMonitorFeature
 //QGeoAreaMonitorSource::AreaMonitorFeature
 type QGeoAreaMonitorSource__AreaMonitorFeature int64
 
 const (
-	QGeoAreaMonitorSource__PersistentAreaMonitorFeature = QGeoAreaMonitorSource__AreaMonitorFeature(0x00000001)
-	QGeoAreaMonitorSource__AnyAreaMonitorFeature        = QGeoAreaMonitorSource__AreaMonitorFeature(0xffffffff)
+	QGeoAreaMonitorSource__PersistentAreaMonitorFeature QGeoAreaMonitorSource__AreaMonitorFeature = QGeoAreaMonitorSource__AreaMonitorFeature(0x00000001)
+	QGeoAreaMonitorSource__AnyAreaMonitorFeature        QGeoAreaMonitorSource__AreaMonitorFeature = QGeoAreaMonitorSource__AreaMonitorFeature(0xffffffff)
 )
 
+//go:generate stringer -type=QGeoAreaMonitorSource__Error
 //QGeoAreaMonitorSource::Error
 type QGeoAreaMonitorSource__Error int64
 
 const (
-	QGeoAreaMonitorSource__AccessError              = QGeoAreaMonitorSource__Error(0)
-	QGeoAreaMonitorSource__InsufficientPositionInfo = QGeoAreaMonitorSource__Error(1)
-	QGeoAreaMonitorSource__UnknownSourceError       = QGeoAreaMonitorSource__Error(2)
-	QGeoAreaMonitorSource__NoError                  = QGeoAreaMonitorSource__Error(3)
+	QGeoAreaMonitorSource__AccessError              QGeoAreaMonitorSource__Error = QGeoAreaMonitorSource__Error(0)
+	QGeoAreaMonitorSource__InsufficientPositionInfo QGeoAreaMonitorSource__Error = QGeoAreaMonitorSource__Error(1)
+	QGeoAreaMonitorSource__UnknownSourceError       QGeoAreaMonitorSource__Error = QGeoAreaMonitorSource__Error(2)
+	QGeoAreaMonitorSource__NoError                  QGeoAreaMonitorSource__Error = QGeoAreaMonitorSource__Error(3)
 )
 
 type QGeoAreaMonitorSource struct {
@@ -1381,25 +1383,27 @@ func (ptr *QGeoCircle) DestroyQGeoCircle() {
 	}
 }
 
+//go:generate stringer -type=QGeoCoordinate__CoordinateFormat
 //QGeoCoordinate::CoordinateFormat
 type QGeoCoordinate__CoordinateFormat int64
 
 const (
-	QGeoCoordinate__Degrees                             = QGeoCoordinate__CoordinateFormat(0)
-	QGeoCoordinate__DegreesWithHemisphere               = QGeoCoordinate__CoordinateFormat(1)
-	QGeoCoordinate__DegreesMinutes                      = QGeoCoordinate__CoordinateFormat(2)
-	QGeoCoordinate__DegreesMinutesWithHemisphere        = QGeoCoordinate__CoordinateFormat(3)
-	QGeoCoordinate__DegreesMinutesSeconds               = QGeoCoordinate__CoordinateFormat(4)
-	QGeoCoordinate__DegreesMinutesSecondsWithHemisphere = QGeoCoordinate__CoordinateFormat(5)
+	QGeoCoordinate__Degrees                             QGeoCoordinate__CoordinateFormat = QGeoCoordinate__CoordinateFormat(0)
+	QGeoCoordinate__DegreesWithHemisphere               QGeoCoordinate__CoordinateFormat = QGeoCoordinate__CoordinateFormat(1)
+	QGeoCoordinate__DegreesMinutes                      QGeoCoordinate__CoordinateFormat = QGeoCoordinate__CoordinateFormat(2)
+	QGeoCoordinate__DegreesMinutesWithHemisphere        QGeoCoordinate__CoordinateFormat = QGeoCoordinate__CoordinateFormat(3)
+	QGeoCoordinate__DegreesMinutesSeconds               QGeoCoordinate__CoordinateFormat = QGeoCoordinate__CoordinateFormat(4)
+	QGeoCoordinate__DegreesMinutesSecondsWithHemisphere QGeoCoordinate__CoordinateFormat = QGeoCoordinate__CoordinateFormat(5)
 )
 
+//go:generate stringer -type=QGeoCoordinate__CoordinateType
 //QGeoCoordinate::CoordinateType
 type QGeoCoordinate__CoordinateType int64
 
 const (
-	QGeoCoordinate__InvalidCoordinate = QGeoCoordinate__CoordinateType(0)
-	QGeoCoordinate__Coordinate2D      = QGeoCoordinate__CoordinateType(1)
-	QGeoCoordinate__Coordinate3D      = QGeoCoordinate__CoordinateType(2)
+	QGeoCoordinate__InvalidCoordinate QGeoCoordinate__CoordinateType = QGeoCoordinate__CoordinateType(0)
+	QGeoCoordinate__Coordinate2D      QGeoCoordinate__CoordinateType = QGeoCoordinate__CoordinateType(1)
+	QGeoCoordinate__Coordinate3D      QGeoCoordinate__CoordinateType = QGeoCoordinate__CoordinateType(2)
 )
 
 type QGeoCoordinate struct {
@@ -1591,16 +1595,17 @@ func NewQGeoLocationFromPointer(ptr unsafe.Pointer) *QGeoLocation {
 	return n
 }
 
+//go:generate stringer -type=QGeoPositionInfo__Attribute
 //QGeoPositionInfo::Attribute
 type QGeoPositionInfo__Attribute int64
 
 const (
-	QGeoPositionInfo__Direction          = QGeoPositionInfo__Attribute(0)
-	QGeoPositionInfo__GroundSpeed        = QGeoPositionInfo__Attribute(1)
-	QGeoPositionInfo__VerticalSpeed      = QGeoPositionInfo__Attribute(2)
-	QGeoPositionInfo__MagneticVariation  = QGeoPositionInfo__Attribute(3)
-	QGeoPositionInfo__HorizontalAccuracy = QGeoPositionInfo__Attribute(4)
-	QGeoPositionInfo__VerticalAccuracy   = QGeoPositionInfo__Attribute(5)
+	QGeoPositionInfo__Direction          QGeoPositionInfo__Attribute = QGeoPositionInfo__Attribute(0)
+	QGeoPositionInfo__GroundSpeed        QGeoPositionInfo__Attribute = QGeoPositionInfo__Attribute(1)
+	QGeoPositionInfo__VerticalSpeed      QGeoPositionInfo__Attribute = QGeoPositionInfo__Attribute(2)
+	QGeoPositionInfo__MagneticVariation  QGeoPositionInfo__Attribute = QGeoPositionInfo__Attribute(3)
+	QGeoPositionInfo__HorizontalAccuracy QGeoPositionInfo__Attribute = QGeoPositionInfo__Attribute(4)
+	QGeoPositionInfo__VerticalAccuracy   QGeoPositionInfo__Attribute = QGeoPositionInfo__Attribute(5)
 )
 
 type QGeoPositionInfo struct {
@@ -1728,24 +1733,26 @@ func (ptr *QGeoPositionInfo) DestroyQGeoPositionInfo() {
 	}
 }
 
+//go:generate stringer -type=QGeoPositionInfoSource__Error
 //QGeoPositionInfoSource::Error
 type QGeoPositionInfoSource__Error int64
 
 const (
-	QGeoPositionInfoSource__AccessError        = QGeoPositionInfoSource__Error(0)
-	QGeoPositionInfoSource__ClosedError        = QGeoPositionInfoSource__Error(1)
-	QGeoPositionInfoSource__UnknownSourceError = QGeoPositionInfoSource__Error(2)
-	QGeoPositionInfoSource__NoError            = QGeoPositionInfoSource__Error(3)
+	QGeoPositionInfoSource__AccessError        QGeoPositionInfoSource__Error = QGeoPositionInfoSource__Error(0)
+	QGeoPositionInfoSource__ClosedError        QGeoPositionInfoSource__Error = QGeoPositionInfoSource__Error(1)
+	QGeoPositionInfoSource__UnknownSourceError QGeoPositionInfoSource__Error = QGeoPositionInfoSource__Error(2)
+	QGeoPositionInfoSource__NoError            QGeoPositionInfoSource__Error = QGeoPositionInfoSource__Error(3)
 )
 
+//go:generate stringer -type=QGeoPositionInfoSource__PositioningMethod
 //QGeoPositionInfoSource::PositioningMethod
 type QGeoPositionInfoSource__PositioningMethod int64
 
 const (
-	QGeoPositionInfoSource__NoPositioningMethods           = QGeoPositionInfoSource__PositioningMethod(0x00000000)
-	QGeoPositionInfoSource__SatellitePositioningMethods    = QGeoPositionInfoSource__PositioningMethod(0x000000ff)
-	QGeoPositionInfoSource__NonSatellitePositioningMethods = QGeoPositionInfoSource__PositioningMethod(0xffffff00)
-	QGeoPositionInfoSource__AllPositioningMethods          = QGeoPositionInfoSource__PositioningMethod(0xffffffff)
+	QGeoPositionInfoSource__NoPositioningMethods           QGeoPositionInfoSource__PositioningMethod = QGeoPositionInfoSource__PositioningMethod(0x00000000)
+	QGeoPositionInfoSource__SatellitePositioningMethods    QGeoPositionInfoSource__PositioningMethod = QGeoPositionInfoSource__PositioningMethod(0x000000ff)
+	QGeoPositionInfoSource__NonSatellitePositioningMethods QGeoPositionInfoSource__PositioningMethod = QGeoPositionInfoSource__PositioningMethod(0xffffff00)
+	QGeoPositionInfoSource__AllPositioningMethods          QGeoPositionInfoSource__PositioningMethod = QGeoPositionInfoSource__PositioningMethod(0xffffffff)
 )
 
 type QGeoPositionInfoSource struct {
@@ -3006,21 +3013,23 @@ func (ptr *QGeoRectangle) DestroyQGeoRectangle() {
 	}
 }
 
+//go:generate stringer -type=QGeoSatelliteInfo__Attribute
 //QGeoSatelliteInfo::Attribute
 type QGeoSatelliteInfo__Attribute int64
 
 const (
-	QGeoSatelliteInfo__Elevation = QGeoSatelliteInfo__Attribute(0)
-	QGeoSatelliteInfo__Azimuth   = QGeoSatelliteInfo__Attribute(1)
+	QGeoSatelliteInfo__Elevation QGeoSatelliteInfo__Attribute = QGeoSatelliteInfo__Attribute(0)
+	QGeoSatelliteInfo__Azimuth   QGeoSatelliteInfo__Attribute = QGeoSatelliteInfo__Attribute(1)
 )
 
+//go:generate stringer -type=QGeoSatelliteInfo__SatelliteSystem
 //QGeoSatelliteInfo::SatelliteSystem
 type QGeoSatelliteInfo__SatelliteSystem int64
 
 const (
-	QGeoSatelliteInfo__Undefined = QGeoSatelliteInfo__SatelliteSystem(0x00)
-	QGeoSatelliteInfo__GPS       = QGeoSatelliteInfo__SatelliteSystem(0x01)
-	QGeoSatelliteInfo__GLONASS   = QGeoSatelliteInfo__SatelliteSystem(0x02)
+	QGeoSatelliteInfo__Undefined QGeoSatelliteInfo__SatelliteSystem = QGeoSatelliteInfo__SatelliteSystem(0x00)
+	QGeoSatelliteInfo__GPS       QGeoSatelliteInfo__SatelliteSystem = QGeoSatelliteInfo__SatelliteSystem(0x01)
+	QGeoSatelliteInfo__GLONASS   QGeoSatelliteInfo__SatelliteSystem = QGeoSatelliteInfo__SatelliteSystem(0x02)
 )
 
 type QGeoSatelliteInfo struct {
@@ -3144,14 +3153,15 @@ func (ptr *QGeoSatelliteInfo) DestroyQGeoSatelliteInfo() {
 	}
 }
 
+//go:generate stringer -type=QGeoSatelliteInfoSource__Error
 //QGeoSatelliteInfoSource::Error
 type QGeoSatelliteInfoSource__Error int64
 
 const (
-	QGeoSatelliteInfoSource__AccessError        = QGeoSatelliteInfoSource__Error(0)
-	QGeoSatelliteInfoSource__ClosedError        = QGeoSatelliteInfoSource__Error(1)
-	QGeoSatelliteInfoSource__NoError            = QGeoSatelliteInfoSource__Error(2)
-	QGeoSatelliteInfoSource__UnknownSourceError = QGeoSatelliteInfoSource__Error(-1)
+	QGeoSatelliteInfoSource__AccessError        QGeoSatelliteInfoSource__Error = QGeoSatelliteInfoSource__Error(0)
+	QGeoSatelliteInfoSource__ClosedError        QGeoSatelliteInfoSource__Error = QGeoSatelliteInfoSource__Error(1)
+	QGeoSatelliteInfoSource__NoError            QGeoSatelliteInfoSource__Error = QGeoSatelliteInfoSource__Error(2)
+	QGeoSatelliteInfoSource__UnknownSourceError QGeoSatelliteInfoSource__Error = QGeoSatelliteInfoSource__Error(-1)
 )
 
 type QGeoSatelliteInfoSource struct {
@@ -3872,13 +3882,14 @@ func (ptr *QGeoSatelliteInfoSource) MetaObjectDefault() *core.QMetaObject {
 	return nil
 }
 
+//go:generate stringer -type=QGeoShape__ShapeType
 //QGeoShape::ShapeType
 type QGeoShape__ShapeType int64
 
 const (
-	QGeoShape__UnknownType   = QGeoShape__ShapeType(0)
-	QGeoShape__RectangleType = QGeoShape__ShapeType(1)
-	QGeoShape__CircleType    = QGeoShape__ShapeType(2)
+	QGeoShape__UnknownType   QGeoShape__ShapeType = QGeoShape__ShapeType(0)
+	QGeoShape__RectangleType QGeoShape__ShapeType = QGeoShape__ShapeType(1)
+	QGeoShape__CircleType    QGeoShape__ShapeType = QGeoShape__ShapeType(2)
 )
 
 type QGeoShape struct {
@@ -3987,12 +3998,13 @@ func (ptr *QGeoShape) DestroyQGeoShape() {
 	}
 }
 
+//go:generate stringer -type=QNmeaPositionInfoSource__UpdateMode
 //QNmeaPositionInfoSource::UpdateMode
 type QNmeaPositionInfoSource__UpdateMode int64
 
 const (
-	QNmeaPositionInfoSource__RealTimeMode   = QNmeaPositionInfoSource__UpdateMode(1)
-	QNmeaPositionInfoSource__SimulationMode = QNmeaPositionInfoSource__UpdateMode(2)
+	QNmeaPositionInfoSource__RealTimeMode   QNmeaPositionInfoSource__UpdateMode = QNmeaPositionInfoSource__UpdateMode(1)
+	QNmeaPositionInfoSource__SimulationMode QNmeaPositionInfoSource__UpdateMode = QNmeaPositionInfoSource__UpdateMode(2)
 )
 
 type QNmeaPositionInfoSource struct {

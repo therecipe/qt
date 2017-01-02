@@ -68,7 +68,7 @@ func (c *Class) removeEnums_Version() {
 func (c *Class) removeBases() {
 	var bases = c.GetBases()
 	for i := len(bases) - 1; i >= 0; i-- {
-		if _, exists := CurrentState.ClassMap[bases[i]]; !exists {
+		if _, exists := State.ClassMap[bases[i]]; !exists {
 			bases = append(bases[:i], bases[i+1:]...)
 		}
 	}

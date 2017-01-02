@@ -1808,13 +1808,14 @@ func (ptr *QScxmlError) DestroyQScxmlError() {
 	}
 }
 
+//go:generate stringer -type=QScxmlEvent__EventType
 //QScxmlEvent::EventType
 type QScxmlEvent__EventType int64
 
 const (
-	QScxmlEvent__PlatformEvent = QScxmlEvent__EventType(0)
-	QScxmlEvent__InternalEvent = QScxmlEvent__EventType(1)
-	QScxmlEvent__ExternalEvent = QScxmlEvent__EventType(2)
+	QScxmlEvent__PlatformEvent QScxmlEvent__EventType = QScxmlEvent__EventType(0)
+	QScxmlEvent__InternalEvent QScxmlEvent__EventType = QScxmlEvent__EventType(1)
+	QScxmlEvent__ExternalEvent QScxmlEvent__EventType = QScxmlEvent__EventType(2)
 )
 
 type QScxmlEvent struct {
@@ -2697,13 +2698,14 @@ func (ptr *QScxmlNullDataModel) MetaObjectDefault() *core.QMetaObject {
 	return nil
 }
 
+//go:generate stringer -type=QScxmlParser__QtMode
 //QScxmlParser::QtMode
 type QScxmlParser__QtMode int64
 
 const (
-	QScxmlParser__QtModeDisabled      = QScxmlParser__QtMode(0)
-	QScxmlParser__QtModeEnabled       = QScxmlParser__QtMode(1)
-	QScxmlParser__QtModeFromInputFile = QScxmlParser__QtMode(2)
+	QScxmlParser__QtModeDisabled      QScxmlParser__QtMode = QScxmlParser__QtMode(0)
+	QScxmlParser__QtModeEnabled       QScxmlParser__QtMode = QScxmlParser__QtMode(1)
+	QScxmlParser__QtModeFromInputFile QScxmlParser__QtMode = QScxmlParser__QtMode(2)
 )
 
 type QScxmlParser struct {
@@ -2837,12 +2839,13 @@ func (ptr *QScxmlParser) errors_atList(i int) *QScxmlError {
 	return nil
 }
 
+//go:generate stringer -type=QScxmlStateMachine__BindingMethod
 //QScxmlStateMachine::BindingMethod
 type QScxmlStateMachine__BindingMethod int64
 
 const (
-	QScxmlStateMachine__EarlyBinding = QScxmlStateMachine__BindingMethod(0)
-	QScxmlStateMachine__LateBinding  = QScxmlStateMachine__BindingMethod(1)
+	QScxmlStateMachine__EarlyBinding QScxmlStateMachine__BindingMethod = QScxmlStateMachine__BindingMethod(0)
+	QScxmlStateMachine__LateBinding  QScxmlStateMachine__BindingMethod = QScxmlStateMachine__BindingMethod(1)
 )
 
 type QScxmlStateMachine struct {

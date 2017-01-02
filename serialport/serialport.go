@@ -21,108 +21,116 @@ func cGoUnpackString(s C.struct_QtSerialPort_PackedString) string {
 	return C.GoStringN(s.data, C.int(s.len))
 }
 
+//go:generate stringer -type=QSerialPort__BaudRate
 //QSerialPort::BaudRate
 type QSerialPort__BaudRate int64
 
 const (
-	QSerialPort__Baud1200    = QSerialPort__BaudRate(1200)
-	QSerialPort__Baud2400    = QSerialPort__BaudRate(2400)
-	QSerialPort__Baud4800    = QSerialPort__BaudRate(4800)
-	QSerialPort__Baud9600    = QSerialPort__BaudRate(9600)
-	QSerialPort__Baud19200   = QSerialPort__BaudRate(19200)
-	QSerialPort__Baud38400   = QSerialPort__BaudRate(38400)
-	QSerialPort__Baud57600   = QSerialPort__BaudRate(57600)
-	QSerialPort__Baud115200  = QSerialPort__BaudRate(115200)
-	QSerialPort__UnknownBaud = QSerialPort__BaudRate(-1)
+	QSerialPort__Baud1200    QSerialPort__BaudRate = QSerialPort__BaudRate(1200)
+	QSerialPort__Baud2400    QSerialPort__BaudRate = QSerialPort__BaudRate(2400)
+	QSerialPort__Baud4800    QSerialPort__BaudRate = QSerialPort__BaudRate(4800)
+	QSerialPort__Baud9600    QSerialPort__BaudRate = QSerialPort__BaudRate(9600)
+	QSerialPort__Baud19200   QSerialPort__BaudRate = QSerialPort__BaudRate(19200)
+	QSerialPort__Baud38400   QSerialPort__BaudRate = QSerialPort__BaudRate(38400)
+	QSerialPort__Baud57600   QSerialPort__BaudRate = QSerialPort__BaudRate(57600)
+	QSerialPort__Baud115200  QSerialPort__BaudRate = QSerialPort__BaudRate(115200)
+	QSerialPort__UnknownBaud QSerialPort__BaudRate = QSerialPort__BaudRate(-1)
 )
 
+//go:generate stringer -type=QSerialPort__DataBits
 //QSerialPort::DataBits
 type QSerialPort__DataBits int64
 
 const (
-	QSerialPort__Data5           = QSerialPort__DataBits(5)
-	QSerialPort__Data6           = QSerialPort__DataBits(6)
-	QSerialPort__Data7           = QSerialPort__DataBits(7)
-	QSerialPort__Data8           = QSerialPort__DataBits(8)
-	QSerialPort__UnknownDataBits = QSerialPort__DataBits(-1)
+	QSerialPort__Data5           QSerialPort__DataBits = QSerialPort__DataBits(5)
+	QSerialPort__Data6           QSerialPort__DataBits = QSerialPort__DataBits(6)
+	QSerialPort__Data7           QSerialPort__DataBits = QSerialPort__DataBits(7)
+	QSerialPort__Data8           QSerialPort__DataBits = QSerialPort__DataBits(8)
+	QSerialPort__UnknownDataBits QSerialPort__DataBits = QSerialPort__DataBits(-1)
 )
 
+//go:generate stringer -type=QSerialPort__Direction
 //QSerialPort::Direction
 type QSerialPort__Direction int64
 
 const (
-	QSerialPort__Input         = QSerialPort__Direction(1)
-	QSerialPort__Output        = QSerialPort__Direction(2)
-	QSerialPort__AllDirections = QSerialPort__Direction(QSerialPort__Input | QSerialPort__Output)
+	QSerialPort__Input         QSerialPort__Direction = QSerialPort__Direction(1)
+	QSerialPort__Output        QSerialPort__Direction = QSerialPort__Direction(2)
+	QSerialPort__AllDirections QSerialPort__Direction = QSerialPort__Direction(QSerialPort__Input | QSerialPort__Output)
 )
 
+//go:generate stringer -type=QSerialPort__FlowControl
 //QSerialPort::FlowControl
 type QSerialPort__FlowControl int64
 
 const (
-	QSerialPort__NoFlowControl      = QSerialPort__FlowControl(0)
-	QSerialPort__HardwareControl    = QSerialPort__FlowControl(1)
-	QSerialPort__SoftwareControl    = QSerialPort__FlowControl(2)
-	QSerialPort__UnknownFlowControl = QSerialPort__FlowControl(-1)
+	QSerialPort__NoFlowControl      QSerialPort__FlowControl = QSerialPort__FlowControl(0)
+	QSerialPort__HardwareControl    QSerialPort__FlowControl = QSerialPort__FlowControl(1)
+	QSerialPort__SoftwareControl    QSerialPort__FlowControl = QSerialPort__FlowControl(2)
+	QSerialPort__UnknownFlowControl QSerialPort__FlowControl = QSerialPort__FlowControl(-1)
 )
 
+//go:generate stringer -type=QSerialPort__Parity
 //QSerialPort::Parity
 type QSerialPort__Parity int64
 
 const (
-	QSerialPort__NoParity      = QSerialPort__Parity(0)
-	QSerialPort__EvenParity    = QSerialPort__Parity(2)
-	QSerialPort__OddParity     = QSerialPort__Parity(3)
-	QSerialPort__SpaceParity   = QSerialPort__Parity(4)
-	QSerialPort__MarkParity    = QSerialPort__Parity(5)
-	QSerialPort__UnknownParity = QSerialPort__Parity(-1)
+	QSerialPort__NoParity      QSerialPort__Parity = QSerialPort__Parity(0)
+	QSerialPort__EvenParity    QSerialPort__Parity = QSerialPort__Parity(2)
+	QSerialPort__OddParity     QSerialPort__Parity = QSerialPort__Parity(3)
+	QSerialPort__SpaceParity   QSerialPort__Parity = QSerialPort__Parity(4)
+	QSerialPort__MarkParity    QSerialPort__Parity = QSerialPort__Parity(5)
+	QSerialPort__UnknownParity QSerialPort__Parity = QSerialPort__Parity(-1)
 )
 
+//go:generate stringer -type=QSerialPort__PinoutSignal
 //QSerialPort::PinoutSignal
 type QSerialPort__PinoutSignal int64
 
 const (
-	QSerialPort__NoSignal                       = QSerialPort__PinoutSignal(0x00)
-	QSerialPort__TransmittedDataSignal          = QSerialPort__PinoutSignal(0x01)
-	QSerialPort__ReceivedDataSignal             = QSerialPort__PinoutSignal(0x02)
-	QSerialPort__DataTerminalReadySignal        = QSerialPort__PinoutSignal(0x04)
-	QSerialPort__DataCarrierDetectSignal        = QSerialPort__PinoutSignal(0x08)
-	QSerialPort__DataSetReadySignal             = QSerialPort__PinoutSignal(0x10)
-	QSerialPort__RingIndicatorSignal            = QSerialPort__PinoutSignal(0x20)
-	QSerialPort__RequestToSendSignal            = QSerialPort__PinoutSignal(0x40)
-	QSerialPort__ClearToSendSignal              = QSerialPort__PinoutSignal(0x80)
-	QSerialPort__SecondaryTransmittedDataSignal = QSerialPort__PinoutSignal(0x100)
-	QSerialPort__SecondaryReceivedDataSignal    = QSerialPort__PinoutSignal(0x200)
+	QSerialPort__NoSignal                       QSerialPort__PinoutSignal = QSerialPort__PinoutSignal(0x00)
+	QSerialPort__TransmittedDataSignal          QSerialPort__PinoutSignal = QSerialPort__PinoutSignal(0x01)
+	QSerialPort__ReceivedDataSignal             QSerialPort__PinoutSignal = QSerialPort__PinoutSignal(0x02)
+	QSerialPort__DataTerminalReadySignal        QSerialPort__PinoutSignal = QSerialPort__PinoutSignal(0x04)
+	QSerialPort__DataCarrierDetectSignal        QSerialPort__PinoutSignal = QSerialPort__PinoutSignal(0x08)
+	QSerialPort__DataSetReadySignal             QSerialPort__PinoutSignal = QSerialPort__PinoutSignal(0x10)
+	QSerialPort__RingIndicatorSignal            QSerialPort__PinoutSignal = QSerialPort__PinoutSignal(0x20)
+	QSerialPort__RequestToSendSignal            QSerialPort__PinoutSignal = QSerialPort__PinoutSignal(0x40)
+	QSerialPort__ClearToSendSignal              QSerialPort__PinoutSignal = QSerialPort__PinoutSignal(0x80)
+	QSerialPort__SecondaryTransmittedDataSignal QSerialPort__PinoutSignal = QSerialPort__PinoutSignal(0x100)
+	QSerialPort__SecondaryReceivedDataSignal    QSerialPort__PinoutSignal = QSerialPort__PinoutSignal(0x200)
 )
 
+//go:generate stringer -type=QSerialPort__SerialPortError
 //QSerialPort::SerialPortError
 type QSerialPort__SerialPortError int64
 
 const (
-	QSerialPort__NoError                   = QSerialPort__SerialPortError(0)
-	QSerialPort__DeviceNotFoundError       = QSerialPort__SerialPortError(1)
-	QSerialPort__PermissionError           = QSerialPort__SerialPortError(2)
-	QSerialPort__OpenError                 = QSerialPort__SerialPortError(3)
-	QSerialPort__ParityError               = QSerialPort__SerialPortError(4)
-	QSerialPort__FramingError              = QSerialPort__SerialPortError(5)
-	QSerialPort__BreakConditionError       = QSerialPort__SerialPortError(6)
-	QSerialPort__WriteError                = QSerialPort__SerialPortError(7)
-	QSerialPort__ReadError                 = QSerialPort__SerialPortError(8)
-	QSerialPort__ResourceError             = QSerialPort__SerialPortError(9)
-	QSerialPort__UnsupportedOperationError = QSerialPort__SerialPortError(10)
-	QSerialPort__UnknownError              = QSerialPort__SerialPortError(11)
-	QSerialPort__TimeoutError              = QSerialPort__SerialPortError(12)
-	QSerialPort__NotOpenError              = QSerialPort__SerialPortError(13)
+	QSerialPort__NoError                   QSerialPort__SerialPortError = QSerialPort__SerialPortError(0)
+	QSerialPort__DeviceNotFoundError       QSerialPort__SerialPortError = QSerialPort__SerialPortError(1)
+	QSerialPort__PermissionError           QSerialPort__SerialPortError = QSerialPort__SerialPortError(2)
+	QSerialPort__OpenError                 QSerialPort__SerialPortError = QSerialPort__SerialPortError(3)
+	QSerialPort__ParityError               QSerialPort__SerialPortError = QSerialPort__SerialPortError(4)
+	QSerialPort__FramingError              QSerialPort__SerialPortError = QSerialPort__SerialPortError(5)
+	QSerialPort__BreakConditionError       QSerialPort__SerialPortError = QSerialPort__SerialPortError(6)
+	QSerialPort__WriteError                QSerialPort__SerialPortError = QSerialPort__SerialPortError(7)
+	QSerialPort__ReadError                 QSerialPort__SerialPortError = QSerialPort__SerialPortError(8)
+	QSerialPort__ResourceError             QSerialPort__SerialPortError = QSerialPort__SerialPortError(9)
+	QSerialPort__UnsupportedOperationError QSerialPort__SerialPortError = QSerialPort__SerialPortError(10)
+	QSerialPort__UnknownError              QSerialPort__SerialPortError = QSerialPort__SerialPortError(11)
+	QSerialPort__TimeoutError              QSerialPort__SerialPortError = QSerialPort__SerialPortError(12)
+	QSerialPort__NotOpenError              QSerialPort__SerialPortError = QSerialPort__SerialPortError(13)
 )
 
+//go:generate stringer -type=QSerialPort__StopBits
 //QSerialPort::StopBits
 type QSerialPort__StopBits int64
 
 const (
-	QSerialPort__OneStop         = QSerialPort__StopBits(1)
-	QSerialPort__OneAndHalfStop  = QSerialPort__StopBits(3)
-	QSerialPort__TwoStop         = QSerialPort__StopBits(2)
-	QSerialPort__UnknownStopBits = QSerialPort__StopBits(-1)
+	QSerialPort__OneStop         QSerialPort__StopBits = QSerialPort__StopBits(1)
+	QSerialPort__OneAndHalfStop  QSerialPort__StopBits = QSerialPort__StopBits(3)
+	QSerialPort__TwoStop         QSerialPort__StopBits = QSerialPort__StopBits(2)
+	QSerialPort__UnknownStopBits QSerialPort__StopBits = QSerialPort__StopBits(-1)
 )
 
 type QSerialPort struct {

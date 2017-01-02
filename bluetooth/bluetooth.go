@@ -22,28 +22,30 @@ func cGoUnpackString(s C.struct_QtBluetooth_PackedString) string {
 	return C.GoStringN(s.data, C.int(s.len))
 }
 
+//go:generate stringer -type=OSXBluetooth__CentralManagerState
 //OSXBluetooth::CentralManagerState
 type OSXBluetooth__CentralManagerState int64
 
 const (
-	OSXBluetooth__CentralManagerIdle          = OSXBluetooth__CentralManagerState(0)
-	OSXBluetooth__CentralManagerUpdating      = OSXBluetooth__CentralManagerState(1)
-	OSXBluetooth__CentralManagerConnecting    = OSXBluetooth__CentralManagerState(2)
-	OSXBluetooth__CentralManagerDiscovering   = OSXBluetooth__CentralManagerState(3)
-	OSXBluetooth__CentralManagerDisconnecting = OSXBluetooth__CentralManagerState(4)
+	OSXBluetooth__CentralManagerIdle          OSXBluetooth__CentralManagerState = OSXBluetooth__CentralManagerState(0)
+	OSXBluetooth__CentralManagerUpdating      OSXBluetooth__CentralManagerState = OSXBluetooth__CentralManagerState(1)
+	OSXBluetooth__CentralManagerConnecting    OSXBluetooth__CentralManagerState = OSXBluetooth__CentralManagerState(2)
+	OSXBluetooth__CentralManagerDiscovering   OSXBluetooth__CentralManagerState = OSXBluetooth__CentralManagerState(3)
+	OSXBluetooth__CentralManagerDisconnecting OSXBluetooth__CentralManagerState = OSXBluetooth__CentralManagerState(4)
 )
 
+//go:generate stringer -type=OSXBluetooth__OBEXRequest
 //OSXBluetooth::OBEXRequest
 type OSXBluetooth__OBEXRequest int64
 
 const (
-	OSXBluetooth__OBEXNoop       = OSXBluetooth__OBEXRequest(0)
-	OSXBluetooth__OBEXConnect    = OSXBluetooth__OBEXRequest(1)
-	OSXBluetooth__OBEXDisconnect = OSXBluetooth__OBEXRequest(2)
-	OSXBluetooth__OBEXPut        = OSXBluetooth__OBEXRequest(3)
-	OSXBluetooth__OBEXGet        = OSXBluetooth__OBEXRequest(4)
-	OSXBluetooth__OBEXSetPath    = OSXBluetooth__OBEXRequest(5)
-	OSXBluetooth__OBEXAbort      = OSXBluetooth__OBEXRequest(6)
+	OSXBluetooth__OBEXNoop       OSXBluetooth__OBEXRequest = OSXBluetooth__OBEXRequest(0)
+	OSXBluetooth__OBEXConnect    OSXBluetooth__OBEXRequest = OSXBluetooth__OBEXRequest(1)
+	OSXBluetooth__OBEXDisconnect OSXBluetooth__OBEXRequest = OSXBluetooth__OBEXRequest(2)
+	OSXBluetooth__OBEXPut        OSXBluetooth__OBEXRequest = OSXBluetooth__OBEXRequest(3)
+	OSXBluetooth__OBEXGet        OSXBluetooth__OBEXRequest = OSXBluetooth__OBEXRequest(4)
+	OSXBluetooth__OBEXSetPath    OSXBluetooth__OBEXRequest = OSXBluetooth__OBEXRequest(5)
+	OSXBluetooth__OBEXAbort      OSXBluetooth__OBEXRequest = OSXBluetooth__OBEXRequest(6)
 )
 
 type OSXBluetooth struct {
@@ -89,24 +91,26 @@ func (ptr *OSXBluetooth) DestroyOSXBluetooth() {
 	ptr.SetPointer(nil)
 }
 
+//go:generate stringer -type=QBluetooth__AttAccessConstraint
 //QBluetooth::AttAccessConstraint
 type QBluetooth__AttAccessConstraint int64
 
 const (
-	QBluetooth__AttAuthorizationRequired  = QBluetooth__AttAccessConstraint(0x1)
-	QBluetooth__AttAuthenticationRequired = QBluetooth__AttAccessConstraint(0x2)
-	QBluetooth__AttEncryptionRequired     = QBluetooth__AttAccessConstraint(0x4)
+	QBluetooth__AttAuthorizationRequired  QBluetooth__AttAccessConstraint = QBluetooth__AttAccessConstraint(0x1)
+	QBluetooth__AttAuthenticationRequired QBluetooth__AttAccessConstraint = QBluetooth__AttAccessConstraint(0x2)
+	QBluetooth__AttEncryptionRequired     QBluetooth__AttAccessConstraint = QBluetooth__AttAccessConstraint(0x4)
 )
 
+//go:generate stringer -type=QBluetooth__Security
 //QBluetooth::Security
 type QBluetooth__Security int64
 
 const (
-	QBluetooth__NoSecurity     = QBluetooth__Security(0x00)
-	QBluetooth__Authorization  = QBluetooth__Security(0x01)
-	QBluetooth__Authentication = QBluetooth__Security(0x02)
-	QBluetooth__Encryption     = QBluetooth__Security(0x04)
-	QBluetooth__Secure         = QBluetooth__Security(0x08)
+	QBluetooth__NoSecurity     QBluetooth__Security = QBluetooth__Security(0x00)
+	QBluetooth__Authorization  QBluetooth__Security = QBluetooth__Security(0x01)
+	QBluetooth__Authentication QBluetooth__Security = QBluetooth__Security(0x02)
+	QBluetooth__Encryption     QBluetooth__Security = QBluetooth__Security(0x04)
+	QBluetooth__Secure         QBluetooth__Security = QBluetooth__Security(0x08)
 )
 
 type QBluetooth struct {
@@ -249,24 +253,26 @@ func (ptr *QBluetoothAddress) DestroyQBluetoothAddress() {
 	}
 }
 
+//go:generate stringer -type=QBluetoothDeviceDiscoveryAgent__Error
 //QBluetoothDeviceDiscoveryAgent::Error
 type QBluetoothDeviceDiscoveryAgent__Error int64
 
 const (
-	QBluetoothDeviceDiscoveryAgent__NoError                      = QBluetoothDeviceDiscoveryAgent__Error(0)
-	QBluetoothDeviceDiscoveryAgent__InputOutputError             = QBluetoothDeviceDiscoveryAgent__Error(1)
-	QBluetoothDeviceDiscoveryAgent__PoweredOffError              = QBluetoothDeviceDiscoveryAgent__Error(2)
-	QBluetoothDeviceDiscoveryAgent__InvalidBluetoothAdapterError = QBluetoothDeviceDiscoveryAgent__Error(3)
-	QBluetoothDeviceDiscoveryAgent__UnsupportedPlatformError     = QBluetoothDeviceDiscoveryAgent__Error(4)
-	QBluetoothDeviceDiscoveryAgent__UnknownError                 = QBluetoothDeviceDiscoveryAgent__Error(100)
+	QBluetoothDeviceDiscoveryAgent__NoError                      QBluetoothDeviceDiscoveryAgent__Error = QBluetoothDeviceDiscoveryAgent__Error(0)
+	QBluetoothDeviceDiscoveryAgent__InputOutputError             QBluetoothDeviceDiscoveryAgent__Error = QBluetoothDeviceDiscoveryAgent__Error(1)
+	QBluetoothDeviceDiscoveryAgent__PoweredOffError              QBluetoothDeviceDiscoveryAgent__Error = QBluetoothDeviceDiscoveryAgent__Error(2)
+	QBluetoothDeviceDiscoveryAgent__InvalidBluetoothAdapterError QBluetoothDeviceDiscoveryAgent__Error = QBluetoothDeviceDiscoveryAgent__Error(3)
+	QBluetoothDeviceDiscoveryAgent__UnsupportedPlatformError     QBluetoothDeviceDiscoveryAgent__Error = QBluetoothDeviceDiscoveryAgent__Error(4)
+	QBluetoothDeviceDiscoveryAgent__UnknownError                 QBluetoothDeviceDiscoveryAgent__Error = QBluetoothDeviceDiscoveryAgent__Error(100)
 )
 
+//go:generate stringer -type=QBluetoothDeviceDiscoveryAgent__InquiryType
 //QBluetoothDeviceDiscoveryAgent::InquiryType
 type QBluetoothDeviceDiscoveryAgent__InquiryType int64
 
 const (
-	QBluetoothDeviceDiscoveryAgent__GeneralUnlimitedInquiry = QBluetoothDeviceDiscoveryAgent__InquiryType(0)
-	QBluetoothDeviceDiscoveryAgent__LimitedInquiry          = QBluetoothDeviceDiscoveryAgent__InquiryType(1)
+	QBluetoothDeviceDiscoveryAgent__GeneralUnlimitedInquiry QBluetoothDeviceDiscoveryAgent__InquiryType = QBluetoothDeviceDiscoveryAgent__InquiryType(0)
+	QBluetoothDeviceDiscoveryAgent__LimitedInquiry          QBluetoothDeviceDiscoveryAgent__InquiryType = QBluetoothDeviceDiscoveryAgent__InquiryType(1)
 )
 
 type QBluetoothDeviceDiscoveryAgent struct {
@@ -893,190 +899,204 @@ func (ptr *QBluetoothDeviceDiscoveryAgent) MetaObjectDefault() *core.QMetaObject
 	return nil
 }
 
+//go:generate stringer -type=QBluetoothDeviceInfo__CoreConfiguration
 //QBluetoothDeviceInfo::CoreConfiguration
 type QBluetoothDeviceInfo__CoreConfiguration int64
 
 const (
-	QBluetoothDeviceInfo__UnknownCoreConfiguration              = QBluetoothDeviceInfo__CoreConfiguration(0x0)
-	QBluetoothDeviceInfo__LowEnergyCoreConfiguration            = QBluetoothDeviceInfo__CoreConfiguration(0x01)
-	QBluetoothDeviceInfo__BaseRateCoreConfiguration             = QBluetoothDeviceInfo__CoreConfiguration(0x02)
-	QBluetoothDeviceInfo__BaseRateAndLowEnergyCoreConfiguration = QBluetoothDeviceInfo__CoreConfiguration(0x03)
+	QBluetoothDeviceInfo__UnknownCoreConfiguration              QBluetoothDeviceInfo__CoreConfiguration = QBluetoothDeviceInfo__CoreConfiguration(0x0)
+	QBluetoothDeviceInfo__LowEnergyCoreConfiguration            QBluetoothDeviceInfo__CoreConfiguration = QBluetoothDeviceInfo__CoreConfiguration(0x01)
+	QBluetoothDeviceInfo__BaseRateCoreConfiguration             QBluetoothDeviceInfo__CoreConfiguration = QBluetoothDeviceInfo__CoreConfiguration(0x02)
+	QBluetoothDeviceInfo__BaseRateAndLowEnergyCoreConfiguration QBluetoothDeviceInfo__CoreConfiguration = QBluetoothDeviceInfo__CoreConfiguration(0x03)
 )
 
+//go:generate stringer -type=QBluetoothDeviceInfo__DataCompleteness
 //QBluetoothDeviceInfo::DataCompleteness
 type QBluetoothDeviceInfo__DataCompleteness int64
 
 const (
-	QBluetoothDeviceInfo__DataComplete    = QBluetoothDeviceInfo__DataCompleteness(0)
-	QBluetoothDeviceInfo__DataIncomplete  = QBluetoothDeviceInfo__DataCompleteness(1)
-	QBluetoothDeviceInfo__DataUnavailable = QBluetoothDeviceInfo__DataCompleteness(2)
+	QBluetoothDeviceInfo__DataComplete    QBluetoothDeviceInfo__DataCompleteness = QBluetoothDeviceInfo__DataCompleteness(0)
+	QBluetoothDeviceInfo__DataIncomplete  QBluetoothDeviceInfo__DataCompleteness = QBluetoothDeviceInfo__DataCompleteness(1)
+	QBluetoothDeviceInfo__DataUnavailable QBluetoothDeviceInfo__DataCompleteness = QBluetoothDeviceInfo__DataCompleteness(2)
 )
 
+//go:generate stringer -type=QBluetoothDeviceInfo__MajorDeviceClass
 //QBluetoothDeviceInfo::MajorDeviceClass
 type QBluetoothDeviceInfo__MajorDeviceClass int64
 
 const (
-	QBluetoothDeviceInfo__MiscellaneousDevice = QBluetoothDeviceInfo__MajorDeviceClass(0)
-	QBluetoothDeviceInfo__ComputerDevice      = QBluetoothDeviceInfo__MajorDeviceClass(1)
-	QBluetoothDeviceInfo__PhoneDevice         = QBluetoothDeviceInfo__MajorDeviceClass(2)
-	QBluetoothDeviceInfo__LANAccessDevice     = QBluetoothDeviceInfo__MajorDeviceClass(3)
-	QBluetoothDeviceInfo__AudioVideoDevice    = QBluetoothDeviceInfo__MajorDeviceClass(4)
-	QBluetoothDeviceInfo__PeripheralDevice    = QBluetoothDeviceInfo__MajorDeviceClass(5)
-	QBluetoothDeviceInfo__ImagingDevice       = QBluetoothDeviceInfo__MajorDeviceClass(6)
-	QBluetoothDeviceInfo__WearableDevice      = QBluetoothDeviceInfo__MajorDeviceClass(7)
-	QBluetoothDeviceInfo__ToyDevice           = QBluetoothDeviceInfo__MajorDeviceClass(8)
-	QBluetoothDeviceInfo__HealthDevice        = QBluetoothDeviceInfo__MajorDeviceClass(9)
-	QBluetoothDeviceInfo__UncategorizedDevice = QBluetoothDeviceInfo__MajorDeviceClass(31)
+	QBluetoothDeviceInfo__MiscellaneousDevice QBluetoothDeviceInfo__MajorDeviceClass = QBluetoothDeviceInfo__MajorDeviceClass(0)
+	QBluetoothDeviceInfo__ComputerDevice      QBluetoothDeviceInfo__MajorDeviceClass = QBluetoothDeviceInfo__MajorDeviceClass(1)
+	QBluetoothDeviceInfo__PhoneDevice         QBluetoothDeviceInfo__MajorDeviceClass = QBluetoothDeviceInfo__MajorDeviceClass(2)
+	QBluetoothDeviceInfo__LANAccessDevice     QBluetoothDeviceInfo__MajorDeviceClass = QBluetoothDeviceInfo__MajorDeviceClass(3)
+	QBluetoothDeviceInfo__AudioVideoDevice    QBluetoothDeviceInfo__MajorDeviceClass = QBluetoothDeviceInfo__MajorDeviceClass(4)
+	QBluetoothDeviceInfo__PeripheralDevice    QBluetoothDeviceInfo__MajorDeviceClass = QBluetoothDeviceInfo__MajorDeviceClass(5)
+	QBluetoothDeviceInfo__ImagingDevice       QBluetoothDeviceInfo__MajorDeviceClass = QBluetoothDeviceInfo__MajorDeviceClass(6)
+	QBluetoothDeviceInfo__WearableDevice      QBluetoothDeviceInfo__MajorDeviceClass = QBluetoothDeviceInfo__MajorDeviceClass(7)
+	QBluetoothDeviceInfo__ToyDevice           QBluetoothDeviceInfo__MajorDeviceClass = QBluetoothDeviceInfo__MajorDeviceClass(8)
+	QBluetoothDeviceInfo__HealthDevice        QBluetoothDeviceInfo__MajorDeviceClass = QBluetoothDeviceInfo__MajorDeviceClass(9)
+	QBluetoothDeviceInfo__UncategorizedDevice QBluetoothDeviceInfo__MajorDeviceClass = QBluetoothDeviceInfo__MajorDeviceClass(31)
 )
 
+//go:generate stringer -type=QBluetoothDeviceInfo__MinorAudioVideoClass
 //QBluetoothDeviceInfo::MinorAudioVideoClass
 type QBluetoothDeviceInfo__MinorAudioVideoClass int64
 
 const (
-	QBluetoothDeviceInfo__UncategorizedAudioVideoDevice = QBluetoothDeviceInfo__MinorAudioVideoClass(0)
-	QBluetoothDeviceInfo__WearableHeadsetDevice         = QBluetoothDeviceInfo__MinorAudioVideoClass(1)
-	QBluetoothDeviceInfo__HandsFreeDevice               = QBluetoothDeviceInfo__MinorAudioVideoClass(2)
-	QBluetoothDeviceInfo__Microphone                    = QBluetoothDeviceInfo__MinorAudioVideoClass(4)
-	QBluetoothDeviceInfo__Loudspeaker                   = QBluetoothDeviceInfo__MinorAudioVideoClass(5)
-	QBluetoothDeviceInfo__Headphones                    = QBluetoothDeviceInfo__MinorAudioVideoClass(6)
-	QBluetoothDeviceInfo__PortableAudioDevice           = QBluetoothDeviceInfo__MinorAudioVideoClass(7)
-	QBluetoothDeviceInfo__CarAudio                      = QBluetoothDeviceInfo__MinorAudioVideoClass(8)
-	QBluetoothDeviceInfo__SetTopBox                     = QBluetoothDeviceInfo__MinorAudioVideoClass(9)
-	QBluetoothDeviceInfo__HiFiAudioDevice               = QBluetoothDeviceInfo__MinorAudioVideoClass(10)
-	QBluetoothDeviceInfo__Vcr                           = QBluetoothDeviceInfo__MinorAudioVideoClass(11)
-	QBluetoothDeviceInfo__VideoCamera                   = QBluetoothDeviceInfo__MinorAudioVideoClass(12)
-	QBluetoothDeviceInfo__Camcorder                     = QBluetoothDeviceInfo__MinorAudioVideoClass(13)
-	QBluetoothDeviceInfo__VideoMonitor                  = QBluetoothDeviceInfo__MinorAudioVideoClass(14)
-	QBluetoothDeviceInfo__VideoDisplayAndLoudspeaker    = QBluetoothDeviceInfo__MinorAudioVideoClass(15)
-	QBluetoothDeviceInfo__VideoConferencing             = QBluetoothDeviceInfo__MinorAudioVideoClass(16)
-	QBluetoothDeviceInfo__GamingDevice                  = QBluetoothDeviceInfo__MinorAudioVideoClass(18)
+	QBluetoothDeviceInfo__UncategorizedAudioVideoDevice QBluetoothDeviceInfo__MinorAudioVideoClass = QBluetoothDeviceInfo__MinorAudioVideoClass(0)
+	QBluetoothDeviceInfo__WearableHeadsetDevice         QBluetoothDeviceInfo__MinorAudioVideoClass = QBluetoothDeviceInfo__MinorAudioVideoClass(1)
+	QBluetoothDeviceInfo__HandsFreeDevice               QBluetoothDeviceInfo__MinorAudioVideoClass = QBluetoothDeviceInfo__MinorAudioVideoClass(2)
+	QBluetoothDeviceInfo__Microphone                    QBluetoothDeviceInfo__MinorAudioVideoClass = QBluetoothDeviceInfo__MinorAudioVideoClass(4)
+	QBluetoothDeviceInfo__Loudspeaker                   QBluetoothDeviceInfo__MinorAudioVideoClass = QBluetoothDeviceInfo__MinorAudioVideoClass(5)
+	QBluetoothDeviceInfo__Headphones                    QBluetoothDeviceInfo__MinorAudioVideoClass = QBluetoothDeviceInfo__MinorAudioVideoClass(6)
+	QBluetoothDeviceInfo__PortableAudioDevice           QBluetoothDeviceInfo__MinorAudioVideoClass = QBluetoothDeviceInfo__MinorAudioVideoClass(7)
+	QBluetoothDeviceInfo__CarAudio                      QBluetoothDeviceInfo__MinorAudioVideoClass = QBluetoothDeviceInfo__MinorAudioVideoClass(8)
+	QBluetoothDeviceInfo__SetTopBox                     QBluetoothDeviceInfo__MinorAudioVideoClass = QBluetoothDeviceInfo__MinorAudioVideoClass(9)
+	QBluetoothDeviceInfo__HiFiAudioDevice               QBluetoothDeviceInfo__MinorAudioVideoClass = QBluetoothDeviceInfo__MinorAudioVideoClass(10)
+	QBluetoothDeviceInfo__Vcr                           QBluetoothDeviceInfo__MinorAudioVideoClass = QBluetoothDeviceInfo__MinorAudioVideoClass(11)
+	QBluetoothDeviceInfo__VideoCamera                   QBluetoothDeviceInfo__MinorAudioVideoClass = QBluetoothDeviceInfo__MinorAudioVideoClass(12)
+	QBluetoothDeviceInfo__Camcorder                     QBluetoothDeviceInfo__MinorAudioVideoClass = QBluetoothDeviceInfo__MinorAudioVideoClass(13)
+	QBluetoothDeviceInfo__VideoMonitor                  QBluetoothDeviceInfo__MinorAudioVideoClass = QBluetoothDeviceInfo__MinorAudioVideoClass(14)
+	QBluetoothDeviceInfo__VideoDisplayAndLoudspeaker    QBluetoothDeviceInfo__MinorAudioVideoClass = QBluetoothDeviceInfo__MinorAudioVideoClass(15)
+	QBluetoothDeviceInfo__VideoConferencing             QBluetoothDeviceInfo__MinorAudioVideoClass = QBluetoothDeviceInfo__MinorAudioVideoClass(16)
+	QBluetoothDeviceInfo__GamingDevice                  QBluetoothDeviceInfo__MinorAudioVideoClass = QBluetoothDeviceInfo__MinorAudioVideoClass(18)
 )
 
+//go:generate stringer -type=QBluetoothDeviceInfo__MinorComputerClass
 //QBluetoothDeviceInfo::MinorComputerClass
 type QBluetoothDeviceInfo__MinorComputerClass int64
 
 const (
-	QBluetoothDeviceInfo__UncategorizedComputer     = QBluetoothDeviceInfo__MinorComputerClass(0)
-	QBluetoothDeviceInfo__DesktopComputer           = QBluetoothDeviceInfo__MinorComputerClass(1)
-	QBluetoothDeviceInfo__ServerComputer            = QBluetoothDeviceInfo__MinorComputerClass(2)
-	QBluetoothDeviceInfo__LaptopComputer            = QBluetoothDeviceInfo__MinorComputerClass(3)
-	QBluetoothDeviceInfo__HandheldClamShellComputer = QBluetoothDeviceInfo__MinorComputerClass(4)
-	QBluetoothDeviceInfo__HandheldComputer          = QBluetoothDeviceInfo__MinorComputerClass(5)
-	QBluetoothDeviceInfo__WearableComputer          = QBluetoothDeviceInfo__MinorComputerClass(6)
+	QBluetoothDeviceInfo__UncategorizedComputer     QBluetoothDeviceInfo__MinorComputerClass = QBluetoothDeviceInfo__MinorComputerClass(0)
+	QBluetoothDeviceInfo__DesktopComputer           QBluetoothDeviceInfo__MinorComputerClass = QBluetoothDeviceInfo__MinorComputerClass(1)
+	QBluetoothDeviceInfo__ServerComputer            QBluetoothDeviceInfo__MinorComputerClass = QBluetoothDeviceInfo__MinorComputerClass(2)
+	QBluetoothDeviceInfo__LaptopComputer            QBluetoothDeviceInfo__MinorComputerClass = QBluetoothDeviceInfo__MinorComputerClass(3)
+	QBluetoothDeviceInfo__HandheldClamShellComputer QBluetoothDeviceInfo__MinorComputerClass = QBluetoothDeviceInfo__MinorComputerClass(4)
+	QBluetoothDeviceInfo__HandheldComputer          QBluetoothDeviceInfo__MinorComputerClass = QBluetoothDeviceInfo__MinorComputerClass(5)
+	QBluetoothDeviceInfo__WearableComputer          QBluetoothDeviceInfo__MinorComputerClass = QBluetoothDeviceInfo__MinorComputerClass(6)
 )
 
+//go:generate stringer -type=QBluetoothDeviceInfo__MinorHealthClass
 //QBluetoothDeviceInfo::MinorHealthClass
 type QBluetoothDeviceInfo__MinorHealthClass int64
 
 const (
-	QBluetoothDeviceInfo__UncategorizedHealthDevice  = QBluetoothDeviceInfo__MinorHealthClass(0)
-	QBluetoothDeviceInfo__HealthBloodPressureMonitor = QBluetoothDeviceInfo__MinorHealthClass(0x1)
-	QBluetoothDeviceInfo__HealthThermometer          = QBluetoothDeviceInfo__MinorHealthClass(0x2)
-	QBluetoothDeviceInfo__HealthWeightScale          = QBluetoothDeviceInfo__MinorHealthClass(0x3)
-	QBluetoothDeviceInfo__HealthGlucoseMeter         = QBluetoothDeviceInfo__MinorHealthClass(0x4)
-	QBluetoothDeviceInfo__HealthPulseOximeter        = QBluetoothDeviceInfo__MinorHealthClass(0x5)
-	QBluetoothDeviceInfo__HealthDataDisplay          = QBluetoothDeviceInfo__MinorHealthClass(0x7)
-	QBluetoothDeviceInfo__HealthStepCounter          = QBluetoothDeviceInfo__MinorHealthClass(0x8)
+	QBluetoothDeviceInfo__UncategorizedHealthDevice  QBluetoothDeviceInfo__MinorHealthClass = QBluetoothDeviceInfo__MinorHealthClass(0)
+	QBluetoothDeviceInfo__HealthBloodPressureMonitor QBluetoothDeviceInfo__MinorHealthClass = QBluetoothDeviceInfo__MinorHealthClass(0x1)
+	QBluetoothDeviceInfo__HealthThermometer          QBluetoothDeviceInfo__MinorHealthClass = QBluetoothDeviceInfo__MinorHealthClass(0x2)
+	QBluetoothDeviceInfo__HealthWeightScale          QBluetoothDeviceInfo__MinorHealthClass = QBluetoothDeviceInfo__MinorHealthClass(0x3)
+	QBluetoothDeviceInfo__HealthGlucoseMeter         QBluetoothDeviceInfo__MinorHealthClass = QBluetoothDeviceInfo__MinorHealthClass(0x4)
+	QBluetoothDeviceInfo__HealthPulseOximeter        QBluetoothDeviceInfo__MinorHealthClass = QBluetoothDeviceInfo__MinorHealthClass(0x5)
+	QBluetoothDeviceInfo__HealthDataDisplay          QBluetoothDeviceInfo__MinorHealthClass = QBluetoothDeviceInfo__MinorHealthClass(0x7)
+	QBluetoothDeviceInfo__HealthStepCounter          QBluetoothDeviceInfo__MinorHealthClass = QBluetoothDeviceInfo__MinorHealthClass(0x8)
 )
 
+//go:generate stringer -type=QBluetoothDeviceInfo__MinorImagingClass
 //QBluetoothDeviceInfo::MinorImagingClass
 type QBluetoothDeviceInfo__MinorImagingClass int64
 
 const (
-	QBluetoothDeviceInfo__UncategorizedImagingDevice = QBluetoothDeviceInfo__MinorImagingClass(0)
-	QBluetoothDeviceInfo__ImageDisplay               = QBluetoothDeviceInfo__MinorImagingClass(0x04)
-	QBluetoothDeviceInfo__ImageCamera                = QBluetoothDeviceInfo__MinorImagingClass(0x08)
-	QBluetoothDeviceInfo__ImageScanner               = QBluetoothDeviceInfo__MinorImagingClass(0x10)
-	QBluetoothDeviceInfo__ImagePrinter               = QBluetoothDeviceInfo__MinorImagingClass(0x20)
+	QBluetoothDeviceInfo__UncategorizedImagingDevice QBluetoothDeviceInfo__MinorImagingClass = QBluetoothDeviceInfo__MinorImagingClass(0)
+	QBluetoothDeviceInfo__ImageDisplay               QBluetoothDeviceInfo__MinorImagingClass = QBluetoothDeviceInfo__MinorImagingClass(0x04)
+	QBluetoothDeviceInfo__ImageCamera                QBluetoothDeviceInfo__MinorImagingClass = QBluetoothDeviceInfo__MinorImagingClass(0x08)
+	QBluetoothDeviceInfo__ImageScanner               QBluetoothDeviceInfo__MinorImagingClass = QBluetoothDeviceInfo__MinorImagingClass(0x10)
+	QBluetoothDeviceInfo__ImagePrinter               QBluetoothDeviceInfo__MinorImagingClass = QBluetoothDeviceInfo__MinorImagingClass(0x20)
 )
 
+//go:generate stringer -type=QBluetoothDeviceInfo__MinorMiscellaneousClass
 //QBluetoothDeviceInfo::MinorMiscellaneousClass
 type QBluetoothDeviceInfo__MinorMiscellaneousClass int64
 
 const (
-	QBluetoothDeviceInfo__UncategorizedMiscellaneous = QBluetoothDeviceInfo__MinorMiscellaneousClass(0)
+	QBluetoothDeviceInfo__UncategorizedMiscellaneous QBluetoothDeviceInfo__MinorMiscellaneousClass = QBluetoothDeviceInfo__MinorMiscellaneousClass(0)
 )
 
+//go:generate stringer -type=QBluetoothDeviceInfo__MinorNetworkClass
 //QBluetoothDeviceInfo::MinorNetworkClass
 type QBluetoothDeviceInfo__MinorNetworkClass int64
 
 const (
-	QBluetoothDeviceInfo__NetworkFullService     = QBluetoothDeviceInfo__MinorNetworkClass(0x00)
-	QBluetoothDeviceInfo__NetworkLoadFactorOne   = QBluetoothDeviceInfo__MinorNetworkClass(0x08)
-	QBluetoothDeviceInfo__NetworkLoadFactorTwo   = QBluetoothDeviceInfo__MinorNetworkClass(0x10)
-	QBluetoothDeviceInfo__NetworkLoadFactorThree = QBluetoothDeviceInfo__MinorNetworkClass(0x18)
-	QBluetoothDeviceInfo__NetworkLoadFactorFour  = QBluetoothDeviceInfo__MinorNetworkClass(0x20)
-	QBluetoothDeviceInfo__NetworkLoadFactorFive  = QBluetoothDeviceInfo__MinorNetworkClass(0x28)
-	QBluetoothDeviceInfo__NetworkLoadFactorSix   = QBluetoothDeviceInfo__MinorNetworkClass(0x30)
-	QBluetoothDeviceInfo__NetworkNoService       = QBluetoothDeviceInfo__MinorNetworkClass(0x38)
+	QBluetoothDeviceInfo__NetworkFullService     QBluetoothDeviceInfo__MinorNetworkClass = QBluetoothDeviceInfo__MinorNetworkClass(0x00)
+	QBluetoothDeviceInfo__NetworkLoadFactorOne   QBluetoothDeviceInfo__MinorNetworkClass = QBluetoothDeviceInfo__MinorNetworkClass(0x08)
+	QBluetoothDeviceInfo__NetworkLoadFactorTwo   QBluetoothDeviceInfo__MinorNetworkClass = QBluetoothDeviceInfo__MinorNetworkClass(0x10)
+	QBluetoothDeviceInfo__NetworkLoadFactorThree QBluetoothDeviceInfo__MinorNetworkClass = QBluetoothDeviceInfo__MinorNetworkClass(0x18)
+	QBluetoothDeviceInfo__NetworkLoadFactorFour  QBluetoothDeviceInfo__MinorNetworkClass = QBluetoothDeviceInfo__MinorNetworkClass(0x20)
+	QBluetoothDeviceInfo__NetworkLoadFactorFive  QBluetoothDeviceInfo__MinorNetworkClass = QBluetoothDeviceInfo__MinorNetworkClass(0x28)
+	QBluetoothDeviceInfo__NetworkLoadFactorSix   QBluetoothDeviceInfo__MinorNetworkClass = QBluetoothDeviceInfo__MinorNetworkClass(0x30)
+	QBluetoothDeviceInfo__NetworkNoService       QBluetoothDeviceInfo__MinorNetworkClass = QBluetoothDeviceInfo__MinorNetworkClass(0x38)
 )
 
+//go:generate stringer -type=QBluetoothDeviceInfo__MinorPeripheralClass
 //QBluetoothDeviceInfo::MinorPeripheralClass
 type QBluetoothDeviceInfo__MinorPeripheralClass int64
 
 const (
-	QBluetoothDeviceInfo__UncategorizedPeripheral              = QBluetoothDeviceInfo__MinorPeripheralClass(0)
-	QBluetoothDeviceInfo__KeyboardPeripheral                   = QBluetoothDeviceInfo__MinorPeripheralClass(0x10)
-	QBluetoothDeviceInfo__PointingDevicePeripheral             = QBluetoothDeviceInfo__MinorPeripheralClass(0x20)
-	QBluetoothDeviceInfo__KeyboardWithPointingDevicePeripheral = QBluetoothDeviceInfo__MinorPeripheralClass(0x30)
-	QBluetoothDeviceInfo__JoystickPeripheral                   = QBluetoothDeviceInfo__MinorPeripheralClass(0x01)
-	QBluetoothDeviceInfo__GamepadPeripheral                    = QBluetoothDeviceInfo__MinorPeripheralClass(0x02)
-	QBluetoothDeviceInfo__RemoteControlPeripheral              = QBluetoothDeviceInfo__MinorPeripheralClass(0x03)
-	QBluetoothDeviceInfo__SensingDevicePeripheral              = QBluetoothDeviceInfo__MinorPeripheralClass(0x04)
-	QBluetoothDeviceInfo__DigitizerTabletPeripheral            = QBluetoothDeviceInfo__MinorPeripheralClass(0x05)
-	QBluetoothDeviceInfo__CardReaderPeripheral                 = QBluetoothDeviceInfo__MinorPeripheralClass(0x06)
+	QBluetoothDeviceInfo__UncategorizedPeripheral              QBluetoothDeviceInfo__MinorPeripheralClass = QBluetoothDeviceInfo__MinorPeripheralClass(0)
+	QBluetoothDeviceInfo__KeyboardPeripheral                   QBluetoothDeviceInfo__MinorPeripheralClass = QBluetoothDeviceInfo__MinorPeripheralClass(0x10)
+	QBluetoothDeviceInfo__PointingDevicePeripheral             QBluetoothDeviceInfo__MinorPeripheralClass = QBluetoothDeviceInfo__MinorPeripheralClass(0x20)
+	QBluetoothDeviceInfo__KeyboardWithPointingDevicePeripheral QBluetoothDeviceInfo__MinorPeripheralClass = QBluetoothDeviceInfo__MinorPeripheralClass(0x30)
+	QBluetoothDeviceInfo__JoystickPeripheral                   QBluetoothDeviceInfo__MinorPeripheralClass = QBluetoothDeviceInfo__MinorPeripheralClass(0x01)
+	QBluetoothDeviceInfo__GamepadPeripheral                    QBluetoothDeviceInfo__MinorPeripheralClass = QBluetoothDeviceInfo__MinorPeripheralClass(0x02)
+	QBluetoothDeviceInfo__RemoteControlPeripheral              QBluetoothDeviceInfo__MinorPeripheralClass = QBluetoothDeviceInfo__MinorPeripheralClass(0x03)
+	QBluetoothDeviceInfo__SensingDevicePeripheral              QBluetoothDeviceInfo__MinorPeripheralClass = QBluetoothDeviceInfo__MinorPeripheralClass(0x04)
+	QBluetoothDeviceInfo__DigitizerTabletPeripheral            QBluetoothDeviceInfo__MinorPeripheralClass = QBluetoothDeviceInfo__MinorPeripheralClass(0x05)
+	QBluetoothDeviceInfo__CardReaderPeripheral                 QBluetoothDeviceInfo__MinorPeripheralClass = QBluetoothDeviceInfo__MinorPeripheralClass(0x06)
 )
 
+//go:generate stringer -type=QBluetoothDeviceInfo__MinorPhoneClass
 //QBluetoothDeviceInfo::MinorPhoneClass
 type QBluetoothDeviceInfo__MinorPhoneClass int64
 
 const (
-	QBluetoothDeviceInfo__UncategorizedPhone            = QBluetoothDeviceInfo__MinorPhoneClass(0)
-	QBluetoothDeviceInfo__CellularPhone                 = QBluetoothDeviceInfo__MinorPhoneClass(1)
-	QBluetoothDeviceInfo__CordlessPhone                 = QBluetoothDeviceInfo__MinorPhoneClass(2)
-	QBluetoothDeviceInfo__SmartPhone                    = QBluetoothDeviceInfo__MinorPhoneClass(3)
-	QBluetoothDeviceInfo__WiredModemOrVoiceGatewayPhone = QBluetoothDeviceInfo__MinorPhoneClass(4)
-	QBluetoothDeviceInfo__CommonIsdnAccessPhone         = QBluetoothDeviceInfo__MinorPhoneClass(5)
+	QBluetoothDeviceInfo__UncategorizedPhone            QBluetoothDeviceInfo__MinorPhoneClass = QBluetoothDeviceInfo__MinorPhoneClass(0)
+	QBluetoothDeviceInfo__CellularPhone                 QBluetoothDeviceInfo__MinorPhoneClass = QBluetoothDeviceInfo__MinorPhoneClass(1)
+	QBluetoothDeviceInfo__CordlessPhone                 QBluetoothDeviceInfo__MinorPhoneClass = QBluetoothDeviceInfo__MinorPhoneClass(2)
+	QBluetoothDeviceInfo__SmartPhone                    QBluetoothDeviceInfo__MinorPhoneClass = QBluetoothDeviceInfo__MinorPhoneClass(3)
+	QBluetoothDeviceInfo__WiredModemOrVoiceGatewayPhone QBluetoothDeviceInfo__MinorPhoneClass = QBluetoothDeviceInfo__MinorPhoneClass(4)
+	QBluetoothDeviceInfo__CommonIsdnAccessPhone         QBluetoothDeviceInfo__MinorPhoneClass = QBluetoothDeviceInfo__MinorPhoneClass(5)
 )
 
+//go:generate stringer -type=QBluetoothDeviceInfo__MinorToyClass
 //QBluetoothDeviceInfo::MinorToyClass
 type QBluetoothDeviceInfo__MinorToyClass int64
 
 const (
-	QBluetoothDeviceInfo__UncategorizedToy = QBluetoothDeviceInfo__MinorToyClass(0)
-	QBluetoothDeviceInfo__ToyRobot         = QBluetoothDeviceInfo__MinorToyClass(1)
-	QBluetoothDeviceInfo__ToyVehicle       = QBluetoothDeviceInfo__MinorToyClass(2)
-	QBluetoothDeviceInfo__ToyDoll          = QBluetoothDeviceInfo__MinorToyClass(3)
-	QBluetoothDeviceInfo__ToyController    = QBluetoothDeviceInfo__MinorToyClass(4)
-	QBluetoothDeviceInfo__ToyGame          = QBluetoothDeviceInfo__MinorToyClass(5)
+	QBluetoothDeviceInfo__UncategorizedToy QBluetoothDeviceInfo__MinorToyClass = QBluetoothDeviceInfo__MinorToyClass(0)
+	QBluetoothDeviceInfo__ToyRobot         QBluetoothDeviceInfo__MinorToyClass = QBluetoothDeviceInfo__MinorToyClass(1)
+	QBluetoothDeviceInfo__ToyVehicle       QBluetoothDeviceInfo__MinorToyClass = QBluetoothDeviceInfo__MinorToyClass(2)
+	QBluetoothDeviceInfo__ToyDoll          QBluetoothDeviceInfo__MinorToyClass = QBluetoothDeviceInfo__MinorToyClass(3)
+	QBluetoothDeviceInfo__ToyController    QBluetoothDeviceInfo__MinorToyClass = QBluetoothDeviceInfo__MinorToyClass(4)
+	QBluetoothDeviceInfo__ToyGame          QBluetoothDeviceInfo__MinorToyClass = QBluetoothDeviceInfo__MinorToyClass(5)
 )
 
+//go:generate stringer -type=QBluetoothDeviceInfo__MinorWearableClass
 //QBluetoothDeviceInfo::MinorWearableClass
 type QBluetoothDeviceInfo__MinorWearableClass int64
 
 const (
-	QBluetoothDeviceInfo__UncategorizedWearableDevice = QBluetoothDeviceInfo__MinorWearableClass(0)
-	QBluetoothDeviceInfo__WearableWristWatch          = QBluetoothDeviceInfo__MinorWearableClass(1)
-	QBluetoothDeviceInfo__WearablePager               = QBluetoothDeviceInfo__MinorWearableClass(2)
-	QBluetoothDeviceInfo__WearableJacket              = QBluetoothDeviceInfo__MinorWearableClass(3)
-	QBluetoothDeviceInfo__WearableHelmet              = QBluetoothDeviceInfo__MinorWearableClass(4)
-	QBluetoothDeviceInfo__WearableGlasses             = QBluetoothDeviceInfo__MinorWearableClass(5)
+	QBluetoothDeviceInfo__UncategorizedWearableDevice QBluetoothDeviceInfo__MinorWearableClass = QBluetoothDeviceInfo__MinorWearableClass(0)
+	QBluetoothDeviceInfo__WearableWristWatch          QBluetoothDeviceInfo__MinorWearableClass = QBluetoothDeviceInfo__MinorWearableClass(1)
+	QBluetoothDeviceInfo__WearablePager               QBluetoothDeviceInfo__MinorWearableClass = QBluetoothDeviceInfo__MinorWearableClass(2)
+	QBluetoothDeviceInfo__WearableJacket              QBluetoothDeviceInfo__MinorWearableClass = QBluetoothDeviceInfo__MinorWearableClass(3)
+	QBluetoothDeviceInfo__WearableHelmet              QBluetoothDeviceInfo__MinorWearableClass = QBluetoothDeviceInfo__MinorWearableClass(4)
+	QBluetoothDeviceInfo__WearableGlasses             QBluetoothDeviceInfo__MinorWearableClass = QBluetoothDeviceInfo__MinorWearableClass(5)
 )
 
+//go:generate stringer -type=QBluetoothDeviceInfo__ServiceClass
 //QBluetoothDeviceInfo::ServiceClass
 type QBluetoothDeviceInfo__ServiceClass int64
 
 const (
-	QBluetoothDeviceInfo__NoService             = QBluetoothDeviceInfo__ServiceClass(0x0000)
-	QBluetoothDeviceInfo__PositioningService    = QBluetoothDeviceInfo__ServiceClass(0x0001)
-	QBluetoothDeviceInfo__NetworkingService     = QBluetoothDeviceInfo__ServiceClass(0x0002)
-	QBluetoothDeviceInfo__RenderingService      = QBluetoothDeviceInfo__ServiceClass(0x0004)
-	QBluetoothDeviceInfo__CapturingService      = QBluetoothDeviceInfo__ServiceClass(0x0008)
-	QBluetoothDeviceInfo__ObjectTransferService = QBluetoothDeviceInfo__ServiceClass(0x0010)
-	QBluetoothDeviceInfo__AudioService          = QBluetoothDeviceInfo__ServiceClass(0x0020)
-	QBluetoothDeviceInfo__TelephonyService      = QBluetoothDeviceInfo__ServiceClass(0x0040)
-	QBluetoothDeviceInfo__InformationService    = QBluetoothDeviceInfo__ServiceClass(0x0080)
-	QBluetoothDeviceInfo__AllServices           = QBluetoothDeviceInfo__ServiceClass(0x07ff)
+	QBluetoothDeviceInfo__NoService             QBluetoothDeviceInfo__ServiceClass = QBluetoothDeviceInfo__ServiceClass(0x0000)
+	QBluetoothDeviceInfo__PositioningService    QBluetoothDeviceInfo__ServiceClass = QBluetoothDeviceInfo__ServiceClass(0x0001)
+	QBluetoothDeviceInfo__NetworkingService     QBluetoothDeviceInfo__ServiceClass = QBluetoothDeviceInfo__ServiceClass(0x0002)
+	QBluetoothDeviceInfo__RenderingService      QBluetoothDeviceInfo__ServiceClass = QBluetoothDeviceInfo__ServiceClass(0x0004)
+	QBluetoothDeviceInfo__CapturingService      QBluetoothDeviceInfo__ServiceClass = QBluetoothDeviceInfo__ServiceClass(0x0008)
+	QBluetoothDeviceInfo__ObjectTransferService QBluetoothDeviceInfo__ServiceClass = QBluetoothDeviceInfo__ServiceClass(0x0010)
+	QBluetoothDeviceInfo__AudioService          QBluetoothDeviceInfo__ServiceClass = QBluetoothDeviceInfo__ServiceClass(0x0020)
+	QBluetoothDeviceInfo__TelephonyService      QBluetoothDeviceInfo__ServiceClass = QBluetoothDeviceInfo__ServiceClass(0x0040)
+	QBluetoothDeviceInfo__InformationService    QBluetoothDeviceInfo__ServiceClass = QBluetoothDeviceInfo__ServiceClass(0x0080)
+	QBluetoothDeviceInfo__AllServices           QBluetoothDeviceInfo__ServiceClass = QBluetoothDeviceInfo__ServiceClass(0x07ff)
 )
 
 type QBluetoothDeviceInfo struct {
@@ -1351,32 +1371,35 @@ func (ptr *QBluetoothHostInfo) DestroyQBluetoothHostInfo() {
 	}
 }
 
+//go:generate stringer -type=QBluetoothLocalDevice__Error
 //QBluetoothLocalDevice::Error
 type QBluetoothLocalDevice__Error int64
 
 const (
-	QBluetoothLocalDevice__NoError      = QBluetoothLocalDevice__Error(0)
-	QBluetoothLocalDevice__PairingError = QBluetoothLocalDevice__Error(1)
-	QBluetoothLocalDevice__UnknownError = QBluetoothLocalDevice__Error(100)
+	QBluetoothLocalDevice__NoError      QBluetoothLocalDevice__Error = QBluetoothLocalDevice__Error(0)
+	QBluetoothLocalDevice__PairingError QBluetoothLocalDevice__Error = QBluetoothLocalDevice__Error(1)
+	QBluetoothLocalDevice__UnknownError QBluetoothLocalDevice__Error = QBluetoothLocalDevice__Error(100)
 )
 
+//go:generate stringer -type=QBluetoothLocalDevice__HostMode
 //QBluetoothLocalDevice::HostMode
 type QBluetoothLocalDevice__HostMode int64
 
 const (
-	QBluetoothLocalDevice__HostPoweredOff                 = QBluetoothLocalDevice__HostMode(0)
-	QBluetoothLocalDevice__HostConnectable                = QBluetoothLocalDevice__HostMode(1)
-	QBluetoothLocalDevice__HostDiscoverable               = QBluetoothLocalDevice__HostMode(2)
-	QBluetoothLocalDevice__HostDiscoverableLimitedInquiry = QBluetoothLocalDevice__HostMode(3)
+	QBluetoothLocalDevice__HostPoweredOff                 QBluetoothLocalDevice__HostMode = QBluetoothLocalDevice__HostMode(0)
+	QBluetoothLocalDevice__HostConnectable                QBluetoothLocalDevice__HostMode = QBluetoothLocalDevice__HostMode(1)
+	QBluetoothLocalDevice__HostDiscoverable               QBluetoothLocalDevice__HostMode = QBluetoothLocalDevice__HostMode(2)
+	QBluetoothLocalDevice__HostDiscoverableLimitedInquiry QBluetoothLocalDevice__HostMode = QBluetoothLocalDevice__HostMode(3)
 )
 
+//go:generate stringer -type=QBluetoothLocalDevice__Pairing
 //QBluetoothLocalDevice::Pairing
 type QBluetoothLocalDevice__Pairing int64
 
 const (
-	QBluetoothLocalDevice__Unpaired         = QBluetoothLocalDevice__Pairing(0)
-	QBluetoothLocalDevice__Paired           = QBluetoothLocalDevice__Pairing(1)
-	QBluetoothLocalDevice__AuthorizedPaired = QBluetoothLocalDevice__Pairing(2)
+	QBluetoothLocalDevice__Unpaired         QBluetoothLocalDevice__Pairing = QBluetoothLocalDevice__Pairing(0)
+	QBluetoothLocalDevice__Paired           QBluetoothLocalDevice__Pairing = QBluetoothLocalDevice__Pairing(1)
+	QBluetoothLocalDevice__AuthorizedPaired QBluetoothLocalDevice__Pairing = QBluetoothLocalDevice__Pairing(2)
 )
 
 type QBluetoothLocalDevice struct {
@@ -2148,16 +2171,17 @@ func (ptr *QBluetoothLocalDevice) MetaObjectDefault() *core.QMetaObject {
 	return nil
 }
 
+//go:generate stringer -type=QBluetoothServer__Error
 //QBluetoothServer::Error
 type QBluetoothServer__Error int64
 
 const (
-	QBluetoothServer__NoError                       = QBluetoothServer__Error(0)
-	QBluetoothServer__UnknownError                  = QBluetoothServer__Error(1)
-	QBluetoothServer__PoweredOffError               = QBluetoothServer__Error(2)
-	QBluetoothServer__InputOutputError              = QBluetoothServer__Error(3)
-	QBluetoothServer__ServiceAlreadyRegisteredError = QBluetoothServer__Error(4)
-	QBluetoothServer__UnsupportedProtocolError      = QBluetoothServer__Error(5)
+	QBluetoothServer__NoError                       QBluetoothServer__Error = QBluetoothServer__Error(0)
+	QBluetoothServer__UnknownError                  QBluetoothServer__Error = QBluetoothServer__Error(1)
+	QBluetoothServer__PoweredOffError               QBluetoothServer__Error = QBluetoothServer__Error(2)
+	QBluetoothServer__InputOutputError              QBluetoothServer__Error = QBluetoothServer__Error(3)
+	QBluetoothServer__ServiceAlreadyRegisteredError QBluetoothServer__Error = QBluetoothServer__Error(4)
+	QBluetoothServer__UnsupportedProtocolError      QBluetoothServer__Error = QBluetoothServer__Error(5)
 )
 
 type QBluetoothServer struct {
@@ -2710,23 +2734,25 @@ func (ptr *QBluetoothServer) MetaObjectDefault() *core.QMetaObject {
 	return nil
 }
 
+//go:generate stringer -type=QBluetoothServiceDiscoveryAgent__DiscoveryMode
 //QBluetoothServiceDiscoveryAgent::DiscoveryMode
 type QBluetoothServiceDiscoveryAgent__DiscoveryMode int64
 
 const (
-	QBluetoothServiceDiscoveryAgent__MinimalDiscovery = QBluetoothServiceDiscoveryAgent__DiscoveryMode(0)
-	QBluetoothServiceDiscoveryAgent__FullDiscovery    = QBluetoothServiceDiscoveryAgent__DiscoveryMode(1)
+	QBluetoothServiceDiscoveryAgent__MinimalDiscovery QBluetoothServiceDiscoveryAgent__DiscoveryMode = QBluetoothServiceDiscoveryAgent__DiscoveryMode(0)
+	QBluetoothServiceDiscoveryAgent__FullDiscovery    QBluetoothServiceDiscoveryAgent__DiscoveryMode = QBluetoothServiceDiscoveryAgent__DiscoveryMode(1)
 )
 
+//go:generate stringer -type=QBluetoothServiceDiscoveryAgent__Error
 //QBluetoothServiceDiscoveryAgent::Error
 type QBluetoothServiceDiscoveryAgent__Error int64
 
 const (
-	QBluetoothServiceDiscoveryAgent__NoError                      = QBluetoothServiceDiscoveryAgent__Error(QBluetoothDeviceDiscoveryAgent__NoError)
-	QBluetoothServiceDiscoveryAgent__InputOutputError             = QBluetoothServiceDiscoveryAgent__Error(QBluetoothDeviceDiscoveryAgent__InputOutputError)
-	QBluetoothServiceDiscoveryAgent__PoweredOffError              = QBluetoothServiceDiscoveryAgent__Error(QBluetoothDeviceDiscoveryAgent__PoweredOffError)
-	QBluetoothServiceDiscoveryAgent__InvalidBluetoothAdapterError = QBluetoothServiceDiscoveryAgent__Error(QBluetoothDeviceDiscoveryAgent__InvalidBluetoothAdapterError)
-	QBluetoothServiceDiscoveryAgent__UnknownError                 = QBluetoothServiceDiscoveryAgent__Error(QBluetoothDeviceDiscoveryAgent__UnknownError)
+	QBluetoothServiceDiscoveryAgent__NoError                      QBluetoothServiceDiscoveryAgent__Error = QBluetoothServiceDiscoveryAgent__Error(QBluetoothDeviceDiscoveryAgent__NoError)
+	QBluetoothServiceDiscoveryAgent__InputOutputError             QBluetoothServiceDiscoveryAgent__Error = QBluetoothServiceDiscoveryAgent__Error(QBluetoothDeviceDiscoveryAgent__InputOutputError)
+	QBluetoothServiceDiscoveryAgent__PoweredOffError              QBluetoothServiceDiscoveryAgent__Error = QBluetoothServiceDiscoveryAgent__Error(QBluetoothDeviceDiscoveryAgent__PoweredOffError)
+	QBluetoothServiceDiscoveryAgent__InvalidBluetoothAdapterError QBluetoothServiceDiscoveryAgent__Error = QBluetoothServiceDiscoveryAgent__Error(QBluetoothDeviceDiscoveryAgent__InvalidBluetoothAdapterError)
+	QBluetoothServiceDiscoveryAgent__UnknownError                 QBluetoothServiceDiscoveryAgent__Error = QBluetoothServiceDiscoveryAgent__Error(QBluetoothDeviceDiscoveryAgent__UnknownError)
 )
 
 type QBluetoothServiceDiscoveryAgent struct {
@@ -3412,37 +3438,39 @@ func (ptr *QBluetoothServiceDiscoveryAgent) MetaObjectDefault() *core.QMetaObjec
 	return nil
 }
 
+//go:generate stringer -type=QBluetoothServiceInfo__AttributeId
 //QBluetoothServiceInfo::AttributeId
 type QBluetoothServiceInfo__AttributeId int64
 
 var (
-	QBluetoothServiceInfo__ServiceRecordHandle              = QBluetoothServiceInfo__AttributeId(0x0000)
-	QBluetoothServiceInfo__ServiceClassIds                  = QBluetoothServiceInfo__AttributeId(0x0001)
-	QBluetoothServiceInfo__ServiceRecordState               = QBluetoothServiceInfo__AttributeId(0x0002)
-	QBluetoothServiceInfo__ServiceId                        = QBluetoothServiceInfo__AttributeId(0x0003)
-	QBluetoothServiceInfo__ProtocolDescriptorList           = QBluetoothServiceInfo__AttributeId(0x0004)
-	QBluetoothServiceInfo__BrowseGroupList                  = QBluetoothServiceInfo__AttributeId(0x0005)
-	QBluetoothServiceInfo__LanguageBaseAttributeIdList      = QBluetoothServiceInfo__AttributeId(0x0006)
-	QBluetoothServiceInfo__ServiceInfoTimeToLive            = QBluetoothServiceInfo__AttributeId(0x0007)
-	QBluetoothServiceInfo__ServiceAvailability              = QBluetoothServiceInfo__AttributeId(0x0008)
-	QBluetoothServiceInfo__BluetoothProfileDescriptorList   = QBluetoothServiceInfo__AttributeId(0x0009)
-	QBluetoothServiceInfo__DocumentationUrl                 = QBluetoothServiceInfo__AttributeId(0x000A)
-	QBluetoothServiceInfo__ClientExecutableUrl              = QBluetoothServiceInfo__AttributeId(0x000B)
-	QBluetoothServiceInfo__IconUrl                          = QBluetoothServiceInfo__AttributeId(0x000C)
-	QBluetoothServiceInfo__AdditionalProtocolDescriptorList = QBluetoothServiceInfo__AttributeId(0x000D)
-	QBluetoothServiceInfo__PrimaryLanguageBase              = QBluetoothServiceInfo__AttributeId(0x0100)
-	QBluetoothServiceInfo__ServiceName                      = QBluetoothServiceInfo__AttributeId(C.QBluetoothServiceInfo_ServiceName_Type())
-	QBluetoothServiceInfo__ServiceDescription               = QBluetoothServiceInfo__AttributeId(C.QBluetoothServiceInfo_ServiceDescription_Type())
-	QBluetoothServiceInfo__ServiceProvider                  = QBluetoothServiceInfo__AttributeId(C.QBluetoothServiceInfo_ServiceProvider_Type())
+	QBluetoothServiceInfo__ServiceRecordHandle              QBluetoothServiceInfo__AttributeId = QBluetoothServiceInfo__AttributeId(0x0000)
+	QBluetoothServiceInfo__ServiceClassIds                  QBluetoothServiceInfo__AttributeId = QBluetoothServiceInfo__AttributeId(0x0001)
+	QBluetoothServiceInfo__ServiceRecordState               QBluetoothServiceInfo__AttributeId = QBluetoothServiceInfo__AttributeId(0x0002)
+	QBluetoothServiceInfo__ServiceId                        QBluetoothServiceInfo__AttributeId = QBluetoothServiceInfo__AttributeId(0x0003)
+	QBluetoothServiceInfo__ProtocolDescriptorList           QBluetoothServiceInfo__AttributeId = QBluetoothServiceInfo__AttributeId(0x0004)
+	QBluetoothServiceInfo__BrowseGroupList                  QBluetoothServiceInfo__AttributeId = QBluetoothServiceInfo__AttributeId(0x0005)
+	QBluetoothServiceInfo__LanguageBaseAttributeIdList      QBluetoothServiceInfo__AttributeId = QBluetoothServiceInfo__AttributeId(0x0006)
+	QBluetoothServiceInfo__ServiceInfoTimeToLive            QBluetoothServiceInfo__AttributeId = QBluetoothServiceInfo__AttributeId(0x0007)
+	QBluetoothServiceInfo__ServiceAvailability              QBluetoothServiceInfo__AttributeId = QBluetoothServiceInfo__AttributeId(0x0008)
+	QBluetoothServiceInfo__BluetoothProfileDescriptorList   QBluetoothServiceInfo__AttributeId = QBluetoothServiceInfo__AttributeId(0x0009)
+	QBluetoothServiceInfo__DocumentationUrl                 QBluetoothServiceInfo__AttributeId = QBluetoothServiceInfo__AttributeId(0x000A)
+	QBluetoothServiceInfo__ClientExecutableUrl              QBluetoothServiceInfo__AttributeId = QBluetoothServiceInfo__AttributeId(0x000B)
+	QBluetoothServiceInfo__IconUrl                          QBluetoothServiceInfo__AttributeId = QBluetoothServiceInfo__AttributeId(0x000C)
+	QBluetoothServiceInfo__AdditionalProtocolDescriptorList QBluetoothServiceInfo__AttributeId = QBluetoothServiceInfo__AttributeId(0x000D)
+	QBluetoothServiceInfo__PrimaryLanguageBase              QBluetoothServiceInfo__AttributeId = QBluetoothServiceInfo__AttributeId(0x0100)
+	QBluetoothServiceInfo__ServiceName                      QBluetoothServiceInfo__AttributeId = QBluetoothServiceInfo__AttributeId(C.QBluetoothServiceInfo_ServiceName_Type())
+	QBluetoothServiceInfo__ServiceDescription               QBluetoothServiceInfo__AttributeId = QBluetoothServiceInfo__AttributeId(C.QBluetoothServiceInfo_ServiceDescription_Type())
+	QBluetoothServiceInfo__ServiceProvider                  QBluetoothServiceInfo__AttributeId = QBluetoothServiceInfo__AttributeId(C.QBluetoothServiceInfo_ServiceProvider_Type())
 )
 
+//go:generate stringer -type=QBluetoothServiceInfo__Protocol
 //QBluetoothServiceInfo::Protocol
 type QBluetoothServiceInfo__Protocol int64
 
 const (
-	QBluetoothServiceInfo__UnknownProtocol = QBluetoothServiceInfo__Protocol(0)
-	QBluetoothServiceInfo__L2capProtocol   = QBluetoothServiceInfo__Protocol(1)
-	QBluetoothServiceInfo__RfcommProtocol  = QBluetoothServiceInfo__Protocol(2)
+	QBluetoothServiceInfo__UnknownProtocol QBluetoothServiceInfo__Protocol = QBluetoothServiceInfo__Protocol(0)
+	QBluetoothServiceInfo__L2capProtocol   QBluetoothServiceInfo__Protocol = QBluetoothServiceInfo__Protocol(1)
+	QBluetoothServiceInfo__RfcommProtocol  QBluetoothServiceInfo__Protocol = QBluetoothServiceInfo__Protocol(2)
 )
 
 type QBluetoothServiceInfo struct {
@@ -3703,30 +3731,32 @@ func (ptr *QBluetoothServiceInfo) serviceClassUuids_atList(i int) *QBluetoothUui
 	return nil
 }
 
+//go:generate stringer -type=QBluetoothSocket__SocketError
 //QBluetoothSocket::SocketError
 type QBluetoothSocket__SocketError int64
 
 const (
-	QBluetoothSocket__NoSocketError            = QBluetoothSocket__SocketError(-2)
-	QBluetoothSocket__UnknownSocketError       = QBluetoothSocket__SocketError(network.QAbstractSocket__UnknownSocketError)
-	QBluetoothSocket__HostNotFoundError        = QBluetoothSocket__SocketError(network.QAbstractSocket__HostNotFoundError)
-	QBluetoothSocket__ServiceNotFoundError     = QBluetoothSocket__SocketError(network.QAbstractSocket__SocketAddressNotAvailableError)
-	QBluetoothSocket__NetworkError             = QBluetoothSocket__SocketError(network.QAbstractSocket__NetworkError)
-	QBluetoothSocket__UnsupportedProtocolError = QBluetoothSocket__SocketError(8)
-	QBluetoothSocket__OperationError           = QBluetoothSocket__SocketError(network.QAbstractSocket__OperationError)
+	QBluetoothSocket__NoSocketError            QBluetoothSocket__SocketError = QBluetoothSocket__SocketError(-2)
+	QBluetoothSocket__UnknownSocketError       QBluetoothSocket__SocketError = QBluetoothSocket__SocketError(network.QAbstractSocket__UnknownSocketError)
+	QBluetoothSocket__HostNotFoundError        QBluetoothSocket__SocketError = QBluetoothSocket__SocketError(network.QAbstractSocket__HostNotFoundError)
+	QBluetoothSocket__ServiceNotFoundError     QBluetoothSocket__SocketError = QBluetoothSocket__SocketError(network.QAbstractSocket__SocketAddressNotAvailableError)
+	QBluetoothSocket__NetworkError             QBluetoothSocket__SocketError = QBluetoothSocket__SocketError(network.QAbstractSocket__NetworkError)
+	QBluetoothSocket__UnsupportedProtocolError QBluetoothSocket__SocketError = QBluetoothSocket__SocketError(8)
+	QBluetoothSocket__OperationError           QBluetoothSocket__SocketError = QBluetoothSocket__SocketError(network.QAbstractSocket__OperationError)
 )
 
+//go:generate stringer -type=QBluetoothSocket__SocketState
 //QBluetoothSocket::SocketState
 type QBluetoothSocket__SocketState int64
 
 const (
-	QBluetoothSocket__UnconnectedState   = QBluetoothSocket__SocketState(network.QAbstractSocket__UnconnectedState)
-	QBluetoothSocket__ServiceLookupState = QBluetoothSocket__SocketState(network.QAbstractSocket__HostLookupState)
-	QBluetoothSocket__ConnectingState    = QBluetoothSocket__SocketState(network.QAbstractSocket__ConnectingState)
-	QBluetoothSocket__ConnectedState     = QBluetoothSocket__SocketState(network.QAbstractSocket__ConnectedState)
-	QBluetoothSocket__BoundState         = QBluetoothSocket__SocketState(network.QAbstractSocket__BoundState)
-	QBluetoothSocket__ClosingState       = QBluetoothSocket__SocketState(network.QAbstractSocket__ClosingState)
-	QBluetoothSocket__ListeningState     = QBluetoothSocket__SocketState(network.QAbstractSocket__ListeningState)
+	QBluetoothSocket__UnconnectedState   QBluetoothSocket__SocketState = QBluetoothSocket__SocketState(network.QAbstractSocket__UnconnectedState)
+	QBluetoothSocket__ServiceLookupState QBluetoothSocket__SocketState = QBluetoothSocket__SocketState(network.QAbstractSocket__HostLookupState)
+	QBluetoothSocket__ConnectingState    QBluetoothSocket__SocketState = QBluetoothSocket__SocketState(network.QAbstractSocket__ConnectingState)
+	QBluetoothSocket__ConnectedState     QBluetoothSocket__SocketState = QBluetoothSocket__SocketState(network.QAbstractSocket__ConnectedState)
+	QBluetoothSocket__BoundState         QBluetoothSocket__SocketState = QBluetoothSocket__SocketState(network.QAbstractSocket__BoundState)
+	QBluetoothSocket__ClosingState       QBluetoothSocket__SocketState = QBluetoothSocket__SocketState(network.QAbstractSocket__ClosingState)
+	QBluetoothSocket__ListeningState     QBluetoothSocket__SocketState = QBluetoothSocket__SocketState(network.QAbstractSocket__ListeningState)
 )
 
 type QBluetoothSocket struct {
@@ -5394,18 +5424,19 @@ func (ptr *QBluetoothTransferManager) MetaObjectDefault() *core.QMetaObject {
 	return nil
 }
 
+//go:generate stringer -type=QBluetoothTransferReply__TransferError
 //QBluetoothTransferReply::TransferError
 type QBluetoothTransferReply__TransferError int64
 
 const (
-	QBluetoothTransferReply__NoError                   = QBluetoothTransferReply__TransferError(0)
-	QBluetoothTransferReply__UnknownError              = QBluetoothTransferReply__TransferError(1)
-	QBluetoothTransferReply__FileNotFoundError         = QBluetoothTransferReply__TransferError(2)
-	QBluetoothTransferReply__HostNotFoundError         = QBluetoothTransferReply__TransferError(3)
-	QBluetoothTransferReply__UserCanceledTransferError = QBluetoothTransferReply__TransferError(4)
-	QBluetoothTransferReply__IODeviceNotReadableError  = QBluetoothTransferReply__TransferError(5)
-	QBluetoothTransferReply__ResourceBusyError         = QBluetoothTransferReply__TransferError(6)
-	QBluetoothTransferReply__SessionError              = QBluetoothTransferReply__TransferError(7)
+	QBluetoothTransferReply__NoError                   QBluetoothTransferReply__TransferError = QBluetoothTransferReply__TransferError(0)
+	QBluetoothTransferReply__UnknownError              QBluetoothTransferReply__TransferError = QBluetoothTransferReply__TransferError(1)
+	QBluetoothTransferReply__FileNotFoundError         QBluetoothTransferReply__TransferError = QBluetoothTransferReply__TransferError(2)
+	QBluetoothTransferReply__HostNotFoundError         QBluetoothTransferReply__TransferError = QBluetoothTransferReply__TransferError(3)
+	QBluetoothTransferReply__UserCanceledTransferError QBluetoothTransferReply__TransferError = QBluetoothTransferReply__TransferError(4)
+	QBluetoothTransferReply__IODeviceNotReadableError  QBluetoothTransferReply__TransferError = QBluetoothTransferReply__TransferError(5)
+	QBluetoothTransferReply__ResourceBusyError         QBluetoothTransferReply__TransferError = QBluetoothTransferReply__TransferError(6)
+	QBluetoothTransferReply__SessionError              QBluetoothTransferReply__TransferError = QBluetoothTransferReply__TransferError(7)
 )
 
 type QBluetoothTransferReply struct {
@@ -6067,15 +6098,16 @@ func (ptr *QBluetoothTransferReply) MetaObjectDefault() *core.QMetaObject {
 	return nil
 }
 
+//go:generate stringer -type=QBluetoothTransferRequest__Attribute
 //QBluetoothTransferRequest::Attribute
 type QBluetoothTransferRequest__Attribute int64
 
 const (
-	QBluetoothTransferRequest__DescriptionAttribute = QBluetoothTransferRequest__Attribute(0)
-	QBluetoothTransferRequest__TimeAttribute        = QBluetoothTransferRequest__Attribute(1)
-	QBluetoothTransferRequest__TypeAttribute        = QBluetoothTransferRequest__Attribute(2)
-	QBluetoothTransferRequest__LengthAttribute      = QBluetoothTransferRequest__Attribute(3)
-	QBluetoothTransferRequest__NameAttribute        = QBluetoothTransferRequest__Attribute(4)
+	QBluetoothTransferRequest__DescriptionAttribute QBluetoothTransferRequest__Attribute = QBluetoothTransferRequest__Attribute(0)
+	QBluetoothTransferRequest__TimeAttribute        QBluetoothTransferRequest__Attribute = QBluetoothTransferRequest__Attribute(1)
+	QBluetoothTransferRequest__TypeAttribute        QBluetoothTransferRequest__Attribute = QBluetoothTransferRequest__Attribute(2)
+	QBluetoothTransferRequest__LengthAttribute      QBluetoothTransferRequest__Attribute = QBluetoothTransferRequest__Attribute(3)
+	QBluetoothTransferRequest__NameAttribute        QBluetoothTransferRequest__Attribute = QBluetoothTransferRequest__Attribute(4)
 )
 
 type QBluetoothTransferRequest struct {
@@ -6158,294 +6190,298 @@ func (ptr *QBluetoothTransferRequest) DestroyQBluetoothTransferRequest() {
 	}
 }
 
+//go:generate stringer -type=QBluetoothUuid__CharacteristicType
 //QBluetoothUuid::CharacteristicType
 type QBluetoothUuid__CharacteristicType int64
 
 const (
-	QBluetoothUuid__DeviceName                                    = QBluetoothUuid__CharacteristicType(0x2a00)
-	QBluetoothUuid__Appearance                                    = QBluetoothUuid__CharacteristicType(0x2a01)
-	QBluetoothUuid__PeripheralPrivacyFlag                         = QBluetoothUuid__CharacteristicType(0x2a02)
-	QBluetoothUuid__ReconnectionAddress                           = QBluetoothUuid__CharacteristicType(0x2a03)
-	QBluetoothUuid__PeripheralPreferredConnectionParameters       = QBluetoothUuid__CharacteristicType(0x2a04)
-	QBluetoothUuid__ServiceChanged                                = QBluetoothUuid__CharacteristicType(0x2a05)
-	QBluetoothUuid__AlertLevel                                    = QBluetoothUuid__CharacteristicType(0x2a06)
-	QBluetoothUuid__TxPowerLevel                                  = QBluetoothUuid__CharacteristicType(0x2a07)
-	QBluetoothUuid__DateTime                                      = QBluetoothUuid__CharacteristicType(0x2a08)
-	QBluetoothUuid__DayOfWeek                                     = QBluetoothUuid__CharacteristicType(0x2a09)
-	QBluetoothUuid__DayDateTime                                   = QBluetoothUuid__CharacteristicType(0x2a0a)
-	QBluetoothUuid__ExactTime256                                  = QBluetoothUuid__CharacteristicType(0x2a0c)
-	QBluetoothUuid__DSTOffset                                     = QBluetoothUuid__CharacteristicType(0x2a0d)
-	QBluetoothUuid__TimeZone                                      = QBluetoothUuid__CharacteristicType(0x2a0e)
-	QBluetoothUuid__LocalTimeInformation                          = QBluetoothUuid__CharacteristicType(0x2a0f)
-	QBluetoothUuid__TimeWithDST                                   = QBluetoothUuid__CharacteristicType(0x2a11)
-	QBluetoothUuid__TimeAccuracy                                  = QBluetoothUuid__CharacteristicType(0x2a12)
-	QBluetoothUuid__TimeSource                                    = QBluetoothUuid__CharacteristicType(0x2a13)
-	QBluetoothUuid__ReferenceTimeInformation                      = QBluetoothUuid__CharacteristicType(0x2a14)
-	QBluetoothUuid__TimeUpdateControlPoint                        = QBluetoothUuid__CharacteristicType(0x2a16)
-	QBluetoothUuid__TimeUpdateState                               = QBluetoothUuid__CharacteristicType(0x2a17)
-	QBluetoothUuid__GlucoseMeasurement                            = QBluetoothUuid__CharacteristicType(0x2a18)
-	QBluetoothUuid__BatteryLevel                                  = QBluetoothUuid__CharacteristicType(0x2a19)
-	QBluetoothUuid__TemperatureMeasurement                        = QBluetoothUuid__CharacteristicType(0x2a1c)
-	QBluetoothUuid__TemperatureType                               = QBluetoothUuid__CharacteristicType(0x2a1d)
-	QBluetoothUuid__IntermediateTemperature                       = QBluetoothUuid__CharacteristicType(0x2a1e)
-	QBluetoothUuid__MeasurementInterval                           = QBluetoothUuid__CharacteristicType(0x2a21)
-	QBluetoothUuid__BootKeyboardInputReport                       = QBluetoothUuid__CharacteristicType(0x2a22)
-	QBluetoothUuid__SystemID                                      = QBluetoothUuid__CharacteristicType(0x2a23)
-	QBluetoothUuid__ModelNumberString                             = QBluetoothUuid__CharacteristicType(0x2a24)
-	QBluetoothUuid__SerialNumberString                            = QBluetoothUuid__CharacteristicType(0x2a25)
-	QBluetoothUuid__FirmwareRevisionString                        = QBluetoothUuid__CharacteristicType(0x2a26)
-	QBluetoothUuid__HardwareRevisionString                        = QBluetoothUuid__CharacteristicType(0x2a27)
-	QBluetoothUuid__SoftwareRevisionString                        = QBluetoothUuid__CharacteristicType(0x2a28)
-	QBluetoothUuid__ManufacturerNameString                        = QBluetoothUuid__CharacteristicType(0x2a29)
-	QBluetoothUuid__IEEE1107320601RegulatoryCertificationDataList = QBluetoothUuid__CharacteristicType(0x2a2a)
-	QBluetoothUuid__CurrentTime                                   = QBluetoothUuid__CharacteristicType(0x2a2b)
-	QBluetoothUuid__MagneticDeclination                           = QBluetoothUuid__CharacteristicType(0x2a2c)
-	QBluetoothUuid__ScanRefresh                                   = QBluetoothUuid__CharacteristicType(0x2a31)
-	QBluetoothUuid__BootKeyboardOutputReport                      = QBluetoothUuid__CharacteristicType(0x2a32)
-	QBluetoothUuid__BootMouseInputReport                          = QBluetoothUuid__CharacteristicType(0x2a33)
-	QBluetoothUuid__GlucoseMeasurementContext                     = QBluetoothUuid__CharacteristicType(0x2a34)
-	QBluetoothUuid__BloodPressureMeasurement                      = QBluetoothUuid__CharacteristicType(0x2a35)
-	QBluetoothUuid__IntermediateCuffPressure                      = QBluetoothUuid__CharacteristicType(0x2a36)
-	QBluetoothUuid__HeartRateMeasurement                          = QBluetoothUuid__CharacteristicType(0x2a37)
-	QBluetoothUuid__BodySensorLocation                            = QBluetoothUuid__CharacteristicType(0x2a38)
-	QBluetoothUuid__HeartRateControlPoint                         = QBluetoothUuid__CharacteristicType(0x2a39)
-	QBluetoothUuid__AlertStatus                                   = QBluetoothUuid__CharacteristicType(0x2a3f)
-	QBluetoothUuid__RingerControlPoint                            = QBluetoothUuid__CharacteristicType(0x2a40)
-	QBluetoothUuid__RingerSetting                                 = QBluetoothUuid__CharacteristicType(0x2a41)
-	QBluetoothUuid__AlertCategoryIDBitMask                        = QBluetoothUuid__CharacteristicType(0x2a42)
-	QBluetoothUuid__AlertCategoryID                               = QBluetoothUuid__CharacteristicType(0x2a43)
-	QBluetoothUuid__AlertNotificationControlPoint                 = QBluetoothUuid__CharacteristicType(0x2a44)
-	QBluetoothUuid__UnreadAlertStatus                             = QBluetoothUuid__CharacteristicType(0x2a45)
-	QBluetoothUuid__NewAlert                                      = QBluetoothUuid__CharacteristicType(0x2a46)
-	QBluetoothUuid__SupportedNewAlertCategory                     = QBluetoothUuid__CharacteristicType(0x2a47)
-	QBluetoothUuid__SupportedUnreadAlertCategory                  = QBluetoothUuid__CharacteristicType(0x2a48)
-	QBluetoothUuid__BloodPressureFeature                          = QBluetoothUuid__CharacteristicType(0x2a49)
-	QBluetoothUuid__HIDInformation                                = QBluetoothUuid__CharacteristicType(0x2a4a)
-	QBluetoothUuid__ReportMap                                     = QBluetoothUuid__CharacteristicType(0x2a4b)
-	QBluetoothUuid__HIDControlPoint                               = QBluetoothUuid__CharacteristicType(0x2a4c)
-	QBluetoothUuid__Report                                        = QBluetoothUuid__CharacteristicType(0x2a4d)
-	QBluetoothUuid__ProtocolMode                                  = QBluetoothUuid__CharacteristicType(0x2a4e)
-	QBluetoothUuid__ScanIntervalWindow                            = QBluetoothUuid__CharacteristicType(0x2a4f)
-	QBluetoothUuid__PnPID                                         = QBluetoothUuid__CharacteristicType(0x2a50)
-	QBluetoothUuid__GlucoseFeature                                = QBluetoothUuid__CharacteristicType(0x2a51)
-	QBluetoothUuid__RecordAccessControlPoint                      = QBluetoothUuid__CharacteristicType(0x2a52)
-	QBluetoothUuid__RSCMeasurement                                = QBluetoothUuid__CharacteristicType(0x2a53)
-	QBluetoothUuid__RSCFeature                                    = QBluetoothUuid__CharacteristicType(0x2a54)
-	QBluetoothUuid__SCControlPoint                                = QBluetoothUuid__CharacteristicType(0x2a55)
-	QBluetoothUuid__CSCMeasurement                                = QBluetoothUuid__CharacteristicType(0x2a5b)
-	QBluetoothUuid__CSCFeature                                    = QBluetoothUuid__CharacteristicType(0x2a5c)
-	QBluetoothUuid__SensorLocation                                = QBluetoothUuid__CharacteristicType(0x2a5d)
-	QBluetoothUuid__CyclingPowerMeasurement                       = QBluetoothUuid__CharacteristicType(0x2a63)
-	QBluetoothUuid__CyclingPowerVector                            = QBluetoothUuid__CharacteristicType(0x2a64)
-	QBluetoothUuid__CyclingPowerFeature                           = QBluetoothUuid__CharacteristicType(0x2a65)
-	QBluetoothUuid__CyclingPowerControlPoint                      = QBluetoothUuid__CharacteristicType(0x2a66)
-	QBluetoothUuid__LocationAndSpeed                              = QBluetoothUuid__CharacteristicType(0x2a67)
-	QBluetoothUuid__Navigation                                    = QBluetoothUuid__CharacteristicType(0x2a68)
-	QBluetoothUuid__PositionQuality                               = QBluetoothUuid__CharacteristicType(0x2a69)
-	QBluetoothUuid__LNFeature                                     = QBluetoothUuid__CharacteristicType(0x2a6a)
-	QBluetoothUuid__LNControlPoint                                = QBluetoothUuid__CharacteristicType(0x2a6b)
-	QBluetoothUuid__Elevation                                     = QBluetoothUuid__CharacteristicType(0x2a6c)
-	QBluetoothUuid__Pressure                                      = QBluetoothUuid__CharacteristicType(0x2a6d)
-	QBluetoothUuid__Temperature                                   = QBluetoothUuid__CharacteristicType(0x2a6e)
-	QBluetoothUuid__Humidity                                      = QBluetoothUuid__CharacteristicType(0x2a6f)
-	QBluetoothUuid__TrueWindSpeed                                 = QBluetoothUuid__CharacteristicType(0x2a70)
-	QBluetoothUuid__TrueWindDirection                             = QBluetoothUuid__CharacteristicType(0x2a71)
-	QBluetoothUuid__ApparentWindSpeed                             = QBluetoothUuid__CharacteristicType(0x2a72)
-	QBluetoothUuid__ApparentWindDirection                         = QBluetoothUuid__CharacteristicType(0x2a73)
-	QBluetoothUuid__GustFactor                                    = QBluetoothUuid__CharacteristicType(0x2a74)
-	QBluetoothUuid__PollenConcentration                           = QBluetoothUuid__CharacteristicType(0x2a75)
-	QBluetoothUuid__UVIndex                                       = QBluetoothUuid__CharacteristicType(0x2a76)
-	QBluetoothUuid__Irradiance                                    = QBluetoothUuid__CharacteristicType(0x2a77)
-	QBluetoothUuid__Rainfall                                      = QBluetoothUuid__CharacteristicType(0x2a78)
-	QBluetoothUuid__WindChill                                     = QBluetoothUuid__CharacteristicType(0x2a79)
-	QBluetoothUuid__HeatIndex                                     = QBluetoothUuid__CharacteristicType(0x2a7a)
-	QBluetoothUuid__DewPoint                                      = QBluetoothUuid__CharacteristicType(0x2a7b)
-	QBluetoothUuid__DescriptorValueChanged                        = QBluetoothUuid__CharacteristicType(0x2a7d)
-	QBluetoothUuid__AerobicHeartRateLowerLimit                    = QBluetoothUuid__CharacteristicType(0x2a7e)
-	QBluetoothUuid__AerobicThreshold                              = QBluetoothUuid__CharacteristicType(0x2a7f)
-	QBluetoothUuid__Age                                           = QBluetoothUuid__CharacteristicType(0x2a80)
-	QBluetoothUuid__AnaerobicHeartRateLowerLimit                  = QBluetoothUuid__CharacteristicType(0x2a81)
-	QBluetoothUuid__AnaerobicHeartRateUpperLimit                  = QBluetoothUuid__CharacteristicType(0x2a82)
-	QBluetoothUuid__AnaerobicThreshold                            = QBluetoothUuid__CharacteristicType(0x2a83)
-	QBluetoothUuid__AerobicHeartRateUpperLimit                    = QBluetoothUuid__CharacteristicType(0x2a84)
-	QBluetoothUuid__DateOfBirth                                   = QBluetoothUuid__CharacteristicType(0x2a85)
-	QBluetoothUuid__DateOfThresholdAssessment                     = QBluetoothUuid__CharacteristicType(0x2a86)
-	QBluetoothUuid__EmailAddress                                  = QBluetoothUuid__CharacteristicType(0x2a87)
-	QBluetoothUuid__FatBurnHeartRateLowerLimit                    = QBluetoothUuid__CharacteristicType(0x2a88)
-	QBluetoothUuid__FatBurnHeartRateUpperLimit                    = QBluetoothUuid__CharacteristicType(0x2a89)
-	QBluetoothUuid__FirstName                                     = QBluetoothUuid__CharacteristicType(0x2a8a)
-	QBluetoothUuid__FiveZoneHeartRateLimits                       = QBluetoothUuid__CharacteristicType(0x2a8b)
-	QBluetoothUuid__Gender                                        = QBluetoothUuid__CharacteristicType(0x2a8c)
-	QBluetoothUuid__HeartRateMax                                  = QBluetoothUuid__CharacteristicType(0x2a8d)
-	QBluetoothUuid__Height                                        = QBluetoothUuid__CharacteristicType(0x2a8e)
-	QBluetoothUuid__HipCircumference                              = QBluetoothUuid__CharacteristicType(0x2a8f)
-	QBluetoothUuid__LastName                                      = QBluetoothUuid__CharacteristicType(0x2a90)
-	QBluetoothUuid__MaximumRecommendedHeartRate                   = QBluetoothUuid__CharacteristicType(0x2a91)
-	QBluetoothUuid__RestingHeartRate                              = QBluetoothUuid__CharacteristicType(0x2a92)
-	QBluetoothUuid__SportTypeForAerobicAnaerobicThresholds        = QBluetoothUuid__CharacteristicType(0x2a93)
-	QBluetoothUuid__ThreeZoneHeartRateLimits                      = QBluetoothUuid__CharacteristicType(0x2a94)
-	QBluetoothUuid__TwoZoneHeartRateLimits                        = QBluetoothUuid__CharacteristicType(0x2a95)
-	QBluetoothUuid__VO2Max                                        = QBluetoothUuid__CharacteristicType(0x2a96)
-	QBluetoothUuid__WaistCircumference                            = QBluetoothUuid__CharacteristicType(0x2a97)
-	QBluetoothUuid__Weight                                        = QBluetoothUuid__CharacteristicType(0x2a98)
-	QBluetoothUuid__DatabaseChangeIncrement                       = QBluetoothUuid__CharacteristicType(0x2a99)
-	QBluetoothUuid__UserIndex                                     = QBluetoothUuid__CharacteristicType(0x2a9a)
-	QBluetoothUuid__BodyCompositionFeature                        = QBluetoothUuid__CharacteristicType(0x2a9b)
-	QBluetoothUuid__BodyCompositionMeasurement                    = QBluetoothUuid__CharacteristicType(0x2a9c)
-	QBluetoothUuid__WeightMeasurement                             = QBluetoothUuid__CharacteristicType(0x2a9d)
-	QBluetoothUuid__WeightScaleFeature                            = QBluetoothUuid__CharacteristicType(0x2a9e)
-	QBluetoothUuid__UserControlPoint                              = QBluetoothUuid__CharacteristicType(0x2a9f)
-	QBluetoothUuid__MagneticFluxDensity2D                         = QBluetoothUuid__CharacteristicType(0x2aa0)
-	QBluetoothUuid__MagneticFluxDensity3D                         = QBluetoothUuid__CharacteristicType(0x2aa1)
-	QBluetoothUuid__Language                                      = QBluetoothUuid__CharacteristicType(0x2aa2)
-	QBluetoothUuid__BarometricPressureTrend                       = QBluetoothUuid__CharacteristicType(0x2aa3)
+	QBluetoothUuid__DeviceName                                    QBluetoothUuid__CharacteristicType = QBluetoothUuid__CharacteristicType(0x2a00)
+	QBluetoothUuid__Appearance                                    QBluetoothUuid__CharacteristicType = QBluetoothUuid__CharacteristicType(0x2a01)
+	QBluetoothUuid__PeripheralPrivacyFlag                         QBluetoothUuid__CharacteristicType = QBluetoothUuid__CharacteristicType(0x2a02)
+	QBluetoothUuid__ReconnectionAddress                           QBluetoothUuid__CharacteristicType = QBluetoothUuid__CharacteristicType(0x2a03)
+	QBluetoothUuid__PeripheralPreferredConnectionParameters       QBluetoothUuid__CharacteristicType = QBluetoothUuid__CharacteristicType(0x2a04)
+	QBluetoothUuid__ServiceChanged                                QBluetoothUuid__CharacteristicType = QBluetoothUuid__CharacteristicType(0x2a05)
+	QBluetoothUuid__AlertLevel                                    QBluetoothUuid__CharacteristicType = QBluetoothUuid__CharacteristicType(0x2a06)
+	QBluetoothUuid__TxPowerLevel                                  QBluetoothUuid__CharacteristicType = QBluetoothUuid__CharacteristicType(0x2a07)
+	QBluetoothUuid__DateTime                                      QBluetoothUuid__CharacteristicType = QBluetoothUuid__CharacteristicType(0x2a08)
+	QBluetoothUuid__DayOfWeek                                     QBluetoothUuid__CharacteristicType = QBluetoothUuid__CharacteristicType(0x2a09)
+	QBluetoothUuid__DayDateTime                                   QBluetoothUuid__CharacteristicType = QBluetoothUuid__CharacteristicType(0x2a0a)
+	QBluetoothUuid__ExactTime256                                  QBluetoothUuid__CharacteristicType = QBluetoothUuid__CharacteristicType(0x2a0c)
+	QBluetoothUuid__DSTOffset                                     QBluetoothUuid__CharacteristicType = QBluetoothUuid__CharacteristicType(0x2a0d)
+	QBluetoothUuid__TimeZone                                      QBluetoothUuid__CharacteristicType = QBluetoothUuid__CharacteristicType(0x2a0e)
+	QBluetoothUuid__LocalTimeInformation                          QBluetoothUuid__CharacteristicType = QBluetoothUuid__CharacteristicType(0x2a0f)
+	QBluetoothUuid__TimeWithDST                                   QBluetoothUuid__CharacteristicType = QBluetoothUuid__CharacteristicType(0x2a11)
+	QBluetoothUuid__TimeAccuracy                                  QBluetoothUuid__CharacteristicType = QBluetoothUuid__CharacteristicType(0x2a12)
+	QBluetoothUuid__TimeSource                                    QBluetoothUuid__CharacteristicType = QBluetoothUuid__CharacteristicType(0x2a13)
+	QBluetoothUuid__ReferenceTimeInformation                      QBluetoothUuid__CharacteristicType = QBluetoothUuid__CharacteristicType(0x2a14)
+	QBluetoothUuid__TimeUpdateControlPoint                        QBluetoothUuid__CharacteristicType = QBluetoothUuid__CharacteristicType(0x2a16)
+	QBluetoothUuid__TimeUpdateState                               QBluetoothUuid__CharacteristicType = QBluetoothUuid__CharacteristicType(0x2a17)
+	QBluetoothUuid__GlucoseMeasurement                            QBluetoothUuid__CharacteristicType = QBluetoothUuid__CharacteristicType(0x2a18)
+	QBluetoothUuid__BatteryLevel                                  QBluetoothUuid__CharacteristicType = QBluetoothUuid__CharacteristicType(0x2a19)
+	QBluetoothUuid__TemperatureMeasurement                        QBluetoothUuid__CharacteristicType = QBluetoothUuid__CharacteristicType(0x2a1c)
+	QBluetoothUuid__TemperatureType                               QBluetoothUuid__CharacteristicType = QBluetoothUuid__CharacteristicType(0x2a1d)
+	QBluetoothUuid__IntermediateTemperature                       QBluetoothUuid__CharacteristicType = QBluetoothUuid__CharacteristicType(0x2a1e)
+	QBluetoothUuid__MeasurementInterval                           QBluetoothUuid__CharacteristicType = QBluetoothUuid__CharacteristicType(0x2a21)
+	QBluetoothUuid__BootKeyboardInputReport                       QBluetoothUuid__CharacteristicType = QBluetoothUuid__CharacteristicType(0x2a22)
+	QBluetoothUuid__SystemID                                      QBluetoothUuid__CharacteristicType = QBluetoothUuid__CharacteristicType(0x2a23)
+	QBluetoothUuid__ModelNumberString                             QBluetoothUuid__CharacteristicType = QBluetoothUuid__CharacteristicType(0x2a24)
+	QBluetoothUuid__SerialNumberString                            QBluetoothUuid__CharacteristicType = QBluetoothUuid__CharacteristicType(0x2a25)
+	QBluetoothUuid__FirmwareRevisionString                        QBluetoothUuid__CharacteristicType = QBluetoothUuid__CharacteristicType(0x2a26)
+	QBluetoothUuid__HardwareRevisionString                        QBluetoothUuid__CharacteristicType = QBluetoothUuid__CharacteristicType(0x2a27)
+	QBluetoothUuid__SoftwareRevisionString                        QBluetoothUuid__CharacteristicType = QBluetoothUuid__CharacteristicType(0x2a28)
+	QBluetoothUuid__ManufacturerNameString                        QBluetoothUuid__CharacteristicType = QBluetoothUuid__CharacteristicType(0x2a29)
+	QBluetoothUuid__IEEE1107320601RegulatoryCertificationDataList QBluetoothUuid__CharacteristicType = QBluetoothUuid__CharacteristicType(0x2a2a)
+	QBluetoothUuid__CurrentTime                                   QBluetoothUuid__CharacteristicType = QBluetoothUuid__CharacteristicType(0x2a2b)
+	QBluetoothUuid__MagneticDeclination                           QBluetoothUuid__CharacteristicType = QBluetoothUuid__CharacteristicType(0x2a2c)
+	QBluetoothUuid__ScanRefresh                                   QBluetoothUuid__CharacteristicType = QBluetoothUuid__CharacteristicType(0x2a31)
+	QBluetoothUuid__BootKeyboardOutputReport                      QBluetoothUuid__CharacteristicType = QBluetoothUuid__CharacteristicType(0x2a32)
+	QBluetoothUuid__BootMouseInputReport                          QBluetoothUuid__CharacteristicType = QBluetoothUuid__CharacteristicType(0x2a33)
+	QBluetoothUuid__GlucoseMeasurementContext                     QBluetoothUuid__CharacteristicType = QBluetoothUuid__CharacteristicType(0x2a34)
+	QBluetoothUuid__BloodPressureMeasurement                      QBluetoothUuid__CharacteristicType = QBluetoothUuid__CharacteristicType(0x2a35)
+	QBluetoothUuid__IntermediateCuffPressure                      QBluetoothUuid__CharacteristicType = QBluetoothUuid__CharacteristicType(0x2a36)
+	QBluetoothUuid__HeartRateMeasurement                          QBluetoothUuid__CharacteristicType = QBluetoothUuid__CharacteristicType(0x2a37)
+	QBluetoothUuid__BodySensorLocation                            QBluetoothUuid__CharacteristicType = QBluetoothUuid__CharacteristicType(0x2a38)
+	QBluetoothUuid__HeartRateControlPoint                         QBluetoothUuid__CharacteristicType = QBluetoothUuid__CharacteristicType(0x2a39)
+	QBluetoothUuid__AlertStatus                                   QBluetoothUuid__CharacteristicType = QBluetoothUuid__CharacteristicType(0x2a3f)
+	QBluetoothUuid__RingerControlPoint                            QBluetoothUuid__CharacteristicType = QBluetoothUuid__CharacteristicType(0x2a40)
+	QBluetoothUuid__RingerSetting                                 QBluetoothUuid__CharacteristicType = QBluetoothUuid__CharacteristicType(0x2a41)
+	QBluetoothUuid__AlertCategoryIDBitMask                        QBluetoothUuid__CharacteristicType = QBluetoothUuid__CharacteristicType(0x2a42)
+	QBluetoothUuid__AlertCategoryID                               QBluetoothUuid__CharacteristicType = QBluetoothUuid__CharacteristicType(0x2a43)
+	QBluetoothUuid__AlertNotificationControlPoint                 QBluetoothUuid__CharacteristicType = QBluetoothUuid__CharacteristicType(0x2a44)
+	QBluetoothUuid__UnreadAlertStatus                             QBluetoothUuid__CharacteristicType = QBluetoothUuid__CharacteristicType(0x2a45)
+	QBluetoothUuid__NewAlert                                      QBluetoothUuid__CharacteristicType = QBluetoothUuid__CharacteristicType(0x2a46)
+	QBluetoothUuid__SupportedNewAlertCategory                     QBluetoothUuid__CharacteristicType = QBluetoothUuid__CharacteristicType(0x2a47)
+	QBluetoothUuid__SupportedUnreadAlertCategory                  QBluetoothUuid__CharacteristicType = QBluetoothUuid__CharacteristicType(0x2a48)
+	QBluetoothUuid__BloodPressureFeature                          QBluetoothUuid__CharacteristicType = QBluetoothUuid__CharacteristicType(0x2a49)
+	QBluetoothUuid__HIDInformation                                QBluetoothUuid__CharacteristicType = QBluetoothUuid__CharacteristicType(0x2a4a)
+	QBluetoothUuid__ReportMap                                     QBluetoothUuid__CharacteristicType = QBluetoothUuid__CharacteristicType(0x2a4b)
+	QBluetoothUuid__HIDControlPoint                               QBluetoothUuid__CharacteristicType = QBluetoothUuid__CharacteristicType(0x2a4c)
+	QBluetoothUuid__Report                                        QBluetoothUuid__CharacteristicType = QBluetoothUuid__CharacteristicType(0x2a4d)
+	QBluetoothUuid__ProtocolMode                                  QBluetoothUuid__CharacteristicType = QBluetoothUuid__CharacteristicType(0x2a4e)
+	QBluetoothUuid__ScanIntervalWindow                            QBluetoothUuid__CharacteristicType = QBluetoothUuid__CharacteristicType(0x2a4f)
+	QBluetoothUuid__PnPID                                         QBluetoothUuid__CharacteristicType = QBluetoothUuid__CharacteristicType(0x2a50)
+	QBluetoothUuid__GlucoseFeature                                QBluetoothUuid__CharacteristicType = QBluetoothUuid__CharacteristicType(0x2a51)
+	QBluetoothUuid__RecordAccessControlPoint                      QBluetoothUuid__CharacteristicType = QBluetoothUuid__CharacteristicType(0x2a52)
+	QBluetoothUuid__RSCMeasurement                                QBluetoothUuid__CharacteristicType = QBluetoothUuid__CharacteristicType(0x2a53)
+	QBluetoothUuid__RSCFeature                                    QBluetoothUuid__CharacteristicType = QBluetoothUuid__CharacteristicType(0x2a54)
+	QBluetoothUuid__SCControlPoint                                QBluetoothUuid__CharacteristicType = QBluetoothUuid__CharacteristicType(0x2a55)
+	QBluetoothUuid__CSCMeasurement                                QBluetoothUuid__CharacteristicType = QBluetoothUuid__CharacteristicType(0x2a5b)
+	QBluetoothUuid__CSCFeature                                    QBluetoothUuid__CharacteristicType = QBluetoothUuid__CharacteristicType(0x2a5c)
+	QBluetoothUuid__SensorLocation                                QBluetoothUuid__CharacteristicType = QBluetoothUuid__CharacteristicType(0x2a5d)
+	QBluetoothUuid__CyclingPowerMeasurement                       QBluetoothUuid__CharacteristicType = QBluetoothUuid__CharacteristicType(0x2a63)
+	QBluetoothUuid__CyclingPowerVector                            QBluetoothUuid__CharacteristicType = QBluetoothUuid__CharacteristicType(0x2a64)
+	QBluetoothUuid__CyclingPowerFeature                           QBluetoothUuid__CharacteristicType = QBluetoothUuid__CharacteristicType(0x2a65)
+	QBluetoothUuid__CyclingPowerControlPoint                      QBluetoothUuid__CharacteristicType = QBluetoothUuid__CharacteristicType(0x2a66)
+	QBluetoothUuid__LocationAndSpeed                              QBluetoothUuid__CharacteristicType = QBluetoothUuid__CharacteristicType(0x2a67)
+	QBluetoothUuid__Navigation                                    QBluetoothUuid__CharacteristicType = QBluetoothUuid__CharacteristicType(0x2a68)
+	QBluetoothUuid__PositionQuality                               QBluetoothUuid__CharacteristicType = QBluetoothUuid__CharacteristicType(0x2a69)
+	QBluetoothUuid__LNFeature                                     QBluetoothUuid__CharacteristicType = QBluetoothUuid__CharacteristicType(0x2a6a)
+	QBluetoothUuid__LNControlPoint                                QBluetoothUuid__CharacteristicType = QBluetoothUuid__CharacteristicType(0x2a6b)
+	QBluetoothUuid__Elevation                                     QBluetoothUuid__CharacteristicType = QBluetoothUuid__CharacteristicType(0x2a6c)
+	QBluetoothUuid__Pressure                                      QBluetoothUuid__CharacteristicType = QBluetoothUuid__CharacteristicType(0x2a6d)
+	QBluetoothUuid__Temperature                                   QBluetoothUuid__CharacteristicType = QBluetoothUuid__CharacteristicType(0x2a6e)
+	QBluetoothUuid__Humidity                                      QBluetoothUuid__CharacteristicType = QBluetoothUuid__CharacteristicType(0x2a6f)
+	QBluetoothUuid__TrueWindSpeed                                 QBluetoothUuid__CharacteristicType = QBluetoothUuid__CharacteristicType(0x2a70)
+	QBluetoothUuid__TrueWindDirection                             QBluetoothUuid__CharacteristicType = QBluetoothUuid__CharacteristicType(0x2a71)
+	QBluetoothUuid__ApparentWindSpeed                             QBluetoothUuid__CharacteristicType = QBluetoothUuid__CharacteristicType(0x2a72)
+	QBluetoothUuid__ApparentWindDirection                         QBluetoothUuid__CharacteristicType = QBluetoothUuid__CharacteristicType(0x2a73)
+	QBluetoothUuid__GustFactor                                    QBluetoothUuid__CharacteristicType = QBluetoothUuid__CharacteristicType(0x2a74)
+	QBluetoothUuid__PollenConcentration                           QBluetoothUuid__CharacteristicType = QBluetoothUuid__CharacteristicType(0x2a75)
+	QBluetoothUuid__UVIndex                                       QBluetoothUuid__CharacteristicType = QBluetoothUuid__CharacteristicType(0x2a76)
+	QBluetoothUuid__Irradiance                                    QBluetoothUuid__CharacteristicType = QBluetoothUuid__CharacteristicType(0x2a77)
+	QBluetoothUuid__Rainfall                                      QBluetoothUuid__CharacteristicType = QBluetoothUuid__CharacteristicType(0x2a78)
+	QBluetoothUuid__WindChill                                     QBluetoothUuid__CharacteristicType = QBluetoothUuid__CharacteristicType(0x2a79)
+	QBluetoothUuid__HeatIndex                                     QBluetoothUuid__CharacteristicType = QBluetoothUuid__CharacteristicType(0x2a7a)
+	QBluetoothUuid__DewPoint                                      QBluetoothUuid__CharacteristicType = QBluetoothUuid__CharacteristicType(0x2a7b)
+	QBluetoothUuid__DescriptorValueChanged                        QBluetoothUuid__CharacteristicType = QBluetoothUuid__CharacteristicType(0x2a7d)
+	QBluetoothUuid__AerobicHeartRateLowerLimit                    QBluetoothUuid__CharacteristicType = QBluetoothUuid__CharacteristicType(0x2a7e)
+	QBluetoothUuid__AerobicThreshold                              QBluetoothUuid__CharacteristicType = QBluetoothUuid__CharacteristicType(0x2a7f)
+	QBluetoothUuid__Age                                           QBluetoothUuid__CharacteristicType = QBluetoothUuid__CharacteristicType(0x2a80)
+	QBluetoothUuid__AnaerobicHeartRateLowerLimit                  QBluetoothUuid__CharacteristicType = QBluetoothUuid__CharacteristicType(0x2a81)
+	QBluetoothUuid__AnaerobicHeartRateUpperLimit                  QBluetoothUuid__CharacteristicType = QBluetoothUuid__CharacteristicType(0x2a82)
+	QBluetoothUuid__AnaerobicThreshold                            QBluetoothUuid__CharacteristicType = QBluetoothUuid__CharacteristicType(0x2a83)
+	QBluetoothUuid__AerobicHeartRateUpperLimit                    QBluetoothUuid__CharacteristicType = QBluetoothUuid__CharacteristicType(0x2a84)
+	QBluetoothUuid__DateOfBirth                                   QBluetoothUuid__CharacteristicType = QBluetoothUuid__CharacteristicType(0x2a85)
+	QBluetoothUuid__DateOfThresholdAssessment                     QBluetoothUuid__CharacteristicType = QBluetoothUuid__CharacteristicType(0x2a86)
+	QBluetoothUuid__EmailAddress                                  QBluetoothUuid__CharacteristicType = QBluetoothUuid__CharacteristicType(0x2a87)
+	QBluetoothUuid__FatBurnHeartRateLowerLimit                    QBluetoothUuid__CharacteristicType = QBluetoothUuid__CharacteristicType(0x2a88)
+	QBluetoothUuid__FatBurnHeartRateUpperLimit                    QBluetoothUuid__CharacteristicType = QBluetoothUuid__CharacteristicType(0x2a89)
+	QBluetoothUuid__FirstName                                     QBluetoothUuid__CharacteristicType = QBluetoothUuid__CharacteristicType(0x2a8a)
+	QBluetoothUuid__FiveZoneHeartRateLimits                       QBluetoothUuid__CharacteristicType = QBluetoothUuid__CharacteristicType(0x2a8b)
+	QBluetoothUuid__Gender                                        QBluetoothUuid__CharacteristicType = QBluetoothUuid__CharacteristicType(0x2a8c)
+	QBluetoothUuid__HeartRateMax                                  QBluetoothUuid__CharacteristicType = QBluetoothUuid__CharacteristicType(0x2a8d)
+	QBluetoothUuid__Height                                        QBluetoothUuid__CharacteristicType = QBluetoothUuid__CharacteristicType(0x2a8e)
+	QBluetoothUuid__HipCircumference                              QBluetoothUuid__CharacteristicType = QBluetoothUuid__CharacteristicType(0x2a8f)
+	QBluetoothUuid__LastName                                      QBluetoothUuid__CharacteristicType = QBluetoothUuid__CharacteristicType(0x2a90)
+	QBluetoothUuid__MaximumRecommendedHeartRate                   QBluetoothUuid__CharacteristicType = QBluetoothUuid__CharacteristicType(0x2a91)
+	QBluetoothUuid__RestingHeartRate                              QBluetoothUuid__CharacteristicType = QBluetoothUuid__CharacteristicType(0x2a92)
+	QBluetoothUuid__SportTypeForAerobicAnaerobicThresholds        QBluetoothUuid__CharacteristicType = QBluetoothUuid__CharacteristicType(0x2a93)
+	QBluetoothUuid__ThreeZoneHeartRateLimits                      QBluetoothUuid__CharacteristicType = QBluetoothUuid__CharacteristicType(0x2a94)
+	QBluetoothUuid__TwoZoneHeartRateLimits                        QBluetoothUuid__CharacteristicType = QBluetoothUuid__CharacteristicType(0x2a95)
+	QBluetoothUuid__VO2Max                                        QBluetoothUuid__CharacteristicType = QBluetoothUuid__CharacteristicType(0x2a96)
+	QBluetoothUuid__WaistCircumference                            QBluetoothUuid__CharacteristicType = QBluetoothUuid__CharacteristicType(0x2a97)
+	QBluetoothUuid__Weight                                        QBluetoothUuid__CharacteristicType = QBluetoothUuid__CharacteristicType(0x2a98)
+	QBluetoothUuid__DatabaseChangeIncrement                       QBluetoothUuid__CharacteristicType = QBluetoothUuid__CharacteristicType(0x2a99)
+	QBluetoothUuid__UserIndex                                     QBluetoothUuid__CharacteristicType = QBluetoothUuid__CharacteristicType(0x2a9a)
+	QBluetoothUuid__BodyCompositionFeature                        QBluetoothUuid__CharacteristicType = QBluetoothUuid__CharacteristicType(0x2a9b)
+	QBluetoothUuid__BodyCompositionMeasurement                    QBluetoothUuid__CharacteristicType = QBluetoothUuid__CharacteristicType(0x2a9c)
+	QBluetoothUuid__WeightMeasurement                             QBluetoothUuid__CharacteristicType = QBluetoothUuid__CharacteristicType(0x2a9d)
+	QBluetoothUuid__WeightScaleFeature                            QBluetoothUuid__CharacteristicType = QBluetoothUuid__CharacteristicType(0x2a9e)
+	QBluetoothUuid__UserControlPoint                              QBluetoothUuid__CharacteristicType = QBluetoothUuid__CharacteristicType(0x2a9f)
+	QBluetoothUuid__MagneticFluxDensity2D                         QBluetoothUuid__CharacteristicType = QBluetoothUuid__CharacteristicType(0x2aa0)
+	QBluetoothUuid__MagneticFluxDensity3D                         QBluetoothUuid__CharacteristicType = QBluetoothUuid__CharacteristicType(0x2aa1)
+	QBluetoothUuid__Language                                      QBluetoothUuid__CharacteristicType = QBluetoothUuid__CharacteristicType(0x2aa2)
+	QBluetoothUuid__BarometricPressureTrend                       QBluetoothUuid__CharacteristicType = QBluetoothUuid__CharacteristicType(0x2aa3)
 )
 
+//go:generate stringer -type=QBluetoothUuid__DescriptorType
 //QBluetoothUuid::DescriptorType
 type QBluetoothUuid__DescriptorType int64
 
 const (
-	QBluetoothUuid__UnknownDescriptorType              = QBluetoothUuid__DescriptorType(0x0)
-	QBluetoothUuid__CharacteristicExtendedProperties   = QBluetoothUuid__DescriptorType(0x2900)
-	QBluetoothUuid__CharacteristicUserDescription      = QBluetoothUuid__DescriptorType(0x2901)
-	QBluetoothUuid__ClientCharacteristicConfiguration  = QBluetoothUuid__DescriptorType(0x2902)
-	QBluetoothUuid__ServerCharacteristicConfiguration  = QBluetoothUuid__DescriptorType(0x2903)
-	QBluetoothUuid__CharacteristicPresentationFormat   = QBluetoothUuid__DescriptorType(0x2904)
-	QBluetoothUuid__CharacteristicAggregateFormat      = QBluetoothUuid__DescriptorType(0x2905)
-	QBluetoothUuid__ValidRange                         = QBluetoothUuid__DescriptorType(0x2906)
-	QBluetoothUuid__ExternalReportReference            = QBluetoothUuid__DescriptorType(0x2907)
-	QBluetoothUuid__ReportReference                    = QBluetoothUuid__DescriptorType(0x2908)
-	QBluetoothUuid__EnvironmentalSensingConfiguration  = QBluetoothUuid__DescriptorType(0x290b)
-	QBluetoothUuid__EnvironmentalSensingMeasurement    = QBluetoothUuid__DescriptorType(0x290c)
-	QBluetoothUuid__EnvironmentalSensingTriggerSetting = QBluetoothUuid__DescriptorType(0x290d)
+	QBluetoothUuid__UnknownDescriptorType              QBluetoothUuid__DescriptorType = QBluetoothUuid__DescriptorType(0x0)
+	QBluetoothUuid__CharacteristicExtendedProperties   QBluetoothUuid__DescriptorType = QBluetoothUuid__DescriptorType(0x2900)
+	QBluetoothUuid__CharacteristicUserDescription      QBluetoothUuid__DescriptorType = QBluetoothUuid__DescriptorType(0x2901)
+	QBluetoothUuid__ClientCharacteristicConfiguration  QBluetoothUuid__DescriptorType = QBluetoothUuid__DescriptorType(0x2902)
+	QBluetoothUuid__ServerCharacteristicConfiguration  QBluetoothUuid__DescriptorType = QBluetoothUuid__DescriptorType(0x2903)
+	QBluetoothUuid__CharacteristicPresentationFormat   QBluetoothUuid__DescriptorType = QBluetoothUuid__DescriptorType(0x2904)
+	QBluetoothUuid__CharacteristicAggregateFormat      QBluetoothUuid__DescriptorType = QBluetoothUuid__DescriptorType(0x2905)
+	QBluetoothUuid__ValidRange                         QBluetoothUuid__DescriptorType = QBluetoothUuid__DescriptorType(0x2906)
+	QBluetoothUuid__ExternalReportReference            QBluetoothUuid__DescriptorType = QBluetoothUuid__DescriptorType(0x2907)
+	QBluetoothUuid__ReportReference                    QBluetoothUuid__DescriptorType = QBluetoothUuid__DescriptorType(0x2908)
+	QBluetoothUuid__EnvironmentalSensingConfiguration  QBluetoothUuid__DescriptorType = QBluetoothUuid__DescriptorType(0x290b)
+	QBluetoothUuid__EnvironmentalSensingMeasurement    QBluetoothUuid__DescriptorType = QBluetoothUuid__DescriptorType(0x290c)
+	QBluetoothUuid__EnvironmentalSensingTriggerSetting QBluetoothUuid__DescriptorType = QBluetoothUuid__DescriptorType(0x290d)
 )
 
+//go:generate stringer -type=QBluetoothUuid__ProtocolUuid
 //QBluetoothUuid::ProtocolUuid
 type QBluetoothUuid__ProtocolUuid int64
 
 const (
-	QBluetoothUuid__Sdp                    = QBluetoothUuid__ProtocolUuid(0x0001)
-	QBluetoothUuid__Udp                    = QBluetoothUuid__ProtocolUuid(0x0002)
-	QBluetoothUuid__Rfcomm                 = QBluetoothUuid__ProtocolUuid(0x0003)
-	QBluetoothUuid__Tcp                    = QBluetoothUuid__ProtocolUuid(0x0004)
-	QBluetoothUuid__TcsBin                 = QBluetoothUuid__ProtocolUuid(0x0005)
-	QBluetoothUuid__TcsAt                  = QBluetoothUuid__ProtocolUuid(0x0006)
-	QBluetoothUuid__Att                    = QBluetoothUuid__ProtocolUuid(0x0007)
-	QBluetoothUuid__Obex                   = QBluetoothUuid__ProtocolUuid(0x0008)
-	QBluetoothUuid__Ip                     = QBluetoothUuid__ProtocolUuid(0x0009)
-	QBluetoothUuid__Ftp                    = QBluetoothUuid__ProtocolUuid(0x000A)
-	QBluetoothUuid__Http                   = QBluetoothUuid__ProtocolUuid(0x000C)
-	QBluetoothUuid__Wsp                    = QBluetoothUuid__ProtocolUuid(0x000E)
-	QBluetoothUuid__Bnep                   = QBluetoothUuid__ProtocolUuid(0x000F)
-	QBluetoothUuid__Upnp                   = QBluetoothUuid__ProtocolUuid(0x0010)
-	QBluetoothUuid__Hidp                   = QBluetoothUuid__ProtocolUuid(0x0011)
-	QBluetoothUuid__HardcopyControlChannel = QBluetoothUuid__ProtocolUuid(0x0012)
-	QBluetoothUuid__HardcopyDataChannel    = QBluetoothUuid__ProtocolUuid(0x0014)
-	QBluetoothUuid__HardcopyNotification   = QBluetoothUuid__ProtocolUuid(0x0016)
-	QBluetoothUuid__Avctp                  = QBluetoothUuid__ProtocolUuid(0x0017)
-	QBluetoothUuid__Avdtp                  = QBluetoothUuid__ProtocolUuid(0x0019)
-	QBluetoothUuid__Cmtp                   = QBluetoothUuid__ProtocolUuid(0x001B)
-	QBluetoothUuid__UdiCPlain              = QBluetoothUuid__ProtocolUuid(0x001D)
-	QBluetoothUuid__McapControlChannel     = QBluetoothUuid__ProtocolUuid(0x001E)
-	QBluetoothUuid__McapDataChannel        = QBluetoothUuid__ProtocolUuid(0x001F)
-	QBluetoothUuid__L2cap                  = QBluetoothUuid__ProtocolUuid(0x0100)
+	QBluetoothUuid__Sdp                    QBluetoothUuid__ProtocolUuid = QBluetoothUuid__ProtocolUuid(0x0001)
+	QBluetoothUuid__Udp                    QBluetoothUuid__ProtocolUuid = QBluetoothUuid__ProtocolUuid(0x0002)
+	QBluetoothUuid__Rfcomm                 QBluetoothUuid__ProtocolUuid = QBluetoothUuid__ProtocolUuid(0x0003)
+	QBluetoothUuid__Tcp                    QBluetoothUuid__ProtocolUuid = QBluetoothUuid__ProtocolUuid(0x0004)
+	QBluetoothUuid__TcsBin                 QBluetoothUuid__ProtocolUuid = QBluetoothUuid__ProtocolUuid(0x0005)
+	QBluetoothUuid__TcsAt                  QBluetoothUuid__ProtocolUuid = QBluetoothUuid__ProtocolUuid(0x0006)
+	QBluetoothUuid__Att                    QBluetoothUuid__ProtocolUuid = QBluetoothUuid__ProtocolUuid(0x0007)
+	QBluetoothUuid__Obex                   QBluetoothUuid__ProtocolUuid = QBluetoothUuid__ProtocolUuid(0x0008)
+	QBluetoothUuid__Ip                     QBluetoothUuid__ProtocolUuid = QBluetoothUuid__ProtocolUuid(0x0009)
+	QBluetoothUuid__Ftp                    QBluetoothUuid__ProtocolUuid = QBluetoothUuid__ProtocolUuid(0x000A)
+	QBluetoothUuid__Http                   QBluetoothUuid__ProtocolUuid = QBluetoothUuid__ProtocolUuid(0x000C)
+	QBluetoothUuid__Wsp                    QBluetoothUuid__ProtocolUuid = QBluetoothUuid__ProtocolUuid(0x000E)
+	QBluetoothUuid__Bnep                   QBluetoothUuid__ProtocolUuid = QBluetoothUuid__ProtocolUuid(0x000F)
+	QBluetoothUuid__Upnp                   QBluetoothUuid__ProtocolUuid = QBluetoothUuid__ProtocolUuid(0x0010)
+	QBluetoothUuid__Hidp                   QBluetoothUuid__ProtocolUuid = QBluetoothUuid__ProtocolUuid(0x0011)
+	QBluetoothUuid__HardcopyControlChannel QBluetoothUuid__ProtocolUuid = QBluetoothUuid__ProtocolUuid(0x0012)
+	QBluetoothUuid__HardcopyDataChannel    QBluetoothUuid__ProtocolUuid = QBluetoothUuid__ProtocolUuid(0x0014)
+	QBluetoothUuid__HardcopyNotification   QBluetoothUuid__ProtocolUuid = QBluetoothUuid__ProtocolUuid(0x0016)
+	QBluetoothUuid__Avctp                  QBluetoothUuid__ProtocolUuid = QBluetoothUuid__ProtocolUuid(0x0017)
+	QBluetoothUuid__Avdtp                  QBluetoothUuid__ProtocolUuid = QBluetoothUuid__ProtocolUuid(0x0019)
+	QBluetoothUuid__Cmtp                   QBluetoothUuid__ProtocolUuid = QBluetoothUuid__ProtocolUuid(0x001B)
+	QBluetoothUuid__UdiCPlain              QBluetoothUuid__ProtocolUuid = QBluetoothUuid__ProtocolUuid(0x001D)
+	QBluetoothUuid__McapControlChannel     QBluetoothUuid__ProtocolUuid = QBluetoothUuid__ProtocolUuid(0x001E)
+	QBluetoothUuid__McapDataChannel        QBluetoothUuid__ProtocolUuid = QBluetoothUuid__ProtocolUuid(0x001F)
+	QBluetoothUuid__L2cap                  QBluetoothUuid__ProtocolUuid = QBluetoothUuid__ProtocolUuid(0x0100)
 )
 
+//go:generate stringer -type=QBluetoothUuid__ServiceClassUuid
 //QBluetoothUuid::ServiceClassUuid
 type QBluetoothUuid__ServiceClassUuid int64
 
 const (
-	QBluetoothUuid__ServiceDiscoveryServer                = QBluetoothUuid__ServiceClassUuid(0x1000)
-	QBluetoothUuid__BrowseGroupDescriptor                 = QBluetoothUuid__ServiceClassUuid(0x1001)
-	QBluetoothUuid__PublicBrowseGroup                     = QBluetoothUuid__ServiceClassUuid(0x1002)
-	QBluetoothUuid__SerialPort                            = QBluetoothUuid__ServiceClassUuid(0x1101)
-	QBluetoothUuid__LANAccessUsingPPP                     = QBluetoothUuid__ServiceClassUuid(0x1102)
-	QBluetoothUuid__DialupNetworking                      = QBluetoothUuid__ServiceClassUuid(0x1103)
-	QBluetoothUuid__IrMCSync                              = QBluetoothUuid__ServiceClassUuid(0x1104)
-	QBluetoothUuid__ObexObjectPush                        = QBluetoothUuid__ServiceClassUuid(0x1105)
-	QBluetoothUuid__OBEXFileTransfer                      = QBluetoothUuid__ServiceClassUuid(0x1106)
-	QBluetoothUuid__IrMCSyncCommand                       = QBluetoothUuid__ServiceClassUuid(0x1107)
-	QBluetoothUuid__Headset                               = QBluetoothUuid__ServiceClassUuid(0x1108)
-	QBluetoothUuid__AudioSource                           = QBluetoothUuid__ServiceClassUuid(0x110a)
-	QBluetoothUuid__AudioSink                             = QBluetoothUuid__ServiceClassUuid(0x110b)
-	QBluetoothUuid__AV_RemoteControlTarget                = QBluetoothUuid__ServiceClassUuid(0x110c)
-	QBluetoothUuid__AdvancedAudioDistribution             = QBluetoothUuid__ServiceClassUuid(0x110d)
-	QBluetoothUuid__AV_RemoteControl                      = QBluetoothUuid__ServiceClassUuid(0x110e)
-	QBluetoothUuid__AV_RemoteControlController            = QBluetoothUuid__ServiceClassUuid(0x110f)
-	QBluetoothUuid__HeadsetAG                             = QBluetoothUuid__ServiceClassUuid(0x1112)
-	QBluetoothUuid__PANU                                  = QBluetoothUuid__ServiceClassUuid(0x1115)
-	QBluetoothUuid__NAP                                   = QBluetoothUuid__ServiceClassUuid(0x1116)
-	QBluetoothUuid__GN                                    = QBluetoothUuid__ServiceClassUuid(0x1117)
-	QBluetoothUuid__DirectPrinting                        = QBluetoothUuid__ServiceClassUuid(0x1118)
-	QBluetoothUuid__ReferencePrinting                     = QBluetoothUuid__ServiceClassUuid(0x1119)
-	QBluetoothUuid__BasicImage                            = QBluetoothUuid__ServiceClassUuid(0x111a)
-	QBluetoothUuid__ImagingResponder                      = QBluetoothUuid__ServiceClassUuid(0x111b)
-	QBluetoothUuid__ImagingAutomaticArchive               = QBluetoothUuid__ServiceClassUuid(0x111c)
-	QBluetoothUuid__ImagingReferenceObjects               = QBluetoothUuid__ServiceClassUuid(0x111d)
-	QBluetoothUuid__Handsfree                             = QBluetoothUuid__ServiceClassUuid(0x111e)
-	QBluetoothUuid__HandsfreeAudioGateway                 = QBluetoothUuid__ServiceClassUuid(0x111f)
-	QBluetoothUuid__DirectPrintingReferenceObjectsService = QBluetoothUuid__ServiceClassUuid(0x1120)
-	QBluetoothUuid__ReflectedUI                           = QBluetoothUuid__ServiceClassUuid(0x1121)
-	QBluetoothUuid__BasicPrinting                         = QBluetoothUuid__ServiceClassUuid(0x1122)
-	QBluetoothUuid__PrintingStatus                        = QBluetoothUuid__ServiceClassUuid(0x1123)
-	QBluetoothUuid__HumanInterfaceDeviceService           = QBluetoothUuid__ServiceClassUuid(0x1124)
-	QBluetoothUuid__HardcopyCableReplacement              = QBluetoothUuid__ServiceClassUuid(0x1125)
-	QBluetoothUuid__HCRPrint                              = QBluetoothUuid__ServiceClassUuid(0x1126)
-	QBluetoothUuid__HCRScan                               = QBluetoothUuid__ServiceClassUuid(0x1127)
-	QBluetoothUuid__SIMAccess                             = QBluetoothUuid__ServiceClassUuid(0x112d)
-	QBluetoothUuid__PhonebookAccessPCE                    = QBluetoothUuid__ServiceClassUuid(0x112e)
-	QBluetoothUuid__PhonebookAccessPSE                    = QBluetoothUuid__ServiceClassUuid(0x112f)
-	QBluetoothUuid__PhonebookAccess                       = QBluetoothUuid__ServiceClassUuid(0x1130)
-	QBluetoothUuid__HeadsetHS                             = QBluetoothUuid__ServiceClassUuid(0x1131)
-	QBluetoothUuid__MessageAccessServer                   = QBluetoothUuid__ServiceClassUuid(0x1132)
-	QBluetoothUuid__MessageNotificationServer             = QBluetoothUuid__ServiceClassUuid(0x1133)
-	QBluetoothUuid__MessageAccessProfile                  = QBluetoothUuid__ServiceClassUuid(0x1134)
-	QBluetoothUuid__GNSS                                  = QBluetoothUuid__ServiceClassUuid(0x1135)
-	QBluetoothUuid__GNSSServer                            = QBluetoothUuid__ServiceClassUuid(0x1136)
-	QBluetoothUuid__Display3D                             = QBluetoothUuid__ServiceClassUuid(0x1137)
-	QBluetoothUuid__Glasses3D                             = QBluetoothUuid__ServiceClassUuid(0x1138)
-	QBluetoothUuid__Synchronization3D                     = QBluetoothUuid__ServiceClassUuid(0x1139)
-	QBluetoothUuid__MPSProfile                            = QBluetoothUuid__ServiceClassUuid(0x113a)
-	QBluetoothUuid__MPSService                            = QBluetoothUuid__ServiceClassUuid(0x113b)
-	QBluetoothUuid__PnPInformation                        = QBluetoothUuid__ServiceClassUuid(0x1200)
-	QBluetoothUuid__GenericNetworking                     = QBluetoothUuid__ServiceClassUuid(0x1201)
-	QBluetoothUuid__GenericFileTransfer                   = QBluetoothUuid__ServiceClassUuid(0x1202)
-	QBluetoothUuid__GenericAudio                          = QBluetoothUuid__ServiceClassUuid(0x1203)
-	QBluetoothUuid__GenericTelephony                      = QBluetoothUuid__ServiceClassUuid(0x1204)
-	QBluetoothUuid__VideoSource                           = QBluetoothUuid__ServiceClassUuid(0x1303)
-	QBluetoothUuid__VideoSink                             = QBluetoothUuid__ServiceClassUuid(0x1304)
-	QBluetoothUuid__VideoDistribution                     = QBluetoothUuid__ServiceClassUuid(0x1305)
-	QBluetoothUuid__HDP                                   = QBluetoothUuid__ServiceClassUuid(0x1400)
-	QBluetoothUuid__HDPSource                             = QBluetoothUuid__ServiceClassUuid(0x1401)
-	QBluetoothUuid__HDPSink                               = QBluetoothUuid__ServiceClassUuid(0x1402)
-	QBluetoothUuid__GenericAccess                         = QBluetoothUuid__ServiceClassUuid(0x1800)
-	QBluetoothUuid__GenericAttribute                      = QBluetoothUuid__ServiceClassUuid(0x1801)
-	QBluetoothUuid__ImmediateAlert                        = QBluetoothUuid__ServiceClassUuid(0x1802)
-	QBluetoothUuid__LinkLoss                              = QBluetoothUuid__ServiceClassUuid(0x1803)
-	QBluetoothUuid__TxPower                               = QBluetoothUuid__ServiceClassUuid(0x1804)
-	QBluetoothUuid__CurrentTimeService                    = QBluetoothUuid__ServiceClassUuid(0x1805)
-	QBluetoothUuid__ReferenceTimeUpdateService            = QBluetoothUuid__ServiceClassUuid(0x1806)
-	QBluetoothUuid__NextDSTChangeService                  = QBluetoothUuid__ServiceClassUuid(0x1807)
-	QBluetoothUuid__Glucose                               = QBluetoothUuid__ServiceClassUuid(0x1808)
-	QBluetoothUuid__HealthThermometer                     = QBluetoothUuid__ServiceClassUuid(0x1809)
-	QBluetoothUuid__DeviceInformation                     = QBluetoothUuid__ServiceClassUuid(0x180a)
-	QBluetoothUuid__HeartRate                             = QBluetoothUuid__ServiceClassUuid(0x180d)
-	QBluetoothUuid__PhoneAlertStatusService               = QBluetoothUuid__ServiceClassUuid(0x180e)
-	QBluetoothUuid__BatteryService                        = QBluetoothUuid__ServiceClassUuid(0x180f)
-	QBluetoothUuid__BloodPressure                         = QBluetoothUuid__ServiceClassUuid(0x1810)
-	QBluetoothUuid__AlertNotificationService              = QBluetoothUuid__ServiceClassUuid(0x1811)
-	QBluetoothUuid__HumanInterfaceDevice                  = QBluetoothUuid__ServiceClassUuid(0x1812)
-	QBluetoothUuid__ScanParameters                        = QBluetoothUuid__ServiceClassUuid(0x1813)
-	QBluetoothUuid__RunningSpeedAndCadence                = QBluetoothUuid__ServiceClassUuid(0x1814)
-	QBluetoothUuid__CyclingSpeedAndCadence                = QBluetoothUuid__ServiceClassUuid(0x1816)
-	QBluetoothUuid__CyclingPower                          = QBluetoothUuid__ServiceClassUuid(0x1818)
-	QBluetoothUuid__LocationAndNavigation                 = QBluetoothUuid__ServiceClassUuid(0x1819)
-	QBluetoothUuid__EnvironmentalSensing                  = QBluetoothUuid__ServiceClassUuid(0x181a)
-	QBluetoothUuid__BodyComposition                       = QBluetoothUuid__ServiceClassUuid(0x181b)
-	QBluetoothUuid__UserData                              = QBluetoothUuid__ServiceClassUuid(0x181c)
-	QBluetoothUuid__WeightScale                           = QBluetoothUuid__ServiceClassUuid(0x181d)
-	QBluetoothUuid__BondManagement                        = QBluetoothUuid__ServiceClassUuid(0x181e)
-	QBluetoothUuid__ContinuousGlucoseMonitoring           = QBluetoothUuid__ServiceClassUuid(0x181f)
+	QBluetoothUuid__ServiceDiscoveryServer                QBluetoothUuid__ServiceClassUuid = QBluetoothUuid__ServiceClassUuid(0x1000)
+	QBluetoothUuid__BrowseGroupDescriptor                 QBluetoothUuid__ServiceClassUuid = QBluetoothUuid__ServiceClassUuid(0x1001)
+	QBluetoothUuid__PublicBrowseGroup                     QBluetoothUuid__ServiceClassUuid = QBluetoothUuid__ServiceClassUuid(0x1002)
+	QBluetoothUuid__SerialPort                            QBluetoothUuid__ServiceClassUuid = QBluetoothUuid__ServiceClassUuid(0x1101)
+	QBluetoothUuid__LANAccessUsingPPP                     QBluetoothUuid__ServiceClassUuid = QBluetoothUuid__ServiceClassUuid(0x1102)
+	QBluetoothUuid__DialupNetworking                      QBluetoothUuid__ServiceClassUuid = QBluetoothUuid__ServiceClassUuid(0x1103)
+	QBluetoothUuid__IrMCSync                              QBluetoothUuid__ServiceClassUuid = QBluetoothUuid__ServiceClassUuid(0x1104)
+	QBluetoothUuid__ObexObjectPush                        QBluetoothUuid__ServiceClassUuid = QBluetoothUuid__ServiceClassUuid(0x1105)
+	QBluetoothUuid__OBEXFileTransfer                      QBluetoothUuid__ServiceClassUuid = QBluetoothUuid__ServiceClassUuid(0x1106)
+	QBluetoothUuid__IrMCSyncCommand                       QBluetoothUuid__ServiceClassUuid = QBluetoothUuid__ServiceClassUuid(0x1107)
+	QBluetoothUuid__Headset                               QBluetoothUuid__ServiceClassUuid = QBluetoothUuid__ServiceClassUuid(0x1108)
+	QBluetoothUuid__AudioSource                           QBluetoothUuid__ServiceClassUuid = QBluetoothUuid__ServiceClassUuid(0x110a)
+	QBluetoothUuid__AudioSink                             QBluetoothUuid__ServiceClassUuid = QBluetoothUuid__ServiceClassUuid(0x110b)
+	QBluetoothUuid__AV_RemoteControlTarget                QBluetoothUuid__ServiceClassUuid = QBluetoothUuid__ServiceClassUuid(0x110c)
+	QBluetoothUuid__AdvancedAudioDistribution             QBluetoothUuid__ServiceClassUuid = QBluetoothUuid__ServiceClassUuid(0x110d)
+	QBluetoothUuid__AV_RemoteControl                      QBluetoothUuid__ServiceClassUuid = QBluetoothUuid__ServiceClassUuid(0x110e)
+	QBluetoothUuid__AV_RemoteControlController            QBluetoothUuid__ServiceClassUuid = QBluetoothUuid__ServiceClassUuid(0x110f)
+	QBluetoothUuid__HeadsetAG                             QBluetoothUuid__ServiceClassUuid = QBluetoothUuid__ServiceClassUuid(0x1112)
+	QBluetoothUuid__PANU                                  QBluetoothUuid__ServiceClassUuid = QBluetoothUuid__ServiceClassUuid(0x1115)
+	QBluetoothUuid__NAP                                   QBluetoothUuid__ServiceClassUuid = QBluetoothUuid__ServiceClassUuid(0x1116)
+	QBluetoothUuid__GN                                    QBluetoothUuid__ServiceClassUuid = QBluetoothUuid__ServiceClassUuid(0x1117)
+	QBluetoothUuid__DirectPrinting                        QBluetoothUuid__ServiceClassUuid = QBluetoothUuid__ServiceClassUuid(0x1118)
+	QBluetoothUuid__ReferencePrinting                     QBluetoothUuid__ServiceClassUuid = QBluetoothUuid__ServiceClassUuid(0x1119)
+	QBluetoothUuid__BasicImage                            QBluetoothUuid__ServiceClassUuid = QBluetoothUuid__ServiceClassUuid(0x111a)
+	QBluetoothUuid__ImagingResponder                      QBluetoothUuid__ServiceClassUuid = QBluetoothUuid__ServiceClassUuid(0x111b)
+	QBluetoothUuid__ImagingAutomaticArchive               QBluetoothUuid__ServiceClassUuid = QBluetoothUuid__ServiceClassUuid(0x111c)
+	QBluetoothUuid__ImagingReferenceObjects               QBluetoothUuid__ServiceClassUuid = QBluetoothUuid__ServiceClassUuid(0x111d)
+	QBluetoothUuid__Handsfree                             QBluetoothUuid__ServiceClassUuid = QBluetoothUuid__ServiceClassUuid(0x111e)
+	QBluetoothUuid__HandsfreeAudioGateway                 QBluetoothUuid__ServiceClassUuid = QBluetoothUuid__ServiceClassUuid(0x111f)
+	QBluetoothUuid__DirectPrintingReferenceObjectsService QBluetoothUuid__ServiceClassUuid = QBluetoothUuid__ServiceClassUuid(0x1120)
+	QBluetoothUuid__ReflectedUI                           QBluetoothUuid__ServiceClassUuid = QBluetoothUuid__ServiceClassUuid(0x1121)
+	QBluetoothUuid__BasicPrinting                         QBluetoothUuid__ServiceClassUuid = QBluetoothUuid__ServiceClassUuid(0x1122)
+	QBluetoothUuid__PrintingStatus                        QBluetoothUuid__ServiceClassUuid = QBluetoothUuid__ServiceClassUuid(0x1123)
+	QBluetoothUuid__HumanInterfaceDeviceService           QBluetoothUuid__ServiceClassUuid = QBluetoothUuid__ServiceClassUuid(0x1124)
+	QBluetoothUuid__HardcopyCableReplacement              QBluetoothUuid__ServiceClassUuid = QBluetoothUuid__ServiceClassUuid(0x1125)
+	QBluetoothUuid__HCRPrint                              QBluetoothUuid__ServiceClassUuid = QBluetoothUuid__ServiceClassUuid(0x1126)
+	QBluetoothUuid__HCRScan                               QBluetoothUuid__ServiceClassUuid = QBluetoothUuid__ServiceClassUuid(0x1127)
+	QBluetoothUuid__SIMAccess                             QBluetoothUuid__ServiceClassUuid = QBluetoothUuid__ServiceClassUuid(0x112d)
+	QBluetoothUuid__PhonebookAccessPCE                    QBluetoothUuid__ServiceClassUuid = QBluetoothUuid__ServiceClassUuid(0x112e)
+	QBluetoothUuid__PhonebookAccessPSE                    QBluetoothUuid__ServiceClassUuid = QBluetoothUuid__ServiceClassUuid(0x112f)
+	QBluetoothUuid__PhonebookAccess                       QBluetoothUuid__ServiceClassUuid = QBluetoothUuid__ServiceClassUuid(0x1130)
+	QBluetoothUuid__HeadsetHS                             QBluetoothUuid__ServiceClassUuid = QBluetoothUuid__ServiceClassUuid(0x1131)
+	QBluetoothUuid__MessageAccessServer                   QBluetoothUuid__ServiceClassUuid = QBluetoothUuid__ServiceClassUuid(0x1132)
+	QBluetoothUuid__MessageNotificationServer             QBluetoothUuid__ServiceClassUuid = QBluetoothUuid__ServiceClassUuid(0x1133)
+	QBluetoothUuid__MessageAccessProfile                  QBluetoothUuid__ServiceClassUuid = QBluetoothUuid__ServiceClassUuid(0x1134)
+	QBluetoothUuid__GNSS                                  QBluetoothUuid__ServiceClassUuid = QBluetoothUuid__ServiceClassUuid(0x1135)
+	QBluetoothUuid__GNSSServer                            QBluetoothUuid__ServiceClassUuid = QBluetoothUuid__ServiceClassUuid(0x1136)
+	QBluetoothUuid__Display3D                             QBluetoothUuid__ServiceClassUuid = QBluetoothUuid__ServiceClassUuid(0x1137)
+	QBluetoothUuid__Glasses3D                             QBluetoothUuid__ServiceClassUuid = QBluetoothUuid__ServiceClassUuid(0x1138)
+	QBluetoothUuid__Synchronization3D                     QBluetoothUuid__ServiceClassUuid = QBluetoothUuid__ServiceClassUuid(0x1139)
+	QBluetoothUuid__MPSProfile                            QBluetoothUuid__ServiceClassUuid = QBluetoothUuid__ServiceClassUuid(0x113a)
+	QBluetoothUuid__MPSService                            QBluetoothUuid__ServiceClassUuid = QBluetoothUuid__ServiceClassUuid(0x113b)
+	QBluetoothUuid__PnPInformation                        QBluetoothUuid__ServiceClassUuid = QBluetoothUuid__ServiceClassUuid(0x1200)
+	QBluetoothUuid__GenericNetworking                     QBluetoothUuid__ServiceClassUuid = QBluetoothUuid__ServiceClassUuid(0x1201)
+	QBluetoothUuid__GenericFileTransfer                   QBluetoothUuid__ServiceClassUuid = QBluetoothUuid__ServiceClassUuid(0x1202)
+	QBluetoothUuid__GenericAudio                          QBluetoothUuid__ServiceClassUuid = QBluetoothUuid__ServiceClassUuid(0x1203)
+	QBluetoothUuid__GenericTelephony                      QBluetoothUuid__ServiceClassUuid = QBluetoothUuid__ServiceClassUuid(0x1204)
+	QBluetoothUuid__VideoSource                           QBluetoothUuid__ServiceClassUuid = QBluetoothUuid__ServiceClassUuid(0x1303)
+	QBluetoothUuid__VideoSink                             QBluetoothUuid__ServiceClassUuid = QBluetoothUuid__ServiceClassUuid(0x1304)
+	QBluetoothUuid__VideoDistribution                     QBluetoothUuid__ServiceClassUuid = QBluetoothUuid__ServiceClassUuid(0x1305)
+	QBluetoothUuid__HDP                                   QBluetoothUuid__ServiceClassUuid = QBluetoothUuid__ServiceClassUuid(0x1400)
+	QBluetoothUuid__HDPSource                             QBluetoothUuid__ServiceClassUuid = QBluetoothUuid__ServiceClassUuid(0x1401)
+	QBluetoothUuid__HDPSink                               QBluetoothUuid__ServiceClassUuid = QBluetoothUuid__ServiceClassUuid(0x1402)
+	QBluetoothUuid__GenericAccess                         QBluetoothUuid__ServiceClassUuid = QBluetoothUuid__ServiceClassUuid(0x1800)
+	QBluetoothUuid__GenericAttribute                      QBluetoothUuid__ServiceClassUuid = QBluetoothUuid__ServiceClassUuid(0x1801)
+	QBluetoothUuid__ImmediateAlert                        QBluetoothUuid__ServiceClassUuid = QBluetoothUuid__ServiceClassUuid(0x1802)
+	QBluetoothUuid__LinkLoss                              QBluetoothUuid__ServiceClassUuid = QBluetoothUuid__ServiceClassUuid(0x1803)
+	QBluetoothUuid__TxPower                               QBluetoothUuid__ServiceClassUuid = QBluetoothUuid__ServiceClassUuid(0x1804)
+	QBluetoothUuid__CurrentTimeService                    QBluetoothUuid__ServiceClassUuid = QBluetoothUuid__ServiceClassUuid(0x1805)
+	QBluetoothUuid__ReferenceTimeUpdateService            QBluetoothUuid__ServiceClassUuid = QBluetoothUuid__ServiceClassUuid(0x1806)
+	QBluetoothUuid__NextDSTChangeService                  QBluetoothUuid__ServiceClassUuid = QBluetoothUuid__ServiceClassUuid(0x1807)
+	QBluetoothUuid__Glucose                               QBluetoothUuid__ServiceClassUuid = QBluetoothUuid__ServiceClassUuid(0x1808)
+	QBluetoothUuid__HealthThermometer                     QBluetoothUuid__ServiceClassUuid = QBluetoothUuid__ServiceClassUuid(0x1809)
+	QBluetoothUuid__DeviceInformation                     QBluetoothUuid__ServiceClassUuid = QBluetoothUuid__ServiceClassUuid(0x180a)
+	QBluetoothUuid__HeartRate                             QBluetoothUuid__ServiceClassUuid = QBluetoothUuid__ServiceClassUuid(0x180d)
+	QBluetoothUuid__PhoneAlertStatusService               QBluetoothUuid__ServiceClassUuid = QBluetoothUuid__ServiceClassUuid(0x180e)
+	QBluetoothUuid__BatteryService                        QBluetoothUuid__ServiceClassUuid = QBluetoothUuid__ServiceClassUuid(0x180f)
+	QBluetoothUuid__BloodPressure                         QBluetoothUuid__ServiceClassUuid = QBluetoothUuid__ServiceClassUuid(0x1810)
+	QBluetoothUuid__AlertNotificationService              QBluetoothUuid__ServiceClassUuid = QBluetoothUuid__ServiceClassUuid(0x1811)
+	QBluetoothUuid__HumanInterfaceDevice                  QBluetoothUuid__ServiceClassUuid = QBluetoothUuid__ServiceClassUuid(0x1812)
+	QBluetoothUuid__ScanParameters                        QBluetoothUuid__ServiceClassUuid = QBluetoothUuid__ServiceClassUuid(0x1813)
+	QBluetoothUuid__RunningSpeedAndCadence                QBluetoothUuid__ServiceClassUuid = QBluetoothUuid__ServiceClassUuid(0x1814)
+	QBluetoothUuid__CyclingSpeedAndCadence                QBluetoothUuid__ServiceClassUuid = QBluetoothUuid__ServiceClassUuid(0x1816)
+	QBluetoothUuid__CyclingPower                          QBluetoothUuid__ServiceClassUuid = QBluetoothUuid__ServiceClassUuid(0x1818)
+	QBluetoothUuid__LocationAndNavigation                 QBluetoothUuid__ServiceClassUuid = QBluetoothUuid__ServiceClassUuid(0x1819)
+	QBluetoothUuid__EnvironmentalSensing                  QBluetoothUuid__ServiceClassUuid = QBluetoothUuid__ServiceClassUuid(0x181a)
+	QBluetoothUuid__BodyComposition                       QBluetoothUuid__ServiceClassUuid = QBluetoothUuid__ServiceClassUuid(0x181b)
+	QBluetoothUuid__UserData                              QBluetoothUuid__ServiceClassUuid = QBluetoothUuid__ServiceClassUuid(0x181c)
+	QBluetoothUuid__WeightScale                           QBluetoothUuid__ServiceClassUuid = QBluetoothUuid__ServiceClassUuid(0x181d)
+	QBluetoothUuid__BondManagement                        QBluetoothUuid__ServiceClassUuid = QBluetoothUuid__ServiceClassUuid(0x181e)
+	QBluetoothUuid__ContinuousGlucoseMonitoring           QBluetoothUuid__ServiceClassUuid = QBluetoothUuid__ServiceClassUuid(0x181f)
 )
 
 type QBluetoothUuid struct {
@@ -6608,13 +6644,14 @@ func (ptr *QBluetoothUuid) DestroyQBluetoothUuid() {
 	}
 }
 
+//go:generate stringer -type=QLowEnergyAdvertisingData__Discoverability
 //QLowEnergyAdvertisingData::Discoverability
 type QLowEnergyAdvertisingData__Discoverability int64
 
 const (
-	QLowEnergyAdvertisingData__DiscoverabilityNone    = QLowEnergyAdvertisingData__Discoverability(0)
-	QLowEnergyAdvertisingData__DiscoverabilityLimited = QLowEnergyAdvertisingData__Discoverability(1)
-	QLowEnergyAdvertisingData__DiscoverabilityGeneral = QLowEnergyAdvertisingData__Discoverability(2)
+	QLowEnergyAdvertisingData__DiscoverabilityNone    QLowEnergyAdvertisingData__Discoverability = QLowEnergyAdvertisingData__Discoverability(0)
+	QLowEnergyAdvertisingData__DiscoverabilityLimited QLowEnergyAdvertisingData__Discoverability = QLowEnergyAdvertisingData__Discoverability(1)
+	QLowEnergyAdvertisingData__DiscoverabilityGeneral QLowEnergyAdvertisingData__Discoverability = QLowEnergyAdvertisingData__Discoverability(2)
 )
 
 type QLowEnergyAdvertisingData struct {
@@ -6787,23 +6824,25 @@ func (ptr *QLowEnergyAdvertisingData) services_atList(i int) *QBluetoothUuid {
 	return nil
 }
 
+//go:generate stringer -type=QLowEnergyAdvertisingParameters__FilterPolicy
 //QLowEnergyAdvertisingParameters::FilterPolicy
 type QLowEnergyAdvertisingParameters__FilterPolicy int64
 
 const (
-	QLowEnergyAdvertisingParameters__IgnoreWhiteList                      = QLowEnergyAdvertisingParameters__FilterPolicy(0x00)
-	QLowEnergyAdvertisingParameters__UseWhiteListForScanning              = QLowEnergyAdvertisingParameters__FilterPolicy(0x01)
-	QLowEnergyAdvertisingParameters__UseWhiteListForConnecting            = QLowEnergyAdvertisingParameters__FilterPolicy(0x02)
-	QLowEnergyAdvertisingParameters__UseWhiteListForScanningAndConnecting = QLowEnergyAdvertisingParameters__FilterPolicy(0x03)
+	QLowEnergyAdvertisingParameters__IgnoreWhiteList                      QLowEnergyAdvertisingParameters__FilterPolicy = QLowEnergyAdvertisingParameters__FilterPolicy(0x00)
+	QLowEnergyAdvertisingParameters__UseWhiteListForScanning              QLowEnergyAdvertisingParameters__FilterPolicy = QLowEnergyAdvertisingParameters__FilterPolicy(0x01)
+	QLowEnergyAdvertisingParameters__UseWhiteListForConnecting            QLowEnergyAdvertisingParameters__FilterPolicy = QLowEnergyAdvertisingParameters__FilterPolicy(0x02)
+	QLowEnergyAdvertisingParameters__UseWhiteListForScanningAndConnecting QLowEnergyAdvertisingParameters__FilterPolicy = QLowEnergyAdvertisingParameters__FilterPolicy(0x03)
 )
 
+//go:generate stringer -type=QLowEnergyAdvertisingParameters__Mode
 //QLowEnergyAdvertisingParameters::Mode
 type QLowEnergyAdvertisingParameters__Mode int64
 
 const (
-	QLowEnergyAdvertisingParameters__AdvInd        = QLowEnergyAdvertisingParameters__Mode(0x0)
-	QLowEnergyAdvertisingParameters__AdvScanInd    = QLowEnergyAdvertisingParameters__Mode(0x2)
-	QLowEnergyAdvertisingParameters__AdvNonConnInd = QLowEnergyAdvertisingParameters__Mode(0x3)
+	QLowEnergyAdvertisingParameters__AdvInd        QLowEnergyAdvertisingParameters__Mode = QLowEnergyAdvertisingParameters__Mode(0x0)
+	QLowEnergyAdvertisingParameters__AdvScanInd    QLowEnergyAdvertisingParameters__Mode = QLowEnergyAdvertisingParameters__Mode(0x2)
+	QLowEnergyAdvertisingParameters__AdvNonConnInd QLowEnergyAdvertisingParameters__Mode = QLowEnergyAdvertisingParameters__Mode(0x3)
 )
 
 type QLowEnergyAdvertisingParameters struct {
@@ -6908,19 +6947,20 @@ func (ptr *QLowEnergyAdvertisingParameters) DestroyQLowEnergyAdvertisingParamete
 	}
 }
 
+//go:generate stringer -type=QLowEnergyCharacteristic__PropertyType
 //QLowEnergyCharacteristic::PropertyType
 type QLowEnergyCharacteristic__PropertyType int64
 
 const (
-	QLowEnergyCharacteristic__Unknown          = QLowEnergyCharacteristic__PropertyType(0x00)
-	QLowEnergyCharacteristic__Broadcasting     = QLowEnergyCharacteristic__PropertyType(0x01)
-	QLowEnergyCharacteristic__Read             = QLowEnergyCharacteristic__PropertyType(0x02)
-	QLowEnergyCharacteristic__WriteNoResponse  = QLowEnergyCharacteristic__PropertyType(0x04)
-	QLowEnergyCharacteristic__Write            = QLowEnergyCharacteristic__PropertyType(0x08)
-	QLowEnergyCharacteristic__Notify           = QLowEnergyCharacteristic__PropertyType(0x10)
-	QLowEnergyCharacteristic__Indicate         = QLowEnergyCharacteristic__PropertyType(0x20)
-	QLowEnergyCharacteristic__WriteSigned      = QLowEnergyCharacteristic__PropertyType(0x40)
-	QLowEnergyCharacteristic__ExtendedProperty = QLowEnergyCharacteristic__PropertyType(0x80)
+	QLowEnergyCharacteristic__Unknown          QLowEnergyCharacteristic__PropertyType = QLowEnergyCharacteristic__PropertyType(0x00)
+	QLowEnergyCharacteristic__Broadcasting     QLowEnergyCharacteristic__PropertyType = QLowEnergyCharacteristic__PropertyType(0x01)
+	QLowEnergyCharacteristic__Read             QLowEnergyCharacteristic__PropertyType = QLowEnergyCharacteristic__PropertyType(0x02)
+	QLowEnergyCharacteristic__WriteNoResponse  QLowEnergyCharacteristic__PropertyType = QLowEnergyCharacteristic__PropertyType(0x04)
+	QLowEnergyCharacteristic__Write            QLowEnergyCharacteristic__PropertyType = QLowEnergyCharacteristic__PropertyType(0x08)
+	QLowEnergyCharacteristic__Notify           QLowEnergyCharacteristic__PropertyType = QLowEnergyCharacteristic__PropertyType(0x10)
+	QLowEnergyCharacteristic__Indicate         QLowEnergyCharacteristic__PropertyType = QLowEnergyCharacteristic__PropertyType(0x20)
+	QLowEnergyCharacteristic__WriteSigned      QLowEnergyCharacteristic__PropertyType = QLowEnergyCharacteristic__PropertyType(0x40)
+	QLowEnergyCharacteristic__ExtendedProperty QLowEnergyCharacteristic__PropertyType = QLowEnergyCharacteristic__PropertyType(0x80)
 )
 
 type QLowEnergyCharacteristic struct {
@@ -7343,46 +7383,50 @@ func (ptr *QLowEnergyConnectionParameters) DestroyQLowEnergyConnectionParameters
 	}
 }
 
+//go:generate stringer -type=QLowEnergyController__ControllerState
 //QLowEnergyController::ControllerState
 type QLowEnergyController__ControllerState int64
 
 const (
-	QLowEnergyController__UnconnectedState = QLowEnergyController__ControllerState(0)
-	QLowEnergyController__ConnectingState  = QLowEnergyController__ControllerState(1)
-	QLowEnergyController__ConnectedState   = QLowEnergyController__ControllerState(2)
-	QLowEnergyController__DiscoveringState = QLowEnergyController__ControllerState(3)
-	QLowEnergyController__DiscoveredState  = QLowEnergyController__ControllerState(4)
-	QLowEnergyController__ClosingState     = QLowEnergyController__ControllerState(5)
-	QLowEnergyController__AdvertisingState = QLowEnergyController__ControllerState(6)
+	QLowEnergyController__UnconnectedState QLowEnergyController__ControllerState = QLowEnergyController__ControllerState(0)
+	QLowEnergyController__ConnectingState  QLowEnergyController__ControllerState = QLowEnergyController__ControllerState(1)
+	QLowEnergyController__ConnectedState   QLowEnergyController__ControllerState = QLowEnergyController__ControllerState(2)
+	QLowEnergyController__DiscoveringState QLowEnergyController__ControllerState = QLowEnergyController__ControllerState(3)
+	QLowEnergyController__DiscoveredState  QLowEnergyController__ControllerState = QLowEnergyController__ControllerState(4)
+	QLowEnergyController__ClosingState     QLowEnergyController__ControllerState = QLowEnergyController__ControllerState(5)
+	QLowEnergyController__AdvertisingState QLowEnergyController__ControllerState = QLowEnergyController__ControllerState(6)
 )
 
+//go:generate stringer -type=QLowEnergyController__Error
 //QLowEnergyController::Error
 type QLowEnergyController__Error int64
 
 const (
-	QLowEnergyController__NoError                      = QLowEnergyController__Error(0)
-	QLowEnergyController__UnknownError                 = QLowEnergyController__Error(1)
-	QLowEnergyController__UnknownRemoteDeviceError     = QLowEnergyController__Error(2)
-	QLowEnergyController__NetworkError                 = QLowEnergyController__Error(3)
-	QLowEnergyController__InvalidBluetoothAdapterError = QLowEnergyController__Error(4)
-	QLowEnergyController__ConnectionError              = QLowEnergyController__Error(5)
-	QLowEnergyController__AdvertisingError             = QLowEnergyController__Error(6)
+	QLowEnergyController__NoError                      QLowEnergyController__Error = QLowEnergyController__Error(0)
+	QLowEnergyController__UnknownError                 QLowEnergyController__Error = QLowEnergyController__Error(1)
+	QLowEnergyController__UnknownRemoteDeviceError     QLowEnergyController__Error = QLowEnergyController__Error(2)
+	QLowEnergyController__NetworkError                 QLowEnergyController__Error = QLowEnergyController__Error(3)
+	QLowEnergyController__InvalidBluetoothAdapterError QLowEnergyController__Error = QLowEnergyController__Error(4)
+	QLowEnergyController__ConnectionError              QLowEnergyController__Error = QLowEnergyController__Error(5)
+	QLowEnergyController__AdvertisingError             QLowEnergyController__Error = QLowEnergyController__Error(6)
 )
 
+//go:generate stringer -type=QLowEnergyController__RemoteAddressType
 //QLowEnergyController::RemoteAddressType
 type QLowEnergyController__RemoteAddressType int64
 
 const (
-	QLowEnergyController__PublicAddress = QLowEnergyController__RemoteAddressType(0)
-	QLowEnergyController__RandomAddress = QLowEnergyController__RemoteAddressType(1)
+	QLowEnergyController__PublicAddress QLowEnergyController__RemoteAddressType = QLowEnergyController__RemoteAddressType(0)
+	QLowEnergyController__RandomAddress QLowEnergyController__RemoteAddressType = QLowEnergyController__RemoteAddressType(1)
 )
 
+//go:generate stringer -type=QLowEnergyController__Role
 //QLowEnergyController::Role
 type QLowEnergyController__Role int64
 
 const (
-	QLowEnergyController__CentralRole    = QLowEnergyController__Role(0)
-	QLowEnergyController__PeripheralRole = QLowEnergyController__Role(1)
+	QLowEnergyController__CentralRole    QLowEnergyController__Role = QLowEnergyController__Role(0)
+	QLowEnergyController__PeripheralRole QLowEnergyController__Role = QLowEnergyController__Role(1)
 )
 
 type QLowEnergyController struct {
@@ -8386,45 +8430,49 @@ func (ptr *QLowEnergyDescriptorData) DestroyQLowEnergyDescriptorData() {
 	}
 }
 
+//go:generate stringer -type=QLowEnergyService__ServiceError
 //QLowEnergyService::ServiceError
 type QLowEnergyService__ServiceError int64
 
 const (
-	QLowEnergyService__NoError                  = QLowEnergyService__ServiceError(0)
-	QLowEnergyService__OperationError           = QLowEnergyService__ServiceError(1)
-	QLowEnergyService__CharacteristicWriteError = QLowEnergyService__ServiceError(2)
-	QLowEnergyService__DescriptorWriteError     = QLowEnergyService__ServiceError(3)
-	QLowEnergyService__UnknownError             = QLowEnergyService__ServiceError(4)
-	QLowEnergyService__CharacteristicReadError  = QLowEnergyService__ServiceError(5)
-	QLowEnergyService__DescriptorReadError      = QLowEnergyService__ServiceError(6)
+	QLowEnergyService__NoError                  QLowEnergyService__ServiceError = QLowEnergyService__ServiceError(0)
+	QLowEnergyService__OperationError           QLowEnergyService__ServiceError = QLowEnergyService__ServiceError(1)
+	QLowEnergyService__CharacteristicWriteError QLowEnergyService__ServiceError = QLowEnergyService__ServiceError(2)
+	QLowEnergyService__DescriptorWriteError     QLowEnergyService__ServiceError = QLowEnergyService__ServiceError(3)
+	QLowEnergyService__UnknownError             QLowEnergyService__ServiceError = QLowEnergyService__ServiceError(4)
+	QLowEnergyService__CharacteristicReadError  QLowEnergyService__ServiceError = QLowEnergyService__ServiceError(5)
+	QLowEnergyService__DescriptorReadError      QLowEnergyService__ServiceError = QLowEnergyService__ServiceError(6)
 )
 
+//go:generate stringer -type=QLowEnergyService__ServiceState
 //QLowEnergyService::ServiceState
 type QLowEnergyService__ServiceState int64
 
 const (
-	QLowEnergyService__InvalidService      = QLowEnergyService__ServiceState(0)
-	QLowEnergyService__DiscoveryRequired   = QLowEnergyService__ServiceState(1)
-	QLowEnergyService__DiscoveringServices = QLowEnergyService__ServiceState(2)
-	QLowEnergyService__ServiceDiscovered   = QLowEnergyService__ServiceState(3)
-	QLowEnergyService__LocalService        = QLowEnergyService__ServiceState(4)
+	QLowEnergyService__InvalidService      QLowEnergyService__ServiceState = QLowEnergyService__ServiceState(0)
+	QLowEnergyService__DiscoveryRequired   QLowEnergyService__ServiceState = QLowEnergyService__ServiceState(1)
+	QLowEnergyService__DiscoveringServices QLowEnergyService__ServiceState = QLowEnergyService__ServiceState(2)
+	QLowEnergyService__ServiceDiscovered   QLowEnergyService__ServiceState = QLowEnergyService__ServiceState(3)
+	QLowEnergyService__LocalService        QLowEnergyService__ServiceState = QLowEnergyService__ServiceState(4)
 )
 
+//go:generate stringer -type=QLowEnergyService__ServiceType
 //QLowEnergyService::ServiceType
 type QLowEnergyService__ServiceType int64
 
 const (
-	QLowEnergyService__PrimaryService  = QLowEnergyService__ServiceType(0x0001)
-	QLowEnergyService__IncludedService = QLowEnergyService__ServiceType(0x0002)
+	QLowEnergyService__PrimaryService  QLowEnergyService__ServiceType = QLowEnergyService__ServiceType(0x0001)
+	QLowEnergyService__IncludedService QLowEnergyService__ServiceType = QLowEnergyService__ServiceType(0x0002)
 )
 
+//go:generate stringer -type=QLowEnergyService__WriteMode
 //QLowEnergyService::WriteMode
 type QLowEnergyService__WriteMode int64
 
 const (
-	QLowEnergyService__WriteWithResponse    = QLowEnergyService__WriteMode(0)
-	QLowEnergyService__WriteWithoutResponse = QLowEnergyService__WriteMode(1)
-	QLowEnergyService__WriteSigned          = QLowEnergyService__WriteMode(2)
+	QLowEnergyService__WriteWithResponse    QLowEnergyService__WriteMode = QLowEnergyService__WriteMode(0)
+	QLowEnergyService__WriteWithoutResponse QLowEnergyService__WriteMode = QLowEnergyService__WriteMode(1)
+	QLowEnergyService__WriteSigned          QLowEnergyService__WriteMode = QLowEnergyService__WriteMode(2)
 )
 
 type QLowEnergyService struct {
@@ -9144,12 +9192,13 @@ func (ptr *QLowEnergyService) MetaObjectDefault() *core.QMetaObject {
 	return nil
 }
 
+//go:generate stringer -type=QLowEnergyServiceData__ServiceType
 //QLowEnergyServiceData::ServiceType
 type QLowEnergyServiceData__ServiceType int64
 
 const (
-	QLowEnergyServiceData__ServiceTypePrimary   = QLowEnergyServiceData__ServiceType(0x2800)
-	QLowEnergyServiceData__ServiceTypeSecondary = QLowEnergyServiceData__ServiceType(0x2801)
+	QLowEnergyServiceData__ServiceTypePrimary   QLowEnergyServiceData__ServiceType = QLowEnergyServiceData__ServiceType(0x2800)
+	QLowEnergyServiceData__ServiceTypeSecondary QLowEnergyServiceData__ServiceType = QLowEnergyServiceData__ServiceType(0x2801)
 )
 
 type QLowEnergyServiceData struct {

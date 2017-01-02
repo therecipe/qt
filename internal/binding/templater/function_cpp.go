@@ -11,7 +11,7 @@ import (
 
 func cppFunctionCallback(function *parser.Function) string {
 	var output = fmt.Sprintf("%v { %v };", cppFunctionCallbackHeader(function), cppFunctionCallbackBody(function))
-	if functionIsSupported(parser.CurrentState.ClassMap[function.ClassName()], function) {
+	if function.IsSupported() {
 		return cppFunctionCallbackWithGuards(function, output)
 	}
 	return ""
@@ -45,7 +45,7 @@ func cppFunctionCallbackHeader(function *parser.Function) string {
 			if function.Meta == parser.SIGNAL {
 				return fmt.Sprintf("Signal_%v", strings.Title(function.Name))
 			}
-			if strings.HasPrefix(function.Name, parser.TILDE) && parser.CurrentState.ClassMap[function.ClassName()].Module != parser.MOC {
+			if strings.HasPrefix(function.Name, parser.TILDE) && !parser.State.Moc {
 				return strings.Replace(function.Name, parser.TILDE, fmt.Sprintf("%vMy", parser.TILDE), -1)
 			}
 			return function.Name
@@ -95,7 +95,7 @@ func cppFunctionCallbackBody(function *parser.Function) string {
 
 func cppFunction(function *parser.Function) string {
 	var output = fmt.Sprintf("%v\n{\n%v\n}", cppFunctionHeader(function), cppFunctionBodyWithGuards(function))
-	if functionIsSupported(nil, function) {
+	if function.IsSupported() {
 		return output
 	}
 	return ""
@@ -103,7 +103,7 @@ func cppFunction(function *parser.Function) string {
 
 func cppFunctionHeader(function *parser.Function) string {
 	var output = fmt.Sprintf("%v %v(%v)", converter.CppHeaderOutput(function), converter.CppHeaderName(function), converter.CppHeaderInput(function))
-	if functionIsSupported(nil, function) {
+	if function.IsSupported() {
 		return output
 	}
 	return ""
@@ -114,7 +114,7 @@ func cppFunctionBodyWithGuards(function *parser.Function) string {
 	if function.Default {
 		switch {
 		case
-			strings.HasPrefix(function.ClassName(), "QMac") && !strings.HasPrefix(parser.CurrentState.ClassMap[function.ClassName()].Module, "QMac"):
+			strings.HasPrefix(function.ClassName(), "QMac") && !strings.HasPrefix(parser.State.ClassMap[function.ClassName()].Module, "QMac"):
 			{
 				return fmt.Sprintf("#ifdef Q_OS_OSX\n%v%v\n#endif", cppFunctionBody(function), cppFunctionBodyFailed(function))
 			}
@@ -238,7 +238,7 @@ func cppFunctionBodyInternal(function *parser.Function) string {
 		{
 			return fmt.Sprintf("%v\treturn new %v%v(%v);",
 				func() string {
-					if parser.CurrentState.ClassMap[function.ClassName()].IsSubClassOf("QCoreApplication") {
+					if parser.State.ClassMap[function.ClassName()].IsSubClassOf("QCoreApplication") {
 						return `	static int argcs = argc;
 	static char** argvs = static_cast<char**>(malloc(argcs * sizeof(char*)));
 
@@ -252,9 +252,9 @@ func cppFunctionBodyInternal(function *parser.Function) string {
 				}(),
 
 				func() string {
-					var class = parser.CurrentState.ClassMap[function.ClassName()]
-					if class.Module != parser.MOC {
-						if classNeedsCallbackFunctions(class) {
+					var class = parser.State.ClassMap[function.ClassName()]
+					if !parser.State.Moc {
+						if class.HasCallbackFunctions() {
 							return "My"
 						}
 					}
@@ -262,7 +262,7 @@ func cppFunctionBodyInternal(function *parser.Function) string {
 				}(),
 
 				func() string {
-					if c := parser.CurrentState.ClassMap[function.ClassName()]; c != nil && c.Fullname != "" {
+					if c := parser.State.ClassMap[function.ClassName()]; c != nil && c.Fullname != "" {
 						return c.Fullname
 					}
 					return function.ClassName()
@@ -284,7 +284,7 @@ func cppFunctionBodyInternal(function *parser.Function) string {
 
 			if converter.CppHeaderOutput(function) != parser.VOID {
 				functionOutputType = converter.CppInputParametersForSlotArguments(function, &parser.Parameter{Name: "returnArg", Value: function.Output})
-				if function.Output != "void*" && !parser.CurrentState.ClassMap[strings.TrimSuffix(functionOutputType, "*")].IsSubClassOfQObject() {
+				if function.Output != "void*" && !parser.State.ClassMap[strings.TrimSuffix(functionOutputType, "*")].IsSubClassOfQObject() {
 					functionOutputType = strings.TrimSuffix(functionOutputType, "*")
 				}
 				fmt.Fprintf(bb, "%v returnArg;\n\t", functionOutputType)
@@ -355,7 +355,7 @@ func cppFunctionBodyInternal(function *parser.Function) string {
 						}
 						return fmt.Sprintf("static_cast<%v*>(ptr)->",
 							func() string {
-								if c := parser.CurrentState.ClassMap[function.ClassName()]; c != nil && c.Fullname != "" {
+								if c := parser.State.ClassMap[function.ClassName()]; c != nil && c.Fullname != "" {
 									return c.Fullname
 								}
 								if strings.HasSuffix(function.Name, "_atList") {
@@ -368,8 +368,8 @@ func cppFunctionBodyInternal(function *parser.Function) string {
 
 					func() string {
 						if function.Default {
-							if parser.CurrentState.ClassMap[function.ClassName()].Module == parser.MOC {
-								return fmt.Sprintf("%v::%v", parser.CurrentState.ClassMap[function.ClassName()].GetBases()[0], function.Name)
+							if parser.State.Moc {
+								return fmt.Sprintf("%v::%v", parser.State.ClassMap[function.ClassName()].GetBases()[0], function.Name)
 							} else {
 								return fmt.Sprintf("%v::%v", function.ClassName(), function.Name)
 							}
@@ -388,7 +388,7 @@ func cppFunctionBodyInternal(function *parser.Function) string {
 						return function.Fullname
 					}
 					return fmt.Sprintf("static_cast<%v*>(ptr)->%v", func() string {
-						if c := parser.CurrentState.ClassMap[function.ClassName()]; c != nil && c.Fullname != "" {
+						if c := parser.State.ClassMap[function.ClassName()]; c != nil && c.Fullname != "" {
 							return c.Fullname
 						}
 						return function.ClassName()
@@ -408,7 +408,7 @@ func cppFunctionBodyInternal(function *parser.Function) string {
 						return function.Fullname
 					}
 					return fmt.Sprintf("static_cast<%v*>(ptr)->%v", func() string {
-						if c := parser.CurrentState.ClassMap[function.ClassName()]; c != nil && c.Fullname != "" {
+						if c := parser.State.ClassMap[function.ClassName()]; c != nil && c.Fullname != "" {
 							return c.Fullname
 						}
 						return function.ClassName()
@@ -422,7 +422,7 @@ func cppFunctionBodyInternal(function *parser.Function) string {
 	case parser.SIGNAL:
 		{
 			var my string
-			if parser.CurrentState.ClassMap[function.ClassName()].Module != parser.MOC {
+			if !parser.State.Moc {
 				my = "My"
 			}
 			if converter.IsPrivateSignal(function) {

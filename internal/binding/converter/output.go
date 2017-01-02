@@ -12,8 +12,8 @@ import (
 func goOutput(name, value string, f *parser.Function) string {
 	var vOld = value
 
-	name = cleanName(name, value)
-	value = CleanValue(value)
+	name = parser.CleanName(name, value)
+	value = parser.CleanValue(value)
 
 	switch value {
 	case "char", "qint8", "uchar", "quint8", "QString":
@@ -129,8 +129,8 @@ func goOutput(name, value string, f *parser.Function) string {
 	switch {
 	case isEnum(f.ClassName(), value):
 		{
-			if c, exists := parser.CurrentState.ClassMap[class(cppEnum(f, value, false))]; exists && module(c.Module) != module(f) && module(c.Module) != "" {
-				if _, exists := parser.CurrentState.ClassMap[f.ClassName()].WeakLink[c.Module]; exists {
+			if c, exists := parser.State.ClassMap[class(cppEnum(f, value, false))]; exists && module(c.Module) != module(f) && module(c.Module) != "" {
+				if _, exists := parser.State.ClassMap[f.ClassName()].WeakLink[c.Module]; exists {
 					return fmt.Sprintf("int64(%v)", name)
 				}
 				return fmt.Sprintf("%v.%v(%v)", module(c.Module), goEnum(f, value), name)
@@ -140,8 +140,8 @@ func goOutput(name, value string, f *parser.Function) string {
 
 	case isClass(value):
 		{
-			if m := module(parser.CurrentState.ClassMap[value].Module); m != module(f) {
-				if _, exists := parser.CurrentState.ClassMap[f.ClassName()].WeakLink[parser.CurrentState.ClassMap[value].Module]; exists {
+			if m := module(parser.State.ClassMap[value].Module); m != module(f) {
+				if _, exists := parser.State.ClassMap[f.ClassName()].WeakLink[parser.State.ClassMap[value].Module]; exists {
 					return fmt.Sprintf("unsafe.Pointer(%v)", name)
 				}
 				return fmt.Sprintf("%v.New%vFromPointer(%v)", m, strings.Title(value), name)
@@ -152,7 +152,7 @@ func goOutput(name, value string, f *parser.Function) string {
 
 	case parser.IsPackedList(value):
 		{
-			return fmt.Sprintf("func(l C.struct_%v_PackedList)%v{var out = make(%v, int(l.len))\nfor i:=0;i<int(l.len);i++{ out[i] = New%vFromPointer(l.data).%v_atList(i) }\nreturn out}(%v)", strings.Title(parser.CurrentState.ClassMap[f.ClassName()].Module), goType(f, value), goType(f, value), f.ClassName(), f.Name, name)
+			return fmt.Sprintf("func(l C.struct_%v_PackedList)%v{var out = make(%v, int(l.len))\nfor i:=0;i<int(l.len);i++{ out[i] = New%vFromPointer(l.data).%v_atList(i) }\nreturn out}(%v)", strings.Title(parser.State.ClassMap[f.ClassName()].Module), goType(f, value), goType(f, value), f.ClassName(), f.Name, name)
 		}
 	}
 
@@ -163,7 +163,7 @@ func goOutput(name, value string, f *parser.Function) string {
 func goOutputFailed(value string, f *parser.Function) string {
 	var vOld = value
 
-	value = CleanValue(value)
+	value = parser.CleanValue(value)
 
 	switch value {
 	case "char", "qint8", "uchar", "quint8", "QString":
@@ -268,8 +268,8 @@ func cgoOutput(name, value string, f *parser.Function) string {
 
 	var vOld = value
 
-	name = cleanName(name, value)
-	value = CleanValue(value)
+	name = parser.CleanName(name, value)
+	value = parser.CleanValue(value)
 
 	switch value {
 	case "char", "qint8", "uchar", "quint8", "QString":
@@ -361,8 +361,8 @@ func cgoOutput(name, value string, f *parser.Function) string {
 	switch {
 	case isEnum(f.ClassName(), value):
 		{
-			if c, exists := parser.CurrentState.ClassMap[class(cppEnum(f, value, false))]; exists && module(c.Module) != module(f) && module(c.Module) != "" {
-				if _, exists := parser.CurrentState.ClassMap[f.ClassName()].WeakLink[c.Module]; exists {
+			if c, exists := parser.State.ClassMap[class(cppEnum(f, value, false))]; exists && module(c.Module) != module(f) && module(c.Module) != "" {
+				if _, exists := parser.State.ClassMap[f.ClassName()].WeakLink[c.Module]; exists {
 					return fmt.Sprintf("int64%v)", name)
 				}
 				return fmt.Sprintf("%v.%v(%v)", module(c.Module), goEnum(f, value), name)
@@ -372,8 +372,8 @@ func cgoOutput(name, value string, f *parser.Function) string {
 
 	case isClass(value):
 		{
-			if m := module(parser.CurrentState.ClassMap[value].Module); m != module(f) {
-				if _, exists := parser.CurrentState.ClassMap[f.ClassName()].WeakLink[parser.CurrentState.ClassMap[value].Module]; exists {
+			if m := module(parser.State.ClassMap[value].Module); m != module(f) {
+				if _, exists := parser.State.ClassMap[f.ClassName()].WeakLink[parser.State.ClassMap[value].Module]; exists {
 					return fmt.Sprintf("unsafe.Pointer(%v)", name)
 				}
 				return fmt.Sprintf("%v.New%vFromPointer(%v)", m, strings.Title(value), name)
@@ -402,7 +402,7 @@ func cppOutputPack(name, value string, f *parser.Function) string {
 		if !strings.HasSuffix(out, ";") {
 			out = fmt.Sprintf("%v;", out)
 		}
-		return strings.Replace(out, "_PackedString", fmt.Sprintf("_PackedString %vPacked =", cleanName(name, value)), -1)
+		return strings.Replace(out, "_PackedString", fmt.Sprintf("_PackedString %vPacked =", parser.CleanName(name, value)), -1)
 	}
 
 	return ""
@@ -412,7 +412,7 @@ func cppOutputPacked(name, value string, f *parser.Function) string {
 	var out = CppOutput(name, value, f)
 
 	if strings.Contains(out, "_PackedString") {
-		return fmt.Sprintf("%vPacked", cleanName(name, value))
+		return fmt.Sprintf("%vPacked", parser.CleanName(name, value))
 	}
 
 	return out
@@ -425,8 +425,8 @@ func cppOutput(name, value string, f *parser.Function) string {
 	tHash.Write([]byte(name))
 	var tHashName = hex.EncodeToString(tHash.Sum(nil)[:3])
 
-	name = cleanName(name, value)
-	value = CleanValue(value)
+	name = parser.CleanName(name, value)
+	value = parser.CleanValue(value)
 
 	switch value {
 	case "char", "qint8":
@@ -441,52 +441,52 @@ func cppOutput(name, value string, f *parser.Function) string {
 					}
 				}
 
-				if fSizeVariable == "" && strings.Contains(strings.ToLower(f.Name), "data") && parser.CurrentState.ClassMap[f.ClassName()].HasFunctionWithName("size") {
+				if fSizeVariable == "" && strings.Contains(strings.ToLower(f.Name), "data") && parser.State.ClassMap[f.ClassName()].HasFunctionWithName("size") {
 					fSizeVariable = fmt.Sprintf("static_cast<%v*>(ptr)->size()", f.ClassName())
 				}
 
 				if strings.Contains(vOld, "const") {
 					if fSizeVariable != "" {
-						return fmt.Sprintf("%v_PackedString { const_cast<char*>(%v), %v }", strings.Title(parser.CurrentState.ClassMap[f.ClassName()].Module), name, fSizeVariable)
+						return fmt.Sprintf("%v_PackedString { const_cast<char*>(%v), %v }", strings.Title(parser.State.ClassMap[f.ClassName()].Module), name, fSizeVariable)
 					}
-					return fmt.Sprintf("%v_PackedString { const_cast<char*>(%v), -1 }", strings.Title(parser.CurrentState.ClassMap[f.ClassName()].Module), name)
+					return fmt.Sprintf("%v_PackedString { const_cast<char*>(%v), -1 }", strings.Title(parser.State.ClassMap[f.ClassName()].Module), name)
 				} else {
 					if fSizeVariable != "" {
-						return fmt.Sprintf("%v_PackedString { %v, %v }", strings.Title(parser.CurrentState.ClassMap[f.ClassName()].Module), name, fSizeVariable)
+						return fmt.Sprintf("%v_PackedString { %v, %v }", strings.Title(parser.State.ClassMap[f.ClassName()].Module), name, fSizeVariable)
 					}
-					return fmt.Sprintf("%v_PackedString { %v, -1 }", strings.Title(parser.CurrentState.ClassMap[f.ClassName()].Module), name)
+					return fmt.Sprintf("%v_PackedString { %v, -1 }", strings.Title(parser.State.ClassMap[f.ClassName()].Module), name)
 				}
 			}
 
-			return fmt.Sprintf("({ char t%v = %v; %v_PackedString { &t%v, -1 }; })", tHashName, name, strings.Title(parser.CurrentState.ClassMap[f.ClassName()].Module), tHashName)
+			return fmt.Sprintf("({ char t%v = %v; %v_PackedString { &t%v, -1 }; })", tHashName, name, strings.Title(parser.State.ClassMap[f.ClassName()].Module), tHashName)
 		}
 
 	case "uchar", "quint8":
 		{
 			if strings.Contains(vOld, "*") {
 				if strings.Contains(vOld, "const") {
-					return fmt.Sprintf("({ char* t%v = static_cast<char*>(static_cast<void*>(const_cast<%v*>(%v))); %v_PackedString { t%v, -1 }; })", tHashName, value, name, strings.Title(parser.CurrentState.ClassMap[f.ClassName()].Module), tHashName)
+					return fmt.Sprintf("({ char* t%v = static_cast<char*>(static_cast<void*>(const_cast<%v*>(%v))); %v_PackedString { t%v, -1 }; })", tHashName, value, name, strings.Title(parser.State.ClassMap[f.ClassName()].Module), tHashName)
 				}
-				return fmt.Sprintf("({ char* t%v = static_cast<char*>(static_cast<void*>(%v)); %v_PackedString { t%v, -1 }; })", tHashName, name, strings.Title(parser.CurrentState.ClassMap[f.ClassName()].Module), tHashName)
+				return fmt.Sprintf("({ char* t%v = static_cast<char*>(static_cast<void*>(%v)); %v_PackedString { t%v, -1 }; })", tHashName, name, strings.Title(parser.State.ClassMap[f.ClassName()].Module), tHashName)
 			}
 
-			return fmt.Sprintf("({ %v pret%v = %v; char* t%v = static_cast<char*>(static_cast<void*>(&pret%v)); %v_PackedString { t%v, -1 }; })", vOld, tHashName, name, tHashName, tHashName, strings.Title(parser.CurrentState.ClassMap[f.ClassName()].Module), tHashName)
+			return fmt.Sprintf("({ %v pret%v = %v; char* t%v = static_cast<char*>(static_cast<void*>(&pret%v)); %v_PackedString { t%v, -1 }; })", vOld, tHashName, name, tHashName, tHashName, strings.Title(parser.State.ClassMap[f.ClassName()].Module), tHashName)
 		}
 
 	case "QString":
 		{
 			if strings.Contains(vOld, "*") {
-				return fmt.Sprintf("({ QByteArray t%v = %v->toUtf8(); %v_PackedString { const_cast<char*>(t%v.prepend(\"WHITESPACE\").constData()+10), t%v.size()-10 }; })", tHashName, name, strings.Title(parser.CurrentState.ClassMap[f.ClassName()].Module), tHashName, tHashName)
+				return fmt.Sprintf("({ QByteArray t%v = %v->toUtf8(); %v_PackedString { const_cast<char*>(t%v.prepend(\"WHITESPACE\").constData()+10), t%v.size()-10 }; })", tHashName, name, strings.Title(parser.State.ClassMap[f.ClassName()].Module), tHashName, tHashName)
 			}
-			return fmt.Sprintf("({ QByteArray t%v = %v.toUtf8(); %v_PackedString { const_cast<char*>(t%v.prepend(\"WHITESPACE\").constData()+10), t%v.size()-10 }; })", tHashName, name, strings.Title(parser.CurrentState.ClassMap[f.ClassName()].Module), tHashName, tHashName)
+			return fmt.Sprintf("({ QByteArray t%v = %v.toUtf8(); %v_PackedString { const_cast<char*>(t%v.prepend(\"WHITESPACE\").constData()+10), t%v.size()-10 }; })", tHashName, name, strings.Title(parser.State.ClassMap[f.ClassName()].Module), tHashName, tHashName)
 		}
 
 	case "QStringList":
 		{
 			if strings.Contains(vOld, "*") {
-				return fmt.Sprintf("({ QByteArray t%v = %v->join(\"|\").toUtf8(); %v_PackedString { const_cast<char*>(t%v.prepend(\"WHITESPACE\").constData()+10), t%v.size()-10 }; })", tHashName, name, strings.Title(parser.CurrentState.ClassMap[f.ClassName()].Module), tHashName, tHashName)
+				return fmt.Sprintf("({ QByteArray t%v = %v->join(\"|\").toUtf8(); %v_PackedString { const_cast<char*>(t%v.prepend(\"WHITESPACE\").constData()+10), t%v.size()-10 }; })", tHashName, name, strings.Title(parser.State.ClassMap[f.ClassName()].Module), tHashName, tHashName)
 			}
-			return fmt.Sprintf("({ QByteArray t%v = %v.join(\"|\").toUtf8(); %v_PackedString { const_cast<char*>(t%v.prepend(\"WHITESPACE\").constData()+10), t%v.size()-10 }; })", tHashName, name, strings.Title(parser.CurrentState.ClassMap[f.ClassName()].Module), tHashName, tHashName)
+			return fmt.Sprintf("({ QByteArray t%v = %v.join(\"|\").toUtf8(); %v_PackedString { const_cast<char*>(t%v.prepend(\"WHITESPACE\").constData()+10), t%v.size()-10 }; })", tHashName, name, strings.Title(parser.State.ClassMap[f.ClassName()].Module), tHashName, tHashName)
 		}
 
 	case
@@ -613,7 +613,7 @@ func cppOutput(name, value string, f *parser.Function) string {
 				}
 			}
 
-			for _, f := range parser.CurrentState.ClassMap[value].Functions {
+			for _, f := range parser.State.ClassMap[value].Functions {
 				if f.Meta == parser.CONSTRUCTOR {
 					switch len(f.Parameters) {
 					case 0:
@@ -627,7 +627,7 @@ func cppOutput(name, value string, f *parser.Function) string {
 
 					case 1:
 						{
-							if CleanValue(f.Parameters[0].Value) == value {
+							if parser.CleanValue(f.Parameters[0].Value) == value {
 								return fmt.Sprintf("new %v(%v)", value, name)
 							}
 						}
@@ -639,10 +639,10 @@ func cppOutput(name, value string, f *parser.Function) string {
 	case parser.IsPackedList(value):
 		{
 			vOld = strings.Replace(vOld, " &", "", -1)
-			if con := parser.UnpackedList(value); parser.CurrentState.ClassMap[con] != nil && parser.CurrentState.ClassMap[con].Fullname != "" {
-				vOld = strings.Replace(value, con, parser.CurrentState.ClassMap[con].Fullname, -1)
+			if con := parser.UnpackedList(value); parser.State.ClassMap[con] != nil && parser.State.ClassMap[con].Fullname != "" {
+				vOld = strings.Replace(value, con, parser.State.ClassMap[con].Fullname, -1)
 			}
-			return fmt.Sprintf("({ %v* tmpValue = new %v(%v); %v_PackedList { tmpValue, tmpValue->size() }; })", vOld, vOld, name, strings.Title(parser.CurrentState.ClassMap[f.ClassName()].Module))
+			return fmt.Sprintf("({ %v* tmpValue = new %v(%v); %v_PackedList { tmpValue, tmpValue->size() }; })", vOld, vOld, name, strings.Title(parser.State.ClassMap[f.ClassName()].Module))
 		}
 	}
 

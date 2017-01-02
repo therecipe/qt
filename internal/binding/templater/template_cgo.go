@@ -55,18 +55,18 @@ func cgoDarwin(module, mocPath string) {
 	defer bb.Reset()
 
 	fmt.Fprintf(bb, "// +build !ios%v\n\n", func() string {
-		if parser.CurrentState.Minimal {
+		if parser.State.Minimal {
 			return ",minimal"
 		}
-		if module == parser.MOC {
+		if parser.State.Moc {
 			return ""
 		}
 		return ",!minimal"
 	}())
 
 	fmt.Fprintf(bb, "package %v\n\n", func() string {
-		if parser.CurrentState.MocModule != "" {
-			return parser.CurrentState.MocModule
+		if parser.State.Moc {
+			return parser.State.Module
 		}
 		return strings.ToLower(module)
 	}())
@@ -116,12 +116,12 @@ func cgoDarwin(module, mocPath string) {
 	fmt.Fprint(bb, "import \"C\"\n")
 
 	switch {
-	case module == parser.MOC:
+	case parser.State.Moc:
 		{
 			utils.SaveBytes(filepath.Join(mocPath, "moc_cgo_desktop_darwin_amd64.go"), bb.Bytes())
 		}
 
-	case parser.CurrentState.Minimal:
+	case parser.State.Minimal:
 		{
 			utils.SaveBytes(utils.GoQtPkgPath(strings.ToLower(module), "minimal_cgo_desktop_darwin_amd64.go"), bb.Bytes())
 		}
@@ -141,16 +141,16 @@ func cgoWindows(module, mocPath string) {
 	)
 	defer bb.Reset()
 
-	if parser.CurrentState.Minimal {
+	if parser.State.Minimal {
 		fmt.Fprint(bb, "// +build minimal\n\n")
-	} else if module == parser.MOC {
+	} else if parser.State.Moc {
 	} else {
 		fmt.Fprint(bb, "// +build !minimal\n\n")
 	}
 
 	fmt.Fprintf(bb, "package %v\n\n", func() string {
-		if parser.CurrentState.MocModule != "" {
-			return parser.CurrentState.MocModule
+		if parser.State.Moc {
+			return parser.State.Module
 		}
 		return strings.ToLower(module)
 	}())
@@ -189,12 +189,12 @@ func cgoWindows(module, mocPath string) {
 	fmt.Fprint(bb, "import \"C\"\n")
 
 	switch {
-	case module == parser.MOC:
+	case parser.State.Moc:
 		{
 			utils.SaveBytes(filepath.Join(mocPath, "moc_cgo_desktop_windows_386.go"), bb.Bytes())
 		}
 
-	case parser.CurrentState.Minimal:
+	case parser.State.Minimal:
 		{
 			utils.SaveBytes(utils.GoQtPkgPath(strings.ToLower(module), "minimal_cgo_desktop_windows_386.go"), bb.Bytes())
 		}
@@ -214,16 +214,16 @@ func cgoWindowsForLinux(module, mocPath string) {
 	)
 	defer bb.Reset()
 
-	if parser.CurrentState.Minimal {
+	if parser.State.Minimal {
 		fmt.Fprint(bb, "// +build minimal\n\n")
-	} else if module == parser.MOC {
+	} else if parser.State.Moc {
 	} else {
 		fmt.Fprint(bb, "// +build !minimal\n\n")
 	}
 
 	fmt.Fprintf(bb, "package %v\n\n", func() string {
-		if parser.CurrentState.MocModule != "" {
-			return parser.CurrentState.MocModule
+		if parser.State.Moc {
+			return parser.State.Module
 		}
 		return strings.ToLower(module)
 	}())
@@ -265,13 +265,13 @@ func cgoWindowsForLinux(module, mocPath string) {
 	tmp64 = strings.Replace(tmp64, " -Wl,-s ", " ", -1)
 
 	switch {
-	case module == parser.MOC:
+	case parser.State.Moc:
 		{
 			utils.Save(filepath.Join(mocPath, "moc_cgo_desktop_windows_amd64.go"), tmp64)
 			utils.SaveBytes(filepath.Join(mocPath, "moc_cgo_desktop_windows_386.go"), bb.Bytes())
 		}
 
-	case parser.CurrentState.Minimal:
+	case parser.State.Minimal:
 		{
 			utils.Save(utils.GoQtPkgPath(strings.ToLower(module), "minimal_cgo_desktop_windows_amd64.go"), tmp64)
 			utils.SaveBytes(utils.GoQtPkgPath(strings.ToLower(module), "minimal_cgo_desktop_windows_386.go"), bb.Bytes())
@@ -293,16 +293,16 @@ func cgoWindowsMsys2(module, mocPath string) {
 	)
 	defer bb.Reset()
 
-	if parser.CurrentState.Minimal {
+	if parser.State.Minimal {
 		fmt.Fprint(bb, "// +build minimal\n\n")
-	} else if module == parser.MOC {
+	} else if parser.State.Moc {
 	} else {
 		fmt.Fprint(bb, "// +build !minimal\n\n")
 	}
 
 	fmt.Fprintf(bb, "package %v\n\n", func() string {
-		if parser.CurrentState.MocModule != "" {
-			return parser.CurrentState.MocModule
+		if parser.State.Moc {
+			return parser.State.Module
 		}
 		return strings.ToLower(module)
 	}())
@@ -345,13 +345,13 @@ func cgoWindowsMsys2(module, mocPath string) {
 	tmp64 = strings.Replace(tmp64, " -Wl,-s ", " ", -1)
 
 	switch {
-	case module == parser.MOC:
+	case parser.State.Moc:
 		{
 			utils.Save(filepath.Join(mocPath, "moc_cgo_desktop_windows_amd64.go"), tmp64)
 			utils.SaveBytes(filepath.Join(mocPath, "moc_cgo_desktop_windows_386.go"), bb.Bytes())
 		}
 
-	case parser.CurrentState.Minimal:
+	case parser.State.Minimal:
 		{
 			utils.Save(utils.GoQtPkgPath(strings.ToLower(module), "minimal_cgo_desktop_windows_amd64.go"), tmp64)
 			utils.SaveBytes(utils.GoQtPkgPath(strings.ToLower(module), "minimal_cgo_desktop_windows_386.go"), bb.Bytes())
@@ -372,16 +372,16 @@ func cgoLinux(module, mocPath string) {
 	)
 	defer bb.Reset()
 
-	if parser.CurrentState.Minimal {
+	if parser.State.Minimal {
 		fmt.Fprint(bb, "// +build minimal\n\n")
-	} else if module == parser.MOC {
+	} else if parser.State.Moc {
 	} else {
 		fmt.Fprint(bb, "// +build !minimal\n\n")
 	}
 
 	fmt.Fprintf(bb, "package %v\n\n", func() string {
-		if parser.CurrentState.MocModule != "" {
-			return parser.CurrentState.MocModule
+		if parser.State.Moc {
+			return parser.State.Module
 		}
 		return strings.ToLower(module)
 	}())
@@ -419,12 +419,12 @@ func cgoLinux(module, mocPath string) {
 	fmt.Fprint(bb, "import \"C\"\n")
 
 	switch {
-	case module == parser.MOC:
+	case parser.State.Moc:
 		{
 			utils.SaveBytes(filepath.Join(mocPath, "moc_cgo_desktop_linux_amd64.go"), bb.Bytes())
 		}
 
-	case parser.CurrentState.Minimal:
+	case parser.State.Minimal:
 		{
 			utils.SaveBytes(utils.GoQtPkgPath(strings.ToLower(module), "minimal_cgo_desktop_linux_amd64.go"), bb.Bytes())
 		}
@@ -443,16 +443,16 @@ func cgoLinuxPkgConfig(module, mocPath string) {
 	)
 	defer bb.Reset()
 
-	if parser.CurrentState.Minimal {
+	if parser.State.Minimal {
 		fmt.Fprint(bb, "// +build minimal\n\n")
-	} else if module == parser.MOC {
+	} else if parser.State.Moc {
 	} else {
 		fmt.Fprint(bb, "// +build !minimal\n\n")
 	}
 
 	fmt.Fprintf(bb, "package %v\n\n", func() string {
-		if parser.CurrentState.MocModule != "" {
-			return parser.CurrentState.MocModule
+		if parser.State.Moc {
+			return parser.State.Module
 		}
 		return strings.ToLower(module)
 	}())
@@ -496,12 +496,12 @@ func cgoLinuxPkgConfig(module, mocPath string) {
 	fmt.Fprint(bb, "import \"C\"\n")
 
 	switch {
-	case module == parser.MOC:
+	case parser.State.Moc:
 		{
 			utils.SaveBytes(filepath.Join(mocPath, "moc_cgo_desktop_linux_amd64.go"), bb.Bytes())
 		}
 
-	case parser.CurrentState.Minimal:
+	case parser.State.Minimal:
 		{
 			utils.SaveBytes(utils.GoQtPkgPath(strings.ToLower(module), "minimal_cgo_desktop_linux_amd64.go"), bb.Bytes())
 		}
@@ -523,18 +523,18 @@ func cgoAndroid(module, mocPath string) {
 	defer bb.Reset()
 
 	fmt.Fprintf(bb, "// +build android%v\n\n", func() string {
-		if parser.CurrentState.Minimal {
+		if parser.State.Minimal {
 			return ",minimal"
 		}
-		if module == parser.MOC {
+		if parser.State.Moc {
 			return ""
 		}
 		return ",!minimal"
 	}())
 
 	fmt.Fprintf(bb, "package %v\n\n", func() string {
-		if parser.CurrentState.MocModule != "" {
-			return parser.CurrentState.MocModule
+		if parser.State.Moc {
+			return parser.State.Module
 		}
 		return strings.ToLower(module)
 	}())
@@ -573,12 +573,12 @@ func cgoAndroid(module, mocPath string) {
 	fmt.Fprint(bb, "import \"C\"\n")
 
 	switch {
-	case module == parser.MOC:
+	case parser.State.Moc:
 		{
 			utils.SaveBytes(filepath.Join(mocPath, "moc_cgo_android_linux_arm.go"), bb.Bytes())
 		}
 
-	case parser.CurrentState.Minimal:
+	case parser.State.Minimal:
 		{
 			utils.SaveBytes(utils.GoQtPkgPath(strings.ToLower(module), "minimal_cgo_android_linux_arm.go"), bb.Bytes())
 		}
@@ -598,18 +598,18 @@ func cgoIos(module, mocPath string) string {
 	defer bb.Reset()
 
 	fmt.Fprintf(bb, "// +build ${BUILDTARGET}%v\n\n", func() string {
-		if parser.CurrentState.Minimal {
+		if parser.State.Minimal {
 			return ",minimal"
 		}
-		if module == parser.MOC {
+		if parser.State.Moc {
 			return ""
 		}
 		return ",!minimal"
 	}())
 
 	fmt.Fprintf(bb, "package %v\n\n", func() string {
-		if parser.CurrentState.MocModule != "" {
-			return parser.CurrentState.MocModule
+		if parser.State.Moc {
+			return parser.State.Module
 		}
 		return strings.ToLower(module)
 	}())
@@ -697,12 +697,12 @@ func cgoIos(module, mocPath string) string {
 
 	var path, prefix = func() (string, string) {
 		switch {
-		case module == parser.MOC:
+		case parser.State.Moc:
 			{
 				return mocPath, "moc_"
 			}
 
-		case parser.CurrentState.Minimal:
+		case parser.State.Minimal:
 			{
 				return utils.GoQtPkgPath(strings.ToLower(module)), "minimal_"
 			}
@@ -744,18 +744,18 @@ func cgoSailfish(module, mocPath string) {
 	defer bb.Reset()
 
 	fmt.Fprintf(bb, "// +build ${BUILDTARGET}%v\n\n", func() string {
-		if parser.CurrentState.Minimal {
+		if parser.State.Minimal {
 			return ",minimal"
 		}
-		if module == parser.MOC {
+		if parser.State.Moc {
 			return ""
 		}
 		return ",!minimal"
 	}())
 
 	fmt.Fprintf(bb, "package %v\n\n", func() string {
-		if parser.CurrentState.MocModule != "" {
-			return parser.CurrentState.MocModule
+		if parser.State.Moc {
+			return parser.State.Module
 		}
 		return strings.ToLower(module)
 	}())
@@ -797,12 +797,12 @@ func cgoSailfish(module, mocPath string) {
 	var tmp = strings.Replace(bb.String(), "${BUILDTARGET}", "sailfish_emulator", -1)
 
 	switch {
-	case module == parser.MOC:
+	case parser.State.Moc:
 		{
 			utils.Save(filepath.Join(mocPath, "moc_cgo_sailfish_emulator_linux_386.go"), tmp)
 		}
 
-	case parser.CurrentState.Minimal:
+	case parser.State.Minimal:
 		{
 			utils.Save(utils.GoQtPkgPath(strings.ToLower(module), "minimal_cgo_sailfish_emulator_linux_386.go"), tmp)
 		}
@@ -818,12 +818,12 @@ func cgoSailfish(module, mocPath string) {
 	tmp = strings.Replace(tmp, "i486", "armv7hl", -1)
 
 	switch {
-	case module == parser.MOC:
+	case parser.State.Moc:
 		{
 			utils.Save(filepath.Join(mocPath, "moc_cgo_sailfish_linux_arm.go"), tmp)
 		}
 
-	case parser.CurrentState.Minimal:
+	case parser.State.Minimal:
 		{
 			utils.Save(utils.GoQtPkgPath(strings.ToLower(module), "minimal_cgo_sailfish_linux_arm.go"), tmp)
 		}
@@ -843,18 +843,18 @@ func cgoRaspberryPi1(module, mocPath string) {
 	defer bb.Reset()
 
 	fmt.Fprintf(bb, "// +build rpi1%v\n\n", func() string {
-		if parser.CurrentState.Minimal {
+		if parser.State.Minimal {
 			return ",minimal"
 		}
-		if module == parser.MOC {
+		if parser.State.Moc {
 			return ""
 		}
 		return ",!minimal"
 	}())
 
 	fmt.Fprintf(bb, "package %v\n\n", func() string {
-		if parser.CurrentState.MocModule != "" {
-			return parser.CurrentState.MocModule
+		if parser.State.Moc {
+			return parser.State.Module
 		}
 		return strings.ToLower(module)
 	}())
@@ -894,12 +894,12 @@ func cgoRaspberryPi1(module, mocPath string) {
 	var tmp = strings.Replace(bb.String(), "${RPI1_SYSROOT_DIR}", utils.RPI1_SYSROOT_DIR(), -1)
 
 	switch {
-	case module == parser.MOC:
+	case parser.State.Moc:
 		{
 			utils.Save(filepath.Join(mocPath, "moc_cgo_rpi1_linux_arm.go"), tmp)
 		}
 
-	case parser.CurrentState.Minimal:
+	case parser.State.Minimal:
 		{
 			utils.Save(utils.GoQtPkgPath(strings.ToLower(module), "minimal_cgo_rpi1_linux_arm.go"), tmp)
 		}
@@ -919,18 +919,18 @@ func cgoRaspberryPi2(module, mocPath string) {
 	defer bb.Reset()
 
 	fmt.Fprintf(bb, "// +build rpi2%v\n\n", func() string {
-		if parser.CurrentState.Minimal {
+		if parser.State.Minimal {
 			return ",minimal"
 		}
-		if module == parser.MOC {
+		if parser.State.Moc {
 			return ""
 		}
 		return ",!minimal"
 	}())
 
 	fmt.Fprintf(bb, "package %v\n\n", func() string {
-		if parser.CurrentState.MocModule != "" {
-			return parser.CurrentState.MocModule
+		if parser.State.Moc {
+			return parser.State.Module
 		}
 		return strings.ToLower(module)
 	}())
@@ -970,12 +970,12 @@ func cgoRaspberryPi2(module, mocPath string) {
 	var tmp = strings.Replace(bb.String(), "${RPI2_SYSROOT_DIR}", utils.RPI2_SYSROOT_DIR(), -1)
 
 	switch {
-	case module == parser.MOC:
+	case parser.State.Moc:
 		{
 			utils.Save(filepath.Join(mocPath, "moc_cgo_rpi2_linux_arm.go"), tmp)
 		}
 
-	case parser.CurrentState.Minimal:
+	case parser.State.Minimal:
 		{
 			utils.Save(utils.GoQtPkgPath(strings.ToLower(module), "minimal_cgo_rpi2_linux_arm.go"), tmp)
 		}
@@ -995,18 +995,18 @@ func cgoRaspberryPi3(module, mocPath string) {
 	defer bb.Reset()
 
 	fmt.Fprintf(bb, "// +build rpi3%v\n\n", func() string {
-		if parser.CurrentState.Minimal {
+		if parser.State.Minimal {
 			return ",minimal"
 		}
-		if module == parser.MOC {
+		if parser.State.Moc {
 			return ""
 		}
 		return ",!minimal"
 	}())
 
 	fmt.Fprintf(bb, "package %v\n\n", func() string {
-		if parser.CurrentState.MocModule != "" {
-			return parser.CurrentState.MocModule
+		if parser.State.Moc {
+			return parser.State.Module
 		}
 		return strings.ToLower(module)
 	}())
@@ -1046,12 +1046,12 @@ func cgoRaspberryPi3(module, mocPath string) {
 	var tmp = strings.Replace(bb.String(), "${RPI3_SYSROOT_DIR}", utils.RPI3_SYSROOT_DIR(), -1)
 
 	switch {
-	case module == parser.MOC:
+	case parser.State.Moc:
 		{
 			utils.Save(filepath.Join(mocPath, "moc_cgo_rpi3_linux_arm.go"), tmp)
 		}
 
-	case parser.CurrentState.Minimal:
+	case parser.State.Minimal:
 		{
 			utils.Save(utils.GoQtPkgPath(strings.ToLower(module), "minimal_cgo_rpi3_linux_arm.go"), tmp)
 		}
@@ -1065,7 +1065,7 @@ func cgoRaspberryPi3(module, mocPath string) {
 
 func cleanLibs(module string) []string {
 
-	if module == parser.MOC || module == "build_ios" {
+	if parser.State.Moc || module == "build_ios" {
 		return parser.LibDeps[module]
 	}
 

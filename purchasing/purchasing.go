@@ -21,12 +21,13 @@ func cGoUnpackString(s C.struct_QtPurchasing_PackedString) string {
 	return C.GoStringN(s.data, C.int(s.len))
 }
 
+//go:generate stringer -type=QInAppProduct__ProductType
 //QInAppProduct::ProductType
 type QInAppProduct__ProductType int64
 
 const (
-	QInAppProduct__Consumable = QInAppProduct__ProductType(0)
-	QInAppProduct__Unlockable = QInAppProduct__ProductType(1)
+	QInAppProduct__Consumable QInAppProduct__ProductType = QInAppProduct__ProductType(0)
+	QInAppProduct__Unlockable QInAppProduct__ProductType = QInAppProduct__ProductType(1)
 )
 
 type QInAppProduct struct {
@@ -984,23 +985,25 @@ func (ptr *QInAppStore) MetaObjectDefault() *core.QMetaObject {
 	return nil
 }
 
+//go:generate stringer -type=QInAppTransaction__FailureReason
 //QInAppTransaction::FailureReason
 type QInAppTransaction__FailureReason int64
 
 const (
-	QInAppTransaction__NoFailure      = QInAppTransaction__FailureReason(0)
-	QInAppTransaction__CanceledByUser = QInAppTransaction__FailureReason(1)
-	QInAppTransaction__ErrorOccurred  = QInAppTransaction__FailureReason(2)
+	QInAppTransaction__NoFailure      QInAppTransaction__FailureReason = QInAppTransaction__FailureReason(0)
+	QInAppTransaction__CanceledByUser QInAppTransaction__FailureReason = QInAppTransaction__FailureReason(1)
+	QInAppTransaction__ErrorOccurred  QInAppTransaction__FailureReason = QInAppTransaction__FailureReason(2)
 )
 
+//go:generate stringer -type=QInAppTransaction__TransactionStatus
 //QInAppTransaction::TransactionStatus
 type QInAppTransaction__TransactionStatus int64
 
 const (
-	QInAppTransaction__Unknown          = QInAppTransaction__TransactionStatus(0)
-	QInAppTransaction__PurchaseApproved = QInAppTransaction__TransactionStatus(1)
-	QInAppTransaction__PurchaseFailed   = QInAppTransaction__TransactionStatus(2)
-	QInAppTransaction__PurchaseRestored = QInAppTransaction__TransactionStatus(3)
+	QInAppTransaction__Unknown          QInAppTransaction__TransactionStatus = QInAppTransaction__TransactionStatus(0)
+	QInAppTransaction__PurchaseApproved QInAppTransaction__TransactionStatus = QInAppTransaction__TransactionStatus(1)
+	QInAppTransaction__PurchaseFailed   QInAppTransaction__TransactionStatus = QInAppTransaction__TransactionStatus(2)
+	QInAppTransaction__PurchaseRestored QInAppTransaction__TransactionStatus = QInAppTransaction__TransactionStatus(3)
 )
 
 type QInAppTransaction struct {

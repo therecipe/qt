@@ -2776,46 +2776,49 @@ func (ptr *QQuickImageResponse) MetaObjectDefault() *core.QMetaObject {
 	return nil
 }
 
+//go:generate stringer -type=QQuickItem__Flag
 //QQuickItem::Flag
 type QQuickItem__Flag int64
 
 const (
-	QQuickItem__ItemClipsChildrenToShape = QQuickItem__Flag(0x01)
-	QQuickItem__ItemAcceptsInputMethod   = QQuickItem__Flag(0x02)
-	QQuickItem__ItemIsFocusScope         = QQuickItem__Flag(0x04)
-	QQuickItem__ItemHasContents          = QQuickItem__Flag(0x08)
-	QQuickItem__ItemAcceptsDrops         = QQuickItem__Flag(0x10)
+	QQuickItem__ItemClipsChildrenToShape QQuickItem__Flag = QQuickItem__Flag(0x01)
+	QQuickItem__ItemAcceptsInputMethod   QQuickItem__Flag = QQuickItem__Flag(0x02)
+	QQuickItem__ItemIsFocusScope         QQuickItem__Flag = QQuickItem__Flag(0x04)
+	QQuickItem__ItemHasContents          QQuickItem__Flag = QQuickItem__Flag(0x08)
+	QQuickItem__ItemAcceptsDrops         QQuickItem__Flag = QQuickItem__Flag(0x10)
 )
 
+//go:generate stringer -type=QQuickItem__ItemChange
 //QQuickItem::ItemChange
 type QQuickItem__ItemChange int64
 
 const (
-	QQuickItem__ItemChildAddedChange           = QQuickItem__ItemChange(0)
-	QQuickItem__ItemChildRemovedChange         = QQuickItem__ItemChange(1)
-	QQuickItem__ItemSceneChange                = QQuickItem__ItemChange(2)
-	QQuickItem__ItemVisibleHasChanged          = QQuickItem__ItemChange(3)
-	QQuickItem__ItemParentHasChanged           = QQuickItem__ItemChange(4)
-	QQuickItem__ItemOpacityHasChanged          = QQuickItem__ItemChange(5)
-	QQuickItem__ItemActiveFocusHasChanged      = QQuickItem__ItemChange(6)
-	QQuickItem__ItemRotationHasChanged         = QQuickItem__ItemChange(7)
-	QQuickItem__ItemAntialiasingHasChanged     = QQuickItem__ItemChange(8)
-	QQuickItem__ItemDevicePixelRatioHasChanged = QQuickItem__ItemChange(9)
+	QQuickItem__ItemChildAddedChange           QQuickItem__ItemChange = QQuickItem__ItemChange(0)
+	QQuickItem__ItemChildRemovedChange         QQuickItem__ItemChange = QQuickItem__ItemChange(1)
+	QQuickItem__ItemSceneChange                QQuickItem__ItemChange = QQuickItem__ItemChange(2)
+	QQuickItem__ItemVisibleHasChanged          QQuickItem__ItemChange = QQuickItem__ItemChange(3)
+	QQuickItem__ItemParentHasChanged           QQuickItem__ItemChange = QQuickItem__ItemChange(4)
+	QQuickItem__ItemOpacityHasChanged          QQuickItem__ItemChange = QQuickItem__ItemChange(5)
+	QQuickItem__ItemActiveFocusHasChanged      QQuickItem__ItemChange = QQuickItem__ItemChange(6)
+	QQuickItem__ItemRotationHasChanged         QQuickItem__ItemChange = QQuickItem__ItemChange(7)
+	QQuickItem__ItemAntialiasingHasChanged     QQuickItem__ItemChange = QQuickItem__ItemChange(8)
+	QQuickItem__ItemDevicePixelRatioHasChanged QQuickItem__ItemChange = QQuickItem__ItemChange(9)
 )
 
+//go:generate stringer -type=QQuickItem__TransformOrigin
 //QQuickItem::TransformOrigin
 type QQuickItem__TransformOrigin int64
 
 const (
-	QQuickItem__TopLeft     = QQuickItem__TransformOrigin(0)
-	QQuickItem__Top         = QQuickItem__TransformOrigin(1)
-	QQuickItem__TopRight    = QQuickItem__TransformOrigin(2)
-	QQuickItem__Left        = QQuickItem__TransformOrigin(3)
-	QQuickItem__Center      = QQuickItem__TransformOrigin(4)
-	QQuickItem__Right       = QQuickItem__TransformOrigin(5)
-	QQuickItem__BottomLeft  = QQuickItem__TransformOrigin(6)
-	QQuickItem__Bottom      = QQuickItem__TransformOrigin(7)
-	QQuickItem__BottomRight = QQuickItem__TransformOrigin(8)
+	QQuickItem__TopLeft     QQuickItem__TransformOrigin = QQuickItem__TransformOrigin(0)
+	QQuickItem__Top         QQuickItem__TransformOrigin = QQuickItem__TransformOrigin(1)
+	QQuickItem__TopRight    QQuickItem__TransformOrigin = QQuickItem__TransformOrigin(2)
+	QQuickItem__Left        QQuickItem__TransformOrigin = QQuickItem__TransformOrigin(3)
+	QQuickItem__Center      QQuickItem__TransformOrigin = QQuickItem__TransformOrigin(4)
+	QQuickItem__Right       QQuickItem__TransformOrigin = QQuickItem__TransformOrigin(5)
+	QQuickItem__BottomLeft  QQuickItem__TransformOrigin = QQuickItem__TransformOrigin(6)
+	QQuickItem__Bottom      QQuickItem__TransformOrigin = QQuickItem__TransformOrigin(7)
+	QQuickItem__BottomRight QQuickItem__TransformOrigin = QQuickItem__TransformOrigin(8)
 )
 
 type QQuickItem struct {
@@ -5427,20 +5430,22 @@ func (ptr *QQuickItemGrabResult) MetaObjectDefault() *core.QMetaObject {
 	return nil
 }
 
+//go:generate stringer -type=QQuickPaintedItem__PerformanceHint
 //QQuickPaintedItem::PerformanceHint
 type QQuickPaintedItem__PerformanceHint int64
 
 const (
-	QQuickPaintedItem__FastFBOResizing = QQuickPaintedItem__PerformanceHint(0x1)
+	QQuickPaintedItem__FastFBOResizing QQuickPaintedItem__PerformanceHint = QQuickPaintedItem__PerformanceHint(0x1)
 )
 
+//go:generate stringer -type=QQuickPaintedItem__RenderTarget
 //QQuickPaintedItem::RenderTarget
 type QQuickPaintedItem__RenderTarget int64
 
 const (
-	QQuickPaintedItem__Image                      = QQuickPaintedItem__RenderTarget(0)
-	QQuickPaintedItem__FramebufferObject          = QQuickPaintedItem__RenderTarget(1)
-	QQuickPaintedItem__InvertedYFramebufferObject = QQuickPaintedItem__RenderTarget(2)
+	QQuickPaintedItem__Image                      QQuickPaintedItem__RenderTarget = QQuickPaintedItem__RenderTarget(0)
+	QQuickPaintedItem__FramebufferObject          QQuickPaintedItem__RenderTarget = QQuickPaintedItem__RenderTarget(1)
+	QQuickPaintedItem__InvertedYFramebufferObject QQuickPaintedItem__RenderTarget = QQuickPaintedItem__RenderTarget(2)
 )
 
 type QQuickPaintedItem struct {
@@ -8814,22 +8819,24 @@ func (ptr *QQuickTextureFactory) MetaObjectDefault() *core.QMetaObject {
 	return nil
 }
 
+//go:generate stringer -type=QQuickView__ResizeMode
 //QQuickView::ResizeMode
 type QQuickView__ResizeMode int64
 
 const (
-	QQuickView__SizeViewToRootObject = QQuickView__ResizeMode(0)
-	QQuickView__SizeRootObjectToView = QQuickView__ResizeMode(1)
+	QQuickView__SizeViewToRootObject QQuickView__ResizeMode = QQuickView__ResizeMode(0)
+	QQuickView__SizeRootObjectToView QQuickView__ResizeMode = QQuickView__ResizeMode(1)
 )
 
+//go:generate stringer -type=QQuickView__Status
 //QQuickView::Status
 type QQuickView__Status int64
 
 const (
-	QQuickView__Null    = QQuickView__Status(0)
-	QQuickView__Ready   = QQuickView__Status(1)
-	QQuickView__Loading = QQuickView__Status(2)
-	QQuickView__Error   = QQuickView__Status(3)
+	QQuickView__Null    QQuickView__Status = QQuickView__Status(0)
+	QQuickView__Ready   QQuickView__Status = QQuickView__Status(1)
+	QQuickView__Loading QQuickView__Status = QQuickView__Status(2)
+	QQuickView__Error   QQuickView__Status = QQuickView__Status(3)
 )
 
 type QQuickView struct {
@@ -10895,22 +10902,24 @@ func (ptr *QQuickView) MetaObjectDefault() *core.QMetaObject {
 	return nil
 }
 
+//go:generate stringer -type=QQuickWidget__ResizeMode
 //QQuickWidget::ResizeMode
 type QQuickWidget__ResizeMode int64
 
 const (
-	QQuickWidget__SizeViewToRootObject = QQuickWidget__ResizeMode(0)
-	QQuickWidget__SizeRootObjectToView = QQuickWidget__ResizeMode(1)
+	QQuickWidget__SizeViewToRootObject QQuickWidget__ResizeMode = QQuickWidget__ResizeMode(0)
+	QQuickWidget__SizeRootObjectToView QQuickWidget__ResizeMode = QQuickWidget__ResizeMode(1)
 )
 
+//go:generate stringer -type=QQuickWidget__Status
 //QQuickWidget::Status
 type QQuickWidget__Status int64
 
 const (
-	QQuickWidget__Null    = QQuickWidget__Status(0)
-	QQuickWidget__Ready   = QQuickWidget__Status(1)
-	QQuickWidget__Loading = QQuickWidget__Status(2)
-	QQuickWidget__Error   = QQuickWidget__Status(3)
+	QQuickWidget__Null    QQuickWidget__Status = QQuickWidget__Status(0)
+	QQuickWidget__Ready   QQuickWidget__Status = QQuickWidget__Status(1)
+	QQuickWidget__Loading QQuickWidget__Status = QQuickWidget__Status(2)
+	QQuickWidget__Error   QQuickWidget__Status = QQuickWidget__Status(3)
 )
 
 type QQuickWidget struct {
@@ -13539,34 +13548,37 @@ func (ptr *QQuickWidget) PaintEngineDefault() *gui.QPaintEngine {
 	return nil
 }
 
+//go:generate stringer -type=QQuickWindow__CreateTextureOption
 //QQuickWindow::CreateTextureOption
 type QQuickWindow__CreateTextureOption int64
 
 const (
-	QQuickWindow__TextureHasAlphaChannel = QQuickWindow__CreateTextureOption(0x0001)
-	QQuickWindow__TextureHasMipmaps      = QQuickWindow__CreateTextureOption(0x0002)
-	QQuickWindow__TextureOwnsGLTexture   = QQuickWindow__CreateTextureOption(0x0004)
-	QQuickWindow__TextureCanUseAtlas     = QQuickWindow__CreateTextureOption(0x0008)
-	QQuickWindow__TextureIsOpaque        = QQuickWindow__CreateTextureOption(0x0010)
+	QQuickWindow__TextureHasAlphaChannel QQuickWindow__CreateTextureOption = QQuickWindow__CreateTextureOption(0x0001)
+	QQuickWindow__TextureHasMipmaps      QQuickWindow__CreateTextureOption = QQuickWindow__CreateTextureOption(0x0002)
+	QQuickWindow__TextureOwnsGLTexture   QQuickWindow__CreateTextureOption = QQuickWindow__CreateTextureOption(0x0004)
+	QQuickWindow__TextureCanUseAtlas     QQuickWindow__CreateTextureOption = QQuickWindow__CreateTextureOption(0x0008)
+	QQuickWindow__TextureIsOpaque        QQuickWindow__CreateTextureOption = QQuickWindow__CreateTextureOption(0x0010)
 )
 
+//go:generate stringer -type=QQuickWindow__RenderStage
 //QQuickWindow::RenderStage
 type QQuickWindow__RenderStage int64
 
 const (
-	QQuickWindow__BeforeSynchronizingStage = QQuickWindow__RenderStage(0)
-	QQuickWindow__AfterSynchronizingStage  = QQuickWindow__RenderStage(1)
-	QQuickWindow__BeforeRenderingStage     = QQuickWindow__RenderStage(2)
-	QQuickWindow__AfterRenderingStage      = QQuickWindow__RenderStage(3)
-	QQuickWindow__AfterSwapStage           = QQuickWindow__RenderStage(4)
-	QQuickWindow__NoStage                  = QQuickWindow__RenderStage(5)
+	QQuickWindow__BeforeSynchronizingStage QQuickWindow__RenderStage = QQuickWindow__RenderStage(0)
+	QQuickWindow__AfterSynchronizingStage  QQuickWindow__RenderStage = QQuickWindow__RenderStage(1)
+	QQuickWindow__BeforeRenderingStage     QQuickWindow__RenderStage = QQuickWindow__RenderStage(2)
+	QQuickWindow__AfterRenderingStage      QQuickWindow__RenderStage = QQuickWindow__RenderStage(3)
+	QQuickWindow__AfterSwapStage           QQuickWindow__RenderStage = QQuickWindow__RenderStage(4)
+	QQuickWindow__NoStage                  QQuickWindow__RenderStage = QQuickWindow__RenderStage(5)
 )
 
+//go:generate stringer -type=QQuickWindow__SceneGraphError
 //QQuickWindow::SceneGraphError
 type QQuickWindow__SceneGraphError int64
 
 const (
-	QQuickWindow__ContextNotAvailable = QQuickWindow__SceneGraphError(1)
+	QQuickWindow__ContextNotAvailable QQuickWindow__SceneGraphError = QQuickWindow__SceneGraphError(1)
 )
 
 type QQuickWindow struct {
@@ -15798,13 +15810,14 @@ func (ptr *QQuickWindow) MetaObjectDefault() *core.QMetaObject {
 	return nil
 }
 
+//go:generate stringer -type=QSGAbstractRenderer__ClearModeBit
 //QSGAbstractRenderer::ClearModeBit
 type QSGAbstractRenderer__ClearModeBit int64
 
 const (
-	QSGAbstractRenderer__ClearColorBuffer   = QSGAbstractRenderer__ClearModeBit(0x0001)
-	QSGAbstractRenderer__ClearDepthBuffer   = QSGAbstractRenderer__ClearModeBit(0x0002)
-	QSGAbstractRenderer__ClearStencilBuffer = QSGAbstractRenderer__ClearModeBit(0x0004)
+	QSGAbstractRenderer__ClearColorBuffer   QSGAbstractRenderer__ClearModeBit = QSGAbstractRenderer__ClearModeBit(0x0001)
+	QSGAbstractRenderer__ClearDepthBuffer   QSGAbstractRenderer__ClearModeBit = QSGAbstractRenderer__ClearModeBit(0x0002)
+	QSGAbstractRenderer__ClearStencilBuffer QSGAbstractRenderer__ClearModeBit = QSGAbstractRenderer__ClearModeBit(0x0004)
 )
 
 type QSGAbstractRenderer struct {
@@ -16444,12 +16457,13 @@ func (ptr *QSGBasicGeometryNode) PreprocessDefault() {
 	}
 }
 
+//go:generate stringer -type=QSGBatchRenderer__BatchCompatibility
 //QSGBatchRenderer::BatchCompatibility
 type QSGBatchRenderer__BatchCompatibility int64
 
 const (
-	QSGBatchRenderer__BatchBreaksOnCompare = QSGBatchRenderer__BatchCompatibility(0)
-	QSGBatchRenderer__BatchIsCompatible    = QSGBatchRenderer__BatchCompatibility(1)
+	QSGBatchRenderer__BatchBreaksOnCompare QSGBatchRenderer__BatchCompatibility = QSGBatchRenderer__BatchCompatibility(0)
+	QSGBatchRenderer__BatchIsCompatible    QSGBatchRenderer__BatchCompatibility = QSGBatchRenderer__BatchCompatibility(1)
 )
 
 type QSGBatchRenderer struct {
@@ -17339,14 +17353,15 @@ func (ptr *QSGDynamicTexture) MetaObjectDefault() *core.QMetaObject {
 	return nil
 }
 
+//go:generate stringer -type=QSGEngine__CreateTextureOption
 //QSGEngine::CreateTextureOption
 type QSGEngine__CreateTextureOption int64
 
 const (
-	QSGEngine__TextureHasAlphaChannel = QSGEngine__CreateTextureOption(0x0001)
-	QSGEngine__TextureOwnsGLTexture   = QSGEngine__CreateTextureOption(0x0004)
-	QSGEngine__TextureCanUseAtlas     = QSGEngine__CreateTextureOption(0x0008)
-	QSGEngine__TextureIsOpaque        = QSGEngine__CreateTextureOption(0x0010)
+	QSGEngine__TextureHasAlphaChannel QSGEngine__CreateTextureOption = QSGEngine__CreateTextureOption(0x0001)
+	QSGEngine__TextureOwnsGLTexture   QSGEngine__CreateTextureOption = QSGEngine__CreateTextureOption(0x0004)
+	QSGEngine__TextureCanUseAtlas     QSGEngine__CreateTextureOption = QSGEngine__CreateTextureOption(0x0008)
+	QSGEngine__TextureIsOpaque        QSGEngine__CreateTextureOption = QSGEngine__CreateTextureOption(0x0010)
 )
 
 type QSGEngine struct {
@@ -17958,14 +17973,15 @@ func (ptr *QSGFlatColorMaterial) TypeDefault() *QSGMaterialType {
 	return nil
 }
 
+//go:generate stringer -type=QSGGeometry__DataPattern
 //QSGGeometry::DataPattern
 type QSGGeometry__DataPattern int64
 
 const (
-	QSGGeometry__AlwaysUploadPattern = QSGGeometry__DataPattern(0)
-	QSGGeometry__StreamPattern       = QSGGeometry__DataPattern(1)
-	QSGGeometry__DynamicPattern      = QSGGeometry__DataPattern(2)
-	QSGGeometry__StaticPattern       = QSGGeometry__DataPattern(3)
+	QSGGeometry__AlwaysUploadPattern QSGGeometry__DataPattern = QSGGeometry__DataPattern(0)
+	QSGGeometry__StreamPattern       QSGGeometry__DataPattern = QSGGeometry__DataPattern(1)
+	QSGGeometry__DynamicPattern      QSGGeometry__DataPattern = QSGGeometry__DataPattern(2)
+	QSGGeometry__StaticPattern       QSGGeometry__DataPattern = QSGGeometry__DataPattern(3)
 )
 
 type QSGGeometry struct {
@@ -18367,15 +18383,16 @@ func (ptr *QSGGeometryNode) PreprocessDefault() {
 	}
 }
 
+//go:generate stringer -type=QSGMaterial__Flag
 //QSGMaterial::Flag
 type QSGMaterial__Flag int64
 
 const (
-	QSGMaterial__Blending                          = QSGMaterial__Flag(0x0001)
-	QSGMaterial__RequiresDeterminant               = QSGMaterial__Flag(0x0002)
-	QSGMaterial__RequiresFullMatrixExceptTranslate = QSGMaterial__Flag(0x0004 | QSGMaterial__RequiresDeterminant)
-	QSGMaterial__RequiresFullMatrix                = QSGMaterial__Flag(0x0008 | QSGMaterial__RequiresFullMatrixExceptTranslate)
-	QSGMaterial__CustomCompileStep                 = QSGMaterial__Flag(0x0010)
+	QSGMaterial__Blending                          QSGMaterial__Flag = QSGMaterial__Flag(0x0001)
+	QSGMaterial__RequiresDeterminant               QSGMaterial__Flag = QSGMaterial__Flag(0x0002)
+	QSGMaterial__RequiresFullMatrixExceptTranslate QSGMaterial__Flag = QSGMaterial__Flag(0x0004 | QSGMaterial__RequiresDeterminant)
+	QSGMaterial__RequiresFullMatrix                QSGMaterial__Flag = QSGMaterial__Flag(0x0008 | QSGMaterial__RequiresFullMatrixExceptTranslate)
+	QSGMaterial__CustomCompileStep                 QSGMaterial__Flag = QSGMaterial__Flag(0x0010)
 )
 
 type QSGMaterial struct {
@@ -18876,40 +18893,43 @@ func (ptr *QSGMaterialType) DestroyQSGMaterialType() {
 	ptr.SetPointer(nil)
 }
 
+//go:generate stringer -type=QSGNode__DirtyStateBit
 //QSGNode::DirtyStateBit
 type QSGNode__DirtyStateBit int64
 
 const (
-	QSGNode__DirtySubtreeBlocked = QSGNode__DirtyStateBit(0x0080)
-	QSGNode__DirtyMatrix         = QSGNode__DirtyStateBit(0x0100)
-	QSGNode__DirtyNodeAdded      = QSGNode__DirtyStateBit(0x0400)
-	QSGNode__DirtyNodeRemoved    = QSGNode__DirtyStateBit(0x0800)
-	QSGNode__DirtyGeometry       = QSGNode__DirtyStateBit(0x1000)
-	QSGNode__DirtyMaterial       = QSGNode__DirtyStateBit(0x2000)
-	QSGNode__DirtyOpacity        = QSGNode__DirtyStateBit(0x4000)
+	QSGNode__DirtySubtreeBlocked QSGNode__DirtyStateBit = QSGNode__DirtyStateBit(0x0080)
+	QSGNode__DirtyMatrix         QSGNode__DirtyStateBit = QSGNode__DirtyStateBit(0x0100)
+	QSGNode__DirtyNodeAdded      QSGNode__DirtyStateBit = QSGNode__DirtyStateBit(0x0400)
+	QSGNode__DirtyNodeRemoved    QSGNode__DirtyStateBit = QSGNode__DirtyStateBit(0x0800)
+	QSGNode__DirtyGeometry       QSGNode__DirtyStateBit = QSGNode__DirtyStateBit(0x1000)
+	QSGNode__DirtyMaterial       QSGNode__DirtyStateBit = QSGNode__DirtyStateBit(0x2000)
+	QSGNode__DirtyOpacity        QSGNode__DirtyStateBit = QSGNode__DirtyStateBit(0x4000)
 )
 
+//go:generate stringer -type=QSGNode__Flag
 //QSGNode::Flag
 type QSGNode__Flag int64
 
 const (
-	QSGNode__OwnedByParent      = QSGNode__Flag(0x0001)
-	QSGNode__UsePreprocess      = QSGNode__Flag(0x0002)
-	QSGNode__OwnsGeometry       = QSGNode__Flag(0x00010000)
-	QSGNode__OwnsMaterial       = QSGNode__Flag(0x00020000)
-	QSGNode__OwnsOpaqueMaterial = QSGNode__Flag(0x00040000)
-	QSGNode__InternalReserved   = QSGNode__Flag(0x01000000)
+	QSGNode__OwnedByParent      QSGNode__Flag = QSGNode__Flag(0x0001)
+	QSGNode__UsePreprocess      QSGNode__Flag = QSGNode__Flag(0x0002)
+	QSGNode__OwnsGeometry       QSGNode__Flag = QSGNode__Flag(0x00010000)
+	QSGNode__OwnsMaterial       QSGNode__Flag = QSGNode__Flag(0x00020000)
+	QSGNode__OwnsOpaqueMaterial QSGNode__Flag = QSGNode__Flag(0x00040000)
+	QSGNode__InternalReserved   QSGNode__Flag = QSGNode__Flag(0x01000000)
 )
 
+//go:generate stringer -type=QSGNode__NodeType
 //QSGNode::NodeType
 type QSGNode__NodeType int64
 
 const (
-	QSGNode__BasicNodeType     = QSGNode__NodeType(0)
-	QSGNode__GeometryNodeType  = QSGNode__NodeType(1)
-	QSGNode__TransformNodeType = QSGNode__NodeType(2)
-	QSGNode__ClipNodeType      = QSGNode__NodeType(3)
-	QSGNode__OpacityNodeType   = QSGNode__NodeType(4)
+	QSGNode__BasicNodeType     QSGNode__NodeType = QSGNode__NodeType(0)
+	QSGNode__GeometryNodeType  QSGNode__NodeType = QSGNode__NodeType(1)
+	QSGNode__TransformNodeType QSGNode__NodeType = QSGNode__NodeType(2)
+	QSGNode__ClipNodeType      QSGNode__NodeType = QSGNode__NodeType(3)
+	QSGNode__OpacityNodeType   QSGNode__NodeType = QSGNode__NodeType(4)
 )
 
 type QSGNode struct {
@@ -19827,13 +19847,14 @@ func (ptr *QSGSimpleRectNode) PreprocessDefault() {
 	}
 }
 
+//go:generate stringer -type=QSGSimpleTextureNode__TextureCoordinatesTransformFlag
 //QSGSimpleTextureNode::TextureCoordinatesTransformFlag
 type QSGSimpleTextureNode__TextureCoordinatesTransformFlag int64
 
 const (
-	QSGSimpleTextureNode__NoTransform        = QSGSimpleTextureNode__TextureCoordinatesTransformFlag(0x00)
-	QSGSimpleTextureNode__MirrorHorizontally = QSGSimpleTextureNode__TextureCoordinatesTransformFlag(0x01)
-	QSGSimpleTextureNode__MirrorVertically   = QSGSimpleTextureNode__TextureCoordinatesTransformFlag(0x02)
+	QSGSimpleTextureNode__NoTransform        QSGSimpleTextureNode__TextureCoordinatesTransformFlag = QSGSimpleTextureNode__TextureCoordinatesTransformFlag(0x00)
+	QSGSimpleTextureNode__MirrorHorizontally QSGSimpleTextureNode__TextureCoordinatesTransformFlag = QSGSimpleTextureNode__TextureCoordinatesTransformFlag(0x01)
+	QSGSimpleTextureNode__MirrorVertically   QSGSimpleTextureNode__TextureCoordinatesTransformFlag = QSGSimpleTextureNode__TextureCoordinatesTransformFlag(0x02)
 )
 
 type QSGSimpleTextureNode struct {
@@ -20059,21 +20080,23 @@ func (ptr *QSGSimpleTextureNode) PreprocessDefault() {
 	}
 }
 
+//go:generate stringer -type=QSGTexture__Filtering
 //QSGTexture::Filtering
 type QSGTexture__Filtering int64
 
 const (
-	QSGTexture__None    = QSGTexture__Filtering(0)
-	QSGTexture__Nearest = QSGTexture__Filtering(1)
-	QSGTexture__Linear  = QSGTexture__Filtering(2)
+	QSGTexture__None    QSGTexture__Filtering = QSGTexture__Filtering(0)
+	QSGTexture__Nearest QSGTexture__Filtering = QSGTexture__Filtering(1)
+	QSGTexture__Linear  QSGTexture__Filtering = QSGTexture__Filtering(2)
 )
 
+//go:generate stringer -type=QSGTexture__WrapMode
 //QSGTexture::WrapMode
 type QSGTexture__WrapMode int64
 
 const (
-	QSGTexture__Repeat      = QSGTexture__WrapMode(0)
-	QSGTexture__ClampToEdge = QSGTexture__WrapMode(1)
+	QSGTexture__Repeat      QSGTexture__WrapMode = QSGTexture__WrapMode(0)
+	QSGTexture__ClampToEdge QSGTexture__WrapMode = QSGTexture__WrapMode(1)
 )
 
 type QSGTexture struct {

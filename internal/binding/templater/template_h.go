@@ -12,7 +12,7 @@ func HTemplate(m string) []byte {
 	var bb = new(bytes.Buffer)
 	defer bb.Reset()
 
-	if m != parser.MOC {
+	if !parser.State.Moc {
 		m = "Qt" + m
 	}
 
@@ -28,8 +28,8 @@ func HTemplate(m string) []byte {
 		fmt.Fprint(bb, "#include <stdint.h>\n\n")
 
 		fmt.Fprint(bb, "#ifdef __cplusplus\n")
-		if m == parser.MOC {
-			for _, c := range getSortedClassNamesForModule(m) {
+		if parser.State.Moc {
+			for _, c := range sortedClassNamesForModule(m) {
 				fmt.Fprintf(bb, "class %v;\n", c)
 			}
 		}
@@ -41,7 +41,7 @@ func HTemplate(m string) []byte {
 
 	//body
 	{
-		for _, c := range getSortedClassesForModule(m) {
+		for _, c := range sortedClassesForModule(m) {
 			cTemplate(bb, c, cppEnumHeader, cppFunctionHeader, ";\n")
 		}
 	}

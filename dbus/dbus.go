@@ -22,14 +22,15 @@ func cGoUnpackString(s C.struct_QtDBus_PackedString) string {
 	return C.GoStringN(s.data, C.int(s.len))
 }
 
+//go:generate stringer -type=QDBus__CallMode
 //QDBus::CallMode
 type QDBus__CallMode int64
 
 const (
-	QDBus__NoBlock      = QDBus__CallMode(0)
-	QDBus__Block        = QDBus__CallMode(1)
-	QDBus__BlockWithGui = QDBus__CallMode(2)
-	QDBus__AutoDetect   = QDBus__CallMode(3)
+	QDBus__NoBlock      QDBus__CallMode = QDBus__CallMode(0)
+	QDBus__Block        QDBus__CallMode = QDBus__CallMode(1)
+	QDBus__BlockWithGui QDBus__CallMode = QDBus__CallMode(2)
+	QDBus__AutoDetect   QDBus__CallMode = QDBus__CallMode(3)
 )
 
 type QDBus struct {
@@ -978,17 +979,18 @@ func (ptr *QDBusAbstractInterface) MetaObjectDefault() *core.QMetaObject {
 	return nil
 }
 
+//go:generate stringer -type=QDBusArgument__ElementType
 //QDBusArgument::ElementType
 type QDBusArgument__ElementType int64
 
 const (
-	QDBusArgument__BasicType     = QDBusArgument__ElementType(0)
-	QDBusArgument__VariantType   = QDBusArgument__ElementType(1)
-	QDBusArgument__ArrayType     = QDBusArgument__ElementType(2)
-	QDBusArgument__StructureType = QDBusArgument__ElementType(3)
-	QDBusArgument__MapType       = QDBusArgument__ElementType(4)
-	QDBusArgument__MapEntryType  = QDBusArgument__ElementType(5)
-	QDBusArgument__UnknownType   = QDBusArgument__ElementType(-1)
+	QDBusArgument__BasicType     QDBusArgument__ElementType = QDBusArgument__ElementType(0)
+	QDBusArgument__VariantType   QDBusArgument__ElementType = QDBusArgument__ElementType(1)
+	QDBusArgument__ArrayType     QDBusArgument__ElementType = QDBusArgument__ElementType(2)
+	QDBusArgument__StructureType QDBusArgument__ElementType = QDBusArgument__ElementType(3)
+	QDBusArgument__MapType       QDBusArgument__ElementType = QDBusArgument__ElementType(4)
+	QDBusArgument__MapEntryType  QDBusArgument__ElementType = QDBusArgument__ElementType(5)
+	QDBusArgument__UnknownType   QDBusArgument__ElementType = QDBusArgument__ElementType(-1)
 )
 
 type QDBusArgument struct {
@@ -1178,51 +1180,55 @@ func (ptr *QDBusArgument) DestroyQDBusArgument() {
 	}
 }
 
+//go:generate stringer -type=QDBusConnection__BusType
 //QDBusConnection::BusType
 type QDBusConnection__BusType int64
 
 const (
-	QDBusConnection__SessionBus    = QDBusConnection__BusType(0)
-	QDBusConnection__SystemBus     = QDBusConnection__BusType(1)
-	QDBusConnection__ActivationBus = QDBusConnection__BusType(2)
+	QDBusConnection__SessionBus    QDBusConnection__BusType = QDBusConnection__BusType(0)
+	QDBusConnection__SystemBus     QDBusConnection__BusType = QDBusConnection__BusType(1)
+	QDBusConnection__ActivationBus QDBusConnection__BusType = QDBusConnection__BusType(2)
 )
 
+//go:generate stringer -type=QDBusConnection__ConnectionCapability
 //QDBusConnection::ConnectionCapability
 type QDBusConnection__ConnectionCapability int64
 
 const (
-	QDBusConnection__UnixFileDescriptorPassing = QDBusConnection__ConnectionCapability(0x0001)
+	QDBusConnection__UnixFileDescriptorPassing QDBusConnection__ConnectionCapability = QDBusConnection__ConnectionCapability(0x0001)
 )
 
+//go:generate stringer -type=QDBusConnection__RegisterOption
 //QDBusConnection::RegisterOption
 type QDBusConnection__RegisterOption int64
 
 const (
-	QDBusConnection__ExportAdaptors                = QDBusConnection__RegisterOption(0x01)
-	QDBusConnection__ExportScriptableSlots         = QDBusConnection__RegisterOption(0x10)
-	QDBusConnection__ExportScriptableSignals       = QDBusConnection__RegisterOption(0x20)
-	QDBusConnection__ExportScriptableProperties    = QDBusConnection__RegisterOption(0x40)
-	QDBusConnection__ExportScriptableInvokables    = QDBusConnection__RegisterOption(0x80)
-	QDBusConnection__ExportScriptableContents      = QDBusConnection__RegisterOption(0xf0)
-	QDBusConnection__ExportNonScriptableSlots      = QDBusConnection__RegisterOption(0x100)
-	QDBusConnection__ExportNonScriptableSignals    = QDBusConnection__RegisterOption(0x200)
-	QDBusConnection__ExportNonScriptableProperties = QDBusConnection__RegisterOption(0x400)
-	QDBusConnection__ExportNonScriptableInvokables = QDBusConnection__RegisterOption(0x800)
-	QDBusConnection__ExportNonScriptableContents   = QDBusConnection__RegisterOption(0xf00)
-	QDBusConnection__ExportAllSlots                = QDBusConnection__RegisterOption(QDBusConnection__ExportScriptableSlots | QDBusConnection__ExportNonScriptableSlots)
-	QDBusConnection__ExportAllSignals              = QDBusConnection__RegisterOption(QDBusConnection__ExportScriptableSignals | QDBusConnection__ExportNonScriptableSignals)
-	QDBusConnection__ExportAllProperties           = QDBusConnection__RegisterOption(QDBusConnection__ExportScriptableProperties | QDBusConnection__ExportNonScriptableProperties)
-	QDBusConnection__ExportAllInvokables           = QDBusConnection__RegisterOption(QDBusConnection__ExportScriptableInvokables | QDBusConnection__ExportNonScriptableInvokables)
-	QDBusConnection__ExportAllContents             = QDBusConnection__RegisterOption(QDBusConnection__ExportScriptableContents | QDBusConnection__ExportNonScriptableContents)
-	QDBusConnection__ExportChildObjects            = QDBusConnection__RegisterOption(0x1000)
+	QDBusConnection__ExportAdaptors                QDBusConnection__RegisterOption = QDBusConnection__RegisterOption(0x01)
+	QDBusConnection__ExportScriptableSlots         QDBusConnection__RegisterOption = QDBusConnection__RegisterOption(0x10)
+	QDBusConnection__ExportScriptableSignals       QDBusConnection__RegisterOption = QDBusConnection__RegisterOption(0x20)
+	QDBusConnection__ExportScriptableProperties    QDBusConnection__RegisterOption = QDBusConnection__RegisterOption(0x40)
+	QDBusConnection__ExportScriptableInvokables    QDBusConnection__RegisterOption = QDBusConnection__RegisterOption(0x80)
+	QDBusConnection__ExportScriptableContents      QDBusConnection__RegisterOption = QDBusConnection__RegisterOption(0xf0)
+	QDBusConnection__ExportNonScriptableSlots      QDBusConnection__RegisterOption = QDBusConnection__RegisterOption(0x100)
+	QDBusConnection__ExportNonScriptableSignals    QDBusConnection__RegisterOption = QDBusConnection__RegisterOption(0x200)
+	QDBusConnection__ExportNonScriptableProperties QDBusConnection__RegisterOption = QDBusConnection__RegisterOption(0x400)
+	QDBusConnection__ExportNonScriptableInvokables QDBusConnection__RegisterOption = QDBusConnection__RegisterOption(0x800)
+	QDBusConnection__ExportNonScriptableContents   QDBusConnection__RegisterOption = QDBusConnection__RegisterOption(0xf00)
+	QDBusConnection__ExportAllSlots                QDBusConnection__RegisterOption = QDBusConnection__RegisterOption(QDBusConnection__ExportScriptableSlots | QDBusConnection__ExportNonScriptableSlots)
+	QDBusConnection__ExportAllSignals              QDBusConnection__RegisterOption = QDBusConnection__RegisterOption(QDBusConnection__ExportScriptableSignals | QDBusConnection__ExportNonScriptableSignals)
+	QDBusConnection__ExportAllProperties           QDBusConnection__RegisterOption = QDBusConnection__RegisterOption(QDBusConnection__ExportScriptableProperties | QDBusConnection__ExportNonScriptableProperties)
+	QDBusConnection__ExportAllInvokables           QDBusConnection__RegisterOption = QDBusConnection__RegisterOption(QDBusConnection__ExportScriptableInvokables | QDBusConnection__ExportNonScriptableInvokables)
+	QDBusConnection__ExportAllContents             QDBusConnection__RegisterOption = QDBusConnection__RegisterOption(QDBusConnection__ExportScriptableContents | QDBusConnection__ExportNonScriptableContents)
+	QDBusConnection__ExportChildObjects            QDBusConnection__RegisterOption = QDBusConnection__RegisterOption(0x1000)
 )
 
+//go:generate stringer -type=QDBusConnection__UnregisterMode
 //QDBusConnection::UnregisterMode
 type QDBusConnection__UnregisterMode int64
 
 const (
-	QDBusConnection__UnregisterNode = QDBusConnection__UnregisterMode(0)
-	QDBusConnection__UnregisterTree = QDBusConnection__UnregisterMode(1)
+	QDBusConnection__UnregisterNode QDBusConnection__UnregisterMode = QDBusConnection__UnregisterMode(0)
+	QDBusConnection__UnregisterTree QDBusConnection__UnregisterMode = QDBusConnection__UnregisterMode(1)
 )
 
 type QDBusConnection struct {
@@ -1668,30 +1674,33 @@ func (ptr *QDBusConnection) DestroyQDBusConnection() {
 	}
 }
 
+//go:generate stringer -type=QDBusConnectionInterface__RegisterServiceReply
 //QDBusConnectionInterface::RegisterServiceReply
 type QDBusConnectionInterface__RegisterServiceReply int64
 
 const (
-	QDBusConnectionInterface__ServiceNotRegistered = QDBusConnectionInterface__RegisterServiceReply(0)
-	QDBusConnectionInterface__ServiceRegistered    = QDBusConnectionInterface__RegisterServiceReply(1)
-	QDBusConnectionInterface__ServiceQueued        = QDBusConnectionInterface__RegisterServiceReply(2)
+	QDBusConnectionInterface__ServiceNotRegistered QDBusConnectionInterface__RegisterServiceReply = QDBusConnectionInterface__RegisterServiceReply(0)
+	QDBusConnectionInterface__ServiceRegistered    QDBusConnectionInterface__RegisterServiceReply = QDBusConnectionInterface__RegisterServiceReply(1)
+	QDBusConnectionInterface__ServiceQueued        QDBusConnectionInterface__RegisterServiceReply = QDBusConnectionInterface__RegisterServiceReply(2)
 )
 
+//go:generate stringer -type=QDBusConnectionInterface__ServiceQueueOptions
 //QDBusConnectionInterface::ServiceQueueOptions
 type QDBusConnectionInterface__ServiceQueueOptions int64
 
 const (
-	QDBusConnectionInterface__DontQueueService       = QDBusConnectionInterface__ServiceQueueOptions(0)
-	QDBusConnectionInterface__QueueService           = QDBusConnectionInterface__ServiceQueueOptions(1)
-	QDBusConnectionInterface__ReplaceExistingService = QDBusConnectionInterface__ServiceQueueOptions(2)
+	QDBusConnectionInterface__DontQueueService       QDBusConnectionInterface__ServiceQueueOptions = QDBusConnectionInterface__ServiceQueueOptions(0)
+	QDBusConnectionInterface__QueueService           QDBusConnectionInterface__ServiceQueueOptions = QDBusConnectionInterface__ServiceQueueOptions(1)
+	QDBusConnectionInterface__ReplaceExistingService QDBusConnectionInterface__ServiceQueueOptions = QDBusConnectionInterface__ServiceQueueOptions(2)
 )
 
+//go:generate stringer -type=QDBusConnectionInterface__ServiceReplacementOptions
 //QDBusConnectionInterface::ServiceReplacementOptions
 type QDBusConnectionInterface__ServiceReplacementOptions int64
 
 const (
-	QDBusConnectionInterface__DontAllowReplacement = QDBusConnectionInterface__ServiceReplacementOptions(0)
-	QDBusConnectionInterface__AllowReplacement     = QDBusConnectionInterface__ServiceReplacementOptions(1)
+	QDBusConnectionInterface__DontAllowReplacement QDBusConnectionInterface__ServiceReplacementOptions = QDBusConnectionInterface__ServiceReplacementOptions(0)
+	QDBusConnectionInterface__AllowReplacement     QDBusConnectionInterface__ServiceReplacementOptions = QDBusConnectionInterface__ServiceReplacementOptions(1)
 )
 
 type QDBusConnectionInterface struct {
@@ -2267,38 +2276,39 @@ func (ptr *QDBusContext) DestroyQDBusContext() {
 	}
 }
 
+//go:generate stringer -type=QDBusError__ErrorType
 //QDBusError::ErrorType
 type QDBusError__ErrorType int64
 
 const (
-	QDBusError__NoError           = QDBusError__ErrorType(0)
-	QDBusError__Other             = QDBusError__ErrorType(1)
-	QDBusError__Failed            = QDBusError__ErrorType(2)
-	QDBusError__NoMemory          = QDBusError__ErrorType(3)
-	QDBusError__ServiceUnknown    = QDBusError__ErrorType(4)
-	QDBusError__NoReply           = QDBusError__ErrorType(5)
-	QDBusError__BadAddress        = QDBusError__ErrorType(6)
-	QDBusError__NotSupported      = QDBusError__ErrorType(7)
-	QDBusError__LimitsExceeded    = QDBusError__ErrorType(8)
-	QDBusError__AccessDenied      = QDBusError__ErrorType(9)
-	QDBusError__NoServer          = QDBusError__ErrorType(10)
-	QDBusError__Timeout           = QDBusError__ErrorType(11)
-	QDBusError__NoNetwork         = QDBusError__ErrorType(12)
-	QDBusError__AddressInUse      = QDBusError__ErrorType(13)
-	QDBusError__Disconnected      = QDBusError__ErrorType(14)
-	QDBusError__InvalidArgs       = QDBusError__ErrorType(15)
-	QDBusError__UnknownMethod     = QDBusError__ErrorType(16)
-	QDBusError__TimedOut          = QDBusError__ErrorType(17)
-	QDBusError__InvalidSignature  = QDBusError__ErrorType(18)
-	QDBusError__UnknownInterface  = QDBusError__ErrorType(19)
-	QDBusError__UnknownObject     = QDBusError__ErrorType(20)
-	QDBusError__UnknownProperty   = QDBusError__ErrorType(21)
-	QDBusError__PropertyReadOnly  = QDBusError__ErrorType(22)
-	QDBusError__InternalError     = QDBusError__ErrorType(23)
-	QDBusError__InvalidService    = QDBusError__ErrorType(24)
-	QDBusError__InvalidObjectPath = QDBusError__ErrorType(25)
-	QDBusError__InvalidInterface  = QDBusError__ErrorType(26)
-	QDBusError__InvalidMember     = QDBusError__ErrorType(27)
+	QDBusError__NoError           QDBusError__ErrorType = QDBusError__ErrorType(0)
+	QDBusError__Other             QDBusError__ErrorType = QDBusError__ErrorType(1)
+	QDBusError__Failed            QDBusError__ErrorType = QDBusError__ErrorType(2)
+	QDBusError__NoMemory          QDBusError__ErrorType = QDBusError__ErrorType(3)
+	QDBusError__ServiceUnknown    QDBusError__ErrorType = QDBusError__ErrorType(4)
+	QDBusError__NoReply           QDBusError__ErrorType = QDBusError__ErrorType(5)
+	QDBusError__BadAddress        QDBusError__ErrorType = QDBusError__ErrorType(6)
+	QDBusError__NotSupported      QDBusError__ErrorType = QDBusError__ErrorType(7)
+	QDBusError__LimitsExceeded    QDBusError__ErrorType = QDBusError__ErrorType(8)
+	QDBusError__AccessDenied      QDBusError__ErrorType = QDBusError__ErrorType(9)
+	QDBusError__NoServer          QDBusError__ErrorType = QDBusError__ErrorType(10)
+	QDBusError__Timeout           QDBusError__ErrorType = QDBusError__ErrorType(11)
+	QDBusError__NoNetwork         QDBusError__ErrorType = QDBusError__ErrorType(12)
+	QDBusError__AddressInUse      QDBusError__ErrorType = QDBusError__ErrorType(13)
+	QDBusError__Disconnected      QDBusError__ErrorType = QDBusError__ErrorType(14)
+	QDBusError__InvalidArgs       QDBusError__ErrorType = QDBusError__ErrorType(15)
+	QDBusError__UnknownMethod     QDBusError__ErrorType = QDBusError__ErrorType(16)
+	QDBusError__TimedOut          QDBusError__ErrorType = QDBusError__ErrorType(17)
+	QDBusError__InvalidSignature  QDBusError__ErrorType = QDBusError__ErrorType(18)
+	QDBusError__UnknownInterface  QDBusError__ErrorType = QDBusError__ErrorType(19)
+	QDBusError__UnknownObject     QDBusError__ErrorType = QDBusError__ErrorType(20)
+	QDBusError__UnknownProperty   QDBusError__ErrorType = QDBusError__ErrorType(21)
+	QDBusError__PropertyReadOnly  QDBusError__ErrorType = QDBusError__ErrorType(22)
+	QDBusError__InternalError     QDBusError__ErrorType = QDBusError__ErrorType(23)
+	QDBusError__InvalidService    QDBusError__ErrorType = QDBusError__ErrorType(24)
+	QDBusError__InvalidObjectPath QDBusError__ErrorType = QDBusError__ErrorType(25)
+	QDBusError__InvalidInterface  QDBusError__ErrorType = QDBusError__ErrorType(26)
+	QDBusError__InvalidMember     QDBusError__ErrorType = QDBusError__ErrorType(27)
 )
 
 type QDBusError struct {
@@ -2785,15 +2795,16 @@ func (ptr *QDBusInterface) MetaObjectDefault() *core.QMetaObject {
 	return nil
 }
 
+//go:generate stringer -type=QDBusMessage__MessageType
 //QDBusMessage::MessageType
 type QDBusMessage__MessageType int64
 
 const (
-	QDBusMessage__InvalidMessage    = QDBusMessage__MessageType(0)
-	QDBusMessage__MethodCallMessage = QDBusMessage__MessageType(1)
-	QDBusMessage__ReplyMessage      = QDBusMessage__MessageType(2)
-	QDBusMessage__ErrorMessage      = QDBusMessage__MessageType(3)
-	QDBusMessage__SignalMessage     = QDBusMessage__MessageType(4)
+	QDBusMessage__InvalidMessage    QDBusMessage__MessageType = QDBusMessage__MessageType(0)
+	QDBusMessage__MethodCallMessage QDBusMessage__MessageType = QDBusMessage__MessageType(1)
+	QDBusMessage__ReplyMessage      QDBusMessage__MessageType = QDBusMessage__MessageType(2)
+	QDBusMessage__ErrorMessage      QDBusMessage__MessageType = QDBusMessage__MessageType(3)
+	QDBusMessage__SignalMessage     QDBusMessage__MessageType = QDBusMessage__MessageType(4)
 )
 
 type QDBusMessage struct {
@@ -4332,13 +4343,14 @@ func (ptr *QDBusServer) MetaObjectDefault() *core.QMetaObject {
 	return nil
 }
 
+//go:generate stringer -type=QDBusServiceWatcher__WatchModeFlag
 //QDBusServiceWatcher::WatchModeFlag
 type QDBusServiceWatcher__WatchModeFlag int64
 
 const (
-	QDBusServiceWatcher__WatchForRegistration   = QDBusServiceWatcher__WatchModeFlag(0x01)
-	QDBusServiceWatcher__WatchForUnregistration = QDBusServiceWatcher__WatchModeFlag(0x02)
-	QDBusServiceWatcher__WatchForOwnerChange    = QDBusServiceWatcher__WatchModeFlag(0x03)
+	QDBusServiceWatcher__WatchForRegistration   QDBusServiceWatcher__WatchModeFlag = QDBusServiceWatcher__WatchModeFlag(0x01)
+	QDBusServiceWatcher__WatchForUnregistration QDBusServiceWatcher__WatchModeFlag = QDBusServiceWatcher__WatchModeFlag(0x02)
+	QDBusServiceWatcher__WatchForOwnerChange    QDBusServiceWatcher__WatchModeFlag = QDBusServiceWatcher__WatchModeFlag(0x03)
 )
 
 type QDBusServiceWatcher struct {
@@ -5091,12 +5103,13 @@ func (ptr *QDBusUnixFileDescriptor) DestroyQDBusUnixFileDescriptor() {
 	}
 }
 
+//go:generate stringer -type=QDBusUtil__AllowEmptyFlag
 //QDBusUtil::AllowEmptyFlag
 type QDBusUtil__AllowEmptyFlag int64
 
 const (
-	QDBusUtil__EmptyAllowed    = QDBusUtil__AllowEmptyFlag(0)
-	QDBusUtil__EmptyNotAllowed = QDBusUtil__AllowEmptyFlag(1)
+	QDBusUtil__EmptyAllowed    QDBusUtil__AllowEmptyFlag = QDBusUtil__AllowEmptyFlag(0)
+	QDBusUtil__EmptyNotAllowed QDBusUtil__AllowEmptyFlag = QDBusUtil__AllowEmptyFlag(1)
 )
 
 type QDBusUtil struct {

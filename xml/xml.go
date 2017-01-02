@@ -1396,13 +1396,14 @@ func (ptr *QDomEntityReference) NodeType() QDomNode__NodeType {
 	return 0
 }
 
+//go:generate stringer -type=QDomImplementation__InvalidDataPolicy
 //QDomImplementation::InvalidDataPolicy
 type QDomImplementation__InvalidDataPolicy int64
 
 const (
-	QDomImplementation__AcceptInvalidChars = QDomImplementation__InvalidDataPolicy(0)
-	QDomImplementation__DropInvalidChars   = QDomImplementation__InvalidDataPolicy(1)
-	QDomImplementation__ReturnNullNode     = QDomImplementation__InvalidDataPolicy(2)
+	QDomImplementation__AcceptInvalidChars QDomImplementation__InvalidDataPolicy = QDomImplementation__InvalidDataPolicy(0)
+	QDomImplementation__DropInvalidChars   QDomImplementation__InvalidDataPolicy = QDomImplementation__InvalidDataPolicy(1)
+	QDomImplementation__ReturnNullNode     QDomImplementation__InvalidDataPolicy = QDomImplementation__InvalidDataPolicy(2)
 )
 
 type QDomImplementation struct {
@@ -1691,32 +1692,34 @@ func (ptr *QDomNamedNodeMap) DestroyQDomNamedNodeMap() {
 	}
 }
 
+//go:generate stringer -type=QDomNode__EncodingPolicy
 //QDomNode::EncodingPolicy
 type QDomNode__EncodingPolicy int64
 
 const (
-	QDomNode__EncodingFromDocument   = QDomNode__EncodingPolicy(1)
-	QDomNode__EncodingFromTextStream = QDomNode__EncodingPolicy(2)
+	QDomNode__EncodingFromDocument   QDomNode__EncodingPolicy = QDomNode__EncodingPolicy(1)
+	QDomNode__EncodingFromTextStream QDomNode__EncodingPolicy = QDomNode__EncodingPolicy(2)
 )
 
+//go:generate stringer -type=QDomNode__NodeType
 //QDomNode::NodeType
 type QDomNode__NodeType int64
 
 const (
-	QDomNode__ElementNode               = QDomNode__NodeType(1)
-	QDomNode__AttributeNode             = QDomNode__NodeType(2)
-	QDomNode__TextNode                  = QDomNode__NodeType(3)
-	QDomNode__CDATASectionNode          = QDomNode__NodeType(4)
-	QDomNode__EntityReferenceNode       = QDomNode__NodeType(5)
-	QDomNode__EntityNode                = QDomNode__NodeType(6)
-	QDomNode__ProcessingInstructionNode = QDomNode__NodeType(7)
-	QDomNode__CommentNode               = QDomNode__NodeType(8)
-	QDomNode__DocumentNode              = QDomNode__NodeType(9)
-	QDomNode__DocumentTypeNode          = QDomNode__NodeType(10)
-	QDomNode__DocumentFragmentNode      = QDomNode__NodeType(11)
-	QDomNode__NotationNode              = QDomNode__NodeType(12)
-	QDomNode__BaseNode                  = QDomNode__NodeType(21)
-	QDomNode__CharacterDataNode         = QDomNode__NodeType(22)
+	QDomNode__ElementNode               QDomNode__NodeType = QDomNode__NodeType(1)
+	QDomNode__AttributeNode             QDomNode__NodeType = QDomNode__NodeType(2)
+	QDomNode__TextNode                  QDomNode__NodeType = QDomNode__NodeType(3)
+	QDomNode__CDATASectionNode          QDomNode__NodeType = QDomNode__NodeType(4)
+	QDomNode__EntityReferenceNode       QDomNode__NodeType = QDomNode__NodeType(5)
+	QDomNode__EntityNode                QDomNode__NodeType = QDomNode__NodeType(6)
+	QDomNode__ProcessingInstructionNode QDomNode__NodeType = QDomNode__NodeType(7)
+	QDomNode__CommentNode               QDomNode__NodeType = QDomNode__NodeType(8)
+	QDomNode__DocumentNode              QDomNode__NodeType = QDomNode__NodeType(9)
+	QDomNode__DocumentTypeNode          QDomNode__NodeType = QDomNode__NodeType(10)
+	QDomNode__DocumentFragmentNode      QDomNode__NodeType = QDomNode__NodeType(11)
+	QDomNode__NotationNode              QDomNode__NodeType = QDomNode__NodeType(12)
+	QDomNode__BaseNode                  QDomNode__NodeType = QDomNode__NodeType(21)
+	QDomNode__CharacterDataNode         QDomNode__NodeType = QDomNode__NodeType(22)
 )
 
 type QDomNode struct {

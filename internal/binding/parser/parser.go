@@ -10,20 +10,15 @@ import (
 	"github.com/therecipe/qt/internal/utils"
 )
 
-type State struct {
+var State = &struct {
 	ClassMap map[string]*Class
-	EnumMap  map[string]struct{}
 
 	Moc     bool
 	Minimal bool
 
-	MocModule     string
-	CurrentModule string
-}
-
-var CurrentState = &State{
+	Module string
+}{
 	ClassMap: make(map[string]*Class),
-	EnumMap:  make(map[string]struct{}),
 }
 
 func LoadModules() {

@@ -16,7 +16,8 @@ import (
 
 	"github.com/therecipe/qt/internal/binding/parser"
 	"github.com/therecipe/qt/internal/binding/templater"
-	mocpkg "github.com/therecipe/qt/internal/cmd/moc"
+	"github.com/therecipe/qt/internal/cmd/minimal"
+	"github.com/therecipe/qt/internal/cmd/moc"
 	"github.com/therecipe/qt/internal/utils"
 )
 
@@ -39,8 +40,8 @@ func main() {
 				deployDocker()
 			} else {
 				qrc()
-				moc()
-				minimal()
+				mocCmd()
+				minimalCmd()
 
 				build()
 
@@ -196,16 +197,19 @@ func args() {
 	}
 }
 
-func moc() {
-	mocpkg.MocTree(appPath)
-}
-
 func qrc() {
 	utils.RunCmd(exec.Command(filepath.Join(utils.MustGoBin(), "qtrcc"), appPath), fmt.Sprintf("execute qtrcc for %v on %v", buildTarget, runtime.GOOS))
 }
 
-func minimal() {
-	utils.RunCmd(exec.Command(filepath.Join(utils.MustGoBin(), "qtminimal"), buildTarget, appPath), fmt.Sprintf("execute qtminimal for %v on %v", buildTarget, runtime.GOOS))
+func mocCmd() {
+	moc.MocTree(appPath)
+
+	parser.State.Moc = false
+	parser.State.Module = ""
+}
+
+func minimalCmd() {
+	minimal.Minimal(appPath, buildTarget)
 }
 
 func build() {
@@ -1006,7 +1010,7 @@ func cleanup() error {
 	utils.RemoveAll(filepath.Join(appPath, "rrc.cpp"))
 	utils.RemoveAll(filepath.Join(appPath, "cgo_main_wrapper.go"))
 
-	return mocpkg.CleanPath(appPath)
+	return moc.CleanPath(appPath)
 }
 
 func deployDocker() {

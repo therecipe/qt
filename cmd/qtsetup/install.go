@@ -10,7 +10,6 @@ import (
 	"strings"
 
 	"github.com/therecipe/qt/internal/binding/parser"
-	"github.com/therecipe/qt/internal/binding/templater"
 	"github.com/therecipe/qt/internal/utils"
 )
 
@@ -67,7 +66,7 @@ func install(buildTarget string) {
 	}())
 
 	for _, module := range parser.GetLibs() {
-		if templater.ShouldBuild(module) {
+		if parser.ShouldBuild(module) {
 
 			if !(buildTarget == "android" && (module == "DBus" || module == "WebEngine" || module == "Designer" || (strings.HasSuffix(module, "Extras") && module != "AndroidExtras"))) &&
 				!(strings.HasPrefix(buildTarget, "ios") && (module == "SerialPort" || module == "SerialBus" || module == "WebEngine" || module == "PrintSupport" || module == "Designer" || strings.HasSuffix(module, "Extras"))) && //TODO: support for PrintSupport

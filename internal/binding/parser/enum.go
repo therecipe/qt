@@ -18,7 +18,7 @@ type Value struct {
 }
 
 func (e *Enum) Class() (*Class, bool) {
-	var class, exists = CurrentState.ClassMap[e.ClassName()]
+	var class, exists = State.ClassMap[e.ClassName()]
 	return class, exists
 }
 
@@ -28,10 +28,8 @@ func (e *Enum) ClassName() string {
 
 func (e *Enum) register(m string) {
 
-	CurrentState.EnumMap[e.ClassName()] = struct{}{}
-
 	if c, exists := e.Class(); !exists {
-		CurrentState.ClassMap[e.ClassName()] = &Class{
+		State.ClassMap[e.ClassName()] = &Class{
 			Name:   e.ClassName(),
 			Status: "commendable",
 			Module: m,

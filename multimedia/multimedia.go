@@ -243,27 +243,29 @@ func (ptr *QAbstractPlanarVideoBuffer) Unmap() {
 	}
 }
 
+//go:generate stringer -type=QAbstractVideoBuffer__HandleType
 //QAbstractVideoBuffer::HandleType
 type QAbstractVideoBuffer__HandleType int64
 
 const (
-	QAbstractVideoBuffer__NoHandle         = QAbstractVideoBuffer__HandleType(0)
-	QAbstractVideoBuffer__GLTextureHandle  = QAbstractVideoBuffer__HandleType(1)
-	QAbstractVideoBuffer__XvShmImageHandle = QAbstractVideoBuffer__HandleType(2)
-	QAbstractVideoBuffer__CoreImageHandle  = QAbstractVideoBuffer__HandleType(3)
-	QAbstractVideoBuffer__QPixmapHandle    = QAbstractVideoBuffer__HandleType(4)
-	QAbstractVideoBuffer__EGLImageHandle   = QAbstractVideoBuffer__HandleType(5)
-	QAbstractVideoBuffer__UserHandle       = QAbstractVideoBuffer__HandleType(1000)
+	QAbstractVideoBuffer__NoHandle         QAbstractVideoBuffer__HandleType = QAbstractVideoBuffer__HandleType(0)
+	QAbstractVideoBuffer__GLTextureHandle  QAbstractVideoBuffer__HandleType = QAbstractVideoBuffer__HandleType(1)
+	QAbstractVideoBuffer__XvShmImageHandle QAbstractVideoBuffer__HandleType = QAbstractVideoBuffer__HandleType(2)
+	QAbstractVideoBuffer__CoreImageHandle  QAbstractVideoBuffer__HandleType = QAbstractVideoBuffer__HandleType(3)
+	QAbstractVideoBuffer__QPixmapHandle    QAbstractVideoBuffer__HandleType = QAbstractVideoBuffer__HandleType(4)
+	QAbstractVideoBuffer__EGLImageHandle   QAbstractVideoBuffer__HandleType = QAbstractVideoBuffer__HandleType(5)
+	QAbstractVideoBuffer__UserHandle       QAbstractVideoBuffer__HandleType = QAbstractVideoBuffer__HandleType(1000)
 )
 
+//go:generate stringer -type=QAbstractVideoBuffer__MapMode
 //QAbstractVideoBuffer::MapMode
 type QAbstractVideoBuffer__MapMode int64
 
 const (
-	QAbstractVideoBuffer__NotMapped = QAbstractVideoBuffer__MapMode(0x00)
-	QAbstractVideoBuffer__ReadOnly  = QAbstractVideoBuffer__MapMode(0x01)
-	QAbstractVideoBuffer__WriteOnly = QAbstractVideoBuffer__MapMode(0x02)
-	QAbstractVideoBuffer__ReadWrite = QAbstractVideoBuffer__MapMode(QAbstractVideoBuffer__ReadOnly | QAbstractVideoBuffer__WriteOnly)
+	QAbstractVideoBuffer__NotMapped QAbstractVideoBuffer__MapMode = QAbstractVideoBuffer__MapMode(0x00)
+	QAbstractVideoBuffer__ReadOnly  QAbstractVideoBuffer__MapMode = QAbstractVideoBuffer__MapMode(0x01)
+	QAbstractVideoBuffer__WriteOnly QAbstractVideoBuffer__MapMode = QAbstractVideoBuffer__MapMode(0x02)
+	QAbstractVideoBuffer__ReadWrite QAbstractVideoBuffer__MapMode = QAbstractVideoBuffer__MapMode(QAbstractVideoBuffer__ReadOnly | QAbstractVideoBuffer__WriteOnly)
 )
 
 type QAbstractVideoBuffer struct {
@@ -995,15 +997,16 @@ func (ptr *QAbstractVideoFilter) MetaObjectDefault() *core.QMetaObject {
 	return nil
 }
 
+//go:generate stringer -type=QAbstractVideoSurface__Error
 //QAbstractVideoSurface::Error
 type QAbstractVideoSurface__Error int64
 
 const (
-	QAbstractVideoSurface__NoError                = QAbstractVideoSurface__Error(0)
-	QAbstractVideoSurface__UnsupportedFormatError = QAbstractVideoSurface__Error(1)
-	QAbstractVideoSurface__IncorrectFormatError   = QAbstractVideoSurface__Error(2)
-	QAbstractVideoSurface__StoppedError           = QAbstractVideoSurface__Error(3)
-	QAbstractVideoSurface__ResourceError          = QAbstractVideoSurface__Error(4)
+	QAbstractVideoSurface__NoError                QAbstractVideoSurface__Error = QAbstractVideoSurface__Error(0)
+	QAbstractVideoSurface__UnsupportedFormatError QAbstractVideoSurface__Error = QAbstractVideoSurface__Error(1)
+	QAbstractVideoSurface__IncorrectFormatError   QAbstractVideoSurface__Error = QAbstractVideoSurface__Error(2)
+	QAbstractVideoSurface__StoppedError           QAbstractVideoSurface__Error = QAbstractVideoSurface__Error(3)
+	QAbstractVideoSurface__ResourceError          QAbstractVideoSurface__Error = QAbstractVideoSurface__Error(4)
 )
 
 type QAbstractVideoSurface struct {
@@ -1730,49 +1733,53 @@ func (ptr *QAbstractVideoSurface) MetaObjectDefault() *core.QMetaObject {
 	return nil
 }
 
+//go:generate stringer -type=QAudio__Error
 //QAudio::Error
 type QAudio__Error int64
 
 const (
-	QAudio__NoError       = QAudio__Error(0)
-	QAudio__OpenError     = QAudio__Error(1)
-	QAudio__IOError       = QAudio__Error(2)
-	QAudio__UnderrunError = QAudio__Error(3)
-	QAudio__FatalError    = QAudio__Error(4)
+	QAudio__NoError       QAudio__Error = QAudio__Error(0)
+	QAudio__OpenError     QAudio__Error = QAudio__Error(1)
+	QAudio__IOError       QAudio__Error = QAudio__Error(2)
+	QAudio__UnderrunError QAudio__Error = QAudio__Error(3)
+	QAudio__FatalError    QAudio__Error = QAudio__Error(4)
 )
 
+//go:generate stringer -type=QAudio__Mode
 //QAudio::Mode
 type QAudio__Mode int64
 
 const (
-	QAudio__AudioInput  = QAudio__Mode(0)
-	QAudio__AudioOutput = QAudio__Mode(1)
+	QAudio__AudioInput  QAudio__Mode = QAudio__Mode(0)
+	QAudio__AudioOutput QAudio__Mode = QAudio__Mode(1)
 )
 
+//go:generate stringer -type=QAudio__Role
 //QAudio::Role
 type QAudio__Role int64
 
 const (
-	QAudio__UnknownRole            = QAudio__Role(0)
-	QAudio__MusicRole              = QAudio__Role(1)
-	QAudio__VideoRole              = QAudio__Role(2)
-	QAudio__VoiceCommunicationRole = QAudio__Role(3)
-	QAudio__AlarmRole              = QAudio__Role(4)
-	QAudio__NotificationRole       = QAudio__Role(5)
-	QAudio__RingtoneRole           = QAudio__Role(6)
-	QAudio__AccessibilityRole      = QAudio__Role(7)
-	QAudio__SonificationRole       = QAudio__Role(8)
-	QAudio__GameRole               = QAudio__Role(9)
+	QAudio__UnknownRole            QAudio__Role = QAudio__Role(0)
+	QAudio__MusicRole              QAudio__Role = QAudio__Role(1)
+	QAudio__VideoRole              QAudio__Role = QAudio__Role(2)
+	QAudio__VoiceCommunicationRole QAudio__Role = QAudio__Role(3)
+	QAudio__AlarmRole              QAudio__Role = QAudio__Role(4)
+	QAudio__NotificationRole       QAudio__Role = QAudio__Role(5)
+	QAudio__RingtoneRole           QAudio__Role = QAudio__Role(6)
+	QAudio__AccessibilityRole      QAudio__Role = QAudio__Role(7)
+	QAudio__SonificationRole       QAudio__Role = QAudio__Role(8)
+	QAudio__GameRole               QAudio__Role = QAudio__Role(9)
 )
 
+//go:generate stringer -type=QAudio__State
 //QAudio::State
 type QAudio__State int64
 
 const (
-	QAudio__ActiveState    = QAudio__State(0)
-	QAudio__SuspendedState = QAudio__State(1)
-	QAudio__StoppedState   = QAudio__State(2)
-	QAudio__IdleState      = QAudio__State(3)
+	QAudio__ActiveState    QAudio__State = QAudio__State(0)
+	QAudio__SuspendedState QAudio__State = QAudio__State(1)
+	QAudio__StoppedState   QAudio__State = QAudio__State(2)
+	QAudio__IdleState      QAudio__State = QAudio__State(3)
 )
 
 type QAudio struct {
@@ -1979,23 +1986,25 @@ func (ptr *QAudioBuffer) DestroyQAudioBuffer() {
 	}
 }
 
+//go:generate stringer -type=QAudioDecoder__Error
 //QAudioDecoder::Error
 type QAudioDecoder__Error int64
 
 const (
-	QAudioDecoder__NoError             = QAudioDecoder__Error(0)
-	QAudioDecoder__ResourceError       = QAudioDecoder__Error(1)
-	QAudioDecoder__FormatError         = QAudioDecoder__Error(2)
-	QAudioDecoder__AccessDeniedError   = QAudioDecoder__Error(3)
-	QAudioDecoder__ServiceMissingError = QAudioDecoder__Error(4)
+	QAudioDecoder__NoError             QAudioDecoder__Error = QAudioDecoder__Error(0)
+	QAudioDecoder__ResourceError       QAudioDecoder__Error = QAudioDecoder__Error(1)
+	QAudioDecoder__FormatError         QAudioDecoder__Error = QAudioDecoder__Error(2)
+	QAudioDecoder__AccessDeniedError   QAudioDecoder__Error = QAudioDecoder__Error(3)
+	QAudioDecoder__ServiceMissingError QAudioDecoder__Error = QAudioDecoder__Error(4)
 )
 
+//go:generate stringer -type=QAudioDecoder__State
 //QAudioDecoder::State
 type QAudioDecoder__State int64
 
 const (
-	QAudioDecoder__StoppedState  = QAudioDecoder__State(0)
-	QAudioDecoder__DecodingState = QAudioDecoder__State(1)
+	QAudioDecoder__StoppedState  QAudioDecoder__State = QAudioDecoder__State(0)
+	QAudioDecoder__DecodingState QAudioDecoder__State = QAudioDecoder__State(1)
 )
 
 type QAudioDecoder struct {
@@ -4920,22 +4929,24 @@ func (ptr *QAudioEncoderSettingsControl) MetaObjectDefault() *core.QMetaObject {
 	return nil
 }
 
+//go:generate stringer -type=QAudioFormat__Endian
 //QAudioFormat::Endian
 type QAudioFormat__Endian int64
 
 const (
-	QAudioFormat__BigEndian    = QAudioFormat__Endian(core.QSysInfo__BigEndian)
-	QAudioFormat__LittleEndian = QAudioFormat__Endian(core.QSysInfo__LittleEndian)
+	QAudioFormat__BigEndian    QAudioFormat__Endian = QAudioFormat__Endian(core.QSysInfo__BigEndian)
+	QAudioFormat__LittleEndian QAudioFormat__Endian = QAudioFormat__Endian(core.QSysInfo__LittleEndian)
 )
 
+//go:generate stringer -type=QAudioFormat__SampleType
 //QAudioFormat::SampleType
 type QAudioFormat__SampleType int64
 
 const (
-	QAudioFormat__Unknown     = QAudioFormat__SampleType(0)
-	QAudioFormat__SignedInt   = QAudioFormat__SampleType(1)
-	QAudioFormat__UnSignedInt = QAudioFormat__SampleType(2)
-	QAudioFormat__Float       = QAudioFormat__SampleType(3)
+	QAudioFormat__Unknown     QAudioFormat__SampleType = QAudioFormat__SampleType(0)
+	QAudioFormat__SignedInt   QAudioFormat__SampleType = QAudioFormat__SampleType(1)
+	QAudioFormat__UnSignedInt QAudioFormat__SampleType = QAudioFormat__SampleType(2)
+	QAudioFormat__Float       QAudioFormat__SampleType = QAudioFormat__SampleType(3)
 )
 
 type QAudioFormat struct {
@@ -9196,87 +9207,95 @@ func (ptr *QAudioRoleControl) MetaObjectDefault() *core.QMetaObject {
 	return nil
 }
 
+//go:generate stringer -type=QCamera__CaptureMode
 //QCamera::CaptureMode
 type QCamera__CaptureMode int64
 
 const (
-	QCamera__CaptureViewfinder = QCamera__CaptureMode(0)
-	QCamera__CaptureStillImage = QCamera__CaptureMode(0x01)
-	QCamera__CaptureVideo      = QCamera__CaptureMode(0x02)
+	QCamera__CaptureViewfinder QCamera__CaptureMode = QCamera__CaptureMode(0)
+	QCamera__CaptureStillImage QCamera__CaptureMode = QCamera__CaptureMode(0x01)
+	QCamera__CaptureVideo      QCamera__CaptureMode = QCamera__CaptureMode(0x02)
 )
 
+//go:generate stringer -type=QCamera__Error
 //QCamera::Error
 type QCamera__Error int64
 
 const (
-	QCamera__NoError                  = QCamera__Error(0)
-	QCamera__CameraError              = QCamera__Error(1)
-	QCamera__InvalidRequestError      = QCamera__Error(2)
-	QCamera__ServiceMissingError      = QCamera__Error(3)
-	QCamera__NotSupportedFeatureError = QCamera__Error(4)
+	QCamera__NoError                  QCamera__Error = QCamera__Error(0)
+	QCamera__CameraError              QCamera__Error = QCamera__Error(1)
+	QCamera__InvalidRequestError      QCamera__Error = QCamera__Error(2)
+	QCamera__ServiceMissingError      QCamera__Error = QCamera__Error(3)
+	QCamera__NotSupportedFeatureError QCamera__Error = QCamera__Error(4)
 )
 
+//go:generate stringer -type=QCamera__LockChangeReason
 //QCamera::LockChangeReason
 type QCamera__LockChangeReason int64
 
 const (
-	QCamera__UserRequest       = QCamera__LockChangeReason(0)
-	QCamera__LockAcquired      = QCamera__LockChangeReason(1)
-	QCamera__LockFailed        = QCamera__LockChangeReason(2)
-	QCamera__LockLost          = QCamera__LockChangeReason(3)
-	QCamera__LockTemporaryLost = QCamera__LockChangeReason(4)
+	QCamera__UserRequest       QCamera__LockChangeReason = QCamera__LockChangeReason(0)
+	QCamera__LockAcquired      QCamera__LockChangeReason = QCamera__LockChangeReason(1)
+	QCamera__LockFailed        QCamera__LockChangeReason = QCamera__LockChangeReason(2)
+	QCamera__LockLost          QCamera__LockChangeReason = QCamera__LockChangeReason(3)
+	QCamera__LockTemporaryLost QCamera__LockChangeReason = QCamera__LockChangeReason(4)
 )
 
+//go:generate stringer -type=QCamera__LockStatus
 //QCamera::LockStatus
 type QCamera__LockStatus int64
 
 const (
-	QCamera__Unlocked  = QCamera__LockStatus(0)
-	QCamera__Searching = QCamera__LockStatus(1)
-	QCamera__Locked    = QCamera__LockStatus(2)
+	QCamera__Unlocked  QCamera__LockStatus = QCamera__LockStatus(0)
+	QCamera__Searching QCamera__LockStatus = QCamera__LockStatus(1)
+	QCamera__Locked    QCamera__LockStatus = QCamera__LockStatus(2)
 )
 
+//go:generate stringer -type=QCamera__LockType
 //QCamera::LockType
 type QCamera__LockType int64
 
 const (
-	QCamera__NoLock           = QCamera__LockType(0)
-	QCamera__LockExposure     = QCamera__LockType(0x01)
-	QCamera__LockWhiteBalance = QCamera__LockType(0x02)
-	QCamera__LockFocus        = QCamera__LockType(0x04)
+	QCamera__NoLock           QCamera__LockType = QCamera__LockType(0)
+	QCamera__LockExposure     QCamera__LockType = QCamera__LockType(0x01)
+	QCamera__LockWhiteBalance QCamera__LockType = QCamera__LockType(0x02)
+	QCamera__LockFocus        QCamera__LockType = QCamera__LockType(0x04)
 )
 
+//go:generate stringer -type=QCamera__Position
 //QCamera::Position
 type QCamera__Position int64
 
 const (
-	QCamera__UnspecifiedPosition = QCamera__Position(0)
-	QCamera__BackFace            = QCamera__Position(1)
-	QCamera__FrontFace           = QCamera__Position(2)
+	QCamera__UnspecifiedPosition QCamera__Position = QCamera__Position(0)
+	QCamera__BackFace            QCamera__Position = QCamera__Position(1)
+	QCamera__FrontFace           QCamera__Position = QCamera__Position(2)
 )
 
+//go:generate stringer -type=QCamera__State
 //QCamera::State
 type QCamera__State int64
 
 const (
-	QCamera__UnloadedState = QCamera__State(0)
-	QCamera__LoadedState   = QCamera__State(1)
-	QCamera__ActiveState   = QCamera__State(2)
+	QCamera__UnloadedState QCamera__State = QCamera__State(0)
+	QCamera__LoadedState   QCamera__State = QCamera__State(1)
+	QCamera__ActiveState   QCamera__State = QCamera__State(2)
 )
 
+//go:generate stringer -type=QCamera__Status
 //QCamera::Status
 type QCamera__Status int64
 
 const (
-	QCamera__UnavailableStatus = QCamera__Status(0)
-	QCamera__UnloadedStatus    = QCamera__Status(1)
-	QCamera__LoadingStatus     = QCamera__Status(2)
-	QCamera__UnloadingStatus   = QCamera__Status(3)
-	QCamera__LoadedStatus      = QCamera__Status(4)
-	QCamera__StandbyStatus     = QCamera__Status(5)
-	QCamera__StartingStatus    = QCamera__Status(6)
-	QCamera__StoppingStatus    = QCamera__Status(7)
-	QCamera__ActiveStatus      = QCamera__Status(8)
+	QCamera__UnavailableStatus QCamera__Status = QCamera__Status(0)
+	QCamera__UnloadedStatus    QCamera__Status = QCamera__Status(1)
+	QCamera__LoadingStatus     QCamera__Status = QCamera__Status(2)
+	QCamera__UnloadingStatus   QCamera__Status = QCamera__Status(3)
+	QCamera__LoadedStatus      QCamera__Status = QCamera__Status(4)
+	QCamera__StandbyStatus     QCamera__Status = QCamera__Status(5)
+	QCamera__StartingStatus    QCamera__Status = QCamera__Status(6)
+	QCamera__StoppingStatus    QCamera__Status = QCamera__Status(7)
+	QCamera__ActiveStatus      QCamera__Status = QCamera__Status(8)
 )
 
 type QCamera struct {
@@ -11535,15 +11554,16 @@ func (ptr *QCameraCaptureDestinationControl) MetaObjectDefault() *core.QMetaObje
 	return nil
 }
 
+//go:generate stringer -type=QCameraControl__PropertyChangeType
 //QCameraControl::PropertyChangeType
 type QCameraControl__PropertyChangeType int64
 
 const (
-	QCameraControl__CaptureMode           = QCameraControl__PropertyChangeType(1)
-	QCameraControl__ImageEncodingSettings = QCameraControl__PropertyChangeType(2)
-	QCameraControl__VideoEncodingSettings = QCameraControl__PropertyChangeType(3)
-	QCameraControl__Viewfinder            = QCameraControl__PropertyChangeType(4)
-	QCameraControl__ViewfinderSettings    = QCameraControl__PropertyChangeType(5)
+	QCameraControl__CaptureMode           QCameraControl__PropertyChangeType = QCameraControl__PropertyChangeType(1)
+	QCameraControl__ImageEncodingSettings QCameraControl__PropertyChangeType = QCameraControl__PropertyChangeType(2)
+	QCameraControl__VideoEncodingSettings QCameraControl__PropertyChangeType = QCameraControl__PropertyChangeType(3)
+	QCameraControl__Viewfinder            QCameraControl__PropertyChangeType = QCameraControl__PropertyChangeType(4)
+	QCameraControl__ViewfinderSettings    QCameraControl__PropertyChangeType = QCameraControl__PropertyChangeType(5)
 )
 
 type QCameraControl struct {
@@ -12264,57 +12284,60 @@ func (ptr *QCameraControl) MetaObjectDefault() *core.QMetaObject {
 	return nil
 }
 
+//go:generate stringer -type=QCameraExposure__ExposureMode
 //QCameraExposure::ExposureMode
 type QCameraExposure__ExposureMode int64
 
 const (
-	QCameraExposure__ExposureAuto          = QCameraExposure__ExposureMode(0)
-	QCameraExposure__ExposureManual        = QCameraExposure__ExposureMode(1)
-	QCameraExposure__ExposurePortrait      = QCameraExposure__ExposureMode(2)
-	QCameraExposure__ExposureNight         = QCameraExposure__ExposureMode(3)
-	QCameraExposure__ExposureBacklight     = QCameraExposure__ExposureMode(4)
-	QCameraExposure__ExposureSpotlight     = QCameraExposure__ExposureMode(5)
-	QCameraExposure__ExposureSports        = QCameraExposure__ExposureMode(6)
-	QCameraExposure__ExposureSnow          = QCameraExposure__ExposureMode(7)
-	QCameraExposure__ExposureBeach         = QCameraExposure__ExposureMode(8)
-	QCameraExposure__ExposureLargeAperture = QCameraExposure__ExposureMode(9)
-	QCameraExposure__ExposureSmallAperture = QCameraExposure__ExposureMode(10)
-	QCameraExposure__ExposureAction        = QCameraExposure__ExposureMode(11)
-	QCameraExposure__ExposureLandscape     = QCameraExposure__ExposureMode(12)
-	QCameraExposure__ExposureNightPortrait = QCameraExposure__ExposureMode(13)
-	QCameraExposure__ExposureTheatre       = QCameraExposure__ExposureMode(14)
-	QCameraExposure__ExposureSunset        = QCameraExposure__ExposureMode(15)
-	QCameraExposure__ExposureSteadyPhoto   = QCameraExposure__ExposureMode(16)
-	QCameraExposure__ExposureFireworks     = QCameraExposure__ExposureMode(17)
-	QCameraExposure__ExposureParty         = QCameraExposure__ExposureMode(18)
-	QCameraExposure__ExposureCandlelight   = QCameraExposure__ExposureMode(19)
-	QCameraExposure__ExposureBarcode       = QCameraExposure__ExposureMode(20)
-	QCameraExposure__ExposureModeVendor    = QCameraExposure__ExposureMode(1000)
+	QCameraExposure__ExposureAuto          QCameraExposure__ExposureMode = QCameraExposure__ExposureMode(0)
+	QCameraExposure__ExposureManual        QCameraExposure__ExposureMode = QCameraExposure__ExposureMode(1)
+	QCameraExposure__ExposurePortrait      QCameraExposure__ExposureMode = QCameraExposure__ExposureMode(2)
+	QCameraExposure__ExposureNight         QCameraExposure__ExposureMode = QCameraExposure__ExposureMode(3)
+	QCameraExposure__ExposureBacklight     QCameraExposure__ExposureMode = QCameraExposure__ExposureMode(4)
+	QCameraExposure__ExposureSpotlight     QCameraExposure__ExposureMode = QCameraExposure__ExposureMode(5)
+	QCameraExposure__ExposureSports        QCameraExposure__ExposureMode = QCameraExposure__ExposureMode(6)
+	QCameraExposure__ExposureSnow          QCameraExposure__ExposureMode = QCameraExposure__ExposureMode(7)
+	QCameraExposure__ExposureBeach         QCameraExposure__ExposureMode = QCameraExposure__ExposureMode(8)
+	QCameraExposure__ExposureLargeAperture QCameraExposure__ExposureMode = QCameraExposure__ExposureMode(9)
+	QCameraExposure__ExposureSmallAperture QCameraExposure__ExposureMode = QCameraExposure__ExposureMode(10)
+	QCameraExposure__ExposureAction        QCameraExposure__ExposureMode = QCameraExposure__ExposureMode(11)
+	QCameraExposure__ExposureLandscape     QCameraExposure__ExposureMode = QCameraExposure__ExposureMode(12)
+	QCameraExposure__ExposureNightPortrait QCameraExposure__ExposureMode = QCameraExposure__ExposureMode(13)
+	QCameraExposure__ExposureTheatre       QCameraExposure__ExposureMode = QCameraExposure__ExposureMode(14)
+	QCameraExposure__ExposureSunset        QCameraExposure__ExposureMode = QCameraExposure__ExposureMode(15)
+	QCameraExposure__ExposureSteadyPhoto   QCameraExposure__ExposureMode = QCameraExposure__ExposureMode(16)
+	QCameraExposure__ExposureFireworks     QCameraExposure__ExposureMode = QCameraExposure__ExposureMode(17)
+	QCameraExposure__ExposureParty         QCameraExposure__ExposureMode = QCameraExposure__ExposureMode(18)
+	QCameraExposure__ExposureCandlelight   QCameraExposure__ExposureMode = QCameraExposure__ExposureMode(19)
+	QCameraExposure__ExposureBarcode       QCameraExposure__ExposureMode = QCameraExposure__ExposureMode(20)
+	QCameraExposure__ExposureModeVendor    QCameraExposure__ExposureMode = QCameraExposure__ExposureMode(1000)
 )
 
+//go:generate stringer -type=QCameraExposure__FlashMode
 //QCameraExposure::FlashMode
 type QCameraExposure__FlashMode int64
 
 const (
-	QCameraExposure__FlashAuto                 = QCameraExposure__FlashMode(0x1)
-	QCameraExposure__FlashOff                  = QCameraExposure__FlashMode(0x2)
-	QCameraExposure__FlashOn                   = QCameraExposure__FlashMode(0x4)
-	QCameraExposure__FlashRedEyeReduction      = QCameraExposure__FlashMode(0x8)
-	QCameraExposure__FlashFill                 = QCameraExposure__FlashMode(0x10)
-	QCameraExposure__FlashTorch                = QCameraExposure__FlashMode(0x20)
-	QCameraExposure__FlashVideoLight           = QCameraExposure__FlashMode(0x40)
-	QCameraExposure__FlashSlowSyncFrontCurtain = QCameraExposure__FlashMode(0x80)
-	QCameraExposure__FlashSlowSyncRearCurtain  = QCameraExposure__FlashMode(0x100)
-	QCameraExposure__FlashManual               = QCameraExposure__FlashMode(0x200)
+	QCameraExposure__FlashAuto                 QCameraExposure__FlashMode = QCameraExposure__FlashMode(0x1)
+	QCameraExposure__FlashOff                  QCameraExposure__FlashMode = QCameraExposure__FlashMode(0x2)
+	QCameraExposure__FlashOn                   QCameraExposure__FlashMode = QCameraExposure__FlashMode(0x4)
+	QCameraExposure__FlashRedEyeReduction      QCameraExposure__FlashMode = QCameraExposure__FlashMode(0x8)
+	QCameraExposure__FlashFill                 QCameraExposure__FlashMode = QCameraExposure__FlashMode(0x10)
+	QCameraExposure__FlashTorch                QCameraExposure__FlashMode = QCameraExposure__FlashMode(0x20)
+	QCameraExposure__FlashVideoLight           QCameraExposure__FlashMode = QCameraExposure__FlashMode(0x40)
+	QCameraExposure__FlashSlowSyncFrontCurtain QCameraExposure__FlashMode = QCameraExposure__FlashMode(0x80)
+	QCameraExposure__FlashSlowSyncRearCurtain  QCameraExposure__FlashMode = QCameraExposure__FlashMode(0x100)
+	QCameraExposure__FlashManual               QCameraExposure__FlashMode = QCameraExposure__FlashMode(0x200)
 )
 
+//go:generate stringer -type=QCameraExposure__MeteringMode
 //QCameraExposure::MeteringMode
 type QCameraExposure__MeteringMode int64
 
 const (
-	QCameraExposure__MeteringMatrix  = QCameraExposure__MeteringMode(1)
-	QCameraExposure__MeteringAverage = QCameraExposure__MeteringMode(2)
-	QCameraExposure__MeteringSpot    = QCameraExposure__MeteringMode(3)
+	QCameraExposure__MeteringMatrix  QCameraExposure__MeteringMode = QCameraExposure__MeteringMode(1)
+	QCameraExposure__MeteringAverage QCameraExposure__MeteringMode = QCameraExposure__MeteringMode(2)
+	QCameraExposure__MeteringSpot    QCameraExposure__MeteringMode = QCameraExposure__MeteringMode(3)
 )
 
 type QCameraExposure struct {
@@ -13298,21 +13321,22 @@ func (ptr *QCameraExposure) MetaObjectDefault() *core.QMetaObject {
 	return nil
 }
 
+//go:generate stringer -type=QCameraExposureControl__ExposureParameter
 //QCameraExposureControl::ExposureParameter
 type QCameraExposureControl__ExposureParameter int64
 
 const (
-	QCameraExposureControl__ISO                       = QCameraExposureControl__ExposureParameter(0)
-	QCameraExposureControl__Aperture                  = QCameraExposureControl__ExposureParameter(1)
-	QCameraExposureControl__ShutterSpeed              = QCameraExposureControl__ExposureParameter(2)
-	QCameraExposureControl__ExposureCompensation      = QCameraExposureControl__ExposureParameter(3)
-	QCameraExposureControl__FlashPower                = QCameraExposureControl__ExposureParameter(4)
-	QCameraExposureControl__FlashCompensation         = QCameraExposureControl__ExposureParameter(5)
-	QCameraExposureControl__TorchPower                = QCameraExposureControl__ExposureParameter(6)
-	QCameraExposureControl__SpotMeteringPoint         = QCameraExposureControl__ExposureParameter(7)
-	QCameraExposureControl__ExposureMode              = QCameraExposureControl__ExposureParameter(8)
-	QCameraExposureControl__MeteringMode              = QCameraExposureControl__ExposureParameter(9)
-	QCameraExposureControl__ExtendedExposureParameter = QCameraExposureControl__ExposureParameter(1000)
+	QCameraExposureControl__ISO                       QCameraExposureControl__ExposureParameter = QCameraExposureControl__ExposureParameter(0)
+	QCameraExposureControl__Aperture                  QCameraExposureControl__ExposureParameter = QCameraExposureControl__ExposureParameter(1)
+	QCameraExposureControl__ShutterSpeed              QCameraExposureControl__ExposureParameter = QCameraExposureControl__ExposureParameter(2)
+	QCameraExposureControl__ExposureCompensation      QCameraExposureControl__ExposureParameter = QCameraExposureControl__ExposureParameter(3)
+	QCameraExposureControl__FlashPower                QCameraExposureControl__ExposureParameter = QCameraExposureControl__ExposureParameter(4)
+	QCameraExposureControl__FlashCompensation         QCameraExposureControl__ExposureParameter = QCameraExposureControl__ExposureParameter(5)
+	QCameraExposureControl__TorchPower                QCameraExposureControl__ExposureParameter = QCameraExposureControl__ExposureParameter(6)
+	QCameraExposureControl__SpotMeteringPoint         QCameraExposureControl__ExposureParameter = QCameraExposureControl__ExposureParameter(7)
+	QCameraExposureControl__ExposureMode              QCameraExposureControl__ExposureParameter = QCameraExposureControl__ExposureParameter(8)
+	QCameraExposureControl__MeteringMode              QCameraExposureControl__ExposureParameter = QCameraExposureControl__ExposureParameter(9)
+	QCameraExposureControl__ExtendedExposureParameter QCameraExposureControl__ExposureParameter = QCameraExposureControl__ExposureParameter(1000)
 )
 
 type QCameraExposureControl struct {
@@ -13946,21 +13970,22 @@ func (ptr *QCameraExposureControl) MetaObjectDefault() *core.QMetaObject {
 	return nil
 }
 
+//go:generate stringer -type=QCameraFeedbackControl__EventType
 //QCameraFeedbackControl::EventType
 type QCameraFeedbackControl__EventType int64
 
 const (
-	QCameraFeedbackControl__ViewfinderStarted   = QCameraFeedbackControl__EventType(1)
-	QCameraFeedbackControl__ViewfinderStopped   = QCameraFeedbackControl__EventType(2)
-	QCameraFeedbackControl__ImageCaptured       = QCameraFeedbackControl__EventType(3)
-	QCameraFeedbackControl__ImageSaved          = QCameraFeedbackControl__EventType(4)
-	QCameraFeedbackControl__ImageError          = QCameraFeedbackControl__EventType(5)
-	QCameraFeedbackControl__RecordingStarted    = QCameraFeedbackControl__EventType(6)
-	QCameraFeedbackControl__RecordingInProgress = QCameraFeedbackControl__EventType(7)
-	QCameraFeedbackControl__RecordingStopped    = QCameraFeedbackControl__EventType(8)
-	QCameraFeedbackControl__AutoFocusInProgress = QCameraFeedbackControl__EventType(9)
-	QCameraFeedbackControl__AutoFocusLocked     = QCameraFeedbackControl__EventType(10)
-	QCameraFeedbackControl__AutoFocusFailed     = QCameraFeedbackControl__EventType(11)
+	QCameraFeedbackControl__ViewfinderStarted   QCameraFeedbackControl__EventType = QCameraFeedbackControl__EventType(1)
+	QCameraFeedbackControl__ViewfinderStopped   QCameraFeedbackControl__EventType = QCameraFeedbackControl__EventType(2)
+	QCameraFeedbackControl__ImageCaptured       QCameraFeedbackControl__EventType = QCameraFeedbackControl__EventType(3)
+	QCameraFeedbackControl__ImageSaved          QCameraFeedbackControl__EventType = QCameraFeedbackControl__EventType(4)
+	QCameraFeedbackControl__ImageError          QCameraFeedbackControl__EventType = QCameraFeedbackControl__EventType(5)
+	QCameraFeedbackControl__RecordingStarted    QCameraFeedbackControl__EventType = QCameraFeedbackControl__EventType(6)
+	QCameraFeedbackControl__RecordingInProgress QCameraFeedbackControl__EventType = QCameraFeedbackControl__EventType(7)
+	QCameraFeedbackControl__RecordingStopped    QCameraFeedbackControl__EventType = QCameraFeedbackControl__EventType(8)
+	QCameraFeedbackControl__AutoFocusInProgress QCameraFeedbackControl__EventType = QCameraFeedbackControl__EventType(9)
+	QCameraFeedbackControl__AutoFocusLocked     QCameraFeedbackControl__EventType = QCameraFeedbackControl__EventType(10)
+	QCameraFeedbackControl__AutoFocusFailed     QCameraFeedbackControl__EventType = QCameraFeedbackControl__EventType(11)
 )
 
 type QCameraFeedbackControl struct {
@@ -15043,26 +15068,28 @@ func (ptr *QCameraFlashControl) MetaObjectDefault() *core.QMetaObject {
 	return nil
 }
 
+//go:generate stringer -type=QCameraFocus__FocusMode
 //QCameraFocus::FocusMode
 type QCameraFocus__FocusMode int64
 
 const (
-	QCameraFocus__ManualFocus     = QCameraFocus__FocusMode(0x1)
-	QCameraFocus__HyperfocalFocus = QCameraFocus__FocusMode(0x02)
-	QCameraFocus__InfinityFocus   = QCameraFocus__FocusMode(0x04)
-	QCameraFocus__AutoFocus       = QCameraFocus__FocusMode(0x8)
-	QCameraFocus__ContinuousFocus = QCameraFocus__FocusMode(0x10)
-	QCameraFocus__MacroFocus      = QCameraFocus__FocusMode(0x20)
+	QCameraFocus__ManualFocus     QCameraFocus__FocusMode = QCameraFocus__FocusMode(0x1)
+	QCameraFocus__HyperfocalFocus QCameraFocus__FocusMode = QCameraFocus__FocusMode(0x02)
+	QCameraFocus__InfinityFocus   QCameraFocus__FocusMode = QCameraFocus__FocusMode(0x04)
+	QCameraFocus__AutoFocus       QCameraFocus__FocusMode = QCameraFocus__FocusMode(0x8)
+	QCameraFocus__ContinuousFocus QCameraFocus__FocusMode = QCameraFocus__FocusMode(0x10)
+	QCameraFocus__MacroFocus      QCameraFocus__FocusMode = QCameraFocus__FocusMode(0x20)
 )
 
+//go:generate stringer -type=QCameraFocus__FocusPointMode
 //QCameraFocus::FocusPointMode
 type QCameraFocus__FocusPointMode int64
 
 const (
-	QCameraFocus__FocusPointAuto          = QCameraFocus__FocusPointMode(0)
-	QCameraFocus__FocusPointCenter        = QCameraFocus__FocusPointMode(1)
-	QCameraFocus__FocusPointFaceDetection = QCameraFocus__FocusPointMode(2)
-	QCameraFocus__FocusPointCustom        = QCameraFocus__FocusPointMode(3)
+	QCameraFocus__FocusPointAuto          QCameraFocus__FocusPointMode = QCameraFocus__FocusPointMode(0)
+	QCameraFocus__FocusPointCenter        QCameraFocus__FocusPointMode = QCameraFocus__FocusPointMode(1)
+	QCameraFocus__FocusPointFaceDetection QCameraFocus__FocusPointMode = QCameraFocus__FocusPointMode(2)
+	QCameraFocus__FocusPointCustom        QCameraFocus__FocusPointMode = QCameraFocus__FocusPointMode(3)
 )
 
 type QCameraFocus struct {
@@ -16431,14 +16458,15 @@ func (ptr *QCameraFocusControl) MetaObjectDefault() *core.QMetaObject {
 	return nil
 }
 
+//go:generate stringer -type=QCameraFocusZone__FocusZoneStatus
 //QCameraFocusZone::FocusZoneStatus
 type QCameraFocusZone__FocusZoneStatus int64
 
 const (
-	QCameraFocusZone__Invalid  = QCameraFocusZone__FocusZoneStatus(0)
-	QCameraFocusZone__Unused   = QCameraFocusZone__FocusZoneStatus(1)
-	QCameraFocusZone__Selected = QCameraFocusZone__FocusZoneStatus(2)
-	QCameraFocusZone__Focused  = QCameraFocusZone__FocusZoneStatus(3)
+	QCameraFocusZone__Invalid  QCameraFocusZone__FocusZoneStatus = QCameraFocusZone__FocusZoneStatus(0)
+	QCameraFocusZone__Unused   QCameraFocusZone__FocusZoneStatus = QCameraFocusZone__FocusZoneStatus(1)
+	QCameraFocusZone__Selected QCameraFocusZone__FocusZoneStatus = QCameraFocusZone__FocusZoneStatus(2)
+	QCameraFocusZone__Focused  QCameraFocusZone__FocusZoneStatus = QCameraFocusZone__FocusZoneStatus(3)
 )
 
 type QCameraFocusZone struct {
@@ -16514,31 +16542,34 @@ func (ptr *QCameraFocusZone) DestroyQCameraFocusZone() {
 	}
 }
 
+//go:generate stringer -type=QCameraImageCapture__CaptureDestination
 //QCameraImageCapture::CaptureDestination
 type QCameraImageCapture__CaptureDestination int64
 
 const (
-	QCameraImageCapture__CaptureToFile   = QCameraImageCapture__CaptureDestination(0x01)
-	QCameraImageCapture__CaptureToBuffer = QCameraImageCapture__CaptureDestination(0x02)
+	QCameraImageCapture__CaptureToFile   QCameraImageCapture__CaptureDestination = QCameraImageCapture__CaptureDestination(0x01)
+	QCameraImageCapture__CaptureToBuffer QCameraImageCapture__CaptureDestination = QCameraImageCapture__CaptureDestination(0x02)
 )
 
+//go:generate stringer -type=QCameraImageCapture__DriveMode
 //QCameraImageCapture::DriveMode
 type QCameraImageCapture__DriveMode int64
 
 const (
-	QCameraImageCapture__SingleImageCapture = QCameraImageCapture__DriveMode(0)
+	QCameraImageCapture__SingleImageCapture QCameraImageCapture__DriveMode = QCameraImageCapture__DriveMode(0)
 )
 
+//go:generate stringer -type=QCameraImageCapture__Error
 //QCameraImageCapture::Error
 type QCameraImageCapture__Error int64
 
 const (
-	QCameraImageCapture__NoError                  = QCameraImageCapture__Error(0)
-	QCameraImageCapture__NotReadyError            = QCameraImageCapture__Error(1)
-	QCameraImageCapture__ResourceError            = QCameraImageCapture__Error(2)
-	QCameraImageCapture__OutOfSpaceError          = QCameraImageCapture__Error(3)
-	QCameraImageCapture__NotSupportedFeatureError = QCameraImageCapture__Error(4)
-	QCameraImageCapture__FormatError              = QCameraImageCapture__Error(5)
+	QCameraImageCapture__NoError                  QCameraImageCapture__Error = QCameraImageCapture__Error(0)
+	QCameraImageCapture__NotReadyError            QCameraImageCapture__Error = QCameraImageCapture__Error(1)
+	QCameraImageCapture__ResourceError            QCameraImageCapture__Error = QCameraImageCapture__Error(2)
+	QCameraImageCapture__OutOfSpaceError          QCameraImageCapture__Error = QCameraImageCapture__Error(3)
+	QCameraImageCapture__NotSupportedFeatureError QCameraImageCapture__Error = QCameraImageCapture__Error(4)
+	QCameraImageCapture__FormatError              QCameraImageCapture__Error = QCameraImageCapture__Error(5)
 )
 
 type QCameraImageCapture struct {
@@ -18212,36 +18243,38 @@ func (ptr *QCameraImageCaptureControl) MetaObjectDefault() *core.QMetaObject {
 	return nil
 }
 
+//go:generate stringer -type=QCameraImageProcessing__ColorFilter
 //QCameraImageProcessing::ColorFilter
 type QCameraImageProcessing__ColorFilter int64
 
 const (
-	QCameraImageProcessing__ColorFilterNone       = QCameraImageProcessing__ColorFilter(0)
-	QCameraImageProcessing__ColorFilterGrayscale  = QCameraImageProcessing__ColorFilter(1)
-	QCameraImageProcessing__ColorFilterNegative   = QCameraImageProcessing__ColorFilter(2)
-	QCameraImageProcessing__ColorFilterSolarize   = QCameraImageProcessing__ColorFilter(3)
-	QCameraImageProcessing__ColorFilterSepia      = QCameraImageProcessing__ColorFilter(4)
-	QCameraImageProcessing__ColorFilterPosterize  = QCameraImageProcessing__ColorFilter(5)
-	QCameraImageProcessing__ColorFilterWhiteboard = QCameraImageProcessing__ColorFilter(6)
-	QCameraImageProcessing__ColorFilterBlackboard = QCameraImageProcessing__ColorFilter(7)
-	QCameraImageProcessing__ColorFilterAqua       = QCameraImageProcessing__ColorFilter(8)
-	QCameraImageProcessing__ColorFilterVendor     = QCameraImageProcessing__ColorFilter(1000)
+	QCameraImageProcessing__ColorFilterNone       QCameraImageProcessing__ColorFilter = QCameraImageProcessing__ColorFilter(0)
+	QCameraImageProcessing__ColorFilterGrayscale  QCameraImageProcessing__ColorFilter = QCameraImageProcessing__ColorFilter(1)
+	QCameraImageProcessing__ColorFilterNegative   QCameraImageProcessing__ColorFilter = QCameraImageProcessing__ColorFilter(2)
+	QCameraImageProcessing__ColorFilterSolarize   QCameraImageProcessing__ColorFilter = QCameraImageProcessing__ColorFilter(3)
+	QCameraImageProcessing__ColorFilterSepia      QCameraImageProcessing__ColorFilter = QCameraImageProcessing__ColorFilter(4)
+	QCameraImageProcessing__ColorFilterPosterize  QCameraImageProcessing__ColorFilter = QCameraImageProcessing__ColorFilter(5)
+	QCameraImageProcessing__ColorFilterWhiteboard QCameraImageProcessing__ColorFilter = QCameraImageProcessing__ColorFilter(6)
+	QCameraImageProcessing__ColorFilterBlackboard QCameraImageProcessing__ColorFilter = QCameraImageProcessing__ColorFilter(7)
+	QCameraImageProcessing__ColorFilterAqua       QCameraImageProcessing__ColorFilter = QCameraImageProcessing__ColorFilter(8)
+	QCameraImageProcessing__ColorFilterVendor     QCameraImageProcessing__ColorFilter = QCameraImageProcessing__ColorFilter(1000)
 )
 
+//go:generate stringer -type=QCameraImageProcessing__WhiteBalanceMode
 //QCameraImageProcessing::WhiteBalanceMode
 type QCameraImageProcessing__WhiteBalanceMode int64
 
 const (
-	QCameraImageProcessing__WhiteBalanceAuto        = QCameraImageProcessing__WhiteBalanceMode(0)
-	QCameraImageProcessing__WhiteBalanceManual      = QCameraImageProcessing__WhiteBalanceMode(1)
-	QCameraImageProcessing__WhiteBalanceSunlight    = QCameraImageProcessing__WhiteBalanceMode(2)
-	QCameraImageProcessing__WhiteBalanceCloudy      = QCameraImageProcessing__WhiteBalanceMode(3)
-	QCameraImageProcessing__WhiteBalanceShade       = QCameraImageProcessing__WhiteBalanceMode(4)
-	QCameraImageProcessing__WhiteBalanceTungsten    = QCameraImageProcessing__WhiteBalanceMode(5)
-	QCameraImageProcessing__WhiteBalanceFluorescent = QCameraImageProcessing__WhiteBalanceMode(6)
-	QCameraImageProcessing__WhiteBalanceFlash       = QCameraImageProcessing__WhiteBalanceMode(7)
-	QCameraImageProcessing__WhiteBalanceSunset      = QCameraImageProcessing__WhiteBalanceMode(8)
-	QCameraImageProcessing__WhiteBalanceVendor      = QCameraImageProcessing__WhiteBalanceMode(1000)
+	QCameraImageProcessing__WhiteBalanceAuto        QCameraImageProcessing__WhiteBalanceMode = QCameraImageProcessing__WhiteBalanceMode(0)
+	QCameraImageProcessing__WhiteBalanceManual      QCameraImageProcessing__WhiteBalanceMode = QCameraImageProcessing__WhiteBalanceMode(1)
+	QCameraImageProcessing__WhiteBalanceSunlight    QCameraImageProcessing__WhiteBalanceMode = QCameraImageProcessing__WhiteBalanceMode(2)
+	QCameraImageProcessing__WhiteBalanceCloudy      QCameraImageProcessing__WhiteBalanceMode = QCameraImageProcessing__WhiteBalanceMode(3)
+	QCameraImageProcessing__WhiteBalanceShade       QCameraImageProcessing__WhiteBalanceMode = QCameraImageProcessing__WhiteBalanceMode(4)
+	QCameraImageProcessing__WhiteBalanceTungsten    QCameraImageProcessing__WhiteBalanceMode = QCameraImageProcessing__WhiteBalanceMode(5)
+	QCameraImageProcessing__WhiteBalanceFluorescent QCameraImageProcessing__WhiteBalanceMode = QCameraImageProcessing__WhiteBalanceMode(6)
+	QCameraImageProcessing__WhiteBalanceFlash       QCameraImageProcessing__WhiteBalanceMode = QCameraImageProcessing__WhiteBalanceMode(7)
+	QCameraImageProcessing__WhiteBalanceSunset      QCameraImageProcessing__WhiteBalanceMode = QCameraImageProcessing__WhiteBalanceMode(8)
+	QCameraImageProcessing__WhiteBalanceVendor      QCameraImageProcessing__WhiteBalanceMode = QCameraImageProcessing__WhiteBalanceMode(1000)
 )
 
 type QCameraImageProcessing struct {
@@ -18747,24 +18780,25 @@ func (ptr *QCameraImageProcessing) MetaObjectDefault() *core.QMetaObject {
 	return nil
 }
 
+//go:generate stringer -type=QCameraImageProcessingControl__ProcessingParameter
 //QCameraImageProcessingControl::ProcessingParameter
 type QCameraImageProcessingControl__ProcessingParameter int64
 
 const (
-	QCameraImageProcessingControl__WhiteBalancePreset   = QCameraImageProcessingControl__ProcessingParameter(0)
-	QCameraImageProcessingControl__ColorTemperature     = QCameraImageProcessingControl__ProcessingParameter(1)
-	QCameraImageProcessingControl__Contrast             = QCameraImageProcessingControl__ProcessingParameter(2)
-	QCameraImageProcessingControl__Saturation           = QCameraImageProcessingControl__ProcessingParameter(3)
-	QCameraImageProcessingControl__Brightness           = QCameraImageProcessingControl__ProcessingParameter(4)
-	QCameraImageProcessingControl__Sharpening           = QCameraImageProcessingControl__ProcessingParameter(5)
-	QCameraImageProcessingControl__Denoising            = QCameraImageProcessingControl__ProcessingParameter(6)
-	QCameraImageProcessingControl__ContrastAdjustment   = QCameraImageProcessingControl__ProcessingParameter(7)
-	QCameraImageProcessingControl__SaturationAdjustment = QCameraImageProcessingControl__ProcessingParameter(8)
-	QCameraImageProcessingControl__BrightnessAdjustment = QCameraImageProcessingControl__ProcessingParameter(9)
-	QCameraImageProcessingControl__SharpeningAdjustment = QCameraImageProcessingControl__ProcessingParameter(10)
-	QCameraImageProcessingControl__DenoisingAdjustment  = QCameraImageProcessingControl__ProcessingParameter(11)
-	QCameraImageProcessingControl__ColorFilter          = QCameraImageProcessingControl__ProcessingParameter(12)
-	QCameraImageProcessingControl__ExtendedParameter    = QCameraImageProcessingControl__ProcessingParameter(1000)
+	QCameraImageProcessingControl__WhiteBalancePreset   QCameraImageProcessingControl__ProcessingParameter = QCameraImageProcessingControl__ProcessingParameter(0)
+	QCameraImageProcessingControl__ColorTemperature     QCameraImageProcessingControl__ProcessingParameter = QCameraImageProcessingControl__ProcessingParameter(1)
+	QCameraImageProcessingControl__Contrast             QCameraImageProcessingControl__ProcessingParameter = QCameraImageProcessingControl__ProcessingParameter(2)
+	QCameraImageProcessingControl__Saturation           QCameraImageProcessingControl__ProcessingParameter = QCameraImageProcessingControl__ProcessingParameter(3)
+	QCameraImageProcessingControl__Brightness           QCameraImageProcessingControl__ProcessingParameter = QCameraImageProcessingControl__ProcessingParameter(4)
+	QCameraImageProcessingControl__Sharpening           QCameraImageProcessingControl__ProcessingParameter = QCameraImageProcessingControl__ProcessingParameter(5)
+	QCameraImageProcessingControl__Denoising            QCameraImageProcessingControl__ProcessingParameter = QCameraImageProcessingControl__ProcessingParameter(6)
+	QCameraImageProcessingControl__ContrastAdjustment   QCameraImageProcessingControl__ProcessingParameter = QCameraImageProcessingControl__ProcessingParameter(7)
+	QCameraImageProcessingControl__SaturationAdjustment QCameraImageProcessingControl__ProcessingParameter = QCameraImageProcessingControl__ProcessingParameter(8)
+	QCameraImageProcessingControl__BrightnessAdjustment QCameraImageProcessingControl__ProcessingParameter = QCameraImageProcessingControl__ProcessingParameter(9)
+	QCameraImageProcessingControl__SharpeningAdjustment QCameraImageProcessingControl__ProcessingParameter = QCameraImageProcessingControl__ProcessingParameter(10)
+	QCameraImageProcessingControl__DenoisingAdjustment  QCameraImageProcessingControl__ProcessingParameter = QCameraImageProcessingControl__ProcessingParameter(11)
+	QCameraImageProcessingControl__ColorFilter          QCameraImageProcessingControl__ProcessingParameter = QCameraImageProcessingControl__ProcessingParameter(12)
+	QCameraImageProcessingControl__ExtendedParameter    QCameraImageProcessingControl__ProcessingParameter = QCameraImageProcessingControl__ProcessingParameter(1000)
 )
 
 type QCameraImageProcessingControl struct {
@@ -23268,16 +23302,17 @@ func (ptr *QCameraViewfinderSettings) DestroyQCameraViewfinderSettings() {
 	}
 }
 
+//go:generate stringer -type=QCameraViewfinderSettingsControl__ViewfinderParameter
 //QCameraViewfinderSettingsControl::ViewfinderParameter
 type QCameraViewfinderSettingsControl__ViewfinderParameter int64
 
 const (
-	QCameraViewfinderSettingsControl__Resolution       = QCameraViewfinderSettingsControl__ViewfinderParameter(0)
-	QCameraViewfinderSettingsControl__PixelAspectRatio = QCameraViewfinderSettingsControl__ViewfinderParameter(1)
-	QCameraViewfinderSettingsControl__MinimumFrameRate = QCameraViewfinderSettingsControl__ViewfinderParameter(2)
-	QCameraViewfinderSettingsControl__MaximumFrameRate = QCameraViewfinderSettingsControl__ViewfinderParameter(3)
-	QCameraViewfinderSettingsControl__PixelFormat      = QCameraViewfinderSettingsControl__ViewfinderParameter(4)
-	QCameraViewfinderSettingsControl__UserParameter    = QCameraViewfinderSettingsControl__ViewfinderParameter(1000)
+	QCameraViewfinderSettingsControl__Resolution       QCameraViewfinderSettingsControl__ViewfinderParameter = QCameraViewfinderSettingsControl__ViewfinderParameter(0)
+	QCameraViewfinderSettingsControl__PixelAspectRatio QCameraViewfinderSettingsControl__ViewfinderParameter = QCameraViewfinderSettingsControl__ViewfinderParameter(1)
+	QCameraViewfinderSettingsControl__MinimumFrameRate QCameraViewfinderSettingsControl__ViewfinderParameter = QCameraViewfinderSettingsControl__ViewfinderParameter(2)
+	QCameraViewfinderSettingsControl__MaximumFrameRate QCameraViewfinderSettingsControl__ViewfinderParameter = QCameraViewfinderSettingsControl__ViewfinderParameter(3)
+	QCameraViewfinderSettingsControl__PixelFormat      QCameraViewfinderSettingsControl__ViewfinderParameter = QCameraViewfinderSettingsControl__ViewfinderParameter(4)
+	QCameraViewfinderSettingsControl__UserParameter    QCameraViewfinderSettingsControl__ViewfinderParameter = QCameraViewfinderSettingsControl__ViewfinderParameter(1000)
 )
 
 type QCameraViewfinderSettingsControl struct {
@@ -31564,50 +31599,54 @@ func (ptr *QMediaObject) MetaObjectDefault() *core.QMetaObject {
 	return nil
 }
 
+//go:generate stringer -type=QMediaPlayer__Error
 //QMediaPlayer::Error
 type QMediaPlayer__Error int64
 
 const (
-	QMediaPlayer__NoError             = QMediaPlayer__Error(0)
-	QMediaPlayer__ResourceError       = QMediaPlayer__Error(1)
-	QMediaPlayer__FormatError         = QMediaPlayer__Error(2)
-	QMediaPlayer__NetworkError        = QMediaPlayer__Error(3)
-	QMediaPlayer__AccessDeniedError   = QMediaPlayer__Error(4)
-	QMediaPlayer__ServiceMissingError = QMediaPlayer__Error(5)
-	QMediaPlayer__MediaIsPlaylist     = QMediaPlayer__Error(6)
+	QMediaPlayer__NoError             QMediaPlayer__Error = QMediaPlayer__Error(0)
+	QMediaPlayer__ResourceError       QMediaPlayer__Error = QMediaPlayer__Error(1)
+	QMediaPlayer__FormatError         QMediaPlayer__Error = QMediaPlayer__Error(2)
+	QMediaPlayer__NetworkError        QMediaPlayer__Error = QMediaPlayer__Error(3)
+	QMediaPlayer__AccessDeniedError   QMediaPlayer__Error = QMediaPlayer__Error(4)
+	QMediaPlayer__ServiceMissingError QMediaPlayer__Error = QMediaPlayer__Error(5)
+	QMediaPlayer__MediaIsPlaylist     QMediaPlayer__Error = QMediaPlayer__Error(6)
 )
 
+//go:generate stringer -type=QMediaPlayer__Flag
 //QMediaPlayer::Flag
 type QMediaPlayer__Flag int64
 
 const (
-	QMediaPlayer__LowLatency     = QMediaPlayer__Flag(0x01)
-	QMediaPlayer__StreamPlayback = QMediaPlayer__Flag(0x02)
-	QMediaPlayer__VideoSurface   = QMediaPlayer__Flag(0x04)
+	QMediaPlayer__LowLatency     QMediaPlayer__Flag = QMediaPlayer__Flag(0x01)
+	QMediaPlayer__StreamPlayback QMediaPlayer__Flag = QMediaPlayer__Flag(0x02)
+	QMediaPlayer__VideoSurface   QMediaPlayer__Flag = QMediaPlayer__Flag(0x04)
 )
 
+//go:generate stringer -type=QMediaPlayer__MediaStatus
 //QMediaPlayer::MediaStatus
 type QMediaPlayer__MediaStatus int64
 
 const (
-	QMediaPlayer__UnknownMediaStatus = QMediaPlayer__MediaStatus(0)
-	QMediaPlayer__NoMedia            = QMediaPlayer__MediaStatus(1)
-	QMediaPlayer__LoadingMedia       = QMediaPlayer__MediaStatus(2)
-	QMediaPlayer__LoadedMedia        = QMediaPlayer__MediaStatus(3)
-	QMediaPlayer__StalledMedia       = QMediaPlayer__MediaStatus(4)
-	QMediaPlayer__BufferingMedia     = QMediaPlayer__MediaStatus(5)
-	QMediaPlayer__BufferedMedia      = QMediaPlayer__MediaStatus(6)
-	QMediaPlayer__EndOfMedia         = QMediaPlayer__MediaStatus(7)
-	QMediaPlayer__InvalidMedia       = QMediaPlayer__MediaStatus(8)
+	QMediaPlayer__UnknownMediaStatus QMediaPlayer__MediaStatus = QMediaPlayer__MediaStatus(0)
+	QMediaPlayer__NoMedia            QMediaPlayer__MediaStatus = QMediaPlayer__MediaStatus(1)
+	QMediaPlayer__LoadingMedia       QMediaPlayer__MediaStatus = QMediaPlayer__MediaStatus(2)
+	QMediaPlayer__LoadedMedia        QMediaPlayer__MediaStatus = QMediaPlayer__MediaStatus(3)
+	QMediaPlayer__StalledMedia       QMediaPlayer__MediaStatus = QMediaPlayer__MediaStatus(4)
+	QMediaPlayer__BufferingMedia     QMediaPlayer__MediaStatus = QMediaPlayer__MediaStatus(5)
+	QMediaPlayer__BufferedMedia      QMediaPlayer__MediaStatus = QMediaPlayer__MediaStatus(6)
+	QMediaPlayer__EndOfMedia         QMediaPlayer__MediaStatus = QMediaPlayer__MediaStatus(7)
+	QMediaPlayer__InvalidMedia       QMediaPlayer__MediaStatus = QMediaPlayer__MediaStatus(8)
 )
 
+//go:generate stringer -type=QMediaPlayer__State
 //QMediaPlayer::State
 type QMediaPlayer__State int64
 
 const (
-	QMediaPlayer__StoppedState = QMediaPlayer__State(0)
-	QMediaPlayer__PlayingState = QMediaPlayer__State(1)
-	QMediaPlayer__PausedState  = QMediaPlayer__State(2)
+	QMediaPlayer__StoppedState QMediaPlayer__State = QMediaPlayer__State(0)
+	QMediaPlayer__PlayingState QMediaPlayer__State = QMediaPlayer__State(1)
+	QMediaPlayer__PausedState  QMediaPlayer__State = QMediaPlayer__State(2)
 )
 
 type QMediaPlayer struct {
@@ -34565,26 +34604,28 @@ func (ptr *QMediaPlayerControl) MetaObjectDefault() *core.QMetaObject {
 	return nil
 }
 
+//go:generate stringer -type=QMediaPlaylist__Error
 //QMediaPlaylist::Error
 type QMediaPlaylist__Error int64
 
 const (
-	QMediaPlaylist__NoError                 = QMediaPlaylist__Error(0)
-	QMediaPlaylist__FormatError             = QMediaPlaylist__Error(1)
-	QMediaPlaylist__FormatNotSupportedError = QMediaPlaylist__Error(2)
-	QMediaPlaylist__NetworkError            = QMediaPlaylist__Error(3)
-	QMediaPlaylist__AccessDeniedError       = QMediaPlaylist__Error(4)
+	QMediaPlaylist__NoError                 QMediaPlaylist__Error = QMediaPlaylist__Error(0)
+	QMediaPlaylist__FormatError             QMediaPlaylist__Error = QMediaPlaylist__Error(1)
+	QMediaPlaylist__FormatNotSupportedError QMediaPlaylist__Error = QMediaPlaylist__Error(2)
+	QMediaPlaylist__NetworkError            QMediaPlaylist__Error = QMediaPlaylist__Error(3)
+	QMediaPlaylist__AccessDeniedError       QMediaPlaylist__Error = QMediaPlaylist__Error(4)
 )
 
+//go:generate stringer -type=QMediaPlaylist__PlaybackMode
 //QMediaPlaylist::PlaybackMode
 type QMediaPlaylist__PlaybackMode int64
 
 const (
-	QMediaPlaylist__CurrentItemOnce   = QMediaPlaylist__PlaybackMode(0)
-	QMediaPlaylist__CurrentItemInLoop = QMediaPlaylist__PlaybackMode(1)
-	QMediaPlaylist__Sequential        = QMediaPlaylist__PlaybackMode(2)
-	QMediaPlaylist__Loop              = QMediaPlaylist__PlaybackMode(3)
-	QMediaPlaylist__Random            = QMediaPlaylist__PlaybackMode(4)
+	QMediaPlaylist__CurrentItemOnce   QMediaPlaylist__PlaybackMode = QMediaPlaylist__PlaybackMode(0)
+	QMediaPlaylist__CurrentItemInLoop QMediaPlaylist__PlaybackMode = QMediaPlaylist__PlaybackMode(1)
+	QMediaPlaylist__Sequential        QMediaPlaylist__PlaybackMode = QMediaPlaylist__PlaybackMode(2)
+	QMediaPlaylist__Loop              QMediaPlaylist__PlaybackMode = QMediaPlaylist__PlaybackMode(3)
+	QMediaPlaylist__Random            QMediaPlaylist__PlaybackMode = QMediaPlaylist__PlaybackMode(4)
 )
 
 type QMediaPlaylist struct {
@@ -35666,37 +35707,40 @@ func (ptr *QMediaPlaylist) SetMediaObjectDefault(object QMediaObject_ITF) bool {
 	return false
 }
 
+//go:generate stringer -type=QMediaRecorder__Error
 //QMediaRecorder::Error
 type QMediaRecorder__Error int64
 
 const (
-	QMediaRecorder__NoError         = QMediaRecorder__Error(0)
-	QMediaRecorder__ResourceError   = QMediaRecorder__Error(1)
-	QMediaRecorder__FormatError     = QMediaRecorder__Error(2)
-	QMediaRecorder__OutOfSpaceError = QMediaRecorder__Error(3)
+	QMediaRecorder__NoError         QMediaRecorder__Error = QMediaRecorder__Error(0)
+	QMediaRecorder__ResourceError   QMediaRecorder__Error = QMediaRecorder__Error(1)
+	QMediaRecorder__FormatError     QMediaRecorder__Error = QMediaRecorder__Error(2)
+	QMediaRecorder__OutOfSpaceError QMediaRecorder__Error = QMediaRecorder__Error(3)
 )
 
+//go:generate stringer -type=QMediaRecorder__State
 //QMediaRecorder::State
 type QMediaRecorder__State int64
 
 const (
-	QMediaRecorder__StoppedState   = QMediaRecorder__State(0)
-	QMediaRecorder__RecordingState = QMediaRecorder__State(1)
-	QMediaRecorder__PausedState    = QMediaRecorder__State(2)
+	QMediaRecorder__StoppedState   QMediaRecorder__State = QMediaRecorder__State(0)
+	QMediaRecorder__RecordingState QMediaRecorder__State = QMediaRecorder__State(1)
+	QMediaRecorder__PausedState    QMediaRecorder__State = QMediaRecorder__State(2)
 )
 
+//go:generate stringer -type=QMediaRecorder__Status
 //QMediaRecorder::Status
 type QMediaRecorder__Status int64
 
 const (
-	QMediaRecorder__UnavailableStatus = QMediaRecorder__Status(0)
-	QMediaRecorder__UnloadedStatus    = QMediaRecorder__Status(1)
-	QMediaRecorder__LoadingStatus     = QMediaRecorder__Status(2)
-	QMediaRecorder__LoadedStatus      = QMediaRecorder__Status(3)
-	QMediaRecorder__StartingStatus    = QMediaRecorder__Status(4)
-	QMediaRecorder__RecordingStatus   = QMediaRecorder__Status(5)
-	QMediaRecorder__PausedStatus      = QMediaRecorder__Status(6)
-	QMediaRecorder__FinalizingStatus  = QMediaRecorder__Status(7)
+	QMediaRecorder__UnavailableStatus QMediaRecorder__Status = QMediaRecorder__Status(0)
+	QMediaRecorder__UnloadedStatus    QMediaRecorder__Status = QMediaRecorder__Status(1)
+	QMediaRecorder__LoadingStatus     QMediaRecorder__Status = QMediaRecorder__Status(2)
+	QMediaRecorder__LoadedStatus      QMediaRecorder__Status = QMediaRecorder__Status(3)
+	QMediaRecorder__StartingStatus    QMediaRecorder__Status = QMediaRecorder__Status(4)
+	QMediaRecorder__RecordingStatus   QMediaRecorder__Status = QMediaRecorder__Status(5)
+	QMediaRecorder__PausedStatus      QMediaRecorder__Status = QMediaRecorder__Status(6)
+	QMediaRecorder__FinalizingStatus  QMediaRecorder__Status = QMediaRecorder__Status(7)
 )
 
 type QMediaRecorder struct {
@@ -39667,15 +39711,16 @@ func (ptr *QMediaServiceSupportedFormatsInterface) DestroyQMediaServiceSupported
 	}
 }
 
+//go:generate stringer -type=QMediaStreamsControl__StreamType
 //QMediaStreamsControl::StreamType
 type QMediaStreamsControl__StreamType int64
 
 const (
-	QMediaStreamsControl__UnknownStream    = QMediaStreamsControl__StreamType(0)
-	QMediaStreamsControl__VideoStream      = QMediaStreamsControl__StreamType(1)
-	QMediaStreamsControl__AudioStream      = QMediaStreamsControl__StreamType(2)
-	QMediaStreamsControl__SubPictureStream = QMediaStreamsControl__StreamType(3)
-	QMediaStreamsControl__DataStream       = QMediaStreamsControl__StreamType(4)
+	QMediaStreamsControl__UnknownStream    QMediaStreamsControl__StreamType = QMediaStreamsControl__StreamType(0)
+	QMediaStreamsControl__VideoStream      QMediaStreamsControl__StreamType = QMediaStreamsControl__StreamType(1)
+	QMediaStreamsControl__AudioStream      QMediaStreamsControl__StreamType = QMediaStreamsControl__StreamType(2)
+	QMediaStreamsControl__SubPictureStream QMediaStreamsControl__StreamType = QMediaStreamsControl__StreamType(3)
+	QMediaStreamsControl__DataStream       QMediaStreamsControl__StreamType = QMediaStreamsControl__StreamType(4)
 )
 
 type QMediaStreamsControl struct {
@@ -42300,45 +42345,49 @@ func (ptr *QMetaDataWriterControl) MetaObjectDefault() *core.QMetaObject {
 	return nil
 }
 
+//go:generate stringer -type=QMultimedia__AvailabilityStatus
 //QMultimedia::AvailabilityStatus
 type QMultimedia__AvailabilityStatus int64
 
 const (
-	QMultimedia__Available      = QMultimedia__AvailabilityStatus(0)
-	QMultimedia__ServiceMissing = QMultimedia__AvailabilityStatus(1)
-	QMultimedia__Busy           = QMultimedia__AvailabilityStatus(2)
-	QMultimedia__ResourceError  = QMultimedia__AvailabilityStatus(3)
+	QMultimedia__Available      QMultimedia__AvailabilityStatus = QMultimedia__AvailabilityStatus(0)
+	QMultimedia__ServiceMissing QMultimedia__AvailabilityStatus = QMultimedia__AvailabilityStatus(1)
+	QMultimedia__Busy           QMultimedia__AvailabilityStatus = QMultimedia__AvailabilityStatus(2)
+	QMultimedia__ResourceError  QMultimedia__AvailabilityStatus = QMultimedia__AvailabilityStatus(3)
 )
 
+//go:generate stringer -type=QMultimedia__EncodingMode
 //QMultimedia::EncodingMode
 type QMultimedia__EncodingMode int64
 
 const (
-	QMultimedia__ConstantQualityEncoding = QMultimedia__EncodingMode(0)
-	QMultimedia__ConstantBitRateEncoding = QMultimedia__EncodingMode(1)
-	QMultimedia__AverageBitRateEncoding  = QMultimedia__EncodingMode(2)
-	QMultimedia__TwoPassEncoding         = QMultimedia__EncodingMode(3)
+	QMultimedia__ConstantQualityEncoding QMultimedia__EncodingMode = QMultimedia__EncodingMode(0)
+	QMultimedia__ConstantBitRateEncoding QMultimedia__EncodingMode = QMultimedia__EncodingMode(1)
+	QMultimedia__AverageBitRateEncoding  QMultimedia__EncodingMode = QMultimedia__EncodingMode(2)
+	QMultimedia__TwoPassEncoding         QMultimedia__EncodingMode = QMultimedia__EncodingMode(3)
 )
 
+//go:generate stringer -type=QMultimedia__EncodingQuality
 //QMultimedia::EncodingQuality
 type QMultimedia__EncodingQuality int64
 
 const (
-	QMultimedia__VeryLowQuality  = QMultimedia__EncodingQuality(0)
-	QMultimedia__LowQuality      = QMultimedia__EncodingQuality(1)
-	QMultimedia__NormalQuality   = QMultimedia__EncodingQuality(2)
-	QMultimedia__HighQuality     = QMultimedia__EncodingQuality(3)
-	QMultimedia__VeryHighQuality = QMultimedia__EncodingQuality(4)
+	QMultimedia__VeryLowQuality  QMultimedia__EncodingQuality = QMultimedia__EncodingQuality(0)
+	QMultimedia__LowQuality      QMultimedia__EncodingQuality = QMultimedia__EncodingQuality(1)
+	QMultimedia__NormalQuality   QMultimedia__EncodingQuality = QMultimedia__EncodingQuality(2)
+	QMultimedia__HighQuality     QMultimedia__EncodingQuality = QMultimedia__EncodingQuality(3)
+	QMultimedia__VeryHighQuality QMultimedia__EncodingQuality = QMultimedia__EncodingQuality(4)
 )
 
+//go:generate stringer -type=QMultimedia__SupportEstimate
 //QMultimedia::SupportEstimate
 type QMultimedia__SupportEstimate int64
 
 const (
-	QMultimedia__NotSupported      = QMultimedia__SupportEstimate(0)
-	QMultimedia__MaybeSupported    = QMultimedia__SupportEstimate(1)
-	QMultimedia__ProbablySupported = QMultimedia__SupportEstimate(2)
-	QMultimedia__PreferredService  = QMultimedia__SupportEstimate(3)
+	QMultimedia__NotSupported      QMultimedia__SupportEstimate = QMultimedia__SupportEstimate(0)
+	QMultimedia__MaybeSupported    QMultimedia__SupportEstimate = QMultimedia__SupportEstimate(1)
+	QMultimedia__ProbablySupported QMultimedia__SupportEstimate = QMultimedia__SupportEstimate(2)
+	QMultimedia__PreferredService  QMultimedia__SupportEstimate = QMultimedia__SupportEstimate(3)
 )
 
 type QMultimedia struct {
@@ -42384,68 +42433,70 @@ func (ptr *QMultimedia) DestroyQMultimedia() {
 	ptr.SetPointer(nil)
 }
 
+//go:generate stringer -type=QRadioData__Error
 //QRadioData::Error
 type QRadioData__Error int64
 
 const (
-	QRadioData__NoError         = QRadioData__Error(0)
-	QRadioData__ResourceError   = QRadioData__Error(1)
-	QRadioData__OpenError       = QRadioData__Error(2)
-	QRadioData__OutOfRangeError = QRadioData__Error(3)
+	QRadioData__NoError         QRadioData__Error = QRadioData__Error(0)
+	QRadioData__ResourceError   QRadioData__Error = QRadioData__Error(1)
+	QRadioData__OpenError       QRadioData__Error = QRadioData__Error(2)
+	QRadioData__OutOfRangeError QRadioData__Error = QRadioData__Error(3)
 )
 
+//go:generate stringer -type=QRadioData__ProgramType
 //QRadioData::ProgramType
 type QRadioData__ProgramType int64
 
 const (
-	QRadioData__Undefined           = QRadioData__ProgramType(0)
-	QRadioData__News                = QRadioData__ProgramType(1)
-	QRadioData__CurrentAffairs      = QRadioData__ProgramType(2)
-	QRadioData__Information         = QRadioData__ProgramType(3)
-	QRadioData__Sport               = QRadioData__ProgramType(4)
-	QRadioData__Education           = QRadioData__ProgramType(5)
-	QRadioData__Drama               = QRadioData__ProgramType(6)
-	QRadioData__Culture             = QRadioData__ProgramType(7)
-	QRadioData__Science             = QRadioData__ProgramType(8)
-	QRadioData__Varied              = QRadioData__ProgramType(9)
-	QRadioData__PopMusic            = QRadioData__ProgramType(10)
-	QRadioData__RockMusic           = QRadioData__ProgramType(11)
-	QRadioData__EasyListening       = QRadioData__ProgramType(12)
-	QRadioData__LightClassical      = QRadioData__ProgramType(13)
-	QRadioData__SeriousClassical    = QRadioData__ProgramType(14)
-	QRadioData__OtherMusic          = QRadioData__ProgramType(15)
-	QRadioData__Weather             = QRadioData__ProgramType(16)
-	QRadioData__Finance             = QRadioData__ProgramType(17)
-	QRadioData__ChildrensProgrammes = QRadioData__ProgramType(18)
-	QRadioData__SocialAffairs       = QRadioData__ProgramType(19)
-	QRadioData__Religion            = QRadioData__ProgramType(20)
-	QRadioData__PhoneIn             = QRadioData__ProgramType(21)
-	QRadioData__Travel              = QRadioData__ProgramType(22)
-	QRadioData__Leisure             = QRadioData__ProgramType(23)
-	QRadioData__JazzMusic           = QRadioData__ProgramType(24)
-	QRadioData__CountryMusic        = QRadioData__ProgramType(25)
-	QRadioData__NationalMusic       = QRadioData__ProgramType(26)
-	QRadioData__OldiesMusic         = QRadioData__ProgramType(27)
-	QRadioData__FolkMusic           = QRadioData__ProgramType(28)
-	QRadioData__Documentary         = QRadioData__ProgramType(29)
-	QRadioData__AlarmTest           = QRadioData__ProgramType(30)
-	QRadioData__Alarm               = QRadioData__ProgramType(31)
-	QRadioData__Talk                = QRadioData__ProgramType(32)
-	QRadioData__ClassicRock         = QRadioData__ProgramType(33)
-	QRadioData__AdultHits           = QRadioData__ProgramType(34)
-	QRadioData__SoftRock            = QRadioData__ProgramType(35)
-	QRadioData__Top40               = QRadioData__ProgramType(36)
-	QRadioData__Soft                = QRadioData__ProgramType(37)
-	QRadioData__Nostalgia           = QRadioData__ProgramType(38)
-	QRadioData__Classical           = QRadioData__ProgramType(39)
-	QRadioData__RhythmAndBlues      = QRadioData__ProgramType(40)
-	QRadioData__SoftRhythmAndBlues  = QRadioData__ProgramType(41)
-	QRadioData__Language            = QRadioData__ProgramType(42)
-	QRadioData__ReligiousMusic      = QRadioData__ProgramType(43)
-	QRadioData__ReligiousTalk       = QRadioData__ProgramType(44)
-	QRadioData__Personality         = QRadioData__ProgramType(45)
-	QRadioData__Public              = QRadioData__ProgramType(46)
-	QRadioData__College             = QRadioData__ProgramType(47)
+	QRadioData__Undefined           QRadioData__ProgramType = QRadioData__ProgramType(0)
+	QRadioData__News                QRadioData__ProgramType = QRadioData__ProgramType(1)
+	QRadioData__CurrentAffairs      QRadioData__ProgramType = QRadioData__ProgramType(2)
+	QRadioData__Information         QRadioData__ProgramType = QRadioData__ProgramType(3)
+	QRadioData__Sport               QRadioData__ProgramType = QRadioData__ProgramType(4)
+	QRadioData__Education           QRadioData__ProgramType = QRadioData__ProgramType(5)
+	QRadioData__Drama               QRadioData__ProgramType = QRadioData__ProgramType(6)
+	QRadioData__Culture             QRadioData__ProgramType = QRadioData__ProgramType(7)
+	QRadioData__Science             QRadioData__ProgramType = QRadioData__ProgramType(8)
+	QRadioData__Varied              QRadioData__ProgramType = QRadioData__ProgramType(9)
+	QRadioData__PopMusic            QRadioData__ProgramType = QRadioData__ProgramType(10)
+	QRadioData__RockMusic           QRadioData__ProgramType = QRadioData__ProgramType(11)
+	QRadioData__EasyListening       QRadioData__ProgramType = QRadioData__ProgramType(12)
+	QRadioData__LightClassical      QRadioData__ProgramType = QRadioData__ProgramType(13)
+	QRadioData__SeriousClassical    QRadioData__ProgramType = QRadioData__ProgramType(14)
+	QRadioData__OtherMusic          QRadioData__ProgramType = QRadioData__ProgramType(15)
+	QRadioData__Weather             QRadioData__ProgramType = QRadioData__ProgramType(16)
+	QRadioData__Finance             QRadioData__ProgramType = QRadioData__ProgramType(17)
+	QRadioData__ChildrensProgrammes QRadioData__ProgramType = QRadioData__ProgramType(18)
+	QRadioData__SocialAffairs       QRadioData__ProgramType = QRadioData__ProgramType(19)
+	QRadioData__Religion            QRadioData__ProgramType = QRadioData__ProgramType(20)
+	QRadioData__PhoneIn             QRadioData__ProgramType = QRadioData__ProgramType(21)
+	QRadioData__Travel              QRadioData__ProgramType = QRadioData__ProgramType(22)
+	QRadioData__Leisure             QRadioData__ProgramType = QRadioData__ProgramType(23)
+	QRadioData__JazzMusic           QRadioData__ProgramType = QRadioData__ProgramType(24)
+	QRadioData__CountryMusic        QRadioData__ProgramType = QRadioData__ProgramType(25)
+	QRadioData__NationalMusic       QRadioData__ProgramType = QRadioData__ProgramType(26)
+	QRadioData__OldiesMusic         QRadioData__ProgramType = QRadioData__ProgramType(27)
+	QRadioData__FolkMusic           QRadioData__ProgramType = QRadioData__ProgramType(28)
+	QRadioData__Documentary         QRadioData__ProgramType = QRadioData__ProgramType(29)
+	QRadioData__AlarmTest           QRadioData__ProgramType = QRadioData__ProgramType(30)
+	QRadioData__Alarm               QRadioData__ProgramType = QRadioData__ProgramType(31)
+	QRadioData__Talk                QRadioData__ProgramType = QRadioData__ProgramType(32)
+	QRadioData__ClassicRock         QRadioData__ProgramType = QRadioData__ProgramType(33)
+	QRadioData__AdultHits           QRadioData__ProgramType = QRadioData__ProgramType(34)
+	QRadioData__SoftRock            QRadioData__ProgramType = QRadioData__ProgramType(35)
+	QRadioData__Top40               QRadioData__ProgramType = QRadioData__ProgramType(36)
+	QRadioData__Soft                QRadioData__ProgramType = QRadioData__ProgramType(37)
+	QRadioData__Nostalgia           QRadioData__ProgramType = QRadioData__ProgramType(38)
+	QRadioData__Classical           QRadioData__ProgramType = QRadioData__ProgramType(39)
+	QRadioData__RhythmAndBlues      QRadioData__ProgramType = QRadioData__ProgramType(40)
+	QRadioData__SoftRhythmAndBlues  QRadioData__ProgramType = QRadioData__ProgramType(41)
+	QRadioData__Language            QRadioData__ProgramType = QRadioData__ProgramType(42)
+	QRadioData__ReligiousMusic      QRadioData__ProgramType = QRadioData__ProgramType(43)
+	QRadioData__ReligiousTalk       QRadioData__ProgramType = QRadioData__ProgramType(44)
+	QRadioData__Personality         QRadioData__ProgramType = QRadioData__ProgramType(45)
+	QRadioData__Public              QRadioData__ProgramType = QRadioData__ProgramType(46)
+	QRadioData__College             QRadioData__ProgramType = QRadioData__ProgramType(47)
 )
 
 type QRadioData struct {
@@ -44099,50 +44150,55 @@ func (ptr *QRadioDataControl) MetaObjectDefault() *core.QMetaObject {
 	return nil
 }
 
+//go:generate stringer -type=QRadioTuner__Band
 //QRadioTuner::Band
 type QRadioTuner__Band int64
 
 const (
-	QRadioTuner__AM  = QRadioTuner__Band(0)
-	QRadioTuner__FM  = QRadioTuner__Band(1)
-	QRadioTuner__SW  = QRadioTuner__Band(2)
-	QRadioTuner__LW  = QRadioTuner__Band(3)
-	QRadioTuner__FM2 = QRadioTuner__Band(4)
+	QRadioTuner__AM  QRadioTuner__Band = QRadioTuner__Band(0)
+	QRadioTuner__FM  QRadioTuner__Band = QRadioTuner__Band(1)
+	QRadioTuner__SW  QRadioTuner__Band = QRadioTuner__Band(2)
+	QRadioTuner__LW  QRadioTuner__Band = QRadioTuner__Band(3)
+	QRadioTuner__FM2 QRadioTuner__Band = QRadioTuner__Band(4)
 )
 
+//go:generate stringer -type=QRadioTuner__Error
 //QRadioTuner::Error
 type QRadioTuner__Error int64
 
 const (
-	QRadioTuner__NoError         = QRadioTuner__Error(0)
-	QRadioTuner__ResourceError   = QRadioTuner__Error(1)
-	QRadioTuner__OpenError       = QRadioTuner__Error(2)
-	QRadioTuner__OutOfRangeError = QRadioTuner__Error(3)
+	QRadioTuner__NoError         QRadioTuner__Error = QRadioTuner__Error(0)
+	QRadioTuner__ResourceError   QRadioTuner__Error = QRadioTuner__Error(1)
+	QRadioTuner__OpenError       QRadioTuner__Error = QRadioTuner__Error(2)
+	QRadioTuner__OutOfRangeError QRadioTuner__Error = QRadioTuner__Error(3)
 )
 
+//go:generate stringer -type=QRadioTuner__SearchMode
 //QRadioTuner::SearchMode
 type QRadioTuner__SearchMode int64
 
 const (
-	QRadioTuner__SearchFast         = QRadioTuner__SearchMode(0)
-	QRadioTuner__SearchGetStationId = QRadioTuner__SearchMode(1)
+	QRadioTuner__SearchFast         QRadioTuner__SearchMode = QRadioTuner__SearchMode(0)
+	QRadioTuner__SearchGetStationId QRadioTuner__SearchMode = QRadioTuner__SearchMode(1)
 )
 
+//go:generate stringer -type=QRadioTuner__State
 //QRadioTuner::State
 type QRadioTuner__State int64
 
 const (
-	QRadioTuner__ActiveState  = QRadioTuner__State(0)
-	QRadioTuner__StoppedState = QRadioTuner__State(1)
+	QRadioTuner__ActiveState  QRadioTuner__State = QRadioTuner__State(0)
+	QRadioTuner__StoppedState QRadioTuner__State = QRadioTuner__State(1)
 )
 
+//go:generate stringer -type=QRadioTuner__StereoMode
 //QRadioTuner::StereoMode
 type QRadioTuner__StereoMode int64
 
 const (
-	QRadioTuner__ForceStereo = QRadioTuner__StereoMode(0)
-	QRadioTuner__ForceMono   = QRadioTuner__StereoMode(1)
-	QRadioTuner__Auto        = QRadioTuner__StereoMode(2)
+	QRadioTuner__ForceStereo QRadioTuner__StereoMode = QRadioTuner__StereoMode(0)
+	QRadioTuner__ForceMono   QRadioTuner__StereoMode = QRadioTuner__StereoMode(1)
+	QRadioTuner__Auto        QRadioTuner__StereoMode = QRadioTuner__StereoMode(2)
 )
 
 type QRadioTuner struct {
@@ -46905,11 +46961,12 @@ func (ptr *QRadioTunerControl) MetaObjectDefault() *core.QMetaObject {
 	return nil
 }
 
+//go:generate stringer -type=QSound__Loop
 //QSound::Loop
 type QSound__Loop int64
 
 const (
-	QSound__Infinite = QSound__Loop(-1)
+	QSound__Infinite QSound__Loop = QSound__Loop(-1)
 )
 
 type QSound struct {
@@ -47403,21 +47460,23 @@ func (ptr *QSound) MetaObjectDefault() *core.QMetaObject {
 	return nil
 }
 
+//go:generate stringer -type=QSoundEffect__Loop
 //QSoundEffect::Loop
 type QSoundEffect__Loop int64
 
 const (
-	QSoundEffect__Infinite = QSoundEffect__Loop(-2)
+	QSoundEffect__Infinite QSoundEffect__Loop = QSoundEffect__Loop(-2)
 )
 
+//go:generate stringer -type=QSoundEffect__Status
 //QSoundEffect::Status
 type QSoundEffect__Status int64
 
 const (
-	QSoundEffect__Null    = QSoundEffect__Status(0)
-	QSoundEffect__Loading = QSoundEffect__Status(1)
-	QSoundEffect__Ready   = QSoundEffect__Status(2)
-	QSoundEffect__Error   = QSoundEffect__Status(3)
+	QSoundEffect__Null    QSoundEffect__Status = QSoundEffect__Status(0)
+	QSoundEffect__Loading QSoundEffect__Status = QSoundEffect__Status(1)
+	QSoundEffect__Ready   QSoundEffect__Status = QSoundEffect__Status(2)
+	QSoundEffect__Error   QSoundEffect__Status = QSoundEffect__Status(3)
 )
 
 type QSoundEffect struct {
@@ -49664,11 +49723,12 @@ func (ptr *QVideoEncoderSettingsControl) MetaObjectDefault() *core.QMetaObject {
 	return nil
 }
 
+//go:generate stringer -type=QVideoFilterRunnable__RunFlag
 //QVideoFilterRunnable::RunFlag
 type QVideoFilterRunnable__RunFlag int64
 
 const (
-	QVideoFilterRunnable__LastInChain = QVideoFilterRunnable__RunFlag(0x01)
+	QVideoFilterRunnable__LastInChain QVideoFilterRunnable__RunFlag = QVideoFilterRunnable__RunFlag(0x01)
 )
 
 type QVideoFilterRunnable struct {
@@ -49748,54 +49808,56 @@ func (ptr *QVideoFilterRunnable) Run(input QVideoFrame_ITF, surfaceFormat QVideo
 	return nil
 }
 
+//go:generate stringer -type=QVideoFrame__FieldType
 //QVideoFrame::FieldType
 type QVideoFrame__FieldType int64
 
 const (
-	QVideoFrame__ProgressiveFrame = QVideoFrame__FieldType(0)
-	QVideoFrame__TopField         = QVideoFrame__FieldType(1)
-	QVideoFrame__BottomField      = QVideoFrame__FieldType(2)
-	QVideoFrame__InterlacedFrame  = QVideoFrame__FieldType(3)
+	QVideoFrame__ProgressiveFrame QVideoFrame__FieldType = QVideoFrame__FieldType(0)
+	QVideoFrame__TopField         QVideoFrame__FieldType = QVideoFrame__FieldType(1)
+	QVideoFrame__BottomField      QVideoFrame__FieldType = QVideoFrame__FieldType(2)
+	QVideoFrame__InterlacedFrame  QVideoFrame__FieldType = QVideoFrame__FieldType(3)
 )
 
+//go:generate stringer -type=QVideoFrame__PixelFormat
 //QVideoFrame::PixelFormat
 type QVideoFrame__PixelFormat int64
 
 const (
-	QVideoFrame__Format_Invalid                = QVideoFrame__PixelFormat(0)
-	QVideoFrame__Format_ARGB32                 = QVideoFrame__PixelFormat(1)
-	QVideoFrame__Format_ARGB32_Premultiplied   = QVideoFrame__PixelFormat(2)
-	QVideoFrame__Format_RGB32                  = QVideoFrame__PixelFormat(3)
-	QVideoFrame__Format_RGB24                  = QVideoFrame__PixelFormat(4)
-	QVideoFrame__Format_RGB565                 = QVideoFrame__PixelFormat(5)
-	QVideoFrame__Format_RGB555                 = QVideoFrame__PixelFormat(6)
-	QVideoFrame__Format_ARGB8565_Premultiplied = QVideoFrame__PixelFormat(7)
-	QVideoFrame__Format_BGRA32                 = QVideoFrame__PixelFormat(8)
-	QVideoFrame__Format_BGRA32_Premultiplied   = QVideoFrame__PixelFormat(9)
-	QVideoFrame__Format_BGR32                  = QVideoFrame__PixelFormat(10)
-	QVideoFrame__Format_BGR24                  = QVideoFrame__PixelFormat(11)
-	QVideoFrame__Format_BGR565                 = QVideoFrame__PixelFormat(12)
-	QVideoFrame__Format_BGR555                 = QVideoFrame__PixelFormat(13)
-	QVideoFrame__Format_BGRA5658_Premultiplied = QVideoFrame__PixelFormat(14)
-	QVideoFrame__Format_AYUV444                = QVideoFrame__PixelFormat(15)
-	QVideoFrame__Format_AYUV444_Premultiplied  = QVideoFrame__PixelFormat(16)
-	QVideoFrame__Format_YUV444                 = QVideoFrame__PixelFormat(17)
-	QVideoFrame__Format_YUV420P                = QVideoFrame__PixelFormat(18)
-	QVideoFrame__Format_YV12                   = QVideoFrame__PixelFormat(19)
-	QVideoFrame__Format_UYVY                   = QVideoFrame__PixelFormat(20)
-	QVideoFrame__Format_YUYV                   = QVideoFrame__PixelFormat(21)
-	QVideoFrame__Format_NV12                   = QVideoFrame__PixelFormat(22)
-	QVideoFrame__Format_NV21                   = QVideoFrame__PixelFormat(23)
-	QVideoFrame__Format_IMC1                   = QVideoFrame__PixelFormat(24)
-	QVideoFrame__Format_IMC2                   = QVideoFrame__PixelFormat(25)
-	QVideoFrame__Format_IMC3                   = QVideoFrame__PixelFormat(26)
-	QVideoFrame__Format_IMC4                   = QVideoFrame__PixelFormat(27)
-	QVideoFrame__Format_Y8                     = QVideoFrame__PixelFormat(28)
-	QVideoFrame__Format_Y16                    = QVideoFrame__PixelFormat(29)
-	QVideoFrame__Format_Jpeg                   = QVideoFrame__PixelFormat(30)
-	QVideoFrame__Format_CameraRaw              = QVideoFrame__PixelFormat(31)
-	QVideoFrame__Format_AdobeDng               = QVideoFrame__PixelFormat(32)
-	QVideoFrame__Format_User                   = QVideoFrame__PixelFormat(1000)
+	QVideoFrame__Format_Invalid                QVideoFrame__PixelFormat = QVideoFrame__PixelFormat(0)
+	QVideoFrame__Format_ARGB32                 QVideoFrame__PixelFormat = QVideoFrame__PixelFormat(1)
+	QVideoFrame__Format_ARGB32_Premultiplied   QVideoFrame__PixelFormat = QVideoFrame__PixelFormat(2)
+	QVideoFrame__Format_RGB32                  QVideoFrame__PixelFormat = QVideoFrame__PixelFormat(3)
+	QVideoFrame__Format_RGB24                  QVideoFrame__PixelFormat = QVideoFrame__PixelFormat(4)
+	QVideoFrame__Format_RGB565                 QVideoFrame__PixelFormat = QVideoFrame__PixelFormat(5)
+	QVideoFrame__Format_RGB555                 QVideoFrame__PixelFormat = QVideoFrame__PixelFormat(6)
+	QVideoFrame__Format_ARGB8565_Premultiplied QVideoFrame__PixelFormat = QVideoFrame__PixelFormat(7)
+	QVideoFrame__Format_BGRA32                 QVideoFrame__PixelFormat = QVideoFrame__PixelFormat(8)
+	QVideoFrame__Format_BGRA32_Premultiplied   QVideoFrame__PixelFormat = QVideoFrame__PixelFormat(9)
+	QVideoFrame__Format_BGR32                  QVideoFrame__PixelFormat = QVideoFrame__PixelFormat(10)
+	QVideoFrame__Format_BGR24                  QVideoFrame__PixelFormat = QVideoFrame__PixelFormat(11)
+	QVideoFrame__Format_BGR565                 QVideoFrame__PixelFormat = QVideoFrame__PixelFormat(12)
+	QVideoFrame__Format_BGR555                 QVideoFrame__PixelFormat = QVideoFrame__PixelFormat(13)
+	QVideoFrame__Format_BGRA5658_Premultiplied QVideoFrame__PixelFormat = QVideoFrame__PixelFormat(14)
+	QVideoFrame__Format_AYUV444                QVideoFrame__PixelFormat = QVideoFrame__PixelFormat(15)
+	QVideoFrame__Format_AYUV444_Premultiplied  QVideoFrame__PixelFormat = QVideoFrame__PixelFormat(16)
+	QVideoFrame__Format_YUV444                 QVideoFrame__PixelFormat = QVideoFrame__PixelFormat(17)
+	QVideoFrame__Format_YUV420P                QVideoFrame__PixelFormat = QVideoFrame__PixelFormat(18)
+	QVideoFrame__Format_YV12                   QVideoFrame__PixelFormat = QVideoFrame__PixelFormat(19)
+	QVideoFrame__Format_UYVY                   QVideoFrame__PixelFormat = QVideoFrame__PixelFormat(20)
+	QVideoFrame__Format_YUYV                   QVideoFrame__PixelFormat = QVideoFrame__PixelFormat(21)
+	QVideoFrame__Format_NV12                   QVideoFrame__PixelFormat = QVideoFrame__PixelFormat(22)
+	QVideoFrame__Format_NV21                   QVideoFrame__PixelFormat = QVideoFrame__PixelFormat(23)
+	QVideoFrame__Format_IMC1                   QVideoFrame__PixelFormat = QVideoFrame__PixelFormat(24)
+	QVideoFrame__Format_IMC2                   QVideoFrame__PixelFormat = QVideoFrame__PixelFormat(25)
+	QVideoFrame__Format_IMC3                   QVideoFrame__PixelFormat = QVideoFrame__PixelFormat(26)
+	QVideoFrame__Format_IMC4                   QVideoFrame__PixelFormat = QVideoFrame__PixelFormat(27)
+	QVideoFrame__Format_Y8                     QVideoFrame__PixelFormat = QVideoFrame__PixelFormat(28)
+	QVideoFrame__Format_Y16                    QVideoFrame__PixelFormat = QVideoFrame__PixelFormat(29)
+	QVideoFrame__Format_Jpeg                   QVideoFrame__PixelFormat = QVideoFrame__PixelFormat(30)
+	QVideoFrame__Format_CameraRaw              QVideoFrame__PixelFormat = QVideoFrame__PixelFormat(31)
+	QVideoFrame__Format_AdobeDng               QVideoFrame__PixelFormat = QVideoFrame__PixelFormat(32)
+	QVideoFrame__Format_User                   QVideoFrame__PixelFormat = QVideoFrame__PixelFormat(1000)
 )
 
 type QVideoFrame struct {
@@ -51013,24 +51075,26 @@ func (ptr *QVideoRendererControl) MetaObjectDefault() *core.QMetaObject {
 	return nil
 }
 
+//go:generate stringer -type=QVideoSurfaceFormat__Direction
 //QVideoSurfaceFormat::Direction
 type QVideoSurfaceFormat__Direction int64
 
 const (
-	QVideoSurfaceFormat__TopToBottom = QVideoSurfaceFormat__Direction(0)
-	QVideoSurfaceFormat__BottomToTop = QVideoSurfaceFormat__Direction(1)
+	QVideoSurfaceFormat__TopToBottom QVideoSurfaceFormat__Direction = QVideoSurfaceFormat__Direction(0)
+	QVideoSurfaceFormat__BottomToTop QVideoSurfaceFormat__Direction = QVideoSurfaceFormat__Direction(1)
 )
 
+//go:generate stringer -type=QVideoSurfaceFormat__YCbCrColorSpace
 //QVideoSurfaceFormat::YCbCrColorSpace
 type QVideoSurfaceFormat__YCbCrColorSpace int64
 
 const (
-	QVideoSurfaceFormat__YCbCr_Undefined = QVideoSurfaceFormat__YCbCrColorSpace(0)
-	QVideoSurfaceFormat__YCbCr_BT601     = QVideoSurfaceFormat__YCbCrColorSpace(1)
-	QVideoSurfaceFormat__YCbCr_BT709     = QVideoSurfaceFormat__YCbCrColorSpace(2)
-	QVideoSurfaceFormat__YCbCr_xvYCC601  = QVideoSurfaceFormat__YCbCrColorSpace(3)
-	QVideoSurfaceFormat__YCbCr_xvYCC709  = QVideoSurfaceFormat__YCbCrColorSpace(4)
-	QVideoSurfaceFormat__YCbCr_JPEG      = QVideoSurfaceFormat__YCbCrColorSpace(5)
+	QVideoSurfaceFormat__YCbCr_Undefined QVideoSurfaceFormat__YCbCrColorSpace = QVideoSurfaceFormat__YCbCrColorSpace(0)
+	QVideoSurfaceFormat__YCbCr_BT601     QVideoSurfaceFormat__YCbCrColorSpace = QVideoSurfaceFormat__YCbCrColorSpace(1)
+	QVideoSurfaceFormat__YCbCr_BT709     QVideoSurfaceFormat__YCbCrColorSpace = QVideoSurfaceFormat__YCbCrColorSpace(2)
+	QVideoSurfaceFormat__YCbCr_xvYCC601  QVideoSurfaceFormat__YCbCrColorSpace = QVideoSurfaceFormat__YCbCrColorSpace(3)
+	QVideoSurfaceFormat__YCbCr_xvYCC709  QVideoSurfaceFormat__YCbCrColorSpace = QVideoSurfaceFormat__YCbCrColorSpace(4)
+	QVideoSurfaceFormat__YCbCr_JPEG      QVideoSurfaceFormat__YCbCrColorSpace = QVideoSurfaceFormat__YCbCrColorSpace(5)
 )
 
 type QVideoSurfaceFormat struct {

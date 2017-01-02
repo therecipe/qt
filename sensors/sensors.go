@@ -22,27 +22,28 @@ func cGoUnpackString(s C.struct_QtSensors_PackedString) string {
 	return C.GoStringN(s.data, C.int(s.len))
 }
 
+//go:generate stringer -type=AndroidSensors__AndroidSensorType
 //AndroidSensors::AndroidSensorType
 type AndroidSensors__AndroidSensorType int64
 
 const (
-	AndroidSensors__TYPE_ACCELEROMETER               = AndroidSensors__AndroidSensorType(1)
-	AndroidSensors__TYPE_AMBIENT_TEMPERATURE         = AndroidSensors__AndroidSensorType(13)
-	AndroidSensors__TYPE_GAME_ROTATION_VECTOR        = AndroidSensors__AndroidSensorType(15)
-	AndroidSensors__TYPE_GRAVITY                     = AndroidSensors__AndroidSensorType(9)
-	AndroidSensors__TYPE_GYROSCOPE                   = AndroidSensors__AndroidSensorType(4)
-	AndroidSensors__TYPE_GYROSCOPE_UNCALIBRATED      = AndroidSensors__AndroidSensorType(16)
-	AndroidSensors__TYPE_LIGHT                       = AndroidSensors__AndroidSensorType(5)
-	AndroidSensors__TYPE_LINEAR_ACCELERATION         = AndroidSensors__AndroidSensorType(10)
-	AndroidSensors__TYPE_MAGNETIC_FIELD              = AndroidSensors__AndroidSensorType(2)
-	AndroidSensors__TYPE_MAGNETIC_FIELD_UNCALIBRATED = AndroidSensors__AndroidSensorType(14)
-	AndroidSensors__TYPE_ORIENTATION                 = AndroidSensors__AndroidSensorType(3)
-	AndroidSensors__TYPE_PRESSURE                    = AndroidSensors__AndroidSensorType(6)
-	AndroidSensors__TYPE_PROXIMITY                   = AndroidSensors__AndroidSensorType(8)
-	AndroidSensors__TYPE_RELATIVE_HUMIDITY           = AndroidSensors__AndroidSensorType(12)
-	AndroidSensors__TYPE_ROTATION_VECTOR             = AndroidSensors__AndroidSensorType(11)
-	AndroidSensors__TYPE_SIGNIFICANT_MOTION          = AndroidSensors__AndroidSensorType(17)
-	AndroidSensors__TYPE_TEMPERATURE                 = AndroidSensors__AndroidSensorType(7)
+	AndroidSensors__TYPE_ACCELEROMETER               AndroidSensors__AndroidSensorType = AndroidSensors__AndroidSensorType(1)
+	AndroidSensors__TYPE_AMBIENT_TEMPERATURE         AndroidSensors__AndroidSensorType = AndroidSensors__AndroidSensorType(13)
+	AndroidSensors__TYPE_GAME_ROTATION_VECTOR        AndroidSensors__AndroidSensorType = AndroidSensors__AndroidSensorType(15)
+	AndroidSensors__TYPE_GRAVITY                     AndroidSensors__AndroidSensorType = AndroidSensors__AndroidSensorType(9)
+	AndroidSensors__TYPE_GYROSCOPE                   AndroidSensors__AndroidSensorType = AndroidSensors__AndroidSensorType(4)
+	AndroidSensors__TYPE_GYROSCOPE_UNCALIBRATED      AndroidSensors__AndroidSensorType = AndroidSensors__AndroidSensorType(16)
+	AndroidSensors__TYPE_LIGHT                       AndroidSensors__AndroidSensorType = AndroidSensors__AndroidSensorType(5)
+	AndroidSensors__TYPE_LINEAR_ACCELERATION         AndroidSensors__AndroidSensorType = AndroidSensors__AndroidSensorType(10)
+	AndroidSensors__TYPE_MAGNETIC_FIELD              AndroidSensors__AndroidSensorType = AndroidSensors__AndroidSensorType(2)
+	AndroidSensors__TYPE_MAGNETIC_FIELD_UNCALIBRATED AndroidSensors__AndroidSensorType = AndroidSensors__AndroidSensorType(14)
+	AndroidSensors__TYPE_ORIENTATION                 AndroidSensors__AndroidSensorType = AndroidSensors__AndroidSensorType(3)
+	AndroidSensors__TYPE_PRESSURE                    AndroidSensors__AndroidSensorType = AndroidSensors__AndroidSensorType(6)
+	AndroidSensors__TYPE_PROXIMITY                   AndroidSensors__AndroidSensorType = AndroidSensors__AndroidSensorType(8)
+	AndroidSensors__TYPE_RELATIVE_HUMIDITY           AndroidSensors__AndroidSensorType = AndroidSensors__AndroidSensorType(12)
+	AndroidSensors__TYPE_ROTATION_VECTOR             AndroidSensors__AndroidSensorType = AndroidSensors__AndroidSensorType(11)
+	AndroidSensors__TYPE_SIGNIFICANT_MOTION          AndroidSensors__AndroidSensorType = AndroidSensors__AndroidSensorType(17)
+	AndroidSensors__TYPE_TEMPERATURE                 AndroidSensors__AndroidSensorType = AndroidSensors__AndroidSensorType(7)
 )
 
 type AndroidSensors struct {
@@ -88,13 +89,14 @@ func (ptr *AndroidSensors) DestroyAndroidSensors() {
 	ptr.SetPointer(nil)
 }
 
+//go:generate stringer -type=QAccelerometer__AccelerationMode
 //QAccelerometer::AccelerationMode
 type QAccelerometer__AccelerationMode int64
 
 const (
-	QAccelerometer__Combined = QAccelerometer__AccelerationMode(0)
-	QAccelerometer__Gravity  = QAccelerometer__AccelerationMode(1)
-	QAccelerometer__User     = QAccelerometer__AccelerationMode(2)
+	QAccelerometer__Combined QAccelerometer__AccelerationMode = QAccelerometer__AccelerationMode(0)
+	QAccelerometer__Gravity  QAccelerometer__AccelerationMode = QAccelerometer__AccelerationMode(1)
+	QAccelerometer__User     QAccelerometer__AccelerationMode = QAccelerometer__AccelerationMode(2)
 )
 
 type QAccelerometer struct {
@@ -2163,16 +2165,17 @@ func (ptr *QAmbientLightFilter) Filter(reading QAmbientLightReading_ITF) bool {
 	return false
 }
 
+//go:generate stringer -type=QAmbientLightReading__LightLevel
 //QAmbientLightReading::LightLevel
 type QAmbientLightReading__LightLevel int64
 
 const (
-	QAmbientLightReading__Undefined = QAmbientLightReading__LightLevel(0)
-	QAmbientLightReading__Dark      = QAmbientLightReading__LightLevel(1)
-	QAmbientLightReading__Twilight  = QAmbientLightReading__LightLevel(2)
-	QAmbientLightReading__Light     = QAmbientLightReading__LightLevel(3)
-	QAmbientLightReading__Bright    = QAmbientLightReading__LightLevel(4)
-	QAmbientLightReading__Sunny     = QAmbientLightReading__LightLevel(5)
+	QAmbientLightReading__Undefined QAmbientLightReading__LightLevel = QAmbientLightReading__LightLevel(0)
+	QAmbientLightReading__Dark      QAmbientLightReading__LightLevel = QAmbientLightReading__LightLevel(1)
+	QAmbientLightReading__Twilight  QAmbientLightReading__LightLevel = QAmbientLightReading__LightLevel(2)
+	QAmbientLightReading__Light     QAmbientLightReading__LightLevel = QAmbientLightReading__LightLevel(3)
+	QAmbientLightReading__Bright    QAmbientLightReading__LightLevel = QAmbientLightReading__LightLevel(4)
+	QAmbientLightReading__Sunny     QAmbientLightReading__LightLevel = QAmbientLightReading__LightLevel(5)
 )
 
 type QAmbientLightReading struct {
@@ -11034,17 +11037,18 @@ func (ptr *QOrientationFilter) Filter(reading QOrientationReading_ITF) bool {
 	return false
 }
 
+//go:generate stringer -type=QOrientationReading__Orientation
 //QOrientationReading::Orientation
 type QOrientationReading__Orientation int64
 
 const (
-	QOrientationReading__Undefined = QOrientationReading__Orientation(0)
-	QOrientationReading__TopUp     = QOrientationReading__Orientation(1)
-	QOrientationReading__TopDown   = QOrientationReading__Orientation(2)
-	QOrientationReading__LeftUp    = QOrientationReading__Orientation(3)
-	QOrientationReading__RightUp   = QOrientationReading__Orientation(4)
-	QOrientationReading__FaceUp    = QOrientationReading__Orientation(5)
-	QOrientationReading__FaceDown  = QOrientationReading__Orientation(6)
+	QOrientationReading__Undefined QOrientationReading__Orientation = QOrientationReading__Orientation(0)
+	QOrientationReading__TopUp     QOrientationReading__Orientation = QOrientationReading__Orientation(1)
+	QOrientationReading__TopDown   QOrientationReading__Orientation = QOrientationReading__Orientation(2)
+	QOrientationReading__LeftUp    QOrientationReading__Orientation = QOrientationReading__Orientation(3)
+	QOrientationReading__RightUp   QOrientationReading__Orientation = QOrientationReading__Orientation(4)
+	QOrientationReading__FaceUp    QOrientationReading__Orientation = QOrientationReading__Orientation(5)
+	QOrientationReading__FaceDown  QOrientationReading__Orientation = QOrientationReading__Orientation(6)
 )
 
 type QOrientationReading struct {
@@ -14916,28 +14920,30 @@ func (ptr *QRotationSensor) MetaObjectDefault() *core.QMetaObject {
 	return nil
 }
 
+//go:generate stringer -type=QSensor__AxesOrientationMode
 //QSensor::AxesOrientationMode
 type QSensor__AxesOrientationMode int64
 
 const (
-	QSensor__FixedOrientation     = QSensor__AxesOrientationMode(0)
-	QSensor__AutomaticOrientation = QSensor__AxesOrientationMode(1)
-	QSensor__UserOrientation      = QSensor__AxesOrientationMode(2)
+	QSensor__FixedOrientation     QSensor__AxesOrientationMode = QSensor__AxesOrientationMode(0)
+	QSensor__AutomaticOrientation QSensor__AxesOrientationMode = QSensor__AxesOrientationMode(1)
+	QSensor__UserOrientation      QSensor__AxesOrientationMode = QSensor__AxesOrientationMode(2)
 )
 
+//go:generate stringer -type=QSensor__Feature
 //QSensor::Feature
 type QSensor__Feature int64
 
 const (
-	QSensor__Buffering                 = QSensor__Feature(0)
-	QSensor__AlwaysOn                  = QSensor__Feature(1)
-	QSensor__GeoValues                 = QSensor__Feature(2)
-	QSensor__FieldOfView               = QSensor__Feature(3)
-	QSensor__AccelerationMode          = QSensor__Feature(4)
-	QSensor__SkipDuplicates            = QSensor__Feature(5)
-	QSensor__AxesOrientation           = QSensor__Feature(6)
-	QSensor__PressureSensorTemperature = QSensor__Feature(7)
-	QSensor__Reserved                  = QSensor__Feature(257)
+	QSensor__Buffering                 QSensor__Feature = QSensor__Feature(0)
+	QSensor__AlwaysOn                  QSensor__Feature = QSensor__Feature(1)
+	QSensor__GeoValues                 QSensor__Feature = QSensor__Feature(2)
+	QSensor__FieldOfView               QSensor__Feature = QSensor__Feature(3)
+	QSensor__AccelerationMode          QSensor__Feature = QSensor__Feature(4)
+	QSensor__SkipDuplicates            QSensor__Feature = QSensor__Feature(5)
+	QSensor__AxesOrientation           QSensor__Feature = QSensor__Feature(6)
+	QSensor__PressureSensorTemperature QSensor__Feature = QSensor__Feature(7)
+	QSensor__Reserved                  QSensor__Feature = QSensor__Feature(257)
 )
 
 type QSensor struct {
@@ -19341,23 +19347,24 @@ func (ptr *QTapFilter) Filter(reading QTapReading_ITF) bool {
 	return false
 }
 
+//go:generate stringer -type=QTapReading__TapDirection
 //QTapReading::TapDirection
 type QTapReading__TapDirection int64
 
 const (
-	QTapReading__Undefined = QTapReading__TapDirection(0)
-	QTapReading__X         = QTapReading__TapDirection(0x0001)
-	QTapReading__Y         = QTapReading__TapDirection(0x0002)
-	QTapReading__Z         = QTapReading__TapDirection(0x0004)
-	QTapReading__X_Pos     = QTapReading__TapDirection(0x0011)
-	QTapReading__Y_Pos     = QTapReading__TapDirection(0x0022)
-	QTapReading__Z_Pos     = QTapReading__TapDirection(0x0044)
-	QTapReading__X_Neg     = QTapReading__TapDirection(0x0101)
-	QTapReading__Y_Neg     = QTapReading__TapDirection(0x0202)
-	QTapReading__Z_Neg     = QTapReading__TapDirection(0x0404)
-	QTapReading__X_Both    = QTapReading__TapDirection(0x0111)
-	QTapReading__Y_Both    = QTapReading__TapDirection(0x0222)
-	QTapReading__Z_Both    = QTapReading__TapDirection(0x0444)
+	QTapReading__Undefined QTapReading__TapDirection = QTapReading__TapDirection(0)
+	QTapReading__X         QTapReading__TapDirection = QTapReading__TapDirection(0x0001)
+	QTapReading__Y         QTapReading__TapDirection = QTapReading__TapDirection(0x0002)
+	QTapReading__Z         QTapReading__TapDirection = QTapReading__TapDirection(0x0004)
+	QTapReading__X_Pos     QTapReading__TapDirection = QTapReading__TapDirection(0x0011)
+	QTapReading__Y_Pos     QTapReading__TapDirection = QTapReading__TapDirection(0x0022)
+	QTapReading__Z_Pos     QTapReading__TapDirection = QTapReading__TapDirection(0x0044)
+	QTapReading__X_Neg     QTapReading__TapDirection = QTapReading__TapDirection(0x0101)
+	QTapReading__Y_Neg     QTapReading__TapDirection = QTapReading__TapDirection(0x0202)
+	QTapReading__Z_Neg     QTapReading__TapDirection = QTapReading__TapDirection(0x0404)
+	QTapReading__X_Both    QTapReading__TapDirection = QTapReading__TapDirection(0x0111)
+	QTapReading__Y_Both    QTapReading__TapDirection = QTapReading__TapDirection(0x0222)
+	QTapReading__Z_Both    QTapReading__TapDirection = QTapReading__TapDirection(0x0444)
 )
 
 type QTapReading struct {
@@ -21280,16 +21287,17 @@ func (ptr *QTiltSensor) MetaObjectDefault() *core.QMetaObject {
 	return nil
 }
 
+//go:generate stringer -type=QtMobility__SimulatorLightLevel
 //QtMobility::SimulatorLightLevel
 type QtMobility__SimulatorLightLevel int64
 
 const (
-	QtMobility__Undefined = QtMobility__SimulatorLightLevel(0)
-	QtMobility__Dark      = QtMobility__SimulatorLightLevel(1)
-	QtMobility__Twilight  = QtMobility__SimulatorLightLevel(2)
-	QtMobility__Light     = QtMobility__SimulatorLightLevel(3)
-	QtMobility__Bright    = QtMobility__SimulatorLightLevel(4)
-	QtMobility__Sunny     = QtMobility__SimulatorLightLevel(5)
+	QtMobility__Undefined QtMobility__SimulatorLightLevel = QtMobility__SimulatorLightLevel(0)
+	QtMobility__Dark      QtMobility__SimulatorLightLevel = QtMobility__SimulatorLightLevel(1)
+	QtMobility__Twilight  QtMobility__SimulatorLightLevel = QtMobility__SimulatorLightLevel(2)
+	QtMobility__Light     QtMobility__SimulatorLightLevel = QtMobility__SimulatorLightLevel(3)
+	QtMobility__Bright    QtMobility__SimulatorLightLevel = QtMobility__SimulatorLightLevel(4)
+	QtMobility__Sunny     QtMobility__SimulatorLightLevel = QtMobility__SimulatorLightLevel(5)
 )
 
 type QtMobility struct {

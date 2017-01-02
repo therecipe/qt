@@ -30,7 +30,7 @@ func (c *Class) register(m string) {
 
 	c.DocModule = c.Module
 	c.Module = m
-	CurrentState.ClassMap[c.Name] = c
+	State.ClassMap[c.Name] = c
 
 	for _, sc := range c.Classes {
 		if sc.Name != "PaintContext" { //TODO: remove
@@ -60,7 +60,7 @@ func (c *Class) GetAllBases() []string {
 	var input = make([]string, 0)
 
 	for _, b := range c.GetBases() {
-		var bc, exists = CurrentState.ClassMap[b]
+		var bc, exists = State.ClassMap[b]
 		if !exists {
 			continue
 		}
@@ -83,7 +83,7 @@ func (c *Class) GetAllBasesRecursiveCheckFailed(i int) ([]string, bool) {
 	}
 
 	for _, b := range c.GetBases() {
-		var bc, exists = CurrentState.ClassMap[b]
+		var bc, exists = State.ClassMap[b]
 		if !exists {
 			continue
 		}
@@ -154,5 +154,65 @@ func (c *Class) NeedsDestructor() bool {
 			return false
 		}
 	}
+	return true
+}
+
+func (class *Class) HasCallbackFunctions() bool {
+
+	for _, function := range class.Functions {
+		if function.Virtual == IMPURE || function.Virtual == PURE || function.Meta == SIGNAL || function.Meta == SLOT {
+			return true
+		}
+	}
+
+	return false
+}
+
+func (c *Class) IsSupported() bool {
+	if c == nil {
+		return false
+	}
+
+	switch c.Name {
+	case
+		"QString", "QStringList", //mapped to primitive
+
+		"QExplicitlySharedDataPointer", "QFuture", "QDBusPendingReply", "QDBusReply", "QFutureSynchronizer", //needs template
+		"QGlobalStatic", "QMultiHash", "QQueue", "QMultiMap", "QScopedPointer", "QSharedDataPointer",
+		"QScopedArrayPointer", "QSharedPointer", "QThreadStorage", "QScopedValueRollback", "QVarLengthArray",
+		"QWeakPointer", "QWinEventNotifier",
+
+		"QFlags", "QException", "QStandardItemEditorCreator", "QSGSimpleMaterialShader", "QGeoCodeReply", "QFutureWatcher", //other
+		"QItemEditorCreator", "QGeoCodingManager", "QGeoCodingManagerEngine", "QQmlListProperty",
+
+		"QPlatformGraphicsBuffer", "QPlatformSystemTrayIcon", "QRasterPaintEngine", "QSupportedWritingSystems", "QGeoLocation", //file not found or QPA API
+		"QAbstractOpenGLFunctions",
+
+		"QProcess", "QProcessEnvironment": //TODO: iOS
+
+		{
+			c.Access = "unsupported_isBlockedClass"
+			return false
+		}
+	}
+
+	switch {
+	case
+		strings.HasPrefix(c.Name, "QOpenGL"), strings.HasPrefix(c.Name, "QPlace"), //file not found or QPA API
+
+		strings.HasPrefix(c.Name, "QAtomic"), //other
+
+		strings.HasSuffix(c.Name, "terator"), strings.Contains(c.Brief, "emplate"): //needs template
+
+		{
+			c.Access = "unsupported_isBlockedClass"
+			return false
+		}
+	}
+
+	if State.Minimal {
+		return c.Export
+	}
+
 	return true
 }

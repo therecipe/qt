@@ -20,9 +20,10 @@ type Variable struct {
 }
 
 func (v *Variable) Class() (*Class, bool) {
-	var class, exists = CurrentState.ClassMap[v.ClassName()]
+	var class, exists = State.ClassMap[v.ClassName()]
 	return class, exists
 }
+
 func (v *Variable) ClassName() string {
 	var s = strings.Split(v.Fullname, "::")
 	if len(s) == 3 {
@@ -127,7 +128,7 @@ func (v *Variable) propToFunc(c *Class) []*Function {
 	//add all overloaded property functions from base classes
 
 	for _, bc := range c.GetAllBases() {
-		var bclass, exist = CurrentState.ClassMap[bc]
+		var bclass, exist = State.ClassMap[bc]
 		if !exist {
 			continue
 		}

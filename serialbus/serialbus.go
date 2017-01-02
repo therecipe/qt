@@ -21,25 +21,26 @@ func cGoUnpackString(s C.struct_QtSerialBus_PackedString) string {
 	return C.GoStringN(s.data, C.int(s.len))
 }
 
+//go:generate stringer -type=Diagnostics__SubFunctionCode
 //Diagnostics::SubFunctionCode
 type Diagnostics__SubFunctionCode int64
 
 const (
-	Diagnostics__ReturnQueryData                    = Diagnostics__SubFunctionCode(0x0000)
-	Diagnostics__RestartCommunicationsOption        = Diagnostics__SubFunctionCode(0x0001)
-	Diagnostics__ReturnDiagnosticRegister           = Diagnostics__SubFunctionCode(0x0002)
-	Diagnostics__ChangeAsciiInputDelimiter          = Diagnostics__SubFunctionCode(0x0003)
-	Diagnostics__ForceListenOnlyMode                = Diagnostics__SubFunctionCode(0x0004)
-	Diagnostics__ClearCountersAndDiagnosticRegister = Diagnostics__SubFunctionCode(0x000a)
-	Diagnostics__ReturnBusMessageCount              = Diagnostics__SubFunctionCode(0x000b)
-	Diagnostics__ReturnBusCommunicationErrorCount   = Diagnostics__SubFunctionCode(0x000c)
-	Diagnostics__ReturnBusExceptionErrorCount       = Diagnostics__SubFunctionCode(0x000d)
-	Diagnostics__ReturnServerMessageCount           = Diagnostics__SubFunctionCode(0x000e)
-	Diagnostics__ReturnServerNoResponseCount        = Diagnostics__SubFunctionCode(0x000f)
-	Diagnostics__ReturnServerNAKCount               = Diagnostics__SubFunctionCode(0x0010)
-	Diagnostics__ReturnServerBusyCount              = Diagnostics__SubFunctionCode(0x0011)
-	Diagnostics__ReturnBusCharacterOverrunCount     = Diagnostics__SubFunctionCode(0x0012)
-	Diagnostics__ClearOverrunCounterAndFlag         = Diagnostics__SubFunctionCode(0x0014)
+	Diagnostics__ReturnQueryData                    Diagnostics__SubFunctionCode = Diagnostics__SubFunctionCode(0x0000)
+	Diagnostics__RestartCommunicationsOption        Diagnostics__SubFunctionCode = Diagnostics__SubFunctionCode(0x0001)
+	Diagnostics__ReturnDiagnosticRegister           Diagnostics__SubFunctionCode = Diagnostics__SubFunctionCode(0x0002)
+	Diagnostics__ChangeAsciiInputDelimiter          Diagnostics__SubFunctionCode = Diagnostics__SubFunctionCode(0x0003)
+	Diagnostics__ForceListenOnlyMode                Diagnostics__SubFunctionCode = Diagnostics__SubFunctionCode(0x0004)
+	Diagnostics__ClearCountersAndDiagnosticRegister Diagnostics__SubFunctionCode = Diagnostics__SubFunctionCode(0x000a)
+	Diagnostics__ReturnBusMessageCount              Diagnostics__SubFunctionCode = Diagnostics__SubFunctionCode(0x000b)
+	Diagnostics__ReturnBusCommunicationErrorCount   Diagnostics__SubFunctionCode = Diagnostics__SubFunctionCode(0x000c)
+	Diagnostics__ReturnBusExceptionErrorCount       Diagnostics__SubFunctionCode = Diagnostics__SubFunctionCode(0x000d)
+	Diagnostics__ReturnServerMessageCount           Diagnostics__SubFunctionCode = Diagnostics__SubFunctionCode(0x000e)
+	Diagnostics__ReturnServerNoResponseCount        Diagnostics__SubFunctionCode = Diagnostics__SubFunctionCode(0x000f)
+	Diagnostics__ReturnServerNAKCount               Diagnostics__SubFunctionCode = Diagnostics__SubFunctionCode(0x0010)
+	Diagnostics__ReturnServerBusyCount              Diagnostics__SubFunctionCode = Diagnostics__SubFunctionCode(0x0011)
+	Diagnostics__ReturnBusCharacterOverrunCount     Diagnostics__SubFunctionCode = Diagnostics__SubFunctionCode(0x0012)
+	Diagnostics__ClearOverrunCounterAndFlag         Diagnostics__SubFunctionCode = Diagnostics__SubFunctionCode(0x0014)
 )
 
 type Diagnostics struct {
@@ -85,12 +86,13 @@ func (ptr *Diagnostics) DestroyDiagnostics() {
 	ptr.SetPointer(nil)
 }
 
+//go:generate stringer -type=EncapsulatedInterfaceTransport__SubFunctionCode
 //EncapsulatedInterfaceTransport::SubFunctionCode
 type EncapsulatedInterfaceTransport__SubFunctionCode int64
 
 const (
-	EncapsulatedInterfaceTransport__CanOpenGeneralReference  = EncapsulatedInterfaceTransport__SubFunctionCode(0x0D)
-	EncapsulatedInterfaceTransport__ReadDeviceIdentification = EncapsulatedInterfaceTransport__SubFunctionCode(0x0E)
+	EncapsulatedInterfaceTransport__CanOpenGeneralReference  EncapsulatedInterfaceTransport__SubFunctionCode = EncapsulatedInterfaceTransport__SubFunctionCode(0x0D)
+	EncapsulatedInterfaceTransport__ReadDeviceIdentification EncapsulatedInterfaceTransport__SubFunctionCode = EncapsulatedInterfaceTransport__SubFunctionCode(0x0E)
 )
 
 type EncapsulatedInterfaceTransport struct {
@@ -565,39 +567,42 @@ func (ptr *QCanBus) MetaObjectDefault() *core.QMetaObject {
 	return nil
 }
 
+//go:generate stringer -type=QCanBusDevice__CanBusDeviceState
 //QCanBusDevice::CanBusDeviceState
 type QCanBusDevice__CanBusDeviceState int64
 
 const (
-	QCanBusDevice__UnconnectedState = QCanBusDevice__CanBusDeviceState(0)
-	QCanBusDevice__ConnectingState  = QCanBusDevice__CanBusDeviceState(1)
-	QCanBusDevice__ConnectedState   = QCanBusDevice__CanBusDeviceState(2)
-	QCanBusDevice__ClosingState     = QCanBusDevice__CanBusDeviceState(3)
+	QCanBusDevice__UnconnectedState QCanBusDevice__CanBusDeviceState = QCanBusDevice__CanBusDeviceState(0)
+	QCanBusDevice__ConnectingState  QCanBusDevice__CanBusDeviceState = QCanBusDevice__CanBusDeviceState(1)
+	QCanBusDevice__ConnectedState   QCanBusDevice__CanBusDeviceState = QCanBusDevice__CanBusDeviceState(2)
+	QCanBusDevice__ClosingState     QCanBusDevice__CanBusDeviceState = QCanBusDevice__CanBusDeviceState(3)
 )
 
+//go:generate stringer -type=QCanBusDevice__CanBusError
 //QCanBusDevice::CanBusError
 type QCanBusDevice__CanBusError int64
 
 const (
-	QCanBusDevice__NoError            = QCanBusDevice__CanBusError(0)
-	QCanBusDevice__ReadError          = QCanBusDevice__CanBusError(1)
-	QCanBusDevice__WriteError         = QCanBusDevice__CanBusError(2)
-	QCanBusDevice__ConnectionError    = QCanBusDevice__CanBusError(3)
-	QCanBusDevice__ConfigurationError = QCanBusDevice__CanBusError(4)
-	QCanBusDevice__UnknownError       = QCanBusDevice__CanBusError(5)
+	QCanBusDevice__NoError            QCanBusDevice__CanBusError = QCanBusDevice__CanBusError(0)
+	QCanBusDevice__ReadError          QCanBusDevice__CanBusError = QCanBusDevice__CanBusError(1)
+	QCanBusDevice__WriteError         QCanBusDevice__CanBusError = QCanBusDevice__CanBusError(2)
+	QCanBusDevice__ConnectionError    QCanBusDevice__CanBusError = QCanBusDevice__CanBusError(3)
+	QCanBusDevice__ConfigurationError QCanBusDevice__CanBusError = QCanBusDevice__CanBusError(4)
+	QCanBusDevice__UnknownError       QCanBusDevice__CanBusError = QCanBusDevice__CanBusError(5)
 )
 
+//go:generate stringer -type=QCanBusDevice__ConfigurationKey
 //QCanBusDevice::ConfigurationKey
 type QCanBusDevice__ConfigurationKey int64
 
 const (
-	QCanBusDevice__RawFilterKey   = QCanBusDevice__ConfigurationKey(0)
-	QCanBusDevice__ErrorFilterKey = QCanBusDevice__ConfigurationKey(1)
-	QCanBusDevice__LoopbackKey    = QCanBusDevice__ConfigurationKey(2)
-	QCanBusDevice__ReceiveOwnKey  = QCanBusDevice__ConfigurationKey(3)
-	QCanBusDevice__BitRateKey     = QCanBusDevice__ConfigurationKey(4)
-	QCanBusDevice__CanFdKey       = QCanBusDevice__ConfigurationKey(5)
-	QCanBusDevice__UserKey        = QCanBusDevice__ConfigurationKey(30)
+	QCanBusDevice__RawFilterKey   QCanBusDevice__ConfigurationKey = QCanBusDevice__ConfigurationKey(0)
+	QCanBusDevice__ErrorFilterKey QCanBusDevice__ConfigurationKey = QCanBusDevice__ConfigurationKey(1)
+	QCanBusDevice__LoopbackKey    QCanBusDevice__ConfigurationKey = QCanBusDevice__ConfigurationKey(2)
+	QCanBusDevice__ReceiveOwnKey  QCanBusDevice__ConfigurationKey = QCanBusDevice__ConfigurationKey(3)
+	QCanBusDevice__BitRateKey     QCanBusDevice__ConfigurationKey = QCanBusDevice__ConfigurationKey(4)
+	QCanBusDevice__CanFdKey       QCanBusDevice__ConfigurationKey = QCanBusDevice__ConfigurationKey(5)
+	QCanBusDevice__UserKey        QCanBusDevice__ConfigurationKey = QCanBusDevice__ConfigurationKey(30)
 )
 
 type QCanBusDevice struct {
@@ -1425,33 +1430,35 @@ func (ptr *QCanBusFactory) CreateDevice(interfaceName string) *QCanBusDevice {
 	return nil
 }
 
+//go:generate stringer -type=QCanBusFrame__FrameError
 //QCanBusFrame::FrameError
 type QCanBusFrame__FrameError int64
 
 var (
-	QCanBusFrame__NoError                    = QCanBusFrame__FrameError(0)
-	QCanBusFrame__TransmissionTimeoutError   = QCanBusFrame__FrameError(C.QCanBusFrame_TransmissionTimeoutError_Type())
-	QCanBusFrame__LostArbitrationError       = QCanBusFrame__FrameError(C.QCanBusFrame_LostArbitrationError_Type())
-	QCanBusFrame__ControllerError            = QCanBusFrame__FrameError(C.QCanBusFrame_ControllerError_Type())
-	QCanBusFrame__ProtocolViolationError     = QCanBusFrame__FrameError(C.QCanBusFrame_ProtocolViolationError_Type())
-	QCanBusFrame__TransceiverError           = QCanBusFrame__FrameError(C.QCanBusFrame_TransceiverError_Type())
-	QCanBusFrame__MissingAcknowledgmentError = QCanBusFrame__FrameError(C.QCanBusFrame_MissingAcknowledgmentError_Type())
-	QCanBusFrame__BusOffError                = QCanBusFrame__FrameError(C.QCanBusFrame_BusOffError_Type())
-	QCanBusFrame__BusError                   = QCanBusFrame__FrameError(C.QCanBusFrame_BusError_Type())
-	QCanBusFrame__ControllerRestartError     = QCanBusFrame__FrameError(C.QCanBusFrame_ControllerRestartError_Type())
-	QCanBusFrame__UnknownError               = QCanBusFrame__FrameError(C.QCanBusFrame_UnknownError_Type())
-	QCanBusFrame__AnyError                   = QCanBusFrame__FrameError(C.QCanBusFrame_AnyError_Type())
+	QCanBusFrame__NoError                    QCanBusFrame__FrameError = QCanBusFrame__FrameError(0)
+	QCanBusFrame__TransmissionTimeoutError   QCanBusFrame__FrameError = QCanBusFrame__FrameError(C.QCanBusFrame_TransmissionTimeoutError_Type())
+	QCanBusFrame__LostArbitrationError       QCanBusFrame__FrameError = QCanBusFrame__FrameError(C.QCanBusFrame_LostArbitrationError_Type())
+	QCanBusFrame__ControllerError            QCanBusFrame__FrameError = QCanBusFrame__FrameError(C.QCanBusFrame_ControllerError_Type())
+	QCanBusFrame__ProtocolViolationError     QCanBusFrame__FrameError = QCanBusFrame__FrameError(C.QCanBusFrame_ProtocolViolationError_Type())
+	QCanBusFrame__TransceiverError           QCanBusFrame__FrameError = QCanBusFrame__FrameError(C.QCanBusFrame_TransceiverError_Type())
+	QCanBusFrame__MissingAcknowledgmentError QCanBusFrame__FrameError = QCanBusFrame__FrameError(C.QCanBusFrame_MissingAcknowledgmentError_Type())
+	QCanBusFrame__BusOffError                QCanBusFrame__FrameError = QCanBusFrame__FrameError(C.QCanBusFrame_BusOffError_Type())
+	QCanBusFrame__BusError                   QCanBusFrame__FrameError = QCanBusFrame__FrameError(C.QCanBusFrame_BusError_Type())
+	QCanBusFrame__ControllerRestartError     QCanBusFrame__FrameError = QCanBusFrame__FrameError(C.QCanBusFrame_ControllerRestartError_Type())
+	QCanBusFrame__UnknownError               QCanBusFrame__FrameError = QCanBusFrame__FrameError(C.QCanBusFrame_UnknownError_Type())
+	QCanBusFrame__AnyError                   QCanBusFrame__FrameError = QCanBusFrame__FrameError(C.QCanBusFrame_AnyError_Type())
 )
 
+//go:generate stringer -type=QCanBusFrame__FrameType
 //QCanBusFrame::FrameType
 type QCanBusFrame__FrameType int64
 
 const (
-	QCanBusFrame__UnknownFrame       = QCanBusFrame__FrameType(0x0)
-	QCanBusFrame__DataFrame          = QCanBusFrame__FrameType(0x1)
-	QCanBusFrame__ErrorFrame         = QCanBusFrame__FrameType(0x2)
-	QCanBusFrame__RemoteRequestFrame = QCanBusFrame__FrameType(0x3)
-	QCanBusFrame__InvalidFrame       = QCanBusFrame__FrameType(0x4)
+	QCanBusFrame__UnknownFrame       QCanBusFrame__FrameType = QCanBusFrame__FrameType(0x0)
+	QCanBusFrame__DataFrame          QCanBusFrame__FrameType = QCanBusFrame__FrameType(0x1)
+	QCanBusFrame__ErrorFrame         QCanBusFrame__FrameType = QCanBusFrame__FrameType(0x2)
+	QCanBusFrame__RemoteRequestFrame QCanBusFrame__FrameType = QCanBusFrame__FrameType(0x3)
+	QCanBusFrame__InvalidFrame       QCanBusFrame__FrameType = QCanBusFrame__FrameType(0x4)
 )
 
 type QCanBusFrame struct {
@@ -2205,15 +2212,16 @@ func (ptr *QModbusClient) MetaObjectDefault() *core.QMetaObject {
 	return nil
 }
 
+//go:generate stringer -type=QModbusDataUnit__RegisterType
 //QModbusDataUnit::RegisterType
 type QModbusDataUnit__RegisterType int64
 
 const (
-	QModbusDataUnit__Invalid          = QModbusDataUnit__RegisterType(0)
-	QModbusDataUnit__DiscreteInputs   = QModbusDataUnit__RegisterType(1)
-	QModbusDataUnit__Coils            = QModbusDataUnit__RegisterType(2)
-	QModbusDataUnit__InputRegisters   = QModbusDataUnit__RegisterType(3)
-	QModbusDataUnit__HoldingRegisters = QModbusDataUnit__RegisterType(4)
+	QModbusDataUnit__Invalid          QModbusDataUnit__RegisterType = QModbusDataUnit__RegisterType(0)
+	QModbusDataUnit__DiscreteInputs   QModbusDataUnit__RegisterType = QModbusDataUnit__RegisterType(1)
+	QModbusDataUnit__Coils            QModbusDataUnit__RegisterType = QModbusDataUnit__RegisterType(2)
+	QModbusDataUnit__InputRegisters   QModbusDataUnit__RegisterType = QModbusDataUnit__RegisterType(3)
+	QModbusDataUnit__HoldingRegisters QModbusDataUnit__RegisterType = QModbusDataUnit__RegisterType(4)
 )
 
 type QModbusDataUnit struct {
@@ -2336,43 +2344,46 @@ func (ptr *QModbusDataUnit) ValueCount() uint {
 	return 0
 }
 
+//go:generate stringer -type=QModbusDevice__ConnectionParameter
 //QModbusDevice::ConnectionParameter
 type QModbusDevice__ConnectionParameter int64
 
 const (
-	QModbusDevice__SerialPortNameParameter = QModbusDevice__ConnectionParameter(0)
-	QModbusDevice__SerialParityParameter   = QModbusDevice__ConnectionParameter(1)
-	QModbusDevice__SerialBaudRateParameter = QModbusDevice__ConnectionParameter(2)
-	QModbusDevice__SerialDataBitsParameter = QModbusDevice__ConnectionParameter(3)
-	QModbusDevice__SerialStopBitsParameter = QModbusDevice__ConnectionParameter(4)
-	QModbusDevice__NetworkPortParameter    = QModbusDevice__ConnectionParameter(5)
-	QModbusDevice__NetworkAddressParameter = QModbusDevice__ConnectionParameter(6)
-	QModbusDevice__UserParameter           = QModbusDevice__ConnectionParameter(0x100)
+	QModbusDevice__SerialPortNameParameter QModbusDevice__ConnectionParameter = QModbusDevice__ConnectionParameter(0)
+	QModbusDevice__SerialParityParameter   QModbusDevice__ConnectionParameter = QModbusDevice__ConnectionParameter(1)
+	QModbusDevice__SerialBaudRateParameter QModbusDevice__ConnectionParameter = QModbusDevice__ConnectionParameter(2)
+	QModbusDevice__SerialDataBitsParameter QModbusDevice__ConnectionParameter = QModbusDevice__ConnectionParameter(3)
+	QModbusDevice__SerialStopBitsParameter QModbusDevice__ConnectionParameter = QModbusDevice__ConnectionParameter(4)
+	QModbusDevice__NetworkPortParameter    QModbusDevice__ConnectionParameter = QModbusDevice__ConnectionParameter(5)
+	QModbusDevice__NetworkAddressParameter QModbusDevice__ConnectionParameter = QModbusDevice__ConnectionParameter(6)
+	QModbusDevice__UserParameter           QModbusDevice__ConnectionParameter = QModbusDevice__ConnectionParameter(0x100)
 )
 
+//go:generate stringer -type=QModbusDevice__Error
 //QModbusDevice::Error
 type QModbusDevice__Error int64
 
 const (
-	QModbusDevice__NoError            = QModbusDevice__Error(0)
-	QModbusDevice__ReadError          = QModbusDevice__Error(1)
-	QModbusDevice__WriteError         = QModbusDevice__Error(2)
-	QModbusDevice__ConnectionError    = QModbusDevice__Error(3)
-	QModbusDevice__ConfigurationError = QModbusDevice__Error(4)
-	QModbusDevice__TimeoutError       = QModbusDevice__Error(5)
-	QModbusDevice__ProtocolError      = QModbusDevice__Error(6)
-	QModbusDevice__ReplyAbortedError  = QModbusDevice__Error(7)
-	QModbusDevice__UnknownError       = QModbusDevice__Error(8)
+	QModbusDevice__NoError            QModbusDevice__Error = QModbusDevice__Error(0)
+	QModbusDevice__ReadError          QModbusDevice__Error = QModbusDevice__Error(1)
+	QModbusDevice__WriteError         QModbusDevice__Error = QModbusDevice__Error(2)
+	QModbusDevice__ConnectionError    QModbusDevice__Error = QModbusDevice__Error(3)
+	QModbusDevice__ConfigurationError QModbusDevice__Error = QModbusDevice__Error(4)
+	QModbusDevice__TimeoutError       QModbusDevice__Error = QModbusDevice__Error(5)
+	QModbusDevice__ProtocolError      QModbusDevice__Error = QModbusDevice__Error(6)
+	QModbusDevice__ReplyAbortedError  QModbusDevice__Error = QModbusDevice__Error(7)
+	QModbusDevice__UnknownError       QModbusDevice__Error = QModbusDevice__Error(8)
 )
 
+//go:generate stringer -type=QModbusDevice__State
 //QModbusDevice::State
 type QModbusDevice__State int64
 
 const (
-	QModbusDevice__UnconnectedState = QModbusDevice__State(0)
-	QModbusDevice__ConnectingState  = QModbusDevice__State(1)
-	QModbusDevice__ConnectedState   = QModbusDevice__State(2)
-	QModbusDevice__ClosingState     = QModbusDevice__State(3)
+	QModbusDevice__UnconnectedState QModbusDevice__State = QModbusDevice__State(0)
+	QModbusDevice__ConnectingState  QModbusDevice__State = QModbusDevice__State(1)
+	QModbusDevice__ConnectedState   QModbusDevice__State = QModbusDevice__State(2)
+	QModbusDevice__ClosingState     QModbusDevice__State = QModbusDevice__State(3)
 )
 
 type QModbusDevice struct {
@@ -2943,42 +2954,45 @@ func (ptr *QModbusDevice) MetaObjectDefault() *core.QMetaObject {
 	return nil
 }
 
+//go:generate stringer -type=QModbusDeviceIdentification__ConformityLevel
 //QModbusDeviceIdentification::ConformityLevel
 type QModbusDeviceIdentification__ConformityLevel int64
 
 const (
-	QModbusDeviceIdentification__BasicConformityLevel              = QModbusDeviceIdentification__ConformityLevel(0x01)
-	QModbusDeviceIdentification__RegularConformityLevel            = QModbusDeviceIdentification__ConformityLevel(0x02)
-	QModbusDeviceIdentification__ExtendedConformityLevel           = QModbusDeviceIdentification__ConformityLevel(0x03)
-	QModbusDeviceIdentification__BasicIndividualConformityLevel    = QModbusDeviceIdentification__ConformityLevel(0x81)
-	QModbusDeviceIdentification__RegularIndividualConformityLevel  = QModbusDeviceIdentification__ConformityLevel(0x82)
-	QModbusDeviceIdentification__ExtendedIndividualConformityLevel = QModbusDeviceIdentification__ConformityLevel(0x83)
+	QModbusDeviceIdentification__BasicConformityLevel              QModbusDeviceIdentification__ConformityLevel = QModbusDeviceIdentification__ConformityLevel(0x01)
+	QModbusDeviceIdentification__RegularConformityLevel            QModbusDeviceIdentification__ConformityLevel = QModbusDeviceIdentification__ConformityLevel(0x02)
+	QModbusDeviceIdentification__ExtendedConformityLevel           QModbusDeviceIdentification__ConformityLevel = QModbusDeviceIdentification__ConformityLevel(0x03)
+	QModbusDeviceIdentification__BasicIndividualConformityLevel    QModbusDeviceIdentification__ConformityLevel = QModbusDeviceIdentification__ConformityLevel(0x81)
+	QModbusDeviceIdentification__RegularIndividualConformityLevel  QModbusDeviceIdentification__ConformityLevel = QModbusDeviceIdentification__ConformityLevel(0x82)
+	QModbusDeviceIdentification__ExtendedIndividualConformityLevel QModbusDeviceIdentification__ConformityLevel = QModbusDeviceIdentification__ConformityLevel(0x83)
 )
 
+//go:generate stringer -type=QModbusDeviceIdentification__ObjectId
 //QModbusDeviceIdentification::ObjectId
 type QModbusDeviceIdentification__ObjectId int64
 
 const (
-	QModbusDeviceIdentification__VendorNameObjectId          = QModbusDeviceIdentification__ObjectId(0x00)
-	QModbusDeviceIdentification__ProductCodeObjectId         = QModbusDeviceIdentification__ObjectId(0x01)
-	QModbusDeviceIdentification__MajorMinorRevisionObjectId  = QModbusDeviceIdentification__ObjectId(0x02)
-	QModbusDeviceIdentification__VendorUrlObjectId           = QModbusDeviceIdentification__ObjectId(0x03)
-	QModbusDeviceIdentification__ProductNameObjectId         = QModbusDeviceIdentification__ObjectId(0x04)
-	QModbusDeviceIdentification__ModelNameObjectId           = QModbusDeviceIdentification__ObjectId(0x05)
-	QModbusDeviceIdentification__UserApplicationNameObjectId = QModbusDeviceIdentification__ObjectId(0x06)
-	QModbusDeviceIdentification__ReservedObjectId            = QModbusDeviceIdentification__ObjectId(0x07)
-	QModbusDeviceIdentification__ProductDependentObjectId    = QModbusDeviceIdentification__ObjectId(0x80)
-	QModbusDeviceIdentification__UndefinedObjectId           = QModbusDeviceIdentification__ObjectId(0x100)
+	QModbusDeviceIdentification__VendorNameObjectId          QModbusDeviceIdentification__ObjectId = QModbusDeviceIdentification__ObjectId(0x00)
+	QModbusDeviceIdentification__ProductCodeObjectId         QModbusDeviceIdentification__ObjectId = QModbusDeviceIdentification__ObjectId(0x01)
+	QModbusDeviceIdentification__MajorMinorRevisionObjectId  QModbusDeviceIdentification__ObjectId = QModbusDeviceIdentification__ObjectId(0x02)
+	QModbusDeviceIdentification__VendorUrlObjectId           QModbusDeviceIdentification__ObjectId = QModbusDeviceIdentification__ObjectId(0x03)
+	QModbusDeviceIdentification__ProductNameObjectId         QModbusDeviceIdentification__ObjectId = QModbusDeviceIdentification__ObjectId(0x04)
+	QModbusDeviceIdentification__ModelNameObjectId           QModbusDeviceIdentification__ObjectId = QModbusDeviceIdentification__ObjectId(0x05)
+	QModbusDeviceIdentification__UserApplicationNameObjectId QModbusDeviceIdentification__ObjectId = QModbusDeviceIdentification__ObjectId(0x06)
+	QModbusDeviceIdentification__ReservedObjectId            QModbusDeviceIdentification__ObjectId = QModbusDeviceIdentification__ObjectId(0x07)
+	QModbusDeviceIdentification__ProductDependentObjectId    QModbusDeviceIdentification__ObjectId = QModbusDeviceIdentification__ObjectId(0x80)
+	QModbusDeviceIdentification__UndefinedObjectId           QModbusDeviceIdentification__ObjectId = QModbusDeviceIdentification__ObjectId(0x100)
 )
 
+//go:generate stringer -type=QModbusDeviceIdentification__ReadDeviceIdCode
 //QModbusDeviceIdentification::ReadDeviceIdCode
 type QModbusDeviceIdentification__ReadDeviceIdCode int64
 
 const (
-	QModbusDeviceIdentification__BasicReadDeviceIdCode      = QModbusDeviceIdentification__ReadDeviceIdCode(0x01)
-	QModbusDeviceIdentification__RegularReadDeviceIdCode    = QModbusDeviceIdentification__ReadDeviceIdCode(0x02)
-	QModbusDeviceIdentification__ExtendedReadDeviceIdCode   = QModbusDeviceIdentification__ReadDeviceIdCode(0x03)
-	QModbusDeviceIdentification__IndividualReadDeviceIdCode = QModbusDeviceIdentification__ReadDeviceIdCode(0x04)
+	QModbusDeviceIdentification__BasicReadDeviceIdCode      QModbusDeviceIdentification__ReadDeviceIdCode = QModbusDeviceIdentification__ReadDeviceIdCode(0x01)
+	QModbusDeviceIdentification__RegularReadDeviceIdCode    QModbusDeviceIdentification__ReadDeviceIdCode = QModbusDeviceIdentification__ReadDeviceIdCode(0x02)
+	QModbusDeviceIdentification__ExtendedReadDeviceIdCode   QModbusDeviceIdentification__ReadDeviceIdCode = QModbusDeviceIdentification__ReadDeviceIdCode(0x03)
+	QModbusDeviceIdentification__IndividualReadDeviceIdCode QModbusDeviceIdentification__ReadDeviceIdCode = QModbusDeviceIdentification__ReadDeviceIdCode(0x04)
 )
 
 type QModbusDeviceIdentification struct {
@@ -3190,48 +3204,50 @@ func (ptr *QModbusExceptionResponse) SetFunctionCodeDefault(c QModbusPdu__Functi
 	}
 }
 
+//go:generate stringer -type=QModbusPdu__ExceptionCode
 //QModbusPdu::ExceptionCode
 type QModbusPdu__ExceptionCode int64
 
 const (
-	QModbusPdu__IllegalFunction                    = QModbusPdu__ExceptionCode(0x01)
-	QModbusPdu__IllegalDataAddress                 = QModbusPdu__ExceptionCode(0x02)
-	QModbusPdu__IllegalDataValue                   = QModbusPdu__ExceptionCode(0x03)
-	QModbusPdu__ServerDeviceFailure                = QModbusPdu__ExceptionCode(0x04)
-	QModbusPdu__Acknowledge                        = QModbusPdu__ExceptionCode(0x05)
-	QModbusPdu__ServerDeviceBusy                   = QModbusPdu__ExceptionCode(0x06)
-	QModbusPdu__NegativeAcknowledge                = QModbusPdu__ExceptionCode(0x07)
-	QModbusPdu__MemoryParityError                  = QModbusPdu__ExceptionCode(0x08)
-	QModbusPdu__GatewayPathUnavailable             = QModbusPdu__ExceptionCode(0x0A)
-	QModbusPdu__GatewayTargetDeviceFailedToRespond = QModbusPdu__ExceptionCode(0x0B)
-	QModbusPdu__ExtendedException                  = QModbusPdu__ExceptionCode(0xFF)
+	QModbusPdu__IllegalFunction                    QModbusPdu__ExceptionCode = QModbusPdu__ExceptionCode(0x01)
+	QModbusPdu__IllegalDataAddress                 QModbusPdu__ExceptionCode = QModbusPdu__ExceptionCode(0x02)
+	QModbusPdu__IllegalDataValue                   QModbusPdu__ExceptionCode = QModbusPdu__ExceptionCode(0x03)
+	QModbusPdu__ServerDeviceFailure                QModbusPdu__ExceptionCode = QModbusPdu__ExceptionCode(0x04)
+	QModbusPdu__Acknowledge                        QModbusPdu__ExceptionCode = QModbusPdu__ExceptionCode(0x05)
+	QModbusPdu__ServerDeviceBusy                   QModbusPdu__ExceptionCode = QModbusPdu__ExceptionCode(0x06)
+	QModbusPdu__NegativeAcknowledge                QModbusPdu__ExceptionCode = QModbusPdu__ExceptionCode(0x07)
+	QModbusPdu__MemoryParityError                  QModbusPdu__ExceptionCode = QModbusPdu__ExceptionCode(0x08)
+	QModbusPdu__GatewayPathUnavailable             QModbusPdu__ExceptionCode = QModbusPdu__ExceptionCode(0x0A)
+	QModbusPdu__GatewayTargetDeviceFailedToRespond QModbusPdu__ExceptionCode = QModbusPdu__ExceptionCode(0x0B)
+	QModbusPdu__ExtendedException                  QModbusPdu__ExceptionCode = QModbusPdu__ExceptionCode(0xFF)
 )
 
+//go:generate stringer -type=QModbusPdu__FunctionCode
 //QModbusPdu::FunctionCode
 type QModbusPdu__FunctionCode int64
 
 const (
-	QModbusPdu__Invalid                        = QModbusPdu__FunctionCode(0x00)
-	QModbusPdu__ReadCoils                      = QModbusPdu__FunctionCode(0x01)
-	QModbusPdu__ReadDiscreteInputs             = QModbusPdu__FunctionCode(0x02)
-	QModbusPdu__ReadHoldingRegisters           = QModbusPdu__FunctionCode(0x03)
-	QModbusPdu__ReadInputRegisters             = QModbusPdu__FunctionCode(0x04)
-	QModbusPdu__WriteSingleCoil                = QModbusPdu__FunctionCode(0x05)
-	QModbusPdu__WriteSingleRegister            = QModbusPdu__FunctionCode(0x06)
-	QModbusPdu__ReadExceptionStatus            = QModbusPdu__FunctionCode(0x07)
-	QModbusPdu__Diagnostics                    = QModbusPdu__FunctionCode(0x08)
-	QModbusPdu__GetCommEventCounter            = QModbusPdu__FunctionCode(0x0B)
-	QModbusPdu__GetCommEventLog                = QModbusPdu__FunctionCode(0x0C)
-	QModbusPdu__WriteMultipleCoils             = QModbusPdu__FunctionCode(0x0F)
-	QModbusPdu__WriteMultipleRegisters         = QModbusPdu__FunctionCode(0x10)
-	QModbusPdu__ReportServerId                 = QModbusPdu__FunctionCode(0x11)
-	QModbusPdu__ReadFileRecord                 = QModbusPdu__FunctionCode(0x14)
-	QModbusPdu__WriteFileRecord                = QModbusPdu__FunctionCode(0x15)
-	QModbusPdu__MaskWriteRegister              = QModbusPdu__FunctionCode(0x16)
-	QModbusPdu__ReadWriteMultipleRegisters     = QModbusPdu__FunctionCode(0x17)
-	QModbusPdu__ReadFifoQueue                  = QModbusPdu__FunctionCode(0x18)
-	QModbusPdu__EncapsulatedInterfaceTransport = QModbusPdu__FunctionCode(0x2B)
-	QModbusPdu__UndefinedFunctionCode          = QModbusPdu__FunctionCode(0x100)
+	QModbusPdu__Invalid                        QModbusPdu__FunctionCode = QModbusPdu__FunctionCode(0x00)
+	QModbusPdu__ReadCoils                      QModbusPdu__FunctionCode = QModbusPdu__FunctionCode(0x01)
+	QModbusPdu__ReadDiscreteInputs             QModbusPdu__FunctionCode = QModbusPdu__FunctionCode(0x02)
+	QModbusPdu__ReadHoldingRegisters           QModbusPdu__FunctionCode = QModbusPdu__FunctionCode(0x03)
+	QModbusPdu__ReadInputRegisters             QModbusPdu__FunctionCode = QModbusPdu__FunctionCode(0x04)
+	QModbusPdu__WriteSingleCoil                QModbusPdu__FunctionCode = QModbusPdu__FunctionCode(0x05)
+	QModbusPdu__WriteSingleRegister            QModbusPdu__FunctionCode = QModbusPdu__FunctionCode(0x06)
+	QModbusPdu__ReadExceptionStatus            QModbusPdu__FunctionCode = QModbusPdu__FunctionCode(0x07)
+	QModbusPdu__Diagnostics                    QModbusPdu__FunctionCode = QModbusPdu__FunctionCode(0x08)
+	QModbusPdu__GetCommEventCounter            QModbusPdu__FunctionCode = QModbusPdu__FunctionCode(0x0B)
+	QModbusPdu__GetCommEventLog                QModbusPdu__FunctionCode = QModbusPdu__FunctionCode(0x0C)
+	QModbusPdu__WriteMultipleCoils             QModbusPdu__FunctionCode = QModbusPdu__FunctionCode(0x0F)
+	QModbusPdu__WriteMultipleRegisters         QModbusPdu__FunctionCode = QModbusPdu__FunctionCode(0x10)
+	QModbusPdu__ReportServerId                 QModbusPdu__FunctionCode = QModbusPdu__FunctionCode(0x11)
+	QModbusPdu__ReadFileRecord                 QModbusPdu__FunctionCode = QModbusPdu__FunctionCode(0x14)
+	QModbusPdu__WriteFileRecord                QModbusPdu__FunctionCode = QModbusPdu__FunctionCode(0x15)
+	QModbusPdu__MaskWriteRegister              QModbusPdu__FunctionCode = QModbusPdu__FunctionCode(0x16)
+	QModbusPdu__ReadWriteMultipleRegisters     QModbusPdu__FunctionCode = QModbusPdu__FunctionCode(0x17)
+	QModbusPdu__ReadFifoQueue                  QModbusPdu__FunctionCode = QModbusPdu__FunctionCode(0x18)
+	QModbusPdu__EncapsulatedInterfaceTransport QModbusPdu__FunctionCode = QModbusPdu__FunctionCode(0x2B)
+	QModbusPdu__UndefinedFunctionCode          QModbusPdu__FunctionCode = QModbusPdu__FunctionCode(0x100)
 )
 
 type QModbusPdu struct {
@@ -3416,12 +3432,13 @@ func (ptr *QModbusPdu) DestroyQModbusPduDefault() {
 	}
 }
 
+//go:generate stringer -type=QModbusReply__ReplyType
 //QModbusReply::ReplyType
 type QModbusReply__ReplyType int64
 
 const (
-	QModbusReply__Raw    = QModbusReply__ReplyType(0)
-	QModbusReply__Common = QModbusReply__ReplyType(1)
+	QModbusReply__Raw    QModbusReply__ReplyType = QModbusReply__ReplyType(0)
+	QModbusReply__Common QModbusReply__ReplyType = QModbusReply__ReplyType(1)
 )
 
 type QModbusReply struct {
@@ -5406,20 +5423,21 @@ func (ptr *QModbusRtuSerialSlave) MetaObjectDefault() *core.QMetaObject {
 	return nil
 }
 
+//go:generate stringer -type=QModbusServer__Option
 //QModbusServer::Option
 type QModbusServer__Option int64
 
 const (
-	QModbusServer__DiagnosticRegister    = QModbusServer__Option(0)
-	QModbusServer__ExceptionStatusOffset = QModbusServer__Option(1)
-	QModbusServer__DeviceBusy            = QModbusServer__Option(2)
-	QModbusServer__AsciiInputDelimiter   = QModbusServer__Option(3)
-	QModbusServer__ListenOnlyMode        = QModbusServer__Option(4)
-	QModbusServer__ServerIdentifier      = QModbusServer__Option(5)
-	QModbusServer__RunIndicatorStatus    = QModbusServer__Option(6)
-	QModbusServer__AdditionalData        = QModbusServer__Option(7)
-	QModbusServer__DeviceIdentification  = QModbusServer__Option(8)
-	QModbusServer__UserOption            = QModbusServer__Option(0x100)
+	QModbusServer__DiagnosticRegister    QModbusServer__Option = QModbusServer__Option(0)
+	QModbusServer__ExceptionStatusOffset QModbusServer__Option = QModbusServer__Option(1)
+	QModbusServer__DeviceBusy            QModbusServer__Option = QModbusServer__Option(2)
+	QModbusServer__AsciiInputDelimiter   QModbusServer__Option = QModbusServer__Option(3)
+	QModbusServer__ListenOnlyMode        QModbusServer__Option = QModbusServer__Option(4)
+	QModbusServer__ServerIdentifier      QModbusServer__Option = QModbusServer__Option(5)
+	QModbusServer__RunIndicatorStatus    QModbusServer__Option = QModbusServer__Option(6)
+	QModbusServer__AdditionalData        QModbusServer__Option = QModbusServer__Option(7)
+	QModbusServer__DeviceIdentification  QModbusServer__Option = QModbusServer__Option(8)
+	QModbusServer__UserOption            QModbusServer__Option = QModbusServer__Option(0x100)
 )
 
 type QModbusServer struct {

@@ -42,7 +42,7 @@ type Parameter struct {
 }
 
 func (f *Function) Class() (*Class, bool) {
-	var class, exist = CurrentState.ClassMap[f.ClassName()]
+	var class, exist = State.ClassMap[f.ClassName()]
 	return class, exist
 }
 
@@ -71,12 +71,12 @@ func (f *Function) PossiblePolymorphic(self bool) ([]string, string) {
 	var fc, _ = f.Class()
 
 	for _, p := range params {
-		var c, exist = CurrentState.ClassMap[CleanValue(p.Value)]
+		var c, exist = State.ClassMap[CleanValue(p.Value)]
 		if !exist {
 			continue
 		}
 
-		for _, class := range CurrentState.ClassMap {
+		for _, class := range State.ClassMap {
 			if class.Module != fc.Module {
 				continue
 			}
@@ -131,4 +131,144 @@ func (f *Function) IsJNIGeneric() bool {
 	}
 
 	return false
+}
+
+func (f *Function) IsSupported() bool {
+
+	switch {
+	case
+		(f.ClassName() == "QAccessibleObject" || f.ClassName() == "QAccessibleInterface" || f.ClassName() == "QAccessibleWidget" || //QAccessible::State -> quint64
+			f.ClassName() == "QAccessibleStateChangeEvent") && (f.Name == "state" || f.Name == "changedStates" || f.Name == "m_changedStates" || f.Name == "setM_changedStates" || f.Meta == CONSTRUCTOR),
+
+		f.Fullname == "QPixmapCache::find" && f.OverloadNumber == "4", //Qt::Key -> int
+		(f.Fullname == "QPixmapCache::remove" || f.Fullname == "QPixmapCache::insert") && f.OverloadNumber == "2",
+		f.Fullname == "QPixmapCache::replace",
+
+		f.Fullname == "QNdefFilter::appendRecord" && !f.Overload, //QNdefRecord::TypeNameFormat -> uint
+
+		f.ClassName() == "QSimpleXmlNodeModel" && f.Meta == CONSTRUCTOR,
+
+		f.Fullname == "QSGMaterialShader::attributeNames",
+
+		f.ClassName() == "QVariant" && (f.Name == "value" || f.Name == "canConvert"), //needs template
+
+		f.Fullname == "QNdefRecord::isRecordType", f.Fullname == "QScriptEngine::scriptValueFromQMetaObject", //needs template
+		f.Fullname == "QScriptEngine::fromScriptValue", f.Fullname == "QJSEngine::fromScriptValue",
+
+		f.ClassName() == "QMetaType" && //needs template
+			(f.Name == "hasRegisteredComparators" || f.Name == "registerComparators" ||
+				f.Name == "hasRegisteredConverterFunction" || f.Name == "registerConverter" ||
+				f.Name == "registerEqualsComparator"),
+
+		State.ClassMap[f.ClassName()].Module == MOC && f.Name == "metaObject", //needed for qtmoc
+
+		f.Fullname == "QSignalBlocker::QSignalBlocker" && f.OverloadNumber == "3", //undefined symbol
+
+		(State.ClassMap[f.ClassName()].IsSubClassOf("QCoreApplication") ||
+			f.ClassName() == "QAudioInput" || f.ClassName() == "QAudioOutput") && f.Name == "notify", //redeclared (name collision with QObject)
+
+		f.Fullname == "QGraphicsItem::isBlockedByModalPanel", //** problem
+
+		f.Name == "surfaceHandle", //QQuickWindow && QQuickView //unsupported_cppType(QPlatformSurface)
+
+		f.Name == "readData", f.Name == "QNetworkReply", //TODO: char*
+
+		f.Name == "QDesignerFormWindowInterface" || f.Name == "QDesignerFormWindowManagerInterface" || f.Name == "QDesignerWidgetBoxInterface", //unimplemented virtual
+
+		f.Fullname == "QNdefNfcSmartPosterRecord::titleRecords", //T<T> output with unsupported output for *_atList
+		f.Fullname == "QHelpEngineCore::filterAttributeSets", f.Fullname == "QHelpSearchEngine::query", f.Fullname == "QHelpSearchQueryWidget::query",
+		f.Fullname == "QPluginLoader::staticPlugins", f.Fullname == "QSslConfiguration::ellipticCurves", f.Fullname == "QSslConfiguration::supportedEllipticCurves",
+		f.Fullname == "QTextFormat::lengthVectorProperty", f.Fullname == "QTextTableFormat::columnWidthConstraints",
+
+		f.Fullname == "QListView::indexesMoved", f.Fullname == "QAudioInputSelectorControl::availableInputs", f.Fullname == "QScxmlStateMachine::initialValuesChanged",
+		f.Fullname == "QAudioOutputSelectorControl::availableOutputs", f.Fullname == "QQuickWebEngineProfile::downloadFinished",
+		f.Fullname == "QQuickWindow::closing", f.Fullname == "QQuickWebEngineProfile::downloadRequested", f.Fullname == "QWebEnginePage::fullScreenRequested",
+
+		strings.Contains(f.Access, "unsupported"):
+		{
+			if !strings.Contains(f.Access, "unsupported") {
+				f.Access = "unsupported_isBlockedFunction"
+			}
+			return false
+		}
+	}
+
+	if strings.ContainsAny(f.Signature, "<>") {
+		if IsPackedList(f.Output) {
+			for _, p := range f.Parameters {
+				if strings.ContainsAny(p.Value, "<>") {
+					if !strings.Contains(f.Access, "unsupported") {
+						f.Access = "unsupported_isBlockedFunction"
+					}
+					return false
+				}
+			}
+		} else {
+			if !strings.Contains(f.Access, "unsupported") {
+				f.Access = "unsupported_isBlockedFunction"
+			}
+			return false
+		}
+	}
+
+	if f.Default {
+		return f.IsSupportedDefault()
+	}
+
+	if State.Minimal {
+		return f.Export || f.Meta == DESTRUCTOR || f.Fullname == "QObject::destroyed" || strings.HasPrefix(f.Name, TILDE)
+	}
+
+	return true
+}
+
+func (f *Function) IsSupportedDefault() bool {
+	switch f.Fullname {
+	case
+		"QAnimationGroup::updateCurrentTime", "QAnimationGroup::duration",
+		"QAbstractProxyModel::columnCount", "QAbstractTableModel::columnCount",
+		"QAbstractListModel::data", "QAbstractTableModel::data",
+		"QAbstractProxyModel::index", "QAbstractProxyModel::parent",
+		"QAbstractListModel::rowCount", "QAbstractProxyModel::rowCount", "QAbstractTableModel::rowCount",
+
+		"QPagedPaintDevice::paintEngine", "QAccessibleObject::childCount",
+		"QAccessibleObject::indexOfChild", "QAccessibleObject::role",
+		"QAccessibleObject::text", "QAccessibleObject::child",
+		"QAccessibleObject::parent",
+
+		"QAbstractGraphicsShapeItem::paint", "QGraphicsObject::paint",
+		"QLayout::sizeHint", "QAbstractGraphicsShapeItem::boundingRect",
+		"QGraphicsObject::boundingRect", "QGraphicsLayout::sizeHint",
+
+		"QSimpleXmlNodeModel::typedValue", "QSimpleXmlNodeModel::documentUri",
+		"QSimpleXmlNodeModel::compareOrder", "QSimpleXmlNodeModel::nextFromSimpleAxis",
+		"QSimpleXmlNodeModel::kind", "QSimpleXmlNodeModel::root",
+
+		"QAbstractPlanarVideoBuffer::unmap", "QAbstractPlanarVideoBuffer::mapMode",
+
+		"QSGDynamicTexture::bind", "QSGDynamicTexture::hasMipmaps",
+		"QSGDynamicTexture::textureSize", "QSGDynamicTexture::hasAlphaChannel",
+		"QSGDynamicTexture::textureId",
+
+		"QModbusClient::open", "QModbusClient::close", "QModbusServer::open", "QModbusServer::close",
+
+		"QSimpleXmlNodeModel::name",
+
+		"QSimpleXmlNodeModel::attributes", "QAbstractXmlNodeModel::attributes":
+
+		{
+			return false
+		}
+	}
+
+	//needed for moc
+	if State.ClassMap[f.ClassName()].IsSubClassOf("QCoreApplication") && (f.Name == "autoMaximizeThreshold" || f.Name == "setAutoMaximizeThreshold") {
+		return false
+	}
+
+	if State.Minimal {
+		return f.Export
+	}
+
+	return true
 }

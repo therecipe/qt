@@ -14,8 +14,8 @@ func GoInput(name, value string, f *parser.Function) string {
 func goInput(name, value string, f *parser.Function) string {
 	var vOld = value
 
-	name = cleanName(name, value)
-	value = CleanValue(value)
+	name = parser.CleanName(name, value)
+	value = parser.CleanValue(value)
 
 	switch value {
 	case "char", "qint8":
@@ -153,8 +153,8 @@ func goInput(name, value string, f *parser.Function) string {
 
 	case isClass(value):
 		{
-			if m := module(parser.CurrentState.ClassMap[value].Module); m != module(f) {
-				if _, exists := parser.CurrentState.ClassMap[f.ClassName()].WeakLink[parser.CurrentState.ClassMap[value].Module]; exists {
+			if m := module(parser.State.ClassMap[value].Module); m != module(f) {
+				if _, exists := parser.State.ClassMap[f.ClassName()].WeakLink[parser.State.ClassMap[value].Module]; exists {
 					return name
 				}
 				return fmt.Sprintf("%v.PointerFrom%v(%v)", m, strings.Title(value), name)
@@ -174,8 +174,8 @@ func CppInput(name, value string, f *parser.Function) string {
 func cppInput(name, value string, f *parser.Function) string {
 	var vOld = value
 
-	name = cleanName(name, value)
-	value = CleanValue(value)
+	name = parser.CleanName(name, value)
+	value = parser.CleanValue(value)
 
 	switch value {
 	case "char", "qint8":
@@ -332,8 +332,8 @@ func cppInput(name, value string, f *parser.Function) string {
 				break
 			}
 
-			if parser.CurrentState.ClassMap[value].Fullname != "" {
-				value = parser.CurrentState.ClassMap[value].Fullname
+			if parser.State.ClassMap[value].Fullname != "" {
+				value = parser.State.ClassMap[value].Fullname
 			}
 
 			if strings.Contains(vOld, "*") {

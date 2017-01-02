@@ -887,14 +887,15 @@ func (ptr *QAbstractUriResolver) MetaObjectDefault() *core.QMetaObject {
 	return nil
 }
 
+//go:generate stringer -type=QAbstractXmlNodeModel__SimpleAxis
 //QAbstractXmlNodeModel::SimpleAxis
 type QAbstractXmlNodeModel__SimpleAxis int64
 
 const (
-	QAbstractXmlNodeModel__Parent          = QAbstractXmlNodeModel__SimpleAxis(0)
-	QAbstractXmlNodeModel__FirstChild      = QAbstractXmlNodeModel__SimpleAxis(1)
-	QAbstractXmlNodeModel__PreviousSibling = QAbstractXmlNodeModel__SimpleAxis(2)
-	QAbstractXmlNodeModel__NextSibling     = QAbstractXmlNodeModel__SimpleAxis(3)
+	QAbstractXmlNodeModel__Parent          QAbstractXmlNodeModel__SimpleAxis = QAbstractXmlNodeModel__SimpleAxis(0)
+	QAbstractXmlNodeModel__FirstChild      QAbstractXmlNodeModel__SimpleAxis = QAbstractXmlNodeModel__SimpleAxis(1)
+	QAbstractXmlNodeModel__PreviousSibling QAbstractXmlNodeModel__SimpleAxis = QAbstractXmlNodeModel__SimpleAxis(2)
+	QAbstractXmlNodeModel__NextSibling     QAbstractXmlNodeModel__SimpleAxis = QAbstractXmlNodeModel__SimpleAxis(3)
 )
 
 type QAbstractXmlNodeModel struct {
@@ -1877,48 +1878,51 @@ func (ptr *QAbstractXmlReceiver) DestroyQAbstractXmlReceiverDefault() {
 	}
 }
 
+//go:generate stringer -type=QPatternist__DerivedIntegerLimitsUsage
 //QPatternist::DerivedIntegerLimitsUsage
 type QPatternist__DerivedIntegerLimitsUsage int64
 
 const (
-	QPatternist__None           = QPatternist__DerivedIntegerLimitsUsage(1)
-	QPatternist__LimitUpwards   = QPatternist__DerivedIntegerLimitsUsage(2)
-	QPatternist__LimitDownwards = QPatternist__DerivedIntegerLimitsUsage(4)
-	QPatternist__LimitBoth      = QPatternist__DerivedIntegerLimitsUsage(QPatternist__LimitUpwards | QPatternist__LimitDownwards)
+	QPatternist__None           QPatternist__DerivedIntegerLimitsUsage = QPatternist__DerivedIntegerLimitsUsage(1)
+	QPatternist__LimitUpwards   QPatternist__DerivedIntegerLimitsUsage = QPatternist__DerivedIntegerLimitsUsage(2)
+	QPatternist__LimitDownwards QPatternist__DerivedIntegerLimitsUsage = QPatternist__DerivedIntegerLimitsUsage(4)
+	QPatternist__LimitBoth      QPatternist__DerivedIntegerLimitsUsage = QPatternist__DerivedIntegerLimitsUsage(QPatternist__LimitUpwards | QPatternist__LimitDownwards)
 )
 
+//go:generate stringer -type=QPatternist__TypeOfDerivedInteger
 //QPatternist::TypeOfDerivedInteger
 type QPatternist__TypeOfDerivedInteger int64
 
 const (
-	QPatternist__TypeByte               = QPatternist__TypeOfDerivedInteger(0)
-	QPatternist__TypeInt                = QPatternist__TypeOfDerivedInteger(1)
-	QPatternist__TypeLong               = QPatternist__TypeOfDerivedInteger(2)
-	QPatternist__TypeNegativeInteger    = QPatternist__TypeOfDerivedInteger(3)
-	QPatternist__TypeNonNegativeInteger = QPatternist__TypeOfDerivedInteger(4)
-	QPatternist__TypeNonPositiveInteger = QPatternist__TypeOfDerivedInteger(5)
-	QPatternist__TypePositiveInteger    = QPatternist__TypeOfDerivedInteger(6)
-	QPatternist__TypeShort              = QPatternist__TypeOfDerivedInteger(7)
-	QPatternist__TypeUnsignedByte       = QPatternist__TypeOfDerivedInteger(8)
-	QPatternist__TypeUnsignedInt        = QPatternist__TypeOfDerivedInteger(9)
-	QPatternist__TypeUnsignedLong       = QPatternist__TypeOfDerivedInteger(10)
-	QPatternist__TypeUnsignedShort      = QPatternist__TypeOfDerivedInteger(11)
+	QPatternist__TypeByte               QPatternist__TypeOfDerivedInteger = QPatternist__TypeOfDerivedInteger(0)
+	QPatternist__TypeInt                QPatternist__TypeOfDerivedInteger = QPatternist__TypeOfDerivedInteger(1)
+	QPatternist__TypeLong               QPatternist__TypeOfDerivedInteger = QPatternist__TypeOfDerivedInteger(2)
+	QPatternist__TypeNegativeInteger    QPatternist__TypeOfDerivedInteger = QPatternist__TypeOfDerivedInteger(3)
+	QPatternist__TypeNonNegativeInteger QPatternist__TypeOfDerivedInteger = QPatternist__TypeOfDerivedInteger(4)
+	QPatternist__TypeNonPositiveInteger QPatternist__TypeOfDerivedInteger = QPatternist__TypeOfDerivedInteger(5)
+	QPatternist__TypePositiveInteger    QPatternist__TypeOfDerivedInteger = QPatternist__TypeOfDerivedInteger(6)
+	QPatternist__TypeShort              QPatternist__TypeOfDerivedInteger = QPatternist__TypeOfDerivedInteger(7)
+	QPatternist__TypeUnsignedByte       QPatternist__TypeOfDerivedInteger = QPatternist__TypeOfDerivedInteger(8)
+	QPatternist__TypeUnsignedInt        QPatternist__TypeOfDerivedInteger = QPatternist__TypeOfDerivedInteger(9)
+	QPatternist__TypeUnsignedLong       QPatternist__TypeOfDerivedInteger = QPatternist__TypeOfDerivedInteger(10)
+	QPatternist__TypeUnsignedShort      QPatternist__TypeOfDerivedInteger = QPatternist__TypeOfDerivedInteger(11)
 )
 
+//go:generate stringer -type=QPatternist__TypeOfDerivedString
 //QPatternist::TypeOfDerivedString
 type QPatternist__TypeOfDerivedString int64
 
 const (
-	QPatternist__TypeString           = QPatternist__TypeOfDerivedString(0)
-	QPatternist__TypeNormalizedString = QPatternist__TypeOfDerivedString(1)
-	QPatternist__TypeToken            = QPatternist__TypeOfDerivedString(2)
-	QPatternist__TypeLanguage         = QPatternist__TypeOfDerivedString(3)
-	QPatternist__TypeNMTOKEN          = QPatternist__TypeOfDerivedString(4)
-	QPatternist__TypeName             = QPatternist__TypeOfDerivedString(5)
-	QPatternist__TypeNCName           = QPatternist__TypeOfDerivedString(6)
-	QPatternist__TypeID               = QPatternist__TypeOfDerivedString(7)
-	QPatternist__TypeIDREF            = QPatternist__TypeOfDerivedString(8)
-	QPatternist__TypeENTITY           = QPatternist__TypeOfDerivedString(9)
+	QPatternist__TypeString           QPatternist__TypeOfDerivedString = QPatternist__TypeOfDerivedString(0)
+	QPatternist__TypeNormalizedString QPatternist__TypeOfDerivedString = QPatternist__TypeOfDerivedString(1)
+	QPatternist__TypeToken            QPatternist__TypeOfDerivedString = QPatternist__TypeOfDerivedString(2)
+	QPatternist__TypeLanguage         QPatternist__TypeOfDerivedString = QPatternist__TypeOfDerivedString(3)
+	QPatternist__TypeNMTOKEN          QPatternist__TypeOfDerivedString = QPatternist__TypeOfDerivedString(4)
+	QPatternist__TypeName             QPatternist__TypeOfDerivedString = QPatternist__TypeOfDerivedString(5)
+	QPatternist__TypeNCName           QPatternist__TypeOfDerivedString = QPatternist__TypeOfDerivedString(6)
+	QPatternist__TypeID               QPatternist__TypeOfDerivedString = QPatternist__TypeOfDerivedString(7)
+	QPatternist__TypeIDREF            QPatternist__TypeOfDerivedString = QPatternist__TypeOfDerivedString(8)
+	QPatternist__TypeENTITY           QPatternist__TypeOfDerivedString = QPatternist__TypeOfDerivedString(9)
 )
 
 type QPatternist struct {
@@ -3371,26 +3375,28 @@ func (ptr *QXmlNamePool) DestroyQXmlNamePool() {
 	}
 }
 
+//go:generate stringer -type=QXmlNodeModelIndex__DocumentOrder
 //QXmlNodeModelIndex::DocumentOrder
 type QXmlNodeModelIndex__DocumentOrder int64
 
 const (
-	QXmlNodeModelIndex__Precedes = QXmlNodeModelIndex__DocumentOrder(-1)
-	QXmlNodeModelIndex__Is       = QXmlNodeModelIndex__DocumentOrder(0)
-	QXmlNodeModelIndex__Follows  = QXmlNodeModelIndex__DocumentOrder(1)
+	QXmlNodeModelIndex__Precedes QXmlNodeModelIndex__DocumentOrder = QXmlNodeModelIndex__DocumentOrder(-1)
+	QXmlNodeModelIndex__Is       QXmlNodeModelIndex__DocumentOrder = QXmlNodeModelIndex__DocumentOrder(0)
+	QXmlNodeModelIndex__Follows  QXmlNodeModelIndex__DocumentOrder = QXmlNodeModelIndex__DocumentOrder(1)
 )
 
+//go:generate stringer -type=QXmlNodeModelIndex__NodeKind
 //QXmlNodeModelIndex::NodeKind
 type QXmlNodeModelIndex__NodeKind int64
 
 const (
-	QXmlNodeModelIndex__Attribute             = QXmlNodeModelIndex__NodeKind(1)
-	QXmlNodeModelIndex__Comment               = QXmlNodeModelIndex__NodeKind(2)
-	QXmlNodeModelIndex__Document              = QXmlNodeModelIndex__NodeKind(4)
-	QXmlNodeModelIndex__Element               = QXmlNodeModelIndex__NodeKind(8)
-	QXmlNodeModelIndex__Namespace             = QXmlNodeModelIndex__NodeKind(16)
-	QXmlNodeModelIndex__ProcessingInstruction = QXmlNodeModelIndex__NodeKind(32)
-	QXmlNodeModelIndex__Text                  = QXmlNodeModelIndex__NodeKind(64)
+	QXmlNodeModelIndex__Attribute             QXmlNodeModelIndex__NodeKind = QXmlNodeModelIndex__NodeKind(1)
+	QXmlNodeModelIndex__Comment               QXmlNodeModelIndex__NodeKind = QXmlNodeModelIndex__NodeKind(2)
+	QXmlNodeModelIndex__Document              QXmlNodeModelIndex__NodeKind = QXmlNodeModelIndex__NodeKind(4)
+	QXmlNodeModelIndex__Element               QXmlNodeModelIndex__NodeKind = QXmlNodeModelIndex__NodeKind(8)
+	QXmlNodeModelIndex__Namespace             QXmlNodeModelIndex__NodeKind = QXmlNodeModelIndex__NodeKind(16)
+	QXmlNodeModelIndex__ProcessingInstruction QXmlNodeModelIndex__NodeKind = QXmlNodeModelIndex__NodeKind(32)
+	QXmlNodeModelIndex__Text                  QXmlNodeModelIndex__NodeKind = QXmlNodeModelIndex__NodeKind(64)
 )
 
 type QXmlNodeModelIndex struct {
@@ -3492,15 +3498,16 @@ func (ptr *QXmlNodeModelIndex) namespaceBindings_atList(i int) *QXmlName {
 	return nil
 }
 
+//go:generate stringer -type=QXmlQuery__QueryLanguage
 //QXmlQuery::QueryLanguage
 type QXmlQuery__QueryLanguage int64
 
 const (
-	QXmlQuery__XQuery10                              = QXmlQuery__QueryLanguage(1)
-	QXmlQuery__XSLT20                                = QXmlQuery__QueryLanguage(2)
-	QXmlQuery__XmlSchema11IdentityConstraintSelector = QXmlQuery__QueryLanguage(1024)
-	QXmlQuery__XmlSchema11IdentityConstraintField    = QXmlQuery__QueryLanguage(2048)
-	QXmlQuery__XPath20                               = QXmlQuery__QueryLanguage(4096)
+	QXmlQuery__XQuery10                              QXmlQuery__QueryLanguage = QXmlQuery__QueryLanguage(1)
+	QXmlQuery__XSLT20                                QXmlQuery__QueryLanguage = QXmlQuery__QueryLanguage(2)
+	QXmlQuery__XmlSchema11IdentityConstraintSelector QXmlQuery__QueryLanguage = QXmlQuery__QueryLanguage(1024)
+	QXmlQuery__XmlSchema11IdentityConstraintField    QXmlQuery__QueryLanguage = QXmlQuery__QueryLanguage(2048)
+	QXmlQuery__XPath20                               QXmlQuery__QueryLanguage = QXmlQuery__QueryLanguage(4096)
 )
 
 type QXmlQuery struct {

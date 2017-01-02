@@ -192,14 +192,15 @@ func (ptr *QNdefMessage) ToByteArray() *core.QByteArray {
 	return nil
 }
 
+//go:generate stringer -type=QNdefNfcSmartPosterRecord__Action
 //QNdefNfcSmartPosterRecord::Action
 type QNdefNfcSmartPosterRecord__Action int64
 
 const (
-	QNdefNfcSmartPosterRecord__UnspecifiedAction = QNdefNfcSmartPosterRecord__Action(-1)
-	QNdefNfcSmartPosterRecord__DoAction          = QNdefNfcSmartPosterRecord__Action(0)
-	QNdefNfcSmartPosterRecord__SaveAction        = QNdefNfcSmartPosterRecord__Action(1)
-	QNdefNfcSmartPosterRecord__EditAction        = QNdefNfcSmartPosterRecord__Action(2)
+	QNdefNfcSmartPosterRecord__UnspecifiedAction QNdefNfcSmartPosterRecord__Action = QNdefNfcSmartPosterRecord__Action(-1)
+	QNdefNfcSmartPosterRecord__DoAction          QNdefNfcSmartPosterRecord__Action = QNdefNfcSmartPosterRecord__Action(0)
+	QNdefNfcSmartPosterRecord__SaveAction        QNdefNfcSmartPosterRecord__Action = QNdefNfcSmartPosterRecord__Action(1)
+	QNdefNfcSmartPosterRecord__EditAction        QNdefNfcSmartPosterRecord__Action = QNdefNfcSmartPosterRecord__Action(2)
 )
 
 type QNdefNfcSmartPosterRecord struct {
@@ -470,12 +471,13 @@ func (ptr *QNdefNfcSmartPosterRecord) titleRecords_atList(i int) *QNdefNfcTextRe
 	return nil
 }
 
+//go:generate stringer -type=QNdefNfcTextRecord__Encoding
 //QNdefNfcTextRecord::Encoding
 type QNdefNfcTextRecord__Encoding int64
 
 const (
-	QNdefNfcTextRecord__Utf8  = QNdefNfcTextRecord__Encoding(0)
-	QNdefNfcTextRecord__Utf16 = QNdefNfcTextRecord__Encoding(1)
+	QNdefNfcTextRecord__Utf8  QNdefNfcTextRecord__Encoding = QNdefNfcTextRecord__Encoding(0)
+	QNdefNfcTextRecord__Utf16 QNdefNfcTextRecord__Encoding = QNdefNfcTextRecord__Encoding(1)
 )
 
 type QNdefNfcTextRecord struct {
@@ -648,16 +650,17 @@ func (ptr *QNdefNfcUriRecord) Uri() *core.QUrl {
 	return nil
 }
 
+//go:generate stringer -type=QNdefRecord__TypeNameFormat
 //QNdefRecord::TypeNameFormat
 type QNdefRecord__TypeNameFormat int64
 
 const (
-	QNdefRecord__Empty       = QNdefRecord__TypeNameFormat(0x00)
-	QNdefRecord__NfcRtd      = QNdefRecord__TypeNameFormat(0x01)
-	QNdefRecord__Mime        = QNdefRecord__TypeNameFormat(0x02)
-	QNdefRecord__Uri         = QNdefRecord__TypeNameFormat(0x03)
-	QNdefRecord__ExternalRtd = QNdefRecord__TypeNameFormat(0x04)
-	QNdefRecord__Unknown     = QNdefRecord__TypeNameFormat(0x05)
+	QNdefRecord__Empty       QNdefRecord__TypeNameFormat = QNdefRecord__TypeNameFormat(0x00)
+	QNdefRecord__NfcRtd      QNdefRecord__TypeNameFormat = QNdefRecord__TypeNameFormat(0x01)
+	QNdefRecord__Mime        QNdefRecord__TypeNameFormat = QNdefRecord__TypeNameFormat(0x02)
+	QNdefRecord__Uri         QNdefRecord__TypeNameFormat = QNdefRecord__TypeNameFormat(0x03)
+	QNdefRecord__ExternalRtd QNdefRecord__TypeNameFormat = QNdefRecord__TypeNameFormat(0x04)
+	QNdefRecord__Unknown     QNdefRecord__TypeNameFormat = QNdefRecord__TypeNameFormat(0x05)
 )
 
 type QNdefRecord struct {
@@ -781,14 +784,15 @@ func (ptr *QNdefRecord) DestroyQNdefRecord() {
 	}
 }
 
+//go:generate stringer -type=QNearFieldManager__TargetAccessMode
 //QNearFieldManager::TargetAccessMode
 type QNearFieldManager__TargetAccessMode int64
 
 const (
-	QNearFieldManager__NoTargetAccess              = QNearFieldManager__TargetAccessMode(0x00)
-	QNearFieldManager__NdefReadTargetAccess        = QNearFieldManager__TargetAccessMode(0x01)
-	QNearFieldManager__NdefWriteTargetAccess       = QNearFieldManager__TargetAccessMode(0x02)
-	QNearFieldManager__TagTypeSpecificTargetAccess = QNearFieldManager__TargetAccessMode(0x04)
+	QNearFieldManager__NoTargetAccess              QNearFieldManager__TargetAccessMode = QNearFieldManager__TargetAccessMode(0x00)
+	QNearFieldManager__NdefReadTargetAccess        QNearFieldManager__TargetAccessMode = QNearFieldManager__TargetAccessMode(0x01)
+	QNearFieldManager__NdefWriteTargetAccess       QNearFieldManager__TargetAccessMode = QNearFieldManager__TargetAccessMode(0x02)
+	QNearFieldManager__TagTypeSpecificTargetAccess QNearFieldManager__TargetAccessMode = QNearFieldManager__TargetAccessMode(0x04)
 )
 
 type QNearFieldManager struct {
@@ -1303,28 +1307,30 @@ func (ptr *QNearFieldManager) MetaObjectDefault() *core.QMetaObject {
 	return nil
 }
 
+//go:generate stringer -type=QNearFieldShareManager__ShareError
 //QNearFieldShareManager::ShareError
 type QNearFieldShareManager__ShareError int64
 
 const (
-	QNearFieldShareManager__NoError                     = QNearFieldShareManager__ShareError(0)
-	QNearFieldShareManager__UnknownError                = QNearFieldShareManager__ShareError(1)
-	QNearFieldShareManager__InvalidShareContentError    = QNearFieldShareManager__ShareError(2)
-	QNearFieldShareManager__ShareCanceledError          = QNearFieldShareManager__ShareError(3)
-	QNearFieldShareManager__ShareInterruptedError       = QNearFieldShareManager__ShareError(4)
-	QNearFieldShareManager__ShareRejectedError          = QNearFieldShareManager__ShareError(5)
-	QNearFieldShareManager__UnsupportedShareModeError   = QNearFieldShareManager__ShareError(6)
-	QNearFieldShareManager__ShareAlreadyInProgressError = QNearFieldShareManager__ShareError(7)
-	QNearFieldShareManager__SharePermissionDeniedError  = QNearFieldShareManager__ShareError(8)
+	QNearFieldShareManager__NoError                     QNearFieldShareManager__ShareError = QNearFieldShareManager__ShareError(0)
+	QNearFieldShareManager__UnknownError                QNearFieldShareManager__ShareError = QNearFieldShareManager__ShareError(1)
+	QNearFieldShareManager__InvalidShareContentError    QNearFieldShareManager__ShareError = QNearFieldShareManager__ShareError(2)
+	QNearFieldShareManager__ShareCanceledError          QNearFieldShareManager__ShareError = QNearFieldShareManager__ShareError(3)
+	QNearFieldShareManager__ShareInterruptedError       QNearFieldShareManager__ShareError = QNearFieldShareManager__ShareError(4)
+	QNearFieldShareManager__ShareRejectedError          QNearFieldShareManager__ShareError = QNearFieldShareManager__ShareError(5)
+	QNearFieldShareManager__UnsupportedShareModeError   QNearFieldShareManager__ShareError = QNearFieldShareManager__ShareError(6)
+	QNearFieldShareManager__ShareAlreadyInProgressError QNearFieldShareManager__ShareError = QNearFieldShareManager__ShareError(7)
+	QNearFieldShareManager__SharePermissionDeniedError  QNearFieldShareManager__ShareError = QNearFieldShareManager__ShareError(8)
 )
 
+//go:generate stringer -type=QNearFieldShareManager__ShareMode
 //QNearFieldShareManager::ShareMode
 type QNearFieldShareManager__ShareMode int64
 
 const (
-	QNearFieldShareManager__NoShare   = QNearFieldShareManager__ShareMode(0x00)
-	QNearFieldShareManager__NdefShare = QNearFieldShareManager__ShareMode(0x01)
-	QNearFieldShareManager__FileShare = QNearFieldShareManager__ShareMode(0x02)
+	QNearFieldShareManager__NoShare   QNearFieldShareManager__ShareMode = QNearFieldShareManager__ShareMode(0x00)
+	QNearFieldShareManager__NdefShare QNearFieldShareManager__ShareMode = QNearFieldShareManager__ShareMode(0x01)
+	QNearFieldShareManager__FileShare QNearFieldShareManager__ShareMode = QNearFieldShareManager__ShareMode(0x02)
 )
 
 type QNearFieldShareManager struct {
@@ -2300,41 +2306,44 @@ func (ptr *QNearFieldShareTarget) MetaObjectDefault() *core.QMetaObject {
 	return nil
 }
 
+//go:generate stringer -type=QNearFieldTarget__AccessMethod
 //QNearFieldTarget::AccessMethod
 type QNearFieldTarget__AccessMethod int64
 
 const (
-	QNearFieldTarget__UnknownAccess         = QNearFieldTarget__AccessMethod(0x00)
-	QNearFieldTarget__NdefAccess            = QNearFieldTarget__AccessMethod(0x01)
-	QNearFieldTarget__TagTypeSpecificAccess = QNearFieldTarget__AccessMethod(0x02)
-	QNearFieldTarget__LlcpAccess            = QNearFieldTarget__AccessMethod(0x04)
+	QNearFieldTarget__UnknownAccess         QNearFieldTarget__AccessMethod = QNearFieldTarget__AccessMethod(0x00)
+	QNearFieldTarget__NdefAccess            QNearFieldTarget__AccessMethod = QNearFieldTarget__AccessMethod(0x01)
+	QNearFieldTarget__TagTypeSpecificAccess QNearFieldTarget__AccessMethod = QNearFieldTarget__AccessMethod(0x02)
+	QNearFieldTarget__LlcpAccess            QNearFieldTarget__AccessMethod = QNearFieldTarget__AccessMethod(0x04)
 )
 
+//go:generate stringer -type=QNearFieldTarget__Error
 //QNearFieldTarget::Error
 type QNearFieldTarget__Error int64
 
 const (
-	QNearFieldTarget__NoError                = QNearFieldTarget__Error(0)
-	QNearFieldTarget__UnknownError           = QNearFieldTarget__Error(1)
-	QNearFieldTarget__UnsupportedError       = QNearFieldTarget__Error(2)
-	QNearFieldTarget__TargetOutOfRangeError  = QNearFieldTarget__Error(3)
-	QNearFieldTarget__NoResponseError        = QNearFieldTarget__Error(4)
-	QNearFieldTarget__ChecksumMismatchError  = QNearFieldTarget__Error(5)
-	QNearFieldTarget__InvalidParametersError = QNearFieldTarget__Error(6)
-	QNearFieldTarget__NdefReadError          = QNearFieldTarget__Error(7)
-	QNearFieldTarget__NdefWriteError         = QNearFieldTarget__Error(8)
+	QNearFieldTarget__NoError                QNearFieldTarget__Error = QNearFieldTarget__Error(0)
+	QNearFieldTarget__UnknownError           QNearFieldTarget__Error = QNearFieldTarget__Error(1)
+	QNearFieldTarget__UnsupportedError       QNearFieldTarget__Error = QNearFieldTarget__Error(2)
+	QNearFieldTarget__TargetOutOfRangeError  QNearFieldTarget__Error = QNearFieldTarget__Error(3)
+	QNearFieldTarget__NoResponseError        QNearFieldTarget__Error = QNearFieldTarget__Error(4)
+	QNearFieldTarget__ChecksumMismatchError  QNearFieldTarget__Error = QNearFieldTarget__Error(5)
+	QNearFieldTarget__InvalidParametersError QNearFieldTarget__Error = QNearFieldTarget__Error(6)
+	QNearFieldTarget__NdefReadError          QNearFieldTarget__Error = QNearFieldTarget__Error(7)
+	QNearFieldTarget__NdefWriteError         QNearFieldTarget__Error = QNearFieldTarget__Error(8)
 )
 
+//go:generate stringer -type=QNearFieldTarget__Type
 //QNearFieldTarget::Type
 type QNearFieldTarget__Type int64
 
 const (
-	QNearFieldTarget__ProprietaryTag = QNearFieldTarget__Type(0)
-	QNearFieldTarget__NfcTagType1    = QNearFieldTarget__Type(1)
-	QNearFieldTarget__NfcTagType2    = QNearFieldTarget__Type(2)
-	QNearFieldTarget__NfcTagType3    = QNearFieldTarget__Type(3)
-	QNearFieldTarget__NfcTagType4    = QNearFieldTarget__Type(4)
-	QNearFieldTarget__MifareTag      = QNearFieldTarget__Type(5)
+	QNearFieldTarget__ProprietaryTag QNearFieldTarget__Type = QNearFieldTarget__Type(0)
+	QNearFieldTarget__NfcTagType1    QNearFieldTarget__Type = QNearFieldTarget__Type(1)
+	QNearFieldTarget__NfcTagType2    QNearFieldTarget__Type = QNearFieldTarget__Type(2)
+	QNearFieldTarget__NfcTagType3    QNearFieldTarget__Type = QNearFieldTarget__Type(3)
+	QNearFieldTarget__NfcTagType4    QNearFieldTarget__Type = QNearFieldTarget__Type(4)
+	QNearFieldTarget__MifareTag      QNearFieldTarget__Type = QNearFieldTarget__Type(5)
 )
 
 type QNearFieldTarget struct {
@@ -3067,16 +3076,17 @@ func (ptr *QNearFieldTarget) MetaObjectDefault() *core.QMetaObject {
 	return nil
 }
 
+//go:generate stringer -type=QQmlNdefRecord__TypeNameFormat
 //QQmlNdefRecord::TypeNameFormat
 type QQmlNdefRecord__TypeNameFormat int64
 
 const (
-	QQmlNdefRecord__Empty       = QQmlNdefRecord__TypeNameFormat(QNdefRecord__Empty)
-	QQmlNdefRecord__NfcRtd      = QQmlNdefRecord__TypeNameFormat(QNdefRecord__NfcRtd)
-	QQmlNdefRecord__Mime        = QQmlNdefRecord__TypeNameFormat(QNdefRecord__Mime)
-	QQmlNdefRecord__Uri         = QQmlNdefRecord__TypeNameFormat(QNdefRecord__Uri)
-	QQmlNdefRecord__ExternalRtd = QQmlNdefRecord__TypeNameFormat(QNdefRecord__ExternalRtd)
-	QQmlNdefRecord__Unknown     = QQmlNdefRecord__TypeNameFormat(QNdefRecord__Unknown)
+	QQmlNdefRecord__Empty       QQmlNdefRecord__TypeNameFormat = QQmlNdefRecord__TypeNameFormat(QNdefRecord__Empty)
+	QQmlNdefRecord__NfcRtd      QQmlNdefRecord__TypeNameFormat = QQmlNdefRecord__TypeNameFormat(QNdefRecord__NfcRtd)
+	QQmlNdefRecord__Mime        QQmlNdefRecord__TypeNameFormat = QQmlNdefRecord__TypeNameFormat(QNdefRecord__Mime)
+	QQmlNdefRecord__Uri         QQmlNdefRecord__TypeNameFormat = QQmlNdefRecord__TypeNameFormat(QNdefRecord__Uri)
+	QQmlNdefRecord__ExternalRtd QQmlNdefRecord__TypeNameFormat = QQmlNdefRecord__TypeNameFormat(QNdefRecord__ExternalRtd)
+	QQmlNdefRecord__Unknown     QQmlNdefRecord__TypeNameFormat = QQmlNdefRecord__TypeNameFormat(QNdefRecord__Unknown)
 )
 
 type QQmlNdefRecord struct {

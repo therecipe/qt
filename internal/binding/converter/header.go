@@ -132,7 +132,7 @@ func GoHeaderInput(f *parser.Function) string {
 		fmt.Fprint(bb, "ptr unsafe.Pointer")
 		for _, p := range f.Parameters {
 			if v := cgoType(f, p.Value); v != "" {
-				fmt.Fprintf(bb, ", %v %v", cleanName(p.Name, p.Value), v)
+				fmt.Fprintf(bb, ", %v %v", parser.CleanName(p.Name, p.Value), v)
 			}
 		}
 		return bb.String()
@@ -154,12 +154,12 @@ func GoHeaderInput(f *parser.Function) string {
 		if v := goType(f, p.Value); v != "" {
 			if isClass(v) {
 				if f.SignalMode == parser.CONNECT {
-					tmp = append(tmp, fmt.Sprintf("%v *%v", cleanName(p.Name, p.Value), v))
+					tmp = append(tmp, fmt.Sprintf("%v *%v", parser.CleanName(p.Name, p.Value), v))
 				} else {
-					tmp = append(tmp, fmt.Sprintf("%v %v_ITF", cleanName(p.Name, p.Value), v))
+					tmp = append(tmp, fmt.Sprintf("%v %v_ITF", parser.CleanName(p.Name, p.Value), v))
 				}
 			} else {
-				tmp = append(tmp, fmt.Sprintf("%v %v", cleanName(p.Name, p.Value), v))
+				tmp = append(tmp, fmt.Sprintf("%v %v", parser.CleanName(p.Name, p.Value), v))
 			}
 		} else {
 			f.Access = "unsupported_GoHeaderInput"
@@ -230,7 +230,7 @@ func CppHeaderInput(f *parser.Function) string {
 
 	for _, p := range f.Parameters {
 		if v := cppTypeInput(f, p.Value); v != "" {
-			tmp = append(tmp, fmt.Sprintf("%v %v", v, cleanName(p.Name, p.Value)))
+			tmp = append(tmp, fmt.Sprintf("%v %v", v, parser.CleanName(p.Name, p.Value)))
 		} else {
 			f.Access = "unsupported_CppHeaderInput"
 			return f.Access

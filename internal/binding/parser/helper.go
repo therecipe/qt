@@ -16,7 +16,6 @@ const (
 	IMPURE = "impure"
 	PURE   = "pure"
 
-	MOC              = "main"
 	PLAIN            = "plain"
 	CONSTRUCTOR      = "constructor"
 	COPY_CONSTRUCTOR = "copy-constructor"
@@ -33,6 +32,8 @@ const (
 	VOID = "void"
 
 	TILDE = "~"
+
+	MOC = "moc"
 )
 
 func IsPackedList(v string) bool {
@@ -43,7 +44,7 @@ func IsPackedList(v string) bool {
 
 		strings.Count(v, "<") == 1 &&
 		!strings.Contains(v, ":") &&
-		CurrentState.ClassMap[UnpackedList(v)] != nil
+		State.ClassMap[UnpackedList(v)] != nil
 }
 
 func CleanValue(v string) string {
@@ -128,7 +129,7 @@ var LibDeps = map[string][]string{
 	"Purchasing":        {"Core"},
 	"DataVisualization": {"Gui", "Core"},
 	"Charts":            {"Widgets", "Gui", "Core"},
-	//"Quick2DRenderer":   {},                         //TODO: uncomment
+	//"Quick2DRenderer":   {}, //TODO: uncomment
 
 	"Sailfish": {"Core"},
 
@@ -182,6 +183,55 @@ var Libs = []string{
 	"Sailfish",
 }
 
+func ShouldBuild(module string) bool {
+	return true
+	return map[string]bool{
+		"Core":          false,
+		"AndroidExtras": false,
+		"Gui":           false,
+		"Network":       false,
+		"Xml":           false,
+		"DBus":          false,
+		"Nfc":           false,
+		"Script":        false,
+		"Sensors":       false,
+		"Positioning":   false,
+		"Widgets":       false,
+		"Sql":           false,
+		"MacExtras":     false,
+		"Qml":           false,
+		"WebSockets":    false,
+		"XmlPatterns":   false,
+		"Bluetooth":     false,
+		"WebChannel":    false,
+		"Svg":           false,
+		"Multimedia":    false,
+		"Quick":         false,
+		"Help":          false,
+		"Location":      false,
+		"ScriptTools":   false,
+		"UiTools":       false,
+		"X11Extras":     false,
+		"WinExtras":     false,
+		"WebEngine":     false,
+		"TestLib":       false,
+		"SerialPort":    false,
+		"SerialBus":     false,
+		"PrintSupport":  false,
+		//"PlatformHeaders": false,
+		"Designer": false,
+		"Scxml":    false,
+		"Gamepad":  false,
+
+		"Purchasing":        false,
+		"DataVisualization": false,
+		"Charts":            false,
+		//"Quick2DRenderer":   false,
+
+		"Sailfish": false,
+	}[module]
+}
+
 func GetLibs() []string {
 	for i := len(Libs) - 1; i >= 0; i-- {
 		switch {
@@ -200,7 +250,7 @@ func GetLibs() []string {
 }
 
 func Dump() {
-	for _, c := range CurrentState.ClassMap {
+	for _, c := range State.ClassMap {
 		var bb = new(bytes.Buffer)
 		defer bb.Reset()
 

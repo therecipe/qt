@@ -10,7 +10,7 @@ import (
 	"github.com/therecipe/qt/core"
 	"github.com/therecipe/qt/widgets"
 
-	"github.com/therecipe/qt/internal/tests/qtmoc/sub"
+	"github.com/therecipe/qt/internal/cmd/moc/test/sub"
 )
 
 //go:generate qtmoc

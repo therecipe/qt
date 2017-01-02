@@ -23,14 +23,15 @@ func cGoUnpackString(s C.struct_QtQml_PackedString) string {
 	return C.GoStringN(s.data, C.int(s.len))
 }
 
+//go:generate stringer -type=QJSEngine__Extension
 //QJSEngine::Extension
 type QJSEngine__Extension int64
 
 const (
-	QJSEngine__TranslationExtension       = QJSEngine__Extension(0x1)
-	QJSEngine__ConsoleExtension           = QJSEngine__Extension(0x2)
-	QJSEngine__GarbageCollectionExtension = QJSEngine__Extension(0x4)
-	QJSEngine__AllExtensions              = QJSEngine__Extension(0xffffffff)
+	QJSEngine__TranslationExtension       QJSEngine__Extension = QJSEngine__Extension(0x1)
+	QJSEngine__ConsoleExtension           QJSEngine__Extension = QJSEngine__Extension(0x2)
+	QJSEngine__GarbageCollectionExtension QJSEngine__Extension = QJSEngine__Extension(0x4)
+	QJSEngine__AllExtensions              QJSEngine__Extension = QJSEngine__Extension(0xffffffff)
 )
 
 type QJSEngine struct {
@@ -521,12 +522,13 @@ func (ptr *QJSEngine) MetaObjectDefault() *core.QMetaObject {
 	return nil
 }
 
+//go:generate stringer -type=QJSValue__SpecialValue
 //QJSValue::SpecialValue
 type QJSValue__SpecialValue int64
 
 const (
-	QJSValue__NullValue      = QJSValue__SpecialValue(0)
-	QJSValue__UndefinedValue = QJSValue__SpecialValue(1)
+	QJSValue__NullValue      QJSValue__SpecialValue = QJSValue__SpecialValue(0)
+	QJSValue__UndefinedValue QJSValue__SpecialValue = QJSValue__SpecialValue(1)
 )
 
 type QJSValue struct {
@@ -920,14 +922,15 @@ func NewQJSValueIteratorFromPointer(ptr unsafe.Pointer) *QJSValueIterator {
 	return n
 }
 
+//go:generate stringer -type=QQmlAbstractUrlInterceptor__DataType
 //QQmlAbstractUrlInterceptor::DataType
 type QQmlAbstractUrlInterceptor__DataType int64
 
 const (
-	QQmlAbstractUrlInterceptor__QmlFile        = QQmlAbstractUrlInterceptor__DataType(0)
-	QQmlAbstractUrlInterceptor__JavaScriptFile = QQmlAbstractUrlInterceptor__DataType(1)
-	QQmlAbstractUrlInterceptor__QmldirFile     = QQmlAbstractUrlInterceptor__DataType(2)
-	QQmlAbstractUrlInterceptor__UrlString      = QQmlAbstractUrlInterceptor__DataType(0x1000)
+	QQmlAbstractUrlInterceptor__QmlFile        QQmlAbstractUrlInterceptor__DataType = QQmlAbstractUrlInterceptor__DataType(0)
+	QQmlAbstractUrlInterceptor__JavaScriptFile QQmlAbstractUrlInterceptor__DataType = QQmlAbstractUrlInterceptor__DataType(1)
+	QQmlAbstractUrlInterceptor__QmldirFile     QQmlAbstractUrlInterceptor__DataType = QQmlAbstractUrlInterceptor__DataType(2)
+	QQmlAbstractUrlInterceptor__UrlString      QQmlAbstractUrlInterceptor__DataType = QQmlAbstractUrlInterceptor__DataType(0x1000)
 )
 
 type QQmlAbstractUrlInterceptor struct {
@@ -1588,22 +1591,24 @@ func (ptr *QQmlApplicationEngine) MetaObjectDefault() *core.QMetaObject {
 	return nil
 }
 
+//go:generate stringer -type=QQmlComponent__CompilationMode
 //QQmlComponent::CompilationMode
 type QQmlComponent__CompilationMode int64
 
 const (
-	QQmlComponent__PreferSynchronous = QQmlComponent__CompilationMode(0)
-	QQmlComponent__Asynchronous      = QQmlComponent__CompilationMode(1)
+	QQmlComponent__PreferSynchronous QQmlComponent__CompilationMode = QQmlComponent__CompilationMode(0)
+	QQmlComponent__Asynchronous      QQmlComponent__CompilationMode = QQmlComponent__CompilationMode(1)
 )
 
+//go:generate stringer -type=QQmlComponent__Status
 //QQmlComponent::Status
 type QQmlComponent__Status int64
 
 const (
-	QQmlComponent__Null    = QQmlComponent__Status(0)
-	QQmlComponent__Ready   = QQmlComponent__Status(1)
-	QQmlComponent__Loading = QQmlComponent__Status(2)
-	QQmlComponent__Error   = QQmlComponent__Status(3)
+	QQmlComponent__Null    QQmlComponent__Status = QQmlComponent__Status(0)
+	QQmlComponent__Ready   QQmlComponent__Status = QQmlComponent__Status(1)
+	QQmlComponent__Loading QQmlComponent__Status = QQmlComponent__Status(2)
+	QQmlComponent__Error   QQmlComponent__Status = QQmlComponent__Status(3)
 )
 
 type QQmlComponent struct {
@@ -2952,12 +2957,13 @@ func (ptr *QQmlContext) MetaObjectDefault() *core.QMetaObject {
 	return nil
 }
 
+//go:generate stringer -type=QQmlEngine__ObjectOwnership
 //QQmlEngine::ObjectOwnership
 type QQmlEngine__ObjectOwnership int64
 
 const (
-	QQmlEngine__CppOwnership        = QQmlEngine__ObjectOwnership(0)
-	QQmlEngine__JavaScriptOwnership = QQmlEngine__ObjectOwnership(1)
+	QQmlEngine__CppOwnership        QQmlEngine__ObjectOwnership = QQmlEngine__ObjectOwnership(0)
+	QQmlEngine__JavaScriptOwnership QQmlEngine__ObjectOwnership = QQmlEngine__ObjectOwnership(1)
 )
 
 type QQmlEngine struct {
@@ -5253,22 +5259,24 @@ func (ptr *QQmlFileSelector) MetaObjectDefault() *core.QMetaObject {
 	return nil
 }
 
+//go:generate stringer -type=QQmlImageProviderBase__Flag
 //QQmlImageProviderBase::Flag
 type QQmlImageProviderBase__Flag int64
 
 const (
-	QQmlImageProviderBase__ForceAsynchronousImageLoading = QQmlImageProviderBase__Flag(0x01)
+	QQmlImageProviderBase__ForceAsynchronousImageLoading QQmlImageProviderBase__Flag = QQmlImageProviderBase__Flag(0x01)
 )
 
+//go:generate stringer -type=QQmlImageProviderBase__ImageType
 //QQmlImageProviderBase::ImageType
 type QQmlImageProviderBase__ImageType int64
 
 const (
-	QQmlImageProviderBase__Image         = QQmlImageProviderBase__ImageType(0)
-	QQmlImageProviderBase__Pixmap        = QQmlImageProviderBase__ImageType(1)
-	QQmlImageProviderBase__Texture       = QQmlImageProviderBase__ImageType(2)
-	QQmlImageProviderBase__Invalid       = QQmlImageProviderBase__ImageType(3)
-	QQmlImageProviderBase__ImageResponse = QQmlImageProviderBase__ImageType(4)
+	QQmlImageProviderBase__Image         QQmlImageProviderBase__ImageType = QQmlImageProviderBase__ImageType(0)
+	QQmlImageProviderBase__Pixmap        QQmlImageProviderBase__ImageType = QQmlImageProviderBase__ImageType(1)
+	QQmlImageProviderBase__Texture       QQmlImageProviderBase__ImageType = QQmlImageProviderBase__ImageType(2)
+	QQmlImageProviderBase__Invalid       QQmlImageProviderBase__ImageType = QQmlImageProviderBase__ImageType(3)
+	QQmlImageProviderBase__ImageResponse QQmlImageProviderBase__ImageType = QQmlImageProviderBase__ImageType(4)
 )
 
 type QQmlImageProviderBase struct {
@@ -5485,23 +5493,25 @@ func (ptr *QQmlIncubationController) IncubatingObjectCountChangedDefault(incubat
 	}
 }
 
+//go:generate stringer -type=QQmlIncubator__IncubationMode
 //QQmlIncubator::IncubationMode
 type QQmlIncubator__IncubationMode int64
 
 const (
-	QQmlIncubator__Asynchronous         = QQmlIncubator__IncubationMode(0)
-	QQmlIncubator__AsynchronousIfNested = QQmlIncubator__IncubationMode(1)
-	QQmlIncubator__Synchronous          = QQmlIncubator__IncubationMode(2)
+	QQmlIncubator__Asynchronous         QQmlIncubator__IncubationMode = QQmlIncubator__IncubationMode(0)
+	QQmlIncubator__AsynchronousIfNested QQmlIncubator__IncubationMode = QQmlIncubator__IncubationMode(1)
+	QQmlIncubator__Synchronous          QQmlIncubator__IncubationMode = QQmlIncubator__IncubationMode(2)
 )
 
+//go:generate stringer -type=QQmlIncubator__Status
 //QQmlIncubator::Status
 type QQmlIncubator__Status int64
 
 const (
-	QQmlIncubator__Null    = QQmlIncubator__Status(0)
-	QQmlIncubator__Ready   = QQmlIncubator__Status(1)
-	QQmlIncubator__Loading = QQmlIncubator__Status(2)
-	QQmlIncubator__Error   = QQmlIncubator__Status(3)
+	QQmlIncubator__Null    QQmlIncubator__Status = QQmlIncubator__Status(0)
+	QQmlIncubator__Ready   QQmlIncubator__Status = QQmlIncubator__Status(1)
+	QQmlIncubator__Loading QQmlIncubator__Status = QQmlIncubator__Status(2)
+	QQmlIncubator__Error   QQmlIncubator__Status = QQmlIncubator__Status(3)
 )
 
 type QQmlIncubator struct {
@@ -6129,26 +6139,28 @@ func (ptr *QQmlParserStatus) ComponentComplete() {
 	}
 }
 
+//go:generate stringer -type=QQmlPrivate__AutoParentResult
 //QQmlPrivate::AutoParentResult
 type QQmlPrivate__AutoParentResult int64
 
 const (
-	QQmlPrivate__Parented           = QQmlPrivate__AutoParentResult(0)
-	QQmlPrivate__IncompatibleObject = QQmlPrivate__AutoParentResult(1)
-	QQmlPrivate__IncompatibleParent = QQmlPrivate__AutoParentResult(2)
+	QQmlPrivate__Parented           QQmlPrivate__AutoParentResult = QQmlPrivate__AutoParentResult(0)
+	QQmlPrivate__IncompatibleObject QQmlPrivate__AutoParentResult = QQmlPrivate__AutoParentResult(1)
+	QQmlPrivate__IncompatibleParent QQmlPrivate__AutoParentResult = QQmlPrivate__AutoParentResult(2)
 )
 
+//go:generate stringer -type=QQmlPrivate__RegistrationType
 //QQmlPrivate::RegistrationType
 type QQmlPrivate__RegistrationType int64
 
 const (
-	QQmlPrivate__TypeRegistration               = QQmlPrivate__RegistrationType(0)
-	QQmlPrivate__InterfaceRegistration          = QQmlPrivate__RegistrationType(1)
-	QQmlPrivate__AutoParentRegistration         = QQmlPrivate__RegistrationType(2)
-	QQmlPrivate__SingletonRegistration          = QQmlPrivate__RegistrationType(3)
-	QQmlPrivate__CompositeRegistration          = QQmlPrivate__RegistrationType(4)
-	QQmlPrivate__CompositeSingletonRegistration = QQmlPrivate__RegistrationType(5)
-	QQmlPrivate__QmlUnitCacheHookRegistration   = QQmlPrivate__RegistrationType(6)
+	QQmlPrivate__TypeRegistration               QQmlPrivate__RegistrationType = QQmlPrivate__RegistrationType(0)
+	QQmlPrivate__InterfaceRegistration          QQmlPrivate__RegistrationType = QQmlPrivate__RegistrationType(1)
+	QQmlPrivate__AutoParentRegistration         QQmlPrivate__RegistrationType = QQmlPrivate__RegistrationType(2)
+	QQmlPrivate__SingletonRegistration          QQmlPrivate__RegistrationType = QQmlPrivate__RegistrationType(3)
+	QQmlPrivate__CompositeRegistration          QQmlPrivate__RegistrationType = QQmlPrivate__RegistrationType(4)
+	QQmlPrivate__CompositeSingletonRegistration QQmlPrivate__RegistrationType = QQmlPrivate__RegistrationType(5)
+	QQmlPrivate__QmlUnitCacheHookRegistration   QQmlPrivate__RegistrationType = QQmlPrivate__RegistrationType(6)
 )
 
 type QQmlPrivate struct {
@@ -6194,23 +6206,25 @@ func (ptr *QQmlPrivate) DestroyQQmlPrivate() {
 	ptr.SetPointer(nil)
 }
 
+//go:generate stringer -type=QQmlProperty__PropertyTypeCategory
 //QQmlProperty::PropertyTypeCategory
 type QQmlProperty__PropertyTypeCategory int64
 
 const (
-	QQmlProperty__InvalidCategory = QQmlProperty__PropertyTypeCategory(0)
-	QQmlProperty__List            = QQmlProperty__PropertyTypeCategory(1)
-	QQmlProperty__Object          = QQmlProperty__PropertyTypeCategory(2)
-	QQmlProperty__Normal          = QQmlProperty__PropertyTypeCategory(3)
+	QQmlProperty__InvalidCategory QQmlProperty__PropertyTypeCategory = QQmlProperty__PropertyTypeCategory(0)
+	QQmlProperty__List            QQmlProperty__PropertyTypeCategory = QQmlProperty__PropertyTypeCategory(1)
+	QQmlProperty__Object          QQmlProperty__PropertyTypeCategory = QQmlProperty__PropertyTypeCategory(2)
+	QQmlProperty__Normal          QQmlProperty__PropertyTypeCategory = QQmlProperty__PropertyTypeCategory(3)
 )
 
+//go:generate stringer -type=QQmlProperty__Type
 //QQmlProperty::Type
 type QQmlProperty__Type int64
 
 const (
-	QQmlProperty__Invalid        = QQmlProperty__Type(0)
-	QQmlProperty__Property       = QQmlProperty__Type(1)
-	QQmlProperty__SignalProperty = QQmlProperty__Type(2)
+	QQmlProperty__Invalid        QQmlProperty__Type = QQmlProperty__Type(0)
+	QQmlProperty__Property       QQmlProperty__Type = QQmlProperty__Type(1)
+	QQmlProperty__SignalProperty QQmlProperty__Type = QQmlProperty__Type(2)
 )
 
 type QQmlProperty struct {
@@ -7318,26 +7332,28 @@ func (ptr *QQmlScriptString) StringLiteral() string {
 	return ""
 }
 
+//go:generate stringer -type=QV4__PropertyFlag
 //QV4::PropertyFlag
 type QV4__PropertyFlag int64
 
 const (
-	QV4__Attr_Data            = QV4__PropertyFlag(0)
-	QV4__Attr_Accessor        = QV4__PropertyFlag(0x1)
-	QV4__Attr_NotWritable     = QV4__PropertyFlag(0x2)
-	QV4__Attr_NotEnumerable   = QV4__PropertyFlag(0x4)
-	QV4__Attr_NotConfigurable = QV4__PropertyFlag(0x8)
-	QV4__Attr_ReadOnly        = QV4__PropertyFlag(QV4__Attr_NotWritable | QV4__Attr_NotEnumerable | QV4__Attr_NotConfigurable)
-	QV4__Attr_Invalid         = QV4__PropertyFlag(0xff)
+	QV4__Attr_Data            QV4__PropertyFlag = QV4__PropertyFlag(0)
+	QV4__Attr_Accessor        QV4__PropertyFlag = QV4__PropertyFlag(0x1)
+	QV4__Attr_NotWritable     QV4__PropertyFlag = QV4__PropertyFlag(0x2)
+	QV4__Attr_NotEnumerable   QV4__PropertyFlag = QV4__PropertyFlag(0x4)
+	QV4__Attr_NotConfigurable QV4__PropertyFlag = QV4__PropertyFlag(0x8)
+	QV4__Attr_ReadOnly        QV4__PropertyFlag = QV4__PropertyFlag(QV4__Attr_NotWritable | QV4__Attr_NotEnumerable | QV4__Attr_NotConfigurable)
+	QV4__Attr_Invalid         QV4__PropertyFlag = QV4__PropertyFlag(0xff)
 )
 
+//go:generate stringer -type=QV4__TypeHint
 //QV4::TypeHint
 type QV4__TypeHint int64
 
 const (
-	QV4__PREFERREDTYPE_HINT = QV4__TypeHint(0)
-	QV4__NUMBER_HINT        = QV4__TypeHint(1)
-	QV4__STRING_HINT        = QV4__TypeHint(2)
+	QV4__PREFERREDTYPE_HINT QV4__TypeHint = QV4__TypeHint(0)
+	QV4__NUMBER_HINT        QV4__TypeHint = QV4__TypeHint(1)
+	QV4__STRING_HINT        QV4__TypeHint = QV4__TypeHint(2)
 )
 
 type QV4 struct {

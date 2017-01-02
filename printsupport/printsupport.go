@@ -24,28 +24,30 @@ func cGoUnpackString(s C.struct_QtPrintSupport_PackedString) string {
 	return C.GoStringN(s.data, C.int(s.len))
 }
 
+//go:generate stringer -type=QAbstractPrintDialog__PrintDialogOption
 //QAbstractPrintDialog::PrintDialogOption
 type QAbstractPrintDialog__PrintDialogOption int64
 
 const (
-	QAbstractPrintDialog__None               = QAbstractPrintDialog__PrintDialogOption(0x0000)
-	QAbstractPrintDialog__PrintToFile        = QAbstractPrintDialog__PrintDialogOption(0x0001)
-	QAbstractPrintDialog__PrintSelection     = QAbstractPrintDialog__PrintDialogOption(0x0002)
-	QAbstractPrintDialog__PrintPageRange     = QAbstractPrintDialog__PrintDialogOption(0x0004)
-	QAbstractPrintDialog__PrintShowPageSize  = QAbstractPrintDialog__PrintDialogOption(0x0008)
-	QAbstractPrintDialog__PrintCollateCopies = QAbstractPrintDialog__PrintDialogOption(0x0010)
-	QAbstractPrintDialog__DontUseSheet       = QAbstractPrintDialog__PrintDialogOption(0x0020)
-	QAbstractPrintDialog__PrintCurrentPage   = QAbstractPrintDialog__PrintDialogOption(0x0040)
+	QAbstractPrintDialog__None               QAbstractPrintDialog__PrintDialogOption = QAbstractPrintDialog__PrintDialogOption(0x0000)
+	QAbstractPrintDialog__PrintToFile        QAbstractPrintDialog__PrintDialogOption = QAbstractPrintDialog__PrintDialogOption(0x0001)
+	QAbstractPrintDialog__PrintSelection     QAbstractPrintDialog__PrintDialogOption = QAbstractPrintDialog__PrintDialogOption(0x0002)
+	QAbstractPrintDialog__PrintPageRange     QAbstractPrintDialog__PrintDialogOption = QAbstractPrintDialog__PrintDialogOption(0x0004)
+	QAbstractPrintDialog__PrintShowPageSize  QAbstractPrintDialog__PrintDialogOption = QAbstractPrintDialog__PrintDialogOption(0x0008)
+	QAbstractPrintDialog__PrintCollateCopies QAbstractPrintDialog__PrintDialogOption = QAbstractPrintDialog__PrintDialogOption(0x0010)
+	QAbstractPrintDialog__DontUseSheet       QAbstractPrintDialog__PrintDialogOption = QAbstractPrintDialog__PrintDialogOption(0x0020)
+	QAbstractPrintDialog__PrintCurrentPage   QAbstractPrintDialog__PrintDialogOption = QAbstractPrintDialog__PrintDialogOption(0x0040)
 )
 
+//go:generate stringer -type=QAbstractPrintDialog__PrintRange
 //QAbstractPrintDialog::PrintRange
 type QAbstractPrintDialog__PrintRange int64
 
 const (
-	QAbstractPrintDialog__AllPages    = QAbstractPrintDialog__PrintRange(0)
-	QAbstractPrintDialog__Selection   = QAbstractPrintDialog__PrintRange(1)
-	QAbstractPrintDialog__PageRange   = QAbstractPrintDialog__PrintRange(2)
-	QAbstractPrintDialog__CurrentPage = QAbstractPrintDialog__PrintRange(3)
+	QAbstractPrintDialog__AllPages    QAbstractPrintDialog__PrintRange = QAbstractPrintDialog__PrintRange(0)
+	QAbstractPrintDialog__Selection   QAbstractPrintDialog__PrintRange = QAbstractPrintDialog__PrintRange(1)
+	QAbstractPrintDialog__PageRange   QAbstractPrintDialog__PrintRange = QAbstractPrintDialog__PrintRange(2)
+	QAbstractPrintDialog__CurrentPage QAbstractPrintDialog__PrintRange = QAbstractPrintDialog__PrintRange(3)
 )
 
 type QAbstractPrintDialog struct {
@@ -5130,67 +5132,72 @@ func (ptr *QPageSetupDialog) PaintEngineDefault() *gui.QPaintEngine {
 	return nil
 }
 
+//go:generate stringer -type=QPrint__ColorMode
 //QPrint::ColorMode
 type QPrint__ColorMode int64
 
 const (
-	QPrint__GrayScale = QPrint__ColorMode(0)
-	QPrint__Color     = QPrint__ColorMode(1)
+	QPrint__GrayScale QPrint__ColorMode = QPrint__ColorMode(0)
+	QPrint__Color     QPrint__ColorMode = QPrint__ColorMode(1)
 )
 
+//go:generate stringer -type=QPrint__DeviceState
 //QPrint::DeviceState
 type QPrint__DeviceState int64
 
 const (
-	QPrint__Idle    = QPrint__DeviceState(0)
-	QPrint__Active  = QPrint__DeviceState(1)
-	QPrint__Aborted = QPrint__DeviceState(2)
-	QPrint__Error   = QPrint__DeviceState(3)
+	QPrint__Idle    QPrint__DeviceState = QPrint__DeviceState(0)
+	QPrint__Active  QPrint__DeviceState = QPrint__DeviceState(1)
+	QPrint__Aborted QPrint__DeviceState = QPrint__DeviceState(2)
+	QPrint__Error   QPrint__DeviceState = QPrint__DeviceState(3)
 )
 
+//go:generate stringer -type=QPrint__DuplexMode
 //QPrint::DuplexMode
 type QPrint__DuplexMode int64
 
 const (
-	QPrint__DuplexNone      = QPrint__DuplexMode(0)
-	QPrint__DuplexAuto      = QPrint__DuplexMode(1)
-	QPrint__DuplexLongSide  = QPrint__DuplexMode(2)
-	QPrint__DuplexShortSide = QPrint__DuplexMode(3)
+	QPrint__DuplexNone      QPrint__DuplexMode = QPrint__DuplexMode(0)
+	QPrint__DuplexAuto      QPrint__DuplexMode = QPrint__DuplexMode(1)
+	QPrint__DuplexLongSide  QPrint__DuplexMode = QPrint__DuplexMode(2)
+	QPrint__DuplexShortSide QPrint__DuplexMode = QPrint__DuplexMode(3)
 )
 
+//go:generate stringer -type=QPrint__InputSlotId
 //QPrint::InputSlotId
 type QPrint__InputSlotId int64
 
 const (
-	QPrint__Upper           = QPrint__InputSlotId(0)
-	QPrint__Lower           = QPrint__InputSlotId(1)
-	QPrint__Middle          = QPrint__InputSlotId(2)
-	QPrint__Manual          = QPrint__InputSlotId(3)
-	QPrint__Envelope        = QPrint__InputSlotId(4)
-	QPrint__EnvelopeManual  = QPrint__InputSlotId(5)
-	QPrint__Auto            = QPrint__InputSlotId(6)
-	QPrint__Tractor         = QPrint__InputSlotId(7)
-	QPrint__SmallFormat     = QPrint__InputSlotId(8)
-	QPrint__LargeFormat     = QPrint__InputSlotId(9)
-	QPrint__LargeCapacity   = QPrint__InputSlotId(10)
-	QPrint__Cassette        = QPrint__InputSlotId(11)
-	QPrint__FormSource      = QPrint__InputSlotId(12)
-	QPrint__MaxPageSource   = QPrint__InputSlotId(13)
-	QPrint__CustomInputSlot = QPrint__InputSlotId(14)
-	QPrint__LastInputSlot   = QPrint__InputSlotId(QPrint__CustomInputSlot)
-	QPrint__OnlyOne         = QPrint__InputSlotId(QPrint__Upper)
+	QPrint__Upper           QPrint__InputSlotId = QPrint__InputSlotId(0)
+	QPrint__Lower           QPrint__InputSlotId = QPrint__InputSlotId(1)
+	QPrint__Middle          QPrint__InputSlotId = QPrint__InputSlotId(2)
+	QPrint__Manual          QPrint__InputSlotId = QPrint__InputSlotId(3)
+	QPrint__Envelope        QPrint__InputSlotId = QPrint__InputSlotId(4)
+	QPrint__EnvelopeManual  QPrint__InputSlotId = QPrint__InputSlotId(5)
+	QPrint__Auto            QPrint__InputSlotId = QPrint__InputSlotId(6)
+	QPrint__Tractor         QPrint__InputSlotId = QPrint__InputSlotId(7)
+	QPrint__SmallFormat     QPrint__InputSlotId = QPrint__InputSlotId(8)
+	QPrint__LargeFormat     QPrint__InputSlotId = QPrint__InputSlotId(9)
+	QPrint__LargeCapacity   QPrint__InputSlotId = QPrint__InputSlotId(10)
+	QPrint__Cassette        QPrint__InputSlotId = QPrint__InputSlotId(11)
+	QPrint__FormSource      QPrint__InputSlotId = QPrint__InputSlotId(12)
+	QPrint__MaxPageSource   QPrint__InputSlotId = QPrint__InputSlotId(13)
+	QPrint__CustomInputSlot QPrint__InputSlotId = QPrint__InputSlotId(14)
+	QPrint__LastInputSlot   QPrint__InputSlotId = QPrint__InputSlotId(QPrint__CustomInputSlot)
+	QPrint__OnlyOne         QPrint__InputSlotId = QPrint__InputSlotId(QPrint__Upper)
 )
 
+//go:generate stringer -type=QPrint__OutputBinId
 //QPrint::OutputBinId
 type QPrint__OutputBinId int64
 
 const (
-	QPrint__AutoOutputBin   = QPrint__OutputBinId(0)
-	QPrint__UpperBin        = QPrint__OutputBinId(1)
-	QPrint__LowerBin        = QPrint__OutputBinId(2)
-	QPrint__RearBin         = QPrint__OutputBinId(3)
-	QPrint__CustomOutputBin = QPrint__OutputBinId(4)
-	QPrint__LastOutputBin   = QPrint__OutputBinId(QPrint__CustomOutputBin)
+	QPrint__AutoOutputBin   QPrint__OutputBinId = QPrint__OutputBinId(0)
+	QPrint__UpperBin        QPrint__OutputBinId = QPrint__OutputBinId(1)
+	QPrint__LowerBin        QPrint__OutputBinId = QPrint__OutputBinId(2)
+	QPrint__RearBin         QPrint__OutputBinId = QPrint__OutputBinId(3)
+	QPrint__CustomOutputBin QPrint__OutputBinId = QPrint__OutputBinId(4)
+	QPrint__LastOutputBin   QPrint__OutputBinId = QPrint__OutputBinId(QPrint__CustomOutputBin)
 )
 
 type QPrint struct {
@@ -7786,42 +7793,43 @@ func (ptr *QPrintDialog) PaintEngineDefault() *gui.QPaintEngine {
 	return nil
 }
 
+//go:generate stringer -type=QPrintEngine__PrintEnginePropertyKey
 //QPrintEngine::PrintEnginePropertyKey
 type QPrintEngine__PrintEnginePropertyKey int64
 
 const (
-	QPrintEngine__PPK_CollateCopies          = QPrintEngine__PrintEnginePropertyKey(0)
-	QPrintEngine__PPK_ColorMode              = QPrintEngine__PrintEnginePropertyKey(1)
-	QPrintEngine__PPK_Creator                = QPrintEngine__PrintEnginePropertyKey(2)
-	QPrintEngine__PPK_DocumentName           = QPrintEngine__PrintEnginePropertyKey(3)
-	QPrintEngine__PPK_FullPage               = QPrintEngine__PrintEnginePropertyKey(4)
-	QPrintEngine__PPK_NumberOfCopies         = QPrintEngine__PrintEnginePropertyKey(5)
-	QPrintEngine__PPK_Orientation            = QPrintEngine__PrintEnginePropertyKey(6)
-	QPrintEngine__PPK_OutputFileName         = QPrintEngine__PrintEnginePropertyKey(7)
-	QPrintEngine__PPK_PageOrder              = QPrintEngine__PrintEnginePropertyKey(8)
-	QPrintEngine__PPK_PageRect               = QPrintEngine__PrintEnginePropertyKey(9)
-	QPrintEngine__PPK_PageSize               = QPrintEngine__PrintEnginePropertyKey(10)
-	QPrintEngine__PPK_PaperRect              = QPrintEngine__PrintEnginePropertyKey(11)
-	QPrintEngine__PPK_PaperSource            = QPrintEngine__PrintEnginePropertyKey(12)
-	QPrintEngine__PPK_PrinterName            = QPrintEngine__PrintEnginePropertyKey(13)
-	QPrintEngine__PPK_PrinterProgram         = QPrintEngine__PrintEnginePropertyKey(14)
-	QPrintEngine__PPK_Resolution             = QPrintEngine__PrintEnginePropertyKey(15)
-	QPrintEngine__PPK_SelectionOption        = QPrintEngine__PrintEnginePropertyKey(16)
-	QPrintEngine__PPK_SupportedResolutions   = QPrintEngine__PrintEnginePropertyKey(17)
-	QPrintEngine__PPK_WindowsPageSize        = QPrintEngine__PrintEnginePropertyKey(18)
-	QPrintEngine__PPK_FontEmbedding          = QPrintEngine__PrintEnginePropertyKey(19)
-	QPrintEngine__PPK_Duplex                 = QPrintEngine__PrintEnginePropertyKey(20)
-	QPrintEngine__PPK_PaperSources           = QPrintEngine__PrintEnginePropertyKey(21)
-	QPrintEngine__PPK_CustomPaperSize        = QPrintEngine__PrintEnginePropertyKey(22)
-	QPrintEngine__PPK_PageMargins            = QPrintEngine__PrintEnginePropertyKey(23)
-	QPrintEngine__PPK_CopyCount              = QPrintEngine__PrintEnginePropertyKey(24)
-	QPrintEngine__PPK_SupportsMultipleCopies = QPrintEngine__PrintEnginePropertyKey(25)
-	QPrintEngine__PPK_PaperName              = QPrintEngine__PrintEnginePropertyKey(26)
-	QPrintEngine__PPK_QPageSize              = QPrintEngine__PrintEnginePropertyKey(27)
-	QPrintEngine__PPK_QPageMargins           = QPrintEngine__PrintEnginePropertyKey(28)
-	QPrintEngine__PPK_QPageLayout            = QPrintEngine__PrintEnginePropertyKey(29)
-	QPrintEngine__PPK_PaperSize              = QPrintEngine__PrintEnginePropertyKey(QPrintEngine__PPK_PageSize)
-	QPrintEngine__PPK_CustomBase             = QPrintEngine__PrintEnginePropertyKey(0xff00)
+	QPrintEngine__PPK_CollateCopies          QPrintEngine__PrintEnginePropertyKey = QPrintEngine__PrintEnginePropertyKey(0)
+	QPrintEngine__PPK_ColorMode              QPrintEngine__PrintEnginePropertyKey = QPrintEngine__PrintEnginePropertyKey(1)
+	QPrintEngine__PPK_Creator                QPrintEngine__PrintEnginePropertyKey = QPrintEngine__PrintEnginePropertyKey(2)
+	QPrintEngine__PPK_DocumentName           QPrintEngine__PrintEnginePropertyKey = QPrintEngine__PrintEnginePropertyKey(3)
+	QPrintEngine__PPK_FullPage               QPrintEngine__PrintEnginePropertyKey = QPrintEngine__PrintEnginePropertyKey(4)
+	QPrintEngine__PPK_NumberOfCopies         QPrintEngine__PrintEnginePropertyKey = QPrintEngine__PrintEnginePropertyKey(5)
+	QPrintEngine__PPK_Orientation            QPrintEngine__PrintEnginePropertyKey = QPrintEngine__PrintEnginePropertyKey(6)
+	QPrintEngine__PPK_OutputFileName         QPrintEngine__PrintEnginePropertyKey = QPrintEngine__PrintEnginePropertyKey(7)
+	QPrintEngine__PPK_PageOrder              QPrintEngine__PrintEnginePropertyKey = QPrintEngine__PrintEnginePropertyKey(8)
+	QPrintEngine__PPK_PageRect               QPrintEngine__PrintEnginePropertyKey = QPrintEngine__PrintEnginePropertyKey(9)
+	QPrintEngine__PPK_PageSize               QPrintEngine__PrintEnginePropertyKey = QPrintEngine__PrintEnginePropertyKey(10)
+	QPrintEngine__PPK_PaperRect              QPrintEngine__PrintEnginePropertyKey = QPrintEngine__PrintEnginePropertyKey(11)
+	QPrintEngine__PPK_PaperSource            QPrintEngine__PrintEnginePropertyKey = QPrintEngine__PrintEnginePropertyKey(12)
+	QPrintEngine__PPK_PrinterName            QPrintEngine__PrintEnginePropertyKey = QPrintEngine__PrintEnginePropertyKey(13)
+	QPrintEngine__PPK_PrinterProgram         QPrintEngine__PrintEnginePropertyKey = QPrintEngine__PrintEnginePropertyKey(14)
+	QPrintEngine__PPK_Resolution             QPrintEngine__PrintEnginePropertyKey = QPrintEngine__PrintEnginePropertyKey(15)
+	QPrintEngine__PPK_SelectionOption        QPrintEngine__PrintEnginePropertyKey = QPrintEngine__PrintEnginePropertyKey(16)
+	QPrintEngine__PPK_SupportedResolutions   QPrintEngine__PrintEnginePropertyKey = QPrintEngine__PrintEnginePropertyKey(17)
+	QPrintEngine__PPK_WindowsPageSize        QPrintEngine__PrintEnginePropertyKey = QPrintEngine__PrintEnginePropertyKey(18)
+	QPrintEngine__PPK_FontEmbedding          QPrintEngine__PrintEnginePropertyKey = QPrintEngine__PrintEnginePropertyKey(19)
+	QPrintEngine__PPK_Duplex                 QPrintEngine__PrintEnginePropertyKey = QPrintEngine__PrintEnginePropertyKey(20)
+	QPrintEngine__PPK_PaperSources           QPrintEngine__PrintEnginePropertyKey = QPrintEngine__PrintEnginePropertyKey(21)
+	QPrintEngine__PPK_CustomPaperSize        QPrintEngine__PrintEnginePropertyKey = QPrintEngine__PrintEnginePropertyKey(22)
+	QPrintEngine__PPK_PageMargins            QPrintEngine__PrintEnginePropertyKey = QPrintEngine__PrintEnginePropertyKey(23)
+	QPrintEngine__PPK_CopyCount              QPrintEngine__PrintEnginePropertyKey = QPrintEngine__PrintEnginePropertyKey(24)
+	QPrintEngine__PPK_SupportsMultipleCopies QPrintEngine__PrintEnginePropertyKey = QPrintEngine__PrintEnginePropertyKey(25)
+	QPrintEngine__PPK_PaperName              QPrintEngine__PrintEnginePropertyKey = QPrintEngine__PrintEnginePropertyKey(26)
+	QPrintEngine__PPK_QPageSize              QPrintEngine__PrintEnginePropertyKey = QPrintEngine__PrintEnginePropertyKey(27)
+	QPrintEngine__PPK_QPageMargins           QPrintEngine__PrintEnginePropertyKey = QPrintEngine__PrintEnginePropertyKey(28)
+	QPrintEngine__PPK_QPageLayout            QPrintEngine__PrintEnginePropertyKey = QPrintEngine__PrintEnginePropertyKey(29)
+	QPrintEngine__PPK_PaperSize              QPrintEngine__PrintEnginePropertyKey = QPrintEngine__PrintEnginePropertyKey(QPrintEngine__PPK_PageSize)
+	QPrintEngine__PPK_CustomBase             QPrintEngine__PrintEnginePropertyKey = QPrintEngine__PrintEnginePropertyKey(0xff00)
 )
 
 type QPrintEngine struct {
@@ -10611,22 +10619,24 @@ func (ptr *QPrintPreviewDialog) PaintEngineDefault() *gui.QPaintEngine {
 	return nil
 }
 
+//go:generate stringer -type=QPrintPreviewWidget__ViewMode
 //QPrintPreviewWidget::ViewMode
 type QPrintPreviewWidget__ViewMode int64
 
 const (
-	QPrintPreviewWidget__SinglePageView  = QPrintPreviewWidget__ViewMode(0)
-	QPrintPreviewWidget__FacingPagesView = QPrintPreviewWidget__ViewMode(1)
-	QPrintPreviewWidget__AllPagesView    = QPrintPreviewWidget__ViewMode(2)
+	QPrintPreviewWidget__SinglePageView  QPrintPreviewWidget__ViewMode = QPrintPreviewWidget__ViewMode(0)
+	QPrintPreviewWidget__FacingPagesView QPrintPreviewWidget__ViewMode = QPrintPreviewWidget__ViewMode(1)
+	QPrintPreviewWidget__AllPagesView    QPrintPreviewWidget__ViewMode = QPrintPreviewWidget__ViewMode(2)
 )
 
+//go:generate stringer -type=QPrintPreviewWidget__ZoomMode
 //QPrintPreviewWidget::ZoomMode
 type QPrintPreviewWidget__ZoomMode int64
 
 const (
-	QPrintPreviewWidget__CustomZoom = QPrintPreviewWidget__ZoomMode(0)
-	QPrintPreviewWidget__FitToWidth = QPrintPreviewWidget__ZoomMode(1)
-	QPrintPreviewWidget__FitInView  = QPrintPreviewWidget__ZoomMode(2)
+	QPrintPreviewWidget__CustomZoom QPrintPreviewWidget__ZoomMode = QPrintPreviewWidget__ZoomMode(0)
+	QPrintPreviewWidget__FitToWidth QPrintPreviewWidget__ZoomMode = QPrintPreviewWidget__ZoomMode(1)
+	QPrintPreviewWidget__FitInView  QPrintPreviewWidget__ZoomMode = QPrintPreviewWidget__ZoomMode(2)
 )
 
 type QPrintPreviewWidget struct {
@@ -13543,244 +13553,255 @@ func (ptr *QPrintPreviewWidget) PaintEngineDefault() *gui.QPaintEngine {
 	return nil
 }
 
+//go:generate stringer -type=QPrinter__ColorMode
 //QPrinter::ColorMode
 type QPrinter__ColorMode int64
 
 const (
-	QPrinter__GrayScale = QPrinter__ColorMode(0)
-	QPrinter__Color     = QPrinter__ColorMode(1)
+	QPrinter__GrayScale QPrinter__ColorMode = QPrinter__ColorMode(0)
+	QPrinter__Color     QPrinter__ColorMode = QPrinter__ColorMode(1)
 )
 
+//go:generate stringer -type=QPrinter__DuplexMode
 //QPrinter::DuplexMode
 type QPrinter__DuplexMode int64
 
 const (
-	QPrinter__DuplexNone      = QPrinter__DuplexMode(0)
-	QPrinter__DuplexAuto      = QPrinter__DuplexMode(1)
-	QPrinter__DuplexLongSide  = QPrinter__DuplexMode(2)
-	QPrinter__DuplexShortSide = QPrinter__DuplexMode(3)
+	QPrinter__DuplexNone      QPrinter__DuplexMode = QPrinter__DuplexMode(0)
+	QPrinter__DuplexAuto      QPrinter__DuplexMode = QPrinter__DuplexMode(1)
+	QPrinter__DuplexLongSide  QPrinter__DuplexMode = QPrinter__DuplexMode(2)
+	QPrinter__DuplexShortSide QPrinter__DuplexMode = QPrinter__DuplexMode(3)
 )
 
+//go:generate stringer -type=QPrinter__Orientation
 //QPrinter::Orientation
 type QPrinter__Orientation int64
 
 const (
-	QPrinter__Portrait  = QPrinter__Orientation(0)
-	QPrinter__Landscape = QPrinter__Orientation(1)
+	QPrinter__Portrait  QPrinter__Orientation = QPrinter__Orientation(0)
+	QPrinter__Landscape QPrinter__Orientation = QPrinter__Orientation(1)
 )
 
+//go:generate stringer -type=QPrinter__OutputFormat
 //QPrinter::OutputFormat
 type QPrinter__OutputFormat int64
 
 const (
-	QPrinter__NativeFormat = QPrinter__OutputFormat(0)
-	QPrinter__PdfFormat    = QPrinter__OutputFormat(1)
+	QPrinter__NativeFormat QPrinter__OutputFormat = QPrinter__OutputFormat(0)
+	QPrinter__PdfFormat    QPrinter__OutputFormat = QPrinter__OutputFormat(1)
 )
 
+//go:generate stringer -type=QPrinter__PageOrder
 //QPrinter::PageOrder
 type QPrinter__PageOrder int64
 
 const (
-	QPrinter__FirstPageFirst = QPrinter__PageOrder(0)
-	QPrinter__LastPageFirst  = QPrinter__PageOrder(1)
+	QPrinter__FirstPageFirst QPrinter__PageOrder = QPrinter__PageOrder(0)
+	QPrinter__LastPageFirst  QPrinter__PageOrder = QPrinter__PageOrder(1)
 )
 
+//go:generate stringer -type=QPrinter__PaperSize
 //QPrinter::PaperSize
 type QPrinter__PaperSize int64
 
 const (
-	QPrinter__A4                 = QPrinter__PaperSize(0)
-	QPrinter__B5                 = QPrinter__PaperSize(1)
-	QPrinter__Letter             = QPrinter__PaperSize(2)
-	QPrinter__Legal              = QPrinter__PaperSize(3)
-	QPrinter__Executive          = QPrinter__PaperSize(4)
-	QPrinter__A0                 = QPrinter__PaperSize(5)
-	QPrinter__A1                 = QPrinter__PaperSize(6)
-	QPrinter__A2                 = QPrinter__PaperSize(7)
-	QPrinter__A3                 = QPrinter__PaperSize(8)
-	QPrinter__A5                 = QPrinter__PaperSize(9)
-	QPrinter__A6                 = QPrinter__PaperSize(10)
-	QPrinter__A7                 = QPrinter__PaperSize(11)
-	QPrinter__A8                 = QPrinter__PaperSize(12)
-	QPrinter__A9                 = QPrinter__PaperSize(13)
-	QPrinter__B0                 = QPrinter__PaperSize(14)
-	QPrinter__B1                 = QPrinter__PaperSize(15)
-	QPrinter__B10                = QPrinter__PaperSize(16)
-	QPrinter__B2                 = QPrinter__PaperSize(17)
-	QPrinter__B3                 = QPrinter__PaperSize(18)
-	QPrinter__B4                 = QPrinter__PaperSize(19)
-	QPrinter__B6                 = QPrinter__PaperSize(20)
-	QPrinter__B7                 = QPrinter__PaperSize(21)
-	QPrinter__B8                 = QPrinter__PaperSize(22)
-	QPrinter__B9                 = QPrinter__PaperSize(23)
-	QPrinter__C5E                = QPrinter__PaperSize(24)
-	QPrinter__Comm10E            = QPrinter__PaperSize(25)
-	QPrinter__DLE                = QPrinter__PaperSize(26)
-	QPrinter__Folio              = QPrinter__PaperSize(27)
-	QPrinter__Ledger             = QPrinter__PaperSize(28)
-	QPrinter__Tabloid            = QPrinter__PaperSize(29)
-	QPrinter__Custom             = QPrinter__PaperSize(30)
-	QPrinter__A10                = QPrinter__PaperSize(31)
-	QPrinter__A3Extra            = QPrinter__PaperSize(32)
-	QPrinter__A4Extra            = QPrinter__PaperSize(33)
-	QPrinter__A4Plus             = QPrinter__PaperSize(34)
-	QPrinter__A4Small            = QPrinter__PaperSize(35)
-	QPrinter__A5Extra            = QPrinter__PaperSize(36)
-	QPrinter__B5Extra            = QPrinter__PaperSize(37)
-	QPrinter__JisB0              = QPrinter__PaperSize(38)
-	QPrinter__JisB1              = QPrinter__PaperSize(39)
-	QPrinter__JisB2              = QPrinter__PaperSize(40)
-	QPrinter__JisB3              = QPrinter__PaperSize(41)
-	QPrinter__JisB4              = QPrinter__PaperSize(42)
-	QPrinter__JisB5              = QPrinter__PaperSize(43)
-	QPrinter__JisB6              = QPrinter__PaperSize(44)
-	QPrinter__JisB7              = QPrinter__PaperSize(45)
-	QPrinter__JisB8              = QPrinter__PaperSize(46)
-	QPrinter__JisB9              = QPrinter__PaperSize(47)
-	QPrinter__JisB10             = QPrinter__PaperSize(48)
-	QPrinter__AnsiC              = QPrinter__PaperSize(49)
-	QPrinter__AnsiD              = QPrinter__PaperSize(50)
-	QPrinter__AnsiE              = QPrinter__PaperSize(51)
-	QPrinter__LegalExtra         = QPrinter__PaperSize(52)
-	QPrinter__LetterExtra        = QPrinter__PaperSize(53)
-	QPrinter__LetterPlus         = QPrinter__PaperSize(54)
-	QPrinter__LetterSmall        = QPrinter__PaperSize(55)
-	QPrinter__TabloidExtra       = QPrinter__PaperSize(56)
-	QPrinter__ArchA              = QPrinter__PaperSize(57)
-	QPrinter__ArchB              = QPrinter__PaperSize(58)
-	QPrinter__ArchC              = QPrinter__PaperSize(59)
-	QPrinter__ArchD              = QPrinter__PaperSize(60)
-	QPrinter__ArchE              = QPrinter__PaperSize(61)
-	QPrinter__Imperial7x9        = QPrinter__PaperSize(62)
-	QPrinter__Imperial8x10       = QPrinter__PaperSize(63)
-	QPrinter__Imperial9x11       = QPrinter__PaperSize(64)
-	QPrinter__Imperial9x12       = QPrinter__PaperSize(65)
-	QPrinter__Imperial10x11      = QPrinter__PaperSize(66)
-	QPrinter__Imperial10x13      = QPrinter__PaperSize(67)
-	QPrinter__Imperial10x14      = QPrinter__PaperSize(68)
-	QPrinter__Imperial12x11      = QPrinter__PaperSize(69)
-	QPrinter__Imperial15x11      = QPrinter__PaperSize(70)
-	QPrinter__ExecutiveStandard  = QPrinter__PaperSize(71)
-	QPrinter__Note               = QPrinter__PaperSize(72)
-	QPrinter__Quarto             = QPrinter__PaperSize(73)
-	QPrinter__Statement          = QPrinter__PaperSize(74)
-	QPrinter__SuperA             = QPrinter__PaperSize(75)
-	QPrinter__SuperB             = QPrinter__PaperSize(76)
-	QPrinter__Postcard           = QPrinter__PaperSize(77)
-	QPrinter__DoublePostcard     = QPrinter__PaperSize(78)
-	QPrinter__Prc16K             = QPrinter__PaperSize(79)
-	QPrinter__Prc32K             = QPrinter__PaperSize(80)
-	QPrinter__Prc32KBig          = QPrinter__PaperSize(81)
-	QPrinter__FanFoldUS          = QPrinter__PaperSize(82)
-	QPrinter__FanFoldGerman      = QPrinter__PaperSize(83)
-	QPrinter__FanFoldGermanLegal = QPrinter__PaperSize(84)
-	QPrinter__EnvelopeB4         = QPrinter__PaperSize(85)
-	QPrinter__EnvelopeB5         = QPrinter__PaperSize(86)
-	QPrinter__EnvelopeB6         = QPrinter__PaperSize(87)
-	QPrinter__EnvelopeC0         = QPrinter__PaperSize(88)
-	QPrinter__EnvelopeC1         = QPrinter__PaperSize(89)
-	QPrinter__EnvelopeC2         = QPrinter__PaperSize(90)
-	QPrinter__EnvelopeC3         = QPrinter__PaperSize(91)
-	QPrinter__EnvelopeC4         = QPrinter__PaperSize(92)
-	QPrinter__EnvelopeC6         = QPrinter__PaperSize(93)
-	QPrinter__EnvelopeC65        = QPrinter__PaperSize(94)
-	QPrinter__EnvelopeC7         = QPrinter__PaperSize(95)
-	QPrinter__Envelope9          = QPrinter__PaperSize(96)
-	QPrinter__Envelope11         = QPrinter__PaperSize(97)
-	QPrinter__Envelope12         = QPrinter__PaperSize(98)
-	QPrinter__Envelope14         = QPrinter__PaperSize(99)
-	QPrinter__EnvelopeMonarch    = QPrinter__PaperSize(100)
-	QPrinter__EnvelopePersonal   = QPrinter__PaperSize(101)
-	QPrinter__EnvelopeChou3      = QPrinter__PaperSize(102)
-	QPrinter__EnvelopeChou4      = QPrinter__PaperSize(103)
-	QPrinter__EnvelopeInvite     = QPrinter__PaperSize(104)
-	QPrinter__EnvelopeItalian    = QPrinter__PaperSize(105)
-	QPrinter__EnvelopeKaku2      = QPrinter__PaperSize(106)
-	QPrinter__EnvelopeKaku3      = QPrinter__PaperSize(107)
-	QPrinter__EnvelopePrc1       = QPrinter__PaperSize(108)
-	QPrinter__EnvelopePrc2       = QPrinter__PaperSize(109)
-	QPrinter__EnvelopePrc3       = QPrinter__PaperSize(110)
-	QPrinter__EnvelopePrc4       = QPrinter__PaperSize(111)
-	QPrinter__EnvelopePrc5       = QPrinter__PaperSize(112)
-	QPrinter__EnvelopePrc6       = QPrinter__PaperSize(113)
-	QPrinter__EnvelopePrc7       = QPrinter__PaperSize(114)
-	QPrinter__EnvelopePrc8       = QPrinter__PaperSize(115)
-	QPrinter__EnvelopePrc9       = QPrinter__PaperSize(116)
-	QPrinter__EnvelopePrc10      = QPrinter__PaperSize(117)
-	QPrinter__EnvelopeYou4       = QPrinter__PaperSize(118)
-	QPrinter__LastPageSize       = QPrinter__PaperSize(QPrinter__EnvelopeYou4)
-	QPrinter__NPageSize          = QPrinter__PaperSize(QPrinter__LastPageSize)
-	QPrinter__NPaperSize         = QPrinter__PaperSize(QPrinter__LastPageSize)
-	QPrinter__AnsiA              = QPrinter__PaperSize(QPrinter__Letter)
-	QPrinter__AnsiB              = QPrinter__PaperSize(QPrinter__Ledger)
-	QPrinter__EnvelopeC5         = QPrinter__PaperSize(QPrinter__C5E)
-	QPrinter__EnvelopeDL         = QPrinter__PaperSize(QPrinter__DLE)
-	QPrinter__Envelope10         = QPrinter__PaperSize(QPrinter__Comm10E)
+	QPrinter__A4                 QPrinter__PaperSize = QPrinter__PaperSize(0)
+	QPrinter__B5                 QPrinter__PaperSize = QPrinter__PaperSize(1)
+	QPrinter__Letter             QPrinter__PaperSize = QPrinter__PaperSize(2)
+	QPrinter__Legal              QPrinter__PaperSize = QPrinter__PaperSize(3)
+	QPrinter__Executive          QPrinter__PaperSize = QPrinter__PaperSize(4)
+	QPrinter__A0                 QPrinter__PaperSize = QPrinter__PaperSize(5)
+	QPrinter__A1                 QPrinter__PaperSize = QPrinter__PaperSize(6)
+	QPrinter__A2                 QPrinter__PaperSize = QPrinter__PaperSize(7)
+	QPrinter__A3                 QPrinter__PaperSize = QPrinter__PaperSize(8)
+	QPrinter__A5                 QPrinter__PaperSize = QPrinter__PaperSize(9)
+	QPrinter__A6                 QPrinter__PaperSize = QPrinter__PaperSize(10)
+	QPrinter__A7                 QPrinter__PaperSize = QPrinter__PaperSize(11)
+	QPrinter__A8                 QPrinter__PaperSize = QPrinter__PaperSize(12)
+	QPrinter__A9                 QPrinter__PaperSize = QPrinter__PaperSize(13)
+	QPrinter__B0                 QPrinter__PaperSize = QPrinter__PaperSize(14)
+	QPrinter__B1                 QPrinter__PaperSize = QPrinter__PaperSize(15)
+	QPrinter__B10                QPrinter__PaperSize = QPrinter__PaperSize(16)
+	QPrinter__B2                 QPrinter__PaperSize = QPrinter__PaperSize(17)
+	QPrinter__B3                 QPrinter__PaperSize = QPrinter__PaperSize(18)
+	QPrinter__B4                 QPrinter__PaperSize = QPrinter__PaperSize(19)
+	QPrinter__B6                 QPrinter__PaperSize = QPrinter__PaperSize(20)
+	QPrinter__B7                 QPrinter__PaperSize = QPrinter__PaperSize(21)
+	QPrinter__B8                 QPrinter__PaperSize = QPrinter__PaperSize(22)
+	QPrinter__B9                 QPrinter__PaperSize = QPrinter__PaperSize(23)
+	QPrinter__C5E                QPrinter__PaperSize = QPrinter__PaperSize(24)
+	QPrinter__Comm10E            QPrinter__PaperSize = QPrinter__PaperSize(25)
+	QPrinter__DLE                QPrinter__PaperSize = QPrinter__PaperSize(26)
+	QPrinter__Folio              QPrinter__PaperSize = QPrinter__PaperSize(27)
+	QPrinter__Ledger             QPrinter__PaperSize = QPrinter__PaperSize(28)
+	QPrinter__Tabloid            QPrinter__PaperSize = QPrinter__PaperSize(29)
+	QPrinter__Custom             QPrinter__PaperSize = QPrinter__PaperSize(30)
+	QPrinter__A10                QPrinter__PaperSize = QPrinter__PaperSize(31)
+	QPrinter__A3Extra            QPrinter__PaperSize = QPrinter__PaperSize(32)
+	QPrinter__A4Extra            QPrinter__PaperSize = QPrinter__PaperSize(33)
+	QPrinter__A4Plus             QPrinter__PaperSize = QPrinter__PaperSize(34)
+	QPrinter__A4Small            QPrinter__PaperSize = QPrinter__PaperSize(35)
+	QPrinter__A5Extra            QPrinter__PaperSize = QPrinter__PaperSize(36)
+	QPrinter__B5Extra            QPrinter__PaperSize = QPrinter__PaperSize(37)
+	QPrinter__JisB0              QPrinter__PaperSize = QPrinter__PaperSize(38)
+	QPrinter__JisB1              QPrinter__PaperSize = QPrinter__PaperSize(39)
+	QPrinter__JisB2              QPrinter__PaperSize = QPrinter__PaperSize(40)
+	QPrinter__JisB3              QPrinter__PaperSize = QPrinter__PaperSize(41)
+	QPrinter__JisB4              QPrinter__PaperSize = QPrinter__PaperSize(42)
+	QPrinter__JisB5              QPrinter__PaperSize = QPrinter__PaperSize(43)
+	QPrinter__JisB6              QPrinter__PaperSize = QPrinter__PaperSize(44)
+	QPrinter__JisB7              QPrinter__PaperSize = QPrinter__PaperSize(45)
+	QPrinter__JisB8              QPrinter__PaperSize = QPrinter__PaperSize(46)
+	QPrinter__JisB9              QPrinter__PaperSize = QPrinter__PaperSize(47)
+	QPrinter__JisB10             QPrinter__PaperSize = QPrinter__PaperSize(48)
+	QPrinter__AnsiC              QPrinter__PaperSize = QPrinter__PaperSize(49)
+	QPrinter__AnsiD              QPrinter__PaperSize = QPrinter__PaperSize(50)
+	QPrinter__AnsiE              QPrinter__PaperSize = QPrinter__PaperSize(51)
+	QPrinter__LegalExtra         QPrinter__PaperSize = QPrinter__PaperSize(52)
+	QPrinter__LetterExtra        QPrinter__PaperSize = QPrinter__PaperSize(53)
+	QPrinter__LetterPlus         QPrinter__PaperSize = QPrinter__PaperSize(54)
+	QPrinter__LetterSmall        QPrinter__PaperSize = QPrinter__PaperSize(55)
+	QPrinter__TabloidExtra       QPrinter__PaperSize = QPrinter__PaperSize(56)
+	QPrinter__ArchA              QPrinter__PaperSize = QPrinter__PaperSize(57)
+	QPrinter__ArchB              QPrinter__PaperSize = QPrinter__PaperSize(58)
+	QPrinter__ArchC              QPrinter__PaperSize = QPrinter__PaperSize(59)
+	QPrinter__ArchD              QPrinter__PaperSize = QPrinter__PaperSize(60)
+	QPrinter__ArchE              QPrinter__PaperSize = QPrinter__PaperSize(61)
+	QPrinter__Imperial7x9        QPrinter__PaperSize = QPrinter__PaperSize(62)
+	QPrinter__Imperial8x10       QPrinter__PaperSize = QPrinter__PaperSize(63)
+	QPrinter__Imperial9x11       QPrinter__PaperSize = QPrinter__PaperSize(64)
+	QPrinter__Imperial9x12       QPrinter__PaperSize = QPrinter__PaperSize(65)
+	QPrinter__Imperial10x11      QPrinter__PaperSize = QPrinter__PaperSize(66)
+	QPrinter__Imperial10x13      QPrinter__PaperSize = QPrinter__PaperSize(67)
+	QPrinter__Imperial10x14      QPrinter__PaperSize = QPrinter__PaperSize(68)
+	QPrinter__Imperial12x11      QPrinter__PaperSize = QPrinter__PaperSize(69)
+	QPrinter__Imperial15x11      QPrinter__PaperSize = QPrinter__PaperSize(70)
+	QPrinter__ExecutiveStandard  QPrinter__PaperSize = QPrinter__PaperSize(71)
+	QPrinter__Note               QPrinter__PaperSize = QPrinter__PaperSize(72)
+	QPrinter__Quarto             QPrinter__PaperSize = QPrinter__PaperSize(73)
+	QPrinter__Statement          QPrinter__PaperSize = QPrinter__PaperSize(74)
+	QPrinter__SuperA             QPrinter__PaperSize = QPrinter__PaperSize(75)
+	QPrinter__SuperB             QPrinter__PaperSize = QPrinter__PaperSize(76)
+	QPrinter__Postcard           QPrinter__PaperSize = QPrinter__PaperSize(77)
+	QPrinter__DoublePostcard     QPrinter__PaperSize = QPrinter__PaperSize(78)
+	QPrinter__Prc16K             QPrinter__PaperSize = QPrinter__PaperSize(79)
+	QPrinter__Prc32K             QPrinter__PaperSize = QPrinter__PaperSize(80)
+	QPrinter__Prc32KBig          QPrinter__PaperSize = QPrinter__PaperSize(81)
+	QPrinter__FanFoldUS          QPrinter__PaperSize = QPrinter__PaperSize(82)
+	QPrinter__FanFoldGerman      QPrinter__PaperSize = QPrinter__PaperSize(83)
+	QPrinter__FanFoldGermanLegal QPrinter__PaperSize = QPrinter__PaperSize(84)
+	QPrinter__EnvelopeB4         QPrinter__PaperSize = QPrinter__PaperSize(85)
+	QPrinter__EnvelopeB5         QPrinter__PaperSize = QPrinter__PaperSize(86)
+	QPrinter__EnvelopeB6         QPrinter__PaperSize = QPrinter__PaperSize(87)
+	QPrinter__EnvelopeC0         QPrinter__PaperSize = QPrinter__PaperSize(88)
+	QPrinter__EnvelopeC1         QPrinter__PaperSize = QPrinter__PaperSize(89)
+	QPrinter__EnvelopeC2         QPrinter__PaperSize = QPrinter__PaperSize(90)
+	QPrinter__EnvelopeC3         QPrinter__PaperSize = QPrinter__PaperSize(91)
+	QPrinter__EnvelopeC4         QPrinter__PaperSize = QPrinter__PaperSize(92)
+	QPrinter__EnvelopeC6         QPrinter__PaperSize = QPrinter__PaperSize(93)
+	QPrinter__EnvelopeC65        QPrinter__PaperSize = QPrinter__PaperSize(94)
+	QPrinter__EnvelopeC7         QPrinter__PaperSize = QPrinter__PaperSize(95)
+	QPrinter__Envelope9          QPrinter__PaperSize = QPrinter__PaperSize(96)
+	QPrinter__Envelope11         QPrinter__PaperSize = QPrinter__PaperSize(97)
+	QPrinter__Envelope12         QPrinter__PaperSize = QPrinter__PaperSize(98)
+	QPrinter__Envelope14         QPrinter__PaperSize = QPrinter__PaperSize(99)
+	QPrinter__EnvelopeMonarch    QPrinter__PaperSize = QPrinter__PaperSize(100)
+	QPrinter__EnvelopePersonal   QPrinter__PaperSize = QPrinter__PaperSize(101)
+	QPrinter__EnvelopeChou3      QPrinter__PaperSize = QPrinter__PaperSize(102)
+	QPrinter__EnvelopeChou4      QPrinter__PaperSize = QPrinter__PaperSize(103)
+	QPrinter__EnvelopeInvite     QPrinter__PaperSize = QPrinter__PaperSize(104)
+	QPrinter__EnvelopeItalian    QPrinter__PaperSize = QPrinter__PaperSize(105)
+	QPrinter__EnvelopeKaku2      QPrinter__PaperSize = QPrinter__PaperSize(106)
+	QPrinter__EnvelopeKaku3      QPrinter__PaperSize = QPrinter__PaperSize(107)
+	QPrinter__EnvelopePrc1       QPrinter__PaperSize = QPrinter__PaperSize(108)
+	QPrinter__EnvelopePrc2       QPrinter__PaperSize = QPrinter__PaperSize(109)
+	QPrinter__EnvelopePrc3       QPrinter__PaperSize = QPrinter__PaperSize(110)
+	QPrinter__EnvelopePrc4       QPrinter__PaperSize = QPrinter__PaperSize(111)
+	QPrinter__EnvelopePrc5       QPrinter__PaperSize = QPrinter__PaperSize(112)
+	QPrinter__EnvelopePrc6       QPrinter__PaperSize = QPrinter__PaperSize(113)
+	QPrinter__EnvelopePrc7       QPrinter__PaperSize = QPrinter__PaperSize(114)
+	QPrinter__EnvelopePrc8       QPrinter__PaperSize = QPrinter__PaperSize(115)
+	QPrinter__EnvelopePrc9       QPrinter__PaperSize = QPrinter__PaperSize(116)
+	QPrinter__EnvelopePrc10      QPrinter__PaperSize = QPrinter__PaperSize(117)
+	QPrinter__EnvelopeYou4       QPrinter__PaperSize = QPrinter__PaperSize(118)
+	QPrinter__LastPageSize       QPrinter__PaperSize = QPrinter__PaperSize(QPrinter__EnvelopeYou4)
+	QPrinter__NPageSize          QPrinter__PaperSize = QPrinter__PaperSize(QPrinter__LastPageSize)
+	QPrinter__NPaperSize         QPrinter__PaperSize = QPrinter__PaperSize(QPrinter__LastPageSize)
+	QPrinter__AnsiA              QPrinter__PaperSize = QPrinter__PaperSize(QPrinter__Letter)
+	QPrinter__AnsiB              QPrinter__PaperSize = QPrinter__PaperSize(QPrinter__Ledger)
+	QPrinter__EnvelopeC5         QPrinter__PaperSize = QPrinter__PaperSize(QPrinter__C5E)
+	QPrinter__EnvelopeDL         QPrinter__PaperSize = QPrinter__PaperSize(QPrinter__DLE)
+	QPrinter__Envelope10         QPrinter__PaperSize = QPrinter__PaperSize(QPrinter__Comm10E)
 )
 
+//go:generate stringer -type=QPrinter__PaperSource
 //QPrinter::PaperSource
 type QPrinter__PaperSource int64
 
 const (
-	QPrinter__OnlyOne         = QPrinter__PaperSource(0)
-	QPrinter__Lower           = QPrinter__PaperSource(1)
-	QPrinter__Middle          = QPrinter__PaperSource(2)
-	QPrinter__Manual          = QPrinter__PaperSource(3)
-	QPrinter__Envelope        = QPrinter__PaperSource(4)
-	QPrinter__EnvelopeManual  = QPrinter__PaperSource(5)
-	QPrinter__Auto            = QPrinter__PaperSource(6)
-	QPrinter__Tractor         = QPrinter__PaperSource(7)
-	QPrinter__SmallFormat     = QPrinter__PaperSource(8)
-	QPrinter__LargeFormat     = QPrinter__PaperSource(9)
-	QPrinter__LargeCapacity   = QPrinter__PaperSource(10)
-	QPrinter__Cassette        = QPrinter__PaperSource(11)
-	QPrinter__FormSource      = QPrinter__PaperSource(12)
-	QPrinter__MaxPageSource   = QPrinter__PaperSource(13)
-	QPrinter__CustomSource    = QPrinter__PaperSource(14)
-	QPrinter__LastPaperSource = QPrinter__PaperSource(QPrinter__CustomSource)
-	QPrinter__Upper           = QPrinter__PaperSource(QPrinter__OnlyOne)
+	QPrinter__OnlyOne         QPrinter__PaperSource = QPrinter__PaperSource(0)
+	QPrinter__Lower           QPrinter__PaperSource = QPrinter__PaperSource(1)
+	QPrinter__Middle          QPrinter__PaperSource = QPrinter__PaperSource(2)
+	QPrinter__Manual          QPrinter__PaperSource = QPrinter__PaperSource(3)
+	QPrinter__Envelope        QPrinter__PaperSource = QPrinter__PaperSource(4)
+	QPrinter__EnvelopeManual  QPrinter__PaperSource = QPrinter__PaperSource(5)
+	QPrinter__Auto            QPrinter__PaperSource = QPrinter__PaperSource(6)
+	QPrinter__Tractor         QPrinter__PaperSource = QPrinter__PaperSource(7)
+	QPrinter__SmallFormat     QPrinter__PaperSource = QPrinter__PaperSource(8)
+	QPrinter__LargeFormat     QPrinter__PaperSource = QPrinter__PaperSource(9)
+	QPrinter__LargeCapacity   QPrinter__PaperSource = QPrinter__PaperSource(10)
+	QPrinter__Cassette        QPrinter__PaperSource = QPrinter__PaperSource(11)
+	QPrinter__FormSource      QPrinter__PaperSource = QPrinter__PaperSource(12)
+	QPrinter__MaxPageSource   QPrinter__PaperSource = QPrinter__PaperSource(13)
+	QPrinter__CustomSource    QPrinter__PaperSource = QPrinter__PaperSource(14)
+	QPrinter__LastPaperSource QPrinter__PaperSource = QPrinter__PaperSource(QPrinter__CustomSource)
+	QPrinter__Upper           QPrinter__PaperSource = QPrinter__PaperSource(QPrinter__OnlyOne)
 )
 
+//go:generate stringer -type=QPrinter__PrintRange
 //QPrinter::PrintRange
 type QPrinter__PrintRange int64
 
 const (
-	QPrinter__AllPages    = QPrinter__PrintRange(0)
-	QPrinter__Selection   = QPrinter__PrintRange(1)
-	QPrinter__PageRange   = QPrinter__PrintRange(2)
-	QPrinter__CurrentPage = QPrinter__PrintRange(3)
+	QPrinter__AllPages    QPrinter__PrintRange = QPrinter__PrintRange(0)
+	QPrinter__Selection   QPrinter__PrintRange = QPrinter__PrintRange(1)
+	QPrinter__PageRange   QPrinter__PrintRange = QPrinter__PrintRange(2)
+	QPrinter__CurrentPage QPrinter__PrintRange = QPrinter__PrintRange(3)
 )
 
+//go:generate stringer -type=QPrinter__PrinterMode
 //QPrinter::PrinterMode
 type QPrinter__PrinterMode int64
 
 const (
-	QPrinter__ScreenResolution  = QPrinter__PrinterMode(0)
-	QPrinter__PrinterResolution = QPrinter__PrinterMode(1)
-	QPrinter__HighResolution    = QPrinter__PrinterMode(2)
+	QPrinter__ScreenResolution  QPrinter__PrinterMode = QPrinter__PrinterMode(0)
+	QPrinter__PrinterResolution QPrinter__PrinterMode = QPrinter__PrinterMode(1)
+	QPrinter__HighResolution    QPrinter__PrinterMode = QPrinter__PrinterMode(2)
 )
 
+//go:generate stringer -type=QPrinter__PrinterState
 //QPrinter::PrinterState
 type QPrinter__PrinterState int64
 
 const (
-	QPrinter__Idle    = QPrinter__PrinterState(0)
-	QPrinter__Active  = QPrinter__PrinterState(1)
-	QPrinter__Aborted = QPrinter__PrinterState(2)
-	QPrinter__Error   = QPrinter__PrinterState(3)
+	QPrinter__Idle    QPrinter__PrinterState = QPrinter__PrinterState(0)
+	QPrinter__Active  QPrinter__PrinterState = QPrinter__PrinterState(1)
+	QPrinter__Aborted QPrinter__PrinterState = QPrinter__PrinterState(2)
+	QPrinter__Error   QPrinter__PrinterState = QPrinter__PrinterState(3)
 )
 
+//go:generate stringer -type=QPrinter__Unit
 //QPrinter::Unit
 type QPrinter__Unit int64
 
 const (
-	QPrinter__Millimeter  = QPrinter__Unit(0)
-	QPrinter__Point       = QPrinter__Unit(1)
-	QPrinter__Inch        = QPrinter__Unit(2)
-	QPrinter__Pica        = QPrinter__Unit(3)
-	QPrinter__Didot       = QPrinter__Unit(4)
-	QPrinter__Cicero      = QPrinter__Unit(5)
-	QPrinter__DevicePixel = QPrinter__Unit(6)
+	QPrinter__Millimeter  QPrinter__Unit = QPrinter__Unit(0)
+	QPrinter__Point       QPrinter__Unit = QPrinter__Unit(1)
+	QPrinter__Inch        QPrinter__Unit = QPrinter__Unit(2)
+	QPrinter__Pica        QPrinter__Unit = QPrinter__Unit(3)
+	QPrinter__Didot       QPrinter__Unit = QPrinter__Unit(4)
+	QPrinter__Cicero      QPrinter__Unit = QPrinter__Unit(5)
+	QPrinter__DevicePixel QPrinter__Unit = QPrinter__Unit(6)
 )
 
 type QPrinter struct {

@@ -13,24 +13,24 @@ func CppTemplate(module string) []byte {
 	var bb = new(bytes.Buffer)
 	defer bb.Reset()
 
-	if module != parser.MOC {
+	if !parser.State.Moc {
 		module = "Qt" + module
 	}
 
 	if module == "QtCharts" || module == "QtDataVisualization" {
-		for _, classname := range getSortedClassNamesForModule(module) {
+		for _, classname := range sortedClassNamesForModule(module) {
 			fmt.Fprintf(bb, "typedef %v::%v %v;\n", module, classname, classname)
 		}
 		fmt.Fprint(bb, "\n")
 	}
 
-	for _, className := range getSortedClassNamesForModule(module) {
-		var class = parser.CurrentState.ClassMap[className]
+	for _, className := range sortedClassNamesForModule(module) {
+		var class = parser.State.ClassMap[className]
 
-		if classIsSupported(class) {
+		if class.IsSupported() {
 			var implementedVirtuals = make(map[string]struct{})
 
-			if classNeedsCallbackFunctions(class) || class.Module == parser.MOC {
+			if class.HasCallbackFunctions() || parser.State.Moc {
 
 				fmt.Fprintf(bb,
 					`class %v%v: public %v
@@ -38,7 +38,7 @@ func CppTemplate(module string) []byte {
 %vpublic:
 `,
 					func() string {
-						if module == parser.MOC {
+						if parser.State.Moc {
 							return ""
 						}
 						return "My"
@@ -47,14 +47,14 @@ func CppTemplate(module string) []byte {
 					class.Name,
 
 					func() string {
-						if module == parser.MOC {
+						if parser.State.Moc {
 							return class.GetBases()[0]
 						}
 						return class.Name
 					}(),
 
 					func() string {
-						if module == parser.MOC {
+						if parser.State.Moc {
 							return "Q_OBJECT\n"
 						}
 						return ""
@@ -63,7 +63,7 @@ func CppTemplate(module string) []byte {
 				if !hasUnimplementedPureVirtualFunctions(class.Name) {
 					for _, function := range class.Functions {
 						if function.Meta == parser.CONSTRUCTOR {
-							if functionIsSupported(class, function) {
+							if function.IsSupported() {
 
 								var input = make([]string, len(function.Parameters))
 								for i, p := range function.Parameters {
@@ -77,7 +77,7 @@ func CppTemplate(module string) []byte {
 
 								fmt.Fprintf(bb, "\t%v%v(%v) : %v(%v) {};\n",
 									func() string {
-										if module == parser.MOC {
+										if parser.State.Moc {
 											return ""
 										}
 										return "My"
@@ -88,7 +88,7 @@ func CppTemplate(module string) []byte {
 									strings.Split(strings.Split(function.Signature, "(")[1], ")")[0],
 
 									func() string {
-										if module == parser.MOC {
+										if parser.State.Moc {
 											return class.GetBases()[0]
 										}
 										return function.ClassName()
@@ -105,9 +105,9 @@ func CppTemplate(module string) []byte {
 				//all class functions
 				for _, function := range class.Functions {
 					implementedVirtuals[fmt.Sprint(function.Fullname, function.OverloadNumber)] = struct{}{}
-					if functionIsSupported(class, function) {
+					if function.IsSupported() {
 						if function.Virtual == parser.IMPURE || function.Virtual == parser.PURE || function.Meta == parser.SIGNAL || function.Meta == parser.SLOT {
-							if !(module == parser.MOC && function.Meta == parser.SLOT) {
+							if !(parser.State.Moc && function.Meta == parser.SLOT) {
 								var function = *function
 								function.SignalMode = parser.CALLBACK
 								fmt.Fprintf(bb, "\t%v\n", cppFunctionCallback(&function))
@@ -118,12 +118,12 @@ func CppTemplate(module string) []byte {
 
 				//virtual parent functions
 				for _, parentClassName := range class.GetAllBases() {
-					var parentClass = parser.CurrentState.ClassMap[parentClassName]
-					if classIsSupported(parentClass) {
+					var parentClass = parser.State.ClassMap[parentClassName]
+					if parentClass.IsSupported() {
 
 						for _, function := range parentClass.Functions {
 							if _, exists := implementedVirtuals[fmt.Sprint(fmt.Sprintf("%v::%v", class.Name, function.Name), function.OverloadNumber)]; !exists {
-								if functionIsSupported(class, function) && function.Meta != parser.DESTRUCTOR {
+								if function.IsSupported() && function.Meta != parser.DESTRUCTOR {
 
 									var function = *function
 									function.Fullname = fmt.Sprintf("%v::%v", class.Name, function.Name)
@@ -140,7 +140,7 @@ func CppTemplate(module string) []byte {
 					}
 				}
 
-				if module == parser.MOC {
+				if parser.State.Moc {
 					fmt.Fprintln(bb, "signals:")
 					for _, function := range class.Functions {
 						if function.Meta == parser.SIGNAL {
@@ -160,7 +160,7 @@ func CppTemplate(module string) []byte {
 
 				fmt.Fprint(bb, "};\n\n")
 			}
-			if class.Module == parser.MOC {
+			if parser.State.Moc {
 				fmt.Fprintf(bb, "Q_DECLARE_METATYPE(%v*)\n\n", class.Name)
 			}
 		}
@@ -189,34 +189,34 @@ func preambleCpp(module string, input []byte) []byte {
 
 		func() string {
 			switch module {
-			case parser.MOC:
-				{
-					return "moc"
-				}
-
 			case "QtAndroidExtras":
 				{
-					return fmt.Sprintf("%v_android", shortModule(module))
+					return fmt.Sprintf("%v_android", goModule(module))
 				}
 
 			case "QtSailfish":
 				{
-					return fmt.Sprintf("%v_sailfish", shortModule(module))
+					return fmt.Sprintf("%v_sailfish", goModule(module))
 				}
 
 			default:
 				{
-					if parser.CurrentState.Minimal {
-						return fmt.Sprintf("%v-minimal", shortModule(module))
+					if parser.State.Minimal {
+						return fmt.Sprintf("%v-minimal", goModule(module))
 					}
-					return shortModule(module)
+
+					if parser.State.Moc {
+						return "moc"
+					}
+
+					return goModule(module)
 				}
 			}
 		}(),
 	)
 
 	var classes = make([]string, 0)
-	for _, class := range parser.CurrentState.ClassMap {
+	for _, class := range parser.State.ClassMap {
 		if strings.Contains(string(input), class.Name) && !(strings.HasPrefix(class.Name, "Qt") || class.Module == parser.MOC) {
 			classes = append(classes, class.Name)
 		}
@@ -236,7 +236,7 @@ func preambleCpp(module string, input []byte) []byte {
 
 	bb.Write(input)
 
-	if module == parser.MOC {
+	if parser.State.Moc {
 		fmt.Fprintln(bb, "#include \"moc_moc.h\"")
 	}
 

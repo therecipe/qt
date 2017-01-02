@@ -35,7 +35,7 @@ func (m *Module) Prepare() error {
 	m.remove()
 
 	//mutate classes
-	for _, c := range CurrentState.ClassMap {
+	for _, c := range State.ClassMap {
 		if c.Module != m.Project {
 			continue
 		}

@@ -799,13 +799,14 @@ func (ptr *QMacToolBar) MetaObjectDefault() *core.QMetaObject {
 	return nil
 }
 
+//go:generate stringer -type=QMacToolBarItem__StandardItem
 //QMacToolBarItem::StandardItem
 type QMacToolBarItem__StandardItem int64
 
 const (
-	QMacToolBarItem__NoStandardItem = QMacToolBarItem__StandardItem(0)
-	QMacToolBarItem__Space          = QMacToolBarItem__StandardItem(1)
-	QMacToolBarItem__FlexibleSpace  = QMacToolBarItem__StandardItem(2)
+	QMacToolBarItem__NoStandardItem QMacToolBarItem__StandardItem = QMacToolBarItem__StandardItem(0)
+	QMacToolBarItem__Space          QMacToolBarItem__StandardItem = QMacToolBarItem__StandardItem(1)
+	QMacToolBarItem__FlexibleSpace  QMacToolBarItem__StandardItem = QMacToolBarItem__StandardItem(2)
 )
 
 type QMacToolBarItem struct {

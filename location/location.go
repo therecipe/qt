@@ -23,17 +23,18 @@ func cGoUnpackString(s C.struct_QtLocation_PackedString) string {
 	return C.GoStringN(s.data, C.int(s.len))
 }
 
+//go:generate stringer -type=QGeoCodeReply__Error
 //QGeoCodeReply::Error
 type QGeoCodeReply__Error int64
 
 const (
-	QGeoCodeReply__NoError                = QGeoCodeReply__Error(0)
-	QGeoCodeReply__EngineNotSetError      = QGeoCodeReply__Error(1)
-	QGeoCodeReply__CommunicationError     = QGeoCodeReply__Error(2)
-	QGeoCodeReply__ParseError             = QGeoCodeReply__Error(3)
-	QGeoCodeReply__UnsupportedOptionError = QGeoCodeReply__Error(4)
-	QGeoCodeReply__CombinationError       = QGeoCodeReply__Error(5)
-	QGeoCodeReply__UnknownError           = QGeoCodeReply__Error(6)
+	QGeoCodeReply__NoError                QGeoCodeReply__Error = QGeoCodeReply__Error(0)
+	QGeoCodeReply__EngineNotSetError      QGeoCodeReply__Error = QGeoCodeReply__Error(1)
+	QGeoCodeReply__CommunicationError     QGeoCodeReply__Error = QGeoCodeReply__Error(2)
+	QGeoCodeReply__ParseError             QGeoCodeReply__Error = QGeoCodeReply__Error(3)
+	QGeoCodeReply__UnsupportedOptionError QGeoCodeReply__Error = QGeoCodeReply__Error(4)
+	QGeoCodeReply__CombinationError       QGeoCodeReply__Error = QGeoCodeReply__Error(5)
+	QGeoCodeReply__UnknownError           QGeoCodeReply__Error = QGeoCodeReply__Error(6)
 )
 
 type QGeoCodeReply struct {
@@ -153,22 +154,23 @@ func NewQGeoCodingManagerEngineFromPointer(ptr unsafe.Pointer) *QGeoCodingManage
 	return n
 }
 
+//go:generate stringer -type=QGeoManeuver__InstructionDirection
 //QGeoManeuver::InstructionDirection
 type QGeoManeuver__InstructionDirection int64
 
 const (
-	QGeoManeuver__NoDirection         = QGeoManeuver__InstructionDirection(0)
-	QGeoManeuver__DirectionForward    = QGeoManeuver__InstructionDirection(1)
-	QGeoManeuver__DirectionBearRight  = QGeoManeuver__InstructionDirection(2)
-	QGeoManeuver__DirectionLightRight = QGeoManeuver__InstructionDirection(3)
-	QGeoManeuver__DirectionRight      = QGeoManeuver__InstructionDirection(4)
-	QGeoManeuver__DirectionHardRight  = QGeoManeuver__InstructionDirection(5)
-	QGeoManeuver__DirectionUTurnRight = QGeoManeuver__InstructionDirection(6)
-	QGeoManeuver__DirectionUTurnLeft  = QGeoManeuver__InstructionDirection(7)
-	QGeoManeuver__DirectionHardLeft   = QGeoManeuver__InstructionDirection(8)
-	QGeoManeuver__DirectionLeft       = QGeoManeuver__InstructionDirection(9)
-	QGeoManeuver__DirectionLightLeft  = QGeoManeuver__InstructionDirection(10)
-	QGeoManeuver__DirectionBearLeft   = QGeoManeuver__InstructionDirection(11)
+	QGeoManeuver__NoDirection         QGeoManeuver__InstructionDirection = QGeoManeuver__InstructionDirection(0)
+	QGeoManeuver__DirectionForward    QGeoManeuver__InstructionDirection = QGeoManeuver__InstructionDirection(1)
+	QGeoManeuver__DirectionBearRight  QGeoManeuver__InstructionDirection = QGeoManeuver__InstructionDirection(2)
+	QGeoManeuver__DirectionLightRight QGeoManeuver__InstructionDirection = QGeoManeuver__InstructionDirection(3)
+	QGeoManeuver__DirectionRight      QGeoManeuver__InstructionDirection = QGeoManeuver__InstructionDirection(4)
+	QGeoManeuver__DirectionHardRight  QGeoManeuver__InstructionDirection = QGeoManeuver__InstructionDirection(5)
+	QGeoManeuver__DirectionUTurnRight QGeoManeuver__InstructionDirection = QGeoManeuver__InstructionDirection(6)
+	QGeoManeuver__DirectionUTurnLeft  QGeoManeuver__InstructionDirection = QGeoManeuver__InstructionDirection(7)
+	QGeoManeuver__DirectionHardLeft   QGeoManeuver__InstructionDirection = QGeoManeuver__InstructionDirection(8)
+	QGeoManeuver__DirectionLeft       QGeoManeuver__InstructionDirection = QGeoManeuver__InstructionDirection(9)
+	QGeoManeuver__DirectionLightLeft  QGeoManeuver__InstructionDirection = QGeoManeuver__InstructionDirection(10)
+	QGeoManeuver__DirectionBearLeft   QGeoManeuver__InstructionDirection = QGeoManeuver__InstructionDirection(11)
 )
 
 type QGeoManeuver struct {
@@ -495,16 +497,17 @@ func (ptr *QGeoRoute) path_atList(i int) *positioning.QGeoCoordinate {
 	return nil
 }
 
+//go:generate stringer -type=QGeoRouteReply__Error
 //QGeoRouteReply::Error
 type QGeoRouteReply__Error int64
 
 const (
-	QGeoRouteReply__NoError                = QGeoRouteReply__Error(0)
-	QGeoRouteReply__EngineNotSetError      = QGeoRouteReply__Error(1)
-	QGeoRouteReply__CommunicationError     = QGeoRouteReply__Error(2)
-	QGeoRouteReply__ParseError             = QGeoRouteReply__Error(3)
-	QGeoRouteReply__UnsupportedOptionError = QGeoRouteReply__Error(4)
-	QGeoRouteReply__UnknownError           = QGeoRouteReply__Error(5)
+	QGeoRouteReply__NoError                QGeoRouteReply__Error = QGeoRouteReply__Error(0)
+	QGeoRouteReply__EngineNotSetError      QGeoRouteReply__Error = QGeoRouteReply__Error(1)
+	QGeoRouteReply__CommunicationError     QGeoRouteReply__Error = QGeoRouteReply__Error(2)
+	QGeoRouteReply__ParseError             QGeoRouteReply__Error = QGeoRouteReply__Error(3)
+	QGeoRouteReply__UnsupportedOptionError QGeoRouteReply__Error = QGeoRouteReply__Error(4)
+	QGeoRouteReply__UnknownError           QGeoRouteReply__Error = QGeoRouteReply__Error(5)
 )
 
 type QGeoRouteReply struct {
@@ -1098,67 +1101,73 @@ func (ptr *QGeoRouteReply) MetaObjectDefault() *core.QMetaObject {
 	return nil
 }
 
+//go:generate stringer -type=QGeoRouteRequest__FeatureType
 //QGeoRouteRequest::FeatureType
 type QGeoRouteRequest__FeatureType int64
 
 const (
-	QGeoRouteRequest__NoFeature            = QGeoRouteRequest__FeatureType(0x00000000)
-	QGeoRouteRequest__TollFeature          = QGeoRouteRequest__FeatureType(0x00000001)
-	QGeoRouteRequest__HighwayFeature       = QGeoRouteRequest__FeatureType(0x00000002)
-	QGeoRouteRequest__PublicTransitFeature = QGeoRouteRequest__FeatureType(0x00000004)
-	QGeoRouteRequest__FerryFeature         = QGeoRouteRequest__FeatureType(0x00000008)
-	QGeoRouteRequest__TunnelFeature        = QGeoRouteRequest__FeatureType(0x00000010)
-	QGeoRouteRequest__DirtRoadFeature      = QGeoRouteRequest__FeatureType(0x00000020)
-	QGeoRouteRequest__ParksFeature         = QGeoRouteRequest__FeatureType(0x00000040)
-	QGeoRouteRequest__MotorPoolLaneFeature = QGeoRouteRequest__FeatureType(0x00000080)
+	QGeoRouteRequest__NoFeature            QGeoRouteRequest__FeatureType = QGeoRouteRequest__FeatureType(0x00000000)
+	QGeoRouteRequest__TollFeature          QGeoRouteRequest__FeatureType = QGeoRouteRequest__FeatureType(0x00000001)
+	QGeoRouteRequest__HighwayFeature       QGeoRouteRequest__FeatureType = QGeoRouteRequest__FeatureType(0x00000002)
+	QGeoRouteRequest__PublicTransitFeature QGeoRouteRequest__FeatureType = QGeoRouteRequest__FeatureType(0x00000004)
+	QGeoRouteRequest__FerryFeature         QGeoRouteRequest__FeatureType = QGeoRouteRequest__FeatureType(0x00000008)
+	QGeoRouteRequest__TunnelFeature        QGeoRouteRequest__FeatureType = QGeoRouteRequest__FeatureType(0x00000010)
+	QGeoRouteRequest__DirtRoadFeature      QGeoRouteRequest__FeatureType = QGeoRouteRequest__FeatureType(0x00000020)
+	QGeoRouteRequest__ParksFeature         QGeoRouteRequest__FeatureType = QGeoRouteRequest__FeatureType(0x00000040)
+	QGeoRouteRequest__MotorPoolLaneFeature QGeoRouteRequest__FeatureType = QGeoRouteRequest__FeatureType(0x00000080)
 )
 
+//go:generate stringer -type=QGeoRouteRequest__FeatureWeight
 //QGeoRouteRequest::FeatureWeight
 type QGeoRouteRequest__FeatureWeight int64
 
 const (
-	QGeoRouteRequest__NeutralFeatureWeight  = QGeoRouteRequest__FeatureWeight(0x00000000)
-	QGeoRouteRequest__PreferFeatureWeight   = QGeoRouteRequest__FeatureWeight(0x00000001)
-	QGeoRouteRequest__RequireFeatureWeight  = QGeoRouteRequest__FeatureWeight(0x00000002)
-	QGeoRouteRequest__AvoidFeatureWeight    = QGeoRouteRequest__FeatureWeight(0x00000004)
-	QGeoRouteRequest__DisallowFeatureWeight = QGeoRouteRequest__FeatureWeight(0x00000008)
+	QGeoRouteRequest__NeutralFeatureWeight  QGeoRouteRequest__FeatureWeight = QGeoRouteRequest__FeatureWeight(0x00000000)
+	QGeoRouteRequest__PreferFeatureWeight   QGeoRouteRequest__FeatureWeight = QGeoRouteRequest__FeatureWeight(0x00000001)
+	QGeoRouteRequest__RequireFeatureWeight  QGeoRouteRequest__FeatureWeight = QGeoRouteRequest__FeatureWeight(0x00000002)
+	QGeoRouteRequest__AvoidFeatureWeight    QGeoRouteRequest__FeatureWeight = QGeoRouteRequest__FeatureWeight(0x00000004)
+	QGeoRouteRequest__DisallowFeatureWeight QGeoRouteRequest__FeatureWeight = QGeoRouteRequest__FeatureWeight(0x00000008)
 )
 
+//go:generate stringer -type=QGeoRouteRequest__ManeuverDetail
 //QGeoRouteRequest::ManeuverDetail
 type QGeoRouteRequest__ManeuverDetail int64
 
 const (
-	QGeoRouteRequest__NoManeuvers    = QGeoRouteRequest__ManeuverDetail(0x0000)
-	QGeoRouteRequest__BasicManeuvers = QGeoRouteRequest__ManeuverDetail(0x0001)
+	QGeoRouteRequest__NoManeuvers    QGeoRouteRequest__ManeuverDetail = QGeoRouteRequest__ManeuverDetail(0x0000)
+	QGeoRouteRequest__BasicManeuvers QGeoRouteRequest__ManeuverDetail = QGeoRouteRequest__ManeuverDetail(0x0001)
 )
 
+//go:generate stringer -type=QGeoRouteRequest__RouteOptimization
 //QGeoRouteRequest::RouteOptimization
 type QGeoRouteRequest__RouteOptimization int64
 
 const (
-	QGeoRouteRequest__ShortestRoute     = QGeoRouteRequest__RouteOptimization(0x0001)
-	QGeoRouteRequest__FastestRoute      = QGeoRouteRequest__RouteOptimization(0x0002)
-	QGeoRouteRequest__MostEconomicRoute = QGeoRouteRequest__RouteOptimization(0x0004)
-	QGeoRouteRequest__MostScenicRoute   = QGeoRouteRequest__RouteOptimization(0x0008)
+	QGeoRouteRequest__ShortestRoute     QGeoRouteRequest__RouteOptimization = QGeoRouteRequest__RouteOptimization(0x0001)
+	QGeoRouteRequest__FastestRoute      QGeoRouteRequest__RouteOptimization = QGeoRouteRequest__RouteOptimization(0x0002)
+	QGeoRouteRequest__MostEconomicRoute QGeoRouteRequest__RouteOptimization = QGeoRouteRequest__RouteOptimization(0x0004)
+	QGeoRouteRequest__MostScenicRoute   QGeoRouteRequest__RouteOptimization = QGeoRouteRequest__RouteOptimization(0x0008)
 )
 
+//go:generate stringer -type=QGeoRouteRequest__SegmentDetail
 //QGeoRouteRequest::SegmentDetail
 type QGeoRouteRequest__SegmentDetail int64
 
 const (
-	QGeoRouteRequest__NoSegmentData    = QGeoRouteRequest__SegmentDetail(0x0000)
-	QGeoRouteRequest__BasicSegmentData = QGeoRouteRequest__SegmentDetail(0x0001)
+	QGeoRouteRequest__NoSegmentData    QGeoRouteRequest__SegmentDetail = QGeoRouteRequest__SegmentDetail(0x0000)
+	QGeoRouteRequest__BasicSegmentData QGeoRouteRequest__SegmentDetail = QGeoRouteRequest__SegmentDetail(0x0001)
 )
 
+//go:generate stringer -type=QGeoRouteRequest__TravelMode
 //QGeoRouteRequest::TravelMode
 type QGeoRouteRequest__TravelMode int64
 
 const (
-	QGeoRouteRequest__CarTravel           = QGeoRouteRequest__TravelMode(0x0001)
-	QGeoRouteRequest__PedestrianTravel    = QGeoRouteRequest__TravelMode(0x0002)
-	QGeoRouteRequest__BicycleTravel       = QGeoRouteRequest__TravelMode(0x0004)
-	QGeoRouteRequest__PublicTransitTravel = QGeoRouteRequest__TravelMode(0x0008)
-	QGeoRouteRequest__TruckTravel         = QGeoRouteRequest__TravelMode(0x0010)
+	QGeoRouteRequest__CarTravel           QGeoRouteRequest__TravelMode = QGeoRouteRequest__TravelMode(0x0001)
+	QGeoRouteRequest__PedestrianTravel    QGeoRouteRequest__TravelMode = QGeoRouteRequest__TravelMode(0x0002)
+	QGeoRouteRequest__BicycleTravel       QGeoRouteRequest__TravelMode = QGeoRouteRequest__TravelMode(0x0004)
+	QGeoRouteRequest__PublicTransitTravel QGeoRouteRequest__TravelMode = QGeoRouteRequest__TravelMode(0x0008)
+	QGeoRouteRequest__TruckTravel         QGeoRouteRequest__TravelMode = QGeoRouteRequest__TravelMode(0x0010)
 )
 
 type QGeoRouteRequest struct {
@@ -2698,71 +2707,76 @@ func (ptr *QGeoRoutingManagerEngine) MetaObjectDefault() *core.QMetaObject {
 	return nil
 }
 
+//go:generate stringer -type=QGeoServiceProvider__Error
 //QGeoServiceProvider::Error
 type QGeoServiceProvider__Error int64
 
 const (
-	QGeoServiceProvider__NoError                       = QGeoServiceProvider__Error(0)
-	QGeoServiceProvider__NotSupportedError             = QGeoServiceProvider__Error(1)
-	QGeoServiceProvider__UnknownParameterError         = QGeoServiceProvider__Error(2)
-	QGeoServiceProvider__MissingRequiredParameterError = QGeoServiceProvider__Error(3)
-	QGeoServiceProvider__ConnectionError               = QGeoServiceProvider__Error(4)
+	QGeoServiceProvider__NoError                       QGeoServiceProvider__Error = QGeoServiceProvider__Error(0)
+	QGeoServiceProvider__NotSupportedError             QGeoServiceProvider__Error = QGeoServiceProvider__Error(1)
+	QGeoServiceProvider__UnknownParameterError         QGeoServiceProvider__Error = QGeoServiceProvider__Error(2)
+	QGeoServiceProvider__MissingRequiredParameterError QGeoServiceProvider__Error = QGeoServiceProvider__Error(3)
+	QGeoServiceProvider__ConnectionError               QGeoServiceProvider__Error = QGeoServiceProvider__Error(4)
 )
 
+//go:generate stringer -type=QGeoServiceProvider__GeocodingFeature
 //QGeoServiceProvider::GeocodingFeature
 type QGeoServiceProvider__GeocodingFeature int64
 
 var (
-	QGeoServiceProvider__NoGeocodingFeatures       = QGeoServiceProvider__GeocodingFeature(0)
-	QGeoServiceProvider__OnlineGeocodingFeature    = QGeoServiceProvider__GeocodingFeature(C.QGeoServiceProvider_OnlineGeocodingFeature_Type())
-	QGeoServiceProvider__OfflineGeocodingFeature   = QGeoServiceProvider__GeocodingFeature(C.QGeoServiceProvider_OfflineGeocodingFeature_Type())
-	QGeoServiceProvider__ReverseGeocodingFeature   = QGeoServiceProvider__GeocodingFeature(C.QGeoServiceProvider_ReverseGeocodingFeature_Type())
-	QGeoServiceProvider__LocalizedGeocodingFeature = QGeoServiceProvider__GeocodingFeature(C.QGeoServiceProvider_LocalizedGeocodingFeature_Type())
-	QGeoServiceProvider__AnyGeocodingFeatures      = QGeoServiceProvider__GeocodingFeature(C.QGeoServiceProvider_AnyGeocodingFeatures_Type())
+	QGeoServiceProvider__NoGeocodingFeatures       QGeoServiceProvider__GeocodingFeature = QGeoServiceProvider__GeocodingFeature(0)
+	QGeoServiceProvider__OnlineGeocodingFeature    QGeoServiceProvider__GeocodingFeature = QGeoServiceProvider__GeocodingFeature(C.QGeoServiceProvider_OnlineGeocodingFeature_Type())
+	QGeoServiceProvider__OfflineGeocodingFeature   QGeoServiceProvider__GeocodingFeature = QGeoServiceProvider__GeocodingFeature(C.QGeoServiceProvider_OfflineGeocodingFeature_Type())
+	QGeoServiceProvider__ReverseGeocodingFeature   QGeoServiceProvider__GeocodingFeature = QGeoServiceProvider__GeocodingFeature(C.QGeoServiceProvider_ReverseGeocodingFeature_Type())
+	QGeoServiceProvider__LocalizedGeocodingFeature QGeoServiceProvider__GeocodingFeature = QGeoServiceProvider__GeocodingFeature(C.QGeoServiceProvider_LocalizedGeocodingFeature_Type())
+	QGeoServiceProvider__AnyGeocodingFeatures      QGeoServiceProvider__GeocodingFeature = QGeoServiceProvider__GeocodingFeature(C.QGeoServiceProvider_AnyGeocodingFeatures_Type())
 )
 
+//go:generate stringer -type=QGeoServiceProvider__MappingFeature
 //QGeoServiceProvider::MappingFeature
 type QGeoServiceProvider__MappingFeature int64
 
 var (
-	QGeoServiceProvider__NoMappingFeatures       = QGeoServiceProvider__MappingFeature(0)
-	QGeoServiceProvider__OnlineMappingFeature    = QGeoServiceProvider__MappingFeature(C.QGeoServiceProvider_OnlineMappingFeature_Type())
-	QGeoServiceProvider__OfflineMappingFeature   = QGeoServiceProvider__MappingFeature(C.QGeoServiceProvider_OfflineMappingFeature_Type())
-	QGeoServiceProvider__LocalizedMappingFeature = QGeoServiceProvider__MappingFeature(C.QGeoServiceProvider_LocalizedMappingFeature_Type())
-	QGeoServiceProvider__AnyMappingFeatures      = QGeoServiceProvider__MappingFeature(C.QGeoServiceProvider_AnyMappingFeatures_Type())
+	QGeoServiceProvider__NoMappingFeatures       QGeoServiceProvider__MappingFeature = QGeoServiceProvider__MappingFeature(0)
+	QGeoServiceProvider__OnlineMappingFeature    QGeoServiceProvider__MappingFeature = QGeoServiceProvider__MappingFeature(C.QGeoServiceProvider_OnlineMappingFeature_Type())
+	QGeoServiceProvider__OfflineMappingFeature   QGeoServiceProvider__MappingFeature = QGeoServiceProvider__MappingFeature(C.QGeoServiceProvider_OfflineMappingFeature_Type())
+	QGeoServiceProvider__LocalizedMappingFeature QGeoServiceProvider__MappingFeature = QGeoServiceProvider__MappingFeature(C.QGeoServiceProvider_LocalizedMappingFeature_Type())
+	QGeoServiceProvider__AnyMappingFeatures      QGeoServiceProvider__MappingFeature = QGeoServiceProvider__MappingFeature(C.QGeoServiceProvider_AnyMappingFeatures_Type())
 )
 
+//go:generate stringer -type=QGeoServiceProvider__PlacesFeature
 //QGeoServiceProvider::PlacesFeature
 type QGeoServiceProvider__PlacesFeature int64
 
 var (
-	QGeoServiceProvider__NoPlacesFeatures            = QGeoServiceProvider__PlacesFeature(0)
-	QGeoServiceProvider__OnlinePlacesFeature         = QGeoServiceProvider__PlacesFeature(C.QGeoServiceProvider_OnlinePlacesFeature_Type())
-	QGeoServiceProvider__OfflinePlacesFeature        = QGeoServiceProvider__PlacesFeature(C.QGeoServiceProvider_OfflinePlacesFeature_Type())
-	QGeoServiceProvider__SavePlaceFeature            = QGeoServiceProvider__PlacesFeature(C.QGeoServiceProvider_SavePlaceFeature_Type())
-	QGeoServiceProvider__RemovePlaceFeature          = QGeoServiceProvider__PlacesFeature(C.QGeoServiceProvider_RemovePlaceFeature_Type())
-	QGeoServiceProvider__SaveCategoryFeature         = QGeoServiceProvider__PlacesFeature(C.QGeoServiceProvider_SaveCategoryFeature_Type())
-	QGeoServiceProvider__RemoveCategoryFeature       = QGeoServiceProvider__PlacesFeature(C.QGeoServiceProvider_RemoveCategoryFeature_Type())
-	QGeoServiceProvider__PlaceRecommendationsFeature = QGeoServiceProvider__PlacesFeature(C.QGeoServiceProvider_PlaceRecommendationsFeature_Type())
-	QGeoServiceProvider__SearchSuggestionsFeature    = QGeoServiceProvider__PlacesFeature(C.QGeoServiceProvider_SearchSuggestionsFeature_Type())
-	QGeoServiceProvider__LocalizedPlacesFeature      = QGeoServiceProvider__PlacesFeature(C.QGeoServiceProvider_LocalizedPlacesFeature_Type())
-	QGeoServiceProvider__NotificationsFeature        = QGeoServiceProvider__PlacesFeature(C.QGeoServiceProvider_NotificationsFeature_Type())
-	QGeoServiceProvider__PlaceMatchingFeature        = QGeoServiceProvider__PlacesFeature(C.QGeoServiceProvider_PlaceMatchingFeature_Type())
-	QGeoServiceProvider__AnyPlacesFeatures           = QGeoServiceProvider__PlacesFeature(C.QGeoServiceProvider_AnyPlacesFeatures_Type())
+	QGeoServiceProvider__NoPlacesFeatures            QGeoServiceProvider__PlacesFeature = QGeoServiceProvider__PlacesFeature(0)
+	QGeoServiceProvider__OnlinePlacesFeature         QGeoServiceProvider__PlacesFeature = QGeoServiceProvider__PlacesFeature(C.QGeoServiceProvider_OnlinePlacesFeature_Type())
+	QGeoServiceProvider__OfflinePlacesFeature        QGeoServiceProvider__PlacesFeature = QGeoServiceProvider__PlacesFeature(C.QGeoServiceProvider_OfflinePlacesFeature_Type())
+	QGeoServiceProvider__SavePlaceFeature            QGeoServiceProvider__PlacesFeature = QGeoServiceProvider__PlacesFeature(C.QGeoServiceProvider_SavePlaceFeature_Type())
+	QGeoServiceProvider__RemovePlaceFeature          QGeoServiceProvider__PlacesFeature = QGeoServiceProvider__PlacesFeature(C.QGeoServiceProvider_RemovePlaceFeature_Type())
+	QGeoServiceProvider__SaveCategoryFeature         QGeoServiceProvider__PlacesFeature = QGeoServiceProvider__PlacesFeature(C.QGeoServiceProvider_SaveCategoryFeature_Type())
+	QGeoServiceProvider__RemoveCategoryFeature       QGeoServiceProvider__PlacesFeature = QGeoServiceProvider__PlacesFeature(C.QGeoServiceProvider_RemoveCategoryFeature_Type())
+	QGeoServiceProvider__PlaceRecommendationsFeature QGeoServiceProvider__PlacesFeature = QGeoServiceProvider__PlacesFeature(C.QGeoServiceProvider_PlaceRecommendationsFeature_Type())
+	QGeoServiceProvider__SearchSuggestionsFeature    QGeoServiceProvider__PlacesFeature = QGeoServiceProvider__PlacesFeature(C.QGeoServiceProvider_SearchSuggestionsFeature_Type())
+	QGeoServiceProvider__LocalizedPlacesFeature      QGeoServiceProvider__PlacesFeature = QGeoServiceProvider__PlacesFeature(C.QGeoServiceProvider_LocalizedPlacesFeature_Type())
+	QGeoServiceProvider__NotificationsFeature        QGeoServiceProvider__PlacesFeature = QGeoServiceProvider__PlacesFeature(C.QGeoServiceProvider_NotificationsFeature_Type())
+	QGeoServiceProvider__PlaceMatchingFeature        QGeoServiceProvider__PlacesFeature = QGeoServiceProvider__PlacesFeature(C.QGeoServiceProvider_PlaceMatchingFeature_Type())
+	QGeoServiceProvider__AnyPlacesFeatures           QGeoServiceProvider__PlacesFeature = QGeoServiceProvider__PlacesFeature(C.QGeoServiceProvider_AnyPlacesFeatures_Type())
 )
 
+//go:generate stringer -type=QGeoServiceProvider__RoutingFeature
 //QGeoServiceProvider::RoutingFeature
 type QGeoServiceProvider__RoutingFeature int64
 
 var (
-	QGeoServiceProvider__NoRoutingFeatures          = QGeoServiceProvider__RoutingFeature(0)
-	QGeoServiceProvider__OnlineRoutingFeature       = QGeoServiceProvider__RoutingFeature(C.QGeoServiceProvider_OnlineRoutingFeature_Type())
-	QGeoServiceProvider__OfflineRoutingFeature      = QGeoServiceProvider__RoutingFeature(C.QGeoServiceProvider_OfflineRoutingFeature_Type())
-	QGeoServiceProvider__LocalizedRoutingFeature    = QGeoServiceProvider__RoutingFeature(C.QGeoServiceProvider_LocalizedRoutingFeature_Type())
-	QGeoServiceProvider__RouteUpdatesFeature        = QGeoServiceProvider__RoutingFeature(C.QGeoServiceProvider_RouteUpdatesFeature_Type())
-	QGeoServiceProvider__AlternativeRoutesFeature   = QGeoServiceProvider__RoutingFeature(C.QGeoServiceProvider_AlternativeRoutesFeature_Type())
-	QGeoServiceProvider__ExcludeAreasRoutingFeature = QGeoServiceProvider__RoutingFeature(C.QGeoServiceProvider_ExcludeAreasRoutingFeature_Type())
-	QGeoServiceProvider__AnyRoutingFeatures         = QGeoServiceProvider__RoutingFeature(C.QGeoServiceProvider_AnyRoutingFeatures_Type())
+	QGeoServiceProvider__NoRoutingFeatures          QGeoServiceProvider__RoutingFeature = QGeoServiceProvider__RoutingFeature(0)
+	QGeoServiceProvider__OnlineRoutingFeature       QGeoServiceProvider__RoutingFeature = QGeoServiceProvider__RoutingFeature(C.QGeoServiceProvider_OnlineRoutingFeature_Type())
+	QGeoServiceProvider__OfflineRoutingFeature      QGeoServiceProvider__RoutingFeature = QGeoServiceProvider__RoutingFeature(C.QGeoServiceProvider_OfflineRoutingFeature_Type())
+	QGeoServiceProvider__LocalizedRoutingFeature    QGeoServiceProvider__RoutingFeature = QGeoServiceProvider__RoutingFeature(C.QGeoServiceProvider_LocalizedRoutingFeature_Type())
+	QGeoServiceProvider__RouteUpdatesFeature        QGeoServiceProvider__RoutingFeature = QGeoServiceProvider__RoutingFeature(C.QGeoServiceProvider_RouteUpdatesFeature_Type())
+	QGeoServiceProvider__AlternativeRoutesFeature   QGeoServiceProvider__RoutingFeature = QGeoServiceProvider__RoutingFeature(C.QGeoServiceProvider_AlternativeRoutesFeature_Type())
+	QGeoServiceProvider__ExcludeAreasRoutingFeature QGeoServiceProvider__RoutingFeature = QGeoServiceProvider__RoutingFeature(C.QGeoServiceProvider_ExcludeAreasRoutingFeature_Type())
+	QGeoServiceProvider__AnyRoutingFeatures         QGeoServiceProvider__RoutingFeature = QGeoServiceProvider__RoutingFeature(C.QGeoServiceProvider_AnyRoutingFeatures_Type())
 )
 
 type QGeoServiceProvider struct {
@@ -3338,14 +3352,15 @@ func (ptr *QGeoServiceProviderFactory) DestroyQGeoServiceProviderFactoryDefault(
 	}
 }
 
+//go:generate stringer -type=QLocation__Visibility
 //QLocation::Visibility
 type QLocation__Visibility int64
 
 const (
-	QLocation__UnspecifiedVisibility = QLocation__Visibility(0x00)
-	QLocation__DeviceVisibility      = QLocation__Visibility(0x01)
-	QLocation__PrivateVisibility     = QLocation__Visibility(0x02)
-	QLocation__PublicVisibility      = QLocation__Visibility(0x04)
+	QLocation__UnspecifiedVisibility QLocation__Visibility = QLocation__Visibility(0x00)
+	QLocation__DeviceVisibility      QLocation__Visibility = QLocation__Visibility(0x01)
+	QLocation__PrivateVisibility     QLocation__Visibility = QLocation__Visibility(0x02)
+	QLocation__PublicVisibility      QLocation__Visibility = QLocation__Visibility(0x04)
 )
 
 type QLocation struct {
@@ -3543,14 +3558,15 @@ func NewQPlaceContactDetailFromPointer(ptr unsafe.Pointer) *QPlaceContactDetail 
 	return n
 }
 
+//go:generate stringer -type=QPlaceContent__Type
 //QPlaceContent::Type
 type QPlaceContent__Type int64
 
 const (
-	QPlaceContent__NoType        = QPlaceContent__Type(0)
-	QPlaceContent__ImageType     = QPlaceContent__Type(1)
-	QPlaceContent__ReviewType    = QPlaceContent__Type(2)
-	QPlaceContent__EditorialType = QPlaceContent__Type(3)
+	QPlaceContent__NoType        QPlaceContent__Type = QPlaceContent__Type(0)
+	QPlaceContent__ImageType     QPlaceContent__Type = QPlaceContent__Type(1)
+	QPlaceContent__ReviewType    QPlaceContent__Type = QPlaceContent__Type(2)
+	QPlaceContent__EditorialType QPlaceContent__Type = QPlaceContent__Type(3)
 )
 
 type QPlaceContent struct {
@@ -3784,14 +3800,15 @@ func NewQPlaceIconFromPointer(ptr unsafe.Pointer) *QPlaceIcon {
 	return n
 }
 
+//go:generate stringer -type=QPlaceIdReply__OperationType
 //QPlaceIdReply::OperationType
 type QPlaceIdReply__OperationType int64
 
 const (
-	QPlaceIdReply__SavePlace      = QPlaceIdReply__OperationType(0)
-	QPlaceIdReply__SaveCategory   = QPlaceIdReply__OperationType(1)
-	QPlaceIdReply__RemovePlace    = QPlaceIdReply__OperationType(2)
-	QPlaceIdReply__RemoveCategory = QPlaceIdReply__OperationType(3)
+	QPlaceIdReply__SavePlace      QPlaceIdReply__OperationType = QPlaceIdReply__OperationType(0)
+	QPlaceIdReply__SaveCategory   QPlaceIdReply__OperationType = QPlaceIdReply__OperationType(1)
+	QPlaceIdReply__RemovePlace    QPlaceIdReply__OperationType = QPlaceIdReply__OperationType(2)
+	QPlaceIdReply__RemoveCategory QPlaceIdReply__OperationType = QPlaceIdReply__OperationType(3)
 )
 
 type QPlaceIdReply struct {
@@ -4104,33 +4121,35 @@ func NewQPlaceRatingsFromPointer(ptr unsafe.Pointer) *QPlaceRatings {
 	return n
 }
 
+//go:generate stringer -type=QPlaceReply__Error
 //QPlaceReply::Error
 type QPlaceReply__Error int64
 
 const (
-	QPlaceReply__NoError                   = QPlaceReply__Error(0)
-	QPlaceReply__PlaceDoesNotExistError    = QPlaceReply__Error(1)
-	QPlaceReply__CategoryDoesNotExistError = QPlaceReply__Error(2)
-	QPlaceReply__CommunicationError        = QPlaceReply__Error(3)
-	QPlaceReply__ParseError                = QPlaceReply__Error(4)
-	QPlaceReply__PermissionsError          = QPlaceReply__Error(5)
-	QPlaceReply__UnsupportedError          = QPlaceReply__Error(6)
-	QPlaceReply__BadArgumentError          = QPlaceReply__Error(7)
-	QPlaceReply__CancelError               = QPlaceReply__Error(8)
-	QPlaceReply__UnknownError              = QPlaceReply__Error(9)
+	QPlaceReply__NoError                   QPlaceReply__Error = QPlaceReply__Error(0)
+	QPlaceReply__PlaceDoesNotExistError    QPlaceReply__Error = QPlaceReply__Error(1)
+	QPlaceReply__CategoryDoesNotExistError QPlaceReply__Error = QPlaceReply__Error(2)
+	QPlaceReply__CommunicationError        QPlaceReply__Error = QPlaceReply__Error(3)
+	QPlaceReply__ParseError                QPlaceReply__Error = QPlaceReply__Error(4)
+	QPlaceReply__PermissionsError          QPlaceReply__Error = QPlaceReply__Error(5)
+	QPlaceReply__UnsupportedError          QPlaceReply__Error = QPlaceReply__Error(6)
+	QPlaceReply__BadArgumentError          QPlaceReply__Error = QPlaceReply__Error(7)
+	QPlaceReply__CancelError               QPlaceReply__Error = QPlaceReply__Error(8)
+	QPlaceReply__UnknownError              QPlaceReply__Error = QPlaceReply__Error(9)
 )
 
+//go:generate stringer -type=QPlaceReply__Type
 //QPlaceReply::Type
 type QPlaceReply__Type int64
 
 const (
-	QPlaceReply__Reply                 = QPlaceReply__Type(0)
-	QPlaceReply__DetailsReply          = QPlaceReply__Type(1)
-	QPlaceReply__SearchReply           = QPlaceReply__Type(2)
-	QPlaceReply__SearchSuggestionReply = QPlaceReply__Type(3)
-	QPlaceReply__ContentReply          = QPlaceReply__Type(4)
-	QPlaceReply__IdReply               = QPlaceReply__Type(5)
-	QPlaceReply__MatchReply            = QPlaceReply__Type(6)
+	QPlaceReply__Reply                 QPlaceReply__Type = QPlaceReply__Type(0)
+	QPlaceReply__DetailsReply          QPlaceReply__Type = QPlaceReply__Type(1)
+	QPlaceReply__SearchReply           QPlaceReply__Type = QPlaceReply__Type(2)
+	QPlaceReply__SearchSuggestionReply QPlaceReply__Type = QPlaceReply__Type(3)
+	QPlaceReply__ContentReply          QPlaceReply__Type = QPlaceReply__Type(4)
+	QPlaceReply__IdReply               QPlaceReply__Type = QPlaceReply__Type(5)
+	QPlaceReply__MatchReply            QPlaceReply__Type = QPlaceReply__Type(6)
 )
 
 type QPlaceReply struct {
@@ -4289,13 +4308,14 @@ func NewQPlaceSearchReplyFromPointer(ptr unsafe.Pointer) *QPlaceSearchReply {
 	return n
 }
 
+//go:generate stringer -type=QPlaceSearchRequest__RelevanceHint
 //QPlaceSearchRequest::RelevanceHint
 type QPlaceSearchRequest__RelevanceHint int64
 
 const (
-	QPlaceSearchRequest__UnspecifiedHint      = QPlaceSearchRequest__RelevanceHint(0)
-	QPlaceSearchRequest__DistanceHint         = QPlaceSearchRequest__RelevanceHint(1)
-	QPlaceSearchRequest__LexicalPlaceNameHint = QPlaceSearchRequest__RelevanceHint(2)
+	QPlaceSearchRequest__UnspecifiedHint      QPlaceSearchRequest__RelevanceHint = QPlaceSearchRequest__RelevanceHint(0)
+	QPlaceSearchRequest__DistanceHint         QPlaceSearchRequest__RelevanceHint = QPlaceSearchRequest__RelevanceHint(1)
+	QPlaceSearchRequest__LexicalPlaceNameHint QPlaceSearchRequest__RelevanceHint = QPlaceSearchRequest__RelevanceHint(2)
 )
 
 type QPlaceSearchRequest struct {
@@ -4336,13 +4356,14 @@ func NewQPlaceSearchRequestFromPointer(ptr unsafe.Pointer) *QPlaceSearchRequest 
 	return n
 }
 
+//go:generate stringer -type=QPlaceSearchResult__SearchResultType
 //QPlaceSearchResult::SearchResultType
 type QPlaceSearchResult__SearchResultType int64
 
 const (
-	QPlaceSearchResult__UnknownSearchResult  = QPlaceSearchResult__SearchResultType(0)
-	QPlaceSearchResult__PlaceResult          = QPlaceSearchResult__SearchResultType(1)
-	QPlaceSearchResult__ProposedSearchResult = QPlaceSearchResult__SearchResultType(2)
+	QPlaceSearchResult__UnknownSearchResult  QPlaceSearchResult__SearchResultType = QPlaceSearchResult__SearchResultType(0)
+	QPlaceSearchResult__PlaceResult          QPlaceSearchResult__SearchResultType = QPlaceSearchResult__SearchResultType(1)
+	QPlaceSearchResult__ProposedSearchResult QPlaceSearchResult__SearchResultType = QPlaceSearchResult__SearchResultType(2)
 )
 
 type QPlaceSearchResult struct {

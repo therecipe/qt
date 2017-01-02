@@ -22,48 +22,51 @@ func cGoUnpackString(s C.struct_QtScriptTools_PackedString) string {
 	return C.GoStringN(s.data, C.int(s.len))
 }
 
+//go:generate stringer -type=QScriptEngineDebugger__DebuggerAction
 //QScriptEngineDebugger::DebuggerAction
 type QScriptEngineDebugger__DebuggerAction int64
 
 const (
-	QScriptEngineDebugger__InterruptAction            = QScriptEngineDebugger__DebuggerAction(0)
-	QScriptEngineDebugger__ContinueAction             = QScriptEngineDebugger__DebuggerAction(1)
-	QScriptEngineDebugger__StepIntoAction             = QScriptEngineDebugger__DebuggerAction(2)
-	QScriptEngineDebugger__StepOverAction             = QScriptEngineDebugger__DebuggerAction(3)
-	QScriptEngineDebugger__StepOutAction              = QScriptEngineDebugger__DebuggerAction(4)
-	QScriptEngineDebugger__RunToCursorAction          = QScriptEngineDebugger__DebuggerAction(5)
-	QScriptEngineDebugger__RunToNewScriptAction       = QScriptEngineDebugger__DebuggerAction(6)
-	QScriptEngineDebugger__ToggleBreakpointAction     = QScriptEngineDebugger__DebuggerAction(7)
-	QScriptEngineDebugger__ClearDebugOutputAction     = QScriptEngineDebugger__DebuggerAction(8)
-	QScriptEngineDebugger__ClearErrorLogAction        = QScriptEngineDebugger__DebuggerAction(9)
-	QScriptEngineDebugger__ClearConsoleAction         = QScriptEngineDebugger__DebuggerAction(10)
-	QScriptEngineDebugger__FindInScriptAction         = QScriptEngineDebugger__DebuggerAction(11)
-	QScriptEngineDebugger__FindNextInScriptAction     = QScriptEngineDebugger__DebuggerAction(12)
-	QScriptEngineDebugger__FindPreviousInScriptAction = QScriptEngineDebugger__DebuggerAction(13)
-	QScriptEngineDebugger__GoToLineAction             = QScriptEngineDebugger__DebuggerAction(14)
+	QScriptEngineDebugger__InterruptAction            QScriptEngineDebugger__DebuggerAction = QScriptEngineDebugger__DebuggerAction(0)
+	QScriptEngineDebugger__ContinueAction             QScriptEngineDebugger__DebuggerAction = QScriptEngineDebugger__DebuggerAction(1)
+	QScriptEngineDebugger__StepIntoAction             QScriptEngineDebugger__DebuggerAction = QScriptEngineDebugger__DebuggerAction(2)
+	QScriptEngineDebugger__StepOverAction             QScriptEngineDebugger__DebuggerAction = QScriptEngineDebugger__DebuggerAction(3)
+	QScriptEngineDebugger__StepOutAction              QScriptEngineDebugger__DebuggerAction = QScriptEngineDebugger__DebuggerAction(4)
+	QScriptEngineDebugger__RunToCursorAction          QScriptEngineDebugger__DebuggerAction = QScriptEngineDebugger__DebuggerAction(5)
+	QScriptEngineDebugger__RunToNewScriptAction       QScriptEngineDebugger__DebuggerAction = QScriptEngineDebugger__DebuggerAction(6)
+	QScriptEngineDebugger__ToggleBreakpointAction     QScriptEngineDebugger__DebuggerAction = QScriptEngineDebugger__DebuggerAction(7)
+	QScriptEngineDebugger__ClearDebugOutputAction     QScriptEngineDebugger__DebuggerAction = QScriptEngineDebugger__DebuggerAction(8)
+	QScriptEngineDebugger__ClearErrorLogAction        QScriptEngineDebugger__DebuggerAction = QScriptEngineDebugger__DebuggerAction(9)
+	QScriptEngineDebugger__ClearConsoleAction         QScriptEngineDebugger__DebuggerAction = QScriptEngineDebugger__DebuggerAction(10)
+	QScriptEngineDebugger__FindInScriptAction         QScriptEngineDebugger__DebuggerAction = QScriptEngineDebugger__DebuggerAction(11)
+	QScriptEngineDebugger__FindNextInScriptAction     QScriptEngineDebugger__DebuggerAction = QScriptEngineDebugger__DebuggerAction(12)
+	QScriptEngineDebugger__FindPreviousInScriptAction QScriptEngineDebugger__DebuggerAction = QScriptEngineDebugger__DebuggerAction(13)
+	QScriptEngineDebugger__GoToLineAction             QScriptEngineDebugger__DebuggerAction = QScriptEngineDebugger__DebuggerAction(14)
 )
 
+//go:generate stringer -type=QScriptEngineDebugger__DebuggerState
 //QScriptEngineDebugger::DebuggerState
 type QScriptEngineDebugger__DebuggerState int64
 
 const (
-	QScriptEngineDebugger__RunningState   = QScriptEngineDebugger__DebuggerState(0)
-	QScriptEngineDebugger__SuspendedState = QScriptEngineDebugger__DebuggerState(1)
+	QScriptEngineDebugger__RunningState   QScriptEngineDebugger__DebuggerState = QScriptEngineDebugger__DebuggerState(0)
+	QScriptEngineDebugger__SuspendedState QScriptEngineDebugger__DebuggerState = QScriptEngineDebugger__DebuggerState(1)
 )
 
+//go:generate stringer -type=QScriptEngineDebugger__DebuggerWidget
 //QScriptEngineDebugger::DebuggerWidget
 type QScriptEngineDebugger__DebuggerWidget int64
 
 const (
-	QScriptEngineDebugger__ConsoleWidget     = QScriptEngineDebugger__DebuggerWidget(0)
-	QScriptEngineDebugger__StackWidget       = QScriptEngineDebugger__DebuggerWidget(1)
-	QScriptEngineDebugger__ScriptsWidget     = QScriptEngineDebugger__DebuggerWidget(2)
-	QScriptEngineDebugger__LocalsWidget      = QScriptEngineDebugger__DebuggerWidget(3)
-	QScriptEngineDebugger__CodeWidget        = QScriptEngineDebugger__DebuggerWidget(4)
-	QScriptEngineDebugger__CodeFinderWidget  = QScriptEngineDebugger__DebuggerWidget(5)
-	QScriptEngineDebugger__BreakpointsWidget = QScriptEngineDebugger__DebuggerWidget(6)
-	QScriptEngineDebugger__DebugOutputWidget = QScriptEngineDebugger__DebuggerWidget(7)
-	QScriptEngineDebugger__ErrorLogWidget    = QScriptEngineDebugger__DebuggerWidget(8)
+	QScriptEngineDebugger__ConsoleWidget     QScriptEngineDebugger__DebuggerWidget = QScriptEngineDebugger__DebuggerWidget(0)
+	QScriptEngineDebugger__StackWidget       QScriptEngineDebugger__DebuggerWidget = QScriptEngineDebugger__DebuggerWidget(1)
+	QScriptEngineDebugger__ScriptsWidget     QScriptEngineDebugger__DebuggerWidget = QScriptEngineDebugger__DebuggerWidget(2)
+	QScriptEngineDebugger__LocalsWidget      QScriptEngineDebugger__DebuggerWidget = QScriptEngineDebugger__DebuggerWidget(3)
+	QScriptEngineDebugger__CodeWidget        QScriptEngineDebugger__DebuggerWidget = QScriptEngineDebugger__DebuggerWidget(4)
+	QScriptEngineDebugger__CodeFinderWidget  QScriptEngineDebugger__DebuggerWidget = QScriptEngineDebugger__DebuggerWidget(5)
+	QScriptEngineDebugger__BreakpointsWidget QScriptEngineDebugger__DebuggerWidget = QScriptEngineDebugger__DebuggerWidget(6)
+	QScriptEngineDebugger__DebugOutputWidget QScriptEngineDebugger__DebuggerWidget = QScriptEngineDebugger__DebuggerWidget(7)
+	QScriptEngineDebugger__ErrorLogWidget    QScriptEngineDebugger__DebuggerWidget = QScriptEngineDebugger__DebuggerWidget(8)
 )
 
 type QScriptEngineDebugger struct {

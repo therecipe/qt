@@ -22,45 +22,46 @@ func cGoUnpackString(s C.struct_QtScript_PackedString) string {
 	return C.GoStringN(s.data, C.int(s.len))
 }
 
+//go:generate stringer -type=QSOperator__Op
 //QSOperator::Op
 type QSOperator__Op int64
 
 const (
-	QSOperator__Add                = QSOperator__Op(0)
-	QSOperator__And                = QSOperator__Op(1)
-	QSOperator__InplaceAnd         = QSOperator__Op(2)
-	QSOperator__Assign             = QSOperator__Op(3)
-	QSOperator__BitAnd             = QSOperator__Op(4)
-	QSOperator__BitOr              = QSOperator__Op(5)
-	QSOperator__BitXor             = QSOperator__Op(6)
-	QSOperator__InplaceSub         = QSOperator__Op(7)
-	QSOperator__Div                = QSOperator__Op(8)
-	QSOperator__InplaceDiv         = QSOperator__Op(9)
-	QSOperator__Equal              = QSOperator__Op(10)
-	QSOperator__Ge                 = QSOperator__Op(11)
-	QSOperator__Gt                 = QSOperator__Op(12)
-	QSOperator__In                 = QSOperator__Op(13)
-	QSOperator__InplaceAdd         = QSOperator__Op(14)
-	QSOperator__InstanceOf         = QSOperator__Op(15)
-	QSOperator__Le                 = QSOperator__Op(16)
-	QSOperator__LShift             = QSOperator__Op(17)
-	QSOperator__InplaceLeftShift   = QSOperator__Op(18)
-	QSOperator__Lt                 = QSOperator__Op(19)
-	QSOperator__Mod                = QSOperator__Op(20)
-	QSOperator__InplaceMod         = QSOperator__Op(21)
-	QSOperator__Mul                = QSOperator__Op(22)
-	QSOperator__InplaceMul         = QSOperator__Op(23)
-	QSOperator__NotEqual           = QSOperator__Op(24)
-	QSOperator__Or                 = QSOperator__Op(25)
-	QSOperator__InplaceOr          = QSOperator__Op(26)
-	QSOperator__RShift             = QSOperator__Op(27)
-	QSOperator__InplaceRightShift  = QSOperator__Op(28)
-	QSOperator__StrictEqual        = QSOperator__Op(29)
-	QSOperator__StrictNotEqual     = QSOperator__Op(30)
-	QSOperator__Sub                = QSOperator__Op(31)
-	QSOperator__URShift            = QSOperator__Op(32)
-	QSOperator__InplaceURightShift = QSOperator__Op(33)
-	QSOperator__InplaceXor         = QSOperator__Op(34)
+	QSOperator__Add                QSOperator__Op = QSOperator__Op(0)
+	QSOperator__And                QSOperator__Op = QSOperator__Op(1)
+	QSOperator__InplaceAnd         QSOperator__Op = QSOperator__Op(2)
+	QSOperator__Assign             QSOperator__Op = QSOperator__Op(3)
+	QSOperator__BitAnd             QSOperator__Op = QSOperator__Op(4)
+	QSOperator__BitOr              QSOperator__Op = QSOperator__Op(5)
+	QSOperator__BitXor             QSOperator__Op = QSOperator__Op(6)
+	QSOperator__InplaceSub         QSOperator__Op = QSOperator__Op(7)
+	QSOperator__Div                QSOperator__Op = QSOperator__Op(8)
+	QSOperator__InplaceDiv         QSOperator__Op = QSOperator__Op(9)
+	QSOperator__Equal              QSOperator__Op = QSOperator__Op(10)
+	QSOperator__Ge                 QSOperator__Op = QSOperator__Op(11)
+	QSOperator__Gt                 QSOperator__Op = QSOperator__Op(12)
+	QSOperator__In                 QSOperator__Op = QSOperator__Op(13)
+	QSOperator__InplaceAdd         QSOperator__Op = QSOperator__Op(14)
+	QSOperator__InstanceOf         QSOperator__Op = QSOperator__Op(15)
+	QSOperator__Le                 QSOperator__Op = QSOperator__Op(16)
+	QSOperator__LShift             QSOperator__Op = QSOperator__Op(17)
+	QSOperator__InplaceLeftShift   QSOperator__Op = QSOperator__Op(18)
+	QSOperator__Lt                 QSOperator__Op = QSOperator__Op(19)
+	QSOperator__Mod                QSOperator__Op = QSOperator__Op(20)
+	QSOperator__InplaceMod         QSOperator__Op = QSOperator__Op(21)
+	QSOperator__Mul                QSOperator__Op = QSOperator__Op(22)
+	QSOperator__InplaceMul         QSOperator__Op = QSOperator__Op(23)
+	QSOperator__NotEqual           QSOperator__Op = QSOperator__Op(24)
+	QSOperator__Or                 QSOperator__Op = QSOperator__Op(25)
+	QSOperator__InplaceOr          QSOperator__Op = QSOperator__Op(26)
+	QSOperator__RShift             QSOperator__Op = QSOperator__Op(27)
+	QSOperator__InplaceRightShift  QSOperator__Op = QSOperator__Op(28)
+	QSOperator__StrictEqual        QSOperator__Op = QSOperator__Op(29)
+	QSOperator__StrictNotEqual     QSOperator__Op = QSOperator__Op(30)
+	QSOperator__Sub                QSOperator__Op = QSOperator__Op(31)
+	QSOperator__URShift            QSOperator__Op = QSOperator__Op(32)
+	QSOperator__InplaceURightShift QSOperator__Op = QSOperator__Op(33)
+	QSOperator__InplaceXor         QSOperator__Op = QSOperator__Op(34)
 )
 
 type QSOperator struct {
@@ -149,20 +150,22 @@ func (ptr *QScript) DestroyQScript() {
 	ptr.SetPointer(nil)
 }
 
+//go:generate stringer -type=QScriptClass__Extension
 //QScriptClass::Extension
 type QScriptClass__Extension int64
 
 const (
-	QScriptClass__Callable    = QScriptClass__Extension(0)
-	QScriptClass__HasInstance = QScriptClass__Extension(1)
+	QScriptClass__Callable    QScriptClass__Extension = QScriptClass__Extension(0)
+	QScriptClass__HasInstance QScriptClass__Extension = QScriptClass__Extension(1)
 )
 
+//go:generate stringer -type=QScriptClass__QueryFlag
 //QScriptClass::QueryFlag
 type QScriptClass__QueryFlag int64
 
 const (
-	QScriptClass__HandlesReadAccess  = QScriptClass__QueryFlag(0x01)
-	QScriptClass__HandlesWriteAccess = QScriptClass__QueryFlag(0x02)
+	QScriptClass__HandlesReadAccess  QScriptClass__QueryFlag = QScriptClass__QueryFlag(0x01)
+	QScriptClass__HandlesWriteAccess QScriptClass__QueryFlag = QScriptClass__QueryFlag(0x02)
 )
 
 type QScriptClass struct {
@@ -647,24 +650,26 @@ func NewQScriptClassPropertyIteratorFromPointer(ptr unsafe.Pointer) *QScriptClas
 	return n
 }
 
+//go:generate stringer -type=QScriptContext__Error
 //QScriptContext::Error
 type QScriptContext__Error int64
 
 const (
-	QScriptContext__UnknownError   = QScriptContext__Error(0)
-	QScriptContext__ReferenceError = QScriptContext__Error(1)
-	QScriptContext__SyntaxError    = QScriptContext__Error(2)
-	QScriptContext__TypeError      = QScriptContext__Error(3)
-	QScriptContext__RangeError     = QScriptContext__Error(4)
-	QScriptContext__URIError       = QScriptContext__Error(5)
+	QScriptContext__UnknownError   QScriptContext__Error = QScriptContext__Error(0)
+	QScriptContext__ReferenceError QScriptContext__Error = QScriptContext__Error(1)
+	QScriptContext__SyntaxError    QScriptContext__Error = QScriptContext__Error(2)
+	QScriptContext__TypeError      QScriptContext__Error = QScriptContext__Error(3)
+	QScriptContext__RangeError     QScriptContext__Error = QScriptContext__Error(4)
+	QScriptContext__URIError       QScriptContext__Error = QScriptContext__Error(5)
 )
 
+//go:generate stringer -type=QScriptContext__ExecutionState
 //QScriptContext::ExecutionState
 type QScriptContext__ExecutionState int64
 
 const (
-	QScriptContext__NormalState    = QScriptContext__ExecutionState(0)
-	QScriptContext__ExceptionState = QScriptContext__ExecutionState(1)
+	QScriptContext__NormalState    QScriptContext__ExecutionState = QScriptContext__ExecutionState(0)
+	QScriptContext__ExceptionState QScriptContext__ExecutionState = QScriptContext__ExecutionState(1)
 )
 
 type QScriptContext struct {
@@ -852,14 +857,15 @@ func (ptr *QScriptContext) DestroyQScriptContext() {
 	}
 }
 
+//go:generate stringer -type=QScriptContextInfo__FunctionType
 //QScriptContextInfo::FunctionType
 type QScriptContextInfo__FunctionType int64
 
 const (
-	QScriptContextInfo__ScriptFunction     = QScriptContextInfo__FunctionType(0)
-	QScriptContextInfo__QtFunction         = QScriptContextInfo__FunctionType(1)
-	QScriptContextInfo__QtPropertyFunction = QScriptContextInfo__FunctionType(2)
-	QScriptContextInfo__NativeFunction     = QScriptContextInfo__FunctionType(3)
+	QScriptContextInfo__ScriptFunction     QScriptContextInfo__FunctionType = QScriptContextInfo__FunctionType(0)
+	QScriptContextInfo__QtFunction         QScriptContextInfo__FunctionType = QScriptContextInfo__FunctionType(1)
+	QScriptContextInfo__QtPropertyFunction QScriptContextInfo__FunctionType = QScriptContextInfo__FunctionType(2)
+	QScriptContextInfo__NativeFunction     QScriptContextInfo__FunctionType = QScriptContextInfo__FunctionType(3)
 )
 
 type QScriptContextInfo struct {
@@ -994,28 +1000,30 @@ func (ptr *QScriptContextInfo) DestroyQScriptContextInfo() {
 	}
 }
 
+//go:generate stringer -type=QScriptEngine__QObjectWrapOption
 //QScriptEngine::QObjectWrapOption
 type QScriptEngine__QObjectWrapOption int64
 
 const (
-	QScriptEngine__ExcludeChildObjects         = QScriptEngine__QObjectWrapOption(0x0001)
-	QScriptEngine__ExcludeSuperClassMethods    = QScriptEngine__QObjectWrapOption(0x0002)
-	QScriptEngine__ExcludeSuperClassProperties = QScriptEngine__QObjectWrapOption(0x0004)
-	QScriptEngine__ExcludeSuperClassContents   = QScriptEngine__QObjectWrapOption(0x0006)
-	QScriptEngine__SkipMethodsInEnumeration    = QScriptEngine__QObjectWrapOption(0x0008)
-	QScriptEngine__ExcludeDeleteLater          = QScriptEngine__QObjectWrapOption(0x0010)
-	QScriptEngine__ExcludeSlots                = QScriptEngine__QObjectWrapOption(0x0020)
-	QScriptEngine__AutoCreateDynamicProperties = QScriptEngine__QObjectWrapOption(0x0100)
-	QScriptEngine__PreferExistingWrapperObject = QScriptEngine__QObjectWrapOption(0x0200)
+	QScriptEngine__ExcludeChildObjects         QScriptEngine__QObjectWrapOption = QScriptEngine__QObjectWrapOption(0x0001)
+	QScriptEngine__ExcludeSuperClassMethods    QScriptEngine__QObjectWrapOption = QScriptEngine__QObjectWrapOption(0x0002)
+	QScriptEngine__ExcludeSuperClassProperties QScriptEngine__QObjectWrapOption = QScriptEngine__QObjectWrapOption(0x0004)
+	QScriptEngine__ExcludeSuperClassContents   QScriptEngine__QObjectWrapOption = QScriptEngine__QObjectWrapOption(0x0006)
+	QScriptEngine__SkipMethodsInEnumeration    QScriptEngine__QObjectWrapOption = QScriptEngine__QObjectWrapOption(0x0008)
+	QScriptEngine__ExcludeDeleteLater          QScriptEngine__QObjectWrapOption = QScriptEngine__QObjectWrapOption(0x0010)
+	QScriptEngine__ExcludeSlots                QScriptEngine__QObjectWrapOption = QScriptEngine__QObjectWrapOption(0x0020)
+	QScriptEngine__AutoCreateDynamicProperties QScriptEngine__QObjectWrapOption = QScriptEngine__QObjectWrapOption(0x0100)
+	QScriptEngine__PreferExistingWrapperObject QScriptEngine__QObjectWrapOption = QScriptEngine__QObjectWrapOption(0x0200)
 )
 
+//go:generate stringer -type=QScriptEngine__ValueOwnership
 //QScriptEngine::ValueOwnership
 type QScriptEngine__ValueOwnership int64
 
 const (
-	QScriptEngine__QtOwnership     = QScriptEngine__ValueOwnership(0)
-	QScriptEngine__ScriptOwnership = QScriptEngine__ValueOwnership(1)
-	QScriptEngine__AutoOwnership   = QScriptEngine__ValueOwnership(2)
+	QScriptEngine__QtOwnership     QScriptEngine__ValueOwnership = QScriptEngine__ValueOwnership(0)
+	QScriptEngine__ScriptOwnership QScriptEngine__ValueOwnership = QScriptEngine__ValueOwnership(1)
+	QScriptEngine__AutoOwnership   QScriptEngine__ValueOwnership = QScriptEngine__ValueOwnership(2)
 )
 
 type QScriptEngine struct {
@@ -1821,11 +1829,12 @@ func (ptr *QScriptEngine) MetaObjectDefault() *core.QMetaObject {
 	return nil
 }
 
+//go:generate stringer -type=QScriptEngineAgent__Extension
 //QScriptEngineAgent::Extension
 type QScriptEngineAgent__Extension int64
 
 const (
-	QScriptEngineAgent__DebuggerInvocationRequest = QScriptEngineAgent__Extension(0)
+	QScriptEngineAgent__DebuggerInvocationRequest QScriptEngineAgent__Extension = QScriptEngineAgent__Extension(0)
 )
 
 type QScriptEngineAgent struct {
@@ -2963,13 +2972,14 @@ func (ptr *QScriptString) DestroyQScriptString() {
 	}
 }
 
+//go:generate stringer -type=QScriptSyntaxCheckResult__State
 //QScriptSyntaxCheckResult::State
 type QScriptSyntaxCheckResult__State int64
 
 const (
-	QScriptSyntaxCheckResult__Error        = QScriptSyntaxCheckResult__State(0)
-	QScriptSyntaxCheckResult__Intermediate = QScriptSyntaxCheckResult__State(1)
-	QScriptSyntaxCheckResult__Valid        = QScriptSyntaxCheckResult__State(2)
+	QScriptSyntaxCheckResult__Error        QScriptSyntaxCheckResult__State = QScriptSyntaxCheckResult__State(0)
+	QScriptSyntaxCheckResult__Intermediate QScriptSyntaxCheckResult__State = QScriptSyntaxCheckResult__State(1)
+	QScriptSyntaxCheckResult__Valid        QScriptSyntaxCheckResult__State = QScriptSyntaxCheckResult__State(2)
 )
 
 type QScriptSyntaxCheckResult struct {
@@ -3050,36 +3060,39 @@ func (ptr *QScriptSyntaxCheckResult) DestroyQScriptSyntaxCheckResult() {
 	}
 }
 
+//go:generate stringer -type=QScriptValue__PropertyFlag
 //QScriptValue::PropertyFlag
 type QScriptValue__PropertyFlag int64
 
 const (
-	QScriptValue__ReadOnly          = QScriptValue__PropertyFlag(0x00000001)
-	QScriptValue__Undeletable       = QScriptValue__PropertyFlag(0x00000002)
-	QScriptValue__SkipInEnumeration = QScriptValue__PropertyFlag(0x00000004)
-	QScriptValue__PropertyGetter    = QScriptValue__PropertyFlag(0x00000008)
-	QScriptValue__PropertySetter    = QScriptValue__PropertyFlag(0x00000010)
-	QScriptValue__QObjectMember     = QScriptValue__PropertyFlag(0x00000020)
-	QScriptValue__KeepExistingFlags = QScriptValue__PropertyFlag(0x00000800)
-	QScriptValue__UserRange         = QScriptValue__PropertyFlag(0xff000000)
+	QScriptValue__ReadOnly          QScriptValue__PropertyFlag = QScriptValue__PropertyFlag(0x00000001)
+	QScriptValue__Undeletable       QScriptValue__PropertyFlag = QScriptValue__PropertyFlag(0x00000002)
+	QScriptValue__SkipInEnumeration QScriptValue__PropertyFlag = QScriptValue__PropertyFlag(0x00000004)
+	QScriptValue__PropertyGetter    QScriptValue__PropertyFlag = QScriptValue__PropertyFlag(0x00000008)
+	QScriptValue__PropertySetter    QScriptValue__PropertyFlag = QScriptValue__PropertyFlag(0x00000010)
+	QScriptValue__QObjectMember     QScriptValue__PropertyFlag = QScriptValue__PropertyFlag(0x00000020)
+	QScriptValue__KeepExistingFlags QScriptValue__PropertyFlag = QScriptValue__PropertyFlag(0x00000800)
+	QScriptValue__UserRange         QScriptValue__PropertyFlag = QScriptValue__PropertyFlag(0xff000000)
 )
 
+//go:generate stringer -type=QScriptValue__ResolveFlag
 //QScriptValue::ResolveFlag
 type QScriptValue__ResolveFlag int64
 
 const (
-	QScriptValue__ResolveLocal     = QScriptValue__ResolveFlag(0x00)
-	QScriptValue__ResolvePrototype = QScriptValue__ResolveFlag(0x01)
-	QScriptValue__ResolveScope     = QScriptValue__ResolveFlag(0x02)
-	QScriptValue__ResolveFull      = QScriptValue__ResolveFlag(QScriptValue__ResolvePrototype | QScriptValue__ResolveScope)
+	QScriptValue__ResolveLocal     QScriptValue__ResolveFlag = QScriptValue__ResolveFlag(0x00)
+	QScriptValue__ResolvePrototype QScriptValue__ResolveFlag = QScriptValue__ResolveFlag(0x01)
+	QScriptValue__ResolveScope     QScriptValue__ResolveFlag = QScriptValue__ResolveFlag(0x02)
+	QScriptValue__ResolveFull      QScriptValue__ResolveFlag = QScriptValue__ResolveFlag(QScriptValue__ResolvePrototype | QScriptValue__ResolveScope)
 )
 
+//go:generate stringer -type=QScriptValue__SpecialValue
 //QScriptValue::SpecialValue
 type QScriptValue__SpecialValue int64
 
 const (
-	QScriptValue__NullValue      = QScriptValue__SpecialValue(0)
-	QScriptValue__UndefinedValue = QScriptValue__SpecialValue(1)
+	QScriptValue__NullValue      QScriptValue__SpecialValue = QScriptValue__SpecialValue(0)
+	QScriptValue__UndefinedValue QScriptValue__SpecialValue = QScriptValue__SpecialValue(1)
 )
 
 type QScriptValue struct {
