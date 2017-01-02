@@ -78,7 +78,9 @@ func RunCmd(cmd *exec.Cmd, name string) string {
 	Log.WithFields(fields).Debug("Execute")
 	var out, err = cmd.CombinedOutput()
 	if err != nil {
-		Log.WithError(err).WithFields(fields).WithField("output", string(out)).Panic("failed to run command")
+		Log.WithError(err).WithFields(fields).Error("failed to run command")
+		println(string(out))
+		os.Exit(1)
 	}
 	return string(out)
 }
@@ -88,7 +90,8 @@ func RunCmdOptional(cmd *exec.Cmd, name string) string {
 	Log.WithFields(fields).Debug("Execute")
 	var out, err = cmd.CombinedOutput()
 	if err != nil {
-		Log.WithError(err).WithFields(fields).WithField("output", string(out)).Error("failed to run command")
+		Log.WithError(err).WithFields(fields).Error("failed to run command")
+		println(string(out))
 	}
 	return string(out)
 }
