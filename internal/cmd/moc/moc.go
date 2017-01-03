@@ -303,11 +303,11 @@ func (m *appMoc) generate() error {
 
 	structsSize := len(m.module.Namespace.Classes)
 	if structsSize == 0 {
-		utils.Log.WithFields(fields).Warning("failed to find moc structs")
+		utils.Log.WithFields(fields).Debug("failed to find moc structs")
 		return nil
 	}
 	fields["structs"] = structsSize
-	utils.Log.WithFields(fields).Debug("Found moc structs")
+	utils.Log.WithFields(fields).Debug("found moc structs")
 
 	if err = cacheModules(); err != nil {
 		return err

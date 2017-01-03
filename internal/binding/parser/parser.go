@@ -45,12 +45,12 @@ func LoadModule(m string) error {
 	switch {
 	case utils.UseHomeBrew(), utils.UseMsys2():
 		{
-			err = xml.Unmarshal([]byte(utils.Load(filepath.Join(utils.MustGoPath(), "src", "github.com", "therecipe", "qt", "internal", "binding", "files", "docs", utils.QT_VERSION(), fmt.Sprintf("qt%v.index", strings.ToLower(m))))), &module)
+			err = xml.Unmarshal([]byte(utils.LoadOptional(filepath.Join(utils.MustGoPath(), "src", "github.com", "therecipe", "qt", "internal", "binding", "files", "docs", utils.QT_VERSION(), fmt.Sprintf("qt%v.index", strings.ToLower(m))))), &module)
 		}
 
 	case utils.UsePkgConfig():
 		{
-			err = xml.Unmarshal([]byte(utils.Load(filepath.Join(utils.QT_DOC_DIR(), fmt.Sprintf("qt%v", strings.ToLower(m)), fmt.Sprintf("qt%v.index", strings.ToLower(m))))), &module)
+			err = xml.Unmarshal([]byte(utils.LoadOptional(filepath.Join(utils.QT_DOC_DIR(), fmt.Sprintf("qt%v", strings.ToLower(m)), fmt.Sprintf("qt%v.index", strings.ToLower(m))))), &module)
 		}
 
 	default:
@@ -59,7 +59,11 @@ func LoadModule(m string) error {
 		}
 	}
 	if err != nil {
-		utils.Log.WithFields(logFields).WithError(err).Warn(logName)
+		if m != "datavisualization" && m != "charts" {
+			utils.Log.WithFields(logFields).WithError(err).Warn(logName)
+		} else {
+			utils.Log.WithFields(logFields).WithError(err).Debug(logName)
+		}
 		return err
 	}
 

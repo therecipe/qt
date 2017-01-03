@@ -33,7 +33,7 @@ func (c *Class) register(m string) {
 	State.ClassMap[c.Name] = c
 
 	for _, sc := range c.Classes {
-		if sc.Name != "PaintContext" { //TODO: remove
+		if sc.Name != "PaintContext" { //TODO: remove and support all sub classes
 			continue
 		}
 

@@ -61,6 +61,15 @@ func Load(name string) string {
 	return string(out)
 }
 
+//TODO: export error
+func LoadOptional(name string) string {
+	var out, err = ioutil.ReadFile(name)
+	if err != nil {
+		Log.WithError(err).Debugf("failed to load (optional) %v", name)
+	}
+	return string(out)
+}
+
 func Abs(appPath string) (string, error) {
 	var path, err = filepath.Abs(appPath)
 	if err != nil {

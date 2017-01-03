@@ -191,7 +191,7 @@ func (c *Class) fixBases() {
 	case "QUiLoader", "QEGLNativeContext", "QWGLNativeContext", "QGLXNativeContext", "QEglFSFunctions", "QWindowsWindowFunctions", "QCocoaNativeContext", "QXcbWindowFunctions", "QCocoaWindowFunctions":
 		{
 			if utils.UsePkgConfig() {
-				c.Bases = getBasesFromHeader(utils.Load(filepath.Join(prefixPath, c.Module, strings.ToLower(c.Name)+".h")), c.Name, c.Module)
+				c.Bases = getBasesFromHeader(utils.LoadOptional(filepath.Join(prefixPath, c.Module, strings.ToLower(c.Name)+".h")), c.Name, c.Module)
 			} else {
 				c.Bases = getBasesFromHeader(utils.Load(filepath.Join(prefixPath, "include", c.Module, strings.ToLower(c.Name)+".h")), c.Name, c.Module)
 			}
@@ -201,7 +201,7 @@ func (c *Class) fixBases() {
 	case "QPlatformSystemTrayIcon", "QPlatformGraphicsBuffer":
 		{
 			if utils.UsePkgConfig() {
-				c.Bases = getBasesFromHeader(utils.Load(filepath.Join(prefixPath, c.Module, utils.QT_VERSION(), c.Module, "qpa", strings.ToLower(c.Name)+".h")), c.Name, c.Module)
+				c.Bases = getBasesFromHeader(utils.LoadOptional(filepath.Join(prefixPath, c.Module, utils.QT_VERSION(), c.Module, "qpa", strings.ToLower(c.Name)+".h")), c.Name, c.Module)
 			} else {
 				c.Bases = getBasesFromHeader(utils.Load(filepath.Join(prefixPath, infixPath, c.Module+suffixPath+utils.QT_VERSION(), "QtGui", "qpa", strings.ToLower(c.Name)+".h")), c.Name, c.Module)
 			}
@@ -214,7 +214,7 @@ func (c *Class) fixBases() {
 				m = fmt.Sprintf("Qt%v", m)
 				if utils.UsePkgConfig() {
 					if utils.ExistsFile(filepath.Join(prefixPath, m, strings.ToLower(c.Name)+".h")) {
-						c.Bases = getBasesFromHeader(utils.Load(filepath.Join(prefixPath, m, strings.ToLower(c.Name)+".h")), c.Name, c.Module)
+						c.Bases = getBasesFromHeader(utils.LoadOptional(filepath.Join(prefixPath, m, strings.ToLower(c.Name)+".h")), c.Name, c.Module)
 						return
 					}
 				} else {
@@ -241,10 +241,10 @@ func (c *Class) fixBases() {
 		if utils.UsePkgConfig() {
 			if utils.ExistsFile(filepath.Join(prefixPath, m, c.Name)) {
 
-				var f = utils.Load(filepath.Join(prefixPath, m, c.Name))
+				var f = utils.LoadOptional(filepath.Join(prefixPath, m, c.Name))
 				if f != "" {
 					found = true
-					c.Bases = getBasesFromHeader(utils.Load(filepath.Join(prefixPath, m, strings.Split(f, "\"")[1])), c.Name, m)
+					c.Bases = getBasesFromHeader(utils.LoadOptional(filepath.Join(prefixPath, m, strings.Split(f, "\"")[1])), c.Name, m)
 				}
 				break
 			}

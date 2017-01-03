@@ -233,13 +233,17 @@ func IsPrivateSignal(f *parser.Function) bool {
 		switch runtime.GOOS {
 		case "darwin":
 			{
-				fData = utils.Load(filepath.Join(utils.QT_DARWIN_DIR(), "lib", fmt.Sprintf("%v.framework", strings.Title(parser.State.ClassMap[f.ClassName()].DocModule)), "Versions", "5", "Headers", fPath))
+				if utils.UseHomeBrew() {
+					fData = utils.LoadOptional(filepath.Join(utils.QT_DARWIN_DIR(), "lib", fmt.Sprintf("%v.framework", strings.Title(parser.State.ClassMap[f.ClassName()].DocModule)), "Versions", "5", "Headers", fPath))
+				} else {
+					fData = utils.Load(filepath.Join(utils.QT_DARWIN_DIR(), "lib", fmt.Sprintf("%v.framework", strings.Title(parser.State.ClassMap[f.ClassName()].DocModule)), "Versions", "5", "Headers", fPath))
+				}
 			}
 
 		case "windows":
 			{
 				if utils.UseMsys2() {
-					fData = utils.Load(filepath.Join(utils.QT_MSYS2_DIR(), "include", strings.Title(parser.State.ClassMap[f.ClassName()].DocModule), fPath))
+					fData = utils.LoadOptional(filepath.Join(utils.QT_MSYS2_DIR(), "include", strings.Title(parser.State.ClassMap[f.ClassName()].DocModule), fPath))
 				} else {
 					fData = utils.Load(filepath.Join(utils.QT_DIR(), "5.7", "mingw53_32", "include", strings.Title(parser.State.ClassMap[f.ClassName()].DocModule), fPath))
 				}
@@ -248,7 +252,7 @@ func IsPrivateSignal(f *parser.Function) bool {
 		case "linux":
 			{
 				if utils.UsePkgConfig() {
-					fData = utils.Load(filepath.Join(strings.TrimSpace(utils.RunCmd(exec.Command("pkg-config", "--variable=includedir", "Qt5Core"), "convert.IsPrivateSignal_includeDir")), strings.Title(parser.State.ClassMap[f.ClassName()].DocModule), fPath))
+					fData = utils.LoadOptional(filepath.Join(strings.TrimSpace(utils.RunCmd(exec.Command("pkg-config", "--variable=includedir", "Qt5Core"), "convert.IsPrivateSignal_includeDir")), strings.Title(parser.State.ClassMap[f.ClassName()].DocModule), fPath))
 				} else {
 					fData = utils.Load(filepath.Join(utils.QT_DIR(), "5.7", "gcc_64", "include", strings.Title(parser.State.ClassMap[f.ClassName()].DocModule), fPath))
 				}
@@ -257,7 +261,6 @@ func IsPrivateSignal(f *parser.Function) bool {
 
 		if fData != "" {
 			if strings.Contains(fData, fmt.Sprintf("%v(", f.Name)) {
-
 				return strings.Contains(strings.Split(strings.Split(fData, fmt.Sprintf("%v(", f.Name))[1], ")")[0], "QPrivateSignal")
 			}
 
