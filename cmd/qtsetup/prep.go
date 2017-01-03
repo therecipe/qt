@@ -14,7 +14,7 @@ func prep() {
 	utils.Log.Info("running setup/prep")
 
 	if utils.UseMsys2() {
-		utils.RemoveAll(filepath.Join(utils.QT_MSYS2_DIR(), "usr", "bin", "go.exe"))
+		utils.RemoveAll(filepath.Join(utils.QT_MSYS2_DIR(), "..", "usr", "bin", "go.exe"))
 		utils.RunCmdOptional(exec.Command("cmd", "/C", "mklink", "/H", filepath.Join(utils.QT_MSYS2_DIR(), "..", "usr", "bin", "go.exe"), filepath.Join(runtime.GOROOT(), "bin", "go.exe")), fmt.Sprintf("create go symlink in your QT_MSYS2_DIR/usr/bin (%v)", filepath.Join(utils.QT_MSYS2_DIR(), "..", "usr", "bin")))
 	}
 

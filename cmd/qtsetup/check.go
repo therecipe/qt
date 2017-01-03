@@ -60,6 +60,7 @@ func check(buildTarget string) {
 
 			case "windows":
 				{
+					utils.Log.Infoln("MSYSTEM:", os.Getenv("MSYSTEM"))
 					utils.Log.Infoln("QT_MSYS2:", os.Getenv("QT_MSYS2"))
 					utils.Log.Infoln("QT_MSYS2_DIR:", os.Getenv("QT_MSYS2_DIR"))
 					utils.Log.Infoln("IsMsys2QtDir:", utils.IsMsys2QtDir())
