@@ -1,56 +1,38 @@
 package main
 
 import (
-	"os"
+	"flag"
 
+	"github.com/therecipe/qt/internal/cmd"
+	"github.com/therecipe/qt/internal/cmd/setup"
 	"github.com/therecipe/qt/internal/utils"
 )
 
 func main() {
+	cmd.ParseFlags()
+
 	buildMode, buildTarget := "full", "desktop"
 
-	switch len(os.Args) {
-	case 2:
-		switch os.Args[1] {
+	switch flag.NArg() {
+	case 1:
+		switch flag.Arg(0) {
 		case "desktop", "android", "ios", "ios-simulator",
 			"sailfish", "sailfish-emulator", "rpi1", "rpi2", "rpi3", "windows", "darwin", "linux",
 			"linux-docker", "windows-docker", "android-docker":
-			buildTarget = os.Args[1]
+			buildTarget = flag.Arg(0)
 			utils.CheckBuildTarget(buildTarget)
 
 		case "prep", "check", "generate", "install", "test", "full":
-			buildMode = os.Args[1]
+			buildMode = flag.Arg(0)
 
 		default:
 			utils.Log.Fatalln("usage:", "qtsetup", "[ prep | check | generate | install | test | full ]", "[ desktop | android | ios | ios-simulator | sailfish | sailfish-emulator | rpi1 | rpi2 | rpi3 | windows | linux-docker | windows-docker | android-docker ]")
 		}
 
-	case 3:
-		buildMode = os.Args[1]
-		buildTarget = os.Args[2]
+	case 2:
+		buildMode = flag.Arg(0)
+		buildTarget = flag.Arg(1)
 	}
 
-	switch buildMode {
-	case "full":
-		prep()
-		check(buildTarget)
-		generate(buildTarget)
-		install(buildTarget)
-		test(buildTarget)
-
-	case "prep":
-		prep()
-
-	case "check":
-		check(buildTarget)
-
-	case "generate":
-		generate(buildTarget)
-
-	case "install":
-		install(buildTarget)
-
-	case "test":
-		test(buildTarget)
-	}
+	setup.Setup(buildMode, buildTarget)
 }

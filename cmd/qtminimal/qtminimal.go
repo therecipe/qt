@@ -1,30 +1,34 @@
 package main
 
 import (
+	"flag"
 	"io/ioutil"
 	"os"
 	"path/filepath"
 
+	"github.com/therecipe/qt/internal/cmd"
 	"github.com/therecipe/qt/internal/cmd/minimal"
 	"github.com/therecipe/qt/internal/utils"
 )
 
 func main() {
+	cmd.ParseFlags()
+
 	var (
 		buildTarget = "desktop"
 		appPath, _  = os.Getwd()
 	)
 
-	switch len(os.Args) {
-	case 2:
+	switch flag.NArg() {
+	case 1:
 		{
-			buildTarget = os.Args[1]
+			buildTarget = flag.Arg(0)
 		}
 
-	case 3:
+	case 2:
 		{
-			buildTarget = os.Args[1]
-			appPath = os.Args[2]
+			buildTarget = flag.Arg(0)
+			appPath = flag.Arg(1)
 		}
 	}
 	if !filepath.IsAbs(appPath) {

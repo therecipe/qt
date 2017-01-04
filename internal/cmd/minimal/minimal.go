@@ -94,11 +94,7 @@ func Minimal(appPath, buildTarget string) {
 	}
 
 	if len(parser.State.ClassMap) == 0 {
-		for _, module := range importedPkgs {
-			if err := parser.LoadModule(module); err != nil {
-				return //err
-			}
-		}
+		parser.LoadModules()
 	}
 
 	var file = strings.Join(cached, "")

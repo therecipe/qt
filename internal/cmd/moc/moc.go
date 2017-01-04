@@ -20,11 +20,6 @@ import (
 	"github.com/therecipe/qt/internal/utils"
 )
 
-func init() {
-	// TODO: dangerous
-	parser.State.Moc = true
-}
-
 type appMoc struct {
 	appPath string
 	module  *parser.Module
@@ -49,7 +44,9 @@ func cacheModules() (err error) {
 		return
 	}
 
-	parser.LoadModules()
+	if len(parser.State.ClassMap) == 0 {
+		parser.LoadModules()
+	}
 
 	return
 }
@@ -502,6 +499,8 @@ func getCppTypeFromGoType(f *parser.Function, t string) string {
 
 // MocTree process an application and all it's sub-packages and create moc files
 func MocTree(appPath string) (err error) {
+	parser.State.Moc = true
+
 	err = filepath.Walk(
 		appPath,
 		utils.WalkOnlyDirectory(

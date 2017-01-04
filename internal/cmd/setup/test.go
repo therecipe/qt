@@ -1,11 +1,10 @@
-package main
+package setup
 
 import (
-	"fmt"
-	"os/exec"
 	"path/filepath"
 	"strings"
 
+	"github.com/therecipe/qt/internal/cmd/deploy"
 	"github.com/therecipe/qt/internal/utils"
 )
 
@@ -55,28 +54,19 @@ func test(buildTarget string) {
 
 	//TODO: cleanup
 	for _, app := range exampleApps {
-		example := filepath.Join(app.path...)
+		var example = filepath.Join(app.path...)
 
 		if skipExample(example) {
 			utils.Log.Infoln("skipping example", example)
 			continue
 		}
-
 		utils.Log.Infoln("testing", example)
 
-		cmdName := filepath.Join(utils.MustGoBin(), "qtdeploy")
-		cmdArgs := []string{
-			"test",
-			strings.TrimSuffix(buildTarget, "-docker"),
-			filepath.Join(utils.GoQtPkgPath("internal", "examples"), example),
-		}
-
-		if strings.HasSuffix(buildTarget, "-docker") {
-			cmdArgs = append(cmdArgs, "docker")
-		}
-
-		cmd := exec.Command(cmdName, cmdArgs...)
-
-		utils.RunCmd(cmd, fmt.Sprintf("test %v", example))
+		deploy.Deploy(&deploy.State{
+			BuildMode:   "test",
+			BuildTarget: strings.TrimSuffix(buildTarget, "-docker"),
+			AppPath:     filepath.Join(utils.GoQtPkgPath("internal", "examples"), example),
+			BuildDocker: strings.HasSuffix(buildTarget, "-docker"),
+		})
 	}
 }

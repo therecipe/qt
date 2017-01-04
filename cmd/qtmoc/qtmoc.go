@@ -8,31 +8,28 @@ import (
 
 	"github.com/Sirupsen/logrus"
 
+	"github.com/therecipe/qt/internal/cmd"
 	"github.com/therecipe/qt/internal/cmd/moc"
 	"github.com/therecipe/qt/internal/utils"
 )
 
 func main() {
+	cmd.ParseFlags()
+
 	var (
 		appPath string
-		debug   = flag.Bool("debug", false, "Print debug logs")
 		fields  = logrus.Fields{"func": "main"}
 	)
 	defaultAppPath, err := os.Getwd()
 	if err != nil {
 		utils.Log.WithFields(fields).Fatal("Can't get current working directory")
 	}
-	flag.Parse()
-
-	if *debug {
-		utils.Log.Level = logrus.DebugLevel
-	}
 
 	switch flag.NArg() {
 	case 0:
 		appPath = defaultAppPath
 	case 1:
-		appPath = flag.Args()[0]
+		appPath = flag.Arg(0)
 	default:
 		fmt.Println("Only specify one path")
 		fmt.Printf("%s path/to/app\n", os.Args[0])
