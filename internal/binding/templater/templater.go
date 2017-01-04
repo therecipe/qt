@@ -45,7 +45,9 @@ func GenModule(m string) {
 		utils.MkdirAll(utils.GoQtPkgPath(strings.ToLower(m)))
 	}
 
-	CgoTemplate(m, "")
+	if !UseStub() {
+		CgoTemplate(m, "")
+	}
 
 	if parser.State.Minimal {
 		if suffix != "" {

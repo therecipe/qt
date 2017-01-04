@@ -44,14 +44,21 @@ func (f *Function) fixGeneral() {
 		f.Meta = CONSTRUCTOR
 	}
 
-	var class, exist = f.Class()
-	if !exist || !class.isSubClass() {
+	var class, exists = f.Class()
+	if !exists || !class.isSubClass() {
 		return
 	}
 
 	if f.Meta == CONSTRUCTOR {
 		f.Status = "active"
 		f.Access = "public"
+	}
+}
+
+func (f *Function) fixGeneral_AfterClasses() {
+	if f.Name != "open" && f.Name != "setGeometry" && f.Name != "setScxmlEvent" && //TODO: solve
+		!f.Static && f.Virtual == "non" && f.Meta == PLAIN && f.IsDerivedFromVirtual() {
+		f.Virtual = IMPURE
 	}
 }
 

@@ -87,7 +87,9 @@ public:
 	void focusOutEvent(QFocusEvent * event) { callbackQAbstractPrintDialog_FocusOutEvent(this, event); };
 	void hideEvent(QHideEvent * event) { callbackQAbstractPrintDialog_HideEvent(this, event); };
 	void leaveEvent(QEvent * event) { callbackQAbstractPrintDialog_LeaveEvent(this, event); };
+	int metric(QPaintDevice::PaintDeviceMetric m) const { return callbackQAbstractPrintDialog_Metric(const_cast<MyQAbstractPrintDialog*>(this), m); };
 	void moveEvent(QMoveEvent * event) { callbackQAbstractPrintDialog_MoveEvent(this, event); };
+	QPaintEngine * paintEngine() const { return static_cast<QPaintEngine*>(callbackQAbstractPrintDialog_PaintEngine(const_cast<MyQAbstractPrintDialog*>(this))); };
 	void paintEvent(QPaintEvent * event) { callbackQAbstractPrintDialog_PaintEvent(this, event); };
 	void setEnabled(bool vbo) { callbackQAbstractPrintDialog_SetEnabled(this, vbo); };
 	void setStyleSheet(const QString & styleSheet) { QByteArray t728ae7 = styleSheet.toUtf8(); QtPrintSupport_PackedString styleSheetPacked = { const_cast<char*>(t728ae7.prepend("WHITESPACE").constData()+10), t728ae7.size()-10 };callbackQAbstractPrintDialog_SetStyleSheet(this, styleSheetPacked); };
@@ -95,6 +97,7 @@ public:
 	void setWindowTitle(const QString & vqs) { QByteArray tda39a3 = vqs.toUtf8(); QtPrintSupport_PackedString vqsPacked = { const_cast<char*>(tda39a3.prepend("WHITESPACE").constData()+10), tda39a3.size()-10 };callbackQAbstractPrintDialog_SetWindowTitle(this, vqsPacked); };
 	void changeEvent(QEvent * event) { callbackQAbstractPrintDialog_ChangeEvent(this, event); };
 	bool close() { return callbackQAbstractPrintDialog_Close(this) != 0; };
+	bool event(QEvent * event) { return callbackQAbstractPrintDialog_Event(this, event) != 0; };
 	bool focusNextPrevChild(bool next) { return callbackQAbstractPrintDialog_FocusNextPrevChild(this, next) != 0; };
 	bool hasHeightForWidth() const { return callbackQAbstractPrintDialog_HasHeightForWidth(const_cast<MyQAbstractPrintDialog*>(this)) != 0; };
 	int heightForWidth(int w) const { return callbackQAbstractPrintDialog_HeightForWidth(const_cast<MyQAbstractPrintDialog*>(this), w); };
@@ -128,11 +131,8 @@ public:
 	void customEvent(QEvent * event) { callbackQAbstractPrintDialog_CustomEvent(this, event); };
 	void deleteLater() { callbackQAbstractPrintDialog_DeleteLater(this); };
 	void disconnectNotify(const QMetaMethod & sign) { callbackQAbstractPrintDialog_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
-	bool event(QEvent * e) { return callbackQAbstractPrintDialog_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQAbstractPrintDialog_EventFilter(this, watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQAbstractPrintDialog_MetaObject(const_cast<MyQAbstractPrintDialog*>(this))); };
-	int metric(QPaintDevice::PaintDeviceMetric metric) const { return callbackQAbstractPrintDialog_Metric(const_cast<MyQAbstractPrintDialog*>(this), metric); };
-	QPaintEngine * paintEngine() const { return static_cast<QPaintEngine*>(callbackQAbstractPrintDialog_PaintEngine(const_cast<MyQAbstractPrintDialog*>(this))); };
 };
 
 void* QAbstractPrintDialog_NewQAbstractPrintDialog(void* printer, void* parent)
@@ -410,6 +410,16 @@ void QAbstractPrintDialog_LeaveEventDefault(void* ptr, void* event)
 	static_cast<QAbstractPrintDialog*>(ptr)->QAbstractPrintDialog::leaveEvent(static_cast<QEvent*>(event));
 }
 
+int QAbstractPrintDialog_Metric(void* ptr, long long m)
+{
+	return static_cast<QAbstractPrintDialog*>(ptr)->metric(static_cast<QPaintDevice::PaintDeviceMetric>(m));
+}
+
+int QAbstractPrintDialog_MetricDefault(void* ptr, long long m)
+{
+	return static_cast<QAbstractPrintDialog*>(ptr)->QAbstractPrintDialog::metric(static_cast<QPaintDevice::PaintDeviceMetric>(m));
+}
+
 void QAbstractPrintDialog_MoveEvent(void* ptr, void* event)
 {
 	static_cast<QAbstractPrintDialog*>(ptr)->moveEvent(static_cast<QMoveEvent*>(event));
@@ -418,6 +428,16 @@ void QAbstractPrintDialog_MoveEvent(void* ptr, void* event)
 void QAbstractPrintDialog_MoveEventDefault(void* ptr, void* event)
 {
 	static_cast<QAbstractPrintDialog*>(ptr)->QAbstractPrintDialog::moveEvent(static_cast<QMoveEvent*>(event));
+}
+
+void* QAbstractPrintDialog_PaintEngine(void* ptr)
+{
+	return static_cast<QAbstractPrintDialog*>(ptr)->paintEngine();
+}
+
+void* QAbstractPrintDialog_PaintEngineDefault(void* ptr)
+{
+	return static_cast<QAbstractPrintDialog*>(ptr)->QAbstractPrintDialog::paintEngine();
 }
 
 void QAbstractPrintDialog_PaintEvent(void* ptr, void* event)
@@ -490,6 +510,16 @@ char QAbstractPrintDialog_Close(void* ptr)
 char QAbstractPrintDialog_CloseDefault(void* ptr)
 {
 	return static_cast<QAbstractPrintDialog*>(ptr)->QAbstractPrintDialog::close();
+}
+
+char QAbstractPrintDialog_Event(void* ptr, void* event)
+{
+	return static_cast<QAbstractPrintDialog*>(ptr)->event(static_cast<QEvent*>(event));
+}
+
+char QAbstractPrintDialog_EventDefault(void* ptr, void* event)
+{
+	return static_cast<QAbstractPrintDialog*>(ptr)->QAbstractPrintDialog::event(static_cast<QEvent*>(event));
 }
 
 char QAbstractPrintDialog_FocusNextPrevChild(void* ptr, char next)
@@ -822,16 +852,6 @@ void QAbstractPrintDialog_DisconnectNotifyDefault(void* ptr, void* sign)
 	static_cast<QAbstractPrintDialog*>(ptr)->QAbstractPrintDialog::disconnectNotify(*static_cast<QMetaMethod*>(sign));
 }
 
-char QAbstractPrintDialog_Event(void* ptr, void* e)
-{
-	return static_cast<QAbstractPrintDialog*>(ptr)->event(static_cast<QEvent*>(e));
-}
-
-char QAbstractPrintDialog_EventDefault(void* ptr, void* e)
-{
-	return static_cast<QAbstractPrintDialog*>(ptr)->QAbstractPrintDialog::event(static_cast<QEvent*>(e));
-}
-
 char QAbstractPrintDialog_EventFilter(void* ptr, void* watched, void* event)
 {
 	return static_cast<QAbstractPrintDialog*>(ptr)->eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
@@ -852,25 +872,80 @@ void* QAbstractPrintDialog_MetaObjectDefault(void* ptr)
 	return const_cast<QMetaObject*>(static_cast<QAbstractPrintDialog*>(ptr)->QAbstractPrintDialog::metaObject());
 }
 
-int QAbstractPrintDialog_Metric(void* ptr, long long metric)
+class MyQPageSetupDialog: public QPageSetupDialog
 {
-	return static_cast<QAbstractPrintDialog*>(ptr)->metric(static_cast<QPaintDevice::PaintDeviceMetric>(metric));
-}
-
-int QAbstractPrintDialog_MetricDefault(void* ptr, long long metric)
-{
-	return static_cast<QAbstractPrintDialog*>(ptr)->QAbstractPrintDialog::metric(static_cast<QPaintDevice::PaintDeviceMetric>(metric));
-}
-
-void* QAbstractPrintDialog_PaintEngine(void* ptr)
-{
-	return static_cast<QAbstractPrintDialog*>(ptr)->paintEngine();
-}
-
-void* QAbstractPrintDialog_PaintEngineDefault(void* ptr)
-{
-	return static_cast<QAbstractPrintDialog*>(ptr)->QAbstractPrintDialog::paintEngine();
-}
+public:
+	MyQPageSetupDialog(QPrinter *printer, QWidget *parent) : QPageSetupDialog(printer, parent) {};
+	MyQPageSetupDialog(QWidget *parent) : QPageSetupDialog(parent) {};
+	void done(int result) { callbackQPageSetupDialog_Done(this, result); };
+	int exec() { return callbackQPageSetupDialog_Exec(this); };
+	void setVisible(bool visible) { callbackQPageSetupDialog_SetVisible(this, visible); };
+	void accept() { callbackQPageSetupDialog_Accept(this); };
+	void closeEvent(QCloseEvent * e) { callbackQPageSetupDialog_CloseEvent(this, e); };
+	void contextMenuEvent(QContextMenuEvent * e) { callbackQPageSetupDialog_ContextMenuEvent(this, e); };
+	void keyPressEvent(QKeyEvent * e) { callbackQPageSetupDialog_KeyPressEvent(this, e); };
+	QSize minimumSizeHint() const { return *static_cast<QSize*>(callbackQPageSetupDialog_MinimumSizeHint(const_cast<MyQPageSetupDialog*>(this))); };
+	void reject() { callbackQPageSetupDialog_Reject(this); };
+	void resizeEvent(QResizeEvent * vqr) { callbackQPageSetupDialog_ResizeEvent(this, vqr); };
+	void showEvent(QShowEvent * event) { callbackQPageSetupDialog_ShowEvent(this, event); };
+	QSize sizeHint() const { return *static_cast<QSize*>(callbackQPageSetupDialog_SizeHint(const_cast<MyQPageSetupDialog*>(this))); };
+	void actionEvent(QActionEvent * event) { callbackQPageSetupDialog_ActionEvent(this, event); };
+	void dragEnterEvent(QDragEnterEvent * event) { callbackQPageSetupDialog_DragEnterEvent(this, event); };
+	void dragLeaveEvent(QDragLeaveEvent * event) { callbackQPageSetupDialog_DragLeaveEvent(this, event); };
+	void dragMoveEvent(QDragMoveEvent * event) { callbackQPageSetupDialog_DragMoveEvent(this, event); };
+	void dropEvent(QDropEvent * event) { callbackQPageSetupDialog_DropEvent(this, event); };
+	void enterEvent(QEvent * event) { callbackQPageSetupDialog_EnterEvent(this, event); };
+	void focusInEvent(QFocusEvent * event) { callbackQPageSetupDialog_FocusInEvent(this, event); };
+	void focusOutEvent(QFocusEvent * event) { callbackQPageSetupDialog_FocusOutEvent(this, event); };
+	void hideEvent(QHideEvent * event) { callbackQPageSetupDialog_HideEvent(this, event); };
+	void leaveEvent(QEvent * event) { callbackQPageSetupDialog_LeaveEvent(this, event); };
+	int metric(QPaintDevice::PaintDeviceMetric m) const { return callbackQPageSetupDialog_Metric(const_cast<MyQPageSetupDialog*>(this), m); };
+	void moveEvent(QMoveEvent * event) { callbackQPageSetupDialog_MoveEvent(this, event); };
+	QPaintEngine * paintEngine() const { return static_cast<QPaintEngine*>(callbackQPageSetupDialog_PaintEngine(const_cast<MyQPageSetupDialog*>(this))); };
+	void paintEvent(QPaintEvent * event) { callbackQPageSetupDialog_PaintEvent(this, event); };
+	void setEnabled(bool vbo) { callbackQPageSetupDialog_SetEnabled(this, vbo); };
+	void setStyleSheet(const QString & styleSheet) { QByteArray t728ae7 = styleSheet.toUtf8(); QtPrintSupport_PackedString styleSheetPacked = { const_cast<char*>(t728ae7.prepend("WHITESPACE").constData()+10), t728ae7.size()-10 };callbackQPageSetupDialog_SetStyleSheet(this, styleSheetPacked); };
+	void setWindowModified(bool vbo) { callbackQPageSetupDialog_SetWindowModified(this, vbo); };
+	void setWindowTitle(const QString & vqs) { QByteArray tda39a3 = vqs.toUtf8(); QtPrintSupport_PackedString vqsPacked = { const_cast<char*>(tda39a3.prepend("WHITESPACE").constData()+10), tda39a3.size()-10 };callbackQPageSetupDialog_SetWindowTitle(this, vqsPacked); };
+	void changeEvent(QEvent * event) { callbackQPageSetupDialog_ChangeEvent(this, event); };
+	bool close() { return callbackQPageSetupDialog_Close(this) != 0; };
+	bool event(QEvent * event) { return callbackQPageSetupDialog_Event(this, event) != 0; };
+	bool focusNextPrevChild(bool next) { return callbackQPageSetupDialog_FocusNextPrevChild(this, next) != 0; };
+	bool hasHeightForWidth() const { return callbackQPageSetupDialog_HasHeightForWidth(const_cast<MyQPageSetupDialog*>(this)) != 0; };
+	int heightForWidth(int w) const { return callbackQPageSetupDialog_HeightForWidth(const_cast<MyQPageSetupDialog*>(this), w); };
+	void hide() { callbackQPageSetupDialog_Hide(this); };
+	void inputMethodEvent(QInputMethodEvent * event) { callbackQPageSetupDialog_InputMethodEvent(this, event); };
+	QVariant inputMethodQuery(Qt::InputMethodQuery query) const { return *static_cast<QVariant*>(callbackQPageSetupDialog_InputMethodQuery(const_cast<MyQPageSetupDialog*>(this), query)); };
+	void keyReleaseEvent(QKeyEvent * event) { callbackQPageSetupDialog_KeyReleaseEvent(this, event); };
+	void lower() { callbackQPageSetupDialog_Lower(this); };
+	void mouseDoubleClickEvent(QMouseEvent * event) { callbackQPageSetupDialog_MouseDoubleClickEvent(this, event); };
+	void mouseMoveEvent(QMouseEvent * event) { callbackQPageSetupDialog_MouseMoveEvent(this, event); };
+	void mousePressEvent(QMouseEvent * event) { callbackQPageSetupDialog_MousePressEvent(this, event); };
+	void mouseReleaseEvent(QMouseEvent * event) { callbackQPageSetupDialog_MouseReleaseEvent(this, event); };
+	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQPageSetupDialog_NativeEvent(this, const_cast<QByteArray*>(&eventType), message, *result) != 0; };
+	void raise() { callbackQPageSetupDialog_Raise(this); };
+	void repaint() { callbackQPageSetupDialog_Repaint(this); };
+	void setDisabled(bool disable) { callbackQPageSetupDialog_SetDisabled(this, disable); };
+	void setFocus() { callbackQPageSetupDialog_SetFocus2(this); };
+	void setHidden(bool hidden) { callbackQPageSetupDialog_SetHidden(this, hidden); };
+	void show() { callbackQPageSetupDialog_Show(this); };
+	void showFullScreen() { callbackQPageSetupDialog_ShowFullScreen(this); };
+	void showMaximized() { callbackQPageSetupDialog_ShowMaximized(this); };
+	void showMinimized() { callbackQPageSetupDialog_ShowMinimized(this); };
+	void showNormal() { callbackQPageSetupDialog_ShowNormal(this); };
+	void tabletEvent(QTabletEvent * event) { callbackQPageSetupDialog_TabletEvent(this, event); };
+	void update() { callbackQPageSetupDialog_Update(this); };
+	void updateMicroFocus() { callbackQPageSetupDialog_UpdateMicroFocus(this); };
+	void wheelEvent(QWheelEvent * event) { callbackQPageSetupDialog_WheelEvent(this, event); };
+	void timerEvent(QTimerEvent * event) { callbackQPageSetupDialog_TimerEvent(this, event); };
+	void childEvent(QChildEvent * event) { callbackQPageSetupDialog_ChildEvent(this, event); };
+	void connectNotify(const QMetaMethod & sign) { callbackQPageSetupDialog_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
+	void customEvent(QEvent * event) { callbackQPageSetupDialog_CustomEvent(this, event); };
+	void deleteLater() { callbackQPageSetupDialog_DeleteLater(this); };
+	void disconnectNotify(const QMetaMethod & sign) { callbackQPageSetupDialog_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
+	bool eventFilter(QObject * watched, QEvent * event) { return callbackQPageSetupDialog_EventFilter(this, watched, event) != 0; };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQPageSetupDialog_MetaObject(const_cast<MyQPageSetupDialog*>(this))); };
+};
 
 void* QPageSetupDialog_Printer(void* ptr)
 {
@@ -887,6 +962,11 @@ void QPageSetupDialog_Done(void* ptr, int result)
 	static_cast<QPageSetupDialog*>(ptr)->done(result);
 }
 
+void QPageSetupDialog_DoneDefault(void* ptr, int result)
+{
+	static_cast<QPageSetupDialog*>(ptr)->QPageSetupDialog::done(result);
+}
+
 void QPageSetupDialog_Open(void* ptr, void* receiver, char* member)
 {
 	static_cast<QPageSetupDialog*>(ptr)->open(static_cast<QObject*>(receiver), const_cast<const char*>(member));
@@ -894,12 +974,12 @@ void QPageSetupDialog_Open(void* ptr, void* receiver, char* member)
 
 void* QPageSetupDialog_NewQPageSetupDialog(void* printer, void* parent)
 {
-	return new QPageSetupDialog(static_cast<QPrinter*>(printer), static_cast<QWidget*>(parent));
+	return new MyQPageSetupDialog(static_cast<QPrinter*>(printer), static_cast<QWidget*>(parent));
 }
 
 void* QPageSetupDialog_NewQPageSetupDialog2(void* parent)
 {
-	return new QPageSetupDialog(static_cast<QWidget*>(parent));
+	return new MyQPageSetupDialog(static_cast<QWidget*>(parent));
 }
 
 int QPageSetupDialog_Exec(void* ptr)
@@ -907,9 +987,19 @@ int QPageSetupDialog_Exec(void* ptr)
 	return static_cast<QPageSetupDialog*>(ptr)->exec();
 }
 
+int QPageSetupDialog_ExecDefault(void* ptr)
+{
+	return static_cast<QPageSetupDialog*>(ptr)->QPageSetupDialog::exec();
+}
+
 void QPageSetupDialog_SetVisible(void* ptr, char visible)
 {
 	static_cast<QPageSetupDialog*>(ptr)->setVisible(visible != 0);
+}
+
+void QPageSetupDialog_SetVisibleDefault(void* ptr, char visible)
+{
+	static_cast<QPageSetupDialog*>(ptr)->QPageSetupDialog::setVisible(visible != 0);
 }
 
 void QPageSetupDialog_Accept(void* ptr)
@@ -1102,6 +1192,16 @@ void QPageSetupDialog_LeaveEventDefault(void* ptr, void* event)
 	static_cast<QPageSetupDialog*>(ptr)->QPageSetupDialog::leaveEvent(static_cast<QEvent*>(event));
 }
 
+int QPageSetupDialog_Metric(void* ptr, long long m)
+{
+	return static_cast<QPageSetupDialog*>(ptr)->metric(static_cast<QPaintDevice::PaintDeviceMetric>(m));
+}
+
+int QPageSetupDialog_MetricDefault(void* ptr, long long m)
+{
+	return static_cast<QPageSetupDialog*>(ptr)->QPageSetupDialog::metric(static_cast<QPaintDevice::PaintDeviceMetric>(m));
+}
+
 void QPageSetupDialog_MoveEvent(void* ptr, void* event)
 {
 	static_cast<QPageSetupDialog*>(ptr)->moveEvent(static_cast<QMoveEvent*>(event));
@@ -1110,6 +1210,16 @@ void QPageSetupDialog_MoveEvent(void* ptr, void* event)
 void QPageSetupDialog_MoveEventDefault(void* ptr, void* event)
 {
 	static_cast<QPageSetupDialog*>(ptr)->QPageSetupDialog::moveEvent(static_cast<QMoveEvent*>(event));
+}
+
+void* QPageSetupDialog_PaintEngine(void* ptr)
+{
+	return static_cast<QPageSetupDialog*>(ptr)->paintEngine();
+}
+
+void* QPageSetupDialog_PaintEngineDefault(void* ptr)
+{
+	return static_cast<QPageSetupDialog*>(ptr)->QPageSetupDialog::paintEngine();
 }
 
 void QPageSetupDialog_PaintEvent(void* ptr, void* event)
@@ -1182,6 +1292,16 @@ char QPageSetupDialog_Close(void* ptr)
 char QPageSetupDialog_CloseDefault(void* ptr)
 {
 	return static_cast<QPageSetupDialog*>(ptr)->QPageSetupDialog::close();
+}
+
+char QPageSetupDialog_Event(void* ptr, void* event)
+{
+	return static_cast<QPageSetupDialog*>(ptr)->event(static_cast<QEvent*>(event));
+}
+
+char QPageSetupDialog_EventDefault(void* ptr, void* event)
+{
+	return static_cast<QPageSetupDialog*>(ptr)->QPageSetupDialog::event(static_cast<QEvent*>(event));
 }
 
 char QPageSetupDialog_FocusNextPrevChild(void* ptr, char next)
@@ -1514,16 +1634,6 @@ void QPageSetupDialog_DisconnectNotifyDefault(void* ptr, void* sign)
 	static_cast<QPageSetupDialog*>(ptr)->QPageSetupDialog::disconnectNotify(*static_cast<QMetaMethod*>(sign));
 }
 
-char QPageSetupDialog_Event(void* ptr, void* e)
-{
-	return static_cast<QPageSetupDialog*>(ptr)->event(static_cast<QEvent*>(e));
-}
-
-char QPageSetupDialog_EventDefault(void* ptr, void* e)
-{
-	return static_cast<QPageSetupDialog*>(ptr)->QPageSetupDialog::event(static_cast<QEvent*>(e));
-}
-
 char QPageSetupDialog_EventFilter(void* ptr, void* watched, void* event)
 {
 	return static_cast<QPageSetupDialog*>(ptr)->eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
@@ -1542,26 +1652,6 @@ void* QPageSetupDialog_MetaObject(void* ptr)
 void* QPageSetupDialog_MetaObjectDefault(void* ptr)
 {
 	return const_cast<QMetaObject*>(static_cast<QPageSetupDialog*>(ptr)->QPageSetupDialog::metaObject());
-}
-
-int QPageSetupDialog_Metric(void* ptr, long long metric)
-{
-	return static_cast<QPageSetupDialog*>(ptr)->metric(static_cast<QPaintDevice::PaintDeviceMetric>(metric));
-}
-
-int QPageSetupDialog_MetricDefault(void* ptr, long long metric)
-{
-	return static_cast<QPageSetupDialog*>(ptr)->QPageSetupDialog::metric(static_cast<QPaintDevice::PaintDeviceMetric>(metric));
-}
-
-void* QPageSetupDialog_PaintEngine(void* ptr)
-{
-	return static_cast<QPageSetupDialog*>(ptr)->paintEngine();
-}
-
-void* QPageSetupDialog_PaintEngineDefault(void* ptr)
-{
-	return static_cast<QPageSetupDialog*>(ptr)->QPageSetupDialog::paintEngine();
 }
 
 class MyQPrintDialog: public QPrintDialog
@@ -1590,7 +1680,9 @@ public:
 	void focusOutEvent(QFocusEvent * event) { callbackQPrintDialog_FocusOutEvent(this, event); };
 	void hideEvent(QHideEvent * event) { callbackQPrintDialog_HideEvent(this, event); };
 	void leaveEvent(QEvent * event) { callbackQPrintDialog_LeaveEvent(this, event); };
+	int metric(QPaintDevice::PaintDeviceMetric m) const { return callbackQPrintDialog_Metric(const_cast<MyQPrintDialog*>(this), m); };
 	void moveEvent(QMoveEvent * event) { callbackQPrintDialog_MoveEvent(this, event); };
+	QPaintEngine * paintEngine() const { return static_cast<QPaintEngine*>(callbackQPrintDialog_PaintEngine(const_cast<MyQPrintDialog*>(this))); };
 	void paintEvent(QPaintEvent * event) { callbackQPrintDialog_PaintEvent(this, event); };
 	void setEnabled(bool vbo) { callbackQPrintDialog_SetEnabled(this, vbo); };
 	void setStyleSheet(const QString & styleSheet) { QByteArray t728ae7 = styleSheet.toUtf8(); QtPrintSupport_PackedString styleSheetPacked = { const_cast<char*>(t728ae7.prepend("WHITESPACE").constData()+10), t728ae7.size()-10 };callbackQPrintDialog_SetStyleSheet(this, styleSheetPacked); };
@@ -1598,6 +1690,7 @@ public:
 	void setWindowTitle(const QString & vqs) { QByteArray tda39a3 = vqs.toUtf8(); QtPrintSupport_PackedString vqsPacked = { const_cast<char*>(tda39a3.prepend("WHITESPACE").constData()+10), tda39a3.size()-10 };callbackQPrintDialog_SetWindowTitle(this, vqsPacked); };
 	void changeEvent(QEvent * event) { callbackQPrintDialog_ChangeEvent(this, event); };
 	bool close() { return callbackQPrintDialog_Close(this) != 0; };
+	bool event(QEvent * event) { return callbackQPrintDialog_Event(this, event) != 0; };
 	bool focusNextPrevChild(bool next) { return callbackQPrintDialog_FocusNextPrevChild(this, next) != 0; };
 	bool hasHeightForWidth() const { return callbackQPrintDialog_HasHeightForWidth(const_cast<MyQPrintDialog*>(this)) != 0; };
 	int heightForWidth(int w) const { return callbackQPrintDialog_HeightForWidth(const_cast<MyQPrintDialog*>(this), w); };
@@ -1631,11 +1724,8 @@ public:
 	void customEvent(QEvent * event) { callbackQPrintDialog_CustomEvent(this, event); };
 	void deleteLater() { callbackQPrintDialog_DeleteLater(this); };
 	void disconnectNotify(const QMetaMethod & sign) { callbackQPrintDialog_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
-	bool event(QEvent * e) { return callbackQPrintDialog_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQPrintDialog_EventFilter(this, watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQPrintDialog_MetaObject(const_cast<MyQPrintDialog*>(this))); };
-	int metric(QPaintDevice::PaintDeviceMetric metric) const { return callbackQPrintDialog_Metric(const_cast<MyQPrintDialog*>(this), metric); };
-	QPaintEngine * paintEngine() const { return static_cast<QPaintEngine*>(callbackQPrintDialog_PaintEngine(const_cast<MyQPrintDialog*>(this))); };
 };
 
 long long QPrintDialog_Options(void* ptr)
@@ -1908,6 +1998,16 @@ void QPrintDialog_LeaveEventDefault(void* ptr, void* event)
 	static_cast<QPrintDialog*>(ptr)->QPrintDialog::leaveEvent(static_cast<QEvent*>(event));
 }
 
+int QPrintDialog_Metric(void* ptr, long long m)
+{
+	return static_cast<QPrintDialog*>(ptr)->metric(static_cast<QPaintDevice::PaintDeviceMetric>(m));
+}
+
+int QPrintDialog_MetricDefault(void* ptr, long long m)
+{
+	return static_cast<QPrintDialog*>(ptr)->QPrintDialog::metric(static_cast<QPaintDevice::PaintDeviceMetric>(m));
+}
+
 void QPrintDialog_MoveEvent(void* ptr, void* event)
 {
 	static_cast<QPrintDialog*>(ptr)->moveEvent(static_cast<QMoveEvent*>(event));
@@ -1916,6 +2016,16 @@ void QPrintDialog_MoveEvent(void* ptr, void* event)
 void QPrintDialog_MoveEventDefault(void* ptr, void* event)
 {
 	static_cast<QPrintDialog*>(ptr)->QPrintDialog::moveEvent(static_cast<QMoveEvent*>(event));
+}
+
+void* QPrintDialog_PaintEngine(void* ptr)
+{
+	return static_cast<QPrintDialog*>(ptr)->paintEngine();
+}
+
+void* QPrintDialog_PaintEngineDefault(void* ptr)
+{
+	return static_cast<QPrintDialog*>(ptr)->QPrintDialog::paintEngine();
 }
 
 void QPrintDialog_PaintEvent(void* ptr, void* event)
@@ -1988,6 +2098,16 @@ char QPrintDialog_Close(void* ptr)
 char QPrintDialog_CloseDefault(void* ptr)
 {
 	return static_cast<QPrintDialog*>(ptr)->QPrintDialog::close();
+}
+
+char QPrintDialog_Event(void* ptr, void* event)
+{
+	return static_cast<QPrintDialog*>(ptr)->event(static_cast<QEvent*>(event));
+}
+
+char QPrintDialog_EventDefault(void* ptr, void* event)
+{
+	return static_cast<QPrintDialog*>(ptr)->QPrintDialog::event(static_cast<QEvent*>(event));
 }
 
 char QPrintDialog_FocusNextPrevChild(void* ptr, char next)
@@ -2320,16 +2440,6 @@ void QPrintDialog_DisconnectNotifyDefault(void* ptr, void* sign)
 	static_cast<QPrintDialog*>(ptr)->QPrintDialog::disconnectNotify(*static_cast<QMetaMethod*>(sign));
 }
 
-char QPrintDialog_Event(void* ptr, void* e)
-{
-	return static_cast<QPrintDialog*>(ptr)->event(static_cast<QEvent*>(e));
-}
-
-char QPrintDialog_EventDefault(void* ptr, void* e)
-{
-	return static_cast<QPrintDialog*>(ptr)->QPrintDialog::event(static_cast<QEvent*>(e));
-}
-
 char QPrintDialog_EventFilter(void* ptr, void* watched, void* event)
 {
 	return static_cast<QPrintDialog*>(ptr)->eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
@@ -2348,26 +2458,6 @@ void* QPrintDialog_MetaObject(void* ptr)
 void* QPrintDialog_MetaObjectDefault(void* ptr)
 {
 	return const_cast<QMetaObject*>(static_cast<QPrintDialog*>(ptr)->QPrintDialog::metaObject());
-}
-
-int QPrintDialog_Metric(void* ptr, long long metric)
-{
-	return static_cast<QPrintDialog*>(ptr)->metric(static_cast<QPaintDevice::PaintDeviceMetric>(metric));
-}
-
-int QPrintDialog_MetricDefault(void* ptr, long long metric)
-{
-	return static_cast<QPrintDialog*>(ptr)->QPrintDialog::metric(static_cast<QPaintDevice::PaintDeviceMetric>(metric));
-}
-
-void* QPrintDialog_PaintEngine(void* ptr)
-{
-	return static_cast<QPrintDialog*>(ptr)->paintEngine();
-}
-
-void* QPrintDialog_PaintEngineDefault(void* ptr)
-{
-	return static_cast<QPrintDialog*>(ptr)->QPrintDialog::paintEngine();
 }
 
 class MyQPrintEngine: public QPrintEngine
@@ -2427,7 +2517,9 @@ class MyQPrintPreviewDialog: public QPrintPreviewDialog
 public:
 	MyQPrintPreviewDialog(QWidget *parent, Qt::WindowFlags flags) : QPrintPreviewDialog(parent, flags) {};
 	MyQPrintPreviewDialog(QPrinter *printer, QWidget *parent, Qt::WindowFlags flags) : QPrintPreviewDialog(printer, parent, flags) {};
+	void done(int result) { callbackQPrintPreviewDialog_Done(this, result); };
 	void Signal_PaintRequested(QPrinter * printer) { callbackQPrintPreviewDialog_PaintRequested(this, printer); };
+	void setVisible(bool visible) { callbackQPrintPreviewDialog_SetVisible(this, visible); };
 	void accept() { callbackQPrintPreviewDialog_Accept(this); };
 	void closeEvent(QCloseEvent * e) { callbackQPrintPreviewDialog_CloseEvent(this, e); };
 	void contextMenuEvent(QContextMenuEvent * e) { callbackQPrintPreviewDialog_ContextMenuEvent(this, e); };
@@ -2448,7 +2540,9 @@ public:
 	void focusOutEvent(QFocusEvent * event) { callbackQPrintPreviewDialog_FocusOutEvent(this, event); };
 	void hideEvent(QHideEvent * event) { callbackQPrintPreviewDialog_HideEvent(this, event); };
 	void leaveEvent(QEvent * event) { callbackQPrintPreviewDialog_LeaveEvent(this, event); };
+	int metric(QPaintDevice::PaintDeviceMetric m) const { return callbackQPrintPreviewDialog_Metric(const_cast<MyQPrintPreviewDialog*>(this), m); };
 	void moveEvent(QMoveEvent * event) { callbackQPrintPreviewDialog_MoveEvent(this, event); };
+	QPaintEngine * paintEngine() const { return static_cast<QPaintEngine*>(callbackQPrintPreviewDialog_PaintEngine(const_cast<MyQPrintPreviewDialog*>(this))); };
 	void paintEvent(QPaintEvent * event) { callbackQPrintPreviewDialog_PaintEvent(this, event); };
 	void setEnabled(bool vbo) { callbackQPrintPreviewDialog_SetEnabled(this, vbo); };
 	void setStyleSheet(const QString & styleSheet) { QByteArray t728ae7 = styleSheet.toUtf8(); QtPrintSupport_PackedString styleSheetPacked = { const_cast<char*>(t728ae7.prepend("WHITESPACE").constData()+10), t728ae7.size()-10 };callbackQPrintPreviewDialog_SetStyleSheet(this, styleSheetPacked); };
@@ -2456,6 +2550,7 @@ public:
 	void setWindowTitle(const QString & vqs) { QByteArray tda39a3 = vqs.toUtf8(); QtPrintSupport_PackedString vqsPacked = { const_cast<char*>(tda39a3.prepend("WHITESPACE").constData()+10), tda39a3.size()-10 };callbackQPrintPreviewDialog_SetWindowTitle(this, vqsPacked); };
 	void changeEvent(QEvent * event) { callbackQPrintPreviewDialog_ChangeEvent(this, event); };
 	bool close() { return callbackQPrintPreviewDialog_Close(this) != 0; };
+	bool event(QEvent * event) { return callbackQPrintPreviewDialog_Event(this, event) != 0; };
 	bool focusNextPrevChild(bool next) { return callbackQPrintPreviewDialog_FocusNextPrevChild(this, next) != 0; };
 	bool hasHeightForWidth() const { return callbackQPrintPreviewDialog_HasHeightForWidth(const_cast<MyQPrintPreviewDialog*>(this)) != 0; };
 	int heightForWidth(int w) const { return callbackQPrintPreviewDialog_HeightForWidth(const_cast<MyQPrintPreviewDialog*>(this), w); };
@@ -2489,11 +2584,8 @@ public:
 	void customEvent(QEvent * event) { callbackQPrintPreviewDialog_CustomEvent(this, event); };
 	void deleteLater() { callbackQPrintPreviewDialog_DeleteLater(this); };
 	void disconnectNotify(const QMetaMethod & sign) { callbackQPrintPreviewDialog_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
-	bool event(QEvent * e) { return callbackQPrintPreviewDialog_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQPrintPreviewDialog_EventFilter(this, watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQPrintPreviewDialog_MetaObject(const_cast<MyQPrintPreviewDialog*>(this))); };
-	int metric(QPaintDevice::PaintDeviceMetric metric) const { return callbackQPrintPreviewDialog_Metric(const_cast<MyQPrintPreviewDialog*>(this), metric); };
-	QPaintEngine * paintEngine() const { return static_cast<QPaintEngine*>(callbackQPrintPreviewDialog_PaintEngine(const_cast<MyQPrintPreviewDialog*>(this))); };
 };
 
 void* QPrintPreviewDialog_NewQPrintPreviewDialog2(void* parent, long long flags)
@@ -2509,6 +2601,11 @@ void* QPrintPreviewDialog_NewQPrintPreviewDialog(void* printer, void* parent, lo
 void QPrintPreviewDialog_Done(void* ptr, int result)
 {
 	static_cast<QPrintPreviewDialog*>(ptr)->done(result);
+}
+
+void QPrintPreviewDialog_DoneDefault(void* ptr, int result)
+{
+	static_cast<QPrintPreviewDialog*>(ptr)->QPrintPreviewDialog::done(result);
 }
 
 void QPrintPreviewDialog_Open(void* ptr, void* receiver, char* member)
@@ -2539,6 +2636,11 @@ void* QPrintPreviewDialog_Printer(void* ptr)
 void QPrintPreviewDialog_SetVisible(void* ptr, char visible)
 {
 	static_cast<QPrintPreviewDialog*>(ptr)->setVisible(visible != 0);
+}
+
+void QPrintPreviewDialog_SetVisibleDefault(void* ptr, char visible)
+{
+	static_cast<QPrintPreviewDialog*>(ptr)->QPrintPreviewDialog::setVisible(visible != 0);
 }
 
 void QPrintPreviewDialog_DestroyQPrintPreviewDialog(void* ptr)
@@ -2748,6 +2850,16 @@ void QPrintPreviewDialog_LeaveEventDefault(void* ptr, void* event)
 	static_cast<QPrintPreviewDialog*>(ptr)->QPrintPreviewDialog::leaveEvent(static_cast<QEvent*>(event));
 }
 
+int QPrintPreviewDialog_Metric(void* ptr, long long m)
+{
+	return static_cast<QPrintPreviewDialog*>(ptr)->metric(static_cast<QPaintDevice::PaintDeviceMetric>(m));
+}
+
+int QPrintPreviewDialog_MetricDefault(void* ptr, long long m)
+{
+	return static_cast<QPrintPreviewDialog*>(ptr)->QPrintPreviewDialog::metric(static_cast<QPaintDevice::PaintDeviceMetric>(m));
+}
+
 void QPrintPreviewDialog_MoveEvent(void* ptr, void* event)
 {
 	static_cast<QPrintPreviewDialog*>(ptr)->moveEvent(static_cast<QMoveEvent*>(event));
@@ -2756,6 +2868,16 @@ void QPrintPreviewDialog_MoveEvent(void* ptr, void* event)
 void QPrintPreviewDialog_MoveEventDefault(void* ptr, void* event)
 {
 	static_cast<QPrintPreviewDialog*>(ptr)->QPrintPreviewDialog::moveEvent(static_cast<QMoveEvent*>(event));
+}
+
+void* QPrintPreviewDialog_PaintEngine(void* ptr)
+{
+	return static_cast<QPrintPreviewDialog*>(ptr)->paintEngine();
+}
+
+void* QPrintPreviewDialog_PaintEngineDefault(void* ptr)
+{
+	return static_cast<QPrintPreviewDialog*>(ptr)->QPrintPreviewDialog::paintEngine();
 }
 
 void QPrintPreviewDialog_PaintEvent(void* ptr, void* event)
@@ -2828,6 +2950,16 @@ char QPrintPreviewDialog_Close(void* ptr)
 char QPrintPreviewDialog_CloseDefault(void* ptr)
 {
 	return static_cast<QPrintPreviewDialog*>(ptr)->QPrintPreviewDialog::close();
+}
+
+char QPrintPreviewDialog_Event(void* ptr, void* event)
+{
+	return static_cast<QPrintPreviewDialog*>(ptr)->event(static_cast<QEvent*>(event));
+}
+
+char QPrintPreviewDialog_EventDefault(void* ptr, void* event)
+{
+	return static_cast<QPrintPreviewDialog*>(ptr)->QPrintPreviewDialog::event(static_cast<QEvent*>(event));
 }
 
 char QPrintPreviewDialog_FocusNextPrevChild(void* ptr, char next)
@@ -3160,16 +3292,6 @@ void QPrintPreviewDialog_DisconnectNotifyDefault(void* ptr, void* sign)
 	static_cast<QPrintPreviewDialog*>(ptr)->QPrintPreviewDialog::disconnectNotify(*static_cast<QMetaMethod*>(sign));
 }
 
-char QPrintPreviewDialog_Event(void* ptr, void* e)
-{
-	return static_cast<QPrintPreviewDialog*>(ptr)->event(static_cast<QEvent*>(e));
-}
-
-char QPrintPreviewDialog_EventDefault(void* ptr, void* e)
-{
-	return static_cast<QPrintPreviewDialog*>(ptr)->QPrintPreviewDialog::event(static_cast<QEvent*>(e));
-}
-
 char QPrintPreviewDialog_EventFilter(void* ptr, void* watched, void* event)
 {
 	return static_cast<QPrintPreviewDialog*>(ptr)->eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
@@ -3190,26 +3312,6 @@ void* QPrintPreviewDialog_MetaObjectDefault(void* ptr)
 	return const_cast<QMetaObject*>(static_cast<QPrintPreviewDialog*>(ptr)->QPrintPreviewDialog::metaObject());
 }
 
-int QPrintPreviewDialog_Metric(void* ptr, long long metric)
-{
-	return static_cast<QPrintPreviewDialog*>(ptr)->metric(static_cast<QPaintDevice::PaintDeviceMetric>(metric));
-}
-
-int QPrintPreviewDialog_MetricDefault(void* ptr, long long metric)
-{
-	return static_cast<QPrintPreviewDialog*>(ptr)->QPrintPreviewDialog::metric(static_cast<QPaintDevice::PaintDeviceMetric>(metric));
-}
-
-void* QPrintPreviewDialog_PaintEngine(void* ptr)
-{
-	return static_cast<QPrintPreviewDialog*>(ptr)->paintEngine();
-}
-
-void* QPrintPreviewDialog_PaintEngineDefault(void* ptr)
-{
-	return static_cast<QPrintPreviewDialog*>(ptr)->QPrintPreviewDialog::paintEngine();
-}
-
 class MyQPrintPreviewWidget: public QPrintPreviewWidget
 {
 public:
@@ -3228,6 +3330,7 @@ public:
 	void setPortraitOrientation() { callbackQPrintPreviewWidget_SetPortraitOrientation(this); };
 	void setSinglePageViewMode() { callbackQPrintPreviewWidget_SetSinglePageViewMode(this); };
 	void setViewMode(QPrintPreviewWidget::ViewMode mode) { callbackQPrintPreviewWidget_SetViewMode(this, mode); };
+	void setVisible(bool visible) { callbackQPrintPreviewWidget_SetVisible(this, visible); };
 	void setZoomFactor(qreal factor) { callbackQPrintPreviewWidget_SetZoomFactor(this, factor); };
 	void setZoomMode(QPrintPreviewWidget::ZoomMode zoomMode) { callbackQPrintPreviewWidget_SetZoomMode(this, zoomMode); };
 	void updatePreview() { callbackQPrintPreviewWidget_UpdatePreview(this); };
@@ -3243,8 +3346,10 @@ public:
 	void focusOutEvent(QFocusEvent * event) { callbackQPrintPreviewWidget_FocusOutEvent(this, event); };
 	void hideEvent(QHideEvent * event) { callbackQPrintPreviewWidget_HideEvent(this, event); };
 	void leaveEvent(QEvent * event) { callbackQPrintPreviewWidget_LeaveEvent(this, event); };
+	int metric(QPaintDevice::PaintDeviceMetric m) const { return callbackQPrintPreviewWidget_Metric(const_cast<MyQPrintPreviewWidget*>(this), m); };
 	QSize minimumSizeHint() const { return *static_cast<QSize*>(callbackQPrintPreviewWidget_MinimumSizeHint(const_cast<MyQPrintPreviewWidget*>(this))); };
 	void moveEvent(QMoveEvent * event) { callbackQPrintPreviewWidget_MoveEvent(this, event); };
+	QPaintEngine * paintEngine() const { return static_cast<QPaintEngine*>(callbackQPrintPreviewWidget_PaintEngine(const_cast<MyQPrintPreviewWidget*>(this))); };
 	void paintEvent(QPaintEvent * event) { callbackQPrintPreviewWidget_PaintEvent(this, event); };
 	void setEnabled(bool vbo) { callbackQPrintPreviewWidget_SetEnabled(this, vbo); };
 	void setStyleSheet(const QString & styleSheet) { QByteArray t728ae7 = styleSheet.toUtf8(); QtPrintSupport_PackedString styleSheetPacked = { const_cast<char*>(t728ae7.prepend("WHITESPACE").constData()+10), t728ae7.size()-10 };callbackQPrintPreviewWidget_SetStyleSheet(this, styleSheetPacked); };
@@ -3256,6 +3361,7 @@ public:
 	bool close() { return callbackQPrintPreviewWidget_Close(this) != 0; };
 	void closeEvent(QCloseEvent * event) { callbackQPrintPreviewWidget_CloseEvent(this, event); };
 	void contextMenuEvent(QContextMenuEvent * event) { callbackQPrintPreviewWidget_ContextMenuEvent(this, event); };
+	bool event(QEvent * event) { return callbackQPrintPreviewWidget_Event(this, event) != 0; };
 	bool focusNextPrevChild(bool next) { return callbackQPrintPreviewWidget_FocusNextPrevChild(this, next) != 0; };
 	bool hasHeightForWidth() const { return callbackQPrintPreviewWidget_HasHeightForWidth(const_cast<MyQPrintPreviewWidget*>(this)) != 0; };
 	int heightForWidth(int w) const { return callbackQPrintPreviewWidget_HeightForWidth(const_cast<MyQPrintPreviewWidget*>(this), w); };
@@ -3291,11 +3397,8 @@ public:
 	void customEvent(QEvent * event) { callbackQPrintPreviewWidget_CustomEvent(this, event); };
 	void deleteLater() { callbackQPrintPreviewWidget_DeleteLater(this); };
 	void disconnectNotify(const QMetaMethod & sign) { callbackQPrintPreviewWidget_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
-	bool event(QEvent * e) { return callbackQPrintPreviewWidget_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQPrintPreviewWidget_EventFilter(this, watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQPrintPreviewWidget_MetaObject(const_cast<MyQPrintPreviewWidget*>(this))); };
-	int metric(QPaintDevice::PaintDeviceMetric metric) const { return callbackQPrintPreviewWidget_Metric(const_cast<MyQPrintPreviewWidget*>(this), metric); };
-	QPaintEngine * paintEngine() const { return static_cast<QPaintEngine*>(callbackQPrintPreviewWidget_PaintEngine(const_cast<MyQPrintPreviewWidget*>(this))); };
 };
 
 void* QPrintPreviewWidget_NewQPrintPreviewWidget(void* printer, void* parent, long long flags)
@@ -3411,6 +3514,11 @@ void QPrintPreviewWidget_SetViewMode(void* ptr, long long mode)
 void QPrintPreviewWidget_SetVisible(void* ptr, char visible)
 {
 	static_cast<QPrintPreviewWidget*>(ptr)->setVisible(visible != 0);
+}
+
+void QPrintPreviewWidget_SetVisibleDefault(void* ptr, char visible)
+{
+	static_cast<QPrintPreviewWidget*>(ptr)->QPrintPreviewWidget::setVisible(visible != 0);
 }
 
 void QPrintPreviewWidget_SetZoomFactor(void* ptr, double factor)
@@ -3558,6 +3666,16 @@ void QPrintPreviewWidget_LeaveEventDefault(void* ptr, void* event)
 	static_cast<QPrintPreviewWidget*>(ptr)->QPrintPreviewWidget::leaveEvent(static_cast<QEvent*>(event));
 }
 
+int QPrintPreviewWidget_Metric(void* ptr, long long m)
+{
+	return static_cast<QPrintPreviewWidget*>(ptr)->metric(static_cast<QPaintDevice::PaintDeviceMetric>(m));
+}
+
+int QPrintPreviewWidget_MetricDefault(void* ptr, long long m)
+{
+	return static_cast<QPrintPreviewWidget*>(ptr)->QPrintPreviewWidget::metric(static_cast<QPaintDevice::PaintDeviceMetric>(m));
+}
+
 void* QPrintPreviewWidget_MinimumSizeHint(void* ptr)
 {
 	return ({ QSize tmpValue = static_cast<QPrintPreviewWidget*>(ptr)->minimumSizeHint(); new QSize(tmpValue.width(), tmpValue.height()); });
@@ -3576,6 +3694,16 @@ void QPrintPreviewWidget_MoveEvent(void* ptr, void* event)
 void QPrintPreviewWidget_MoveEventDefault(void* ptr, void* event)
 {
 	static_cast<QPrintPreviewWidget*>(ptr)->QPrintPreviewWidget::moveEvent(static_cast<QMoveEvent*>(event));
+}
+
+void* QPrintPreviewWidget_PaintEngine(void* ptr)
+{
+	return static_cast<QPrintPreviewWidget*>(ptr)->paintEngine();
+}
+
+void* QPrintPreviewWidget_PaintEngineDefault(void* ptr)
+{
+	return static_cast<QPrintPreviewWidget*>(ptr)->QPrintPreviewWidget::paintEngine();
 }
 
 void QPrintPreviewWidget_PaintEvent(void* ptr, void* event)
@@ -3688,6 +3816,16 @@ void QPrintPreviewWidget_ContextMenuEvent(void* ptr, void* event)
 void QPrintPreviewWidget_ContextMenuEventDefault(void* ptr, void* event)
 {
 	static_cast<QPrintPreviewWidget*>(ptr)->QPrintPreviewWidget::contextMenuEvent(static_cast<QContextMenuEvent*>(event));
+}
+
+char QPrintPreviewWidget_Event(void* ptr, void* event)
+{
+	return static_cast<QPrintPreviewWidget*>(ptr)->event(static_cast<QEvent*>(event));
+}
+
+char QPrintPreviewWidget_EventDefault(void* ptr, void* event)
+{
+	return static_cast<QPrintPreviewWidget*>(ptr)->QPrintPreviewWidget::event(static_cast<QEvent*>(event));
 }
 
 char QPrintPreviewWidget_FocusNextPrevChild(void* ptr, char next)
@@ -4040,16 +4178,6 @@ void QPrintPreviewWidget_DisconnectNotifyDefault(void* ptr, void* sign)
 	static_cast<QPrintPreviewWidget*>(ptr)->QPrintPreviewWidget::disconnectNotify(*static_cast<QMetaMethod*>(sign));
 }
 
-char QPrintPreviewWidget_Event(void* ptr, void* e)
-{
-	return static_cast<QPrintPreviewWidget*>(ptr)->event(static_cast<QEvent*>(e));
-}
-
-char QPrintPreviewWidget_EventDefault(void* ptr, void* e)
-{
-	return static_cast<QPrintPreviewWidget*>(ptr)->QPrintPreviewWidget::event(static_cast<QEvent*>(e));
-}
-
 char QPrintPreviewWidget_EventFilter(void* ptr, void* watched, void* event)
 {
 	return static_cast<QPrintPreviewWidget*>(ptr)->eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
@@ -4070,25 +4198,19 @@ void* QPrintPreviewWidget_MetaObjectDefault(void* ptr)
 	return const_cast<QMetaObject*>(static_cast<QPrintPreviewWidget*>(ptr)->QPrintPreviewWidget::metaObject());
 }
 
-int QPrintPreviewWidget_Metric(void* ptr, long long metric)
+class MyQPrinter: public QPrinter
 {
-	return static_cast<QPrintPreviewWidget*>(ptr)->metric(static_cast<QPaintDevice::PaintDeviceMetric>(metric));
-}
-
-int QPrintPreviewWidget_MetricDefault(void* ptr, long long metric)
-{
-	return static_cast<QPrintPreviewWidget*>(ptr)->QPrintPreviewWidget::metric(static_cast<QPaintDevice::PaintDeviceMetric>(metric));
-}
-
-void* QPrintPreviewWidget_PaintEngine(void* ptr)
-{
-	return static_cast<QPrintPreviewWidget*>(ptr)->paintEngine();
-}
-
-void* QPrintPreviewWidget_PaintEngineDefault(void* ptr)
-{
-	return static_cast<QPrintPreviewWidget*>(ptr)->QPrintPreviewWidget::paintEngine();
-}
+public:
+	MyQPrinter(PrinterMode mode) : QPrinter(mode) {};
+	MyQPrinter(const QPrinterInfo &printer, PrinterMode mode) : QPrinter(printer, mode) {};
+	bool newPage() { return callbackQPrinter_NewPage(this) != 0; };
+	QPaintEngine * paintEngine() const { return static_cast<QPaintEngine*>(callbackQPrinter_PaintEngine(const_cast<MyQPrinter*>(this))); };
+	bool setPageSize(const QPageSize & pageSize) { return callbackQPrinter_SetPageSize(this, const_cast<QPageSize*>(&pageSize)) != 0; };
+	
+	void setPageSize(QPagedPaintDevice::PageSize size) { callbackQPrinter_SetPageSize2(this, size); };
+	void setPageSizeMM(const QSizeF & size) { callbackQPrinter_SetPageSizeMM(this, const_cast<QSizeF*>(&size)); };
+	int metric(QPaintDevice::PaintDeviceMetric metric) const { return callbackQPrinter_Metric(const_cast<MyQPrinter*>(this), metric); };
+};
 
 int QPrinter_FromPage(void* ptr)
 {
@@ -4112,12 +4234,12 @@ void QPrinter_SetPrinterSelectionOption(void* ptr, char* option)
 
 void* QPrinter_NewQPrinter(long long mode)
 {
-	return new QPrinter(static_cast<QPrinter::PrinterMode>(mode));
+	return new MyQPrinter(static_cast<QPrinter::PrinterMode>(mode));
 }
 
 void* QPrinter_NewQPrinter2(void* printer, long long mode)
 {
-	return new QPrinter(*static_cast<QPrinterInfo*>(printer), static_cast<QPrinter::PrinterMode>(mode));
+	return new MyQPrinter(*static_cast<QPrinterInfo*>(printer), static_cast<QPrinter::PrinterMode>(mode));
 }
 
 char QPrinter_Abort(void* ptr)
@@ -4175,6 +4297,11 @@ char QPrinter_NewPage(void* ptr)
 	return static_cast<QPrinter*>(ptr)->newPage();
 }
 
+char QPrinter_NewPageDefault(void* ptr)
+{
+	return static_cast<QPrinter*>(ptr)->QPrinter::newPage();
+}
+
 long long QPrinter_OutputFormat(void* ptr)
 {
 	return static_cast<QPrinter*>(ptr)->outputFormat();
@@ -4198,6 +4325,11 @@ void* QPrinter_PageRect(void* ptr, long long unit)
 void* QPrinter_PaintEngine(void* ptr)
 {
 	return static_cast<QPrinter*>(ptr)->paintEngine();
+}
+
+void* QPrinter_PaintEngineDefault(void* ptr)
+{
+	return static_cast<QPrinter*>(ptr)->QPrinter::paintEngine();
 }
 
 void* QPrinter_PaperRect(void* ptr, long long unit)
@@ -4328,6 +4460,11 @@ char QPrinter_SetPageOrientation(void* ptr, long long orientation)
 char QPrinter_SetPageSize(void* ptr, void* pageSize)
 {
 	return static_cast<QPrinter*>(ptr)->setPageSize(*static_cast<QPageSize*>(pageSize));
+}
+
+char QPrinter_SetPageSizeDefault(void* ptr, void* pageSize)
+{
+	return static_cast<QPrinter*>(ptr)->QPrinter::setPageSize(*static_cast<QPageSize*>(pageSize));
 }
 
 void QPrinter_SetPaperSource(void* ptr, long long source)

@@ -27,15 +27,25 @@ public:
 	MyQSerialPort(QObject *parent) : QSerialPort(parent) {};
 	MyQSerialPort(const QSerialPortInfo &serialPortInfo, QObject *parent) : QSerialPort(serialPortInfo, parent) {};
 	MyQSerialPort(const QString &name, QObject *parent) : QSerialPort(name, parent) {};
+	bool atEnd() const { return callbackQSerialPort_AtEnd(const_cast<MyQSerialPort*>(this)) != 0; };
 	void Signal_BaudRateChanged(qint32 baudRate, QSerialPort::Directions directions) { callbackQSerialPort_BaudRateChanged(this, baudRate, directions); };
 	void Signal_BreakEnabledChanged(bool set) { callbackQSerialPort_BreakEnabledChanged(this, set); };
+	qint64 bytesAvailable() const { return callbackQSerialPort_BytesAvailable(const_cast<MyQSerialPort*>(this)); };
+	qint64 bytesToWrite() const { return callbackQSerialPort_BytesToWrite(const_cast<MyQSerialPort*>(this)); };
+	bool canReadLine() const { return callbackQSerialPort_CanReadLine(const_cast<MyQSerialPort*>(this)) != 0; };
+	void close() { callbackQSerialPort_Close(this); };
 	void Signal_DataBitsChanged(QSerialPort::DataBits dataBits) { callbackQSerialPort_DataBitsChanged(this, dataBits); };
 	void Signal_DataTerminalReadyChanged(bool set) { callbackQSerialPort_DataTerminalReadyChanged(this, set); };
 	void Signal_Error2(QSerialPort::SerialPortError error) { callbackQSerialPort_Error2(this, error); };
 	void Signal_FlowControlChanged(QSerialPort::FlowControl flow) { callbackQSerialPort_FlowControlChanged(this, flow); };
+	bool isSequential() const { return callbackQSerialPort_IsSequential(const_cast<MyQSerialPort*>(this)) != 0; };
 	void Signal_ParityChanged(QSerialPort::Parity parity) { callbackQSerialPort_ParityChanged(this, parity); };
+	qint64 readLineData(char * data, qint64 maxSize) { QtSerialPort_PackedString dataPacked = { data, maxSize };return callbackQSerialPort_ReadLineData(this, dataPacked, maxSize); };
 	void Signal_RequestToSendChanged(bool set) { callbackQSerialPort_RequestToSendChanged(this, set); };
 	void Signal_StopBitsChanged(QSerialPort::StopBits stopBits) { callbackQSerialPort_StopBitsChanged(this, stopBits); };
+	bool waitForBytesWritten(int msecs) { return callbackQSerialPort_WaitForBytesWritten(this, msecs) != 0; };
+	bool waitForReadyRead(int msecs) { return callbackQSerialPort_WaitForReadyRead(this, msecs) != 0; };
+	qint64 writeData(const char * data, qint64 maxSize) { QtSerialPort_PackedString dataPacked = { const_cast<char*>(data), maxSize };return callbackQSerialPort_WriteData(this, dataPacked, maxSize); };
 	 ~MyQSerialPort() { callbackQSerialPort_DestroyQSerialPort(this); };
 	qint64 pos() const { return callbackQSerialPort_Pos(const_cast<MyQSerialPort*>(this)); };
 	bool reset() { return callbackQSerialPort_Reset(this) != 0; };
@@ -162,6 +172,11 @@ char QSerialPort_AtEnd(void* ptr)
 	return static_cast<QSerialPort*>(ptr)->atEnd();
 }
 
+char QSerialPort_AtEndDefault(void* ptr)
+{
+	return static_cast<QSerialPort*>(ptr)->QSerialPort::atEnd();
+}
+
 void QSerialPort_ConnectBaudRateChanged(void* ptr)
 {
 	QObject::connect(static_cast<QSerialPort*>(ptr), static_cast<void (QSerialPort::*)(qint32, QSerialPort::Directions)>(&QSerialPort::baudRateChanged), static_cast<MyQSerialPort*>(ptr), static_cast<void (MyQSerialPort::*)(qint32, QSerialPort::Directions)>(&MyQSerialPort::Signal_BaudRateChanged));
@@ -197,14 +212,29 @@ long long QSerialPort_BytesAvailable(void* ptr)
 	return static_cast<QSerialPort*>(ptr)->bytesAvailable();
 }
 
+long long QSerialPort_BytesAvailableDefault(void* ptr)
+{
+	return static_cast<QSerialPort*>(ptr)->QSerialPort::bytesAvailable();
+}
+
 long long QSerialPort_BytesToWrite(void* ptr)
 {
 	return static_cast<QSerialPort*>(ptr)->bytesToWrite();
 }
 
+long long QSerialPort_BytesToWriteDefault(void* ptr)
+{
+	return static_cast<QSerialPort*>(ptr)->QSerialPort::bytesToWrite();
+}
+
 char QSerialPort_CanReadLine(void* ptr)
 {
 	return static_cast<QSerialPort*>(ptr)->canReadLine();
+}
+
+char QSerialPort_CanReadLineDefault(void* ptr)
+{
+	return static_cast<QSerialPort*>(ptr)->QSerialPort::canReadLine();
 }
 
 char QSerialPort_Clear(void* ptr, long long directions)
@@ -215,6 +245,11 @@ char QSerialPort_Clear(void* ptr, long long directions)
 void QSerialPort_Close(void* ptr)
 {
 	static_cast<QSerialPort*>(ptr)->close();
+}
+
+void QSerialPort_CloseDefault(void* ptr)
+{
+	static_cast<QSerialPort*>(ptr)->QSerialPort::close();
 }
 
 void QSerialPort_ConnectDataBitsChanged(void* ptr)
@@ -287,6 +322,11 @@ char QSerialPort_IsSequential(void* ptr)
 	return static_cast<QSerialPort*>(ptr)->isSequential();
 }
 
+char QSerialPort_IsSequentialDefault(void* ptr)
+{
+	return static_cast<QSerialPort*>(ptr)->QSerialPort::isSequential();
+}
+
 char QSerialPort_Open(void* ptr, long long mode)
 {
 	return static_cast<QSerialPort*>(ptr)->open(static_cast<QIODevice::OpenModeFlag>(mode));
@@ -325,6 +365,11 @@ long long QSerialPort_ReadBufferSize(void* ptr)
 long long QSerialPort_ReadLineData(void* ptr, char* data, long long maxSize)
 {
 	return static_cast<QSerialPort*>(ptr)->readLineData(data, maxSize);
+}
+
+long long QSerialPort_ReadLineDataDefault(void* ptr, char* data, long long maxSize)
+{
+	return static_cast<QSerialPort*>(ptr)->QSerialPort::readLineData(data, maxSize);
 }
 
 void QSerialPort_ConnectRequestToSendChanged(void* ptr)
@@ -377,14 +422,29 @@ char QSerialPort_WaitForBytesWritten(void* ptr, int msecs)
 	return static_cast<QSerialPort*>(ptr)->waitForBytesWritten(msecs);
 }
 
+char QSerialPort_WaitForBytesWrittenDefault(void* ptr, int msecs)
+{
+	return static_cast<QSerialPort*>(ptr)->QSerialPort::waitForBytesWritten(msecs);
+}
+
 char QSerialPort_WaitForReadyRead(void* ptr, int msecs)
 {
 	return static_cast<QSerialPort*>(ptr)->waitForReadyRead(msecs);
 }
 
+char QSerialPort_WaitForReadyReadDefault(void* ptr, int msecs)
+{
+	return static_cast<QSerialPort*>(ptr)->QSerialPort::waitForReadyRead(msecs);
+}
+
 long long QSerialPort_WriteData(void* ptr, char* data, long long maxSize)
 {
 	return static_cast<QSerialPort*>(ptr)->writeData(const_cast<const char*>(data), maxSize);
+}
+
+long long QSerialPort_WriteDataDefault(void* ptr, char* data, long long maxSize)
+{
+	return static_cast<QSerialPort*>(ptr)->QSerialPort::writeData(const_cast<const char*>(data), maxSize);
 }
 
 void QSerialPort_DestroyQSerialPort(void* ptr)

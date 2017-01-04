@@ -2100,6 +2100,20 @@ func (ptr *QSimpleXmlNodeModel) NamePool() *QXmlNamePool {
 	return nil
 }
 
+func (ptr *QSimpleXmlNodeModel) ConnectNamespaceBindings(f func(node *QXmlNodeModelIndex) []*QXmlName) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QSimpleXmlNodeModel::namespaceBindings", f)
+	}
+}
+
+func (ptr *QSimpleXmlNodeModel) DisconnectNamespaceBindings() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSimpleXmlNodeModel::namespaceBindings")
+	}
+}
+
 func (ptr *QSimpleXmlNodeModel) NamespaceBindings(node QXmlNodeModelIndex_ITF) []*QXmlName {
 	if ptr.Pointer() != nil {
 		return func(l C.struct_QtXmlPatterns_PackedList) []*QXmlName {
@@ -2113,6 +2127,33 @@ func (ptr *QSimpleXmlNodeModel) NamespaceBindings(node QXmlNodeModelIndex_ITF) [
 	return nil
 }
 
+func (ptr *QSimpleXmlNodeModel) NamespaceBindingsDefault(node QXmlNodeModelIndex_ITF) []*QXmlName {
+	if ptr.Pointer() != nil {
+		return func(l C.struct_QtXmlPatterns_PackedList) []*QXmlName {
+			var out = make([]*QXmlName, int(l.len))
+			for i := 0; i < int(l.len); i++ {
+				out[i] = NewQSimpleXmlNodeModelFromPointer(l.data).namespaceBindings_atList(i)
+			}
+			return out
+		}(C.QSimpleXmlNodeModel_NamespaceBindingsDefault(ptr.Pointer(), PointerFromQXmlNodeModelIndex(node)))
+	}
+	return nil
+}
+
+func (ptr *QSimpleXmlNodeModel) ConnectNodesByIdref(f func(idref *QXmlName) []*QXmlNodeModelIndex) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QSimpleXmlNodeModel::nodesByIdref", f)
+	}
+}
+
+func (ptr *QSimpleXmlNodeModel) DisconnectNodesByIdref() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSimpleXmlNodeModel::nodesByIdref")
+	}
+}
+
 func (ptr *QSimpleXmlNodeModel) NodesByIdref(idref QXmlName_ITF) []*QXmlNodeModelIndex {
 	if ptr.Pointer() != nil {
 		return func(l C.struct_QtXmlPatterns_PackedList) []*QXmlNodeModelIndex {
@@ -2122,6 +2163,19 @@ func (ptr *QSimpleXmlNodeModel) NodesByIdref(idref QXmlName_ITF) []*QXmlNodeMode
 			}
 			return out
 		}(C.QSimpleXmlNodeModel_NodesByIdref(ptr.Pointer(), PointerFromQXmlName(idref)))
+	}
+	return nil
+}
+
+func (ptr *QSimpleXmlNodeModel) NodesByIdrefDefault(idref QXmlName_ITF) []*QXmlNodeModelIndex {
+	if ptr.Pointer() != nil {
+		return func(l C.struct_QtXmlPatterns_PackedList) []*QXmlNodeModelIndex {
+			var out = make([]*QXmlNodeModelIndex, int(l.len))
+			for i := 0; i < int(l.len); i++ {
+				out[i] = NewQSimpleXmlNodeModelFromPointer(l.data).nodesByIdref_atList(i)
+			}
+			return out
+		}(C.QSimpleXmlNodeModel_NodesByIdrefDefault(ptr.Pointer(), PointerFromQXmlName(idref)))
 	}
 	return nil
 }

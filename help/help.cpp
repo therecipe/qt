@@ -114,8 +114,13 @@ void QHelpContentItem_DestroyQHelpContentItem(void* ptr)
 class MyQHelpContentModel: public QHelpContentModel
 {
 public:
+	int columnCount(const QModelIndex & parent) const { return callbackQHelpContentModel_ColumnCount(const_cast<MyQHelpContentModel*>(this), const_cast<QModelIndex*>(&parent)); };
 	void Signal_ContentsCreated() { callbackQHelpContentModel_ContentsCreated(this); };
 	void Signal_ContentsCreationStarted() { callbackQHelpContentModel_ContentsCreationStarted(this); };
+	QVariant data(const QModelIndex & index, int role) const { return *static_cast<QVariant*>(callbackQHelpContentModel_Data(const_cast<MyQHelpContentModel*>(this), const_cast<QModelIndex*>(&index), role)); };
+	QModelIndex index(int row, int column, const QModelIndex & parent) const { return *static_cast<QModelIndex*>(callbackQHelpContentModel_Index(const_cast<MyQHelpContentModel*>(this), row, column, const_cast<QModelIndex*>(&parent))); };
+	QModelIndex parent(const QModelIndex & index) const { return *static_cast<QModelIndex*>(callbackQHelpContentModel_Parent(const_cast<MyQHelpContentModel*>(this), const_cast<QModelIndex*>(&index))); };
+	int rowCount(const QModelIndex & parent) const { return callbackQHelpContentModel_RowCount(const_cast<MyQHelpContentModel*>(this), const_cast<QModelIndex*>(&parent)); };
 	QModelIndex sibling(int row, int column, const QModelIndex & index) const { return *static_cast<QModelIndex*>(callbackQHelpContentModel_Sibling(const_cast<MyQHelpContentModel*>(this), row, column, const_cast<QModelIndex*>(&index))); };
 	QModelIndex buddy(const QModelIndex & index) const { return *static_cast<QModelIndex*>(callbackQHelpContentModel_Buddy(const_cast<MyQHelpContentModel*>(this), const_cast<QModelIndex*>(&index))); };
 	bool canDropMimeData(const QMimeData * data, Qt::DropAction action, int row, int column, const QModelIndex & parent) const { return callbackQHelpContentModel_CanDropMimeData(const_cast<MyQHelpContentModel*>(this), const_cast<QMimeData*>(data), action, row, column, const_cast<QModelIndex*>(&parent)) != 0; };
@@ -156,6 +161,11 @@ public:
 int QHelpContentModel_ColumnCount(void* ptr, void* parent)
 {
 	return static_cast<QHelpContentModel*>(ptr)->columnCount(*static_cast<QModelIndex*>(parent));
+}
+
+int QHelpContentModel_ColumnCountDefault(void* ptr, void* parent)
+{
+	return static_cast<QHelpContentModel*>(ptr)->QHelpContentModel::columnCount(*static_cast<QModelIndex*>(parent));
 }
 
 void* QHelpContentModel_ContentItemAt(void* ptr, void* index)
@@ -203,9 +213,19 @@ void* QHelpContentModel_Data(void* ptr, void* index, int role)
 	return new QVariant(static_cast<QHelpContentModel*>(ptr)->data(*static_cast<QModelIndex*>(index), role));
 }
 
+void* QHelpContentModel_DataDefault(void* ptr, void* index, int role)
+{
+	return new QVariant(static_cast<QHelpContentModel*>(ptr)->QHelpContentModel::data(*static_cast<QModelIndex*>(index), role));
+}
+
 void* QHelpContentModel_Index(void* ptr, int row, int column, void* parent)
 {
 	return new QModelIndex(static_cast<QHelpContentModel*>(ptr)->index(row, column, *static_cast<QModelIndex*>(parent)));
+}
+
+void* QHelpContentModel_IndexDefault(void* ptr, int row, int column, void* parent)
+{
+	return new QModelIndex(static_cast<QHelpContentModel*>(ptr)->QHelpContentModel::index(row, column, *static_cast<QModelIndex*>(parent)));
 }
 
 char QHelpContentModel_IsCreatingContents(void* ptr)
@@ -218,9 +238,19 @@ void* QHelpContentModel_Parent(void* ptr, void* index)
 	return new QModelIndex(static_cast<QHelpContentModel*>(ptr)->parent(*static_cast<QModelIndex*>(index)));
 }
 
+void* QHelpContentModel_ParentDefault(void* ptr, void* index)
+{
+	return new QModelIndex(static_cast<QHelpContentModel*>(ptr)->QHelpContentModel::parent(*static_cast<QModelIndex*>(index)));
+}
+
 int QHelpContentModel_RowCount(void* ptr, void* parent)
 {
 	return static_cast<QHelpContentModel*>(ptr)->rowCount(*static_cast<QModelIndex*>(parent));
+}
+
+int QHelpContentModel_RowCountDefault(void* ptr, void* parent)
+{
+	return static_cast<QHelpContentModel*>(ptr)->QHelpContentModel::rowCount(*static_cast<QModelIndex*>(parent));
 }
 
 void QHelpContentModel_DestroyQHelpContentModel(void* ptr)
@@ -610,6 +640,7 @@ public:
 	void scrollContentsBy(int dx, int dy) { callbackQHelpContentWidget_ScrollContentsBy(this, dx, dy); };
 	void scrollTo(const QModelIndex & index, QAbstractItemView::ScrollHint hint) { callbackQHelpContentWidget_ScrollTo(this, const_cast<QModelIndex*>(&index), hint); };
 	void selectAll() { callbackQHelpContentWidget_SelectAll(this); };
+	
 	void selectionChanged(const QItemSelection & selected, const QItemSelection & deselected) { callbackQHelpContentWidget_SelectionChanged(this, const_cast<QItemSelection*>(&selected), const_cast<QItemSelection*>(&deselected)); };
 	void setModel(QAbstractItemModel * model) { callbackQHelpContentWidget_SetModel(this, model); };
 	void setRootIndex(const QModelIndex & index) { callbackQHelpContentWidget_SetRootIndex(this, const_cast<QModelIndex*>(&index)); };
@@ -632,6 +663,7 @@ public:
 	void edit(const QModelIndex & index) { callbackQHelpContentWidget_Edit(this, const_cast<QModelIndex*>(&index)); };
 	bool edit(const QModelIndex & index, QAbstractItemView::EditTrigger trigger, QEvent * event) { return callbackQHelpContentWidget_Edit2(this, const_cast<QModelIndex*>(&index), trigger, event) != 0; };
 	void editorDestroyed(QObject * editor) { callbackQHelpContentWidget_EditorDestroyed(this, editor); };
+	bool event(QEvent * event) { return callbackQHelpContentWidget_Event(this, event) != 0; };
 	void focusInEvent(QFocusEvent * event) { callbackQHelpContentWidget_FocusInEvent(this, event); };
 	bool focusNextPrevChild(bool next) { return callbackQHelpContentWidget_FocusNextPrevChild(this, next) != 0; };
 	void focusOutEvent(QFocusEvent * event) { callbackQHelpContentWidget_FocusOutEvent(this, event); };
@@ -644,6 +676,7 @@ public:
 	void setCurrentIndex(const QModelIndex & index) { callbackQHelpContentWidget_SetCurrentIndex(this, const_cast<QModelIndex*>(&index)); };
 	int sizeHintForRow(int row) const { return callbackQHelpContentWidget_SizeHintForRow(const_cast<MyQHelpContentWidget*>(this), row); };
 	void startDrag(Qt::DropActions supportedActions) { callbackQHelpContentWidget_StartDrag(this, supportedActions); };
+	void timerEvent(QTimerEvent * event) { callbackQHelpContentWidget_TimerEvent(this, event); };
 	void update(const QModelIndex & index) { callbackQHelpContentWidget_Update(this, const_cast<QModelIndex*>(&index)); };
 	QStyleOptionViewItem viewOptions() const { return *static_cast<QStyleOptionViewItem*>(callbackQHelpContentWidget_ViewOptions(const_cast<MyQHelpContentWidget*>(this))); };
 	void contextMenuEvent(QContextMenuEvent * e) { callbackQHelpContentWidget_ContextMenuEvent(this, e); };
@@ -656,7 +689,9 @@ public:
 	void enterEvent(QEvent * event) { callbackQHelpContentWidget_EnterEvent(this, event); };
 	void hideEvent(QHideEvent * event) { callbackQHelpContentWidget_HideEvent(this, event); };
 	void leaveEvent(QEvent * event) { callbackQHelpContentWidget_LeaveEvent(this, event); };
+	int metric(QPaintDevice::PaintDeviceMetric m) const { return callbackQHelpContentWidget_Metric(const_cast<MyQHelpContentWidget*>(this), m); };
 	void moveEvent(QMoveEvent * event) { callbackQHelpContentWidget_MoveEvent(this, event); };
+	QPaintEngine * paintEngine() const { return static_cast<QPaintEngine*>(callbackQHelpContentWidget_PaintEngine(const_cast<MyQHelpContentWidget*>(this))); };
 	void setEnabled(bool vbo) { callbackQHelpContentWidget_SetEnabled(this, vbo); };
 	void setStyleSheet(const QString & styleSheet) { QByteArray t728ae7 = styleSheet.toUtf8(); QtHelp_PackedString styleSheetPacked = { const_cast<char*>(t728ae7.prepend("WHITESPACE").constData()+10), t728ae7.size()-10 };callbackQHelpContentWidget_SetStyleSheet(this, styleSheetPacked); };
 	void setVisible(bool visible) { callbackQHelpContentWidget_SetVisible(this, visible); };
@@ -683,17 +718,13 @@ public:
 	void showNormal() { callbackQHelpContentWidget_ShowNormal(this); };
 	void tabletEvent(QTabletEvent * event) { callbackQHelpContentWidget_TabletEvent(this, event); };
 	void updateMicroFocus() { callbackQHelpContentWidget_UpdateMicroFocus(this); };
-	void timerEvent(QTimerEvent * event) { callbackQHelpContentWidget_TimerEvent(this, event); };
 	void childEvent(QChildEvent * event) { callbackQHelpContentWidget_ChildEvent(this, event); };
 	void connectNotify(const QMetaMethod & sign) { callbackQHelpContentWidget_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	void customEvent(QEvent * event) { callbackQHelpContentWidget_CustomEvent(this, event); };
 	void deleteLater() { callbackQHelpContentWidget_DeleteLater(this); };
 	void disconnectNotify(const QMetaMethod & sign) { callbackQHelpContentWidget_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
-	bool event(QEvent * e) { return callbackQHelpContentWidget_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQHelpContentWidget_EventFilter(this, watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQHelpContentWidget_MetaObject(const_cast<MyQHelpContentWidget*>(this))); };
-	int metric(QPaintDevice::PaintDeviceMetric metric) const { return callbackQHelpContentWidget_Metric(const_cast<MyQHelpContentWidget*>(this), metric); };
-	QPaintEngine * paintEngine() const { return static_cast<QPaintEngine*>(callbackQHelpContentWidget_PaintEngine(const_cast<MyQHelpContentWidget*>(this))); };
 };
 
 void* QHelpContentWidget_IndexOf(void* ptr, void* link)
@@ -1036,6 +1067,10 @@ void QHelpContentWidget_SelectAllDefault(void* ptr)
 	static_cast<QHelpContentWidget*>(ptr)->QHelpContentWidget::selectAll();
 }
 
+
+
+
+
 void QHelpContentWidget_SelectionChanged(void* ptr, void* selected, void* deselected)
 {
 	static_cast<QHelpContentWidget*>(ptr)->selectionChanged(*static_cast<QItemSelection*>(selected), *static_cast<QItemSelection*>(deselected));
@@ -1256,6 +1291,16 @@ void QHelpContentWidget_EditorDestroyedDefault(void* ptr, void* editor)
 	static_cast<QHelpContentWidget*>(ptr)->QHelpContentWidget::editorDestroyed(static_cast<QObject*>(editor));
 }
 
+char QHelpContentWidget_Event(void* ptr, void* event)
+{
+	return static_cast<QHelpContentWidget*>(ptr)->event(static_cast<QEvent*>(event));
+}
+
+char QHelpContentWidget_EventDefault(void* ptr, void* event)
+{
+	return static_cast<QHelpContentWidget*>(ptr)->QHelpContentWidget::event(static_cast<QEvent*>(event));
+}
+
 void QHelpContentWidget_FocusInEvent(void* ptr, void* event)
 {
 	static_cast<QHelpContentWidget*>(ptr)->focusInEvent(static_cast<QFocusEvent*>(event));
@@ -1374,6 +1419,16 @@ void QHelpContentWidget_StartDrag(void* ptr, long long supportedActions)
 void QHelpContentWidget_StartDragDefault(void* ptr, long long supportedActions)
 {
 	static_cast<QHelpContentWidget*>(ptr)->QHelpContentWidget::startDrag(static_cast<Qt::DropAction>(supportedActions));
+}
+
+void QHelpContentWidget_TimerEvent(void* ptr, void* event)
+{
+	static_cast<QHelpContentWidget*>(ptr)->timerEvent(static_cast<QTimerEvent*>(event));
+}
+
+void QHelpContentWidget_TimerEventDefault(void* ptr, void* event)
+{
+	static_cast<QHelpContentWidget*>(ptr)->QHelpContentWidget::timerEvent(static_cast<QTimerEvent*>(event));
 }
 
 void QHelpContentWidget_Update(void* ptr, void* index)
@@ -1496,6 +1551,16 @@ void QHelpContentWidget_LeaveEventDefault(void* ptr, void* event)
 	static_cast<QHelpContentWidget*>(ptr)->QHelpContentWidget::leaveEvent(static_cast<QEvent*>(event));
 }
 
+int QHelpContentWidget_Metric(void* ptr, long long m)
+{
+	return static_cast<QHelpContentWidget*>(ptr)->metric(static_cast<QPaintDevice::PaintDeviceMetric>(m));
+}
+
+int QHelpContentWidget_MetricDefault(void* ptr, long long m)
+{
+	return static_cast<QHelpContentWidget*>(ptr)->QHelpContentWidget::metric(static_cast<QPaintDevice::PaintDeviceMetric>(m));
+}
+
 void QHelpContentWidget_MoveEvent(void* ptr, void* event)
 {
 	static_cast<QHelpContentWidget*>(ptr)->moveEvent(static_cast<QMoveEvent*>(event));
@@ -1504,6 +1569,16 @@ void QHelpContentWidget_MoveEvent(void* ptr, void* event)
 void QHelpContentWidget_MoveEventDefault(void* ptr, void* event)
 {
 	static_cast<QHelpContentWidget*>(ptr)->QHelpContentWidget::moveEvent(static_cast<QMoveEvent*>(event));
+}
+
+void* QHelpContentWidget_PaintEngine(void* ptr)
+{
+	return static_cast<QHelpContentWidget*>(ptr)->paintEngine();
+}
+
+void* QHelpContentWidget_PaintEngineDefault(void* ptr)
+{
+	return static_cast<QHelpContentWidget*>(ptr)->QHelpContentWidget::paintEngine();
 }
 
 void QHelpContentWidget_SetEnabled(void* ptr, char vbo)
@@ -1768,16 +1843,6 @@ void QHelpContentWidget_UpdateMicroFocusDefault(void* ptr)
 	static_cast<QHelpContentWidget*>(ptr)->QHelpContentWidget::updateMicroFocus();
 }
 
-void QHelpContentWidget_TimerEvent(void* ptr, void* event)
-{
-	static_cast<QHelpContentWidget*>(ptr)->timerEvent(static_cast<QTimerEvent*>(event));
-}
-
-void QHelpContentWidget_TimerEventDefault(void* ptr, void* event)
-{
-	static_cast<QHelpContentWidget*>(ptr)->QHelpContentWidget::timerEvent(static_cast<QTimerEvent*>(event));
-}
-
 void QHelpContentWidget_ChildEvent(void* ptr, void* event)
 {
 	static_cast<QHelpContentWidget*>(ptr)->childEvent(static_cast<QChildEvent*>(event));
@@ -1828,16 +1893,6 @@ void QHelpContentWidget_DisconnectNotifyDefault(void* ptr, void* sign)
 	static_cast<QHelpContentWidget*>(ptr)->QHelpContentWidget::disconnectNotify(*static_cast<QMetaMethod*>(sign));
 }
 
-char QHelpContentWidget_Event(void* ptr, void* e)
-{
-	return static_cast<QHelpContentWidget*>(ptr)->event(static_cast<QEvent*>(e));
-}
-
-char QHelpContentWidget_EventDefault(void* ptr, void* e)
-{
-	return static_cast<QHelpContentWidget*>(ptr)->QHelpContentWidget::event(static_cast<QEvent*>(e));
-}
-
 char QHelpContentWidget_EventFilter(void* ptr, void* watched, void* event)
 {
 	return static_cast<QHelpContentWidget*>(ptr)->eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
@@ -1856,26 +1911,6 @@ void* QHelpContentWidget_MetaObject(void* ptr)
 void* QHelpContentWidget_MetaObjectDefault(void* ptr)
 {
 	return const_cast<QMetaObject*>(static_cast<QHelpContentWidget*>(ptr)->QHelpContentWidget::metaObject());
-}
-
-int QHelpContentWidget_Metric(void* ptr, long long metric)
-{
-	return static_cast<QHelpContentWidget*>(ptr)->metric(static_cast<QPaintDevice::PaintDeviceMetric>(metric));
-}
-
-int QHelpContentWidget_MetricDefault(void* ptr, long long metric)
-{
-	return static_cast<QHelpContentWidget*>(ptr)->QHelpContentWidget::metric(static_cast<QPaintDevice::PaintDeviceMetric>(metric));
-}
-
-void* QHelpContentWidget_PaintEngine(void* ptr)
-{
-	return static_cast<QHelpContentWidget*>(ptr)->paintEngine();
-}
-
-void* QHelpContentWidget_PaintEngineDefault(void* ptr)
-{
-	return static_cast<QHelpContentWidget*>(ptr)->QHelpContentWidget::paintEngine();
 }
 
 void* QHelpEngine_NewQHelpEngine(char* collectionFile, void* parent)
@@ -2842,6 +2877,7 @@ public:
 	void dragLeaveEvent(QDragLeaveEvent * e) { callbackQHelpIndexWidget_DragLeaveEvent(this, e); };
 	void dragMoveEvent(QDragMoveEvent * e) { callbackQHelpIndexWidget_DragMoveEvent(this, e); };
 	void dropEvent(QDropEvent * e) { callbackQHelpIndexWidget_DropEvent(this, e); };
+	bool event(QEvent * e) { return callbackQHelpIndexWidget_Event(this, e) != 0; };
 	int horizontalOffset() const { return callbackQHelpIndexWidget_HorizontalOffset(const_cast<MyQHelpIndexWidget*>(this)); };
 	QModelIndex indexAt(const QPoint & p) const { return *static_cast<QModelIndex*>(callbackQHelpIndexWidget_IndexAt(const_cast<MyQHelpIndexWidget*>(this), const_cast<QPoint*>(&p))); };
 	bool isIndexHidden(const QModelIndex & index) const { return callbackQHelpIndexWidget_IsIndexHidden(const_cast<MyQHelpIndexWidget*>(this), const_cast<QModelIndex*>(&index)) != 0; };
@@ -2856,6 +2892,7 @@ public:
 	void selectionChanged(const QItemSelection & selected, const QItemSelection & deselected) { callbackQHelpIndexWidget_SelectionChanged(this, const_cast<QItemSelection*>(&selected), const_cast<QItemSelection*>(&deselected)); };
 	void setSelection(const QRect & rect, QItemSelectionModel::SelectionFlags command) { callbackQHelpIndexWidget_SetSelection(this, const_cast<QRect*>(&rect), command); };
 	void startDrag(Qt::DropActions supportedActions) { callbackQHelpIndexWidget_StartDrag(this, supportedActions); };
+	void timerEvent(QTimerEvent * e) { callbackQHelpIndexWidget_TimerEvent(this, e); };
 	void updateGeometries() { callbackQHelpIndexWidget_UpdateGeometries(this); };
 	int verticalOffset() const { return callbackQHelpIndexWidget_VerticalOffset(const_cast<MyQHelpIndexWidget*>(this)); };
 	QStyleOptionViewItem viewOptions() const { return *static_cast<QStyleOptionViewItem*>(callbackQHelpIndexWidget_ViewOptions(const_cast<MyQHelpIndexWidget*>(this))); };
@@ -2902,7 +2939,9 @@ public:
 	void enterEvent(QEvent * event) { callbackQHelpIndexWidget_EnterEvent(this, event); };
 	void hideEvent(QHideEvent * event) { callbackQHelpIndexWidget_HideEvent(this, event); };
 	void leaveEvent(QEvent * event) { callbackQHelpIndexWidget_LeaveEvent(this, event); };
+	int metric(QPaintDevice::PaintDeviceMetric m) const { return callbackQHelpIndexWidget_Metric(const_cast<MyQHelpIndexWidget*>(this), m); };
 	void moveEvent(QMoveEvent * event) { callbackQHelpIndexWidget_MoveEvent(this, event); };
+	QPaintEngine * paintEngine() const { return static_cast<QPaintEngine*>(callbackQHelpIndexWidget_PaintEngine(const_cast<MyQHelpIndexWidget*>(this))); };
 	void setEnabled(bool vbo) { callbackQHelpIndexWidget_SetEnabled(this, vbo); };
 	void setStyleSheet(const QString & styleSheet) { QByteArray t728ae7 = styleSheet.toUtf8(); QtHelp_PackedString styleSheetPacked = { const_cast<char*>(t728ae7.prepend("WHITESPACE").constData()+10), t728ae7.size()-10 };callbackQHelpIndexWidget_SetStyleSheet(this, styleSheetPacked); };
 	void setVisible(bool visible) { callbackQHelpIndexWidget_SetVisible(this, visible); };
@@ -2929,17 +2968,13 @@ public:
 	void showNormal() { callbackQHelpIndexWidget_ShowNormal(this); };
 	void tabletEvent(QTabletEvent * event) { callbackQHelpIndexWidget_TabletEvent(this, event); };
 	void updateMicroFocus() { callbackQHelpIndexWidget_UpdateMicroFocus(this); };
-	void timerEvent(QTimerEvent * event) { callbackQHelpIndexWidget_TimerEvent(this, event); };
 	void childEvent(QChildEvent * event) { callbackQHelpIndexWidget_ChildEvent(this, event); };
 	void connectNotify(const QMetaMethod & sign) { callbackQHelpIndexWidget_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	void customEvent(QEvent * event) { callbackQHelpIndexWidget_CustomEvent(this, event); };
 	void deleteLater() { callbackQHelpIndexWidget_DeleteLater(this); };
 	void disconnectNotify(const QMetaMethod & sign) { callbackQHelpIndexWidget_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
-	bool event(QEvent * e) { return callbackQHelpIndexWidget_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQHelpIndexWidget_EventFilter(this, watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQHelpIndexWidget_MetaObject(const_cast<MyQHelpIndexWidget*>(this))); };
-	int metric(QPaintDevice::PaintDeviceMetric metric) const { return callbackQHelpIndexWidget_Metric(const_cast<MyQHelpIndexWidget*>(this), metric); };
-	QPaintEngine * paintEngine() const { return static_cast<QPaintEngine*>(callbackQHelpIndexWidget_PaintEngine(const_cast<MyQHelpIndexWidget*>(this))); };
 };
 
 void QHelpIndexWidget_ActivateCurrentItem(void* ptr)
@@ -3005,6 +3040,16 @@ void QHelpIndexWidget_DropEvent(void* ptr, void* e)
 void QHelpIndexWidget_DropEventDefault(void* ptr, void* e)
 {
 	static_cast<QHelpIndexWidget*>(ptr)->QHelpIndexWidget::dropEvent(static_cast<QDropEvent*>(e));
+}
+
+char QHelpIndexWidget_Event(void* ptr, void* e)
+{
+	return static_cast<QHelpIndexWidget*>(ptr)->event(static_cast<QEvent*>(e));
+}
+
+char QHelpIndexWidget_EventDefault(void* ptr, void* e)
+{
+	return static_cast<QHelpIndexWidget*>(ptr)->QHelpIndexWidget::event(static_cast<QEvent*>(e));
 }
 
 int QHelpIndexWidget_HorizontalOffset(void* ptr)
@@ -3145,6 +3190,16 @@ void QHelpIndexWidget_StartDrag(void* ptr, long long supportedActions)
 void QHelpIndexWidget_StartDragDefault(void* ptr, long long supportedActions)
 {
 	static_cast<QHelpIndexWidget*>(ptr)->QHelpIndexWidget::startDrag(static_cast<Qt::DropAction>(supportedActions));
+}
+
+void QHelpIndexWidget_TimerEvent(void* ptr, void* e)
+{
+	static_cast<QHelpIndexWidget*>(ptr)->timerEvent(static_cast<QTimerEvent*>(e));
+}
+
+void QHelpIndexWidget_TimerEventDefault(void* ptr, void* e)
+{
+	static_cast<QHelpIndexWidget*>(ptr)->QHelpIndexWidget::timerEvent(static_cast<QTimerEvent*>(e));
 }
 
 void QHelpIndexWidget_UpdateGeometries(void* ptr)
@@ -3607,6 +3662,16 @@ void QHelpIndexWidget_LeaveEventDefault(void* ptr, void* event)
 	static_cast<QHelpIndexWidget*>(ptr)->QHelpIndexWidget::leaveEvent(static_cast<QEvent*>(event));
 }
 
+int QHelpIndexWidget_Metric(void* ptr, long long m)
+{
+	return static_cast<QHelpIndexWidget*>(ptr)->metric(static_cast<QPaintDevice::PaintDeviceMetric>(m));
+}
+
+int QHelpIndexWidget_MetricDefault(void* ptr, long long m)
+{
+	return static_cast<QHelpIndexWidget*>(ptr)->QHelpIndexWidget::metric(static_cast<QPaintDevice::PaintDeviceMetric>(m));
+}
+
 void QHelpIndexWidget_MoveEvent(void* ptr, void* event)
 {
 	static_cast<QHelpIndexWidget*>(ptr)->moveEvent(static_cast<QMoveEvent*>(event));
@@ -3615,6 +3680,16 @@ void QHelpIndexWidget_MoveEvent(void* ptr, void* event)
 void QHelpIndexWidget_MoveEventDefault(void* ptr, void* event)
 {
 	static_cast<QHelpIndexWidget*>(ptr)->QHelpIndexWidget::moveEvent(static_cast<QMoveEvent*>(event));
+}
+
+void* QHelpIndexWidget_PaintEngine(void* ptr)
+{
+	return static_cast<QHelpIndexWidget*>(ptr)->paintEngine();
+}
+
+void* QHelpIndexWidget_PaintEngineDefault(void* ptr)
+{
+	return static_cast<QHelpIndexWidget*>(ptr)->QHelpIndexWidget::paintEngine();
 }
 
 void QHelpIndexWidget_SetEnabled(void* ptr, char vbo)
@@ -3879,16 +3954,6 @@ void QHelpIndexWidget_UpdateMicroFocusDefault(void* ptr)
 	static_cast<QHelpIndexWidget*>(ptr)->QHelpIndexWidget::updateMicroFocus();
 }
 
-void QHelpIndexWidget_TimerEvent(void* ptr, void* event)
-{
-	static_cast<QHelpIndexWidget*>(ptr)->timerEvent(static_cast<QTimerEvent*>(event));
-}
-
-void QHelpIndexWidget_TimerEventDefault(void* ptr, void* event)
-{
-	static_cast<QHelpIndexWidget*>(ptr)->QHelpIndexWidget::timerEvent(static_cast<QTimerEvent*>(event));
-}
-
 void QHelpIndexWidget_ChildEvent(void* ptr, void* event)
 {
 	static_cast<QHelpIndexWidget*>(ptr)->childEvent(static_cast<QChildEvent*>(event));
@@ -3939,16 +4004,6 @@ void QHelpIndexWidget_DisconnectNotifyDefault(void* ptr, void* sign)
 	static_cast<QHelpIndexWidget*>(ptr)->QHelpIndexWidget::disconnectNotify(*static_cast<QMetaMethod*>(sign));
 }
 
-char QHelpIndexWidget_Event(void* ptr, void* e)
-{
-	return static_cast<QHelpIndexWidget*>(ptr)->event(static_cast<QEvent*>(e));
-}
-
-char QHelpIndexWidget_EventDefault(void* ptr, void* e)
-{
-	return static_cast<QHelpIndexWidget*>(ptr)->QHelpIndexWidget::event(static_cast<QEvent*>(e));
-}
-
 char QHelpIndexWidget_EventFilter(void* ptr, void* watched, void* event)
 {
 	return static_cast<QHelpIndexWidget*>(ptr)->eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
@@ -3967,26 +4022,6 @@ void* QHelpIndexWidget_MetaObject(void* ptr)
 void* QHelpIndexWidget_MetaObjectDefault(void* ptr)
 {
 	return const_cast<QMetaObject*>(static_cast<QHelpIndexWidget*>(ptr)->QHelpIndexWidget::metaObject());
-}
-
-int QHelpIndexWidget_Metric(void* ptr, long long metric)
-{
-	return static_cast<QHelpIndexWidget*>(ptr)->metric(static_cast<QPaintDevice::PaintDeviceMetric>(metric));
-}
-
-int QHelpIndexWidget_MetricDefault(void* ptr, long long metric)
-{
-	return static_cast<QHelpIndexWidget*>(ptr)->QHelpIndexWidget::metric(static_cast<QPaintDevice::PaintDeviceMetric>(metric));
-}
-
-void* QHelpIndexWidget_PaintEngine(void* ptr)
-{
-	return static_cast<QHelpIndexWidget*>(ptr)->paintEngine();
-}
-
-void* QHelpIndexWidget_PaintEngineDefault(void* ptr)
-{
-	return static_cast<QHelpIndexWidget*>(ptr)->QHelpIndexWidget::paintEngine();
 }
 
 class MyQHelpSearchEngine: public QHelpSearchEngine
@@ -4251,8 +4286,10 @@ public:
 	void focusOutEvent(QFocusEvent * event) { callbackQHelpSearchQueryWidget_FocusOutEvent(this, event); };
 	void hideEvent(QHideEvent * event) { callbackQHelpSearchQueryWidget_HideEvent(this, event); };
 	void leaveEvent(QEvent * event) { callbackQHelpSearchQueryWidget_LeaveEvent(this, event); };
+	int metric(QPaintDevice::PaintDeviceMetric m) const { return callbackQHelpSearchQueryWidget_Metric(const_cast<MyQHelpSearchQueryWidget*>(this), m); };
 	QSize minimumSizeHint() const { return *static_cast<QSize*>(callbackQHelpSearchQueryWidget_MinimumSizeHint(const_cast<MyQHelpSearchQueryWidget*>(this))); };
 	void moveEvent(QMoveEvent * event) { callbackQHelpSearchQueryWidget_MoveEvent(this, event); };
+	QPaintEngine * paintEngine() const { return static_cast<QPaintEngine*>(callbackQHelpSearchQueryWidget_PaintEngine(const_cast<MyQHelpSearchQueryWidget*>(this))); };
 	void paintEvent(QPaintEvent * event) { callbackQHelpSearchQueryWidget_PaintEvent(this, event); };
 	void setEnabled(bool vbo) { callbackQHelpSearchQueryWidget_SetEnabled(this, vbo); };
 	void setStyleSheet(const QString & styleSheet) { QByteArray t728ae7 = styleSheet.toUtf8(); QtHelp_PackedString styleSheetPacked = { const_cast<char*>(t728ae7.prepend("WHITESPACE").constData()+10), t728ae7.size()-10 };callbackQHelpSearchQueryWidget_SetStyleSheet(this, styleSheetPacked); };
@@ -4265,6 +4302,7 @@ public:
 	bool close() { return callbackQHelpSearchQueryWidget_Close(this) != 0; };
 	void closeEvent(QCloseEvent * event) { callbackQHelpSearchQueryWidget_CloseEvent(this, event); };
 	void contextMenuEvent(QContextMenuEvent * event) { callbackQHelpSearchQueryWidget_ContextMenuEvent(this, event); };
+	bool event(QEvent * event) { return callbackQHelpSearchQueryWidget_Event(this, event) != 0; };
 	bool focusNextPrevChild(bool next) { return callbackQHelpSearchQueryWidget_FocusNextPrevChild(this, next) != 0; };
 	bool hasHeightForWidth() const { return callbackQHelpSearchQueryWidget_HasHeightForWidth(const_cast<MyQHelpSearchQueryWidget*>(this)) != 0; };
 	int heightForWidth(int w) const { return callbackQHelpSearchQueryWidget_HeightForWidth(const_cast<MyQHelpSearchQueryWidget*>(this), w); };
@@ -4300,11 +4338,8 @@ public:
 	void customEvent(QEvent * event) { callbackQHelpSearchQueryWidget_CustomEvent(this, event); };
 	void deleteLater() { callbackQHelpSearchQueryWidget_DeleteLater(this); };
 	void disconnectNotify(const QMetaMethod & sign) { callbackQHelpSearchQueryWidget_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
-	bool event(QEvent * e) { return callbackQHelpSearchQueryWidget_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQHelpSearchQueryWidget_EventFilter(this, watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQHelpSearchQueryWidget_MetaObject(const_cast<MyQHelpSearchQueryWidget*>(this))); };
-	int metric(QPaintDevice::PaintDeviceMetric metric) const { return callbackQHelpSearchQueryWidget_Metric(const_cast<MyQHelpSearchQueryWidget*>(this), metric); };
-	QPaintEngine * paintEngine() const { return static_cast<QPaintEngine*>(callbackQHelpSearchQueryWidget_PaintEngine(const_cast<MyQHelpSearchQueryWidget*>(this))); };
 };
 
 char QHelpSearchQueryWidget_IsCompactMode(void* ptr)
@@ -4452,6 +4487,16 @@ void QHelpSearchQueryWidget_LeaveEventDefault(void* ptr, void* event)
 	static_cast<QHelpSearchQueryWidget*>(ptr)->QHelpSearchQueryWidget::leaveEvent(static_cast<QEvent*>(event));
 }
 
+int QHelpSearchQueryWidget_Metric(void* ptr, long long m)
+{
+	return static_cast<QHelpSearchQueryWidget*>(ptr)->metric(static_cast<QPaintDevice::PaintDeviceMetric>(m));
+}
+
+int QHelpSearchQueryWidget_MetricDefault(void* ptr, long long m)
+{
+	return static_cast<QHelpSearchQueryWidget*>(ptr)->QHelpSearchQueryWidget::metric(static_cast<QPaintDevice::PaintDeviceMetric>(m));
+}
+
 void* QHelpSearchQueryWidget_MinimumSizeHint(void* ptr)
 {
 	return ({ QSize tmpValue = static_cast<QHelpSearchQueryWidget*>(ptr)->minimumSizeHint(); new QSize(tmpValue.width(), tmpValue.height()); });
@@ -4470,6 +4515,16 @@ void QHelpSearchQueryWidget_MoveEvent(void* ptr, void* event)
 void QHelpSearchQueryWidget_MoveEventDefault(void* ptr, void* event)
 {
 	static_cast<QHelpSearchQueryWidget*>(ptr)->QHelpSearchQueryWidget::moveEvent(static_cast<QMoveEvent*>(event));
+}
+
+void* QHelpSearchQueryWidget_PaintEngine(void* ptr)
+{
+	return static_cast<QHelpSearchQueryWidget*>(ptr)->paintEngine();
+}
+
+void* QHelpSearchQueryWidget_PaintEngineDefault(void* ptr)
+{
+	return static_cast<QHelpSearchQueryWidget*>(ptr)->QHelpSearchQueryWidget::paintEngine();
 }
 
 void QHelpSearchQueryWidget_PaintEvent(void* ptr, void* event)
@@ -4592,6 +4647,16 @@ void QHelpSearchQueryWidget_ContextMenuEvent(void* ptr, void* event)
 void QHelpSearchQueryWidget_ContextMenuEventDefault(void* ptr, void* event)
 {
 	static_cast<QHelpSearchQueryWidget*>(ptr)->QHelpSearchQueryWidget::contextMenuEvent(static_cast<QContextMenuEvent*>(event));
+}
+
+char QHelpSearchQueryWidget_Event(void* ptr, void* event)
+{
+	return static_cast<QHelpSearchQueryWidget*>(ptr)->event(static_cast<QEvent*>(event));
+}
+
+char QHelpSearchQueryWidget_EventDefault(void* ptr, void* event)
+{
+	return static_cast<QHelpSearchQueryWidget*>(ptr)->QHelpSearchQueryWidget::event(static_cast<QEvent*>(event));
 }
 
 char QHelpSearchQueryWidget_FocusNextPrevChild(void* ptr, char next)
@@ -4944,16 +5009,6 @@ void QHelpSearchQueryWidget_DisconnectNotifyDefault(void* ptr, void* sign)
 	static_cast<QHelpSearchQueryWidget*>(ptr)->QHelpSearchQueryWidget::disconnectNotify(*static_cast<QMetaMethod*>(sign));
 }
 
-char QHelpSearchQueryWidget_Event(void* ptr, void* e)
-{
-	return static_cast<QHelpSearchQueryWidget*>(ptr)->event(static_cast<QEvent*>(e));
-}
-
-char QHelpSearchQueryWidget_EventDefault(void* ptr, void* e)
-{
-	return static_cast<QHelpSearchQueryWidget*>(ptr)->QHelpSearchQueryWidget::event(static_cast<QEvent*>(e));
-}
-
 char QHelpSearchQueryWidget_EventFilter(void* ptr, void* watched, void* event)
 {
 	return static_cast<QHelpSearchQueryWidget*>(ptr)->eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
@@ -4974,26 +5029,6 @@ void* QHelpSearchQueryWidget_MetaObjectDefault(void* ptr)
 	return const_cast<QMetaObject*>(static_cast<QHelpSearchQueryWidget*>(ptr)->QHelpSearchQueryWidget::metaObject());
 }
 
-int QHelpSearchQueryWidget_Metric(void* ptr, long long metric)
-{
-	return static_cast<QHelpSearchQueryWidget*>(ptr)->metric(static_cast<QPaintDevice::PaintDeviceMetric>(metric));
-}
-
-int QHelpSearchQueryWidget_MetricDefault(void* ptr, long long metric)
-{
-	return static_cast<QHelpSearchQueryWidget*>(ptr)->QHelpSearchQueryWidget::metric(static_cast<QPaintDevice::PaintDeviceMetric>(metric));
-}
-
-void* QHelpSearchQueryWidget_PaintEngine(void* ptr)
-{
-	return static_cast<QHelpSearchQueryWidget*>(ptr)->paintEngine();
-}
-
-void* QHelpSearchQueryWidget_PaintEngineDefault(void* ptr)
-{
-	return static_cast<QHelpSearchQueryWidget*>(ptr)->QHelpSearchQueryWidget::paintEngine();
-}
-
 class MyQHelpSearchResultWidget: public QHelpSearchResultWidget
 {
 public:
@@ -5008,8 +5043,10 @@ public:
 	void focusOutEvent(QFocusEvent * event) { callbackQHelpSearchResultWidget_FocusOutEvent(this, event); };
 	void hideEvent(QHideEvent * event) { callbackQHelpSearchResultWidget_HideEvent(this, event); };
 	void leaveEvent(QEvent * event) { callbackQHelpSearchResultWidget_LeaveEvent(this, event); };
+	int metric(QPaintDevice::PaintDeviceMetric m) const { return callbackQHelpSearchResultWidget_Metric(const_cast<MyQHelpSearchResultWidget*>(this), m); };
 	QSize minimumSizeHint() const { return *static_cast<QSize*>(callbackQHelpSearchResultWidget_MinimumSizeHint(const_cast<MyQHelpSearchResultWidget*>(this))); };
 	void moveEvent(QMoveEvent * event) { callbackQHelpSearchResultWidget_MoveEvent(this, event); };
+	QPaintEngine * paintEngine() const { return static_cast<QPaintEngine*>(callbackQHelpSearchResultWidget_PaintEngine(const_cast<MyQHelpSearchResultWidget*>(this))); };
 	void paintEvent(QPaintEvent * event) { callbackQHelpSearchResultWidget_PaintEvent(this, event); };
 	void setEnabled(bool vbo) { callbackQHelpSearchResultWidget_SetEnabled(this, vbo); };
 	void setStyleSheet(const QString & styleSheet) { QByteArray t728ae7 = styleSheet.toUtf8(); QtHelp_PackedString styleSheetPacked = { const_cast<char*>(t728ae7.prepend("WHITESPACE").constData()+10), t728ae7.size()-10 };callbackQHelpSearchResultWidget_SetStyleSheet(this, styleSheetPacked); };
@@ -5022,6 +5059,7 @@ public:
 	bool close() { return callbackQHelpSearchResultWidget_Close(this) != 0; };
 	void closeEvent(QCloseEvent * event) { callbackQHelpSearchResultWidget_CloseEvent(this, event); };
 	void contextMenuEvent(QContextMenuEvent * event) { callbackQHelpSearchResultWidget_ContextMenuEvent(this, event); };
+	bool event(QEvent * event) { return callbackQHelpSearchResultWidget_Event(this, event) != 0; };
 	bool focusNextPrevChild(bool next) { return callbackQHelpSearchResultWidget_FocusNextPrevChild(this, next) != 0; };
 	bool hasHeightForWidth() const { return callbackQHelpSearchResultWidget_HasHeightForWidth(const_cast<MyQHelpSearchResultWidget*>(this)) != 0; };
 	int heightForWidth(int w) const { return callbackQHelpSearchResultWidget_HeightForWidth(const_cast<MyQHelpSearchResultWidget*>(this), w); };
@@ -5057,11 +5095,8 @@ public:
 	void customEvent(QEvent * event) { callbackQHelpSearchResultWidget_CustomEvent(this, event); };
 	void deleteLater() { callbackQHelpSearchResultWidget_DeleteLater(this); };
 	void disconnectNotify(const QMetaMethod & sign) { callbackQHelpSearchResultWidget_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
-	bool event(QEvent * e) { return callbackQHelpSearchResultWidget_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQHelpSearchResultWidget_EventFilter(this, watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQHelpSearchResultWidget_MetaObject(const_cast<MyQHelpSearchResultWidget*>(this))); };
-	int metric(QPaintDevice::PaintDeviceMetric metric) const { return callbackQHelpSearchResultWidget_Metric(const_cast<MyQHelpSearchResultWidget*>(this), metric); };
-	QPaintEngine * paintEngine() const { return static_cast<QPaintEngine*>(callbackQHelpSearchResultWidget_PaintEngine(const_cast<MyQHelpSearchResultWidget*>(this))); };
 };
 
 void* QHelpSearchResultWidget_LinkAt(void* ptr, void* point)
@@ -5189,6 +5224,16 @@ void QHelpSearchResultWidget_LeaveEventDefault(void* ptr, void* event)
 	static_cast<QHelpSearchResultWidget*>(ptr)->QHelpSearchResultWidget::leaveEvent(static_cast<QEvent*>(event));
 }
 
+int QHelpSearchResultWidget_Metric(void* ptr, long long m)
+{
+	return static_cast<QHelpSearchResultWidget*>(ptr)->metric(static_cast<QPaintDevice::PaintDeviceMetric>(m));
+}
+
+int QHelpSearchResultWidget_MetricDefault(void* ptr, long long m)
+{
+	return static_cast<QHelpSearchResultWidget*>(ptr)->QHelpSearchResultWidget::metric(static_cast<QPaintDevice::PaintDeviceMetric>(m));
+}
+
 void* QHelpSearchResultWidget_MinimumSizeHint(void* ptr)
 {
 	return ({ QSize tmpValue = static_cast<QHelpSearchResultWidget*>(ptr)->minimumSizeHint(); new QSize(tmpValue.width(), tmpValue.height()); });
@@ -5207,6 +5252,16 @@ void QHelpSearchResultWidget_MoveEvent(void* ptr, void* event)
 void QHelpSearchResultWidget_MoveEventDefault(void* ptr, void* event)
 {
 	static_cast<QHelpSearchResultWidget*>(ptr)->QHelpSearchResultWidget::moveEvent(static_cast<QMoveEvent*>(event));
+}
+
+void* QHelpSearchResultWidget_PaintEngine(void* ptr)
+{
+	return static_cast<QHelpSearchResultWidget*>(ptr)->paintEngine();
+}
+
+void* QHelpSearchResultWidget_PaintEngineDefault(void* ptr)
+{
+	return static_cast<QHelpSearchResultWidget*>(ptr)->QHelpSearchResultWidget::paintEngine();
 }
 
 void QHelpSearchResultWidget_PaintEvent(void* ptr, void* event)
@@ -5329,6 +5384,16 @@ void QHelpSearchResultWidget_ContextMenuEvent(void* ptr, void* event)
 void QHelpSearchResultWidget_ContextMenuEventDefault(void* ptr, void* event)
 {
 	static_cast<QHelpSearchResultWidget*>(ptr)->QHelpSearchResultWidget::contextMenuEvent(static_cast<QContextMenuEvent*>(event));
+}
+
+char QHelpSearchResultWidget_Event(void* ptr, void* event)
+{
+	return static_cast<QHelpSearchResultWidget*>(ptr)->event(static_cast<QEvent*>(event));
+}
+
+char QHelpSearchResultWidget_EventDefault(void* ptr, void* event)
+{
+	return static_cast<QHelpSearchResultWidget*>(ptr)->QHelpSearchResultWidget::event(static_cast<QEvent*>(event));
 }
 
 char QHelpSearchResultWidget_FocusNextPrevChild(void* ptr, char next)
@@ -5681,16 +5746,6 @@ void QHelpSearchResultWidget_DisconnectNotifyDefault(void* ptr, void* sign)
 	static_cast<QHelpSearchResultWidget*>(ptr)->QHelpSearchResultWidget::disconnectNotify(*static_cast<QMetaMethod*>(sign));
 }
 
-char QHelpSearchResultWidget_Event(void* ptr, void* e)
-{
-	return static_cast<QHelpSearchResultWidget*>(ptr)->event(static_cast<QEvent*>(e));
-}
-
-char QHelpSearchResultWidget_EventDefault(void* ptr, void* e)
-{
-	return static_cast<QHelpSearchResultWidget*>(ptr)->QHelpSearchResultWidget::event(static_cast<QEvent*>(e));
-}
-
 char QHelpSearchResultWidget_EventFilter(void* ptr, void* watched, void* event)
 {
 	return static_cast<QHelpSearchResultWidget*>(ptr)->eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
@@ -5709,25 +5764,5 @@ void* QHelpSearchResultWidget_MetaObject(void* ptr)
 void* QHelpSearchResultWidget_MetaObjectDefault(void* ptr)
 {
 	return const_cast<QMetaObject*>(static_cast<QHelpSearchResultWidget*>(ptr)->QHelpSearchResultWidget::metaObject());
-}
-
-int QHelpSearchResultWidget_Metric(void* ptr, long long metric)
-{
-	return static_cast<QHelpSearchResultWidget*>(ptr)->metric(static_cast<QPaintDevice::PaintDeviceMetric>(metric));
-}
-
-int QHelpSearchResultWidget_MetricDefault(void* ptr, long long metric)
-{
-	return static_cast<QHelpSearchResultWidget*>(ptr)->QHelpSearchResultWidget::metric(static_cast<QPaintDevice::PaintDeviceMetric>(metric));
-}
-
-void* QHelpSearchResultWidget_PaintEngine(void* ptr)
-{
-	return static_cast<QHelpSearchResultWidget*>(ptr)->paintEngine();
-}
-
-void* QHelpSearchResultWidget_PaintEngineDefault(void* ptr)
-{
-	return static_cast<QHelpSearchResultWidget*>(ptr)->QHelpSearchResultWidget::paintEngine();
 }
 

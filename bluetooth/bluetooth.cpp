@@ -1414,6 +1414,7 @@ public:
 	qint64 bytesToWrite() const { return callbackQBluetoothSocket_BytesToWrite(const_cast<MyQBluetoothSocket*>(this)); };
 	bool canReadLine() const { return callbackQBluetoothSocket_CanReadLine(const_cast<MyQBluetoothSocket*>(this)) != 0; };
 	void close() { callbackQBluetoothSocket_Close(this); };
+	bool isSequential() const { return callbackQBluetoothSocket_IsSequential(const_cast<MyQBluetoothSocket*>(this)) != 0; };
 	qint64 writeData(const char * data, qint64 maxSize) { QtBluetooth_PackedString dataPacked = { const_cast<char*>(data), maxSize };return callbackQBluetoothSocket_WriteData(this, dataPacked, maxSize); };
 	 ~MyQBluetoothSocket() { callbackQBluetoothSocket_DestroyQBluetoothSocket(this); };
 	bool atEnd() const { return callbackQBluetoothSocket_AtEnd(const_cast<MyQBluetoothSocket*>(this)) != 0; };
@@ -1589,6 +1590,11 @@ struct QtBluetooth_PackedString QBluetoothSocket_ErrorString(void* ptr)
 char QBluetoothSocket_IsSequential(void* ptr)
 {
 	return static_cast<QBluetoothSocket*>(ptr)->isSequential();
+}
+
+char QBluetoothSocket_IsSequentialDefault(void* ptr)
+{
+	return static_cast<QBluetoothSocket*>(ptr)->QBluetoothSocket::isSequential();
 }
 
 void* QBluetoothSocket_LocalAddress(void* ptr)

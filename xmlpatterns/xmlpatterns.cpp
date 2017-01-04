@@ -514,6 +514,8 @@ class MyQSimpleXmlNodeModel: public QSimpleXmlNodeModel
 public:
 	QUrl baseUri(const QXmlNodeModelIndex & node) const { return *static_cast<QUrl*>(callbackQSimpleXmlNodeModel_BaseUri(const_cast<MyQSimpleXmlNodeModel*>(this), const_cast<QXmlNodeModelIndex*>(&node))); };
 	QXmlNodeModelIndex elementById(const QXmlName & id) const { return *static_cast<QXmlNodeModelIndex*>(callbackQSimpleXmlNodeModel_ElementById(const_cast<MyQSimpleXmlNodeModel*>(this), const_cast<QXmlName*>(&id))); };
+	
+	
 	QString stringValue(const QXmlNodeModelIndex & node) const { return QString(callbackQSimpleXmlNodeModel_StringValue(const_cast<MyQSimpleXmlNodeModel*>(this), const_cast<QXmlNodeModelIndex*>(&node))); };
 	 ~MyQSimpleXmlNodeModel() { callbackQSimpleXmlNodeModel_DestroyQSimpleXmlNodeModel(this); };
 	
@@ -556,9 +558,19 @@ struct QtXmlPatterns_PackedList QSimpleXmlNodeModel_NamespaceBindings(void* ptr,
 	return ({ QVector<QXmlName>* tmpValue = new QVector<QXmlName>(static_cast<QSimpleXmlNodeModel*>(ptr)->namespaceBindings(*static_cast<QXmlNodeModelIndex*>(node))); QtXmlPatterns_PackedList { tmpValue, tmpValue->size() }; });
 }
 
+struct QtXmlPatterns_PackedList QSimpleXmlNodeModel_NamespaceBindingsDefault(void* ptr, void* node)
+{
+	return ({ QVector<QXmlName>* tmpValue = new QVector<QXmlName>(static_cast<QSimpleXmlNodeModel*>(ptr)->QSimpleXmlNodeModel::namespaceBindings(*static_cast<QXmlNodeModelIndex*>(node))); QtXmlPatterns_PackedList { tmpValue, tmpValue->size() }; });
+}
+
 struct QtXmlPatterns_PackedList QSimpleXmlNodeModel_NodesByIdref(void* ptr, void* idref)
 {
 	return ({ QVector<QXmlNodeModelIndex>* tmpValue = new QVector<QXmlNodeModelIndex>(static_cast<QSimpleXmlNodeModel*>(ptr)->nodesByIdref(*static_cast<QXmlName*>(idref))); QtXmlPatterns_PackedList { tmpValue, tmpValue->size() }; });
+}
+
+struct QtXmlPatterns_PackedList QSimpleXmlNodeModel_NodesByIdrefDefault(void* ptr, void* idref)
+{
+	return ({ QVector<QXmlNodeModelIndex>* tmpValue = new QVector<QXmlNodeModelIndex>(static_cast<QSimpleXmlNodeModel*>(ptr)->QSimpleXmlNodeModel::nodesByIdref(*static_cast<QXmlName*>(idref))); QtXmlPatterns_PackedList { tmpValue, tmpValue->size() }; });
 }
 
 struct QtXmlPatterns_PackedString QSimpleXmlNodeModel_StringValue(void* ptr, void* node)

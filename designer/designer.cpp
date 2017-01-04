@@ -262,8 +262,10 @@ public:
 	void focusOutEvent(QFocusEvent * event) { callbackQDesignerActionEditorInterface_FocusOutEvent(this, event); };
 	void hideEvent(QHideEvent * event) { callbackQDesignerActionEditorInterface_HideEvent(this, event); };
 	void leaveEvent(QEvent * event) { callbackQDesignerActionEditorInterface_LeaveEvent(this, event); };
+	int metric(QPaintDevice::PaintDeviceMetric m) const { return callbackQDesignerActionEditorInterface_Metric(const_cast<MyQDesignerActionEditorInterface*>(this), m); };
 	QSize minimumSizeHint() const { return *static_cast<QSize*>(callbackQDesignerActionEditorInterface_MinimumSizeHint(const_cast<MyQDesignerActionEditorInterface*>(this))); };
 	void moveEvent(QMoveEvent * event) { callbackQDesignerActionEditorInterface_MoveEvent(this, event); };
+	QPaintEngine * paintEngine() const { return static_cast<QPaintEngine*>(callbackQDesignerActionEditorInterface_PaintEngine(const_cast<MyQDesignerActionEditorInterface*>(this))); };
 	void paintEvent(QPaintEvent * event) { callbackQDesignerActionEditorInterface_PaintEvent(this, event); };
 	void setEnabled(bool vbo) { callbackQDesignerActionEditorInterface_SetEnabled(this, vbo); };
 	void setStyleSheet(const QString & styleSheet) { QByteArray t728ae7 = styleSheet.toUtf8(); QtDesigner_PackedString styleSheetPacked = { const_cast<char*>(t728ae7.prepend("WHITESPACE").constData()+10), t728ae7.size()-10 };callbackQDesignerActionEditorInterface_SetStyleSheet(this, styleSheetPacked); };
@@ -276,6 +278,7 @@ public:
 	bool close() { return callbackQDesignerActionEditorInterface_Close(this) != 0; };
 	void closeEvent(QCloseEvent * event) { callbackQDesignerActionEditorInterface_CloseEvent(this, event); };
 	void contextMenuEvent(QContextMenuEvent * event) { callbackQDesignerActionEditorInterface_ContextMenuEvent(this, event); };
+	bool event(QEvent * event) { return callbackQDesignerActionEditorInterface_Event(this, event) != 0; };
 	bool focusNextPrevChild(bool next) { return callbackQDesignerActionEditorInterface_FocusNextPrevChild(this, next) != 0; };
 	bool hasHeightForWidth() const { return callbackQDesignerActionEditorInterface_HasHeightForWidth(const_cast<MyQDesignerActionEditorInterface*>(this)) != 0; };
 	int heightForWidth(int w) const { return callbackQDesignerActionEditorInterface_HeightForWidth(const_cast<MyQDesignerActionEditorInterface*>(this), w); };
@@ -311,11 +314,8 @@ public:
 	void customEvent(QEvent * event) { callbackQDesignerActionEditorInterface_CustomEvent(this, event); };
 	void deleteLater() { callbackQDesignerActionEditorInterface_DeleteLater(this); };
 	void disconnectNotify(const QMetaMethod & sign) { callbackQDesignerActionEditorInterface_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
-	bool event(QEvent * e) { return callbackQDesignerActionEditorInterface_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQDesignerActionEditorInterface_EventFilter(this, watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQDesignerActionEditorInterface_MetaObject(const_cast<MyQDesignerActionEditorInterface*>(this))); };
-	int metric(QPaintDevice::PaintDeviceMetric metric) const { return callbackQDesignerActionEditorInterface_Metric(const_cast<MyQDesignerActionEditorInterface*>(this), metric); };
-	QPaintEngine * paintEngine() const { return static_cast<QPaintEngine*>(callbackQDesignerActionEditorInterface_PaintEngine(const_cast<MyQDesignerActionEditorInterface*>(this))); };
 };
 
 void* QDesignerActionEditorInterface_NewQDesignerActionEditorInterface(void* parent, long long flags)
@@ -458,6 +458,16 @@ void QDesignerActionEditorInterface_LeaveEventDefault(void* ptr, void* event)
 	static_cast<QDesignerActionEditorInterface*>(ptr)->QDesignerActionEditorInterface::leaveEvent(static_cast<QEvent*>(event));
 }
 
+int QDesignerActionEditorInterface_Metric(void* ptr, long long m)
+{
+	return static_cast<QDesignerActionEditorInterface*>(ptr)->metric(static_cast<QPaintDevice::PaintDeviceMetric>(m));
+}
+
+int QDesignerActionEditorInterface_MetricDefault(void* ptr, long long m)
+{
+	return static_cast<QDesignerActionEditorInterface*>(ptr)->QDesignerActionEditorInterface::metric(static_cast<QPaintDevice::PaintDeviceMetric>(m));
+}
+
 void* QDesignerActionEditorInterface_MinimumSizeHint(void* ptr)
 {
 	return ({ QSize tmpValue = static_cast<QDesignerActionEditorInterface*>(ptr)->minimumSizeHint(); new QSize(tmpValue.width(), tmpValue.height()); });
@@ -476,6 +486,16 @@ void QDesignerActionEditorInterface_MoveEvent(void* ptr, void* event)
 void QDesignerActionEditorInterface_MoveEventDefault(void* ptr, void* event)
 {
 	static_cast<QDesignerActionEditorInterface*>(ptr)->QDesignerActionEditorInterface::moveEvent(static_cast<QMoveEvent*>(event));
+}
+
+void* QDesignerActionEditorInterface_PaintEngine(void* ptr)
+{
+	return static_cast<QDesignerActionEditorInterface*>(ptr)->paintEngine();
+}
+
+void* QDesignerActionEditorInterface_PaintEngineDefault(void* ptr)
+{
+	return static_cast<QDesignerActionEditorInterface*>(ptr)->QDesignerActionEditorInterface::paintEngine();
 }
 
 void QDesignerActionEditorInterface_PaintEvent(void* ptr, void* event)
@@ -598,6 +618,16 @@ void QDesignerActionEditorInterface_ContextMenuEvent(void* ptr, void* event)
 void QDesignerActionEditorInterface_ContextMenuEventDefault(void* ptr, void* event)
 {
 	static_cast<QDesignerActionEditorInterface*>(ptr)->QDesignerActionEditorInterface::contextMenuEvent(static_cast<QContextMenuEvent*>(event));
+}
+
+char QDesignerActionEditorInterface_Event(void* ptr, void* event)
+{
+	return static_cast<QDesignerActionEditorInterface*>(ptr)->event(static_cast<QEvent*>(event));
+}
+
+char QDesignerActionEditorInterface_EventDefault(void* ptr, void* event)
+{
+	return static_cast<QDesignerActionEditorInterface*>(ptr)->QDesignerActionEditorInterface::event(static_cast<QEvent*>(event));
 }
 
 char QDesignerActionEditorInterface_FocusNextPrevChild(void* ptr, char next)
@@ -950,16 +980,6 @@ void QDesignerActionEditorInterface_DisconnectNotifyDefault(void* ptr, void* sig
 	static_cast<QDesignerActionEditorInterface*>(ptr)->QDesignerActionEditorInterface::disconnectNotify(*static_cast<QMetaMethod*>(sign));
 }
 
-char QDesignerActionEditorInterface_Event(void* ptr, void* e)
-{
-	return static_cast<QDesignerActionEditorInterface*>(ptr)->event(static_cast<QEvent*>(e));
-}
-
-char QDesignerActionEditorInterface_EventDefault(void* ptr, void* e)
-{
-	return static_cast<QDesignerActionEditorInterface*>(ptr)->QDesignerActionEditorInterface::event(static_cast<QEvent*>(e));
-}
-
 char QDesignerActionEditorInterface_EventFilter(void* ptr, void* watched, void* event)
 {
 	if (dynamic_cast<QExtensionFactory*>(static_cast<QObject*>(watched))) {
@@ -990,26 +1010,6 @@ void* QDesignerActionEditorInterface_MetaObject(void* ptr)
 void* QDesignerActionEditorInterface_MetaObjectDefault(void* ptr)
 {
 	return const_cast<QMetaObject*>(static_cast<QDesignerActionEditorInterface*>(ptr)->QDesignerActionEditorInterface::metaObject());
-}
-
-int QDesignerActionEditorInterface_Metric(void* ptr, long long metric)
-{
-	return static_cast<QDesignerActionEditorInterface*>(ptr)->metric(static_cast<QPaintDevice::PaintDeviceMetric>(metric));
-}
-
-int QDesignerActionEditorInterface_MetricDefault(void* ptr, long long metric)
-{
-	return static_cast<QDesignerActionEditorInterface*>(ptr)->QDesignerActionEditorInterface::metric(static_cast<QPaintDevice::PaintDeviceMetric>(metric));
-}
-
-void* QDesignerActionEditorInterface_PaintEngine(void* ptr)
-{
-	return static_cast<QDesignerActionEditorInterface*>(ptr)->paintEngine();
-}
-
-void* QDesignerActionEditorInterface_PaintEngineDefault(void* ptr)
-{
-	return static_cast<QDesignerActionEditorInterface*>(ptr)->QDesignerActionEditorInterface::paintEngine();
 }
 
 class MyQDesignerContainerExtension: public QDesignerContainerExtension
@@ -1636,8 +1636,10 @@ public:
 	void focusOutEvent(QFocusEvent * event) { callbackQDesignerFormWindowInterface_FocusOutEvent(this, event); };
 	void hideEvent(QHideEvent * event) { callbackQDesignerFormWindowInterface_HideEvent(this, event); };
 	void leaveEvent(QEvent * event) { callbackQDesignerFormWindowInterface_LeaveEvent(this, event); };
+	int metric(QPaintDevice::PaintDeviceMetric m) const { return callbackQDesignerFormWindowInterface_Metric(const_cast<MyQDesignerFormWindowInterface*>(this), m); };
 	QSize minimumSizeHint() const { return *static_cast<QSize*>(callbackQDesignerFormWindowInterface_MinimumSizeHint(const_cast<MyQDesignerFormWindowInterface*>(this))); };
 	void moveEvent(QMoveEvent * event) { callbackQDesignerFormWindowInterface_MoveEvent(this, event); };
+	QPaintEngine * paintEngine() const { return static_cast<QPaintEngine*>(callbackQDesignerFormWindowInterface_PaintEngine(const_cast<MyQDesignerFormWindowInterface*>(this))); };
 	void paintEvent(QPaintEvent * event) { callbackQDesignerFormWindowInterface_PaintEvent(this, event); };
 	void setEnabled(bool vbo) { callbackQDesignerFormWindowInterface_SetEnabled(this, vbo); };
 	void setStyleSheet(const QString & styleSheet) { QByteArray t728ae7 = styleSheet.toUtf8(); QtDesigner_PackedString styleSheetPacked = { const_cast<char*>(t728ae7.prepend("WHITESPACE").constData()+10), t728ae7.size()-10 };callbackQDesignerFormWindowInterface_SetStyleSheet(this, styleSheetPacked); };
@@ -1650,6 +1652,7 @@ public:
 	bool close() { return callbackQDesignerFormWindowInterface_Close(this) != 0; };
 	void closeEvent(QCloseEvent * event) { callbackQDesignerFormWindowInterface_CloseEvent(this, event); };
 	void contextMenuEvent(QContextMenuEvent * event) { callbackQDesignerFormWindowInterface_ContextMenuEvent(this, event); };
+	bool event(QEvent * event) { return callbackQDesignerFormWindowInterface_Event(this, event) != 0; };
 	bool focusNextPrevChild(bool next) { return callbackQDesignerFormWindowInterface_FocusNextPrevChild(this, next) != 0; };
 	bool hasHeightForWidth() const { return callbackQDesignerFormWindowInterface_HasHeightForWidth(const_cast<MyQDesignerFormWindowInterface*>(this)) != 0; };
 	int heightForWidth(int w) const { return callbackQDesignerFormWindowInterface_HeightForWidth(const_cast<MyQDesignerFormWindowInterface*>(this), w); };
@@ -1685,11 +1688,8 @@ public:
 	void customEvent(QEvent * event) { callbackQDesignerFormWindowInterface_CustomEvent(this, event); };
 	void deleteLater() { callbackQDesignerFormWindowInterface_DeleteLater(this); };
 	void disconnectNotify(const QMetaMethod & sign) { callbackQDesignerFormWindowInterface_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
-	bool event(QEvent * e) { return callbackQDesignerFormWindowInterface_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQDesignerFormWindowInterface_EventFilter(this, watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQDesignerFormWindowInterface_MetaObject(const_cast<MyQDesignerFormWindowInterface*>(this))); };
-	int metric(QPaintDevice::PaintDeviceMetric metric) const { return callbackQDesignerFormWindowInterface_Metric(const_cast<MyQDesignerFormWindowInterface*>(this), metric); };
-	QPaintEngine * paintEngine() const { return static_cast<QPaintEngine*>(callbackQDesignerFormWindowInterface_PaintEngine(const_cast<MyQDesignerFormWindowInterface*>(this))); };
 };
 
 void* QDesignerFormWindowInterface_QDesignerFormWindowInterface_FindFormWindow2(void* object)
@@ -2251,6 +2251,16 @@ void QDesignerFormWindowInterface_LeaveEventDefault(void* ptr, void* event)
 	static_cast<QDesignerFormWindowInterface*>(ptr)->QDesignerFormWindowInterface::leaveEvent(static_cast<QEvent*>(event));
 }
 
+int QDesignerFormWindowInterface_Metric(void* ptr, long long m)
+{
+	return static_cast<QDesignerFormWindowInterface*>(ptr)->metric(static_cast<QPaintDevice::PaintDeviceMetric>(m));
+}
+
+int QDesignerFormWindowInterface_MetricDefault(void* ptr, long long m)
+{
+	return static_cast<QDesignerFormWindowInterface*>(ptr)->QDesignerFormWindowInterface::metric(static_cast<QPaintDevice::PaintDeviceMetric>(m));
+}
+
 void* QDesignerFormWindowInterface_MinimumSizeHint(void* ptr)
 {
 	return ({ QSize tmpValue = static_cast<QDesignerFormWindowInterface*>(ptr)->minimumSizeHint(); new QSize(tmpValue.width(), tmpValue.height()); });
@@ -2269,6 +2279,16 @@ void QDesignerFormWindowInterface_MoveEvent(void* ptr, void* event)
 void QDesignerFormWindowInterface_MoveEventDefault(void* ptr, void* event)
 {
 	static_cast<QDesignerFormWindowInterface*>(ptr)->QDesignerFormWindowInterface::moveEvent(static_cast<QMoveEvent*>(event));
+}
+
+void* QDesignerFormWindowInterface_PaintEngine(void* ptr)
+{
+	return static_cast<QDesignerFormWindowInterface*>(ptr)->paintEngine();
+}
+
+void* QDesignerFormWindowInterface_PaintEngineDefault(void* ptr)
+{
+	return static_cast<QDesignerFormWindowInterface*>(ptr)->QDesignerFormWindowInterface::paintEngine();
 }
 
 void QDesignerFormWindowInterface_PaintEvent(void* ptr, void* event)
@@ -2391,6 +2411,16 @@ void QDesignerFormWindowInterface_ContextMenuEvent(void* ptr, void* event)
 void QDesignerFormWindowInterface_ContextMenuEventDefault(void* ptr, void* event)
 {
 	static_cast<QDesignerFormWindowInterface*>(ptr)->QDesignerFormWindowInterface::contextMenuEvent(static_cast<QContextMenuEvent*>(event));
+}
+
+char QDesignerFormWindowInterface_Event(void* ptr, void* event)
+{
+	return static_cast<QDesignerFormWindowInterface*>(ptr)->event(static_cast<QEvent*>(event));
+}
+
+char QDesignerFormWindowInterface_EventDefault(void* ptr, void* event)
+{
+	return static_cast<QDesignerFormWindowInterface*>(ptr)->QDesignerFormWindowInterface::event(static_cast<QEvent*>(event));
 }
 
 char QDesignerFormWindowInterface_FocusNextPrevChild(void* ptr, char next)
@@ -2743,16 +2773,6 @@ void QDesignerFormWindowInterface_DisconnectNotifyDefault(void* ptr, void* sign)
 	static_cast<QDesignerFormWindowInterface*>(ptr)->QDesignerFormWindowInterface::disconnectNotify(*static_cast<QMetaMethod*>(sign));
 }
 
-char QDesignerFormWindowInterface_Event(void* ptr, void* e)
-{
-	return static_cast<QDesignerFormWindowInterface*>(ptr)->event(static_cast<QEvent*>(e));
-}
-
-char QDesignerFormWindowInterface_EventDefault(void* ptr, void* e)
-{
-	return static_cast<QDesignerFormWindowInterface*>(ptr)->QDesignerFormWindowInterface::event(static_cast<QEvent*>(e));
-}
-
 char QDesignerFormWindowInterface_EventFilter(void* ptr, void* watched, void* event)
 {
 	if (dynamic_cast<QExtensionFactory*>(static_cast<QObject*>(watched))) {
@@ -2783,26 +2803,6 @@ void* QDesignerFormWindowInterface_MetaObject(void* ptr)
 void* QDesignerFormWindowInterface_MetaObjectDefault(void* ptr)
 {
 	return const_cast<QMetaObject*>(static_cast<QDesignerFormWindowInterface*>(ptr)->QDesignerFormWindowInterface::metaObject());
-}
-
-int QDesignerFormWindowInterface_Metric(void* ptr, long long metric)
-{
-	return static_cast<QDesignerFormWindowInterface*>(ptr)->metric(static_cast<QPaintDevice::PaintDeviceMetric>(metric));
-}
-
-int QDesignerFormWindowInterface_MetricDefault(void* ptr, long long metric)
-{
-	return static_cast<QDesignerFormWindowInterface*>(ptr)->QDesignerFormWindowInterface::metric(static_cast<QPaintDevice::PaintDeviceMetric>(metric));
-}
-
-void* QDesignerFormWindowInterface_PaintEngine(void* ptr)
-{
-	return static_cast<QDesignerFormWindowInterface*>(ptr)->paintEngine();
-}
-
-void* QDesignerFormWindowInterface_PaintEngineDefault(void* ptr)
-{
-	return static_cast<QDesignerFormWindowInterface*>(ptr)->QDesignerFormWindowInterface::paintEngine();
 }
 
 class MyQDesignerFormWindowManagerInterface: public QDesignerFormWindowManagerInterface
@@ -3207,8 +3207,10 @@ public:
 	void focusOutEvent(QFocusEvent * event) { callbackQDesignerObjectInspectorInterface_FocusOutEvent(this, event); };
 	void hideEvent(QHideEvent * event) { callbackQDesignerObjectInspectorInterface_HideEvent(this, event); };
 	void leaveEvent(QEvent * event) { callbackQDesignerObjectInspectorInterface_LeaveEvent(this, event); };
+	int metric(QPaintDevice::PaintDeviceMetric m) const { return callbackQDesignerObjectInspectorInterface_Metric(const_cast<MyQDesignerObjectInspectorInterface*>(this), m); };
 	QSize minimumSizeHint() const { return *static_cast<QSize*>(callbackQDesignerObjectInspectorInterface_MinimumSizeHint(const_cast<MyQDesignerObjectInspectorInterface*>(this))); };
 	void moveEvent(QMoveEvent * event) { callbackQDesignerObjectInspectorInterface_MoveEvent(this, event); };
+	QPaintEngine * paintEngine() const { return static_cast<QPaintEngine*>(callbackQDesignerObjectInspectorInterface_PaintEngine(const_cast<MyQDesignerObjectInspectorInterface*>(this))); };
 	void paintEvent(QPaintEvent * event) { callbackQDesignerObjectInspectorInterface_PaintEvent(this, event); };
 	void setEnabled(bool vbo) { callbackQDesignerObjectInspectorInterface_SetEnabled(this, vbo); };
 	void setStyleSheet(const QString & styleSheet) { QByteArray t728ae7 = styleSheet.toUtf8(); QtDesigner_PackedString styleSheetPacked = { const_cast<char*>(t728ae7.prepend("WHITESPACE").constData()+10), t728ae7.size()-10 };callbackQDesignerObjectInspectorInterface_SetStyleSheet(this, styleSheetPacked); };
@@ -3221,6 +3223,7 @@ public:
 	bool close() { return callbackQDesignerObjectInspectorInterface_Close(this) != 0; };
 	void closeEvent(QCloseEvent * event) { callbackQDesignerObjectInspectorInterface_CloseEvent(this, event); };
 	void contextMenuEvent(QContextMenuEvent * event) { callbackQDesignerObjectInspectorInterface_ContextMenuEvent(this, event); };
+	bool event(QEvent * event) { return callbackQDesignerObjectInspectorInterface_Event(this, event) != 0; };
 	bool focusNextPrevChild(bool next) { return callbackQDesignerObjectInspectorInterface_FocusNextPrevChild(this, next) != 0; };
 	bool hasHeightForWidth() const { return callbackQDesignerObjectInspectorInterface_HasHeightForWidth(const_cast<MyQDesignerObjectInspectorInterface*>(this)) != 0; };
 	int heightForWidth(int w) const { return callbackQDesignerObjectInspectorInterface_HeightForWidth(const_cast<MyQDesignerObjectInspectorInterface*>(this), w); };
@@ -3256,11 +3259,8 @@ public:
 	void customEvent(QEvent * event) { callbackQDesignerObjectInspectorInterface_CustomEvent(this, event); };
 	void deleteLater() { callbackQDesignerObjectInspectorInterface_DeleteLater(this); };
 	void disconnectNotify(const QMetaMethod & sign) { callbackQDesignerObjectInspectorInterface_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
-	bool event(QEvent * e) { return callbackQDesignerObjectInspectorInterface_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQDesignerObjectInspectorInterface_EventFilter(this, watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQDesignerObjectInspectorInterface_MetaObject(const_cast<MyQDesignerObjectInspectorInterface*>(this))); };
-	int metric(QPaintDevice::PaintDeviceMetric metric) const { return callbackQDesignerObjectInspectorInterface_Metric(const_cast<MyQDesignerObjectInspectorInterface*>(this), metric); };
-	QPaintEngine * paintEngine() const { return static_cast<QPaintEngine*>(callbackQDesignerObjectInspectorInterface_PaintEngine(const_cast<MyQDesignerObjectInspectorInterface*>(this))); };
 };
 
 void* QDesignerObjectInspectorInterface_NewQDesignerObjectInspectorInterface(void* parent, long long flags)
@@ -3393,6 +3393,16 @@ void QDesignerObjectInspectorInterface_LeaveEventDefault(void* ptr, void* event)
 	static_cast<QDesignerObjectInspectorInterface*>(ptr)->QDesignerObjectInspectorInterface::leaveEvent(static_cast<QEvent*>(event));
 }
 
+int QDesignerObjectInspectorInterface_Metric(void* ptr, long long m)
+{
+	return static_cast<QDesignerObjectInspectorInterface*>(ptr)->metric(static_cast<QPaintDevice::PaintDeviceMetric>(m));
+}
+
+int QDesignerObjectInspectorInterface_MetricDefault(void* ptr, long long m)
+{
+	return static_cast<QDesignerObjectInspectorInterface*>(ptr)->QDesignerObjectInspectorInterface::metric(static_cast<QPaintDevice::PaintDeviceMetric>(m));
+}
+
 void* QDesignerObjectInspectorInterface_MinimumSizeHint(void* ptr)
 {
 	return ({ QSize tmpValue = static_cast<QDesignerObjectInspectorInterface*>(ptr)->minimumSizeHint(); new QSize(tmpValue.width(), tmpValue.height()); });
@@ -3411,6 +3421,16 @@ void QDesignerObjectInspectorInterface_MoveEvent(void* ptr, void* event)
 void QDesignerObjectInspectorInterface_MoveEventDefault(void* ptr, void* event)
 {
 	static_cast<QDesignerObjectInspectorInterface*>(ptr)->QDesignerObjectInspectorInterface::moveEvent(static_cast<QMoveEvent*>(event));
+}
+
+void* QDesignerObjectInspectorInterface_PaintEngine(void* ptr)
+{
+	return static_cast<QDesignerObjectInspectorInterface*>(ptr)->paintEngine();
+}
+
+void* QDesignerObjectInspectorInterface_PaintEngineDefault(void* ptr)
+{
+	return static_cast<QDesignerObjectInspectorInterface*>(ptr)->QDesignerObjectInspectorInterface::paintEngine();
 }
 
 void QDesignerObjectInspectorInterface_PaintEvent(void* ptr, void* event)
@@ -3533,6 +3553,16 @@ void QDesignerObjectInspectorInterface_ContextMenuEvent(void* ptr, void* event)
 void QDesignerObjectInspectorInterface_ContextMenuEventDefault(void* ptr, void* event)
 {
 	static_cast<QDesignerObjectInspectorInterface*>(ptr)->QDesignerObjectInspectorInterface::contextMenuEvent(static_cast<QContextMenuEvent*>(event));
+}
+
+char QDesignerObjectInspectorInterface_Event(void* ptr, void* event)
+{
+	return static_cast<QDesignerObjectInspectorInterface*>(ptr)->event(static_cast<QEvent*>(event));
+}
+
+char QDesignerObjectInspectorInterface_EventDefault(void* ptr, void* event)
+{
+	return static_cast<QDesignerObjectInspectorInterface*>(ptr)->QDesignerObjectInspectorInterface::event(static_cast<QEvent*>(event));
 }
 
 char QDesignerObjectInspectorInterface_FocusNextPrevChild(void* ptr, char next)
@@ -3885,16 +3915,6 @@ void QDesignerObjectInspectorInterface_DisconnectNotifyDefault(void* ptr, void* 
 	static_cast<QDesignerObjectInspectorInterface*>(ptr)->QDesignerObjectInspectorInterface::disconnectNotify(*static_cast<QMetaMethod*>(sign));
 }
 
-char QDesignerObjectInspectorInterface_Event(void* ptr, void* e)
-{
-	return static_cast<QDesignerObjectInspectorInterface*>(ptr)->event(static_cast<QEvent*>(e));
-}
-
-char QDesignerObjectInspectorInterface_EventDefault(void* ptr, void* e)
-{
-	return static_cast<QDesignerObjectInspectorInterface*>(ptr)->QDesignerObjectInspectorInterface::event(static_cast<QEvent*>(e));
-}
-
 char QDesignerObjectInspectorInterface_EventFilter(void* ptr, void* watched, void* event)
 {
 	if (dynamic_cast<QExtensionFactory*>(static_cast<QObject*>(watched))) {
@@ -3927,26 +3947,6 @@ void* QDesignerObjectInspectorInterface_MetaObjectDefault(void* ptr)
 	return const_cast<QMetaObject*>(static_cast<QDesignerObjectInspectorInterface*>(ptr)->QDesignerObjectInspectorInterface::metaObject());
 }
 
-int QDesignerObjectInspectorInterface_Metric(void* ptr, long long metric)
-{
-	return static_cast<QDesignerObjectInspectorInterface*>(ptr)->metric(static_cast<QPaintDevice::PaintDeviceMetric>(metric));
-}
-
-int QDesignerObjectInspectorInterface_MetricDefault(void* ptr, long long metric)
-{
-	return static_cast<QDesignerObjectInspectorInterface*>(ptr)->QDesignerObjectInspectorInterface::metric(static_cast<QPaintDevice::PaintDeviceMetric>(metric));
-}
-
-void* QDesignerObjectInspectorInterface_PaintEngine(void* ptr)
-{
-	return static_cast<QDesignerObjectInspectorInterface*>(ptr)->paintEngine();
-}
-
-void* QDesignerObjectInspectorInterface_PaintEngineDefault(void* ptr)
-{
-	return static_cast<QDesignerObjectInspectorInterface*>(ptr)->QDesignerObjectInspectorInterface::paintEngine();
-}
-
 class MyQDesignerPropertyEditorInterface: public QDesignerPropertyEditorInterface
 {
 public:
@@ -3970,8 +3970,10 @@ public:
 	void focusOutEvent(QFocusEvent * event) { callbackQDesignerPropertyEditorInterface_FocusOutEvent(this, event); };
 	void hideEvent(QHideEvent * event) { callbackQDesignerPropertyEditorInterface_HideEvent(this, event); };
 	void leaveEvent(QEvent * event) { callbackQDesignerPropertyEditorInterface_LeaveEvent(this, event); };
+	int metric(QPaintDevice::PaintDeviceMetric m) const { return callbackQDesignerPropertyEditorInterface_Metric(const_cast<MyQDesignerPropertyEditorInterface*>(this), m); };
 	QSize minimumSizeHint() const { return *static_cast<QSize*>(callbackQDesignerPropertyEditorInterface_MinimumSizeHint(const_cast<MyQDesignerPropertyEditorInterface*>(this))); };
 	void moveEvent(QMoveEvent * event) { callbackQDesignerPropertyEditorInterface_MoveEvent(this, event); };
+	QPaintEngine * paintEngine() const { return static_cast<QPaintEngine*>(callbackQDesignerPropertyEditorInterface_PaintEngine(const_cast<MyQDesignerPropertyEditorInterface*>(this))); };
 	void paintEvent(QPaintEvent * event) { callbackQDesignerPropertyEditorInterface_PaintEvent(this, event); };
 	void setEnabled(bool vbo) { callbackQDesignerPropertyEditorInterface_SetEnabled(this, vbo); };
 	void setStyleSheet(const QString & styleSheet) { QByteArray t728ae7 = styleSheet.toUtf8(); QtDesigner_PackedString styleSheetPacked = { const_cast<char*>(t728ae7.prepend("WHITESPACE").constData()+10), t728ae7.size()-10 };callbackQDesignerPropertyEditorInterface_SetStyleSheet(this, styleSheetPacked); };
@@ -3984,6 +3986,7 @@ public:
 	bool close() { return callbackQDesignerPropertyEditorInterface_Close(this) != 0; };
 	void closeEvent(QCloseEvent * event) { callbackQDesignerPropertyEditorInterface_CloseEvent(this, event); };
 	void contextMenuEvent(QContextMenuEvent * event) { callbackQDesignerPropertyEditorInterface_ContextMenuEvent(this, event); };
+	bool event(QEvent * event) { return callbackQDesignerPropertyEditorInterface_Event(this, event) != 0; };
 	bool focusNextPrevChild(bool next) { return callbackQDesignerPropertyEditorInterface_FocusNextPrevChild(this, next) != 0; };
 	bool hasHeightForWidth() const { return callbackQDesignerPropertyEditorInterface_HasHeightForWidth(const_cast<MyQDesignerPropertyEditorInterface*>(this)) != 0; };
 	int heightForWidth(int w) const { return callbackQDesignerPropertyEditorInterface_HeightForWidth(const_cast<MyQDesignerPropertyEditorInterface*>(this), w); };
@@ -4019,11 +4022,8 @@ public:
 	void customEvent(QEvent * event) { callbackQDesignerPropertyEditorInterface_CustomEvent(this, event); };
 	void deleteLater() { callbackQDesignerPropertyEditorInterface_DeleteLater(this); };
 	void disconnectNotify(const QMetaMethod & sign) { callbackQDesignerPropertyEditorInterface_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
-	bool event(QEvent * e) { return callbackQDesignerPropertyEditorInterface_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQDesignerPropertyEditorInterface_EventFilter(this, watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQDesignerPropertyEditorInterface_MetaObject(const_cast<MyQDesignerPropertyEditorInterface*>(this))); };
-	int metric(QPaintDevice::PaintDeviceMetric metric) const { return callbackQDesignerPropertyEditorInterface_Metric(const_cast<MyQDesignerPropertyEditorInterface*>(this), metric); };
-	QPaintEngine * paintEngine() const { return static_cast<QPaintEngine*>(callbackQDesignerPropertyEditorInterface_PaintEngine(const_cast<MyQDesignerPropertyEditorInterface*>(this))); };
 };
 
 void* QDesignerPropertyEditorInterface_NewQDesignerPropertyEditorInterface(void* parent, long long flags)
@@ -4196,6 +4196,16 @@ void QDesignerPropertyEditorInterface_LeaveEventDefault(void* ptr, void* event)
 	static_cast<QDesignerPropertyEditorInterface*>(ptr)->QDesignerPropertyEditorInterface::leaveEvent(static_cast<QEvent*>(event));
 }
 
+int QDesignerPropertyEditorInterface_Metric(void* ptr, long long m)
+{
+	return static_cast<QDesignerPropertyEditorInterface*>(ptr)->metric(static_cast<QPaintDevice::PaintDeviceMetric>(m));
+}
+
+int QDesignerPropertyEditorInterface_MetricDefault(void* ptr, long long m)
+{
+	return static_cast<QDesignerPropertyEditorInterface*>(ptr)->QDesignerPropertyEditorInterface::metric(static_cast<QPaintDevice::PaintDeviceMetric>(m));
+}
+
 void* QDesignerPropertyEditorInterface_MinimumSizeHint(void* ptr)
 {
 	return ({ QSize tmpValue = static_cast<QDesignerPropertyEditorInterface*>(ptr)->minimumSizeHint(); new QSize(tmpValue.width(), tmpValue.height()); });
@@ -4214,6 +4224,16 @@ void QDesignerPropertyEditorInterface_MoveEvent(void* ptr, void* event)
 void QDesignerPropertyEditorInterface_MoveEventDefault(void* ptr, void* event)
 {
 	static_cast<QDesignerPropertyEditorInterface*>(ptr)->QDesignerPropertyEditorInterface::moveEvent(static_cast<QMoveEvent*>(event));
+}
+
+void* QDesignerPropertyEditorInterface_PaintEngine(void* ptr)
+{
+	return static_cast<QDesignerPropertyEditorInterface*>(ptr)->paintEngine();
+}
+
+void* QDesignerPropertyEditorInterface_PaintEngineDefault(void* ptr)
+{
+	return static_cast<QDesignerPropertyEditorInterface*>(ptr)->QDesignerPropertyEditorInterface::paintEngine();
 }
 
 void QDesignerPropertyEditorInterface_PaintEvent(void* ptr, void* event)
@@ -4336,6 +4356,16 @@ void QDesignerPropertyEditorInterface_ContextMenuEvent(void* ptr, void* event)
 void QDesignerPropertyEditorInterface_ContextMenuEventDefault(void* ptr, void* event)
 {
 	static_cast<QDesignerPropertyEditorInterface*>(ptr)->QDesignerPropertyEditorInterface::contextMenuEvent(static_cast<QContextMenuEvent*>(event));
+}
+
+char QDesignerPropertyEditorInterface_Event(void* ptr, void* event)
+{
+	return static_cast<QDesignerPropertyEditorInterface*>(ptr)->event(static_cast<QEvent*>(event));
+}
+
+char QDesignerPropertyEditorInterface_EventDefault(void* ptr, void* event)
+{
+	return static_cast<QDesignerPropertyEditorInterface*>(ptr)->QDesignerPropertyEditorInterface::event(static_cast<QEvent*>(event));
 }
 
 char QDesignerPropertyEditorInterface_FocusNextPrevChild(void* ptr, char next)
@@ -4688,16 +4718,6 @@ void QDesignerPropertyEditorInterface_DisconnectNotifyDefault(void* ptr, void* s
 	static_cast<QDesignerPropertyEditorInterface*>(ptr)->QDesignerPropertyEditorInterface::disconnectNotify(*static_cast<QMetaMethod*>(sign));
 }
 
-char QDesignerPropertyEditorInterface_Event(void* ptr, void* e)
-{
-	return static_cast<QDesignerPropertyEditorInterface*>(ptr)->event(static_cast<QEvent*>(e));
-}
-
-char QDesignerPropertyEditorInterface_EventDefault(void* ptr, void* e)
-{
-	return static_cast<QDesignerPropertyEditorInterface*>(ptr)->QDesignerPropertyEditorInterface::event(static_cast<QEvent*>(e));
-}
-
 char QDesignerPropertyEditorInterface_EventFilter(void* ptr, void* watched, void* event)
 {
 	if (dynamic_cast<QExtensionFactory*>(static_cast<QObject*>(watched))) {
@@ -4728,26 +4748,6 @@ void* QDesignerPropertyEditorInterface_MetaObject(void* ptr)
 void* QDesignerPropertyEditorInterface_MetaObjectDefault(void* ptr)
 {
 	return const_cast<QMetaObject*>(static_cast<QDesignerPropertyEditorInterface*>(ptr)->QDesignerPropertyEditorInterface::metaObject());
-}
-
-int QDesignerPropertyEditorInterface_Metric(void* ptr, long long metric)
-{
-	return static_cast<QDesignerPropertyEditorInterface*>(ptr)->metric(static_cast<QPaintDevice::PaintDeviceMetric>(metric));
-}
-
-int QDesignerPropertyEditorInterface_MetricDefault(void* ptr, long long metric)
-{
-	return static_cast<QDesignerPropertyEditorInterface*>(ptr)->QDesignerPropertyEditorInterface::metric(static_cast<QPaintDevice::PaintDeviceMetric>(metric));
-}
-
-void* QDesignerPropertyEditorInterface_PaintEngine(void* ptr)
-{
-	return static_cast<QDesignerPropertyEditorInterface*>(ptr)->paintEngine();
-}
-
-void* QDesignerPropertyEditorInterface_PaintEngineDefault(void* ptr)
-{
-	return static_cast<QDesignerPropertyEditorInterface*>(ptr)->QDesignerPropertyEditorInterface::paintEngine();
 }
 
 class MyQDesignerPropertySheetExtension: public QDesignerPropertySheetExtension
@@ -4923,8 +4923,10 @@ public:
 	void focusOutEvent(QFocusEvent * event) { callbackQDesignerWidgetBoxInterface_FocusOutEvent(this, event); };
 	void hideEvent(QHideEvent * event) { callbackQDesignerWidgetBoxInterface_HideEvent(this, event); };
 	void leaveEvent(QEvent * event) { callbackQDesignerWidgetBoxInterface_LeaveEvent(this, event); };
+	int metric(QPaintDevice::PaintDeviceMetric m) const { return callbackQDesignerWidgetBoxInterface_Metric(const_cast<MyQDesignerWidgetBoxInterface*>(this), m); };
 	QSize minimumSizeHint() const { return *static_cast<QSize*>(callbackQDesignerWidgetBoxInterface_MinimumSizeHint(const_cast<MyQDesignerWidgetBoxInterface*>(this))); };
 	void moveEvent(QMoveEvent * event) { callbackQDesignerWidgetBoxInterface_MoveEvent(this, event); };
+	QPaintEngine * paintEngine() const { return static_cast<QPaintEngine*>(callbackQDesignerWidgetBoxInterface_PaintEngine(const_cast<MyQDesignerWidgetBoxInterface*>(this))); };
 	void paintEvent(QPaintEvent * event) { callbackQDesignerWidgetBoxInterface_PaintEvent(this, event); };
 	void setEnabled(bool vbo) { callbackQDesignerWidgetBoxInterface_SetEnabled(this, vbo); };
 	void setStyleSheet(const QString & styleSheet) { QByteArray t728ae7 = styleSheet.toUtf8(); QtDesigner_PackedString styleSheetPacked = { const_cast<char*>(t728ae7.prepend("WHITESPACE").constData()+10), t728ae7.size()-10 };callbackQDesignerWidgetBoxInterface_SetStyleSheet(this, styleSheetPacked); };
@@ -4937,6 +4939,7 @@ public:
 	bool close() { return callbackQDesignerWidgetBoxInterface_Close(this) != 0; };
 	void closeEvent(QCloseEvent * event) { callbackQDesignerWidgetBoxInterface_CloseEvent(this, event); };
 	void contextMenuEvent(QContextMenuEvent * event) { callbackQDesignerWidgetBoxInterface_ContextMenuEvent(this, event); };
+	bool event(QEvent * event) { return callbackQDesignerWidgetBoxInterface_Event(this, event) != 0; };
 	bool focusNextPrevChild(bool next) { return callbackQDesignerWidgetBoxInterface_FocusNextPrevChild(this, next) != 0; };
 	bool hasHeightForWidth() const { return callbackQDesignerWidgetBoxInterface_HasHeightForWidth(const_cast<MyQDesignerWidgetBoxInterface*>(this)) != 0; };
 	int heightForWidth(int w) const { return callbackQDesignerWidgetBoxInterface_HeightForWidth(const_cast<MyQDesignerWidgetBoxInterface*>(this), w); };
@@ -4972,11 +4975,8 @@ public:
 	void customEvent(QEvent * event) { callbackQDesignerWidgetBoxInterface_CustomEvent(this, event); };
 	void deleteLater() { callbackQDesignerWidgetBoxInterface_DeleteLater(this); };
 	void disconnectNotify(const QMetaMethod & sign) { callbackQDesignerWidgetBoxInterface_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
-	bool event(QEvent * e) { return callbackQDesignerWidgetBoxInterface_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQDesignerWidgetBoxInterface_EventFilter(this, watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQDesignerWidgetBoxInterface_MetaObject(const_cast<MyQDesignerWidgetBoxInterface*>(this))); };
-	int metric(QPaintDevice::PaintDeviceMetric metric) const { return callbackQDesignerWidgetBoxInterface_Metric(const_cast<MyQDesignerWidgetBoxInterface*>(this), metric); };
-	QPaintEngine * paintEngine() const { return static_cast<QPaintEngine*>(callbackQDesignerWidgetBoxInterface_PaintEngine(const_cast<MyQDesignerWidgetBoxInterface*>(this))); };
 };
 
 struct QtDesigner_PackedString QDesignerWidgetBoxInterface_FileName(void* ptr)
@@ -5109,6 +5109,16 @@ void QDesignerWidgetBoxInterface_LeaveEventDefault(void* ptr, void* event)
 	static_cast<QDesignerWidgetBoxInterface*>(ptr)->QDesignerWidgetBoxInterface::leaveEvent(static_cast<QEvent*>(event));
 }
 
+int QDesignerWidgetBoxInterface_Metric(void* ptr, long long m)
+{
+	return static_cast<QDesignerWidgetBoxInterface*>(ptr)->metric(static_cast<QPaintDevice::PaintDeviceMetric>(m));
+}
+
+int QDesignerWidgetBoxInterface_MetricDefault(void* ptr, long long m)
+{
+	return static_cast<QDesignerWidgetBoxInterface*>(ptr)->QDesignerWidgetBoxInterface::metric(static_cast<QPaintDevice::PaintDeviceMetric>(m));
+}
+
 void* QDesignerWidgetBoxInterface_MinimumSizeHint(void* ptr)
 {
 	return ({ QSize tmpValue = static_cast<QDesignerWidgetBoxInterface*>(ptr)->minimumSizeHint(); new QSize(tmpValue.width(), tmpValue.height()); });
@@ -5127,6 +5137,16 @@ void QDesignerWidgetBoxInterface_MoveEvent(void* ptr, void* event)
 void QDesignerWidgetBoxInterface_MoveEventDefault(void* ptr, void* event)
 {
 	static_cast<QDesignerWidgetBoxInterface*>(ptr)->QDesignerWidgetBoxInterface::moveEvent(static_cast<QMoveEvent*>(event));
+}
+
+void* QDesignerWidgetBoxInterface_PaintEngine(void* ptr)
+{
+	return static_cast<QDesignerWidgetBoxInterface*>(ptr)->paintEngine();
+}
+
+void* QDesignerWidgetBoxInterface_PaintEngineDefault(void* ptr)
+{
+	return static_cast<QDesignerWidgetBoxInterface*>(ptr)->QDesignerWidgetBoxInterface::paintEngine();
 }
 
 void QDesignerWidgetBoxInterface_PaintEvent(void* ptr, void* event)
@@ -5249,6 +5269,16 @@ void QDesignerWidgetBoxInterface_ContextMenuEvent(void* ptr, void* event)
 void QDesignerWidgetBoxInterface_ContextMenuEventDefault(void* ptr, void* event)
 {
 	static_cast<QDesignerWidgetBoxInterface*>(ptr)->QDesignerWidgetBoxInterface::contextMenuEvent(static_cast<QContextMenuEvent*>(event));
+}
+
+char QDesignerWidgetBoxInterface_Event(void* ptr, void* event)
+{
+	return static_cast<QDesignerWidgetBoxInterface*>(ptr)->event(static_cast<QEvent*>(event));
+}
+
+char QDesignerWidgetBoxInterface_EventDefault(void* ptr, void* event)
+{
+	return static_cast<QDesignerWidgetBoxInterface*>(ptr)->QDesignerWidgetBoxInterface::event(static_cast<QEvent*>(event));
 }
 
 char QDesignerWidgetBoxInterface_FocusNextPrevChild(void* ptr, char next)
@@ -5601,16 +5631,6 @@ void QDesignerWidgetBoxInterface_DisconnectNotifyDefault(void* ptr, void* sign)
 	static_cast<QDesignerWidgetBoxInterface*>(ptr)->QDesignerWidgetBoxInterface::disconnectNotify(*static_cast<QMetaMethod*>(sign));
 }
 
-char QDesignerWidgetBoxInterface_Event(void* ptr, void* e)
-{
-	return static_cast<QDesignerWidgetBoxInterface*>(ptr)->event(static_cast<QEvent*>(e));
-}
-
-char QDesignerWidgetBoxInterface_EventDefault(void* ptr, void* e)
-{
-	return static_cast<QDesignerWidgetBoxInterface*>(ptr)->QDesignerWidgetBoxInterface::event(static_cast<QEvent*>(e));
-}
-
 char QDesignerWidgetBoxInterface_EventFilter(void* ptr, void* watched, void* event)
 {
 	if (dynamic_cast<QExtensionFactory*>(static_cast<QObject*>(watched))) {
@@ -5641,26 +5661,6 @@ void* QDesignerWidgetBoxInterface_MetaObject(void* ptr)
 void* QDesignerWidgetBoxInterface_MetaObjectDefault(void* ptr)
 {
 	return const_cast<QMetaObject*>(static_cast<QDesignerWidgetBoxInterface*>(ptr)->QDesignerWidgetBoxInterface::metaObject());
-}
-
-int QDesignerWidgetBoxInterface_Metric(void* ptr, long long metric)
-{
-	return static_cast<QDesignerWidgetBoxInterface*>(ptr)->metric(static_cast<QPaintDevice::PaintDeviceMetric>(metric));
-}
-
-int QDesignerWidgetBoxInterface_MetricDefault(void* ptr, long long metric)
-{
-	return static_cast<QDesignerWidgetBoxInterface*>(ptr)->QDesignerWidgetBoxInterface::metric(static_cast<QPaintDevice::PaintDeviceMetric>(metric));
-}
-
-void* QDesignerWidgetBoxInterface_PaintEngine(void* ptr)
-{
-	return static_cast<QDesignerWidgetBoxInterface*>(ptr)->paintEngine();
-}
-
-void* QDesignerWidgetBoxInterface_PaintEngineDefault(void* ptr)
-{
-	return static_cast<QDesignerWidgetBoxInterface*>(ptr)->QDesignerWidgetBoxInterface::paintEngine();
 }
 
 class MyQExtensionFactory: public QExtensionFactory

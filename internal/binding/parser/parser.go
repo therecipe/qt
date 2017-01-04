@@ -59,7 +59,7 @@ func LoadModule(m string) error {
 		}
 	}
 	if err != nil {
-		if m != "datavisualization" && m != "charts" {
+		if m != "DataVisualization" && m != "Charts" {
 			utils.Log.WithFields(logFields).WithError(err).Warn(logName)
 		} else {
 			utils.Log.WithFields(logFields).WithError(err).Debug(logName)

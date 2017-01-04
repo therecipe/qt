@@ -178,7 +178,7 @@ func (f *Function) IsSupported() bool {
 		f.Fullname == "QNdefNfcSmartPosterRecord::titleRecords", //T<T> output with unsupported output for *_atList
 		f.Fullname == "QHelpEngineCore::filterAttributeSets", f.Fullname == "QHelpSearchEngine::query", f.Fullname == "QHelpSearchQueryWidget::query",
 		f.Fullname == "QPluginLoader::staticPlugins", f.Fullname == "QSslConfiguration::ellipticCurves", f.Fullname == "QSslConfiguration::supportedEllipticCurves",
-		f.Fullname == "QTextFormat::lengthVectorProperty", f.Fullname == "QTextTableFormat::columnWidthConstraints",
+		f.Fullname == "QTextFormat::lengthVectorProperty", f.Fullname == "QTextTableFormat::columnWidthConstraints", f.Fullname == "QHelpContentWidget::selectedIndexes",
 
 		f.Fullname == "QListView::indexesMoved", f.Fullname == "QAudioInputSelectorControl::availableInputs", f.Fullname == "QScxmlStateMachine::initialValuesChanged",
 		f.Fullname == "QAudioOutputSelectorControl::availableOutputs", f.Fullname == "QQuickWebEngineProfile::downloadFinished",
@@ -271,4 +271,20 @@ func (f *Function) IsSupportedDefault() bool {
 	}
 
 	return true
+}
+
+func (f *Function) IsDerivedFromVirtual() bool {
+	var class, _ = f.Class()
+
+	for _, bc := range class.GetAllBases() {
+		if bclass, exists := State.ClassMap[bc]; exists {
+			for _, bcf := range bclass.Functions {
+				if f.Name == bcf.Name && bcf.Virtual != "non" {
+					return true
+				}
+			}
+		}
+	}
+
+	return false
 }

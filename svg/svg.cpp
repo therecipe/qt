@@ -73,6 +73,7 @@ public:
 	QRectF boundingRect() const { return *static_cast<QRectF*>(callbackQGraphicsSvgItem_BoundingRect(const_cast<MyQGraphicsSvgItem*>(this))); };
 	void paint(QPainter * painter, const QStyleOptionGraphicsItem * option, QWidget * widget) { callbackQGraphicsSvgItem_Paint(this, painter, const_cast<QStyleOptionGraphicsItem*>(option), widget); };
 	int type() const { return callbackQGraphicsSvgItem_Type(const_cast<MyQGraphicsSvgItem*>(this)); };
+	bool event(QEvent * ev) { return callbackQGraphicsSvgItem_Event(this, ev) != 0; };
 	void updateMicroFocus() { callbackQGraphicsSvgItem_UpdateMicroFocus(this); };
 	void timerEvent(QTimerEvent * event) { callbackQGraphicsSvgItem_TimerEvent(this, event); };
 	void childEvent(QChildEvent * event) { callbackQGraphicsSvgItem_ChildEvent(this, event); };
@@ -80,7 +81,6 @@ public:
 	void customEvent(QEvent * event) { callbackQGraphicsSvgItem_CustomEvent(this, event); };
 	void deleteLater() { callbackQGraphicsSvgItem_DeleteLater(this); };
 	void disconnectNotify(const QMetaMethod & sign) { callbackQGraphicsSvgItem_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
-	bool event(QEvent * e) { return callbackQGraphicsSvgItem_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQGraphicsSvgItem_EventFilter(this, watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQGraphicsSvgItem_MetaObject(const_cast<MyQGraphicsSvgItem*>(this))); };
 	void advance(int phase) { callbackQGraphicsSvgItem_Advance(this, phase); };
@@ -184,6 +184,16 @@ int QGraphicsSvgItem_TypeDefault(void* ptr)
 	return static_cast<QGraphicsSvgItem*>(ptr)->QGraphicsSvgItem::type();
 }
 
+char QGraphicsSvgItem_Event(void* ptr, void* ev)
+{
+	return static_cast<QGraphicsSvgItem*>(ptr)->event(static_cast<QEvent*>(ev));
+}
+
+char QGraphicsSvgItem_EventDefault(void* ptr, void* ev)
+{
+	return static_cast<QGraphicsSvgItem*>(ptr)->QGraphicsSvgItem::event(static_cast<QEvent*>(ev));
+}
+
 void QGraphicsSvgItem_UpdateMicroFocus(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QGraphicsSvgItem*>(ptr), "updateMicroFocus");
@@ -252,16 +262,6 @@ void QGraphicsSvgItem_DisconnectNotify(void* ptr, void* sign)
 void QGraphicsSvgItem_DisconnectNotifyDefault(void* ptr, void* sign)
 {
 	static_cast<QGraphicsSvgItem*>(ptr)->QGraphicsSvgItem::disconnectNotify(*static_cast<QMetaMethod*>(sign));
-}
-
-char QGraphicsSvgItem_Event(void* ptr, void* e)
-{
-	return static_cast<QGraphicsSvgItem*>(ptr)->event(static_cast<QEvent*>(e));
-}
-
-char QGraphicsSvgItem_EventDefault(void* ptr, void* e)
-{
-	return static_cast<QGraphicsSvgItem*>(ptr)->QGraphicsSvgItem::event(static_cast<QEvent*>(e));
 }
 
 char QGraphicsSvgItem_EventFilter(void* ptr, void* watched, void* event)
@@ -574,6 +574,14 @@ void QGraphicsSvgItem_WheelEventDefault(void* ptr, void* event)
 	static_cast<QGraphicsSvgItem*>(ptr)->QGraphicsSvgItem::wheelEvent(static_cast<QGraphicsSceneWheelEvent*>(event));
 }
 
+class MyQSvgGenerator: public QSvgGenerator
+{
+public:
+	MyQSvgGenerator() : QSvgGenerator() {};
+	int metric(QPaintDevice::PaintDeviceMetric metric) const { return callbackQSvgGenerator_Metric(const_cast<MyQSvgGenerator*>(this), metric); };
+	QPaintEngine * paintEngine() const { return static_cast<QPaintEngine*>(callbackQSvgGenerator_PaintEngine(const_cast<MyQSvgGenerator*>(this))); };
+};
+
 struct QtSvg_PackedString QSvgGenerator_Description(void* ptr)
 {
 	return ({ QByteArray t85d23d = static_cast<QSvgGenerator*>(ptr)->description().toUtf8(); QtSvg_PackedString { const_cast<char*>(t85d23d.prepend("WHITESPACE").constData()+10), t85d23d.size()-10 }; });
@@ -651,7 +659,7 @@ void* QSvgGenerator_ViewBoxF(void* ptr)
 
 void* QSvgGenerator_NewQSvgGenerator()
 {
-	return new QSvgGenerator();
+	return new MyQSvgGenerator();
 }
 
 int QSvgGenerator_Metric(void* ptr, long long metric)
@@ -659,9 +667,19 @@ int QSvgGenerator_Metric(void* ptr, long long metric)
 	return static_cast<QSvgGenerator*>(ptr)->metric(static_cast<QPaintDevice::PaintDeviceMetric>(metric));
 }
 
+int QSvgGenerator_MetricDefault(void* ptr, long long metric)
+{
+	return static_cast<QSvgGenerator*>(ptr)->QSvgGenerator::metric(static_cast<QPaintDevice::PaintDeviceMetric>(metric));
+}
+
 void* QSvgGenerator_PaintEngine(void* ptr)
 {
 	return static_cast<QSvgGenerator*>(ptr)->paintEngine();
+}
+
+void* QSvgGenerator_PaintEngineDefault(void* ptr)
+{
+	return static_cast<QSvgGenerator*>(ptr)->QSvgGenerator::paintEngine();
 }
 
 void* QSvgGenerator_ViewBox(void* ptr)
@@ -927,6 +945,8 @@ public:
 	MyQSvgWidget(const QString &file, QWidget *parent) : QSvgWidget(file, parent) {};
 	void load(const QByteArray & contents) { callbackQSvgWidget_Load2(this, const_cast<QByteArray*>(&contents)); };
 	void load(const QString & file) { QByteArray t971c41 = file.toUtf8(); QtSvg_PackedString filePacked = { const_cast<char*>(t971c41.prepend("WHITESPACE").constData()+10), t971c41.size()-10 };callbackQSvgWidget_Load(this, filePacked); };
+	void paintEvent(QPaintEvent * event) { callbackQSvgWidget_PaintEvent(this, event); };
+	QSize sizeHint() const { return *static_cast<QSize*>(callbackQSvgWidget_SizeHint(const_cast<MyQSvgWidget*>(this))); };
 	void actionEvent(QActionEvent * event) { callbackQSvgWidget_ActionEvent(this, event); };
 	void dragEnterEvent(QDragEnterEvent * event) { callbackQSvgWidget_DragEnterEvent(this, event); };
 	void dragLeaveEvent(QDragLeaveEvent * event) { callbackQSvgWidget_DragLeaveEvent(this, event); };
@@ -937,8 +957,10 @@ public:
 	void focusOutEvent(QFocusEvent * event) { callbackQSvgWidget_FocusOutEvent(this, event); };
 	void hideEvent(QHideEvent * event) { callbackQSvgWidget_HideEvent(this, event); };
 	void leaveEvent(QEvent * event) { callbackQSvgWidget_LeaveEvent(this, event); };
+	int metric(QPaintDevice::PaintDeviceMetric m) const { return callbackQSvgWidget_Metric(const_cast<MyQSvgWidget*>(this), m); };
 	QSize minimumSizeHint() const { return *static_cast<QSize*>(callbackQSvgWidget_MinimumSizeHint(const_cast<MyQSvgWidget*>(this))); };
 	void moveEvent(QMoveEvent * event) { callbackQSvgWidget_MoveEvent(this, event); };
+	QPaintEngine * paintEngine() const { return static_cast<QPaintEngine*>(callbackQSvgWidget_PaintEngine(const_cast<MyQSvgWidget*>(this))); };
 	void setEnabled(bool vbo) { callbackQSvgWidget_SetEnabled(this, vbo); };
 	void setStyleSheet(const QString & styleSheet) { QByteArray t728ae7 = styleSheet.toUtf8(); QtSvg_PackedString styleSheetPacked = { const_cast<char*>(t728ae7.prepend("WHITESPACE").constData()+10), t728ae7.size()-10 };callbackQSvgWidget_SetStyleSheet(this, styleSheetPacked); };
 	void setVisible(bool visible) { callbackQSvgWidget_SetVisible(this, visible); };
@@ -949,6 +971,7 @@ public:
 	bool close() { return callbackQSvgWidget_Close(this) != 0; };
 	void closeEvent(QCloseEvent * event) { callbackQSvgWidget_CloseEvent(this, event); };
 	void contextMenuEvent(QContextMenuEvent * event) { callbackQSvgWidget_ContextMenuEvent(this, event); };
+	bool event(QEvent * event) { return callbackQSvgWidget_Event(this, event) != 0; };
 	bool focusNextPrevChild(bool next) { return callbackQSvgWidget_FocusNextPrevChild(this, next) != 0; };
 	bool hasHeightForWidth() const { return callbackQSvgWidget_HasHeightForWidth(const_cast<MyQSvgWidget*>(this)) != 0; };
 	int heightForWidth(int w) const { return callbackQSvgWidget_HeightForWidth(const_cast<MyQSvgWidget*>(this), w); };
@@ -984,11 +1007,8 @@ public:
 	void customEvent(QEvent * event) { callbackQSvgWidget_CustomEvent(this, event); };
 	void deleteLater() { callbackQSvgWidget_DeleteLater(this); };
 	void disconnectNotify(const QMetaMethod & sign) { callbackQSvgWidget_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
-	bool event(QEvent * e) { return callbackQSvgWidget_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQSvgWidget_EventFilter(this, watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQSvgWidget_MetaObject(const_cast<MyQSvgWidget*>(this))); };
-	int metric(QPaintDevice::PaintDeviceMetric metric) const { return callbackQSvgWidget_Metric(const_cast<MyQSvgWidget*>(this), metric); };
-	QPaintEngine * paintEngine() const { return static_cast<QPaintEngine*>(callbackQSvgWidget_PaintEngine(const_cast<MyQSvgWidget*>(this))); };
 };
 
 void* QSvgWidget_NewQSvgWidget(void* parent)
@@ -1016,6 +1036,11 @@ void QSvgWidget_PaintEvent(void* ptr, void* event)
 	static_cast<QSvgWidget*>(ptr)->paintEvent(static_cast<QPaintEvent*>(event));
 }
 
+void QSvgWidget_PaintEventDefault(void* ptr, void* event)
+{
+	static_cast<QSvgWidget*>(ptr)->QSvgWidget::paintEvent(static_cast<QPaintEvent*>(event));
+}
+
 void* QSvgWidget_Renderer(void* ptr)
 {
 	return static_cast<QSvgWidget*>(ptr)->renderer();
@@ -1024,6 +1049,11 @@ void* QSvgWidget_Renderer(void* ptr)
 void* QSvgWidget_SizeHint(void* ptr)
 {
 	return ({ QSize tmpValue = static_cast<QSvgWidget*>(ptr)->sizeHint(); new QSize(tmpValue.width(), tmpValue.height()); });
+}
+
+void* QSvgWidget_SizeHintDefault(void* ptr)
+{
+	return ({ QSize tmpValue = static_cast<QSvgWidget*>(ptr)->QSvgWidget::sizeHint(); new QSize(tmpValue.width(), tmpValue.height()); });
 }
 
 void QSvgWidget_DestroyQSvgWidget(void* ptr)
@@ -1131,6 +1161,16 @@ void QSvgWidget_LeaveEventDefault(void* ptr, void* event)
 	static_cast<QSvgWidget*>(ptr)->QSvgWidget::leaveEvent(static_cast<QEvent*>(event));
 }
 
+int QSvgWidget_Metric(void* ptr, long long m)
+{
+	return static_cast<QSvgWidget*>(ptr)->metric(static_cast<QPaintDevice::PaintDeviceMetric>(m));
+}
+
+int QSvgWidget_MetricDefault(void* ptr, long long m)
+{
+	return static_cast<QSvgWidget*>(ptr)->QSvgWidget::metric(static_cast<QPaintDevice::PaintDeviceMetric>(m));
+}
+
 void* QSvgWidget_MinimumSizeHint(void* ptr)
 {
 	return ({ QSize tmpValue = static_cast<QSvgWidget*>(ptr)->minimumSizeHint(); new QSize(tmpValue.width(), tmpValue.height()); });
@@ -1149,6 +1189,16 @@ void QSvgWidget_MoveEvent(void* ptr, void* event)
 void QSvgWidget_MoveEventDefault(void* ptr, void* event)
 {
 	static_cast<QSvgWidget*>(ptr)->QSvgWidget::moveEvent(static_cast<QMoveEvent*>(event));
+}
+
+void* QSvgWidget_PaintEngine(void* ptr)
+{
+	return static_cast<QSvgWidget*>(ptr)->paintEngine();
+}
+
+void* QSvgWidget_PaintEngineDefault(void* ptr)
+{
+	return static_cast<QSvgWidget*>(ptr)->QSvgWidget::paintEngine();
 }
 
 void QSvgWidget_SetEnabled(void* ptr, char vbo)
@@ -1251,6 +1301,16 @@ void QSvgWidget_ContextMenuEvent(void* ptr, void* event)
 void QSvgWidget_ContextMenuEventDefault(void* ptr, void* event)
 {
 	static_cast<QSvgWidget*>(ptr)->QSvgWidget::contextMenuEvent(static_cast<QContextMenuEvent*>(event));
+}
+
+char QSvgWidget_Event(void* ptr, void* event)
+{
+	return static_cast<QSvgWidget*>(ptr)->event(static_cast<QEvent*>(event));
+}
+
+char QSvgWidget_EventDefault(void* ptr, void* event)
+{
+	return static_cast<QSvgWidget*>(ptr)->QSvgWidget::event(static_cast<QEvent*>(event));
 }
 
 char QSvgWidget_FocusNextPrevChild(void* ptr, char next)
@@ -1603,16 +1663,6 @@ void QSvgWidget_DisconnectNotifyDefault(void* ptr, void* sign)
 	static_cast<QSvgWidget*>(ptr)->QSvgWidget::disconnectNotify(*static_cast<QMetaMethod*>(sign));
 }
 
-char QSvgWidget_Event(void* ptr, void* e)
-{
-	return static_cast<QSvgWidget*>(ptr)->event(static_cast<QEvent*>(e));
-}
-
-char QSvgWidget_EventDefault(void* ptr, void* e)
-{
-	return static_cast<QSvgWidget*>(ptr)->QSvgWidget::event(static_cast<QEvent*>(e));
-}
-
 char QSvgWidget_EventFilter(void* ptr, void* watched, void* event)
 {
 	return static_cast<QSvgWidget*>(ptr)->eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
@@ -1631,25 +1681,5 @@ void* QSvgWidget_MetaObject(void* ptr)
 void* QSvgWidget_MetaObjectDefault(void* ptr)
 {
 	return const_cast<QMetaObject*>(static_cast<QSvgWidget*>(ptr)->QSvgWidget::metaObject());
-}
-
-int QSvgWidget_Metric(void* ptr, long long metric)
-{
-	return static_cast<QSvgWidget*>(ptr)->metric(static_cast<QPaintDevice::PaintDeviceMetric>(metric));
-}
-
-int QSvgWidget_MetricDefault(void* ptr, long long metric)
-{
-	return static_cast<QSvgWidget*>(ptr)->QSvgWidget::metric(static_cast<QPaintDevice::PaintDeviceMetric>(metric));
-}
-
-void* QSvgWidget_PaintEngine(void* ptr)
-{
-	return static_cast<QSvgWidget*>(ptr)->paintEngine();
-}
-
-void* QSvgWidget_PaintEngineDefault(void* ptr)
-{
-	return static_cast<QSvgWidget*>(ptr)->QSvgWidget::paintEngine();
 }
 

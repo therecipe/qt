@@ -7860,6 +7860,13 @@ public:
 	void setFullScreen(bool fullScreen) { callbackQCameraViewfinder_SetFullScreen(this, fullScreen); };
 	void setHue(int hue) { callbackQCameraViewfinder_SetHue(this, hue); };
 	void setSaturation(int saturation) { callbackQCameraViewfinder_SetSaturation(this, saturation); };
+	bool event(QEvent * event) { return callbackQCameraViewfinder_Event(this, event) != 0; };
+	void hideEvent(QHideEvent * event) { callbackQCameraViewfinder_HideEvent(this, event); };
+	void moveEvent(QMoveEvent * event) { callbackQCameraViewfinder_MoveEvent(this, event); };
+	void paintEvent(QPaintEvent * event) { callbackQCameraViewfinder_PaintEvent(this, event); };
+	void resizeEvent(QResizeEvent * event) { callbackQCameraViewfinder_ResizeEvent(this, event); };
+	void showEvent(QShowEvent * event) { callbackQCameraViewfinder_ShowEvent(this, event); };
+	QSize sizeHint() const { return *static_cast<QSize*>(callbackQCameraViewfinder_SizeHint(const_cast<MyQCameraViewfinder*>(this))); };
 	void actionEvent(QActionEvent * event) { callbackQCameraViewfinder_ActionEvent(this, event); };
 	void dragEnterEvent(QDragEnterEvent * event) { callbackQCameraViewfinder_DragEnterEvent(this, event); };
 	void dragLeaveEvent(QDragLeaveEvent * event) { callbackQCameraViewfinder_DragLeaveEvent(this, event); };
@@ -7868,18 +7875,15 @@ public:
 	void enterEvent(QEvent * event) { callbackQCameraViewfinder_EnterEvent(this, event); };
 	void focusInEvent(QFocusEvent * event) { callbackQCameraViewfinder_FocusInEvent(this, event); };
 	void focusOutEvent(QFocusEvent * event) { callbackQCameraViewfinder_FocusOutEvent(this, event); };
-	void hideEvent(QHideEvent * event) { callbackQCameraViewfinder_HideEvent(this, event); };
 	void leaveEvent(QEvent * event) { callbackQCameraViewfinder_LeaveEvent(this, event); };
+	int metric(QPaintDevice::PaintDeviceMetric m) const { return callbackQCameraViewfinder_Metric(const_cast<MyQCameraViewfinder*>(this), m); };
 	QSize minimumSizeHint() const { return *static_cast<QSize*>(callbackQCameraViewfinder_MinimumSizeHint(const_cast<MyQCameraViewfinder*>(this))); };
-	void moveEvent(QMoveEvent * event) { callbackQCameraViewfinder_MoveEvent(this, event); };
-	void paintEvent(QPaintEvent * event) { callbackQCameraViewfinder_PaintEvent(this, event); };
+	QPaintEngine * paintEngine() const { return static_cast<QPaintEngine*>(callbackQCameraViewfinder_PaintEngine(const_cast<MyQCameraViewfinder*>(this))); };
 	void setEnabled(bool vbo) { callbackQCameraViewfinder_SetEnabled(this, vbo); };
 	void setStyleSheet(const QString & styleSheet) { QByteArray t728ae7 = styleSheet.toUtf8(); QtMultimedia_PackedString styleSheetPacked = { const_cast<char*>(t728ae7.prepend("WHITESPACE").constData()+10), t728ae7.size()-10 };callbackQCameraViewfinder_SetStyleSheet(this, styleSheetPacked); };
 	void setVisible(bool visible) { callbackQCameraViewfinder_SetVisible(this, visible); };
 	void setWindowModified(bool vbo) { callbackQCameraViewfinder_SetWindowModified(this, vbo); };
 	void setWindowTitle(const QString & vqs) { QByteArray tda39a3 = vqs.toUtf8(); QtMultimedia_PackedString vqsPacked = { const_cast<char*>(tda39a3.prepend("WHITESPACE").constData()+10), tda39a3.size()-10 };callbackQCameraViewfinder_SetWindowTitle(this, vqsPacked); };
-	void showEvent(QShowEvent * event) { callbackQCameraViewfinder_ShowEvent(this, event); };
-	QSize sizeHint() const { return *static_cast<QSize*>(callbackQCameraViewfinder_SizeHint(const_cast<MyQCameraViewfinder*>(this))); };
 	void changeEvent(QEvent * event) { callbackQCameraViewfinder_ChangeEvent(this, event); };
 	bool close() { return callbackQCameraViewfinder_Close(this) != 0; };
 	void closeEvent(QCloseEvent * event) { callbackQCameraViewfinder_CloseEvent(this, event); };
@@ -7900,7 +7904,6 @@ public:
 	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQCameraViewfinder_NativeEvent(this, const_cast<QByteArray*>(&eventType), message, *result) != 0; };
 	void raise() { callbackQCameraViewfinder_Raise(this); };
 	void repaint() { callbackQCameraViewfinder_Repaint(this); };
-	void resizeEvent(QResizeEvent * event) { callbackQCameraViewfinder_ResizeEvent(this, event); };
 	void setDisabled(bool disable) { callbackQCameraViewfinder_SetDisabled(this, disable); };
 	void setFocus() { callbackQCameraViewfinder_SetFocus2(this); };
 	void setHidden(bool hidden) { callbackQCameraViewfinder_SetHidden(this, hidden); };
@@ -7919,11 +7922,8 @@ public:
 	void customEvent(QEvent * event) { callbackQCameraViewfinder_CustomEvent(this, event); };
 	void deleteLater() { callbackQCameraViewfinder_DeleteLater(this); };
 	void disconnectNotify(const QMetaMethod & sign) { callbackQCameraViewfinder_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
-	bool event(QEvent * e) { return callbackQCameraViewfinder_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQCameraViewfinder_EventFilter(this, watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQCameraViewfinder_MetaObject(const_cast<MyQCameraViewfinder*>(this))); };
-	int metric(QPaintDevice::PaintDeviceMetric metric) const { return callbackQCameraViewfinder_Metric(const_cast<MyQCameraViewfinder*>(this), metric); };
-	QPaintEngine * paintEngine() const { return static_cast<QPaintEngine*>(callbackQCameraViewfinder_PaintEngine(const_cast<MyQCameraViewfinder*>(this))); };
 };
 
 void* QCameraViewfinder_NewQCameraViewfinder(void* parent)
@@ -8016,6 +8016,76 @@ void QCameraViewfinder_SetSaturationDefault(void* ptr, int saturation)
 	static_cast<QCameraViewfinder*>(ptr)->QCameraViewfinder::setSaturation(saturation);
 }
 
+char QCameraViewfinder_Event(void* ptr, void* event)
+{
+	return static_cast<QCameraViewfinder*>(ptr)->event(static_cast<QEvent*>(event));
+}
+
+char QCameraViewfinder_EventDefault(void* ptr, void* event)
+{
+	return static_cast<QCameraViewfinder*>(ptr)->QCameraViewfinder::event(static_cast<QEvent*>(event));
+}
+
+void QCameraViewfinder_HideEvent(void* ptr, void* event)
+{
+	static_cast<QCameraViewfinder*>(ptr)->hideEvent(static_cast<QHideEvent*>(event));
+}
+
+void QCameraViewfinder_HideEventDefault(void* ptr, void* event)
+{
+	static_cast<QCameraViewfinder*>(ptr)->QCameraViewfinder::hideEvent(static_cast<QHideEvent*>(event));
+}
+
+void QCameraViewfinder_MoveEvent(void* ptr, void* event)
+{
+	static_cast<QCameraViewfinder*>(ptr)->moveEvent(static_cast<QMoveEvent*>(event));
+}
+
+void QCameraViewfinder_MoveEventDefault(void* ptr, void* event)
+{
+	static_cast<QCameraViewfinder*>(ptr)->QCameraViewfinder::moveEvent(static_cast<QMoveEvent*>(event));
+}
+
+void QCameraViewfinder_PaintEvent(void* ptr, void* event)
+{
+	static_cast<QCameraViewfinder*>(ptr)->paintEvent(static_cast<QPaintEvent*>(event));
+}
+
+void QCameraViewfinder_PaintEventDefault(void* ptr, void* event)
+{
+	static_cast<QCameraViewfinder*>(ptr)->QCameraViewfinder::paintEvent(static_cast<QPaintEvent*>(event));
+}
+
+void QCameraViewfinder_ResizeEvent(void* ptr, void* event)
+{
+	static_cast<QCameraViewfinder*>(ptr)->resizeEvent(static_cast<QResizeEvent*>(event));
+}
+
+void QCameraViewfinder_ResizeEventDefault(void* ptr, void* event)
+{
+	static_cast<QCameraViewfinder*>(ptr)->QCameraViewfinder::resizeEvent(static_cast<QResizeEvent*>(event));
+}
+
+void QCameraViewfinder_ShowEvent(void* ptr, void* event)
+{
+	static_cast<QCameraViewfinder*>(ptr)->showEvent(static_cast<QShowEvent*>(event));
+}
+
+void QCameraViewfinder_ShowEventDefault(void* ptr, void* event)
+{
+	static_cast<QCameraViewfinder*>(ptr)->QCameraViewfinder::showEvent(static_cast<QShowEvent*>(event));
+}
+
+void* QCameraViewfinder_SizeHint(void* ptr)
+{
+	return ({ QSize tmpValue = static_cast<QCameraViewfinder*>(ptr)->sizeHint(); new QSize(tmpValue.width(), tmpValue.height()); });
+}
+
+void* QCameraViewfinder_SizeHintDefault(void* ptr)
+{
+	return ({ QSize tmpValue = static_cast<QCameraViewfinder*>(ptr)->QCameraViewfinder::sizeHint(); new QSize(tmpValue.width(), tmpValue.height()); });
+}
+
 void QCameraViewfinder_ActionEvent(void* ptr, void* event)
 {
 	static_cast<QCameraViewfinder*>(ptr)->actionEvent(static_cast<QActionEvent*>(event));
@@ -8096,16 +8166,6 @@ void QCameraViewfinder_FocusOutEventDefault(void* ptr, void* event)
 	static_cast<QCameraViewfinder*>(ptr)->QCameraViewfinder::focusOutEvent(static_cast<QFocusEvent*>(event));
 }
 
-void QCameraViewfinder_HideEvent(void* ptr, void* event)
-{
-	static_cast<QCameraViewfinder*>(ptr)->hideEvent(static_cast<QHideEvent*>(event));
-}
-
-void QCameraViewfinder_HideEventDefault(void* ptr, void* event)
-{
-	static_cast<QCameraViewfinder*>(ptr)->QCameraViewfinder::hideEvent(static_cast<QHideEvent*>(event));
-}
-
 void QCameraViewfinder_LeaveEvent(void* ptr, void* event)
 {
 	static_cast<QCameraViewfinder*>(ptr)->leaveEvent(static_cast<QEvent*>(event));
@@ -8114,6 +8174,16 @@ void QCameraViewfinder_LeaveEvent(void* ptr, void* event)
 void QCameraViewfinder_LeaveEventDefault(void* ptr, void* event)
 {
 	static_cast<QCameraViewfinder*>(ptr)->QCameraViewfinder::leaveEvent(static_cast<QEvent*>(event));
+}
+
+int QCameraViewfinder_Metric(void* ptr, long long m)
+{
+	return static_cast<QCameraViewfinder*>(ptr)->metric(static_cast<QPaintDevice::PaintDeviceMetric>(m));
+}
+
+int QCameraViewfinder_MetricDefault(void* ptr, long long m)
+{
+	return static_cast<QCameraViewfinder*>(ptr)->QCameraViewfinder::metric(static_cast<QPaintDevice::PaintDeviceMetric>(m));
 }
 
 void* QCameraViewfinder_MinimumSizeHint(void* ptr)
@@ -8126,24 +8196,14 @@ void* QCameraViewfinder_MinimumSizeHintDefault(void* ptr)
 	return ({ QSize tmpValue = static_cast<QCameraViewfinder*>(ptr)->QCameraViewfinder::minimumSizeHint(); new QSize(tmpValue.width(), tmpValue.height()); });
 }
 
-void QCameraViewfinder_MoveEvent(void* ptr, void* event)
+void* QCameraViewfinder_PaintEngine(void* ptr)
 {
-	static_cast<QCameraViewfinder*>(ptr)->moveEvent(static_cast<QMoveEvent*>(event));
+	return static_cast<QCameraViewfinder*>(ptr)->paintEngine();
 }
 
-void QCameraViewfinder_MoveEventDefault(void* ptr, void* event)
+void* QCameraViewfinder_PaintEngineDefault(void* ptr)
 {
-	static_cast<QCameraViewfinder*>(ptr)->QCameraViewfinder::moveEvent(static_cast<QMoveEvent*>(event));
-}
-
-void QCameraViewfinder_PaintEvent(void* ptr, void* event)
-{
-	static_cast<QCameraViewfinder*>(ptr)->paintEvent(static_cast<QPaintEvent*>(event));
-}
-
-void QCameraViewfinder_PaintEventDefault(void* ptr, void* event)
-{
-	static_cast<QCameraViewfinder*>(ptr)->QCameraViewfinder::paintEvent(static_cast<QPaintEvent*>(event));
+	return static_cast<QCameraViewfinder*>(ptr)->QCameraViewfinder::paintEngine();
 }
 
 void QCameraViewfinder_SetEnabled(void* ptr, char vbo)
@@ -8194,26 +8254,6 @@ void QCameraViewfinder_SetWindowTitle(void* ptr, char* vqs)
 void QCameraViewfinder_SetWindowTitleDefault(void* ptr, char* vqs)
 {
 	static_cast<QCameraViewfinder*>(ptr)->QCameraViewfinder::setWindowTitle(QString(vqs));
-}
-
-void QCameraViewfinder_ShowEvent(void* ptr, void* event)
-{
-	static_cast<QCameraViewfinder*>(ptr)->showEvent(static_cast<QShowEvent*>(event));
-}
-
-void QCameraViewfinder_ShowEventDefault(void* ptr, void* event)
-{
-	static_cast<QCameraViewfinder*>(ptr)->QCameraViewfinder::showEvent(static_cast<QShowEvent*>(event));
-}
-
-void* QCameraViewfinder_SizeHint(void* ptr)
-{
-	return ({ QSize tmpValue = static_cast<QCameraViewfinder*>(ptr)->sizeHint(); new QSize(tmpValue.width(), tmpValue.height()); });
-}
-
-void* QCameraViewfinder_SizeHintDefault(void* ptr)
-{
-	return ({ QSize tmpValue = static_cast<QCameraViewfinder*>(ptr)->QCameraViewfinder::sizeHint(); new QSize(tmpValue.width(), tmpValue.height()); });
 }
 
 void QCameraViewfinder_ChangeEvent(void* ptr, void* event)
@@ -8418,16 +8458,6 @@ void QCameraViewfinder_RepaintDefault(void* ptr)
 	static_cast<QCameraViewfinder*>(ptr)->QCameraViewfinder::repaint();
 }
 
-void QCameraViewfinder_ResizeEvent(void* ptr, void* event)
-{
-	static_cast<QCameraViewfinder*>(ptr)->resizeEvent(static_cast<QResizeEvent*>(event));
-}
-
-void QCameraViewfinder_ResizeEventDefault(void* ptr, void* event)
-{
-	static_cast<QCameraViewfinder*>(ptr)->QCameraViewfinder::resizeEvent(static_cast<QResizeEvent*>(event));
-}
-
 void QCameraViewfinder_SetDisabled(void* ptr, char disable)
 {
 	QMetaObject::invokeMethod(static_cast<QCameraViewfinder*>(ptr), "setDisabled", Q_ARG(bool, disable != 0));
@@ -8608,16 +8638,6 @@ void QCameraViewfinder_DisconnectNotifyDefault(void* ptr, void* sign)
 	static_cast<QCameraViewfinder*>(ptr)->QCameraViewfinder::disconnectNotify(*static_cast<QMetaMethod*>(sign));
 }
 
-char QCameraViewfinder_Event(void* ptr, void* e)
-{
-	return static_cast<QCameraViewfinder*>(ptr)->event(static_cast<QEvent*>(e));
-}
-
-char QCameraViewfinder_EventDefault(void* ptr, void* e)
-{
-	return static_cast<QCameraViewfinder*>(ptr)->QCameraViewfinder::event(static_cast<QEvent*>(e));
-}
-
 char QCameraViewfinder_EventFilter(void* ptr, void* watched, void* event)
 {
 	if (dynamic_cast<QCameraImageCapture*>(static_cast<QObject*>(watched))) {
@@ -8664,26 +8684,6 @@ void* QCameraViewfinder_MetaObject(void* ptr)
 void* QCameraViewfinder_MetaObjectDefault(void* ptr)
 {
 	return const_cast<QMetaObject*>(static_cast<QCameraViewfinder*>(ptr)->QCameraViewfinder::metaObject());
-}
-
-int QCameraViewfinder_Metric(void* ptr, long long metric)
-{
-	return static_cast<QCameraViewfinder*>(ptr)->metric(static_cast<QPaintDevice::PaintDeviceMetric>(metric));
-}
-
-int QCameraViewfinder_MetricDefault(void* ptr, long long metric)
-{
-	return static_cast<QCameraViewfinder*>(ptr)->QCameraViewfinder::metric(static_cast<QPaintDevice::PaintDeviceMetric>(metric));
-}
-
-void* QCameraViewfinder_PaintEngine(void* ptr)
-{
-	return static_cast<QCameraViewfinder*>(ptr)->paintEngine();
-}
-
-void* QCameraViewfinder_PaintEngineDefault(void* ptr)
-{
-	return static_cast<QCameraViewfinder*>(ptr)->QCameraViewfinder::paintEngine();
 }
 
 void* QCameraViewfinderSettings_NewQCameraViewfinderSettings()
@@ -9384,7 +9384,10 @@ class MyQGraphicsVideoItem: public QGraphicsVideoItem
 public:
 	MyQGraphicsVideoItem(QGraphicsItem *parent) : QGraphicsVideoItem(parent) {};
 	void Signal_NativeSizeChanged(const QSizeF & size) { callbackQGraphicsVideoItem_NativeSizeChanged(this, const_cast<QSizeF*>(&size)); };
+	QRectF boundingRect() const { return *static_cast<QRectF*>(callbackQGraphicsVideoItem_BoundingRect(const_cast<MyQGraphicsVideoItem*>(this))); };
 	QMediaObject * mediaObject() const { return static_cast<QMediaObject*>(callbackQGraphicsVideoItem_MediaObject(const_cast<MyQGraphicsVideoItem*>(this))); };
+	void paint(QPainter * painter, const QStyleOptionGraphicsItem * option, QWidget * widget) { callbackQGraphicsVideoItem_Paint(this, painter, const_cast<QStyleOptionGraphicsItem*>(option), widget); };
+	bool event(QEvent * ev) { return callbackQGraphicsVideoItem_Event(this, ev) != 0; };
 	void updateMicroFocus() { callbackQGraphicsVideoItem_UpdateMicroFocus(this); };
 	void timerEvent(QTimerEvent * event) { callbackQGraphicsVideoItem_TimerEvent(this, event); };
 	void childEvent(QChildEvent * event) { callbackQGraphicsVideoItem_ChildEvent(this, event); };
@@ -9392,7 +9395,6 @@ public:
 	void customEvent(QEvent * event) { callbackQGraphicsVideoItem_CustomEvent(this, event); };
 	void deleteLater() { callbackQGraphicsVideoItem_DeleteLater(this); };
 	void disconnectNotify(const QMetaMethod & sign) { callbackQGraphicsVideoItem_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
-	bool event(QEvent * e) { return callbackQGraphicsVideoItem_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQGraphicsVideoItem_EventFilter(this, watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQGraphicsVideoItem_MetaObject(const_cast<MyQGraphicsVideoItem*>(this))); };
 	void advance(int phase) { callbackQGraphicsVideoItem_Advance(this, phase); };
@@ -9458,6 +9460,11 @@ void* QGraphicsVideoItem_BoundingRect(void* ptr)
 		return ({ QRectF tmpValue = static_cast<QGraphicsVideoItem*>(ptr)->boundingRect(); new QRectF(tmpValue.x(), tmpValue.y(), tmpValue.width(), tmpValue.height()); });
 }
 
+void* QGraphicsVideoItem_BoundingRectDefault(void* ptr)
+{
+		return ({ QRectF tmpValue = static_cast<QGraphicsVideoItem*>(ptr)->QGraphicsVideoItem::boundingRect(); new QRectF(tmpValue.x(), tmpValue.y(), tmpValue.width(), tmpValue.height()); });
+}
+
 void* QGraphicsVideoItem_MediaObject(void* ptr)
 {
 		return static_cast<QGraphicsVideoItem*>(ptr)->mediaObject();
@@ -9487,6 +9494,15 @@ void QGraphicsVideoItem_Paint(void* ptr, void* painter, void* option, void* widg
 	}
 }
 
+void QGraphicsVideoItem_PaintDefault(void* ptr, void* painter, void* option, void* widget)
+{
+	if (dynamic_cast<QVideoWidget*>(static_cast<QObject*>(widget))) {
+		static_cast<QGraphicsVideoItem*>(ptr)->QGraphicsVideoItem::paint(static_cast<QPainter*>(painter), static_cast<QStyleOptionGraphicsItem*>(option), static_cast<QVideoWidget*>(widget));
+	} else {
+		static_cast<QGraphicsVideoItem*>(ptr)->QGraphicsVideoItem::paint(static_cast<QPainter*>(painter), static_cast<QStyleOptionGraphicsItem*>(option), static_cast<QWidget*>(widget));
+	}
+}
+
 void QGraphicsVideoItem_SetAspectRatioMode(void* ptr, long long mode)
 {
 		static_cast<QGraphicsVideoItem*>(ptr)->setAspectRatioMode(static_cast<Qt::AspectRatioMode>(mode));
@@ -9510,6 +9526,16 @@ void* QGraphicsVideoItem_Size(void* ptr)
 void QGraphicsVideoItem_DestroyQGraphicsVideoItem(void* ptr)
 {
 	static_cast<QGraphicsVideoItem*>(ptr)->~QGraphicsVideoItem();
+}
+
+char QGraphicsVideoItem_Event(void* ptr, void* ev)
+{
+		return static_cast<QGraphicsVideoItem*>(ptr)->event(static_cast<QEvent*>(ev));
+}
+
+char QGraphicsVideoItem_EventDefault(void* ptr, void* ev)
+{
+		return static_cast<QGraphicsVideoItem*>(ptr)->QGraphicsVideoItem::event(static_cast<QEvent*>(ev));
 }
 
 void QGraphicsVideoItem_UpdateMicroFocus(void* ptr)
@@ -9580,16 +9606,6 @@ void QGraphicsVideoItem_DisconnectNotify(void* ptr, void* sign)
 void QGraphicsVideoItem_DisconnectNotifyDefault(void* ptr, void* sign)
 {
 		static_cast<QGraphicsVideoItem*>(ptr)->QGraphicsVideoItem::disconnectNotify(*static_cast<QMetaMethod*>(sign));
-}
-
-char QGraphicsVideoItem_Event(void* ptr, void* e)
-{
-		return static_cast<QGraphicsVideoItem*>(ptr)->event(static_cast<QEvent*>(e));
-}
-
-char QGraphicsVideoItem_EventDefault(void* ptr, void* e)
-{
-		return static_cast<QGraphicsVideoItem*>(ptr)->QGraphicsVideoItem::event(static_cast<QEvent*>(e));
 }
 
 char QGraphicsVideoItem_EventFilter(void* ptr, void* watched, void* event)
@@ -19299,9 +19315,16 @@ public:
 	void setSaturation(int saturation) { callbackQVideoWidget_SetSaturation(this, saturation); };
 	void Signal_BrightnessChanged(int brightness) { callbackQVideoWidget_BrightnessChanged(this, brightness); };
 	void Signal_ContrastChanged(int contrast) { callbackQVideoWidget_ContrastChanged(this, contrast); };
+	bool event(QEvent * event) { return callbackQVideoWidget_Event(this, event) != 0; };
 	void Signal_FullScreenChanged(bool fullScreen) { callbackQVideoWidget_FullScreenChanged(this, fullScreen); };
+	void hideEvent(QHideEvent * event) { callbackQVideoWidget_HideEvent(this, event); };
 	void Signal_HueChanged(int hue) { callbackQVideoWidget_HueChanged(this, hue); };
+	void moveEvent(QMoveEvent * event) { callbackQVideoWidget_MoveEvent(this, event); };
+	void paintEvent(QPaintEvent * event) { callbackQVideoWidget_PaintEvent(this, event); };
+	void resizeEvent(QResizeEvent * event) { callbackQVideoWidget_ResizeEvent(this, event); };
 	void Signal_SaturationChanged(int saturation) { callbackQVideoWidget_SaturationChanged(this, saturation); };
+	void showEvent(QShowEvent * event) { callbackQVideoWidget_ShowEvent(this, event); };
+	QSize sizeHint() const { return *static_cast<QSize*>(callbackQVideoWidget_SizeHint(const_cast<MyQVideoWidget*>(this))); };
 	void actionEvent(QActionEvent * event) { callbackQVideoWidget_ActionEvent(this, event); };
 	void dragEnterEvent(QDragEnterEvent * event) { callbackQVideoWidget_DragEnterEvent(this, event); };
 	void dragLeaveEvent(QDragLeaveEvent * event) { callbackQVideoWidget_DragLeaveEvent(this, event); };
@@ -19311,7 +19334,9 @@ public:
 	void focusInEvent(QFocusEvent * event) { callbackQVideoWidget_FocusInEvent(this, event); };
 	void focusOutEvent(QFocusEvent * event) { callbackQVideoWidget_FocusOutEvent(this, event); };
 	void leaveEvent(QEvent * event) { callbackQVideoWidget_LeaveEvent(this, event); };
+	int metric(QPaintDevice::PaintDeviceMetric m) const { return callbackQVideoWidget_Metric(const_cast<MyQVideoWidget*>(this), m); };
 	QSize minimumSizeHint() const { return *static_cast<QSize*>(callbackQVideoWidget_MinimumSizeHint(const_cast<MyQVideoWidget*>(this))); };
+	QPaintEngine * paintEngine() const { return static_cast<QPaintEngine*>(callbackQVideoWidget_PaintEngine(const_cast<MyQVideoWidget*>(this))); };
 	void setEnabled(bool vbo) { callbackQVideoWidget_SetEnabled(this, vbo); };
 	void setStyleSheet(const QString & styleSheet) { QByteArray t728ae7 = styleSheet.toUtf8(); QtMultimedia_PackedString styleSheetPacked = { const_cast<char*>(t728ae7.prepend("WHITESPACE").constData()+10), t728ae7.size()-10 };callbackQVideoWidget_SetStyleSheet(this, styleSheetPacked); };
 	void setVisible(bool visible) { callbackQVideoWidget_SetVisible(this, visible); };
@@ -19357,8 +19382,6 @@ public:
 	void disconnectNotify(const QMetaMethod & sign) { callbackQVideoWidget_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQVideoWidget_EventFilter(this, watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQVideoWidget_MetaObject(const_cast<MyQVideoWidget*>(this))); };
-	int metric(QPaintDevice::PaintDeviceMetric metric) const { return callbackQVideoWidget_Metric(const_cast<MyQVideoWidget*>(this), metric); };
-	QPaintEngine * paintEngine() const { return static_cast<QPaintEngine*>(callbackQVideoWidget_PaintEngine(const_cast<MyQVideoWidget*>(this))); };
 	bool setMediaObject(QMediaObject * object) { return callbackQVideoWidget_SetMediaObject(this, object) != 0; };
 };
 
@@ -19467,6 +19490,11 @@ char QVideoWidget_Event(void* ptr, void* event)
 		return static_cast<QVideoWidget*>(ptr)->event(static_cast<QEvent*>(event));
 }
 
+char QVideoWidget_EventDefault(void* ptr, void* event)
+{
+		return static_cast<QVideoWidget*>(ptr)->QVideoWidget::event(static_cast<QEvent*>(event));
+}
+
 void QVideoWidget_ConnectFullScreenChanged(void* ptr)
 {
 	QObject::connect(static_cast<QVideoWidget*>(ptr), static_cast<void (QVideoWidget::*)(bool)>(&QVideoWidget::fullScreenChanged), static_cast<MyQVideoWidget*>(ptr), static_cast<void (MyQVideoWidget::*)(bool)>(&MyQVideoWidget::Signal_FullScreenChanged));
@@ -19485,6 +19513,11 @@ void QVideoWidget_FullScreenChanged(void* ptr, char fullScreen)
 void QVideoWidget_HideEvent(void* ptr, void* event)
 {
 		static_cast<QVideoWidget*>(ptr)->hideEvent(static_cast<QHideEvent*>(event));
+}
+
+void QVideoWidget_HideEventDefault(void* ptr, void* event)
+{
+		static_cast<QVideoWidget*>(ptr)->QVideoWidget::hideEvent(static_cast<QHideEvent*>(event));
 }
 
 void QVideoWidget_ConnectHueChanged(void* ptr)
@@ -19512,14 +19545,29 @@ void QVideoWidget_MoveEvent(void* ptr, void* event)
 		static_cast<QVideoWidget*>(ptr)->moveEvent(static_cast<QMoveEvent*>(event));
 }
 
+void QVideoWidget_MoveEventDefault(void* ptr, void* event)
+{
+		static_cast<QVideoWidget*>(ptr)->QVideoWidget::moveEvent(static_cast<QMoveEvent*>(event));
+}
+
 void QVideoWidget_PaintEvent(void* ptr, void* event)
 {
 		static_cast<QVideoWidget*>(ptr)->paintEvent(static_cast<QPaintEvent*>(event));
 }
 
+void QVideoWidget_PaintEventDefault(void* ptr, void* event)
+{
+		static_cast<QVideoWidget*>(ptr)->QVideoWidget::paintEvent(static_cast<QPaintEvent*>(event));
+}
+
 void QVideoWidget_ResizeEvent(void* ptr, void* event)
 {
 		static_cast<QVideoWidget*>(ptr)->resizeEvent(static_cast<QResizeEvent*>(event));
+}
+
+void QVideoWidget_ResizeEventDefault(void* ptr, void* event)
+{
+		static_cast<QVideoWidget*>(ptr)->QVideoWidget::resizeEvent(static_cast<QResizeEvent*>(event));
 }
 
 void QVideoWidget_ConnectSaturationChanged(void* ptr)
@@ -19542,9 +19590,19 @@ void QVideoWidget_ShowEvent(void* ptr, void* event)
 		static_cast<QVideoWidget*>(ptr)->showEvent(static_cast<QShowEvent*>(event));
 }
 
+void QVideoWidget_ShowEventDefault(void* ptr, void* event)
+{
+		static_cast<QVideoWidget*>(ptr)->QVideoWidget::showEvent(static_cast<QShowEvent*>(event));
+}
+
 void* QVideoWidget_SizeHint(void* ptr)
 {
 		return ({ QSize tmpValue = static_cast<QVideoWidget*>(ptr)->sizeHint(); new QSize(tmpValue.width(), tmpValue.height()); });
+}
+
+void* QVideoWidget_SizeHintDefault(void* ptr)
+{
+		return ({ QSize tmpValue = static_cast<QVideoWidget*>(ptr)->QVideoWidget::sizeHint(); new QSize(tmpValue.width(), tmpValue.height()); });
 }
 
 void QVideoWidget_DestroyQVideoWidget(void* ptr)
@@ -19642,6 +19700,16 @@ void QVideoWidget_LeaveEventDefault(void* ptr, void* event)
 		static_cast<QVideoWidget*>(ptr)->QVideoWidget::leaveEvent(static_cast<QEvent*>(event));
 }
 
+int QVideoWidget_Metric(void* ptr, long long m)
+{
+		return static_cast<QVideoWidget*>(ptr)->metric(static_cast<QPaintDevice::PaintDeviceMetric>(m));
+}
+
+int QVideoWidget_MetricDefault(void* ptr, long long m)
+{
+		return static_cast<QVideoWidget*>(ptr)->QVideoWidget::metric(static_cast<QPaintDevice::PaintDeviceMetric>(m));
+}
+
 void* QVideoWidget_MinimumSizeHint(void* ptr)
 {
 		return ({ QSize tmpValue = static_cast<QVideoWidget*>(ptr)->minimumSizeHint(); new QSize(tmpValue.width(), tmpValue.height()); });
@@ -19650,6 +19718,16 @@ void* QVideoWidget_MinimumSizeHint(void* ptr)
 void* QVideoWidget_MinimumSizeHintDefault(void* ptr)
 {
 		return ({ QSize tmpValue = static_cast<QVideoWidget*>(ptr)->QVideoWidget::minimumSizeHint(); new QSize(tmpValue.width(), tmpValue.height()); });
+}
+
+void* QVideoWidget_PaintEngine(void* ptr)
+{
+		return static_cast<QVideoWidget*>(ptr)->paintEngine();
+}
+
+void* QVideoWidget_PaintEngineDefault(void* ptr)
+{
+		return static_cast<QVideoWidget*>(ptr)->QVideoWidget::paintEngine();
 }
 
 void QVideoWidget_SetEnabled(void* ptr, char vbo)
@@ -20130,26 +20208,6 @@ void* QVideoWidget_MetaObject(void* ptr)
 void* QVideoWidget_MetaObjectDefault(void* ptr)
 {
 		return const_cast<QMetaObject*>(static_cast<QVideoWidget*>(ptr)->QVideoWidget::metaObject());
-}
-
-int QVideoWidget_Metric(void* ptr, long long metric)
-{
-		return static_cast<QVideoWidget*>(ptr)->metric(static_cast<QPaintDevice::PaintDeviceMetric>(metric));
-}
-
-int QVideoWidget_MetricDefault(void* ptr, long long metric)
-{
-		return static_cast<QVideoWidget*>(ptr)->QVideoWidget::metric(static_cast<QPaintDevice::PaintDeviceMetric>(metric));
-}
-
-void* QVideoWidget_PaintEngine(void* ptr)
-{
-		return static_cast<QVideoWidget*>(ptr)->paintEngine();
-}
-
-void* QVideoWidget_PaintEngineDefault(void* ptr)
-{
-		return static_cast<QVideoWidget*>(ptr)->QVideoWidget::paintEngine();
 }
 
 char QVideoWidget_SetMediaObject(void* ptr, void* object)

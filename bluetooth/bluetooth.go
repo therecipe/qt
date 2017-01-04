@@ -4130,9 +4130,40 @@ func (ptr *QBluetoothSocket) ErrorString() string {
 	return ""
 }
 
+//export callbackQBluetoothSocket_IsSequential
+func callbackQBluetoothSocket_IsSequential(ptr unsafe.Pointer) C.char {
+
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QBluetoothSocket::isSequential"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func() bool)())))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQBluetoothSocketFromPointer(ptr).IsSequentialDefault())))
+}
+
+func (ptr *QBluetoothSocket) ConnectIsSequential(f func() bool) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QBluetoothSocket::isSequential", f)
+	}
+}
+
+func (ptr *QBluetoothSocket) DisconnectIsSequential() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QBluetoothSocket::isSequential")
+	}
+}
+
 func (ptr *QBluetoothSocket) IsSequential() bool {
 	if ptr.Pointer() != nil {
 		return C.QBluetoothSocket_IsSequential(ptr.Pointer()) != 0
+	}
+	return false
+}
+
+func (ptr *QBluetoothSocket) IsSequentialDefault() bool {
+	if ptr.Pointer() != nil {
+		return C.QBluetoothSocket_IsSequentialDefault(ptr.Pointer()) != 0
 	}
 	return false
 }

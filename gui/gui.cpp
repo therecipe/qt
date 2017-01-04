@@ -5339,6 +5339,7 @@ public:
 	MyQGuiApplication(int &argc, char **argv) : QGuiApplication(argc, argv) {};
 	void Signal_ApplicationStateChanged(Qt::ApplicationState state) { callbackQGuiApplication_ApplicationStateChanged(this, state); };
 	void Signal_CommitDataRequest(QSessionManager & manager) { callbackQGuiApplication_CommitDataRequest(this, static_cast<QSessionManager*>(&manager)); };
+	bool event(QEvent * e) { return callbackQGuiApplication_Event(this, e) != 0; };
 	void Signal_FocusObjectChanged(QObject * focusObject) { callbackQGuiApplication_FocusObjectChanged(this, focusObject); };
 	void Signal_FocusWindowChanged(QWindow * focusWindow) { callbackQGuiApplication_FocusWindowChanged(this, focusWindow); };
 	void Signal_FontDatabaseChanged() { callbackQGuiApplication_FontDatabaseChanged(this); };
@@ -5531,6 +5532,11 @@ double QGuiApplication_DevicePixelRatio(void* ptr)
 char QGuiApplication_Event(void* ptr, void* e)
 {
 	return static_cast<QGuiApplication*>(ptr)->event(static_cast<QEvent*>(e));
+}
+
+char QGuiApplication_EventDefault(void* ptr, void* e)
+{
+	return static_cast<QGuiApplication*>(ptr)->QGuiApplication::event(static_cast<QEvent*>(e));
 }
 
 int QGuiApplication_QGuiApplication_Exec()
@@ -13017,6 +13023,7 @@ public:
 	MyQPdfWriter(const QString &filename) : QPdfWriter(filename) {};
 	bool newPage() { return callbackQPdfWriter_NewPage(this) != 0; };
 	QPaintEngine * paintEngine() const { return static_cast<QPaintEngine*>(callbackQPdfWriter_PaintEngine(const_cast<MyQPdfWriter*>(this))); };
+	bool setPageSize(const QPageSize & pageSize) { return callbackQPdfWriter_SetPageSize(this, const_cast<QPageSize*>(&pageSize)) != 0; };
 	void timerEvent(QTimerEvent * event) { callbackQPdfWriter_TimerEvent(this, event); };
 	void childEvent(QChildEvent * event) { callbackQPdfWriter_ChildEvent(this, event); };
 	void connectNotify(const QMetaMethod & sign) { callbackQPdfWriter_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
@@ -13105,6 +13112,11 @@ char QPdfWriter_SetPageOrientation(void* ptr, long long orientation)
 char QPdfWriter_SetPageSize(void* ptr, void* pageSize)
 {
 		return static_cast<QPdfWriter*>(ptr)->setPageSize(*static_cast<QPageSize*>(pageSize));
+}
+
+char QPdfWriter_SetPageSizeDefault(void* ptr, void* pageSize)
+{
+		return static_cast<QPdfWriter*>(ptr)->QPdfWriter::setPageSize(*static_cast<QPageSize*>(pageSize));
 }
 
 void QPdfWriter_SetResolution(void* ptr, int resolution)
@@ -17046,7 +17058,27 @@ class MyQStandardItemModel: public QStandardItemModel
 public:
 	MyQStandardItemModel(QObject *parent) : QStandardItemModel(parent) {};
 	MyQStandardItemModel(int rows, int columns, QObject *parent) : QStandardItemModel(rows, columns, parent) {};
+	int columnCount(const QModelIndex & parent) const { return callbackQStandardItemModel_ColumnCount(const_cast<MyQStandardItemModel*>(this), const_cast<QModelIndex*>(&parent)); };
+	QVariant data(const QModelIndex & index, int role) const { return *static_cast<QVariant*>(callbackQStandardItemModel_Data(const_cast<MyQStandardItemModel*>(this), const_cast<QModelIndex*>(&index), role)); };
+	bool dropMimeData(const QMimeData * data, Qt::DropAction action, int row, int column, const QModelIndex & parent) { return callbackQStandardItemModel_DropMimeData(this, const_cast<QMimeData*>(data), action, row, column, const_cast<QModelIndex*>(&parent)) != 0; };
+	Qt::ItemFlags flags(const QModelIndex & index) const { return static_cast<Qt::ItemFlag>(callbackQStandardItemModel_Flags(const_cast<MyQStandardItemModel*>(this), const_cast<QModelIndex*>(&index))); };
+	bool hasChildren(const QModelIndex & parent) const { return callbackQStandardItemModel_HasChildren(const_cast<MyQStandardItemModel*>(this), const_cast<QModelIndex*>(&parent)) != 0; };
+	QVariant headerData(int section, Qt::Orientation orientation, int role) const { return *static_cast<QVariant*>(callbackQStandardItemModel_HeaderData(const_cast<MyQStandardItemModel*>(this), section, orientation, role)); };
+	QModelIndex index(int row, int column, const QModelIndex & parent) const { return *static_cast<QModelIndex*>(callbackQStandardItemModel_Index(const_cast<MyQStandardItemModel*>(this), row, column, const_cast<QModelIndex*>(&parent))); };
+	bool insertColumns(int column, int count, const QModelIndex & parent) { return callbackQStandardItemModel_InsertColumns(this, column, count, const_cast<QModelIndex*>(&parent)) != 0; };
+	bool insertRows(int row, int count, const QModelIndex & parent) { return callbackQStandardItemModel_InsertRows(this, row, count, const_cast<QModelIndex*>(&parent)) != 0; };
 	void Signal_ItemChanged(QStandardItem * item) { callbackQStandardItemModel_ItemChanged(this, item); };
+	
+	QStringList mimeTypes() const { return QString(callbackQStandardItemModel_MimeTypes(const_cast<MyQStandardItemModel*>(this))).split("|", QString::SkipEmptyParts); };
+	QModelIndex parent(const QModelIndex & child) const { return *static_cast<QModelIndex*>(callbackQStandardItemModel_Parent(const_cast<MyQStandardItemModel*>(this), const_cast<QModelIndex*>(&child))); };
+	bool removeColumns(int column, int count, const QModelIndex & parent) { return callbackQStandardItemModel_RemoveColumns(this, column, count, const_cast<QModelIndex*>(&parent)) != 0; };
+	bool removeRows(int row, int count, const QModelIndex & parent) { return callbackQStandardItemModel_RemoveRows(this, row, count, const_cast<QModelIndex*>(&parent)) != 0; };
+	int rowCount(const QModelIndex & parent) const { return callbackQStandardItemModel_RowCount(const_cast<MyQStandardItemModel*>(this), const_cast<QModelIndex*>(&parent)); };
+	bool setData(const QModelIndex & index, const QVariant & value, int role) { return callbackQStandardItemModel_SetData(this, const_cast<QModelIndex*>(&index), const_cast<QVariant*>(&value), role) != 0; };
+	bool setHeaderData(int section, Qt::Orientation orientation, const QVariant & value, int role) { return callbackQStandardItemModel_SetHeaderData(this, section, orientation, const_cast<QVariant*>(&value), role) != 0; };
+	QModelIndex sibling(int row, int column, const QModelIndex & idx) const { return *static_cast<QModelIndex*>(callbackQStandardItemModel_Sibling(const_cast<MyQStandardItemModel*>(this), row, column, const_cast<QModelIndex*>(&idx))); };
+	void sort(int column, Qt::SortOrder order) { callbackQStandardItemModel_Sort(this, column, order); };
+	Qt::DropActions supportedDropActions() const { return static_cast<Qt::DropAction>(callbackQStandardItemModel_SupportedDropActions(const_cast<MyQStandardItemModel*>(this))); };
 	QModelIndex buddy(const QModelIndex & index) const { return *static_cast<QModelIndex*>(callbackQStandardItemModel_Buddy(const_cast<MyQStandardItemModel*>(this), const_cast<QModelIndex*>(&index))); };
 	bool canDropMimeData(const QMimeData * data, Qt::DropAction action, int row, int column, const QModelIndex & parent) const { return callbackQStandardItemModel_CanDropMimeData(const_cast<MyQStandardItemModel*>(this), const_cast<QMimeData*>(data), action, row, column, const_cast<QModelIndex*>(&parent)) != 0; };
 	bool canFetchMore(const QModelIndex & parent) const { return callbackQStandardItemModel_CanFetchMore(const_cast<MyQStandardItemModel*>(this), const_cast<QModelIndex*>(&parent)) != 0; };
@@ -17104,14 +17136,29 @@ int QStandardItemModel_ColumnCount(void* ptr, void* parent)
 	return static_cast<QStandardItemModel*>(ptr)->columnCount(*static_cast<QModelIndex*>(parent));
 }
 
+int QStandardItemModel_ColumnCountDefault(void* ptr, void* parent)
+{
+	return static_cast<QStandardItemModel*>(ptr)->QStandardItemModel::columnCount(*static_cast<QModelIndex*>(parent));
+}
+
 void* QStandardItemModel_Data(void* ptr, void* index, int role)
 {
 	return new QVariant(static_cast<QStandardItemModel*>(ptr)->data(*static_cast<QModelIndex*>(index), role));
 }
 
+void* QStandardItemModel_DataDefault(void* ptr, void* index, int role)
+{
+	return new QVariant(static_cast<QStandardItemModel*>(ptr)->QStandardItemModel::data(*static_cast<QModelIndex*>(index), role));
+}
+
 char QStandardItemModel_DropMimeData(void* ptr, void* data, long long action, int row, int column, void* parent)
 {
 	return static_cast<QStandardItemModel*>(ptr)->dropMimeData(static_cast<QMimeData*>(data), static_cast<Qt::DropAction>(action), row, column, *static_cast<QModelIndex*>(parent));
+}
+
+char QStandardItemModel_DropMimeDataDefault(void* ptr, void* data, long long action, int row, int column, void* parent)
+{
+	return static_cast<QStandardItemModel*>(ptr)->QStandardItemModel::dropMimeData(static_cast<QMimeData*>(data), static_cast<Qt::DropAction>(action), row, column, *static_cast<QModelIndex*>(parent));
 }
 
 struct QtGui_PackedList QStandardItemModel_FindItems(void* ptr, char* text, long long flags, int column)
@@ -17124,14 +17171,29 @@ long long QStandardItemModel_Flags(void* ptr, void* index)
 	return static_cast<QStandardItemModel*>(ptr)->flags(*static_cast<QModelIndex*>(index));
 }
 
+long long QStandardItemModel_FlagsDefault(void* ptr, void* index)
+{
+	return static_cast<QStandardItemModel*>(ptr)->QStandardItemModel::flags(*static_cast<QModelIndex*>(index));
+}
+
 char QStandardItemModel_HasChildren(void* ptr, void* parent)
 {
 	return static_cast<QStandardItemModel*>(ptr)->hasChildren(*static_cast<QModelIndex*>(parent));
 }
 
+char QStandardItemModel_HasChildrenDefault(void* ptr, void* parent)
+{
+	return static_cast<QStandardItemModel*>(ptr)->QStandardItemModel::hasChildren(*static_cast<QModelIndex*>(parent));
+}
+
 void* QStandardItemModel_HeaderData(void* ptr, int section, long long orientation, int role)
 {
 	return new QVariant(static_cast<QStandardItemModel*>(ptr)->headerData(section, static_cast<Qt::Orientation>(orientation), role));
+}
+
+void* QStandardItemModel_HeaderDataDefault(void* ptr, int section, long long orientation, int role)
+{
+	return new QVariant(static_cast<QStandardItemModel*>(ptr)->QStandardItemModel::headerData(section, static_cast<Qt::Orientation>(orientation), role));
 }
 
 void* QStandardItemModel_HorizontalHeaderItem(void* ptr, int column)
@@ -17142,6 +17204,11 @@ void* QStandardItemModel_HorizontalHeaderItem(void* ptr, int column)
 void* QStandardItemModel_Index(void* ptr, int row, int column, void* parent)
 {
 	return new QModelIndex(static_cast<QStandardItemModel*>(ptr)->index(row, column, *static_cast<QModelIndex*>(parent)));
+}
+
+void* QStandardItemModel_IndexDefault(void* ptr, int row, int column, void* parent)
+{
+	return new QModelIndex(static_cast<QStandardItemModel*>(ptr)->QStandardItemModel::index(row, column, *static_cast<QModelIndex*>(parent)));
 }
 
 void* QStandardItemModel_IndexFromItem(void* ptr, void* item)
@@ -17159,6 +17226,11 @@ char QStandardItemModel_InsertColumns(void* ptr, int column, int count, void* pa
 	return static_cast<QStandardItemModel*>(ptr)->insertColumns(column, count, *static_cast<QModelIndex*>(parent));
 }
 
+char QStandardItemModel_InsertColumnsDefault(void* ptr, int column, int count, void* parent)
+{
+	return static_cast<QStandardItemModel*>(ptr)->QStandardItemModel::insertColumns(column, count, *static_cast<QModelIndex*>(parent));
+}
+
 char QStandardItemModel_InsertRow3(void* ptr, int row, void* parent)
 {
 	return static_cast<QStandardItemModel*>(ptr)->insertRow(row, *static_cast<QModelIndex*>(parent));
@@ -17172,6 +17244,11 @@ void QStandardItemModel_InsertRow2(void* ptr, int row, void* item)
 char QStandardItemModel_InsertRows(void* ptr, int row, int count, void* parent)
 {
 	return static_cast<QStandardItemModel*>(ptr)->insertRows(row, count, *static_cast<QModelIndex*>(parent));
+}
+
+char QStandardItemModel_InsertRowsDefault(void* ptr, int row, int count, void* parent)
+{
+	return static_cast<QStandardItemModel*>(ptr)->QStandardItemModel::insertRows(row, count, *static_cast<QModelIndex*>(parent));
 }
 
 void* QStandardItemModel_InvisibleRootItem(void* ptr)
@@ -17209,9 +17286,18 @@ void* QStandardItemModel_ItemPrototype(void* ptr)
 	return const_cast<QStandardItem*>(static_cast<QStandardItemModel*>(ptr)->itemPrototype());
 }
 
+
+
+
+
 struct QtGui_PackedString QStandardItemModel_MimeTypes(void* ptr)
 {
 	return ({ QByteArray tf5ddc3 = static_cast<QStandardItemModel*>(ptr)->mimeTypes().join("|").toUtf8(); QtGui_PackedString { const_cast<char*>(tf5ddc3.prepend("WHITESPACE").constData()+10), tf5ddc3.size()-10 }; });
+}
+
+struct QtGui_PackedString QStandardItemModel_MimeTypesDefault(void* ptr)
+{
+	return ({ QByteArray t83a37d = static_cast<QStandardItemModel*>(ptr)->QStandardItemModel::mimeTypes().join("|").toUtf8(); QtGui_PackedString { const_cast<char*>(t83a37d.prepend("WHITESPACE").constData()+10), t83a37d.size()-10 }; });
 }
 
 void* QStandardItemModel_Parent(void* ptr, void* child)
@@ -17219,9 +17305,19 @@ void* QStandardItemModel_Parent(void* ptr, void* child)
 	return new QModelIndex(static_cast<QStandardItemModel*>(ptr)->parent(*static_cast<QModelIndex*>(child)));
 }
 
+void* QStandardItemModel_ParentDefault(void* ptr, void* child)
+{
+	return new QModelIndex(static_cast<QStandardItemModel*>(ptr)->QStandardItemModel::parent(*static_cast<QModelIndex*>(child)));
+}
+
 char QStandardItemModel_RemoveColumns(void* ptr, int column, int count, void* parent)
 {
 	return static_cast<QStandardItemModel*>(ptr)->removeColumns(column, count, *static_cast<QModelIndex*>(parent));
+}
+
+char QStandardItemModel_RemoveColumnsDefault(void* ptr, int column, int count, void* parent)
+{
+	return static_cast<QStandardItemModel*>(ptr)->QStandardItemModel::removeColumns(column, count, *static_cast<QModelIndex*>(parent));
 }
 
 char QStandardItemModel_RemoveRows(void* ptr, int row, int count, void* parent)
@@ -17229,9 +17325,19 @@ char QStandardItemModel_RemoveRows(void* ptr, int row, int count, void* parent)
 	return static_cast<QStandardItemModel*>(ptr)->removeRows(row, count, *static_cast<QModelIndex*>(parent));
 }
 
+char QStandardItemModel_RemoveRowsDefault(void* ptr, int row, int count, void* parent)
+{
+	return static_cast<QStandardItemModel*>(ptr)->QStandardItemModel::removeRows(row, count, *static_cast<QModelIndex*>(parent));
+}
+
 int QStandardItemModel_RowCount(void* ptr, void* parent)
 {
 	return static_cast<QStandardItemModel*>(ptr)->rowCount(*static_cast<QModelIndex*>(parent));
+}
+
+int QStandardItemModel_RowCountDefault(void* ptr, void* parent)
+{
+	return static_cast<QStandardItemModel*>(ptr)->QStandardItemModel::rowCount(*static_cast<QModelIndex*>(parent));
 }
 
 void QStandardItemModel_SetColumnCount(void* ptr, int columns)
@@ -17244,9 +17350,19 @@ char QStandardItemModel_SetData(void* ptr, void* index, void* value, int role)
 	return static_cast<QStandardItemModel*>(ptr)->setData(*static_cast<QModelIndex*>(index), *static_cast<QVariant*>(value), role);
 }
 
+char QStandardItemModel_SetDataDefault(void* ptr, void* index, void* value, int role)
+{
+	return static_cast<QStandardItemModel*>(ptr)->QStandardItemModel::setData(*static_cast<QModelIndex*>(index), *static_cast<QVariant*>(value), role);
+}
+
 char QStandardItemModel_SetHeaderData(void* ptr, int section, long long orientation, void* value, int role)
 {
 	return static_cast<QStandardItemModel*>(ptr)->setHeaderData(section, static_cast<Qt::Orientation>(orientation), *static_cast<QVariant*>(value), role);
+}
+
+char QStandardItemModel_SetHeaderDataDefault(void* ptr, int section, long long orientation, void* value, int role)
+{
+	return static_cast<QStandardItemModel*>(ptr)->QStandardItemModel::setHeaderData(section, static_cast<Qt::Orientation>(orientation), *static_cast<QVariant*>(value), role);
 }
 
 void QStandardItemModel_SetHorizontalHeaderItem(void* ptr, int column, void* item)
@@ -17294,14 +17410,29 @@ void* QStandardItemModel_Sibling(void* ptr, int row, int column, void* idx)
 	return new QModelIndex(static_cast<QStandardItemModel*>(ptr)->sibling(row, column, *static_cast<QModelIndex*>(idx)));
 }
 
+void* QStandardItemModel_SiblingDefault(void* ptr, int row, int column, void* idx)
+{
+	return new QModelIndex(static_cast<QStandardItemModel*>(ptr)->QStandardItemModel::sibling(row, column, *static_cast<QModelIndex*>(idx)));
+}
+
 void QStandardItemModel_Sort(void* ptr, int column, long long order)
 {
 	static_cast<QStandardItemModel*>(ptr)->sort(column, static_cast<Qt::SortOrder>(order));
 }
 
+void QStandardItemModel_SortDefault(void* ptr, int column, long long order)
+{
+	static_cast<QStandardItemModel*>(ptr)->QStandardItemModel::sort(column, static_cast<Qt::SortOrder>(order));
+}
+
 long long QStandardItemModel_SupportedDropActions(void* ptr)
 {
 	return static_cast<QStandardItemModel*>(ptr)->supportedDropActions();
+}
+
+long long QStandardItemModel_SupportedDropActionsDefault(void* ptr)
+{
+	return static_cast<QStandardItemModel*>(ptr)->QStandardItemModel::supportedDropActions();
 }
 
 struct QtGui_PackedList QStandardItemModel_TakeColumn(void* ptr, int column)
@@ -17393,10 +17524,6 @@ void QStandardItemModel_FetchMoreDefault(void* ptr, void* parent)
 {
 	static_cast<QStandardItemModel*>(ptr)->QStandardItemModel::fetchMore(*static_cast<QModelIndex*>(parent));
 }
-
-
-
-
 
 char QStandardItemModel_MoveColumns(void* ptr, void* sourceParent, int sourceColumn, int count, void* destinationParent, int destinationChild)
 {

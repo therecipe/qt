@@ -1271,9 +1271,18 @@ class MyQSqlQueryModel: public QSqlQueryModel
 {
 public:
 	MyQSqlQueryModel(QObject *parent) : QSqlQueryModel(parent) {};
+	int rowCount(const QModelIndex & parent) const { return callbackQSqlQueryModel_RowCount(const_cast<MyQSqlQueryModel*>(this), const_cast<QModelIndex*>(&parent)); };
+	QVariant data(const QModelIndex & item, int role) const { return *static_cast<QVariant*>(callbackQSqlQueryModel_Data(const_cast<MyQSqlQueryModel*>(this), const_cast<QModelIndex*>(&item), role)); };
+	bool canFetchMore(const QModelIndex & parent) const { return callbackQSqlQueryModel_CanFetchMore(const_cast<MyQSqlQueryModel*>(this), const_cast<QModelIndex*>(&parent)) != 0; };
 	void clear() { callbackQSqlQueryModel_Clear(this); };
+	int columnCount(const QModelIndex & index) const { return callbackQSqlQueryModel_ColumnCount(const_cast<MyQSqlQueryModel*>(this), const_cast<QModelIndex*>(&index)); };
+	void fetchMore(const QModelIndex & parent) { callbackQSqlQueryModel_FetchMore(this, const_cast<QModelIndex*>(&parent)); };
+	QVariant headerData(int section, Qt::Orientation orientation, int role) const { return *static_cast<QVariant*>(callbackQSqlQueryModel_HeaderData(const_cast<MyQSqlQueryModel*>(this), section, orientation, role)); };
 	QModelIndex indexInQuery(const QModelIndex & item) const { return *static_cast<QModelIndex*>(callbackQSqlQueryModel_IndexInQuery(const_cast<MyQSqlQueryModel*>(this), const_cast<QModelIndex*>(&item))); };
+	bool insertColumns(int column, int count, const QModelIndex & parent) { return callbackQSqlQueryModel_InsertColumns(this, column, count, const_cast<QModelIndex*>(&parent)) != 0; };
 	void queryChange() { callbackQSqlQueryModel_QueryChange(this); };
+	bool removeColumns(int column, int count, const QModelIndex & parent) { return callbackQSqlQueryModel_RemoveColumns(this, column, count, const_cast<QModelIndex*>(&parent)) != 0; };
+	bool setHeaderData(int section, Qt::Orientation orientation, const QVariant & value, int role) { return callbackQSqlQueryModel_SetHeaderData(this, section, orientation, const_cast<QVariant*>(&value), role) != 0; };
 	 ~MyQSqlQueryModel() { callbackQSqlQueryModel_DestroyQSqlQueryModel(this); };
 	QModelIndex index(int row, int column, const QModelIndex & parent) const { return *static_cast<QModelIndex*>(callbackQSqlQueryModel_Index(const_cast<MyQSqlQueryModel*>(this), row, column, const_cast<QModelIndex*>(&parent))); };
 	bool dropMimeData(const QMimeData * data, Qt::DropAction action, int row, int column, const QModelIndex & parent) { return callbackQSqlQueryModel_DropMimeData(this, const_cast<QMimeData*>(data), action, row, column, const_cast<QModelIndex*>(&parent)) != 0; };
@@ -1313,6 +1322,11 @@ int QSqlQueryModel_RowCount(void* ptr, void* parent)
 	return static_cast<QSqlQueryModel*>(ptr)->rowCount(*static_cast<QModelIndex*>(parent));
 }
 
+int QSqlQueryModel_RowCountDefault(void* ptr, void* parent)
+{
+	return static_cast<QSqlQueryModel*>(ptr)->QSqlQueryModel::rowCount(*static_cast<QModelIndex*>(parent));
+}
+
 void* QSqlQueryModel_NewQSqlQueryModel(void* parent)
 {
 	return new MyQSqlQueryModel(static_cast<QObject*>(parent));
@@ -1323,9 +1337,19 @@ void* QSqlQueryModel_Data(void* ptr, void* item, int role)
 	return new QVariant(static_cast<QSqlQueryModel*>(ptr)->data(*static_cast<QModelIndex*>(item), role));
 }
 
+void* QSqlQueryModel_DataDefault(void* ptr, void* item, int role)
+{
+	return new QVariant(static_cast<QSqlQueryModel*>(ptr)->QSqlQueryModel::data(*static_cast<QModelIndex*>(item), role));
+}
+
 char QSqlQueryModel_CanFetchMore(void* ptr, void* parent)
 {
 	return static_cast<QSqlQueryModel*>(ptr)->canFetchMore(*static_cast<QModelIndex*>(parent));
+}
+
+char QSqlQueryModel_CanFetchMoreDefault(void* ptr, void* parent)
+{
+	return static_cast<QSqlQueryModel*>(ptr)->QSqlQueryModel::canFetchMore(*static_cast<QModelIndex*>(parent));
 }
 
 void QSqlQueryModel_Clear(void* ptr)
@@ -1343,14 +1367,29 @@ int QSqlQueryModel_ColumnCount(void* ptr, void* index)
 	return static_cast<QSqlQueryModel*>(ptr)->columnCount(*static_cast<QModelIndex*>(index));
 }
 
+int QSqlQueryModel_ColumnCountDefault(void* ptr, void* index)
+{
+	return static_cast<QSqlQueryModel*>(ptr)->QSqlQueryModel::columnCount(*static_cast<QModelIndex*>(index));
+}
+
 void QSqlQueryModel_FetchMore(void* ptr, void* parent)
 {
 	static_cast<QSqlQueryModel*>(ptr)->fetchMore(*static_cast<QModelIndex*>(parent));
 }
 
+void QSqlQueryModel_FetchMoreDefault(void* ptr, void* parent)
+{
+	static_cast<QSqlQueryModel*>(ptr)->QSqlQueryModel::fetchMore(*static_cast<QModelIndex*>(parent));
+}
+
 void* QSqlQueryModel_HeaderData(void* ptr, int section, long long orientation, int role)
 {
 	return new QVariant(static_cast<QSqlQueryModel*>(ptr)->headerData(section, static_cast<Qt::Orientation>(orientation), role));
+}
+
+void* QSqlQueryModel_HeaderDataDefault(void* ptr, int section, long long orientation, int role)
+{
+	return new QVariant(static_cast<QSqlQueryModel*>(ptr)->QSqlQueryModel::headerData(section, static_cast<Qt::Orientation>(orientation), role));
 }
 
 void* QSqlQueryModel_IndexInQuery(void* ptr, void* item)
@@ -1366,6 +1405,11 @@ void* QSqlQueryModel_IndexInQueryDefault(void* ptr, void* item)
 char QSqlQueryModel_InsertColumns(void* ptr, int column, int count, void* parent)
 {
 	return static_cast<QSqlQueryModel*>(ptr)->insertColumns(column, count, *static_cast<QModelIndex*>(parent));
+}
+
+char QSqlQueryModel_InsertColumnsDefault(void* ptr, int column, int count, void* parent)
+{
+	return static_cast<QSqlQueryModel*>(ptr)->QSqlQueryModel::insertColumns(column, count, *static_cast<QModelIndex*>(parent));
 }
 
 void* QSqlQueryModel_LastError(void* ptr)
@@ -1403,9 +1447,19 @@ char QSqlQueryModel_RemoveColumns(void* ptr, int column, int count, void* parent
 	return static_cast<QSqlQueryModel*>(ptr)->removeColumns(column, count, *static_cast<QModelIndex*>(parent));
 }
 
+char QSqlQueryModel_RemoveColumnsDefault(void* ptr, int column, int count, void* parent)
+{
+	return static_cast<QSqlQueryModel*>(ptr)->QSqlQueryModel::removeColumns(column, count, *static_cast<QModelIndex*>(parent));
+}
+
 char QSqlQueryModel_SetHeaderData(void* ptr, int section, long long orientation, void* value, int role)
 {
 	return static_cast<QSqlQueryModel*>(ptr)->setHeaderData(section, static_cast<Qt::Orientation>(orientation), *static_cast<QVariant*>(value), role);
+}
+
+char QSqlQueryModel_SetHeaderDataDefault(void* ptr, int section, long long orientation, void* value, int role)
+{
+	return static_cast<QSqlQueryModel*>(ptr)->QSqlQueryModel::setHeaderData(section, static_cast<Qt::Orientation>(orientation), *static_cast<QVariant*>(value), role);
 }
 
 void QSqlQueryModel_SetLastError(void* ptr, void* error)
@@ -1914,9 +1968,37 @@ struct QtSql_PackedString QSqlRelation_TableName(void* ptr)
 	return ({ QByteArray t33aa41 = static_cast<QSqlRelation*>(ptr)->tableName().toUtf8(); QtSql_PackedString { const_cast<char*>(t33aa41.prepend("WHITESPACE").constData()+10), t33aa41.size()-10 }; });
 }
 
+class MyQSqlRelationalDelegate: public QSqlRelationalDelegate
+{
+public:
+	MyQSqlRelationalDelegate(QObject *parent) : QSqlRelationalDelegate(parent) {};
+	QWidget * createEditor(QWidget * parent, const QStyleOptionViewItem & option, const QModelIndex & index) const { return static_cast<QWidget*>(callbackQSqlRelationalDelegate_CreateEditor(const_cast<MyQSqlRelationalDelegate*>(this), parent, const_cast<QStyleOptionViewItem*>(&option), const_cast<QModelIndex*>(&index))); };
+	void setModelData(QWidget * editor, QAbstractItemModel * model, const QModelIndex & index) const { callbackQSqlRelationalDelegate_SetModelData(const_cast<MyQSqlRelationalDelegate*>(this), editor, model, const_cast<QModelIndex*>(&index)); };
+	bool eventFilter(QObject * editor, QEvent * event) { return callbackQSqlRelationalDelegate_EventFilter(this, editor, event) != 0; };
+	void drawCheck(QPainter * painter, const QStyleOptionViewItem & option, const QRect & rect, Qt::CheckState state) const { callbackQSqlRelationalDelegate_DrawCheck(const_cast<MyQSqlRelationalDelegate*>(this), painter, const_cast<QStyleOptionViewItem*>(&option), const_cast<QRect*>(&rect), state); };
+	void drawDecoration(QPainter * painter, const QStyleOptionViewItem & option, const QRect & rect, const QPixmap & pixmap) const { callbackQSqlRelationalDelegate_DrawDecoration(const_cast<MyQSqlRelationalDelegate*>(this), painter, const_cast<QStyleOptionViewItem*>(&option), const_cast<QRect*>(&rect), const_cast<QPixmap*>(&pixmap)); };
+	void drawDisplay(QPainter * painter, const QStyleOptionViewItem & option, const QRect & rect, const QString & text) const { QByteArray t372ea0 = text.toUtf8(); QtSql_PackedString textPacked = { const_cast<char*>(t372ea0.prepend("WHITESPACE").constData()+10), t372ea0.size()-10 };callbackQSqlRelationalDelegate_DrawDisplay(const_cast<MyQSqlRelationalDelegate*>(this), painter, const_cast<QStyleOptionViewItem*>(&option), const_cast<QRect*>(&rect), textPacked); };
+	void drawFocus(QPainter * painter, const QStyleOptionViewItem & option, const QRect & rect) const { callbackQSqlRelationalDelegate_DrawFocus(const_cast<MyQSqlRelationalDelegate*>(this), painter, const_cast<QStyleOptionViewItem*>(&option), const_cast<QRect*>(&rect)); };
+	bool editorEvent(QEvent * event, QAbstractItemModel * model, const QStyleOptionViewItem & option, const QModelIndex & index) { return callbackQSqlRelationalDelegate_EditorEvent(this, event, model, const_cast<QStyleOptionViewItem*>(&option), const_cast<QModelIndex*>(&index)) != 0; };
+	void paint(QPainter * painter, const QStyleOptionViewItem & option, const QModelIndex & index) const { callbackQSqlRelationalDelegate_Paint(const_cast<MyQSqlRelationalDelegate*>(this), painter, const_cast<QStyleOptionViewItem*>(&option), const_cast<QModelIndex*>(&index)); };
+	void setEditorData(QWidget * editor, const QModelIndex & index) const { callbackQSqlRelationalDelegate_SetEditorData(const_cast<MyQSqlRelationalDelegate*>(this), editor, const_cast<QModelIndex*>(&index)); };
+	QSize sizeHint(const QStyleOptionViewItem & option, const QModelIndex & index) const { return *static_cast<QSize*>(callbackQSqlRelationalDelegate_SizeHint(const_cast<MyQSqlRelationalDelegate*>(this), const_cast<QStyleOptionViewItem*>(&option), const_cast<QModelIndex*>(&index))); };
+	void updateEditorGeometry(QWidget * editor, const QStyleOptionViewItem & option, const QModelIndex & index) const { callbackQSqlRelationalDelegate_UpdateEditorGeometry(const_cast<MyQSqlRelationalDelegate*>(this), editor, const_cast<QStyleOptionViewItem*>(&option), const_cast<QModelIndex*>(&index)); };
+	void destroyEditor(QWidget * editor, const QModelIndex & index) const { callbackQSqlRelationalDelegate_DestroyEditor(const_cast<MyQSqlRelationalDelegate*>(this), editor, const_cast<QModelIndex*>(&index)); };
+	bool helpEvent(QHelpEvent * event, QAbstractItemView * view, const QStyleOptionViewItem & option, const QModelIndex & index) { return callbackQSqlRelationalDelegate_HelpEvent(this, event, view, const_cast<QStyleOptionViewItem*>(&option), const_cast<QModelIndex*>(&index)) != 0; };
+	void timerEvent(QTimerEvent * event) { callbackQSqlRelationalDelegate_TimerEvent(this, event); };
+	void childEvent(QChildEvent * event) { callbackQSqlRelationalDelegate_ChildEvent(this, event); };
+	void connectNotify(const QMetaMethod & sign) { callbackQSqlRelationalDelegate_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
+	void customEvent(QEvent * event) { callbackQSqlRelationalDelegate_CustomEvent(this, event); };
+	void deleteLater() { callbackQSqlRelationalDelegate_DeleteLater(this); };
+	void disconnectNotify(const QMetaMethod & sign) { callbackQSqlRelationalDelegate_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
+	bool event(QEvent * e) { return callbackQSqlRelationalDelegate_Event(this, e) != 0; };
+	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQSqlRelationalDelegate_MetaObject(const_cast<MyQSqlRelationalDelegate*>(this))); };
+};
+
 void* QSqlRelationalDelegate_NewQSqlRelationalDelegate(void* parent)
 {
-	return new QSqlRelationalDelegate(static_cast<QObject*>(parent));
+	return new MyQSqlRelationalDelegate(static_cast<QObject*>(parent));
 }
 
 void* QSqlRelationalDelegate_CreateEditor(void* ptr, void* parent, void* option, void* index)
@@ -1924,14 +2006,34 @@ void* QSqlRelationalDelegate_CreateEditor(void* ptr, void* parent, void* option,
 	return static_cast<QSqlRelationalDelegate*>(ptr)->createEditor(static_cast<QWidget*>(parent), *static_cast<QStyleOptionViewItem*>(option), *static_cast<QModelIndex*>(index));
 }
 
+void* QSqlRelationalDelegate_CreateEditorDefault(void* ptr, void* parent, void* option, void* index)
+{
+	return static_cast<QSqlRelationalDelegate*>(ptr)->QSqlRelationalDelegate::createEditor(static_cast<QWidget*>(parent), *static_cast<QStyleOptionViewItem*>(option), *static_cast<QModelIndex*>(index));
+}
+
 void QSqlRelationalDelegate_SetModelData(void* ptr, void* editor, void* model, void* index)
 {
 	static_cast<QSqlRelationalDelegate*>(ptr)->setModelData(static_cast<QWidget*>(editor), static_cast<QAbstractItemModel*>(model), *static_cast<QModelIndex*>(index));
 }
 
+void QSqlRelationalDelegate_SetModelDataDefault(void* ptr, void* editor, void* model, void* index)
+{
+	static_cast<QSqlRelationalDelegate*>(ptr)->QSqlRelationalDelegate::setModelData(static_cast<QWidget*>(editor), static_cast<QAbstractItemModel*>(model), *static_cast<QModelIndex*>(index));
+}
+
 void QSqlRelationalDelegate_DestroyQSqlRelationalDelegate(void* ptr)
 {
 	static_cast<QSqlRelationalDelegate*>(ptr)->~QSqlRelationalDelegate();
+}
+
+char QSqlRelationalDelegate_EventFilter(void* ptr, void* editor, void* event)
+{
+	return static_cast<QSqlRelationalDelegate*>(ptr)->eventFilter(static_cast<QObject*>(editor), static_cast<QEvent*>(event));
+}
+
+char QSqlRelationalDelegate_EventFilterDefault(void* ptr, void* editor, void* event)
+{
+	return static_cast<QSqlRelationalDelegate*>(ptr)->QSqlRelationalDelegate::eventFilter(static_cast<QObject*>(editor), static_cast<QEvent*>(event));
 }
 
 void QSqlRelationalDelegate_DrawCheck(void* ptr, void* painter, void* option, void* rect, long long state)
@@ -2114,16 +2216,6 @@ char QSqlRelationalDelegate_EventDefault(void* ptr, void* e)
 	return static_cast<QSqlRelationalDelegate*>(ptr)->QSqlRelationalDelegate::event(static_cast<QEvent*>(e));
 }
 
-char QSqlRelationalDelegate_EventFilter(void* ptr, void* watched, void* event)
-{
-	return static_cast<QSqlRelationalDelegate*>(ptr)->eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
-}
-
-char QSqlRelationalDelegate_EventFilterDefault(void* ptr, void* watched, void* event)
-{
-	return static_cast<QSqlRelationalDelegate*>(ptr)->QSqlRelationalDelegate::eventFilter(static_cast<QObject*>(watched), static_cast<QEvent*>(event));
-}
-
 void* QSqlRelationalDelegate_MetaObject(void* ptr)
 {
 	return const_cast<QMetaObject*>(static_cast<QSqlRelationalDelegate*>(ptr)->metaObject());
@@ -2139,12 +2231,15 @@ class MyQSqlRelationalTableModel: public QSqlRelationalTableModel
 public:
 	MyQSqlRelationalTableModel(QObject *parent, QSqlDatabase db) : QSqlRelationalTableModel(parent, db) {};
 	void clear() { callbackQSqlRelationalTableModel_Clear(this); };
+	QVariant data(const QModelIndex & index, int role) const { return *static_cast<QVariant*>(callbackQSqlRelationalTableModel_Data(const_cast<MyQSqlRelationalTableModel*>(this), const_cast<QModelIndex*>(&index), role)); };
 	bool insertRowIntoTable(const QSqlRecord & values) { return callbackQSqlRelationalTableModel_InsertRowIntoTable(this, const_cast<QSqlRecord*>(&values)) != 0; };
 	QString orderByClause() const { return QString(callbackQSqlRelationalTableModel_OrderByClause(const_cast<MyQSqlRelationalTableModel*>(this))); };
 	QSqlTableModel * relationModel(int column) const { return static_cast<QSqlTableModel*>(callbackQSqlRelationalTableModel_RelationModel(const_cast<MyQSqlRelationalTableModel*>(this), column)); };
+	bool removeColumns(int column, int count, const QModelIndex & parent) { return callbackQSqlRelationalTableModel_RemoveColumns(this, column, count, const_cast<QModelIndex*>(&parent)) != 0; };
 	void revertRow(int row) { callbackQSqlRelationalTableModel_RevertRow(this, row); };
 	bool select() { return callbackQSqlRelationalTableModel_Select(this) != 0; };
 	QString selectStatement() const { return QString(callbackQSqlRelationalTableModel_SelectStatement(const_cast<MyQSqlRelationalTableModel*>(this))); };
+	bool setData(const QModelIndex & index, const QVariant & value, int role) { return callbackQSqlRelationalTableModel_SetData(this, const_cast<QModelIndex*>(&index), const_cast<QVariant*>(&value), role) != 0; };
 	void setRelation(int column, const QSqlRelation & relation) { callbackQSqlRelationalTableModel_SetRelation(this, column, const_cast<QSqlRelation*>(&relation)); };
 	void setTable(const QString & table) { QByteArray tc3ee13 = table.toUtf8(); QtSql_PackedString tablePacked = { const_cast<char*>(tc3ee13.prepend("WHITESPACE").constData()+10), tc3ee13.size()-10 };callbackQSqlRelationalTableModel_SetTable(this, tablePacked); };
 	bool updateRowInTable(int row, const QSqlRecord & values) { return callbackQSqlRelationalTableModel_UpdateRowInTable(this, row, const_cast<QSqlRecord*>(&values)) != 0; };
@@ -2159,19 +2254,21 @@ public:
 	void setSort(int column, Qt::SortOrder order) { callbackQSqlRelationalTableModel_SetSort(this, column, order); };
 	bool submit() { return callbackQSqlRelationalTableModel_Submit(this) != 0; };
 	bool submitAll() { return callbackQSqlRelationalTableModel_SubmitAll(this) != 0; };
+	int rowCount(const QModelIndex & parent) const { return callbackQSqlRelationalTableModel_RowCount(const_cast<MyQSqlRelationalTableModel*>(this), const_cast<QModelIndex*>(&parent)); };
+	bool canFetchMore(const QModelIndex & parent) const { return callbackQSqlRelationalTableModel_CanFetchMore(const_cast<MyQSqlRelationalTableModel*>(this), const_cast<QModelIndex*>(&parent)) != 0; };
+	int columnCount(const QModelIndex & index) const { return callbackQSqlRelationalTableModel_ColumnCount(const_cast<MyQSqlRelationalTableModel*>(this), const_cast<QModelIndex*>(&index)); };
+	void fetchMore(const QModelIndex & parent) { callbackQSqlRelationalTableModel_FetchMore(this, const_cast<QModelIndex*>(&parent)); };
+	QVariant headerData(int section, Qt::Orientation orientation, int role) const { return *static_cast<QVariant*>(callbackQSqlRelationalTableModel_HeaderData(const_cast<MyQSqlRelationalTableModel*>(this), section, orientation, role)); };
+	bool insertColumns(int column, int count, const QModelIndex & parent) { return callbackQSqlRelationalTableModel_InsertColumns(this, column, count, const_cast<QModelIndex*>(&parent)) != 0; };
 	void queryChange() { callbackQSqlRelationalTableModel_QueryChange(this); };
+	bool setHeaderData(int section, Qt::Orientation orientation, const QVariant & value, int role) { return callbackQSqlRelationalTableModel_SetHeaderData(this, section, orientation, const_cast<QVariant*>(&value), role) != 0; };
 	QModelIndex index(int row, int column, const QModelIndex & parent) const { return *static_cast<QModelIndex*>(callbackQSqlRelationalTableModel_Index(const_cast<MyQSqlRelationalTableModel*>(this), row, column, const_cast<QModelIndex*>(&parent))); };
 	bool dropMimeData(const QMimeData * data, Qt::DropAction action, int row, int column, const QModelIndex & parent) { return callbackQSqlRelationalTableModel_DropMimeData(this, const_cast<QMimeData*>(data), action, row, column, const_cast<QModelIndex*>(&parent)) != 0; };
 	Qt::ItemFlags flags(const QModelIndex & index) const { return static_cast<Qt::ItemFlag>(callbackQSqlRelationalTableModel_Flags(const_cast<MyQSqlRelationalTableModel*>(this), const_cast<QModelIndex*>(&index))); };
 	QModelIndex sibling(int row, int column, const QModelIndex & idx) const { return *static_cast<QModelIndex*>(callbackQSqlRelationalTableModel_Sibling(const_cast<MyQSqlRelationalTableModel*>(this), row, column, const_cast<QModelIndex*>(&idx))); };
 	QModelIndex buddy(const QModelIndex & index) const { return *static_cast<QModelIndex*>(callbackQSqlRelationalTableModel_Buddy(const_cast<MyQSqlRelationalTableModel*>(this), const_cast<QModelIndex*>(&index))); };
 	bool canDropMimeData(const QMimeData * data, Qt::DropAction action, int row, int column, const QModelIndex & parent) const { return callbackQSqlRelationalTableModel_CanDropMimeData(const_cast<MyQSqlRelationalTableModel*>(this), const_cast<QMimeData*>(data), action, row, column, const_cast<QModelIndex*>(&parent)) != 0; };
-	bool canFetchMore(const QModelIndex & parent) const { return callbackQSqlRelationalTableModel_CanFetchMore(const_cast<MyQSqlRelationalTableModel*>(this), const_cast<QModelIndex*>(&parent)) != 0; };
-	int columnCount(const QModelIndex & parent) const { return callbackQSqlRelationalTableModel_ColumnCount(const_cast<MyQSqlRelationalTableModel*>(this), const_cast<QModelIndex*>(&parent)); };
-	void fetchMore(const QModelIndex & parent) { callbackQSqlRelationalTableModel_FetchMore(this, const_cast<QModelIndex*>(&parent)); };
 	bool hasChildren(const QModelIndex & parent) const { return callbackQSqlRelationalTableModel_HasChildren(const_cast<MyQSqlRelationalTableModel*>(this), const_cast<QModelIndex*>(&parent)) != 0; };
-	QVariant headerData(int section, Qt::Orientation orientation, int role) const { return *static_cast<QVariant*>(callbackQSqlRelationalTableModel_HeaderData(const_cast<MyQSqlRelationalTableModel*>(this), section, orientation, role)); };
-	bool insertColumns(int column, int count, const QModelIndex & parent) { return callbackQSqlRelationalTableModel_InsertColumns(this, column, count, const_cast<QModelIndex*>(&parent)) != 0; };
 	bool insertRows(int row, int count, const QModelIndex & parent) { return callbackQSqlRelationalTableModel_InsertRows(this, row, count, const_cast<QModelIndex*>(&parent)) != 0; };
 	
 	QStringList mimeTypes() const { return QString(callbackQSqlRelationalTableModel_MimeTypes(const_cast<MyQSqlRelationalTableModel*>(this))).split("|", QString::SkipEmptyParts); };
@@ -2180,8 +2277,6 @@ public:
 	QModelIndex parent(const QModelIndex & index) const { return *static_cast<QModelIndex*>(callbackQSqlRelationalTableModel_Parent(const_cast<MyQSqlRelationalTableModel*>(this), const_cast<QModelIndex*>(&index))); };
 	bool removeRows(int row, int count, const QModelIndex & parent) { return callbackQSqlRelationalTableModel_RemoveRows(this, row, count, const_cast<QModelIndex*>(&parent)) != 0; };
 	void resetInternalData() { callbackQSqlRelationalTableModel_ResetInternalData(this); };
-	int rowCount(const QModelIndex & parent) const { return callbackQSqlRelationalTableModel_RowCount(const_cast<MyQSqlRelationalTableModel*>(this), const_cast<QModelIndex*>(&parent)); };
-	bool setHeaderData(int section, Qt::Orientation orientation, const QVariant & value, int role) { return callbackQSqlRelationalTableModel_SetHeaderData(this, section, orientation, const_cast<QVariant*>(&value), role) != 0; };
 	void sort(int column, Qt::SortOrder order) { callbackQSqlRelationalTableModel_Sort(this, column, order); };
 	QSize span(const QModelIndex & index) const { return *static_cast<QSize*>(callbackQSqlRelationalTableModel_Span(const_cast<MyQSqlRelationalTableModel*>(this), const_cast<QModelIndex*>(&index))); };
 	Qt::DropActions supportedDragActions() const { return static_cast<Qt::DropAction>(callbackQSqlRelationalTableModel_SupportedDragActions(const_cast<MyQSqlRelationalTableModel*>(this))); };
@@ -2215,6 +2310,11 @@ void QSqlRelationalTableModel_ClearDefault(void* ptr)
 void* QSqlRelationalTableModel_Data(void* ptr, void* index, int role)
 {
 	return new QVariant(static_cast<QSqlRelationalTableModel*>(ptr)->data(*static_cast<QModelIndex*>(index), role));
+}
+
+void* QSqlRelationalTableModel_DataDefault(void* ptr, void* index, int role)
+{
+	return new QVariant(static_cast<QSqlRelationalTableModel*>(ptr)->QSqlRelationalTableModel::data(*static_cast<QModelIndex*>(index), role));
 }
 
 char QSqlRelationalTableModel_InsertRowIntoTable(void* ptr, void* values)
@@ -2257,6 +2357,11 @@ char QSqlRelationalTableModel_RemoveColumns(void* ptr, int column, int count, vo
 	return static_cast<QSqlRelationalTableModel*>(ptr)->removeColumns(column, count, *static_cast<QModelIndex*>(parent));
 }
 
+char QSqlRelationalTableModel_RemoveColumnsDefault(void* ptr, int column, int count, void* parent)
+{
+	return static_cast<QSqlRelationalTableModel*>(ptr)->QSqlRelationalTableModel::removeColumns(column, count, *static_cast<QModelIndex*>(parent));
+}
+
 void QSqlRelationalTableModel_RevertRow(void* ptr, int row)
 {
 	QMetaObject::invokeMethod(static_cast<QSqlRelationalTableModel*>(ptr), "revertRow", Q_ARG(int, row));
@@ -2290,6 +2395,11 @@ struct QtSql_PackedString QSqlRelationalTableModel_SelectStatementDefault(void* 
 char QSqlRelationalTableModel_SetData(void* ptr, void* index, void* value, int role)
 {
 	return static_cast<QSqlRelationalTableModel*>(ptr)->setData(*static_cast<QModelIndex*>(index), *static_cast<QVariant*>(value), role);
+}
+
+char QSqlRelationalTableModel_SetDataDefault(void* ptr, void* index, void* value, int role)
+{
+	return static_cast<QSqlRelationalTableModel*>(ptr)->QSqlRelationalTableModel::setData(*static_cast<QModelIndex*>(index), *static_cast<QVariant*>(value), role);
 }
 
 void QSqlRelationalTableModel_SetJoinMode(void* ptr, long long joinMode)
@@ -2443,6 +2553,66 @@ char QSqlRelationalTableModel_SubmitAllDefault(void* ptr)
 	return static_cast<QSqlRelationalTableModel*>(ptr)->QSqlRelationalTableModel::submitAll();
 }
 
+int QSqlRelationalTableModel_RowCount(void* ptr, void* parent)
+{
+	return static_cast<QSqlRelationalTableModel*>(ptr)->rowCount(*static_cast<QModelIndex*>(parent));
+}
+
+int QSqlRelationalTableModel_RowCountDefault(void* ptr, void* parent)
+{
+	return static_cast<QSqlRelationalTableModel*>(ptr)->QSqlRelationalTableModel::rowCount(*static_cast<QModelIndex*>(parent));
+}
+
+char QSqlRelationalTableModel_CanFetchMore(void* ptr, void* parent)
+{
+	return static_cast<QSqlRelationalTableModel*>(ptr)->canFetchMore(*static_cast<QModelIndex*>(parent));
+}
+
+char QSqlRelationalTableModel_CanFetchMoreDefault(void* ptr, void* parent)
+{
+	return static_cast<QSqlRelationalTableModel*>(ptr)->QSqlRelationalTableModel::canFetchMore(*static_cast<QModelIndex*>(parent));
+}
+
+int QSqlRelationalTableModel_ColumnCount(void* ptr, void* index)
+{
+	return static_cast<QSqlRelationalTableModel*>(ptr)->columnCount(*static_cast<QModelIndex*>(index));
+}
+
+int QSqlRelationalTableModel_ColumnCountDefault(void* ptr, void* index)
+{
+	return static_cast<QSqlRelationalTableModel*>(ptr)->QSqlRelationalTableModel::columnCount(*static_cast<QModelIndex*>(index));
+}
+
+void QSqlRelationalTableModel_FetchMore(void* ptr, void* parent)
+{
+	static_cast<QSqlRelationalTableModel*>(ptr)->fetchMore(*static_cast<QModelIndex*>(parent));
+}
+
+void QSqlRelationalTableModel_FetchMoreDefault(void* ptr, void* parent)
+{
+	static_cast<QSqlRelationalTableModel*>(ptr)->QSqlRelationalTableModel::fetchMore(*static_cast<QModelIndex*>(parent));
+}
+
+void* QSqlRelationalTableModel_HeaderData(void* ptr, int section, long long orientation, int role)
+{
+	return new QVariant(static_cast<QSqlRelationalTableModel*>(ptr)->headerData(section, static_cast<Qt::Orientation>(orientation), role));
+}
+
+void* QSqlRelationalTableModel_HeaderDataDefault(void* ptr, int section, long long orientation, int role)
+{
+	return new QVariant(static_cast<QSqlRelationalTableModel*>(ptr)->QSqlRelationalTableModel::headerData(section, static_cast<Qt::Orientation>(orientation), role));
+}
+
+char QSqlRelationalTableModel_InsertColumns(void* ptr, int column, int count, void* parent)
+{
+	return static_cast<QSqlRelationalTableModel*>(ptr)->insertColumns(column, count, *static_cast<QModelIndex*>(parent));
+}
+
+char QSqlRelationalTableModel_InsertColumnsDefault(void* ptr, int column, int count, void* parent)
+{
+	return static_cast<QSqlRelationalTableModel*>(ptr)->QSqlRelationalTableModel::insertColumns(column, count, *static_cast<QModelIndex*>(parent));
+}
+
 void QSqlRelationalTableModel_QueryChange(void* ptr)
 {
 	static_cast<QSqlRelationalTableModel*>(ptr)->queryChange();
@@ -2451,6 +2621,16 @@ void QSqlRelationalTableModel_QueryChange(void* ptr)
 void QSqlRelationalTableModel_QueryChangeDefault(void* ptr)
 {
 	static_cast<QSqlRelationalTableModel*>(ptr)->QSqlRelationalTableModel::queryChange();
+}
+
+char QSqlRelationalTableModel_SetHeaderData(void* ptr, int section, long long orientation, void* value, int role)
+{
+	return static_cast<QSqlRelationalTableModel*>(ptr)->setHeaderData(section, static_cast<Qt::Orientation>(orientation), *static_cast<QVariant*>(value), role);
+}
+
+char QSqlRelationalTableModel_SetHeaderDataDefault(void* ptr, int section, long long orientation, void* value, int role)
+{
+	return static_cast<QSqlRelationalTableModel*>(ptr)->QSqlRelationalTableModel::setHeaderData(section, static_cast<Qt::Orientation>(orientation), *static_cast<QVariant*>(value), role);
 }
 
 void* QSqlRelationalTableModel_Index(void* ptr, int row, int column, void* parent)
@@ -2513,36 +2693,6 @@ char QSqlRelationalTableModel_CanDropMimeDataDefault(void* ptr, void* data, long
 	return static_cast<QSqlRelationalTableModel*>(ptr)->QSqlRelationalTableModel::canDropMimeData(static_cast<QMimeData*>(data), static_cast<Qt::DropAction>(action), row, column, *static_cast<QModelIndex*>(parent));
 }
 
-char QSqlRelationalTableModel_CanFetchMore(void* ptr, void* parent)
-{
-	return static_cast<QSqlRelationalTableModel*>(ptr)->canFetchMore(*static_cast<QModelIndex*>(parent));
-}
-
-char QSqlRelationalTableModel_CanFetchMoreDefault(void* ptr, void* parent)
-{
-	return static_cast<QSqlRelationalTableModel*>(ptr)->QSqlRelationalTableModel::canFetchMore(*static_cast<QModelIndex*>(parent));
-}
-
-int QSqlRelationalTableModel_ColumnCount(void* ptr, void* parent)
-{
-	return static_cast<QSqlRelationalTableModel*>(ptr)->columnCount(*static_cast<QModelIndex*>(parent));
-}
-
-int QSqlRelationalTableModel_ColumnCountDefault(void* ptr, void* parent)
-{
-	return static_cast<QSqlRelationalTableModel*>(ptr)->QSqlRelationalTableModel::columnCount(*static_cast<QModelIndex*>(parent));
-}
-
-void QSqlRelationalTableModel_FetchMore(void* ptr, void* parent)
-{
-	static_cast<QSqlRelationalTableModel*>(ptr)->fetchMore(*static_cast<QModelIndex*>(parent));
-}
-
-void QSqlRelationalTableModel_FetchMoreDefault(void* ptr, void* parent)
-{
-	static_cast<QSqlRelationalTableModel*>(ptr)->QSqlRelationalTableModel::fetchMore(*static_cast<QModelIndex*>(parent));
-}
-
 char QSqlRelationalTableModel_HasChildren(void* ptr, void* parent)
 {
 	return static_cast<QSqlRelationalTableModel*>(ptr)->hasChildren(*static_cast<QModelIndex*>(parent));
@@ -2551,26 +2701,6 @@ char QSqlRelationalTableModel_HasChildren(void* ptr, void* parent)
 char QSqlRelationalTableModel_HasChildrenDefault(void* ptr, void* parent)
 {
 	return static_cast<QSqlRelationalTableModel*>(ptr)->QSqlRelationalTableModel::hasChildren(*static_cast<QModelIndex*>(parent));
-}
-
-void* QSqlRelationalTableModel_HeaderData(void* ptr, int section, long long orientation, int role)
-{
-	return new QVariant(static_cast<QSqlRelationalTableModel*>(ptr)->headerData(section, static_cast<Qt::Orientation>(orientation), role));
-}
-
-void* QSqlRelationalTableModel_HeaderDataDefault(void* ptr, int section, long long orientation, int role)
-{
-	return new QVariant(static_cast<QSqlRelationalTableModel*>(ptr)->QSqlRelationalTableModel::headerData(section, static_cast<Qt::Orientation>(orientation), role));
-}
-
-char QSqlRelationalTableModel_InsertColumns(void* ptr, int column, int count, void* parent)
-{
-	return static_cast<QSqlRelationalTableModel*>(ptr)->insertColumns(column, count, *static_cast<QModelIndex*>(parent));
-}
-
-char QSqlRelationalTableModel_InsertColumnsDefault(void* ptr, int column, int count, void* parent)
-{
-	return static_cast<QSqlRelationalTableModel*>(ptr)->QSqlRelationalTableModel::insertColumns(column, count, *static_cast<QModelIndex*>(parent));
 }
 
 char QSqlRelationalTableModel_InsertRows(void* ptr, int row, int count, void* parent)
@@ -2645,26 +2775,6 @@ void QSqlRelationalTableModel_ResetInternalData(void* ptr)
 void QSqlRelationalTableModel_ResetInternalDataDefault(void* ptr)
 {
 	static_cast<QSqlRelationalTableModel*>(ptr)->QSqlRelationalTableModel::resetInternalData();
-}
-
-int QSqlRelationalTableModel_RowCount(void* ptr, void* parent)
-{
-	return static_cast<QSqlRelationalTableModel*>(ptr)->rowCount(*static_cast<QModelIndex*>(parent));
-}
-
-int QSqlRelationalTableModel_RowCountDefault(void* ptr, void* parent)
-{
-	return static_cast<QSqlRelationalTableModel*>(ptr)->QSqlRelationalTableModel::rowCount(*static_cast<QModelIndex*>(parent));
-}
-
-char QSqlRelationalTableModel_SetHeaderData(void* ptr, int section, long long orientation, void* value, int role)
-{
-	return static_cast<QSqlRelationalTableModel*>(ptr)->setHeaderData(section, static_cast<Qt::Orientation>(orientation), *static_cast<QVariant*>(value), role);
-}
-
-char QSqlRelationalTableModel_SetHeaderDataDefault(void* ptr, int section, long long orientation, void* value, int role)
-{
-	return static_cast<QSqlRelationalTableModel*>(ptr)->QSqlRelationalTableModel::setHeaderData(section, static_cast<Qt::Orientation>(orientation), *static_cast<QVariant*>(value), role);
 }
 
 void QSqlRelationalTableModel_Sort(void* ptr, int column, long long order)
@@ -3180,24 +3290,24 @@ public:
 	bool submitAll() { return callbackQSqlTableModel_SubmitAll(this) != 0; };
 	bool updateRowInTable(int row, const QSqlRecord & values) { return callbackQSqlTableModel_UpdateRowInTable(this, row, const_cast<QSqlRecord*>(&values)) != 0; };
 	 ~MyQSqlTableModel() { callbackQSqlTableModel_DestroyQSqlTableModel(this); };
+	bool canFetchMore(const QModelIndex & parent) const { return callbackQSqlTableModel_CanFetchMore(const_cast<MyQSqlTableModel*>(this), const_cast<QModelIndex*>(&parent)) != 0; };
+	int columnCount(const QModelIndex & index) const { return callbackQSqlTableModel_ColumnCount(const_cast<MyQSqlTableModel*>(this), const_cast<QModelIndex*>(&index)); };
+	void fetchMore(const QModelIndex & parent) { callbackQSqlTableModel_FetchMore(this, const_cast<QModelIndex*>(&parent)); };
+	bool insertColumns(int column, int count, const QModelIndex & parent) { return callbackQSqlTableModel_InsertColumns(this, column, count, const_cast<QModelIndex*>(&parent)) != 0; };
 	void queryChange() { callbackQSqlTableModel_QueryChange(this); };
+	bool setHeaderData(int section, Qt::Orientation orientation, const QVariant & value, int role) { return callbackQSqlTableModel_SetHeaderData(this, section, orientation, const_cast<QVariant*>(&value), role) != 0; };
 	QModelIndex index(int row, int column, const QModelIndex & parent) const { return *static_cast<QModelIndex*>(callbackQSqlTableModel_Index(const_cast<MyQSqlTableModel*>(this), row, column, const_cast<QModelIndex*>(&parent))); };
 	bool dropMimeData(const QMimeData * data, Qt::DropAction action, int row, int column, const QModelIndex & parent) { return callbackQSqlTableModel_DropMimeData(this, const_cast<QMimeData*>(data), action, row, column, const_cast<QModelIndex*>(&parent)) != 0; };
 	QModelIndex sibling(int row, int column, const QModelIndex & idx) const { return *static_cast<QModelIndex*>(callbackQSqlTableModel_Sibling(const_cast<MyQSqlTableModel*>(this), row, column, const_cast<QModelIndex*>(&idx))); };
 	QModelIndex buddy(const QModelIndex & index) const { return *static_cast<QModelIndex*>(callbackQSqlTableModel_Buddy(const_cast<MyQSqlTableModel*>(this), const_cast<QModelIndex*>(&index))); };
 	bool canDropMimeData(const QMimeData * data, Qt::DropAction action, int row, int column, const QModelIndex & parent) const { return callbackQSqlTableModel_CanDropMimeData(const_cast<MyQSqlTableModel*>(this), const_cast<QMimeData*>(data), action, row, column, const_cast<QModelIndex*>(&parent)) != 0; };
-	bool canFetchMore(const QModelIndex & parent) const { return callbackQSqlTableModel_CanFetchMore(const_cast<MyQSqlTableModel*>(this), const_cast<QModelIndex*>(&parent)) != 0; };
-	int columnCount(const QModelIndex & parent) const { return callbackQSqlTableModel_ColumnCount(const_cast<MyQSqlTableModel*>(this), const_cast<QModelIndex*>(&parent)); };
-	void fetchMore(const QModelIndex & parent) { callbackQSqlTableModel_FetchMore(this, const_cast<QModelIndex*>(&parent)); };
 	bool hasChildren(const QModelIndex & parent) const { return callbackQSqlTableModel_HasChildren(const_cast<MyQSqlTableModel*>(this), const_cast<QModelIndex*>(&parent)) != 0; };
-	bool insertColumns(int column, int count, const QModelIndex & parent) { return callbackQSqlTableModel_InsertColumns(this, column, count, const_cast<QModelIndex*>(&parent)) != 0; };
 	
 	QStringList mimeTypes() const { return QString(callbackQSqlTableModel_MimeTypes(const_cast<MyQSqlTableModel*>(this))).split("|", QString::SkipEmptyParts); };
 	bool moveColumns(const QModelIndex & sourceParent, int sourceColumn, int count, const QModelIndex & destinationParent, int destinationChild) { return callbackQSqlTableModel_MoveColumns(this, const_cast<QModelIndex*>(&sourceParent), sourceColumn, count, const_cast<QModelIndex*>(&destinationParent), destinationChild) != 0; };
 	bool moveRows(const QModelIndex & sourceParent, int sourceRow, int count, const QModelIndex & destinationParent, int destinationChild) { return callbackQSqlTableModel_MoveRows(this, const_cast<QModelIndex*>(&sourceParent), sourceRow, count, const_cast<QModelIndex*>(&destinationParent), destinationChild) != 0; };
 	QModelIndex parent(const QModelIndex & index) const { return *static_cast<QModelIndex*>(callbackQSqlTableModel_Parent(const_cast<MyQSqlTableModel*>(this), const_cast<QModelIndex*>(&index))); };
 	void resetInternalData() { callbackQSqlTableModel_ResetInternalData(this); };
-	bool setHeaderData(int section, Qt::Orientation orientation, const QVariant & value, int role) { return callbackQSqlTableModel_SetHeaderData(this, section, orientation, const_cast<QVariant*>(&value), role) != 0; };
 	QSize span(const QModelIndex & index) const { return *static_cast<QSize*>(callbackQSqlTableModel_Span(const_cast<MyQSqlTableModel*>(this), const_cast<QModelIndex*>(&index))); };
 	Qt::DropActions supportedDragActions() const { return static_cast<Qt::DropAction>(callbackQSqlTableModel_SupportedDragActions(const_cast<MyQSqlTableModel*>(this))); };
 	Qt::DropActions supportedDropActions() const { return static_cast<Qt::DropAction>(callbackQSqlTableModel_SupportedDropActions(const_cast<MyQSqlTableModel*>(this))); };
@@ -3575,6 +3685,46 @@ void QSqlTableModel_DestroyQSqlTableModelDefault(void* ptr)
 
 }
 
+char QSqlTableModel_CanFetchMore(void* ptr, void* parent)
+{
+	return static_cast<QSqlTableModel*>(ptr)->canFetchMore(*static_cast<QModelIndex*>(parent));
+}
+
+char QSqlTableModel_CanFetchMoreDefault(void* ptr, void* parent)
+{
+	return static_cast<QSqlTableModel*>(ptr)->QSqlTableModel::canFetchMore(*static_cast<QModelIndex*>(parent));
+}
+
+int QSqlTableModel_ColumnCount(void* ptr, void* index)
+{
+	return static_cast<QSqlTableModel*>(ptr)->columnCount(*static_cast<QModelIndex*>(index));
+}
+
+int QSqlTableModel_ColumnCountDefault(void* ptr, void* index)
+{
+	return static_cast<QSqlTableModel*>(ptr)->QSqlTableModel::columnCount(*static_cast<QModelIndex*>(index));
+}
+
+void QSqlTableModel_FetchMore(void* ptr, void* parent)
+{
+	static_cast<QSqlTableModel*>(ptr)->fetchMore(*static_cast<QModelIndex*>(parent));
+}
+
+void QSqlTableModel_FetchMoreDefault(void* ptr, void* parent)
+{
+	static_cast<QSqlTableModel*>(ptr)->QSqlTableModel::fetchMore(*static_cast<QModelIndex*>(parent));
+}
+
+char QSqlTableModel_InsertColumns(void* ptr, int column, int count, void* parent)
+{
+	return static_cast<QSqlTableModel*>(ptr)->insertColumns(column, count, *static_cast<QModelIndex*>(parent));
+}
+
+char QSqlTableModel_InsertColumnsDefault(void* ptr, int column, int count, void* parent)
+{
+	return static_cast<QSqlTableModel*>(ptr)->QSqlTableModel::insertColumns(column, count, *static_cast<QModelIndex*>(parent));
+}
+
 void QSqlTableModel_QueryChange(void* ptr)
 {
 	static_cast<QSqlTableModel*>(ptr)->queryChange();
@@ -3583,6 +3733,16 @@ void QSqlTableModel_QueryChange(void* ptr)
 void QSqlTableModel_QueryChangeDefault(void* ptr)
 {
 	static_cast<QSqlTableModel*>(ptr)->QSqlTableModel::queryChange();
+}
+
+char QSqlTableModel_SetHeaderData(void* ptr, int section, long long orientation, void* value, int role)
+{
+	return static_cast<QSqlTableModel*>(ptr)->setHeaderData(section, static_cast<Qt::Orientation>(orientation), *static_cast<QVariant*>(value), role);
+}
+
+char QSqlTableModel_SetHeaderDataDefault(void* ptr, int section, long long orientation, void* value, int role)
+{
+	return static_cast<QSqlTableModel*>(ptr)->QSqlTableModel::setHeaderData(section, static_cast<Qt::Orientation>(orientation), *static_cast<QVariant*>(value), role);
 }
 
 void* QSqlTableModel_Index(void* ptr, int row, int column, void* parent)
@@ -3635,36 +3795,6 @@ char QSqlTableModel_CanDropMimeDataDefault(void* ptr, void* data, long long acti
 	return static_cast<QSqlTableModel*>(ptr)->QSqlTableModel::canDropMimeData(static_cast<QMimeData*>(data), static_cast<Qt::DropAction>(action), row, column, *static_cast<QModelIndex*>(parent));
 }
 
-char QSqlTableModel_CanFetchMore(void* ptr, void* parent)
-{
-	return static_cast<QSqlTableModel*>(ptr)->canFetchMore(*static_cast<QModelIndex*>(parent));
-}
-
-char QSqlTableModel_CanFetchMoreDefault(void* ptr, void* parent)
-{
-	return static_cast<QSqlTableModel*>(ptr)->QSqlTableModel::canFetchMore(*static_cast<QModelIndex*>(parent));
-}
-
-int QSqlTableModel_ColumnCount(void* ptr, void* parent)
-{
-	return static_cast<QSqlTableModel*>(ptr)->columnCount(*static_cast<QModelIndex*>(parent));
-}
-
-int QSqlTableModel_ColumnCountDefault(void* ptr, void* parent)
-{
-	return static_cast<QSqlTableModel*>(ptr)->QSqlTableModel::columnCount(*static_cast<QModelIndex*>(parent));
-}
-
-void QSqlTableModel_FetchMore(void* ptr, void* parent)
-{
-	static_cast<QSqlTableModel*>(ptr)->fetchMore(*static_cast<QModelIndex*>(parent));
-}
-
-void QSqlTableModel_FetchMoreDefault(void* ptr, void* parent)
-{
-	static_cast<QSqlTableModel*>(ptr)->QSqlTableModel::fetchMore(*static_cast<QModelIndex*>(parent));
-}
-
 char QSqlTableModel_HasChildren(void* ptr, void* parent)
 {
 	return static_cast<QSqlTableModel*>(ptr)->hasChildren(*static_cast<QModelIndex*>(parent));
@@ -3673,16 +3803,6 @@ char QSqlTableModel_HasChildren(void* ptr, void* parent)
 char QSqlTableModel_HasChildrenDefault(void* ptr, void* parent)
 {
 	return static_cast<QSqlTableModel*>(ptr)->QSqlTableModel::hasChildren(*static_cast<QModelIndex*>(parent));
-}
-
-char QSqlTableModel_InsertColumns(void* ptr, int column, int count, void* parent)
-{
-	return static_cast<QSqlTableModel*>(ptr)->insertColumns(column, count, *static_cast<QModelIndex*>(parent));
-}
-
-char QSqlTableModel_InsertColumnsDefault(void* ptr, int column, int count, void* parent)
-{
-	return static_cast<QSqlTableModel*>(ptr)->QSqlTableModel::insertColumns(column, count, *static_cast<QModelIndex*>(parent));
 }
 
 
@@ -3737,16 +3857,6 @@ void QSqlTableModel_ResetInternalData(void* ptr)
 void QSqlTableModel_ResetInternalDataDefault(void* ptr)
 {
 	static_cast<QSqlTableModel*>(ptr)->QSqlTableModel::resetInternalData();
-}
-
-char QSqlTableModel_SetHeaderData(void* ptr, int section, long long orientation, void* value, int role)
-{
-	return static_cast<QSqlTableModel*>(ptr)->setHeaderData(section, static_cast<Qt::Orientation>(orientation), *static_cast<QVariant*>(value), role);
-}
-
-char QSqlTableModel_SetHeaderDataDefault(void* ptr, int section, long long orientation, void* value, int role)
-{
-	return static_cast<QSqlTableModel*>(ptr)->QSqlTableModel::setHeaderData(section, static_cast<Qt::Orientation>(orientation), *static_cast<QVariant*>(value), role);
 }
 
 void* QSqlTableModel_Span(void* ptr, void* index)

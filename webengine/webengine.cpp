@@ -2692,6 +2692,10 @@ public:
 	void stop() { callbackQWebEngineView_Stop(this); };
 	 ~MyQWebEngineView() { callbackQWebEngineView_DestroyQWebEngineView(this); };
 	void contextMenuEvent(QContextMenuEvent * event) { callbackQWebEngineView_ContextMenuEvent(this, event); };
+	void dragEnterEvent(QDragEnterEvent * e) { callbackQWebEngineView_DragEnterEvent(this, e); };
+	void dragLeaveEvent(QDragLeaveEvent * e) { callbackQWebEngineView_DragLeaveEvent(this, e); };
+	void dragMoveEvent(QDragMoveEvent * e) { callbackQWebEngineView_DragMoveEvent(this, e); };
+	void dropEvent(QDropEvent * e) { callbackQWebEngineView_DropEvent(this, e); };
 	bool event(QEvent * ev) { return callbackQWebEngineView_Event(this, ev) != 0; };
 	void hideEvent(QHideEvent * event) { callbackQWebEngineView_HideEvent(this, event); };
 	void Signal_IconChanged(const QIcon & icon) { callbackQWebEngineView_IconChanged(this, const_cast<QIcon*>(&icon)); };
@@ -2710,8 +2714,10 @@ public:
 	void focusInEvent(QFocusEvent * event) { callbackQWebEngineView_FocusInEvent(this, event); };
 	void focusOutEvent(QFocusEvent * event) { callbackQWebEngineView_FocusOutEvent(this, event); };
 	void leaveEvent(QEvent * event) { callbackQWebEngineView_LeaveEvent(this, event); };
+	int metric(QPaintDevice::PaintDeviceMetric m) const { return callbackQWebEngineView_Metric(const_cast<MyQWebEngineView*>(this), m); };
 	QSize minimumSizeHint() const { return *static_cast<QSize*>(callbackQWebEngineView_MinimumSizeHint(const_cast<MyQWebEngineView*>(this))); };
 	void moveEvent(QMoveEvent * event) { callbackQWebEngineView_MoveEvent(this, event); };
+	QPaintEngine * paintEngine() const { return static_cast<QPaintEngine*>(callbackQWebEngineView_PaintEngine(const_cast<MyQWebEngineView*>(this))); };
 	void paintEvent(QPaintEvent * event) { callbackQWebEngineView_PaintEvent(this, event); };
 	void setEnabled(bool vbo) { callbackQWebEngineView_SetEnabled(this, vbo); };
 	void setStyleSheet(const QString & styleSheet) { QByteArray t728ae7 = styleSheet.toUtf8(); QtWebEngine_PackedString styleSheetPacked = { const_cast<char*>(t728ae7.prepend("WHITESPACE").constData()+10), t728ae7.size()-10 };callbackQWebEngineView_SetStyleSheet(this, styleSheetPacked); };
@@ -2758,8 +2764,6 @@ public:
 	void disconnectNotify(const QMetaMethod & sign) { callbackQWebEngineView_DisconnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQWebEngineView_EventFilter(this, watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQWebEngineView_MetaObject(const_cast<MyQWebEngineView*>(this))); };
-	int metric(QPaintDevice::PaintDeviceMetric metric) const { return callbackQWebEngineView_Metric(const_cast<MyQWebEngineView*>(this), metric); };
-	QPaintEngine * paintEngine() const { return static_cast<QPaintEngine*>(callbackQWebEngineView_PaintEngine(const_cast<MyQWebEngineView*>(this))); };
 };
 
 void* QWebEngineView_NewQWebEngineView(void* parent)
@@ -2912,9 +2916,19 @@ void QWebEngineView_DragEnterEvent(void* ptr, void* e)
 	static_cast<QWebEngineView*>(ptr)->dragEnterEvent(static_cast<QDragEnterEvent*>(e));
 }
 
+void QWebEngineView_DragEnterEventDefault(void* ptr, void* e)
+{
+	static_cast<QWebEngineView*>(ptr)->QWebEngineView::dragEnterEvent(static_cast<QDragEnterEvent*>(e));
+}
+
 void QWebEngineView_DragLeaveEvent(void* ptr, void* e)
 {
 	static_cast<QWebEngineView*>(ptr)->dragLeaveEvent(static_cast<QDragLeaveEvent*>(e));
+}
+
+void QWebEngineView_DragLeaveEventDefault(void* ptr, void* e)
+{
+	static_cast<QWebEngineView*>(ptr)->QWebEngineView::dragLeaveEvent(static_cast<QDragLeaveEvent*>(e));
 }
 
 void QWebEngineView_DragMoveEvent(void* ptr, void* e)
@@ -2922,9 +2936,19 @@ void QWebEngineView_DragMoveEvent(void* ptr, void* e)
 	static_cast<QWebEngineView*>(ptr)->dragMoveEvent(static_cast<QDragMoveEvent*>(e));
 }
 
+void QWebEngineView_DragMoveEventDefault(void* ptr, void* e)
+{
+	static_cast<QWebEngineView*>(ptr)->QWebEngineView::dragMoveEvent(static_cast<QDragMoveEvent*>(e));
+}
+
 void QWebEngineView_DropEvent(void* ptr, void* e)
 {
 	static_cast<QWebEngineView*>(ptr)->dropEvent(static_cast<QDropEvent*>(e));
+}
+
+void QWebEngineView_DropEventDefault(void* ptr, void* e)
+{
+	static_cast<QWebEngineView*>(ptr)->QWebEngineView::dropEvent(static_cast<QDropEvent*>(e));
 }
 
 char QWebEngineView_Event(void* ptr, void* ev)
@@ -3157,6 +3181,16 @@ void QWebEngineView_LeaveEventDefault(void* ptr, void* event)
 	static_cast<QWebEngineView*>(ptr)->QWebEngineView::leaveEvent(static_cast<QEvent*>(event));
 }
 
+int QWebEngineView_Metric(void* ptr, long long m)
+{
+	return static_cast<QWebEngineView*>(ptr)->metric(static_cast<QPaintDevice::PaintDeviceMetric>(m));
+}
+
+int QWebEngineView_MetricDefault(void* ptr, long long m)
+{
+	return static_cast<QWebEngineView*>(ptr)->QWebEngineView::metric(static_cast<QPaintDevice::PaintDeviceMetric>(m));
+}
+
 void* QWebEngineView_MinimumSizeHint(void* ptr)
 {
 	return ({ QSize tmpValue = static_cast<QWebEngineView*>(ptr)->minimumSizeHint(); new QSize(tmpValue.width(), tmpValue.height()); });
@@ -3175,6 +3209,16 @@ void QWebEngineView_MoveEvent(void* ptr, void* event)
 void QWebEngineView_MoveEventDefault(void* ptr, void* event)
 {
 	static_cast<QWebEngineView*>(ptr)->QWebEngineView::moveEvent(static_cast<QMoveEvent*>(event));
+}
+
+void* QWebEngineView_PaintEngine(void* ptr)
+{
+	return static_cast<QWebEngineView*>(ptr)->paintEngine();
+}
+
+void* QWebEngineView_PaintEngineDefault(void* ptr)
+{
+	return static_cast<QWebEngineView*>(ptr)->QWebEngineView::paintEngine();
 }
 
 void QWebEngineView_PaintEvent(void* ptr, void* event)
@@ -3637,25 +3681,5 @@ void* QWebEngineView_MetaObject(void* ptr)
 void* QWebEngineView_MetaObjectDefault(void* ptr)
 {
 	return const_cast<QMetaObject*>(static_cast<QWebEngineView*>(ptr)->QWebEngineView::metaObject());
-}
-
-int QWebEngineView_Metric(void* ptr, long long metric)
-{
-	return static_cast<QWebEngineView*>(ptr)->metric(static_cast<QPaintDevice::PaintDeviceMetric>(metric));
-}
-
-int QWebEngineView_MetricDefault(void* ptr, long long metric)
-{
-	return static_cast<QWebEngineView*>(ptr)->QWebEngineView::metric(static_cast<QPaintDevice::PaintDeviceMetric>(metric));
-}
-
-void* QWebEngineView_PaintEngine(void* ptr)
-{
-	return static_cast<QWebEngineView*>(ptr)->paintEngine();
-}
-
-void* QWebEngineView_PaintEngineDefault(void* ptr)
-{
-	return static_cast<QWebEngineView*>(ptr)->QWebEngineView::paintEngine();
 }
 

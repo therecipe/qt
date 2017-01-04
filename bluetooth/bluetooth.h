@@ -298,6 +298,7 @@ void QBluetoothSocket_DoDeviceDiscovery(void* ptr, void* service, long long open
 long long QBluetoothSocket_Error(void* ptr);
 struct QtBluetooth_PackedString QBluetoothSocket_ErrorString(void* ptr);
 char QBluetoothSocket_IsSequential(void* ptr);
+char QBluetoothSocket_IsSequentialDefault(void* ptr);
 void* QBluetoothSocket_LocalAddress(void* ptr);
 struct QtBluetooth_PackedString QBluetoothSocket_LocalName(void* ptr);
 unsigned short QBluetoothSocket_LocalPort(void* ptr);

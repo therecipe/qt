@@ -7350,9 +7350,63 @@ func (ptr *QWebEngineView) ContextMenuEventDefault(event gui.QContextMenuEvent_I
 	}
 }
 
+//export callbackQWebEngineView_DragEnterEvent
+func callbackQWebEngineView_DragEnterEvent(ptr unsafe.Pointer, e unsafe.Pointer) {
+
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineView::dragEnterEvent"); signal != nil {
+		signal.(func(*gui.QDragEnterEvent))(gui.NewQDragEnterEventFromPointer(e))
+	} else {
+		NewQWebEngineViewFromPointer(ptr).DragEnterEventDefault(gui.NewQDragEnterEventFromPointer(e))
+	}
+}
+
+func (ptr *QWebEngineView) ConnectDragEnterEvent(f func(e *gui.QDragEnterEvent)) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineView::dragEnterEvent", f)
+	}
+}
+
+func (ptr *QWebEngineView) DisconnectDragEnterEvent() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineView::dragEnterEvent")
+	}
+}
+
 func (ptr *QWebEngineView) DragEnterEvent(e gui.QDragEnterEvent_ITF) {
 	if ptr.Pointer() != nil {
 		C.QWebEngineView_DragEnterEvent(ptr.Pointer(), gui.PointerFromQDragEnterEvent(e))
+	}
+}
+
+func (ptr *QWebEngineView) DragEnterEventDefault(e gui.QDragEnterEvent_ITF) {
+	if ptr.Pointer() != nil {
+		C.QWebEngineView_DragEnterEventDefault(ptr.Pointer(), gui.PointerFromQDragEnterEvent(e))
+	}
+}
+
+//export callbackQWebEngineView_DragLeaveEvent
+func callbackQWebEngineView_DragLeaveEvent(ptr unsafe.Pointer, e unsafe.Pointer) {
+
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineView::dragLeaveEvent"); signal != nil {
+		signal.(func(*gui.QDragLeaveEvent))(gui.NewQDragLeaveEventFromPointer(e))
+	} else {
+		NewQWebEngineViewFromPointer(ptr).DragLeaveEventDefault(gui.NewQDragLeaveEventFromPointer(e))
+	}
+}
+
+func (ptr *QWebEngineView) ConnectDragLeaveEvent(f func(e *gui.QDragLeaveEvent)) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineView::dragLeaveEvent", f)
+	}
+}
+
+func (ptr *QWebEngineView) DisconnectDragLeaveEvent() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineView::dragLeaveEvent")
 	}
 }
 
@@ -7362,15 +7416,81 @@ func (ptr *QWebEngineView) DragLeaveEvent(e gui.QDragLeaveEvent_ITF) {
 	}
 }
 
+func (ptr *QWebEngineView) DragLeaveEventDefault(e gui.QDragLeaveEvent_ITF) {
+	if ptr.Pointer() != nil {
+		C.QWebEngineView_DragLeaveEventDefault(ptr.Pointer(), gui.PointerFromQDragLeaveEvent(e))
+	}
+}
+
+//export callbackQWebEngineView_DragMoveEvent
+func callbackQWebEngineView_DragMoveEvent(ptr unsafe.Pointer, e unsafe.Pointer) {
+
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineView::dragMoveEvent"); signal != nil {
+		signal.(func(*gui.QDragMoveEvent))(gui.NewQDragMoveEventFromPointer(e))
+	} else {
+		NewQWebEngineViewFromPointer(ptr).DragMoveEventDefault(gui.NewQDragMoveEventFromPointer(e))
+	}
+}
+
+func (ptr *QWebEngineView) ConnectDragMoveEvent(f func(e *gui.QDragMoveEvent)) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineView::dragMoveEvent", f)
+	}
+}
+
+func (ptr *QWebEngineView) DisconnectDragMoveEvent() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineView::dragMoveEvent")
+	}
+}
+
 func (ptr *QWebEngineView) DragMoveEvent(e gui.QDragMoveEvent_ITF) {
 	if ptr.Pointer() != nil {
 		C.QWebEngineView_DragMoveEvent(ptr.Pointer(), gui.PointerFromQDragMoveEvent(e))
 	}
 }
 
+func (ptr *QWebEngineView) DragMoveEventDefault(e gui.QDragMoveEvent_ITF) {
+	if ptr.Pointer() != nil {
+		C.QWebEngineView_DragMoveEventDefault(ptr.Pointer(), gui.PointerFromQDragMoveEvent(e))
+	}
+}
+
+//export callbackQWebEngineView_DropEvent
+func callbackQWebEngineView_DropEvent(ptr unsafe.Pointer, e unsafe.Pointer) {
+
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineView::dropEvent"); signal != nil {
+		signal.(func(*gui.QDropEvent))(gui.NewQDropEventFromPointer(e))
+	} else {
+		NewQWebEngineViewFromPointer(ptr).DropEventDefault(gui.NewQDropEventFromPointer(e))
+	}
+}
+
+func (ptr *QWebEngineView) ConnectDropEvent(f func(e *gui.QDropEvent)) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineView::dropEvent", f)
+	}
+}
+
+func (ptr *QWebEngineView) DisconnectDropEvent() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineView::dropEvent")
+	}
+}
+
 func (ptr *QWebEngineView) DropEvent(e gui.QDropEvent_ITF) {
 	if ptr.Pointer() != nil {
 		C.QWebEngineView_DropEvent(ptr.Pointer(), gui.PointerFromQDropEvent(e))
+	}
+}
+
+func (ptr *QWebEngineView) DropEventDefault(e gui.QDropEvent_ITF) {
+	if ptr.Pointer() != nil {
+		C.QWebEngineView_DropEventDefault(ptr.Pointer(), gui.PointerFromQDropEvent(e))
 	}
 }
 
@@ -7977,6 +8097,44 @@ func (ptr *QWebEngineView) LeaveEventDefault(event core.QEvent_ITF) {
 	}
 }
 
+//export callbackQWebEngineView_Metric
+func callbackQWebEngineView_Metric(ptr unsafe.Pointer, m C.longlong) C.int {
+
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineView::metric"); signal != nil {
+		return C.int(int32(signal.(func(gui.QPaintDevice__PaintDeviceMetric) int)(gui.QPaintDevice__PaintDeviceMetric(m))))
+	}
+
+	return C.int(int32(NewQWebEngineViewFromPointer(ptr).MetricDefault(gui.QPaintDevice__PaintDeviceMetric(m))))
+}
+
+func (ptr *QWebEngineView) ConnectMetric(f func(m gui.QPaintDevice__PaintDeviceMetric) int) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineView::metric", f)
+	}
+}
+
+func (ptr *QWebEngineView) DisconnectMetric() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineView::metric")
+	}
+}
+
+func (ptr *QWebEngineView) Metric(m gui.QPaintDevice__PaintDeviceMetric) int {
+	if ptr.Pointer() != nil {
+		return int(int32(C.QWebEngineView_Metric(ptr.Pointer(), C.longlong(m))))
+	}
+	return 0
+}
+
+func (ptr *QWebEngineView) MetricDefault(m gui.QPaintDevice__PaintDeviceMetric) int {
+	if ptr.Pointer() != nil {
+		return int(int32(C.QWebEngineView_MetricDefault(ptr.Pointer(), C.longlong(m))))
+	}
+	return 0
+}
+
 //export callbackQWebEngineView_MinimumSizeHint
 func callbackQWebEngineView_MinimumSizeHint(ptr unsafe.Pointer) unsafe.Pointer {
 
@@ -8053,6 +8211,44 @@ func (ptr *QWebEngineView) MoveEventDefault(event gui.QMoveEvent_ITF) {
 	if ptr.Pointer() != nil {
 		C.QWebEngineView_MoveEventDefault(ptr.Pointer(), gui.PointerFromQMoveEvent(event))
 	}
+}
+
+//export callbackQWebEngineView_PaintEngine
+func callbackQWebEngineView_PaintEngine(ptr unsafe.Pointer) unsafe.Pointer {
+
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineView::paintEngine"); signal != nil {
+		return gui.PointerFromQPaintEngine(signal.(func() *gui.QPaintEngine)())
+	}
+
+	return gui.PointerFromQPaintEngine(NewQWebEngineViewFromPointer(ptr).PaintEngineDefault())
+}
+
+func (ptr *QWebEngineView) ConnectPaintEngine(f func() *gui.QPaintEngine) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineView::paintEngine", f)
+	}
+}
+
+func (ptr *QWebEngineView) DisconnectPaintEngine() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineView::paintEngine")
+	}
+}
+
+func (ptr *QWebEngineView) PaintEngine() *gui.QPaintEngine {
+	if ptr.Pointer() != nil {
+		return gui.NewQPaintEngineFromPointer(C.QWebEngineView_PaintEngine(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QWebEngineView) PaintEngineDefault() *gui.QPaintEngine {
+	if ptr.Pointer() != nil {
+		return gui.NewQPaintEngineFromPointer(C.QWebEngineView_PaintEngineDefault(ptr.Pointer()))
+	}
+	return nil
 }
 
 //export callbackQWebEngineView_PaintEvent
@@ -9718,82 +9914,6 @@ func (ptr *QWebEngineView) MetaObject() *core.QMetaObject {
 func (ptr *QWebEngineView) MetaObjectDefault() *core.QMetaObject {
 	if ptr.Pointer() != nil {
 		return core.NewQMetaObjectFromPointer(C.QWebEngineView_MetaObjectDefault(ptr.Pointer()))
-	}
-	return nil
-}
-
-//export callbackQWebEngineView_Metric
-func callbackQWebEngineView_Metric(ptr unsafe.Pointer, metric C.longlong) C.int {
-
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineView::metric"); signal != nil {
-		return C.int(int32(signal.(func(gui.QPaintDevice__PaintDeviceMetric) int)(gui.QPaintDevice__PaintDeviceMetric(metric))))
-	}
-
-	return C.int(int32(NewQWebEngineViewFromPointer(ptr).MetricDefault(gui.QPaintDevice__PaintDeviceMetric(metric))))
-}
-
-func (ptr *QWebEngineView) ConnectMetric(f func(metric gui.QPaintDevice__PaintDeviceMetric) int) {
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineView::metric", f)
-	}
-}
-
-func (ptr *QWebEngineView) DisconnectMetric() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineView::metric")
-	}
-}
-
-func (ptr *QWebEngineView) Metric(metric gui.QPaintDevice__PaintDeviceMetric) int {
-	if ptr.Pointer() != nil {
-		return int(int32(C.QWebEngineView_Metric(ptr.Pointer(), C.longlong(metric))))
-	}
-	return 0
-}
-
-func (ptr *QWebEngineView) MetricDefault(metric gui.QPaintDevice__PaintDeviceMetric) int {
-	if ptr.Pointer() != nil {
-		return int(int32(C.QWebEngineView_MetricDefault(ptr.Pointer(), C.longlong(metric))))
-	}
-	return 0
-}
-
-//export callbackQWebEngineView_PaintEngine
-func callbackQWebEngineView_PaintEngine(ptr unsafe.Pointer) unsafe.Pointer {
-
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineView::paintEngine"); signal != nil {
-		return gui.PointerFromQPaintEngine(signal.(func() *gui.QPaintEngine)())
-	}
-
-	return gui.PointerFromQPaintEngine(NewQWebEngineViewFromPointer(ptr).PaintEngineDefault())
-}
-
-func (ptr *QWebEngineView) ConnectPaintEngine(f func() *gui.QPaintEngine) {
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineView::paintEngine", f)
-	}
-}
-
-func (ptr *QWebEngineView) DisconnectPaintEngine() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineView::paintEngine")
-	}
-}
-
-func (ptr *QWebEngineView) PaintEngine() *gui.QPaintEngine {
-	if ptr.Pointer() != nil {
-		return gui.NewQPaintEngineFromPointer(C.QWebEngineView_PaintEngine(ptr.Pointer()))
-	}
-	return nil
-}
-
-func (ptr *QWebEngineView) PaintEngineDefault() *gui.QPaintEngine {
-	if ptr.Pointer() != nil {
-		return gui.NewQPaintEngineFromPointer(C.QWebEngineView_PaintEngineDefault(ptr.Pointer()))
 	}
 	return nil
 }

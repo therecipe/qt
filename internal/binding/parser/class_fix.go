@@ -12,7 +12,7 @@ import (
 )
 
 func (c *Class) fix() {
-	c.fixFunctions()
+	c.fixFunctions((*Function).fix)
 
 	//c.fixGeneral()
 	c.fixGeneral_Version()
@@ -20,11 +20,13 @@ func (c *Class) fix() {
 	c.fixLinkage()
 
 	c.fixBases()
+
+	c.fixFunctions((*Function).fixGeneral_AfterClasses)
 }
 
-func (c *Class) fixFunctions() {
+func (c *Class) fixFunctions(fix func(*Function)) {
 	for _, f := range c.Functions {
-		f.fix()
+		fix(f)
 	}
 }
 

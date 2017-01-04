@@ -14030,9 +14030,40 @@ func (ptr *QGuiApplication) DevicePixelRatio() float64 {
 	return 0
 }
 
+//export callbackQGuiApplication_Event
+func callbackQGuiApplication_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
+
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QGuiApplication::event"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQGuiApplicationFromPointer(ptr).EventDefault(core.NewQEventFromPointer(e)))))
+}
+
+func (ptr *QGuiApplication) ConnectEvent(f func(e *core.QEvent) bool) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QGuiApplication::event", f)
+	}
+}
+
+func (ptr *QGuiApplication) DisconnectEvent() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QGuiApplication::event")
+	}
+}
+
 func (ptr *QGuiApplication) Event(e core.QEvent_ITF) bool {
 	if ptr.Pointer() != nil {
 		return C.QGuiApplication_Event(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
+	}
+	return false
+}
+
+func (ptr *QGuiApplication) EventDefault(e core.QEvent_ITF) bool {
+	if ptr.Pointer() != nil {
+		return C.QGuiApplication_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
 	}
 	return false
 }
@@ -33676,9 +33707,40 @@ func (ptr *QPdfWriter) SetPageOrientation(orientation QPageLayout__Orientation) 
 	return false
 }
 
+//export callbackQPdfWriter_SetPageSize
+func callbackQPdfWriter_SetPageSize(ptr unsafe.Pointer, pageSize unsafe.Pointer) C.char {
+
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPdfWriter::setPageSize"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(*QPageSize) bool)(NewQPageSizeFromPointer(pageSize)))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQPdfWriterFromPointer(ptr).SetPageSizeDefault(NewQPageSizeFromPointer(pageSize)))))
+}
+
+func (ptr *QPdfWriter) ConnectSetPageSize(f func(pageSize *QPageSize) bool) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPdfWriter::setPageSize", f)
+	}
+}
+
+func (ptr *QPdfWriter) DisconnectSetPageSize() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPdfWriter::setPageSize")
+	}
+}
+
 func (ptr *QPdfWriter) SetPageSize(pageSize QPageSize_ITF) bool {
 	if ptr.Pointer() != nil {
 		return C.QPdfWriter_SetPageSize(ptr.Pointer(), PointerFromQPageSize(pageSize)) != 0
+	}
+	return false
+}
+
+func (ptr *QPdfWriter) SetPageSizeDefault(pageSize QPageSize_ITF) bool {
+	if ptr.Pointer() != nil {
+		return C.QPdfWriter_SetPageSizeDefault(ptr.Pointer(), PointerFromQPageSize(pageSize)) != 0
 	}
 	return false
 }
@@ -43313,11 +43375,66 @@ func (ptr *QStandardItemModel) Clear() {
 	}
 }
 
+//export callbackQStandardItemModel_ColumnCount
+func callbackQStandardItemModel_ColumnCount(ptr unsafe.Pointer, parent unsafe.Pointer) C.int {
+
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QStandardItemModel::columnCount"); signal != nil {
+		return C.int(int32(signal.(func(*core.QModelIndex) int)(core.NewQModelIndexFromPointer(parent))))
+	}
+
+	return C.int(int32(NewQStandardItemModelFromPointer(ptr).ColumnCountDefault(core.NewQModelIndexFromPointer(parent))))
+}
+
+func (ptr *QStandardItemModel) ConnectColumnCount(f func(parent *core.QModelIndex) int) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QStandardItemModel::columnCount", f)
+	}
+}
+
+func (ptr *QStandardItemModel) DisconnectColumnCount() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QStandardItemModel::columnCount")
+	}
+}
+
 func (ptr *QStandardItemModel) ColumnCount(parent core.QModelIndex_ITF) int {
 	if ptr.Pointer() != nil {
 		return int(int32(C.QStandardItemModel_ColumnCount(ptr.Pointer(), core.PointerFromQModelIndex(parent))))
 	}
 	return 0
+}
+
+func (ptr *QStandardItemModel) ColumnCountDefault(parent core.QModelIndex_ITF) int {
+	if ptr.Pointer() != nil {
+		return int(int32(C.QStandardItemModel_ColumnCountDefault(ptr.Pointer(), core.PointerFromQModelIndex(parent))))
+	}
+	return 0
+}
+
+//export callbackQStandardItemModel_Data
+func callbackQStandardItemModel_Data(ptr unsafe.Pointer, index unsafe.Pointer, role C.int) unsafe.Pointer {
+
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QStandardItemModel::data"); signal != nil {
+		return core.PointerFromQVariant(signal.(func(*core.QModelIndex, int) *core.QVariant)(core.NewQModelIndexFromPointer(index), int(int32(role))))
+	}
+
+	return core.PointerFromQVariant(NewQStandardItemModelFromPointer(ptr).DataDefault(core.NewQModelIndexFromPointer(index), int(int32(role))))
+}
+
+func (ptr *QStandardItemModel) ConnectData(f func(index *core.QModelIndex, role int) *core.QVariant) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QStandardItemModel::data", f)
+	}
+}
+
+func (ptr *QStandardItemModel) DisconnectData() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QStandardItemModel::data")
+	}
 }
 
 func (ptr *QStandardItemModel) Data(index core.QModelIndex_ITF, role int) *core.QVariant {
@@ -43329,9 +43446,49 @@ func (ptr *QStandardItemModel) Data(index core.QModelIndex_ITF, role int) *core.
 	return nil
 }
 
+func (ptr *QStandardItemModel) DataDefault(index core.QModelIndex_ITF, role int) *core.QVariant {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQVariantFromPointer(C.QStandardItemModel_DataDefault(ptr.Pointer(), core.PointerFromQModelIndex(index), C.int(int32(role))))
+		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		return tmpValue
+	}
+	return nil
+}
+
+//export callbackQStandardItemModel_DropMimeData
+func callbackQStandardItemModel_DropMimeData(ptr unsafe.Pointer, data unsafe.Pointer, action C.longlong, row C.int, column C.int, parent unsafe.Pointer) C.char {
+
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QStandardItemModel::dropMimeData"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QMimeData, core.Qt__DropAction, int, int, *core.QModelIndex) bool)(core.NewQMimeDataFromPointer(data), core.Qt__DropAction(action), int(int32(row)), int(int32(column)), core.NewQModelIndexFromPointer(parent)))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQStandardItemModelFromPointer(ptr).DropMimeDataDefault(core.NewQMimeDataFromPointer(data), core.Qt__DropAction(action), int(int32(row)), int(int32(column)), core.NewQModelIndexFromPointer(parent)))))
+}
+
+func (ptr *QStandardItemModel) ConnectDropMimeData(f func(data *core.QMimeData, action core.Qt__DropAction, row int, column int, parent *core.QModelIndex) bool) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QStandardItemModel::dropMimeData", f)
+	}
+}
+
+func (ptr *QStandardItemModel) DisconnectDropMimeData() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QStandardItemModel::dropMimeData")
+	}
+}
+
 func (ptr *QStandardItemModel) DropMimeData(data core.QMimeData_ITF, action core.Qt__DropAction, row int, column int, parent core.QModelIndex_ITF) bool {
 	if ptr.Pointer() != nil {
 		return C.QStandardItemModel_DropMimeData(ptr.Pointer(), core.PointerFromQMimeData(data), C.longlong(action), C.int(int32(row)), C.int(int32(column)), core.PointerFromQModelIndex(parent)) != 0
+	}
+	return false
+}
+
+func (ptr *QStandardItemModel) DropMimeDataDefault(data core.QMimeData_ITF, action core.Qt__DropAction, row int, column int, parent core.QModelIndex_ITF) bool {
+	if ptr.Pointer() != nil {
+		return C.QStandardItemModel_DropMimeDataDefault(ptr.Pointer(), core.PointerFromQMimeData(data), C.longlong(action), C.int(int32(row)), C.int(int32(column)), core.PointerFromQModelIndex(parent)) != 0
 	}
 	return false
 }
@@ -43351,11 +43508,66 @@ func (ptr *QStandardItemModel) FindItems(text string, flags core.Qt__MatchFlag, 
 	return nil
 }
 
+//export callbackQStandardItemModel_Flags
+func callbackQStandardItemModel_Flags(ptr unsafe.Pointer, index unsafe.Pointer) C.longlong {
+
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QStandardItemModel::flags"); signal != nil {
+		return C.longlong(signal.(func(*core.QModelIndex) core.Qt__ItemFlag)(core.NewQModelIndexFromPointer(index)))
+	}
+
+	return C.longlong(NewQStandardItemModelFromPointer(ptr).FlagsDefault(core.NewQModelIndexFromPointer(index)))
+}
+
+func (ptr *QStandardItemModel) ConnectFlags(f func(index *core.QModelIndex) core.Qt__ItemFlag) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QStandardItemModel::flags", f)
+	}
+}
+
+func (ptr *QStandardItemModel) DisconnectFlags() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QStandardItemModel::flags")
+	}
+}
+
 func (ptr *QStandardItemModel) Flags(index core.QModelIndex_ITF) core.Qt__ItemFlag {
 	if ptr.Pointer() != nil {
 		return core.Qt__ItemFlag(C.QStandardItemModel_Flags(ptr.Pointer(), core.PointerFromQModelIndex(index)))
 	}
 	return 0
+}
+
+func (ptr *QStandardItemModel) FlagsDefault(index core.QModelIndex_ITF) core.Qt__ItemFlag {
+	if ptr.Pointer() != nil {
+		return core.Qt__ItemFlag(C.QStandardItemModel_FlagsDefault(ptr.Pointer(), core.PointerFromQModelIndex(index)))
+	}
+	return 0
+}
+
+//export callbackQStandardItemModel_HasChildren
+func callbackQStandardItemModel_HasChildren(ptr unsafe.Pointer, parent unsafe.Pointer) C.char {
+
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QStandardItemModel::hasChildren"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QModelIndex) bool)(core.NewQModelIndexFromPointer(parent)))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQStandardItemModelFromPointer(ptr).HasChildrenDefault(core.NewQModelIndexFromPointer(parent)))))
+}
+
+func (ptr *QStandardItemModel) ConnectHasChildren(f func(parent *core.QModelIndex) bool) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QStandardItemModel::hasChildren", f)
+	}
+}
+
+func (ptr *QStandardItemModel) DisconnectHasChildren() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QStandardItemModel::hasChildren")
+	}
 }
 
 func (ptr *QStandardItemModel) HasChildren(parent core.QModelIndex_ITF) bool {
@@ -43365,9 +43577,49 @@ func (ptr *QStandardItemModel) HasChildren(parent core.QModelIndex_ITF) bool {
 	return false
 }
 
+func (ptr *QStandardItemModel) HasChildrenDefault(parent core.QModelIndex_ITF) bool {
+	if ptr.Pointer() != nil {
+		return C.QStandardItemModel_HasChildrenDefault(ptr.Pointer(), core.PointerFromQModelIndex(parent)) != 0
+	}
+	return false
+}
+
+//export callbackQStandardItemModel_HeaderData
+func callbackQStandardItemModel_HeaderData(ptr unsafe.Pointer, section C.int, orientation C.longlong, role C.int) unsafe.Pointer {
+
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QStandardItemModel::headerData"); signal != nil {
+		return core.PointerFromQVariant(signal.(func(int, core.Qt__Orientation, int) *core.QVariant)(int(int32(section)), core.Qt__Orientation(orientation), int(int32(role))))
+	}
+
+	return core.PointerFromQVariant(NewQStandardItemModelFromPointer(ptr).HeaderDataDefault(int(int32(section)), core.Qt__Orientation(orientation), int(int32(role))))
+}
+
+func (ptr *QStandardItemModel) ConnectHeaderData(f func(section int, orientation core.Qt__Orientation, role int) *core.QVariant) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QStandardItemModel::headerData", f)
+	}
+}
+
+func (ptr *QStandardItemModel) DisconnectHeaderData() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QStandardItemModel::headerData")
+	}
+}
+
 func (ptr *QStandardItemModel) HeaderData(section int, orientation core.Qt__Orientation, role int) *core.QVariant {
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQVariantFromPointer(C.QStandardItemModel_HeaderData(ptr.Pointer(), C.int(int32(section)), C.longlong(orientation), C.int(int32(role))))
+		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QStandardItemModel) HeaderDataDefault(section int, orientation core.Qt__Orientation, role int) *core.QVariant {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQVariantFromPointer(C.QStandardItemModel_HeaderDataDefault(ptr.Pointer(), C.int(int32(section)), C.longlong(orientation), C.int(int32(role))))
 		runtime.SetFinalizer(tmpValue, (*core.QVariant).DestroyQVariant)
 		return tmpValue
 	}
@@ -43381,9 +43633,42 @@ func (ptr *QStandardItemModel) HorizontalHeaderItem(column int) *QStandardItem {
 	return nil
 }
 
+//export callbackQStandardItemModel_Index
+func callbackQStandardItemModel_Index(ptr unsafe.Pointer, row C.int, column C.int, parent unsafe.Pointer) unsafe.Pointer {
+
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QStandardItemModel::index"); signal != nil {
+		return core.PointerFromQModelIndex(signal.(func(int, int, *core.QModelIndex) *core.QModelIndex)(int(int32(row)), int(int32(column)), core.NewQModelIndexFromPointer(parent)))
+	}
+
+	return core.PointerFromQModelIndex(NewQStandardItemModelFromPointer(ptr).IndexDefault(int(int32(row)), int(int32(column)), core.NewQModelIndexFromPointer(parent)))
+}
+
+func (ptr *QStandardItemModel) ConnectIndex(f func(row int, column int, parent *core.QModelIndex) *core.QModelIndex) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QStandardItemModel::index", f)
+	}
+}
+
+func (ptr *QStandardItemModel) DisconnectIndex() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QStandardItemModel::index")
+	}
+}
+
 func (ptr *QStandardItemModel) Index(row int, column int, parent core.QModelIndex_ITF) *core.QModelIndex {
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQModelIndexFromPointer(C.QStandardItemModel_Index(ptr.Pointer(), C.int(int32(row)), C.int(int32(column)), core.PointerFromQModelIndex(parent)))
+		runtime.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QStandardItemModel) IndexDefault(row int, column int, parent core.QModelIndex_ITF) *core.QModelIndex {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQModelIndexFromPointer(C.QStandardItemModel_IndexDefault(ptr.Pointer(), C.int(int32(row)), C.int(int32(column)), core.PointerFromQModelIndex(parent)))
 		runtime.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
 		return tmpValue
 	}
@@ -43406,9 +43691,40 @@ func (ptr *QStandardItemModel) InsertColumn2(column int, parent core.QModelIndex
 	return false
 }
 
+//export callbackQStandardItemModel_InsertColumns
+func callbackQStandardItemModel_InsertColumns(ptr unsafe.Pointer, column C.int, count C.int, parent unsafe.Pointer) C.char {
+
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QStandardItemModel::insertColumns"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(int, int, *core.QModelIndex) bool)(int(int32(column)), int(int32(count)), core.NewQModelIndexFromPointer(parent)))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQStandardItemModelFromPointer(ptr).InsertColumnsDefault(int(int32(column)), int(int32(count)), core.NewQModelIndexFromPointer(parent)))))
+}
+
+func (ptr *QStandardItemModel) ConnectInsertColumns(f func(column int, count int, parent *core.QModelIndex) bool) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QStandardItemModel::insertColumns", f)
+	}
+}
+
+func (ptr *QStandardItemModel) DisconnectInsertColumns() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QStandardItemModel::insertColumns")
+	}
+}
+
 func (ptr *QStandardItemModel) InsertColumns(column int, count int, parent core.QModelIndex_ITF) bool {
 	if ptr.Pointer() != nil {
 		return C.QStandardItemModel_InsertColumns(ptr.Pointer(), C.int(int32(column)), C.int(int32(count)), core.PointerFromQModelIndex(parent)) != 0
+	}
+	return false
+}
+
+func (ptr *QStandardItemModel) InsertColumnsDefault(column int, count int, parent core.QModelIndex_ITF) bool {
+	if ptr.Pointer() != nil {
+		return C.QStandardItemModel_InsertColumnsDefault(ptr.Pointer(), C.int(int32(column)), C.int(int32(count)), core.PointerFromQModelIndex(parent)) != 0
 	}
 	return false
 }
@@ -43426,9 +43742,40 @@ func (ptr *QStandardItemModel) InsertRow2(row int, item QStandardItem_ITF) {
 	}
 }
 
+//export callbackQStandardItemModel_InsertRows
+func callbackQStandardItemModel_InsertRows(ptr unsafe.Pointer, row C.int, count C.int, parent unsafe.Pointer) C.char {
+
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QStandardItemModel::insertRows"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(int, int, *core.QModelIndex) bool)(int(int32(row)), int(int32(count)), core.NewQModelIndexFromPointer(parent)))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQStandardItemModelFromPointer(ptr).InsertRowsDefault(int(int32(row)), int(int32(count)), core.NewQModelIndexFromPointer(parent)))))
+}
+
+func (ptr *QStandardItemModel) ConnectInsertRows(f func(row int, count int, parent *core.QModelIndex) bool) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QStandardItemModel::insertRows", f)
+	}
+}
+
+func (ptr *QStandardItemModel) DisconnectInsertRows() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QStandardItemModel::insertRows")
+	}
+}
+
 func (ptr *QStandardItemModel) InsertRows(row int, count int, parent core.QModelIndex_ITF) bool {
 	if ptr.Pointer() != nil {
 		return C.QStandardItemModel_InsertRows(ptr.Pointer(), C.int(int32(row)), C.int(int32(count)), core.PointerFromQModelIndex(parent)) != 0
+	}
+	return false
+}
+
+func (ptr *QStandardItemModel) InsertRowsDefault(row int, count int, parent core.QModelIndex_ITF) bool {
+	if ptr.Pointer() != nil {
+		return C.QStandardItemModel_InsertRowsDefault(ptr.Pointer(), C.int(int32(row)), C.int(int32(count)), core.PointerFromQModelIndex(parent)) != 0
 	}
 	return false
 }
@@ -43490,11 +43837,73 @@ func (ptr *QStandardItemModel) ItemPrototype() *QStandardItem {
 	return nil
 }
 
+func (ptr *QStandardItemModel) DisconnectMimeData() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QStandardItemModel::mimeData")
+	}
+}
+
+//export callbackQStandardItemModel_MimeTypes
+func callbackQStandardItemModel_MimeTypes(ptr unsafe.Pointer) *C.char {
+
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QStandardItemModel::mimeTypes"); signal != nil {
+		return C.CString(strings.Join(signal.(func() []string)(), "|"))
+	}
+
+	return C.CString(strings.Join(NewQStandardItemModelFromPointer(ptr).MimeTypesDefault(), "|"))
+}
+
+func (ptr *QStandardItemModel) ConnectMimeTypes(f func() []string) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QStandardItemModel::mimeTypes", f)
+	}
+}
+
+func (ptr *QStandardItemModel) DisconnectMimeTypes() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QStandardItemModel::mimeTypes")
+	}
+}
+
 func (ptr *QStandardItemModel) MimeTypes() []string {
 	if ptr.Pointer() != nil {
 		return strings.Split(cGoUnpackString(C.QStandardItemModel_MimeTypes(ptr.Pointer())), "|")
 	}
 	return make([]string, 0)
+}
+
+func (ptr *QStandardItemModel) MimeTypesDefault() []string {
+	if ptr.Pointer() != nil {
+		return strings.Split(cGoUnpackString(C.QStandardItemModel_MimeTypesDefault(ptr.Pointer())), "|")
+	}
+	return make([]string, 0)
+}
+
+//export callbackQStandardItemModel_Parent
+func callbackQStandardItemModel_Parent(ptr unsafe.Pointer, child unsafe.Pointer) unsafe.Pointer {
+
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QStandardItemModel::parent"); signal != nil {
+		return core.PointerFromQModelIndex(signal.(func(*core.QModelIndex) *core.QModelIndex)(core.NewQModelIndexFromPointer(child)))
+	}
+
+	return core.PointerFromQModelIndex(NewQStandardItemModelFromPointer(ptr).ParentDefault(core.NewQModelIndexFromPointer(child)))
+}
+
+func (ptr *QStandardItemModel) ConnectParent(f func(child *core.QModelIndex) *core.QModelIndex) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QStandardItemModel::parent", f)
+	}
+}
+
+func (ptr *QStandardItemModel) DisconnectParent() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QStandardItemModel::parent")
+	}
 }
 
 func (ptr *QStandardItemModel) Parent(child core.QModelIndex_ITF) *core.QModelIndex {
@@ -43506,11 +43915,75 @@ func (ptr *QStandardItemModel) Parent(child core.QModelIndex_ITF) *core.QModelIn
 	return nil
 }
 
+func (ptr *QStandardItemModel) ParentDefault(child core.QModelIndex_ITF) *core.QModelIndex {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQModelIndexFromPointer(C.QStandardItemModel_ParentDefault(ptr.Pointer(), core.PointerFromQModelIndex(child)))
+		runtime.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
+		return tmpValue
+	}
+	return nil
+}
+
+//export callbackQStandardItemModel_RemoveColumns
+func callbackQStandardItemModel_RemoveColumns(ptr unsafe.Pointer, column C.int, count C.int, parent unsafe.Pointer) C.char {
+
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QStandardItemModel::removeColumns"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(int, int, *core.QModelIndex) bool)(int(int32(column)), int(int32(count)), core.NewQModelIndexFromPointer(parent)))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQStandardItemModelFromPointer(ptr).RemoveColumnsDefault(int(int32(column)), int(int32(count)), core.NewQModelIndexFromPointer(parent)))))
+}
+
+func (ptr *QStandardItemModel) ConnectRemoveColumns(f func(column int, count int, parent *core.QModelIndex) bool) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QStandardItemModel::removeColumns", f)
+	}
+}
+
+func (ptr *QStandardItemModel) DisconnectRemoveColumns() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QStandardItemModel::removeColumns")
+	}
+}
+
 func (ptr *QStandardItemModel) RemoveColumns(column int, count int, parent core.QModelIndex_ITF) bool {
 	if ptr.Pointer() != nil {
 		return C.QStandardItemModel_RemoveColumns(ptr.Pointer(), C.int(int32(column)), C.int(int32(count)), core.PointerFromQModelIndex(parent)) != 0
 	}
 	return false
+}
+
+func (ptr *QStandardItemModel) RemoveColumnsDefault(column int, count int, parent core.QModelIndex_ITF) bool {
+	if ptr.Pointer() != nil {
+		return C.QStandardItemModel_RemoveColumnsDefault(ptr.Pointer(), C.int(int32(column)), C.int(int32(count)), core.PointerFromQModelIndex(parent)) != 0
+	}
+	return false
+}
+
+//export callbackQStandardItemModel_RemoveRows
+func callbackQStandardItemModel_RemoveRows(ptr unsafe.Pointer, row C.int, count C.int, parent unsafe.Pointer) C.char {
+
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QStandardItemModel::removeRows"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(int, int, *core.QModelIndex) bool)(int(int32(row)), int(int32(count)), core.NewQModelIndexFromPointer(parent)))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQStandardItemModelFromPointer(ptr).RemoveRowsDefault(int(int32(row)), int(int32(count)), core.NewQModelIndexFromPointer(parent)))))
+}
+
+func (ptr *QStandardItemModel) ConnectRemoveRows(f func(row int, count int, parent *core.QModelIndex) bool) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QStandardItemModel::removeRows", f)
+	}
+}
+
+func (ptr *QStandardItemModel) DisconnectRemoveRows() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QStandardItemModel::removeRows")
+	}
 }
 
 func (ptr *QStandardItemModel) RemoveRows(row int, count int, parent core.QModelIndex_ITF) bool {
@@ -43520,9 +43993,47 @@ func (ptr *QStandardItemModel) RemoveRows(row int, count int, parent core.QModel
 	return false
 }
 
+func (ptr *QStandardItemModel) RemoveRowsDefault(row int, count int, parent core.QModelIndex_ITF) bool {
+	if ptr.Pointer() != nil {
+		return C.QStandardItemModel_RemoveRowsDefault(ptr.Pointer(), C.int(int32(row)), C.int(int32(count)), core.PointerFromQModelIndex(parent)) != 0
+	}
+	return false
+}
+
+//export callbackQStandardItemModel_RowCount
+func callbackQStandardItemModel_RowCount(ptr unsafe.Pointer, parent unsafe.Pointer) C.int {
+
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QStandardItemModel::rowCount"); signal != nil {
+		return C.int(int32(signal.(func(*core.QModelIndex) int)(core.NewQModelIndexFromPointer(parent))))
+	}
+
+	return C.int(int32(NewQStandardItemModelFromPointer(ptr).RowCountDefault(core.NewQModelIndexFromPointer(parent))))
+}
+
+func (ptr *QStandardItemModel) ConnectRowCount(f func(parent *core.QModelIndex) int) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QStandardItemModel::rowCount", f)
+	}
+}
+
+func (ptr *QStandardItemModel) DisconnectRowCount() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QStandardItemModel::rowCount")
+	}
+}
+
 func (ptr *QStandardItemModel) RowCount(parent core.QModelIndex_ITF) int {
 	if ptr.Pointer() != nil {
 		return int(int32(C.QStandardItemModel_RowCount(ptr.Pointer(), core.PointerFromQModelIndex(parent))))
+	}
+	return 0
+}
+
+func (ptr *QStandardItemModel) RowCountDefault(parent core.QModelIndex_ITF) int {
+	if ptr.Pointer() != nil {
+		return int(int32(C.QStandardItemModel_RowCountDefault(ptr.Pointer(), core.PointerFromQModelIndex(parent))))
 	}
 	return 0
 }
@@ -43533,6 +44044,30 @@ func (ptr *QStandardItemModel) SetColumnCount(columns int) {
 	}
 }
 
+//export callbackQStandardItemModel_SetData
+func callbackQStandardItemModel_SetData(ptr unsafe.Pointer, index unsafe.Pointer, value unsafe.Pointer, role C.int) C.char {
+
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QStandardItemModel::setData"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QModelIndex, *core.QVariant, int) bool)(core.NewQModelIndexFromPointer(index), core.NewQVariantFromPointer(value), int(int32(role))))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQStandardItemModelFromPointer(ptr).SetDataDefault(core.NewQModelIndexFromPointer(index), core.NewQVariantFromPointer(value), int(int32(role))))))
+}
+
+func (ptr *QStandardItemModel) ConnectSetData(f func(index *core.QModelIndex, value *core.QVariant, role int) bool) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QStandardItemModel::setData", f)
+	}
+}
+
+func (ptr *QStandardItemModel) DisconnectSetData() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QStandardItemModel::setData")
+	}
+}
+
 func (ptr *QStandardItemModel) SetData(index core.QModelIndex_ITF, value core.QVariant_ITF, role int) bool {
 	if ptr.Pointer() != nil {
 		return C.QStandardItemModel_SetData(ptr.Pointer(), core.PointerFromQModelIndex(index), core.PointerFromQVariant(value), C.int(int32(role))) != 0
@@ -43540,9 +44075,47 @@ func (ptr *QStandardItemModel) SetData(index core.QModelIndex_ITF, value core.QV
 	return false
 }
 
+func (ptr *QStandardItemModel) SetDataDefault(index core.QModelIndex_ITF, value core.QVariant_ITF, role int) bool {
+	if ptr.Pointer() != nil {
+		return C.QStandardItemModel_SetDataDefault(ptr.Pointer(), core.PointerFromQModelIndex(index), core.PointerFromQVariant(value), C.int(int32(role))) != 0
+	}
+	return false
+}
+
+//export callbackQStandardItemModel_SetHeaderData
+func callbackQStandardItemModel_SetHeaderData(ptr unsafe.Pointer, section C.int, orientation C.longlong, value unsafe.Pointer, role C.int) C.char {
+
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QStandardItemModel::setHeaderData"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(int, core.Qt__Orientation, *core.QVariant, int) bool)(int(int32(section)), core.Qt__Orientation(orientation), core.NewQVariantFromPointer(value), int(int32(role))))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQStandardItemModelFromPointer(ptr).SetHeaderDataDefault(int(int32(section)), core.Qt__Orientation(orientation), core.NewQVariantFromPointer(value), int(int32(role))))))
+}
+
+func (ptr *QStandardItemModel) ConnectSetHeaderData(f func(section int, orientation core.Qt__Orientation, value *core.QVariant, role int) bool) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QStandardItemModel::setHeaderData", f)
+	}
+}
+
+func (ptr *QStandardItemModel) DisconnectSetHeaderData() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QStandardItemModel::setHeaderData")
+	}
+}
+
 func (ptr *QStandardItemModel) SetHeaderData(section int, orientation core.Qt__Orientation, value core.QVariant_ITF, role int) bool {
 	if ptr.Pointer() != nil {
 		return C.QStandardItemModel_SetHeaderData(ptr.Pointer(), C.int(int32(section)), C.longlong(orientation), core.PointerFromQVariant(value), C.int(int32(role))) != 0
+	}
+	return false
+}
+
+func (ptr *QStandardItemModel) SetHeaderDataDefault(section int, orientation core.Qt__Orientation, value core.QVariant_ITF, role int) bool {
+	if ptr.Pointer() != nil {
+		return C.QStandardItemModel_SetHeaderDataDefault(ptr.Pointer(), C.int(int32(section)), C.longlong(orientation), core.PointerFromQVariant(value), C.int(int32(role))) != 0
 	}
 	return false
 }
@@ -43599,6 +44172,30 @@ func (ptr *QStandardItemModel) SetVerticalHeaderLabels(labels []string) {
 	}
 }
 
+//export callbackQStandardItemModel_Sibling
+func callbackQStandardItemModel_Sibling(ptr unsafe.Pointer, row C.int, column C.int, idx unsafe.Pointer) unsafe.Pointer {
+
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QStandardItemModel::sibling"); signal != nil {
+		return core.PointerFromQModelIndex(signal.(func(int, int, *core.QModelIndex) *core.QModelIndex)(int(int32(row)), int(int32(column)), core.NewQModelIndexFromPointer(idx)))
+	}
+
+	return core.PointerFromQModelIndex(NewQStandardItemModelFromPointer(ptr).SiblingDefault(int(int32(row)), int(int32(column)), core.NewQModelIndexFromPointer(idx)))
+}
+
+func (ptr *QStandardItemModel) ConnectSibling(f func(row int, column int, idx *core.QModelIndex) *core.QModelIndex) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QStandardItemModel::sibling", f)
+	}
+}
+
+func (ptr *QStandardItemModel) DisconnectSibling() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QStandardItemModel::sibling")
+	}
+}
+
 func (ptr *QStandardItemModel) Sibling(row int, column int, idx core.QModelIndex_ITF) *core.QModelIndex {
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQModelIndexFromPointer(C.QStandardItemModel_Sibling(ptr.Pointer(), C.int(int32(row)), C.int(int32(column)), core.PointerFromQModelIndex(idx)))
@@ -43608,15 +44205,85 @@ func (ptr *QStandardItemModel) Sibling(row int, column int, idx core.QModelIndex
 	return nil
 }
 
+func (ptr *QStandardItemModel) SiblingDefault(row int, column int, idx core.QModelIndex_ITF) *core.QModelIndex {
+	if ptr.Pointer() != nil {
+		var tmpValue = core.NewQModelIndexFromPointer(C.QStandardItemModel_SiblingDefault(ptr.Pointer(), C.int(int32(row)), C.int(int32(column)), core.PointerFromQModelIndex(idx)))
+		runtime.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
+		return tmpValue
+	}
+	return nil
+}
+
+//export callbackQStandardItemModel_Sort
+func callbackQStandardItemModel_Sort(ptr unsafe.Pointer, column C.int, order C.longlong) {
+
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QStandardItemModel::sort"); signal != nil {
+		signal.(func(int, core.Qt__SortOrder))(int(int32(column)), core.Qt__SortOrder(order))
+	} else {
+		NewQStandardItemModelFromPointer(ptr).SortDefault(int(int32(column)), core.Qt__SortOrder(order))
+	}
+}
+
+func (ptr *QStandardItemModel) ConnectSort(f func(column int, order core.Qt__SortOrder)) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QStandardItemModel::sort", f)
+	}
+}
+
+func (ptr *QStandardItemModel) DisconnectSort() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QStandardItemModel::sort")
+	}
+}
+
 func (ptr *QStandardItemModel) Sort(column int, order core.Qt__SortOrder) {
 	if ptr.Pointer() != nil {
 		C.QStandardItemModel_Sort(ptr.Pointer(), C.int(int32(column)), C.longlong(order))
 	}
 }
 
+func (ptr *QStandardItemModel) SortDefault(column int, order core.Qt__SortOrder) {
+	if ptr.Pointer() != nil {
+		C.QStandardItemModel_SortDefault(ptr.Pointer(), C.int(int32(column)), C.longlong(order))
+	}
+}
+
+//export callbackQStandardItemModel_SupportedDropActions
+func callbackQStandardItemModel_SupportedDropActions(ptr unsafe.Pointer) C.longlong {
+
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QStandardItemModel::supportedDropActions"); signal != nil {
+		return C.longlong(signal.(func() core.Qt__DropAction)())
+	}
+
+	return C.longlong(NewQStandardItemModelFromPointer(ptr).SupportedDropActionsDefault())
+}
+
+func (ptr *QStandardItemModel) ConnectSupportedDropActions(f func() core.Qt__DropAction) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QStandardItemModel::supportedDropActions", f)
+	}
+}
+
+func (ptr *QStandardItemModel) DisconnectSupportedDropActions() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QStandardItemModel::supportedDropActions")
+	}
+}
+
 func (ptr *QStandardItemModel) SupportedDropActions() core.Qt__DropAction {
 	if ptr.Pointer() != nil {
 		return core.Qt__DropAction(C.QStandardItemModel_SupportedDropActions(ptr.Pointer()))
+	}
+	return 0
+}
+
+func (ptr *QStandardItemModel) SupportedDropActionsDefault() core.Qt__DropAction {
+	if ptr.Pointer() != nil {
+		return core.Qt__DropAction(C.QStandardItemModel_SupportedDropActionsDefault(ptr.Pointer()))
 	}
 	return 0
 }
@@ -43855,13 +44522,6 @@ func (ptr *QStandardItemModel) FetchMore(parent core.QModelIndex_ITF) {
 func (ptr *QStandardItemModel) FetchMoreDefault(parent core.QModelIndex_ITF) {
 	if ptr.Pointer() != nil {
 		C.QStandardItemModel_FetchMoreDefault(ptr.Pointer(), core.PointerFromQModelIndex(parent))
-	}
-}
-
-func (ptr *QStandardItemModel) DisconnectMimeData() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QStandardItemModel::mimeData")
 	}
 }
 
