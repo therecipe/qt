@@ -5,22 +5,22 @@ import (
 	"github.com/therecipe/qt/sql"
 )
 
-//TODO: really subclass with qtmoc
+//go:generate qtmoc
 type EditableSqlModel struct {
-	model *sql.QSqlQueryModel
+	sql.QSqlQueryModel
 }
 
 func newEditableSqlModel(p *core.QObject) *EditableSqlModel {
-	var model = &EditableSqlModel{model: sql.NewQSqlQueryModel(p)}
+	var model = NewEditableSqlModel(p)
 
-	model.model.ConnectFlags(model.flags)
-	model.model.ConnectSetData(model.setData)
+	model.ConnectFlags(model.flags)
+	model.ConnectSetData(model.setData)
 
 	return model
 }
 
 func (m *EditableSqlModel) flags(index *core.QModelIndex) core.Qt__ItemFlag {
-	var flags = m.model.FlagsDefault(index)
+	var flags = m.FlagsDefault(index)
 	if index.Column() == 1 || index.Column() == 2 {
 		flags |= core.Qt__ItemIsEditable
 	}
@@ -34,10 +34,10 @@ func (m *EditableSqlModel) setData(index *core.QModelIndex, value *core.QVariant
 		return false
 	}
 
-	var primaryKeyIndex = m.model.Index(index.Row(), 0, core.NewQModelIndex())
-	var id = m.model.Data(primaryKeyIndex, 0).ToInt(true)
+	var primaryKeyIndex = m.Index(index.Row(), 0, core.NewQModelIndex())
+	var id = m.Data(primaryKeyIndex, 0).ToInt(true)
 
-	m.model.Clear()
+	m.Clear()
 
 	var ok bool
 
@@ -53,10 +53,10 @@ func (m *EditableSqlModel) setData(index *core.QModelIndex, value *core.QVariant
 }
 
 func (m *EditableSqlModel) refresh() {
-	m.model.SetQuery2("select * from person", db)
-	m.model.SetHeaderData(0, core.Qt__Horizontal, core.NewQVariant14("ID"), 0)
-	m.model.SetHeaderData(1, core.Qt__Horizontal, core.NewQVariant14("First Name"), 0)
-	m.model.SetHeaderData(2, core.Qt__Horizontal, core.NewQVariant14("Last Name"), 0)
+	m.SetQuery2("select * from person", db)
+	m.SetHeaderData(0, core.Qt__Horizontal, core.NewQVariant14("ID"), 0)
+	m.SetHeaderData(1, core.Qt__Horizontal, core.NewQVariant14("First Name"), 0)
+	m.SetHeaderData(2, core.Qt__Horizontal, core.NewQVariant14("Last Name"), 0)
 }
 
 func (m *EditableSqlModel) setFirstName(personId int, firstName string) bool {

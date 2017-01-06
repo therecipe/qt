@@ -3074,7 +3074,7 @@ func callbackQAudioDecoderControl_AudioFormat(ptr unsafe.Pointer) unsafe.Pointer
 		return PointerFromQAudioFormat(signal.(func() *QAudioFormat)())
 	}
 
-	return PointerFromQAudioFormat(nil)
+	return PointerFromQAudioFormat(NewQAudioFormat())
 }
 
 func (ptr *QAudioDecoderControl) ConnectAudioFormat(f func() *QAudioFormat) {
@@ -3405,7 +3405,7 @@ func callbackQAudioDecoderControl_Read(ptr unsafe.Pointer) unsafe.Pointer {
 		return PointerFromQAudioBuffer(signal.(func() *QAudioBuffer)())
 	}
 
-	return PointerFromQAudioBuffer(nil)
+	return PointerFromQAudioBuffer(NewQAudioBuffer())
 }
 
 func (ptr *QAudioDecoderControl) ConnectRead(f func() *QAudioBuffer) {
@@ -4437,7 +4437,7 @@ func callbackQAudioEncoderSettingsControl_AudioSettings(ptr unsafe.Pointer) unsa
 		return PointerFromQAudioEncoderSettings(signal.(func() *QAudioEncoderSettings)())
 	}
 
-	return PointerFromQAudioEncoderSettings(nil)
+	return PointerFromQAudioEncoderSettings(NewQAudioEncoderSettings())
 }
 
 func (ptr *QAudioEncoderSettingsControl) ConnectAudioSettings(f func() *QAudioEncoderSettings) {
@@ -13385,7 +13385,7 @@ func callbackQCameraExposureControl_ActualValue(ptr unsafe.Pointer, parameter C.
 		return core.PointerFromQVariant(signal.(func(QCameraExposureControl__ExposureParameter) *core.QVariant)(QCameraExposureControl__ExposureParameter(parameter)))
 	}
 
-	return core.PointerFromQVariant(nil)
+	return core.PointerFromQVariant(core.NewQVariant())
 }
 
 func (ptr *QCameraExposureControl) ConnectActualValue(f func(parameter QCameraExposureControl__ExposureParameter) *core.QVariant) {
@@ -13507,7 +13507,7 @@ func callbackQCameraExposureControl_RequestedValue(ptr unsafe.Pointer, parameter
 		return core.PointerFromQVariant(signal.(func(QCameraExposureControl__ExposureParameter) *core.QVariant)(QCameraExposureControl__ExposureParameter(parameter)))
 	}
 
-	return core.PointerFromQVariant(nil)
+	return core.PointerFromQVariant(core.NewQVariant())
 }
 
 func (ptr *QCameraExposureControl) ConnectRequestedValue(f func(parameter QCameraExposureControl__ExposureParameter) *core.QVariant) {
@@ -15757,7 +15757,7 @@ func callbackQCameraFocusControl_CustomFocusPoint(ptr unsafe.Pointer) unsafe.Poi
 		return core.PointerFromQPointF(signal.(func() *core.QPointF)())
 	}
 
-	return core.PointerFromQPointF(nil)
+	return core.PointerFromQPointF(core.NewQPointF())
 }
 
 func (ptr *QCameraFocusControl) ConnectCustomFocusPoint(f func() *core.QPointF) {
@@ -18916,7 +18916,7 @@ func callbackQCameraImageProcessingControl_Parameter(ptr unsafe.Pointer, paramet
 		return core.PointerFromQVariant(signal.(func(QCameraImageProcessingControl__ProcessingParameter) *core.QVariant)(QCameraImageProcessingControl__ProcessingParameter(parameter)))
 	}
 
-	return core.PointerFromQVariant(nil)
+	return core.PointerFromQVariant(core.NewQVariant())
 }
 
 func (ptr *QCameraImageProcessingControl) ConnectParameter(f func(parameter QCameraImageProcessingControl__ProcessingParameter) *core.QVariant) {
@@ -23428,7 +23428,7 @@ func callbackQCameraViewfinderSettingsControl_ViewfinderParameter(ptr unsafe.Poi
 		return core.PointerFromQVariant(signal.(func(QCameraViewfinderSettingsControl__ViewfinderParameter) *core.QVariant)(QCameraViewfinderSettingsControl__ViewfinderParameter(parameter)))
 	}
 
-	return core.PointerFromQVariant(nil)
+	return core.PointerFromQVariant(core.NewQVariant())
 }
 
 func (ptr *QCameraViewfinderSettingsControl) ConnectViewfinderParameter(f func(parameter QCameraViewfinderSettingsControl__ViewfinderParameter) *core.QVariant) {
@@ -23897,7 +23897,7 @@ func callbackQCameraViewfinderSettingsControl2_ViewfinderSettings(ptr unsafe.Poi
 		return PointerFromQCameraViewfinderSettings(signal.(func() *QCameraViewfinderSettings)())
 	}
 
-	return PointerFromQCameraViewfinderSettings(nil)
+	return PointerFromQCameraViewfinderSettings(NewQCameraViewfinderSettings())
 }
 
 func (ptr *QCameraViewfinderSettingsControl2) ConnectViewfinderSettings(f func() *QCameraViewfinderSettings) {
@@ -26947,7 +26947,7 @@ func callbackQImageEncoderControl_ImageSettings(ptr unsafe.Pointer) unsafe.Point
 		return PointerFromQImageEncoderSettings(signal.(func() *QImageEncoderSettings)())
 	}
 
-	return PointerFromQImageEncoderSettings(nil)
+	return PointerFromQImageEncoderSettings(NewQImageEncoderSettings())
 }
 
 func (ptr *QImageEncoderControl) ConnectImageSettings(f func() *QImageEncoderSettings) {
@@ -29893,7 +29893,7 @@ func callbackQMediaGaplessPlaybackControl_NextMedia(ptr unsafe.Pointer) unsafe.P
 		return PointerFromQMediaContent(signal.(func() *QMediaContent)())
 	}
 
-	return PointerFromQMediaContent(nil)
+	return PointerFromQMediaContent(NewQMediaContent())
 }
 
 func (ptr *QMediaGaplessPlaybackControl) ConnectNextMedia(f func() *QMediaContent) {
@@ -30454,7 +30454,7 @@ func callbackQMediaNetworkAccessControl_CurrentConfiguration(ptr unsafe.Pointer)
 		return network.PointerFromQNetworkConfiguration(signal.(func() *network.QNetworkConfiguration)())
 	}
 
-	return network.PointerFromQNetworkConfiguration(nil)
+	return network.PointerFromQNetworkConfiguration(network.NewQNetworkConfiguration())
 }
 
 func (ptr *QMediaNetworkAccessControl) ConnectCurrentConfiguration(f func() *network.QNetworkConfiguration) {
@@ -33280,7 +33280,7 @@ func callbackQMediaPlayerControl_AvailablePlaybackRanges(ptr unsafe.Pointer) uns
 		return PointerFromQMediaTimeRange(signal.(func() *QMediaTimeRange)())
 	}
 
-	return PointerFromQMediaTimeRange(nil)
+	return PointerFromQMediaTimeRange(NewQMediaTimeRange())
 }
 
 func (ptr *QMediaPlayerControl) ConnectAvailablePlaybackRanges(f func() *QMediaTimeRange) {
@@ -33617,7 +33617,7 @@ func callbackQMediaPlayerControl_Media(ptr unsafe.Pointer) unsafe.Pointer {
 		return PointerFromQMediaContent(signal.(func() *QMediaContent)())
 	}
 
-	return PointerFromQMediaContent(nil)
+	return PointerFromQMediaContent(NewQMediaContent())
 }
 
 func (ptr *QMediaPlayerControl) ConnectMedia(f func() *QMediaContent) {
@@ -37312,7 +37312,7 @@ func callbackQMediaRecorderControl_OutputLocation(ptr unsafe.Pointer) unsafe.Poi
 		return core.PointerFromQUrl(signal.(func() *core.QUrl)())
 	}
 
-	return core.PointerFromQUrl(nil)
+	return core.PointerFromQUrl(core.NewQUrl())
 }
 
 func (ptr *QMediaRecorderControl) ConnectOutputLocation(f func() *core.QUrl) {
@@ -38323,7 +38323,7 @@ func callbackQMediaService_RequestControl(ptr unsafe.Pointer, interfa C.struct_Q
 		return PointerFromQMediaControl(signal.(func(string) *QMediaControl)(cGoUnpackString(interfa)))
 	}
 
-	return PointerFromQMediaControl(nil)
+	return PointerFromQMediaControl(NewQMediaControl(nil))
 }
 
 func (ptr *QMediaService) ConnectRequestControl(f func(interfa string) *QMediaControl) {
@@ -38890,7 +38890,7 @@ func callbackQMediaServiceDefaultDeviceInterface_DefaultDevice(ptr unsafe.Pointe
 		return core.PointerFromQByteArray(signal.(func(*core.QByteArray) *core.QByteArray)(core.NewQByteArrayFromPointer(service)))
 	}
 
-	return core.PointerFromQByteArray(nil)
+	return core.PointerFromQByteArray(core.NewQByteArray())
 }
 
 func (ptr *QMediaServiceDefaultDeviceInterface) ConnectDefaultDevice(f func(service *core.QByteArray) *core.QByteArray) {
@@ -39093,7 +39093,7 @@ func callbackQMediaServiceProviderPlugin_Create(ptr unsafe.Pointer, key C.struct
 		return PointerFromQMediaService(signal.(func(string) *QMediaService)(cGoUnpackString(key)))
 	}
 
-	return PointerFromQMediaService(nil)
+	return PointerFromQMediaService(NewQMediaService(nil))
 }
 
 func (ptr *QMediaServiceProviderPlugin) ConnectCreate(f func(key string) *QMediaService) {
@@ -39899,7 +39899,7 @@ func callbackQMediaStreamsControl_MetaData(ptr unsafe.Pointer, stream C.int, key
 		return core.PointerFromQVariant(signal.(func(int, string) *core.QVariant)(int(int32(stream)), cGoUnpackString(key)))
 	}
 
-	return core.PointerFromQVariant(nil)
+	return core.PointerFromQVariant(core.NewQVariant())
 }
 
 func (ptr *QMediaStreamsControl) ConnectMetaData(f func(stream int, key string) *core.QVariant) {
@@ -41286,7 +41286,7 @@ func callbackQMetaDataReaderControl_MetaData(ptr unsafe.Pointer, key C.struct_Qt
 		return core.PointerFromQVariant(signal.(func(string) *core.QVariant)(cGoUnpackString(key)))
 	}
 
-	return core.PointerFromQVariant(nil)
+	return core.PointerFromQVariant(core.NewQVariant())
 }
 
 func (ptr *QMetaDataReaderControl) ConnectMetaData(f func(key string) *core.QVariant) {
@@ -41890,7 +41890,7 @@ func callbackQMetaDataWriterControl_MetaData(ptr unsafe.Pointer, key C.struct_Qt
 		return core.PointerFromQVariant(signal.(func(string) *core.QVariant)(cGoUnpackString(key)))
 	}
 
-	return core.PointerFromQVariant(nil)
+	return core.PointerFromQVariant(core.NewQVariant())
 }
 
 func (ptr *QMetaDataWriterControl) ConnectMetaData(f func(key string) *core.QVariant) {
@@ -49378,7 +49378,7 @@ func callbackQVideoEncoderSettingsControl_VideoSettings(ptr unsafe.Pointer) unsa
 		return PointerFromQVideoEncoderSettings(signal.(func() *QVideoEncoderSettings)())
 	}
 
-	return PointerFromQVideoEncoderSettings(nil)
+	return PointerFromQVideoEncoderSettings(NewQVideoEncoderSettings())
 }
 
 func (ptr *QVideoEncoderSettingsControl) ConnectVideoSettings(f func() *QVideoEncoderSettings) {
@@ -49845,7 +49845,7 @@ func callbackQVideoFilterRunnable_Run(ptr unsafe.Pointer, input unsafe.Pointer, 
 		return PointerFromQVideoFrame(signal.(func(*QVideoFrame, *QVideoSurfaceFormat, QVideoFilterRunnable__RunFlag) *QVideoFrame)(NewQVideoFrameFromPointer(input), NewQVideoSurfaceFormatFromPointer(surfaceFormat), QVideoFilterRunnable__RunFlag(flags)))
 	}
 
-	return PointerFromQVideoFrame(nil)
+	return PointerFromQVideoFrame(NewQVideoFrame())
 }
 
 func (ptr *QVideoFilterRunnable) ConnectRun(f func(input *QVideoFrame, surfaceFormat *QVideoSurfaceFormat, flags QVideoFilterRunnable__RunFlag) *QVideoFrame) {
@@ -55395,7 +55395,7 @@ func callbackQVideoWindowControl_DisplayRect(ptr unsafe.Pointer) unsafe.Pointer 
 		return core.PointerFromQRect(signal.(func() *core.QRect)())
 	}
 
-	return core.PointerFromQRect(nil)
+	return core.PointerFromQRect(core.NewQRect())
 }
 
 func (ptr *QVideoWindowControl) ConnectDisplayRect(f func() *core.QRect) {
@@ -55548,7 +55548,7 @@ func callbackQVideoWindowControl_NativeSize(ptr unsafe.Pointer) unsafe.Pointer {
 		return core.PointerFromQSize(signal.(func() *core.QSize)())
 	}
 
-	return core.PointerFromQSize(nil)
+	return core.PointerFromQSize(core.NewQSize())
 }
 
 func (ptr *QVideoWindowControl) ConnectNativeSize(f func() *core.QSize) {

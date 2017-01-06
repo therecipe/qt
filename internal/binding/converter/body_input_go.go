@@ -17,7 +17,7 @@ func GoInputParametersForC(function *parser.Function) string {
 
 	if function.SignalMode == "" {
 		for _, parameter := range function.Parameters {
-			var alloc = goInput(parameter.Name, parameter.Value, function)
+			var alloc = GoInput(parameter.Name, parameter.Value, function)
 			if strings.Contains(alloc, "C.CString") {
 				input = append(input, fmt.Sprintf("%vC", parser.CleanName(parameter.Name, parameter.Value)))
 			} else {
@@ -36,7 +36,7 @@ func GoInputParametersForCAlloc(function *parser.Function) []string {
 	if function.SignalMode == "" {
 		for _, parameter := range function.Parameters {
 			var (
-				alloc = goInput(parameter.Name, parameter.Value, function)
+				alloc = GoInput(parameter.Name, parameter.Value, function)
 				name  = fmt.Sprintf("%vC", parser.CleanName(parameter.Name, parameter.Value))
 			)
 			if strings.Contains(alloc, "C.CString") {

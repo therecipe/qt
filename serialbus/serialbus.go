@@ -1400,7 +1400,7 @@ func callbackQCanBusFactory_CreateDevice(ptr unsafe.Pointer, interfaceName C.str
 		return PointerFromQCanBusDevice(signal.(func(string) *QCanBusDevice)(cGoUnpackString(interfaceName)))
 	}
 
-	return PointerFromQCanBusDevice(nil)
+	return PointerFromQCanBusDevice(NewQCanBusDevice(nil))
 }
 
 func (ptr *QCanBusFactory) ConnectCreateDevice(f func(interfaceName string) *QCanBusDevice) {

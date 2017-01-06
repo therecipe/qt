@@ -8092,7 +8092,7 @@ func callbackQPrintEngine_Property(ptr unsafe.Pointer, key C.longlong) unsafe.Po
 		return core.PointerFromQVariant(signal.(func(QPrintEngine__PrintEnginePropertyKey) *core.QVariant)(QPrintEngine__PrintEnginePropertyKey(key)))
 	}
 
-	return core.PointerFromQVariant(nil)
+	return core.PointerFromQVariant(core.NewQVariant())
 }
 
 func (ptr *QPrintEngine) ConnectProperty(f func(key QPrintEngine__PrintEnginePropertyKey) *core.QVariant) {

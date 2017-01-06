@@ -199,21 +199,51 @@ func goFunctionBody(function *parser.Function) string {
 			)
 
 			if converter.GoHeaderOutput(function) == "" {
-
-				if parser.State.Moc && function.PureBaseFunction {
-
-				} else {
-					if function.Virtual == parser.IMPURE && function.IsSupportedDefault() {
-						fmt.Fprintf(bb, "New%vFromPointer(ptr).%v%vDefault(%v)", strings.Title(function.ClassName()), strings.Replace(strings.Title(function.Name), parser.TILDE, "Destroy", -1), function.OverloadNumber, converter.GoInputParametersForCallback(function))
-					}
+				if function.Virtual == parser.IMPURE && function.IsSupportedDefault() {
+					fmt.Fprintf(bb, "New%vFromPointer(ptr).%v%vDefault(%v)", strings.Title(function.ClassName()), strings.Replace(strings.Title(function.Name), parser.TILDE, "Destroy", -1), function.OverloadNumber, converter.GoInputParametersForCallback(function))
 				}
 			} else {
-
-				if parser.State.Moc && function.PureBaseFunction {
-					fmt.Fprintf(bb, "\nreturn %v", converter.GoInput(converter.GoOutputParametersFromCFailed(function), function.Output, function))
+				if function.Virtual == parser.IMPURE && function.IsSupportedDefault() {
+					fmt.Fprintf(bb, "\nreturn %v", converter.GoInput(fmt.Sprintf("New%vFromPointer(ptr).%v%vDefault(%v)", strings.Title(function.ClassName()), strings.Replace(strings.Title(function.Name), parser.TILDE, "Destroy", -1), function.OverloadNumber, converter.GoInputParametersForCallback(function)), function.Output, function))
 				} else {
-					if function.Virtual == parser.IMPURE && function.IsSupportedDefault() {
-						fmt.Fprintf(bb, "\nreturn %v", converter.GoInput(fmt.Sprintf("New%vFromPointer(ptr).%v%vDefault(%v)", strings.Title(function.ClassName()), strings.Replace(strings.Title(function.Name), parser.TILDE, "Destroy", -1), function.OverloadNumber, converter.GoInputParametersForCallback(function)), function.Output, function))
+					if converter.GoOutputParametersFromCFailed(function) == "nil" && !parser.State.Minimal {
+						var (
+							class, _ = function.Class()
+							found    bool
+							c, exist = parser.State.ClassMap[parser.CleanValue(function.Output)]
+						)
+						if exist && c.IsSupported() && !hasUnimplementedPureVirtualFunctions(c.Name) {
+							for _, f := range c.Functions {
+								if f.Meta == parser.CONSTRUCTOR && len(f.Parameters) == 0 {
+									if c.Module == class.Module {
+										fmt.Fprintf(bb, "\nreturn %v", converter.GoInput(fmt.Sprintf("%v()", converter.GoHeaderName(f)), function.Output, function))
+									} else {
+										fmt.Fprintf(bb, "\nreturn %v", converter.GoInput(fmt.Sprintf("%v.%v()", goModule(c.Module), converter.GoHeaderName(f)), function.Output, function))
+									}
+									found = true
+									break
+								}
+							}
+							if !found {
+								for _, f := range c.Functions {
+									if f.Meta == parser.CONSTRUCTOR && len(f.Parameters) == 1 {
+										if c.Module == class.Module {
+											fmt.Fprintf(bb, "\nreturn %v", converter.GoInput(fmt.Sprintf("%v(%v)", converter.GoHeaderName(f), converter.GoOutputFailed(f.Parameters[0].Value, f)), function.Output, function))
+										} else {
+											fmt.Fprintf(bb, "\nreturn %v", converter.GoInput(fmt.Sprintf("%v.%v(%v)", goModule(c.Module), converter.GoHeaderName(f), converter.GoOutputFailed(f.Parameters[0].Value, f)), function.Output, function))
+										}
+										found = true
+										break
+									}
+								}
+							}
+						}
+
+						if !found {
+							//TODO:
+							//function.Access = fmt.Sprintf("unsupported_FailedNilOutputInCallbacksForPureVirtualFunctions(%v)", function.Output)
+							fmt.Fprintf(bb, "\nreturn %v", converter.GoInput(converter.GoOutputParametersFromCFailed(function), function.Output, function))
+						}
 					} else {
 						fmt.Fprintf(bb, "\nreturn %v", converter.GoInput(converter.GoOutputParametersFromCFailed(function), function.Output, function))
 					}

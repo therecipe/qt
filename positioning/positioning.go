@@ -1963,7 +1963,7 @@ func callbackQGeoPositionInfoSource_LastKnownPosition(ptr unsafe.Pointer, fromSa
 		return PointerFromQGeoPositionInfo(signal.(func(bool) *QGeoPositionInfo)(int8(fromSatellitePositioningMethodsOnly) != 0))
 	}
 
-	return PointerFromQGeoPositionInfo(nil)
+	return PointerFromQGeoPositionInfo(NewQGeoPositionInfo())
 }
 
 func (ptr *QGeoPositionInfoSource) ConnectLastKnownPosition(f func(fromSatellitePositioningMethodsOnly bool) *QGeoPositionInfo) {
@@ -2689,7 +2689,7 @@ func callbackQGeoPositionInfoSourceFactory_PositionInfoSource(ptr unsafe.Pointer
 		return PointerFromQGeoPositionInfoSource(signal.(func(*core.QObject) *QGeoPositionInfoSource)(core.NewQObjectFromPointer(parent)))
 	}
 
-	return PointerFromQGeoPositionInfoSource(nil)
+	return PointerFromQGeoPositionInfoSource(NewQGeoPositionInfoSource(nil))
 }
 
 func (ptr *QGeoPositionInfoSourceFactory) ConnectPositionInfoSource(f func(parent *core.QObject) *QGeoPositionInfoSource) {
@@ -2724,7 +2724,7 @@ func callbackQGeoPositionInfoSourceFactory_SatelliteInfoSource(ptr unsafe.Pointe
 		return PointerFromQGeoSatelliteInfoSource(signal.(func(*core.QObject) *QGeoSatelliteInfoSource)(core.NewQObjectFromPointer(parent)))
 	}
 
-	return PointerFromQGeoSatelliteInfoSource(nil)
+	return PointerFromQGeoSatelliteInfoSource(NewQGeoSatelliteInfoSource(nil))
 }
 
 func (ptr *QGeoPositionInfoSourceFactory) ConnectSatelliteInfoSource(f func(parent *core.QObject) *QGeoSatelliteInfoSource) {

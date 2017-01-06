@@ -3799,44 +3799,6 @@ func (ptr *QHelpContentWidget) EditorDestroyedDefault(editor core.QObject_ITF) {
 	}
 }
 
-//export callbackQHelpContentWidget_Event
-func callbackQHelpContentWidget_Event(ptr unsafe.Pointer, event unsafe.Pointer) C.char {
-
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentWidget::event"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(event)))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQHelpContentWidgetFromPointer(ptr).EventDefault(core.NewQEventFromPointer(event)))))
-}
-
-func (ptr *QHelpContentWidget) ConnectEvent(f func(event *core.QEvent) bool) {
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentWidget::event", f)
-	}
-}
-
-func (ptr *QHelpContentWidget) DisconnectEvent() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentWidget::event")
-	}
-}
-
-func (ptr *QHelpContentWidget) Event(event core.QEvent_ITF) bool {
-	if ptr.Pointer() != nil {
-		return C.QHelpContentWidget_Event(ptr.Pointer(), core.PointerFromQEvent(event)) != 0
-	}
-	return false
-}
-
-func (ptr *QHelpContentWidget) EventDefault(event core.QEvent_ITF) bool {
-	if ptr.Pointer() != nil {
-		return C.QHelpContentWidget_EventDefault(ptr.Pointer(), core.PointerFromQEvent(event)) != 0
-	}
-	return false
-}
-
 //export callbackQHelpContentWidget_FocusInEvent
 func callbackQHelpContentWidget_FocusInEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 
@@ -4275,42 +4237,6 @@ func (ptr *QHelpContentWidget) StartDrag(supportedActions core.Qt__DropAction) {
 func (ptr *QHelpContentWidget) StartDragDefault(supportedActions core.Qt__DropAction) {
 	if ptr.Pointer() != nil {
 		C.QHelpContentWidget_StartDragDefault(ptr.Pointer(), C.longlong(supportedActions))
-	}
-}
-
-//export callbackQHelpContentWidget_TimerEvent
-func callbackQHelpContentWidget_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentWidget::timerEvent"); signal != nil {
-		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
-	} else {
-		NewQHelpContentWidgetFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
-	}
-}
-
-func (ptr *QHelpContentWidget) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentWidget::timerEvent", f)
-	}
-}
-
-func (ptr *QHelpContentWidget) DisconnectTimerEvent() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentWidget::timerEvent")
-	}
-}
-
-func (ptr *QHelpContentWidget) TimerEvent(event core.QTimerEvent_ITF) {
-	if ptr.Pointer() != nil {
-		C.QHelpContentWidget_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
-	}
-}
-
-func (ptr *QHelpContentWidget) TimerEventDefault(event core.QTimerEvent_ITF) {
-	if ptr.Pointer() != nil {
-		C.QHelpContentWidget_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
 	}
 }
 
@@ -5167,6 +5093,44 @@ func (ptr *QHelpContentWidget) CloseEventDefault(event gui.QCloseEvent_ITF) {
 	}
 }
 
+//export callbackQHelpContentWidget_Event
+func callbackQHelpContentWidget_Event(ptr unsafe.Pointer, event unsafe.Pointer) C.char {
+
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentWidget::event"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(event)))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQHelpContentWidgetFromPointer(ptr).EventDefault(core.NewQEventFromPointer(event)))))
+}
+
+func (ptr *QHelpContentWidget) ConnectEvent(f func(event *core.QEvent) bool) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentWidget::event", f)
+	}
+}
+
+func (ptr *QHelpContentWidget) DisconnectEvent() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentWidget::event")
+	}
+}
+
+func (ptr *QHelpContentWidget) Event(event core.QEvent_ITF) bool {
+	if ptr.Pointer() != nil {
+		return C.QHelpContentWidget_Event(ptr.Pointer(), core.PointerFromQEvent(event)) != 0
+	}
+	return false
+}
+
+func (ptr *QHelpContentWidget) EventDefault(event core.QEvent_ITF) bool {
+	if ptr.Pointer() != nil {
+		return C.QHelpContentWidget_EventDefault(ptr.Pointer(), core.PointerFromQEvent(event)) != 0
+	}
+	return false
+}
+
 //export callbackQHelpContentWidget_HasHeightForWidth
 func callbackQHelpContentWidget_HasHeightForWidth(ptr unsafe.Pointer) C.char {
 
@@ -5805,6 +5769,42 @@ func (ptr *QHelpContentWidget) UpdateMicroFocus() {
 func (ptr *QHelpContentWidget) UpdateMicroFocusDefault() {
 	if ptr.Pointer() != nil {
 		C.QHelpContentWidget_UpdateMicroFocusDefault(ptr.Pointer())
+	}
+}
+
+//export callbackQHelpContentWidget_TimerEvent
+func callbackQHelpContentWidget_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
+
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentWidget::timerEvent"); signal != nil {
+		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
+	} else {
+		NewQHelpContentWidgetFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
+	}
+}
+
+func (ptr *QHelpContentWidget) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentWidget::timerEvent", f)
+	}
+}
+
+func (ptr *QHelpContentWidget) DisconnectTimerEvent() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentWidget::timerEvent")
+	}
+}
+
+func (ptr *QHelpContentWidget) TimerEvent(event core.QTimerEvent_ITF) {
+	if ptr.Pointer() != nil {
+		C.QHelpContentWidget_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
+}
+
+func (ptr *QHelpContentWidget) TimerEventDefault(event core.QTimerEvent_ITF) {
+	if ptr.Pointer() != nil {
+		C.QHelpContentWidget_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
 	}
 }
 
@@ -9246,44 +9246,6 @@ func (ptr *QHelpIndexWidget) DropEventDefault(e gui.QDropEvent_ITF) {
 	}
 }
 
-//export callbackQHelpIndexWidget_Event
-func callbackQHelpIndexWidget_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
-
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpIndexWidget::event"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQHelpIndexWidgetFromPointer(ptr).EventDefault(core.NewQEventFromPointer(e)))))
-}
-
-func (ptr *QHelpIndexWidget) ConnectEvent(f func(e *core.QEvent) bool) {
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexWidget::event", f)
-	}
-}
-
-func (ptr *QHelpIndexWidget) DisconnectEvent() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexWidget::event")
-	}
-}
-
-func (ptr *QHelpIndexWidget) Event(e core.QEvent_ITF) bool {
-	if ptr.Pointer() != nil {
-		return C.QHelpIndexWidget_Event(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
-	}
-	return false
-}
-
-func (ptr *QHelpIndexWidget) EventDefault(e core.QEvent_ITF) bool {
-	if ptr.Pointer() != nil {
-		return C.QHelpIndexWidget_EventDefault(ptr.Pointer(), core.PointerFromQEvent(e)) != 0
-	}
-	return false
-}
-
 //export callbackQHelpIndexWidget_HorizontalOffset
 func callbackQHelpIndexWidget_HorizontalOffset(ptr unsafe.Pointer) C.int {
 
@@ -9801,42 +9763,6 @@ func (ptr *QHelpIndexWidget) StartDrag(supportedActions core.Qt__DropAction) {
 func (ptr *QHelpIndexWidget) StartDragDefault(supportedActions core.Qt__DropAction) {
 	if ptr.Pointer() != nil {
 		C.QHelpIndexWidget_StartDragDefault(ptr.Pointer(), C.longlong(supportedActions))
-	}
-}
-
-//export callbackQHelpIndexWidget_TimerEvent
-func callbackQHelpIndexWidget_TimerEvent(ptr unsafe.Pointer, e unsafe.Pointer) {
-
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpIndexWidget::timerEvent"); signal != nil {
-		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(e))
-	} else {
-		NewQHelpIndexWidgetFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(e))
-	}
-}
-
-func (ptr *QHelpIndexWidget) ConnectTimerEvent(f func(e *core.QTimerEvent)) {
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexWidget::timerEvent", f)
-	}
-}
-
-func (ptr *QHelpIndexWidget) DisconnectTimerEvent() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexWidget::timerEvent")
-	}
-}
-
-func (ptr *QHelpIndexWidget) TimerEvent(e core.QTimerEvent_ITF) {
-	if ptr.Pointer() != nil {
-		C.QHelpIndexWidget_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(e))
-	}
-}
-
-func (ptr *QHelpIndexWidget) TimerEventDefault(e core.QTimerEvent_ITF) {
-	if ptr.Pointer() != nil {
-		C.QHelpIndexWidget_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(e))
 	}
 }
 
@@ -11948,6 +11874,44 @@ func (ptr *QHelpIndexWidget) CloseEventDefault(event gui.QCloseEvent_ITF) {
 	}
 }
 
+//export callbackQHelpIndexWidget_Event
+func callbackQHelpIndexWidget_Event(ptr unsafe.Pointer, event unsafe.Pointer) C.char {
+
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpIndexWidget::event"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(event)))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQHelpIndexWidgetFromPointer(ptr).EventDefault(core.NewQEventFromPointer(event)))))
+}
+
+func (ptr *QHelpIndexWidget) ConnectEvent(f func(event *core.QEvent) bool) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexWidget::event", f)
+	}
+}
+
+func (ptr *QHelpIndexWidget) DisconnectEvent() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexWidget::event")
+	}
+}
+
+func (ptr *QHelpIndexWidget) Event(event core.QEvent_ITF) bool {
+	if ptr.Pointer() != nil {
+		return C.QHelpIndexWidget_Event(ptr.Pointer(), core.PointerFromQEvent(event)) != 0
+	}
+	return false
+}
+
+func (ptr *QHelpIndexWidget) EventDefault(event core.QEvent_ITF) bool {
+	if ptr.Pointer() != nil {
+		return C.QHelpIndexWidget_EventDefault(ptr.Pointer(), core.PointerFromQEvent(event)) != 0
+	}
+	return false
+}
+
 //export callbackQHelpIndexWidget_HasHeightForWidth
 func callbackQHelpIndexWidget_HasHeightForWidth(ptr unsafe.Pointer) C.char {
 
@@ -12586,6 +12550,42 @@ func (ptr *QHelpIndexWidget) UpdateMicroFocus() {
 func (ptr *QHelpIndexWidget) UpdateMicroFocusDefault() {
 	if ptr.Pointer() != nil {
 		C.QHelpIndexWidget_UpdateMicroFocusDefault(ptr.Pointer())
+	}
+}
+
+//export callbackQHelpIndexWidget_TimerEvent
+func callbackQHelpIndexWidget_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
+
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpIndexWidget::timerEvent"); signal != nil {
+		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
+	} else {
+		NewQHelpIndexWidgetFromPointer(ptr).TimerEventDefault(core.NewQTimerEventFromPointer(event))
+	}
+}
+
+func (ptr *QHelpIndexWidget) ConnectTimerEvent(f func(event *core.QTimerEvent)) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexWidget::timerEvent", f)
+	}
+}
+
+func (ptr *QHelpIndexWidget) DisconnectTimerEvent() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexWidget::timerEvent")
+	}
+}
+
+func (ptr *QHelpIndexWidget) TimerEvent(event core.QTimerEvent_ITF) {
+	if ptr.Pointer() != nil {
+		C.QHelpIndexWidget_TimerEvent(ptr.Pointer(), core.PointerFromQTimerEvent(event))
+	}
+}
+
+func (ptr *QHelpIndexWidget) TimerEventDefault(event core.QTimerEvent_ITF) {
+	if ptr.Pointer() != nil {
+		C.QHelpIndexWidget_TimerEventDefault(ptr.Pointer(), core.PointerFromQTimerEvent(event))
 	}
 }
 

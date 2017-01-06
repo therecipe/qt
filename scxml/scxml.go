@@ -649,7 +649,7 @@ func callbackQScxmlDataModel_ScxmlProperty(ptr unsafe.Pointer, name C.struct_QtS
 		return core.PointerFromQVariant(signal.(func(string) *core.QVariant)(cGoUnpackString(name)))
 	}
 
-	return core.PointerFromQVariant(nil)
+	return core.PointerFromQVariant(core.NewQVariant())
 }
 
 func (ptr *QScxmlDataModel) ConnectScxmlProperty(f func(name string) *core.QVariant) {

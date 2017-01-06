@@ -5999,6 +5999,11 @@ class MyQSslSocket: public QSslSocket
 {
 public:
 	MyQSslSocket(QObject *parent) : QSslSocket(parent) {};
+	bool atEnd() const { return callbackQSslSocket_AtEnd(const_cast<MyQSslSocket*>(this)) != 0; };
+	qint64 bytesAvailable() const { return callbackQSslSocket_BytesAvailable(const_cast<MyQSslSocket*>(this)); };
+	qint64 bytesToWrite() const { return callbackQSslSocket_BytesToWrite(const_cast<MyQSslSocket*>(this)); };
+	bool canReadLine() const { return callbackQSslSocket_CanReadLine(const_cast<MyQSslSocket*>(this)) != 0; };
+	void close() { callbackQSslSocket_Close(this); };
 	void Signal_Encrypted() { callbackQSslSocket_Encrypted(this); };
 	void Signal_EncryptedBytesWritten(qint64 written) { callbackQSslSocket_EncryptedBytesWritten(this, written); };
 	void ignoreSslErrors() { callbackQSslSocket_IgnoreSslErrors(this); };
@@ -6012,8 +6017,11 @@ public:
 	QVariant socketOption(QAbstractSocket::SocketOption option) { return *static_cast<QVariant*>(callbackQSslSocket_SocketOption(this, option)); };
 	void startClientEncryption() { callbackQSslSocket_StartClientEncryption(this); };
 	void startServerEncryption() { callbackQSslSocket_StartServerEncryption(this); };
+	bool waitForBytesWritten(int msecs) { return callbackQSslSocket_WaitForBytesWritten(this, msecs) != 0; };
 	bool waitForConnected(int msecs) { return callbackQSslSocket_WaitForConnected(this, msecs) != 0; };
 	bool waitForDisconnected(int msecs) { return callbackQSslSocket_WaitForDisconnected(this, msecs) != 0; };
+	bool waitForReadyRead(int msecs) { return callbackQSslSocket_WaitForReadyRead(this, msecs) != 0; };
+	qint64 writeData(const char * data, qint64 len) { QtNetwork_PackedString dataPacked = { const_cast<char*>(data), len };return callbackQSslSocket_WriteData(this, dataPacked, len); };
 	void connectToHost(const QHostAddress & address, quint16 port, QIODevice::OpenMode openMode) { callbackQSslSocket_ConnectToHost2(this, const_cast<QHostAddress*>(&address), port, openMode); };
 	void connectToHost(const QString & hostName, quint16 port, QIODevice::OpenMode openMode, QAbstractSocket::NetworkLayerProtocol protocol) { QByteArray tcf2288 = hostName.toUtf8(); QtNetwork_PackedString hostNamePacked = { const_cast<char*>(tcf2288.prepend("WHITESPACE").constData()+10), tcf2288.size()-10 };callbackQSslSocket_ConnectToHost(this, hostNamePacked, port, openMode, protocol); };
 	void disconnectFromHost() { callbackQSslSocket_DisconnectFromHost(this); };
@@ -6071,9 +6079,19 @@ char QSslSocket_AtEnd(void* ptr)
 	return static_cast<QSslSocket*>(ptr)->atEnd();
 }
 
+char QSslSocket_AtEndDefault(void* ptr)
+{
+	return static_cast<QSslSocket*>(ptr)->QSslSocket::atEnd();
+}
+
 long long QSslSocket_BytesAvailable(void* ptr)
 {
 	return static_cast<QSslSocket*>(ptr)->bytesAvailable();
+}
+
+long long QSslSocket_BytesAvailableDefault(void* ptr)
+{
+	return static_cast<QSslSocket*>(ptr)->QSslSocket::bytesAvailable();
 }
 
 long long QSslSocket_BytesToWrite(void* ptr)
@@ -6081,14 +6099,29 @@ long long QSslSocket_BytesToWrite(void* ptr)
 	return static_cast<QSslSocket*>(ptr)->bytesToWrite();
 }
 
+long long QSslSocket_BytesToWriteDefault(void* ptr)
+{
+	return static_cast<QSslSocket*>(ptr)->QSslSocket::bytesToWrite();
+}
+
 char QSslSocket_CanReadLine(void* ptr)
 {
 	return static_cast<QSslSocket*>(ptr)->canReadLine();
 }
 
+char QSslSocket_CanReadLineDefault(void* ptr)
+{
+	return static_cast<QSslSocket*>(ptr)->QSslSocket::canReadLine();
+}
+
 void QSslSocket_Close(void* ptr)
 {
 	static_cast<QSslSocket*>(ptr)->close();
+}
+
+void QSslSocket_CloseDefault(void* ptr)
+{
+	static_cast<QSslSocket*>(ptr)->QSslSocket::close();
 }
 
 void QSslSocket_ConnectToHostEncrypted(void* ptr, char* hostName, unsigned short port, long long mode, long long protocol)
@@ -6400,6 +6433,11 @@ char QSslSocket_WaitForBytesWritten(void* ptr, int msecs)
 	return static_cast<QSslSocket*>(ptr)->waitForBytesWritten(msecs);
 }
 
+char QSslSocket_WaitForBytesWrittenDefault(void* ptr, int msecs)
+{
+	return static_cast<QSslSocket*>(ptr)->QSslSocket::waitForBytesWritten(msecs);
+}
+
 char QSslSocket_WaitForConnected(void* ptr, int msecs)
 {
 	return static_cast<QSslSocket*>(ptr)->waitForConnected(msecs);
@@ -6430,9 +6468,19 @@ char QSslSocket_WaitForReadyRead(void* ptr, int msecs)
 	return static_cast<QSslSocket*>(ptr)->waitForReadyRead(msecs);
 }
 
+char QSslSocket_WaitForReadyReadDefault(void* ptr, int msecs)
+{
+	return static_cast<QSslSocket*>(ptr)->QSslSocket::waitForReadyRead(msecs);
+}
+
 long long QSslSocket_WriteData(void* ptr, char* data, long long len)
 {
 	return static_cast<QSslSocket*>(ptr)->writeData(const_cast<const char*>(data), len);
+}
+
+long long QSslSocket_WriteDataDefault(void* ptr, char* data, long long len)
+{
+	return static_cast<QSslSocket*>(ptr)->QSslSocket::writeData(const_cast<const char*>(data), len);
 }
 
 void QSslSocket_DestroyQSslSocket(void* ptr)

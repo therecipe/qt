@@ -1979,7 +1979,6 @@ public:
 	bool edit(const QModelIndex & index, QAbstractItemView::EditTrigger trigger, QEvent * event) { return callbackQAbstractItemView_Edit2(this, const_cast<QModelIndex*>(&index), trigger, event) != 0; };
 	void editorDestroyed(QObject * editor) { callbackQAbstractItemView_EditorDestroyed(this, editor); };
 	void Signal_Entered(const QModelIndex & index) { callbackQAbstractItemView_Entered(this, const_cast<QModelIndex*>(&index)); };
-	bool event(QEvent * event) { return callbackQAbstractItemView_Event(this, event) != 0; };
 	void focusInEvent(QFocusEvent * event) { callbackQAbstractItemView_FocusInEvent(this, event); };
 	bool focusNextPrevChild(bool next) { return callbackQAbstractItemView_FocusNextPrevChild(this, next) != 0; };
 	void focusOutEvent(QFocusEvent * event) { callbackQAbstractItemView_FocusOutEvent(this, event); };
@@ -2015,7 +2014,6 @@ public:
 	int sizeHintForColumn(int column) const { return callbackQAbstractItemView_SizeHintForColumn(const_cast<MyQAbstractItemView*>(this), column); };
 	int sizeHintForRow(int row) const { return callbackQAbstractItemView_SizeHintForRow(const_cast<MyQAbstractItemView*>(this), row); };
 	void startDrag(Qt::DropActions supportedActions) { callbackQAbstractItemView_StartDrag(this, supportedActions); };
-	void timerEvent(QTimerEvent * event) { callbackQAbstractItemView_TimerEvent(this, event); };
 	void update(const QModelIndex & index) { callbackQAbstractItemView_Update(this, const_cast<QModelIndex*>(&index)); };
 	void updateGeometries() { callbackQAbstractItemView_UpdateGeometries(this); };
 	int verticalOffset() const { return callbackQAbstractItemView_VerticalOffset(const_cast<MyQAbstractItemView*>(this)); };
@@ -2454,11 +2452,6 @@ char QAbstractItemView_Event(void* ptr, void* event)
 	return static_cast<QAbstractItemView*>(ptr)->event(static_cast<QEvent*>(event));
 }
 
-char QAbstractItemView_EventDefault(void* ptr, void* event)
-{
-	return static_cast<QAbstractItemView*>(ptr)->QAbstractItemView::event(static_cast<QEvent*>(event));
-}
-
 void QAbstractItemView_ExecuteDelayedItemsLayout(void* ptr)
 {
 	static_cast<QAbstractItemView*>(ptr)->executeDelayedItemsLayout();
@@ -2882,11 +2875,6 @@ long long QAbstractItemView_State(void* ptr)
 void QAbstractItemView_TimerEvent(void* ptr, void* event)
 {
 	static_cast<QAbstractItemView*>(ptr)->timerEvent(static_cast<QTimerEvent*>(event));
-}
-
-void QAbstractItemView_TimerEventDefault(void* ptr, void* event)
-{
-	static_cast<QAbstractItemView*>(ptr)->QAbstractItemView::timerEvent(static_cast<QTimerEvent*>(event));
 }
 
 void QAbstractItemView_Update(void* ptr, void* index)
@@ -3474,7 +3462,6 @@ public:
 	void dragLeaveEvent(QDragLeaveEvent * event) { callbackQAbstractScrollArea_DragLeaveEvent(this, event); };
 	void dragMoveEvent(QDragMoveEvent * event) { callbackQAbstractScrollArea_DragMoveEvent(this, event); };
 	void dropEvent(QDropEvent * event) { callbackQAbstractScrollArea_DropEvent(this, event); };
-	bool event(QEvent * event) { return callbackQAbstractScrollArea_Event(this, event) != 0; };
 	void paintEvent(QPaintEvent * event) { callbackQAbstractScrollArea_PaintEvent(this, event); };
 	void resizeEvent(QResizeEvent * event) { callbackQAbstractScrollArea_ResizeEvent(this, event); };
 	bool viewportEvent(QEvent * event) { return callbackQAbstractScrollArea_ViewportEvent(this, event) != 0; };
@@ -3583,11 +3570,6 @@ void QAbstractScrollArea_DropEventDefault(void* ptr, void* event)
 char QAbstractScrollArea_Event(void* ptr, void* event)
 {
 	return static_cast<QAbstractScrollArea*>(ptr)->event(static_cast<QEvent*>(event));
-}
-
-char QAbstractScrollArea_EventDefault(void* ptr, void* event)
-{
-	return static_cast<QAbstractScrollArea*>(ptr)->QAbstractScrollArea::event(static_cast<QEvent*>(event));
 }
 
 long long QAbstractScrollArea_HorizontalScrollBarPolicy(void* ptr)
@@ -4365,7 +4347,6 @@ public:
 	void setValue(int vin) { callbackQAbstractSlider_SetValue(this, vin); };
 	void Signal_ActionTriggered(int action) { callbackQAbstractSlider_ActionTriggered(this, action); };
 	void changeEvent(QEvent * ev) { callbackQAbstractSlider_ChangeEvent(this, ev); };
-	bool event(QEvent * e) { return callbackQAbstractSlider_Event(this, e) != 0; };
 	void keyPressEvent(QKeyEvent * ev) { callbackQAbstractSlider_KeyPressEvent(this, ev); };
 	void Signal_RangeChanged(int min, int max) { callbackQAbstractSlider_RangeChanged(this, min, max); };
 	void setRange(int min, int max) { callbackQAbstractSlider_SetRange(this, min, max); };
@@ -4373,7 +4354,6 @@ public:
 	void Signal_SliderMoved(int value) { callbackQAbstractSlider_SliderMoved(this, value); };
 	void Signal_SliderPressed() { callbackQAbstractSlider_SliderPressed(this); };
 	void Signal_SliderReleased() { callbackQAbstractSlider_SliderReleased(this); };
-	void timerEvent(QTimerEvent * e) { callbackQAbstractSlider_TimerEvent(this, e); };
 	void Signal_ValueChanged(int value) { callbackQAbstractSlider_ValueChanged(this, value); };
 	void wheelEvent(QWheelEvent * e) { callbackQAbstractSlider_WheelEvent(this, e); };
 	void actionEvent(QActionEvent * event) { callbackQAbstractSlider_ActionEvent(this, event); };
@@ -4582,11 +4562,6 @@ char QAbstractSlider_Event(void* ptr, void* e)
 	return static_cast<QAbstractSlider*>(ptr)->event(static_cast<QEvent*>(e));
 }
 
-char QAbstractSlider_EventDefault(void* ptr, void* e)
-{
-	return static_cast<QAbstractSlider*>(ptr)->QAbstractSlider::event(static_cast<QEvent*>(e));
-}
-
 void QAbstractSlider_KeyPressEvent(void* ptr, void* ev)
 {
 	static_cast<QAbstractSlider*>(ptr)->keyPressEvent(static_cast<QKeyEvent*>(ev));
@@ -4685,11 +4660,6 @@ void QAbstractSlider_SliderReleased(void* ptr)
 void QAbstractSlider_TimerEvent(void* ptr, void* e)
 {
 	static_cast<QAbstractSlider*>(ptr)->timerEvent(static_cast<QTimerEvent*>(e));
-}
-
-void QAbstractSlider_TimerEventDefault(void* ptr, void* e)
-{
-	static_cast<QAbstractSlider*>(ptr)->QAbstractSlider::timerEvent(static_cast<QTimerEvent*>(e));
 }
 
 void QAbstractSlider_TriggerAction(void* ptr, long long action)
@@ -9570,7 +9540,6 @@ public:
 	MyQCheckBox(QWidget *parent) : QCheckBox(parent) {};
 	MyQCheckBox(const QString &text, QWidget *parent) : QCheckBox(text, parent) {};
 	void checkStateSet() { callbackQCheckBox_CheckStateSet(this); };
-	bool event(QEvent * e) { return callbackQCheckBox_Event(this, e) != 0; };
 	bool hitButton(const QPoint & pos) const { return callbackQCheckBox_HitButton(const_cast<MyQCheckBox*>(this), const_cast<QPoint*>(&pos)) != 0; };
 	QSize minimumSizeHint() const { return *static_cast<QSize*>(callbackQCheckBox_MinimumSizeHint(const_cast<MyQCheckBox*>(this))); };
 	void mouseMoveEvent(QMouseEvent * e) { callbackQCheckBox_MouseMoveEvent(this, e); };
@@ -9682,11 +9651,6 @@ void QCheckBox_CheckStateSetDefault(void* ptr)
 char QCheckBox_Event(void* ptr, void* e)
 {
 	return static_cast<QCheckBox*>(ptr)->event(static_cast<QEvent*>(e));
-}
-
-char QCheckBox_EventDefault(void* ptr, void* e)
-{
-	return static_cast<QCheckBox*>(ptr)->QCheckBox::event(static_cast<QEvent*>(e));
 }
 
 char QCheckBox_HitButton(void* ptr, void* pos)
@@ -11422,7 +11386,6 @@ public:
 	void edit(const QModelIndex & index) { callbackQColumnView_Edit(this, const_cast<QModelIndex*>(&index)); };
 	bool edit(const QModelIndex & index, QAbstractItemView::EditTrigger trigger, QEvent * event) { return callbackQColumnView_Edit2(this, const_cast<QModelIndex*>(&index), trigger, event) != 0; };
 	void editorDestroyed(QObject * editor) { callbackQColumnView_EditorDestroyed(this, editor); };
-	bool event(QEvent * event) { return callbackQColumnView_Event(this, event) != 0; };
 	void focusInEvent(QFocusEvent * event) { callbackQColumnView_FocusInEvent(this, event); };
 	bool focusNextPrevChild(bool next) { return callbackQColumnView_FocusNextPrevChild(this, next) != 0; };
 	void focusOutEvent(QFocusEvent * event) { callbackQColumnView_FocusOutEvent(this, event); };
@@ -11444,7 +11407,6 @@ public:
 	int sizeHintForColumn(int column) const { return callbackQColumnView_SizeHintForColumn(const_cast<MyQColumnView*>(this), column); };
 	int sizeHintForRow(int row) const { return callbackQColumnView_SizeHintForRow(const_cast<MyQColumnView*>(this), row); };
 	void startDrag(Qt::DropActions supportedActions) { callbackQColumnView_StartDrag(this, supportedActions); };
-	void timerEvent(QTimerEvent * event) { callbackQColumnView_TimerEvent(this, event); };
 	void update(const QModelIndex & index) { callbackQColumnView_Update(this, const_cast<QModelIndex*>(&index)); };
 	void updateGeometries() { callbackQColumnView_UpdateGeometries(this); };
 	QStyleOptionViewItem viewOptions() const { return *static_cast<QStyleOptionViewItem*>(callbackQColumnView_ViewOptions(const_cast<MyQColumnView*>(this))); };
@@ -11470,6 +11432,7 @@ public:
 	void showEvent(QShowEvent * event) { callbackQColumnView_ShowEvent(this, event); };
 	bool close() { return callbackQColumnView_Close(this) != 0; };
 	void closeEvent(QCloseEvent * event) { callbackQColumnView_CloseEvent(this, event); };
+	bool event(QEvent * event) { return callbackQColumnView_Event(this, event) != 0; };
 	bool hasHeightForWidth() const { return callbackQColumnView_HasHeightForWidth(const_cast<MyQColumnView*>(this)) != 0; };
 	int heightForWidth(int w) const { return callbackQColumnView_HeightForWidth(const_cast<MyQColumnView*>(this), w); };
 	void hide() { callbackQColumnView_Hide(this); };
@@ -11488,6 +11451,7 @@ public:
 	void showNormal() { callbackQColumnView_ShowNormal(this); };
 	void tabletEvent(QTabletEvent * event) { callbackQColumnView_TabletEvent(this, event); };
 	void updateMicroFocus() { callbackQColumnView_UpdateMicroFocus(this); };
+	void timerEvent(QTimerEvent * event) { callbackQColumnView_TimerEvent(this, event); };
 	void childEvent(QChildEvent * event) { callbackQColumnView_ChildEvent(this, event); };
 	void connectNotify(const QMetaMethod & sign) { callbackQColumnView_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	void customEvent(QEvent * event) { callbackQColumnView_CustomEvent(this, event); };
@@ -11857,16 +11821,6 @@ void QColumnView_EditorDestroyedDefault(void* ptr, void* editor)
 	}
 }
 
-char QColumnView_Event(void* ptr, void* event)
-{
-	return static_cast<QColumnView*>(ptr)->event(static_cast<QEvent*>(event));
-}
-
-char QColumnView_EventDefault(void* ptr, void* event)
-{
-	return static_cast<QColumnView*>(ptr)->QColumnView::event(static_cast<QEvent*>(event));
-}
-
 void QColumnView_FocusInEvent(void* ptr, void* event)
 {
 	static_cast<QColumnView*>(ptr)->focusInEvent(static_cast<QFocusEvent*>(event));
@@ -12075,16 +12029,6 @@ void QColumnView_StartDrag(void* ptr, long long supportedActions)
 void QColumnView_StartDragDefault(void* ptr, long long supportedActions)
 {
 	static_cast<QColumnView*>(ptr)->QColumnView::startDrag(static_cast<Qt::DropAction>(supportedActions));
-}
-
-void QColumnView_TimerEvent(void* ptr, void* event)
-{
-	static_cast<QColumnView*>(ptr)->timerEvent(static_cast<QTimerEvent*>(event));
-}
-
-void QColumnView_TimerEventDefault(void* ptr, void* event)
-{
-	static_cast<QColumnView*>(ptr)->QColumnView::timerEvent(static_cast<QTimerEvent*>(event));
 }
 
 void QColumnView_Update(void* ptr, void* index)
@@ -12339,6 +12283,16 @@ void QColumnView_CloseEventDefault(void* ptr, void* event)
 	static_cast<QColumnView*>(ptr)->QColumnView::closeEvent(static_cast<QCloseEvent*>(event));
 }
 
+char QColumnView_Event(void* ptr, void* event)
+{
+	return static_cast<QColumnView*>(ptr)->event(static_cast<QEvent*>(event));
+}
+
+char QColumnView_EventDefault(void* ptr, void* event)
+{
+	return static_cast<QColumnView*>(ptr)->QColumnView::event(static_cast<QEvent*>(event));
+}
+
 char QColumnView_HasHeightForWidth(void* ptr)
 {
 	return static_cast<QColumnView*>(ptr)->hasHeightForWidth();
@@ -12517,6 +12471,16 @@ void QColumnView_UpdateMicroFocus(void* ptr)
 void QColumnView_UpdateMicroFocusDefault(void* ptr)
 {
 	static_cast<QColumnView*>(ptr)->QColumnView::updateMicroFocus();
+}
+
+void QColumnView_TimerEvent(void* ptr, void* event)
+{
+	static_cast<QColumnView*>(ptr)->timerEvent(static_cast<QTimerEvent*>(event));
+}
+
+void QColumnView_TimerEventDefault(void* ptr, void* event)
+{
+	static_cast<QColumnView*>(ptr)->QColumnView::timerEvent(static_cast<QTimerEvent*>(event));
 }
 
 void QColumnView_ChildEvent(void* ptr, void* event)
@@ -13806,7 +13770,6 @@ public:
 	MyQCommandLinkButton(QWidget *parent) : QCommandLinkButton(parent) {};
 	MyQCommandLinkButton(const QString &text, QWidget *parent) : QCommandLinkButton(text, parent) {};
 	MyQCommandLinkButton(const QString &text, const QString &description, QWidget *parent) : QCommandLinkButton(text, description, parent) {};
-	bool event(QEvent * e) { return callbackQCommandLinkButton_Event(this, e) != 0; };
 	int heightForWidth(int width) const { return callbackQCommandLinkButton_HeightForWidth(const_cast<MyQCommandLinkButton*>(this), width); };
 	QSize minimumSizeHint() const { return *static_cast<QSize*>(callbackQCommandLinkButton_MinimumSizeHint(const_cast<MyQCommandLinkButton*>(this))); };
 	void paintEvent(QPaintEvent * vqp) { callbackQCommandLinkButton_PaintEvent(this, vqp); };
@@ -13909,11 +13872,6 @@ void* QCommandLinkButton_NewQCommandLinkButton3(char* text, char* description, v
 char QCommandLinkButton_Event(void* ptr, void* e)
 {
 	return static_cast<QCommandLinkButton*>(ptr)->event(static_cast<QEvent*>(e));
-}
-
-char QCommandLinkButton_EventDefault(void* ptr, void* e)
-{
-	return static_cast<QCommandLinkButton*>(ptr)->QCommandLinkButton::event(static_cast<QEvent*>(e));
 }
 
 int QCommandLinkButton_HeightForWidth(void* ptr, int width)
@@ -18559,7 +18517,6 @@ public:
 	void changeEvent(QEvent * ev) { callbackQDial_ChangeEvent(this, ev); };
 	void keyPressEvent(QKeyEvent * ev) { callbackQDial_KeyPressEvent(this, ev); };
 	void setRange(int min, int max) { callbackQDial_SetRange(this, min, max); };
-	void timerEvent(QTimerEvent * e) { callbackQDial_TimerEvent(this, e); };
 	void wheelEvent(QWheelEvent * e) { callbackQDial_WheelEvent(this, e); };
 	void actionEvent(QActionEvent * event) { callbackQDial_ActionEvent(this, event); };
 	void dragEnterEvent(QDragEnterEvent * event) { callbackQDial_DragEnterEvent(this, event); };
@@ -18606,6 +18563,7 @@ public:
 	void tabletEvent(QTabletEvent * event) { callbackQDial_TabletEvent(this, event); };
 	void update() { callbackQDial_Update(this); };
 	void updateMicroFocus() { callbackQDial_UpdateMicroFocus(this); };
+	void timerEvent(QTimerEvent * event) { callbackQDial_TimerEvent(this, event); };
 	void childEvent(QChildEvent * event) { callbackQDial_ChildEvent(this, event); };
 	void connectNotify(const QMetaMethod & sign) { callbackQDial_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	void customEvent(QEvent * event) { callbackQDial_CustomEvent(this, event); };
@@ -18798,16 +18756,6 @@ void QDial_SetRange(void* ptr, int min, int max)
 void QDial_SetRangeDefault(void* ptr, int min, int max)
 {
 	static_cast<QDial*>(ptr)->QDial::setRange(min, max);
-}
-
-void QDial_TimerEvent(void* ptr, void* e)
-{
-	static_cast<QDial*>(ptr)->timerEvent(static_cast<QTimerEvent*>(e));
-}
-
-void QDial_TimerEventDefault(void* ptr, void* e)
-{
-	static_cast<QDial*>(ptr)->QDial::timerEvent(static_cast<QTimerEvent*>(e));
 }
 
 void QDial_WheelEvent(void* ptr, void* e)
@@ -19270,6 +19218,16 @@ void QDial_UpdateMicroFocus(void* ptr)
 void QDial_UpdateMicroFocusDefault(void* ptr)
 {
 	static_cast<QDial*>(ptr)->QDial::updateMicroFocus();
+}
+
+void QDial_TimerEvent(void* ptr, void* event)
+{
+	static_cast<QDial*>(ptr)->timerEvent(static_cast<QTimerEvent*>(event));
+}
+
+void QDial_TimerEventDefault(void* ptr, void* event)
+{
+	static_cast<QDial*>(ptr)->QDial::timerEvent(static_cast<QTimerEvent*>(event));
 }
 
 void QDial_ChildEvent(void* ptr, void* event)
@@ -26527,7 +26485,6 @@ public:
 	MyQFontComboBox(QWidget *parent) : QFontComboBox(parent) {};
 	void setCurrentFont(const QFont & f) { callbackQFontComboBox_SetCurrentFont(this, const_cast<QFont*>(&f)); };
 	void Signal_CurrentFontChanged(const QFont & font) { callbackQFontComboBox_CurrentFontChanged(this, const_cast<QFont*>(&font)); };
-	bool event(QEvent * e) { return callbackQFontComboBox_Event(this, e) != 0; };
 	QSize sizeHint() const { return *static_cast<QSize*>(callbackQFontComboBox_SizeHint(const_cast<MyQFontComboBox*>(this))); };
 	void setCurrentIndex(int index) { callbackQFontComboBox_SetCurrentIndex(this, index); };
 	void setCurrentText(const QString & text) { QByteArray t372ea0 = text.toUtf8(); QtWidgets_PackedString textPacked = { const_cast<char*>(t372ea0.prepend("WHITESPACE").constData()+10), t372ea0.size()-10 };callbackQFontComboBox_SetCurrentText(this, textPacked); };
@@ -26653,11 +26610,6 @@ void QFontComboBox_CurrentFontChanged(void* ptr, void* font)
 char QFontComboBox_Event(void* ptr, void* e)
 {
 	return static_cast<QFontComboBox*>(ptr)->event(static_cast<QEvent*>(e));
-}
-
-char QFontComboBox_EventDefault(void* ptr, void* e)
-{
-	return static_cast<QFontComboBox*>(ptr)->QFontComboBox::event(static_cast<QEvent*>(e));
 }
 
 void* QFontComboBox_SizeHint(void* ptr)
@@ -39796,8 +39748,6 @@ public:
 	void dragLeaveEvent(QGraphicsSceneDragDropEvent * event) { callbackQGraphicsProxyWidget_DragLeaveEvent(this, event); };
 	void dragMoveEvent(QGraphicsSceneDragDropEvent * event) { callbackQGraphicsProxyWidget_DragMoveEvent(this, event); };
 	void dropEvent(QGraphicsSceneDragDropEvent * event) { callbackQGraphicsProxyWidget_DropEvent(this, event); };
-	bool event(QEvent * event) { return callbackQGraphicsProxyWidget_Event(this, event) != 0; };
-	bool eventFilter(QObject * object, QEvent * event) { return callbackQGraphicsProxyWidget_EventFilter(this, object, event) != 0; };
 	void focusInEvent(QFocusEvent * event) { callbackQGraphicsProxyWidget_FocusInEvent(this, event); };
 	bool focusNextPrevChild(bool next) { return callbackQGraphicsProxyWidget_FocusNextPrevChild(this, next) != 0; };
 	void focusOutEvent(QFocusEvent * event) { callbackQGraphicsProxyWidget_FocusOutEvent(this, event); };
@@ -39928,11 +39878,6 @@ char QGraphicsProxyWidget_Event(void* ptr, void* event)
 	return static_cast<QGraphicsProxyWidget*>(ptr)->event(static_cast<QEvent*>(event));
 }
 
-char QGraphicsProxyWidget_EventDefault(void* ptr, void* event)
-{
-	return static_cast<QGraphicsProxyWidget*>(ptr)->QGraphicsProxyWidget::event(static_cast<QEvent*>(event));
-}
-
 char QGraphicsProxyWidget_EventFilter(void* ptr, void* object, void* event)
 {
 	if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(object))) {
@@ -39945,21 +39890,6 @@ char QGraphicsProxyWidget_EventFilter(void* ptr, void* object, void* event)
 		return static_cast<QGraphicsProxyWidget*>(ptr)->eventFilter(static_cast<QWidget*>(object), static_cast<QEvent*>(event));
 	} else {
 		return static_cast<QGraphicsProxyWidget*>(ptr)->eventFilter(static_cast<QObject*>(object), static_cast<QEvent*>(event));
-	}
-}
-
-char QGraphicsProxyWidget_EventFilterDefault(void* ptr, void* object, void* event)
-{
-	if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(object))) {
-		return static_cast<QGraphicsProxyWidget*>(ptr)->QGraphicsProxyWidget::eventFilter(static_cast<QGraphicsObject*>(object), static_cast<QEvent*>(event));
-	} else if (dynamic_cast<QGraphicsWidget*>(static_cast<QObject*>(object))) {
-		return static_cast<QGraphicsProxyWidget*>(ptr)->QGraphicsProxyWidget::eventFilter(static_cast<QGraphicsWidget*>(object), static_cast<QEvent*>(event));
-	} else if (dynamic_cast<QLayout*>(static_cast<QObject*>(object))) {
-		return static_cast<QGraphicsProxyWidget*>(ptr)->QGraphicsProxyWidget::eventFilter(static_cast<QLayout*>(object), static_cast<QEvent*>(event));
-	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(object))) {
-		return static_cast<QGraphicsProxyWidget*>(ptr)->QGraphicsProxyWidget::eventFilter(static_cast<QWidget*>(object), static_cast<QEvent*>(event));
-	} else {
-		return static_cast<QGraphicsProxyWidget*>(ptr)->QGraphicsProxyWidget::eventFilter(static_cast<QObject*>(object), static_cast<QEvent*>(event));
 	}
 }
 
@@ -43980,7 +43910,6 @@ public:
 	void drawBackground(QPainter * painter, const QRectF & rect) { callbackQGraphicsView_DrawBackground(this, painter, const_cast<QRectF*>(&rect)); };
 	void drawForeground(QPainter * painter, const QRectF & rect) { callbackQGraphicsView_DrawForeground(this, painter, const_cast<QRectF*>(&rect)); };
 	void dropEvent(QDropEvent * event) { callbackQGraphicsView_DropEvent(this, event); };
-	bool event(QEvent * event) { return callbackQGraphicsView_Event(this, event) != 0; };
 	void focusInEvent(QFocusEvent * event) { callbackQGraphicsView_FocusInEvent(this, event); };
 	bool focusNextPrevChild(bool next) { return callbackQGraphicsView_FocusNextPrevChild(this, next) != 0; };
 	void focusOutEvent(QFocusEvent * event) { callbackQGraphicsView_FocusOutEvent(this, event); };
@@ -44303,11 +44232,6 @@ void QGraphicsView_EnsureVisible2(void* ptr, double x, double y, double w, doubl
 char QGraphicsView_Event(void* ptr, void* event)
 {
 	return static_cast<QGraphicsView*>(ptr)->event(static_cast<QEvent*>(event));
-}
-
-char QGraphicsView_EventDefault(void* ptr, void* event)
-{
-	return static_cast<QGraphicsView*>(ptr)->QGraphicsView::event(static_cast<QEvent*>(event));
 }
 
 void QGraphicsView_FitInView3(void* ptr, void* item, long long aspectRatioMode)
@@ -45212,7 +45136,6 @@ public:
 	void changeEvent(QEvent * event) { callbackQGraphicsWidget_ChangeEvent(this, event); };
 	bool close() { return callbackQGraphicsWidget_Close(this) != 0; };
 	void closeEvent(QCloseEvent * event) { callbackQGraphicsWidget_CloseEvent(this, event); };
-	bool event(QEvent * event) { return callbackQGraphicsWidget_Event(this, event) != 0; };
 	void focusInEvent(QFocusEvent * event) { callbackQGraphicsWidget_FocusInEvent(this, event); };
 	bool focusNextPrevChild(bool next) { return callbackQGraphicsWidget_FocusNextPrevChild(this, next) != 0; };
 	void focusOutEvent(QFocusEvent * event) { callbackQGraphicsWidget_FocusOutEvent(this, event); };
@@ -45433,11 +45356,6 @@ void QGraphicsWidget_CloseEventDefault(void* ptr, void* event)
 char QGraphicsWidget_Event(void* ptr, void* event)
 {
 		return static_cast<QGraphicsWidget*>(ptr)->event(static_cast<QEvent*>(event));
-}
-
-char QGraphicsWidget_EventDefault(void* ptr, void* event)
-{
-		return static_cast<QGraphicsWidget*>(ptr)->QGraphicsWidget::event(static_cast<QEvent*>(event));
 }
 
 void QGraphicsWidget_FocusInEvent(void* ptr, void* event)
@@ -48019,7 +47937,6 @@ public:
 	int sizeHintForColumn(int column) const { return callbackQHeaderView_SizeHintForColumn(const_cast<MyQHeaderView*>(this), column); };
 	int sizeHintForRow(int row) const { return callbackQHeaderView_SizeHintForRow(const_cast<MyQHeaderView*>(this), row); };
 	void startDrag(Qt::DropActions supportedActions) { callbackQHeaderView_StartDrag(this, supportedActions); };
-	void timerEvent(QTimerEvent * event) { callbackQHeaderView_TimerEvent(this, event); };
 	void update(const QModelIndex & index) { callbackQHeaderView_Update(this, const_cast<QModelIndex*>(&index)); };
 	void updateGeometries() { callbackQHeaderView_UpdateGeometries(this); };
 	QStyleOptionViewItem viewOptions() const { return *static_cast<QStyleOptionViewItem*>(callbackQHeaderView_ViewOptions(const_cast<MyQHeaderView*>(this))); };
@@ -48064,6 +47981,7 @@ public:
 	void showNormal() { callbackQHeaderView_ShowNormal(this); };
 	void tabletEvent(QTabletEvent * event) { callbackQHeaderView_TabletEvent(this, event); };
 	void updateMicroFocus() { callbackQHeaderView_UpdateMicroFocus(this); };
+	void timerEvent(QTimerEvent * event) { callbackQHeaderView_TimerEvent(this, event); };
 	void childEvent(QChildEvent * event) { callbackQHeaderView_ChildEvent(this, event); };
 	void connectNotify(const QMetaMethod & sign) { callbackQHeaderView_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	void customEvent(QEvent * event) { callbackQHeaderView_CustomEvent(this, event); };
@@ -49088,16 +49006,6 @@ void QHeaderView_StartDragDefault(void* ptr, long long supportedActions)
 	static_cast<QHeaderView*>(ptr)->QHeaderView::startDrag(static_cast<Qt::DropAction>(supportedActions));
 }
 
-void QHeaderView_TimerEvent(void* ptr, void* event)
-{
-	static_cast<QHeaderView*>(ptr)->timerEvent(static_cast<QTimerEvent*>(event));
-}
-
-void QHeaderView_TimerEventDefault(void* ptr, void* event)
-{
-	static_cast<QHeaderView*>(ptr)->QHeaderView::timerEvent(static_cast<QTimerEvent*>(event));
-}
-
 void QHeaderView_Update(void* ptr, void* index)
 {
 	QMetaObject::invokeMethod(static_cast<QHeaderView*>(ptr), "update", Q_ARG(QModelIndex, *static_cast<QModelIndex*>(index)));
@@ -49538,6 +49446,16 @@ void QHeaderView_UpdateMicroFocus(void* ptr)
 void QHeaderView_UpdateMicroFocusDefault(void* ptr)
 {
 	static_cast<QHeaderView*>(ptr)->QHeaderView::updateMicroFocus();
+}
+
+void QHeaderView_TimerEvent(void* ptr, void* event)
+{
+	static_cast<QHeaderView*>(ptr)->timerEvent(static_cast<QTimerEvent*>(event));
+}
+
+void QHeaderView_TimerEventDefault(void* ptr, void* event)
+{
+	static_cast<QHeaderView*>(ptr)->QHeaderView::timerEvent(static_cast<QTimerEvent*>(event));
 }
 
 void QHeaderView_ChildEvent(void* ptr, void* event)
@@ -51325,11 +51243,9 @@ public:
 	void setKeySequence(const QKeySequence & keySequence) { callbackQKeySequenceEdit_SetKeySequence(this, const_cast<QKeySequence*>(&keySequence)); };
 	void clear() { callbackQKeySequenceEdit_Clear(this); };
 	void Signal_EditingFinished() { callbackQKeySequenceEdit_EditingFinished(this); };
-	bool event(QEvent * e) { return callbackQKeySequenceEdit_Event(this, e) != 0; };
 	void keyPressEvent(QKeyEvent * e) { callbackQKeySequenceEdit_KeyPressEvent(this, e); };
 	void keyReleaseEvent(QKeyEvent * e) { callbackQKeySequenceEdit_KeyReleaseEvent(this, e); };
 	void Signal_KeySequenceChanged(const QKeySequence & keySequence) { callbackQKeySequenceEdit_KeySequenceChanged(this, const_cast<QKeySequence*>(&keySequence)); };
-	void timerEvent(QTimerEvent * e) { callbackQKeySequenceEdit_TimerEvent(this, e); };
 	void actionEvent(QActionEvent * event) { callbackQKeySequenceEdit_ActionEvent(this, event); };
 	void dragEnterEvent(QDragEnterEvent * event) { callbackQKeySequenceEdit_DragEnterEvent(this, event); };
 	void dragLeaveEvent(QDragLeaveEvent * event) { callbackQKeySequenceEdit_DragLeaveEvent(this, event); };
@@ -51437,11 +51353,6 @@ char QKeySequenceEdit_Event(void* ptr, void* e)
 	return static_cast<QKeySequenceEdit*>(ptr)->event(static_cast<QEvent*>(e));
 }
 
-char QKeySequenceEdit_EventDefault(void* ptr, void* e)
-{
-	return static_cast<QKeySequenceEdit*>(ptr)->QKeySequenceEdit::event(static_cast<QEvent*>(e));
-}
-
 void QKeySequenceEdit_KeyPressEvent(void* ptr, void* e)
 {
 	static_cast<QKeySequenceEdit*>(ptr)->keyPressEvent(static_cast<QKeyEvent*>(e));
@@ -51480,11 +51391,6 @@ void QKeySequenceEdit_KeySequenceChanged(void* ptr, void* keySequence)
 void QKeySequenceEdit_TimerEvent(void* ptr, void* e)
 {
 	static_cast<QKeySequenceEdit*>(ptr)->timerEvent(static_cast<QTimerEvent*>(e));
-}
-
-void QKeySequenceEdit_TimerEventDefault(void* ptr, void* e)
-{
-	static_cast<QKeySequenceEdit*>(ptr)->QKeySequenceEdit::timerEvent(static_cast<QTimerEvent*>(e));
 }
 
 void QKeySequenceEdit_DestroyQKeySequenceEdit(void* ptr)
@@ -55851,7 +55757,6 @@ public:
 	void dragLeaveEvent(QDragLeaveEvent * e) { callbackQListView_DragLeaveEvent(this, e); };
 	void dragMoveEvent(QDragMoveEvent * e) { callbackQListView_DragMoveEvent(this, e); };
 	void dropEvent(QDropEvent * e) { callbackQListView_DropEvent(this, e); };
-	bool event(QEvent * e) { return callbackQListView_Event(this, e) != 0; };
 	int horizontalOffset() const { return callbackQListView_HorizontalOffset(const_cast<MyQListView*>(this)); };
 	QModelIndex indexAt(const QPoint & p) const { return *static_cast<QModelIndex*>(callbackQListView_IndexAt(const_cast<MyQListView*>(this), const_cast<QPoint*>(&p))); };
 	bool isIndexHidden(const QModelIndex & index) const { return callbackQListView_IsIndexHidden(const_cast<MyQListView*>(this), const_cast<QModelIndex*>(&index)) != 0; };
@@ -55866,7 +55771,6 @@ public:
 	void selectionChanged(const QItemSelection & selected, const QItemSelection & deselected) { callbackQListView_SelectionChanged(this, const_cast<QItemSelection*>(&selected), const_cast<QItemSelection*>(&deselected)); };
 	void setSelection(const QRect & rect, QItemSelectionModel::SelectionFlags command) { callbackQListView_SetSelection(this, const_cast<QRect*>(&rect), command); };
 	void startDrag(Qt::DropActions supportedActions) { callbackQListView_StartDrag(this, supportedActions); };
-	void timerEvent(QTimerEvent * e) { callbackQListView_TimerEvent(this, e); };
 	void updateGeometries() { callbackQListView_UpdateGeometries(this); };
 	int verticalOffset() const { return callbackQListView_VerticalOffset(const_cast<MyQListView*>(this)); };
 	QStyleOptionViewItem viewOptions() const { return *static_cast<QStyleOptionViewItem*>(callbackQListView_ViewOptions(const_cast<MyQListView*>(this))); };
@@ -56136,11 +56040,6 @@ char QListView_Event(void* ptr, void* e)
 	return static_cast<QListView*>(ptr)->event(static_cast<QEvent*>(e));
 }
 
-char QListView_EventDefault(void* ptr, void* e)
-{
-	return static_cast<QListView*>(ptr)->QListView::event(static_cast<QEvent*>(e));
-}
-
 int QListView_HorizontalOffset(void* ptr)
 {
 	return static_cast<QListView*>(ptr)->horizontalOffset();
@@ -56309,11 +56208,6 @@ void QListView_StartDragDefault(void* ptr, long long supportedActions)
 void QListView_TimerEvent(void* ptr, void* e)
 {
 	static_cast<QListView*>(ptr)->timerEvent(static_cast<QTimerEvent*>(e));
-}
-
-void QListView_TimerEventDefault(void* ptr, void* e)
-{
-	static_cast<QListView*>(ptr)->QListView::timerEvent(static_cast<QTimerEvent*>(e));
 }
 
 void QListView_UpdateGeometries(void* ptr)
@@ -57216,7 +57110,6 @@ public:
 	void selectionChanged(const QItemSelection & selected, const QItemSelection & deselected) { callbackQListWidget_SelectionChanged(this, const_cast<QItemSelection*>(&selected), const_cast<QItemSelection*>(&deselected)); };
 	void setSelection(const QRect & rect, QItemSelectionModel::SelectionFlags command) { callbackQListWidget_SetSelection(this, const_cast<QRect*>(&rect), command); };
 	void startDrag(Qt::DropActions supportedActions) { callbackQListWidget_StartDrag(this, supportedActions); };
-	void timerEvent(QTimerEvent * e) { callbackQListWidget_TimerEvent(this, e); };
 	void updateGeometries() { callbackQListWidget_UpdateGeometries(this); };
 	int verticalOffset() const { return callbackQListWidget_VerticalOffset(const_cast<MyQListWidget*>(this)); };
 	QStyleOptionViewItem viewOptions() const { return *static_cast<QStyleOptionViewItem*>(callbackQListWidget_ViewOptions(const_cast<MyQListWidget*>(this))); };
@@ -57291,6 +57184,7 @@ public:
 	void showNormal() { callbackQListWidget_ShowNormal(this); };
 	void tabletEvent(QTabletEvent * event) { callbackQListWidget_TabletEvent(this, event); };
 	void updateMicroFocus() { callbackQListWidget_UpdateMicroFocus(this); };
+	void timerEvent(QTimerEvent * event) { callbackQListWidget_TimerEvent(this, event); };
 	void childEvent(QChildEvent * event) { callbackQListWidget_ChildEvent(this, event); };
 	void connectNotify(const QMetaMethod & sign) { callbackQListWidget_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	void customEvent(QEvent * event) { callbackQListWidget_CustomEvent(this, event); };
@@ -57873,16 +57767,6 @@ void QListWidget_StartDrag(void* ptr, long long supportedActions)
 void QListWidget_StartDragDefault(void* ptr, long long supportedActions)
 {
 	static_cast<QListWidget*>(ptr)->QListWidget::startDrag(static_cast<Qt::DropAction>(supportedActions));
-}
-
-void QListWidget_TimerEvent(void* ptr, void* e)
-{
-	static_cast<QListWidget*>(ptr)->timerEvent(static_cast<QTimerEvent*>(e));
-}
-
-void QListWidget_TimerEventDefault(void* ptr, void* e)
-{
-	static_cast<QListWidget*>(ptr)->QListWidget::timerEvent(static_cast<QTimerEvent*>(e));
 }
 
 void QListWidget_UpdateGeometries(void* ptr)
@@ -58635,6 +58519,16 @@ void QListWidget_UpdateMicroFocus(void* ptr)
 void QListWidget_UpdateMicroFocusDefault(void* ptr)
 {
 	static_cast<QListWidget*>(ptr)->QListWidget::updateMicroFocus();
+}
+
+void QListWidget_TimerEvent(void* ptr, void* event)
+{
+	static_cast<QListWidget*>(ptr)->timerEvent(static_cast<QTimerEvent*>(event));
+}
+
+void QListWidget_TimerEventDefault(void* ptr, void* event)
+{
+	static_cast<QListWidget*>(ptr)->QListWidget::timerEvent(static_cast<QTimerEvent*>(event));
 }
 
 void QListWidget_ChildEvent(void* ptr, void* event)
@@ -60759,7 +60653,6 @@ public:
 	void setUnifiedTitleAndToolBarOnMac(bool set) { callbackQMainWindow_SetUnifiedTitleAndToolBarOnMac(this, set); };
 	void contextMenuEvent(QContextMenuEvent * event) { callbackQMainWindow_ContextMenuEvent(this, event); };
 	QMenu * createPopupMenu() { return static_cast<QMenu*>(callbackQMainWindow_CreatePopupMenu(this)); };
-	bool event(QEvent * event) { return callbackQMainWindow_Event(this, event) != 0; };
 	void Signal_IconSizeChanged(const QSize & iconSize) { callbackQMainWindow_IconSizeChanged(this, const_cast<QSize*>(&iconSize)); };
 	void Signal_ToolButtonStyleChanged(Qt::ToolButtonStyle toolButtonStyle) { callbackQMainWindow_ToolButtonStyleChanged(this, toolButtonStyle); };
 	void actionEvent(QActionEvent * event) { callbackQMainWindow_ActionEvent(this, event); };
@@ -60994,11 +60887,6 @@ long long QMainWindow_DockWidgetArea(void* ptr, void* dockwidget)
 char QMainWindow_Event(void* ptr, void* event)
 {
 	return static_cast<QMainWindow*>(ptr)->event(static_cast<QEvent*>(event));
-}
-
-char QMainWindow_EventDefault(void* ptr, void* event)
-{
-	return static_cast<QMainWindow*>(ptr)->QMainWindow::event(static_cast<QEvent*>(event));
 }
 
 void QMainWindow_ConnectIconSizeChanged(void* ptr)
@@ -63540,7 +63428,6 @@ public:
 	void actionEvent(QActionEvent * e) { callbackQMenu_ActionEvent(this, e); };
 	void changeEvent(QEvent * e) { callbackQMenu_ChangeEvent(this, e); };
 	void enterEvent(QEvent * vqe) { callbackQMenu_EnterEvent(this, vqe); };
-	bool event(QEvent * e) { return callbackQMenu_Event(this, e) != 0; };
 	bool focusNextPrevChild(bool next) { return callbackQMenu_FocusNextPrevChild(this, next) != 0; };
 	void hideEvent(QHideEvent * vqh) { callbackQMenu_HideEvent(this, vqh); };
 	void Signal_Hovered(QAction * action) { callbackQMenu_Hovered(this, action); };
@@ -63551,7 +63438,6 @@ public:
 	void mouseReleaseEvent(QMouseEvent * e) { callbackQMenu_MouseReleaseEvent(this, e); };
 	void paintEvent(QPaintEvent * e) { callbackQMenu_PaintEvent(this, e); };
 	QSize sizeHint() const { return *static_cast<QSize*>(callbackQMenu_SizeHint(const_cast<MyQMenu*>(this))); };
-	void timerEvent(QTimerEvent * e) { callbackQMenu_TimerEvent(this, e); };
 	void Signal_Triggered(QAction * action) { callbackQMenu_Triggered(this, action); };
 	void wheelEvent(QWheelEvent * e) { callbackQMenu_WheelEvent(this, e); };
 	void dragEnterEvent(QDragEnterEvent * event) { callbackQMenu_DragEnterEvent(this, event); };
@@ -63830,11 +63716,6 @@ char QMenu_Event(void* ptr, void* e)
 	return static_cast<QMenu*>(ptr)->event(static_cast<QEvent*>(e));
 }
 
-char QMenu_EventDefault(void* ptr, void* e)
-{
-	return static_cast<QMenu*>(ptr)->QMenu::event(static_cast<QEvent*>(e));
-}
-
 void* QMenu_Exec(void* ptr)
 {
 	return static_cast<QMenu*>(ptr)->exec();
@@ -64030,11 +63911,6 @@ void* QMenu_SizeHintDefault(void* ptr)
 void QMenu_TimerEvent(void* ptr, void* e)
 {
 	static_cast<QMenu*>(ptr)->timerEvent(static_cast<QTimerEvent*>(e));
-}
-
-void QMenu_TimerEventDefault(void* ptr, void* e)
-{
-	static_cast<QMenu*>(ptr)->QMenu::timerEvent(static_cast<QTimerEvent*>(e));
 }
 
 void QMenu_ConnectTriggered(void* ptr)
@@ -65459,7 +65335,6 @@ public:
 	void Signal_ButtonClicked(QAbstractButton * button) { callbackQMessageBox_ButtonClicked(this, button); };
 	void changeEvent(QEvent * ev) { callbackQMessageBox_ChangeEvent(this, ev); };
 	void closeEvent(QCloseEvent * e) { callbackQMessageBox_CloseEvent(this, e); };
-	bool event(QEvent * e) { return callbackQMessageBox_Event(this, e) != 0; };
 	int exec() { return callbackQMessageBox_Exec(this); };
 	void keyPressEvent(QKeyEvent * e) { callbackQMessageBox_KeyPressEvent(this, e); };
 	void resizeEvent(QResizeEvent * event) { callbackQMessageBox_ResizeEvent(this, event); };
@@ -65724,11 +65599,6 @@ void* QMessageBox_EscapeButton(void* ptr)
 char QMessageBox_Event(void* ptr, void* e)
 {
 	return static_cast<QMessageBox*>(ptr)->event(static_cast<QEvent*>(e));
-}
-
-char QMessageBox_EventDefault(void* ptr, void* e)
-{
-	return static_cast<QMessageBox*>(ptr)->QMessageBox::event(static_cast<QEvent*>(e));
 }
 
 int QMessageBox_Exec(void* ptr)
@@ -67368,7 +67238,6 @@ public:
 	void Signal_UpdateRequest(const QRect & rect, int dy) { callbackQPlainTextEdit_UpdateRequest(this, const_cast<QRect*>(&rect), dy); };
 	void wheelEvent(QWheelEvent * e) { callbackQPlainTextEdit_WheelEvent(this, e); };
 	 ~MyQPlainTextEdit() { callbackQPlainTextEdit_DestroyQPlainTextEdit(this); };
-	bool event(QEvent * event) { return callbackQPlainTextEdit_Event(this, event) != 0; };
 	bool viewportEvent(QEvent * event) { return callbackQPlainTextEdit_ViewportEvent(this, event) != 0; };
 	QSize minimumSizeHint() const { return *static_cast<QSize*>(callbackQPlainTextEdit_MinimumSizeHint(const_cast<MyQPlainTextEdit*>(this))); };
 	void setupViewport(QWidget * viewport) { callbackQPlainTextEdit_SetupViewport(this, viewport); };
@@ -67388,6 +67257,7 @@ public:
 	void setWindowTitle(const QString & vqs) { QByteArray tda39a3 = vqs.toUtf8(); QtWidgets_PackedString vqsPacked = { const_cast<char*>(tda39a3.prepend("WHITESPACE").constData()+10), tda39a3.size()-10 };callbackQPlainTextEdit_SetWindowTitle(this, vqsPacked); };
 	bool close() { return callbackQPlainTextEdit_Close(this) != 0; };
 	void closeEvent(QCloseEvent * event) { callbackQPlainTextEdit_CloseEvent(this, event); };
+	bool event(QEvent * event) { return callbackQPlainTextEdit_Event(this, event) != 0; };
 	bool hasHeightForWidth() const { return callbackQPlainTextEdit_HasHeightForWidth(const_cast<MyQPlainTextEdit*>(this)) != 0; };
 	int heightForWidth(int w) const { return callbackQPlainTextEdit_HeightForWidth(const_cast<MyQPlainTextEdit*>(this), w); };
 	void hide() { callbackQPlainTextEdit_Hide(this); };
@@ -68168,16 +68038,6 @@ void QPlainTextEdit_DestroyQPlainTextEditDefault(void* ptr)
 
 }
 
-char QPlainTextEdit_Event(void* ptr, void* event)
-{
-	return static_cast<QPlainTextEdit*>(ptr)->event(static_cast<QEvent*>(event));
-}
-
-char QPlainTextEdit_EventDefault(void* ptr, void* event)
-{
-	return static_cast<QPlainTextEdit*>(ptr)->QPlainTextEdit::event(static_cast<QEvent*>(event));
-}
-
 char QPlainTextEdit_ViewportEvent(void* ptr, void* event)
 {
 	return static_cast<QPlainTextEdit*>(ptr)->viewportEvent(static_cast<QEvent*>(event));
@@ -68368,6 +68228,16 @@ void QPlainTextEdit_CloseEvent(void* ptr, void* event)
 void QPlainTextEdit_CloseEventDefault(void* ptr, void* event)
 {
 	static_cast<QPlainTextEdit*>(ptr)->QPlainTextEdit::closeEvent(static_cast<QCloseEvent*>(event));
+}
+
+char QPlainTextEdit_Event(void* ptr, void* event)
+{
+	return static_cast<QPlainTextEdit*>(ptr)->event(static_cast<QEvent*>(event));
+}
+
+char QPlainTextEdit_EventDefault(void* ptr, void* event)
+{
+	return static_cast<QPlainTextEdit*>(ptr)->QPlainTextEdit::event(static_cast<QEvent*>(event));
 }
 
 char QPlainTextEdit_HasHeightForWidth(void* ptr)
@@ -68659,7 +68529,6 @@ public:
 	void setOrientation(Qt::Orientation vqt) { callbackQProgressBar_SetOrientation(this, vqt); };
 	void setValue(int value) { callbackQProgressBar_SetValue(this, value); };
 	QString text() const { return QString(callbackQProgressBar_Text(const_cast<MyQProgressBar*>(this))); };
-	bool event(QEvent * e) { return callbackQProgressBar_Event(this, e) != 0; };
 	QSize minimumSizeHint() const { return *static_cast<QSize*>(callbackQProgressBar_MinimumSizeHint(const_cast<MyQProgressBar*>(this))); };
 	void paintEvent(QPaintEvent * vqp) { callbackQProgressBar_PaintEvent(this, vqp); };
 	void reset() { callbackQProgressBar_Reset(this); };
@@ -68841,11 +68710,6 @@ void* QProgressBar_NewQProgressBar(void* parent)
 char QProgressBar_Event(void* ptr, void* e)
 {
 	return static_cast<QProgressBar*>(ptr)->event(static_cast<QEvent*>(e));
-}
-
-char QProgressBar_EventDefault(void* ptr, void* e)
-{
-	return static_cast<QProgressBar*>(ptr)->QProgressBar::event(static_cast<QEvent*>(e));
 }
 
 void QProgressBar_InitStyleOption(void* ptr, void* option)
@@ -70895,7 +70759,6 @@ public:
 	MyQPushButton(QWidget *parent) : QPushButton(parent) {};
 	MyQPushButton(const QIcon &icon, const QString &text, QWidget *parent) : QPushButton(icon, text, parent) {};
 	MyQPushButton(const QString &text, QWidget *parent) : QPushButton(text, parent) {};
-	bool event(QEvent * e) { return callbackQPushButton_Event(this, e) != 0; };
 	void focusInEvent(QFocusEvent * e) { callbackQPushButton_FocusInEvent(this, e); };
 	void focusOutEvent(QFocusEvent * e) { callbackQPushButton_FocusOutEvent(this, e); };
 	bool hitButton(const QPoint & pos) const { return callbackQPushButton_HitButton(const_cast<MyQPushButton*>(this), const_cast<QPoint*>(&pos)) != 0; };
@@ -71018,11 +70881,6 @@ void* QPushButton_NewQPushButton2(char* text, void* parent)
 char QPushButton_Event(void* ptr, void* e)
 {
 	return static_cast<QPushButton*>(ptr)->event(static_cast<QEvent*>(e));
-}
-
-char QPushButton_EventDefault(void* ptr, void* e)
-{
-	return static_cast<QPushButton*>(ptr)->QPushButton::event(static_cast<QEvent*>(e));
 }
 
 void QPushButton_FocusInEvent(void* ptr, void* e)
@@ -71787,7 +71645,6 @@ class MyQRadioButton: public QRadioButton
 public:
 	MyQRadioButton(QWidget *parent) : QRadioButton(parent) {};
 	MyQRadioButton(const QString &text, QWidget *parent) : QRadioButton(text, parent) {};
-	bool event(QEvent * e) { return callbackQRadioButton_Event(this, e) != 0; };
 	bool hitButton(const QPoint & pos) const { return callbackQRadioButton_HitButton(const_cast<MyQRadioButton*>(this), const_cast<QPoint*>(&pos)) != 0; };
 	QSize minimumSizeHint() const { return *static_cast<QSize*>(callbackQRadioButton_MinimumSizeHint(const_cast<MyQRadioButton*>(this))); };
 	void mouseMoveEvent(QMouseEvent * e) { callbackQRadioButton_MouseMoveEvent(this, e); };
@@ -71874,11 +71731,6 @@ void* QRadioButton_NewQRadioButton2(char* text, void* parent)
 char QRadioButton_Event(void* ptr, void* e)
 {
 	return static_cast<QRadioButton*>(ptr)->event(static_cast<QEvent*>(e));
-}
-
-char QRadioButton_EventDefault(void* ptr, void* e)
-{
-	return static_cast<QRadioButton*>(ptr)->QRadioButton::event(static_cast<QEvent*>(e));
 }
 
 char QRadioButton_HitButton(void* ptr, void* pos)
@@ -72628,7 +72480,6 @@ class MyQRubberBand: public QRubberBand
 public:
 	MyQRubberBand(Shape s, QWidget *p) : QRubberBand(s, p) {};
 	void changeEvent(QEvent * e) { callbackQRubberBand_ChangeEvent(this, e); };
-	bool event(QEvent * e) { return callbackQRubberBand_Event(this, e) != 0; };
 	void moveEvent(QMoveEvent * vqm) { callbackQRubberBand_MoveEvent(this, vqm); };
 	void paintEvent(QPaintEvent * vqp) { callbackQRubberBand_PaintEvent(this, vqp); };
 	void resizeEvent(QResizeEvent * vqr) { callbackQRubberBand_ResizeEvent(this, vqr); };
@@ -72716,11 +72567,6 @@ void QRubberBand_ChangeEventDefault(void* ptr, void* e)
 char QRubberBand_Event(void* ptr, void* e)
 {
 	return static_cast<QRubberBand*>(ptr)->event(static_cast<QEvent*>(e));
-}
-
-char QRubberBand_EventDefault(void* ptr, void* e)
-{
-	return static_cast<QRubberBand*>(ptr)->QRubberBand::event(static_cast<QEvent*>(e));
 }
 
 void QRubberBand_InitStyleOption(void* ptr, void* option)
@@ -74233,7 +74079,6 @@ public:
 	void changeEvent(QEvent * ev) { callbackQScrollBar_ChangeEvent(this, ev); };
 	void keyPressEvent(QKeyEvent * ev) { callbackQScrollBar_KeyPressEvent(this, ev); };
 	void setRange(int min, int max) { callbackQScrollBar_SetRange(this, min, max); };
-	void timerEvent(QTimerEvent * e) { callbackQScrollBar_TimerEvent(this, e); };
 	void actionEvent(QActionEvent * event) { callbackQScrollBar_ActionEvent(this, event); };
 	void dragEnterEvent(QDragEnterEvent * event) { callbackQScrollBar_DragEnterEvent(this, event); };
 	void dragLeaveEvent(QDragLeaveEvent * event) { callbackQScrollBar_DragLeaveEvent(this, event); };
@@ -74279,6 +74124,7 @@ public:
 	void tabletEvent(QTabletEvent * event) { callbackQScrollBar_TabletEvent(this, event); };
 	void update() { callbackQScrollBar_Update(this); };
 	void updateMicroFocus() { callbackQScrollBar_UpdateMicroFocus(this); };
+	void timerEvent(QTimerEvent * event) { callbackQScrollBar_TimerEvent(this, event); };
 	void childEvent(QChildEvent * event) { callbackQScrollBar_ChildEvent(this, event); };
 	void connectNotify(const QMetaMethod & sign) { callbackQScrollBar_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	void customEvent(QEvent * event) { callbackQScrollBar_CustomEvent(this, event); };
@@ -74451,16 +74297,6 @@ void QScrollBar_SetRange(void* ptr, int min, int max)
 void QScrollBar_SetRangeDefault(void* ptr, int min, int max)
 {
 	static_cast<QScrollBar*>(ptr)->QScrollBar::setRange(min, max);
-}
-
-void QScrollBar_TimerEvent(void* ptr, void* e)
-{
-	static_cast<QScrollBar*>(ptr)->timerEvent(static_cast<QTimerEvent*>(e));
-}
-
-void QScrollBar_TimerEventDefault(void* ptr, void* e)
-{
-	static_cast<QScrollBar*>(ptr)->QScrollBar::timerEvent(static_cast<QTimerEvent*>(e));
 }
 
 void QScrollBar_ActionEvent(void* ptr, void* event)
@@ -74913,6 +74749,16 @@ void QScrollBar_UpdateMicroFocus(void* ptr)
 void QScrollBar_UpdateMicroFocusDefault(void* ptr)
 {
 	static_cast<QScrollBar*>(ptr)->QScrollBar::updateMicroFocus();
+}
+
+void QScrollBar_TimerEvent(void* ptr, void* event)
+{
+	static_cast<QScrollBar*>(ptr)->timerEvent(static_cast<QTimerEvent*>(event));
+}
+
+void QScrollBar_TimerEventDefault(void* ptr, void* event)
+{
+	static_cast<QScrollBar*>(ptr)->QScrollBar::timerEvent(static_cast<QTimerEvent*>(event));
 }
 
 void QScrollBar_ChildEvent(void* ptr, void* event)
@@ -76453,7 +76299,6 @@ class MyQSlider: public QSlider
 public:
 	MyQSlider(QWidget *parent) : QSlider(parent) {};
 	MyQSlider(Qt::Orientation orientation, QWidget *parent) : QSlider(orientation, parent) {};
-	bool event(QEvent * event) { return callbackQSlider_Event(this, event) != 0; };
 	QSize minimumSizeHint() const { return *static_cast<QSize*>(callbackQSlider_MinimumSizeHint(const_cast<MyQSlider*>(this))); };
 	void mouseMoveEvent(QMouseEvent * ev) { callbackQSlider_MouseMoveEvent(this, ev); };
 	void mousePressEvent(QMouseEvent * ev) { callbackQSlider_MousePressEvent(this, ev); };
@@ -76466,7 +76311,6 @@ public:
 	void keyPressEvent(QKeyEvent * ev) { callbackQSlider_KeyPressEvent(this, ev); };
 	void setRange(int min, int max) { callbackQSlider_SetRange(this, min, max); };
 	void sliderChange(QAbstractSlider::SliderChange change) { callbackQSlider_SliderChange(this, change); };
-	void timerEvent(QTimerEvent * e) { callbackQSlider_TimerEvent(this, e); };
 	void wheelEvent(QWheelEvent * e) { callbackQSlider_WheelEvent(this, e); };
 	void actionEvent(QActionEvent * event) { callbackQSlider_ActionEvent(this, event); };
 	void dragEnterEvent(QDragEnterEvent * event) { callbackQSlider_DragEnterEvent(this, event); };
@@ -76514,6 +76358,7 @@ public:
 	void tabletEvent(QTabletEvent * event) { callbackQSlider_TabletEvent(this, event); };
 	void update() { callbackQSlider_Update(this); };
 	void updateMicroFocus() { callbackQSlider_UpdateMicroFocus(this); };
+	void timerEvent(QTimerEvent * event) { callbackQSlider_TimerEvent(this, event); };
 	void childEvent(QChildEvent * event) { callbackQSlider_ChildEvent(this, event); };
 	void connectNotify(const QMetaMethod & sign) { callbackQSlider_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	void customEvent(QEvent * event) { callbackQSlider_CustomEvent(this, event); };
@@ -76556,11 +76401,6 @@ void* QSlider_NewQSlider2(long long orientation, void* parent)
 char QSlider_Event(void* ptr, void* event)
 {
 	return static_cast<QSlider*>(ptr)->event(static_cast<QEvent*>(event));
-}
-
-char QSlider_EventDefault(void* ptr, void* event)
-{
-	return static_cast<QSlider*>(ptr)->QSlider::event(static_cast<QEvent*>(event));
 }
 
 void QSlider_InitStyleOption(void* ptr, void* option)
@@ -76691,16 +76531,6 @@ void QSlider_SliderChange(void* ptr, long long change)
 void QSlider_SliderChangeDefault(void* ptr, long long change)
 {
 	static_cast<QSlider*>(ptr)->QSlider::sliderChange(static_cast<QAbstractSlider::SliderChange>(change));
-}
-
-void QSlider_TimerEvent(void* ptr, void* e)
-{
-	static_cast<QSlider*>(ptr)->timerEvent(static_cast<QTimerEvent*>(e));
-}
-
-void QSlider_TimerEventDefault(void* ptr, void* e)
-{
-	static_cast<QSlider*>(ptr)->QSlider::timerEvent(static_cast<QTimerEvent*>(e));
 }
 
 void QSlider_WheelEvent(void* ptr, void* e)
@@ -77175,6 +77005,16 @@ void QSlider_UpdateMicroFocusDefault(void* ptr)
 	static_cast<QSlider*>(ptr)->QSlider::updateMicroFocus();
 }
 
+void QSlider_TimerEvent(void* ptr, void* event)
+{
+	static_cast<QSlider*>(ptr)->timerEvent(static_cast<QTimerEvent*>(event));
+}
+
+void QSlider_TimerEventDefault(void* ptr, void* event)
+{
+	static_cast<QSlider*>(ptr)->QSlider::timerEvent(static_cast<QTimerEvent*>(event));
+}
+
 void QSlider_ChildEvent(void* ptr, void* event)
 {
 	static_cast<QSlider*>(ptr)->childEvent(static_cast<QChildEvent*>(event));
@@ -77462,7 +77302,6 @@ public:
 	MyQSpinBox(QWidget *parent) : QSpinBox(parent) {};
 	void setValue(int val) { callbackQSpinBox_SetValue(this, val); };
 	int valueFromText(const QString & text) const { QByteArray t372ea0 = text.toUtf8(); QtWidgets_PackedString textPacked = { const_cast<char*>(t372ea0.prepend("WHITESPACE").constData()+10), t372ea0.size()-10 };return callbackQSpinBox_ValueFromText(const_cast<MyQSpinBox*>(this), textPacked); };
-	bool event(QEvent * event) { return callbackQSpinBox_Event(this, event) != 0; };
 	void fixup(QString & input) const { QByteArray t140f86 = input.toUtf8(); QtWidgets_PackedString inputPacked = { const_cast<char*>(t140f86.prepend("WHITESPACE").constData()+10), t140f86.size()-10 };callbackQSpinBox_Fixup(const_cast<MyQSpinBox*>(this), inputPacked); };
 	QString textFromValue(int value) const { return QString(callbackQSpinBox_TextFromValue(const_cast<MyQSpinBox*>(this), value)); };
 	QValidator::State validate(QString & text, int & pos) const { QByteArray t372ea0 = text.toUtf8(); QtWidgets_PackedString textPacked = { const_cast<char*>(t372ea0.prepend("WHITESPACE").constData()+10), t372ea0.size()-10 };return static_cast<QValidator::State>(callbackQSpinBox_Validate(const_cast<MyQSpinBox*>(this), textPacked, pos)); };
@@ -77632,11 +77471,6 @@ void* QSpinBox_NewQSpinBox(void* parent)
 char QSpinBox_Event(void* ptr, void* event)
 {
 	return static_cast<QSpinBox*>(ptr)->event(static_cast<QEvent*>(event));
-}
-
-char QSpinBox_EventDefault(void* ptr, void* event)
-{
-	return static_cast<QSpinBox*>(ptr)->QSpinBox::event(static_cast<QEvent*>(event));
 }
 
 void QSpinBox_Fixup(void* ptr, char* input)
@@ -78428,7 +78262,6 @@ public:
 	MyQSplashScreen(const QPixmap &pixmap, Qt::WindowFlags f) : QSplashScreen(pixmap, f) {};
 	void clearMessage() { callbackQSplashScreen_ClearMessage(this); };
 	void drawContents(QPainter * painter) { callbackQSplashScreen_DrawContents(this, painter); };
-	bool event(QEvent * e) { return callbackQSplashScreen_Event(this, e) != 0; };
 	void Signal_MessageChanged(const QString & message) { QByteArray t6f9b9a = message.toUtf8(); QtWidgets_PackedString messagePacked = { const_cast<char*>(t6f9b9a.prepend("WHITESPACE").constData()+10), t6f9b9a.size()-10 };callbackQSplashScreen_MessageChanged(this, messagePacked); };
 	void mousePressEvent(QMouseEvent * vqm) { callbackQSplashScreen_MousePressEvent(this, vqm); };
 	void showMessage(const QString & message, int alignment, const QColor & color) { QByteArray t6f9b9a = message.toUtf8(); QtWidgets_PackedString messagePacked = { const_cast<char*>(t6f9b9a.prepend("WHITESPACE").constData()+10), t6f9b9a.size()-10 };callbackQSplashScreen_ShowMessage(this, messagePacked, alignment, const_cast<QColor*>(&color)); };
@@ -78524,11 +78357,6 @@ void QSplashScreen_DrawContentsDefault(void* ptr, void* painter)
 char QSplashScreen_Event(void* ptr, void* e)
 {
 	return static_cast<QSplashScreen*>(ptr)->event(static_cast<QEvent*>(e));
-}
-
-char QSplashScreen_EventDefault(void* ptr, void* e)
-{
-	return static_cast<QSplashScreen*>(ptr)->QSplashScreen::event(static_cast<QEvent*>(e));
 }
 
 void QSplashScreen_Finish(void* ptr, void* mainWin)
@@ -79234,9 +79062,7 @@ public:
 	MyQSplitter(QWidget *parent) : QSplitter(parent) {};
 	MyQSplitter(Qt::Orientation orientation, QWidget *parent) : QSplitter(orientation, parent) {};
 	void changeEvent(QEvent * ev) { callbackQSplitter_ChangeEvent(this, ev); };
-	void childEvent(QChildEvent * c) { callbackQSplitter_ChildEvent(this, c); };
 	QSplitterHandle * createHandle() { return static_cast<QSplitterHandle*>(callbackQSplitter_CreateHandle(this)); };
-	bool event(QEvent * e) { return callbackQSplitter_Event(this, e) != 0; };
 	QSize minimumSizeHint() const { return *static_cast<QSize*>(callbackQSplitter_MinimumSizeHint(const_cast<MyQSplitter*>(this))); };
 	void resizeEvent(QResizeEvent * vqr) { callbackQSplitter_ResizeEvent(this, vqr); };
 	QSize sizeHint() const { return *static_cast<QSize*>(callbackQSplitter_SizeHint(const_cast<MyQSplitter*>(this))); };
@@ -79376,11 +79202,6 @@ void QSplitter_ChildEvent(void* ptr, void* c)
 	static_cast<QSplitter*>(ptr)->childEvent(static_cast<QChildEvent*>(c));
 }
 
-void QSplitter_ChildEventDefault(void* ptr, void* c)
-{
-	static_cast<QSplitter*>(ptr)->QSplitter::childEvent(static_cast<QChildEvent*>(c));
-}
-
 int QSplitter_ClosestLegalPosition(void* ptr, int pos, int index)
 {
 	return static_cast<QSplitter*>(ptr)->closestLegalPosition(pos, index);
@@ -79404,11 +79225,6 @@ void* QSplitter_CreateHandleDefault(void* ptr)
 char QSplitter_Event(void* ptr, void* e)
 {
 	return static_cast<QSplitter*>(ptr)->event(static_cast<QEvent*>(e));
-}
-
-char QSplitter_EventDefault(void* ptr, void* e)
-{
-	return static_cast<QSplitter*>(ptr)->QSplitter::event(static_cast<QEvent*>(e));
 }
 
 void QSplitter_GetRange(void* ptr, int index, int min, int max)
@@ -81345,7 +81161,6 @@ public:
 	void setCurrentIndex(int index) { callbackQStackedWidget_SetCurrentIndex(this, index); };
 	void setCurrentWidget(QWidget * widget) { callbackQStackedWidget_SetCurrentWidget(this, widget); };
 	void Signal_CurrentChanged(int index) { callbackQStackedWidget_CurrentChanged(this, index); };
-	bool event(QEvent * e) { return callbackQStackedWidget_Event(this, e) != 0; };
 	void Signal_WidgetRemoved(int index) { callbackQStackedWidget_WidgetRemoved(this, index); };
 	void changeEvent(QEvent * ev) { callbackQStackedWidget_ChangeEvent(this, ev); };
 	void paintEvent(QPaintEvent * vqp) { callbackQStackedWidget_PaintEvent(this, vqp); };
@@ -81465,11 +81280,6 @@ void* QStackedWidget_CurrentWidget(void* ptr)
 char QStackedWidget_Event(void* ptr, void* e)
 {
 	return static_cast<QStackedWidget*>(ptr)->event(static_cast<QEvent*>(e));
-}
-
-char QStackedWidget_EventDefault(void* ptr, void* e)
-{
-	return static_cast<QStackedWidget*>(ptr)->QStackedWidget::event(static_cast<QEvent*>(e));
 }
 
 int QStackedWidget_IndexOf(void* ptr, void* widget)
@@ -90114,7 +89924,6 @@ public:
 	void showRow(int row) { callbackQTableView_ShowRow(this, row); };
 	int sizeHintForColumn(int column) const { return callbackQTableView_SizeHintForColumn(const_cast<MyQTableView*>(this), column); };
 	int sizeHintForRow(int row) const { return callbackQTableView_SizeHintForRow(const_cast<MyQTableView*>(this), row); };
-	void timerEvent(QTimerEvent * event) { callbackQTableView_TimerEvent(this, event); };
 	void updateGeometries() { callbackQTableView_UpdateGeometries(this); };
 	int verticalOffset() const { return callbackQTableView_VerticalOffset(const_cast<MyQTableView*>(this)); };
 	QStyleOptionViewItem viewOptions() const { return *static_cast<QStyleOptionViewItem*>(callbackQTableView_ViewOptions(const_cast<MyQTableView*>(this))); };
@@ -90130,7 +89939,6 @@ public:
 	void edit(const QModelIndex & index) { callbackQTableView_Edit(this, const_cast<QModelIndex*>(&index)); };
 	bool edit(const QModelIndex & index, QAbstractItemView::EditTrigger trigger, QEvent * event) { return callbackQTableView_Edit2(this, const_cast<QModelIndex*>(&index), trigger, event) != 0; };
 	void editorDestroyed(QObject * editor) { callbackQTableView_EditorDestroyed(this, editor); };
-	bool event(QEvent * event) { return callbackQTableView_Event(this, event) != 0; };
 	void focusInEvent(QFocusEvent * event) { callbackQTableView_FocusInEvent(this, event); };
 	bool focusNextPrevChild(bool next) { return callbackQTableView_FocusNextPrevChild(this, next) != 0; };
 	void focusOutEvent(QFocusEvent * event) { callbackQTableView_FocusOutEvent(this, event); };
@@ -90178,6 +89986,7 @@ public:
 	void showEvent(QShowEvent * event) { callbackQTableView_ShowEvent(this, event); };
 	bool close() { return callbackQTableView_Close(this) != 0; };
 	void closeEvent(QCloseEvent * event) { callbackQTableView_CloseEvent(this, event); };
+	bool event(QEvent * event) { return callbackQTableView_Event(this, event) != 0; };
 	bool hasHeightForWidth() const { return callbackQTableView_HasHeightForWidth(const_cast<MyQTableView*>(this)) != 0; };
 	int heightForWidth(int w) const { return callbackQTableView_HeightForWidth(const_cast<MyQTableView*>(this), w); };
 	void hide() { callbackQTableView_Hide(this); };
@@ -90580,11 +90389,6 @@ void QTableView_TimerEvent(void* ptr, void* event)
 	static_cast<QTableView*>(ptr)->timerEvent(static_cast<QTimerEvent*>(event));
 }
 
-void QTableView_TimerEventDefault(void* ptr, void* event)
-{
-	static_cast<QTableView*>(ptr)->QTableView::timerEvent(static_cast<QTimerEvent*>(event));
-}
-
 void QTableView_UpdateGeometries(void* ptr)
 {
 	static_cast<QTableView*>(ptr)->updateGeometries();
@@ -90758,16 +90562,6 @@ void QTableView_EditorDestroyedDefault(void* ptr, void* editor)
 	} else {
 		static_cast<QTableView*>(ptr)->QTableView::editorDestroyed(static_cast<QObject*>(editor));
 	}
-}
-
-char QTableView_Event(void* ptr, void* event)
-{
-	return static_cast<QTableView*>(ptr)->event(static_cast<QEvent*>(event));
-}
-
-char QTableView_EventDefault(void* ptr, void* event)
-{
-	return static_cast<QTableView*>(ptr)->QTableView::event(static_cast<QEvent*>(event));
 }
 
 void QTableView_FocusInEvent(void* ptr, void* event)
@@ -91242,6 +91036,16 @@ void QTableView_CloseEventDefault(void* ptr, void* event)
 	static_cast<QTableView*>(ptr)->QTableView::closeEvent(static_cast<QCloseEvent*>(event));
 }
 
+char QTableView_Event(void* ptr, void* event)
+{
+	return static_cast<QTableView*>(ptr)->event(static_cast<QEvent*>(event));
+}
+
+char QTableView_EventDefault(void* ptr, void* event)
+{
+	return static_cast<QTableView*>(ptr)->QTableView::event(static_cast<QEvent*>(event));
+}
+
 char QTableView_HasHeightForWidth(void* ptr)
 {
 	return static_cast<QTableView*>(ptr)->hasHeightForWidth();
@@ -91573,7 +91377,6 @@ public:
 	void showRow(int row) { callbackQTableWidget_ShowRow(this, row); };
 	int sizeHintForColumn(int column) const { return callbackQTableWidget_SizeHintForColumn(const_cast<MyQTableWidget*>(this), column); };
 	int sizeHintForRow(int row) const { return callbackQTableWidget_SizeHintForRow(const_cast<MyQTableWidget*>(this), row); };
-	void timerEvent(QTimerEvent * event) { callbackQTableWidget_TimerEvent(this, event); };
 	void updateGeometries() { callbackQTableWidget_UpdateGeometries(this); };
 	int verticalOffset() const { return callbackQTableWidget_VerticalOffset(const_cast<MyQTableWidget*>(this)); };
 	QStyleOptionViewItem viewOptions() const { return *static_cast<QStyleOptionViewItem*>(callbackQTableWidget_ViewOptions(const_cast<MyQTableWidget*>(this))); };
@@ -91653,6 +91456,7 @@ public:
 	void showNormal() { callbackQTableWidget_ShowNormal(this); };
 	void tabletEvent(QTabletEvent * event) { callbackQTableWidget_TabletEvent(this, event); };
 	void updateMicroFocus() { callbackQTableWidget_UpdateMicroFocus(this); };
+	void timerEvent(QTimerEvent * event) { callbackQTableWidget_TimerEvent(this, event); };
 	void childEvent(QChildEvent * event) { callbackQTableWidget_ChildEvent(this, event); };
 	void connectNotify(const QMetaMethod & sign) { callbackQTableWidget_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	void customEvent(QEvent * event) { callbackQTableWidget_CustomEvent(this, event); };
@@ -92527,16 +92331,6 @@ int QTableWidget_SizeHintForRowDefault(void* ptr, int row)
 	return static_cast<QTableWidget*>(ptr)->QTableWidget::sizeHintForRow(row);
 }
 
-void QTableWidget_TimerEvent(void* ptr, void* event)
-{
-	static_cast<QTableWidget*>(ptr)->timerEvent(static_cast<QTimerEvent*>(event));
-}
-
-void QTableWidget_TimerEventDefault(void* ptr, void* event)
-{
-	static_cast<QTableWidget*>(ptr)->QTableWidget::timerEvent(static_cast<QTimerEvent*>(event));
-}
-
 void QTableWidget_UpdateGeometries(void* ptr)
 {
 	static_cast<QTableWidget*>(ptr)->updateGeometries();
@@ -93337,6 +93131,16 @@ void QTableWidget_UpdateMicroFocus(void* ptr)
 void QTableWidget_UpdateMicroFocusDefault(void* ptr)
 {
 	static_cast<QTableWidget*>(ptr)->QTableWidget::updateMicroFocus();
+}
+
+void QTableWidget_TimerEvent(void* ptr, void* event)
+{
+	static_cast<QTableWidget*>(ptr)->timerEvent(static_cast<QTimerEvent*>(event));
+}
+
+void QTableWidget_TimerEventDefault(void* ptr, void* event)
+{
+	static_cast<QTableWidget*>(ptr)->QTableWidget::timerEvent(static_cast<QTimerEvent*>(event));
 }
 
 void QTableWidget_ChildEvent(void* ptr, void* event)
@@ -95405,7 +95209,6 @@ public:
 	void Signal_UndoAvailable(bool available) { callbackQTextEdit_UndoAvailable(this, available); };
 	void wheelEvent(QWheelEvent * e) { callbackQTextEdit_WheelEvent(this, e); };
 	 ~MyQTextEdit() { callbackQTextEdit_DestroyQTextEdit(this); };
-	bool event(QEvent * event) { return callbackQTextEdit_Event(this, event) != 0; };
 	bool viewportEvent(QEvent * event) { return callbackQTextEdit_ViewportEvent(this, event) != 0; };
 	QSize minimumSizeHint() const { return *static_cast<QSize*>(callbackQTextEdit_MinimumSizeHint(const_cast<MyQTextEdit*>(this))); };
 	void setupViewport(QWidget * viewport) { callbackQTextEdit_SetupViewport(this, viewport); };
@@ -95425,6 +95228,7 @@ public:
 	void setWindowTitle(const QString & vqs) { QByteArray tda39a3 = vqs.toUtf8(); QtWidgets_PackedString vqsPacked = { const_cast<char*>(tda39a3.prepend("WHITESPACE").constData()+10), tda39a3.size()-10 };callbackQTextEdit_SetWindowTitle(this, vqsPacked); };
 	bool close() { return callbackQTextEdit_Close(this) != 0; };
 	void closeEvent(QCloseEvent * event) { callbackQTextEdit_CloseEvent(this, event); };
+	bool event(QEvent * event) { return callbackQTextEdit_Event(this, event) != 0; };
 	bool hasHeightForWidth() const { return callbackQTextEdit_HasHeightForWidth(const_cast<MyQTextEdit*>(this)) != 0; };
 	int heightForWidth(int w) const { return callbackQTextEdit_HeightForWidth(const_cast<MyQTextEdit*>(this), w); };
 	void hide() { callbackQTextEdit_Hide(this); };
@@ -96255,16 +96059,6 @@ void QTextEdit_DestroyQTextEditDefault(void* ptr)
 
 }
 
-char QTextEdit_Event(void* ptr, void* event)
-{
-	return static_cast<QTextEdit*>(ptr)->event(static_cast<QEvent*>(event));
-}
-
-char QTextEdit_EventDefault(void* ptr, void* event)
-{
-	return static_cast<QTextEdit*>(ptr)->QTextEdit::event(static_cast<QEvent*>(event));
-}
-
 char QTextEdit_ViewportEvent(void* ptr, void* event)
 {
 	return static_cast<QTextEdit*>(ptr)->viewportEvent(static_cast<QEvent*>(event));
@@ -96455,6 +96249,16 @@ void QTextEdit_CloseEvent(void* ptr, void* event)
 void QTextEdit_CloseEventDefault(void* ptr, void* event)
 {
 	static_cast<QTextEdit*>(ptr)->QTextEdit::closeEvent(static_cast<QCloseEvent*>(event));
+}
+
+char QTextEdit_Event(void* ptr, void* event)
+{
+	return static_cast<QTextEdit*>(ptr)->event(static_cast<QEvent*>(event));
+}
+
+char QTextEdit_EventDefault(void* ptr, void* event)
+{
+	return static_cast<QTextEdit*>(ptr)->QTextEdit::event(static_cast<QEvent*>(event));
 }
 
 char QTextEdit_HasHeightForWidth(void* ptr)
@@ -97585,7 +97389,6 @@ public:
 	void Signal_ActionTriggered(QAction * action) { callbackQToolBar_ActionTriggered(this, action); };
 	void Signal_AllowedAreasChanged(Qt::ToolBarAreas allowedAreas) { callbackQToolBar_AllowedAreasChanged(this, allowedAreas); };
 	void changeEvent(QEvent * event) { callbackQToolBar_ChangeEvent(this, event); };
-	bool event(QEvent * event) { return callbackQToolBar_Event(this, event) != 0; };
 	void Signal_IconSizeChanged(const QSize & iconSize) { callbackQToolBar_IconSizeChanged(this, const_cast<QSize*>(&iconSize)); };
 	void Signal_MovableChanged(bool movable) { callbackQToolBar_MovableChanged(this, movable); };
 	void Signal_OrientationChanged(Qt::Orientation orientation) { callbackQToolBar_OrientationChanged(this, orientation); };
@@ -97848,11 +97651,6 @@ void QToolBar_Clear(void* ptr)
 char QToolBar_Event(void* ptr, void* event)
 {
 	return static_cast<QToolBar*>(ptr)->event(static_cast<QEvent*>(event));
-}
-
-char QToolBar_EventDefault(void* ptr, void* event)
-{
-	return static_cast<QToolBar*>(ptr)->QToolBar::event(static_cast<QEvent*>(event));
 }
 
 void QToolBar_ConnectIconSizeChanged(void* ptr)
@@ -99492,7 +99290,6 @@ public:
 	void actionEvent(QActionEvent * event) { callbackQToolButton_ActionEvent(this, event); };
 	void changeEvent(QEvent * e) { callbackQToolButton_ChangeEvent(this, e); };
 	void enterEvent(QEvent * e) { callbackQToolButton_EnterEvent(this, e); };
-	bool event(QEvent * event) { return callbackQToolButton_Event(this, event) != 0; };
 	bool hitButton(const QPoint & pos) const { return callbackQToolButton_HitButton(const_cast<MyQToolButton*>(this), const_cast<QPoint*>(&pos)) != 0; };
 	void leaveEvent(QEvent * e) { callbackQToolButton_LeaveEvent(this, e); };
 	QSize minimumSizeHint() const { return *static_cast<QSize*>(callbackQToolButton_MinimumSizeHint(const_cast<MyQToolButton*>(this))); };
@@ -99502,7 +99299,6 @@ public:
 	void setDefaultAction(QAction * action) { callbackQToolButton_SetDefaultAction(this, action); };
 	void showMenu() { callbackQToolButton_ShowMenu(this); };
 	QSize sizeHint() const { return *static_cast<QSize*>(callbackQToolButton_SizeHint(const_cast<MyQToolButton*>(this))); };
-	void timerEvent(QTimerEvent * e) { callbackQToolButton_TimerEvent(this, e); };
 	void Signal_Triggered(QAction * action) { callbackQToolButton_Triggered(this, action); };
 	void setChecked(bool vbo) { callbackQToolButton_SetChecked(this, vbo); };
 	void setIconSize(const QSize & size) { callbackQToolButton_SetIconSize(this, const_cast<QSize*>(&size)); };
@@ -99660,11 +99456,6 @@ char QToolButton_Event(void* ptr, void* event)
 	return static_cast<QToolButton*>(ptr)->event(static_cast<QEvent*>(event));
 }
 
-char QToolButton_EventDefault(void* ptr, void* event)
-{
-	return static_cast<QToolButton*>(ptr)->QToolButton::event(static_cast<QEvent*>(event));
-}
-
 char QToolButton_HitButton(void* ptr, void* pos)
 {
 	return static_cast<QToolButton*>(ptr)->hitButton(*static_cast<QPoint*>(pos));
@@ -99763,11 +99554,6 @@ void* QToolButton_SizeHintDefault(void* ptr)
 void QToolButton_TimerEvent(void* ptr, void* e)
 {
 	static_cast<QToolButton*>(ptr)->timerEvent(static_cast<QTimerEvent*>(e));
-}
-
-void QToolButton_TimerEventDefault(void* ptr, void* e)
-{
-	static_cast<QToolButton*>(ptr)->QToolButton::timerEvent(static_cast<QTimerEvent*>(e));
 }
 
 void QToolButton_ConnectTriggered(void* ptr)
@@ -100490,7 +100276,6 @@ public:
 	void scrollContentsBy(int dx, int dy) { callbackQTreeView_ScrollContentsBy(this, dx, dy); };
 	void scrollTo(const QModelIndex & index, QAbstractItemView::ScrollHint hint) { callbackQTreeView_ScrollTo(this, const_cast<QModelIndex*>(&index), hint); };
 	void selectAll() { callbackQTreeView_SelectAll(this); };
-	
 	void selectionChanged(const QItemSelection & selected, const QItemSelection & deselected) { callbackQTreeView_SelectionChanged(this, const_cast<QItemSelection*>(&selected), const_cast<QItemSelection*>(&deselected)); };
 	void setModel(QAbstractItemModel * model) { callbackQTreeView_SetModel(this, model); };
 	void setRootIndex(const QModelIndex & index) { callbackQTreeView_SetRootIndex(this, const_cast<QModelIndex*>(&index)); };
@@ -100513,7 +100298,6 @@ public:
 	void edit(const QModelIndex & index) { callbackQTreeView_Edit(this, const_cast<QModelIndex*>(&index)); };
 	bool edit(const QModelIndex & index, QAbstractItemView::EditTrigger trigger, QEvent * event) { return callbackQTreeView_Edit2(this, const_cast<QModelIndex*>(&index), trigger, event) != 0; };
 	void editorDestroyed(QObject * editor) { callbackQTreeView_EditorDestroyed(this, editor); };
-	bool event(QEvent * event) { return callbackQTreeView_Event(this, event) != 0; };
 	void focusInEvent(QFocusEvent * event) { callbackQTreeView_FocusInEvent(this, event); };
 	bool focusNextPrevChild(bool next) { return callbackQTreeView_FocusNextPrevChild(this, next) != 0; };
 	void focusOutEvent(QFocusEvent * event) { callbackQTreeView_FocusOutEvent(this, event); };
@@ -100549,6 +100333,7 @@ public:
 	void showEvent(QShowEvent * event) { callbackQTreeView_ShowEvent(this, event); };
 	bool close() { return callbackQTreeView_Close(this) != 0; };
 	void closeEvent(QCloseEvent * event) { callbackQTreeView_CloseEvent(this, event); };
+	bool event(QEvent * event) { return callbackQTreeView_Event(this, event) != 0; };
 	bool hasHeightForWidth() const { return callbackQTreeView_HasHeightForWidth(const_cast<MyQTreeView*>(this)) != 0; };
 	int heightForWidth(int w) const { return callbackQTreeView_HeightForWidth(const_cast<MyQTreeView*>(this), w); };
 	void hide() { callbackQTreeView_Hide(this); };
@@ -101061,11 +100846,6 @@ struct QtWidgets_PackedList QTreeView_SelectedIndexes(void* ptr)
 	return ({ QList<QModelIndex>* tmpValue = new QList<QModelIndex>(static_cast<QTreeView*>(ptr)->selectedIndexes()); QtWidgets_PackedList { tmpValue, tmpValue->size() }; });
 }
 
-struct QtWidgets_PackedList QTreeView_SelectedIndexesDefault(void* ptr)
-{
-	return ({ QList<QModelIndex>* tmpValue = new QList<QModelIndex>(static_cast<QTreeView*>(ptr)->QTreeView::selectedIndexes()); QtWidgets_PackedList { tmpValue, tmpValue->size() }; });
-}
-
 void QTreeView_SelectionChanged(void* ptr, void* selected, void* deselected)
 {
 	static_cast<QTreeView*>(ptr)->selectionChanged(*static_cast<QItemSelection*>(selected), *static_cast<QItemSelection*>(deselected));
@@ -101349,16 +101129,6 @@ void QTreeView_EditorDestroyedDefault(void* ptr, void* editor)
 	} else {
 		static_cast<QTreeView*>(ptr)->QTreeView::editorDestroyed(static_cast<QObject*>(editor));
 	}
-}
-
-char QTreeView_Event(void* ptr, void* event)
-{
-	return static_cast<QTreeView*>(ptr)->event(static_cast<QEvent*>(event));
-}
-
-char QTreeView_EventDefault(void* ptr, void* event)
-{
-	return static_cast<QTreeView*>(ptr)->QTreeView::event(static_cast<QEvent*>(event));
 }
 
 void QTreeView_FocusInEvent(void* ptr, void* event)
@@ -101713,6 +101483,16 @@ void QTreeView_CloseEventDefault(void* ptr, void* event)
 	static_cast<QTreeView*>(ptr)->QTreeView::closeEvent(static_cast<QCloseEvent*>(event));
 }
 
+char QTreeView_Event(void* ptr, void* event)
+{
+	return static_cast<QTreeView*>(ptr)->event(static_cast<QEvent*>(event));
+}
+
+char QTreeView_EventDefault(void* ptr, void* event)
+{
+	return static_cast<QTreeView*>(ptr)->QTreeView::event(static_cast<QEvent*>(event));
+}
+
 char QTreeView_HasHeightForWidth(void* ptr)
 {
 	return static_cast<QTreeView*>(ptr)->hasHeightForWidth();
@@ -101992,7 +101772,6 @@ public:
 	void Signal_CurrentItemChanged(QTreeWidgetItem * current, QTreeWidgetItem * previous) { callbackQTreeWidget_CurrentItemChanged(this, current, previous); };
 	void dropEvent(QDropEvent * event) { callbackQTreeWidget_DropEvent(this, event); };
 	bool dropMimeData(QTreeWidgetItem * parent, int index, const QMimeData * data, Qt::DropAction action) { return callbackQTreeWidget_DropMimeData(this, parent, index, const_cast<QMimeData*>(data), action) != 0; };
-	bool event(QEvent * e) { return callbackQTreeWidget_Event(this, e) != 0; };
 	void expandItem(const QTreeWidgetItem * item) { callbackQTreeWidget_ExpandItem(this, const_cast<QTreeWidgetItem*>(item)); };
 	void Signal_ItemActivated(QTreeWidgetItem * item, int column) { callbackQTreeWidget_ItemActivated(this, item, column); };
 	void Signal_ItemChanged(QTreeWidgetItem * item, int column) { callbackQTreeWidget_ItemChanged(this, item, column); };
@@ -102039,7 +101818,6 @@ public:
 	void scrollContentsBy(int dx, int dy) { callbackQTreeWidget_ScrollContentsBy(this, dx, dy); };
 	void scrollTo(const QModelIndex & index, QAbstractItemView::ScrollHint hint) { callbackQTreeWidget_ScrollTo(this, const_cast<QModelIndex*>(&index), hint); };
 	void selectAll() { callbackQTreeWidget_SelectAll(this); };
-	
 	void selectionChanged(const QItemSelection & selected, const QItemSelection & deselected) { callbackQTreeWidget_SelectionChanged(this, const_cast<QItemSelection*>(&selected), const_cast<QItemSelection*>(&deselected)); };
 	void setModel(QAbstractItemModel * model) { callbackQTreeWidget_SetModel(this, model); };
 	void setRootIndex(const QModelIndex & index) { callbackQTreeWidget_SetRootIndex(this, const_cast<QModelIndex*>(&index)); };
@@ -102072,7 +101850,6 @@ public:
 	void setCurrentIndex(const QModelIndex & index) { callbackQTreeWidget_SetCurrentIndex(this, const_cast<QModelIndex*>(&index)); };
 	int sizeHintForRow(int row) const { return callbackQTreeWidget_SizeHintForRow(const_cast<MyQTreeWidget*>(this), row); };
 	void startDrag(Qt::DropActions supportedActions) { callbackQTreeWidget_StartDrag(this, supportedActions); };
-	void timerEvent(QTimerEvent * event) { callbackQTreeWidget_TimerEvent(this, event); };
 	void update(const QModelIndex & index) { callbackQTreeWidget_Update(this, const_cast<QModelIndex*>(&index)); };
 	QStyleOptionViewItem viewOptions() const { return *static_cast<QStyleOptionViewItem*>(callbackQTreeWidget_ViewOptions(const_cast<MyQTreeWidget*>(this))); };
 	void contextMenuEvent(QContextMenuEvent * e) { callbackQTreeWidget_ContextMenuEvent(this, e); };
@@ -102114,6 +101891,7 @@ public:
 	void showNormal() { callbackQTreeWidget_ShowNormal(this); };
 	void tabletEvent(QTabletEvent * event) { callbackQTreeWidget_TabletEvent(this, event); };
 	void updateMicroFocus() { callbackQTreeWidget_UpdateMicroFocus(this); };
+	void timerEvent(QTimerEvent * event) { callbackQTreeWidget_TimerEvent(this, event); };
 	void childEvent(QChildEvent * event) { callbackQTreeWidget_ChildEvent(this, event); };
 	void connectNotify(const QMetaMethod & sign) { callbackQTreeWidget_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	void customEvent(QEvent * event) { callbackQTreeWidget_CustomEvent(this, event); };
@@ -102216,11 +101994,6 @@ void QTreeWidget_EditItem(void* ptr, void* item, int column)
 char QTreeWidget_Event(void* ptr, void* e)
 {
 	return static_cast<QTreeWidget*>(ptr)->event(static_cast<QEvent*>(e));
-}
-
-char QTreeWidget_EventDefault(void* ptr, void* e)
-{
-	return static_cast<QTreeWidget*>(ptr)->QTreeWidget::event(static_cast<QEvent*>(e));
 }
 
 void QTreeWidget_ExpandItem(void* ptr, void* item)
@@ -102883,16 +102656,6 @@ void QTreeWidget_SelectAllDefault(void* ptr)
 	static_cast<QTreeWidget*>(ptr)->QTreeWidget::selectAll();
 }
 
-struct QtWidgets_PackedList QTreeWidget_SelectedIndexes(void* ptr)
-{
-	return ({ QList<QModelIndex>* tmpValue = new QList<QModelIndex>(static_cast<QTreeWidget*>(ptr)->selectedIndexes()); QtWidgets_PackedList { tmpValue, tmpValue->size() }; });
-}
-
-struct QtWidgets_PackedList QTreeWidget_SelectedIndexesDefault(void* ptr)
-{
-	return ({ QList<QModelIndex>* tmpValue = new QList<QModelIndex>(static_cast<QTreeWidget*>(ptr)->QTreeWidget::selectedIndexes()); QtWidgets_PackedList { tmpValue, tmpValue->size() }; });
-}
-
 void QTreeWidget_SelectionChanged(void* ptr, void* selected, void* deselected)
 {
 	static_cast<QTreeWidget*>(ptr)->selectionChanged(*static_cast<QItemSelection*>(selected), *static_cast<QItemSelection*>(deselected));
@@ -103221,16 +102984,6 @@ void QTreeWidget_StartDrag(void* ptr, long long supportedActions)
 void QTreeWidget_StartDragDefault(void* ptr, long long supportedActions)
 {
 	static_cast<QTreeWidget*>(ptr)->QTreeWidget::startDrag(static_cast<Qt::DropAction>(supportedActions));
-}
-
-void QTreeWidget_TimerEvent(void* ptr, void* event)
-{
-	static_cast<QTreeWidget*>(ptr)->timerEvent(static_cast<QTimerEvent*>(event));
-}
-
-void QTreeWidget_TimerEventDefault(void* ptr, void* event)
-{
-	static_cast<QTreeWidget*>(ptr)->QTreeWidget::timerEvent(static_cast<QTimerEvent*>(event));
 }
 
 void QTreeWidget_Update(void* ptr, void* index)
@@ -103643,6 +103396,16 @@ void QTreeWidget_UpdateMicroFocus(void* ptr)
 void QTreeWidget_UpdateMicroFocusDefault(void* ptr)
 {
 	static_cast<QTreeWidget*>(ptr)->QTreeWidget::updateMicroFocus();
+}
+
+void QTreeWidget_TimerEvent(void* ptr, void* event)
+{
+	static_cast<QTreeWidget*>(ptr)->timerEvent(static_cast<QTimerEvent*>(event));
+}
+
+void QTreeWidget_TimerEventDefault(void* ptr, void* event)
+{
+	static_cast<QTreeWidget*>(ptr)->QTreeWidget::timerEvent(static_cast<QTimerEvent*>(event));
 }
 
 void QTreeWidget_ChildEvent(void* ptr, void* event)
@@ -104945,7 +104708,6 @@ public:
 	void dragLeaveEvent(QDragLeaveEvent * e) { callbackQUndoView_DragLeaveEvent(this, e); };
 	void dragMoveEvent(QDragMoveEvent * e) { callbackQUndoView_DragMoveEvent(this, e); };
 	void dropEvent(QDropEvent * e) { callbackQUndoView_DropEvent(this, e); };
-	bool event(QEvent * e) { return callbackQUndoView_Event(this, e) != 0; };
 	int horizontalOffset() const { return callbackQUndoView_HorizontalOffset(const_cast<MyQUndoView*>(this)); };
 	QModelIndex indexAt(const QPoint & p) const { return *static_cast<QModelIndex*>(callbackQUndoView_IndexAt(const_cast<MyQUndoView*>(this), const_cast<QPoint*>(&p))); };
 	bool isIndexHidden(const QModelIndex & index) const { return callbackQUndoView_IsIndexHidden(const_cast<MyQUndoView*>(this), const_cast<QModelIndex*>(&index)) != 0; };
@@ -104960,7 +104722,6 @@ public:
 	void selectionChanged(const QItemSelection & selected, const QItemSelection & deselected) { callbackQUndoView_SelectionChanged(this, const_cast<QItemSelection*>(&selected), const_cast<QItemSelection*>(&deselected)); };
 	void setSelection(const QRect & rect, QItemSelectionModel::SelectionFlags command) { callbackQUndoView_SetSelection(this, const_cast<QRect*>(&rect), command); };
 	void startDrag(Qt::DropActions supportedActions) { callbackQUndoView_StartDrag(this, supportedActions); };
-	void timerEvent(QTimerEvent * e) { callbackQUndoView_TimerEvent(this, e); };
 	void updateGeometries() { callbackQUndoView_UpdateGeometries(this); };
 	int verticalOffset() const { return callbackQUndoView_VerticalOffset(const_cast<MyQUndoView*>(this)); };
 	QStyleOptionViewItem viewOptions() const { return *static_cast<QStyleOptionViewItem*>(callbackQUndoView_ViewOptions(const_cast<MyQUndoView*>(this))); };
@@ -105018,6 +104779,7 @@ public:
 	void showEvent(QShowEvent * event) { callbackQUndoView_ShowEvent(this, event); };
 	bool close() { return callbackQUndoView_Close(this) != 0; };
 	void closeEvent(QCloseEvent * event) { callbackQUndoView_CloseEvent(this, event); };
+	bool event(QEvent * event) { return callbackQUndoView_Event(this, event) != 0; };
 	bool hasHeightForWidth() const { return callbackQUndoView_HasHeightForWidth(const_cast<MyQUndoView*>(this)) != 0; };
 	int heightForWidth(int w) const { return callbackQUndoView_HeightForWidth(const_cast<MyQUndoView*>(this), w); };
 	void hide() { callbackQUndoView_Hide(this); };
@@ -105036,6 +104798,7 @@ public:
 	void showNormal() { callbackQUndoView_ShowNormal(this); };
 	void tabletEvent(QTabletEvent * event) { callbackQUndoView_TabletEvent(this, event); };
 	void updateMicroFocus() { callbackQUndoView_UpdateMicroFocus(this); };
+	void timerEvent(QTimerEvent * event) { callbackQUndoView_TimerEvent(this, event); };
 	void childEvent(QChildEvent * event) { callbackQUndoView_ChildEvent(this, event); };
 	void connectNotify(const QMetaMethod & sign) { callbackQUndoView_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	void customEvent(QEvent * event) { callbackQUndoView_CustomEvent(this, event); };
@@ -105143,16 +104906,6 @@ void QUndoView_DropEvent(void* ptr, void* e)
 void QUndoView_DropEventDefault(void* ptr, void* e)
 {
 	static_cast<QUndoView*>(ptr)->QUndoView::dropEvent(static_cast<QDropEvent*>(e));
-}
-
-char QUndoView_Event(void* ptr, void* e)
-{
-	return static_cast<QUndoView*>(ptr)->event(static_cast<QEvent*>(e));
-}
-
-char QUndoView_EventDefault(void* ptr, void* e)
-{
-	return static_cast<QUndoView*>(ptr)->QUndoView::event(static_cast<QEvent*>(e));
 }
 
 int QUndoView_HorizontalOffset(void* ptr)
@@ -105293,16 +105046,6 @@ void QUndoView_StartDrag(void* ptr, long long supportedActions)
 void QUndoView_StartDragDefault(void* ptr, long long supportedActions)
 {
 	static_cast<QUndoView*>(ptr)->QUndoView::startDrag(static_cast<Qt::DropAction>(supportedActions));
-}
-
-void QUndoView_TimerEvent(void* ptr, void* e)
-{
-	static_cast<QUndoView*>(ptr)->timerEvent(static_cast<QTimerEvent*>(e));
-}
-
-void QUndoView_TimerEventDefault(void* ptr, void* e)
-{
-	static_cast<QUndoView*>(ptr)->QUndoView::timerEvent(static_cast<QTimerEvent*>(e));
 }
 
 void QUndoView_UpdateGeometries(void* ptr)
@@ -105887,6 +105630,16 @@ void QUndoView_CloseEventDefault(void* ptr, void* event)
 	static_cast<QUndoView*>(ptr)->QUndoView::closeEvent(static_cast<QCloseEvent*>(event));
 }
 
+char QUndoView_Event(void* ptr, void* event)
+{
+	return static_cast<QUndoView*>(ptr)->event(static_cast<QEvent*>(event));
+}
+
+char QUndoView_EventDefault(void* ptr, void* event)
+{
+	return static_cast<QUndoView*>(ptr)->QUndoView::event(static_cast<QEvent*>(event));
+}
+
 char QUndoView_HasHeightForWidth(void* ptr)
 {
 	return static_cast<QUndoView*>(ptr)->hasHeightForWidth();
@@ -106065,6 +105818,16 @@ void QUndoView_UpdateMicroFocus(void* ptr)
 void QUndoView_UpdateMicroFocusDefault(void* ptr)
 {
 	static_cast<QUndoView*>(ptr)->QUndoView::updateMicroFocus();
+}
+
+void QUndoView_TimerEvent(void* ptr, void* event)
+{
+	static_cast<QUndoView*>(ptr)->timerEvent(static_cast<QTimerEvent*>(event));
+}
+
+void QUndoView_TimerEventDefault(void* ptr, void* event)
+{
+	static_cast<QUndoView*>(ptr)->QUndoView::timerEvent(static_cast<QTimerEvent*>(event));
 }
 
 void QUndoView_ChildEvent(void* ptr, void* event)
@@ -108788,7 +108551,6 @@ public:
 	void Signal_CurrentIdChanged(int id) { callbackQWizard_CurrentIdChanged(this, id); };
 	void Signal_CustomButtonClicked(int which) { callbackQWizard_CustomButtonClicked(this, which); };
 	void done(int result) { callbackQWizard_Done(this, result); };
-	bool event(QEvent * event) { return callbackQWizard_Event(this, event) != 0; };
 	void Signal_HelpRequested() { callbackQWizard_HelpRequested(this); };
 	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQWizard_NativeEvent(this, const_cast<QByteArray*>(&eventType), message, *result) != 0; };
 	void next() { callbackQWizard_Next(this); };
@@ -109028,11 +108790,6 @@ void QWizard_DoneDefault(void* ptr, int result)
 char QWizard_Event(void* ptr, void* event)
 {
 	return static_cast<QWizard*>(ptr)->event(static_cast<QEvent*>(event));
-}
-
-char QWizard_EventDefault(void* ptr, void* event)
-{
-	return static_cast<QWizard*>(ptr)->QWizard::event(static_cast<QEvent*>(event));
 }
 
 void* QWizard_Field(void* ptr, char* name)

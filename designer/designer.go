@@ -69,7 +69,7 @@ func callbackQAbstractExtensionFactory_Extension(ptr unsafe.Pointer, object unsa
 		return core.PointerFromQObject(signal.(func(*core.QObject, string) *core.QObject)(core.NewQObjectFromPointer(object), cGoUnpackString(iid)))
 	}
 
-	return core.PointerFromQObject(nil)
+	return core.PointerFromQObject(core.NewQObject(nil))
 }
 
 func (ptr *QAbstractExtensionFactory) ConnectExtension(f func(object *core.QObject, iid string) *core.QObject) {
@@ -184,7 +184,7 @@ func callbackQAbstractExtensionManager_Extension(ptr unsafe.Pointer, object unsa
 		return core.PointerFromQObject(signal.(func(*core.QObject, string) *core.QObject)(core.NewQObjectFromPointer(object), cGoUnpackString(iid)))
 	}
 
-	return core.PointerFromQObject(nil)
+	return core.PointerFromQObject(core.NewQObject(nil))
 }
 
 func (ptr *QAbstractExtensionManager) ConnectExtension(f func(object *core.QObject, iid string) *core.QObject) {
@@ -3719,7 +3719,7 @@ func callbackQDesignerCustomWidgetInterface_Icon(ptr unsafe.Pointer) unsafe.Poin
 		return gui.PointerFromQIcon(signal.(func() *gui.QIcon)())
 	}
 
-	return gui.PointerFromQIcon(nil)
+	return gui.PointerFromQIcon(gui.NewQIcon())
 }
 
 func (ptr *QDesignerCustomWidgetInterface) ConnectIcon(f func() *gui.QIcon) {
@@ -5436,7 +5436,7 @@ func callbackQDesignerFormWindowInterface_AbsoluteDir(ptr unsafe.Pointer) unsafe
 		return core.PointerFromQDir(signal.(func() *core.QDir)())
 	}
 
-	return core.PointerFromQDir(nil)
+	return core.PointerFromQDir(core.NewQDir(nil))
 }
 
 func (ptr *QDesignerFormWindowInterface) ConnectAbsoluteDir(f func() *core.QDir) {
@@ -6072,7 +6072,7 @@ func callbackQDesignerFormWindowInterface_Grid(ptr unsafe.Pointer) unsafe.Pointe
 		return core.PointerFromQPoint(signal.(func() *core.QPoint)())
 	}
 
-	return core.PointerFromQPoint(nil)
+	return core.PointerFromQPoint(core.NewQPoint())
 }
 
 func (ptr *QDesignerFormWindowInterface) ConnectGrid(f func() *core.QPoint) {
@@ -9603,7 +9603,7 @@ func callbackQDesignerFormWindowManagerInterface_Action(ptr unsafe.Pointer, acti
 		return widgets.PointerFromQAction(signal.(func(QDesignerFormWindowManagerInterface__Action) *widgets.QAction)(QDesignerFormWindowManagerInterface__Action(action)))
 	}
 
-	return widgets.PointerFromQAction(nil)
+	return widgets.PointerFromQAction(widgets.NewQAction(nil))
 }
 
 func (ptr *QDesignerFormWindowManagerInterface) ConnectAction(f func(action QDesignerFormWindowManagerInterface__Action) *widgets.QAction) {
@@ -9638,7 +9638,7 @@ func callbackQDesignerFormWindowManagerInterface_ActionGroup(ptr unsafe.Pointer,
 		return widgets.PointerFromQActionGroup(signal.(func(QDesignerFormWindowManagerInterface__ActionGroup) *widgets.QActionGroup)(QDesignerFormWindowManagerInterface__ActionGroup(actionGroup)))
 	}
 
-	return widgets.PointerFromQActionGroup(nil)
+	return widgets.PointerFromQActionGroup(widgets.NewQActionGroup(nil))
 }
 
 func (ptr *QDesignerFormWindowManagerInterface) ConnectActionGroup(f func(actionGroup QDesignerFormWindowManagerInterface__ActionGroup) *widgets.QActionGroup) {
@@ -9793,7 +9793,7 @@ func callbackQDesignerFormWindowManagerInterface_Core(ptr unsafe.Pointer) unsafe
 		return PointerFromQDesignerFormEditorInterface(signal.(func() *QDesignerFormEditorInterface)())
 	}
 
-	return PointerFromQDesignerFormEditorInterface(nil)
+	return PointerFromQDesignerFormEditorInterface(NewQDesignerFormEditorInterface(nil))
 }
 
 func (ptr *QDesignerFormWindowManagerInterface) ConnectCore(f func() *QDesignerFormEditorInterface) {
@@ -9863,7 +9863,7 @@ func callbackQDesignerFormWindowManagerInterface_CreatePreviewPixmap(ptr unsafe.
 		return gui.PointerFromQPixmap(signal.(func() *gui.QPixmap)())
 	}
 
-	return gui.PointerFromQPixmap(nil)
+	return gui.PointerFromQPixmap(gui.NewQPixmap())
 }
 
 func (ptr *QDesignerFormWindowManagerInterface) ConnectCreatePreviewPixmap(f func() *gui.QPixmap) {
@@ -13703,7 +13703,7 @@ func callbackQDesignerPropertyEditorInterface_Object(ptr unsafe.Pointer) unsafe.
 		return core.PointerFromQObject(signal.(func() *core.QObject)())
 	}
 
-	return core.PointerFromQObject(nil)
+	return core.PointerFromQObject(core.NewQObject(nil))
 }
 
 func (ptr *QDesignerPropertyEditorInterface) ConnectObject(f func() *core.QObject) {
@@ -16492,7 +16492,7 @@ func callbackQDesignerPropertySheetExtension_Property(ptr unsafe.Pointer, index 
 		return core.PointerFromQVariant(signal.(func(int) *core.QVariant)(int(int32(index))))
 	}
 
-	return core.PointerFromQVariant(nil)
+	return core.PointerFromQVariant(core.NewQVariant())
 }
 
 func (ptr *QDesignerPropertySheetExtension) ConnectProperty(f func(index int) *core.QVariant) {

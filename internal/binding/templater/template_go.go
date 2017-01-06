@@ -260,10 +260,6 @@ ptr.SetPointer(nil)
 									}
 									fmt.Fprintf(bb, "%v\n\n", goFunction(&function))
 
-									if parser.State.Moc && function.Virtual == parser.PURE {
-										continue
-									}
-
 									function.Meta = parser.PLAIN
 									function.Default = true
 									fmt.Fprintf(bb, "%v\n\n", goFunction(&function))

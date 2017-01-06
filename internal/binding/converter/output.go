@@ -146,7 +146,6 @@ func goOutput(name, value string, f *parser.Function) string {
 				}
 				return fmt.Sprintf("%v.New%vFromPointer(%v)", m, strings.Title(value), name)
 			}
-
 			return fmt.Sprintf("New%vFromPointer(%v)", strings.Title(value), name)
 		}
 
@@ -160,6 +159,7 @@ func goOutput(name, value string, f *parser.Function) string {
 	return f.Access
 }
 
+func GoOutputFailed(value string, f *parser.Function) string { return goOutputFailed(value, f) }
 func goOutputFailed(value string, f *parser.Function) string {
 	var vOld = value
 

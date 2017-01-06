@@ -114,7 +114,7 @@ func callbackQQuickAsyncImageProvider_RequestImageResponse(ptr unsafe.Pointer, i
 		return PointerFromQQuickImageResponse(signal.(func(string, *core.QSize) *QQuickImageResponse)(cGoUnpackString(id), core.NewQSizeFromPointer(requestedSize)))
 	}
 
-	return PointerFromQQuickImageResponse(nil)
+	return PointerFromQQuickImageResponse(NewQQuickImageResponse())
 }
 
 func (ptr *QQuickAsyncImageProvider) ConnectRequestImageResponse(f func(id string, requestedSize *core.QSize) *QQuickImageResponse) {
@@ -2437,7 +2437,7 @@ func callbackQQuickImageResponse_TextureFactory(ptr unsafe.Pointer) unsafe.Point
 		return PointerFromQQuickTextureFactory(signal.(func() *QQuickTextureFactory)())
 	}
 
-	return PointerFromQQuickTextureFactory(nil)
+	return PointerFromQQuickTextureFactory(NewQQuickTextureFactory())
 }
 
 func (ptr *QQuickImageResponse) ConnectTextureFactory(f func() *QQuickTextureFactory) {
@@ -8491,7 +8491,7 @@ func callbackQQuickTextureFactory_CreateTexture(ptr unsafe.Pointer, window unsaf
 		return PointerFromQSGTexture(signal.(func(*QQuickWindow) *QSGTexture)(NewQQuickWindowFromPointer(window)))
 	}
 
-	return PointerFromQSGTexture(nil)
+	return PointerFromQSGTexture(NewQSGTexture())
 }
 
 func (ptr *QQuickTextureFactory) ConnectCreateTexture(f func(window *QQuickWindow) *QSGTexture) {
@@ -8573,7 +8573,7 @@ func callbackQQuickTextureFactory_TextureSize(ptr unsafe.Pointer) unsafe.Pointer
 		return core.PointerFromQSize(signal.(func() *core.QSize)())
 	}
 
-	return core.PointerFromQSize(nil)
+	return core.PointerFromQSize(core.NewQSize())
 }
 
 func (ptr *QQuickTextureFactory) ConnectTextureSize(f func() *core.QSize) {
@@ -17599,7 +17599,7 @@ func callbackQSGDynamicTexture_TextureSize(ptr unsafe.Pointer) unsafe.Pointer {
 		return core.PointerFromQSize(signal.(func() *core.QSize)())
 	}
 
-	return core.PointerFromQSize(nil)
+	return core.PointerFromQSize(core.NewQSize())
 }
 
 func (ptr *QSGDynamicTexture) ConnectTextureSize(f func() *core.QSize) {
@@ -21059,7 +21059,7 @@ func callbackQSGTexture_TextureSize(ptr unsafe.Pointer) unsafe.Pointer {
 		return core.PointerFromQSize(signal.(func() *core.QSize)())
 	}
 
-	return core.PointerFromQSize(nil)
+	return core.PointerFromQSize(core.NewQSize())
 }
 
 func (ptr *QSGTexture) ConnectTextureSize(f func() *core.QSize) {
@@ -21649,7 +21649,7 @@ func callbackQSGTextureProvider_Texture(ptr unsafe.Pointer) unsafe.Pointer {
 		return PointerFromQSGTexture(signal.(func() *QSGTexture)())
 	}
 
-	return PointerFromQSGTexture(nil)
+	return PointerFromQSGTexture(NewQSGTexture())
 }
 
 func (ptr *QSGTextureProvider) ConnectTexture(f func() *QSGTexture) {

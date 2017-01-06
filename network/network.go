@@ -198,7 +198,7 @@ func callbackQAbstractNetworkCache_MetaData(ptr unsafe.Pointer, url unsafe.Point
 		return PointerFromQNetworkCacheMetaData(signal.(func(*core.QUrl) *QNetworkCacheMetaData)(core.NewQUrlFromPointer(url)))
 	}
 
-	return PointerFromQNetworkCacheMetaData(nil)
+	return PointerFromQNetworkCacheMetaData(NewQNetworkCacheMetaData())
 }
 
 func (ptr *QAbstractNetworkCache) ConnectMetaData(f func(url *core.QUrl) *QNetworkCacheMetaData) {
@@ -15840,11 +15840,66 @@ func (ptr *QSslSocket) AddDefaultCaCertificates(path string, encoding QSsl__Enco
 	return C.QSslSocket_QSslSocket_AddDefaultCaCertificates(pathC, C.longlong(encoding), C.longlong(syntax)) != 0
 }
 
+//export callbackQSslSocket_AtEnd
+func callbackQSslSocket_AtEnd(ptr unsafe.Pointer) C.char {
+
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSslSocket::atEnd"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func() bool)())))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQSslSocketFromPointer(ptr).AtEndDefault())))
+}
+
+func (ptr *QSslSocket) ConnectAtEnd(f func() bool) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QSslSocket::atEnd", f)
+	}
+}
+
+func (ptr *QSslSocket) DisconnectAtEnd() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSslSocket::atEnd")
+	}
+}
+
 func (ptr *QSslSocket) AtEnd() bool {
 	if ptr.Pointer() != nil {
 		return C.QSslSocket_AtEnd(ptr.Pointer()) != 0
 	}
 	return false
+}
+
+func (ptr *QSslSocket) AtEndDefault() bool {
+	if ptr.Pointer() != nil {
+		return C.QSslSocket_AtEndDefault(ptr.Pointer()) != 0
+	}
+	return false
+}
+
+//export callbackQSslSocket_BytesAvailable
+func callbackQSslSocket_BytesAvailable(ptr unsafe.Pointer) C.longlong {
+
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSslSocket::bytesAvailable"); signal != nil {
+		return C.longlong(signal.(func() int64)())
+	}
+
+	return C.longlong(NewQSslSocketFromPointer(ptr).BytesAvailableDefault())
+}
+
+func (ptr *QSslSocket) ConnectBytesAvailable(f func() int64) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QSslSocket::bytesAvailable", f)
+	}
+}
+
+func (ptr *QSslSocket) DisconnectBytesAvailable() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSslSocket::bytesAvailable")
+	}
 }
 
 func (ptr *QSslSocket) BytesAvailable() int64 {
@@ -15854,11 +15909,73 @@ func (ptr *QSslSocket) BytesAvailable() int64 {
 	return 0
 }
 
+func (ptr *QSslSocket) BytesAvailableDefault() int64 {
+	if ptr.Pointer() != nil {
+		return int64(C.QSslSocket_BytesAvailableDefault(ptr.Pointer()))
+	}
+	return 0
+}
+
+//export callbackQSslSocket_BytesToWrite
+func callbackQSslSocket_BytesToWrite(ptr unsafe.Pointer) C.longlong {
+
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSslSocket::bytesToWrite"); signal != nil {
+		return C.longlong(signal.(func() int64)())
+	}
+
+	return C.longlong(NewQSslSocketFromPointer(ptr).BytesToWriteDefault())
+}
+
+func (ptr *QSslSocket) ConnectBytesToWrite(f func() int64) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QSslSocket::bytesToWrite", f)
+	}
+}
+
+func (ptr *QSslSocket) DisconnectBytesToWrite() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSslSocket::bytesToWrite")
+	}
+}
+
 func (ptr *QSslSocket) BytesToWrite() int64 {
 	if ptr.Pointer() != nil {
 		return int64(C.QSslSocket_BytesToWrite(ptr.Pointer()))
 	}
 	return 0
+}
+
+func (ptr *QSslSocket) BytesToWriteDefault() int64 {
+	if ptr.Pointer() != nil {
+		return int64(C.QSslSocket_BytesToWriteDefault(ptr.Pointer()))
+	}
+	return 0
+}
+
+//export callbackQSslSocket_CanReadLine
+func callbackQSslSocket_CanReadLine(ptr unsafe.Pointer) C.char {
+
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSslSocket::canReadLine"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func() bool)())))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQSslSocketFromPointer(ptr).CanReadLineDefault())))
+}
+
+func (ptr *QSslSocket) ConnectCanReadLine(f func() bool) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QSslSocket::canReadLine", f)
+	}
+}
+
+func (ptr *QSslSocket) DisconnectCanReadLine() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSslSocket::canReadLine")
+	}
 }
 
 func (ptr *QSslSocket) CanReadLine() bool {
@@ -15868,9 +15985,46 @@ func (ptr *QSslSocket) CanReadLine() bool {
 	return false
 }
 
+func (ptr *QSslSocket) CanReadLineDefault() bool {
+	if ptr.Pointer() != nil {
+		return C.QSslSocket_CanReadLineDefault(ptr.Pointer()) != 0
+	}
+	return false
+}
+
+//export callbackQSslSocket_Close
+func callbackQSslSocket_Close(ptr unsafe.Pointer) {
+
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSslSocket::close"); signal != nil {
+		signal.(func())()
+	} else {
+		NewQSslSocketFromPointer(ptr).CloseDefault()
+	}
+}
+
+func (ptr *QSslSocket) ConnectClose(f func()) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QSslSocket::close", f)
+	}
+}
+
+func (ptr *QSslSocket) DisconnectClose() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSslSocket::close")
+	}
+}
+
 func (ptr *QSslSocket) Close() {
 	if ptr.Pointer() != nil {
 		C.QSslSocket_Close(ptr.Pointer())
+	}
+}
+
+func (ptr *QSslSocket) CloseDefault() {
+	if ptr.Pointer() != nil {
+		C.QSslSocket_CloseDefault(ptr.Pointer())
 	}
 }
 
@@ -16532,9 +16686,40 @@ func (ptr *QSslSocket) SupportsSsl() bool {
 	return C.QSslSocket_QSslSocket_SupportsSsl() != 0
 }
 
+//export callbackQSslSocket_WaitForBytesWritten
+func callbackQSslSocket_WaitForBytesWritten(ptr unsafe.Pointer, msecs C.int) C.char {
+
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSslSocket::waitForBytesWritten"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(int) bool)(int(int32(msecs))))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQSslSocketFromPointer(ptr).WaitForBytesWrittenDefault(int(int32(msecs))))))
+}
+
+func (ptr *QSslSocket) ConnectWaitForBytesWritten(f func(msecs int) bool) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QSslSocket::waitForBytesWritten", f)
+	}
+}
+
+func (ptr *QSslSocket) DisconnectWaitForBytesWritten() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSslSocket::waitForBytesWritten")
+	}
+}
+
 func (ptr *QSslSocket) WaitForBytesWritten(msecs int) bool {
 	if ptr.Pointer() != nil {
 		return C.QSslSocket_WaitForBytesWritten(ptr.Pointer(), C.int(int32(msecs))) != 0
+	}
+	return false
+}
+
+func (ptr *QSslSocket) WaitForBytesWrittenDefault(msecs int) bool {
+	if ptr.Pointer() != nil {
+		return C.QSslSocket_WaitForBytesWrittenDefault(ptr.Pointer(), C.int(int32(msecs))) != 0
 	}
 	return false
 }
@@ -16622,6 +16807,30 @@ func (ptr *QSslSocket) WaitForEncrypted(msecs int) bool {
 	return false
 }
 
+//export callbackQSslSocket_WaitForReadyRead
+func callbackQSslSocket_WaitForReadyRead(ptr unsafe.Pointer, msecs C.int) C.char {
+
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSslSocket::waitForReadyRead"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(int) bool)(int(int32(msecs))))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQSslSocketFromPointer(ptr).WaitForReadyReadDefault(int(int32(msecs))))))
+}
+
+func (ptr *QSslSocket) ConnectWaitForReadyRead(f func(msecs int) bool) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QSslSocket::waitForReadyRead", f)
+	}
+}
+
+func (ptr *QSslSocket) DisconnectWaitForReadyRead() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSslSocket::waitForReadyRead")
+	}
+}
+
 func (ptr *QSslSocket) WaitForReadyRead(msecs int) bool {
 	if ptr.Pointer() != nil {
 		return C.QSslSocket_WaitForReadyRead(ptr.Pointer(), C.int(int32(msecs))) != 0
@@ -16629,11 +16838,51 @@ func (ptr *QSslSocket) WaitForReadyRead(msecs int) bool {
 	return false
 }
 
+func (ptr *QSslSocket) WaitForReadyReadDefault(msecs int) bool {
+	if ptr.Pointer() != nil {
+		return C.QSslSocket_WaitForReadyReadDefault(ptr.Pointer(), C.int(int32(msecs))) != 0
+	}
+	return false
+}
+
+//export callbackQSslSocket_WriteData
+func callbackQSslSocket_WriteData(ptr unsafe.Pointer, data C.struct_QtNetwork_PackedString, len C.longlong) C.longlong {
+
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSslSocket::writeData"); signal != nil {
+		return C.longlong(signal.(func(string, int64) int64)(cGoUnpackString(data), int64(len)))
+	}
+
+	return C.longlong(NewQSslSocketFromPointer(ptr).WriteDataDefault(cGoUnpackString(data), int64(len)))
+}
+
+func (ptr *QSslSocket) ConnectWriteData(f func(data string, len int64) int64) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QSslSocket::writeData", f)
+	}
+}
+
+func (ptr *QSslSocket) DisconnectWriteData() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSslSocket::writeData")
+	}
+}
+
 func (ptr *QSslSocket) WriteData(data string, len int64) int64 {
 	if ptr.Pointer() != nil {
 		var dataC = C.CString(data)
 		defer C.free(unsafe.Pointer(dataC))
 		return int64(C.QSslSocket_WriteData(ptr.Pointer(), dataC, C.longlong(len)))
+	}
+	return 0
+}
+
+func (ptr *QSslSocket) WriteDataDefault(data string, len int64) int64 {
+	if ptr.Pointer() != nil {
+		var dataC = C.CString(data)
+		defer C.free(unsafe.Pointer(dataC))
+		return int64(C.QSslSocket_WriteDataDefault(ptr.Pointer(), dataC, C.longlong(len)))
 	}
 	return 0
 }

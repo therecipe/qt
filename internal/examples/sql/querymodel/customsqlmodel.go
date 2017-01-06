@@ -8,22 +8,22 @@ import (
 	"github.com/therecipe/qt/sql"
 )
 
-//TODO: really subclass with qtmoc
+//go:generate qtmoc
 type CustomSqlModel struct {
-	model *sql.QSqlQueryModel
+	sql.QSqlQueryModel
 }
 
 func newCustomSqlModel(p *core.QObject) *CustomSqlModel {
-	var model = &CustomSqlModel{model: sql.NewQSqlQueryModel(p)}
+	var model = NewCustomSqlModel(p)
 
-	model.model.ConnectData(model.data)
+	model.ConnectData(model.data)
 
 	return model
 }
 
 func (m *CustomSqlModel) data(index *core.QModelIndex, role int) *core.QVariant {
 
-	var value = m.model.DataDefault(index, role)
+	var value = m.DataDefault(index, role)
 	if value.IsValid() && role == int(core.Qt__DisplayRole) {
 		if index.Column() == 0 {
 			return core.NewQVariant14("#" + value.ToString())

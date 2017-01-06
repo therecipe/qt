@@ -43,12 +43,12 @@ func main() {
 	)
 
 	initializeModel(plainModel.QSqlQueryModel_PTR())
-	initializeModel(editableModel.model.QSqlQueryModel_PTR())
-	initializeModel(customModel.model.QSqlQueryModel_PTR())
+	initializeModel(editableModel.QSqlQueryModel_PTR())
+	initializeModel(customModel.QSqlQueryModel_PTR())
 
 	createView(plainModel, "Plain Query Model")
-	createView(editableModel.model, "Editable Query Model")
-	createView(customModel.model, "Custom Query Model")
+	createView(editableModel, "Editable Query Model")
+	createView(customModel, "Custom Query Model")
 
 	widgets.QApplication_Exec()
 }

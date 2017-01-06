@@ -25,7 +25,7 @@ func Minimal(appPath, buildTarget string) {
 	)
 
 	var walkFuncImports = func(appPath string, info os.FileInfo, err error) error {
-		if err == nil && !strings.HasPrefix(info.Name(), "moc") && !strings.HasPrefix(info.Name(), "rcc") && strings.HasSuffix(info.Name(), ".go") && !info.IsDir() && !isBlacklisted(appPath, filepath.Dir(filepath.Join(appPath, info.Name()))) {
+		if err == nil && strings.HasSuffix(info.Name(), ".go") && !info.IsDir() && !isBlacklisted(appPath, filepath.Dir(filepath.Join(appPath, info.Name()))) {
 			var pFile, errParse = goparser.ParseFile(token.NewFileSet(), appPath, nil, 0)
 			if errParse != nil {
 				utils.Log.WithError(errParse).Panicf("failed to parser file %v", appPath)

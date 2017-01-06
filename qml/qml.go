@@ -981,7 +981,7 @@ func callbackQQmlAbstractUrlInterceptor_Intercept(ptr unsafe.Pointer, url unsafe
 		return core.PointerFromQUrl(signal.(func(*core.QUrl, QQmlAbstractUrlInterceptor__DataType) *core.QUrl)(core.NewQUrlFromPointer(url), QQmlAbstractUrlInterceptor__DataType(ty)))
 	}
 
-	return core.PointerFromQUrl(nil)
+	return core.PointerFromQUrl(core.NewQUrl())
 }
 
 func (ptr *QQmlAbstractUrlInterceptor) ConnectIntercept(f func(url *core.QUrl, ty QQmlAbstractUrlInterceptor__DataType) *core.QUrl) {
@@ -5965,7 +5965,7 @@ func callbackQQmlNetworkAccessManagerFactory_Create(ptr unsafe.Pointer, parent u
 		return network.PointerFromQNetworkAccessManager(signal.(func(*core.QObject) *network.QNetworkAccessManager)(core.NewQObjectFromPointer(parent)))
 	}
 
-	return network.PointerFromQNetworkAccessManager(nil)
+	return network.PointerFromQNetworkAccessManager(network.NewQNetworkAccessManager(nil))
 }
 
 func (ptr *QQmlNetworkAccessManagerFactory) ConnectCreate(f func(parent *core.QObject) *network.QNetworkAccessManager) {

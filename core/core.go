@@ -2255,7 +2255,7 @@ func callbackQAbstractItemModel_Data(ptr unsafe.Pointer, index unsafe.Pointer, r
 		return PointerFromQVariant(signal.(func(*QModelIndex, int) *QVariant)(NewQModelIndexFromPointer(index), int(int32(role))))
 	}
 
-	return PointerFromQVariant(nil)
+	return PointerFromQVariant(NewQVariant())
 }
 
 func (ptr *QAbstractItemModel) ConnectData(f func(index *QModelIndex, role int) *QVariant) {
@@ -2558,7 +2558,7 @@ func callbackQAbstractItemModel_Index(ptr unsafe.Pointer, row C.int, column C.in
 		return PointerFromQModelIndex(signal.(func(int, int, *QModelIndex) *QModelIndex)(int(int32(row)), int(int32(column)), NewQModelIndexFromPointer(parent)))
 	}
 
-	return PointerFromQModelIndex(nil)
+	return PointerFromQModelIndex(NewQModelIndex())
 }
 
 func (ptr *QAbstractItemModel) ConnectIndex(f func(row int, column int, parent *QModelIndex) *QModelIndex) {
@@ -2875,7 +2875,7 @@ func callbackQAbstractItemModel_Parent(ptr unsafe.Pointer, index unsafe.Pointer)
 		return PointerFromQModelIndex(signal.(func(*QModelIndex) *QModelIndex)(NewQModelIndexFromPointer(index)))
 	}
 
-	return PointerFromQModelIndex(nil)
+	return PointerFromQModelIndex(NewQModelIndex())
 }
 
 func (ptr *QAbstractItemModel) ConnectParent(f func(index *QModelIndex) *QModelIndex) {
@@ -4272,7 +4272,7 @@ func callbackQAbstractListModel_Data(ptr unsafe.Pointer, index unsafe.Pointer, r
 		return PointerFromQVariant(signal.(func(*QModelIndex, int) *QVariant)(NewQModelIndexFromPointer(index), int(int32(role))))
 	}
 
-	return PointerFromQVariant(nil)
+	return PointerFromQVariant(NewQVariant())
 }
 
 func (ptr *QAbstractListModel) ConnectData(f func(index *QModelIndex, role int) *QVariant) {
@@ -5947,7 +5947,7 @@ func callbackQAbstractProxyModel_MapFromSource(ptr unsafe.Pointer, sourceIndex u
 		return PointerFromQModelIndex(signal.(func(*QModelIndex) *QModelIndex)(NewQModelIndexFromPointer(sourceIndex)))
 	}
 
-	return PointerFromQModelIndex(nil)
+	return PointerFromQModelIndex(NewQModelIndex())
 }
 
 func (ptr *QAbstractProxyModel) ConnectMapFromSource(f func(sourceIndex *QModelIndex) *QModelIndex) {
@@ -6064,7 +6064,7 @@ func callbackQAbstractProxyModel_MapToSource(ptr unsafe.Pointer, proxyIndex unsa
 		return PointerFromQModelIndex(signal.(func(*QModelIndex) *QModelIndex)(NewQModelIndexFromPointer(proxyIndex)))
 	}
 
-	return PointerFromQModelIndex(nil)
+	return PointerFromQModelIndex(NewQModelIndex())
 }
 
 func (ptr *QAbstractProxyModel) ConnectMapToSource(f func(proxyIndex *QModelIndex) *QModelIndex) {
@@ -6625,7 +6625,7 @@ func callbackQAbstractProxyModel_Index(ptr unsafe.Pointer, row C.int, column C.i
 		return PointerFromQModelIndex(signal.(func(int, int, *QModelIndex) *QModelIndex)(int(int32(row)), int(int32(column)), NewQModelIndexFromPointer(parent)))
 	}
 
-	return PointerFromQModelIndex(nil)
+	return PointerFromQModelIndex(NewQModelIndex())
 }
 
 func (ptr *QAbstractProxyModel) ConnectIndex(f func(row int, column int, parent *QModelIndex) *QModelIndex) {
@@ -6810,7 +6810,7 @@ func callbackQAbstractProxyModel_Parent(ptr unsafe.Pointer, index unsafe.Pointer
 		return PointerFromQModelIndex(signal.(func(*QModelIndex) *QModelIndex)(NewQModelIndexFromPointer(index)))
 	}
 
-	return PointerFromQModelIndex(nil)
+	return PointerFromQModelIndex(NewQModelIndex())
 }
 
 func (ptr *QAbstractProxyModel) ConnectParent(f func(index *QModelIndex) *QModelIndex) {
@@ -8196,7 +8196,7 @@ func callbackQAbstractTableModel_Data(ptr unsafe.Pointer, index unsafe.Pointer, 
 		return PointerFromQVariant(signal.(func(*QModelIndex, int) *QVariant)(NewQModelIndexFromPointer(index), int(int32(role))))
 	}
 
-	return PointerFromQVariant(nil)
+	return PointerFromQVariant(NewQVariant())
 }
 
 func (ptr *QAbstractTableModel) ConnectData(f func(index *QModelIndex, role int) *QVariant) {
@@ -52022,6 +52022,20 @@ func (ptr *QSortFilterProxyModel) MapToSourceDefault(proxyIndex QModelIndex_ITF)
 	return nil
 }
 
+func (ptr *QSortFilterProxyModel) ConnectMatch(f func(start *QModelIndex, role int, value *QVariant, hits int, flags Qt__MatchFlag) []*QModelIndex) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QSortFilterProxyModel::match", f)
+	}
+}
+
+func (ptr *QSortFilterProxyModel) DisconnectMatch() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSortFilterProxyModel::match")
+	}
+}
+
 func (ptr *QSortFilterProxyModel) Match(start QModelIndex_ITF, role int, value QVariant_ITF, hits int, flags Qt__MatchFlag) []*QModelIndex {
 	if ptr.Pointer() != nil {
 		return func(l C.struct_QtCore_PackedList) []*QModelIndex {
@@ -52031,6 +52045,19 @@ func (ptr *QSortFilterProxyModel) Match(start QModelIndex_ITF, role int, value Q
 			}
 			return out
 		}(C.QSortFilterProxyModel_Match(ptr.Pointer(), PointerFromQModelIndex(start), C.int(int32(role)), PointerFromQVariant(value), C.int(int32(hits)), C.longlong(flags)))
+	}
+	return nil
+}
+
+func (ptr *QSortFilterProxyModel) MatchDefault(start QModelIndex_ITF, role int, value QVariant_ITF, hits int, flags Qt__MatchFlag) []*QModelIndex {
+	if ptr.Pointer() != nil {
+		return func(l C.struct_QtCore_PackedList) []*QModelIndex {
+			var out = make([]*QModelIndex, int(l.len))
+			for i := 0; i < int(l.len); i++ {
+				out[i] = NewQSortFilterProxyModelFromPointer(l.data).match_atList(i)
+			}
+			return out
+		}(C.QSortFilterProxyModel_MatchDefault(ptr.Pointer(), PointerFromQModelIndex(start), C.int(int32(role)), PointerFromQVariant(value), C.int(int32(hits)), C.longlong(flags)))
 	}
 	return nil
 }
@@ -59676,7 +59703,7 @@ func callbackQTextCodec_Name(ptr unsafe.Pointer) unsafe.Pointer {
 		return PointerFromQByteArray(signal.(func() *QByteArray)())
 	}
 
-	return PointerFromQByteArray(nil)
+	return PointerFromQByteArray(NewQByteArray())
 }
 
 func (ptr *QTextCodec) ConnectName(f func() *QByteArray) {

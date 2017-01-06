@@ -264,7 +264,7 @@ func callbackQAbstractTextDocumentLayout_BlockBoundingRect(ptr unsafe.Pointer, b
 		return core.PointerFromQRectF(signal.(func(*QTextBlock) *core.QRectF)(NewQTextBlockFromPointer(block)))
 	}
 
-	return core.PointerFromQRectF(nil)
+	return core.PointerFromQRectF(core.NewQRectF())
 }
 
 func (ptr *QAbstractTextDocumentLayout) ConnectBlockBoundingRect(f func(block *QTextBlock) *core.QRectF) {
@@ -337,7 +337,7 @@ func callbackQAbstractTextDocumentLayout_DocumentSize(ptr unsafe.Pointer) unsafe
 		return core.PointerFromQSizeF(signal.(func() *core.QSizeF)())
 	}
 
-	return core.PointerFromQSizeF(nil)
+	return core.PointerFromQSizeF(core.NewQSizeF())
 }
 
 func (ptr *QAbstractTextDocumentLayout) ConnectDocumentSize(f func() *core.QSizeF) {
@@ -428,7 +428,7 @@ func callbackQAbstractTextDocumentLayout_FrameBoundingRect(ptr unsafe.Pointer, f
 		return core.PointerFromQRectF(signal.(func(*QTextFrame) *core.QRectF)(NewQTextFrameFromPointer(frame)))
 	}
 
-	return core.PointerFromQRectF(nil)
+	return core.PointerFromQRectF(core.NewQRectF())
 }
 
 func (ptr *QAbstractTextDocumentLayout) ConnectFrameBoundingRect(f func(frame *QTextFrame) *core.QRectF) {
@@ -2398,7 +2398,7 @@ func callbackQAccessibleInterface_Object(ptr unsafe.Pointer) unsafe.Pointer {
 		return core.PointerFromQObject(signal.(func() *core.QObject)())
 	}
 
-	return core.PointerFromQObject(nil)
+	return core.PointerFromQObject(core.NewQObject(nil))
 }
 
 func (ptr *QAccessibleInterface) ConnectObject(f func() *core.QObject) {
@@ -2464,7 +2464,7 @@ func callbackQAccessibleInterface_Rect(ptr unsafe.Pointer) unsafe.Pointer {
 		return core.PointerFromQRect(signal.(func() *core.QRect)())
 	}
 
-	return core.PointerFromQRect(nil)
+	return core.PointerFromQRect(core.NewQRect())
 }
 
 func (ptr *QAccessibleInterface) ConnectRect(f func() *core.QRect) {
@@ -5476,7 +5476,7 @@ func callbackQAccessibleTextInterface_CharacterRect(ptr unsafe.Pointer, offset C
 		return core.PointerFromQRect(signal.(func(int) *core.QRect)(int(int32(offset))))
 	}
 
-	return core.PointerFromQRect(nil)
+	return core.PointerFromQRect(core.NewQRect())
 }
 
 func (ptr *QAccessibleTextInterface) ConnectCharacterRect(f func(offset int) *core.QRect) {
@@ -6540,7 +6540,7 @@ func callbackQAccessibleValueInterface_CurrentValue(ptr unsafe.Pointer) unsafe.P
 		return core.PointerFromQVariant(signal.(func() *core.QVariant)())
 	}
 
-	return core.PointerFromQVariant(nil)
+	return core.PointerFromQVariant(core.NewQVariant())
 }
 
 func (ptr *QAccessibleValueInterface) ConnectCurrentValue(f func() *core.QVariant) {
@@ -6573,7 +6573,7 @@ func callbackQAccessibleValueInterface_MaximumValue(ptr unsafe.Pointer) unsafe.P
 		return core.PointerFromQVariant(signal.(func() *core.QVariant)())
 	}
 
-	return core.PointerFromQVariant(nil)
+	return core.PointerFromQVariant(core.NewQVariant())
 }
 
 func (ptr *QAccessibleValueInterface) ConnectMaximumValue(f func() *core.QVariant) {
@@ -6606,7 +6606,7 @@ func callbackQAccessibleValueInterface_MinimumStepSize(ptr unsafe.Pointer) unsaf
 		return core.PointerFromQVariant(signal.(func() *core.QVariant)())
 	}
 
-	return core.PointerFromQVariant(nil)
+	return core.PointerFromQVariant(core.NewQVariant())
 }
 
 func (ptr *QAccessibleValueInterface) ConnectMinimumStepSize(f func() *core.QVariant) {
@@ -6639,7 +6639,7 @@ func callbackQAccessibleValueInterface_MinimumValue(ptr unsafe.Pointer) unsafe.P
 		return core.PointerFromQVariant(signal.(func() *core.QVariant)())
 	}
 
-	return core.PointerFromQVariant(nil)
+	return core.PointerFromQVariant(core.NewQVariant())
 }
 
 func (ptr *QAccessibleValueInterface) ConnectMinimumValue(f func() *core.QVariant) {
@@ -12924,7 +12924,7 @@ func callbackQGenericPlugin_Create(ptr unsafe.Pointer, key C.struct_QtGui_Packed
 		return core.PointerFromQObject(signal.(func(string, string) *core.QObject)(cGoUnpackString(key), cGoUnpackString(specification)))
 	}
 
-	return core.PointerFromQObject(nil)
+	return core.PointerFromQObject(core.NewQObject(nil))
 }
 
 func (ptr *QGenericPlugin) ConnectCreate(f func(key string, specification string) *core.QObject) {
@@ -15758,7 +15758,7 @@ func callbackQIconEngine_Clone(ptr unsafe.Pointer) unsafe.Pointer {
 		return PointerFromQIconEngine(signal.(func() *QIconEngine)())
 	}
 
-	return PointerFromQIconEngine(nil)
+	return PointerFromQIconEngine(NewQIconEngine())
 }
 
 func (ptr *QIconEngine) ConnectClone(f func() *QIconEngine) {
@@ -16150,7 +16150,7 @@ func callbackQIconEnginePlugin_Create(ptr unsafe.Pointer, filename C.struct_QtGu
 		return PointerFromQIconEngine(signal.(func(string) *QIconEngine)(cGoUnpackString(filename)))
 	}
 
-	return PointerFromQIconEngine(nil)
+	return PointerFromQIconEngine(NewQIconEngine())
 }
 
 func (ptr *QIconEnginePlugin) ConnectCreate(f func(filename string) *QIconEngine) {
@@ -18060,7 +18060,7 @@ func callbackQImageIOPlugin_Create(ptr unsafe.Pointer, device unsafe.Pointer, fo
 		return PointerFromQImageIOHandler(signal.(func(*core.QIODevice, *core.QByteArray) *QImageIOHandler)(core.NewQIODeviceFromPointer(device), core.NewQByteArrayFromPointer(format)))
 	}
 
-	return PointerFromQImageIOHandler(nil)
+	return PointerFromQImageIOHandler(NewQImageIOHandler())
 }
 
 func (ptr *QImageIOPlugin) ConnectCreate(f func(device *core.QIODevice, format *core.QByteArray) *QImageIOHandler) {
@@ -27568,7 +27568,7 @@ func callbackQPagedPaintDevice_PaintEngine(ptr unsafe.Pointer) unsafe.Pointer {
 		return PointerFromQPaintEngine(signal.(func() *QPaintEngine)())
 	}
 
-	return PointerFromQPaintEngine(nil)
+	return PointerFromQPaintEngine(NewQPaintEngine(0))
 }
 
 func (ptr *QPagedPaintDevice) ConnectPaintEngine(f func() *QPaintEngine) {
@@ -27793,7 +27793,7 @@ func callbackQPaintDevice_PaintEngine(ptr unsafe.Pointer) unsafe.Pointer {
 		return PointerFromQPaintEngine(signal.(func() *QPaintEngine)())
 	}
 
-	return PointerFromQPaintEngine(nil)
+	return PointerFromQPaintEngine(NewQPaintEngine(0))
 }
 
 func (ptr *QPaintDevice) ConnectPaintEngine(f func() *QPaintEngine) {
@@ -46147,7 +46147,7 @@ func callbackQSurface_Format(ptr unsafe.Pointer) unsafe.Pointer {
 		return PointerFromQSurfaceFormat(signal.(func() *QSurfaceFormat)())
 	}
 
-	return PointerFromQSurfaceFormat(nil)
+	return PointerFromQSurfaceFormat(NewQSurfaceFormat())
 }
 
 func (ptr *QSurface) ConnectFormat(f func() *QSurfaceFormat) {
@@ -46180,7 +46180,7 @@ func callbackQSurface_Size(ptr unsafe.Pointer) unsafe.Pointer {
 		return core.PointerFromQSize(signal.(func() *core.QSize)())
 	}
 
-	return core.PointerFromQSize(nil)
+	return core.PointerFromQSize(core.NewQSize())
 }
 
 func (ptr *QSurface) ConnectSize(f func() *core.QSize) {
@@ -55082,7 +55082,7 @@ func callbackQTextObjectInterface_IntrinsicSize(ptr unsafe.Pointer, doc unsafe.P
 		return core.PointerFromQSizeF(signal.(func(*QTextDocument, int, *QTextFormat) *core.QSizeF)(NewQTextDocumentFromPointer(doc), int(int32(posInDocument)), NewQTextFormatFromPointer(format)))
 	}
 
-	return core.PointerFromQSizeF(nil)
+	return core.PointerFromQSizeF(core.NewQSizeF())
 }
 
 func (ptr *QTextObjectInterface) ConnectIntrinsicSize(f func(doc *QTextDocument, posInDocument int, format *QTextFormat) *core.QSizeF) {

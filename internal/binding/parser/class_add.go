@@ -69,7 +69,7 @@ func (c *Class) addVarAndPropFuncs() {
 }
 
 func (c *Class) addMocFuncs() {
-	if !State.Moc {
+	if c.Module != MOC {
 		return
 	}
 

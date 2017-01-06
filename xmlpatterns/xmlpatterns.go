@@ -488,7 +488,7 @@ func callbackQAbstractUriResolver_Resolve(ptr unsafe.Pointer, relative unsafe.Po
 		return core.PointerFromQUrl(signal.(func(*core.QUrl, *core.QUrl) *core.QUrl)(core.NewQUrlFromPointer(relative), core.NewQUrlFromPointer(baseURI)))
 	}
 
-	return core.PointerFromQUrl(nil)
+	return core.PointerFromQUrl(core.NewQUrl())
 }
 
 func (ptr *QAbstractUriResolver) ConnectResolve(f func(relative *core.QUrl, baseURI *core.QUrl) *core.QUrl) {
@@ -971,7 +971,7 @@ func callbackQAbstractXmlNodeModel_BaseUri(ptr unsafe.Pointer, n unsafe.Pointer)
 		return core.PointerFromQUrl(signal.(func(*QXmlNodeModelIndex) *core.QUrl)(NewQXmlNodeModelIndexFromPointer(n)))
 	}
 
-	return core.PointerFromQUrl(nil)
+	return core.PointerFromQUrl(core.NewQUrl())
 }
 
 func (ptr *QAbstractXmlNodeModel) ConnectBaseUri(f func(n *QXmlNodeModelIndex) *core.QUrl) {
@@ -1062,7 +1062,7 @@ func callbackQAbstractXmlNodeModel_DocumentUri(ptr unsafe.Pointer, n unsafe.Poin
 		return core.PointerFromQUrl(signal.(func(*QXmlNodeModelIndex) *core.QUrl)(NewQXmlNodeModelIndexFromPointer(n)))
 	}
 
-	return core.PointerFromQUrl(nil)
+	return core.PointerFromQUrl(core.NewQUrl())
 }
 
 func (ptr *QAbstractXmlNodeModel) ConnectDocumentUri(f func(n *QXmlNodeModelIndex) *core.QUrl) {
@@ -1095,7 +1095,7 @@ func callbackQAbstractXmlNodeModel_ElementById(ptr unsafe.Pointer, id unsafe.Poi
 		return PointerFromQXmlNodeModelIndex(signal.(func(*QXmlName) *QXmlNodeModelIndex)(NewQXmlNameFromPointer(id)))
 	}
 
-	return PointerFromQXmlNodeModelIndex(nil)
+	return PointerFromQXmlNodeModelIndex(NewQXmlNodeModelIndex())
 }
 
 func (ptr *QAbstractXmlNodeModel) ConnectElementById(f func(id *QXmlName) *QXmlNodeModelIndex) {
@@ -1186,7 +1186,7 @@ func callbackQAbstractXmlNodeModel_Name(ptr unsafe.Pointer, ni unsafe.Pointer) u
 		return PointerFromQXmlName(signal.(func(*QXmlNodeModelIndex) *QXmlName)(NewQXmlNodeModelIndexFromPointer(ni)))
 	}
 
-	return PointerFromQXmlName(nil)
+	return PointerFromQXmlName(NewQXmlName())
 }
 
 func (ptr *QAbstractXmlNodeModel) ConnectName(f func(ni *QXmlNodeModelIndex) *QXmlName) {
@@ -1219,7 +1219,7 @@ func callbackQAbstractXmlNodeModel_NextFromSimpleAxis(ptr unsafe.Pointer, axis C
 		return PointerFromQXmlNodeModelIndex(signal.(func(QAbstractXmlNodeModel__SimpleAxis, *QXmlNodeModelIndex) *QXmlNodeModelIndex)(QAbstractXmlNodeModel__SimpleAxis(axis), NewQXmlNodeModelIndexFromPointer(origin)))
 	}
 
-	return PointerFromQXmlNodeModelIndex(nil)
+	return PointerFromQXmlNodeModelIndex(NewQXmlNodeModelIndex())
 }
 
 func (ptr *QAbstractXmlNodeModel) ConnectNextFromSimpleAxis(f func(axis QAbstractXmlNodeModel__SimpleAxis, origin *QXmlNodeModelIndex) *QXmlNodeModelIndex) {
@@ -1279,7 +1279,7 @@ func callbackQAbstractXmlNodeModel_Root(ptr unsafe.Pointer, n unsafe.Pointer) un
 		return PointerFromQXmlNodeModelIndex(signal.(func(*QXmlNodeModelIndex) *QXmlNodeModelIndex)(NewQXmlNodeModelIndexFromPointer(n)))
 	}
 
-	return PointerFromQXmlNodeModelIndex(nil)
+	return PointerFromQXmlNodeModelIndex(NewQXmlNodeModelIndex())
 }
 
 func (ptr *QAbstractXmlNodeModel) ConnectRoot(f func(n *QXmlNodeModelIndex) *QXmlNodeModelIndex) {
@@ -1352,7 +1352,7 @@ func callbackQAbstractXmlNodeModel_TypedValue(ptr unsafe.Pointer, node unsafe.Po
 		return core.PointerFromQVariant(signal.(func(*QXmlNodeModelIndex) *core.QVariant)(NewQXmlNodeModelIndexFromPointer(node)))
 	}
 
-	return core.PointerFromQVariant(nil)
+	return core.PointerFromQVariant(core.NewQVariant())
 }
 
 func (ptr *QAbstractXmlNodeModel) ConnectTypedValue(f func(node *QXmlNodeModelIndex) *core.QVariant) {
@@ -2341,7 +2341,7 @@ func callbackQSimpleXmlNodeModel_DocumentUri(ptr unsafe.Pointer, n unsafe.Pointe
 		return core.PointerFromQUrl(signal.(func(*QXmlNodeModelIndex) *core.QUrl)(NewQXmlNodeModelIndexFromPointer(n)))
 	}
 
-	return core.PointerFromQUrl(nil)
+	return core.PointerFromQUrl(core.NewQUrl())
 }
 
 func (ptr *QSimpleXmlNodeModel) ConnectDocumentUri(f func(n *QXmlNodeModelIndex) *core.QUrl) {
@@ -2405,7 +2405,7 @@ func callbackQSimpleXmlNodeModel_Name(ptr unsafe.Pointer, ni unsafe.Pointer) uns
 		return PointerFromQXmlName(signal.(func(*QXmlNodeModelIndex) *QXmlName)(NewQXmlNodeModelIndexFromPointer(ni)))
 	}
 
-	return PointerFromQXmlName(nil)
+	return PointerFromQXmlName(NewQXmlName())
 }
 
 func (ptr *QSimpleXmlNodeModel) ConnectName(f func(ni *QXmlNodeModelIndex) *QXmlName) {
@@ -2438,7 +2438,7 @@ func callbackQSimpleXmlNodeModel_NextFromSimpleAxis(ptr unsafe.Pointer, axis C.l
 		return PointerFromQXmlNodeModelIndex(signal.(func(QAbstractXmlNodeModel__SimpleAxis, *QXmlNodeModelIndex) *QXmlNodeModelIndex)(QAbstractXmlNodeModel__SimpleAxis(axis), NewQXmlNodeModelIndexFromPointer(origin)))
 	}
 
-	return PointerFromQXmlNodeModelIndex(nil)
+	return PointerFromQXmlNodeModelIndex(NewQXmlNodeModelIndex())
 }
 
 func (ptr *QSimpleXmlNodeModel) ConnectNextFromSimpleAxis(f func(axis QAbstractXmlNodeModel__SimpleAxis, origin *QXmlNodeModelIndex) *QXmlNodeModelIndex) {
@@ -2471,7 +2471,7 @@ func callbackQSimpleXmlNodeModel_Root(ptr unsafe.Pointer, n unsafe.Pointer) unsa
 		return PointerFromQXmlNodeModelIndex(signal.(func(*QXmlNodeModelIndex) *QXmlNodeModelIndex)(NewQXmlNodeModelIndexFromPointer(n)))
 	}
 
-	return PointerFromQXmlNodeModelIndex(nil)
+	return PointerFromQXmlNodeModelIndex(NewQXmlNodeModelIndex())
 }
 
 func (ptr *QSimpleXmlNodeModel) ConnectRoot(f func(n *QXmlNodeModelIndex) *QXmlNodeModelIndex) {
@@ -2504,7 +2504,7 @@ func callbackQSimpleXmlNodeModel_TypedValue(ptr unsafe.Pointer, node unsafe.Poin
 		return core.PointerFromQVariant(signal.(func(*QXmlNodeModelIndex) *core.QVariant)(NewQXmlNodeModelIndexFromPointer(node)))
 	}
 
-	return core.PointerFromQVariant(nil)
+	return core.PointerFromQVariant(core.NewQVariant())
 }
 
 func (ptr *QSimpleXmlNodeModel) ConnectTypedValue(f func(node *QXmlNodeModelIndex) *core.QVariant) {

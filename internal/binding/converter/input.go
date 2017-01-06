@@ -8,10 +8,6 @@ import (
 )
 
 func GoInput(name, value string, f *parser.Function) string {
-	return goInput(name, value, f)
-}
-
-func goInput(name, value string, f *parser.Function) string {
 	var vOld = value
 
 	name = parser.CleanName(name, value)

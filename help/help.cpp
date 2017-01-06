@@ -640,7 +640,6 @@ public:
 	void scrollContentsBy(int dx, int dy) { callbackQHelpContentWidget_ScrollContentsBy(this, dx, dy); };
 	void scrollTo(const QModelIndex & index, QAbstractItemView::ScrollHint hint) { callbackQHelpContentWidget_ScrollTo(this, const_cast<QModelIndex*>(&index), hint); };
 	void selectAll() { callbackQHelpContentWidget_SelectAll(this); };
-	
 	void selectionChanged(const QItemSelection & selected, const QItemSelection & deselected) { callbackQHelpContentWidget_SelectionChanged(this, const_cast<QItemSelection*>(&selected), const_cast<QItemSelection*>(&deselected)); };
 	void setModel(QAbstractItemModel * model) { callbackQHelpContentWidget_SetModel(this, model); };
 	void setRootIndex(const QModelIndex & index) { callbackQHelpContentWidget_SetRootIndex(this, const_cast<QModelIndex*>(&index)); };
@@ -663,7 +662,6 @@ public:
 	void edit(const QModelIndex & index) { callbackQHelpContentWidget_Edit(this, const_cast<QModelIndex*>(&index)); };
 	bool edit(const QModelIndex & index, QAbstractItemView::EditTrigger trigger, QEvent * event) { return callbackQHelpContentWidget_Edit2(this, const_cast<QModelIndex*>(&index), trigger, event) != 0; };
 	void editorDestroyed(QObject * editor) { callbackQHelpContentWidget_EditorDestroyed(this, editor); };
-	bool event(QEvent * event) { return callbackQHelpContentWidget_Event(this, event) != 0; };
 	void focusInEvent(QFocusEvent * event) { callbackQHelpContentWidget_FocusInEvent(this, event); };
 	bool focusNextPrevChild(bool next) { return callbackQHelpContentWidget_FocusNextPrevChild(this, next) != 0; };
 	void focusOutEvent(QFocusEvent * event) { callbackQHelpContentWidget_FocusOutEvent(this, event); };
@@ -676,7 +674,6 @@ public:
 	void setCurrentIndex(const QModelIndex & index) { callbackQHelpContentWidget_SetCurrentIndex(this, const_cast<QModelIndex*>(&index)); };
 	int sizeHintForRow(int row) const { return callbackQHelpContentWidget_SizeHintForRow(const_cast<MyQHelpContentWidget*>(this), row); };
 	void startDrag(Qt::DropActions supportedActions) { callbackQHelpContentWidget_StartDrag(this, supportedActions); };
-	void timerEvent(QTimerEvent * event) { callbackQHelpContentWidget_TimerEvent(this, event); };
 	void update(const QModelIndex & index) { callbackQHelpContentWidget_Update(this, const_cast<QModelIndex*>(&index)); };
 	QStyleOptionViewItem viewOptions() const { return *static_cast<QStyleOptionViewItem*>(callbackQHelpContentWidget_ViewOptions(const_cast<MyQHelpContentWidget*>(this))); };
 	void contextMenuEvent(QContextMenuEvent * e) { callbackQHelpContentWidget_ContextMenuEvent(this, e); };
@@ -700,6 +697,7 @@ public:
 	void showEvent(QShowEvent * event) { callbackQHelpContentWidget_ShowEvent(this, event); };
 	bool close() { return callbackQHelpContentWidget_Close(this) != 0; };
 	void closeEvent(QCloseEvent * event) { callbackQHelpContentWidget_CloseEvent(this, event); };
+	bool event(QEvent * event) { return callbackQHelpContentWidget_Event(this, event) != 0; };
 	bool hasHeightForWidth() const { return callbackQHelpContentWidget_HasHeightForWidth(const_cast<MyQHelpContentWidget*>(this)) != 0; };
 	int heightForWidth(int w) const { return callbackQHelpContentWidget_HeightForWidth(const_cast<MyQHelpContentWidget*>(this), w); };
 	void hide() { callbackQHelpContentWidget_Hide(this); };
@@ -718,6 +716,7 @@ public:
 	void showNormal() { callbackQHelpContentWidget_ShowNormal(this); };
 	void tabletEvent(QTabletEvent * event) { callbackQHelpContentWidget_TabletEvent(this, event); };
 	void updateMicroFocus() { callbackQHelpContentWidget_UpdateMicroFocus(this); };
+	void timerEvent(QTimerEvent * event) { callbackQHelpContentWidget_TimerEvent(this, event); };
 	void childEvent(QChildEvent * event) { callbackQHelpContentWidget_ChildEvent(this, event); };
 	void connectNotify(const QMetaMethod & sign) { callbackQHelpContentWidget_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	void customEvent(QEvent * event) { callbackQHelpContentWidget_CustomEvent(this, event); };
@@ -1067,10 +1066,6 @@ void QHelpContentWidget_SelectAllDefault(void* ptr)
 	static_cast<QHelpContentWidget*>(ptr)->QHelpContentWidget::selectAll();
 }
 
-
-
-
-
 void QHelpContentWidget_SelectionChanged(void* ptr, void* selected, void* deselected)
 {
 	static_cast<QHelpContentWidget*>(ptr)->selectionChanged(*static_cast<QItemSelection*>(selected), *static_cast<QItemSelection*>(deselected));
@@ -1291,16 +1286,6 @@ void QHelpContentWidget_EditorDestroyedDefault(void* ptr, void* editor)
 	static_cast<QHelpContentWidget*>(ptr)->QHelpContentWidget::editorDestroyed(static_cast<QObject*>(editor));
 }
 
-char QHelpContentWidget_Event(void* ptr, void* event)
-{
-	return static_cast<QHelpContentWidget*>(ptr)->event(static_cast<QEvent*>(event));
-}
-
-char QHelpContentWidget_EventDefault(void* ptr, void* event)
-{
-	return static_cast<QHelpContentWidget*>(ptr)->QHelpContentWidget::event(static_cast<QEvent*>(event));
-}
-
 void QHelpContentWidget_FocusInEvent(void* ptr, void* event)
 {
 	static_cast<QHelpContentWidget*>(ptr)->focusInEvent(static_cast<QFocusEvent*>(event));
@@ -1419,16 +1404,6 @@ void QHelpContentWidget_StartDrag(void* ptr, long long supportedActions)
 void QHelpContentWidget_StartDragDefault(void* ptr, long long supportedActions)
 {
 	static_cast<QHelpContentWidget*>(ptr)->QHelpContentWidget::startDrag(static_cast<Qt::DropAction>(supportedActions));
-}
-
-void QHelpContentWidget_TimerEvent(void* ptr, void* event)
-{
-	static_cast<QHelpContentWidget*>(ptr)->timerEvent(static_cast<QTimerEvent*>(event));
-}
-
-void QHelpContentWidget_TimerEventDefault(void* ptr, void* event)
-{
-	static_cast<QHelpContentWidget*>(ptr)->QHelpContentWidget::timerEvent(static_cast<QTimerEvent*>(event));
 }
 
 void QHelpContentWidget_Update(void* ptr, void* index)
@@ -1663,6 +1638,16 @@ void QHelpContentWidget_CloseEventDefault(void* ptr, void* event)
 	static_cast<QHelpContentWidget*>(ptr)->QHelpContentWidget::closeEvent(static_cast<QCloseEvent*>(event));
 }
 
+char QHelpContentWidget_Event(void* ptr, void* event)
+{
+	return static_cast<QHelpContentWidget*>(ptr)->event(static_cast<QEvent*>(event));
+}
+
+char QHelpContentWidget_EventDefault(void* ptr, void* event)
+{
+	return static_cast<QHelpContentWidget*>(ptr)->QHelpContentWidget::event(static_cast<QEvent*>(event));
+}
+
 char QHelpContentWidget_HasHeightForWidth(void* ptr)
 {
 	return static_cast<QHelpContentWidget*>(ptr)->hasHeightForWidth();
@@ -1841,6 +1826,16 @@ void QHelpContentWidget_UpdateMicroFocus(void* ptr)
 void QHelpContentWidget_UpdateMicroFocusDefault(void* ptr)
 {
 	static_cast<QHelpContentWidget*>(ptr)->QHelpContentWidget::updateMicroFocus();
+}
+
+void QHelpContentWidget_TimerEvent(void* ptr, void* event)
+{
+	static_cast<QHelpContentWidget*>(ptr)->timerEvent(static_cast<QTimerEvent*>(event));
+}
+
+void QHelpContentWidget_TimerEventDefault(void* ptr, void* event)
+{
+	static_cast<QHelpContentWidget*>(ptr)->QHelpContentWidget::timerEvent(static_cast<QTimerEvent*>(event));
 }
 
 void QHelpContentWidget_ChildEvent(void* ptr, void* event)
@@ -2877,7 +2872,6 @@ public:
 	void dragLeaveEvent(QDragLeaveEvent * e) { callbackQHelpIndexWidget_DragLeaveEvent(this, e); };
 	void dragMoveEvent(QDragMoveEvent * e) { callbackQHelpIndexWidget_DragMoveEvent(this, e); };
 	void dropEvent(QDropEvent * e) { callbackQHelpIndexWidget_DropEvent(this, e); };
-	bool event(QEvent * e) { return callbackQHelpIndexWidget_Event(this, e) != 0; };
 	int horizontalOffset() const { return callbackQHelpIndexWidget_HorizontalOffset(const_cast<MyQHelpIndexWidget*>(this)); };
 	QModelIndex indexAt(const QPoint & p) const { return *static_cast<QModelIndex*>(callbackQHelpIndexWidget_IndexAt(const_cast<MyQHelpIndexWidget*>(this), const_cast<QPoint*>(&p))); };
 	bool isIndexHidden(const QModelIndex & index) const { return callbackQHelpIndexWidget_IsIndexHidden(const_cast<MyQHelpIndexWidget*>(this), const_cast<QModelIndex*>(&index)) != 0; };
@@ -2892,7 +2886,6 @@ public:
 	void selectionChanged(const QItemSelection & selected, const QItemSelection & deselected) { callbackQHelpIndexWidget_SelectionChanged(this, const_cast<QItemSelection*>(&selected), const_cast<QItemSelection*>(&deselected)); };
 	void setSelection(const QRect & rect, QItemSelectionModel::SelectionFlags command) { callbackQHelpIndexWidget_SetSelection(this, const_cast<QRect*>(&rect), command); };
 	void startDrag(Qt::DropActions supportedActions) { callbackQHelpIndexWidget_StartDrag(this, supportedActions); };
-	void timerEvent(QTimerEvent * e) { callbackQHelpIndexWidget_TimerEvent(this, e); };
 	void updateGeometries() { callbackQHelpIndexWidget_UpdateGeometries(this); };
 	int verticalOffset() const { return callbackQHelpIndexWidget_VerticalOffset(const_cast<MyQHelpIndexWidget*>(this)); };
 	QStyleOptionViewItem viewOptions() const { return *static_cast<QStyleOptionViewItem*>(callbackQHelpIndexWidget_ViewOptions(const_cast<MyQHelpIndexWidget*>(this))); };
@@ -2950,6 +2943,7 @@ public:
 	void showEvent(QShowEvent * event) { callbackQHelpIndexWidget_ShowEvent(this, event); };
 	bool close() { return callbackQHelpIndexWidget_Close(this) != 0; };
 	void closeEvent(QCloseEvent * event) { callbackQHelpIndexWidget_CloseEvent(this, event); };
+	bool event(QEvent * event) { return callbackQHelpIndexWidget_Event(this, event) != 0; };
 	bool hasHeightForWidth() const { return callbackQHelpIndexWidget_HasHeightForWidth(const_cast<MyQHelpIndexWidget*>(this)) != 0; };
 	int heightForWidth(int w) const { return callbackQHelpIndexWidget_HeightForWidth(const_cast<MyQHelpIndexWidget*>(this), w); };
 	void hide() { callbackQHelpIndexWidget_Hide(this); };
@@ -2968,6 +2962,7 @@ public:
 	void showNormal() { callbackQHelpIndexWidget_ShowNormal(this); };
 	void tabletEvent(QTabletEvent * event) { callbackQHelpIndexWidget_TabletEvent(this, event); };
 	void updateMicroFocus() { callbackQHelpIndexWidget_UpdateMicroFocus(this); };
+	void timerEvent(QTimerEvent * event) { callbackQHelpIndexWidget_TimerEvent(this, event); };
 	void childEvent(QChildEvent * event) { callbackQHelpIndexWidget_ChildEvent(this, event); };
 	void connectNotify(const QMetaMethod & sign) { callbackQHelpIndexWidget_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
 	void customEvent(QEvent * event) { callbackQHelpIndexWidget_CustomEvent(this, event); };
@@ -3040,16 +3035,6 @@ void QHelpIndexWidget_DropEvent(void* ptr, void* e)
 void QHelpIndexWidget_DropEventDefault(void* ptr, void* e)
 {
 	static_cast<QHelpIndexWidget*>(ptr)->QHelpIndexWidget::dropEvent(static_cast<QDropEvent*>(e));
-}
-
-char QHelpIndexWidget_Event(void* ptr, void* e)
-{
-	return static_cast<QHelpIndexWidget*>(ptr)->event(static_cast<QEvent*>(e));
-}
-
-char QHelpIndexWidget_EventDefault(void* ptr, void* e)
-{
-	return static_cast<QHelpIndexWidget*>(ptr)->QHelpIndexWidget::event(static_cast<QEvent*>(e));
 }
 
 int QHelpIndexWidget_HorizontalOffset(void* ptr)
@@ -3190,16 +3175,6 @@ void QHelpIndexWidget_StartDrag(void* ptr, long long supportedActions)
 void QHelpIndexWidget_StartDragDefault(void* ptr, long long supportedActions)
 {
 	static_cast<QHelpIndexWidget*>(ptr)->QHelpIndexWidget::startDrag(static_cast<Qt::DropAction>(supportedActions));
-}
-
-void QHelpIndexWidget_TimerEvent(void* ptr, void* e)
-{
-	static_cast<QHelpIndexWidget*>(ptr)->timerEvent(static_cast<QTimerEvent*>(e));
-}
-
-void QHelpIndexWidget_TimerEventDefault(void* ptr, void* e)
-{
-	static_cast<QHelpIndexWidget*>(ptr)->QHelpIndexWidget::timerEvent(static_cast<QTimerEvent*>(e));
 }
 
 void QHelpIndexWidget_UpdateGeometries(void* ptr)
@@ -3774,6 +3749,16 @@ void QHelpIndexWidget_CloseEventDefault(void* ptr, void* event)
 	static_cast<QHelpIndexWidget*>(ptr)->QHelpIndexWidget::closeEvent(static_cast<QCloseEvent*>(event));
 }
 
+char QHelpIndexWidget_Event(void* ptr, void* event)
+{
+	return static_cast<QHelpIndexWidget*>(ptr)->event(static_cast<QEvent*>(event));
+}
+
+char QHelpIndexWidget_EventDefault(void* ptr, void* event)
+{
+	return static_cast<QHelpIndexWidget*>(ptr)->QHelpIndexWidget::event(static_cast<QEvent*>(event));
+}
+
 char QHelpIndexWidget_HasHeightForWidth(void* ptr)
 {
 	return static_cast<QHelpIndexWidget*>(ptr)->hasHeightForWidth();
@@ -3952,6 +3937,16 @@ void QHelpIndexWidget_UpdateMicroFocus(void* ptr)
 void QHelpIndexWidget_UpdateMicroFocusDefault(void* ptr)
 {
 	static_cast<QHelpIndexWidget*>(ptr)->QHelpIndexWidget::updateMicroFocus();
+}
+
+void QHelpIndexWidget_TimerEvent(void* ptr, void* event)
+{
+	static_cast<QHelpIndexWidget*>(ptr)->timerEvent(static_cast<QTimerEvent*>(event));
+}
+
+void QHelpIndexWidget_TimerEventDefault(void* ptr, void* event)
+{
+	static_cast<QHelpIndexWidget*>(ptr)->QHelpIndexWidget::timerEvent(static_cast<QTimerEvent*>(event));
 }
 
 void QHelpIndexWidget_ChildEvent(void* ptr, void* event)

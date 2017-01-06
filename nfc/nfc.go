@@ -2628,7 +2628,7 @@ func callbackQNearFieldTarget_Uid(ptr unsafe.Pointer) unsafe.Pointer {
 		return core.PointerFromQByteArray(signal.(func() *core.QByteArray)())
 	}
 
-	return core.PointerFromQByteArray(nil)
+	return core.PointerFromQByteArray(core.NewQByteArray())
 }
 
 func (ptr *QNearFieldTarget) ConnectUid(f func() *core.QByteArray) {
