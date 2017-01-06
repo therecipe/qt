@@ -35,7 +35,7 @@ func (m *Module) Prepare() error {
 	m.remove()
 
 	//mutate classes
-	for _, c := range SortedClassesForModule(m.Project) {
+	for _, c := range SortedClassesForModule(m.Project, false) {
 
 		c.add()
 		c.fix()

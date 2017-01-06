@@ -5,7 +5,7 @@ func (m *Module) remove() {
 }
 
 func (m *Module) removeClasses() {
-	for _, c := range SortedClassesForModule(m.Project) {
+	for _, c := range SortedClassesForModule(m.Project, false) {
 
 		switch {
 		case c.Status == "obsolete", c.Status == "compat",

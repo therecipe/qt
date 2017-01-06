@@ -76,7 +76,7 @@ func (f *Function) PossiblePolymorphic(self bool) ([]string, string) {
 			continue
 		}
 
-		for _, class := range SortedClassesForModule(fc.Module) {
+		for _, class := range SortedClassesForModule(fc.Module, false) {
 			if class.IsPolymorphic() && class.IsSubClassOf(c.Name) {
 				out = append(out, class.Name)
 			}

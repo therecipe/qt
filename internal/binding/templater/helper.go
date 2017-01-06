@@ -24,11 +24,11 @@ func goModule(module string) string {
 }
 
 func sortedClassNamesForModule(module string) []string {
-	return parser.SortedClassNamesForModule(module)
+	return parser.SortedClassNamesForModule(module, true)
 }
 
 func sortedClassesForModule(module string) []*parser.Class {
-	return parser.SortedClassesForModule(module)
+	return parser.SortedClassesForModule(module, true)
 }
 
 func UseStub() bool {

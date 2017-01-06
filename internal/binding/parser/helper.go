@@ -225,7 +225,7 @@ func Dump() {
 	}
 }
 
-func SortedClassNamesForModule(module string) []string {
+func SortedClassNamesForModule(module string, template bool) []string {
 	var output = make([]string, 0)
 	for _, class := range State.ClassMap {
 		if class.Module == module {
@@ -234,7 +234,7 @@ func SortedClassNamesForModule(module string) []string {
 	}
 	sort.Stable(sort.StringSlice(output))
 
-	if State.Moc {
+	if State.Moc && template {
 		var items = make(map[string]string)
 
 		for _, cn := range output {
@@ -271,9 +271,9 @@ func SortedClassNamesForModule(module string) []string {
 	return output
 }
 
-func SortedClassesForModule(module string) []*Class {
+func SortedClassesForModule(module string, template bool) []*Class {
 	var (
-		classNames = SortedClassNamesForModule(module)
+		classNames = SortedClassNamesForModule(module, template)
 		output     = make([]*Class, len(classNames))
 	)
 	for i, name := range classNames {
