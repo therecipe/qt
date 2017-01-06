@@ -52022,20 +52022,6 @@ func (ptr *QSortFilterProxyModel) MapToSourceDefault(proxyIndex QModelIndex_ITF)
 	return nil
 }
 
-func (ptr *QSortFilterProxyModel) ConnectMatch(f func(start *QModelIndex, role int, value *QVariant, hits int, flags Qt__MatchFlag) []*QModelIndex) {
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QSortFilterProxyModel::match", f)
-	}
-}
-
-func (ptr *QSortFilterProxyModel) DisconnectMatch() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSortFilterProxyModel::match")
-	}
-}
-
 func (ptr *QSortFilterProxyModel) Match(start QModelIndex_ITF, role int, value QVariant_ITF, hits int, flags Qt__MatchFlag) []*QModelIndex {
 	if ptr.Pointer() != nil {
 		return func(l C.struct_QtCore_PackedList) []*QModelIndex {
@@ -52045,19 +52031,6 @@ func (ptr *QSortFilterProxyModel) Match(start QModelIndex_ITF, role int, value Q
 			}
 			return out
 		}(C.QSortFilterProxyModel_Match(ptr.Pointer(), PointerFromQModelIndex(start), C.int(int32(role)), PointerFromQVariant(value), C.int(int32(hits)), C.longlong(flags)))
-	}
-	return nil
-}
-
-func (ptr *QSortFilterProxyModel) MatchDefault(start QModelIndex_ITF, role int, value QVariant_ITF, hits int, flags Qt__MatchFlag) []*QModelIndex {
-	if ptr.Pointer() != nil {
-		return func(l C.struct_QtCore_PackedList) []*QModelIndex {
-			var out = make([]*QModelIndex, int(l.len))
-			for i := 0; i < int(l.len); i++ {
-				out[i] = NewQSortFilterProxyModelFromPointer(l.data).match_atList(i)
-			}
-			return out
-		}(C.QSortFilterProxyModel_MatchDefault(ptr.Pointer(), PointerFromQModelIndex(start), C.int(int32(role)), PointerFromQVariant(value), C.int(int32(hits)), C.longlong(flags)))
 	}
 	return nil
 }

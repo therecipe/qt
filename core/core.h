@@ -3518,7 +3518,6 @@ void* QSortFilterProxyModel_MapSelectionToSourceDefault(void* ptr, void* proxySe
 void* QSortFilterProxyModel_MapToSource(void* ptr, void* proxyIndex);
 void* QSortFilterProxyModel_MapToSourceDefault(void* ptr, void* proxyIndex);
 struct QtCore_PackedList QSortFilterProxyModel_Match(void* ptr, void* start, int role, void* value, int hits, long long flags);
-struct QtCore_PackedList QSortFilterProxyModel_MatchDefault(void* ptr, void* start, int role, void* value, int hits, long long flags);
 ;
 ;
 struct QtCore_PackedString QSortFilterProxyModel_MimeTypes(void* ptr);

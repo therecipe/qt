@@ -1,7 +1,6 @@
 package templater
 
 import (
-	"sort"
 	"strings"
 
 	"github.com/therecipe/qt/internal/binding/parser"
@@ -25,60 +24,11 @@ func goModule(module string) string {
 }
 
 func sortedClassNamesForModule(module string) []string {
-	var output = make([]string, 0)
-	for _, class := range parser.State.ClassMap {
-		if class.Module == module {
-			output = append(output, class.Name)
-		}
-	}
-	sort.Stable(sort.StringSlice(output))
-
-	if parser.State.Moc {
-		var items = make(map[string]string)
-
-		for _, cn := range output {
-			if class, exist := parser.State.ClassMap[cn]; exist {
-				items[cn] = class.Bases
-			}
-		}
-
-		var tmpOutput = make([]string, 0)
-
-		for len(items) > 0 {
-			for item, dep := range items {
-
-				var c, exist = parser.State.ClassMap[dep]
-				if exist && c.Module != parser.MOC {
-					tmpOutput = append(tmpOutput, item)
-					delete(items, item)
-					continue
-				}
-
-				for _, key := range tmpOutput {
-					if key == dep {
-						tmpOutput = append(tmpOutput, item)
-						delete(items, item)
-						break
-					}
-				}
-
-			}
-		}
-		output = tmpOutput
-	}
-
-	return output
+	return parser.SortedClassNamesForModule(module)
 }
 
 func sortedClassesForModule(module string) []*parser.Class {
-	var (
-		classNames = sortedClassNamesForModule(module)
-		output     = make([]*parser.Class, len(classNames))
-	)
-	for i, name := range classNames {
-		output[i] = parser.State.ClassMap[name]
-	}
-	return output
+	return parser.SortedClassesForModule(module)
 }
 
 func UseStub() bool {

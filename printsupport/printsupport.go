@@ -5414,9 +5414,39 @@ func (ptr *QPrintDialog) Accepted(printer QPrinter_ITF) {
 	}
 }
 
+//export callbackQPrintDialog_Done
+func callbackQPrintDialog_Done(ptr unsafe.Pointer, result C.int) {
+
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintDialog::done"); signal != nil {
+		signal.(func(int))(int(int32(result)))
+	} else {
+		NewQPrintDialogFromPointer(ptr).DoneDefault(int(int32(result)))
+	}
+}
+
+func (ptr *QPrintDialog) ConnectDone(f func(result int)) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintDialog::done", f)
+	}
+}
+
+func (ptr *QPrintDialog) DisconnectDone() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintDialog::done")
+	}
+}
+
 func (ptr *QPrintDialog) Done(result int) {
 	if ptr.Pointer() != nil {
 		C.QPrintDialog_Done(ptr.Pointer(), C.int(int32(result)))
+	}
+}
+
+func (ptr *QPrintDialog) DoneDefault(result int) {
+	if ptr.Pointer() != nil {
+		C.QPrintDialog_DoneDefault(ptr.Pointer(), C.int(int32(result)))
 	}
 }
 
@@ -5502,9 +5532,39 @@ func (ptr *QPrintDialog) ExecDefault() int {
 	return 0
 }
 
+//export callbackQPrintDialog_SetVisible
+func callbackQPrintDialog_SetVisible(ptr unsafe.Pointer, visible C.char) {
+
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintDialog::setVisible"); signal != nil {
+		signal.(func(bool))(int8(visible) != 0)
+	} else {
+		NewQPrintDialogFromPointer(ptr).SetVisibleDefault(int8(visible) != 0)
+	}
+}
+
+func (ptr *QPrintDialog) ConnectSetVisible(f func(visible bool)) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintDialog::setVisible", f)
+	}
+}
+
+func (ptr *QPrintDialog) DisconnectSetVisible() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintDialog::setVisible")
+	}
+}
+
 func (ptr *QPrintDialog) SetVisible(visible bool) {
 	if ptr.Pointer() != nil {
 		C.QPrintDialog_SetVisible(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(visible))))
+	}
+}
+
+func (ptr *QPrintDialog) SetVisibleDefault(visible bool) {
+	if ptr.Pointer() != nil {
+		C.QPrintDialog_SetVisibleDefault(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(visible))))
 	}
 }
 

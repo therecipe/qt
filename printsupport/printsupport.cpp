@@ -1660,7 +1660,9 @@ public:
 	MyQPrintDialog(QPrinter *printer, QWidget *parent) : QPrintDialog(printer, parent) {};
 	MyQPrintDialog(QWidget *parent) : QPrintDialog(parent) {};
 	void Signal_Accepted(QPrinter * printer) { callbackQPrintDialog_Accepted(this, printer); };
+	void done(int result) { callbackQPrintDialog_Done(this, result); };
 	int exec() { return callbackQPrintDialog_Exec(this); };
+	void setVisible(bool visible) { callbackQPrintDialog_SetVisible(this, visible); };
 	void accept() { callbackQPrintDialog_Accept(this); };
 	void closeEvent(QCloseEvent * e) { callbackQPrintDialog_CloseEvent(this, e); };
 	void contextMenuEvent(QContextMenuEvent * e) { callbackQPrintDialog_ContextMenuEvent(this, e); };
@@ -1758,6 +1760,11 @@ void QPrintDialog_Done(void* ptr, int result)
 	static_cast<QPrintDialog*>(ptr)->done(result);
 }
 
+void QPrintDialog_DoneDefault(void* ptr, int result)
+{
+	static_cast<QPrintDialog*>(ptr)->QPrintDialog::done(result);
+}
+
 void QPrintDialog_Open(void* ptr, void* receiver, char* member)
 {
 	static_cast<QPrintDialog*>(ptr)->open(static_cast<QObject*>(receiver), const_cast<const char*>(member));
@@ -1801,6 +1808,11 @@ int QPrintDialog_ExecDefault(void* ptr)
 void QPrintDialog_SetVisible(void* ptr, char visible)
 {
 	static_cast<QPrintDialog*>(ptr)->setVisible(visible != 0);
+}
+
+void QPrintDialog_SetVisibleDefault(void* ptr, char visible)
+{
+	static_cast<QPrintDialog*>(ptr)->QPrintDialog::setVisible(visible != 0);
 }
 
 void QPrintDialog_DestroyQPrintDialog(void* ptr)

@@ -9,6 +9,7 @@ import (
 	"os/exec"
 	"path/filepath"
 	"runtime"
+	"strconv"
 	"strings"
 	"time"
 
@@ -361,7 +362,7 @@ func build() {
 		}
 	}
 
-	var cmd = exec.Command("go", "build", "-v", ldFlags, "-o", outputFile+ending)
+	var cmd = exec.Command("go", "build", "-p", strconv.Itoa(runtime.GOMAXPROCS(0)), "-v", ldFlags, "-o", outputFile+ending)
 	cmd.Dir = appPath
 
 	if tagFlags != "" {
@@ -392,7 +393,7 @@ func build() {
 
 	//armv7
 	if buildTarget == "ios" && (strings.HasPrefix(runtime.Version(), "go1.7") || strings.HasPrefix(runtime.Version(), "devel")) {
-		var cmdiOS = exec.Command("go", "build", ldFlags, "-o", strings.Replace(outputFile, "libgo.a", "libgo_armv7.a", -1))
+		var cmdiOS = exec.Command("go", "build", "-p", strconv.Itoa(runtime.GOMAXPROCS(0)), "-v", ldFlags, "-o", strings.Replace(outputFile, "libgo.a", "libgo_armv7.a", -1))
 		cmdiOS.Dir = appPath
 		if tagFlags != "" {
 			cmdiOS.Args = append(cmdiOS.Args, tagFlags)

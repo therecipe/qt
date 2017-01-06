@@ -35,10 +35,7 @@ func (m *Module) Prepare() error {
 	m.remove()
 
 	//mutate classes
-	for _, c := range State.ClassMap {
-		if c.Module != m.Project {
-			continue
-		}
+	for _, c := range SortedClassesForModule(m.Project) {
 
 		c.add()
 		c.fix()

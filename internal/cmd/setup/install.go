@@ -7,6 +7,7 @@ import (
 	"os/exec"
 	"path/filepath"
 	"runtime"
+	"strconv"
 	"strings"
 
 	"github.com/therecipe/qt/internal/binding/parser"
@@ -92,7 +93,7 @@ func install(buildTarget string) {
 }
 
 func installPkgCmd(buildTarget, tagFlags, pkg string, env map[string]string) *exec.Cmd {
-	var cmd = exec.Command("go", "install")
+	var cmd = exec.Command("go", "install", "-p", strconv.Itoa(runtime.GOMAXPROCS(0)), "-v")
 	if tagFlags != "" {
 		cmd.Args = append(cmd.Args, tagFlags)
 	}

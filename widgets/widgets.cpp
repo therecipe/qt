@@ -39748,6 +39748,8 @@ public:
 	void dragLeaveEvent(QGraphicsSceneDragDropEvent * event) { callbackQGraphicsProxyWidget_DragLeaveEvent(this, event); };
 	void dragMoveEvent(QGraphicsSceneDragDropEvent * event) { callbackQGraphicsProxyWidget_DragMoveEvent(this, event); };
 	void dropEvent(QGraphicsSceneDragDropEvent * event) { callbackQGraphicsProxyWidget_DropEvent(this, event); };
+	bool event(QEvent * event) { return callbackQGraphicsProxyWidget_Event(this, event) != 0; };
+	bool eventFilter(QObject * object, QEvent * event) { return callbackQGraphicsProxyWidget_EventFilter(this, object, event) != 0; };
 	void focusInEvent(QFocusEvent * event) { callbackQGraphicsProxyWidget_FocusInEvent(this, event); };
 	bool focusNextPrevChild(bool next) { return callbackQGraphicsProxyWidget_FocusNextPrevChild(this, next) != 0; };
 	void focusOutEvent(QFocusEvent * event) { callbackQGraphicsProxyWidget_FocusOutEvent(this, event); };
@@ -39878,6 +39880,11 @@ char QGraphicsProxyWidget_Event(void* ptr, void* event)
 	return static_cast<QGraphicsProxyWidget*>(ptr)->event(static_cast<QEvent*>(event));
 }
 
+char QGraphicsProxyWidget_EventDefault(void* ptr, void* event)
+{
+	return static_cast<QGraphicsProxyWidget*>(ptr)->QGraphicsProxyWidget::event(static_cast<QEvent*>(event));
+}
+
 char QGraphicsProxyWidget_EventFilter(void* ptr, void* object, void* event)
 {
 	if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(object))) {
@@ -39890,6 +39897,21 @@ char QGraphicsProxyWidget_EventFilter(void* ptr, void* object, void* event)
 		return static_cast<QGraphicsProxyWidget*>(ptr)->eventFilter(static_cast<QWidget*>(object), static_cast<QEvent*>(event));
 	} else {
 		return static_cast<QGraphicsProxyWidget*>(ptr)->eventFilter(static_cast<QObject*>(object), static_cast<QEvent*>(event));
+	}
+}
+
+char QGraphicsProxyWidget_EventFilterDefault(void* ptr, void* object, void* event)
+{
+	if (dynamic_cast<QGraphicsObject*>(static_cast<QObject*>(object))) {
+		return static_cast<QGraphicsProxyWidget*>(ptr)->QGraphicsProxyWidget::eventFilter(static_cast<QGraphicsObject*>(object), static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QGraphicsWidget*>(static_cast<QObject*>(object))) {
+		return static_cast<QGraphicsProxyWidget*>(ptr)->QGraphicsProxyWidget::eventFilter(static_cast<QGraphicsWidget*>(object), static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QLayout*>(static_cast<QObject*>(object))) {
+		return static_cast<QGraphicsProxyWidget*>(ptr)->QGraphicsProxyWidget::eventFilter(static_cast<QLayout*>(object), static_cast<QEvent*>(event));
+	} else if (dynamic_cast<QWidget*>(static_cast<QObject*>(object))) {
+		return static_cast<QGraphicsProxyWidget*>(ptr)->QGraphicsProxyWidget::eventFilter(static_cast<QWidget*>(object), static_cast<QEvent*>(event));
+	} else {
+		return static_cast<QGraphicsProxyWidget*>(ptr)->QGraphicsProxyWidget::eventFilter(static_cast<QObject*>(object), static_cast<QEvent*>(event));
 	}
 }
 
@@ -45136,6 +45158,7 @@ public:
 	void changeEvent(QEvent * event) { callbackQGraphicsWidget_ChangeEvent(this, event); };
 	bool close() { return callbackQGraphicsWidget_Close(this) != 0; };
 	void closeEvent(QCloseEvent * event) { callbackQGraphicsWidget_CloseEvent(this, event); };
+	bool event(QEvent * event) { return callbackQGraphicsWidget_Event(this, event) != 0; };
 	void focusInEvent(QFocusEvent * event) { callbackQGraphicsWidget_FocusInEvent(this, event); };
 	bool focusNextPrevChild(bool next) { return callbackQGraphicsWidget_FocusNextPrevChild(this, next) != 0; };
 	void focusOutEvent(QFocusEvent * event) { callbackQGraphicsWidget_FocusOutEvent(this, event); };
@@ -45356,6 +45379,11 @@ void QGraphicsWidget_CloseEventDefault(void* ptr, void* event)
 char QGraphicsWidget_Event(void* ptr, void* event)
 {
 		return static_cast<QGraphicsWidget*>(ptr)->event(static_cast<QEvent*>(event));
+}
+
+char QGraphicsWidget_EventDefault(void* ptr, void* event)
+{
+		return static_cast<QGraphicsWidget*>(ptr)->QGraphicsWidget::event(static_cast<QEvent*>(event));
 }
 
 void QGraphicsWidget_FocusInEvent(void* ptr, void* event)
@@ -70359,7 +70387,6 @@ public:
 	void drawItemPixmap(QPainter * painter, const QRect & rect, int alignment, const QPixmap & pixmap) const { callbackQProxyStyle_DrawItemPixmap(const_cast<MyQProxyStyle*>(this), painter, const_cast<QRect*>(&rect), alignment, const_cast<QPixmap*>(&pixmap)); };
 	void drawItemText(QPainter * painter, const QRect & rect, int flags, const QPalette & pal, bool enabled, const QString & text, QPalette::ColorRole textRole) const { QByteArray t372ea0 = text.toUtf8(); QtWidgets_PackedString textPacked = { const_cast<char*>(t372ea0.prepend("WHITESPACE").constData()+10), t372ea0.size()-10 };callbackQProxyStyle_DrawItemText(const_cast<MyQProxyStyle*>(this), painter, const_cast<QRect*>(&rect), flags, const_cast<QPalette*>(&pal), enabled, textPacked, textRole); };
 	void drawPrimitive(QStyle::PrimitiveElement element, const QStyleOption * option, QPainter * painter, const QWidget * widget) const { callbackQProxyStyle_DrawPrimitive(const_cast<MyQProxyStyle*>(this), element, const_cast<QStyleOption*>(option), painter, const_cast<QWidget*>(widget)); };
-	bool event(QEvent * e) { return callbackQProxyStyle_Event(this, e) != 0; };
 	QPixmap generatedIconPixmap(QIcon::Mode iconMode, const QPixmap & pixmap, const QStyleOption * opt) const { return *static_cast<QPixmap*>(callbackQProxyStyle_GeneratedIconPixmap(const_cast<MyQProxyStyle*>(this), iconMode, const_cast<QPixmap*>(&pixmap), const_cast<QStyleOption*>(opt))); };
 	SubControl hitTestComplexControl(QStyle::ComplexControl control, const QStyleOptionComplex * option, const QPoint & pos, const QWidget * widget) const { return static_cast<QStyle::SubControl>(callbackQProxyStyle_HitTestComplexControl(const_cast<MyQProxyStyle*>(this), control, const_cast<QStyleOptionComplex*>(option), const_cast<QPoint*>(&pos), const_cast<QWidget*>(widget))); };
 	QRect itemPixmapRect(const QRect & r, int flags, const QPixmap & pixmap) const { return *static_cast<QRect*>(callbackQProxyStyle_ItemPixmapRect(const_cast<MyQProxyStyle*>(this), const_cast<QRect*>(&r), flags, const_cast<QPixmap*>(&pixmap))); };
@@ -70456,11 +70483,6 @@ void QProxyStyle_DrawPrimitiveDefault(void* ptr, long long element, void* option
 char QProxyStyle_Event(void* ptr, void* e)
 {
 	return static_cast<QProxyStyle*>(ptr)->event(static_cast<QEvent*>(e));
-}
-
-char QProxyStyle_EventDefault(void* ptr, void* e)
-{
-	return static_cast<QProxyStyle*>(ptr)->QProxyStyle::event(static_cast<QEvent*>(e));
 }
 
 void* QProxyStyle_GeneratedIconPixmap(void* ptr, long long iconMode, void* pixmap, void* opt)
@@ -108551,6 +108573,7 @@ public:
 	void Signal_CurrentIdChanged(int id) { callbackQWizard_CurrentIdChanged(this, id); };
 	void Signal_CustomButtonClicked(int which) { callbackQWizard_CustomButtonClicked(this, which); };
 	void done(int result) { callbackQWizard_Done(this, result); };
+	bool event(QEvent * event) { return callbackQWizard_Event(this, event) != 0; };
 	void Signal_HelpRequested() { callbackQWizard_HelpRequested(this); };
 	bool nativeEvent(const QByteArray & eventType, void * message, long * result) { return callbackQWizard_NativeEvent(this, const_cast<QByteArray*>(&eventType), message, *result) != 0; };
 	void next() { callbackQWizard_Next(this); };
@@ -108790,6 +108813,11 @@ void QWizard_DoneDefault(void* ptr, int result)
 char QWizard_Event(void* ptr, void* event)
 {
 	return static_cast<QWizard*>(ptr)->event(static_cast<QEvent*>(event));
+}
+
+char QWizard_EventDefault(void* ptr, void* event)
+{
+	return static_cast<QWizard*>(ptr)->QWizard::event(static_cast<QEvent*>(event));
 }
 
 void* QWizard_Field(void* ptr, char* name)

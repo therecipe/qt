@@ -4,6 +4,7 @@ import (
 	"bytes"
 	"fmt"
 	"runtime"
+	"sort"
 	"strings"
 
 	"github.com/therecipe/qt/internal/utils"
@@ -222,4 +223,61 @@ func Dump() {
 		utils.MkdirAll(utils.GoQtPkgPath("internal", "binding", "dump", c.Module))
 		utils.SaveBytes(utils.GoQtPkgPath("internal", "binding", "dump", c.Module, fmt.Sprintf("%v.txt", c.Name)), bb.Bytes())
 	}
+}
+
+func SortedClassNamesForModule(module string) []string {
+	var output = make([]string, 0)
+	for _, class := range State.ClassMap {
+		if class.Module == module {
+			output = append(output, class.Name)
+		}
+	}
+	sort.Stable(sort.StringSlice(output))
+
+	if State.Moc {
+		var items = make(map[string]string)
+
+		for _, cn := range output {
+			if class, exist := State.ClassMap[cn]; exist {
+				items[cn] = class.Bases
+			}
+		}
+
+		var tmpOutput = make([]string, 0)
+
+		for len(items) > 0 {
+			for item, dep := range items {
+
+				var c, exist = State.ClassMap[dep]
+				if exist && c.Module != MOC {
+					tmpOutput = append(tmpOutput, item)
+					delete(items, item)
+					continue
+				}
+
+				for _, key := range tmpOutput {
+					if key == dep {
+						tmpOutput = append(tmpOutput, item)
+						delete(items, item)
+						break
+					}
+				}
+
+			}
+		}
+		output = tmpOutput
+	}
+
+	return output
+}
+
+func SortedClassesForModule(module string) []*Class {
+	var (
+		classNames = SortedClassNamesForModule(module)
+		output     = make([]*Class, len(classNames))
+	)
+	for i, name := range classNames {
+		output[i] = State.ClassMap[name]
+	}
+	return output
 }
