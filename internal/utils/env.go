@@ -1,7 +1,7 @@
 package utils
 
 import (
-	"encoding/json"
+	//"encoding/json"
 	"encoding/xml"
 	"os"
 	"path/filepath"
@@ -15,7 +15,7 @@ func QT_VERSION() string {
 	}
 
 	//TODO: get version from tools instead ?
-	if UseHomeBrew() {
+	/*if UseHomeBrew() {
 		var (
 			cStruct = &struct {
 				Source struct {
@@ -29,21 +29,21 @@ func QT_VERSION() string {
 		if err == nil {
 			return cStruct.Source.Versions.Stable
 		}
-	} else {
-		if dir := os.Getenv("QT_DIR"); dir != "" {
-			dir = filepath.Clean(dir)
+	} else {*/
+	if dir := os.Getenv("QT_DIR"); dir != "" {
+		dir = filepath.Clean(dir)
 
-			var (
-				cStruct = &struct {
-					ApplicationName string `xml:"ApplicationName"`
-				}{}
-				err = xml.Unmarshal([]byte(LoadOptional(filepath.Join(dir, "components.xml"))), cStruct)
-			)
-			if err == nil {
-				return strings.TrimSpace(strings.Split(cStruct.ApplicationName, " ")[1])
-			}
+		var (
+			cStruct = &struct {
+				ApplicationName string `xml:"ApplicationName"`
+			}{}
+			err = xml.Unmarshal([]byte(LoadOptional(filepath.Join(dir, "components.xml"))), cStruct)
+		)
+		if err == nil {
+			return strings.TrimSpace(strings.Split(cStruct.ApplicationName, " ")[1])
 		}
 	}
+	//}
 
 	return "5.7.0"
 }
