@@ -3,11 +3,11 @@ package templater
 import (
 	"bytes"
 	"fmt"
-	"os"
 	"strings"
 
 	"github.com/therecipe/qt/internal/binding/converter"
 	"github.com/therecipe/qt/internal/binding/parser"
+	"github.com/therecipe/qt/internal/utils"
 )
 
 func goFunction(function *parser.Function) string {
@@ -45,7 +45,7 @@ func goFunctionBody(function *parser.Function) string {
 	var bb = new(bytes.Buffer)
 	defer bb.Reset()
 
-	if strings.ToLower(os.Getenv("QT_DEBUG")) == "true" {
+	if utils.QT_DEBUG() {
 		fmt.Fprintf(bb, "defer qt.Recover(\"\t%v%v%v(%v) %v\")\n",
 			function.ClassName(),
 

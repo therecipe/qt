@@ -229,13 +229,13 @@ func (m *appMoc) runQtMoc() (err error) {
 		if utils.UsePkgConfig() {
 			mocPath = filepath.Join(strings.TrimSpace(utils.RunCmd(exec.Command("pkg-config", "--variable=host_bins", "Qt5Core"), "moc.LinuxPkgConfig_hostBins")), "moc")
 		} else {
-			mocPath = filepath.Join(utils.QT_DIR(), "5.7", "gcc_64", "bin", "moc")
+			mocPath = filepath.Join(utils.QT_DIR(), utils.QT_VERSION_MAJOR(), "gcc_64", "bin", "moc")
 		}
 	case "windows":
 		if utils.UseMsys2() {
 			mocPath = filepath.Join(utils.QT_MSYS2_DIR(), "bin", "moc")
 		} else {
-			mocPath = filepath.Join(utils.QT_DIR(), "5.7", "mingw53_32", "bin", "moc")
+			mocPath = filepath.Join(utils.QT_DIR(), utils.QT_VERSION_MAJOR(), "mingw53_32", "bin", "moc")
 		}
 	}
 

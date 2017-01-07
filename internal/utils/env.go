@@ -1,6 +1,8 @@
 package utils
 
 import (
+	"encoding/json"
+	"encoding/xml"
 	"os"
 	"path/filepath"
 	"runtime"
@@ -11,7 +13,43 @@ func QT_VERSION() string {
 	if version := os.Getenv("QT_VERSION"); version != "" {
 		return version
 	}
+
+	//TODO: get version from tools instead ?
+	if UseHomeBrew() {
+		var (
+			cStruct = &struct {
+				Source struct {
+					Versions struct {
+						Stable string `json:"stable"`
+					} `json:"versions"`
+				} `json:"source"`
+			}{}
+			err = json.Unmarshal([]byte(LoadOptional(filepath.Join(QT_DARWIN_DIR(), "INSTALL_RECEIPT.json"))), cStruct)
+		)
+		if err == nil {
+			return cStruct.Source.Versions.Stable
+		}
+	} else {
+		if dir := os.Getenv("QT_DIR"); dir != "" {
+			dir = filepath.Clean(dir)
+
+			var (
+				cStruct = &struct {
+					ApplicationName string `xml:"ApplicationName"`
+				}{}
+				err = xml.Unmarshal([]byte(LoadOptional(filepath.Join(dir, "components.xml"))), cStruct)
+			)
+			if err == nil {
+				return strings.TrimSpace(strings.Split(cStruct.ApplicationName, " ")[1])
+			}
+		}
+	}
+
 	return "5.7.0"
+}
+
+func QT_VERSION_MAJOR() string {
+	return strings.Join(strings.Split(QT_VERSION(), ".")[:2], ".")
 }
 
 func QT_DIR() string {
@@ -26,6 +64,10 @@ func QT_DIR() string {
 
 func QT_STUB() bool {
 	return strings.ToLower(os.Getenv("QT_STUB")) == "true" || UseMsys2()
+}
+
+func QT_DEBUG() bool {
+	return strings.ToLower(os.Getenv("QT_DEBUG")) == "true"
 }
 
 func CheckBuildTarget(buildTarget string) {

@@ -14,11 +14,7 @@ import (
 func main() {
 	var appPath, _ = os.Getwd()
 
-	var (
-		output_dir = flag.String("o", "", "define alternative output dir")
-		qt_dir     = flag.String("qt_dir", "", "define alternative qt dir")
-	)
-
+	var output_dir = flag.String("o", "", "define alternative output dir")
 	cmd.ParseFlags()
 
 	if *output_dir != "" {
@@ -26,14 +22,6 @@ func main() {
 			var tmp_output_dir, _ = utils.Abs(*output_dir)
 			output_dir = &tmp_output_dir
 		}
-	}
-
-	if *qt_dir != "" {
-		if !filepath.IsAbs(*qt_dir) {
-			var tmp_qt_dir, _ = utils.Abs(*qt_dir)
-			qt_dir = &tmp_qt_dir
-		}
-		os.Setenv("QT_DIR", *qt_dir)
 	}
 
 	switch flag.NArg() {

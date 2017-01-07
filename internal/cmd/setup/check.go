@@ -28,6 +28,7 @@ func check(buildTarget string) {
 	utils.Log.Infoln("HASH:", strings.TrimSpace(utils.RunCmdOptional(hash, "get git hash")))
 
 	utils.Log.Infoln("QT_VERSION:", utils.QT_VERSION())
+	utils.Log.Infoln("QT_VERSION_MAJOR:", utils.QT_VERSION_MAJOR())
 	utils.Log.Infoln("QT_DIR:", utils.QT_DIR())
 	utils.Log.Infoln("QT_STUB:", utils.QT_STUB())
 

@@ -143,7 +143,7 @@ func (c *Class) fixBases() {
 			if utils.UseMsys2() {
 				prefixPath = utils.QT_MSYS2_DIR()
 			} else {
-				prefixPath = filepath.Join(utils.QT_DIR(), "5.7", "mingw53_32")
+				prefixPath = filepath.Join(utils.QT_DIR(), utils.QT_VERSION_MAJOR(), "mingw53_32")
 			}
 		}
 
@@ -159,7 +159,7 @@ func (c *Class) fixBases() {
 			if utils.UsePkgConfig() {
 				prefixPath = strings.TrimSpace(utils.RunCmd(exec.Command("pkg-config", "--variable=includedir", "Qt5Core"), "parser.class_includedir"))
 			} else {
-				prefixPath = filepath.Join(utils.QT_DIR(), "5.7", "gcc_64")
+				prefixPath = filepath.Join(utils.QT_DIR(), utils.QT_VERSION_MAJOR(), "gcc_64")
 			}
 		}
 	}

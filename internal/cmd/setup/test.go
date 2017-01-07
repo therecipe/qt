@@ -1,6 +1,7 @@
 package setup
 
 import (
+	"os"
 	"path/filepath"
 	"strings"
 
@@ -63,7 +64,12 @@ func test(buildTarget string) {
 		utils.Log.Infoln("testing", example)
 
 		deploy.Deploy(&deploy.State{
-			BuildMode:   "test",
+			BuildMode: func() string {
+				if strings.ToLower(os.Getenv("CI")) == "true" {
+					return "build"
+				}
+				return "test"
+			}(),
 			BuildTarget: strings.TrimSuffix(buildTarget, "-docker"),
 			AppPath:     filepath.Join(utils.GoQtPkgPath("internal", "examples"), example),
 			BuildDocker: strings.HasSuffix(buildTarget, "-docker"),

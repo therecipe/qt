@@ -166,17 +166,17 @@ func cgoWindows(module, mocPath string) {
 	fmt.Fprint(bb, " -DQT_NEEDS_QMAIN")
 	fmt.Fprint(bb, "\n")
 
-	fmt.Fprintf(bb, "#cgo CXXFLAGS: -I%v/5.7/mingw53_32/include -I%v/5.7/mingw53_32/mkspecs/win32-g++\n", QT_DIR(), QT_DIR())
+	fmt.Fprintf(bb, "#cgo CXXFLAGS: -I%v/%v/mingw53_32/include -I%v/%v/mingw53_32/mkspecs/win32-g++\n", QT_DIR(), utils.QT_VERSION_MAJOR(), QT_DIR(), utils.QT_VERSION_MAJOR())
 
 	fmt.Fprint(bb, "#cgo CXXFLAGS:")
 	for _, m := range libs {
-		fmt.Fprintf(bb, " -I%v/5.7/mingw53_32/include/Qt%v", QT_DIR(), m)
+		fmt.Fprintf(bb, " -I%v/%v/mingw53_32/include/Qt%v", QT_DIR(), utils.QT_VERSION_MAJOR(), m)
 	}
 	fmt.Fprint(bb, "\n\n")
 
 	fmt.Fprint(bb, "#cgo LDFLAGS: -Wl,-s -Wl,-subsystem,windows -mthreads -Wl,--allow-multiple-definition\n")
 
-	fmt.Fprintf(bb, "#cgo LDFLAGS: -L%v/5.7/mingw53_32/lib", QT_DIR())
+	fmt.Fprintf(bb, "#cgo LDFLAGS: -L%v/%v/mingw53_32/lib", QT_DIR(), utils.QT_VERSION_MAJOR())
 	for _, m := range libs {
 		if m != "UiPlugin" {
 			fmt.Fprintf(bb, " -lQt5%v", m)
@@ -396,17 +396,17 @@ func cgoLinux(module, mocPath string) {
 	}
 	fmt.Fprint(bb, "\n")
 
-	fmt.Fprintf(bb, "#cgo CXXFLAGS: -I%v/5.7/gcc_64/include -I%v/5.7/gcc_64/mkspecs/linux-g++\n", utils.QT_DIR(), utils.QT_DIR())
+	fmt.Fprintf(bb, "#cgo CXXFLAGS: -I%v/%v/gcc_64/include -I%v/%v/gcc_64/mkspecs/linux-g++\n", utils.QT_DIR(), utils.QT_VERSION_MAJOR(), utils.QT_DIR(), utils.QT_VERSION_MAJOR())
 
 	fmt.Fprint(bb, "#cgo CXXFLAGS:")
 	for _, m := range libs {
-		fmt.Fprintf(bb, " -I%v/5.7/gcc_64/include/Qt%v", utils.QT_DIR(), m)
+		fmt.Fprintf(bb, " -I%v/%v/gcc_64/include/Qt%v", utils.QT_DIR(), utils.QT_VERSION_MAJOR(), m)
 	}
 	fmt.Fprint(bb, "\n\n")
 
-	fmt.Fprintf(bb, "#cgo LDFLAGS: -Wl,-O1 -Wl,-rpath,%v/5.7/gcc_64 -Wl,-rpath,%v/5.7/gcc_64/lib\n", utils.QT_DIR(), utils.QT_DIR())
+	fmt.Fprintf(bb, "#cgo LDFLAGS: -Wl,-O1 -Wl,-rpath,%v/%v/gcc_64 -Wl,-rpath,%v/%v/gcc_64/lib\n", utils.QT_DIR(), utils.QT_VERSION_MAJOR(), utils.QT_DIR(), utils.QT_VERSION_MAJOR())
 
-	fmt.Fprintf(bb, "#cgo LDFLAGS: -L%v/5.7/gcc_64/lib -L/usr/lib64", utils.QT_DIR())
+	fmt.Fprintf(bb, "#cgo LDFLAGS: -L%v/%v/gcc_64/lib -L/usr/lib64", utils.QT_DIR(), utils.QT_VERSION_MAJOR())
 	for _, m := range libs {
 		if m != "UiPlugin" {
 			fmt.Fprintf(bb, " -lQt5%v", m)
@@ -549,17 +549,17 @@ func cgoAndroid(module, mocPath string) {
 	}
 	fmt.Fprint(bb, "\n")
 
-	fmt.Fprintf(bb, "#cgo CXXFLAGS: -I%v/5.7/android_armv7/include -isystem %v/sources/cxx-stl/gnu-libstdc++/4.9/include -isystem %v/sources/cxx-stl/gnu-libstdc++/4.9/libs/armeabi-v7a/include -isystem %v/platforms/android-9/arch-arm/usr/include -I%v/5.7/android_armv7/mkspecs/android-g++\n", QT_DIR(), ANDROID_NDK_DIR(), ANDROID_NDK_DIR(), ANDROID_NDK_DIR(), QT_DIR())
+	fmt.Fprintf(bb, "#cgo CXXFLAGS: -I%v/%v/android_armv7/include -isystem %v/sources/cxx-stl/gnu-libstdc++/4.9/include -isystem %v/sources/cxx-stl/gnu-libstdc++/4.9/libs/armeabi-v7a/include -isystem %v/platforms/android-9/arch-arm/usr/include -I%v/%v/android_armv7/mkspecs/android-g++\n", QT_DIR(), utils.QT_VERSION_MAJOR(), ANDROID_NDK_DIR(), ANDROID_NDK_DIR(), ANDROID_NDK_DIR(), QT_DIR(), utils.QT_VERSION_MAJOR())
 
 	fmt.Fprint(bb, "#cgo CXXFLAGS:")
 	for _, m := range libs {
-		fmt.Fprintf(bb, " -I%v/5.7/android_armv7/include/Qt%v", QT_DIR(), m)
+		fmt.Fprintf(bb, " -I%v/%v/android_armv7/include/Qt%v", QT_DIR(), utils.QT_VERSION_MAJOR(), m)
 	}
 	fmt.Fprint(bb, "\n\n")
 
-	fmt.Fprintf(bb, "#cgo LDFLAGS: --sysroot=%v/platforms/android-9/arch-arm -Wl,-rpath=%v/5.7/android_armv7/lib -Wl,--no-undefined -Wl,-z,noexecstack -Wl,--allow-multiple-definition -Wl,--allow-shlib-undefined\n", ANDROID_NDK_DIR(), QT_DIR())
+	fmt.Fprintf(bb, "#cgo LDFLAGS: --sysroot=%v/platforms/android-9/arch-arm -Wl,-rpath=%v/%v/android_armv7/lib -Wl,--no-undefined -Wl,-z,noexecstack -Wl,--allow-multiple-definition -Wl,--allow-shlib-undefined\n", ANDROID_NDK_DIR(), QT_DIR(), utils.QT_VERSION_MAJOR())
 
-	fmt.Fprintf(bb, "#cgo LDFLAGS: -L%v/sources/cxx-stl/gnu-libstdc++/4.9/libs/armeabi-v7a -L%v/platforms/android-9/arch-arm/usr/lib -L%v/5.7/android_armv7/lib -L/opt/android/ndk/sources/cxx-stl/gnu-libstdc++/4.9/libs/armeabi-v7a -L/opt/android/ndk/platforms/android-9/arch-arm/usr/lib", ANDROID_NDK_DIR(), ANDROID_NDK_DIR(), QT_DIR())
+	fmt.Fprintf(bb, "#cgo LDFLAGS: -L%v/sources/cxx-stl/gnu-libstdc++/4.9/libs/armeabi-v7a -L%v/platforms/android-9/arch-arm/usr/lib -L%v/%v/android_armv7/lib -L/opt/android/ndk/sources/cxx-stl/gnu-libstdc++/4.9/libs/armeabi-v7a -L/opt/android/ndk/platforms/android-9/arch-arm/usr/lib", ANDROID_NDK_DIR(), ANDROID_NDK_DIR(), QT_DIR(), utils.QT_VERSION_MAJOR())
 
 	for _, m := range libs {
 		if m != "UiPlugin" {
@@ -624,17 +624,17 @@ func cgoIos(module, mocPath string) string {
 	}
 	fmt.Fprint(bb, "\n")
 
-	fmt.Fprintf(bb, "#cgo CXXFLAGS: -I%v/5.7/ios/mkspecs/macx-ios-clang/ios -I%v/5.7/ios/include -I%v/5.7/ios/mkspecs/macx-ios-clang\n", utils.QT_DIR(), utils.QT_DIR(), utils.QT_DIR())
+	fmt.Fprintf(bb, "#cgo CXXFLAGS: -I%v/%v/ios/mkspecs/macx-ios-clang/ios -I%v/%v/ios/include -I%v/%v/ios/mkspecs/macx-ios-clang\n", utils.QT_DIR(), utils.QT_VERSION_MAJOR(), utils.QT_DIR(), utils.QT_VERSION_MAJOR(), utils.QT_DIR(), utils.QT_VERSION_MAJOR())
 
 	fmt.Fprint(bb, "#cgo CXXFLAGS:")
 	for _, m := range libs {
-		fmt.Fprintf(bb, " -I%v/5.7/ios/include/Qt%v", utils.QT_DIR(), m)
+		fmt.Fprintf(bb, " -I%v/%v/ios/include/Qt%v", utils.QT_DIR(), utils.QT_VERSION_MAJOR(), m)
 	}
 	fmt.Fprint(bb, "\n\n")
 
 	fmt.Fprintf(bb, "#cgo LDFLAGS: -headerpad_max_install_names -stdlib=libc++ -Wl,-syslibroot,%v/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/%v -mios-simulator-version-min=7.0 -arch x86_64\n", utils.XCODE_DIR(), utils.IPHONESIMULATOR_SDK_DIR())
 
-	fmt.Fprintf(bb, "#cgo LDFLAGS: -L%v/5.7/ios/plugins/platforms -lqios_iphonesimulator -framework Foundation -framework UIKit -framework QuartzCore -framework AssetsLibrary -L%v/5.7/ios/lib -framework MobileCoreServices -framework CoreFoundation -framework CoreText -framework CoreGraphics -framework OpenGLES -lqtfreetype_iphonesimulator -framework Security -framework SystemConfiguration -framework CoreBluetooth -L%v/5.7/ios/plugins/imageformats -lqdds_iphonesimulator -lqicns_iphonesimulator -lqico_iphonesimulator -lqtga_iphonesimulator -lqtiff_iphonesimulator -lqwbmp_iphonesimulator -lqwebp_iphonesimulator -lqtharfbuzzng_iphonesimulator -lz -lqtpcre_iphonesimulator -lm", utils.QT_DIR(), utils.QT_DIR(), utils.QT_DIR())
+	fmt.Fprintf(bb, "#cgo LDFLAGS: -L%v/%v/ios/plugins/platforms -lqios_iphonesimulator -framework Foundation -framework UIKit -framework QuartzCore -framework AssetsLibrary -L%v/%v/ios/lib -framework MobileCoreServices -framework CoreFoundation -framework CoreText -framework CoreGraphics -framework OpenGLES -lqtfreetype_iphonesimulator -framework Security -framework SystemConfiguration -framework CoreBluetooth -L%v/%v/ios/plugins/imageformats -lqdds_iphonesimulator -lqicns_iphonesimulator -lqico_iphonesimulator -lqtga_iphonesimulator -lqtiff_iphonesimulator -lqwbmp_iphonesimulator -lqwebp_iphonesimulator -lqtharfbuzzng_iphonesimulator -lz -lqtpcre_iphonesimulator -lm", utils.QT_DIR(), utils.QT_VERSION(), utils.QT_DIR(), utils.QT_VERSION_MAJOR(), utils.QT_DIR(), utils.QT_VERSION_MAJOR())
 	for _, m := range libs {
 		if m != "UiPlugin" {
 			fmt.Fprintf(bb, " -lQt5%v_iphonesimulator", m)
@@ -662,7 +662,7 @@ func cgoIos(module, mocPath string) string {
 			if module != "Quick" {
 				fmt.Fprint(bb, " -lQt5Quick_iphonesimulator -lQt5QuickParticles_iphonesimulator -lQt5QuickTest_iphonesimulator -lQt5QuickWidgets_iphonesimulator")
 			}
-			fmt.Fprintf(bb, " -L%v/5.7/ios/plugins/qmltooling -lqmldbg_debugger_iphonesimulator -lqmldbg_inspector_iphonesimulator -lqmldbg_local_iphonesimulator -lqmldbg_native_iphonesimulator -lqmldbg_profiler_iphonesimulator -lqmldbg_quickprofiler_iphonesimulator -lqmldbg_server_iphonesimulator -lQt5PacketProtocol_iphonesimulator -lqmldbg_tcp_iphonesimulator", utils.QT_DIR())
+			fmt.Fprintf(bb, " -L%v/%v/ios/plugins/qmltooling -lqmldbg_debugger_iphonesimulator -lqmldbg_inspector_iphonesimulator -lqmldbg_local_iphonesimulator -lqmldbg_native_iphonesimulator -lqmldbg_profiler_iphonesimulator -lqmldbg_quickprofiler_iphonesimulator -lqmldbg_server_iphonesimulator -lQt5PacketProtocol_iphonesimulator -lqmldbg_tcp_iphonesimulator", utils.QT_DIR(), utils.QT_VERSION_MAJOR())
 		}
 
 	case "Purchasing":
@@ -675,14 +675,14 @@ func cgoIos(module, mocPath string) string {
 		fmt.Fprint(bb, " -lQt5OpenGL_iphonesimulator")
 		fmt.Fprintf(bb, " -F%v/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks -weak_framework XCTest", utils.XCODE_DIR())
 		fmt.Fprint(bb, " -lQt5Quick_iphonesimulator -lQt5QuickParticles_iphonesimulator -lQt5QuickTest_iphonesimulator -lQt5QuickWidgets_iphonesimulator")
-		fmt.Fprintf(bb, " -L%v/5.7/ios/plugins/qmltooling -lqmldbg_debugger_iphonesimulator -lqmldbg_inspector_iphonesimulator -lqmldbg_local_iphonesimulator -lqmldbg_native_iphonesimulator -lqmldbg_profiler_iphonesimulator -lqmldbg_quickprofiler_iphonesimulator -lqmldbg_server_iphonesimulator -lQt5PacketProtocol_iphonesimulator -lqmldbg_tcp_iphonesimulator", utils.QT_DIR())
+		fmt.Fprintf(bb, " -L%v/%v/ios/plugins/qmltooling -lqmldbg_debugger_iphonesimulator -lqmldbg_inspector_iphonesimulator -lqmldbg_local_iphonesimulator -lqmldbg_native_iphonesimulator -lqmldbg_profiler_iphonesimulator -lqmldbg_quickprofiler_iphonesimulator -lqmldbg_server_iphonesimulator -lQt5PacketProtocol_iphonesimulator -lqmldbg_tcp_iphonesimulator", utils.QT_DIR(), utils.QT_VERSION_MAJOR())
 
-		fmt.Fprintf(bb, " -L%v/5.7/ios/qml/QtQuick.2 -lqtquick2plugin_iphonesimulator -L%v/5.7/ios/qml/QtQuick/Layouts -lqquicklayoutsplugin_iphonesimulator -L%v/5.7/ios/qml/QtQuick/Dialogs -ldialogplugin_iphonesimulator -L%v/5.7/ios/qml/QtQuick/Controls -lqtquickcontrolsplugin_iphonesimulator -L%v/5.7/ios/qml/Qt/labs/folderlistmodel -lqmlfolderlistmodelplugin_iphonesimulator -L%v/5.7/ios/qml/Qt/labs/settings -lqmlsettingsplugin_iphonesimulator -L%v/5.7/ios/qml/QtQuick/Dialogs/Private -ldialogsprivateplugin_iphonesimulator -L%v/5.7/ios/qml/QtQuick/Window.2 -lwindowplugin_iphonesimulator -L%v/5.7/ios/qml/QtQml/Models.2 -lmodelsplugin_iphonesimulator -L%v/5.7/ios/qml/QtQuick/Extras -lqtquickextrasplugin_iphonesimulator -L%v/5.7/ios/qml/QtGraphicalEffects/private -lqtgraphicaleffectsprivate_iphonesimulator", utils.QT_DIR(), utils.QT_DIR(), utils.QT_DIR(), utils.QT_DIR(), utils.QT_DIR(), utils.QT_DIR(), utils.QT_DIR(), utils.QT_DIR(), utils.QT_DIR(), utils.QT_DIR(), utils.QT_DIR())
-		fmt.Fprintf(bb, " -L%v/5.7/ios/qml/QtQuick/Controls.2 -lqtquickcontrols2plugin_iphonesimulator -L%v/5.7/ios/qml/QtQuick/Controls.2/Material -lqtquickcontrols2materialstyleplugin_iphonesimulator -L%v/5.7/ios/qml/QtQuick/Controls.2/Universal -lqtquickcontrols2universalstyleplugin_iphonesimulator -lQt5QuickControls2_iphonesimulator", utils.QT_DIR(), utils.QT_DIR(), utils.QT_DIR())
-		fmt.Fprintf(bb, " -L%v/5.7/ios/qml/QtQuick/Templates.2 -lqtquicktemplates2plugin_iphonesimulator -lQt5QuickTemplates2_iphonesimulator -L%v/5.7/ios/qml/QtGraphicalEffects -lqtgraphicaleffectsplugin_iphonesimulator", utils.QT_DIR(), utils.QT_DIR())
+		fmt.Fprintf(bb, " -L%v/%v/ios/qml/QtQuick.2 -lqtquick2plugin_iphonesimulator -L%v/%v/ios/qml/QtQuick/Layouts -lqquicklayoutsplugin_iphonesimulator -L%v/%v/ios/qml/QtQuick/Dialogs -ldialogplugin_iphonesimulator -L%v/%v/ios/qml/QtQuick/Controls -lqtquickcontrolsplugin_iphonesimulator -L%v/%v/ios/qml/Qt/labs/folderlistmodel -lqmlfolderlistmodelplugin_iphonesimulator -L%v/%v/ios/qml/Qt/labs/settings -lqmlsettingsplugin_iphonesimulator -L%v/%v/ios/qml/QtQuick/Dialogs/Private -ldialogsprivateplugin_iphonesimulator -L%v/%v/ios/qml/QtQuick/Window.2 -lwindowplugin_iphonesimulator -L%v/%v/ios/qml/QtQml/Models.2 -lmodelsplugin_iphonesimulator -L%v/%v/ios/qml/QtQuick/Extras -lqtquickextrasplugin_iphonesimulator -L%v/%v/ios/qml/QtGraphicalEffects/private -lqtgraphicaleffectsprivate_iphonesimulator", utils.QT_DIR(), utils.QT_VERSION_MAJOR(), utils.QT_DIR(), utils.QT_VERSION_MAJOR(), utils.QT_DIR(), utils.QT_VERSION_MAJOR(), utils.QT_DIR(), utils.QT_VERSION_MAJOR(), utils.QT_DIR(), utils.QT_VERSION_MAJOR(), utils.QT_DIR(), utils.QT_VERSION_MAJOR(), utils.QT_DIR(), utils.QT_VERSION_MAJOR(), utils.QT_DIR(), utils.QT_VERSION_MAJOR(), utils.QT_DIR(), utils.QT_VERSION_MAJOR(), utils.QT_DIR(), utils.QT_VERSION_MAJOR(), utils.QT_DIR(), utils.QT_VERSION_MAJOR())
+		fmt.Fprintf(bb, " -L%v/%v/ios/qml/QtQuick/Controls.2 -lqtquickcontrols2plugin_iphonesimulator -L%v/%v/ios/qml/QtQuick/Controls.2/Material -lqtquickcontrols2materialstyleplugin_iphonesimulator -L%v/%v/ios/qml/QtQuick/Controls.2/Universal -lqtquickcontrols2universalstyleplugin_iphonesimulator -lQt5QuickControls2_iphonesimulator", utils.QT_DIR(), utils.QT_VERSION_MAJOR(), utils.QT_DIR(), utils.QT_VERSION_MAJOR(), utils.QT_DIR(), utils.QT_VERSION_MAJOR())
+		fmt.Fprintf(bb, " -L%v/%v/ios/qml/QtQuick/Templates.2 -lqtquicktemplates2plugin_iphonesimulator -lQt5QuickTemplates2_iphonesimulator -L%v/%v/ios/qml/QtGraphicalEffects -lqtgraphicaleffectsplugin_iphonesimulator", utils.QT_DIR(), utils.QT_VERSION_MAJOR(), utils.QT_DIR(), utils.QT_VERSION_MAJOR())
 
-		fmt.Fprintf(bb, " -L%v/5.7/ios/qml/QtMultimedia -ldeclarative_multimedia_iphonesimulator -lQt5MultimediaQuick_p_iphonesimulator", utils.QT_DIR())
-		fmt.Fprintf(bb, " -L%v/5.7/ios/plugins/mediaservice -lqtmedia_audioengine_iphonesimulator -L%v/5.7/ios/plugins/audio -lqtaudio_coreaudio_iphonesimulator -L%v/5.7/ios/plugins/playlistformats -lqtmultimedia_m3u_iphonesimulator -lQt5Multimedia_iphonesimulator", utils.QT_DIR(), utils.QT_DIR(), utils.QT_DIR())
+		fmt.Fprintf(bb, " -L%v/%v/ios/qml/QtMultimedia -ldeclarative_multimedia_iphonesimulator -lQt5MultimediaQuick_p_iphonesimulator", utils.QT_DIR(), utils.QT_VERSION_MAJOR())
+		fmt.Fprintf(bb, " -L%v/%v/ios/plugins/mediaservice -lqtmedia_audioengine_iphonesimulator -L%v/%v/ios/plugins/audio -lqtaudio_coreaudio_iphonesimulator -L%v/%v/ios/plugins/playlistformats -lqtmultimedia_m3u_iphonesimulator -lQt5Multimedia_iphonesimulator", utils.QT_DIR(), utils.QT_VERSION_MAJOR(), utils.QT_DIR(), utils.QT_VERSION_MAJOR(), utils.QT_DIR(), utils.QT_VERSION_MAJOR())
 		fmt.Fprint(bb, " -lqavfcamera_iphonesimulator -framework AudioToolbox -framework CoreAudio -framework AVFoundation -framework CoreMedia -framework CoreVideo -lqavfmediaplayer_iphonesimulator -lQt5MultimediaWidgets_iphonesimulator")
 	}
 
@@ -869,17 +869,17 @@ func cgoRaspberryPi1(module, mocPath string) {
 	}
 	fmt.Fprint(bb, "\n")
 
-	fmt.Fprintf(bb, "#cgo CXXFLAGS: -I%v/5.7/rpi1/include -I${RPI1_SYSROOT_DIR}/opt/vc/include -I${RPI1_SYSROOT_DIR}/opt/vc/include/interface/vcos/pthreads -I${RPI1_SYSROOT_DIR}/opt/vc/include/interface/vmcs_host/linux -I%v/5.7/rpi1/mkspecs/devices/linux-rasp-pi-g++\n", utils.QT_DIR(), utils.QT_DIR())
+	fmt.Fprintf(bb, "#cgo CXXFLAGS: -I%v/%v/rpi1/include -I${RPI1_SYSROOT_DIR}/opt/vc/include -I${RPI1_SYSROOT_DIR}/opt/vc/include/interface/vcos/pthreads -I${RPI1_SYSROOT_DIR}/opt/vc/include/interface/vmcs_host/linux -I%v/%v/rpi1/mkspecs/devices/linux-rasp-pi-g++\n", utils.QT_DIR(), utils.QT_VERSION_MAJOR(), utils.QT_DIR(), utils.QT_VERSION_MAJOR())
 
 	fmt.Fprint(bb, "#cgo CXXFLAGS:")
 	for _, m := range libs {
-		fmt.Fprintf(bb, " -I%v/5.7/rpi1/include/Qt%v", utils.QT_DIR(), m)
+		fmt.Fprintf(bb, " -I%v/%v/rpi1/include/Qt%v", utils.QT_DIR(), utils.QT_VERSION_MAJOR(), m)
 	}
 	fmt.Fprint(bb, "\n\n")
 
-	fmt.Fprintf(bb, "#cgo LDFLAGS: -Wl,-rpath-link,${RPI1_SYSROOT_DIR}/opt/vc/lib -Wl,-rpath-link,${RPI1_SYSROOT_DIR}/usr/lib/arm-linux-gnueabihf -Wl,-rpath-link,${RPI1_SYSROOT_DIR}/lib/arm-linux-gnueabihf -Wl,-rpath-link,%v/5.7/rpi1/lib -mfloat-abi=hard --sysroot=${RPI1_SYSROOT_DIR} -Wl,-O1 -Wl,--enable-new-dtags -Wl,-z,origin\n", utils.QT_DIR())
+	fmt.Fprintf(bb, "#cgo LDFLAGS: -Wl,-rpath-link,${RPI1_SYSROOT_DIR}/opt/vc/lib -Wl,-rpath-link,${RPI1_SYSROOT_DIR}/usr/lib/arm-linux-gnueabihf -Wl,-rpath-link,${RPI1_SYSROOT_DIR}/lib/arm-linux-gnueabihf -Wl,-rpath-link,%v/%v/rpi1/lib -mfloat-abi=hard --sysroot=${RPI1_SYSROOT_DIR} -Wl,-O1 -Wl,--enable-new-dtags -Wl,-z,origin\n", utils.QT_DIR(), utils.QT_VERSION_MAJOR())
 
-	fmt.Fprintf(bb, "#cgo LDFLAGS: -L${RPI1_SYSROOT_DIR}/opt/vc/lib -L%v/5.7/rpi1/lib", utils.QT_DIR())
+	fmt.Fprintf(bb, "#cgo LDFLAGS: -L${RPI1_SYSROOT_DIR}/opt/vc/lib -L%v/%v/rpi1/lib", utils.QT_DIR(), utils.QT_VERSION_MAJOR())
 	for _, m := range libs {
 		if m != "UiPlugin" {
 			fmt.Fprintf(bb, " -lQt5%v", m)
@@ -945,17 +945,17 @@ func cgoRaspberryPi2(module, mocPath string) {
 	}
 	fmt.Fprint(bb, "\n")
 
-	fmt.Fprintf(bb, "#cgo CXXFLAGS: -I%v/5.7/rpi2/include -I${RPI2_SYSROOT_DIR}/opt/vc/include -I${RPI2_SYSROOT_DIR}/opt/vc/include/interface/vcos/pthreads -I${RPI2_SYSROOT_DIR}/opt/vc/include/interface/vmcs_host/linux -I%v/5.7/rpi2/mkspecs/devices/linux-rasp-pi2-g++\n", utils.QT_DIR(), utils.QT_DIR())
+	fmt.Fprintf(bb, "#cgo CXXFLAGS: -I%v/%v/rpi2/include -I${RPI2_SYSROOT_DIR}/opt/vc/include -I${RPI2_SYSROOT_DIR}/opt/vc/include/interface/vcos/pthreads -I${RPI2_SYSROOT_DIR}/opt/vc/include/interface/vmcs_host/linux -I%v/%v/rpi2/mkspecs/devices/linux-rasp-pi2-g++\n", utils.QT_DIR(), utils.QT_VERSION_MAJOR(), utils.QT_DIR(), utils.QT_VERSION_MAJOR())
 
 	fmt.Fprint(bb, "#cgo CXXFLAGS:")
 	for _, m := range libs {
-		fmt.Fprintf(bb, " -I%v/5.7/rpi2/include/Qt%v", utils.QT_DIR(), m)
+		fmt.Fprintf(bb, " -I%v/%v/rpi2/include/Qt%v", utils.QT_DIR(), utils.QT_VERSION_MAJOR(), m)
 	}
 	fmt.Fprint(bb, "\n\n")
 
-	fmt.Fprintf(bb, "#cgo LDFLAGS: -Wl,-rpath-link,${RPI2_SYSROOT_DIR}/opt/vc/lib -Wl,-rpath-link,${RPI2_SYSROOT_DIR}/usr/lib/arm-linux-gnueabihf -Wl,-rpath-link,${RPI2_SYSROOT_DIR}/lib/arm-linux-gnueabihf -Wl,-rpath-link,%v/5.7/rpi2/lib -mfloat-abi=hard --sysroot=${RPI2_SYSROOT_DIR} -Wl,-O1 -Wl,--enable-new-dtags -Wl,-z,origin\n", utils.QT_DIR())
+	fmt.Fprintf(bb, "#cgo LDFLAGS: -Wl,-rpath-link,${RPI2_SYSROOT_DIR}/opt/vc/lib -Wl,-rpath-link,${RPI2_SYSROOT_DIR}/usr/lib/arm-linux-gnueabihf -Wl,-rpath-link,${RPI2_SYSROOT_DIR}/lib/arm-linux-gnueabihf -Wl,-rpath-link,%v/%v/rpi2/lib -mfloat-abi=hard --sysroot=${RPI2_SYSROOT_DIR} -Wl,-O1 -Wl,--enable-new-dtags -Wl,-z,origin\n", utils.QT_DIR(), utils.QT_VERSION_MAJOR())
 
-	fmt.Fprintf(bb, "#cgo LDFLAGS: -L${RPI2_SYSROOT_DIR}/opt/vc/lib -L%v/5.7/rpi2/lib", utils.QT_DIR())
+	fmt.Fprintf(bb, "#cgo LDFLAGS: -L${RPI2_SYSROOT_DIR}/opt/vc/lib -L%v/%v/rpi2/lib", utils.QT_DIR(), utils.QT_VERSION_MAJOR())
 	for _, m := range libs {
 		if m != "UiPlugin" {
 			fmt.Fprintf(bb, " -lQt5%v", m)
@@ -1021,17 +1021,17 @@ func cgoRaspberryPi3(module, mocPath string) {
 	}
 	fmt.Fprint(bb, "\n")
 
-	fmt.Fprintf(bb, "#cgo CXXFLAGS: -I%v/5.7/rpi3/include -I${RPI3_SYSROOT_DIR}/opt/vc/include -I${RPI3_SYSROOT_DIR}/opt/vc/include/interface/vcos/pthreads -I${RPI3_SYSROOT_DIR}/opt/vc/include/interface/vmcs_host/linux -I%v/5.7/rpi3/mkspecs/devices/linux-rpi3-g++\n", utils.QT_DIR(), utils.QT_DIR())
+	fmt.Fprintf(bb, "#cgo CXXFLAGS: -I%v/%v/rpi3/include -I${RPI3_SYSROOT_DIR}/opt/vc/include -I${RPI3_SYSROOT_DIR}/opt/vc/include/interface/vcos/pthreads -I${RPI3_SYSROOT_DIR}/opt/vc/include/interface/vmcs_host/linux -I%v/%v/rpi3/mkspecs/devices/linux-rpi3-g++\n", utils.QT_DIR(), utils.QT_VERSION_MAJOR(), utils.QT_DIR(), utils.QT_VERSION_MAJOR())
 
 	fmt.Fprint(bb, "#cgo CXXFLAGS:")
 	for _, m := range libs {
-		fmt.Fprintf(bb, " -I%v/5.7/rpi3/include/Qt%v", utils.QT_DIR(), m)
+		fmt.Fprintf(bb, " -I%v/%v/rpi3/include/Qt%v", utils.QT_DIR(), utils.QT_VERSION_MAJOR(), m)
 	}
 	fmt.Fprint(bb, "\n\n")
 
-	fmt.Fprintf(bb, "#cgo LDFLAGS: -Wl,-rpath-link,${RPI3_SYSROOT_DIR}/opt/vc/lib -Wl,-rpath-link,${RPI3_SYSROOT_DIR}/usr/lib/arm-linux-gnueabihf -Wl,-rpath-link,${RPI3_SYSROOT_DIR}/lib/arm-linux-gnueabihf -Wl,-rpath-link,%v/5.7/rpi3/lib -mfloat-abi=hard --sysroot=${RPI3_SYSROOT_DIR} -Wl,-O1 -Wl,--enable-new-dtags -Wl,-z,origin\n", utils.QT_DIR())
+	fmt.Fprintf(bb, "#cgo LDFLAGS: -Wl,-rpath-link,${RPI3_SYSROOT_DIR}/opt/vc/lib -Wl,-rpath-link,${RPI3_SYSROOT_DIR}/usr/lib/arm-linux-gnueabihf -Wl,-rpath-link,${RPI3_SYSROOT_DIR}/lib/arm-linux-gnueabihf -Wl,-rpath-link,%v/%v/rpi3/lib -mfloat-abi=hard --sysroot=${RPI3_SYSROOT_DIR} -Wl,-O1 -Wl,--enable-new-dtags -Wl,-z,origin\n", utils.QT_DIR(), utils.QT_VERSION_MAJOR())
 
-	fmt.Fprintf(bb, "#cgo LDFLAGS: -L${RPI3_SYSROOT_DIR}/opt/vc/lib -L%v/5.7/rpi3/lib", utils.QT_DIR())
+	fmt.Fprintf(bb, "#cgo LDFLAGS: -L${RPI3_SYSROOT_DIR}/opt/vc/lib -L%v/%v/rpi3/lib", utils.QT_DIR(), utils.QT_VERSION_MAJOR())
 	for _, m := range libs {
 		if m != "UiPlugin" {
 			fmt.Fprintf(bb, " -lQt5%v", m)

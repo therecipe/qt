@@ -70,5 +70,5 @@ func QT_DARWIN_DIR() string {
 		}
 		return "/usr/local/opt/qt5"
 	}
-	return filepath.Join(QT_DIR(), "5.7/clang_64")
+	return filepath.Join(QT_DIR(), fmt.Sprintf("%v/clang_64", QT_VERSION_MAJOR()))
 }

@@ -466,7 +466,7 @@ func predeploy() {
 				Qmlrootpath                   string `json:"qml-root-path"`
 				Applicationbinary             string `json:"application-binary"`
 			}{
-				Qt:  filepath.Join(utils.QT_DIR(), "5.7", "android_armv7"),
+				Qt:  filepath.Join(utils.QT_DIR(), utils.QT_VERSION_MAJOR(), "android_armv7"),
 				Sdk: utils.ANDROID_SDK_DIR(),
 				SdkBuildToolsRevision: "25.0.2",
 				Ndk:                           utils.ANDROID_NDK_DIR(),
@@ -539,7 +539,7 @@ func predeploy() {
 			utils.Save(filepath.Join(buildPath, "LaunchScreen.xib"), iosLaunchScreen())
 			utils.Save(filepath.Join(buildPath, "project.xcodeproj", "project.pbxproj"), iosProject())
 
-			utils.RunCmd(exec.Command(copyCmd, fmt.Sprintf("%v/5.7/ios/mkspecs/macx-ios-clang/Default-568h@2x.png", utils.QT_DIR()), buildPath), fmt.Sprintf("copy icon for %v on %v", buildTarget, runtime.GOOS))
+			utils.RunCmd(exec.Command(copyCmd, fmt.Sprintf("%v/%v/ios/mkspecs/macx-ios-clang/Default-568h@2x.png", utils.QT_DIR(), utils.QT_VERSION_MAJOR()), buildPath), fmt.Sprintf("copy icon for %v on %v", buildTarget, runtime.GOOS))
 
 			//copy assets from buildTarget folder
 			utils.RunCmd(exec.Command(copyCmd, "-R", fmt.Sprintf("%v/%v/", appPath, buildTarget), buildPath), fmt.Sprintf("copy assets for %v on %v", buildTarget, runtime.GOOS))
@@ -609,7 +609,7 @@ func deployInternal() {
 	case "android":
 		{
 
-			var deploy = exec.Command(filepath.Join(utils.QT_DIR(), "5.7", "android_armv7", "bin", "androiddeployqt"))
+			var deploy = exec.Command(filepath.Join(utils.QT_DIR(), utils.QT_VERSION_MAJOR(), "android_armv7", "bin", "androiddeployqt"))
 			deploy.Args = append(deploy.Args,
 				"--input", filepath.Join(depPath, "android-libgo.so-deployment-settings.json"),
 				"--output", filepath.Join(depPath, "build"),
@@ -628,7 +628,7 @@ func deployInternal() {
 				)
 			}
 
-			deploy.Dir = filepath.Join(utils.QT_DIR(), "5.7", "android_armv7", "bin")
+			deploy.Dir = filepath.Join(utils.QT_DIR(), utils.QT_VERSION_MAJOR(), "android_armv7", "bin")
 			deploy.Env = append(deploy.Env, "JAVA_HOME="+utils.JDK_DIR())
 
 			if runtime.GOOS == "windows" {
@@ -754,7 +754,7 @@ func deployInternal() {
 
 			case runtime.GOOS == "windows":
 				{
-					var deploy = exec.Command(filepath.Join(utils.QT_DIR(), "5.7", "mingw53_32", "bin", "windeployqt"))
+					var deploy = exec.Command(filepath.Join(utils.QT_DIR(), utils.QT_VERSION_MAJOR(), "mingw53_32", "bin", "windeployqt"))
 					deploy.Args = append(deploy.Args,
 						filepath.Join(depPath, appName+ending),
 						fmt.Sprintf("-qmldir=%v", appPath),
@@ -793,7 +793,7 @@ func deployInternal() {
 					)
 
 					if strings.HasPrefix(buildTarget, "rpi") {
-						libraryPath = fmt.Sprintf("%v/5.7/%v/lib/", utils.QT_DIR(), buildTarget)
+						libraryPath = fmt.Sprintf("%v/%v/%v/lib/", utils.QT_DIR(), utils.QT_VERSION_MAJOR(), buildTarget)
 						lddPath = fmt.Sprintf("%v/arm-bcm2708/arm-rpi-4.9.3-linux-gnueabihf/bin/arm-linux-gnueabihf-ldd", utils.RPI_TOOLS_DIR())
 						lddExtra = "--root=/"
 						lddOutput = utils.RunCmd(exec.Command(lddPath, lddExtra, filepath.Join(depPath, appName)), fmt.Sprintf("ldd binary for %v on %v", buildTarget, runtime.GOOS))
@@ -1442,7 +1442,7 @@ func iosProject() string {
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "cp %v/qt.conf $CODESIGNING_FOLDER_PATH/qt.conf;  test -d $CODESIGNING_FOLDER_PATH/qt_qml && rm -r $CODESIGNING_FOLDER_PATH/qt_qml;  mkdir -p $CODESIGNING_FOLDER_PATH/qt_qml &&  for p in %v/5.7/ios/qml; do rsync -r --exclude='*.a' --exclude='*.prl' --exclude='*.qmltypes'  $p/ $CODESIGNING_FOLDER_PATH/qt_qml; done";
+			shellScript = "cp %v/qt.conf $CODESIGNING_FOLDER_PATH/qt.conf;  test -d $CODESIGNING_FOLDER_PATH/qt_qml && rm -r $CODESIGNING_FOLDER_PATH/qt_qml;  mkdir -p $CODESIGNING_FOLDER_PATH/qt_qml &&  for p in %v/%v/ios/qml; do rsync -r --exclude='*.a' --exclude='*.prl' --exclude='*.qmltypes'  $p/ $CODESIGNING_FOLDER_PATH/qt_qml; done";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -1519,7 +1519,7 @@ func iosProject() string {
 	};
 	rootObject = 254BB8361B1FD08900C56DE9 /* Project object */;
 }
-`, depPath, utils.QT_DIR())
+`, depPath, utils.QT_DIR(), utils.QT_VERSION_MAJOR())
 }
 
 const (
