@@ -132,6 +132,10 @@ var LibDeps = map[string][]string{
 	"Charts":            {"Widgets", "Gui", "Core"},
 	//"Quick2DRenderer":   {}, //TODO: uncomment
 
+	//"NetworkAuth":    {"Network", "Gui", "Core"},
+	"Speech":         {"Core"},
+	"QuickControls2": {"Core"},
+
 	"Sailfish": {"Core"},
 
 	MOC:         make([]string, 0),
@@ -181,6 +185,10 @@ var Libs = []string{
 	"Charts",            //GPLv3
 	//"Quick2DRenderer",   //GPLv3
 
+	//"NetworkAuth",
+	"Speech",
+	"QuickControls2",
+
 	"Sailfish",
 }
 
@@ -189,20 +197,24 @@ func ShouldBuild(module string) bool {
 }
 
 func GetLibs() []string {
+	var out = Libs
 	for i := len(Libs) - 1; i >= 0; i-- {
 		switch {
-		case
-			!(runtime.GOOS == "darwin" || runtime.GOOS == "linux") && Libs[i] == "WebEngine",
+		case !(runtime.GOOS == "darwin" || runtime.GOOS == "linux") && Libs[i] == "WebEngine",
 			runtime.GOOS != "windows" && Libs[i] == "WinExtras",
 			runtime.GOOS != "darwin" && Libs[i] == "MacExtras",
 			runtime.GOOS != "linux" && Libs[i] == "X11Extras":
 			{
-				Libs = append(Libs[:i], Libs[i+1:]...)
+				out = append(out[:i], out[i+1:]...)
+			}
+
+		case utils.QT_VERSION() != "5.8.0" && Libs[i] == "Speech":
+			{
+				out = append(out[:i], out[i+1:]...)
 			}
 		}
 	}
-
-	return Libs
+	return out
 }
 
 func Dump() {

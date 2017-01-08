@@ -20,7 +20,6 @@ func ParseFlags() {
 
 	if *debug {
 		utils.Log.Level = logrus.DebugLevel
-		os.Setenv("QT_DEBUG", "true")
 	}
 
 	runtime.GOMAXPROCS(*p)

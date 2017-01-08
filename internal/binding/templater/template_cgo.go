@@ -1074,6 +1074,9 @@ func cleanLibs(module string) []string {
 		if v == "TestLib" {
 			out[i] = "Test"
 		}
+		if v == "Speech" {
+			out[i] = "TextToSpeech"
+		}
 	}
 	return out
 }

@@ -9,7 +9,15 @@ import (
 	"strings"
 )
 
+var (
+	QT_VERSION_CACHE string
+)
+
 func QT_VERSION() string {
+	if QT_VERSION_CACHE != "" {
+		return QT_VERSION_CACHE
+	}
+
 	if version := os.Getenv("QT_VERSION"); version != "" {
 		return version
 	}
@@ -27,7 +35,8 @@ func QT_VERSION() string {
 			err = json.Unmarshal([]byte(LoadOptional(filepath.Join(QT_DARWIN_DIR(), "INSTALL_RECEIPT.json"))), cStruct)
 		)
 		if err == nil {
-			return cStruct.Source.Versions.Stable
+			QT_VERSION_CACHE = cStruct.Source.Versions.Stable
+			return QT_VERSION_CACHE
 		}
 	} else {*/
 	if dir := os.Getenv("QT_DIR"); dir != "" {
@@ -40,7 +49,8 @@ func QT_VERSION() string {
 			err = xml.Unmarshal([]byte(LoadOptional(filepath.Join(dir, "components.xml"))), cStruct)
 		)
 		if err == nil {
-			return strings.TrimSpace(strings.Split(cStruct.ApplicationName, " ")[1])
+			QT_VERSION_CACHE = strings.TrimSpace(strings.Split(cStruct.ApplicationName, " ")[1])
+			return QT_VERSION_CACHE
 		}
 	}
 	//}

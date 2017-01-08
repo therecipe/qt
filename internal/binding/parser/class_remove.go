@@ -1,6 +1,8 @@
 package parser
 
-import "strings"
+import (
+	"strings"
+)
 
 func (c *Class) remove() {
 	c.removeFunctions()
@@ -57,7 +59,7 @@ func (c *Class) removeEnums() {
 func (c *Class) removeEnums_Version() {
 	for i := len(c.Enums) - 1; i >= 0; i-- {
 		switch c.Enums[i].ClassName() {
-		case "QCss", "QScript":
+		case "QCss", "QScript", "Http2":
 			{
 				c.Enums = append(c.Enums[:i], c.Enums[i+1:]...)
 			}

@@ -69,7 +69,7 @@ func install(buildTarget string) {
 	for _, module := range parser.GetLibs() {
 		if parser.ShouldBuild(module) {
 
-			if !(buildTarget == "android" && (module == "DBus" || module == "WebEngine" || module == "Designer" || (strings.HasSuffix(module, "Extras") && module != "AndroidExtras"))) &&
+			if !(buildTarget == "android" && (module == "DBus" || module == "WebEngine" || module == "PrintSupport" || module == "Designer" || (strings.HasSuffix(module, "Extras") && module != "AndroidExtras"))) &&
 				!(strings.HasPrefix(buildTarget, "ios") && (module == "SerialPort" || module == "SerialBus" || module == "WebEngine" || module == "PrintSupport" || module == "Designer" || strings.HasSuffix(module, "Extras"))) && //TODO: support for PrintSupport
 				!(strings.HasPrefix(buildTarget, "rpi") && (module == "WebEngine" || module == "Designer" || strings.HasSuffix(module, "Extras"))) { //TODO: support for WebEngine (rpi2 + rpi3)
 

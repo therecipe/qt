@@ -555,6 +555,7 @@ func main() {
 
 * [5k3105/AM](https://github.com/5k3105/AM)
 * [5k3105/Pipeline-Editor](https://github.com/5k3105/Pipeline-Editor)
+* [5k3105/Sprite-Editor](https://github.com/5k3105/Sprite-Editor)
 * [gen2brain/url2img](https://github.com/gen2brain/url2img)
 * [joeblew99/qt-archi](https://github.com/joeblew99/qt-archi)
 * [jordanorelli/grpc-ui](https://github.com/jordanorelli/grpc-ui)

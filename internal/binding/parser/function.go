@@ -3,6 +3,8 @@ package parser
 import (
 	"sort"
 	"strings"
+
+	"github.com/therecipe/qt/internal/utils"
 )
 
 type Function struct {
@@ -130,6 +132,18 @@ func (f *Function) IsJNIGeneric() bool {
 }
 
 func (f *Function) IsSupported() bool {
+
+	if utils.QT_VERSION() == "5.8.0" {
+		if f.Fullname == "QJSEngine::newQMetaObject" && f.OverloadNumber == "2" ||
+			f.Fullname == "QScxmlTableData::instructions" || f.Fullname == "QScxmlTableData::dataNames" ||
+			f.Fullname == "QScxmlTableData::stateMachineTable" ||
+			f.Fullname == "QTextToSpeech::voiceChanged" {
+			if !strings.Contains(f.Access, "unsupported") {
+				f.Access = "unsupported_isBlockedFunction"
+			}
+			return false
+		}
+	}
 
 	switch {
 	case
