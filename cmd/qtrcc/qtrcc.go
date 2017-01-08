@@ -13,6 +13,9 @@ import (
 
 func main() {
 	var appPath, _ = os.Getwd()
+	if env_cwd := os.Getenv("QTRCC_CWD"); env_cwd != "" {
+		appPath = env_cwd
+	}
 
 	var output_dir = flag.String("o", "", "define alternative output dir")
 	cmd.ParseFlags()
@@ -21,6 +24,16 @@ func main() {
 		if !filepath.IsAbs(*output_dir) {
 			var tmp_output_dir, _ = utils.Abs(*output_dir)
 			output_dir = &tmp_output_dir
+		}
+	} else {
+		env_output_dir := os.Getenv("QTRCC_OUTPUT_DIR")
+		if env_output_dir != "" {
+			if !filepath.IsAbs(env_output_dir) {
+				var tmp_output_dir, _ = utils.Abs(env_output_dir)
+				output_dir = &tmp_output_dir
+			} else {
+				output_dir = &env_output_dir
+			}
 		}
 	}
 
