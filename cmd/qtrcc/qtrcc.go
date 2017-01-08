@@ -22,6 +22,16 @@ func main() {
 			var tmp_output_dir, _ = utils.Abs(*output_dir)
 			output_dir = &tmp_output_dir
 		}
+	} else {
+		env_output_dir := os.Getenv("QTRCC_OUTPUT_DIR")
+		if env_output_dir != "" {
+			if !filepath.IsAbs(env_output_dir) {
+				var tmp_output_dir, _ = utils.Abs(env_output_dir)
+				output_dir = &tmp_output_dir
+			} else {
+				output_dir = &env_output_dir
+			}
+		}
 	}
 
 	switch flag.NArg() {
