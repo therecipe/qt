@@ -84,7 +84,15 @@ func Deploy(s *State) {
 			} else {
 
 				//rcc
-				rcc.Rcc(appPath, nil)
+				var qtrcc_cwd string = appPath
+				if env_cwd := os.Getenv("QTRCC_CWD"); env_cwd != "" {
+					qtrcc_cwd = env_cwd
+				}
+				var qtrcc_output *string
+				if env_output_dir := os.Getenv("QTRCC_OUTPUT_DIR"); env_output_dir != "" {
+					qtrcc_output = &env_output_dir
+				}
+				rcc.Rcc(qtrcc_cwd, qtrcc_output)
 
 				//moc
 				moc.MocTree(appPath)
