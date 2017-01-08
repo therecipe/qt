@@ -13,6 +13,9 @@ import (
 
 func main() {
 	var appPath, _ = os.Getwd()
+	if env_cwd := os.Getenv("QTRCC_CWD"); env_cwd != "" {
+		appPath = env_cwd
+	}
 
 	var output_dir = flag.String("o", "", "define alternative output dir")
 	cmd.ParseFlags()
