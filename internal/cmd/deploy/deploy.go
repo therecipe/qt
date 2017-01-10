@@ -141,6 +141,10 @@ func build() {
 		env        map[string]string
 	)
 
+	if strings.ToLower(os.Getenv("QT_DOCKER")) == "true" {
+		tagFlags += "\"docker\""
+	}
+
 	switch buildTarget {
 	case "android":
 		{
@@ -1004,7 +1008,7 @@ func deployDocker() {
 
 	args = append(args, []string{"-i", fmt.Sprintf("therecipe/qt:%v", dockerImage)}...)
 
-	args = append(args, []string{"qtdeploy", "build", buildTarget}...)
+	args = append(args, []string{"qtdeploy", "-debug", "build", buildTarget}...)
 
 	var found bool
 	for i, gp := range strings.Split(os.Getenv("GOPATH"), string(filepath.ListSeparator)) {

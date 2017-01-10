@@ -4,6 +4,7 @@ MAINTAINER therecipe
 
 ENV USER user
 ENV HOME /home/$USER
+ENV QT_DOCKER true
 
 
 RUN apt-get -qq update && apt-get -y -qq install curl git software-properties-common libgl1-mesa-dev fontconfig unzip && apt-get -qq clean

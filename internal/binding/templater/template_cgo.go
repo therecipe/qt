@@ -18,15 +18,15 @@ func CgoTemplate(module, mocPath string) {
 		cgoDarwin(module, mocPath)
 		if runtime.GOOS == "windows" {
 			if utils.UseMsys2() {
-				cgoWindowsMsys2(module, mocPath)
+				cgoWindowsMsys2(module, mocPath) //TODO: docker
 			} else {
-				cgoWindows(module, mocPath)
+				cgoWindows(module, mocPath) //TODO: docker
 			}
 		} else {
 			cgoWindowsForLinux(module, mocPath)
 		}
 		if utils.UsePkgConfig() {
-			cgoLinuxPkgConfig(module, mocPath)
+			cgoLinuxPkgConfig(module, mocPath) //TODO: docker
 		} else {
 			cgoLinux(module, mocPath)
 		}
@@ -396,26 +396,28 @@ func cgoLinux(module, mocPath string) {
 	}
 	fmt.Fprint(bb, "\n")
 
-	fmt.Fprintf(bb, "#cgo CXXFLAGS: -I%v/%v/gcc_64/include -I%v/%v/gcc_64/mkspecs/linux-g++\n", utils.QT_DIR(), utils.QT_VERSION_MAJOR(), utils.QT_DIR(), utils.QT_VERSION_MAJOR())
+	for _, s := range []struct{ pre, dir string }{{"!", utils.QT_DIR()}, {"", "/opt/Qt5.7.0"}} {
 
-	fmt.Fprint(bb, "#cgo CXXFLAGS:")
-	for _, m := range libs {
-		fmt.Fprintf(bb, " -I%v/%v/gcc_64/include/Qt%v", utils.QT_DIR(), utils.QT_VERSION_MAJOR(), m)
-	}
-	fmt.Fprint(bb, "\n\n")
+		fmt.Fprintf(bb, "#cgo +build %vdocker CXXFLAGS: -I%v/%v/gcc_64/include -I%v/%v/gcc_64/mkspecs/linux-g++\n", s.pre, s.dir, utils.QT_VERSION_MAJOR(), s.dir, utils.QT_VERSION_MAJOR())
 
-	fmt.Fprintf(bb, "#cgo LDFLAGS: -Wl,-O1 -Wl,-rpath,%v/%v/gcc_64 -Wl,-rpath,%v/%v/gcc_64/lib\n", utils.QT_DIR(), utils.QT_VERSION_MAJOR(), utils.QT_DIR(), utils.QT_VERSION_MAJOR())
-
-	fmt.Fprintf(bb, "#cgo LDFLAGS: -L%v/%v/gcc_64/lib -L/usr/lib64", utils.QT_DIR(), utils.QT_VERSION_MAJOR())
-	for _, m := range libs {
-		if m != "UiPlugin" {
-			fmt.Fprintf(bb, " -lQt5%v", m)
+		fmt.Fprintf(bb, "#cgo +build %vdocker CXXFLAGS:", s.pre)
+		for _, m := range libs {
+			fmt.Fprintf(bb, " -I%v/%v/gcc_64/include/Qt%v", s.dir, utils.QT_VERSION_MAJOR(), m)
 		}
+		fmt.Fprint(bb, "\n\n")
+
+		fmt.Fprintf(bb, "#cgo +build %vdocker LDFLAGS: -Wl,-O1 -Wl,-rpath,%v/%v/gcc_64 -Wl,-rpath,%v/%v/gcc_64/lib\n", s.pre, s.dir, utils.QT_VERSION_MAJOR(), s.dir, utils.QT_VERSION_MAJOR())
+
+		fmt.Fprintf(bb, "#cgo +build %vdocker LDFLAGS: -L%v/%v/gcc_64/lib -L/usr/lib64", s.pre, s.dir, utils.QT_VERSION_MAJOR())
+		for _, m := range libs {
+			if m != "UiPlugin" {
+				fmt.Fprintf(bb, " -lQt5%v", m)
+			}
+		}
+		fmt.Fprint(bb, " -lpthread\n")
 	}
 
-	fmt.Fprint(bb, " -lpthread\n")
 	fmt.Fprint(bb, "*/\n")
-
 	fmt.Fprint(bb, "import \"C\"\n")
 
 	switch {
@@ -549,27 +551,30 @@ func cgoAndroid(module, mocPath string) {
 	}
 	fmt.Fprint(bb, "\n")
 
-	fmt.Fprintf(bb, "#cgo CXXFLAGS: -I%v/%v/android_armv7/include -isystem %v/sources/cxx-stl/gnu-libstdc++/4.9/include -isystem %v/sources/cxx-stl/gnu-libstdc++/4.9/libs/armeabi-v7a/include -isystem %v/platforms/android-9/arch-arm/usr/include -I%v/%v/android_armv7/mkspecs/android-g++\n", QT_DIR(), utils.QT_VERSION_MAJOR(), ANDROID_NDK_DIR(), ANDROID_NDK_DIR(), ANDROID_NDK_DIR(), QT_DIR(), utils.QT_VERSION_MAJOR())
+	for _, s := range []struct{ pre, dir, android_dir string }{{"!", QT_DIR(), ANDROID_NDK_DIR()}, {"", "/opt/Qt5.7.0", "/home/user/android-ndk-r13b"}} {
 
-	fmt.Fprint(bb, "#cgo CXXFLAGS:")
-	for _, m := range libs {
-		fmt.Fprintf(bb, " -I%v/%v/android_armv7/include/Qt%v", QT_DIR(), utils.QT_VERSION_MAJOR(), m)
-	}
-	fmt.Fprint(bb, "\n\n")
+		fmt.Fprintf(bb, "#cgo +build %vdocker CXXFLAGS: -I%v/%v/android_armv7/include -isystem %v/sources/cxx-stl/gnu-libstdc++/4.9/include -isystem %v/sources/cxx-stl/gnu-libstdc++/4.9/libs/armeabi-v7a/include -isystem %v/platforms/android-9/arch-arm/usr/include -I%v/%v/android_armv7/mkspecs/android-g++\n", s.pre, s.dir, utils.QT_VERSION_MAJOR(), s.android_dir, s.android_dir, s.android_dir, s.dir, utils.QT_VERSION_MAJOR())
 
-	fmt.Fprintf(bb, "#cgo LDFLAGS: --sysroot=%v/platforms/android-9/arch-arm -Wl,-rpath=%v/%v/android_armv7/lib -Wl,--no-undefined -Wl,-z,noexecstack -Wl,--allow-multiple-definition -Wl,--allow-shlib-undefined\n", ANDROID_NDK_DIR(), QT_DIR(), utils.QT_VERSION_MAJOR())
-
-	fmt.Fprintf(bb, "#cgo LDFLAGS: -L%v/sources/cxx-stl/gnu-libstdc++/4.9/libs/armeabi-v7a -L%v/platforms/android-9/arch-arm/usr/lib -L%v/%v/android_armv7/lib -L/opt/android/ndk/sources/cxx-stl/gnu-libstdc++/4.9/libs/armeabi-v7a -L/opt/android/ndk/platforms/android-9/arch-arm/usr/lib", ANDROID_NDK_DIR(), ANDROID_NDK_DIR(), QT_DIR(), utils.QT_VERSION_MAJOR())
-
-	for _, m := range libs {
-		if m != "UiPlugin" {
-			fmt.Fprintf(bb, " -lQt5%v", m)
+		fmt.Fprintf(bb, "#cgo +build %vdocker CXXFLAGS:", s.pre)
+		for _, m := range libs {
+			fmt.Fprintf(bb, " -I%v/%v/android_armv7/include/Qt%v", s.dir, utils.QT_VERSION_MAJOR(), m)
 		}
+		fmt.Fprint(bb, "\n\n")
+
+		fmt.Fprintf(bb, "#cgo +build %vdocker LDFLAGS: --sysroot=%v/platforms/android-9/arch-arm -Wl,-rpath=%v/%v/android_armv7/lib -Wl,--no-undefined -Wl,-z,noexecstack -Wl,--allow-multiple-definition -Wl,--allow-shlib-undefined\n", s.pre, s.android_dir, s.dir, utils.QT_VERSION_MAJOR())
+
+		fmt.Fprintf(bb, "#cgo +build %vdocker LDFLAGS: -L%v/sources/cxx-stl/gnu-libstdc++/4.9/libs/armeabi-v7a -L%v/platforms/android-9/arch-arm/usr/lib -L%v/%v/android_armv7/lib -L/opt/android/ndk/sources/cxx-stl/gnu-libstdc++/4.9/libs/armeabi-v7a -L/opt/android/ndk/platforms/android-9/arch-arm/usr/lib", s.pre, s.android_dir, s.android_dir, s.dir, utils.QT_VERSION_MAJOR())
+
+		for _, m := range libs {
+			if m != "UiPlugin" {
+				fmt.Fprintf(bb, " -lQt5%v", m)
+			}
+		}
+
+		fmt.Fprint(bb, " -lGLESv2 -lgnustl_shared -llog -lz -lm -ldl -lc -lgcc\n")
 	}
 
-	fmt.Fprint(bb, " -lGLESv2 -lgnustl_shared -llog -lz -lm -ldl -lc -lgcc\n")
 	fmt.Fprint(bb, "*/\n")
-
 	fmt.Fprint(bb, "import \"C\"\n")
 
 	switch {
