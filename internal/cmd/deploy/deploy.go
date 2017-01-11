@@ -39,7 +39,7 @@ type State struct {
 func Deploy(s *State) {
 	buildMode = s.BuildMode
 	buildTarget = s.BuildTarget
-	appPath = s.AppPath
+	appPath = filepath.Clean(s.AppPath)
 	buildDocker = s.BuildDocker
 
 	if !filepath.IsAbs(appPath) {
@@ -1012,6 +1012,7 @@ func deployDocker() {
 
 	var found bool
 	for i, gp := range strings.Split(os.Getenv("GOPATH"), string(filepath.ListSeparator)) {
+		gp = filepath.Clean(gp)
 		if strings.HasPrefix(appPath, gp) {
 			args = append(args, strings.Replace(strings.Replace(appPath, gp, fmt.Sprintf("/media/sf_GOPATH%v", i), -1), "\\", "/", -1))
 			found = true
@@ -1020,7 +1021,7 @@ func deployDocker() {
 	}
 
 	if !found {
-		utils.Log.Panicln("Project needs to be inside GOPATH", appPath, utils.MustGoPath())
+		utils.Log.Panicln("Project needs to be inside GOPATH", appPath, os.Getenv("GOPATH"))
 	}
 
 	utils.RunCmd(exec.Command("docker", args...), fmt.Sprintf("deploy binary for %v on %v with docker", buildTarget, runtime.GOOS))
