@@ -4,6 +4,7 @@ package serialbus
 
 //#include <stdint.h>
 //#include <stdlib.h>
+//#include <string.h>
 //#include "serialbus.h"
 import "C"
 import (
@@ -4891,6 +4892,44 @@ func (ptr *QModbusRtuSerialSlave) ProcessesBroadcastDefault() bool {
 	return false
 }
 
+//export callbackQModbusRtuSerialSlave_ReadData
+func callbackQModbusRtuSerialSlave_ReadData(ptr unsafe.Pointer, newData unsafe.Pointer) C.char {
+
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QModbusRtuSerialSlave::readData"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(*QModbusDataUnit) bool)(NewQModbusDataUnitFromPointer(newData)))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQModbusRtuSerialSlaveFromPointer(ptr).ReadDataDefault(NewQModbusDataUnitFromPointer(newData)))))
+}
+
+func (ptr *QModbusRtuSerialSlave) ConnectReadData(f func(newData *QModbusDataUnit) bool) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QModbusRtuSerialSlave::readData", f)
+	}
+}
+
+func (ptr *QModbusRtuSerialSlave) DisconnectReadData() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QModbusRtuSerialSlave::readData")
+	}
+}
+
+func (ptr *QModbusRtuSerialSlave) ReadData(newData QModbusDataUnit_ITF) bool {
+	if ptr.Pointer() != nil {
+		return C.QModbusRtuSerialSlave_ReadData(ptr.Pointer(), PointerFromQModbusDataUnit(newData)) != 0
+	}
+	return false
+}
+
+func (ptr *QModbusRtuSerialSlave) ReadDataDefault(newData QModbusDataUnit_ITF) bool {
+	if ptr.Pointer() != nil {
+		return C.QModbusRtuSerialSlave_ReadDataDefault(ptr.Pointer(), PointerFromQModbusDataUnit(newData)) != 0
+	}
+	return false
+}
+
 func (ptr *QModbusRtuSerialSlave) DisconnectSetMap() {
 	if ptr.Pointer() != nil {
 
@@ -5654,6 +5693,44 @@ func (ptr *QModbusServer) ProcessesBroadcast() bool {
 func (ptr *QModbusServer) ProcessesBroadcastDefault() bool {
 	if ptr.Pointer() != nil {
 		return C.QModbusServer_ProcessesBroadcastDefault(ptr.Pointer()) != 0
+	}
+	return false
+}
+
+//export callbackQModbusServer_ReadData
+func callbackQModbusServer_ReadData(ptr unsafe.Pointer, newData unsafe.Pointer) C.char {
+
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QModbusServer::readData"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(*QModbusDataUnit) bool)(NewQModbusDataUnitFromPointer(newData)))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQModbusServerFromPointer(ptr).ReadDataDefault(NewQModbusDataUnitFromPointer(newData)))))
+}
+
+func (ptr *QModbusServer) ConnectReadData(f func(newData *QModbusDataUnit) bool) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QModbusServer::readData", f)
+	}
+}
+
+func (ptr *QModbusServer) DisconnectReadData() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QModbusServer::readData")
+	}
+}
+
+func (ptr *QModbusServer) ReadData(newData QModbusDataUnit_ITF) bool {
+	if ptr.Pointer() != nil {
+		return C.QModbusServer_ReadData(ptr.Pointer(), PointerFromQModbusDataUnit(newData)) != 0
+	}
+	return false
+}
+
+func (ptr *QModbusServer) ReadDataDefault(newData QModbusDataUnit_ITF) bool {
+	if ptr.Pointer() != nil {
+		return C.QModbusServer_ReadDataDefault(ptr.Pointer(), PointerFromQModbusDataUnit(newData)) != 0
 	}
 	return false
 }
@@ -6913,6 +6990,44 @@ func (ptr *QModbusTcpServer) ProcessesBroadcast() bool {
 func (ptr *QModbusTcpServer) ProcessesBroadcastDefault() bool {
 	if ptr.Pointer() != nil {
 		return C.QModbusTcpServer_ProcessesBroadcastDefault(ptr.Pointer()) != 0
+	}
+	return false
+}
+
+//export callbackQModbusTcpServer_ReadData
+func callbackQModbusTcpServer_ReadData(ptr unsafe.Pointer, newData unsafe.Pointer) C.char {
+
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QModbusTcpServer::readData"); signal != nil {
+		return C.char(int8(qt.GoBoolToInt(signal.(func(*QModbusDataUnit) bool)(NewQModbusDataUnitFromPointer(newData)))))
+	}
+
+	return C.char(int8(qt.GoBoolToInt(NewQModbusTcpServerFromPointer(ptr).ReadDataDefault(NewQModbusDataUnitFromPointer(newData)))))
+}
+
+func (ptr *QModbusTcpServer) ConnectReadData(f func(newData *QModbusDataUnit) bool) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QModbusTcpServer::readData", f)
+	}
+}
+
+func (ptr *QModbusTcpServer) DisconnectReadData() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QModbusTcpServer::readData")
+	}
+}
+
+func (ptr *QModbusTcpServer) ReadData(newData QModbusDataUnit_ITF) bool {
+	if ptr.Pointer() != nil {
+		return C.QModbusTcpServer_ReadData(ptr.Pointer(), PointerFromQModbusDataUnit(newData)) != 0
+	}
+	return false
+}
+
+func (ptr *QModbusTcpServer) ReadDataDefault(newData QModbusDataUnit_ITF) bool {
+	if ptr.Pointer() != nil {
+		return C.QModbusTcpServer_ReadDataDefault(ptr.Pointer(), PointerFromQModbusDataUnit(newData)) != 0
 	}
 	return false
 }

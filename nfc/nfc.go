@@ -4,6 +4,7 @@ package nfc
 
 //#include <stdint.h>
 //#include <stdlib.h>
+//#include <string.h>
 //#include "nfc.h"
 import "C"
 import (

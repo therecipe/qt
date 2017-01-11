@@ -3702,6 +3702,7 @@ public:
 	void close() { callbackQBuffer_Close(this); };
 	bool open(QIODevice::OpenMode flags) { return callbackQBuffer_Open(this, flags) != 0; };
 	qint64 pos() const { return callbackQBuffer_Pos(const_cast<MyQBuffer*>(this)); };
+	qint64 readData(char * data, qint64 len) { QtCore_PackedString dataPacked = { data, len };return callbackQBuffer_ReadData(this, dataPacked, len); };
 	bool seek(qint64 pos) { return callbackQBuffer_Seek(this, pos) != 0; };
 	qint64 size() const { return callbackQBuffer_Size(const_cast<MyQBuffer*>(this)); };
 	qint64 writeData(const char * data, qint64 len) { QtCore_PackedString dataPacked = { const_cast<char*>(data), len };return callbackQBuffer_WriteData(this, dataPacked, len); };
@@ -3796,6 +3797,16 @@ long long QBuffer_Pos(void* ptr)
 long long QBuffer_PosDefault(void* ptr)
 {
 	return static_cast<QBuffer*>(ptr)->QBuffer::pos();
+}
+
+long long QBuffer_ReadData(void* ptr, char* data, long long len)
+{
+	return static_cast<QBuffer*>(ptr)->readData(data, len);
+}
+
+long long QBuffer_ReadDataDefault(void* ptr, char* data, long long len)
+{
+	return static_cast<QBuffer*>(ptr)->QBuffer::readData(data, len);
 }
 
 char QBuffer_Seek(void* ptr, long long pos)
@@ -7406,6 +7417,7 @@ public:
 	void close() { callbackQFile_Close(this); };
 	bool isSequential() const { return callbackQFile_IsSequential(const_cast<MyQFile*>(this)) != 0; };
 	qint64 pos() const { return callbackQFile_Pos(const_cast<MyQFile*>(this)); };
+	qint64 readData(char * data, qint64 len) { QtCore_PackedString dataPacked = { data, len };return callbackQFile_ReadData(this, dataPacked, len); };
 	qint64 readLineData(char * data, qint64 maxlen) { QtCore_PackedString dataPacked = { data, maxlen };return callbackQFile_ReadLineData(this, dataPacked, maxlen); };
 	qint64 writeData(const char * data, qint64 len) { QtCore_PackedString dataPacked = { const_cast<char*>(data), len };return callbackQFile_WriteData(this, dataPacked, len); };
 	qint64 bytesAvailable() const { return callbackQFile_BytesAvailable(const_cast<MyQFile*>(this)); };
@@ -7660,6 +7672,16 @@ long long QFile_PosDefault(void* ptr)
 	return static_cast<QFile*>(ptr)->QFile::pos();
 }
 
+long long QFile_ReadData(void* ptr, char* data, long long len)
+{
+	return static_cast<QFile*>(ptr)->readData(data, len);
+}
+
+long long QFile_ReadDataDefault(void* ptr, char* data, long long len)
+{
+	return static_cast<QFile*>(ptr)->QFile::readData(data, len);
+}
+
 long long QFile_ReadLineData(void* ptr, char* data, long long maxlen)
 {
 	return static_cast<QFile*>(ptr)->readLineData(data, maxlen);
@@ -7840,6 +7862,7 @@ public:
 	bool isSequential() const { return callbackQFileDevice_IsSequential(const_cast<MyQFileDevice*>(this)) != 0; };
 	Permissions permissions() const { return static_cast<QFileDevice::Permission>(callbackQFileDevice_Permissions(const_cast<MyQFileDevice*>(this))); };
 	qint64 pos() const { return callbackQFileDevice_Pos(const_cast<MyQFileDevice*>(this)); };
+	qint64 readData(char * data, qint64 len) { QtCore_PackedString dataPacked = { data, len };return callbackQFileDevice_ReadData(this, dataPacked, len); };
 	qint64 readLineData(char * data, qint64 maxlen) { QtCore_PackedString dataPacked = { data, maxlen };return callbackQFileDevice_ReadLineData(this, dataPacked, maxlen); };
 	bool resize(qint64 sz) { return callbackQFileDevice_Resize(this, sz) != 0; };
 	bool setPermissions(QFileDevice::Permissions permissions) { return callbackQFileDevice_SetPermissions(this, permissions) != 0; };
@@ -7951,6 +7974,16 @@ long long QFileDevice_Pos(void* ptr)
 long long QFileDevice_PosDefault(void* ptr)
 {
 	return static_cast<QFileDevice*>(ptr)->QFileDevice::pos();
+}
+
+long long QFileDevice_ReadData(void* ptr, char* data, long long len)
+{
+	return static_cast<QFileDevice*>(ptr)->readData(data, len);
+}
+
+long long QFileDevice_ReadDataDefault(void* ptr, char* data, long long len)
+{
+	return static_cast<QFileDevice*>(ptr)->QFileDevice::readData(data, len);
 }
 
 long long QFileDevice_ReadLineData(void* ptr, char* data, long long maxlen)
@@ -9117,6 +9150,8 @@ void* QHistoryState_MetaObjectDefault(void* ptr)
 class MyQIODevice: public QIODevice
 {
 public:
+	MyQIODevice() : QIODevice() {};
+	MyQIODevice(QObject *parent) : QIODevice(parent) {};
 	void Signal_AboutToClose() { callbackQIODevice_AboutToClose(this); };
 	bool atEnd() const { return callbackQIODevice_AtEnd(const_cast<MyQIODevice*>(this)) != 0; };
 	qint64 bytesAvailable() const { return callbackQIODevice_BytesAvailable(const_cast<MyQIODevice*>(this)); };
@@ -9130,6 +9165,7 @@ public:
 	bool open(QIODevice::OpenMode mode) { return callbackQIODevice_Open(this, mode) != 0; };
 	qint64 pos() const { return callbackQIODevice_Pos(const_cast<MyQIODevice*>(this)); };
 	void Signal_ReadChannelFinished() { callbackQIODevice_ReadChannelFinished(this); };
+	qint64 readData(char * data, qint64 maxSize) { QtCore_PackedString dataPacked = { data, maxSize };return callbackQIODevice_ReadData(this, dataPacked, maxSize); };
 	qint64 readLineData(char * data, qint64 maxSize) { QtCore_PackedString dataPacked = { data, maxSize };return callbackQIODevice_ReadLineData(this, dataPacked, maxSize); };
 	void Signal_ReadyRead() { callbackQIODevice_ReadyRead(this); };
 	bool reset() { return callbackQIODevice_Reset(this) != 0; };
@@ -9158,6 +9194,16 @@ char QIODevice_GetChar(void* ptr, char* c)
 char QIODevice_PutChar(void* ptr, char* c)
 {
 	return static_cast<QIODevice*>(ptr)->putChar(*c);
+}
+
+void* QIODevice_NewQIODevice()
+{
+	return new MyQIODevice();
+}
+
+void* QIODevice_NewQIODevice2(void* parent)
+{
+	return new MyQIODevice(static_cast<QObject*>(parent));
 }
 
 void QIODevice_ConnectAboutToClose(void* ptr)
@@ -9393,6 +9439,11 @@ void QIODevice_DisconnectReadChannelFinished(void* ptr)
 void QIODevice_ReadChannelFinished(void* ptr)
 {
 	static_cast<QIODevice*>(ptr)->readChannelFinished();
+}
+
+long long QIODevice_ReadData(void* ptr, char* data, long long maxSize)
+{
+	return static_cast<QIODevice*>(ptr)->readData(data, maxSize);
 }
 
 void* QIODevice_ReadLine2(void* ptr, long long maxSize)
@@ -16371,6 +16422,7 @@ public:
 	bool isSequential() const { return callbackQSaveFile_IsSequential(const_cast<MyQSaveFile*>(this)) != 0; };
 	Permissions permissions() const { return static_cast<QFileDevice::Permission>(callbackQSaveFile_Permissions(const_cast<MyQSaveFile*>(this))); };
 	qint64 pos() const { return callbackQSaveFile_Pos(const_cast<MyQSaveFile*>(this)); };
+	qint64 readData(char * data, qint64 len) { QtCore_PackedString dataPacked = { data, len };return callbackQSaveFile_ReadData(this, dataPacked, len); };
 	qint64 readLineData(char * data, qint64 maxlen) { QtCore_PackedString dataPacked = { data, maxlen };return callbackQSaveFile_ReadLineData(this, dataPacked, maxlen); };
 	bool resize(qint64 sz) { return callbackQSaveFile_Resize(this, sz) != 0; };
 	bool setPermissions(QFileDevice::Permissions permissions) { return callbackQSaveFile_SetPermissions(this, permissions) != 0; };
@@ -16525,6 +16577,16 @@ long long QSaveFile_Pos(void* ptr)
 long long QSaveFile_PosDefault(void* ptr)
 {
 	return static_cast<QSaveFile*>(ptr)->QSaveFile::pos();
+}
+
+long long QSaveFile_ReadData(void* ptr, char* data, long long len)
+{
+	return static_cast<QSaveFile*>(ptr)->readData(data, len);
+}
+
+long long QSaveFile_ReadDataDefault(void* ptr, char* data, long long len)
+{
+	return static_cast<QSaveFile*>(ptr)->QSaveFile::readData(data, len);
 }
 
 long long QSaveFile_ReadLineData(void* ptr, char* data, long long maxlen)
@@ -20982,6 +21044,7 @@ public:
 	void close() { callbackQTemporaryFile_Close(this); };
 	bool isSequential() const { return callbackQTemporaryFile_IsSequential(const_cast<MyQTemporaryFile*>(this)) != 0; };
 	qint64 pos() const { return callbackQTemporaryFile_Pos(const_cast<MyQTemporaryFile*>(this)); };
+	qint64 readData(char * data, qint64 len) { QtCore_PackedString dataPacked = { data, len };return callbackQTemporaryFile_ReadData(this, dataPacked, len); };
 	qint64 readLineData(char * data, qint64 maxlen) { QtCore_PackedString dataPacked = { data, maxlen };return callbackQTemporaryFile_ReadLineData(this, dataPacked, maxlen); };
 	qint64 writeData(const char * data, qint64 len) { QtCore_PackedString dataPacked = { const_cast<char*>(data), len };return callbackQTemporaryFile_WriteData(this, dataPacked, len); };
 	qint64 bytesAvailable() const { return callbackQTemporaryFile_BytesAvailable(const_cast<MyQTemporaryFile*>(this)); };
@@ -21169,6 +21232,16 @@ long long QTemporaryFile_Pos(void* ptr)
 long long QTemporaryFile_PosDefault(void* ptr)
 {
 	return static_cast<QTemporaryFile*>(ptr)->QTemporaryFile::pos();
+}
+
+long long QTemporaryFile_ReadData(void* ptr, char* data, long long len)
+{
+	return static_cast<QTemporaryFile*>(ptr)->readData(data, len);
+}
+
+long long QTemporaryFile_ReadDataDefault(void* ptr, char* data, long long len)
+{
+	return static_cast<QTemporaryFile*>(ptr)->QTemporaryFile::readData(data, len);
 }
 
 long long QTemporaryFile_ReadLineData(void* ptr, char* data, long long maxlen)

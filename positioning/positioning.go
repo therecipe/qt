@@ -4,6 +4,7 @@ package positioning
 
 //#include <stdint.h>
 //#include <stdlib.h>
+//#include <string.h>
 //#include "positioning.h"
 import "C"
 import (

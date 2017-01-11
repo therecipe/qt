@@ -4,6 +4,7 @@ package xml
 
 //#include <stdint.h>
 //#include <stdlib.h>
+//#include <string.h>
 //#include "xml.h"
 import "C"
 import (

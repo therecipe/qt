@@ -1415,6 +1415,7 @@ public:
 	bool canReadLine() const { return callbackQBluetoothSocket_CanReadLine(const_cast<MyQBluetoothSocket*>(this)) != 0; };
 	void close() { callbackQBluetoothSocket_Close(this); };
 	bool isSequential() const { return callbackQBluetoothSocket_IsSequential(const_cast<MyQBluetoothSocket*>(this)) != 0; };
+	qint64 readData(char * data, qint64 maxSize) { QtBluetooth_PackedString dataPacked = { data, maxSize };return callbackQBluetoothSocket_ReadData(this, dataPacked, maxSize); };
 	qint64 writeData(const char * data, qint64 maxSize) { QtBluetooth_PackedString dataPacked = { const_cast<char*>(data), maxSize };return callbackQBluetoothSocket_WriteData(this, dataPacked, maxSize); };
 	 ~MyQBluetoothSocket() { callbackQBluetoothSocket_DestroyQBluetoothSocket(this); };
 	bool atEnd() const { return callbackQBluetoothSocket_AtEnd(const_cast<MyQBluetoothSocket*>(this)) != 0; };
@@ -1630,6 +1631,16 @@ unsigned short QBluetoothSocket_PeerPort(void* ptr)
 long long QBluetoothSocket_PreferredSecurityFlags(void* ptr)
 {
 	return static_cast<QBluetoothSocket*>(ptr)->preferredSecurityFlags();
+}
+
+long long QBluetoothSocket_ReadData(void* ptr, char* data, long long maxSize)
+{
+	return static_cast<QBluetoothSocket*>(ptr)->readData(data, maxSize);
+}
+
+long long QBluetoothSocket_ReadDataDefault(void* ptr, char* data, long long maxSize)
+{
+	return static_cast<QBluetoothSocket*>(ptr)->QBluetoothSocket::readData(data, maxSize);
 }
 
 void QBluetoothSocket_SetPreferredSecurityFlags(void* ptr, long long flags)

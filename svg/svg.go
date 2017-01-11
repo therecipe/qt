@@ -4,6 +4,7 @@ package svg
 
 //#include <stdint.h>
 //#include <stdlib.h>
+//#include <string.h>
 //#include "svg.h"
 import "C"
 import (

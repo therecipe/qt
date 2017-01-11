@@ -4,6 +4,7 @@ package androidextras
 
 //#include <stdint.h>
 //#include <stdlib.h>
+//#include <string.h>
 //#include "androidextras_android.h"
 import "C"
 import (

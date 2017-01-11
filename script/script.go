@@ -4,6 +4,7 @@ package script
 
 //#include <stdint.h>
 //#include <stdlib.h>
+//#include <string.h>
 //#include "script.h"
 import "C"
 import (

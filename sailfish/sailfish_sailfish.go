@@ -4,6 +4,7 @@ package sailfish
 
 //#include <stdint.h>
 //#include <stdlib.h>
+//#include <string.h>
 //#include "sailfish_sailfish.h"
 import "C"
 import (

@@ -20,6 +20,10 @@ func GoInput(name, value string, f *parser.Function) string {
 				return fmt.Sprintf("C.CString(strings.Join(%v, \"|\"))", name)
 			}
 
+			if value == "char" && strings.Count(vOld, "*") == 1 && f.Name == "readData" {
+				return fmt.Sprintf("C.CString(strings.Repeat(\"0\", int(%v)))", parser.CleanName(f.Parameters[1].Name, f.Parameters[1].Value))
+			}
+
 			return fmt.Sprintf("C.CString(%v)", name)
 		}
 

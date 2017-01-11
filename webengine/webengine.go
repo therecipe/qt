@@ -4,6 +4,7 @@ package webengine
 
 //#include <stdint.h>
 //#include <stdlib.h>
+//#include <string.h>
 //#include "webengine.h"
 import "C"
 import (

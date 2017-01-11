@@ -23,6 +23,10 @@ func goType(f *parser.Function, value string) string {
 				return "error"
 			}
 
+			if value == "char" && strings.Count(vOld, "*") == 1 && f.Name == "readData" {
+				return "*string"
+			}
+
 			return "string"
 		}
 

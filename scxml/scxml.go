@@ -4,6 +4,7 @@ package scxml
 
 //#include <stdint.h>
 //#include <stdlib.h>
+//#include <string.h>
 //#include "scxml.h"
 import "C"
 import (

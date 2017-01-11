@@ -4,6 +4,7 @@ package uitools
 
 //#include <stdint.h>
 //#include <stdlib.h>
+//#include <string.h>
 //#include "uitools.h"
 import "C"
 import (

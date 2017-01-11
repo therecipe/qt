@@ -4,6 +4,7 @@ package dbus
 
 //#include <stdint.h>
 //#include <stdlib.h>
+//#include <string.h>
 //#include "dbus.h"
 import "C"
 import (

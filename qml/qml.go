@@ -4,6 +4,7 @@ package qml
 
 //#include <stdint.h>
 //#include <stdlib.h>
+//#include <string.h>
 //#include "qml.h"
 import "C"
 import (

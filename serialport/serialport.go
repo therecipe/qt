@@ -4,6 +4,7 @@ package serialport
 
 //#include <stdint.h>
 //#include <stdlib.h>
+//#include <string.h>
 //#include "serialport.h"
 import "C"
 import (
@@ -11,6 +12,7 @@ import (
 	"github.com/therecipe/qt"
 	"github.com/therecipe/qt/core"
 	"runtime"
+	"strings"
 	"unsafe"
 )
 
@@ -789,6 +791,65 @@ func (ptr *QSerialPort) PortName() string {
 func (ptr *QSerialPort) ReadBufferSize() int64 {
 	if ptr.Pointer() != nil {
 		return int64(C.QSerialPort_ReadBufferSize(ptr.Pointer()))
+	}
+	return 0
+}
+
+//export callbackQSerialPort_ReadData
+func callbackQSerialPort_ReadData(ptr unsafe.Pointer, data C.struct_QtSerialPort_PackedString, maxSize C.longlong) C.longlong {
+
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSerialPort::readData"); signal != nil {
+		var retS = cGoUnpackString(data)
+		var ret = C.longlong(signal.(func(*string, int64) int64)(&retS, int64(maxSize)))
+		if ret > 0 {
+			C.memcpy(unsafe.Pointer(data.data), unsafe.Pointer(C.CString(retS)), C.size_t(ret))
+		}
+		return ret
+	}
+	var retS = cGoUnpackString(data)
+	var ret = C.longlong(NewQSerialPortFromPointer(ptr).ReadDataDefault(&retS, int64(maxSize)))
+	if ret > 0 {
+		C.memcpy(unsafe.Pointer(data.data), unsafe.Pointer(C.CString(retS)), C.size_t(ret))
+	}
+	return ret
+}
+
+func (ptr *QSerialPort) ConnectReadData(f func(data *string, maxSize int64) int64) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QSerialPort::readData", f)
+	}
+}
+
+func (ptr *QSerialPort) DisconnectReadData() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSerialPort::readData")
+	}
+}
+
+func (ptr *QSerialPort) ReadData(data *string, maxSize int64) int64 {
+	if ptr.Pointer() != nil {
+		var dataC = C.CString(strings.Repeat("0", int(maxSize)))
+		defer C.free(unsafe.Pointer(dataC))
+		var ret = int64(C.QSerialPort_ReadData(ptr.Pointer(), dataC, C.longlong(maxSize)))
+		if ret > 0 {
+			*data = C.GoStringN(dataC, C.int(ret))
+		}
+		return ret
+	}
+	return 0
+}
+
+func (ptr *QSerialPort) ReadDataDefault(data *string, maxSize int64) int64 {
+	if ptr.Pointer() != nil {
+		var dataC = C.CString(strings.Repeat("0", int(maxSize)))
+		defer C.free(unsafe.Pointer(dataC))
+		var ret = int64(C.QSerialPort_ReadDataDefault(ptr.Pointer(), dataC, C.longlong(maxSize)))
+		if ret > 0 {
+			*data = C.GoStringN(dataC, C.int(ret))
+		}
+		return ret
 	}
 	return 0
 }

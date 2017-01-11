@@ -4,6 +4,7 @@ package scripttools
 
 //#include <stdint.h>
 //#include <stdlib.h>
+//#include <string.h>
 //#include "scripttools.h"
 import "C"
 import (

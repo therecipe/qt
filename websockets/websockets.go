@@ -4,6 +4,7 @@ package websockets
 
 //#include <stdint.h>
 //#include <stdlib.h>
+//#include <string.h>
 //#include "websockets.h"
 import "C"
 import (

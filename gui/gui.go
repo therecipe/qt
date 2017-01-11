@@ -4,6 +4,7 @@ package gui
 
 //#include <stdint.h>
 //#include <stdlib.h>
+//#include <string.h>
 //#include "gui.h"
 import "C"
 import (

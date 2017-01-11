@@ -4,6 +4,7 @@ package purchasing
 
 //#include <stdint.h>
 //#include <stdlib.h>
+//#include <string.h>
 //#include "purchasing.h"
 import "C"
 import (

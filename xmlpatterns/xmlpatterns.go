@@ -4,6 +4,7 @@ package xmlpatterns
 
 //#include <stdint.h>
 //#include <stdlib.h>
+//#include <string.h>
 //#include "xmlpatterns.h"
 import "C"
 import (

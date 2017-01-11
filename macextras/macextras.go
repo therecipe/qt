@@ -4,6 +4,7 @@ package macextras
 
 //#include <stdint.h>
 //#include <stdlib.h>
+//#include <string.h>
 //#include "macextras.h"
 import "C"
 import (

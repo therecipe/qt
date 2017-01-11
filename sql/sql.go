@@ -4,6 +4,7 @@ package sql
 
 //#include <stdint.h>
 //#include <stdlib.h>
+//#include <string.h>
 //#include "sql.h"
 import "C"
 import (

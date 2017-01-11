@@ -306,6 +306,8 @@ void* QBluetoothSocket_PeerAddress(void* ptr);
 struct QtBluetooth_PackedString QBluetoothSocket_PeerName(void* ptr);
 unsigned short QBluetoothSocket_PeerPort(void* ptr);
 long long QBluetoothSocket_PreferredSecurityFlags(void* ptr);
+long long QBluetoothSocket_ReadData(void* ptr, char* data, long long maxSize);
+long long QBluetoothSocket_ReadDataDefault(void* ptr, char* data, long long maxSize);
 void QBluetoothSocket_SetPreferredSecurityFlags(void* ptr, long long flags);
 char QBluetoothSocket_SetSocketDescriptor(void* ptr, int socketDescriptor, long long socketType, long long socketState, long long openMode);
 void QBluetoothSocket_SetSocketError(void* ptr, long long error_);

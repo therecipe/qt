@@ -4,6 +4,7 @@ package location
 
 //#include <stdint.h>
 //#include <stdlib.h>
+//#include <string.h>
 //#include "location.h"
 import "C"
 import (

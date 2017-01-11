@@ -1616,6 +1616,16 @@ char QModbusRtuSerialSlave_ProcessesBroadcastDefault(void* ptr)
 	return static_cast<QModbusRtuSerialSlave*>(ptr)->QModbusRtuSerialSlave::processesBroadcast();
 }
 
+char QModbusRtuSerialSlave_ReadData(void* ptr, void* newData)
+{
+	return static_cast<QModbusRtuSerialSlave*>(ptr)->readData(static_cast<QModbusDataUnit*>(newData));
+}
+
+char QModbusRtuSerialSlave_ReadDataDefault(void* ptr, void* newData)
+{
+	return static_cast<QModbusRtuSerialSlave*>(ptr)->QModbusRtuSerialSlave::readData(static_cast<QModbusDataUnit*>(newData));
+}
+
 
 
 
@@ -1768,6 +1778,7 @@ public:
 	QModbusResponse processPrivateRequest(const QModbusPdu & request) { return *static_cast<QModbusResponse*>(callbackQModbusServer_ProcessPrivateRequest(this, const_cast<QModbusPdu*>(&request))); };
 	QModbusResponse processRequest(const QModbusPdu & request) { return *static_cast<QModbusResponse*>(callbackQModbusServer_ProcessRequest(this, const_cast<QModbusPdu*>(&request))); };
 	bool processesBroadcast() const { return callbackQModbusServer_ProcessesBroadcast(const_cast<MyQModbusServer*>(this)) != 0; };
+	bool readData(QModbusDataUnit * newData) const { return callbackQModbusServer_ReadData(const_cast<MyQModbusServer*>(this), newData) != 0; };
 	
 	bool setValue(int option, const QVariant & newValue) { return callbackQModbusServer_SetValue(this, option, const_cast<QVariant*>(&newValue)) != 0; };
 	QVariant value(int option) const { return *static_cast<QVariant*>(callbackQModbusServer_Value(const_cast<MyQModbusServer*>(this), option)); };
@@ -1843,6 +1854,16 @@ char QModbusServer_ProcessesBroadcast(void* ptr)
 char QModbusServer_ProcessesBroadcastDefault(void* ptr)
 {
 	return static_cast<QModbusServer*>(ptr)->QModbusServer::processesBroadcast();
+}
+
+char QModbusServer_ReadData(void* ptr, void* newData)
+{
+	return static_cast<QModbusServer*>(ptr)->readData(static_cast<QModbusDataUnit*>(newData));
+}
+
+char QModbusServer_ReadDataDefault(void* ptr, void* newData)
+{
+	return static_cast<QModbusServer*>(ptr)->QModbusServer::readData(static_cast<QModbusDataUnit*>(newData));
 }
 
 int QModbusServer_ServerAddress(void* ptr)
@@ -2181,6 +2202,16 @@ char QModbusTcpServer_ProcessesBroadcast(void* ptr)
 char QModbusTcpServer_ProcessesBroadcastDefault(void* ptr)
 {
 	return static_cast<QModbusTcpServer*>(ptr)->QModbusTcpServer::processesBroadcast();
+}
+
+char QModbusTcpServer_ReadData(void* ptr, void* newData)
+{
+	return static_cast<QModbusTcpServer*>(ptr)->readData(static_cast<QModbusDataUnit*>(newData));
+}
+
+char QModbusTcpServer_ReadDataDefault(void* ptr, void* newData)
+{
+	return static_cast<QModbusTcpServer*>(ptr)->QModbusTcpServer::readData(static_cast<QModbusDataUnit*>(newData));
 }
 
 

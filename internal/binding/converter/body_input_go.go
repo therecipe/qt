@@ -53,7 +53,11 @@ func GoInputParametersForCallback(function *parser.Function) string {
 	var input = make([]string, len(function.Parameters))
 
 	for i, parameter := range function.Parameters {
-		input[i] = cgoOutput(parameter.Name, parameter.Value, function)
+		if function.Name == "readData" && strings.HasPrefix(cgoOutput(parameter.Name, parameter.Value, function), "cGoUnpackString") {
+			input[i] = "&retS"
+		} else {
+			input[i] = cgoOutput(parameter.Name, parameter.Value, function)
+		}
 	}
 
 	return strings.Join(input, ", ")

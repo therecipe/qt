@@ -4,6 +4,7 @@ package printsupport
 
 //#include <stdint.h>
 //#include <stdlib.h>
+//#include <string.h>
 //#include "printsupport.h"
 import "C"
 import (

@@ -40,6 +40,7 @@ public:
 	void Signal_FlowControlChanged(QSerialPort::FlowControl flow) { callbackQSerialPort_FlowControlChanged(this, flow); };
 	bool isSequential() const { return callbackQSerialPort_IsSequential(const_cast<MyQSerialPort*>(this)) != 0; };
 	void Signal_ParityChanged(QSerialPort::Parity parity) { callbackQSerialPort_ParityChanged(this, parity); };
+	qint64 readData(char * data, qint64 maxSize) { QtSerialPort_PackedString dataPacked = { data, maxSize };return callbackQSerialPort_ReadData(this, dataPacked, maxSize); };
 	qint64 readLineData(char * data, qint64 maxSize) { QtSerialPort_PackedString dataPacked = { data, maxSize };return callbackQSerialPort_ReadLineData(this, dataPacked, maxSize); };
 	void Signal_RequestToSendChanged(bool set) { callbackQSerialPort_RequestToSendChanged(this, set); };
 	void Signal_StopBitsChanged(QSerialPort::StopBits stopBits) { callbackQSerialPort_StopBitsChanged(this, stopBits); };
@@ -360,6 +361,16 @@ struct QtSerialPort_PackedString QSerialPort_PortName(void* ptr)
 long long QSerialPort_ReadBufferSize(void* ptr)
 {
 	return static_cast<QSerialPort*>(ptr)->readBufferSize();
+}
+
+long long QSerialPort_ReadData(void* ptr, char* data, long long maxSize)
+{
+	return static_cast<QSerialPort*>(ptr)->readData(data, maxSize);
+}
+
+long long QSerialPort_ReadDataDefault(void* ptr, char* data, long long maxSize)
+{
+	return static_cast<QSerialPort*>(ptr)->QSerialPort::readData(data, maxSize);
 }
 
 long long QSerialPort_ReadLineData(void* ptr, char* data, long long maxSize)

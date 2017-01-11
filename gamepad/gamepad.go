@@ -4,6 +4,7 @@ package gamepad
 
 //#include <stdint.h>
 //#include <stdlib.h>
+//#include <string.h>
 //#include "gamepad.h"
 import "C"
 import (

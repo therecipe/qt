@@ -181,8 +181,6 @@ func (f *Function) IsSupported() bool {
 
 		f.Name == "surfaceHandle", //QQuickWindow && QQuickView //unsupported_cppType(QPlatformSurface)
 
-		f.Name == "readData", f.Name == "QNetworkReply", //TODO: char*
-
 		f.Name == "QDesignerFormWindowInterface" || f.Name == "QDesignerFormWindowManagerInterface" || f.Name == "QDesignerWidgetBoxInterface", //unimplemented virtual
 
 		f.Fullname == "QNdefNfcSmartPosterRecord::titleRecords", //T<T> output with unsupported output for *_atList
@@ -264,7 +262,9 @@ func (f *Function) IsSupportedDefault() bool {
 
 		"QSimpleXmlNodeModel::name",
 
-		"QSimpleXmlNodeModel::attributes", "QAbstractXmlNodeModel::attributes":
+		"QSimpleXmlNodeModel::attributes", "QAbstractXmlNodeModel::attributes",
+
+		"QNetworkReply::readData":
 
 		{
 			return false

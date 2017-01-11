@@ -4,6 +4,7 @@ package datavisualization
 
 //#include <stdint.h>
 //#include <stdlib.h>
+//#include <string.h>
 //#include "datavisualization.h"
 import "C"
 import (

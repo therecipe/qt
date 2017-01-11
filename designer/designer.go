@@ -4,6 +4,7 @@ package designer
 
 //#include <stdint.h>
 //#include <stdlib.h>
+//#include <string.h>
 //#include "designer.h"
 import "C"
 import (

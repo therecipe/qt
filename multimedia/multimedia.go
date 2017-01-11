@@ -4,6 +4,7 @@ package multimedia
 
 //#include <stdint.h>
 //#include <stdlib.h>
+//#include <string.h>
 //#include "multimedia.h"
 import "C"
 import (
@@ -3556,7 +3557,7 @@ func callbackQAudioDecoderControl_SourceDevice(ptr unsafe.Pointer) unsafe.Pointe
 		return core.PointerFromQIODevice(signal.(func() *core.QIODevice)())
 	}
 
-	return core.PointerFromQIODevice(nil)
+	return core.PointerFromQIODevice(core.NewQIODevice())
 }
 
 func (ptr *QAudioDecoderControl) ConnectSourceDevice(f func() *core.QIODevice) {
@@ -33739,7 +33740,7 @@ func callbackQMediaPlayerControl_MediaStream(ptr unsafe.Pointer) unsafe.Pointer 
 		return core.PointerFromQIODevice(signal.(func() *core.QIODevice)())
 	}
 
-	return core.PointerFromQIODevice(nil)
+	return core.PointerFromQIODevice(core.NewQIODevice())
 }
 
 func (ptr *QMediaPlayerControl) ConnectMediaStream(f func() *core.QIODevice) {

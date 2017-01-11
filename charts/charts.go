@@ -4,6 +4,7 @@ package charts
 
 //#include <stdint.h>
 //#include <stdlib.h>
+//#include <string.h>
 //#include "charts.h"
 import "C"
 import (

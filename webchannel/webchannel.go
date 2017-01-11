@@ -4,6 +4,7 @@ package webchannel
 
 //#include <stdint.h>
 //#include <stdlib.h>
+//#include <string.h>
 //#include "webchannel.h"
 import "C"
 import (

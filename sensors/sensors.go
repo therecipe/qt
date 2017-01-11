@@ -4,6 +4,7 @@ package sensors
 
 //#include <stdint.h>
 //#include <stdlib.h>
+//#include <string.h>
 //#include "sensors.h"
 import "C"
 import (

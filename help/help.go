@@ -4,6 +4,7 @@ package help
 
 //#include <stdint.h>
 //#include <stdlib.h>
+//#include <string.h>
 //#include "help.h"
 import "C"
 import (

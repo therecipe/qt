@@ -4,6 +4,7 @@ package testlib
 
 //#include <stdint.h>
 //#include <stdlib.h>
+//#include <string.h>
 //#include "testlib.h"
 import "C"
 import (

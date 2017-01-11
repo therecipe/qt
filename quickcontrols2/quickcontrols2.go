@@ -4,6 +4,7 @@ package quickcontrols2
 
 //#include <stdint.h>
 //#include <stdlib.h>
+//#include <string.h>
 //#include "quickcontrols2.h"
 import "C"
 import (

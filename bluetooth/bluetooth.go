@@ -4,6 +4,7 @@ package bluetooth
 
 //#include <stdint.h>
 //#include <stdlib.h>
+//#include <string.h>
 //#include "bluetooth.h"
 import "C"
 import (
@@ -12,6 +13,7 @@ import (
 	"github.com/therecipe/qt/core"
 	"github.com/therecipe/qt/network"
 	"runtime"
+	"strings"
 	"unsafe"
 )
 
@@ -4217,6 +4219,65 @@ func (ptr *QBluetoothSocket) PeerPort() uint16 {
 func (ptr *QBluetoothSocket) PreferredSecurityFlags() QBluetooth__Security {
 	if ptr.Pointer() != nil {
 		return QBluetooth__Security(C.QBluetoothSocket_PreferredSecurityFlags(ptr.Pointer()))
+	}
+	return 0
+}
+
+//export callbackQBluetoothSocket_ReadData
+func callbackQBluetoothSocket_ReadData(ptr unsafe.Pointer, data C.struct_QtBluetooth_PackedString, maxSize C.longlong) C.longlong {
+
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QBluetoothSocket::readData"); signal != nil {
+		var retS = cGoUnpackString(data)
+		var ret = C.longlong(signal.(func(*string, int64) int64)(&retS, int64(maxSize)))
+		if ret > 0 {
+			C.memcpy(unsafe.Pointer(data.data), unsafe.Pointer(C.CString(retS)), C.size_t(ret))
+		}
+		return ret
+	}
+	var retS = cGoUnpackString(data)
+	var ret = C.longlong(NewQBluetoothSocketFromPointer(ptr).ReadDataDefault(&retS, int64(maxSize)))
+	if ret > 0 {
+		C.memcpy(unsafe.Pointer(data.data), unsafe.Pointer(C.CString(retS)), C.size_t(ret))
+	}
+	return ret
+}
+
+func (ptr *QBluetoothSocket) ConnectReadData(f func(data *string, maxSize int64) int64) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QBluetoothSocket::readData", f)
+	}
+}
+
+func (ptr *QBluetoothSocket) DisconnectReadData() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QBluetoothSocket::readData")
+	}
+}
+
+func (ptr *QBluetoothSocket) ReadData(data *string, maxSize int64) int64 {
+	if ptr.Pointer() != nil {
+		var dataC = C.CString(strings.Repeat("0", int(maxSize)))
+		defer C.free(unsafe.Pointer(dataC))
+		var ret = int64(C.QBluetoothSocket_ReadData(ptr.Pointer(), dataC, C.longlong(maxSize)))
+		if ret > 0 {
+			*data = C.GoStringN(dataC, C.int(ret))
+		}
+		return ret
+	}
+	return 0
+}
+
+func (ptr *QBluetoothSocket) ReadDataDefault(data *string, maxSize int64) int64 {
+	if ptr.Pointer() != nil {
+		var dataC = C.CString(strings.Repeat("0", int(maxSize)))
+		defer C.free(unsafe.Pointer(dataC))
+		var ret = int64(C.QBluetoothSocket_ReadDataDefault(ptr.Pointer(), dataC, C.longlong(maxSize)))
+		if ret > 0 {
+			*data = C.GoStringN(dataC, C.int(ret))
+		}
+		return ret
 	}
 	return 0
 }

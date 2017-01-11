@@ -157,7 +157,11 @@ func goFunctionBody(function *parser.Function) string {
 
 						default:
 							{
-								return fmt.Sprintf("return %v", body)
+								if function.Name == "readData" && len(function.Parameters) == 2 {
+									return fmt.Sprintf("var ret = %v\nif ret > 0 {\n*data = C.GoStringN(dataC, C.int(ret))\n}\nreturn ret", body)
+								} else {
+									return fmt.Sprintf("return %v", body)
+								}
 							}
 						}
 					}
@@ -184,7 +188,14 @@ func goFunctionBody(function *parser.Function) string {
 			if converter.GoHeaderOutput(function) == "" {
 				fmt.Fprintf(bb, "signal.(%v)(%v)", converter.GoHeaderInputSignalFunction(function), converter.GoInputParametersForCallback(function))
 			} else {
-				fmt.Fprintf(bb, "return %v", converter.GoInput(fmt.Sprintf("signal.(%v)(%v)", converter.GoHeaderInputSignalFunction(function), converter.GoInputParametersForCallback(function)), function.Output, function))
+				if function.Name == "readData" && len(function.Parameters) == 2 {
+					fmt.Fprint(bb, "var retS = cGoUnpackString(data)\n")
+					fmt.Fprintf(bb, "var ret = %v\n", converter.GoInput(fmt.Sprintf("signal.(%v)(%v)", converter.GoHeaderInputSignalFunction(function), converter.GoInputParametersForCallback(function)), function.Output, function))
+					fmt.Fprint(bb, "if ret > 0 {\nC.memcpy(unsafe.Pointer(data.data), unsafe.Pointer(C.CString(retS)), C.size_t(ret))\n}\n")
+					fmt.Fprint(bb, "return ret")
+				} else {
+					fmt.Fprintf(bb, "return %v", converter.GoInput(fmt.Sprintf("signal.(%v)(%v)", converter.GoHeaderInputSignalFunction(function), converter.GoInputParametersForCallback(function)), function.Output, function))
+				}
 			}
 
 			fmt.Fprintf(bb, "\n}%v\n",
@@ -204,7 +215,14 @@ func goFunctionBody(function *parser.Function) string {
 				}
 			} else {
 				if function.Virtual == parser.IMPURE && function.IsSupportedDefault() {
-					fmt.Fprintf(bb, "\nreturn %v", converter.GoInput(fmt.Sprintf("New%vFromPointer(ptr).%v%vDefault(%v)", strings.Title(function.ClassName()), strings.Replace(strings.Title(function.Name), parser.TILDE, "Destroy", -1), function.OverloadNumber, converter.GoInputParametersForCallback(function)), function.Output, function))
+					if function.Name == "readData" && len(function.Parameters) == 2 {
+						fmt.Fprint(bb, "var retS = cGoUnpackString(data)\n")
+						fmt.Fprintf(bb, "var ret = %v\n", converter.GoInput(fmt.Sprintf("New%vFromPointer(ptr).%v%vDefault(%v)", strings.Title(function.ClassName()), strings.Replace(strings.Title(function.Name), parser.TILDE, "Destroy", -1), function.OverloadNumber, converter.GoInputParametersForCallback(function)), function.Output, function))
+						fmt.Fprint(bb, "if ret > 0 {\nC.memcpy(unsafe.Pointer(data.data), unsafe.Pointer(C.CString(retS)), C.size_t(ret))\n}\n")
+						fmt.Fprint(bb, "return ret")
+					} else {
+						fmt.Fprintf(bb, "\nreturn %v", converter.GoInput(fmt.Sprintf("New%vFromPointer(ptr).%v%vDefault(%v)", strings.Title(function.ClassName()), strings.Replace(strings.Title(function.Name), parser.TILDE, "Destroy", -1), function.OverloadNumber, converter.GoInputParametersForCallback(function)), function.Output, function))
+					}
 				} else {
 					if converter.GoOutputParametersFromCFailed(function) == "nil" && !parser.State.Minimal {
 						var (

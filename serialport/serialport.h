@@ -73,6 +73,8 @@ void QSerialPort_ParityChanged(void* ptr, long long parity);
 long long QSerialPort_PinoutSignals(void* ptr);
 struct QtSerialPort_PackedString QSerialPort_PortName(void* ptr);
 long long QSerialPort_ReadBufferSize(void* ptr);
+long long QSerialPort_ReadData(void* ptr, char* data, long long maxSize);
+long long QSerialPort_ReadDataDefault(void* ptr, char* data, long long maxSize);
 long long QSerialPort_ReadLineData(void* ptr, char* data, long long maxSize);
 long long QSerialPort_ReadLineDataDefault(void* ptr, char* data, long long maxSize);
 void QSerialPort_ConnectRequestToSendChanged(void* ptr);

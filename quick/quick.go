@@ -4,6 +4,7 @@ package quick
 
 //#include <stdint.h>
 //#include <stdlib.h>
+//#include <string.h>
 //#include "quick.h"
 import "C"
 import (

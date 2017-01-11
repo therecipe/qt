@@ -4,6 +4,7 @@ package core
 
 //#include <stdint.h>
 //#include <stdlib.h>
+//#include <string.h>
 //#include "core.h"
 import "C"
 import (
@@ -11527,6 +11528,65 @@ func (ptr *QBuffer) PosDefault() int64 {
 	return 0
 }
 
+//export callbackQBuffer_ReadData
+func callbackQBuffer_ReadData(ptr unsafe.Pointer, data C.struct_QtCore_PackedString, len C.longlong) C.longlong {
+
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QBuffer::readData"); signal != nil {
+		var retS = cGoUnpackString(data)
+		var ret = C.longlong(signal.(func(*string, int64) int64)(&retS, int64(len)))
+		if ret > 0 {
+			C.memcpy(unsafe.Pointer(data.data), unsafe.Pointer(C.CString(retS)), C.size_t(ret))
+		}
+		return ret
+	}
+	var retS = cGoUnpackString(data)
+	var ret = C.longlong(NewQBufferFromPointer(ptr).ReadDataDefault(&retS, int64(len)))
+	if ret > 0 {
+		C.memcpy(unsafe.Pointer(data.data), unsafe.Pointer(C.CString(retS)), C.size_t(ret))
+	}
+	return ret
+}
+
+func (ptr *QBuffer) ConnectReadData(f func(data *string, len int64) int64) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QBuffer::readData", f)
+	}
+}
+
+func (ptr *QBuffer) DisconnectReadData() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QBuffer::readData")
+	}
+}
+
+func (ptr *QBuffer) ReadData(data *string, len int64) int64 {
+	if ptr.Pointer() != nil {
+		var dataC = C.CString(strings.Repeat("0", int(len)))
+		defer C.free(unsafe.Pointer(dataC))
+		var ret = int64(C.QBuffer_ReadData(ptr.Pointer(), dataC, C.longlong(len)))
+		if ret > 0 {
+			*data = C.GoStringN(dataC, C.int(ret))
+		}
+		return ret
+	}
+	return 0
+}
+
+func (ptr *QBuffer) ReadDataDefault(data *string, len int64) int64 {
+	if ptr.Pointer() != nil {
+		var dataC = C.CString(strings.Repeat("0", int(len)))
+		defer C.free(unsafe.Pointer(dataC))
+		var ret = int64(C.QBuffer_ReadDataDefault(ptr.Pointer(), dataC, C.longlong(len)))
+		if ret > 0 {
+			*data = C.GoStringN(dataC, C.int(ret))
+		}
+		return ret
+	}
+	return 0
+}
+
 //export callbackQBuffer_Seek
 func callbackQBuffer_Seek(ptr unsafe.Pointer, pos C.longlong) C.char {
 
@@ -21041,6 +21101,65 @@ func (ptr *QFile) PosDefault() int64 {
 	return 0
 }
 
+//export callbackQFile_ReadData
+func callbackQFile_ReadData(ptr unsafe.Pointer, data C.struct_QtCore_PackedString, len C.longlong) C.longlong {
+
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QFile::readData"); signal != nil {
+		var retS = cGoUnpackString(data)
+		var ret = C.longlong(signal.(func(*string, int64) int64)(&retS, int64(len)))
+		if ret > 0 {
+			C.memcpy(unsafe.Pointer(data.data), unsafe.Pointer(C.CString(retS)), C.size_t(ret))
+		}
+		return ret
+	}
+	var retS = cGoUnpackString(data)
+	var ret = C.longlong(NewQFileFromPointer(ptr).ReadDataDefault(&retS, int64(len)))
+	if ret > 0 {
+		C.memcpy(unsafe.Pointer(data.data), unsafe.Pointer(C.CString(retS)), C.size_t(ret))
+	}
+	return ret
+}
+
+func (ptr *QFile) ConnectReadData(f func(data *string, len int64) int64) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QFile::readData", f)
+	}
+}
+
+func (ptr *QFile) DisconnectReadData() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QFile::readData")
+	}
+}
+
+func (ptr *QFile) ReadData(data *string, len int64) int64 {
+	if ptr.Pointer() != nil {
+		var dataC = C.CString(strings.Repeat("0", int(len)))
+		defer C.free(unsafe.Pointer(dataC))
+		var ret = int64(C.QFile_ReadData(ptr.Pointer(), dataC, C.longlong(len)))
+		if ret > 0 {
+			*data = C.GoStringN(dataC, C.int(ret))
+		}
+		return ret
+	}
+	return 0
+}
+
+func (ptr *QFile) ReadDataDefault(data *string, len int64) int64 {
+	if ptr.Pointer() != nil {
+		var dataC = C.CString(strings.Repeat("0", int(len)))
+		defer C.free(unsafe.Pointer(dataC))
+		var ret = int64(C.QFile_ReadDataDefault(ptr.Pointer(), dataC, C.longlong(len)))
+		if ret > 0 {
+			*data = C.GoStringN(dataC, C.int(ret))
+		}
+		return ret
+	}
+	return 0
+}
+
 //export callbackQFile_ReadLineData
 func callbackQFile_ReadLineData(ptr unsafe.Pointer, data C.struct_QtCore_PackedString, maxlen C.longlong) C.longlong {
 
@@ -22072,6 +22191,65 @@ func (ptr *QFileDevice) Pos() int64 {
 func (ptr *QFileDevice) PosDefault() int64 {
 	if ptr.Pointer() != nil {
 		return int64(C.QFileDevice_PosDefault(ptr.Pointer()))
+	}
+	return 0
+}
+
+//export callbackQFileDevice_ReadData
+func callbackQFileDevice_ReadData(ptr unsafe.Pointer, data C.struct_QtCore_PackedString, len C.longlong) C.longlong {
+
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QFileDevice::readData"); signal != nil {
+		var retS = cGoUnpackString(data)
+		var ret = C.longlong(signal.(func(*string, int64) int64)(&retS, int64(len)))
+		if ret > 0 {
+			C.memcpy(unsafe.Pointer(data.data), unsafe.Pointer(C.CString(retS)), C.size_t(ret))
+		}
+		return ret
+	}
+	var retS = cGoUnpackString(data)
+	var ret = C.longlong(NewQFileDeviceFromPointer(ptr).ReadDataDefault(&retS, int64(len)))
+	if ret > 0 {
+		C.memcpy(unsafe.Pointer(data.data), unsafe.Pointer(C.CString(retS)), C.size_t(ret))
+	}
+	return ret
+}
+
+func (ptr *QFileDevice) ConnectReadData(f func(data *string, len int64) int64) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QFileDevice::readData", f)
+	}
+}
+
+func (ptr *QFileDevice) DisconnectReadData() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QFileDevice::readData")
+	}
+}
+
+func (ptr *QFileDevice) ReadData(data *string, len int64) int64 {
+	if ptr.Pointer() != nil {
+		var dataC = C.CString(strings.Repeat("0", int(len)))
+		defer C.free(unsafe.Pointer(dataC))
+		var ret = int64(C.QFileDevice_ReadData(ptr.Pointer(), dataC, C.longlong(len)))
+		if ret > 0 {
+			*data = C.GoStringN(dataC, C.int(ret))
+		}
+		return ret
+	}
+	return 0
+}
+
+func (ptr *QFileDevice) ReadDataDefault(data *string, len int64) int64 {
+	if ptr.Pointer() != nil {
+		var dataC = C.CString(strings.Repeat("0", int(len)))
+		defer C.free(unsafe.Pointer(dataC))
+		var ret = int64(C.QFileDevice_ReadDataDefault(ptr.Pointer(), dataC, C.longlong(len)))
+		if ret > 0 {
+			*data = C.GoStringN(dataC, C.int(ret))
+		}
+		return ret
 	}
 	return 0
 }
@@ -25911,6 +26089,22 @@ func (ptr *QIODevice) PutChar(c string) bool {
 	return false
 }
 
+func NewQIODevice() *QIODevice {
+	var tmpValue = NewQIODeviceFromPointer(C.QIODevice_NewQIODevice())
+	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+		tmpValue.ConnectDestroyed(func(*QObject) { tmpValue.SetPointer(nil) })
+	}
+	return tmpValue
+}
+
+func NewQIODevice2(parent QObject_ITF) *QIODevice {
+	var tmpValue = NewQIODeviceFromPointer(C.QIODevice_NewQIODevice2(PointerFromQObject(parent)))
+	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
+		tmpValue.ConnectDestroyed(func(*QObject) { tmpValue.SetPointer(nil) })
+	}
+	return tmpValue
+}
+
 //export callbackQIODevice_AboutToClose
 func callbackQIODevice_AboutToClose(ptr unsafe.Pointer) {
 
@@ -26477,6 +26671,48 @@ func (ptr *QIODevice) ReadChannelFinished() {
 	if ptr.Pointer() != nil {
 		C.QIODevice_ReadChannelFinished(ptr.Pointer())
 	}
+}
+
+//export callbackQIODevice_ReadData
+func callbackQIODevice_ReadData(ptr unsafe.Pointer, data C.struct_QtCore_PackedString, maxSize C.longlong) C.longlong {
+
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QIODevice::readData"); signal != nil {
+		var retS = cGoUnpackString(data)
+		var ret = C.longlong(signal.(func(*string, int64) int64)(&retS, int64(maxSize)))
+		if ret > 0 {
+			C.memcpy(unsafe.Pointer(data.data), unsafe.Pointer(C.CString(retS)), C.size_t(ret))
+		}
+		return ret
+	}
+
+	return C.longlong(0)
+}
+
+func (ptr *QIODevice) ConnectReadData(f func(data *string, maxSize int64) int64) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QIODevice::readData", f)
+	}
+}
+
+func (ptr *QIODevice) DisconnectReadData(data *string, maxSize int64) {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QIODevice::readData")
+	}
+}
+
+func (ptr *QIODevice) ReadData(data *string, maxSize int64) int64 {
+	if ptr.Pointer() != nil {
+		var dataC = C.CString(strings.Repeat("0", int(maxSize)))
+		defer C.free(unsafe.Pointer(dataC))
+		var ret = int64(C.QIODevice_ReadData(ptr.Pointer(), dataC, C.longlong(maxSize)))
+		if ret > 0 {
+			*data = C.GoStringN(dataC, C.int(ret))
+		}
+		return ret
+	}
+	return 0
 }
 
 func (ptr *QIODevice) ReadLine2(maxSize int64) *QByteArray {
@@ -45746,6 +45982,65 @@ func (ptr *QSaveFile) PosDefault() int64 {
 	return 0
 }
 
+//export callbackQSaveFile_ReadData
+func callbackQSaveFile_ReadData(ptr unsafe.Pointer, data C.struct_QtCore_PackedString, len C.longlong) C.longlong {
+
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSaveFile::readData"); signal != nil {
+		var retS = cGoUnpackString(data)
+		var ret = C.longlong(signal.(func(*string, int64) int64)(&retS, int64(len)))
+		if ret > 0 {
+			C.memcpy(unsafe.Pointer(data.data), unsafe.Pointer(C.CString(retS)), C.size_t(ret))
+		}
+		return ret
+	}
+	var retS = cGoUnpackString(data)
+	var ret = C.longlong(NewQSaveFileFromPointer(ptr).ReadDataDefault(&retS, int64(len)))
+	if ret > 0 {
+		C.memcpy(unsafe.Pointer(data.data), unsafe.Pointer(C.CString(retS)), C.size_t(ret))
+	}
+	return ret
+}
+
+func (ptr *QSaveFile) ConnectReadData(f func(data *string, len int64) int64) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QSaveFile::readData", f)
+	}
+}
+
+func (ptr *QSaveFile) DisconnectReadData() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSaveFile::readData")
+	}
+}
+
+func (ptr *QSaveFile) ReadData(data *string, len int64) int64 {
+	if ptr.Pointer() != nil {
+		var dataC = C.CString(strings.Repeat("0", int(len)))
+		defer C.free(unsafe.Pointer(dataC))
+		var ret = int64(C.QSaveFile_ReadData(ptr.Pointer(), dataC, C.longlong(len)))
+		if ret > 0 {
+			*data = C.GoStringN(dataC, C.int(ret))
+		}
+		return ret
+	}
+	return 0
+}
+
+func (ptr *QSaveFile) ReadDataDefault(data *string, len int64) int64 {
+	if ptr.Pointer() != nil {
+		var dataC = C.CString(strings.Repeat("0", int(len)))
+		defer C.free(unsafe.Pointer(dataC))
+		var ret = int64(C.QSaveFile_ReadDataDefault(ptr.Pointer(), dataC, C.longlong(len)))
+		if ret > 0 {
+			*data = C.GoStringN(dataC, C.int(ret))
+		}
+		return ret
+	}
+	return 0
+}
+
 //export callbackQSaveFile_ReadLineData
 func callbackQSaveFile_ReadLineData(ptr unsafe.Pointer, data C.struct_QtCore_PackedString, maxlen C.longlong) C.longlong {
 
@@ -58637,6 +58932,65 @@ func (ptr *QTemporaryFile) Pos() int64 {
 func (ptr *QTemporaryFile) PosDefault() int64 {
 	if ptr.Pointer() != nil {
 		return int64(C.QTemporaryFile_PosDefault(ptr.Pointer()))
+	}
+	return 0
+}
+
+//export callbackQTemporaryFile_ReadData
+func callbackQTemporaryFile_ReadData(ptr unsafe.Pointer, data C.struct_QtCore_PackedString, len C.longlong) C.longlong {
+
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QTemporaryFile::readData"); signal != nil {
+		var retS = cGoUnpackString(data)
+		var ret = C.longlong(signal.(func(*string, int64) int64)(&retS, int64(len)))
+		if ret > 0 {
+			C.memcpy(unsafe.Pointer(data.data), unsafe.Pointer(C.CString(retS)), C.size_t(ret))
+		}
+		return ret
+	}
+	var retS = cGoUnpackString(data)
+	var ret = C.longlong(NewQTemporaryFileFromPointer(ptr).ReadDataDefault(&retS, int64(len)))
+	if ret > 0 {
+		C.memcpy(unsafe.Pointer(data.data), unsafe.Pointer(C.CString(retS)), C.size_t(ret))
+	}
+	return ret
+}
+
+func (ptr *QTemporaryFile) ConnectReadData(f func(data *string, len int64) int64) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QTemporaryFile::readData", f)
+	}
+}
+
+func (ptr *QTemporaryFile) DisconnectReadData() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QTemporaryFile::readData")
+	}
+}
+
+func (ptr *QTemporaryFile) ReadData(data *string, len int64) int64 {
+	if ptr.Pointer() != nil {
+		var dataC = C.CString(strings.Repeat("0", int(len)))
+		defer C.free(unsafe.Pointer(dataC))
+		var ret = int64(C.QTemporaryFile_ReadData(ptr.Pointer(), dataC, C.longlong(len)))
+		if ret > 0 {
+			*data = C.GoStringN(dataC, C.int(ret))
+		}
+		return ret
+	}
+	return 0
+}
+
+func (ptr *QTemporaryFile) ReadDataDefault(data *string, len int64) int64 {
+	if ptr.Pointer() != nil {
+		var dataC = C.CString(strings.Repeat("0", int(len)))
+		defer C.free(unsafe.Pointer(dataC))
+		var ret = int64(C.QTemporaryFile_ReadDataDefault(ptr.Pointer(), dataC, C.longlong(len)))
+		if ret > 0 {
+			*data = C.GoStringN(dataC, C.int(ret))
+		}
+		return ret
 	}
 	return 0
 }
