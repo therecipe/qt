@@ -49,7 +49,7 @@ func QT_VERSION() string {
 	componentsFilename := filepath.Join(filepath.Clean(dir), "components.xml")
 	fh, err := os.Open(componentsFilename)
 	if err != nil {
-		Log.Debugf(err, "couldn't open %s", componentsFilename)
+		Log.WithError(err).Debugf("couldn't open %s", componentsFilename)
 		return defaultVersion
 	}
 	defer fh.Close()
