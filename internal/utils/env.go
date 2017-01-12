@@ -22,6 +22,8 @@ func QT_VERSION() string {
 		return version
 	}
 
+	const defaultVersion = "5.7.0"
+
 	//TODO: get version from tools instead ?
 	/*if UseHomeBrew() {
 		var (
@@ -39,23 +41,35 @@ func QT_VERSION() string {
 			return QT_VERSION_CACHE
 		}
 	} else {*/
-	if dir := os.Getenv("QT_DIR"); dir != "" {
-		dir = filepath.Clean(dir)
-
-		var (
-			cStruct = &struct {
-				ApplicationName string `xml:"ApplicationName"`
-			}{}
-			err = xml.Unmarshal([]byte(LoadOptional(filepath.Join(dir, "components.xml"))), cStruct)
-		)
-		if err == nil {
-			QT_VERSION_CACHE = strings.TrimSpace(strings.Split(cStruct.ApplicationName, " ")[1])
-			return QT_VERSION_CACHE
-		}
+	dir := os.Getenv("QT_DIR")
+	if dir == "" {
+		return defaultVersion
 	}
-	//}
 
-	return "5.7.0"
+	componentsFilename := filepath.Join(filepath.Clean(dir), "components.xml")
+	fh, err := os.Open(componentsFilename)
+	if err != nil {
+		Log.WithError(err).Debugf("couldn't open %s", componentsFilename)
+		return defaultVersion
+	}
+	defer fh.Close()
+
+	cStruct := &struct {
+		ApplicationName string `xml:"ApplicationName"`
+	}{}
+
+	if err = xml.NewDecoder(fh).Decode(cStruct); err != nil {
+		Log.Warnf("Couldn't decode %s XML: %s", componentsFilename, err.Error())
+		return defaultVersion
+	}
+
+	words := strings.Split(cStruct.ApplicationName, " ")
+	if len(words) <= 1 {
+		Log.Warnf("Couldn't get valid application name '%s' in %s", cStruct.ApplicationName, componentsFilename)
+	}
+
+	QT_VERSION_CACHE = strings.TrimSpace(words[1])
+	return QT_VERSION_CACHE
 }
 
 func QT_VERSION_MAJOR() string {
