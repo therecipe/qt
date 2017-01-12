@@ -59,13 +59,13 @@ func QT_VERSION() string {
 	}{}
 
 	if err = xml.NewDecoder(fh).Decode(cStruct); err != nil {
-		Log.Warnf("Couldn't decode XML: %s", err.Error())
+		Log.Warnf("Couldn't decode %s XML: %s", componentsFilename, err.Error())
 		return defaultVersion
 	}
 
 	words := strings.Split(cStruct.ApplicationName, " ")
 	if len(words) <= 1 {
-		Log.Warnf("Couldn't get valid application name '%s'", cStruct.ApplicationName)
+		Log.Warnf("Couldn't get valid application name '%s' in %s", cStruct.ApplicationName, componentsFilename)
 	}
 
 	QT_VERSION_CACHE = strings.TrimSpace(words[1])
