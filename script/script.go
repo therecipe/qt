@@ -73,20 +73,20 @@ type QSOperator_ITF interface {
 	QSOperator_PTR() *QSOperator
 }
 
-func (p *QSOperator) QSOperator_PTR() *QSOperator {
-	return p
+func (ptr *QSOperator) QSOperator_PTR() *QSOperator {
+	return ptr
 }
 
-func (p *QSOperator) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QSOperator) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QSOperator) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QSOperator) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -104,8 +104,10 @@ func NewQSOperatorFromPointer(ptr unsafe.Pointer) *QSOperator {
 }
 
 func (ptr *QSOperator) DestroyQSOperator() {
-	C.free(ptr.Pointer())
-	ptr.SetPointer(nil)
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
 }
 
 type QScript struct {
@@ -116,20 +118,20 @@ type QScript_ITF interface {
 	QScript_PTR() *QScript
 }
 
-func (p *QScript) QScript_PTR() *QScript {
-	return p
+func (ptr *QScript) QScript_PTR() *QScript {
+	return ptr
 }
 
-func (p *QScript) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QScript) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QScript) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QScript) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -147,8 +149,10 @@ func NewQScriptFromPointer(ptr unsafe.Pointer) *QScript {
 }
 
 func (ptr *QScript) DestroyQScript() {
-	C.free(ptr.Pointer())
-	ptr.SetPointer(nil)
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
 }
 
 //go:generate stringer -type=QScriptClass__Extension
@@ -177,20 +181,20 @@ type QScriptClass_ITF interface {
 	QScriptClass_PTR() *QScriptClass
 }
 
-func (p *QScriptClass) QScriptClass_PTR() *QScriptClass {
-	return p
+func (ptr *QScriptClass) QScriptClass_PTR() *QScriptClass {
+	return ptr
 }
 
-func (p *QScriptClass) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QScriptClass) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QScriptClass) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QScriptClass) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -621,20 +625,20 @@ type QScriptClassPropertyIterator_ITF interface {
 	QScriptClassPropertyIterator_PTR() *QScriptClassPropertyIterator
 }
 
-func (p *QScriptClassPropertyIterator) QScriptClassPropertyIterator_PTR() *QScriptClassPropertyIterator {
-	return p
+func (ptr *QScriptClassPropertyIterator) QScriptClassPropertyIterator_PTR() *QScriptClassPropertyIterator {
+	return ptr
 }
 
-func (p *QScriptClassPropertyIterator) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QScriptClassPropertyIterator) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QScriptClassPropertyIterator) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QScriptClassPropertyIterator) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -681,20 +685,20 @@ type QScriptContext_ITF interface {
 	QScriptContext_PTR() *QScriptContext
 }
 
-func (p *QScriptContext) QScriptContext_PTR() *QScriptContext {
-	return p
+func (ptr *QScriptContext) QScriptContext_PTR() *QScriptContext {
+	return ptr
 }
 
-func (p *QScriptContext) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QScriptContext) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QScriptContext) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QScriptContext) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -877,20 +881,20 @@ type QScriptContextInfo_ITF interface {
 	QScriptContextInfo_PTR() *QScriptContextInfo
 }
 
-func (p *QScriptContextInfo) QScriptContextInfo_PTR() *QScriptContextInfo {
-	return p
+func (ptr *QScriptContextInfo) QScriptContextInfo_PTR() *QScriptContextInfo {
+	return ptr
 }
 
-func (p *QScriptContextInfo) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QScriptContextInfo) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QScriptContextInfo) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QScriptContextInfo) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -1036,20 +1040,20 @@ type QScriptEngine_ITF interface {
 	QScriptEngine_PTR() *QScriptEngine
 }
 
-func (p *QScriptEngine) QScriptEngine_PTR() *QScriptEngine {
-	return p
+func (ptr *QScriptEngine) QScriptEngine_PTR() *QScriptEngine {
+	return ptr
 }
 
-func (p *QScriptEngine) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QObject_PTR().Pointer()
+func (ptr *QScriptEngine) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QObject_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QScriptEngine) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QObject_PTR().SetPointer(ptr)
+func (ptr *QScriptEngine) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QObject_PTR().SetPointer(p)
 	}
 }
 
@@ -1846,20 +1850,20 @@ type QScriptEngineAgent_ITF interface {
 	QScriptEngineAgent_PTR() *QScriptEngineAgent
 }
 
-func (p *QScriptEngineAgent) QScriptEngineAgent_PTR() *QScriptEngineAgent {
-	return p
+func (ptr *QScriptEngineAgent) QScriptEngineAgent_PTR() *QScriptEngineAgent {
+	return ptr
 }
 
-func (p *QScriptEngineAgent) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QScriptEngineAgent) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QScriptEngineAgent) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QScriptEngineAgent) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -2351,20 +2355,20 @@ type QScriptExtensionPlugin_ITF interface {
 	QScriptExtensionPlugin_PTR() *QScriptExtensionPlugin
 }
 
-func (p *QScriptExtensionPlugin) QScriptExtensionPlugin_PTR() *QScriptExtensionPlugin {
-	return p
+func (ptr *QScriptExtensionPlugin) QScriptExtensionPlugin_PTR() *QScriptExtensionPlugin {
+	return ptr
 }
 
-func (p *QScriptExtensionPlugin) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QObject_PTR().Pointer()
+func (ptr *QScriptExtensionPlugin) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QObject_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QScriptExtensionPlugin) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QObject_PTR().SetPointer(ptr)
+func (ptr *QScriptExtensionPlugin) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QObject_PTR().SetPointer(p)
 	}
 }
 
@@ -2810,20 +2814,20 @@ type QScriptProgram_ITF interface {
 	QScriptProgram_PTR() *QScriptProgram
 }
 
-func (p *QScriptProgram) QScriptProgram_PTR() *QScriptProgram {
-	return p
+func (ptr *QScriptProgram) QScriptProgram_PTR() *QScriptProgram {
+	return ptr
 }
 
-func (p *QScriptProgram) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QScriptProgram) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QScriptProgram) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QScriptProgram) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -2904,20 +2908,20 @@ type QScriptString_ITF interface {
 	QScriptString_PTR() *QScriptString
 }
 
-func (p *QScriptString) QScriptString_PTR() *QScriptString {
-	return p
+func (ptr *QScriptString) QScriptString_PTR() *QScriptString {
+	return ptr
 }
 
-func (p *QScriptString) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QScriptString) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QScriptString) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QScriptString) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -2991,20 +2995,20 @@ type QScriptSyntaxCheckResult_ITF interface {
 	QScriptSyntaxCheckResult_PTR() *QScriptSyntaxCheckResult
 }
 
-func (p *QScriptSyntaxCheckResult) QScriptSyntaxCheckResult_PTR() *QScriptSyntaxCheckResult {
-	return p
+func (ptr *QScriptSyntaxCheckResult) QScriptSyntaxCheckResult_PTR() *QScriptSyntaxCheckResult {
+	return ptr
 }
 
-func (p *QScriptSyntaxCheckResult) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QScriptSyntaxCheckResult) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QScriptSyntaxCheckResult) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QScriptSyntaxCheckResult) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -3104,20 +3108,20 @@ type QScriptValue_ITF interface {
 	QScriptValue_PTR() *QScriptValue
 }
 
-func (p *QScriptValue) QScriptValue_PTR() *QScriptValue {
-	return p
+func (ptr *QScriptValue) QScriptValue_PTR() *QScriptValue {
+	return ptr
 }
 
-func (p *QScriptValue) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QScriptValue) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QScriptValue) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QScriptValue) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -3556,20 +3560,20 @@ type QScriptValueIterator_ITF interface {
 	QScriptValueIterator_PTR() *QScriptValueIterator
 }
 
-func (p *QScriptValueIterator) QScriptValueIterator_PTR() *QScriptValueIterator {
-	return p
+func (ptr *QScriptValueIterator) QScriptValueIterator_PTR() *QScriptValueIterator {
+	return ptr
 }
 
-func (p *QScriptValueIterator) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QScriptValueIterator) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QScriptValueIterator) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QScriptValueIterator) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -3594,20 +3598,20 @@ type QScriptable_ITF interface {
 	QScriptable_PTR() *QScriptable
 }
 
-func (p *QScriptable) QScriptable_PTR() *QScriptable {
-	return p
+func (ptr *QScriptable) QScriptable_PTR() *QScriptable {
+	return ptr
 }
 
-func (p *QScriptable) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QScriptable) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QScriptable) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QScriptable) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -3625,8 +3629,10 @@ func NewQScriptableFromPointer(ptr unsafe.Pointer) *QScriptable {
 }
 
 func (ptr *QScriptable) DestroyQScriptable() {
-	C.free(ptr.Pointer())
-	ptr.SetPointer(nil)
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
 }
 
 func (ptr *QScriptable) Argument(index int) *QScriptValue {

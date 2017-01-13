@@ -31,20 +31,20 @@ type QGeoAddress_ITF interface {
 	QGeoAddress_PTR() *QGeoAddress
 }
 
-func (p *QGeoAddress) QGeoAddress_PTR() *QGeoAddress {
-	return p
+func (ptr *QGeoAddress) QGeoAddress_PTR() *QGeoAddress {
+	return ptr
 }
 
-func (p *QGeoAddress) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QGeoAddress) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QGeoAddress) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QGeoAddress) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -242,20 +242,20 @@ type QGeoAreaMonitorInfo_ITF interface {
 	QGeoAreaMonitorInfo_PTR() *QGeoAreaMonitorInfo
 }
 
-func (p *QGeoAreaMonitorInfo) QGeoAreaMonitorInfo_PTR() *QGeoAreaMonitorInfo {
-	return p
+func (ptr *QGeoAreaMonitorInfo) QGeoAreaMonitorInfo_PTR() *QGeoAreaMonitorInfo {
+	return ptr
 }
 
-func (p *QGeoAreaMonitorInfo) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QGeoAreaMonitorInfo) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QGeoAreaMonitorInfo) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QGeoAreaMonitorInfo) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -393,20 +393,20 @@ type QGeoAreaMonitorSource_ITF interface {
 	QGeoAreaMonitorSource_PTR() *QGeoAreaMonitorSource
 }
 
-func (p *QGeoAreaMonitorSource) QGeoAreaMonitorSource_PTR() *QGeoAreaMonitorSource {
-	return p
+func (ptr *QGeoAreaMonitorSource) QGeoAreaMonitorSource_PTR() *QGeoAreaMonitorSource {
+	return ptr
 }
 
-func (p *QGeoAreaMonitorSource) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QObject_PTR().Pointer()
+func (ptr *QGeoAreaMonitorSource) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QObject_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QGeoAreaMonitorSource) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QObject_PTR().SetPointer(ptr)
+func (ptr *QGeoAreaMonitorSource) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QObject_PTR().SetPointer(p)
 	}
 }
 
@@ -1274,20 +1274,20 @@ type QGeoCircle_ITF interface {
 	QGeoCircle_PTR() *QGeoCircle
 }
 
-func (p *QGeoCircle) QGeoCircle_PTR() *QGeoCircle {
-	return p
+func (ptr *QGeoCircle) QGeoCircle_PTR() *QGeoCircle {
+	return ptr
 }
 
-func (p *QGeoCircle) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QGeoShape_PTR().Pointer()
+func (ptr *QGeoCircle) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QGeoShape_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QGeoCircle) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QGeoShape_PTR().SetPointer(ptr)
+func (ptr *QGeoCircle) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QGeoShape_PTR().SetPointer(p)
 	}
 }
 
@@ -1415,20 +1415,20 @@ type QGeoCoordinate_ITF interface {
 	QGeoCoordinate_PTR() *QGeoCoordinate
 }
 
-func (p *QGeoCoordinate) QGeoCoordinate_PTR() *QGeoCoordinate {
-	return p
+func (ptr *QGeoCoordinate) QGeoCoordinate_PTR() *QGeoCoordinate {
+	return ptr
 }
 
-func (p *QGeoCoordinate) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QGeoCoordinate) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QGeoCoordinate) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QGeoCoordinate) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -1566,20 +1566,20 @@ type QGeoLocation_ITF interface {
 	QGeoLocation_PTR() *QGeoLocation
 }
 
-func (p *QGeoLocation) QGeoLocation_PTR() *QGeoLocation {
-	return p
+func (ptr *QGeoLocation) QGeoLocation_PTR() *QGeoLocation {
+	return ptr
 }
 
-func (p *QGeoLocation) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QGeoLocation) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QGeoLocation) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QGeoLocation) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -1617,20 +1617,20 @@ type QGeoPositionInfo_ITF interface {
 	QGeoPositionInfo_PTR() *QGeoPositionInfo
 }
 
-func (p *QGeoPositionInfo) QGeoPositionInfo_PTR() *QGeoPositionInfo {
-	return p
+func (ptr *QGeoPositionInfo) QGeoPositionInfo_PTR() *QGeoPositionInfo {
+	return ptr
 }
 
-func (p *QGeoPositionInfo) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QGeoPositionInfo) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QGeoPositionInfo) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QGeoPositionInfo) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -1765,20 +1765,20 @@ type QGeoPositionInfoSource_ITF interface {
 	QGeoPositionInfoSource_PTR() *QGeoPositionInfoSource
 }
 
-func (p *QGeoPositionInfoSource) QGeoPositionInfoSource_PTR() *QGeoPositionInfoSource {
-	return p
+func (ptr *QGeoPositionInfoSource) QGeoPositionInfoSource_PTR() *QGeoPositionInfoSource {
+	return ptr
 }
 
-func (p *QGeoPositionInfoSource) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QObject_PTR().Pointer()
+func (ptr *QGeoPositionInfoSource) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QObject_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QGeoPositionInfoSource) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QObject_PTR().SetPointer(ptr)
+func (ptr *QGeoPositionInfoSource) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QObject_PTR().SetPointer(p)
 	}
 }
 
@@ -2618,20 +2618,20 @@ type QGeoPositionInfoSourceFactory_ITF interface {
 	QGeoPositionInfoSourceFactory_PTR() *QGeoPositionInfoSourceFactory
 }
 
-func (p *QGeoPositionInfoSourceFactory) QGeoPositionInfoSourceFactory_PTR() *QGeoPositionInfoSourceFactory {
-	return p
+func (ptr *QGeoPositionInfoSourceFactory) QGeoPositionInfoSourceFactory_PTR() *QGeoPositionInfoSourceFactory {
+	return ptr
 }
 
-func (p *QGeoPositionInfoSourceFactory) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QGeoPositionInfoSourceFactory) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QGeoPositionInfoSourceFactory) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QGeoPositionInfoSourceFactory) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -2802,20 +2802,20 @@ type QGeoRectangle_ITF interface {
 	QGeoRectangle_PTR() *QGeoRectangle
 }
 
-func (p *QGeoRectangle) QGeoRectangle_PTR() *QGeoRectangle {
-	return p
+func (ptr *QGeoRectangle) QGeoRectangle_PTR() *QGeoRectangle {
+	return ptr
 }
 
-func (p *QGeoRectangle) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QGeoShape_PTR().Pointer()
+func (ptr *QGeoRectangle) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QGeoShape_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QGeoRectangle) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QGeoShape_PTR().SetPointer(ptr)
+func (ptr *QGeoRectangle) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QGeoShape_PTR().SetPointer(p)
 	}
 }
 
@@ -3041,20 +3041,20 @@ type QGeoSatelliteInfo_ITF interface {
 	QGeoSatelliteInfo_PTR() *QGeoSatelliteInfo
 }
 
-func (p *QGeoSatelliteInfo) QGeoSatelliteInfo_PTR() *QGeoSatelliteInfo {
-	return p
+func (ptr *QGeoSatelliteInfo) QGeoSatelliteInfo_PTR() *QGeoSatelliteInfo {
+	return ptr
 }
 
-func (p *QGeoSatelliteInfo) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QGeoSatelliteInfo) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QGeoSatelliteInfo) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QGeoSatelliteInfo) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -3174,20 +3174,20 @@ type QGeoSatelliteInfoSource_ITF interface {
 	QGeoSatelliteInfoSource_PTR() *QGeoSatelliteInfoSource
 }
 
-func (p *QGeoSatelliteInfoSource) QGeoSatelliteInfoSource_PTR() *QGeoSatelliteInfoSource {
-	return p
+func (ptr *QGeoSatelliteInfoSource) QGeoSatelliteInfoSource_PTR() *QGeoSatelliteInfoSource {
+	return ptr
 }
 
-func (p *QGeoSatelliteInfoSource) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QObject_PTR().Pointer()
+func (ptr *QGeoSatelliteInfoSource) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QObject_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QGeoSatelliteInfoSource) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QObject_PTR().SetPointer(ptr)
+func (ptr *QGeoSatelliteInfoSource) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QObject_PTR().SetPointer(p)
 	}
 }
 
@@ -3901,20 +3901,20 @@ type QGeoShape_ITF interface {
 	QGeoShape_PTR() *QGeoShape
 }
 
-func (p *QGeoShape) QGeoShape_PTR() *QGeoShape {
-	return p
+func (ptr *QGeoShape) QGeoShape_PTR() *QGeoShape {
+	return ptr
 }
 
-func (p *QGeoShape) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QGeoShape) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QGeoShape) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QGeoShape) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -4017,20 +4017,20 @@ type QNmeaPositionInfoSource_ITF interface {
 	QNmeaPositionInfoSource_PTR() *QNmeaPositionInfoSource
 }
 
-func (p *QNmeaPositionInfoSource) QNmeaPositionInfoSource_PTR() *QNmeaPositionInfoSource {
-	return p
+func (ptr *QNmeaPositionInfoSource) QNmeaPositionInfoSource_PTR() *QNmeaPositionInfoSource {
+	return ptr
 }
 
-func (p *QNmeaPositionInfoSource) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QGeoPositionInfoSource_PTR().Pointer()
+func (ptr *QNmeaPositionInfoSource) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QGeoPositionInfoSource_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QNmeaPositionInfoSource) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QGeoPositionInfoSource_PTR().SetPointer(ptr)
+func (ptr *QNmeaPositionInfoSource) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QGeoPositionInfoSource_PTR().SetPointer(p)
 	}
 }
 

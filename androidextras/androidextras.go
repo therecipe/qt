@@ -21,20 +21,20 @@ type QAndroidActivityResultReceiver_ITF interface {
 	QAndroidActivityResultReceiver_PTR() *QAndroidActivityResultReceiver
 }
 
-func (p *QAndroidActivityResultReceiver) QAndroidActivityResultReceiver_PTR() *QAndroidActivityResultReceiver {
-	return p
+func (ptr *QAndroidActivityResultReceiver) QAndroidActivityResultReceiver_PTR() *QAndroidActivityResultReceiver {
+	return ptr
 }
 
-func (p *QAndroidActivityResultReceiver) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QAndroidActivityResultReceiver) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QAndroidActivityResultReceiver) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QAndroidActivityResultReceiver) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -52,9 +52,11 @@ func NewQAndroidActivityResultReceiverFromPointer(ptr unsafe.Pointer) *QAndroidA
 }
 
 func (ptr *QAndroidActivityResultReceiver) DestroyQAndroidActivityResultReceiver() {
-	C.free(ptr.Pointer())
-	qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
-	ptr.SetPointer(nil)
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
+		ptr.SetPointer(nil)
+	}
 }
 
 //export callbackQAndroidActivityResultReceiver_HandleActivityResult
@@ -82,20 +84,20 @@ type QAndroidJniEnvironment_ITF interface {
 	QAndroidJniEnvironment_PTR() *QAndroidJniEnvironment
 }
 
-func (p *QAndroidJniEnvironment) QAndroidJniEnvironment_PTR() *QAndroidJniEnvironment {
-	return p
+func (ptr *QAndroidJniEnvironment) QAndroidJniEnvironment_PTR() *QAndroidJniEnvironment {
+	return ptr
 }
 
-func (p *QAndroidJniEnvironment) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QAndroidJniEnvironment) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QAndroidJniEnvironment) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QAndroidJniEnvironment) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -138,20 +140,20 @@ type QAndroidJniObject_ITF interface {
 	QAndroidJniObject_PTR() *QAndroidJniObject
 }
 
-func (p *QAndroidJniObject) QAndroidJniObject_PTR() *QAndroidJniObject {
-	return p
+func (ptr *QAndroidJniObject) QAndroidJniObject_PTR() *QAndroidJniObject {
+	return ptr
 }
 
-func (p *QAndroidJniObject) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QAndroidJniObject) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QAndroidJniObject) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QAndroidJniObject) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 

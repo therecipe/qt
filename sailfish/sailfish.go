@@ -22,20 +22,20 @@ type SailfishApp_ITF interface {
 	SailfishApp_PTR() *SailfishApp
 }
 
-func (p *SailfishApp) SailfishApp_PTR() *SailfishApp {
-	return p
+func (ptr *SailfishApp) SailfishApp_PTR() *SailfishApp {
+	return ptr
 }
 
-func (p *SailfishApp) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *SailfishApp) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *SailfishApp) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *SailfishApp) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -53,8 +53,10 @@ func NewSailfishAppFromPointer(ptr unsafe.Pointer) *SailfishApp {
 }
 
 func (ptr *SailfishApp) DestroySailfishApp() {
-	C.free(ptr.Pointer())
-	ptr.SetPointer(nil)
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
 }
 
 func SailfishApp_Application(argc int, argv []string) *gui.QGuiApplication {

@@ -46,20 +46,20 @@ type QAbstractAxis_ITF interface {
 	QAbstractAxis_PTR() *QAbstractAxis
 }
 
-func (p *QAbstractAxis) QAbstractAxis_PTR() *QAbstractAxis {
-	return p
+func (ptr *QAbstractAxis) QAbstractAxis_PTR() *QAbstractAxis {
+	return ptr
 }
 
-func (p *QAbstractAxis) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QAbstractAxis) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QAbstractAxis) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QAbstractAxis) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -1261,20 +1261,20 @@ type QAbstractBarSeries_ITF interface {
 	QAbstractBarSeries_PTR() *QAbstractBarSeries
 }
 
-func (p *QAbstractBarSeries) QAbstractBarSeries_PTR() *QAbstractBarSeries {
-	return p
+func (ptr *QAbstractBarSeries) QAbstractBarSeries_PTR() *QAbstractBarSeries {
+	return ptr
 }
 
-func (p *QAbstractBarSeries) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QAbstractBarSeries) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QAbstractBarSeries) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QAbstractBarSeries) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -1777,20 +1777,20 @@ type QAbstractSeries_ITF interface {
 	QAbstractSeries_PTR() *QAbstractSeries
 }
 
-func (p *QAbstractSeries) QAbstractSeries_PTR() *QAbstractSeries {
-	return p
+func (ptr *QAbstractSeries) QAbstractSeries_PTR() *QAbstractSeries {
+	return ptr
 }
 
-func (p *QAbstractSeries) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QAbstractSeries) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QAbstractSeries) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QAbstractSeries) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -2076,20 +2076,20 @@ type QAreaLegendMarker_ITF interface {
 	QAreaLegendMarker_PTR() *QAreaLegendMarker
 }
 
-func (p *QAreaLegendMarker) QAreaLegendMarker_PTR() *QAreaLegendMarker {
-	return p
+func (ptr *QAreaLegendMarker) QAreaLegendMarker_PTR() *QAreaLegendMarker {
+	return ptr
 }
 
-func (p *QAreaLegendMarker) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QAreaLegendMarker) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QAreaLegendMarker) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QAreaLegendMarker) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -2199,20 +2199,20 @@ type QAreaSeries_ITF interface {
 	QAreaSeries_PTR() *QAreaSeries
 }
 
-func (p *QAreaSeries) QAreaSeries_PTR() *QAreaSeries {
-	return p
+func (ptr *QAreaSeries) QAreaSeries_PTR() *QAreaSeries {
+	return ptr
 }
 
-func (p *QAreaSeries) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QAreaSeries) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QAreaSeries) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QAreaSeries) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -2839,20 +2839,20 @@ type QBarCategoryAxis_ITF interface {
 	QBarCategoryAxis_PTR() *QBarCategoryAxis
 }
 
-func (p *QBarCategoryAxis) QBarCategoryAxis_PTR() *QBarCategoryAxis {
-	return p
+func (ptr *QBarCategoryAxis) QBarCategoryAxis_PTR() *QBarCategoryAxis {
+	return ptr
 }
 
-func (p *QBarCategoryAxis) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QBarCategoryAxis) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QBarCategoryAxis) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QBarCategoryAxis) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -3165,20 +3165,20 @@ type QBarLegendMarker_ITF interface {
 	QBarLegendMarker_PTR() *QBarLegendMarker
 }
 
-func (p *QBarLegendMarker) QBarLegendMarker_PTR() *QBarLegendMarker {
-	return p
+func (ptr *QBarLegendMarker) QBarLegendMarker_PTR() *QBarLegendMarker {
+	return ptr
 }
 
-func (p *QBarLegendMarker) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QBarLegendMarker) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QBarLegendMarker) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QBarLegendMarker) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -3294,20 +3294,20 @@ type QBarSeries_ITF interface {
 	QBarSeries_PTR() *QBarSeries
 }
 
-func (p *QBarSeries) QBarSeries_PTR() *QBarSeries {
-	return p
+func (ptr *QBarSeries) QBarSeries_PTR() *QBarSeries {
+	return ptr
 }
 
-func (p *QBarSeries) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QBarSeries) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QBarSeries) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QBarSeries) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -3381,20 +3381,20 @@ type QBarSet_ITF interface {
 	QBarSet_PTR() *QBarSet
 }
 
-func (p *QBarSet) QBarSet_PTR() *QBarSet {
-	return p
+func (ptr *QBarSet) QBarSet_PTR() *QBarSet {
+	return ptr
 }
 
-func (p *QBarSet) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QBarSet) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QBarSet) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QBarSet) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -4093,20 +4093,20 @@ type QBoxPlotLegendMarker_ITF interface {
 	QBoxPlotLegendMarker_PTR() *QBoxPlotLegendMarker
 }
 
-func (p *QBoxPlotLegendMarker) QBoxPlotLegendMarker_PTR() *QBoxPlotLegendMarker {
-	return p
+func (ptr *QBoxPlotLegendMarker) QBoxPlotLegendMarker_PTR() *QBoxPlotLegendMarker {
+	return ptr
 }
 
-func (p *QBoxPlotLegendMarker) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QBoxPlotLegendMarker) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QBoxPlotLegendMarker) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QBoxPlotLegendMarker) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -4216,20 +4216,20 @@ type QBoxPlotSeries_ITF interface {
 	QBoxPlotSeries_PTR() *QBoxPlotSeries
 }
 
-func (p *QBoxPlotSeries) QBoxPlotSeries_PTR() *QBoxPlotSeries {
-	return p
+func (ptr *QBoxPlotSeries) QBoxPlotSeries_PTR() *QBoxPlotSeries {
+	return ptr
 }
 
-func (p *QBoxPlotSeries) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QBoxPlotSeries) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QBoxPlotSeries) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QBoxPlotSeries) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -4722,20 +4722,20 @@ type QBoxSet_ITF interface {
 	QBoxSet_PTR() *QBoxSet
 }
 
-func (p *QBoxSet) QBoxSet_PTR() *QBoxSet {
-	return p
+func (ptr *QBoxSet) QBoxSet_PTR() *QBoxSet {
+	return ptr
 }
 
-func (p *QBoxSet) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QBoxSet) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QBoxSet) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QBoxSet) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -5187,20 +5187,20 @@ type QCategoryAxis_ITF interface {
 	QCategoryAxis_PTR() *QCategoryAxis
 }
 
-func (p *QCategoryAxis) QCategoryAxis_PTR() *QCategoryAxis {
-	return p
+func (ptr *QCategoryAxis) QCategoryAxis_PTR() *QCategoryAxis {
+	return ptr
 }
 
-func (p *QCategoryAxis) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QCategoryAxis) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QCategoryAxis) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QCategoryAxis) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -5414,20 +5414,20 @@ type QChart_ITF interface {
 	QChart_PTR() *QChart
 }
 
-func (p *QChart) QChart_PTR() *QChart {
-	return p
+func (ptr *QChart) QChart_PTR() *QChart {
+	return ptr
 }
 
-func (p *QChart) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QChart) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QChart) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QChart) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -5943,20 +5943,20 @@ type QChartView_ITF interface {
 	QChartView_PTR() *QChartView
 }
 
-func (p *QChartView) QChartView_PTR() *QChartView {
-	return p
+func (ptr *QChartView) QChartView_PTR() *QChartView {
+	return ptr
 }
 
-func (p *QChartView) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QChartView) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QChartView) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QChartView) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -6049,20 +6049,20 @@ type QDateTimeAxis_ITF interface {
 	QDateTimeAxis_PTR() *QDateTimeAxis
 }
 
-func (p *QDateTimeAxis) QDateTimeAxis_PTR() *QDateTimeAxis {
-	return p
+func (ptr *QDateTimeAxis) QDateTimeAxis_PTR() *QDateTimeAxis {
+	return ptr
 }
 
-func (p *QDateTimeAxis) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QDateTimeAxis) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QDateTimeAxis) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QDateTimeAxis) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -6316,20 +6316,20 @@ type QHBarModelMapper_ITF interface {
 	QHBarModelMapper_PTR() *QHBarModelMapper
 }
 
-func (p *QHBarModelMapper) QHBarModelMapper_PTR() *QHBarModelMapper {
-	return p
+func (ptr *QHBarModelMapper) QHBarModelMapper_PTR() *QHBarModelMapper {
+	return ptr
 }
 
-func (p *QHBarModelMapper) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QHBarModelMapper) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QHBarModelMapper) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QHBarModelMapper) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -6347,9 +6347,11 @@ func NewQHBarModelMapperFromPointer(ptr unsafe.Pointer) *QHBarModelMapper {
 }
 
 func (ptr *QHBarModelMapper) DestroyQHBarModelMapper() {
-	C.free(ptr.Pointer())
-	qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
-	ptr.SetPointer(nil)
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
+		ptr.SetPointer(nil)
+	}
 }
 
 func (ptr *QHBarModelMapper) ColumnCount() int {
@@ -6620,20 +6622,20 @@ type QHPieModelMapper_ITF interface {
 	QHPieModelMapper_PTR() *QHPieModelMapper
 }
 
-func (p *QHPieModelMapper) QHPieModelMapper_PTR() *QHPieModelMapper {
-	return p
+func (ptr *QHPieModelMapper) QHPieModelMapper_PTR() *QHPieModelMapper {
+	return ptr
 }
 
-func (p *QHPieModelMapper) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QHPieModelMapper) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QHPieModelMapper) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QHPieModelMapper) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -6651,9 +6653,11 @@ func NewQHPieModelMapperFromPointer(ptr unsafe.Pointer) *QHPieModelMapper {
 }
 
 func (ptr *QHPieModelMapper) DestroyQHPieModelMapper() {
-	C.free(ptr.Pointer())
-	qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
-	ptr.SetPointer(nil)
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
+		ptr.SetPointer(nil)
+	}
 }
 
 func (ptr *QHPieModelMapper) ColumnCount() int {
@@ -6924,20 +6928,20 @@ type QHXYModelMapper_ITF interface {
 	QHXYModelMapper_PTR() *QHXYModelMapper
 }
 
-func (p *QHXYModelMapper) QHXYModelMapper_PTR() *QHXYModelMapper {
-	return p
+func (ptr *QHXYModelMapper) QHXYModelMapper_PTR() *QHXYModelMapper {
+	return ptr
 }
 
-func (p *QHXYModelMapper) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QHXYModelMapper) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QHXYModelMapper) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QHXYModelMapper) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -6955,9 +6959,11 @@ func NewQHXYModelMapperFromPointer(ptr unsafe.Pointer) *QHXYModelMapper {
 }
 
 func (ptr *QHXYModelMapper) DestroyQHXYModelMapper() {
-	C.free(ptr.Pointer())
-	qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
-	ptr.SetPointer(nil)
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
+		ptr.SetPointer(nil)
+	}
 }
 
 func (ptr *QHXYModelMapper) ColumnCount() int {
@@ -7228,20 +7234,20 @@ type QHorizontalBarSeries_ITF interface {
 	QHorizontalBarSeries_PTR() *QHorizontalBarSeries
 }
 
-func (p *QHorizontalBarSeries) QHorizontalBarSeries_PTR() *QHorizontalBarSeries {
-	return p
+func (ptr *QHorizontalBarSeries) QHorizontalBarSeries_PTR() *QHorizontalBarSeries {
+	return ptr
 }
 
-func (p *QHorizontalBarSeries) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QHorizontalBarSeries) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QHorizontalBarSeries) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QHorizontalBarSeries) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -7315,20 +7321,20 @@ type QHorizontalPercentBarSeries_ITF interface {
 	QHorizontalPercentBarSeries_PTR() *QHorizontalPercentBarSeries
 }
 
-func (p *QHorizontalPercentBarSeries) QHorizontalPercentBarSeries_PTR() *QHorizontalPercentBarSeries {
-	return p
+func (ptr *QHorizontalPercentBarSeries) QHorizontalPercentBarSeries_PTR() *QHorizontalPercentBarSeries {
+	return ptr
 }
 
-func (p *QHorizontalPercentBarSeries) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QHorizontalPercentBarSeries) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QHorizontalPercentBarSeries) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QHorizontalPercentBarSeries) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -7402,20 +7408,20 @@ type QHorizontalStackedBarSeries_ITF interface {
 	QHorizontalStackedBarSeries_PTR() *QHorizontalStackedBarSeries
 }
 
-func (p *QHorizontalStackedBarSeries) QHorizontalStackedBarSeries_PTR() *QHorizontalStackedBarSeries {
-	return p
+func (ptr *QHorizontalStackedBarSeries) QHorizontalStackedBarSeries_PTR() *QHorizontalStackedBarSeries {
+	return ptr
 }
 
-func (p *QHorizontalStackedBarSeries) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QHorizontalStackedBarSeries) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QHorizontalStackedBarSeries) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QHorizontalStackedBarSeries) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -7489,20 +7495,20 @@ type QLegend_ITF interface {
 	QLegend_PTR() *QLegend
 }
 
-func (p *QLegend) QLegend_PTR() *QLegend {
-	return p
+func (ptr *QLegend) QLegend_PTR() *QLegend {
+	return ptr
 }
 
-func (p *QLegend) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QLegend) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QLegend) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QLegend) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -7945,20 +7951,20 @@ type QLegendMarker_ITF interface {
 	QLegendMarker_PTR() *QLegendMarker
 }
 
-func (p *QLegendMarker) QLegendMarker_PTR() *QLegendMarker {
-	return p
+func (ptr *QLegendMarker) QLegendMarker_PTR() *QLegendMarker {
+	return ptr
 }
 
-func (p *QLegendMarker) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QLegendMarker) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QLegendMarker) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QLegendMarker) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -8404,20 +8410,20 @@ type QLineSeries_ITF interface {
 	QLineSeries_PTR() *QLineSeries
 }
 
-func (p *QLineSeries) QLineSeries_PTR() *QLineSeries {
-	return p
+func (ptr *QLineSeries) QLineSeries_PTR() *QLineSeries {
+	return ptr
 }
 
-func (p *QLineSeries) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QLineSeries) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QLineSeries) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QLineSeries) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -8492,20 +8498,20 @@ type QLogValueAxis_ITF interface {
 	QLogValueAxis_PTR() *QLogValueAxis
 }
 
-func (p *QLogValueAxis) QLogValueAxis_PTR() *QLogValueAxis {
-	return p
+func (ptr *QLogValueAxis) QLogValueAxis_PTR() *QLogValueAxis {
+	return ptr
 }
 
-func (p *QLogValueAxis) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QLogValueAxis) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QLogValueAxis) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QLogValueAxis) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -8755,20 +8761,20 @@ type QPercentBarSeries_ITF interface {
 	QPercentBarSeries_PTR() *QPercentBarSeries
 }
 
-func (p *QPercentBarSeries) QPercentBarSeries_PTR() *QPercentBarSeries {
-	return p
+func (ptr *QPercentBarSeries) QPercentBarSeries_PTR() *QPercentBarSeries {
+	return ptr
 }
 
-func (p *QPercentBarSeries) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QPercentBarSeries) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QPercentBarSeries) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QPercentBarSeries) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -8842,20 +8848,20 @@ type QPieLegendMarker_ITF interface {
 	QPieLegendMarker_PTR() *QPieLegendMarker
 }
 
-func (p *QPieLegendMarker) QPieLegendMarker_PTR() *QPieLegendMarker {
-	return p
+func (ptr *QPieLegendMarker) QPieLegendMarker_PTR() *QPieLegendMarker {
+	return ptr
 }
 
-func (p *QPieLegendMarker) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QPieLegendMarker) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QPieLegendMarker) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QPieLegendMarker) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -8972,20 +8978,20 @@ type QPieSeries_ITF interface {
 	QPieSeries_PTR() *QPieSeries
 }
 
-func (p *QPieSeries) QPieSeries_PTR() *QPieSeries {
-	return p
+func (ptr *QPieSeries) QPieSeries_PTR() *QPieSeries {
+	return ptr
 }
 
-func (p *QPieSeries) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QPieSeries) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QPieSeries) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QPieSeries) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -9479,20 +9485,20 @@ type QPieSlice_ITF interface {
 	QPieSlice_PTR() *QPieSlice
 }
 
-func (p *QPieSlice) QPieSlice_PTR() *QPieSlice {
-	return p
+func (ptr *QPieSlice) QPieSlice_PTR() *QPieSlice {
+	return ptr
 }
 
-func (p *QPieSlice) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QPieSlice) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QPieSlice) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QPieSlice) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -10365,20 +10371,20 @@ type QPolarChart_ITF interface {
 	QPolarChart_PTR() *QPolarChart
 }
 
-func (p *QPolarChart) QPolarChart_PTR() *QPolarChart {
-	return p
+func (ptr *QPolarChart) QPolarChart_PTR() *QPolarChart {
+	return ptr
 }
 
-func (p *QPolarChart) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QPolarChart) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QPolarChart) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QPolarChart) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -10458,20 +10464,20 @@ type QScatterSeries_ITF interface {
 	QScatterSeries_PTR() *QScatterSeries
 }
 
-func (p *QScatterSeries) QScatterSeries_PTR() *QScatterSeries {
-	return p
+func (ptr *QScatterSeries) QScatterSeries_PTR() *QScatterSeries {
+	return ptr
 }
 
-func (p *QScatterSeries) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QScatterSeries) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QScatterSeries) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QScatterSeries) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -10861,20 +10867,20 @@ type QSplineSeries_ITF interface {
 	QSplineSeries_PTR() *QSplineSeries
 }
 
-func (p *QSplineSeries) QSplineSeries_PTR() *QSplineSeries {
-	return p
+func (ptr *QSplineSeries) QSplineSeries_PTR() *QSplineSeries {
+	return ptr
 }
 
-func (p *QSplineSeries) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QSplineSeries) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QSplineSeries) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QSplineSeries) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -10949,20 +10955,20 @@ type QStackedBarSeries_ITF interface {
 	QStackedBarSeries_PTR() *QStackedBarSeries
 }
 
-func (p *QStackedBarSeries) QStackedBarSeries_PTR() *QStackedBarSeries {
-	return p
+func (ptr *QStackedBarSeries) QStackedBarSeries_PTR() *QStackedBarSeries {
+	return ptr
 }
 
-func (p *QStackedBarSeries) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QStackedBarSeries) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QStackedBarSeries) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QStackedBarSeries) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -11036,20 +11042,20 @@ type QVBarModelMapper_ITF interface {
 	QVBarModelMapper_PTR() *QVBarModelMapper
 }
 
-func (p *QVBarModelMapper) QVBarModelMapper_PTR() *QVBarModelMapper {
-	return p
+func (ptr *QVBarModelMapper) QVBarModelMapper_PTR() *QVBarModelMapper {
+	return ptr
 }
 
-func (p *QVBarModelMapper) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QVBarModelMapper) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QVBarModelMapper) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QVBarModelMapper) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -11067,9 +11073,11 @@ func NewQVBarModelMapperFromPointer(ptr unsafe.Pointer) *QVBarModelMapper {
 }
 
 func (ptr *QVBarModelMapper) DestroyQVBarModelMapper() {
-	C.free(ptr.Pointer())
-	qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
-	ptr.SetPointer(nil)
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
+		ptr.SetPointer(nil)
+	}
 }
 
 func (ptr *QVBarModelMapper) FirstBarSetColumn() int {
@@ -11340,20 +11348,20 @@ type QVBoxPlotModelMapper_ITF interface {
 	QVBoxPlotModelMapper_PTR() *QVBoxPlotModelMapper
 }
 
-func (p *QVBoxPlotModelMapper) QVBoxPlotModelMapper_PTR() *QVBoxPlotModelMapper {
-	return p
+func (ptr *QVBoxPlotModelMapper) QVBoxPlotModelMapper_PTR() *QVBoxPlotModelMapper {
+	return ptr
 }
 
-func (p *QVBoxPlotModelMapper) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QVBoxPlotModelMapper) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QVBoxPlotModelMapper) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QVBoxPlotModelMapper) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -11371,9 +11379,11 @@ func NewQVBoxPlotModelMapperFromPointer(ptr unsafe.Pointer) *QVBoxPlotModelMappe
 }
 
 func (ptr *QVBoxPlotModelMapper) DestroyQVBoxPlotModelMapper() {
-	C.free(ptr.Pointer())
-	qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
-	ptr.SetPointer(nil)
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
+		ptr.SetPointer(nil)
+	}
 }
 
 func (ptr *QVBoxPlotModelMapper) FirstBoxSetColumn() int {
@@ -11644,20 +11654,20 @@ type QVPieModelMapper_ITF interface {
 	QVPieModelMapper_PTR() *QVPieModelMapper
 }
 
-func (p *QVPieModelMapper) QVPieModelMapper_PTR() *QVPieModelMapper {
-	return p
+func (ptr *QVPieModelMapper) QVPieModelMapper_PTR() *QVPieModelMapper {
+	return ptr
 }
 
-func (p *QVPieModelMapper) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QVPieModelMapper) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QVPieModelMapper) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QVPieModelMapper) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -11675,9 +11685,11 @@ func NewQVPieModelMapperFromPointer(ptr unsafe.Pointer) *QVPieModelMapper {
 }
 
 func (ptr *QVPieModelMapper) DestroyQVPieModelMapper() {
-	C.free(ptr.Pointer())
-	qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
-	ptr.SetPointer(nil)
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
+		ptr.SetPointer(nil)
+	}
 }
 
 func (ptr *QVPieModelMapper) FirstRow() int {
@@ -11948,20 +11960,20 @@ type QVXYModelMapper_ITF interface {
 	QVXYModelMapper_PTR() *QVXYModelMapper
 }
 
-func (p *QVXYModelMapper) QVXYModelMapper_PTR() *QVXYModelMapper {
-	return p
+func (ptr *QVXYModelMapper) QVXYModelMapper_PTR() *QVXYModelMapper {
+	return ptr
 }
 
-func (p *QVXYModelMapper) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QVXYModelMapper) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QVXYModelMapper) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QVXYModelMapper) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -11979,9 +11991,11 @@ func NewQVXYModelMapperFromPointer(ptr unsafe.Pointer) *QVXYModelMapper {
 }
 
 func (ptr *QVXYModelMapper) DestroyQVXYModelMapper() {
-	C.free(ptr.Pointer())
-	qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
-	ptr.SetPointer(nil)
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
+		ptr.SetPointer(nil)
+	}
 }
 
 func (ptr *QVXYModelMapper) FirstRow() int {
@@ -12252,20 +12266,20 @@ type QValueAxis_ITF interface {
 	QValueAxis_PTR() *QValueAxis
 }
 
-func (p *QValueAxis) QValueAxis_PTR() *QValueAxis {
-	return p
+func (ptr *QValueAxis) QValueAxis_PTR() *QValueAxis {
+	return ptr
 }
 
-func (p *QValueAxis) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QValueAxis) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QValueAxis) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QValueAxis) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -12585,20 +12599,20 @@ type QXYLegendMarker_ITF interface {
 	QXYLegendMarker_PTR() *QXYLegendMarker
 }
 
-func (p *QXYLegendMarker) QXYLegendMarker_PTR() *QXYLegendMarker {
-	return p
+func (ptr *QXYLegendMarker) QXYLegendMarker_PTR() *QXYLegendMarker {
+	return ptr
 }
 
-func (p *QXYLegendMarker) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QXYLegendMarker) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QXYLegendMarker) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QXYLegendMarker) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -12708,20 +12722,20 @@ type QXYSeries_ITF interface {
 	QXYSeries_PTR() *QXYSeries
 }
 
-func (p *QXYSeries) QXYSeries_PTR() *QXYSeries {
-	return p
+func (ptr *QXYSeries) QXYSeries_PTR() *QXYSeries {
+	return ptr
 }
 
-func (p *QXYSeries) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QXYSeries) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QXYSeries) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QXYSeries) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 

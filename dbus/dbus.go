@@ -42,20 +42,20 @@ type QDBus_ITF interface {
 	QDBus_PTR() *QDBus
 }
 
-func (p *QDBus) QDBus_PTR() *QDBus {
-	return p
+func (ptr *QDBus) QDBus_PTR() *QDBus {
+	return ptr
 }
 
-func (p *QDBus) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QDBus) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QDBus) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QDBus) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -73,8 +73,10 @@ func NewQDBusFromPointer(ptr unsafe.Pointer) *QDBus {
 }
 
 func (ptr *QDBus) DestroyQDBus() {
-	C.free(ptr.Pointer())
-	ptr.SetPointer(nil)
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
 }
 
 type QDBusAbstractAdaptor struct {
@@ -86,20 +88,20 @@ type QDBusAbstractAdaptor_ITF interface {
 	QDBusAbstractAdaptor_PTR() *QDBusAbstractAdaptor
 }
 
-func (p *QDBusAbstractAdaptor) QDBusAbstractAdaptor_PTR() *QDBusAbstractAdaptor {
-	return p
+func (ptr *QDBusAbstractAdaptor) QDBusAbstractAdaptor_PTR() *QDBusAbstractAdaptor {
+	return ptr
 }
 
-func (p *QDBusAbstractAdaptor) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QObject_PTR().Pointer()
+func (ptr *QDBusAbstractAdaptor) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QObject_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QDBusAbstractAdaptor) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QObject_PTR().SetPointer(ptr)
+func (ptr *QDBusAbstractAdaptor) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QObject_PTR().SetPointer(p)
 	}
 }
 
@@ -486,20 +488,20 @@ type QDBusAbstractInterface_ITF interface {
 	QDBusAbstractInterface_PTR() *QDBusAbstractInterface
 }
 
-func (p *QDBusAbstractInterface) QDBusAbstractInterface_PTR() *QDBusAbstractInterface {
-	return p
+func (ptr *QDBusAbstractInterface) QDBusAbstractInterface_PTR() *QDBusAbstractInterface {
+	return ptr
 }
 
-func (p *QDBusAbstractInterface) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QObject_PTR().Pointer()
+func (ptr *QDBusAbstractInterface) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QObject_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QDBusAbstractInterface) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QObject_PTR().SetPointer(ptr)
+func (ptr *QDBusAbstractInterface) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QObject_PTR().SetPointer(p)
 	}
 }
 
@@ -1002,20 +1004,20 @@ type QDBusArgument_ITF interface {
 	QDBusArgument_PTR() *QDBusArgument
 }
 
-func (p *QDBusArgument) QDBusArgument_PTR() *QDBusArgument {
-	return p
+func (ptr *QDBusArgument) QDBusArgument_PTR() *QDBusArgument {
+	return ptr
 }
 
-func (p *QDBusArgument) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QDBusArgument) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QDBusArgument) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QDBusArgument) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -1240,20 +1242,20 @@ type QDBusConnection_ITF interface {
 	QDBusConnection_PTR() *QDBusConnection
 }
 
-func (p *QDBusConnection) QDBusConnection_PTR() *QDBusConnection {
-	return p
+func (ptr *QDBusConnection) QDBusConnection_PTR() *QDBusConnection {
+	return ptr
 }
 
-func (p *QDBusConnection) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QDBusConnection) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QDBusConnection) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QDBusConnection) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -1713,20 +1715,20 @@ type QDBusConnectionInterface_ITF interface {
 	QDBusConnectionInterface_PTR() *QDBusConnectionInterface
 }
 
-func (p *QDBusConnectionInterface) QDBusConnectionInterface_PTR() *QDBusConnectionInterface {
-	return p
+func (ptr *QDBusConnectionInterface) QDBusConnectionInterface_PTR() *QDBusConnectionInterface {
+	return ptr
 }
 
-func (p *QDBusConnectionInterface) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QDBusAbstractInterface_PTR().Pointer()
+func (ptr *QDBusConnectionInterface) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QDBusAbstractInterface_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QDBusConnectionInterface) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QDBusAbstractInterface_PTR().SetPointer(ptr)
+func (ptr *QDBusConnectionInterface) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QDBusAbstractInterface_PTR().SetPointer(p)
 	}
 }
 
@@ -1744,9 +1746,11 @@ func NewQDBusConnectionInterfaceFromPointer(ptr unsafe.Pointer) *QDBusConnection
 }
 
 func (ptr *QDBusConnectionInterface) DestroyQDBusConnectionInterface() {
-	C.free(ptr.Pointer())
-	qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
-	ptr.SetPointer(nil)
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
+		ptr.SetPointer(nil)
+	}
 }
 
 //export callbackQDBusConnectionInterface_CallWithCallbackFailed
@@ -2181,20 +2185,20 @@ type QDBusContext_ITF interface {
 	QDBusContext_PTR() *QDBusContext
 }
 
-func (p *QDBusContext) QDBusContext_PTR() *QDBusContext {
-	return p
+func (ptr *QDBusContext) QDBusContext_PTR() *QDBusContext {
+	return ptr
 }
 
-func (p *QDBusContext) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QDBusContext) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QDBusContext) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QDBusContext) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -2320,20 +2324,20 @@ type QDBusError_ITF interface {
 	QDBusError_PTR() *QDBusError
 }
 
-func (p *QDBusError) QDBusError_PTR() *QDBusError {
-	return p
+func (ptr *QDBusError) QDBusError_PTR() *QDBusError {
+	return ptr
 }
 
-func (p *QDBusError) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QDBusError) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QDBusError) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QDBusError) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -2351,8 +2355,10 @@ func NewQDBusErrorFromPointer(ptr unsafe.Pointer) *QDBusError {
 }
 
 func (ptr *QDBusError) DestroyQDBusError() {
-	C.free(ptr.Pointer())
-	ptr.SetPointer(nil)
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
 }
 
 func NewQDBusError(other QDBusError_ITF) *QDBusError {
@@ -2412,20 +2418,20 @@ type QDBusInterface_ITF interface {
 	QDBusInterface_PTR() *QDBusInterface
 }
 
-func (p *QDBusInterface) QDBusInterface_PTR() *QDBusInterface {
-	return p
+func (ptr *QDBusInterface) QDBusInterface_PTR() *QDBusInterface {
+	return ptr
 }
 
-func (p *QDBusInterface) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QDBusAbstractInterface_PTR().Pointer()
+func (ptr *QDBusInterface) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QDBusAbstractInterface_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QDBusInterface) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QDBusAbstractInterface_PTR().SetPointer(ptr)
+func (ptr *QDBusInterface) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QDBusAbstractInterface_PTR().SetPointer(p)
 	}
 }
 
@@ -2816,20 +2822,20 @@ type QDBusMessage_ITF interface {
 	QDBusMessage_PTR() *QDBusMessage
 }
 
-func (p *QDBusMessage) QDBusMessage_PTR() *QDBusMessage {
-	return p
+func (ptr *QDBusMessage) QDBusMessage_PTR() *QDBusMessage {
+	return ptr
 }
 
-func (p *QDBusMessage) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QDBusMessage) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QDBusMessage) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QDBusMessage) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -3159,20 +3165,20 @@ type QDBusObjectPath_ITF interface {
 	QDBusObjectPath_PTR() *QDBusObjectPath
 }
 
-func (p *QDBusObjectPath) QDBusObjectPath_PTR() *QDBusObjectPath {
-	return p
+func (ptr *QDBusObjectPath) QDBusObjectPath_PTR() *QDBusObjectPath {
+	return ptr
 }
 
-func (p *QDBusObjectPath) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QDBusObjectPath) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QDBusObjectPath) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QDBusObjectPath) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -3190,8 +3196,10 @@ func NewQDBusObjectPathFromPointer(ptr unsafe.Pointer) *QDBusObjectPath {
 }
 
 func (ptr *QDBusObjectPath) DestroyQDBusObjectPath() {
-	C.free(ptr.Pointer())
-	ptr.SetPointer(nil)
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
 }
 
 func NewQDBusObjectPath() *QDBusObjectPath {
@@ -3259,20 +3267,20 @@ type QDBusPendingCall_ITF interface {
 	QDBusPendingCall_PTR() *QDBusPendingCall
 }
 
-func (p *QDBusPendingCall) QDBusPendingCall_PTR() *QDBusPendingCall {
-	return p
+func (ptr *QDBusPendingCall) QDBusPendingCall_PTR() *QDBusPendingCall {
+	return ptr
 }
 
-func (p *QDBusPendingCall) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QDBusPendingCall) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QDBusPendingCall) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QDBusPendingCall) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -3342,21 +3350,21 @@ type QDBusPendingCallWatcher_ITF interface {
 	QDBusPendingCallWatcher_PTR() *QDBusPendingCallWatcher
 }
 
-func (p *QDBusPendingCallWatcher) QDBusPendingCallWatcher_PTR() *QDBusPendingCallWatcher {
-	return p
+func (ptr *QDBusPendingCallWatcher) QDBusPendingCallWatcher_PTR() *QDBusPendingCallWatcher {
+	return ptr
 }
 
-func (p *QDBusPendingCallWatcher) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QObject_PTR().Pointer()
+func (ptr *QDBusPendingCallWatcher) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QObject_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QDBusPendingCallWatcher) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QObject_PTR().SetPointer(ptr)
-		p.QDBusPendingCall_PTR().SetPointer(ptr)
+func (ptr *QDBusPendingCallWatcher) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QObject_PTR().SetPointer(p)
+		ptr.QDBusPendingCall_PTR().SetPointer(p)
 	}
 }
 
@@ -3772,20 +3780,20 @@ type QDBusPendingReply_ITF interface {
 	QDBusPendingReply_PTR() *QDBusPendingReply
 }
 
-func (p *QDBusPendingReply) QDBusPendingReply_PTR() *QDBusPendingReply {
-	return p
+func (ptr *QDBusPendingReply) QDBusPendingReply_PTR() *QDBusPendingReply {
+	return ptr
 }
 
-func (p *QDBusPendingReply) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QDBusPendingCall_PTR().Pointer()
+func (ptr *QDBusPendingReply) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QDBusPendingCall_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QDBusPendingReply) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QDBusPendingCall_PTR().SetPointer(ptr)
+func (ptr *QDBusPendingReply) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QDBusPendingCall_PTR().SetPointer(p)
 	}
 }
 
@@ -3803,8 +3811,10 @@ func NewQDBusPendingReplyFromPointer(ptr unsafe.Pointer) *QDBusPendingReply {
 }
 
 func (ptr *QDBusPendingReply) DestroyQDBusPendingReply() {
-	C.free(ptr.Pointer())
-	ptr.SetPointer(nil)
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
 }
 
 type QDBusReply struct {
@@ -3815,20 +3825,20 @@ type QDBusReply_ITF interface {
 	QDBusReply_PTR() *QDBusReply
 }
 
-func (p *QDBusReply) QDBusReply_PTR() *QDBusReply {
-	return p
+func (ptr *QDBusReply) QDBusReply_PTR() *QDBusReply {
+	return ptr
 }
 
-func (p *QDBusReply) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QDBusReply) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QDBusReply) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QDBusReply) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -3846,8 +3856,10 @@ func NewQDBusReplyFromPointer(ptr unsafe.Pointer) *QDBusReply {
 }
 
 func (ptr *QDBusReply) DestroyQDBusReply() {
-	C.free(ptr.Pointer())
-	ptr.SetPointer(nil)
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
 }
 
 type QDBusServer struct {
@@ -3859,20 +3871,20 @@ type QDBusServer_ITF interface {
 	QDBusServer_PTR() *QDBusServer
 }
 
-func (p *QDBusServer) QDBusServer_PTR() *QDBusServer {
-	return p
+func (ptr *QDBusServer) QDBusServer_PTR() *QDBusServer {
+	return ptr
 }
 
-func (p *QDBusServer) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QObject_PTR().Pointer()
+func (ptr *QDBusServer) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QObject_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QDBusServer) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QObject_PTR().SetPointer(ptr)
+func (ptr *QDBusServer) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QObject_PTR().SetPointer(p)
 	}
 }
 
@@ -4363,20 +4375,20 @@ type QDBusServiceWatcher_ITF interface {
 	QDBusServiceWatcher_PTR() *QDBusServiceWatcher
 }
 
-func (p *QDBusServiceWatcher) QDBusServiceWatcher_PTR() *QDBusServiceWatcher {
-	return p
+func (ptr *QDBusServiceWatcher) QDBusServiceWatcher_PTR() *QDBusServiceWatcher {
+	return ptr
 }
 
-func (p *QDBusServiceWatcher) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QObject_PTR().Pointer()
+func (ptr *QDBusServiceWatcher) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QObject_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QDBusServiceWatcher) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QObject_PTR().SetPointer(ptr)
+func (ptr *QDBusServiceWatcher) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QObject_PTR().SetPointer(p)
 	}
 }
 
@@ -4916,20 +4928,20 @@ type QDBusSignature_ITF interface {
 	QDBusSignature_PTR() *QDBusSignature
 }
 
-func (p *QDBusSignature) QDBusSignature_PTR() *QDBusSignature {
-	return p
+func (ptr *QDBusSignature) QDBusSignature_PTR() *QDBusSignature {
+	return ptr
 }
 
-func (p *QDBusSignature) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QDBusSignature) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QDBusSignature) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QDBusSignature) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -4947,8 +4959,10 @@ func NewQDBusSignatureFromPointer(ptr unsafe.Pointer) *QDBusSignature {
 }
 
 func (ptr *QDBusSignature) DestroyQDBusSignature() {
-	C.free(ptr.Pointer())
-	ptr.SetPointer(nil)
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
 }
 
 func NewQDBusSignature() *QDBusSignature {
@@ -5016,20 +5030,20 @@ type QDBusUnixFileDescriptor_ITF interface {
 	QDBusUnixFileDescriptor_PTR() *QDBusUnixFileDescriptor
 }
 
-func (p *QDBusUnixFileDescriptor) QDBusUnixFileDescriptor_PTR() *QDBusUnixFileDescriptor {
-	return p
+func (ptr *QDBusUnixFileDescriptor) QDBusUnixFileDescriptor_PTR() *QDBusUnixFileDescriptor {
+	return ptr
 }
 
-func (p *QDBusUnixFileDescriptor) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QDBusUnixFileDescriptor) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QDBusUnixFileDescriptor) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QDBusUnixFileDescriptor) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -5121,20 +5135,20 @@ type QDBusUtil_ITF interface {
 	QDBusUtil_PTR() *QDBusUtil
 }
 
-func (p *QDBusUtil) QDBusUtil_PTR() *QDBusUtil {
-	return p
+func (ptr *QDBusUtil) QDBusUtil_PTR() *QDBusUtil {
+	return ptr
 }
 
-func (p *QDBusUtil) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QDBusUtil) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QDBusUtil) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QDBusUtil) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -5152,8 +5166,10 @@ func NewQDBusUtilFromPointer(ptr unsafe.Pointer) *QDBusUtil {
 }
 
 func (ptr *QDBusUtil) DestroyQDBusUtil() {
-	C.free(ptr.Pointer())
-	ptr.SetPointer(nil)
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
 }
 
 type QDBusVariant struct {
@@ -5164,20 +5180,20 @@ type QDBusVariant_ITF interface {
 	QDBusVariant_PTR() *QDBusVariant
 }
 
-func (p *QDBusVariant) QDBusVariant_PTR() *QDBusVariant {
-	return p
+func (ptr *QDBusVariant) QDBusVariant_PTR() *QDBusVariant {
+	return ptr
 }
 
-func (p *QDBusVariant) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QDBusVariant) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QDBusVariant) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QDBusVariant) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -5195,8 +5211,10 @@ func NewQDBusVariantFromPointer(ptr unsafe.Pointer) *QDBusVariant {
 }
 
 func (ptr *QDBusVariant) DestroyQDBusVariant() {
-	C.free(ptr.Pointer())
-	ptr.SetPointer(nil)
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
 }
 
 func NewQDBusVariant() *QDBusVariant {
@@ -5247,20 +5265,20 @@ type QDBusVirtualObject_ITF interface {
 	QDBusVirtualObject_PTR() *QDBusVirtualObject
 }
 
-func (p *QDBusVirtualObject) QDBusVirtualObject_PTR() *QDBusVirtualObject {
-	return p
+func (ptr *QDBusVirtualObject) QDBusVirtualObject_PTR() *QDBusVirtualObject {
+	return ptr
 }
 
-func (p *QDBusVirtualObject) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QObject_PTR().Pointer()
+func (ptr *QDBusVirtualObject) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QObject_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QDBusVirtualObject) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QObject_PTR().SetPointer(ptr)
+func (ptr *QDBusVirtualObject) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QObject_PTR().SetPointer(p)
 	}
 }
 

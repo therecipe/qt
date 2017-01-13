@@ -31,20 +31,20 @@ type QAbstractTextDocumentLayout_PaintContext_ITF interface {
 	QAbstractTextDocumentLayout_PaintContext_PTR() *QAbstractTextDocumentLayout_PaintContext
 }
 
-func (p *QAbstractTextDocumentLayout_PaintContext) QAbstractTextDocumentLayout_PaintContext_PTR() *QAbstractTextDocumentLayout_PaintContext {
-	return p
+func (ptr *QAbstractTextDocumentLayout_PaintContext) QAbstractTextDocumentLayout_PaintContext_PTR() *QAbstractTextDocumentLayout_PaintContext {
+	return ptr
 }
 
-func (p *QAbstractTextDocumentLayout_PaintContext) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QAbstractTextDocumentLayout_PaintContext) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QAbstractTextDocumentLayout_PaintContext) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QAbstractTextDocumentLayout_PaintContext) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -62,8 +62,10 @@ func NewQAbstractTextDocumentLayout_PaintContextFromPointer(ptr unsafe.Pointer) 
 }
 
 func (ptr *QAbstractTextDocumentLayout_PaintContext) DestroyQAbstractTextDocumentLayout_PaintContext() {
-	C.free(ptr.Pointer())
-	ptr.SetPointer(nil)
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
 }
 
 func NewQAbstractTextDocumentLayout_PaintContext() *QAbstractTextDocumentLayout_PaintContext {
@@ -123,20 +125,20 @@ type QAbstractOpenGLFunctions_ITF interface {
 	QAbstractOpenGLFunctions_PTR() *QAbstractOpenGLFunctions
 }
 
-func (p *QAbstractOpenGLFunctions) QAbstractOpenGLFunctions_PTR() *QAbstractOpenGLFunctions {
-	return p
+func (ptr *QAbstractOpenGLFunctions) QAbstractOpenGLFunctions_PTR() *QAbstractOpenGLFunctions {
+	return ptr
 }
 
-func (p *QAbstractOpenGLFunctions) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QAbstractOpenGLFunctions) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QAbstractOpenGLFunctions) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QAbstractOpenGLFunctions) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -162,20 +164,20 @@ type QAbstractTextDocumentLayout_ITF interface {
 	QAbstractTextDocumentLayout_PTR() *QAbstractTextDocumentLayout
 }
 
-func (p *QAbstractTextDocumentLayout) QAbstractTextDocumentLayout_PTR() *QAbstractTextDocumentLayout {
-	return p
+func (ptr *QAbstractTextDocumentLayout) QAbstractTextDocumentLayout_PTR() *QAbstractTextDocumentLayout {
+	return ptr
 }
 
-func (p *QAbstractTextDocumentLayout) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QObject_PTR().Pointer()
+func (ptr *QAbstractTextDocumentLayout) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QObject_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QAbstractTextDocumentLayout) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QObject_PTR().SetPointer(ptr)
+func (ptr *QAbstractTextDocumentLayout) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QObject_PTR().SetPointer(p)
 	}
 }
 
@@ -193,9 +195,11 @@ func NewQAbstractTextDocumentLayoutFromPointer(ptr unsafe.Pointer) *QAbstractTex
 }
 
 func (ptr *QAbstractTextDocumentLayout) DestroyQAbstractTextDocumentLayout() {
-	C.free(ptr.Pointer())
-	qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
-	ptr.SetPointer(nil)
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
+		ptr.SetPointer(nil)
+	}
 }
 
 func (ptr *QAbstractTextDocumentLayout) AnchorAt(position core.QPointF_ITF) string {
@@ -1260,20 +1264,20 @@ type QAccessible_ITF interface {
 	QAccessible_PTR() *QAccessible
 }
 
-func (p *QAccessible) QAccessible_PTR() *QAccessible {
-	return p
+func (ptr *QAccessible) QAccessible_PTR() *QAccessible {
+	return ptr
 }
 
-func (p *QAccessible) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QAccessible) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QAccessible) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QAccessible) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -1291,8 +1295,10 @@ func NewQAccessibleFromPointer(ptr unsafe.Pointer) *QAccessible {
 }
 
 func (ptr *QAccessible) DestroyQAccessible() {
-	C.free(ptr.Pointer())
-	ptr.SetPointer(nil)
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
 }
 
 func QAccessible_IsActive() bool {
@@ -1335,20 +1341,20 @@ type QAccessibleActionInterface_ITF interface {
 	QAccessibleActionInterface_PTR() *QAccessibleActionInterface
 }
 
-func (p *QAccessibleActionInterface) QAccessibleActionInterface_PTR() *QAccessibleActionInterface {
-	return p
+func (ptr *QAccessibleActionInterface) QAccessibleActionInterface_PTR() *QAccessibleActionInterface {
+	return ptr
 }
 
-func (p *QAccessibleActionInterface) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QAccessibleActionInterface) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QAccessibleActionInterface) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QAccessibleActionInterface) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -1688,20 +1694,20 @@ type QAccessibleEditableTextInterface_ITF interface {
 	QAccessibleEditableTextInterface_PTR() *QAccessibleEditableTextInterface
 }
 
-func (p *QAccessibleEditableTextInterface) QAccessibleEditableTextInterface_PTR() *QAccessibleEditableTextInterface {
-	return p
+func (ptr *QAccessibleEditableTextInterface) QAccessibleEditableTextInterface_PTR() *QAccessibleEditableTextInterface {
+	return ptr
 }
 
-func (p *QAccessibleEditableTextInterface) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QAccessibleEditableTextInterface) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QAccessibleEditableTextInterface) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QAccessibleEditableTextInterface) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -1857,20 +1863,20 @@ type QAccessibleEvent_ITF interface {
 	QAccessibleEvent_PTR() *QAccessibleEvent
 }
 
-func (p *QAccessibleEvent) QAccessibleEvent_PTR() *QAccessibleEvent {
-	return p
+func (ptr *QAccessibleEvent) QAccessibleEvent_PTR() *QAccessibleEvent {
+	return ptr
 }
 
-func (p *QAccessibleEvent) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QAccessibleEvent) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QAccessibleEvent) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QAccessibleEvent) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -2041,20 +2047,20 @@ type QAccessibleInterface_ITF interface {
 	QAccessibleInterface_PTR() *QAccessibleInterface
 }
 
-func (p *QAccessibleInterface) QAccessibleInterface_PTR() *QAccessibleInterface {
-	return p
+func (ptr *QAccessibleInterface) QAccessibleInterface_PTR() *QAccessibleInterface {
+	return ptr
 }
 
-func (p *QAccessibleInterface) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QAccessibleInterface) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QAccessibleInterface) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QAccessibleInterface) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -2707,20 +2713,20 @@ type QAccessibleObject_ITF interface {
 	QAccessibleObject_PTR() *QAccessibleObject
 }
 
-func (p *QAccessibleObject) QAccessibleObject_PTR() *QAccessibleObject {
-	return p
+func (ptr *QAccessibleObject) QAccessibleObject_PTR() *QAccessibleObject {
+	return ptr
 }
 
-func (p *QAccessibleObject) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QAccessibleInterface_PTR().Pointer()
+func (ptr *QAccessibleObject) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QAccessibleInterface_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QAccessibleObject) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QAccessibleInterface_PTR().SetPointer(ptr)
+func (ptr *QAccessibleObject) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QAccessibleInterface_PTR().SetPointer(p)
 	}
 }
 
@@ -3382,20 +3388,20 @@ type QAccessiblePlugin_ITF interface {
 	QAccessiblePlugin_PTR() *QAccessiblePlugin
 }
 
-func (p *QAccessiblePlugin) QAccessiblePlugin_PTR() *QAccessiblePlugin {
-	return p
+func (ptr *QAccessiblePlugin) QAccessiblePlugin_PTR() *QAccessiblePlugin {
+	return ptr
 }
 
-func (p *QAccessiblePlugin) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QObject_PTR().Pointer()
+func (ptr *QAccessiblePlugin) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QObject_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QAccessiblePlugin) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QObject_PTR().SetPointer(ptr)
+func (ptr *QAccessiblePlugin) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QObject_PTR().SetPointer(p)
 	}
 }
 
@@ -3802,20 +3808,20 @@ type QAccessibleStateChangeEvent_ITF interface {
 	QAccessibleStateChangeEvent_PTR() *QAccessibleStateChangeEvent
 }
 
-func (p *QAccessibleStateChangeEvent) QAccessibleStateChangeEvent_PTR() *QAccessibleStateChangeEvent {
-	return p
+func (ptr *QAccessibleStateChangeEvent) QAccessibleStateChangeEvent_PTR() *QAccessibleStateChangeEvent {
+	return ptr
 }
 
-func (p *QAccessibleStateChangeEvent) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QAccessibleEvent_PTR().Pointer()
+func (ptr *QAccessibleStateChangeEvent) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QAccessibleEvent_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QAccessibleStateChangeEvent) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QAccessibleEvent_PTR().SetPointer(ptr)
+func (ptr *QAccessibleStateChangeEvent) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QAccessibleEvent_PTR().SetPointer(p)
 	}
 }
 
@@ -3833,8 +3839,10 @@ func NewQAccessibleStateChangeEventFromPointer(ptr unsafe.Pointer) *QAccessibleS
 }
 
 func (ptr *QAccessibleStateChangeEvent) DestroyQAccessibleStateChangeEvent() {
-	C.free(ptr.Pointer())
-	ptr.SetPointer(nil)
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
 }
 
 //export callbackQAccessibleStateChangeEvent_AccessibleInterface
@@ -3883,20 +3891,20 @@ type QAccessibleTableCellInterface_ITF interface {
 	QAccessibleTableCellInterface_PTR() *QAccessibleTableCellInterface
 }
 
-func (p *QAccessibleTableCellInterface) QAccessibleTableCellInterface_PTR() *QAccessibleTableCellInterface {
-	return p
+func (ptr *QAccessibleTableCellInterface) QAccessibleTableCellInterface_PTR() *QAccessibleTableCellInterface {
+	return ptr
 }
 
-func (p *QAccessibleTableCellInterface) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QAccessibleTableCellInterface) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QAccessibleTableCellInterface) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QAccessibleTableCellInterface) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -4215,20 +4223,20 @@ type QAccessibleTableInterface_ITF interface {
 	QAccessibleTableInterface_PTR() *QAccessibleTableInterface
 }
 
-func (p *QAccessibleTableInterface) QAccessibleTableInterface_PTR() *QAccessibleTableInterface {
-	return p
+func (ptr *QAccessibleTableInterface) QAccessibleTableInterface_PTR() *QAccessibleTableInterface {
+	return ptr
 }
 
-func (p *QAccessibleTableInterface) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QAccessibleTableInterface) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QAccessibleTableInterface) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QAccessibleTableInterface) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -4866,20 +4874,20 @@ type QAccessibleTableModelChangeEvent_ITF interface {
 	QAccessibleTableModelChangeEvent_PTR() *QAccessibleTableModelChangeEvent
 }
 
-func (p *QAccessibleTableModelChangeEvent) QAccessibleTableModelChangeEvent_PTR() *QAccessibleTableModelChangeEvent {
-	return p
+func (ptr *QAccessibleTableModelChangeEvent) QAccessibleTableModelChangeEvent_PTR() *QAccessibleTableModelChangeEvent {
+	return ptr
 }
 
-func (p *QAccessibleTableModelChangeEvent) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QAccessibleEvent_PTR().Pointer()
+func (ptr *QAccessibleTableModelChangeEvent) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QAccessibleEvent_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QAccessibleTableModelChangeEvent) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QAccessibleEvent_PTR().SetPointer(ptr)
+func (ptr *QAccessibleTableModelChangeEvent) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QAccessibleEvent_PTR().SetPointer(p)
 	}
 }
 
@@ -4897,8 +4905,10 @@ func NewQAccessibleTableModelChangeEventFromPointer(ptr unsafe.Pointer) *QAccess
 }
 
 func (ptr *QAccessibleTableModelChangeEvent) DestroyQAccessibleTableModelChangeEvent() {
-	C.free(ptr.Pointer())
-	ptr.SetPointer(nil)
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
 }
 
 func NewQAccessibleTableModelChangeEvent2(iface QAccessibleInterface_ITF, changeType QAccessibleTableModelChangeEvent__ModelChangeType) *QAccessibleTableModelChangeEvent {
@@ -5090,20 +5100,20 @@ type QAccessibleTextCursorEvent_ITF interface {
 	QAccessibleTextCursorEvent_PTR() *QAccessibleTextCursorEvent
 }
 
-func (p *QAccessibleTextCursorEvent) QAccessibleTextCursorEvent_PTR() *QAccessibleTextCursorEvent {
-	return p
+func (ptr *QAccessibleTextCursorEvent) QAccessibleTextCursorEvent_PTR() *QAccessibleTextCursorEvent {
+	return ptr
 }
 
-func (p *QAccessibleTextCursorEvent) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QAccessibleEvent_PTR().Pointer()
+func (ptr *QAccessibleTextCursorEvent) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QAccessibleEvent_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QAccessibleTextCursorEvent) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QAccessibleEvent_PTR().SetPointer(ptr)
+func (ptr *QAccessibleTextCursorEvent) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QAccessibleEvent_PTR().SetPointer(p)
 	}
 }
 
@@ -5121,8 +5131,10 @@ func NewQAccessibleTextCursorEventFromPointer(ptr unsafe.Pointer) *QAccessibleTe
 }
 
 func (ptr *QAccessibleTextCursorEvent) DestroyQAccessibleTextCursorEvent() {
-	C.free(ptr.Pointer())
-	ptr.SetPointer(nil)
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
 }
 
 func NewQAccessibleTextCursorEvent2(iface QAccessibleInterface_ITF, cursorPos int) *QAccessibleTextCursorEvent {
@@ -5210,20 +5222,20 @@ type QAccessibleTextInsertEvent_ITF interface {
 	QAccessibleTextInsertEvent_PTR() *QAccessibleTextInsertEvent
 }
 
-func (p *QAccessibleTextInsertEvent) QAccessibleTextInsertEvent_PTR() *QAccessibleTextInsertEvent {
-	return p
+func (ptr *QAccessibleTextInsertEvent) QAccessibleTextInsertEvent_PTR() *QAccessibleTextInsertEvent {
+	return ptr
 }
 
-func (p *QAccessibleTextInsertEvent) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QAccessibleTextCursorEvent_PTR().Pointer()
+func (ptr *QAccessibleTextInsertEvent) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QAccessibleTextCursorEvent_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QAccessibleTextInsertEvent) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QAccessibleTextCursorEvent_PTR().SetPointer(ptr)
+func (ptr *QAccessibleTextInsertEvent) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QAccessibleTextCursorEvent_PTR().SetPointer(p)
 	}
 }
 
@@ -5241,8 +5253,10 @@ func NewQAccessibleTextInsertEventFromPointer(ptr unsafe.Pointer) *QAccessibleTe
 }
 
 func (ptr *QAccessibleTextInsertEvent) DestroyQAccessibleTextInsertEvent() {
-	C.free(ptr.Pointer())
-	ptr.SetPointer(nil)
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
 }
 
 func NewQAccessibleTextInsertEvent2(iface QAccessibleInterface_ITF, position int, text string) *QAccessibleTextInsertEvent {
@@ -5349,20 +5363,20 @@ type QAccessibleTextInterface_ITF interface {
 	QAccessibleTextInterface_PTR() *QAccessibleTextInterface
 }
 
-func (p *QAccessibleTextInterface) QAccessibleTextInterface_PTR() *QAccessibleTextInterface {
-	return p
+func (ptr *QAccessibleTextInterface) QAccessibleTextInterface_PTR() *QAccessibleTextInterface {
+	return ptr
 }
 
-func (p *QAccessibleTextInterface) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QAccessibleTextInterface) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QAccessibleTextInterface) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QAccessibleTextInterface) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -5935,20 +5949,20 @@ type QAccessibleTextRemoveEvent_ITF interface {
 	QAccessibleTextRemoveEvent_PTR() *QAccessibleTextRemoveEvent
 }
 
-func (p *QAccessibleTextRemoveEvent) QAccessibleTextRemoveEvent_PTR() *QAccessibleTextRemoveEvent {
-	return p
+func (ptr *QAccessibleTextRemoveEvent) QAccessibleTextRemoveEvent_PTR() *QAccessibleTextRemoveEvent {
+	return ptr
 }
 
-func (p *QAccessibleTextRemoveEvent) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QAccessibleTextCursorEvent_PTR().Pointer()
+func (ptr *QAccessibleTextRemoveEvent) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QAccessibleTextCursorEvent_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QAccessibleTextRemoveEvent) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QAccessibleTextCursorEvent_PTR().SetPointer(ptr)
+func (ptr *QAccessibleTextRemoveEvent) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QAccessibleTextCursorEvent_PTR().SetPointer(p)
 	}
 }
 
@@ -5966,8 +5980,10 @@ func NewQAccessibleTextRemoveEventFromPointer(ptr unsafe.Pointer) *QAccessibleTe
 }
 
 func (ptr *QAccessibleTextRemoveEvent) DestroyQAccessibleTextRemoveEvent() {
-	C.free(ptr.Pointer())
-	ptr.SetPointer(nil)
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
 }
 
 func NewQAccessibleTextRemoveEvent2(iface QAccessibleInterface_ITF, position int, text string) *QAccessibleTextRemoveEvent {
@@ -6075,20 +6091,20 @@ type QAccessibleTextSelectionEvent_ITF interface {
 	QAccessibleTextSelectionEvent_PTR() *QAccessibleTextSelectionEvent
 }
 
-func (p *QAccessibleTextSelectionEvent) QAccessibleTextSelectionEvent_PTR() *QAccessibleTextSelectionEvent {
-	return p
+func (ptr *QAccessibleTextSelectionEvent) QAccessibleTextSelectionEvent_PTR() *QAccessibleTextSelectionEvent {
+	return ptr
 }
 
-func (p *QAccessibleTextSelectionEvent) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QAccessibleTextCursorEvent_PTR().Pointer()
+func (ptr *QAccessibleTextSelectionEvent) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QAccessibleTextCursorEvent_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QAccessibleTextSelectionEvent) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QAccessibleTextCursorEvent_PTR().SetPointer(ptr)
+func (ptr *QAccessibleTextSelectionEvent) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QAccessibleTextCursorEvent_PTR().SetPointer(p)
 	}
 }
 
@@ -6106,8 +6122,10 @@ func NewQAccessibleTextSelectionEventFromPointer(ptr unsafe.Pointer) *QAccessibl
 }
 
 func (ptr *QAccessibleTextSelectionEvent) DestroyQAccessibleTextSelectionEvent() {
-	C.free(ptr.Pointer())
-	ptr.SetPointer(nil)
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
 }
 
 func NewQAccessibleTextSelectionEvent2(iface QAccessibleInterface_ITF, start int, end int) *QAccessibleTextSelectionEvent {
@@ -6215,20 +6233,20 @@ type QAccessibleTextUpdateEvent_ITF interface {
 	QAccessibleTextUpdateEvent_PTR() *QAccessibleTextUpdateEvent
 }
 
-func (p *QAccessibleTextUpdateEvent) QAccessibleTextUpdateEvent_PTR() *QAccessibleTextUpdateEvent {
-	return p
+func (ptr *QAccessibleTextUpdateEvent) QAccessibleTextUpdateEvent_PTR() *QAccessibleTextUpdateEvent {
+	return ptr
 }
 
-func (p *QAccessibleTextUpdateEvent) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QAccessibleTextCursorEvent_PTR().Pointer()
+func (ptr *QAccessibleTextUpdateEvent) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QAccessibleTextCursorEvent_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QAccessibleTextUpdateEvent) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QAccessibleTextCursorEvent_PTR().SetPointer(ptr)
+func (ptr *QAccessibleTextUpdateEvent) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QAccessibleTextCursorEvent_PTR().SetPointer(p)
 	}
 }
 
@@ -6246,8 +6264,10 @@ func NewQAccessibleTextUpdateEventFromPointer(ptr unsafe.Pointer) *QAccessibleTe
 }
 
 func (ptr *QAccessibleTextUpdateEvent) DestroyQAccessibleTextUpdateEvent() {
-	C.free(ptr.Pointer())
-	ptr.SetPointer(nil)
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
 }
 
 func NewQAccessibleTextUpdateEvent2(iface QAccessibleInterface_ITF, position int, oldText string, text string) *QAccessibleTextUpdateEvent {
@@ -6381,20 +6401,20 @@ type QAccessibleValueChangeEvent_ITF interface {
 	QAccessibleValueChangeEvent_PTR() *QAccessibleValueChangeEvent
 }
 
-func (p *QAccessibleValueChangeEvent) QAccessibleValueChangeEvent_PTR() *QAccessibleValueChangeEvent {
-	return p
+func (ptr *QAccessibleValueChangeEvent) QAccessibleValueChangeEvent_PTR() *QAccessibleValueChangeEvent {
+	return ptr
 }
 
-func (p *QAccessibleValueChangeEvent) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QAccessibleEvent_PTR().Pointer()
+func (ptr *QAccessibleValueChangeEvent) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QAccessibleEvent_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QAccessibleValueChangeEvent) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QAccessibleEvent_PTR().SetPointer(ptr)
+func (ptr *QAccessibleValueChangeEvent) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QAccessibleEvent_PTR().SetPointer(p)
 	}
 }
 
@@ -6412,8 +6432,10 @@ func NewQAccessibleValueChangeEventFromPointer(ptr unsafe.Pointer) *QAccessibleV
 }
 
 func (ptr *QAccessibleValueChangeEvent) DestroyQAccessibleValueChangeEvent() {
-	C.free(ptr.Pointer())
-	ptr.SetPointer(nil)
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
 }
 
 func NewQAccessibleValueChangeEvent2(iface QAccessibleInterface_ITF, val core.QVariant_ITF) *QAccessibleValueChangeEvent {
@@ -6504,20 +6526,20 @@ type QAccessibleValueInterface_ITF interface {
 	QAccessibleValueInterface_PTR() *QAccessibleValueInterface
 }
 
-func (p *QAccessibleValueInterface) QAccessibleValueInterface_PTR() *QAccessibleValueInterface {
-	return p
+func (ptr *QAccessibleValueInterface) QAccessibleValueInterface_PTR() *QAccessibleValueInterface {
+	return ptr
 }
 
-func (p *QAccessibleValueInterface) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QAccessibleValueInterface) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QAccessibleValueInterface) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QAccessibleValueInterface) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -6744,20 +6766,20 @@ type QActionEvent_ITF interface {
 	QActionEvent_PTR() *QActionEvent
 }
 
-func (p *QActionEvent) QActionEvent_PTR() *QActionEvent {
-	return p
+func (ptr *QActionEvent) QActionEvent_PTR() *QActionEvent {
+	return ptr
 }
 
-func (p *QActionEvent) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QEvent_PTR().Pointer()
+func (ptr *QActionEvent) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QEvent_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QActionEvent) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QEvent_PTR().SetPointer(ptr)
+func (ptr *QActionEvent) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QEvent_PTR().SetPointer(p)
 	}
 }
 
@@ -6775,8 +6797,10 @@ func NewQActionEventFromPointer(ptr unsafe.Pointer) *QActionEvent {
 }
 
 func (ptr *QActionEvent) DestroyQActionEvent() {
-	C.free(ptr.Pointer())
-	ptr.SetPointer(nil)
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
 }
 
 func NewQActionEvent(ty int, action unsafe.Pointer, before unsafe.Pointer) *QActionEvent {
@@ -6807,20 +6831,20 @@ type QBackingStore_ITF interface {
 	QBackingStore_PTR() *QBackingStore
 }
 
-func (p *QBackingStore) QBackingStore_PTR() *QBackingStore {
-	return p
+func (ptr *QBackingStore) QBackingStore_PTR() *QBackingStore {
+	return ptr
 }
 
-func (p *QBackingStore) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QBackingStore) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QBackingStore) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QBackingStore) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -6938,20 +6962,20 @@ type QBitmap_ITF interface {
 	QBitmap_PTR() *QBitmap
 }
 
-func (p *QBitmap) QBitmap_PTR() *QBitmap {
-	return p
+func (ptr *QBitmap) QBitmap_PTR() *QBitmap {
+	return ptr
 }
 
-func (p *QBitmap) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QPixmap_PTR().Pointer()
+func (ptr *QBitmap) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QPixmap_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QBitmap) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QPixmap_PTR().SetPointer(ptr)
+func (ptr *QBitmap) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QPixmap_PTR().SetPointer(p)
 	}
 }
 
@@ -7147,20 +7171,20 @@ type QBrush_ITF interface {
 	QBrush_PTR() *QBrush
 }
 
-func (p *QBrush) QBrush_PTR() *QBrush {
-	return p
+func (ptr *QBrush) QBrush_PTR() *QBrush {
+	return ptr
 }
 
-func (p *QBrush) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QBrush) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QBrush) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QBrush) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -7360,20 +7384,20 @@ type QClipboard_ITF interface {
 	QClipboard_PTR() *QClipboard
 }
 
-func (p *QClipboard) QClipboard_PTR() *QClipboard {
-	return p
+func (ptr *QClipboard) QClipboard_PTR() *QClipboard {
+	return ptr
 }
 
-func (p *QClipboard) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QObject_PTR().Pointer()
+func (ptr *QClipboard) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QObject_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QClipboard) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QObject_PTR().SetPointer(ptr)
+func (ptr *QClipboard) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QObject_PTR().SetPointer(p)
 	}
 }
 
@@ -7391,9 +7415,11 @@ func NewQClipboardFromPointer(ptr unsafe.Pointer) *QClipboard {
 }
 
 func (ptr *QClipboard) DestroyQClipboard() {
-	C.free(ptr.Pointer())
-	qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
-	ptr.SetPointer(nil)
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
+		ptr.SetPointer(nil)
+	}
 }
 
 func (ptr *QClipboard) Clear(mode QClipboard__Mode) {
@@ -7966,20 +7992,20 @@ type QCloseEvent_ITF interface {
 	QCloseEvent_PTR() *QCloseEvent
 }
 
-func (p *QCloseEvent) QCloseEvent_PTR() *QCloseEvent {
-	return p
+func (ptr *QCloseEvent) QCloseEvent_PTR() *QCloseEvent {
+	return ptr
 }
 
-func (p *QCloseEvent) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QEvent_PTR().Pointer()
+func (ptr *QCloseEvent) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QEvent_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QCloseEvent) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QEvent_PTR().SetPointer(ptr)
+func (ptr *QCloseEvent) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QEvent_PTR().SetPointer(p)
 	}
 }
 
@@ -7997,8 +8023,10 @@ func NewQCloseEventFromPointer(ptr unsafe.Pointer) *QCloseEvent {
 }
 
 func (ptr *QCloseEvent) DestroyQCloseEvent() {
-	C.free(ptr.Pointer())
-	ptr.SetPointer(nil)
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
 }
 
 func NewQCloseEvent() *QCloseEvent {
@@ -8036,20 +8064,20 @@ type QColor_ITF interface {
 	QColor_PTR() *QColor
 }
 
-func (p *QColor) QColor_PTR() *QColor {
-	return p
+func (ptr *QColor) QColor_PTR() *QColor {
+	return ptr
 }
 
-func (p *QColor) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QColor) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QColor) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QColor) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -8067,8 +8095,10 @@ func NewQColorFromPointer(ptr unsafe.Pointer) *QColor {
 }
 
 func (ptr *QColor) DestroyQColor() {
-	C.free(ptr.Pointer())
-	ptr.SetPointer(nil)
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
 }
 
 func (ptr *QColor) ConvertTo(colorSpec QColor__Spec) *QColor {
@@ -8754,20 +8784,20 @@ type QConicalGradient_ITF interface {
 	QConicalGradient_PTR() *QConicalGradient
 }
 
-func (p *QConicalGradient) QConicalGradient_PTR() *QConicalGradient {
-	return p
+func (ptr *QConicalGradient) QConicalGradient_PTR() *QConicalGradient {
+	return ptr
 }
 
-func (p *QConicalGradient) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QGradient_PTR().Pointer()
+func (ptr *QConicalGradient) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QGradient_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QConicalGradient) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QGradient_PTR().SetPointer(ptr)
+func (ptr *QConicalGradient) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QGradient_PTR().SetPointer(p)
 	}
 }
 
@@ -8785,8 +8815,10 @@ func NewQConicalGradientFromPointer(ptr unsafe.Pointer) *QConicalGradient {
 }
 
 func (ptr *QConicalGradient) DestroyQConicalGradient() {
-	C.free(ptr.Pointer())
-	ptr.SetPointer(nil)
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
 }
 
 func NewQConicalGradient() *QConicalGradient {
@@ -8860,20 +8892,20 @@ type QContextMenuEvent_ITF interface {
 	QContextMenuEvent_PTR() *QContextMenuEvent
 }
 
-func (p *QContextMenuEvent) QContextMenuEvent_PTR() *QContextMenuEvent {
-	return p
+func (ptr *QContextMenuEvent) QContextMenuEvent_PTR() *QContextMenuEvent {
+	return ptr
 }
 
-func (p *QContextMenuEvent) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QInputEvent_PTR().Pointer()
+func (ptr *QContextMenuEvent) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QInputEvent_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QContextMenuEvent) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QInputEvent_PTR().SetPointer(ptr)
+func (ptr *QContextMenuEvent) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QInputEvent_PTR().SetPointer(p)
 	}
 }
 
@@ -8891,8 +8923,10 @@ func NewQContextMenuEventFromPointer(ptr unsafe.Pointer) *QContextMenuEvent {
 }
 
 func (ptr *QContextMenuEvent) DestroyQContextMenuEvent() {
-	C.free(ptr.Pointer())
-	ptr.SetPointer(nil)
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
 }
 
 func NewQContextMenuEvent3(reason QContextMenuEvent__Reason, pos core.QPoint_ITF) *QContextMenuEvent {
@@ -9000,20 +9034,20 @@ type QCss_ITF interface {
 	QCss_PTR() *QCss
 }
 
-func (p *QCss) QCss_PTR() *QCss {
-	return p
+func (ptr *QCss) QCss_PTR() *QCss {
+	return ptr
 }
 
-func (p *QCss) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QCss) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QCss) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QCss) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -9031,8 +9065,10 @@ func NewQCssFromPointer(ptr unsafe.Pointer) *QCss {
 }
 
 func (ptr *QCss) DestroyQCss() {
-	C.free(ptr.Pointer())
-	ptr.SetPointer(nil)
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
 }
 
 type QCursor struct {
@@ -9043,20 +9079,20 @@ type QCursor_ITF interface {
 	QCursor_PTR() *QCursor
 }
 
-func (p *QCursor) QCursor_PTR() *QCursor {
-	return p
+func (ptr *QCursor) QCursor_PTR() *QCursor {
+	return ptr
 }
 
-func (p *QCursor) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QCursor) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QCursor) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QCursor) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -9230,20 +9266,20 @@ type QDesktopServices_ITF interface {
 	QDesktopServices_PTR() *QDesktopServices
 }
 
-func (p *QDesktopServices) QDesktopServices_PTR() *QDesktopServices {
-	return p
+func (ptr *QDesktopServices) QDesktopServices_PTR() *QDesktopServices {
+	return ptr
 }
 
-func (p *QDesktopServices) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QDesktopServices) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QDesktopServices) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QDesktopServices) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -9261,8 +9297,10 @@ func NewQDesktopServicesFromPointer(ptr unsafe.Pointer) *QDesktopServices {
 }
 
 func (ptr *QDesktopServices) DestroyQDesktopServices() {
-	C.free(ptr.Pointer())
-	ptr.SetPointer(nil)
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
 }
 
 func QDesktopServices_OpenUrl(url core.QUrl_ITF) bool {
@@ -9319,20 +9357,20 @@ type QDoubleValidator_ITF interface {
 	QDoubleValidator_PTR() *QDoubleValidator
 }
 
-func (p *QDoubleValidator) QDoubleValidator_PTR() *QDoubleValidator {
-	return p
+func (ptr *QDoubleValidator) QDoubleValidator_PTR() *QDoubleValidator {
+	return ptr
 }
 
-func (p *QDoubleValidator) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QValidator_PTR().Pointer()
+func (ptr *QDoubleValidator) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QValidator_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QDoubleValidator) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QValidator_PTR().SetPointer(ptr)
+func (ptr *QDoubleValidator) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QValidator_PTR().SetPointer(p)
 	}
 }
 
@@ -9884,20 +9922,20 @@ type QDrag_ITF interface {
 	QDrag_PTR() *QDrag
 }
 
-func (p *QDrag) QDrag_PTR() *QDrag {
-	return p
+func (ptr *QDrag) QDrag_PTR() *QDrag {
+	return ptr
 }
 
-func (p *QDrag) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QObject_PTR().Pointer()
+func (ptr *QDrag) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QObject_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QDrag) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QObject_PTR().SetPointer(ptr)
+func (ptr *QDrag) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QObject_PTR().SetPointer(p)
 	}
 }
 
@@ -10449,20 +10487,20 @@ type QDragEnterEvent_ITF interface {
 	QDragEnterEvent_PTR() *QDragEnterEvent
 }
 
-func (p *QDragEnterEvent) QDragEnterEvent_PTR() *QDragEnterEvent {
-	return p
+func (ptr *QDragEnterEvent) QDragEnterEvent_PTR() *QDragEnterEvent {
+	return ptr
 }
 
-func (p *QDragEnterEvent) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QDragMoveEvent_PTR().Pointer()
+func (ptr *QDragEnterEvent) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QDragMoveEvent_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QDragEnterEvent) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QDragMoveEvent_PTR().SetPointer(ptr)
+func (ptr *QDragEnterEvent) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QDragMoveEvent_PTR().SetPointer(p)
 	}
 }
 
@@ -10480,8 +10518,10 @@ func NewQDragEnterEventFromPointer(ptr unsafe.Pointer) *QDragEnterEvent {
 }
 
 func (ptr *QDragEnterEvent) DestroyQDragEnterEvent() {
-	C.free(ptr.Pointer())
-	ptr.SetPointer(nil)
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
 }
 
 func NewQDragEnterEvent(point core.QPoint_ITF, actions core.Qt__DropAction, data core.QMimeData_ITF, buttons core.Qt__MouseButton, modifiers core.Qt__KeyboardModifier) *QDragEnterEvent {
@@ -10499,20 +10539,20 @@ type QDragLeaveEvent_ITF interface {
 	QDragLeaveEvent_PTR() *QDragLeaveEvent
 }
 
-func (p *QDragLeaveEvent) QDragLeaveEvent_PTR() *QDragLeaveEvent {
-	return p
+func (ptr *QDragLeaveEvent) QDragLeaveEvent_PTR() *QDragLeaveEvent {
+	return ptr
 }
 
-func (p *QDragLeaveEvent) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QEvent_PTR().Pointer()
+func (ptr *QDragLeaveEvent) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QEvent_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QDragLeaveEvent) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QEvent_PTR().SetPointer(ptr)
+func (ptr *QDragLeaveEvent) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QEvent_PTR().SetPointer(p)
 	}
 }
 
@@ -10530,8 +10570,10 @@ func NewQDragLeaveEventFromPointer(ptr unsafe.Pointer) *QDragLeaveEvent {
 }
 
 func (ptr *QDragLeaveEvent) DestroyQDragLeaveEvent() {
-	C.free(ptr.Pointer())
-	ptr.SetPointer(nil)
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
 }
 
 func NewQDragLeaveEvent() *QDragLeaveEvent {
@@ -10549,20 +10591,20 @@ type QDragMoveEvent_ITF interface {
 	QDragMoveEvent_PTR() *QDragMoveEvent
 }
 
-func (p *QDragMoveEvent) QDragMoveEvent_PTR() *QDragMoveEvent {
-	return p
+func (ptr *QDragMoveEvent) QDragMoveEvent_PTR() *QDragMoveEvent {
+	return ptr
 }
 
-func (p *QDragMoveEvent) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QDropEvent_PTR().Pointer()
+func (ptr *QDragMoveEvent) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QDropEvent_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QDragMoveEvent) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QDropEvent_PTR().SetPointer(ptr)
+func (ptr *QDragMoveEvent) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QDropEvent_PTR().SetPointer(p)
 	}
 }
 
@@ -10648,20 +10690,20 @@ type QDropEvent_ITF interface {
 	QDropEvent_PTR() *QDropEvent
 }
 
-func (p *QDropEvent) QDropEvent_PTR() *QDropEvent {
-	return p
+func (ptr *QDropEvent) QDropEvent_PTR() *QDropEvent {
+	return ptr
 }
 
-func (p *QDropEvent) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QEvent_PTR().Pointer()
+func (ptr *QDropEvent) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QEvent_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QDropEvent) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QEvent_PTR().SetPointer(ptr)
+func (ptr *QDropEvent) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QEvent_PTR().SetPointer(p)
 	}
 }
 
@@ -10679,8 +10721,10 @@ func NewQDropEventFromPointer(ptr unsafe.Pointer) *QDropEvent {
 }
 
 func (ptr *QDropEvent) DestroyQDropEvent() {
-	C.free(ptr.Pointer())
-	ptr.SetPointer(nil)
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
 }
 
 func (ptr *QDropEvent) SetDropAction(action core.Qt__DropAction) {
@@ -10874,20 +10918,20 @@ type QEnterEvent_ITF interface {
 	QEnterEvent_PTR() *QEnterEvent
 }
 
-func (p *QEnterEvent) QEnterEvent_PTR() *QEnterEvent {
-	return p
+func (ptr *QEnterEvent) QEnterEvent_PTR() *QEnterEvent {
+	return ptr
 }
 
-func (p *QEnterEvent) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QEvent_PTR().Pointer()
+func (ptr *QEnterEvent) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QEvent_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QEnterEvent) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QEvent_PTR().SetPointer(ptr)
+func (ptr *QEnterEvent) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QEvent_PTR().SetPointer(p)
 	}
 }
 
@@ -10905,8 +10949,10 @@ func NewQEnterEventFromPointer(ptr unsafe.Pointer) *QEnterEvent {
 }
 
 func (ptr *QEnterEvent) DestroyQEnterEvent() {
-	C.free(ptr.Pointer())
-	ptr.SetPointer(nil)
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
 }
 
 func NewQEnterEvent(localPos core.QPointF_ITF, windowPos core.QPointF_ITF, screenPos core.QPointF_ITF) *QEnterEvent {
@@ -10991,20 +11037,20 @@ type QExposeEvent_ITF interface {
 	QExposeEvent_PTR() *QExposeEvent
 }
 
-func (p *QExposeEvent) QExposeEvent_PTR() *QExposeEvent {
-	return p
+func (ptr *QExposeEvent) QExposeEvent_PTR() *QExposeEvent {
+	return ptr
 }
 
-func (p *QExposeEvent) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QEvent_PTR().Pointer()
+func (ptr *QExposeEvent) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QEvent_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QExposeEvent) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QEvent_PTR().SetPointer(ptr)
+func (ptr *QExposeEvent) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QEvent_PTR().SetPointer(p)
 	}
 }
 
@@ -11022,8 +11068,10 @@ func NewQExposeEventFromPointer(ptr unsafe.Pointer) *QExposeEvent {
 }
 
 func (ptr *QExposeEvent) DestroyQExposeEvent() {
-	C.free(ptr.Pointer())
-	ptr.SetPointer(nil)
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
 }
 
 func NewQExposeEvent(exposeRegion QRegion_ITF) *QExposeEvent {
@@ -11063,20 +11111,20 @@ type QFileOpenEvent_ITF interface {
 	QFileOpenEvent_PTR() *QFileOpenEvent
 }
 
-func (p *QFileOpenEvent) QFileOpenEvent_PTR() *QFileOpenEvent {
-	return p
+func (ptr *QFileOpenEvent) QFileOpenEvent_PTR() *QFileOpenEvent {
+	return ptr
 }
 
-func (p *QFileOpenEvent) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QEvent_PTR().Pointer()
+func (ptr *QFileOpenEvent) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QEvent_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QFileOpenEvent) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QEvent_PTR().SetPointer(ptr)
+func (ptr *QFileOpenEvent) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QEvent_PTR().SetPointer(p)
 	}
 }
 
@@ -11094,8 +11142,10 @@ func NewQFileOpenEventFromPointer(ptr unsafe.Pointer) *QFileOpenEvent {
 }
 
 func (ptr *QFileOpenEvent) DestroyQFileOpenEvent() {
-	C.free(ptr.Pointer())
-	ptr.SetPointer(nil)
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
 }
 
 func (ptr *QFileOpenEvent) OpenFile(file core.QFile_ITF, flags core.QIODevice__OpenModeFlag) bool {
@@ -11130,20 +11180,20 @@ type QFocusEvent_ITF interface {
 	QFocusEvent_PTR() *QFocusEvent
 }
 
-func (p *QFocusEvent) QFocusEvent_PTR() *QFocusEvent {
-	return p
+func (ptr *QFocusEvent) QFocusEvent_PTR() *QFocusEvent {
+	return ptr
 }
 
-func (p *QFocusEvent) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QEvent_PTR().Pointer()
+func (ptr *QFocusEvent) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QEvent_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QFocusEvent) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QEvent_PTR().SetPointer(ptr)
+func (ptr *QFocusEvent) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QEvent_PTR().SetPointer(p)
 	}
 }
 
@@ -11161,8 +11211,10 @@ func NewQFocusEventFromPointer(ptr unsafe.Pointer) *QFocusEvent {
 }
 
 func (ptr *QFocusEvent) DestroyQFocusEvent() {
-	C.free(ptr.Pointer())
-	ptr.SetPointer(nil)
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
 }
 
 func NewQFocusEvent(ty core.QEvent__Type, reason core.Qt__FocusReason) *QFocusEvent {
@@ -11314,20 +11366,20 @@ type QFont_ITF interface {
 	QFont_PTR() *QFont
 }
 
-func (p *QFont) QFont_PTR() *QFont {
-	return p
+func (ptr *QFont) QFont_PTR() *QFont {
+	return ptr
 }
 
-func (p *QFont) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QFont) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QFont) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QFont) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -11880,20 +11932,20 @@ type QFontDatabase_ITF interface {
 	QFontDatabase_PTR() *QFontDatabase
 }
 
-func (p *QFontDatabase) QFontDatabase_PTR() *QFontDatabase {
-	return p
+func (ptr *QFontDatabase) QFontDatabase_PTR() *QFontDatabase {
+	return ptr
 }
 
-func (p *QFontDatabase) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QFontDatabase) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QFontDatabase) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QFontDatabase) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -11911,8 +11963,10 @@ func NewQFontDatabaseFromPointer(ptr unsafe.Pointer) *QFontDatabase {
 }
 
 func (ptr *QFontDatabase) DestroyQFontDatabase() {
-	C.free(ptr.Pointer())
-	ptr.SetPointer(nil)
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
 }
 
 func QFontDatabase_RemoveAllApplicationFonts() bool {
@@ -12130,20 +12184,20 @@ type QFontInfo_ITF interface {
 	QFontInfo_PTR() *QFontInfo
 }
 
-func (p *QFontInfo) QFontInfo_PTR() *QFontInfo {
-	return p
+func (ptr *QFontInfo) QFontInfo_PTR() *QFontInfo {
+	return ptr
 }
 
-func (p *QFontInfo) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QFontInfo) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QFontInfo) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QFontInfo) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -12276,20 +12330,20 @@ type QFontMetrics_ITF interface {
 	QFontMetrics_PTR() *QFontMetrics
 }
 
-func (p *QFontMetrics) QFontMetrics_PTR() *QFontMetrics {
-	return p
+func (ptr *QFontMetrics) QFontMetrics_PTR() *QFontMetrics {
+	return ptr
 }
 
-func (p *QFontMetrics) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QFontMetrics) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QFontMetrics) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QFontMetrics) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -12559,20 +12613,20 @@ type QFontMetricsF_ITF interface {
 	QFontMetricsF_PTR() *QFontMetricsF
 }
 
-func (p *QFontMetricsF) QFontMetricsF_PTR() *QFontMetricsF {
-	return p
+func (ptr *QFontMetricsF) QFontMetricsF_PTR() *QFontMetricsF {
+	return ptr
 }
 
-func (p *QFontMetricsF) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QFontMetricsF) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QFontMetricsF) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QFontMetricsF) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -12837,20 +12891,20 @@ type QGenericMatrix_ITF interface {
 	QGenericMatrix_PTR() *QGenericMatrix
 }
 
-func (p *QGenericMatrix) QGenericMatrix_PTR() *QGenericMatrix {
-	return p
+func (ptr *QGenericMatrix) QGenericMatrix_PTR() *QGenericMatrix {
+	return ptr
 }
 
-func (p *QGenericMatrix) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QGenericMatrix) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QGenericMatrix) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QGenericMatrix) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -12868,8 +12922,10 @@ func NewQGenericMatrixFromPointer(ptr unsafe.Pointer) *QGenericMatrix {
 }
 
 func (ptr *QGenericMatrix) DestroyQGenericMatrix() {
-	C.free(ptr.Pointer())
-	ptr.SetPointer(nil)
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
 }
 
 type QGenericPlugin struct {
@@ -12881,20 +12937,20 @@ type QGenericPlugin_ITF interface {
 	QGenericPlugin_PTR() *QGenericPlugin
 }
 
-func (p *QGenericPlugin) QGenericPlugin_PTR() *QGenericPlugin {
-	return p
+func (ptr *QGenericPlugin) QGenericPlugin_PTR() *QGenericPlugin {
+	return ptr
 }
 
-func (p *QGenericPlugin) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QObject_PTR().Pointer()
+func (ptr *QGenericPlugin) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QObject_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QGenericPlugin) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QObject_PTR().SetPointer(ptr)
+func (ptr *QGenericPlugin) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QObject_PTR().SetPointer(p)
 	}
 }
 
@@ -13306,20 +13362,20 @@ type QGenericPluginFactory_ITF interface {
 	QGenericPluginFactory_PTR() *QGenericPluginFactory
 }
 
-func (p *QGenericPluginFactory) QGenericPluginFactory_PTR() *QGenericPluginFactory {
-	return p
+func (ptr *QGenericPluginFactory) QGenericPluginFactory_PTR() *QGenericPluginFactory {
+	return ptr
 }
 
-func (p *QGenericPluginFactory) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QGenericPluginFactory) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QGenericPluginFactory) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QGenericPluginFactory) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -13337,8 +13393,10 @@ func NewQGenericPluginFactoryFromPointer(ptr unsafe.Pointer) *QGenericPluginFact
 }
 
 func (ptr *QGenericPluginFactory) DestroyQGenericPluginFactory() {
-	C.free(ptr.Pointer())
-	ptr.SetPointer(nil)
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
 }
 
 func QGenericPluginFactory_Create(key string, specification string) *core.QObject {
@@ -13393,20 +13451,20 @@ type QGlyphRun_ITF interface {
 	QGlyphRun_PTR() *QGlyphRun
 }
 
-func (p *QGlyphRun) QGlyphRun_PTR() *QGlyphRun {
-	return p
+func (ptr *QGlyphRun) QGlyphRun_PTR() *QGlyphRun {
+	return ptr
 }
 
-func (p *QGlyphRun) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QGlyphRun) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QGlyphRun) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QGlyphRun) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -13628,20 +13686,20 @@ type QGradient_ITF interface {
 	QGradient_PTR() *QGradient
 }
 
-func (p *QGradient) QGradient_PTR() *QGradient {
-	return p
+func (ptr *QGradient) QGradient_PTR() *QGradient {
+	return ptr
 }
 
-func (p *QGradient) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QGradient) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QGradient) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QGradient) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -13659,8 +13717,10 @@ func NewQGradientFromPointer(ptr unsafe.Pointer) *QGradient {
 }
 
 func (ptr *QGradient) DestroyQGradient() {
-	C.free(ptr.Pointer())
-	ptr.SetPointer(nil)
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
 }
 
 func (ptr *QGradient) SetColorAt(position float64, color QColor_ITF) {
@@ -13711,20 +13771,20 @@ type QGuiApplication_ITF interface {
 	QGuiApplication_PTR() *QGuiApplication
 }
 
-func (p *QGuiApplication) QGuiApplication_PTR() *QGuiApplication {
-	return p
+func (ptr *QGuiApplication) QGuiApplication_PTR() *QGuiApplication {
+	return ptr
 }
 
-func (p *QGuiApplication) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QCoreApplication_PTR().Pointer()
+func (ptr *QGuiApplication) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QCoreApplication_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QGuiApplication) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QCoreApplication_PTR().SetPointer(ptr)
+func (ptr *QGuiApplication) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QCoreApplication_PTR().SetPointer(p)
 	}
 }
 
@@ -14977,20 +15037,20 @@ type QHelpEvent_ITF interface {
 	QHelpEvent_PTR() *QHelpEvent
 }
 
-func (p *QHelpEvent) QHelpEvent_PTR() *QHelpEvent {
-	return p
+func (ptr *QHelpEvent) QHelpEvent_PTR() *QHelpEvent {
+	return ptr
 }
 
-func (p *QHelpEvent) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QEvent_PTR().Pointer()
+func (ptr *QHelpEvent) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QEvent_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QHelpEvent) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QEvent_PTR().SetPointer(ptr)
+func (ptr *QHelpEvent) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QEvent_PTR().SetPointer(p)
 	}
 }
 
@@ -15008,8 +15068,10 @@ func NewQHelpEventFromPointer(ptr unsafe.Pointer) *QHelpEvent {
 }
 
 func (ptr *QHelpEvent) DestroyQHelpEvent() {
-	C.free(ptr.Pointer())
-	ptr.SetPointer(nil)
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
 }
 
 func NewQHelpEvent(ty core.QEvent__Type, pos core.QPoint_ITF, globalPos core.QPoint_ITF) *QHelpEvent {
@@ -15069,20 +15131,20 @@ type QHideEvent_ITF interface {
 	QHideEvent_PTR() *QHideEvent
 }
 
-func (p *QHideEvent) QHideEvent_PTR() *QHideEvent {
-	return p
+func (ptr *QHideEvent) QHideEvent_PTR() *QHideEvent {
+	return ptr
 }
 
-func (p *QHideEvent) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QEvent_PTR().Pointer()
+func (ptr *QHideEvent) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QEvent_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QHideEvent) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QEvent_PTR().SetPointer(ptr)
+func (ptr *QHideEvent) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QEvent_PTR().SetPointer(p)
 	}
 }
 
@@ -15100,8 +15162,10 @@ func NewQHideEventFromPointer(ptr unsafe.Pointer) *QHideEvent {
 }
 
 func (ptr *QHideEvent) DestroyQHideEvent() {
-	C.free(ptr.Pointer())
-	ptr.SetPointer(nil)
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
 }
 
 func NewQHideEvent() *QHideEvent {
@@ -15119,20 +15183,20 @@ type QHoverEvent_ITF interface {
 	QHoverEvent_PTR() *QHoverEvent
 }
 
-func (p *QHoverEvent) QHoverEvent_PTR() *QHoverEvent {
-	return p
+func (ptr *QHoverEvent) QHoverEvent_PTR() *QHoverEvent {
+	return ptr
 }
 
-func (p *QHoverEvent) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QInputEvent_PTR().Pointer()
+func (ptr *QHoverEvent) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QInputEvent_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QHoverEvent) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QInputEvent_PTR().SetPointer(ptr)
+func (ptr *QHoverEvent) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QInputEvent_PTR().SetPointer(p)
 	}
 }
 
@@ -15150,8 +15214,10 @@ func NewQHoverEventFromPointer(ptr unsafe.Pointer) *QHoverEvent {
 }
 
 func (ptr *QHoverEvent) DestroyQHoverEvent() {
-	C.free(ptr.Pointer())
-	ptr.SetPointer(nil)
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
 }
 
 func NewQHoverEvent(ty core.QEvent__Type, pos core.QPointF_ITF, oldPos core.QPointF_ITF, modifiers core.Qt__KeyboardModifier) *QHoverEvent {
@@ -15220,20 +15286,20 @@ type QIcon_ITF interface {
 	QIcon_PTR() *QIcon
 }
 
-func (p *QIcon) QIcon_PTR() *QIcon {
-	return p
+func (ptr *QIcon) QIcon_PTR() *QIcon {
+	return ptr
 }
 
-func (p *QIcon) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QIcon) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QIcon) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QIcon) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -15529,20 +15595,20 @@ type QIconDragEvent_ITF interface {
 	QIconDragEvent_PTR() *QIconDragEvent
 }
 
-func (p *QIconDragEvent) QIconDragEvent_PTR() *QIconDragEvent {
-	return p
+func (ptr *QIconDragEvent) QIconDragEvent_PTR() *QIconDragEvent {
+	return ptr
 }
 
-func (p *QIconDragEvent) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QEvent_PTR().Pointer()
+func (ptr *QIconDragEvent) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QEvent_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QIconDragEvent) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QEvent_PTR().SetPointer(ptr)
+func (ptr *QIconDragEvent) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QEvent_PTR().SetPointer(p)
 	}
 }
 
@@ -15560,8 +15626,10 @@ func NewQIconDragEventFromPointer(ptr unsafe.Pointer) *QIconDragEvent {
 }
 
 func (ptr *QIconDragEvent) DestroyQIconDragEvent() {
-	C.free(ptr.Pointer())
-	ptr.SetPointer(nil)
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
 }
 
 func NewQIconDragEvent() *QIconDragEvent {
@@ -15588,20 +15656,20 @@ type QIconEngine_ITF interface {
 	QIconEngine_PTR() *QIconEngine
 }
 
-func (p *QIconEngine) QIconEngine_PTR() *QIconEngine {
-	return p
+func (ptr *QIconEngine) QIconEngine_PTR() *QIconEngine {
+	return ptr
 }
 
-func (p *QIconEngine) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QIconEngine) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QIconEngine) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QIconEngine) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -16107,20 +16175,20 @@ type QIconEnginePlugin_ITF interface {
 	QIconEnginePlugin_PTR() *QIconEnginePlugin
 }
 
-func (p *QIconEnginePlugin) QIconEnginePlugin_PTR() *QIconEnginePlugin {
-	return p
+func (ptr *QIconEnginePlugin) QIconEnginePlugin_PTR() *QIconEnginePlugin {
+	return ptr
 }
 
-func (p *QIconEnginePlugin) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QObject_PTR().Pointer()
+func (ptr *QIconEnginePlugin) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QObject_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QIconEnginePlugin) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QObject_PTR().SetPointer(ptr)
+func (ptr *QIconEnginePlugin) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QObject_PTR().SetPointer(p)
 	}
 }
 
@@ -16568,20 +16636,20 @@ type QImage_ITF interface {
 	QImage_PTR() *QImage
 }
 
-func (p *QImage) QImage_PTR() *QImage {
-	return p
+func (ptr *QImage) QImage_PTR() *QImage {
+	return ptr
 }
 
-func (p *QImage) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QPaintDevice_PTR().Pointer()
+func (ptr *QImage) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QPaintDevice_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QImage) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QPaintDevice_PTR().SetPointer(ptr)
+func (ptr *QImage) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QPaintDevice_PTR().SetPointer(p)
 	}
 }
 
@@ -17370,20 +17438,20 @@ type QImageIOHandler_ITF interface {
 	QImageIOHandler_PTR() *QImageIOHandler
 }
 
-func (p *QImageIOHandler) QImageIOHandler_PTR() *QImageIOHandler {
-	return p
+func (ptr *QImageIOHandler) QImageIOHandler_PTR() *QImageIOHandler {
+	return ptr
 }
 
-func (p *QImageIOHandler) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QImageIOHandler) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QImageIOHandler) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QImageIOHandler) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -17986,20 +18054,20 @@ type QImageIOPlugin_ITF interface {
 	QImageIOPlugin_PTR() *QImageIOPlugin
 }
 
-func (p *QImageIOPlugin) QImageIOPlugin_PTR() *QImageIOPlugin {
-	return p
+func (ptr *QImageIOPlugin) QImageIOPlugin_PTR() *QImageIOPlugin {
+	return ptr
 }
 
-func (p *QImageIOPlugin) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QObject_PTR().Pointer()
+func (ptr *QImageIOPlugin) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QObject_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QImageIOPlugin) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QObject_PTR().SetPointer(ptr)
+func (ptr *QImageIOPlugin) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QObject_PTR().SetPointer(p)
 	}
 }
 
@@ -18478,20 +18546,20 @@ type QImageReader_ITF interface {
 	QImageReader_PTR() *QImageReader
 }
 
-func (p *QImageReader) QImageReader_PTR() *QImageReader {
-	return p
+func (ptr *QImageReader) QImageReader_PTR() *QImageReader {
+	return ptr
 }
 
-func (p *QImageReader) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QImageReader) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QImageReader) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QImageReader) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -18982,20 +19050,20 @@ type QImageWriter_ITF interface {
 	QImageWriter_PTR() *QImageWriter
 }
 
-func (p *QImageWriter) QImageWriter_PTR() *QImageWriter {
-	return p
+func (ptr *QImageWriter) QImageWriter_PTR() *QImageWriter {
+	return ptr
 }
 
-func (p *QImageWriter) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QImageWriter) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QImageWriter) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QImageWriter) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -19312,20 +19380,20 @@ type QInputEvent_ITF interface {
 	QInputEvent_PTR() *QInputEvent
 }
 
-func (p *QInputEvent) QInputEvent_PTR() *QInputEvent {
-	return p
+func (ptr *QInputEvent) QInputEvent_PTR() *QInputEvent {
+	return ptr
 }
 
-func (p *QInputEvent) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QEvent_PTR().Pointer()
+func (ptr *QInputEvent) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QEvent_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QInputEvent) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QEvent_PTR().SetPointer(ptr)
+func (ptr *QInputEvent) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QEvent_PTR().SetPointer(p)
 	}
 }
 
@@ -19343,8 +19411,10 @@ func NewQInputEventFromPointer(ptr unsafe.Pointer) *QInputEvent {
 }
 
 func (ptr *QInputEvent) DestroyQInputEvent() {
-	C.free(ptr.Pointer())
-	ptr.SetPointer(nil)
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
 }
 
 func (ptr *QInputEvent) Modifiers() core.Qt__KeyboardModifier {
@@ -19405,20 +19475,20 @@ type QInputMethod_ITF interface {
 	QInputMethod_PTR() *QInputMethod
 }
 
-func (p *QInputMethod) QInputMethod_PTR() *QInputMethod {
-	return p
+func (ptr *QInputMethod) QInputMethod_PTR() *QInputMethod {
+	return ptr
 }
 
-func (p *QInputMethod) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QObject_PTR().Pointer()
+func (ptr *QInputMethod) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QObject_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QInputMethod) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QObject_PTR().SetPointer(ptr)
+func (ptr *QInputMethod) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QObject_PTR().SetPointer(p)
 	}
 }
 
@@ -19436,9 +19506,11 @@ func NewQInputMethodFromPointer(ptr unsafe.Pointer) *QInputMethod {
 }
 
 func (ptr *QInputMethod) DestroyQInputMethod() {
-	C.free(ptr.Pointer())
-	qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
-	ptr.SetPointer(nil)
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
+		ptr.SetPointer(nil)
+	}
 }
 
 func (ptr *QInputMethod) AnchorRectangle() *core.QRectF {
@@ -20309,20 +20381,20 @@ type QInputMethodEvent_ITF interface {
 	QInputMethodEvent_PTR() *QInputMethodEvent
 }
 
-func (p *QInputMethodEvent) QInputMethodEvent_PTR() *QInputMethodEvent {
-	return p
+func (ptr *QInputMethodEvent) QInputMethodEvent_PTR() *QInputMethodEvent {
+	return ptr
 }
 
-func (p *QInputMethodEvent) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QEvent_PTR().Pointer()
+func (ptr *QInputMethodEvent) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QEvent_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QInputMethodEvent) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QEvent_PTR().SetPointer(ptr)
+func (ptr *QInputMethodEvent) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QEvent_PTR().SetPointer(p)
 	}
 }
 
@@ -20402,20 +20474,20 @@ type QInputMethodQueryEvent_ITF interface {
 	QInputMethodQueryEvent_PTR() *QInputMethodQueryEvent
 }
 
-func (p *QInputMethodQueryEvent) QInputMethodQueryEvent_PTR() *QInputMethodQueryEvent {
-	return p
+func (ptr *QInputMethodQueryEvent) QInputMethodQueryEvent_PTR() *QInputMethodQueryEvent {
+	return ptr
 }
 
-func (p *QInputMethodQueryEvent) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QEvent_PTR().Pointer()
+func (ptr *QInputMethodQueryEvent) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QEvent_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QInputMethodQueryEvent) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QEvent_PTR().SetPointer(ptr)
+func (ptr *QInputMethodQueryEvent) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QEvent_PTR().SetPointer(p)
 	}
 }
 
@@ -20433,8 +20505,10 @@ func NewQInputMethodQueryEventFromPointer(ptr unsafe.Pointer) *QInputMethodQuery
 }
 
 func (ptr *QInputMethodQueryEvent) DestroyQInputMethodQueryEvent() {
-	C.free(ptr.Pointer())
-	ptr.SetPointer(nil)
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
 }
 
 func NewQInputMethodQueryEvent(queries core.Qt__InputMethodQuery) *QInputMethodQueryEvent {
@@ -20474,20 +20548,20 @@ type QIntValidator_ITF interface {
 	QIntValidator_PTR() *QIntValidator
 }
 
-func (p *QIntValidator) QIntValidator_PTR() *QIntValidator {
-	return p
+func (ptr *QIntValidator) QIntValidator_PTR() *QIntValidator {
+	return ptr
 }
 
-func (p *QIntValidator) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QValidator_PTR().Pointer()
+func (ptr *QIntValidator) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QValidator_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QIntValidator) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QValidator_PTR().SetPointer(ptr)
+func (ptr *QIntValidator) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QValidator_PTR().SetPointer(p)
 	}
 }
 
@@ -21013,20 +21087,20 @@ type QKeyEvent_ITF interface {
 	QKeyEvent_PTR() *QKeyEvent
 }
 
-func (p *QKeyEvent) QKeyEvent_PTR() *QKeyEvent {
-	return p
+func (ptr *QKeyEvent) QKeyEvent_PTR() *QKeyEvent {
+	return ptr
 }
 
-func (p *QKeyEvent) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QInputEvent_PTR().Pointer()
+func (ptr *QKeyEvent) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QInputEvent_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QKeyEvent) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QInputEvent_PTR().SetPointer(ptr)
+func (ptr *QKeyEvent) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QInputEvent_PTR().SetPointer(p)
 	}
 }
 
@@ -21044,8 +21118,10 @@ func NewQKeyEventFromPointer(ptr unsafe.Pointer) *QKeyEvent {
 }
 
 func (ptr *QKeyEvent) DestroyQKeyEvent() {
-	C.free(ptr.Pointer())
-	ptr.SetPointer(nil)
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
 }
 
 func (ptr *QKeyEvent) Matches(key QKeySequence__StandardKey) bool {
@@ -21312,20 +21388,20 @@ type QKeySequence_ITF interface {
 	QKeySequence_PTR() *QKeySequence
 }
 
-func (p *QKeySequence) QKeySequence_PTR() *QKeySequence {
-	return p
+func (ptr *QKeySequence) QKeySequence_PTR() *QKeySequence {
+	return ptr
 }
 
-func (p *QKeySequence) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QKeySequence) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QKeySequence) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QKeySequence) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -21517,20 +21593,20 @@ type QLinearGradient_ITF interface {
 	QLinearGradient_PTR() *QLinearGradient
 }
 
-func (p *QLinearGradient) QLinearGradient_PTR() *QLinearGradient {
-	return p
+func (ptr *QLinearGradient) QLinearGradient_PTR() *QLinearGradient {
+	return ptr
 }
 
-func (p *QLinearGradient) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QGradient_PTR().Pointer()
+func (ptr *QLinearGradient) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QGradient_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QLinearGradient) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QGradient_PTR().SetPointer(ptr)
+func (ptr *QLinearGradient) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QGradient_PTR().SetPointer(p)
 	}
 }
 
@@ -21548,8 +21624,10 @@ func NewQLinearGradientFromPointer(ptr unsafe.Pointer) *QLinearGradient {
 }
 
 func (ptr *QLinearGradient) DestroyQLinearGradient() {
-	C.free(ptr.Pointer())
-	ptr.SetPointer(nil)
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
 }
 
 func NewQLinearGradient3(x1 float64, y1 float64, x2 float64, y2 float64) *QLinearGradient {
@@ -21620,20 +21698,20 @@ type QMatrix4x4_ITF interface {
 	QMatrix4x4_PTR() *QMatrix4x4
 }
 
-func (p *QMatrix4x4) QMatrix4x4_PTR() *QMatrix4x4 {
-	return p
+func (ptr *QMatrix4x4) QMatrix4x4_PTR() *QMatrix4x4 {
+	return ptr
 }
 
-func (p *QMatrix4x4) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QMatrix4x4) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QMatrix4x4) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QMatrix4x4) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -21651,8 +21729,10 @@ func NewQMatrix4x4FromPointer(ptr unsafe.Pointer) *QMatrix4x4 {
 }
 
 func (ptr *QMatrix4x4) DestroyQMatrix4x4() {
-	C.free(ptr.Pointer())
-	ptr.SetPointer(nil)
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
 }
 
 func NewQMatrix4x4() *QMatrix4x4 {
@@ -21991,20 +22071,20 @@ type QMouseEvent_ITF interface {
 	QMouseEvent_PTR() *QMouseEvent
 }
 
-func (p *QMouseEvent) QMouseEvent_PTR() *QMouseEvent {
-	return p
+func (ptr *QMouseEvent) QMouseEvent_PTR() *QMouseEvent {
+	return ptr
 }
 
-func (p *QMouseEvent) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QInputEvent_PTR().Pointer()
+func (ptr *QMouseEvent) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QInputEvent_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QMouseEvent) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QInputEvent_PTR().SetPointer(ptr)
+func (ptr *QMouseEvent) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QInputEvent_PTR().SetPointer(p)
 	}
 }
 
@@ -22022,8 +22102,10 @@ func NewQMouseEventFromPointer(ptr unsafe.Pointer) *QMouseEvent {
 }
 
 func (ptr *QMouseEvent) DestroyQMouseEvent() {
-	C.free(ptr.Pointer())
-	ptr.SetPointer(nil)
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
 }
 
 func NewQMouseEvent(ty core.QEvent__Type, localPos core.QPointF_ITF, button core.Qt__MouseButton, buttons core.Qt__MouseButton, modifiers core.Qt__KeyboardModifier) *QMouseEvent {
@@ -22208,20 +22290,20 @@ type QMoveEvent_ITF interface {
 	QMoveEvent_PTR() *QMoveEvent
 }
 
-func (p *QMoveEvent) QMoveEvent_PTR() *QMoveEvent {
-	return p
+func (ptr *QMoveEvent) QMoveEvent_PTR() *QMoveEvent {
+	return ptr
 }
 
-func (p *QMoveEvent) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QEvent_PTR().Pointer()
+func (ptr *QMoveEvent) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QEvent_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QMoveEvent) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QEvent_PTR().SetPointer(ptr)
+func (ptr *QMoveEvent) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QEvent_PTR().SetPointer(p)
 	}
 }
 
@@ -22239,8 +22321,10 @@ func NewQMoveEventFromPointer(ptr unsafe.Pointer) *QMoveEvent {
 }
 
 func (ptr *QMoveEvent) DestroyQMoveEvent() {
-	C.free(ptr.Pointer())
-	ptr.SetPointer(nil)
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
 }
 
 func NewQMoveEvent(pos core.QPoint_ITF, oldPos core.QPoint_ITF) *QMoveEvent {
@@ -22291,20 +22375,20 @@ type QMovie_ITF interface {
 	QMovie_PTR() *QMovie
 }
 
-func (p *QMovie) QMovie_PTR() *QMovie {
-	return p
+func (ptr *QMovie) QMovie_PTR() *QMovie {
+	return ptr
 }
 
-func (p *QMovie) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QObject_PTR().Pointer()
+func (ptr *QMovie) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QObject_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QMovie) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QObject_PTR().SetPointer(ptr)
+func (ptr *QMovie) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QObject_PTR().SetPointer(p)
 	}
 }
 
@@ -23243,20 +23327,20 @@ type QNativeGestureEvent_ITF interface {
 	QNativeGestureEvent_PTR() *QNativeGestureEvent
 }
 
-func (p *QNativeGestureEvent) QNativeGestureEvent_PTR() *QNativeGestureEvent {
-	return p
+func (ptr *QNativeGestureEvent) QNativeGestureEvent_PTR() *QNativeGestureEvent {
+	return ptr
 }
 
-func (p *QNativeGestureEvent) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QInputEvent_PTR().Pointer()
+func (ptr *QNativeGestureEvent) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QInputEvent_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QNativeGestureEvent) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QInputEvent_PTR().SetPointer(ptr)
+func (ptr *QNativeGestureEvent) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QInputEvent_PTR().SetPointer(p)
 	}
 }
 
@@ -23274,8 +23358,10 @@ func NewQNativeGestureEventFromPointer(ptr unsafe.Pointer) *QNativeGestureEvent 
 }
 
 func (ptr *QNativeGestureEvent) DestroyQNativeGestureEvent() {
-	C.free(ptr.Pointer())
-	ptr.SetPointer(nil)
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
 }
 
 func NewQNativeGestureEvent(ty core.Qt__NativeGestureType, localPos core.QPointF_ITF, windowPos core.QPointF_ITF, screenPos core.QPointF_ITF, realValue float64, sequenceId uint, intValue uint64) *QNativeGestureEvent {
@@ -23445,21 +23531,21 @@ type QOffscreenSurface_ITF interface {
 	QOffscreenSurface_PTR() *QOffscreenSurface
 }
 
-func (p *QOffscreenSurface) QOffscreenSurface_PTR() *QOffscreenSurface {
-	return p
+func (ptr *QOffscreenSurface) QOffscreenSurface_PTR() *QOffscreenSurface {
+	return ptr
 }
 
-func (p *QOffscreenSurface) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QObject_PTR().Pointer()
+func (ptr *QOffscreenSurface) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QObject_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QOffscreenSurface) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QObject_PTR().SetPointer(ptr)
-		p.QSurface_PTR().SetPointer(ptr)
+func (ptr *QOffscreenSurface) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QObject_PTR().SetPointer(p)
+		ptr.QSurface_PTR().SetPointer(p)
 	}
 }
 
@@ -24116,20 +24202,20 @@ type QOpenGLBuffer_ITF interface {
 	QOpenGLBuffer_PTR() *QOpenGLBuffer
 }
 
-func (p *QOpenGLBuffer) QOpenGLBuffer_PTR() *QOpenGLBuffer {
-	return p
+func (ptr *QOpenGLBuffer) QOpenGLBuffer_PTR() *QOpenGLBuffer {
+	return ptr
 }
 
-func (p *QOpenGLBuffer) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QOpenGLBuffer) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QOpenGLBuffer) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QOpenGLBuffer) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -24164,20 +24250,20 @@ type QOpenGLContext_ITF interface {
 	QOpenGLContext_PTR() *QOpenGLContext
 }
 
-func (p *QOpenGLContext) QOpenGLContext_PTR() *QOpenGLContext {
-	return p
+func (ptr *QOpenGLContext) QOpenGLContext_PTR() *QOpenGLContext {
+	return ptr
 }
 
-func (p *QOpenGLContext) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QObject_PTR().Pointer()
+func (ptr *QOpenGLContext) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QObject_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QOpenGLContext) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QObject_PTR().SetPointer(ptr)
+func (ptr *QOpenGLContext) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QObject_PTR().SetPointer(p)
 	}
 }
 
@@ -24203,20 +24289,20 @@ type QOpenGLContextGroup_ITF interface {
 	QOpenGLContextGroup_PTR() *QOpenGLContextGroup
 }
 
-func (p *QOpenGLContextGroup) QOpenGLContextGroup_PTR() *QOpenGLContextGroup {
-	return p
+func (ptr *QOpenGLContextGroup) QOpenGLContextGroup_PTR() *QOpenGLContextGroup {
+	return ptr
 }
 
-func (p *QOpenGLContextGroup) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QObject_PTR().Pointer()
+func (ptr *QOpenGLContextGroup) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QObject_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QOpenGLContextGroup) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QObject_PTR().SetPointer(ptr)
+func (ptr *QOpenGLContextGroup) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QObject_PTR().SetPointer(p)
 	}
 }
 
@@ -24234,9 +24320,11 @@ func NewQOpenGLContextGroupFromPointer(ptr unsafe.Pointer) *QOpenGLContextGroup 
 }
 
 func (ptr *QOpenGLContextGroup) DestroyQOpenGLContextGroup() {
-	C.free(ptr.Pointer())
-	qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
-	ptr.SetPointer(nil)
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
+		ptr.SetPointer(nil)
+	}
 }
 
 //go:generate stringer -type=QOpenGLDebugLogger__LoggingMode
@@ -24257,20 +24345,20 @@ type QOpenGLDebugLogger_ITF interface {
 	QOpenGLDebugLogger_PTR() *QOpenGLDebugLogger
 }
 
-func (p *QOpenGLDebugLogger) QOpenGLDebugLogger_PTR() *QOpenGLDebugLogger {
-	return p
+func (ptr *QOpenGLDebugLogger) QOpenGLDebugLogger_PTR() *QOpenGLDebugLogger {
+	return ptr
 }
 
-func (p *QOpenGLDebugLogger) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QObject_PTR().Pointer()
+func (ptr *QOpenGLDebugLogger) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QObject_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QOpenGLDebugLogger) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QObject_PTR().SetPointer(ptr)
+func (ptr *QOpenGLDebugLogger) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QObject_PTR().SetPointer(p)
 	}
 }
 
@@ -24344,20 +24432,20 @@ type QOpenGLDebugMessage_ITF interface {
 	QOpenGLDebugMessage_PTR() *QOpenGLDebugMessage
 }
 
-func (p *QOpenGLDebugMessage) QOpenGLDebugMessage_PTR() *QOpenGLDebugMessage {
-	return p
+func (ptr *QOpenGLDebugMessage) QOpenGLDebugMessage_PTR() *QOpenGLDebugMessage {
+	return ptr
 }
 
-func (p *QOpenGLDebugMessage) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QOpenGLDebugMessage) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QOpenGLDebugMessage) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QOpenGLDebugMessage) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -24383,20 +24471,20 @@ type QOpenGLExtraFunctions_ITF interface {
 	QOpenGLExtraFunctions_PTR() *QOpenGLExtraFunctions
 }
 
-func (p *QOpenGLExtraFunctions) QOpenGLExtraFunctions_PTR() *QOpenGLExtraFunctions {
-	return p
+func (ptr *QOpenGLExtraFunctions) QOpenGLExtraFunctions_PTR() *QOpenGLExtraFunctions {
+	return ptr
 }
 
-func (p *QOpenGLExtraFunctions) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QOpenGLFunctions_PTR().Pointer()
+func (ptr *QOpenGLExtraFunctions) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QOpenGLFunctions_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QOpenGLExtraFunctions) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QOpenGLFunctions_PTR().SetPointer(ptr)
+func (ptr *QOpenGLExtraFunctions) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QOpenGLFunctions_PTR().SetPointer(p)
 	}
 }
 
@@ -24441,20 +24529,20 @@ type QOpenGLFramebufferObject_ITF interface {
 	QOpenGLFramebufferObject_PTR() *QOpenGLFramebufferObject
 }
 
-func (p *QOpenGLFramebufferObject) QOpenGLFramebufferObject_PTR() *QOpenGLFramebufferObject {
-	return p
+func (ptr *QOpenGLFramebufferObject) QOpenGLFramebufferObject_PTR() *QOpenGLFramebufferObject {
+	return ptr
 }
 
-func (p *QOpenGLFramebufferObject) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QOpenGLFramebufferObject) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QOpenGLFramebufferObject) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QOpenGLFramebufferObject) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -24479,20 +24567,20 @@ type QOpenGLFramebufferObjectFormat_ITF interface {
 	QOpenGLFramebufferObjectFormat_PTR() *QOpenGLFramebufferObjectFormat
 }
 
-func (p *QOpenGLFramebufferObjectFormat) QOpenGLFramebufferObjectFormat_PTR() *QOpenGLFramebufferObjectFormat {
-	return p
+func (ptr *QOpenGLFramebufferObjectFormat) QOpenGLFramebufferObjectFormat_PTR() *QOpenGLFramebufferObjectFormat {
+	return ptr
 }
 
-func (p *QOpenGLFramebufferObjectFormat) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QOpenGLFramebufferObjectFormat) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QOpenGLFramebufferObjectFormat) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QOpenGLFramebufferObjectFormat) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -24541,20 +24629,20 @@ type QOpenGLFunctions_ITF interface {
 	QOpenGLFunctions_PTR() *QOpenGLFunctions
 }
 
-func (p *QOpenGLFunctions) QOpenGLFunctions_PTR() *QOpenGLFunctions {
-	return p
+func (ptr *QOpenGLFunctions) QOpenGLFunctions_PTR() *QOpenGLFunctions {
+	return ptr
 }
 
-func (p *QOpenGLFunctions) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QOpenGLFunctions) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QOpenGLFunctions) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QOpenGLFunctions) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -24580,20 +24668,20 @@ type QOpenGLFunctions_1_0_ITF interface {
 	QOpenGLFunctions_1_0_PTR() *QOpenGLFunctions_1_0
 }
 
-func (p *QOpenGLFunctions_1_0) QOpenGLFunctions_1_0_PTR() *QOpenGLFunctions_1_0 {
-	return p
+func (ptr *QOpenGLFunctions_1_0) QOpenGLFunctions_1_0_PTR() *QOpenGLFunctions_1_0 {
+	return ptr
 }
 
-func (p *QOpenGLFunctions_1_0) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QAbstractOpenGLFunctions_PTR().Pointer()
+func (ptr *QOpenGLFunctions_1_0) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QAbstractOpenGLFunctions_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QOpenGLFunctions_1_0) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QAbstractOpenGLFunctions_PTR().SetPointer(ptr)
+func (ptr *QOpenGLFunctions_1_0) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QAbstractOpenGLFunctions_PTR().SetPointer(p)
 	}
 }
 
@@ -24619,20 +24707,20 @@ type QOpenGLFunctions_1_1_ITF interface {
 	QOpenGLFunctions_1_1_PTR() *QOpenGLFunctions_1_1
 }
 
-func (p *QOpenGLFunctions_1_1) QOpenGLFunctions_1_1_PTR() *QOpenGLFunctions_1_1 {
-	return p
+func (ptr *QOpenGLFunctions_1_1) QOpenGLFunctions_1_1_PTR() *QOpenGLFunctions_1_1 {
+	return ptr
 }
 
-func (p *QOpenGLFunctions_1_1) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QAbstractOpenGLFunctions_PTR().Pointer()
+func (ptr *QOpenGLFunctions_1_1) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QAbstractOpenGLFunctions_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QOpenGLFunctions_1_1) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QAbstractOpenGLFunctions_PTR().SetPointer(ptr)
+func (ptr *QOpenGLFunctions_1_1) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QAbstractOpenGLFunctions_PTR().SetPointer(p)
 	}
 }
 
@@ -24658,20 +24746,20 @@ type QOpenGLFunctions_1_2_ITF interface {
 	QOpenGLFunctions_1_2_PTR() *QOpenGLFunctions_1_2
 }
 
-func (p *QOpenGLFunctions_1_2) QOpenGLFunctions_1_2_PTR() *QOpenGLFunctions_1_2 {
-	return p
+func (ptr *QOpenGLFunctions_1_2) QOpenGLFunctions_1_2_PTR() *QOpenGLFunctions_1_2 {
+	return ptr
 }
 
-func (p *QOpenGLFunctions_1_2) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QAbstractOpenGLFunctions_PTR().Pointer()
+func (ptr *QOpenGLFunctions_1_2) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QAbstractOpenGLFunctions_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QOpenGLFunctions_1_2) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QAbstractOpenGLFunctions_PTR().SetPointer(ptr)
+func (ptr *QOpenGLFunctions_1_2) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QAbstractOpenGLFunctions_PTR().SetPointer(p)
 	}
 }
 
@@ -24697,20 +24785,20 @@ type QOpenGLFunctions_1_3_ITF interface {
 	QOpenGLFunctions_1_3_PTR() *QOpenGLFunctions_1_3
 }
 
-func (p *QOpenGLFunctions_1_3) QOpenGLFunctions_1_3_PTR() *QOpenGLFunctions_1_3 {
-	return p
+func (ptr *QOpenGLFunctions_1_3) QOpenGLFunctions_1_3_PTR() *QOpenGLFunctions_1_3 {
+	return ptr
 }
 
-func (p *QOpenGLFunctions_1_3) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QAbstractOpenGLFunctions_PTR().Pointer()
+func (ptr *QOpenGLFunctions_1_3) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QAbstractOpenGLFunctions_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QOpenGLFunctions_1_3) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QAbstractOpenGLFunctions_PTR().SetPointer(ptr)
+func (ptr *QOpenGLFunctions_1_3) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QAbstractOpenGLFunctions_PTR().SetPointer(p)
 	}
 }
 
@@ -24736,20 +24824,20 @@ type QOpenGLFunctions_1_4_ITF interface {
 	QOpenGLFunctions_1_4_PTR() *QOpenGLFunctions_1_4
 }
 
-func (p *QOpenGLFunctions_1_4) QOpenGLFunctions_1_4_PTR() *QOpenGLFunctions_1_4 {
-	return p
+func (ptr *QOpenGLFunctions_1_4) QOpenGLFunctions_1_4_PTR() *QOpenGLFunctions_1_4 {
+	return ptr
 }
 
-func (p *QOpenGLFunctions_1_4) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QAbstractOpenGLFunctions_PTR().Pointer()
+func (ptr *QOpenGLFunctions_1_4) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QAbstractOpenGLFunctions_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QOpenGLFunctions_1_4) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QAbstractOpenGLFunctions_PTR().SetPointer(ptr)
+func (ptr *QOpenGLFunctions_1_4) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QAbstractOpenGLFunctions_PTR().SetPointer(p)
 	}
 }
 
@@ -24775,20 +24863,20 @@ type QOpenGLFunctions_1_5_ITF interface {
 	QOpenGLFunctions_1_5_PTR() *QOpenGLFunctions_1_5
 }
 
-func (p *QOpenGLFunctions_1_5) QOpenGLFunctions_1_5_PTR() *QOpenGLFunctions_1_5 {
-	return p
+func (ptr *QOpenGLFunctions_1_5) QOpenGLFunctions_1_5_PTR() *QOpenGLFunctions_1_5 {
+	return ptr
 }
 
-func (p *QOpenGLFunctions_1_5) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QAbstractOpenGLFunctions_PTR().Pointer()
+func (ptr *QOpenGLFunctions_1_5) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QAbstractOpenGLFunctions_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QOpenGLFunctions_1_5) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QAbstractOpenGLFunctions_PTR().SetPointer(ptr)
+func (ptr *QOpenGLFunctions_1_5) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QAbstractOpenGLFunctions_PTR().SetPointer(p)
 	}
 }
 
@@ -24814,20 +24902,20 @@ type QOpenGLFunctions_2_0_ITF interface {
 	QOpenGLFunctions_2_0_PTR() *QOpenGLFunctions_2_0
 }
 
-func (p *QOpenGLFunctions_2_0) QOpenGLFunctions_2_0_PTR() *QOpenGLFunctions_2_0 {
-	return p
+func (ptr *QOpenGLFunctions_2_0) QOpenGLFunctions_2_0_PTR() *QOpenGLFunctions_2_0 {
+	return ptr
 }
 
-func (p *QOpenGLFunctions_2_0) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QAbstractOpenGLFunctions_PTR().Pointer()
+func (ptr *QOpenGLFunctions_2_0) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QAbstractOpenGLFunctions_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QOpenGLFunctions_2_0) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QAbstractOpenGLFunctions_PTR().SetPointer(ptr)
+func (ptr *QOpenGLFunctions_2_0) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QAbstractOpenGLFunctions_PTR().SetPointer(p)
 	}
 }
 
@@ -24853,20 +24941,20 @@ type QOpenGLFunctions_2_1_ITF interface {
 	QOpenGLFunctions_2_1_PTR() *QOpenGLFunctions_2_1
 }
 
-func (p *QOpenGLFunctions_2_1) QOpenGLFunctions_2_1_PTR() *QOpenGLFunctions_2_1 {
-	return p
+func (ptr *QOpenGLFunctions_2_1) QOpenGLFunctions_2_1_PTR() *QOpenGLFunctions_2_1 {
+	return ptr
 }
 
-func (p *QOpenGLFunctions_2_1) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QAbstractOpenGLFunctions_PTR().Pointer()
+func (ptr *QOpenGLFunctions_2_1) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QAbstractOpenGLFunctions_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QOpenGLFunctions_2_1) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QAbstractOpenGLFunctions_PTR().SetPointer(ptr)
+func (ptr *QOpenGLFunctions_2_1) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QAbstractOpenGLFunctions_PTR().SetPointer(p)
 	}
 }
 
@@ -24892,20 +24980,20 @@ type QOpenGLFunctions_3_0_ITF interface {
 	QOpenGLFunctions_3_0_PTR() *QOpenGLFunctions_3_0
 }
 
-func (p *QOpenGLFunctions_3_0) QOpenGLFunctions_3_0_PTR() *QOpenGLFunctions_3_0 {
-	return p
+func (ptr *QOpenGLFunctions_3_0) QOpenGLFunctions_3_0_PTR() *QOpenGLFunctions_3_0 {
+	return ptr
 }
 
-func (p *QOpenGLFunctions_3_0) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QAbstractOpenGLFunctions_PTR().Pointer()
+func (ptr *QOpenGLFunctions_3_0) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QAbstractOpenGLFunctions_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QOpenGLFunctions_3_0) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QAbstractOpenGLFunctions_PTR().SetPointer(ptr)
+func (ptr *QOpenGLFunctions_3_0) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QAbstractOpenGLFunctions_PTR().SetPointer(p)
 	}
 }
 
@@ -24931,20 +25019,20 @@ type QOpenGLFunctions_3_1_ITF interface {
 	QOpenGLFunctions_3_1_PTR() *QOpenGLFunctions_3_1
 }
 
-func (p *QOpenGLFunctions_3_1) QOpenGLFunctions_3_1_PTR() *QOpenGLFunctions_3_1 {
-	return p
+func (ptr *QOpenGLFunctions_3_1) QOpenGLFunctions_3_1_PTR() *QOpenGLFunctions_3_1 {
+	return ptr
 }
 
-func (p *QOpenGLFunctions_3_1) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QAbstractOpenGLFunctions_PTR().Pointer()
+func (ptr *QOpenGLFunctions_3_1) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QAbstractOpenGLFunctions_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QOpenGLFunctions_3_1) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QAbstractOpenGLFunctions_PTR().SetPointer(ptr)
+func (ptr *QOpenGLFunctions_3_1) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QAbstractOpenGLFunctions_PTR().SetPointer(p)
 	}
 }
 
@@ -24970,20 +25058,20 @@ type QOpenGLFunctions_3_2_Compatibility_ITF interface {
 	QOpenGLFunctions_3_2_Compatibility_PTR() *QOpenGLFunctions_3_2_Compatibility
 }
 
-func (p *QOpenGLFunctions_3_2_Compatibility) QOpenGLFunctions_3_2_Compatibility_PTR() *QOpenGLFunctions_3_2_Compatibility {
-	return p
+func (ptr *QOpenGLFunctions_3_2_Compatibility) QOpenGLFunctions_3_2_Compatibility_PTR() *QOpenGLFunctions_3_2_Compatibility {
+	return ptr
 }
 
-func (p *QOpenGLFunctions_3_2_Compatibility) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QAbstractOpenGLFunctions_PTR().Pointer()
+func (ptr *QOpenGLFunctions_3_2_Compatibility) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QAbstractOpenGLFunctions_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QOpenGLFunctions_3_2_Compatibility) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QAbstractOpenGLFunctions_PTR().SetPointer(ptr)
+func (ptr *QOpenGLFunctions_3_2_Compatibility) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QAbstractOpenGLFunctions_PTR().SetPointer(p)
 	}
 }
 
@@ -25009,20 +25097,20 @@ type QOpenGLFunctions_3_2_Core_ITF interface {
 	QOpenGLFunctions_3_2_Core_PTR() *QOpenGLFunctions_3_2_Core
 }
 
-func (p *QOpenGLFunctions_3_2_Core) QOpenGLFunctions_3_2_Core_PTR() *QOpenGLFunctions_3_2_Core {
-	return p
+func (ptr *QOpenGLFunctions_3_2_Core) QOpenGLFunctions_3_2_Core_PTR() *QOpenGLFunctions_3_2_Core {
+	return ptr
 }
 
-func (p *QOpenGLFunctions_3_2_Core) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QAbstractOpenGLFunctions_PTR().Pointer()
+func (ptr *QOpenGLFunctions_3_2_Core) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QAbstractOpenGLFunctions_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QOpenGLFunctions_3_2_Core) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QAbstractOpenGLFunctions_PTR().SetPointer(ptr)
+func (ptr *QOpenGLFunctions_3_2_Core) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QAbstractOpenGLFunctions_PTR().SetPointer(p)
 	}
 }
 
@@ -25048,20 +25136,20 @@ type QOpenGLFunctions_3_3_Compatibility_ITF interface {
 	QOpenGLFunctions_3_3_Compatibility_PTR() *QOpenGLFunctions_3_3_Compatibility
 }
 
-func (p *QOpenGLFunctions_3_3_Compatibility) QOpenGLFunctions_3_3_Compatibility_PTR() *QOpenGLFunctions_3_3_Compatibility {
-	return p
+func (ptr *QOpenGLFunctions_3_3_Compatibility) QOpenGLFunctions_3_3_Compatibility_PTR() *QOpenGLFunctions_3_3_Compatibility {
+	return ptr
 }
 
-func (p *QOpenGLFunctions_3_3_Compatibility) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QAbstractOpenGLFunctions_PTR().Pointer()
+func (ptr *QOpenGLFunctions_3_3_Compatibility) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QAbstractOpenGLFunctions_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QOpenGLFunctions_3_3_Compatibility) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QAbstractOpenGLFunctions_PTR().SetPointer(ptr)
+func (ptr *QOpenGLFunctions_3_3_Compatibility) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QAbstractOpenGLFunctions_PTR().SetPointer(p)
 	}
 }
 
@@ -25087,20 +25175,20 @@ type QOpenGLFunctions_3_3_Core_ITF interface {
 	QOpenGLFunctions_3_3_Core_PTR() *QOpenGLFunctions_3_3_Core
 }
 
-func (p *QOpenGLFunctions_3_3_Core) QOpenGLFunctions_3_3_Core_PTR() *QOpenGLFunctions_3_3_Core {
-	return p
+func (ptr *QOpenGLFunctions_3_3_Core) QOpenGLFunctions_3_3_Core_PTR() *QOpenGLFunctions_3_3_Core {
+	return ptr
 }
 
-func (p *QOpenGLFunctions_3_3_Core) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QAbstractOpenGLFunctions_PTR().Pointer()
+func (ptr *QOpenGLFunctions_3_3_Core) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QAbstractOpenGLFunctions_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QOpenGLFunctions_3_3_Core) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QAbstractOpenGLFunctions_PTR().SetPointer(ptr)
+func (ptr *QOpenGLFunctions_3_3_Core) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QAbstractOpenGLFunctions_PTR().SetPointer(p)
 	}
 }
 
@@ -25126,20 +25214,20 @@ type QOpenGLFunctions_4_0_Compatibility_ITF interface {
 	QOpenGLFunctions_4_0_Compatibility_PTR() *QOpenGLFunctions_4_0_Compatibility
 }
 
-func (p *QOpenGLFunctions_4_0_Compatibility) QOpenGLFunctions_4_0_Compatibility_PTR() *QOpenGLFunctions_4_0_Compatibility {
-	return p
+func (ptr *QOpenGLFunctions_4_0_Compatibility) QOpenGLFunctions_4_0_Compatibility_PTR() *QOpenGLFunctions_4_0_Compatibility {
+	return ptr
 }
 
-func (p *QOpenGLFunctions_4_0_Compatibility) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QAbstractOpenGLFunctions_PTR().Pointer()
+func (ptr *QOpenGLFunctions_4_0_Compatibility) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QAbstractOpenGLFunctions_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QOpenGLFunctions_4_0_Compatibility) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QAbstractOpenGLFunctions_PTR().SetPointer(ptr)
+func (ptr *QOpenGLFunctions_4_0_Compatibility) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QAbstractOpenGLFunctions_PTR().SetPointer(p)
 	}
 }
 
@@ -25165,20 +25253,20 @@ type QOpenGLFunctions_4_0_Core_ITF interface {
 	QOpenGLFunctions_4_0_Core_PTR() *QOpenGLFunctions_4_0_Core
 }
 
-func (p *QOpenGLFunctions_4_0_Core) QOpenGLFunctions_4_0_Core_PTR() *QOpenGLFunctions_4_0_Core {
-	return p
+func (ptr *QOpenGLFunctions_4_0_Core) QOpenGLFunctions_4_0_Core_PTR() *QOpenGLFunctions_4_0_Core {
+	return ptr
 }
 
-func (p *QOpenGLFunctions_4_0_Core) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QAbstractOpenGLFunctions_PTR().Pointer()
+func (ptr *QOpenGLFunctions_4_0_Core) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QAbstractOpenGLFunctions_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QOpenGLFunctions_4_0_Core) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QAbstractOpenGLFunctions_PTR().SetPointer(ptr)
+func (ptr *QOpenGLFunctions_4_0_Core) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QAbstractOpenGLFunctions_PTR().SetPointer(p)
 	}
 }
 
@@ -25204,20 +25292,20 @@ type QOpenGLFunctions_4_1_Compatibility_ITF interface {
 	QOpenGLFunctions_4_1_Compatibility_PTR() *QOpenGLFunctions_4_1_Compatibility
 }
 
-func (p *QOpenGLFunctions_4_1_Compatibility) QOpenGLFunctions_4_1_Compatibility_PTR() *QOpenGLFunctions_4_1_Compatibility {
-	return p
+func (ptr *QOpenGLFunctions_4_1_Compatibility) QOpenGLFunctions_4_1_Compatibility_PTR() *QOpenGLFunctions_4_1_Compatibility {
+	return ptr
 }
 
-func (p *QOpenGLFunctions_4_1_Compatibility) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QAbstractOpenGLFunctions_PTR().Pointer()
+func (ptr *QOpenGLFunctions_4_1_Compatibility) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QAbstractOpenGLFunctions_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QOpenGLFunctions_4_1_Compatibility) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QAbstractOpenGLFunctions_PTR().SetPointer(ptr)
+func (ptr *QOpenGLFunctions_4_1_Compatibility) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QAbstractOpenGLFunctions_PTR().SetPointer(p)
 	}
 }
 
@@ -25243,20 +25331,20 @@ type QOpenGLFunctions_4_1_Core_ITF interface {
 	QOpenGLFunctions_4_1_Core_PTR() *QOpenGLFunctions_4_1_Core
 }
 
-func (p *QOpenGLFunctions_4_1_Core) QOpenGLFunctions_4_1_Core_PTR() *QOpenGLFunctions_4_1_Core {
-	return p
+func (ptr *QOpenGLFunctions_4_1_Core) QOpenGLFunctions_4_1_Core_PTR() *QOpenGLFunctions_4_1_Core {
+	return ptr
 }
 
-func (p *QOpenGLFunctions_4_1_Core) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QAbstractOpenGLFunctions_PTR().Pointer()
+func (ptr *QOpenGLFunctions_4_1_Core) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QAbstractOpenGLFunctions_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QOpenGLFunctions_4_1_Core) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QAbstractOpenGLFunctions_PTR().SetPointer(ptr)
+func (ptr *QOpenGLFunctions_4_1_Core) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QAbstractOpenGLFunctions_PTR().SetPointer(p)
 	}
 }
 
@@ -25282,20 +25370,20 @@ type QOpenGLFunctions_4_2_Compatibility_ITF interface {
 	QOpenGLFunctions_4_2_Compatibility_PTR() *QOpenGLFunctions_4_2_Compatibility
 }
 
-func (p *QOpenGLFunctions_4_2_Compatibility) QOpenGLFunctions_4_2_Compatibility_PTR() *QOpenGLFunctions_4_2_Compatibility {
-	return p
+func (ptr *QOpenGLFunctions_4_2_Compatibility) QOpenGLFunctions_4_2_Compatibility_PTR() *QOpenGLFunctions_4_2_Compatibility {
+	return ptr
 }
 
-func (p *QOpenGLFunctions_4_2_Compatibility) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QAbstractOpenGLFunctions_PTR().Pointer()
+func (ptr *QOpenGLFunctions_4_2_Compatibility) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QAbstractOpenGLFunctions_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QOpenGLFunctions_4_2_Compatibility) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QAbstractOpenGLFunctions_PTR().SetPointer(ptr)
+func (ptr *QOpenGLFunctions_4_2_Compatibility) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QAbstractOpenGLFunctions_PTR().SetPointer(p)
 	}
 }
 
@@ -25321,20 +25409,20 @@ type QOpenGLFunctions_4_2_Core_ITF interface {
 	QOpenGLFunctions_4_2_Core_PTR() *QOpenGLFunctions_4_2_Core
 }
 
-func (p *QOpenGLFunctions_4_2_Core) QOpenGLFunctions_4_2_Core_PTR() *QOpenGLFunctions_4_2_Core {
-	return p
+func (ptr *QOpenGLFunctions_4_2_Core) QOpenGLFunctions_4_2_Core_PTR() *QOpenGLFunctions_4_2_Core {
+	return ptr
 }
 
-func (p *QOpenGLFunctions_4_2_Core) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QAbstractOpenGLFunctions_PTR().Pointer()
+func (ptr *QOpenGLFunctions_4_2_Core) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QAbstractOpenGLFunctions_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QOpenGLFunctions_4_2_Core) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QAbstractOpenGLFunctions_PTR().SetPointer(ptr)
+func (ptr *QOpenGLFunctions_4_2_Core) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QAbstractOpenGLFunctions_PTR().SetPointer(p)
 	}
 }
 
@@ -25360,20 +25448,20 @@ type QOpenGLFunctions_4_3_Compatibility_ITF interface {
 	QOpenGLFunctions_4_3_Compatibility_PTR() *QOpenGLFunctions_4_3_Compatibility
 }
 
-func (p *QOpenGLFunctions_4_3_Compatibility) QOpenGLFunctions_4_3_Compatibility_PTR() *QOpenGLFunctions_4_3_Compatibility {
-	return p
+func (ptr *QOpenGLFunctions_4_3_Compatibility) QOpenGLFunctions_4_3_Compatibility_PTR() *QOpenGLFunctions_4_3_Compatibility {
+	return ptr
 }
 
-func (p *QOpenGLFunctions_4_3_Compatibility) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QAbstractOpenGLFunctions_PTR().Pointer()
+func (ptr *QOpenGLFunctions_4_3_Compatibility) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QAbstractOpenGLFunctions_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QOpenGLFunctions_4_3_Compatibility) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QAbstractOpenGLFunctions_PTR().SetPointer(ptr)
+func (ptr *QOpenGLFunctions_4_3_Compatibility) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QAbstractOpenGLFunctions_PTR().SetPointer(p)
 	}
 }
 
@@ -25399,20 +25487,20 @@ type QOpenGLFunctions_4_3_Core_ITF interface {
 	QOpenGLFunctions_4_3_Core_PTR() *QOpenGLFunctions_4_3_Core
 }
 
-func (p *QOpenGLFunctions_4_3_Core) QOpenGLFunctions_4_3_Core_PTR() *QOpenGLFunctions_4_3_Core {
-	return p
+func (ptr *QOpenGLFunctions_4_3_Core) QOpenGLFunctions_4_3_Core_PTR() *QOpenGLFunctions_4_3_Core {
+	return ptr
 }
 
-func (p *QOpenGLFunctions_4_3_Core) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QAbstractOpenGLFunctions_PTR().Pointer()
+func (ptr *QOpenGLFunctions_4_3_Core) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QAbstractOpenGLFunctions_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QOpenGLFunctions_4_3_Core) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QAbstractOpenGLFunctions_PTR().SetPointer(ptr)
+func (ptr *QOpenGLFunctions_4_3_Core) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QAbstractOpenGLFunctions_PTR().SetPointer(p)
 	}
 }
 
@@ -25438,20 +25526,20 @@ type QOpenGLFunctions_4_4_Compatibility_ITF interface {
 	QOpenGLFunctions_4_4_Compatibility_PTR() *QOpenGLFunctions_4_4_Compatibility
 }
 
-func (p *QOpenGLFunctions_4_4_Compatibility) QOpenGLFunctions_4_4_Compatibility_PTR() *QOpenGLFunctions_4_4_Compatibility {
-	return p
+func (ptr *QOpenGLFunctions_4_4_Compatibility) QOpenGLFunctions_4_4_Compatibility_PTR() *QOpenGLFunctions_4_4_Compatibility {
+	return ptr
 }
 
-func (p *QOpenGLFunctions_4_4_Compatibility) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QAbstractOpenGLFunctions_PTR().Pointer()
+func (ptr *QOpenGLFunctions_4_4_Compatibility) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QAbstractOpenGLFunctions_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QOpenGLFunctions_4_4_Compatibility) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QAbstractOpenGLFunctions_PTR().SetPointer(ptr)
+func (ptr *QOpenGLFunctions_4_4_Compatibility) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QAbstractOpenGLFunctions_PTR().SetPointer(p)
 	}
 }
 
@@ -25477,20 +25565,20 @@ type QOpenGLFunctions_4_4_Core_ITF interface {
 	QOpenGLFunctions_4_4_Core_PTR() *QOpenGLFunctions_4_4_Core
 }
 
-func (p *QOpenGLFunctions_4_4_Core) QOpenGLFunctions_4_4_Core_PTR() *QOpenGLFunctions_4_4_Core {
-	return p
+func (ptr *QOpenGLFunctions_4_4_Core) QOpenGLFunctions_4_4_Core_PTR() *QOpenGLFunctions_4_4_Core {
+	return ptr
 }
 
-func (p *QOpenGLFunctions_4_4_Core) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QAbstractOpenGLFunctions_PTR().Pointer()
+func (ptr *QOpenGLFunctions_4_4_Core) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QAbstractOpenGLFunctions_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QOpenGLFunctions_4_4_Core) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QAbstractOpenGLFunctions_PTR().SetPointer(ptr)
+func (ptr *QOpenGLFunctions_4_4_Core) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QAbstractOpenGLFunctions_PTR().SetPointer(p)
 	}
 }
 
@@ -25516,20 +25604,20 @@ type QOpenGLFunctions_4_5_Compatibility_ITF interface {
 	QOpenGLFunctions_4_5_Compatibility_PTR() *QOpenGLFunctions_4_5_Compatibility
 }
 
-func (p *QOpenGLFunctions_4_5_Compatibility) QOpenGLFunctions_4_5_Compatibility_PTR() *QOpenGLFunctions_4_5_Compatibility {
-	return p
+func (ptr *QOpenGLFunctions_4_5_Compatibility) QOpenGLFunctions_4_5_Compatibility_PTR() *QOpenGLFunctions_4_5_Compatibility {
+	return ptr
 }
 
-func (p *QOpenGLFunctions_4_5_Compatibility) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QAbstractOpenGLFunctions_PTR().Pointer()
+func (ptr *QOpenGLFunctions_4_5_Compatibility) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QAbstractOpenGLFunctions_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QOpenGLFunctions_4_5_Compatibility) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QAbstractOpenGLFunctions_PTR().SetPointer(ptr)
+func (ptr *QOpenGLFunctions_4_5_Compatibility) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QAbstractOpenGLFunctions_PTR().SetPointer(p)
 	}
 }
 
@@ -25555,20 +25643,20 @@ type QOpenGLFunctions_4_5_Core_ITF interface {
 	QOpenGLFunctions_4_5_Core_PTR() *QOpenGLFunctions_4_5_Core
 }
 
-func (p *QOpenGLFunctions_4_5_Core) QOpenGLFunctions_4_5_Core_PTR() *QOpenGLFunctions_4_5_Core {
-	return p
+func (ptr *QOpenGLFunctions_4_5_Core) QOpenGLFunctions_4_5_Core_PTR() *QOpenGLFunctions_4_5_Core {
+	return ptr
 }
 
-func (p *QOpenGLFunctions_4_5_Core) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QAbstractOpenGLFunctions_PTR().Pointer()
+func (ptr *QOpenGLFunctions_4_5_Core) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QAbstractOpenGLFunctions_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QOpenGLFunctions_4_5_Core) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QAbstractOpenGLFunctions_PTR().SetPointer(ptr)
+func (ptr *QOpenGLFunctions_4_5_Core) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QAbstractOpenGLFunctions_PTR().SetPointer(p)
 	}
 }
 
@@ -25594,20 +25682,20 @@ type QOpenGLFunctions_ES2_ITF interface {
 	QOpenGLFunctions_ES2_PTR() *QOpenGLFunctions_ES2
 }
 
-func (p *QOpenGLFunctions_ES2) QOpenGLFunctions_ES2_PTR() *QOpenGLFunctions_ES2 {
-	return p
+func (ptr *QOpenGLFunctions_ES2) QOpenGLFunctions_ES2_PTR() *QOpenGLFunctions_ES2 {
+	return ptr
 }
 
-func (p *QOpenGLFunctions_ES2) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QAbstractOpenGLFunctions_PTR().Pointer()
+func (ptr *QOpenGLFunctions_ES2) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QAbstractOpenGLFunctions_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QOpenGLFunctions_ES2) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QAbstractOpenGLFunctions_PTR().SetPointer(ptr)
+func (ptr *QOpenGLFunctions_ES2) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QAbstractOpenGLFunctions_PTR().SetPointer(p)
 	}
 }
 
@@ -25633,20 +25721,20 @@ type QOpenGLPaintDevice_ITF interface {
 	QOpenGLPaintDevice_PTR() *QOpenGLPaintDevice
 }
 
-func (p *QOpenGLPaintDevice) QOpenGLPaintDevice_PTR() *QOpenGLPaintDevice {
-	return p
+func (ptr *QOpenGLPaintDevice) QOpenGLPaintDevice_PTR() *QOpenGLPaintDevice {
+	return ptr
 }
 
-func (p *QOpenGLPaintDevice) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QPaintDevice_PTR().Pointer()
+func (ptr *QOpenGLPaintDevice) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QPaintDevice_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QOpenGLPaintDevice) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QPaintDevice_PTR().SetPointer(ptr)
+func (ptr *QOpenGLPaintDevice) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QPaintDevice_PTR().SetPointer(p)
 	}
 }
 
@@ -25671,20 +25759,20 @@ type QOpenGLPixelTransferOptions_ITF interface {
 	QOpenGLPixelTransferOptions_PTR() *QOpenGLPixelTransferOptions
 }
 
-func (p *QOpenGLPixelTransferOptions) QOpenGLPixelTransferOptions_PTR() *QOpenGLPixelTransferOptions {
-	return p
+func (ptr *QOpenGLPixelTransferOptions) QOpenGLPixelTransferOptions_PTR() *QOpenGLPixelTransferOptions {
+	return ptr
 }
 
-func (p *QOpenGLPixelTransferOptions) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QOpenGLPixelTransferOptions) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QOpenGLPixelTransferOptions) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QOpenGLPixelTransferOptions) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -25723,20 +25811,20 @@ type QOpenGLShader_ITF interface {
 	QOpenGLShader_PTR() *QOpenGLShader
 }
 
-func (p *QOpenGLShader) QOpenGLShader_PTR() *QOpenGLShader {
-	return p
+func (ptr *QOpenGLShader) QOpenGLShader_PTR() *QOpenGLShader {
+	return ptr
 }
 
-func (p *QOpenGLShader) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QObject_PTR().Pointer()
+func (ptr *QOpenGLShader) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QObject_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QOpenGLShader) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QObject_PTR().SetPointer(ptr)
+func (ptr *QOpenGLShader) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QObject_PTR().SetPointer(p)
 	}
 }
 
@@ -25762,20 +25850,20 @@ type QOpenGLShaderProgram_ITF interface {
 	QOpenGLShaderProgram_PTR() *QOpenGLShaderProgram
 }
 
-func (p *QOpenGLShaderProgram) QOpenGLShaderProgram_PTR() *QOpenGLShaderProgram {
-	return p
+func (ptr *QOpenGLShaderProgram) QOpenGLShaderProgram_PTR() *QOpenGLShaderProgram {
+	return ptr
 }
 
-func (p *QOpenGLShaderProgram) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QObject_PTR().Pointer()
+func (ptr *QOpenGLShaderProgram) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QObject_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QOpenGLShaderProgram) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QObject_PTR().SetPointer(ptr)
+func (ptr *QOpenGLShaderProgram) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QObject_PTR().SetPointer(p)
 	}
 }
 
@@ -26145,20 +26233,20 @@ type QOpenGLTexture_ITF interface {
 	QOpenGLTexture_PTR() *QOpenGLTexture
 }
 
-func (p *QOpenGLTexture) QOpenGLTexture_PTR() *QOpenGLTexture {
-	return p
+func (ptr *QOpenGLTexture) QOpenGLTexture_PTR() *QOpenGLTexture {
+	return ptr
 }
 
-func (p *QOpenGLTexture) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QOpenGLTexture) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QOpenGLTexture) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QOpenGLTexture) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -26184,20 +26272,20 @@ type QOpenGLTimeMonitor_ITF interface {
 	QOpenGLTimeMonitor_PTR() *QOpenGLTimeMonitor
 }
 
-func (p *QOpenGLTimeMonitor) QOpenGLTimeMonitor_PTR() *QOpenGLTimeMonitor {
-	return p
+func (ptr *QOpenGLTimeMonitor) QOpenGLTimeMonitor_PTR() *QOpenGLTimeMonitor {
+	return ptr
 }
 
-func (p *QOpenGLTimeMonitor) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QObject_PTR().Pointer()
+func (ptr *QOpenGLTimeMonitor) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QObject_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QOpenGLTimeMonitor) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QObject_PTR().SetPointer(ptr)
+func (ptr *QOpenGLTimeMonitor) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QObject_PTR().SetPointer(p)
 	}
 }
 
@@ -26223,20 +26311,20 @@ type QOpenGLTimerQuery_ITF interface {
 	QOpenGLTimerQuery_PTR() *QOpenGLTimerQuery
 }
 
-func (p *QOpenGLTimerQuery) QOpenGLTimerQuery_PTR() *QOpenGLTimerQuery {
-	return p
+func (ptr *QOpenGLTimerQuery) QOpenGLTimerQuery_PTR() *QOpenGLTimerQuery {
+	return ptr
 }
 
-func (p *QOpenGLTimerQuery) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QObject_PTR().Pointer()
+func (ptr *QOpenGLTimerQuery) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QObject_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QOpenGLTimerQuery) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QObject_PTR().SetPointer(ptr)
+func (ptr *QOpenGLTimerQuery) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QObject_PTR().SetPointer(p)
 	}
 }
 
@@ -26261,20 +26349,20 @@ type QOpenGLVersionProfile_ITF interface {
 	QOpenGLVersionProfile_PTR() *QOpenGLVersionProfile
 }
 
-func (p *QOpenGLVersionProfile) QOpenGLVersionProfile_PTR() *QOpenGLVersionProfile {
-	return p
+func (ptr *QOpenGLVersionProfile) QOpenGLVersionProfile_PTR() *QOpenGLVersionProfile {
+	return ptr
 }
 
-func (p *QOpenGLVersionProfile) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QOpenGLVersionProfile) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QOpenGLVersionProfile) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QOpenGLVersionProfile) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -26300,20 +26388,20 @@ type QOpenGLVertexArrayObject_ITF interface {
 	QOpenGLVertexArrayObject_PTR() *QOpenGLVertexArrayObject
 }
 
-func (p *QOpenGLVertexArrayObject) QOpenGLVertexArrayObject_PTR() *QOpenGLVertexArrayObject {
-	return p
+func (ptr *QOpenGLVertexArrayObject) QOpenGLVertexArrayObject_PTR() *QOpenGLVertexArrayObject {
+	return ptr
 }
 
-func (p *QOpenGLVertexArrayObject) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QObject_PTR().Pointer()
+func (ptr *QOpenGLVertexArrayObject) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QObject_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QOpenGLVertexArrayObject) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QObject_PTR().SetPointer(ptr)
+func (ptr *QOpenGLVertexArrayObject) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QObject_PTR().SetPointer(p)
 	}
 }
 
@@ -26349,20 +26437,20 @@ type QOpenGLWindow_ITF interface {
 	QOpenGLWindow_PTR() *QOpenGLWindow
 }
 
-func (p *QOpenGLWindow) QOpenGLWindow_PTR() *QOpenGLWindow {
-	return p
+func (ptr *QOpenGLWindow) QOpenGLWindow_PTR() *QOpenGLWindow {
+	return ptr
 }
 
-func (p *QOpenGLWindow) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QPaintDeviceWindow_PTR().Pointer()
+func (ptr *QOpenGLWindow) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QPaintDeviceWindow_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QOpenGLWindow) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QPaintDeviceWindow_PTR().SetPointer(ptr)
+func (ptr *QOpenGLWindow) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QPaintDeviceWindow_PTR().SetPointer(p)
 	}
 }
 
@@ -26418,20 +26506,20 @@ type QPageLayout_ITF interface {
 	QPageLayout_PTR() *QPageLayout
 }
 
-func (p *QPageLayout) QPageLayout_PTR() *QPageLayout {
-	return p
+func (ptr *QPageLayout) QPageLayout_PTR() *QPageLayout {
+	return ptr
 }
 
-func (p *QPageLayout) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QPageLayout) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QPageLayout) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QPageLayout) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -26878,20 +26966,20 @@ type QPageSize_ITF interface {
 	QPageSize_PTR() *QPageSize
 }
 
-func (p *QPageSize) QPageSize_PTR() *QPageSize {
-	return p
+func (ptr *QPageSize) QPageSize_PTR() *QPageSize {
+	return ptr
 }
 
-func (p *QPageSize) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QPageSize) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QPageSize) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QPageSize) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -27313,20 +27401,20 @@ type QPagedPaintDevice_ITF interface {
 	QPagedPaintDevice_PTR() *QPagedPaintDevice
 }
 
-func (p *QPagedPaintDevice) QPagedPaintDevice_PTR() *QPagedPaintDevice {
-	return p
+func (ptr *QPagedPaintDevice) QPagedPaintDevice_PTR() *QPagedPaintDevice {
+	return ptr
 }
 
-func (p *QPagedPaintDevice) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QPaintDevice_PTR().Pointer()
+func (ptr *QPagedPaintDevice) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QPaintDevice_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QPagedPaintDevice) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QPaintDevice_PTR().SetPointer(ptr)
+func (ptr *QPagedPaintDevice) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QPaintDevice_PTR().SetPointer(p)
 	}
 }
 
@@ -27620,20 +27708,20 @@ type QPaintDevice_ITF interface {
 	QPaintDevice_PTR() *QPaintDevice
 }
 
-func (p *QPaintDevice) QPaintDevice_PTR() *QPaintDevice {
-	return p
+func (ptr *QPaintDevice) QPaintDevice_PTR() *QPaintDevice {
+	return ptr
 }
 
-func (p *QPaintDevice) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QPaintDevice) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QPaintDevice) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QPaintDevice) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -27877,21 +27965,21 @@ type QPaintDeviceWindow_ITF interface {
 	QPaintDeviceWindow_PTR() *QPaintDeviceWindow
 }
 
-func (p *QPaintDeviceWindow) QPaintDeviceWindow_PTR() *QPaintDeviceWindow {
-	return p
+func (ptr *QPaintDeviceWindow) QPaintDeviceWindow_PTR() *QPaintDeviceWindow {
+	return ptr
 }
 
-func (p *QPaintDeviceWindow) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QWindow_PTR().Pointer()
+func (ptr *QPaintDeviceWindow) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QWindow_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QPaintDeviceWindow) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QWindow_PTR().SetPointer(ptr)
-		p.QPaintDevice_PTR().SetPointer(ptr)
+func (ptr *QPaintDeviceWindow) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QWindow_PTR().SetPointer(p)
+		ptr.QPaintDevice_PTR().SetPointer(p)
 	}
 }
 
@@ -27909,9 +27997,11 @@ func NewQPaintDeviceWindowFromPointer(ptr unsafe.Pointer) *QPaintDeviceWindow {
 }
 
 func (ptr *QPaintDeviceWindow) DestroyQPaintDeviceWindow() {
-	C.free(ptr.Pointer())
-	qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
-	ptr.SetPointer(nil)
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
+		ptr.SetPointer(nil)
+	}
 }
 
 //export callbackQPaintDeviceWindow_PaintEvent
@@ -30051,20 +30141,20 @@ type QPaintEngine_ITF interface {
 	QPaintEngine_PTR() *QPaintEngine
 }
 
-func (p *QPaintEngine) QPaintEngine_PTR() *QPaintEngine {
-	return p
+func (ptr *QPaintEngine) QPaintEngine_PTR() *QPaintEngine {
+	return ptr
 }
 
-func (p *QPaintEngine) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QPaintEngine) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QPaintEngine) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QPaintEngine) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -30848,20 +30938,20 @@ type QPaintEngineState_ITF interface {
 	QPaintEngineState_PTR() *QPaintEngineState
 }
 
-func (p *QPaintEngineState) QPaintEngineState_PTR() *QPaintEngineState {
-	return p
+func (ptr *QPaintEngineState) QPaintEngineState_PTR() *QPaintEngineState {
+	return ptr
 }
 
-func (p *QPaintEngineState) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QPaintEngineState) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QPaintEngineState) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QPaintEngineState) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -30879,8 +30969,10 @@ func NewQPaintEngineStateFromPointer(ptr unsafe.Pointer) *QPaintEngineState {
 }
 
 func (ptr *QPaintEngineState) DestroyQPaintEngineState() {
-	C.free(ptr.Pointer())
-	ptr.SetPointer(nil)
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
 }
 
 func (ptr *QPaintEngineState) BackgroundBrush() *QBrush {
@@ -31047,20 +31139,20 @@ type QPaintEvent_ITF interface {
 	QPaintEvent_PTR() *QPaintEvent
 }
 
-func (p *QPaintEvent) QPaintEvent_PTR() *QPaintEvent {
-	return p
+func (ptr *QPaintEvent) QPaintEvent_PTR() *QPaintEvent {
+	return ptr
 }
 
-func (p *QPaintEvent) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QEvent_PTR().Pointer()
+func (ptr *QPaintEvent) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QEvent_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QPaintEvent) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QEvent_PTR().SetPointer(ptr)
+func (ptr *QPaintEvent) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QEvent_PTR().SetPointer(p)
 	}
 }
 
@@ -31078,8 +31170,10 @@ func NewQPaintEventFromPointer(ptr unsafe.Pointer) *QPaintEvent {
 }
 
 func (ptr *QPaintEvent) DestroyQPaintEvent() {
-	C.free(ptr.Pointer())
-	ptr.SetPointer(nil)
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
 }
 
 func NewQPaintEvent2(paintRect core.QRect_ITF) *QPaintEvent {
@@ -31225,20 +31319,20 @@ type QPainter_ITF interface {
 	QPainter_PTR() *QPainter
 }
 
-func (p *QPainter) QPainter_PTR() *QPainter {
-	return p
+func (ptr *QPainter) QPainter_PTR() *QPainter {
+	return ptr
 }
 
-func (p *QPainter) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QPainter) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QPainter) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QPainter) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -32454,20 +32548,20 @@ type QPainterPath_ITF interface {
 	QPainterPath_PTR() *QPainterPath
 }
 
-func (p *QPainterPath) QPainterPath_PTR() *QPainterPath {
-	return p
+func (ptr *QPainterPath) QPainterPath_PTR() *QPainterPath {
+	return ptr
 }
 
-func (p *QPainterPath) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QPainterPath) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QPainterPath) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QPainterPath) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -32942,20 +33036,20 @@ type QPainterPathStroker_ITF interface {
 	QPainterPathStroker_PTR() *QPainterPathStroker
 }
 
-func (p *QPainterPathStroker) QPainterPathStroker_PTR() *QPainterPathStroker {
-	return p
+func (ptr *QPainterPathStroker) QPainterPathStroker_PTR() *QPainterPathStroker {
+	return ptr
 }
 
-func (p *QPainterPathStroker) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QPainterPathStroker) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QPainterPathStroker) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QPainterPathStroker) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -33135,20 +33229,20 @@ type QPalette_ITF interface {
 	QPalette_PTR() *QPalette
 }
 
-func (p *QPalette) QPalette_PTR() *QPalette {
-	return p
+func (ptr *QPalette) QPalette_PTR() *QPalette {
+	return ptr
 }
 
-func (p *QPalette) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QPalette) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QPalette) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QPalette) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -33479,20 +33573,20 @@ type QPdf_ITF interface {
 	QPdf_PTR() *QPdf
 }
 
-func (p *QPdf) QPdf_PTR() *QPdf {
-	return p
+func (ptr *QPdf) QPdf_PTR() *QPdf {
+	return ptr
 }
 
-func (p *QPdf) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QPdf) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QPdf) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QPdf) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -33510,8 +33604,10 @@ func NewQPdfFromPointer(ptr unsafe.Pointer) *QPdf {
 }
 
 func (ptr *QPdf) DestroyQPdf() {
-	C.free(ptr.Pointer())
-	ptr.SetPointer(nil)
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
 }
 
 type QPdfWriter struct {
@@ -33525,21 +33621,21 @@ type QPdfWriter_ITF interface {
 	QPdfWriter_PTR() *QPdfWriter
 }
 
-func (p *QPdfWriter) QPdfWriter_PTR() *QPdfWriter {
-	return p
+func (ptr *QPdfWriter) QPdfWriter_PTR() *QPdfWriter {
+	return ptr
 }
 
-func (p *QPdfWriter) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QObject_PTR().Pointer()
+func (ptr *QPdfWriter) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QObject_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QPdfWriter) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QObject_PTR().SetPointer(ptr)
-		p.QPagedPaintDevice_PTR().SetPointer(ptr)
+func (ptr *QPdfWriter) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QObject_PTR().SetPointer(p)
+		ptr.QPagedPaintDevice_PTR().SetPointer(p)
 	}
 }
 
@@ -34233,20 +34329,20 @@ type QPen_ITF interface {
 	QPen_PTR() *QPen
 }
 
-func (p *QPen) QPen_PTR() *QPen {
-	return p
+func (ptr *QPen) QPen_PTR() *QPen {
+	return ptr
 }
 
-func (p *QPen) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QPen) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QPen) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QPen) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -34461,20 +34557,20 @@ type QPicture_ITF interface {
 	QPicture_PTR() *QPicture
 }
 
-func (p *QPicture) QPicture_PTR() *QPicture {
-	return p
+func (ptr *QPicture) QPicture_PTR() *QPicture {
+	return ptr
 }
 
-func (p *QPicture) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QPaintDevice_PTR().Pointer()
+func (ptr *QPicture) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QPaintDevice_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QPicture) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QPaintDevice_PTR().SetPointer(ptr)
+func (ptr *QPicture) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QPaintDevice_PTR().SetPointer(p)
 	}
 }
 
@@ -34824,20 +34920,20 @@ type QPixelFormat_ITF interface {
 	QPixelFormat_PTR() *QPixelFormat
 }
 
-func (p *QPixelFormat) QPixelFormat_PTR() *QPixelFormat {
-	return p
+func (ptr *QPixelFormat) QPixelFormat_PTR() *QPixelFormat {
+	return ptr
 }
 
-func (p *QPixelFormat) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QPixelFormat) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QPixelFormat) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QPixelFormat) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -34855,8 +34951,10 @@ func NewQPixelFormatFromPointer(ptr unsafe.Pointer) *QPixelFormat {
 }
 
 func (ptr *QPixelFormat) DestroyQPixelFormat() {
-	C.free(ptr.Pointer())
-	ptr.SetPointer(nil)
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
 }
 
 func NewQPixelFormat() *QPixelFormat {
@@ -35041,20 +35139,20 @@ type QPixmap_ITF interface {
 	QPixmap_PTR() *QPixmap
 }
 
-func (p *QPixmap) QPixmap_PTR() *QPixmap {
-	return p
+func (ptr *QPixmap) QPixmap_PTR() *QPixmap {
+	return ptr
 }
 
-func (p *QPixmap) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QPaintDevice_PTR().Pointer()
+func (ptr *QPixmap) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QPaintDevice_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QPixmap) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QPaintDevice_PTR().SetPointer(ptr)
+func (ptr *QPixmap) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QPaintDevice_PTR().SetPointer(p)
 	}
 }
 
@@ -35531,20 +35629,20 @@ type QPixmapCache_ITF interface {
 	QPixmapCache_PTR() *QPixmapCache
 }
 
-func (p *QPixmapCache) QPixmapCache_PTR() *QPixmapCache {
-	return p
+func (ptr *QPixmapCache) QPixmapCache_PTR() *QPixmapCache {
+	return ptr
 }
 
-func (p *QPixmapCache) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QPixmapCache) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QPixmapCache) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QPixmapCache) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -35562,8 +35660,10 @@ func NewQPixmapCacheFromPointer(ptr unsafe.Pointer) *QPixmapCache {
 }
 
 func (ptr *QPixmapCache) DestroyQPixmapCache() {
-	C.free(ptr.Pointer())
-	ptr.SetPointer(nil)
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
 }
 
 func QPixmapCache_CacheLimit() int {
@@ -35656,20 +35756,20 @@ type QPlatformGraphicsBuffer_ITF interface {
 	QPlatformGraphicsBuffer_PTR() *QPlatformGraphicsBuffer
 }
 
-func (p *QPlatformGraphicsBuffer) QPlatformGraphicsBuffer_PTR() *QPlatformGraphicsBuffer {
-	return p
+func (ptr *QPlatformGraphicsBuffer) QPlatformGraphicsBuffer_PTR() *QPlatformGraphicsBuffer {
+	return ptr
 }
 
-func (p *QPlatformGraphicsBuffer) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QObject_PTR().Pointer()
+func (ptr *QPlatformGraphicsBuffer) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QObject_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QPlatformGraphicsBuffer) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QObject_PTR().SetPointer(ptr)
+func (ptr *QPlatformGraphicsBuffer) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QObject_PTR().SetPointer(p)
 	}
 }
 
@@ -35704,20 +35804,20 @@ type QPlatformSurfaceEvent_ITF interface {
 	QPlatformSurfaceEvent_PTR() *QPlatformSurfaceEvent
 }
 
-func (p *QPlatformSurfaceEvent) QPlatformSurfaceEvent_PTR() *QPlatformSurfaceEvent {
-	return p
+func (ptr *QPlatformSurfaceEvent) QPlatformSurfaceEvent_PTR() *QPlatformSurfaceEvent {
+	return ptr
 }
 
-func (p *QPlatformSurfaceEvent) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QEvent_PTR().Pointer()
+func (ptr *QPlatformSurfaceEvent) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QEvent_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QPlatformSurfaceEvent) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QEvent_PTR().SetPointer(ptr)
+func (ptr *QPlatformSurfaceEvent) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QEvent_PTR().SetPointer(p)
 	}
 }
 
@@ -35735,8 +35835,10 @@ func NewQPlatformSurfaceEventFromPointer(ptr unsafe.Pointer) *QPlatformSurfaceEv
 }
 
 func (ptr *QPlatformSurfaceEvent) DestroyQPlatformSurfaceEvent() {
-	C.free(ptr.Pointer())
-	ptr.SetPointer(nil)
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
 }
 
 func NewQPlatformSurfaceEvent(surfaceEventType QPlatformSurfaceEvent__SurfaceEventType) *QPlatformSurfaceEvent {
@@ -35797,20 +35899,20 @@ type QPlatformSystemTrayIcon_ITF interface {
 	QPlatformSystemTrayIcon_PTR() *QPlatformSystemTrayIcon
 }
 
-func (p *QPlatformSystemTrayIcon) QPlatformSystemTrayIcon_PTR() *QPlatformSystemTrayIcon {
-	return p
+func (ptr *QPlatformSystemTrayIcon) QPlatformSystemTrayIcon_PTR() *QPlatformSystemTrayIcon {
+	return ptr
 }
 
-func (p *QPlatformSystemTrayIcon) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QObject_PTR().Pointer()
+func (ptr *QPlatformSystemTrayIcon) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QObject_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QPlatformSystemTrayIcon) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QObject_PTR().SetPointer(ptr)
+func (ptr *QPlatformSystemTrayIcon) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QObject_PTR().SetPointer(p)
 	}
 }
 
@@ -35828,9 +35930,11 @@ func NewQPlatformSystemTrayIconFromPointer(ptr unsafe.Pointer) *QPlatformSystemT
 }
 
 func (ptr *QPlatformSystemTrayIcon) DestroyQPlatformSystemTrayIcon() {
-	C.free(ptr.Pointer())
-	qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
-	ptr.SetPointer(nil)
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
+		ptr.SetPointer(nil)
+	}
 }
 
 type QPolygon struct {
@@ -35842,20 +35946,20 @@ type QPolygon_ITF interface {
 	QPolygon_PTR() *QPolygon
 }
 
-func (p *QPolygon) QPolygon_PTR() *QPolygon {
-	return p
+func (ptr *QPolygon) QPolygon_PTR() *QPolygon {
+	return ptr
 }
 
-func (p *QPolygon) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QVector_PTR().Pointer()
+func (ptr *QPolygon) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QVector_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QPolygon) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QVector_PTR().SetPointer(ptr)
+func (ptr *QPolygon) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QVector_PTR().SetPointer(p)
 	}
 }
 
@@ -36035,20 +36139,20 @@ type QPolygonF_ITF interface {
 	QPolygonF_PTR() *QPolygonF
 }
 
-func (p *QPolygonF) QPolygonF_PTR() *QPolygonF {
-	return p
+func (ptr *QPolygonF) QPolygonF_PTR() *QPolygonF {
+	return ptr
 }
 
-func (p *QPolygonF) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QVector_PTR().Pointer()
+func (ptr *QPolygonF) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QVector_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QPolygonF) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QVector_PTR().SetPointer(ptr)
+func (ptr *QPolygonF) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QVector_PTR().SetPointer(p)
 	}
 }
 
@@ -36210,20 +36314,20 @@ type QQuaternion_ITF interface {
 	QQuaternion_PTR() *QQuaternion
 }
 
-func (p *QQuaternion) QQuaternion_PTR() *QQuaternion {
-	return p
+func (ptr *QQuaternion) QQuaternion_PTR() *QQuaternion {
+	return ptr
 }
 
-func (p *QQuaternion) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QQuaternion) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QQuaternion) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QQuaternion) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -36241,8 +36345,10 @@ func NewQQuaternionFromPointer(ptr unsafe.Pointer) *QQuaternion {
 }
 
 func (ptr *QQuaternion) DestroyQQuaternion() {
-	C.free(ptr.Pointer())
-	ptr.SetPointer(nil)
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
 }
 
 func NewQQuaternion() *QQuaternion {
@@ -36579,20 +36685,20 @@ type QRadialGradient_ITF interface {
 	QRadialGradient_PTR() *QRadialGradient
 }
 
-func (p *QRadialGradient) QRadialGradient_PTR() *QRadialGradient {
-	return p
+func (ptr *QRadialGradient) QRadialGradient_PTR() *QRadialGradient {
+	return ptr
 }
 
-func (p *QRadialGradient) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QGradient_PTR().Pointer()
+func (ptr *QRadialGradient) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QGradient_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QRadialGradient) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QGradient_PTR().SetPointer(ptr)
+func (ptr *QRadialGradient) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QGradient_PTR().SetPointer(p)
 	}
 }
 
@@ -36610,8 +36716,10 @@ func NewQRadialGradientFromPointer(ptr unsafe.Pointer) *QRadialGradient {
 }
 
 func (ptr *QRadialGradient) DestroyQRadialGradient() {
-	C.free(ptr.Pointer())
-	ptr.SetPointer(nil)
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
 }
 
 func NewQRadialGradient() *QRadialGradient {
@@ -36746,20 +36854,20 @@ type QRasterPaintEngine_ITF interface {
 	QRasterPaintEngine_PTR() *QRasterPaintEngine
 }
 
-func (p *QRasterPaintEngine) QRasterPaintEngine_PTR() *QRasterPaintEngine {
-	return p
+func (ptr *QRasterPaintEngine) QRasterPaintEngine_PTR() *QRasterPaintEngine {
+	return ptr
 }
 
-func (p *QRasterPaintEngine) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QPaintEngine_PTR().Pointer()
+func (ptr *QRasterPaintEngine) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QPaintEngine_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QRasterPaintEngine) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QPaintEngine_PTR().SetPointer(ptr)
+func (ptr *QRasterPaintEngine) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QPaintEngine_PTR().SetPointer(p)
 	}
 }
 
@@ -36785,20 +36893,20 @@ type QRasterWindow_ITF interface {
 	QRasterWindow_PTR() *QRasterWindow
 }
 
-func (p *QRasterWindow) QRasterWindow_PTR() *QRasterWindow {
-	return p
+func (ptr *QRasterWindow) QRasterWindow_PTR() *QRasterWindow {
+	return ptr
 }
 
-func (p *QRasterWindow) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QPaintDeviceWindow_PTR().Pointer()
+func (ptr *QRasterWindow) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QPaintDeviceWindow_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QRasterWindow) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QPaintDeviceWindow_PTR().SetPointer(ptr)
+func (ptr *QRasterWindow) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QPaintDeviceWindow_PTR().SetPointer(p)
 	}
 }
 
@@ -36816,9 +36924,11 @@ func NewQRasterWindowFromPointer(ptr unsafe.Pointer) *QRasterWindow {
 }
 
 func (ptr *QRasterWindow) DestroyQRasterWindow() {
-	C.free(ptr.Pointer())
-	qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
-	ptr.SetPointer(nil)
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
+		ptr.SetPointer(nil)
+	}
 }
 
 func NewQRasterWindow(parent QWindow_ITF) *QRasterWindow {
@@ -38894,20 +39004,20 @@ type QRawFont_ITF interface {
 	QRawFont_PTR() *QRawFont
 }
 
-func (p *QRawFont) QRawFont_PTR() *QRawFont {
-	return p
+func (ptr *QRawFont) QRawFont_PTR() *QRawFont {
+	return ptr
 }
 
-func (p *QRawFont) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QRawFont) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QRawFont) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QRawFont) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -39188,20 +39298,20 @@ type QRegExpValidator_ITF interface {
 	QRegExpValidator_PTR() *QRegExpValidator
 }
 
-func (p *QRegExpValidator) QRegExpValidator_PTR() *QRegExpValidator {
-	return p
+func (ptr *QRegExpValidator) QRegExpValidator_PTR() *QRegExpValidator {
+	return ptr
 }
 
-func (p *QRegExpValidator) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QValidator_PTR().Pointer()
+func (ptr *QRegExpValidator) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QValidator_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QRegExpValidator) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QValidator_PTR().SetPointer(ptr)
+func (ptr *QRegExpValidator) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QValidator_PTR().SetPointer(p)
 	}
 }
 
@@ -39686,20 +39796,20 @@ type QRegion_ITF interface {
 	QRegion_PTR() *QRegion
 }
 
-func (p *QRegion) QRegion_PTR() *QRegion {
-	return p
+func (ptr *QRegion) QRegion_PTR() *QRegion {
+	return ptr
 }
 
-func (p *QRegion) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QRegion) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QRegion) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QRegion) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -39717,8 +39827,10 @@ func NewQRegionFromPointer(ptr unsafe.Pointer) *QRegion {
 }
 
 func (ptr *QRegion) DestroyQRegion() {
-	C.free(ptr.Pointer())
-	ptr.SetPointer(nil)
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
 }
 
 func NewQRegion() *QRegion {
@@ -39948,20 +40060,20 @@ type QRegularExpressionValidator_ITF interface {
 	QRegularExpressionValidator_PTR() *QRegularExpressionValidator
 }
 
-func (p *QRegularExpressionValidator) QRegularExpressionValidator_PTR() *QRegularExpressionValidator {
-	return p
+func (ptr *QRegularExpressionValidator) QRegularExpressionValidator_PTR() *QRegularExpressionValidator {
+	return ptr
 }
 
-func (p *QRegularExpressionValidator) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QValidator_PTR().Pointer()
+func (ptr *QRegularExpressionValidator) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QValidator_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QRegularExpressionValidator) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QValidator_PTR().SetPointer(ptr)
+func (ptr *QRegularExpressionValidator) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QValidator_PTR().SetPointer(p)
 	}
 }
 
@@ -40491,20 +40603,20 @@ type QResizeEvent_ITF interface {
 	QResizeEvent_PTR() *QResizeEvent
 }
 
-func (p *QResizeEvent) QResizeEvent_PTR() *QResizeEvent {
-	return p
+func (ptr *QResizeEvent) QResizeEvent_PTR() *QResizeEvent {
+	return ptr
 }
 
-func (p *QResizeEvent) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QEvent_PTR().Pointer()
+func (ptr *QResizeEvent) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QEvent_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QResizeEvent) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QEvent_PTR().SetPointer(ptr)
+func (ptr *QResizeEvent) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QEvent_PTR().SetPointer(p)
 	}
 }
 
@@ -40522,8 +40634,10 @@ func NewQResizeEventFromPointer(ptr unsafe.Pointer) *QResizeEvent {
 }
 
 func (ptr *QResizeEvent) DestroyQResizeEvent() {
-	C.free(ptr.Pointer())
-	ptr.SetPointer(nil)
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
 }
 
 func NewQResizeEvent(size core.QSize_ITF, oldSize core.QSize_ITF) *QResizeEvent {
@@ -40554,20 +40668,20 @@ type QRgba64_ITF interface {
 	QRgba64_PTR() *QRgba64
 }
 
-func (p *QRgba64) QRgba64_PTR() *QRgba64 {
-	return p
+func (ptr *QRgba64) QRgba64_PTR() *QRgba64 {
+	return ptr
 }
 
-func (p *QRgba64) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QRgba64) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QRgba64) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QRgba64) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -40585,8 +40699,10 @@ func NewQRgba64FromPointer(ptr unsafe.Pointer) *QRgba64 {
 }
 
 func (ptr *QRgba64) DestroyQRgba64() {
-	C.free(ptr.Pointer())
-	ptr.SetPointer(nil)
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
 }
 
 func (ptr *QRgba64) Alpha() uint16 {
@@ -40706,20 +40822,20 @@ type QScreen_ITF interface {
 	QScreen_PTR() *QScreen
 }
 
-func (p *QScreen) QScreen_PTR() *QScreen {
-	return p
+func (ptr *QScreen) QScreen_PTR() *QScreen {
+	return ptr
 }
 
-func (p *QScreen) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QObject_PTR().Pointer()
+func (ptr *QScreen) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QObject_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QScreen) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QObject_PTR().SetPointer(ptr)
+func (ptr *QScreen) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QObject_PTR().SetPointer(p)
 	}
 }
 
@@ -41613,20 +41729,20 @@ type QScrollEvent_ITF interface {
 	QScrollEvent_PTR() *QScrollEvent
 }
 
-func (p *QScrollEvent) QScrollEvent_PTR() *QScrollEvent {
-	return p
+func (ptr *QScrollEvent) QScrollEvent_PTR() *QScrollEvent {
+	return ptr
 }
 
-func (p *QScrollEvent) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QEvent_PTR().Pointer()
+func (ptr *QScrollEvent) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QEvent_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QScrollEvent) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QEvent_PTR().SetPointer(ptr)
+func (ptr *QScrollEvent) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QEvent_PTR().SetPointer(p)
 	}
 }
 
@@ -41689,20 +41805,20 @@ type QScrollPrepareEvent_ITF interface {
 	QScrollPrepareEvent_PTR() *QScrollPrepareEvent
 }
 
-func (p *QScrollPrepareEvent) QScrollPrepareEvent_PTR() *QScrollPrepareEvent {
-	return p
+func (ptr *QScrollPrepareEvent) QScrollPrepareEvent_PTR() *QScrollPrepareEvent {
+	return ptr
 }
 
-func (p *QScrollPrepareEvent) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QEvent_PTR().Pointer()
+func (ptr *QScrollPrepareEvent) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QEvent_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QScrollPrepareEvent) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QEvent_PTR().SetPointer(ptr)
+func (ptr *QScrollPrepareEvent) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QEvent_PTR().SetPointer(p)
 	}
 }
 
@@ -41805,20 +41921,20 @@ type QSessionManager_ITF interface {
 	QSessionManager_PTR() *QSessionManager
 }
 
-func (p *QSessionManager) QSessionManager_PTR() *QSessionManager {
-	return p
+func (ptr *QSessionManager) QSessionManager_PTR() *QSessionManager {
+	return ptr
 }
 
-func (p *QSessionManager) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QObject_PTR().Pointer()
+func (ptr *QSessionManager) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QObject_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QSessionManager) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QObject_PTR().SetPointer(ptr)
+func (ptr *QSessionManager) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QObject_PTR().SetPointer(p)
 	}
 }
 
@@ -41836,9 +41952,11 @@ func NewQSessionManagerFromPointer(ptr unsafe.Pointer) *QSessionManager {
 }
 
 func (ptr *QSessionManager) DestroyQSessionManager() {
-	C.free(ptr.Pointer())
-	qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
-	ptr.SetPointer(nil)
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
+		ptr.SetPointer(nil)
+	}
 }
 
 func (ptr *QSessionManager) RestartHint() QSessionManager__RestartHint {
@@ -42299,20 +42417,20 @@ type QShortcutEvent_ITF interface {
 	QShortcutEvent_PTR() *QShortcutEvent
 }
 
-func (p *QShortcutEvent) QShortcutEvent_PTR() *QShortcutEvent {
-	return p
+func (ptr *QShortcutEvent) QShortcutEvent_PTR() *QShortcutEvent {
+	return ptr
 }
 
-func (p *QShortcutEvent) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QEvent_PTR().Pointer()
+func (ptr *QShortcutEvent) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QEvent_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QShortcutEvent) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QEvent_PTR().SetPointer(ptr)
+func (ptr *QShortcutEvent) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QEvent_PTR().SetPointer(p)
 	}
 }
 
@@ -42412,20 +42530,20 @@ type QShowEvent_ITF interface {
 	QShowEvent_PTR() *QShowEvent
 }
 
-func (p *QShowEvent) QShowEvent_PTR() *QShowEvent {
-	return p
+func (ptr *QShowEvent) QShowEvent_PTR() *QShowEvent {
+	return ptr
 }
 
-func (p *QShowEvent) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QEvent_PTR().Pointer()
+func (ptr *QShowEvent) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QEvent_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QShowEvent) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QEvent_PTR().SetPointer(ptr)
+func (ptr *QShowEvent) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QEvent_PTR().SetPointer(p)
 	}
 }
 
@@ -42443,8 +42561,10 @@ func NewQShowEventFromPointer(ptr unsafe.Pointer) *QShowEvent {
 }
 
 func (ptr *QShowEvent) DestroyQShowEvent() {
-	C.free(ptr.Pointer())
-	ptr.SetPointer(nil)
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
 }
 
 func NewQShowEvent() *QShowEvent {
@@ -42470,20 +42590,20 @@ type QStandardItem_ITF interface {
 	QStandardItem_PTR() *QStandardItem
 }
 
-func (p *QStandardItem) QStandardItem_PTR() *QStandardItem {
-	return p
+func (ptr *QStandardItem) QStandardItem_PTR() *QStandardItem {
+	return ptr
 }
 
-func (p *QStandardItem) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QStandardItem) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QStandardItem) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QStandardItem) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -43306,20 +43426,20 @@ type QStandardItemModel_ITF interface {
 	QStandardItemModel_PTR() *QStandardItemModel
 }
 
-func (p *QStandardItemModel) QStandardItemModel_PTR() *QStandardItemModel {
-	return p
+func (ptr *QStandardItemModel) QStandardItemModel_PTR() *QStandardItemModel {
+	return ptr
 }
 
-func (p *QStandardItemModel) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QAbstractItemModel_PTR().Pointer()
+func (ptr *QStandardItemModel) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QAbstractItemModel_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QStandardItemModel) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QAbstractItemModel_PTR().SetPointer(ptr)
+func (ptr *QStandardItemModel) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QAbstractItemModel_PTR().SetPointer(p)
 	}
 }
 
@@ -45139,20 +45259,20 @@ type QStaticText_ITF interface {
 	QStaticText_PTR() *QStaticText
 }
 
-func (p *QStaticText) QStaticText_PTR() *QStaticText {
-	return p
+func (ptr *QStaticText) QStaticText_PTR() *QStaticText {
+	return ptr
 }
 
-func (p *QStaticText) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QStaticText) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QStaticText) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QStaticText) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -45294,20 +45414,20 @@ type QStatusTipEvent_ITF interface {
 	QStatusTipEvent_PTR() *QStatusTipEvent
 }
 
-func (p *QStatusTipEvent) QStatusTipEvent_PTR() *QStatusTipEvent {
-	return p
+func (ptr *QStatusTipEvent) QStatusTipEvent_PTR() *QStatusTipEvent {
+	return ptr
 }
 
-func (p *QStatusTipEvent) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QEvent_PTR().Pointer()
+func (ptr *QStatusTipEvent) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QEvent_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QStatusTipEvent) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QEvent_PTR().SetPointer(ptr)
+func (ptr *QStatusTipEvent) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QEvent_PTR().SetPointer(p)
 	}
 }
 
@@ -45325,8 +45445,10 @@ func NewQStatusTipEventFromPointer(ptr unsafe.Pointer) *QStatusTipEvent {
 }
 
 func (ptr *QStatusTipEvent) DestroyQStatusTipEvent() {
-	C.free(ptr.Pointer())
-	ptr.SetPointer(nil)
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
 }
 
 func NewQStatusTipEvent(tip string) *QStatusTipEvent {
@@ -45353,20 +45475,20 @@ type QStyleHints_ITF interface {
 	QStyleHints_PTR() *QStyleHints
 }
 
-func (p *QStyleHints) QStyleHints_PTR() *QStyleHints {
-	return p
+func (ptr *QStyleHints) QStyleHints_PTR() *QStyleHints {
+	return ptr
 }
 
-func (p *QStyleHints) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QObject_PTR().Pointer()
+func (ptr *QStyleHints) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QObject_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QStyleHints) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QObject_PTR().SetPointer(ptr)
+func (ptr *QStyleHints) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QObject_PTR().SetPointer(p)
 	}
 }
 
@@ -45384,9 +45506,11 @@ func NewQStyleHintsFromPointer(ptr unsafe.Pointer) *QStyleHints {
 }
 
 func (ptr *QStyleHints) DestroyQStyleHints() {
-	C.free(ptr.Pointer())
-	qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
-	ptr.SetPointer(nil)
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
+		ptr.SetPointer(nil)
+	}
 }
 
 func (ptr *QStyleHints) CursorFlashTime() int {
@@ -46054,20 +46178,20 @@ type QSupportedWritingSystems_ITF interface {
 	QSupportedWritingSystems_PTR() *QSupportedWritingSystems
 }
 
-func (p *QSupportedWritingSystems) QSupportedWritingSystems_PTR() *QSupportedWritingSystems {
-	return p
+func (ptr *QSupportedWritingSystems) QSupportedWritingSystems_PTR() *QSupportedWritingSystems {
+	return ptr
 }
 
-func (p *QSupportedWritingSystems) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QSupportedWritingSystems) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QSupportedWritingSystems) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QSupportedWritingSystems) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -46111,20 +46235,20 @@ type QSurface_ITF interface {
 	QSurface_PTR() *QSurface
 }
 
-func (p *QSurface) QSurface_PTR() *QSurface {
-	return p
+func (ptr *QSurface) QSurface_PTR() *QSurface {
+	return ptr
 }
 
-func (p *QSurface) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QSurface) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QSurface) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QSurface) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -46356,20 +46480,20 @@ type QSurfaceFormat_ITF interface {
 	QSurfaceFormat_PTR() *QSurfaceFormat
 }
 
-func (p *QSurfaceFormat) QSurfaceFormat_PTR() *QSurfaceFormat {
-	return p
+func (ptr *QSurfaceFormat) QSurfaceFormat_PTR() *QSurfaceFormat {
+	return ptr
 }
 
-func (p *QSurfaceFormat) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QSurfaceFormat) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QSurfaceFormat) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QSurfaceFormat) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -46660,20 +46784,20 @@ type QSyntaxHighlighter_ITF interface {
 	QSyntaxHighlighter_PTR() *QSyntaxHighlighter
 }
 
-func (p *QSyntaxHighlighter) QSyntaxHighlighter_PTR() *QSyntaxHighlighter {
-	return p
+func (ptr *QSyntaxHighlighter) QSyntaxHighlighter_PTR() *QSyntaxHighlighter {
+	return ptr
 }
 
-func (p *QSyntaxHighlighter) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QObject_PTR().Pointer()
+func (ptr *QSyntaxHighlighter) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QObject_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QSyntaxHighlighter) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QObject_PTR().SetPointer(ptr)
+func (ptr *QSyntaxHighlighter) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QObject_PTR().SetPointer(p)
 	}
 }
 
@@ -47285,20 +47409,20 @@ type QTabletEvent_ITF interface {
 	QTabletEvent_PTR() *QTabletEvent
 }
 
-func (p *QTabletEvent) QTabletEvent_PTR() *QTabletEvent {
-	return p
+func (ptr *QTabletEvent) QTabletEvent_PTR() *QTabletEvent {
+	return ptr
 }
 
-func (p *QTabletEvent) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QInputEvent_PTR().Pointer()
+func (ptr *QTabletEvent) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QInputEvent_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QTabletEvent) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QInputEvent_PTR().SetPointer(ptr)
+func (ptr *QTabletEvent) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QInputEvent_PTR().SetPointer(p)
 	}
 }
 
@@ -47316,8 +47440,10 @@ func NewQTabletEventFromPointer(ptr unsafe.Pointer) *QTabletEvent {
 }
 
 func (ptr *QTabletEvent) DestroyQTabletEvent() {
-	C.free(ptr.Pointer())
-	ptr.SetPointer(nil)
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
 }
 
 func NewQTabletEvent(ty core.QEvent__Type, pos core.QPointF_ITF, globalPos core.QPointF_ITF, device int, pointerType int, pressure float64, xTilt int, yTilt int, tangentialPressure float64, rotation float64, z int, keyState core.Qt__KeyboardModifier, uniqueID int64, button core.Qt__MouseButton, buttons core.Qt__MouseButton) *QTabletEvent {
@@ -47511,20 +47637,20 @@ type QTextBlock_ITF interface {
 	QTextBlock_PTR() *QTextBlock
 }
 
-func (p *QTextBlock) QTextBlock_PTR() *QTextBlock {
-	return p
+func (ptr *QTextBlock) QTextBlock_PTR() *QTextBlock {
+	return ptr
 }
 
-func (p *QTextBlock) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QTextBlock) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QTextBlock) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QTextBlock) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -47542,8 +47668,10 @@ func NewQTextBlockFromPointer(ptr unsafe.Pointer) *QTextBlock {
 }
 
 func (ptr *QTextBlock) DestroyQTextBlock() {
-	C.free(ptr.Pointer())
-	ptr.SetPointer(nil)
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
 }
 
 func (ptr *QTextBlock) IsValid() bool {
@@ -47779,20 +47907,20 @@ type QTextBlockFormat_ITF interface {
 	QTextBlockFormat_PTR() *QTextBlockFormat
 }
 
-func (p *QTextBlockFormat) QTextBlockFormat_PTR() *QTextBlockFormat {
-	return p
+func (ptr *QTextBlockFormat) QTextBlockFormat_PTR() *QTextBlockFormat {
+	return ptr
 }
 
-func (p *QTextBlockFormat) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QTextFormat_PTR().Pointer()
+func (ptr *QTextBlockFormat) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QTextFormat_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QTextBlockFormat) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QTextFormat_PTR().SetPointer(ptr)
+func (ptr *QTextBlockFormat) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QTextFormat_PTR().SetPointer(p)
 	}
 }
 
@@ -47810,8 +47938,10 @@ func NewQTextBlockFormatFromPointer(ptr unsafe.Pointer) *QTextBlockFormat {
 }
 
 func (ptr *QTextBlockFormat) DestroyQTextBlockFormat() {
-	C.free(ptr.Pointer())
-	ptr.SetPointer(nil)
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
 }
 
 func NewQTextBlockFormat() *QTextBlockFormat {
@@ -47980,20 +48110,20 @@ type QTextBlockGroup_ITF interface {
 	QTextBlockGroup_PTR() *QTextBlockGroup
 }
 
-func (p *QTextBlockGroup) QTextBlockGroup_PTR() *QTextBlockGroup {
-	return p
+func (ptr *QTextBlockGroup) QTextBlockGroup_PTR() *QTextBlockGroup {
+	return ptr
 }
 
-func (p *QTextBlockGroup) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QTextObject_PTR().Pointer()
+func (ptr *QTextBlockGroup) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QTextObject_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QTextBlockGroup) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QTextObject_PTR().SetPointer(ptr)
+func (ptr *QTextBlockGroup) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QTextObject_PTR().SetPointer(p)
 	}
 }
 
@@ -48496,20 +48626,20 @@ type QTextBlockUserData_ITF interface {
 	QTextBlockUserData_PTR() *QTextBlockUserData
 }
 
-func (p *QTextBlockUserData) QTextBlockUserData_PTR() *QTextBlockUserData {
-	return p
+func (ptr *QTextBlockUserData) QTextBlockUserData_PTR() *QTextBlockUserData {
+	return ptr
 }
 
-func (p *QTextBlockUserData) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QTextBlockUserData) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QTextBlockUserData) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QTextBlockUserData) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -48613,20 +48743,20 @@ type QTextCharFormat_ITF interface {
 	QTextCharFormat_PTR() *QTextCharFormat
 }
 
-func (p *QTextCharFormat) QTextCharFormat_PTR() *QTextCharFormat {
-	return p
+func (ptr *QTextCharFormat) QTextCharFormat_PTR() *QTextCharFormat {
+	return ptr
 }
 
-func (p *QTextCharFormat) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QTextFormat_PTR().Pointer()
+func (ptr *QTextCharFormat) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QTextFormat_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QTextCharFormat) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QTextFormat_PTR().SetPointer(ptr)
+func (ptr *QTextCharFormat) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QTextFormat_PTR().SetPointer(p)
 	}
 }
 
@@ -48644,8 +48774,10 @@ func NewQTextCharFormatFromPointer(ptr unsafe.Pointer) *QTextCharFormat {
 }
 
 func (ptr *QTextCharFormat) DestroyQTextCharFormat() {
-	C.free(ptr.Pointer())
-	ptr.SetPointer(nil)
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
 }
 
 func NewQTextCharFormat() *QTextCharFormat {
@@ -49079,20 +49211,20 @@ type QTextCursor_ITF interface {
 	QTextCursor_PTR() *QTextCursor
 }
 
-func (p *QTextCursor) QTextCursor_PTR() *QTextCursor {
-	return p
+func (ptr *QTextCursor) QTextCursor_PTR() *QTextCursor {
+	return ptr
 }
 
-func (p *QTextCursor) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QTextCursor) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QTextCursor) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QTextCursor) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -49696,20 +49828,20 @@ type QTextDocument_ITF interface {
 	QTextDocument_PTR() *QTextDocument
 }
 
-func (p *QTextDocument) QTextDocument_PTR() *QTextDocument {
-	return p
+func (ptr *QTextDocument) QTextDocument_PTR() *QTextDocument {
+	return ptr
 }
 
-func (p *QTextDocument) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QObject_PTR().Pointer()
+func (ptr *QTextDocument) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QObject_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QTextDocument) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QObject_PTR().SetPointer(ptr)
+func (ptr *QTextDocument) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QObject_PTR().SetPointer(p)
 	}
 }
 
@@ -51164,20 +51296,20 @@ type QTextDocumentFragment_ITF interface {
 	QTextDocumentFragment_PTR() *QTextDocumentFragment
 }
 
-func (p *QTextDocumentFragment) QTextDocumentFragment_PTR() *QTextDocumentFragment {
-	return p
+func (ptr *QTextDocumentFragment) QTextDocumentFragment_PTR() *QTextDocumentFragment {
+	return ptr
 }
 
-func (p *QTextDocumentFragment) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QTextDocumentFragment) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QTextDocumentFragment) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QTextDocumentFragment) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -51301,20 +51433,20 @@ type QTextDocumentWriter_ITF interface {
 	QTextDocumentWriter_PTR() *QTextDocumentWriter
 }
 
-func (p *QTextDocumentWriter) QTextDocumentWriter_PTR() *QTextDocumentWriter {
-	return p
+func (ptr *QTextDocumentWriter) QTextDocumentWriter_PTR() *QTextDocumentWriter {
+	return ptr
 }
 
-func (p *QTextDocumentWriter) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QTextDocumentWriter) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QTextDocumentWriter) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QTextDocumentWriter) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -51593,20 +51725,20 @@ type QTextFormat_ITF interface {
 	QTextFormat_PTR() *QTextFormat
 }
 
-func (p *QTextFormat) QTextFormat_PTR() *QTextFormat {
-	return p
+func (ptr *QTextFormat) QTextFormat_PTR() *QTextFormat {
+	return ptr
 }
 
-func (p *QTextFormat) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QTextFormat) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QTextFormat) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QTextFormat) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -51989,20 +52121,20 @@ type QTextFragment_ITF interface {
 	QTextFragment_PTR() *QTextFragment
 }
 
-func (p *QTextFragment) QTextFragment_PTR() *QTextFragment {
-	return p
+func (ptr *QTextFragment) QTextFragment_PTR() *QTextFragment {
+	return ptr
 }
 
-func (p *QTextFragment) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QTextFragment) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QTextFragment) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QTextFragment) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -52020,8 +52152,10 @@ func NewQTextFragmentFromPointer(ptr unsafe.Pointer) *QTextFragment {
 }
 
 func (ptr *QTextFragment) DestroyQTextFragment() {
-	C.free(ptr.Pointer())
-	ptr.SetPointer(nil)
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
 }
 
 func NewQTextFragment() *QTextFragment {
@@ -52118,20 +52252,20 @@ type QTextFrame_ITF interface {
 	QTextFrame_PTR() *QTextFrame
 }
 
-func (p *QTextFrame) QTextFrame_PTR() *QTextFrame {
-	return p
+func (ptr *QTextFrame) QTextFrame_PTR() *QTextFrame {
+	return ptr
 }
 
-func (p *QTextFrame) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QTextObject_PTR().Pointer()
+func (ptr *QTextFrame) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QTextObject_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QTextFrame) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QTextObject_PTR().SetPointer(ptr)
+func (ptr *QTextFrame) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QTextObject_PTR().SetPointer(p)
 	}
 }
 
@@ -52615,20 +52749,20 @@ type QTextFrameFormat_ITF interface {
 	QTextFrameFormat_PTR() *QTextFrameFormat
 }
 
-func (p *QTextFrameFormat) QTextFrameFormat_PTR() *QTextFrameFormat {
-	return p
+func (ptr *QTextFrameFormat) QTextFrameFormat_PTR() *QTextFrameFormat {
+	return ptr
 }
 
-func (p *QTextFrameFormat) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QTextFormat_PTR().Pointer()
+func (ptr *QTextFrameFormat) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QTextFormat_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QTextFrameFormat) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QTextFormat_PTR().SetPointer(ptr)
+func (ptr *QTextFrameFormat) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QTextFormat_PTR().SetPointer(p)
 	}
 }
 
@@ -52646,8 +52780,10 @@ func NewQTextFrameFormatFromPointer(ptr unsafe.Pointer) *QTextFrameFormat {
 }
 
 func (ptr *QTextFrameFormat) DestroyQTextFrameFormat() {
-	C.free(ptr.Pointer())
-	ptr.SetPointer(nil)
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
 }
 
 func NewQTextFrameFormat() *QTextFrameFormat {
@@ -52859,20 +52995,20 @@ type QTextImageFormat_ITF interface {
 	QTextImageFormat_PTR() *QTextImageFormat
 }
 
-func (p *QTextImageFormat) QTextImageFormat_PTR() *QTextImageFormat {
-	return p
+func (ptr *QTextImageFormat) QTextImageFormat_PTR() *QTextImageFormat {
+	return ptr
 }
 
-func (p *QTextImageFormat) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QTextCharFormat_PTR().Pointer()
+func (ptr *QTextImageFormat) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QTextCharFormat_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QTextImageFormat) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QTextCharFormat_PTR().SetPointer(ptr)
+func (ptr *QTextImageFormat) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QTextCharFormat_PTR().SetPointer(p)
 	}
 }
 
@@ -52890,8 +53026,10 @@ func NewQTextImageFormatFromPointer(ptr unsafe.Pointer) *QTextImageFormat {
 }
 
 func (ptr *QTextImageFormat) DestroyQTextImageFormat() {
-	C.free(ptr.Pointer())
-	ptr.SetPointer(nil)
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
 }
 
 func NewQTextImageFormat() *QTextImageFormat {
@@ -52956,20 +53094,20 @@ type QTextInlineObject_ITF interface {
 	QTextInlineObject_PTR() *QTextInlineObject
 }
 
-func (p *QTextInlineObject) QTextInlineObject_PTR() *QTextInlineObject {
-	return p
+func (ptr *QTextInlineObject) QTextInlineObject_PTR() *QTextInlineObject {
+	return ptr
 }
 
-func (p *QTextInlineObject) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QTextInlineObject) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QTextInlineObject) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QTextInlineObject) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -52987,8 +53125,10 @@ func NewQTextInlineObjectFromPointer(ptr unsafe.Pointer) *QTextInlineObject {
 }
 
 func (ptr *QTextInlineObject) DestroyQTextInlineObject() {
-	C.free(ptr.Pointer())
-	ptr.SetPointer(nil)
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
 }
 
 func (ptr *QTextInlineObject) Ascent() float64 {
@@ -53103,20 +53243,20 @@ type QTextItem_ITF interface {
 	QTextItem_PTR() *QTextItem
 }
 
-func (p *QTextItem) QTextItem_PTR() *QTextItem {
-	return p
+func (ptr *QTextItem) QTextItem_PTR() *QTextItem {
+	return ptr
 }
 
-func (p *QTextItem) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QTextItem) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QTextItem) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QTextItem) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -53134,8 +53274,10 @@ func NewQTextItemFromPointer(ptr unsafe.Pointer) *QTextItem {
 }
 
 func (ptr *QTextItem) DestroyQTextItem() {
-	C.free(ptr.Pointer())
-	ptr.SetPointer(nil)
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
 }
 
 func (ptr *QTextItem) Ascent() float64 {
@@ -53199,20 +53341,20 @@ type QTextLayout_ITF interface {
 	QTextLayout_PTR() *QTextLayout
 }
 
-func (p *QTextLayout) QTextLayout_PTR() *QTextLayout {
-	return p
+func (ptr *QTextLayout) QTextLayout_PTR() *QTextLayout {
+	return ptr
 }
 
-func (p *QTextLayout) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QTextLayout) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QTextLayout) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QTextLayout) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -53531,20 +53673,20 @@ type QTextLength_ITF interface {
 	QTextLength_PTR() *QTextLength
 }
 
-func (p *QTextLength) QTextLength_PTR() *QTextLength {
-	return p
+func (ptr *QTextLength) QTextLength_PTR() *QTextLength {
+	return ptr
 }
 
-func (p *QTextLength) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QTextLength) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QTextLength) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QTextLength) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -53562,8 +53704,10 @@ func NewQTextLengthFromPointer(ptr unsafe.Pointer) *QTextLength {
 }
 
 func (ptr *QTextLength) DestroyQTextLength() {
-	C.free(ptr.Pointer())
-	ptr.SetPointer(nil)
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
 }
 
 func NewQTextLength() *QTextLength {
@@ -53625,20 +53769,20 @@ type QTextLine_ITF interface {
 	QTextLine_PTR() *QTextLine
 }
 
-func (p *QTextLine) QTextLine_PTR() *QTextLine {
-	return p
+func (ptr *QTextLine) QTextLine_PTR() *QTextLine {
+	return ptr
 }
 
-func (p *QTextLine) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QTextLine) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QTextLine) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QTextLine) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -53656,8 +53800,10 @@ func NewQTextLineFromPointer(ptr unsafe.Pointer) *QTextLine {
 }
 
 func (ptr *QTextLine) DestroyQTextLine() {
-	C.free(ptr.Pointer())
-	ptr.SetPointer(nil)
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
 }
 
 func (ptr *QTextLine) XToCursor(x float64, cpos QTextLine__CursorPosition) int {
@@ -53873,20 +54019,20 @@ type QTextList_ITF interface {
 	QTextList_PTR() *QTextList
 }
 
-func (p *QTextList) QTextList_PTR() *QTextList {
-	return p
+func (ptr *QTextList) QTextList_PTR() *QTextList {
+	return ptr
 }
 
-func (p *QTextList) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QTextBlockGroup_PTR().Pointer()
+func (ptr *QTextList) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QTextBlockGroup_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QTextList) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QTextBlockGroup_PTR().SetPointer(ptr)
+func (ptr *QTextList) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QTextBlockGroup_PTR().SetPointer(p)
 	}
 }
 
@@ -53904,9 +54050,11 @@ func NewQTextListFromPointer(ptr unsafe.Pointer) *QTextList {
 }
 
 func (ptr *QTextList) DestroyQTextList() {
-	C.free(ptr.Pointer())
-	qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
-	ptr.SetPointer(nil)
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
+		ptr.SetPointer(nil)
+	}
 }
 
 func (ptr *QTextList) ItemNumber(block QTextBlock_ITF) int {
@@ -54438,20 +54586,20 @@ type QTextListFormat_ITF interface {
 	QTextListFormat_PTR() *QTextListFormat
 }
 
-func (p *QTextListFormat) QTextListFormat_PTR() *QTextListFormat {
-	return p
+func (ptr *QTextListFormat) QTextListFormat_PTR() *QTextListFormat {
+	return ptr
 }
 
-func (p *QTextListFormat) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QTextFormat_PTR().Pointer()
+func (ptr *QTextListFormat) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QTextFormat_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QTextListFormat) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QTextFormat_PTR().SetPointer(ptr)
+func (ptr *QTextListFormat) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QTextFormat_PTR().SetPointer(p)
 	}
 }
 
@@ -54469,8 +54617,10 @@ func NewQTextListFormatFromPointer(ptr unsafe.Pointer) *QTextListFormat {
 }
 
 func (ptr *QTextListFormat) DestroyQTextListFormat() {
-	C.free(ptr.Pointer())
-	ptr.SetPointer(nil)
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
 }
 
 func NewQTextListFormat() *QTextListFormat {
@@ -54551,20 +54701,20 @@ type QTextObject_ITF interface {
 	QTextObject_PTR() *QTextObject
 }
 
-func (p *QTextObject) QTextObject_PTR() *QTextObject {
-	return p
+func (ptr *QTextObject) QTextObject_PTR() *QTextObject {
+	return ptr
 }
 
-func (p *QTextObject) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QObject_PTR().Pointer()
+func (ptr *QTextObject) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QObject_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QTextObject) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QObject_PTR().SetPointer(ptr)
+func (ptr *QTextObject) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QObject_PTR().SetPointer(p)
 	}
 }
 
@@ -54977,20 +55127,20 @@ type QTextObjectInterface_ITF interface {
 	QTextObjectInterface_PTR() *QTextObjectInterface
 }
 
-func (p *QTextObjectInterface) QTextObjectInterface_PTR() *QTextObjectInterface {
-	return p
+func (ptr *QTextObjectInterface) QTextObjectInterface_PTR() *QTextObjectInterface {
+	return ptr
 }
 
-func (p *QTextObjectInterface) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QTextObjectInterface) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QTextObjectInterface) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QTextObjectInterface) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -55153,20 +55303,20 @@ type QTextOption_ITF interface {
 	QTextOption_PTR() *QTextOption
 }
 
-func (p *QTextOption) QTextOption_PTR() *QTextOption {
-	return p
+func (ptr *QTextOption) QTextOption_PTR() *QTextOption {
+	return ptr
 }
 
-func (p *QTextOption) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QTextOption) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QTextOption) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QTextOption) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -55294,20 +55444,20 @@ type QTextTable_ITF interface {
 	QTextTable_PTR() *QTextTable
 }
 
-func (p *QTextTable) QTextTable_PTR() *QTextTable {
-	return p
+func (ptr *QTextTable) QTextTable_PTR() *QTextTable {
+	return ptr
 }
 
-func (p *QTextTable) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QTextFrame_PTR().Pointer()
+func (ptr *QTextTable) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QTextFrame_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QTextTable) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QTextFrame_PTR().SetPointer(ptr)
+func (ptr *QTextTable) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QTextFrame_PTR().SetPointer(p)
 	}
 }
 
@@ -55325,9 +55475,11 @@ func NewQTextTableFromPointer(ptr unsafe.Pointer) *QTextTable {
 }
 
 func (ptr *QTextTable) DestroyQTextTable() {
-	C.free(ptr.Pointer())
-	qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
-	ptr.SetPointer(nil)
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
+		ptr.SetPointer(nil)
+	}
 }
 
 func (ptr *QTextTable) CellAt3(cursor QTextCursor_ITF) *QTextTableCell {
@@ -55805,20 +55957,20 @@ type QTextTableCell_ITF interface {
 	QTextTableCell_PTR() *QTextTableCell
 }
 
-func (p *QTextTableCell) QTextTableCell_PTR() *QTextTableCell {
-	return p
+func (ptr *QTextTableCell) QTextTableCell_PTR() *QTextTableCell {
+	return ptr
 }
 
-func (p *QTextTableCell) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QTextTableCell) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QTextTableCell) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QTextTableCell) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -55937,20 +56089,20 @@ type QTextTableCellFormat_ITF interface {
 	QTextTableCellFormat_PTR() *QTextTableCellFormat
 }
 
-func (p *QTextTableCellFormat) QTextTableCellFormat_PTR() *QTextTableCellFormat {
-	return p
+func (ptr *QTextTableCellFormat) QTextTableCellFormat_PTR() *QTextTableCellFormat {
+	return ptr
 }
 
-func (p *QTextTableCellFormat) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QTextCharFormat_PTR().Pointer()
+func (ptr *QTextTableCellFormat) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QTextCharFormat_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QTextTableCellFormat) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QTextCharFormat_PTR().SetPointer(ptr)
+func (ptr *QTextTableCellFormat) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QTextCharFormat_PTR().SetPointer(p)
 	}
 }
 
@@ -55968,8 +56120,10 @@ func NewQTextTableCellFormatFromPointer(ptr unsafe.Pointer) *QTextTableCellForma
 }
 
 func (ptr *QTextTableCellFormat) DestroyQTextTableCellFormat() {
-	C.free(ptr.Pointer())
-	ptr.SetPointer(nil)
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
 }
 
 func NewQTextTableCellFormat() *QTextTableCellFormat {
@@ -56052,20 +56206,20 @@ type QTextTableFormat_ITF interface {
 	QTextTableFormat_PTR() *QTextTableFormat
 }
 
-func (p *QTextTableFormat) QTextTableFormat_PTR() *QTextTableFormat {
-	return p
+func (ptr *QTextTableFormat) QTextTableFormat_PTR() *QTextTableFormat {
+	return ptr
 }
 
-func (p *QTextTableFormat) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QTextFrameFormat_PTR().Pointer()
+func (ptr *QTextTableFormat) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QTextFrameFormat_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QTextTableFormat) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QTextFrameFormat_PTR().SetPointer(ptr)
+func (ptr *QTextTableFormat) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QTextFrameFormat_PTR().SetPointer(p)
 	}
 }
 
@@ -56083,8 +56237,10 @@ func NewQTextTableFormatFromPointer(ptr unsafe.Pointer) *QTextTableFormat {
 }
 
 func (ptr *QTextTableFormat) DestroyQTextTableFormat() {
-	C.free(ptr.Pointer())
-	ptr.SetPointer(nil)
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
 }
 
 func NewQTextTableFormat() *QTextTableFormat {
@@ -56205,20 +56361,20 @@ type QTouchDevice_ITF interface {
 	QTouchDevice_PTR() *QTouchDevice
 }
 
-func (p *QTouchDevice) QTouchDevice_PTR() *QTouchDevice {
-	return p
+func (ptr *QTouchDevice) QTouchDevice_PTR() *QTouchDevice {
+	return ptr
 }
 
-func (p *QTouchDevice) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QTouchDevice) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QTouchDevice) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QTouchDevice) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -56337,20 +56493,20 @@ type QTouchEvent_ITF interface {
 	QTouchEvent_PTR() *QTouchEvent
 }
 
-func (p *QTouchEvent) QTouchEvent_PTR() *QTouchEvent {
-	return p
+func (ptr *QTouchEvent) QTouchEvent_PTR() *QTouchEvent {
+	return ptr
 }
 
-func (p *QTouchEvent) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QInputEvent_PTR().Pointer()
+func (ptr *QTouchEvent) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QInputEvent_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QTouchEvent) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QInputEvent_PTR().SetPointer(ptr)
+func (ptr *QTouchEvent) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QInputEvent_PTR().SetPointer(p)
 	}
 }
 
@@ -56490,20 +56646,20 @@ type QTransform_ITF interface {
 	QTransform_PTR() *QTransform
 }
 
-func (p *QTransform) QTransform_PTR() *QTransform {
-	return p
+func (ptr *QTransform) QTransform_PTR() *QTransform {
+	return ptr
 }
 
-func (p *QTransform) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QTransform) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QTransform) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QTransform) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -56521,8 +56677,10 @@ func NewQTransformFromPointer(ptr unsafe.Pointer) *QTransform {
 }
 
 func (ptr *QTransform) DestroyQTransform() {
-	C.free(ptr.Pointer())
-	ptr.SetPointer(nil)
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
 }
 
 func NewQTransform3(m11 float64, m12 float64, m13 float64, m21 float64, m22 float64, m23 float64, m31 float64, m32 float64, m33 float64) *QTransform {
@@ -56950,20 +57108,20 @@ type QValidator_ITF interface {
 	QValidator_PTR() *QValidator
 }
 
-func (p *QValidator) QValidator_PTR() *QValidator {
-	return p
+func (ptr *QValidator) QValidator_PTR() *QValidator {
+	return ptr
 }
 
-func (p *QValidator) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QObject_PTR().Pointer()
+func (ptr *QValidator) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QObject_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QValidator) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QObject_PTR().SetPointer(ptr)
+func (ptr *QValidator) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QObject_PTR().SetPointer(p)
 	}
 }
 
@@ -57454,20 +57612,20 @@ type QVector2D_ITF interface {
 	QVector2D_PTR() *QVector2D
 }
 
-func (p *QVector2D) QVector2D_PTR() *QVector2D {
-	return p
+func (ptr *QVector2D) QVector2D_PTR() *QVector2D {
+	return ptr
 }
 
-func (p *QVector2D) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QVector2D) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QVector2D) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QVector2D) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -57485,8 +57643,10 @@ func NewQVector2DFromPointer(ptr unsafe.Pointer) *QVector2D {
 }
 
 func (ptr *QVector2D) DestroyQVector2D() {
-	C.free(ptr.Pointer())
-	ptr.SetPointer(nil)
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
 }
 
 func NewQVector2D() *QVector2D {
@@ -57653,20 +57813,20 @@ type QVector3D_ITF interface {
 	QVector3D_PTR() *QVector3D
 }
 
-func (p *QVector3D) QVector3D_PTR() *QVector3D {
-	return p
+func (ptr *QVector3D) QVector3D_PTR() *QVector3D {
+	return ptr
 }
 
-func (p *QVector3D) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QVector3D) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QVector3D) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QVector3D) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -57684,8 +57844,10 @@ func NewQVector3DFromPointer(ptr unsafe.Pointer) *QVector3D {
 }
 
 func (ptr *QVector3D) DestroyQVector3D() {
-	C.free(ptr.Pointer())
-	ptr.SetPointer(nil)
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
 }
 
 func NewQVector3D() *QVector3D {
@@ -57939,20 +58101,20 @@ type QVector4D_ITF interface {
 	QVector4D_PTR() *QVector4D
 }
 
-func (p *QVector4D) QVector4D_PTR() *QVector4D {
-	return p
+func (ptr *QVector4D) QVector4D_PTR() *QVector4D {
+	return ptr
 }
 
-func (p *QVector4D) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QVector4D) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QVector4D) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QVector4D) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -57970,8 +58132,10 @@ func NewQVector4DFromPointer(ptr unsafe.Pointer) *QVector4D {
 }
 
 func (ptr *QVector4D) DestroyQVector4D() {
-	C.free(ptr.Pointer())
-	ptr.SetPointer(nil)
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
 }
 
 func NewQVector4D() *QVector4D {
@@ -58181,20 +58345,20 @@ type QWhatsThisClickedEvent_ITF interface {
 	QWhatsThisClickedEvent_PTR() *QWhatsThisClickedEvent
 }
 
-func (p *QWhatsThisClickedEvent) QWhatsThisClickedEvent_PTR() *QWhatsThisClickedEvent {
-	return p
+func (ptr *QWhatsThisClickedEvent) QWhatsThisClickedEvent_PTR() *QWhatsThisClickedEvent {
+	return ptr
 }
 
-func (p *QWhatsThisClickedEvent) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QEvent_PTR().Pointer()
+func (ptr *QWhatsThisClickedEvent) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QEvent_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QWhatsThisClickedEvent) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QEvent_PTR().SetPointer(ptr)
+func (ptr *QWhatsThisClickedEvent) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QEvent_PTR().SetPointer(p)
 	}
 }
 
@@ -58212,8 +58376,10 @@ func NewQWhatsThisClickedEventFromPointer(ptr unsafe.Pointer) *QWhatsThisClicked
 }
 
 func (ptr *QWhatsThisClickedEvent) DestroyQWhatsThisClickedEvent() {
-	C.free(ptr.Pointer())
-	ptr.SetPointer(nil)
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
 }
 
 func NewQWhatsThisClickedEvent(href string) *QWhatsThisClickedEvent {
@@ -58240,20 +58406,20 @@ type QWheelEvent_ITF interface {
 	QWheelEvent_PTR() *QWheelEvent
 }
 
-func (p *QWheelEvent) QWheelEvent_PTR() *QWheelEvent {
-	return p
+func (ptr *QWheelEvent) QWheelEvent_PTR() *QWheelEvent {
+	return ptr
 }
 
-func (p *QWheelEvent) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QInputEvent_PTR().Pointer()
+func (ptr *QWheelEvent) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QInputEvent_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QWheelEvent) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QInputEvent_PTR().SetPointer(ptr)
+func (ptr *QWheelEvent) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QInputEvent_PTR().SetPointer(p)
 	}
 }
 
@@ -58271,8 +58437,10 @@ func NewQWheelEventFromPointer(ptr unsafe.Pointer) *QWheelEvent {
 }
 
 func (ptr *QWheelEvent) DestroyQWheelEvent() {
-	C.free(ptr.Pointer())
-	ptr.SetPointer(nil)
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
 }
 
 func NewQWheelEvent(pos core.QPointF_ITF, globalPos core.QPointF_ITF, pixelDelta core.QPoint_ITF, angleDelta core.QPoint_ITF, qt4Delta int, qt4Orientation core.Qt__Orientation, buttons core.Qt__MouseButton, modifiers core.Qt__KeyboardModifier) *QWheelEvent {
@@ -58545,21 +58713,21 @@ type QWindow_ITF interface {
 	QWindow_PTR() *QWindow
 }
 
-func (p *QWindow) QWindow_PTR() *QWindow {
-	return p
+func (ptr *QWindow) QWindow_PTR() *QWindow {
+	return ptr
 }
 
-func (p *QWindow) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QObject_PTR().Pointer()
+func (ptr *QWindow) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QObject_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QWindow) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QObject_PTR().SetPointer(ptr)
-		p.QSurface_PTR().SetPointer(ptr)
+func (ptr *QWindow) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QObject_PTR().SetPointer(p)
+		ptr.QSurface_PTR().SetPointer(p)
 	}
 }
 
@@ -61448,20 +61616,20 @@ type QWindowStateChangeEvent_ITF interface {
 	QWindowStateChangeEvent_PTR() *QWindowStateChangeEvent
 }
 
-func (p *QWindowStateChangeEvent) QWindowStateChangeEvent_PTR() *QWindowStateChangeEvent {
-	return p
+func (ptr *QWindowStateChangeEvent) QWindowStateChangeEvent_PTR() *QWindowStateChangeEvent {
+	return ptr
 }
 
-func (p *QWindowStateChangeEvent) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QEvent_PTR().Pointer()
+func (ptr *QWindowStateChangeEvent) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QEvent_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QWindowStateChangeEvent) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QEvent_PTR().SetPointer(ptr)
+func (ptr *QWindowStateChangeEvent) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QEvent_PTR().SetPointer(p)
 	}
 }
 
@@ -61479,8 +61647,10 @@ func NewQWindowStateChangeEventFromPointer(ptr unsafe.Pointer) *QWindowStateChan
 }
 
 func (ptr *QWindowStateChangeEvent) DestroyQWindowStateChangeEvent() {
-	C.free(ptr.Pointer())
-	ptr.SetPointer(nil)
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
 }
 
 func (ptr *QWindowStateChangeEvent) OldState() core.Qt__WindowState {

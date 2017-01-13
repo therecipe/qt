@@ -26,20 +26,20 @@ type QQuickStyle_ITF interface {
 	QQuickStyle_PTR() *QQuickStyle
 }
 
-func (p *QQuickStyle) QQuickStyle_PTR() *QQuickStyle {
-	return p
+func (ptr *QQuickStyle) QQuickStyle_PTR() *QQuickStyle {
+	return ptr
 }
 
-func (p *QQuickStyle) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QQuickStyle) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QQuickStyle) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QQuickStyle) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -57,8 +57,10 @@ func NewQQuickStyleFromPointer(ptr unsafe.Pointer) *QQuickStyle {
 }
 
 func (ptr *QQuickStyle) DestroyQQuickStyle() {
-	C.free(ptr.Pointer())
-	ptr.SetPointer(nil)
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
 }
 
 func QQuickStyle_Name() string {

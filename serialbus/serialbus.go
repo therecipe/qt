@@ -52,20 +52,20 @@ type Diagnostics_ITF interface {
 	Diagnostics_PTR() *Diagnostics
 }
 
-func (p *Diagnostics) Diagnostics_PTR() *Diagnostics {
-	return p
+func (ptr *Diagnostics) Diagnostics_PTR() *Diagnostics {
+	return ptr
 }
 
-func (p *Diagnostics) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *Diagnostics) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *Diagnostics) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *Diagnostics) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -83,8 +83,10 @@ func NewDiagnosticsFromPointer(ptr unsafe.Pointer) *Diagnostics {
 }
 
 func (ptr *Diagnostics) DestroyDiagnostics() {
-	C.free(ptr.Pointer())
-	ptr.SetPointer(nil)
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
 }
 
 //go:generate stringer -type=EncapsulatedInterfaceTransport__SubFunctionCode
@@ -104,20 +106,20 @@ type EncapsulatedInterfaceTransport_ITF interface {
 	EncapsulatedInterfaceTransport_PTR() *EncapsulatedInterfaceTransport
 }
 
-func (p *EncapsulatedInterfaceTransport) EncapsulatedInterfaceTransport_PTR() *EncapsulatedInterfaceTransport {
-	return p
+func (ptr *EncapsulatedInterfaceTransport) EncapsulatedInterfaceTransport_PTR() *EncapsulatedInterfaceTransport {
+	return ptr
 }
 
-func (p *EncapsulatedInterfaceTransport) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *EncapsulatedInterfaceTransport) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *EncapsulatedInterfaceTransport) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *EncapsulatedInterfaceTransport) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -135,8 +137,10 @@ func NewEncapsulatedInterfaceTransportFromPointer(ptr unsafe.Pointer) *Encapsula
 }
 
 func (ptr *EncapsulatedInterfaceTransport) DestroyEncapsulatedInterfaceTransport() {
-	C.free(ptr.Pointer())
-	ptr.SetPointer(nil)
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
 }
 
 type QCanBus struct {
@@ -148,20 +152,20 @@ type QCanBus_ITF interface {
 	QCanBus_PTR() *QCanBus
 }
 
-func (p *QCanBus) QCanBus_PTR() *QCanBus {
-	return p
+func (ptr *QCanBus) QCanBus_PTR() *QCanBus {
+	return ptr
 }
 
-func (p *QCanBus) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QObject_PTR().Pointer()
+func (ptr *QCanBus) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QObject_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QCanBus) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QObject_PTR().SetPointer(ptr)
+func (ptr *QCanBus) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QObject_PTR().SetPointer(p)
 	}
 }
 
@@ -179,9 +183,11 @@ func NewQCanBusFromPointer(ptr unsafe.Pointer) *QCanBus {
 }
 
 func (ptr *QCanBus) DestroyQCanBus() {
-	C.free(ptr.Pointer())
-	qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
-	ptr.SetPointer(nil)
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
+		ptr.SetPointer(nil)
+	}
 }
 
 func (ptr *QCanBus) CreateDevice(plugin core.QByteArray_ITF, interfaceName string) *QCanBusDevice {
@@ -615,20 +621,20 @@ type QCanBusDevice_ITF interface {
 	QCanBusDevice_PTR() *QCanBusDevice
 }
 
-func (p *QCanBusDevice) QCanBusDevice_PTR() *QCanBusDevice {
-	return p
+func (ptr *QCanBusDevice) QCanBusDevice_PTR() *QCanBusDevice {
+	return ptr
 }
 
-func (p *QCanBusDevice) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QObject_PTR().Pointer()
+func (ptr *QCanBusDevice) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QObject_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QCanBusDevice) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QObject_PTR().SetPointer(ptr)
+func (ptr *QCanBusDevice) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QObject_PTR().SetPointer(p)
 	}
 }
 
@@ -646,9 +652,11 @@ func NewQCanBusDeviceFromPointer(ptr unsafe.Pointer) *QCanBusDevice {
 }
 
 func (ptr *QCanBusDevice) DestroyQCanBusDevice() {
-	C.free(ptr.Pointer())
-	qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
-	ptr.SetPointer(nil)
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
+		ptr.SetPointer(nil)
+	}
 }
 
 func (ptr *QCanBusDevice) FramesAvailable() int64 {
@@ -1358,20 +1366,20 @@ type QCanBusFactory_ITF interface {
 	QCanBusFactory_PTR() *QCanBusFactory
 }
 
-func (p *QCanBusFactory) QCanBusFactory_PTR() *QCanBusFactory {
-	return p
+func (ptr *QCanBusFactory) QCanBusFactory_PTR() *QCanBusFactory {
+	return ptr
 }
 
-func (p *QCanBusFactory) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QCanBusFactory) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QCanBusFactory) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QCanBusFactory) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -1389,9 +1397,11 @@ func NewQCanBusFactoryFromPointer(ptr unsafe.Pointer) *QCanBusFactory {
 }
 
 func (ptr *QCanBusFactory) DestroyQCanBusFactory() {
-	C.free(ptr.Pointer())
-	qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
-	ptr.SetPointer(nil)
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
+		ptr.SetPointer(nil)
+	}
 }
 
 //export callbackQCanBusFactory_CreateDevice
@@ -1470,20 +1480,20 @@ type QCanBusFrame_ITF interface {
 	QCanBusFrame_PTR() *QCanBusFrame
 }
 
-func (p *QCanBusFrame) QCanBusFrame_PTR() *QCanBusFrame {
-	return p
+func (ptr *QCanBusFrame) QCanBusFrame_PTR() *QCanBusFrame {
+	return ptr
 }
 
-func (p *QCanBusFrame) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QCanBusFrame) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QCanBusFrame) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QCanBusFrame) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -1501,8 +1511,10 @@ func NewQCanBusFrameFromPointer(ptr unsafe.Pointer) *QCanBusFrame {
 }
 
 func (ptr *QCanBusFrame) DestroyQCanBusFrame() {
-	C.free(ptr.Pointer())
-	ptr.SetPointer(nil)
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
 }
 
 func NewQCanBusFrame(ty QCanBusFrame__FrameType) *QCanBusFrame {
@@ -1600,20 +1612,20 @@ type QModbusClient_ITF interface {
 	QModbusClient_PTR() *QModbusClient
 }
 
-func (p *QModbusClient) QModbusClient_PTR() *QModbusClient {
-	return p
+func (ptr *QModbusClient) QModbusClient_PTR() *QModbusClient {
+	return ptr
 }
 
-func (p *QModbusClient) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QModbusDevice_PTR().Pointer()
+func (ptr *QModbusClient) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QModbusDevice_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QModbusClient) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QModbusDevice_PTR().SetPointer(ptr)
+func (ptr *QModbusClient) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QModbusDevice_PTR().SetPointer(p)
 	}
 }
 
@@ -1631,9 +1643,11 @@ func NewQModbusClientFromPointer(ptr unsafe.Pointer) *QModbusClient {
 }
 
 func (ptr *QModbusClient) DestroyQModbusClient() {
-	C.free(ptr.Pointer())
-	qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
-	ptr.SetPointer(nil)
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
+		ptr.SetPointer(nil)
+	}
 }
 
 func (ptr *QModbusClient) Timeout() int {
@@ -2233,20 +2247,20 @@ type QModbusDataUnit_ITF interface {
 	QModbusDataUnit_PTR() *QModbusDataUnit
 }
 
-func (p *QModbusDataUnit) QModbusDataUnit_PTR() *QModbusDataUnit {
-	return p
+func (ptr *QModbusDataUnit) QModbusDataUnit_PTR() *QModbusDataUnit {
+	return ptr
 }
 
-func (p *QModbusDataUnit) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QModbusDataUnit) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QModbusDataUnit) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QModbusDataUnit) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -2264,8 +2278,10 @@ func NewQModbusDataUnitFromPointer(ptr unsafe.Pointer) *QModbusDataUnit {
 }
 
 func (ptr *QModbusDataUnit) DestroyQModbusDataUnit() {
-	C.free(ptr.Pointer())
-	ptr.SetPointer(nil)
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
 }
 
 func NewQModbusDataUnit() *QModbusDataUnit {
@@ -2396,20 +2412,20 @@ type QModbusDevice_ITF interface {
 	QModbusDevice_PTR() *QModbusDevice
 }
 
-func (p *QModbusDevice) QModbusDevice_PTR() *QModbusDevice {
-	return p
+func (ptr *QModbusDevice) QModbusDevice_PTR() *QModbusDevice {
+	return ptr
 }
 
-func (p *QModbusDevice) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QObject_PTR().Pointer()
+func (ptr *QModbusDevice) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QObject_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QModbusDevice) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QObject_PTR().SetPointer(ptr)
+func (ptr *QModbusDevice) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QObject_PTR().SetPointer(p)
 	}
 }
 
@@ -3004,20 +3020,20 @@ type QModbusDeviceIdentification_ITF interface {
 	QModbusDeviceIdentification_PTR() *QModbusDeviceIdentification
 }
 
-func (p *QModbusDeviceIdentification) QModbusDeviceIdentification_PTR() *QModbusDeviceIdentification {
-	return p
+func (ptr *QModbusDeviceIdentification) QModbusDeviceIdentification_PTR() *QModbusDeviceIdentification {
+	return ptr
 }
 
-func (p *QModbusDeviceIdentification) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QModbusDeviceIdentification) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QModbusDeviceIdentification) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QModbusDeviceIdentification) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -3035,8 +3051,10 @@ func NewQModbusDeviceIdentificationFromPointer(ptr unsafe.Pointer) *QModbusDevic
 }
 
 func (ptr *QModbusDeviceIdentification) DestroyQModbusDeviceIdentification() {
-	C.free(ptr.Pointer())
-	ptr.SetPointer(nil)
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
 }
 
 func NewQModbusDeviceIdentification() *QModbusDeviceIdentification {
@@ -3115,20 +3133,20 @@ type QModbusExceptionResponse_ITF interface {
 	QModbusExceptionResponse_PTR() *QModbusExceptionResponse
 }
 
-func (p *QModbusExceptionResponse) QModbusExceptionResponse_PTR() *QModbusExceptionResponse {
-	return p
+func (ptr *QModbusExceptionResponse) QModbusExceptionResponse_PTR() *QModbusExceptionResponse {
+	return ptr
 }
 
-func (p *QModbusExceptionResponse) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QModbusResponse_PTR().Pointer()
+func (ptr *QModbusExceptionResponse) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QModbusResponse_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QModbusExceptionResponse) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QModbusResponse_PTR().SetPointer(ptr)
+func (ptr *QModbusExceptionResponse) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QModbusResponse_PTR().SetPointer(p)
 	}
 }
 
@@ -3146,9 +3164,11 @@ func NewQModbusExceptionResponseFromPointer(ptr unsafe.Pointer) *QModbusExceptio
 }
 
 func (ptr *QModbusExceptionResponse) DestroyQModbusExceptionResponse() {
-	C.free(ptr.Pointer())
-	qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
-	ptr.SetPointer(nil)
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
+		ptr.SetPointer(nil)
+	}
 }
 
 func NewQModbusExceptionResponse() *QModbusExceptionResponse {
@@ -3259,20 +3279,20 @@ type QModbusPdu_ITF interface {
 	QModbusPdu_PTR() *QModbusPdu
 }
 
-func (p *QModbusPdu) QModbusPdu_PTR() *QModbusPdu {
-	return p
+func (ptr *QModbusPdu) QModbusPdu_PTR() *QModbusPdu {
+	return ptr
 }
 
-func (p *QModbusPdu) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QModbusPdu) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QModbusPdu) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QModbusPdu) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -3451,20 +3471,20 @@ type QModbusReply_ITF interface {
 	QModbusReply_PTR() *QModbusReply
 }
 
-func (p *QModbusReply) QModbusReply_PTR() *QModbusReply {
-	return p
+func (ptr *QModbusReply) QModbusReply_PTR() *QModbusReply {
+	return ptr
 }
 
-func (p *QModbusReply) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QObject_PTR().Pointer()
+func (ptr *QModbusReply) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QObject_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QModbusReply) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QObject_PTR().SetPointer(ptr)
+func (ptr *QModbusReply) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QObject_PTR().SetPointer(p)
 	}
 }
 
@@ -3482,9 +3502,11 @@ func NewQModbusReplyFromPointer(ptr unsafe.Pointer) *QModbusReply {
 }
 
 func (ptr *QModbusReply) DestroyQModbusReply() {
-	C.free(ptr.Pointer())
-	qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
-	ptr.SetPointer(nil)
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
+		ptr.SetPointer(nil)
+	}
 }
 
 func NewQModbusReply(ty QModbusReply__ReplyType, serverAddress int, parent core.QObject_ITF) *QModbusReply {
@@ -3948,20 +3970,20 @@ type QModbusRequest_ITF interface {
 	QModbusRequest_PTR() *QModbusRequest
 }
 
-func (p *QModbusRequest) QModbusRequest_PTR() *QModbusRequest {
-	return p
+func (ptr *QModbusRequest) QModbusRequest_PTR() *QModbusRequest {
+	return ptr
 }
 
-func (p *QModbusRequest) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QModbusPdu_PTR().Pointer()
+func (ptr *QModbusRequest) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QModbusPdu_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QModbusRequest) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QModbusPdu_PTR().SetPointer(ptr)
+func (ptr *QModbusRequest) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QModbusPdu_PTR().SetPointer(p)
 	}
 }
 
@@ -3979,8 +4001,10 @@ func NewQModbusRequestFromPointer(ptr unsafe.Pointer) *QModbusRequest {
 }
 
 func (ptr *QModbusRequest) DestroyQModbusRequest() {
-	C.free(ptr.Pointer())
-	ptr.SetPointer(nil)
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
 }
 
 func NewQModbusRequest() *QModbusRequest {
@@ -4062,20 +4086,20 @@ type QModbusResponse_ITF interface {
 	QModbusResponse_PTR() *QModbusResponse
 }
 
-func (p *QModbusResponse) QModbusResponse_PTR() *QModbusResponse {
-	return p
+func (ptr *QModbusResponse) QModbusResponse_PTR() *QModbusResponse {
+	return ptr
 }
 
-func (p *QModbusResponse) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QModbusPdu_PTR().Pointer()
+func (ptr *QModbusResponse) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QModbusPdu_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QModbusResponse) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QModbusPdu_PTR().SetPointer(ptr)
+func (ptr *QModbusResponse) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QModbusPdu_PTR().SetPointer(p)
 	}
 }
 
@@ -4093,8 +4117,10 @@ func NewQModbusResponseFromPointer(ptr unsafe.Pointer) *QModbusResponse {
 }
 
 func (ptr *QModbusResponse) DestroyQModbusResponse() {
-	C.free(ptr.Pointer())
-	ptr.SetPointer(nil)
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
 }
 
 func NewQModbusResponse() *QModbusResponse {
@@ -4176,20 +4202,20 @@ type QModbusRtuSerialMaster_ITF interface {
 	QModbusRtuSerialMaster_PTR() *QModbusRtuSerialMaster
 }
 
-func (p *QModbusRtuSerialMaster) QModbusRtuSerialMaster_PTR() *QModbusRtuSerialMaster {
-	return p
+func (ptr *QModbusRtuSerialMaster) QModbusRtuSerialMaster_PTR() *QModbusRtuSerialMaster {
+	return ptr
 }
 
-func (p *QModbusRtuSerialMaster) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QModbusClient_PTR().Pointer()
+func (ptr *QModbusRtuSerialMaster) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QModbusClient_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QModbusRtuSerialMaster) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QModbusClient_PTR().SetPointer(ptr)
+func (ptr *QModbusRtuSerialMaster) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QModbusClient_PTR().SetPointer(p)
 	}
 }
 
@@ -4207,9 +4233,11 @@ func NewQModbusRtuSerialMasterFromPointer(ptr unsafe.Pointer) *QModbusRtuSerialM
 }
 
 func (ptr *QModbusRtuSerialMaster) DestroyQModbusRtuSerialMaster() {
-	C.free(ptr.Pointer())
-	qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
-	ptr.SetPointer(nil)
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
+		ptr.SetPointer(nil)
+	}
 }
 
 func NewQModbusRtuSerialMaster(parent core.QObject_ITF) *QModbusRtuSerialMaster {
@@ -4725,20 +4753,20 @@ type QModbusRtuSerialSlave_ITF interface {
 	QModbusRtuSerialSlave_PTR() *QModbusRtuSerialSlave
 }
 
-func (p *QModbusRtuSerialSlave) QModbusRtuSerialSlave_PTR() *QModbusRtuSerialSlave {
-	return p
+func (ptr *QModbusRtuSerialSlave) QModbusRtuSerialSlave_PTR() *QModbusRtuSerialSlave {
+	return ptr
 }
 
-func (p *QModbusRtuSerialSlave) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QModbusServer_PTR().Pointer()
+func (ptr *QModbusRtuSerialSlave) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QModbusServer_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QModbusRtuSerialSlave) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QModbusServer_PTR().SetPointer(ptr)
+func (ptr *QModbusRtuSerialSlave) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QModbusServer_PTR().SetPointer(p)
 	}
 }
 
@@ -5488,20 +5516,20 @@ type QModbusServer_ITF interface {
 	QModbusServer_PTR() *QModbusServer
 }
 
-func (p *QModbusServer) QModbusServer_PTR() *QModbusServer {
-	return p
+func (ptr *QModbusServer) QModbusServer_PTR() *QModbusServer {
+	return ptr
 }
 
-func (p *QModbusServer) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QModbusDevice_PTR().Pointer()
+func (ptr *QModbusServer) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QModbusDevice_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QModbusServer) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QModbusDevice_PTR().SetPointer(ptr)
+func (ptr *QModbusServer) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QModbusDevice_PTR().SetPointer(p)
 	}
 }
 
@@ -5519,9 +5547,11 @@ func NewQModbusServerFromPointer(ptr unsafe.Pointer) *QModbusServer {
 }
 
 func (ptr *QModbusServer) DestroyQModbusServer() {
-	C.free(ptr.Pointer())
-	qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
-	ptr.SetPointer(nil)
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
+		ptr.SetPointer(nil)
+	}
 }
 
 func NewQModbusServer(parent core.QObject_ITF) *QModbusServer {
@@ -6290,20 +6320,20 @@ type QModbusTcpClient_ITF interface {
 	QModbusTcpClient_PTR() *QModbusTcpClient
 }
 
-func (p *QModbusTcpClient) QModbusTcpClient_PTR() *QModbusTcpClient {
-	return p
+func (ptr *QModbusTcpClient) QModbusTcpClient_PTR() *QModbusTcpClient {
+	return ptr
 }
 
-func (p *QModbusTcpClient) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QModbusClient_PTR().Pointer()
+func (ptr *QModbusTcpClient) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QModbusClient_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QModbusTcpClient) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QModbusClient_PTR().SetPointer(ptr)
+func (ptr *QModbusTcpClient) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QModbusClient_PTR().SetPointer(p)
 	}
 }
 
@@ -6827,20 +6857,20 @@ type QModbusTcpServer_ITF interface {
 	QModbusTcpServer_PTR() *QModbusTcpServer
 }
 
-func (p *QModbusTcpServer) QModbusTcpServer_PTR() *QModbusTcpServer {
-	return p
+func (ptr *QModbusTcpServer) QModbusTcpServer_PTR() *QModbusTcpServer {
+	return ptr
 }
 
-func (p *QModbusTcpServer) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QModbusServer_PTR().Pointer()
+func (ptr *QModbusTcpServer) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QModbusServer_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QModbusTcpServer) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QModbusServer_PTR().SetPointer(ptr)
+func (ptr *QModbusTcpServer) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QModbusServer_PTR().SetPointer(p)
 	}
 }
 

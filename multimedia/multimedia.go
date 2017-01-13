@@ -35,20 +35,20 @@ type QAbstractPlanarVideoBuffer_ITF interface {
 	QAbstractPlanarVideoBuffer_PTR() *QAbstractPlanarVideoBuffer
 }
 
-func (p *QAbstractPlanarVideoBuffer) QAbstractPlanarVideoBuffer_PTR() *QAbstractPlanarVideoBuffer {
-	return p
+func (ptr *QAbstractPlanarVideoBuffer) QAbstractPlanarVideoBuffer_PTR() *QAbstractPlanarVideoBuffer {
+	return ptr
 }
 
-func (p *QAbstractPlanarVideoBuffer) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QAbstractVideoBuffer_PTR().Pointer()
+func (ptr *QAbstractPlanarVideoBuffer) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QAbstractVideoBuffer_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QAbstractPlanarVideoBuffer) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QAbstractVideoBuffer_PTR().SetPointer(ptr)
+func (ptr *QAbstractPlanarVideoBuffer) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QAbstractVideoBuffer_PTR().SetPointer(p)
 	}
 }
 
@@ -277,20 +277,20 @@ type QAbstractVideoBuffer_ITF interface {
 	QAbstractVideoBuffer_PTR() *QAbstractVideoBuffer
 }
 
-func (p *QAbstractVideoBuffer) QAbstractVideoBuffer_PTR() *QAbstractVideoBuffer {
-	return p
+func (ptr *QAbstractVideoBuffer) QAbstractVideoBuffer_PTR() *QAbstractVideoBuffer {
+	return ptr
 }
 
-func (p *QAbstractVideoBuffer) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QAbstractVideoBuffer) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QAbstractVideoBuffer) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QAbstractVideoBuffer) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -548,20 +548,20 @@ type QAbstractVideoFilter_ITF interface {
 	QAbstractVideoFilter_PTR() *QAbstractVideoFilter
 }
 
-func (p *QAbstractVideoFilter) QAbstractVideoFilter_PTR() *QAbstractVideoFilter {
-	return p
+func (ptr *QAbstractVideoFilter) QAbstractVideoFilter_PTR() *QAbstractVideoFilter {
+	return ptr
 }
 
-func (p *QAbstractVideoFilter) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QObject_PTR().Pointer()
+func (ptr *QAbstractVideoFilter) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QObject_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QAbstractVideoFilter) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QObject_PTR().SetPointer(ptr)
+func (ptr *QAbstractVideoFilter) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QObject_PTR().SetPointer(p)
 	}
 }
 
@@ -579,9 +579,11 @@ func NewQAbstractVideoFilterFromPointer(ptr unsafe.Pointer) *QAbstractVideoFilte
 }
 
 func (ptr *QAbstractVideoFilter) DestroyQAbstractVideoFilter() {
-	C.free(ptr.Pointer())
-	qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
-	ptr.SetPointer(nil)
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
+		ptr.SetPointer(nil)
+	}
 }
 
 func (ptr *QAbstractVideoFilter) IsActive() bool {
@@ -1019,20 +1021,20 @@ type QAbstractVideoSurface_ITF interface {
 	QAbstractVideoSurface_PTR() *QAbstractVideoSurface
 }
 
-func (p *QAbstractVideoSurface) QAbstractVideoSurface_PTR() *QAbstractVideoSurface {
-	return p
+func (ptr *QAbstractVideoSurface) QAbstractVideoSurface_PTR() *QAbstractVideoSurface {
+	return ptr
 }
 
-func (p *QAbstractVideoSurface) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QObject_PTR().Pointer()
+func (ptr *QAbstractVideoSurface) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QObject_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QAbstractVideoSurface) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QObject_PTR().SetPointer(ptr)
+func (ptr *QAbstractVideoSurface) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QObject_PTR().SetPointer(p)
 	}
 }
 
@@ -1791,20 +1793,20 @@ type QAudio_ITF interface {
 	QAudio_PTR() *QAudio
 }
 
-func (p *QAudio) QAudio_PTR() *QAudio {
-	return p
+func (ptr *QAudio) QAudio_PTR() *QAudio {
+	return ptr
 }
 
-func (p *QAudio) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QAudio) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QAudio) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QAudio) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -1822,8 +1824,10 @@ func NewQAudioFromPointer(ptr unsafe.Pointer) *QAudio {
 }
 
 func (ptr *QAudio) DestroyQAudio() {
-	C.free(ptr.Pointer())
-	ptr.SetPointer(nil)
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
 }
 
 type QAudioBuffer struct {
@@ -1834,20 +1838,20 @@ type QAudioBuffer_ITF interface {
 	QAudioBuffer_PTR() *QAudioBuffer
 }
 
-func (p *QAudioBuffer) QAudioBuffer_PTR() *QAudioBuffer {
-	return p
+func (ptr *QAudioBuffer) QAudioBuffer_PTR() *QAudioBuffer {
+	return ptr
 }
 
-func (p *QAudioBuffer) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QAudioBuffer) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QAudioBuffer) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QAudioBuffer) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -2017,20 +2021,20 @@ type QAudioDecoder_ITF interface {
 	QAudioDecoder_PTR() *QAudioDecoder
 }
 
-func (p *QAudioDecoder) QAudioDecoder_PTR() *QAudioDecoder {
-	return p
+func (ptr *QAudioDecoder) QAudioDecoder_PTR() *QAudioDecoder {
+	return ptr
 }
 
-func (p *QAudioDecoder) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QMediaObject_PTR().Pointer()
+func (ptr *QAudioDecoder) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QMediaObject_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QAudioDecoder) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QMediaObject_PTR().SetPointer(ptr)
+func (ptr *QAudioDecoder) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QMediaObject_PTR().SetPointer(p)
 	}
 }
 
@@ -3031,20 +3035,20 @@ type QAudioDecoderControl_ITF interface {
 	QAudioDecoderControl_PTR() *QAudioDecoderControl
 }
 
-func (p *QAudioDecoderControl) QAudioDecoderControl_PTR() *QAudioDecoderControl {
-	return p
+func (ptr *QAudioDecoderControl) QAudioDecoderControl_PTR() *QAudioDecoderControl {
+	return ptr
 }
 
-func (p *QAudioDecoderControl) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QMediaControl_PTR().Pointer()
+func (ptr *QAudioDecoderControl) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QMediaControl_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QAudioDecoderControl) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QMediaControl_PTR().SetPointer(ptr)
+func (ptr *QAudioDecoderControl) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QMediaControl_PTR().SetPointer(p)
 	}
 }
 
@@ -4083,20 +4087,20 @@ type QAudioDeviceInfo_ITF interface {
 	QAudioDeviceInfo_PTR() *QAudioDeviceInfo
 }
 
-func (p *QAudioDeviceInfo) QAudioDeviceInfo_PTR() *QAudioDeviceInfo {
-	return p
+func (ptr *QAudioDeviceInfo) QAudioDeviceInfo_PTR() *QAudioDeviceInfo {
+	return ptr
 }
 
-func (p *QAudioDeviceInfo) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QAudioDeviceInfo) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QAudioDeviceInfo) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QAudioDeviceInfo) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -4238,20 +4242,20 @@ type QAudioEncoderSettings_ITF interface {
 	QAudioEncoderSettings_PTR() *QAudioEncoderSettings
 }
 
-func (p *QAudioEncoderSettings) QAudioEncoderSettings_PTR() *QAudioEncoderSettings {
-	return p
+func (ptr *QAudioEncoderSettings) QAudioEncoderSettings_PTR() *QAudioEncoderSettings {
+	return ptr
 }
 
-func (p *QAudioEncoderSettings) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QAudioEncoderSettings) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QAudioEncoderSettings) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QAudioEncoderSettings) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -4401,20 +4405,20 @@ type QAudioEncoderSettingsControl_ITF interface {
 	QAudioEncoderSettingsControl_PTR() *QAudioEncoderSettingsControl
 }
 
-func (p *QAudioEncoderSettingsControl) QAudioEncoderSettingsControl_PTR() *QAudioEncoderSettingsControl {
-	return p
+func (ptr *QAudioEncoderSettingsControl) QAudioEncoderSettingsControl_PTR() *QAudioEncoderSettingsControl {
+	return ptr
 }
 
-func (p *QAudioEncoderSettingsControl) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QMediaControl_PTR().Pointer()
+func (ptr *QAudioEncoderSettingsControl) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QMediaControl_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QAudioEncoderSettingsControl) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QMediaControl_PTR().SetPointer(ptr)
+func (ptr *QAudioEncoderSettingsControl) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QMediaControl_PTR().SetPointer(p)
 	}
 }
 
@@ -4958,20 +4962,20 @@ type QAudioFormat_ITF interface {
 	QAudioFormat_PTR() *QAudioFormat
 }
 
-func (p *QAudioFormat) QAudioFormat_PTR() *QAudioFormat {
-	return p
+func (ptr *QAudioFormat) QAudioFormat_PTR() *QAudioFormat {
+	return ptr
 }
 
-func (p *QAudioFormat) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QAudioFormat) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QAudioFormat) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QAudioFormat) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -5151,20 +5155,20 @@ type QAudioInput_ITF interface {
 	QAudioInput_PTR() *QAudioInput
 }
 
-func (p *QAudioInput) QAudioInput_PTR() *QAudioInput {
-	return p
+func (ptr *QAudioInput) QAudioInput_PTR() *QAudioInput {
+	return ptr
 }
 
-func (p *QAudioInput) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QObject_PTR().Pointer()
+func (ptr *QAudioInput) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QObject_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QAudioInput) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QObject_PTR().SetPointer(ptr)
+func (ptr *QAudioInput) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QObject_PTR().SetPointer(p)
 	}
 }
 
@@ -5706,20 +5710,20 @@ type QAudioInputSelectorControl_ITF interface {
 	QAudioInputSelectorControl_PTR() *QAudioInputSelectorControl
 }
 
-func (p *QAudioInputSelectorControl) QAudioInputSelectorControl_PTR() *QAudioInputSelectorControl {
-	return p
+func (ptr *QAudioInputSelectorControl) QAudioInputSelectorControl_PTR() *QAudioInputSelectorControl {
+	return ptr
 }
 
-func (p *QAudioInputSelectorControl) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QMediaControl_PTR().Pointer()
+func (ptr *QAudioInputSelectorControl) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QMediaControl_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QAudioInputSelectorControl) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QMediaControl_PTR().SetPointer(ptr)
+func (ptr *QAudioInputSelectorControl) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QMediaControl_PTR().SetPointer(p)
 	}
 }
 
@@ -6310,20 +6314,20 @@ type QAudioOutput_ITF interface {
 	QAudioOutput_PTR() *QAudioOutput
 }
 
-func (p *QAudioOutput) QAudioOutput_PTR() *QAudioOutput {
-	return p
+func (ptr *QAudioOutput) QAudioOutput_PTR() *QAudioOutput {
+	return ptr
 }
 
-func (p *QAudioOutput) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QObject_PTR().Pointer()
+func (ptr *QAudioOutput) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QObject_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QAudioOutput) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QObject_PTR().SetPointer(ptr)
+func (ptr *QAudioOutput) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QObject_PTR().SetPointer(p)
 	}
 }
 
@@ -6880,20 +6884,20 @@ type QAudioOutputSelectorControl_ITF interface {
 	QAudioOutputSelectorControl_PTR() *QAudioOutputSelectorControl
 }
 
-func (p *QAudioOutputSelectorControl) QAudioOutputSelectorControl_PTR() *QAudioOutputSelectorControl {
-	return p
+func (ptr *QAudioOutputSelectorControl) QAudioOutputSelectorControl_PTR() *QAudioOutputSelectorControl {
+	return ptr
 }
 
-func (p *QAudioOutputSelectorControl) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QMediaControl_PTR().Pointer()
+func (ptr *QAudioOutputSelectorControl) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QMediaControl_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QAudioOutputSelectorControl) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QMediaControl_PTR().SetPointer(ptr)
+func (ptr *QAudioOutputSelectorControl) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QMediaControl_PTR().SetPointer(p)
 	}
 }
 
@@ -7484,20 +7488,20 @@ type QAudioProbe_ITF interface {
 	QAudioProbe_PTR() *QAudioProbe
 }
 
-func (p *QAudioProbe) QAudioProbe_PTR() *QAudioProbe {
-	return p
+func (ptr *QAudioProbe) QAudioProbe_PTR() *QAudioProbe {
+	return ptr
 }
 
-func (p *QAudioProbe) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QObject_PTR().Pointer()
+func (ptr *QAudioProbe) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QObject_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QAudioProbe) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QObject_PTR().SetPointer(ptr)
+func (ptr *QAudioProbe) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QObject_PTR().SetPointer(p)
 	}
 }
 
@@ -7950,20 +7954,20 @@ type QAudioRecorder_ITF interface {
 	QAudioRecorder_PTR() *QAudioRecorder
 }
 
-func (p *QAudioRecorder) QAudioRecorder_PTR() *QAudioRecorder {
-	return p
+func (ptr *QAudioRecorder) QAudioRecorder_PTR() *QAudioRecorder {
+	return ptr
 }
 
-func (p *QAudioRecorder) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QMediaRecorder_PTR().Pointer()
+func (ptr *QAudioRecorder) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QMediaRecorder_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QAudioRecorder) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QMediaRecorder_PTR().SetPointer(ptr)
+func (ptr *QAudioRecorder) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QMediaRecorder_PTR().SetPointer(p)
 	}
 }
 
@@ -8716,20 +8720,20 @@ type QAudioRoleControl_ITF interface {
 	QAudioRoleControl_PTR() *QAudioRoleControl
 }
 
-func (p *QAudioRoleControl) QAudioRoleControl_PTR() *QAudioRoleControl {
-	return p
+func (ptr *QAudioRoleControl) QAudioRoleControl_PTR() *QAudioRoleControl {
+	return ptr
 }
 
-func (p *QAudioRoleControl) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QMediaControl_PTR().Pointer()
+func (ptr *QAudioRoleControl) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QMediaControl_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QAudioRoleControl) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QMediaControl_PTR().SetPointer(ptr)
+func (ptr *QAudioRoleControl) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QMediaControl_PTR().SetPointer(p)
 	}
 }
 
@@ -9308,20 +9312,20 @@ type QCamera_ITF interface {
 	QCamera_PTR() *QCamera
 }
 
-func (p *QCamera) QCamera_PTR() *QCamera {
-	return p
+func (ptr *QCamera) QCamera_PTR() *QCamera {
+	return ptr
 }
 
-func (p *QCamera) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QMediaObject_PTR().Pointer()
+func (ptr *QCamera) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QMediaObject_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QCamera) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QMediaObject_PTR().SetPointer(ptr)
+func (ptr *QCamera) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QMediaObject_PTR().SetPointer(p)
 	}
 }
 
@@ -10588,20 +10592,20 @@ type QCameraCaptureBufferFormatControl_ITF interface {
 	QCameraCaptureBufferFormatControl_PTR() *QCameraCaptureBufferFormatControl
 }
 
-func (p *QCameraCaptureBufferFormatControl) QCameraCaptureBufferFormatControl_PTR() *QCameraCaptureBufferFormatControl {
-	return p
+func (ptr *QCameraCaptureBufferFormatControl) QCameraCaptureBufferFormatControl_PTR() *QCameraCaptureBufferFormatControl {
+	return ptr
 }
 
-func (p *QCameraCaptureBufferFormatControl) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QMediaControl_PTR().Pointer()
+func (ptr *QCameraCaptureBufferFormatControl) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QMediaControl_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QCameraCaptureBufferFormatControl) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QMediaControl_PTR().SetPointer(ptr)
+func (ptr *QCameraCaptureBufferFormatControl) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QMediaControl_PTR().SetPointer(p)
 	}
 }
 
@@ -11057,20 +11061,20 @@ type QCameraCaptureDestinationControl_ITF interface {
 	QCameraCaptureDestinationControl_PTR() *QCameraCaptureDestinationControl
 }
 
-func (p *QCameraCaptureDestinationControl) QCameraCaptureDestinationControl_PTR() *QCameraCaptureDestinationControl {
-	return p
+func (ptr *QCameraCaptureDestinationControl) QCameraCaptureDestinationControl_PTR() *QCameraCaptureDestinationControl {
+	return ptr
 }
 
-func (p *QCameraCaptureDestinationControl) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QMediaControl_PTR().Pointer()
+func (ptr *QCameraCaptureDestinationControl) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QMediaControl_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QCameraCaptureDestinationControl) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QMediaControl_PTR().SetPointer(ptr)
+func (ptr *QCameraCaptureDestinationControl) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QMediaControl_PTR().SetPointer(p)
 	}
 }
 
@@ -11576,20 +11580,20 @@ type QCameraControl_ITF interface {
 	QCameraControl_PTR() *QCameraControl
 }
 
-func (p *QCameraControl) QCameraControl_PTR() *QCameraControl {
-	return p
+func (ptr *QCameraControl) QCameraControl_PTR() *QCameraControl {
+	return ptr
 }
 
-func (p *QCameraControl) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QMediaControl_PTR().Pointer()
+func (ptr *QCameraControl) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QMediaControl_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QCameraControl) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QMediaControl_PTR().SetPointer(ptr)
+func (ptr *QCameraControl) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QMediaControl_PTR().SetPointer(p)
 	}
 }
 
@@ -12350,20 +12354,20 @@ type QCameraExposure_ITF interface {
 	QCameraExposure_PTR() *QCameraExposure
 }
 
-func (p *QCameraExposure) QCameraExposure_PTR() *QCameraExposure {
-	return p
+func (ptr *QCameraExposure) QCameraExposure_PTR() *QCameraExposure {
+	return ptr
 }
 
-func (p *QCameraExposure) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QObject_PTR().Pointer()
+func (ptr *QCameraExposure) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QObject_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QCameraExposure) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QObject_PTR().SetPointer(ptr)
+func (ptr *QCameraExposure) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QObject_PTR().SetPointer(p)
 	}
 }
 
@@ -12381,9 +12385,11 @@ func NewQCameraExposureFromPointer(ptr unsafe.Pointer) *QCameraExposure {
 }
 
 func (ptr *QCameraExposure) DestroyQCameraExposure() {
-	C.free(ptr.Pointer())
-	qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
-	ptr.SetPointer(nil)
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
+		ptr.SetPointer(nil)
+	}
 }
 
 func (ptr *QCameraExposure) Aperture() float64 {
@@ -13349,20 +13355,20 @@ type QCameraExposureControl_ITF interface {
 	QCameraExposureControl_PTR() *QCameraExposureControl
 }
 
-func (p *QCameraExposureControl) QCameraExposureControl_PTR() *QCameraExposureControl {
-	return p
+func (ptr *QCameraExposureControl) QCameraExposureControl_PTR() *QCameraExposureControl {
+	return ptr
 }
 
-func (p *QCameraExposureControl) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QMediaControl_PTR().Pointer()
+func (ptr *QCameraExposureControl) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QMediaControl_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QCameraExposureControl) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QMediaControl_PTR().SetPointer(ptr)
+func (ptr *QCameraExposureControl) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QMediaControl_PTR().SetPointer(p)
 	}
 }
 
@@ -13998,20 +14004,20 @@ type QCameraFeedbackControl_ITF interface {
 	QCameraFeedbackControl_PTR() *QCameraFeedbackControl
 }
 
-func (p *QCameraFeedbackControl) QCameraFeedbackControl_PTR() *QCameraFeedbackControl {
-	return p
+func (ptr *QCameraFeedbackControl) QCameraFeedbackControl_PTR() *QCameraFeedbackControl {
+	return ptr
 }
 
-func (p *QCameraFeedbackControl) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QMediaControl_PTR().Pointer()
+func (ptr *QCameraFeedbackControl) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QMediaControl_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QCameraFeedbackControl) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QMediaControl_PTR().SetPointer(ptr)
+func (ptr *QCameraFeedbackControl) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QMediaControl_PTR().SetPointer(p)
 	}
 }
 
@@ -14540,20 +14546,20 @@ type QCameraFlashControl_ITF interface {
 	QCameraFlashControl_PTR() *QCameraFlashControl
 }
 
-func (p *QCameraFlashControl) QCameraFlashControl_PTR() *QCameraFlashControl {
-	return p
+func (ptr *QCameraFlashControl) QCameraFlashControl_PTR() *QCameraFlashControl {
+	return ptr
 }
 
-func (p *QCameraFlashControl) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QMediaControl_PTR().Pointer()
+func (ptr *QCameraFlashControl) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QMediaControl_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QCameraFlashControl) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QMediaControl_PTR().SetPointer(ptr)
+func (ptr *QCameraFlashControl) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QMediaControl_PTR().SetPointer(p)
 	}
 }
 
@@ -15102,20 +15108,20 @@ type QCameraFocus_ITF interface {
 	QCameraFocus_PTR() *QCameraFocus
 }
 
-func (p *QCameraFocus) QCameraFocus_PTR() *QCameraFocus {
-	return p
+func (ptr *QCameraFocus) QCameraFocus_PTR() *QCameraFocus {
+	return ptr
 }
 
-func (p *QCameraFocus) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QObject_PTR().Pointer()
+func (ptr *QCameraFocus) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QObject_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QCameraFocus) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QObject_PTR().SetPointer(ptr)
+func (ptr *QCameraFocus) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QObject_PTR().SetPointer(p)
 	}
 }
 
@@ -15133,9 +15139,11 @@ func NewQCameraFocusFromPointer(ptr unsafe.Pointer) *QCameraFocus {
 }
 
 func (ptr *QCameraFocus) DestroyQCameraFocus() {
-	C.free(ptr.Pointer())
-	qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
-	ptr.SetPointer(nil)
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
+		ptr.SetPointer(nil)
+	}
 }
 
 func (ptr *QCameraFocus) CustomFocusPoint() *core.QPointF {
@@ -15721,20 +15729,20 @@ type QCameraFocusControl_ITF interface {
 	QCameraFocusControl_PTR() *QCameraFocusControl
 }
 
-func (p *QCameraFocusControl) QCameraFocusControl_PTR() *QCameraFocusControl {
-	return p
+func (ptr *QCameraFocusControl) QCameraFocusControl_PTR() *QCameraFocusControl {
+	return ptr
 }
 
-func (p *QCameraFocusControl) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QMediaControl_PTR().Pointer()
+func (ptr *QCameraFocusControl) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QMediaControl_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QCameraFocusControl) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QMediaControl_PTR().SetPointer(ptr)
+func (ptr *QCameraFocusControl) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QMediaControl_PTR().SetPointer(p)
 	}
 }
 
@@ -16478,20 +16486,20 @@ type QCameraFocusZone_ITF interface {
 	QCameraFocusZone_PTR() *QCameraFocusZone
 }
 
-func (p *QCameraFocusZone) QCameraFocusZone_PTR() *QCameraFocusZone {
-	return p
+func (ptr *QCameraFocusZone) QCameraFocusZone_PTR() *QCameraFocusZone {
+	return ptr
 }
 
-func (p *QCameraFocusZone) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QCameraFocusZone) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QCameraFocusZone) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QCameraFocusZone) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -16584,21 +16592,21 @@ type QCameraImageCapture_ITF interface {
 	QCameraImageCapture_PTR() *QCameraImageCapture
 }
 
-func (p *QCameraImageCapture) QCameraImageCapture_PTR() *QCameraImageCapture {
-	return p
+func (ptr *QCameraImageCapture) QCameraImageCapture_PTR() *QCameraImageCapture {
+	return ptr
 }
 
-func (p *QCameraImageCapture) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QObject_PTR().Pointer()
+func (ptr *QCameraImageCapture) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QObject_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QCameraImageCapture) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QObject_PTR().SetPointer(ptr)
-		p.QMediaBindableInterface_PTR().SetPointer(ptr)
+func (ptr *QCameraImageCapture) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QObject_PTR().SetPointer(p)
+		ptr.QMediaBindableInterface_PTR().SetPointer(p)
 	}
 }
 
@@ -17504,20 +17512,20 @@ type QCameraImageCaptureControl_ITF interface {
 	QCameraImageCaptureControl_PTR() *QCameraImageCaptureControl
 }
 
-func (p *QCameraImageCaptureControl) QCameraImageCaptureControl_PTR() *QCameraImageCaptureControl {
-	return p
+func (ptr *QCameraImageCaptureControl) QCameraImageCaptureControl_PTR() *QCameraImageCaptureControl {
+	return ptr
 }
 
-func (p *QCameraImageCaptureControl) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QMediaControl_PTR().Pointer()
+func (ptr *QCameraImageCaptureControl) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QMediaControl_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QCameraImageCaptureControl) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QMediaControl_PTR().SetPointer(ptr)
+func (ptr *QCameraImageCaptureControl) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QMediaControl_PTR().SetPointer(p)
 	}
 }
 
@@ -18287,20 +18295,20 @@ type QCameraImageProcessing_ITF interface {
 	QCameraImageProcessing_PTR() *QCameraImageProcessing
 }
 
-func (p *QCameraImageProcessing) QCameraImageProcessing_PTR() *QCameraImageProcessing {
-	return p
+func (ptr *QCameraImageProcessing) QCameraImageProcessing_PTR() *QCameraImageProcessing {
+	return ptr
 }
 
-func (p *QCameraImageProcessing) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QObject_PTR().Pointer()
+func (ptr *QCameraImageProcessing) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QObject_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QCameraImageProcessing) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QObject_PTR().SetPointer(ptr)
+func (ptr *QCameraImageProcessing) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QObject_PTR().SetPointer(p)
 	}
 }
 
@@ -18318,9 +18326,11 @@ func NewQCameraImageProcessingFromPointer(ptr unsafe.Pointer) *QCameraImageProce
 }
 
 func (ptr *QCameraImageProcessing) DestroyQCameraImageProcessing() {
-	C.free(ptr.Pointer())
-	qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
-	ptr.SetPointer(nil)
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
+		ptr.SetPointer(nil)
+	}
 }
 
 func (ptr *QCameraImageProcessing) Brightness() float64 {
@@ -18811,20 +18821,20 @@ type QCameraImageProcessingControl_ITF interface {
 	QCameraImageProcessingControl_PTR() *QCameraImageProcessingControl
 }
 
-func (p *QCameraImageProcessingControl) QCameraImageProcessingControl_PTR() *QCameraImageProcessingControl {
-	return p
+func (ptr *QCameraImageProcessingControl) QCameraImageProcessingControl_PTR() *QCameraImageProcessingControl {
+	return ptr
 }
 
-func (p *QCameraImageProcessingControl) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QMediaControl_PTR().Pointer()
+func (ptr *QCameraImageProcessingControl) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QMediaControl_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QCameraImageProcessingControl) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QMediaControl_PTR().SetPointer(ptr)
+func (ptr *QCameraImageProcessingControl) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QMediaControl_PTR().SetPointer(p)
 	}
 }
 
@@ -19321,20 +19331,20 @@ type QCameraInfo_ITF interface {
 	QCameraInfo_PTR() *QCameraInfo
 }
 
-func (p *QCameraInfo) QCameraInfo_PTR() *QCameraInfo {
-	return p
+func (ptr *QCameraInfo) QCameraInfo_PTR() *QCameraInfo {
+	return ptr
 }
 
-func (p *QCameraInfo) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QCameraInfo) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QCameraInfo) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QCameraInfo) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -19460,20 +19470,20 @@ type QCameraInfoControl_ITF interface {
 	QCameraInfoControl_PTR() *QCameraInfoControl
 }
 
-func (p *QCameraInfoControl) QCameraInfoControl_PTR() *QCameraInfoControl {
-	return p
+func (ptr *QCameraInfoControl) QCameraInfoControl_PTR() *QCameraInfoControl {
+	return ptr
 }
 
-func (p *QCameraInfoControl) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QMediaControl_PTR().Pointer()
+func (ptr *QCameraInfoControl) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QMediaControl_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QCameraInfoControl) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QMediaControl_PTR().SetPointer(ptr)
+func (ptr *QCameraInfoControl) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QMediaControl_PTR().SetPointer(p)
 	}
 }
 
@@ -19945,20 +19955,20 @@ type QCameraLocksControl_ITF interface {
 	QCameraLocksControl_PTR() *QCameraLocksControl
 }
 
-func (p *QCameraLocksControl) QCameraLocksControl_PTR() *QCameraLocksControl {
-	return p
+func (ptr *QCameraLocksControl) QCameraLocksControl_PTR() *QCameraLocksControl {
+	return ptr
 }
 
-func (p *QCameraLocksControl) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QMediaControl_PTR().Pointer()
+func (ptr *QCameraLocksControl) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QMediaControl_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QCameraLocksControl) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QMediaControl_PTR().SetPointer(ptr)
+func (ptr *QCameraLocksControl) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QMediaControl_PTR().SetPointer(p)
 	}
 }
 
@@ -20481,20 +20491,20 @@ type QCameraViewfinder_ITF interface {
 	QCameraViewfinder_PTR() *QCameraViewfinder
 }
 
-func (p *QCameraViewfinder) QCameraViewfinder_PTR() *QCameraViewfinder {
-	return p
+func (ptr *QCameraViewfinder) QCameraViewfinder_PTR() *QCameraViewfinder {
+	return ptr
 }
 
-func (p *QCameraViewfinder) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QVideoWidget_PTR().Pointer()
+func (ptr *QCameraViewfinder) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QVideoWidget_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QCameraViewfinder) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QVideoWidget_PTR().SetPointer(ptr)
+func (ptr *QCameraViewfinder) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QVideoWidget_PTR().SetPointer(p)
 	}
 }
 
@@ -23161,20 +23171,20 @@ type QCameraViewfinderSettings_ITF interface {
 	QCameraViewfinderSettings_PTR() *QCameraViewfinderSettings
 }
 
-func (p *QCameraViewfinderSettings) QCameraViewfinderSettings_PTR() *QCameraViewfinderSettings {
-	return p
+func (ptr *QCameraViewfinderSettings) QCameraViewfinderSettings_PTR() *QCameraViewfinderSettings {
+	return ptr
 }
 
-func (p *QCameraViewfinderSettings) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QCameraViewfinderSettings) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QCameraViewfinderSettings) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QCameraViewfinderSettings) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -23325,20 +23335,20 @@ type QCameraViewfinderSettingsControl_ITF interface {
 	QCameraViewfinderSettingsControl_PTR() *QCameraViewfinderSettingsControl
 }
 
-func (p *QCameraViewfinderSettingsControl) QCameraViewfinderSettingsControl_PTR() *QCameraViewfinderSettingsControl {
-	return p
+func (ptr *QCameraViewfinderSettingsControl) QCameraViewfinderSettingsControl_PTR() *QCameraViewfinderSettingsControl {
+	return ptr
 }
 
-func (p *QCameraViewfinderSettingsControl) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QMediaControl_PTR().Pointer()
+func (ptr *QCameraViewfinderSettingsControl) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QMediaControl_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QCameraViewfinderSettingsControl) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QMediaControl_PTR().SetPointer(ptr)
+func (ptr *QCameraViewfinderSettingsControl) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QMediaControl_PTR().SetPointer(p)
 	}
 }
 
@@ -23805,20 +23815,20 @@ type QCameraViewfinderSettingsControl2_ITF interface {
 	QCameraViewfinderSettingsControl2_PTR() *QCameraViewfinderSettingsControl2
 }
 
-func (p *QCameraViewfinderSettingsControl2) QCameraViewfinderSettingsControl2_PTR() *QCameraViewfinderSettingsControl2 {
-	return p
+func (ptr *QCameraViewfinderSettingsControl2) QCameraViewfinderSettingsControl2_PTR() *QCameraViewfinderSettingsControl2 {
+	return ptr
 }
 
-func (p *QCameraViewfinderSettingsControl2) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QMediaControl_PTR().Pointer()
+func (ptr *QCameraViewfinderSettingsControl2) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QMediaControl_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QCameraViewfinderSettingsControl2) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QMediaControl_PTR().SetPointer(ptr)
+func (ptr *QCameraViewfinderSettingsControl2) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QMediaControl_PTR().SetPointer(p)
 	}
 }
 
@@ -24315,20 +24325,20 @@ type QCameraZoomControl_ITF interface {
 	QCameraZoomControl_PTR() *QCameraZoomControl
 }
 
-func (p *QCameraZoomControl) QCameraZoomControl_PTR() *QCameraZoomControl {
-	return p
+func (ptr *QCameraZoomControl) QCameraZoomControl_PTR() *QCameraZoomControl {
+	return ptr
 }
 
-func (p *QCameraZoomControl) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QMediaControl_PTR().Pointer()
+func (ptr *QCameraZoomControl) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QMediaControl_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QCameraZoomControl) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QMediaControl_PTR().SetPointer(ptr)
+func (ptr *QCameraZoomControl) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QMediaControl_PTR().SetPointer(p)
 	}
 }
 
@@ -25093,21 +25103,21 @@ type QGraphicsVideoItem_ITF interface {
 	QGraphicsVideoItem_PTR() *QGraphicsVideoItem
 }
 
-func (p *QGraphicsVideoItem) QGraphicsVideoItem_PTR() *QGraphicsVideoItem {
-	return p
+func (ptr *QGraphicsVideoItem) QGraphicsVideoItem_PTR() *QGraphicsVideoItem {
+	return ptr
 }
 
-func (p *QGraphicsVideoItem) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QGraphicsObject_PTR().Pointer()
+func (ptr *QGraphicsVideoItem) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QGraphicsObject_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QGraphicsVideoItem) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QGraphicsObject_PTR().SetPointer(ptr)
-		p.QMediaBindableInterface_PTR().SetPointer(ptr)
+func (ptr *QGraphicsVideoItem) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QGraphicsObject_PTR().SetPointer(p)
+		ptr.QMediaBindableInterface_PTR().SetPointer(p)
 	}
 }
 
@@ -26878,20 +26888,20 @@ type QImageEncoderControl_ITF interface {
 	QImageEncoderControl_PTR() *QImageEncoderControl
 }
 
-func (p *QImageEncoderControl) QImageEncoderControl_PTR() *QImageEncoderControl {
-	return p
+func (ptr *QImageEncoderControl) QImageEncoderControl_PTR() *QImageEncoderControl {
+	return ptr
 }
 
-func (p *QImageEncoderControl) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QMediaControl_PTR().Pointer()
+func (ptr *QImageEncoderControl) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QMediaControl_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QImageEncoderControl) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QMediaControl_PTR().SetPointer(ptr)
+func (ptr *QImageEncoderControl) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QMediaControl_PTR().SetPointer(p)
 	}
 }
 
@@ -27451,20 +27461,20 @@ type QImageEncoderSettings_ITF interface {
 	QImageEncoderSettings_PTR() *QImageEncoderSettings
 }
 
-func (p *QImageEncoderSettings) QImageEncoderSettings_PTR() *QImageEncoderSettings {
-	return p
+func (ptr *QImageEncoderSettings) QImageEncoderSettings_PTR() *QImageEncoderSettings {
+	return ptr
 }
 
-func (p *QImageEncoderSettings) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QImageEncoderSettings) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QImageEncoderSettings) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QImageEncoderSettings) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -27583,20 +27593,20 @@ type QMediaAudioProbeControl_ITF interface {
 	QMediaAudioProbeControl_PTR() *QMediaAudioProbeControl
 }
 
-func (p *QMediaAudioProbeControl) QMediaAudioProbeControl_PTR() *QMediaAudioProbeControl {
-	return p
+func (ptr *QMediaAudioProbeControl) QMediaAudioProbeControl_PTR() *QMediaAudioProbeControl {
+	return ptr
 }
 
-func (p *QMediaAudioProbeControl) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QMediaControl_PTR().Pointer()
+func (ptr *QMediaAudioProbeControl) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QMediaControl_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QMediaAudioProbeControl) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QMediaControl_PTR().SetPointer(ptr)
+func (ptr *QMediaAudioProbeControl) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QMediaControl_PTR().SetPointer(p)
 	}
 }
 
@@ -28060,20 +28070,20 @@ type QMediaAvailabilityControl_ITF interface {
 	QMediaAvailabilityControl_PTR() *QMediaAvailabilityControl
 }
 
-func (p *QMediaAvailabilityControl) QMediaAvailabilityControl_PTR() *QMediaAvailabilityControl {
-	return p
+func (ptr *QMediaAvailabilityControl) QMediaAvailabilityControl_PTR() *QMediaAvailabilityControl {
+	return ptr
 }
 
-func (p *QMediaAvailabilityControl) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QMediaControl_PTR().Pointer()
+func (ptr *QMediaAvailabilityControl) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QMediaControl_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QMediaAvailabilityControl) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QMediaControl_PTR().SetPointer(ptr)
+func (ptr *QMediaAvailabilityControl) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QMediaControl_PTR().SetPointer(p)
 	}
 }
 
@@ -28506,20 +28516,20 @@ type QMediaBindableInterface_ITF interface {
 	QMediaBindableInterface_PTR() *QMediaBindableInterface
 }
 
-func (p *QMediaBindableInterface) QMediaBindableInterface_PTR() *QMediaBindableInterface {
-	return p
+func (ptr *QMediaBindableInterface) QMediaBindableInterface_PTR() *QMediaBindableInterface {
+	return ptr
 }
 
-func (p *QMediaBindableInterface) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QMediaBindableInterface) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QMediaBindableInterface) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QMediaBindableInterface) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -28651,20 +28661,20 @@ type QMediaContainerControl_ITF interface {
 	QMediaContainerControl_PTR() *QMediaContainerControl
 }
 
-func (p *QMediaContainerControl) QMediaContainerControl_PTR() *QMediaContainerControl {
-	return p
+func (ptr *QMediaContainerControl) QMediaContainerControl_PTR() *QMediaContainerControl {
+	return ptr
 }
 
-func (p *QMediaContainerControl) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QMediaControl_PTR().Pointer()
+func (ptr *QMediaContainerControl) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QMediaControl_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QMediaContainerControl) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QMediaControl_PTR().SetPointer(ptr)
+func (ptr *QMediaContainerControl) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QMediaControl_PTR().SetPointer(p)
 	}
 }
 
@@ -29195,20 +29205,20 @@ type QMediaContent_ITF interface {
 	QMediaContent_PTR() *QMediaContent
 }
 
-func (p *QMediaContent) QMediaContent_PTR() *QMediaContent {
-	return p
+func (ptr *QMediaContent) QMediaContent_PTR() *QMediaContent {
+	return ptr
 }
 
-func (p *QMediaContent) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QMediaContent) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QMediaContent) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QMediaContent) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -29343,20 +29353,20 @@ type QMediaControl_ITF interface {
 	QMediaControl_PTR() *QMediaControl
 }
 
-func (p *QMediaControl) QMediaControl_PTR() *QMediaControl {
-	return p
+func (ptr *QMediaControl) QMediaControl_PTR() *QMediaControl {
+	return ptr
 }
 
-func (p *QMediaControl) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QObject_PTR().Pointer()
+func (ptr *QMediaControl) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QObject_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QMediaControl) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QObject_PTR().SetPointer(ptr)
+func (ptr *QMediaControl) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QObject_PTR().SetPointer(p)
 	}
 }
 
@@ -29730,20 +29740,20 @@ type QMediaGaplessPlaybackControl_ITF interface {
 	QMediaGaplessPlaybackControl_PTR() *QMediaGaplessPlaybackControl
 }
 
-func (p *QMediaGaplessPlaybackControl) QMediaGaplessPlaybackControl_PTR() *QMediaGaplessPlaybackControl {
-	return p
+func (ptr *QMediaGaplessPlaybackControl) QMediaGaplessPlaybackControl_PTR() *QMediaGaplessPlaybackControl {
+	return ptr
 }
 
-func (p *QMediaGaplessPlaybackControl) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QMediaControl_PTR().Pointer()
+func (ptr *QMediaGaplessPlaybackControl) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QMediaControl_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QMediaGaplessPlaybackControl) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QMediaControl_PTR().SetPointer(ptr)
+func (ptr *QMediaGaplessPlaybackControl) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QMediaControl_PTR().SetPointer(p)
 	}
 }
 
@@ -30389,20 +30399,20 @@ type QMediaNetworkAccessControl_ITF interface {
 	QMediaNetworkAccessControl_PTR() *QMediaNetworkAccessControl
 }
 
-func (p *QMediaNetworkAccessControl) QMediaNetworkAccessControl_PTR() *QMediaNetworkAccessControl {
-	return p
+func (ptr *QMediaNetworkAccessControl) QMediaNetworkAccessControl_PTR() *QMediaNetworkAccessControl {
+	return ptr
 }
 
-func (p *QMediaNetworkAccessControl) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QMediaControl_PTR().Pointer()
+func (ptr *QMediaNetworkAccessControl) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QMediaControl_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QMediaNetworkAccessControl) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QMediaControl_PTR().SetPointer(ptr)
+func (ptr *QMediaNetworkAccessControl) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QMediaControl_PTR().SetPointer(p)
 	}
 }
 
@@ -30863,20 +30873,20 @@ type QMediaObject_ITF interface {
 	QMediaObject_PTR() *QMediaObject
 }
 
-func (p *QMediaObject) QMediaObject_PTR() *QMediaObject {
-	return p
+func (ptr *QMediaObject) QMediaObject_PTR() *QMediaObject {
+	return ptr
 }
 
-func (p *QMediaObject) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QObject_PTR().Pointer()
+func (ptr *QMediaObject) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QObject_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QMediaObject) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QObject_PTR().SetPointer(ptr)
+func (ptr *QMediaObject) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QObject_PTR().SetPointer(p)
 	}
 }
 
@@ -31722,20 +31732,20 @@ type QMediaPlayer_ITF interface {
 	QMediaPlayer_PTR() *QMediaPlayer
 }
 
-func (p *QMediaPlayer) QMediaPlayer_PTR() *QMediaPlayer {
-	return p
+func (ptr *QMediaPlayer) QMediaPlayer_PTR() *QMediaPlayer {
+	return ptr
 }
 
-func (p *QMediaPlayer) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QMediaObject_PTR().Pointer()
+func (ptr *QMediaPlayer) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QMediaObject_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QMediaPlayer) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QMediaObject_PTR().SetPointer(ptr)
+func (ptr *QMediaPlayer) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QMediaObject_PTR().SetPointer(p)
 	}
 }
 
@@ -33208,20 +33218,20 @@ type QMediaPlayerControl_ITF interface {
 	QMediaPlayerControl_PTR() *QMediaPlayerControl
 }
 
-func (p *QMediaPlayerControl) QMediaPlayerControl_PTR() *QMediaPlayerControl {
-	return p
+func (ptr *QMediaPlayerControl) QMediaPlayerControl_PTR() *QMediaPlayerControl {
+	return ptr
 }
 
-func (p *QMediaPlayerControl) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QMediaControl_PTR().Pointer()
+func (ptr *QMediaPlayerControl) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QMediaControl_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QMediaPlayerControl) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QMediaControl_PTR().SetPointer(ptr)
+func (ptr *QMediaPlayerControl) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QMediaControl_PTR().SetPointer(p)
 	}
 }
 
@@ -34703,21 +34713,21 @@ type QMediaPlaylist_ITF interface {
 	QMediaPlaylist_PTR() *QMediaPlaylist
 }
 
-func (p *QMediaPlaylist) QMediaPlaylist_PTR() *QMediaPlaylist {
-	return p
+func (ptr *QMediaPlaylist) QMediaPlaylist_PTR() *QMediaPlaylist {
+	return ptr
 }
 
-func (p *QMediaPlaylist) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QObject_PTR().Pointer()
+func (ptr *QMediaPlaylist) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QObject_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QMediaPlaylist) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QObject_PTR().SetPointer(ptr)
-		p.QMediaBindableInterface_PTR().SetPointer(ptr)
+func (ptr *QMediaPlaylist) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QObject_PTR().SetPointer(p)
+		ptr.QMediaBindableInterface_PTR().SetPointer(p)
 	}
 }
 
@@ -35818,21 +35828,21 @@ type QMediaRecorder_ITF interface {
 	QMediaRecorder_PTR() *QMediaRecorder
 }
 
-func (p *QMediaRecorder) QMediaRecorder_PTR() *QMediaRecorder {
-	return p
+func (ptr *QMediaRecorder) QMediaRecorder_PTR() *QMediaRecorder {
+	return ptr
 }
 
-func (p *QMediaRecorder) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QObject_PTR().Pointer()
+func (ptr *QMediaRecorder) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QObject_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QMediaRecorder) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QObject_PTR().SetPointer(ptr)
-		p.QMediaBindableInterface_PTR().SetPointer(ptr)
+func (ptr *QMediaRecorder) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QObject_PTR().SetPointer(p)
+		ptr.QMediaBindableInterface_PTR().SetPointer(p)
 	}
 }
 
@@ -37060,20 +37070,20 @@ type QMediaRecorderControl_ITF interface {
 	QMediaRecorderControl_PTR() *QMediaRecorderControl
 }
 
-func (p *QMediaRecorderControl) QMediaRecorderControl_PTR() *QMediaRecorderControl {
-	return p
+func (ptr *QMediaRecorderControl) QMediaRecorderControl_PTR() *QMediaRecorderControl {
+	return ptr
 }
 
-func (p *QMediaRecorderControl) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QMediaControl_PTR().Pointer()
+func (ptr *QMediaRecorderControl) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QMediaControl_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QMediaRecorderControl) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QMediaControl_PTR().SetPointer(ptr)
+func (ptr *QMediaRecorderControl) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QMediaControl_PTR().SetPointer(p)
 	}
 }
 
@@ -38015,20 +38025,20 @@ type QMediaResource_ITF interface {
 	QMediaResource_PTR() *QMediaResource
 }
 
-func (p *QMediaResource) QMediaResource_PTR() *QMediaResource {
-	return p
+func (ptr *QMediaResource) QMediaResource_PTR() *QMediaResource {
+	return ptr
 }
 
-func (p *QMediaResource) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QMediaResource) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QMediaResource) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QMediaResource) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -38251,20 +38261,20 @@ type QMediaService_ITF interface {
 	QMediaService_PTR() *QMediaService
 }
 
-func (p *QMediaService) QMediaService_PTR() *QMediaService {
-	return p
+func (ptr *QMediaService) QMediaService_PTR() *QMediaService {
+	return ptr
 }
 
-func (p *QMediaService) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QObject_PTR().Pointer()
+func (ptr *QMediaService) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QObject_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QMediaService) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QObject_PTR().SetPointer(ptr)
+func (ptr *QMediaService) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QObject_PTR().SetPointer(p)
 	}
 }
 
@@ -38714,20 +38724,20 @@ type QMediaServiceCameraInfoInterface_ITF interface {
 	QMediaServiceCameraInfoInterface_PTR() *QMediaServiceCameraInfoInterface
 }
 
-func (p *QMediaServiceCameraInfoInterface) QMediaServiceCameraInfoInterface_PTR() *QMediaServiceCameraInfoInterface {
-	return p
+func (ptr *QMediaServiceCameraInfoInterface) QMediaServiceCameraInfoInterface_PTR() *QMediaServiceCameraInfoInterface {
+	return ptr
 }
 
-func (p *QMediaServiceCameraInfoInterface) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QMediaServiceCameraInfoInterface) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QMediaServiceCameraInfoInterface) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QMediaServiceCameraInfoInterface) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -38854,20 +38864,20 @@ type QMediaServiceDefaultDeviceInterface_ITF interface {
 	QMediaServiceDefaultDeviceInterface_PTR() *QMediaServiceDefaultDeviceInterface
 }
 
-func (p *QMediaServiceDefaultDeviceInterface) QMediaServiceDefaultDeviceInterface_PTR() *QMediaServiceDefaultDeviceInterface {
-	return p
+func (ptr *QMediaServiceDefaultDeviceInterface) QMediaServiceDefaultDeviceInterface_PTR() *QMediaServiceDefaultDeviceInterface {
+	return ptr
 }
 
-func (p *QMediaServiceDefaultDeviceInterface) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QMediaServiceDefaultDeviceInterface) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QMediaServiceDefaultDeviceInterface) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QMediaServiceDefaultDeviceInterface) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -38965,20 +38975,20 @@ type QMediaServiceFeaturesInterface_ITF interface {
 	QMediaServiceFeaturesInterface_PTR() *QMediaServiceFeaturesInterface
 }
 
-func (p *QMediaServiceFeaturesInterface) QMediaServiceFeaturesInterface_PTR() *QMediaServiceFeaturesInterface {
-	return p
+func (ptr *QMediaServiceFeaturesInterface) QMediaServiceFeaturesInterface_PTR() *QMediaServiceFeaturesInterface {
+	return ptr
 }
 
-func (p *QMediaServiceFeaturesInterface) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QMediaServiceFeaturesInterface) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QMediaServiceFeaturesInterface) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QMediaServiceFeaturesInterface) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -39051,20 +39061,20 @@ type QMediaServiceProviderPlugin_ITF interface {
 	QMediaServiceProviderPlugin_PTR() *QMediaServiceProviderPlugin
 }
 
-func (p *QMediaServiceProviderPlugin) QMediaServiceProviderPlugin_PTR() *QMediaServiceProviderPlugin {
-	return p
+func (ptr *QMediaServiceProviderPlugin) QMediaServiceProviderPlugin_PTR() *QMediaServiceProviderPlugin {
+	return ptr
 }
 
-func (p *QMediaServiceProviderPlugin) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QObject_PTR().Pointer()
+func (ptr *QMediaServiceProviderPlugin) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QObject_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QMediaServiceProviderPlugin) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QObject_PTR().SetPointer(ptr)
+func (ptr *QMediaServiceProviderPlugin) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QObject_PTR().SetPointer(p)
 	}
 }
 
@@ -39082,9 +39092,11 @@ func NewQMediaServiceProviderPluginFromPointer(ptr unsafe.Pointer) *QMediaServic
 }
 
 func (ptr *QMediaServiceProviderPlugin) DestroyQMediaServiceProviderPlugin() {
-	C.free(ptr.Pointer())
-	qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
-	ptr.SetPointer(nil)
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
+		ptr.SetPointer(nil)
+	}
 }
 
 //export callbackQMediaServiceProviderPlugin_Create
@@ -39494,20 +39506,20 @@ type QMediaServiceSupportedDevicesInterface_ITF interface {
 	QMediaServiceSupportedDevicesInterface_PTR() *QMediaServiceSupportedDevicesInterface
 }
 
-func (p *QMediaServiceSupportedDevicesInterface) QMediaServiceSupportedDevicesInterface_PTR() *QMediaServiceSupportedDevicesInterface {
-	return p
+func (ptr *QMediaServiceSupportedDevicesInterface) QMediaServiceSupportedDevicesInterface_PTR() *QMediaServiceSupportedDevicesInterface {
+	return ptr
 }
 
-func (p *QMediaServiceSupportedDevicesInterface) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QMediaServiceSupportedDevicesInterface) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QMediaServiceSupportedDevicesInterface) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QMediaServiceSupportedDevicesInterface) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -39639,20 +39651,20 @@ type QMediaServiceSupportedFormatsInterface_ITF interface {
 	QMediaServiceSupportedFormatsInterface_PTR() *QMediaServiceSupportedFormatsInterface
 }
 
-func (p *QMediaServiceSupportedFormatsInterface) QMediaServiceSupportedFormatsInterface_PTR() *QMediaServiceSupportedFormatsInterface {
-	return p
+func (ptr *QMediaServiceSupportedFormatsInterface) QMediaServiceSupportedFormatsInterface_PTR() *QMediaServiceSupportedFormatsInterface {
+	return ptr
 }
 
-func (p *QMediaServiceSupportedFormatsInterface) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QMediaServiceSupportedFormatsInterface) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QMediaServiceSupportedFormatsInterface) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QMediaServiceSupportedFormatsInterface) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -39796,20 +39808,20 @@ type QMediaStreamsControl_ITF interface {
 	QMediaStreamsControl_PTR() *QMediaStreamsControl
 }
 
-func (p *QMediaStreamsControl) QMediaStreamsControl_PTR() *QMediaStreamsControl {
-	return p
+func (ptr *QMediaStreamsControl) QMediaStreamsControl_PTR() *QMediaStreamsControl {
+	return ptr
 }
 
-func (p *QMediaStreamsControl) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QMediaControl_PTR().Pointer()
+func (ptr *QMediaStreamsControl) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QMediaControl_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QMediaStreamsControl) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QMediaControl_PTR().SetPointer(ptr)
+func (ptr *QMediaStreamsControl) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QMediaControl_PTR().SetPointer(p)
 	}
 }
 
@@ -40429,20 +40441,20 @@ type QMediaTimeInterval_ITF interface {
 	QMediaTimeInterval_PTR() *QMediaTimeInterval
 }
 
-func (p *QMediaTimeInterval) QMediaTimeInterval_PTR() *QMediaTimeInterval {
-	return p
+func (ptr *QMediaTimeInterval) QMediaTimeInterval_PTR() *QMediaTimeInterval {
+	return ptr
 }
 
-func (p *QMediaTimeInterval) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QMediaTimeInterval) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QMediaTimeInterval) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QMediaTimeInterval) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -40460,8 +40472,10 @@ func NewQMediaTimeIntervalFromPointer(ptr unsafe.Pointer) *QMediaTimeInterval {
 }
 
 func (ptr *QMediaTimeInterval) DestroyQMediaTimeInterval() {
-	C.free(ptr.Pointer())
-	ptr.SetPointer(nil)
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
 }
 
 func NewQMediaTimeInterval() *QMediaTimeInterval {
@@ -40536,20 +40550,20 @@ type QMediaTimeRange_ITF interface {
 	QMediaTimeRange_PTR() *QMediaTimeRange
 }
 
-func (p *QMediaTimeRange) QMediaTimeRange_PTR() *QMediaTimeRange {
-	return p
+func (ptr *QMediaTimeRange) QMediaTimeRange_PTR() *QMediaTimeRange {
+	return ptr
 }
 
-func (p *QMediaTimeRange) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QMediaTimeRange) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QMediaTimeRange) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QMediaTimeRange) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -40704,20 +40718,20 @@ type QMediaVideoProbeControl_ITF interface {
 	QMediaVideoProbeControl_PTR() *QMediaVideoProbeControl
 }
 
-func (p *QMediaVideoProbeControl) QMediaVideoProbeControl_PTR() *QMediaVideoProbeControl {
-	return p
+func (ptr *QMediaVideoProbeControl) QMediaVideoProbeControl_PTR() *QMediaVideoProbeControl {
+	return ptr
 }
 
-func (p *QMediaVideoProbeControl) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QMediaControl_PTR().Pointer()
+func (ptr *QMediaVideoProbeControl) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QMediaControl_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QMediaVideoProbeControl) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QMediaControl_PTR().SetPointer(ptr)
+func (ptr *QMediaVideoProbeControl) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QMediaControl_PTR().SetPointer(p)
 	}
 }
 
@@ -41181,20 +41195,20 @@ type QMetaDataReaderControl_ITF interface {
 	QMetaDataReaderControl_PTR() *QMetaDataReaderControl
 }
 
-func (p *QMetaDataReaderControl) QMetaDataReaderControl_PTR() *QMetaDataReaderControl {
-	return p
+func (ptr *QMetaDataReaderControl) QMetaDataReaderControl_PTR() *QMetaDataReaderControl {
+	return ptr
 }
 
-func (p *QMetaDataReaderControl) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QMediaControl_PTR().Pointer()
+func (ptr *QMetaDataReaderControl) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QMediaControl_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QMetaDataReaderControl) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QMediaControl_PTR().SetPointer(ptr)
+func (ptr *QMetaDataReaderControl) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QMediaControl_PTR().SetPointer(p)
 	}
 }
 
@@ -41754,20 +41768,20 @@ type QMetaDataWriterControl_ITF interface {
 	QMetaDataWriterControl_PTR() *QMetaDataWriterControl
 }
 
-func (p *QMetaDataWriterControl) QMetaDataWriterControl_PTR() *QMetaDataWriterControl {
-	return p
+func (ptr *QMetaDataWriterControl) QMetaDataWriterControl_PTR() *QMetaDataWriterControl {
+	return ptr
 }
 
-func (p *QMetaDataWriterControl) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QMediaControl_PTR().Pointer()
+func (ptr *QMetaDataWriterControl) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QMediaControl_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QMetaDataWriterControl) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QMediaControl_PTR().SetPointer(ptr)
+func (ptr *QMetaDataWriterControl) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QMediaControl_PTR().SetPointer(p)
 	}
 }
 
@@ -42462,20 +42476,20 @@ type QMultimedia_ITF interface {
 	QMultimedia_PTR() *QMultimedia
 }
 
-func (p *QMultimedia) QMultimedia_PTR() *QMultimedia {
-	return p
+func (ptr *QMultimedia) QMultimedia_PTR() *QMultimedia {
+	return ptr
 }
 
-func (p *QMultimedia) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QMultimedia) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QMultimedia) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QMultimedia) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -42493,8 +42507,10 @@ func NewQMultimediaFromPointer(ptr unsafe.Pointer) *QMultimedia {
 }
 
 func (ptr *QMultimedia) DestroyQMultimedia() {
-	C.free(ptr.Pointer())
-	ptr.SetPointer(nil)
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
 }
 
 //go:generate stringer -type=QRadioData__Error
@@ -42574,21 +42590,21 @@ type QRadioData_ITF interface {
 	QRadioData_PTR() *QRadioData
 }
 
-func (p *QRadioData) QRadioData_PTR() *QRadioData {
-	return p
+func (ptr *QRadioData) QRadioData_PTR() *QRadioData {
+	return ptr
 }
 
-func (p *QRadioData) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QObject_PTR().Pointer()
+func (ptr *QRadioData) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QObject_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QRadioData) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QObject_PTR().SetPointer(ptr)
-		p.QMediaBindableInterface_PTR().SetPointer(ptr)
+func (ptr *QRadioData) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QObject_PTR().SetPointer(p)
+		ptr.QMediaBindableInterface_PTR().SetPointer(p)
 	}
 }
 
@@ -43348,20 +43364,20 @@ type QRadioDataControl_ITF interface {
 	QRadioDataControl_PTR() *QRadioDataControl
 }
 
-func (p *QRadioDataControl) QRadioDataControl_PTR() *QRadioDataControl {
-	return p
+func (ptr *QRadioDataControl) QRadioDataControl_PTR() *QRadioDataControl {
+	return ptr
 }
 
-func (p *QRadioDataControl) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QMediaControl_PTR().Pointer()
+func (ptr *QRadioDataControl) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QMediaControl_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QRadioDataControl) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QMediaControl_PTR().SetPointer(ptr)
+func (ptr *QRadioDataControl) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QMediaControl_PTR().SetPointer(p)
 	}
 }
 
@@ -44274,20 +44290,20 @@ type QRadioTuner_ITF interface {
 	QRadioTuner_PTR() *QRadioTuner
 }
 
-func (p *QRadioTuner) QRadioTuner_PTR() *QRadioTuner {
-	return p
+func (ptr *QRadioTuner) QRadioTuner_PTR() *QRadioTuner {
+	return ptr
 }
 
-func (p *QRadioTuner) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QMediaObject_PTR().Pointer()
+func (ptr *QRadioTuner) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QMediaObject_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QRadioTuner) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QMediaObject_PTR().SetPointer(ptr)
+func (ptr *QRadioTuner) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QMediaObject_PTR().SetPointer(p)
 	}
 }
 
@@ -45573,20 +45589,20 @@ type QRadioTunerControl_ITF interface {
 	QRadioTunerControl_PTR() *QRadioTunerControl
 }
 
-func (p *QRadioTunerControl) QRadioTunerControl_PTR() *QRadioTunerControl {
-	return p
+func (ptr *QRadioTunerControl) QRadioTunerControl_PTR() *QRadioTunerControl {
+	return ptr
 }
 
-func (p *QRadioTunerControl) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QMediaControl_PTR().Pointer()
+func (ptr *QRadioTunerControl) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QMediaControl_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QRadioTunerControl) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QMediaControl_PTR().SetPointer(ptr)
+func (ptr *QRadioTunerControl) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QMediaControl_PTR().SetPointer(p)
 	}
 }
 
@@ -47042,20 +47058,20 @@ type QSound_ITF interface {
 	QSound_PTR() *QSound
 }
 
-func (p *QSound) QSound_PTR() *QSound {
-	return p
+func (ptr *QSound) QSound_PTR() *QSound {
+	return ptr
 }
 
-func (p *QSound) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QObject_PTR().Pointer()
+func (ptr *QSound) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QObject_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QSound) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QObject_PTR().SetPointer(ptr)
+func (ptr *QSound) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QObject_PTR().SetPointer(p)
 	}
 }
 
@@ -47552,20 +47568,20 @@ type QSoundEffect_ITF interface {
 	QSoundEffect_PTR() *QSoundEffect
 }
 
-func (p *QSoundEffect) QSoundEffect_PTR() *QSoundEffect {
-	return p
+func (ptr *QSoundEffect) QSoundEffect_PTR() *QSoundEffect {
+	return ptr
 }
 
-func (p *QSoundEffect) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QObject_PTR().Pointer()
+func (ptr *QSoundEffect) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QObject_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QSoundEffect) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QObject_PTR().SetPointer(ptr)
+func (ptr *QSoundEffect) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QObject_PTR().SetPointer(p)
 	}
 }
 
@@ -48361,20 +48377,20 @@ type QVideoDeviceSelectorControl_ITF interface {
 	QVideoDeviceSelectorControl_PTR() *QVideoDeviceSelectorControl
 }
 
-func (p *QVideoDeviceSelectorControl) QVideoDeviceSelectorControl_PTR() *QVideoDeviceSelectorControl {
-	return p
+func (ptr *QVideoDeviceSelectorControl) QVideoDeviceSelectorControl_PTR() *QVideoDeviceSelectorControl {
+	return ptr
 }
 
-func (p *QVideoDeviceSelectorControl) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QMediaControl_PTR().Pointer()
+func (ptr *QVideoDeviceSelectorControl) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QMediaControl_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QVideoDeviceSelectorControl) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QMediaControl_PTR().SetPointer(ptr)
+func (ptr *QVideoDeviceSelectorControl) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QMediaControl_PTR().SetPointer(p)
 	}
 }
 
@@ -49051,20 +49067,20 @@ type QVideoEncoderSettings_ITF interface {
 	QVideoEncoderSettings_PTR() *QVideoEncoderSettings
 }
 
-func (p *QVideoEncoderSettings) QVideoEncoderSettings_PTR() *QVideoEncoderSettings {
-	return p
+func (ptr *QVideoEncoderSettings) QVideoEncoderSettings_PTR() *QVideoEncoderSettings {
+	return ptr
 }
 
-func (p *QVideoEncoderSettings) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QVideoEncoderSettings) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QVideoEncoderSettings) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QVideoEncoderSettings) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -49222,20 +49238,20 @@ type QVideoEncoderSettingsControl_ITF interface {
 	QVideoEncoderSettingsControl_PTR() *QVideoEncoderSettingsControl
 }
 
-func (p *QVideoEncoderSettingsControl) QVideoEncoderSettingsControl_PTR() *QVideoEncoderSettingsControl {
-	return p
+func (ptr *QVideoEncoderSettingsControl) QVideoEncoderSettingsControl_PTR() *QVideoEncoderSettingsControl {
+	return ptr
 }
 
-func (p *QVideoEncoderSettingsControl) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QMediaControl_PTR().Pointer()
+func (ptr *QVideoEncoderSettingsControl) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QMediaControl_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QVideoEncoderSettingsControl) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QMediaControl_PTR().SetPointer(ptr)
+func (ptr *QVideoEncoderSettingsControl) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QMediaControl_PTR().SetPointer(p)
 	}
 }
 
@@ -49803,20 +49819,20 @@ type QVideoFilterRunnable_ITF interface {
 	QVideoFilterRunnable_PTR() *QVideoFilterRunnable
 }
 
-func (p *QVideoFilterRunnable) QVideoFilterRunnable_PTR() *QVideoFilterRunnable {
-	return p
+func (ptr *QVideoFilterRunnable) QVideoFilterRunnable_PTR() *QVideoFilterRunnable {
+	return ptr
 }
 
-func (p *QVideoFilterRunnable) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QVideoFilterRunnable) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QVideoFilterRunnable) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QVideoFilterRunnable) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -49834,9 +49850,11 @@ func NewQVideoFilterRunnableFromPointer(ptr unsafe.Pointer) *QVideoFilterRunnabl
 }
 
 func (ptr *QVideoFilterRunnable) DestroyQVideoFilterRunnable() {
-	C.free(ptr.Pointer())
-	qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
-	ptr.SetPointer(nil)
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
+		ptr.SetPointer(nil)
+	}
 }
 
 //export callbackQVideoFilterRunnable_Run
@@ -49932,20 +49950,20 @@ type QVideoFrame_ITF interface {
 	QVideoFrame_PTR() *QVideoFrame
 }
 
-func (p *QVideoFrame) QVideoFrame_PTR() *QVideoFrame {
-	return p
+func (ptr *QVideoFrame) QVideoFrame_PTR() *QVideoFrame {
+	return ptr
 }
 
-func (p *QVideoFrame) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QVideoFrame) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QVideoFrame) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QVideoFrame) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -50231,20 +50249,20 @@ type QVideoProbe_ITF interface {
 	QVideoProbe_PTR() *QVideoProbe
 }
 
-func (p *QVideoProbe) QVideoProbe_PTR() *QVideoProbe {
-	return p
+func (ptr *QVideoProbe) QVideoProbe_PTR() *QVideoProbe {
+	return ptr
 }
 
-func (p *QVideoProbe) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QObject_PTR().Pointer()
+func (ptr *QVideoProbe) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QObject_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QVideoProbe) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QObject_PTR().SetPointer(ptr)
+func (ptr *QVideoProbe) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QObject_PTR().SetPointer(p)
 	}
 }
 
@@ -50697,20 +50715,20 @@ type QVideoRendererControl_ITF interface {
 	QVideoRendererControl_PTR() *QVideoRendererControl
 }
 
-func (p *QVideoRendererControl) QVideoRendererControl_PTR() *QVideoRendererControl {
-	return p
+func (ptr *QVideoRendererControl) QVideoRendererControl_PTR() *QVideoRendererControl {
+	return ptr
 }
 
-func (p *QVideoRendererControl) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QMediaControl_PTR().Pointer()
+func (ptr *QVideoRendererControl) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QMediaControl_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QVideoRendererControl) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QMediaControl_PTR().SetPointer(ptr)
+func (ptr *QVideoRendererControl) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QMediaControl_PTR().SetPointer(p)
 	}
 }
 
@@ -51169,20 +51187,20 @@ type QVideoSurfaceFormat_ITF interface {
 	QVideoSurfaceFormat_PTR() *QVideoSurfaceFormat
 }
 
-func (p *QVideoSurfaceFormat) QVideoSurfaceFormat_PTR() *QVideoSurfaceFormat {
-	return p
+func (ptr *QVideoSurfaceFormat) QVideoSurfaceFormat_PTR() *QVideoSurfaceFormat {
+	return ptr
 }
 
-func (p *QVideoSurfaceFormat) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QVideoSurfaceFormat) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QVideoSurfaceFormat) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QVideoSurfaceFormat) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -51415,21 +51433,21 @@ type QVideoWidget_ITF interface {
 	QVideoWidget_PTR() *QVideoWidget
 }
 
-func (p *QVideoWidget) QVideoWidget_PTR() *QVideoWidget {
-	return p
+func (ptr *QVideoWidget) QVideoWidget_PTR() *QVideoWidget {
+	return ptr
 }
 
-func (p *QVideoWidget) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QWidget_PTR().Pointer()
+func (ptr *QVideoWidget) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QWidget_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QVideoWidget) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QWidget_PTR().SetPointer(ptr)
-		p.QMediaBindableInterface_PTR().SetPointer(ptr)
+func (ptr *QVideoWidget) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QWidget_PTR().SetPointer(p)
+		ptr.QMediaBindableInterface_PTR().SetPointer(p)
 	}
 }
 
@@ -54242,20 +54260,20 @@ type QVideoWidgetControl_ITF interface {
 	QVideoWidgetControl_PTR() *QVideoWidgetControl
 }
 
-func (p *QVideoWidgetControl) QVideoWidgetControl_PTR() *QVideoWidgetControl {
-	return p
+func (ptr *QVideoWidgetControl) QVideoWidgetControl_PTR() *QVideoWidgetControl {
+	return ptr
 }
 
-func (p *QVideoWidgetControl) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QMediaControl_PTR().Pointer()
+func (ptr *QVideoWidgetControl) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QMediaControl_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QVideoWidgetControl) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QMediaControl_PTR().SetPointer(ptr)
+func (ptr *QVideoWidgetControl) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QMediaControl_PTR().SetPointer(p)
 	}
 }
 
@@ -55201,20 +55219,20 @@ type QVideoWindowControl_ITF interface {
 	QVideoWindowControl_PTR() *QVideoWindowControl
 }
 
-func (p *QVideoWindowControl) QVideoWindowControl_PTR() *QVideoWindowControl {
-	return p
+func (ptr *QVideoWindowControl) QVideoWindowControl_PTR() *QVideoWindowControl {
+	return ptr
 }
 
-func (p *QVideoWindowControl) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QMediaControl_PTR().Pointer()
+func (ptr *QVideoWindowControl) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QMediaControl_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QVideoWindowControl) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QMediaControl_PTR().SetPointer(ptr)
+func (ptr *QVideoWindowControl) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QMediaControl_PTR().SetPointer(p)
 	}
 }
 

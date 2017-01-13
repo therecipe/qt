@@ -55,20 +55,20 @@ type AndroidSensors_ITF interface {
 	AndroidSensors_PTR() *AndroidSensors
 }
 
-func (p *AndroidSensors) AndroidSensors_PTR() *AndroidSensors {
-	return p
+func (ptr *AndroidSensors) AndroidSensors_PTR() *AndroidSensors {
+	return ptr
 }
 
-func (p *AndroidSensors) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *AndroidSensors) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *AndroidSensors) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *AndroidSensors) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -86,8 +86,10 @@ func NewAndroidSensorsFromPointer(ptr unsafe.Pointer) *AndroidSensors {
 }
 
 func (ptr *AndroidSensors) DestroyAndroidSensors() {
-	C.free(ptr.Pointer())
-	ptr.SetPointer(nil)
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
 }
 
 //go:generate stringer -type=QAccelerometer__AccelerationMode
@@ -109,20 +111,20 @@ type QAccelerometer_ITF interface {
 	QAccelerometer_PTR() *QAccelerometer
 }
 
-func (p *QAccelerometer) QAccelerometer_PTR() *QAccelerometer {
-	return p
+func (ptr *QAccelerometer) QAccelerometer_PTR() *QAccelerometer {
+	return ptr
 }
 
-func (p *QAccelerometer) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QSensor_PTR().Pointer()
+func (ptr *QAccelerometer) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QSensor_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QAccelerometer) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QSensor_PTR().SetPointer(ptr)
+func (ptr *QAccelerometer) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QSensor_PTR().SetPointer(p)
 	}
 }
 
@@ -661,20 +663,20 @@ type QAccelerometerFilter_ITF interface {
 	QAccelerometerFilter_PTR() *QAccelerometerFilter
 }
 
-func (p *QAccelerometerFilter) QAccelerometerFilter_PTR() *QAccelerometerFilter {
-	return p
+func (ptr *QAccelerometerFilter) QAccelerometerFilter_PTR() *QAccelerometerFilter {
+	return ptr
 }
 
-func (p *QAccelerometerFilter) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QSensorFilter_PTR().Pointer()
+func (ptr *QAccelerometerFilter) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QSensorFilter_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QAccelerometerFilter) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QSensorFilter_PTR().SetPointer(ptr)
+func (ptr *QAccelerometerFilter) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QSensorFilter_PTR().SetPointer(p)
 	}
 }
 
@@ -692,9 +694,11 @@ func NewQAccelerometerFilterFromPointer(ptr unsafe.Pointer) *QAccelerometerFilte
 }
 
 func (ptr *QAccelerometerFilter) DestroyQAccelerometerFilter() {
-	C.free(ptr.Pointer())
-	qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
-	ptr.SetPointer(nil)
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
+		ptr.SetPointer(nil)
+	}
 }
 
 //export callbackQAccelerometerFilter_Filter
@@ -737,20 +741,20 @@ type QAccelerometerReading_ITF interface {
 	QAccelerometerReading_PTR() *QAccelerometerReading
 }
 
-func (p *QAccelerometerReading) QAccelerometerReading_PTR() *QAccelerometerReading {
-	return p
+func (ptr *QAccelerometerReading) QAccelerometerReading_PTR() *QAccelerometerReading {
+	return ptr
 }
 
-func (p *QAccelerometerReading) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QSensorReading_PTR().Pointer()
+func (ptr *QAccelerometerReading) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QSensorReading_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QAccelerometerReading) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QSensorReading_PTR().SetPointer(ptr)
+func (ptr *QAccelerometerReading) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QSensorReading_PTR().SetPointer(p)
 	}
 }
 
@@ -768,9 +772,11 @@ func NewQAccelerometerReadingFromPointer(ptr unsafe.Pointer) *QAccelerometerRead
 }
 
 func (ptr *QAccelerometerReading) DestroyQAccelerometerReading() {
-	C.free(ptr.Pointer())
-	qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
-	ptr.SetPointer(nil)
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
+		ptr.SetPointer(nil)
+	}
 }
 
 func (ptr *QAccelerometerReading) X() float64 {
@@ -1154,20 +1160,20 @@ type QAltimeter_ITF interface {
 	QAltimeter_PTR() *QAltimeter
 }
 
-func (p *QAltimeter) QAltimeter_PTR() *QAltimeter {
-	return p
+func (ptr *QAltimeter) QAltimeter_PTR() *QAltimeter {
+	return ptr
 }
 
-func (p *QAltimeter) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QSensor_PTR().Pointer()
+func (ptr *QAltimeter) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QSensor_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QAltimeter) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QSensor_PTR().SetPointer(ptr)
+func (ptr *QAltimeter) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QSensor_PTR().SetPointer(p)
 	}
 }
 
@@ -1632,20 +1638,20 @@ type QAltimeterFilter_ITF interface {
 	QAltimeterFilter_PTR() *QAltimeterFilter
 }
 
-func (p *QAltimeterFilter) QAltimeterFilter_PTR() *QAltimeterFilter {
-	return p
+func (ptr *QAltimeterFilter) QAltimeterFilter_PTR() *QAltimeterFilter {
+	return ptr
 }
 
-func (p *QAltimeterFilter) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QSensorFilter_PTR().Pointer()
+func (ptr *QAltimeterFilter) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QSensorFilter_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QAltimeterFilter) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QSensorFilter_PTR().SetPointer(ptr)
+func (ptr *QAltimeterFilter) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QSensorFilter_PTR().SetPointer(p)
 	}
 }
 
@@ -1663,9 +1669,11 @@ func NewQAltimeterFilterFromPointer(ptr unsafe.Pointer) *QAltimeterFilter {
 }
 
 func (ptr *QAltimeterFilter) DestroyQAltimeterFilter() {
-	C.free(ptr.Pointer())
-	qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
-	ptr.SetPointer(nil)
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
+		ptr.SetPointer(nil)
+	}
 }
 
 //export callbackQAltimeterFilter_Filter
@@ -1708,20 +1716,20 @@ type QAltimeterReading_ITF interface {
 	QAltimeterReading_PTR() *QAltimeterReading
 }
 
-func (p *QAltimeterReading) QAltimeterReading_PTR() *QAltimeterReading {
-	return p
+func (ptr *QAltimeterReading) QAltimeterReading_PTR() *QAltimeterReading {
+	return ptr
 }
 
-func (p *QAltimeterReading) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QSensorReading_PTR().Pointer()
+func (ptr *QAltimeterReading) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QSensorReading_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QAltimeterReading) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QSensorReading_PTR().SetPointer(ptr)
+func (ptr *QAltimeterReading) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QSensorReading_PTR().SetPointer(p)
 	}
 }
 
@@ -1739,9 +1747,11 @@ func NewQAltimeterReadingFromPointer(ptr unsafe.Pointer) *QAltimeterReading {
 }
 
 func (ptr *QAltimeterReading) DestroyQAltimeterReading() {
-	C.free(ptr.Pointer())
-	qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
-	ptr.SetPointer(nil)
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
+		ptr.SetPointer(nil)
+	}
 }
 
 func (ptr *QAltimeterReading) Altitude() float64 {
@@ -2099,20 +2109,20 @@ type QAmbientLightFilter_ITF interface {
 	QAmbientLightFilter_PTR() *QAmbientLightFilter
 }
 
-func (p *QAmbientLightFilter) QAmbientLightFilter_PTR() *QAmbientLightFilter {
-	return p
+func (ptr *QAmbientLightFilter) QAmbientLightFilter_PTR() *QAmbientLightFilter {
+	return ptr
 }
 
-func (p *QAmbientLightFilter) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QSensorFilter_PTR().Pointer()
+func (ptr *QAmbientLightFilter) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QSensorFilter_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QAmbientLightFilter) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QSensorFilter_PTR().SetPointer(ptr)
+func (ptr *QAmbientLightFilter) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QSensorFilter_PTR().SetPointer(p)
 	}
 }
 
@@ -2130,9 +2140,11 @@ func NewQAmbientLightFilterFromPointer(ptr unsafe.Pointer) *QAmbientLightFilter 
 }
 
 func (ptr *QAmbientLightFilter) DestroyQAmbientLightFilter() {
-	C.free(ptr.Pointer())
-	qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
-	ptr.SetPointer(nil)
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
+		ptr.SetPointer(nil)
+	}
 }
 
 //export callbackQAmbientLightFilter_Filter
@@ -2188,20 +2200,20 @@ type QAmbientLightReading_ITF interface {
 	QAmbientLightReading_PTR() *QAmbientLightReading
 }
 
-func (p *QAmbientLightReading) QAmbientLightReading_PTR() *QAmbientLightReading {
-	return p
+func (ptr *QAmbientLightReading) QAmbientLightReading_PTR() *QAmbientLightReading {
+	return ptr
 }
 
-func (p *QAmbientLightReading) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QSensorReading_PTR().Pointer()
+func (ptr *QAmbientLightReading) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QSensorReading_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QAmbientLightReading) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QSensorReading_PTR().SetPointer(ptr)
+func (ptr *QAmbientLightReading) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QSensorReading_PTR().SetPointer(p)
 	}
 }
 
@@ -2219,9 +2231,11 @@ func NewQAmbientLightReadingFromPointer(ptr unsafe.Pointer) *QAmbientLightReadin
 }
 
 func (ptr *QAmbientLightReading) DestroyQAmbientLightReading() {
-	C.free(ptr.Pointer())
-	qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
-	ptr.SetPointer(nil)
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
+		ptr.SetPointer(nil)
+	}
 }
 
 func (ptr *QAmbientLightReading) LightLevel() QAmbientLightReading__LightLevel {
@@ -2579,20 +2593,20 @@ type QAmbientLightSensor_ITF interface {
 	QAmbientLightSensor_PTR() *QAmbientLightSensor
 }
 
-func (p *QAmbientLightSensor) QAmbientLightSensor_PTR() *QAmbientLightSensor {
-	return p
+func (ptr *QAmbientLightSensor) QAmbientLightSensor_PTR() *QAmbientLightSensor {
+	return ptr
 }
 
-func (p *QAmbientLightSensor) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QSensor_PTR().Pointer()
+func (ptr *QAmbientLightSensor) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QSensor_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QAmbientLightSensor) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QSensor_PTR().SetPointer(ptr)
+func (ptr *QAmbientLightSensor) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QSensor_PTR().SetPointer(p)
 	}
 }
 
@@ -3089,20 +3103,20 @@ type QAmbientTemperatureFilter_ITF interface {
 	QAmbientTemperatureFilter_PTR() *QAmbientTemperatureFilter
 }
 
-func (p *QAmbientTemperatureFilter) QAmbientTemperatureFilter_PTR() *QAmbientTemperatureFilter {
-	return p
+func (ptr *QAmbientTemperatureFilter) QAmbientTemperatureFilter_PTR() *QAmbientTemperatureFilter {
+	return ptr
 }
 
-func (p *QAmbientTemperatureFilter) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QSensorFilter_PTR().Pointer()
+func (ptr *QAmbientTemperatureFilter) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QSensorFilter_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QAmbientTemperatureFilter) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QSensorFilter_PTR().SetPointer(ptr)
+func (ptr *QAmbientTemperatureFilter) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QSensorFilter_PTR().SetPointer(p)
 	}
 }
 
@@ -3120,9 +3134,11 @@ func NewQAmbientTemperatureFilterFromPointer(ptr unsafe.Pointer) *QAmbientTemper
 }
 
 func (ptr *QAmbientTemperatureFilter) DestroyQAmbientTemperatureFilter() {
-	C.free(ptr.Pointer())
-	qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
-	ptr.SetPointer(nil)
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
+		ptr.SetPointer(nil)
+	}
 }
 
 //export callbackQAmbientTemperatureFilter_Filter
@@ -3165,20 +3181,20 @@ type QAmbientTemperatureReading_ITF interface {
 	QAmbientTemperatureReading_PTR() *QAmbientTemperatureReading
 }
 
-func (p *QAmbientTemperatureReading) QAmbientTemperatureReading_PTR() *QAmbientTemperatureReading {
-	return p
+func (ptr *QAmbientTemperatureReading) QAmbientTemperatureReading_PTR() *QAmbientTemperatureReading {
+	return ptr
 }
 
-func (p *QAmbientTemperatureReading) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QSensorReading_PTR().Pointer()
+func (ptr *QAmbientTemperatureReading) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QSensorReading_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QAmbientTemperatureReading) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QSensorReading_PTR().SetPointer(ptr)
+func (ptr *QAmbientTemperatureReading) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QSensorReading_PTR().SetPointer(p)
 	}
 }
 
@@ -3196,9 +3212,11 @@ func NewQAmbientTemperatureReadingFromPointer(ptr unsafe.Pointer) *QAmbientTempe
 }
 
 func (ptr *QAmbientTemperatureReading) DestroyQAmbientTemperatureReading() {
-	C.free(ptr.Pointer())
-	qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
-	ptr.SetPointer(nil)
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
+		ptr.SetPointer(nil)
+	}
 }
 
 func (ptr *QAmbientTemperatureReading) Temperature() float64 {
@@ -3556,20 +3574,20 @@ type QAmbientTemperatureSensor_ITF interface {
 	QAmbientTemperatureSensor_PTR() *QAmbientTemperatureSensor
 }
 
-func (p *QAmbientTemperatureSensor) QAmbientTemperatureSensor_PTR() *QAmbientTemperatureSensor {
-	return p
+func (ptr *QAmbientTemperatureSensor) QAmbientTemperatureSensor_PTR() *QAmbientTemperatureSensor {
+	return ptr
 }
 
-func (p *QAmbientTemperatureSensor) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QSensor_PTR().Pointer()
+func (ptr *QAmbientTemperatureSensor) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QSensor_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QAmbientTemperatureSensor) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QSensor_PTR().SetPointer(ptr)
+func (ptr *QAmbientTemperatureSensor) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QSensor_PTR().SetPointer(p)
 	}
 }
 
@@ -4034,20 +4052,20 @@ type QCompass_ITF interface {
 	QCompass_PTR() *QCompass
 }
 
-func (p *QCompass) QCompass_PTR() *QCompass {
-	return p
+func (ptr *QCompass) QCompass_PTR() *QCompass {
+	return ptr
 }
 
-func (p *QCompass) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QSensor_PTR().Pointer()
+func (ptr *QCompass) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QSensor_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QCompass) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QSensor_PTR().SetPointer(ptr)
+func (ptr *QCompass) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QSensor_PTR().SetPointer(p)
 	}
 }
 
@@ -4544,20 +4562,20 @@ type QCompassFilter_ITF interface {
 	QCompassFilter_PTR() *QCompassFilter
 }
 
-func (p *QCompassFilter) QCompassFilter_PTR() *QCompassFilter {
-	return p
+func (ptr *QCompassFilter) QCompassFilter_PTR() *QCompassFilter {
+	return ptr
 }
 
-func (p *QCompassFilter) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QSensorFilter_PTR().Pointer()
+func (ptr *QCompassFilter) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QSensorFilter_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QCompassFilter) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QSensorFilter_PTR().SetPointer(ptr)
+func (ptr *QCompassFilter) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QSensorFilter_PTR().SetPointer(p)
 	}
 }
 
@@ -4575,9 +4593,11 @@ func NewQCompassFilterFromPointer(ptr unsafe.Pointer) *QCompassFilter {
 }
 
 func (ptr *QCompassFilter) DestroyQCompassFilter() {
-	C.free(ptr.Pointer())
-	qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
-	ptr.SetPointer(nil)
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
+		ptr.SetPointer(nil)
+	}
 }
 
 //export callbackQCompassFilter_Filter
@@ -4620,20 +4640,20 @@ type QCompassReading_ITF interface {
 	QCompassReading_PTR() *QCompassReading
 }
 
-func (p *QCompassReading) QCompassReading_PTR() *QCompassReading {
-	return p
+func (ptr *QCompassReading) QCompassReading_PTR() *QCompassReading {
+	return ptr
 }
 
-func (p *QCompassReading) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QSensorReading_PTR().Pointer()
+func (ptr *QCompassReading) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QSensorReading_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QCompassReading) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QSensorReading_PTR().SetPointer(ptr)
+func (ptr *QCompassReading) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QSensorReading_PTR().SetPointer(p)
 	}
 }
 
@@ -4651,9 +4671,11 @@ func NewQCompassReadingFromPointer(ptr unsafe.Pointer) *QCompassReading {
 }
 
 func (ptr *QCompassReading) DestroyQCompassReading() {
-	C.free(ptr.Pointer())
-	qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
-	ptr.SetPointer(nil)
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
+		ptr.SetPointer(nil)
+	}
 }
 
 func (ptr *QCompassReading) Azimuth() float64 {
@@ -5024,20 +5046,20 @@ type QDistanceFilter_ITF interface {
 	QDistanceFilter_PTR() *QDistanceFilter
 }
 
-func (p *QDistanceFilter) QDistanceFilter_PTR() *QDistanceFilter {
-	return p
+func (ptr *QDistanceFilter) QDistanceFilter_PTR() *QDistanceFilter {
+	return ptr
 }
 
-func (p *QDistanceFilter) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QSensorFilter_PTR().Pointer()
+func (ptr *QDistanceFilter) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QSensorFilter_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QDistanceFilter) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QSensorFilter_PTR().SetPointer(ptr)
+func (ptr *QDistanceFilter) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QSensorFilter_PTR().SetPointer(p)
 	}
 }
 
@@ -5055,9 +5077,11 @@ func NewQDistanceFilterFromPointer(ptr unsafe.Pointer) *QDistanceFilter {
 }
 
 func (ptr *QDistanceFilter) DestroyQDistanceFilter() {
-	C.free(ptr.Pointer())
-	qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
-	ptr.SetPointer(nil)
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
+		ptr.SetPointer(nil)
+	}
 }
 
 //export callbackQDistanceFilter_Filter
@@ -5100,20 +5124,20 @@ type QDistanceReading_ITF interface {
 	QDistanceReading_PTR() *QDistanceReading
 }
 
-func (p *QDistanceReading) QDistanceReading_PTR() *QDistanceReading {
-	return p
+func (ptr *QDistanceReading) QDistanceReading_PTR() *QDistanceReading {
+	return ptr
 }
 
-func (p *QDistanceReading) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QSensorReading_PTR().Pointer()
+func (ptr *QDistanceReading) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QSensorReading_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QDistanceReading) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QSensorReading_PTR().SetPointer(ptr)
+func (ptr *QDistanceReading) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QSensorReading_PTR().SetPointer(p)
 	}
 }
 
@@ -5131,9 +5155,11 @@ func NewQDistanceReadingFromPointer(ptr unsafe.Pointer) *QDistanceReading {
 }
 
 func (ptr *QDistanceReading) DestroyQDistanceReading() {
-	C.free(ptr.Pointer())
-	qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
-	ptr.SetPointer(nil)
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
+		ptr.SetPointer(nil)
+	}
 }
 
 func (ptr *QDistanceReading) Distance() float64 {
@@ -5491,20 +5517,20 @@ type QDistanceSensor_ITF interface {
 	QDistanceSensor_PTR() *QDistanceSensor
 }
 
-func (p *QDistanceSensor) QDistanceSensor_PTR() *QDistanceSensor {
-	return p
+func (ptr *QDistanceSensor) QDistanceSensor_PTR() *QDistanceSensor {
+	return ptr
 }
 
-func (p *QDistanceSensor) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QSensor_PTR().Pointer()
+func (ptr *QDistanceSensor) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QSensor_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QDistanceSensor) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QSensor_PTR().SetPointer(ptr)
+func (ptr *QDistanceSensor) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QSensor_PTR().SetPointer(p)
 	}
 }
 
@@ -5969,20 +5995,20 @@ type QGyroscope_ITF interface {
 	QGyroscope_PTR() *QGyroscope
 }
 
-func (p *QGyroscope) QGyroscope_PTR() *QGyroscope {
-	return p
+func (ptr *QGyroscope) QGyroscope_PTR() *QGyroscope {
+	return ptr
 }
 
-func (p *QGyroscope) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QSensor_PTR().Pointer()
+func (ptr *QGyroscope) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QSensor_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QGyroscope) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QSensor_PTR().SetPointer(ptr)
+func (ptr *QGyroscope) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QSensor_PTR().SetPointer(p)
 	}
 }
 
@@ -6479,20 +6505,20 @@ type QGyroscopeFilter_ITF interface {
 	QGyroscopeFilter_PTR() *QGyroscopeFilter
 }
 
-func (p *QGyroscopeFilter) QGyroscopeFilter_PTR() *QGyroscopeFilter {
-	return p
+func (ptr *QGyroscopeFilter) QGyroscopeFilter_PTR() *QGyroscopeFilter {
+	return ptr
 }
 
-func (p *QGyroscopeFilter) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QSensorFilter_PTR().Pointer()
+func (ptr *QGyroscopeFilter) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QSensorFilter_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QGyroscopeFilter) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QSensorFilter_PTR().SetPointer(ptr)
+func (ptr *QGyroscopeFilter) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QSensorFilter_PTR().SetPointer(p)
 	}
 }
 
@@ -6510,9 +6536,11 @@ func NewQGyroscopeFilterFromPointer(ptr unsafe.Pointer) *QGyroscopeFilter {
 }
 
 func (ptr *QGyroscopeFilter) DestroyQGyroscopeFilter() {
-	C.free(ptr.Pointer())
-	qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
-	ptr.SetPointer(nil)
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
+		ptr.SetPointer(nil)
+	}
 }
 
 //export callbackQGyroscopeFilter_Filter
@@ -6555,20 +6583,20 @@ type QGyroscopeReading_ITF interface {
 	QGyroscopeReading_PTR() *QGyroscopeReading
 }
 
-func (p *QGyroscopeReading) QGyroscopeReading_PTR() *QGyroscopeReading {
-	return p
+func (ptr *QGyroscopeReading) QGyroscopeReading_PTR() *QGyroscopeReading {
+	return ptr
 }
 
-func (p *QGyroscopeReading) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QSensorReading_PTR().Pointer()
+func (ptr *QGyroscopeReading) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QSensorReading_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QGyroscopeReading) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QSensorReading_PTR().SetPointer(ptr)
+func (ptr *QGyroscopeReading) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QSensorReading_PTR().SetPointer(p)
 	}
 }
 
@@ -6586,9 +6614,11 @@ func NewQGyroscopeReadingFromPointer(ptr unsafe.Pointer) *QGyroscopeReading {
 }
 
 func (ptr *QGyroscopeReading) DestroyQGyroscopeReading() {
-	C.free(ptr.Pointer())
-	qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
-	ptr.SetPointer(nil)
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
+		ptr.SetPointer(nil)
+	}
 }
 
 func (ptr *QGyroscopeReading) X() float64 {
@@ -6972,20 +7002,20 @@ type QHolsterFilter_ITF interface {
 	QHolsterFilter_PTR() *QHolsterFilter
 }
 
-func (p *QHolsterFilter) QHolsterFilter_PTR() *QHolsterFilter {
-	return p
+func (ptr *QHolsterFilter) QHolsterFilter_PTR() *QHolsterFilter {
+	return ptr
 }
 
-func (p *QHolsterFilter) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QSensorFilter_PTR().Pointer()
+func (ptr *QHolsterFilter) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QSensorFilter_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QHolsterFilter) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QSensorFilter_PTR().SetPointer(ptr)
+func (ptr *QHolsterFilter) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QSensorFilter_PTR().SetPointer(p)
 	}
 }
 
@@ -7003,9 +7033,11 @@ func NewQHolsterFilterFromPointer(ptr unsafe.Pointer) *QHolsterFilter {
 }
 
 func (ptr *QHolsterFilter) DestroyQHolsterFilter() {
-	C.free(ptr.Pointer())
-	qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
-	ptr.SetPointer(nil)
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
+		ptr.SetPointer(nil)
+	}
 }
 
 //export callbackQHolsterFilter_Filter
@@ -7048,20 +7080,20 @@ type QHolsterReading_ITF interface {
 	QHolsterReading_PTR() *QHolsterReading
 }
 
-func (p *QHolsterReading) QHolsterReading_PTR() *QHolsterReading {
-	return p
+func (ptr *QHolsterReading) QHolsterReading_PTR() *QHolsterReading {
+	return ptr
 }
 
-func (p *QHolsterReading) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QSensorReading_PTR().Pointer()
+func (ptr *QHolsterReading) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QSensorReading_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QHolsterReading) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QSensorReading_PTR().SetPointer(ptr)
+func (ptr *QHolsterReading) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QSensorReading_PTR().SetPointer(p)
 	}
 }
 
@@ -7079,9 +7111,11 @@ func NewQHolsterReadingFromPointer(ptr unsafe.Pointer) *QHolsterReading {
 }
 
 func (ptr *QHolsterReading) DestroyQHolsterReading() {
-	C.free(ptr.Pointer())
-	qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
-	ptr.SetPointer(nil)
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
+		ptr.SetPointer(nil)
+	}
 }
 
 func (ptr *QHolsterReading) Holstered() bool {
@@ -7439,20 +7473,20 @@ type QHolsterSensor_ITF interface {
 	QHolsterSensor_PTR() *QHolsterSensor
 }
 
-func (p *QHolsterSensor) QHolsterSensor_PTR() *QHolsterSensor {
-	return p
+func (ptr *QHolsterSensor) QHolsterSensor_PTR() *QHolsterSensor {
+	return ptr
 }
 
-func (p *QHolsterSensor) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QSensor_PTR().Pointer()
+func (ptr *QHolsterSensor) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QSensor_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QHolsterSensor) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QSensor_PTR().SetPointer(ptr)
+func (ptr *QHolsterSensor) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QSensor_PTR().SetPointer(p)
 	}
 }
 
@@ -7917,20 +7951,20 @@ type QIRProximityFilter_ITF interface {
 	QIRProximityFilter_PTR() *QIRProximityFilter
 }
 
-func (p *QIRProximityFilter) QIRProximityFilter_PTR() *QIRProximityFilter {
-	return p
+func (ptr *QIRProximityFilter) QIRProximityFilter_PTR() *QIRProximityFilter {
+	return ptr
 }
 
-func (p *QIRProximityFilter) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QSensorFilter_PTR().Pointer()
+func (ptr *QIRProximityFilter) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QSensorFilter_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QIRProximityFilter) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QSensorFilter_PTR().SetPointer(ptr)
+func (ptr *QIRProximityFilter) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QSensorFilter_PTR().SetPointer(p)
 	}
 }
 
@@ -7948,9 +7982,11 @@ func NewQIRProximityFilterFromPointer(ptr unsafe.Pointer) *QIRProximityFilter {
 }
 
 func (ptr *QIRProximityFilter) DestroyQIRProximityFilter() {
-	C.free(ptr.Pointer())
-	qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
-	ptr.SetPointer(nil)
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
+		ptr.SetPointer(nil)
+	}
 }
 
 //export callbackQIRProximityFilter_Filter
@@ -7993,20 +8029,20 @@ type QIRProximityReading_ITF interface {
 	QIRProximityReading_PTR() *QIRProximityReading
 }
 
-func (p *QIRProximityReading) QIRProximityReading_PTR() *QIRProximityReading {
-	return p
+func (ptr *QIRProximityReading) QIRProximityReading_PTR() *QIRProximityReading {
+	return ptr
 }
 
-func (p *QIRProximityReading) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QSensorReading_PTR().Pointer()
+func (ptr *QIRProximityReading) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QSensorReading_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QIRProximityReading) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QSensorReading_PTR().SetPointer(ptr)
+func (ptr *QIRProximityReading) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QSensorReading_PTR().SetPointer(p)
 	}
 }
 
@@ -8024,9 +8060,11 @@ func NewQIRProximityReadingFromPointer(ptr unsafe.Pointer) *QIRProximityReading 
 }
 
 func (ptr *QIRProximityReading) DestroyQIRProximityReading() {
-	C.free(ptr.Pointer())
-	qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
-	ptr.SetPointer(nil)
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
+		ptr.SetPointer(nil)
+	}
 }
 
 func (ptr *QIRProximityReading) Reflectance() float64 {
@@ -8384,20 +8422,20 @@ type QIRProximitySensor_ITF interface {
 	QIRProximitySensor_PTR() *QIRProximitySensor
 }
 
-func (p *QIRProximitySensor) QIRProximitySensor_PTR() *QIRProximitySensor {
-	return p
+func (ptr *QIRProximitySensor) QIRProximitySensor_PTR() *QIRProximitySensor {
+	return ptr
 }
 
-func (p *QIRProximitySensor) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QSensor_PTR().Pointer()
+func (ptr *QIRProximitySensor) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QSensor_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QIRProximitySensor) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QSensor_PTR().SetPointer(ptr)
+func (ptr *QIRProximitySensor) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QSensor_PTR().SetPointer(p)
 	}
 }
 
@@ -8894,20 +8932,20 @@ type QLightFilter_ITF interface {
 	QLightFilter_PTR() *QLightFilter
 }
 
-func (p *QLightFilter) QLightFilter_PTR() *QLightFilter {
-	return p
+func (ptr *QLightFilter) QLightFilter_PTR() *QLightFilter {
+	return ptr
 }
 
-func (p *QLightFilter) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QSensorFilter_PTR().Pointer()
+func (ptr *QLightFilter) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QSensorFilter_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QLightFilter) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QSensorFilter_PTR().SetPointer(ptr)
+func (ptr *QLightFilter) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QSensorFilter_PTR().SetPointer(p)
 	}
 }
 
@@ -8925,9 +8963,11 @@ func NewQLightFilterFromPointer(ptr unsafe.Pointer) *QLightFilter {
 }
 
 func (ptr *QLightFilter) DestroyQLightFilter() {
-	C.free(ptr.Pointer())
-	qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
-	ptr.SetPointer(nil)
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
+		ptr.SetPointer(nil)
+	}
 }
 
 //export callbackQLightFilter_Filter
@@ -8970,20 +9010,20 @@ type QLightReading_ITF interface {
 	QLightReading_PTR() *QLightReading
 }
 
-func (p *QLightReading) QLightReading_PTR() *QLightReading {
-	return p
+func (ptr *QLightReading) QLightReading_PTR() *QLightReading {
+	return ptr
 }
 
-func (p *QLightReading) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QSensorReading_PTR().Pointer()
+func (ptr *QLightReading) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QSensorReading_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QLightReading) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QSensorReading_PTR().SetPointer(ptr)
+func (ptr *QLightReading) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QSensorReading_PTR().SetPointer(p)
 	}
 }
 
@@ -9001,9 +9041,11 @@ func NewQLightReadingFromPointer(ptr unsafe.Pointer) *QLightReading {
 }
 
 func (ptr *QLightReading) DestroyQLightReading() {
-	C.free(ptr.Pointer())
-	qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
-	ptr.SetPointer(nil)
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
+		ptr.SetPointer(nil)
+	}
 }
 
 func (ptr *QLightReading) Lux() float64 {
@@ -9361,20 +9403,20 @@ type QLightSensor_ITF interface {
 	QLightSensor_PTR() *QLightSensor
 }
 
-func (p *QLightSensor) QLightSensor_PTR() *QLightSensor {
-	return p
+func (ptr *QLightSensor) QLightSensor_PTR() *QLightSensor {
+	return ptr
 }
 
-func (p *QLightSensor) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QSensor_PTR().Pointer()
+func (ptr *QLightSensor) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QSensor_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QLightSensor) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QSensor_PTR().SetPointer(ptr)
+func (ptr *QLightSensor) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QSensor_PTR().SetPointer(p)
 	}
 }
 
@@ -9913,20 +9955,20 @@ type QMagnetometer_ITF interface {
 	QMagnetometer_PTR() *QMagnetometer
 }
 
-func (p *QMagnetometer) QMagnetometer_PTR() *QMagnetometer {
-	return p
+func (ptr *QMagnetometer) QMagnetometer_PTR() *QMagnetometer {
+	return ptr
 }
 
-func (p *QMagnetometer) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QSensor_PTR().Pointer()
+func (ptr *QMagnetometer) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QSensor_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QMagnetometer) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QSensor_PTR().SetPointer(ptr)
+func (ptr *QMagnetometer) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QSensor_PTR().SetPointer(p)
 	}
 }
 
@@ -10465,20 +10507,20 @@ type QMagnetometerFilter_ITF interface {
 	QMagnetometerFilter_PTR() *QMagnetometerFilter
 }
 
-func (p *QMagnetometerFilter) QMagnetometerFilter_PTR() *QMagnetometerFilter {
-	return p
+func (ptr *QMagnetometerFilter) QMagnetometerFilter_PTR() *QMagnetometerFilter {
+	return ptr
 }
 
-func (p *QMagnetometerFilter) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QSensorFilter_PTR().Pointer()
+func (ptr *QMagnetometerFilter) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QSensorFilter_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QMagnetometerFilter) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QSensorFilter_PTR().SetPointer(ptr)
+func (ptr *QMagnetometerFilter) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QSensorFilter_PTR().SetPointer(p)
 	}
 }
 
@@ -10496,9 +10538,11 @@ func NewQMagnetometerFilterFromPointer(ptr unsafe.Pointer) *QMagnetometerFilter 
 }
 
 func (ptr *QMagnetometerFilter) DestroyQMagnetometerFilter() {
-	C.free(ptr.Pointer())
-	qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
-	ptr.SetPointer(nil)
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
+		ptr.SetPointer(nil)
+	}
 }
 
 //export callbackQMagnetometerFilter_Filter
@@ -10541,20 +10585,20 @@ type QMagnetometerReading_ITF interface {
 	QMagnetometerReading_PTR() *QMagnetometerReading
 }
 
-func (p *QMagnetometerReading) QMagnetometerReading_PTR() *QMagnetometerReading {
-	return p
+func (ptr *QMagnetometerReading) QMagnetometerReading_PTR() *QMagnetometerReading {
+	return ptr
 }
 
-func (p *QMagnetometerReading) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QSensorReading_PTR().Pointer()
+func (ptr *QMagnetometerReading) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QSensorReading_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QMagnetometerReading) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QSensorReading_PTR().SetPointer(ptr)
+func (ptr *QMagnetometerReading) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QSensorReading_PTR().SetPointer(p)
 	}
 }
 
@@ -10572,9 +10616,11 @@ func NewQMagnetometerReadingFromPointer(ptr unsafe.Pointer) *QMagnetometerReadin
 }
 
 func (ptr *QMagnetometerReading) DestroyQMagnetometerReading() {
-	C.free(ptr.Pointer())
-	qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
-	ptr.SetPointer(nil)
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
+		ptr.SetPointer(nil)
+	}
 }
 
 func (ptr *QMagnetometerReading) CalibrationLevel() float64 {
@@ -10971,20 +11017,20 @@ type QOrientationFilter_ITF interface {
 	QOrientationFilter_PTR() *QOrientationFilter
 }
 
-func (p *QOrientationFilter) QOrientationFilter_PTR() *QOrientationFilter {
-	return p
+func (ptr *QOrientationFilter) QOrientationFilter_PTR() *QOrientationFilter {
+	return ptr
 }
 
-func (p *QOrientationFilter) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QSensorFilter_PTR().Pointer()
+func (ptr *QOrientationFilter) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QSensorFilter_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QOrientationFilter) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QSensorFilter_PTR().SetPointer(ptr)
+func (ptr *QOrientationFilter) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QSensorFilter_PTR().SetPointer(p)
 	}
 }
 
@@ -11002,9 +11048,11 @@ func NewQOrientationFilterFromPointer(ptr unsafe.Pointer) *QOrientationFilter {
 }
 
 func (ptr *QOrientationFilter) DestroyQOrientationFilter() {
-	C.free(ptr.Pointer())
-	qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
-	ptr.SetPointer(nil)
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
+		ptr.SetPointer(nil)
+	}
 }
 
 //export callbackQOrientationFilter_Filter
@@ -11061,20 +11109,20 @@ type QOrientationReading_ITF interface {
 	QOrientationReading_PTR() *QOrientationReading
 }
 
-func (p *QOrientationReading) QOrientationReading_PTR() *QOrientationReading {
-	return p
+func (ptr *QOrientationReading) QOrientationReading_PTR() *QOrientationReading {
+	return ptr
 }
 
-func (p *QOrientationReading) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QSensorReading_PTR().Pointer()
+func (ptr *QOrientationReading) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QSensorReading_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QOrientationReading) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QSensorReading_PTR().SetPointer(ptr)
+func (ptr *QOrientationReading) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QSensorReading_PTR().SetPointer(p)
 	}
 }
 
@@ -11092,9 +11140,11 @@ func NewQOrientationReadingFromPointer(ptr unsafe.Pointer) *QOrientationReading 
 }
 
 func (ptr *QOrientationReading) DestroyQOrientationReading() {
-	C.free(ptr.Pointer())
-	qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
-	ptr.SetPointer(nil)
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
+		ptr.SetPointer(nil)
+	}
 }
 
 func (ptr *QOrientationReading) Orientation() QOrientationReading__Orientation {
@@ -11452,20 +11502,20 @@ type QOrientationSensor_ITF interface {
 	QOrientationSensor_PTR() *QOrientationSensor
 }
 
-func (p *QOrientationSensor) QOrientationSensor_PTR() *QOrientationSensor {
-	return p
+func (ptr *QOrientationSensor) QOrientationSensor_PTR() *QOrientationSensor {
+	return ptr
 }
 
-func (p *QOrientationSensor) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QSensor_PTR().Pointer()
+func (ptr *QOrientationSensor) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QSensor_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QOrientationSensor) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QSensor_PTR().SetPointer(ptr)
+func (ptr *QOrientationSensor) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QSensor_PTR().SetPointer(p)
 	}
 }
 
@@ -11962,20 +12012,20 @@ type QPressureFilter_ITF interface {
 	QPressureFilter_PTR() *QPressureFilter
 }
 
-func (p *QPressureFilter) QPressureFilter_PTR() *QPressureFilter {
-	return p
+func (ptr *QPressureFilter) QPressureFilter_PTR() *QPressureFilter {
+	return ptr
 }
 
-func (p *QPressureFilter) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QSensorFilter_PTR().Pointer()
+func (ptr *QPressureFilter) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QSensorFilter_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QPressureFilter) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QSensorFilter_PTR().SetPointer(ptr)
+func (ptr *QPressureFilter) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QSensorFilter_PTR().SetPointer(p)
 	}
 }
 
@@ -11993,9 +12043,11 @@ func NewQPressureFilterFromPointer(ptr unsafe.Pointer) *QPressureFilter {
 }
 
 func (ptr *QPressureFilter) DestroyQPressureFilter() {
-	C.free(ptr.Pointer())
-	qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
-	ptr.SetPointer(nil)
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
+		ptr.SetPointer(nil)
+	}
 }
 
 //export callbackQPressureFilter_Filter
@@ -12038,20 +12090,20 @@ type QPressureReading_ITF interface {
 	QPressureReading_PTR() *QPressureReading
 }
 
-func (p *QPressureReading) QPressureReading_PTR() *QPressureReading {
-	return p
+func (ptr *QPressureReading) QPressureReading_PTR() *QPressureReading {
+	return ptr
 }
 
-func (p *QPressureReading) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QSensorReading_PTR().Pointer()
+func (ptr *QPressureReading) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QSensorReading_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QPressureReading) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QSensorReading_PTR().SetPointer(ptr)
+func (ptr *QPressureReading) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QSensorReading_PTR().SetPointer(p)
 	}
 }
 
@@ -12069,9 +12121,11 @@ func NewQPressureReadingFromPointer(ptr unsafe.Pointer) *QPressureReading {
 }
 
 func (ptr *QPressureReading) DestroyQPressureReading() {
-	C.free(ptr.Pointer())
-	qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
-	ptr.SetPointer(nil)
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
+		ptr.SetPointer(nil)
+	}
 }
 
 func (ptr *QPressureReading) Pressure() float64 {
@@ -12442,20 +12496,20 @@ type QPressureSensor_ITF interface {
 	QPressureSensor_PTR() *QPressureSensor
 }
 
-func (p *QPressureSensor) QPressureSensor_PTR() *QPressureSensor {
-	return p
+func (ptr *QPressureSensor) QPressureSensor_PTR() *QPressureSensor {
+	return ptr
 }
 
-func (p *QPressureSensor) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QSensor_PTR().Pointer()
+func (ptr *QPressureSensor) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QSensor_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QPressureSensor) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QSensor_PTR().SetPointer(ptr)
+func (ptr *QPressureSensor) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QSensor_PTR().SetPointer(p)
 	}
 }
 
@@ -12920,20 +12974,20 @@ type QProximityFilter_ITF interface {
 	QProximityFilter_PTR() *QProximityFilter
 }
 
-func (p *QProximityFilter) QProximityFilter_PTR() *QProximityFilter {
-	return p
+func (ptr *QProximityFilter) QProximityFilter_PTR() *QProximityFilter {
+	return ptr
 }
 
-func (p *QProximityFilter) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QSensorFilter_PTR().Pointer()
+func (ptr *QProximityFilter) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QSensorFilter_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QProximityFilter) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QSensorFilter_PTR().SetPointer(ptr)
+func (ptr *QProximityFilter) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QSensorFilter_PTR().SetPointer(p)
 	}
 }
 
@@ -12951,9 +13005,11 @@ func NewQProximityFilterFromPointer(ptr unsafe.Pointer) *QProximityFilter {
 }
 
 func (ptr *QProximityFilter) DestroyQProximityFilter() {
-	C.free(ptr.Pointer())
-	qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
-	ptr.SetPointer(nil)
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
+		ptr.SetPointer(nil)
+	}
 }
 
 //export callbackQProximityFilter_Filter
@@ -12996,20 +13052,20 @@ type QProximityReading_ITF interface {
 	QProximityReading_PTR() *QProximityReading
 }
 
-func (p *QProximityReading) QProximityReading_PTR() *QProximityReading {
-	return p
+func (ptr *QProximityReading) QProximityReading_PTR() *QProximityReading {
+	return ptr
 }
 
-func (p *QProximityReading) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QSensorReading_PTR().Pointer()
+func (ptr *QProximityReading) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QSensorReading_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QProximityReading) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QSensorReading_PTR().SetPointer(ptr)
+func (ptr *QProximityReading) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QSensorReading_PTR().SetPointer(p)
 	}
 }
 
@@ -13027,9 +13083,11 @@ func NewQProximityReadingFromPointer(ptr unsafe.Pointer) *QProximityReading {
 }
 
 func (ptr *QProximityReading) DestroyQProximityReading() {
-	C.free(ptr.Pointer())
-	qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
-	ptr.SetPointer(nil)
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
+		ptr.SetPointer(nil)
+	}
 }
 
 func (ptr *QProximityReading) Close() bool {
@@ -13387,20 +13445,20 @@ type QProximitySensor_ITF interface {
 	QProximitySensor_PTR() *QProximitySensor
 }
 
-func (p *QProximitySensor) QProximitySensor_PTR() *QProximitySensor {
-	return p
+func (ptr *QProximitySensor) QProximitySensor_PTR() *QProximitySensor {
+	return ptr
 }
 
-func (p *QProximitySensor) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QSensor_PTR().Pointer()
+func (ptr *QProximitySensor) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QSensor_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QProximitySensor) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QSensor_PTR().SetPointer(ptr)
+func (ptr *QProximitySensor) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QSensor_PTR().SetPointer(p)
 	}
 }
 
@@ -13897,20 +13955,20 @@ type QRotationFilter_ITF interface {
 	QRotationFilter_PTR() *QRotationFilter
 }
 
-func (p *QRotationFilter) QRotationFilter_PTR() *QRotationFilter {
-	return p
+func (ptr *QRotationFilter) QRotationFilter_PTR() *QRotationFilter {
+	return ptr
 }
 
-func (p *QRotationFilter) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QSensorFilter_PTR().Pointer()
+func (ptr *QRotationFilter) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QSensorFilter_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QRotationFilter) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QSensorFilter_PTR().SetPointer(ptr)
+func (ptr *QRotationFilter) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QSensorFilter_PTR().SetPointer(p)
 	}
 }
 
@@ -13928,9 +13986,11 @@ func NewQRotationFilterFromPointer(ptr unsafe.Pointer) *QRotationFilter {
 }
 
 func (ptr *QRotationFilter) DestroyQRotationFilter() {
-	C.free(ptr.Pointer())
-	qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
-	ptr.SetPointer(nil)
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
+		ptr.SetPointer(nil)
+	}
 }
 
 //export callbackQRotationFilter_Filter
@@ -13973,20 +14033,20 @@ type QRotationReading_ITF interface {
 	QRotationReading_PTR() *QRotationReading
 }
 
-func (p *QRotationReading) QRotationReading_PTR() *QRotationReading {
-	return p
+func (ptr *QRotationReading) QRotationReading_PTR() *QRotationReading {
+	return ptr
 }
 
-func (p *QRotationReading) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QSensorReading_PTR().Pointer()
+func (ptr *QRotationReading) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QSensorReading_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QRotationReading) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QSensorReading_PTR().SetPointer(ptr)
+func (ptr *QRotationReading) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QSensorReading_PTR().SetPointer(p)
 	}
 }
 
@@ -14004,9 +14064,11 @@ func NewQRotationReadingFromPointer(ptr unsafe.Pointer) *QRotationReading {
 }
 
 func (ptr *QRotationReading) DestroyQRotationReading() {
-	C.free(ptr.Pointer())
-	qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
-	ptr.SetPointer(nil)
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
+		ptr.SetPointer(nil)
+	}
 }
 
 func (ptr *QRotationReading) X() float64 {
@@ -14378,20 +14440,20 @@ type QRotationSensor_ITF interface {
 	QRotationSensor_PTR() *QRotationSensor
 }
 
-func (p *QRotationSensor) QRotationSensor_PTR() *QRotationSensor {
-	return p
+func (ptr *QRotationSensor) QRotationSensor_PTR() *QRotationSensor {
+	return ptr
 }
 
-func (p *QRotationSensor) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QSensor_PTR().Pointer()
+func (ptr *QRotationSensor) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QSensor_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QRotationSensor) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QSensor_PTR().SetPointer(ptr)
+func (ptr *QRotationSensor) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QSensor_PTR().SetPointer(p)
 	}
 }
 
@@ -14956,20 +15018,20 @@ type QSensor_ITF interface {
 	QSensor_PTR() *QSensor
 }
 
-func (p *QSensor) QSensor_PTR() *QSensor {
-	return p
+func (ptr *QSensor) QSensor_PTR() *QSensor {
+	return ptr
 }
 
-func (p *QSensor) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QObject_PTR().Pointer()
+func (ptr *QSensor) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QObject_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QSensor) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QObject_PTR().SetPointer(ptr)
+func (ptr *QSensor) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QObject_PTR().SetPointer(p)
 	}
 }
 
@@ -16161,20 +16223,20 @@ type QSensorBackend_ITF interface {
 	QSensorBackend_PTR() *QSensorBackend
 }
 
-func (p *QSensorBackend) QSensorBackend_PTR() *QSensorBackend {
-	return p
+func (ptr *QSensorBackend) QSensorBackend_PTR() *QSensorBackend {
+	return ptr
 }
 
-func (p *QSensorBackend) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QObject_PTR().Pointer()
+func (ptr *QSensorBackend) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QObject_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QSensorBackend) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QObject_PTR().SetPointer(ptr)
+func (ptr *QSensorBackend) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QObject_PTR().SetPointer(p)
 	}
 }
 
@@ -16192,9 +16254,11 @@ func NewQSensorBackendFromPointer(ptr unsafe.Pointer) *QSensorBackend {
 }
 
 func (ptr *QSensorBackend) DestroyQSensorBackend() {
-	C.free(ptr.Pointer())
-	qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
-	ptr.SetPointer(nil)
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
+		ptr.SetPointer(nil)
+	}
 }
 
 func (ptr *QSensorBackend) AddDataRate(min float64, max float64) {
@@ -16706,20 +16770,20 @@ type QSensorBackendFactory_ITF interface {
 	QSensorBackendFactory_PTR() *QSensorBackendFactory
 }
 
-func (p *QSensorBackendFactory) QSensorBackendFactory_PTR() *QSensorBackendFactory {
-	return p
+func (ptr *QSensorBackendFactory) QSensorBackendFactory_PTR() *QSensorBackendFactory {
+	return ptr
 }
 
-func (p *QSensorBackendFactory) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QSensorBackendFactory) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QSensorBackendFactory) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QSensorBackendFactory) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -16737,9 +16801,11 @@ func NewQSensorBackendFactoryFromPointer(ptr unsafe.Pointer) *QSensorBackendFact
 }
 
 func (ptr *QSensorBackendFactory) DestroyQSensorBackendFactory() {
-	C.free(ptr.Pointer())
-	qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
-	ptr.SetPointer(nil)
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
+		ptr.SetPointer(nil)
+	}
 }
 
 //export callbackQSensorBackendFactory_CreateBackend
@@ -16785,20 +16851,20 @@ type QSensorChangesInterface_ITF interface {
 	QSensorChangesInterface_PTR() *QSensorChangesInterface
 }
 
-func (p *QSensorChangesInterface) QSensorChangesInterface_PTR() *QSensorChangesInterface {
-	return p
+func (ptr *QSensorChangesInterface) QSensorChangesInterface_PTR() *QSensorChangesInterface {
+	return ptr
 }
 
-func (p *QSensorChangesInterface) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QSensorChangesInterface) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QSensorChangesInterface) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QSensorChangesInterface) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -16816,9 +16882,11 @@ func NewQSensorChangesInterfaceFromPointer(ptr unsafe.Pointer) *QSensorChangesIn
 }
 
 func (ptr *QSensorChangesInterface) DestroyQSensorChangesInterface() {
-	C.free(ptr.Pointer())
-	qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
-	ptr.SetPointer(nil)
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
+		ptr.SetPointer(nil)
+	}
 }
 
 //export callbackQSensorChangesInterface_SensorsChanged
@@ -16858,20 +16926,20 @@ type QSensorFilter_ITF interface {
 	QSensorFilter_PTR() *QSensorFilter
 }
 
-func (p *QSensorFilter) QSensorFilter_PTR() *QSensorFilter {
-	return p
+func (ptr *QSensorFilter) QSensorFilter_PTR() *QSensorFilter {
+	return ptr
 }
 
-func (p *QSensorFilter) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QSensorFilter) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QSensorFilter) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QSensorFilter) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -16985,20 +17053,20 @@ type QSensorGesture_ITF interface {
 	QSensorGesture_PTR() *QSensorGesture
 }
 
-func (p *QSensorGesture) QSensorGesture_PTR() *QSensorGesture {
-	return p
+func (ptr *QSensorGesture) QSensorGesture_PTR() *QSensorGesture {
+	return ptr
 }
 
-func (p *QSensorGesture) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QObject_PTR().Pointer()
+func (ptr *QSensorGesture) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QObject_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QSensorGesture) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QObject_PTR().SetPointer(ptr)
+func (ptr *QSensorGesture) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QObject_PTR().SetPointer(p)
 	}
 }
 
@@ -17445,20 +17513,20 @@ type QSensorGestureManager_ITF interface {
 	QSensorGestureManager_PTR() *QSensorGestureManager
 }
 
-func (p *QSensorGestureManager) QSensorGestureManager_PTR() *QSensorGestureManager {
-	return p
+func (ptr *QSensorGestureManager) QSensorGestureManager_PTR() *QSensorGestureManager {
+	return ptr
 }
 
-func (p *QSensorGestureManager) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QObject_PTR().Pointer()
+func (ptr *QSensorGestureManager) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QObject_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QSensorGestureManager) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QObject_PTR().SetPointer(ptr)
+func (ptr *QSensorGestureManager) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QObject_PTR().SetPointer(p)
 	}
 }
 
@@ -17903,20 +17971,20 @@ type QSensorGesturePluginInterface_ITF interface {
 	QSensorGesturePluginInterface_PTR() *QSensorGesturePluginInterface
 }
 
-func (p *QSensorGesturePluginInterface) QSensorGesturePluginInterface_PTR() *QSensorGesturePluginInterface {
-	return p
+func (ptr *QSensorGesturePluginInterface) QSensorGesturePluginInterface_PTR() *QSensorGesturePluginInterface {
+	return ptr
 }
 
-func (p *QSensorGesturePluginInterface) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QSensorGesturePluginInterface) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QSensorGesturePluginInterface) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QSensorGesturePluginInterface) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -18082,20 +18150,20 @@ type QSensorGestureRecognizer_ITF interface {
 	QSensorGestureRecognizer_PTR() *QSensorGestureRecognizer
 }
 
-func (p *QSensorGestureRecognizer) QSensorGestureRecognizer_PTR() *QSensorGestureRecognizer {
-	return p
+func (ptr *QSensorGestureRecognizer) QSensorGestureRecognizer_PTR() *QSensorGestureRecognizer {
+	return ptr
 }
 
-func (p *QSensorGestureRecognizer) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QObject_PTR().Pointer()
+func (ptr *QSensorGestureRecognizer) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QObject_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QSensorGestureRecognizer) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QObject_PTR().SetPointer(ptr)
+func (ptr *QSensorGestureRecognizer) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QObject_PTR().SetPointer(p)
 	}
 }
 
@@ -18709,20 +18777,20 @@ type QSensorManager_ITF interface {
 	QSensorManager_PTR() *QSensorManager
 }
 
-func (p *QSensorManager) QSensorManager_PTR() *QSensorManager {
-	return p
+func (ptr *QSensorManager) QSensorManager_PTR() *QSensorManager {
+	return ptr
 }
 
-func (p *QSensorManager) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QSensorManager) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QSensorManager) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QSensorManager) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -18740,8 +18808,10 @@ func NewQSensorManagerFromPointer(ptr unsafe.Pointer) *QSensorManager {
 }
 
 func (ptr *QSensorManager) DestroyQSensorManager() {
-	C.free(ptr.Pointer())
-	ptr.SetPointer(nil)
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
 }
 
 func QSensorManager_CreateBackend(sensor QSensor_ITF) *QSensorBackend {
@@ -18800,20 +18870,20 @@ type QSensorPluginInterface_ITF interface {
 	QSensorPluginInterface_PTR() *QSensorPluginInterface
 }
 
-func (p *QSensorPluginInterface) QSensorPluginInterface_PTR() *QSensorPluginInterface {
-	return p
+func (ptr *QSensorPluginInterface) QSensorPluginInterface_PTR() *QSensorPluginInterface {
+	return ptr
 }
 
-func (p *QSensorPluginInterface) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QSensorPluginInterface) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QSensorPluginInterface) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QSensorPluginInterface) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -18831,9 +18901,11 @@ func NewQSensorPluginInterfaceFromPointer(ptr unsafe.Pointer) *QSensorPluginInte
 }
 
 func (ptr *QSensorPluginInterface) DestroyQSensorPluginInterface() {
-	C.free(ptr.Pointer())
-	qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
-	ptr.SetPointer(nil)
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
+		ptr.SetPointer(nil)
+	}
 }
 
 //export callbackQSensorPluginInterface_RegisterSensors
@@ -18874,20 +18946,20 @@ type QSensorReading_ITF interface {
 	QSensorReading_PTR() *QSensorReading
 }
 
-func (p *QSensorReading) QSensorReading_PTR() *QSensorReading {
-	return p
+func (ptr *QSensorReading) QSensorReading_PTR() *QSensorReading {
+	return ptr
 }
 
-func (p *QSensorReading) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QObject_PTR().Pointer()
+func (ptr *QSensorReading) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QObject_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QSensorReading) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QObject_PTR().SetPointer(ptr)
+func (ptr *QSensorReading) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QObject_PTR().SetPointer(p)
 	}
 }
 
@@ -18905,9 +18977,11 @@ func NewQSensorReadingFromPointer(ptr unsafe.Pointer) *QSensorReading {
 }
 
 func (ptr *QSensorReading) DestroyQSensorReading() {
-	C.free(ptr.Pointer())
-	qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
-	ptr.SetPointer(nil)
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
+		ptr.SetPointer(nil)
+	}
 }
 
 func (ptr *QSensorReading) SetTimestamp(timestamp uint64) {
@@ -19281,20 +19355,20 @@ type QTapFilter_ITF interface {
 	QTapFilter_PTR() *QTapFilter
 }
 
-func (p *QTapFilter) QTapFilter_PTR() *QTapFilter {
-	return p
+func (ptr *QTapFilter) QTapFilter_PTR() *QTapFilter {
+	return ptr
 }
 
-func (p *QTapFilter) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QSensorFilter_PTR().Pointer()
+func (ptr *QTapFilter) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QSensorFilter_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QTapFilter) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QSensorFilter_PTR().SetPointer(ptr)
+func (ptr *QTapFilter) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QSensorFilter_PTR().SetPointer(p)
 	}
 }
 
@@ -19312,9 +19386,11 @@ func NewQTapFilterFromPointer(ptr unsafe.Pointer) *QTapFilter {
 }
 
 func (ptr *QTapFilter) DestroyQTapFilter() {
-	C.free(ptr.Pointer())
-	qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
-	ptr.SetPointer(nil)
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
+		ptr.SetPointer(nil)
+	}
 }
 
 //export callbackQTapFilter_Filter
@@ -19377,20 +19453,20 @@ type QTapReading_ITF interface {
 	QTapReading_PTR() *QTapReading
 }
 
-func (p *QTapReading) QTapReading_PTR() *QTapReading {
-	return p
+func (ptr *QTapReading) QTapReading_PTR() *QTapReading {
+	return ptr
 }
 
-func (p *QTapReading) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QSensorReading_PTR().Pointer()
+func (ptr *QTapReading) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QSensorReading_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QTapReading) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QSensorReading_PTR().SetPointer(ptr)
+func (ptr *QTapReading) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QSensorReading_PTR().SetPointer(p)
 	}
 }
 
@@ -19408,9 +19484,11 @@ func NewQTapReadingFromPointer(ptr unsafe.Pointer) *QTapReading {
 }
 
 func (ptr *QTapReading) DestroyQTapReading() {
-	C.free(ptr.Pointer())
-	qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
-	ptr.SetPointer(nil)
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
+		ptr.SetPointer(nil)
+	}
 }
 
 func (ptr *QTapReading) IsDoubleTap() bool {
@@ -19781,20 +19859,20 @@ type QTapSensor_ITF interface {
 	QTapSensor_PTR() *QTapSensor
 }
 
-func (p *QTapSensor) QTapSensor_PTR() *QTapSensor {
-	return p
+func (ptr *QTapSensor) QTapSensor_PTR() *QTapSensor {
+	return ptr
 }
 
-func (p *QTapSensor) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QSensor_PTR().Pointer()
+func (ptr *QTapSensor) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QSensor_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QTapSensor) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QSensor_PTR().SetPointer(ptr)
+func (ptr *QTapSensor) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QSensor_PTR().SetPointer(p)
 	}
 }
 
@@ -20333,20 +20411,20 @@ type QTiltFilter_ITF interface {
 	QTiltFilter_PTR() *QTiltFilter
 }
 
-func (p *QTiltFilter) QTiltFilter_PTR() *QTiltFilter {
-	return p
+func (ptr *QTiltFilter) QTiltFilter_PTR() *QTiltFilter {
+	return ptr
 }
 
-func (p *QTiltFilter) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QSensorFilter_PTR().Pointer()
+func (ptr *QTiltFilter) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QSensorFilter_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QTiltFilter) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QSensorFilter_PTR().SetPointer(ptr)
+func (ptr *QTiltFilter) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QSensorFilter_PTR().SetPointer(p)
 	}
 }
 
@@ -20364,9 +20442,11 @@ func NewQTiltFilterFromPointer(ptr unsafe.Pointer) *QTiltFilter {
 }
 
 func (ptr *QTiltFilter) DestroyQTiltFilter() {
-	C.free(ptr.Pointer())
-	qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
-	ptr.SetPointer(nil)
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
+		ptr.SetPointer(nil)
+	}
 }
 
 //export callbackQTiltFilter_Filter
@@ -20409,20 +20489,20 @@ type QTiltReading_ITF interface {
 	QTiltReading_PTR() *QTiltReading
 }
 
-func (p *QTiltReading) QTiltReading_PTR() *QTiltReading {
-	return p
+func (ptr *QTiltReading) QTiltReading_PTR() *QTiltReading {
+	return ptr
 }
 
-func (p *QTiltReading) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QSensorReading_PTR().Pointer()
+func (ptr *QTiltReading) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QSensorReading_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QTiltReading) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QSensorReading_PTR().SetPointer(ptr)
+func (ptr *QTiltReading) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QSensorReading_PTR().SetPointer(p)
 	}
 }
 
@@ -20440,9 +20520,11 @@ func NewQTiltReadingFromPointer(ptr unsafe.Pointer) *QTiltReading {
 }
 
 func (ptr *QTiltReading) DestroyQTiltReading() {
-	C.free(ptr.Pointer())
-	qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
-	ptr.SetPointer(nil)
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
+		ptr.SetPointer(nil)
+	}
 }
 
 func (ptr *QTiltReading) XRotation() float64 {
@@ -20813,20 +20895,20 @@ type QTiltSensor_ITF interface {
 	QTiltSensor_PTR() *QTiltSensor
 }
 
-func (p *QTiltSensor) QTiltSensor_PTR() *QTiltSensor {
-	return p
+func (ptr *QTiltSensor) QTiltSensor_PTR() *QTiltSensor {
+	return ptr
 }
 
-func (p *QTiltSensor) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QSensor_PTR().Pointer()
+func (ptr *QTiltSensor) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QSensor_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QTiltSensor) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QSensor_PTR().SetPointer(ptr)
+func (ptr *QTiltSensor) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QSensor_PTR().SetPointer(p)
 	}
 }
 
@@ -21309,20 +21391,20 @@ type QtMobility_ITF interface {
 	QtMobility_PTR() *QtMobility
 }
 
-func (p *QtMobility) QtMobility_PTR() *QtMobility {
-	return p
+func (ptr *QtMobility) QtMobility_PTR() *QtMobility {
+	return ptr
 }
 
-func (p *QtMobility) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QtMobility) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QtMobility) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QtMobility) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -21340,6 +21422,8 @@ func NewQtMobilityFromPointer(ptr unsafe.Pointer) *QtMobility {
 }
 
 func (ptr *QtMobility) DestroyQtMobility() {
-	C.free(ptr.Pointer())
-	ptr.SetPointer(nil)
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
 }

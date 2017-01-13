@@ -47,20 +47,20 @@ type QGeoCodeReply_ITF interface {
 	QGeoCodeReply_PTR() *QGeoCodeReply
 }
 
-func (p *QGeoCodeReply) QGeoCodeReply_PTR() *QGeoCodeReply {
-	return p
+func (ptr *QGeoCodeReply) QGeoCodeReply_PTR() *QGeoCodeReply {
+	return ptr
 }
 
-func (p *QGeoCodeReply) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QObject_PTR().Pointer()
+func (ptr *QGeoCodeReply) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QObject_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QGeoCodeReply) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QObject_PTR().SetPointer(ptr)
+func (ptr *QGeoCodeReply) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QObject_PTR().SetPointer(p)
 	}
 }
 
@@ -86,20 +86,20 @@ type QGeoCodingManager_ITF interface {
 	QGeoCodingManager_PTR() *QGeoCodingManager
 }
 
-func (p *QGeoCodingManager) QGeoCodingManager_PTR() *QGeoCodingManager {
-	return p
+func (ptr *QGeoCodingManager) QGeoCodingManager_PTR() *QGeoCodingManager {
+	return ptr
 }
 
-func (p *QGeoCodingManager) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QObject_PTR().Pointer()
+func (ptr *QGeoCodingManager) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QObject_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QGeoCodingManager) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QObject_PTR().SetPointer(ptr)
+func (ptr *QGeoCodingManager) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QObject_PTR().SetPointer(p)
 	}
 }
 
@@ -125,20 +125,20 @@ type QGeoCodingManagerEngine_ITF interface {
 	QGeoCodingManagerEngine_PTR() *QGeoCodingManagerEngine
 }
 
-func (p *QGeoCodingManagerEngine) QGeoCodingManagerEngine_PTR() *QGeoCodingManagerEngine {
-	return p
+func (ptr *QGeoCodingManagerEngine) QGeoCodingManagerEngine_PTR() *QGeoCodingManagerEngine {
+	return ptr
 }
 
-func (p *QGeoCodingManagerEngine) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QObject_PTR().Pointer()
+func (ptr *QGeoCodingManagerEngine) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QObject_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QGeoCodingManagerEngine) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QObject_PTR().SetPointer(ptr)
+func (ptr *QGeoCodingManagerEngine) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QObject_PTR().SetPointer(p)
 	}
 }
 
@@ -182,20 +182,20 @@ type QGeoManeuver_ITF interface {
 	QGeoManeuver_PTR() *QGeoManeuver
 }
 
-func (p *QGeoManeuver) QGeoManeuver_PTR() *QGeoManeuver {
-	return p
+func (ptr *QGeoManeuver) QGeoManeuver_PTR() *QGeoManeuver {
+	return ptr
 }
 
-func (p *QGeoManeuver) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QGeoManeuver) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QGeoManeuver) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QGeoManeuver) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -329,20 +329,20 @@ type QGeoRoute_ITF interface {
 	QGeoRoute_PTR() *QGeoRoute
 }
 
-func (p *QGeoRoute) QGeoRoute_PTR() *QGeoRoute {
-	return p
+func (ptr *QGeoRoute) QGeoRoute_PTR() *QGeoRoute {
+	return ptr
 }
 
-func (p *QGeoRoute) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QGeoRoute) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QGeoRoute) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QGeoRoute) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -520,20 +520,20 @@ type QGeoRouteReply_ITF interface {
 	QGeoRouteReply_PTR() *QGeoRouteReply
 }
 
-func (p *QGeoRouteReply) QGeoRouteReply_PTR() *QGeoRouteReply {
-	return p
+func (ptr *QGeoRouteReply) QGeoRouteReply_PTR() *QGeoRouteReply {
+	return ptr
 }
 
-func (p *QGeoRouteReply) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QObject_PTR().Pointer()
+func (ptr *QGeoRouteReply) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QObject_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QGeoRouteReply) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QObject_PTR().SetPointer(ptr)
+func (ptr *QGeoRouteReply) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QObject_PTR().SetPointer(p)
 	}
 }
 
@@ -1179,20 +1179,20 @@ type QGeoRouteRequest_ITF interface {
 	QGeoRouteRequest_PTR() *QGeoRouteRequest
 }
 
-func (p *QGeoRouteRequest) QGeoRouteRequest_PTR() *QGeoRouteRequest {
-	return p
+func (ptr *QGeoRouteRequest) QGeoRouteRequest_PTR() *QGeoRouteRequest {
+	return ptr
 }
 
-func (p *QGeoRouteRequest) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QGeoRouteRequest) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QGeoRouteRequest) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QGeoRouteRequest) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -1357,20 +1357,20 @@ type QGeoRouteSegment_ITF interface {
 	QGeoRouteSegment_PTR() *QGeoRouteSegment
 }
 
-func (p *QGeoRouteSegment) QGeoRouteSegment_PTR() *QGeoRouteSegment {
-	return p
+func (ptr *QGeoRouteSegment) QGeoRouteSegment_PTR() *QGeoRouteSegment {
+	return ptr
 }
 
-func (p *QGeoRouteSegment) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QGeoRouteSegment) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QGeoRouteSegment) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QGeoRouteSegment) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -1499,20 +1499,20 @@ type QGeoRoutingManager_ITF interface {
 	QGeoRoutingManager_PTR() *QGeoRoutingManager
 }
 
-func (p *QGeoRoutingManager) QGeoRoutingManager_PTR() *QGeoRoutingManager {
-	return p
+func (ptr *QGeoRoutingManager) QGeoRoutingManager_PTR() *QGeoRoutingManager {
+	return ptr
 }
 
-func (p *QGeoRoutingManager) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QObject_PTR().Pointer()
+func (ptr *QGeoRoutingManager) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QObject_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QGeoRoutingManager) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QObject_PTR().SetPointer(ptr)
+func (ptr *QGeoRoutingManager) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QObject_PTR().SetPointer(p)
 	}
 }
 
@@ -2044,20 +2044,20 @@ type QGeoRoutingManagerEngine_ITF interface {
 	QGeoRoutingManagerEngine_PTR() *QGeoRoutingManagerEngine
 }
 
-func (p *QGeoRoutingManagerEngine) QGeoRoutingManagerEngine_PTR() *QGeoRoutingManagerEngine {
-	return p
+func (ptr *QGeoRoutingManagerEngine) QGeoRoutingManagerEngine_PTR() *QGeoRoutingManagerEngine {
+	return ptr
 }
 
-func (p *QGeoRoutingManagerEngine) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QObject_PTR().Pointer()
+func (ptr *QGeoRoutingManagerEngine) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QObject_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QGeoRoutingManagerEngine) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QObject_PTR().SetPointer(ptr)
+func (ptr *QGeoRoutingManagerEngine) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QObject_PTR().SetPointer(p)
 	}
 }
 
@@ -2789,20 +2789,20 @@ type QGeoServiceProvider_ITF interface {
 	QGeoServiceProvider_PTR() *QGeoServiceProvider
 }
 
-func (p *QGeoServiceProvider) QGeoServiceProvider_PTR() *QGeoServiceProvider {
-	return p
+func (ptr *QGeoServiceProvider) QGeoServiceProvider_PTR() *QGeoServiceProvider {
+	return ptr
 }
 
-func (p *QGeoServiceProvider) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QObject_PTR().Pointer()
+func (ptr *QGeoServiceProvider) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QObject_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QGeoServiceProvider) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QObject_PTR().SetPointer(ptr)
+func (ptr *QGeoServiceProvider) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QObject_PTR().SetPointer(p)
 	}
 }
 
@@ -3262,20 +3262,20 @@ type QGeoServiceProviderFactory_ITF interface {
 	QGeoServiceProviderFactory_PTR() *QGeoServiceProviderFactory
 }
 
-func (p *QGeoServiceProviderFactory) QGeoServiceProviderFactory_PTR() *QGeoServiceProviderFactory {
-	return p
+func (ptr *QGeoServiceProviderFactory) QGeoServiceProviderFactory_PTR() *QGeoServiceProviderFactory {
+	return ptr
 }
 
-func (p *QGeoServiceProviderFactory) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QGeoServiceProviderFactory) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QGeoServiceProviderFactory) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QGeoServiceProviderFactory) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -3372,20 +3372,20 @@ type QLocation_ITF interface {
 	QLocation_PTR() *QLocation
 }
 
-func (p *QLocation) QLocation_PTR() *QLocation {
-	return p
+func (ptr *QLocation) QLocation_PTR() *QLocation {
+	return ptr
 }
 
-func (p *QLocation) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QLocation) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QLocation) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QLocation) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -3403,8 +3403,10 @@ func NewQLocationFromPointer(ptr unsafe.Pointer) *QLocation {
 }
 
 func (ptr *QLocation) DestroyQLocation() {
-	C.free(ptr.Pointer())
-	ptr.SetPointer(nil)
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
 }
 
 type QPlace struct {
@@ -3415,20 +3417,20 @@ type QPlace_ITF interface {
 	QPlace_PTR() *QPlace
 }
 
-func (p *QPlace) QPlace_PTR() *QPlace {
-	return p
+func (ptr *QPlace) QPlace_PTR() *QPlace {
+	return ptr
 }
 
-func (p *QPlace) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QPlace) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QPlace) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QPlace) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -3453,20 +3455,20 @@ type QPlaceAttribute_ITF interface {
 	QPlaceAttribute_PTR() *QPlaceAttribute
 }
 
-func (p *QPlaceAttribute) QPlaceAttribute_PTR() *QPlaceAttribute {
-	return p
+func (ptr *QPlaceAttribute) QPlaceAttribute_PTR() *QPlaceAttribute {
+	return ptr
 }
 
-func (p *QPlaceAttribute) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QPlaceAttribute) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QPlaceAttribute) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QPlaceAttribute) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -3491,20 +3493,20 @@ type QPlaceCategory_ITF interface {
 	QPlaceCategory_PTR() *QPlaceCategory
 }
 
-func (p *QPlaceCategory) QPlaceCategory_PTR() *QPlaceCategory {
-	return p
+func (ptr *QPlaceCategory) QPlaceCategory_PTR() *QPlaceCategory {
+	return ptr
 }
 
-func (p *QPlaceCategory) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QPlaceCategory) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QPlaceCategory) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QPlaceCategory) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -3529,20 +3531,20 @@ type QPlaceContactDetail_ITF interface {
 	QPlaceContactDetail_PTR() *QPlaceContactDetail
 }
 
-func (p *QPlaceContactDetail) QPlaceContactDetail_PTR() *QPlaceContactDetail {
-	return p
+func (ptr *QPlaceContactDetail) QPlaceContactDetail_PTR() *QPlaceContactDetail {
+	return ptr
 }
 
-func (p *QPlaceContactDetail) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QPlaceContactDetail) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QPlaceContactDetail) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QPlaceContactDetail) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -3578,20 +3580,20 @@ type QPlaceContent_ITF interface {
 	QPlaceContent_PTR() *QPlaceContent
 }
 
-func (p *QPlaceContent) QPlaceContent_PTR() *QPlaceContent {
-	return p
+func (ptr *QPlaceContent) QPlaceContent_PTR() *QPlaceContent {
+	return ptr
 }
 
-func (p *QPlaceContent) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QPlaceContent) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QPlaceContent) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QPlaceContent) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -3617,20 +3619,20 @@ type QPlaceContentReply_ITF interface {
 	QPlaceContentReply_PTR() *QPlaceContentReply
 }
 
-func (p *QPlaceContentReply) QPlaceContentReply_PTR() *QPlaceContentReply {
-	return p
+func (ptr *QPlaceContentReply) QPlaceContentReply_PTR() *QPlaceContentReply {
+	return ptr
 }
 
-func (p *QPlaceContentReply) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QPlaceReply_PTR().Pointer()
+func (ptr *QPlaceContentReply) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QPlaceReply_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QPlaceContentReply) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QPlaceReply_PTR().SetPointer(ptr)
+func (ptr *QPlaceContentReply) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QPlaceReply_PTR().SetPointer(p)
 	}
 }
 
@@ -3655,20 +3657,20 @@ type QPlaceContentRequest_ITF interface {
 	QPlaceContentRequest_PTR() *QPlaceContentRequest
 }
 
-func (p *QPlaceContentRequest) QPlaceContentRequest_PTR() *QPlaceContentRequest {
-	return p
+func (ptr *QPlaceContentRequest) QPlaceContentRequest_PTR() *QPlaceContentRequest {
+	return ptr
 }
 
-func (p *QPlaceContentRequest) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QPlaceContentRequest) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QPlaceContentRequest) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QPlaceContentRequest) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -3694,20 +3696,20 @@ type QPlaceDetailsReply_ITF interface {
 	QPlaceDetailsReply_PTR() *QPlaceDetailsReply
 }
 
-func (p *QPlaceDetailsReply) QPlaceDetailsReply_PTR() *QPlaceDetailsReply {
-	return p
+func (ptr *QPlaceDetailsReply) QPlaceDetailsReply_PTR() *QPlaceDetailsReply {
+	return ptr
 }
 
-func (p *QPlaceDetailsReply) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QPlaceReply_PTR().Pointer()
+func (ptr *QPlaceDetailsReply) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QPlaceReply_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QPlaceDetailsReply) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QPlaceReply_PTR().SetPointer(ptr)
+func (ptr *QPlaceDetailsReply) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QPlaceReply_PTR().SetPointer(p)
 	}
 }
 
@@ -3733,20 +3735,20 @@ type QPlaceEditorial_ITF interface {
 	QPlaceEditorial_PTR() *QPlaceEditorial
 }
 
-func (p *QPlaceEditorial) QPlaceEditorial_PTR() *QPlaceEditorial {
-	return p
+func (ptr *QPlaceEditorial) QPlaceEditorial_PTR() *QPlaceEditorial {
+	return ptr
 }
 
-func (p *QPlaceEditorial) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QPlaceContent_PTR().Pointer()
+func (ptr *QPlaceEditorial) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QPlaceContent_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QPlaceEditorial) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QPlaceContent_PTR().SetPointer(ptr)
+func (ptr *QPlaceEditorial) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QPlaceContent_PTR().SetPointer(p)
 	}
 }
 
@@ -3771,20 +3773,20 @@ type QPlaceIcon_ITF interface {
 	QPlaceIcon_PTR() *QPlaceIcon
 }
 
-func (p *QPlaceIcon) QPlaceIcon_PTR() *QPlaceIcon {
-	return p
+func (ptr *QPlaceIcon) QPlaceIcon_PTR() *QPlaceIcon {
+	return ptr
 }
 
-func (p *QPlaceIcon) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QPlaceIcon) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QPlaceIcon) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QPlaceIcon) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -3821,20 +3823,20 @@ type QPlaceIdReply_ITF interface {
 	QPlaceIdReply_PTR() *QPlaceIdReply
 }
 
-func (p *QPlaceIdReply) QPlaceIdReply_PTR() *QPlaceIdReply {
-	return p
+func (ptr *QPlaceIdReply) QPlaceIdReply_PTR() *QPlaceIdReply {
+	return ptr
 }
 
-func (p *QPlaceIdReply) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QPlaceReply_PTR().Pointer()
+func (ptr *QPlaceIdReply) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QPlaceReply_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QPlaceIdReply) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QPlaceReply_PTR().SetPointer(ptr)
+func (ptr *QPlaceIdReply) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QPlaceReply_PTR().SetPointer(p)
 	}
 }
 
@@ -3860,20 +3862,20 @@ type QPlaceImage_ITF interface {
 	QPlaceImage_PTR() *QPlaceImage
 }
 
-func (p *QPlaceImage) QPlaceImage_PTR() *QPlaceImage {
-	return p
+func (ptr *QPlaceImage) QPlaceImage_PTR() *QPlaceImage {
+	return ptr
 }
 
-func (p *QPlaceImage) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QPlaceContent_PTR().Pointer()
+func (ptr *QPlaceImage) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QPlaceContent_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QPlaceImage) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QPlaceContent_PTR().SetPointer(ptr)
+func (ptr *QPlaceImage) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QPlaceContent_PTR().SetPointer(p)
 	}
 }
 
@@ -3899,20 +3901,20 @@ type QPlaceManager_ITF interface {
 	QPlaceManager_PTR() *QPlaceManager
 }
 
-func (p *QPlaceManager) QPlaceManager_PTR() *QPlaceManager {
-	return p
+func (ptr *QPlaceManager) QPlaceManager_PTR() *QPlaceManager {
+	return ptr
 }
 
-func (p *QPlaceManager) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QObject_PTR().Pointer()
+func (ptr *QPlaceManager) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QObject_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QPlaceManager) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QObject_PTR().SetPointer(ptr)
+func (ptr *QPlaceManager) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QObject_PTR().SetPointer(p)
 	}
 }
 
@@ -3938,20 +3940,20 @@ type QPlaceManagerEngine_ITF interface {
 	QPlaceManagerEngine_PTR() *QPlaceManagerEngine
 }
 
-func (p *QPlaceManagerEngine) QPlaceManagerEngine_PTR() *QPlaceManagerEngine {
-	return p
+func (ptr *QPlaceManagerEngine) QPlaceManagerEngine_PTR() *QPlaceManagerEngine {
+	return ptr
 }
 
-func (p *QPlaceManagerEngine) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QObject_PTR().Pointer()
+func (ptr *QPlaceManagerEngine) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QObject_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QPlaceManagerEngine) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QObject_PTR().SetPointer(ptr)
+func (ptr *QPlaceManagerEngine) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QObject_PTR().SetPointer(p)
 	}
 }
 
@@ -3977,20 +3979,20 @@ type QPlaceMatchReply_ITF interface {
 	QPlaceMatchReply_PTR() *QPlaceMatchReply
 }
 
-func (p *QPlaceMatchReply) QPlaceMatchReply_PTR() *QPlaceMatchReply {
-	return p
+func (ptr *QPlaceMatchReply) QPlaceMatchReply_PTR() *QPlaceMatchReply {
+	return ptr
 }
 
-func (p *QPlaceMatchReply) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QPlaceReply_PTR().Pointer()
+func (ptr *QPlaceMatchReply) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QPlaceReply_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QPlaceMatchReply) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QPlaceReply_PTR().SetPointer(ptr)
+func (ptr *QPlaceMatchReply) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QPlaceReply_PTR().SetPointer(p)
 	}
 }
 
@@ -4015,20 +4017,20 @@ type QPlaceMatchRequest_ITF interface {
 	QPlaceMatchRequest_PTR() *QPlaceMatchRequest
 }
 
-func (p *QPlaceMatchRequest) QPlaceMatchRequest_PTR() *QPlaceMatchRequest {
-	return p
+func (ptr *QPlaceMatchRequest) QPlaceMatchRequest_PTR() *QPlaceMatchRequest {
+	return ptr
 }
 
-func (p *QPlaceMatchRequest) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QPlaceMatchRequest) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QPlaceMatchRequest) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QPlaceMatchRequest) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -4054,20 +4056,20 @@ type QPlaceProposedSearchResult_ITF interface {
 	QPlaceProposedSearchResult_PTR() *QPlaceProposedSearchResult
 }
 
-func (p *QPlaceProposedSearchResult) QPlaceProposedSearchResult_PTR() *QPlaceProposedSearchResult {
-	return p
+func (ptr *QPlaceProposedSearchResult) QPlaceProposedSearchResult_PTR() *QPlaceProposedSearchResult {
+	return ptr
 }
 
-func (p *QPlaceProposedSearchResult) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QPlaceSearchResult_PTR().Pointer()
+func (ptr *QPlaceProposedSearchResult) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QPlaceSearchResult_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QPlaceProposedSearchResult) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QPlaceSearchResult_PTR().SetPointer(ptr)
+func (ptr *QPlaceProposedSearchResult) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QPlaceSearchResult_PTR().SetPointer(p)
 	}
 }
 
@@ -4092,20 +4094,20 @@ type QPlaceRatings_ITF interface {
 	QPlaceRatings_PTR() *QPlaceRatings
 }
 
-func (p *QPlaceRatings) QPlaceRatings_PTR() *QPlaceRatings {
-	return p
+func (ptr *QPlaceRatings) QPlaceRatings_PTR() *QPlaceRatings {
+	return ptr
 }
 
-func (p *QPlaceRatings) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QPlaceRatings) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QPlaceRatings) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QPlaceRatings) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -4162,20 +4164,20 @@ type QPlaceReply_ITF interface {
 	QPlaceReply_PTR() *QPlaceReply
 }
 
-func (p *QPlaceReply) QPlaceReply_PTR() *QPlaceReply {
-	return p
+func (ptr *QPlaceReply) QPlaceReply_PTR() *QPlaceReply {
+	return ptr
 }
 
-func (p *QPlaceReply) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QObject_PTR().Pointer()
+func (ptr *QPlaceReply) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QObject_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QPlaceReply) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QObject_PTR().SetPointer(ptr)
+func (ptr *QPlaceReply) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QObject_PTR().SetPointer(p)
 	}
 }
 
@@ -4201,20 +4203,20 @@ type QPlaceResult_ITF interface {
 	QPlaceResult_PTR() *QPlaceResult
 }
 
-func (p *QPlaceResult) QPlaceResult_PTR() *QPlaceResult {
-	return p
+func (ptr *QPlaceResult) QPlaceResult_PTR() *QPlaceResult {
+	return ptr
 }
 
-func (p *QPlaceResult) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QPlaceSearchResult_PTR().Pointer()
+func (ptr *QPlaceResult) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QPlaceSearchResult_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QPlaceResult) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QPlaceSearchResult_PTR().SetPointer(ptr)
+func (ptr *QPlaceResult) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QPlaceSearchResult_PTR().SetPointer(p)
 	}
 }
 
@@ -4240,20 +4242,20 @@ type QPlaceReview_ITF interface {
 	QPlaceReview_PTR() *QPlaceReview
 }
 
-func (p *QPlaceReview) QPlaceReview_PTR() *QPlaceReview {
-	return p
+func (ptr *QPlaceReview) QPlaceReview_PTR() *QPlaceReview {
+	return ptr
 }
 
-func (p *QPlaceReview) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QPlaceContent_PTR().Pointer()
+func (ptr *QPlaceReview) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QPlaceContent_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QPlaceReview) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QPlaceContent_PTR().SetPointer(ptr)
+func (ptr *QPlaceReview) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QPlaceContent_PTR().SetPointer(p)
 	}
 }
 
@@ -4279,20 +4281,20 @@ type QPlaceSearchReply_ITF interface {
 	QPlaceSearchReply_PTR() *QPlaceSearchReply
 }
 
-func (p *QPlaceSearchReply) QPlaceSearchReply_PTR() *QPlaceSearchReply {
-	return p
+func (ptr *QPlaceSearchReply) QPlaceSearchReply_PTR() *QPlaceSearchReply {
+	return ptr
 }
 
-func (p *QPlaceSearchReply) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QPlaceReply_PTR().Pointer()
+func (ptr *QPlaceSearchReply) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QPlaceReply_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QPlaceSearchReply) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QPlaceReply_PTR().SetPointer(ptr)
+func (ptr *QPlaceSearchReply) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QPlaceReply_PTR().SetPointer(p)
 	}
 }
 
@@ -4327,20 +4329,20 @@ type QPlaceSearchRequest_ITF interface {
 	QPlaceSearchRequest_PTR() *QPlaceSearchRequest
 }
 
-func (p *QPlaceSearchRequest) QPlaceSearchRequest_PTR() *QPlaceSearchRequest {
-	return p
+func (ptr *QPlaceSearchRequest) QPlaceSearchRequest_PTR() *QPlaceSearchRequest {
+	return ptr
 }
 
-func (p *QPlaceSearchRequest) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QPlaceSearchRequest) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QPlaceSearchRequest) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QPlaceSearchRequest) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -4375,20 +4377,20 @@ type QPlaceSearchResult_ITF interface {
 	QPlaceSearchResult_PTR() *QPlaceSearchResult
 }
 
-func (p *QPlaceSearchResult) QPlaceSearchResult_PTR() *QPlaceSearchResult {
-	return p
+func (ptr *QPlaceSearchResult) QPlaceSearchResult_PTR() *QPlaceSearchResult {
+	return ptr
 }
 
-func (p *QPlaceSearchResult) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QPlaceSearchResult) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QPlaceSearchResult) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QPlaceSearchResult) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -4414,20 +4416,20 @@ type QPlaceSearchSuggestionReply_ITF interface {
 	QPlaceSearchSuggestionReply_PTR() *QPlaceSearchSuggestionReply
 }
 
-func (p *QPlaceSearchSuggestionReply) QPlaceSearchSuggestionReply_PTR() *QPlaceSearchSuggestionReply {
-	return p
+func (ptr *QPlaceSearchSuggestionReply) QPlaceSearchSuggestionReply_PTR() *QPlaceSearchSuggestionReply {
+	return ptr
 }
 
-func (p *QPlaceSearchSuggestionReply) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QPlaceReply_PTR().Pointer()
+func (ptr *QPlaceSearchSuggestionReply) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QPlaceReply_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QPlaceSearchSuggestionReply) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QPlaceReply_PTR().SetPointer(ptr)
+func (ptr *QPlaceSearchSuggestionReply) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QPlaceReply_PTR().SetPointer(p)
 	}
 }
 
@@ -4452,20 +4454,20 @@ type QPlaceSupplier_ITF interface {
 	QPlaceSupplier_PTR() *QPlaceSupplier
 }
 
-func (p *QPlaceSupplier) QPlaceSupplier_PTR() *QPlaceSupplier {
-	return p
+func (ptr *QPlaceSupplier) QPlaceSupplier_PTR() *QPlaceSupplier {
+	return ptr
 }
 
-func (p *QPlaceSupplier) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QPlaceSupplier) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QPlaceSupplier) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QPlaceSupplier) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -4490,20 +4492,20 @@ type QPlaceUser_ITF interface {
 	QPlaceUser_PTR() *QPlaceUser
 }
 
-func (p *QPlaceUser) QPlaceUser_PTR() *QPlaceUser {
-	return p
+func (ptr *QPlaceUser) QPlaceUser_PTR() *QPlaceUser {
+	return ptr
 }
 
-func (p *QPlaceUser) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QPlaceUser) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QPlaceUser) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QPlaceUser) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 

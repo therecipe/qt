@@ -33,20 +33,20 @@ type QAbstractMessageHandler_ITF interface {
 	QAbstractMessageHandler_PTR() *QAbstractMessageHandler
 }
 
-func (p *QAbstractMessageHandler) QAbstractMessageHandler_PTR() *QAbstractMessageHandler {
-	return p
+func (ptr *QAbstractMessageHandler) QAbstractMessageHandler_PTR() *QAbstractMessageHandler {
+	return ptr
 }
 
-func (p *QAbstractMessageHandler) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QObject_PTR().Pointer()
+func (ptr *QAbstractMessageHandler) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QObject_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QAbstractMessageHandler) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QObject_PTR().SetPointer(ptr)
+func (ptr *QAbstractMessageHandler) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QObject_PTR().SetPointer(p)
 	}
 }
 
@@ -445,20 +445,20 @@ type QAbstractUriResolver_ITF interface {
 	QAbstractUriResolver_PTR() *QAbstractUriResolver
 }
 
-func (p *QAbstractUriResolver) QAbstractUriResolver_PTR() *QAbstractUriResolver {
-	return p
+func (ptr *QAbstractUriResolver) QAbstractUriResolver_PTR() *QAbstractUriResolver {
+	return ptr
 }
 
-func (p *QAbstractUriResolver) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QObject_PTR().Pointer()
+func (ptr *QAbstractUriResolver) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QObject_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QAbstractUriResolver) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QObject_PTR().SetPointer(ptr)
+func (ptr *QAbstractUriResolver) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QObject_PTR().SetPointer(p)
 	}
 }
 
@@ -908,20 +908,20 @@ type QAbstractXmlNodeModel_ITF interface {
 	QAbstractXmlNodeModel_PTR() *QAbstractXmlNodeModel
 }
 
-func (p *QAbstractXmlNodeModel) QAbstractXmlNodeModel_PTR() *QAbstractXmlNodeModel {
-	return p
+func (ptr *QAbstractXmlNodeModel) QAbstractXmlNodeModel_PTR() *QAbstractXmlNodeModel {
+	return ptr
 }
 
-func (p *QAbstractXmlNodeModel) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QSharedData_PTR().Pointer()
+func (ptr *QAbstractXmlNodeModel) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QSharedData_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QAbstractXmlNodeModel) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QSharedData_PTR().SetPointer(ptr)
+func (ptr *QAbstractXmlNodeModel) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QSharedData_PTR().SetPointer(p)
 	}
 }
 
@@ -1454,20 +1454,20 @@ type QAbstractXmlReceiver_ITF interface {
 	QAbstractXmlReceiver_PTR() *QAbstractXmlReceiver
 }
 
-func (p *QAbstractXmlReceiver) QAbstractXmlReceiver_PTR() *QAbstractXmlReceiver {
-	return p
+func (ptr *QAbstractXmlReceiver) QAbstractXmlReceiver_PTR() *QAbstractXmlReceiver {
+	return ptr
 }
 
-func (p *QAbstractXmlReceiver) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QAbstractXmlReceiver) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QAbstractXmlReceiver) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QAbstractXmlReceiver) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -1934,20 +1934,20 @@ type QPatternist_ITF interface {
 	QPatternist_PTR() *QPatternist
 }
 
-func (p *QPatternist) QPatternist_PTR() *QPatternist {
-	return p
+func (ptr *QPatternist) QPatternist_PTR() *QPatternist {
+	return ptr
 }
 
-func (p *QPatternist) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QPatternist) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QPatternist) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QPatternist) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -1965,8 +1965,10 @@ func NewQPatternistFromPointer(ptr unsafe.Pointer) *QPatternist {
 }
 
 func (ptr *QPatternist) DestroyQPatternist() {
-	C.free(ptr.Pointer())
-	ptr.SetPointer(nil)
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
 }
 
 type QSimpleXmlNodeModel struct {
@@ -1978,20 +1980,20 @@ type QSimpleXmlNodeModel_ITF interface {
 	QSimpleXmlNodeModel_PTR() *QSimpleXmlNodeModel
 }
 
-func (p *QSimpleXmlNodeModel) QSimpleXmlNodeModel_PTR() *QSimpleXmlNodeModel {
-	return p
+func (ptr *QSimpleXmlNodeModel) QSimpleXmlNodeModel_PTR() *QSimpleXmlNodeModel {
+	return ptr
 }
 
-func (p *QSimpleXmlNodeModel) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QAbstractXmlNodeModel_PTR().Pointer()
+func (ptr *QSimpleXmlNodeModel) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QAbstractXmlNodeModel_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QSimpleXmlNodeModel) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QAbstractXmlNodeModel_PTR().SetPointer(ptr)
+func (ptr *QSimpleXmlNodeModel) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QAbstractXmlNodeModel_PTR().SetPointer(p)
 	}
 }
 
@@ -2539,20 +2541,20 @@ type QSourceLocation_ITF interface {
 	QSourceLocation_PTR() *QSourceLocation
 }
 
-func (p *QSourceLocation) QSourceLocation_PTR() *QSourceLocation {
-	return p
+func (ptr *QSourceLocation) QSourceLocation_PTR() *QSourceLocation {
+	return ptr
 }
 
-func (p *QSourceLocation) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QSourceLocation) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QSourceLocation) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QSourceLocation) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -2650,20 +2652,20 @@ type QXmlFormatter_ITF interface {
 	QXmlFormatter_PTR() *QXmlFormatter
 }
 
-func (p *QXmlFormatter) QXmlFormatter_PTR() *QXmlFormatter {
-	return p
+func (ptr *QXmlFormatter) QXmlFormatter_PTR() *QXmlFormatter {
+	return ptr
 }
 
-func (p *QXmlFormatter) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QXmlSerializer_PTR().Pointer()
+func (ptr *QXmlFormatter) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QXmlSerializer_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QXmlFormatter) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QXmlSerializer_PTR().SetPointer(ptr)
+func (ptr *QXmlFormatter) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QXmlSerializer_PTR().SetPointer(p)
 	}
 }
 
@@ -2681,9 +2683,11 @@ func NewQXmlFormatterFromPointer(ptr unsafe.Pointer) *QXmlFormatter {
 }
 
 func (ptr *QXmlFormatter) DestroyQXmlFormatter() {
-	C.free(ptr.Pointer())
-	qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
-	ptr.SetPointer(nil)
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
+		ptr.SetPointer(nil)
+	}
 }
 
 func NewQXmlFormatter(query QXmlQuery_ITF, outputDevice core.QIODevice_ITF) *QXmlFormatter {
@@ -3151,20 +3155,20 @@ type QXmlItem_ITF interface {
 	QXmlItem_PTR() *QXmlItem
 }
 
-func (p *QXmlItem) QXmlItem_PTR() *QXmlItem {
-	return p
+func (ptr *QXmlItem) QXmlItem_PTR() *QXmlItem {
+	return ptr
 }
 
-func (p *QXmlItem) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QXmlItem) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QXmlItem) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QXmlItem) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -3258,20 +3262,20 @@ type QXmlName_ITF interface {
 	QXmlName_PTR() *QXmlName
 }
 
-func (p *QXmlName) QXmlName_PTR() *QXmlName {
-	return p
+func (ptr *QXmlName) QXmlName_PTR() *QXmlName {
+	return ptr
 }
 
-func (p *QXmlName) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QXmlName) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QXmlName) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QXmlName) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -3289,8 +3293,10 @@ func NewQXmlNameFromPointer(ptr unsafe.Pointer) *QXmlName {
 }
 
 func (ptr *QXmlName) DestroyQXmlName() {
-	C.free(ptr.Pointer())
-	ptr.SetPointer(nil)
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
 }
 
 func NewQXmlName() *QXmlName {
@@ -3382,20 +3388,20 @@ type QXmlNamePool_ITF interface {
 	QXmlNamePool_PTR() *QXmlNamePool
 }
 
-func (p *QXmlNamePool) QXmlNamePool_PTR() *QXmlNamePool {
-	return p
+func (ptr *QXmlNamePool) QXmlNamePool_PTR() *QXmlNamePool {
+	return ptr
 }
 
-func (p *QXmlNamePool) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QXmlNamePool) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QXmlNamePool) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QXmlNamePool) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -3462,20 +3468,20 @@ type QXmlNodeModelIndex_ITF interface {
 	QXmlNodeModelIndex_PTR() *QXmlNodeModelIndex
 }
 
-func (p *QXmlNodeModelIndex) QXmlNodeModelIndex_PTR() *QXmlNodeModelIndex {
-	return p
+func (ptr *QXmlNodeModelIndex) QXmlNodeModelIndex_PTR() *QXmlNodeModelIndex {
+	return ptr
 }
 
-func (p *QXmlNodeModelIndex) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QXmlNodeModelIndex) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QXmlNodeModelIndex) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QXmlNodeModelIndex) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -3493,8 +3499,10 @@ func NewQXmlNodeModelIndexFromPointer(ptr unsafe.Pointer) *QXmlNodeModelIndex {
 }
 
 func (ptr *QXmlNodeModelIndex) DestroyQXmlNodeModelIndex() {
-	C.free(ptr.Pointer())
-	ptr.SetPointer(nil)
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
 }
 
 func NewQXmlNodeModelIndex() *QXmlNodeModelIndex {
@@ -3573,20 +3581,20 @@ type QXmlQuery_ITF interface {
 	QXmlQuery_PTR() *QXmlQuery
 }
 
-func (p *QXmlQuery) QXmlQuery_PTR() *QXmlQuery {
-	return p
+func (ptr *QXmlQuery) QXmlQuery_PTR() *QXmlQuery {
+	return ptr
 }
 
-func (p *QXmlQuery) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QXmlQuery) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QXmlQuery) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QXmlQuery) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -3867,20 +3875,20 @@ type QXmlResultItems_ITF interface {
 	QXmlResultItems_PTR() *QXmlResultItems
 }
 
-func (p *QXmlResultItems) QXmlResultItems_PTR() *QXmlResultItems {
-	return p
+func (ptr *QXmlResultItems) QXmlResultItems_PTR() *QXmlResultItems {
+	return ptr
 }
 
-func (p *QXmlResultItems) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QXmlResultItems) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QXmlResultItems) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QXmlResultItems) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -3973,20 +3981,20 @@ type QXmlSchema_ITF interface {
 	QXmlSchema_PTR() *QXmlSchema
 }
 
-func (p *QXmlSchema) QXmlSchema_PTR() *QXmlSchema {
-	return p
+func (ptr *QXmlSchema) QXmlSchema_PTR() *QXmlSchema {
+	return ptr
 }
 
-func (p *QXmlSchema) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QXmlSchema) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QXmlSchema) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QXmlSchema) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -4126,20 +4134,20 @@ type QXmlSchemaValidator_ITF interface {
 	QXmlSchemaValidator_PTR() *QXmlSchemaValidator
 }
 
-func (p *QXmlSchemaValidator) QXmlSchemaValidator_PTR() *QXmlSchemaValidator {
-	return p
+func (ptr *QXmlSchemaValidator) QXmlSchemaValidator_PTR() *QXmlSchemaValidator {
+	return ptr
 }
 
-func (p *QXmlSchemaValidator) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QXmlSchemaValidator) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QXmlSchemaValidator) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QXmlSchemaValidator) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -4279,20 +4287,20 @@ type QXmlSerializer_ITF interface {
 	QXmlSerializer_PTR() *QXmlSerializer
 }
 
-func (p *QXmlSerializer) QXmlSerializer_PTR() *QXmlSerializer {
-	return p
+func (ptr *QXmlSerializer) QXmlSerializer_PTR() *QXmlSerializer {
+	return ptr
 }
 
-func (p *QXmlSerializer) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QAbstractXmlReceiver_PTR().Pointer()
+func (ptr *QXmlSerializer) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QAbstractXmlReceiver_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QXmlSerializer) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QAbstractXmlReceiver_PTR().SetPointer(ptr)
+func (ptr *QXmlSerializer) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QAbstractXmlReceiver_PTR().SetPointer(p)
 	}
 }
 
@@ -4310,9 +4318,11 @@ func NewQXmlSerializerFromPointer(ptr unsafe.Pointer) *QXmlSerializer {
 }
 
 func (ptr *QXmlSerializer) DestroyQXmlSerializer() {
-	C.free(ptr.Pointer())
-	qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
-	ptr.SetPointer(nil)
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
+		ptr.SetPointer(nil)
+	}
 }
 
 func NewQXmlSerializer(query QXmlQuery_ITF, outputDevice core.QIODevice_ITF) *QXmlSerializer {

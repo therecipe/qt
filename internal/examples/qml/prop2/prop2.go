@@ -13,11 +13,11 @@ import (
 type QmlBride struct {
 	core.QObject
 
-	_ bool          `prop:"boolProp"`
-	_ int           `prop:"intProp"`
-	_ string        `prop:"stringProp"`
-	_ []string      `prop:"stringListProp"`
-	_ *core.QObject `prop:"objectProp"`
+	_ bool          `property:"boolProp"`
+	_ int           `property:"intProp"`
+	_ string        `property:"stringProp"`
+	_ []string      `property:"stringListProp"`
+	_ *core.QObject `property:"objectProp"`
 }
 
 func main() {

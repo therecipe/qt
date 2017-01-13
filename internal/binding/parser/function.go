@@ -265,7 +265,6 @@ func (f *Function) IsSupportedDefault() bool {
 		"QSimpleXmlNodeModel::attributes", "QAbstractXmlNodeModel::attributes",
 
 		"QNetworkReply::readData":
-
 		{
 			return false
 		}

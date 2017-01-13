@@ -34,21 +34,21 @@ type QSignalSpy_ITF interface {
 	QSignalSpy_PTR() *QSignalSpy
 }
 
-func (p *QSignalSpy) QSignalSpy_PTR() *QSignalSpy {
-	return p
+func (ptr *QSignalSpy) QSignalSpy_PTR() *QSignalSpy {
+	return ptr
 }
 
-func (p *QSignalSpy) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QObject_PTR().Pointer()
+func (ptr *QSignalSpy) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QObject_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QSignalSpy) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QObject_PTR().SetPointer(ptr)
-		p.QList_PTR().SetPointer(ptr)
+func (ptr *QSignalSpy) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QObject_PTR().SetPointer(p)
+		ptr.QList_PTR().SetPointer(p)
 	}
 }
 
@@ -66,9 +66,11 @@ func NewQSignalSpyFromPointer(ptr unsafe.Pointer) *QSignalSpy {
 }
 
 func (ptr *QSignalSpy) DestroyQSignalSpy() {
-	C.free(ptr.Pointer())
-	qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
-	ptr.SetPointer(nil)
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
+		ptr.SetPointer(nil)
+	}
 }
 
 func NewQSignalSpy(object core.QObject_ITF, sign string) *QSignalSpy {
@@ -554,20 +556,20 @@ type QTest_ITF interface {
 	QTest_PTR() *QTest
 }
 
-func (p *QTest) QTest_PTR() *QTest {
-	return p
+func (ptr *QTest) QTest_PTR() *QTest {
+	return ptr
 }
 
-func (p *QTest) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QTest) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QTest) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QTest) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -585,8 +587,10 @@ func NewQTestFromPointer(ptr unsafe.Pointer) *QTest {
 }
 
 func (ptr *QTest) DestroyQTest() {
-	C.free(ptr.Pointer())
-	ptr.SetPointer(nil)
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
 }
 
 type QTestEventList struct {
@@ -598,20 +602,20 @@ type QTestEventList_ITF interface {
 	QTestEventList_PTR() *QTestEventList
 }
 
-func (p *QTestEventList) QTestEventList_PTR() *QTestEventList {
-	return p
+func (ptr *QTestEventList) QTestEventList_PTR() *QTestEventList {
+	return ptr
 }
 
-func (p *QTestEventList) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QList_PTR().Pointer()
+func (ptr *QTestEventList) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QList_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QTestEventList) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QList_PTR().SetPointer(ptr)
+func (ptr *QTestEventList) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QList_PTR().SetPointer(p)
 	}
 }
 

@@ -20,30 +20,30 @@ type testStruct struct {
 	otherTestStruct
 	testOther otherTestStruct
 
-	_ bool             `prop:"propBool"`
-	_ int8             `prop:"propInt8"`  //-> string
-	_ uint8            `prop:"propInt82"` //-> string
-	_ int16            `prop:"propInt16"`
-	_ uint16           `prop:"propInt162"`
-	_ int32            `prop:"propInt32"`  // -> int
-	_ uint32           `prop:"propInt322"` // -> int
-	_ int              `prop:"propInt"`
-	_ uint             `prop:"propInt2"`
-	_ int64            `prop:"propInt64"`
-	_ uint64           `prop:"propInt642"`
-	_ float32          `prop:"propFloat"`
-	_ float64          `prop:"propFloat2"`
-	_ string           `prop:"propString"`
-	_ []string         `prop:"propString2"`
-	_ uintptr          `prop:"propPointer"`
-	_ unsafe.Pointer   `prop:"propPointer2"`
-	_ core.QVariant    `prop:"propObject"`  // -> T (c++)
-	_ *core.QObject    `prop:"propObject2"` // -> *T
-	_ *core.QVariant   `prop:"propObject3"` // -> *T //TODO:
-	_ core.Qt__Key     `prop:"propEnum"`
-	_ error            `prop:"propError"`
-	_ otherTestStruct  `prop:"propReturnTest"`  // -> *T
-	_ *otherTestStruct `prop:"propReturnTest2"` // -> *T
+	_ bool             `property:"propBool"`
+	_ int8             `property:"propInt8"`  //-> string
+	_ uint8            `property:"propInt82"` //-> string
+	_ int16            `property:"propInt16"`
+	_ uint16           `property:"propInt162"`
+	_ int32            `property:"propInt32"`  // -> int
+	_ uint32           `property:"propInt322"` // -> int
+	_ int              `property:"propInt"`
+	_ uint             `property:"propInt2"`
+	_ int64            `property:"propInt64"`
+	_ uint64           `property:"propInt642"`
+	_ float32          `property:"propFloat"`
+	_ float64          `property:"propFloat2"`
+	_ string           `property:"propString"`
+	_ []string         `property:"propString2"`
+	_ uintptr          `property:"propPointer"`
+	_ unsafe.Pointer   `property:"propPointer2"`
+	_ core.QVariant    `property:"propObject"`  // -> T (c++)
+	_ *core.QObject    `property:"propObject2"` // -> *T
+	_ *core.QVariant   `property:"propObject3"` // -> *T //TODO:
+	_ core.Qt__Key     `property:"propEnum"`
+	_ error            `property:"propError"`
+	_ otherTestStruct  `property:"propReturnTest"`  // -> *T
+	_ *otherTestStruct `property:"propReturnTest2"` // -> *T
 
 	a, b bool
 	ab   func(bool) bool
@@ -136,7 +136,7 @@ type otherTestStruct struct {
 		abc  func(bool) bool `test:"test"`
 	}
 
-	_ bool `prop:"propBoolSub"`
+	_ bool `property:"propBoolSub"`
 }
 
 type abstractTestStruct1 struct {
@@ -228,8 +228,8 @@ func TestProperties(t *testing.T) {
 		t.Fatal("IsPropBool")
 	}
 
-	//_ int8             `prop:"propInt8"`
-	//_ uint8            `prop:"propInt82"`
+	//_ int8             `property:"propInt8"`
+	//_ uint8            `property:"propInt82"`
 
 	test.ConnectPropInt16Changed(func(propInt16 int16) {
 		if propInt16 != i0 {

@@ -44,20 +44,20 @@ type QJSEngine_ITF interface {
 	QJSEngine_PTR() *QJSEngine
 }
 
-func (p *QJSEngine) QJSEngine_PTR() *QJSEngine {
-	return p
+func (ptr *QJSEngine) QJSEngine_PTR() *QJSEngine {
+	return ptr
 }
 
-func (p *QJSEngine) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QObject_PTR().Pointer()
+func (ptr *QJSEngine) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QObject_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QJSEngine) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QObject_PTR().SetPointer(ptr)
+func (ptr *QJSEngine) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QObject_PTR().SetPointer(p)
 	}
 }
 
@@ -540,20 +540,20 @@ type QJSValue_ITF interface {
 	QJSValue_PTR() *QJSValue
 }
 
-func (p *QJSValue) QJSValue_PTR() *QJSValue {
-	return p
+func (ptr *QJSValue) QJSValue_PTR() *QJSValue {
+	return ptr
 }
 
-func (p *QJSValue) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QJSValue) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QJSValue) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QJSValue) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -893,20 +893,20 @@ type QJSValueIterator_ITF interface {
 	QJSValueIterator_PTR() *QJSValueIterator
 }
 
-func (p *QJSValueIterator) QJSValueIterator_PTR() *QJSValueIterator {
-	return p
+func (ptr *QJSValueIterator) QJSValueIterator_PTR() *QJSValueIterator {
+	return ptr
 }
 
-func (p *QJSValueIterator) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QJSValueIterator) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QJSValueIterator) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QJSValueIterator) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -942,20 +942,20 @@ type QQmlAbstractUrlInterceptor_ITF interface {
 	QQmlAbstractUrlInterceptor_PTR() *QQmlAbstractUrlInterceptor
 }
 
-func (p *QQmlAbstractUrlInterceptor) QQmlAbstractUrlInterceptor_PTR() *QQmlAbstractUrlInterceptor {
-	return p
+func (ptr *QQmlAbstractUrlInterceptor) QQmlAbstractUrlInterceptor_PTR() *QQmlAbstractUrlInterceptor {
+	return ptr
 }
 
-func (p *QQmlAbstractUrlInterceptor) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QQmlAbstractUrlInterceptor) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QQmlAbstractUrlInterceptor) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QQmlAbstractUrlInterceptor) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -1057,20 +1057,20 @@ type QQmlApplicationEngine_ITF interface {
 	QQmlApplicationEngine_PTR() *QQmlApplicationEngine
 }
 
-func (p *QQmlApplicationEngine) QQmlApplicationEngine_PTR() *QQmlApplicationEngine {
-	return p
+func (ptr *QQmlApplicationEngine) QQmlApplicationEngine_PTR() *QQmlApplicationEngine {
+	return ptr
 }
 
-func (p *QQmlApplicationEngine) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QQmlEngine_PTR().Pointer()
+func (ptr *QQmlApplicationEngine) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QQmlEngine_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QQmlApplicationEngine) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QQmlEngine_PTR().SetPointer(ptr)
+func (ptr *QQmlApplicationEngine) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QQmlEngine_PTR().SetPointer(p)
 	}
 }
 
@@ -1621,20 +1621,20 @@ type QQmlComponent_ITF interface {
 	QQmlComponent_PTR() *QQmlComponent
 }
 
-func (p *QQmlComponent) QQmlComponent_PTR() *QQmlComponent {
-	return p
+func (ptr *QQmlComponent) QQmlComponent_PTR() *QQmlComponent {
+	return ptr
 }
 
-func (p *QQmlComponent) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QObject_PTR().Pointer()
+func (ptr *QQmlComponent) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QObject_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QQmlComponent) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QObject_PTR().SetPointer(ptr)
+func (ptr *QQmlComponent) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QObject_PTR().SetPointer(p)
 	}
 }
 
@@ -2436,20 +2436,20 @@ type QQmlContext_ITF interface {
 	QQmlContext_PTR() *QQmlContext
 }
 
-func (p *QQmlContext) QQmlContext_PTR() *QQmlContext {
-	return p
+func (ptr *QQmlContext) QQmlContext_PTR() *QQmlContext {
+	return ptr
 }
 
-func (p *QQmlContext) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QObject_PTR().Pointer()
+func (ptr *QQmlContext) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QObject_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QQmlContext) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QObject_PTR().SetPointer(ptr)
+func (ptr *QQmlContext) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QObject_PTR().SetPointer(p)
 	}
 }
 
@@ -2976,20 +2976,20 @@ type QQmlEngine_ITF interface {
 	QQmlEngine_PTR() *QQmlEngine
 }
 
-func (p *QQmlEngine) QQmlEngine_PTR() *QQmlEngine {
-	return p
+func (ptr *QQmlEngine) QQmlEngine_PTR() *QQmlEngine {
+	return ptr
 }
 
-func (p *QQmlEngine) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QJSEngine_PTR().Pointer()
+func (ptr *QQmlEngine) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QJSEngine_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QQmlEngine) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QJSEngine_PTR().SetPointer(ptr)
+func (ptr *QQmlEngine) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QJSEngine_PTR().SetPointer(p)
 	}
 }
 
@@ -3637,20 +3637,20 @@ type QQmlError_ITF interface {
 	QQmlError_PTR() *QQmlError
 }
 
-func (p *QQmlError) QQmlError_PTR() *QQmlError {
-	return p
+func (ptr *QQmlError) QQmlError_PTR() *QQmlError {
+	return ptr
 }
 
-func (p *QQmlError) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QQmlError) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QQmlError) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QQmlError) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -3668,8 +3668,10 @@ func NewQQmlErrorFromPointer(ptr unsafe.Pointer) *QQmlError {
 }
 
 func (ptr *QQmlError) DestroyQQmlError() {
-	C.free(ptr.Pointer())
-	ptr.SetPointer(nil)
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
 }
 
 func NewQQmlError() *QQmlError {
@@ -3780,20 +3782,20 @@ type QQmlExpression_ITF interface {
 	QQmlExpression_PTR() *QQmlExpression
 }
 
-func (p *QQmlExpression) QQmlExpression_PTR() *QQmlExpression {
-	return p
+func (ptr *QQmlExpression) QQmlExpression_PTR() *QQmlExpression {
+	return ptr
 }
 
-func (p *QQmlExpression) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QObject_PTR().Pointer()
+func (ptr *QQmlExpression) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QObject_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QQmlExpression) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QObject_PTR().SetPointer(ptr)
+func (ptr *QQmlExpression) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QObject_PTR().SetPointer(p)
 	}
 }
 
@@ -4367,20 +4369,20 @@ type QQmlExtensionPlugin_ITF interface {
 	QQmlExtensionPlugin_PTR() *QQmlExtensionPlugin
 }
 
-func (p *QQmlExtensionPlugin) QQmlExtensionPlugin_PTR() *QQmlExtensionPlugin {
-	return p
+func (ptr *QQmlExtensionPlugin) QQmlExtensionPlugin_PTR() *QQmlExtensionPlugin {
+	return ptr
 }
 
-func (p *QQmlExtensionPlugin) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QObject_PTR().Pointer()
+func (ptr *QQmlExtensionPlugin) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QObject_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QQmlExtensionPlugin) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QObject_PTR().SetPointer(ptr)
+func (ptr *QQmlExtensionPlugin) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QObject_PTR().SetPointer(p)
 	}
 }
 
@@ -4398,9 +4400,11 @@ func NewQQmlExtensionPluginFromPointer(ptr unsafe.Pointer) *QQmlExtensionPlugin 
 }
 
 func (ptr *QQmlExtensionPlugin) DestroyQQmlExtensionPlugin() {
-	C.free(ptr.Pointer())
-	qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
-	ptr.SetPointer(nil)
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
+		ptr.SetPointer(nil)
+	}
 }
 
 //export callbackQQmlExtensionPlugin_InitializeEngine
@@ -4833,20 +4837,20 @@ type QQmlFileSelector_ITF interface {
 	QQmlFileSelector_PTR() *QQmlFileSelector
 }
 
-func (p *QQmlFileSelector) QQmlFileSelector_PTR() *QQmlFileSelector {
-	return p
+func (ptr *QQmlFileSelector) QQmlFileSelector_PTR() *QQmlFileSelector {
+	return ptr
 }
 
-func (p *QQmlFileSelector) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QObject_PTR().Pointer()
+func (ptr *QQmlFileSelector) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QObject_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QQmlFileSelector) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QObject_PTR().SetPointer(ptr)
+func (ptr *QQmlFileSelector) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QObject_PTR().SetPointer(p)
 	}
 }
 
@@ -5288,20 +5292,20 @@ type QQmlImageProviderBase_ITF interface {
 	QQmlImageProviderBase_PTR() *QQmlImageProviderBase
 }
 
-func (p *QQmlImageProviderBase) QQmlImageProviderBase_PTR() *QQmlImageProviderBase {
-	return p
+func (ptr *QQmlImageProviderBase) QQmlImageProviderBase_PTR() *QQmlImageProviderBase {
+	return ptr
 }
 
-func (p *QQmlImageProviderBase) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QQmlImageProviderBase) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QQmlImageProviderBase) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QQmlImageProviderBase) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -5319,9 +5323,11 @@ func NewQQmlImageProviderBaseFromPointer(ptr unsafe.Pointer) *QQmlImageProviderB
 }
 
 func (ptr *QQmlImageProviderBase) DestroyQQmlImageProviderBase() {
-	C.free(ptr.Pointer())
-	qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
-	ptr.SetPointer(nil)
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
+		ptr.SetPointer(nil)
+	}
 }
 
 //export callbackQQmlImageProviderBase_Flags
@@ -5394,20 +5400,20 @@ type QQmlIncubationController_ITF interface {
 	QQmlIncubationController_PTR() *QQmlIncubationController
 }
 
-func (p *QQmlIncubationController) QQmlIncubationController_PTR() *QQmlIncubationController {
-	return p
+func (ptr *QQmlIncubationController) QQmlIncubationController_PTR() *QQmlIncubationController {
+	return ptr
 }
 
-func (p *QQmlIncubationController) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QQmlIncubationController) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QQmlIncubationController) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QQmlIncubationController) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -5425,9 +5431,11 @@ func NewQQmlIncubationControllerFromPointer(ptr unsafe.Pointer) *QQmlIncubationC
 }
 
 func (ptr *QQmlIncubationController) DestroyQQmlIncubationController() {
-	C.free(ptr.Pointer())
-	qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
-	ptr.SetPointer(nil)
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
+		ptr.SetPointer(nil)
+	}
 }
 
 func NewQQmlIncubationController() *QQmlIncubationController {
@@ -5523,20 +5531,20 @@ type QQmlIncubator_ITF interface {
 	QQmlIncubator_PTR() *QQmlIncubator
 }
 
-func (p *QQmlIncubator) QQmlIncubator_PTR() *QQmlIncubator {
-	return p
+func (ptr *QQmlIncubator) QQmlIncubator_PTR() *QQmlIncubator {
+	return ptr
 }
 
-func (p *QQmlIncubator) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QQmlIncubator) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QQmlIncubator) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QQmlIncubator) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -5554,9 +5562,11 @@ func NewQQmlIncubatorFromPointer(ptr unsafe.Pointer) *QQmlIncubator {
 }
 
 func (ptr *QQmlIncubator) DestroyQQmlIncubator() {
-	C.free(ptr.Pointer())
-	qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
-	ptr.SetPointer(nil)
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
+		ptr.SetPointer(nil)
+	}
 }
 
 func NewQQmlIncubator(mode QQmlIncubator__IncubationMode) *QQmlIncubator {
@@ -5730,20 +5740,20 @@ type QQmlListProperty_ITF interface {
 	QQmlListProperty_PTR() *QQmlListProperty
 }
 
-func (p *QQmlListProperty) QQmlListProperty_PTR() *QQmlListProperty {
-	return p
+func (ptr *QQmlListProperty) QQmlListProperty_PTR() *QQmlListProperty {
+	return ptr
 }
 
-func (p *QQmlListProperty) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QQmlListProperty) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QQmlListProperty) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QQmlListProperty) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -5761,8 +5771,10 @@ func NewQQmlListPropertyFromPointer(ptr unsafe.Pointer) *QQmlListProperty {
 }
 
 func (ptr *QQmlListProperty) DestroyQQmlListProperty() {
-	C.free(ptr.Pointer())
-	ptr.SetPointer(nil)
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
 }
 
 type QQmlListReference struct {
@@ -5773,20 +5785,20 @@ type QQmlListReference_ITF interface {
 	QQmlListReference_PTR() *QQmlListReference
 }
 
-func (p *QQmlListReference) QQmlListReference_PTR() *QQmlListReference {
-	return p
+func (ptr *QQmlListReference) QQmlListReference_PTR() *QQmlListReference {
+	return ptr
 }
 
-func (p *QQmlListReference) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QQmlListReference) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QQmlListReference) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QQmlListReference) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -5804,8 +5816,10 @@ func NewQQmlListReferenceFromPointer(ptr unsafe.Pointer) *QQmlListReference {
 }
 
 func (ptr *QQmlListReference) DestroyQQmlListReference() {
-	C.free(ptr.Pointer())
-	ptr.SetPointer(nil)
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
 }
 
 func NewQQmlListReference() *QQmlListReference {
@@ -5929,20 +5943,20 @@ type QQmlNetworkAccessManagerFactory_ITF interface {
 	QQmlNetworkAccessManagerFactory_PTR() *QQmlNetworkAccessManagerFactory
 }
 
-func (p *QQmlNetworkAccessManagerFactory) QQmlNetworkAccessManagerFactory_PTR() *QQmlNetworkAccessManagerFactory {
-	return p
+func (ptr *QQmlNetworkAccessManagerFactory) QQmlNetworkAccessManagerFactory_PTR() *QQmlNetworkAccessManagerFactory {
+	return ptr
 }
 
-func (p *QQmlNetworkAccessManagerFactory) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QQmlNetworkAccessManagerFactory) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QQmlNetworkAccessManagerFactory) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QQmlNetworkAccessManagerFactory) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -6046,20 +6060,20 @@ type QQmlParserStatus_ITF interface {
 	QQmlParserStatus_PTR() *QQmlParserStatus
 }
 
-func (p *QQmlParserStatus) QQmlParserStatus_PTR() *QQmlParserStatus {
-	return p
+func (ptr *QQmlParserStatus) QQmlParserStatus_PTR() *QQmlParserStatus {
+	return ptr
 }
 
-func (p *QQmlParserStatus) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QQmlParserStatus) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QQmlParserStatus) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QQmlParserStatus) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -6077,9 +6091,11 @@ func NewQQmlParserStatusFromPointer(ptr unsafe.Pointer) *QQmlParserStatus {
 }
 
 func (ptr *QQmlParserStatus) DestroyQQmlParserStatus() {
-	C.free(ptr.Pointer())
-	qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
-	ptr.SetPointer(nil)
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
+		ptr.SetPointer(nil)
+	}
 }
 
 //export callbackQQmlParserStatus_ClassBegin
@@ -6172,20 +6188,20 @@ type QQmlPrivate_ITF interface {
 	QQmlPrivate_PTR() *QQmlPrivate
 }
 
-func (p *QQmlPrivate) QQmlPrivate_PTR() *QQmlPrivate {
-	return p
+func (ptr *QQmlPrivate) QQmlPrivate_PTR() *QQmlPrivate {
+	return ptr
 }
 
-func (p *QQmlPrivate) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QQmlPrivate) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QQmlPrivate) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QQmlPrivate) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -6203,8 +6219,10 @@ func NewQQmlPrivateFromPointer(ptr unsafe.Pointer) *QQmlPrivate {
 }
 
 func (ptr *QQmlPrivate) DestroyQQmlPrivate() {
-	C.free(ptr.Pointer())
-	ptr.SetPointer(nil)
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
 }
 
 //go:generate stringer -type=QQmlProperty__PropertyTypeCategory
@@ -6236,20 +6254,20 @@ type QQmlProperty_ITF interface {
 	QQmlProperty_PTR() *QQmlProperty
 }
 
-func (p *QQmlProperty) QQmlProperty_PTR() *QQmlProperty {
-	return p
+func (ptr *QQmlProperty) QQmlProperty_PTR() *QQmlProperty {
+	return ptr
 }
 
-func (p *QQmlProperty) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QQmlProperty) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QQmlProperty) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QQmlProperty) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -6267,8 +6285,10 @@ func NewQQmlPropertyFromPointer(ptr unsafe.Pointer) *QQmlProperty {
 }
 
 func (ptr *QQmlProperty) DestroyQQmlProperty() {
-	C.free(ptr.Pointer())
-	ptr.SetPointer(nil)
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
 }
 
 func NewQQmlProperty() *QQmlProperty {
@@ -6575,20 +6595,20 @@ type QQmlPropertyMap_ITF interface {
 	QQmlPropertyMap_PTR() *QQmlPropertyMap
 }
 
-func (p *QQmlPropertyMap) QQmlPropertyMap_PTR() *QQmlPropertyMap {
-	return p
+func (ptr *QQmlPropertyMap) QQmlPropertyMap_PTR() *QQmlPropertyMap {
+	return ptr
 }
 
-func (p *QQmlPropertyMap) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QObject_PTR().Pointer()
+func (ptr *QQmlPropertyMap) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QObject_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QQmlPropertyMap) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QObject_PTR().SetPointer(ptr)
+func (ptr *QQmlPropertyMap) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QObject_PTR().SetPointer(p)
 	}
 }
 
@@ -7134,20 +7154,20 @@ type QQmlPropertyValueSource_ITF interface {
 	QQmlPropertyValueSource_PTR() *QQmlPropertyValueSource
 }
 
-func (p *QQmlPropertyValueSource) QQmlPropertyValueSource_PTR() *QQmlPropertyValueSource {
-	return p
+func (ptr *QQmlPropertyValueSource) QQmlPropertyValueSource_PTR() *QQmlPropertyValueSource {
+	return ptr
 }
 
-func (p *QQmlPropertyValueSource) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QQmlPropertyValueSource) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QQmlPropertyValueSource) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QQmlPropertyValueSource) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -7244,20 +7264,20 @@ type QQmlScriptString_ITF interface {
 	QQmlScriptString_PTR() *QQmlScriptString
 }
 
-func (p *QQmlScriptString) QQmlScriptString_PTR() *QQmlScriptString {
-	return p
+func (ptr *QQmlScriptString) QQmlScriptString_PTR() *QQmlScriptString {
+	return ptr
 }
 
-func (p *QQmlScriptString) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QQmlScriptString) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QQmlScriptString) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QQmlScriptString) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -7275,8 +7295,10 @@ func NewQQmlScriptStringFromPointer(ptr unsafe.Pointer) *QQmlScriptString {
 }
 
 func (ptr *QQmlScriptString) DestroyQQmlScriptString() {
-	C.free(ptr.Pointer())
-	ptr.SetPointer(nil)
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
 }
 
 func NewQQmlScriptString() *QQmlScriptString {
@@ -7365,20 +7387,20 @@ type QV4_ITF interface {
 	QV4_PTR() *QV4
 }
 
-func (p *QV4) QV4_PTR() *QV4 {
-	return p
+func (ptr *QV4) QV4_PTR() *QV4 {
+	return ptr
 }
 
-func (p *QV4) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QV4) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QV4) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QV4) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -7396,6 +7418,8 @@ func NewQV4FromPointer(ptr unsafe.Pointer) *QV4 {
 }
 
 func (ptr *QV4) DestroyQV4() {
-	C.free(ptr.Pointer())
-	ptr.SetPointer(nil)
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
 }

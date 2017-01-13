@@ -33,20 +33,20 @@ type QUiLoader_ITF interface {
 	QUiLoader_PTR() *QUiLoader
 }
 
-func (p *QUiLoader) QUiLoader_PTR() *QUiLoader {
-	return p
+func (ptr *QUiLoader) QUiLoader_PTR() *QUiLoader {
+	return ptr
 }
 
-func (p *QUiLoader) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QObject_PTR().Pointer()
+func (ptr *QUiLoader) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QObject_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QUiLoader) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QObject_PTR().SetPointer(ptr)
+func (ptr *QUiLoader) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QObject_PTR().SetPointer(p)
 	}
 }
 

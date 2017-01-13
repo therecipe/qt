@@ -75,20 +75,20 @@ type QSql_ITF interface {
 	QSql_PTR() *QSql
 }
 
-func (p *QSql) QSql_PTR() *QSql {
-	return p
+func (ptr *QSql) QSql_PTR() *QSql {
+	return ptr
 }
 
-func (p *QSql) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QSql) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QSql) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QSql) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -106,8 +106,10 @@ func NewQSqlFromPointer(ptr unsafe.Pointer) *QSql {
 }
 
 func (ptr *QSql) DestroyQSql() {
-	C.free(ptr.Pointer())
-	ptr.SetPointer(nil)
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
 }
 
 type QSqlDatabase struct {
@@ -118,20 +120,20 @@ type QSqlDatabase_ITF interface {
 	QSqlDatabase_PTR() *QSqlDatabase
 }
 
-func (p *QSqlDatabase) QSqlDatabase_PTR() *QSqlDatabase {
-	return p
+func (ptr *QSqlDatabase) QSqlDatabase_PTR() *QSqlDatabase {
+	return ptr
 }
 
-func (p *QSqlDatabase) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QSqlDatabase) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QSqlDatabase) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QSqlDatabase) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -639,20 +641,20 @@ type QSqlDriver_ITF interface {
 	QSqlDriver_PTR() *QSqlDriver
 }
 
-func (p *QSqlDriver) QSqlDriver_PTR() *QSqlDriver {
-	return p
+func (ptr *QSqlDriver) QSqlDriver_PTR() *QSqlDriver {
+	return ptr
 }
 
-func (p *QSqlDriver) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QObject_PTR().Pointer()
+func (ptr *QSqlDriver) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QObject_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QSqlDriver) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QObject_PTR().SetPointer(ptr)
+func (ptr *QSqlDriver) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QObject_PTR().SetPointer(p)
 	}
 }
 
@@ -2016,20 +2018,20 @@ type QSqlDriverCreator_ITF interface {
 	QSqlDriverCreator_PTR() *QSqlDriverCreator
 }
 
-func (p *QSqlDriverCreator) QSqlDriverCreator_PTR() *QSqlDriverCreator {
-	return p
+func (ptr *QSqlDriverCreator) QSqlDriverCreator_PTR() *QSqlDriverCreator {
+	return ptr
 }
 
-func (p *QSqlDriverCreator) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QSqlDriverCreatorBase_PTR().Pointer()
+func (ptr *QSqlDriverCreator) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QSqlDriverCreatorBase_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QSqlDriverCreator) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QSqlDriverCreatorBase_PTR().SetPointer(ptr)
+func (ptr *QSqlDriverCreator) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QSqlDriverCreatorBase_PTR().SetPointer(p)
 	}
 }
 
@@ -2047,9 +2049,11 @@ func NewQSqlDriverCreatorFromPointer(ptr unsafe.Pointer) *QSqlDriverCreator {
 }
 
 func (ptr *QSqlDriverCreator) DestroyQSqlDriverCreator() {
-	C.free(ptr.Pointer())
-	qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
-	ptr.SetPointer(nil)
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
+		ptr.SetPointer(nil)
+	}
 }
 
 type QSqlDriverCreatorBase struct {
@@ -2060,20 +2064,20 @@ type QSqlDriverCreatorBase_ITF interface {
 	QSqlDriverCreatorBase_PTR() *QSqlDriverCreatorBase
 }
 
-func (p *QSqlDriverCreatorBase) QSqlDriverCreatorBase_PTR() *QSqlDriverCreatorBase {
-	return p
+func (ptr *QSqlDriverCreatorBase) QSqlDriverCreatorBase_PTR() *QSqlDriverCreatorBase {
+	return ptr
 }
 
-func (p *QSqlDriverCreatorBase) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QSqlDriverCreatorBase) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QSqlDriverCreatorBase) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QSqlDriverCreatorBase) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -2174,20 +2178,20 @@ type QSqlDriverPlugin_ITF interface {
 	QSqlDriverPlugin_PTR() *QSqlDriverPlugin
 }
 
-func (p *QSqlDriverPlugin) QSqlDriverPlugin_PTR() *QSqlDriverPlugin {
-	return p
+func (ptr *QSqlDriverPlugin) QSqlDriverPlugin_PTR() *QSqlDriverPlugin {
+	return ptr
 }
 
-func (p *QSqlDriverPlugin) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QObject_PTR().Pointer()
+func (ptr *QSqlDriverPlugin) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QObject_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QSqlDriverPlugin) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QObject_PTR().SetPointer(ptr)
+func (ptr *QSqlDriverPlugin) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QObject_PTR().SetPointer(p)
 	}
 }
 
@@ -2609,20 +2613,20 @@ type QSqlError_ITF interface {
 	QSqlError_PTR() *QSqlError
 }
 
-func (p *QSqlError) QSqlError_PTR() *QSqlError {
-	return p
+func (ptr *QSqlError) QSqlError_PTR() *QSqlError {
+	return ptr
 }
 
-func (p *QSqlError) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QSqlError) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QSqlError) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QSqlError) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -2723,20 +2727,20 @@ type QSqlField_ITF interface {
 	QSqlField_PTR() *QSqlField
 }
 
-func (p *QSqlField) QSqlField_PTR() *QSqlField {
-	return p
+func (ptr *QSqlField) QSqlField_PTR() *QSqlField {
+	return ptr
 }
 
-func (p *QSqlField) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QSqlField) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QSqlField) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QSqlField) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -2923,20 +2927,20 @@ type QSqlIndex_ITF interface {
 	QSqlIndex_PTR() *QSqlIndex
 }
 
-func (p *QSqlIndex) QSqlIndex_PTR() *QSqlIndex {
-	return p
+func (ptr *QSqlIndex) QSqlIndex_PTR() *QSqlIndex {
+	return ptr
 }
 
-func (p *QSqlIndex) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QSqlRecord_PTR().Pointer()
+func (ptr *QSqlIndex) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QSqlRecord_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QSqlIndex) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QSqlRecord_PTR().SetPointer(ptr)
+func (ptr *QSqlIndex) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QSqlRecord_PTR().SetPointer(p)
 	}
 }
 
@@ -3047,20 +3051,20 @@ type QSqlQuery_ITF interface {
 	QSqlQuery_PTR() *QSqlQuery
 }
 
-func (p *QSqlQuery) QSqlQuery_PTR() *QSqlQuery {
-	return p
+func (ptr *QSqlQuery) QSqlQuery_PTR() *QSqlQuery {
+	return ptr
 }
 
-func (p *QSqlQuery) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QSqlQuery) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QSqlQuery) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QSqlQuery) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -3407,20 +3411,20 @@ type QSqlQueryModel_ITF interface {
 	QSqlQueryModel_PTR() *QSqlQueryModel
 }
 
-func (p *QSqlQueryModel) QSqlQueryModel_PTR() *QSqlQueryModel {
-	return p
+func (ptr *QSqlQueryModel) QSqlQueryModel_PTR() *QSqlQueryModel {
+	return ptr
 }
 
-func (p *QSqlQueryModel) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QAbstractTableModel_PTR().Pointer()
+func (ptr *QSqlQueryModel) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QAbstractTableModel_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QSqlQueryModel) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QAbstractTableModel_PTR().SetPointer(ptr)
+func (ptr *QSqlQueryModel) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QAbstractTableModel_PTR().SetPointer(p)
 	}
 }
 
@@ -5160,20 +5164,20 @@ type QSqlRecord_ITF interface {
 	QSqlRecord_PTR() *QSqlRecord
 }
 
-func (p *QSqlRecord) QSqlRecord_PTR() *QSqlRecord {
-	return p
+func (ptr *QSqlRecord) QSqlRecord_PTR() *QSqlRecord {
+	return ptr
 }
 
-func (p *QSqlRecord) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QSqlRecord) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QSqlRecord) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QSqlRecord) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -5414,20 +5418,20 @@ type QSqlRelation_ITF interface {
 	QSqlRelation_PTR() *QSqlRelation
 }
 
-func (p *QSqlRelation) QSqlRelation_PTR() *QSqlRelation {
-	return p
+func (ptr *QSqlRelation) QSqlRelation_PTR() *QSqlRelation {
+	return ptr
 }
 
-func (p *QSqlRelation) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QSqlRelation) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QSqlRelation) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QSqlRelation) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -5445,8 +5449,10 @@ func NewQSqlRelationFromPointer(ptr unsafe.Pointer) *QSqlRelation {
 }
 
 func (ptr *QSqlRelation) DestroyQSqlRelation() {
-	C.free(ptr.Pointer())
-	ptr.SetPointer(nil)
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
 }
 
 func NewQSqlRelation() *QSqlRelation {
@@ -5504,20 +5510,20 @@ type QSqlRelationalDelegate_ITF interface {
 	QSqlRelationalDelegate_PTR() *QSqlRelationalDelegate
 }
 
-func (p *QSqlRelationalDelegate) QSqlRelationalDelegate_PTR() *QSqlRelationalDelegate {
-	return p
+func (ptr *QSqlRelationalDelegate) QSqlRelationalDelegate_PTR() *QSqlRelationalDelegate {
+	return ptr
 }
 
-func (p *QSqlRelationalDelegate) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QItemDelegate_PTR().Pointer()
+func (ptr *QSqlRelationalDelegate) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QItemDelegate_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QSqlRelationalDelegate) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QItemDelegate_PTR().SetPointer(ptr)
+func (ptr *QSqlRelationalDelegate) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QItemDelegate_PTR().SetPointer(p)
 	}
 }
 
@@ -6392,20 +6398,20 @@ type QSqlRelationalTableModel_ITF interface {
 	QSqlRelationalTableModel_PTR() *QSqlRelationalTableModel
 }
 
-func (p *QSqlRelationalTableModel) QSqlRelationalTableModel_PTR() *QSqlRelationalTableModel {
-	return p
+func (ptr *QSqlRelationalTableModel) QSqlRelationalTableModel_PTR() *QSqlRelationalTableModel {
+	return ptr
 }
 
-func (p *QSqlRelationalTableModel) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QSqlTableModel_PTR().Pointer()
+func (ptr *QSqlRelationalTableModel) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QSqlTableModel_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QSqlRelationalTableModel) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QSqlTableModel_PTR().SetPointer(ptr)
+func (ptr *QSqlRelationalTableModel) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QSqlTableModel_PTR().SetPointer(p)
 	}
 }
 
@@ -8718,20 +8724,20 @@ type QSqlResult_ITF interface {
 	QSqlResult_PTR() *QSqlResult
 }
 
-func (p *QSqlResult) QSqlResult_PTR() *QSqlResult {
-	return p
+func (ptr *QSqlResult) QSqlResult_PTR() *QSqlResult {
+	return ptr
 }
 
-func (p *QSqlResult) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QSqlResult) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QSqlResult) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QSqlResult) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -9855,20 +9861,20 @@ type QSqlTableModel_ITF interface {
 	QSqlTableModel_PTR() *QSqlTableModel
 }
 
-func (p *QSqlTableModel) QSqlTableModel_PTR() *QSqlTableModel {
-	return p
+func (ptr *QSqlTableModel) QSqlTableModel_PTR() *QSqlTableModel {
+	return ptr
 }
 
-func (p *QSqlTableModel) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QSqlQueryModel_PTR().Pointer()
+func (ptr *QSqlTableModel) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QSqlQueryModel_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QSqlTableModel) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QSqlQueryModel_PTR().SetPointer(ptr)
+func (ptr *QSqlTableModel) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QSqlQueryModel_PTR().SetPointer(p)
 	}
 }
 

@@ -30,20 +30,20 @@ type QNdefFilter_ITF interface {
 	QNdefFilter_PTR() *QNdefFilter
 }
 
-func (p *QNdefFilter) QNdefFilter_PTR() *QNdefFilter {
-	return p
+func (ptr *QNdefFilter) QNdefFilter_PTR() *QNdefFilter {
+	return ptr
 }
 
-func (p *QNdefFilter) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QNdefFilter) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QNdefFilter) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QNdefFilter) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -119,20 +119,20 @@ type QNdefMessage_ITF interface {
 	QNdefMessage_PTR() *QNdefMessage
 }
 
-func (p *QNdefMessage) QNdefMessage_PTR() *QNdefMessage {
-	return p
+func (ptr *QNdefMessage) QNdefMessage_PTR() *QNdefMessage {
+	return ptr
 }
 
-func (p *QNdefMessage) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QList_PTR().Pointer()
+func (ptr *QNdefMessage) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QList_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QNdefMessage) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QList_PTR().SetPointer(ptr)
+func (ptr *QNdefMessage) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QList_PTR().SetPointer(p)
 	}
 }
 
@@ -150,8 +150,10 @@ func NewQNdefMessageFromPointer(ptr unsafe.Pointer) *QNdefMessage {
 }
 
 func (ptr *QNdefMessage) DestroyQNdefMessage() {
-	C.free(ptr.Pointer())
-	ptr.SetPointer(nil)
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
 }
 
 func NewQNdefMessage() *QNdefMessage {
@@ -213,20 +215,20 @@ type QNdefNfcSmartPosterRecord_ITF interface {
 	QNdefNfcSmartPosterRecord_PTR() *QNdefNfcSmartPosterRecord
 }
 
-func (p *QNdefNfcSmartPosterRecord) QNdefNfcSmartPosterRecord_PTR() *QNdefNfcSmartPosterRecord {
-	return p
+func (ptr *QNdefNfcSmartPosterRecord) QNdefNfcSmartPosterRecord_PTR() *QNdefNfcSmartPosterRecord {
+	return ptr
 }
 
-func (p *QNdefNfcSmartPosterRecord) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QNdefRecord_PTR().Pointer()
+func (ptr *QNdefNfcSmartPosterRecord) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QNdefRecord_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QNdefNfcSmartPosterRecord) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QNdefRecord_PTR().SetPointer(ptr)
+func (ptr *QNdefNfcSmartPosterRecord) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QNdefRecord_PTR().SetPointer(p)
 	}
 }
 
@@ -490,20 +492,20 @@ type QNdefNfcTextRecord_ITF interface {
 	QNdefNfcTextRecord_PTR() *QNdefNfcTextRecord
 }
 
-func (p *QNdefNfcTextRecord) QNdefNfcTextRecord_PTR() *QNdefNfcTextRecord {
-	return p
+func (ptr *QNdefNfcTextRecord) QNdefNfcTextRecord_PTR() *QNdefNfcTextRecord {
+	return ptr
 }
 
-func (p *QNdefNfcTextRecord) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QNdefRecord_PTR().Pointer()
+func (ptr *QNdefNfcTextRecord) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QNdefRecord_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QNdefNfcTextRecord) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QNdefRecord_PTR().SetPointer(ptr)
+func (ptr *QNdefNfcTextRecord) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QNdefRecord_PTR().SetPointer(p)
 	}
 }
 
@@ -521,8 +523,10 @@ func NewQNdefNfcTextRecordFromPointer(ptr unsafe.Pointer) *QNdefNfcTextRecord {
 }
 
 func (ptr *QNdefNfcTextRecord) DestroyQNdefNfcTextRecord() {
-	C.free(ptr.Pointer())
-	ptr.SetPointer(nil)
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
 }
 
 func NewQNdefNfcTextRecord() *QNdefNfcTextRecord {
@@ -589,20 +593,20 @@ type QNdefNfcUriRecord_ITF interface {
 	QNdefNfcUriRecord_PTR() *QNdefNfcUriRecord
 }
 
-func (p *QNdefNfcUriRecord) QNdefNfcUriRecord_PTR() *QNdefNfcUriRecord {
-	return p
+func (ptr *QNdefNfcUriRecord) QNdefNfcUriRecord_PTR() *QNdefNfcUriRecord {
+	return ptr
 }
 
-func (p *QNdefNfcUriRecord) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QNdefRecord_PTR().Pointer()
+func (ptr *QNdefNfcUriRecord) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QNdefRecord_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QNdefNfcUriRecord) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QNdefRecord_PTR().SetPointer(ptr)
+func (ptr *QNdefNfcUriRecord) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QNdefRecord_PTR().SetPointer(p)
 	}
 }
 
@@ -620,8 +624,10 @@ func NewQNdefNfcUriRecordFromPointer(ptr unsafe.Pointer) *QNdefNfcUriRecord {
 }
 
 func (ptr *QNdefNfcUriRecord) DestroyQNdefNfcUriRecord() {
-	C.free(ptr.Pointer())
-	ptr.SetPointer(nil)
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
 }
 
 func NewQNdefNfcUriRecord() *QNdefNfcUriRecord {
@@ -672,20 +678,20 @@ type QNdefRecord_ITF interface {
 	QNdefRecord_PTR() *QNdefRecord
 }
 
-func (p *QNdefRecord) QNdefRecord_PTR() *QNdefRecord {
-	return p
+func (ptr *QNdefRecord) QNdefRecord_PTR() *QNdefRecord {
+	return ptr
 }
 
-func (p *QNdefRecord) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QNdefRecord) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QNdefRecord) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QNdefRecord) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -805,20 +811,20 @@ type QNearFieldManager_ITF interface {
 	QNearFieldManager_PTR() *QNearFieldManager
 }
 
-func (p *QNearFieldManager) QNearFieldManager_PTR() *QNearFieldManager {
-	return p
+func (ptr *QNearFieldManager) QNearFieldManager_PTR() *QNearFieldManager {
+	return ptr
 }
 
-func (p *QNearFieldManager) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QObject_PTR().Pointer()
+func (ptr *QNearFieldManager) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QObject_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QNearFieldManager) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QObject_PTR().SetPointer(ptr)
+func (ptr *QNearFieldManager) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QObject_PTR().SetPointer(p)
 	}
 }
 
@@ -1343,20 +1349,20 @@ type QNearFieldShareManager_ITF interface {
 	QNearFieldShareManager_PTR() *QNearFieldShareManager
 }
 
-func (p *QNearFieldShareManager) QNearFieldShareManager_PTR() *QNearFieldShareManager {
-	return p
+func (ptr *QNearFieldShareManager) QNearFieldShareManager_PTR() *QNearFieldShareManager {
+	return ptr
 }
 
-func (p *QNearFieldShareManager) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QObject_PTR().Pointer()
+func (ptr *QNearFieldShareManager) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QObject_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QNearFieldShareManager) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QObject_PTR().SetPointer(ptr)
+func (ptr *QNearFieldShareManager) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QObject_PTR().SetPointer(p)
 	}
 }
 
@@ -1845,20 +1851,20 @@ type QNearFieldShareTarget_ITF interface {
 	QNearFieldShareTarget_PTR() *QNearFieldShareTarget
 }
 
-func (p *QNearFieldShareTarget) QNearFieldShareTarget_PTR() *QNearFieldShareTarget {
-	return p
+func (ptr *QNearFieldShareTarget) QNearFieldShareTarget_PTR() *QNearFieldShareTarget {
+	return ptr
 }
 
-func (p *QNearFieldShareTarget) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QObject_PTR().Pointer()
+func (ptr *QNearFieldShareTarget) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QObject_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QNearFieldShareTarget) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QObject_PTR().SetPointer(ptr)
+func (ptr *QNearFieldShareTarget) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QObject_PTR().SetPointer(p)
 	}
 }
 
@@ -2356,20 +2362,20 @@ type QNearFieldTarget_ITF interface {
 	QNearFieldTarget_PTR() *QNearFieldTarget
 }
 
-func (p *QNearFieldTarget) QNearFieldTarget_PTR() *QNearFieldTarget {
-	return p
+func (ptr *QNearFieldTarget) QNearFieldTarget_PTR() *QNearFieldTarget {
+	return ptr
 }
 
-func (p *QNearFieldTarget) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QObject_PTR().Pointer()
+func (ptr *QNearFieldTarget) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QObject_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QNearFieldTarget) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QObject_PTR().SetPointer(ptr)
+func (ptr *QNearFieldTarget) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QObject_PTR().SetPointer(p)
 	}
 }
 
@@ -3099,20 +3105,20 @@ type QQmlNdefRecord_ITF interface {
 	QQmlNdefRecord_PTR() *QQmlNdefRecord
 }
 
-func (p *QQmlNdefRecord) QQmlNdefRecord_PTR() *QQmlNdefRecord {
-	return p
+func (ptr *QQmlNdefRecord) QQmlNdefRecord_PTR() *QQmlNdefRecord {
+	return ptr
 }
 
-func (p *QQmlNdefRecord) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QObject_PTR().Pointer()
+func (ptr *QQmlNdefRecord) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QObject_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QQmlNdefRecord) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QObject_PTR().SetPointer(ptr)
+func (ptr *QQmlNdefRecord) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QObject_PTR().SetPointer(p)
 	}
 }
 

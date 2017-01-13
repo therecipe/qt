@@ -60,20 +60,20 @@ type QAbstractPrintDialog_ITF interface {
 	QAbstractPrintDialog_PTR() *QAbstractPrintDialog
 }
 
-func (p *QAbstractPrintDialog) QAbstractPrintDialog_PTR() *QAbstractPrintDialog {
-	return p
+func (ptr *QAbstractPrintDialog) QAbstractPrintDialog_PTR() *QAbstractPrintDialog {
+	return ptr
 }
 
-func (p *QAbstractPrintDialog) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QDialog_PTR().Pointer()
+func (ptr *QAbstractPrintDialog) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QDialog_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QAbstractPrintDialog) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QDialog_PTR().SetPointer(ptr)
+func (ptr *QAbstractPrintDialog) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QDialog_PTR().SetPointer(p)
 	}
 }
 
@@ -91,9 +91,11 @@ func NewQAbstractPrintDialogFromPointer(ptr unsafe.Pointer) *QAbstractPrintDialo
 }
 
 func (ptr *QAbstractPrintDialog) DestroyQAbstractPrintDialog() {
-	C.free(ptr.Pointer())
-	qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
-	ptr.SetPointer(nil)
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
+		ptr.SetPointer(nil)
+	}
 }
 
 func NewQAbstractPrintDialog(printer QPrinter_ITF, parent widgets.QWidget_ITF) *QAbstractPrintDialog {
@@ -2678,20 +2680,20 @@ type QPageSetupDialog_ITF interface {
 	QPageSetupDialog_PTR() *QPageSetupDialog
 }
 
-func (p *QPageSetupDialog) QPageSetupDialog_PTR() *QPageSetupDialog {
-	return p
+func (ptr *QPageSetupDialog) QPageSetupDialog_PTR() *QPageSetupDialog {
+	return ptr
 }
 
-func (p *QPageSetupDialog) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QDialog_PTR().Pointer()
+func (ptr *QPageSetupDialog) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QDialog_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QPageSetupDialog) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QDialog_PTR().SetPointer(ptr)
+func (ptr *QPageSetupDialog) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QDialog_PTR().SetPointer(p)
 	}
 }
 
@@ -5300,20 +5302,20 @@ type QPrint_ITF interface {
 	QPrint_PTR() *QPrint
 }
 
-func (p *QPrint) QPrint_PTR() *QPrint {
-	return p
+func (ptr *QPrint) QPrint_PTR() *QPrint {
+	return ptr
 }
 
-func (p *QPrint) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QPrint) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QPrint) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QPrint) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -5331,8 +5333,10 @@ func NewQPrintFromPointer(ptr unsafe.Pointer) *QPrint {
 }
 
 func (ptr *QPrint) DestroyQPrint() {
-	C.free(ptr.Pointer())
-	ptr.SetPointer(nil)
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
 }
 
 type QPrintDialog struct {
@@ -5344,20 +5348,20 @@ type QPrintDialog_ITF interface {
 	QPrintDialog_PTR() *QPrintDialog
 }
 
-func (p *QPrintDialog) QPrintDialog_PTR() *QPrintDialog {
-	return p
+func (ptr *QPrintDialog) QPrintDialog_PTR() *QPrintDialog {
+	return ptr
 }
 
-func (p *QPrintDialog) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QAbstractPrintDialog_PTR().Pointer()
+func (ptr *QPrintDialog) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QAbstractPrintDialog_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QPrintDialog) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QAbstractPrintDialog_PTR().SetPointer(ptr)
+func (ptr *QPrintDialog) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QAbstractPrintDialog_PTR().SetPointer(p)
 	}
 }
 
@@ -7992,20 +7996,20 @@ type QPrintEngine_ITF interface {
 	QPrintEngine_PTR() *QPrintEngine
 }
 
-func (p *QPrintEngine) QPrintEngine_PTR() *QPrintEngine {
-	return p
+func (ptr *QPrintEngine) QPrintEngine_PTR() *QPrintEngine {
+	return ptr
 }
 
-func (p *QPrintEngine) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QPrintEngine) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QPrintEngine) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QPrintEngine) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -8257,20 +8261,20 @@ type QPrintPreviewDialog_ITF interface {
 	QPrintPreviewDialog_PTR() *QPrintPreviewDialog
 }
 
-func (p *QPrintPreviewDialog) QPrintPreviewDialog_PTR() *QPrintPreviewDialog {
-	return p
+func (ptr *QPrintPreviewDialog) QPrintPreviewDialog_PTR() *QPrintPreviewDialog {
+	return ptr
 }
 
-func (p *QPrintPreviewDialog) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QDialog_PTR().Pointer()
+func (ptr *QPrintPreviewDialog) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QDialog_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QPrintPreviewDialog) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QDialog_PTR().SetPointer(ptr)
+func (ptr *QPrintPreviewDialog) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QDialog_PTR().SetPointer(p)
 	}
 }
 
@@ -10860,20 +10864,20 @@ type QPrintPreviewWidget_ITF interface {
 	QPrintPreviewWidget_PTR() *QPrintPreviewWidget
 }
 
-func (p *QPrintPreviewWidget) QPrintPreviewWidget_PTR() *QPrintPreviewWidget {
-	return p
+func (ptr *QPrintPreviewWidget) QPrintPreviewWidget_PTR() *QPrintPreviewWidget {
+	return ptr
 }
 
-func (p *QPrintPreviewWidget) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QWidget_PTR().Pointer()
+func (ptr *QPrintPreviewWidget) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QWidget_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QPrintPreviewWidget) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QWidget_PTR().SetPointer(ptr)
+func (ptr *QPrintPreviewWidget) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QWidget_PTR().SetPointer(p)
 	}
 }
 
@@ -14055,20 +14059,20 @@ type QPrinter_ITF interface {
 	QPrinter_PTR() *QPrinter
 }
 
-func (p *QPrinter) QPrinter_PTR() *QPrinter {
-	return p
+func (ptr *QPrinter) QPrinter_PTR() *QPrinter {
+	return ptr
 }
 
-func (p *QPrinter) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QPagedPaintDevice_PTR().Pointer()
+func (ptr *QPrinter) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QPagedPaintDevice_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QPrinter) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QPagedPaintDevice_PTR().SetPointer(ptr)
+func (ptr *QPrinter) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QPagedPaintDevice_PTR().SetPointer(p)
 	}
 }
 
@@ -14688,20 +14692,20 @@ type QPrinterInfo_ITF interface {
 	QPrinterInfo_PTR() *QPrinterInfo
 }
 
-func (p *QPrinterInfo) QPrinterInfo_PTR() *QPrinterInfo {
-	return p
+func (ptr *QPrinterInfo) QPrinterInfo_PTR() *QPrinterInfo {
+	return ptr
 }
 
-func (p *QPrinterInfo) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QPrinterInfo) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QPrinterInfo) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QPrinterInfo) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 

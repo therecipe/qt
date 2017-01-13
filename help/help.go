@@ -33,20 +33,20 @@ type QHelpContentItem_ITF interface {
 	QHelpContentItem_PTR() *QHelpContentItem
 }
 
-func (p *QHelpContentItem) QHelpContentItem_PTR() *QHelpContentItem {
-	return p
+func (ptr *QHelpContentItem) QHelpContentItem_PTR() *QHelpContentItem {
+	return ptr
 }
 
-func (p *QHelpContentItem) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QHelpContentItem) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QHelpContentItem) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QHelpContentItem) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -129,20 +129,20 @@ type QHelpContentModel_ITF interface {
 	QHelpContentModel_PTR() *QHelpContentModel
 }
 
-func (p *QHelpContentModel) QHelpContentModel_PTR() *QHelpContentModel {
-	return p
+func (ptr *QHelpContentModel) QHelpContentModel_PTR() *QHelpContentModel {
+	return ptr
 }
 
-func (p *QHelpContentModel) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QAbstractItemModel_PTR().Pointer()
+func (ptr *QHelpContentModel) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QAbstractItemModel_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QHelpContentModel) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QAbstractItemModel_PTR().SetPointer(ptr)
+func (ptr *QHelpContentModel) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QAbstractItemModel_PTR().SetPointer(p)
 	}
 }
 
@@ -1753,20 +1753,20 @@ type QHelpContentWidget_ITF interface {
 	QHelpContentWidget_PTR() *QHelpContentWidget
 }
 
-func (p *QHelpContentWidget) QHelpContentWidget_PTR() *QHelpContentWidget {
-	return p
+func (ptr *QHelpContentWidget) QHelpContentWidget_PTR() *QHelpContentWidget {
+	return ptr
 }
 
-func (p *QHelpContentWidget) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QTreeView_PTR().Pointer()
+func (ptr *QHelpContentWidget) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QTreeView_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QHelpContentWidget) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QTreeView_PTR().SetPointer(ptr)
+func (ptr *QHelpContentWidget) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QTreeView_PTR().SetPointer(p)
 	}
 }
 
@@ -1784,9 +1784,11 @@ func NewQHelpContentWidgetFromPointer(ptr unsafe.Pointer) *QHelpContentWidget {
 }
 
 func (ptr *QHelpContentWidget) DestroyQHelpContentWidget() {
-	C.free(ptr.Pointer())
-	qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
-	ptr.SetPointer(nil)
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
+		ptr.SetPointer(nil)
+	}
 }
 
 func (ptr *QHelpContentWidget) IndexOf(link core.QUrl_ITF) *core.QModelIndex {
@@ -6077,20 +6079,20 @@ type QHelpEngine_ITF interface {
 	QHelpEngine_PTR() *QHelpEngine
 }
 
-func (p *QHelpEngine) QHelpEngine_PTR() *QHelpEngine {
-	return p
+func (ptr *QHelpEngine) QHelpEngine_PTR() *QHelpEngine {
+	return ptr
 }
 
-func (p *QHelpEngine) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QHelpEngineCore_PTR().Pointer()
+func (ptr *QHelpEngine) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QHelpEngineCore_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QHelpEngine) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QHelpEngineCore_PTR().SetPointer(ptr)
+func (ptr *QHelpEngine) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QHelpEngineCore_PTR().SetPointer(p)
 	}
 }
 
@@ -6521,20 +6523,20 @@ type QHelpEngineCore_ITF interface {
 	QHelpEngineCore_PTR() *QHelpEngineCore
 }
 
-func (p *QHelpEngineCore) QHelpEngineCore_PTR() *QHelpEngineCore {
-	return p
+func (ptr *QHelpEngineCore) QHelpEngineCore_PTR() *QHelpEngineCore {
+	return ptr
 }
 
-func (p *QHelpEngineCore) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QObject_PTR().Pointer()
+func (ptr *QHelpEngineCore) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QObject_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QHelpEngineCore) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QObject_PTR().SetPointer(ptr)
+func (ptr *QHelpEngineCore) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QObject_PTR().SetPointer(p)
 	}
 }
 
@@ -7348,20 +7350,20 @@ type QHelpIndexModel_ITF interface {
 	QHelpIndexModel_PTR() *QHelpIndexModel
 }
 
-func (p *QHelpIndexModel) QHelpIndexModel_PTR() *QHelpIndexModel {
-	return p
+func (ptr *QHelpIndexModel) QHelpIndexModel_PTR() *QHelpIndexModel {
+	return ptr
 }
 
-func (p *QHelpIndexModel) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QStringListModel_PTR().Pointer()
+func (ptr *QHelpIndexModel) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QStringListModel_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QHelpIndexModel) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QStringListModel_PTR().SetPointer(ptr)
+func (ptr *QHelpIndexModel) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QStringListModel_PTR().SetPointer(p)
 	}
 }
 
@@ -7379,9 +7381,11 @@ func NewQHelpIndexModelFromPointer(ptr unsafe.Pointer) *QHelpIndexModel {
 }
 
 func (ptr *QHelpIndexModel) DestroyQHelpIndexModel() {
-	C.free(ptr.Pointer())
-	qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
-	ptr.SetPointer(nil)
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
+		ptr.SetPointer(nil)
+	}
 }
 
 func (ptr *QHelpIndexModel) CreateIndex(customFilterName string) {
@@ -8976,20 +8980,20 @@ type QHelpIndexWidget_ITF interface {
 	QHelpIndexWidget_PTR() *QHelpIndexWidget
 }
 
-func (p *QHelpIndexWidget) QHelpIndexWidget_PTR() *QHelpIndexWidget {
-	return p
+func (ptr *QHelpIndexWidget) QHelpIndexWidget_PTR() *QHelpIndexWidget {
+	return ptr
 }
 
-func (p *QHelpIndexWidget) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QListView_PTR().Pointer()
+func (ptr *QHelpIndexWidget) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QListView_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QHelpIndexWidget) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QListView_PTR().SetPointer(ptr)
+func (ptr *QHelpIndexWidget) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QListView_PTR().SetPointer(p)
 	}
 }
 
@@ -9007,9 +9011,11 @@ func NewQHelpIndexWidgetFromPointer(ptr unsafe.Pointer) *QHelpIndexWidget {
 }
 
 func (ptr *QHelpIndexWidget) DestroyQHelpIndexWidget() {
-	C.free(ptr.Pointer())
-	qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
-	ptr.SetPointer(nil)
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
+		ptr.SetPointer(nil)
+	}
 }
 
 //export callbackQHelpIndexWidget_ActivateCurrentItem
@@ -12858,20 +12864,20 @@ type QHelpSearchEngine_ITF interface {
 	QHelpSearchEngine_PTR() *QHelpSearchEngine
 }
 
-func (p *QHelpSearchEngine) QHelpSearchEngine_PTR() *QHelpSearchEngine {
-	return p
+func (ptr *QHelpSearchEngine) QHelpSearchEngine_PTR() *QHelpSearchEngine {
+	return ptr
 }
 
-func (p *QHelpSearchEngine) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QObject_PTR().Pointer()
+func (ptr *QHelpSearchEngine) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QObject_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QHelpSearchEngine) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QObject_PTR().SetPointer(ptr)
+func (ptr *QHelpSearchEngine) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QObject_PTR().SetPointer(p)
 	}
 }
 
@@ -13495,20 +13501,20 @@ type QHelpSearchQuery_ITF interface {
 	QHelpSearchQuery_PTR() *QHelpSearchQuery
 }
 
-func (p *QHelpSearchQuery) QHelpSearchQuery_PTR() *QHelpSearchQuery {
-	return p
+func (ptr *QHelpSearchQuery) QHelpSearchQuery_PTR() *QHelpSearchQuery {
+	return ptr
 }
 
-func (p *QHelpSearchQuery) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QHelpSearchQuery) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QHelpSearchQuery) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QHelpSearchQuery) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -13526,8 +13532,10 @@ func NewQHelpSearchQueryFromPointer(ptr unsafe.Pointer) *QHelpSearchQuery {
 }
 
 func (ptr *QHelpSearchQuery) DestroyQHelpSearchQuery() {
-	C.free(ptr.Pointer())
-	ptr.SetPointer(nil)
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
 }
 
 func NewQHelpSearchQuery() *QHelpSearchQuery {
@@ -13581,20 +13589,20 @@ type QHelpSearchQueryWidget_ITF interface {
 	QHelpSearchQueryWidget_PTR() *QHelpSearchQueryWidget
 }
 
-func (p *QHelpSearchQueryWidget) QHelpSearchQueryWidget_PTR() *QHelpSearchQueryWidget {
-	return p
+func (ptr *QHelpSearchQueryWidget) QHelpSearchQueryWidget_PTR() *QHelpSearchQueryWidget {
+	return ptr
 }
 
-func (p *QHelpSearchQueryWidget) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QWidget_PTR().Pointer()
+func (ptr *QHelpSearchQueryWidget) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QWidget_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QHelpSearchQueryWidget) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QWidget_PTR().SetPointer(ptr)
+func (ptr *QHelpSearchQueryWidget) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QWidget_PTR().SetPointer(p)
 	}
 }
 
@@ -16025,20 +16033,20 @@ type QHelpSearchResultWidget_ITF interface {
 	QHelpSearchResultWidget_PTR() *QHelpSearchResultWidget
 }
 
-func (p *QHelpSearchResultWidget) QHelpSearchResultWidget_PTR() *QHelpSearchResultWidget {
-	return p
+func (ptr *QHelpSearchResultWidget) QHelpSearchResultWidget_PTR() *QHelpSearchResultWidget {
+	return ptr
 }
 
-func (p *QHelpSearchResultWidget) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QWidget_PTR().Pointer()
+func (ptr *QHelpSearchResultWidget) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QWidget_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QHelpSearchResultWidget) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QWidget_PTR().SetPointer(ptr)
+func (ptr *QHelpSearchResultWidget) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QWidget_PTR().SetPointer(p)
 	}
 }
 

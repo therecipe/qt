@@ -32,20 +32,20 @@ type QAbstractNetworkCache_ITF interface {
 	QAbstractNetworkCache_PTR() *QAbstractNetworkCache
 }
 
-func (p *QAbstractNetworkCache) QAbstractNetworkCache_PTR() *QAbstractNetworkCache {
-	return p
+func (ptr *QAbstractNetworkCache) QAbstractNetworkCache_PTR() *QAbstractNetworkCache {
+	return ptr
 }
 
-func (p *QAbstractNetworkCache) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QObject_PTR().Pointer()
+func (ptr *QAbstractNetworkCache) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QObject_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QAbstractNetworkCache) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QObject_PTR().SetPointer(ptr)
+func (ptr *QAbstractNetworkCache) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QObject_PTR().SetPointer(p)
 	}
 }
 
@@ -802,20 +802,20 @@ type QAbstractSocket_ITF interface {
 	QAbstractSocket_PTR() *QAbstractSocket
 }
 
-func (p *QAbstractSocket) QAbstractSocket_PTR() *QAbstractSocket {
-	return p
+func (ptr *QAbstractSocket) QAbstractSocket_PTR() *QAbstractSocket {
+	return ptr
 }
 
-func (p *QAbstractSocket) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QIODevice_PTR().Pointer()
+func (ptr *QAbstractSocket) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QIODevice_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QAbstractSocket) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QIODevice_PTR().SetPointer(ptr)
+func (ptr *QAbstractSocket) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QIODevice_PTR().SetPointer(p)
 	}
 }
 
@@ -2554,20 +2554,20 @@ type QAuthenticator_ITF interface {
 	QAuthenticator_PTR() *QAuthenticator
 }
 
-func (p *QAuthenticator) QAuthenticator_PTR() *QAuthenticator {
-	return p
+func (ptr *QAuthenticator) QAuthenticator_PTR() *QAuthenticator {
+	return ptr
 }
 
-func (p *QAuthenticator) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QAuthenticator) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QAuthenticator) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QAuthenticator) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -2673,20 +2673,20 @@ type QDnsDomainNameRecord_ITF interface {
 	QDnsDomainNameRecord_PTR() *QDnsDomainNameRecord
 }
 
-func (p *QDnsDomainNameRecord) QDnsDomainNameRecord_PTR() *QDnsDomainNameRecord {
-	return p
+func (ptr *QDnsDomainNameRecord) QDnsDomainNameRecord_PTR() *QDnsDomainNameRecord {
+	return ptr
 }
 
-func (p *QDnsDomainNameRecord) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QDnsDomainNameRecord) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QDnsDomainNameRecord) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QDnsDomainNameRecord) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -2756,20 +2756,20 @@ type QDnsHostAddressRecord_ITF interface {
 	QDnsHostAddressRecord_PTR() *QDnsHostAddressRecord
 }
 
-func (p *QDnsHostAddressRecord) QDnsHostAddressRecord_PTR() *QDnsHostAddressRecord {
-	return p
+func (ptr *QDnsHostAddressRecord) QDnsHostAddressRecord_PTR() *QDnsHostAddressRecord {
+	return ptr
 }
 
-func (p *QDnsHostAddressRecord) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QDnsHostAddressRecord) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QDnsHostAddressRecord) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QDnsHostAddressRecord) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -2873,20 +2873,20 @@ type QDnsLookup_ITF interface {
 	QDnsLookup_PTR() *QDnsLookup
 }
 
-func (p *QDnsLookup) QDnsLookup_PTR() *QDnsLookup {
-	return p
+func (ptr *QDnsLookup) QDnsLookup_PTR() *QDnsLookup {
+	return ptr
 }
 
-func (p *QDnsLookup) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QObject_PTR().Pointer()
+func (ptr *QDnsLookup) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QObject_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QDnsLookup) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QObject_PTR().SetPointer(ptr)
+func (ptr *QDnsLookup) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QObject_PTR().SetPointer(p)
 	}
 }
 
@@ -3671,20 +3671,20 @@ type QDnsMailExchangeRecord_ITF interface {
 	QDnsMailExchangeRecord_PTR() *QDnsMailExchangeRecord
 }
 
-func (p *QDnsMailExchangeRecord) QDnsMailExchangeRecord_PTR() *QDnsMailExchangeRecord {
-	return p
+func (ptr *QDnsMailExchangeRecord) QDnsMailExchangeRecord_PTR() *QDnsMailExchangeRecord {
+	return ptr
 }
 
-func (p *QDnsMailExchangeRecord) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QDnsMailExchangeRecord) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QDnsMailExchangeRecord) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QDnsMailExchangeRecord) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -3761,20 +3761,20 @@ type QDnsServiceRecord_ITF interface {
 	QDnsServiceRecord_PTR() *QDnsServiceRecord
 }
 
-func (p *QDnsServiceRecord) QDnsServiceRecord_PTR() *QDnsServiceRecord {
-	return p
+func (ptr *QDnsServiceRecord) QDnsServiceRecord_PTR() *QDnsServiceRecord {
+	return ptr
 }
 
-func (p *QDnsServiceRecord) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QDnsServiceRecord) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QDnsServiceRecord) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QDnsServiceRecord) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -3865,20 +3865,20 @@ type QDnsTextRecord_ITF interface {
 	QDnsTextRecord_PTR() *QDnsTextRecord
 }
 
-func (p *QDnsTextRecord) QDnsTextRecord_PTR() *QDnsTextRecord {
-	return p
+func (ptr *QDnsTextRecord) QDnsTextRecord_PTR() *QDnsTextRecord {
+	return ptr
 }
 
-func (p *QDnsTextRecord) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QDnsTextRecord) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QDnsTextRecord) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QDnsTextRecord) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -3977,20 +3977,20 @@ type QHostAddress_ITF interface {
 	QHostAddress_PTR() *QHostAddress
 }
 
-func (p *QHostAddress) QHostAddress_PTR() *QHostAddress {
-	return p
+func (ptr *QHostAddress) QHostAddress_PTR() *QHostAddress {
+	return ptr
 }
 
-func (p *QHostAddress) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QHostAddress) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QHostAddress) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QHostAddress) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -4193,20 +4193,20 @@ type QHostInfo_ITF interface {
 	QHostInfo_PTR() *QHostInfo
 }
 
-func (p *QHostInfo) QHostInfo_PTR() *QHostInfo {
-	return p
+func (ptr *QHostInfo) QHostInfo_PTR() *QHostInfo {
+	return ptr
 }
 
-func (p *QHostInfo) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QHostInfo) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QHostInfo) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QHostInfo) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -4395,20 +4395,20 @@ type QHttpMultiPart_ITF interface {
 	QHttpMultiPart_PTR() *QHttpMultiPart
 }
 
-func (p *QHttpMultiPart) QHttpMultiPart_PTR() *QHttpMultiPart {
-	return p
+func (ptr *QHttpMultiPart) QHttpMultiPart_PTR() *QHttpMultiPart {
+	return ptr
 }
 
-func (p *QHttpMultiPart) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QObject_PTR().Pointer()
+func (ptr *QHttpMultiPart) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QObject_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QHttpMultiPart) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QObject_PTR().SetPointer(ptr)
+func (ptr *QHttpMultiPart) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QObject_PTR().SetPointer(p)
 	}
 }
 
@@ -4816,20 +4816,20 @@ type QHttpPart_ITF interface {
 	QHttpPart_PTR() *QHttpPart
 }
 
-func (p *QHttpPart) QHttpPart_PTR() *QHttpPart {
-	return p
+func (ptr *QHttpPart) QHttpPart_PTR() *QHttpPart {
+	return ptr
 }
 
-func (p *QHttpPart) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QHttpPart) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QHttpPart) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QHttpPart) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -4915,20 +4915,20 @@ type QLocalServer_ITF interface {
 	QLocalServer_PTR() *QLocalServer
 }
 
-func (p *QLocalServer) QLocalServer_PTR() *QLocalServer {
-	return p
+func (ptr *QLocalServer) QLocalServer_PTR() *QLocalServer {
+	return ptr
 }
 
-func (p *QLocalServer) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QObject_PTR().Pointer()
+func (ptr *QLocalServer) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QObject_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QLocalServer) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QObject_PTR().SetPointer(ptr)
+func (ptr *QLocalServer) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QObject_PTR().SetPointer(p)
 	}
 }
 
@@ -5575,20 +5575,20 @@ type QLocalSocket_ITF interface {
 	QLocalSocket_PTR() *QLocalSocket
 }
 
-func (p *QLocalSocket) QLocalSocket_PTR() *QLocalSocket {
-	return p
+func (ptr *QLocalSocket) QLocalSocket_PTR() *QLocalSocket {
+	return ptr
 }
 
-func (p *QLocalSocket) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QIODevice_PTR().Pointer()
+func (ptr *QLocalSocket) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QIODevice_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QLocalSocket) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QIODevice_PTR().SetPointer(ptr)
+func (ptr *QLocalSocket) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QIODevice_PTR().SetPointer(p)
 	}
 }
 
@@ -6841,20 +6841,20 @@ type QNetworkAccessManager_ITF interface {
 	QNetworkAccessManager_PTR() *QNetworkAccessManager
 }
 
-func (p *QNetworkAccessManager) QNetworkAccessManager_PTR() *QNetworkAccessManager {
-	return p
+func (ptr *QNetworkAccessManager) QNetworkAccessManager_PTR() *QNetworkAccessManager {
+	return ptr
 }
 
-func (p *QNetworkAccessManager) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QObject_PTR().Pointer()
+func (ptr *QNetworkAccessManager) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QObject_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QNetworkAccessManager) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QObject_PTR().SetPointer(ptr)
+func (ptr *QNetworkAccessManager) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QObject_PTR().SetPointer(p)
 	}
 }
 
@@ -7715,20 +7715,20 @@ type QNetworkAddressEntry_ITF interface {
 	QNetworkAddressEntry_PTR() *QNetworkAddressEntry
 }
 
-func (p *QNetworkAddressEntry) QNetworkAddressEntry_PTR() *QNetworkAddressEntry {
-	return p
+func (ptr *QNetworkAddressEntry) QNetworkAddressEntry_PTR() *QNetworkAddressEntry {
+	return ptr
 }
 
-func (p *QNetworkAddressEntry) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QNetworkAddressEntry) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QNetworkAddressEntry) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QNetworkAddressEntry) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -7835,20 +7835,20 @@ type QNetworkCacheMetaData_ITF interface {
 	QNetworkCacheMetaData_PTR() *QNetworkCacheMetaData
 }
 
-func (p *QNetworkCacheMetaData) QNetworkCacheMetaData_PTR() *QNetworkCacheMetaData {
-	return p
+func (ptr *QNetworkCacheMetaData) QNetworkCacheMetaData_PTR() *QNetworkCacheMetaData {
+	return ptr
 }
 
-func (p *QNetworkCacheMetaData) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QNetworkCacheMetaData) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QNetworkCacheMetaData) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QNetworkCacheMetaData) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -8015,20 +8015,20 @@ type QNetworkConfiguration_ITF interface {
 	QNetworkConfiguration_PTR() *QNetworkConfiguration
 }
 
-func (p *QNetworkConfiguration) QNetworkConfiguration_PTR() *QNetworkConfiguration {
-	return p
+func (ptr *QNetworkConfiguration) QNetworkConfiguration_PTR() *QNetworkConfiguration {
+	return ptr
 }
 
-func (p *QNetworkConfiguration) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QNetworkConfiguration) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QNetworkConfiguration) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QNetworkConfiguration) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -8184,20 +8184,20 @@ type QNetworkConfigurationManager_ITF interface {
 	QNetworkConfigurationManager_PTR() *QNetworkConfigurationManager
 }
 
-func (p *QNetworkConfigurationManager) QNetworkConfigurationManager_PTR() *QNetworkConfigurationManager {
-	return p
+func (ptr *QNetworkConfigurationManager) QNetworkConfigurationManager_PTR() *QNetworkConfigurationManager {
+	return ptr
 }
 
-func (p *QNetworkConfigurationManager) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QObject_PTR().Pointer()
+func (ptr *QNetworkConfigurationManager) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QObject_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QNetworkConfigurationManager) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QObject_PTR().SetPointer(ptr)
+func (ptr *QNetworkConfigurationManager) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QObject_PTR().SetPointer(p)
 	}
 }
 
@@ -8840,20 +8840,20 @@ type QNetworkCookie_ITF interface {
 	QNetworkCookie_PTR() *QNetworkCookie
 }
 
-func (p *QNetworkCookie) QNetworkCookie_PTR() *QNetworkCookie {
-	return p
+func (ptr *QNetworkCookie) QNetworkCookie_PTR() *QNetworkCookie {
+	return ptr
 }
 
-func (p *QNetworkCookie) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QNetworkCookie) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QNetworkCookie) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QNetworkCookie) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -9062,20 +9062,20 @@ type QNetworkCookieJar_ITF interface {
 	QNetworkCookieJar_PTR() *QNetworkCookieJar
 }
 
-func (p *QNetworkCookieJar) QNetworkCookieJar_PTR() *QNetworkCookieJar {
-	return p
+func (ptr *QNetworkCookieJar) QNetworkCookieJar_PTR() *QNetworkCookieJar {
+	return ptr
 }
 
-func (p *QNetworkCookieJar) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QObject_PTR().Pointer()
+func (ptr *QNetworkCookieJar) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QObject_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QNetworkCookieJar) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QObject_PTR().SetPointer(ptr)
+func (ptr *QNetworkCookieJar) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QObject_PTR().SetPointer(p)
 	}
 }
 
@@ -9677,20 +9677,20 @@ type QNetworkDiskCache_ITF interface {
 	QNetworkDiskCache_PTR() *QNetworkDiskCache
 }
 
-func (p *QNetworkDiskCache) QNetworkDiskCache_PTR() *QNetworkDiskCache {
-	return p
+func (ptr *QNetworkDiskCache) QNetworkDiskCache_PTR() *QNetworkDiskCache {
+	return ptr
 }
 
-func (p *QNetworkDiskCache) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QAbstractNetworkCache_PTR().Pointer()
+func (ptr *QNetworkDiskCache) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QAbstractNetworkCache_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QNetworkDiskCache) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QAbstractNetworkCache_PTR().SetPointer(ptr)
+func (ptr *QNetworkDiskCache) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QAbstractNetworkCache_PTR().SetPointer(p)
 	}
 }
 
@@ -10470,20 +10470,20 @@ type QNetworkInterface_ITF interface {
 	QNetworkInterface_PTR() *QNetworkInterface
 }
 
-func (p *QNetworkInterface) QNetworkInterface_PTR() *QNetworkInterface {
-	return p
+func (ptr *QNetworkInterface) QNetworkInterface_PTR() *QNetworkInterface {
+	return ptr
 }
 
-func (p *QNetworkInterface) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QNetworkInterface) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QNetworkInterface) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QNetworkInterface) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -10727,20 +10727,20 @@ type QNetworkProxy_ITF interface {
 	QNetworkProxy_PTR() *QNetworkProxy
 }
 
-func (p *QNetworkProxy) QNetworkProxy_PTR() *QNetworkProxy {
-	return p
+func (ptr *QNetworkProxy) QNetworkProxy_PTR() *QNetworkProxy {
+	return ptr
 }
 
-func (p *QNetworkProxy) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QNetworkProxy) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QNetworkProxy) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QNetworkProxy) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -10978,20 +10978,20 @@ type QNetworkProxyFactory_ITF interface {
 	QNetworkProxyFactory_PTR() *QNetworkProxyFactory
 }
 
-func (p *QNetworkProxyFactory) QNetworkProxyFactory_PTR() *QNetworkProxyFactory {
-	return p
+func (ptr *QNetworkProxyFactory) QNetworkProxyFactory_PTR() *QNetworkProxyFactory {
+	return ptr
 }
 
-func (p *QNetworkProxyFactory) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QNetworkProxyFactory) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QNetworkProxyFactory) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QNetworkProxyFactory) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -11176,20 +11176,20 @@ type QNetworkProxyQuery_ITF interface {
 	QNetworkProxyQuery_PTR() *QNetworkProxyQuery
 }
 
-func (p *QNetworkProxyQuery) QNetworkProxyQuery_PTR() *QNetworkProxyQuery {
-	return p
+func (ptr *QNetworkProxyQuery) QNetworkProxyQuery_PTR() *QNetworkProxyQuery {
+	return ptr
 }
 
-func (p *QNetworkProxyQuery) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QNetworkProxyQuery) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QNetworkProxyQuery) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QNetworkProxyQuery) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -11427,20 +11427,20 @@ type QNetworkReply_ITF interface {
 	QNetworkReply_PTR() *QNetworkReply
 }
 
-func (p *QNetworkReply) QNetworkReply_PTR() *QNetworkReply {
-	return p
+func (ptr *QNetworkReply) QNetworkReply_PTR() *QNetworkReply {
+	return ptr
 }
 
-func (p *QNetworkReply) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QIODevice_PTR().Pointer()
+func (ptr *QNetworkReply) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QIODevice_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QNetworkReply) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QIODevice_PTR().SetPointer(ptr)
+func (ptr *QNetworkReply) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QIODevice_PTR().SetPointer(p)
 	}
 }
 
@@ -13097,20 +13097,20 @@ type QNetworkRequest_ITF interface {
 	QNetworkRequest_PTR() *QNetworkRequest
 }
 
-func (p *QNetworkRequest) QNetworkRequest_PTR() *QNetworkRequest {
-	return p
+func (ptr *QNetworkRequest) QNetworkRequest_PTR() *QNetworkRequest {
+	return ptr
 }
 
-func (p *QNetworkRequest) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QNetworkRequest) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QNetworkRequest) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QNetworkRequest) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -13342,20 +13342,20 @@ type QNetworkSession_ITF interface {
 	QNetworkSession_PTR() *QNetworkSession
 }
 
-func (p *QNetworkSession) QNetworkSession_PTR() *QNetworkSession {
-	return p
+func (ptr *QNetworkSession) QNetworkSession_PTR() *QNetworkSession {
+	return ptr
 }
 
-func (p *QNetworkSession) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QObject_PTR().Pointer()
+func (ptr *QNetworkSession) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QObject_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QNetworkSession) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QObject_PTR().SetPointer(ptr)
+func (ptr *QNetworkSession) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QObject_PTR().SetPointer(p)
 	}
 }
 
@@ -14332,20 +14332,20 @@ type QSsl_ITF interface {
 	QSsl_PTR() *QSsl
 }
 
-func (p *QSsl) QSsl_PTR() *QSsl {
-	return p
+func (ptr *QSsl) QSsl_PTR() *QSsl {
+	return ptr
 }
 
-func (p *QSsl) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QSsl) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QSsl) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QSsl) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -14363,8 +14363,10 @@ func NewQSslFromPointer(ptr unsafe.Pointer) *QSsl {
 }
 
 func (ptr *QSsl) DestroyQSsl() {
-	C.free(ptr.Pointer())
-	ptr.SetPointer(nil)
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
 }
 
 //go:generate stringer -type=QSslCertificate__SubjectInfo
@@ -14391,20 +14393,20 @@ type QSslCertificate_ITF interface {
 	QSslCertificate_PTR() *QSslCertificate
 }
 
-func (p *QSslCertificate) QSslCertificate_PTR() *QSslCertificate {
-	return p
+func (ptr *QSslCertificate) QSslCertificate_PTR() *QSslCertificate {
+	return ptr
 }
 
-func (p *QSslCertificate) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QSslCertificate) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QSslCertificate) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QSslCertificate) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -14750,20 +14752,20 @@ type QSslCertificateExtension_ITF interface {
 	QSslCertificateExtension_PTR() *QSslCertificateExtension
 }
 
-func (p *QSslCertificateExtension) QSslCertificateExtension_PTR() *QSslCertificateExtension {
-	return p
+func (ptr *QSslCertificateExtension) QSslCertificateExtension_PTR() *QSslCertificateExtension {
+	return ptr
 }
 
-func (p *QSslCertificateExtension) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QSslCertificateExtension) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QSslCertificateExtension) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QSslCertificateExtension) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -14849,20 +14851,20 @@ type QSslCipher_ITF interface {
 	QSslCipher_PTR() *QSslCipher
 }
 
-func (p *QSslCipher) QSslCipher_PTR() *QSslCipher {
-	return p
+func (ptr *QSslCipher) QSslCipher_PTR() *QSslCipher {
+	return ptr
 }
 
-func (p *QSslCipher) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QSslCipher) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QSslCipher) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QSslCipher) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -15000,20 +15002,20 @@ type QSslConfiguration_ITF interface {
 	QSslConfiguration_PTR() *QSslConfiguration
 }
 
-func (p *QSslConfiguration) QSslConfiguration_PTR() *QSslConfiguration {
-	return p
+func (ptr *QSslConfiguration) QSslConfiguration_PTR() *QSslConfiguration {
+	return ptr
 }
 
-func (p *QSslConfiguration) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QSslConfiguration) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QSslConfiguration) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QSslConfiguration) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -15429,20 +15431,20 @@ type QSslEllipticCurve_ITF interface {
 	QSslEllipticCurve_PTR() *QSslEllipticCurve
 }
 
-func (p *QSslEllipticCurve) QSslEllipticCurve_PTR() *QSslEllipticCurve {
-	return p
+func (ptr *QSslEllipticCurve) QSslEllipticCurve_PTR() *QSslEllipticCurve {
+	return ptr
 }
 
-func (p *QSslEllipticCurve) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QSslEllipticCurve) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QSslEllipticCurve) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QSslEllipticCurve) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -15460,8 +15462,10 @@ func NewQSslEllipticCurveFromPointer(ptr unsafe.Pointer) *QSslEllipticCurve {
 }
 
 func (ptr *QSslEllipticCurve) DestroyQSslEllipticCurve() {
-	C.free(ptr.Pointer())
-	ptr.SetPointer(nil)
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
 }
 
 func NewQSslEllipticCurve() *QSslEllipticCurve {
@@ -15571,20 +15575,20 @@ type QSslError_ITF interface {
 	QSslError_PTR() *QSslError
 }
 
-func (p *QSslError) QSslError_PTR() *QSslError {
-	return p
+func (ptr *QSslError) QSslError_PTR() *QSslError {
+	return ptr
 }
 
-func (p *QSslError) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QSslError) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QSslError) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QSslError) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -15668,20 +15672,20 @@ type QSslKey_ITF interface {
 	QSslKey_PTR() *QSslKey
 }
 
-func (p *QSslKey) QSslKey_PTR() *QSslKey {
-	return p
+func (ptr *QSslKey) QSslKey_PTR() *QSslKey {
+	return ptr
 }
 
-func (p *QSslKey) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QSslKey) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QSslKey) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QSslKey) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -15794,20 +15798,20 @@ type QSslPreSharedKeyAuthenticator_ITF interface {
 	QSslPreSharedKeyAuthenticator_PTR() *QSslPreSharedKeyAuthenticator
 }
 
-func (p *QSslPreSharedKeyAuthenticator) QSslPreSharedKeyAuthenticator_PTR() *QSslPreSharedKeyAuthenticator {
-	return p
+func (ptr *QSslPreSharedKeyAuthenticator) QSslPreSharedKeyAuthenticator_PTR() *QSslPreSharedKeyAuthenticator {
+	return ptr
 }
 
-func (p *QSslPreSharedKeyAuthenticator) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QSslPreSharedKeyAuthenticator) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QSslPreSharedKeyAuthenticator) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QSslPreSharedKeyAuthenticator) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -15931,20 +15935,20 @@ type QSslSocket_ITF interface {
 	QSslSocket_PTR() *QSslSocket
 }
 
-func (p *QSslSocket) QSslSocket_PTR() *QSslSocket {
-	return p
+func (ptr *QSslSocket) QSslSocket_PTR() *QSslSocket {
+	return ptr
 }
 
-func (p *QSslSocket) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QTcpSocket_PTR().Pointer()
+func (ptr *QSslSocket) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QTcpSocket_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QSslSocket) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QTcpSocket_PTR().SetPointer(ptr)
+func (ptr *QSslSocket) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QTcpSocket_PTR().SetPointer(p)
 	}
 }
 
@@ -17935,20 +17939,20 @@ type QTcpServer_ITF interface {
 	QTcpServer_PTR() *QTcpServer
 }
 
-func (p *QTcpServer) QTcpServer_PTR() *QTcpServer {
-	return p
+func (ptr *QTcpServer) QTcpServer_PTR() *QTcpServer {
+	return ptr
 }
 
-func (p *QTcpServer) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QObject_PTR().Pointer()
+func (ptr *QTcpServer) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QObject_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QTcpServer) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QObject_PTR().SetPointer(ptr)
+func (ptr *QTcpServer) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QObject_PTR().SetPointer(p)
 	}
 }
 
@@ -18606,20 +18610,20 @@ type QTcpSocket_ITF interface {
 	QTcpSocket_PTR() *QTcpSocket
 }
 
-func (p *QTcpSocket) QTcpSocket_PTR() *QTcpSocket {
-	return p
+func (ptr *QTcpSocket) QTcpSocket_PTR() *QTcpSocket {
+	return ptr
 }
 
-func (p *QTcpSocket) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QAbstractSocket_PTR().Pointer()
+func (ptr *QTcpSocket) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QAbstractSocket_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QTcpSocket) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QAbstractSocket_PTR().SetPointer(ptr)
+func (ptr *QTcpSocket) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QAbstractSocket_PTR().SetPointer(p)
 	}
 }
 
@@ -20012,20 +20016,20 @@ type QUdpSocket_ITF interface {
 	QUdpSocket_PTR() *QUdpSocket
 }
 
-func (p *QUdpSocket) QUdpSocket_PTR() *QUdpSocket {
-	return p
+func (ptr *QUdpSocket) QUdpSocket_PTR() *QUdpSocket {
+	return ptr
 }
 
-func (p *QUdpSocket) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QAbstractSocket_PTR().Pointer()
+func (ptr *QUdpSocket) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QAbstractSocket_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QUdpSocket) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QAbstractSocket_PTR().SetPointer(ptr)
+func (ptr *QUdpSocket) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QAbstractSocket_PTR().SetPointer(p)
 	}
 }
 

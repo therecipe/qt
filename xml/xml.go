@@ -32,20 +32,20 @@ type QDomAttr_ITF interface {
 	QDomAttr_PTR() *QDomAttr
 }
 
-func (p *QDomAttr) QDomAttr_PTR() *QDomAttr {
-	return p
+func (ptr *QDomAttr) QDomAttr_PTR() *QDomAttr {
+	return ptr
 }
 
-func (p *QDomAttr) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QDomNode_PTR().Pointer()
+func (ptr *QDomAttr) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QDomNode_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QDomAttr) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QDomNode_PTR().SetPointer(ptr)
+func (ptr *QDomAttr) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QDomNode_PTR().SetPointer(p)
 	}
 }
 
@@ -63,8 +63,10 @@ func NewQDomAttrFromPointer(ptr unsafe.Pointer) *QDomAttr {
 }
 
 func (ptr *QDomAttr) DestroyQDomAttr() {
-	C.free(ptr.Pointer())
-	ptr.SetPointer(nil)
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
 }
 
 func NewQDomAttr() *QDomAttr {
@@ -133,20 +135,20 @@ type QDomCDATASection_ITF interface {
 	QDomCDATASection_PTR() *QDomCDATASection
 }
 
-func (p *QDomCDATASection) QDomCDATASection_PTR() *QDomCDATASection {
-	return p
+func (ptr *QDomCDATASection) QDomCDATASection_PTR() *QDomCDATASection {
+	return ptr
 }
 
-func (p *QDomCDATASection) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QDomText_PTR().Pointer()
+func (ptr *QDomCDATASection) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QDomText_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QDomCDATASection) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QDomText_PTR().SetPointer(ptr)
+func (ptr *QDomCDATASection) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QDomText_PTR().SetPointer(p)
 	}
 }
 
@@ -164,8 +166,10 @@ func NewQDomCDATASectionFromPointer(ptr unsafe.Pointer) *QDomCDATASection {
 }
 
 func (ptr *QDomCDATASection) DestroyQDomCDATASection() {
-	C.free(ptr.Pointer())
-	ptr.SetPointer(nil)
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
 }
 
 func NewQDomCDATASection() *QDomCDATASection {
@@ -196,20 +200,20 @@ type QDomCharacterData_ITF interface {
 	QDomCharacterData_PTR() *QDomCharacterData
 }
 
-func (p *QDomCharacterData) QDomCharacterData_PTR() *QDomCharacterData {
-	return p
+func (ptr *QDomCharacterData) QDomCharacterData_PTR() *QDomCharacterData {
+	return ptr
 }
 
-func (p *QDomCharacterData) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QDomNode_PTR().Pointer()
+func (ptr *QDomCharacterData) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QDomNode_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QDomCharacterData) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QDomNode_PTR().SetPointer(ptr)
+func (ptr *QDomCharacterData) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QDomNode_PTR().SetPointer(p)
 	}
 }
 
@@ -227,8 +231,10 @@ func NewQDomCharacterDataFromPointer(ptr unsafe.Pointer) *QDomCharacterData {
 }
 
 func (ptr *QDomCharacterData) DestroyQDomCharacterData() {
-	C.free(ptr.Pointer())
-	ptr.SetPointer(nil)
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
 }
 
 func NewQDomCharacterData() *QDomCharacterData {
@@ -318,20 +324,20 @@ type QDomComment_ITF interface {
 	QDomComment_PTR() *QDomComment
 }
 
-func (p *QDomComment) QDomComment_PTR() *QDomComment {
-	return p
+func (ptr *QDomComment) QDomComment_PTR() *QDomComment {
+	return ptr
 }
 
-func (p *QDomComment) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QDomCharacterData_PTR().Pointer()
+func (ptr *QDomComment) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QDomCharacterData_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QDomComment) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QDomCharacterData_PTR().SetPointer(ptr)
+func (ptr *QDomComment) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QDomCharacterData_PTR().SetPointer(p)
 	}
 }
 
@@ -349,8 +355,10 @@ func NewQDomCommentFromPointer(ptr unsafe.Pointer) *QDomComment {
 }
 
 func (ptr *QDomComment) DestroyQDomComment() {
-	C.free(ptr.Pointer())
-	ptr.SetPointer(nil)
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
 }
 
 func NewQDomComment() *QDomComment {
@@ -381,20 +389,20 @@ type QDomDocument_ITF interface {
 	QDomDocument_PTR() *QDomDocument
 }
 
-func (p *QDomDocument) QDomDocument_PTR() *QDomDocument {
-	return p
+func (ptr *QDomDocument) QDomDocument_PTR() *QDomDocument {
+	return ptr
 }
 
-func (p *QDomDocument) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QDomNode_PTR().Pointer()
+func (ptr *QDomDocument) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QDomNode_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QDomDocument) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QDomNode_PTR().SetPointer(ptr)
+func (ptr *QDomDocument) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QDomNode_PTR().SetPointer(p)
 	}
 }
 
@@ -736,20 +744,20 @@ type QDomDocumentFragment_ITF interface {
 	QDomDocumentFragment_PTR() *QDomDocumentFragment
 }
 
-func (p *QDomDocumentFragment) QDomDocumentFragment_PTR() *QDomDocumentFragment {
-	return p
+func (ptr *QDomDocumentFragment) QDomDocumentFragment_PTR() *QDomDocumentFragment {
+	return ptr
 }
 
-func (p *QDomDocumentFragment) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QDomNode_PTR().Pointer()
+func (ptr *QDomDocumentFragment) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QDomNode_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QDomDocumentFragment) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QDomNode_PTR().SetPointer(ptr)
+func (ptr *QDomDocumentFragment) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QDomNode_PTR().SetPointer(p)
 	}
 }
 
@@ -767,8 +775,10 @@ func NewQDomDocumentFragmentFromPointer(ptr unsafe.Pointer) *QDomDocumentFragmen
 }
 
 func (ptr *QDomDocumentFragment) DestroyQDomDocumentFragment() {
-	C.free(ptr.Pointer())
-	ptr.SetPointer(nil)
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
 }
 
 func NewQDomDocumentFragment() *QDomDocumentFragment {
@@ -799,20 +809,20 @@ type QDomDocumentType_ITF interface {
 	QDomDocumentType_PTR() *QDomDocumentType
 }
 
-func (p *QDomDocumentType) QDomDocumentType_PTR() *QDomDocumentType {
-	return p
+func (ptr *QDomDocumentType) QDomDocumentType_PTR() *QDomDocumentType {
+	return ptr
 }
 
-func (p *QDomDocumentType) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QDomNode_PTR().Pointer()
+func (ptr *QDomDocumentType) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QDomNode_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QDomDocumentType) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QDomNode_PTR().SetPointer(ptr)
+func (ptr *QDomDocumentType) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QDomNode_PTR().SetPointer(p)
 	}
 }
 
@@ -830,8 +840,10 @@ func NewQDomDocumentTypeFromPointer(ptr unsafe.Pointer) *QDomDocumentType {
 }
 
 func (ptr *QDomDocumentType) DestroyQDomDocumentType() {
-	C.free(ptr.Pointer())
-	ptr.SetPointer(nil)
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
 }
 
 func NewQDomDocumentType() *QDomDocumentType {
@@ -908,20 +920,20 @@ type QDomElement_ITF interface {
 	QDomElement_PTR() *QDomElement
 }
 
-func (p *QDomElement) QDomElement_PTR() *QDomElement {
-	return p
+func (ptr *QDomElement) QDomElement_PTR() *QDomElement {
+	return ptr
 }
 
-func (p *QDomElement) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QDomNode_PTR().Pointer()
+func (ptr *QDomElement) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QDomNode_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QDomElement) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QDomNode_PTR().SetPointer(ptr)
+func (ptr *QDomElement) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QDomNode_PTR().SetPointer(p)
 	}
 }
 
@@ -939,8 +951,10 @@ func NewQDomElementFromPointer(ptr unsafe.Pointer) *QDomElement {
 }
 
 func (ptr *QDomElement) DestroyQDomElement() {
-	C.free(ptr.Pointer())
-	ptr.SetPointer(nil)
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
 }
 
 func NewQDomElement() *QDomElement {
@@ -1259,20 +1273,20 @@ type QDomEntity_ITF interface {
 	QDomEntity_PTR() *QDomEntity
 }
 
-func (p *QDomEntity) QDomEntity_PTR() *QDomEntity {
-	return p
+func (ptr *QDomEntity) QDomEntity_PTR() *QDomEntity {
+	return ptr
 }
 
-func (p *QDomEntity) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QDomNode_PTR().Pointer()
+func (ptr *QDomEntity) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QDomNode_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QDomEntity) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QDomNode_PTR().SetPointer(ptr)
+func (ptr *QDomEntity) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QDomNode_PTR().SetPointer(p)
 	}
 }
 
@@ -1290,8 +1304,10 @@ func NewQDomEntityFromPointer(ptr unsafe.Pointer) *QDomEntity {
 }
 
 func (ptr *QDomEntity) DestroyQDomEntity() {
-	C.free(ptr.Pointer())
-	ptr.SetPointer(nil)
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
 }
 
 func NewQDomEntity() *QDomEntity {
@@ -1343,20 +1359,20 @@ type QDomEntityReference_ITF interface {
 	QDomEntityReference_PTR() *QDomEntityReference
 }
 
-func (p *QDomEntityReference) QDomEntityReference_PTR() *QDomEntityReference {
-	return p
+func (ptr *QDomEntityReference) QDomEntityReference_PTR() *QDomEntityReference {
+	return ptr
 }
 
-func (p *QDomEntityReference) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QDomNode_PTR().Pointer()
+func (ptr *QDomEntityReference) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QDomNode_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QDomEntityReference) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QDomNode_PTR().SetPointer(ptr)
+func (ptr *QDomEntityReference) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QDomNode_PTR().SetPointer(p)
 	}
 }
 
@@ -1374,8 +1390,10 @@ func NewQDomEntityReferenceFromPointer(ptr unsafe.Pointer) *QDomEntityReference 
 }
 
 func (ptr *QDomEntityReference) DestroyQDomEntityReference() {
-	C.free(ptr.Pointer())
-	ptr.SetPointer(nil)
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
 }
 
 func NewQDomEntityReference() *QDomEntityReference {
@@ -1415,20 +1433,20 @@ type QDomImplementation_ITF interface {
 	QDomImplementation_PTR() *QDomImplementation
 }
 
-func (p *QDomImplementation) QDomImplementation_PTR() *QDomImplementation {
-	return p
+func (ptr *QDomImplementation) QDomImplementation_PTR() *QDomImplementation {
+	return ptr
 }
 
-func (p *QDomImplementation) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QDomImplementation) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QDomImplementation) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QDomImplementation) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -1533,20 +1551,20 @@ type QDomNamedNodeMap_ITF interface {
 	QDomNamedNodeMap_PTR() *QDomNamedNodeMap
 }
 
-func (p *QDomNamedNodeMap) QDomNamedNodeMap_PTR() *QDomNamedNodeMap {
-	return p
+func (ptr *QDomNamedNodeMap) QDomNamedNodeMap_PTR() *QDomNamedNodeMap {
+	return ptr
 }
 
-func (p *QDomNamedNodeMap) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QDomNamedNodeMap) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QDomNamedNodeMap) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QDomNamedNodeMap) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -1731,20 +1749,20 @@ type QDomNode_ITF interface {
 	QDomNode_PTR() *QDomNode
 }
 
-func (p *QDomNode) QDomNode_PTR() *QDomNode {
-	return p
+func (ptr *QDomNode) QDomNode_PTR() *QDomNode {
+	return ptr
 }
 
-func (p *QDomNode) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QDomNode) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QDomNode) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QDomNode) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -2298,20 +2316,20 @@ type QDomNodeList_ITF interface {
 	QDomNodeList_PTR() *QDomNodeList
 }
 
-func (p *QDomNodeList) QDomNodeList_PTR() *QDomNodeList {
-	return p
+func (ptr *QDomNodeList) QDomNodeList_PTR() *QDomNodeList {
+	return ptr
 }
 
-func (p *QDomNodeList) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QDomNodeList) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QDomNodeList) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QDomNodeList) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -2401,20 +2419,20 @@ type QDomNotation_ITF interface {
 	QDomNotation_PTR() *QDomNotation
 }
 
-func (p *QDomNotation) QDomNotation_PTR() *QDomNotation {
-	return p
+func (ptr *QDomNotation) QDomNotation_PTR() *QDomNotation {
+	return ptr
 }
 
-func (p *QDomNotation) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QDomNode_PTR().Pointer()
+func (ptr *QDomNotation) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QDomNode_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QDomNotation) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QDomNode_PTR().SetPointer(ptr)
+func (ptr *QDomNotation) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QDomNode_PTR().SetPointer(p)
 	}
 }
 
@@ -2432,8 +2450,10 @@ func NewQDomNotationFromPointer(ptr unsafe.Pointer) *QDomNotation {
 }
 
 func (ptr *QDomNotation) DestroyQDomNotation() {
-	C.free(ptr.Pointer())
-	ptr.SetPointer(nil)
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
 }
 
 func NewQDomNotation() *QDomNotation {
@@ -2478,20 +2498,20 @@ type QDomProcessingInstruction_ITF interface {
 	QDomProcessingInstruction_PTR() *QDomProcessingInstruction
 }
 
-func (p *QDomProcessingInstruction) QDomProcessingInstruction_PTR() *QDomProcessingInstruction {
-	return p
+func (ptr *QDomProcessingInstruction) QDomProcessingInstruction_PTR() *QDomProcessingInstruction {
+	return ptr
 }
 
-func (p *QDomProcessingInstruction) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QDomNode_PTR().Pointer()
+func (ptr *QDomProcessingInstruction) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QDomNode_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QDomProcessingInstruction) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QDomNode_PTR().SetPointer(ptr)
+func (ptr *QDomProcessingInstruction) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QDomNode_PTR().SetPointer(p)
 	}
 }
 
@@ -2509,8 +2529,10 @@ func NewQDomProcessingInstructionFromPointer(ptr unsafe.Pointer) *QDomProcessing
 }
 
 func (ptr *QDomProcessingInstruction) DestroyQDomProcessingInstruction() {
-	C.free(ptr.Pointer())
-	ptr.SetPointer(nil)
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
 }
 
 func NewQDomProcessingInstruction() *QDomProcessingInstruction {
@@ -2563,20 +2585,20 @@ type QDomText_ITF interface {
 	QDomText_PTR() *QDomText
 }
 
-func (p *QDomText) QDomText_PTR() *QDomText {
-	return p
+func (ptr *QDomText) QDomText_PTR() *QDomText {
+	return ptr
 }
 
-func (p *QDomText) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QDomCharacterData_PTR().Pointer()
+func (ptr *QDomText) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QDomCharacterData_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QDomText) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QDomCharacterData_PTR().SetPointer(ptr)
+func (ptr *QDomText) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QDomCharacterData_PTR().SetPointer(p)
 	}
 }
 
@@ -2594,8 +2616,10 @@ func NewQDomTextFromPointer(ptr unsafe.Pointer) *QDomText {
 }
 
 func (ptr *QDomText) DestroyQDomText() {
-	C.free(ptr.Pointer())
-	ptr.SetPointer(nil)
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
 }
 
 func NewQDomText() *QDomText {
@@ -2634,20 +2658,20 @@ type QXmlAttributes_ITF interface {
 	QXmlAttributes_PTR() *QXmlAttributes
 }
 
-func (p *QXmlAttributes) QXmlAttributes_PTR() *QXmlAttributes {
-	return p
+func (ptr *QXmlAttributes) QXmlAttributes_PTR() *QXmlAttributes {
+	return ptr
 }
 
-func (p *QXmlAttributes) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QXmlAttributes) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QXmlAttributes) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QXmlAttributes) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -2858,20 +2882,20 @@ type QXmlContentHandler_ITF interface {
 	QXmlContentHandler_PTR() *QXmlContentHandler
 }
 
-func (p *QXmlContentHandler) QXmlContentHandler_PTR() *QXmlContentHandler {
-	return p
+func (ptr *QXmlContentHandler) QXmlContentHandler_PTR() *QXmlContentHandler {
+	return ptr
 }
 
-func (p *QXmlContentHandler) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QXmlContentHandler) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QXmlContentHandler) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QXmlContentHandler) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -3334,20 +3358,20 @@ type QXmlDTDHandler_ITF interface {
 	QXmlDTDHandler_PTR() *QXmlDTDHandler
 }
 
-func (p *QXmlDTDHandler) QXmlDTDHandler_PTR() *QXmlDTDHandler {
-	return p
+func (ptr *QXmlDTDHandler) QXmlDTDHandler_PTR() *QXmlDTDHandler {
+	return ptr
 }
 
-func (p *QXmlDTDHandler) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QXmlDTDHandler) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QXmlDTDHandler) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QXmlDTDHandler) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -3519,20 +3543,20 @@ type QXmlDeclHandler_ITF interface {
 	QXmlDeclHandler_PTR() *QXmlDeclHandler
 }
 
-func (p *QXmlDeclHandler) QXmlDeclHandler_PTR() *QXmlDeclHandler {
-	return p
+func (ptr *QXmlDeclHandler) QXmlDeclHandler_PTR() *QXmlDeclHandler {
+	return ptr
 }
 
-func (p *QXmlDeclHandler) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QXmlDeclHandler) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QXmlDeclHandler) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QXmlDeclHandler) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -3752,25 +3776,25 @@ type QXmlDefaultHandler_ITF interface {
 	QXmlDefaultHandler_PTR() *QXmlDefaultHandler
 }
 
-func (p *QXmlDefaultHandler) QXmlDefaultHandler_PTR() *QXmlDefaultHandler {
-	return p
+func (ptr *QXmlDefaultHandler) QXmlDefaultHandler_PTR() *QXmlDefaultHandler {
+	return ptr
 }
 
-func (p *QXmlDefaultHandler) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QXmlContentHandler_PTR().Pointer()
+func (ptr *QXmlDefaultHandler) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QXmlContentHandler_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QXmlDefaultHandler) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QXmlContentHandler_PTR().SetPointer(ptr)
-		p.QXmlErrorHandler_PTR().SetPointer(ptr)
-		p.QXmlDTDHandler_PTR().SetPointer(ptr)
-		p.QXmlEntityResolver_PTR().SetPointer(ptr)
-		p.QXmlLexicalHandler_PTR().SetPointer(ptr)
-		p.QXmlDeclHandler_PTR().SetPointer(ptr)
+func (ptr *QXmlDefaultHandler) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QXmlContentHandler_PTR().SetPointer(p)
+		ptr.QXmlErrorHandler_PTR().SetPointer(p)
+		ptr.QXmlDTDHandler_PTR().SetPointer(p)
+		ptr.QXmlEntityResolver_PTR().SetPointer(p)
+		ptr.QXmlLexicalHandler_PTR().SetPointer(p)
+		ptr.QXmlDeclHandler_PTR().SetPointer(p)
 	}
 }
 
@@ -5048,20 +5072,20 @@ type QXmlEntityResolver_ITF interface {
 	QXmlEntityResolver_PTR() *QXmlEntityResolver
 }
 
-func (p *QXmlEntityResolver) QXmlEntityResolver_PTR() *QXmlEntityResolver {
-	return p
+func (ptr *QXmlEntityResolver) QXmlEntityResolver_PTR() *QXmlEntityResolver {
+	return ptr
 }
 
-func (p *QXmlEntityResolver) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QXmlEntityResolver) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QXmlEntityResolver) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QXmlEntityResolver) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -5188,20 +5212,20 @@ type QXmlErrorHandler_ITF interface {
 	QXmlErrorHandler_PTR() *QXmlErrorHandler
 }
 
-func (p *QXmlErrorHandler) QXmlErrorHandler_PTR() *QXmlErrorHandler {
-	return p
+func (ptr *QXmlErrorHandler) QXmlErrorHandler_PTR() *QXmlErrorHandler {
+	return ptr
 }
 
-func (p *QXmlErrorHandler) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QXmlErrorHandler) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QXmlErrorHandler) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QXmlErrorHandler) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -5390,20 +5414,20 @@ type QXmlInputSource_ITF interface {
 	QXmlInputSource_PTR() *QXmlInputSource
 }
 
-func (p *QXmlInputSource) QXmlInputSource_PTR() *QXmlInputSource {
-	return p
+func (ptr *QXmlInputSource) QXmlInputSource_PTR() *QXmlInputSource {
+	return ptr
 }
 
-func (p *QXmlInputSource) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QXmlInputSource) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QXmlInputSource) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QXmlInputSource) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -5757,20 +5781,20 @@ type QXmlLexicalHandler_ITF interface {
 	QXmlLexicalHandler_PTR() *QXmlLexicalHandler
 }
 
-func (p *QXmlLexicalHandler) QXmlLexicalHandler_PTR() *QXmlLexicalHandler {
-	return p
+func (ptr *QXmlLexicalHandler) QXmlLexicalHandler_PTR() *QXmlLexicalHandler {
+	return ptr
 }
 
-func (p *QXmlLexicalHandler) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QXmlLexicalHandler) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QXmlLexicalHandler) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QXmlLexicalHandler) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -6095,20 +6119,20 @@ type QXmlLocator_ITF interface {
 	QXmlLocator_PTR() *QXmlLocator
 }
 
-func (p *QXmlLocator) QXmlLocator_PTR() *QXmlLocator {
-	return p
+func (ptr *QXmlLocator) QXmlLocator_PTR() *QXmlLocator {
+	return ptr
 }
 
-func (p *QXmlLocator) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QXmlLocator) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QXmlLocator) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QXmlLocator) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -6238,20 +6262,20 @@ type QXmlNamespaceSupport_ITF interface {
 	QXmlNamespaceSupport_PTR() *QXmlNamespaceSupport
 }
 
-func (p *QXmlNamespaceSupport) QXmlNamespaceSupport_PTR() *QXmlNamespaceSupport {
-	return p
+func (ptr *QXmlNamespaceSupport) QXmlNamespaceSupport_PTR() *QXmlNamespaceSupport {
+	return ptr
 }
 
-func (p *QXmlNamespaceSupport) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QXmlNamespaceSupport) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QXmlNamespaceSupport) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QXmlNamespaceSupport) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -6374,20 +6398,20 @@ type QXmlParseException_ITF interface {
 	QXmlParseException_PTR() *QXmlParseException
 }
 
-func (p *QXmlParseException) QXmlParseException_PTR() *QXmlParseException {
-	return p
+func (ptr *QXmlParseException) QXmlParseException_PTR() *QXmlParseException {
+	return ptr
 }
 
-func (p *QXmlParseException) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QXmlParseException) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QXmlParseException) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QXmlParseException) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -6471,20 +6495,20 @@ type QXmlReader_ITF interface {
 	QXmlReader_PTR() *QXmlReader
 }
 
-func (p *QXmlReader) QXmlReader_PTR() *QXmlReader {
-	return p
+func (ptr *QXmlReader) QXmlReader_PTR() *QXmlReader {
+	return ptr
 }
 
-func (p *QXmlReader) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QXmlReader) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QXmlReader) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QXmlReader) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -7135,20 +7159,20 @@ type QXmlSimpleReader_ITF interface {
 	QXmlSimpleReader_PTR() *QXmlSimpleReader
 }
 
-func (p *QXmlSimpleReader) QXmlSimpleReader_PTR() *QXmlSimpleReader {
-	return p
+func (ptr *QXmlSimpleReader) QXmlSimpleReader_PTR() *QXmlSimpleReader {
+	return ptr
 }
 
-func (p *QXmlSimpleReader) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QXmlReader_PTR().Pointer()
+func (ptr *QXmlSimpleReader) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QXmlReader_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QXmlSimpleReader) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QXmlReader_PTR().SetPointer(ptr)
+func (ptr *QXmlSimpleReader) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QXmlReader_PTR().SetPointer(p)
 	}
 }
 

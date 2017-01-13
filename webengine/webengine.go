@@ -56,20 +56,20 @@ type QQuickWebEngineProfile_ITF interface {
 	QQuickWebEngineProfile_PTR() *QQuickWebEngineProfile
 }
 
-func (p *QQuickWebEngineProfile) QQuickWebEngineProfile_PTR() *QQuickWebEngineProfile {
-	return p
+func (ptr *QQuickWebEngineProfile) QQuickWebEngineProfile_PTR() *QQuickWebEngineProfile {
+	return ptr
 }
 
-func (p *QQuickWebEngineProfile) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QObject_PTR().Pointer()
+func (ptr *QQuickWebEngineProfile) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QObject_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QQuickWebEngineProfile) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QObject_PTR().SetPointer(ptr)
+func (ptr *QQuickWebEngineProfile) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QObject_PTR().SetPointer(p)
 	}
 }
 
@@ -87,9 +87,11 @@ func NewQQuickWebEngineProfileFromPointer(ptr unsafe.Pointer) *QQuickWebEnginePr
 }
 
 func (ptr *QQuickWebEngineProfile) DestroyQQuickWebEngineProfile() {
-	C.free(ptr.Pointer())
-	qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
-	ptr.SetPointer(nil)
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
+		ptr.SetPointer(nil)
+	}
 }
 
 func (ptr *QQuickWebEngineProfile) CachePath() string {
@@ -923,20 +925,20 @@ type QWebEngineCertificateError_ITF interface {
 	QWebEngineCertificateError_PTR() *QWebEngineCertificateError
 }
 
-func (p *QWebEngineCertificateError) QWebEngineCertificateError_PTR() *QWebEngineCertificateError {
-	return p
+func (ptr *QWebEngineCertificateError) QWebEngineCertificateError_PTR() *QWebEngineCertificateError {
+	return ptr
 }
 
-func (p *QWebEngineCertificateError) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QWebEngineCertificateError) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QWebEngineCertificateError) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QWebEngineCertificateError) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -954,8 +956,10 @@ func NewQWebEngineCertificateErrorFromPointer(ptr unsafe.Pointer) *QWebEngineCer
 }
 
 func (ptr *QWebEngineCertificateError) DestroyQWebEngineCertificateError() {
-	C.free(ptr.Pointer())
-	ptr.SetPointer(nil)
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
 }
 
 func (ptr *QWebEngineCertificateError) Error() QWebEngineCertificateError__Error {
@@ -1010,20 +1014,20 @@ type QWebEngineContextMenuData_ITF interface {
 	QWebEngineContextMenuData_PTR() *QWebEngineContextMenuData
 }
 
-func (p *QWebEngineContextMenuData) QWebEngineContextMenuData_PTR() *QWebEngineContextMenuData {
-	return p
+func (ptr *QWebEngineContextMenuData) QWebEngineContextMenuData_PTR() *QWebEngineContextMenuData {
+	return ptr
 }
 
-func (p *QWebEngineContextMenuData) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QWebEngineContextMenuData) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QWebEngineContextMenuData) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QWebEngineContextMenuData) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -1129,20 +1133,20 @@ type QWebEngineCookieStore_ITF interface {
 	QWebEngineCookieStore_PTR() *QWebEngineCookieStore
 }
 
-func (p *QWebEngineCookieStore) QWebEngineCookieStore_PTR() *QWebEngineCookieStore {
-	return p
+func (ptr *QWebEngineCookieStore) QWebEngineCookieStore_PTR() *QWebEngineCookieStore {
+	return ptr
 }
 
-func (p *QWebEngineCookieStore) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QObject_PTR().Pointer()
+func (ptr *QWebEngineCookieStore) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QObject_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QWebEngineCookieStore) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QObject_PTR().SetPointer(ptr)
+func (ptr *QWebEngineCookieStore) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QObject_PTR().SetPointer(p)
 	}
 }
 
@@ -1652,20 +1656,20 @@ type QWebEngineDownloadItem_ITF interface {
 	QWebEngineDownloadItem_PTR() *QWebEngineDownloadItem
 }
 
-func (p *QWebEngineDownloadItem) QWebEngineDownloadItem_PTR() *QWebEngineDownloadItem {
-	return p
+func (ptr *QWebEngineDownloadItem) QWebEngineDownloadItem_PTR() *QWebEngineDownloadItem {
+	return ptr
 }
 
-func (p *QWebEngineDownloadItem) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QObject_PTR().Pointer()
+func (ptr *QWebEngineDownloadItem) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QObject_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QWebEngineDownloadItem) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QObject_PTR().SetPointer(ptr)
+func (ptr *QWebEngineDownloadItem) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QObject_PTR().SetPointer(p)
 	}
 }
 
@@ -1683,9 +1687,11 @@ func NewQWebEngineDownloadItemFromPointer(ptr unsafe.Pointer) *QWebEngineDownloa
 }
 
 func (ptr *QWebEngineDownloadItem) DestroyQWebEngineDownloadItem() {
-	C.free(ptr.Pointer())
-	qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
-	ptr.SetPointer(nil)
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
+		ptr.SetPointer(nil)
+	}
 }
 
 //export callbackQWebEngineDownloadItem_Accept
@@ -2251,20 +2257,20 @@ type QWebEngineFullScreenRequest_ITF interface {
 	QWebEngineFullScreenRequest_PTR() *QWebEngineFullScreenRequest
 }
 
-func (p *QWebEngineFullScreenRequest) QWebEngineFullScreenRequest_PTR() *QWebEngineFullScreenRequest {
-	return p
+func (ptr *QWebEngineFullScreenRequest) QWebEngineFullScreenRequest_PTR() *QWebEngineFullScreenRequest {
+	return ptr
 }
 
-func (p *QWebEngineFullScreenRequest) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QWebEngineFullScreenRequest) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QWebEngineFullScreenRequest) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QWebEngineFullScreenRequest) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -2282,8 +2288,10 @@ func NewQWebEngineFullScreenRequestFromPointer(ptr unsafe.Pointer) *QWebEngineFu
 }
 
 func (ptr *QWebEngineFullScreenRequest) DestroyQWebEngineFullScreenRequest() {
-	C.free(ptr.Pointer())
-	ptr.SetPointer(nil)
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
 }
 
 func (ptr *QWebEngineFullScreenRequest) Accept() {
@@ -2320,20 +2328,20 @@ type QWebEngineHistory_ITF interface {
 	QWebEngineHistory_PTR() *QWebEngineHistory
 }
 
-func (p *QWebEngineHistory) QWebEngineHistory_PTR() *QWebEngineHistory {
-	return p
+func (ptr *QWebEngineHistory) QWebEngineHistory_PTR() *QWebEngineHistory {
+	return ptr
 }
 
-func (p *QWebEngineHistory) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QWebEngineHistory) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QWebEngineHistory) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QWebEngineHistory) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -2351,8 +2359,10 @@ func NewQWebEngineHistoryFromPointer(ptr unsafe.Pointer) *QWebEngineHistory {
 }
 
 func (ptr *QWebEngineHistory) DestroyQWebEngineHistory() {
-	C.free(ptr.Pointer())
-	ptr.SetPointer(nil)
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
 }
 
 func (ptr *QWebEngineHistory) Back() {
@@ -2517,20 +2527,20 @@ type QWebEngineHistoryItem_ITF interface {
 	QWebEngineHistoryItem_PTR() *QWebEngineHistoryItem
 }
 
-func (p *QWebEngineHistoryItem) QWebEngineHistoryItem_PTR() *QWebEngineHistoryItem {
-	return p
+func (ptr *QWebEngineHistoryItem) QWebEngineHistoryItem_PTR() *QWebEngineHistoryItem {
+	return ptr
 }
 
-func (p *QWebEngineHistoryItem) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QWebEngineHistoryItem) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QWebEngineHistoryItem) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QWebEngineHistoryItem) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -2750,20 +2760,20 @@ type QWebEnginePage_ITF interface {
 	QWebEnginePage_PTR() *QWebEnginePage
 }
 
-func (p *QWebEnginePage) QWebEnginePage_PTR() *QWebEnginePage {
-	return p
+func (ptr *QWebEnginePage) QWebEnginePage_PTR() *QWebEnginePage {
+	return ptr
 }
 
-func (p *QWebEnginePage) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QObject_PTR().Pointer()
+func (ptr *QWebEnginePage) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QObject_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QWebEnginePage) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QObject_PTR().SetPointer(ptr)
+func (ptr *QWebEnginePage) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QObject_PTR().SetPointer(p)
 	}
 }
 
@@ -4414,20 +4424,20 @@ type QWebEngineProfile_ITF interface {
 	QWebEngineProfile_PTR() *QWebEngineProfile
 }
 
-func (p *QWebEngineProfile) QWebEngineProfile_PTR() *QWebEngineProfile {
-	return p
+func (ptr *QWebEngineProfile) QWebEngineProfile_PTR() *QWebEngineProfile {
+	return ptr
 }
 
-func (p *QWebEngineProfile) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QObject_PTR().Pointer()
+func (ptr *QWebEngineProfile) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QObject_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QWebEngineProfile) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QObject_PTR().SetPointer(ptr)
+func (ptr *QWebEngineProfile) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QObject_PTR().SetPointer(p)
 	}
 }
 
@@ -4445,9 +4455,11 @@ func NewQWebEngineProfileFromPointer(ptr unsafe.Pointer) *QWebEngineProfile {
 }
 
 func (ptr *QWebEngineProfile) DestroyQWebEngineProfile() {
-	C.free(ptr.Pointer())
-	qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
-	ptr.SetPointer(nil)
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
+		ptr.SetPointer(nil)
+	}
 }
 
 func NewQWebEngineProfile(parent core.QObject_ITF) *QWebEngineProfile {
@@ -5072,20 +5084,20 @@ type QWebEngineScript_ITF interface {
 	QWebEngineScript_PTR() *QWebEngineScript
 }
 
-func (p *QWebEngineScript) QWebEngineScript_PTR() *QWebEngineScript {
-	return p
+func (ptr *QWebEngineScript) QWebEngineScript_PTR() *QWebEngineScript {
+	return ptr
 }
 
-func (p *QWebEngineScript) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QWebEngineScript) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QWebEngineScript) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QWebEngineScript) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -5210,20 +5222,20 @@ type QWebEngineScriptCollection_ITF interface {
 	QWebEngineScriptCollection_PTR() *QWebEngineScriptCollection
 }
 
-func (p *QWebEngineScriptCollection) QWebEngineScriptCollection_PTR() *QWebEngineScriptCollection {
-	return p
+func (ptr *QWebEngineScriptCollection) QWebEngineScriptCollection_PTR() *QWebEngineScriptCollection {
+	return ptr
 }
 
-func (p *QWebEngineScriptCollection) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QWebEngineScriptCollection) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QWebEngineScriptCollection) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QWebEngineScriptCollection) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -5410,20 +5422,20 @@ type QWebEngineSettings_ITF interface {
 	QWebEngineSettings_PTR() *QWebEngineSettings
 }
 
-func (p *QWebEngineSettings) QWebEngineSettings_PTR() *QWebEngineSettings {
-	return p
+func (ptr *QWebEngineSettings) QWebEngineSettings_PTR() *QWebEngineSettings {
+	return ptr
 }
 
-func (p *QWebEngineSettings) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QWebEngineSettings) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QWebEngineSettings) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QWebEngineSettings) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -5441,8 +5453,10 @@ func NewQWebEngineSettingsFromPointer(ptr unsafe.Pointer) *QWebEngineSettings {
 }
 
 func (ptr *QWebEngineSettings) DestroyQWebEngineSettings() {
-	C.free(ptr.Pointer())
-	ptr.SetPointer(nil)
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
 }
 
 func (ptr *QWebEngineSettings) DefaultTextEncoding() string {
@@ -5582,20 +5596,20 @@ type QWebEngineUrlRequestInfo_ITF interface {
 	QWebEngineUrlRequestInfo_PTR() *QWebEngineUrlRequestInfo
 }
 
-func (p *QWebEngineUrlRequestInfo) QWebEngineUrlRequestInfo_PTR() *QWebEngineUrlRequestInfo {
-	return p
+func (ptr *QWebEngineUrlRequestInfo) QWebEngineUrlRequestInfo_PTR() *QWebEngineUrlRequestInfo {
+	return ptr
 }
 
-func (p *QWebEngineUrlRequestInfo) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QWebEngineUrlRequestInfo) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QWebEngineUrlRequestInfo) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QWebEngineUrlRequestInfo) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -5613,8 +5627,10 @@ func NewQWebEngineUrlRequestInfoFromPointer(ptr unsafe.Pointer) *QWebEngineUrlRe
 }
 
 func (ptr *QWebEngineUrlRequestInfo) DestroyQWebEngineUrlRequestInfo() {
-	C.free(ptr.Pointer())
-	ptr.SetPointer(nil)
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
 }
 
 func (ptr *QWebEngineUrlRequestInfo) Block(shouldBlock bool) {
@@ -5685,20 +5701,20 @@ type QWebEngineUrlRequestInterceptor_ITF interface {
 	QWebEngineUrlRequestInterceptor_PTR() *QWebEngineUrlRequestInterceptor
 }
 
-func (p *QWebEngineUrlRequestInterceptor) QWebEngineUrlRequestInterceptor_PTR() *QWebEngineUrlRequestInterceptor {
-	return p
+func (ptr *QWebEngineUrlRequestInterceptor) QWebEngineUrlRequestInterceptor_PTR() *QWebEngineUrlRequestInterceptor {
+	return ptr
 }
 
-func (p *QWebEngineUrlRequestInterceptor) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QObject_PTR().Pointer()
+func (ptr *QWebEngineUrlRequestInterceptor) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QObject_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QWebEngineUrlRequestInterceptor) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QObject_PTR().SetPointer(ptr)
+func (ptr *QWebEngineUrlRequestInterceptor) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QObject_PTR().SetPointer(p)
 	}
 }
 
@@ -5716,9 +5732,11 @@ func NewQWebEngineUrlRequestInterceptorFromPointer(ptr unsafe.Pointer) *QWebEngi
 }
 
 func (ptr *QWebEngineUrlRequestInterceptor) DestroyQWebEngineUrlRequestInterceptor() {
-	C.free(ptr.Pointer())
-	qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
-	ptr.SetPointer(nil)
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
+		ptr.SetPointer(nil)
+	}
 }
 
 func NewQWebEngineUrlRequestInterceptor(p core.QObject_ITF) *QWebEngineUrlRequestInterceptor {
@@ -6113,20 +6131,20 @@ type QWebEngineUrlRequestJob_ITF interface {
 	QWebEngineUrlRequestJob_PTR() *QWebEngineUrlRequestJob
 }
 
-func (p *QWebEngineUrlRequestJob) QWebEngineUrlRequestJob_PTR() *QWebEngineUrlRequestJob {
-	return p
+func (ptr *QWebEngineUrlRequestJob) QWebEngineUrlRequestJob_PTR() *QWebEngineUrlRequestJob {
+	return ptr
 }
 
-func (p *QWebEngineUrlRequestJob) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QObject_PTR().Pointer()
+func (ptr *QWebEngineUrlRequestJob) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QObject_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QWebEngineUrlRequestJob) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QObject_PTR().SetPointer(ptr)
+func (ptr *QWebEngineUrlRequestJob) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QObject_PTR().SetPointer(p)
 	}
 }
 
@@ -6144,9 +6162,11 @@ func NewQWebEngineUrlRequestJobFromPointer(ptr unsafe.Pointer) *QWebEngineUrlReq
 }
 
 func (ptr *QWebEngineUrlRequestJob) DestroyQWebEngineUrlRequestJob() {
-	C.free(ptr.Pointer())
-	qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
-	ptr.SetPointer(nil)
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
+		ptr.SetPointer(nil)
+	}
 }
 
 func (ptr *QWebEngineUrlRequestJob) Fail(r QWebEngineUrlRequestJob__Error) {
@@ -6527,20 +6547,20 @@ type QWebEngineUrlSchemeHandler_ITF interface {
 	QWebEngineUrlSchemeHandler_PTR() *QWebEngineUrlSchemeHandler
 }
 
-func (p *QWebEngineUrlSchemeHandler) QWebEngineUrlSchemeHandler_PTR() *QWebEngineUrlSchemeHandler {
-	return p
+func (ptr *QWebEngineUrlSchemeHandler) QWebEngineUrlSchemeHandler_PTR() *QWebEngineUrlSchemeHandler {
+	return ptr
 }
 
-func (p *QWebEngineUrlSchemeHandler) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QObject_PTR().Pointer()
+func (ptr *QWebEngineUrlSchemeHandler) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QObject_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QWebEngineUrlSchemeHandler) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QObject_PTR().SetPointer(ptr)
+func (ptr *QWebEngineUrlSchemeHandler) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QObject_PTR().SetPointer(p)
 	}
 }
 
@@ -6943,20 +6963,20 @@ type QWebEngineView_ITF interface {
 	QWebEngineView_PTR() *QWebEngineView
 }
 
-func (p *QWebEngineView) QWebEngineView_PTR() *QWebEngineView {
-	return p
+func (ptr *QWebEngineView) QWebEngineView_PTR() *QWebEngineView {
+	return ptr
 }
 
-func (p *QWebEngineView) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QWidget_PTR().Pointer()
+func (ptr *QWebEngineView) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QWidget_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QWebEngineView) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QWidget_PTR().SetPointer(ptr)
+func (ptr *QWebEngineView) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QWidget_PTR().SetPointer(p)
 	}
 }
 
@@ -9936,20 +9956,20 @@ type QtWebEngineCore_ITF interface {
 	QtWebEngineCore_PTR() *QtWebEngineCore
 }
 
-func (p *QtWebEngineCore) QtWebEngineCore_PTR() *QtWebEngineCore {
-	return p
+func (ptr *QtWebEngineCore) QtWebEngineCore_PTR() *QtWebEngineCore {
+	return ptr
 }
 
-func (p *QtWebEngineCore) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QtWebEngineCore) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QtWebEngineCore) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QtWebEngineCore) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -9967,6 +9987,8 @@ func NewQtWebEngineCoreFromPointer(ptr unsafe.Pointer) *QtWebEngineCore {
 }
 
 func (ptr *QtWebEngineCore) DestroyQtWebEngineCore() {
-	C.free(ptr.Pointer())
-	ptr.SetPointer(nil)
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
 }

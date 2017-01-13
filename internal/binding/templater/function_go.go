@@ -302,7 +302,7 @@ func goFunctionBody(function *parser.Function) string {
 		}
 	}
 
-	if (function.Meta == parser.DESTRUCTOR || strings.Contains(function.Name, "deleteLater") || strings.HasPrefix(function.Name, parser.TILDE)) && function.SignalMode == "" {
+	if (function.Meta == parser.DESTRUCTOR || function.Name == "deleteLater" || function.Name == "destroyed" || strings.HasPrefix(function.Name, parser.TILDE)) && function.SignalMode == "" {
 		if parser.State.ClassMap[function.ClassName()].HasCallbackFunctions() || parser.State.ClassMap[function.ClassName()].IsSubClassOfQObject() {
 			fmt.Fprint(bb, "\nqt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))")
 		}

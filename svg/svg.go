@@ -33,20 +33,20 @@ type QGraphicsSvgItem_ITF interface {
 	QGraphicsSvgItem_PTR() *QGraphicsSvgItem
 }
 
-func (p *QGraphicsSvgItem) QGraphicsSvgItem_PTR() *QGraphicsSvgItem {
-	return p
+func (ptr *QGraphicsSvgItem) QGraphicsSvgItem_PTR() *QGraphicsSvgItem {
+	return ptr
 }
 
-func (p *QGraphicsSvgItem) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QGraphicsObject_PTR().Pointer()
+func (ptr *QGraphicsSvgItem) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QGraphicsObject_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QGraphicsSvgItem) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QGraphicsObject_PTR().SetPointer(ptr)
+func (ptr *QGraphicsSvgItem) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QGraphicsObject_PTR().SetPointer(p)
 	}
 }
 
@@ -64,9 +64,11 @@ func NewQGraphicsSvgItemFromPointer(ptr unsafe.Pointer) *QGraphicsSvgItem {
 }
 
 func (ptr *QGraphicsSvgItem) DestroyQGraphicsSvgItem() {
-	C.free(ptr.Pointer())
-	qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
-	ptr.SetPointer(nil)
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
+		ptr.SetPointer(nil)
+	}
 }
 
 func NewQGraphicsSvgItem(parent widgets.QGraphicsItem_ITF) *QGraphicsSvgItem {
@@ -1707,20 +1709,20 @@ type QSvgGenerator_ITF interface {
 	QSvgGenerator_PTR() *QSvgGenerator
 }
 
-func (p *QSvgGenerator) QSvgGenerator_PTR() *QSvgGenerator {
-	return p
+func (ptr *QSvgGenerator) QSvgGenerator_PTR() *QSvgGenerator {
+	return ptr
 }
 
-func (p *QSvgGenerator) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QPaintDevice_PTR().Pointer()
+func (ptr *QSvgGenerator) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QPaintDevice_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QSvgGenerator) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QPaintDevice_PTR().SetPointer(ptr)
+func (ptr *QSvgGenerator) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QPaintDevice_PTR().SetPointer(p)
 	}
 }
 
@@ -1953,20 +1955,20 @@ type QSvgRenderer_ITF interface {
 	QSvgRenderer_PTR() *QSvgRenderer
 }
 
-func (p *QSvgRenderer) QSvgRenderer_PTR() *QSvgRenderer {
-	return p
+func (ptr *QSvgRenderer) QSvgRenderer_PTR() *QSvgRenderer {
+	return ptr
 }
 
-func (p *QSvgRenderer) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QObject_PTR().Pointer()
+func (ptr *QSvgRenderer) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QObject_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QSvgRenderer) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QObject_PTR().SetPointer(ptr)
+func (ptr *QSvgRenderer) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QObject_PTR().SetPointer(p)
 	}
 }
 
@@ -2659,20 +2661,20 @@ type QSvgWidget_ITF interface {
 	QSvgWidget_PTR() *QSvgWidget
 }
 
-func (p *QSvgWidget) QSvgWidget_PTR() *QSvgWidget {
-	return p
+func (ptr *QSvgWidget) QSvgWidget_PTR() *QSvgWidget {
+	return ptr
 }
 
-func (p *QSvgWidget) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QWidget_PTR().Pointer()
+func (ptr *QSvgWidget) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QWidget_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QSvgWidget) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QWidget_PTR().SetPointer(ptr)
+func (ptr *QSvgWidget) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QWidget_PTR().SetPointer(p)
 	}
 }
 

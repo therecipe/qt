@@ -144,20 +144,20 @@ type QSerialPort_ITF interface {
 	QSerialPort_PTR() *QSerialPort
 }
 
-func (p *QSerialPort) QSerialPort_PTR() *QSerialPort {
-	return p
+func (ptr *QSerialPort) QSerialPort_PTR() *QSerialPort {
+	return ptr
 }
 
-func (p *QSerialPort) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QIODevice_PTR().Pointer()
+func (ptr *QSerialPort) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QIODevice_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QSerialPort) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QIODevice_PTR().SetPointer(ptr)
+func (ptr *QSerialPort) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QIODevice_PTR().SetPointer(p)
 	}
 }
 
@@ -1625,20 +1625,20 @@ type QSerialPortInfo_ITF interface {
 	QSerialPortInfo_PTR() *QSerialPortInfo
 }
 
-func (p *QSerialPortInfo) QSerialPortInfo_PTR() *QSerialPortInfo {
-	return p
+func (ptr *QSerialPortInfo) QSerialPortInfo_PTR() *QSerialPortInfo {
+	return ptr
 }
 
-func (p *QSerialPortInfo) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QSerialPortInfo) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QSerialPortInfo) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QSerialPortInfo) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 

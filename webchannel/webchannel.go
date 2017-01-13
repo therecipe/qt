@@ -30,20 +30,20 @@ type QWebChannel_ITF interface {
 	QWebChannel_PTR() *QWebChannel
 }
 
-func (p *QWebChannel) QWebChannel_PTR() *QWebChannel {
-	return p
+func (ptr *QWebChannel) QWebChannel_PTR() *QWebChannel {
+	return ptr
 }
 
-func (p *QWebChannel) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QObject_PTR().Pointer()
+func (ptr *QWebChannel) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QObject_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QWebChannel) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QObject_PTR().SetPointer(ptr)
+func (ptr *QWebChannel) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QObject_PTR().SetPointer(p)
 	}
 }
 
@@ -529,20 +529,20 @@ type QWebChannelAbstractTransport_ITF interface {
 	QWebChannelAbstractTransport_PTR() *QWebChannelAbstractTransport
 }
 
-func (p *QWebChannelAbstractTransport) QWebChannelAbstractTransport_PTR() *QWebChannelAbstractTransport {
-	return p
+func (ptr *QWebChannelAbstractTransport) QWebChannelAbstractTransport_PTR() *QWebChannelAbstractTransport {
+	return ptr
 }
 
-func (p *QWebChannelAbstractTransport) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QObject_PTR().Pointer()
+func (ptr *QWebChannelAbstractTransport) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QObject_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QWebChannelAbstractTransport) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QObject_PTR().SetPointer(ptr)
+func (ptr *QWebChannelAbstractTransport) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QObject_PTR().SetPointer(p)
 	}
 }
 

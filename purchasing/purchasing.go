@@ -40,20 +40,20 @@ type QInAppProduct_ITF interface {
 	QInAppProduct_PTR() *QInAppProduct
 }
 
-func (p *QInAppProduct) QInAppProduct_PTR() *QInAppProduct {
-	return p
+func (ptr *QInAppProduct) QInAppProduct_PTR() *QInAppProduct {
+	return ptr
 }
 
-func (p *QInAppProduct) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QObject_PTR().Pointer()
+func (ptr *QInAppProduct) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QObject_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QInAppProduct) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QObject_PTR().SetPointer(ptr)
+func (ptr *QInAppProduct) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QObject_PTR().SetPointer(p)
 	}
 }
 
@@ -71,9 +71,11 @@ func NewQInAppProductFromPointer(ptr unsafe.Pointer) *QInAppProduct {
 }
 
 func (ptr *QInAppProduct) DestroyQInAppProduct() {
-	C.free(ptr.Pointer())
-	qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
-	ptr.SetPointer(nil)
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
+		ptr.SetPointer(nil)
+	}
 }
 
 func (ptr *QInAppProduct) Description() string {
@@ -482,20 +484,20 @@ type QInAppStore_ITF interface {
 	QInAppStore_PTR() *QInAppStore
 }
 
-func (p *QInAppStore) QInAppStore_PTR() *QInAppStore {
-	return p
+func (ptr *QInAppStore) QInAppStore_PTR() *QInAppStore {
+	return ptr
 }
 
-func (p *QInAppStore) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QObject_PTR().Pointer()
+func (ptr *QInAppStore) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QObject_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QInAppStore) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QObject_PTR().SetPointer(ptr)
+func (ptr *QInAppStore) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QObject_PTR().SetPointer(p)
 	}
 }
 
@@ -1016,20 +1018,20 @@ type QInAppTransaction_ITF interface {
 	QInAppTransaction_PTR() *QInAppTransaction
 }
 
-func (p *QInAppTransaction) QInAppTransaction_PTR() *QInAppTransaction {
-	return p
+func (ptr *QInAppTransaction) QInAppTransaction_PTR() *QInAppTransaction {
+	return ptr
 }
 
-func (p *QInAppTransaction) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QObject_PTR().Pointer()
+func (ptr *QInAppTransaction) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QObject_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QInAppTransaction) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QObject_PTR().SetPointer(ptr)
+func (ptr *QInAppTransaction) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QObject_PTR().SetPointer(p)
 	}
 }
 
@@ -1047,9 +1049,11 @@ func NewQInAppTransactionFromPointer(ptr unsafe.Pointer) *QInAppTransaction {
 }
 
 func (ptr *QInAppTransaction) DestroyQInAppTransaction() {
-	C.free(ptr.Pointer())
-	qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
-	ptr.SetPointer(nil)
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
+		ptr.SetPointer(nil)
+	}
 }
 
 //export callbackQInAppTransaction_ErrorString

@@ -84,15 +84,15 @@ func GoTemplate(module string, stub bool) []byte {
 				fmt.Sprintf("%v_PTR() *%v\n", class.Name, class.Name),
 			)
 
-			fmt.Fprintf(bb, "func (p *%v) %v_PTR() *%v {\nreturn p\n}\n\n", class.Name, class.Name, class.Name)
+			fmt.Fprintf(bb, "func (ptr *%v) %v_PTR() *%v {\nreturn ptr\n}\n\n", class.Name, class.Name, class.Name)
 
 			if class.Bases == "" {
-				fmt.Fprintf(bb, "func (p *%v)Pointer() unsafe.Pointer {\nif p != nil {\nreturn p.ptr\n}\nreturn nil\n}\n\n", class.Name)
-				fmt.Fprintf(bb, "func (p *%v)SetPointer(ptr unsafe.Pointer) {\nif p != nil {\np.ptr = ptr\n}\n}\n\n", class.Name)
+				fmt.Fprintf(bb, "func (ptr *%v) Pointer() unsafe.Pointer {\nif ptr != nil {\nreturn ptr.ptr\n}\nreturn nil\n}\n\n", class.Name)
+				fmt.Fprintf(bb, "func (ptr *%v) SetPointer(p unsafe.Pointer) {\nif ptr != nil {\nptr.ptr = p\n}\n}\n\n", class.Name)
 			} else {
-				fmt.Fprintf(bb, "func (p *%v)Pointer() unsafe.Pointer {\nif p != nil {\nreturn p.%v_PTR().Pointer()\n}\nreturn nil\n}\n\n", class.Name, class.GetBases()[0])
+				fmt.Fprintf(bb, "func (ptr *%v) Pointer() unsafe.Pointer {\nif ptr != nil {\nreturn ptr.%v_PTR().Pointer()\n}\nreturn nil\n}\n\n", class.Name, class.GetBases()[0])
 
-				fmt.Fprintf(bb, "func (p *%v)SetPointer(ptr unsafe.Pointer) {\nif p != nil{\n%v}\n}\n",
+				fmt.Fprintf(bb, "func (ptr *%v) SetPointer(p unsafe.Pointer) {\nif ptr != nil{\n%v}\n}\n",
 
 					class.Name,
 
@@ -101,7 +101,7 @@ func GoTemplate(module string, stub bool) []byte {
 						defer bb.Reset()
 
 						for _, parentClassName := range class.GetBases() {
-							fmt.Fprintf(bb, "p.%v_PTR().SetPointer(ptr)\n", parentClassName)
+							fmt.Fprintf(bb, "ptr.%v_PTR().SetPointer(p)\n", parentClassName)
 						}
 
 						return bb.String()
@@ -111,18 +111,18 @@ func GoTemplate(module string, stub bool) []byte {
 
 			fmt.Fprintf(bb, `
 func PointerFrom%v(ptr %v_ITF) unsafe.Pointer {
-if ptr != nil {
-return ptr.%v_PTR().Pointer()
-}
-return nil
+	if ptr != nil {
+		return ptr.%v_PTR().Pointer()
+	}
+	return nil
 }
 `, strings.Title(class.Name), class.Name, class.Name)
 
 			fmt.Fprintf(bb, `
 func New%vFromPointer(ptr unsafe.Pointer) *%v {
-var n = new(%v)
-n.SetPointer(ptr)
-return n
+	var n = new(%v)
+	n.SetPointer(ptr)
+	return n
 }
 `, strings.Title(class.Name), class.Name, class.Name)
 
@@ -134,8 +134,10 @@ return n
 				} else {
 					fmt.Fprintf(bb, `
 func (ptr *%v) Destroy%v() {
-C.free(ptr.Pointer())%v
-ptr.SetPointer(nil)
+	if ptr != nil {
+		C.free(ptr.Pointer())%v
+		ptr.SetPointer(nil)
+	}
 }
 
 `, class.Name, class.Name, func() string {

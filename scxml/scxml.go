@@ -33,20 +33,20 @@ type QScxmlCppDataModel_ITF interface {
 	QScxmlCppDataModel_PTR() *QScxmlCppDataModel
 }
 
-func (p *QScxmlCppDataModel) QScxmlCppDataModel_PTR() *QScxmlCppDataModel {
-	return p
+func (ptr *QScxmlCppDataModel) QScxmlCppDataModel_PTR() *QScxmlCppDataModel {
+	return ptr
 }
 
-func (p *QScxmlCppDataModel) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QScxmlDataModel_PTR().Pointer()
+func (ptr *QScxmlCppDataModel) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QScxmlDataModel_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QScxmlCppDataModel) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QScxmlDataModel_PTR().SetPointer(ptr)
+func (ptr *QScxmlCppDataModel) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QScxmlDataModel_PTR().SetPointer(p)
 	}
 }
 
@@ -64,9 +64,11 @@ func NewQScxmlCppDataModelFromPointer(ptr unsafe.Pointer) *QScxmlCppDataModel {
 }
 
 func (ptr *QScxmlCppDataModel) DestroyQScxmlCppDataModel() {
-	C.free(ptr.Pointer())
-	qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
-	ptr.SetPointer(nil)
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
+		ptr.SetPointer(nil)
+	}
 }
 
 func (ptr *QScxmlCppDataModel) In(stateName string) bool {
@@ -574,20 +576,20 @@ type QScxmlDataModel_ITF interface {
 	QScxmlDataModel_PTR() *QScxmlDataModel
 }
 
-func (p *QScxmlDataModel) QScxmlDataModel_PTR() *QScxmlDataModel {
-	return p
+func (ptr *QScxmlDataModel) QScxmlDataModel_PTR() *QScxmlDataModel {
+	return ptr
 }
 
-func (p *QScxmlDataModel) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QObject_PTR().Pointer()
+func (ptr *QScxmlDataModel) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QObject_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QScxmlDataModel) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QObject_PTR().SetPointer(ptr)
+func (ptr *QScxmlDataModel) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QObject_PTR().SetPointer(p)
 	}
 }
 
@@ -605,9 +607,11 @@ func NewQScxmlDataModelFromPointer(ptr unsafe.Pointer) *QScxmlDataModel {
 }
 
 func (ptr *QScxmlDataModel) DestroyQScxmlDataModel() {
-	C.free(ptr.Pointer())
-	qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
-	ptr.SetPointer(nil)
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
+		ptr.SetPointer(nil)
+	}
 }
 
 //export callbackQScxmlDataModel_HasScxmlProperty
@@ -1130,20 +1134,20 @@ type QScxmlEcmaScriptDataModel_ITF interface {
 	QScxmlEcmaScriptDataModel_PTR() *QScxmlEcmaScriptDataModel
 }
 
-func (p *QScxmlEcmaScriptDataModel) QScxmlEcmaScriptDataModel_PTR() *QScxmlEcmaScriptDataModel {
-	return p
+func (ptr *QScxmlEcmaScriptDataModel) QScxmlEcmaScriptDataModel_PTR() *QScxmlEcmaScriptDataModel {
+	return ptr
 }
 
-func (p *QScxmlEcmaScriptDataModel) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QScxmlDataModel_PTR().Pointer()
+func (ptr *QScxmlEcmaScriptDataModel) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QScxmlDataModel_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QScxmlEcmaScriptDataModel) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QScxmlDataModel_PTR().SetPointer(ptr)
+func (ptr *QScxmlEcmaScriptDataModel) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QScxmlDataModel_PTR().SetPointer(p)
 	}
 }
 
@@ -1161,9 +1165,11 @@ func NewQScxmlEcmaScriptDataModelFromPointer(ptr unsafe.Pointer) *QScxmlEcmaScri
 }
 
 func (ptr *QScxmlEcmaScriptDataModel) DestroyQScxmlEcmaScriptDataModel() {
-	C.free(ptr.Pointer())
-	qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
-	ptr.SetPointer(nil)
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
+		ptr.SetPointer(nil)
+	}
 }
 
 func NewQScxmlEcmaScriptDataModel(parent core.QObject_ITF) *QScxmlEcmaScriptDataModel {
@@ -1709,20 +1715,20 @@ type QScxmlError_ITF interface {
 	QScxmlError_PTR() *QScxmlError
 }
 
-func (p *QScxmlError) QScxmlError_PTR() *QScxmlError {
-	return p
+func (ptr *QScxmlError) QScxmlError_PTR() *QScxmlError {
+	return ptr
 }
 
-func (p *QScxmlError) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QScxmlError) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QScxmlError) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QScxmlError) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -1828,20 +1834,20 @@ type QScxmlEvent_ITF interface {
 	QScxmlEvent_PTR() *QScxmlEvent
 }
 
-func (p *QScxmlEvent) QScxmlEvent_PTR() *QScxmlEvent {
-	return p
+func (ptr *QScxmlEvent) QScxmlEvent_PTR() *QScxmlEvent {
+	return ptr
 }
 
-func (p *QScxmlEvent) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QEvent_PTR().Pointer()
+func (ptr *QScxmlEvent) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QEvent_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QScxmlEvent) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QEvent_PTR().SetPointer(ptr)
+func (ptr *QScxmlEvent) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QEvent_PTR().SetPointer(p)
 	}
 }
 
@@ -2035,20 +2041,20 @@ type QScxmlEventFilter_ITF interface {
 	QScxmlEventFilter_PTR() *QScxmlEventFilter
 }
 
-func (p *QScxmlEventFilter) QScxmlEventFilter_PTR() *QScxmlEventFilter {
-	return p
+func (ptr *QScxmlEventFilter) QScxmlEventFilter_PTR() *QScxmlEventFilter {
+	return ptr
 }
 
-func (p *QScxmlEventFilter) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QScxmlEventFilter) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QScxmlEventFilter) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QScxmlEventFilter) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -2145,20 +2151,20 @@ type QScxmlNullDataModel_ITF interface {
 	QScxmlNullDataModel_PTR() *QScxmlNullDataModel
 }
 
-func (p *QScxmlNullDataModel) QScxmlNullDataModel_PTR() *QScxmlNullDataModel {
-	return p
+func (ptr *QScxmlNullDataModel) QScxmlNullDataModel_PTR() *QScxmlNullDataModel {
+	return ptr
 }
 
-func (p *QScxmlNullDataModel) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QScxmlDataModel_PTR().Pointer()
+func (ptr *QScxmlNullDataModel) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QScxmlDataModel_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QScxmlNullDataModel) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QScxmlDataModel_PTR().SetPointer(ptr)
+func (ptr *QScxmlNullDataModel) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QScxmlDataModel_PTR().SetPointer(p)
 	}
 }
 
@@ -2176,9 +2182,11 @@ func NewQScxmlNullDataModelFromPointer(ptr unsafe.Pointer) *QScxmlNullDataModel 
 }
 
 func (ptr *QScxmlNullDataModel) DestroyQScxmlNullDataModel() {
-	C.free(ptr.Pointer())
-	qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
-	ptr.SetPointer(nil)
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
+		ptr.SetPointer(nil)
+	}
 }
 
 func NewQScxmlNullDataModel(parent core.QObject_ITF) *QScxmlNullDataModel {
@@ -2717,20 +2725,20 @@ type QScxmlParser_ITF interface {
 	QScxmlParser_PTR() *QScxmlParser
 }
 
-func (p *QScxmlParser) QScxmlParser_PTR() *QScxmlParser {
-	return p
+func (ptr *QScxmlParser) QScxmlParser_PTR() *QScxmlParser {
+	return ptr
 }
 
-func (p *QScxmlParser) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QScxmlParser) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QScxmlParser) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QScxmlParser) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -2858,20 +2866,20 @@ type QScxmlStateMachine_ITF interface {
 	QScxmlStateMachine_PTR() *QScxmlStateMachine
 }
 
-func (p *QScxmlStateMachine) QScxmlStateMachine_PTR() *QScxmlStateMachine {
-	return p
+func (ptr *QScxmlStateMachine) QScxmlStateMachine_PTR() *QScxmlStateMachine {
+	return ptr
 }
 
-func (p *QScxmlStateMachine) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QObject_PTR().Pointer()
+func (ptr *QScxmlStateMachine) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QObject_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QScxmlStateMachine) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QObject_PTR().SetPointer(ptr)
+func (ptr *QScxmlStateMachine) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QObject_PTR().SetPointer(p)
 	}
 }
 
@@ -2889,9 +2897,11 @@ func NewQScxmlStateMachineFromPointer(ptr unsafe.Pointer) *QScxmlStateMachine {
 }
 
 func (ptr *QScxmlStateMachine) DestroyQScxmlStateMachine() {
-	C.free(ptr.Pointer())
-	qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
-	ptr.SetPointer(nil)
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
+		ptr.SetPointer(nil)
+	}
 }
 
 func (ptr *QScxmlStateMachine) IsInitialized() bool {

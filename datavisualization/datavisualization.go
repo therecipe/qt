@@ -32,20 +32,20 @@ type Q3DBars_ITF interface {
 	Q3DBars_PTR() *Q3DBars
 }
 
-func (p *Q3DBars) Q3DBars_PTR() *Q3DBars {
-	return p
+func (ptr *Q3DBars) Q3DBars_PTR() *Q3DBars {
+	return ptr
 }
 
-func (p *Q3DBars) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *Q3DBars) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *Q3DBars) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *Q3DBars) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -631,20 +631,20 @@ type Q3DCamera_ITF interface {
 	Q3DCamera_PTR() *Q3DCamera
 }
 
-func (p *Q3DCamera) Q3DCamera_PTR() *Q3DCamera {
-	return p
+func (ptr *Q3DCamera) Q3DCamera_PTR() *Q3DCamera {
+	return ptr
 }
 
-func (p *Q3DCamera) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *Q3DCamera) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *Q3DCamera) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *Q3DCamera) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -1134,20 +1134,20 @@ type Q3DInputHandler_ITF interface {
 	Q3DInputHandler_PTR() *Q3DInputHandler
 }
 
-func (p *Q3DInputHandler) Q3DInputHandler_PTR() *Q3DInputHandler {
-	return p
+func (ptr *Q3DInputHandler) Q3DInputHandler_PTR() *Q3DInputHandler {
+	return ptr
 }
 
-func (p *Q3DInputHandler) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *Q3DInputHandler) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *Q3DInputHandler) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *Q3DInputHandler) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -1527,20 +1527,20 @@ type Q3DLight_ITF interface {
 	Q3DLight_PTR() *Q3DLight
 }
 
-func (p *Q3DLight) Q3DLight_PTR() *Q3DLight {
-	return p
+func (ptr *Q3DLight) Q3DLight_PTR() *Q3DLight {
+	return ptr
 }
 
-func (p *Q3DLight) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *Q3DLight) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *Q3DLight) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *Q3DLight) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -1608,20 +1608,20 @@ type Q3DObject_ITF interface {
 	Q3DObject_PTR() *Q3DObject
 }
 
-func (p *Q3DObject) Q3DObject_PTR() *Q3DObject {
-	return p
+func (ptr *Q3DObject) Q3DObject_PTR() *Q3DObject {
+	return ptr
 }
 
-func (p *Q3DObject) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *Q3DObject) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *Q3DObject) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *Q3DObject) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -1789,20 +1789,20 @@ type Q3DScatter_ITF interface {
 	Q3DScatter_PTR() *Q3DScatter
 }
 
-func (p *Q3DScatter) Q3DScatter_PTR() *Q3DScatter {
-	return p
+func (ptr *Q3DScatter) Q3DScatter_PTR() *Q3DScatter {
+	return ptr
 }
 
-func (p *Q3DScatter) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *Q3DScatter) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *Q3DScatter) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *Q3DScatter) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -2096,20 +2096,20 @@ type Q3DScene_ITF interface {
 	Q3DScene_PTR() *Q3DScene
 }
 
-func (p *Q3DScene) Q3DScene_PTR() *Q3DScene {
-	return p
+func (ptr *Q3DScene) Q3DScene_PTR() *Q3DScene {
+	return ptr
 }
 
-func (p *Q3DScene) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *Q3DScene) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *Q3DScene) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *Q3DScene) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -2627,20 +2627,20 @@ type Q3DSurface_ITF interface {
 	Q3DSurface_PTR() *Q3DSurface
 }
 
-func (p *Q3DSurface) Q3DSurface_PTR() *Q3DSurface {
-	return p
+func (ptr *Q3DSurface) Q3DSurface_PTR() *Q3DSurface {
+	return ptr
 }
 
-func (p *Q3DSurface) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *Q3DSurface) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *Q3DSurface) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *Q3DSurface) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -3002,20 +3002,20 @@ type Q3DTheme_ITF interface {
 	Q3DTheme_PTR() *Q3DTheme
 }
 
-func (p *Q3DTheme) Q3DTheme_PTR() *Q3DTheme {
-	return p
+func (ptr *Q3DTheme) Q3DTheme_PTR() *Q3DTheme {
+	return ptr
 }
 
-func (p *Q3DTheme) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *Q3DTheme) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *Q3DTheme) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *Q3DTheme) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -4014,20 +4014,20 @@ type QAbstract3DAxis_ITF interface {
 	QAbstract3DAxis_PTR() *QAbstract3DAxis
 }
 
-func (p *QAbstract3DAxis) QAbstract3DAxis_PTR() *QAbstract3DAxis {
-	return p
+func (ptr *QAbstract3DAxis) QAbstract3DAxis_PTR() *QAbstract3DAxis {
+	return ptr
 }
 
-func (p *QAbstract3DAxis) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QAbstract3DAxis) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QAbstract3DAxis) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QAbstract3DAxis) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -4564,20 +4564,20 @@ type QAbstract3DGraph_ITF interface {
 	QAbstract3DGraph_PTR() *QAbstract3DGraph
 }
 
-func (p *QAbstract3DGraph) QAbstract3DGraph_PTR() *QAbstract3DGraph {
-	return p
+func (ptr *QAbstract3DGraph) QAbstract3DGraph_PTR() *QAbstract3DGraph {
+	return ptr
 }
 
-func (p *QAbstract3DGraph) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QAbstract3DGraph) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QAbstract3DGraph) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QAbstract3DGraph) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -5603,20 +5603,20 @@ type QAbstract3DInputHandler_ITF interface {
 	QAbstract3DInputHandler_PTR() *QAbstract3DInputHandler
 }
 
-func (p *QAbstract3DInputHandler) QAbstract3DInputHandler_PTR() *QAbstract3DInputHandler {
-	return p
+func (ptr *QAbstract3DInputHandler) QAbstract3DInputHandler_PTR() *QAbstract3DInputHandler {
+	return ptr
 }
 
-func (p *QAbstract3DInputHandler) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QAbstract3DInputHandler) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QAbstract3DInputHandler) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QAbstract3DInputHandler) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -6086,20 +6086,20 @@ type QAbstract3DSeries_ITF interface {
 	QAbstract3DSeries_PTR() *QAbstract3DSeries
 }
 
-func (p *QAbstract3DSeries) QAbstract3DSeries_PTR() *QAbstract3DSeries {
-	return p
+func (ptr *QAbstract3DSeries) QAbstract3DSeries_PTR() *QAbstract3DSeries {
+	return ptr
 }
 
-func (p *QAbstract3DSeries) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QAbstract3DSeries) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QAbstract3DSeries) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QAbstract3DSeries) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -6881,20 +6881,20 @@ type QAbstractDataProxy_ITF interface {
 	QAbstractDataProxy_PTR() *QAbstractDataProxy
 }
 
-func (p *QAbstractDataProxy) QAbstractDataProxy_PTR() *QAbstractDataProxy {
-	return p
+func (ptr *QAbstractDataProxy) QAbstractDataProxy_PTR() *QAbstractDataProxy {
+	return ptr
 }
 
-func (p *QAbstractDataProxy) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QAbstractDataProxy) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QAbstractDataProxy) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QAbstractDataProxy) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -6965,20 +6965,20 @@ type QBar3DSeries_ITF interface {
 	QBar3DSeries_PTR() *QBar3DSeries
 }
 
-func (p *QBar3DSeries) QBar3DSeries_PTR() *QBar3DSeries {
-	return p
+func (ptr *QBar3DSeries) QBar3DSeries_PTR() *QBar3DSeries {
+	return ptr
 }
 
-func (p *QBar3DSeries) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QBar3DSeries) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QBar3DSeries) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QBar3DSeries) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -7190,20 +7190,20 @@ type QBarDataItem_ITF interface {
 	QBarDataItem_PTR() *QBarDataItem
 }
 
-func (p *QBarDataItem) QBarDataItem_PTR() *QBarDataItem {
-	return p
+func (ptr *QBarDataItem) QBarDataItem_PTR() *QBarDataItem {
+	return ptr
 }
 
-func (p *QBarDataItem) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QBarDataItem) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QBarDataItem) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QBarDataItem) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -7284,20 +7284,20 @@ type QBarDataProxy_ITF interface {
 	QBarDataProxy_PTR() *QBarDataProxy
 }
 
-func (p *QBarDataProxy) QBarDataProxy_PTR() *QBarDataProxy {
-	return p
+func (ptr *QBarDataProxy) QBarDataProxy_PTR() *QBarDataProxy {
+	return ptr
 }
 
-func (p *QBarDataProxy) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QBarDataProxy) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QBarDataProxy) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QBarDataProxy) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -7737,20 +7737,20 @@ type QCategory3DAxis_ITF interface {
 	QCategory3DAxis_PTR() *QCategory3DAxis
 }
 
-func (p *QCategory3DAxis) QCategory3DAxis_PTR() *QCategory3DAxis {
-	return p
+func (ptr *QCategory3DAxis) QCategory3DAxis_PTR() *QCategory3DAxis {
+	return ptr
 }
 
-func (p *QCategory3DAxis) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QCategory3DAxis) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QCategory3DAxis) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QCategory3DAxis) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -7862,20 +7862,20 @@ type QCustom3DItem_ITF interface {
 	QCustom3DItem_PTR() *QCustom3DItem
 }
 
-func (p *QCustom3DItem) QCustom3DItem_PTR() *QCustom3DItem {
-	return p
+func (ptr *QCustom3DItem) QCustom3DItem_PTR() *QCustom3DItem {
+	return ptr
 }
 
-func (p *QCustom3DItem) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QCustom3DItem) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QCustom3DItem) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QCustom3DItem) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -8353,20 +8353,20 @@ type QCustom3DLabel_ITF interface {
 	QCustom3DLabel_PTR() *QCustom3DLabel
 }
 
-func (p *QCustom3DLabel) QCustom3DLabel_PTR() *QCustom3DLabel {
-	return p
+func (ptr *QCustom3DLabel) QCustom3DLabel_PTR() *QCustom3DLabel {
+	return ptr
 }
 
-func (p *QCustom3DLabel) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QCustom3DLabel) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QCustom3DLabel) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QCustom3DLabel) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -8744,20 +8744,20 @@ type QCustom3DVolume_ITF interface {
 	QCustom3DVolume_PTR() *QCustom3DVolume
 }
 
-func (p *QCustom3DVolume) QCustom3DVolume_PTR() *QCustom3DVolume {
-	return p
+func (ptr *QCustom3DVolume) QCustom3DVolume_PTR() *QCustom3DVolume {
+	return ptr
 }
 
-func (p *QCustom3DVolume) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QCustom3DVolume) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QCustom3DVolume) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QCustom3DVolume) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -9576,20 +9576,20 @@ type QHeightMapSurfaceDataProxy_ITF interface {
 	QHeightMapSurfaceDataProxy_PTR() *QHeightMapSurfaceDataProxy
 }
 
-func (p *QHeightMapSurfaceDataProxy) QHeightMapSurfaceDataProxy_PTR() *QHeightMapSurfaceDataProxy {
-	return p
+func (ptr *QHeightMapSurfaceDataProxy) QHeightMapSurfaceDataProxy_PTR() *QHeightMapSurfaceDataProxy {
+	return ptr
 }
 
-func (p *QHeightMapSurfaceDataProxy) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QHeightMapSurfaceDataProxy) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QHeightMapSurfaceDataProxy) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QHeightMapSurfaceDataProxy) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -9942,20 +9942,20 @@ type QItemModelBarDataProxy_ITF interface {
 	QItemModelBarDataProxy_PTR() *QItemModelBarDataProxy
 }
 
-func (p *QItemModelBarDataProxy) QItemModelBarDataProxy_PTR() *QItemModelBarDataProxy {
-	return p
+func (ptr *QItemModelBarDataProxy) QItemModelBarDataProxy_PTR() *QItemModelBarDataProxy {
+	return ptr
 }
 
-func (p *QItemModelBarDataProxy) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QItemModelBarDataProxy) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QItemModelBarDataProxy) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QItemModelBarDataProxy) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -10967,20 +10967,20 @@ type QItemModelScatterDataProxy_ITF interface {
 	QItemModelScatterDataProxy_PTR() *QItemModelScatterDataProxy
 }
 
-func (p *QItemModelScatterDataProxy) QItemModelScatterDataProxy_PTR() *QItemModelScatterDataProxy {
-	return p
+func (ptr *QItemModelScatterDataProxy) QItemModelScatterDataProxy_PTR() *QItemModelScatterDataProxy {
+	return ptr
 }
 
-func (p *QItemModelScatterDataProxy) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QItemModelScatterDataProxy) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QItemModelScatterDataProxy) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QItemModelScatterDataProxy) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -11689,20 +11689,20 @@ type QItemModelSurfaceDataProxy_ITF interface {
 	QItemModelSurfaceDataProxy_PTR() *QItemModelSurfaceDataProxy
 }
 
-func (p *QItemModelSurfaceDataProxy) QItemModelSurfaceDataProxy_PTR() *QItemModelSurfaceDataProxy {
-	return p
+func (ptr *QItemModelSurfaceDataProxy) QItemModelSurfaceDataProxy_PTR() *QItemModelSurfaceDataProxy {
+	return ptr
 }
 
-func (p *QItemModelSurfaceDataProxy) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QItemModelSurfaceDataProxy) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QItemModelSurfaceDataProxy) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QItemModelSurfaceDataProxy) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -12856,20 +12856,20 @@ type QLogValue3DAxisFormatter_ITF interface {
 	QLogValue3DAxisFormatter_PTR() *QLogValue3DAxisFormatter
 }
 
-func (p *QLogValue3DAxisFormatter) QLogValue3DAxisFormatter_PTR() *QLogValue3DAxisFormatter {
-	return p
+func (ptr *QLogValue3DAxisFormatter) QLogValue3DAxisFormatter_PTR() *QLogValue3DAxisFormatter {
+	return ptr
 }
 
-func (p *QLogValue3DAxisFormatter) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QLogValue3DAxisFormatter) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QLogValue3DAxisFormatter) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QLogValue3DAxisFormatter) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -13063,20 +13063,20 @@ type QScatter3DSeries_ITF interface {
 	QScatter3DSeries_PTR() *QScatter3DSeries
 }
 
-func (p *QScatter3DSeries) QScatter3DSeries_PTR() *QScatter3DSeries {
-	return p
+func (ptr *QScatter3DSeries) QScatter3DSeries_PTR() *QScatter3DSeries {
+	return ptr
 }
 
-func (p *QScatter3DSeries) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QScatter3DSeries) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QScatter3DSeries) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QScatter3DSeries) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -13282,20 +13282,20 @@ type QScatterDataItem_ITF interface {
 	QScatterDataItem_PTR() *QScatterDataItem
 }
 
-func (p *QScatterDataItem) QScatterDataItem_PTR() *QScatterDataItem {
-	return p
+func (ptr *QScatterDataItem) QScatterDataItem_PTR() *QScatterDataItem {
+	return ptr
 }
 
-func (p *QScatterDataItem) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QScatterDataItem) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QScatterDataItem) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QScatterDataItem) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -13419,20 +13419,20 @@ type QScatterDataProxy_ITF interface {
 	QScatterDataProxy_PTR() *QScatterDataProxy
 }
 
-func (p *QScatterDataProxy) QScatterDataProxy_PTR() *QScatterDataProxy {
-	return p
+func (ptr *QScatterDataProxy) QScatterDataProxy_PTR() *QScatterDataProxy {
+	return ptr
 }
 
-func (p *QScatterDataProxy) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QScatterDataProxy) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QScatterDataProxy) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QScatterDataProxy) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -13759,20 +13759,20 @@ type QSurface3DSeries_ITF interface {
 	QSurface3DSeries_PTR() *QSurface3DSeries
 }
 
-func (p *QSurface3DSeries) QSurface3DSeries_PTR() *QSurface3DSeries {
-	return p
+func (ptr *QSurface3DSeries) QSurface3DSeries_PTR() *QSurface3DSeries {
+	return ptr
 }
 
-func (p *QSurface3DSeries) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QSurface3DSeries) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QSurface3DSeries) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QSurface3DSeries) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -14152,20 +14152,20 @@ type QSurfaceDataItem_ITF interface {
 	QSurfaceDataItem_PTR() *QSurfaceDataItem
 }
 
-func (p *QSurfaceDataItem) QSurfaceDataItem_PTR() *QSurfaceDataItem {
-	return p
+func (ptr *QSurfaceDataItem) QSurfaceDataItem_PTR() *QSurfaceDataItem {
+	return ptr
 }
 
-func (p *QSurfaceDataItem) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QSurfaceDataItem) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QSurfaceDataItem) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QSurfaceDataItem) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -14268,20 +14268,20 @@ type QSurfaceDataProxy_ITF interface {
 	QSurfaceDataProxy_PTR() *QSurfaceDataProxy
 }
 
-func (p *QSurfaceDataProxy) QSurfaceDataProxy_PTR() *QSurfaceDataProxy {
-	return p
+func (ptr *QSurfaceDataProxy) QSurfaceDataProxy_PTR() *QSurfaceDataProxy {
+	return ptr
 }
 
-func (p *QSurfaceDataProxy) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QSurfaceDataProxy) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QSurfaceDataProxy) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QSurfaceDataProxy) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -14663,20 +14663,20 @@ type QTouch3DInputHandler_ITF interface {
 	QTouch3DInputHandler_PTR() *QTouch3DInputHandler
 }
 
-func (p *QTouch3DInputHandler) QTouch3DInputHandler_PTR() *QTouch3DInputHandler {
-	return p
+func (ptr *QTouch3DInputHandler) QTouch3DInputHandler_PTR() *QTouch3DInputHandler {
+	return ptr
 }
 
-func (p *QTouch3DInputHandler) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QTouch3DInputHandler) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QTouch3DInputHandler) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QTouch3DInputHandler) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -14780,20 +14780,20 @@ type QValue3DAxis_ITF interface {
 	QValue3DAxis_PTR() *QValue3DAxis
 }
 
-func (p *QValue3DAxis) QValue3DAxis_PTR() *QValue3DAxis {
-	return p
+func (ptr *QValue3DAxis) QValue3DAxis_PTR() *QValue3DAxis {
+	return ptr
 }
 
-func (p *QValue3DAxis) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QValue3DAxis) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QValue3DAxis) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QValue3DAxis) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -15075,20 +15075,20 @@ type QValue3DAxisFormatter_ITF interface {
 	QValue3DAxisFormatter_PTR() *QValue3DAxisFormatter
 }
 
-func (p *QValue3DAxisFormatter) QValue3DAxisFormatter_PTR() *QValue3DAxisFormatter {
-	return p
+func (ptr *QValue3DAxisFormatter) QValue3DAxisFormatter_PTR() *QValue3DAxisFormatter {
+	return ptr
 }
 
-func (p *QValue3DAxisFormatter) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QValue3DAxisFormatter) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QValue3DAxisFormatter) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QValue3DAxisFormatter) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 

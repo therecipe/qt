@@ -35,20 +35,20 @@ type QQuickAsyncImageProvider_ITF interface {
 	QQuickAsyncImageProvider_PTR() *QQuickAsyncImageProvider
 }
 
-func (p *QQuickAsyncImageProvider) QQuickAsyncImageProvider_PTR() *QQuickAsyncImageProvider {
-	return p
+func (ptr *QQuickAsyncImageProvider) QQuickAsyncImageProvider_PTR() *QQuickAsyncImageProvider {
+	return ptr
 }
 
-func (p *QQuickAsyncImageProvider) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QQuickImageProvider_PTR().Pointer()
+func (ptr *QQuickAsyncImageProvider) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QQuickImageProvider_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QQuickAsyncImageProvider) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QQuickImageProvider_PTR().SetPointer(ptr)
+func (ptr *QQuickAsyncImageProvider) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QQuickImageProvider_PTR().SetPointer(p)
 	}
 }
 
@@ -372,20 +372,20 @@ type QQuickFramebufferObject_ITF interface {
 	QQuickFramebufferObject_PTR() *QQuickFramebufferObject
 }
 
-func (p *QQuickFramebufferObject) QQuickFramebufferObject_PTR() *QQuickFramebufferObject {
-	return p
+func (ptr *QQuickFramebufferObject) QQuickFramebufferObject_PTR() *QQuickFramebufferObject {
+	return ptr
 }
 
-func (p *QQuickFramebufferObject) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QQuickItem_PTR().Pointer()
+func (ptr *QQuickFramebufferObject) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QQuickItem_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QQuickFramebufferObject) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QQuickItem_PTR().SetPointer(ptr)
+func (ptr *QQuickFramebufferObject) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QQuickItem_PTR().SetPointer(p)
 	}
 }
 
@@ -403,9 +403,11 @@ func NewQQuickFramebufferObjectFromPointer(ptr unsafe.Pointer) *QQuickFramebuffe
 }
 
 func (ptr *QQuickFramebufferObject) DestroyQQuickFramebufferObject() {
-	C.free(ptr.Pointer())
-	qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
-	ptr.SetPointer(nil)
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
+		ptr.SetPointer(nil)
+	}
 }
 
 func (ptr *QQuickFramebufferObject) MirrorVertically() bool {
@@ -1992,20 +1994,20 @@ type QQuickImageProvider_ITF interface {
 	QQuickImageProvider_PTR() *QQuickImageProvider
 }
 
-func (p *QQuickImageProvider) QQuickImageProvider_PTR() *QQuickImageProvider {
-	return p
+func (ptr *QQuickImageProvider) QQuickImageProvider_PTR() *QQuickImageProvider {
+	return ptr
 }
 
-func (p *QQuickImageProvider) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QQmlImageProviderBase_PTR().Pointer()
+func (ptr *QQuickImageProvider) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QQmlImageProviderBase_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QQuickImageProvider) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QQmlImageProviderBase_PTR().SetPointer(ptr)
+func (ptr *QQuickImageProvider) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QQmlImageProviderBase_PTR().SetPointer(p)
 	}
 }
 
@@ -2292,20 +2294,20 @@ type QQuickImageResponse_ITF interface {
 	QQuickImageResponse_PTR() *QQuickImageResponse
 }
 
-func (p *QQuickImageResponse) QQuickImageResponse_PTR() *QQuickImageResponse {
-	return p
+func (ptr *QQuickImageResponse) QQuickImageResponse_PTR() *QQuickImageResponse {
+	return ptr
 }
 
-func (p *QQuickImageResponse) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QObject_PTR().Pointer()
+func (ptr *QQuickImageResponse) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QObject_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QQuickImageResponse) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QObject_PTR().SetPointer(ptr)
+func (ptr *QQuickImageResponse) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QObject_PTR().SetPointer(p)
 	}
 }
 
@@ -2895,21 +2897,21 @@ type QQuickItem_ITF interface {
 	QQuickItem_PTR() *QQuickItem
 }
 
-func (p *QQuickItem) QQuickItem_PTR() *QQuickItem {
-	return p
+func (ptr *QQuickItem) QQuickItem_PTR() *QQuickItem {
+	return ptr
 }
 
-func (p *QQuickItem) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QObject_PTR().Pointer()
+func (ptr *QQuickItem) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QObject_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QQuickItem) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QObject_PTR().SetPointer(ptr)
-		p.QQmlParserStatus_PTR().SetPointer(ptr)
+func (ptr *QQuickItem) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QObject_PTR().SetPointer(p)
+		ptr.QQmlParserStatus_PTR().SetPointer(p)
 	}
 }
 
@@ -5159,20 +5161,20 @@ type QQuickItemGrabResult_ITF interface {
 	QQuickItemGrabResult_PTR() *QQuickItemGrabResult
 }
 
-func (p *QQuickItemGrabResult) QQuickItemGrabResult_PTR() *QQuickItemGrabResult {
-	return p
+func (ptr *QQuickItemGrabResult) QQuickItemGrabResult_PTR() *QQuickItemGrabResult {
+	return ptr
 }
 
-func (p *QQuickItemGrabResult) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QObject_PTR().Pointer()
+func (ptr *QQuickItemGrabResult) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QObject_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QQuickItemGrabResult) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QObject_PTR().SetPointer(ptr)
+func (ptr *QQuickItemGrabResult) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QObject_PTR().SetPointer(p)
 	}
 }
 
@@ -5190,9 +5192,11 @@ func NewQQuickItemGrabResultFromPointer(ptr unsafe.Pointer) *QQuickItemGrabResul
 }
 
 func (ptr *QQuickItemGrabResult) DestroyQQuickItemGrabResult() {
-	C.free(ptr.Pointer())
-	qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
-	ptr.SetPointer(nil)
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
+		ptr.SetPointer(nil)
+	}
 }
 
 func (ptr *QQuickItemGrabResult) Image() *gui.QImage {
@@ -5611,20 +5615,20 @@ type QQuickPaintedItem_ITF interface {
 	QQuickPaintedItem_PTR() *QQuickPaintedItem
 }
 
-func (p *QQuickPaintedItem) QQuickPaintedItem_PTR() *QQuickPaintedItem {
-	return p
+func (ptr *QQuickPaintedItem) QQuickPaintedItem_PTR() *QQuickPaintedItem {
+	return ptr
 }
 
-func (p *QQuickPaintedItem) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QQuickItem_PTR().Pointer()
+func (ptr *QQuickPaintedItem) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QQuickItem_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QQuickPaintedItem) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QQuickItem_PTR().SetPointer(ptr)
+func (ptr *QQuickPaintedItem) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QQuickItem_PTR().SetPointer(p)
 	}
 }
 
@@ -7455,20 +7459,20 @@ type QQuickRenderControl_ITF interface {
 	QQuickRenderControl_PTR() *QQuickRenderControl
 }
 
-func (p *QQuickRenderControl) QQuickRenderControl_PTR() *QQuickRenderControl {
-	return p
+func (ptr *QQuickRenderControl) QQuickRenderControl_PTR() *QQuickRenderControl {
+	return ptr
 }
 
-func (p *QQuickRenderControl) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QObject_PTR().Pointer()
+func (ptr *QQuickRenderControl) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QObject_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QQuickRenderControl) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QObject_PTR().SetPointer(ptr)
+func (ptr *QQuickRenderControl) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QObject_PTR().SetPointer(p)
 	}
 }
 
@@ -8008,20 +8012,20 @@ type QQuickTextDocument_ITF interface {
 	QQuickTextDocument_PTR() *QQuickTextDocument
 }
 
-func (p *QQuickTextDocument) QQuickTextDocument_PTR() *QQuickTextDocument {
-	return p
+func (ptr *QQuickTextDocument) QQuickTextDocument_PTR() *QQuickTextDocument {
+	return ptr
 }
 
-func (p *QQuickTextDocument) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QObject_PTR().Pointer()
+func (ptr *QQuickTextDocument) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QObject_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QQuickTextDocument) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QObject_PTR().SetPointer(ptr)
+func (ptr *QQuickTextDocument) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QObject_PTR().SetPointer(p)
 	}
 }
 
@@ -8039,9 +8043,11 @@ func NewQQuickTextDocumentFromPointer(ptr unsafe.Pointer) *QQuickTextDocument {
 }
 
 func (ptr *QQuickTextDocument) DestroyQQuickTextDocument() {
-	C.free(ptr.Pointer())
-	qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
-	ptr.SetPointer(nil)
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
+		ptr.SetPointer(nil)
+	}
 }
 
 func NewQQuickTextDocument(parent QQuickItem_ITF) *QQuickTextDocument {
@@ -8405,20 +8411,20 @@ type QQuickTextureFactory_ITF interface {
 	QQuickTextureFactory_PTR() *QQuickTextureFactory
 }
 
-func (p *QQuickTextureFactory) QQuickTextureFactory_PTR() *QQuickTextureFactory {
-	return p
+func (ptr *QQuickTextureFactory) QQuickTextureFactory_PTR() *QQuickTextureFactory {
+	return ptr
 }
 
-func (p *QQuickTextureFactory) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QObject_PTR().Pointer()
+func (ptr *QQuickTextureFactory) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QObject_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QQuickTextureFactory) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QObject_PTR().SetPointer(ptr)
+func (ptr *QQuickTextureFactory) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QObject_PTR().SetPointer(p)
 	}
 }
 
@@ -9002,20 +9008,20 @@ type QQuickView_ITF interface {
 	QQuickView_PTR() *QQuickView
 }
 
-func (p *QQuickView) QQuickView_PTR() *QQuickView {
-	return p
+func (ptr *QQuickView) QQuickView_PTR() *QQuickView {
+	return ptr
 }
 
-func (p *QQuickView) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QQuickWindow_PTR().Pointer()
+func (ptr *QQuickView) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QQuickWindow_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QQuickView) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QQuickWindow_PTR().SetPointer(ptr)
+func (ptr *QQuickView) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QQuickWindow_PTR().SetPointer(p)
 	}
 }
 
@@ -11085,20 +11091,20 @@ type QQuickWidget_ITF interface {
 	QQuickWidget_PTR() *QQuickWidget
 }
 
-func (p *QQuickWidget) QQuickWidget_PTR() *QQuickWidget {
-	return p
+func (ptr *QQuickWidget) QQuickWidget_PTR() *QQuickWidget {
+	return ptr
 }
 
-func (p *QQuickWidget) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QWidget_PTR().Pointer()
+func (ptr *QQuickWidget) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QWidget_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QQuickWidget) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QWidget_PTR().SetPointer(ptr)
+func (ptr *QQuickWidget) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QWidget_PTR().SetPointer(p)
 	}
 }
 
@@ -13775,20 +13781,20 @@ type QQuickWindow_ITF interface {
 	QQuickWindow_PTR() *QQuickWindow
 }
 
-func (p *QQuickWindow) QQuickWindow_PTR() *QQuickWindow {
-	return p
+func (ptr *QQuickWindow) QQuickWindow_PTR() *QQuickWindow {
+	return ptr
 }
 
-func (p *QQuickWindow) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QWindow_PTR().Pointer()
+func (ptr *QQuickWindow) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QWindow_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QQuickWindow) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QWindow_PTR().SetPointer(ptr)
+func (ptr *QQuickWindow) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QWindow_PTR().SetPointer(p)
 	}
 }
 
@@ -16435,20 +16441,20 @@ type QSGAbstractRenderer_ITF interface {
 	QSGAbstractRenderer_PTR() *QSGAbstractRenderer
 }
 
-func (p *QSGAbstractRenderer) QSGAbstractRenderer_PTR() *QSGAbstractRenderer {
-	return p
+func (ptr *QSGAbstractRenderer) QSGAbstractRenderer_PTR() *QSGAbstractRenderer {
+	return ptr
 }
 
-func (p *QSGAbstractRenderer) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QObject_PTR().Pointer()
+func (ptr *QSGAbstractRenderer) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QObject_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QSGAbstractRenderer) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QObject_PTR().SetPointer(ptr)
+func (ptr *QSGAbstractRenderer) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QObject_PTR().SetPointer(p)
 	}
 }
 
@@ -16466,9 +16472,11 @@ func NewQSGAbstractRendererFromPointer(ptr unsafe.Pointer) *QSGAbstractRenderer 
 }
 
 func (ptr *QSGAbstractRenderer) DestroyQSGAbstractRenderer() {
-	C.free(ptr.Pointer())
-	qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
-	ptr.SetPointer(nil)
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
+		ptr.SetPointer(nil)
+	}
 }
 
 func (ptr *QSGAbstractRenderer) ClearColor() *gui.QColor {
@@ -16933,20 +16941,20 @@ type QSGBasicGeometryNode_ITF interface {
 	QSGBasicGeometryNode_PTR() *QSGBasicGeometryNode
 }
 
-func (p *QSGBasicGeometryNode) QSGBasicGeometryNode_PTR() *QSGBasicGeometryNode {
-	return p
+func (ptr *QSGBasicGeometryNode) QSGBasicGeometryNode_PTR() *QSGBasicGeometryNode {
+	return ptr
 }
 
-func (p *QSGBasicGeometryNode) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QSGNode_PTR().Pointer()
+func (ptr *QSGBasicGeometryNode) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QSGNode_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QSGBasicGeometryNode) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QSGNode_PTR().SetPointer(ptr)
+func (ptr *QSGBasicGeometryNode) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QSGNode_PTR().SetPointer(p)
 	}
 }
 
@@ -17080,20 +17088,20 @@ type QSGBatchRenderer_ITF interface {
 	QSGBatchRenderer_PTR() *QSGBatchRenderer
 }
 
-func (p *QSGBatchRenderer) QSGBatchRenderer_PTR() *QSGBatchRenderer {
-	return p
+func (ptr *QSGBatchRenderer) QSGBatchRenderer_PTR() *QSGBatchRenderer {
+	return ptr
 }
 
-func (p *QSGBatchRenderer) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QSGBatchRenderer) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QSGBatchRenderer) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QSGBatchRenderer) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -17111,8 +17119,10 @@ func NewQSGBatchRendererFromPointer(ptr unsafe.Pointer) *QSGBatchRenderer {
 }
 
 func (ptr *QSGBatchRenderer) DestroyQSGBatchRenderer() {
-	C.free(ptr.Pointer())
-	ptr.SetPointer(nil)
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
 }
 
 type QSGClipNode struct {
@@ -17124,20 +17134,20 @@ type QSGClipNode_ITF interface {
 	QSGClipNode_PTR() *QSGClipNode
 }
 
-func (p *QSGClipNode) QSGClipNode_PTR() *QSGClipNode {
-	return p
+func (ptr *QSGClipNode) QSGClipNode_PTR() *QSGClipNode {
+	return ptr
 }
 
-func (p *QSGClipNode) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QSGBasicGeometryNode_PTR().Pointer()
+func (ptr *QSGClipNode) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QSGBasicGeometryNode_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QSGClipNode) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QSGBasicGeometryNode_PTR().SetPointer(ptr)
+func (ptr *QSGClipNode) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QSGBasicGeometryNode_PTR().SetPointer(p)
 	}
 }
 
@@ -17277,20 +17287,20 @@ type QSGDynamicTexture_ITF interface {
 	QSGDynamicTexture_PTR() *QSGDynamicTexture
 }
 
-func (p *QSGDynamicTexture) QSGDynamicTexture_PTR() *QSGDynamicTexture {
-	return p
+func (ptr *QSGDynamicTexture) QSGDynamicTexture_PTR() *QSGDynamicTexture {
+	return ptr
 }
 
-func (p *QSGDynamicTexture) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QSGTexture_PTR().Pointer()
+func (ptr *QSGDynamicTexture) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QSGTexture_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QSGDynamicTexture) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QSGTexture_PTR().SetPointer(ptr)
+func (ptr *QSGDynamicTexture) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QSGTexture_PTR().SetPointer(p)
 	}
 }
 
@@ -17308,9 +17318,11 @@ func NewQSGDynamicTextureFromPointer(ptr unsafe.Pointer) *QSGDynamicTexture {
 }
 
 func (ptr *QSGDynamicTexture) DestroyQSGDynamicTexture() {
-	C.free(ptr.Pointer())
-	qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
-	ptr.SetPointer(nil)
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
+		ptr.SetPointer(nil)
+	}
 }
 
 //export callbackQSGDynamicTexture_UpdateTexture
@@ -17979,20 +17991,20 @@ type QSGEngine_ITF interface {
 	QSGEngine_PTR() *QSGEngine
 }
 
-func (p *QSGEngine) QSGEngine_PTR() *QSGEngine {
-	return p
+func (ptr *QSGEngine) QSGEngine_PTR() *QSGEngine {
+	return ptr
 }
 
-func (p *QSGEngine) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QObject_PTR().Pointer()
+func (ptr *QSGEngine) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QObject_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QSGEngine) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QObject_PTR().SetPointer(ptr)
+func (ptr *QSGEngine) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QObject_PTR().SetPointer(p)
 	}
 }
 
@@ -18411,20 +18423,20 @@ type QSGFlatColorMaterial_ITF interface {
 	QSGFlatColorMaterial_PTR() *QSGFlatColorMaterial
 }
 
-func (p *QSGFlatColorMaterial) QSGFlatColorMaterial_PTR() *QSGFlatColorMaterial {
-	return p
+func (ptr *QSGFlatColorMaterial) QSGFlatColorMaterial_PTR() *QSGFlatColorMaterial {
+	return ptr
 }
 
-func (p *QSGFlatColorMaterial) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QSGMaterial_PTR().Pointer()
+func (ptr *QSGFlatColorMaterial) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QSGMaterial_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QSGFlatColorMaterial) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QSGMaterial_PTR().SetPointer(ptr)
+func (ptr *QSGFlatColorMaterial) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QSGMaterial_PTR().SetPointer(p)
 	}
 }
 
@@ -18442,8 +18454,10 @@ func NewQSGFlatColorMaterialFromPointer(ptr unsafe.Pointer) *QSGFlatColorMateria
 }
 
 func (ptr *QSGFlatColorMaterial) DestroyQSGFlatColorMaterial() {
-	C.free(ptr.Pointer())
-	ptr.SetPointer(nil)
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
 }
 
 func NewQSGFlatColorMaterial() *QSGFlatColorMaterial {
@@ -18598,20 +18612,20 @@ type QSGGeometry_ITF interface {
 	QSGGeometry_PTR() *QSGGeometry
 }
 
-func (p *QSGGeometry) QSGGeometry_PTR() *QSGGeometry {
-	return p
+func (ptr *QSGGeometry) QSGGeometry_PTR() *QSGGeometry {
+	return ptr
 }
 
-func (p *QSGGeometry) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QSGGeometry) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QSGGeometry) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QSGGeometry) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -18847,20 +18861,20 @@ type QSGGeometryNode_ITF interface {
 	QSGGeometryNode_PTR() *QSGGeometryNode
 }
 
-func (p *QSGGeometryNode) QSGGeometryNode_PTR() *QSGGeometryNode {
-	return p
+func (ptr *QSGGeometryNode) QSGGeometryNode_PTR() *QSGGeometryNode {
+	return ptr
 }
 
-func (p *QSGGeometryNode) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QSGBasicGeometryNode_PTR().Pointer()
+func (ptr *QSGGeometryNode) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QSGBasicGeometryNode_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QSGGeometryNode) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QSGBasicGeometryNode_PTR().SetPointer(ptr)
+func (ptr *QSGGeometryNode) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QSGBasicGeometryNode_PTR().SetPointer(p)
 	}
 }
 
@@ -19009,20 +19023,20 @@ type QSGMaterial_ITF interface {
 	QSGMaterial_PTR() *QSGMaterial
 }
 
-func (p *QSGMaterial) QSGMaterial_PTR() *QSGMaterial {
-	return p
+func (ptr *QSGMaterial) QSGMaterial_PTR() *QSGMaterial {
+	return ptr
 }
 
-func (p *QSGMaterial) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QSGMaterial) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QSGMaterial) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QSGMaterial) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -19040,9 +19054,11 @@ func NewQSGMaterialFromPointer(ptr unsafe.Pointer) *QSGMaterial {
 }
 
 func (ptr *QSGMaterial) DestroyQSGMaterial() {
-	C.free(ptr.Pointer())
-	qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
-	ptr.SetPointer(nil)
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
+		ptr.SetPointer(nil)
+	}
 }
 
 //export callbackQSGMaterial_Compare
@@ -19166,20 +19182,20 @@ type QSGMaterialShader_ITF interface {
 	QSGMaterialShader_PTR() *QSGMaterialShader
 }
 
-func (p *QSGMaterialShader) QSGMaterialShader_PTR() *QSGMaterialShader {
-	return p
+func (ptr *QSGMaterialShader) QSGMaterialShader_PTR() *QSGMaterialShader {
+	return ptr
 }
 
-func (p *QSGMaterialShader) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QSGMaterialShader) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QSGMaterialShader) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QSGMaterialShader) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -19197,9 +19213,11 @@ func NewQSGMaterialShaderFromPointer(ptr unsafe.Pointer) *QSGMaterialShader {
 }
 
 func (ptr *QSGMaterialShader) DestroyQSGMaterialShader() {
-	C.free(ptr.Pointer())
-	qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
-	ptr.SetPointer(nil)
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
+		ptr.SetPointer(nil)
+	}
 }
 
 //export callbackQSGMaterialShader_FragmentShader
@@ -19464,20 +19482,20 @@ type QSGMaterialType_ITF interface {
 	QSGMaterialType_PTR() *QSGMaterialType
 }
 
-func (p *QSGMaterialType) QSGMaterialType_PTR() *QSGMaterialType {
-	return p
+func (ptr *QSGMaterialType) QSGMaterialType_PTR() *QSGMaterialType {
+	return ptr
 }
 
-func (p *QSGMaterialType) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QSGMaterialType) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QSGMaterialType) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QSGMaterialType) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -19495,8 +19513,10 @@ func NewQSGMaterialTypeFromPointer(ptr unsafe.Pointer) *QSGMaterialType {
 }
 
 func (ptr *QSGMaterialType) DestroyQSGMaterialType() {
-	C.free(ptr.Pointer())
-	ptr.SetPointer(nil)
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
 }
 
 //go:generate stringer -type=QSGNode__DirtyStateBit
@@ -19546,20 +19566,20 @@ type QSGNode_ITF interface {
 	QSGNode_PTR() *QSGNode
 }
 
-func (p *QSGNode) QSGNode_PTR() *QSGNode {
-	return p
+func (ptr *QSGNode) QSGNode_PTR() *QSGNode {
+	return ptr
 }
 
-func (p *QSGNode) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QSGNode) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QSGNode) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QSGNode) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -19819,20 +19839,20 @@ type QSGOpacityNode_ITF interface {
 	QSGOpacityNode_PTR() *QSGOpacityNode
 }
 
-func (p *QSGOpacityNode) QSGOpacityNode_PTR() *QSGOpacityNode {
-	return p
+func (ptr *QSGOpacityNode) QSGOpacityNode_PTR() *QSGOpacityNode {
+	return ptr
 }
 
-func (p *QSGOpacityNode) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QSGNode_PTR().Pointer()
+func (ptr *QSGOpacityNode) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QSGNode_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QSGOpacityNode) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QSGNode_PTR().SetPointer(ptr)
+func (ptr *QSGOpacityNode) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QSGNode_PTR().SetPointer(p)
 	}
 }
 
@@ -19957,20 +19977,20 @@ type QSGOpaqueTextureMaterial_ITF interface {
 	QSGOpaqueTextureMaterial_PTR() *QSGOpaqueTextureMaterial
 }
 
-func (p *QSGOpaqueTextureMaterial) QSGOpaqueTextureMaterial_PTR() *QSGOpaqueTextureMaterial {
-	return p
+func (ptr *QSGOpaqueTextureMaterial) QSGOpaqueTextureMaterial_PTR() *QSGOpaqueTextureMaterial {
+	return ptr
 }
 
-func (p *QSGOpaqueTextureMaterial) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QSGMaterial_PTR().Pointer()
+func (ptr *QSGOpaqueTextureMaterial) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QSGMaterial_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QSGOpaqueTextureMaterial) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QSGMaterial_PTR().SetPointer(ptr)
+func (ptr *QSGOpaqueTextureMaterial) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QSGMaterial_PTR().SetPointer(p)
 	}
 }
 
@@ -19988,8 +20008,10 @@ func NewQSGOpaqueTextureMaterialFromPointer(ptr unsafe.Pointer) *QSGOpaqueTextur
 }
 
 func (ptr *QSGOpaqueTextureMaterial) DestroyQSGOpaqueTextureMaterial() {
-	C.free(ptr.Pointer())
-	ptr.SetPointer(nil)
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
 }
 
 func NewQSGOpaqueTextureMaterial() *QSGOpaqueTextureMaterial {
@@ -20207,20 +20229,20 @@ type QSGSimpleMaterial_ITF interface {
 	QSGSimpleMaterial_PTR() *QSGSimpleMaterial
 }
 
-func (p *QSGSimpleMaterial) QSGSimpleMaterial_PTR() *QSGSimpleMaterial {
-	return p
+func (ptr *QSGSimpleMaterial) QSGSimpleMaterial_PTR() *QSGSimpleMaterial {
+	return ptr
 }
 
-func (p *QSGSimpleMaterial) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QSGMaterial_PTR().Pointer()
+func (ptr *QSGSimpleMaterial) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QSGMaterial_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QSGSimpleMaterial) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QSGMaterial_PTR().SetPointer(ptr)
+func (ptr *QSGSimpleMaterial) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QSGMaterial_PTR().SetPointer(p)
 	}
 }
 
@@ -20238,8 +20260,10 @@ func NewQSGSimpleMaterialFromPointer(ptr unsafe.Pointer) *QSGSimpleMaterial {
 }
 
 func (ptr *QSGSimpleMaterial) DestroyQSGSimpleMaterial() {
-	C.free(ptr.Pointer())
-	ptr.SetPointer(nil)
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
 }
 
 type QSGSimpleMaterialShader struct {
@@ -20251,20 +20275,20 @@ type QSGSimpleMaterialShader_ITF interface {
 	QSGSimpleMaterialShader_PTR() *QSGSimpleMaterialShader
 }
 
-func (p *QSGSimpleMaterialShader) QSGSimpleMaterialShader_PTR() *QSGSimpleMaterialShader {
-	return p
+func (ptr *QSGSimpleMaterialShader) QSGSimpleMaterialShader_PTR() *QSGSimpleMaterialShader {
+	return ptr
 }
 
-func (p *QSGSimpleMaterialShader) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QSGMaterialShader_PTR().Pointer()
+func (ptr *QSGSimpleMaterialShader) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QSGMaterialShader_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QSGSimpleMaterialShader) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QSGMaterialShader_PTR().SetPointer(ptr)
+func (ptr *QSGSimpleMaterialShader) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QSGMaterialShader_PTR().SetPointer(p)
 	}
 }
 
@@ -20282,9 +20306,11 @@ func NewQSGSimpleMaterialShaderFromPointer(ptr unsafe.Pointer) *QSGSimpleMateria
 }
 
 func (ptr *QSGSimpleMaterialShader) DestroyQSGSimpleMaterialShader() {
-	C.free(ptr.Pointer())
-	qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
-	ptr.SetPointer(nil)
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
+		ptr.SetPointer(nil)
+	}
 }
 
 type QSGSimpleRectNode struct {
@@ -20296,20 +20322,20 @@ type QSGSimpleRectNode_ITF interface {
 	QSGSimpleRectNode_PTR() *QSGSimpleRectNode
 }
 
-func (p *QSGSimpleRectNode) QSGSimpleRectNode_PTR() *QSGSimpleRectNode {
-	return p
+func (ptr *QSGSimpleRectNode) QSGSimpleRectNode_PTR() *QSGSimpleRectNode {
+	return ptr
 }
 
-func (p *QSGSimpleRectNode) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QSGGeometryNode_PTR().Pointer()
+func (ptr *QSGSimpleRectNode) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QSGGeometryNode_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QSGSimpleRectNode) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QSGGeometryNode_PTR().SetPointer(ptr)
+func (ptr *QSGSimpleRectNode) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QSGGeometryNode_PTR().SetPointer(p)
 	}
 }
 
@@ -20327,8 +20353,10 @@ func NewQSGSimpleRectNodeFromPointer(ptr unsafe.Pointer) *QSGSimpleRectNode {
 }
 
 func (ptr *QSGSimpleRectNode) DestroyQSGSimpleRectNode() {
-	C.free(ptr.Pointer())
-	ptr.SetPointer(nil)
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
 }
 
 func NewQSGSimpleRectNode2() *QSGSimpleRectNode {
@@ -20472,20 +20500,20 @@ type QSGSimpleTextureNode_ITF interface {
 	QSGSimpleTextureNode_PTR() *QSGSimpleTextureNode
 }
 
-func (p *QSGSimpleTextureNode) QSGSimpleTextureNode_PTR() *QSGSimpleTextureNode {
-	return p
+func (ptr *QSGSimpleTextureNode) QSGSimpleTextureNode_PTR() *QSGSimpleTextureNode {
+	return ptr
 }
 
-func (p *QSGSimpleTextureNode) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QSGGeometryNode_PTR().Pointer()
+func (ptr *QSGSimpleTextureNode) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QSGGeometryNode_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QSGSimpleTextureNode) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QSGGeometryNode_PTR().SetPointer(ptr)
+func (ptr *QSGSimpleTextureNode) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QSGGeometryNode_PTR().SetPointer(p)
 	}
 }
 
@@ -20714,20 +20742,20 @@ type QSGTexture_ITF interface {
 	QSGTexture_PTR() *QSGTexture
 }
 
-func (p *QSGTexture) QSGTexture_PTR() *QSGTexture {
-	return p
+func (ptr *QSGTexture) QSGTexture_PTR() *QSGTexture {
+	return ptr
 }
 
-func (p *QSGTexture) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QObject_PTR().Pointer()
+func (ptr *QSGTexture) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QObject_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QSGTexture) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QObject_PTR().SetPointer(ptr)
+func (ptr *QSGTexture) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QObject_PTR().SetPointer(p)
 	}
 }
 
@@ -21449,20 +21477,20 @@ type QSGTextureMaterial_ITF interface {
 	QSGTextureMaterial_PTR() *QSGTextureMaterial
 }
 
-func (p *QSGTextureMaterial) QSGTextureMaterial_PTR() *QSGTextureMaterial {
-	return p
+func (ptr *QSGTextureMaterial) QSGTextureMaterial_PTR() *QSGTextureMaterial {
+	return ptr
 }
 
-func (p *QSGTextureMaterial) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QSGOpaqueTextureMaterial_PTR().Pointer()
+func (ptr *QSGTextureMaterial) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QSGOpaqueTextureMaterial_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QSGTextureMaterial) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QSGOpaqueTextureMaterial_PTR().SetPointer(ptr)
+func (ptr *QSGTextureMaterial) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QSGOpaqueTextureMaterial_PTR().SetPointer(p)
 	}
 }
 
@@ -21480,8 +21508,10 @@ func NewQSGTextureMaterialFromPointer(ptr unsafe.Pointer) *QSGTextureMaterial {
 }
 
 func (ptr *QSGTextureMaterial) DestroyQSGTextureMaterial() {
-	C.free(ptr.Pointer())
-	ptr.SetPointer(nil)
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
 }
 
 //export callbackQSGTextureMaterial_Compare
@@ -21607,20 +21637,20 @@ type QSGTextureProvider_ITF interface {
 	QSGTextureProvider_PTR() *QSGTextureProvider
 }
 
-func (p *QSGTextureProvider) QSGTextureProvider_PTR() *QSGTextureProvider {
-	return p
+func (ptr *QSGTextureProvider) QSGTextureProvider_PTR() *QSGTextureProvider {
+	return ptr
 }
 
-func (p *QSGTextureProvider) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QObject_PTR().Pointer()
+func (ptr *QSGTextureProvider) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QObject_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QSGTextureProvider) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QObject_PTR().SetPointer(ptr)
+func (ptr *QSGTextureProvider) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QObject_PTR().SetPointer(p)
 	}
 }
 
@@ -21638,9 +21668,11 @@ func NewQSGTextureProviderFromPointer(ptr unsafe.Pointer) *QSGTextureProvider {
 }
 
 func (ptr *QSGTextureProvider) DestroyQSGTextureProvider() {
-	C.free(ptr.Pointer())
-	qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
-	ptr.SetPointer(nil)
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
+		ptr.SetPointer(nil)
+	}
 }
 
 //export callbackQSGTextureProvider_Texture
@@ -22049,20 +22081,20 @@ type QSGTransformNode_ITF interface {
 	QSGTransformNode_PTR() *QSGTransformNode
 }
 
-func (p *QSGTransformNode) QSGTransformNode_PTR() *QSGTransformNode {
-	return p
+func (ptr *QSGTransformNode) QSGTransformNode_PTR() *QSGTransformNode {
+	return ptr
 }
 
-func (p *QSGTransformNode) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QSGNode_PTR().Pointer()
+func (ptr *QSGTransformNode) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QSGNode_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QSGTransformNode) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QSGNode_PTR().SetPointer(ptr)
+func (ptr *QSGTransformNode) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QSGNode_PTR().SetPointer(p)
 	}
 }
 
@@ -22187,20 +22219,20 @@ type QSGVertexColorMaterial_ITF interface {
 	QSGVertexColorMaterial_PTR() *QSGVertexColorMaterial
 }
 
-func (p *QSGVertexColorMaterial) QSGVertexColorMaterial_PTR() *QSGVertexColorMaterial {
-	return p
+func (ptr *QSGVertexColorMaterial) QSGVertexColorMaterial_PTR() *QSGVertexColorMaterial {
+	return ptr
 }
 
-func (p *QSGVertexColorMaterial) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QSGMaterial_PTR().Pointer()
+func (ptr *QSGVertexColorMaterial) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QSGMaterial_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QSGVertexColorMaterial) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QSGMaterial_PTR().SetPointer(ptr)
+func (ptr *QSGVertexColorMaterial) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QSGMaterial_PTR().SetPointer(p)
 	}
 }
 
@@ -22218,8 +22250,10 @@ func NewQSGVertexColorMaterialFromPointer(ptr unsafe.Pointer) *QSGVertexColorMat
 }
 
 func (ptr *QSGVertexColorMaterial) DestroyQSGVertexColorMaterial() {
-	C.free(ptr.Pointer())
-	ptr.SetPointer(nil)
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
 }
 
 func NewQSGVertexColorMaterial() *QSGVertexColorMaterial {

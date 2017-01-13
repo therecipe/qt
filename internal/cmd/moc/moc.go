@@ -123,10 +123,10 @@ func (m *appMoc) parseGo(path string) error {
 						meta = parser.SIGNAL
 					case strings.HasPrefix(tag, "slot:"):
 						meta = parser.SLOT
-					case strings.HasPrefix(tag, "prop:"):
+					case strings.HasPrefix(tag, "property:"):
 						meta = parser.PROP
 					default:
-						// only handle signal and slot
+						// only handle signal and slot and properties
 						continue
 					}
 

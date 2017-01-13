@@ -31,20 +31,20 @@ type QMacPasteboardMime_ITF interface {
 	QMacPasteboardMime_PTR() *QMacPasteboardMime
 }
 
-func (p *QMacPasteboardMime) QMacPasteboardMime_PTR() *QMacPasteboardMime {
-	return p
+func (ptr *QMacPasteboardMime) QMacPasteboardMime_PTR() *QMacPasteboardMime {
+	return ptr
 }
 
-func (p *QMacPasteboardMime) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QMacPasteboardMime) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QMacPasteboardMime) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QMacPasteboardMime) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -320,20 +320,20 @@ type QMacToolBar_ITF interface {
 	QMacToolBar_PTR() *QMacToolBar
 }
 
-func (p *QMacToolBar) QMacToolBar_PTR() *QMacToolBar {
-	return p
+func (ptr *QMacToolBar) QMacToolBar_PTR() *QMacToolBar {
+	return ptr
 }
 
-func (p *QMacToolBar) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QObject_PTR().Pointer()
+func (ptr *QMacToolBar) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QObject_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QMacToolBar) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QObject_PTR().SetPointer(ptr)
+func (ptr *QMacToolBar) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QObject_PTR().SetPointer(p)
 	}
 }
 
@@ -819,20 +819,20 @@ type QMacToolBarItem_ITF interface {
 	QMacToolBarItem_PTR() *QMacToolBarItem
 }
 
-func (p *QMacToolBarItem) QMacToolBarItem_PTR() *QMacToolBarItem {
-	return p
+func (ptr *QMacToolBarItem) QMacToolBarItem_PTR() *QMacToolBarItem {
+	return ptr
 }
 
-func (p *QMacToolBarItem) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QObject_PTR().Pointer()
+func (ptr *QMacToolBarItem) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QObject_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QMacToolBarItem) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QObject_PTR().SetPointer(ptr)
+func (ptr *QMacToolBarItem) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QObject_PTR().SetPointer(p)
 	}
 }
 

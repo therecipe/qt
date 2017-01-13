@@ -58,20 +58,20 @@ type OSXBluetooth_ITF interface {
 	OSXBluetooth_PTR() *OSXBluetooth
 }
 
-func (p *OSXBluetooth) OSXBluetooth_PTR() *OSXBluetooth {
-	return p
+func (ptr *OSXBluetooth) OSXBluetooth_PTR() *OSXBluetooth {
+	return ptr
 }
 
-func (p *OSXBluetooth) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *OSXBluetooth) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *OSXBluetooth) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *OSXBluetooth) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -89,8 +89,10 @@ func NewOSXBluetoothFromPointer(ptr unsafe.Pointer) *OSXBluetooth {
 }
 
 func (ptr *OSXBluetooth) DestroyOSXBluetooth() {
-	C.free(ptr.Pointer())
-	ptr.SetPointer(nil)
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
 }
 
 //go:generate stringer -type=QBluetooth__AttAccessConstraint
@@ -123,20 +125,20 @@ type QBluetooth_ITF interface {
 	QBluetooth_PTR() *QBluetooth
 }
 
-func (p *QBluetooth) QBluetooth_PTR() *QBluetooth {
-	return p
+func (ptr *QBluetooth) QBluetooth_PTR() *QBluetooth {
+	return ptr
 }
 
-func (p *QBluetooth) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QBluetooth) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QBluetooth) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QBluetooth) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -154,8 +156,10 @@ func NewQBluetoothFromPointer(ptr unsafe.Pointer) *QBluetooth {
 }
 
 func (ptr *QBluetooth) DestroyQBluetooth() {
-	C.free(ptr.Pointer())
-	ptr.SetPointer(nil)
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
 }
 
 type QBluetoothAddress struct {
@@ -166,20 +170,20 @@ type QBluetoothAddress_ITF interface {
 	QBluetoothAddress_PTR() *QBluetoothAddress
 }
 
-func (p *QBluetoothAddress) QBluetoothAddress_PTR() *QBluetoothAddress {
-	return p
+func (ptr *QBluetoothAddress) QBluetoothAddress_PTR() *QBluetoothAddress {
+	return ptr
 }
 
-func (p *QBluetoothAddress) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QBluetoothAddress) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QBluetoothAddress) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QBluetoothAddress) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -286,20 +290,20 @@ type QBluetoothDeviceDiscoveryAgent_ITF interface {
 	QBluetoothDeviceDiscoveryAgent_PTR() *QBluetoothDeviceDiscoveryAgent
 }
 
-func (p *QBluetoothDeviceDiscoveryAgent) QBluetoothDeviceDiscoveryAgent_PTR() *QBluetoothDeviceDiscoveryAgent {
-	return p
+func (ptr *QBluetoothDeviceDiscoveryAgent) QBluetoothDeviceDiscoveryAgent_PTR() *QBluetoothDeviceDiscoveryAgent {
+	return ptr
 }
 
-func (p *QBluetoothDeviceDiscoveryAgent) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QObject_PTR().Pointer()
+func (ptr *QBluetoothDeviceDiscoveryAgent) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QObject_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QBluetoothDeviceDiscoveryAgent) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QObject_PTR().SetPointer(ptr)
+func (ptr *QBluetoothDeviceDiscoveryAgent) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QObject_PTR().SetPointer(p)
 	}
 }
 
@@ -1109,20 +1113,20 @@ type QBluetoothDeviceInfo_ITF interface {
 	QBluetoothDeviceInfo_PTR() *QBluetoothDeviceInfo
 }
 
-func (p *QBluetoothDeviceInfo) QBluetoothDeviceInfo_PTR() *QBluetoothDeviceInfo {
-	return p
+func (ptr *QBluetoothDeviceInfo) QBluetoothDeviceInfo_PTR() *QBluetoothDeviceInfo {
+	return ptr
 }
 
-func (p *QBluetoothDeviceInfo) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QBluetoothDeviceInfo) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QBluetoothDeviceInfo) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QBluetoothDeviceInfo) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -1295,20 +1299,20 @@ type QBluetoothHostInfo_ITF interface {
 	QBluetoothHostInfo_PTR() *QBluetoothHostInfo
 }
 
-func (p *QBluetoothHostInfo) QBluetoothHostInfo_PTR() *QBluetoothHostInfo {
-	return p
+func (ptr *QBluetoothHostInfo) QBluetoothHostInfo_PTR() *QBluetoothHostInfo {
+	return ptr
 }
 
-func (p *QBluetoothHostInfo) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QBluetoothHostInfo) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QBluetoothHostInfo) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QBluetoothHostInfo) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -1413,20 +1417,20 @@ type QBluetoothLocalDevice_ITF interface {
 	QBluetoothLocalDevice_PTR() *QBluetoothLocalDevice
 }
 
-func (p *QBluetoothLocalDevice) QBluetoothLocalDevice_PTR() *QBluetoothLocalDevice {
-	return p
+func (ptr *QBluetoothLocalDevice) QBluetoothLocalDevice_PTR() *QBluetoothLocalDevice {
+	return ptr
 }
 
-func (p *QBluetoothLocalDevice) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QObject_PTR().Pointer()
+func (ptr *QBluetoothLocalDevice) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QObject_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QBluetoothLocalDevice) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QObject_PTR().SetPointer(ptr)
+func (ptr *QBluetoothLocalDevice) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QObject_PTR().SetPointer(p)
 	}
 }
 
@@ -2195,20 +2199,20 @@ type QBluetoothServer_ITF interface {
 	QBluetoothServer_PTR() *QBluetoothServer
 }
 
-func (p *QBluetoothServer) QBluetoothServer_PTR() *QBluetoothServer {
-	return p
+func (ptr *QBluetoothServer) QBluetoothServer_PTR() *QBluetoothServer {
+	return ptr
 }
 
-func (p *QBluetoothServer) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QObject_PTR().Pointer()
+func (ptr *QBluetoothServer) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QObject_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QBluetoothServer) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QObject_PTR().SetPointer(ptr)
+func (ptr *QBluetoothServer) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QObject_PTR().SetPointer(p)
 	}
 }
 
@@ -2766,20 +2770,20 @@ type QBluetoothServiceDiscoveryAgent_ITF interface {
 	QBluetoothServiceDiscoveryAgent_PTR() *QBluetoothServiceDiscoveryAgent
 }
 
-func (p *QBluetoothServiceDiscoveryAgent) QBluetoothServiceDiscoveryAgent_PTR() *QBluetoothServiceDiscoveryAgent {
-	return p
+func (ptr *QBluetoothServiceDiscoveryAgent) QBluetoothServiceDiscoveryAgent_PTR() *QBluetoothServiceDiscoveryAgent {
+	return ptr
 }
 
-func (p *QBluetoothServiceDiscoveryAgent) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QObject_PTR().Pointer()
+func (ptr *QBluetoothServiceDiscoveryAgent) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QObject_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QBluetoothServiceDiscoveryAgent) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QObject_PTR().SetPointer(ptr)
+func (ptr *QBluetoothServiceDiscoveryAgent) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QObject_PTR().SetPointer(p)
 	}
 }
 
@@ -3483,20 +3487,20 @@ type QBluetoothServiceInfo_ITF interface {
 	QBluetoothServiceInfo_PTR() *QBluetoothServiceInfo
 }
 
-func (p *QBluetoothServiceInfo) QBluetoothServiceInfo_PTR() *QBluetoothServiceInfo {
-	return p
+func (ptr *QBluetoothServiceInfo) QBluetoothServiceInfo_PTR() *QBluetoothServiceInfo {
+	return ptr
 }
 
-func (p *QBluetoothServiceInfo) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QBluetoothServiceInfo) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QBluetoothServiceInfo) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QBluetoothServiceInfo) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -3770,20 +3774,20 @@ type QBluetoothSocket_ITF interface {
 	QBluetoothSocket_PTR() *QBluetoothSocket
 }
 
-func (p *QBluetoothSocket) QBluetoothSocket_PTR() *QBluetoothSocket {
-	return p
+func (ptr *QBluetoothSocket) QBluetoothSocket_PTR() *QBluetoothSocket {
+	return ptr
 }
 
-func (p *QBluetoothSocket) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QIODevice_PTR().Pointer()
+func (ptr *QBluetoothSocket) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QIODevice_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QBluetoothSocket) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QIODevice_PTR().SetPointer(ptr)
+func (ptr *QBluetoothSocket) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QIODevice_PTR().SetPointer(p)
 	}
 }
 
@@ -5098,20 +5102,20 @@ type QBluetoothTransferManager_ITF interface {
 	QBluetoothTransferManager_PTR() *QBluetoothTransferManager
 }
 
-func (p *QBluetoothTransferManager) QBluetoothTransferManager_PTR() *QBluetoothTransferManager {
-	return p
+func (ptr *QBluetoothTransferManager) QBluetoothTransferManager_PTR() *QBluetoothTransferManager {
+	return ptr
 }
 
-func (p *QBluetoothTransferManager) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QObject_PTR().Pointer()
+func (ptr *QBluetoothTransferManager) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QObject_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QBluetoothTransferManager) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QObject_PTR().SetPointer(ptr)
+func (ptr *QBluetoothTransferManager) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QObject_PTR().SetPointer(p)
 	}
 }
 
@@ -5540,20 +5544,20 @@ type QBluetoothTransferReply_ITF interface {
 	QBluetoothTransferReply_PTR() *QBluetoothTransferReply
 }
 
-func (p *QBluetoothTransferReply) QBluetoothTransferReply_PTR() *QBluetoothTransferReply {
-	return p
+func (ptr *QBluetoothTransferReply) QBluetoothTransferReply_PTR() *QBluetoothTransferReply {
+	return ptr
 }
 
-func (p *QBluetoothTransferReply) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QObject_PTR().Pointer()
+func (ptr *QBluetoothTransferReply) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QObject_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QBluetoothTransferReply) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QObject_PTR().SetPointer(ptr)
+func (ptr *QBluetoothTransferReply) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QObject_PTR().SetPointer(p)
 	}
 }
 
@@ -6210,20 +6214,20 @@ type QBluetoothTransferRequest_ITF interface {
 	QBluetoothTransferRequest_PTR() *QBluetoothTransferRequest
 }
 
-func (p *QBluetoothTransferRequest) QBluetoothTransferRequest_PTR() *QBluetoothTransferRequest {
-	return p
+func (ptr *QBluetoothTransferRequest) QBluetoothTransferRequest_PTR() *QBluetoothTransferRequest {
+	return ptr
 }
 
-func (p *QBluetoothTransferRequest) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QBluetoothTransferRequest) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QBluetoothTransferRequest) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QBluetoothTransferRequest) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -6585,20 +6589,20 @@ type QBluetoothUuid_ITF interface {
 	QBluetoothUuid_PTR() *QBluetoothUuid
 }
 
-func (p *QBluetoothUuid) QBluetoothUuid_PTR() *QBluetoothUuid {
-	return p
+func (ptr *QBluetoothUuid) QBluetoothUuid_PTR() *QBluetoothUuid {
+	return ptr
 }
 
-func (p *QBluetoothUuid) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QUuid_PTR().Pointer()
+func (ptr *QBluetoothUuid) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QUuid_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QBluetoothUuid) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QUuid_PTR().SetPointer(ptr)
+func (ptr *QBluetoothUuid) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QUuid_PTR().SetPointer(p)
 	}
 }
 
@@ -6754,20 +6758,20 @@ type QLowEnergyAdvertisingData_ITF interface {
 	QLowEnergyAdvertisingData_PTR() *QLowEnergyAdvertisingData
 }
 
-func (p *QLowEnergyAdvertisingData) QLowEnergyAdvertisingData_PTR() *QLowEnergyAdvertisingData {
-	return p
+func (ptr *QLowEnergyAdvertisingData) QLowEnergyAdvertisingData_PTR() *QLowEnergyAdvertisingData {
+	return ptr
 }
 
-func (p *QLowEnergyAdvertisingData) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QLowEnergyAdvertisingData) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QLowEnergyAdvertisingData) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QLowEnergyAdvertisingData) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -6945,20 +6949,20 @@ type QLowEnergyAdvertisingParameters_ITF interface {
 	QLowEnergyAdvertisingParameters_PTR() *QLowEnergyAdvertisingParameters
 }
 
-func (p *QLowEnergyAdvertisingParameters) QLowEnergyAdvertisingParameters_PTR() *QLowEnergyAdvertisingParameters {
-	return p
+func (ptr *QLowEnergyAdvertisingParameters) QLowEnergyAdvertisingParameters_PTR() *QLowEnergyAdvertisingParameters {
+	return ptr
 }
 
-func (p *QLowEnergyAdvertisingParameters) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QLowEnergyAdvertisingParameters) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QLowEnergyAdvertisingParameters) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QLowEnergyAdvertisingParameters) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -7063,20 +7067,20 @@ type QLowEnergyCharacteristic_ITF interface {
 	QLowEnergyCharacteristic_PTR() *QLowEnergyCharacteristic
 }
 
-func (p *QLowEnergyCharacteristic) QLowEnergyCharacteristic_PTR() *QLowEnergyCharacteristic {
-	return p
+func (ptr *QLowEnergyCharacteristic) QLowEnergyCharacteristic_PTR() *QLowEnergyCharacteristic {
+	return ptr
 }
 
-func (p *QLowEnergyCharacteristic) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QLowEnergyCharacteristic) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QLowEnergyCharacteristic) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QLowEnergyCharacteristic) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -7189,20 +7193,20 @@ type QLowEnergyCharacteristicData_ITF interface {
 	QLowEnergyCharacteristicData_PTR() *QLowEnergyCharacteristicData
 }
 
-func (p *QLowEnergyCharacteristicData) QLowEnergyCharacteristicData_PTR() *QLowEnergyCharacteristicData {
-	return p
+func (ptr *QLowEnergyCharacteristicData) QLowEnergyCharacteristicData_PTR() *QLowEnergyCharacteristicData {
+	return ptr
 }
 
-func (p *QLowEnergyCharacteristicData) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QLowEnergyCharacteristicData) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QLowEnergyCharacteristicData) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QLowEnergyCharacteristicData) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -7375,20 +7379,20 @@ type QLowEnergyConnectionParameters_ITF interface {
 	QLowEnergyConnectionParameters_PTR() *QLowEnergyConnectionParameters
 }
 
-func (p *QLowEnergyConnectionParameters) QLowEnergyConnectionParameters_PTR() *QLowEnergyConnectionParameters {
-	return p
+func (ptr *QLowEnergyConnectionParameters) QLowEnergyConnectionParameters_PTR() *QLowEnergyConnectionParameters {
+	return ptr
 }
 
-func (p *QLowEnergyConnectionParameters) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QLowEnergyConnectionParameters) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QLowEnergyConnectionParameters) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QLowEnergyConnectionParameters) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -7530,20 +7534,20 @@ type QLowEnergyController_ITF interface {
 	QLowEnergyController_PTR() *QLowEnergyController
 }
 
-func (p *QLowEnergyController) QLowEnergyController_PTR() *QLowEnergyController {
-	return p
+func (ptr *QLowEnergyController) QLowEnergyController_PTR() *QLowEnergyController {
+	return ptr
 }
 
-func (p *QLowEnergyController) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QObject_PTR().Pointer()
+func (ptr *QLowEnergyController) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QObject_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QLowEnergyController) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QObject_PTR().SetPointer(ptr)
+func (ptr *QLowEnergyController) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QObject_PTR().SetPointer(p)
 	}
 }
 
@@ -8290,20 +8294,20 @@ type QLowEnergyDescriptor_ITF interface {
 	QLowEnergyDescriptor_PTR() *QLowEnergyDescriptor
 }
 
-func (p *QLowEnergyDescriptor) QLowEnergyDescriptor_PTR() *QLowEnergyDescriptor {
-	return p
+func (ptr *QLowEnergyDescriptor) QLowEnergyDescriptor_PTR() *QLowEnergyDescriptor {
+	return ptr
 }
 
-func (p *QLowEnergyDescriptor) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QLowEnergyDescriptor) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QLowEnergyDescriptor) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QLowEnergyDescriptor) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -8385,20 +8389,20 @@ type QLowEnergyDescriptorData_ITF interface {
 	QLowEnergyDescriptorData_PTR() *QLowEnergyDescriptorData
 }
 
-func (p *QLowEnergyDescriptorData) QLowEnergyDescriptorData_PTR() *QLowEnergyDescriptorData {
-	return p
+func (ptr *QLowEnergyDescriptorData) QLowEnergyDescriptorData_PTR() *QLowEnergyDescriptorData {
+	return ptr
 }
 
-func (p *QLowEnergyDescriptorData) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QLowEnergyDescriptorData) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QLowEnergyDescriptorData) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QLowEnergyDescriptorData) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -8576,20 +8580,20 @@ type QLowEnergyService_ITF interface {
 	QLowEnergyService_PTR() *QLowEnergyService
 }
 
-func (p *QLowEnergyService) QLowEnergyService_PTR() *QLowEnergyService {
-	return p
+func (ptr *QLowEnergyService) QLowEnergyService_PTR() *QLowEnergyService {
+	return ptr
 }
 
-func (p *QLowEnergyService) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QObject_PTR().Pointer()
+func (ptr *QLowEnergyService) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QObject_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QLowEnergyService) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QObject_PTR().SetPointer(ptr)
+func (ptr *QLowEnergyService) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QObject_PTR().SetPointer(p)
 	}
 }
 
@@ -9301,20 +9305,20 @@ type QLowEnergyServiceData_ITF interface {
 	QLowEnergyServiceData_PTR() *QLowEnergyServiceData
 }
 
-func (p *QLowEnergyServiceData) QLowEnergyServiceData_PTR() *QLowEnergyServiceData {
-	return p
+func (ptr *QLowEnergyServiceData) QLowEnergyServiceData_PTR() *QLowEnergyServiceData {
+	return ptr
 }
 
-func (p *QLowEnergyServiceData) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QLowEnergyServiceData) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QLowEnergyServiceData) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QLowEnergyServiceData) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 

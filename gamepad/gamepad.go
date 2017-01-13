@@ -30,20 +30,20 @@ type QGamepad_ITF interface {
 	QGamepad_PTR() *QGamepad
 }
 
-func (p *QGamepad) QGamepad_PTR() *QGamepad {
-	return p
+func (ptr *QGamepad) QGamepad_PTR() *QGamepad {
+	return ptr
 }
 
-func (p *QGamepad) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QObject_PTR().Pointer()
+func (ptr *QGamepad) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QObject_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QGamepad) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QObject_PTR().SetPointer(ptr)
+func (ptr *QGamepad) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QObject_PTR().SetPointer(p)
 	}
 }
 

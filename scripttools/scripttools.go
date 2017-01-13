@@ -79,20 +79,20 @@ type QScriptEngineDebugger_ITF interface {
 	QScriptEngineDebugger_PTR() *QScriptEngineDebugger
 }
 
-func (p *QScriptEngineDebugger) QScriptEngineDebugger_PTR() *QScriptEngineDebugger {
-	return p
+func (ptr *QScriptEngineDebugger) QScriptEngineDebugger_PTR() *QScriptEngineDebugger {
+	return ptr
 }
 
-func (p *QScriptEngineDebugger) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QObject_PTR().Pointer()
+func (ptr *QScriptEngineDebugger) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QObject_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QScriptEngineDebugger) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QObject_PTR().SetPointer(ptr)
+func (ptr *QScriptEngineDebugger) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QObject_PTR().SetPointer(p)
 	}
 }
 

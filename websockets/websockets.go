@@ -32,20 +32,20 @@ type QMaskGenerator_ITF interface {
 	QMaskGenerator_PTR() *QMaskGenerator
 }
 
-func (p *QMaskGenerator) QMaskGenerator_PTR() *QMaskGenerator {
-	return p
+func (ptr *QMaskGenerator) QMaskGenerator_PTR() *QMaskGenerator {
+	return ptr
 }
 
-func (p *QMaskGenerator) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QObject_PTR().Pointer()
+func (ptr *QMaskGenerator) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QObject_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QMaskGenerator) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QObject_PTR().SetPointer(ptr)
+func (ptr *QMaskGenerator) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QObject_PTR().SetPointer(p)
 	}
 }
 
@@ -513,20 +513,20 @@ type QWebSocket_ITF interface {
 	QWebSocket_PTR() *QWebSocket
 }
 
-func (p *QWebSocket) QWebSocket_PTR() *QWebSocket {
-	return p
+func (ptr *QWebSocket) QWebSocket_PTR() *QWebSocket {
+	return ptr
 }
 
-func (p *QWebSocket) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QObject_PTR().Pointer()
+func (ptr *QWebSocket) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QObject_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QWebSocket) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QObject_PTR().SetPointer(ptr)
+func (ptr *QWebSocket) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QObject_PTR().SetPointer(p)
 	}
 }
 
@@ -1684,20 +1684,20 @@ type QWebSocketCorsAuthenticator_ITF interface {
 	QWebSocketCorsAuthenticator_PTR() *QWebSocketCorsAuthenticator
 }
 
-func (p *QWebSocketCorsAuthenticator) QWebSocketCorsAuthenticator_PTR() *QWebSocketCorsAuthenticator {
-	return p
+func (ptr *QWebSocketCorsAuthenticator) QWebSocketCorsAuthenticator_PTR() *QWebSocketCorsAuthenticator {
+	return ptr
 }
 
-func (p *QWebSocketCorsAuthenticator) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QWebSocketCorsAuthenticator) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QWebSocketCorsAuthenticator) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QWebSocketCorsAuthenticator) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -1810,20 +1810,20 @@ type QWebSocketProtocol_ITF interface {
 	QWebSocketProtocol_PTR() *QWebSocketProtocol
 }
 
-func (p *QWebSocketProtocol) QWebSocketProtocol_PTR() *QWebSocketProtocol {
-	return p
+func (ptr *QWebSocketProtocol) QWebSocketProtocol_PTR() *QWebSocketProtocol {
+	return ptr
 }
 
-func (p *QWebSocketProtocol) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QWebSocketProtocol) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QWebSocketProtocol) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QWebSocketProtocol) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -1841,8 +1841,10 @@ func NewQWebSocketProtocolFromPointer(ptr unsafe.Pointer) *QWebSocketProtocol {
 }
 
 func (ptr *QWebSocketProtocol) DestroyQWebSocketProtocol() {
-	C.free(ptr.Pointer())
-	ptr.SetPointer(nil)
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
 }
 
 //go:generate stringer -type=QWebSocketServer__SslMode
@@ -1863,20 +1865,20 @@ type QWebSocketServer_ITF interface {
 	QWebSocketServer_PTR() *QWebSocketServer
 }
 
-func (p *QWebSocketServer) QWebSocketServer_PTR() *QWebSocketServer {
-	return p
+func (ptr *QWebSocketServer) QWebSocketServer_PTR() *QWebSocketServer {
+	return ptr
 }
 
-func (p *QWebSocketServer) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QObject_PTR().Pointer()
+func (ptr *QWebSocketServer) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QObject_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QWebSocketServer) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QObject_PTR().SetPointer(ptr)
+func (ptr *QWebSocketServer) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QObject_PTR().SetPointer(p)
 	}
 }
 

@@ -33,20 +33,20 @@ type QAbstractExtensionFactory_ITF interface {
 	QAbstractExtensionFactory_PTR() *QAbstractExtensionFactory
 }
 
-func (p *QAbstractExtensionFactory) QAbstractExtensionFactory_PTR() *QAbstractExtensionFactory {
-	return p
+func (ptr *QAbstractExtensionFactory) QAbstractExtensionFactory_PTR() *QAbstractExtensionFactory {
+	return ptr
 }
 
-func (p *QAbstractExtensionFactory) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QAbstractExtensionFactory) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QAbstractExtensionFactory) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QAbstractExtensionFactory) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -148,20 +148,20 @@ type QAbstractExtensionManager_ITF interface {
 	QAbstractExtensionManager_PTR() *QAbstractExtensionManager
 }
 
-func (p *QAbstractExtensionManager) QAbstractExtensionManager_PTR() *QAbstractExtensionManager {
-	return p
+func (ptr *QAbstractExtensionManager) QAbstractExtensionManager_PTR() *QAbstractExtensionManager {
+	return ptr
 }
 
-func (p *QAbstractExtensionManager) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QAbstractExtensionManager) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QAbstractExtensionManager) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QAbstractExtensionManager) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -325,20 +325,20 @@ type QAbstractFormBuilder_ITF interface {
 	QAbstractFormBuilder_PTR() *QAbstractFormBuilder
 }
 
-func (p *QAbstractFormBuilder) QAbstractFormBuilder_PTR() *QAbstractFormBuilder {
-	return p
+func (ptr *QAbstractFormBuilder) QAbstractFormBuilder_PTR() *QAbstractFormBuilder {
+	return ptr
 }
 
-func (p *QAbstractFormBuilder) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QAbstractFormBuilder) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QAbstractFormBuilder) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QAbstractFormBuilder) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -512,20 +512,20 @@ type QDesignerActionEditorInterface_ITF interface {
 	QDesignerActionEditorInterface_PTR() *QDesignerActionEditorInterface
 }
 
-func (p *QDesignerActionEditorInterface) QDesignerActionEditorInterface_PTR() *QDesignerActionEditorInterface {
-	return p
+func (ptr *QDesignerActionEditorInterface) QDesignerActionEditorInterface_PTR() *QDesignerActionEditorInterface {
+	return ptr
 }
 
-func (p *QDesignerActionEditorInterface) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QWidget_PTR().Pointer()
+func (ptr *QDesignerActionEditorInterface) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QWidget_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QDesignerActionEditorInterface) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QWidget_PTR().SetPointer(ptr)
+func (ptr *QDesignerActionEditorInterface) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QWidget_PTR().SetPointer(p)
 	}
 }
 
@@ -3062,20 +3062,20 @@ type QDesignerContainerExtension_ITF interface {
 	QDesignerContainerExtension_PTR() *QDesignerContainerExtension
 }
 
-func (p *QDesignerContainerExtension) QDesignerContainerExtension_PTR() *QDesignerContainerExtension {
-	return p
+func (ptr *QDesignerContainerExtension) QDesignerContainerExtension_PTR() *QDesignerContainerExtension {
+	return ptr
 }
 
-func (p *QDesignerContainerExtension) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QDesignerContainerExtension) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QDesignerContainerExtension) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QDesignerContainerExtension) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -3429,20 +3429,20 @@ type QDesignerCustomWidgetCollectionInterface_ITF interface {
 	QDesignerCustomWidgetCollectionInterface_PTR() *QDesignerCustomWidgetCollectionInterface
 }
 
-func (p *QDesignerCustomWidgetCollectionInterface) QDesignerCustomWidgetCollectionInterface_PTR() *QDesignerCustomWidgetCollectionInterface {
-	return p
+func (ptr *QDesignerCustomWidgetCollectionInterface) QDesignerCustomWidgetCollectionInterface_PTR() *QDesignerCustomWidgetCollectionInterface {
+	return ptr
 }
 
-func (p *QDesignerCustomWidgetCollectionInterface) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QDesignerCustomWidgetCollectionInterface) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QDesignerCustomWidgetCollectionInterface) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QDesignerCustomWidgetCollectionInterface) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -3541,20 +3541,20 @@ type QDesignerCustomWidgetInterface_ITF interface {
 	QDesignerCustomWidgetInterface_PTR() *QDesignerCustomWidgetInterface
 }
 
-func (p *QDesignerCustomWidgetInterface) QDesignerCustomWidgetInterface_PTR() *QDesignerCustomWidgetInterface {
-	return p
+func (ptr *QDesignerCustomWidgetInterface) QDesignerCustomWidgetInterface_PTR() *QDesignerCustomWidgetInterface {
+	return ptr
 }
 
-func (p *QDesignerCustomWidgetInterface) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QDesignerCustomWidgetInterface) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QDesignerCustomWidgetInterface) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QDesignerCustomWidgetInterface) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -4023,20 +4023,20 @@ type QDesignerDynamicPropertySheetExtension_ITF interface {
 	QDesignerDynamicPropertySheetExtension_PTR() *QDesignerDynamicPropertySheetExtension
 }
 
-func (p *QDesignerDynamicPropertySheetExtension) QDesignerDynamicPropertySheetExtension_PTR() *QDesignerDynamicPropertySheetExtension {
-	return p
+func (ptr *QDesignerDynamicPropertySheetExtension) QDesignerDynamicPropertySheetExtension_PTR() *QDesignerDynamicPropertySheetExtension {
+	return ptr
 }
 
-func (p *QDesignerDynamicPropertySheetExtension) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QDesignerDynamicPropertySheetExtension) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QDesignerDynamicPropertySheetExtension) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QDesignerDynamicPropertySheetExtension) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -4261,20 +4261,20 @@ type QDesignerFormEditorInterface_ITF interface {
 	QDesignerFormEditorInterface_PTR() *QDesignerFormEditorInterface
 }
 
-func (p *QDesignerFormEditorInterface) QDesignerFormEditorInterface_PTR() *QDesignerFormEditorInterface {
-	return p
+func (ptr *QDesignerFormEditorInterface) QDesignerFormEditorInterface_PTR() *QDesignerFormEditorInterface {
+	return ptr
 }
 
-func (p *QDesignerFormEditorInterface) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QObject_PTR().Pointer()
+func (ptr *QDesignerFormEditorInterface) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QObject_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QDesignerFormEditorInterface) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QObject_PTR().SetPointer(ptr)
+func (ptr *QDesignerFormEditorInterface) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QObject_PTR().SetPointer(p)
 	}
 }
 
@@ -4816,20 +4816,20 @@ type QDesignerFormWindowCursorInterface_ITF interface {
 	QDesignerFormWindowCursorInterface_PTR() *QDesignerFormWindowCursorInterface
 }
 
-func (p *QDesignerFormWindowCursorInterface) QDesignerFormWindowCursorInterface_PTR() *QDesignerFormWindowCursorInterface {
-	return p
+func (ptr *QDesignerFormWindowCursorInterface) QDesignerFormWindowCursorInterface_PTR() *QDesignerFormWindowCursorInterface {
+	return ptr
 }
 
-func (p *QDesignerFormWindowCursorInterface) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QDesignerFormWindowCursorInterface) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QDesignerFormWindowCursorInterface) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QDesignerFormWindowCursorInterface) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -5340,20 +5340,20 @@ type QDesignerFormWindowInterface_ITF interface {
 	QDesignerFormWindowInterface_PTR() *QDesignerFormWindowInterface
 }
 
-func (p *QDesignerFormWindowInterface) QDesignerFormWindowInterface_PTR() *QDesignerFormWindowInterface {
-	return p
+func (ptr *QDesignerFormWindowInterface) QDesignerFormWindowInterface_PTR() *QDesignerFormWindowInterface {
+	return ptr
 }
 
-func (p *QDesignerFormWindowInterface) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QWidget_PTR().Pointer()
+func (ptr *QDesignerFormWindowInterface) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QWidget_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QDesignerFormWindowInterface) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QWidget_PTR().SetPointer(ptr)
+func (ptr *QDesignerFormWindowInterface) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QWidget_PTR().SetPointer(p)
 	}
 }
 
@@ -9567,20 +9567,20 @@ type QDesignerFormWindowManagerInterface_ITF interface {
 	QDesignerFormWindowManagerInterface_PTR() *QDesignerFormWindowManagerInterface
 }
 
-func (p *QDesignerFormWindowManagerInterface) QDesignerFormWindowManagerInterface_PTR() *QDesignerFormWindowManagerInterface {
-	return p
+func (ptr *QDesignerFormWindowManagerInterface) QDesignerFormWindowManagerInterface_PTR() *QDesignerFormWindowManagerInterface {
+	return ptr
 }
 
-func (p *QDesignerFormWindowManagerInterface) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QObject_PTR().Pointer()
+func (ptr *QDesignerFormWindowManagerInterface) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QObject_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QDesignerFormWindowManagerInterface) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QObject_PTR().SetPointer(ptr)
+func (ptr *QDesignerFormWindowManagerInterface) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QObject_PTR().SetPointer(p)
 	}
 }
 
@@ -10536,20 +10536,20 @@ type QDesignerMemberSheetExtension_ITF interface {
 	QDesignerMemberSheetExtension_PTR() *QDesignerMemberSheetExtension
 }
 
-func (p *QDesignerMemberSheetExtension) QDesignerMemberSheetExtension_PTR() *QDesignerMemberSheetExtension {
-	return p
+func (ptr *QDesignerMemberSheetExtension) QDesignerMemberSheetExtension_PTR() *QDesignerMemberSheetExtension {
+	return ptr
 }
 
-func (p *QDesignerMemberSheetExtension) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QDesignerMemberSheetExtension) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QDesignerMemberSheetExtension) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QDesignerMemberSheetExtension) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -11059,20 +11059,20 @@ type QDesignerObjectInspectorInterface_ITF interface {
 	QDesignerObjectInspectorInterface_PTR() *QDesignerObjectInspectorInterface
 }
 
-func (p *QDesignerObjectInspectorInterface) QDesignerObjectInspectorInterface_PTR() *QDesignerObjectInspectorInterface {
-	return p
+func (ptr *QDesignerObjectInspectorInterface) QDesignerObjectInspectorInterface_PTR() *QDesignerObjectInspectorInterface {
+	return ptr
 }
 
-func (p *QDesignerObjectInspectorInterface) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QWidget_PTR().Pointer()
+func (ptr *QDesignerObjectInspectorInterface) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QWidget_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QDesignerObjectInspectorInterface) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QWidget_PTR().SetPointer(ptr)
+func (ptr *QDesignerObjectInspectorInterface) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QWidget_PTR().SetPointer(p)
 	}
 }
 
@@ -13552,20 +13552,20 @@ type QDesignerPropertyEditorInterface_ITF interface {
 	QDesignerPropertyEditorInterface_PTR() *QDesignerPropertyEditorInterface
 }
 
-func (p *QDesignerPropertyEditorInterface) QDesignerPropertyEditorInterface_PTR() *QDesignerPropertyEditorInterface {
-	return p
+func (ptr *QDesignerPropertyEditorInterface) QDesignerPropertyEditorInterface_PTR() *QDesignerPropertyEditorInterface {
+	return ptr
 }
 
-func (p *QDesignerPropertyEditorInterface) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QWidget_PTR().Pointer()
+func (ptr *QDesignerPropertyEditorInterface) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QWidget_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QDesignerPropertyEditorInterface) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QWidget_PTR().SetPointer(ptr)
+func (ptr *QDesignerPropertyEditorInterface) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QWidget_PTR().SetPointer(p)
 	}
 }
 
@@ -16230,20 +16230,20 @@ type QDesignerPropertySheetExtension_ITF interface {
 	QDesignerPropertySheetExtension_PTR() *QDesignerPropertySheetExtension
 }
 
-func (p *QDesignerPropertySheetExtension) QDesignerPropertySheetExtension_PTR() *QDesignerPropertySheetExtension {
-	return p
+func (ptr *QDesignerPropertySheetExtension) QDesignerPropertySheetExtension_PTR() *QDesignerPropertySheetExtension {
+	return ptr
 }
 
-func (p *QDesignerPropertySheetExtension) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QDesignerPropertySheetExtension) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QDesignerPropertySheetExtension) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QDesignerPropertySheetExtension) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -16807,20 +16807,20 @@ type QDesignerTaskMenuExtension_ITF interface {
 	QDesignerTaskMenuExtension_PTR() *QDesignerTaskMenuExtension
 }
 
-func (p *QDesignerTaskMenuExtension) QDesignerTaskMenuExtension_PTR() *QDesignerTaskMenuExtension {
-	return p
+func (ptr *QDesignerTaskMenuExtension) QDesignerTaskMenuExtension_PTR() *QDesignerTaskMenuExtension {
+	return ptr
 }
 
-func (p *QDesignerTaskMenuExtension) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *QDesignerTaskMenuExtension) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *QDesignerTaskMenuExtension) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *QDesignerTaskMenuExtension) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -16970,20 +16970,20 @@ type QDesignerWidgetBoxInterface_ITF interface {
 	QDesignerWidgetBoxInterface_PTR() *QDesignerWidgetBoxInterface
 }
 
-func (p *QDesignerWidgetBoxInterface) QDesignerWidgetBoxInterface_PTR() *QDesignerWidgetBoxInterface {
-	return p
+func (ptr *QDesignerWidgetBoxInterface) QDesignerWidgetBoxInterface_PTR() *QDesignerWidgetBoxInterface {
+	return ptr
 }
 
-func (p *QDesignerWidgetBoxInterface) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QWidget_PTR().Pointer()
+func (ptr *QDesignerWidgetBoxInterface) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QWidget_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QDesignerWidgetBoxInterface) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QWidget_PTR().SetPointer(ptr)
+func (ptr *QDesignerWidgetBoxInterface) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QWidget_PTR().SetPointer(p)
 	}
 }
 
@@ -19508,21 +19508,21 @@ type QExtensionFactory_ITF interface {
 	QExtensionFactory_PTR() *QExtensionFactory
 }
 
-func (p *QExtensionFactory) QExtensionFactory_PTR() *QExtensionFactory {
-	return p
+func (ptr *QExtensionFactory) QExtensionFactory_PTR() *QExtensionFactory {
+	return ptr
 }
 
-func (p *QExtensionFactory) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QObject_PTR().Pointer()
+func (ptr *QExtensionFactory) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QObject_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QExtensionFactory) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QObject_PTR().SetPointer(ptr)
-		p.QAbstractExtensionFactory_PTR().SetPointer(ptr)
+func (ptr *QExtensionFactory) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QObject_PTR().SetPointer(p)
+		ptr.QAbstractExtensionFactory_PTR().SetPointer(p)
 	}
 }
 
@@ -19540,9 +19540,11 @@ func NewQExtensionFactoryFromPointer(ptr unsafe.Pointer) *QExtensionFactory {
 }
 
 func (ptr *QExtensionFactory) DestroyQExtensionFactory() {
-	C.free(ptr.Pointer())
-	qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
-	ptr.SetPointer(nil)
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
+		ptr.SetPointer(nil)
+	}
 }
 
 func NewQExtensionFactory(parent QExtensionManager_ITF) *QExtensionFactory {
@@ -20008,21 +20010,21 @@ type QExtensionManager_ITF interface {
 	QExtensionManager_PTR() *QExtensionManager
 }
 
-func (p *QExtensionManager) QExtensionManager_PTR() *QExtensionManager {
-	return p
+func (ptr *QExtensionManager) QExtensionManager_PTR() *QExtensionManager {
+	return ptr
 }
 
-func (p *QExtensionManager) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QObject_PTR().Pointer()
+func (ptr *QExtensionManager) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QObject_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QExtensionManager) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QObject_PTR().SetPointer(ptr)
-		p.QAbstractExtensionManager_PTR().SetPointer(ptr)
+func (ptr *QExtensionManager) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QObject_PTR().SetPointer(p)
+		ptr.QAbstractExtensionManager_PTR().SetPointer(p)
 	}
 }
 
@@ -20526,20 +20528,20 @@ type QFormBuilder_ITF interface {
 	QFormBuilder_PTR() *QFormBuilder
 }
 
-func (p *QFormBuilder) QFormBuilder_PTR() *QFormBuilder {
-	return p
+func (ptr *QFormBuilder) QFormBuilder_PTR() *QFormBuilder {
+	return ptr
 }
 
-func (p *QFormBuilder) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.QAbstractFormBuilder_PTR().Pointer()
+func (ptr *QFormBuilder) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QAbstractFormBuilder_PTR().Pointer()
 	}
 	return nil
 }
 
-func (p *QFormBuilder) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.QAbstractFormBuilder_PTR().SetPointer(ptr)
+func (ptr *QFormBuilder) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QAbstractFormBuilder_PTR().SetPointer(p)
 	}
 }
 
@@ -20802,20 +20804,20 @@ type qdesigner_internal_ITF interface {
 	qdesigner_internal_PTR() *qdesigner_internal
 }
 
-func (p *qdesigner_internal) qdesigner_internal_PTR() *qdesigner_internal {
-	return p
+func (ptr *qdesigner_internal) qdesigner_internal_PTR() *qdesigner_internal {
+	return ptr
 }
 
-func (p *qdesigner_internal) Pointer() unsafe.Pointer {
-	if p != nil {
-		return p.ptr
+func (ptr *qdesigner_internal) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
 }
 
-func (p *qdesigner_internal) SetPointer(ptr unsafe.Pointer) {
-	if p != nil {
-		p.ptr = ptr
+func (ptr *qdesigner_internal) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
 	}
 }
 
@@ -20833,6 +20835,8 @@ func NewQdesigner_internalFromPointer(ptr unsafe.Pointer) *qdesigner_internal {
 }
 
 func (ptr *qdesigner_internal) Destroyqdesigner_internal() {
-	C.free(ptr.Pointer())
-	ptr.SetPointer(nil)
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
 }
