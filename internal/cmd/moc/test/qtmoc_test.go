@@ -8,6 +8,8 @@ import (
 	"unsafe"
 
 	"github.com/therecipe/qt/core"
+	"github.com/therecipe/qt/gui"
+	"github.com/therecipe/qt/sql"
 	"github.com/therecipe/qt/widgets"
 
 	"github.com/therecipe/qt/internal/cmd/moc/test/sub"
@@ -17,6 +19,31 @@ import (
 type testStruct struct {
 	otherTestStruct
 	testOther otherTestStruct
+
+	_ bool             `prop:"propBool"`
+	_ int8             `prop:"propInt8"`  //-> string
+	_ uint8            `prop:"propInt82"` //-> string
+	_ int16            `prop:"propInt16"`
+	_ uint16           `prop:"propInt162"`
+	_ int32            `prop:"propInt32"`  // -> int
+	_ uint32           `prop:"propInt322"` // -> int
+	_ int              `prop:"propInt"`
+	_ uint             `prop:"propInt2"`
+	_ int64            `prop:"propInt64"`
+	_ uint64           `prop:"propInt642"`
+	_ float32          `prop:"propFloat"`
+	_ float64          `prop:"propFloat2"`
+	_ string           `prop:"propString"`
+	_ []string         `prop:"propString2"`
+	_ uintptr          `prop:"propPointer"`
+	_ unsafe.Pointer   `prop:"propPointer2"`
+	_ core.QVariant    `prop:"propObject"`  // -> T (c++)
+	_ *core.QObject    `prop:"propObject2"` // -> *T
+	_ *core.QVariant   `prop:"propObject3"` // -> *T //TODO:
+	_ core.Qt__Key     `prop:"propEnum"`
+	_ error            `prop:"propError"`
+	_ otherTestStruct  `prop:"propReturnTest"`  // -> *T
+	_ *otherTestStruct `prop:"propReturnTest2"` // -> *T
 
 	a, b bool
 	ab   func(bool) bool
@@ -92,7 +119,7 @@ type subTestStruct struct {
 	_ func(*subTestStruct) *subTestStruct `slot:"returnTest3"`
 }
 
-type subSubTestStruct struct { //Qt structs from other pkgs will be ignored
+type subSubTestStruct struct { //Qt structs from other pkgs will be ignored for now
 	sub.SubTestStruct
 	_ func(*sub.SubTestStruct) *sub.SubTestStruct `slot:"returnTest4"`
 }
@@ -108,6 +135,40 @@ type otherTestStruct struct {
 		ab   func(bool) bool
 		abc  func(bool) bool `test:"test"`
 	}
+
+	_ bool `prop:"propBoolSub"`
+}
+
+type abstractTestStruct1 struct {
+	core.QAbstractItemModel
+}
+
+type abstractTestStruct2 struct {
+	core.QAbstractListModel
+}
+
+type abstractTestStruct3 struct {
+	core.QStringListModel
+}
+
+type abstractTestStruct4 struct {
+	core.QAbstractProxyModel
+}
+
+type abstractTestStruct5 struct {
+	core.QAbstractTableModel
+}
+
+type abstractTestStruct6 struct {
+	sql.QSqlQueryModel
+}
+
+type abstractTestStruct7 struct {
+	gui.QStandardItemModel
+}
+
+type abstractTestStruct8 struct {
+	widgets.QFileSystemModel
 }
 
 var (
@@ -150,6 +211,262 @@ func TestGeneral(t *testing.T) {
 		NewSubTestStruct(nil)
 		sub.NewSubTestStruct(nil)
 		//NewSubSubTestStruct(nil)
+	}
+}
+
+func TestProperties(t *testing.T) {
+	var test = NewTestStruct(nil)
+
+	test.ConnectPropBoolChanged(func(propBool bool) {
+		if propBool != b1 {
+			t.Fatal(propBool, b1)
+		}
+	})
+	test.SetPropBool(b1)
+	test.PropBoolChanged(b1)
+	if test.IsPropBool() != b1 {
+		t.Fatal("IsPropBool")
+	}
+
+	//_ int8             `prop:"propInt8"`
+	//_ uint8            `prop:"propInt82"`
+
+	test.ConnectPropInt16Changed(func(propInt16 int16) {
+		if propInt16 != i0 {
+			t.Fatal(propInt16, i0)
+		}
+	})
+	test.SetPropInt16(i0)
+	test.PropInt16Changed(i0)
+	if test.PropInt16() != i0 {
+		t.Fatal("PropInt16")
+	}
+
+	test.ConnectPropInt162Changed(func(propInt162 uint16) {
+		if propInt162 != i1 {
+			t.Fatal(propInt162, i1)
+		}
+	})
+	test.SetPropInt162(i1)
+	test.PropInt162Changed(i1)
+	if test.PropInt162() != i1 {
+		t.Fatal("PropInt162")
+	}
+
+	test.ConnectPropInt32Changed(func(propInt32 int) {
+		if propInt32 != i2 {
+			t.Fatal(propInt32, i2)
+		}
+	})
+	test.SetPropInt32(i2)
+	test.PropInt32Changed(i2)
+	if test.PropInt32() != i2 {
+		t.Fatal("PropInt32")
+	}
+
+	test.ConnectPropInt322Changed(func(propInt322 uint) {
+		if propInt322 != i3 {
+			t.Fatal(propInt322, i3)
+		}
+	})
+	test.SetPropInt322(i3)
+	test.PropInt322Changed(i3)
+	if test.PropInt322() != i3 {
+		t.Fatal("PropInt322")
+	}
+
+	test.ConnectPropIntChanged(func(propInt int) {
+		if propInt != i2 {
+			t.Fatal(propInt, i2)
+		}
+	})
+	test.SetPropInt(i2)
+	test.PropIntChanged(i2)
+	if test.PropInt() != i2 {
+		t.Fatal("PropInt")
+	}
+
+	test.ConnectPropInt2Changed(func(propInt2 uint) {
+		if propInt2 != i3 {
+			t.Fatal(propInt2, i3)
+		}
+	})
+	test.SetPropInt2(i3)
+	test.PropInt2Changed(i3)
+	if test.PropInt2() != i3 {
+		t.Fatal("PropInt2")
+	}
+
+	test.ConnectPropInt64Changed(func(propInt64 int64) {
+		if propInt64 != i6 {
+			t.Fatal(propInt64, i6)
+		}
+	})
+	test.SetPropInt64(i6)
+	test.PropInt64Changed(i6)
+	if test.PropInt64() != i6 {
+		t.Fatal("PropInt64")
+	}
+
+	test.ConnectPropInt642Changed(func(propInt642 uint64) {
+		if propInt642 != i7 {
+			t.Fatal(propInt642, i7)
+		}
+	})
+	test.SetPropInt642(i7)
+	test.PropInt642Changed(i7)
+	if test.PropInt642() != i7 {
+		t.Fatal("PropInt642")
+	}
+
+	test.ConnectPropFloatChanged(func(propFloat float32) {
+		if propFloat != f0 {
+			t.Fatal(propFloat, f0)
+		}
+	})
+	test.SetPropFloat(f0)
+	test.PropFloatChanged(f0)
+	if test.PropFloat() != f0 {
+		t.Fatal("PropFloat")
+	}
+
+	test.ConnectPropFloat2Changed(func(propFloat2 float64) {
+		if propFloat2 != f1 {
+			t.Fatal(propFloat2, f1)
+		}
+	})
+	test.SetPropFloat2(f1)
+	test.PropFloat2Changed(f1)
+	if test.PropFloat2() != f1 {
+		t.Fatal("PropFloat2")
+	}
+
+	test.ConnectPropStringChanged(func(propString string) {
+		if propString != s0 {
+			t.Fatal(propString, s0)
+		}
+	})
+	test.SetPropString(s0)
+	test.PropStringChanged(s0)
+	if test.PropString() != s0 {
+		t.Fatal("PropString")
+	}
+
+	test.ConnectPropString2Changed(func(propString2 []string) {
+		if strings.Join(propString2, "") != strings.Join(s1, "") {
+			t.Fatal(propString2, s1)
+		}
+	})
+	test.SetPropString2(s1)
+	test.PropString2Changed(s1)
+	if strings.Join(test.PropString2(), "") != strings.Join(s1, "") {
+		t.Fatal("PropString2")
+	}
+
+	test.ConnectPropPointerChanged(func(propPointer uintptr) {
+		if int(propPointer) != int(p0) {
+			t.Fatal(propPointer, p0, int(propPointer), int(p0))
+		}
+	})
+	test.SetPropPointer(p0)
+	test.PropPointerChanged(p0)
+	if int(test.PropPointer()) != int(p0) {
+		t.Fatal("PropPointer")
+	}
+
+	test.ConnectPropPointer2Changed(func(propPointer2 unsafe.Pointer) {
+		if int(uintptr(propPointer2)) != int(uintptr(p1)) {
+			t.Fatal(propPointer2, p1, int(uintptr(propPointer2)), int(uintptr(p1)))
+		}
+	})
+	test.SetPropPointer2(p1)
+	test.PropPointer2Changed(p1)
+	if int(uintptr(test.PropPointer2())) != int(uintptr(p1)) {
+		t.Fatal("PropPointer2")
+	}
+
+	test.ConnectPropObjectChanged(func(propObject *core.QVariant) {
+		if propObject.ToString() != o0.ToString() { //TODO:
+			t.Fatal(propObject, o0, propObject.ToString(), o0.ToString())
+		}
+	})
+	o0 = core.NewQVariant14("test")
+	test.SetPropObject(o0)
+	test.PropObjectChanged(o0)
+	if test.PropObject().ToString() != o0.ToString() {
+		t.Fatal("PropObject")
+	}
+
+	test.ConnectPropObject2Changed(func(propObject2 *core.QObject) {
+		if propObject2.ObjectName() != o1.ObjectName() {
+			t.Fatal(propObject2, o1, propObject2.ObjectName(), o1.ObjectName())
+		}
+	})
+	o1 = core.NewQObject(nil)
+	o1.SetObjectName("test")
+	test.SetPropObject2(o1)
+	test.PropObject2Changed(o1)
+	if test.PropObject2().ObjectName() != o1.ObjectName() {
+		t.Fatal("PropObject2")
+	}
+
+	//TODO: ConnectPropObject3Changed *QVariant
+
+	test.ConnectPropEnumChanged(func(propEnum core.Qt__Key) {
+		if propEnum != e0 {
+			t.Fatal(propEnum, e0)
+		}
+	})
+	test.SetPropEnum(e0)
+	test.PropEnumChanged(e0)
+	if test.PropEnum() != e0 {
+		t.Fatal("PropEnum")
+	}
+
+	test.ConnectPropErrorChanged(func(propError error) {
+		if propError.Error() != e1.Error() {
+			t.Fatal(propError, e1, propError.Error(), e1.Error())
+		}
+	})
+	test.SetPropError(e1)
+	test.PropErrorChanged(e1)
+	if test.PropError().Error() != e1.Error() {
+		t.Fatal("PropError")
+	}
+
+	var sTest = NewOtherTestStruct(nil)
+	sTest.SetObjectName("test")
+	test.ConnectPropReturnTestChanged(func(propReturnTest *otherTestStruct) {
+		if propReturnTest.ObjectName() != sTest.ObjectName() {
+			t.Fatal(propReturnTest, sTest, propReturnTest.ObjectName(), sTest.ObjectName())
+		}
+	})
+	test.SetPropReturnTest(sTest)
+	test.PropReturnTestChanged(sTest)
+	if test.PropReturnTest().ObjectName() != sTest.ObjectName() {
+		t.Fatal("PropReturnTest")
+	}
+
+	test.ConnectPropReturnTest2Changed(func(propReturnTest2 *otherTestStruct) {
+		if propReturnTest2.ObjectName() != sTest.ObjectName() {
+			t.Fatal(propReturnTest2, sTest, propReturnTest2.ObjectName(), sTest.ObjectName())
+		}
+	})
+	test.SetPropReturnTest2(sTest)
+	test.PropReturnTest2Changed(sTest)
+	if test.PropReturnTest2().ObjectName() != sTest.ObjectName() {
+		t.Fatal("PropReturnTest2")
+	}
+
+	test.ConnectPropBoolSubChanged(func(propBoolSub bool) {
+		if propBoolSub != b1 {
+			t.Fatal(propBoolSub, b1)
+		}
+	})
+	test.SetPropBoolSub(b1)
+	test.PropBoolSubChanged(b1)
+	if test.IsPropBoolSub() != b1 {
+		t.Fatal("IsPropBoolSub")
 	}
 }
 

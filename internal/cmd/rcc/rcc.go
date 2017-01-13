@@ -95,6 +95,7 @@ func Rcc(appPath string, output_dir *string) {
 	utils.RunCmd(rcc, fmt.Sprintf("execute rcc.2 on %v", runtime.GOOS))
 }
 
+//TODO: make docker compatible
 func qmlHeader(appName string) string {
 
 	return strings.Replace(strings.Replace(strings.Replace(strings.Replace(strings.Replace(strings.Replace(strings.Replace(strings.Replace(strings.Replace(strings.Replace(strings.Replace(strings.Replace(strings.Replace(`package main

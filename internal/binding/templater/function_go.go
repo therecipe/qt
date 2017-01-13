@@ -210,11 +210,11 @@ func goFunctionBody(function *parser.Function) string {
 			)
 
 			if converter.GoHeaderOutput(function) == "" {
-				if function.Virtual == parser.IMPURE && function.IsSupportedDefault() {
+				if function.Virtual == parser.IMPURE && function.IsSupportedDefault() && !function.PureBaseFunction {
 					fmt.Fprintf(bb, "New%vFromPointer(ptr).%v%vDefault(%v)", strings.Title(function.ClassName()), strings.Replace(strings.Title(function.Name), parser.TILDE, "Destroy", -1), function.OverloadNumber, converter.GoInputParametersForCallback(function))
 				}
 			} else {
-				if function.Virtual == parser.IMPURE && function.IsSupportedDefault() {
+				if function.Virtual == parser.IMPURE && function.IsSupportedDefault() && !function.PureBaseFunction {
 					if function.Name == "readData" && len(function.Parameters) == 2 {
 						fmt.Fprint(bb, "var retS = cGoUnpackString(data)\n")
 						fmt.Fprintf(bb, "var ret = %v\n", converter.GoInput(fmt.Sprintf("New%vFromPointer(ptr).%v%vDefault(%v)", strings.Title(function.ClassName()), strings.Replace(strings.Title(function.Name), parser.TILDE, "Destroy", -1), function.OverloadNumber, converter.GoInputParametersForCallback(function)), function.Output, function))

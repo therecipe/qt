@@ -109,6 +109,11 @@ func cTemplateFunctions(bb *bytes.Buffer, c *parser.Class, ff func(*parser.Funct
 				}
 				fmt.Fprintf(bb, "%v%v", ff(&f), del)
 
+				var c, _ = f.Class()
+				if c.Module == parser.MOC && f.Virtual == parser.PURE {
+					continue
+				}
+
 				f.Meta = parser.PLAIN
 				f.Default = true
 				fmt.Fprintf(bb, "%v%v", ff(&f), del)

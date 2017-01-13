@@ -13,6 +13,7 @@ import (
 const (
 	SIGNAL = "signal"
 	SLOT   = "slot"
+	PROP   = "prop"
 
 	IMPURE = "impure"
 	PURE   = "pure"

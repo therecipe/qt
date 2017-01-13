@@ -121,11 +121,26 @@ func (v *Variable) propToFunc(c *Class) []*Function {
 		Static:     v.Static,
 		Output:     "void",
 		Meta:       PLAIN,
-		Parameters: []*Parameter{{Value: v.Output}},
+		Parameters: []*Parameter{{Name: v.Name, Value: v.Output}},
 		Signature:  "()",
 	})
 
+
+	if c.Module == MOC{
+		funcs = append(funcs, &Function{
+			Name:       fmt.Sprintf("%vChanged", v.Name),
+			Fullname:   fmt.Sprintf("%v::%vChanged", v.ClassName(), v.Name),
+			Status:     v.Status,
+			Access:     v.Access,
+			Output:     "void",
+			Meta:       SIGNAL,
+			Parameters: []*Parameter{{Name: v.Name, Value: v.Output}},
+			Signature:  "()",
+		})
+	}
+
 	//add all overloaded property functions from base classes
+	//TODO: move rest into seperate function, as this func is called multiple times
 
 	for _, bc := range c.GetAllBases() {
 		var bclass, exist = State.ClassMap[bc]

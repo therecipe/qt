@@ -233,13 +233,11 @@ ptr.SetPointer(nil)
 									implementedVirtuals[fmt.Sprint(function.Name, function.OverloadNumber)] = struct{}{}
 
 									for _, signalMode := range []string{parser.CALLBACK, parser.CONNECT, parser.DISCONNECT} {
-										var pbf = function.Virtual == parser.PURE
-
 										var function = *function
+										function.PureBaseFunction = function.Virtual == parser.PURE && class.Module == parser.MOC
 										function.Fullname = fmt.Sprintf("%v::%v", class.Name, function.Name)
 										function.Virtual = parser.IMPURE
 										function.SignalMode = signalMode
-										function.PureBaseFunction = pbf
 
 										fmt.Fprintf(bb, "%v%v\n\n",
 											func() string {
@@ -259,6 +257,11 @@ ptr.SetPointer(nil)
 										function.Meta = parser.PLAIN
 									}
 									fmt.Fprintf(bb, "%v\n\n", goFunction(&function))
+
+									var c, _ = function.Class()
+									if c.Module == parser.MOC && function.Virtual == parser.PURE {
+										continue
+									}
 
 									function.Meta = parser.PLAIN
 									function.Default = true

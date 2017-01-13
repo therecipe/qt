@@ -93,11 +93,12 @@ func (m *appMoc) parseGo(path string) error {
 			}
 
 			class := &parser.Class{
-				Access:    "public",
-				Module:    parser.MOC,
-				Name:      typeSpec.Name.String(),
-				Status:    "public",
-				Functions: make([]*parser.Function, 0),
+				Access:     "public",
+				Module:     parser.MOC,
+				Name:       typeSpec.Name.String(),
+				Status:     "public",
+				Functions:  make([]*parser.Function, 0),
+				Properties: make([]*parser.Variable, 0),
 			}
 
 			for _, field := range structDecl.Fields.List {
@@ -122,14 +123,17 @@ func (m *appMoc) parseGo(path string) error {
 						meta = parser.SIGNAL
 					case strings.HasPrefix(tag, "slot:"):
 						meta = parser.SLOT
+					case strings.HasPrefix(tag, "prop:"):
+						meta = parser.PROP
 					default:
 						// only handle signal and slot
 						continue
 					}
 
-					var (
-						typ = string(src[field.Type.Pos()-1 : field.Type.End()-1])
-						f   = &parser.Function{
+					var typ = string(src[field.Type.Pos()-1 : field.Type.End()-1])
+
+					if meta == parser.SIGNAL || meta == parser.SLOT {
+						var f = &parser.Function{
 							Access:     "public",
 							Fullname:   fmt.Sprintf("%v::%v", class.Name, strings.Split(tag, ":")[1]),
 							Meta:       meta,
@@ -149,13 +153,23 @@ func (m *appMoc) parseGo(path string) error {
 								return "void"
 							}(),
 						}
-					)
-					if len(f.Parameters[0].Value) == 0 {
-						f.Parameters = make([]*parser.Parameter, 0)
-					}
-					class.Functions = append(class.Functions, f)
 
+						if len(f.Parameters[0].Value) == 0 {
+							f.Parameters = make([]*parser.Parameter, 0)
+						}
+						class.Functions = append(class.Functions, f)
+					} else if meta == parser.PROP {
+						var p = &parser.Variable{
+							Access:   "public",
+							Fullname: fmt.Sprintf("%v::%v", class.Name, strings.Split(tag, ":")[1]),
+							Name:     strings.Split(tag, ":")[1],
+							Status:   "public",
+							Output:   typ,
+						}
+						class.Properties = append(class.Properties, p)
+					}
 				}
+
 			}
 			m.module.Namespace.Classes = append(m.module.Namespace.Classes, class)
 		}
@@ -337,6 +351,9 @@ func (m *appMoc) generate() error {
 				f.Output = getCppTypeFromGoType(f, f.Output)
 			}
 		}
+		for _, p := range c.Properties {
+			p.Output = getCppTypeFromGoType(nil, p.Output)
+		}
 	}
 
 	//copy constructor and destructor
@@ -438,9 +455,10 @@ func getParameters(tag string) []*parser.Parameter {
 }
 
 func getCppTypeFromGoType(f *parser.Function, t string) string {
+	//TODO: var tOld = t
 	t = strings.TrimPrefix(t, "*")
 
-	if t == "error" {
+	if t == "error" && f != nil {
 		f.AsError = true
 	}
 
@@ -486,7 +504,7 @@ func getCppTypeFromGoType(f *parser.Function, t string) string {
 	}
 
 	if _, exists := parser.State.ClassMap[t]; exists {
-		if parser.State.ClassMap[t].IsSubClassOfQObject() {
+		if parser.State.ClassMap[t].IsSubClassOfQObject() /*TODO: || f == nil && strings.HasPrefix(tOLD, "*")*/ {
 			return t + "*"
 		}
 		return t

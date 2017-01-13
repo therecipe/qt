@@ -32,6 +32,7 @@ func CppTemplate(module string) []byte {
 
 			if class.HasCallbackFunctions() || parser.State.Moc {
 
+				//TODO: split
 				fmt.Fprintf(bb,
 					`class %v%v: public %v
 {
@@ -55,7 +56,21 @@ func CppTemplate(module string) []byte {
 
 					func() string {
 						if parser.State.Moc {
-							return "Q_OBJECT\n"
+							var bb = new(bytes.Buffer)
+							defer bb.Reset()
+							fmt.Fprintln(bb, "Q_OBJECT")
+
+							for _, p := range class.Properties {
+								fmt.Fprintf(bb, "Q_PROPERTY(%v %v READ %v WRITE set%v NOTIFY %vChanged)\n", p.Output, p.Name,
+									func() string {
+										if p.Output == "bool" {
+											return "is" + strings.Title(p.Name)
+										}
+										return p.Name
+									}(), strings.Title(p.Name), p.Name)
+							}
+
+							return bb.String()
 						}
 						return ""
 					}())
@@ -141,6 +156,17 @@ func CppTemplate(module string) []byte {
 				}
 
 				if parser.State.Moc {
+
+					for _, p := range class.Properties {
+						fmt.Fprintf(bb, "\t%v %v() { return _%v; };\n", p.Output, func() string {
+							if p.Output == "bool" {
+								return "is" + strings.Title(p.Name)
+							}
+							return p.Name
+						}(), p.Name)
+						fmt.Fprintf(bb, "\tvoid set%v(%v p) { if (p != _%v) { _%v = p; %vChanged(_%v); } };\n", strings.Title(p.Name), p.Output, p.Name, p.Name, p.Name, p.Name)
+					}
+
 					fmt.Fprintln(bb, "signals:")
 					for _, function := range class.Functions {
 						if function.Meta == parser.SIGNAL {
@@ -155,6 +181,11 @@ func CppTemplate(module string) []byte {
 						if function.Meta == parser.SLOT {
 							fmt.Fprintf(bb, "\t%v\n", cppFunctionCallback(function))
 						}
+					}
+
+					fmt.Fprintln(bb, "private:")
+					for _, p := range class.Properties {
+						fmt.Fprintf(bb, "\t%v _%v;\n", p.Output, p.Name)
 					}
 				}
 

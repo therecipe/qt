@@ -37138,12 +37138,12 @@ void* QGraphicsObject_GraphicsEffect(void* ptr)
 	}
 }
 
-void QGraphicsObject_SetGraphicsEffect(void* ptr, void* vqg)
+void QGraphicsObject_SetGraphicsEffect(void* ptr, void* effect)
 {
 	if (dynamic_cast<QGraphicsWidget*>(static_cast<QObject*>(ptr))) {
-		static_cast<QGraphicsWidget*>(ptr)->setGraphicsEffect(static_cast<QGraphicsEffect*>(vqg));
+		static_cast<QGraphicsWidget*>(ptr)->setGraphicsEffect(static_cast<QGraphicsEffect*>(effect));
 	} else {
-		static_cast<QGraphicsObject*>(ptr)->setGraphicsEffect(static_cast<QGraphicsEffect*>(vqg));
+		static_cast<QGraphicsObject*>(ptr)->setGraphicsEffect(static_cast<QGraphicsEffect*>(effect));
 	}
 }
 
@@ -37156,12 +37156,12 @@ char QGraphicsObject_IsEnabled(void* ptr)
 	}
 }
 
-void QGraphicsObject_SetEnabled(void* ptr, char vbo)
+void QGraphicsObject_SetEnabled(void* ptr, char enabled)
 {
 	if (dynamic_cast<QGraphicsWidget*>(static_cast<QObject*>(ptr))) {
-		static_cast<QGraphicsWidget*>(ptr)->setEnabled(vbo != 0);
+		static_cast<QGraphicsWidget*>(ptr)->setEnabled(enabled != 0);
 	} else {
-		static_cast<QGraphicsObject*>(ptr)->setEnabled(vbo != 0);
+		static_cast<QGraphicsObject*>(ptr)->setEnabled(enabled != 0);
 	}
 }
 
@@ -37174,12 +37174,12 @@ double QGraphicsObject_Opacity(void* ptr)
 	}
 }
 
-void QGraphicsObject_SetOpacity(void* ptr, double vqr)
+void QGraphicsObject_SetOpacity(void* ptr, double opacity)
 {
 	if (dynamic_cast<QGraphicsWidget*>(static_cast<QObject*>(ptr))) {
-		static_cast<QGraphicsWidget*>(ptr)->setOpacity(vqr);
+		static_cast<QGraphicsWidget*>(ptr)->setOpacity(opacity);
 	} else {
-		static_cast<QGraphicsObject*>(ptr)->setOpacity(vqr);
+		static_cast<QGraphicsObject*>(ptr)->setOpacity(opacity);
 	}
 }
 
@@ -37192,19 +37192,19 @@ void* QGraphicsObject_Parent(void* ptr)
 	}
 }
 
-void QGraphicsObject_SetParent(void* ptr, void* vqg)
+void QGraphicsObject_SetParent(void* ptr, void* parent)
 {
 	if (dynamic_cast<QGraphicsWidget*>(static_cast<QObject*>(ptr))) {
-		if (dynamic_cast<QGraphicsWidget*>(static_cast<QObject*>(vqg))) {
-			static_cast<QGraphicsWidget*>(ptr)->setParent(static_cast<QGraphicsWidget*>(vqg));
+		if (dynamic_cast<QGraphicsWidget*>(static_cast<QObject*>(parent))) {
+			static_cast<QGraphicsWidget*>(ptr)->setParent(static_cast<QGraphicsWidget*>(parent));
 		} else {
-			static_cast<QGraphicsWidget*>(ptr)->setParent(static_cast<QGraphicsObject*>(vqg));
+			static_cast<QGraphicsWidget*>(ptr)->setParent(static_cast<QGraphicsObject*>(parent));
 		}
 	} else {
-		if (dynamic_cast<QGraphicsWidget*>(static_cast<QObject*>(vqg))) {
-			static_cast<QGraphicsObject*>(ptr)->setParent(static_cast<QGraphicsWidget*>(vqg));
+		if (dynamic_cast<QGraphicsWidget*>(static_cast<QObject*>(parent))) {
+			static_cast<QGraphicsObject*>(ptr)->setParent(static_cast<QGraphicsWidget*>(parent));
 		} else {
-			static_cast<QGraphicsObject*>(ptr)->setParent(static_cast<QGraphicsObject*>(vqg));
+			static_cast<QGraphicsObject*>(ptr)->setParent(static_cast<QGraphicsObject*>(parent));
 		}
 	}
 }
@@ -37218,12 +37218,12 @@ void* QGraphicsObject_Pos(void* ptr)
 	}
 }
 
-void QGraphicsObject_SetPos(void* ptr, void* vqp)
+void QGraphicsObject_SetPos(void* ptr, void* pos)
 {
 	if (dynamic_cast<QGraphicsWidget*>(static_cast<QObject*>(ptr))) {
-		static_cast<QGraphicsWidget*>(ptr)->setPos(*static_cast<QPointF*>(vqp));
+		static_cast<QGraphicsWidget*>(ptr)->setPos(*static_cast<QPointF*>(pos));
 	} else {
-		static_cast<QGraphicsObject*>(ptr)->setPos(*static_cast<QPointF*>(vqp));
+		static_cast<QGraphicsObject*>(ptr)->setPos(*static_cast<QPointF*>(pos));
 	}
 }
 
@@ -37245,12 +37245,12 @@ double QGraphicsObject_Rotation(void* ptr)
 	}
 }
 
-void QGraphicsObject_SetRotation(void* ptr, double vqr)
+void QGraphicsObject_SetRotation(void* ptr, double rotation)
 {
 	if (dynamic_cast<QGraphicsWidget*>(static_cast<QObject*>(ptr))) {
-		static_cast<QGraphicsWidget*>(ptr)->setRotation(vqr);
+		static_cast<QGraphicsWidget*>(ptr)->setRotation(rotation);
 	} else {
-		static_cast<QGraphicsObject*>(ptr)->setRotation(vqr);
+		static_cast<QGraphicsObject*>(ptr)->setRotation(rotation);
 	}
 }
 
@@ -37263,12 +37263,12 @@ double QGraphicsObject_Scale(void* ptr)
 	}
 }
 
-void QGraphicsObject_SetScale(void* ptr, double vqr)
+void QGraphicsObject_SetScale(void* ptr, double scale)
 {
 	if (dynamic_cast<QGraphicsWidget*>(static_cast<QObject*>(ptr))) {
-		static_cast<QGraphicsWidget*>(ptr)->setScale(vqr);
+		static_cast<QGraphicsWidget*>(ptr)->setScale(scale);
 	} else {
-		static_cast<QGraphicsObject*>(ptr)->setScale(vqr);
+		static_cast<QGraphicsObject*>(ptr)->setScale(scale);
 	}
 }
 
@@ -37281,12 +37281,12 @@ void* QGraphicsObject_TransformOriginPoint(void* ptr)
 	}
 }
 
-void QGraphicsObject_SetTransformOriginPoint(void* ptr, void* vqp)
+void QGraphicsObject_SetTransformOriginPoint(void* ptr, void* transformOriginPoint)
 {
 	if (dynamic_cast<QGraphicsWidget*>(static_cast<QObject*>(ptr))) {
-		static_cast<QGraphicsWidget*>(ptr)->setTransformOriginPoint(*static_cast<QPointF*>(vqp));
+		static_cast<QGraphicsWidget*>(ptr)->setTransformOriginPoint(*static_cast<QPointF*>(transformOriginPoint));
 	} else {
-		static_cast<QGraphicsObject*>(ptr)->setTransformOriginPoint(*static_cast<QPointF*>(vqp));
+		static_cast<QGraphicsObject*>(ptr)->setTransformOriginPoint(*static_cast<QPointF*>(transformOriginPoint));
 	}
 }
 
@@ -37308,12 +37308,12 @@ char QGraphicsObject_IsVisible(void* ptr)
 	}
 }
 
-void QGraphicsObject_SetVisible(void* ptr, char vbo)
+void QGraphicsObject_SetVisible(void* ptr, char visible)
 {
 	if (dynamic_cast<QGraphicsWidget*>(static_cast<QObject*>(ptr))) {
-		static_cast<QGraphicsWidget*>(ptr)->setVisible(vbo != 0);
+		static_cast<QGraphicsWidget*>(ptr)->setVisible(visible != 0);
 	} else {
-		static_cast<QGraphicsObject*>(ptr)->setVisible(vbo != 0);
+		static_cast<QGraphicsObject*>(ptr)->setVisible(visible != 0);
 	}
 }
 
@@ -37326,12 +37326,12 @@ double QGraphicsObject_X(void* ptr)
 	}
 }
 
-void QGraphicsObject_SetX(void* ptr, double vqr)
+void QGraphicsObject_SetX(void* ptr, double x)
 {
 	if (dynamic_cast<QGraphicsWidget*>(static_cast<QObject*>(ptr))) {
-		static_cast<QGraphicsWidget*>(ptr)->setX(vqr);
+		static_cast<QGraphicsWidget*>(ptr)->setX(x);
 	} else {
-		static_cast<QGraphicsObject*>(ptr)->setX(vqr);
+		static_cast<QGraphicsObject*>(ptr)->setX(x);
 	}
 }
 
@@ -37344,12 +37344,12 @@ double QGraphicsObject_Y(void* ptr)
 	}
 }
 
-void QGraphicsObject_SetY(void* ptr, double vqr)
+void QGraphicsObject_SetY(void* ptr, double y)
 {
 	if (dynamic_cast<QGraphicsWidget*>(static_cast<QObject*>(ptr))) {
-		static_cast<QGraphicsWidget*>(ptr)->setY(vqr);
+		static_cast<QGraphicsWidget*>(ptr)->setY(y);
 	} else {
-		static_cast<QGraphicsObject*>(ptr)->setY(vqr);
+		static_cast<QGraphicsObject*>(ptr)->setY(y);
 	}
 }
 
@@ -37362,12 +37362,12 @@ double QGraphicsObject_ZValue(void* ptr)
 	}
 }
 
-void QGraphicsObject_SetZValue(void* ptr, double vqr)
+void QGraphicsObject_SetZValue(void* ptr, double z)
 {
 	if (dynamic_cast<QGraphicsWidget*>(static_cast<QObject*>(ptr))) {
-		static_cast<QGraphicsWidget*>(ptr)->setZValue(vqr);
+		static_cast<QGraphicsWidget*>(ptr)->setZValue(z);
 	} else {
-		static_cast<QGraphicsObject*>(ptr)->setZValue(vqr);
+		static_cast<QGraphicsObject*>(ptr)->setZValue(z);
 	}
 }
 
@@ -45796,9 +45796,9 @@ void* QGraphicsWidget_MaximumSize(void* ptr)
 		return ({ QSizeF tmpValue = static_cast<QGraphicsWidget*>(ptr)->maximumSize(); new QSizeF(tmpValue.width(), tmpValue.height()); });
 }
 
-void QGraphicsWidget_SetMaximumSize(void* ptr, void* vqs)
+void QGraphicsWidget_SetMaximumSize(void* ptr, void* maximumSize)
 {
-		static_cast<QGraphicsWidget*>(ptr)->setMaximumSize(*static_cast<QSizeF*>(vqs));
+		static_cast<QGraphicsWidget*>(ptr)->setMaximumSize(*static_cast<QSizeF*>(maximumSize));
 }
 
 void QGraphicsWidget_SetMaximumSize2(void* ptr, double w, double h)
@@ -45811,9 +45811,9 @@ void* QGraphicsWidget_MinimumSize(void* ptr)
 		return ({ QSizeF tmpValue = static_cast<QGraphicsWidget*>(ptr)->minimumSize(); new QSizeF(tmpValue.width(), tmpValue.height()); });
 }
 
-void QGraphicsWidget_SetMinimumSize(void* ptr, void* vqs)
+void QGraphicsWidget_SetMinimumSize(void* ptr, void* minimumSize)
 {
-		static_cast<QGraphicsWidget*>(ptr)->setMinimumSize(*static_cast<QSizeF*>(vqs));
+		static_cast<QGraphicsWidget*>(ptr)->setMinimumSize(*static_cast<QSizeF*>(minimumSize));
 }
 
 void QGraphicsWidget_SetMinimumSize2(void* ptr, double w, double h)
@@ -45826,9 +45826,9 @@ void* QGraphicsWidget_PreferredSize(void* ptr)
 		return ({ QSizeF tmpValue = static_cast<QGraphicsWidget*>(ptr)->preferredSize(); new QSizeF(tmpValue.width(), tmpValue.height()); });
 }
 
-void QGraphicsWidget_SetPreferredSize(void* ptr, void* vqs)
+void QGraphicsWidget_SetPreferredSize(void* ptr, void* preferredSize)
 {
-		static_cast<QGraphicsWidget*>(ptr)->setPreferredSize(*static_cast<QSizeF*>(vqs));
+		static_cast<QGraphicsWidget*>(ptr)->setPreferredSize(*static_cast<QSizeF*>(preferredSize));
 }
 
 void QGraphicsWidget_SetPreferredSize2(void* ptr, double w, double h)
@@ -45841,9 +45841,9 @@ void* QGraphicsWidget_SizePolicy(void* ptr)
 		return new QSizePolicy(static_cast<QGraphicsWidget*>(ptr)->sizePolicy());
 }
 
-void QGraphicsWidget_SetSizePolicy(void* ptr, void* vqs)
+void QGraphicsWidget_SetSizePolicy(void* ptr, void* sizePolicy)
 {
-		static_cast<QGraphicsWidget*>(ptr)->setSizePolicy(*static_cast<QSizePolicy*>(vqs));
+		static_cast<QGraphicsWidget*>(ptr)->setSizePolicy(*static_cast<QSizePolicy*>(sizePolicy));
 }
 
 void QGraphicsWidget_SetSizePolicy2(void* ptr, long long hPolicy, long long vPolicy, long long controlType)
@@ -94250,9 +94250,9 @@ char QTextBrowser_IsReadOnly(void* ptr)
 	return static_cast<QTextBrowser*>(ptr)->isReadOnly();
 }
 
-void QTextBrowser_SetReadOnly(void* ptr, char vbo)
+void QTextBrowser_SetReadOnly(void* ptr, char readOnly)
 {
-	static_cast<QTextBrowser*>(ptr)->setReadOnly(vbo != 0);
+	static_cast<QTextBrowser*>(ptr)->setReadOnly(readOnly != 0);
 }
 
 char QTextBrowser_IsUndoRedoEnabled(void* ptr)
@@ -94260,9 +94260,9 @@ char QTextBrowser_IsUndoRedoEnabled(void* ptr)
 	return static_cast<QTextBrowser*>(ptr)->isUndoRedoEnabled();
 }
 
-void QTextBrowser_SetUndoRedoEnabled(void* ptr, char vbo)
+void QTextBrowser_SetUndoRedoEnabled(void* ptr, char undoRedoEnabled)
 {
-	static_cast<QTextBrowser*>(ptr)->setUndoRedoEnabled(vbo != 0);
+	static_cast<QTextBrowser*>(ptr)->setUndoRedoEnabled(undoRedoEnabled != 0);
 }
 
 void QTextBrowser_ContextMenuEvent(void* ptr, void* event)
