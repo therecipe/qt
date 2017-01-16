@@ -406,7 +406,7 @@ If you use the STUB version, you are forced to use `qtminimal` otherwise it's op
 
 13. Prepare the Qt directory
 
-	* `sudo chown -R $USER $HOME/Qt5.7.0/`
+	* `sudo chown -R $USER $QT_DIR`
 
 14. Install and test the binding (20 min)
 
