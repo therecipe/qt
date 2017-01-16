@@ -50,6 +50,8 @@ To cross compile to Windows, Linux and Android.
 
 **You will still need to install the desktop version for your host system first!**
 
+**But if you want to use the images only for CI, then you probably don't need to install the binding or Qt on the host. Simply installing and using `qtdeploy` should be enough.**
+
 #### Command line debugging
 
 You can export `QT_DEBUG=true` before "qtdeploying" your application to enable printing of the current function name at runtime.
@@ -62,7 +64,7 @@ In general `qtminimal` should always be called after the use of the optional use
 
 `qtrcc` is used to bundle your `project/qml` folder so you can access the files within by using the `qrc` prefix, like this `qrc:///qml/somefile` from various Qt functions.
 
-`qtmoc` is used to subclass core.QObject based classes and to add your own signals/slots as shown in some examples.
+`qtmoc` is used to subclass core.QObject based classes and to add your own signals/slots/properties as shown in some examples.
 
 `qtminimal` is used to create a small subset of the binding tailored to your code to reduce the binary size. (Use the `-tags=minimal` flag to make use of it)
 
@@ -315,7 +317,7 @@ If you use the STUB version, you are forced to use `qtminimal` otherwise it's op
 
 	* `cd $HOME/raspi/qt-everywhere-opensource-src-5.7.0/qtwayland && wget https://github.com/qtproject/qtwayland/commit/75294be3.patch && patch -p1 -i 75294be3.patch`
 
-5. Download the cross compiler; you can also define a custom location with **RPI_TOOLS_DIR**
+5. Download the cross compiler; you can also define a custom location with **RPI_TOOLS_DIR** (but then you might need to manually change commands from here on during the setup)
 
 	* `cd $HOME/raspi && git clone --depth 1 https://github.com/raspberrypi/tools.git`
 
@@ -355,12 +357,16 @@ If you use the STUB version, you are forced to use `qtminimal` otherwise it's op
 	* Raspberry Pi 1
 		* `sed -i 's/gpu_mem=64/gpu_mem=128/' /boot/config.txt`
 		* `echo "exec startlxde" >> $HOME/.xinitrc && mkdir $HOME/.config/ && echo -e "[core]\nbackend=fbdev-backend.so\nmodules=xwayland.so" >> $HOME/.config/weston.ini`
-		* `echo "dtoverlay=vc4-kms-v3d,cma-128" >> /boot/config.txt && sed -i 's/fbdev-backend/drm-backend/' $HOME/.config/weston.ini` (**experimental**: enable OpenGL under X; will break most applications)
+
+		**experimental**: enable OpenGL under X; will break most applications
+		* `echo "dtoverlay=vc4-kms-v3d,cma-128" >> /boot/config.txt && sed -i 's/fbdev-backend/drm-backend/' $HOME/.config/weston.ini`
 
 	* Raspberry Pi 2 or 3
 		* `sed -i 's/gpu_mem=64/gpu_mem=256/' /boot/config.txt`
 		* `echo "exec startlxde" >> $HOME/.xinitrc && mkdir $HOME/.config/ && echo -e "[core]\nbackend=fbdev-backend.so\nmodules=xwayland.so" >> $HOME/.config/weston.ini`
-		* `echo "dtoverlay=vc4-kms-v3d,cma-256" >> /boot/config.txt && sed -i 's/fbdev-backend/drm-backend/' $HOME/.config/weston.ini` (**experimental**: enable OpenGL under X; will break most applications)
+
+		**experimental**: enable OpenGL under X; will break most applications
+		* `echo "dtoverlay=vc4-kms-v3d,cma-256" >> /boot/config.txt && sed -i 's/fbdev-backend/drm-backend/' $HOME/.config/weston.ini`
 
 	* `reboot`
 
@@ -376,23 +382,25 @@ If you use the STUB version, you are forced to use `qtminimal` otherwise it's op
 
 	* `rsync -avz root@$RASPI_IP:/opt/vc sysroot/opt --delete`
 
-11. Prepare sysroot; you can also define a custom location with **RPI1_SYSROOT_DIR**, **RPI2_SYSROOT_DIR** or **RPI3_SYSROOT_DIR**
+11. Prepare sysroot; you can also define a custom location with **RPI1_SYSROOT_DIR**, **RPI2_SYSROOT_DIR** or **RPI3_SYSROOT_DIR** (but then you might need to manually change commands from here on during the setup)
 
 	* `cd $HOME/raspi && wget https://raw.githubusercontent.com/riscv/riscv-poky/master/scripts/sysroot-relativelinks.py`
 	* `chmod +x sysroot-relativelinks.py && ./sysroot-relativelinks.py sysroot`
 
-12. Build Qt (2 h)
+12. Build Qt (2 hours)
 
 	* `cd $HOME/raspi/qt-everywhere-opensource-src-5.7.0`
 
+	* make sure `QT_DIR` points to your desktop installation of Qt; you may also want to tweak the configure command below, if you put the tools or the sysroot in an alternative location
+
 	* Raspberry Pi 1
-		* `./configure -opengl es2 -device linux-rasp-pi-g++ -device-option CROSS_COMPILE=$HOME/raspi/tools/arm-bcm2708/arm-rpi-4.9.3-linux-gnueabihf/bin/arm-linux-gnueabihf- -sysroot $HOME/raspi/sysroot -opensource -confirm-license -make libs -skip webengine -nomake tools -nomake examples -extprefix /usr/local/Qt5.7.0/5.7/rpi1 -I $HOME/raspi/sysroot/opt/vc/include -I $HOME/raspi/sysroot/opt/vc/include/interface/vcos -I $HOME/raspi/sysroot/opt/vc/include/interface/vcos/pthreads -I $HOME/raspi/sysroot/opt/vc/include/interface/vmcs_host/linux -silent`
+		* `./configure -opengl es2 -device linux-rasp-pi-g++ -device-option CROSS_COMPILE=$HOME/raspi/tools/arm-bcm2708/arm-rpi-4.9.3-linux-gnueabihf/bin/arm-linux-gnueabihf- -sysroot $HOME/raspi/sysroot -opensource -confirm-license -make libs -skip webengine -nomake tools -nomake examples -extprefix $QT_DIR/5.7/rpi1 -I $HOME/raspi/sysroot/opt/vc/include -I $HOME/raspi/sysroot/opt/vc/include/interface/vcos -I $HOME/raspi/sysroot/opt/vc/include/interface/vcos/pthreads -I $HOME/raspi/sysroot/opt/vc/include/interface/vmcs_host/linux -silent`
 
 	* Raspberry Pi 2
-		* `./configure -opengl es2 -device linux-rasp-pi2-g++ -device-option CROSS_COMPILE=$HOME/raspi/tools/arm-bcm2708/arm-rpi-4.9.3-linux-gnueabihf/bin/arm-linux-gnueabihf- -sysroot $HOME/raspi/sysroot -opensource -confirm-license -make libs -skip webengine -nomake tools -nomake examples -extprefix /usr/local/Qt5.7.0/5.7/rpi2 -I $HOME/raspi/sysroot/opt/vc/include -I $HOME/raspi/sysroot/opt/vc/include/interface/vcos -I $HOME/raspi/sysroot/opt/vc/include/interface/vcos/pthreads -I $HOME/raspi/sysroot/opt/vc/include/interface/vmcs_host/linux -silent`
+		* `./configure -opengl es2 -device linux-rasp-pi2-g++ -device-option CROSS_COMPILE=$HOME/raspi/tools/arm-bcm2708/arm-rpi-4.9.3-linux-gnueabihf/bin/arm-linux-gnueabihf- -sysroot $HOME/raspi/sysroot -opensource -confirm-license -make libs -skip webengine -nomake tools -nomake examples -extprefix $QT_DIR/5.7/rpi2 -I $HOME/raspi/sysroot/opt/vc/include -I $HOME/raspi/sysroot/opt/vc/include/interface/vcos -I $HOME/raspi/sysroot/opt/vc/include/interface/vcos/pthreads -I $HOME/raspi/sysroot/opt/vc/include/interface/vmcs_host/linux -silent`
 
 	* Raspberry Pi 3
-		* `./configure -opengl es2 -device linux-rpi3-g++ -device-option CROSS_COMPILE=$HOME/raspi/tools/arm-bcm2708/arm-rpi-4.9.3-linux-gnueabihf/bin/arm-linux-gnueabihf- -sysroot $HOME/raspi/sysroot -opensource -confirm-license -make libs -skip webengine -nomake tools -nomake examples -extprefix /usr/local/Qt5.7.0/5.7/rpi3 -I $HOME/raspi/sysroot/opt/vc/include -I $HOME/raspi/sysroot/opt/vc/include/interface/vcos -I $HOME/raspi/sysroot/opt/vc/include/interface/vcos/pthreads -I $HOME/raspi/sysroot/opt/vc/include/interface/vmcs_host/linux -silent`
+		* `./configure -opengl es2 -device linux-rpi3-g++ -device-option CROSS_COMPILE=$HOME/raspi/tools/arm-bcm2708/arm-rpi-4.9.3-linux-gnueabihf/bin/arm-linux-gnueabihf- -sysroot $HOME/raspi/sysroot -opensource -confirm-license -make libs -skip webengine -nomake tools -nomake examples -extprefix $QT_DIR/5.7/rpi3 -I $HOME/raspi/sysroot/opt/vc/include -I $HOME/raspi/sysroot/opt/vc/include/interface/vcos -I $HOME/raspi/sysroot/opt/vc/include/interface/vcos/pthreads -I $HOME/raspi/sysroot/opt/vc/include/interface/vmcs_host/linux -silent`
 
 	* `make -k -i && sudo make -k -i install`
 
@@ -421,7 +429,7 @@ If you use the STUB version, you are forced to use `qtminimal` otherwise it's op
 
 16. Create your first [application](#example)
 
-17. Deploy applications with `$GOPATH/bin/qtdeploy build rpiX path/to/your/project` (replace X with 1, 2 or 3)
+17. Deploy applications with `$GOPATH/bin/qtdeploy build rpiX path/to/your/project` (replace X with 1, 2 or 3) (use the *.sh file to start your application)
 
 ## Docker
 
