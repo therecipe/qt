@@ -85,7 +85,7 @@ func Deploy(s *State) {
 		{
 			if buildDocker {
 				if gLdFlags != "" {
-					cmd.Docker([]string{"qtdeploy", "-debug", fmt.Sprintf("-ldflags=\"%v\"", gLdFlags), "build", buildTarget}, buildTarget, appPath)
+					cmd.Docker([]string{"qtdeploy", "-debug", fmt.Sprintf("-ldflags=%v", gLdFlags), "build", buildTarget}, buildTarget, appPath)
 				} else {
 					cmd.Docker([]string{"qtdeploy", "-debug", "build", buildTarget}, buildTarget, appPath)
 				}
