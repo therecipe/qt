@@ -17,8 +17,9 @@ func main() {
 	cmd.ParseFlags()
 
 	var (
-		appPath string
-		fields  = logrus.Fields{"func": "main"}
+		appPath     string
+		buildDocker bool
+		fields      = logrus.Fields{"func": "main"}
 	)
 	defaultAppPath, err := os.Getwd()
 	if err != nil {
@@ -30,6 +31,9 @@ func main() {
 		appPath = defaultAppPath
 	case 1:
 		appPath = flag.Arg(0)
+	case 2:
+		appPath = flag.Arg(0)
+		buildDocker = true
 	default:
 		fmt.Println("Only specify one path")
 		fmt.Printf("%s path/to/app\n", os.Args[0])
@@ -51,9 +55,13 @@ func main() {
 		utils.Log.WithFields(fields).Fatal("Path is not a directory")
 	}
 
-	utils.Log.WithFields(fields).Debug("Running...")
-	if err = moc.MocTree(appPath); err != nil {
-		fmt.Println(err.Error())
-		os.Exit(1)
+	if buildDocker {
+		cmd.Docker([]string{"qtmoc", "-debug"}, "linux", appPath)
+	} else {
+		utils.Log.WithFields(fields).Debug("Running...")
+		if err = moc.MocTree(appPath); err != nil {
+			fmt.Println(err.Error())
+			os.Exit(1)
+		}
 	}
 }

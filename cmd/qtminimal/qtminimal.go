@@ -17,6 +17,7 @@ func main() {
 	var (
 		buildTarget = "desktop"
 		appPath, _  = os.Getwd()
+		buildDocker bool
 	)
 
 	switch flag.NArg() {
@@ -30,6 +31,13 @@ func main() {
 			buildTarget = flag.Arg(0)
 			appPath = flag.Arg(1)
 		}
+
+	case 3:
+		{
+			buildTarget = flag.Arg(0)
+			appPath = flag.Arg(1)
+			buildDocker = true
+		}
 	}
 	if !filepath.IsAbs(appPath) {
 		appPath, _ = utils.Abs(appPath)
@@ -38,5 +46,9 @@ func main() {
 		utils.Log.Fatalln("usage:", "qtminimal", "[ desktop | android | ... ]", filepath.Join("path", "to", "project"))
 	}
 
-	minimal.Minimal(appPath, buildTarget)
+	if buildDocker {
+		cmd.Docker([]string{"qtminimal", "-debug"}, buildTarget, appPath)
+	} else {
+		minimal.Minimal(appPath, buildTarget)
+	}
 }

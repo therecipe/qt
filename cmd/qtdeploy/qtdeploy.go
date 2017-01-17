@@ -20,6 +20,8 @@ var (
 )
 
 func main() {
+	var ldFlags = flag.String("ldflags", "", "arguments to pass on each go tool link invocation.")
+
 	cmd.ParseFlags()
 
 	args()
@@ -29,6 +31,7 @@ func main() {
 		BuildTarget: buildTarget,
 		AppPath:     appPath,
 		BuildDocker: buildDocker,
+		LdFlags:     *ldFlags,
 	})
 }
 

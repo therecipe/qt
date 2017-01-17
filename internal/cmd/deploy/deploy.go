@@ -15,6 +15,7 @@ import (
 
 	"github.com/therecipe/qt/internal/binding/parser"
 	"github.com/therecipe/qt/internal/binding/templater"
+	"github.com/therecipe/qt/internal/cmd"
 	"github.com/therecipe/qt/internal/cmd/minimal"
 	"github.com/therecipe/qt/internal/cmd/moc"
 	"github.com/therecipe/qt/internal/cmd/rcc"
@@ -28,12 +29,14 @@ var (
 	buildMode, buildTarget string
 	ending                 string
 	buildDocker            bool
+	gLdFlags               string
 )
 
 type State struct {
 	AppPath                string
 	BuildMode, BuildTarget string
 	BuildDocker            bool
+	LdFlags                string
 }
 
 func Deploy(s *State) {
@@ -41,6 +44,7 @@ func Deploy(s *State) {
 	buildTarget = s.BuildTarget
 	appPath = filepath.Clean(s.AppPath)
 	buildDocker = s.BuildDocker
+	gLdFlags = s.LdFlags
 
 	if !filepath.IsAbs(appPath) {
 		appPath, _ = utils.Abs(appPath)
@@ -80,7 +84,11 @@ func Deploy(s *State) {
 	case "build", "test":
 		{
 			if buildDocker {
-				deployDocker()
+				if gLdFlags != "" {
+					cmd.Docker([]string{"qtdeploy", "-debug", fmt.Sprintf("-ldflags=\"%v\"", gLdFlags), "build", buildTarget}, buildTarget, appPath)
+				} else {
+					cmd.Docker([]string{"qtdeploy", "-debug", "build", buildTarget}, buildTarget, appPath)
+				}
 			} else {
 
 				//rcc
@@ -135,21 +143,25 @@ func Deploy(s *State) {
 func build() {
 
 	var (
-		ldFlags    = "-ldflags="
-		tagFlags   = "-tags=\"minimal\""
+		ldFlags    []string
+		tagFlags   = []string{"minimal"}
 		outputFile string
 		env        map[string]string
 	)
 
+	if gLdFlags != "" {
+		ldFlags = strings.Split(gLdFlags, " ")
+	}
+
 	if strings.ToLower(os.Getenv("QT_DOCKER")) == "true" {
-		tagFlags += "\"docker\""
+		tagFlags = append(tagFlags, "docker")
 	}
 
 	switch buildTarget {
 	case "android":
 		{
-			ldFlags += "\"-s\" \"-w\""
-			tagFlags += fmt.Sprintf("\"%v\"", buildTarget)
+			ldFlags = append(ldFlags, []string{"-s", "-w"}...)
+			tagFlags = append(tagFlags, buildTarget)
 			outputFile = filepath.Join(depPath, "libgo_base.so")
 
 			switch runtime.GOOS {
@@ -200,8 +212,8 @@ func build() {
 
 	case "ios", "ios-simulator":
 		{
-			ldFlags += "\"-w\""
-			tagFlags += "\"ios\""
+			ldFlags = append(ldFlags, "-w")
+			tagFlags = append(tagFlags, "ios")
 
 			outputFile = filepath.Join(depPath, "libgo.a")
 
@@ -242,19 +254,19 @@ func build() {
 			switch runtime.GOOS {
 			case "darwin":
 				{
-					ldFlags += fmt.Sprintf("\"-w\" \"-r=%v/lib\"", utils.QT_DARWIN_DIR())
+					ldFlags = append(ldFlags, []string{"-w", fmt.Sprintf("-r=%v", filepath.Join(utils.QT_DARWIN_DIR(), "lib"))}...)
 					outputFile = filepath.Join(depPath, fmt.Sprintf("%v.app/Contents/MacOS/%v", appName, appName))
 				}
 
 			case "linux":
 				{
-					ldFlags += "\"-s\" \"-w\""
+					ldFlags = append(ldFlags, []string{"-s", "-w"}...)
 					outputFile = filepath.Join(depPath, appName)
 				}
 
 			case "windows":
 				{
-					ldFlags += "\"-s\" \"-w\" \"-H=windowsgui\""
+					ldFlags = append(ldFlags, []string{"-s", "-w", "-H=windowsgui"}...)
 					outputFile = filepath.Join(depPath, appName)
 					env = map[string]string{
 						"PATH":   os.Getenv("PATH"),
@@ -281,6 +293,8 @@ func build() {
 
 	case "sailfish", "sailfish-emulator":
 		{
+			//TODO: ldflags support
+
 			if !strings.Contains(appPath, utils.MustGoPath()) {
 				utils.Log.Panicln("Project needs to be inside GOPATH", appPath, utils.MustGoPath())
 			}
@@ -324,8 +338,8 @@ func build() {
 
 	case "rpi1", "rpi2", "rpi3":
 		{
-			ldFlags += "\"-s\" \"-w\""
-			tagFlags += fmt.Sprintf("\"%v\"", buildTarget)
+			ldFlags = append(ldFlags, []string{"-s", "-w"}...)
+			tagFlags = append(tagFlags, buildTarget)
 			outputFile = filepath.Join(depPath, appName)
 
 			env = map[string]string{
@@ -350,8 +364,8 @@ func build() {
 	case "windows":
 		{
 			if runtime.GOOS == "linux" {
-				ldFlags += "\"-s\" \"-w\" \"-H=windowsgui\""
-				tagFlags += fmt.Sprintf("\"%v\"", buildTarget)
+				ldFlags = append(ldFlags, []string{"-s", "-w", "-H=windowsgui"}...)
+				tagFlags = append(tagFlags, "windows")
 				outputFile = filepath.Join(depPath, appName)
 
 				env = map[string]string{
@@ -374,12 +388,9 @@ func build() {
 		}
 	}
 
-	var cmd = exec.Command("go", "build", "-p", strconv.Itoa(runtime.GOMAXPROCS(0)), "-v", ldFlags, "-o", outputFile+ending)
+	var cmd = exec.Command("go", "build", "-i", "-p", strconv.Itoa(runtime.GOMAXPROCS(0)), "-v", fmt.Sprintf("-ldflags=\"%v\"", strings.Join(ldFlags, "\" \"")), "-o", outputFile+ending)
 	cmd.Dir = appPath
-
-	if tagFlags != "" {
-		cmd.Args = append(cmd.Args, tagFlags)
-	}
+	cmd.Args = append(cmd.Args, fmt.Sprintf("-tags=\"%v\"", strings.Join(tagFlags, "\" \"")))
 	if buildTarget != "desktop" {
 		cmd.Args = append(cmd.Args, fmt.Sprintf("-installsuffix=%v", strings.Replace(buildTarget, "-", "_", -1)))
 	}
@@ -405,11 +416,9 @@ func build() {
 
 	//armv7
 	if buildTarget == "ios" && (strings.HasPrefix(runtime.Version(), "go1.7") || strings.HasPrefix(runtime.Version(), "devel")) {
-		var cmdiOS = exec.Command("go", "build", "-p", strconv.Itoa(runtime.GOMAXPROCS(0)), "-v", ldFlags, "-o", strings.Replace(outputFile, "libgo.a", "libgo_armv7.a", -1))
+		var cmdiOS = exec.Command("go", "build", "-i", "-p", strconv.Itoa(runtime.GOMAXPROCS(0)), "-v", fmt.Sprintf("-ldflags=\"%v\"", strings.Join(ldFlags, "\" \"")), "-o", strings.Replace(outputFile, "libgo.a", "libgo_armv7.a", -1))
 		cmdiOS.Dir = appPath
-		if tagFlags != "" {
-			cmdiOS.Args = append(cmdiOS.Args, tagFlags)
-		}
+		cmdiOS.Args = append(cmdiOS.Args, fmt.Sprintf("-tags=\"%v\"", strings.Join(tagFlags, "\" \"")))
 		if buildTarget != "desktop" {
 			cmdiOS.Args = append(cmdiOS.Args, fmt.Sprintf("-installsuffix=%v", buildTarget))
 		}
@@ -935,96 +944,6 @@ func cleanup() error {
 	utils.RemoveAll(filepath.Join(appPath, "cgo_main_wrapper.go"))
 
 	return moc.CleanPath(appPath)
-}
-
-func deployDocker() {
-
-	var dockerImage string
-
-	switch buildTarget {
-	case "desktop":
-		{
-			switch runtime.GOOS {
-			case "windows":
-				{
-					dockerImage = "base_windows"
-					if utils.QT_MXE_ARCH() == "amd64" {
-						dockerImage = "base_windows_64"
-					}
-				}
-
-			case "darwin":
-				{
-					utils.Log.Fatalf("%v is currently not supported as a deploy target by docker", runtime.GOOS)
-				}
-
-			case "linux":
-				{
-					dockerImage = "base"
-				}
-			}
-		}
-
-	case "windows":
-		{
-			dockerImage = "base_windows"
-			if utils.QT_MXE_ARCH() == "amd64" {
-				dockerImage = "base_windows_64"
-			}
-		}
-
-	case "darwin":
-		{
-			utils.Log.Fatalf("%v is currently not supported as a deploy target by docker", runtime.GOOS)
-		}
-
-	case "linux":
-		{
-			dockerImage = "base"
-		}
-
-	case "android":
-		{
-			dockerImage = "base_android"
-		}
-
-	default:
-		{
-			utils.Log.Fatalf("%v is currently not supported as a deploy target by docker", runtime.GOOS)
-		}
-	}
-
-	var (
-		args = []string{"run", "--rm"}
-		path = make([]string, 0)
-	)
-
-	for i, gp := range strings.Split(os.Getenv("GOPATH"), string(filepath.ListSeparator)) {
-		args = append(args, []string{"-v", fmt.Sprintf("%v:/media/sf_GOPATH%v", gp, i)}...)
-		path = append(path, fmt.Sprintf("/media/sf_GOPATH%v", i))
-	}
-
-	args = append(args, []string{"-e", "GOPATH=" + strings.Join(path, ":")}...)
-
-	args = append(args, []string{"-i", fmt.Sprintf("therecipe/qt:%v", dockerImage)}...)
-
-	args = append(args, []string{"qtdeploy", "-debug", "build", buildTarget}...)
-
-	var found bool
-	for i, gp := range strings.Split(os.Getenv("GOPATH"), string(filepath.ListSeparator)) {
-		gp = filepath.Clean(gp)
-		if strings.HasPrefix(appPath, gp) {
-			args = append(args, strings.Replace(strings.Replace(appPath, gp, fmt.Sprintf("/media/sf_GOPATH%v", i), -1), "\\", "/", -1))
-			found = true
-			break
-		}
-	}
-
-	if !found {
-		utils.Log.Panicln("Project needs to be inside GOPATH", appPath, os.Getenv("GOPATH"))
-	}
-
-	utils.RunCmd(exec.Command("docker", args...), fmt.Sprintf("deploy binary for %v on %v with docker", buildTarget, runtime.GOOS))
 }
 
 func run() {

@@ -37,10 +37,18 @@ func main() {
 		}
 	}
 
+	var buildDocker bool
+
 	switch flag.NArg() {
 	case 1:
 		{
 			appPath = flag.Arg(0)
+		}
+
+	case 2:
+		{
+			appPath = flag.Arg(0)
+			buildDocker = true
 		}
 	}
 	if !filepath.IsAbs(appPath) {
@@ -50,5 +58,9 @@ func main() {
 		utils.Log.Fatalln("usage:", "qtrcc", filepath.Join("path", "to", "project"))
 	}
 
-	rcc.Rcc(appPath, output_dir)
+	if buildDocker {
+		cmd.Docker([]string{"qtrcc", "-debug"}, "linux", appPath)
+	} else {
+		rcc.Rcc(appPath, output_dir)
+	}
 }
