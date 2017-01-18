@@ -245,6 +245,7 @@ void QQmlEngine_SetPluginPathList(void* ptr, char* paths);
 void QQmlEngine_TrimComponentCache(void* ptr);
 void QQmlEngine_DestroyQQmlEngine(void* ptr);
 void QQmlEngine_DestroyQQmlEngineDefault(void* ptr);
+int QQmlEngine_QQmlEngine_QmlRegisterSingletonType(void* url, char* uri, int versionMajor, int versionMinor, char* qmlName);
 void QQmlEngine_TimerEvent(void* ptr, void* event);
 void QQmlEngine_TimerEventDefault(void* ptr, void* event);
 void QQmlEngine_ChildEvent(void* ptr, void* event);

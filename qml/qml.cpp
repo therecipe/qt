@@ -1316,6 +1316,11 @@ void QQmlEngine_DestroyQQmlEngineDefault(void* ptr)
 
 }
 
+int QQmlEngine_QQmlEngine_QmlRegisterSingletonType(void* url, char* uri, int versionMajor, int versionMinor, char* qmlName)
+{
+	return qmlRegisterSingletonType(*static_cast<QUrl*>(url), const_cast<const char*>(uri), versionMajor, versionMinor, const_cast<const char*>(qmlName));
+}
+
 void QQmlEngine_TimerEvent(void* ptr, void* event)
 {
 	static_cast<QQmlEngine*>(ptr)->timerEvent(static_cast<QTimerEvent*>(event));

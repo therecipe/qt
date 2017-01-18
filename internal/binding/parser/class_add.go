@@ -44,8 +44,36 @@ func (c *Class) addGeneralFuncs() {
 				})
 			}
 		}
+
+	case "QQmlEngine":
+		{
+			if !c.HasFunctionWithName("qmlRegisterSingletonType") {
+				//http://doc.qt.io/qt-5/qqmlengine.html#qmlRegisterSingletonType-2
+				//int qmlRegisterSingletonType(const QUrl &url, const char *uri, int versionMajor, int versionMinor, const char *qmlName)
+				c.Functions = append(c.Functions, &Function{
+					Name:        "qmlRegisterSingletonType",
+					Fullname:    fmt.Sprintf("%v::qmlRegisterSingletonType", c.Name),
+					Access:      "public",
+					Virtual:     "non",
+					Meta:        PLAIN,
+					NonMember:   true,
+					NoMocDeduce: true,
+					Static:      true,
+					Output:      fmt.Sprintf("int"),
+					Parameters: []*Parameter{
+						{Name: "url", Value: "const QUrl &"},
+						{Name: "uri", Value: "const char *"},
+						{Name: "versionMajor", Value: "int"},
+						{Name: "versionMinor", Value: "int"},
+						{Name: "qmlName", Value: "const char *"},
+					},
+					Signature: "(const QUrl &url, const char *uri, int versionMajor, int versionMinor, const char *qmlName)",
+				})
+			}
+		}
 	}
 
+	//TODO: make general
 	if c.Name == "QQmlNetworkAccessManagerFactory" && !c.HasConstructor() {
 		c.Functions = append(c.Functions, &Function{
 			Name:       c.Name,
@@ -73,11 +101,12 @@ func (c *Class) addMocFuncs() {
 		return
 	}
 
-	//add generic qRegisterMetaType functions
 	if c.HasFunctionWithName("qRegisterMetaType") {
 		return
 	}
 
+	//http://doc.qt.io/qt-5/qmetatype.html#qRegisterMetaType-1
+	//int qRegisterMetaType()
 	var tmpF = &Function{
 		Name:           "qRegisterMetaType",
 		Fullname:       fmt.Sprintf("%v::qRegisterMetaType", c.Name),
@@ -94,6 +123,8 @@ func (c *Class) addMocFuncs() {
 	}
 	c.Functions = append(c.Functions, tmpF)
 
+	//http://doc.qt.io/qt-5/qmetatype.html#qRegisterMetaType
+	//int qRegisterMetaType(const char *typeName)
 	var tmpF2 = *tmpF
 	tmpF2.Overload = true
 	tmpF2.OverloadNumber = "2"

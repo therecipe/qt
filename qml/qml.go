@@ -3383,6 +3383,22 @@ func (ptr *QQmlEngine) DestroyQQmlEngineDefault() {
 	}
 }
 
+func QQmlEngine_QmlRegisterSingletonType(url core.QUrl_ITF, uri string, versionMajor int, versionMinor int, qmlName string) int {
+	var uriC = C.CString(uri)
+	defer C.free(unsafe.Pointer(uriC))
+	var qmlNameC = C.CString(qmlName)
+	defer C.free(unsafe.Pointer(qmlNameC))
+	return int(int32(C.QQmlEngine_QQmlEngine_QmlRegisterSingletonType(core.PointerFromQUrl(url), uriC, C.int(int32(versionMajor)), C.int(int32(versionMinor)), qmlNameC)))
+}
+
+func (ptr *QQmlEngine) QmlRegisterSingletonType(url core.QUrl_ITF, uri string, versionMajor int, versionMinor int, qmlName string) int {
+	var uriC = C.CString(uri)
+	defer C.free(unsafe.Pointer(uriC))
+	var qmlNameC = C.CString(qmlName)
+	defer C.free(unsafe.Pointer(qmlNameC))
+	return int(int32(C.QQmlEngine_QQmlEngine_QmlRegisterSingletonType(core.PointerFromQUrl(url), uriC, C.int(int32(versionMajor)), C.int(int32(versionMinor)), qmlNameC)))
+}
+
 //export callbackQQmlEngine_TimerEvent
 func callbackQQmlEngine_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 
