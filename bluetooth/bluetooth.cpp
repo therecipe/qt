@@ -216,9 +216,19 @@ void QBluetoothDeviceDiscoveryAgent_Start(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QBluetoothDeviceDiscoveryAgent*>(ptr), "start");
 }
 
+void QBluetoothDeviceDiscoveryAgent_StartDefault(void* ptr)
+{
+	static_cast<QBluetoothDeviceDiscoveryAgent*>(ptr)->QBluetoothDeviceDiscoveryAgent::start();
+}
+
 void QBluetoothDeviceDiscoveryAgent_Stop(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QBluetoothDeviceDiscoveryAgent*>(ptr), "stop");
+}
+
+void QBluetoothDeviceDiscoveryAgent_StopDefault(void* ptr)
+{
+	static_cast<QBluetoothDeviceDiscoveryAgent*>(ptr)->QBluetoothDeviceDiscoveryAgent::stop();
 }
 
 void QBluetoothDeviceDiscoveryAgent_DestroyQBluetoothDeviceDiscoveryAgent(void* ptr)
@@ -644,6 +654,11 @@ struct QtBluetooth_PackedString QBluetoothLocalDevice_Name(void* ptr)
 void QBluetoothLocalDevice_PairingConfirmation(void* ptr, char accept)
 {
 	QMetaObject::invokeMethod(static_cast<QBluetoothLocalDevice*>(ptr), "pairingConfirmation", Q_ARG(bool, accept != 0));
+}
+
+void QBluetoothLocalDevice_PairingConfirmationDefault(void* ptr, char accept)
+{
+	static_cast<QBluetoothLocalDevice*>(ptr)->QBluetoothLocalDevice::pairingConfirmation(accept != 0);
 }
 
 long long QBluetoothLocalDevice_PairingStatus(void* ptr, void* address)
@@ -1081,6 +1096,11 @@ void QBluetoothServiceDiscoveryAgent_Clear(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QBluetoothServiceDiscoveryAgent*>(ptr), "clear");
 }
 
+void QBluetoothServiceDiscoveryAgent_ClearDefault(void* ptr)
+{
+	static_cast<QBluetoothServiceDiscoveryAgent*>(ptr)->QBluetoothServiceDiscoveryAgent::clear();
+}
+
 struct QtBluetooth_PackedList QBluetoothServiceDiscoveryAgent_DiscoveredServices(void* ptr)
 {
 	return ({ QList<QBluetoothServiceInfo>* tmpValue = new QList<QBluetoothServiceInfo>(static_cast<QBluetoothServiceDiscoveryAgent*>(ptr)->discoveredServices()); QtBluetooth_PackedList { tmpValue, tmpValue->size() }; });
@@ -1121,9 +1141,19 @@ void QBluetoothServiceDiscoveryAgent_Start(void* ptr, long long mode)
 	QMetaObject::invokeMethod(static_cast<QBluetoothServiceDiscoveryAgent*>(ptr), "start", Q_ARG(QBluetoothServiceDiscoveryAgent::DiscoveryMode, static_cast<QBluetoothServiceDiscoveryAgent::DiscoveryMode>(mode)));
 }
 
+void QBluetoothServiceDiscoveryAgent_StartDefault(void* ptr, long long mode)
+{
+	static_cast<QBluetoothServiceDiscoveryAgent*>(ptr)->QBluetoothServiceDiscoveryAgent::start(static_cast<QBluetoothServiceDiscoveryAgent::DiscoveryMode>(mode));
+}
+
 void QBluetoothServiceDiscoveryAgent_Stop(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QBluetoothServiceDiscoveryAgent*>(ptr), "stop");
+}
+
+void QBluetoothServiceDiscoveryAgent_StopDefault(void* ptr)
+{
+	static_cast<QBluetoothServiceDiscoveryAgent*>(ptr)->QBluetoothServiceDiscoveryAgent::stop();
 }
 
 struct QtBluetooth_PackedList QBluetoothServiceDiscoveryAgent_UuidFilter(void* ptr)
@@ -2040,6 +2070,11 @@ public:
 void QBluetoothTransferReply_Abort(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QBluetoothTransferReply*>(ptr), "abort");
+}
+
+void QBluetoothTransferReply_AbortDefault(void* ptr)
+{
+	static_cast<QBluetoothTransferReply*>(ptr)->QBluetoothTransferReply::abort();
 }
 
 void QBluetoothTransferReply_SetManager(void* ptr, void* manager)

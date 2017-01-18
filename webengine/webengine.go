@@ -27,26 +27,6 @@ func cGoUnpackString(s C.struct_QtWebEngine_PackedString) string {
 	return C.GoStringN(s.data, C.int(s.len))
 }
 
-//go:generate stringer -type=QQuickWebEngineProfile__HttpCacheType
-//QQuickWebEngineProfile::HttpCacheType
-type QQuickWebEngineProfile__HttpCacheType int64
-
-const (
-	QQuickWebEngineProfile__MemoryHttpCache QQuickWebEngineProfile__HttpCacheType = QQuickWebEngineProfile__HttpCacheType(0)
-	QQuickWebEngineProfile__DiskHttpCache   QQuickWebEngineProfile__HttpCacheType = QQuickWebEngineProfile__HttpCacheType(1)
-	QQuickWebEngineProfile__NoCache         QQuickWebEngineProfile__HttpCacheType = QQuickWebEngineProfile__HttpCacheType(2)
-)
-
-//go:generate stringer -type=QQuickWebEngineProfile__PersistentCookiesPolicy
-//QQuickWebEngineProfile::PersistentCookiesPolicy
-type QQuickWebEngineProfile__PersistentCookiesPolicy int64
-
-const (
-	QQuickWebEngineProfile__NoPersistentCookies    QQuickWebEngineProfile__PersistentCookiesPolicy = QQuickWebEngineProfile__PersistentCookiesPolicy(0)
-	QQuickWebEngineProfile__AllowPersistentCookies QQuickWebEngineProfile__PersistentCookiesPolicy = QQuickWebEngineProfile__PersistentCookiesPolicy(1)
-	QQuickWebEngineProfile__ForcePersistentCookies QQuickWebEngineProfile__PersistentCookiesPolicy = QQuickWebEngineProfile__PersistentCookiesPolicy(2)
-)
-
 type QQuickWebEngineProfile struct {
 	core.QObject
 }
@@ -93,6 +73,26 @@ func (ptr *QQuickWebEngineProfile) DestroyQQuickWebEngineProfile() {
 		ptr.SetPointer(nil)
 	}
 }
+
+//go:generate stringer -type=QQuickWebEngineProfile__HttpCacheType
+//QQuickWebEngineProfile::HttpCacheType
+type QQuickWebEngineProfile__HttpCacheType int64
+
+const (
+	QQuickWebEngineProfile__MemoryHttpCache QQuickWebEngineProfile__HttpCacheType = QQuickWebEngineProfile__HttpCacheType(0)
+	QQuickWebEngineProfile__DiskHttpCache   QQuickWebEngineProfile__HttpCacheType = QQuickWebEngineProfile__HttpCacheType(1)
+	QQuickWebEngineProfile__NoCache         QQuickWebEngineProfile__HttpCacheType = QQuickWebEngineProfile__HttpCacheType(2)
+)
+
+//go:generate stringer -type=QQuickWebEngineProfile__PersistentCookiesPolicy
+//QQuickWebEngineProfile::PersistentCookiesPolicy
+type QQuickWebEngineProfile__PersistentCookiesPolicy int64
+
+const (
+	QQuickWebEngineProfile__NoPersistentCookies    QQuickWebEngineProfile__PersistentCookiesPolicy = QQuickWebEngineProfile__PersistentCookiesPolicy(0)
+	QQuickWebEngineProfile__AllowPersistentCookies QQuickWebEngineProfile__PersistentCookiesPolicy = QQuickWebEngineProfile__PersistentCookiesPolicy(1)
+	QQuickWebEngineProfile__ForcePersistentCookies QQuickWebEngineProfile__PersistentCookiesPolicy = QQuickWebEngineProfile__PersistentCookiesPolicy(2)
+)
 
 func (ptr *QQuickWebEngineProfile) CachePath() string {
 	if ptr.Pointer() != nil {
@@ -897,26 +897,6 @@ func (ptr *QQuickWebEngineProfile) MetaObjectDefault() *core.QMetaObject {
 	return nil
 }
 
-//go:generate stringer -type=QWebEngineCertificateError__Error
-//QWebEngineCertificateError::Error
-type QWebEngineCertificateError__Error int64
-
-const (
-	QWebEngineCertificateError__SslPinnedKeyNotInCertificateChain  QWebEngineCertificateError__Error = QWebEngineCertificateError__Error(-150)
-	QWebEngineCertificateError__CertificateCommonNameInvalid       QWebEngineCertificateError__Error = QWebEngineCertificateError__Error(-200)
-	QWebEngineCertificateError__CertificateDateInvalid             QWebEngineCertificateError__Error = QWebEngineCertificateError__Error(-201)
-	QWebEngineCertificateError__CertificateAuthorityInvalid        QWebEngineCertificateError__Error = QWebEngineCertificateError__Error(-202)
-	QWebEngineCertificateError__CertificateContainsErrors          QWebEngineCertificateError__Error = QWebEngineCertificateError__Error(-203)
-	QWebEngineCertificateError__CertificateNoRevocationMechanism   QWebEngineCertificateError__Error = QWebEngineCertificateError__Error(-204)
-	QWebEngineCertificateError__CertificateUnableToCheckRevocation QWebEngineCertificateError__Error = QWebEngineCertificateError__Error(-205)
-	QWebEngineCertificateError__CertificateRevoked                 QWebEngineCertificateError__Error = QWebEngineCertificateError__Error(-206)
-	QWebEngineCertificateError__CertificateInvalid                 QWebEngineCertificateError__Error = QWebEngineCertificateError__Error(-207)
-	QWebEngineCertificateError__CertificateWeakSignatureAlgorithm  QWebEngineCertificateError__Error = QWebEngineCertificateError__Error(-208)
-	QWebEngineCertificateError__CertificateNonUniqueName           QWebEngineCertificateError__Error = QWebEngineCertificateError__Error(-210)
-	QWebEngineCertificateError__CertificateWeakKey                 QWebEngineCertificateError__Error = QWebEngineCertificateError__Error(-211)
-	QWebEngineCertificateError__CertificateNameConstraintViolation QWebEngineCertificateError__Error = QWebEngineCertificateError__Error(-212)
-)
-
 type QWebEngineCertificateError struct {
 	ptr unsafe.Pointer
 }
@@ -962,6 +942,26 @@ func (ptr *QWebEngineCertificateError) DestroyQWebEngineCertificateError() {
 	}
 }
 
+//go:generate stringer -type=QWebEngineCertificateError__Error
+//QWebEngineCertificateError::Error
+type QWebEngineCertificateError__Error int64
+
+const (
+	QWebEngineCertificateError__SslPinnedKeyNotInCertificateChain  QWebEngineCertificateError__Error = QWebEngineCertificateError__Error(-150)
+	QWebEngineCertificateError__CertificateCommonNameInvalid       QWebEngineCertificateError__Error = QWebEngineCertificateError__Error(-200)
+	QWebEngineCertificateError__CertificateDateInvalid             QWebEngineCertificateError__Error = QWebEngineCertificateError__Error(-201)
+	QWebEngineCertificateError__CertificateAuthorityInvalid        QWebEngineCertificateError__Error = QWebEngineCertificateError__Error(-202)
+	QWebEngineCertificateError__CertificateContainsErrors          QWebEngineCertificateError__Error = QWebEngineCertificateError__Error(-203)
+	QWebEngineCertificateError__CertificateNoRevocationMechanism   QWebEngineCertificateError__Error = QWebEngineCertificateError__Error(-204)
+	QWebEngineCertificateError__CertificateUnableToCheckRevocation QWebEngineCertificateError__Error = QWebEngineCertificateError__Error(-205)
+	QWebEngineCertificateError__CertificateRevoked                 QWebEngineCertificateError__Error = QWebEngineCertificateError__Error(-206)
+	QWebEngineCertificateError__CertificateInvalid                 QWebEngineCertificateError__Error = QWebEngineCertificateError__Error(-207)
+	QWebEngineCertificateError__CertificateWeakSignatureAlgorithm  QWebEngineCertificateError__Error = QWebEngineCertificateError__Error(-208)
+	QWebEngineCertificateError__CertificateNonUniqueName           QWebEngineCertificateError__Error = QWebEngineCertificateError__Error(-210)
+	QWebEngineCertificateError__CertificateWeakKey                 QWebEngineCertificateError__Error = QWebEngineCertificateError__Error(-211)
+	QWebEngineCertificateError__CertificateNameConstraintViolation QWebEngineCertificateError__Error = QWebEngineCertificateError__Error(-212)
+)
+
 func (ptr *QWebEngineCertificateError) Error() QWebEngineCertificateError__Error {
 	if ptr.Pointer() != nil {
 		return QWebEngineCertificateError__Error(C.QWebEngineCertificateError_Error(ptr.Pointer()))
@@ -991,20 +991,6 @@ func (ptr *QWebEngineCertificateError) Url() *core.QUrl {
 	}
 	return nil
 }
-
-//go:generate stringer -type=QWebEngineContextMenuData__MediaType
-//QWebEngineContextMenuData::MediaType
-type QWebEngineContextMenuData__MediaType int64
-
-const (
-	QWebEngineContextMenuData__MediaTypeNone   QWebEngineContextMenuData__MediaType = QWebEngineContextMenuData__MediaType(0)
-	QWebEngineContextMenuData__MediaTypeImage  QWebEngineContextMenuData__MediaType = QWebEngineContextMenuData__MediaType(1)
-	QWebEngineContextMenuData__MediaTypeVideo  QWebEngineContextMenuData__MediaType = QWebEngineContextMenuData__MediaType(2)
-	QWebEngineContextMenuData__MediaTypeAudio  QWebEngineContextMenuData__MediaType = QWebEngineContextMenuData__MediaType(3)
-	QWebEngineContextMenuData__MediaTypeCanvas QWebEngineContextMenuData__MediaType = QWebEngineContextMenuData__MediaType(4)
-	QWebEngineContextMenuData__MediaTypeFile   QWebEngineContextMenuData__MediaType = QWebEngineContextMenuData__MediaType(5)
-	QWebEngineContextMenuData__MediaTypePlugin QWebEngineContextMenuData__MediaType = QWebEngineContextMenuData__MediaType(6)
-)
 
 type QWebEngineContextMenuData struct {
 	ptr unsafe.Pointer
@@ -1043,6 +1029,21 @@ func NewQWebEngineContextMenuDataFromPointer(ptr unsafe.Pointer) *QWebEngineCont
 	n.SetPointer(ptr)
 	return n
 }
+
+//go:generate stringer -type=QWebEngineContextMenuData__MediaType
+//QWebEngineContextMenuData::MediaType
+type QWebEngineContextMenuData__MediaType int64
+
+const (
+	QWebEngineContextMenuData__MediaTypeNone   QWebEngineContextMenuData__MediaType = QWebEngineContextMenuData__MediaType(0)
+	QWebEngineContextMenuData__MediaTypeImage  QWebEngineContextMenuData__MediaType = QWebEngineContextMenuData__MediaType(1)
+	QWebEngineContextMenuData__MediaTypeVideo  QWebEngineContextMenuData__MediaType = QWebEngineContextMenuData__MediaType(2)
+	QWebEngineContextMenuData__MediaTypeAudio  QWebEngineContextMenuData__MediaType = QWebEngineContextMenuData__MediaType(3)
+	QWebEngineContextMenuData__MediaTypeCanvas QWebEngineContextMenuData__MediaType = QWebEngineContextMenuData__MediaType(4)
+	QWebEngineContextMenuData__MediaTypeFile   QWebEngineContextMenuData__MediaType = QWebEngineContextMenuData__MediaType(5)
+	QWebEngineContextMenuData__MediaTypePlugin QWebEngineContextMenuData__MediaType = QWebEngineContextMenuData__MediaType(6)
+)
+
 func NewQWebEngineContextMenuData() *QWebEngineContextMenuData {
 	var tmpValue = NewQWebEngineContextMenuDataFromPointer(C.QWebEngineContextMenuData_NewQWebEngineContextMenuData())
 	runtime.SetFinalizer(tmpValue, (*QWebEngineContextMenuData).DestroyQWebEngineContextMenuData)
@@ -1624,29 +1625,6 @@ func (ptr *QWebEngineCookieStore) MetaObjectDefault() *core.QMetaObject {
 	return nil
 }
 
-//go:generate stringer -type=QWebEngineDownloadItem__DownloadState
-//QWebEngineDownloadItem::DownloadState
-type QWebEngineDownloadItem__DownloadState int64
-
-const (
-	QWebEngineDownloadItem__DownloadRequested   QWebEngineDownloadItem__DownloadState = QWebEngineDownloadItem__DownloadState(0)
-	QWebEngineDownloadItem__DownloadInProgress  QWebEngineDownloadItem__DownloadState = QWebEngineDownloadItem__DownloadState(1)
-	QWebEngineDownloadItem__DownloadCompleted   QWebEngineDownloadItem__DownloadState = QWebEngineDownloadItem__DownloadState(2)
-	QWebEngineDownloadItem__DownloadCancelled   QWebEngineDownloadItem__DownloadState = QWebEngineDownloadItem__DownloadState(3)
-	QWebEngineDownloadItem__DownloadInterrupted QWebEngineDownloadItem__DownloadState = QWebEngineDownloadItem__DownloadState(4)
-)
-
-//go:generate stringer -type=QWebEngineDownloadItem__SavePageFormat
-//QWebEngineDownloadItem::SavePageFormat
-type QWebEngineDownloadItem__SavePageFormat int64
-
-const (
-	QWebEngineDownloadItem__UnknownSaveFormat      QWebEngineDownloadItem__SavePageFormat = QWebEngineDownloadItem__SavePageFormat(-1)
-	QWebEngineDownloadItem__SingleHtmlSaveFormat   QWebEngineDownloadItem__SavePageFormat = QWebEngineDownloadItem__SavePageFormat(0)
-	QWebEngineDownloadItem__CompleteHtmlSaveFormat QWebEngineDownloadItem__SavePageFormat = QWebEngineDownloadItem__SavePageFormat(1)
-	QWebEngineDownloadItem__MimeHtmlSaveFormat     QWebEngineDownloadItem__SavePageFormat = QWebEngineDownloadItem__SavePageFormat(2)
-)
-
 type QWebEngineDownloadItem struct {
 	core.QObject
 }
@@ -1694,12 +1672,36 @@ func (ptr *QWebEngineDownloadItem) DestroyQWebEngineDownloadItem() {
 	}
 }
 
+//go:generate stringer -type=QWebEngineDownloadItem__DownloadState
+//QWebEngineDownloadItem::DownloadState
+type QWebEngineDownloadItem__DownloadState int64
+
+const (
+	QWebEngineDownloadItem__DownloadRequested   QWebEngineDownloadItem__DownloadState = QWebEngineDownloadItem__DownloadState(0)
+	QWebEngineDownloadItem__DownloadInProgress  QWebEngineDownloadItem__DownloadState = QWebEngineDownloadItem__DownloadState(1)
+	QWebEngineDownloadItem__DownloadCompleted   QWebEngineDownloadItem__DownloadState = QWebEngineDownloadItem__DownloadState(2)
+	QWebEngineDownloadItem__DownloadCancelled   QWebEngineDownloadItem__DownloadState = QWebEngineDownloadItem__DownloadState(3)
+	QWebEngineDownloadItem__DownloadInterrupted QWebEngineDownloadItem__DownloadState = QWebEngineDownloadItem__DownloadState(4)
+)
+
+//go:generate stringer -type=QWebEngineDownloadItem__SavePageFormat
+//QWebEngineDownloadItem::SavePageFormat
+type QWebEngineDownloadItem__SavePageFormat int64
+
+const (
+	QWebEngineDownloadItem__UnknownSaveFormat      QWebEngineDownloadItem__SavePageFormat = QWebEngineDownloadItem__SavePageFormat(-1)
+	QWebEngineDownloadItem__SingleHtmlSaveFormat   QWebEngineDownloadItem__SavePageFormat = QWebEngineDownloadItem__SavePageFormat(0)
+	QWebEngineDownloadItem__CompleteHtmlSaveFormat QWebEngineDownloadItem__SavePageFormat = QWebEngineDownloadItem__SavePageFormat(1)
+	QWebEngineDownloadItem__MimeHtmlSaveFormat     QWebEngineDownloadItem__SavePageFormat = QWebEngineDownloadItem__SavePageFormat(2)
+)
+
 //export callbackQWebEngineDownloadItem_Accept
 func callbackQWebEngineDownloadItem_Accept(ptr unsafe.Pointer) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineDownloadItem::accept"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQWebEngineDownloadItemFromPointer(ptr).AcceptDefault()
 	}
-
 }
 
 func (ptr *QWebEngineDownloadItem) ConnectAccept(f func()) {
@@ -1722,12 +1724,19 @@ func (ptr *QWebEngineDownloadItem) Accept() {
 	}
 }
 
+func (ptr *QWebEngineDownloadItem) AcceptDefault() {
+	if ptr.Pointer() != nil {
+		C.QWebEngineDownloadItem_AcceptDefault(ptr.Pointer())
+	}
+}
+
 //export callbackQWebEngineDownloadItem_Cancel
 func callbackQWebEngineDownloadItem_Cancel(ptr unsafe.Pointer) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineDownloadItem::cancel"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQWebEngineDownloadItemFromPointer(ptr).CancelDefault()
 	}
-
 }
 
 func (ptr *QWebEngineDownloadItem) ConnectCancel(f func()) {
@@ -1747,6 +1756,12 @@ func (ptr *QWebEngineDownloadItem) DisconnectCancel() {
 func (ptr *QWebEngineDownloadItem) Cancel() {
 	if ptr.Pointer() != nil {
 		C.QWebEngineDownloadItem_Cancel(ptr.Pointer())
+	}
+}
+
+func (ptr *QWebEngineDownloadItem) CancelDefault() {
+	if ptr.Pointer() != nil {
+		C.QWebEngineDownloadItem_CancelDefault(ptr.Pointer())
 	}
 }
 
@@ -2625,6 +2640,45 @@ func (ptr *QWebEngineHistoryItem) Swap(other QWebEngineHistoryItem_ITF) {
 	}
 }
 
+type QWebEnginePage struct {
+	core.QObject
+}
+
+type QWebEnginePage_ITF interface {
+	core.QObject_ITF
+	QWebEnginePage_PTR() *QWebEnginePage
+}
+
+func (ptr *QWebEnginePage) QWebEnginePage_PTR() *QWebEnginePage {
+	return ptr
+}
+
+func (ptr *QWebEnginePage) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QObject_PTR().Pointer()
+	}
+	return nil
+}
+
+func (ptr *QWebEnginePage) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QObject_PTR().SetPointer(p)
+	}
+}
+
+func PointerFromQWebEnginePage(ptr QWebEnginePage_ITF) unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QWebEnginePage_PTR().Pointer()
+	}
+	return nil
+}
+
+func NewQWebEnginePageFromPointer(ptr unsafe.Pointer) *QWebEnginePage {
+	var n = new(QWebEnginePage)
+	n.SetPointer(ptr)
+	return n
+}
+
 //go:generate stringer -type=QWebEnginePage__Feature
 //QWebEnginePage::Feature
 type QWebEnginePage__Feature int64
@@ -2751,44 +2805,6 @@ const (
 	QWebEnginePage__WebBrowserBackgroundTab QWebEnginePage__WebWindowType = QWebEnginePage__WebWindowType(3)
 )
 
-type QWebEnginePage struct {
-	core.QObject
-}
-
-type QWebEnginePage_ITF interface {
-	core.QObject_ITF
-	QWebEnginePage_PTR() *QWebEnginePage
-}
-
-func (ptr *QWebEnginePage) QWebEnginePage_PTR() *QWebEnginePage {
-	return ptr
-}
-
-func (ptr *QWebEnginePage) Pointer() unsafe.Pointer {
-	if ptr != nil {
-		return ptr.QObject_PTR().Pointer()
-	}
-	return nil
-}
-
-func (ptr *QWebEnginePage) SetPointer(p unsafe.Pointer) {
-	if ptr != nil {
-		ptr.QObject_PTR().SetPointer(p)
-	}
-}
-
-func PointerFromQWebEnginePage(ptr QWebEnginePage_ITF) unsafe.Pointer {
-	if ptr != nil {
-		return ptr.QWebEnginePage_PTR().Pointer()
-	}
-	return nil
-}
-
-func NewQWebEnginePageFromPointer(ptr unsafe.Pointer) *QWebEnginePage {
-	var n = new(QWebEnginePage)
-	n.SetPointer(ptr)
-	return n
-}
 func NewQWebEnginePage(parent core.QObject_ITF) *QWebEnginePage {
 	var tmpValue = NewQWebEnginePageFromPointer(C.QWebEnginePage_NewQWebEnginePage(core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
@@ -4395,26 +4411,6 @@ func (ptr *QWebEnginePage) MetaObjectDefault() *core.QMetaObject {
 	return nil
 }
 
-//go:generate stringer -type=QWebEngineProfile__HttpCacheType
-//QWebEngineProfile::HttpCacheType
-type QWebEngineProfile__HttpCacheType int64
-
-const (
-	QWebEngineProfile__MemoryHttpCache QWebEngineProfile__HttpCacheType = QWebEngineProfile__HttpCacheType(0)
-	QWebEngineProfile__DiskHttpCache   QWebEngineProfile__HttpCacheType = QWebEngineProfile__HttpCacheType(1)
-	QWebEngineProfile__NoCache         QWebEngineProfile__HttpCacheType = QWebEngineProfile__HttpCacheType(2)
-)
-
-//go:generate stringer -type=QWebEngineProfile__PersistentCookiesPolicy
-//QWebEngineProfile::PersistentCookiesPolicy
-type QWebEngineProfile__PersistentCookiesPolicy int64
-
-const (
-	QWebEngineProfile__NoPersistentCookies    QWebEngineProfile__PersistentCookiesPolicy = QWebEngineProfile__PersistentCookiesPolicy(0)
-	QWebEngineProfile__AllowPersistentCookies QWebEngineProfile__PersistentCookiesPolicy = QWebEngineProfile__PersistentCookiesPolicy(1)
-	QWebEngineProfile__ForcePersistentCookies QWebEngineProfile__PersistentCookiesPolicy = QWebEngineProfile__PersistentCookiesPolicy(2)
-)
-
 type QWebEngineProfile struct {
 	core.QObject
 }
@@ -4461,6 +4457,26 @@ func (ptr *QWebEngineProfile) DestroyQWebEngineProfile() {
 		ptr.SetPointer(nil)
 	}
 }
+
+//go:generate stringer -type=QWebEngineProfile__HttpCacheType
+//QWebEngineProfile::HttpCacheType
+type QWebEngineProfile__HttpCacheType int64
+
+const (
+	QWebEngineProfile__MemoryHttpCache QWebEngineProfile__HttpCacheType = QWebEngineProfile__HttpCacheType(0)
+	QWebEngineProfile__DiskHttpCache   QWebEngineProfile__HttpCacheType = QWebEngineProfile__HttpCacheType(1)
+	QWebEngineProfile__NoCache         QWebEngineProfile__HttpCacheType = QWebEngineProfile__HttpCacheType(2)
+)
+
+//go:generate stringer -type=QWebEngineProfile__PersistentCookiesPolicy
+//QWebEngineProfile::PersistentCookiesPolicy
+type QWebEngineProfile__PersistentCookiesPolicy int64
+
+const (
+	QWebEngineProfile__NoPersistentCookies    QWebEngineProfile__PersistentCookiesPolicy = QWebEngineProfile__PersistentCookiesPolicy(0)
+	QWebEngineProfile__AllowPersistentCookies QWebEngineProfile__PersistentCookiesPolicy = QWebEngineProfile__PersistentCookiesPolicy(1)
+	QWebEngineProfile__ForcePersistentCookies QWebEngineProfile__PersistentCookiesPolicy = QWebEngineProfile__PersistentCookiesPolicy(2)
+)
 
 func NewQWebEngineProfile(parent core.QObject_ITF) *QWebEngineProfile {
 	var tmpValue = NewQWebEngineProfileFromPointer(C.QWebEngineProfile_NewQWebEngineProfile(core.PointerFromQObject(parent)))
@@ -5056,26 +5072,6 @@ func (ptr *QWebEngineProfile) MetaObjectDefault() *core.QMetaObject {
 	return nil
 }
 
-//go:generate stringer -type=QWebEngineScript__InjectionPoint
-//QWebEngineScript::InjectionPoint
-type QWebEngineScript__InjectionPoint int64
-
-const (
-	QWebEngineScript__Deferred         QWebEngineScript__InjectionPoint = QWebEngineScript__InjectionPoint(0)
-	QWebEngineScript__DocumentReady    QWebEngineScript__InjectionPoint = QWebEngineScript__InjectionPoint(1)
-	QWebEngineScript__DocumentCreation QWebEngineScript__InjectionPoint = QWebEngineScript__InjectionPoint(2)
-)
-
-//go:generate stringer -type=QWebEngineScript__ScriptWorldId
-//QWebEngineScript::ScriptWorldId
-type QWebEngineScript__ScriptWorldId int64
-
-const (
-	QWebEngineScript__MainWorld        QWebEngineScript__ScriptWorldId = QWebEngineScript__ScriptWorldId(0)
-	QWebEngineScript__ApplicationWorld QWebEngineScript__ScriptWorldId = QWebEngineScript__ScriptWorldId(1)
-	QWebEngineScript__UserWorld        QWebEngineScript__ScriptWorldId = QWebEngineScript__ScriptWorldId(2)
-)
-
 type QWebEngineScript struct {
 	ptr unsafe.Pointer
 }
@@ -5113,6 +5109,27 @@ func NewQWebEngineScriptFromPointer(ptr unsafe.Pointer) *QWebEngineScript {
 	n.SetPointer(ptr)
 	return n
 }
+
+//go:generate stringer -type=QWebEngineScript__InjectionPoint
+//QWebEngineScript::InjectionPoint
+type QWebEngineScript__InjectionPoint int64
+
+const (
+	QWebEngineScript__Deferred         QWebEngineScript__InjectionPoint = QWebEngineScript__InjectionPoint(0)
+	QWebEngineScript__DocumentReady    QWebEngineScript__InjectionPoint = QWebEngineScript__InjectionPoint(1)
+	QWebEngineScript__DocumentCreation QWebEngineScript__InjectionPoint = QWebEngineScript__InjectionPoint(2)
+)
+
+//go:generate stringer -type=QWebEngineScript__ScriptWorldId
+//QWebEngineScript::ScriptWorldId
+type QWebEngineScript__ScriptWorldId int64
+
+const (
+	QWebEngineScript__MainWorld        QWebEngineScript__ScriptWorldId = QWebEngineScript__ScriptWorldId(0)
+	QWebEngineScript__ApplicationWorld QWebEngineScript__ScriptWorldId = QWebEngineScript__ScriptWorldId(1)
+	QWebEngineScript__UserWorld        QWebEngineScript__ScriptWorldId = QWebEngineScript__ScriptWorldId(2)
+)
+
 func NewQWebEngineScript() *QWebEngineScript {
 	var tmpValue = NewQWebEngineScriptFromPointer(C.QWebEngineScript_NewQWebEngineScript())
 	runtime.SetFinalizer(tmpValue, (*QWebEngineScript).DestroyQWebEngineScript)
@@ -5362,6 +5379,51 @@ func (ptr *QWebEngineScriptCollection) toList_atList(i int) *QWebEngineScript {
 	return nil
 }
 
+type QWebEngineSettings struct {
+	ptr unsafe.Pointer
+}
+
+type QWebEngineSettings_ITF interface {
+	QWebEngineSettings_PTR() *QWebEngineSettings
+}
+
+func (ptr *QWebEngineSettings) QWebEngineSettings_PTR() *QWebEngineSettings {
+	return ptr
+}
+
+func (ptr *QWebEngineSettings) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
+	}
+	return nil
+}
+
+func (ptr *QWebEngineSettings) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
+	}
+}
+
+func PointerFromQWebEngineSettings(ptr QWebEngineSettings_ITF) unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QWebEngineSettings_PTR().Pointer()
+	}
+	return nil
+}
+
+func NewQWebEngineSettingsFromPointer(ptr unsafe.Pointer) *QWebEngineSettings {
+	var n = new(QWebEngineSettings)
+	n.SetPointer(ptr)
+	return n
+}
+
+func (ptr *QWebEngineSettings) DestroyQWebEngineSettings() {
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
+}
+
 //go:generate stringer -type=QWebEngineSettings__FontFamily
 //QWebEngineSettings::FontFamily
 type QWebEngineSettings__FontFamily int64
@@ -5413,51 +5475,6 @@ const (
 	QWebEngineSettings__AutoLoadIconsForPage            QWebEngineSettings__WebAttribute = QWebEngineSettings__WebAttribute(18)
 	QWebEngineSettings__TouchIconsEnabled               QWebEngineSettings__WebAttribute = QWebEngineSettings__WebAttribute(19)
 )
-
-type QWebEngineSettings struct {
-	ptr unsafe.Pointer
-}
-
-type QWebEngineSettings_ITF interface {
-	QWebEngineSettings_PTR() *QWebEngineSettings
-}
-
-func (ptr *QWebEngineSettings) QWebEngineSettings_PTR() *QWebEngineSettings {
-	return ptr
-}
-
-func (ptr *QWebEngineSettings) Pointer() unsafe.Pointer {
-	if ptr != nil {
-		return ptr.ptr
-	}
-	return nil
-}
-
-func (ptr *QWebEngineSettings) SetPointer(p unsafe.Pointer) {
-	if ptr != nil {
-		ptr.ptr = p
-	}
-}
-
-func PointerFromQWebEngineSettings(ptr QWebEngineSettings_ITF) unsafe.Pointer {
-	if ptr != nil {
-		return ptr.QWebEngineSettings_PTR().Pointer()
-	}
-	return nil
-}
-
-func NewQWebEngineSettingsFromPointer(ptr unsafe.Pointer) *QWebEngineSettings {
-	var n = new(QWebEngineSettings)
-	n.SetPointer(ptr)
-	return n
-}
-
-func (ptr *QWebEngineSettings) DestroyQWebEngineSettings() {
-	if ptr != nil {
-		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
-	}
-}
 
 func (ptr *QWebEngineSettings) DefaultTextEncoding() string {
 	if ptr.Pointer() != nil {
@@ -5549,45 +5566,6 @@ func (ptr *QWebEngineSettings) DefaultSettings() *QWebEngineSettings {
 	return NewQWebEngineSettingsFromPointer(C.QWebEngineSettings_QWebEngineSettings_DefaultSettings())
 }
 
-//go:generate stringer -type=QWebEngineUrlRequestInfo__NavigationType
-//QWebEngineUrlRequestInfo::NavigationType
-type QWebEngineUrlRequestInfo__NavigationType int64
-
-const (
-	QWebEngineUrlRequestInfo__NavigationTypeLink          QWebEngineUrlRequestInfo__NavigationType = QWebEngineUrlRequestInfo__NavigationType(0)
-	QWebEngineUrlRequestInfo__NavigationTypeTyped         QWebEngineUrlRequestInfo__NavigationType = QWebEngineUrlRequestInfo__NavigationType(1)
-	QWebEngineUrlRequestInfo__NavigationTypeFormSubmitted QWebEngineUrlRequestInfo__NavigationType = QWebEngineUrlRequestInfo__NavigationType(2)
-	QWebEngineUrlRequestInfo__NavigationTypeBackForward   QWebEngineUrlRequestInfo__NavigationType = QWebEngineUrlRequestInfo__NavigationType(3)
-	QWebEngineUrlRequestInfo__NavigationTypeReload        QWebEngineUrlRequestInfo__NavigationType = QWebEngineUrlRequestInfo__NavigationType(4)
-	QWebEngineUrlRequestInfo__NavigationTypeOther         QWebEngineUrlRequestInfo__NavigationType = QWebEngineUrlRequestInfo__NavigationType(5)
-)
-
-//go:generate stringer -type=QWebEngineUrlRequestInfo__ResourceType
-//QWebEngineUrlRequestInfo::ResourceType
-type QWebEngineUrlRequestInfo__ResourceType int64
-
-const (
-	QWebEngineUrlRequestInfo__ResourceTypeMainFrame      QWebEngineUrlRequestInfo__ResourceType = QWebEngineUrlRequestInfo__ResourceType(0)
-	QWebEngineUrlRequestInfo__ResourceTypeSubFrame       QWebEngineUrlRequestInfo__ResourceType = QWebEngineUrlRequestInfo__ResourceType(1)
-	QWebEngineUrlRequestInfo__ResourceTypeStylesheet     QWebEngineUrlRequestInfo__ResourceType = QWebEngineUrlRequestInfo__ResourceType(2)
-	QWebEngineUrlRequestInfo__ResourceTypeScript         QWebEngineUrlRequestInfo__ResourceType = QWebEngineUrlRequestInfo__ResourceType(3)
-	QWebEngineUrlRequestInfo__ResourceTypeImage          QWebEngineUrlRequestInfo__ResourceType = QWebEngineUrlRequestInfo__ResourceType(4)
-	QWebEngineUrlRequestInfo__ResourceTypeFontResource   QWebEngineUrlRequestInfo__ResourceType = QWebEngineUrlRequestInfo__ResourceType(5)
-	QWebEngineUrlRequestInfo__ResourceTypeSubResource    QWebEngineUrlRequestInfo__ResourceType = QWebEngineUrlRequestInfo__ResourceType(6)
-	QWebEngineUrlRequestInfo__ResourceTypeObject         QWebEngineUrlRequestInfo__ResourceType = QWebEngineUrlRequestInfo__ResourceType(7)
-	QWebEngineUrlRequestInfo__ResourceTypeMedia          QWebEngineUrlRequestInfo__ResourceType = QWebEngineUrlRequestInfo__ResourceType(8)
-	QWebEngineUrlRequestInfo__ResourceTypeWorker         QWebEngineUrlRequestInfo__ResourceType = QWebEngineUrlRequestInfo__ResourceType(9)
-	QWebEngineUrlRequestInfo__ResourceTypeSharedWorker   QWebEngineUrlRequestInfo__ResourceType = QWebEngineUrlRequestInfo__ResourceType(10)
-	QWebEngineUrlRequestInfo__ResourceTypePrefetch       QWebEngineUrlRequestInfo__ResourceType = QWebEngineUrlRequestInfo__ResourceType(11)
-	QWebEngineUrlRequestInfo__ResourceTypeFavicon        QWebEngineUrlRequestInfo__ResourceType = QWebEngineUrlRequestInfo__ResourceType(12)
-	QWebEngineUrlRequestInfo__ResourceTypeXhr            QWebEngineUrlRequestInfo__ResourceType = QWebEngineUrlRequestInfo__ResourceType(13)
-	QWebEngineUrlRequestInfo__ResourceTypePing           QWebEngineUrlRequestInfo__ResourceType = QWebEngineUrlRequestInfo__ResourceType(14)
-	QWebEngineUrlRequestInfo__ResourceTypeServiceWorker  QWebEngineUrlRequestInfo__ResourceType = QWebEngineUrlRequestInfo__ResourceType(15)
-	QWebEngineUrlRequestInfo__ResourceTypeCspReport      QWebEngineUrlRequestInfo__ResourceType = QWebEngineUrlRequestInfo__ResourceType(16)
-	QWebEngineUrlRequestInfo__ResourceTypePluginResource QWebEngineUrlRequestInfo__ResourceType = QWebEngineUrlRequestInfo__ResourceType(17)
-	QWebEngineUrlRequestInfo__ResourceTypeUnknown        QWebEngineUrlRequestInfo__ResourceType = QWebEngineUrlRequestInfo__ResourceType(18)
-)
-
 type QWebEngineUrlRequestInfo struct {
 	ptr unsafe.Pointer
 }
@@ -5632,6 +5610,45 @@ func (ptr *QWebEngineUrlRequestInfo) DestroyQWebEngineUrlRequestInfo() {
 		ptr.SetPointer(nil)
 	}
 }
+
+//go:generate stringer -type=QWebEngineUrlRequestInfo__NavigationType
+//QWebEngineUrlRequestInfo::NavigationType
+type QWebEngineUrlRequestInfo__NavigationType int64
+
+const (
+	QWebEngineUrlRequestInfo__NavigationTypeLink          QWebEngineUrlRequestInfo__NavigationType = QWebEngineUrlRequestInfo__NavigationType(0)
+	QWebEngineUrlRequestInfo__NavigationTypeTyped         QWebEngineUrlRequestInfo__NavigationType = QWebEngineUrlRequestInfo__NavigationType(1)
+	QWebEngineUrlRequestInfo__NavigationTypeFormSubmitted QWebEngineUrlRequestInfo__NavigationType = QWebEngineUrlRequestInfo__NavigationType(2)
+	QWebEngineUrlRequestInfo__NavigationTypeBackForward   QWebEngineUrlRequestInfo__NavigationType = QWebEngineUrlRequestInfo__NavigationType(3)
+	QWebEngineUrlRequestInfo__NavigationTypeReload        QWebEngineUrlRequestInfo__NavigationType = QWebEngineUrlRequestInfo__NavigationType(4)
+	QWebEngineUrlRequestInfo__NavigationTypeOther         QWebEngineUrlRequestInfo__NavigationType = QWebEngineUrlRequestInfo__NavigationType(5)
+)
+
+//go:generate stringer -type=QWebEngineUrlRequestInfo__ResourceType
+//QWebEngineUrlRequestInfo::ResourceType
+type QWebEngineUrlRequestInfo__ResourceType int64
+
+const (
+	QWebEngineUrlRequestInfo__ResourceTypeMainFrame      QWebEngineUrlRequestInfo__ResourceType = QWebEngineUrlRequestInfo__ResourceType(0)
+	QWebEngineUrlRequestInfo__ResourceTypeSubFrame       QWebEngineUrlRequestInfo__ResourceType = QWebEngineUrlRequestInfo__ResourceType(1)
+	QWebEngineUrlRequestInfo__ResourceTypeStylesheet     QWebEngineUrlRequestInfo__ResourceType = QWebEngineUrlRequestInfo__ResourceType(2)
+	QWebEngineUrlRequestInfo__ResourceTypeScript         QWebEngineUrlRequestInfo__ResourceType = QWebEngineUrlRequestInfo__ResourceType(3)
+	QWebEngineUrlRequestInfo__ResourceTypeImage          QWebEngineUrlRequestInfo__ResourceType = QWebEngineUrlRequestInfo__ResourceType(4)
+	QWebEngineUrlRequestInfo__ResourceTypeFontResource   QWebEngineUrlRequestInfo__ResourceType = QWebEngineUrlRequestInfo__ResourceType(5)
+	QWebEngineUrlRequestInfo__ResourceTypeSubResource    QWebEngineUrlRequestInfo__ResourceType = QWebEngineUrlRequestInfo__ResourceType(6)
+	QWebEngineUrlRequestInfo__ResourceTypeObject         QWebEngineUrlRequestInfo__ResourceType = QWebEngineUrlRequestInfo__ResourceType(7)
+	QWebEngineUrlRequestInfo__ResourceTypeMedia          QWebEngineUrlRequestInfo__ResourceType = QWebEngineUrlRequestInfo__ResourceType(8)
+	QWebEngineUrlRequestInfo__ResourceTypeWorker         QWebEngineUrlRequestInfo__ResourceType = QWebEngineUrlRequestInfo__ResourceType(9)
+	QWebEngineUrlRequestInfo__ResourceTypeSharedWorker   QWebEngineUrlRequestInfo__ResourceType = QWebEngineUrlRequestInfo__ResourceType(10)
+	QWebEngineUrlRequestInfo__ResourceTypePrefetch       QWebEngineUrlRequestInfo__ResourceType = QWebEngineUrlRequestInfo__ResourceType(11)
+	QWebEngineUrlRequestInfo__ResourceTypeFavicon        QWebEngineUrlRequestInfo__ResourceType = QWebEngineUrlRequestInfo__ResourceType(12)
+	QWebEngineUrlRequestInfo__ResourceTypeXhr            QWebEngineUrlRequestInfo__ResourceType = QWebEngineUrlRequestInfo__ResourceType(13)
+	QWebEngineUrlRequestInfo__ResourceTypePing           QWebEngineUrlRequestInfo__ResourceType = QWebEngineUrlRequestInfo__ResourceType(14)
+	QWebEngineUrlRequestInfo__ResourceTypeServiceWorker  QWebEngineUrlRequestInfo__ResourceType = QWebEngineUrlRequestInfo__ResourceType(15)
+	QWebEngineUrlRequestInfo__ResourceTypeCspReport      QWebEngineUrlRequestInfo__ResourceType = QWebEngineUrlRequestInfo__ResourceType(16)
+	QWebEngineUrlRequestInfo__ResourceTypePluginResource QWebEngineUrlRequestInfo__ResourceType = QWebEngineUrlRequestInfo__ResourceType(17)
+	QWebEngineUrlRequestInfo__ResourceTypeUnknown        QWebEngineUrlRequestInfo__ResourceType = QWebEngineUrlRequestInfo__ResourceType(18)
+)
 
 func (ptr *QWebEngineUrlRequestInfo) Block(shouldBlock bool) {
 	if ptr.Pointer() != nil {
@@ -5763,7 +5780,7 @@ func (ptr *QWebEngineUrlRequestInterceptor) ConnectInterceptRequest(f func(info 
 	}
 }
 
-func (ptr *QWebEngineUrlRequestInterceptor) DisconnectInterceptRequest(info QWebEngineUrlRequestInfo_ITF) {
+func (ptr *QWebEngineUrlRequestInterceptor) DisconnectInterceptRequest() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineUrlRequestInterceptor::interceptRequest")
@@ -6109,19 +6126,6 @@ func (ptr *QWebEngineUrlRequestInterceptor) MetaObjectDefault() *core.QMetaObjec
 	return nil
 }
 
-//go:generate stringer -type=QWebEngineUrlRequestJob__Error
-//QWebEngineUrlRequestJob::Error
-type QWebEngineUrlRequestJob__Error int64
-
-const (
-	QWebEngineUrlRequestJob__NoError        QWebEngineUrlRequestJob__Error = QWebEngineUrlRequestJob__Error(0)
-	QWebEngineUrlRequestJob__UrlNotFound    QWebEngineUrlRequestJob__Error = QWebEngineUrlRequestJob__Error(1)
-	QWebEngineUrlRequestJob__UrlInvalid     QWebEngineUrlRequestJob__Error = QWebEngineUrlRequestJob__Error(2)
-	QWebEngineUrlRequestJob__RequestAborted QWebEngineUrlRequestJob__Error = QWebEngineUrlRequestJob__Error(3)
-	QWebEngineUrlRequestJob__RequestDenied  QWebEngineUrlRequestJob__Error = QWebEngineUrlRequestJob__Error(4)
-	QWebEngineUrlRequestJob__RequestFailed  QWebEngineUrlRequestJob__Error = QWebEngineUrlRequestJob__Error(5)
-)
-
 type QWebEngineUrlRequestJob struct {
 	core.QObject
 }
@@ -6168,6 +6172,19 @@ func (ptr *QWebEngineUrlRequestJob) DestroyQWebEngineUrlRequestJob() {
 		ptr.SetPointer(nil)
 	}
 }
+
+//go:generate stringer -type=QWebEngineUrlRequestJob__Error
+//QWebEngineUrlRequestJob::Error
+type QWebEngineUrlRequestJob__Error int64
+
+const (
+	QWebEngineUrlRequestJob__NoError        QWebEngineUrlRequestJob__Error = QWebEngineUrlRequestJob__Error(0)
+	QWebEngineUrlRequestJob__UrlNotFound    QWebEngineUrlRequestJob__Error = QWebEngineUrlRequestJob__Error(1)
+	QWebEngineUrlRequestJob__UrlInvalid     QWebEngineUrlRequestJob__Error = QWebEngineUrlRequestJob__Error(2)
+	QWebEngineUrlRequestJob__RequestAborted QWebEngineUrlRequestJob__Error = QWebEngineUrlRequestJob__Error(3)
+	QWebEngineUrlRequestJob__RequestDenied  QWebEngineUrlRequestJob__Error = QWebEngineUrlRequestJob__Error(4)
+	QWebEngineUrlRequestJob__RequestFailed  QWebEngineUrlRequestJob__Error = QWebEngineUrlRequestJob__Error(5)
+)
 
 func (ptr *QWebEngineUrlRequestJob) Fail(r QWebEngineUrlRequestJob__Error) {
 	if ptr.Pointer() != nil {
@@ -6600,7 +6617,7 @@ func (ptr *QWebEngineUrlSchemeHandler) ConnectRequestStarted(f func(request *QWe
 	}
 }
 
-func (ptr *QWebEngineUrlSchemeHandler) DisconnectRequestStarted(request QWebEngineUrlRequestJob_ITF) {
+func (ptr *QWebEngineUrlSchemeHandler) DisconnectRequestStarted() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QWebEngineUrlSchemeHandler::requestStarted")
@@ -7004,8 +7021,9 @@ func NewQWebEngineView(parent widgets.QWidget_ITF) *QWebEngineView {
 func callbackQWebEngineView_Back(ptr unsafe.Pointer) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineView::back"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQWebEngineViewFromPointer(ptr).BackDefault()
 	}
-
 }
 
 func (ptr *QWebEngineView) ConnectBack(f func()) {
@@ -7025,6 +7043,12 @@ func (ptr *QWebEngineView) DisconnectBack() {
 func (ptr *QWebEngineView) Back() {
 	if ptr.Pointer() != nil {
 		C.QWebEngineView_Back(ptr.Pointer())
+	}
+}
+
+func (ptr *QWebEngineView) BackDefault() {
+	if ptr.Pointer() != nil {
+		C.QWebEngineView_BackDefault(ptr.Pointer())
 	}
 }
 
@@ -7078,8 +7102,9 @@ func (ptr *QWebEngineView) CreateWindowDefault(ty QWebEnginePage__WebWindowType)
 func callbackQWebEngineView_Forward(ptr unsafe.Pointer) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineView::forward"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQWebEngineViewFromPointer(ptr).ForwardDefault()
 	}
-
 }
 
 func (ptr *QWebEngineView) ConnectForward(f func()) {
@@ -7099,6 +7124,12 @@ func (ptr *QWebEngineView) DisconnectForward() {
 func (ptr *QWebEngineView) Forward() {
 	if ptr.Pointer() != nil {
 		C.QWebEngineView_Forward(ptr.Pointer())
+	}
+}
+
+func (ptr *QWebEngineView) ForwardDefault() {
+	if ptr.Pointer() != nil {
+		C.QWebEngineView_ForwardDefault(ptr.Pointer())
 	}
 }
 
@@ -7166,8 +7197,9 @@ func (ptr *QWebEngineView) PageAction(action QWebEnginePage__WebAction) *widgets
 func callbackQWebEngineView_Reload(ptr unsafe.Pointer) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineView::reload"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQWebEngineViewFromPointer(ptr).ReloadDefault()
 	}
-
 }
 
 func (ptr *QWebEngineView) ConnectReload(f func()) {
@@ -7187,6 +7219,12 @@ func (ptr *QWebEngineView) DisconnectReload() {
 func (ptr *QWebEngineView) Reload() {
 	if ptr.Pointer() != nil {
 		C.QWebEngineView_Reload(ptr.Pointer())
+	}
+}
+
+func (ptr *QWebEngineView) ReloadDefault() {
+	if ptr.Pointer() != nil {
+		C.QWebEngineView_ReloadDefault(ptr.Pointer())
 	}
 }
 
@@ -7242,8 +7280,9 @@ func (ptr *QWebEngineView) Settings() *QWebEngineSettings {
 func callbackQWebEngineView_Stop(ptr unsafe.Pointer) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineView::stop"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQWebEngineViewFromPointer(ptr).StopDefault()
 	}
-
 }
 
 func (ptr *QWebEngineView) ConnectStop(f func()) {
@@ -7263,6 +7302,12 @@ func (ptr *QWebEngineView) DisconnectStop() {
 func (ptr *QWebEngineView) Stop() {
 	if ptr.Pointer() != nil {
 		C.QWebEngineView_Stop(ptr.Pointer())
+	}
+}
+
+func (ptr *QWebEngineView) StopDefault() {
+	if ptr.Pointer() != nil {
+		C.QWebEngineView_StopDefault(ptr.Pointer())
 	}
 }
 
@@ -9939,15 +9984,6 @@ func (ptr *QWebEngineView) MetaObjectDefault() *core.QMetaObject {
 	return nil
 }
 
-//go:generate stringer -type=QtWebEngineCore__TextureTarget
-//QtWebEngineCore::TextureTarget
-type QtWebEngineCore__TextureTarget int64
-
-const (
-	QtWebEngineCore__ExternalTarget  QtWebEngineCore__TextureTarget = QtWebEngineCore__TextureTarget(0)
-	QtWebEngineCore__RectangleTarget QtWebEngineCore__TextureTarget = QtWebEngineCore__TextureTarget(1)
-)
-
 type QtWebEngineCore struct {
 	ptr unsafe.Pointer
 }
@@ -9992,3 +10028,12 @@ func (ptr *QtWebEngineCore) DestroyQtWebEngineCore() {
 		ptr.SetPointer(nil)
 	}
 }
+
+//go:generate stringer -type=QtWebEngineCore__TextureTarget
+//QtWebEngineCore::TextureTarget
+type QtWebEngineCore__TextureTarget int64
+
+const (
+	QtWebEngineCore__ExternalTarget  QtWebEngineCore__TextureTarget = QtWebEngineCore__TextureTarget(0)
+	QtWebEngineCore__RectangleTarget QtWebEngineCore__TextureTarget = QtWebEngineCore__TextureTarget(1)
+)

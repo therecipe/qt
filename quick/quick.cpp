@@ -189,7 +189,6 @@ void* QQuickAsyncImageProvider_RequestTextureDefault(void* ptr, char* id, void* 
 class MyQQuickFramebufferObject: public QQuickFramebufferObject
 {
 public:
-	
 	bool isTextureProvider() const { return callbackQQuickFramebufferObject_IsTextureProvider(const_cast<MyQQuickFramebufferObject*>(this)) != 0; };
 	void Signal_MirrorVerticallyChanged(bool vbo) { callbackQQuickFramebufferObject_MirrorVerticallyChanged(this, vbo); };
 	void releaseResources() { callbackQQuickFramebufferObject_ReleaseResources(this); };
@@ -255,8 +254,6 @@ char QQuickFramebufferObject_TextureFollowsItemSize(void* ptr)
 {
 	return static_cast<QQuickFramebufferObject*>(ptr)->textureFollowsItemSize();
 }
-
-
 
 char QQuickFramebufferObject_IsTextureProvider(void* ptr)
 {
@@ -488,10 +485,6 @@ void* QQuickFramebufferObject_InputMethodQueryDefault(void* ptr, long long query
 	return new QVariant(static_cast<QQuickFramebufferObject*>(ptr)->QQuickFramebufferObject::inputMethodQuery(static_cast<Qt::InputMethodQuery>(query)));
 }
 
-
-
-
-
 void QQuickFramebufferObject_KeyPressEvent(void* ptr, void* event)
 {
 	static_cast<QQuickFramebufferObject*>(ptr)->keyPressEvent(static_cast<QKeyEvent*>(event));
@@ -591,10 +584,6 @@ void QQuickFramebufferObject_UpdateDefault(void* ptr)
 {
 	static_cast<QQuickFramebufferObject*>(ptr)->QQuickFramebufferObject::update();
 }
-
-
-
-
 
 void QQuickFramebufferObject_UpdatePolish(void* ptr)
 {
@@ -977,7 +966,6 @@ public:
 	void hoverMoveEvent(QHoverEvent * event) { callbackQQuickItem_HoverMoveEvent(this, event); };
 	void inputMethodEvent(QInputMethodEvent * event) { callbackQQuickItem_InputMethodEvent(this, event); };
 	QVariant inputMethodQuery(Qt::InputMethodQuery query) const { return *static_cast<QVariant*>(callbackQQuickItem_InputMethodQuery(const_cast<MyQQuickItem*>(this), query)); };
-	
 	void keyPressEvent(QKeyEvent * event) { callbackQQuickItem_KeyPressEvent(this, event); };
 	void keyReleaseEvent(QKeyEvent * event) { callbackQQuickItem_KeyReleaseEvent(this, event); };
 	void mouseDoubleClickEvent(QMouseEvent * event) { callbackQQuickItem_MouseDoubleClickEvent(this, event); };
@@ -989,7 +977,6 @@ public:
 	void touchEvent(QTouchEvent * event) { callbackQQuickItem_TouchEvent(this, event); };
 	void touchUngrabEvent() { callbackQQuickItem_TouchUngrabEvent(this); };
 	void update() { callbackQQuickItem_Update(this); };
-	
 	void updatePolish() { callbackQQuickItem_UpdatePolish(this); };
 	void wheelEvent(QWheelEvent * event) { callbackQQuickItem_WheelEvent(this, event); };
 	void Signal_WindowChanged(QQuickWindow * window) { callbackQQuickItem_WindowChanged(this, window); };
@@ -1509,10 +1496,6 @@ char QQuickItem_IsFocusScope(void* ptr)
 		return static_cast<QQuickItem*>(ptr)->isFocusScope();
 }
 
-
-
-
-
 char QQuickItem_KeepMouseGrab(void* ptr)
 {
 		return static_cast<QQuickItem*>(ptr)->keepMouseGrab();
@@ -1758,14 +1741,15 @@ void QQuickItem_Update(void* ptr)
 		QMetaObject::invokeMethod(static_cast<QQuickItem*>(ptr), "update");
 }
 
+void QQuickItem_UpdateDefault(void* ptr)
+{
+		static_cast<QQuickItem*>(ptr)->QQuickItem::update();
+}
+
 void QQuickItem_UpdateInputMethod(void* ptr, long long queries)
 {
 		static_cast<QQuickItem*>(ptr)->updateInputMethod(static_cast<Qt::InputMethodQuery>(queries));
 }
-
-
-
-
 
 void QQuickItem_UpdatePolish(void* ptr)
 {
@@ -2062,7 +2046,6 @@ class MyQQuickPaintedItem: public QQuickPaintedItem
 {
 public:
 	MyQQuickPaintedItem(QQuickItem *parent) : QQuickPaintedItem(parent) {};
-	
 	void Signal_ContentsScaleChanged() { callbackQQuickPaintedItem_ContentsScaleChanged(this); };
 	void Signal_ContentsSizeChanged() { callbackQQuickPaintedItem_ContentsSizeChanged(this); };
 	void Signal_FillColorChanged() { callbackQQuickPaintedItem_FillColorChanged(this); };
@@ -2072,7 +2055,6 @@ public:
 	void Signal_RenderTargetChanged() { callbackQQuickPaintedItem_RenderTargetChanged(this); };
 	QSGTextureProvider * textureProvider() const { return static_cast<QSGTextureProvider*>(callbackQQuickPaintedItem_TextureProvider(const_cast<MyQQuickPaintedItem*>(this))); };
 	void Signal_TextureSizeChanged() { callbackQQuickPaintedItem_TextureSizeChanged(this); };
-	
 	 ~MyQQuickPaintedItem() { callbackQQuickPaintedItem_DestroyQQuickPaintedItem(this); };
 	bool childMouseEventFilter(QQuickItem * item, QEvent * event) { return callbackQQuickPaintedItem_ChildMouseEventFilter(this, item, event) != 0; };
 	void classBegin() { callbackQQuickPaintedItem_ClassBegin(this); };
@@ -2126,10 +2108,6 @@ void* QQuickPaintedItem_FillColor(void* ptr)
 {
 	return new QColor(static_cast<QQuickPaintedItem*>(ptr)->fillColor());
 }
-
-
-
-
 
 long long QQuickPaintedItem_RenderTarget(void* ptr)
 {
@@ -2330,10 +2308,6 @@ void QQuickPaintedItem_Update(void* ptr, void* rect)
 {
 	static_cast<QQuickPaintedItem*>(ptr)->update(*static_cast<QRect*>(rect));
 }
-
-
-
-
 
 void QQuickPaintedItem_DestroyQQuickPaintedItem(void* ptr)
 {
@@ -3335,6 +3309,11 @@ void QQuickView_SetSource(void* ptr, void* url)
 	QMetaObject::invokeMethod(static_cast<QQuickView*>(ptr), "setSource", Q_ARG(QUrl, *static_cast<QUrl*>(url)));
 }
 
+void QQuickView_SetSourceDefault(void* ptr, void* url)
+{
+	static_cast<QQuickView*>(ptr)->QQuickView::setSource(*static_cast<QUrl*>(url));
+}
+
 void* QQuickView_Source(void* ptr)
 {
 	return new QUrl(static_cast<QQuickView*>(ptr)->source());
@@ -4184,6 +4163,11 @@ void QQuickWidget_SetFormat(void* ptr, void* format)
 void QQuickWidget_SetSource(void* ptr, void* url)
 {
 	QMetaObject::invokeMethod(static_cast<QQuickWidget*>(ptr), "setSource", Q_ARG(QUrl, *static_cast<QUrl*>(url)));
+}
+
+void QQuickWidget_SetSourceDefault(void* ptr, void* url)
+{
+	static_cast<QQuickWidget*>(ptr)->QQuickWidget::setSource(*static_cast<QUrl*>(url));
 }
 
 void QQuickWidget_ShowEvent(void* ptr, void* vqs)
@@ -5150,6 +5134,11 @@ void QQuickWindow_ReleaseResources(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QQuickWindow*>(ptr), "releaseResources");
 }
 
+void QQuickWindow_ReleaseResourcesDefault(void* ptr)
+{
+	static_cast<QQuickWindow*>(ptr)->QQuickWindow::releaseResources();
+}
+
 void* QQuickWindow_RenderTarget(void* ptr)
 {
 	return static_cast<QQuickWindow*>(ptr)->renderTarget();
@@ -5293,6 +5282,11 @@ void QQuickWindow_ShowEventDefault(void* ptr, void* vqs)
 void QQuickWindow_Update(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QQuickWindow*>(ptr), "update");
+}
+
+void QQuickWindow_UpdateDefault(void* ptr)
+{
+	static_cast<QQuickWindow*>(ptr)->QQuickWindow::update();
 }
 
 void QQuickWindow_WheelEvent(void* ptr, void* event)
@@ -5708,7 +5702,6 @@ void* QQuickWindow_MetaObjectDefault(void* ptr)
 class MyQSGAbstractRenderer: public QSGAbstractRenderer
 {
 public:
-	
 	void Signal_SceneGraphChanged() { callbackQSGAbstractRenderer_SceneGraphChanged(this); };
 	void timerEvent(QTimerEvent * event) { callbackQSGAbstractRenderer_TimerEvent(this, event); };
 	void childEvent(QChildEvent * event) { callbackQSGAbstractRenderer_ChildEvent(this, event); };
@@ -5740,8 +5733,6 @@ void* QSGAbstractRenderer_ProjectionMatrix(void* ptr)
 {
 	return new QMatrix4x4(static_cast<QSGAbstractRenderer*>(ptr)->projectionMatrix());
 }
-
-
 
 void QSGAbstractRenderer_ConnectSceneGraphChanged(void* ptr)
 {
@@ -6024,21 +6015,15 @@ void QSGDynamicTexture_Bind(void* ptr)
 	static_cast<QSGDynamicTexture*>(ptr)->bind();
 }
 
-
-
 char QSGDynamicTexture_HasAlphaChannel(void* ptr)
 {
 	return static_cast<QSGDynamicTexture*>(ptr)->hasAlphaChannel();
 }
 
-
-
 char QSGDynamicTexture_HasMipmaps(void* ptr)
 {
 	return static_cast<QSGDynamicTexture*>(ptr)->hasMipmaps();
 }
-
-
 
 char QSGDynamicTexture_IsAtlasTexture(void* ptr)
 {
@@ -6075,14 +6060,10 @@ int QSGDynamicTexture_TextureId(void* ptr)
 	return static_cast<QSGDynamicTexture*>(ptr)->textureId();
 }
 
-
-
 void* QSGDynamicTexture_TextureSize(void* ptr)
 {
 	return ({ QSize tmpValue = static_cast<QSGDynamicTexture*>(ptr)->textureSize(); new QSize(tmpValue.width(), tmpValue.height()); });
 }
-
-
 
 void QSGDynamicTexture_TimerEvent(void* ptr, void* event)
 {
@@ -6345,19 +6326,9 @@ void* QSGFlatColorMaterial_CreateShader(void* ptr)
 	return static_cast<QSGFlatColorMaterial*>(ptr)->createShader();
 }
 
-void* QSGFlatColorMaterial_CreateShaderDefault(void* ptr)
-{
-	return static_cast<QSGFlatColorMaterial*>(ptr)->QSGFlatColorMaterial::createShader();
-}
-
 void* QSGFlatColorMaterial_Type(void* ptr)
 {
 	return static_cast<QSGFlatColorMaterial*>(ptr)->type();
-}
-
-void* QSGFlatColorMaterial_TypeDefault(void* ptr)
-{
-	return static_cast<QSGFlatColorMaterial*>(ptr)->QSGFlatColorMaterial::type();
 }
 
 class MyQSGGeometry: public QSGGeometry
@@ -6646,10 +6617,6 @@ void* QSGMaterialShader_Program(void* ptr)
 	return static_cast<QSGMaterialShader*>(ptr)->program();
 }
 
-
-
-
-
 void QSGMaterialShader_Compile(void* ptr)
 {
 	static_cast<QSGMaterialShader*>(ptr)->compile();
@@ -6934,19 +6901,9 @@ void* QSGOpaqueTextureMaterial_CreateShader(void* ptr)
 	return static_cast<QSGOpaqueTextureMaterial*>(ptr)->createShader();
 }
 
-void* QSGOpaqueTextureMaterial_CreateShaderDefault(void* ptr)
-{
-	return static_cast<QSGOpaqueTextureMaterial*>(ptr)->QSGOpaqueTextureMaterial::createShader();
-}
-
 void* QSGOpaqueTextureMaterial_Type(void* ptr)
 {
 	return static_cast<QSGOpaqueTextureMaterial*>(ptr)->type();
-}
-
-void* QSGOpaqueTextureMaterial_TypeDefault(void* ptr)
-{
-	return static_cast<QSGOpaqueTextureMaterial*>(ptr)->QSGOpaqueTextureMaterial::type();
 }
 
 void* QSGSimpleRectNode_NewQSGSimpleRectNode2()
@@ -7355,19 +7312,9 @@ void* QSGTextureMaterial_CreateShader(void* ptr)
 	return static_cast<QSGTextureMaterial*>(ptr)->createShader();
 }
 
-void* QSGTextureMaterial_CreateShaderDefault(void* ptr)
-{
-	return static_cast<QSGTextureMaterial*>(ptr)->QSGTextureMaterial::createShader();
-}
-
 void* QSGTextureMaterial_Type(void* ptr)
 {
 	return static_cast<QSGTextureMaterial*>(ptr)->type();
-}
-
-void* QSGTextureMaterial_TypeDefault(void* ptr)
-{
-	return static_cast<QSGTextureMaterial*>(ptr)->QSGTextureMaterial::type();
 }
 
 class MyQSGTextureProvider: public QSGTextureProvider
@@ -7564,18 +7511,8 @@ void* QSGVertexColorMaterial_CreateShader(void* ptr)
 	return static_cast<QSGVertexColorMaterial*>(ptr)->createShader();
 }
 
-void* QSGVertexColorMaterial_CreateShaderDefault(void* ptr)
-{
-	return static_cast<QSGVertexColorMaterial*>(ptr)->QSGVertexColorMaterial::createShader();
-}
-
 void* QSGVertexColorMaterial_Type(void* ptr)
 {
 	return static_cast<QSGVertexColorMaterial*>(ptr)->type();
-}
-
-void* QSGVertexColorMaterial_TypeDefault(void* ptr)
-{
-	return static_cast<QSGVertexColorMaterial*>(ptr)->QSGVertexColorMaterial::type();
 }
 

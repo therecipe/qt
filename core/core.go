@@ -22,34 +22,6 @@ func cGoUnpackString(s C.struct_QtCore_PackedString) string {
 	return C.GoStringN(s.data, C.int(s.len))
 }
 
-//go:generate stringer -type=QAbstractAnimation__DeletionPolicy
-//QAbstractAnimation::DeletionPolicy
-type QAbstractAnimation__DeletionPolicy int64
-
-const (
-	QAbstractAnimation__KeepWhenStopped   QAbstractAnimation__DeletionPolicy = QAbstractAnimation__DeletionPolicy(0)
-	QAbstractAnimation__DeleteWhenStopped QAbstractAnimation__DeletionPolicy = QAbstractAnimation__DeletionPolicy(1)
-)
-
-//go:generate stringer -type=QAbstractAnimation__Direction
-//QAbstractAnimation::Direction
-type QAbstractAnimation__Direction int64
-
-const (
-	QAbstractAnimation__Forward  QAbstractAnimation__Direction = QAbstractAnimation__Direction(0)
-	QAbstractAnimation__Backward QAbstractAnimation__Direction = QAbstractAnimation__Direction(1)
-)
-
-//go:generate stringer -type=QAbstractAnimation__State
-//QAbstractAnimation::State
-type QAbstractAnimation__State int64
-
-const (
-	QAbstractAnimation__Stopped QAbstractAnimation__State = QAbstractAnimation__State(0)
-	QAbstractAnimation__Paused  QAbstractAnimation__State = QAbstractAnimation__State(1)
-	QAbstractAnimation__Running QAbstractAnimation__State = QAbstractAnimation__State(2)
-)
-
 type QAbstractAnimation struct {
 	QObject
 }
@@ -88,6 +60,35 @@ func NewQAbstractAnimationFromPointer(ptr unsafe.Pointer) *QAbstractAnimation {
 	n.SetPointer(ptr)
 	return n
 }
+
+//go:generate stringer -type=QAbstractAnimation__DeletionPolicy
+//QAbstractAnimation::DeletionPolicy
+type QAbstractAnimation__DeletionPolicy int64
+
+const (
+	QAbstractAnimation__KeepWhenStopped   QAbstractAnimation__DeletionPolicy = QAbstractAnimation__DeletionPolicy(0)
+	QAbstractAnimation__DeleteWhenStopped QAbstractAnimation__DeletionPolicy = QAbstractAnimation__DeletionPolicy(1)
+)
+
+//go:generate stringer -type=QAbstractAnimation__Direction
+//QAbstractAnimation::Direction
+type QAbstractAnimation__Direction int64
+
+const (
+	QAbstractAnimation__Forward  QAbstractAnimation__Direction = QAbstractAnimation__Direction(0)
+	QAbstractAnimation__Backward QAbstractAnimation__Direction = QAbstractAnimation__Direction(1)
+)
+
+//go:generate stringer -type=QAbstractAnimation__State
+//QAbstractAnimation::State
+type QAbstractAnimation__State int64
+
+const (
+	QAbstractAnimation__Stopped QAbstractAnimation__State = QAbstractAnimation__State(0)
+	QAbstractAnimation__Paused  QAbstractAnimation__State = QAbstractAnimation__State(1)
+	QAbstractAnimation__Running QAbstractAnimation__State = QAbstractAnimation__State(2)
+)
+
 func (ptr *QAbstractAnimation) CurrentLoop() int {
 	if ptr.Pointer() != nil {
 		return int(int32(C.QAbstractAnimation_CurrentLoop(ptr.Pointer())))
@@ -120,8 +121,9 @@ func (ptr *QAbstractAnimation) LoopCount() int {
 func callbackQAbstractAnimation_SetCurrentTime(ptr unsafe.Pointer, msecs C.int) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractAnimation::setCurrentTime"); signal != nil {
 		signal.(func(int))(int(int32(msecs)))
+	} else {
+		NewQAbstractAnimationFromPointer(ptr).SetCurrentTimeDefault(int(int32(msecs)))
 	}
-
 }
 
 func (ptr *QAbstractAnimation) ConnectSetCurrentTime(f func(msecs int)) {
@@ -131,7 +133,7 @@ func (ptr *QAbstractAnimation) ConnectSetCurrentTime(f func(msecs int)) {
 	}
 }
 
-func (ptr *QAbstractAnimation) DisconnectSetCurrentTime(msecs int) {
+func (ptr *QAbstractAnimation) DisconnectSetCurrentTime() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractAnimation::setCurrentTime")
@@ -141,6 +143,12 @@ func (ptr *QAbstractAnimation) DisconnectSetCurrentTime(msecs int) {
 func (ptr *QAbstractAnimation) SetCurrentTime(msecs int) {
 	if ptr.Pointer() != nil {
 		C.QAbstractAnimation_SetCurrentTime(ptr.Pointer(), C.int(int32(msecs)))
+	}
+}
+
+func (ptr *QAbstractAnimation) SetCurrentTimeDefault(msecs int) {
+	if ptr.Pointer() != nil {
+		C.QAbstractAnimation_SetCurrentTimeDefault(ptr.Pointer(), C.int(int32(msecs)))
 	}
 }
 
@@ -349,8 +357,9 @@ func (ptr *QAbstractAnimation) Group() *QAnimationGroup {
 func callbackQAbstractAnimation_Pause(ptr unsafe.Pointer) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractAnimation::pause"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQAbstractAnimationFromPointer(ptr).PauseDefault()
 	}
-
 }
 
 func (ptr *QAbstractAnimation) ConnectPause(f func()) {
@@ -373,12 +382,19 @@ func (ptr *QAbstractAnimation) Pause() {
 	}
 }
 
+func (ptr *QAbstractAnimation) PauseDefault() {
+	if ptr.Pointer() != nil {
+		C.QAbstractAnimation_PauseDefault(ptr.Pointer())
+	}
+}
+
 //export callbackQAbstractAnimation_Resume
 func callbackQAbstractAnimation_Resume(ptr unsafe.Pointer) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractAnimation::resume"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQAbstractAnimationFromPointer(ptr).ResumeDefault()
 	}
-
 }
 
 func (ptr *QAbstractAnimation) ConnectResume(f func()) {
@@ -401,12 +417,19 @@ func (ptr *QAbstractAnimation) Resume() {
 	}
 }
 
+func (ptr *QAbstractAnimation) ResumeDefault() {
+	if ptr.Pointer() != nil {
+		C.QAbstractAnimation_ResumeDefault(ptr.Pointer())
+	}
+}
+
 //export callbackQAbstractAnimation_SetPaused
 func callbackQAbstractAnimation_SetPaused(ptr unsafe.Pointer, paused C.char) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractAnimation::setPaused"); signal != nil {
 		signal.(func(bool))(int8(paused) != 0)
+	} else {
+		NewQAbstractAnimationFromPointer(ptr).SetPausedDefault(int8(paused) != 0)
 	}
-
 }
 
 func (ptr *QAbstractAnimation) ConnectSetPaused(f func(paused bool)) {
@@ -416,7 +439,7 @@ func (ptr *QAbstractAnimation) ConnectSetPaused(f func(paused bool)) {
 	}
 }
 
-func (ptr *QAbstractAnimation) DisconnectSetPaused(paused bool) {
+func (ptr *QAbstractAnimation) DisconnectSetPaused() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractAnimation::setPaused")
@@ -429,12 +452,19 @@ func (ptr *QAbstractAnimation) SetPaused(paused bool) {
 	}
 }
 
+func (ptr *QAbstractAnimation) SetPausedDefault(paused bool) {
+	if ptr.Pointer() != nil {
+		C.QAbstractAnimation_SetPausedDefault(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(paused))))
+	}
+}
+
 //export callbackQAbstractAnimation_Start
 func callbackQAbstractAnimation_Start(ptr unsafe.Pointer, policy C.longlong) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractAnimation::start"); signal != nil {
 		signal.(func(QAbstractAnimation__DeletionPolicy))(QAbstractAnimation__DeletionPolicy(policy))
+	} else {
+		NewQAbstractAnimationFromPointer(ptr).StartDefault(QAbstractAnimation__DeletionPolicy(policy))
 	}
-
 }
 
 func (ptr *QAbstractAnimation) ConnectStart(f func(policy QAbstractAnimation__DeletionPolicy)) {
@@ -444,7 +474,7 @@ func (ptr *QAbstractAnimation) ConnectStart(f func(policy QAbstractAnimation__De
 	}
 }
 
-func (ptr *QAbstractAnimation) DisconnectStart(policy QAbstractAnimation__DeletionPolicy) {
+func (ptr *QAbstractAnimation) DisconnectStart() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractAnimation::start")
@@ -454,6 +484,12 @@ func (ptr *QAbstractAnimation) DisconnectStart(policy QAbstractAnimation__Deleti
 func (ptr *QAbstractAnimation) Start(policy QAbstractAnimation__DeletionPolicy) {
 	if ptr.Pointer() != nil {
 		C.QAbstractAnimation_Start(ptr.Pointer(), C.longlong(policy))
+	}
+}
+
+func (ptr *QAbstractAnimation) StartDefault(policy QAbstractAnimation__DeletionPolicy) {
+	if ptr.Pointer() != nil {
+		C.QAbstractAnimation_StartDefault(ptr.Pointer(), C.longlong(policy))
 	}
 }
 
@@ -490,8 +526,9 @@ func (ptr *QAbstractAnimation) StateChanged(newState QAbstractAnimation__State, 
 func callbackQAbstractAnimation_Stop(ptr unsafe.Pointer) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractAnimation::stop"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQAbstractAnimationFromPointer(ptr).StopDefault()
 	}
-
 }
 
 func (ptr *QAbstractAnimation) ConnectStop(f func()) {
@@ -511,6 +548,12 @@ func (ptr *QAbstractAnimation) DisconnectStop() {
 func (ptr *QAbstractAnimation) Stop() {
 	if ptr.Pointer() != nil {
 		C.QAbstractAnimation_Stop(ptr.Pointer())
+	}
+}
+
+func (ptr *QAbstractAnimation) StopDefault() {
+	if ptr.Pointer() != nil {
+		C.QAbstractAnimation_StopDefault(ptr.Pointer())
 	}
 }
 
@@ -537,7 +580,7 @@ func (ptr *QAbstractAnimation) ConnectUpdateCurrentTime(f func(currentTime int))
 	}
 }
 
-func (ptr *QAbstractAnimation) DisconnectUpdateCurrentTime(currentTime int) {
+func (ptr *QAbstractAnimation) DisconnectUpdateCurrentTime() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractAnimation::updateCurrentTime")
@@ -1158,7 +1201,7 @@ func (ptr *QAbstractEventDispatcher) ConnectProcessEvents(f func(flags QEventLoo
 	}
 }
 
-func (ptr *QAbstractEventDispatcher) DisconnectProcessEvents(flags QEventLoop__ProcessEventsFlag) {
+func (ptr *QAbstractEventDispatcher) DisconnectProcessEvents() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractEventDispatcher::processEvents")
@@ -1189,7 +1232,7 @@ func (ptr *QAbstractEventDispatcher) ConnectRegisterEventNotifier(f func(notifie
 	}
 }
 
-func (ptr *QAbstractEventDispatcher) DisconnectRegisterEventNotifier(notifier QWinEventNotifier_ITF) {
+func (ptr *QAbstractEventDispatcher) DisconnectRegisterEventNotifier() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractEventDispatcher::registerEventNotifier")
@@ -1219,7 +1262,7 @@ func (ptr *QAbstractEventDispatcher) ConnectRegisterSocketNotifier(f func(notifi
 	}
 }
 
-func (ptr *QAbstractEventDispatcher) DisconnectRegisterSocketNotifier(notifier QSocketNotifier_ITF) {
+func (ptr *QAbstractEventDispatcher) DisconnectRegisterSocketNotifier() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractEventDispatcher::registerSocketNotifier")
@@ -1255,7 +1298,7 @@ func (ptr *QAbstractEventDispatcher) ConnectRegisterTimer4(f func(timerId int, i
 	}
 }
 
-func (ptr *QAbstractEventDispatcher) DisconnectRegisterTimer4(timerId int, interval int, timerType Qt__TimerType, object QObject_ITF) {
+func (ptr *QAbstractEventDispatcher) DisconnectRegisterTimer4() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractEventDispatcher::registerTimer4")
@@ -1285,7 +1328,7 @@ func (ptr *QAbstractEventDispatcher) ConnectRemainingTime(f func(timerId int) in
 	}
 }
 
-func (ptr *QAbstractEventDispatcher) DisconnectRemainingTime(timerId int) {
+func (ptr *QAbstractEventDispatcher) DisconnectRemainingTime() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractEventDispatcher::remainingTime")
@@ -1321,7 +1364,7 @@ func (ptr *QAbstractEventDispatcher) ConnectUnregisterEventNotifier(f func(notif
 	}
 }
 
-func (ptr *QAbstractEventDispatcher) DisconnectUnregisterEventNotifier(notifier QWinEventNotifier_ITF) {
+func (ptr *QAbstractEventDispatcher) DisconnectUnregisterEventNotifier() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractEventDispatcher::unregisterEventNotifier")
@@ -1350,7 +1393,7 @@ func (ptr *QAbstractEventDispatcher) ConnectUnregisterSocketNotifier(f func(noti
 	}
 }
 
-func (ptr *QAbstractEventDispatcher) DisconnectUnregisterSocketNotifier(notifier QSocketNotifier_ITF) {
+func (ptr *QAbstractEventDispatcher) DisconnectUnregisterSocketNotifier() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractEventDispatcher::unregisterSocketNotifier")
@@ -1380,7 +1423,7 @@ func (ptr *QAbstractEventDispatcher) ConnectUnregisterTimer(f func(timerId int) 
 	}
 }
 
-func (ptr *QAbstractEventDispatcher) DisconnectUnregisterTimer(timerId int) {
+func (ptr *QAbstractEventDispatcher) DisconnectUnregisterTimer() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractEventDispatcher::unregisterTimer")
@@ -1411,7 +1454,7 @@ func (ptr *QAbstractEventDispatcher) ConnectUnregisterTimers(f func(object *QObj
 	}
 }
 
-func (ptr *QAbstractEventDispatcher) DisconnectUnregisterTimers(object QObject_ITF) {
+func (ptr *QAbstractEventDispatcher) DisconnectUnregisterTimers() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractEventDispatcher::unregisterTimers")
@@ -1795,16 +1838,6 @@ func (ptr *QAbstractEventDispatcher) MetaObjectDefault() *QMetaObject {
 	return nil
 }
 
-//go:generate stringer -type=QAbstractItemModel__LayoutChangeHint
-//QAbstractItemModel::LayoutChangeHint
-type QAbstractItemModel__LayoutChangeHint int64
-
-const (
-	QAbstractItemModel__NoLayoutChangeHint QAbstractItemModel__LayoutChangeHint = QAbstractItemModel__LayoutChangeHint(0)
-	QAbstractItemModel__VerticalSortHint   QAbstractItemModel__LayoutChangeHint = QAbstractItemModel__LayoutChangeHint(1)
-	QAbstractItemModel__HorizontalSortHint QAbstractItemModel__LayoutChangeHint = QAbstractItemModel__LayoutChangeHint(2)
-)
-
 type QAbstractItemModel struct {
 	QObject
 }
@@ -1843,6 +1876,16 @@ func NewQAbstractItemModelFromPointer(ptr unsafe.Pointer) *QAbstractItemModel {
 	n.SetPointer(ptr)
 	return n
 }
+
+//go:generate stringer -type=QAbstractItemModel__LayoutChangeHint
+//QAbstractItemModel::LayoutChangeHint
+type QAbstractItemModel__LayoutChangeHint int64
+
+const (
+	QAbstractItemModel__NoLayoutChangeHint QAbstractItemModel__LayoutChangeHint = QAbstractItemModel__LayoutChangeHint(0)
+	QAbstractItemModel__VerticalSortHint   QAbstractItemModel__LayoutChangeHint = QAbstractItemModel__LayoutChangeHint(1)
+	QAbstractItemModel__HorizontalSortHint QAbstractItemModel__LayoutChangeHint = QAbstractItemModel__LayoutChangeHint(2)
+)
 
 //export callbackQAbstractItemModel_Sibling
 func callbackQAbstractItemModel_Sibling(ptr unsafe.Pointer, row C.int, column C.int, index unsafe.Pointer) unsafe.Pointer {
@@ -2079,7 +2122,7 @@ func (ptr *QAbstractItemModel) ConnectColumnCount(f func(parent *QModelIndex) in
 	}
 }
 
-func (ptr *QAbstractItemModel) DisconnectColumnCount(parent QModelIndex_ITF) {
+func (ptr *QAbstractItemModel) DisconnectColumnCount() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractItemModel::columnCount")
@@ -2266,7 +2309,7 @@ func (ptr *QAbstractItemModel) ConnectData(f func(index *QModelIndex, role int) 
 	}
 }
 
-func (ptr *QAbstractItemModel) DisconnectData(index QModelIndex_ITF, role int) {
+func (ptr *QAbstractItemModel) DisconnectData() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractItemModel::data")
@@ -2569,7 +2612,7 @@ func (ptr *QAbstractItemModel) ConnectIndex(f func(row int, column int, parent *
 	}
 }
 
-func (ptr *QAbstractItemModel) DisconnectIndex(row int, column int, parent QModelIndex_ITF) {
+func (ptr *QAbstractItemModel) DisconnectIndex() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractItemModel::index")
@@ -2686,13 +2729,6 @@ func (ptr *QAbstractItemModel) Match(start QModelIndex_ITF, role int, value QVar
 		}(C.QAbstractItemModel_Match(ptr.Pointer(), PointerFromQModelIndex(start), C.int(int32(role)), PointerFromQVariant(value), C.int(int32(hits)), C.longlong(flags)))
 	}
 	return nil
-}
-
-func (ptr *QAbstractItemModel) DisconnectMimeData() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractItemModel::mimeData")
-	}
 }
 
 //export callbackQAbstractItemModel_MimeTypes
@@ -2886,7 +2922,7 @@ func (ptr *QAbstractItemModel) ConnectParent(f func(index *QModelIndex) *QModelI
 	}
 }
 
-func (ptr *QAbstractItemModel) DisconnectParent(index QModelIndex_ITF) {
+func (ptr *QAbstractItemModel) DisconnectParent() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractItemModel::parent")
@@ -3009,8 +3045,9 @@ func (ptr *QAbstractItemModel) RemoveRowsDefault(row int, count int, parent QMod
 func callbackQAbstractItemModel_ResetInternalData(ptr unsafe.Pointer) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractItemModel::resetInternalData"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQAbstractItemModelFromPointer(ptr).ResetInternalDataDefault()
 	}
-
 }
 
 func (ptr *QAbstractItemModel) ConnectResetInternalData(f func()) {
@@ -3030,6 +3067,12 @@ func (ptr *QAbstractItemModel) DisconnectResetInternalData() {
 func (ptr *QAbstractItemModel) ResetInternalData() {
 	if ptr.Pointer() != nil {
 		C.QAbstractItemModel_ResetInternalData(ptr.Pointer())
+	}
+}
+
+func (ptr *QAbstractItemModel) ResetInternalDataDefault() {
+	if ptr.Pointer() != nil {
+		C.QAbstractItemModel_ResetInternalDataDefault(ptr.Pointer())
 	}
 }
 
@@ -3085,7 +3128,7 @@ func (ptr *QAbstractItemModel) ConnectRowCount(f func(parent *QModelIndex) int) 
 	}
 }
 
-func (ptr *QAbstractItemModel) DisconnectRowCount(parent QModelIndex_ITF) {
+func (ptr *QAbstractItemModel) DisconnectRowCount() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractItemModel::rowCount")
@@ -4235,7 +4278,7 @@ func callbackQAbstractListModel_ColumnCount(ptr unsafe.Pointer, parent unsafe.Po
 		return C.int(int32(signal.(func(*QModelIndex) int)(NewQModelIndexFromPointer(parent))))
 	}
 
-	return C.int(int32(NewQAbstractListModelFromPointer(ptr).ColumnCountDefault(NewQModelIndexFromPointer(parent))))
+	return C.int(int32(0))
 }
 
 func (ptr *QAbstractListModel) ConnectColumnCount(f func(parent *QModelIndex) int) {
@@ -4255,13 +4298,6 @@ func (ptr *QAbstractListModel) DisconnectColumnCount() {
 func (ptr *QAbstractListModel) ColumnCount(parent QModelIndex_ITF) int {
 	if ptr.Pointer() != nil {
 		return int(int32(C.QAbstractListModel_ColumnCount(ptr.Pointer(), PointerFromQModelIndex(parent))))
-	}
-	return 0
-}
-
-func (ptr *QAbstractListModel) ColumnCountDefault(parent QModelIndex_ITF) int {
-	if ptr.Pointer() != nil {
-		return int(int32(C.QAbstractListModel_ColumnCountDefault(ptr.Pointer(), PointerFromQModelIndex(parent))))
 	}
 	return 0
 }
@@ -4491,13 +4527,6 @@ func (ptr *QAbstractListModel) InsertRowsDefault(row int, count int, parent QMod
 	return false
 }
 
-func (ptr *QAbstractListModel) DisconnectMimeData() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractListModel::mimeData")
-	}
-}
-
 //export callbackQAbstractListModel_MimeTypes
 func callbackQAbstractListModel_MimeTypes(ptr unsafe.Pointer) *C.char {
 
@@ -4619,7 +4648,7 @@ func callbackQAbstractListModel_Parent(ptr unsafe.Pointer, index unsafe.Pointer)
 		return PointerFromQModelIndex(signal.(func(*QModelIndex) *QModelIndex)(NewQModelIndexFromPointer(index)))
 	}
 
-	return PointerFromQModelIndex(NewQAbstractListModelFromPointer(ptr).ParentDefault(NewQModelIndexFromPointer(index)))
+	return PointerFromQModelIndex(NewQModelIndex())
 }
 
 func (ptr *QAbstractListModel) ConnectParent(f func(index *QModelIndex) *QModelIndex) {
@@ -4639,15 +4668,6 @@ func (ptr *QAbstractListModel) DisconnectParent() {
 func (ptr *QAbstractListModel) Parent(index QModelIndex_ITF) *QModelIndex {
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQModelIndexFromPointer(C.QAbstractListModel_Parent(ptr.Pointer(), PointerFromQModelIndex(index)))
-		runtime.SetFinalizer(tmpValue, (*QModelIndex).DestroyQModelIndex)
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QAbstractListModel) ParentDefault(index QModelIndex_ITF) *QModelIndex {
-	if ptr.Pointer() != nil {
-		var tmpValue = NewQModelIndexFromPointer(C.QAbstractListModel_ParentDefault(ptr.Pointer(), PointerFromQModelIndex(index)))
 		runtime.SetFinalizer(tmpValue, (*QModelIndex).DestroyQModelIndex)
 		return tmpValue
 	}
@@ -5489,7 +5509,7 @@ func (ptr *QAbstractNativeEventFilter) ConnectNativeEventFilter(f func(eventType
 	}
 }
 
-func (ptr *QAbstractNativeEventFilter) DisconnectNativeEventFilter(eventType QByteArray_ITF, message unsafe.Pointer, result int) {
+func (ptr *QAbstractNativeEventFilter) DisconnectNativeEventFilter() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractNativeEventFilter::nativeEventFilter")
@@ -5958,7 +5978,7 @@ func (ptr *QAbstractProxyModel) ConnectMapFromSource(f func(sourceIndex *QModelI
 	}
 }
 
-func (ptr *QAbstractProxyModel) DisconnectMapFromSource(sourceIndex QModelIndex_ITF) {
+func (ptr *QAbstractProxyModel) DisconnectMapFromSource() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractProxyModel::mapFromSource")
@@ -6075,7 +6095,7 @@ func (ptr *QAbstractProxyModel) ConnectMapToSource(f func(proxyIndex *QModelInde
 	}
 }
 
-func (ptr *QAbstractProxyModel) DisconnectMapToSource(proxyIndex QModelIndex_ITF) {
+func (ptr *QAbstractProxyModel) DisconnectMapToSource() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractProxyModel::mapToSource")
@@ -6089,13 +6109,6 @@ func (ptr *QAbstractProxyModel) MapToSource(proxyIndex QModelIndex_ITF) *QModelI
 		return tmpValue
 	}
 	return nil
-}
-
-func (ptr *QAbstractProxyModel) DisconnectMimeData() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractProxyModel::mimeData")
-	}
 }
 
 //export callbackQAbstractProxyModel_MimeTypes
@@ -6140,8 +6153,9 @@ func (ptr *QAbstractProxyModel) MimeTypesDefault() []string {
 func callbackQAbstractProxyModel_ResetInternalData(ptr unsafe.Pointer) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractProxyModel::resetInternalData"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQAbstractProxyModelFromPointer(ptr).ResetInternalDataDefault()
 	}
-
 }
 
 func (ptr *QAbstractProxyModel) ConnectResetInternalData(f func()) {
@@ -6161,6 +6175,12 @@ func (ptr *QAbstractProxyModel) DisconnectResetInternalData() {
 func (ptr *QAbstractProxyModel) ResetInternalData() {
 	if ptr.Pointer() != nil {
 		C.QAbstractProxyModel_ResetInternalData(ptr.Pointer())
+	}
+}
+
+func (ptr *QAbstractProxyModel) ResetInternalDataDefault() {
+	if ptr.Pointer() != nil {
+		C.QAbstractProxyModel_ResetInternalDataDefault(ptr.Pointer())
 	}
 }
 
@@ -7470,7 +7490,7 @@ func (ptr *QAbstractState) ConnectOnEntry(f func(event *QEvent)) {
 	}
 }
 
-func (ptr *QAbstractState) DisconnectOnEntry(event QEvent_ITF) {
+func (ptr *QAbstractState) DisconnectOnEntry() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractState::onEntry")
@@ -7499,7 +7519,7 @@ func (ptr *QAbstractState) ConnectOnExit(f func(event *QEvent)) {
 	}
 }
 
-func (ptr *QAbstractState) DisconnectOnExit(event QEvent_ITF) {
+func (ptr *QAbstractState) DisconnectOnExit() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractState::onExit")
@@ -8415,13 +8435,6 @@ func (ptr *QAbstractTableModel) InsertRowsDefault(row int, count int, parent QMo
 	return false
 }
 
-func (ptr *QAbstractTableModel) DisconnectMimeData() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractTableModel::mimeData")
-	}
-}
-
 //export callbackQAbstractTableModel_MimeTypes
 func callbackQAbstractTableModel_MimeTypes(ptr unsafe.Pointer) *C.char {
 
@@ -8543,7 +8556,7 @@ func callbackQAbstractTableModel_Parent(ptr unsafe.Pointer, index unsafe.Pointer
 		return PointerFromQModelIndex(signal.(func(*QModelIndex) *QModelIndex)(NewQModelIndexFromPointer(index)))
 	}
 
-	return PointerFromQModelIndex(NewQAbstractTableModelFromPointer(ptr).ParentDefault(NewQModelIndexFromPointer(index)))
+	return PointerFromQModelIndex(NewQModelIndex())
 }
 
 func (ptr *QAbstractTableModel) ConnectParent(f func(index *QModelIndex) *QModelIndex) {
@@ -8563,15 +8576,6 @@ func (ptr *QAbstractTableModel) DisconnectParent() {
 func (ptr *QAbstractTableModel) Parent(index QModelIndex_ITF) *QModelIndex {
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQModelIndexFromPointer(C.QAbstractTableModel_Parent(ptr.Pointer(), PointerFromQModelIndex(index)))
-		runtime.SetFinalizer(tmpValue, (*QModelIndex).DestroyQModelIndex)
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QAbstractTableModel) ParentDefault(index QModelIndex_ITF) *QModelIndex {
-	if ptr.Pointer() != nil {
-		var tmpValue = NewQModelIndexFromPointer(C.QAbstractTableModel_ParentDefault(ptr.Pointer(), PointerFromQModelIndex(index)))
 		runtime.SetFinalizer(tmpValue, (*QModelIndex).DestroyQModelIndex)
 		return tmpValue
 	}
@@ -9355,15 +9359,6 @@ func (ptr *QAbstractTableModel) MetaObjectDefault() *QMetaObject {
 	return nil
 }
 
-//go:generate stringer -type=QAbstractTransition__TransitionType
-//QAbstractTransition::TransitionType
-type QAbstractTransition__TransitionType int64
-
-const (
-	QAbstractTransition__ExternalTransition QAbstractTransition__TransitionType = QAbstractTransition__TransitionType(0)
-	QAbstractTransition__InternalTransition QAbstractTransition__TransitionType = QAbstractTransition__TransitionType(1)
-)
-
 type QAbstractTransition struct {
 	QObject
 }
@@ -9402,6 +9397,16 @@ func NewQAbstractTransitionFromPointer(ptr unsafe.Pointer) *QAbstractTransition 
 	n.SetPointer(ptr)
 	return n
 }
+
+//go:generate stringer -type=QAbstractTransition__TransitionType
+//QAbstractTransition::TransitionType
+type QAbstractTransition__TransitionType int64
+
+const (
+	QAbstractTransition__ExternalTransition QAbstractTransition__TransitionType = QAbstractTransition__TransitionType(0)
+	QAbstractTransition__InternalTransition QAbstractTransition__TransitionType = QAbstractTransition__TransitionType(1)
+)
+
 func NewQAbstractTransition(sourceState QState_ITF) *QAbstractTransition {
 	var tmpValue = NewQAbstractTransitionFromPointer(C.QAbstractTransition_NewQAbstractTransition(PointerFromQState(sourceState)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
@@ -9484,7 +9489,7 @@ func (ptr *QAbstractTransition) ConnectEventTest(f func(event *QEvent) bool) {
 	}
 }
 
-func (ptr *QAbstractTransition) DisconnectEventTest(event QEvent_ITF) {
+func (ptr *QAbstractTransition) DisconnectEventTest() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractTransition::eventTest")
@@ -9525,7 +9530,7 @@ func (ptr *QAbstractTransition) ConnectOnTransition(f func(event *QEvent)) {
 	}
 }
 
-func (ptr *QAbstractTransition) DisconnectOnTransition(event QEvent_ITF) {
+func (ptr *QAbstractTransition) DisconnectOnTransition() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractTransition::onTransition")
@@ -10422,9 +10427,8 @@ func callbackQAnimationGroup_UpdateCurrentTime(ptr unsafe.Pointer, currentTime C
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAnimationGroup::updateCurrentTime"); signal != nil {
 		signal.(func(int))(int(int32(currentTime)))
-	} else {
-
 	}
+
 }
 
 func (ptr *QAnimationGroup) ConnectUpdateCurrentTime(f func(currentTime int)) {
@@ -12346,17 +12350,6 @@ func (ptr *QBuffer) MetaObjectDefault() *QMetaObject {
 	return nil
 }
 
-//go:generate stringer -type=QByteArray__Base64Option
-//QByteArray::Base64Option
-type QByteArray__Base64Option int64
-
-const (
-	QByteArray__Base64Encoding     QByteArray__Base64Option = QByteArray__Base64Option(0)
-	QByteArray__Base64UrlEncoding  QByteArray__Base64Option = QByteArray__Base64Option(1)
-	QByteArray__KeepTrailingEquals QByteArray__Base64Option = QByteArray__Base64Option(0)
-	QByteArray__OmitTrailingEquals QByteArray__Base64Option = QByteArray__Base64Option(2)
-)
-
 type QByteArray struct {
 	ptr unsafe.Pointer
 }
@@ -12394,6 +12387,18 @@ func NewQByteArrayFromPointer(ptr unsafe.Pointer) *QByteArray {
 	n.SetPointer(ptr)
 	return n
 }
+
+//go:generate stringer -type=QByteArray__Base64Option
+//QByteArray::Base64Option
+type QByteArray__Base64Option int64
+
+const (
+	QByteArray__Base64Encoding     QByteArray__Base64Option = QByteArray__Base64Option(0)
+	QByteArray__Base64UrlEncoding  QByteArray__Base64Option = QByteArray__Base64Option(1)
+	QByteArray__KeepTrailingEquals QByteArray__Base64Option = QByteArray__Base64Option(0)
+	QByteArray__OmitTrailingEquals QByteArray__Base64Option = QByteArray__Base64Option(2)
+)
+
 func (ptr *QByteArray) Clear() {
 	if ptr.Pointer() != nil {
 		C.QByteArray_Clear(ptr.Pointer())
@@ -13781,6 +13786,51 @@ func NewQCacheFromPointer(ptr unsafe.Pointer) *QCache {
 	return n
 }
 
+type QChar struct {
+	ptr unsafe.Pointer
+}
+
+type QChar_ITF interface {
+	QChar_PTR() *QChar
+}
+
+func (ptr *QChar) QChar_PTR() *QChar {
+	return ptr
+}
+
+func (ptr *QChar) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
+	}
+	return nil
+}
+
+func (ptr *QChar) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
+	}
+}
+
+func PointerFromQChar(ptr QChar_ITF) unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QChar_PTR().Pointer()
+	}
+	return nil
+}
+
+func NewQCharFromPointer(ptr unsafe.Pointer) *QChar {
+	var n = new(QChar)
+	n.SetPointer(ptr)
+	return n
+}
+
+func (ptr *QChar) DestroyQChar() {
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
+}
+
 //go:generate stringer -type=QChar__Category
 //QChar::Category
 type QChar__Category int64
@@ -14071,51 +14121,6 @@ const (
 	QChar__Unicode_7_0        QChar__UnicodeVersion = QChar__UnicodeVersion(16)
 	QChar__Unicode_8_0        QChar__UnicodeVersion = QChar__UnicodeVersion(17)
 )
-
-type QChar struct {
-	ptr unsafe.Pointer
-}
-
-type QChar_ITF interface {
-	QChar_PTR() *QChar
-}
-
-func (ptr *QChar) QChar_PTR() *QChar {
-	return ptr
-}
-
-func (ptr *QChar) Pointer() unsafe.Pointer {
-	if ptr != nil {
-		return ptr.ptr
-	}
-	return nil
-}
-
-func (ptr *QChar) SetPointer(p unsafe.Pointer) {
-	if ptr != nil {
-		ptr.ptr = p
-	}
-}
-
-func PointerFromQChar(ptr QChar_ITF) unsafe.Pointer {
-	if ptr != nil {
-		return ptr.QChar_PTR().Pointer()
-	}
-	return nil
-}
-
-func NewQCharFromPointer(ptr unsafe.Pointer) *QChar {
-	var n = new(QChar)
-	n.SetPointer(ptr)
-	return n
-}
-
-func (ptr *QChar) DestroyQChar() {
-	if ptr != nil {
-		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
-	}
-}
 
 func NewQChar() *QChar {
 	var tmpValue = NewQCharFromPointer(C.QChar_NewQChar())
@@ -15246,24 +15251,6 @@ func (ptr *QCommandLineOption) DestroyQCommandLineOption() {
 	}
 }
 
-//go:generate stringer -type=QCommandLineParser__OptionsAfterPositionalArgumentsMode
-//QCommandLineParser::OptionsAfterPositionalArgumentsMode
-type QCommandLineParser__OptionsAfterPositionalArgumentsMode int64
-
-const (
-	QCommandLineParser__ParseAsOptions             QCommandLineParser__OptionsAfterPositionalArgumentsMode = QCommandLineParser__OptionsAfterPositionalArgumentsMode(0)
-	QCommandLineParser__ParseAsPositionalArguments QCommandLineParser__OptionsAfterPositionalArgumentsMode = QCommandLineParser__OptionsAfterPositionalArgumentsMode(1)
-)
-
-//go:generate stringer -type=QCommandLineParser__SingleDashWordOptionMode
-//QCommandLineParser::SingleDashWordOptionMode
-type QCommandLineParser__SingleDashWordOptionMode int64
-
-const (
-	QCommandLineParser__ParseAsCompactedShortOptions QCommandLineParser__SingleDashWordOptionMode = QCommandLineParser__SingleDashWordOptionMode(0)
-	QCommandLineParser__ParseAsLongOptions           QCommandLineParser__SingleDashWordOptionMode = QCommandLineParser__SingleDashWordOptionMode(1)
-)
-
 type QCommandLineParser struct {
 	ptr unsafe.Pointer
 }
@@ -15301,6 +15288,25 @@ func NewQCommandLineParserFromPointer(ptr unsafe.Pointer) *QCommandLineParser {
 	n.SetPointer(ptr)
 	return n
 }
+
+//go:generate stringer -type=QCommandLineParser__OptionsAfterPositionalArgumentsMode
+//QCommandLineParser::OptionsAfterPositionalArgumentsMode
+type QCommandLineParser__OptionsAfterPositionalArgumentsMode int64
+
+const (
+	QCommandLineParser__ParseAsOptions             QCommandLineParser__OptionsAfterPositionalArgumentsMode = QCommandLineParser__OptionsAfterPositionalArgumentsMode(0)
+	QCommandLineParser__ParseAsPositionalArguments QCommandLineParser__OptionsAfterPositionalArgumentsMode = QCommandLineParser__OptionsAfterPositionalArgumentsMode(1)
+)
+
+//go:generate stringer -type=QCommandLineParser__SingleDashWordOptionMode
+//QCommandLineParser::SingleDashWordOptionMode
+type QCommandLineParser__SingleDashWordOptionMode int64
+
+const (
+	QCommandLineParser__ParseAsCompactedShortOptions QCommandLineParser__SingleDashWordOptionMode = QCommandLineParser__SingleDashWordOptionMode(0)
+	QCommandLineParser__ParseAsLongOptions           QCommandLineParser__SingleDashWordOptionMode = QCommandLineParser__SingleDashWordOptionMode(1)
+)
+
 func NewQCommandLineParser() *QCommandLineParser {
 	var tmpValue = NewQCommandLineParserFromPointer(C.QCommandLineParser_NewQCommandLineParser())
 	runtime.SetFinalizer(tmpValue, (*QCommandLineParser).DestroyQCommandLineParser)
@@ -15911,8 +15917,9 @@ func (ptr *QCoreApplication) ProcessEvents2(flags QEventLoop__ProcessEventsFlag,
 func callbackQCoreApplication_Quit(ptr unsafe.Pointer) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCoreApplication::quit"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQCoreApplicationFromPointer(ptr).QuitDefault()
 	}
-
 }
 
 func (ptr *QCoreApplication) ConnectQuit(f func()) {
@@ -15932,6 +15939,12 @@ func (ptr *QCoreApplication) DisconnectQuit() {
 func (ptr *QCoreApplication) Quit() {
 	if ptr.Pointer() != nil {
 		C.QCoreApplication_Quit(ptr.Pointer())
+	}
+}
+
+func (ptr *QCoreApplication) QuitDefault() {
+	if ptr.Pointer() != nil {
+		C.QCoreApplication_QuitDefault(ptr.Pointer())
 	}
 }
 
@@ -16368,24 +16381,6 @@ func (ptr *QCoreApplication) MetaObjectDefault() *QMetaObject {
 	return nil
 }
 
-//go:generate stringer -type=QCryptographicHash__Algorithm
-//QCryptographicHash::Algorithm
-type QCryptographicHash__Algorithm int64
-
-const (
-	QCryptographicHash__Md4      QCryptographicHash__Algorithm = QCryptographicHash__Algorithm(0)
-	QCryptographicHash__Md5      QCryptographicHash__Algorithm = QCryptographicHash__Algorithm(1)
-	QCryptographicHash__Sha1     QCryptographicHash__Algorithm = QCryptographicHash__Algorithm(2)
-	QCryptographicHash__Sha224   QCryptographicHash__Algorithm = QCryptographicHash__Algorithm(3)
-	QCryptographicHash__Sha256   QCryptographicHash__Algorithm = QCryptographicHash__Algorithm(4)
-	QCryptographicHash__Sha384   QCryptographicHash__Algorithm = QCryptographicHash__Algorithm(5)
-	QCryptographicHash__Sha512   QCryptographicHash__Algorithm = QCryptographicHash__Algorithm(6)
-	QCryptographicHash__Sha3_224 QCryptographicHash__Algorithm = QCryptographicHash__Algorithm(7)
-	QCryptographicHash__Sha3_256 QCryptographicHash__Algorithm = QCryptographicHash__Algorithm(8)
-	QCryptographicHash__Sha3_384 QCryptographicHash__Algorithm = QCryptographicHash__Algorithm(9)
-	QCryptographicHash__Sha3_512 QCryptographicHash__Algorithm = QCryptographicHash__Algorithm(10)
-)
-
 type QCryptographicHash struct {
 	ptr unsafe.Pointer
 }
@@ -16423,6 +16418,25 @@ func NewQCryptographicHashFromPointer(ptr unsafe.Pointer) *QCryptographicHash {
 	n.SetPointer(ptr)
 	return n
 }
+
+//go:generate stringer -type=QCryptographicHash__Algorithm
+//QCryptographicHash::Algorithm
+type QCryptographicHash__Algorithm int64
+
+const (
+	QCryptographicHash__Md4      QCryptographicHash__Algorithm = QCryptographicHash__Algorithm(0)
+	QCryptographicHash__Md5      QCryptographicHash__Algorithm = QCryptographicHash__Algorithm(1)
+	QCryptographicHash__Sha1     QCryptographicHash__Algorithm = QCryptographicHash__Algorithm(2)
+	QCryptographicHash__Sha224   QCryptographicHash__Algorithm = QCryptographicHash__Algorithm(3)
+	QCryptographicHash__Sha256   QCryptographicHash__Algorithm = QCryptographicHash__Algorithm(4)
+	QCryptographicHash__Sha384   QCryptographicHash__Algorithm = QCryptographicHash__Algorithm(5)
+	QCryptographicHash__Sha512   QCryptographicHash__Algorithm = QCryptographicHash__Algorithm(6)
+	QCryptographicHash__Sha3_224 QCryptographicHash__Algorithm = QCryptographicHash__Algorithm(7)
+	QCryptographicHash__Sha3_256 QCryptographicHash__Algorithm = QCryptographicHash__Algorithm(8)
+	QCryptographicHash__Sha3_384 QCryptographicHash__Algorithm = QCryptographicHash__Algorithm(9)
+	QCryptographicHash__Sha3_512 QCryptographicHash__Algorithm = QCryptographicHash__Algorithm(10)
+)
+
 func NewQCryptographicHash(method QCryptographicHash__Algorithm) *QCryptographicHash {
 	var tmpValue = NewQCryptographicHashFromPointer(C.QCryptographicHash_NewQCryptographicHash(C.longlong(method)))
 	runtime.SetFinalizer(tmpValue, (*QCryptographicHash).DestroyQCryptographicHash)
@@ -16482,6 +16496,44 @@ func (ptr *QCryptographicHash) DestroyQCryptographicHash() {
 		C.QCryptographicHash_DestroyQCryptographicHash(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
+}
+
+type QDataStream struct {
+	ptr unsafe.Pointer
+}
+
+type QDataStream_ITF interface {
+	QDataStream_PTR() *QDataStream
+}
+
+func (ptr *QDataStream) QDataStream_PTR() *QDataStream {
+	return ptr
+}
+
+func (ptr *QDataStream) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
+	}
+	return nil
+}
+
+func (ptr *QDataStream) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
+	}
+}
+
+func PointerFromQDataStream(ptr QDataStream_ITF) unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QDataStream_PTR().Pointer()
+	}
+	return nil
+}
+
+func NewQDataStreamFromPointer(ptr unsafe.Pointer) *QDataStream {
+	var n = new(QDataStream)
+	n.SetPointer(ptr)
+	return n
 }
 
 //go:generate stringer -type=QDataStream__ByteOrder
@@ -16545,43 +16597,6 @@ const (
 	QDataStream__Qt_DefaultCompiledVersion QDataStream__Version = QDataStream__Version(QDataStream__Qt_5_7)
 )
 
-type QDataStream struct {
-	ptr unsafe.Pointer
-}
-
-type QDataStream_ITF interface {
-	QDataStream_PTR() *QDataStream
-}
-
-func (ptr *QDataStream) QDataStream_PTR() *QDataStream {
-	return ptr
-}
-
-func (ptr *QDataStream) Pointer() unsafe.Pointer {
-	if ptr != nil {
-		return ptr.ptr
-	}
-	return nil
-}
-
-func (ptr *QDataStream) SetPointer(p unsafe.Pointer) {
-	if ptr != nil {
-		ptr.ptr = p
-	}
-}
-
-func PointerFromQDataStream(ptr QDataStream_ITF) unsafe.Pointer {
-	if ptr != nil {
-		return ptr.QDataStream_PTR().Pointer()
-	}
-	return nil
-}
-
-func NewQDataStreamFromPointer(ptr unsafe.Pointer) *QDataStream {
-	var n = new(QDataStream)
-	n.SetPointer(ptr)
-	return n
-}
 func NewQDataStream3(a QByteArray_ITF, mode QIODevice__OpenModeFlag) *QDataStream {
 	var tmpValue = NewQDataStreamFromPointer(C.QDataStream_NewQDataStream3(PointerFromQByteArray(a), C.longlong(mode)))
 	runtime.SetFinalizer(tmpValue, (*QDataStream).DestroyQDataStream)
@@ -16745,15 +16760,6 @@ func (ptr *QDataStream) DestroyQDataStream() {
 	}
 }
 
-//go:generate stringer -type=QDate__MonthNameType
-//QDate::MonthNameType
-type QDate__MonthNameType int64
-
-const (
-	QDate__DateFormat       QDate__MonthNameType = QDate__MonthNameType(0)
-	QDate__StandaloneFormat QDate__MonthNameType = QDate__MonthNameType(1)
-)
-
 type QDate struct {
 	ptr unsafe.Pointer
 }
@@ -16798,6 +16804,15 @@ func (ptr *QDate) DestroyQDate() {
 		ptr.SetPointer(nil)
 	}
 }
+
+//go:generate stringer -type=QDate__MonthNameType
+//QDate::MonthNameType
+type QDate__MonthNameType int64
+
+const (
+	QDate__DateFormat       QDate__MonthNameType = QDate__MonthNameType(0)
+	QDate__StandaloneFormat QDate__MonthNameType = QDate__MonthNameType(1)
+)
 
 func QDate_CurrentDate() *QDate {
 	var tmpValue = NewQDateFromPointer(C.QDate_QDate_CurrentDate())
@@ -17748,6 +17763,44 @@ func (ptr *QDebugStateSaver) DestroyQDebugStateSaver() {
 	}
 }
 
+type QDir struct {
+	ptr unsafe.Pointer
+}
+
+type QDir_ITF interface {
+	QDir_PTR() *QDir
+}
+
+func (ptr *QDir) QDir_PTR() *QDir {
+	return ptr
+}
+
+func (ptr *QDir) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
+	}
+	return nil
+}
+
+func (ptr *QDir) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
+	}
+}
+
+func PointerFromQDir(ptr QDir_ITF) unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QDir_PTR().Pointer()
+	}
+	return nil
+}
+
+func NewQDirFromPointer(ptr unsafe.Pointer) *QDir {
+	var n = new(QDir)
+	n.SetPointer(ptr)
+	return n
+}
+
 //go:generate stringer -type=QDir__Filter
 //QDir::Filter
 type QDir__Filter int64
@@ -17794,43 +17847,6 @@ const (
 	QDir__NoSort      QDir__SortFlag = QDir__SortFlag(-1)
 )
 
-type QDir struct {
-	ptr unsafe.Pointer
-}
-
-type QDir_ITF interface {
-	QDir_PTR() *QDir
-}
-
-func (ptr *QDir) QDir_PTR() *QDir {
-	return ptr
-}
-
-func (ptr *QDir) Pointer() unsafe.Pointer {
-	if ptr != nil {
-		return ptr.ptr
-	}
-	return nil
-}
-
-func (ptr *QDir) SetPointer(p unsafe.Pointer) {
-	if ptr != nil {
-		ptr.ptr = p
-	}
-}
-
-func PointerFromQDir(ptr QDir_ITF) unsafe.Pointer {
-	if ptr != nil {
-		return ptr.QDir_PTR().Pointer()
-	}
-	return nil
-}
-
-func NewQDirFromPointer(ptr unsafe.Pointer) *QDir {
-	var n = new(QDir)
-	n.SetPointer(ptr)
-	return n
-}
 func NewQDir(dir QDir_ITF) *QDir {
 	var tmpValue = NewQDirFromPointer(C.QDir_NewQDir(PointerFromQDir(dir)))
 	runtime.SetFinalizer(tmpValue, (*QDir).DestroyQDir)
@@ -18449,16 +18465,6 @@ func (ptr *QDir) entryInfoList_atList(i int) *QFileInfo {
 	return nil
 }
 
-//go:generate stringer -type=QDirIterator__IteratorFlag
-//QDirIterator::IteratorFlag
-type QDirIterator__IteratorFlag int64
-
-const (
-	QDirIterator__NoIteratorFlags QDirIterator__IteratorFlag = QDirIterator__IteratorFlag(0x0)
-	QDirIterator__FollowSymlinks  QDirIterator__IteratorFlag = QDirIterator__IteratorFlag(0x1)
-	QDirIterator__Subdirectories  QDirIterator__IteratorFlag = QDirIterator__IteratorFlag(0x2)
-)
-
 type QDirIterator struct {
 	ptr unsafe.Pointer
 }
@@ -18496,6 +18502,16 @@ func NewQDirIteratorFromPointer(ptr unsafe.Pointer) *QDirIterator {
 	n.SetPointer(ptr)
 	return n
 }
+
+//go:generate stringer -type=QDirIterator__IteratorFlag
+//QDirIterator::IteratorFlag
+type QDirIterator__IteratorFlag int64
+
+const (
+	QDirIterator__NoIteratorFlags QDirIterator__IteratorFlag = QDirIterator__IteratorFlag(0x0)
+	QDirIterator__FollowSymlinks  QDirIterator__IteratorFlag = QDirIterator__IteratorFlag(0x1)
+	QDirIterator__Subdirectories  QDirIterator__IteratorFlag = QDirIterator__IteratorFlag(0x2)
+)
 
 type QDynamicPropertyChangeEvent struct {
 	QEvent
@@ -18558,6 +18574,44 @@ func (ptr *QDynamicPropertyChangeEvent) PropertyName() *QByteArray {
 	return nil
 }
 
+type QEasingCurve struct {
+	ptr unsafe.Pointer
+}
+
+type QEasingCurve_ITF interface {
+	QEasingCurve_PTR() *QEasingCurve
+}
+
+func (ptr *QEasingCurve) QEasingCurve_PTR() *QEasingCurve {
+	return ptr
+}
+
+func (ptr *QEasingCurve) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
+	}
+	return nil
+}
+
+func (ptr *QEasingCurve) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
+	}
+}
+
+func PointerFromQEasingCurve(ptr QEasingCurve_ITF) unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QEasingCurve_PTR().Pointer()
+	}
+	return nil
+}
+
+func NewQEasingCurveFromPointer(ptr unsafe.Pointer) *QEasingCurve {
+	var n = new(QEasingCurve)
+	n.SetPointer(ptr)
+	return n
+}
+
 //go:generate stringer -type=QEasingCurve__Type
 //QEasingCurve::Type
 type QEasingCurve__Type int64
@@ -18614,43 +18668,6 @@ const (
 	QEasingCurve__NCurveTypes  QEasingCurve__Type = QEasingCurve__Type(48)
 )
 
-type QEasingCurve struct {
-	ptr unsafe.Pointer
-}
-
-type QEasingCurve_ITF interface {
-	QEasingCurve_PTR() *QEasingCurve
-}
-
-func (ptr *QEasingCurve) QEasingCurve_PTR() *QEasingCurve {
-	return ptr
-}
-
-func (ptr *QEasingCurve) Pointer() unsafe.Pointer {
-	if ptr != nil {
-		return ptr.ptr
-	}
-	return nil
-}
-
-func (ptr *QEasingCurve) SetPointer(p unsafe.Pointer) {
-	if ptr != nil {
-		ptr.ptr = p
-	}
-}
-
-func PointerFromQEasingCurve(ptr QEasingCurve_ITF) unsafe.Pointer {
-	if ptr != nil {
-		return ptr.QEasingCurve_PTR().Pointer()
-	}
-	return nil
-}
-
-func NewQEasingCurveFromPointer(ptr unsafe.Pointer) *QEasingCurve {
-	var n = new(QEasingCurve)
-	n.SetPointer(ptr)
-	return n
-}
 func NewQEasingCurve3(other QEasingCurve_ITF) *QEasingCurve {
 	var tmpValue = NewQEasingCurveFromPointer(C.QEasingCurve_NewQEasingCurve3(PointerFromQEasingCurve(other)))
 	runtime.SetFinalizer(tmpValue, (*QEasingCurve).DestroyQEasingCurve)
@@ -18784,18 +18801,6 @@ func (ptr *QEasingCurve) toCubicSpline_atList(i int) *QPointF {
 	return nil
 }
 
-//go:generate stringer -type=QElapsedTimer__ClockType
-//QElapsedTimer::ClockType
-type QElapsedTimer__ClockType int64
-
-const (
-	QElapsedTimer__SystemTime         QElapsedTimer__ClockType = QElapsedTimer__ClockType(0)
-	QElapsedTimer__MonotonicClock     QElapsedTimer__ClockType = QElapsedTimer__ClockType(1)
-	QElapsedTimer__TickCounter        QElapsedTimer__ClockType = QElapsedTimer__ClockType(2)
-	QElapsedTimer__MachAbsoluteTime   QElapsedTimer__ClockType = QElapsedTimer__ClockType(3)
-	QElapsedTimer__PerformanceCounter QElapsedTimer__ClockType = QElapsedTimer__ClockType(4)
-)
-
 type QElapsedTimer struct {
 	ptr unsafe.Pointer
 }
@@ -18840,6 +18845,18 @@ func (ptr *QElapsedTimer) DestroyQElapsedTimer() {
 		ptr.SetPointer(nil)
 	}
 }
+
+//go:generate stringer -type=QElapsedTimer__ClockType
+//QElapsedTimer::ClockType
+type QElapsedTimer__ClockType int64
+
+const (
+	QElapsedTimer__SystemTime         QElapsedTimer__ClockType = QElapsedTimer__ClockType(0)
+	QElapsedTimer__MonotonicClock     QElapsedTimer__ClockType = QElapsedTimer__ClockType(1)
+	QElapsedTimer__TickCounter        QElapsedTimer__ClockType = QElapsedTimer__ClockType(2)
+	QElapsedTimer__MachAbsoluteTime   QElapsedTimer__ClockType = QElapsedTimer__ClockType(3)
+	QElapsedTimer__PerformanceCounter QElapsedTimer__ClockType = QElapsedTimer__ClockType(4)
+)
 
 func NewQElapsedTimer() *QElapsedTimer {
 	var tmpValue = NewQElapsedTimerFromPointer(C.QElapsedTimer_NewQElapsedTimer())
@@ -18974,6 +18991,44 @@ func (ptr *QEnableSharedFromThis) DestroyQEnableSharedFromThis() {
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
+}
+
+type QEvent struct {
+	ptr unsafe.Pointer
+}
+
+type QEvent_ITF interface {
+	QEvent_PTR() *QEvent
+}
+
+func (ptr *QEvent) QEvent_PTR() *QEvent {
+	return ptr
+}
+
+func (ptr *QEvent) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
+	}
+	return nil
+}
+
+func (ptr *QEvent) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
+	}
+}
+
+func PointerFromQEvent(ptr QEvent_ITF) unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QEvent_PTR().Pointer()
+	}
+	return nil
+}
+
+func NewQEventFromPointer(ptr unsafe.Pointer) *QEvent {
+	var n = new(QEvent)
+	n.SetPointer(ptr)
+	return n
 }
 
 //go:generate stringer -type=QEvent__Type
@@ -19156,43 +19211,6 @@ const (
 	QEvent__MaxUser                          QEvent__Type = QEvent__Type(65535)
 )
 
-type QEvent struct {
-	ptr unsafe.Pointer
-}
-
-type QEvent_ITF interface {
-	QEvent_PTR() *QEvent
-}
-
-func (ptr *QEvent) QEvent_PTR() *QEvent {
-	return ptr
-}
-
-func (ptr *QEvent) Pointer() unsafe.Pointer {
-	if ptr != nil {
-		return ptr.ptr
-	}
-	return nil
-}
-
-func (ptr *QEvent) SetPointer(p unsafe.Pointer) {
-	if ptr != nil {
-		ptr.ptr = p
-	}
-}
-
-func PointerFromQEvent(ptr QEvent_ITF) unsafe.Pointer {
-	if ptr != nil {
-		return ptr.QEvent_PTR().Pointer()
-	}
-	return nil
-}
-
-func NewQEventFromPointer(ptr unsafe.Pointer) *QEvent {
-	var n = new(QEvent)
-	n.SetPointer(ptr)
-	return n
-}
 func NewQEvent(ty QEvent__Type) *QEvent {
 	return NewQEventFromPointer(C.QEvent_NewQEvent(C.longlong(ty)))
 }
@@ -19297,20 +19315,6 @@ func (ptr *QEvent) SetT(vus uint16) {
 	}
 }
 
-//go:generate stringer -type=QEventLoop__ProcessEventsFlag
-//QEventLoop::ProcessEventsFlag
-type QEventLoop__ProcessEventsFlag int64
-
-const (
-	QEventLoop__AllEvents              QEventLoop__ProcessEventsFlag = QEventLoop__ProcessEventsFlag(0x00)
-	QEventLoop__ExcludeUserInputEvents QEventLoop__ProcessEventsFlag = QEventLoop__ProcessEventsFlag(0x01)
-	QEventLoop__ExcludeSocketNotifiers QEventLoop__ProcessEventsFlag = QEventLoop__ProcessEventsFlag(0x02)
-	QEventLoop__WaitForMoreEvents      QEventLoop__ProcessEventsFlag = QEventLoop__ProcessEventsFlag(0x04)
-	QEventLoop__X11ExcludeTimers       QEventLoop__ProcessEventsFlag = QEventLoop__ProcessEventsFlag(0x08)
-	QEventLoop__EventLoopExec          QEventLoop__ProcessEventsFlag = QEventLoop__ProcessEventsFlag(0x20)
-	QEventLoop__DialogExec             QEventLoop__ProcessEventsFlag = QEventLoop__ProcessEventsFlag(0x40)
-)
-
 type QEventLoop struct {
 	QObject
 }
@@ -19349,6 +19353,21 @@ func NewQEventLoopFromPointer(ptr unsafe.Pointer) *QEventLoop {
 	n.SetPointer(ptr)
 	return n
 }
+
+//go:generate stringer -type=QEventLoop__ProcessEventsFlag
+//QEventLoop::ProcessEventsFlag
+type QEventLoop__ProcessEventsFlag int64
+
+const (
+	QEventLoop__AllEvents              QEventLoop__ProcessEventsFlag = QEventLoop__ProcessEventsFlag(0x00)
+	QEventLoop__ExcludeUserInputEvents QEventLoop__ProcessEventsFlag = QEventLoop__ProcessEventsFlag(0x01)
+	QEventLoop__ExcludeSocketNotifiers QEventLoop__ProcessEventsFlag = QEventLoop__ProcessEventsFlag(0x02)
+	QEventLoop__WaitForMoreEvents      QEventLoop__ProcessEventsFlag = QEventLoop__ProcessEventsFlag(0x04)
+	QEventLoop__X11ExcludeTimers       QEventLoop__ProcessEventsFlag = QEventLoop__ProcessEventsFlag(0x08)
+	QEventLoop__EventLoopExec          QEventLoop__ProcessEventsFlag = QEventLoop__ProcessEventsFlag(0x20)
+	QEventLoop__DialogExec             QEventLoop__ProcessEventsFlag = QEventLoop__ProcessEventsFlag(0x40)
+)
+
 func NewQEventLoop(parent QObject_ITF) *QEventLoop {
 	var tmpValue = NewQEventLoopFromPointer(C.QEventLoop_NewQEventLoop(PointerFromQObject(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
@@ -19432,8 +19451,9 @@ func (ptr *QEventLoop) ProcessEvents2(flags QEventLoop__ProcessEventsFlag, maxTi
 func callbackQEventLoop_Quit(ptr unsafe.Pointer) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QEventLoop::quit"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQEventLoopFromPointer(ptr).QuitDefault()
 	}
-
 }
 
 func (ptr *QEventLoop) ConnectQuit(f func()) {
@@ -19453,6 +19473,12 @@ func (ptr *QEventLoop) DisconnectQuit() {
 func (ptr *QEventLoop) Quit() {
 	if ptr.Pointer() != nil {
 		C.QEventLoop_Quit(ptr.Pointer())
+	}
+}
+
+func (ptr *QEventLoop) QuitDefault() {
+	if ptr.Pointer() != nil {
+		C.QEventLoop_QuitDefault(ptr.Pointer())
 	}
 }
 
@@ -21831,6 +21857,45 @@ func (ptr *QFile) MetaObjectDefault() *QMetaObject {
 	return nil
 }
 
+type QFileDevice struct {
+	QIODevice
+}
+
+type QFileDevice_ITF interface {
+	QIODevice_ITF
+	QFileDevice_PTR() *QFileDevice
+}
+
+func (ptr *QFileDevice) QFileDevice_PTR() *QFileDevice {
+	return ptr
+}
+
+func (ptr *QFileDevice) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QIODevice_PTR().Pointer()
+	}
+	return nil
+}
+
+func (ptr *QFileDevice) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QIODevice_PTR().SetPointer(p)
+	}
+}
+
+func PointerFromQFileDevice(ptr QFileDevice_ITF) unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QFileDevice_PTR().Pointer()
+	}
+	return nil
+}
+
+func NewQFileDeviceFromPointer(ptr unsafe.Pointer) *QFileDevice {
+	var n = new(QFileDevice)
+	n.SetPointer(ptr)
+	return n
+}
+
 //go:generate stringer -type=QFileDevice__FileError
 //QFileDevice::FileError
 type QFileDevice__FileError int64
@@ -21889,45 +21954,6 @@ const (
 	QFileDevice__WriteOther QFileDevice__Permission = QFileDevice__Permission(0x0002)
 	QFileDevice__ExeOther   QFileDevice__Permission = QFileDevice__Permission(0x0001)
 )
-
-type QFileDevice struct {
-	QIODevice
-}
-
-type QFileDevice_ITF interface {
-	QIODevice_ITF
-	QFileDevice_PTR() *QFileDevice
-}
-
-func (ptr *QFileDevice) QFileDevice_PTR() *QFileDevice {
-	return ptr
-}
-
-func (ptr *QFileDevice) Pointer() unsafe.Pointer {
-	if ptr != nil {
-		return ptr.QIODevice_PTR().Pointer()
-	}
-	return nil
-}
-
-func (ptr *QFileDevice) SetPointer(p unsafe.Pointer) {
-	if ptr != nil {
-		ptr.QIODevice_PTR().SetPointer(p)
-	}
-}
-
-func PointerFromQFileDevice(ptr QFileDevice_ITF) unsafe.Pointer {
-	if ptr != nil {
-		return ptr.QFileDevice_PTR().Pointer()
-	}
-	return nil
-}
-
-func NewQFileDeviceFromPointer(ptr unsafe.Pointer) *QFileDevice {
-	var n = new(QFileDevice)
-	n.SetPointer(ptr)
-	return n
-}
 
 //export callbackQFileDevice_Seek
 func callbackQFileDevice_Seek(ptr unsafe.Pointer, pos C.longlong) C.char {
@@ -25408,15 +25434,6 @@ func (ptr *QHashIterator) DestroyQHashIterator() {
 	}
 }
 
-//go:generate stringer -type=QHistoryState__HistoryType
-//QHistoryState::HistoryType
-type QHistoryState__HistoryType int64
-
-const (
-	QHistoryState__ShallowHistory QHistoryState__HistoryType = QHistoryState__HistoryType(0)
-	QHistoryState__DeepHistory    QHistoryState__HistoryType = QHistoryState__HistoryType(1)
-)
-
 type QHistoryState struct {
 	QAbstractState
 }
@@ -25455,6 +25472,16 @@ func NewQHistoryStateFromPointer(ptr unsafe.Pointer) *QHistoryState {
 	n.SetPointer(ptr)
 	return n
 }
+
+//go:generate stringer -type=QHistoryState__HistoryType
+//QHistoryState::HistoryType
+type QHistoryState__HistoryType int64
+
+const (
+	QHistoryState__ShallowHistory QHistoryState__HistoryType = QHistoryState__HistoryType(0)
+	QHistoryState__DeepHistory    QHistoryState__HistoryType = QHistoryState__HistoryType(1)
+)
+
 func NewQHistoryState2(ty QHistoryState__HistoryType, parent QState_ITF) *QHistoryState {
 	var tmpValue = NewQHistoryStateFromPointer(C.QHistoryState_NewQHistoryState2(C.longlong(ty), PointerFromQState(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
@@ -26000,21 +26027,6 @@ func (ptr *QHistoryState) MetaObjectDefault() *QMetaObject {
 	return nil
 }
 
-//go:generate stringer -type=QHooks__HookIndex
-//QHooks::HookIndex
-type QHooks__HookIndex int64
-
-const (
-	QHooks__HookDataVersion        QHooks__HookIndex = QHooks__HookIndex(0)
-	QHooks__HookDataSize           QHooks__HookIndex = QHooks__HookIndex(1)
-	QHooks__QtVersion              QHooks__HookIndex = QHooks__HookIndex(2)
-	QHooks__AddQObject             QHooks__HookIndex = QHooks__HookIndex(3)
-	QHooks__RemoveQObject          QHooks__HookIndex = QHooks__HookIndex(4)
-	QHooks__Startup                QHooks__HookIndex = QHooks__HookIndex(5)
-	QHooks__TypeInformationVersion QHooks__HookIndex = QHooks__HookIndex(6)
-	QHooks__LastHookIndex          QHooks__HookIndex = QHooks__HookIndex(7)
-)
-
 type QHooks struct {
 	ptr unsafe.Pointer
 }
@@ -26060,19 +26072,19 @@ func (ptr *QHooks) DestroyQHooks() {
 	}
 }
 
-//go:generate stringer -type=QIODevice__OpenModeFlag
-//QIODevice::OpenModeFlag
-type QIODevice__OpenModeFlag int64
+//go:generate stringer -type=QHooks__HookIndex
+//QHooks::HookIndex
+type QHooks__HookIndex int64
 
 const (
-	QIODevice__NotOpen    QIODevice__OpenModeFlag = QIODevice__OpenModeFlag(0x0000)
-	QIODevice__ReadOnly   QIODevice__OpenModeFlag = QIODevice__OpenModeFlag(0x0001)
-	QIODevice__WriteOnly  QIODevice__OpenModeFlag = QIODevice__OpenModeFlag(0x0002)
-	QIODevice__ReadWrite  QIODevice__OpenModeFlag = QIODevice__OpenModeFlag(QIODevice__ReadOnly | QIODevice__WriteOnly)
-	QIODevice__Append     QIODevice__OpenModeFlag = QIODevice__OpenModeFlag(0x0004)
-	QIODevice__Truncate   QIODevice__OpenModeFlag = QIODevice__OpenModeFlag(0x0008)
-	QIODevice__Text       QIODevice__OpenModeFlag = QIODevice__OpenModeFlag(0x0010)
-	QIODevice__Unbuffered QIODevice__OpenModeFlag = QIODevice__OpenModeFlag(0x0020)
+	QHooks__HookDataVersion        QHooks__HookIndex = QHooks__HookIndex(0)
+	QHooks__HookDataSize           QHooks__HookIndex = QHooks__HookIndex(1)
+	QHooks__QtVersion              QHooks__HookIndex = QHooks__HookIndex(2)
+	QHooks__AddQObject             QHooks__HookIndex = QHooks__HookIndex(3)
+	QHooks__RemoveQObject          QHooks__HookIndex = QHooks__HookIndex(4)
+	QHooks__Startup                QHooks__HookIndex = QHooks__HookIndex(5)
+	QHooks__TypeInformationVersion QHooks__HookIndex = QHooks__HookIndex(6)
+	QHooks__LastHookIndex          QHooks__HookIndex = QHooks__HookIndex(7)
 )
 
 type QIODevice struct {
@@ -26113,6 +26125,22 @@ func NewQIODeviceFromPointer(ptr unsafe.Pointer) *QIODevice {
 	n.SetPointer(ptr)
 	return n
 }
+
+//go:generate stringer -type=QIODevice__OpenModeFlag
+//QIODevice::OpenModeFlag
+type QIODevice__OpenModeFlag int64
+
+const (
+	QIODevice__NotOpen    QIODevice__OpenModeFlag = QIODevice__OpenModeFlag(0x0000)
+	QIODevice__ReadOnly   QIODevice__OpenModeFlag = QIODevice__OpenModeFlag(0x0001)
+	QIODevice__WriteOnly  QIODevice__OpenModeFlag = QIODevice__OpenModeFlag(0x0002)
+	QIODevice__ReadWrite  QIODevice__OpenModeFlag = QIODevice__OpenModeFlag(QIODevice__ReadOnly | QIODevice__WriteOnly)
+	QIODevice__Append     QIODevice__OpenModeFlag = QIODevice__OpenModeFlag(0x0004)
+	QIODevice__Truncate   QIODevice__OpenModeFlag = QIODevice__OpenModeFlag(0x0008)
+	QIODevice__Text       QIODevice__OpenModeFlag = QIODevice__OpenModeFlag(0x0010)
+	QIODevice__Unbuffered QIODevice__OpenModeFlag = QIODevice__OpenModeFlag(0x0020)
+)
+
 func (ptr *QIODevice) GetChar(c string) bool {
 	if ptr.Pointer() != nil {
 		var cC = C.CString(c)
@@ -26737,7 +26765,7 @@ func (ptr *QIODevice) ConnectReadData(f func(data *string, maxSize int64) int64)
 	}
 }
 
-func (ptr *QIODevice) DisconnectReadData(data *string, maxSize int64) {
+func (ptr *QIODevice) DisconnectReadData() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QIODevice::readData")
@@ -27137,7 +27165,7 @@ func (ptr *QIODevice) ConnectWriteData(f func(data string, maxSize int64) int64)
 	}
 }
 
-func (ptr *QIODevice) DisconnectWriteData(data string, maxSize int64) {
+func (ptr *QIODevice) DisconnectWriteData() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QIODevice::writeData")
@@ -28512,13 +28540,6 @@ func (ptr *QIdentityProxyModel) HasChildrenDefault(parent QModelIndex_ITF) bool 
 	return false
 }
 
-func (ptr *QIdentityProxyModel) DisconnectMimeData() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QIdentityProxyModel::mimeData")
-	}
-}
-
 //export callbackQIdentityProxyModel_MimeTypes
 func callbackQIdentityProxyModel_MimeTypes(ptr unsafe.Pointer) *C.char {
 
@@ -29412,24 +29433,6 @@ func (ptr *QItemSelection) indexes_atList(i int) *QModelIndex {
 	return nil
 }
 
-//go:generate stringer -type=QItemSelectionModel__SelectionFlag
-//QItemSelectionModel::SelectionFlag
-type QItemSelectionModel__SelectionFlag int64
-
-const (
-	QItemSelectionModel__NoUpdate       QItemSelectionModel__SelectionFlag = QItemSelectionModel__SelectionFlag(0x0000)
-	QItemSelectionModel__Clear          QItemSelectionModel__SelectionFlag = QItemSelectionModel__SelectionFlag(0x0001)
-	QItemSelectionModel__Select         QItemSelectionModel__SelectionFlag = QItemSelectionModel__SelectionFlag(0x0002)
-	QItemSelectionModel__Deselect       QItemSelectionModel__SelectionFlag = QItemSelectionModel__SelectionFlag(0x0004)
-	QItemSelectionModel__Toggle         QItemSelectionModel__SelectionFlag = QItemSelectionModel__SelectionFlag(0x0008)
-	QItemSelectionModel__Current        QItemSelectionModel__SelectionFlag = QItemSelectionModel__SelectionFlag(0x0010)
-	QItemSelectionModel__Rows           QItemSelectionModel__SelectionFlag = QItemSelectionModel__SelectionFlag(0x0020)
-	QItemSelectionModel__Columns        QItemSelectionModel__SelectionFlag = QItemSelectionModel__SelectionFlag(0x0040)
-	QItemSelectionModel__SelectCurrent  QItemSelectionModel__SelectionFlag = QItemSelectionModel__SelectionFlag(QItemSelectionModel__Select | QItemSelectionModel__Current)
-	QItemSelectionModel__ToggleCurrent  QItemSelectionModel__SelectionFlag = QItemSelectionModel__SelectionFlag(QItemSelectionModel__Toggle | QItemSelectionModel__Current)
-	QItemSelectionModel__ClearAndSelect QItemSelectionModel__SelectionFlag = QItemSelectionModel__SelectionFlag(QItemSelectionModel__Clear | QItemSelectionModel__Select)
-)
-
 type QItemSelectionModel struct {
 	QObject
 }
@@ -29468,6 +29471,25 @@ func NewQItemSelectionModelFromPointer(ptr unsafe.Pointer) *QItemSelectionModel 
 	n.SetPointer(ptr)
 	return n
 }
+
+//go:generate stringer -type=QItemSelectionModel__SelectionFlag
+//QItemSelectionModel::SelectionFlag
+type QItemSelectionModel__SelectionFlag int64
+
+const (
+	QItemSelectionModel__NoUpdate       QItemSelectionModel__SelectionFlag = QItemSelectionModel__SelectionFlag(0x0000)
+	QItemSelectionModel__Clear          QItemSelectionModel__SelectionFlag = QItemSelectionModel__SelectionFlag(0x0001)
+	QItemSelectionModel__Select         QItemSelectionModel__SelectionFlag = QItemSelectionModel__SelectionFlag(0x0002)
+	QItemSelectionModel__Deselect       QItemSelectionModel__SelectionFlag = QItemSelectionModel__SelectionFlag(0x0004)
+	QItemSelectionModel__Toggle         QItemSelectionModel__SelectionFlag = QItemSelectionModel__SelectionFlag(0x0008)
+	QItemSelectionModel__Current        QItemSelectionModel__SelectionFlag = QItemSelectionModel__SelectionFlag(0x0010)
+	QItemSelectionModel__Rows           QItemSelectionModel__SelectionFlag = QItemSelectionModel__SelectionFlag(0x0020)
+	QItemSelectionModel__Columns        QItemSelectionModel__SelectionFlag = QItemSelectionModel__SelectionFlag(0x0040)
+	QItemSelectionModel__SelectCurrent  QItemSelectionModel__SelectionFlag = QItemSelectionModel__SelectionFlag(QItemSelectionModel__Select | QItemSelectionModel__Current)
+	QItemSelectionModel__ToggleCurrent  QItemSelectionModel__SelectionFlag = QItemSelectionModel__SelectionFlag(QItemSelectionModel__Toggle | QItemSelectionModel__Current)
+	QItemSelectionModel__ClearAndSelect QItemSelectionModel__SelectionFlag = QItemSelectionModel__SelectionFlag(QItemSelectionModel__Clear | QItemSelectionModel__Select)
+)
+
 func NewQItemSelectionModel(model QAbstractItemModel_ITF) *QItemSelectionModel {
 	var tmpValue = NewQItemSelectionModelFromPointer(C.QItemSelectionModel_NewQItemSelectionModel(PointerFromQAbstractItemModel(model)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
@@ -29558,8 +29580,9 @@ func (ptr *QItemSelectionModel) ClearCurrentIndexDefault() {
 func callbackQItemSelectionModel_ClearSelection(ptr unsafe.Pointer) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QItemSelectionModel::clearSelection"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQItemSelectionModelFromPointer(ptr).ClearSelectionDefault()
 	}
-
 }
 
 func (ptr *QItemSelectionModel) ConnectClearSelection(f func()) {
@@ -29579,6 +29602,12 @@ func (ptr *QItemSelectionModel) DisconnectClearSelection() {
 func (ptr *QItemSelectionModel) ClearSelection() {
 	if ptr.Pointer() != nil {
 		C.QItemSelectionModel_ClearSelection(ptr.Pointer())
+	}
+}
+
+func (ptr *QItemSelectionModel) ClearSelectionDefault() {
+	if ptr.Pointer() != nil {
+		C.QItemSelectionModel_ClearSelectionDefault(ptr.Pointer())
 	}
 }
 
@@ -30854,24 +30883,6 @@ func (ptr *QJsonArray) toVariantList_atList(i int) *QVariant {
 	return nil
 }
 
-//go:generate stringer -type=QJsonDocument__DataValidation
-//QJsonDocument::DataValidation
-type QJsonDocument__DataValidation int64
-
-const (
-	QJsonDocument__Validate         QJsonDocument__DataValidation = QJsonDocument__DataValidation(0)
-	QJsonDocument__BypassValidation QJsonDocument__DataValidation = QJsonDocument__DataValidation(1)
-)
-
-//go:generate stringer -type=QJsonDocument__JsonFormat
-//QJsonDocument::JsonFormat
-type QJsonDocument__JsonFormat int64
-
-const (
-	QJsonDocument__Indented QJsonDocument__JsonFormat = QJsonDocument__JsonFormat(0)
-	QJsonDocument__Compact  QJsonDocument__JsonFormat = QJsonDocument__JsonFormat(1)
-)
-
 type QJsonDocument struct {
 	ptr unsafe.Pointer
 }
@@ -30909,6 +30920,25 @@ func NewQJsonDocumentFromPointer(ptr unsafe.Pointer) *QJsonDocument {
 	n.SetPointer(ptr)
 	return n
 }
+
+//go:generate stringer -type=QJsonDocument__DataValidation
+//QJsonDocument::DataValidation
+type QJsonDocument__DataValidation int64
+
+const (
+	QJsonDocument__Validate         QJsonDocument__DataValidation = QJsonDocument__DataValidation(0)
+	QJsonDocument__BypassValidation QJsonDocument__DataValidation = QJsonDocument__DataValidation(1)
+)
+
+//go:generate stringer -type=QJsonDocument__JsonFormat
+//QJsonDocument::JsonFormat
+type QJsonDocument__JsonFormat int64
+
+const (
+	QJsonDocument__Indented QJsonDocument__JsonFormat = QJsonDocument__JsonFormat(0)
+	QJsonDocument__Compact  QJsonDocument__JsonFormat = QJsonDocument__JsonFormat(1)
+)
+
 func NewQJsonDocument() *QJsonDocument {
 	var tmpValue = NewQJsonDocumentFromPointer(C.QJsonDocument_NewQJsonDocument())
 	runtime.SetFinalizer(tmpValue, (*QJsonDocument).DestroyQJsonDocument)
@@ -31237,28 +31267,6 @@ func (ptr *QJsonObject) DestroyQJsonObject() {
 	}
 }
 
-//go:generate stringer -type=QJsonParseError__ParseError
-//QJsonParseError::ParseError
-type QJsonParseError__ParseError int64
-
-const (
-	QJsonParseError__NoError               QJsonParseError__ParseError = QJsonParseError__ParseError(0)
-	QJsonParseError__UnterminatedObject    QJsonParseError__ParseError = QJsonParseError__ParseError(1)
-	QJsonParseError__MissingNameSeparator  QJsonParseError__ParseError = QJsonParseError__ParseError(2)
-	QJsonParseError__UnterminatedArray     QJsonParseError__ParseError = QJsonParseError__ParseError(3)
-	QJsonParseError__MissingValueSeparator QJsonParseError__ParseError = QJsonParseError__ParseError(4)
-	QJsonParseError__IllegalValue          QJsonParseError__ParseError = QJsonParseError__ParseError(5)
-	QJsonParseError__TerminationByNumber   QJsonParseError__ParseError = QJsonParseError__ParseError(6)
-	QJsonParseError__IllegalNumber         QJsonParseError__ParseError = QJsonParseError__ParseError(7)
-	QJsonParseError__IllegalEscapeSequence QJsonParseError__ParseError = QJsonParseError__ParseError(8)
-	QJsonParseError__IllegalUTF8String     QJsonParseError__ParseError = QJsonParseError__ParseError(9)
-	QJsonParseError__UnterminatedString    QJsonParseError__ParseError = QJsonParseError__ParseError(10)
-	QJsonParseError__MissingObject         QJsonParseError__ParseError = QJsonParseError__ParseError(11)
-	QJsonParseError__DeepNesting           QJsonParseError__ParseError = QJsonParseError__ParseError(12)
-	QJsonParseError__DocumentTooLarge      QJsonParseError__ParseError = QJsonParseError__ParseError(13)
-	QJsonParseError__GarbageAtEnd          QJsonParseError__ParseError = QJsonParseError__ParseError(14)
-)
-
 type QJsonParseError struct {
 	ptr unsafe.Pointer
 }
@@ -31304,6 +31312,28 @@ func (ptr *QJsonParseError) DestroyQJsonParseError() {
 	}
 }
 
+//go:generate stringer -type=QJsonParseError__ParseError
+//QJsonParseError::ParseError
+type QJsonParseError__ParseError int64
+
+const (
+	QJsonParseError__NoError               QJsonParseError__ParseError = QJsonParseError__ParseError(0)
+	QJsonParseError__UnterminatedObject    QJsonParseError__ParseError = QJsonParseError__ParseError(1)
+	QJsonParseError__MissingNameSeparator  QJsonParseError__ParseError = QJsonParseError__ParseError(2)
+	QJsonParseError__UnterminatedArray     QJsonParseError__ParseError = QJsonParseError__ParseError(3)
+	QJsonParseError__MissingValueSeparator QJsonParseError__ParseError = QJsonParseError__ParseError(4)
+	QJsonParseError__IllegalValue          QJsonParseError__ParseError = QJsonParseError__ParseError(5)
+	QJsonParseError__TerminationByNumber   QJsonParseError__ParseError = QJsonParseError__ParseError(6)
+	QJsonParseError__IllegalNumber         QJsonParseError__ParseError = QJsonParseError__ParseError(7)
+	QJsonParseError__IllegalEscapeSequence QJsonParseError__ParseError = QJsonParseError__ParseError(8)
+	QJsonParseError__IllegalUTF8String     QJsonParseError__ParseError = QJsonParseError__ParseError(9)
+	QJsonParseError__UnterminatedString    QJsonParseError__ParseError = QJsonParseError__ParseError(10)
+	QJsonParseError__MissingObject         QJsonParseError__ParseError = QJsonParseError__ParseError(11)
+	QJsonParseError__DeepNesting           QJsonParseError__ParseError = QJsonParseError__ParseError(12)
+	QJsonParseError__DocumentTooLarge      QJsonParseError__ParseError = QJsonParseError__ParseError(13)
+	QJsonParseError__GarbageAtEnd          QJsonParseError__ParseError = QJsonParseError__ParseError(14)
+)
+
 func (ptr *QJsonParseError) ErrorString() string {
 	if ptr.Pointer() != nil {
 		return cGoUnpackString(C.QJsonParseError_ErrorString(ptr.Pointer()))
@@ -31336,20 +31366,6 @@ func (ptr *QJsonParseError) SetOffset(vin int) {
 		C.QJsonParseError_SetOffset(ptr.Pointer(), C.int(int32(vin)))
 	}
 }
-
-//go:generate stringer -type=QJsonValue__Type
-//QJsonValue::Type
-type QJsonValue__Type int64
-
-const (
-	QJsonValue__Null      QJsonValue__Type = QJsonValue__Type(0x0)
-	QJsonValue__Bool      QJsonValue__Type = QJsonValue__Type(0x1)
-	QJsonValue__Double    QJsonValue__Type = QJsonValue__Type(0x2)
-	QJsonValue__String    QJsonValue__Type = QJsonValue__Type(0x3)
-	QJsonValue__Array     QJsonValue__Type = QJsonValue__Type(0x4)
-	QJsonValue__Object    QJsonValue__Type = QJsonValue__Type(0x5)
-	QJsonValue__Undefined QJsonValue__Type = QJsonValue__Type(0x80)
-)
 
 type QJsonValue struct {
 	ptr unsafe.Pointer
@@ -31388,6 +31404,21 @@ func NewQJsonValueFromPointer(ptr unsafe.Pointer) *QJsonValue {
 	n.SetPointer(ptr)
 	return n
 }
+
+//go:generate stringer -type=QJsonValue__Type
+//QJsonValue::Type
+type QJsonValue__Type int64
+
+const (
+	QJsonValue__Null      QJsonValue__Type = QJsonValue__Type(0x0)
+	QJsonValue__Bool      QJsonValue__Type = QJsonValue__Type(0x1)
+	QJsonValue__Double    QJsonValue__Type = QJsonValue__Type(0x2)
+	QJsonValue__String    QJsonValue__Type = QJsonValue__Type(0x3)
+	QJsonValue__Array     QJsonValue__Type = QJsonValue__Type(0x4)
+	QJsonValue__Object    QJsonValue__Type = QJsonValue__Type(0x5)
+	QJsonValue__Undefined QJsonValue__Type = QJsonValue__Type(0x80)
+)
+
 func NewQJsonValue7(s QLatin1String_ITF) *QJsonValue {
 	var tmpValue = NewQJsonValueFromPointer(C.QJsonValue_NewQJsonValue7(PointerFromQLatin1String(s)))
 	runtime.SetFinalizer(tmpValue, (*QJsonValue).DestroyQJsonValue)
@@ -31776,18 +31807,6 @@ func (ptr *QLatin1String) Size() int {
 	return 0
 }
 
-//go:generate stringer -type=QLibrary__LoadHint
-//QLibrary::LoadHint
-type QLibrary__LoadHint int64
-
-const (
-	QLibrary__ResolveAllSymbolsHint     QLibrary__LoadHint = QLibrary__LoadHint(0x01)
-	QLibrary__ExportExternalSymbolsHint QLibrary__LoadHint = QLibrary__LoadHint(0x02)
-	QLibrary__LoadArchiveMemberHint     QLibrary__LoadHint = QLibrary__LoadHint(0x04)
-	QLibrary__PreventUnloadHint         QLibrary__LoadHint = QLibrary__LoadHint(0x08)
-	QLibrary__DeepBindHint              QLibrary__LoadHint = QLibrary__LoadHint(0x10)
-)
-
 type QLibrary struct {
 	QObject
 }
@@ -31826,6 +31845,19 @@ func NewQLibraryFromPointer(ptr unsafe.Pointer) *QLibrary {
 	n.SetPointer(ptr)
 	return n
 }
+
+//go:generate stringer -type=QLibrary__LoadHint
+//QLibrary::LoadHint
+type QLibrary__LoadHint int64
+
+const (
+	QLibrary__ResolveAllSymbolsHint     QLibrary__LoadHint = QLibrary__LoadHint(0x01)
+	QLibrary__ExportExternalSymbolsHint QLibrary__LoadHint = QLibrary__LoadHint(0x02)
+	QLibrary__LoadArchiveMemberHint     QLibrary__LoadHint = QLibrary__LoadHint(0x04)
+	QLibrary__PreventUnloadHint         QLibrary__LoadHint = QLibrary__LoadHint(0x08)
+	QLibrary__DeepBindHint              QLibrary__LoadHint = QLibrary__LoadHint(0x10)
+)
+
 func (ptr *QLibrary) FileName() string {
 	if ptr.Pointer() != nil {
 		return cGoUnpackString(C.QLibrary_FileName(ptr.Pointer()))
@@ -32293,28 +32325,6 @@ func (ptr *QLibrary) MetaObjectDefault() *QMetaObject {
 	return nil
 }
 
-//go:generate stringer -type=QLibraryInfo__LibraryLocation
-//QLibraryInfo::LibraryLocation
-type QLibraryInfo__LibraryLocation int64
-
-const (
-	QLibraryInfo__PrefixPath             QLibraryInfo__LibraryLocation = QLibraryInfo__LibraryLocation(0)
-	QLibraryInfo__DocumentationPath      QLibraryInfo__LibraryLocation = QLibraryInfo__LibraryLocation(1)
-	QLibraryInfo__HeadersPath            QLibraryInfo__LibraryLocation = QLibraryInfo__LibraryLocation(2)
-	QLibraryInfo__LibrariesPath          QLibraryInfo__LibraryLocation = QLibraryInfo__LibraryLocation(3)
-	QLibraryInfo__LibraryExecutablesPath QLibraryInfo__LibraryLocation = QLibraryInfo__LibraryLocation(4)
-	QLibraryInfo__BinariesPath           QLibraryInfo__LibraryLocation = QLibraryInfo__LibraryLocation(5)
-	QLibraryInfo__PluginsPath            QLibraryInfo__LibraryLocation = QLibraryInfo__LibraryLocation(6)
-	QLibraryInfo__ImportsPath            QLibraryInfo__LibraryLocation = QLibraryInfo__LibraryLocation(7)
-	QLibraryInfo__Qml2ImportsPath        QLibraryInfo__LibraryLocation = QLibraryInfo__LibraryLocation(8)
-	QLibraryInfo__ArchDataPath           QLibraryInfo__LibraryLocation = QLibraryInfo__LibraryLocation(9)
-	QLibraryInfo__DataPath               QLibraryInfo__LibraryLocation = QLibraryInfo__LibraryLocation(10)
-	QLibraryInfo__TranslationsPath       QLibraryInfo__LibraryLocation = QLibraryInfo__LibraryLocation(11)
-	QLibraryInfo__ExamplesPath           QLibraryInfo__LibraryLocation = QLibraryInfo__LibraryLocation(12)
-	QLibraryInfo__TestsPath              QLibraryInfo__LibraryLocation = QLibraryInfo__LibraryLocation(13)
-	QLibraryInfo__SettingsPath           QLibraryInfo__LibraryLocation = QLibraryInfo__LibraryLocation(100)
-)
-
 type QLibraryInfo struct {
 	ptr unsafe.Pointer
 }
@@ -32359,6 +32369,28 @@ func (ptr *QLibraryInfo) DestroyQLibraryInfo() {
 		ptr.SetPointer(nil)
 	}
 }
+
+//go:generate stringer -type=QLibraryInfo__LibraryLocation
+//QLibraryInfo::LibraryLocation
+type QLibraryInfo__LibraryLocation int64
+
+const (
+	QLibraryInfo__PrefixPath             QLibraryInfo__LibraryLocation = QLibraryInfo__LibraryLocation(0)
+	QLibraryInfo__DocumentationPath      QLibraryInfo__LibraryLocation = QLibraryInfo__LibraryLocation(1)
+	QLibraryInfo__HeadersPath            QLibraryInfo__LibraryLocation = QLibraryInfo__LibraryLocation(2)
+	QLibraryInfo__LibrariesPath          QLibraryInfo__LibraryLocation = QLibraryInfo__LibraryLocation(3)
+	QLibraryInfo__LibraryExecutablesPath QLibraryInfo__LibraryLocation = QLibraryInfo__LibraryLocation(4)
+	QLibraryInfo__BinariesPath           QLibraryInfo__LibraryLocation = QLibraryInfo__LibraryLocation(5)
+	QLibraryInfo__PluginsPath            QLibraryInfo__LibraryLocation = QLibraryInfo__LibraryLocation(6)
+	QLibraryInfo__ImportsPath            QLibraryInfo__LibraryLocation = QLibraryInfo__LibraryLocation(7)
+	QLibraryInfo__Qml2ImportsPath        QLibraryInfo__LibraryLocation = QLibraryInfo__LibraryLocation(8)
+	QLibraryInfo__ArchDataPath           QLibraryInfo__LibraryLocation = QLibraryInfo__LibraryLocation(9)
+	QLibraryInfo__DataPath               QLibraryInfo__LibraryLocation = QLibraryInfo__LibraryLocation(10)
+	QLibraryInfo__TranslationsPath       QLibraryInfo__LibraryLocation = QLibraryInfo__LibraryLocation(11)
+	QLibraryInfo__ExamplesPath           QLibraryInfo__LibraryLocation = QLibraryInfo__LibraryLocation(12)
+	QLibraryInfo__TestsPath              QLibraryInfo__LibraryLocation = QLibraryInfo__LibraryLocation(13)
+	QLibraryInfo__SettingsPath           QLibraryInfo__LibraryLocation = QLibraryInfo__LibraryLocation(100)
+)
 
 func QLibraryInfo_IsDebugBuild() bool {
 	return C.QLibraryInfo_QLibraryInfo_IsDebugBuild() != 0
@@ -32576,16 +32608,6 @@ func (ptr *QLine) Y2() int {
 	return 0
 }
 
-//go:generate stringer -type=QLineF__IntersectType
-//QLineF::IntersectType
-type QLineF__IntersectType int64
-
-const (
-	QLineF__NoIntersection        QLineF__IntersectType = QLineF__IntersectType(0)
-	QLineF__BoundedIntersection   QLineF__IntersectType = QLineF__IntersectType(1)
-	QLineF__UnboundedIntersection QLineF__IntersectType = QLineF__IntersectType(2)
-)
-
 type QLineF struct {
 	ptr unsafe.Pointer
 }
@@ -32630,6 +32652,16 @@ func (ptr *QLineF) DestroyQLineF() {
 		ptr.SetPointer(nil)
 	}
 }
+
+//go:generate stringer -type=QLineF__IntersectType
+//QLineF::IntersectType
+type QLineF__IntersectType int64
+
+const (
+	QLineF__NoIntersection        QLineF__IntersectType = QLineF__IntersectType(0)
+	QLineF__BoundedIntersection   QLineF__IntersectType = QLineF__IntersectType(1)
+	QLineF__UnboundedIntersection QLineF__IntersectType = QLineF__IntersectType(2)
+)
 
 func (ptr *QLineF) AngleTo(line QLineF_ITF) float64 {
 	if ptr.Pointer() != nil {
@@ -33028,6 +33060,44 @@ func (ptr *QListIterator) DestroyQListIterator() {
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
+}
+
+type QLocale struct {
+	ptr unsafe.Pointer
+}
+
+type QLocale_ITF interface {
+	QLocale_PTR() *QLocale
+}
+
+func (ptr *QLocale) QLocale_PTR() *QLocale {
+	return ptr
+}
+
+func (ptr *QLocale) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
+	}
+	return nil
+}
+
+func (ptr *QLocale) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
+	}
+}
+
+func PointerFromQLocale(ptr QLocale_ITF) unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QLocale_PTR().Pointer()
+	}
+	return nil
+}
+
+func NewQLocaleFromPointer(ptr unsafe.Pointer) *QLocale {
+	var n = new(QLocale)
+	n.SetPointer(ptr)
+	return n
 }
 
 //go:generate stringer -type=QLocale__Country
@@ -33900,43 +33970,6 @@ const (
 	QLocale__LastScript                  QLocale__Script = QLocale__Script(QLocale__JamoScript)
 )
 
-type QLocale struct {
-	ptr unsafe.Pointer
-}
-
-type QLocale_ITF interface {
-	QLocale_PTR() *QLocale
-}
-
-func (ptr *QLocale) QLocale_PTR() *QLocale {
-	return ptr
-}
-
-func (ptr *QLocale) Pointer() unsafe.Pointer {
-	if ptr != nil {
-		return ptr.ptr
-	}
-	return nil
-}
-
-func (ptr *QLocale) SetPointer(p unsafe.Pointer) {
-	if ptr != nil {
-		ptr.ptr = p
-	}
-}
-
-func PointerFromQLocale(ptr QLocale_ITF) unsafe.Pointer {
-	if ptr != nil {
-		return ptr.QLocale_PTR().Pointer()
-	}
-	return nil
-}
-
-func NewQLocaleFromPointer(ptr unsafe.Pointer) *QLocale {
-	var n = new(QLocale)
-	n.SetPointer(ptr)
-	return n
-}
 func NewQLocale() *QLocale {
 	var tmpValue = NewQLocaleFromPointer(C.QLocale_NewQLocale())
 	runtime.SetFinalizer(tmpValue, (*QLocale).DestroyQLocale)
@@ -34731,17 +34764,6 @@ func (ptr *QLocale) matchingLocales_atList(i int) *QLocale {
 	return nil
 }
 
-//go:generate stringer -type=QLockFile__LockError
-//QLockFile::LockError
-type QLockFile__LockError int64
-
-const (
-	QLockFile__NoError         QLockFile__LockError = QLockFile__LockError(0)
-	QLockFile__LockFailedError QLockFile__LockError = QLockFile__LockError(1)
-	QLockFile__PermissionError QLockFile__LockError = QLockFile__LockError(2)
-	QLockFile__UnknownError    QLockFile__LockError = QLockFile__LockError(3)
-)
-
 type QLockFile struct {
 	ptr unsafe.Pointer
 }
@@ -34779,6 +34801,18 @@ func NewQLockFileFromPointer(ptr unsafe.Pointer) *QLockFile {
 	n.SetPointer(ptr)
 	return n
 }
+
+//go:generate stringer -type=QLockFile__LockError
+//QLockFile::LockError
+type QLockFile__LockError int64
+
+const (
+	QLockFile__NoError         QLockFile__LockError = QLockFile__LockError(0)
+	QLockFile__LockFailedError QLockFile__LockError = QLockFile__LockError(1)
+	QLockFile__PermissionError QLockFile__LockError = QLockFile__LockError(2)
+	QLockFile__UnknownError    QLockFile__LockError = QLockFile__LockError(3)
+)
+
 func NewQLockFile(fileName string) *QLockFile {
 	var fileNameC = C.CString(fileName)
 	defer C.free(unsafe.Pointer(fileNameC))
@@ -35824,27 +35858,6 @@ func (ptr *QMetaEnum) ValueToKeys(value int) *QByteArray {
 	return nil
 }
 
-//go:generate stringer -type=QMetaMethod__Access
-//QMetaMethod::Access
-type QMetaMethod__Access int64
-
-const (
-	QMetaMethod__Private   QMetaMethod__Access = QMetaMethod__Access(0)
-	QMetaMethod__Protected QMetaMethod__Access = QMetaMethod__Access(1)
-	QMetaMethod__Public    QMetaMethod__Access = QMetaMethod__Access(2)
-)
-
-//go:generate stringer -type=QMetaMethod__MethodType
-//QMetaMethod::MethodType
-type QMetaMethod__MethodType int64
-
-const (
-	QMetaMethod__Method      QMetaMethod__MethodType = QMetaMethod__MethodType(0)
-	QMetaMethod__Signal      QMetaMethod__MethodType = QMetaMethod__MethodType(1)
-	QMetaMethod__Slot        QMetaMethod__MethodType = QMetaMethod__MethodType(2)
-	QMetaMethod__Constructor QMetaMethod__MethodType = QMetaMethod__MethodType(3)
-)
-
 type QMetaMethod struct {
 	ptr unsafe.Pointer
 }
@@ -35889,6 +35902,27 @@ func (ptr *QMetaMethod) DestroyQMetaMethod() {
 		ptr.SetPointer(nil)
 	}
 }
+
+//go:generate stringer -type=QMetaMethod__Access
+//QMetaMethod::Access
+type QMetaMethod__Access int64
+
+const (
+	QMetaMethod__Private   QMetaMethod__Access = QMetaMethod__Access(0)
+	QMetaMethod__Protected QMetaMethod__Access = QMetaMethod__Access(1)
+	QMetaMethod__Public    QMetaMethod__Access = QMetaMethod__Access(2)
+)
+
+//go:generate stringer -type=QMetaMethod__MethodType
+//QMetaMethod::MethodType
+type QMetaMethod__MethodType int64
+
+const (
+	QMetaMethod__Method      QMetaMethod__MethodType = QMetaMethod__MethodType(0)
+	QMetaMethod__Signal      QMetaMethod__MethodType = QMetaMethod__MethodType(1)
+	QMetaMethod__Slot        QMetaMethod__MethodType = QMetaMethod__MethodType(2)
+	QMetaMethod__Constructor QMetaMethod__MethodType = QMetaMethod__MethodType(3)
+)
 
 func (ptr *QMetaMethod) Access() QMetaMethod__Access {
 	if ptr.Pointer() != nil {
@@ -36630,6 +36664,44 @@ func (ptr *QMetaProperty) WriteOnGadget(gadget unsafe.Pointer, value QVariant_IT
 	return false
 }
 
+type QMetaType struct {
+	ptr unsafe.Pointer
+}
+
+type QMetaType_ITF interface {
+	QMetaType_PTR() *QMetaType
+}
+
+func (ptr *QMetaType) QMetaType_PTR() *QMetaType {
+	return ptr
+}
+
+func (ptr *QMetaType) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
+	}
+	return nil
+}
+
+func (ptr *QMetaType) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
+	}
+}
+
+func PointerFromQMetaType(ptr QMetaType_ITF) unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QMetaType_PTR().Pointer()
+	}
+	return nil
+}
+
+func NewQMetaTypeFromPointer(ptr unsafe.Pointer) *QMetaType {
+	var n = new(QMetaType)
+	n.SetPointer(ptr)
+	return n
+}
+
 //go:generate stringer -type=QMetaType__Type
 //QMetaType::Type
 type QMetaType__Type int64
@@ -36730,43 +36802,6 @@ const (
 	QMetaType__IsGadget                 QMetaType__TypeFlag = QMetaType__TypeFlag(0x200)
 )
 
-type QMetaType struct {
-	ptr unsafe.Pointer
-}
-
-type QMetaType_ITF interface {
-	QMetaType_PTR() *QMetaType
-}
-
-func (ptr *QMetaType) QMetaType_PTR() *QMetaType {
-	return ptr
-}
-
-func (ptr *QMetaType) Pointer() unsafe.Pointer {
-	if ptr != nil {
-		return ptr.ptr
-	}
-	return nil
-}
-
-func (ptr *QMetaType) SetPointer(p unsafe.Pointer) {
-	if ptr != nil {
-		ptr.ptr = p
-	}
-}
-
-func PointerFromQMetaType(ptr QMetaType_ITF) unsafe.Pointer {
-	if ptr != nil {
-		return ptr.QMetaType_PTR().Pointer()
-	}
-	return nil
-}
-
-func NewQMetaTypeFromPointer(ptr unsafe.Pointer) *QMetaType {
-	var n = new(QMetaType)
-	n.SetPointer(ptr)
-	return n
-}
 func NewQMetaType(typeId int) *QMetaType {
 	var tmpValue = NewQMetaTypeFromPointer(C.QMetaType_NewQMetaType(C.int(int32(typeId))))
 	runtime.SetFinalizer(tmpValue, (*QMetaType).DestroyQMetaType)
@@ -37192,13 +37227,6 @@ func (ptr *QMimeData) RemoveFormat(mimeType string) {
 	}
 }
 
-func (ptr *QMimeData) DisconnectRetrieveData() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QMimeData::retrieveData")
-	}
-}
-
 func (ptr *QMimeData) SetColorData(color QVariant_ITF) {
 	if ptr.Pointer() != nil {
 		C.QMimeData_SetColorData(ptr.Pointer(), PointerFromQVariant(color))
@@ -37605,16 +37633,6 @@ func (ptr *QMimeData) MetaObjectDefault() *QMetaObject {
 	return nil
 }
 
-//go:generate stringer -type=QMimeDatabase__MatchMode
-//QMimeDatabase::MatchMode
-type QMimeDatabase__MatchMode int64
-
-const (
-	QMimeDatabase__MatchDefault   QMimeDatabase__MatchMode = QMimeDatabase__MatchMode(0x0)
-	QMimeDatabase__MatchExtension QMimeDatabase__MatchMode = QMimeDatabase__MatchMode(0x1)
-	QMimeDatabase__MatchContent   QMimeDatabase__MatchMode = QMimeDatabase__MatchMode(0x2)
-)
-
 type QMimeDatabase struct {
 	ptr unsafe.Pointer
 }
@@ -37652,6 +37670,17 @@ func NewQMimeDatabaseFromPointer(ptr unsafe.Pointer) *QMimeDatabase {
 	n.SetPointer(ptr)
 	return n
 }
+
+//go:generate stringer -type=QMimeDatabase__MatchMode
+//QMimeDatabase::MatchMode
+type QMimeDatabase__MatchMode int64
+
+const (
+	QMimeDatabase__MatchDefault   QMimeDatabase__MatchMode = QMimeDatabase__MatchMode(0x0)
+	QMimeDatabase__MatchExtension QMimeDatabase__MatchMode = QMimeDatabase__MatchMode(0x1)
+	QMimeDatabase__MatchContent   QMimeDatabase__MatchMode = QMimeDatabase__MatchMode(0x2)
+)
+
 func NewQMimeDatabase() *QMimeDatabase {
 	var tmpValue = NewQMimeDatabaseFromPointer(C.QMimeDatabase_NewQMimeDatabase())
 	runtime.SetFinalizer(tmpValue, (*QMimeDatabase).DestroyQMimeDatabase)
@@ -38102,18 +38131,6 @@ func (ptr *QModelIndex) Sibling(row int, column int) *QModelIndex {
 	return nil
 }
 
-//go:generate stringer -type=QModulesPrivate__Names
-//QModulesPrivate::Names
-type QModulesPrivate__Names int64
-
-const (
-	QModulesPrivate__Core         QModulesPrivate__Names = QModulesPrivate__Names(0)
-	QModulesPrivate__Gui          QModulesPrivate__Names = QModulesPrivate__Names(1)
-	QModulesPrivate__Widgets      QModulesPrivate__Names = QModulesPrivate__Names(2)
-	QModulesPrivate__Unknown      QModulesPrivate__Names = QModulesPrivate__Names(3)
-	QModulesPrivate__ModulesCount QModulesPrivate__Names = QModulesPrivate__Names(4)
-)
-
 type QModulesPrivate struct {
 	ptr unsafe.Pointer
 }
@@ -38158,6 +38175,18 @@ func (ptr *QModulesPrivate) DestroyQModulesPrivate() {
 		ptr.SetPointer(nil)
 	}
 }
+
+//go:generate stringer -type=QModulesPrivate__Names
+//QModulesPrivate::Names
+type QModulesPrivate__Names int64
+
+const (
+	QModulesPrivate__Core         QModulesPrivate__Names = QModulesPrivate__Names(0)
+	QModulesPrivate__Gui          QModulesPrivate__Names = QModulesPrivate__Names(1)
+	QModulesPrivate__Widgets      QModulesPrivate__Names = QModulesPrivate__Names(2)
+	QModulesPrivate__Unknown      QModulesPrivate__Names = QModulesPrivate__Names(3)
+	QModulesPrivate__ModulesCount QModulesPrivate__Names = QModulesPrivate__Names(4)
+)
 
 type QMultiHash struct {
 	QHash
@@ -38521,15 +38550,6 @@ func (ptr *QMutableVectorIterator) DestroyQMutableVectorIterator() {
 	}
 }
 
-//go:generate stringer -type=QMutex__RecursionMode
-//QMutex::RecursionMode
-type QMutex__RecursionMode int64
-
-const (
-	QMutex__NonRecursive QMutex__RecursionMode = QMutex__RecursionMode(0)
-	QMutex__Recursive    QMutex__RecursionMode = QMutex__RecursionMode(1)
-)
-
 type QMutex struct {
 	ptr unsafe.Pointer
 }
@@ -38574,6 +38594,15 @@ func (ptr *QMutex) DestroyQMutex() {
 		ptr.SetPointer(nil)
 	}
 }
+
+//go:generate stringer -type=QMutex__RecursionMode
+//QMutex::RecursionMode
+type QMutex__RecursionMode int64
+
+const (
+	QMutex__NonRecursive QMutex__RecursionMode = QMutex__RecursionMode(0)
+	QMutex__Recursive    QMutex__RecursionMode = QMutex__RecursionMode(1)
+)
 
 func (ptr *QMutex) Lock() {
 	if ptr.Pointer() != nil {
@@ -38897,8 +38926,9 @@ func (ptr *QObject) CustomEventDefault(event QEvent_ITF) {
 func callbackQObject_DeleteLater(ptr unsafe.Pointer) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QObject::deleteLater"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQObjectFromPointer(ptr).DeleteLaterDefault()
 	}
-
 }
 
 func (ptr *QObject) ConnectDeleteLater(f func()) {
@@ -38918,6 +38948,14 @@ func (ptr *QObject) DisconnectDeleteLater() {
 func (ptr *QObject) DeleteLater() {
 	if ptr.Pointer() != nil {
 		C.QObject_DeleteLater(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
+		ptr.SetPointer(nil)
+	}
+}
+
+func (ptr *QObject) DeleteLaterDefault() {
+	if ptr.Pointer() != nil {
+		C.QObject_DeleteLaterDefault(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
 	}
@@ -42374,6 +42412,45 @@ func NewQPointerFromPointer(ptr unsafe.Pointer) *QPointer {
 	return n
 }
 
+type QProcess struct {
+	QIODevice
+}
+
+type QProcess_ITF interface {
+	QIODevice_ITF
+	QProcess_PTR() *QProcess
+}
+
+func (ptr *QProcess) QProcess_PTR() *QProcess {
+	return ptr
+}
+
+func (ptr *QProcess) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QIODevice_PTR().Pointer()
+	}
+	return nil
+}
+
+func (ptr *QProcess) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QIODevice_PTR().SetPointer(p)
+	}
+}
+
+func PointerFromQProcess(ptr QProcess_ITF) unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QProcess_PTR().Pointer()
+	}
+	return nil
+}
+
+func NewQProcessFromPointer(ptr unsafe.Pointer) *QProcess {
+	var n = new(QProcess)
+	n.SetPointer(ptr)
+	return n
+}
+
 //go:generate stringer -type=QProcess__ExitStatus
 //QProcess::ExitStatus
 type QProcess__ExitStatus int64
@@ -42435,45 +42512,6 @@ const (
 	QProcess__Starting   QProcess__ProcessState = QProcess__ProcessState(1)
 	QProcess__Running    QProcess__ProcessState = QProcess__ProcessState(2)
 )
-
-type QProcess struct {
-	QIODevice
-}
-
-type QProcess_ITF interface {
-	QIODevice_ITF
-	QProcess_PTR() *QProcess
-}
-
-func (ptr *QProcess) QProcess_PTR() *QProcess {
-	return ptr
-}
-
-func (ptr *QProcess) Pointer() unsafe.Pointer {
-	if ptr != nil {
-		return ptr.QIODevice_PTR().Pointer()
-	}
-	return nil
-}
-
-func (ptr *QProcess) SetPointer(p unsafe.Pointer) {
-	if ptr != nil {
-		ptr.QIODevice_PTR().SetPointer(p)
-	}
-}
-
-func PointerFromQProcess(ptr QProcess_ITF) unsafe.Pointer {
-	if ptr != nil {
-		return ptr.QProcess_PTR().Pointer()
-	}
-	return nil
-}
-
-func NewQProcessFromPointer(ptr unsafe.Pointer) *QProcess {
-	var n = new(QProcess)
-	n.SetPointer(ptr)
-	return n
-}
 
 type QProcessEnvironment struct {
 	ptr unsafe.Pointer
@@ -43489,15 +43527,6 @@ func (ptr *QReadLocker) DestroyQReadLocker() {
 	}
 }
 
-//go:generate stringer -type=QReadWriteLock__RecursionMode
-//QReadWriteLock::RecursionMode
-type QReadWriteLock__RecursionMode int64
-
-const (
-	QReadWriteLock__NonRecursive QReadWriteLock__RecursionMode = QReadWriteLock__RecursionMode(0)
-	QReadWriteLock__Recursive    QReadWriteLock__RecursionMode = QReadWriteLock__RecursionMode(1)
-)
-
 type QReadWriteLock struct {
 	ptr unsafe.Pointer
 }
@@ -43535,6 +43564,16 @@ func NewQReadWriteLockFromPointer(ptr unsafe.Pointer) *QReadWriteLock {
 	n.SetPointer(ptr)
 	return n
 }
+
+//go:generate stringer -type=QReadWriteLock__RecursionMode
+//QReadWriteLock::RecursionMode
+type QReadWriteLock__RecursionMode int64
+
+const (
+	QReadWriteLock__NonRecursive QReadWriteLock__RecursionMode = QReadWriteLock__RecursionMode(0)
+	QReadWriteLock__Recursive    QReadWriteLock__RecursionMode = QReadWriteLock__RecursionMode(1)
+)
+
 func NewQReadWriteLock(recursionMode QReadWriteLock__RecursionMode) *QReadWriteLock {
 	var tmpValue = NewQReadWriteLockFromPointer(C.QReadWriteLock_NewQReadWriteLock(C.longlong(recursionMode)))
 	runtime.SetFinalizer(tmpValue, (*QReadWriteLock).DestroyQReadWriteLock)
@@ -44615,29 +44654,6 @@ func (ptr *QRectF) Y() float64 {
 	return 0
 }
 
-//go:generate stringer -type=QRegExp__CaretMode
-//QRegExp::CaretMode
-type QRegExp__CaretMode int64
-
-const (
-	QRegExp__CaretAtZero    QRegExp__CaretMode = QRegExp__CaretMode(0)
-	QRegExp__CaretAtOffset  QRegExp__CaretMode = QRegExp__CaretMode(1)
-	QRegExp__CaretWontMatch QRegExp__CaretMode = QRegExp__CaretMode(2)
-)
-
-//go:generate stringer -type=QRegExp__PatternSyntax
-//QRegExp::PatternSyntax
-type QRegExp__PatternSyntax int64
-
-const (
-	QRegExp__RegExp         QRegExp__PatternSyntax = QRegExp__PatternSyntax(0)
-	QRegExp__Wildcard       QRegExp__PatternSyntax = QRegExp__PatternSyntax(1)
-	QRegExp__FixedString    QRegExp__PatternSyntax = QRegExp__PatternSyntax(2)
-	QRegExp__RegExp2        QRegExp__PatternSyntax = QRegExp__PatternSyntax(3)
-	QRegExp__WildcardUnix   QRegExp__PatternSyntax = QRegExp__PatternSyntax(4)
-	QRegExp__W3CXmlSchema11 QRegExp__PatternSyntax = QRegExp__PatternSyntax(5)
-)
-
 type QRegExp struct {
 	ptr unsafe.Pointer
 }
@@ -44675,6 +44691,30 @@ func NewQRegExpFromPointer(ptr unsafe.Pointer) *QRegExp {
 	n.SetPointer(ptr)
 	return n
 }
+
+//go:generate stringer -type=QRegExp__CaretMode
+//QRegExp::CaretMode
+type QRegExp__CaretMode int64
+
+const (
+	QRegExp__CaretAtZero    QRegExp__CaretMode = QRegExp__CaretMode(0)
+	QRegExp__CaretAtOffset  QRegExp__CaretMode = QRegExp__CaretMode(1)
+	QRegExp__CaretWontMatch QRegExp__CaretMode = QRegExp__CaretMode(2)
+)
+
+//go:generate stringer -type=QRegExp__PatternSyntax
+//QRegExp::PatternSyntax
+type QRegExp__PatternSyntax int64
+
+const (
+	QRegExp__RegExp         QRegExp__PatternSyntax = QRegExp__PatternSyntax(0)
+	QRegExp__Wildcard       QRegExp__PatternSyntax = QRegExp__PatternSyntax(1)
+	QRegExp__FixedString    QRegExp__PatternSyntax = QRegExp__PatternSyntax(2)
+	QRegExp__RegExp2        QRegExp__PatternSyntax = QRegExp__PatternSyntax(3)
+	QRegExp__WildcardUnix   QRegExp__PatternSyntax = QRegExp__PatternSyntax(4)
+	QRegExp__W3CXmlSchema11 QRegExp__PatternSyntax = QRegExp__PatternSyntax(5)
+)
+
 func NewQRegExp() *QRegExp {
 	var tmpValue = NewQRegExpFromPointer(C.QRegExp_NewQRegExp())
 	runtime.SetFinalizer(tmpValue, (*QRegExp).DestroyQRegExp)
@@ -44857,6 +44897,44 @@ func (ptr *QRegExp) DestroyQRegExp() {
 	}
 }
 
+type QRegularExpression struct {
+	ptr unsafe.Pointer
+}
+
+type QRegularExpression_ITF interface {
+	QRegularExpression_PTR() *QRegularExpression
+}
+
+func (ptr *QRegularExpression) QRegularExpression_PTR() *QRegularExpression {
+	return ptr
+}
+
+func (ptr *QRegularExpression) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
+	}
+	return nil
+}
+
+func (ptr *QRegularExpression) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
+	}
+}
+
+func PointerFromQRegularExpression(ptr QRegularExpression_ITF) unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QRegularExpression_PTR().Pointer()
+	}
+	return nil
+}
+
+func NewQRegularExpressionFromPointer(ptr unsafe.Pointer) *QRegularExpression {
+	var n = new(QRegularExpression)
+	n.SetPointer(ptr)
+	return n
+}
+
 //go:generate stringer -type=QRegularExpression__MatchOption
 //QRegularExpression::MatchOption
 type QRegularExpression__MatchOption int64
@@ -44895,43 +44973,6 @@ const (
 	QRegularExpression__DontAutomaticallyOptimizeOption QRegularExpression__PatternOption = QRegularExpression__PatternOption(0x0100)
 )
 
-type QRegularExpression struct {
-	ptr unsafe.Pointer
-}
-
-type QRegularExpression_ITF interface {
-	QRegularExpression_PTR() *QRegularExpression
-}
-
-func (ptr *QRegularExpression) QRegularExpression_PTR() *QRegularExpression {
-	return ptr
-}
-
-func (ptr *QRegularExpression) Pointer() unsafe.Pointer {
-	if ptr != nil {
-		return ptr.ptr
-	}
-	return nil
-}
-
-func (ptr *QRegularExpression) SetPointer(p unsafe.Pointer) {
-	if ptr != nil {
-		ptr.ptr = p
-	}
-}
-
-func PointerFromQRegularExpression(ptr QRegularExpression_ITF) unsafe.Pointer {
-	if ptr != nil {
-		return ptr.QRegularExpression_PTR().Pointer()
-	}
-	return nil
-}
-
-func NewQRegularExpressionFromPointer(ptr unsafe.Pointer) *QRegularExpression {
-	var n = new(QRegularExpression)
-	n.SetPointer(ptr)
-	return n
-}
 func NewQRegularExpression() *QRegularExpression {
 	var tmpValue = NewQRegularExpressionFromPointer(C.QRegularExpression_NewQRegularExpression())
 	runtime.SetFinalizer(tmpValue, (*QRegularExpression).DestroyQRegularExpression)
@@ -48046,6 +48087,45 @@ func (ptr *QSetIterator) DestroyQSetIterator() {
 	}
 }
 
+type QSettings struct {
+	QObject
+}
+
+type QSettings_ITF interface {
+	QObject_ITF
+	QSettings_PTR() *QSettings
+}
+
+func (ptr *QSettings) QSettings_PTR() *QSettings {
+	return ptr
+}
+
+func (ptr *QSettings) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QObject_PTR().Pointer()
+	}
+	return nil
+}
+
+func (ptr *QSettings) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QObject_PTR().SetPointer(p)
+	}
+}
+
+func PointerFromQSettings(ptr QSettings_ITF) unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QSettings_PTR().Pointer()
+	}
+	return nil
+}
+
+func NewQSettingsFromPointer(ptr unsafe.Pointer) *QSettings {
+	var n = new(QSettings)
+	n.SetPointer(ptr)
+	return n
+}
+
 //go:generate stringer -type=QSettings__Format
 //QSettings::Format
 type QSettings__Format int64
@@ -48093,44 +48173,6 @@ const (
 	QSettings__FormatError QSettings__Status = QSettings__Status(2)
 )
 
-type QSettings struct {
-	QObject
-}
-
-type QSettings_ITF interface {
-	QObject_ITF
-	QSettings_PTR() *QSettings
-}
-
-func (ptr *QSettings) QSettings_PTR() *QSettings {
-	return ptr
-}
-
-func (ptr *QSettings) Pointer() unsafe.Pointer {
-	if ptr != nil {
-		return ptr.QObject_PTR().Pointer()
-	}
-	return nil
-}
-
-func (ptr *QSettings) SetPointer(p unsafe.Pointer) {
-	if ptr != nil {
-		ptr.QObject_PTR().SetPointer(p)
-	}
-}
-
-func PointerFromQSettings(ptr QSettings_ITF) unsafe.Pointer {
-	if ptr != nil {
-		return ptr.QSettings_PTR().Pointer()
-	}
-	return nil
-}
-
-func NewQSettingsFromPointer(ptr unsafe.Pointer) *QSettings {
-	var n = new(QSettings)
-	n.SetPointer(ptr)
-	return n
-}
 func NewQSettings3(format QSettings__Format, scope QSettings__Scope, organization string, application string, parent QObject_ITF) *QSettings {
 	var organizationC = C.CString(organization)
 	defer C.free(unsafe.Pointer(organizationC))
@@ -48851,31 +48893,6 @@ func NewQSharedDataPointerFromPointer(ptr unsafe.Pointer) *QSharedDataPointer {
 	return n
 }
 
-//go:generate stringer -type=QSharedMemory__AccessMode
-//QSharedMemory::AccessMode
-type QSharedMemory__AccessMode int64
-
-const (
-	QSharedMemory__ReadOnly  QSharedMemory__AccessMode = QSharedMemory__AccessMode(0)
-	QSharedMemory__ReadWrite QSharedMemory__AccessMode = QSharedMemory__AccessMode(1)
-)
-
-//go:generate stringer -type=QSharedMemory__SharedMemoryError
-//QSharedMemory::SharedMemoryError
-type QSharedMemory__SharedMemoryError int64
-
-const (
-	QSharedMemory__NoError          QSharedMemory__SharedMemoryError = QSharedMemory__SharedMemoryError(0)
-	QSharedMemory__PermissionDenied QSharedMemory__SharedMemoryError = QSharedMemory__SharedMemoryError(1)
-	QSharedMemory__InvalidSize      QSharedMemory__SharedMemoryError = QSharedMemory__SharedMemoryError(2)
-	QSharedMemory__KeyError         QSharedMemory__SharedMemoryError = QSharedMemory__SharedMemoryError(3)
-	QSharedMemory__AlreadyExists    QSharedMemory__SharedMemoryError = QSharedMemory__SharedMemoryError(4)
-	QSharedMemory__NotFound         QSharedMemory__SharedMemoryError = QSharedMemory__SharedMemoryError(5)
-	QSharedMemory__LockError        QSharedMemory__SharedMemoryError = QSharedMemory__SharedMemoryError(6)
-	QSharedMemory__OutOfResources   QSharedMemory__SharedMemoryError = QSharedMemory__SharedMemoryError(7)
-	QSharedMemory__UnknownError     QSharedMemory__SharedMemoryError = QSharedMemory__SharedMemoryError(8)
-)
-
 type QSharedMemory struct {
 	QObject
 }
@@ -48914,6 +48931,32 @@ func NewQSharedMemoryFromPointer(ptr unsafe.Pointer) *QSharedMemory {
 	n.SetPointer(ptr)
 	return n
 }
+
+//go:generate stringer -type=QSharedMemory__AccessMode
+//QSharedMemory::AccessMode
+type QSharedMemory__AccessMode int64
+
+const (
+	QSharedMemory__ReadOnly  QSharedMemory__AccessMode = QSharedMemory__AccessMode(0)
+	QSharedMemory__ReadWrite QSharedMemory__AccessMode = QSharedMemory__AccessMode(1)
+)
+
+//go:generate stringer -type=QSharedMemory__SharedMemoryError
+//QSharedMemory::SharedMemoryError
+type QSharedMemory__SharedMemoryError int64
+
+const (
+	QSharedMemory__NoError          QSharedMemory__SharedMemoryError = QSharedMemory__SharedMemoryError(0)
+	QSharedMemory__PermissionDenied QSharedMemory__SharedMemoryError = QSharedMemory__SharedMemoryError(1)
+	QSharedMemory__InvalidSize      QSharedMemory__SharedMemoryError = QSharedMemory__SharedMemoryError(2)
+	QSharedMemory__KeyError         QSharedMemory__SharedMemoryError = QSharedMemory__SharedMemoryError(3)
+	QSharedMemory__AlreadyExists    QSharedMemory__SharedMemoryError = QSharedMemory__SharedMemoryError(4)
+	QSharedMemory__NotFound         QSharedMemory__SharedMemoryError = QSharedMemory__SharedMemoryError(5)
+	QSharedMemory__LockError        QSharedMemory__SharedMemoryError = QSharedMemory__SharedMemoryError(6)
+	QSharedMemory__OutOfResources   QSharedMemory__SharedMemoryError = QSharedMemory__SharedMemoryError(7)
+	QSharedMemory__UnknownError     QSharedMemory__SharedMemoryError = QSharedMemory__SharedMemoryError(8)
+)
+
 func NewQSharedMemory2(parent QObject_ITF) *QSharedMemory {
 	var tmpValue = NewQSharedMemoryFromPointer(C.QSharedMemory_NewQSharedMemory2(PointerFromQObject(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
@@ -49543,8 +49586,9 @@ func NewQSignalMapper(parent QObject_ITF) *QSignalMapper {
 func callbackQSignalMapper_Map(ptr unsafe.Pointer) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSignalMapper::map"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQSignalMapperFromPointer(ptr).MapDefault()
 	}
-
 }
 
 func (ptr *QSignalMapper) ConnectMap(f func()) {
@@ -49567,12 +49611,19 @@ func (ptr *QSignalMapper) Map() {
 	}
 }
 
+func (ptr *QSignalMapper) MapDefault() {
+	if ptr.Pointer() != nil {
+		C.QSignalMapper_MapDefault(ptr.Pointer())
+	}
+}
+
 //export callbackQSignalMapper_Map2
 func callbackQSignalMapper_Map2(ptr unsafe.Pointer, sender unsafe.Pointer) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSignalMapper::map2"); signal != nil {
 		signal.(func(*QObject))(NewQObjectFromPointer(sender))
+	} else {
+		NewQSignalMapperFromPointer(ptr).Map2Default(NewQObjectFromPointer(sender))
 	}
-
 }
 
 func (ptr *QSignalMapper) ConnectMap2(f func(sender *QObject)) {
@@ -49582,7 +49633,7 @@ func (ptr *QSignalMapper) ConnectMap2(f func(sender *QObject)) {
 	}
 }
 
-func (ptr *QSignalMapper) DisconnectMap2(sender QObject_ITF) {
+func (ptr *QSignalMapper) DisconnectMap2() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSignalMapper::map2")
@@ -49592,6 +49643,12 @@ func (ptr *QSignalMapper) DisconnectMap2(sender QObject_ITF) {
 func (ptr *QSignalMapper) Map2(sender QObject_ITF) {
 	if ptr.Pointer() != nil {
 		C.QSignalMapper_Map2(ptr.Pointer(), PointerFromQObject(sender))
+	}
+}
+
+func (ptr *QSignalMapper) Map2Default(sender QObject_ITF) {
+	if ptr.Pointer() != nil {
+		C.QSignalMapper_Map2Default(ptr.Pointer(), PointerFromQObject(sender))
 	}
 }
 
@@ -51058,16 +51115,6 @@ func (ptr *QSizeF) Width() float64 {
 	return 0
 }
 
-//go:generate stringer -type=QSocketNotifier__Type
-//QSocketNotifier::Type
-type QSocketNotifier__Type int64
-
-const (
-	QSocketNotifier__Read      QSocketNotifier__Type = QSocketNotifier__Type(0)
-	QSocketNotifier__Write     QSocketNotifier__Type = QSocketNotifier__Type(1)
-	QSocketNotifier__Exception QSocketNotifier__Type = QSocketNotifier__Type(2)
-)
-
 type QSocketNotifier struct {
 	QObject
 }
@@ -51106,6 +51153,16 @@ func NewQSocketNotifierFromPointer(ptr unsafe.Pointer) *QSocketNotifier {
 	n.SetPointer(ptr)
 	return n
 }
+
+//go:generate stringer -type=QSocketNotifier__Type
+//QSocketNotifier::Type
+type QSocketNotifier__Type int64
+
+const (
+	QSocketNotifier__Read      QSocketNotifier__Type = QSocketNotifier__Type(0)
+	QSocketNotifier__Write     QSocketNotifier__Type = QSocketNotifier__Type(1)
+	QSocketNotifier__Exception QSocketNotifier__Type = QSocketNotifier__Type(2)
+)
 
 //export callbackQSocketNotifier_Activated
 func callbackQSocketNotifier_Activated(ptr unsafe.Pointer, socket C.int) {
@@ -51179,8 +51236,9 @@ func (ptr *QSocketNotifier) IsEnabled() bool {
 func callbackQSocketNotifier_SetEnabled(ptr unsafe.Pointer, enable C.char) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSocketNotifier::setEnabled"); signal != nil {
 		signal.(func(bool))(int8(enable) != 0)
+	} else {
+		NewQSocketNotifierFromPointer(ptr).SetEnabledDefault(int8(enable) != 0)
 	}
-
 }
 
 func (ptr *QSocketNotifier) ConnectSetEnabled(f func(enable bool)) {
@@ -51190,7 +51248,7 @@ func (ptr *QSocketNotifier) ConnectSetEnabled(f func(enable bool)) {
 	}
 }
 
-func (ptr *QSocketNotifier) DisconnectSetEnabled(enable bool) {
+func (ptr *QSocketNotifier) DisconnectSetEnabled() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSocketNotifier::setEnabled")
@@ -51200,6 +51258,12 @@ func (ptr *QSocketNotifier) DisconnectSetEnabled(enable bool) {
 func (ptr *QSocketNotifier) SetEnabled(enable bool) {
 	if ptr.Pointer() != nil {
 		C.QSocketNotifier_SetEnabled(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(enable))))
+	}
+}
+
+func (ptr *QSocketNotifier) SetEnabledDefault(enable bool) {
+	if ptr.Pointer() != nil {
+		C.QSocketNotifier_SetEnabledDefault(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(enable))))
 	}
 }
 
@@ -52215,8 +52279,9 @@ func (ptr *QSortFilterProxyModel) InsertRowsDefault(row int, count int, parent Q
 func callbackQSortFilterProxyModel_Invalidate(ptr unsafe.Pointer) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSortFilterProxyModel::invalidate"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQSortFilterProxyModelFromPointer(ptr).InvalidateDefault()
 	}
-
 }
 
 func (ptr *QSortFilterProxyModel) ConnectInvalidate(f func()) {
@@ -52236,6 +52301,12 @@ func (ptr *QSortFilterProxyModel) DisconnectInvalidate() {
 func (ptr *QSortFilterProxyModel) Invalidate() {
 	if ptr.Pointer() != nil {
 		C.QSortFilterProxyModel_Invalidate(ptr.Pointer())
+	}
+}
+
+func (ptr *QSortFilterProxyModel) InvalidateDefault() {
+	if ptr.Pointer() != nil {
+		C.QSortFilterProxyModel_InvalidateDefault(ptr.Pointer())
 	}
 }
 
@@ -52462,13 +52533,6 @@ func (ptr *QSortFilterProxyModel) Match(start QModelIndex_ITF, role int, value Q
 		}(C.QSortFilterProxyModel_Match(ptr.Pointer(), PointerFromQModelIndex(start), C.int(int32(role)), PointerFromQVariant(value), C.int(int32(hits)), C.longlong(flags)))
 	}
 	return nil
-}
-
-func (ptr *QSortFilterProxyModel) DisconnectMimeData() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSortFilterProxyModel::mimeData")
-	}
 }
 
 //export callbackQSortFilterProxyModel_MimeTypes
@@ -52707,8 +52771,9 @@ func (ptr *QSortFilterProxyModel) SetDataDefault(index QModelIndex_ITF, value QV
 func callbackQSortFilterProxyModel_SetFilterFixedString(ptr unsafe.Pointer, pattern C.struct_QtCore_PackedString) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSortFilterProxyModel::setFilterFixedString"); signal != nil {
 		signal.(func(string))(cGoUnpackString(pattern))
+	} else {
+		NewQSortFilterProxyModelFromPointer(ptr).SetFilterFixedStringDefault(cGoUnpackString(pattern))
 	}
-
 }
 
 func (ptr *QSortFilterProxyModel) ConnectSetFilterFixedString(f func(pattern string)) {
@@ -52718,7 +52783,7 @@ func (ptr *QSortFilterProxyModel) ConnectSetFilterFixedString(f func(pattern str
 	}
 }
 
-func (ptr *QSortFilterProxyModel) DisconnectSetFilterFixedString(pattern string) {
+func (ptr *QSortFilterProxyModel) DisconnectSetFilterFixedString() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSortFilterProxyModel::setFilterFixedString")
@@ -52733,12 +52798,21 @@ func (ptr *QSortFilterProxyModel) SetFilterFixedString(pattern string) {
 	}
 }
 
+func (ptr *QSortFilterProxyModel) SetFilterFixedStringDefault(pattern string) {
+	if ptr.Pointer() != nil {
+		var patternC = C.CString(pattern)
+		defer C.free(unsafe.Pointer(patternC))
+		C.QSortFilterProxyModel_SetFilterFixedStringDefault(ptr.Pointer(), patternC)
+	}
+}
+
 //export callbackQSortFilterProxyModel_SetFilterRegExp2
 func callbackQSortFilterProxyModel_SetFilterRegExp2(ptr unsafe.Pointer, pattern C.struct_QtCore_PackedString) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSortFilterProxyModel::setFilterRegExp2"); signal != nil {
 		signal.(func(string))(cGoUnpackString(pattern))
+	} else {
+		NewQSortFilterProxyModelFromPointer(ptr).SetFilterRegExp2Default(cGoUnpackString(pattern))
 	}
-
 }
 
 func (ptr *QSortFilterProxyModel) ConnectSetFilterRegExp2(f func(pattern string)) {
@@ -52748,7 +52822,7 @@ func (ptr *QSortFilterProxyModel) ConnectSetFilterRegExp2(f func(pattern string)
 	}
 }
 
-func (ptr *QSortFilterProxyModel) DisconnectSetFilterRegExp2(pattern string) {
+func (ptr *QSortFilterProxyModel) DisconnectSetFilterRegExp2() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSortFilterProxyModel::setFilterRegExp2")
@@ -52763,12 +52837,21 @@ func (ptr *QSortFilterProxyModel) SetFilterRegExp2(pattern string) {
 	}
 }
 
+func (ptr *QSortFilterProxyModel) SetFilterRegExp2Default(pattern string) {
+	if ptr.Pointer() != nil {
+		var patternC = C.CString(pattern)
+		defer C.free(unsafe.Pointer(patternC))
+		C.QSortFilterProxyModel_SetFilterRegExp2Default(ptr.Pointer(), patternC)
+	}
+}
+
 //export callbackQSortFilterProxyModel_SetFilterWildcard
 func callbackQSortFilterProxyModel_SetFilterWildcard(ptr unsafe.Pointer, pattern C.struct_QtCore_PackedString) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSortFilterProxyModel::setFilterWildcard"); signal != nil {
 		signal.(func(string))(cGoUnpackString(pattern))
+	} else {
+		NewQSortFilterProxyModelFromPointer(ptr).SetFilterWildcardDefault(cGoUnpackString(pattern))
 	}
-
 }
 
 func (ptr *QSortFilterProxyModel) ConnectSetFilterWildcard(f func(pattern string)) {
@@ -52778,7 +52861,7 @@ func (ptr *QSortFilterProxyModel) ConnectSetFilterWildcard(f func(pattern string
 	}
 }
 
-func (ptr *QSortFilterProxyModel) DisconnectSetFilterWildcard(pattern string) {
+func (ptr *QSortFilterProxyModel) DisconnectSetFilterWildcard() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSortFilterProxyModel::setFilterWildcard")
@@ -52790,6 +52873,14 @@ func (ptr *QSortFilterProxyModel) SetFilterWildcard(pattern string) {
 		var patternC = C.CString(pattern)
 		defer C.free(unsafe.Pointer(patternC))
 		C.QSortFilterProxyModel_SetFilterWildcard(ptr.Pointer(), patternC)
+	}
+}
+
+func (ptr *QSortFilterProxyModel) SetFilterWildcardDefault(pattern string) {
+	if ptr.Pointer() != nil {
+		var patternC = C.CString(pattern)
+		defer C.free(unsafe.Pointer(patternC))
+		C.QSortFilterProxyModel_SetFilterWildcardDefault(ptr.Pointer(), patternC)
 	}
 }
 
@@ -53696,42 +53787,6 @@ func (ptr *QStack) DestroyQStack() {
 	}
 }
 
-//go:generate stringer -type=QStandardPaths__LocateOption
-//QStandardPaths::LocateOption
-type QStandardPaths__LocateOption int64
-
-const (
-	QStandardPaths__LocateFile      QStandardPaths__LocateOption = QStandardPaths__LocateOption(0x0)
-	QStandardPaths__LocateDirectory QStandardPaths__LocateOption = QStandardPaths__LocateOption(0x1)
-)
-
-//go:generate stringer -type=QStandardPaths__StandardLocation
-//QStandardPaths::StandardLocation
-type QStandardPaths__StandardLocation int64
-
-const (
-	QStandardPaths__DesktopLocation       QStandardPaths__StandardLocation = QStandardPaths__StandardLocation(0)
-	QStandardPaths__DocumentsLocation     QStandardPaths__StandardLocation = QStandardPaths__StandardLocation(1)
-	QStandardPaths__FontsLocation         QStandardPaths__StandardLocation = QStandardPaths__StandardLocation(2)
-	QStandardPaths__ApplicationsLocation  QStandardPaths__StandardLocation = QStandardPaths__StandardLocation(3)
-	QStandardPaths__MusicLocation         QStandardPaths__StandardLocation = QStandardPaths__StandardLocation(4)
-	QStandardPaths__MoviesLocation        QStandardPaths__StandardLocation = QStandardPaths__StandardLocation(5)
-	QStandardPaths__PicturesLocation      QStandardPaths__StandardLocation = QStandardPaths__StandardLocation(6)
-	QStandardPaths__TempLocation          QStandardPaths__StandardLocation = QStandardPaths__StandardLocation(7)
-	QStandardPaths__HomeLocation          QStandardPaths__StandardLocation = QStandardPaths__StandardLocation(8)
-	QStandardPaths__DataLocation          QStandardPaths__StandardLocation = QStandardPaths__StandardLocation(9)
-	QStandardPaths__CacheLocation         QStandardPaths__StandardLocation = QStandardPaths__StandardLocation(10)
-	QStandardPaths__GenericDataLocation   QStandardPaths__StandardLocation = QStandardPaths__StandardLocation(11)
-	QStandardPaths__RuntimeLocation       QStandardPaths__StandardLocation = QStandardPaths__StandardLocation(12)
-	QStandardPaths__ConfigLocation        QStandardPaths__StandardLocation = QStandardPaths__StandardLocation(13)
-	QStandardPaths__DownloadLocation      QStandardPaths__StandardLocation = QStandardPaths__StandardLocation(14)
-	QStandardPaths__GenericCacheLocation  QStandardPaths__StandardLocation = QStandardPaths__StandardLocation(15)
-	QStandardPaths__GenericConfigLocation QStandardPaths__StandardLocation = QStandardPaths__StandardLocation(16)
-	QStandardPaths__AppDataLocation       QStandardPaths__StandardLocation = QStandardPaths__StandardLocation(17)
-	QStandardPaths__AppConfigLocation     QStandardPaths__StandardLocation = QStandardPaths__StandardLocation(18)
-	QStandardPaths__AppLocalDataLocation  QStandardPaths__StandardLocation = QStandardPaths__StandardLocation(QStandardPaths__DataLocation)
-)
-
 type QStandardPaths struct {
 	ptr unsafe.Pointer
 }
@@ -53776,6 +53831,42 @@ func (ptr *QStandardPaths) DestroyQStandardPaths() {
 		ptr.SetPointer(nil)
 	}
 }
+
+//go:generate stringer -type=QStandardPaths__LocateOption
+//QStandardPaths::LocateOption
+type QStandardPaths__LocateOption int64
+
+const (
+	QStandardPaths__LocateFile      QStandardPaths__LocateOption = QStandardPaths__LocateOption(0x0)
+	QStandardPaths__LocateDirectory QStandardPaths__LocateOption = QStandardPaths__LocateOption(0x1)
+)
+
+//go:generate stringer -type=QStandardPaths__StandardLocation
+//QStandardPaths::StandardLocation
+type QStandardPaths__StandardLocation int64
+
+const (
+	QStandardPaths__DesktopLocation       QStandardPaths__StandardLocation = QStandardPaths__StandardLocation(0)
+	QStandardPaths__DocumentsLocation     QStandardPaths__StandardLocation = QStandardPaths__StandardLocation(1)
+	QStandardPaths__FontsLocation         QStandardPaths__StandardLocation = QStandardPaths__StandardLocation(2)
+	QStandardPaths__ApplicationsLocation  QStandardPaths__StandardLocation = QStandardPaths__StandardLocation(3)
+	QStandardPaths__MusicLocation         QStandardPaths__StandardLocation = QStandardPaths__StandardLocation(4)
+	QStandardPaths__MoviesLocation        QStandardPaths__StandardLocation = QStandardPaths__StandardLocation(5)
+	QStandardPaths__PicturesLocation      QStandardPaths__StandardLocation = QStandardPaths__StandardLocation(6)
+	QStandardPaths__TempLocation          QStandardPaths__StandardLocation = QStandardPaths__StandardLocation(7)
+	QStandardPaths__HomeLocation          QStandardPaths__StandardLocation = QStandardPaths__StandardLocation(8)
+	QStandardPaths__DataLocation          QStandardPaths__StandardLocation = QStandardPaths__StandardLocation(9)
+	QStandardPaths__CacheLocation         QStandardPaths__StandardLocation = QStandardPaths__StandardLocation(10)
+	QStandardPaths__GenericDataLocation   QStandardPaths__StandardLocation = QStandardPaths__StandardLocation(11)
+	QStandardPaths__RuntimeLocation       QStandardPaths__StandardLocation = QStandardPaths__StandardLocation(12)
+	QStandardPaths__ConfigLocation        QStandardPaths__StandardLocation = QStandardPaths__StandardLocation(13)
+	QStandardPaths__DownloadLocation      QStandardPaths__StandardLocation = QStandardPaths__StandardLocation(14)
+	QStandardPaths__GenericCacheLocation  QStandardPaths__StandardLocation = QStandardPaths__StandardLocation(15)
+	QStandardPaths__GenericConfigLocation QStandardPaths__StandardLocation = QStandardPaths__StandardLocation(16)
+	QStandardPaths__AppDataLocation       QStandardPaths__StandardLocation = QStandardPaths__StandardLocation(17)
+	QStandardPaths__AppConfigLocation     QStandardPaths__StandardLocation = QStandardPaths__StandardLocation(18)
+	QStandardPaths__AppLocalDataLocation  QStandardPaths__StandardLocation = QStandardPaths__StandardLocation(QStandardPaths__DataLocation)
+)
 
 func QStandardPaths_SetTestModeEnabled(testMode bool) {
 	C.QStandardPaths_QStandardPaths_SetTestModeEnabled(C.char(int8(qt.GoBoolToInt(testMode))))
@@ -53849,24 +53940,6 @@ func (ptr *QStandardPaths) WritableLocation(ty QStandardPaths__StandardLocation)
 	return cGoUnpackString(C.QStandardPaths_QStandardPaths_WritableLocation(C.longlong(ty)))
 }
 
-//go:generate stringer -type=QState__ChildMode
-//QState::ChildMode
-type QState__ChildMode int64
-
-const (
-	QState__ExclusiveStates QState__ChildMode = QState__ChildMode(0)
-	QState__ParallelStates  QState__ChildMode = QState__ChildMode(1)
-)
-
-//go:generate stringer -type=QState__RestorePolicy
-//QState::RestorePolicy
-type QState__RestorePolicy int64
-
-const (
-	QState__DontRestoreProperties QState__RestorePolicy = QState__RestorePolicy(0)
-	QState__RestoreProperties     QState__RestorePolicy = QState__RestorePolicy(1)
-)
-
 type QState struct {
 	QAbstractState
 }
@@ -53905,6 +53978,25 @@ func NewQStateFromPointer(ptr unsafe.Pointer) *QState {
 	n.SetPointer(ptr)
 	return n
 }
+
+//go:generate stringer -type=QState__ChildMode
+//QState::ChildMode
+type QState__ChildMode int64
+
+const (
+	QState__ExclusiveStates QState__ChildMode = QState__ChildMode(0)
+	QState__ParallelStates  QState__ChildMode = QState__ChildMode(1)
+)
+
+//go:generate stringer -type=QState__RestorePolicy
+//QState::RestorePolicy
+type QState__RestorePolicy int64
+
+const (
+	QState__DontRestoreProperties QState__RestorePolicy = QState__RestorePolicy(0)
+	QState__RestoreProperties     QState__RestorePolicy = QState__RestorePolicy(1)
+)
+
 func NewQState2(childMode QState__ChildMode, parent QState_ITF) *QState {
 	var tmpValue = NewQStateFromPointer(C.QState_NewQState2(C.longlong(childMode), PointerFromQState(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
@@ -54564,26 +54656,6 @@ func (ptr *QState) MetaObjectDefault() *QMetaObject {
 	return nil
 }
 
-//go:generate stringer -type=QStateMachine__Error
-//QStateMachine::Error
-type QStateMachine__Error int64
-
-const (
-	QStateMachine__NoError                            QStateMachine__Error = QStateMachine__Error(0)
-	QStateMachine__NoInitialStateError                QStateMachine__Error = QStateMachine__Error(1)
-	QStateMachine__NoDefaultStateInHistoryStateError  QStateMachine__Error = QStateMachine__Error(2)
-	QStateMachine__NoCommonAncestorForTransitionError QStateMachine__Error = QStateMachine__Error(3)
-)
-
-//go:generate stringer -type=QStateMachine__EventPriority
-//QStateMachine::EventPriority
-type QStateMachine__EventPriority int64
-
-const (
-	QStateMachine__NormalPriority QStateMachine__EventPriority = QStateMachine__EventPriority(0)
-	QStateMachine__HighPriority   QStateMachine__EventPriority = QStateMachine__EventPriority(1)
-)
-
 type QStateMachine struct {
 	QState
 }
@@ -54622,6 +54694,27 @@ func NewQStateMachineFromPointer(ptr unsafe.Pointer) *QStateMachine {
 	n.SetPointer(ptr)
 	return n
 }
+
+//go:generate stringer -type=QStateMachine__Error
+//QStateMachine::Error
+type QStateMachine__Error int64
+
+const (
+	QStateMachine__NoError                            QStateMachine__Error = QStateMachine__Error(0)
+	QStateMachine__NoInitialStateError                QStateMachine__Error = QStateMachine__Error(1)
+	QStateMachine__NoDefaultStateInHistoryStateError  QStateMachine__Error = QStateMachine__Error(2)
+	QStateMachine__NoCommonAncestorForTransitionError QStateMachine__Error = QStateMachine__Error(3)
+)
+
+//go:generate stringer -type=QStateMachine__EventPriority
+//QStateMachine::EventPriority
+type QStateMachine__EventPriority int64
+
+const (
+	QStateMachine__NormalPriority QStateMachine__EventPriority = QStateMachine__EventPriority(0)
+	QStateMachine__HighPriority   QStateMachine__EventPriority = QStateMachine__EventPriority(1)
+)
+
 func (ptr *QStateMachine) IsRunning() bool {
 	if ptr.Pointer() != nil {
 		return C.QStateMachine_IsRunning(ptr.Pointer()) != 0
@@ -54633,8 +54726,9 @@ func (ptr *QStateMachine) IsRunning() bool {
 func callbackQStateMachine_SetRunning(ptr unsafe.Pointer, running C.char) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QStateMachine::setRunning"); signal != nil {
 		signal.(func(bool))(int8(running) != 0)
+	} else {
+		NewQStateMachineFromPointer(ptr).SetRunningDefault(int8(running) != 0)
 	}
-
 }
 
 func (ptr *QStateMachine) ConnectSetRunning(f func(running bool)) {
@@ -54644,7 +54738,7 @@ func (ptr *QStateMachine) ConnectSetRunning(f func(running bool)) {
 	}
 }
 
-func (ptr *QStateMachine) DisconnectSetRunning(running bool) {
+func (ptr *QStateMachine) DisconnectSetRunning() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QStateMachine::setRunning")
@@ -54654,6 +54748,12 @@ func (ptr *QStateMachine) DisconnectSetRunning(running bool) {
 func (ptr *QStateMachine) SetRunning(running bool) {
 	if ptr.Pointer() != nil {
 		C.QStateMachine_SetRunning(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(running))))
+	}
+}
+
+func (ptr *QStateMachine) SetRunningDefault(running bool) {
+	if ptr.Pointer() != nil {
+		C.QStateMachine_SetRunningDefault(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(running))))
 	}
 }
 
@@ -54957,8 +55057,9 @@ func (ptr *QStateMachine) SetGlobalRestorePolicy(restorePolicy QState__RestorePo
 func callbackQStateMachine_Start(ptr unsafe.Pointer) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QStateMachine::start"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQStateMachineFromPointer(ptr).StartDefault()
 	}
-
 }
 
 func (ptr *QStateMachine) ConnectStart(f func()) {
@@ -54978,6 +55079,12 @@ func (ptr *QStateMachine) DisconnectStart() {
 func (ptr *QStateMachine) Start() {
 	if ptr.Pointer() != nil {
 		C.QStateMachine_Start(ptr.Pointer())
+	}
+}
+
+func (ptr *QStateMachine) StartDefault() {
+	if ptr.Pointer() != nil {
+		C.QStateMachine_StartDefault(ptr.Pointer())
 	}
 }
 
@@ -55008,8 +55115,9 @@ func (ptr *QStateMachine) DisconnectStarted() {
 func callbackQStateMachine_Stop(ptr unsafe.Pointer) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QStateMachine::stop"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQStateMachineFromPointer(ptr).StopDefault()
 	}
-
 }
 
 func (ptr *QStateMachine) ConnectStop(f func()) {
@@ -55029,6 +55137,12 @@ func (ptr *QStateMachine) DisconnectStop() {
 func (ptr *QStateMachine) Stop() {
 	if ptr.Pointer() != nil {
 		C.QStateMachine_Stop(ptr.Pointer())
+	}
+}
+
+func (ptr *QStateMachine) StopDefault() {
+	if ptr.Pointer() != nil {
+		C.QStateMachine_StopDefault(ptr.Pointer())
 	}
 }
 
@@ -55629,38 +55743,6 @@ func (ptr *QStorageInfo) mountedVolumes_atList(i int) *QStorageInfo {
 	return nil
 }
 
-//go:generate stringer -type=QString__NormalizationForm
-//QString::NormalizationForm
-type QString__NormalizationForm int64
-
-const (
-	QString__NormalizationForm_D  QString__NormalizationForm = QString__NormalizationForm(0)
-	QString__NormalizationForm_C  QString__NormalizationForm = QString__NormalizationForm(1)
-	QString__NormalizationForm_KD QString__NormalizationForm = QString__NormalizationForm(2)
-	QString__NormalizationForm_KC QString__NormalizationForm = QString__NormalizationForm(3)
-)
-
-//go:generate stringer -type=QString__SectionFlag
-//QString::SectionFlag
-type QString__SectionFlag int64
-
-const (
-	QString__SectionDefault             QString__SectionFlag = QString__SectionFlag(0x00)
-	QString__SectionSkipEmpty           QString__SectionFlag = QString__SectionFlag(0x01)
-	QString__SectionIncludeLeadingSep   QString__SectionFlag = QString__SectionFlag(0x02)
-	QString__SectionIncludeTrailingSep  QString__SectionFlag = QString__SectionFlag(0x04)
-	QString__SectionCaseInsensitiveSeps QString__SectionFlag = QString__SectionFlag(0x08)
-)
-
-//go:generate stringer -type=QString__SplitBehavior
-//QString::SplitBehavior
-type QString__SplitBehavior int64
-
-const (
-	QString__KeepEmptyParts QString__SplitBehavior = QString__SplitBehavior(0)
-	QString__SkipEmptyParts QString__SplitBehavior = QString__SplitBehavior(1)
-)
-
 type QString struct {
 	ptr unsafe.Pointer
 }
@@ -55698,6 +55780,38 @@ func NewQStringFromPointer(ptr unsafe.Pointer) *QString {
 	n.SetPointer(ptr)
 	return n
 }
+
+//go:generate stringer -type=QString__NormalizationForm
+//QString::NormalizationForm
+type QString__NormalizationForm int64
+
+const (
+	QString__NormalizationForm_D  QString__NormalizationForm = QString__NormalizationForm(0)
+	QString__NormalizationForm_C  QString__NormalizationForm = QString__NormalizationForm(1)
+	QString__NormalizationForm_KD QString__NormalizationForm = QString__NormalizationForm(2)
+	QString__NormalizationForm_KC QString__NormalizationForm = QString__NormalizationForm(3)
+)
+
+//go:generate stringer -type=QString__SectionFlag
+//QString::SectionFlag
+type QString__SectionFlag int64
+
+const (
+	QString__SectionDefault             QString__SectionFlag = QString__SectionFlag(0x00)
+	QString__SectionSkipEmpty           QString__SectionFlag = QString__SectionFlag(0x01)
+	QString__SectionIncludeLeadingSep   QString__SectionFlag = QString__SectionFlag(0x02)
+	QString__SectionIncludeTrailingSep  QString__SectionFlag = QString__SectionFlag(0x04)
+	QString__SectionCaseInsensitiveSeps QString__SectionFlag = QString__SectionFlag(0x08)
+)
+
+//go:generate stringer -type=QString__SplitBehavior
+//QString::SplitBehavior
+type QString__SplitBehavior int64
+
+const (
+	QString__KeepEmptyParts QString__SplitBehavior = QString__SplitBehavior(0)
+	QString__SkipEmptyParts QString__SplitBehavior = QString__SplitBehavior(1)
+)
 
 type QStringList struct {
 	QList
@@ -56378,7 +56492,7 @@ func callbackQStringListModel_ColumnCount(ptr unsafe.Pointer, parent unsafe.Poin
 		return C.int(int32(signal.(func(*QModelIndex) int)(NewQModelIndexFromPointer(parent))))
 	}
 
-	return C.int(int32(NewQStringListModelFromPointer(ptr).ColumnCountDefault(NewQModelIndexFromPointer(parent))))
+	return C.int(int32(0))
 }
 
 func (ptr *QStringListModel) ConnectColumnCount(f func(parent *QModelIndex) int) {
@@ -56398,13 +56512,6 @@ func (ptr *QStringListModel) DisconnectColumnCount() {
 func (ptr *QStringListModel) ColumnCount(parent QModelIndex_ITF) int {
 	if ptr.Pointer() != nil {
 		return int(int32(C.QStringListModel_ColumnCount(ptr.Pointer(), PointerFromQModelIndex(parent))))
-	}
-	return 0
-}
-
-func (ptr *QStringListModel) ColumnCountDefault(parent QModelIndex_ITF) int {
-	if ptr.Pointer() != nil {
-		return int(int32(C.QStringListModel_ColumnCountDefault(ptr.Pointer(), PointerFromQModelIndex(parent))))
 	}
 	return 0
 }
@@ -56563,13 +56670,6 @@ func (ptr *QStringListModel) InsertColumnsDefault(column int, count int, parent 
 	return false
 }
 
-func (ptr *QStringListModel) DisconnectMimeData() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QStringListModel::mimeData")
-	}
-}
-
 //export callbackQStringListModel_MimeTypes
 func callbackQStringListModel_MimeTypes(ptr unsafe.Pointer) *C.char {
 
@@ -56691,7 +56791,7 @@ func callbackQStringListModel_Parent(ptr unsafe.Pointer, index unsafe.Pointer) u
 		return PointerFromQModelIndex(signal.(func(*QModelIndex) *QModelIndex)(NewQModelIndexFromPointer(index)))
 	}
 
-	return PointerFromQModelIndex(NewQStringListModelFromPointer(ptr).ParentDefault(NewQModelIndexFromPointer(index)))
+	return PointerFromQModelIndex(NewQModelIndex())
 }
 
 func (ptr *QStringListModel) ConnectParent(f func(index *QModelIndex) *QModelIndex) {
@@ -56711,15 +56811,6 @@ func (ptr *QStringListModel) DisconnectParent() {
 func (ptr *QStringListModel) Parent(index QModelIndex_ITF) *QModelIndex {
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQModelIndexFromPointer(C.QStringListModel_Parent(ptr.Pointer(), PointerFromQModelIndex(index)))
-		runtime.SetFinalizer(tmpValue, (*QModelIndex).DestroyQModelIndex)
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QStringListModel) ParentDefault(index QModelIndex_ITF) *QModelIndex {
-	if ptr.Pointer() != nil {
-		var tmpValue = NewQModelIndexFromPointer(C.QStringListModel_ParentDefault(ptr.Pointer(), PointerFromQModelIndex(index)))
 		runtime.SetFinalizer(tmpValue, (*QModelIndex).DestroyQModelIndex)
 		return tmpValue
 	}
@@ -58053,6 +58144,51 @@ func (ptr *QStringRef) split_atList(i int) *QStringRef {
 	return nil
 }
 
+type QSysInfo struct {
+	ptr unsafe.Pointer
+}
+
+type QSysInfo_ITF interface {
+	QSysInfo_PTR() *QSysInfo
+}
+
+func (ptr *QSysInfo) QSysInfo_PTR() *QSysInfo {
+	return ptr
+}
+
+func (ptr *QSysInfo) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
+	}
+	return nil
+}
+
+func (ptr *QSysInfo) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
+	}
+}
+
+func PointerFromQSysInfo(ptr QSysInfo_ITF) unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QSysInfo_PTR().Pointer()
+	}
+	return nil
+}
+
+func NewQSysInfoFromPointer(ptr unsafe.Pointer) *QSysInfo {
+	var n = new(QSysInfo)
+	n.SetPointer(ptr)
+	return n
+}
+
+func (ptr *QSysInfo) DestroyQSysInfo() {
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
+}
+
 //go:generate stringer -type=QSysInfo__Endian
 //QSysInfo::Endian
 type QSysInfo__Endian int64
@@ -58155,51 +58291,6 @@ const (
 	QSysInfo__WV_CE_based   QSysInfo__WinVersion = QSysInfo__WinVersion(0x0f00)
 )
 
-type QSysInfo struct {
-	ptr unsafe.Pointer
-}
-
-type QSysInfo_ITF interface {
-	QSysInfo_PTR() *QSysInfo
-}
-
-func (ptr *QSysInfo) QSysInfo_PTR() *QSysInfo {
-	return ptr
-}
-
-func (ptr *QSysInfo) Pointer() unsafe.Pointer {
-	if ptr != nil {
-		return ptr.ptr
-	}
-	return nil
-}
-
-func (ptr *QSysInfo) SetPointer(p unsafe.Pointer) {
-	if ptr != nil {
-		ptr.ptr = p
-	}
-}
-
-func PointerFromQSysInfo(ptr QSysInfo_ITF) unsafe.Pointer {
-	if ptr != nil {
-		return ptr.QSysInfo_PTR().Pointer()
-	}
-	return nil
-}
-
-func NewQSysInfoFromPointer(ptr unsafe.Pointer) *QSysInfo {
-	var n = new(QSysInfo)
-	n.SetPointer(ptr)
-	return n
-}
-
-func (ptr *QSysInfo) DestroyQSysInfo() {
-	if ptr != nil {
-		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
-	}
-}
-
 func QSysInfo_MacVersion() QSysInfo__MacVersion {
 	return QSysInfo__MacVersion(C.QSysInfo_QSysInfo_MacVersion())
 }
@@ -58296,29 +58387,6 @@ func (ptr *QSysInfo) MacintoshVersion() QSysInfo__MacVersion {
 	return QSysInfo__MacVersion(C.QSysInfo_QSysInfo_MacintoshVersion())
 }
 
-//go:generate stringer -type=QSystemSemaphore__AccessMode
-//QSystemSemaphore::AccessMode
-type QSystemSemaphore__AccessMode int64
-
-const (
-	QSystemSemaphore__Open   QSystemSemaphore__AccessMode = QSystemSemaphore__AccessMode(0)
-	QSystemSemaphore__Create QSystemSemaphore__AccessMode = QSystemSemaphore__AccessMode(1)
-)
-
-//go:generate stringer -type=QSystemSemaphore__SystemSemaphoreError
-//QSystemSemaphore::SystemSemaphoreError
-type QSystemSemaphore__SystemSemaphoreError int64
-
-const (
-	QSystemSemaphore__NoError          QSystemSemaphore__SystemSemaphoreError = QSystemSemaphore__SystemSemaphoreError(0)
-	QSystemSemaphore__PermissionDenied QSystemSemaphore__SystemSemaphoreError = QSystemSemaphore__SystemSemaphoreError(1)
-	QSystemSemaphore__KeyError         QSystemSemaphore__SystemSemaphoreError = QSystemSemaphore__SystemSemaphoreError(2)
-	QSystemSemaphore__AlreadyExists    QSystemSemaphore__SystemSemaphoreError = QSystemSemaphore__SystemSemaphoreError(3)
-	QSystemSemaphore__NotFound         QSystemSemaphore__SystemSemaphoreError = QSystemSemaphore__SystemSemaphoreError(4)
-	QSystemSemaphore__OutOfResources   QSystemSemaphore__SystemSemaphoreError = QSystemSemaphore__SystemSemaphoreError(5)
-	QSystemSemaphore__UnknownError     QSystemSemaphore__SystemSemaphoreError = QSystemSemaphore__SystemSemaphoreError(6)
-)
-
 type QSystemSemaphore struct {
 	ptr unsafe.Pointer
 }
@@ -58356,6 +58424,30 @@ func NewQSystemSemaphoreFromPointer(ptr unsafe.Pointer) *QSystemSemaphore {
 	n.SetPointer(ptr)
 	return n
 }
+
+//go:generate stringer -type=QSystemSemaphore__AccessMode
+//QSystemSemaphore::AccessMode
+type QSystemSemaphore__AccessMode int64
+
+const (
+	QSystemSemaphore__Open   QSystemSemaphore__AccessMode = QSystemSemaphore__AccessMode(0)
+	QSystemSemaphore__Create QSystemSemaphore__AccessMode = QSystemSemaphore__AccessMode(1)
+)
+
+//go:generate stringer -type=QSystemSemaphore__SystemSemaphoreError
+//QSystemSemaphore::SystemSemaphoreError
+type QSystemSemaphore__SystemSemaphoreError int64
+
+const (
+	QSystemSemaphore__NoError          QSystemSemaphore__SystemSemaphoreError = QSystemSemaphore__SystemSemaphoreError(0)
+	QSystemSemaphore__PermissionDenied QSystemSemaphore__SystemSemaphoreError = QSystemSemaphore__SystemSemaphoreError(1)
+	QSystemSemaphore__KeyError         QSystemSemaphore__SystemSemaphoreError = QSystemSemaphore__SystemSemaphoreError(2)
+	QSystemSemaphore__AlreadyExists    QSystemSemaphore__SystemSemaphoreError = QSystemSemaphore__SystemSemaphoreError(3)
+	QSystemSemaphore__NotFound         QSystemSemaphore__SystemSemaphoreError = QSystemSemaphore__SystemSemaphoreError(4)
+	QSystemSemaphore__OutOfResources   QSystemSemaphore__SystemSemaphoreError = QSystemSemaphore__SystemSemaphoreError(5)
+	QSystemSemaphore__UnknownError     QSystemSemaphore__SystemSemaphoreError = QSystemSemaphore__SystemSemaphoreError(6)
+)
+
 func NewQSystemSemaphore(key string, initialValue int, mode QSystemSemaphore__AccessMode) *QSystemSemaphore {
 	var keyC = C.CString(key)
 	defer C.free(unsafe.Pointer(keyC))
@@ -59786,30 +59878,6 @@ func (ptr *QTemporaryFile) MetaObjectDefault() *QMetaObject {
 	return nil
 }
 
-//go:generate stringer -type=QTextBoundaryFinder__BoundaryReason
-//QTextBoundaryFinder::BoundaryReason
-type QTextBoundaryFinder__BoundaryReason int64
-
-const (
-	QTextBoundaryFinder__NotAtBoundary    QTextBoundaryFinder__BoundaryReason = QTextBoundaryFinder__BoundaryReason(0)
-	QTextBoundaryFinder__BreakOpportunity QTextBoundaryFinder__BoundaryReason = QTextBoundaryFinder__BoundaryReason(0x1f)
-	QTextBoundaryFinder__StartOfItem      QTextBoundaryFinder__BoundaryReason = QTextBoundaryFinder__BoundaryReason(0x20)
-	QTextBoundaryFinder__EndOfItem        QTextBoundaryFinder__BoundaryReason = QTextBoundaryFinder__BoundaryReason(0x40)
-	QTextBoundaryFinder__MandatoryBreak   QTextBoundaryFinder__BoundaryReason = QTextBoundaryFinder__BoundaryReason(0x80)
-	QTextBoundaryFinder__SoftHyphen       QTextBoundaryFinder__BoundaryReason = QTextBoundaryFinder__BoundaryReason(0x100)
-)
-
-//go:generate stringer -type=QTextBoundaryFinder__BoundaryType
-//QTextBoundaryFinder::BoundaryType
-type QTextBoundaryFinder__BoundaryType int64
-
-const (
-	QTextBoundaryFinder__Grapheme QTextBoundaryFinder__BoundaryType = QTextBoundaryFinder__BoundaryType(0)
-	QTextBoundaryFinder__Word     QTextBoundaryFinder__BoundaryType = QTextBoundaryFinder__BoundaryType(1)
-	QTextBoundaryFinder__Sentence QTextBoundaryFinder__BoundaryType = QTextBoundaryFinder__BoundaryType(2)
-	QTextBoundaryFinder__Line     QTextBoundaryFinder__BoundaryType = QTextBoundaryFinder__BoundaryType(3)
-)
-
 type QTextBoundaryFinder struct {
 	ptr unsafe.Pointer
 }
@@ -59847,6 +59915,31 @@ func NewQTextBoundaryFinderFromPointer(ptr unsafe.Pointer) *QTextBoundaryFinder 
 	n.SetPointer(ptr)
 	return n
 }
+
+//go:generate stringer -type=QTextBoundaryFinder__BoundaryReason
+//QTextBoundaryFinder::BoundaryReason
+type QTextBoundaryFinder__BoundaryReason int64
+
+const (
+	QTextBoundaryFinder__NotAtBoundary    QTextBoundaryFinder__BoundaryReason = QTextBoundaryFinder__BoundaryReason(0)
+	QTextBoundaryFinder__BreakOpportunity QTextBoundaryFinder__BoundaryReason = QTextBoundaryFinder__BoundaryReason(0x1f)
+	QTextBoundaryFinder__StartOfItem      QTextBoundaryFinder__BoundaryReason = QTextBoundaryFinder__BoundaryReason(0x20)
+	QTextBoundaryFinder__EndOfItem        QTextBoundaryFinder__BoundaryReason = QTextBoundaryFinder__BoundaryReason(0x40)
+	QTextBoundaryFinder__MandatoryBreak   QTextBoundaryFinder__BoundaryReason = QTextBoundaryFinder__BoundaryReason(0x80)
+	QTextBoundaryFinder__SoftHyphen       QTextBoundaryFinder__BoundaryReason = QTextBoundaryFinder__BoundaryReason(0x100)
+)
+
+//go:generate stringer -type=QTextBoundaryFinder__BoundaryType
+//QTextBoundaryFinder::BoundaryType
+type QTextBoundaryFinder__BoundaryType int64
+
+const (
+	QTextBoundaryFinder__Grapheme QTextBoundaryFinder__BoundaryType = QTextBoundaryFinder__BoundaryType(0)
+	QTextBoundaryFinder__Word     QTextBoundaryFinder__BoundaryType = QTextBoundaryFinder__BoundaryType(1)
+	QTextBoundaryFinder__Sentence QTextBoundaryFinder__BoundaryType = QTextBoundaryFinder__BoundaryType(2)
+	QTextBoundaryFinder__Line     QTextBoundaryFinder__BoundaryType = QTextBoundaryFinder__BoundaryType(3)
+)
+
 func NewQTextBoundaryFinder() *QTextBoundaryFinder {
 	var tmpValue = NewQTextBoundaryFinderFromPointer(C.QTextBoundaryFinder_NewQTextBoundaryFinder())
 	runtime.SetFinalizer(tmpValue, (*QTextBoundaryFinder).DestroyQTextBoundaryFinder)
@@ -59948,17 +60041,6 @@ func (ptr *QTextBoundaryFinder) DestroyQTextBoundaryFinder() {
 	}
 }
 
-//go:generate stringer -type=QTextCodec__ConversionFlag
-//QTextCodec::ConversionFlag
-type QTextCodec__ConversionFlag int64
-
-const (
-	QTextCodec__DefaultConversion    QTextCodec__ConversionFlag = QTextCodec__ConversionFlag(0)
-	QTextCodec__ConvertInvalidToNull QTextCodec__ConversionFlag = QTextCodec__ConversionFlag(0x80000000)
-	QTextCodec__IgnoreHeader         QTextCodec__ConversionFlag = QTextCodec__ConversionFlag(0x1)
-	QTextCodec__FreeFunction         QTextCodec__ConversionFlag = QTextCodec__ConversionFlag(0x2)
-)
-
 type QTextCodec struct {
 	ptr unsafe.Pointer
 }
@@ -59996,6 +60078,18 @@ func NewQTextCodecFromPointer(ptr unsafe.Pointer) *QTextCodec {
 	n.SetPointer(ptr)
 	return n
 }
+
+//go:generate stringer -type=QTextCodec__ConversionFlag
+//QTextCodec::ConversionFlag
+type QTextCodec__ConversionFlag int64
+
+const (
+	QTextCodec__DefaultConversion    QTextCodec__ConversionFlag = QTextCodec__ConversionFlag(0)
+	QTextCodec__ConvertInvalidToNull QTextCodec__ConversionFlag = QTextCodec__ConversionFlag(0x80000000)
+	QTextCodec__IgnoreHeader         QTextCodec__ConversionFlag = QTextCodec__ConversionFlag(0x1)
+	QTextCodec__FreeFunction         QTextCodec__ConversionFlag = QTextCodec__ConversionFlag(0x2)
+)
+
 func (ptr *QTextCodec) Aliases() []*QByteArray {
 	if ptr.Pointer() != nil {
 		return func(l C.struct_QtCore_PackedList) []*QByteArray {
@@ -60442,6 +60536,44 @@ func (ptr *QTextEncoder) DestroyQTextEncoder() {
 	}
 }
 
+type QTextStream struct {
+	ptr unsafe.Pointer
+}
+
+type QTextStream_ITF interface {
+	QTextStream_PTR() *QTextStream
+}
+
+func (ptr *QTextStream) QTextStream_PTR() *QTextStream {
+	return ptr
+}
+
+func (ptr *QTextStream) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
+	}
+	return nil
+}
+
+func (ptr *QTextStream) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
+	}
+}
+
+func PointerFromQTextStream(ptr QTextStream_ITF) unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QTextStream_PTR().Pointer()
+	}
+	return nil
+}
+
+func NewQTextStreamFromPointer(ptr unsafe.Pointer) *QTextStream {
+	var n = new(QTextStream)
+	n.SetPointer(ptr)
+	return n
+}
+
 //go:generate stringer -type=QTextStream__FieldAlignment
 //QTextStream::FieldAlignment
 type QTextStream__FieldAlignment int64
@@ -60486,43 +60618,6 @@ const (
 	QTextStream__WriteFailed     QTextStream__Status = QTextStream__Status(3)
 )
 
-type QTextStream struct {
-	ptr unsafe.Pointer
-}
-
-type QTextStream_ITF interface {
-	QTextStream_PTR() *QTextStream
-}
-
-func (ptr *QTextStream) QTextStream_PTR() *QTextStream {
-	return ptr
-}
-
-func (ptr *QTextStream) Pointer() unsafe.Pointer {
-	if ptr != nil {
-		return ptr.ptr
-	}
-	return nil
-}
-
-func (ptr *QTextStream) SetPointer(p unsafe.Pointer) {
-	if ptr != nil {
-		ptr.ptr = p
-	}
-}
-
-func PointerFromQTextStream(ptr QTextStream_ITF) unsafe.Pointer {
-	if ptr != nil {
-		return ptr.QTextStream_PTR().Pointer()
-	}
-	return nil
-}
-
-func NewQTextStreamFromPointer(ptr unsafe.Pointer) *QTextStream {
-	var n = new(QTextStream)
-	n.SetPointer(ptr)
-	return n
-}
 func NewQTextStream() *QTextStream {
 	return NewQTextStreamFromPointer(C.QTextStream_NewQTextStream())
 }
@@ -60860,21 +60955,6 @@ func (ptr *QTextStream) DestroyQTextStreamDefault() {
 	}
 }
 
-//go:generate stringer -type=QThread__Priority
-//QThread::Priority
-type QThread__Priority int64
-
-const (
-	QThread__IdlePriority         QThread__Priority = QThread__Priority(0)
-	QThread__LowestPriority       QThread__Priority = QThread__Priority(1)
-	QThread__LowPriority          QThread__Priority = QThread__Priority(2)
-	QThread__NormalPriority       QThread__Priority = QThread__Priority(3)
-	QThread__HighPriority         QThread__Priority = QThread__Priority(4)
-	QThread__HighestPriority      QThread__Priority = QThread__Priority(5)
-	QThread__TimeCriticalPriority QThread__Priority = QThread__Priority(6)
-	QThread__InheritPriority      QThread__Priority = QThread__Priority(7)
-)
-
 type QThread struct {
 	QObject
 }
@@ -60913,6 +60993,22 @@ func NewQThreadFromPointer(ptr unsafe.Pointer) *QThread {
 	n.SetPointer(ptr)
 	return n
 }
+
+//go:generate stringer -type=QThread__Priority
+//QThread::Priority
+type QThread__Priority int64
+
+const (
+	QThread__IdlePriority         QThread__Priority = QThread__Priority(0)
+	QThread__LowestPriority       QThread__Priority = QThread__Priority(1)
+	QThread__LowPriority          QThread__Priority = QThread__Priority(2)
+	QThread__NormalPriority       QThread__Priority = QThread__Priority(3)
+	QThread__HighPriority         QThread__Priority = QThread__Priority(4)
+	QThread__HighestPriority      QThread__Priority = QThread__Priority(5)
+	QThread__TimeCriticalPriority QThread__Priority = QThread__Priority(6)
+	QThread__InheritPriority      QThread__Priority = QThread__Priority(7)
+)
+
 func (ptr *QThread) SetPriority(priority QThread__Priority) {
 	if ptr.Pointer() != nil {
 		C.QThread_SetPriority(ptr.Pointer(), C.longlong(priority))
@@ -61067,8 +61163,9 @@ func (ptr *QThread) Priority() QThread__Priority {
 func callbackQThread_Quit(ptr unsafe.Pointer) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QThread::quit"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQThreadFromPointer(ptr).QuitDefault()
 	}
-
 }
 
 func (ptr *QThread) ConnectQuit(f func()) {
@@ -61088,6 +61185,12 @@ func (ptr *QThread) DisconnectQuit() {
 func (ptr *QThread) Quit() {
 	if ptr.Pointer() != nil {
 		C.QThread_Quit(ptr.Pointer())
+	}
+}
+
+func (ptr *QThread) QuitDefault() {
+	if ptr.Pointer() != nil {
+		C.QThread_QuitDefault(ptr.Pointer())
 	}
 }
 
@@ -61219,8 +61322,9 @@ func (ptr *QThread) Sleep(secs uint) {
 func callbackQThread_Start(ptr unsafe.Pointer) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QThread::start"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQThreadFromPointer(ptr).StartDefault()
 	}
-
 }
 
 func (ptr *QThread) ConnectStart(f func()) {
@@ -61243,12 +61347,19 @@ func (ptr *QThread) Start() {
 	}
 }
 
+func (ptr *QThread) StartDefault() {
+	if ptr.Pointer() != nil {
+		C.QThread_StartDefault(ptr.Pointer())
+	}
+}
+
 //export callbackQThread_Terminate
 func callbackQThread_Terminate(ptr unsafe.Pointer) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QThread::terminate"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQThreadFromPointer(ptr).TerminateDefault()
 	}
-
 }
 
 func (ptr *QThread) ConnectTerminate(f func()) {
@@ -61268,6 +61379,12 @@ func (ptr *QThread) DisconnectTerminate() {
 func (ptr *QThread) Terminate() {
 	if ptr.Pointer() != nil {
 		C.QThread_Terminate(ptr.Pointer())
+	}
+}
+
+func (ptr *QThread) TerminateDefault() {
+	if ptr.Pointer() != nil {
+		C.QThread_TerminateDefault(ptr.Pointer())
 	}
 }
 
@@ -62356,38 +62473,6 @@ func (ptr *QTime) ToString(format string) string {
 	return ""
 }
 
-//go:generate stringer -type=QTimeLine__CurveShape
-//QTimeLine::CurveShape
-type QTimeLine__CurveShape int64
-
-const (
-	QTimeLine__EaseInCurve    QTimeLine__CurveShape = QTimeLine__CurveShape(0)
-	QTimeLine__EaseOutCurve   QTimeLine__CurveShape = QTimeLine__CurveShape(1)
-	QTimeLine__EaseInOutCurve QTimeLine__CurveShape = QTimeLine__CurveShape(2)
-	QTimeLine__LinearCurve    QTimeLine__CurveShape = QTimeLine__CurveShape(3)
-	QTimeLine__SineCurve      QTimeLine__CurveShape = QTimeLine__CurveShape(4)
-	QTimeLine__CosineCurve    QTimeLine__CurveShape = QTimeLine__CurveShape(5)
-)
-
-//go:generate stringer -type=QTimeLine__Direction
-//QTimeLine::Direction
-type QTimeLine__Direction int64
-
-const (
-	QTimeLine__Forward  QTimeLine__Direction = QTimeLine__Direction(0)
-	QTimeLine__Backward QTimeLine__Direction = QTimeLine__Direction(1)
-)
-
-//go:generate stringer -type=QTimeLine__State
-//QTimeLine::State
-type QTimeLine__State int64
-
-const (
-	QTimeLine__NotRunning QTimeLine__State = QTimeLine__State(0)
-	QTimeLine__Paused     QTimeLine__State = QTimeLine__State(1)
-	QTimeLine__Running    QTimeLine__State = QTimeLine__State(2)
-)
-
 type QTimeLine struct {
 	QObject
 }
@@ -62426,6 +62511,39 @@ func NewQTimeLineFromPointer(ptr unsafe.Pointer) *QTimeLine {
 	n.SetPointer(ptr)
 	return n
 }
+
+//go:generate stringer -type=QTimeLine__CurveShape
+//QTimeLine::CurveShape
+type QTimeLine__CurveShape int64
+
+const (
+	QTimeLine__EaseInCurve    QTimeLine__CurveShape = QTimeLine__CurveShape(0)
+	QTimeLine__EaseOutCurve   QTimeLine__CurveShape = QTimeLine__CurveShape(1)
+	QTimeLine__EaseInOutCurve QTimeLine__CurveShape = QTimeLine__CurveShape(2)
+	QTimeLine__LinearCurve    QTimeLine__CurveShape = QTimeLine__CurveShape(3)
+	QTimeLine__SineCurve      QTimeLine__CurveShape = QTimeLine__CurveShape(4)
+	QTimeLine__CosineCurve    QTimeLine__CurveShape = QTimeLine__CurveShape(5)
+)
+
+//go:generate stringer -type=QTimeLine__Direction
+//QTimeLine::Direction
+type QTimeLine__Direction int64
+
+const (
+	QTimeLine__Forward  QTimeLine__Direction = QTimeLine__Direction(0)
+	QTimeLine__Backward QTimeLine__Direction = QTimeLine__Direction(1)
+)
+
+//go:generate stringer -type=QTimeLine__State
+//QTimeLine::State
+type QTimeLine__State int64
+
+const (
+	QTimeLine__NotRunning QTimeLine__State = QTimeLine__State(0)
+	QTimeLine__Paused     QTimeLine__State = QTimeLine__State(1)
+	QTimeLine__Running    QTimeLine__State = QTimeLine__State(2)
+)
+
 func (ptr *QTimeLine) CurrentTime() int {
 	if ptr.Pointer() != nil {
 		return int(int32(C.QTimeLine_CurrentTime(ptr.Pointer())))
@@ -62474,8 +62592,9 @@ func (ptr *QTimeLine) LoopCount() int {
 func callbackQTimeLine_SetCurrentTime(ptr unsafe.Pointer, msec C.int) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QTimeLine::setCurrentTime"); signal != nil {
 		signal.(func(int))(int(int32(msec)))
+	} else {
+		NewQTimeLineFromPointer(ptr).SetCurrentTimeDefault(int(int32(msec)))
 	}
-
 }
 
 func (ptr *QTimeLine) ConnectSetCurrentTime(f func(msec int)) {
@@ -62485,7 +62604,7 @@ func (ptr *QTimeLine) ConnectSetCurrentTime(f func(msec int)) {
 	}
 }
 
-func (ptr *QTimeLine) DisconnectSetCurrentTime(msec int) {
+func (ptr *QTimeLine) DisconnectSetCurrentTime() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QTimeLine::setCurrentTime")
@@ -62495,6 +62614,12 @@ func (ptr *QTimeLine) DisconnectSetCurrentTime(msec int) {
 func (ptr *QTimeLine) SetCurrentTime(msec int) {
 	if ptr.Pointer() != nil {
 		C.QTimeLine_SetCurrentTime(ptr.Pointer(), C.int(int32(msec)))
+	}
+}
+
+func (ptr *QTimeLine) SetCurrentTimeDefault(msec int) {
+	if ptr.Pointer() != nil {
+		C.QTimeLine_SetCurrentTimeDefault(ptr.Pointer(), C.int(int32(msec)))
 	}
 }
 
@@ -62627,8 +62752,9 @@ func (ptr *QTimeLine) FrameForTime(msec int) int {
 func callbackQTimeLine_Resume(ptr unsafe.Pointer) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QTimeLine::resume"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQTimeLineFromPointer(ptr).ResumeDefault()
 	}
-
 }
 
 func (ptr *QTimeLine) ConnectResume(f func()) {
@@ -62651,6 +62777,12 @@ func (ptr *QTimeLine) Resume() {
 	}
 }
 
+func (ptr *QTimeLine) ResumeDefault() {
+	if ptr.Pointer() != nil {
+		C.QTimeLine_ResumeDefault(ptr.Pointer())
+	}
+}
+
 func (ptr *QTimeLine) SetEndFrame(frame int) {
 	if ptr.Pointer() != nil {
 		C.QTimeLine_SetEndFrame(ptr.Pointer(), C.int(int32(frame)))
@@ -62667,8 +62799,9 @@ func (ptr *QTimeLine) SetFrameRange(startFrame int, endFrame int) {
 func callbackQTimeLine_SetPaused(ptr unsafe.Pointer, paused C.char) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QTimeLine::setPaused"); signal != nil {
 		signal.(func(bool))(int8(paused) != 0)
+	} else {
+		NewQTimeLineFromPointer(ptr).SetPausedDefault(int8(paused) != 0)
 	}
-
 }
 
 func (ptr *QTimeLine) ConnectSetPaused(f func(paused bool)) {
@@ -62678,7 +62811,7 @@ func (ptr *QTimeLine) ConnectSetPaused(f func(paused bool)) {
 	}
 }
 
-func (ptr *QTimeLine) DisconnectSetPaused(paused bool) {
+func (ptr *QTimeLine) DisconnectSetPaused() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QTimeLine::setPaused")
@@ -62688,6 +62821,12 @@ func (ptr *QTimeLine) DisconnectSetPaused(paused bool) {
 func (ptr *QTimeLine) SetPaused(paused bool) {
 	if ptr.Pointer() != nil {
 		C.QTimeLine_SetPaused(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(paused))))
+	}
+}
+
+func (ptr *QTimeLine) SetPausedDefault(paused bool) {
+	if ptr.Pointer() != nil {
+		C.QTimeLine_SetPausedDefault(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(paused))))
 	}
 }
 
@@ -62701,8 +62840,9 @@ func (ptr *QTimeLine) SetStartFrame(frame int) {
 func callbackQTimeLine_Start(ptr unsafe.Pointer) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QTimeLine::start"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQTimeLineFromPointer(ptr).StartDefault()
 	}
-
 }
 
 func (ptr *QTimeLine) ConnectStart(f func()) {
@@ -62722,6 +62862,12 @@ func (ptr *QTimeLine) DisconnectStart() {
 func (ptr *QTimeLine) Start() {
 	if ptr.Pointer() != nil {
 		C.QTimeLine_Start(ptr.Pointer())
+	}
+}
+
+func (ptr *QTimeLine) StartDefault() {
+	if ptr.Pointer() != nil {
+		C.QTimeLine_StartDefault(ptr.Pointer())
 	}
 }
 
@@ -62766,8 +62912,9 @@ func (ptr *QTimeLine) DisconnectStateChanged() {
 func callbackQTimeLine_Stop(ptr unsafe.Pointer) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QTimeLine::stop"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQTimeLineFromPointer(ptr).StopDefault()
 	}
-
 }
 
 func (ptr *QTimeLine) ConnectStop(f func()) {
@@ -62787,6 +62934,12 @@ func (ptr *QTimeLine) DisconnectStop() {
 func (ptr *QTimeLine) Stop() {
 	if ptr.Pointer() != nil {
 		C.QTimeLine_Stop(ptr.Pointer())
+	}
+}
+
+func (ptr *QTimeLine) StopDefault() {
+	if ptr.Pointer() != nil {
+		C.QTimeLine_StopDefault(ptr.Pointer())
 	}
 }
 
@@ -62830,8 +62983,9 @@ func (ptr *QTimeLine) TimerEventDefault(event QTimerEvent_ITF) {
 func callbackQTimeLine_ToggleDirection(ptr unsafe.Pointer) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QTimeLine::toggleDirection"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQTimeLineFromPointer(ptr).ToggleDirectionDefault()
 	}
-
 }
 
 func (ptr *QTimeLine) ConnectToggleDirection(f func()) {
@@ -62851,6 +63005,12 @@ func (ptr *QTimeLine) DisconnectToggleDirection() {
 func (ptr *QTimeLine) ToggleDirection() {
 	if ptr.Pointer() != nil {
 		C.QTimeLine_ToggleDirection(ptr.Pointer())
+	}
+}
+
+func (ptr *QTimeLine) ToggleDirectionDefault() {
+	if ptr.Pointer() != nil {
+		C.QTimeLine_ToggleDirectionDefault(ptr.Pointer())
 	}
 }
 
@@ -63252,27 +63412,6 @@ func (ptr *QTimeLine) MetaObjectDefault() *QMetaObject {
 	return nil
 }
 
-//go:generate stringer -type=QTimeZone__NameType
-//QTimeZone::NameType
-type QTimeZone__NameType int64
-
-const (
-	QTimeZone__DefaultName QTimeZone__NameType = QTimeZone__NameType(0)
-	QTimeZone__LongName    QTimeZone__NameType = QTimeZone__NameType(1)
-	QTimeZone__ShortName   QTimeZone__NameType = QTimeZone__NameType(2)
-	QTimeZone__OffsetName  QTimeZone__NameType = QTimeZone__NameType(3)
-)
-
-//go:generate stringer -type=QTimeZone__TimeType
-//QTimeZone::TimeType
-type QTimeZone__TimeType int64
-
-const (
-	QTimeZone__StandardTime QTimeZone__TimeType = QTimeZone__TimeType(0)
-	QTimeZone__DaylightTime QTimeZone__TimeType = QTimeZone__TimeType(1)
-	QTimeZone__GenericTime  QTimeZone__TimeType = QTimeZone__TimeType(2)
-)
-
 type QTimeZone struct {
 	ptr unsafe.Pointer
 }
@@ -63310,6 +63449,28 @@ func NewQTimeZoneFromPointer(ptr unsafe.Pointer) *QTimeZone {
 	n.SetPointer(ptr)
 	return n
 }
+
+//go:generate stringer -type=QTimeZone__NameType
+//QTimeZone::NameType
+type QTimeZone__NameType int64
+
+const (
+	QTimeZone__DefaultName QTimeZone__NameType = QTimeZone__NameType(0)
+	QTimeZone__LongName    QTimeZone__NameType = QTimeZone__NameType(1)
+	QTimeZone__ShortName   QTimeZone__NameType = QTimeZone__NameType(2)
+	QTimeZone__OffsetName  QTimeZone__NameType = QTimeZone__NameType(3)
+)
+
+//go:generate stringer -type=QTimeZone__TimeType
+//QTimeZone::TimeType
+type QTimeZone__TimeType int64
+
+const (
+	QTimeZone__StandardTime QTimeZone__TimeType = QTimeZone__TimeType(0)
+	QTimeZone__DaylightTime QTimeZone__TimeType = QTimeZone__TimeType(1)
+	QTimeZone__GenericTime  QTimeZone__TimeType = QTimeZone__TimeType(2)
+)
+
 func NewQTimeZone() *QTimeZone {
 	var tmpValue = NewQTimeZoneFromPointer(C.QTimeZone_NewQTimeZone())
 	runtime.SetFinalizer(tmpValue, (*QTimeZone).DestroyQTimeZone)
@@ -63770,8 +63931,9 @@ func (ptr *QTimer) SingleShot(msec int, receiver QObject_ITF, member string) {
 func callbackQTimer_Start2(ptr unsafe.Pointer) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QTimer::start2"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQTimerFromPointer(ptr).Start2Default()
 	}
-
 }
 
 func (ptr *QTimer) ConnectStart2(f func()) {
@@ -63794,12 +63956,19 @@ func (ptr *QTimer) Start2() {
 	}
 }
 
+func (ptr *QTimer) Start2Default() {
+	if ptr.Pointer() != nil {
+		C.QTimer_Start2Default(ptr.Pointer())
+	}
+}
+
 //export callbackQTimer_Start
 func callbackQTimer_Start(ptr unsafe.Pointer, msec C.int) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QTimer::start"); signal != nil {
 		signal.(func(int))(int(int32(msec)))
+	} else {
+		NewQTimerFromPointer(ptr).StartDefault(int(int32(msec)))
 	}
-
 }
 
 func (ptr *QTimer) ConnectStart(f func(msec int)) {
@@ -63809,7 +63978,7 @@ func (ptr *QTimer) ConnectStart(f func(msec int)) {
 	}
 }
 
-func (ptr *QTimer) DisconnectStart(msec int) {
+func (ptr *QTimer) DisconnectStart() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QTimer::start")
@@ -63822,12 +63991,19 @@ func (ptr *QTimer) Start(msec int) {
 	}
 }
 
+func (ptr *QTimer) StartDefault(msec int) {
+	if ptr.Pointer() != nil {
+		C.QTimer_StartDefault(ptr.Pointer(), C.int(int32(msec)))
+	}
+}
+
 //export callbackQTimer_Stop
 func callbackQTimer_Stop(ptr unsafe.Pointer) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QTimer::stop"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQTimerFromPointer(ptr).StopDefault()
 	}
-
 }
 
 func (ptr *QTimer) ConnectStop(f func()) {
@@ -63847,6 +64023,12 @@ func (ptr *QTimer) DisconnectStop() {
 func (ptr *QTimer) Stop() {
 	if ptr.Pointer() != nil {
 		C.QTimer_Stop(ptr.Pointer())
+	}
+}
+
+func (ptr *QTimer) StopDefault() {
+	if ptr.Pointer() != nil {
+		C.QTimer_StopDefault(ptr.Pointer())
 	}
 }
 
@@ -64862,6 +65044,51 @@ func (ptr *QUnhandledException) DestroyQUnhandledException() {
 	}
 }
 
+type QUnicodeTables struct {
+	ptr unsafe.Pointer
+}
+
+type QUnicodeTables_ITF interface {
+	QUnicodeTables_PTR() *QUnicodeTables
+}
+
+func (ptr *QUnicodeTables) QUnicodeTables_PTR() *QUnicodeTables {
+	return ptr
+}
+
+func (ptr *QUnicodeTables) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
+	}
+	return nil
+}
+
+func (ptr *QUnicodeTables) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
+	}
+}
+
+func PointerFromQUnicodeTables(ptr QUnicodeTables_ITF) unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QUnicodeTables_PTR().Pointer()
+	}
+	return nil
+}
+
+func NewQUnicodeTablesFromPointer(ptr unsafe.Pointer) *QUnicodeTables {
+	var n = new(QUnicodeTables)
+	n.SetPointer(ptr)
+	return n
+}
+
+func (ptr *QUnicodeTables) DestroyQUnicodeTables() {
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
+}
+
 //go:generate stringer -type=QUnicodeTables__GraphemeBreakClass
 //QUnicodeTables::GraphemeBreakClass
 type QUnicodeTables__GraphemeBreakClass int64
@@ -64969,65 +65196,6 @@ const (
 	QUnicodeTables__WordBreak_ExtendNumLet      QUnicodeTables__WordBreakClass = QUnicodeTables__WordBreakClass(15)
 )
 
-type QUnicodeTables struct {
-	ptr unsafe.Pointer
-}
-
-type QUnicodeTables_ITF interface {
-	QUnicodeTables_PTR() *QUnicodeTables
-}
-
-func (ptr *QUnicodeTables) QUnicodeTables_PTR() *QUnicodeTables {
-	return ptr
-}
-
-func (ptr *QUnicodeTables) Pointer() unsafe.Pointer {
-	if ptr != nil {
-		return ptr.ptr
-	}
-	return nil
-}
-
-func (ptr *QUnicodeTables) SetPointer(p unsafe.Pointer) {
-	if ptr != nil {
-		ptr.ptr = p
-	}
-}
-
-func PointerFromQUnicodeTables(ptr QUnicodeTables_ITF) unsafe.Pointer {
-	if ptr != nil {
-		return ptr.QUnicodeTables_PTR().Pointer()
-	}
-	return nil
-}
-
-func NewQUnicodeTablesFromPointer(ptr unsafe.Pointer) *QUnicodeTables {
-	var n = new(QUnicodeTables)
-	n.SetPointer(ptr)
-	return n
-}
-
-func (ptr *QUnicodeTables) DestroyQUnicodeTables() {
-	if ptr != nil {
-		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
-	}
-}
-
-//go:generate stringer -type=QUnicodeTools__CharAttributeOption
-//QUnicodeTools::CharAttributeOption
-type QUnicodeTools__CharAttributeOption int64
-
-const (
-	QUnicodeTools__GraphemeBreaks       QUnicodeTools__CharAttributeOption = QUnicodeTools__CharAttributeOption(0x01)
-	QUnicodeTools__WordBreaks           QUnicodeTools__CharAttributeOption = QUnicodeTools__CharAttributeOption(0x02)
-	QUnicodeTools__SentenceBreaks       QUnicodeTools__CharAttributeOption = QUnicodeTools__CharAttributeOption(0x04)
-	QUnicodeTools__LineBreaks           QUnicodeTools__CharAttributeOption = QUnicodeTools__CharAttributeOption(0x08)
-	QUnicodeTools__WhiteSpaces          QUnicodeTools__CharAttributeOption = QUnicodeTools__CharAttributeOption(0x10)
-	QUnicodeTools__DefaultOptionsCompat QUnicodeTools__CharAttributeOption = QUnicodeTools__CharAttributeOption(QUnicodeTools__GraphemeBreaks | QUnicodeTools__LineBreaks | QUnicodeTools__WhiteSpaces)
-	QUnicodeTools__DontClearAttributes  QUnicodeTools__CharAttributeOption = QUnicodeTools__CharAttributeOption(0x1000)
-)
-
 type QUnicodeTools struct {
 	ptr unsafe.Pointer
 }
@@ -65071,6 +65239,58 @@ func (ptr *QUnicodeTools) DestroyQUnicodeTools() {
 		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
+}
+
+//go:generate stringer -type=QUnicodeTools__CharAttributeOption
+//QUnicodeTools::CharAttributeOption
+type QUnicodeTools__CharAttributeOption int64
+
+const (
+	QUnicodeTools__GraphemeBreaks       QUnicodeTools__CharAttributeOption = QUnicodeTools__CharAttributeOption(0x01)
+	QUnicodeTools__WordBreaks           QUnicodeTools__CharAttributeOption = QUnicodeTools__CharAttributeOption(0x02)
+	QUnicodeTools__SentenceBreaks       QUnicodeTools__CharAttributeOption = QUnicodeTools__CharAttributeOption(0x04)
+	QUnicodeTools__LineBreaks           QUnicodeTools__CharAttributeOption = QUnicodeTools__CharAttributeOption(0x08)
+	QUnicodeTools__WhiteSpaces          QUnicodeTools__CharAttributeOption = QUnicodeTools__CharAttributeOption(0x10)
+	QUnicodeTools__DefaultOptionsCompat QUnicodeTools__CharAttributeOption = QUnicodeTools__CharAttributeOption(QUnicodeTools__GraphemeBreaks | QUnicodeTools__LineBreaks | QUnicodeTools__WhiteSpaces)
+	QUnicodeTools__DontClearAttributes  QUnicodeTools__CharAttributeOption = QUnicodeTools__CharAttributeOption(0x1000)
+)
+
+type QUrl struct {
+	ptr unsafe.Pointer
+}
+
+type QUrl_ITF interface {
+	QUrl_PTR() *QUrl
+}
+
+func (ptr *QUrl) QUrl_PTR() *QUrl {
+	return ptr
+}
+
+func (ptr *QUrl) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
+	}
+	return nil
+}
+
+func (ptr *QUrl) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
+	}
+}
+
+func PointerFromQUrl(ptr QUrl_ITF) unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QUrl_PTR().Pointer()
+	}
+	return nil
+}
+
+func NewQUrlFromPointer(ptr unsafe.Pointer) *QUrl {
+	var n = new(QUrl)
+	n.SetPointer(ptr)
+	return n
 }
 
 //go:generate stringer -type=QUrl__ComponentFormattingOption
@@ -65127,43 +65347,6 @@ const (
 	QUrl__AssumeLocalFile   QUrl__UserInputResolutionOption = QUrl__UserInputResolutionOption(1)
 )
 
-type QUrl struct {
-	ptr unsafe.Pointer
-}
-
-type QUrl_ITF interface {
-	QUrl_PTR() *QUrl
-}
-
-func (ptr *QUrl) QUrl_PTR() *QUrl {
-	return ptr
-}
-
-func (ptr *QUrl) Pointer() unsafe.Pointer {
-	if ptr != nil {
-		return ptr.ptr
-	}
-	return nil
-}
-
-func (ptr *QUrl) SetPointer(p unsafe.Pointer) {
-	if ptr != nil {
-		ptr.ptr = p
-	}
-}
-
-func PointerFromQUrl(ptr QUrl_ITF) unsafe.Pointer {
-	if ptr != nil {
-		return ptr.QUrl_PTR().Pointer()
-	}
-	return nil
-}
-
-func NewQUrlFromPointer(ptr unsafe.Pointer) *QUrl {
-	var n = new(QUrl)
-	n.SetPointer(ptr)
-	return n
-}
 func QUrl_FromEncoded(input QByteArray_ITF, parsingMode QUrl__ParsingMode) *QUrl {
 	var tmpValue = NewQUrlFromPointer(C.QUrl_QUrl_FromEncoded(PointerFromQByteArray(input), C.longlong(parsingMode)))
 	runtime.SetFinalizer(tmpValue, (*QUrl).DestroyQUrl)
@@ -65889,32 +66072,6 @@ func (ptr *QUrlQuery) DestroyQUrlQuery() {
 	}
 }
 
-//go:generate stringer -type=QUuid__Variant
-//QUuid::Variant
-type QUuid__Variant int64
-
-const (
-	QUuid__VarUnknown QUuid__Variant = QUuid__Variant(-1)
-	QUuid__NCS        QUuid__Variant = QUuid__Variant(0)
-	QUuid__DCE        QUuid__Variant = QUuid__Variant(2)
-	QUuid__Microsoft  QUuid__Variant = QUuid__Variant(6)
-	QUuid__Reserved   QUuid__Variant = QUuid__Variant(7)
-)
-
-//go:generate stringer -type=QUuid__Version
-//QUuid::Version
-type QUuid__Version int64
-
-const (
-	QUuid__VerUnknown    QUuid__Version = QUuid__Version(-1)
-	QUuid__Time          QUuid__Version = QUuid__Version(1)
-	QUuid__EmbeddedPOSIX QUuid__Version = QUuid__Version(2)
-	QUuid__Md5           QUuid__Version = QUuid__Version(3)
-	QUuid__Name          QUuid__Version = QUuid__Version(QUuid__Md5)
-	QUuid__Random        QUuid__Version = QUuid__Version(4)
-	QUuid__Sha1          QUuid__Version = QUuid__Version(5)
-)
-
 type QUuid struct {
 	ptr unsafe.Pointer
 }
@@ -65959,6 +66116,32 @@ func (ptr *QUuid) DestroyQUuid() {
 		ptr.SetPointer(nil)
 	}
 }
+
+//go:generate stringer -type=QUuid__Variant
+//QUuid::Variant
+type QUuid__Variant int64
+
+const (
+	QUuid__VarUnknown QUuid__Variant = QUuid__Variant(-1)
+	QUuid__NCS        QUuid__Variant = QUuid__Variant(0)
+	QUuid__DCE        QUuid__Variant = QUuid__Variant(2)
+	QUuid__Microsoft  QUuid__Variant = QUuid__Variant(6)
+	QUuid__Reserved   QUuid__Variant = QUuid__Variant(7)
+)
+
+//go:generate stringer -type=QUuid__Version
+//QUuid::Version
+type QUuid__Version int64
+
+const (
+	QUuid__VerUnknown    QUuid__Version = QUuid__Version(-1)
+	QUuid__Time          QUuid__Version = QUuid__Version(1)
+	QUuid__EmbeddedPOSIX QUuid__Version = QUuid__Version(2)
+	QUuid__Md5           QUuid__Version = QUuid__Version(3)
+	QUuid__Name          QUuid__Version = QUuid__Version(QUuid__Md5)
+	QUuid__Random        QUuid__Version = QUuid__Version(4)
+	QUuid__Sha1          QUuid__Version = QUuid__Version(5)
+)
 
 func QUuid_CreateUuid() *QUuid {
 	var tmpValue = NewQUuidFromPointer(C.QUuid_QUuid_CreateUuid())
@@ -69023,6 +69206,44 @@ func (ptr *QXmlStreamNotationDeclaration) DestroyQXmlStreamNotationDeclaration()
 	}
 }
 
+type QXmlStreamReader struct {
+	ptr unsafe.Pointer
+}
+
+type QXmlStreamReader_ITF interface {
+	QXmlStreamReader_PTR() *QXmlStreamReader
+}
+
+func (ptr *QXmlStreamReader) QXmlStreamReader_PTR() *QXmlStreamReader {
+	return ptr
+}
+
+func (ptr *QXmlStreamReader) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
+	}
+	return nil
+}
+
+func (ptr *QXmlStreamReader) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
+	}
+}
+
+func PointerFromQXmlStreamReader(ptr QXmlStreamReader_ITF) unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QXmlStreamReader_PTR().Pointer()
+	}
+	return nil
+}
+
+func NewQXmlStreamReaderFromPointer(ptr unsafe.Pointer) *QXmlStreamReader {
+	var n = new(QXmlStreamReader)
+	n.SetPointer(ptr)
+	return n
+}
+
 //go:generate stringer -type=QXmlStreamReader__Error
 //QXmlStreamReader::Error
 type QXmlStreamReader__Error int64
@@ -69063,43 +69284,6 @@ const (
 	QXmlStreamReader__ProcessingInstruction QXmlStreamReader__TokenType = QXmlStreamReader__TokenType(10)
 )
 
-type QXmlStreamReader struct {
-	ptr unsafe.Pointer
-}
-
-type QXmlStreamReader_ITF interface {
-	QXmlStreamReader_PTR() *QXmlStreamReader
-}
-
-func (ptr *QXmlStreamReader) QXmlStreamReader_PTR() *QXmlStreamReader {
-	return ptr
-}
-
-func (ptr *QXmlStreamReader) Pointer() unsafe.Pointer {
-	if ptr != nil {
-		return ptr.ptr
-	}
-	return nil
-}
-
-func (ptr *QXmlStreamReader) SetPointer(p unsafe.Pointer) {
-	if ptr != nil {
-		ptr.ptr = p
-	}
-}
-
-func PointerFromQXmlStreamReader(ptr QXmlStreamReader_ITF) unsafe.Pointer {
-	if ptr != nil {
-		return ptr.QXmlStreamReader_PTR().Pointer()
-	}
-	return nil
-}
-
-func NewQXmlStreamReaderFromPointer(ptr unsafe.Pointer) *QXmlStreamReader {
-	var n = new(QXmlStreamReader)
-	n.SetPointer(ptr)
-	return n
-}
 func (ptr *QXmlStreamReader) NamespaceProcessing() bool {
 	if ptr.Pointer() != nil {
 		return C.QXmlStreamReader_NamespaceProcessing(ptr.Pointer()) != 0
@@ -69854,6 +70038,51 @@ func (ptr *QXmlStreamWriter) WriteTextElement2(qualifiedName string, text string
 func (ptr *QXmlStreamWriter) DestroyQXmlStreamWriter() {
 	if ptr.Pointer() != nil {
 		C.QXmlStreamWriter_DestroyQXmlStreamWriter(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
+}
+
+type Qt struct {
+	ptr unsafe.Pointer
+}
+
+type Qt_ITF interface {
+	Qt_PTR() *Qt
+}
+
+func (ptr *Qt) Qt_PTR() *Qt {
+	return ptr
+}
+
+func (ptr *Qt) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
+	}
+	return nil
+}
+
+func (ptr *Qt) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
+	}
+}
+
+func PointerFromQt(ptr Qt_ITF) unsafe.Pointer {
+	if ptr != nil {
+		return ptr.Qt_PTR().Pointer()
+	}
+	return nil
+}
+
+func NewQtFromPointer(ptr unsafe.Pointer) *Qt {
+	var n = new(Qt)
+	n.SetPointer(ptr)
+	return n
+}
+
+func (ptr *Qt) DestroyQt() {
+	if ptr != nil {
+		C.free(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
 }
@@ -71575,62 +71804,6 @@ const (
 	Qt__WindowCancelButtonHint              Qt__WindowType = Qt__WindowType(0x00100000)
 )
 
-type Qt struct {
-	ptr unsafe.Pointer
-}
-
-type Qt_ITF interface {
-	Qt_PTR() *Qt
-}
-
-func (ptr *Qt) Qt_PTR() *Qt {
-	return ptr
-}
-
-func (ptr *Qt) Pointer() unsafe.Pointer {
-	if ptr != nil {
-		return ptr.ptr
-	}
-	return nil
-}
-
-func (ptr *Qt) SetPointer(p unsafe.Pointer) {
-	if ptr != nil {
-		ptr.ptr = p
-	}
-}
-
-func PointerFromQt(ptr Qt_ITF) unsafe.Pointer {
-	if ptr != nil {
-		return ptr.Qt_PTR().Pointer()
-	}
-	return nil
-}
-
-func NewQtFromPointer(ptr unsafe.Pointer) *Qt {
-	var n = new(Qt)
-	n.SetPointer(ptr)
-	return n
-}
-
-func (ptr *Qt) DestroyQt() {
-	if ptr != nil {
-		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
-	}
-}
-
-//go:generate stringer -type=QtGlobalStatic__GuardValues
-//QtGlobalStatic::GuardValues
-type QtGlobalStatic__GuardValues int64
-
-const (
-	QtGlobalStatic__Destroyed     QtGlobalStatic__GuardValues = QtGlobalStatic__GuardValues(-2)
-	QtGlobalStatic__Initialized   QtGlobalStatic__GuardValues = QtGlobalStatic__GuardValues(-1)
-	QtGlobalStatic__Uninitialized QtGlobalStatic__GuardValues = QtGlobalStatic__GuardValues(0)
-	QtGlobalStatic__Initializing  QtGlobalStatic__GuardValues = QtGlobalStatic__GuardValues(1)
-)
-
 type QtGlobalStatic struct {
 	ptr unsafe.Pointer
 }
@@ -71676,14 +71849,15 @@ func (ptr *QtGlobalStatic) DestroyQtGlobalStatic() {
 	}
 }
 
-//go:generate stringer -type=QtMetaTypePrivate__IteratorCapability
-//QtMetaTypePrivate::IteratorCapability
-type QtMetaTypePrivate__IteratorCapability int64
+//go:generate stringer -type=QtGlobalStatic__GuardValues
+//QtGlobalStatic::GuardValues
+type QtGlobalStatic__GuardValues int64
 
 const (
-	QtMetaTypePrivate__ForwardCapability       QtMetaTypePrivate__IteratorCapability = QtMetaTypePrivate__IteratorCapability(1)
-	QtMetaTypePrivate__BiDirectionalCapability QtMetaTypePrivate__IteratorCapability = QtMetaTypePrivate__IteratorCapability(2)
-	QtMetaTypePrivate__RandomAccessCapability  QtMetaTypePrivate__IteratorCapability = QtMetaTypePrivate__IteratorCapability(4)
+	QtGlobalStatic__Destroyed     QtGlobalStatic__GuardValues = QtGlobalStatic__GuardValues(-2)
+	QtGlobalStatic__Initialized   QtGlobalStatic__GuardValues = QtGlobalStatic__GuardValues(-1)
+	QtGlobalStatic__Uninitialized QtGlobalStatic__GuardValues = QtGlobalStatic__GuardValues(0)
+	QtGlobalStatic__Initializing  QtGlobalStatic__GuardValues = QtGlobalStatic__GuardValues(1)
 )
 
 type QtMetaTypePrivate struct {
@@ -71730,3 +71904,13 @@ func (ptr *QtMetaTypePrivate) DestroyQtMetaTypePrivate() {
 		ptr.SetPointer(nil)
 	}
 }
+
+//go:generate stringer -type=QtMetaTypePrivate__IteratorCapability
+//QtMetaTypePrivate::IteratorCapability
+type QtMetaTypePrivate__IteratorCapability int64
+
+const (
+	QtMetaTypePrivate__ForwardCapability       QtMetaTypePrivate__IteratorCapability = QtMetaTypePrivate__IteratorCapability(1)
+	QtMetaTypePrivate__BiDirectionalCapability QtMetaTypePrivate__IteratorCapability = QtMetaTypePrivate__IteratorCapability(2)
+	QtMetaTypePrivate__RandomAccessCapability  QtMetaTypePrivate__IteratorCapability = QtMetaTypePrivate__IteratorCapability(4)
+)

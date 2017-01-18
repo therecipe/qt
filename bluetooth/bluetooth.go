@@ -24,32 +24,6 @@ func cGoUnpackString(s C.struct_QtBluetooth_PackedString) string {
 	return C.GoStringN(s.data, C.int(s.len))
 }
 
-//go:generate stringer -type=OSXBluetooth__CentralManagerState
-//OSXBluetooth::CentralManagerState
-type OSXBluetooth__CentralManagerState int64
-
-const (
-	OSXBluetooth__CentralManagerIdle          OSXBluetooth__CentralManagerState = OSXBluetooth__CentralManagerState(0)
-	OSXBluetooth__CentralManagerUpdating      OSXBluetooth__CentralManagerState = OSXBluetooth__CentralManagerState(1)
-	OSXBluetooth__CentralManagerConnecting    OSXBluetooth__CentralManagerState = OSXBluetooth__CentralManagerState(2)
-	OSXBluetooth__CentralManagerDiscovering   OSXBluetooth__CentralManagerState = OSXBluetooth__CentralManagerState(3)
-	OSXBluetooth__CentralManagerDisconnecting OSXBluetooth__CentralManagerState = OSXBluetooth__CentralManagerState(4)
-)
-
-//go:generate stringer -type=OSXBluetooth__OBEXRequest
-//OSXBluetooth::OBEXRequest
-type OSXBluetooth__OBEXRequest int64
-
-const (
-	OSXBluetooth__OBEXNoop       OSXBluetooth__OBEXRequest = OSXBluetooth__OBEXRequest(0)
-	OSXBluetooth__OBEXConnect    OSXBluetooth__OBEXRequest = OSXBluetooth__OBEXRequest(1)
-	OSXBluetooth__OBEXDisconnect OSXBluetooth__OBEXRequest = OSXBluetooth__OBEXRequest(2)
-	OSXBluetooth__OBEXPut        OSXBluetooth__OBEXRequest = OSXBluetooth__OBEXRequest(3)
-	OSXBluetooth__OBEXGet        OSXBluetooth__OBEXRequest = OSXBluetooth__OBEXRequest(4)
-	OSXBluetooth__OBEXSetPath    OSXBluetooth__OBEXRequest = OSXBluetooth__OBEXRequest(5)
-	OSXBluetooth__OBEXAbort      OSXBluetooth__OBEXRequest = OSXBluetooth__OBEXRequest(6)
-)
-
 type OSXBluetooth struct {
 	ptr unsafe.Pointer
 }
@@ -95,26 +69,30 @@ func (ptr *OSXBluetooth) DestroyOSXBluetooth() {
 	}
 }
 
-//go:generate stringer -type=QBluetooth__AttAccessConstraint
-//QBluetooth::AttAccessConstraint
-type QBluetooth__AttAccessConstraint int64
+//go:generate stringer -type=OSXBluetooth__CentralManagerState
+//OSXBluetooth::CentralManagerState
+type OSXBluetooth__CentralManagerState int64
 
 const (
-	QBluetooth__AttAuthorizationRequired  QBluetooth__AttAccessConstraint = QBluetooth__AttAccessConstraint(0x1)
-	QBluetooth__AttAuthenticationRequired QBluetooth__AttAccessConstraint = QBluetooth__AttAccessConstraint(0x2)
-	QBluetooth__AttEncryptionRequired     QBluetooth__AttAccessConstraint = QBluetooth__AttAccessConstraint(0x4)
+	OSXBluetooth__CentralManagerIdle          OSXBluetooth__CentralManagerState = OSXBluetooth__CentralManagerState(0)
+	OSXBluetooth__CentralManagerUpdating      OSXBluetooth__CentralManagerState = OSXBluetooth__CentralManagerState(1)
+	OSXBluetooth__CentralManagerConnecting    OSXBluetooth__CentralManagerState = OSXBluetooth__CentralManagerState(2)
+	OSXBluetooth__CentralManagerDiscovering   OSXBluetooth__CentralManagerState = OSXBluetooth__CentralManagerState(3)
+	OSXBluetooth__CentralManagerDisconnecting OSXBluetooth__CentralManagerState = OSXBluetooth__CentralManagerState(4)
 )
 
-//go:generate stringer -type=QBluetooth__Security
-//QBluetooth::Security
-type QBluetooth__Security int64
+//go:generate stringer -type=OSXBluetooth__OBEXRequest
+//OSXBluetooth::OBEXRequest
+type OSXBluetooth__OBEXRequest int64
 
 const (
-	QBluetooth__NoSecurity     QBluetooth__Security = QBluetooth__Security(0x00)
-	QBluetooth__Authorization  QBluetooth__Security = QBluetooth__Security(0x01)
-	QBluetooth__Authentication QBluetooth__Security = QBluetooth__Security(0x02)
-	QBluetooth__Encryption     QBluetooth__Security = QBluetooth__Security(0x04)
-	QBluetooth__Secure         QBluetooth__Security = QBluetooth__Security(0x08)
+	OSXBluetooth__OBEXNoop       OSXBluetooth__OBEXRequest = OSXBluetooth__OBEXRequest(0)
+	OSXBluetooth__OBEXConnect    OSXBluetooth__OBEXRequest = OSXBluetooth__OBEXRequest(1)
+	OSXBluetooth__OBEXDisconnect OSXBluetooth__OBEXRequest = OSXBluetooth__OBEXRequest(2)
+	OSXBluetooth__OBEXPut        OSXBluetooth__OBEXRequest = OSXBluetooth__OBEXRequest(3)
+	OSXBluetooth__OBEXGet        OSXBluetooth__OBEXRequest = OSXBluetooth__OBEXRequest(4)
+	OSXBluetooth__OBEXSetPath    OSXBluetooth__OBEXRequest = OSXBluetooth__OBEXRequest(5)
+	OSXBluetooth__OBEXAbort      OSXBluetooth__OBEXRequest = OSXBluetooth__OBEXRequest(6)
 )
 
 type QBluetooth struct {
@@ -161,6 +139,28 @@ func (ptr *QBluetooth) DestroyQBluetooth() {
 		ptr.SetPointer(nil)
 	}
 }
+
+//go:generate stringer -type=QBluetooth__AttAccessConstraint
+//QBluetooth::AttAccessConstraint
+type QBluetooth__AttAccessConstraint int64
+
+const (
+	QBluetooth__AttAuthorizationRequired  QBluetooth__AttAccessConstraint = QBluetooth__AttAccessConstraint(0x1)
+	QBluetooth__AttAuthenticationRequired QBluetooth__AttAccessConstraint = QBluetooth__AttAccessConstraint(0x2)
+	QBluetooth__AttEncryptionRequired     QBluetooth__AttAccessConstraint = QBluetooth__AttAccessConstraint(0x4)
+)
+
+//go:generate stringer -type=QBluetooth__Security
+//QBluetooth::Security
+type QBluetooth__Security int64
+
+const (
+	QBluetooth__NoSecurity     QBluetooth__Security = QBluetooth__Security(0x00)
+	QBluetooth__Authorization  QBluetooth__Security = QBluetooth__Security(0x01)
+	QBluetooth__Authentication QBluetooth__Security = QBluetooth__Security(0x02)
+	QBluetooth__Encryption     QBluetooth__Security = QBluetooth__Security(0x04)
+	QBluetooth__Secure         QBluetooth__Security = QBluetooth__Security(0x08)
+)
 
 type QBluetoothAddress struct {
 	ptr unsafe.Pointer
@@ -259,28 +259,6 @@ func (ptr *QBluetoothAddress) DestroyQBluetoothAddress() {
 	}
 }
 
-//go:generate stringer -type=QBluetoothDeviceDiscoveryAgent__Error
-//QBluetoothDeviceDiscoveryAgent::Error
-type QBluetoothDeviceDiscoveryAgent__Error int64
-
-const (
-	QBluetoothDeviceDiscoveryAgent__NoError                      QBluetoothDeviceDiscoveryAgent__Error = QBluetoothDeviceDiscoveryAgent__Error(0)
-	QBluetoothDeviceDiscoveryAgent__InputOutputError             QBluetoothDeviceDiscoveryAgent__Error = QBluetoothDeviceDiscoveryAgent__Error(1)
-	QBluetoothDeviceDiscoveryAgent__PoweredOffError              QBluetoothDeviceDiscoveryAgent__Error = QBluetoothDeviceDiscoveryAgent__Error(2)
-	QBluetoothDeviceDiscoveryAgent__InvalidBluetoothAdapterError QBluetoothDeviceDiscoveryAgent__Error = QBluetoothDeviceDiscoveryAgent__Error(3)
-	QBluetoothDeviceDiscoveryAgent__UnsupportedPlatformError     QBluetoothDeviceDiscoveryAgent__Error = QBluetoothDeviceDiscoveryAgent__Error(4)
-	QBluetoothDeviceDiscoveryAgent__UnknownError                 QBluetoothDeviceDiscoveryAgent__Error = QBluetoothDeviceDiscoveryAgent__Error(100)
-)
-
-//go:generate stringer -type=QBluetoothDeviceDiscoveryAgent__InquiryType
-//QBluetoothDeviceDiscoveryAgent::InquiryType
-type QBluetoothDeviceDiscoveryAgent__InquiryType int64
-
-const (
-	QBluetoothDeviceDiscoveryAgent__GeneralUnlimitedInquiry QBluetoothDeviceDiscoveryAgent__InquiryType = QBluetoothDeviceDiscoveryAgent__InquiryType(0)
-	QBluetoothDeviceDiscoveryAgent__LimitedInquiry          QBluetoothDeviceDiscoveryAgent__InquiryType = QBluetoothDeviceDiscoveryAgent__InquiryType(1)
-)
-
 type QBluetoothDeviceDiscoveryAgent struct {
 	core.QObject
 }
@@ -319,6 +297,28 @@ func NewQBluetoothDeviceDiscoveryAgentFromPointer(ptr unsafe.Pointer) *QBluetoot
 	n.SetPointer(ptr)
 	return n
 }
+
+//go:generate stringer -type=QBluetoothDeviceDiscoveryAgent__Error
+//QBluetoothDeviceDiscoveryAgent::Error
+type QBluetoothDeviceDiscoveryAgent__Error int64
+
+const (
+	QBluetoothDeviceDiscoveryAgent__NoError                      QBluetoothDeviceDiscoveryAgent__Error = QBluetoothDeviceDiscoveryAgent__Error(0)
+	QBluetoothDeviceDiscoveryAgent__InputOutputError             QBluetoothDeviceDiscoveryAgent__Error = QBluetoothDeviceDiscoveryAgent__Error(1)
+	QBluetoothDeviceDiscoveryAgent__PoweredOffError              QBluetoothDeviceDiscoveryAgent__Error = QBluetoothDeviceDiscoveryAgent__Error(2)
+	QBluetoothDeviceDiscoveryAgent__InvalidBluetoothAdapterError QBluetoothDeviceDiscoveryAgent__Error = QBluetoothDeviceDiscoveryAgent__Error(3)
+	QBluetoothDeviceDiscoveryAgent__UnsupportedPlatformError     QBluetoothDeviceDiscoveryAgent__Error = QBluetoothDeviceDiscoveryAgent__Error(4)
+	QBluetoothDeviceDiscoveryAgent__UnknownError                 QBluetoothDeviceDiscoveryAgent__Error = QBluetoothDeviceDiscoveryAgent__Error(100)
+)
+
+//go:generate stringer -type=QBluetoothDeviceDiscoveryAgent__InquiryType
+//QBluetoothDeviceDiscoveryAgent::InquiryType
+type QBluetoothDeviceDiscoveryAgent__InquiryType int64
+
+const (
+	QBluetoothDeviceDiscoveryAgent__GeneralUnlimitedInquiry QBluetoothDeviceDiscoveryAgent__InquiryType = QBluetoothDeviceDiscoveryAgent__InquiryType(0)
+	QBluetoothDeviceDiscoveryAgent__LimitedInquiry          QBluetoothDeviceDiscoveryAgent__InquiryType = QBluetoothDeviceDiscoveryAgent__InquiryType(1)
+)
 
 //export callbackQBluetoothDeviceDiscoveryAgent_Canceled
 func callbackQBluetoothDeviceDiscoveryAgent_Canceled(ptr unsafe.Pointer) {
@@ -503,8 +503,9 @@ func (ptr *QBluetoothDeviceDiscoveryAgent) SetInquiryType(ty QBluetoothDeviceDis
 func callbackQBluetoothDeviceDiscoveryAgent_Start(ptr unsafe.Pointer) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QBluetoothDeviceDiscoveryAgent::start"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQBluetoothDeviceDiscoveryAgentFromPointer(ptr).StartDefault()
 	}
-
 }
 
 func (ptr *QBluetoothDeviceDiscoveryAgent) ConnectStart(f func()) {
@@ -527,12 +528,19 @@ func (ptr *QBluetoothDeviceDiscoveryAgent) Start() {
 	}
 }
 
+func (ptr *QBluetoothDeviceDiscoveryAgent) StartDefault() {
+	if ptr.Pointer() != nil {
+		C.QBluetoothDeviceDiscoveryAgent_StartDefault(ptr.Pointer())
+	}
+}
+
 //export callbackQBluetoothDeviceDiscoveryAgent_Stop
 func callbackQBluetoothDeviceDiscoveryAgent_Stop(ptr unsafe.Pointer) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QBluetoothDeviceDiscoveryAgent::stop"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQBluetoothDeviceDiscoveryAgentFromPointer(ptr).StopDefault()
 	}
-
 }
 
 func (ptr *QBluetoothDeviceDiscoveryAgent) ConnectStop(f func()) {
@@ -552,6 +560,12 @@ func (ptr *QBluetoothDeviceDiscoveryAgent) DisconnectStop() {
 func (ptr *QBluetoothDeviceDiscoveryAgent) Stop() {
 	if ptr.Pointer() != nil {
 		C.QBluetoothDeviceDiscoveryAgent_Stop(ptr.Pointer())
+	}
+}
+
+func (ptr *QBluetoothDeviceDiscoveryAgent) StopDefault() {
+	if ptr.Pointer() != nil {
+		C.QBluetoothDeviceDiscoveryAgent_StopDefault(ptr.Pointer())
 	}
 }
 
@@ -905,6 +919,44 @@ func (ptr *QBluetoothDeviceDiscoveryAgent) MetaObjectDefault() *core.QMetaObject
 	return nil
 }
 
+type QBluetoothDeviceInfo struct {
+	ptr unsafe.Pointer
+}
+
+type QBluetoothDeviceInfo_ITF interface {
+	QBluetoothDeviceInfo_PTR() *QBluetoothDeviceInfo
+}
+
+func (ptr *QBluetoothDeviceInfo) QBluetoothDeviceInfo_PTR() *QBluetoothDeviceInfo {
+	return ptr
+}
+
+func (ptr *QBluetoothDeviceInfo) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
+	}
+	return nil
+}
+
+func (ptr *QBluetoothDeviceInfo) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
+	}
+}
+
+func PointerFromQBluetoothDeviceInfo(ptr QBluetoothDeviceInfo_ITF) unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QBluetoothDeviceInfo_PTR().Pointer()
+	}
+	return nil
+}
+
+func NewQBluetoothDeviceInfoFromPointer(ptr unsafe.Pointer) *QBluetoothDeviceInfo {
+	var n = new(QBluetoothDeviceInfo)
+	n.SetPointer(ptr)
+	return n
+}
+
 //go:generate stringer -type=QBluetoothDeviceInfo__CoreConfiguration
 //QBluetoothDeviceInfo::CoreConfiguration
 type QBluetoothDeviceInfo__CoreConfiguration int64
@@ -1105,43 +1157,6 @@ const (
 	QBluetoothDeviceInfo__AllServices           QBluetoothDeviceInfo__ServiceClass = QBluetoothDeviceInfo__ServiceClass(0x07ff)
 )
 
-type QBluetoothDeviceInfo struct {
-	ptr unsafe.Pointer
-}
-
-type QBluetoothDeviceInfo_ITF interface {
-	QBluetoothDeviceInfo_PTR() *QBluetoothDeviceInfo
-}
-
-func (ptr *QBluetoothDeviceInfo) QBluetoothDeviceInfo_PTR() *QBluetoothDeviceInfo {
-	return ptr
-}
-
-func (ptr *QBluetoothDeviceInfo) Pointer() unsafe.Pointer {
-	if ptr != nil {
-		return ptr.ptr
-	}
-	return nil
-}
-
-func (ptr *QBluetoothDeviceInfo) SetPointer(p unsafe.Pointer) {
-	if ptr != nil {
-		ptr.ptr = p
-	}
-}
-
-func PointerFromQBluetoothDeviceInfo(ptr QBluetoothDeviceInfo_ITF) unsafe.Pointer {
-	if ptr != nil {
-		return ptr.QBluetoothDeviceInfo_PTR().Pointer()
-	}
-	return nil
-}
-
-func NewQBluetoothDeviceInfoFromPointer(ptr unsafe.Pointer) *QBluetoothDeviceInfo {
-	var n = new(QBluetoothDeviceInfo)
-	n.SetPointer(ptr)
-	return n
-}
 func NewQBluetoothDeviceInfo() *QBluetoothDeviceInfo {
 	var tmpValue = NewQBluetoothDeviceInfoFromPointer(C.QBluetoothDeviceInfo_NewQBluetoothDeviceInfo())
 	runtime.SetFinalizer(tmpValue, (*QBluetoothDeviceInfo).DestroyQBluetoothDeviceInfo)
@@ -1377,37 +1392,6 @@ func (ptr *QBluetoothHostInfo) DestroyQBluetoothHostInfo() {
 	}
 }
 
-//go:generate stringer -type=QBluetoothLocalDevice__Error
-//QBluetoothLocalDevice::Error
-type QBluetoothLocalDevice__Error int64
-
-const (
-	QBluetoothLocalDevice__NoError      QBluetoothLocalDevice__Error = QBluetoothLocalDevice__Error(0)
-	QBluetoothLocalDevice__PairingError QBluetoothLocalDevice__Error = QBluetoothLocalDevice__Error(1)
-	QBluetoothLocalDevice__UnknownError QBluetoothLocalDevice__Error = QBluetoothLocalDevice__Error(100)
-)
-
-//go:generate stringer -type=QBluetoothLocalDevice__HostMode
-//QBluetoothLocalDevice::HostMode
-type QBluetoothLocalDevice__HostMode int64
-
-const (
-	QBluetoothLocalDevice__HostPoweredOff                 QBluetoothLocalDevice__HostMode = QBluetoothLocalDevice__HostMode(0)
-	QBluetoothLocalDevice__HostConnectable                QBluetoothLocalDevice__HostMode = QBluetoothLocalDevice__HostMode(1)
-	QBluetoothLocalDevice__HostDiscoverable               QBluetoothLocalDevice__HostMode = QBluetoothLocalDevice__HostMode(2)
-	QBluetoothLocalDevice__HostDiscoverableLimitedInquiry QBluetoothLocalDevice__HostMode = QBluetoothLocalDevice__HostMode(3)
-)
-
-//go:generate stringer -type=QBluetoothLocalDevice__Pairing
-//QBluetoothLocalDevice::Pairing
-type QBluetoothLocalDevice__Pairing int64
-
-const (
-	QBluetoothLocalDevice__Unpaired         QBluetoothLocalDevice__Pairing = QBluetoothLocalDevice__Pairing(0)
-	QBluetoothLocalDevice__Paired           QBluetoothLocalDevice__Pairing = QBluetoothLocalDevice__Pairing(1)
-	QBluetoothLocalDevice__AuthorizedPaired QBluetoothLocalDevice__Pairing = QBluetoothLocalDevice__Pairing(2)
-)
-
 type QBluetoothLocalDevice struct {
 	core.QObject
 }
@@ -1446,6 +1430,37 @@ func NewQBluetoothLocalDeviceFromPointer(ptr unsafe.Pointer) *QBluetoothLocalDev
 	n.SetPointer(ptr)
 	return n
 }
+
+//go:generate stringer -type=QBluetoothLocalDevice__Error
+//QBluetoothLocalDevice::Error
+type QBluetoothLocalDevice__Error int64
+
+const (
+	QBluetoothLocalDevice__NoError      QBluetoothLocalDevice__Error = QBluetoothLocalDevice__Error(0)
+	QBluetoothLocalDevice__PairingError QBluetoothLocalDevice__Error = QBluetoothLocalDevice__Error(1)
+	QBluetoothLocalDevice__UnknownError QBluetoothLocalDevice__Error = QBluetoothLocalDevice__Error(100)
+)
+
+//go:generate stringer -type=QBluetoothLocalDevice__HostMode
+//QBluetoothLocalDevice::HostMode
+type QBluetoothLocalDevice__HostMode int64
+
+const (
+	QBluetoothLocalDevice__HostPoweredOff                 QBluetoothLocalDevice__HostMode = QBluetoothLocalDevice__HostMode(0)
+	QBluetoothLocalDevice__HostConnectable                QBluetoothLocalDevice__HostMode = QBluetoothLocalDevice__HostMode(1)
+	QBluetoothLocalDevice__HostDiscoverable               QBluetoothLocalDevice__HostMode = QBluetoothLocalDevice__HostMode(2)
+	QBluetoothLocalDevice__HostDiscoverableLimitedInquiry QBluetoothLocalDevice__HostMode = QBluetoothLocalDevice__HostMode(3)
+)
+
+//go:generate stringer -type=QBluetoothLocalDevice__Pairing
+//QBluetoothLocalDevice::Pairing
+type QBluetoothLocalDevice__Pairing int64
+
+const (
+	QBluetoothLocalDevice__Unpaired         QBluetoothLocalDevice__Pairing = QBluetoothLocalDevice__Pairing(0)
+	QBluetoothLocalDevice__Paired           QBluetoothLocalDevice__Pairing = QBluetoothLocalDevice__Pairing(1)
+	QBluetoothLocalDevice__AuthorizedPaired QBluetoothLocalDevice__Pairing = QBluetoothLocalDevice__Pairing(2)
+)
 
 //export callbackQBluetoothLocalDevice_DeviceConnected
 func callbackQBluetoothLocalDevice_DeviceConnected(ptr unsafe.Pointer, address unsafe.Pointer) {
@@ -1777,8 +1792,9 @@ func (ptr *QBluetoothLocalDevice) Name() string {
 func callbackQBluetoothLocalDevice_PairingConfirmation(ptr unsafe.Pointer, accept C.char) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QBluetoothLocalDevice::pairingConfirmation"); signal != nil {
 		signal.(func(bool))(int8(accept) != 0)
+	} else {
+		NewQBluetoothLocalDeviceFromPointer(ptr).PairingConfirmationDefault(int8(accept) != 0)
 	}
-
 }
 
 func (ptr *QBluetoothLocalDevice) ConnectPairingConfirmation(f func(accept bool)) {
@@ -1788,7 +1804,7 @@ func (ptr *QBluetoothLocalDevice) ConnectPairingConfirmation(f func(accept bool)
 	}
 }
 
-func (ptr *QBluetoothLocalDevice) DisconnectPairingConfirmation(accept bool) {
+func (ptr *QBluetoothLocalDevice) DisconnectPairingConfirmation() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QBluetoothLocalDevice::pairingConfirmation")
@@ -1798,6 +1814,12 @@ func (ptr *QBluetoothLocalDevice) DisconnectPairingConfirmation(accept bool) {
 func (ptr *QBluetoothLocalDevice) PairingConfirmation(accept bool) {
 	if ptr.Pointer() != nil {
 		C.QBluetoothLocalDevice_PairingConfirmation(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(accept))))
+	}
+}
+
+func (ptr *QBluetoothLocalDevice) PairingConfirmationDefault(accept bool) {
+	if ptr.Pointer() != nil {
+		C.QBluetoothLocalDevice_PairingConfirmationDefault(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(accept))))
 	}
 }
 
@@ -2177,19 +2199,6 @@ func (ptr *QBluetoothLocalDevice) MetaObjectDefault() *core.QMetaObject {
 	return nil
 }
 
-//go:generate stringer -type=QBluetoothServer__Error
-//QBluetoothServer::Error
-type QBluetoothServer__Error int64
-
-const (
-	QBluetoothServer__NoError                       QBluetoothServer__Error = QBluetoothServer__Error(0)
-	QBluetoothServer__UnknownError                  QBluetoothServer__Error = QBluetoothServer__Error(1)
-	QBluetoothServer__PoweredOffError               QBluetoothServer__Error = QBluetoothServer__Error(2)
-	QBluetoothServer__InputOutputError              QBluetoothServer__Error = QBluetoothServer__Error(3)
-	QBluetoothServer__ServiceAlreadyRegisteredError QBluetoothServer__Error = QBluetoothServer__Error(4)
-	QBluetoothServer__UnsupportedProtocolError      QBluetoothServer__Error = QBluetoothServer__Error(5)
-)
-
 type QBluetoothServer struct {
 	core.QObject
 }
@@ -2228,6 +2237,20 @@ func NewQBluetoothServerFromPointer(ptr unsafe.Pointer) *QBluetoothServer {
 	n.SetPointer(ptr)
 	return n
 }
+
+//go:generate stringer -type=QBluetoothServer__Error
+//QBluetoothServer::Error
+type QBluetoothServer__Error int64
+
+const (
+	QBluetoothServer__NoError                       QBluetoothServer__Error = QBluetoothServer__Error(0)
+	QBluetoothServer__UnknownError                  QBluetoothServer__Error = QBluetoothServer__Error(1)
+	QBluetoothServer__PoweredOffError               QBluetoothServer__Error = QBluetoothServer__Error(2)
+	QBluetoothServer__InputOutputError              QBluetoothServer__Error = QBluetoothServer__Error(3)
+	QBluetoothServer__ServiceAlreadyRegisteredError QBluetoothServer__Error = QBluetoothServer__Error(4)
+	QBluetoothServer__UnsupportedProtocolError      QBluetoothServer__Error = QBluetoothServer__Error(5)
+)
+
 func NewQBluetoothServer(serverType QBluetoothServiceInfo__Protocol, parent core.QObject_ITF) *QBluetoothServer {
 	var tmpValue = NewQBluetoothServerFromPointer(C.QBluetoothServer_NewQBluetoothServer(C.longlong(serverType), core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
@@ -2740,27 +2763,6 @@ func (ptr *QBluetoothServer) MetaObjectDefault() *core.QMetaObject {
 	return nil
 }
 
-//go:generate stringer -type=QBluetoothServiceDiscoveryAgent__DiscoveryMode
-//QBluetoothServiceDiscoveryAgent::DiscoveryMode
-type QBluetoothServiceDiscoveryAgent__DiscoveryMode int64
-
-const (
-	QBluetoothServiceDiscoveryAgent__MinimalDiscovery QBluetoothServiceDiscoveryAgent__DiscoveryMode = QBluetoothServiceDiscoveryAgent__DiscoveryMode(0)
-	QBluetoothServiceDiscoveryAgent__FullDiscovery    QBluetoothServiceDiscoveryAgent__DiscoveryMode = QBluetoothServiceDiscoveryAgent__DiscoveryMode(1)
-)
-
-//go:generate stringer -type=QBluetoothServiceDiscoveryAgent__Error
-//QBluetoothServiceDiscoveryAgent::Error
-type QBluetoothServiceDiscoveryAgent__Error int64
-
-const (
-	QBluetoothServiceDiscoveryAgent__NoError                      QBluetoothServiceDiscoveryAgent__Error = QBluetoothServiceDiscoveryAgent__Error(QBluetoothDeviceDiscoveryAgent__NoError)
-	QBluetoothServiceDiscoveryAgent__InputOutputError             QBluetoothServiceDiscoveryAgent__Error = QBluetoothServiceDiscoveryAgent__Error(QBluetoothDeviceDiscoveryAgent__InputOutputError)
-	QBluetoothServiceDiscoveryAgent__PoweredOffError              QBluetoothServiceDiscoveryAgent__Error = QBluetoothServiceDiscoveryAgent__Error(QBluetoothDeviceDiscoveryAgent__PoweredOffError)
-	QBluetoothServiceDiscoveryAgent__InvalidBluetoothAdapterError QBluetoothServiceDiscoveryAgent__Error = QBluetoothServiceDiscoveryAgent__Error(QBluetoothDeviceDiscoveryAgent__InvalidBluetoothAdapterError)
-	QBluetoothServiceDiscoveryAgent__UnknownError                 QBluetoothServiceDiscoveryAgent__Error = QBluetoothServiceDiscoveryAgent__Error(QBluetoothDeviceDiscoveryAgent__UnknownError)
-)
-
 type QBluetoothServiceDiscoveryAgent struct {
 	core.QObject
 }
@@ -2799,6 +2801,27 @@ func NewQBluetoothServiceDiscoveryAgentFromPointer(ptr unsafe.Pointer) *QBluetoo
 	n.SetPointer(ptr)
 	return n
 }
+
+//go:generate stringer -type=QBluetoothServiceDiscoveryAgent__DiscoveryMode
+//QBluetoothServiceDiscoveryAgent::DiscoveryMode
+type QBluetoothServiceDiscoveryAgent__DiscoveryMode int64
+
+const (
+	QBluetoothServiceDiscoveryAgent__MinimalDiscovery QBluetoothServiceDiscoveryAgent__DiscoveryMode = QBluetoothServiceDiscoveryAgent__DiscoveryMode(0)
+	QBluetoothServiceDiscoveryAgent__FullDiscovery    QBluetoothServiceDiscoveryAgent__DiscoveryMode = QBluetoothServiceDiscoveryAgent__DiscoveryMode(1)
+)
+
+//go:generate stringer -type=QBluetoothServiceDiscoveryAgent__Error
+//QBluetoothServiceDiscoveryAgent::Error
+type QBluetoothServiceDiscoveryAgent__Error int64
+
+const (
+	QBluetoothServiceDiscoveryAgent__NoError                      QBluetoothServiceDiscoveryAgent__Error = QBluetoothServiceDiscoveryAgent__Error(QBluetoothDeviceDiscoveryAgent__NoError)
+	QBluetoothServiceDiscoveryAgent__InputOutputError             QBluetoothServiceDiscoveryAgent__Error = QBluetoothServiceDiscoveryAgent__Error(QBluetoothDeviceDiscoveryAgent__InputOutputError)
+	QBluetoothServiceDiscoveryAgent__PoweredOffError              QBluetoothServiceDiscoveryAgent__Error = QBluetoothServiceDiscoveryAgent__Error(QBluetoothDeviceDiscoveryAgent__PoweredOffError)
+	QBluetoothServiceDiscoveryAgent__InvalidBluetoothAdapterError QBluetoothServiceDiscoveryAgent__Error = QBluetoothServiceDiscoveryAgent__Error(QBluetoothDeviceDiscoveryAgent__InvalidBluetoothAdapterError)
+	QBluetoothServiceDiscoveryAgent__UnknownError                 QBluetoothServiceDiscoveryAgent__Error = QBluetoothServiceDiscoveryAgent__Error(QBluetoothDeviceDiscoveryAgent__UnknownError)
+)
 
 //export callbackQBluetoothServiceDiscoveryAgent_Canceled
 func callbackQBluetoothServiceDiscoveryAgent_Canceled(ptr unsafe.Pointer) {
@@ -2936,8 +2959,9 @@ func NewQBluetoothServiceDiscoveryAgent2(deviceAdapter QBluetoothAddress_ITF, pa
 func callbackQBluetoothServiceDiscoveryAgent_Clear(ptr unsafe.Pointer) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QBluetoothServiceDiscoveryAgent::clear"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQBluetoothServiceDiscoveryAgentFromPointer(ptr).ClearDefault()
 	}
-
 }
 
 func (ptr *QBluetoothServiceDiscoveryAgent) ConnectClear(f func()) {
@@ -2957,6 +2981,12 @@ func (ptr *QBluetoothServiceDiscoveryAgent) DisconnectClear() {
 func (ptr *QBluetoothServiceDiscoveryAgent) Clear() {
 	if ptr.Pointer() != nil {
 		C.QBluetoothServiceDiscoveryAgent_Clear(ptr.Pointer())
+	}
+}
+
+func (ptr *QBluetoothServiceDiscoveryAgent) ClearDefault() {
+	if ptr.Pointer() != nil {
+		C.QBluetoothServiceDiscoveryAgent_ClearDefault(ptr.Pointer())
 	}
 }
 
@@ -3020,8 +3050,9 @@ func (ptr *QBluetoothServiceDiscoveryAgent) SetUuidFilter2(uuid QBluetoothUuid_I
 func callbackQBluetoothServiceDiscoveryAgent_Start(ptr unsafe.Pointer, mode C.longlong) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QBluetoothServiceDiscoveryAgent::start"); signal != nil {
 		signal.(func(QBluetoothServiceDiscoveryAgent__DiscoveryMode))(QBluetoothServiceDiscoveryAgent__DiscoveryMode(mode))
+	} else {
+		NewQBluetoothServiceDiscoveryAgentFromPointer(ptr).StartDefault(QBluetoothServiceDiscoveryAgent__DiscoveryMode(mode))
 	}
-
 }
 
 func (ptr *QBluetoothServiceDiscoveryAgent) ConnectStart(f func(mode QBluetoothServiceDiscoveryAgent__DiscoveryMode)) {
@@ -3031,7 +3062,7 @@ func (ptr *QBluetoothServiceDiscoveryAgent) ConnectStart(f func(mode QBluetoothS
 	}
 }
 
-func (ptr *QBluetoothServiceDiscoveryAgent) DisconnectStart(mode QBluetoothServiceDiscoveryAgent__DiscoveryMode) {
+func (ptr *QBluetoothServiceDiscoveryAgent) DisconnectStart() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QBluetoothServiceDiscoveryAgent::start")
@@ -3044,12 +3075,19 @@ func (ptr *QBluetoothServiceDiscoveryAgent) Start(mode QBluetoothServiceDiscover
 	}
 }
 
+func (ptr *QBluetoothServiceDiscoveryAgent) StartDefault(mode QBluetoothServiceDiscoveryAgent__DiscoveryMode) {
+	if ptr.Pointer() != nil {
+		C.QBluetoothServiceDiscoveryAgent_StartDefault(ptr.Pointer(), C.longlong(mode))
+	}
+}
+
 //export callbackQBluetoothServiceDiscoveryAgent_Stop
 func callbackQBluetoothServiceDiscoveryAgent_Stop(ptr unsafe.Pointer) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QBluetoothServiceDiscoveryAgent::stop"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQBluetoothServiceDiscoveryAgentFromPointer(ptr).StopDefault()
 	}
-
 }
 
 func (ptr *QBluetoothServiceDiscoveryAgent) ConnectStop(f func()) {
@@ -3069,6 +3107,12 @@ func (ptr *QBluetoothServiceDiscoveryAgent) DisconnectStop() {
 func (ptr *QBluetoothServiceDiscoveryAgent) Stop() {
 	if ptr.Pointer() != nil {
 		C.QBluetoothServiceDiscoveryAgent_Stop(ptr.Pointer())
+	}
+}
+
+func (ptr *QBluetoothServiceDiscoveryAgent) StopDefault() {
+	if ptr.Pointer() != nil {
+		C.QBluetoothServiceDiscoveryAgent_StopDefault(ptr.Pointer())
 	}
 }
 
@@ -3444,41 +3488,6 @@ func (ptr *QBluetoothServiceDiscoveryAgent) MetaObjectDefault() *core.QMetaObjec
 	return nil
 }
 
-//go:generate stringer -type=QBluetoothServiceInfo__AttributeId
-//QBluetoothServiceInfo::AttributeId
-type QBluetoothServiceInfo__AttributeId int64
-
-var (
-	QBluetoothServiceInfo__ServiceRecordHandle              QBluetoothServiceInfo__AttributeId = QBluetoothServiceInfo__AttributeId(0x0000)
-	QBluetoothServiceInfo__ServiceClassIds                  QBluetoothServiceInfo__AttributeId = QBluetoothServiceInfo__AttributeId(0x0001)
-	QBluetoothServiceInfo__ServiceRecordState               QBluetoothServiceInfo__AttributeId = QBluetoothServiceInfo__AttributeId(0x0002)
-	QBluetoothServiceInfo__ServiceId                        QBluetoothServiceInfo__AttributeId = QBluetoothServiceInfo__AttributeId(0x0003)
-	QBluetoothServiceInfo__ProtocolDescriptorList           QBluetoothServiceInfo__AttributeId = QBluetoothServiceInfo__AttributeId(0x0004)
-	QBluetoothServiceInfo__BrowseGroupList                  QBluetoothServiceInfo__AttributeId = QBluetoothServiceInfo__AttributeId(0x0005)
-	QBluetoothServiceInfo__LanguageBaseAttributeIdList      QBluetoothServiceInfo__AttributeId = QBluetoothServiceInfo__AttributeId(0x0006)
-	QBluetoothServiceInfo__ServiceInfoTimeToLive            QBluetoothServiceInfo__AttributeId = QBluetoothServiceInfo__AttributeId(0x0007)
-	QBluetoothServiceInfo__ServiceAvailability              QBluetoothServiceInfo__AttributeId = QBluetoothServiceInfo__AttributeId(0x0008)
-	QBluetoothServiceInfo__BluetoothProfileDescriptorList   QBluetoothServiceInfo__AttributeId = QBluetoothServiceInfo__AttributeId(0x0009)
-	QBluetoothServiceInfo__DocumentationUrl                 QBluetoothServiceInfo__AttributeId = QBluetoothServiceInfo__AttributeId(0x000A)
-	QBluetoothServiceInfo__ClientExecutableUrl              QBluetoothServiceInfo__AttributeId = QBluetoothServiceInfo__AttributeId(0x000B)
-	QBluetoothServiceInfo__IconUrl                          QBluetoothServiceInfo__AttributeId = QBluetoothServiceInfo__AttributeId(0x000C)
-	QBluetoothServiceInfo__AdditionalProtocolDescriptorList QBluetoothServiceInfo__AttributeId = QBluetoothServiceInfo__AttributeId(0x000D)
-	QBluetoothServiceInfo__PrimaryLanguageBase              QBluetoothServiceInfo__AttributeId = QBluetoothServiceInfo__AttributeId(0x0100)
-	QBluetoothServiceInfo__ServiceName                      QBluetoothServiceInfo__AttributeId = QBluetoothServiceInfo__AttributeId(C.QBluetoothServiceInfo_ServiceName_Type())
-	QBluetoothServiceInfo__ServiceDescription               QBluetoothServiceInfo__AttributeId = QBluetoothServiceInfo__AttributeId(C.QBluetoothServiceInfo_ServiceDescription_Type())
-	QBluetoothServiceInfo__ServiceProvider                  QBluetoothServiceInfo__AttributeId = QBluetoothServiceInfo__AttributeId(C.QBluetoothServiceInfo_ServiceProvider_Type())
-)
-
-//go:generate stringer -type=QBluetoothServiceInfo__Protocol
-//QBluetoothServiceInfo::Protocol
-type QBluetoothServiceInfo__Protocol int64
-
-const (
-	QBluetoothServiceInfo__UnknownProtocol QBluetoothServiceInfo__Protocol = QBluetoothServiceInfo__Protocol(0)
-	QBluetoothServiceInfo__L2capProtocol   QBluetoothServiceInfo__Protocol = QBluetoothServiceInfo__Protocol(1)
-	QBluetoothServiceInfo__RfcommProtocol  QBluetoothServiceInfo__Protocol = QBluetoothServiceInfo__Protocol(2)
-)
-
 type QBluetoothServiceInfo struct {
 	ptr unsafe.Pointer
 }
@@ -3516,6 +3525,42 @@ func NewQBluetoothServiceInfoFromPointer(ptr unsafe.Pointer) *QBluetoothServiceI
 	n.SetPointer(ptr)
 	return n
 }
+
+//go:generate stringer -type=QBluetoothServiceInfo__AttributeId
+//QBluetoothServiceInfo::AttributeId
+type QBluetoothServiceInfo__AttributeId int64
+
+var (
+	QBluetoothServiceInfo__ServiceRecordHandle              QBluetoothServiceInfo__AttributeId = QBluetoothServiceInfo__AttributeId(0x0000)
+	QBluetoothServiceInfo__ServiceClassIds                  QBluetoothServiceInfo__AttributeId = QBluetoothServiceInfo__AttributeId(0x0001)
+	QBluetoothServiceInfo__ServiceRecordState               QBluetoothServiceInfo__AttributeId = QBluetoothServiceInfo__AttributeId(0x0002)
+	QBluetoothServiceInfo__ServiceId                        QBluetoothServiceInfo__AttributeId = QBluetoothServiceInfo__AttributeId(0x0003)
+	QBluetoothServiceInfo__ProtocolDescriptorList           QBluetoothServiceInfo__AttributeId = QBluetoothServiceInfo__AttributeId(0x0004)
+	QBluetoothServiceInfo__BrowseGroupList                  QBluetoothServiceInfo__AttributeId = QBluetoothServiceInfo__AttributeId(0x0005)
+	QBluetoothServiceInfo__LanguageBaseAttributeIdList      QBluetoothServiceInfo__AttributeId = QBluetoothServiceInfo__AttributeId(0x0006)
+	QBluetoothServiceInfo__ServiceInfoTimeToLive            QBluetoothServiceInfo__AttributeId = QBluetoothServiceInfo__AttributeId(0x0007)
+	QBluetoothServiceInfo__ServiceAvailability              QBluetoothServiceInfo__AttributeId = QBluetoothServiceInfo__AttributeId(0x0008)
+	QBluetoothServiceInfo__BluetoothProfileDescriptorList   QBluetoothServiceInfo__AttributeId = QBluetoothServiceInfo__AttributeId(0x0009)
+	QBluetoothServiceInfo__DocumentationUrl                 QBluetoothServiceInfo__AttributeId = QBluetoothServiceInfo__AttributeId(0x000A)
+	QBluetoothServiceInfo__ClientExecutableUrl              QBluetoothServiceInfo__AttributeId = QBluetoothServiceInfo__AttributeId(0x000B)
+	QBluetoothServiceInfo__IconUrl                          QBluetoothServiceInfo__AttributeId = QBluetoothServiceInfo__AttributeId(0x000C)
+	QBluetoothServiceInfo__AdditionalProtocolDescriptorList QBluetoothServiceInfo__AttributeId = QBluetoothServiceInfo__AttributeId(0x000D)
+	QBluetoothServiceInfo__PrimaryLanguageBase              QBluetoothServiceInfo__AttributeId = QBluetoothServiceInfo__AttributeId(0x0100)
+	QBluetoothServiceInfo__ServiceName                      QBluetoothServiceInfo__AttributeId = QBluetoothServiceInfo__AttributeId(C.QBluetoothServiceInfo_ServiceName_Type())
+	QBluetoothServiceInfo__ServiceDescription               QBluetoothServiceInfo__AttributeId = QBluetoothServiceInfo__AttributeId(C.QBluetoothServiceInfo_ServiceDescription_Type())
+	QBluetoothServiceInfo__ServiceProvider                  QBluetoothServiceInfo__AttributeId = QBluetoothServiceInfo__AttributeId(C.QBluetoothServiceInfo_ServiceProvider_Type())
+)
+
+//go:generate stringer -type=QBluetoothServiceInfo__Protocol
+//QBluetoothServiceInfo::Protocol
+type QBluetoothServiceInfo__Protocol int64
+
+const (
+	QBluetoothServiceInfo__UnknownProtocol QBluetoothServiceInfo__Protocol = QBluetoothServiceInfo__Protocol(0)
+	QBluetoothServiceInfo__L2capProtocol   QBluetoothServiceInfo__Protocol = QBluetoothServiceInfo__Protocol(1)
+	QBluetoothServiceInfo__RfcommProtocol  QBluetoothServiceInfo__Protocol = QBluetoothServiceInfo__Protocol(2)
+)
+
 func (ptr *QBluetoothServiceInfo) ServiceAvailability() string {
 	if ptr.Pointer() != nil {
 		return cGoUnpackString(C.QBluetoothServiceInfo_ServiceAvailability(ptr.Pointer()))
@@ -3737,34 +3782,6 @@ func (ptr *QBluetoothServiceInfo) serviceClassUuids_atList(i int) *QBluetoothUui
 	return nil
 }
 
-//go:generate stringer -type=QBluetoothSocket__SocketError
-//QBluetoothSocket::SocketError
-type QBluetoothSocket__SocketError int64
-
-const (
-	QBluetoothSocket__NoSocketError            QBluetoothSocket__SocketError = QBluetoothSocket__SocketError(-2)
-	QBluetoothSocket__UnknownSocketError       QBluetoothSocket__SocketError = QBluetoothSocket__SocketError(network.QAbstractSocket__UnknownSocketError)
-	QBluetoothSocket__HostNotFoundError        QBluetoothSocket__SocketError = QBluetoothSocket__SocketError(network.QAbstractSocket__HostNotFoundError)
-	QBluetoothSocket__ServiceNotFoundError     QBluetoothSocket__SocketError = QBluetoothSocket__SocketError(network.QAbstractSocket__SocketAddressNotAvailableError)
-	QBluetoothSocket__NetworkError             QBluetoothSocket__SocketError = QBluetoothSocket__SocketError(network.QAbstractSocket__NetworkError)
-	QBluetoothSocket__UnsupportedProtocolError QBluetoothSocket__SocketError = QBluetoothSocket__SocketError(8)
-	QBluetoothSocket__OperationError           QBluetoothSocket__SocketError = QBluetoothSocket__SocketError(network.QAbstractSocket__OperationError)
-)
-
-//go:generate stringer -type=QBluetoothSocket__SocketState
-//QBluetoothSocket::SocketState
-type QBluetoothSocket__SocketState int64
-
-const (
-	QBluetoothSocket__UnconnectedState   QBluetoothSocket__SocketState = QBluetoothSocket__SocketState(network.QAbstractSocket__UnconnectedState)
-	QBluetoothSocket__ServiceLookupState QBluetoothSocket__SocketState = QBluetoothSocket__SocketState(network.QAbstractSocket__HostLookupState)
-	QBluetoothSocket__ConnectingState    QBluetoothSocket__SocketState = QBluetoothSocket__SocketState(network.QAbstractSocket__ConnectingState)
-	QBluetoothSocket__ConnectedState     QBluetoothSocket__SocketState = QBluetoothSocket__SocketState(network.QAbstractSocket__ConnectedState)
-	QBluetoothSocket__BoundState         QBluetoothSocket__SocketState = QBluetoothSocket__SocketState(network.QAbstractSocket__BoundState)
-	QBluetoothSocket__ClosingState       QBluetoothSocket__SocketState = QBluetoothSocket__SocketState(network.QAbstractSocket__ClosingState)
-	QBluetoothSocket__ListeningState     QBluetoothSocket__SocketState = QBluetoothSocket__SocketState(network.QAbstractSocket__ListeningState)
-)
-
 type QBluetoothSocket struct {
 	core.QIODevice
 }
@@ -3803,6 +3820,34 @@ func NewQBluetoothSocketFromPointer(ptr unsafe.Pointer) *QBluetoothSocket {
 	n.SetPointer(ptr)
 	return n
 }
+
+//go:generate stringer -type=QBluetoothSocket__SocketError
+//QBluetoothSocket::SocketError
+type QBluetoothSocket__SocketError int64
+
+const (
+	QBluetoothSocket__NoSocketError            QBluetoothSocket__SocketError = QBluetoothSocket__SocketError(-2)
+	QBluetoothSocket__UnknownSocketError       QBluetoothSocket__SocketError = QBluetoothSocket__SocketError(network.QAbstractSocket__UnknownSocketError)
+	QBluetoothSocket__HostNotFoundError        QBluetoothSocket__SocketError = QBluetoothSocket__SocketError(network.QAbstractSocket__HostNotFoundError)
+	QBluetoothSocket__ServiceNotFoundError     QBluetoothSocket__SocketError = QBluetoothSocket__SocketError(network.QAbstractSocket__SocketAddressNotAvailableError)
+	QBluetoothSocket__NetworkError             QBluetoothSocket__SocketError = QBluetoothSocket__SocketError(network.QAbstractSocket__NetworkError)
+	QBluetoothSocket__UnsupportedProtocolError QBluetoothSocket__SocketError = QBluetoothSocket__SocketError(8)
+	QBluetoothSocket__OperationError           QBluetoothSocket__SocketError = QBluetoothSocket__SocketError(network.QAbstractSocket__OperationError)
+)
+
+//go:generate stringer -type=QBluetoothSocket__SocketState
+//QBluetoothSocket::SocketState
+type QBluetoothSocket__SocketState int64
+
+const (
+	QBluetoothSocket__UnconnectedState   QBluetoothSocket__SocketState = QBluetoothSocket__SocketState(network.QAbstractSocket__UnconnectedState)
+	QBluetoothSocket__ServiceLookupState QBluetoothSocket__SocketState = QBluetoothSocket__SocketState(network.QAbstractSocket__HostLookupState)
+	QBluetoothSocket__ConnectingState    QBluetoothSocket__SocketState = QBluetoothSocket__SocketState(network.QAbstractSocket__ConnectingState)
+	QBluetoothSocket__ConnectedState     QBluetoothSocket__SocketState = QBluetoothSocket__SocketState(network.QAbstractSocket__ConnectedState)
+	QBluetoothSocket__BoundState         QBluetoothSocket__SocketState = QBluetoothSocket__SocketState(network.QAbstractSocket__BoundState)
+	QBluetoothSocket__ClosingState       QBluetoothSocket__SocketState = QBluetoothSocket__SocketState(network.QAbstractSocket__ClosingState)
+	QBluetoothSocket__ListeningState     QBluetoothSocket__SocketState = QBluetoothSocket__SocketState(network.QAbstractSocket__ListeningState)
+)
 
 //export callbackQBluetoothSocket_Connected
 func callbackQBluetoothSocket_Connected(ptr unsafe.Pointer) {
@@ -5520,21 +5565,6 @@ func (ptr *QBluetoothTransferManager) MetaObjectDefault() *core.QMetaObject {
 	return nil
 }
 
-//go:generate stringer -type=QBluetoothTransferReply__TransferError
-//QBluetoothTransferReply::TransferError
-type QBluetoothTransferReply__TransferError int64
-
-const (
-	QBluetoothTransferReply__NoError                   QBluetoothTransferReply__TransferError = QBluetoothTransferReply__TransferError(0)
-	QBluetoothTransferReply__UnknownError              QBluetoothTransferReply__TransferError = QBluetoothTransferReply__TransferError(1)
-	QBluetoothTransferReply__FileNotFoundError         QBluetoothTransferReply__TransferError = QBluetoothTransferReply__TransferError(2)
-	QBluetoothTransferReply__HostNotFoundError         QBluetoothTransferReply__TransferError = QBluetoothTransferReply__TransferError(3)
-	QBluetoothTransferReply__UserCanceledTransferError QBluetoothTransferReply__TransferError = QBluetoothTransferReply__TransferError(4)
-	QBluetoothTransferReply__IODeviceNotReadableError  QBluetoothTransferReply__TransferError = QBluetoothTransferReply__TransferError(5)
-	QBluetoothTransferReply__ResourceBusyError         QBluetoothTransferReply__TransferError = QBluetoothTransferReply__TransferError(6)
-	QBluetoothTransferReply__SessionError              QBluetoothTransferReply__TransferError = QBluetoothTransferReply__TransferError(7)
-)
-
 type QBluetoothTransferReply struct {
 	core.QObject
 }
@@ -5574,12 +5604,28 @@ func NewQBluetoothTransferReplyFromPointer(ptr unsafe.Pointer) *QBluetoothTransf
 	return n
 }
 
+//go:generate stringer -type=QBluetoothTransferReply__TransferError
+//QBluetoothTransferReply::TransferError
+type QBluetoothTransferReply__TransferError int64
+
+const (
+	QBluetoothTransferReply__NoError                   QBluetoothTransferReply__TransferError = QBluetoothTransferReply__TransferError(0)
+	QBluetoothTransferReply__UnknownError              QBluetoothTransferReply__TransferError = QBluetoothTransferReply__TransferError(1)
+	QBluetoothTransferReply__FileNotFoundError         QBluetoothTransferReply__TransferError = QBluetoothTransferReply__TransferError(2)
+	QBluetoothTransferReply__HostNotFoundError         QBluetoothTransferReply__TransferError = QBluetoothTransferReply__TransferError(3)
+	QBluetoothTransferReply__UserCanceledTransferError QBluetoothTransferReply__TransferError = QBluetoothTransferReply__TransferError(4)
+	QBluetoothTransferReply__IODeviceNotReadableError  QBluetoothTransferReply__TransferError = QBluetoothTransferReply__TransferError(5)
+	QBluetoothTransferReply__ResourceBusyError         QBluetoothTransferReply__TransferError = QBluetoothTransferReply__TransferError(6)
+	QBluetoothTransferReply__SessionError              QBluetoothTransferReply__TransferError = QBluetoothTransferReply__TransferError(7)
+)
+
 //export callbackQBluetoothTransferReply_Abort
 func callbackQBluetoothTransferReply_Abort(ptr unsafe.Pointer) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QBluetoothTransferReply::abort"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQBluetoothTransferReplyFromPointer(ptr).AbortDefault()
 	}
-
 }
 
 func (ptr *QBluetoothTransferReply) ConnectAbort(f func()) {
@@ -5599,6 +5645,12 @@ func (ptr *QBluetoothTransferReply) DisconnectAbort() {
 func (ptr *QBluetoothTransferReply) Abort() {
 	if ptr.Pointer() != nil {
 		C.QBluetoothTransferReply_Abort(ptr.Pointer())
+	}
+}
+
+func (ptr *QBluetoothTransferReply) AbortDefault() {
+	if ptr.Pointer() != nil {
+		C.QBluetoothTransferReply_AbortDefault(ptr.Pointer())
 	}
 }
 
@@ -6194,18 +6246,6 @@ func (ptr *QBluetoothTransferReply) MetaObjectDefault() *core.QMetaObject {
 	return nil
 }
 
-//go:generate stringer -type=QBluetoothTransferRequest__Attribute
-//QBluetoothTransferRequest::Attribute
-type QBluetoothTransferRequest__Attribute int64
-
-const (
-	QBluetoothTransferRequest__DescriptionAttribute QBluetoothTransferRequest__Attribute = QBluetoothTransferRequest__Attribute(0)
-	QBluetoothTransferRequest__TimeAttribute        QBluetoothTransferRequest__Attribute = QBluetoothTransferRequest__Attribute(1)
-	QBluetoothTransferRequest__TypeAttribute        QBluetoothTransferRequest__Attribute = QBluetoothTransferRequest__Attribute(2)
-	QBluetoothTransferRequest__LengthAttribute      QBluetoothTransferRequest__Attribute = QBluetoothTransferRequest__Attribute(3)
-	QBluetoothTransferRequest__NameAttribute        QBluetoothTransferRequest__Attribute = QBluetoothTransferRequest__Attribute(4)
-)
-
 type QBluetoothTransferRequest struct {
 	ptr unsafe.Pointer
 }
@@ -6243,6 +6283,19 @@ func NewQBluetoothTransferRequestFromPointer(ptr unsafe.Pointer) *QBluetoothTran
 	n.SetPointer(ptr)
 	return n
 }
+
+//go:generate stringer -type=QBluetoothTransferRequest__Attribute
+//QBluetoothTransferRequest::Attribute
+type QBluetoothTransferRequest__Attribute int64
+
+const (
+	QBluetoothTransferRequest__DescriptionAttribute QBluetoothTransferRequest__Attribute = QBluetoothTransferRequest__Attribute(0)
+	QBluetoothTransferRequest__TimeAttribute        QBluetoothTransferRequest__Attribute = QBluetoothTransferRequest__Attribute(1)
+	QBluetoothTransferRequest__TypeAttribute        QBluetoothTransferRequest__Attribute = QBluetoothTransferRequest__Attribute(2)
+	QBluetoothTransferRequest__LengthAttribute      QBluetoothTransferRequest__Attribute = QBluetoothTransferRequest__Attribute(3)
+	QBluetoothTransferRequest__NameAttribute        QBluetoothTransferRequest__Attribute = QBluetoothTransferRequest__Attribute(4)
+)
+
 func NewQBluetoothTransferRequest(address QBluetoothAddress_ITF) *QBluetoothTransferRequest {
 	var tmpValue = NewQBluetoothTransferRequestFromPointer(C.QBluetoothTransferRequest_NewQBluetoothTransferRequest(PointerFromQBluetoothAddress(address)))
 	runtime.SetFinalizer(tmpValue, (*QBluetoothTransferRequest).DestroyQBluetoothTransferRequest)
@@ -6284,6 +6337,45 @@ func (ptr *QBluetoothTransferRequest) DestroyQBluetoothTransferRequest() {
 		C.QBluetoothTransferRequest_DestroyQBluetoothTransferRequest(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
+}
+
+type QBluetoothUuid struct {
+	core.QUuid
+}
+
+type QBluetoothUuid_ITF interface {
+	core.QUuid_ITF
+	QBluetoothUuid_PTR() *QBluetoothUuid
+}
+
+func (ptr *QBluetoothUuid) QBluetoothUuid_PTR() *QBluetoothUuid {
+	return ptr
+}
+
+func (ptr *QBluetoothUuid) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QUuid_PTR().Pointer()
+	}
+	return nil
+}
+
+func (ptr *QBluetoothUuid) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QUuid_PTR().SetPointer(p)
+	}
+}
+
+func PointerFromQBluetoothUuid(ptr QBluetoothUuid_ITF) unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QBluetoothUuid_PTR().Pointer()
+	}
+	return nil
+}
+
+func NewQBluetoothUuidFromPointer(ptr unsafe.Pointer) *QBluetoothUuid {
+	var n = new(QBluetoothUuid)
+	n.SetPointer(ptr)
+	return n
 }
 
 //go:generate stringer -type=QBluetoothUuid__CharacteristicType
@@ -6580,44 +6672,6 @@ const (
 	QBluetoothUuid__ContinuousGlucoseMonitoring           QBluetoothUuid__ServiceClassUuid = QBluetoothUuid__ServiceClassUuid(0x181f)
 )
 
-type QBluetoothUuid struct {
-	core.QUuid
-}
-
-type QBluetoothUuid_ITF interface {
-	core.QUuid_ITF
-	QBluetoothUuid_PTR() *QBluetoothUuid
-}
-
-func (ptr *QBluetoothUuid) QBluetoothUuid_PTR() *QBluetoothUuid {
-	return ptr
-}
-
-func (ptr *QBluetoothUuid) Pointer() unsafe.Pointer {
-	if ptr != nil {
-		return ptr.QUuid_PTR().Pointer()
-	}
-	return nil
-}
-
-func (ptr *QBluetoothUuid) SetPointer(p unsafe.Pointer) {
-	if ptr != nil {
-		ptr.QUuid_PTR().SetPointer(p)
-	}
-}
-
-func PointerFromQBluetoothUuid(ptr QBluetoothUuid_ITF) unsafe.Pointer {
-	if ptr != nil {
-		return ptr.QBluetoothUuid_PTR().Pointer()
-	}
-	return nil
-}
-
-func NewQBluetoothUuidFromPointer(ptr unsafe.Pointer) *QBluetoothUuid {
-	var n = new(QBluetoothUuid)
-	n.SetPointer(ptr)
-	return n
-}
 func NewQBluetoothUuid() *QBluetoothUuid {
 	var tmpValue = NewQBluetoothUuidFromPointer(C.QBluetoothUuid_NewQBluetoothUuid())
 	runtime.SetFinalizer(tmpValue, (*QBluetoothUuid).DestroyQBluetoothUuid)
@@ -6740,16 +6794,6 @@ func (ptr *QBluetoothUuid) DestroyQBluetoothUuid() {
 	}
 }
 
-//go:generate stringer -type=QLowEnergyAdvertisingData__Discoverability
-//QLowEnergyAdvertisingData::Discoverability
-type QLowEnergyAdvertisingData__Discoverability int64
-
-const (
-	QLowEnergyAdvertisingData__DiscoverabilityNone    QLowEnergyAdvertisingData__Discoverability = QLowEnergyAdvertisingData__Discoverability(0)
-	QLowEnergyAdvertisingData__DiscoverabilityLimited QLowEnergyAdvertisingData__Discoverability = QLowEnergyAdvertisingData__Discoverability(1)
-	QLowEnergyAdvertisingData__DiscoverabilityGeneral QLowEnergyAdvertisingData__Discoverability = QLowEnergyAdvertisingData__Discoverability(2)
-)
-
 type QLowEnergyAdvertisingData struct {
 	ptr unsafe.Pointer
 }
@@ -6787,6 +6831,17 @@ func NewQLowEnergyAdvertisingDataFromPointer(ptr unsafe.Pointer) *QLowEnergyAdve
 	n.SetPointer(ptr)
 	return n
 }
+
+//go:generate stringer -type=QLowEnergyAdvertisingData__Discoverability
+//QLowEnergyAdvertisingData::Discoverability
+type QLowEnergyAdvertisingData__Discoverability int64
+
+const (
+	QLowEnergyAdvertisingData__DiscoverabilityNone    QLowEnergyAdvertisingData__Discoverability = QLowEnergyAdvertisingData__Discoverability(0)
+	QLowEnergyAdvertisingData__DiscoverabilityLimited QLowEnergyAdvertisingData__Discoverability = QLowEnergyAdvertisingData__Discoverability(1)
+	QLowEnergyAdvertisingData__DiscoverabilityGeneral QLowEnergyAdvertisingData__Discoverability = QLowEnergyAdvertisingData__Discoverability(2)
+)
+
 func NewQLowEnergyAdvertisingData() *QLowEnergyAdvertisingData {
 	var tmpValue = NewQLowEnergyAdvertisingDataFromPointer(C.QLowEnergyAdvertisingData_NewQLowEnergyAdvertisingData())
 	runtime.SetFinalizer(tmpValue, (*QLowEnergyAdvertisingData).DestroyQLowEnergyAdvertisingData)
@@ -6920,27 +6975,6 @@ func (ptr *QLowEnergyAdvertisingData) services_atList(i int) *QBluetoothUuid {
 	return nil
 }
 
-//go:generate stringer -type=QLowEnergyAdvertisingParameters__FilterPolicy
-//QLowEnergyAdvertisingParameters::FilterPolicy
-type QLowEnergyAdvertisingParameters__FilterPolicy int64
-
-const (
-	QLowEnergyAdvertisingParameters__IgnoreWhiteList                      QLowEnergyAdvertisingParameters__FilterPolicy = QLowEnergyAdvertisingParameters__FilterPolicy(0x00)
-	QLowEnergyAdvertisingParameters__UseWhiteListForScanning              QLowEnergyAdvertisingParameters__FilterPolicy = QLowEnergyAdvertisingParameters__FilterPolicy(0x01)
-	QLowEnergyAdvertisingParameters__UseWhiteListForConnecting            QLowEnergyAdvertisingParameters__FilterPolicy = QLowEnergyAdvertisingParameters__FilterPolicy(0x02)
-	QLowEnergyAdvertisingParameters__UseWhiteListForScanningAndConnecting QLowEnergyAdvertisingParameters__FilterPolicy = QLowEnergyAdvertisingParameters__FilterPolicy(0x03)
-)
-
-//go:generate stringer -type=QLowEnergyAdvertisingParameters__Mode
-//QLowEnergyAdvertisingParameters::Mode
-type QLowEnergyAdvertisingParameters__Mode int64
-
-const (
-	QLowEnergyAdvertisingParameters__AdvInd        QLowEnergyAdvertisingParameters__Mode = QLowEnergyAdvertisingParameters__Mode(0x0)
-	QLowEnergyAdvertisingParameters__AdvScanInd    QLowEnergyAdvertisingParameters__Mode = QLowEnergyAdvertisingParameters__Mode(0x2)
-	QLowEnergyAdvertisingParameters__AdvNonConnInd QLowEnergyAdvertisingParameters__Mode = QLowEnergyAdvertisingParameters__Mode(0x3)
-)
-
 type QLowEnergyAdvertisingParameters struct {
 	ptr unsafe.Pointer
 }
@@ -6978,6 +7012,28 @@ func NewQLowEnergyAdvertisingParametersFromPointer(ptr unsafe.Pointer) *QLowEner
 	n.SetPointer(ptr)
 	return n
 }
+
+//go:generate stringer -type=QLowEnergyAdvertisingParameters__FilterPolicy
+//QLowEnergyAdvertisingParameters::FilterPolicy
+type QLowEnergyAdvertisingParameters__FilterPolicy int64
+
+const (
+	QLowEnergyAdvertisingParameters__IgnoreWhiteList                      QLowEnergyAdvertisingParameters__FilterPolicy = QLowEnergyAdvertisingParameters__FilterPolicy(0x00)
+	QLowEnergyAdvertisingParameters__UseWhiteListForScanning              QLowEnergyAdvertisingParameters__FilterPolicy = QLowEnergyAdvertisingParameters__FilterPolicy(0x01)
+	QLowEnergyAdvertisingParameters__UseWhiteListForConnecting            QLowEnergyAdvertisingParameters__FilterPolicy = QLowEnergyAdvertisingParameters__FilterPolicy(0x02)
+	QLowEnergyAdvertisingParameters__UseWhiteListForScanningAndConnecting QLowEnergyAdvertisingParameters__FilterPolicy = QLowEnergyAdvertisingParameters__FilterPolicy(0x03)
+)
+
+//go:generate stringer -type=QLowEnergyAdvertisingParameters__Mode
+//QLowEnergyAdvertisingParameters::Mode
+type QLowEnergyAdvertisingParameters__Mode int64
+
+const (
+	QLowEnergyAdvertisingParameters__AdvInd        QLowEnergyAdvertisingParameters__Mode = QLowEnergyAdvertisingParameters__Mode(0x0)
+	QLowEnergyAdvertisingParameters__AdvScanInd    QLowEnergyAdvertisingParameters__Mode = QLowEnergyAdvertisingParameters__Mode(0x2)
+	QLowEnergyAdvertisingParameters__AdvNonConnInd QLowEnergyAdvertisingParameters__Mode = QLowEnergyAdvertisingParameters__Mode(0x3)
+)
+
 func NewQLowEnergyAdvertisingParameters() *QLowEnergyAdvertisingParameters {
 	var tmpValue = NewQLowEnergyAdvertisingParametersFromPointer(C.QLowEnergyAdvertisingParameters_NewQLowEnergyAdvertisingParameters())
 	runtime.SetFinalizer(tmpValue, (*QLowEnergyAdvertisingParameters).DestroyQLowEnergyAdvertisingParameters)
@@ -7043,22 +7099,6 @@ func (ptr *QLowEnergyAdvertisingParameters) DestroyQLowEnergyAdvertisingParamete
 	}
 }
 
-//go:generate stringer -type=QLowEnergyCharacteristic__PropertyType
-//QLowEnergyCharacteristic::PropertyType
-type QLowEnergyCharacteristic__PropertyType int64
-
-const (
-	QLowEnergyCharacteristic__Unknown          QLowEnergyCharacteristic__PropertyType = QLowEnergyCharacteristic__PropertyType(0x00)
-	QLowEnergyCharacteristic__Broadcasting     QLowEnergyCharacteristic__PropertyType = QLowEnergyCharacteristic__PropertyType(0x01)
-	QLowEnergyCharacteristic__Read             QLowEnergyCharacteristic__PropertyType = QLowEnergyCharacteristic__PropertyType(0x02)
-	QLowEnergyCharacteristic__WriteNoResponse  QLowEnergyCharacteristic__PropertyType = QLowEnergyCharacteristic__PropertyType(0x04)
-	QLowEnergyCharacteristic__Write            QLowEnergyCharacteristic__PropertyType = QLowEnergyCharacteristic__PropertyType(0x08)
-	QLowEnergyCharacteristic__Notify           QLowEnergyCharacteristic__PropertyType = QLowEnergyCharacteristic__PropertyType(0x10)
-	QLowEnergyCharacteristic__Indicate         QLowEnergyCharacteristic__PropertyType = QLowEnergyCharacteristic__PropertyType(0x20)
-	QLowEnergyCharacteristic__WriteSigned      QLowEnergyCharacteristic__PropertyType = QLowEnergyCharacteristic__PropertyType(0x40)
-	QLowEnergyCharacteristic__ExtendedProperty QLowEnergyCharacteristic__PropertyType = QLowEnergyCharacteristic__PropertyType(0x80)
-)
-
 type QLowEnergyCharacteristic struct {
 	ptr unsafe.Pointer
 }
@@ -7096,6 +7136,23 @@ func NewQLowEnergyCharacteristicFromPointer(ptr unsafe.Pointer) *QLowEnergyChara
 	n.SetPointer(ptr)
 	return n
 }
+
+//go:generate stringer -type=QLowEnergyCharacteristic__PropertyType
+//QLowEnergyCharacteristic::PropertyType
+type QLowEnergyCharacteristic__PropertyType int64
+
+const (
+	QLowEnergyCharacteristic__Unknown          QLowEnergyCharacteristic__PropertyType = QLowEnergyCharacteristic__PropertyType(0x00)
+	QLowEnergyCharacteristic__Broadcasting     QLowEnergyCharacteristic__PropertyType = QLowEnergyCharacteristic__PropertyType(0x01)
+	QLowEnergyCharacteristic__Read             QLowEnergyCharacteristic__PropertyType = QLowEnergyCharacteristic__PropertyType(0x02)
+	QLowEnergyCharacteristic__WriteNoResponse  QLowEnergyCharacteristic__PropertyType = QLowEnergyCharacteristic__PropertyType(0x04)
+	QLowEnergyCharacteristic__Write            QLowEnergyCharacteristic__PropertyType = QLowEnergyCharacteristic__PropertyType(0x08)
+	QLowEnergyCharacteristic__Notify           QLowEnergyCharacteristic__PropertyType = QLowEnergyCharacteristic__PropertyType(0x10)
+	QLowEnergyCharacteristic__Indicate         QLowEnergyCharacteristic__PropertyType = QLowEnergyCharacteristic__PropertyType(0x20)
+	QLowEnergyCharacteristic__WriteSigned      QLowEnergyCharacteristic__PropertyType = QLowEnergyCharacteristic__PropertyType(0x40)
+	QLowEnergyCharacteristic__ExtendedProperty QLowEnergyCharacteristic__PropertyType = QLowEnergyCharacteristic__PropertyType(0x80)
+)
+
 func NewQLowEnergyCharacteristic() *QLowEnergyCharacteristic {
 	var tmpValue = NewQLowEnergyCharacteristicFromPointer(C.QLowEnergyCharacteristic_NewQLowEnergyCharacteristic())
 	runtime.SetFinalizer(tmpValue, (*QLowEnergyCharacteristic).DestroyQLowEnergyCharacteristic)
@@ -7479,6 +7536,45 @@ func (ptr *QLowEnergyConnectionParameters) DestroyQLowEnergyConnectionParameters
 	}
 }
 
+type QLowEnergyController struct {
+	core.QObject
+}
+
+type QLowEnergyController_ITF interface {
+	core.QObject_ITF
+	QLowEnergyController_PTR() *QLowEnergyController
+}
+
+func (ptr *QLowEnergyController) QLowEnergyController_PTR() *QLowEnergyController {
+	return ptr
+}
+
+func (ptr *QLowEnergyController) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QObject_PTR().Pointer()
+	}
+	return nil
+}
+
+func (ptr *QLowEnergyController) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QObject_PTR().SetPointer(p)
+	}
+}
+
+func PointerFromQLowEnergyController(ptr QLowEnergyController_ITF) unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QLowEnergyController_PTR().Pointer()
+	}
+	return nil
+}
+
+func NewQLowEnergyControllerFromPointer(ptr unsafe.Pointer) *QLowEnergyController {
+	var n = new(QLowEnergyController)
+	n.SetPointer(ptr)
+	return n
+}
+
 //go:generate stringer -type=QLowEnergyController__ControllerState
 //QLowEnergyController::ControllerState
 type QLowEnergyController__ControllerState int64
@@ -7524,45 +7620,6 @@ const (
 	QLowEnergyController__CentralRole    QLowEnergyController__Role = QLowEnergyController__Role(0)
 	QLowEnergyController__PeripheralRole QLowEnergyController__Role = QLowEnergyController__Role(1)
 )
-
-type QLowEnergyController struct {
-	core.QObject
-}
-
-type QLowEnergyController_ITF interface {
-	core.QObject_ITF
-	QLowEnergyController_PTR() *QLowEnergyController
-}
-
-func (ptr *QLowEnergyController) QLowEnergyController_PTR() *QLowEnergyController {
-	return ptr
-}
-
-func (ptr *QLowEnergyController) Pointer() unsafe.Pointer {
-	if ptr != nil {
-		return ptr.QObject_PTR().Pointer()
-	}
-	return nil
-}
-
-func (ptr *QLowEnergyController) SetPointer(p unsafe.Pointer) {
-	if ptr != nil {
-		ptr.QObject_PTR().SetPointer(p)
-	}
-}
-
-func PointerFromQLowEnergyController(ptr QLowEnergyController_ITF) unsafe.Pointer {
-	if ptr != nil {
-		return ptr.QLowEnergyController_PTR().Pointer()
-	}
-	return nil
-}
-
-func NewQLowEnergyControllerFromPointer(ptr unsafe.Pointer) *QLowEnergyController {
-	var n = new(QLowEnergyController)
-	n.SetPointer(ptr)
-	return n
-}
 
 //export callbackQLowEnergyController_Connected
 func callbackQLowEnergyController_Connected(ptr unsafe.Pointer) {
@@ -8526,6 +8583,45 @@ func (ptr *QLowEnergyDescriptorData) DestroyQLowEnergyDescriptorData() {
 	}
 }
 
+type QLowEnergyService struct {
+	core.QObject
+}
+
+type QLowEnergyService_ITF interface {
+	core.QObject_ITF
+	QLowEnergyService_PTR() *QLowEnergyService
+}
+
+func (ptr *QLowEnergyService) QLowEnergyService_PTR() *QLowEnergyService {
+	return ptr
+}
+
+func (ptr *QLowEnergyService) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QObject_PTR().Pointer()
+	}
+	return nil
+}
+
+func (ptr *QLowEnergyService) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QObject_PTR().SetPointer(p)
+	}
+}
+
+func PointerFromQLowEnergyService(ptr QLowEnergyService_ITF) unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QLowEnergyService_PTR().Pointer()
+	}
+	return nil
+}
+
+func NewQLowEnergyServiceFromPointer(ptr unsafe.Pointer) *QLowEnergyService {
+	var n = new(QLowEnergyService)
+	n.SetPointer(ptr)
+	return n
+}
+
 //go:generate stringer -type=QLowEnergyService__ServiceError
 //QLowEnergyService::ServiceError
 type QLowEnergyService__ServiceError int64
@@ -8570,45 +8666,6 @@ const (
 	QLowEnergyService__WriteWithoutResponse QLowEnergyService__WriteMode = QLowEnergyService__WriteMode(1)
 	QLowEnergyService__WriteSigned          QLowEnergyService__WriteMode = QLowEnergyService__WriteMode(2)
 )
-
-type QLowEnergyService struct {
-	core.QObject
-}
-
-type QLowEnergyService_ITF interface {
-	core.QObject_ITF
-	QLowEnergyService_PTR() *QLowEnergyService
-}
-
-func (ptr *QLowEnergyService) QLowEnergyService_PTR() *QLowEnergyService {
-	return ptr
-}
-
-func (ptr *QLowEnergyService) Pointer() unsafe.Pointer {
-	if ptr != nil {
-		return ptr.QObject_PTR().Pointer()
-	}
-	return nil
-}
-
-func (ptr *QLowEnergyService) SetPointer(p unsafe.Pointer) {
-	if ptr != nil {
-		ptr.QObject_PTR().SetPointer(p)
-	}
-}
-
-func PointerFromQLowEnergyService(ptr QLowEnergyService_ITF) unsafe.Pointer {
-	if ptr != nil {
-		return ptr.QLowEnergyService_PTR().Pointer()
-	}
-	return nil
-}
-
-func NewQLowEnergyServiceFromPointer(ptr unsafe.Pointer) *QLowEnergyService {
-	var n = new(QLowEnergyService)
-	n.SetPointer(ptr)
-	return n
-}
 
 //export callbackQLowEnergyService_CharacteristicChanged
 func callbackQLowEnergyService_CharacteristicChanged(ptr unsafe.Pointer, characteristic unsafe.Pointer, newValue unsafe.Pointer) {
@@ -9288,15 +9345,6 @@ func (ptr *QLowEnergyService) MetaObjectDefault() *core.QMetaObject {
 	return nil
 }
 
-//go:generate stringer -type=QLowEnergyServiceData__ServiceType
-//QLowEnergyServiceData::ServiceType
-type QLowEnergyServiceData__ServiceType int64
-
-const (
-	QLowEnergyServiceData__ServiceTypePrimary   QLowEnergyServiceData__ServiceType = QLowEnergyServiceData__ServiceType(0x2800)
-	QLowEnergyServiceData__ServiceTypeSecondary QLowEnergyServiceData__ServiceType = QLowEnergyServiceData__ServiceType(0x2801)
-)
-
 type QLowEnergyServiceData struct {
 	ptr unsafe.Pointer
 }
@@ -9334,6 +9382,16 @@ func NewQLowEnergyServiceDataFromPointer(ptr unsafe.Pointer) *QLowEnergyServiceD
 	n.SetPointer(ptr)
 	return n
 }
+
+//go:generate stringer -type=QLowEnergyServiceData__ServiceType
+//QLowEnergyServiceData::ServiceType
+type QLowEnergyServiceData__ServiceType int64
+
+const (
+	QLowEnergyServiceData__ServiceTypePrimary   QLowEnergyServiceData__ServiceType = QLowEnergyServiceData__ServiceType(0x2800)
+	QLowEnergyServiceData__ServiceTypeSecondary QLowEnergyServiceData__ServiceType = QLowEnergyServiceData__ServiceType(0x2801)
+)
+
 func NewQLowEnergyServiceData() *QLowEnergyServiceData {
 	var tmpValue = NewQLowEnergyServiceDataFromPointer(C.QLowEnergyServiceData_NewQLowEnergyServiceData())
 	runtime.SetFinalizer(tmpValue, (*QLowEnergyServiceData).DestroyQLowEnergyServiceData)

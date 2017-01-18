@@ -794,11 +794,21 @@ char QSvgRenderer_Load3(void* ptr, void* contents)
 	return returnArg;
 }
 
+char QSvgRenderer_Load3Default(void* ptr, void* contents)
+{
+	return static_cast<QSvgRenderer*>(ptr)->QSvgRenderer::load(static_cast<QXmlStreamReader*>(contents));
+}
+
 char QSvgRenderer_Load2(void* ptr, void* contents)
 {
 	bool returnArg;
 	QMetaObject::invokeMethod(static_cast<QSvgRenderer*>(ptr), "load", Q_RETURN_ARG(bool, returnArg), Q_ARG(QByteArray, *static_cast<QByteArray*>(contents)));
 	return returnArg;
+}
+
+char QSvgRenderer_Load2Default(void* ptr, void* contents)
+{
+	return static_cast<QSvgRenderer*>(ptr)->QSvgRenderer::load(*static_cast<QByteArray*>(contents));
 }
 
 char QSvgRenderer_Load(void* ptr, char* filename)
@@ -808,9 +818,19 @@ char QSvgRenderer_Load(void* ptr, char* filename)
 	return returnArg;
 }
 
+char QSvgRenderer_LoadDefault(void* ptr, char* filename)
+{
+	return static_cast<QSvgRenderer*>(ptr)->QSvgRenderer::load(QString(filename));
+}
+
 void QSvgRenderer_Render(void* ptr, void* painter)
 {
 	QMetaObject::invokeMethod(static_cast<QSvgRenderer*>(ptr), "render", Q_ARG(QPainter*, static_cast<QPainter*>(painter)));
+}
+
+void QSvgRenderer_RenderDefault(void* ptr, void* painter)
+{
+	static_cast<QSvgRenderer*>(ptr)->QSvgRenderer::render(static_cast<QPainter*>(painter));
 }
 
 void QSvgRenderer_Render2(void* ptr, void* painter, void* bounds)
@@ -818,9 +838,19 @@ void QSvgRenderer_Render2(void* ptr, void* painter, void* bounds)
 	QMetaObject::invokeMethod(static_cast<QSvgRenderer*>(ptr), "render", Q_ARG(QPainter*, static_cast<QPainter*>(painter)), Q_ARG(QRectF, *static_cast<QRectF*>(bounds)));
 }
 
+void QSvgRenderer_Render2Default(void* ptr, void* painter, void* bounds)
+{
+	static_cast<QSvgRenderer*>(ptr)->QSvgRenderer::render(static_cast<QPainter*>(painter), *static_cast<QRectF*>(bounds));
+}
+
 void QSvgRenderer_Render3(void* ptr, void* painter, char* elementId, void* bounds)
 {
 	QMetaObject::invokeMethod(static_cast<QSvgRenderer*>(ptr), "render", Q_ARG(QPainter*, static_cast<QPainter*>(painter)), Q_ARG(QString, QString(elementId)), Q_ARG(QRectF, *static_cast<QRectF*>(bounds)));
+}
+
+void QSvgRenderer_Render3Default(void* ptr, void* painter, char* elementId, void* bounds)
+{
+	static_cast<QSvgRenderer*>(ptr)->QSvgRenderer::render(static_cast<QPainter*>(painter), QString(elementId), *static_cast<QRectF*>(bounds));
 }
 
 void QSvgRenderer_ConnectRepaintNeeded(void* ptr)
@@ -1026,9 +1056,19 @@ void QSvgWidget_Load2(void* ptr, void* contents)
 	QMetaObject::invokeMethod(static_cast<QSvgWidget*>(ptr), "load", Q_ARG(QByteArray, *static_cast<QByteArray*>(contents)));
 }
 
+void QSvgWidget_Load2Default(void* ptr, void* contents)
+{
+	static_cast<QSvgWidget*>(ptr)->QSvgWidget::load(*static_cast<QByteArray*>(contents));
+}
+
 void QSvgWidget_Load(void* ptr, char* file)
 {
 	QMetaObject::invokeMethod(static_cast<QSvgWidget*>(ptr), "load", Q_ARG(QString, QString(file)));
+}
+
+void QSvgWidget_LoadDefault(void* ptr, char* file)
+{
+	static_cast<QSvgWidget*>(ptr)->QSvgWidget::load(QString(file));
 }
 
 void QSvgWidget_PaintEvent(void* ptr, void* event)

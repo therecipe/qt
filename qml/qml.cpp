@@ -494,14 +494,29 @@ void QQmlApplicationEngine_Load2(void* ptr, char* filePath)
 	QMetaObject::invokeMethod(static_cast<QQmlApplicationEngine*>(ptr), "load", Q_ARG(QString, QString(filePath)));
 }
 
+void QQmlApplicationEngine_Load2Default(void* ptr, char* filePath)
+{
+	static_cast<QQmlApplicationEngine*>(ptr)->QQmlApplicationEngine::load(QString(filePath));
+}
+
 void QQmlApplicationEngine_Load(void* ptr, void* url)
 {
 	QMetaObject::invokeMethod(static_cast<QQmlApplicationEngine*>(ptr), "load", Q_ARG(QUrl, *static_cast<QUrl*>(url)));
 }
 
+void QQmlApplicationEngine_LoadDefault(void* ptr, void* url)
+{
+	static_cast<QQmlApplicationEngine*>(ptr)->QQmlApplicationEngine::load(*static_cast<QUrl*>(url));
+}
+
 void QQmlApplicationEngine_LoadData(void* ptr, void* data, void* url)
 {
 	QMetaObject::invokeMethod(static_cast<QQmlApplicationEngine*>(ptr), "loadData", Q_ARG(QByteArray, *static_cast<QByteArray*>(data)), Q_ARG(QUrl, *static_cast<QUrl*>(url)));
+}
+
+void QQmlApplicationEngine_LoadDataDefault(void* ptr, void* data, void* url)
+{
+	static_cast<QQmlApplicationEngine*>(ptr)->QQmlApplicationEngine::loadData(*static_cast<QByteArray*>(data), *static_cast<QUrl*>(url));
 }
 
 void QQmlApplicationEngine_ConnectObjectCreated(void* ptr)
@@ -762,9 +777,19 @@ void QQmlComponent_LoadUrl(void* ptr, void* url)
 	QMetaObject::invokeMethod(static_cast<QQmlComponent*>(ptr), "loadUrl", Q_ARG(QUrl, *static_cast<QUrl*>(url)));
 }
 
+void QQmlComponent_LoadUrlDefault(void* ptr, void* url)
+{
+	static_cast<QQmlComponent*>(ptr)->QQmlComponent::loadUrl(*static_cast<QUrl*>(url));
+}
+
 void QQmlComponent_LoadUrl2(void* ptr, void* url, long long mode)
 {
 	QMetaObject::invokeMethod(static_cast<QQmlComponent*>(ptr), "loadUrl", Q_ARG(QUrl, *static_cast<QUrl*>(url)), Q_ARG(QQmlComponent::CompilationMode, static_cast<QQmlComponent::CompilationMode>(mode)));
+}
+
+void QQmlComponent_LoadUrl2Default(void* ptr, void* url, long long mode)
+{
+	static_cast<QQmlComponent*>(ptr)->QQmlComponent::loadUrl(*static_cast<QUrl*>(url), static_cast<QQmlComponent::CompilationMode>(mode));
 }
 
 void QQmlComponent_ConnectProgressChanged(void* ptr)
@@ -785,6 +810,11 @@ void QQmlComponent_ProgressChanged(void* ptr, double progress)
 void QQmlComponent_SetData(void* ptr, void* data, void* url)
 {
 	QMetaObject::invokeMethod(static_cast<QQmlComponent*>(ptr), "setData", Q_ARG(QByteArray, *static_cast<QByteArray*>(data)), Q_ARG(QUrl, *static_cast<QUrl*>(url)));
+}
+
+void QQmlComponent_SetDataDefault(void* ptr, void* data, void* url)
+{
+	static_cast<QQmlComponent*>(ptr)->QQmlComponent::setData(*static_cast<QByteArray*>(data), *static_cast<QUrl*>(url));
 }
 
 void QQmlComponent_ConnectStatusChanged(void* ptr)

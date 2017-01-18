@@ -260,9 +260,7 @@ public:
 	qint64 readLineData(char * data, qint64 maxlen) { QtNetwork_PackedString dataPacked = { data, maxlen };return callbackQAbstractSocket_ReadLineData(this, dataPacked, maxlen); };
 	void resume() { callbackQAbstractSocket_Resume(this); };
 	void setReadBufferSize(qint64 size) { callbackQAbstractSocket_SetReadBufferSize(this, size); };
-	
 	void setSocketOption(QAbstractSocket::SocketOption option, const QVariant & value) { callbackQAbstractSocket_SetSocketOption(this, option, const_cast<QVariant*>(&value)); };
-	
 	QVariant socketOption(QAbstractSocket::SocketOption option) { return *static_cast<QVariant*>(callbackQAbstractSocket_SocketOption(this, option)); };
 	void Signal_StateChanged(QAbstractSocket::SocketState socketState) { callbackQAbstractSocket_StateChanged(this, socketState); };
 	bool waitForBytesWritten(int msecs) { return callbackQAbstractSocket_WaitForBytesWritten(this, msecs) != 0; };
@@ -602,10 +600,6 @@ void QAbstractSocket_SetReadBufferSizeDefault(void* ptr, long long size)
 	static_cast<QAbstractSocket*>(ptr)->QAbstractSocket::setReadBufferSize(size);
 }
 
-
-
-
-
 void QAbstractSocket_SetSocketError(void* ptr, long long socketError)
 {
 	static_cast<QAbstractSocket*>(ptr)->setSocketError(static_cast<QAbstractSocket::SocketError>(socketError));
@@ -625,10 +619,6 @@ void QAbstractSocket_SetSocketState(void* ptr, long long state)
 {
 	static_cast<QAbstractSocket*>(ptr)->setSocketState(static_cast<QAbstractSocket::SocketState>(state));
 }
-
-
-
-
 
 void* QAbstractSocket_SocketOption(void* ptr, long long option)
 {
@@ -1073,6 +1063,11 @@ void QDnsLookup_Abort(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QDnsLookup*>(ptr), "abort");
 }
 
+void QDnsLookup_AbortDefault(void* ptr)
+{
+	static_cast<QDnsLookup*>(ptr)->QDnsLookup::abort();
+}
+
 struct QtNetwork_PackedList QDnsLookup_CanonicalNameRecords(void* ptr)
 {
 	return ({ QList<QDnsDomainNameRecord>* tmpValue = new QList<QDnsDomainNameRecord>(static_cast<QDnsLookup*>(ptr)->canonicalNameRecords()); QtNetwork_PackedList { tmpValue, tmpValue->size() }; });
@@ -1106,6 +1101,11 @@ char QDnsLookup_IsFinished(void* ptr)
 void QDnsLookup_Lookup(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QDnsLookup*>(ptr), "lookup");
+}
+
+void QDnsLookup_LookupDefault(void* ptr)
+{
+	static_cast<QDnsLookup*>(ptr)->QDnsLookup::lookup();
 }
 
 struct QtNetwork_PackedList QDnsLookup_MailExchangeRecords(void* ptr)
@@ -2742,6 +2742,11 @@ struct QtNetwork_PackedString QNetworkAccessManager_SupportedSchemesImplementati
 	return ({ QByteArray t8e5b69 = returnArg.join("|").toUtf8(); QtNetwork_PackedString { const_cast<char*>(t8e5b69.prepend("WHITESPACE").constData()+10), t8e5b69.size()-10 }; });
 }
 
+struct QtNetwork_PackedString QNetworkAccessManager_SupportedSchemesImplementationDefault(void* ptr)
+{
+	return ({ QByteArray t5e649f = static_cast<QNetworkAccessManager*>(ptr)->QNetworkAccessManager::supportedSchemesImplementation().join("|").toUtf8(); QtNetwork_PackedString { const_cast<char*>(t5e649f.prepend("WHITESPACE").constData()+10), t5e649f.size()-10 }; });
+}
+
 void QNetworkAccessManager_DestroyQNetworkAccessManager(void* ptr)
 {
 	static_cast<QNetworkAccessManager*>(ptr)->~QNetworkAccessManager();
@@ -3172,6 +3177,11 @@ void QNetworkConfigurationManager_UpdateCompleted(void* ptr)
 void QNetworkConfigurationManager_UpdateConfigurations(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QNetworkConfigurationManager*>(ptr), "updateConfigurations");
+}
+
+void QNetworkConfigurationManager_UpdateConfigurationsDefault(void* ptr)
+{
+	static_cast<QNetworkConfigurationManager*>(ptr)->QNetworkConfigurationManager::updateConfigurations();
 }
 
 void QNetworkConfigurationManager_DestroyQNetworkConfigurationManager(void* ptr)
@@ -4664,8 +4674,6 @@ long long QNetworkReply_ReadData(void* ptr, char* data, long long maxSize)
 	return static_cast<QNetworkReply*>(ptr)->readData(data, maxSize);
 }
 
-
-
 long long QNetworkReply_ReadLineData(void* ptr, char* data, long long maxSize)
 {
 	return static_cast<QNetworkReply*>(ptr)->readLineData(data, maxSize);
@@ -4729,11 +4737,6 @@ char QNetworkReply_WaitForReadyReadDefault(void* ptr, int msecs)
 long long QNetworkReply_WriteData(void* ptr, char* data, long long maxSize)
 {
 	return static_cast<QNetworkReply*>(ptr)->writeData(const_cast<const char*>(data), maxSize);
-}
-
-long long QNetworkReply_WriteDataDefault(void* ptr, char* data, long long maxSize)
-{
-	return static_cast<QNetworkReply*>(ptr)->QNetworkReply::writeData(const_cast<const char*>(data), maxSize);
 }
 
 void QNetworkReply_TimerEvent(void* ptr, void* event)
@@ -4981,6 +4984,11 @@ void QNetworkSession_Accept(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QNetworkSession*>(ptr), "accept");
 }
 
+void QNetworkSession_AcceptDefault(void* ptr)
+{
+	static_cast<QNetworkSession*>(ptr)->QNetworkSession::accept();
+}
+
 unsigned long long QNetworkSession_ActiveTime(void* ptr)
 {
 	return static_cast<QNetworkSession*>(ptr)->activeTime();
@@ -4999,6 +5007,11 @@ unsigned long long QNetworkSession_BytesWritten(void* ptr)
 void QNetworkSession_Close(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QNetworkSession*>(ptr), "close");
+}
+
+void QNetworkSession_CloseDefault(void* ptr)
+{
+	static_cast<QNetworkSession*>(ptr)->QNetworkSession::close();
 }
 
 void QNetworkSession_ConnectClosed(void* ptr)
@@ -5051,6 +5064,11 @@ void QNetworkSession_Ignore(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QNetworkSession*>(ptr), "ignore");
 }
 
+void QNetworkSession_IgnoreDefault(void* ptr)
+{
+	static_cast<QNetworkSession*>(ptr)->QNetworkSession::ignore();
+}
+
 void* QNetworkSession_Interface(void* ptr)
 {
 	return new QNetworkInterface(static_cast<QNetworkSession*>(ptr)->interface());
@@ -5064,6 +5082,11 @@ char QNetworkSession_IsOpen(void* ptr)
 void QNetworkSession_Migrate(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QNetworkSession*>(ptr), "migrate");
+}
+
+void QNetworkSession_MigrateDefault(void* ptr)
+{
+	static_cast<QNetworkSession*>(ptr)->QNetworkSession::migrate();
 }
 
 void QNetworkSession_ConnectNewConfigurationActivated(void* ptr)
@@ -5084,6 +5107,11 @@ void QNetworkSession_NewConfigurationActivated(void* ptr)
 void QNetworkSession_Open(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QNetworkSession*>(ptr), "open");
+}
+
+void QNetworkSession_OpenDefault(void* ptr)
+{
+	static_cast<QNetworkSession*>(ptr)->QNetworkSession::open();
 }
 
 void QNetworkSession_ConnectOpened(void* ptr)
@@ -5121,6 +5149,11 @@ void QNetworkSession_Reject(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QNetworkSession*>(ptr), "reject");
 }
 
+void QNetworkSession_RejectDefault(void* ptr)
+{
+	static_cast<QNetworkSession*>(ptr)->QNetworkSession::reject();
+}
+
 void* QNetworkSession_SessionProperty(void* ptr, char* key)
 {
 	return new QVariant(static_cast<QNetworkSession*>(ptr)->sessionProperty(QString(key)));
@@ -5154,6 +5187,11 @@ void QNetworkSession_StateChanged(void* ptr, long long state)
 void QNetworkSession_Stop(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QNetworkSession*>(ptr), "stop");
+}
+
+void QNetworkSession_StopDefault(void* ptr)
+{
+	static_cast<QNetworkSession*>(ptr)->QNetworkSession::stop();
 }
 
 long long QNetworkSession_UsagePolicies(void* ptr)
@@ -6049,7 +6087,6 @@ public:
 	qint64 readData(char * data, qint64 maxlen) { QtNetwork_PackedString dataPacked = { data, maxlen };return callbackQSslSocket_ReadData(this, dataPacked, maxlen); };
 	void resume() { callbackQSslSocket_Resume(this); };
 	void setReadBufferSize(qint64 size) { callbackQSslSocket_SetReadBufferSize(this, size); };
-	
 	void setSocketOption(QAbstractSocket::SocketOption option, const QVariant & value) { callbackQSslSocket_SetSocketOption(this, option, const_cast<QVariant*>(&value)); };
 	QVariant socketOption(QAbstractSocket::SocketOption option) { return *static_cast<QVariant*>(callbackQSslSocket_SocketOption(this, option)); };
 	void startClientEncryption() { callbackQSslSocket_StartClientEncryption(this); };
@@ -6064,7 +6101,6 @@ public:
 	void disconnectFromHost() { callbackQSslSocket_DisconnectFromHost(this); };
 	bool isSequential() const { return callbackQSslSocket_IsSequential(const_cast<MyQSslSocket*>(this)) != 0; };
 	qint64 readLineData(char * data, qint64 maxlen) { QtNetwork_PackedString dataPacked = { data, maxlen };return callbackQSslSocket_ReadLineData(this, dataPacked, maxlen); };
-	
 	bool open(QIODevice::OpenMode mode) { return callbackQSslSocket_Open(this, mode) != 0; };
 	qint64 pos() const { return callbackQSslSocket_Pos(const_cast<MyQSslSocket*>(this)); };
 	bool reset() { return callbackQSslSocket_Reset(this) != 0; };
@@ -6219,6 +6255,11 @@ char QSslSocket_Flush(void* ptr)
 void QSslSocket_IgnoreSslErrors(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QSslSocket*>(ptr), "ignoreSslErrors");
+}
+
+void QSslSocket_IgnoreSslErrorsDefault(void* ptr)
+{
+	static_cast<QSslSocket*>(ptr)->QSslSocket::ignoreSslErrors();
 }
 
 char QSslSocket_IsEncrypted(void* ptr)
@@ -6401,10 +6442,6 @@ void QSslSocket_SetReadBufferSizeDefault(void* ptr, long long size)
 	static_cast<QSslSocket*>(ptr)->QSslSocket::setReadBufferSize(size);
 }
 
-
-
-
-
 void QSslSocket_SetSocketOption(void* ptr, long long option, void* value)
 {
 	static_cast<QSslSocket*>(ptr)->setSocketOption(static_cast<QAbstractSocket::SocketOption>(option), *static_cast<QVariant*>(value));
@@ -6465,9 +6502,19 @@ void QSslSocket_StartClientEncryption(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QSslSocket*>(ptr), "startClientEncryption");
 }
 
+void QSslSocket_StartClientEncryptionDefault(void* ptr)
+{
+	static_cast<QSslSocket*>(ptr)->QSslSocket::startClientEncryption();
+}
+
 void QSslSocket_StartServerEncryption(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QSslSocket*>(ptr), "startServerEncryption");
+}
+
+void QSslSocket_StartServerEncryptionDefault(void* ptr)
+{
+	static_cast<QSslSocket*>(ptr)->QSslSocket::startServerEncryption();
 }
 
 char QSslSocket_QSslSocket_SupportsSsl()
@@ -6630,10 +6677,6 @@ long long QSslSocket_ReadLineDataDefault(void* ptr, char* data, long long maxlen
 	return static_cast<QSslSocket*>(ptr)->QSslSocket::readLineData(data, maxlen);
 }
 
-
-
-
-
 char QSslSocket_Open(void* ptr, long long mode)
 {
 	return static_cast<QSslSocket*>(ptr)->open(static_cast<QIODevice::OpenModeFlag>(mode));
@@ -6780,7 +6823,6 @@ public:
 	MyQTcpServer(QObject *parent) : QTcpServer(parent) {};
 	void Signal_AcceptError(QAbstractSocket::SocketError socketError) { callbackQTcpServer_AcceptError(this, socketError); };
 	bool hasPendingConnections() const { return callbackQTcpServer_HasPendingConnections(const_cast<MyQTcpServer*>(this)) != 0; };
-	
 	void Signal_NewConnection() { callbackQTcpServer_NewConnection(this); };
 	QTcpSocket * nextPendingConnection() { return static_cast<QTcpSocket*>(callbackQTcpServer_NextPendingConnection(this)); };
 	 ~MyQTcpServer() { callbackQTcpServer_DestroyQTcpServer(this); };
@@ -6839,10 +6881,6 @@ char QTcpServer_HasPendingConnectionsDefault(void* ptr)
 {
 	return static_cast<QTcpServer*>(ptr)->QTcpServer::hasPendingConnections();
 }
-
-
-
-
 
 char QTcpServer_IsListening(void* ptr)
 {
@@ -7047,9 +7085,7 @@ public:
 	qint64 readLineData(char * data, qint64 maxlen) { QtNetwork_PackedString dataPacked = { data, maxlen };return callbackQTcpSocket_ReadLineData(this, dataPacked, maxlen); };
 	void resume() { callbackQTcpSocket_Resume(this); };
 	void setReadBufferSize(qint64 size) { callbackQTcpSocket_SetReadBufferSize(this, size); };
-	
 	void setSocketOption(QAbstractSocket::SocketOption option, const QVariant & value) { callbackQTcpSocket_SetSocketOption(this, option, const_cast<QVariant*>(&value)); };
-	
 	QVariant socketOption(QAbstractSocket::SocketOption option) { return *static_cast<QVariant*>(callbackQTcpSocket_SocketOption(this, option)); };
 	bool waitForBytesWritten(int msecs) { return callbackQTcpSocket_WaitForBytesWritten(this, msecs) != 0; };
 	bool waitForConnected(int msecs) { return callbackQTcpSocket_WaitForConnected(this, msecs) != 0; };
@@ -7217,10 +7253,6 @@ void QTcpSocket_SetReadBufferSizeDefault(void* ptr, long long size)
 	static_cast<QTcpSocket*>(ptr)->QTcpSocket::setReadBufferSize(size);
 }
 
-
-
-
-
 void QTcpSocket_SetSocketOption(void* ptr, long long option, void* value)
 {
 	static_cast<QTcpSocket*>(ptr)->setSocketOption(static_cast<QAbstractSocket::SocketOption>(option), *static_cast<QVariant*>(value));
@@ -7230,10 +7262,6 @@ void QTcpSocket_SetSocketOptionDefault(void* ptr, long long option, void* value)
 {
 	static_cast<QTcpSocket*>(ptr)->QTcpSocket::setSocketOption(static_cast<QAbstractSocket::SocketOption>(option), *static_cast<QVariant*>(value));
 }
-
-
-
-
 
 void* QTcpSocket_SocketOption(void* ptr, long long option)
 {
@@ -7453,9 +7481,7 @@ public:
 	qint64 readLineData(char * data, qint64 maxlen) { QtNetwork_PackedString dataPacked = { data, maxlen };return callbackQUdpSocket_ReadLineData(this, dataPacked, maxlen); };
 	void resume() { callbackQUdpSocket_Resume(this); };
 	void setReadBufferSize(qint64 size) { callbackQUdpSocket_SetReadBufferSize(this, size); };
-	
 	void setSocketOption(QAbstractSocket::SocketOption option, const QVariant & value) { callbackQUdpSocket_SetSocketOption(this, option, const_cast<QVariant*>(&value)); };
-	
 	QVariant socketOption(QAbstractSocket::SocketOption option) { return *static_cast<QVariant*>(callbackQUdpSocket_SocketOption(this, option)); };
 	bool waitForBytesWritten(int msecs) { return callbackQUdpSocket_WaitForBytesWritten(this, msecs) != 0; };
 	bool waitForConnected(int msecs) { return callbackQUdpSocket_WaitForConnected(this, msecs) != 0; };
@@ -7678,10 +7704,6 @@ void QUdpSocket_SetReadBufferSizeDefault(void* ptr, long long size)
 	static_cast<QUdpSocket*>(ptr)->QUdpSocket::setReadBufferSize(size);
 }
 
-
-
-
-
 void QUdpSocket_SetSocketOption(void* ptr, long long option, void* value)
 {
 	static_cast<QUdpSocket*>(ptr)->setSocketOption(static_cast<QAbstractSocket::SocketOption>(option), *static_cast<QVariant*>(value));
@@ -7691,10 +7713,6 @@ void QUdpSocket_SetSocketOptionDefault(void* ptr, long long option, void* value)
 {
 	static_cast<QUdpSocket*>(ptr)->QUdpSocket::setSocketOption(static_cast<QAbstractSocket::SocketOption>(option), *static_cast<QVariant*>(value));
 }
-
-
-
-
 
 void* QUdpSocket_SocketOption(void* ptr, long long option)
 {

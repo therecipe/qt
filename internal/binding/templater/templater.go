@@ -15,12 +15,6 @@ func GenModule(m string) {
 	//prepare state
 	parser.State.Module = m
 
-	//generate
-	//TODO: remove dry run -->
-	CppTemplate(m)
-	GoTemplate(m, false)
-	//<--
-
 	var suffix = func() string {
 		switch m {
 		case "AndroidExtras":

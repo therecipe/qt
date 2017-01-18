@@ -132,7 +132,6 @@ public:
 	QVariant headerData(int section, Qt::Orientation orientation, int role) const { return *static_cast<QVariant*>(callbackQHelpContentModel_HeaderData(const_cast<MyQHelpContentModel*>(this), section, orientation, role)); };
 	bool insertColumns(int column, int count, const QModelIndex & parent) { return callbackQHelpContentModel_InsertColumns(this, column, count, const_cast<QModelIndex*>(&parent)) != 0; };
 	bool insertRows(int row, int count, const QModelIndex & parent) { return callbackQHelpContentModel_InsertRows(this, row, count, const_cast<QModelIndex*>(&parent)) != 0; };
-	
 	QStringList mimeTypes() const { return QString(callbackQHelpContentModel_MimeTypes(const_cast<MyQHelpContentModel*>(this))).split("|", QString::SkipEmptyParts); };
 	bool moveColumns(const QModelIndex & sourceParent, int sourceColumn, int count, const QModelIndex & destinationParent, int destinationChild) { return callbackQHelpContentModel_MoveColumns(this, const_cast<QModelIndex*>(&sourceParent), sourceColumn, count, const_cast<QModelIndex*>(&destinationParent), destinationChild) != 0; };
 	bool moveRows(const QModelIndex & sourceParent, int sourceRow, int count, const QModelIndex & destinationParent, int destinationChild) { return callbackQHelpContentModel_MoveRows(this, const_cast<QModelIndex*>(&sourceParent), sourceRow, count, const_cast<QModelIndex*>(&destinationParent), destinationChild) != 0; };
@@ -367,10 +366,6 @@ char QHelpContentModel_InsertRowsDefault(void* ptr, int row, int count, void* pa
 {
 	return static_cast<QHelpContentModel*>(ptr)->QHelpContentModel::insertRows(row, count, *static_cast<QModelIndex*>(parent));
 }
-
-
-
-
 
 struct QtHelp_PackedString QHelpContentModel_MimeTypes(void* ptr)
 {
@@ -2398,7 +2393,6 @@ public:
 	bool hasChildren(const QModelIndex & parent) const { return callbackQHelpIndexModel_HasChildren(const_cast<MyQHelpIndexModel*>(this), const_cast<QModelIndex*>(&parent)) != 0; };
 	QVariant headerData(int section, Qt::Orientation orientation, int role) const { return *static_cast<QVariant*>(callbackQHelpIndexModel_HeaderData(const_cast<MyQHelpIndexModel*>(this), section, orientation, role)); };
 	bool insertColumns(int column, int count, const QModelIndex & parent) { return callbackQHelpIndexModel_InsertColumns(this, column, count, const_cast<QModelIndex*>(&parent)) != 0; };
-	
 	QStringList mimeTypes() const { return QString(callbackQHelpIndexModel_MimeTypes(const_cast<MyQHelpIndexModel*>(this))).split("|", QString::SkipEmptyParts); };
 	bool moveColumns(const QModelIndex & sourceParent, int sourceColumn, int count, const QModelIndex & destinationParent, int destinationChild) { return callbackQHelpIndexModel_MoveColumns(this, const_cast<QModelIndex*>(&sourceParent), sourceColumn, count, const_cast<QModelIndex*>(&destinationParent), destinationChild) != 0; };
 	bool moveRows(const QModelIndex & sourceParent, int sourceRow, int count, const QModelIndex & destinationParent, int destinationChild) { return callbackQHelpIndexModel_MoveRows(this, const_cast<QModelIndex*>(&sourceParent), sourceRow, count, const_cast<QModelIndex*>(&destinationParent), destinationChild) != 0; };
@@ -2611,11 +2605,6 @@ int QHelpIndexModel_ColumnCount(void* ptr, void* parent)
 	return static_cast<QHelpIndexModel*>(ptr)->columnCount(*static_cast<QModelIndex*>(parent));
 }
 
-int QHelpIndexModel_ColumnCountDefault(void* ptr, void* parent)
-{
-	return static_cast<QHelpIndexModel*>(ptr)->QHelpIndexModel::columnCount(*static_cast<QModelIndex*>(parent));
-}
-
 void QHelpIndexModel_FetchMore(void* ptr, void* parent)
 {
 	static_cast<QHelpIndexModel*>(ptr)->fetchMore(*static_cast<QModelIndex*>(parent));
@@ -2656,10 +2645,6 @@ char QHelpIndexModel_InsertColumnsDefault(void* ptr, int column, int count, void
 	return static_cast<QHelpIndexModel*>(ptr)->QHelpIndexModel::insertColumns(column, count, *static_cast<QModelIndex*>(parent));
 }
 
-
-
-
-
 struct QtHelp_PackedString QHelpIndexModel_MimeTypes(void* ptr)
 {
 	return ({ QByteArray t04067e = static_cast<QHelpIndexModel*>(ptr)->mimeTypes().join("|").toUtf8(); QtHelp_PackedString { const_cast<char*>(t04067e.prepend("WHITESPACE").constData()+10), t04067e.size()-10 }; });
@@ -2693,11 +2678,6 @@ char QHelpIndexModel_MoveRowsDefault(void* ptr, void* sourceParent, int sourceRo
 void* QHelpIndexModel_Parent(void* ptr, void* index)
 {
 	return new QModelIndex(static_cast<QHelpIndexModel*>(ptr)->parent(*static_cast<QModelIndex*>(index)));
-}
-
-void* QHelpIndexModel_ParentDefault(void* ptr, void* index)
-{
-	return new QModelIndex(static_cast<QHelpIndexModel*>(ptr)->QHelpIndexModel::parent(*static_cast<QModelIndex*>(index)));
 }
 
 char QHelpIndexModel_RemoveColumns(void* ptr, int column, int count, void* parent)
@@ -2977,9 +2957,19 @@ void QHelpIndexWidget_ActivateCurrentItem(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QHelpIndexWidget*>(ptr), "activateCurrentItem");
 }
 
+void QHelpIndexWidget_ActivateCurrentItemDefault(void* ptr)
+{
+	static_cast<QHelpIndexWidget*>(ptr)->QHelpIndexWidget::activateCurrentItem();
+}
+
 void QHelpIndexWidget_FilterIndices(void* ptr, char* filter, char* wildcard)
 {
 	QMetaObject::invokeMethod(static_cast<QHelpIndexWidget*>(ptr), "filterIndices", Q_ARG(QString, QString(filter)), Q_ARG(QString, QString(wildcard)));
+}
+
+void QHelpIndexWidget_FilterIndicesDefault(void* ptr, char* filter, char* wildcard)
+{
+	static_cast<QHelpIndexWidget*>(ptr)->QHelpIndexWidget::filterIndices(QString(filter), QString(wildcard));
 }
 
 void QHelpIndexWidget_ConnectLinkActivated(void* ptr)
@@ -4051,9 +4041,19 @@ void QHelpSearchEngine_CancelIndexing(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QHelpSearchEngine*>(ptr), "cancelIndexing");
 }
 
+void QHelpSearchEngine_CancelIndexingDefault(void* ptr)
+{
+	static_cast<QHelpSearchEngine*>(ptr)->QHelpSearchEngine::cancelIndexing();
+}
+
 void QHelpSearchEngine_CancelSearching(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QHelpSearchEngine*>(ptr), "cancelSearching");
+}
+
+void QHelpSearchEngine_CancelSearchingDefault(void* ptr)
+{
+	static_cast<QHelpSearchEngine*>(ptr)->QHelpSearchEngine::cancelSearching();
 }
 
 int QHelpSearchEngine_HitCount(void* ptr)
@@ -4099,6 +4099,11 @@ void* QHelpSearchEngine_QueryWidget(void* ptr)
 void QHelpSearchEngine_ReindexDocumentation(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QHelpSearchEngine*>(ptr), "reindexDocumentation");
+}
+
+void QHelpSearchEngine_ReindexDocumentationDefault(void* ptr)
+{
+	static_cast<QHelpSearchEngine*>(ptr)->QHelpSearchEngine::reindexDocumentation();
 }
 
 void* QHelpSearchEngine_ResultWidget(void* ptr)

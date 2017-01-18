@@ -1733,6 +1733,11 @@ void QDesignerFormWindowInterface_ActivateResourceFilePaths(void* ptr, char* pat
 	QMetaObject::invokeMethod(static_cast<QDesignerFormWindowInterface*>(ptr), "activateResourceFilePaths", Q_ARG(QStringList, QString(paths).split("|", QString::SkipEmptyParts)), Q_ARG(int*, &errorCount), Q_ARG(QString*, new QString(errorMessages)));
 }
 
+void QDesignerFormWindowInterface_ActivateResourceFilePathsDefault(void* ptr, char* paths, int errorCount, char* errorMessages)
+{
+	static_cast<QDesignerFormWindowInterface*>(ptr)->QDesignerFormWindowInterface::activateResourceFilePaths(QString(paths).split("|", QString::SkipEmptyParts), &errorCount, new QString(errorMessages));
+}
+
 void QDesignerFormWindowInterface_ConnectActivated(void* ptr)
 {
 	QObject::connect(static_cast<QDesignerFormWindowInterface*>(ptr), static_cast<void (QDesignerFormWindowInterface::*)(QWidget *)>(&QDesignerFormWindowInterface::activated), static_cast<MyQDesignerFormWindowInterface*>(ptr), static_cast<void (MyQDesignerFormWindowInterface::*)(QWidget *)>(&MyQDesignerFormWindowInterface::Signal_Activated));

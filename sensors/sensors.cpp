@@ -4591,9 +4591,19 @@ char QSensor_Start(void* ptr)
 	return returnArg;
 }
 
+char QSensor_StartDefault(void* ptr)
+{
+	return static_cast<QSensor*>(ptr)->QSensor::start();
+}
+
 void QSensor_Stop(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QSensor*>(ptr), "stop");
+}
+
+void QSensor_StopDefault(void* ptr)
+{
+	static_cast<QSensor*>(ptr)->QSensor::stop();
 }
 
 void QSensor_ConnectUserOrientationChanged(void* ptr)

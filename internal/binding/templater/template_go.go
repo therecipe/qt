@@ -6,7 +6,6 @@ import (
 	"go/format"
 	"strings"
 
-	"github.com/therecipe/qt/internal/binding/converter"
 	"github.com/therecipe/qt/internal/binding/parser"
 	"github.com/therecipe/qt/internal/utils"
 )
@@ -24,11 +23,6 @@ func GoTemplate(module string, stub bool) []byte {
 	}
 
 	for _, class := range sortedClassesForModule(module) {
-
-		//all class enums
-		for _, enum := range class.Enums {
-			fmt.Fprintf(bb, "%v\n\n", goEnum(enum))
-		}
 
 		class.Stub = UseStub() || stub
 
@@ -150,136 +144,7 @@ func (ptr *%v) Destroy%v() {
 			}
 		}
 
-		if class.IsSupported() {
-
-			var implementedVirtuals = make(map[string]struct{})
-
-			//all class functions
-			for _, function := range class.Functions {
-
-				if function.IsSupported() {
-
-					implementedVirtuals[fmt.Sprint(function.Name, function.OverloadNumber)] = struct{}{}
-					switch {
-					case (function.Virtual == parser.IMPURE || function.Virtual == parser.PURE || function.Meta == parser.SIGNAL || function.Meta == parser.SLOT):
-						{
-							for _, signalMode := range []string{parser.CALLBACK, parser.CONNECT, parser.DISCONNECT} {
-								var function = *function
-								function.SignalMode = signalMode
-
-								fmt.Fprintf(bb, "%v%v\n\n",
-									func() string {
-										if signalMode == parser.CALLBACK && goFunction(&function) != "" {
-											return fmt.Sprintf("//export %v\n", converter.GoHeaderName(&function))
-										}
-										return ""
-									}(),
-
-									goFunction(&function),
-								)
-							}
-
-							if !converter.IsPrivateSignal(function) {
-								var function = *function
-								function.Meta = parser.PLAIN
-								fmt.Fprintf(bb, "%v\n\n", goFunction(&function))
-
-								if function.Virtual == parser.IMPURE {
-									function.Default = true
-									fmt.Fprintf(bb, "%v\n\n", goFunction(&function))
-								}
-							}
-						}
-
-					case function.IsJNIGeneric():
-						{
-							for _, mode := range converter.CppOutputParametersJNIGenericModes(function) {
-								var function = *function
-								function.TemplateModeJNI = mode
-
-								fmt.Fprintf(bb, "%v\n\n", goFunction(&function))
-							}
-						}
-
-					default:
-						{
-							if !(function.Meta == parser.CONSTRUCTOR && hasUnimplementedPureVirtualFunctions(class.Name)) {
-								fmt.Fprintf(bb, "%v\n\n", goFunction(function))
-
-								if function.Static {
-									fmt.Fprintf(bb, "%v{\n%v\n}\n\n",
-										func() string {
-											var function = *function
-											function.Static = false
-											return goFunctionHeader(&function)
-										}(),
-										goFunctionBody(function),
-									)
-								}
-							}
-						}
-					}
-				}
-			}
-
-			//virtual parent functions
-			for _, parentClassName := range class.GetAllBases() {
-				var parentClass = parser.State.ClassMap[parentClassName]
-				if parentClass.IsSupported() {
-
-					for _, function := range parentClass.Functions {
-						if _, exists := implementedVirtuals[fmt.Sprint(function.Name, function.OverloadNumber)]; !exists {
-
-							if function.IsSupported() {
-								if function.Meta != parser.SIGNAL && (function.Virtual == parser.IMPURE || function.Virtual == parser.PURE || function.Meta == parser.SLOT) && function.Meta != parser.DESTRUCTOR {
-									implementedVirtuals[fmt.Sprint(function.Name, function.OverloadNumber)] = struct{}{}
-
-									for _, signalMode := range []string{parser.CALLBACK, parser.CONNECT, parser.DISCONNECT} {
-										var function = *function
-										function.PureBaseFunction = function.Virtual == parser.PURE && class.Module == parser.MOC
-										function.Fullname = fmt.Sprintf("%v::%v", class.Name, function.Name)
-										function.Virtual = parser.IMPURE
-										function.SignalMode = signalMode
-
-										fmt.Fprintf(bb, "%v%v\n\n",
-											func() string {
-												if signalMode == parser.CALLBACK && goFunction(&function) != "" {
-													return fmt.Sprintf("//export %v\n", converter.GoHeaderName(&function))
-												}
-												return ""
-											}(),
-
-											goFunction(&function),
-										)
-									}
-
-									var function = *function
-									function.Fullname = fmt.Sprintf("%v::%v", class.Name, function.Name)
-									if function.Meta != parser.SLOT {
-										function.Meta = parser.PLAIN
-									}
-									fmt.Fprintf(bb, "%v\n\n", goFunction(&function))
-
-									var c, _ = function.Class()
-									if c.Module == parser.MOC && function.Virtual == parser.PURE {
-										continue
-									}
-
-									function.Meta = parser.PLAIN
-									function.Default = true
-									fmt.Fprintf(bb, "%v\n\n", goFunction(&function))
-
-								}
-							}
-
-						}
-					}
-
-				}
-			}
-
-		}
-
+		cTemplate(bb, class, goEnum, goFunction, "\n\n", true)
 	}
 
 	return preambleGo(goModule(module), bb.Bytes(), stub)
@@ -316,42 +181,7 @@ import "C"
 import (
 `,
 
-			func() string {
-				switch {
-				case stub:
-					{
-						if module == "androidextras" {
-							return "// +build !android"
-						}
-						return "// +build !sailfish,!sailfish_emulator"
-					}
-
-				case parser.State.Minimal:
-					{
-						return "// +build minimal"
-					}
-
-				case parser.State.Moc:
-					{
-						return ""
-					}
-
-				case module == "androidextras":
-					{
-						return "// +build android"
-					}
-
-				case module == "sailfish":
-					{
-						return "// +build sailfish sailfish_emulator"
-					}
-
-				default:
-					{
-						return "// +build !minimal"
-					}
-				}
-			}(),
+			buildTags(module, stub),
 
 			func() string {
 				if parser.State.Moc {
@@ -426,6 +256,7 @@ import (
 	return out
 }
 
+//TODO:
 func renameSubClasses(in []byte, r string) []byte {
 	for _, c := range parser.State.ClassMap {
 		if c.Fullname != "" {

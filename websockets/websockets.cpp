@@ -271,6 +271,11 @@ void QWebSocket_Close(void* ptr, long long closeCode, char* reason)
 	QMetaObject::invokeMethod(static_cast<QWebSocket*>(ptr), "close", Q_ARG(QWebSocketProtocol::CloseCode, static_cast<QWebSocketProtocol::CloseCode>(closeCode)), Q_ARG(QString, QString(reason)));
 }
 
+void QWebSocket_CloseDefault(void* ptr, long long closeCode, char* reason)
+{
+	static_cast<QWebSocket*>(ptr)->QWebSocket::close(static_cast<QWebSocketProtocol::CloseCode>(closeCode), QString(reason));
+}
+
 long long QWebSocket_CloseCode(void* ptr)
 {
 	return static_cast<QWebSocket*>(ptr)->closeCode();
@@ -346,6 +351,11 @@ void QWebSocket_IgnoreSslErrors(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QWebSocket*>(ptr), "ignoreSslErrors");
 }
 
+void QWebSocket_IgnoreSslErrorsDefault(void* ptr)
+{
+	static_cast<QWebSocket*>(ptr)->QWebSocket::ignoreSslErrors();
+}
+
 char QWebSocket_IsValid(void* ptr)
 {
 	return static_cast<QWebSocket*>(ptr)->isValid();
@@ -371,9 +381,19 @@ void QWebSocket_Open2(void* ptr, void* request)
 	QMetaObject::invokeMethod(static_cast<QWebSocket*>(ptr), "open", Q_ARG(QNetworkRequest, *static_cast<QNetworkRequest*>(request)));
 }
 
+void QWebSocket_Open2Default(void* ptr, void* request)
+{
+	static_cast<QWebSocket*>(ptr)->QWebSocket::open(*static_cast<QNetworkRequest*>(request));
+}
+
 void QWebSocket_Open(void* ptr, void* url)
 {
 	QMetaObject::invokeMethod(static_cast<QWebSocket*>(ptr), "open", Q_ARG(QUrl, *static_cast<QUrl*>(url)));
+}
+
+void QWebSocket_OpenDefault(void* ptr, void* url)
+{
+	static_cast<QWebSocket*>(ptr)->QWebSocket::open(*static_cast<QUrl*>(url));
 }
 
 struct QtWebSockets_PackedString QWebSocket_Origin(void* ptr)
@@ -404,6 +424,11 @@ unsigned short QWebSocket_PeerPort(void* ptr)
 void QWebSocket_Ping(void* ptr, void* payload)
 {
 	QMetaObject::invokeMethod(static_cast<QWebSocket*>(ptr), "ping", Q_ARG(QByteArray, *static_cast<QByteArray*>(payload)));
+}
+
+void QWebSocket_PingDefault(void* ptr, void* payload)
+{
+	static_cast<QWebSocket*>(ptr)->QWebSocket::ping(*static_cast<QByteArray*>(payload));
 }
 
 void QWebSocket_ConnectPong(void* ptr)

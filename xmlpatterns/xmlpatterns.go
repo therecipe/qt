@@ -499,7 +499,7 @@ func (ptr *QAbstractUriResolver) ConnectResolve(f func(relative *core.QUrl, base
 	}
 }
 
-func (ptr *QAbstractUriResolver) DisconnectResolve(relative core.QUrl_ITF, baseURI core.QUrl_ITF) {
+func (ptr *QAbstractUriResolver) DisconnectResolve() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractUriResolver::resolve")
@@ -888,17 +888,6 @@ func (ptr *QAbstractUriResolver) MetaObjectDefault() *core.QMetaObject {
 	return nil
 }
 
-//go:generate stringer -type=QAbstractXmlNodeModel__SimpleAxis
-//QAbstractXmlNodeModel::SimpleAxis
-type QAbstractXmlNodeModel__SimpleAxis int64
-
-const (
-	QAbstractXmlNodeModel__Parent          QAbstractXmlNodeModel__SimpleAxis = QAbstractXmlNodeModel__SimpleAxis(0)
-	QAbstractXmlNodeModel__FirstChild      QAbstractXmlNodeModel__SimpleAxis = QAbstractXmlNodeModel__SimpleAxis(1)
-	QAbstractXmlNodeModel__PreviousSibling QAbstractXmlNodeModel__SimpleAxis = QAbstractXmlNodeModel__SimpleAxis(2)
-	QAbstractXmlNodeModel__NextSibling     QAbstractXmlNodeModel__SimpleAxis = QAbstractXmlNodeModel__SimpleAxis(3)
-)
-
 type QAbstractXmlNodeModel struct {
 	core.QSharedData
 }
@@ -938,6 +927,17 @@ func NewQAbstractXmlNodeModelFromPointer(ptr unsafe.Pointer) *QAbstractXmlNodeMo
 	return n
 }
 
+//go:generate stringer -type=QAbstractXmlNodeModel__SimpleAxis
+//QAbstractXmlNodeModel::SimpleAxis
+type QAbstractXmlNodeModel__SimpleAxis int64
+
+const (
+	QAbstractXmlNodeModel__Parent          QAbstractXmlNodeModel__SimpleAxis = QAbstractXmlNodeModel__SimpleAxis(0)
+	QAbstractXmlNodeModel__FirstChild      QAbstractXmlNodeModel__SimpleAxis = QAbstractXmlNodeModel__SimpleAxis(1)
+	QAbstractXmlNodeModel__PreviousSibling QAbstractXmlNodeModel__SimpleAxis = QAbstractXmlNodeModel__SimpleAxis(2)
+	QAbstractXmlNodeModel__NextSibling     QAbstractXmlNodeModel__SimpleAxis = QAbstractXmlNodeModel__SimpleAxis(3)
+)
+
 func (ptr *QAbstractXmlNodeModel) ConnectAttributes(f func(element *QXmlNodeModelIndex) []*QXmlNodeModelIndex) {
 	if ptr.Pointer() != nil {
 
@@ -945,7 +945,7 @@ func (ptr *QAbstractXmlNodeModel) ConnectAttributes(f func(element *QXmlNodeMode
 	}
 }
 
-func (ptr *QAbstractXmlNodeModel) DisconnectAttributes(element QXmlNodeModelIndex_ITF) {
+func (ptr *QAbstractXmlNodeModel) DisconnectAttributes() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractXmlNodeModel::attributes")
@@ -982,7 +982,7 @@ func (ptr *QAbstractXmlNodeModel) ConnectBaseUri(f func(n *QXmlNodeModelIndex) *
 	}
 }
 
-func (ptr *QAbstractXmlNodeModel) DisconnectBaseUri(n QXmlNodeModelIndex_ITF) {
+func (ptr *QAbstractXmlNodeModel) DisconnectBaseUri() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractXmlNodeModel::baseUri")
@@ -1015,7 +1015,7 @@ func (ptr *QAbstractXmlNodeModel) ConnectCompareOrder(f func(ni1 *QXmlNodeModelI
 	}
 }
 
-func (ptr *QAbstractXmlNodeModel) DisconnectCompareOrder(ni1 QXmlNodeModelIndex_ITF, ni2 QXmlNodeModelIndex_ITF) {
+func (ptr *QAbstractXmlNodeModel) DisconnectCompareOrder() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractXmlNodeModel::compareOrder")
@@ -1073,7 +1073,7 @@ func (ptr *QAbstractXmlNodeModel) ConnectDocumentUri(f func(n *QXmlNodeModelInde
 	}
 }
 
-func (ptr *QAbstractXmlNodeModel) DisconnectDocumentUri(n QXmlNodeModelIndex_ITF) {
+func (ptr *QAbstractXmlNodeModel) DisconnectDocumentUri() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractXmlNodeModel::documentUri")
@@ -1106,7 +1106,7 @@ func (ptr *QAbstractXmlNodeModel) ConnectElementById(f func(id *QXmlName) *QXmlN
 	}
 }
 
-func (ptr *QAbstractXmlNodeModel) DisconnectElementById(id QXmlName_ITF) {
+func (ptr *QAbstractXmlNodeModel) DisconnectElementById() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractXmlNodeModel::elementById")
@@ -1139,7 +1139,7 @@ func (ptr *QAbstractXmlNodeModel) ConnectKind(f func(ni *QXmlNodeModelIndex) QXm
 	}
 }
 
-func (ptr *QAbstractXmlNodeModel) DisconnectKind(ni QXmlNodeModelIndex_ITF) {
+func (ptr *QAbstractXmlNodeModel) DisconnectKind() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractXmlNodeModel::kind")
@@ -1160,7 +1160,7 @@ func (ptr *QAbstractXmlNodeModel) ConnectNamespaceBindings(f func(n *QXmlNodeMod
 	}
 }
 
-func (ptr *QAbstractXmlNodeModel) DisconnectNamespaceBindings(n QXmlNodeModelIndex_ITF) {
+func (ptr *QAbstractXmlNodeModel) DisconnectNamespaceBindings() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractXmlNodeModel::namespaceBindings")
@@ -1197,7 +1197,7 @@ func (ptr *QAbstractXmlNodeModel) ConnectName(f func(ni *QXmlNodeModelIndex) *QX
 	}
 }
 
-func (ptr *QAbstractXmlNodeModel) DisconnectName(ni QXmlNodeModelIndex_ITF) {
+func (ptr *QAbstractXmlNodeModel) DisconnectName() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractXmlNodeModel::name")
@@ -1230,7 +1230,7 @@ func (ptr *QAbstractXmlNodeModel) ConnectNextFromSimpleAxis(f func(axis QAbstrac
 	}
 }
 
-func (ptr *QAbstractXmlNodeModel) DisconnectNextFromSimpleAxis(axis QAbstractXmlNodeModel__SimpleAxis, origin QXmlNodeModelIndex_ITF) {
+func (ptr *QAbstractXmlNodeModel) DisconnectNextFromSimpleAxis() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractXmlNodeModel::nextFromSimpleAxis")
@@ -1253,7 +1253,7 @@ func (ptr *QAbstractXmlNodeModel) ConnectNodesByIdref(f func(idref *QXmlName) []
 	}
 }
 
-func (ptr *QAbstractXmlNodeModel) DisconnectNodesByIdref(idref QXmlName_ITF) {
+func (ptr *QAbstractXmlNodeModel) DisconnectNodesByIdref() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractXmlNodeModel::nodesByIdref")
@@ -1290,7 +1290,7 @@ func (ptr *QAbstractXmlNodeModel) ConnectRoot(f func(n *QXmlNodeModelIndex) *QXm
 	}
 }
 
-func (ptr *QAbstractXmlNodeModel) DisconnectRoot(n QXmlNodeModelIndex_ITF) {
+func (ptr *QAbstractXmlNodeModel) DisconnectRoot() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractXmlNodeModel::root")
@@ -1332,7 +1332,7 @@ func (ptr *QAbstractXmlNodeModel) ConnectStringValue(f func(n *QXmlNodeModelInde
 	}
 }
 
-func (ptr *QAbstractXmlNodeModel) DisconnectStringValue(n QXmlNodeModelIndex_ITF) {
+func (ptr *QAbstractXmlNodeModel) DisconnectStringValue() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractXmlNodeModel::stringValue")
@@ -1363,7 +1363,7 @@ func (ptr *QAbstractXmlNodeModel) ConnectTypedValue(f func(node *QXmlNodeModelIn
 	}
 }
 
-func (ptr *QAbstractXmlNodeModel) DisconnectTypedValue(node QXmlNodeModelIndex_ITF) {
+func (ptr *QAbstractXmlNodeModel) DisconnectTypedValue() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractXmlNodeModel::typedValue")
@@ -1503,7 +1503,7 @@ func (ptr *QAbstractXmlReceiver) ConnectAtomicValue(f func(value *core.QVariant)
 	}
 }
 
-func (ptr *QAbstractXmlReceiver) DisconnectAtomicValue(value core.QVariant_ITF) {
+func (ptr *QAbstractXmlReceiver) DisconnectAtomicValue() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractXmlReceiver::atomicValue")
@@ -1532,7 +1532,7 @@ func (ptr *QAbstractXmlReceiver) ConnectAttribute(f func(name *QXmlName, value *
 	}
 }
 
-func (ptr *QAbstractXmlReceiver) DisconnectAttribute(name QXmlName_ITF, value core.QStringRef_ITF) {
+func (ptr *QAbstractXmlReceiver) DisconnectAttribute() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractXmlReceiver::attribute")
@@ -1561,7 +1561,7 @@ func (ptr *QAbstractXmlReceiver) ConnectCharacters(f func(value *core.QStringRef
 	}
 }
 
-func (ptr *QAbstractXmlReceiver) DisconnectCharacters(value core.QStringRef_ITF) {
+func (ptr *QAbstractXmlReceiver) DisconnectCharacters() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractXmlReceiver::characters")
@@ -1590,7 +1590,7 @@ func (ptr *QAbstractXmlReceiver) ConnectComment(f func(value string)) {
 	}
 }
 
-func (ptr *QAbstractXmlReceiver) DisconnectComment(value string) {
+func (ptr *QAbstractXmlReceiver) DisconnectComment() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractXmlReceiver::comment")
@@ -1708,7 +1708,7 @@ func (ptr *QAbstractXmlReceiver) ConnectNamespaceBinding(f func(name *QXmlName))
 	}
 }
 
-func (ptr *QAbstractXmlReceiver) DisconnectNamespaceBinding(name QXmlName_ITF) {
+func (ptr *QAbstractXmlReceiver) DisconnectNamespaceBinding() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractXmlReceiver::namespaceBinding")
@@ -1737,7 +1737,7 @@ func (ptr *QAbstractXmlReceiver) ConnectProcessingInstruction(f func(target *QXm
 	}
 }
 
-func (ptr *QAbstractXmlReceiver) DisconnectProcessingInstruction(target QXmlName_ITF, value string) {
+func (ptr *QAbstractXmlReceiver) DisconnectProcessingInstruction() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractXmlReceiver::processingInstruction")
@@ -1797,7 +1797,7 @@ func (ptr *QAbstractXmlReceiver) ConnectStartElement(f func(name *QXmlName)) {
 	}
 }
 
-func (ptr *QAbstractXmlReceiver) DisconnectStartElement(name QXmlName_ITF) {
+func (ptr *QAbstractXmlReceiver) DisconnectStartElement() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractXmlReceiver::startElement")
@@ -1879,6 +1879,51 @@ func (ptr *QAbstractXmlReceiver) DestroyQAbstractXmlReceiverDefault() {
 	}
 }
 
+type QPatternist struct {
+	ptr unsafe.Pointer
+}
+
+type QPatternist_ITF interface {
+	QPatternist_PTR() *QPatternist
+}
+
+func (ptr *QPatternist) QPatternist_PTR() *QPatternist {
+	return ptr
+}
+
+func (ptr *QPatternist) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
+	}
+	return nil
+}
+
+func (ptr *QPatternist) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
+	}
+}
+
+func PointerFromQPatternist(ptr QPatternist_ITF) unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QPatternist_PTR().Pointer()
+	}
+	return nil
+}
+
+func NewQPatternistFromPointer(ptr unsafe.Pointer) *QPatternist {
+	var n = new(QPatternist)
+	n.SetPointer(ptr)
+	return n
+}
+
+func (ptr *QPatternist) DestroyQPatternist() {
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
+}
+
 //go:generate stringer -type=QPatternist__DerivedIntegerLimitsUsage
 //QPatternist::DerivedIntegerLimitsUsage
 type QPatternist__DerivedIntegerLimitsUsage int64
@@ -1925,51 +1970,6 @@ const (
 	QPatternist__TypeIDREF            QPatternist__TypeOfDerivedString = QPatternist__TypeOfDerivedString(8)
 	QPatternist__TypeENTITY           QPatternist__TypeOfDerivedString = QPatternist__TypeOfDerivedString(9)
 )
-
-type QPatternist struct {
-	ptr unsafe.Pointer
-}
-
-type QPatternist_ITF interface {
-	QPatternist_PTR() *QPatternist
-}
-
-func (ptr *QPatternist) QPatternist_PTR() *QPatternist {
-	return ptr
-}
-
-func (ptr *QPatternist) Pointer() unsafe.Pointer {
-	if ptr != nil {
-		return ptr.ptr
-	}
-	return nil
-}
-
-func (ptr *QPatternist) SetPointer(p unsafe.Pointer) {
-	if ptr != nil {
-		ptr.ptr = p
-	}
-}
-
-func PointerFromQPatternist(ptr QPatternist_ITF) unsafe.Pointer {
-	if ptr != nil {
-		return ptr.QPatternist_PTR().Pointer()
-	}
-	return nil
-}
-
-func NewQPatternistFromPointer(ptr unsafe.Pointer) *QPatternist {
-	var n = new(QPatternist)
-	n.SetPointer(ptr)
-	return n
-}
-
-func (ptr *QPatternist) DestroyQPatternist() {
-	if ptr != nil {
-		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
-	}
-}
 
 type QSimpleXmlNodeModel struct {
 	QAbstractXmlNodeModel
@@ -3436,30 +3436,6 @@ func (ptr *QXmlNamePool) DestroyQXmlNamePool() {
 	}
 }
 
-//go:generate stringer -type=QXmlNodeModelIndex__DocumentOrder
-//QXmlNodeModelIndex::DocumentOrder
-type QXmlNodeModelIndex__DocumentOrder int64
-
-const (
-	QXmlNodeModelIndex__Precedes QXmlNodeModelIndex__DocumentOrder = QXmlNodeModelIndex__DocumentOrder(-1)
-	QXmlNodeModelIndex__Is       QXmlNodeModelIndex__DocumentOrder = QXmlNodeModelIndex__DocumentOrder(0)
-	QXmlNodeModelIndex__Follows  QXmlNodeModelIndex__DocumentOrder = QXmlNodeModelIndex__DocumentOrder(1)
-)
-
-//go:generate stringer -type=QXmlNodeModelIndex__NodeKind
-//QXmlNodeModelIndex::NodeKind
-type QXmlNodeModelIndex__NodeKind int64
-
-const (
-	QXmlNodeModelIndex__Attribute             QXmlNodeModelIndex__NodeKind = QXmlNodeModelIndex__NodeKind(1)
-	QXmlNodeModelIndex__Comment               QXmlNodeModelIndex__NodeKind = QXmlNodeModelIndex__NodeKind(2)
-	QXmlNodeModelIndex__Document              QXmlNodeModelIndex__NodeKind = QXmlNodeModelIndex__NodeKind(4)
-	QXmlNodeModelIndex__Element               QXmlNodeModelIndex__NodeKind = QXmlNodeModelIndex__NodeKind(8)
-	QXmlNodeModelIndex__Namespace             QXmlNodeModelIndex__NodeKind = QXmlNodeModelIndex__NodeKind(16)
-	QXmlNodeModelIndex__ProcessingInstruction QXmlNodeModelIndex__NodeKind = QXmlNodeModelIndex__NodeKind(32)
-	QXmlNodeModelIndex__Text                  QXmlNodeModelIndex__NodeKind = QXmlNodeModelIndex__NodeKind(64)
-)
-
 type QXmlNodeModelIndex struct {
 	ptr unsafe.Pointer
 }
@@ -3504,6 +3480,30 @@ func (ptr *QXmlNodeModelIndex) DestroyQXmlNodeModelIndex() {
 		ptr.SetPointer(nil)
 	}
 }
+
+//go:generate stringer -type=QXmlNodeModelIndex__DocumentOrder
+//QXmlNodeModelIndex::DocumentOrder
+type QXmlNodeModelIndex__DocumentOrder int64
+
+const (
+	QXmlNodeModelIndex__Precedes QXmlNodeModelIndex__DocumentOrder = QXmlNodeModelIndex__DocumentOrder(-1)
+	QXmlNodeModelIndex__Is       QXmlNodeModelIndex__DocumentOrder = QXmlNodeModelIndex__DocumentOrder(0)
+	QXmlNodeModelIndex__Follows  QXmlNodeModelIndex__DocumentOrder = QXmlNodeModelIndex__DocumentOrder(1)
+)
+
+//go:generate stringer -type=QXmlNodeModelIndex__NodeKind
+//QXmlNodeModelIndex::NodeKind
+type QXmlNodeModelIndex__NodeKind int64
+
+const (
+	QXmlNodeModelIndex__Attribute             QXmlNodeModelIndex__NodeKind = QXmlNodeModelIndex__NodeKind(1)
+	QXmlNodeModelIndex__Comment               QXmlNodeModelIndex__NodeKind = QXmlNodeModelIndex__NodeKind(2)
+	QXmlNodeModelIndex__Document              QXmlNodeModelIndex__NodeKind = QXmlNodeModelIndex__NodeKind(4)
+	QXmlNodeModelIndex__Element               QXmlNodeModelIndex__NodeKind = QXmlNodeModelIndex__NodeKind(8)
+	QXmlNodeModelIndex__Namespace             QXmlNodeModelIndex__NodeKind = QXmlNodeModelIndex__NodeKind(16)
+	QXmlNodeModelIndex__ProcessingInstruction QXmlNodeModelIndex__NodeKind = QXmlNodeModelIndex__NodeKind(32)
+	QXmlNodeModelIndex__Text                  QXmlNodeModelIndex__NodeKind = QXmlNodeModelIndex__NodeKind(64)
+)
 
 func NewQXmlNodeModelIndex() *QXmlNodeModelIndex {
 	var tmpValue = NewQXmlNodeModelIndexFromPointer(C.QXmlNodeModelIndex_NewQXmlNodeModelIndex())
@@ -3561,18 +3561,6 @@ func (ptr *QXmlNodeModelIndex) namespaceBindings_atList(i int) *QXmlName {
 	return nil
 }
 
-//go:generate stringer -type=QXmlQuery__QueryLanguage
-//QXmlQuery::QueryLanguage
-type QXmlQuery__QueryLanguage int64
-
-const (
-	QXmlQuery__XQuery10                              QXmlQuery__QueryLanguage = QXmlQuery__QueryLanguage(1)
-	QXmlQuery__XSLT20                                QXmlQuery__QueryLanguage = QXmlQuery__QueryLanguage(2)
-	QXmlQuery__XmlSchema11IdentityConstraintSelector QXmlQuery__QueryLanguage = QXmlQuery__QueryLanguage(1024)
-	QXmlQuery__XmlSchema11IdentityConstraintField    QXmlQuery__QueryLanguage = QXmlQuery__QueryLanguage(2048)
-	QXmlQuery__XPath20                               QXmlQuery__QueryLanguage = QXmlQuery__QueryLanguage(4096)
-)
-
 type QXmlQuery struct {
 	ptr unsafe.Pointer
 }
@@ -3610,6 +3598,19 @@ func NewQXmlQueryFromPointer(ptr unsafe.Pointer) *QXmlQuery {
 	n.SetPointer(ptr)
 	return n
 }
+
+//go:generate stringer -type=QXmlQuery__QueryLanguage
+//QXmlQuery::QueryLanguage
+type QXmlQuery__QueryLanguage int64
+
+const (
+	QXmlQuery__XQuery10                              QXmlQuery__QueryLanguage = QXmlQuery__QueryLanguage(1)
+	QXmlQuery__XSLT20                                QXmlQuery__QueryLanguage = QXmlQuery__QueryLanguage(2)
+	QXmlQuery__XmlSchema11IdentityConstraintSelector QXmlQuery__QueryLanguage = QXmlQuery__QueryLanguage(1024)
+	QXmlQuery__XmlSchema11IdentityConstraintField    QXmlQuery__QueryLanguage = QXmlQuery__QueryLanguage(2048)
+	QXmlQuery__XPath20                               QXmlQuery__QueryLanguage = QXmlQuery__QueryLanguage(4096)
+)
+
 func NewQXmlQuery() *QXmlQuery {
 	var tmpValue = NewQXmlQueryFromPointer(C.QXmlQuery_NewQXmlQuery())
 	runtime.SetFinalizer(tmpValue, (*QXmlQuery).DestroyQXmlQuery)

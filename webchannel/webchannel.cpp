@@ -72,6 +72,11 @@ void QWebChannel_ConnectTo(void* ptr, void* transport)
 	QMetaObject::invokeMethod(static_cast<QWebChannel*>(ptr), "connectTo", Q_ARG(QWebChannelAbstractTransport*, static_cast<QWebChannelAbstractTransport*>(transport)));
 }
 
+void QWebChannel_ConnectToDefault(void* ptr, void* transport)
+{
+	static_cast<QWebChannel*>(ptr)->QWebChannel::connectTo(static_cast<QWebChannelAbstractTransport*>(transport));
+}
+
 void QWebChannel_DeregisterObject(void* ptr, void* object)
 {
 	static_cast<QWebChannel*>(ptr)->deregisterObject(static_cast<QObject*>(object));
@@ -80,6 +85,11 @@ void QWebChannel_DeregisterObject(void* ptr, void* object)
 void QWebChannel_DisconnectFrom(void* ptr, void* transport)
 {
 	QMetaObject::invokeMethod(static_cast<QWebChannel*>(ptr), "disconnectFrom", Q_ARG(QWebChannelAbstractTransport*, static_cast<QWebChannelAbstractTransport*>(transport)));
+}
+
+void QWebChannel_DisconnectFromDefault(void* ptr, void* transport)
+{
+	static_cast<QWebChannel*>(ptr)->QWebChannel::disconnectFrom(static_cast<QWebChannelAbstractTransport*>(transport));
 }
 
 void QWebChannel_RegisterObject(void* ptr, char* id, void* object)

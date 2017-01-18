@@ -1343,23 +1343,8 @@ void* QGeoServiceProvider_MetaObjectDefault(void* ptr)
 class MyQGeoServiceProviderFactory: public QGeoServiceProviderFactory
 {
 public:
-	
-	
-	
 	 ~MyQGeoServiceProviderFactory() { callbackQGeoServiceProviderFactory_DestroyQGeoServiceProviderFactory(this); };
 };
-
-
-
-
-
-
-
-
-
-
-
-
 
 void QGeoServiceProviderFactory_DestroyQGeoServiceProviderFactory(void* ptr)
 {

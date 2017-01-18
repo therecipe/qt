@@ -265,6 +265,7 @@ void QDesignerFormWindowInterface_DisconnectAboutToUnmanageWidget(void* ptr);
 void QDesignerFormWindowInterface_AboutToUnmanageWidget(void* ptr, void* widget);
 void* QDesignerFormWindowInterface_AbsoluteDir(void* ptr);
 void QDesignerFormWindowInterface_ActivateResourceFilePaths(void* ptr, char* paths, int errorCount, char* errorMessages);
+void QDesignerFormWindowInterface_ActivateResourceFilePathsDefault(void* ptr, char* paths, int errorCount, char* errorMessages);
 void QDesignerFormWindowInterface_ConnectActivated(void* ptr);
 void QDesignerFormWindowInterface_DisconnectActivated(void* ptr);
 void QDesignerFormWindowInterface_Activated(void* ptr, void* widget);

@@ -44,7 +44,6 @@
 class MyQAbstractMessageHandler: public QAbstractMessageHandler
 {
 public:
-	
 	 ~MyQAbstractMessageHandler() { callbackQAbstractMessageHandler_DestroyQAbstractMessageHandler(this); };
 	void timerEvent(QTimerEvent * event) { callbackQAbstractMessageHandler_TimerEvent(this, event); };
 	void childEvent(QChildEvent * event) { callbackQAbstractMessageHandler_ChildEvent(this, event); };
@@ -56,8 +55,6 @@ public:
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQAbstractMessageHandler_EventFilter(this, watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQAbstractMessageHandler_MetaObject(const_cast<MyQAbstractMessageHandler*>(this))); };
 };
-
-
 
 void QAbstractMessageHandler_DestroyQAbstractMessageHandler(void* ptr)
 {
@@ -608,56 +605,40 @@ struct QtXmlPatterns_PackedList QSimpleXmlNodeModel_Attributes(void* ptr, void* 
 	return ({ QVector<QXmlNodeModelIndex>* tmpValue = new QVector<QXmlNodeModelIndex>(static_cast<QSimpleXmlNodeModel*>(ptr)->attributes(*static_cast<QXmlNodeModelIndex*>(element))); QtXmlPatterns_PackedList { tmpValue, tmpValue->size() }; });
 }
 
-
-
 long long QSimpleXmlNodeModel_CompareOrder(void* ptr, void* ni1, void* ni2)
 {
 	return static_cast<QSimpleXmlNodeModel*>(ptr)->compareOrder(*static_cast<QXmlNodeModelIndex*>(ni1), *static_cast<QXmlNodeModelIndex*>(ni2));
 }
-
-
 
 void* QSimpleXmlNodeModel_DocumentUri(void* ptr, void* n)
 {
 	return new QUrl(static_cast<QSimpleXmlNodeModel*>(ptr)->documentUri(*static_cast<QXmlNodeModelIndex*>(n)));
 }
 
-
-
 long long QSimpleXmlNodeModel_Kind(void* ptr, void* ni)
 {
 	return static_cast<QSimpleXmlNodeModel*>(ptr)->kind(*static_cast<QXmlNodeModelIndex*>(ni));
 }
-
-
 
 void* QSimpleXmlNodeModel_Name(void* ptr, void* ni)
 {
 	return new QXmlName(static_cast<QSimpleXmlNodeModel*>(ptr)->name(*static_cast<QXmlNodeModelIndex*>(ni)));
 }
 
-
-
 void* QSimpleXmlNodeModel_NextFromSimpleAxis(void* ptr, long long axis, void* origin)
 {
 	return new QXmlNodeModelIndex(static_cast<QSimpleXmlNodeModel*>(ptr)->nextFromSimpleAxis(static_cast<QAbstractXmlNodeModel::SimpleAxis>(axis), *static_cast<QXmlNodeModelIndex*>(origin)));
 }
-
-
 
 void* QSimpleXmlNodeModel_Root(void* ptr, void* n)
 {
 	return new QXmlNodeModelIndex(static_cast<QSimpleXmlNodeModel*>(ptr)->root(*static_cast<QXmlNodeModelIndex*>(n)));
 }
 
-
-
 void* QSimpleXmlNodeModel_TypedValue(void* ptr, void* node)
 {
 	return new QVariant(static_cast<QSimpleXmlNodeModel*>(ptr)->typedValue(*static_cast<QXmlNodeModelIndex*>(node)));
 }
-
-
 
 void* QSourceLocation_NewQSourceLocation()
 {

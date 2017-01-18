@@ -17,7 +17,7 @@ func HTemplate(m string) []byte {
 	}
 
 	//header
-	fmt.Fprintf(bb, "%v\n\n", buildTags(m))
+	fmt.Fprintf(bb, "%v\n\n", buildTags(m, false))
 
 	fmt.Fprint(bb, "#pragma once\n\n")
 
@@ -39,7 +39,7 @@ func HTemplate(m string) []byte {
 
 	//body
 	for _, c := range sortedClassesForModule(m) {
-		cTemplate(bb, c, cppEnumHeader, cppFunctionHeader, ";\n")
+		cTemplate(bb, c, cppEnumHeader, cppFunctionHeader, ";\n", false)
 	}
 
 	//footer

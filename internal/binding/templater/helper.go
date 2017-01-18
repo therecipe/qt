@@ -9,10 +9,14 @@ import (
 
 func hasUnimplementedPureVirtualFunctions(className string) bool {
 	for _, f := range parser.State.ClassMap[className].Functions {
-		var f = *f
-		cppFunction(&f)
 
-		if f.Virtual == parser.PURE && (!(&f).IsSupported() || parser.IsPackedList(f.Output)) {
+		if !f.Checked {
+			cppFunction(f)
+			goFunction(f)
+			f.Checked = true
+		}
+
+		if f.Virtual == parser.PURE && (!f.IsSupported() || parser.IsPackedList(f.Output)) {
 			return true
 		}
 	}
@@ -35,8 +39,16 @@ func UseStub() bool {
 	return utils.QT_STUB() && !parser.State.Minimal && !parser.State.Moc && !(parser.State.Module == "AndroidExtras" || parser.State.Module == "Sailfish")
 }
 
-func buildTags(module string) string {
+func buildTags(module string, stub bool) string {
 	switch {
+	case stub:
+		{
+			if module == "QtAndroidExtras" || module == "androidextras" {
+				return "// +build !android"
+			}
+			return "// +build !sailfish,!sailfish_emulator"
+		}
+
 	case parser.State.Minimal:
 		{
 			return "// +build minimal"
@@ -47,12 +59,12 @@ func buildTags(module string) string {
 			return ""
 		}
 
-	case module == "QtAndroidExtras":
+	case module == "QtAndroidExtras", module == "androidextras":
 		{
 			return "// +build android"
 		}
 
-	case module == "QtSailfish":
+	case module == "QtSailfish", module == "sailfish":
 		{
 			return "// +build sailfish sailfish_emulator"
 		}

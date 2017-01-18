@@ -161,15 +161,12 @@
 class MyQAbstractPlanarVideoBuffer: public QAbstractPlanarVideoBuffer
 {
 public:
-	
 	 ~MyQAbstractPlanarVideoBuffer() { callbackQAbstractPlanarVideoBuffer_DestroyQAbstractPlanarVideoBuffer(this); };
 	QVariant handle() const { return *static_cast<QVariant*>(callbackQAbstractPlanarVideoBuffer_Handle(const_cast<MyQAbstractPlanarVideoBuffer*>(this))); };
 	MapMode mapMode() const { return static_cast<QAbstractVideoBuffer::MapMode>(callbackQAbstractPlanarVideoBuffer_MapMode(const_cast<MyQAbstractPlanarVideoBuffer*>(this))); };
 	void release() { callbackQAbstractPlanarVideoBuffer_Release(this); };
 	void unmap() { callbackQAbstractPlanarVideoBuffer_Unmap(this); };
 };
-
-
 
 void QAbstractPlanarVideoBuffer_DestroyQAbstractPlanarVideoBuffer(void* ptr)
 {
@@ -191,12 +188,15 @@ void* QAbstractPlanarVideoBuffer_HandleDefault(void* ptr)
 	return new QVariant(static_cast<QAbstractPlanarVideoBuffer*>(ptr)->QAbstractPlanarVideoBuffer::handle());
 }
 
+struct QtMultimedia_PackedString QAbstractPlanarVideoBuffer_Map(void* ptr, long long mode, int numBytes, int bytesPerLine)
+{
+	return ({ char* t63420a = static_cast<char*>(static_cast<void*>(static_cast<QAbstractPlanarVideoBuffer*>(ptr)->map(static_cast<QAbstractVideoBuffer::MapMode>(mode), &numBytes, &bytesPerLine))); QtMultimedia_PackedString { t63420a, -1 }; });
+}
+
 long long QAbstractPlanarVideoBuffer_MapMode(void* ptr)
 {
 	return static_cast<QAbstractPlanarVideoBuffer*>(ptr)->mapMode();
 }
-
-
 
 void QAbstractPlanarVideoBuffer_Release(void* ptr)
 {
@@ -212,8 +212,6 @@ void QAbstractPlanarVideoBuffer_Unmap(void* ptr)
 {
 	static_cast<QAbstractPlanarVideoBuffer*>(ptr)->unmap();
 }
-
-
 
 class MyQAbstractVideoBuffer: public QAbstractVideoBuffer
 {
@@ -1064,6 +1062,11 @@ void QAudioDecoder_Start(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QAudioDecoder*>(ptr), "start");
 }
 
+void QAudioDecoder_StartDefault(void* ptr)
+{
+	static_cast<QAudioDecoder*>(ptr)->QAudioDecoder::start();
+}
+
 void QAudioDecoder_ConnectStateChanged(void* ptr)
 {
 	QObject::connect(static_cast<QAudioDecoder*>(ptr), static_cast<void (QAudioDecoder::*)(QAudioDecoder::State)>(&QAudioDecoder::stateChanged), static_cast<MyQAudioDecoder*>(ptr), static_cast<void (MyQAudioDecoder::*)(QAudioDecoder::State)>(&MyQAudioDecoder::Signal_StateChanged));
@@ -1082,6 +1085,11 @@ void QAudioDecoder_StateChanged(void* ptr, long long state)
 void QAudioDecoder_Stop(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QAudioDecoder*>(ptr), "stop");
+}
+
+void QAudioDecoder_StopDefault(void* ptr)
+{
+	static_cast<QAudioDecoder*>(ptr)->QAudioDecoder::stop();
 }
 
 void QAudioDecoder_DestroyQAudioDecoder(void* ptr)
@@ -3328,6 +3336,11 @@ void QAudioRecorder_SetAudioInput(void* ptr, char* name)
 	QMetaObject::invokeMethod(static_cast<QAudioRecorder*>(ptr), "setAudioInput", Q_ARG(QString, QString(name)));
 }
 
+void QAudioRecorder_SetAudioInputDefault(void* ptr, char* name)
+{
+	static_cast<QAudioRecorder*>(ptr)->QAudioRecorder::setAudioInput(QString(name));
+}
+
 void QAudioRecorder_DestroyQAudioRecorder(void* ptr)
 {
 	static_cast<QAudioRecorder*>(ptr)->~QAudioRecorder();
@@ -3514,11 +3527,6 @@ void* QAudioRecorder_MetaObjectDefault(void* ptr)
 char QAudioRecorder_SetMediaObject(void* ptr, void* object)
 {
 	return static_cast<QAudioRecorder*>(ptr)->setMediaObject(static_cast<QMediaObject*>(object));
-}
-
-char QAudioRecorder_SetMediaObjectDefault(void* ptr, void* object)
-{
-	return static_cast<QAudioRecorder*>(ptr)->QAudioRecorder::setMediaObject(static_cast<QMediaObject*>(object));
 }
 
 class MyQAudioRoleControl: public QAudioRoleControl
@@ -3742,9 +3750,19 @@ void QCamera_SearchAndLock2(void* ptr, long long locks)
 	QMetaObject::invokeMethod(static_cast<QCamera*>(ptr), "searchAndLock", Q_ARG(QCamera::LockType, static_cast<QCamera::LockType>(locks)));
 }
 
+void QCamera_SearchAndLock2Default(void* ptr, long long locks)
+{
+	static_cast<QCamera*>(ptr)->QCamera::searchAndLock(static_cast<QCamera::LockType>(locks));
+}
+
 void QCamera_SetCaptureMode(void* ptr, long long mode)
 {
 	QMetaObject::invokeMethod(static_cast<QCamera*>(ptr), "setCaptureMode", Q_ARG(QCamera::CaptureMode, static_cast<QCamera::CaptureMode>(mode)));
+}
+
+void QCamera_SetCaptureModeDefault(void* ptr, long long mode)
+{
+	static_cast<QCamera*>(ptr)->QCamera::setCaptureMode(static_cast<QCamera::CaptureMode>(mode));
 }
 
 long long QCamera_State(void* ptr)
@@ -3852,6 +3870,11 @@ void QCamera_Load(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QCamera*>(ptr), "load");
 }
 
+void QCamera_LoadDefault(void* ptr)
+{
+	static_cast<QCamera*>(ptr)->QCamera::load();
+}
+
 void QCamera_ConnectLockFailed(void* ptr)
 {
 	QObject::connect(static_cast<QCamera*>(ptr), static_cast<void (QCamera::*)()>(&QCamera::lockFailed), static_cast<MyQCamera*>(ptr), static_cast<void (MyQCamera::*)()>(&MyQCamera::Signal_LockFailed));
@@ -3932,6 +3955,11 @@ void QCamera_SearchAndLock(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QCamera*>(ptr), "searchAndLock");
 }
 
+void QCamera_SearchAndLockDefault(void* ptr)
+{
+	static_cast<QCamera*>(ptr)->QCamera::searchAndLock();
+}
+
 void QCamera_SetViewfinder3(void* ptr, void* surface)
 {
 	static_cast<QCamera*>(ptr)->setViewfinder(static_cast<QAbstractVideoSurface*>(surface));
@@ -3955,6 +3983,11 @@ void QCamera_SetViewfinderSettings(void* ptr, void* settings)
 void QCamera_Start(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QCamera*>(ptr), "start");
+}
+
+void QCamera_StartDefault(void* ptr)
+{
+	static_cast<QCamera*>(ptr)->QCamera::start();
 }
 
 void QCamera_ConnectStateChanged(void* ptr)
@@ -3992,6 +4025,11 @@ void QCamera_Stop(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QCamera*>(ptr), "stop");
 }
 
+void QCamera_StopDefault(void* ptr)
+{
+	static_cast<QCamera*>(ptr)->QCamera::stop();
+}
+
 long long QCamera_SupportedLocks(void* ptr)
 {
 	return static_cast<QCamera*>(ptr)->supportedLocks();
@@ -4012,14 +4050,29 @@ void QCamera_Unload(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QCamera*>(ptr), "unload");
 }
 
+void QCamera_UnloadDefault(void* ptr)
+{
+	static_cast<QCamera*>(ptr)->QCamera::unload();
+}
+
 void QCamera_Unlock(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QCamera*>(ptr), "unlock");
 }
 
+void QCamera_UnlockDefault(void* ptr)
+{
+	static_cast<QCamera*>(ptr)->QCamera::unlock();
+}
+
 void QCamera_Unlock2(void* ptr, long long locks)
 {
 	QMetaObject::invokeMethod(static_cast<QCamera*>(ptr), "unlock", Q_ARG(QCamera::LockType, static_cast<QCamera::LockType>(locks)));
+}
+
+void QCamera_Unlock2Default(void* ptr, long long locks)
+{
+	static_cast<QCamera*>(ptr)->QCamera::unlock(static_cast<QCamera::LockType>(locks));
 }
 
 void* QCamera_ViewfinderSettings(void* ptr)
@@ -4918,9 +4971,19 @@ void QCameraExposure_SetAutoAperture(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QCameraExposure*>(ptr), "setAutoAperture");
 }
 
+void QCameraExposure_SetAutoApertureDefault(void* ptr)
+{
+	static_cast<QCameraExposure*>(ptr)->QCameraExposure::setAutoAperture();
+}
+
 void QCameraExposure_SetAutoIsoSensitivity(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QCameraExposure*>(ptr), "setAutoIsoSensitivity");
+}
+
+void QCameraExposure_SetAutoIsoSensitivityDefault(void* ptr)
+{
+	static_cast<QCameraExposure*>(ptr)->QCameraExposure::setAutoIsoSensitivity();
 }
 
 void QCameraExposure_SetExposureCompensation(void* ptr, double ev)
@@ -4928,9 +4991,19 @@ void QCameraExposure_SetExposureCompensation(void* ptr, double ev)
 	QMetaObject::invokeMethod(static_cast<QCameraExposure*>(ptr), "setExposureCompensation", Q_ARG(qreal, ev));
 }
 
+void QCameraExposure_SetExposureCompensationDefault(void* ptr, double ev)
+{
+	static_cast<QCameraExposure*>(ptr)->QCameraExposure::setExposureCompensation(ev);
+}
+
 void QCameraExposure_SetExposureMode(void* ptr, long long mode)
 {
 	QMetaObject::invokeMethod(static_cast<QCameraExposure*>(ptr), "setExposureMode", Q_ARG(QCameraExposure::ExposureMode, static_cast<QCameraExposure::ExposureMode>(mode)));
+}
+
+void QCameraExposure_SetExposureModeDefault(void* ptr, long long mode)
+{
+	static_cast<QCameraExposure*>(ptr)->QCameraExposure::setExposureMode(static_cast<QCameraExposure::ExposureMode>(mode));
 }
 
 void QCameraExposure_SetFlashMode(void* ptr, long long mode)
@@ -4938,9 +5011,19 @@ void QCameraExposure_SetFlashMode(void* ptr, long long mode)
 	QMetaObject::invokeMethod(static_cast<QCameraExposure*>(ptr), "setFlashMode", Q_ARG(QCameraExposure::FlashMode, static_cast<QCameraExposure::FlashMode>(mode)));
 }
 
+void QCameraExposure_SetFlashModeDefault(void* ptr, long long mode)
+{
+	static_cast<QCameraExposure*>(ptr)->QCameraExposure::setFlashMode(static_cast<QCameraExposure::FlashMode>(mode));
+}
+
 void QCameraExposure_SetManualAperture(void* ptr, double aperture)
 {
 	QMetaObject::invokeMethod(static_cast<QCameraExposure*>(ptr), "setManualAperture", Q_ARG(qreal, aperture));
+}
+
+void QCameraExposure_SetManualApertureDefault(void* ptr, double aperture)
+{
+	static_cast<QCameraExposure*>(ptr)->QCameraExposure::setManualAperture(aperture);
 }
 
 void QCameraExposure_SetManualIsoSensitivity(void* ptr, int iso)
@@ -4948,9 +5031,19 @@ void QCameraExposure_SetManualIsoSensitivity(void* ptr, int iso)
 	QMetaObject::invokeMethod(static_cast<QCameraExposure*>(ptr), "setManualIsoSensitivity", Q_ARG(int, iso));
 }
 
+void QCameraExposure_SetManualIsoSensitivityDefault(void* ptr, int iso)
+{
+	static_cast<QCameraExposure*>(ptr)->QCameraExposure::setManualIsoSensitivity(iso);
+}
+
 void QCameraExposure_SetMeteringMode(void* ptr, long long mode)
 {
 	QMetaObject::invokeMethod(static_cast<QCameraExposure*>(ptr), "setMeteringMode", Q_ARG(QCameraExposure::MeteringMode, static_cast<QCameraExposure::MeteringMode>(mode)));
+}
+
+void QCameraExposure_SetMeteringModeDefault(void* ptr, long long mode)
+{
+	static_cast<QCameraExposure*>(ptr)->QCameraExposure::setMeteringMode(static_cast<QCameraExposure::MeteringMode>(mode));
 }
 
 void QCameraExposure_SetSpotMeteringPoint(void* ptr, void* point)
@@ -5083,9 +5176,19 @@ void QCameraExposure_SetAutoShutterSpeed(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QCameraExposure*>(ptr), "setAutoShutterSpeed");
 }
 
+void QCameraExposure_SetAutoShutterSpeedDefault(void* ptr)
+{
+	static_cast<QCameraExposure*>(ptr)->QCameraExposure::setAutoShutterSpeed();
+}
+
 void QCameraExposure_SetManualShutterSpeed(void* ptr, double seconds)
 {
 	QMetaObject::invokeMethod(static_cast<QCameraExposure*>(ptr), "setManualShutterSpeed", Q_ARG(qreal, seconds));
+}
+
+void QCameraExposure_SetManualShutterSpeedDefault(void* ptr, double seconds)
+{
+	static_cast<QCameraExposure*>(ptr)->QCameraExposure::setManualShutterSpeed(seconds);
 }
 
 double QCameraExposure_ShutterSpeed(void* ptr)
@@ -6108,7 +6211,6 @@ public:
 	void Signal_FocusModeChanged(QCameraFocus::FocusModes mode) { callbackQCameraFocusControl_FocusModeChanged(this, mode); };
 	QCameraFocus::FocusPointMode focusPointMode() const { return static_cast<QCameraFocus::FocusPointMode>(callbackQCameraFocusControl_FocusPointMode(const_cast<MyQCameraFocusControl*>(this))); };
 	void Signal_FocusPointModeChanged(QCameraFocus::FocusPointMode mode) { callbackQCameraFocusControl_FocusPointModeChanged(this, mode); };
-	
 	void Signal_FocusZonesChanged() { callbackQCameraFocusControl_FocusZonesChanged(this); };
 	bool isFocusModeSupported(QCameraFocus::FocusModes mode) const { return callbackQCameraFocusControl_IsFocusModeSupported(const_cast<MyQCameraFocusControl*>(this), mode) != 0; };
 	bool isFocusPointModeSupported(QCameraFocus::FocusPointMode mode) const { return callbackQCameraFocusControl_IsFocusPointModeSupported(const_cast<MyQCameraFocusControl*>(this), mode) != 0; };
@@ -6185,8 +6287,6 @@ void QCameraFocusControl_FocusPointModeChanged(void* ptr, long long mode)
 {
 	static_cast<QCameraFocusControl*>(ptr)->focusPointModeChanged(static_cast<QCameraFocus::FocusPointMode>(mode));
 }
-
-
 
 void QCameraFocusControl_ConnectFocusZonesChanged(void* ptr)
 {
@@ -6444,11 +6544,21 @@ void QCameraImageCapture_CancelCapture(void* ptr)
 		QMetaObject::invokeMethod(static_cast<QCameraImageCapture*>(ptr), "cancelCapture");
 }
 
+void QCameraImageCapture_CancelCaptureDefault(void* ptr)
+{
+		static_cast<QCameraImageCapture*>(ptr)->QCameraImageCapture::cancelCapture();
+}
+
 int QCameraImageCapture_Capture(void* ptr, char* file)
 {
 		int returnArg;
 	QMetaObject::invokeMethod(static_cast<QCameraImageCapture*>(ptr), "capture", Q_RETURN_ARG(int, returnArg), Q_ARG(QString, QString(file)));
 	return returnArg;
+}
+
+int QCameraImageCapture_CaptureDefault(void* ptr, char* file)
+{
+		return static_cast<QCameraImageCapture*>(ptr)->QCameraImageCapture::capture(QString(file));
 }
 
 long long QCameraImageCapture_CaptureDestination(void* ptr)
@@ -9985,11 +10095,6 @@ char QGraphicsVideoItem_SetMediaObject(void* ptr, void* object)
 		return static_cast<QGraphicsVideoItem*>(ptr)->setMediaObject(static_cast<QMediaObject*>(object));
 }
 
-char QGraphicsVideoItem_SetMediaObjectDefault(void* ptr, void* object)
-{
-		return static_cast<QGraphicsVideoItem*>(ptr)->QGraphicsVideoItem::setMediaObject(static_cast<QMediaObject*>(object));
-}
-
 class MyQImageEncoderControl: public QImageEncoderControl
 {
 public:
@@ -11908,9 +12013,19 @@ void QMediaPlayer_SetMuted(void* ptr, char muted)
 	QMetaObject::invokeMethod(static_cast<QMediaPlayer*>(ptr), "setMuted", Q_ARG(bool, muted != 0));
 }
 
+void QMediaPlayer_SetMutedDefault(void* ptr, char muted)
+{
+	static_cast<QMediaPlayer*>(ptr)->QMediaPlayer::setMuted(muted != 0);
+}
+
 void QMediaPlayer_SetPlaybackRate(void* ptr, double rate)
 {
 	QMetaObject::invokeMethod(static_cast<QMediaPlayer*>(ptr), "setPlaybackRate", Q_ARG(qreal, rate));
+}
+
+void QMediaPlayer_SetPlaybackRateDefault(void* ptr, double rate)
+{
+	static_cast<QMediaPlayer*>(ptr)->QMediaPlayer::setPlaybackRate(rate);
 }
 
 void QMediaPlayer_SetPlaylist(void* ptr, void* playlist)
@@ -11918,9 +12033,19 @@ void QMediaPlayer_SetPlaylist(void* ptr, void* playlist)
 		QMetaObject::invokeMethod(static_cast<QMediaPlayer*>(ptr), "setPlaylist", Q_ARG(QMediaPlaylist*, static_cast<QMediaPlaylist*>(playlist)));
 }
 
+void QMediaPlayer_SetPlaylistDefault(void* ptr, void* playlist)
+{
+		static_cast<QMediaPlayer*>(ptr)->QMediaPlayer::setPlaylist(static_cast<QMediaPlaylist*>(playlist));
+}
+
 void QMediaPlayer_SetPosition(void* ptr, long long position)
 {
 	QMetaObject::invokeMethod(static_cast<QMediaPlayer*>(ptr), "setPosition", Q_ARG(qint64, position));
+}
+
+void QMediaPlayer_SetPositionDefault(void* ptr, long long position)
+{
+	static_cast<QMediaPlayer*>(ptr)->QMediaPlayer::setPosition(position);
 }
 
 void QMediaPlayer_SetVideoOutput2(void* ptr, void* output)
@@ -11936,6 +12061,11 @@ void QMediaPlayer_SetVideoOutput(void* ptr, void* output)
 void QMediaPlayer_SetVolume(void* ptr, int volume)
 {
 	QMetaObject::invokeMethod(static_cast<QMediaPlayer*>(ptr), "setVolume", Q_ARG(int, volume));
+}
+
+void QMediaPlayer_SetVolumeDefault(void* ptr, int volume)
+{
+	static_cast<QMediaPlayer*>(ptr)->QMediaPlayer::setVolume(volume);
 }
 
 long long QMediaPlayer_State(void* ptr)
@@ -12138,9 +12268,19 @@ void QMediaPlayer_Pause(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QMediaPlayer*>(ptr), "pause");
 }
 
+void QMediaPlayer_PauseDefault(void* ptr)
+{
+	static_cast<QMediaPlayer*>(ptr)->QMediaPlayer::pause();
+}
+
 void QMediaPlayer_Play(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QMediaPlayer*>(ptr), "play");
+}
+
+void QMediaPlayer_PlayDefault(void* ptr)
+{
+	static_cast<QMediaPlayer*>(ptr)->QMediaPlayer::play();
 }
 
 void QMediaPlayer_ConnectPlaybackRateChanged(void* ptr)
@@ -12193,6 +12333,11 @@ void QMediaPlayer_SetMedia(void* ptr, void* media, void* stream)
 	QMetaObject::invokeMethod(static_cast<QMediaPlayer*>(ptr), "setMedia", Q_ARG(QMediaContent, *static_cast<QMediaContent*>(media)), Q_ARG(QIODevice*, static_cast<QIODevice*>(stream)));
 }
 
+void QMediaPlayer_SetMediaDefault(void* ptr, void* media, void* stream)
+{
+	static_cast<QMediaPlayer*>(ptr)->QMediaPlayer::setMedia(*static_cast<QMediaContent*>(media), static_cast<QIODevice*>(stream));
+}
+
 void QMediaPlayer_SetVideoOutput3(void* ptr, void* surface)
 {
 	static_cast<QMediaPlayer*>(ptr)->setVideoOutput(static_cast<QAbstractVideoSurface*>(surface));
@@ -12216,6 +12361,11 @@ void QMediaPlayer_StateChanged(void* ptr, long long state)
 void QMediaPlayer_Stop(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QMediaPlayer*>(ptr), "stop");
+}
+
+void QMediaPlayer_StopDefault(void* ptr)
+{
+	static_cast<QMediaPlayer*>(ptr)->QMediaPlayer::stop();
 }
 
 void QMediaPlayer_ConnectVideoAvailableChanged(void* ptr)
@@ -13238,6 +13388,11 @@ void QMediaPlaylist_Next(void* ptr)
 		QMetaObject::invokeMethod(static_cast<QMediaPlaylist*>(ptr), "next");
 }
 
+void QMediaPlaylist_NextDefault(void* ptr)
+{
+		static_cast<QMediaPlaylist*>(ptr)->QMediaPlaylist::next();
+}
+
 int QMediaPlaylist_NextIndex(void* ptr, int steps)
 {
 		return static_cast<QMediaPlaylist*>(ptr)->nextIndex(steps);
@@ -13261,6 +13416,11 @@ void QMediaPlaylist_PlaybackModeChanged(void* ptr, long long mode)
 void QMediaPlaylist_Previous(void* ptr)
 {
 		QMetaObject::invokeMethod(static_cast<QMediaPlaylist*>(ptr), "previous");
+}
+
+void QMediaPlaylist_PreviousDefault(void* ptr)
+{
+		static_cast<QMediaPlaylist*>(ptr)->QMediaPlaylist::previous();
 }
 
 int QMediaPlaylist_PreviousIndex(void* ptr, int steps)
@@ -13293,9 +13453,19 @@ void QMediaPlaylist_SetCurrentIndex(void* ptr, int playlistPosition)
 		QMetaObject::invokeMethod(static_cast<QMediaPlaylist*>(ptr), "setCurrentIndex", Q_ARG(int, playlistPosition));
 }
 
+void QMediaPlaylist_SetCurrentIndexDefault(void* ptr, int playlistPosition)
+{
+		static_cast<QMediaPlaylist*>(ptr)->QMediaPlaylist::setCurrentIndex(playlistPosition);
+}
+
 void QMediaPlaylist_Shuffle(void* ptr)
 {
 		QMetaObject::invokeMethod(static_cast<QMediaPlaylist*>(ptr), "shuffle");
+}
+
+void QMediaPlaylist_ShuffleDefault(void* ptr)
+{
+		static_cast<QMediaPlaylist*>(ptr)->QMediaPlaylist::shuffle();
 }
 
 void QMediaPlaylist_DestroyQMediaPlaylist(void* ptr)
@@ -13431,11 +13601,6 @@ char QMediaPlaylist_SetMediaObject(void* ptr, void* object)
 		return static_cast<QMediaPlaylist*>(ptr)->setMediaObject(static_cast<QMediaObject*>(object));
 }
 
-char QMediaPlaylist_SetMediaObjectDefault(void* ptr, void* object)
-{
-		return static_cast<QMediaPlaylist*>(ptr)->QMediaPlaylist::setMediaObject(static_cast<QMediaObject*>(object));
-}
-
 class MyQMediaRecorder: public QMediaRecorder
 {
 public:
@@ -13506,6 +13671,11 @@ void QMediaRecorder_SetMuted(void* ptr, char muted)
 		QMetaObject::invokeMethod(static_cast<QMediaRecorder*>(ptr), "setMuted", Q_ARG(bool, muted != 0));
 }
 
+void QMediaRecorder_SetMutedDefault(void* ptr, char muted)
+{
+		static_cast<QMediaRecorder*>(ptr)->QMediaRecorder::setMuted(muted != 0);
+}
+
 char QMediaRecorder_SetOutputLocation(void* ptr, void* location)
 {
 		return static_cast<QMediaRecorder*>(ptr)->setOutputLocation(*static_cast<QUrl*>(location));
@@ -13514,6 +13684,11 @@ char QMediaRecorder_SetOutputLocation(void* ptr, void* location)
 void QMediaRecorder_SetVolume(void* ptr, double volume)
 {
 		QMetaObject::invokeMethod(static_cast<QMediaRecorder*>(ptr), "setVolume", Q_ARG(qreal, volume));
+}
+
+void QMediaRecorder_SetVolumeDefault(void* ptr, double volume)
+{
+		static_cast<QMediaRecorder*>(ptr)->QMediaRecorder::setVolume(volume);
 }
 
 double QMediaRecorder_Volume(void* ptr)
@@ -13741,9 +13916,19 @@ void QMediaRecorder_Pause(void* ptr)
 		QMetaObject::invokeMethod(static_cast<QMediaRecorder*>(ptr), "pause");
 }
 
+void QMediaRecorder_PauseDefault(void* ptr)
+{
+		static_cast<QMediaRecorder*>(ptr)->QMediaRecorder::pause();
+}
+
 void QMediaRecorder_Record(void* ptr)
 {
 		QMetaObject::invokeMethod(static_cast<QMediaRecorder*>(ptr), "record");
+}
+
+void QMediaRecorder_RecordDefault(void* ptr)
+{
+		static_cast<QMediaRecorder*>(ptr)->QMediaRecorder::record();
 }
 
 void QMediaRecorder_SetAudioSettings(void* ptr, void* settings)
@@ -13814,6 +13999,11 @@ void QMediaRecorder_StatusChanged(void* ptr, long long status)
 void QMediaRecorder_Stop(void* ptr)
 {
 		QMetaObject::invokeMethod(static_cast<QMediaRecorder*>(ptr), "stop");
+}
+
+void QMediaRecorder_StopDefault(void* ptr)
+{
+		static_cast<QMediaRecorder*>(ptr)->QMediaRecorder::stop();
 }
 
 struct QtMultimedia_PackedString QMediaRecorder_SupportedAudioCodecs(void* ptr)
@@ -13992,11 +14182,6 @@ void* QMediaRecorder_MetaObjectDefault(void* ptr)
 char QMediaRecorder_SetMediaObject(void* ptr, void* object)
 {
 		return static_cast<QMediaRecorder*>(ptr)->setMediaObject(static_cast<QMediaObject*>(object));
-}
-
-char QMediaRecorder_SetMediaObjectDefault(void* ptr, void* object)
-{
-		return static_cast<QMediaRecorder*>(ptr)->QMediaRecorder::setMediaObject(static_cast<QMediaObject*>(object));
 }
 
 class MyQMediaRecorderControl: public QMediaRecorderControl
@@ -14679,14 +14864,8 @@ void QMediaServiceDefaultDeviceInterface_DestroyQMediaServiceDefaultDeviceInterf
 class MyQMediaServiceFeaturesInterface: public QMediaServiceFeaturesInterface
 {
 public:
-	
 	 ~MyQMediaServiceFeaturesInterface() { callbackQMediaServiceFeaturesInterface_DestroyQMediaServiceFeaturesInterface(this); };
 };
-
-long long QMediaServiceFeaturesInterface_SupportedFeatures(void* ptr, void* service)
-{
-	return static_cast<QMediaServiceFeaturesInterface*>(ptr)->supportedFeatures(*static_cast<QByteArray*>(service));
-}
 
 void QMediaServiceFeaturesInterface_DestroyQMediaServiceFeaturesInterface(void* ptr)
 {
@@ -15931,6 +16110,11 @@ void QRadioData_SetAlternativeFrequenciesEnabled(void* ptr, char enabled)
 		QMetaObject::invokeMethod(static_cast<QRadioData*>(ptr), "setAlternativeFrequenciesEnabled", Q_ARG(bool, enabled != 0));
 }
 
+void QRadioData_SetAlternativeFrequenciesEnabledDefault(void* ptr, char enabled)
+{
+		static_cast<QRadioData*>(ptr)->QRadioData::setAlternativeFrequenciesEnabled(enabled != 0);
+}
+
 struct QtMultimedia_PackedString QRadioData_StationId(void* ptr)
 {
 		return ({ QByteArray t645596 = static_cast<QRadioData*>(ptr)->stationId().toUtf8(); QtMultimedia_PackedString { const_cast<char*>(t645596.prepend("WHITESPACE").constData()+10), t645596.size()-10 }; });
@@ -16599,6 +16783,11 @@ void QRadioTuner_SetMuted(void* ptr, char muted)
 	QMetaObject::invokeMethod(static_cast<QRadioTuner*>(ptr), "setMuted", Q_ARG(bool, muted != 0));
 }
 
+void QRadioTuner_SetMutedDefault(void* ptr, char muted)
+{
+	static_cast<QRadioTuner*>(ptr)->QRadioTuner::setMuted(muted != 0);
+}
+
 void QRadioTuner_SetStereoMode(void* ptr, long long mode)
 {
 	static_cast<QRadioTuner*>(ptr)->setStereoMode(static_cast<QRadioTuner::StereoMode>(mode));
@@ -16607,6 +16796,11 @@ void QRadioTuner_SetStereoMode(void* ptr, long long mode)
 void QRadioTuner_SetVolume(void* ptr, int volume)
 {
 	QMetaObject::invokeMethod(static_cast<QRadioTuner*>(ptr), "setVolume", Q_ARG(int, volume));
+}
+
+void QRadioTuner_SetVolumeDefault(void* ptr, int volume)
+{
+	static_cast<QRadioTuner*>(ptr)->QRadioTuner::setVolume(volume);
 }
 
 int QRadioTuner_SignalStrength(void* ptr)
@@ -16679,6 +16873,11 @@ void QRadioTuner_CancelSearch(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QRadioTuner*>(ptr), "cancelSearch");
 }
 
+void QRadioTuner_CancelSearchDefault(void* ptr)
+{
+	static_cast<QRadioTuner*>(ptr)->QRadioTuner::cancelSearch();
+}
+
 void QRadioTuner_ConnectError2(void* ptr)
 {
 	QObject::connect(static_cast<QRadioTuner*>(ptr), static_cast<void (QRadioTuner::*)(QRadioTuner::Error)>(&QRadioTuner::error), static_cast<MyQRadioTuner*>(ptr), static_cast<void (MyQRadioTuner::*)(QRadioTuner::Error)>(&MyQRadioTuner::Signal_Error2));
@@ -16749,14 +16948,29 @@ void QRadioTuner_SearchAllStations(void* ptr, long long searchMode)
 	QMetaObject::invokeMethod(static_cast<QRadioTuner*>(ptr), "searchAllStations", Q_ARG(QRadioTuner::SearchMode, static_cast<QRadioTuner::SearchMode>(searchMode)));
 }
 
+void QRadioTuner_SearchAllStationsDefault(void* ptr, long long searchMode)
+{
+	static_cast<QRadioTuner*>(ptr)->QRadioTuner::searchAllStations(static_cast<QRadioTuner::SearchMode>(searchMode));
+}
+
 void QRadioTuner_SearchBackward(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QRadioTuner*>(ptr), "searchBackward");
 }
 
+void QRadioTuner_SearchBackwardDefault(void* ptr)
+{
+	static_cast<QRadioTuner*>(ptr)->QRadioTuner::searchBackward();
+}
+
 void QRadioTuner_SearchForward(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QRadioTuner*>(ptr), "searchForward");
+}
+
+void QRadioTuner_SearchForwardDefault(void* ptr)
+{
+	static_cast<QRadioTuner*>(ptr)->QRadioTuner::searchForward();
 }
 
 void QRadioTuner_ConnectSearchingChanged(void* ptr)
@@ -16779,9 +16993,19 @@ void QRadioTuner_SetBand(void* ptr, long long band)
 	QMetaObject::invokeMethod(static_cast<QRadioTuner*>(ptr), "setBand", Q_ARG(QRadioTuner::Band, static_cast<QRadioTuner::Band>(band)));
 }
 
+void QRadioTuner_SetBandDefault(void* ptr, long long band)
+{
+	static_cast<QRadioTuner*>(ptr)->QRadioTuner::setBand(static_cast<QRadioTuner::Band>(band));
+}
+
 void QRadioTuner_SetFrequency(void* ptr, int frequency)
 {
 	QMetaObject::invokeMethod(static_cast<QRadioTuner*>(ptr), "setFrequency", Q_ARG(int, frequency));
+}
+
+void QRadioTuner_SetFrequencyDefault(void* ptr, int frequency)
+{
+	static_cast<QRadioTuner*>(ptr)->QRadioTuner::setFrequency(frequency);
 }
 
 void QRadioTuner_ConnectSignalStrengthChanged(void* ptr)
@@ -16802,6 +17026,11 @@ void QRadioTuner_SignalStrengthChanged(void* ptr, int strength)
 void QRadioTuner_Start(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QRadioTuner*>(ptr), "start");
+}
+
+void QRadioTuner_StartDefault(void* ptr)
+{
+	static_cast<QRadioTuner*>(ptr)->QRadioTuner::start();
 }
 
 void QRadioTuner_ConnectStateChanged(void* ptr)
@@ -16852,6 +17081,11 @@ void QRadioTuner_StereoStatusChanged(void* ptr, char stereo)
 void QRadioTuner_Stop(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QRadioTuner*>(ptr), "stop");
+}
+
+void QRadioTuner_StopDefault(void* ptr)
+{
+	static_cast<QRadioTuner*>(ptr)->QRadioTuner::stop();
 }
 
 void QRadioTuner_ConnectVolumeChanged(void* ptr)
@@ -17608,6 +17842,11 @@ void QSound_Play2(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QSound*>(ptr), "play");
 }
 
+void QSound_Play2Default(void* ptr)
+{
+	static_cast<QSound*>(ptr)->QSound::play();
+}
+
 void QSound_QSound_Play(char* filename)
 {
 	QSound::play(QString(filename));
@@ -17616,6 +17855,11 @@ void QSound_QSound_Play(char* filename)
 void QSound_Stop(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QSound*>(ptr), "stop");
+}
+
+void QSound_StopDefault(void* ptr)
+{
+	static_cast<QSound*>(ptr)->QSound::stop();
 }
 
 void QSound_DestroyQSound(void* ptr)
@@ -17782,9 +18026,19 @@ void QSoundEffect_Play(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QSoundEffect*>(ptr), "play");
 }
 
+void QSoundEffect_PlayDefault(void* ptr)
+{
+	static_cast<QSoundEffect*>(ptr)->QSoundEffect::play();
+}
+
 void QSoundEffect_Stop(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QSoundEffect*>(ptr), "stop");
+}
+
+void QSoundEffect_StopDefault(void* ptr)
+{
+	static_cast<QSoundEffect*>(ptr)->QSoundEffect::stop();
 }
 
 struct QtMultimedia_PackedString QSoundEffect_QSoundEffect_SupportedMimeTypes()
@@ -19425,9 +19679,19 @@ void QVideoWidget_SetAspectRatioMode(void* ptr, long long mode)
 		QMetaObject::invokeMethod(static_cast<QVideoWidget*>(ptr), "setAspectRatioMode", Q_ARG(Qt::AspectRatioMode, static_cast<Qt::AspectRatioMode>(mode)));
 }
 
+void QVideoWidget_SetAspectRatioModeDefault(void* ptr, long long mode)
+{
+		static_cast<QVideoWidget*>(ptr)->QVideoWidget::setAspectRatioMode(static_cast<Qt::AspectRatioMode>(mode));
+}
+
 void QVideoWidget_SetBrightness(void* ptr, int brightness)
 {
 		QMetaObject::invokeMethod(static_cast<QVideoWidget*>(ptr), "setBrightness", Q_ARG(int, brightness));
+}
+
+void QVideoWidget_SetBrightnessDefault(void* ptr, int brightness)
+{
+		static_cast<QVideoWidget*>(ptr)->QVideoWidget::setBrightness(brightness);
 }
 
 void QVideoWidget_SetContrast(void* ptr, int contrast)
@@ -19435,9 +19699,19 @@ void QVideoWidget_SetContrast(void* ptr, int contrast)
 		QMetaObject::invokeMethod(static_cast<QVideoWidget*>(ptr), "setContrast", Q_ARG(int, contrast));
 }
 
+void QVideoWidget_SetContrastDefault(void* ptr, int contrast)
+{
+		static_cast<QVideoWidget*>(ptr)->QVideoWidget::setContrast(contrast);
+}
+
 void QVideoWidget_SetFullScreen(void* ptr, char fullScreen)
 {
 		QMetaObject::invokeMethod(static_cast<QVideoWidget*>(ptr), "setFullScreen", Q_ARG(bool, fullScreen != 0));
+}
+
+void QVideoWidget_SetFullScreenDefault(void* ptr, char fullScreen)
+{
+		static_cast<QVideoWidget*>(ptr)->QVideoWidget::setFullScreen(fullScreen != 0);
 }
 
 void QVideoWidget_SetHue(void* ptr, int hue)
@@ -19445,9 +19719,19 @@ void QVideoWidget_SetHue(void* ptr, int hue)
 		QMetaObject::invokeMethod(static_cast<QVideoWidget*>(ptr), "setHue", Q_ARG(int, hue));
 }
 
+void QVideoWidget_SetHueDefault(void* ptr, int hue)
+{
+		static_cast<QVideoWidget*>(ptr)->QVideoWidget::setHue(hue);
+}
+
 void QVideoWidget_SetSaturation(void* ptr, int saturation)
 {
 		QMetaObject::invokeMethod(static_cast<QVideoWidget*>(ptr), "setSaturation", Q_ARG(int, saturation));
+}
+
+void QVideoWidget_SetSaturationDefault(void* ptr, int saturation)
+{
+		static_cast<QVideoWidget*>(ptr)->QVideoWidget::setSaturation(saturation);
 }
 
 void* QVideoWidget_NewQVideoWidget(void* parent)
@@ -20213,11 +20497,6 @@ void* QVideoWidget_MetaObjectDefault(void* ptr)
 char QVideoWidget_SetMediaObject(void* ptr, void* object)
 {
 		return static_cast<QVideoWidget*>(ptr)->setMediaObject(static_cast<QMediaObject*>(object));
-}
-
-char QVideoWidget_SetMediaObjectDefault(void* ptr, void* object)
-{
-		return static_cast<QVideoWidget*>(ptr)->QVideoWidget::setMediaObject(static_cast<QMediaObject*>(object));
 }
 
 class MyQVideoWidgetControl: public QVideoWidgetControl

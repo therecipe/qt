@@ -23,6 +23,45 @@ func cGoUnpackString(s C.struct_QtSerialPort_PackedString) string {
 	return C.GoStringN(s.data, C.int(s.len))
 }
 
+type QSerialPort struct {
+	core.QIODevice
+}
+
+type QSerialPort_ITF interface {
+	core.QIODevice_ITF
+	QSerialPort_PTR() *QSerialPort
+}
+
+func (ptr *QSerialPort) QSerialPort_PTR() *QSerialPort {
+	return ptr
+}
+
+func (ptr *QSerialPort) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QIODevice_PTR().Pointer()
+	}
+	return nil
+}
+
+func (ptr *QSerialPort) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QIODevice_PTR().SetPointer(p)
+	}
+}
+
+func PointerFromQSerialPort(ptr QSerialPort_ITF) unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QSerialPort_PTR().Pointer()
+	}
+	return nil
+}
+
+func NewQSerialPortFromPointer(ptr unsafe.Pointer) *QSerialPort {
+	var n = new(QSerialPort)
+	n.SetPointer(ptr)
+	return n
+}
+
 //go:generate stringer -type=QSerialPort__BaudRate
 //QSerialPort::BaudRate
 type QSerialPort__BaudRate int64
@@ -135,44 +174,6 @@ const (
 	QSerialPort__UnknownStopBits QSerialPort__StopBits = QSerialPort__StopBits(-1)
 )
 
-type QSerialPort struct {
-	core.QIODevice
-}
-
-type QSerialPort_ITF interface {
-	core.QIODevice_ITF
-	QSerialPort_PTR() *QSerialPort
-}
-
-func (ptr *QSerialPort) QSerialPort_PTR() *QSerialPort {
-	return ptr
-}
-
-func (ptr *QSerialPort) Pointer() unsafe.Pointer {
-	if ptr != nil {
-		return ptr.QIODevice_PTR().Pointer()
-	}
-	return nil
-}
-
-func (ptr *QSerialPort) SetPointer(p unsafe.Pointer) {
-	if ptr != nil {
-		ptr.QIODevice_PTR().SetPointer(p)
-	}
-}
-
-func PointerFromQSerialPort(ptr QSerialPort_ITF) unsafe.Pointer {
-	if ptr != nil {
-		return ptr.QSerialPort_PTR().Pointer()
-	}
-	return nil
-}
-
-func NewQSerialPortFromPointer(ptr unsafe.Pointer) *QSerialPort {
-	var n = new(QSerialPort)
-	n.SetPointer(ptr)
-	return n
-}
 func (ptr *QSerialPort) BaudRate(directions QSerialPort__Direction) int {
 	if ptr.Pointer() != nil {
 		return int(int32(C.QSerialPort_BaudRate(ptr.Pointer(), C.longlong(directions))))

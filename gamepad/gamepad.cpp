@@ -189,6 +189,11 @@ void QGamepad_SetDeviceId(void* ptr, int number)
 	QMetaObject::invokeMethod(static_cast<QGamepad*>(ptr), "setDeviceId", Q_ARG(int, number));
 }
 
+void QGamepad_SetDeviceIdDefault(void* ptr, int number)
+{
+	static_cast<QGamepad*>(ptr)->QGamepad::setDeviceId(number);
+}
+
 void* QGamepad_NewQGamepad(int deviceId, void* parent)
 {
 	return new MyQGamepad(deviceId, static_cast<QObject*>(parent));

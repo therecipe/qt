@@ -23,6 +23,45 @@ func cGoUnpackString(s C.struct_QtScriptTools_PackedString) string {
 	return C.GoStringN(s.data, C.int(s.len))
 }
 
+type QScriptEngineDebugger struct {
+	core.QObject
+}
+
+type QScriptEngineDebugger_ITF interface {
+	core.QObject_ITF
+	QScriptEngineDebugger_PTR() *QScriptEngineDebugger
+}
+
+func (ptr *QScriptEngineDebugger) QScriptEngineDebugger_PTR() *QScriptEngineDebugger {
+	return ptr
+}
+
+func (ptr *QScriptEngineDebugger) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QObject_PTR().Pointer()
+	}
+	return nil
+}
+
+func (ptr *QScriptEngineDebugger) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QObject_PTR().SetPointer(p)
+	}
+}
+
+func PointerFromQScriptEngineDebugger(ptr QScriptEngineDebugger_ITF) unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QScriptEngineDebugger_PTR().Pointer()
+	}
+	return nil
+}
+
+func NewQScriptEngineDebuggerFromPointer(ptr unsafe.Pointer) *QScriptEngineDebugger {
+	var n = new(QScriptEngineDebugger)
+	n.SetPointer(ptr)
+	return n
+}
+
 //go:generate stringer -type=QScriptEngineDebugger__DebuggerAction
 //QScriptEngineDebugger::DebuggerAction
 type QScriptEngineDebugger__DebuggerAction int64
@@ -70,44 +109,6 @@ const (
 	QScriptEngineDebugger__ErrorLogWidget    QScriptEngineDebugger__DebuggerWidget = QScriptEngineDebugger__DebuggerWidget(8)
 )
 
-type QScriptEngineDebugger struct {
-	core.QObject
-}
-
-type QScriptEngineDebugger_ITF interface {
-	core.QObject_ITF
-	QScriptEngineDebugger_PTR() *QScriptEngineDebugger
-}
-
-func (ptr *QScriptEngineDebugger) QScriptEngineDebugger_PTR() *QScriptEngineDebugger {
-	return ptr
-}
-
-func (ptr *QScriptEngineDebugger) Pointer() unsafe.Pointer {
-	if ptr != nil {
-		return ptr.QObject_PTR().Pointer()
-	}
-	return nil
-}
-
-func (ptr *QScriptEngineDebugger) SetPointer(p unsafe.Pointer) {
-	if ptr != nil {
-		ptr.QObject_PTR().SetPointer(p)
-	}
-}
-
-func PointerFromQScriptEngineDebugger(ptr QScriptEngineDebugger_ITF) unsafe.Pointer {
-	if ptr != nil {
-		return ptr.QScriptEngineDebugger_PTR().Pointer()
-	}
-	return nil
-}
-
-func NewQScriptEngineDebuggerFromPointer(ptr unsafe.Pointer) *QScriptEngineDebugger {
-	var n = new(QScriptEngineDebugger)
-	n.SetPointer(ptr)
-	return n
-}
 func NewQScriptEngineDebugger(parent core.QObject_ITF) *QScriptEngineDebugger {
 	var tmpValue = NewQScriptEngineDebuggerFromPointer(C.QScriptEngineDebugger_NewQScriptEngineDebugger(core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {

@@ -1415,16 +1415,6 @@ func (ptr *QDomEntityReference) NodeType() QDomNode__NodeType {
 	return 0
 }
 
-//go:generate stringer -type=QDomImplementation__InvalidDataPolicy
-//QDomImplementation::InvalidDataPolicy
-type QDomImplementation__InvalidDataPolicy int64
-
-const (
-	QDomImplementation__AcceptInvalidChars QDomImplementation__InvalidDataPolicy = QDomImplementation__InvalidDataPolicy(0)
-	QDomImplementation__DropInvalidChars   QDomImplementation__InvalidDataPolicy = QDomImplementation__InvalidDataPolicy(1)
-	QDomImplementation__ReturnNullNode     QDomImplementation__InvalidDataPolicy = QDomImplementation__InvalidDataPolicy(2)
-)
-
 type QDomImplementation struct {
 	ptr unsafe.Pointer
 }
@@ -1462,6 +1452,17 @@ func NewQDomImplementationFromPointer(ptr unsafe.Pointer) *QDomImplementation {
 	n.SetPointer(ptr)
 	return n
 }
+
+//go:generate stringer -type=QDomImplementation__InvalidDataPolicy
+//QDomImplementation::InvalidDataPolicy
+type QDomImplementation__InvalidDataPolicy int64
+
+const (
+	QDomImplementation__AcceptInvalidChars QDomImplementation__InvalidDataPolicy = QDomImplementation__InvalidDataPolicy(0)
+	QDomImplementation__DropInvalidChars   QDomImplementation__InvalidDataPolicy = QDomImplementation__InvalidDataPolicy(1)
+	QDomImplementation__ReturnNullNode     QDomImplementation__InvalidDataPolicy = QDomImplementation__InvalidDataPolicy(2)
+)
+
 func NewQDomImplementation() *QDomImplementation {
 	var tmpValue = NewQDomImplementationFromPointer(C.QDomImplementation_NewQDomImplementation())
 	runtime.SetFinalizer(tmpValue, (*QDomImplementation).DestroyQDomImplementation)
@@ -1711,36 +1712,6 @@ func (ptr *QDomNamedNodeMap) DestroyQDomNamedNodeMap() {
 	}
 }
 
-//go:generate stringer -type=QDomNode__EncodingPolicy
-//QDomNode::EncodingPolicy
-type QDomNode__EncodingPolicy int64
-
-const (
-	QDomNode__EncodingFromDocument   QDomNode__EncodingPolicy = QDomNode__EncodingPolicy(1)
-	QDomNode__EncodingFromTextStream QDomNode__EncodingPolicy = QDomNode__EncodingPolicy(2)
-)
-
-//go:generate stringer -type=QDomNode__NodeType
-//QDomNode::NodeType
-type QDomNode__NodeType int64
-
-const (
-	QDomNode__ElementNode               QDomNode__NodeType = QDomNode__NodeType(1)
-	QDomNode__AttributeNode             QDomNode__NodeType = QDomNode__NodeType(2)
-	QDomNode__TextNode                  QDomNode__NodeType = QDomNode__NodeType(3)
-	QDomNode__CDATASectionNode          QDomNode__NodeType = QDomNode__NodeType(4)
-	QDomNode__EntityReferenceNode       QDomNode__NodeType = QDomNode__NodeType(5)
-	QDomNode__EntityNode                QDomNode__NodeType = QDomNode__NodeType(6)
-	QDomNode__ProcessingInstructionNode QDomNode__NodeType = QDomNode__NodeType(7)
-	QDomNode__CommentNode               QDomNode__NodeType = QDomNode__NodeType(8)
-	QDomNode__DocumentNode              QDomNode__NodeType = QDomNode__NodeType(9)
-	QDomNode__DocumentTypeNode          QDomNode__NodeType = QDomNode__NodeType(10)
-	QDomNode__DocumentFragmentNode      QDomNode__NodeType = QDomNode__NodeType(11)
-	QDomNode__NotationNode              QDomNode__NodeType = QDomNode__NodeType(12)
-	QDomNode__BaseNode                  QDomNode__NodeType = QDomNode__NodeType(21)
-	QDomNode__CharacterDataNode         QDomNode__NodeType = QDomNode__NodeType(22)
-)
-
 type QDomNode struct {
 	ptr unsafe.Pointer
 }
@@ -1778,6 +1749,37 @@ func NewQDomNodeFromPointer(ptr unsafe.Pointer) *QDomNode {
 	n.SetPointer(ptr)
 	return n
 }
+
+//go:generate stringer -type=QDomNode__EncodingPolicy
+//QDomNode::EncodingPolicy
+type QDomNode__EncodingPolicy int64
+
+const (
+	QDomNode__EncodingFromDocument   QDomNode__EncodingPolicy = QDomNode__EncodingPolicy(1)
+	QDomNode__EncodingFromTextStream QDomNode__EncodingPolicy = QDomNode__EncodingPolicy(2)
+)
+
+//go:generate stringer -type=QDomNode__NodeType
+//QDomNode::NodeType
+type QDomNode__NodeType int64
+
+const (
+	QDomNode__ElementNode               QDomNode__NodeType = QDomNode__NodeType(1)
+	QDomNode__AttributeNode             QDomNode__NodeType = QDomNode__NodeType(2)
+	QDomNode__TextNode                  QDomNode__NodeType = QDomNode__NodeType(3)
+	QDomNode__CDATASectionNode          QDomNode__NodeType = QDomNode__NodeType(4)
+	QDomNode__EntityReferenceNode       QDomNode__NodeType = QDomNode__NodeType(5)
+	QDomNode__EntityNode                QDomNode__NodeType = QDomNode__NodeType(6)
+	QDomNode__ProcessingInstructionNode QDomNode__NodeType = QDomNode__NodeType(7)
+	QDomNode__CommentNode               QDomNode__NodeType = QDomNode__NodeType(8)
+	QDomNode__DocumentNode              QDomNode__NodeType = QDomNode__NodeType(9)
+	QDomNode__DocumentTypeNode          QDomNode__NodeType = QDomNode__NodeType(10)
+	QDomNode__DocumentFragmentNode      QDomNode__NodeType = QDomNode__NodeType(11)
+	QDomNode__NotationNode              QDomNode__NodeType = QDomNode__NodeType(12)
+	QDomNode__BaseNode                  QDomNode__NodeType = QDomNode__NodeType(21)
+	QDomNode__CharacterDataNode         QDomNode__NodeType = QDomNode__NodeType(22)
+)
+
 func NewQDomNode() *QDomNode {
 	var tmpValue = NewQDomNodeFromPointer(C.QDomNode_NewQDomNode())
 	runtime.SetFinalizer(tmpValue, (*QDomNode).DestroyQDomNode)
@@ -2929,7 +2931,7 @@ func (ptr *QXmlContentHandler) ConnectCharacters(f func(ch string) bool) {
 	}
 }
 
-func (ptr *QXmlContentHandler) DisconnectCharacters(ch string) {
+func (ptr *QXmlContentHandler) DisconnectCharacters() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QXmlContentHandler::characters")
@@ -2993,7 +2995,7 @@ func (ptr *QXmlContentHandler) ConnectEndElement(f func(namespaceURI string, loc
 	}
 }
 
-func (ptr *QXmlContentHandler) DisconnectEndElement(namespaceURI string, localName string, qName string) {
+func (ptr *QXmlContentHandler) DisconnectEndElement() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QXmlContentHandler::endElement")
@@ -3030,7 +3032,7 @@ func (ptr *QXmlContentHandler) ConnectEndPrefixMapping(f func(prefix string) boo
 	}
 }
 
-func (ptr *QXmlContentHandler) DisconnectEndPrefixMapping(prefix string) {
+func (ptr *QXmlContentHandler) DisconnectEndPrefixMapping() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QXmlContentHandler::endPrefixMapping")
@@ -3094,7 +3096,7 @@ func (ptr *QXmlContentHandler) ConnectIgnorableWhitespace(f func(ch string) bool
 	}
 }
 
-func (ptr *QXmlContentHandler) DisconnectIgnorableWhitespace(ch string) {
+func (ptr *QXmlContentHandler) DisconnectIgnorableWhitespace() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QXmlContentHandler::ignorableWhitespace")
@@ -3127,7 +3129,7 @@ func (ptr *QXmlContentHandler) ConnectProcessingInstruction(f func(target string
 	}
 }
 
-func (ptr *QXmlContentHandler) DisconnectProcessingInstruction(target string, data string) {
+func (ptr *QXmlContentHandler) DisconnectProcessingInstruction() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QXmlContentHandler::processingInstruction")
@@ -3161,7 +3163,7 @@ func (ptr *QXmlContentHandler) ConnectSetDocumentLocator(f func(locator *QXmlLoc
 	}
 }
 
-func (ptr *QXmlContentHandler) DisconnectSetDocumentLocator(locator QXmlLocator_ITF) {
+func (ptr *QXmlContentHandler) DisconnectSetDocumentLocator() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QXmlContentHandler::setDocumentLocator")
@@ -3191,7 +3193,7 @@ func (ptr *QXmlContentHandler) ConnectSkippedEntity(f func(name string) bool) {
 	}
 }
 
-func (ptr *QXmlContentHandler) DisconnectSkippedEntity(name string) {
+func (ptr *QXmlContentHandler) DisconnectSkippedEntity() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QXmlContentHandler::skippedEntity")
@@ -3255,7 +3257,7 @@ func (ptr *QXmlContentHandler) ConnectStartElement(f func(namespaceURI string, l
 	}
 }
 
-func (ptr *QXmlContentHandler) DisconnectStartElement(namespaceURI string, localName string, qName string, atts QXmlAttributes_ITF) {
+func (ptr *QXmlContentHandler) DisconnectStartElement() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QXmlContentHandler::startElement")
@@ -3292,7 +3294,7 @@ func (ptr *QXmlContentHandler) ConnectStartPrefixMapping(f func(prefix string, u
 	}
 }
 
-func (ptr *QXmlContentHandler) DisconnectStartPrefixMapping(prefix string, uri string) {
+func (ptr *QXmlContentHandler) DisconnectStartPrefixMapping() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QXmlContentHandler::startPrefixMapping")
@@ -3436,7 +3438,7 @@ func (ptr *QXmlDTDHandler) ConnectNotationDecl(f func(name string, publicId stri
 	}
 }
 
-func (ptr *QXmlDTDHandler) DisconnectNotationDecl(name string, publicId string, systemId string) {
+func (ptr *QXmlDTDHandler) DisconnectNotationDecl() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QXmlDTDHandler::notationDecl")
@@ -3473,7 +3475,7 @@ func (ptr *QXmlDTDHandler) ConnectUnparsedEntityDecl(f func(name string, publicI
 	}
 }
 
-func (ptr *QXmlDTDHandler) DisconnectUnparsedEntityDecl(name string, publicId string, systemId string, notationName string) {
+func (ptr *QXmlDTDHandler) DisconnectUnparsedEntityDecl() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QXmlDTDHandler::unparsedEntityDecl")
@@ -3590,7 +3592,7 @@ func (ptr *QXmlDeclHandler) ConnectAttributeDecl(f func(eName string, aName stri
 	}
 }
 
-func (ptr *QXmlDeclHandler) DisconnectAttributeDecl(eName string, aName string, ty string, valueDefault string, value string) {
+func (ptr *QXmlDeclHandler) DisconnectAttributeDecl() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QXmlDeclHandler::attributeDecl")
@@ -3662,7 +3664,7 @@ func (ptr *QXmlDeclHandler) ConnectExternalEntityDecl(f func(name string, public
 	}
 }
 
-func (ptr *QXmlDeclHandler) DisconnectExternalEntityDecl(name string, publicId string, systemId string) {
+func (ptr *QXmlDeclHandler) DisconnectExternalEntityDecl() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QXmlDeclHandler::externalEntityDecl")
@@ -3699,7 +3701,7 @@ func (ptr *QXmlDeclHandler) ConnectInternalEntityDecl(f func(name string, value 
 	}
 }
 
-func (ptr *QXmlDeclHandler) DisconnectInternalEntityDecl(name string, value string) {
+func (ptr *QXmlDeclHandler) DisconnectInternalEntityDecl() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QXmlDeclHandler::internalEntityDecl")
@@ -4592,44 +4594,6 @@ func (ptr *QXmlDefaultHandler) ProcessingInstructionDefault(target string, data 
 	return false
 }
 
-//export callbackQXmlDefaultHandler_ResolveEntity
-func callbackQXmlDefaultHandler_ResolveEntity(ptr unsafe.Pointer, publicId C.struct_QtXml_PackedString, systemId C.struct_QtXml_PackedString, ret unsafe.Pointer) C.char {
-
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QXmlDefaultHandler::resolveEntity"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt(signal.(func(string, string, *QXmlInputSource) bool)(cGoUnpackString(publicId), cGoUnpackString(systemId), NewQXmlInputSourceFromPointer(ret)))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(NewQXmlDefaultHandlerFromPointer(ptr).ResolveEntityDefault(cGoUnpackString(publicId), cGoUnpackString(systemId), NewQXmlInputSourceFromPointer(ret)))))
-}
-
-func (ptr *QXmlDefaultHandler) ConnectResolveEntity(f func(publicId string, systemId string, ret *QXmlInputSource) bool) {
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QXmlDefaultHandler::resolveEntity", f)
-	}
-}
-
-func (ptr *QXmlDefaultHandler) DisconnectResolveEntity() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QXmlDefaultHandler::resolveEntity")
-	}
-}
-
-func (ptr *QXmlDefaultHandler) ResolveEntity(publicId string, systemId string, ret QXmlInputSource_ITF) bool {
-	if ptr.Pointer() != nil {
-
-	}
-	return false
-}
-
-func (ptr *QXmlDefaultHandler) ResolveEntityDefault(publicId string, systemId string, ret QXmlInputSource_ITF) bool {
-	if ptr.Pointer() != nil {
-
-	}
-	return false
-}
-
 //export callbackQXmlDefaultHandler_SetDocumentLocator
 func callbackQXmlDefaultHandler_SetDocumentLocator(ptr unsafe.Pointer, locator unsafe.Pointer) {
 
@@ -5133,37 +5097,6 @@ func (ptr *QXmlEntityResolver) ErrorString() string {
 	return ""
 }
 
-//export callbackQXmlEntityResolver_ResolveEntity
-func callbackQXmlEntityResolver_ResolveEntity(ptr unsafe.Pointer, publicId C.struct_QtXml_PackedString, systemId C.struct_QtXml_PackedString, ret unsafe.Pointer) C.char {
-
-	if signal := qt.GetSignal(fmt.Sprint(ptr), "QXmlEntityResolver::resolveEntity"); signal != nil {
-		return C.char(int8(qt.GoBoolToInt(signal.(func(string, string, *QXmlInputSource) bool)(cGoUnpackString(publicId), cGoUnpackString(systemId), NewQXmlInputSourceFromPointer(ret)))))
-	}
-
-	return C.char(int8(qt.GoBoolToInt(false)))
-}
-
-func (ptr *QXmlEntityResolver) ConnectResolveEntity(f func(publicId string, systemId string, ret *QXmlInputSource) bool) {
-	if ptr.Pointer() != nil {
-
-		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QXmlEntityResolver::resolveEntity", f)
-	}
-}
-
-func (ptr *QXmlEntityResolver) DisconnectResolveEntity(publicId string, systemId string, ret QXmlInputSource_ITF) {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QXmlEntityResolver::resolveEntity")
-	}
-}
-
-func (ptr *QXmlEntityResolver) ResolveEntity(publicId string, systemId string, ret QXmlInputSource_ITF) bool {
-	if ptr.Pointer() != nil {
-
-	}
-	return false
-}
-
 //export callbackQXmlEntityResolver_DestroyQXmlEntityResolver
 func callbackQXmlEntityResolver_DestroyQXmlEntityResolver(ptr unsafe.Pointer) {
 
@@ -5259,7 +5192,7 @@ func (ptr *QXmlErrorHandler) ConnectError(f func(exception *QXmlParseException) 
 	}
 }
 
-func (ptr *QXmlErrorHandler) DisconnectError(exception QXmlParseException_ITF) {
+func (ptr *QXmlErrorHandler) DisconnectError() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QXmlErrorHandler::error")
@@ -5321,7 +5254,7 @@ func (ptr *QXmlErrorHandler) ConnectFatalError(f func(exception *QXmlParseExcept
 	}
 }
 
-func (ptr *QXmlErrorHandler) DisconnectFatalError(exception QXmlParseException_ITF) {
+func (ptr *QXmlErrorHandler) DisconnectFatalError() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QXmlErrorHandler::fatalError")
@@ -5352,7 +5285,7 @@ func (ptr *QXmlErrorHandler) ConnectWarning(f func(exception *QXmlParseException
 	}
 }
 
-func (ptr *QXmlErrorHandler) DisconnectWarning(exception QXmlParseException_ITF) {
+func (ptr *QXmlErrorHandler) DisconnectWarning() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QXmlErrorHandler::warning")
@@ -5828,7 +5761,7 @@ func (ptr *QXmlLexicalHandler) ConnectComment(f func(ch string) bool) {
 	}
 }
 
-func (ptr *QXmlLexicalHandler) DisconnectComment(ch string) {
+func (ptr *QXmlLexicalHandler) DisconnectComment() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QXmlLexicalHandler::comment")
@@ -5923,7 +5856,7 @@ func (ptr *QXmlLexicalHandler) ConnectEndEntity(f func(name string) bool) {
 	}
 }
 
-func (ptr *QXmlLexicalHandler) DisconnectEndEntity(name string) {
+func (ptr *QXmlLexicalHandler) DisconnectEndEntity() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QXmlLexicalHandler::endEntity")
@@ -6018,7 +5951,7 @@ func (ptr *QXmlLexicalHandler) ConnectStartDTD(f func(name string, publicId stri
 	}
 }
 
-func (ptr *QXmlLexicalHandler) DisconnectStartDTD(name string, publicId string, systemId string) {
+func (ptr *QXmlLexicalHandler) DisconnectStartDTD() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QXmlLexicalHandler::startDTD")
@@ -6055,7 +5988,7 @@ func (ptr *QXmlLexicalHandler) ConnectStartEntity(f func(name string) bool) {
 	}
 }
 
-func (ptr *QXmlLexicalHandler) DisconnectStartEntity(name string) {
+func (ptr *QXmlLexicalHandler) DisconnectStartEntity() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QXmlLexicalHandler::startEntity")
@@ -6697,7 +6630,7 @@ func (ptr *QXmlReader) ConnectFeature(f func(name string, ok bool) bool) {
 	}
 }
 
-func (ptr *QXmlReader) DisconnectFeature(name string, ok bool) {
+func (ptr *QXmlReader) DisconnectFeature() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QXmlReader::feature")
@@ -6730,7 +6663,7 @@ func (ptr *QXmlReader) ConnectHasFeature(f func(name string) bool) {
 	}
 }
 
-func (ptr *QXmlReader) DisconnectHasFeature(name string) {
+func (ptr *QXmlReader) DisconnectHasFeature() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QXmlReader::hasFeature")
@@ -6763,7 +6696,7 @@ func (ptr *QXmlReader) ConnectHasProperty(f func(name string) bool) {
 	}
 }
 
-func (ptr *QXmlReader) DisconnectHasProperty(name string) {
+func (ptr *QXmlReader) DisconnectHasProperty() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QXmlReader::hasProperty")
@@ -6827,7 +6760,7 @@ func (ptr *QXmlReader) ConnectParse(f func(input *QXmlInputSource) bool) {
 	}
 }
 
-func (ptr *QXmlReader) DisconnectParse(input QXmlInputSource_ITF) {
+func (ptr *QXmlReader) DisconnectParse() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QXmlReader::parse")
@@ -6858,7 +6791,7 @@ func (ptr *QXmlReader) ConnectProperty(f func(name string, ok bool) unsafe.Point
 	}
 }
 
-func (ptr *QXmlReader) DisconnectProperty(name string, ok bool) {
+func (ptr *QXmlReader) DisconnectProperty() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QXmlReader::property")
@@ -6890,7 +6823,7 @@ func (ptr *QXmlReader) ConnectSetContentHandler(f func(handler *QXmlContentHandl
 	}
 }
 
-func (ptr *QXmlReader) DisconnectSetContentHandler(handler QXmlContentHandler_ITF) {
+func (ptr *QXmlReader) DisconnectSetContentHandler() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QXmlReader::setContentHandler")
@@ -6919,7 +6852,7 @@ func (ptr *QXmlReader) ConnectSetDTDHandler(f func(handler *QXmlDTDHandler)) {
 	}
 }
 
-func (ptr *QXmlReader) DisconnectSetDTDHandler(handler QXmlDTDHandler_ITF) {
+func (ptr *QXmlReader) DisconnectSetDTDHandler() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QXmlReader::setDTDHandler")
@@ -6948,7 +6881,7 @@ func (ptr *QXmlReader) ConnectSetDeclHandler(f func(handler *QXmlDeclHandler)) {
 	}
 }
 
-func (ptr *QXmlReader) DisconnectSetDeclHandler(handler QXmlDeclHandler_ITF) {
+func (ptr *QXmlReader) DisconnectSetDeclHandler() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QXmlReader::setDeclHandler")
@@ -6977,7 +6910,7 @@ func (ptr *QXmlReader) ConnectSetEntityResolver(f func(handler *QXmlEntityResolv
 	}
 }
 
-func (ptr *QXmlReader) DisconnectSetEntityResolver(handler QXmlEntityResolver_ITF) {
+func (ptr *QXmlReader) DisconnectSetEntityResolver() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QXmlReader::setEntityResolver")
@@ -7006,7 +6939,7 @@ func (ptr *QXmlReader) ConnectSetErrorHandler(f func(handler *QXmlErrorHandler))
 	}
 }
 
-func (ptr *QXmlReader) DisconnectSetErrorHandler(handler QXmlErrorHandler_ITF) {
+func (ptr *QXmlReader) DisconnectSetErrorHandler() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QXmlReader::setErrorHandler")
@@ -7035,7 +6968,7 @@ func (ptr *QXmlReader) ConnectSetFeature(f func(name string, value bool)) {
 	}
 }
 
-func (ptr *QXmlReader) DisconnectSetFeature(name string, value bool) {
+func (ptr *QXmlReader) DisconnectSetFeature() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QXmlReader::setFeature")
@@ -7066,7 +6999,7 @@ func (ptr *QXmlReader) ConnectSetLexicalHandler(f func(handler *QXmlLexicalHandl
 	}
 }
 
-func (ptr *QXmlReader) DisconnectSetLexicalHandler(handler QXmlLexicalHandler_ITF) {
+func (ptr *QXmlReader) DisconnectSetLexicalHandler() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QXmlReader::setLexicalHandler")
@@ -7095,7 +7028,7 @@ func (ptr *QXmlReader) ConnectSetProperty(f func(name string, value unsafe.Point
 	}
 }
 
-func (ptr *QXmlReader) DisconnectSetProperty(name string, value unsafe.Pointer) {
+func (ptr *QXmlReader) DisconnectSetProperty() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QXmlReader::setProperty")

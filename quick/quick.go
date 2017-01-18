@@ -125,7 +125,7 @@ func (ptr *QQuickAsyncImageProvider) ConnectRequestImageResponse(f func(id strin
 	}
 }
 
-func (ptr *QQuickAsyncImageProvider) DisconnectRequestImageResponse(id string, requestedSize core.QSize_ITF) {
+func (ptr *QQuickAsyncImageProvider) DisconnectRequestImageResponse() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QQuickAsyncImageProvider::requestImageResponse")
@@ -434,13 +434,6 @@ func (ptr *QQuickFramebufferObject) TextureFollowsItemSize() bool {
 		return C.QQuickFramebufferObject_TextureFollowsItemSize(ptr.Pointer()) != 0
 	}
 	return false
-}
-
-func (ptr *QQuickFramebufferObject) DisconnectCreateRenderer() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QQuickFramebufferObject::createRenderer")
-	}
 }
 
 //export callbackQQuickFramebufferObject_IsTextureProvider
@@ -1245,13 +1238,6 @@ func (ptr *QQuickFramebufferObject) InputMethodQueryDefault(query core.Qt__Input
 	return nil
 }
 
-func (ptr *QQuickFramebufferObject) DisconnectItemChange() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QQuickFramebufferObject::itemChange")
-	}
-}
-
 //export callbackQQuickFramebufferObject_KeyPressEvent
 func callbackQQuickFramebufferObject_KeyPressEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 
@@ -1608,13 +1594,6 @@ func (ptr *QQuickFramebufferObject) Update() {
 func (ptr *QQuickFramebufferObject) UpdateDefault() {
 	if ptr.Pointer() != nil {
 		C.QQuickFramebufferObject_UpdateDefault(ptr.Pointer())
-	}
-}
-
-func (ptr *QQuickFramebufferObject) DisconnectUpdatePaintNode() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QQuickFramebufferObject::updatePaintNode")
 	}
 }
 
@@ -2841,6 +2820,48 @@ func (ptr *QQuickImageResponse) MetaObjectDefault() *core.QMetaObject {
 	return nil
 }
 
+type QQuickItem struct {
+	core.QObject
+	qml.QQmlParserStatus
+}
+
+type QQuickItem_ITF interface {
+	core.QObject_ITF
+	qml.QQmlParserStatus_ITF
+	QQuickItem_PTR() *QQuickItem
+}
+
+func (ptr *QQuickItem) QQuickItem_PTR() *QQuickItem {
+	return ptr
+}
+
+func (ptr *QQuickItem) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QObject_PTR().Pointer()
+	}
+	return nil
+}
+
+func (ptr *QQuickItem) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QObject_PTR().SetPointer(p)
+		ptr.QQmlParserStatus_PTR().SetPointer(p)
+	}
+}
+
+func PointerFromQQuickItem(ptr QQuickItem_ITF) unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QQuickItem_PTR().Pointer()
+	}
+	return nil
+}
+
+func NewQQuickItemFromPointer(ptr unsafe.Pointer) *QQuickItem {
+	var n = new(QQuickItem)
+	n.SetPointer(ptr)
+	return n
+}
+
 //go:generate stringer -type=QQuickItem__Flag
 //QQuickItem::Flag
 type QQuickItem__Flag int64
@@ -2886,47 +2907,6 @@ const (
 	QQuickItem__BottomRight QQuickItem__TransformOrigin = QQuickItem__TransformOrigin(8)
 )
 
-type QQuickItem struct {
-	core.QObject
-	qml.QQmlParserStatus
-}
-
-type QQuickItem_ITF interface {
-	core.QObject_ITF
-	qml.QQmlParserStatus_ITF
-	QQuickItem_PTR() *QQuickItem
-}
-
-func (ptr *QQuickItem) QQuickItem_PTR() *QQuickItem {
-	return ptr
-}
-
-func (ptr *QQuickItem) Pointer() unsafe.Pointer {
-	if ptr != nil {
-		return ptr.QObject_PTR().Pointer()
-	}
-	return nil
-}
-
-func (ptr *QQuickItem) SetPointer(p unsafe.Pointer) {
-	if ptr != nil {
-		ptr.QObject_PTR().SetPointer(p)
-		ptr.QQmlParserStatus_PTR().SetPointer(p)
-	}
-}
-
-func PointerFromQQuickItem(ptr QQuickItem_ITF) unsafe.Pointer {
-	if ptr != nil {
-		return ptr.QQuickItem_PTR().Pointer()
-	}
-	return nil
-}
-
-func NewQQuickItemFromPointer(ptr unsafe.Pointer) *QQuickItem {
-	var n = new(QQuickItem)
-	n.SetPointer(ptr)
-	return n
-}
 func NewQQuickItem(parent QQuickItem_ITF) *QQuickItem {
 	var tmpValue = NewQQuickItemFromPointer(C.QQuickItem_NewQQuickItem(PointerFromQQuickItem(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
@@ -4069,13 +4049,6 @@ func (ptr *QQuickItem) IsFocusScope() bool {
 	return false
 }
 
-func (ptr *QQuickItem) DisconnectItemChange() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QQuickItem::itemChange")
-	}
-}
-
 func (ptr *QQuickItem) KeepMouseGrab() bool {
 	if ptr.Pointer() != nil {
 		return C.QQuickItem_KeepMouseGrab(ptr.Pointer()) != 0
@@ -4650,8 +4623,9 @@ func (ptr *QQuickItem) UnsetCursor() {
 func callbackQQuickItem_Update(ptr unsafe.Pointer) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QQuickItem::update"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQQuickItemFromPointer(ptr).UpdateDefault()
 	}
-
 }
 
 func (ptr *QQuickItem) ConnectUpdate(f func()) {
@@ -4674,16 +4648,15 @@ func (ptr *QQuickItem) Update() {
 	}
 }
 
-func (ptr *QQuickItem) UpdateInputMethod(queries core.Qt__InputMethodQuery) {
+func (ptr *QQuickItem) UpdateDefault() {
 	if ptr.Pointer() != nil {
-		C.QQuickItem_UpdateInputMethod(ptr.Pointer(), C.longlong(queries))
+		C.QQuickItem_UpdateDefault(ptr.Pointer())
 	}
 }
 
-func (ptr *QQuickItem) DisconnectUpdatePaintNode() {
+func (ptr *QQuickItem) UpdateInputMethod(queries core.Qt__InputMethodQuery) {
 	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QQuickItem::updatePaintNode")
+		C.QQuickItem_UpdateInputMethod(ptr.Pointer(), C.longlong(queries))
 	}
 }
 
@@ -5588,24 +5561,6 @@ func (ptr *QQuickItemGrabResult) MetaObjectDefault() *core.QMetaObject {
 	return nil
 }
 
-//go:generate stringer -type=QQuickPaintedItem__PerformanceHint
-//QQuickPaintedItem::PerformanceHint
-type QQuickPaintedItem__PerformanceHint int64
-
-const (
-	QQuickPaintedItem__FastFBOResizing QQuickPaintedItem__PerformanceHint = QQuickPaintedItem__PerformanceHint(0x1)
-)
-
-//go:generate stringer -type=QQuickPaintedItem__RenderTarget
-//QQuickPaintedItem::RenderTarget
-type QQuickPaintedItem__RenderTarget int64
-
-const (
-	QQuickPaintedItem__Image                      QQuickPaintedItem__RenderTarget = QQuickPaintedItem__RenderTarget(0)
-	QQuickPaintedItem__FramebufferObject          QQuickPaintedItem__RenderTarget = QQuickPaintedItem__RenderTarget(1)
-	QQuickPaintedItem__InvertedYFramebufferObject QQuickPaintedItem__RenderTarget = QQuickPaintedItem__RenderTarget(2)
-)
-
 type QQuickPaintedItem struct {
 	QQuickItem
 }
@@ -5644,6 +5599,25 @@ func NewQQuickPaintedItemFromPointer(ptr unsafe.Pointer) *QQuickPaintedItem {
 	n.SetPointer(ptr)
 	return n
 }
+
+//go:generate stringer -type=QQuickPaintedItem__PerformanceHint
+//QQuickPaintedItem::PerformanceHint
+type QQuickPaintedItem__PerformanceHint int64
+
+const (
+	QQuickPaintedItem__FastFBOResizing QQuickPaintedItem__PerformanceHint = QQuickPaintedItem__PerformanceHint(0x1)
+)
+
+//go:generate stringer -type=QQuickPaintedItem__RenderTarget
+//QQuickPaintedItem::RenderTarget
+type QQuickPaintedItem__RenderTarget int64
+
+const (
+	QQuickPaintedItem__Image                      QQuickPaintedItem__RenderTarget = QQuickPaintedItem__RenderTarget(0)
+	QQuickPaintedItem__FramebufferObject          QQuickPaintedItem__RenderTarget = QQuickPaintedItem__RenderTarget(1)
+	QQuickPaintedItem__InvertedYFramebufferObject QQuickPaintedItem__RenderTarget = QQuickPaintedItem__RenderTarget(2)
+)
+
 func (ptr *QQuickPaintedItem) ContentsScale() float64 {
 	if ptr.Pointer() != nil {
 		return float64(C.QQuickPaintedItem_ContentsScale(ptr.Pointer()))
@@ -5667,13 +5641,6 @@ func (ptr *QQuickPaintedItem) FillColor() *gui.QColor {
 		return tmpValue
 	}
 	return nil
-}
-
-func (ptr *QQuickPaintedItem) DisconnectItemChange() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QQuickPaintedItem::itemChange")
-	}
 }
 
 func (ptr *QQuickPaintedItem) RenderTarget() QQuickPaintedItem__RenderTarget {
@@ -5892,7 +5859,7 @@ func (ptr *QQuickPaintedItem) ConnectPaint(f func(painter *gui.QPainter)) {
 	}
 }
 
-func (ptr *QQuickPaintedItem) DisconnectPaint(painter gui.QPainter_ITF) {
+func (ptr *QQuickPaintedItem) DisconnectPaint() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QQuickPaintedItem::paint")
@@ -6085,13 +6052,6 @@ func (ptr *QQuickPaintedItem) TextureSizeChanged() {
 func (ptr *QQuickPaintedItem) Update(rect core.QRect_ITF) {
 	if ptr.Pointer() != nil {
 		C.QQuickPaintedItem_Update(ptr.Pointer(), core.PointerFromQRect(rect))
-	}
-}
-
-func (ptr *QQuickPaintedItem) DisconnectUpdatePaintNode() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QQuickPaintedItem::updatePaintNode")
 	}
 }
 
@@ -8508,7 +8468,7 @@ func (ptr *QQuickTextureFactory) ConnectCreateTexture(f func(window *QQuickWindo
 	}
 }
 
-func (ptr *QQuickTextureFactory) DisconnectCreateTexture(window QQuickWindow_ITF) {
+func (ptr *QQuickTextureFactory) DisconnectCreateTexture() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QQuickTextureFactory::createTexture")
@@ -8979,26 +8939,6 @@ func (ptr *QQuickTextureFactory) MetaObjectDefault() *core.QMetaObject {
 	return nil
 }
 
-//go:generate stringer -type=QQuickView__ResizeMode
-//QQuickView::ResizeMode
-type QQuickView__ResizeMode int64
-
-const (
-	QQuickView__SizeViewToRootObject QQuickView__ResizeMode = QQuickView__ResizeMode(0)
-	QQuickView__SizeRootObjectToView QQuickView__ResizeMode = QQuickView__ResizeMode(1)
-)
-
-//go:generate stringer -type=QQuickView__Status
-//QQuickView::Status
-type QQuickView__Status int64
-
-const (
-	QQuickView__Null    QQuickView__Status = QQuickView__Status(0)
-	QQuickView__Ready   QQuickView__Status = QQuickView__Status(1)
-	QQuickView__Loading QQuickView__Status = QQuickView__Status(2)
-	QQuickView__Error   QQuickView__Status = QQuickView__Status(3)
-)
-
 type QQuickView struct {
 	QQuickWindow
 }
@@ -9037,6 +8977,27 @@ func NewQQuickViewFromPointer(ptr unsafe.Pointer) *QQuickView {
 	n.SetPointer(ptr)
 	return n
 }
+
+//go:generate stringer -type=QQuickView__ResizeMode
+//QQuickView::ResizeMode
+type QQuickView__ResizeMode int64
+
+const (
+	QQuickView__SizeViewToRootObject QQuickView__ResizeMode = QQuickView__ResizeMode(0)
+	QQuickView__SizeRootObjectToView QQuickView__ResizeMode = QQuickView__ResizeMode(1)
+)
+
+//go:generate stringer -type=QQuickView__Status
+//QQuickView::Status
+type QQuickView__Status int64
+
+const (
+	QQuickView__Null    QQuickView__Status = QQuickView__Status(0)
+	QQuickView__Ready   QQuickView__Status = QQuickView__Status(1)
+	QQuickView__Loading QQuickView__Status = QQuickView__Status(2)
+	QQuickView__Error   QQuickView__Status = QQuickView__Status(3)
+)
+
 func (ptr *QQuickView) ResizeMode() QQuickView__ResizeMode {
 	if ptr.Pointer() != nil {
 		return QQuickView__ResizeMode(C.QQuickView_ResizeMode(ptr.Pointer()))
@@ -9170,8 +9131,9 @@ func (ptr *QQuickView) RootObject() *QQuickItem {
 func callbackQQuickView_SetSource(ptr unsafe.Pointer, url unsafe.Pointer) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QQuickView::setSource"); signal != nil {
 		signal.(func(*core.QUrl))(core.NewQUrlFromPointer(url))
+	} else {
+		NewQQuickViewFromPointer(ptr).SetSourceDefault(core.NewQUrlFromPointer(url))
 	}
-
 }
 
 func (ptr *QQuickView) ConnectSetSource(f func(url *core.QUrl)) {
@@ -9181,7 +9143,7 @@ func (ptr *QQuickView) ConnectSetSource(f func(url *core.QUrl)) {
 	}
 }
 
-func (ptr *QQuickView) DisconnectSetSource(url core.QUrl_ITF) {
+func (ptr *QQuickView) DisconnectSetSource() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QQuickView::setSource")
@@ -9191,6 +9153,12 @@ func (ptr *QQuickView) DisconnectSetSource(url core.QUrl_ITF) {
 func (ptr *QQuickView) SetSource(url core.QUrl_ITF) {
 	if ptr.Pointer() != nil {
 		C.QQuickView_SetSource(ptr.Pointer(), core.PointerFromQUrl(url))
+	}
+}
+
+func (ptr *QQuickView) SetSourceDefault(url core.QUrl_ITF) {
+	if ptr.Pointer() != nil {
+		C.QQuickView_SetSourceDefault(ptr.Pointer(), core.PointerFromQUrl(url))
 	}
 }
 
@@ -11062,26 +11030,6 @@ func (ptr *QQuickView) MetaObjectDefault() *core.QMetaObject {
 	return nil
 }
 
-//go:generate stringer -type=QQuickWidget__ResizeMode
-//QQuickWidget::ResizeMode
-type QQuickWidget__ResizeMode int64
-
-const (
-	QQuickWidget__SizeViewToRootObject QQuickWidget__ResizeMode = QQuickWidget__ResizeMode(0)
-	QQuickWidget__SizeRootObjectToView QQuickWidget__ResizeMode = QQuickWidget__ResizeMode(1)
-)
-
-//go:generate stringer -type=QQuickWidget__Status
-//QQuickWidget::Status
-type QQuickWidget__Status int64
-
-const (
-	QQuickWidget__Null    QQuickWidget__Status = QQuickWidget__Status(0)
-	QQuickWidget__Ready   QQuickWidget__Status = QQuickWidget__Status(1)
-	QQuickWidget__Loading QQuickWidget__Status = QQuickWidget__Status(2)
-	QQuickWidget__Error   QQuickWidget__Status = QQuickWidget__Status(3)
-)
-
 type QQuickWidget struct {
 	widgets.QWidget
 }
@@ -11120,6 +11068,27 @@ func NewQQuickWidgetFromPointer(ptr unsafe.Pointer) *QQuickWidget {
 	n.SetPointer(ptr)
 	return n
 }
+
+//go:generate stringer -type=QQuickWidget__ResizeMode
+//QQuickWidget::ResizeMode
+type QQuickWidget__ResizeMode int64
+
+const (
+	QQuickWidget__SizeViewToRootObject QQuickWidget__ResizeMode = QQuickWidget__ResizeMode(0)
+	QQuickWidget__SizeRootObjectToView QQuickWidget__ResizeMode = QQuickWidget__ResizeMode(1)
+)
+
+//go:generate stringer -type=QQuickWidget__Status
+//QQuickWidget::Status
+type QQuickWidget__Status int64
+
+const (
+	QQuickWidget__Null    QQuickWidget__Status = QQuickWidget__Status(0)
+	QQuickWidget__Ready   QQuickWidget__Status = QQuickWidget__Status(1)
+	QQuickWidget__Loading QQuickWidget__Status = QQuickWidget__Status(2)
+	QQuickWidget__Error   QQuickWidget__Status = QQuickWidget__Status(3)
+)
+
 func (ptr *QQuickWidget) ResizeMode() QQuickWidget__ResizeMode {
 	if ptr.Pointer() != nil {
 		return QQuickWidget__ResizeMode(C.QQuickWidget_ResizeMode(ptr.Pointer()))
@@ -11801,8 +11770,9 @@ func (ptr *QQuickWidget) SetFormat(format gui.QSurfaceFormat_ITF) {
 func callbackQQuickWidget_SetSource(ptr unsafe.Pointer, url unsafe.Pointer) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QQuickWidget::setSource"); signal != nil {
 		signal.(func(*core.QUrl))(core.NewQUrlFromPointer(url))
+	} else {
+		NewQQuickWidgetFromPointer(ptr).SetSourceDefault(core.NewQUrlFromPointer(url))
 	}
-
 }
 
 func (ptr *QQuickWidget) ConnectSetSource(f func(url *core.QUrl)) {
@@ -11812,7 +11782,7 @@ func (ptr *QQuickWidget) ConnectSetSource(f func(url *core.QUrl)) {
 	}
 }
 
-func (ptr *QQuickWidget) DisconnectSetSource(url core.QUrl_ITF) {
+func (ptr *QQuickWidget) DisconnectSetSource() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QQuickWidget::setSource")
@@ -11822,6 +11792,12 @@ func (ptr *QQuickWidget) DisconnectSetSource(url core.QUrl_ITF) {
 func (ptr *QQuickWidget) SetSource(url core.QUrl_ITF) {
 	if ptr.Pointer() != nil {
 		C.QQuickWidget_SetSource(ptr.Pointer(), core.PointerFromQUrl(url))
+	}
+}
+
+func (ptr *QQuickWidget) SetSourceDefault(url core.QUrl_ITF) {
+	if ptr.Pointer() != nil {
+		C.QQuickWidget_SetSourceDefault(ptr.Pointer(), core.PointerFromQUrl(url))
 	}
 }
 
@@ -13739,39 +13715,6 @@ func (ptr *QQuickWidget) MetaObjectDefault() *core.QMetaObject {
 	return nil
 }
 
-//go:generate stringer -type=QQuickWindow__CreateTextureOption
-//QQuickWindow::CreateTextureOption
-type QQuickWindow__CreateTextureOption int64
-
-const (
-	QQuickWindow__TextureHasAlphaChannel QQuickWindow__CreateTextureOption = QQuickWindow__CreateTextureOption(0x0001)
-	QQuickWindow__TextureHasMipmaps      QQuickWindow__CreateTextureOption = QQuickWindow__CreateTextureOption(0x0002)
-	QQuickWindow__TextureOwnsGLTexture   QQuickWindow__CreateTextureOption = QQuickWindow__CreateTextureOption(0x0004)
-	QQuickWindow__TextureCanUseAtlas     QQuickWindow__CreateTextureOption = QQuickWindow__CreateTextureOption(0x0008)
-	QQuickWindow__TextureIsOpaque        QQuickWindow__CreateTextureOption = QQuickWindow__CreateTextureOption(0x0010)
-)
-
-//go:generate stringer -type=QQuickWindow__RenderStage
-//QQuickWindow::RenderStage
-type QQuickWindow__RenderStage int64
-
-const (
-	QQuickWindow__BeforeSynchronizingStage QQuickWindow__RenderStage = QQuickWindow__RenderStage(0)
-	QQuickWindow__AfterSynchronizingStage  QQuickWindow__RenderStage = QQuickWindow__RenderStage(1)
-	QQuickWindow__BeforeRenderingStage     QQuickWindow__RenderStage = QQuickWindow__RenderStage(2)
-	QQuickWindow__AfterRenderingStage      QQuickWindow__RenderStage = QQuickWindow__RenderStage(3)
-	QQuickWindow__AfterSwapStage           QQuickWindow__RenderStage = QQuickWindow__RenderStage(4)
-	QQuickWindow__NoStage                  QQuickWindow__RenderStage = QQuickWindow__RenderStage(5)
-)
-
-//go:generate stringer -type=QQuickWindow__SceneGraphError
-//QQuickWindow::SceneGraphError
-type QQuickWindow__SceneGraphError int64
-
-const (
-	QQuickWindow__ContextNotAvailable QQuickWindow__SceneGraphError = QQuickWindow__SceneGraphError(1)
-)
-
 type QQuickWindow struct {
 	gui.QWindow
 }
@@ -13810,6 +13753,40 @@ func NewQQuickWindowFromPointer(ptr unsafe.Pointer) *QQuickWindow {
 	n.SetPointer(ptr)
 	return n
 }
+
+//go:generate stringer -type=QQuickWindow__CreateTextureOption
+//QQuickWindow::CreateTextureOption
+type QQuickWindow__CreateTextureOption int64
+
+const (
+	QQuickWindow__TextureHasAlphaChannel QQuickWindow__CreateTextureOption = QQuickWindow__CreateTextureOption(0x0001)
+	QQuickWindow__TextureHasMipmaps      QQuickWindow__CreateTextureOption = QQuickWindow__CreateTextureOption(0x0002)
+	QQuickWindow__TextureOwnsGLTexture   QQuickWindow__CreateTextureOption = QQuickWindow__CreateTextureOption(0x0004)
+	QQuickWindow__TextureCanUseAtlas     QQuickWindow__CreateTextureOption = QQuickWindow__CreateTextureOption(0x0008)
+	QQuickWindow__TextureIsOpaque        QQuickWindow__CreateTextureOption = QQuickWindow__CreateTextureOption(0x0010)
+)
+
+//go:generate stringer -type=QQuickWindow__RenderStage
+//QQuickWindow::RenderStage
+type QQuickWindow__RenderStage int64
+
+const (
+	QQuickWindow__BeforeSynchronizingStage QQuickWindow__RenderStage = QQuickWindow__RenderStage(0)
+	QQuickWindow__AfterSynchronizingStage  QQuickWindow__RenderStage = QQuickWindow__RenderStage(1)
+	QQuickWindow__BeforeRenderingStage     QQuickWindow__RenderStage = QQuickWindow__RenderStage(2)
+	QQuickWindow__AfterRenderingStage      QQuickWindow__RenderStage = QQuickWindow__RenderStage(3)
+	QQuickWindow__AfterSwapStage           QQuickWindow__RenderStage = QQuickWindow__RenderStage(4)
+	QQuickWindow__NoStage                  QQuickWindow__RenderStage = QQuickWindow__RenderStage(5)
+)
+
+//go:generate stringer -type=QQuickWindow__SceneGraphError
+//QQuickWindow::SceneGraphError
+type QQuickWindow__SceneGraphError int64
+
+const (
+	QQuickWindow__ContextNotAvailable QQuickWindow__SceneGraphError = QQuickWindow__SceneGraphError(1)
+)
+
 func (ptr *QQuickWindow) ActiveFocusItem() *QQuickItem {
 	if ptr.Pointer() != nil {
 		var tmpValue = NewQQuickItemFromPointer(C.QQuickWindow_ActiveFocusItem(ptr.Pointer()))
@@ -14639,8 +14616,9 @@ func (ptr *QQuickWindow) OpenglContextCreated(context gui.QOpenGLContext_ITF) {
 func callbackQQuickWindow_ReleaseResources(ptr unsafe.Pointer) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QQuickWindow::releaseResources"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQQuickWindowFromPointer(ptr).ReleaseResourcesDefault()
 	}
-
 }
 
 func (ptr *QQuickWindow) ConnectReleaseResources(f func()) {
@@ -14660,6 +14638,12 @@ func (ptr *QQuickWindow) DisconnectReleaseResources() {
 func (ptr *QQuickWindow) ReleaseResources() {
 	if ptr.Pointer() != nil {
 		C.QQuickWindow_ReleaseResources(ptr.Pointer())
+	}
+}
+
+func (ptr *QQuickWindow) ReleaseResourcesDefault() {
+	if ptr.Pointer() != nil {
+		C.QQuickWindow_ReleaseResourcesDefault(ptr.Pointer())
 	}
 }
 
@@ -14937,8 +14921,9 @@ func (ptr *QQuickWindow) ShowEventDefault(vqs gui.QShowEvent_ITF) {
 func callbackQQuickWindow_Update(ptr unsafe.Pointer) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QQuickWindow::update"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQQuickWindowFromPointer(ptr).UpdateDefault()
 	}
-
 }
 
 func (ptr *QQuickWindow) ConnectUpdate(f func()) {
@@ -14958,6 +14943,12 @@ func (ptr *QQuickWindow) DisconnectUpdate() {
 func (ptr *QQuickWindow) Update() {
 	if ptr.Pointer() != nil {
 		C.QQuickWindow_Update(ptr.Pointer())
+	}
+}
+
+func (ptr *QQuickWindow) UpdateDefault() {
+	if ptr.Pointer() != nil {
+		C.QQuickWindow_UpdateDefault(ptr.Pointer())
 	}
 }
 
@@ -16422,16 +16413,6 @@ func (ptr *QQuickWindow) MetaObjectDefault() *core.QMetaObject {
 	return nil
 }
 
-//go:generate stringer -type=QSGAbstractRenderer__ClearModeBit
-//QSGAbstractRenderer::ClearModeBit
-type QSGAbstractRenderer__ClearModeBit int64
-
-const (
-	QSGAbstractRenderer__ClearColorBuffer   QSGAbstractRenderer__ClearModeBit = QSGAbstractRenderer__ClearModeBit(0x0001)
-	QSGAbstractRenderer__ClearDepthBuffer   QSGAbstractRenderer__ClearModeBit = QSGAbstractRenderer__ClearModeBit(0x0002)
-	QSGAbstractRenderer__ClearStencilBuffer QSGAbstractRenderer__ClearModeBit = QSGAbstractRenderer__ClearModeBit(0x0004)
-)
-
 type QSGAbstractRenderer struct {
 	core.QObject
 }
@@ -16478,6 +16459,16 @@ func (ptr *QSGAbstractRenderer) DestroyQSGAbstractRenderer() {
 		ptr.SetPointer(nil)
 	}
 }
+
+//go:generate stringer -type=QSGAbstractRenderer__ClearModeBit
+//QSGAbstractRenderer::ClearModeBit
+type QSGAbstractRenderer__ClearModeBit int64
+
+const (
+	QSGAbstractRenderer__ClearColorBuffer   QSGAbstractRenderer__ClearModeBit = QSGAbstractRenderer__ClearModeBit(0x0001)
+	QSGAbstractRenderer__ClearDepthBuffer   QSGAbstractRenderer__ClearModeBit = QSGAbstractRenderer__ClearModeBit(0x0002)
+	QSGAbstractRenderer__ClearStencilBuffer QSGAbstractRenderer__ClearModeBit = QSGAbstractRenderer__ClearModeBit(0x0004)
+)
 
 func (ptr *QSGAbstractRenderer) ClearColor() *gui.QColor {
 	if ptr.Pointer() != nil {
@@ -17071,15 +17062,6 @@ func (ptr *QSGBasicGeometryNode) PreprocessDefault() {
 	}
 }
 
-//go:generate stringer -type=QSGBatchRenderer__BatchCompatibility
-//QSGBatchRenderer::BatchCompatibility
-type QSGBatchRenderer__BatchCompatibility int64
-
-const (
-	QSGBatchRenderer__BatchBreaksOnCompare QSGBatchRenderer__BatchCompatibility = QSGBatchRenderer__BatchCompatibility(0)
-	QSGBatchRenderer__BatchIsCompatible    QSGBatchRenderer__BatchCompatibility = QSGBatchRenderer__BatchCompatibility(1)
-)
-
 type QSGBatchRenderer struct {
 	ptr unsafe.Pointer
 }
@@ -17124,6 +17106,15 @@ func (ptr *QSGBatchRenderer) DestroyQSGBatchRenderer() {
 		ptr.SetPointer(nil)
 	}
 }
+
+//go:generate stringer -type=QSGBatchRenderer__BatchCompatibility
+//QSGBatchRenderer::BatchCompatibility
+type QSGBatchRenderer__BatchCompatibility int64
+
+const (
+	QSGBatchRenderer__BatchBreaksOnCompare QSGBatchRenderer__BatchCompatibility = QSGBatchRenderer__BatchCompatibility(0)
+	QSGBatchRenderer__BatchIsCompatible    QSGBatchRenderer__BatchCompatibility = QSGBatchRenderer__BatchCompatibility(1)
+)
 
 type QSGClipNode struct {
 	QSGBasicGeometryNode
@@ -17361,9 +17352,8 @@ func callbackQSGDynamicTexture_Bind(ptr unsafe.Pointer) {
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSGDynamicTexture::bind"); signal != nil {
 		signal.(func())()
-	} else {
-
 	}
+
 }
 
 func (ptr *QSGDynamicTexture) ConnectBind(f func()) {
@@ -17971,17 +17961,6 @@ func (ptr *QSGDynamicTexture) MetaObjectDefault() *core.QMetaObject {
 	return nil
 }
 
-//go:generate stringer -type=QSGEngine__CreateTextureOption
-//QSGEngine::CreateTextureOption
-type QSGEngine__CreateTextureOption int64
-
-const (
-	QSGEngine__TextureHasAlphaChannel QSGEngine__CreateTextureOption = QSGEngine__CreateTextureOption(0x0001)
-	QSGEngine__TextureOwnsGLTexture   QSGEngine__CreateTextureOption = QSGEngine__CreateTextureOption(0x0004)
-	QSGEngine__TextureCanUseAtlas     QSGEngine__CreateTextureOption = QSGEngine__CreateTextureOption(0x0008)
-	QSGEngine__TextureIsOpaque        QSGEngine__CreateTextureOption = QSGEngine__CreateTextureOption(0x0010)
-)
-
 type QSGEngine struct {
 	core.QObject
 }
@@ -18020,6 +17999,18 @@ func NewQSGEngineFromPointer(ptr unsafe.Pointer) *QSGEngine {
 	n.SetPointer(ptr)
 	return n
 }
+
+//go:generate stringer -type=QSGEngine__CreateTextureOption
+//QSGEngine::CreateTextureOption
+type QSGEngine__CreateTextureOption int64
+
+const (
+	QSGEngine__TextureHasAlphaChannel QSGEngine__CreateTextureOption = QSGEngine__CreateTextureOption(0x0001)
+	QSGEngine__TextureOwnsGLTexture   QSGEngine__CreateTextureOption = QSGEngine__CreateTextureOption(0x0004)
+	QSGEngine__TextureCanUseAtlas     QSGEngine__CreateTextureOption = QSGEngine__CreateTextureOption(0x0008)
+	QSGEngine__TextureIsOpaque        QSGEngine__CreateTextureOption = QSGEngine__CreateTextureOption(0x0010)
+)
+
 func NewQSGEngine(parent core.QObject_ITF) *QSGEngine {
 	var tmpValue = NewQSGEngineFromPointer(C.QSGEngine_NewQSGEngine(core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
@@ -18524,7 +18515,7 @@ func callbackQSGFlatColorMaterial_CreateShader(ptr unsafe.Pointer) unsafe.Pointe
 		return PointerFromQSGMaterialShader(signal.(func() *QSGMaterialShader)())
 	}
 
-	return PointerFromQSGMaterialShader(NewQSGFlatColorMaterialFromPointer(ptr).CreateShaderDefault())
+	return PointerFromQSGMaterialShader(nil)
 }
 
 func (ptr *QSGFlatColorMaterial) ConnectCreateShader(f func() *QSGMaterialShader) {
@@ -18548,13 +18539,6 @@ func (ptr *QSGFlatColorMaterial) CreateShader() *QSGMaterialShader {
 	return nil
 }
 
-func (ptr *QSGFlatColorMaterial) CreateShaderDefault() *QSGMaterialShader {
-	if ptr.Pointer() != nil {
-		return NewQSGMaterialShaderFromPointer(C.QSGFlatColorMaterial_CreateShaderDefault(ptr.Pointer()))
-	}
-	return nil
-}
-
 //export callbackQSGFlatColorMaterial_Type
 func callbackQSGFlatColorMaterial_Type(ptr unsafe.Pointer) unsafe.Pointer {
 
@@ -18562,7 +18546,7 @@ func callbackQSGFlatColorMaterial_Type(ptr unsafe.Pointer) unsafe.Pointer {
 		return PointerFromQSGMaterialType(signal.(func() *QSGMaterialType)())
 	}
 
-	return PointerFromQSGMaterialType(NewQSGFlatColorMaterialFromPointer(ptr).TypeDefault())
+	return PointerFromQSGMaterialType(nil)
 }
 
 func (ptr *QSGFlatColorMaterial) ConnectType(f func() *QSGMaterialType) {
@@ -18585,24 +18569,6 @@ func (ptr *QSGFlatColorMaterial) Type() *QSGMaterialType {
 	}
 	return nil
 }
-
-func (ptr *QSGFlatColorMaterial) TypeDefault() *QSGMaterialType {
-	if ptr.Pointer() != nil {
-		return NewQSGMaterialTypeFromPointer(C.QSGFlatColorMaterial_TypeDefault(ptr.Pointer()))
-	}
-	return nil
-}
-
-//go:generate stringer -type=QSGGeometry__DataPattern
-//QSGGeometry::DataPattern
-type QSGGeometry__DataPattern int64
-
-const (
-	QSGGeometry__AlwaysUploadPattern QSGGeometry__DataPattern = QSGGeometry__DataPattern(0)
-	QSGGeometry__StreamPattern       QSGGeometry__DataPattern = QSGGeometry__DataPattern(1)
-	QSGGeometry__DynamicPattern      QSGGeometry__DataPattern = QSGGeometry__DataPattern(2)
-	QSGGeometry__StaticPattern       QSGGeometry__DataPattern = QSGGeometry__DataPattern(3)
-)
 
 type QSGGeometry struct {
 	ptr unsafe.Pointer
@@ -18641,6 +18607,18 @@ func NewQSGGeometryFromPointer(ptr unsafe.Pointer) *QSGGeometry {
 	n.SetPointer(ptr)
 	return n
 }
+
+//go:generate stringer -type=QSGGeometry__DataPattern
+//QSGGeometry::DataPattern
+type QSGGeometry__DataPattern int64
+
+const (
+	QSGGeometry__AlwaysUploadPattern QSGGeometry__DataPattern = QSGGeometry__DataPattern(0)
+	QSGGeometry__StreamPattern       QSGGeometry__DataPattern = QSGGeometry__DataPattern(1)
+	QSGGeometry__DynamicPattern      QSGGeometry__DataPattern = QSGGeometry__DataPattern(2)
+	QSGGeometry__StaticPattern       QSGGeometry__DataPattern = QSGGeometry__DataPattern(3)
+)
+
 func (ptr *QSGGeometry) Allocate(vertexCount int, indexCount int) {
 	if ptr.Pointer() != nil {
 		C.QSGGeometry_Allocate(ptr.Pointer(), C.int(int32(vertexCount)), C.int(int32(indexCount)))
@@ -19003,18 +18981,6 @@ func (ptr *QSGGeometryNode) PreprocessDefault() {
 	}
 }
 
-//go:generate stringer -type=QSGMaterial__Flag
-//QSGMaterial::Flag
-type QSGMaterial__Flag int64
-
-const (
-	QSGMaterial__Blending                          QSGMaterial__Flag = QSGMaterial__Flag(0x0001)
-	QSGMaterial__RequiresDeterminant               QSGMaterial__Flag = QSGMaterial__Flag(0x0002)
-	QSGMaterial__RequiresFullMatrixExceptTranslate QSGMaterial__Flag = QSGMaterial__Flag(0x0004 | QSGMaterial__RequiresDeterminant)
-	QSGMaterial__RequiresFullMatrix                QSGMaterial__Flag = QSGMaterial__Flag(0x0008 | QSGMaterial__RequiresFullMatrixExceptTranslate)
-	QSGMaterial__CustomCompileStep                 QSGMaterial__Flag = QSGMaterial__Flag(0x0010)
-)
-
 type QSGMaterial struct {
 	ptr unsafe.Pointer
 }
@@ -19060,6 +19026,18 @@ func (ptr *QSGMaterial) DestroyQSGMaterial() {
 		ptr.SetPointer(nil)
 	}
 }
+
+//go:generate stringer -type=QSGMaterial__Flag
+//QSGMaterial::Flag
+type QSGMaterial__Flag int64
+
+const (
+	QSGMaterial__Blending                          QSGMaterial__Flag = QSGMaterial__Flag(0x0001)
+	QSGMaterial__RequiresDeterminant               QSGMaterial__Flag = QSGMaterial__Flag(0x0002)
+	QSGMaterial__RequiresFullMatrixExceptTranslate QSGMaterial__Flag = QSGMaterial__Flag(0x0004 | QSGMaterial__RequiresDeterminant)
+	QSGMaterial__RequiresFullMatrix                QSGMaterial__Flag = QSGMaterial__Flag(0x0008 | QSGMaterial__RequiresFullMatrixExceptTranslate)
+	QSGMaterial__CustomCompileStep                 QSGMaterial__Flag = QSGMaterial__Flag(0x0010)
+)
 
 //export callbackQSGMaterial_Compare
 func callbackQSGMaterial_Compare(ptr unsafe.Pointer, other unsafe.Pointer) C.int {
@@ -19379,13 +19357,6 @@ func (ptr *QSGMaterialShader) Program() *gui.QOpenGLShaderProgram {
 	return nil
 }
 
-func (ptr *QSGMaterialShader) DisconnectUpdateState() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSGMaterialShader::updateState")
-	}
-}
-
 //export callbackQSGMaterialShader_Compile
 func callbackQSGMaterialShader_Compile(ptr unsafe.Pointer) {
 
@@ -19519,6 +19490,44 @@ func (ptr *QSGMaterialType) DestroyQSGMaterialType() {
 	}
 }
 
+type QSGNode struct {
+	ptr unsafe.Pointer
+}
+
+type QSGNode_ITF interface {
+	QSGNode_PTR() *QSGNode
+}
+
+func (ptr *QSGNode) QSGNode_PTR() *QSGNode {
+	return ptr
+}
+
+func (ptr *QSGNode) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
+	}
+	return nil
+}
+
+func (ptr *QSGNode) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
+	}
+}
+
+func PointerFromQSGNode(ptr QSGNode_ITF) unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QSGNode_PTR().Pointer()
+	}
+	return nil
+}
+
+func NewQSGNodeFromPointer(ptr unsafe.Pointer) *QSGNode {
+	var n = new(QSGNode)
+	n.SetPointer(ptr)
+	return n
+}
+
 //go:generate stringer -type=QSGNode__DirtyStateBit
 //QSGNode::DirtyStateBit
 type QSGNode__DirtyStateBit int64
@@ -19558,43 +19567,6 @@ const (
 	QSGNode__OpacityNodeType   QSGNode__NodeType = QSGNode__NodeType(4)
 )
 
-type QSGNode struct {
-	ptr unsafe.Pointer
-}
-
-type QSGNode_ITF interface {
-	QSGNode_PTR() *QSGNode
-}
-
-func (ptr *QSGNode) QSGNode_PTR() *QSGNode {
-	return ptr
-}
-
-func (ptr *QSGNode) Pointer() unsafe.Pointer {
-	if ptr != nil {
-		return ptr.ptr
-	}
-	return nil
-}
-
-func (ptr *QSGNode) SetPointer(p unsafe.Pointer) {
-	if ptr != nil {
-		ptr.ptr = p
-	}
-}
-
-func PointerFromQSGNode(ptr QSGNode_ITF) unsafe.Pointer {
-	if ptr != nil {
-		return ptr.QSGNode_PTR().Pointer()
-	}
-	return nil
-}
-
-func NewQSGNodeFromPointer(ptr unsafe.Pointer) *QSGNode {
-	var n = new(QSGNode)
-	n.SetPointer(ptr)
-	return n
-}
 func (ptr *QSGNode) ChildAtIndex(i int) *QSGNode {
 	if ptr.Pointer() != nil {
 		return NewQSGNodeFromPointer(C.QSGNode_ChildAtIndex(ptr.Pointer(), C.int(int32(i))))
@@ -20151,7 +20123,7 @@ func callbackQSGOpaqueTextureMaterial_CreateShader(ptr unsafe.Pointer) unsafe.Po
 		return PointerFromQSGMaterialShader(signal.(func() *QSGMaterialShader)())
 	}
 
-	return PointerFromQSGMaterialShader(NewQSGOpaqueTextureMaterialFromPointer(ptr).CreateShaderDefault())
+	return PointerFromQSGMaterialShader(nil)
 }
 
 func (ptr *QSGOpaqueTextureMaterial) ConnectCreateShader(f func() *QSGMaterialShader) {
@@ -20175,13 +20147,6 @@ func (ptr *QSGOpaqueTextureMaterial) CreateShader() *QSGMaterialShader {
 	return nil
 }
 
-func (ptr *QSGOpaqueTextureMaterial) CreateShaderDefault() *QSGMaterialShader {
-	if ptr.Pointer() != nil {
-		return NewQSGMaterialShaderFromPointer(C.QSGOpaqueTextureMaterial_CreateShaderDefault(ptr.Pointer()))
-	}
-	return nil
-}
-
 //export callbackQSGOpaqueTextureMaterial_Type
 func callbackQSGOpaqueTextureMaterial_Type(ptr unsafe.Pointer) unsafe.Pointer {
 
@@ -20189,7 +20154,7 @@ func callbackQSGOpaqueTextureMaterial_Type(ptr unsafe.Pointer) unsafe.Pointer {
 		return PointerFromQSGMaterialType(signal.(func() *QSGMaterialType)())
 	}
 
-	return PointerFromQSGMaterialType(NewQSGOpaqueTextureMaterialFromPointer(ptr).TypeDefault())
+	return PointerFromQSGMaterialType(nil)
 }
 
 func (ptr *QSGOpaqueTextureMaterial) ConnectType(f func() *QSGMaterialType) {
@@ -20209,13 +20174,6 @@ func (ptr *QSGOpaqueTextureMaterial) DisconnectType() {
 func (ptr *QSGOpaqueTextureMaterial) Type() *QSGMaterialType {
 	if ptr.Pointer() != nil {
 		return NewQSGMaterialTypeFromPointer(C.QSGOpaqueTextureMaterial_Type(ptr.Pointer()))
-	}
-	return nil
-}
-
-func (ptr *QSGOpaqueTextureMaterial) TypeDefault() *QSGMaterialType {
-	if ptr.Pointer() != nil {
-		return NewQSGMaterialTypeFromPointer(C.QSGOpaqueTextureMaterial_TypeDefault(ptr.Pointer()))
 	}
 	return nil
 }
@@ -20481,16 +20439,6 @@ func (ptr *QSGSimpleRectNode) PreprocessDefault() {
 	}
 }
 
-//go:generate stringer -type=QSGSimpleTextureNode__TextureCoordinatesTransformFlag
-//QSGSimpleTextureNode::TextureCoordinatesTransformFlag
-type QSGSimpleTextureNode__TextureCoordinatesTransformFlag int64
-
-const (
-	QSGSimpleTextureNode__NoTransform        QSGSimpleTextureNode__TextureCoordinatesTransformFlag = QSGSimpleTextureNode__TextureCoordinatesTransformFlag(0x00)
-	QSGSimpleTextureNode__MirrorHorizontally QSGSimpleTextureNode__TextureCoordinatesTransformFlag = QSGSimpleTextureNode__TextureCoordinatesTransformFlag(0x01)
-	QSGSimpleTextureNode__MirrorVertically   QSGSimpleTextureNode__TextureCoordinatesTransformFlag = QSGSimpleTextureNode__TextureCoordinatesTransformFlag(0x02)
-)
-
 type QSGSimpleTextureNode struct {
 	QSGGeometryNode
 }
@@ -20529,6 +20477,17 @@ func NewQSGSimpleTextureNodeFromPointer(ptr unsafe.Pointer) *QSGSimpleTextureNod
 	n.SetPointer(ptr)
 	return n
 }
+
+//go:generate stringer -type=QSGSimpleTextureNode__TextureCoordinatesTransformFlag
+//QSGSimpleTextureNode::TextureCoordinatesTransformFlag
+type QSGSimpleTextureNode__TextureCoordinatesTransformFlag int64
+
+const (
+	QSGSimpleTextureNode__NoTransform        QSGSimpleTextureNode__TextureCoordinatesTransformFlag = QSGSimpleTextureNode__TextureCoordinatesTransformFlag(0x00)
+	QSGSimpleTextureNode__MirrorHorizontally QSGSimpleTextureNode__TextureCoordinatesTransformFlag = QSGSimpleTextureNode__TextureCoordinatesTransformFlag(0x01)
+	QSGSimpleTextureNode__MirrorVertically   QSGSimpleTextureNode__TextureCoordinatesTransformFlag = QSGSimpleTextureNode__TextureCoordinatesTransformFlag(0x02)
+)
+
 func NewQSGSimpleTextureNode() *QSGSimpleTextureNode {
 	var tmpValue = NewQSGSimpleTextureNodeFromPointer(C.QSGSimpleTextureNode_NewQSGSimpleTextureNode())
 	runtime.SetFinalizer(tmpValue, (*QSGSimpleTextureNode).DestroyQSGSimpleTextureNode)
@@ -20714,25 +20673,6 @@ func (ptr *QSGSimpleTextureNode) PreprocessDefault() {
 	}
 }
 
-//go:generate stringer -type=QSGTexture__Filtering
-//QSGTexture::Filtering
-type QSGTexture__Filtering int64
-
-const (
-	QSGTexture__None    QSGTexture__Filtering = QSGTexture__Filtering(0)
-	QSGTexture__Nearest QSGTexture__Filtering = QSGTexture__Filtering(1)
-	QSGTexture__Linear  QSGTexture__Filtering = QSGTexture__Filtering(2)
-)
-
-//go:generate stringer -type=QSGTexture__WrapMode
-//QSGTexture::WrapMode
-type QSGTexture__WrapMode int64
-
-const (
-	QSGTexture__Repeat      QSGTexture__WrapMode = QSGTexture__WrapMode(0)
-	QSGTexture__ClampToEdge QSGTexture__WrapMode = QSGTexture__WrapMode(1)
-)
-
 type QSGTexture struct {
 	core.QObject
 }
@@ -20771,6 +20711,26 @@ func NewQSGTextureFromPointer(ptr unsafe.Pointer) *QSGTexture {
 	n.SetPointer(ptr)
 	return n
 }
+
+//go:generate stringer -type=QSGTexture__Filtering
+//QSGTexture::Filtering
+type QSGTexture__Filtering int64
+
+const (
+	QSGTexture__None    QSGTexture__Filtering = QSGTexture__Filtering(0)
+	QSGTexture__Nearest QSGTexture__Filtering = QSGTexture__Filtering(1)
+	QSGTexture__Linear  QSGTexture__Filtering = QSGTexture__Filtering(2)
+)
+
+//go:generate stringer -type=QSGTexture__WrapMode
+//QSGTexture::WrapMode
+type QSGTexture__WrapMode int64
+
+const (
+	QSGTexture__Repeat      QSGTexture__WrapMode = QSGTexture__WrapMode(0)
+	QSGTexture__ClampToEdge QSGTexture__WrapMode = QSGTexture__WrapMode(1)
+)
+
 func NewQSGTexture() *QSGTexture {
 	var tmpValue = NewQSGTextureFromPointer(C.QSGTexture_NewQSGTexture())
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
@@ -21559,7 +21519,7 @@ func callbackQSGTextureMaterial_CreateShader(ptr unsafe.Pointer) unsafe.Pointer 
 		return PointerFromQSGMaterialShader(signal.(func() *QSGMaterialShader)())
 	}
 
-	return PointerFromQSGMaterialShader(NewQSGTextureMaterialFromPointer(ptr).CreateShaderDefault())
+	return PointerFromQSGMaterialShader(nil)
 }
 
 func (ptr *QSGTextureMaterial) ConnectCreateShader(f func() *QSGMaterialShader) {
@@ -21583,13 +21543,6 @@ func (ptr *QSGTextureMaterial) CreateShader() *QSGMaterialShader {
 	return nil
 }
 
-func (ptr *QSGTextureMaterial) CreateShaderDefault() *QSGMaterialShader {
-	if ptr.Pointer() != nil {
-		return NewQSGMaterialShaderFromPointer(C.QSGTextureMaterial_CreateShaderDefault(ptr.Pointer()))
-	}
-	return nil
-}
-
 //export callbackQSGTextureMaterial_Type
 func callbackQSGTextureMaterial_Type(ptr unsafe.Pointer) unsafe.Pointer {
 
@@ -21597,7 +21550,7 @@ func callbackQSGTextureMaterial_Type(ptr unsafe.Pointer) unsafe.Pointer {
 		return PointerFromQSGMaterialType(signal.(func() *QSGMaterialType)())
 	}
 
-	return PointerFromQSGMaterialType(NewQSGTextureMaterialFromPointer(ptr).TypeDefault())
+	return PointerFromQSGMaterialType(nil)
 }
 
 func (ptr *QSGTextureMaterial) ConnectType(f func() *QSGMaterialType) {
@@ -21617,13 +21570,6 @@ func (ptr *QSGTextureMaterial) DisconnectType() {
 func (ptr *QSGTextureMaterial) Type() *QSGMaterialType {
 	if ptr.Pointer() != nil {
 		return NewQSGMaterialTypeFromPointer(C.QSGTextureMaterial_Type(ptr.Pointer()))
-	}
-	return nil
-}
-
-func (ptr *QSGTextureMaterial) TypeDefault() *QSGMaterialType {
-	if ptr.Pointer() != nil {
-		return NewQSGMaterialTypeFromPointer(C.QSGTextureMaterial_TypeDefault(ptr.Pointer()))
 	}
 	return nil
 }
@@ -22307,7 +22253,7 @@ func callbackQSGVertexColorMaterial_CreateShader(ptr unsafe.Pointer) unsafe.Poin
 		return PointerFromQSGMaterialShader(signal.(func() *QSGMaterialShader)())
 	}
 
-	return PointerFromQSGMaterialShader(NewQSGVertexColorMaterialFromPointer(ptr).CreateShaderDefault())
+	return PointerFromQSGMaterialShader(nil)
 }
 
 func (ptr *QSGVertexColorMaterial) ConnectCreateShader(f func() *QSGMaterialShader) {
@@ -22331,13 +22277,6 @@ func (ptr *QSGVertexColorMaterial) CreateShader() *QSGMaterialShader {
 	return nil
 }
 
-func (ptr *QSGVertexColorMaterial) CreateShaderDefault() *QSGMaterialShader {
-	if ptr.Pointer() != nil {
-		return NewQSGMaterialShaderFromPointer(C.QSGVertexColorMaterial_CreateShaderDefault(ptr.Pointer()))
-	}
-	return nil
-}
-
 //export callbackQSGVertexColorMaterial_Type
 func callbackQSGVertexColorMaterial_Type(ptr unsafe.Pointer) unsafe.Pointer {
 
@@ -22345,7 +22284,7 @@ func callbackQSGVertexColorMaterial_Type(ptr unsafe.Pointer) unsafe.Pointer {
 		return PointerFromQSGMaterialType(signal.(func() *QSGMaterialType)())
 	}
 
-	return PointerFromQSGMaterialType(NewQSGVertexColorMaterialFromPointer(ptr).TypeDefault())
+	return PointerFromQSGMaterialType(nil)
 }
 
 func (ptr *QSGVertexColorMaterial) ConnectType(f func() *QSGMaterialType) {
@@ -22365,13 +22304,6 @@ func (ptr *QSGVertexColorMaterial) DisconnectType() {
 func (ptr *QSGVertexColorMaterial) Type() *QSGMaterialType {
 	if ptr.Pointer() != nil {
 		return NewQSGMaterialTypeFromPointer(C.QSGVertexColorMaterial_Type(ptr.Pointer()))
-	}
-	return nil
-}
-
-func (ptr *QSGVertexColorMaterial) TypeDefault() *QSGMaterialType {
-	if ptr.Pointer() != nil {
-		return NewQSGMaterialTypeFromPointer(C.QSGVertexColorMaterial_TypeDefault(ptr.Pointer()))
 	}
 	return nil
 }

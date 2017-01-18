@@ -139,7 +139,7 @@ func (m *appMoc) parseGo(path string) error {
 							Meta:       meta,
 							Name:       strings.Split(tag, ":")[1],
 							Status:     "public",
-							Virtual:    "non",
+							Virtual:    parser.PURE,
 							Signature:  "()",
 							Parameters: getParameters(typ),
 							Output: func() string {

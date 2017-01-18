@@ -6,6 +6,7 @@ import (
 	"github.com/therecipe/qt/core"
 	"github.com/therecipe/qt/gui"
 	"github.com/therecipe/qt/qml"
+	"github.com/therecipe/qt/quickcontrols2"
 )
 
 func main() {
@@ -16,15 +17,15 @@ func main() {
 
 	gui.NewQGuiApplication(len(os.Args), os.Args)
 
-	/*
-			TODO:
-			var settings = core.NewQSettings5(nil)
-			QString style = QQuickStyle::name();
-			if (!style.isEmpty())
-		    settings.setValue("style", style);
-			else
-		    QQuickStyle::setStyle(settings.value("style").toString());
-	*/
+	var (
+		settings = core.NewQSettings5(nil)
+		style    = quickcontrols2.QQuickStyle_Name()
+	)
+	if style != "" {
+		settings.SetValue("style", core.NewQVariant14(style))
+	} else {
+		quickcontrols2.QQuickStyle_SetStyle(settings.Value("style", core.NewQVariant14("")).ToString())
+	}
 
 	var engine = qml.NewQQmlApplicationEngine(nil)
 	engine.Load(core.NewQUrl3("qrc:/gallery.qml", 0))

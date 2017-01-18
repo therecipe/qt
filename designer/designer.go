@@ -80,7 +80,7 @@ func (ptr *QAbstractExtensionFactory) ConnectExtension(f func(object *core.QObje
 	}
 }
 
-func (ptr *QAbstractExtensionFactory) DisconnectExtension(object core.QObject_ITF, iid string) {
+func (ptr *QAbstractExtensionFactory) DisconnectExtension() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractExtensionFactory::extension")
@@ -195,7 +195,7 @@ func (ptr *QAbstractExtensionManager) ConnectExtension(f func(object *core.QObje
 	}
 }
 
-func (ptr *QAbstractExtensionManager) DisconnectExtension(object core.QObject_ITF, iid string) {
+func (ptr *QAbstractExtensionManager) DisconnectExtension() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractExtensionManager::extension")
@@ -231,7 +231,7 @@ func (ptr *QAbstractExtensionManager) ConnectRegisterExtensions(f func(factory *
 	}
 }
 
-func (ptr *QAbstractExtensionManager) DisconnectRegisterExtensions(factory QAbstractExtensionFactory_ITF, iid string) {
+func (ptr *QAbstractExtensionManager) DisconnectRegisterExtensions() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractExtensionManager::registerExtensions")
@@ -262,7 +262,7 @@ func (ptr *QAbstractExtensionManager) ConnectUnregisterExtensions(f func(factory
 	}
 }
 
-func (ptr *QAbstractExtensionManager) DisconnectUnregisterExtensions(factory QAbstractExtensionFactory_ITF, iid string) {
+func (ptr *QAbstractExtensionManager) DisconnectUnregisterExtensions() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractExtensionManager::unregisterExtensions")
@@ -611,7 +611,7 @@ func (ptr *QDesignerActionEditorInterface) ConnectManageAction(f func(action *wi
 	}
 }
 
-func (ptr *QDesignerActionEditorInterface) DisconnectManageAction(action widgets.QAction_ITF) {
+func (ptr *QDesignerActionEditorInterface) DisconnectManageAction() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QDesignerActionEditorInterface::manageAction")
@@ -639,7 +639,7 @@ func (ptr *QDesignerActionEditorInterface) ConnectSetFormWindow(f func(formWindo
 	}
 }
 
-func (ptr *QDesignerActionEditorInterface) DisconnectSetFormWindow(formWindow QDesignerFormWindowInterface_ITF) {
+func (ptr *QDesignerActionEditorInterface) DisconnectSetFormWindow() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QDesignerActionEditorInterface::setFormWindow")
@@ -668,7 +668,7 @@ func (ptr *QDesignerActionEditorInterface) ConnectUnmanageAction(f func(action *
 	}
 }
 
-func (ptr *QDesignerActionEditorInterface) DisconnectUnmanageAction(action widgets.QAction_ITF) {
+func (ptr *QDesignerActionEditorInterface) DisconnectUnmanageAction() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QDesignerActionEditorInterface::unmanageAction")
@@ -3108,7 +3108,7 @@ func (ptr *QDesignerContainerExtension) ConnectAddWidget(f func(page *widgets.QW
 	}
 }
 
-func (ptr *QDesignerContainerExtension) DisconnectAddWidget(page widgets.QWidget_ITF) {
+func (ptr *QDesignerContainerExtension) DisconnectAddWidget() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QDesignerContainerExtension::addWidget")
@@ -3275,7 +3275,7 @@ func (ptr *QDesignerContainerExtension) ConnectInsertWidget(f func(index int, pa
 	}
 }
 
-func (ptr *QDesignerContainerExtension) DisconnectInsertWidget(index int, page widgets.QWidget_ITF) {
+func (ptr *QDesignerContainerExtension) DisconnectInsertWidget() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QDesignerContainerExtension::insertWidget")
@@ -3304,7 +3304,7 @@ func (ptr *QDesignerContainerExtension) ConnectRemove(f func(index int)) {
 	}
 }
 
-func (ptr *QDesignerContainerExtension) DisconnectRemove(index int) {
+func (ptr *QDesignerContainerExtension) DisconnectRemove() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QDesignerContainerExtension::remove")
@@ -3333,7 +3333,7 @@ func (ptr *QDesignerContainerExtension) ConnectSetCurrentIndex(f func(index int)
 	}
 }
 
-func (ptr *QDesignerContainerExtension) DisconnectSetCurrentIndex(index int) {
+func (ptr *QDesignerContainerExtension) DisconnectSetCurrentIndex() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QDesignerContainerExtension::setCurrentIndex")
@@ -3363,7 +3363,7 @@ func (ptr *QDesignerContainerExtension) ConnectWidget(f func(index int) *widgets
 	}
 }
 
-func (ptr *QDesignerContainerExtension) DisconnectWidget(index int) {
+func (ptr *QDesignerContainerExtension) DisconnectWidget() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QDesignerContainerExtension::widget")
@@ -3458,7 +3458,6 @@ func NewQDesignerCustomWidgetCollectionInterfaceFromPointer(ptr unsafe.Pointer) 
 	n.SetPointer(ptr)
 	return n
 }
-
 func (ptr *QDesignerCustomWidgetCollectionInterface) ConnectCustomWidgets(f func() []*QDesignerCustomWidgetInterface) {
 	if ptr.Pointer() != nil {
 
@@ -3626,7 +3625,7 @@ func (ptr *QDesignerCustomWidgetInterface) ConnectCreateWidget(f func(parent *wi
 	}
 }
 
-func (ptr *QDesignerCustomWidgetInterface) DisconnectCreateWidget(parent widgets.QWidget_ITF) {
+func (ptr *QDesignerCustomWidgetInterface) DisconnectCreateWidget() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QDesignerCustomWidgetInterface::createWidget")
@@ -4070,7 +4069,7 @@ func (ptr *QDesignerDynamicPropertySheetExtension) ConnectAddDynamicProperty(f f
 	}
 }
 
-func (ptr *QDesignerDynamicPropertySheetExtension) DisconnectAddDynamicProperty(propertyName string, value core.QVariant_ITF) {
+func (ptr *QDesignerDynamicPropertySheetExtension) DisconnectAddDynamicProperty() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QDesignerDynamicPropertySheetExtension::addDynamicProperty")
@@ -4103,7 +4102,7 @@ func (ptr *QDesignerDynamicPropertySheetExtension) ConnectCanAddDynamicProperty(
 	}
 }
 
-func (ptr *QDesignerDynamicPropertySheetExtension) DisconnectCanAddDynamicProperty(propertyName string) {
+func (ptr *QDesignerDynamicPropertySheetExtension) DisconnectCanAddDynamicProperty() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QDesignerDynamicPropertySheetExtension::canAddDynamicProperty")
@@ -4167,7 +4166,7 @@ func (ptr *QDesignerDynamicPropertySheetExtension) ConnectIsDynamicProperty(f fu
 	}
 }
 
-func (ptr *QDesignerDynamicPropertySheetExtension) DisconnectIsDynamicProperty(index int) {
+func (ptr *QDesignerDynamicPropertySheetExtension) DisconnectIsDynamicProperty() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QDesignerDynamicPropertySheetExtension::isDynamicProperty")
@@ -4198,7 +4197,7 @@ func (ptr *QDesignerDynamicPropertySheetExtension) ConnectRemoveDynamicProperty(
 	}
 }
 
-func (ptr *QDesignerDynamicPropertySheetExtension) DisconnectRemoveDynamicProperty(index int) {
+func (ptr *QDesignerDynamicPropertySheetExtension) DisconnectRemoveDynamicProperty() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QDesignerDynamicPropertySheetExtension::removeDynamicProperty")
@@ -4783,31 +4782,6 @@ func (ptr *QDesignerFormEditorInterface) MetaObjectDefault() *core.QMetaObject {
 	return nil
 }
 
-//go:generate stringer -type=QDesignerFormWindowCursorInterface__MoveMode
-//QDesignerFormWindowCursorInterface::MoveMode
-type QDesignerFormWindowCursorInterface__MoveMode int64
-
-const (
-	QDesignerFormWindowCursorInterface__MoveAnchor QDesignerFormWindowCursorInterface__MoveMode = QDesignerFormWindowCursorInterface__MoveMode(0)
-	QDesignerFormWindowCursorInterface__KeepAnchor QDesignerFormWindowCursorInterface__MoveMode = QDesignerFormWindowCursorInterface__MoveMode(1)
-)
-
-//go:generate stringer -type=QDesignerFormWindowCursorInterface__MoveOperation
-//QDesignerFormWindowCursorInterface::MoveOperation
-type QDesignerFormWindowCursorInterface__MoveOperation int64
-
-const (
-	QDesignerFormWindowCursorInterface__NoMove QDesignerFormWindowCursorInterface__MoveOperation = QDesignerFormWindowCursorInterface__MoveOperation(0)
-	QDesignerFormWindowCursorInterface__Start  QDesignerFormWindowCursorInterface__MoveOperation = QDesignerFormWindowCursorInterface__MoveOperation(1)
-	QDesignerFormWindowCursorInterface__End    QDesignerFormWindowCursorInterface__MoveOperation = QDesignerFormWindowCursorInterface__MoveOperation(2)
-	QDesignerFormWindowCursorInterface__Next   QDesignerFormWindowCursorInterface__MoveOperation = QDesignerFormWindowCursorInterface__MoveOperation(3)
-	QDesignerFormWindowCursorInterface__Prev   QDesignerFormWindowCursorInterface__MoveOperation = QDesignerFormWindowCursorInterface__MoveOperation(4)
-	QDesignerFormWindowCursorInterface__Left   QDesignerFormWindowCursorInterface__MoveOperation = QDesignerFormWindowCursorInterface__MoveOperation(5)
-	QDesignerFormWindowCursorInterface__Right  QDesignerFormWindowCursorInterface__MoveOperation = QDesignerFormWindowCursorInterface__MoveOperation(6)
-	QDesignerFormWindowCursorInterface__Up     QDesignerFormWindowCursorInterface__MoveOperation = QDesignerFormWindowCursorInterface__MoveOperation(7)
-	QDesignerFormWindowCursorInterface__Down   QDesignerFormWindowCursorInterface__MoveOperation = QDesignerFormWindowCursorInterface__MoveOperation(8)
-)
-
 type QDesignerFormWindowCursorInterface struct {
 	ptr unsafe.Pointer
 }
@@ -4845,6 +4819,31 @@ func NewQDesignerFormWindowCursorInterfaceFromPointer(ptr unsafe.Pointer) *QDesi
 	n.SetPointer(ptr)
 	return n
 }
+
+//go:generate stringer -type=QDesignerFormWindowCursorInterface__MoveMode
+//QDesignerFormWindowCursorInterface::MoveMode
+type QDesignerFormWindowCursorInterface__MoveMode int64
+
+const (
+	QDesignerFormWindowCursorInterface__MoveAnchor QDesignerFormWindowCursorInterface__MoveMode = QDesignerFormWindowCursorInterface__MoveMode(0)
+	QDesignerFormWindowCursorInterface__KeepAnchor QDesignerFormWindowCursorInterface__MoveMode = QDesignerFormWindowCursorInterface__MoveMode(1)
+)
+
+//go:generate stringer -type=QDesignerFormWindowCursorInterface__MoveOperation
+//QDesignerFormWindowCursorInterface::MoveOperation
+type QDesignerFormWindowCursorInterface__MoveOperation int64
+
+const (
+	QDesignerFormWindowCursorInterface__NoMove QDesignerFormWindowCursorInterface__MoveOperation = QDesignerFormWindowCursorInterface__MoveOperation(0)
+	QDesignerFormWindowCursorInterface__Start  QDesignerFormWindowCursorInterface__MoveOperation = QDesignerFormWindowCursorInterface__MoveOperation(1)
+	QDesignerFormWindowCursorInterface__End    QDesignerFormWindowCursorInterface__MoveOperation = QDesignerFormWindowCursorInterface__MoveOperation(2)
+	QDesignerFormWindowCursorInterface__Next   QDesignerFormWindowCursorInterface__MoveOperation = QDesignerFormWindowCursorInterface__MoveOperation(3)
+	QDesignerFormWindowCursorInterface__Prev   QDesignerFormWindowCursorInterface__MoveOperation = QDesignerFormWindowCursorInterface__MoveOperation(4)
+	QDesignerFormWindowCursorInterface__Left   QDesignerFormWindowCursorInterface__MoveOperation = QDesignerFormWindowCursorInterface__MoveOperation(5)
+	QDesignerFormWindowCursorInterface__Right  QDesignerFormWindowCursorInterface__MoveOperation = QDesignerFormWindowCursorInterface__MoveOperation(6)
+	QDesignerFormWindowCursorInterface__Up     QDesignerFormWindowCursorInterface__MoveOperation = QDesignerFormWindowCursorInterface__MoveOperation(7)
+	QDesignerFormWindowCursorInterface__Down   QDesignerFormWindowCursorInterface__MoveOperation = QDesignerFormWindowCursorInterface__MoveOperation(8)
+)
 
 //export callbackQDesignerFormWindowCursorInterface_Current
 func callbackQDesignerFormWindowCursorInterface_Current(ptr unsafe.Pointer) unsafe.Pointer {
@@ -4971,7 +4970,7 @@ func (ptr *QDesignerFormWindowCursorInterface) ConnectMovePosition(f func(operat
 	}
 }
 
-func (ptr *QDesignerFormWindowCursorInterface) DisconnectMovePosition(operation QDesignerFormWindowCursorInterface__MoveOperation, mode QDesignerFormWindowCursorInterface__MoveMode) {
+func (ptr *QDesignerFormWindowCursorInterface) DisconnectMovePosition() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QDesignerFormWindowCursorInterface::movePosition")
@@ -5032,7 +5031,7 @@ func (ptr *QDesignerFormWindowCursorInterface) ConnectResetWidgetProperty(f func
 	}
 }
 
-func (ptr *QDesignerFormWindowCursorInterface) DisconnectResetWidgetProperty(widget widgets.QWidget_ITF, name string) {
+func (ptr *QDesignerFormWindowCursorInterface) DisconnectResetWidgetProperty() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QDesignerFormWindowCursorInterface::resetWidgetProperty")
@@ -5064,7 +5063,7 @@ func (ptr *QDesignerFormWindowCursorInterface) ConnectSelectedWidget(f func(inde
 	}
 }
 
-func (ptr *QDesignerFormWindowCursorInterface) DisconnectSelectedWidget(index int) {
+func (ptr *QDesignerFormWindowCursorInterface) DisconnectSelectedWidget() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QDesignerFormWindowCursorInterface::selectedWidget")
@@ -5129,7 +5128,7 @@ func (ptr *QDesignerFormWindowCursorInterface) ConnectSetPosition(f func(positio
 	}
 }
 
-func (ptr *QDesignerFormWindowCursorInterface) DisconnectSetPosition(position int, mode QDesignerFormWindowCursorInterface__MoveMode) {
+func (ptr *QDesignerFormWindowCursorInterface) DisconnectSetPosition() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QDesignerFormWindowCursorInterface::setPosition")
@@ -5158,7 +5157,7 @@ func (ptr *QDesignerFormWindowCursorInterface) ConnectSetProperty(f func(name st
 	}
 }
 
-func (ptr *QDesignerFormWindowCursorInterface) DisconnectSetProperty(name string, value core.QVariant_ITF) {
+func (ptr *QDesignerFormWindowCursorInterface) DisconnectSetProperty() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QDesignerFormWindowCursorInterface::setProperty")
@@ -5189,7 +5188,7 @@ func (ptr *QDesignerFormWindowCursorInterface) ConnectSetWidgetProperty(f func(w
 	}
 }
 
-func (ptr *QDesignerFormWindowCursorInterface) DisconnectSetWidgetProperty(widget widgets.QWidget_ITF, name string, value core.QVariant_ITF) {
+func (ptr *QDesignerFormWindowCursorInterface) DisconnectSetWidgetProperty() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QDesignerFormWindowCursorInterface::setWidgetProperty")
@@ -5221,7 +5220,7 @@ func (ptr *QDesignerFormWindowCursorInterface) ConnectWidget(f func(index int) *
 	}
 }
 
-func (ptr *QDesignerFormWindowCursorInterface) DisconnectWidget(index int) {
+func (ptr *QDesignerFormWindowCursorInterface) DisconnectWidget() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QDesignerFormWindowCursorInterface::widget")
@@ -5310,27 +5309,6 @@ func (ptr *QDesignerFormWindowCursorInterface) DestroyQDesignerFormWindowCursorI
 	}
 }
 
-//go:generate stringer -type=QDesignerFormWindowInterface__FeatureFlag
-//QDesignerFormWindowInterface::FeatureFlag
-type QDesignerFormWindowInterface__FeatureFlag int64
-
-const (
-	QDesignerFormWindowInterface__EditFeature     QDesignerFormWindowInterface__FeatureFlag = QDesignerFormWindowInterface__FeatureFlag(0x01)
-	QDesignerFormWindowInterface__GridFeature     QDesignerFormWindowInterface__FeatureFlag = QDesignerFormWindowInterface__FeatureFlag(0x02)
-	QDesignerFormWindowInterface__TabOrderFeature QDesignerFormWindowInterface__FeatureFlag = QDesignerFormWindowInterface__FeatureFlag(0x04)
-	QDesignerFormWindowInterface__DefaultFeature  QDesignerFormWindowInterface__FeatureFlag = QDesignerFormWindowInterface__FeatureFlag(QDesignerFormWindowInterface__EditFeature | QDesignerFormWindowInterface__GridFeature)
-)
-
-//go:generate stringer -type=QDesignerFormWindowInterface__ResourceFileSaveMode
-//QDesignerFormWindowInterface::ResourceFileSaveMode
-type QDesignerFormWindowInterface__ResourceFileSaveMode int64
-
-const (
-	QDesignerFormWindowInterface__SaveAllResourceFiles      QDesignerFormWindowInterface__ResourceFileSaveMode = QDesignerFormWindowInterface__ResourceFileSaveMode(0)
-	QDesignerFormWindowInterface__SaveOnlyUsedResourceFiles QDesignerFormWindowInterface__ResourceFileSaveMode = QDesignerFormWindowInterface__ResourceFileSaveMode(1)
-	QDesignerFormWindowInterface__DontSaveResourceFiles     QDesignerFormWindowInterface__ResourceFileSaveMode = QDesignerFormWindowInterface__ResourceFileSaveMode(2)
-)
-
 type QDesignerFormWindowInterface struct {
 	widgets.QWidget
 }
@@ -5369,6 +5347,28 @@ func NewQDesignerFormWindowInterfaceFromPointer(ptr unsafe.Pointer) *QDesignerFo
 	n.SetPointer(ptr)
 	return n
 }
+
+//go:generate stringer -type=QDesignerFormWindowInterface__FeatureFlag
+//QDesignerFormWindowInterface::FeatureFlag
+type QDesignerFormWindowInterface__FeatureFlag int64
+
+const (
+	QDesignerFormWindowInterface__EditFeature     QDesignerFormWindowInterface__FeatureFlag = QDesignerFormWindowInterface__FeatureFlag(0x01)
+	QDesignerFormWindowInterface__GridFeature     QDesignerFormWindowInterface__FeatureFlag = QDesignerFormWindowInterface__FeatureFlag(0x02)
+	QDesignerFormWindowInterface__TabOrderFeature QDesignerFormWindowInterface__FeatureFlag = QDesignerFormWindowInterface__FeatureFlag(0x04)
+	QDesignerFormWindowInterface__DefaultFeature  QDesignerFormWindowInterface__FeatureFlag = QDesignerFormWindowInterface__FeatureFlag(QDesignerFormWindowInterface__EditFeature | QDesignerFormWindowInterface__GridFeature)
+)
+
+//go:generate stringer -type=QDesignerFormWindowInterface__ResourceFileSaveMode
+//QDesignerFormWindowInterface::ResourceFileSaveMode
+type QDesignerFormWindowInterface__ResourceFileSaveMode int64
+
+const (
+	QDesignerFormWindowInterface__SaveAllResourceFiles      QDesignerFormWindowInterface__ResourceFileSaveMode = QDesignerFormWindowInterface__ResourceFileSaveMode(0)
+	QDesignerFormWindowInterface__SaveOnlyUsedResourceFiles QDesignerFormWindowInterface__ResourceFileSaveMode = QDesignerFormWindowInterface__ResourceFileSaveMode(1)
+	QDesignerFormWindowInterface__DontSaveResourceFiles     QDesignerFormWindowInterface__ResourceFileSaveMode = QDesignerFormWindowInterface__ResourceFileSaveMode(2)
+)
+
 func QDesignerFormWindowInterface_FindFormWindow2(object core.QObject_ITF) *QDesignerFormWindowInterface {
 	var tmpValue = NewQDesignerFormWindowInterfaceFromPointer(C.QDesignerFormWindowInterface_QDesignerFormWindowInterface_FindFormWindow2(core.PointerFromQObject(object)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
@@ -5467,8 +5467,9 @@ func (ptr *QDesignerFormWindowInterface) AbsoluteDir() *core.QDir {
 func callbackQDesignerFormWindowInterface_ActivateResourceFilePaths(ptr unsafe.Pointer, paths C.struct_QtDesigner_PackedString, errorCount C.int, errorMessages C.struct_QtDesigner_PackedString) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QDesignerFormWindowInterface::activateResourceFilePaths"); signal != nil {
 		signal.(func([]string, int, string))(strings.Split(cGoUnpackString(paths), "|"), int(int32(errorCount)), cGoUnpackString(errorMessages))
+	} else {
+		NewQDesignerFormWindowInterfaceFromPointer(ptr).ActivateResourceFilePathsDefault(strings.Split(cGoUnpackString(paths), "|"), int(int32(errorCount)), cGoUnpackString(errorMessages))
 	}
-
 }
 
 func (ptr *QDesignerFormWindowInterface) ConnectActivateResourceFilePaths(f func(paths []string, errorCount int, errorMessages string)) {
@@ -5478,7 +5479,7 @@ func (ptr *QDesignerFormWindowInterface) ConnectActivateResourceFilePaths(f func
 	}
 }
 
-func (ptr *QDesignerFormWindowInterface) DisconnectActivateResourceFilePaths(paths []string, errorCount int, errorMessages string) {
+func (ptr *QDesignerFormWindowInterface) DisconnectActivateResourceFilePaths() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QDesignerFormWindowInterface::activateResourceFilePaths")
@@ -5492,6 +5493,16 @@ func (ptr *QDesignerFormWindowInterface) ActivateResourceFilePaths(paths []strin
 		var errorMessagesC = C.CString(errorMessages)
 		defer C.free(unsafe.Pointer(errorMessagesC))
 		C.QDesignerFormWindowInterface_ActivateResourceFilePaths(ptr.Pointer(), pathsC, C.int(int32(errorCount)), errorMessagesC)
+	}
+}
+
+func (ptr *QDesignerFormWindowInterface) ActivateResourceFilePathsDefault(paths []string, errorCount int, errorMessages string) {
+	if ptr.Pointer() != nil {
+		var pathsC = C.CString(strings.Join(paths, "|"))
+		defer C.free(unsafe.Pointer(pathsC))
+		var errorMessagesC = C.CString(errorMessages)
+		defer C.free(unsafe.Pointer(errorMessagesC))
+		C.QDesignerFormWindowInterface_ActivateResourceFilePathsDefault(ptr.Pointer(), pathsC, C.int(int32(errorCount)), errorMessagesC)
 	}
 }
 
@@ -5547,7 +5558,7 @@ func (ptr *QDesignerFormWindowInterface) ConnectAddResourceFile(f func(path stri
 	}
 }
 
-func (ptr *QDesignerFormWindowInterface) DisconnectAddResourceFile(path string) {
+func (ptr *QDesignerFormWindowInterface) DisconnectAddResourceFile() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QDesignerFormWindowInterface::addResourceFile")
@@ -5668,7 +5679,7 @@ func (ptr *QDesignerFormWindowInterface) ConnectClearSelection(f func(update boo
 	}
 }
 
-func (ptr *QDesignerFormWindowInterface) DisconnectClearSelection(update bool) {
+func (ptr *QDesignerFormWindowInterface) DisconnectClearSelection() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QDesignerFormWindowInterface::clearSelection")
@@ -6116,7 +6127,7 @@ func (ptr *QDesignerFormWindowInterface) ConnectHasFeature(f func(feature QDesig
 	}
 }
 
-func (ptr *QDesignerFormWindowInterface) DisconnectHasFeature(feature QDesignerFormWindowInterface__FeatureFlag) {
+func (ptr *QDesignerFormWindowInterface) DisconnectHasFeature() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QDesignerFormWindowInterface::hasFeature")
@@ -6209,7 +6220,7 @@ func (ptr *QDesignerFormWindowInterface) ConnectIsManaged(f func(widget *widgets
 	}
 }
 
-func (ptr *QDesignerFormWindowInterface) DisconnectIsManaged(widget widgets.QWidget_ITF) {
+func (ptr *QDesignerFormWindowInterface) DisconnectIsManaged() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QDesignerFormWindowInterface::isManaged")
@@ -6239,7 +6250,7 @@ func (ptr *QDesignerFormWindowInterface) ConnectLayoutDefault(f func(margin int,
 	}
 }
 
-func (ptr *QDesignerFormWindowInterface) DisconnectLayoutDefault(margin int, spacing int) {
+func (ptr *QDesignerFormWindowInterface) DisconnectLayoutDefault() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QDesignerFormWindowInterface::layoutDefault")
@@ -6268,7 +6279,7 @@ func (ptr *QDesignerFormWindowInterface) ConnectLayoutFunction(f func(margin str
 	}
 }
 
-func (ptr *QDesignerFormWindowInterface) DisconnectLayoutFunction(margin string, spacing string) {
+func (ptr *QDesignerFormWindowInterface) DisconnectLayoutFunction() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QDesignerFormWindowInterface::layoutFunction")
@@ -6329,7 +6340,7 @@ func (ptr *QDesignerFormWindowInterface) ConnectManageWidget(f func(widget *widg
 	}
 }
 
-func (ptr *QDesignerFormWindowInterface) DisconnectManageWidget(widget widgets.QWidget_ITF) {
+func (ptr *QDesignerFormWindowInterface) DisconnectManageWidget() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QDesignerFormWindowInterface::manageWidget")
@@ -6418,7 +6429,7 @@ func (ptr *QDesignerFormWindowInterface) ConnectRemoveResourceFile(f func(path s
 	}
 }
 
-func (ptr *QDesignerFormWindowInterface) DisconnectRemoveResourceFile(path string) {
+func (ptr *QDesignerFormWindowInterface) DisconnectRemoveResourceFile() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QDesignerFormWindowInterface::removeResourceFile")
@@ -6539,7 +6550,7 @@ func (ptr *QDesignerFormWindowInterface) ConnectSelectWidget(f func(widget *widg
 	}
 }
 
-func (ptr *QDesignerFormWindowInterface) DisconnectSelectWidget(widget widgets.QWidget_ITF, sele bool) {
+func (ptr *QDesignerFormWindowInterface) DisconnectSelectWidget() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QDesignerFormWindowInterface::selectWidget")
@@ -6597,7 +6608,7 @@ func (ptr *QDesignerFormWindowInterface) ConnectSetAuthor(f func(author string))
 	}
 }
 
-func (ptr *QDesignerFormWindowInterface) DisconnectSetAuthor(author string) {
+func (ptr *QDesignerFormWindowInterface) DisconnectSetAuthor() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QDesignerFormWindowInterface::setAuthor")
@@ -6628,7 +6639,7 @@ func (ptr *QDesignerFormWindowInterface) ConnectSetComment(f func(comment string
 	}
 }
 
-func (ptr *QDesignerFormWindowInterface) DisconnectSetComment(comment string) {
+func (ptr *QDesignerFormWindowInterface) DisconnectSetComment() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QDesignerFormWindowInterface::setComment")
@@ -6660,7 +6671,7 @@ func (ptr *QDesignerFormWindowInterface) ConnectSetContents(f func(device *core.
 	}
 }
 
-func (ptr *QDesignerFormWindowInterface) DisconnectSetContents(device core.QIODevice_ITF, errorMessage string) {
+func (ptr *QDesignerFormWindowInterface) DisconnectSetContents() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QDesignerFormWindowInterface::setContents")
@@ -6692,7 +6703,7 @@ func (ptr *QDesignerFormWindowInterface) ConnectSetContents2(f func(contents str
 	}
 }
 
-func (ptr *QDesignerFormWindowInterface) DisconnectSetContents2(contents string) {
+func (ptr *QDesignerFormWindowInterface) DisconnectSetContents2() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QDesignerFormWindowInterface::setContents2")
@@ -6723,7 +6734,7 @@ func (ptr *QDesignerFormWindowInterface) ConnectSetDirty(f func(dirty bool)) {
 	}
 }
 
-func (ptr *QDesignerFormWindowInterface) DisconnectSetDirty(dirty bool) {
+func (ptr *QDesignerFormWindowInterface) DisconnectSetDirty() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QDesignerFormWindowInterface::setDirty")
@@ -6752,7 +6763,7 @@ func (ptr *QDesignerFormWindowInterface) ConnectSetExportMacro(f func(exportMacr
 	}
 }
 
-func (ptr *QDesignerFormWindowInterface) DisconnectSetExportMacro(exportMacro string) {
+func (ptr *QDesignerFormWindowInterface) DisconnectSetExportMacro() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QDesignerFormWindowInterface::setExportMacro")
@@ -6782,7 +6793,7 @@ func (ptr *QDesignerFormWindowInterface) ConnectSetFeatures(f func(features QDes
 	}
 }
 
-func (ptr *QDesignerFormWindowInterface) DisconnectSetFeatures(features QDesignerFormWindowInterface__FeatureFlag) {
+func (ptr *QDesignerFormWindowInterface) DisconnectSetFeatures() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QDesignerFormWindowInterface::setFeatures")
@@ -6810,7 +6821,7 @@ func (ptr *QDesignerFormWindowInterface) ConnectSetFileName(f func(fileName stri
 	}
 }
 
-func (ptr *QDesignerFormWindowInterface) DisconnectSetFileName(fileName string) {
+func (ptr *QDesignerFormWindowInterface) DisconnectSetFileName() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QDesignerFormWindowInterface::setFileName")
@@ -6840,7 +6851,7 @@ func (ptr *QDesignerFormWindowInterface) ConnectSetGrid(f func(grid *core.QPoint
 	}
 }
 
-func (ptr *QDesignerFormWindowInterface) DisconnectSetGrid(grid core.QPoint_ITF) {
+func (ptr *QDesignerFormWindowInterface) DisconnectSetGrid() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QDesignerFormWindowInterface::setGrid")
@@ -6869,7 +6880,7 @@ func (ptr *QDesignerFormWindowInterface) ConnectSetIncludeHints(f func(includeHi
 	}
 }
 
-func (ptr *QDesignerFormWindowInterface) DisconnectSetIncludeHints(includeHints []string) {
+func (ptr *QDesignerFormWindowInterface) DisconnectSetIncludeHints() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QDesignerFormWindowInterface::setIncludeHints")
@@ -6900,7 +6911,7 @@ func (ptr *QDesignerFormWindowInterface) ConnectSetLayoutDefault(f func(margin i
 	}
 }
 
-func (ptr *QDesignerFormWindowInterface) DisconnectSetLayoutDefault(margin int, spacing int) {
+func (ptr *QDesignerFormWindowInterface) DisconnectSetLayoutDefault() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QDesignerFormWindowInterface::setLayoutDefault")
@@ -6929,7 +6940,7 @@ func (ptr *QDesignerFormWindowInterface) ConnectSetLayoutFunction(f func(margin 
 	}
 }
 
-func (ptr *QDesignerFormWindowInterface) DisconnectSetLayoutFunction(margin string, spacing string) {
+func (ptr *QDesignerFormWindowInterface) DisconnectSetLayoutFunction() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QDesignerFormWindowInterface::setLayoutFunction")
@@ -6962,7 +6973,7 @@ func (ptr *QDesignerFormWindowInterface) ConnectSetMainContainer(f func(mainCont
 	}
 }
 
-func (ptr *QDesignerFormWindowInterface) DisconnectSetMainContainer(mainContainer widgets.QWidget_ITF) {
+func (ptr *QDesignerFormWindowInterface) DisconnectSetMainContainer() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QDesignerFormWindowInterface::setMainContainer")
@@ -6991,7 +7002,7 @@ func (ptr *QDesignerFormWindowInterface) ConnectSetPixmapFunction(f func(pixmapF
 	}
 }
 
-func (ptr *QDesignerFormWindowInterface) DisconnectSetPixmapFunction(pixmapFunction string) {
+func (ptr *QDesignerFormWindowInterface) DisconnectSetPixmapFunction() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QDesignerFormWindowInterface::setPixmapFunction")
@@ -7022,7 +7033,7 @@ func (ptr *QDesignerFormWindowInterface) ConnectSetResourceFileSaveMode(f func(b
 	}
 }
 
-func (ptr *QDesignerFormWindowInterface) DisconnectSetResourceFileSaveMode(behaviour QDesignerFormWindowInterface__ResourceFileSaveMode) {
+func (ptr *QDesignerFormWindowInterface) DisconnectSetResourceFileSaveMode() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QDesignerFormWindowInterface::setResourceFileSaveMode")
@@ -7050,7 +7061,7 @@ func (ptr *QDesignerFormWindowInterface) ConnectUnmanageWidget(f func(widget *wi
 	}
 }
 
-func (ptr *QDesignerFormWindowInterface) DisconnectUnmanageWidget(widget widgets.QWidget_ITF) {
+func (ptr *QDesignerFormWindowInterface) DisconnectUnmanageWidget() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QDesignerFormWindowInterface::unmanageWidget")
@@ -9523,41 +9534,6 @@ func (ptr *QDesignerFormWindowInterface) MetaObjectDefault() *core.QMetaObject {
 	return nil
 }
 
-//go:generate stringer -type=QDesignerFormWindowManagerInterface__Action
-//QDesignerFormWindowManagerInterface::Action
-type QDesignerFormWindowManagerInterface__Action int64
-
-const (
-	QDesignerFormWindowManagerInterface__CutAction                      QDesignerFormWindowManagerInterface__Action = QDesignerFormWindowManagerInterface__Action(100)
-	QDesignerFormWindowManagerInterface__CopyAction                     QDesignerFormWindowManagerInterface__Action = QDesignerFormWindowManagerInterface__Action(101)
-	QDesignerFormWindowManagerInterface__PasteAction                    QDesignerFormWindowManagerInterface__Action = QDesignerFormWindowManagerInterface__Action(102)
-	QDesignerFormWindowManagerInterface__DeleteAction                   QDesignerFormWindowManagerInterface__Action = QDesignerFormWindowManagerInterface__Action(103)
-	QDesignerFormWindowManagerInterface__SelectAllAction                QDesignerFormWindowManagerInterface__Action = QDesignerFormWindowManagerInterface__Action(104)
-	QDesignerFormWindowManagerInterface__LowerAction                    QDesignerFormWindowManagerInterface__Action = QDesignerFormWindowManagerInterface__Action(200)
-	QDesignerFormWindowManagerInterface__RaiseAction                    QDesignerFormWindowManagerInterface__Action = QDesignerFormWindowManagerInterface__Action(201)
-	QDesignerFormWindowManagerInterface__UndoAction                     QDesignerFormWindowManagerInterface__Action = QDesignerFormWindowManagerInterface__Action(300)
-	QDesignerFormWindowManagerInterface__RedoAction                     QDesignerFormWindowManagerInterface__Action = QDesignerFormWindowManagerInterface__Action(301)
-	QDesignerFormWindowManagerInterface__HorizontalLayoutAction         QDesignerFormWindowManagerInterface__Action = QDesignerFormWindowManagerInterface__Action(400)
-	QDesignerFormWindowManagerInterface__VerticalLayoutAction           QDesignerFormWindowManagerInterface__Action = QDesignerFormWindowManagerInterface__Action(401)
-	QDesignerFormWindowManagerInterface__SplitHorizontalAction          QDesignerFormWindowManagerInterface__Action = QDesignerFormWindowManagerInterface__Action(402)
-	QDesignerFormWindowManagerInterface__SplitVerticalAction            QDesignerFormWindowManagerInterface__Action = QDesignerFormWindowManagerInterface__Action(403)
-	QDesignerFormWindowManagerInterface__GridLayoutAction               QDesignerFormWindowManagerInterface__Action = QDesignerFormWindowManagerInterface__Action(404)
-	QDesignerFormWindowManagerInterface__FormLayoutAction               QDesignerFormWindowManagerInterface__Action = QDesignerFormWindowManagerInterface__Action(405)
-	QDesignerFormWindowManagerInterface__BreakLayoutAction              QDesignerFormWindowManagerInterface__Action = QDesignerFormWindowManagerInterface__Action(406)
-	QDesignerFormWindowManagerInterface__AdjustSizeAction               QDesignerFormWindowManagerInterface__Action = QDesignerFormWindowManagerInterface__Action(407)
-	QDesignerFormWindowManagerInterface__SimplifyLayoutAction           QDesignerFormWindowManagerInterface__Action = QDesignerFormWindowManagerInterface__Action(408)
-	QDesignerFormWindowManagerInterface__DefaultPreviewAction           QDesignerFormWindowManagerInterface__Action = QDesignerFormWindowManagerInterface__Action(500)
-	QDesignerFormWindowManagerInterface__FormWindowSettingsDialogAction QDesignerFormWindowManagerInterface__Action = QDesignerFormWindowManagerInterface__Action(600)
-)
-
-//go:generate stringer -type=QDesignerFormWindowManagerInterface__ActionGroup
-//QDesignerFormWindowManagerInterface::ActionGroup
-type QDesignerFormWindowManagerInterface__ActionGroup int64
-
-const (
-	QDesignerFormWindowManagerInterface__StyledPreviewActionGroup QDesignerFormWindowManagerInterface__ActionGroup = QDesignerFormWindowManagerInterface__ActionGroup(100)
-)
-
 type QDesignerFormWindowManagerInterface struct {
 	core.QObject
 }
@@ -9597,6 +9573,41 @@ func NewQDesignerFormWindowManagerInterfaceFromPointer(ptr unsafe.Pointer) *QDes
 	return n
 }
 
+//go:generate stringer -type=QDesignerFormWindowManagerInterface__Action
+//QDesignerFormWindowManagerInterface::Action
+type QDesignerFormWindowManagerInterface__Action int64
+
+const (
+	QDesignerFormWindowManagerInterface__CutAction                      QDesignerFormWindowManagerInterface__Action = QDesignerFormWindowManagerInterface__Action(100)
+	QDesignerFormWindowManagerInterface__CopyAction                     QDesignerFormWindowManagerInterface__Action = QDesignerFormWindowManagerInterface__Action(101)
+	QDesignerFormWindowManagerInterface__PasteAction                    QDesignerFormWindowManagerInterface__Action = QDesignerFormWindowManagerInterface__Action(102)
+	QDesignerFormWindowManagerInterface__DeleteAction                   QDesignerFormWindowManagerInterface__Action = QDesignerFormWindowManagerInterface__Action(103)
+	QDesignerFormWindowManagerInterface__SelectAllAction                QDesignerFormWindowManagerInterface__Action = QDesignerFormWindowManagerInterface__Action(104)
+	QDesignerFormWindowManagerInterface__LowerAction                    QDesignerFormWindowManagerInterface__Action = QDesignerFormWindowManagerInterface__Action(200)
+	QDesignerFormWindowManagerInterface__RaiseAction                    QDesignerFormWindowManagerInterface__Action = QDesignerFormWindowManagerInterface__Action(201)
+	QDesignerFormWindowManagerInterface__UndoAction                     QDesignerFormWindowManagerInterface__Action = QDesignerFormWindowManagerInterface__Action(300)
+	QDesignerFormWindowManagerInterface__RedoAction                     QDesignerFormWindowManagerInterface__Action = QDesignerFormWindowManagerInterface__Action(301)
+	QDesignerFormWindowManagerInterface__HorizontalLayoutAction         QDesignerFormWindowManagerInterface__Action = QDesignerFormWindowManagerInterface__Action(400)
+	QDesignerFormWindowManagerInterface__VerticalLayoutAction           QDesignerFormWindowManagerInterface__Action = QDesignerFormWindowManagerInterface__Action(401)
+	QDesignerFormWindowManagerInterface__SplitHorizontalAction          QDesignerFormWindowManagerInterface__Action = QDesignerFormWindowManagerInterface__Action(402)
+	QDesignerFormWindowManagerInterface__SplitVerticalAction            QDesignerFormWindowManagerInterface__Action = QDesignerFormWindowManagerInterface__Action(403)
+	QDesignerFormWindowManagerInterface__GridLayoutAction               QDesignerFormWindowManagerInterface__Action = QDesignerFormWindowManagerInterface__Action(404)
+	QDesignerFormWindowManagerInterface__FormLayoutAction               QDesignerFormWindowManagerInterface__Action = QDesignerFormWindowManagerInterface__Action(405)
+	QDesignerFormWindowManagerInterface__BreakLayoutAction              QDesignerFormWindowManagerInterface__Action = QDesignerFormWindowManagerInterface__Action(406)
+	QDesignerFormWindowManagerInterface__AdjustSizeAction               QDesignerFormWindowManagerInterface__Action = QDesignerFormWindowManagerInterface__Action(407)
+	QDesignerFormWindowManagerInterface__SimplifyLayoutAction           QDesignerFormWindowManagerInterface__Action = QDesignerFormWindowManagerInterface__Action(408)
+	QDesignerFormWindowManagerInterface__DefaultPreviewAction           QDesignerFormWindowManagerInterface__Action = QDesignerFormWindowManagerInterface__Action(500)
+	QDesignerFormWindowManagerInterface__FormWindowSettingsDialogAction QDesignerFormWindowManagerInterface__Action = QDesignerFormWindowManagerInterface__Action(600)
+)
+
+//go:generate stringer -type=QDesignerFormWindowManagerInterface__ActionGroup
+//QDesignerFormWindowManagerInterface::ActionGroup
+type QDesignerFormWindowManagerInterface__ActionGroup int64
+
+const (
+	QDesignerFormWindowManagerInterface__StyledPreviewActionGroup QDesignerFormWindowManagerInterface__ActionGroup = QDesignerFormWindowManagerInterface__ActionGroup(100)
+)
+
 //export callbackQDesignerFormWindowManagerInterface_Action
 func callbackQDesignerFormWindowManagerInterface_Action(ptr unsafe.Pointer, action C.longlong) unsafe.Pointer {
 
@@ -9614,7 +9625,7 @@ func (ptr *QDesignerFormWindowManagerInterface) ConnectAction(f func(action QDes
 	}
 }
 
-func (ptr *QDesignerFormWindowManagerInterface) DisconnectAction(action QDesignerFormWindowManagerInterface__Action) {
+func (ptr *QDesignerFormWindowManagerInterface) DisconnectAction() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QDesignerFormWindowManagerInterface::action")
@@ -9649,7 +9660,7 @@ func (ptr *QDesignerFormWindowManagerInterface) ConnectActionGroup(f func(action
 	}
 }
 
-func (ptr *QDesignerFormWindowManagerInterface) DisconnectActionGroup(actionGroup QDesignerFormWindowManagerInterface__ActionGroup) {
+func (ptr *QDesignerFormWindowManagerInterface) DisconnectActionGroup() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QDesignerFormWindowManagerInterface::actionGroup")
@@ -9746,7 +9757,7 @@ func (ptr *QDesignerFormWindowManagerInterface) ConnectAddFormWindow(f func(form
 	}
 }
 
-func (ptr *QDesignerFormWindowManagerInterface) DisconnectAddFormWindow(formWindow QDesignerFormWindowInterface_ITF) {
+func (ptr *QDesignerFormWindowManagerInterface) DisconnectAddFormWindow() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QDesignerFormWindowManagerInterface::addFormWindow")
@@ -9839,7 +9850,7 @@ func (ptr *QDesignerFormWindowManagerInterface) ConnectCreateFormWindow(f func(p
 	}
 }
 
-func (ptr *QDesignerFormWindowManagerInterface) DisconnectCreateFormWindow(parent widgets.QWidget_ITF, flags core.Qt__WindowType) {
+func (ptr *QDesignerFormWindowManagerInterface) DisconnectCreateFormWindow() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QDesignerFormWindowManagerInterface::createFormWindow")
@@ -9907,7 +9918,7 @@ func (ptr *QDesignerFormWindowManagerInterface) ConnectFormWindow(f func(index i
 	}
 }
 
-func (ptr *QDesignerFormWindowManagerInterface) DisconnectFormWindow(index int) {
+func (ptr *QDesignerFormWindowManagerInterface) DisconnectFormWindow() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QDesignerFormWindowManagerInterface::formWindow")
@@ -10058,7 +10069,7 @@ func (ptr *QDesignerFormWindowManagerInterface) ConnectRemoveFormWindow(f func(f
 	}
 }
 
-func (ptr *QDesignerFormWindowManagerInterface) DisconnectRemoveFormWindow(formWindow QDesignerFormWindowInterface_ITF) {
+func (ptr *QDesignerFormWindowManagerInterface) DisconnectRemoveFormWindow() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QDesignerFormWindowManagerInterface::removeFormWindow")
@@ -10086,7 +10097,7 @@ func (ptr *QDesignerFormWindowManagerInterface) ConnectSetActiveFormWindow(f fun
 	}
 }
 
-func (ptr *QDesignerFormWindowManagerInterface) DisconnectSetActiveFormWindow(formWindow QDesignerFormWindowInterface_ITF) {
+func (ptr *QDesignerFormWindowManagerInterface) DisconnectSetActiveFormWindow() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QDesignerFormWindowManagerInterface::setActiveFormWindow")
@@ -10614,7 +10625,7 @@ func (ptr *QDesignerMemberSheetExtension) ConnectDeclaredInClass(f func(index in
 	}
 }
 
-func (ptr *QDesignerMemberSheetExtension) DisconnectDeclaredInClass(index int) {
+func (ptr *QDesignerMemberSheetExtension) DisconnectDeclaredInClass() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QDesignerMemberSheetExtension::declaredInClass")
@@ -10645,7 +10656,7 @@ func (ptr *QDesignerMemberSheetExtension) ConnectIndexOf(f func(name string) int
 	}
 }
 
-func (ptr *QDesignerMemberSheetExtension) DisconnectIndexOf(name string) {
+func (ptr *QDesignerMemberSheetExtension) DisconnectIndexOf() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QDesignerMemberSheetExtension::indexOf")
@@ -10678,7 +10689,7 @@ func (ptr *QDesignerMemberSheetExtension) ConnectInheritedFromWidget(f func(inde
 	}
 }
 
-func (ptr *QDesignerMemberSheetExtension) DisconnectInheritedFromWidget(index int) {
+func (ptr *QDesignerMemberSheetExtension) DisconnectInheritedFromWidget() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QDesignerMemberSheetExtension::inheritedFromWidget")
@@ -10709,7 +10720,7 @@ func (ptr *QDesignerMemberSheetExtension) ConnectIsSignal(f func(index int) bool
 	}
 }
 
-func (ptr *QDesignerMemberSheetExtension) DisconnectIsSignal(index int) {
+func (ptr *QDesignerMemberSheetExtension) DisconnectIsSignal() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QDesignerMemberSheetExtension::isSignal")
@@ -10740,7 +10751,7 @@ func (ptr *QDesignerMemberSheetExtension) ConnectIsSlot(f func(index int) bool) 
 	}
 }
 
-func (ptr *QDesignerMemberSheetExtension) DisconnectIsSlot(index int) {
+func (ptr *QDesignerMemberSheetExtension) DisconnectIsSlot() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QDesignerMemberSheetExtension::isSlot")
@@ -10771,7 +10782,7 @@ func (ptr *QDesignerMemberSheetExtension) ConnectIsVisible(f func(index int) boo
 	}
 }
 
-func (ptr *QDesignerMemberSheetExtension) DisconnectIsVisible(index int) {
+func (ptr *QDesignerMemberSheetExtension) DisconnectIsVisible() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QDesignerMemberSheetExtension::isVisible")
@@ -10802,7 +10813,7 @@ func (ptr *QDesignerMemberSheetExtension) ConnectMemberGroup(f func(index int) s
 	}
 }
 
-func (ptr *QDesignerMemberSheetExtension) DisconnectMemberGroup(index int) {
+func (ptr *QDesignerMemberSheetExtension) DisconnectMemberGroup() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QDesignerMemberSheetExtension::memberGroup")
@@ -10833,7 +10844,7 @@ func (ptr *QDesignerMemberSheetExtension) ConnectMemberName(f func(index int) st
 	}
 }
 
-func (ptr *QDesignerMemberSheetExtension) DisconnectMemberName(index int) {
+func (ptr *QDesignerMemberSheetExtension) DisconnectMemberName() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QDesignerMemberSheetExtension::memberName")
@@ -10854,7 +10865,7 @@ func (ptr *QDesignerMemberSheetExtension) ConnectParameterNames(f func(index int
 	}
 }
 
-func (ptr *QDesignerMemberSheetExtension) DisconnectParameterNames(index int) {
+func (ptr *QDesignerMemberSheetExtension) DisconnectParameterNames() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QDesignerMemberSheetExtension::parameterNames")
@@ -10881,7 +10892,7 @@ func (ptr *QDesignerMemberSheetExtension) ConnectParameterTypes(f func(index int
 	}
 }
 
-func (ptr *QDesignerMemberSheetExtension) DisconnectParameterTypes(index int) {
+func (ptr *QDesignerMemberSheetExtension) DisconnectParameterTypes() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QDesignerMemberSheetExtension::parameterTypes")
@@ -10917,7 +10928,7 @@ func (ptr *QDesignerMemberSheetExtension) ConnectSetMemberGroup(f func(index int
 	}
 }
 
-func (ptr *QDesignerMemberSheetExtension) DisconnectSetMemberGroup(index int, group string) {
+func (ptr *QDesignerMemberSheetExtension) DisconnectSetMemberGroup() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QDesignerMemberSheetExtension::setMemberGroup")
@@ -10948,7 +10959,7 @@ func (ptr *QDesignerMemberSheetExtension) ConnectSetVisible(f func(index int, vi
 	}
 }
 
-func (ptr *QDesignerMemberSheetExtension) DisconnectSetVisible(index int, visible bool) {
+func (ptr *QDesignerMemberSheetExtension) DisconnectSetVisible() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QDesignerMemberSheetExtension::setVisible")
@@ -10978,7 +10989,7 @@ func (ptr *QDesignerMemberSheetExtension) ConnectSignature(f func(index int) str
 	}
 }
 
-func (ptr *QDesignerMemberSheetExtension) DisconnectSignature(index int) {
+func (ptr *QDesignerMemberSheetExtension) DisconnectSignature() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QDesignerMemberSheetExtension::signature")
@@ -11157,7 +11168,7 @@ func (ptr *QDesignerObjectInspectorInterface) ConnectSetFormWindow(f func(formWi
 	}
 }
 
-func (ptr *QDesignerObjectInspectorInterface) DisconnectSetFormWindow(formWindow QDesignerFormWindowInterface_ITF) {
+func (ptr *QDesignerObjectInspectorInterface) DisconnectSetFormWindow() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QDesignerObjectInspectorInterface::setFormWindow")
@@ -13778,7 +13789,7 @@ func (ptr *QDesignerPropertyEditorInterface) ConnectSetObject(f func(object *cor
 	}
 }
 
-func (ptr *QDesignerPropertyEditorInterface) DisconnectSetObject(object core.QObject_ITF) {
+func (ptr *QDesignerPropertyEditorInterface) DisconnectSetObject() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QDesignerPropertyEditorInterface::setObject")
@@ -13806,7 +13817,7 @@ func (ptr *QDesignerPropertyEditorInterface) ConnectSetPropertyValue(f func(name
 	}
 }
 
-func (ptr *QDesignerPropertyEditorInterface) DisconnectSetPropertyValue(name string, value core.QVariant_ITF, changed bool) {
+func (ptr *QDesignerPropertyEditorInterface) DisconnectSetPropertyValue() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QDesignerPropertyEditorInterface::setPropertyValue")
@@ -13836,7 +13847,7 @@ func (ptr *QDesignerPropertyEditorInterface) ConnectSetReadOnly(f func(readOnly 
 	}
 }
 
-func (ptr *QDesignerPropertyEditorInterface) DisconnectSetReadOnly(readOnly bool) {
+func (ptr *QDesignerPropertyEditorInterface) DisconnectSetReadOnly() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QDesignerPropertyEditorInterface::setReadOnly")
@@ -16308,7 +16319,7 @@ func (ptr *QDesignerPropertySheetExtension) ConnectHasReset(f func(index int) bo
 	}
 }
 
-func (ptr *QDesignerPropertySheetExtension) DisconnectHasReset(index int) {
+func (ptr *QDesignerPropertySheetExtension) DisconnectHasReset() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QDesignerPropertySheetExtension::hasReset")
@@ -16339,7 +16350,7 @@ func (ptr *QDesignerPropertySheetExtension) ConnectIndexOf(f func(name string) i
 	}
 }
 
-func (ptr *QDesignerPropertySheetExtension) DisconnectIndexOf(name string) {
+func (ptr *QDesignerPropertySheetExtension) DisconnectIndexOf() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QDesignerPropertySheetExtension::indexOf")
@@ -16372,7 +16383,7 @@ func (ptr *QDesignerPropertySheetExtension) ConnectIsAttribute(f func(index int)
 	}
 }
 
-func (ptr *QDesignerPropertySheetExtension) DisconnectIsAttribute(index int) {
+func (ptr *QDesignerPropertySheetExtension) DisconnectIsAttribute() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QDesignerPropertySheetExtension::isAttribute")
@@ -16403,7 +16414,7 @@ func (ptr *QDesignerPropertySheetExtension) ConnectIsChanged(f func(index int) b
 	}
 }
 
-func (ptr *QDesignerPropertySheetExtension) DisconnectIsChanged(index int) {
+func (ptr *QDesignerPropertySheetExtension) DisconnectIsChanged() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QDesignerPropertySheetExtension::isChanged")
@@ -16472,7 +16483,7 @@ func (ptr *QDesignerPropertySheetExtension) ConnectIsVisible(f func(index int) b
 	}
 }
 
-func (ptr *QDesignerPropertySheetExtension) DisconnectIsVisible(index int) {
+func (ptr *QDesignerPropertySheetExtension) DisconnectIsVisible() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QDesignerPropertySheetExtension::isVisible")
@@ -16503,7 +16514,7 @@ func (ptr *QDesignerPropertySheetExtension) ConnectProperty(f func(index int) *c
 	}
 }
 
-func (ptr *QDesignerPropertySheetExtension) DisconnectProperty(index int) {
+func (ptr *QDesignerPropertySheetExtension) DisconnectProperty() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QDesignerPropertySheetExtension::property")
@@ -16536,7 +16547,7 @@ func (ptr *QDesignerPropertySheetExtension) ConnectPropertyGroup(f func(index in
 	}
 }
 
-func (ptr *QDesignerPropertySheetExtension) DisconnectPropertyGroup(index int) {
+func (ptr *QDesignerPropertySheetExtension) DisconnectPropertyGroup() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QDesignerPropertySheetExtension::propertyGroup")
@@ -16567,7 +16578,7 @@ func (ptr *QDesignerPropertySheetExtension) ConnectPropertyName(f func(index int
 	}
 }
 
-func (ptr *QDesignerPropertySheetExtension) DisconnectPropertyName(index int) {
+func (ptr *QDesignerPropertySheetExtension) DisconnectPropertyName() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QDesignerPropertySheetExtension::propertyName")
@@ -16598,7 +16609,7 @@ func (ptr *QDesignerPropertySheetExtension) ConnectReset(f func(index int) bool)
 	}
 }
 
-func (ptr *QDesignerPropertySheetExtension) DisconnectReset(index int) {
+func (ptr *QDesignerPropertySheetExtension) DisconnectReset() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QDesignerPropertySheetExtension::reset")
@@ -16628,7 +16639,7 @@ func (ptr *QDesignerPropertySheetExtension) ConnectSetAttribute(f func(index int
 	}
 }
 
-func (ptr *QDesignerPropertySheetExtension) DisconnectSetAttribute(index int, attribute bool) {
+func (ptr *QDesignerPropertySheetExtension) DisconnectSetAttribute() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QDesignerPropertySheetExtension::setAttribute")
@@ -16657,7 +16668,7 @@ func (ptr *QDesignerPropertySheetExtension) ConnectSetChanged(f func(index int, 
 	}
 }
 
-func (ptr *QDesignerPropertySheetExtension) DisconnectSetChanged(index int, changed bool) {
+func (ptr *QDesignerPropertySheetExtension) DisconnectSetChanged() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QDesignerPropertySheetExtension::setChanged")
@@ -16686,7 +16697,7 @@ func (ptr *QDesignerPropertySheetExtension) ConnectSetProperty(f func(index int,
 	}
 }
 
-func (ptr *QDesignerPropertySheetExtension) DisconnectSetProperty(index int, value core.QVariant_ITF) {
+func (ptr *QDesignerPropertySheetExtension) DisconnectSetProperty() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QDesignerPropertySheetExtension::setProperty")
@@ -16715,7 +16726,7 @@ func (ptr *QDesignerPropertySheetExtension) ConnectSetPropertyGroup(f func(index
 	}
 }
 
-func (ptr *QDesignerPropertySheetExtension) DisconnectSetPropertyGroup(index int, group string) {
+func (ptr *QDesignerPropertySheetExtension) DisconnectSetPropertyGroup() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QDesignerPropertySheetExtension::setPropertyGroup")
@@ -16746,7 +16757,7 @@ func (ptr *QDesignerPropertySheetExtension) ConnectSetVisible(f func(index int, 
 	}
 }
 
-func (ptr *QDesignerPropertySheetExtension) DisconnectSetVisible(index int, visible bool) {
+func (ptr *QDesignerPropertySheetExtension) DisconnectSetVisible() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QDesignerPropertySheetExtension::setVisible")
@@ -17109,7 +17120,7 @@ func (ptr *QDesignerWidgetBoxInterface) ConnectSetFileName(f func(fileName strin
 	}
 }
 
-func (ptr *QDesignerWidgetBoxInterface) DisconnectSetFileName(fileName string) {
+func (ptr *QDesignerWidgetBoxInterface) DisconnectSetFileName() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QDesignerWidgetBoxInterface::setFileName")
@@ -20732,6 +20743,51 @@ func (ptr *QFormBuilder) SaveDefault(device core.QIODevice_ITF, widget widgets.Q
 	}
 }
 
+type qdesigner_internal struct {
+	ptr unsafe.Pointer
+}
+
+type qdesigner_internal_ITF interface {
+	qdesigner_internal_PTR() *qdesigner_internal
+}
+
+func (ptr *qdesigner_internal) qdesigner_internal_PTR() *qdesigner_internal {
+	return ptr
+}
+
+func (ptr *qdesigner_internal) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
+	}
+	return nil
+}
+
+func (ptr *qdesigner_internal) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
+	}
+}
+
+func PointerFromQdesigner_internal(ptr qdesigner_internal_ITF) unsafe.Pointer {
+	if ptr != nil {
+		return ptr.qdesigner_internal_PTR().Pointer()
+	}
+	return nil
+}
+
+func NewQdesigner_internalFromPointer(ptr unsafe.Pointer) *qdesigner_internal {
+	var n = new(qdesigner_internal)
+	n.SetPointer(ptr)
+	return n
+}
+
+func (ptr *qdesigner_internal) Destroyqdesigner_internal() {
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
+}
+
 //go:generate stringer -type=qdesigner_internal__SpecialProperty
 //qdesigner_internal::SpecialProperty
 type qdesigner_internal__SpecialProperty int64
@@ -20795,48 +20851,3 @@ const (
 	qdesigner_internal__IncludeLocal  qdesigner_internal__IncludeType = qdesigner_internal__IncludeType(0)
 	qdesigner_internal__IncludeGlobal qdesigner_internal__IncludeType = qdesigner_internal__IncludeType(1)
 )
-
-type qdesigner_internal struct {
-	ptr unsafe.Pointer
-}
-
-type qdesigner_internal_ITF interface {
-	qdesigner_internal_PTR() *qdesigner_internal
-}
-
-func (ptr *qdesigner_internal) qdesigner_internal_PTR() *qdesigner_internal {
-	return ptr
-}
-
-func (ptr *qdesigner_internal) Pointer() unsafe.Pointer {
-	if ptr != nil {
-		return ptr.ptr
-	}
-	return nil
-}
-
-func (ptr *qdesigner_internal) SetPointer(p unsafe.Pointer) {
-	if ptr != nil {
-		ptr.ptr = p
-	}
-}
-
-func PointerFromQdesigner_internal(ptr qdesigner_internal_ITF) unsafe.Pointer {
-	if ptr != nil {
-		return ptr.qdesigner_internal_PTR().Pointer()
-	}
-	return nil
-}
-
-func NewQdesigner_internalFromPointer(ptr unsafe.Pointer) *qdesigner_internal {
-	var n = new(qdesigner_internal)
-	n.SetPointer(ptr)
-	return n
-}
-
-func (ptr *qdesigner_internal) Destroyqdesigner_internal() {
-	if ptr != nil {
-		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
-	}
-}

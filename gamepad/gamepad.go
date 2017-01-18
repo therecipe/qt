@@ -238,8 +238,9 @@ func (ptr *QGamepad) Name() string {
 func callbackQGamepad_SetDeviceId(ptr unsafe.Pointer, number C.int) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QGamepad::setDeviceId"); signal != nil {
 		signal.(func(int))(int(int32(number)))
+	} else {
+		NewQGamepadFromPointer(ptr).SetDeviceIdDefault(int(int32(number)))
 	}
-
 }
 
 func (ptr *QGamepad) ConnectSetDeviceId(f func(number int)) {
@@ -249,7 +250,7 @@ func (ptr *QGamepad) ConnectSetDeviceId(f func(number int)) {
 	}
 }
 
-func (ptr *QGamepad) DisconnectSetDeviceId(number int) {
+func (ptr *QGamepad) DisconnectSetDeviceId() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QGamepad::setDeviceId")
@@ -259,6 +260,12 @@ func (ptr *QGamepad) DisconnectSetDeviceId(number int) {
 func (ptr *QGamepad) SetDeviceId(number int) {
 	if ptr.Pointer() != nil {
 		C.QGamepad_SetDeviceId(ptr.Pointer(), C.int(int32(number)))
+	}
+}
+
+func (ptr *QGamepad) SetDeviceIdDefault(number int) {
+	if ptr.Pointer() != nil {
+		C.QGamepad_SetDeviceIdDefault(ptr.Pointer(), C.int(int32(number)))
 	}
 }
 

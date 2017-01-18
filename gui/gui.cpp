@@ -1110,14 +1110,10 @@ void* QAccessibleObject_Child(void* ptr, int index)
 	return static_cast<QAccessibleObject*>(ptr)->child(index);
 }
 
-
-
 int QAccessibleObject_ChildCount(void* ptr)
 {
 	return static_cast<QAccessibleObject*>(ptr)->childCount();
 }
-
-
 
 void* QAccessibleObject_FocusChild(void* ptr)
 {
@@ -1144,8 +1140,6 @@ int QAccessibleObject_IndexOfChild(void* ptr, void* child)
 	return static_cast<QAccessibleObject*>(ptr)->indexOfChild(static_cast<QAccessibleInterface*>(child));
 }
 
-
-
 void* QAccessibleObject_Interface_cast(void* ptr, long long ty)
 {
 	return static_cast<QAccessibleObject*>(ptr)->interface_cast(static_cast<QAccessible::InterfaceType>(ty));
@@ -1161,21 +1155,15 @@ void* QAccessibleObject_Parent(void* ptr)
 	return static_cast<QAccessibleObject*>(ptr)->parent();
 }
 
-
-
 long long QAccessibleObject_Role(void* ptr)
 {
 	return static_cast<QAccessibleObject*>(ptr)->role();
 }
 
-
-
 struct QtGui_PackedString QAccessibleObject_Text(void* ptr, long long t)
 {
 	return ({ QByteArray td7ef98 = static_cast<QAccessibleObject*>(ptr)->text(static_cast<QAccessible::Text>(t)).toUtf8(); QtGui_PackedString { const_cast<char*>(td7ef98.prepend("WHITESPACE").constData()+10), td7ef98.size()-10 }; });
 }
-
-
 
 void* QAccessibleObject_Window(void* ptr)
 {
@@ -2301,11 +2289,6 @@ int QBitmap_MetricDefault(void* ptr, long long metric)
 void* QBitmap_PaintEngine(void* ptr)
 {
 	return static_cast<QBitmap*>(ptr)->paintEngine();
-}
-
-void* QBitmap_PaintEngineDefault(void* ptr)
-{
-	return static_cast<QBitmap*>(ptr)->QBitmap::paintEngine();
 }
 
 void* QBrush_NewQBrush4(long long color, long long style)
@@ -6875,11 +6858,6 @@ void* QImage_PaintEngine(void* ptr)
 	return static_cast<QImage*>(ptr)->paintEngine();
 }
 
-void* QImage_PaintEngineDefault(void* ptr)
-{
-	return static_cast<QImage*>(ptr)->QImage::paintEngine();
-}
-
 class MyQImageIOHandler: public QImageIOHandler
 {
 public:
@@ -7806,6 +7784,11 @@ void QInputMethod_Commit(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QInputMethod*>(ptr), "commit");
 }
 
+void QInputMethod_CommitDefault(void* ptr)
+{
+	static_cast<QInputMethod*>(ptr)->QInputMethod::commit();
+}
+
 void QInputMethod_ConnectCursorRectangleChanged(void* ptr)
 {
 	QObject::connect(static_cast<QInputMethod*>(ptr), static_cast<void (QInputMethod::*)()>(&QInputMethod::cursorRectangleChanged), static_cast<MyQInputMethod*>(ptr), static_cast<void (MyQInputMethod::*)()>(&MyQInputMethod::Signal_CursorRectangleChanged));
@@ -7824,6 +7807,11 @@ void QInputMethod_CursorRectangleChanged(void* ptr)
 void QInputMethod_Hide(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QInputMethod*>(ptr), "hide");
+}
+
+void QInputMethod_HideDefault(void* ptr)
+{
+	static_cast<QInputMethod*>(ptr)->QInputMethod::hide();
 }
 
 void QInputMethod_ConnectInputDirectionChanged(void* ptr)
@@ -7871,6 +7859,11 @@ void QInputMethod_InvokeAction(void* ptr, long long a, int cursorPosition)
 	QMetaObject::invokeMethod(static_cast<QInputMethod*>(ptr), "invokeAction", Q_ARG(QInputMethod::Action, static_cast<QInputMethod::Action>(a)), Q_ARG(int, cursorPosition));
 }
 
+void QInputMethod_InvokeActionDefault(void* ptr, long long a, int cursorPosition)
+{
+	static_cast<QInputMethod*>(ptr)->QInputMethod::invokeAction(static_cast<QInputMethod::Action>(a), cursorPosition);
+}
+
 void QInputMethod_ConnectKeyboardRectangleChanged(void* ptr)
 {
 	QObject::connect(static_cast<QInputMethod*>(ptr), static_cast<void (QInputMethod::*)()>(&QInputMethod::keyboardRectangleChanged), static_cast<MyQInputMethod*>(ptr), static_cast<void (MyQInputMethod::*)()>(&MyQInputMethod::Signal_KeyboardRectangleChanged));
@@ -7911,6 +7904,11 @@ void QInputMethod_Reset(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QInputMethod*>(ptr), "reset");
 }
 
+void QInputMethod_ResetDefault(void* ptr)
+{
+	static_cast<QInputMethod*>(ptr)->QInputMethod::reset();
+}
+
 void QInputMethod_SetInputItemRectangle(void* ptr, void* rect)
 {
 	static_cast<QInputMethod*>(ptr)->setInputItemRectangle(*static_cast<QRectF*>(rect));
@@ -7931,9 +7929,19 @@ void QInputMethod_Show(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QInputMethod*>(ptr), "show");
 }
 
+void QInputMethod_ShowDefault(void* ptr)
+{
+	static_cast<QInputMethod*>(ptr)->QInputMethod::show();
+}
+
 void QInputMethod_Update(void* ptr, long long queries)
 {
 	QMetaObject::invokeMethod(static_cast<QInputMethod*>(ptr), "update", Q_ARG(Qt::InputMethodQuery, static_cast<Qt::InputMethodQuery>(queries)));
+}
+
+void QInputMethod_UpdateDefault(void* ptr, long long queries)
+{
+	static_cast<QInputMethod*>(ptr)->QInputMethod::update(static_cast<Qt::InputMethodQuery>(queries));
 }
 
 void QInputMethod_ConnectVisibleChanged(void* ptr)
@@ -8979,6 +8987,11 @@ void QMovie_SetSpeed(void* ptr, int percentSpeed)
 	QMetaObject::invokeMethod(static_cast<QMovie*>(ptr), "setSpeed", Q_ARG(int, percentSpeed));
 }
 
+void QMovie_SetSpeedDefault(void* ptr, int percentSpeed)
+{
+	static_cast<QMovie*>(ptr)->QMovie::setSpeed(percentSpeed);
+}
+
 int QMovie_Speed(void* ptr)
 {
 	return static_cast<QMovie*>(ptr)->speed();
@@ -9106,6 +9119,11 @@ char QMovie_JumpToNextFrame(void* ptr)
 	return returnArg;
 }
 
+char QMovie_JumpToNextFrameDefault(void* ptr)
+{
+	return static_cast<QMovie*>(ptr)->QMovie::jumpToNextFrame();
+}
+
 int QMovie_LoopCount(void* ptr)
 {
 	return static_cast<QMovie*>(ptr)->loopCount();
@@ -9161,6 +9179,11 @@ void QMovie_SetPaused(void* ptr, char paused)
 	QMetaObject::invokeMethod(static_cast<QMovie*>(ptr), "setPaused", Q_ARG(bool, paused != 0));
 }
 
+void QMovie_SetPausedDefault(void* ptr, char paused)
+{
+	static_cast<QMovie*>(ptr)->QMovie::setPaused(paused != 0);
+}
+
 void QMovie_SetScaledSize(void* ptr, void* size)
 {
 	static_cast<QMovie*>(ptr)->setScaledSize(*static_cast<QSize*>(size));
@@ -9169,6 +9192,11 @@ void QMovie_SetScaledSize(void* ptr, void* size)
 void QMovie_Start(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QMovie*>(ptr), "start");
+}
+
+void QMovie_StartDefault(void* ptr)
+{
+	static_cast<QMovie*>(ptr)->QMovie::start();
 }
 
 void QMovie_ConnectStarted(void* ptr)
@@ -9209,6 +9237,11 @@ void QMovie_StateChanged(void* ptr, long long state)
 void QMovie_Stop(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QMovie*>(ptr), "stop");
+}
+
+void QMovie_StopDefault(void* ptr)
+{
+	static_cast<QMovie*>(ptr)->QMovie::stop();
 }
 
 struct QtGui_PackedList QMovie_QMovie_SupportedFormats()
@@ -10026,7 +10059,6 @@ class MyQPagedPaintDevice: public QPagedPaintDevice
 public:
 	MyQPagedPaintDevice() : QPagedPaintDevice() {};
 	bool newPage() { return callbackQPagedPaintDevice_NewPage(this) != 0; };
-	
 	void setPageSize(QPagedPaintDevice::PageSize size) { callbackQPagedPaintDevice_SetPageSize2(this, size); };
 	void setPageSizeMM(const QSizeF & size) { callbackQPagedPaintDevice_SetPageSizeMM(this, const_cast<QSizeF*>(&size)); };
 	int metric(QPaintDevice::PaintDeviceMetric metric) const { return callbackQPagedPaintDevice_Metric(const_cast<MyQPagedPaintDevice*>(this), metric); };
@@ -10073,10 +10105,6 @@ void* QPagedPaintDevice_PageSizeMM(void* ptr)
 		return ({ QSizeF tmpValue = static_cast<QPagedPaintDevice*>(ptr)->pageSizeMM(); new QSizeF(tmpValue.width(), tmpValue.height()); });
 	}
 }
-
-
-
-
 
 char QPagedPaintDevice_SetPageLayout(void* ptr, void* newPageLayout)
 {
@@ -10190,8 +10218,6 @@ void* QPagedPaintDevice_PaintEngine(void* ptr)
 		return static_cast<QPagedPaintDevice*>(ptr)->paintEngine();
 	}
 }
-
-
 
 class MyQPaintDevice: public QPaintDevice
 {
@@ -10489,6 +10515,11 @@ void QPaintDeviceWindow_PaintEventDefault(void* ptr, void* event)
 void QPaintDeviceWindow_Update3(void* ptr)
 {
 		QMetaObject::invokeMethod(static_cast<QPaintDeviceWindow*>(ptr), "update");
+}
+
+void QPaintDeviceWindow_Update3Default(void* ptr)
+{
+		static_cast<QPaintDeviceWindow*>(ptr)->QPaintDeviceWindow::update();
 }
 
 void QPaintDeviceWindow_Update(void* ptr, void* rect)
@@ -11056,11 +11087,6 @@ int QPaintDeviceWindow_MetricDefault(void* ptr, long long metric)
 void* QPaintDeviceWindow_PaintEngine(void* ptr)
 {
 		return static_cast<QPaintDeviceWindow*>(ptr)->paintEngine();
-}
-
-void* QPaintDeviceWindow_PaintEngineDefault(void* ptr)
-{
-		return static_cast<QPaintDeviceWindow*>(ptr)->QPaintDeviceWindow::paintEngine();
 }
 
 class MyQPaintEngine: public QPaintEngine
@@ -13033,7 +13059,6 @@ public:
 	bool event(QEvent * e) { return callbackQPdfWriter_Event(this, e) != 0; };
 	bool eventFilter(QObject * watched, QEvent * event) { return callbackQPdfWriter_EventFilter(this, watched, event) != 0; };
 	const QMetaObject * metaObject() const { return static_cast<QMetaObject*>(callbackQPdfWriter_MetaObject(const_cast<MyQPdfWriter*>(this))); };
-	
 	void setPageSize(QPagedPaintDevice::PageSize size) { callbackQPdfWriter_SetPageSize2(this, size); };
 	void setPageSizeMM(const QSizeF & size) { callbackQPdfWriter_SetPageSizeMM(this, const_cast<QSizeF*>(&size)); };
 	int metric(QPaintDevice::PaintDeviceMetric metric) const { return callbackQPdfWriter_Metric(const_cast<MyQPdfWriter*>(this), metric); };
@@ -13248,10 +13273,6 @@ void* QPdfWriter_MetaObjectDefault(void* ptr)
 {
 		return const_cast<QMetaObject*>(static_cast<QPdfWriter*>(ptr)->QPdfWriter::metaObject());
 }
-
-
-
-
 
 void QPdfWriter_SetPageSize2(void* ptr, long long size)
 {
@@ -13541,11 +13562,6 @@ int QPicture_MetricDefault(void* ptr, long long metric)
 void* QPicture_PaintEngine(void* ptr)
 {
 	return static_cast<QPicture*>(ptr)->paintEngine();
-}
-
-void* QPicture_PaintEngineDefault(void* ptr)
-{
-	return static_cast<QPicture*>(ptr)->QPicture::paintEngine();
 }
 
 void* QPixelFormat_NewQPixelFormat()
@@ -13906,11 +13922,6 @@ int QPixmap_MetricDefault(void* ptr, long long metric)
 void* QPixmap_PaintEngine(void* ptr)
 {
 	return static_cast<QPixmap*>(ptr)->paintEngine();
-}
-
-void* QPixmap_PaintEngineDefault(void* ptr)
-{
-	return static_cast<QPixmap*>(ptr)->QPixmap::paintEngine();
 }
 
 int QPixmapCache_QPixmapCache_CacheLimit()
@@ -15045,11 +15056,6 @@ void* QRasterWindow_PaintEngine(void* ptr)
 	return static_cast<QRasterWindow*>(ptr)->paintEngine();
 }
 
-void* QRasterWindow_PaintEngineDefault(void* ptr)
-{
-	return static_cast<QRasterWindow*>(ptr)->QRasterWindow::paintEngine();
-}
-
 void* QRawFont_NewQRawFont()
 {
 	return new QRawFont();
@@ -15571,6 +15577,11 @@ void* QRegularExpressionValidator_RegularExpression(void* ptr)
 void QRegularExpressionValidator_SetRegularExpression(void* ptr, void* re)
 {
 	QMetaObject::invokeMethod(static_cast<QRegularExpressionValidator*>(ptr), "setRegularExpression", Q_ARG(QRegularExpression, *static_cast<QRegularExpression*>(re)));
+}
+
+void QRegularExpressionValidator_SetRegularExpressionDefault(void* ptr, void* re)
+{
+	static_cast<QRegularExpressionValidator*>(ptr)->QRegularExpressionValidator::setRegularExpression(*static_cast<QRegularExpression*>(re));
 }
 
 void* QRegularExpressionValidator_NewQRegularExpressionValidator(void* parent)
@@ -17068,7 +17079,6 @@ public:
 	bool insertColumns(int column, int count, const QModelIndex & parent) { return callbackQStandardItemModel_InsertColumns(this, column, count, const_cast<QModelIndex*>(&parent)) != 0; };
 	bool insertRows(int row, int count, const QModelIndex & parent) { return callbackQStandardItemModel_InsertRows(this, row, count, const_cast<QModelIndex*>(&parent)) != 0; };
 	void Signal_ItemChanged(QStandardItem * item) { callbackQStandardItemModel_ItemChanged(this, item); };
-	
 	QStringList mimeTypes() const { return QString(callbackQStandardItemModel_MimeTypes(const_cast<MyQStandardItemModel*>(this))).split("|", QString::SkipEmptyParts); };
 	QModelIndex parent(const QModelIndex & child) const { return *static_cast<QModelIndex*>(callbackQStandardItemModel_Parent(const_cast<MyQStandardItemModel*>(this), const_cast<QModelIndex*>(&child))); };
 	bool removeColumns(int column, int count, const QModelIndex & parent) { return callbackQStandardItemModel_RemoveColumns(this, column, count, const_cast<QModelIndex*>(&parent)) != 0; };
@@ -17285,10 +17295,6 @@ void* QStandardItemModel_ItemPrototype(void* ptr)
 {
 	return const_cast<QStandardItem*>(static_cast<QStandardItemModel*>(ptr)->itemPrototype());
 }
-
-
-
-
 
 struct QtGui_PackedString QStandardItemModel_MimeTypes(void* ptr)
 {
@@ -18503,9 +18509,19 @@ void QSyntaxHighlighter_Rehighlight(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QSyntaxHighlighter*>(ptr), "rehighlight");
 }
 
+void QSyntaxHighlighter_RehighlightDefault(void* ptr)
+{
+	static_cast<QSyntaxHighlighter*>(ptr)->QSyntaxHighlighter::rehighlight();
+}
+
 void QSyntaxHighlighter_RehighlightBlock(void* ptr, void* block)
 {
 	QMetaObject::invokeMethod(static_cast<QSyntaxHighlighter*>(ptr), "rehighlightBlock", Q_ARG(QTextBlock, *static_cast<QTextBlock*>(block)));
+}
+
+void QSyntaxHighlighter_RehighlightBlockDefault(void* ptr, void* block)
+{
+	static_cast<QSyntaxHighlighter*>(ptr)->QSyntaxHighlighter::rehighlightBlock(*static_cast<QTextBlock*>(block));
 }
 
 void QSyntaxHighlighter_SetCurrentBlockState(void* ptr, int newState)
@@ -20009,6 +20025,11 @@ void QTextDocument_SetModified(void* ptr, char m)
 	QMetaObject::invokeMethod(static_cast<QTextDocument*>(ptr), "setModified", Q_ARG(bool, m != 0));
 }
 
+void QTextDocument_SetModifiedDefault(void* ptr, char m)
+{
+	static_cast<QTextDocument*>(ptr)->QTextDocument::setModified(m != 0);
+}
+
 void QTextDocument_SetPageSize(void* ptr, void* size)
 {
 	static_cast<QTextDocument*>(ptr)->setPageSize(*static_cast<QSizeF*>(size));
@@ -20380,6 +20401,11 @@ void QTextDocument_Redo2(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QTextDocument*>(ptr), "redo");
 }
 
+void QTextDocument_Redo2Default(void* ptr)
+{
+	static_cast<QTextDocument*>(ptr)->QTextDocument::redo();
+}
+
 void QTextDocument_Redo(void* ptr, void* cursor)
 {
 	static_cast<QTextDocument*>(ptr)->redo(static_cast<QTextCursor*>(cursor));
@@ -20468,6 +20494,11 @@ struct QtGui_PackedString QTextDocument_ToPlainText(void* ptr)
 void QTextDocument_Undo2(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QTextDocument*>(ptr), "undo");
+}
+
+void QTextDocument_Undo2Default(void* ptr)
+{
+	static_cast<QTextDocument*>(ptr)->QTextDocument::undo();
 }
 
 void QTextDocument_Undo(void* ptr, void* cursor)
@@ -24064,12 +24095,30 @@ void QWindow_SetHeight(void* ptr, int arg)
 	}
 }
 
+void QWindow_SetHeightDefault(void* ptr, int arg)
+{
+	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
+		static_cast<QPaintDeviceWindow*>(ptr)->QWindow::setHeight(arg);
+	} else {
+		static_cast<QWindow*>(ptr)->QWindow::setHeight(arg);
+	}
+}
+
 void QWindow_SetMaximumHeight(void* ptr, int h)
 {
 	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
 		QMetaObject::invokeMethod(static_cast<QPaintDeviceWindow*>(ptr), "setMaximumHeight", Q_ARG(int, h));
 	} else {
 		QMetaObject::invokeMethod(static_cast<QWindow*>(ptr), "setMaximumHeight", Q_ARG(int, h));
+	}
+}
+
+void QWindow_SetMaximumHeightDefault(void* ptr, int h)
+{
+	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
+		static_cast<QPaintDeviceWindow*>(ptr)->QWindow::setMaximumHeight(h);
+	} else {
+		static_cast<QWindow*>(ptr)->QWindow::setMaximumHeight(h);
 	}
 }
 
@@ -24082,6 +24131,15 @@ void QWindow_SetMaximumWidth(void* ptr, int w)
 	}
 }
 
+void QWindow_SetMaximumWidthDefault(void* ptr, int w)
+{
+	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
+		static_cast<QPaintDeviceWindow*>(ptr)->QWindow::setMaximumWidth(w);
+	} else {
+		static_cast<QWindow*>(ptr)->QWindow::setMaximumWidth(w);
+	}
+}
+
 void QWindow_SetMinimumHeight(void* ptr, int h)
 {
 	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
@@ -24091,12 +24149,30 @@ void QWindow_SetMinimumHeight(void* ptr, int h)
 	}
 }
 
+void QWindow_SetMinimumHeightDefault(void* ptr, int h)
+{
+	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
+		static_cast<QPaintDeviceWindow*>(ptr)->QWindow::setMinimumHeight(h);
+	} else {
+		static_cast<QWindow*>(ptr)->QWindow::setMinimumHeight(h);
+	}
+}
+
 void QWindow_SetMinimumWidth(void* ptr, int w)
 {
 	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
 		QMetaObject::invokeMethod(static_cast<QPaintDeviceWindow*>(ptr), "setMinimumWidth", Q_ARG(int, w));
 	} else {
 		QMetaObject::invokeMethod(static_cast<QWindow*>(ptr), "setMinimumWidth", Q_ARG(int, w));
+	}
+}
+
+void QWindow_SetMinimumWidthDefault(void* ptr, int w)
+{
+	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
+		static_cast<QPaintDeviceWindow*>(ptr)->QWindow::setMinimumWidth(w);
+	} else {
+		static_cast<QWindow*>(ptr)->QWindow::setMinimumWidth(w);
 	}
 }
 
@@ -24127,6 +24203,15 @@ void QWindow_SetTitle(void* ptr, char* vqs)
 	}
 }
 
+void QWindow_SetTitleDefault(void* ptr, char* vqs)
+{
+	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
+		static_cast<QPaintDeviceWindow*>(ptr)->QWindow::setTitle(QString(vqs));
+	} else {
+		static_cast<QWindow*>(ptr)->QWindow::setTitle(QString(vqs));
+	}
+}
+
 void QWindow_SetVisibility(void* ptr, long long v)
 {
 	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
@@ -24145,12 +24230,30 @@ void QWindow_SetVisible(void* ptr, char visible)
 	}
 }
 
+void QWindow_SetVisibleDefault(void* ptr, char visible)
+{
+	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
+		static_cast<QPaintDeviceWindow*>(ptr)->QWindow::setVisible(visible != 0);
+	} else {
+		static_cast<QWindow*>(ptr)->QWindow::setVisible(visible != 0);
+	}
+}
+
 void QWindow_SetWidth(void* ptr, int arg)
 {
 	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
 		QMetaObject::invokeMethod(static_cast<QPaintDeviceWindow*>(ptr), "setWidth", Q_ARG(int, arg));
 	} else {
 		QMetaObject::invokeMethod(static_cast<QWindow*>(ptr), "setWidth", Q_ARG(int, arg));
+	}
+}
+
+void QWindow_SetWidthDefault(void* ptr, int arg)
+{
+	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
+		static_cast<QPaintDeviceWindow*>(ptr)->QWindow::setWidth(arg);
+	} else {
+		static_cast<QWindow*>(ptr)->QWindow::setWidth(arg);
 	}
 }
 
@@ -24163,12 +24266,30 @@ void QWindow_SetX(void* ptr, int arg)
 	}
 }
 
+void QWindow_SetXDefault(void* ptr, int arg)
+{
+	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
+		static_cast<QPaintDeviceWindow*>(ptr)->QWindow::setX(arg);
+	} else {
+		static_cast<QWindow*>(ptr)->QWindow::setX(arg);
+	}
+}
+
 void QWindow_SetY(void* ptr, int arg)
 {
 	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
 		QMetaObject::invokeMethod(static_cast<QPaintDeviceWindow*>(ptr), "setY", Q_ARG(int, arg));
 	} else {
 		QMetaObject::invokeMethod(static_cast<QWindow*>(ptr), "setY", Q_ARG(int, arg));
+	}
+}
+
+void QWindow_SetYDefault(void* ptr, int arg)
+{
+	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
+		static_cast<QPaintDeviceWindow*>(ptr)->QWindow::setY(arg);
+	} else {
+		static_cast<QWindow*>(ptr)->QWindow::setY(arg);
 	}
 }
 
@@ -24228,6 +24349,15 @@ void QWindow_Alert(void* ptr, int msec)
 	}
 }
 
+void QWindow_AlertDefault(void* ptr, int msec)
+{
+	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
+		static_cast<QPaintDeviceWindow*>(ptr)->QWindow::alert(msec);
+	} else {
+		static_cast<QWindow*>(ptr)->QWindow::alert(msec);
+	}
+}
+
 void* QWindow_BaseSize(void* ptr)
 {
 	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
@@ -24247,6 +24377,15 @@ char QWindow_Close(void* ptr)
 			bool returnArg;
 		QMetaObject::invokeMethod(static_cast<QWindow*>(ptr), "close", Q_RETURN_ARG(bool, returnArg));
 		return returnArg;
+	}
+}
+
+char QWindow_CloseDefault(void* ptr)
+{
+	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
+		return static_cast<QPaintDeviceWindow*>(ptr)->QWindow::close();
+	} else {
+		return static_cast<QWindow*>(ptr)->QWindow::close();
 	}
 }
 
@@ -24539,6 +24678,15 @@ void QWindow_Hide(void* ptr)
 	}
 }
 
+void QWindow_HideDefault(void* ptr)
+{
+	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
+		static_cast<QPaintDeviceWindow*>(ptr)->QWindow::hide();
+	} else {
+		static_cast<QWindow*>(ptr)->QWindow::hide();
+	}
+}
+
 void QWindow_HideEvent(void* ptr, void* ev)
 {
 	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
@@ -24661,6 +24809,15 @@ void QWindow_Lower(void* ptr)
 		QMetaObject::invokeMethod(static_cast<QPaintDeviceWindow*>(ptr), "lower");
 	} else {
 		QMetaObject::invokeMethod(static_cast<QWindow*>(ptr), "lower");
+	}
+}
+
+void QWindow_LowerDefault(void* ptr)
+{
+	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
+		static_cast<QPaintDeviceWindow*>(ptr)->QWindow::lower();
+	} else {
+		static_cast<QWindow*>(ptr)->QWindow::lower();
 	}
 }
 
@@ -24976,6 +25133,15 @@ void QWindow_Raise(void* ptr)
 	}
 }
 
+void QWindow_RaiseDefault(void* ptr)
+{
+	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
+		static_cast<QPaintDeviceWindow*>(ptr)->QWindow::raise();
+	} else {
+		static_cast<QWindow*>(ptr)->QWindow::raise();
+	}
+}
+
 void QWindow_RequestActivate(void* ptr)
 {
 	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
@@ -24985,12 +25151,30 @@ void QWindow_RequestActivate(void* ptr)
 	}
 }
 
+void QWindow_RequestActivateDefault(void* ptr)
+{
+	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
+		static_cast<QPaintDeviceWindow*>(ptr)->QWindow::requestActivate();
+	} else {
+		static_cast<QWindow*>(ptr)->QWindow::requestActivate();
+	}
+}
+
 void QWindow_RequestUpdate(void* ptr)
 {
 	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
 		QMetaObject::invokeMethod(static_cast<QPaintDeviceWindow*>(ptr), "requestUpdate");
 	} else {
 		QMetaObject::invokeMethod(static_cast<QWindow*>(ptr), "requestUpdate");
+	}
+}
+
+void QWindow_RequestUpdateDefault(void* ptr)
+{
+	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
+		static_cast<QPaintDeviceWindow*>(ptr)->QWindow::requestUpdate();
+	} else {
+		static_cast<QWindow*>(ptr)->QWindow::requestUpdate();
 	}
 }
 
@@ -25281,6 +25465,15 @@ void QWindow_Show(void* ptr)
 	}
 }
 
+void QWindow_ShowDefault(void* ptr)
+{
+	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
+		static_cast<QPaintDeviceWindow*>(ptr)->QWindow::show();
+	} else {
+		static_cast<QWindow*>(ptr)->QWindow::show();
+	}
+}
+
 void QWindow_ShowEvent(void* ptr, void* ev)
 {
 	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
@@ -25308,12 +25501,30 @@ void QWindow_ShowFullScreen(void* ptr)
 	}
 }
 
+void QWindow_ShowFullScreenDefault(void* ptr)
+{
+	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
+		static_cast<QPaintDeviceWindow*>(ptr)->QWindow::showFullScreen();
+	} else {
+		static_cast<QWindow*>(ptr)->QWindow::showFullScreen();
+	}
+}
+
 void QWindow_ShowMaximized(void* ptr)
 {
 	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
 		QMetaObject::invokeMethod(static_cast<QPaintDeviceWindow*>(ptr), "showMaximized");
 	} else {
 		QMetaObject::invokeMethod(static_cast<QWindow*>(ptr), "showMaximized");
+	}
+}
+
+void QWindow_ShowMaximizedDefault(void* ptr)
+{
+	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
+		static_cast<QPaintDeviceWindow*>(ptr)->QWindow::showMaximized();
+	} else {
+		static_cast<QWindow*>(ptr)->QWindow::showMaximized();
 	}
 }
 
@@ -25326,12 +25537,30 @@ void QWindow_ShowMinimized(void* ptr)
 	}
 }
 
+void QWindow_ShowMinimizedDefault(void* ptr)
+{
+	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
+		static_cast<QPaintDeviceWindow*>(ptr)->QWindow::showMinimized();
+	} else {
+		static_cast<QWindow*>(ptr)->QWindow::showMinimized();
+	}
+}
+
 void QWindow_ShowNormal(void* ptr)
 {
 	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
 		QMetaObject::invokeMethod(static_cast<QPaintDeviceWindow*>(ptr), "showNormal");
 	} else {
 		QMetaObject::invokeMethod(static_cast<QWindow*>(ptr), "showNormal");
+	}
+}
+
+void QWindow_ShowNormalDefault(void* ptr)
+{
+	if (dynamic_cast<QPaintDeviceWindow*>(static_cast<QObject*>(ptr))) {
+		static_cast<QPaintDeviceWindow*>(ptr)->QWindow::showNormal();
+	} else {
+		static_cast<QWindow*>(ptr)->QWindow::showNormal();
 	}
 }
 

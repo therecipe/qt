@@ -24,20 +24,6 @@ func cGoUnpackString(s C.struct_QtLocation_PackedString) string {
 	return C.GoStringN(s.data, C.int(s.len))
 }
 
-//go:generate stringer -type=QGeoCodeReply__Error
-//QGeoCodeReply::Error
-type QGeoCodeReply__Error int64
-
-const (
-	QGeoCodeReply__NoError                QGeoCodeReply__Error = QGeoCodeReply__Error(0)
-	QGeoCodeReply__EngineNotSetError      QGeoCodeReply__Error = QGeoCodeReply__Error(1)
-	QGeoCodeReply__CommunicationError     QGeoCodeReply__Error = QGeoCodeReply__Error(2)
-	QGeoCodeReply__ParseError             QGeoCodeReply__Error = QGeoCodeReply__Error(3)
-	QGeoCodeReply__UnsupportedOptionError QGeoCodeReply__Error = QGeoCodeReply__Error(4)
-	QGeoCodeReply__CombinationError       QGeoCodeReply__Error = QGeoCodeReply__Error(5)
-	QGeoCodeReply__UnknownError           QGeoCodeReply__Error = QGeoCodeReply__Error(6)
-)
-
 type QGeoCodeReply struct {
 	core.QObject
 }
@@ -76,6 +62,20 @@ func NewQGeoCodeReplyFromPointer(ptr unsafe.Pointer) *QGeoCodeReply {
 	n.SetPointer(ptr)
 	return n
 }
+
+//go:generate stringer -type=QGeoCodeReply__Error
+//QGeoCodeReply::Error
+type QGeoCodeReply__Error int64
+
+const (
+	QGeoCodeReply__NoError                QGeoCodeReply__Error = QGeoCodeReply__Error(0)
+	QGeoCodeReply__EngineNotSetError      QGeoCodeReply__Error = QGeoCodeReply__Error(1)
+	QGeoCodeReply__CommunicationError     QGeoCodeReply__Error = QGeoCodeReply__Error(2)
+	QGeoCodeReply__ParseError             QGeoCodeReply__Error = QGeoCodeReply__Error(3)
+	QGeoCodeReply__UnsupportedOptionError QGeoCodeReply__Error = QGeoCodeReply__Error(4)
+	QGeoCodeReply__CombinationError       QGeoCodeReply__Error = QGeoCodeReply__Error(5)
+	QGeoCodeReply__UnknownError           QGeoCodeReply__Error = QGeoCodeReply__Error(6)
+)
 
 type QGeoCodingManager struct {
 	core.QObject
@@ -155,25 +155,6 @@ func NewQGeoCodingManagerEngineFromPointer(ptr unsafe.Pointer) *QGeoCodingManage
 	return n
 }
 
-//go:generate stringer -type=QGeoManeuver__InstructionDirection
-//QGeoManeuver::InstructionDirection
-type QGeoManeuver__InstructionDirection int64
-
-const (
-	QGeoManeuver__NoDirection         QGeoManeuver__InstructionDirection = QGeoManeuver__InstructionDirection(0)
-	QGeoManeuver__DirectionForward    QGeoManeuver__InstructionDirection = QGeoManeuver__InstructionDirection(1)
-	QGeoManeuver__DirectionBearRight  QGeoManeuver__InstructionDirection = QGeoManeuver__InstructionDirection(2)
-	QGeoManeuver__DirectionLightRight QGeoManeuver__InstructionDirection = QGeoManeuver__InstructionDirection(3)
-	QGeoManeuver__DirectionRight      QGeoManeuver__InstructionDirection = QGeoManeuver__InstructionDirection(4)
-	QGeoManeuver__DirectionHardRight  QGeoManeuver__InstructionDirection = QGeoManeuver__InstructionDirection(5)
-	QGeoManeuver__DirectionUTurnRight QGeoManeuver__InstructionDirection = QGeoManeuver__InstructionDirection(6)
-	QGeoManeuver__DirectionUTurnLeft  QGeoManeuver__InstructionDirection = QGeoManeuver__InstructionDirection(7)
-	QGeoManeuver__DirectionHardLeft   QGeoManeuver__InstructionDirection = QGeoManeuver__InstructionDirection(8)
-	QGeoManeuver__DirectionLeft       QGeoManeuver__InstructionDirection = QGeoManeuver__InstructionDirection(9)
-	QGeoManeuver__DirectionLightLeft  QGeoManeuver__InstructionDirection = QGeoManeuver__InstructionDirection(10)
-	QGeoManeuver__DirectionBearLeft   QGeoManeuver__InstructionDirection = QGeoManeuver__InstructionDirection(11)
-)
-
 type QGeoManeuver struct {
 	ptr unsafe.Pointer
 }
@@ -211,6 +192,26 @@ func NewQGeoManeuverFromPointer(ptr unsafe.Pointer) *QGeoManeuver {
 	n.SetPointer(ptr)
 	return n
 }
+
+//go:generate stringer -type=QGeoManeuver__InstructionDirection
+//QGeoManeuver::InstructionDirection
+type QGeoManeuver__InstructionDirection int64
+
+const (
+	QGeoManeuver__NoDirection         QGeoManeuver__InstructionDirection = QGeoManeuver__InstructionDirection(0)
+	QGeoManeuver__DirectionForward    QGeoManeuver__InstructionDirection = QGeoManeuver__InstructionDirection(1)
+	QGeoManeuver__DirectionBearRight  QGeoManeuver__InstructionDirection = QGeoManeuver__InstructionDirection(2)
+	QGeoManeuver__DirectionLightRight QGeoManeuver__InstructionDirection = QGeoManeuver__InstructionDirection(3)
+	QGeoManeuver__DirectionRight      QGeoManeuver__InstructionDirection = QGeoManeuver__InstructionDirection(4)
+	QGeoManeuver__DirectionHardRight  QGeoManeuver__InstructionDirection = QGeoManeuver__InstructionDirection(5)
+	QGeoManeuver__DirectionUTurnRight QGeoManeuver__InstructionDirection = QGeoManeuver__InstructionDirection(6)
+	QGeoManeuver__DirectionUTurnLeft  QGeoManeuver__InstructionDirection = QGeoManeuver__InstructionDirection(7)
+	QGeoManeuver__DirectionHardLeft   QGeoManeuver__InstructionDirection = QGeoManeuver__InstructionDirection(8)
+	QGeoManeuver__DirectionLeft       QGeoManeuver__InstructionDirection = QGeoManeuver__InstructionDirection(9)
+	QGeoManeuver__DirectionLightLeft  QGeoManeuver__InstructionDirection = QGeoManeuver__InstructionDirection(10)
+	QGeoManeuver__DirectionBearLeft   QGeoManeuver__InstructionDirection = QGeoManeuver__InstructionDirection(11)
+)
+
 func NewQGeoManeuver() *QGeoManeuver {
 	var tmpValue = NewQGeoManeuverFromPointer(C.QGeoManeuver_NewQGeoManeuver())
 	runtime.SetFinalizer(tmpValue, (*QGeoManeuver).DestroyQGeoManeuver)
@@ -498,19 +499,6 @@ func (ptr *QGeoRoute) path_atList(i int) *positioning.QGeoCoordinate {
 	return nil
 }
 
-//go:generate stringer -type=QGeoRouteReply__Error
-//QGeoRouteReply::Error
-type QGeoRouteReply__Error int64
-
-const (
-	QGeoRouteReply__NoError                QGeoRouteReply__Error = QGeoRouteReply__Error(0)
-	QGeoRouteReply__EngineNotSetError      QGeoRouteReply__Error = QGeoRouteReply__Error(1)
-	QGeoRouteReply__CommunicationError     QGeoRouteReply__Error = QGeoRouteReply__Error(2)
-	QGeoRouteReply__ParseError             QGeoRouteReply__Error = QGeoRouteReply__Error(3)
-	QGeoRouteReply__UnsupportedOptionError QGeoRouteReply__Error = QGeoRouteReply__Error(4)
-	QGeoRouteReply__UnknownError           QGeoRouteReply__Error = QGeoRouteReply__Error(5)
-)
-
 type QGeoRouteReply struct {
 	core.QObject
 }
@@ -549,6 +537,20 @@ func NewQGeoRouteReplyFromPointer(ptr unsafe.Pointer) *QGeoRouteReply {
 	n.SetPointer(ptr)
 	return n
 }
+
+//go:generate stringer -type=QGeoRouteReply__Error
+//QGeoRouteReply::Error
+type QGeoRouteReply__Error int64
+
+const (
+	QGeoRouteReply__NoError                QGeoRouteReply__Error = QGeoRouteReply__Error(0)
+	QGeoRouteReply__EngineNotSetError      QGeoRouteReply__Error = QGeoRouteReply__Error(1)
+	QGeoRouteReply__CommunicationError     QGeoRouteReply__Error = QGeoRouteReply__Error(2)
+	QGeoRouteReply__ParseError             QGeoRouteReply__Error = QGeoRouteReply__Error(3)
+	QGeoRouteReply__UnsupportedOptionError QGeoRouteReply__Error = QGeoRouteReply__Error(4)
+	QGeoRouteReply__UnknownError           QGeoRouteReply__Error = QGeoRouteReply__Error(5)
+)
+
 func NewQGeoRouteReply(error QGeoRouteReply__Error, errorString string, parent core.QObject_ITF) *QGeoRouteReply {
 	var errorStringC = C.CString(errorString)
 	defer C.free(unsafe.Pointer(errorStringC))
@@ -1102,6 +1104,44 @@ func (ptr *QGeoRouteReply) MetaObjectDefault() *core.QMetaObject {
 	return nil
 }
 
+type QGeoRouteRequest struct {
+	ptr unsafe.Pointer
+}
+
+type QGeoRouteRequest_ITF interface {
+	QGeoRouteRequest_PTR() *QGeoRouteRequest
+}
+
+func (ptr *QGeoRouteRequest) QGeoRouteRequest_PTR() *QGeoRouteRequest {
+	return ptr
+}
+
+func (ptr *QGeoRouteRequest) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
+	}
+	return nil
+}
+
+func (ptr *QGeoRouteRequest) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
+	}
+}
+
+func PointerFromQGeoRouteRequest(ptr QGeoRouteRequest_ITF) unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QGeoRouteRequest_PTR().Pointer()
+	}
+	return nil
+}
+
+func NewQGeoRouteRequestFromPointer(ptr unsafe.Pointer) *QGeoRouteRequest {
+	var n = new(QGeoRouteRequest)
+	n.SetPointer(ptr)
+	return n
+}
+
 //go:generate stringer -type=QGeoRouteRequest__FeatureType
 //QGeoRouteRequest::FeatureType
 type QGeoRouteRequest__FeatureType int64
@@ -1171,43 +1211,6 @@ const (
 	QGeoRouteRequest__TruckTravel         QGeoRouteRequest__TravelMode = QGeoRouteRequest__TravelMode(0x0010)
 )
 
-type QGeoRouteRequest struct {
-	ptr unsafe.Pointer
-}
-
-type QGeoRouteRequest_ITF interface {
-	QGeoRouteRequest_PTR() *QGeoRouteRequest
-}
-
-func (ptr *QGeoRouteRequest) QGeoRouteRequest_PTR() *QGeoRouteRequest {
-	return ptr
-}
-
-func (ptr *QGeoRouteRequest) Pointer() unsafe.Pointer {
-	if ptr != nil {
-		return ptr.ptr
-	}
-	return nil
-}
-
-func (ptr *QGeoRouteRequest) SetPointer(p unsafe.Pointer) {
-	if ptr != nil {
-		ptr.ptr = p
-	}
-}
-
-func PointerFromQGeoRouteRequest(ptr QGeoRouteRequest_ITF) unsafe.Pointer {
-	if ptr != nil {
-		return ptr.QGeoRouteRequest_PTR().Pointer()
-	}
-	return nil
-}
-
-func NewQGeoRouteRequestFromPointer(ptr unsafe.Pointer) *QGeoRouteRequest {
-	var n = new(QGeoRouteRequest)
-	n.SetPointer(ptr)
-	return n
-}
 func NewQGeoRouteRequest2(origin positioning.QGeoCoordinate_ITF, destination positioning.QGeoCoordinate_ITF) *QGeoRouteRequest {
 	var tmpValue = NewQGeoRouteRequestFromPointer(C.QGeoRouteRequest_NewQGeoRouteRequest2(positioning.PointerFromQGeoCoordinate(origin), positioning.PointerFromQGeoCoordinate(destination)))
 	runtime.SetFinalizer(tmpValue, (*QGeoRouteRequest).DestroyQGeoRouteRequest)
@@ -2091,7 +2094,7 @@ func (ptr *QGeoRoutingManagerEngine) ConnectCalculateRoute(f func(request *QGeoR
 	}
 }
 
-func (ptr *QGeoRoutingManagerEngine) DisconnectCalculateRoute(request QGeoRouteRequest_ITF) {
+func (ptr *QGeoRoutingManagerEngine) DisconnectCalculateRoute() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QGeoRoutingManagerEngine::calculateRoute")
@@ -2708,6 +2711,45 @@ func (ptr *QGeoRoutingManagerEngine) MetaObjectDefault() *core.QMetaObject {
 	return nil
 }
 
+type QGeoServiceProvider struct {
+	core.QObject
+}
+
+type QGeoServiceProvider_ITF interface {
+	core.QObject_ITF
+	QGeoServiceProvider_PTR() *QGeoServiceProvider
+}
+
+func (ptr *QGeoServiceProvider) QGeoServiceProvider_PTR() *QGeoServiceProvider {
+	return ptr
+}
+
+func (ptr *QGeoServiceProvider) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QObject_PTR().Pointer()
+	}
+	return nil
+}
+
+func (ptr *QGeoServiceProvider) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QObject_PTR().SetPointer(p)
+	}
+}
+
+func PointerFromQGeoServiceProvider(ptr QGeoServiceProvider_ITF) unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QGeoServiceProvider_PTR().Pointer()
+	}
+	return nil
+}
+
+func NewQGeoServiceProviderFromPointer(ptr unsafe.Pointer) *QGeoServiceProvider {
+	var n = new(QGeoServiceProvider)
+	n.SetPointer(ptr)
+	return n
+}
+
 //go:generate stringer -type=QGeoServiceProvider__Error
 //QGeoServiceProvider::Error
 type QGeoServiceProvider__Error int64
@@ -2780,44 +2822,6 @@ var (
 	QGeoServiceProvider__AnyRoutingFeatures         QGeoServiceProvider__RoutingFeature = QGeoServiceProvider__RoutingFeature(C.QGeoServiceProvider_AnyRoutingFeatures_Type())
 )
 
-type QGeoServiceProvider struct {
-	core.QObject
-}
-
-type QGeoServiceProvider_ITF interface {
-	core.QObject_ITF
-	QGeoServiceProvider_PTR() *QGeoServiceProvider
-}
-
-func (ptr *QGeoServiceProvider) QGeoServiceProvider_PTR() *QGeoServiceProvider {
-	return ptr
-}
-
-func (ptr *QGeoServiceProvider) Pointer() unsafe.Pointer {
-	if ptr != nil {
-		return ptr.QObject_PTR().Pointer()
-	}
-	return nil
-}
-
-func (ptr *QGeoServiceProvider) SetPointer(p unsafe.Pointer) {
-	if ptr != nil {
-		ptr.QObject_PTR().SetPointer(p)
-	}
-}
-
-func PointerFromQGeoServiceProvider(ptr QGeoServiceProvider_ITF) unsafe.Pointer {
-	if ptr != nil {
-		return ptr.QGeoServiceProvider_PTR().Pointer()
-	}
-	return nil
-}
-
-func NewQGeoServiceProviderFromPointer(ptr unsafe.Pointer) *QGeoServiceProvider {
-	var n = new(QGeoServiceProvider)
-	n.SetPointer(ptr)
-	return n
-}
 func QGeoServiceProvider_AvailableServiceProviders() []string {
 	return strings.Split(cGoUnpackString(C.QGeoServiceProvider_QGeoServiceProvider_AvailableServiceProviders()), "|")
 }
@@ -3292,27 +3296,6 @@ func NewQGeoServiceProviderFactoryFromPointer(ptr unsafe.Pointer) *QGeoServicePr
 	return n
 }
 
-func (ptr *QGeoServiceProviderFactory) DisconnectCreateGeocodingManagerEngine() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QGeoServiceProviderFactory::createGeocodingManagerEngine")
-	}
-}
-
-func (ptr *QGeoServiceProviderFactory) DisconnectCreatePlaceManagerEngine() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QGeoServiceProviderFactory::createPlaceManagerEngine")
-	}
-}
-
-func (ptr *QGeoServiceProviderFactory) DisconnectCreateRoutingManagerEngine() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QGeoServiceProviderFactory::createRoutingManagerEngine")
-	}
-}
-
 //export callbackQGeoServiceProviderFactory_DestroyQGeoServiceProviderFactory
 func callbackQGeoServiceProviderFactory_DestroyQGeoServiceProviderFactory(ptr unsafe.Pointer) {
 
@@ -3352,17 +3335,6 @@ func (ptr *QGeoServiceProviderFactory) DestroyQGeoServiceProviderFactoryDefault(
 		ptr.SetPointer(nil)
 	}
 }
-
-//go:generate stringer -type=QLocation__Visibility
-//QLocation::Visibility
-type QLocation__Visibility int64
-
-const (
-	QLocation__UnspecifiedVisibility QLocation__Visibility = QLocation__Visibility(0x00)
-	QLocation__DeviceVisibility      QLocation__Visibility = QLocation__Visibility(0x01)
-	QLocation__PrivateVisibility     QLocation__Visibility = QLocation__Visibility(0x02)
-	QLocation__PublicVisibility      QLocation__Visibility = QLocation__Visibility(0x04)
-)
 
 type QLocation struct {
 	ptr unsafe.Pointer
@@ -3408,6 +3380,17 @@ func (ptr *QLocation) DestroyQLocation() {
 		ptr.SetPointer(nil)
 	}
 }
+
+//go:generate stringer -type=QLocation__Visibility
+//QLocation::Visibility
+type QLocation__Visibility int64
+
+const (
+	QLocation__UnspecifiedVisibility QLocation__Visibility = QLocation__Visibility(0x00)
+	QLocation__DeviceVisibility      QLocation__Visibility = QLocation__Visibility(0x01)
+	QLocation__PrivateVisibility     QLocation__Visibility = QLocation__Visibility(0x02)
+	QLocation__PublicVisibility      QLocation__Visibility = QLocation__Visibility(0x04)
+)
 
 type QPlace struct {
 	ptr unsafe.Pointer
@@ -3561,17 +3544,6 @@ func NewQPlaceContactDetailFromPointer(ptr unsafe.Pointer) *QPlaceContactDetail 
 	return n
 }
 
-//go:generate stringer -type=QPlaceContent__Type
-//QPlaceContent::Type
-type QPlaceContent__Type int64
-
-const (
-	QPlaceContent__NoType        QPlaceContent__Type = QPlaceContent__Type(0)
-	QPlaceContent__ImageType     QPlaceContent__Type = QPlaceContent__Type(1)
-	QPlaceContent__ReviewType    QPlaceContent__Type = QPlaceContent__Type(2)
-	QPlaceContent__EditorialType QPlaceContent__Type = QPlaceContent__Type(3)
-)
-
 type QPlaceContent struct {
 	ptr unsafe.Pointer
 }
@@ -3609,6 +3581,17 @@ func NewQPlaceContentFromPointer(ptr unsafe.Pointer) *QPlaceContent {
 	n.SetPointer(ptr)
 	return n
 }
+
+//go:generate stringer -type=QPlaceContent__Type
+//QPlaceContent::Type
+type QPlaceContent__Type int64
+
+const (
+	QPlaceContent__NoType        QPlaceContent__Type = QPlaceContent__Type(0)
+	QPlaceContent__ImageType     QPlaceContent__Type = QPlaceContent__Type(1)
+	QPlaceContent__ReviewType    QPlaceContent__Type = QPlaceContent__Type(2)
+	QPlaceContent__EditorialType QPlaceContent__Type = QPlaceContent__Type(3)
+)
 
 type QPlaceContentReply struct {
 	QPlaceReply
@@ -3803,17 +3786,6 @@ func NewQPlaceIconFromPointer(ptr unsafe.Pointer) *QPlaceIcon {
 	return n
 }
 
-//go:generate stringer -type=QPlaceIdReply__OperationType
-//QPlaceIdReply::OperationType
-type QPlaceIdReply__OperationType int64
-
-const (
-	QPlaceIdReply__SavePlace      QPlaceIdReply__OperationType = QPlaceIdReply__OperationType(0)
-	QPlaceIdReply__SaveCategory   QPlaceIdReply__OperationType = QPlaceIdReply__OperationType(1)
-	QPlaceIdReply__RemovePlace    QPlaceIdReply__OperationType = QPlaceIdReply__OperationType(2)
-	QPlaceIdReply__RemoveCategory QPlaceIdReply__OperationType = QPlaceIdReply__OperationType(3)
-)
-
 type QPlaceIdReply struct {
 	QPlaceReply
 }
@@ -3852,6 +3824,17 @@ func NewQPlaceIdReplyFromPointer(ptr unsafe.Pointer) *QPlaceIdReply {
 	n.SetPointer(ptr)
 	return n
 }
+
+//go:generate stringer -type=QPlaceIdReply__OperationType
+//QPlaceIdReply::OperationType
+type QPlaceIdReply__OperationType int64
+
+const (
+	QPlaceIdReply__SavePlace      QPlaceIdReply__OperationType = QPlaceIdReply__OperationType(0)
+	QPlaceIdReply__SaveCategory   QPlaceIdReply__OperationType = QPlaceIdReply__OperationType(1)
+	QPlaceIdReply__RemovePlace    QPlaceIdReply__OperationType = QPlaceIdReply__OperationType(2)
+	QPlaceIdReply__RemoveCategory QPlaceIdReply__OperationType = QPlaceIdReply__OperationType(3)
+)
 
 type QPlaceImage struct {
 	QPlaceContent
@@ -4124,37 +4107,6 @@ func NewQPlaceRatingsFromPointer(ptr unsafe.Pointer) *QPlaceRatings {
 	return n
 }
 
-//go:generate stringer -type=QPlaceReply__Error
-//QPlaceReply::Error
-type QPlaceReply__Error int64
-
-const (
-	QPlaceReply__NoError                   QPlaceReply__Error = QPlaceReply__Error(0)
-	QPlaceReply__PlaceDoesNotExistError    QPlaceReply__Error = QPlaceReply__Error(1)
-	QPlaceReply__CategoryDoesNotExistError QPlaceReply__Error = QPlaceReply__Error(2)
-	QPlaceReply__CommunicationError        QPlaceReply__Error = QPlaceReply__Error(3)
-	QPlaceReply__ParseError                QPlaceReply__Error = QPlaceReply__Error(4)
-	QPlaceReply__PermissionsError          QPlaceReply__Error = QPlaceReply__Error(5)
-	QPlaceReply__UnsupportedError          QPlaceReply__Error = QPlaceReply__Error(6)
-	QPlaceReply__BadArgumentError          QPlaceReply__Error = QPlaceReply__Error(7)
-	QPlaceReply__CancelError               QPlaceReply__Error = QPlaceReply__Error(8)
-	QPlaceReply__UnknownError              QPlaceReply__Error = QPlaceReply__Error(9)
-)
-
-//go:generate stringer -type=QPlaceReply__Type
-//QPlaceReply::Type
-type QPlaceReply__Type int64
-
-const (
-	QPlaceReply__Reply                 QPlaceReply__Type = QPlaceReply__Type(0)
-	QPlaceReply__DetailsReply          QPlaceReply__Type = QPlaceReply__Type(1)
-	QPlaceReply__SearchReply           QPlaceReply__Type = QPlaceReply__Type(2)
-	QPlaceReply__SearchSuggestionReply QPlaceReply__Type = QPlaceReply__Type(3)
-	QPlaceReply__ContentReply          QPlaceReply__Type = QPlaceReply__Type(4)
-	QPlaceReply__IdReply               QPlaceReply__Type = QPlaceReply__Type(5)
-	QPlaceReply__MatchReply            QPlaceReply__Type = QPlaceReply__Type(6)
-)
-
 type QPlaceReply struct {
 	core.QObject
 }
@@ -4193,6 +4145,37 @@ func NewQPlaceReplyFromPointer(ptr unsafe.Pointer) *QPlaceReply {
 	n.SetPointer(ptr)
 	return n
 }
+
+//go:generate stringer -type=QPlaceReply__Error
+//QPlaceReply::Error
+type QPlaceReply__Error int64
+
+const (
+	QPlaceReply__NoError                   QPlaceReply__Error = QPlaceReply__Error(0)
+	QPlaceReply__PlaceDoesNotExistError    QPlaceReply__Error = QPlaceReply__Error(1)
+	QPlaceReply__CategoryDoesNotExistError QPlaceReply__Error = QPlaceReply__Error(2)
+	QPlaceReply__CommunicationError        QPlaceReply__Error = QPlaceReply__Error(3)
+	QPlaceReply__ParseError                QPlaceReply__Error = QPlaceReply__Error(4)
+	QPlaceReply__PermissionsError          QPlaceReply__Error = QPlaceReply__Error(5)
+	QPlaceReply__UnsupportedError          QPlaceReply__Error = QPlaceReply__Error(6)
+	QPlaceReply__BadArgumentError          QPlaceReply__Error = QPlaceReply__Error(7)
+	QPlaceReply__CancelError               QPlaceReply__Error = QPlaceReply__Error(8)
+	QPlaceReply__UnknownError              QPlaceReply__Error = QPlaceReply__Error(9)
+)
+
+//go:generate stringer -type=QPlaceReply__Type
+//QPlaceReply::Type
+type QPlaceReply__Type int64
+
+const (
+	QPlaceReply__Reply                 QPlaceReply__Type = QPlaceReply__Type(0)
+	QPlaceReply__DetailsReply          QPlaceReply__Type = QPlaceReply__Type(1)
+	QPlaceReply__SearchReply           QPlaceReply__Type = QPlaceReply__Type(2)
+	QPlaceReply__SearchSuggestionReply QPlaceReply__Type = QPlaceReply__Type(3)
+	QPlaceReply__ContentReply          QPlaceReply__Type = QPlaceReply__Type(4)
+	QPlaceReply__IdReply               QPlaceReply__Type = QPlaceReply__Type(5)
+	QPlaceReply__MatchReply            QPlaceReply__Type = QPlaceReply__Type(6)
+)
 
 type QPlaceResult struct {
 	QPlaceSearchResult
@@ -4311,16 +4294,6 @@ func NewQPlaceSearchReplyFromPointer(ptr unsafe.Pointer) *QPlaceSearchReply {
 	return n
 }
 
-//go:generate stringer -type=QPlaceSearchRequest__RelevanceHint
-//QPlaceSearchRequest::RelevanceHint
-type QPlaceSearchRequest__RelevanceHint int64
-
-const (
-	QPlaceSearchRequest__UnspecifiedHint      QPlaceSearchRequest__RelevanceHint = QPlaceSearchRequest__RelevanceHint(0)
-	QPlaceSearchRequest__DistanceHint         QPlaceSearchRequest__RelevanceHint = QPlaceSearchRequest__RelevanceHint(1)
-	QPlaceSearchRequest__LexicalPlaceNameHint QPlaceSearchRequest__RelevanceHint = QPlaceSearchRequest__RelevanceHint(2)
-)
-
 type QPlaceSearchRequest struct {
 	ptr unsafe.Pointer
 }
@@ -4359,14 +4332,14 @@ func NewQPlaceSearchRequestFromPointer(ptr unsafe.Pointer) *QPlaceSearchRequest 
 	return n
 }
 
-//go:generate stringer -type=QPlaceSearchResult__SearchResultType
-//QPlaceSearchResult::SearchResultType
-type QPlaceSearchResult__SearchResultType int64
+//go:generate stringer -type=QPlaceSearchRequest__RelevanceHint
+//QPlaceSearchRequest::RelevanceHint
+type QPlaceSearchRequest__RelevanceHint int64
 
 const (
-	QPlaceSearchResult__UnknownSearchResult  QPlaceSearchResult__SearchResultType = QPlaceSearchResult__SearchResultType(0)
-	QPlaceSearchResult__PlaceResult          QPlaceSearchResult__SearchResultType = QPlaceSearchResult__SearchResultType(1)
-	QPlaceSearchResult__ProposedSearchResult QPlaceSearchResult__SearchResultType = QPlaceSearchResult__SearchResultType(2)
+	QPlaceSearchRequest__UnspecifiedHint      QPlaceSearchRequest__RelevanceHint = QPlaceSearchRequest__RelevanceHint(0)
+	QPlaceSearchRequest__DistanceHint         QPlaceSearchRequest__RelevanceHint = QPlaceSearchRequest__RelevanceHint(1)
+	QPlaceSearchRequest__LexicalPlaceNameHint QPlaceSearchRequest__RelevanceHint = QPlaceSearchRequest__RelevanceHint(2)
 )
 
 type QPlaceSearchResult struct {
@@ -4406,6 +4379,16 @@ func NewQPlaceSearchResultFromPointer(ptr unsafe.Pointer) *QPlaceSearchResult {
 	n.SetPointer(ptr)
 	return n
 }
+
+//go:generate stringer -type=QPlaceSearchResult__SearchResultType
+//QPlaceSearchResult::SearchResultType
+type QPlaceSearchResult__SearchResultType int64
+
+const (
+	QPlaceSearchResult__UnknownSearchResult  QPlaceSearchResult__SearchResultType = QPlaceSearchResult__SearchResultType(0)
+	QPlaceSearchResult__PlaceResult          QPlaceSearchResult__SearchResultType = QPlaceSearchResult__SearchResultType(1)
+	QPlaceSearchResult__ProposedSearchResult QPlaceSearchResult__SearchResultType = QPlaceSearchResult__SearchResultType(2)
+)
 
 type QPlaceSearchSuggestionReply struct {
 	QPlaceReply

@@ -56,7 +56,7 @@ func (f *Function) fixGeneral() {
 }
 
 func (f *Function) fixGeneral_AfterClasses() {
-	if f.Name != "open" && f.Name != "setGeometry" && f.Name != "setScxmlEvent" && //TODO: solve
+	if f.Name != "open" && f.Name != "setGeometry" && f.Name != "setScxmlEvent" && //TODO:
 		!f.Static && f.Virtual == "non" && f.Meta == PLAIN && f.IsDerivedFromVirtual() {
 		f.Virtual = IMPURE
 	}

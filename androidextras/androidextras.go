@@ -68,7 +68,7 @@ func (ptr *QAndroidActivityResultReceiver) ConnectHandleActivityResult(f func(re
 
 }
 
-func (ptr *QAndroidActivityResultReceiver) DisconnectHandleActivityResult(receiverRequestCode int, resultCode int, data QAndroidJniObject_ITF) {
+func (ptr *QAndroidActivityResultReceiver) DisconnectHandleActivityResult() {
 
 }
 

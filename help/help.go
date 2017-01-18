@@ -877,13 +877,6 @@ func (ptr *QHelpContentModel) InsertRowsDefault(row int, count int, parent core.
 	return false
 }
 
-func (ptr *QHelpContentModel) DisconnectMimeData() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpContentModel::mimeData")
-	}
-}
-
 //export callbackQHelpContentModel_MimeTypes
 func callbackQHelpContentModel_MimeTypes(ptr unsafe.Pointer) *C.char {
 
@@ -8027,7 +8020,7 @@ func callbackQHelpIndexModel_ColumnCount(ptr unsafe.Pointer, parent unsafe.Point
 		return C.int(int32(signal.(func(*core.QModelIndex) int)(core.NewQModelIndexFromPointer(parent))))
 	}
 
-	return C.int(int32(NewQHelpIndexModelFromPointer(ptr).ColumnCountDefault(core.NewQModelIndexFromPointer(parent))))
+	return C.int(int32(0))
 }
 
 func (ptr *QHelpIndexModel) ConnectColumnCount(f func(parent *core.QModelIndex) int) {
@@ -8047,13 +8040,6 @@ func (ptr *QHelpIndexModel) DisconnectColumnCount() {
 func (ptr *QHelpIndexModel) ColumnCount(parent core.QModelIndex_ITF) int {
 	if ptr.Pointer() != nil {
 		return int(int32(C.QHelpIndexModel_ColumnCount(ptr.Pointer(), core.PointerFromQModelIndex(parent))))
-	}
-	return 0
-}
-
-func (ptr *QHelpIndexModel) ColumnCountDefault(parent core.QModelIndex_ITF) int {
-	if ptr.Pointer() != nil {
-		return int(int32(C.QHelpIndexModel_ColumnCountDefault(ptr.Pointer(), core.PointerFromQModelIndex(parent))))
 	}
 	return 0
 }
@@ -8212,13 +8198,6 @@ func (ptr *QHelpIndexModel) InsertColumnsDefault(column int, count int, parent c
 	return false
 }
 
-func (ptr *QHelpIndexModel) DisconnectMimeData() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexModel::mimeData")
-	}
-}
-
 //export callbackQHelpIndexModel_MimeTypes
 func callbackQHelpIndexModel_MimeTypes(ptr unsafe.Pointer) *C.char {
 
@@ -8340,7 +8319,7 @@ func callbackQHelpIndexModel_Parent(ptr unsafe.Pointer, index unsafe.Pointer) un
 		return core.PointerFromQModelIndex(signal.(func(*core.QModelIndex) *core.QModelIndex)(core.NewQModelIndexFromPointer(index)))
 	}
 
-	return core.PointerFromQModelIndex(NewQHelpIndexModelFromPointer(ptr).ParentDefault(core.NewQModelIndexFromPointer(index)))
+	return core.PointerFromQModelIndex(core.NewQModelIndex())
 }
 
 func (ptr *QHelpIndexModel) ConnectParent(f func(index *core.QModelIndex) *core.QModelIndex) {
@@ -8360,15 +8339,6 @@ func (ptr *QHelpIndexModel) DisconnectParent() {
 func (ptr *QHelpIndexModel) Parent(index core.QModelIndex_ITF) *core.QModelIndex {
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQModelIndexFromPointer(C.QHelpIndexModel_Parent(ptr.Pointer(), core.PointerFromQModelIndex(index)))
-		runtime.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QHelpIndexModel) ParentDefault(index core.QModelIndex_ITF) *core.QModelIndex {
-	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQModelIndexFromPointer(C.QHelpIndexModel_ParentDefault(ptr.Pointer(), core.PointerFromQModelIndex(index)))
 		runtime.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
 		return tmpValue
 	}
@@ -9022,8 +8992,9 @@ func (ptr *QHelpIndexWidget) DestroyQHelpIndexWidget() {
 func callbackQHelpIndexWidget_ActivateCurrentItem(ptr unsafe.Pointer) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpIndexWidget::activateCurrentItem"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQHelpIndexWidgetFromPointer(ptr).ActivateCurrentItemDefault()
 	}
-
 }
 
 func (ptr *QHelpIndexWidget) ConnectActivateCurrentItem(f func()) {
@@ -9046,12 +9017,19 @@ func (ptr *QHelpIndexWidget) ActivateCurrentItem() {
 	}
 }
 
+func (ptr *QHelpIndexWidget) ActivateCurrentItemDefault() {
+	if ptr.Pointer() != nil {
+		C.QHelpIndexWidget_ActivateCurrentItemDefault(ptr.Pointer())
+	}
+}
+
 //export callbackQHelpIndexWidget_FilterIndices
 func callbackQHelpIndexWidget_FilterIndices(ptr unsafe.Pointer, filter C.struct_QtHelp_PackedString, wildcard C.struct_QtHelp_PackedString) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpIndexWidget::filterIndices"); signal != nil {
 		signal.(func(string, string))(cGoUnpackString(filter), cGoUnpackString(wildcard))
+	} else {
+		NewQHelpIndexWidgetFromPointer(ptr).FilterIndicesDefault(cGoUnpackString(filter), cGoUnpackString(wildcard))
 	}
-
 }
 
 func (ptr *QHelpIndexWidget) ConnectFilterIndices(f func(filter string, wildcard string)) {
@@ -9061,7 +9039,7 @@ func (ptr *QHelpIndexWidget) ConnectFilterIndices(f func(filter string, wildcard
 	}
 }
 
-func (ptr *QHelpIndexWidget) DisconnectFilterIndices(filter string, wildcard string) {
+func (ptr *QHelpIndexWidget) DisconnectFilterIndices() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QHelpIndexWidget::filterIndices")
@@ -9075,6 +9053,16 @@ func (ptr *QHelpIndexWidget) FilterIndices(filter string, wildcard string) {
 		var wildcardC = C.CString(wildcard)
 		defer C.free(unsafe.Pointer(wildcardC))
 		C.QHelpIndexWidget_FilterIndices(ptr.Pointer(), filterC, wildcardC)
+	}
+}
+
+func (ptr *QHelpIndexWidget) FilterIndicesDefault(filter string, wildcard string) {
+	if ptr.Pointer() != nil {
+		var filterC = C.CString(filter)
+		defer C.free(unsafe.Pointer(filterC))
+		var wildcardC = C.CString(wildcard)
+		defer C.free(unsafe.Pointer(wildcardC))
+		C.QHelpIndexWidget_FilterIndicesDefault(ptr.Pointer(), filterC, wildcardC)
 	}
 }
 
@@ -12905,8 +12893,9 @@ func NewQHelpSearchEngine(helpEngine QHelpEngineCore_ITF, parent core.QObject_IT
 func callbackQHelpSearchEngine_CancelIndexing(ptr unsafe.Pointer) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpSearchEngine::cancelIndexing"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQHelpSearchEngineFromPointer(ptr).CancelIndexingDefault()
 	}
-
 }
 
 func (ptr *QHelpSearchEngine) ConnectCancelIndexing(f func()) {
@@ -12929,12 +12918,19 @@ func (ptr *QHelpSearchEngine) CancelIndexing() {
 	}
 }
 
+func (ptr *QHelpSearchEngine) CancelIndexingDefault() {
+	if ptr.Pointer() != nil {
+		C.QHelpSearchEngine_CancelIndexingDefault(ptr.Pointer())
+	}
+}
+
 //export callbackQHelpSearchEngine_CancelSearching
 func callbackQHelpSearchEngine_CancelSearching(ptr unsafe.Pointer) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpSearchEngine::cancelSearching"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQHelpSearchEngineFromPointer(ptr).CancelSearchingDefault()
 	}
-
 }
 
 func (ptr *QHelpSearchEngine) ConnectCancelSearching(f func()) {
@@ -12954,6 +12950,12 @@ func (ptr *QHelpSearchEngine) DisconnectCancelSearching() {
 func (ptr *QHelpSearchEngine) CancelSearching() {
 	if ptr.Pointer() != nil {
 		C.QHelpSearchEngine_CancelSearching(ptr.Pointer())
+	}
+}
+
+func (ptr *QHelpSearchEngine) CancelSearchingDefault() {
+	if ptr.Pointer() != nil {
+		C.QHelpSearchEngine_CancelSearchingDefault(ptr.Pointer())
 	}
 }
 
@@ -13037,8 +13039,9 @@ func (ptr *QHelpSearchEngine) QueryWidget() *QHelpSearchQueryWidget {
 func callbackQHelpSearchEngine_ReindexDocumentation(ptr unsafe.Pointer) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpSearchEngine::reindexDocumentation"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQHelpSearchEngineFromPointer(ptr).ReindexDocumentationDefault()
 	}
-
 }
 
 func (ptr *QHelpSearchEngine) ConnectReindexDocumentation(f func()) {
@@ -13058,6 +13061,12 @@ func (ptr *QHelpSearchEngine) DisconnectReindexDocumentation() {
 func (ptr *QHelpSearchEngine) ReindexDocumentation() {
 	if ptr.Pointer() != nil {
 		C.QHelpSearchEngine_ReindexDocumentation(ptr.Pointer())
+	}
+}
+
+func (ptr *QHelpSearchEngine) ReindexDocumentationDefault() {
+	if ptr.Pointer() != nil {
+		C.QHelpSearchEngine_ReindexDocumentationDefault(ptr.Pointer())
 	}
 }
 
@@ -13480,19 +13489,6 @@ func (ptr *QHelpSearchEngine) MetaObjectDefault() *core.QMetaObject {
 	return nil
 }
 
-//go:generate stringer -type=QHelpSearchQuery__FieldName
-//QHelpSearchQuery::FieldName
-type QHelpSearchQuery__FieldName int64
-
-const (
-	QHelpSearchQuery__DEFAULT QHelpSearchQuery__FieldName = QHelpSearchQuery__FieldName(0)
-	QHelpSearchQuery__FUZZY   QHelpSearchQuery__FieldName = QHelpSearchQuery__FieldName(1)
-	QHelpSearchQuery__WITHOUT QHelpSearchQuery__FieldName = QHelpSearchQuery__FieldName(2)
-	QHelpSearchQuery__PHRASE  QHelpSearchQuery__FieldName = QHelpSearchQuery__FieldName(3)
-	QHelpSearchQuery__ALL     QHelpSearchQuery__FieldName = QHelpSearchQuery__FieldName(4)
-	QHelpSearchQuery__ATLEAST QHelpSearchQuery__FieldName = QHelpSearchQuery__FieldName(5)
-)
-
 type QHelpSearchQuery struct {
 	ptr unsafe.Pointer
 }
@@ -13537,6 +13533,19 @@ func (ptr *QHelpSearchQuery) DestroyQHelpSearchQuery() {
 		ptr.SetPointer(nil)
 	}
 }
+
+//go:generate stringer -type=QHelpSearchQuery__FieldName
+//QHelpSearchQuery::FieldName
+type QHelpSearchQuery__FieldName int64
+
+const (
+	QHelpSearchQuery__DEFAULT QHelpSearchQuery__FieldName = QHelpSearchQuery__FieldName(0)
+	QHelpSearchQuery__FUZZY   QHelpSearchQuery__FieldName = QHelpSearchQuery__FieldName(1)
+	QHelpSearchQuery__WITHOUT QHelpSearchQuery__FieldName = QHelpSearchQuery__FieldName(2)
+	QHelpSearchQuery__PHRASE  QHelpSearchQuery__FieldName = QHelpSearchQuery__FieldName(3)
+	QHelpSearchQuery__ALL     QHelpSearchQuery__FieldName = QHelpSearchQuery__FieldName(4)
+	QHelpSearchQuery__ATLEAST QHelpSearchQuery__FieldName = QHelpSearchQuery__FieldName(5)
+)
 
 func NewQHelpSearchQuery() *QHelpSearchQuery {
 	var tmpValue = NewQHelpSearchQueryFromPointer(C.QHelpSearchQuery_NewQHelpSearchQuery())

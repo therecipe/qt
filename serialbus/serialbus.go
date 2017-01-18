@@ -22,28 +22,6 @@ func cGoUnpackString(s C.struct_QtSerialBus_PackedString) string {
 	return C.GoStringN(s.data, C.int(s.len))
 }
 
-//go:generate stringer -type=Diagnostics__SubFunctionCode
-//Diagnostics::SubFunctionCode
-type Diagnostics__SubFunctionCode int64
-
-const (
-	Diagnostics__ReturnQueryData                    Diagnostics__SubFunctionCode = Diagnostics__SubFunctionCode(0x0000)
-	Diagnostics__RestartCommunicationsOption        Diagnostics__SubFunctionCode = Diagnostics__SubFunctionCode(0x0001)
-	Diagnostics__ReturnDiagnosticRegister           Diagnostics__SubFunctionCode = Diagnostics__SubFunctionCode(0x0002)
-	Diagnostics__ChangeAsciiInputDelimiter          Diagnostics__SubFunctionCode = Diagnostics__SubFunctionCode(0x0003)
-	Diagnostics__ForceListenOnlyMode                Diagnostics__SubFunctionCode = Diagnostics__SubFunctionCode(0x0004)
-	Diagnostics__ClearCountersAndDiagnosticRegister Diagnostics__SubFunctionCode = Diagnostics__SubFunctionCode(0x000a)
-	Diagnostics__ReturnBusMessageCount              Diagnostics__SubFunctionCode = Diagnostics__SubFunctionCode(0x000b)
-	Diagnostics__ReturnBusCommunicationErrorCount   Diagnostics__SubFunctionCode = Diagnostics__SubFunctionCode(0x000c)
-	Diagnostics__ReturnBusExceptionErrorCount       Diagnostics__SubFunctionCode = Diagnostics__SubFunctionCode(0x000d)
-	Diagnostics__ReturnServerMessageCount           Diagnostics__SubFunctionCode = Diagnostics__SubFunctionCode(0x000e)
-	Diagnostics__ReturnServerNoResponseCount        Diagnostics__SubFunctionCode = Diagnostics__SubFunctionCode(0x000f)
-	Diagnostics__ReturnServerNAKCount               Diagnostics__SubFunctionCode = Diagnostics__SubFunctionCode(0x0010)
-	Diagnostics__ReturnServerBusyCount              Diagnostics__SubFunctionCode = Diagnostics__SubFunctionCode(0x0011)
-	Diagnostics__ReturnBusCharacterOverrunCount     Diagnostics__SubFunctionCode = Diagnostics__SubFunctionCode(0x0012)
-	Diagnostics__ClearOverrunCounterAndFlag         Diagnostics__SubFunctionCode = Diagnostics__SubFunctionCode(0x0014)
-)
-
 type Diagnostics struct {
 	ptr unsafe.Pointer
 }
@@ -89,13 +67,26 @@ func (ptr *Diagnostics) DestroyDiagnostics() {
 	}
 }
 
-//go:generate stringer -type=EncapsulatedInterfaceTransport__SubFunctionCode
-//EncapsulatedInterfaceTransport::SubFunctionCode
-type EncapsulatedInterfaceTransport__SubFunctionCode int64
+//go:generate stringer -type=Diagnostics__SubFunctionCode
+//Diagnostics::SubFunctionCode
+type Diagnostics__SubFunctionCode int64
 
 const (
-	EncapsulatedInterfaceTransport__CanOpenGeneralReference  EncapsulatedInterfaceTransport__SubFunctionCode = EncapsulatedInterfaceTransport__SubFunctionCode(0x0D)
-	EncapsulatedInterfaceTransport__ReadDeviceIdentification EncapsulatedInterfaceTransport__SubFunctionCode = EncapsulatedInterfaceTransport__SubFunctionCode(0x0E)
+	Diagnostics__ReturnQueryData                    Diagnostics__SubFunctionCode = Diagnostics__SubFunctionCode(0x0000)
+	Diagnostics__RestartCommunicationsOption        Diagnostics__SubFunctionCode = Diagnostics__SubFunctionCode(0x0001)
+	Diagnostics__ReturnDiagnosticRegister           Diagnostics__SubFunctionCode = Diagnostics__SubFunctionCode(0x0002)
+	Diagnostics__ChangeAsciiInputDelimiter          Diagnostics__SubFunctionCode = Diagnostics__SubFunctionCode(0x0003)
+	Diagnostics__ForceListenOnlyMode                Diagnostics__SubFunctionCode = Diagnostics__SubFunctionCode(0x0004)
+	Diagnostics__ClearCountersAndDiagnosticRegister Diagnostics__SubFunctionCode = Diagnostics__SubFunctionCode(0x000a)
+	Diagnostics__ReturnBusMessageCount              Diagnostics__SubFunctionCode = Diagnostics__SubFunctionCode(0x000b)
+	Diagnostics__ReturnBusCommunicationErrorCount   Diagnostics__SubFunctionCode = Diagnostics__SubFunctionCode(0x000c)
+	Diagnostics__ReturnBusExceptionErrorCount       Diagnostics__SubFunctionCode = Diagnostics__SubFunctionCode(0x000d)
+	Diagnostics__ReturnServerMessageCount           Diagnostics__SubFunctionCode = Diagnostics__SubFunctionCode(0x000e)
+	Diagnostics__ReturnServerNoResponseCount        Diagnostics__SubFunctionCode = Diagnostics__SubFunctionCode(0x000f)
+	Diagnostics__ReturnServerNAKCount               Diagnostics__SubFunctionCode = Diagnostics__SubFunctionCode(0x0010)
+	Diagnostics__ReturnServerBusyCount              Diagnostics__SubFunctionCode = Diagnostics__SubFunctionCode(0x0011)
+	Diagnostics__ReturnBusCharacterOverrunCount     Diagnostics__SubFunctionCode = Diagnostics__SubFunctionCode(0x0012)
+	Diagnostics__ClearOverrunCounterAndFlag         Diagnostics__SubFunctionCode = Diagnostics__SubFunctionCode(0x0014)
 )
 
 type EncapsulatedInterfaceTransport struct {
@@ -142,6 +133,15 @@ func (ptr *EncapsulatedInterfaceTransport) DestroyEncapsulatedInterfaceTransport
 		ptr.SetPointer(nil)
 	}
 }
+
+//go:generate stringer -type=EncapsulatedInterfaceTransport__SubFunctionCode
+//EncapsulatedInterfaceTransport::SubFunctionCode
+type EncapsulatedInterfaceTransport__SubFunctionCode int64
+
+const (
+	EncapsulatedInterfaceTransport__CanOpenGeneralReference  EncapsulatedInterfaceTransport__SubFunctionCode = EncapsulatedInterfaceTransport__SubFunctionCode(0x0D)
+	EncapsulatedInterfaceTransport__ReadDeviceIdentification EncapsulatedInterfaceTransport__SubFunctionCode = EncapsulatedInterfaceTransport__SubFunctionCode(0x0E)
+)
 
 type QCanBus struct {
 	core.QObject
@@ -574,44 +574,6 @@ func (ptr *QCanBus) MetaObjectDefault() *core.QMetaObject {
 	return nil
 }
 
-//go:generate stringer -type=QCanBusDevice__CanBusDeviceState
-//QCanBusDevice::CanBusDeviceState
-type QCanBusDevice__CanBusDeviceState int64
-
-const (
-	QCanBusDevice__UnconnectedState QCanBusDevice__CanBusDeviceState = QCanBusDevice__CanBusDeviceState(0)
-	QCanBusDevice__ConnectingState  QCanBusDevice__CanBusDeviceState = QCanBusDevice__CanBusDeviceState(1)
-	QCanBusDevice__ConnectedState   QCanBusDevice__CanBusDeviceState = QCanBusDevice__CanBusDeviceState(2)
-	QCanBusDevice__ClosingState     QCanBusDevice__CanBusDeviceState = QCanBusDevice__CanBusDeviceState(3)
-)
-
-//go:generate stringer -type=QCanBusDevice__CanBusError
-//QCanBusDevice::CanBusError
-type QCanBusDevice__CanBusError int64
-
-const (
-	QCanBusDevice__NoError            QCanBusDevice__CanBusError = QCanBusDevice__CanBusError(0)
-	QCanBusDevice__ReadError          QCanBusDevice__CanBusError = QCanBusDevice__CanBusError(1)
-	QCanBusDevice__WriteError         QCanBusDevice__CanBusError = QCanBusDevice__CanBusError(2)
-	QCanBusDevice__ConnectionError    QCanBusDevice__CanBusError = QCanBusDevice__CanBusError(3)
-	QCanBusDevice__ConfigurationError QCanBusDevice__CanBusError = QCanBusDevice__CanBusError(4)
-	QCanBusDevice__UnknownError       QCanBusDevice__CanBusError = QCanBusDevice__CanBusError(5)
-)
-
-//go:generate stringer -type=QCanBusDevice__ConfigurationKey
-//QCanBusDevice::ConfigurationKey
-type QCanBusDevice__ConfigurationKey int64
-
-const (
-	QCanBusDevice__RawFilterKey   QCanBusDevice__ConfigurationKey = QCanBusDevice__ConfigurationKey(0)
-	QCanBusDevice__ErrorFilterKey QCanBusDevice__ConfigurationKey = QCanBusDevice__ConfigurationKey(1)
-	QCanBusDevice__LoopbackKey    QCanBusDevice__ConfigurationKey = QCanBusDevice__ConfigurationKey(2)
-	QCanBusDevice__ReceiveOwnKey  QCanBusDevice__ConfigurationKey = QCanBusDevice__ConfigurationKey(3)
-	QCanBusDevice__BitRateKey     QCanBusDevice__ConfigurationKey = QCanBusDevice__ConfigurationKey(4)
-	QCanBusDevice__CanFdKey       QCanBusDevice__ConfigurationKey = QCanBusDevice__ConfigurationKey(5)
-	QCanBusDevice__UserKey        QCanBusDevice__ConfigurationKey = QCanBusDevice__ConfigurationKey(30)
-)
-
 type QCanBusDevice struct {
 	core.QObject
 }
@@ -658,6 +620,44 @@ func (ptr *QCanBusDevice) DestroyQCanBusDevice() {
 		ptr.SetPointer(nil)
 	}
 }
+
+//go:generate stringer -type=QCanBusDevice__CanBusDeviceState
+//QCanBusDevice::CanBusDeviceState
+type QCanBusDevice__CanBusDeviceState int64
+
+const (
+	QCanBusDevice__UnconnectedState QCanBusDevice__CanBusDeviceState = QCanBusDevice__CanBusDeviceState(0)
+	QCanBusDevice__ConnectingState  QCanBusDevice__CanBusDeviceState = QCanBusDevice__CanBusDeviceState(1)
+	QCanBusDevice__ConnectedState   QCanBusDevice__CanBusDeviceState = QCanBusDevice__CanBusDeviceState(2)
+	QCanBusDevice__ClosingState     QCanBusDevice__CanBusDeviceState = QCanBusDevice__CanBusDeviceState(3)
+)
+
+//go:generate stringer -type=QCanBusDevice__CanBusError
+//QCanBusDevice::CanBusError
+type QCanBusDevice__CanBusError int64
+
+const (
+	QCanBusDevice__NoError            QCanBusDevice__CanBusError = QCanBusDevice__CanBusError(0)
+	QCanBusDevice__ReadError          QCanBusDevice__CanBusError = QCanBusDevice__CanBusError(1)
+	QCanBusDevice__WriteError         QCanBusDevice__CanBusError = QCanBusDevice__CanBusError(2)
+	QCanBusDevice__ConnectionError    QCanBusDevice__CanBusError = QCanBusDevice__CanBusError(3)
+	QCanBusDevice__ConfigurationError QCanBusDevice__CanBusError = QCanBusDevice__CanBusError(4)
+	QCanBusDevice__UnknownError       QCanBusDevice__CanBusError = QCanBusDevice__CanBusError(5)
+)
+
+//go:generate stringer -type=QCanBusDevice__ConfigurationKey
+//QCanBusDevice::ConfigurationKey
+type QCanBusDevice__ConfigurationKey int64
+
+const (
+	QCanBusDevice__RawFilterKey   QCanBusDevice__ConfigurationKey = QCanBusDevice__ConfigurationKey(0)
+	QCanBusDevice__ErrorFilterKey QCanBusDevice__ConfigurationKey = QCanBusDevice__ConfigurationKey(1)
+	QCanBusDevice__LoopbackKey    QCanBusDevice__ConfigurationKey = QCanBusDevice__ConfigurationKey(2)
+	QCanBusDevice__ReceiveOwnKey  QCanBusDevice__ConfigurationKey = QCanBusDevice__ConfigurationKey(3)
+	QCanBusDevice__BitRateKey     QCanBusDevice__ConfigurationKey = QCanBusDevice__ConfigurationKey(4)
+	QCanBusDevice__CanFdKey       QCanBusDevice__ConfigurationKey = QCanBusDevice__ConfigurationKey(5)
+	QCanBusDevice__UserKey        QCanBusDevice__ConfigurationKey = QCanBusDevice__ConfigurationKey(30)
+)
 
 func (ptr *QCanBusDevice) FramesAvailable() int64 {
 	if ptr.Pointer() != nil {
@@ -863,7 +863,7 @@ func (ptr *QCanBusDevice) ConnectInterpretErrorFrame(f func(frame *QCanBusFrame)
 	}
 }
 
-func (ptr *QCanBusDevice) DisconnectInterpretErrorFrame(frame QCanBusFrame_ITF) {
+func (ptr *QCanBusDevice) DisconnectInterpretErrorFrame() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QCanBusDevice::interpretErrorFrame")
@@ -1011,7 +1011,7 @@ func (ptr *QCanBusDevice) ConnectWriteFrame(f func(frame *QCanBusFrame) bool) {
 	}
 }
 
-func (ptr *QCanBusDevice) DisconnectWriteFrame(frame QCanBusFrame_ITF) {
+func (ptr *QCanBusDevice) DisconnectWriteFrame() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QCanBusDevice::writeFrame")
@@ -1421,7 +1421,7 @@ func (ptr *QCanBusFactory) ConnectCreateDevice(f func(interfaceName string) *QCa
 	}
 }
 
-func (ptr *QCanBusFactory) DisconnectCreateDevice(interfaceName string) {
+func (ptr *QCanBusFactory) DisconnectCreateDevice() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QCanBusFactory::createDevice")
@@ -1440,37 +1440,6 @@ func (ptr *QCanBusFactory) CreateDevice(interfaceName string) *QCanBusDevice {
 	}
 	return nil
 }
-
-//go:generate stringer -type=QCanBusFrame__FrameError
-//QCanBusFrame::FrameError
-type QCanBusFrame__FrameError int64
-
-var (
-	QCanBusFrame__NoError                    QCanBusFrame__FrameError = QCanBusFrame__FrameError(0)
-	QCanBusFrame__TransmissionTimeoutError   QCanBusFrame__FrameError = QCanBusFrame__FrameError(C.QCanBusFrame_TransmissionTimeoutError_Type())
-	QCanBusFrame__LostArbitrationError       QCanBusFrame__FrameError = QCanBusFrame__FrameError(C.QCanBusFrame_LostArbitrationError_Type())
-	QCanBusFrame__ControllerError            QCanBusFrame__FrameError = QCanBusFrame__FrameError(C.QCanBusFrame_ControllerError_Type())
-	QCanBusFrame__ProtocolViolationError     QCanBusFrame__FrameError = QCanBusFrame__FrameError(C.QCanBusFrame_ProtocolViolationError_Type())
-	QCanBusFrame__TransceiverError           QCanBusFrame__FrameError = QCanBusFrame__FrameError(C.QCanBusFrame_TransceiverError_Type())
-	QCanBusFrame__MissingAcknowledgmentError QCanBusFrame__FrameError = QCanBusFrame__FrameError(C.QCanBusFrame_MissingAcknowledgmentError_Type())
-	QCanBusFrame__BusOffError                QCanBusFrame__FrameError = QCanBusFrame__FrameError(C.QCanBusFrame_BusOffError_Type())
-	QCanBusFrame__BusError                   QCanBusFrame__FrameError = QCanBusFrame__FrameError(C.QCanBusFrame_BusError_Type())
-	QCanBusFrame__ControllerRestartError     QCanBusFrame__FrameError = QCanBusFrame__FrameError(C.QCanBusFrame_ControllerRestartError_Type())
-	QCanBusFrame__UnknownError               QCanBusFrame__FrameError = QCanBusFrame__FrameError(C.QCanBusFrame_UnknownError_Type())
-	QCanBusFrame__AnyError                   QCanBusFrame__FrameError = QCanBusFrame__FrameError(C.QCanBusFrame_AnyError_Type())
-)
-
-//go:generate stringer -type=QCanBusFrame__FrameType
-//QCanBusFrame::FrameType
-type QCanBusFrame__FrameType int64
-
-const (
-	QCanBusFrame__UnknownFrame       QCanBusFrame__FrameType = QCanBusFrame__FrameType(0x0)
-	QCanBusFrame__DataFrame          QCanBusFrame__FrameType = QCanBusFrame__FrameType(0x1)
-	QCanBusFrame__ErrorFrame         QCanBusFrame__FrameType = QCanBusFrame__FrameType(0x2)
-	QCanBusFrame__RemoteRequestFrame QCanBusFrame__FrameType = QCanBusFrame__FrameType(0x3)
-	QCanBusFrame__InvalidFrame       QCanBusFrame__FrameType = QCanBusFrame__FrameType(0x4)
-)
 
 type QCanBusFrame struct {
 	ptr unsafe.Pointer
@@ -1516,6 +1485,37 @@ func (ptr *QCanBusFrame) DestroyQCanBusFrame() {
 		ptr.SetPointer(nil)
 	}
 }
+
+//go:generate stringer -type=QCanBusFrame__FrameError
+//QCanBusFrame::FrameError
+type QCanBusFrame__FrameError int64
+
+var (
+	QCanBusFrame__NoError                    QCanBusFrame__FrameError = QCanBusFrame__FrameError(0)
+	QCanBusFrame__TransmissionTimeoutError   QCanBusFrame__FrameError = QCanBusFrame__FrameError(C.QCanBusFrame_TransmissionTimeoutError_Type())
+	QCanBusFrame__LostArbitrationError       QCanBusFrame__FrameError = QCanBusFrame__FrameError(C.QCanBusFrame_LostArbitrationError_Type())
+	QCanBusFrame__ControllerError            QCanBusFrame__FrameError = QCanBusFrame__FrameError(C.QCanBusFrame_ControllerError_Type())
+	QCanBusFrame__ProtocolViolationError     QCanBusFrame__FrameError = QCanBusFrame__FrameError(C.QCanBusFrame_ProtocolViolationError_Type())
+	QCanBusFrame__TransceiverError           QCanBusFrame__FrameError = QCanBusFrame__FrameError(C.QCanBusFrame_TransceiverError_Type())
+	QCanBusFrame__MissingAcknowledgmentError QCanBusFrame__FrameError = QCanBusFrame__FrameError(C.QCanBusFrame_MissingAcknowledgmentError_Type())
+	QCanBusFrame__BusOffError                QCanBusFrame__FrameError = QCanBusFrame__FrameError(C.QCanBusFrame_BusOffError_Type())
+	QCanBusFrame__BusError                   QCanBusFrame__FrameError = QCanBusFrame__FrameError(C.QCanBusFrame_BusError_Type())
+	QCanBusFrame__ControllerRestartError     QCanBusFrame__FrameError = QCanBusFrame__FrameError(C.QCanBusFrame_ControllerRestartError_Type())
+	QCanBusFrame__UnknownError               QCanBusFrame__FrameError = QCanBusFrame__FrameError(C.QCanBusFrame_UnknownError_Type())
+	QCanBusFrame__AnyError                   QCanBusFrame__FrameError = QCanBusFrame__FrameError(C.QCanBusFrame_AnyError_Type())
+)
+
+//go:generate stringer -type=QCanBusFrame__FrameType
+//QCanBusFrame::FrameType
+type QCanBusFrame__FrameType int64
+
+const (
+	QCanBusFrame__UnknownFrame       QCanBusFrame__FrameType = QCanBusFrame__FrameType(0x0)
+	QCanBusFrame__DataFrame          QCanBusFrame__FrameType = QCanBusFrame__FrameType(0x1)
+	QCanBusFrame__ErrorFrame         QCanBusFrame__FrameType = QCanBusFrame__FrameType(0x2)
+	QCanBusFrame__RemoteRequestFrame QCanBusFrame__FrameType = QCanBusFrame__FrameType(0x3)
+	QCanBusFrame__InvalidFrame       QCanBusFrame__FrameType = QCanBusFrame__FrameType(0x4)
+)
 
 func NewQCanBusFrame(ty QCanBusFrame__FrameType) *QCanBusFrame {
 	var tmpValue = NewQCanBusFrameFromPointer(C.QCanBusFrame_NewQCanBusFrame(C.longlong(ty)))
@@ -1838,9 +1838,8 @@ func callbackQModbusClient_Close(ptr unsafe.Pointer) {
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QModbusClient::close"); signal != nil {
 		signal.(func())()
-	} else {
-
 	}
+
 }
 
 func (ptr *QModbusClient) ConnectClose(f func()) {
@@ -2227,18 +2226,6 @@ func (ptr *QModbusClient) MetaObjectDefault() *core.QMetaObject {
 	return nil
 }
 
-//go:generate stringer -type=QModbusDataUnit__RegisterType
-//QModbusDataUnit::RegisterType
-type QModbusDataUnit__RegisterType int64
-
-const (
-	QModbusDataUnit__Invalid          QModbusDataUnit__RegisterType = QModbusDataUnit__RegisterType(0)
-	QModbusDataUnit__DiscreteInputs   QModbusDataUnit__RegisterType = QModbusDataUnit__RegisterType(1)
-	QModbusDataUnit__Coils            QModbusDataUnit__RegisterType = QModbusDataUnit__RegisterType(2)
-	QModbusDataUnit__InputRegisters   QModbusDataUnit__RegisterType = QModbusDataUnit__RegisterType(3)
-	QModbusDataUnit__HoldingRegisters QModbusDataUnit__RegisterType = QModbusDataUnit__RegisterType(4)
-)
-
 type QModbusDataUnit struct {
 	ptr unsafe.Pointer
 }
@@ -2283,6 +2270,18 @@ func (ptr *QModbusDataUnit) DestroyQModbusDataUnit() {
 		ptr.SetPointer(nil)
 	}
 }
+
+//go:generate stringer -type=QModbusDataUnit__RegisterType
+//QModbusDataUnit::RegisterType
+type QModbusDataUnit__RegisterType int64
+
+const (
+	QModbusDataUnit__Invalid          QModbusDataUnit__RegisterType = QModbusDataUnit__RegisterType(0)
+	QModbusDataUnit__DiscreteInputs   QModbusDataUnit__RegisterType = QModbusDataUnit__RegisterType(1)
+	QModbusDataUnit__Coils            QModbusDataUnit__RegisterType = QModbusDataUnit__RegisterType(2)
+	QModbusDataUnit__InputRegisters   QModbusDataUnit__RegisterType = QModbusDataUnit__RegisterType(3)
+	QModbusDataUnit__HoldingRegisters QModbusDataUnit__RegisterType = QModbusDataUnit__RegisterType(4)
+)
 
 func NewQModbusDataUnit() *QModbusDataUnit {
 	var tmpValue = NewQModbusDataUnitFromPointer(C.QModbusDataUnit_NewQModbusDataUnit())
@@ -2361,6 +2360,45 @@ func (ptr *QModbusDataUnit) ValueCount() uint {
 	return 0
 }
 
+type QModbusDevice struct {
+	core.QObject
+}
+
+type QModbusDevice_ITF interface {
+	core.QObject_ITF
+	QModbusDevice_PTR() *QModbusDevice
+}
+
+func (ptr *QModbusDevice) QModbusDevice_PTR() *QModbusDevice {
+	return ptr
+}
+
+func (ptr *QModbusDevice) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QObject_PTR().Pointer()
+	}
+	return nil
+}
+
+func (ptr *QModbusDevice) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QObject_PTR().SetPointer(p)
+	}
+}
+
+func PointerFromQModbusDevice(ptr QModbusDevice_ITF) unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QModbusDevice_PTR().Pointer()
+	}
+	return nil
+}
+
+func NewQModbusDeviceFromPointer(ptr unsafe.Pointer) *QModbusDevice {
+	var n = new(QModbusDevice)
+	n.SetPointer(ptr)
+	return n
+}
+
 //go:generate stringer -type=QModbusDevice__ConnectionParameter
 //QModbusDevice::ConnectionParameter
 type QModbusDevice__ConnectionParameter int64
@@ -2403,44 +2441,6 @@ const (
 	QModbusDevice__ClosingState     QModbusDevice__State = QModbusDevice__State(3)
 )
 
-type QModbusDevice struct {
-	core.QObject
-}
-
-type QModbusDevice_ITF interface {
-	core.QObject_ITF
-	QModbusDevice_PTR() *QModbusDevice
-}
-
-func (ptr *QModbusDevice) QModbusDevice_PTR() *QModbusDevice {
-	return ptr
-}
-
-func (ptr *QModbusDevice) Pointer() unsafe.Pointer {
-	if ptr != nil {
-		return ptr.QObject_PTR().Pointer()
-	}
-	return nil
-}
-
-func (ptr *QModbusDevice) SetPointer(p unsafe.Pointer) {
-	if ptr != nil {
-		ptr.QObject_PTR().SetPointer(p)
-	}
-}
-
-func PointerFromQModbusDevice(ptr QModbusDevice_ITF) unsafe.Pointer {
-	if ptr != nil {
-		return ptr.QModbusDevice_PTR().Pointer()
-	}
-	return nil
-}
-
-func NewQModbusDeviceFromPointer(ptr unsafe.Pointer) *QModbusDevice {
-	var n = new(QModbusDevice)
-	n.SetPointer(ptr)
-	return n
-}
 func NewQModbusDevice(parent core.QObject_ITF) *QModbusDevice {
 	var tmpValue = NewQModbusDeviceFromPointer(C.QModbusDevice_NewQModbusDevice(core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
@@ -2971,47 +2971,6 @@ func (ptr *QModbusDevice) MetaObjectDefault() *core.QMetaObject {
 	return nil
 }
 
-//go:generate stringer -type=QModbusDeviceIdentification__ConformityLevel
-//QModbusDeviceIdentification::ConformityLevel
-type QModbusDeviceIdentification__ConformityLevel int64
-
-const (
-	QModbusDeviceIdentification__BasicConformityLevel              QModbusDeviceIdentification__ConformityLevel = QModbusDeviceIdentification__ConformityLevel(0x01)
-	QModbusDeviceIdentification__RegularConformityLevel            QModbusDeviceIdentification__ConformityLevel = QModbusDeviceIdentification__ConformityLevel(0x02)
-	QModbusDeviceIdentification__ExtendedConformityLevel           QModbusDeviceIdentification__ConformityLevel = QModbusDeviceIdentification__ConformityLevel(0x03)
-	QModbusDeviceIdentification__BasicIndividualConformityLevel    QModbusDeviceIdentification__ConformityLevel = QModbusDeviceIdentification__ConformityLevel(0x81)
-	QModbusDeviceIdentification__RegularIndividualConformityLevel  QModbusDeviceIdentification__ConformityLevel = QModbusDeviceIdentification__ConformityLevel(0x82)
-	QModbusDeviceIdentification__ExtendedIndividualConformityLevel QModbusDeviceIdentification__ConformityLevel = QModbusDeviceIdentification__ConformityLevel(0x83)
-)
-
-//go:generate stringer -type=QModbusDeviceIdentification__ObjectId
-//QModbusDeviceIdentification::ObjectId
-type QModbusDeviceIdentification__ObjectId int64
-
-const (
-	QModbusDeviceIdentification__VendorNameObjectId          QModbusDeviceIdentification__ObjectId = QModbusDeviceIdentification__ObjectId(0x00)
-	QModbusDeviceIdentification__ProductCodeObjectId         QModbusDeviceIdentification__ObjectId = QModbusDeviceIdentification__ObjectId(0x01)
-	QModbusDeviceIdentification__MajorMinorRevisionObjectId  QModbusDeviceIdentification__ObjectId = QModbusDeviceIdentification__ObjectId(0x02)
-	QModbusDeviceIdentification__VendorUrlObjectId           QModbusDeviceIdentification__ObjectId = QModbusDeviceIdentification__ObjectId(0x03)
-	QModbusDeviceIdentification__ProductNameObjectId         QModbusDeviceIdentification__ObjectId = QModbusDeviceIdentification__ObjectId(0x04)
-	QModbusDeviceIdentification__ModelNameObjectId           QModbusDeviceIdentification__ObjectId = QModbusDeviceIdentification__ObjectId(0x05)
-	QModbusDeviceIdentification__UserApplicationNameObjectId QModbusDeviceIdentification__ObjectId = QModbusDeviceIdentification__ObjectId(0x06)
-	QModbusDeviceIdentification__ReservedObjectId            QModbusDeviceIdentification__ObjectId = QModbusDeviceIdentification__ObjectId(0x07)
-	QModbusDeviceIdentification__ProductDependentObjectId    QModbusDeviceIdentification__ObjectId = QModbusDeviceIdentification__ObjectId(0x80)
-	QModbusDeviceIdentification__UndefinedObjectId           QModbusDeviceIdentification__ObjectId = QModbusDeviceIdentification__ObjectId(0x100)
-)
-
-//go:generate stringer -type=QModbusDeviceIdentification__ReadDeviceIdCode
-//QModbusDeviceIdentification::ReadDeviceIdCode
-type QModbusDeviceIdentification__ReadDeviceIdCode int64
-
-const (
-	QModbusDeviceIdentification__BasicReadDeviceIdCode      QModbusDeviceIdentification__ReadDeviceIdCode = QModbusDeviceIdentification__ReadDeviceIdCode(0x01)
-	QModbusDeviceIdentification__RegularReadDeviceIdCode    QModbusDeviceIdentification__ReadDeviceIdCode = QModbusDeviceIdentification__ReadDeviceIdCode(0x02)
-	QModbusDeviceIdentification__ExtendedReadDeviceIdCode   QModbusDeviceIdentification__ReadDeviceIdCode = QModbusDeviceIdentification__ReadDeviceIdCode(0x03)
-	QModbusDeviceIdentification__IndividualReadDeviceIdCode QModbusDeviceIdentification__ReadDeviceIdCode = QModbusDeviceIdentification__ReadDeviceIdCode(0x04)
-)
-
 type QModbusDeviceIdentification struct {
 	ptr unsafe.Pointer
 }
@@ -3056,6 +3015,47 @@ func (ptr *QModbusDeviceIdentification) DestroyQModbusDeviceIdentification() {
 		ptr.SetPointer(nil)
 	}
 }
+
+//go:generate stringer -type=QModbusDeviceIdentification__ConformityLevel
+//QModbusDeviceIdentification::ConformityLevel
+type QModbusDeviceIdentification__ConformityLevel int64
+
+const (
+	QModbusDeviceIdentification__BasicConformityLevel              QModbusDeviceIdentification__ConformityLevel = QModbusDeviceIdentification__ConformityLevel(0x01)
+	QModbusDeviceIdentification__RegularConformityLevel            QModbusDeviceIdentification__ConformityLevel = QModbusDeviceIdentification__ConformityLevel(0x02)
+	QModbusDeviceIdentification__ExtendedConformityLevel           QModbusDeviceIdentification__ConformityLevel = QModbusDeviceIdentification__ConformityLevel(0x03)
+	QModbusDeviceIdentification__BasicIndividualConformityLevel    QModbusDeviceIdentification__ConformityLevel = QModbusDeviceIdentification__ConformityLevel(0x81)
+	QModbusDeviceIdentification__RegularIndividualConformityLevel  QModbusDeviceIdentification__ConformityLevel = QModbusDeviceIdentification__ConformityLevel(0x82)
+	QModbusDeviceIdentification__ExtendedIndividualConformityLevel QModbusDeviceIdentification__ConformityLevel = QModbusDeviceIdentification__ConformityLevel(0x83)
+)
+
+//go:generate stringer -type=QModbusDeviceIdentification__ObjectId
+//QModbusDeviceIdentification::ObjectId
+type QModbusDeviceIdentification__ObjectId int64
+
+const (
+	QModbusDeviceIdentification__VendorNameObjectId          QModbusDeviceIdentification__ObjectId = QModbusDeviceIdentification__ObjectId(0x00)
+	QModbusDeviceIdentification__ProductCodeObjectId         QModbusDeviceIdentification__ObjectId = QModbusDeviceIdentification__ObjectId(0x01)
+	QModbusDeviceIdentification__MajorMinorRevisionObjectId  QModbusDeviceIdentification__ObjectId = QModbusDeviceIdentification__ObjectId(0x02)
+	QModbusDeviceIdentification__VendorUrlObjectId           QModbusDeviceIdentification__ObjectId = QModbusDeviceIdentification__ObjectId(0x03)
+	QModbusDeviceIdentification__ProductNameObjectId         QModbusDeviceIdentification__ObjectId = QModbusDeviceIdentification__ObjectId(0x04)
+	QModbusDeviceIdentification__ModelNameObjectId           QModbusDeviceIdentification__ObjectId = QModbusDeviceIdentification__ObjectId(0x05)
+	QModbusDeviceIdentification__UserApplicationNameObjectId QModbusDeviceIdentification__ObjectId = QModbusDeviceIdentification__ObjectId(0x06)
+	QModbusDeviceIdentification__ReservedObjectId            QModbusDeviceIdentification__ObjectId = QModbusDeviceIdentification__ObjectId(0x07)
+	QModbusDeviceIdentification__ProductDependentObjectId    QModbusDeviceIdentification__ObjectId = QModbusDeviceIdentification__ObjectId(0x80)
+	QModbusDeviceIdentification__UndefinedObjectId           QModbusDeviceIdentification__ObjectId = QModbusDeviceIdentification__ObjectId(0x100)
+)
+
+//go:generate stringer -type=QModbusDeviceIdentification__ReadDeviceIdCode
+//QModbusDeviceIdentification::ReadDeviceIdCode
+type QModbusDeviceIdentification__ReadDeviceIdCode int64
+
+const (
+	QModbusDeviceIdentification__BasicReadDeviceIdCode      QModbusDeviceIdentification__ReadDeviceIdCode = QModbusDeviceIdentification__ReadDeviceIdCode(0x01)
+	QModbusDeviceIdentification__RegularReadDeviceIdCode    QModbusDeviceIdentification__ReadDeviceIdCode = QModbusDeviceIdentification__ReadDeviceIdCode(0x02)
+	QModbusDeviceIdentification__ExtendedReadDeviceIdCode   QModbusDeviceIdentification__ReadDeviceIdCode = QModbusDeviceIdentification__ReadDeviceIdCode(0x03)
+	QModbusDeviceIdentification__IndividualReadDeviceIdCode QModbusDeviceIdentification__ReadDeviceIdCode = QModbusDeviceIdentification__ReadDeviceIdCode(0x04)
+)
 
 func NewQModbusDeviceIdentification() *QModbusDeviceIdentification {
 	var tmpValue = NewQModbusDeviceIdentificationFromPointer(C.QModbusDeviceIdentification_NewQModbusDeviceIdentification())
@@ -3225,6 +3225,44 @@ func (ptr *QModbusExceptionResponse) SetFunctionCodeDefault(c QModbusPdu__Functi
 	}
 }
 
+type QModbusPdu struct {
+	ptr unsafe.Pointer
+}
+
+type QModbusPdu_ITF interface {
+	QModbusPdu_PTR() *QModbusPdu
+}
+
+func (ptr *QModbusPdu) QModbusPdu_PTR() *QModbusPdu {
+	return ptr
+}
+
+func (ptr *QModbusPdu) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
+	}
+	return nil
+}
+
+func (ptr *QModbusPdu) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
+	}
+}
+
+func PointerFromQModbusPdu(ptr QModbusPdu_ITF) unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QModbusPdu_PTR().Pointer()
+	}
+	return nil
+}
+
+func NewQModbusPduFromPointer(ptr unsafe.Pointer) *QModbusPdu {
+	var n = new(QModbusPdu)
+	n.SetPointer(ptr)
+	return n
+}
+
 //go:generate stringer -type=QModbusPdu__ExceptionCode
 //QModbusPdu::ExceptionCode
 type QModbusPdu__ExceptionCode int64
@@ -3271,43 +3309,6 @@ const (
 	QModbusPdu__UndefinedFunctionCode          QModbusPdu__FunctionCode = QModbusPdu__FunctionCode(0x100)
 )
 
-type QModbusPdu struct {
-	ptr unsafe.Pointer
-}
-
-type QModbusPdu_ITF interface {
-	QModbusPdu_PTR() *QModbusPdu
-}
-
-func (ptr *QModbusPdu) QModbusPdu_PTR() *QModbusPdu {
-	return ptr
-}
-
-func (ptr *QModbusPdu) Pointer() unsafe.Pointer {
-	if ptr != nil {
-		return ptr.ptr
-	}
-	return nil
-}
-
-func (ptr *QModbusPdu) SetPointer(p unsafe.Pointer) {
-	if ptr != nil {
-		ptr.ptr = p
-	}
-}
-
-func PointerFromQModbusPdu(ptr QModbusPdu_ITF) unsafe.Pointer {
-	if ptr != nil {
-		return ptr.QModbusPdu_PTR().Pointer()
-	}
-	return nil
-}
-
-func NewQModbusPduFromPointer(ptr unsafe.Pointer) *QModbusPdu {
-	var n = new(QModbusPdu)
-	n.SetPointer(ptr)
-	return n
-}
 func NewQModbusPdu() *QModbusPdu {
 	return NewQModbusPduFromPointer(C.QModbusPdu_NewQModbusPdu())
 }
@@ -3453,15 +3454,6 @@ func (ptr *QModbusPdu) DestroyQModbusPduDefault() {
 	}
 }
 
-//go:generate stringer -type=QModbusReply__ReplyType
-//QModbusReply::ReplyType
-type QModbusReply__ReplyType int64
-
-const (
-	QModbusReply__Raw    QModbusReply__ReplyType = QModbusReply__ReplyType(0)
-	QModbusReply__Common QModbusReply__ReplyType = QModbusReply__ReplyType(1)
-)
-
 type QModbusReply struct {
 	core.QObject
 }
@@ -3508,6 +3500,15 @@ func (ptr *QModbusReply) DestroyQModbusReply() {
 		ptr.SetPointer(nil)
 	}
 }
+
+//go:generate stringer -type=QModbusReply__ReplyType
+//QModbusReply::ReplyType
+type QModbusReply__ReplyType int64
+
+const (
+	QModbusReply__Raw    QModbusReply__ReplyType = QModbusReply__ReplyType(0)
+	QModbusReply__Common QModbusReply__ReplyType = QModbusReply__ReplyType(1)
+)
 
 func NewQModbusReply(ty QModbusReply__ReplyType, serverAddress int, parent core.QObject_ITF) *QModbusReply {
 	var tmpValue = NewQModbusReplyFromPointer(C.QModbusReply_NewQModbusReply(C.longlong(ty), C.int(int32(serverAddress)), core.PointerFromQObject(parent)))
@@ -4342,9 +4343,8 @@ func callbackQModbusRtuSerialMaster_Close(ptr unsafe.Pointer) {
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QModbusRtuSerialMaster::close"); signal != nil {
 		signal.(func())()
-	} else {
-		NewQModbusRtuSerialMasterFromPointer(ptr).CloseDefault()
 	}
+
 }
 
 func (ptr *QModbusRtuSerialMaster) ConnectClose(f func()) {
@@ -4367,12 +4367,6 @@ func (ptr *QModbusRtuSerialMaster) Close() {
 	}
 }
 
-func (ptr *QModbusRtuSerialMaster) CloseDefault() {
-	if ptr.Pointer() != nil {
-		C.QModbusRtuSerialMaster_CloseDefault(ptr.Pointer())
-	}
-}
-
 //export callbackQModbusRtuSerialMaster_Open
 func callbackQModbusRtuSerialMaster_Open(ptr unsafe.Pointer) C.char {
 
@@ -4380,7 +4374,7 @@ func callbackQModbusRtuSerialMaster_Open(ptr unsafe.Pointer) C.char {
 		return C.char(int8(qt.GoBoolToInt(signal.(func() bool)())))
 	}
 
-	return C.char(int8(qt.GoBoolToInt(NewQModbusRtuSerialMasterFromPointer(ptr).OpenDefault())))
+	return C.char(int8(qt.GoBoolToInt(false)))
 }
 
 func (ptr *QModbusRtuSerialMaster) ConnectOpen(f func() bool) {
@@ -4400,13 +4394,6 @@ func (ptr *QModbusRtuSerialMaster) DisconnectOpen() {
 func (ptr *QModbusRtuSerialMaster) Open() bool {
 	if ptr.Pointer() != nil {
 		return C.QModbusRtuSerialMaster_Open(ptr.Pointer()) != 0
-	}
-	return false
-}
-
-func (ptr *QModbusRtuSerialMaster) OpenDefault() bool {
-	if ptr.Pointer() != nil {
-		return C.QModbusRtuSerialMaster_OpenDefault(ptr.Pointer()) != 0
 	}
 	return false
 }
@@ -4958,13 +4945,6 @@ func (ptr *QModbusRtuSerialSlave) ReadDataDefault(newData QModbusDataUnit_ITF) b
 	return false
 }
 
-func (ptr *QModbusRtuSerialSlave) DisconnectSetMap() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QModbusRtuSerialSlave::setMap")
-	}
-}
-
 //export callbackQModbusRtuSerialSlave_SetValue
 func callbackQModbusRtuSerialSlave_SetValue(ptr unsafe.Pointer, option C.int, newValue unsafe.Pointer) C.char {
 
@@ -5088,9 +5068,8 @@ func callbackQModbusRtuSerialSlave_Close(ptr unsafe.Pointer) {
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QModbusRtuSerialSlave::close"); signal != nil {
 		signal.(func())()
-	} else {
-		NewQModbusRtuSerialSlaveFromPointer(ptr).CloseDefault()
 	}
+
 }
 
 func (ptr *QModbusRtuSerialSlave) ConnectClose(f func()) {
@@ -5113,12 +5092,6 @@ func (ptr *QModbusRtuSerialSlave) Close() {
 	}
 }
 
-func (ptr *QModbusRtuSerialSlave) CloseDefault() {
-	if ptr.Pointer() != nil {
-		C.QModbusRtuSerialSlave_CloseDefault(ptr.Pointer())
-	}
-}
-
 //export callbackQModbusRtuSerialSlave_Open
 func callbackQModbusRtuSerialSlave_Open(ptr unsafe.Pointer) C.char {
 
@@ -5126,7 +5099,7 @@ func callbackQModbusRtuSerialSlave_Open(ptr unsafe.Pointer) C.char {
 		return C.char(int8(qt.GoBoolToInt(signal.(func() bool)())))
 	}
 
-	return C.char(int8(qt.GoBoolToInt(NewQModbusRtuSerialSlaveFromPointer(ptr).OpenDefault())))
+	return C.char(int8(qt.GoBoolToInt(false)))
 }
 
 func (ptr *QModbusRtuSerialSlave) ConnectOpen(f func() bool) {
@@ -5146,13 +5119,6 @@ func (ptr *QModbusRtuSerialSlave) DisconnectOpen() {
 func (ptr *QModbusRtuSerialSlave) Open() bool {
 	if ptr.Pointer() != nil {
 		return C.QModbusRtuSerialSlave_Open(ptr.Pointer()) != 0
-	}
-	return false
-}
-
-func (ptr *QModbusRtuSerialSlave) OpenDefault() bool {
-	if ptr.Pointer() != nil {
-		return C.QModbusRtuSerialSlave_OpenDefault(ptr.Pointer()) != 0
 	}
 	return false
 }
@@ -5490,23 +5456,6 @@ func (ptr *QModbusRtuSerialSlave) MetaObjectDefault() *core.QMetaObject {
 	return nil
 }
 
-//go:generate stringer -type=QModbusServer__Option
-//QModbusServer::Option
-type QModbusServer__Option int64
-
-const (
-	QModbusServer__DiagnosticRegister    QModbusServer__Option = QModbusServer__Option(0)
-	QModbusServer__ExceptionStatusOffset QModbusServer__Option = QModbusServer__Option(1)
-	QModbusServer__DeviceBusy            QModbusServer__Option = QModbusServer__Option(2)
-	QModbusServer__AsciiInputDelimiter   QModbusServer__Option = QModbusServer__Option(3)
-	QModbusServer__ListenOnlyMode        QModbusServer__Option = QModbusServer__Option(4)
-	QModbusServer__ServerIdentifier      QModbusServer__Option = QModbusServer__Option(5)
-	QModbusServer__RunIndicatorStatus    QModbusServer__Option = QModbusServer__Option(6)
-	QModbusServer__AdditionalData        QModbusServer__Option = QModbusServer__Option(7)
-	QModbusServer__DeviceIdentification  QModbusServer__Option = QModbusServer__Option(8)
-	QModbusServer__UserOption            QModbusServer__Option = QModbusServer__Option(0x100)
-)
-
 type QModbusServer struct {
 	QModbusDevice
 }
@@ -5553,6 +5502,23 @@ func (ptr *QModbusServer) DestroyQModbusServer() {
 		ptr.SetPointer(nil)
 	}
 }
+
+//go:generate stringer -type=QModbusServer__Option
+//QModbusServer::Option
+type QModbusServer__Option int64
+
+const (
+	QModbusServer__DiagnosticRegister    QModbusServer__Option = QModbusServer__Option(0)
+	QModbusServer__ExceptionStatusOffset QModbusServer__Option = QModbusServer__Option(1)
+	QModbusServer__DeviceBusy            QModbusServer__Option = QModbusServer__Option(2)
+	QModbusServer__AsciiInputDelimiter   QModbusServer__Option = QModbusServer__Option(3)
+	QModbusServer__ListenOnlyMode        QModbusServer__Option = QModbusServer__Option(4)
+	QModbusServer__ServerIdentifier      QModbusServer__Option = QModbusServer__Option(5)
+	QModbusServer__RunIndicatorStatus    QModbusServer__Option = QModbusServer__Option(6)
+	QModbusServer__AdditionalData        QModbusServer__Option = QModbusServer__Option(7)
+	QModbusServer__DeviceIdentification  QModbusServer__Option = QModbusServer__Option(8)
+	QModbusServer__UserOption            QModbusServer__Option = QModbusServer__Option(0x100)
+)
 
 func NewQModbusServer(parent core.QObject_ITF) *QModbusServer {
 	var tmpValue = NewQModbusServerFromPointer(C.QModbusServer_NewQModbusServer(core.PointerFromQObject(parent)))
@@ -5786,13 +5752,6 @@ func (ptr *QModbusServer) SetData(newData QModbusDataUnit_ITF) bool {
 	return false
 }
 
-func (ptr *QModbusServer) DisconnectSetMap() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QModbusServer::setMap")
-	}
-}
-
 func (ptr *QModbusServer) SetServerAddress(serverAddress int) {
 	if ptr.Pointer() != nil {
 		C.QModbusServer_SetServerAddress(ptr.Pointer(), C.int(int32(serverAddress)))
@@ -5922,9 +5881,8 @@ func callbackQModbusServer_Close(ptr unsafe.Pointer) {
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QModbusServer::close"); signal != nil {
 		signal.(func())()
-	} else {
-
 	}
+
 }
 
 func (ptr *QModbusServer) ConnectClose(f func()) {
@@ -6446,9 +6404,8 @@ func callbackQModbusTcpClient_Close(ptr unsafe.Pointer) {
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QModbusTcpClient::close"); signal != nil {
 		signal.(func())()
-	} else {
-		NewQModbusTcpClientFromPointer(ptr).CloseDefault()
 	}
+
 }
 
 func (ptr *QModbusTcpClient) ConnectClose(f func()) {
@@ -6471,12 +6428,6 @@ func (ptr *QModbusTcpClient) Close() {
 	}
 }
 
-func (ptr *QModbusTcpClient) CloseDefault() {
-	if ptr.Pointer() != nil {
-		C.QModbusTcpClient_CloseDefault(ptr.Pointer())
-	}
-}
-
 //export callbackQModbusTcpClient_Open
 func callbackQModbusTcpClient_Open(ptr unsafe.Pointer) C.char {
 
@@ -6484,7 +6435,7 @@ func callbackQModbusTcpClient_Open(ptr unsafe.Pointer) C.char {
 		return C.char(int8(qt.GoBoolToInt(signal.(func() bool)())))
 	}
 
-	return C.char(int8(qt.GoBoolToInt(NewQModbusTcpClientFromPointer(ptr).OpenDefault())))
+	return C.char(int8(qt.GoBoolToInt(false)))
 }
 
 func (ptr *QModbusTcpClient) ConnectOpen(f func() bool) {
@@ -6504,13 +6455,6 @@ func (ptr *QModbusTcpClient) DisconnectOpen() {
 func (ptr *QModbusTcpClient) Open() bool {
 	if ptr.Pointer() != nil {
 		return C.QModbusTcpClient_Open(ptr.Pointer()) != 0
-	}
-	return false
-}
-
-func (ptr *QModbusTcpClient) OpenDefault() bool {
-	if ptr.Pointer() != nil {
-		return C.QModbusTcpClient_OpenDefault(ptr.Pointer()) != 0
 	}
 	return false
 }
@@ -7062,13 +7006,6 @@ func (ptr *QModbusTcpServer) ReadDataDefault(newData QModbusDataUnit_ITF) bool {
 	return false
 }
 
-func (ptr *QModbusTcpServer) DisconnectSetMap() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QModbusTcpServer::setMap")
-	}
-}
-
 //export callbackQModbusTcpServer_SetValue
 func callbackQModbusTcpServer_SetValue(ptr unsafe.Pointer, option C.int, newValue unsafe.Pointer) C.char {
 
@@ -7192,9 +7129,8 @@ func callbackQModbusTcpServer_Close(ptr unsafe.Pointer) {
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QModbusTcpServer::close"); signal != nil {
 		signal.(func())()
-	} else {
-		NewQModbusTcpServerFromPointer(ptr).CloseDefault()
 	}
+
 }
 
 func (ptr *QModbusTcpServer) ConnectClose(f func()) {
@@ -7217,12 +7153,6 @@ func (ptr *QModbusTcpServer) Close() {
 	}
 }
 
-func (ptr *QModbusTcpServer) CloseDefault() {
-	if ptr.Pointer() != nil {
-		C.QModbusTcpServer_CloseDefault(ptr.Pointer())
-	}
-}
-
 //export callbackQModbusTcpServer_Open
 func callbackQModbusTcpServer_Open(ptr unsafe.Pointer) C.char {
 
@@ -7230,7 +7160,7 @@ func callbackQModbusTcpServer_Open(ptr unsafe.Pointer) C.char {
 		return C.char(int8(qt.GoBoolToInt(signal.(func() bool)())))
 	}
 
-	return C.char(int8(qt.GoBoolToInt(NewQModbusTcpServerFromPointer(ptr).OpenDefault())))
+	return C.char(int8(qt.GoBoolToInt(false)))
 }
 
 func (ptr *QModbusTcpServer) ConnectOpen(f func() bool) {
@@ -7250,13 +7180,6 @@ func (ptr *QModbusTcpServer) DisconnectOpen() {
 func (ptr *QModbusTcpServer) Open() bool {
 	if ptr.Pointer() != nil {
 		return C.QModbusTcpServer_Open(ptr.Pointer()) != 0
-	}
-	return false
-}
-
-func (ptr *QModbusTcpServer) OpenDefault() bool {
-	if ptr.Pointer() != nil {
-		return C.QModbusTcpServer_OpenDefault(ptr.Pointer()) != 0
 	}
 	return false
 }

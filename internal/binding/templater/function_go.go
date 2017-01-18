@@ -94,84 +94,70 @@ func goFunctionBody(function *parser.Function) string {
 		}
 	}
 
-	if ((function.Meta == parser.PLAIN && function.SignalMode == "") ||
-		(function.Meta == parser.SLOT && function.SignalMode == "") ||
-		(function.Meta == parser.CONSTRUCTOR || function.Meta == parser.DESTRUCTOR) && function.SignalMode == "") ||
-		(function.Meta == parser.SIGNAL && (function.SignalMode == "" || function.SignalMode == parser.CONNECT || function.SignalMode == parser.DISCONNECT)) ||
-		(function.Meta == parser.GETTER || function.Meta == parser.SETTER) {
+	if function.SignalMode == "" || (function.Meta == parser.SIGNAL && function.SignalMode != parser.CALLBACK) {
 
-		//TODO:
-		if function.IsSupported() {
-			cppFunction(function)
-			if function.IsSupported() {
-
-				for _, alloc := range converter.GoInputParametersForCAlloc(function) {
-					fmt.Fprint(bb, alloc)
-				}
-
-				var body = converter.GoOutputParametersFromC(function, fmt.Sprintf("C.%v(%v)", converter.CppHeaderName(function), converter.GoInputParametersForC(function)))
-				fmt.Fprint(bb, func() string {
-					if converter.GoHeaderOutput(function) != "" {
-						switch {
-						case function.NeedsFinalizer && parser.State.ClassMap[parser.CleanValue(function.Output)].IsSupported() || function.Meta == parser.CONSTRUCTOR && !(parser.State.ClassMap[function.Name].HasCallbackFunctions() || parser.State.ClassMap[function.Name].IsSubClassOfQObject()):
-							{
-								return fmt.Sprintf("var tmpValue = %v\nruntime.SetFinalizer(tmpValue, (%v).Destroy%v)\nreturn tmpValue%v",
-
-									body,
-
-									func() string {
-										if function.TemplateModeJNI != "" {
-											return fmt.Sprintf("*%v", parser.CleanValue(function.Output))
-										}
-										return converter.GoHeaderOutput(function)
-									}(),
-
-									func() string {
-										if function.Meta == parser.CONSTRUCTOR {
-											return function.Name
-										}
-										return parser.CleanValue(function.Output)
-									}(),
-
-									func() string {
-										if function.TemplateModeJNI == "String" {
-											return ".ToString()"
-										}
-										return ""
-									}())
-							}
-
-						case parser.State.ClassMap[parser.CleanValue(function.Output)].IsSubClassOfQObject() && converter.GoHeaderOutput(function) != "unsafe.Pointer" || function.Meta == parser.CONSTRUCTOR && parser.State.ClassMap[parser.CleanValue(function.Name)].IsSubClassOfQObject():
-							{
-								return fmt.Sprintf("var tmpValue = %v\nif !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), \"QObject::destroyed\") {\ntmpValue.ConnectDestroyed(func(%v){ tmpValue.SetPointer(nil) })\n}\nreturn tmpValue",
-
-									body,
-
-									func() string {
-										if parser.State.ClassMap[function.ClassName()].Module == "QtCore" {
-											return "*QObject"
-										}
-										return "*core.QObject"
-									}())
-							}
-
-						default:
-							{
-								if function.Name == "readData" && len(function.Parameters) == 2 {
-									return fmt.Sprintf("var ret = %v\nif ret > 0 {\n*data = C.GoStringN(dataC, C.int(ret))\n}\nreturn ret", body)
-								} else {
-									return fmt.Sprintf("return %v", body)
-								}
-							}
-						}
-					}
-					return body
-				}())
-
-			}
-			function.Access = "public"
+		for _, alloc := range converter.GoInputParametersForCAlloc(function) {
+			fmt.Fprint(bb, alloc)
 		}
 
+		var body = converter.GoOutputParametersFromC(function, fmt.Sprintf("C.%v(%v)", converter.CppHeaderName(function), converter.GoInputParametersForC(function)))
+		fmt.Fprint(bb, func() string {
+			if converter.GoHeaderOutput(function) != "" {
+				switch {
+				case function.NeedsFinalizer && parser.State.ClassMap[parser.CleanValue(function.Output)].IsSupported() || function.Meta == parser.CONSTRUCTOR && !(parser.State.ClassMap[function.Name].HasCallbackFunctions() || parser.State.ClassMap[function.Name].IsSubClassOfQObject()):
+					{
+						return fmt.Sprintf("var tmpValue = %v\nruntime.SetFinalizer(tmpValue, (%v).Destroy%v)\nreturn tmpValue%v",
+
+							body,
+
+							func() string {
+								if function.TemplateModeJNI != "" {
+									return fmt.Sprintf("*%v", parser.CleanValue(function.Output))
+								}
+								return converter.GoHeaderOutput(function)
+							}(),
+
+							func() string {
+								if function.Meta == parser.CONSTRUCTOR {
+									return function.Name
+								}
+								return parser.CleanValue(function.Output)
+							}(),
+
+							func() string {
+								if function.TemplateModeJNI == "String" {
+									return ".ToString()"
+								}
+								return ""
+							}())
+					}
+
+				case parser.State.ClassMap[parser.CleanValue(function.Output)].IsSubClassOfQObject() && converter.GoHeaderOutput(function) != "unsafe.Pointer" || function.Meta == parser.CONSTRUCTOR && parser.State.ClassMap[parser.CleanValue(function.Name)].IsSubClassOfQObject():
+					{
+						return fmt.Sprintf("var tmpValue = %v\nif !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), \"QObject::destroyed\") {\ntmpValue.ConnectDestroyed(func(%v){ tmpValue.SetPointer(nil) })\n}\nreturn tmpValue",
+
+							body,
+
+							func() string {
+								if parser.State.ClassMap[function.ClassName()].Module == "QtCore" {
+									return "*QObject"
+								}
+								return "*core.QObject"
+							}())
+					}
+
+				default:
+					{
+						if function.Name == "readData" && len(function.Parameters) == 2 {
+							return fmt.Sprintf("var ret = %v\nif ret > 0 {\n*data = C.GoStringN(dataC, C.int(ret))\n}\nreturn ret", body)
+						} else {
+							return fmt.Sprintf("return %v", body)
+						}
+					}
+				}
+			}
+			return body
+		}())
 	}
 
 	switch function.SignalMode {
@@ -201,7 +187,7 @@ func goFunctionBody(function *parser.Function) string {
 			fmt.Fprintf(bb, "\n}%v\n",
 				func() string {
 					if converter.GoHeaderOutput(function) == "" {
-						if function.Virtual == parser.IMPURE {
+						if (function.Virtual != parser.PURE || (function.Synthetic && function.IsDerivedFromImpure())) && function.Meta != parser.SIGNAL {
 							return "else{"
 						}
 					}
@@ -210,11 +196,11 @@ func goFunctionBody(function *parser.Function) string {
 			)
 
 			if converter.GoHeaderOutput(function) == "" {
-				if function.Virtual == parser.IMPURE && function.IsSupportedDefault() && !function.PureBaseFunction {
+				if (function.Virtual != parser.PURE || (function.Synthetic && function.IsDerivedFromImpure())) && function.Meta != parser.SIGNAL {
 					fmt.Fprintf(bb, "New%vFromPointer(ptr).%v%vDefault(%v)", strings.Title(function.ClassName()), strings.Replace(strings.Title(function.Name), parser.TILDE, "Destroy", -1), function.OverloadNumber, converter.GoInputParametersForCallback(function))
 				}
 			} else {
-				if function.Virtual == parser.IMPURE && function.IsSupportedDefault() && !function.PureBaseFunction {
+				if (function.Virtual != parser.PURE || (function.Synthetic && function.IsDerivedFromImpure())) && function.Meta != parser.SIGNAL {
 					if function.Name == "readData" && len(function.Parameters) == 2 {
 						fmt.Fprint(bb, "var retS = cGoUnpackString(data)\n")
 						fmt.Fprintf(bb, "var ret = %v\n", converter.GoInput(fmt.Sprintf("New%vFromPointer(ptr).%v%vDefault(%v)", strings.Title(function.ClassName()), strings.Replace(strings.Title(function.Name), parser.TILDE, "Destroy", -1), function.OverloadNumber, converter.GoInputParametersForCallback(function)), function.Output, function))
@@ -271,7 +257,7 @@ func goFunctionBody(function *parser.Function) string {
 			fmt.Fprintf(bb, "%v",
 				func() string {
 					if converter.GoHeaderOutput(function) == "" {
-						if function.Virtual == parser.IMPURE {
+						if (function.Virtual != parser.PURE || (function.Synthetic && function.IsDerivedFromImpure())) && function.Meta != parser.SIGNAL {
 							return "\n}"
 						}
 					}

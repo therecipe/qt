@@ -23,17 +23,6 @@ func cGoUnpackString(s C.struct_QtDBus_PackedString) string {
 	return C.GoStringN(s.data, C.int(s.len))
 }
 
-//go:generate stringer -type=QDBus__CallMode
-//QDBus::CallMode
-type QDBus__CallMode int64
-
-const (
-	QDBus__NoBlock      QDBus__CallMode = QDBus__CallMode(0)
-	QDBus__Block        QDBus__CallMode = QDBus__CallMode(1)
-	QDBus__BlockWithGui QDBus__CallMode = QDBus__CallMode(2)
-	QDBus__AutoDetect   QDBus__CallMode = QDBus__CallMode(3)
-)
-
 type QDBus struct {
 	ptr unsafe.Pointer
 }
@@ -78,6 +67,17 @@ func (ptr *QDBus) DestroyQDBus() {
 		ptr.SetPointer(nil)
 	}
 }
+
+//go:generate stringer -type=QDBus__CallMode
+//QDBus::CallMode
+type QDBus__CallMode int64
+
+const (
+	QDBus__NoBlock      QDBus__CallMode = QDBus__CallMode(0)
+	QDBus__Block        QDBus__CallMode = QDBus__CallMode(1)
+	QDBus__BlockWithGui QDBus__CallMode = QDBus__CallMode(2)
+	QDBus__AutoDetect   QDBus__CallMode = QDBus__CallMode(3)
+)
 
 type QDBusAbstractAdaptor struct {
 	core.QObject
@@ -982,20 +982,6 @@ func (ptr *QDBusAbstractInterface) MetaObjectDefault() *core.QMetaObject {
 	return nil
 }
 
-//go:generate stringer -type=QDBusArgument__ElementType
-//QDBusArgument::ElementType
-type QDBusArgument__ElementType int64
-
-const (
-	QDBusArgument__BasicType     QDBusArgument__ElementType = QDBusArgument__ElementType(0)
-	QDBusArgument__VariantType   QDBusArgument__ElementType = QDBusArgument__ElementType(1)
-	QDBusArgument__ArrayType     QDBusArgument__ElementType = QDBusArgument__ElementType(2)
-	QDBusArgument__StructureType QDBusArgument__ElementType = QDBusArgument__ElementType(3)
-	QDBusArgument__MapType       QDBusArgument__ElementType = QDBusArgument__ElementType(4)
-	QDBusArgument__MapEntryType  QDBusArgument__ElementType = QDBusArgument__ElementType(5)
-	QDBusArgument__UnknownType   QDBusArgument__ElementType = QDBusArgument__ElementType(-1)
-)
-
 type QDBusArgument struct {
 	ptr unsafe.Pointer
 }
@@ -1033,6 +1019,21 @@ func NewQDBusArgumentFromPointer(ptr unsafe.Pointer) *QDBusArgument {
 	n.SetPointer(ptr)
 	return n
 }
+
+//go:generate stringer -type=QDBusArgument__ElementType
+//QDBusArgument::ElementType
+type QDBusArgument__ElementType int64
+
+const (
+	QDBusArgument__BasicType     QDBusArgument__ElementType = QDBusArgument__ElementType(0)
+	QDBusArgument__VariantType   QDBusArgument__ElementType = QDBusArgument__ElementType(1)
+	QDBusArgument__ArrayType     QDBusArgument__ElementType = QDBusArgument__ElementType(2)
+	QDBusArgument__StructureType QDBusArgument__ElementType = QDBusArgument__ElementType(3)
+	QDBusArgument__MapType       QDBusArgument__ElementType = QDBusArgument__ElementType(4)
+	QDBusArgument__MapEntryType  QDBusArgument__ElementType = QDBusArgument__ElementType(5)
+	QDBusArgument__UnknownType   QDBusArgument__ElementType = QDBusArgument__ElementType(-1)
+)
+
 func NewQDBusArgument() *QDBusArgument {
 	var tmpValue = NewQDBusArgumentFromPointer(C.QDBusArgument_NewQDBusArgument())
 	runtime.SetFinalizer(tmpValue, (*QDBusArgument).DestroyQDBusArgument)
@@ -1183,6 +1184,44 @@ func (ptr *QDBusArgument) DestroyQDBusArgument() {
 	}
 }
 
+type QDBusConnection struct {
+	ptr unsafe.Pointer
+}
+
+type QDBusConnection_ITF interface {
+	QDBusConnection_PTR() *QDBusConnection
+}
+
+func (ptr *QDBusConnection) QDBusConnection_PTR() *QDBusConnection {
+	return ptr
+}
+
+func (ptr *QDBusConnection) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
+	}
+	return nil
+}
+
+func (ptr *QDBusConnection) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
+	}
+}
+
+func PointerFromQDBusConnection(ptr QDBusConnection_ITF) unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QDBusConnection_PTR().Pointer()
+	}
+	return nil
+}
+
+func NewQDBusConnectionFromPointer(ptr unsafe.Pointer) *QDBusConnection {
+	var n = new(QDBusConnection)
+	n.SetPointer(ptr)
+	return n
+}
+
 //go:generate stringer -type=QDBusConnection__BusType
 //QDBusConnection::BusType
 type QDBusConnection__BusType int64
@@ -1234,43 +1273,6 @@ const (
 	QDBusConnection__UnregisterTree QDBusConnection__UnregisterMode = QDBusConnection__UnregisterMode(1)
 )
 
-type QDBusConnection struct {
-	ptr unsafe.Pointer
-}
-
-type QDBusConnection_ITF interface {
-	QDBusConnection_PTR() *QDBusConnection
-}
-
-func (ptr *QDBusConnection) QDBusConnection_PTR() *QDBusConnection {
-	return ptr
-}
-
-func (ptr *QDBusConnection) Pointer() unsafe.Pointer {
-	if ptr != nil {
-		return ptr.ptr
-	}
-	return nil
-}
-
-func (ptr *QDBusConnection) SetPointer(p unsafe.Pointer) {
-	if ptr != nil {
-		ptr.ptr = p
-	}
-}
-
-func PointerFromQDBusConnection(ptr QDBusConnection_ITF) unsafe.Pointer {
-	if ptr != nil {
-		return ptr.QDBusConnection_PTR().Pointer()
-	}
-	return nil
-}
-
-func NewQDBusConnectionFromPointer(ptr unsafe.Pointer) *QDBusConnection {
-	var n = new(QDBusConnection)
-	n.SetPointer(ptr)
-	return n
-}
 func QDBusConnection_SessionBus() *QDBusConnection {
 	var tmpValue = NewQDBusConnectionFromPointer(C.QDBusConnection_QDBusConnection_SessionBus())
 	runtime.SetFinalizer(tmpValue, (*QDBusConnection).DestroyQDBusConnection)
@@ -1677,35 +1679,6 @@ func (ptr *QDBusConnection) DestroyQDBusConnection() {
 	}
 }
 
-//go:generate stringer -type=QDBusConnectionInterface__RegisterServiceReply
-//QDBusConnectionInterface::RegisterServiceReply
-type QDBusConnectionInterface__RegisterServiceReply int64
-
-const (
-	QDBusConnectionInterface__ServiceNotRegistered QDBusConnectionInterface__RegisterServiceReply = QDBusConnectionInterface__RegisterServiceReply(0)
-	QDBusConnectionInterface__ServiceRegistered    QDBusConnectionInterface__RegisterServiceReply = QDBusConnectionInterface__RegisterServiceReply(1)
-	QDBusConnectionInterface__ServiceQueued        QDBusConnectionInterface__RegisterServiceReply = QDBusConnectionInterface__RegisterServiceReply(2)
-)
-
-//go:generate stringer -type=QDBusConnectionInterface__ServiceQueueOptions
-//QDBusConnectionInterface::ServiceQueueOptions
-type QDBusConnectionInterface__ServiceQueueOptions int64
-
-const (
-	QDBusConnectionInterface__DontQueueService       QDBusConnectionInterface__ServiceQueueOptions = QDBusConnectionInterface__ServiceQueueOptions(0)
-	QDBusConnectionInterface__QueueService           QDBusConnectionInterface__ServiceQueueOptions = QDBusConnectionInterface__ServiceQueueOptions(1)
-	QDBusConnectionInterface__ReplaceExistingService QDBusConnectionInterface__ServiceQueueOptions = QDBusConnectionInterface__ServiceQueueOptions(2)
-)
-
-//go:generate stringer -type=QDBusConnectionInterface__ServiceReplacementOptions
-//QDBusConnectionInterface::ServiceReplacementOptions
-type QDBusConnectionInterface__ServiceReplacementOptions int64
-
-const (
-	QDBusConnectionInterface__DontAllowReplacement QDBusConnectionInterface__ServiceReplacementOptions = QDBusConnectionInterface__ServiceReplacementOptions(0)
-	QDBusConnectionInterface__AllowReplacement     QDBusConnectionInterface__ServiceReplacementOptions = QDBusConnectionInterface__ServiceReplacementOptions(1)
-)
-
 type QDBusConnectionInterface struct {
 	QDBusAbstractInterface
 }
@@ -1752,6 +1725,35 @@ func (ptr *QDBusConnectionInterface) DestroyQDBusConnectionInterface() {
 		ptr.SetPointer(nil)
 	}
 }
+
+//go:generate stringer -type=QDBusConnectionInterface__RegisterServiceReply
+//QDBusConnectionInterface::RegisterServiceReply
+type QDBusConnectionInterface__RegisterServiceReply int64
+
+const (
+	QDBusConnectionInterface__ServiceNotRegistered QDBusConnectionInterface__RegisterServiceReply = QDBusConnectionInterface__RegisterServiceReply(0)
+	QDBusConnectionInterface__ServiceRegistered    QDBusConnectionInterface__RegisterServiceReply = QDBusConnectionInterface__RegisterServiceReply(1)
+	QDBusConnectionInterface__ServiceQueued        QDBusConnectionInterface__RegisterServiceReply = QDBusConnectionInterface__RegisterServiceReply(2)
+)
+
+//go:generate stringer -type=QDBusConnectionInterface__ServiceQueueOptions
+//QDBusConnectionInterface::ServiceQueueOptions
+type QDBusConnectionInterface__ServiceQueueOptions int64
+
+const (
+	QDBusConnectionInterface__DontQueueService       QDBusConnectionInterface__ServiceQueueOptions = QDBusConnectionInterface__ServiceQueueOptions(0)
+	QDBusConnectionInterface__QueueService           QDBusConnectionInterface__ServiceQueueOptions = QDBusConnectionInterface__ServiceQueueOptions(1)
+	QDBusConnectionInterface__ReplaceExistingService QDBusConnectionInterface__ServiceQueueOptions = QDBusConnectionInterface__ServiceQueueOptions(2)
+)
+
+//go:generate stringer -type=QDBusConnectionInterface__ServiceReplacementOptions
+//QDBusConnectionInterface::ServiceReplacementOptions
+type QDBusConnectionInterface__ServiceReplacementOptions int64
+
+const (
+	QDBusConnectionInterface__DontAllowReplacement QDBusConnectionInterface__ServiceReplacementOptions = QDBusConnectionInterface__ServiceReplacementOptions(0)
+	QDBusConnectionInterface__AllowReplacement     QDBusConnectionInterface__ServiceReplacementOptions = QDBusConnectionInterface__ServiceReplacementOptions(1)
+)
 
 //export callbackQDBusConnectionInterface_CallWithCallbackFailed
 func callbackQDBusConnectionInterface_CallWithCallbackFailed(ptr unsafe.Pointer, error unsafe.Pointer, call unsafe.Pointer) {
@@ -2281,41 +2283,6 @@ func (ptr *QDBusContext) DestroyQDBusContext() {
 	}
 }
 
-//go:generate stringer -type=QDBusError__ErrorType
-//QDBusError::ErrorType
-type QDBusError__ErrorType int64
-
-const (
-	QDBusError__NoError           QDBusError__ErrorType = QDBusError__ErrorType(0)
-	QDBusError__Other             QDBusError__ErrorType = QDBusError__ErrorType(1)
-	QDBusError__Failed            QDBusError__ErrorType = QDBusError__ErrorType(2)
-	QDBusError__NoMemory          QDBusError__ErrorType = QDBusError__ErrorType(3)
-	QDBusError__ServiceUnknown    QDBusError__ErrorType = QDBusError__ErrorType(4)
-	QDBusError__NoReply           QDBusError__ErrorType = QDBusError__ErrorType(5)
-	QDBusError__BadAddress        QDBusError__ErrorType = QDBusError__ErrorType(6)
-	QDBusError__NotSupported      QDBusError__ErrorType = QDBusError__ErrorType(7)
-	QDBusError__LimitsExceeded    QDBusError__ErrorType = QDBusError__ErrorType(8)
-	QDBusError__AccessDenied      QDBusError__ErrorType = QDBusError__ErrorType(9)
-	QDBusError__NoServer          QDBusError__ErrorType = QDBusError__ErrorType(10)
-	QDBusError__Timeout           QDBusError__ErrorType = QDBusError__ErrorType(11)
-	QDBusError__NoNetwork         QDBusError__ErrorType = QDBusError__ErrorType(12)
-	QDBusError__AddressInUse      QDBusError__ErrorType = QDBusError__ErrorType(13)
-	QDBusError__Disconnected      QDBusError__ErrorType = QDBusError__ErrorType(14)
-	QDBusError__InvalidArgs       QDBusError__ErrorType = QDBusError__ErrorType(15)
-	QDBusError__UnknownMethod     QDBusError__ErrorType = QDBusError__ErrorType(16)
-	QDBusError__TimedOut          QDBusError__ErrorType = QDBusError__ErrorType(17)
-	QDBusError__InvalidSignature  QDBusError__ErrorType = QDBusError__ErrorType(18)
-	QDBusError__UnknownInterface  QDBusError__ErrorType = QDBusError__ErrorType(19)
-	QDBusError__UnknownObject     QDBusError__ErrorType = QDBusError__ErrorType(20)
-	QDBusError__UnknownProperty   QDBusError__ErrorType = QDBusError__ErrorType(21)
-	QDBusError__PropertyReadOnly  QDBusError__ErrorType = QDBusError__ErrorType(22)
-	QDBusError__InternalError     QDBusError__ErrorType = QDBusError__ErrorType(23)
-	QDBusError__InvalidService    QDBusError__ErrorType = QDBusError__ErrorType(24)
-	QDBusError__InvalidObjectPath QDBusError__ErrorType = QDBusError__ErrorType(25)
-	QDBusError__InvalidInterface  QDBusError__ErrorType = QDBusError__ErrorType(26)
-	QDBusError__InvalidMember     QDBusError__ErrorType = QDBusError__ErrorType(27)
-)
-
 type QDBusError struct {
 	ptr unsafe.Pointer
 }
@@ -2360,6 +2327,41 @@ func (ptr *QDBusError) DestroyQDBusError() {
 		ptr.SetPointer(nil)
 	}
 }
+
+//go:generate stringer -type=QDBusError__ErrorType
+//QDBusError::ErrorType
+type QDBusError__ErrorType int64
+
+const (
+	QDBusError__NoError           QDBusError__ErrorType = QDBusError__ErrorType(0)
+	QDBusError__Other             QDBusError__ErrorType = QDBusError__ErrorType(1)
+	QDBusError__Failed            QDBusError__ErrorType = QDBusError__ErrorType(2)
+	QDBusError__NoMemory          QDBusError__ErrorType = QDBusError__ErrorType(3)
+	QDBusError__ServiceUnknown    QDBusError__ErrorType = QDBusError__ErrorType(4)
+	QDBusError__NoReply           QDBusError__ErrorType = QDBusError__ErrorType(5)
+	QDBusError__BadAddress        QDBusError__ErrorType = QDBusError__ErrorType(6)
+	QDBusError__NotSupported      QDBusError__ErrorType = QDBusError__ErrorType(7)
+	QDBusError__LimitsExceeded    QDBusError__ErrorType = QDBusError__ErrorType(8)
+	QDBusError__AccessDenied      QDBusError__ErrorType = QDBusError__ErrorType(9)
+	QDBusError__NoServer          QDBusError__ErrorType = QDBusError__ErrorType(10)
+	QDBusError__Timeout           QDBusError__ErrorType = QDBusError__ErrorType(11)
+	QDBusError__NoNetwork         QDBusError__ErrorType = QDBusError__ErrorType(12)
+	QDBusError__AddressInUse      QDBusError__ErrorType = QDBusError__ErrorType(13)
+	QDBusError__Disconnected      QDBusError__ErrorType = QDBusError__ErrorType(14)
+	QDBusError__InvalidArgs       QDBusError__ErrorType = QDBusError__ErrorType(15)
+	QDBusError__UnknownMethod     QDBusError__ErrorType = QDBusError__ErrorType(16)
+	QDBusError__TimedOut          QDBusError__ErrorType = QDBusError__ErrorType(17)
+	QDBusError__InvalidSignature  QDBusError__ErrorType = QDBusError__ErrorType(18)
+	QDBusError__UnknownInterface  QDBusError__ErrorType = QDBusError__ErrorType(19)
+	QDBusError__UnknownObject     QDBusError__ErrorType = QDBusError__ErrorType(20)
+	QDBusError__UnknownProperty   QDBusError__ErrorType = QDBusError__ErrorType(21)
+	QDBusError__PropertyReadOnly  QDBusError__ErrorType = QDBusError__ErrorType(22)
+	QDBusError__InternalError     QDBusError__ErrorType = QDBusError__ErrorType(23)
+	QDBusError__InvalidService    QDBusError__ErrorType = QDBusError__ErrorType(24)
+	QDBusError__InvalidObjectPath QDBusError__ErrorType = QDBusError__ErrorType(25)
+	QDBusError__InvalidInterface  QDBusError__ErrorType = QDBusError__ErrorType(26)
+	QDBusError__InvalidMember     QDBusError__ErrorType = QDBusError__ErrorType(27)
+)
 
 func NewQDBusError(other QDBusError_ITF) *QDBusError {
 	var tmpValue = NewQDBusErrorFromPointer(C.QDBusError_NewQDBusError(PointerFromQDBusError(other)))
@@ -2802,18 +2804,6 @@ func (ptr *QDBusInterface) MetaObjectDefault() *core.QMetaObject {
 	return nil
 }
 
-//go:generate stringer -type=QDBusMessage__MessageType
-//QDBusMessage::MessageType
-type QDBusMessage__MessageType int64
-
-const (
-	QDBusMessage__InvalidMessage    QDBusMessage__MessageType = QDBusMessage__MessageType(0)
-	QDBusMessage__MethodCallMessage QDBusMessage__MessageType = QDBusMessage__MessageType(1)
-	QDBusMessage__ReplyMessage      QDBusMessage__MessageType = QDBusMessage__MessageType(2)
-	QDBusMessage__ErrorMessage      QDBusMessage__MessageType = QDBusMessage__MessageType(3)
-	QDBusMessage__SignalMessage     QDBusMessage__MessageType = QDBusMessage__MessageType(4)
-)
-
 type QDBusMessage struct {
 	ptr unsafe.Pointer
 }
@@ -2851,6 +2841,19 @@ func NewQDBusMessageFromPointer(ptr unsafe.Pointer) *QDBusMessage {
 	n.SetPointer(ptr)
 	return n
 }
+
+//go:generate stringer -type=QDBusMessage__MessageType
+//QDBusMessage::MessageType
+type QDBusMessage__MessageType int64
+
+const (
+	QDBusMessage__InvalidMessage    QDBusMessage__MessageType = QDBusMessage__MessageType(0)
+	QDBusMessage__MethodCallMessage QDBusMessage__MessageType = QDBusMessage__MessageType(1)
+	QDBusMessage__ReplyMessage      QDBusMessage__MessageType = QDBusMessage__MessageType(2)
+	QDBusMessage__ErrorMessage      QDBusMessage__MessageType = QDBusMessage__MessageType(3)
+	QDBusMessage__SignalMessage     QDBusMessage__MessageType = QDBusMessage__MessageType(4)
+)
+
 func (ptr *QDBusMessage) CreateErrorReply3(ty QDBusError__ErrorType, msg string) *QDBusMessage {
 	if ptr.Pointer() != nil {
 		var msgC = C.CString(msg)
@@ -4356,16 +4359,6 @@ func (ptr *QDBusServer) MetaObjectDefault() *core.QMetaObject {
 	return nil
 }
 
-//go:generate stringer -type=QDBusServiceWatcher__WatchModeFlag
-//QDBusServiceWatcher::WatchModeFlag
-type QDBusServiceWatcher__WatchModeFlag int64
-
-const (
-	QDBusServiceWatcher__WatchForRegistration   QDBusServiceWatcher__WatchModeFlag = QDBusServiceWatcher__WatchModeFlag(0x01)
-	QDBusServiceWatcher__WatchForUnregistration QDBusServiceWatcher__WatchModeFlag = QDBusServiceWatcher__WatchModeFlag(0x02)
-	QDBusServiceWatcher__WatchForOwnerChange    QDBusServiceWatcher__WatchModeFlag = QDBusServiceWatcher__WatchModeFlag(0x03)
-)
-
 type QDBusServiceWatcher struct {
 	core.QObject
 }
@@ -4404,6 +4397,17 @@ func NewQDBusServiceWatcherFromPointer(ptr unsafe.Pointer) *QDBusServiceWatcher 
 	n.SetPointer(ptr)
 	return n
 }
+
+//go:generate stringer -type=QDBusServiceWatcher__WatchModeFlag
+//QDBusServiceWatcher::WatchModeFlag
+type QDBusServiceWatcher__WatchModeFlag int64
+
+const (
+	QDBusServiceWatcher__WatchForRegistration   QDBusServiceWatcher__WatchModeFlag = QDBusServiceWatcher__WatchModeFlag(0x01)
+	QDBusServiceWatcher__WatchForUnregistration QDBusServiceWatcher__WatchModeFlag = QDBusServiceWatcher__WatchModeFlag(0x02)
+	QDBusServiceWatcher__WatchForOwnerChange    QDBusServiceWatcher__WatchModeFlag = QDBusServiceWatcher__WatchModeFlag(0x03)
+)
+
 func (ptr *QDBusServiceWatcher) SetWatchMode(mode QDBusServiceWatcher__WatchModeFlag) {
 	if ptr.Pointer() != nil {
 		C.QDBusServiceWatcher_SetWatchMode(ptr.Pointer(), C.longlong(mode))
@@ -5118,15 +5122,6 @@ func (ptr *QDBusUnixFileDescriptor) DestroyQDBusUnixFileDescriptor() {
 	}
 }
 
-//go:generate stringer -type=QDBusUtil__AllowEmptyFlag
-//QDBusUtil::AllowEmptyFlag
-type QDBusUtil__AllowEmptyFlag int64
-
-const (
-	QDBusUtil__EmptyAllowed    QDBusUtil__AllowEmptyFlag = QDBusUtil__AllowEmptyFlag(0)
-	QDBusUtil__EmptyNotAllowed QDBusUtil__AllowEmptyFlag = QDBusUtil__AllowEmptyFlag(1)
-)
-
 type QDBusUtil struct {
 	ptr unsafe.Pointer
 }
@@ -5171,6 +5166,15 @@ func (ptr *QDBusUtil) DestroyQDBusUtil() {
 		ptr.SetPointer(nil)
 	}
 }
+
+//go:generate stringer -type=QDBusUtil__AllowEmptyFlag
+//QDBusUtil::AllowEmptyFlag
+type QDBusUtil__AllowEmptyFlag int64
+
+const (
+	QDBusUtil__EmptyAllowed    QDBusUtil__AllowEmptyFlag = QDBusUtil__AllowEmptyFlag(0)
+	QDBusUtil__EmptyNotAllowed QDBusUtil__AllowEmptyFlag = QDBusUtil__AllowEmptyFlag(1)
+)
 
 type QDBusVariant struct {
 	ptr unsafe.Pointer
@@ -5319,7 +5323,7 @@ func (ptr *QDBusVirtualObject) ConnectHandleMessage(f func(message *QDBusMessage
 	}
 }
 
-func (ptr *QDBusVirtualObject) DisconnectHandleMessage(message QDBusMessage_ITF, connection QDBusConnection_ITF) {
+func (ptr *QDBusVirtualObject) DisconnectHandleMessage() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QDBusVirtualObject::handleMessage")
@@ -5350,7 +5354,7 @@ func (ptr *QDBusVirtualObject) ConnectIntrospect(f func(path string) string) {
 	}
 }
 
-func (ptr *QDBusVirtualObject) DisconnectIntrospect(path string) {
+func (ptr *QDBusVirtualObject) DisconnectIntrospect() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QDBusVirtualObject::introspect")

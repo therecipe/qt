@@ -737,9 +737,19 @@ void QWebEngineDownloadItem_Accept(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QWebEngineDownloadItem*>(ptr), "accept");
 }
 
+void QWebEngineDownloadItem_AcceptDefault(void* ptr)
+{
+	static_cast<QWebEngineDownloadItem*>(ptr)->QWebEngineDownloadItem::accept();
+}
+
 void QWebEngineDownloadItem_Cancel(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QWebEngineDownloadItem*>(ptr), "cancel");
+}
+
+void QWebEngineDownloadItem_CancelDefault(void* ptr)
+{
+	static_cast<QWebEngineDownloadItem*>(ptr)->QWebEngineDownloadItem::cancel();
 }
 
 void QWebEngineDownloadItem_ConnectDownloadProgress(void* ptr)
@@ -2776,6 +2786,11 @@ void QWebEngineView_Back(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QWebEngineView*>(ptr), "back");
 }
 
+void QWebEngineView_BackDefault(void* ptr)
+{
+	static_cast<QWebEngineView*>(ptr)->QWebEngineView::back();
+}
+
 void* QWebEngineView_CreateWindow(void* ptr, long long ty)
 {
 	return static_cast<QWebEngineView*>(ptr)->createWindow(static_cast<QWebEnginePage::WebWindowType>(ty));
@@ -2789,6 +2804,11 @@ void* QWebEngineView_CreateWindowDefault(void* ptr, long long ty)
 void QWebEngineView_Forward(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QWebEngineView*>(ptr), "forward");
+}
+
+void QWebEngineView_ForwardDefault(void* ptr)
+{
+	static_cast<QWebEngineView*>(ptr)->QWebEngineView::forward();
 }
 
 char QWebEngineView_HasSelection(void* ptr)
@@ -2831,6 +2851,11 @@ void QWebEngineView_Reload(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QWebEngineView*>(ptr), "reload");
 }
 
+void QWebEngineView_ReloadDefault(void* ptr)
+{
+	static_cast<QWebEngineView*>(ptr)->QWebEngineView::reload();
+}
+
 struct QtWebEngine_PackedString QWebEngineView_SelectedText(void* ptr)
 {
 	return ({ QByteArray t0a8997 = static_cast<QWebEngineView*>(ptr)->selectedText().toUtf8(); QtWebEngine_PackedString { const_cast<char*>(t0a8997.prepend("WHITESPACE").constData()+10), t0a8997.size()-10 }; });
@@ -2869,6 +2894,11 @@ void* QWebEngineView_Settings(void* ptr)
 void QWebEngineView_Stop(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QWebEngineView*>(ptr), "stop");
+}
+
+void QWebEngineView_StopDefault(void* ptr)
+{
+	static_cast<QWebEngineView*>(ptr)->QWebEngineView::stop();
 }
 
 struct QtWebEngine_PackedString QWebEngineView_Title(void* ptr)

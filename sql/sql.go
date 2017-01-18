@@ -25,48 +25,6 @@ func cGoUnpackString(s C.struct_QtSql_PackedString) string {
 	return C.GoStringN(s.data, C.int(s.len))
 }
 
-//go:generate stringer -type=QSql__Location
-//QSql::Location
-type QSql__Location int64
-
-const (
-	QSql__BeforeFirstRow QSql__Location = QSql__Location(-1)
-	QSql__AfterLastRow   QSql__Location = QSql__Location(-2)
-)
-
-//go:generate stringer -type=QSql__NumericalPrecisionPolicy
-//QSql::NumericalPrecisionPolicy
-type QSql__NumericalPrecisionPolicy int64
-
-const (
-	QSql__LowPrecisionInt32  QSql__NumericalPrecisionPolicy = QSql__NumericalPrecisionPolicy(0x01)
-	QSql__LowPrecisionInt64  QSql__NumericalPrecisionPolicy = QSql__NumericalPrecisionPolicy(0x02)
-	QSql__LowPrecisionDouble QSql__NumericalPrecisionPolicy = QSql__NumericalPrecisionPolicy(0x04)
-	QSql__HighPrecision      QSql__NumericalPrecisionPolicy = QSql__NumericalPrecisionPolicy(0)
-)
-
-//go:generate stringer -type=QSql__ParamTypeFlag
-//QSql::ParamTypeFlag
-type QSql__ParamTypeFlag int64
-
-const (
-	QSql__In     QSql__ParamTypeFlag = QSql__ParamTypeFlag(0x00000001)
-	QSql__Out    QSql__ParamTypeFlag = QSql__ParamTypeFlag(0x00000002)
-	QSql__InOut  QSql__ParamTypeFlag = QSql__ParamTypeFlag(QSql__In | QSql__Out)
-	QSql__Binary QSql__ParamTypeFlag = QSql__ParamTypeFlag(0x00000004)
-)
-
-//go:generate stringer -type=QSql__TableType
-//QSql::TableType
-type QSql__TableType int64
-
-const (
-	QSql__Tables       QSql__TableType = QSql__TableType(0x01)
-	QSql__SystemTables QSql__TableType = QSql__TableType(0x02)
-	QSql__Views        QSql__TableType = QSql__TableType(0x04)
-	QSql__AllTables    QSql__TableType = QSql__TableType(0xff)
-)
-
 type QSql struct {
 	ptr unsafe.Pointer
 }
@@ -111,6 +69,48 @@ func (ptr *QSql) DestroyQSql() {
 		ptr.SetPointer(nil)
 	}
 }
+
+//go:generate stringer -type=QSql__Location
+//QSql::Location
+type QSql__Location int64
+
+const (
+	QSql__BeforeFirstRow QSql__Location = QSql__Location(-1)
+	QSql__AfterLastRow   QSql__Location = QSql__Location(-2)
+)
+
+//go:generate stringer -type=QSql__NumericalPrecisionPolicy
+//QSql::NumericalPrecisionPolicy
+type QSql__NumericalPrecisionPolicy int64
+
+const (
+	QSql__LowPrecisionInt32  QSql__NumericalPrecisionPolicy = QSql__NumericalPrecisionPolicy(0x01)
+	QSql__LowPrecisionInt64  QSql__NumericalPrecisionPolicy = QSql__NumericalPrecisionPolicy(0x02)
+	QSql__LowPrecisionDouble QSql__NumericalPrecisionPolicy = QSql__NumericalPrecisionPolicy(0x04)
+	QSql__HighPrecision      QSql__NumericalPrecisionPolicy = QSql__NumericalPrecisionPolicy(0)
+)
+
+//go:generate stringer -type=QSql__ParamTypeFlag
+//QSql::ParamTypeFlag
+type QSql__ParamTypeFlag int64
+
+const (
+	QSql__In     QSql__ParamTypeFlag = QSql__ParamTypeFlag(0x00000001)
+	QSql__Out    QSql__ParamTypeFlag = QSql__ParamTypeFlag(0x00000002)
+	QSql__InOut  QSql__ParamTypeFlag = QSql__ParamTypeFlag(QSql__In | QSql__Out)
+	QSql__Binary QSql__ParamTypeFlag = QSql__ParamTypeFlag(0x00000004)
+)
+
+//go:generate stringer -type=QSql__TableType
+//QSql::TableType
+type QSql__TableType int64
+
+const (
+	QSql__Tables       QSql__TableType = QSql__TableType(0x01)
+	QSql__SystemTables QSql__TableType = QSql__TableType(0x02)
+	QSql__Views        QSql__TableType = QSql__TableType(0x04)
+	QSql__AllTables    QSql__TableType = QSql__TableType(0xff)
+)
 
 type QSqlDatabase struct {
 	ptr unsafe.Pointer
@@ -563,6 +563,45 @@ func (ptr *QSqlDatabase) DefaultConnection() string {
 	return cGoUnpackString(C.QSqlDatabase_QSqlDatabase_DefaultConnection())
 }
 
+type QSqlDriver struct {
+	core.QObject
+}
+
+type QSqlDriver_ITF interface {
+	core.QObject_ITF
+	QSqlDriver_PTR() *QSqlDriver
+}
+
+func (ptr *QSqlDriver) QSqlDriver_PTR() *QSqlDriver {
+	return ptr
+}
+
+func (ptr *QSqlDriver) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QObject_PTR().Pointer()
+	}
+	return nil
+}
+
+func (ptr *QSqlDriver) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QObject_PTR().SetPointer(p)
+	}
+}
+
+func PointerFromQSqlDriver(ptr QSqlDriver_ITF) unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QSqlDriver_PTR().Pointer()
+	}
+	return nil
+}
+
+func NewQSqlDriverFromPointer(ptr unsafe.Pointer) *QSqlDriver {
+	var n = new(QSqlDriver)
+	n.SetPointer(ptr)
+	return n
+}
+
 //go:generate stringer -type=QSqlDriver__DbmsType
 //QSqlDriver::DbmsType
 type QSqlDriver__DbmsType int64
@@ -632,44 +671,6 @@ const (
 	QSqlDriver__DeleteStatement QSqlDriver__StatementType = QSqlDriver__StatementType(4)
 )
 
-type QSqlDriver struct {
-	core.QObject
-}
-
-type QSqlDriver_ITF interface {
-	core.QObject_ITF
-	QSqlDriver_PTR() *QSqlDriver
-}
-
-func (ptr *QSqlDriver) QSqlDriver_PTR() *QSqlDriver {
-	return ptr
-}
-
-func (ptr *QSqlDriver) Pointer() unsafe.Pointer {
-	if ptr != nil {
-		return ptr.QObject_PTR().Pointer()
-	}
-	return nil
-}
-
-func (ptr *QSqlDriver) SetPointer(p unsafe.Pointer) {
-	if ptr != nil {
-		ptr.QObject_PTR().SetPointer(p)
-	}
-}
-
-func PointerFromQSqlDriver(ptr QSqlDriver_ITF) unsafe.Pointer {
-	if ptr != nil {
-		return ptr.QSqlDriver_PTR().Pointer()
-	}
-	return nil
-}
-
-func NewQSqlDriverFromPointer(ptr unsafe.Pointer) *QSqlDriver {
-	var n = new(QSqlDriver)
-	n.SetPointer(ptr)
-	return n
-}
 func NewQSqlDriver(parent core.QObject_ITF) *QSqlDriver {
 	var tmpValue = NewQSqlDriverFromPointer(C.QSqlDriver_NewQSqlDriver(core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
@@ -960,7 +961,7 @@ func (ptr *QSqlDriver) ConnectHasFeature(f func(feature QSqlDriver__DriverFeatur
 	}
 }
 
-func (ptr *QSqlDriver) DisconnectHasFeature(feature QSqlDriver__DriverFeature) {
+func (ptr *QSqlDriver) DisconnectHasFeature() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSqlDriver::hasFeature")
@@ -1156,7 +1157,7 @@ func (ptr *QSqlDriver) ConnectOpen(f func(db string, user string, password strin
 	}
 }
 
-func (ptr *QSqlDriver) DisconnectOpen(db string, user string, password string, host string, port int, options string) {
+func (ptr *QSqlDriver) DisconnectOpen() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSqlDriver::open")
@@ -2232,7 +2233,7 @@ func (ptr *QSqlDriverPlugin) ConnectCreate(f func(key string) *QSqlDriver) {
 	}
 }
 
-func (ptr *QSqlDriverPlugin) DisconnectCreate(key string) {
+func (ptr *QSqlDriverPlugin) DisconnectCreate() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSqlDriverPlugin::create")
@@ -2593,18 +2594,6 @@ func (ptr *QSqlDriverPlugin) MetaObjectDefault() *core.QMetaObject {
 	return nil
 }
 
-//go:generate stringer -type=QSqlError__ErrorType
-//QSqlError::ErrorType
-type QSqlError__ErrorType int64
-
-const (
-	QSqlError__NoError          QSqlError__ErrorType = QSqlError__ErrorType(0)
-	QSqlError__ConnectionError  QSqlError__ErrorType = QSqlError__ErrorType(1)
-	QSqlError__StatementError   QSqlError__ErrorType = QSqlError__ErrorType(2)
-	QSqlError__TransactionError QSqlError__ErrorType = QSqlError__ErrorType(3)
-	QSqlError__UnknownError     QSqlError__ErrorType = QSqlError__ErrorType(4)
-)
-
 type QSqlError struct {
 	ptr unsafe.Pointer
 }
@@ -2642,6 +2631,19 @@ func NewQSqlErrorFromPointer(ptr unsafe.Pointer) *QSqlError {
 	n.SetPointer(ptr)
 	return n
 }
+
+//go:generate stringer -type=QSqlError__ErrorType
+//QSqlError::ErrorType
+type QSqlError__ErrorType int64
+
+const (
+	QSqlError__NoError          QSqlError__ErrorType = QSqlError__ErrorType(0)
+	QSqlError__ConnectionError  QSqlError__ErrorType = QSqlError__ErrorType(1)
+	QSqlError__StatementError   QSqlError__ErrorType = QSqlError__ErrorType(2)
+	QSqlError__TransactionError QSqlError__ErrorType = QSqlError__ErrorType(3)
+	QSqlError__UnknownError     QSqlError__ErrorType = QSqlError__ErrorType(4)
+)
+
 func NewQSqlError3(other QSqlError_ITF) *QSqlError {
 	var tmpValue = NewQSqlErrorFromPointer(C.QSqlError_NewQSqlError3(PointerFromQSqlError(other)))
 	runtime.SetFinalizer(tmpValue, (*QSqlError).DestroyQSqlError)
@@ -2709,16 +2711,6 @@ func (ptr *QSqlError) DestroyQSqlError() {
 	}
 }
 
-//go:generate stringer -type=QSqlField__RequiredStatus
-//QSqlField::RequiredStatus
-type QSqlField__RequiredStatus int64
-
-const (
-	QSqlField__Unknown  QSqlField__RequiredStatus = QSqlField__RequiredStatus(-1)
-	QSqlField__Optional QSqlField__RequiredStatus = QSqlField__RequiredStatus(0)
-	QSqlField__Required QSqlField__RequiredStatus = QSqlField__RequiredStatus(1)
-)
-
 type QSqlField struct {
 	ptr unsafe.Pointer
 }
@@ -2756,6 +2748,17 @@ func NewQSqlFieldFromPointer(ptr unsafe.Pointer) *QSqlField {
 	n.SetPointer(ptr)
 	return n
 }
+
+//go:generate stringer -type=QSqlField__RequiredStatus
+//QSqlField::RequiredStatus
+type QSqlField__RequiredStatus int64
+
+const (
+	QSqlField__Unknown  QSqlField__RequiredStatus = QSqlField__RequiredStatus(-1)
+	QSqlField__Optional QSqlField__RequiredStatus = QSqlField__RequiredStatus(0)
+	QSqlField__Required QSqlField__RequiredStatus = QSqlField__RequiredStatus(1)
+)
+
 func NewQSqlField2(other QSqlField_ITF) *QSqlField {
 	var tmpValue = NewQSqlFieldFromPointer(C.QSqlField_NewQSqlField2(PointerFromQSqlField(other)))
 	runtime.SetFinalizer(tmpValue, (*QSqlField).DestroyQSqlField)
@@ -3034,15 +3037,6 @@ func (ptr *QSqlIndex) DestroyQSqlIndex() {
 	}
 }
 
-//go:generate stringer -type=QSqlQuery__BatchExecutionMode
-//QSqlQuery::BatchExecutionMode
-type QSqlQuery__BatchExecutionMode int64
-
-const (
-	QSqlQuery__ValuesAsRows    QSqlQuery__BatchExecutionMode = QSqlQuery__BatchExecutionMode(0)
-	QSqlQuery__ValuesAsColumns QSqlQuery__BatchExecutionMode = QSqlQuery__BatchExecutionMode(1)
-)
-
 type QSqlQuery struct {
 	ptr unsafe.Pointer
 }
@@ -3080,6 +3074,16 @@ func NewQSqlQueryFromPointer(ptr unsafe.Pointer) *QSqlQuery {
 	n.SetPointer(ptr)
 	return n
 }
+
+//go:generate stringer -type=QSqlQuery__BatchExecutionMode
+//QSqlQuery::BatchExecutionMode
+type QSqlQuery__BatchExecutionMode int64
+
+const (
+	QSqlQuery__ValuesAsRows    QSqlQuery__BatchExecutionMode = QSqlQuery__BatchExecutionMode(0)
+	QSqlQuery__ValuesAsColumns QSqlQuery__BatchExecutionMode = QSqlQuery__BatchExecutionMode(1)
+)
+
 func NewQSqlQuery3(db QSqlDatabase_ITF) *QSqlQuery {
 	var tmpValue = NewQSqlQueryFromPointer(C.QSqlQuery_NewQSqlQuery3(PointerFromQSqlDatabase(db)))
 	runtime.SetFinalizer(tmpValue, (*QSqlQuery).DestroyQSqlQuery)
@@ -4323,13 +4327,6 @@ func (ptr *QSqlQueryModel) InsertRowsDefault(row int, count int, parent core.QMo
 	return false
 }
 
-func (ptr *QSqlQueryModel) DisconnectMimeData() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSqlQueryModel::mimeData")
-	}
-}
-
 //export callbackQSqlQueryModel_MimeTypes
 func callbackQSqlQueryModel_MimeTypes(ptr unsafe.Pointer) *C.char {
 
@@ -4451,7 +4448,7 @@ func callbackQSqlQueryModel_Parent(ptr unsafe.Pointer, index unsafe.Pointer) uns
 		return core.PointerFromQModelIndex(signal.(func(*core.QModelIndex) *core.QModelIndex)(core.NewQModelIndexFromPointer(index)))
 	}
 
-	return core.PointerFromQModelIndex(NewQSqlQueryModelFromPointer(ptr).ParentDefault(core.NewQModelIndexFromPointer(index)))
+	return core.PointerFromQModelIndex(core.NewQModelIndex())
 }
 
 func (ptr *QSqlQueryModel) ConnectParent(f func(index *core.QModelIndex) *core.QModelIndex) {
@@ -4471,15 +4468,6 @@ func (ptr *QSqlQueryModel) DisconnectParent() {
 func (ptr *QSqlQueryModel) Parent(index core.QModelIndex_ITF) *core.QModelIndex {
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQModelIndexFromPointer(C.QSqlQueryModel_Parent(ptr.Pointer(), core.PointerFromQModelIndex(index)))
-		runtime.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QSqlQueryModel) ParentDefault(index core.QModelIndex_ITF) *core.QModelIndex {
-	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQModelIndexFromPointer(C.QSqlQueryModel_ParentDefault(ptr.Pointer(), core.PointerFromQModelIndex(index)))
 		runtime.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
 		return tmpValue
 	}
@@ -6380,15 +6368,6 @@ func (ptr *QSqlRelationalDelegate) MetaObjectDefault() *core.QMetaObject {
 	return nil
 }
 
-//go:generate stringer -type=QSqlRelationalTableModel__JoinMode
-//QSqlRelationalTableModel::JoinMode
-type QSqlRelationalTableModel__JoinMode int64
-
-const (
-	QSqlRelationalTableModel__InnerJoin QSqlRelationalTableModel__JoinMode = QSqlRelationalTableModel__JoinMode(0)
-	QSqlRelationalTableModel__LeftJoin  QSqlRelationalTableModel__JoinMode = QSqlRelationalTableModel__JoinMode(1)
-)
-
 type QSqlRelationalTableModel struct {
 	QSqlTableModel
 }
@@ -6427,6 +6406,16 @@ func NewQSqlRelationalTableModelFromPointer(ptr unsafe.Pointer) *QSqlRelationalT
 	n.SetPointer(ptr)
 	return n
 }
+
+//go:generate stringer -type=QSqlRelationalTableModel__JoinMode
+//QSqlRelationalTableModel::JoinMode
+type QSqlRelationalTableModel__JoinMode int64
+
+const (
+	QSqlRelationalTableModel__InnerJoin QSqlRelationalTableModel__JoinMode = QSqlRelationalTableModel__JoinMode(0)
+	QSqlRelationalTableModel__LeftJoin  QSqlRelationalTableModel__JoinMode = QSqlRelationalTableModel__JoinMode(1)
+)
+
 func NewQSqlRelationalTableModel(parent core.QObject_ITF, db QSqlDatabase_ITF) *QSqlRelationalTableModel {
 	var tmpValue = NewQSqlRelationalTableModelFromPointer(C.QSqlRelationalTableModel_NewQSqlRelationalTableModel(core.PointerFromQObject(parent), PointerFromQSqlDatabase(db)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
@@ -8058,13 +8047,6 @@ func (ptr *QSqlRelationalTableModel) HasChildrenDefault(parent core.QModelIndex_
 	return false
 }
 
-func (ptr *QSqlRelationalTableModel) DisconnectMimeData() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSqlRelationalTableModel::mimeData")
-	}
-}
-
 //export callbackQSqlRelationalTableModel_MimeTypes
 func callbackQSqlRelationalTableModel_MimeTypes(ptr unsafe.Pointer) *C.char {
 
@@ -8186,7 +8168,7 @@ func callbackQSqlRelationalTableModel_Parent(ptr unsafe.Pointer, index unsafe.Po
 		return core.PointerFromQModelIndex(signal.(func(*core.QModelIndex) *core.QModelIndex)(core.NewQModelIndexFromPointer(index)))
 	}
 
-	return core.PointerFromQModelIndex(NewQSqlRelationalTableModelFromPointer(ptr).ParentDefault(core.NewQModelIndexFromPointer(index)))
+	return core.PointerFromQModelIndex(core.NewQModelIndex())
 }
 
 func (ptr *QSqlRelationalTableModel) ConnectParent(f func(index *core.QModelIndex) *core.QModelIndex) {
@@ -8206,15 +8188,6 @@ func (ptr *QSqlRelationalTableModel) DisconnectParent() {
 func (ptr *QSqlRelationalTableModel) Parent(index core.QModelIndex_ITF) *core.QModelIndex {
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQModelIndexFromPointer(C.QSqlRelationalTableModel_Parent(ptr.Pointer(), core.PointerFromQModelIndex(index)))
-		runtime.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QSqlRelationalTableModel) ParentDefault(index core.QModelIndex_ITF) *core.QModelIndex {
-	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQModelIndexFromPointer(C.QSqlRelationalTableModel_ParentDefault(ptr.Pointer(), core.PointerFromQModelIndex(index)))
 		runtime.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
 		return tmpValue
 	}
@@ -8707,15 +8680,6 @@ func (ptr *QSqlRelationalTableModel) MetaObjectDefault() *core.QMetaObject {
 	return nil
 }
 
-//go:generate stringer -type=QSqlResult__BindingSyntax
-//QSqlResult::BindingSyntax
-type QSqlResult__BindingSyntax int64
-
-const (
-	QSqlResult__PositionalBinding QSqlResult__BindingSyntax = QSqlResult__BindingSyntax(0)
-	QSqlResult__NamedBinding      QSqlResult__BindingSyntax = QSqlResult__BindingSyntax(1)
-)
-
 type QSqlResult struct {
 	ptr unsafe.Pointer
 }
@@ -8753,6 +8717,16 @@ func NewQSqlResultFromPointer(ptr unsafe.Pointer) *QSqlResult {
 	n.SetPointer(ptr)
 	return n
 }
+
+//go:generate stringer -type=QSqlResult__BindingSyntax
+//QSqlResult::BindingSyntax
+type QSqlResult__BindingSyntax int64
+
+const (
+	QSqlResult__PositionalBinding QSqlResult__BindingSyntax = QSqlResult__BindingSyntax(0)
+	QSqlResult__NamedBinding      QSqlResult__BindingSyntax = QSqlResult__BindingSyntax(1)
+)
+
 func NewQSqlResult(db QSqlDriver_ITF) *QSqlResult {
 	return NewQSqlResultFromPointer(C.QSqlResult_NewQSqlResult(PointerFromQSqlDriver(db)))
 }
@@ -8939,7 +8913,7 @@ func (ptr *QSqlResult) ConnectData(f func(index int) *core.QVariant) {
 	}
 }
 
-func (ptr *QSqlResult) DisconnectData(index int) {
+func (ptr *QSqlResult) DisconnectData() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSqlResult::data")
@@ -9028,7 +9002,7 @@ func (ptr *QSqlResult) ConnectFetch(f func(index int) bool) {
 	}
 }
 
-func (ptr *QSqlResult) DisconnectFetch(index int) {
+func (ptr *QSqlResult) DisconnectFetch() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSqlResult::fetch")
@@ -9260,7 +9234,7 @@ func (ptr *QSqlResult) ConnectIsNull(f func(index int) bool) {
 	}
 }
 
-func (ptr *QSqlResult) DisconnectIsNull(index int) {
+func (ptr *QSqlResult) DisconnectIsNull() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSqlResult::isNull")
@@ -9478,7 +9452,7 @@ func (ptr *QSqlResult) ConnectReset(f func(query string) bool) {
 	}
 }
 
-func (ptr *QSqlResult) DisconnectReset(query string) {
+func (ptr *QSqlResult) DisconnectReset() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSqlResult::reset")
@@ -9842,16 +9816,6 @@ func (ptr *QSqlResult) boundValues_atList(i int) *core.QVariant {
 	return nil
 }
 
-//go:generate stringer -type=QSqlTableModel__EditStrategy
-//QSqlTableModel::EditStrategy
-type QSqlTableModel__EditStrategy int64
-
-const (
-	QSqlTableModel__OnFieldChange  QSqlTableModel__EditStrategy = QSqlTableModel__EditStrategy(0)
-	QSqlTableModel__OnRowChange    QSqlTableModel__EditStrategy = QSqlTableModel__EditStrategy(1)
-	QSqlTableModel__OnManualSubmit QSqlTableModel__EditStrategy = QSqlTableModel__EditStrategy(2)
-)
-
 type QSqlTableModel struct {
 	QSqlQueryModel
 }
@@ -9890,6 +9854,17 @@ func NewQSqlTableModelFromPointer(ptr unsafe.Pointer) *QSqlTableModel {
 	n.SetPointer(ptr)
 	return n
 }
+
+//go:generate stringer -type=QSqlTableModel__EditStrategy
+//QSqlTableModel::EditStrategy
+type QSqlTableModel__EditStrategy int64
+
+const (
+	QSqlTableModel__OnFieldChange  QSqlTableModel__EditStrategy = QSqlTableModel__EditStrategy(0)
+	QSqlTableModel__OnRowChange    QSqlTableModel__EditStrategy = QSqlTableModel__EditStrategy(1)
+	QSqlTableModel__OnManualSubmit QSqlTableModel__EditStrategy = QSqlTableModel__EditStrategy(2)
+)
+
 func NewQSqlTableModel(parent core.QObject_ITF, db QSqlDatabase_ITF) *QSqlTableModel {
 	var tmpValue = NewQSqlTableModelFromPointer(C.QSqlTableModel_NewQSqlTableModel(core.PointerFromQObject(parent), PointerFromQSqlDatabase(db)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
@@ -10535,8 +10510,9 @@ func (ptr *QSqlTableModel) RemoveRowsDefault(row int, count int, parent core.QMo
 func callbackQSqlTableModel_Revert(ptr unsafe.Pointer) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSqlTableModel::revert"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQSqlTableModelFromPointer(ptr).RevertDefault()
 	}
-
 }
 
 func (ptr *QSqlTableModel) ConnectRevert(f func()) {
@@ -10559,12 +10535,19 @@ func (ptr *QSqlTableModel) Revert() {
 	}
 }
 
+func (ptr *QSqlTableModel) RevertDefault() {
+	if ptr.Pointer() != nil {
+		C.QSqlTableModel_RevertDefault(ptr.Pointer())
+	}
+}
+
 //export callbackQSqlTableModel_RevertAll
 func callbackQSqlTableModel_RevertAll(ptr unsafe.Pointer) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSqlTableModel::revertAll"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQSqlTableModelFromPointer(ptr).RevertAllDefault()
 	}
-
 }
 
 func (ptr *QSqlTableModel) ConnectRevertAll(f func()) {
@@ -10584,6 +10567,12 @@ func (ptr *QSqlTableModel) DisconnectRevertAll() {
 func (ptr *QSqlTableModel) RevertAll() {
 	if ptr.Pointer() != nil {
 		C.QSqlTableModel_RevertAll(ptr.Pointer())
+	}
+}
+
+func (ptr *QSqlTableModel) RevertAllDefault() {
+	if ptr.Pointer() != nil {
+		C.QSqlTableModel_RevertAllDefault(ptr.Pointer())
 	}
 }
 
@@ -11024,7 +11013,7 @@ func callbackQSqlTableModel_Submit(ptr unsafe.Pointer) C.char {
 		return C.char(int8(qt.GoBoolToInt(signal.(func() bool)())))
 	}
 
-	return C.char(int8(qt.GoBoolToInt(false)))
+	return C.char(int8(qt.GoBoolToInt(NewQSqlTableModelFromPointer(ptr).SubmitDefault())))
 }
 
 func (ptr *QSqlTableModel) ConnectSubmit(f func() bool) {
@@ -11048,13 +11037,20 @@ func (ptr *QSqlTableModel) Submit() bool {
 	return false
 }
 
+func (ptr *QSqlTableModel) SubmitDefault() bool {
+	if ptr.Pointer() != nil {
+		return C.QSqlTableModel_SubmitDefault(ptr.Pointer()) != 0
+	}
+	return false
+}
+
 //export callbackQSqlTableModel_SubmitAll
 func callbackQSqlTableModel_SubmitAll(ptr unsafe.Pointer) C.char {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSqlTableModel::submitAll"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func() bool)())))
 	}
 
-	return C.char(int8(qt.GoBoolToInt(false)))
+	return C.char(int8(qt.GoBoolToInt(NewQSqlTableModelFromPointer(ptr).SubmitAllDefault())))
 }
 
 func (ptr *QSqlTableModel) ConnectSubmitAll(f func() bool) {
@@ -11074,6 +11070,13 @@ func (ptr *QSqlTableModel) DisconnectSubmitAll() {
 func (ptr *QSqlTableModel) SubmitAll() bool {
 	if ptr.Pointer() != nil {
 		return C.QSqlTableModel_SubmitAll(ptr.Pointer()) != 0
+	}
+	return false
+}
+
+func (ptr *QSqlTableModel) SubmitAllDefault() bool {
+	if ptr.Pointer() != nil {
+		return C.QSqlTableModel_SubmitAllDefault(ptr.Pointer()) != 0
 	}
 	return false
 }
@@ -11627,13 +11630,6 @@ func (ptr *QSqlTableModel) HasChildrenDefault(parent core.QModelIndex_ITF) bool 
 	return false
 }
 
-func (ptr *QSqlTableModel) DisconnectMimeData() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSqlTableModel::mimeData")
-	}
-}
-
 //export callbackQSqlTableModel_MimeTypes
 func callbackQSqlTableModel_MimeTypes(ptr unsafe.Pointer) *C.char {
 
@@ -11755,7 +11751,7 @@ func callbackQSqlTableModel_Parent(ptr unsafe.Pointer, index unsafe.Pointer) uns
 		return core.PointerFromQModelIndex(signal.(func(*core.QModelIndex) *core.QModelIndex)(core.NewQModelIndexFromPointer(index)))
 	}
 
-	return core.PointerFromQModelIndex(NewQSqlTableModelFromPointer(ptr).ParentDefault(core.NewQModelIndexFromPointer(index)))
+	return core.PointerFromQModelIndex(core.NewQModelIndex())
 }
 
 func (ptr *QSqlTableModel) ConnectParent(f func(index *core.QModelIndex) *core.QModelIndex) {
@@ -11775,15 +11771,6 @@ func (ptr *QSqlTableModel) DisconnectParent() {
 func (ptr *QSqlTableModel) Parent(index core.QModelIndex_ITF) *core.QModelIndex {
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQModelIndexFromPointer(C.QSqlTableModel_Parent(ptr.Pointer(), core.PointerFromQModelIndex(index)))
-		runtime.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
-		return tmpValue
-	}
-	return nil
-}
-
-func (ptr *QSqlTableModel) ParentDefault(index core.QModelIndex_ITF) *core.QModelIndex {
-	if ptr.Pointer() != nil {
-		var tmpValue = core.NewQModelIndexFromPointer(C.QSqlTableModel_ParentDefault(ptr.Pointer(), core.PointerFromQModelIndex(index)))
 		runtime.SetFinalizer(tmpValue, (*core.QModelIndex).DestroyQModelIndex)
 		return tmpValue
 	}

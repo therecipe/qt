@@ -3433,9 +3433,19 @@ void QPrintPreviewWidget_FitInView(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QPrintPreviewWidget*>(ptr), "fitInView");
 }
 
+void QPrintPreviewWidget_FitInViewDefault(void* ptr)
+{
+	static_cast<QPrintPreviewWidget*>(ptr)->QPrintPreviewWidget::fitInView();
+}
+
 void QPrintPreviewWidget_FitToWidth(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QPrintPreviewWidget*>(ptr), "fitToWidth");
+}
+
+void QPrintPreviewWidget_FitToWidthDefault(void* ptr)
+{
+	static_cast<QPrintPreviewWidget*>(ptr)->QPrintPreviewWidget::fitToWidth();
 }
 
 long long QPrintPreviewWidget_Orientation(void* ptr)
@@ -3483,9 +3493,19 @@ void QPrintPreviewWidget_Print(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QPrintPreviewWidget*>(ptr), "print");
 }
 
+void QPrintPreviewWidget_PrintDefault(void* ptr)
+{
+	static_cast<QPrintPreviewWidget*>(ptr)->QPrintPreviewWidget::print();
+}
+
 void QPrintPreviewWidget_SetAllPagesViewMode(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QPrintPreviewWidget*>(ptr), "setAllPagesViewMode");
+}
+
+void QPrintPreviewWidget_SetAllPagesViewModeDefault(void* ptr)
+{
+	static_cast<QPrintPreviewWidget*>(ptr)->QPrintPreviewWidget::setAllPagesViewMode();
 }
 
 void QPrintPreviewWidget_SetCurrentPage(void* ptr, int page)
@@ -3493,9 +3513,19 @@ void QPrintPreviewWidget_SetCurrentPage(void* ptr, int page)
 	QMetaObject::invokeMethod(static_cast<QPrintPreviewWidget*>(ptr), "setCurrentPage", Q_ARG(int, page));
 }
 
+void QPrintPreviewWidget_SetCurrentPageDefault(void* ptr, int page)
+{
+	static_cast<QPrintPreviewWidget*>(ptr)->QPrintPreviewWidget::setCurrentPage(page);
+}
+
 void QPrintPreviewWidget_SetFacingPagesViewMode(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QPrintPreviewWidget*>(ptr), "setFacingPagesViewMode");
+}
+
+void QPrintPreviewWidget_SetFacingPagesViewModeDefault(void* ptr)
+{
+	static_cast<QPrintPreviewWidget*>(ptr)->QPrintPreviewWidget::setFacingPagesViewMode();
 }
 
 void QPrintPreviewWidget_SetLandscapeOrientation(void* ptr)
@@ -3503,9 +3533,19 @@ void QPrintPreviewWidget_SetLandscapeOrientation(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QPrintPreviewWidget*>(ptr), "setLandscapeOrientation");
 }
 
+void QPrintPreviewWidget_SetLandscapeOrientationDefault(void* ptr)
+{
+	static_cast<QPrintPreviewWidget*>(ptr)->QPrintPreviewWidget::setLandscapeOrientation();
+}
+
 void QPrintPreviewWidget_SetOrientation(void* ptr, long long orientation)
 {
 	QMetaObject::invokeMethod(static_cast<QPrintPreviewWidget*>(ptr), "setOrientation", Q_ARG(QPrinter::Orientation, static_cast<QPrinter::Orientation>(orientation)));
+}
+
+void QPrintPreviewWidget_SetOrientationDefault(void* ptr, long long orientation)
+{
+	static_cast<QPrintPreviewWidget*>(ptr)->QPrintPreviewWidget::setOrientation(static_cast<QPrinter::Orientation>(orientation));
 }
 
 void QPrintPreviewWidget_SetPortraitOrientation(void* ptr)
@@ -3513,14 +3553,29 @@ void QPrintPreviewWidget_SetPortraitOrientation(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QPrintPreviewWidget*>(ptr), "setPortraitOrientation");
 }
 
+void QPrintPreviewWidget_SetPortraitOrientationDefault(void* ptr)
+{
+	static_cast<QPrintPreviewWidget*>(ptr)->QPrintPreviewWidget::setPortraitOrientation();
+}
+
 void QPrintPreviewWidget_SetSinglePageViewMode(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QPrintPreviewWidget*>(ptr), "setSinglePageViewMode");
 }
 
+void QPrintPreviewWidget_SetSinglePageViewModeDefault(void* ptr)
+{
+	static_cast<QPrintPreviewWidget*>(ptr)->QPrintPreviewWidget::setSinglePageViewMode();
+}
+
 void QPrintPreviewWidget_SetViewMode(void* ptr, long long mode)
 {
 	QMetaObject::invokeMethod(static_cast<QPrintPreviewWidget*>(ptr), "setViewMode", Q_ARG(QPrintPreviewWidget::ViewMode, static_cast<QPrintPreviewWidget::ViewMode>(mode)));
+}
+
+void QPrintPreviewWidget_SetViewModeDefault(void* ptr, long long mode)
+{
+	static_cast<QPrintPreviewWidget*>(ptr)->QPrintPreviewWidget::setViewMode(static_cast<QPrintPreviewWidget::ViewMode>(mode));
 }
 
 void QPrintPreviewWidget_SetVisible(void* ptr, char visible)
@@ -3538,14 +3593,29 @@ void QPrintPreviewWidget_SetZoomFactor(void* ptr, double factor)
 	QMetaObject::invokeMethod(static_cast<QPrintPreviewWidget*>(ptr), "setZoomFactor", Q_ARG(qreal, factor));
 }
 
+void QPrintPreviewWidget_SetZoomFactorDefault(void* ptr, double factor)
+{
+	static_cast<QPrintPreviewWidget*>(ptr)->QPrintPreviewWidget::setZoomFactor(factor);
+}
+
 void QPrintPreviewWidget_SetZoomMode(void* ptr, long long zoomMode)
 {
 	QMetaObject::invokeMethod(static_cast<QPrintPreviewWidget*>(ptr), "setZoomMode", Q_ARG(QPrintPreviewWidget::ZoomMode, static_cast<QPrintPreviewWidget::ZoomMode>(zoomMode)));
 }
 
+void QPrintPreviewWidget_SetZoomModeDefault(void* ptr, long long zoomMode)
+{
+	static_cast<QPrintPreviewWidget*>(ptr)->QPrintPreviewWidget::setZoomMode(static_cast<QPrintPreviewWidget::ZoomMode>(zoomMode));
+}
+
 void QPrintPreviewWidget_UpdatePreview(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QPrintPreviewWidget*>(ptr), "updatePreview");
+}
+
+void QPrintPreviewWidget_UpdatePreviewDefault(void* ptr)
+{
+	static_cast<QPrintPreviewWidget*>(ptr)->QPrintPreviewWidget::updatePreview();
 }
 
 long long QPrintPreviewWidget_ViewMode(void* ptr)
@@ -3563,6 +3633,11 @@ void QPrintPreviewWidget_ZoomIn(void* ptr, double factor)
 	QMetaObject::invokeMethod(static_cast<QPrintPreviewWidget*>(ptr), "zoomIn", Q_ARG(qreal, factor));
 }
 
+void QPrintPreviewWidget_ZoomInDefault(void* ptr, double factor)
+{
+	static_cast<QPrintPreviewWidget*>(ptr)->QPrintPreviewWidget::zoomIn(factor);
+}
+
 long long QPrintPreviewWidget_ZoomMode(void* ptr)
 {
 	return static_cast<QPrintPreviewWidget*>(ptr)->zoomMode();
@@ -3571,6 +3646,11 @@ long long QPrintPreviewWidget_ZoomMode(void* ptr)
 void QPrintPreviewWidget_ZoomOut(void* ptr, double factor)
 {
 	QMetaObject::invokeMethod(static_cast<QPrintPreviewWidget*>(ptr), "zoomOut", Q_ARG(qreal, factor));
+}
+
+void QPrintPreviewWidget_ZoomOutDefault(void* ptr, double factor)
+{
+	static_cast<QPrintPreviewWidget*>(ptr)->QPrintPreviewWidget::zoomOut(factor);
 }
 
 void QPrintPreviewWidget_DestroyQPrintPreviewWidget(void* ptr)
@@ -4218,7 +4298,6 @@ public:
 	bool newPage() { return callbackQPrinter_NewPage(this) != 0; };
 	QPaintEngine * paintEngine() const { return static_cast<QPaintEngine*>(callbackQPrinter_PaintEngine(const_cast<MyQPrinter*>(this))); };
 	bool setPageSize(const QPageSize & pageSize) { return callbackQPrinter_SetPageSize(this, const_cast<QPageSize*>(&pageSize)) != 0; };
-	
 	void setPageSize(QPagedPaintDevice::PageSize size) { callbackQPrinter_SetPageSize2(this, size); };
 	void setPageSizeMM(const QSizeF & size) { callbackQPrinter_SetPageSizeMM(this, const_cast<QSizeF*>(&size)); };
 	int metric(QPaintDevice::PaintDeviceMetric metric) const { return callbackQPrinter_Metric(const_cast<MyQPrinter*>(this), metric); };
@@ -4518,10 +4597,6 @@ void QPrinter_DestroyQPrinter(void* ptr)
 {
 	static_cast<QPrinter*>(ptr)->~QPrinter();
 }
-
-
-
-
 
 void QPrinter_SetPageSize2(void* ptr, long long size)
 {

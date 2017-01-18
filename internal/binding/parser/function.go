@@ -8,34 +8,34 @@ import (
 )
 
 type Function struct {
-	Name             string       `xml:"name,attr"`
-	Fullname         string       `xml:"fullname,attr"`
-	Href             string       `xml:"href,attr"`
-	Status           string       `xml:"status,attr"`
-	Access           string       `xml:"access,attr"`
-	Filepath         string       `xml:"filepath,attr"`
-	Virtual          string       `xml:"virtual,attr"`
-	Meta             string       `xml:"meta,attr"`
-	Static           bool         `xml:"static,attr"`
-	Overload         bool         `xml:"overload,attr"`
-	OverloadNumber   string       `xml:"overload-number,attr"`
-	Output           string       `xml:"type,attr"`
-	Signature        string       `xml:"signature,attr"`
-	Parameters       []*Parameter `xml:"parameter"`
-	Brief            string       `xml:"brief,attr"`
-	SignalMode       string
-	TemplateModeJNI  string
-	Default          bool
-	TmpName          string
-	Export           bool
-	NeedsFinalizer   bool
-	Container        string
-	TemplateModeGo   string
-	Child            *Function
-	NonMember        bool
-	NoMocDeduce      bool
-	PureBaseFunction bool
-	AsError          bool
+	Name            string       `xml:"name,attr"`
+	Fullname        string       `xml:"fullname,attr"`
+	Href            string       `xml:"href,attr"`
+	Status          string       `xml:"status,attr"`
+	Access          string       `xml:"access,attr"`
+	Filepath        string       `xml:"filepath,attr"`
+	Virtual         string       `xml:"virtual,attr"`
+	Meta            string       `xml:"meta,attr"`
+	Static          bool         `xml:"static,attr"`
+	Overload        bool         `xml:"overload,attr"`
+	OverloadNumber  string       `xml:"overload-number,attr"`
+	Output          string       `xml:"type,attr"`
+	Signature       string       `xml:"signature,attr"`
+	Parameters      []*Parameter `xml:"parameter"`
+	Brief           string       `xml:"brief,attr"`
+	SignalMode      string
+	TemplateModeJNI string
+	Default         bool
+	TmpName         string
+	Export          bool
+	NeedsFinalizer  bool
+	Container       string
+	TemplateModeGo  string
+	NonMember       bool
+	NoMocDeduce     bool
+	AsError         bool
+	Synthetic       bool
+	Checked         bool
 }
 
 type Parameter struct {
@@ -192,6 +192,8 @@ func (f *Function) IsSupported() bool {
 		f.Fullname == "QAudioOutputSelectorControl::availableOutputs", f.Fullname == "QQuickWebEngineProfile::downloadFinished",
 		f.Fullname == "QQuickWindow::closing", f.Fullname == "QQuickWebEngineProfile::downloadRequested", f.Fullname == "QWebEnginePage::fullScreenRequested",
 
+		f.Fullname == "QApplication::autoMaximizeThreshold", f.Fullname == "QApplication::setAutoMaximizeThreshold",
+
 		strings.Contains(f.Access, "unsupported"):
 		{
 			if !strings.Contains(f.Access, "unsupported") {
@@ -219,64 +221,8 @@ func (f *Function) IsSupported() bool {
 		}
 	}
 
-	if f.Default {
-		return f.IsSupportedDefault()
-	}
-
 	if State.Minimal {
 		return f.Export || f.Meta == DESTRUCTOR || f.Fullname == "QObject::destroyed" || strings.HasPrefix(f.Name, TILDE)
-	}
-
-	return true
-}
-
-func (f *Function) IsSupportedDefault() bool {
-	switch f.Fullname {
-	case
-		"QAnimationGroup::updateCurrentTime", "QAnimationGroup::duration",
-		"QAbstractProxyModel::columnCount", "QAbstractTableModel::columnCount",
-		"QAbstractListModel::data", "QAbstractTableModel::data",
-		"QAbstractProxyModel::index", "QAbstractProxyModel::parent",
-		"QAbstractListModel::rowCount", "QAbstractProxyModel::rowCount", "QAbstractTableModel::rowCount",
-
-		"QPagedPaintDevice::paintEngine", "QAccessibleObject::childCount",
-		"QAccessibleObject::indexOfChild", "QAccessibleObject::role",
-		"QAccessibleObject::text", "QAccessibleObject::child",
-		"QAccessibleObject::parent",
-
-		"QAbstractGraphicsShapeItem::paint", "QGraphicsObject::paint",
-		"QLayout::sizeHint", "QAbstractGraphicsShapeItem::boundingRect",
-		"QGraphicsObject::boundingRect", "QGraphicsLayout::sizeHint",
-
-		"QSimpleXmlNodeModel::typedValue", "QSimpleXmlNodeModel::documentUri",
-		"QSimpleXmlNodeModel::compareOrder", "QSimpleXmlNodeModel::nextFromSimpleAxis",
-		"QSimpleXmlNodeModel::kind", "QSimpleXmlNodeModel::root",
-
-		"QAbstractPlanarVideoBuffer::unmap", "QAbstractPlanarVideoBuffer::mapMode",
-
-		"QSGDynamicTexture::bind", "QSGDynamicTexture::hasMipmaps",
-		"QSGDynamicTexture::textureSize", "QSGDynamicTexture::hasAlphaChannel",
-		"QSGDynamicTexture::textureId",
-
-		"QModbusClient::open", "QModbusClient::close", "QModbusServer::open", "QModbusServer::close",
-
-		"QSimpleXmlNodeModel::name",
-
-		"QSimpleXmlNodeModel::attributes", "QAbstractXmlNodeModel::attributes",
-
-		"QNetworkReply::readData":
-		{
-			return false
-		}
-	}
-
-	//needed for moc
-	if State.ClassMap[f.ClassName()].IsSubClassOf("QCoreApplication") && (f.Name == "autoMaximizeThreshold" || f.Name == "setAutoMaximizeThreshold") {
-		return false
-	}
-
-	if State.Minimal {
-		return f.Export
 	}
 
 	return true
@@ -285,11 +231,35 @@ func (f *Function) IsSupportedDefault() bool {
 func (f *Function) IsDerivedFromVirtual() bool {
 	var class, _ = f.Class()
 
+	if f.Virtual != "non" {
+		return true
+	}
+
 	for _, bc := range class.GetAllBases() {
 		if bclass, exists := State.ClassMap[bc]; exists {
 			for _, bcf := range bclass.Functions {
 				if f.Name == bcf.Name && bcf.Virtual != "non" {
 					return true
+				}
+			}
+		}
+	}
+
+	return false
+}
+
+func (f *Function) IsDerivedFromImpure() bool {
+	var class, _ = f.Class()
+
+	if f.Virtual != PURE {
+		return true
+	}
+
+	for _, bc := range class.GetAllBases() {
+		if bclass, exists := State.ClassMap[bc]; exists {
+			for _, bcf := range bclass.Functions {
+				if f.Name == bcf.Name {
+					return bcf.Virtual != PURE
 				}
 			}
 		}

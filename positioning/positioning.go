@@ -364,26 +364,6 @@ func (ptr *QGeoAreaMonitorInfo) DestroyQGeoAreaMonitorInfo() {
 	}
 }
 
-//go:generate stringer -type=QGeoAreaMonitorSource__AreaMonitorFeature
-//QGeoAreaMonitorSource::AreaMonitorFeature
-type QGeoAreaMonitorSource__AreaMonitorFeature int64
-
-const (
-	QGeoAreaMonitorSource__PersistentAreaMonitorFeature QGeoAreaMonitorSource__AreaMonitorFeature = QGeoAreaMonitorSource__AreaMonitorFeature(0x00000001)
-	QGeoAreaMonitorSource__AnyAreaMonitorFeature        QGeoAreaMonitorSource__AreaMonitorFeature = QGeoAreaMonitorSource__AreaMonitorFeature(0xffffffff)
-)
-
-//go:generate stringer -type=QGeoAreaMonitorSource__Error
-//QGeoAreaMonitorSource::Error
-type QGeoAreaMonitorSource__Error int64
-
-const (
-	QGeoAreaMonitorSource__AccessError              QGeoAreaMonitorSource__Error = QGeoAreaMonitorSource__Error(0)
-	QGeoAreaMonitorSource__InsufficientPositionInfo QGeoAreaMonitorSource__Error = QGeoAreaMonitorSource__Error(1)
-	QGeoAreaMonitorSource__UnknownSourceError       QGeoAreaMonitorSource__Error = QGeoAreaMonitorSource__Error(2)
-	QGeoAreaMonitorSource__NoError                  QGeoAreaMonitorSource__Error = QGeoAreaMonitorSource__Error(3)
-)
-
 type QGeoAreaMonitorSource struct {
 	core.QObject
 }
@@ -423,6 +403,26 @@ func NewQGeoAreaMonitorSourceFromPointer(ptr unsafe.Pointer) *QGeoAreaMonitorSou
 	return n
 }
 
+//go:generate stringer -type=QGeoAreaMonitorSource__AreaMonitorFeature
+//QGeoAreaMonitorSource::AreaMonitorFeature
+type QGeoAreaMonitorSource__AreaMonitorFeature int64
+
+const (
+	QGeoAreaMonitorSource__PersistentAreaMonitorFeature QGeoAreaMonitorSource__AreaMonitorFeature = QGeoAreaMonitorSource__AreaMonitorFeature(0x00000001)
+	QGeoAreaMonitorSource__AnyAreaMonitorFeature        QGeoAreaMonitorSource__AreaMonitorFeature = QGeoAreaMonitorSource__AreaMonitorFeature(0xffffffff)
+)
+
+//go:generate stringer -type=QGeoAreaMonitorSource__Error
+//QGeoAreaMonitorSource::Error
+type QGeoAreaMonitorSource__Error int64
+
+const (
+	QGeoAreaMonitorSource__AccessError              QGeoAreaMonitorSource__Error = QGeoAreaMonitorSource__Error(0)
+	QGeoAreaMonitorSource__InsufficientPositionInfo QGeoAreaMonitorSource__Error = QGeoAreaMonitorSource__Error(1)
+	QGeoAreaMonitorSource__UnknownSourceError       QGeoAreaMonitorSource__Error = QGeoAreaMonitorSource__Error(2)
+	QGeoAreaMonitorSource__NoError                  QGeoAreaMonitorSource__Error = QGeoAreaMonitorSource__Error(3)
+)
+
 func (ptr *QGeoAreaMonitorSource) ConnectActiveMonitors(f func() []*QGeoAreaMonitorInfo) {
 	if ptr.Pointer() != nil {
 
@@ -457,7 +457,7 @@ func (ptr *QGeoAreaMonitorSource) ConnectActiveMonitors2(f func(lookupArea *QGeo
 	}
 }
 
-func (ptr *QGeoAreaMonitorSource) DisconnectActiveMonitors2(lookupArea QGeoShape_ITF) {
+func (ptr *QGeoAreaMonitorSource) DisconnectActiveMonitors2() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QGeoAreaMonitorSource::activeMonitors2")
@@ -731,7 +731,7 @@ func (ptr *QGeoAreaMonitorSource) ConnectRequestUpdate(f func(monitor *QGeoAreaM
 	}
 }
 
-func (ptr *QGeoAreaMonitorSource) DisconnectRequestUpdate(monitor QGeoAreaMonitorInfo_ITF, sign string) {
+func (ptr *QGeoAreaMonitorSource) DisconnectRequestUpdate() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QGeoAreaMonitorSource::requestUpdate")
@@ -807,7 +807,7 @@ func (ptr *QGeoAreaMonitorSource) ConnectStartMonitoring(f func(monitor *QGeoAre
 	}
 }
 
-func (ptr *QGeoAreaMonitorSource) DisconnectStartMonitoring(monitor QGeoAreaMonitorInfo_ITF) {
+func (ptr *QGeoAreaMonitorSource) DisconnectStartMonitoring() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QGeoAreaMonitorSource::startMonitoring")
@@ -838,7 +838,7 @@ func (ptr *QGeoAreaMonitorSource) ConnectStopMonitoring(f func(monitor *QGeoArea
 	}
 }
 
-func (ptr *QGeoAreaMonitorSource) DisconnectStopMonitoring(monitor QGeoAreaMonitorInfo_ITF) {
+func (ptr *QGeoAreaMonitorSource) DisconnectStopMonitoring() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QGeoAreaMonitorSource::stopMonitoring")
@@ -1384,29 +1384,6 @@ func (ptr *QGeoCircle) DestroyQGeoCircle() {
 	}
 }
 
-//go:generate stringer -type=QGeoCoordinate__CoordinateFormat
-//QGeoCoordinate::CoordinateFormat
-type QGeoCoordinate__CoordinateFormat int64
-
-const (
-	QGeoCoordinate__Degrees                             QGeoCoordinate__CoordinateFormat = QGeoCoordinate__CoordinateFormat(0)
-	QGeoCoordinate__DegreesWithHemisphere               QGeoCoordinate__CoordinateFormat = QGeoCoordinate__CoordinateFormat(1)
-	QGeoCoordinate__DegreesMinutes                      QGeoCoordinate__CoordinateFormat = QGeoCoordinate__CoordinateFormat(2)
-	QGeoCoordinate__DegreesMinutesWithHemisphere        QGeoCoordinate__CoordinateFormat = QGeoCoordinate__CoordinateFormat(3)
-	QGeoCoordinate__DegreesMinutesSeconds               QGeoCoordinate__CoordinateFormat = QGeoCoordinate__CoordinateFormat(4)
-	QGeoCoordinate__DegreesMinutesSecondsWithHemisphere QGeoCoordinate__CoordinateFormat = QGeoCoordinate__CoordinateFormat(5)
-)
-
-//go:generate stringer -type=QGeoCoordinate__CoordinateType
-//QGeoCoordinate::CoordinateType
-type QGeoCoordinate__CoordinateType int64
-
-const (
-	QGeoCoordinate__InvalidCoordinate QGeoCoordinate__CoordinateType = QGeoCoordinate__CoordinateType(0)
-	QGeoCoordinate__Coordinate2D      QGeoCoordinate__CoordinateType = QGeoCoordinate__CoordinateType(1)
-	QGeoCoordinate__Coordinate3D      QGeoCoordinate__CoordinateType = QGeoCoordinate__CoordinateType(2)
-)
-
 type QGeoCoordinate struct {
 	ptr unsafe.Pointer
 }
@@ -1444,6 +1421,30 @@ func NewQGeoCoordinateFromPointer(ptr unsafe.Pointer) *QGeoCoordinate {
 	n.SetPointer(ptr)
 	return n
 }
+
+//go:generate stringer -type=QGeoCoordinate__CoordinateFormat
+//QGeoCoordinate::CoordinateFormat
+type QGeoCoordinate__CoordinateFormat int64
+
+const (
+	QGeoCoordinate__Degrees                             QGeoCoordinate__CoordinateFormat = QGeoCoordinate__CoordinateFormat(0)
+	QGeoCoordinate__DegreesWithHemisphere               QGeoCoordinate__CoordinateFormat = QGeoCoordinate__CoordinateFormat(1)
+	QGeoCoordinate__DegreesMinutes                      QGeoCoordinate__CoordinateFormat = QGeoCoordinate__CoordinateFormat(2)
+	QGeoCoordinate__DegreesMinutesWithHemisphere        QGeoCoordinate__CoordinateFormat = QGeoCoordinate__CoordinateFormat(3)
+	QGeoCoordinate__DegreesMinutesSeconds               QGeoCoordinate__CoordinateFormat = QGeoCoordinate__CoordinateFormat(4)
+	QGeoCoordinate__DegreesMinutesSecondsWithHemisphere QGeoCoordinate__CoordinateFormat = QGeoCoordinate__CoordinateFormat(5)
+)
+
+//go:generate stringer -type=QGeoCoordinate__CoordinateType
+//QGeoCoordinate::CoordinateType
+type QGeoCoordinate__CoordinateType int64
+
+const (
+	QGeoCoordinate__InvalidCoordinate QGeoCoordinate__CoordinateType = QGeoCoordinate__CoordinateType(0)
+	QGeoCoordinate__Coordinate2D      QGeoCoordinate__CoordinateType = QGeoCoordinate__CoordinateType(1)
+	QGeoCoordinate__Coordinate3D      QGeoCoordinate__CoordinateType = QGeoCoordinate__CoordinateType(2)
+)
+
 func NewQGeoCoordinate() *QGeoCoordinate {
 	var tmpValue = NewQGeoCoordinateFromPointer(C.QGeoCoordinate_NewQGeoCoordinate())
 	runtime.SetFinalizer(tmpValue, (*QGeoCoordinate).DestroyQGeoCoordinate)
@@ -1596,19 +1597,6 @@ func NewQGeoLocationFromPointer(ptr unsafe.Pointer) *QGeoLocation {
 	return n
 }
 
-//go:generate stringer -type=QGeoPositionInfo__Attribute
-//QGeoPositionInfo::Attribute
-type QGeoPositionInfo__Attribute int64
-
-const (
-	QGeoPositionInfo__Direction          QGeoPositionInfo__Attribute = QGeoPositionInfo__Attribute(0)
-	QGeoPositionInfo__GroundSpeed        QGeoPositionInfo__Attribute = QGeoPositionInfo__Attribute(1)
-	QGeoPositionInfo__VerticalSpeed      QGeoPositionInfo__Attribute = QGeoPositionInfo__Attribute(2)
-	QGeoPositionInfo__MagneticVariation  QGeoPositionInfo__Attribute = QGeoPositionInfo__Attribute(3)
-	QGeoPositionInfo__HorizontalAccuracy QGeoPositionInfo__Attribute = QGeoPositionInfo__Attribute(4)
-	QGeoPositionInfo__VerticalAccuracy   QGeoPositionInfo__Attribute = QGeoPositionInfo__Attribute(5)
-)
-
 type QGeoPositionInfo struct {
 	ptr unsafe.Pointer
 }
@@ -1646,6 +1634,20 @@ func NewQGeoPositionInfoFromPointer(ptr unsafe.Pointer) *QGeoPositionInfo {
 	n.SetPointer(ptr)
 	return n
 }
+
+//go:generate stringer -type=QGeoPositionInfo__Attribute
+//QGeoPositionInfo::Attribute
+type QGeoPositionInfo__Attribute int64
+
+const (
+	QGeoPositionInfo__Direction          QGeoPositionInfo__Attribute = QGeoPositionInfo__Attribute(0)
+	QGeoPositionInfo__GroundSpeed        QGeoPositionInfo__Attribute = QGeoPositionInfo__Attribute(1)
+	QGeoPositionInfo__VerticalSpeed      QGeoPositionInfo__Attribute = QGeoPositionInfo__Attribute(2)
+	QGeoPositionInfo__MagneticVariation  QGeoPositionInfo__Attribute = QGeoPositionInfo__Attribute(3)
+	QGeoPositionInfo__HorizontalAccuracy QGeoPositionInfo__Attribute = QGeoPositionInfo__Attribute(4)
+	QGeoPositionInfo__VerticalAccuracy   QGeoPositionInfo__Attribute = QGeoPositionInfo__Attribute(5)
+)
+
 func NewQGeoPositionInfo() *QGeoPositionInfo {
 	var tmpValue = NewQGeoPositionInfoFromPointer(C.QGeoPositionInfo_NewQGeoPositionInfo())
 	runtime.SetFinalizer(tmpValue, (*QGeoPositionInfo).DestroyQGeoPositionInfo)
@@ -1734,28 +1736,6 @@ func (ptr *QGeoPositionInfo) DestroyQGeoPositionInfo() {
 	}
 }
 
-//go:generate stringer -type=QGeoPositionInfoSource__Error
-//QGeoPositionInfoSource::Error
-type QGeoPositionInfoSource__Error int64
-
-const (
-	QGeoPositionInfoSource__AccessError        QGeoPositionInfoSource__Error = QGeoPositionInfoSource__Error(0)
-	QGeoPositionInfoSource__ClosedError        QGeoPositionInfoSource__Error = QGeoPositionInfoSource__Error(1)
-	QGeoPositionInfoSource__UnknownSourceError QGeoPositionInfoSource__Error = QGeoPositionInfoSource__Error(2)
-	QGeoPositionInfoSource__NoError            QGeoPositionInfoSource__Error = QGeoPositionInfoSource__Error(3)
-)
-
-//go:generate stringer -type=QGeoPositionInfoSource__PositioningMethod
-//QGeoPositionInfoSource::PositioningMethod
-type QGeoPositionInfoSource__PositioningMethod int64
-
-const (
-	QGeoPositionInfoSource__NoPositioningMethods           QGeoPositionInfoSource__PositioningMethod = QGeoPositionInfoSource__PositioningMethod(0x00000000)
-	QGeoPositionInfoSource__SatellitePositioningMethods    QGeoPositionInfoSource__PositioningMethod = QGeoPositionInfoSource__PositioningMethod(0x000000ff)
-	QGeoPositionInfoSource__NonSatellitePositioningMethods QGeoPositionInfoSource__PositioningMethod = QGeoPositionInfoSource__PositioningMethod(0xffffff00)
-	QGeoPositionInfoSource__AllPositioningMethods          QGeoPositionInfoSource__PositioningMethod = QGeoPositionInfoSource__PositioningMethod(0xffffffff)
-)
-
 type QGeoPositionInfoSource struct {
 	core.QObject
 }
@@ -1794,6 +1774,28 @@ func NewQGeoPositionInfoSourceFromPointer(ptr unsafe.Pointer) *QGeoPositionInfoS
 	n.SetPointer(ptr)
 	return n
 }
+
+//go:generate stringer -type=QGeoPositionInfoSource__Error
+//QGeoPositionInfoSource::Error
+type QGeoPositionInfoSource__Error int64
+
+const (
+	QGeoPositionInfoSource__AccessError        QGeoPositionInfoSource__Error = QGeoPositionInfoSource__Error(0)
+	QGeoPositionInfoSource__ClosedError        QGeoPositionInfoSource__Error = QGeoPositionInfoSource__Error(1)
+	QGeoPositionInfoSource__UnknownSourceError QGeoPositionInfoSource__Error = QGeoPositionInfoSource__Error(2)
+	QGeoPositionInfoSource__NoError            QGeoPositionInfoSource__Error = QGeoPositionInfoSource__Error(3)
+)
+
+//go:generate stringer -type=QGeoPositionInfoSource__PositioningMethod
+//QGeoPositionInfoSource::PositioningMethod
+type QGeoPositionInfoSource__PositioningMethod int64
+
+const (
+	QGeoPositionInfoSource__NoPositioningMethods           QGeoPositionInfoSource__PositioningMethod = QGeoPositionInfoSource__PositioningMethod(0x00000000)
+	QGeoPositionInfoSource__SatellitePositioningMethods    QGeoPositionInfoSource__PositioningMethod = QGeoPositionInfoSource__PositioningMethod(0x000000ff)
+	QGeoPositionInfoSource__NonSatellitePositioningMethods QGeoPositionInfoSource__PositioningMethod = QGeoPositionInfoSource__PositioningMethod(0xffffff00)
+	QGeoPositionInfoSource__AllPositioningMethods          QGeoPositionInfoSource__PositioningMethod = QGeoPositionInfoSource__PositioningMethod(0xffffffff)
+)
 
 //export callbackQGeoPositionInfoSource_SetUpdateInterval
 func callbackQGeoPositionInfoSource_SetUpdateInterval(ptr unsafe.Pointer, msec C.int) {
@@ -1974,7 +1976,7 @@ func (ptr *QGeoPositionInfoSource) ConnectLastKnownPosition(f func(fromSatellite
 	}
 }
 
-func (ptr *QGeoPositionInfoSource) DisconnectLastKnownPosition(fromSatellitePositioningMethodsOnly bool) {
+func (ptr *QGeoPositionInfoSource) DisconnectLastKnownPosition() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QGeoPositionInfoSource::lastKnownPosition")
@@ -2072,7 +2074,7 @@ func (ptr *QGeoPositionInfoSource) ConnectRequestUpdate(f func(timeout int)) {
 	}
 }
 
-func (ptr *QGeoPositionInfoSource) DisconnectRequestUpdate(timeout int) {
+func (ptr *QGeoPositionInfoSource) DisconnectRequestUpdate() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QGeoPositionInfoSource::requestUpdate")
@@ -2665,7 +2667,7 @@ func (ptr *QGeoPositionInfoSourceFactory) ConnectAreaMonitor(f func(parent *core
 	}
 }
 
-func (ptr *QGeoPositionInfoSourceFactory) DisconnectAreaMonitor(parent core.QObject_ITF) {
+func (ptr *QGeoPositionInfoSourceFactory) DisconnectAreaMonitor() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QGeoPositionInfoSourceFactory::areaMonitor")
@@ -2700,7 +2702,7 @@ func (ptr *QGeoPositionInfoSourceFactory) ConnectPositionInfoSource(f func(paren
 	}
 }
 
-func (ptr *QGeoPositionInfoSourceFactory) DisconnectPositionInfoSource(parent core.QObject_ITF) {
+func (ptr *QGeoPositionInfoSourceFactory) DisconnectPositionInfoSource() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QGeoPositionInfoSourceFactory::positionInfoSource")
@@ -2735,7 +2737,7 @@ func (ptr *QGeoPositionInfoSourceFactory) ConnectSatelliteInfoSource(f func(pare
 	}
 }
 
-func (ptr *QGeoPositionInfoSourceFactory) DisconnectSatelliteInfoSource(parent core.QObject_ITF) {
+func (ptr *QGeoPositionInfoSourceFactory) DisconnectSatelliteInfoSource() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QGeoPositionInfoSourceFactory::satelliteInfoSource")
@@ -3014,25 +3016,6 @@ func (ptr *QGeoRectangle) DestroyQGeoRectangle() {
 	}
 }
 
-//go:generate stringer -type=QGeoSatelliteInfo__Attribute
-//QGeoSatelliteInfo::Attribute
-type QGeoSatelliteInfo__Attribute int64
-
-const (
-	QGeoSatelliteInfo__Elevation QGeoSatelliteInfo__Attribute = QGeoSatelliteInfo__Attribute(0)
-	QGeoSatelliteInfo__Azimuth   QGeoSatelliteInfo__Attribute = QGeoSatelliteInfo__Attribute(1)
-)
-
-//go:generate stringer -type=QGeoSatelliteInfo__SatelliteSystem
-//QGeoSatelliteInfo::SatelliteSystem
-type QGeoSatelliteInfo__SatelliteSystem int64
-
-const (
-	QGeoSatelliteInfo__Undefined QGeoSatelliteInfo__SatelliteSystem = QGeoSatelliteInfo__SatelliteSystem(0x00)
-	QGeoSatelliteInfo__GPS       QGeoSatelliteInfo__SatelliteSystem = QGeoSatelliteInfo__SatelliteSystem(0x01)
-	QGeoSatelliteInfo__GLONASS   QGeoSatelliteInfo__SatelliteSystem = QGeoSatelliteInfo__SatelliteSystem(0x02)
-)
-
 type QGeoSatelliteInfo struct {
 	ptr unsafe.Pointer
 }
@@ -3070,6 +3053,26 @@ func NewQGeoSatelliteInfoFromPointer(ptr unsafe.Pointer) *QGeoSatelliteInfo {
 	n.SetPointer(ptr)
 	return n
 }
+
+//go:generate stringer -type=QGeoSatelliteInfo__Attribute
+//QGeoSatelliteInfo::Attribute
+type QGeoSatelliteInfo__Attribute int64
+
+const (
+	QGeoSatelliteInfo__Elevation QGeoSatelliteInfo__Attribute = QGeoSatelliteInfo__Attribute(0)
+	QGeoSatelliteInfo__Azimuth   QGeoSatelliteInfo__Attribute = QGeoSatelliteInfo__Attribute(1)
+)
+
+//go:generate stringer -type=QGeoSatelliteInfo__SatelliteSystem
+//QGeoSatelliteInfo::SatelliteSystem
+type QGeoSatelliteInfo__SatelliteSystem int64
+
+const (
+	QGeoSatelliteInfo__Undefined QGeoSatelliteInfo__SatelliteSystem = QGeoSatelliteInfo__SatelliteSystem(0x00)
+	QGeoSatelliteInfo__GPS       QGeoSatelliteInfo__SatelliteSystem = QGeoSatelliteInfo__SatelliteSystem(0x01)
+	QGeoSatelliteInfo__GLONASS   QGeoSatelliteInfo__SatelliteSystem = QGeoSatelliteInfo__SatelliteSystem(0x02)
+)
+
 func NewQGeoSatelliteInfo() *QGeoSatelliteInfo {
 	var tmpValue = NewQGeoSatelliteInfoFromPointer(C.QGeoSatelliteInfo_NewQGeoSatelliteInfo())
 	runtime.SetFinalizer(tmpValue, (*QGeoSatelliteInfo).DestroyQGeoSatelliteInfo)
@@ -3154,17 +3157,6 @@ func (ptr *QGeoSatelliteInfo) DestroyQGeoSatelliteInfo() {
 	}
 }
 
-//go:generate stringer -type=QGeoSatelliteInfoSource__Error
-//QGeoSatelliteInfoSource::Error
-type QGeoSatelliteInfoSource__Error int64
-
-const (
-	QGeoSatelliteInfoSource__AccessError        QGeoSatelliteInfoSource__Error = QGeoSatelliteInfoSource__Error(0)
-	QGeoSatelliteInfoSource__ClosedError        QGeoSatelliteInfoSource__Error = QGeoSatelliteInfoSource__Error(1)
-	QGeoSatelliteInfoSource__NoError            QGeoSatelliteInfoSource__Error = QGeoSatelliteInfoSource__Error(2)
-	QGeoSatelliteInfoSource__UnknownSourceError QGeoSatelliteInfoSource__Error = QGeoSatelliteInfoSource__Error(-1)
-)
-
 type QGeoSatelliteInfoSource struct {
 	core.QObject
 }
@@ -3203,6 +3195,17 @@ func NewQGeoSatelliteInfoSourceFromPointer(ptr unsafe.Pointer) *QGeoSatelliteInf
 	n.SetPointer(ptr)
 	return n
 }
+
+//go:generate stringer -type=QGeoSatelliteInfoSource__Error
+//QGeoSatelliteInfoSource::Error
+type QGeoSatelliteInfoSource__Error int64
+
+const (
+	QGeoSatelliteInfoSource__AccessError        QGeoSatelliteInfoSource__Error = QGeoSatelliteInfoSource__Error(0)
+	QGeoSatelliteInfoSource__ClosedError        QGeoSatelliteInfoSource__Error = QGeoSatelliteInfoSource__Error(1)
+	QGeoSatelliteInfoSource__NoError            QGeoSatelliteInfoSource__Error = QGeoSatelliteInfoSource__Error(2)
+	QGeoSatelliteInfoSource__UnknownSourceError QGeoSatelliteInfoSource__Error = QGeoSatelliteInfoSource__Error(-1)
+)
 
 //export callbackQGeoSatelliteInfoSource_SetUpdateInterval
 func callbackQGeoSatelliteInfoSource_SetUpdateInterval(ptr unsafe.Pointer, msec C.int) {
@@ -3434,7 +3437,7 @@ func (ptr *QGeoSatelliteInfoSource) ConnectRequestUpdate(f func(timeout int)) {
 	}
 }
 
-func (ptr *QGeoSatelliteInfoSource) DisconnectRequestUpdate(timeout int) {
+func (ptr *QGeoSatelliteInfoSource) DisconnectRequestUpdate() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QGeoSatelliteInfoSource::requestUpdate")
@@ -3883,16 +3886,6 @@ func (ptr *QGeoSatelliteInfoSource) MetaObjectDefault() *core.QMetaObject {
 	return nil
 }
 
-//go:generate stringer -type=QGeoShape__ShapeType
-//QGeoShape::ShapeType
-type QGeoShape__ShapeType int64
-
-const (
-	QGeoShape__UnknownType   QGeoShape__ShapeType = QGeoShape__ShapeType(0)
-	QGeoShape__RectangleType QGeoShape__ShapeType = QGeoShape__ShapeType(1)
-	QGeoShape__CircleType    QGeoShape__ShapeType = QGeoShape__ShapeType(2)
-)
-
 type QGeoShape struct {
 	ptr unsafe.Pointer
 }
@@ -3930,6 +3923,17 @@ func NewQGeoShapeFromPointer(ptr unsafe.Pointer) *QGeoShape {
 	n.SetPointer(ptr)
 	return n
 }
+
+//go:generate stringer -type=QGeoShape__ShapeType
+//QGeoShape::ShapeType
+type QGeoShape__ShapeType int64
+
+const (
+	QGeoShape__UnknownType   QGeoShape__ShapeType = QGeoShape__ShapeType(0)
+	QGeoShape__RectangleType QGeoShape__ShapeType = QGeoShape__ShapeType(1)
+	QGeoShape__CircleType    QGeoShape__ShapeType = QGeoShape__ShapeType(2)
+)
+
 func NewQGeoShape() *QGeoShape {
 	var tmpValue = NewQGeoShapeFromPointer(C.QGeoShape_NewQGeoShape())
 	runtime.SetFinalizer(tmpValue, (*QGeoShape).DestroyQGeoShape)
@@ -3999,15 +4003,6 @@ func (ptr *QGeoShape) DestroyQGeoShape() {
 	}
 }
 
-//go:generate stringer -type=QNmeaPositionInfoSource__UpdateMode
-//QNmeaPositionInfoSource::UpdateMode
-type QNmeaPositionInfoSource__UpdateMode int64
-
-const (
-	QNmeaPositionInfoSource__RealTimeMode   QNmeaPositionInfoSource__UpdateMode = QNmeaPositionInfoSource__UpdateMode(1)
-	QNmeaPositionInfoSource__SimulationMode QNmeaPositionInfoSource__UpdateMode = QNmeaPositionInfoSource__UpdateMode(2)
-)
-
 type QNmeaPositionInfoSource struct {
 	QGeoPositionInfoSource
 }
@@ -4046,6 +4041,16 @@ func NewQNmeaPositionInfoSourceFromPointer(ptr unsafe.Pointer) *QNmeaPositionInf
 	n.SetPointer(ptr)
 	return n
 }
+
+//go:generate stringer -type=QNmeaPositionInfoSource__UpdateMode
+//QNmeaPositionInfoSource::UpdateMode
+type QNmeaPositionInfoSource__UpdateMode int64
+
+const (
+	QNmeaPositionInfoSource__RealTimeMode   QNmeaPositionInfoSource__UpdateMode = QNmeaPositionInfoSource__UpdateMode(1)
+	QNmeaPositionInfoSource__SimulationMode QNmeaPositionInfoSource__UpdateMode = QNmeaPositionInfoSource__UpdateMode(2)
+)
+
 func NewQNmeaPositionInfoSource(updateMode QNmeaPositionInfoSource__UpdateMode, parent core.QObject_ITF) *QNmeaPositionInfoSource {
 	var tmpValue = NewQNmeaPositionInfoSourceFromPointer(C.QNmeaPositionInfoSource_NewQNmeaPositionInfoSource(C.longlong(updateMode), core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {

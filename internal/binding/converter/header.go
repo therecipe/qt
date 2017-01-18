@@ -128,6 +128,10 @@ func GoHeaderInput(f *parser.Function) string {
 	var bb = new(bytes.Buffer)
 	defer bb.Reset()
 
+	if f.SignalMode == parser.DISCONNECT {
+		return bb.String()
+	}
+
 	if f.SignalMode == parser.CALLBACK {
 		fmt.Fprint(bb, "ptr unsafe.Pointer")
 		for _, p := range f.Parameters {

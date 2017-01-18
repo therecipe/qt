@@ -147,6 +147,37 @@ func (ptr *QAbstractPlanarVideoBuffer) HandleDefault() *core.QVariant {
 	return nil
 }
 
+//export callbackQAbstractPlanarVideoBuffer_Map
+func callbackQAbstractPlanarVideoBuffer_Map(ptr unsafe.Pointer, mode C.longlong, numBytes C.int, bytesPerLine C.int) *C.char {
+
+	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractPlanarVideoBuffer::map"); signal != nil {
+		return C.CString(signal.(func(QAbstractVideoBuffer__MapMode, int, int) string)(QAbstractVideoBuffer__MapMode(mode), int(int32(numBytes)), int(int32(bytesPerLine))))
+	}
+
+	return C.CString("")
+}
+
+func (ptr *QAbstractPlanarVideoBuffer) ConnectMap(f func(mode QAbstractVideoBuffer__MapMode, numBytes int, bytesPerLine int) string) {
+	if ptr.Pointer() != nil {
+
+		qt.ConnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractPlanarVideoBuffer::map", f)
+	}
+}
+
+func (ptr *QAbstractPlanarVideoBuffer) DisconnectMap() {
+	if ptr.Pointer() != nil {
+
+		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractPlanarVideoBuffer::map")
+	}
+}
+
+func (ptr *QAbstractPlanarVideoBuffer) Map(mode QAbstractVideoBuffer__MapMode, numBytes int, bytesPerLine int) string {
+	if ptr.Pointer() != nil {
+		return cGoUnpackString(C.QAbstractPlanarVideoBuffer_Map(ptr.Pointer(), C.longlong(mode), C.int(int32(numBytes)), C.int(int32(bytesPerLine))))
+	}
+	return ""
+}
+
 //export callbackQAbstractPlanarVideoBuffer_MapMode
 func callbackQAbstractPlanarVideoBuffer_MapMode(ptr unsafe.Pointer) C.longlong {
 
@@ -219,9 +250,8 @@ func callbackQAbstractPlanarVideoBuffer_Unmap(ptr unsafe.Pointer) {
 
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractPlanarVideoBuffer::unmap"); signal != nil {
 		signal.(func())()
-	} else {
-
 	}
+
 }
 
 func (ptr *QAbstractPlanarVideoBuffer) ConnectUnmap(f func()) {
@@ -243,31 +273,6 @@ func (ptr *QAbstractPlanarVideoBuffer) Unmap() {
 		C.QAbstractPlanarVideoBuffer_Unmap(ptr.Pointer())
 	}
 }
-
-//go:generate stringer -type=QAbstractVideoBuffer__HandleType
-//QAbstractVideoBuffer::HandleType
-type QAbstractVideoBuffer__HandleType int64
-
-const (
-	QAbstractVideoBuffer__NoHandle         QAbstractVideoBuffer__HandleType = QAbstractVideoBuffer__HandleType(0)
-	QAbstractVideoBuffer__GLTextureHandle  QAbstractVideoBuffer__HandleType = QAbstractVideoBuffer__HandleType(1)
-	QAbstractVideoBuffer__XvShmImageHandle QAbstractVideoBuffer__HandleType = QAbstractVideoBuffer__HandleType(2)
-	QAbstractVideoBuffer__CoreImageHandle  QAbstractVideoBuffer__HandleType = QAbstractVideoBuffer__HandleType(3)
-	QAbstractVideoBuffer__QPixmapHandle    QAbstractVideoBuffer__HandleType = QAbstractVideoBuffer__HandleType(4)
-	QAbstractVideoBuffer__EGLImageHandle   QAbstractVideoBuffer__HandleType = QAbstractVideoBuffer__HandleType(5)
-	QAbstractVideoBuffer__UserHandle       QAbstractVideoBuffer__HandleType = QAbstractVideoBuffer__HandleType(1000)
-)
-
-//go:generate stringer -type=QAbstractVideoBuffer__MapMode
-//QAbstractVideoBuffer::MapMode
-type QAbstractVideoBuffer__MapMode int64
-
-const (
-	QAbstractVideoBuffer__NotMapped QAbstractVideoBuffer__MapMode = QAbstractVideoBuffer__MapMode(0x00)
-	QAbstractVideoBuffer__ReadOnly  QAbstractVideoBuffer__MapMode = QAbstractVideoBuffer__MapMode(0x01)
-	QAbstractVideoBuffer__WriteOnly QAbstractVideoBuffer__MapMode = QAbstractVideoBuffer__MapMode(0x02)
-	QAbstractVideoBuffer__ReadWrite QAbstractVideoBuffer__MapMode = QAbstractVideoBuffer__MapMode(QAbstractVideoBuffer__ReadOnly | QAbstractVideoBuffer__WriteOnly)
-)
 
 type QAbstractVideoBuffer struct {
 	ptr unsafe.Pointer
@@ -306,6 +311,32 @@ func NewQAbstractVideoBufferFromPointer(ptr unsafe.Pointer) *QAbstractVideoBuffe
 	n.SetPointer(ptr)
 	return n
 }
+
+//go:generate stringer -type=QAbstractVideoBuffer__HandleType
+//QAbstractVideoBuffer::HandleType
+type QAbstractVideoBuffer__HandleType int64
+
+const (
+	QAbstractVideoBuffer__NoHandle         QAbstractVideoBuffer__HandleType = QAbstractVideoBuffer__HandleType(0)
+	QAbstractVideoBuffer__GLTextureHandle  QAbstractVideoBuffer__HandleType = QAbstractVideoBuffer__HandleType(1)
+	QAbstractVideoBuffer__XvShmImageHandle QAbstractVideoBuffer__HandleType = QAbstractVideoBuffer__HandleType(2)
+	QAbstractVideoBuffer__CoreImageHandle  QAbstractVideoBuffer__HandleType = QAbstractVideoBuffer__HandleType(3)
+	QAbstractVideoBuffer__QPixmapHandle    QAbstractVideoBuffer__HandleType = QAbstractVideoBuffer__HandleType(4)
+	QAbstractVideoBuffer__EGLImageHandle   QAbstractVideoBuffer__HandleType = QAbstractVideoBuffer__HandleType(5)
+	QAbstractVideoBuffer__UserHandle       QAbstractVideoBuffer__HandleType = QAbstractVideoBuffer__HandleType(1000)
+)
+
+//go:generate stringer -type=QAbstractVideoBuffer__MapMode
+//QAbstractVideoBuffer::MapMode
+type QAbstractVideoBuffer__MapMode int64
+
+const (
+	QAbstractVideoBuffer__NotMapped QAbstractVideoBuffer__MapMode = QAbstractVideoBuffer__MapMode(0x00)
+	QAbstractVideoBuffer__ReadOnly  QAbstractVideoBuffer__MapMode = QAbstractVideoBuffer__MapMode(0x01)
+	QAbstractVideoBuffer__WriteOnly QAbstractVideoBuffer__MapMode = QAbstractVideoBuffer__MapMode(0x02)
+	QAbstractVideoBuffer__ReadWrite QAbstractVideoBuffer__MapMode = QAbstractVideoBuffer__MapMode(QAbstractVideoBuffer__ReadOnly | QAbstractVideoBuffer__WriteOnly)
+)
+
 func NewQAbstractVideoBuffer(ty QAbstractVideoBuffer__HandleType) *QAbstractVideoBuffer {
 	return NewQAbstractVideoBufferFromPointer(C.QAbstractVideoBuffer_NewQAbstractVideoBuffer(C.longlong(ty)))
 }
@@ -376,7 +407,7 @@ func (ptr *QAbstractVideoBuffer) ConnectMap(f func(mode QAbstractVideoBuffer__Ma
 	}
 }
 
-func (ptr *QAbstractVideoBuffer) DisconnectMap(mode QAbstractVideoBuffer__MapMode, numBytes int, bytesPerLine int) {
+func (ptr *QAbstractVideoBuffer) DisconnectMap() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractVideoBuffer::map")
@@ -1000,18 +1031,6 @@ func (ptr *QAbstractVideoFilter) MetaObjectDefault() *core.QMetaObject {
 	return nil
 }
 
-//go:generate stringer -type=QAbstractVideoSurface__Error
-//QAbstractVideoSurface::Error
-type QAbstractVideoSurface__Error int64
-
-const (
-	QAbstractVideoSurface__NoError                QAbstractVideoSurface__Error = QAbstractVideoSurface__Error(0)
-	QAbstractVideoSurface__UnsupportedFormatError QAbstractVideoSurface__Error = QAbstractVideoSurface__Error(1)
-	QAbstractVideoSurface__IncorrectFormatError   QAbstractVideoSurface__Error = QAbstractVideoSurface__Error(2)
-	QAbstractVideoSurface__StoppedError           QAbstractVideoSurface__Error = QAbstractVideoSurface__Error(3)
-	QAbstractVideoSurface__ResourceError          QAbstractVideoSurface__Error = QAbstractVideoSurface__Error(4)
-)
-
 type QAbstractVideoSurface struct {
 	core.QObject
 }
@@ -1050,6 +1069,19 @@ func NewQAbstractVideoSurfaceFromPointer(ptr unsafe.Pointer) *QAbstractVideoSurf
 	n.SetPointer(ptr)
 	return n
 }
+
+//go:generate stringer -type=QAbstractVideoSurface__Error
+//QAbstractVideoSurface::Error
+type QAbstractVideoSurface__Error int64
+
+const (
+	QAbstractVideoSurface__NoError                QAbstractVideoSurface__Error = QAbstractVideoSurface__Error(0)
+	QAbstractVideoSurface__UnsupportedFormatError QAbstractVideoSurface__Error = QAbstractVideoSurface__Error(1)
+	QAbstractVideoSurface__IncorrectFormatError   QAbstractVideoSurface__Error = QAbstractVideoSurface__Error(2)
+	QAbstractVideoSurface__StoppedError           QAbstractVideoSurface__Error = QAbstractVideoSurface__Error(3)
+	QAbstractVideoSurface__ResourceError          QAbstractVideoSurface__Error = QAbstractVideoSurface__Error(4)
+)
+
 func (ptr *QAbstractVideoSurface) NativeResolution() *core.QSize {
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQSizeFromPointer(C.QAbstractVideoSurface_NativeResolution(ptr.Pointer()))
@@ -1228,7 +1260,7 @@ func (ptr *QAbstractVideoSurface) ConnectPresent(f func(frame *QVideoFrame) bool
 	}
 }
 
-func (ptr *QAbstractVideoSurface) DisconnectPresent(frame QVideoFrame_ITF) {
+func (ptr *QAbstractVideoSurface) DisconnectPresent() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractVideoSurface::present")
@@ -1736,6 +1768,51 @@ func (ptr *QAbstractVideoSurface) MetaObjectDefault() *core.QMetaObject {
 	return nil
 }
 
+type QAudio struct {
+	ptr unsafe.Pointer
+}
+
+type QAudio_ITF interface {
+	QAudio_PTR() *QAudio
+}
+
+func (ptr *QAudio) QAudio_PTR() *QAudio {
+	return ptr
+}
+
+func (ptr *QAudio) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
+	}
+	return nil
+}
+
+func (ptr *QAudio) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
+	}
+}
+
+func PointerFromQAudio(ptr QAudio_ITF) unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QAudio_PTR().Pointer()
+	}
+	return nil
+}
+
+func NewQAudioFromPointer(ptr unsafe.Pointer) *QAudio {
+	var n = new(QAudio)
+	n.SetPointer(ptr)
+	return n
+}
+
+func (ptr *QAudio) DestroyQAudio() {
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
+}
+
 //go:generate stringer -type=QAudio__Error
 //QAudio::Error
 type QAudio__Error int64
@@ -1784,51 +1861,6 @@ const (
 	QAudio__StoppedState   QAudio__State = QAudio__State(2)
 	QAudio__IdleState      QAudio__State = QAudio__State(3)
 )
-
-type QAudio struct {
-	ptr unsafe.Pointer
-}
-
-type QAudio_ITF interface {
-	QAudio_PTR() *QAudio
-}
-
-func (ptr *QAudio) QAudio_PTR() *QAudio {
-	return ptr
-}
-
-func (ptr *QAudio) Pointer() unsafe.Pointer {
-	if ptr != nil {
-		return ptr.ptr
-	}
-	return nil
-}
-
-func (ptr *QAudio) SetPointer(p unsafe.Pointer) {
-	if ptr != nil {
-		ptr.ptr = p
-	}
-}
-
-func PointerFromQAudio(ptr QAudio_ITF) unsafe.Pointer {
-	if ptr != nil {
-		return ptr.QAudio_PTR().Pointer()
-	}
-	return nil
-}
-
-func NewQAudioFromPointer(ptr unsafe.Pointer) *QAudio {
-	var n = new(QAudio)
-	n.SetPointer(ptr)
-	return n
-}
-
-func (ptr *QAudio) DestroyQAudio() {
-	if ptr != nil {
-		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
-	}
-}
 
 type QAudioBuffer struct {
 	ptr unsafe.Pointer
@@ -1991,27 +2023,6 @@ func (ptr *QAudioBuffer) DestroyQAudioBuffer() {
 	}
 }
 
-//go:generate stringer -type=QAudioDecoder__Error
-//QAudioDecoder::Error
-type QAudioDecoder__Error int64
-
-const (
-	QAudioDecoder__NoError             QAudioDecoder__Error = QAudioDecoder__Error(0)
-	QAudioDecoder__ResourceError       QAudioDecoder__Error = QAudioDecoder__Error(1)
-	QAudioDecoder__FormatError         QAudioDecoder__Error = QAudioDecoder__Error(2)
-	QAudioDecoder__AccessDeniedError   QAudioDecoder__Error = QAudioDecoder__Error(3)
-	QAudioDecoder__ServiceMissingError QAudioDecoder__Error = QAudioDecoder__Error(4)
-)
-
-//go:generate stringer -type=QAudioDecoder__State
-//QAudioDecoder::State
-type QAudioDecoder__State int64
-
-const (
-	QAudioDecoder__StoppedState  QAudioDecoder__State = QAudioDecoder__State(0)
-	QAudioDecoder__DecodingState QAudioDecoder__State = QAudioDecoder__State(1)
-)
-
 type QAudioDecoder struct {
 	QMediaObject
 }
@@ -2050,6 +2061,28 @@ func NewQAudioDecoderFromPointer(ptr unsafe.Pointer) *QAudioDecoder {
 	n.SetPointer(ptr)
 	return n
 }
+
+//go:generate stringer -type=QAudioDecoder__Error
+//QAudioDecoder::Error
+type QAudioDecoder__Error int64
+
+const (
+	QAudioDecoder__NoError             QAudioDecoder__Error = QAudioDecoder__Error(0)
+	QAudioDecoder__ResourceError       QAudioDecoder__Error = QAudioDecoder__Error(1)
+	QAudioDecoder__FormatError         QAudioDecoder__Error = QAudioDecoder__Error(2)
+	QAudioDecoder__AccessDeniedError   QAudioDecoder__Error = QAudioDecoder__Error(3)
+	QAudioDecoder__ServiceMissingError QAudioDecoder__Error = QAudioDecoder__Error(4)
+)
+
+//go:generate stringer -type=QAudioDecoder__State
+//QAudioDecoder::State
+type QAudioDecoder__State int64
+
+const (
+	QAudioDecoder__StoppedState  QAudioDecoder__State = QAudioDecoder__State(0)
+	QAudioDecoder__DecodingState QAudioDecoder__State = QAudioDecoder__State(1)
+)
+
 func (ptr *QAudioDecoder) ErrorString() string {
 	if ptr.Pointer() != nil {
 		return cGoUnpackString(C.QAudioDecoder_ErrorString(ptr.Pointer()))
@@ -2408,8 +2441,9 @@ func (ptr *QAudioDecoder) SourceFilename() string {
 func callbackQAudioDecoder_Start(ptr unsafe.Pointer) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAudioDecoder::start"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQAudioDecoderFromPointer(ptr).StartDefault()
 	}
-
 }
 
 func (ptr *QAudioDecoder) ConnectStart(f func()) {
@@ -2429,6 +2463,12 @@ func (ptr *QAudioDecoder) DisconnectStart() {
 func (ptr *QAudioDecoder) Start() {
 	if ptr.Pointer() != nil {
 		C.QAudioDecoder_Start(ptr.Pointer())
+	}
+}
+
+func (ptr *QAudioDecoder) StartDefault() {
+	if ptr.Pointer() != nil {
+		C.QAudioDecoder_StartDefault(ptr.Pointer())
 	}
 }
 
@@ -2465,8 +2505,9 @@ func (ptr *QAudioDecoder) StateChanged(state QAudioDecoder__State) {
 func callbackQAudioDecoder_Stop(ptr unsafe.Pointer) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAudioDecoder::stop"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQAudioDecoderFromPointer(ptr).StopDefault()
 	}
-
 }
 
 func (ptr *QAudioDecoder) ConnectStop(f func()) {
@@ -2486,6 +2527,12 @@ func (ptr *QAudioDecoder) DisconnectStop() {
 func (ptr *QAudioDecoder) Stop() {
 	if ptr.Pointer() != nil {
 		C.QAudioDecoder_Stop(ptr.Pointer())
+	}
+}
+
+func (ptr *QAudioDecoder) StopDefault() {
+	if ptr.Pointer() != nil {
+		C.QAudioDecoder_StopDefault(ptr.Pointer())
 	}
 }
 
@@ -3452,7 +3499,7 @@ func (ptr *QAudioDecoderControl) ConnectSetAudioFormat(f func(format *QAudioForm
 	}
 }
 
-func (ptr *QAudioDecoderControl) DisconnectSetAudioFormat(format QAudioFormat_ITF) {
+func (ptr *QAudioDecoderControl) DisconnectSetAudioFormat() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAudioDecoderControl::setAudioFormat")
@@ -3481,7 +3528,7 @@ func (ptr *QAudioDecoderControl) ConnectSetSourceDevice(f func(device *core.QIOD
 	}
 }
 
-func (ptr *QAudioDecoderControl) DisconnectSetSourceDevice(device core.QIODevice_ITF) {
+func (ptr *QAudioDecoderControl) DisconnectSetSourceDevice() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAudioDecoderControl::setSourceDevice")
@@ -3510,7 +3557,7 @@ func (ptr *QAudioDecoderControl) ConnectSetSourceFilename(f func(fileName string
 	}
 }
 
-func (ptr *QAudioDecoderControl) DisconnectSetSourceFilename(fileName string) {
+func (ptr *QAudioDecoderControl) DisconnectSetSourceFilename() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAudioDecoderControl::setSourceFilename")
@@ -4485,7 +4532,7 @@ func (ptr *QAudioEncoderSettingsControl) ConnectCodecDescription(f func(codec st
 	}
 }
 
-func (ptr *QAudioEncoderSettingsControl) DisconnectCodecDescription(codec string) {
+func (ptr *QAudioEncoderSettingsControl) DisconnectCodecDescription() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAudioEncoderSettingsControl::codecDescription")
@@ -4517,7 +4564,7 @@ func (ptr *QAudioEncoderSettingsControl) ConnectSetAudioSettings(f func(settings
 	}
 }
 
-func (ptr *QAudioEncoderSettingsControl) DisconnectSetAudioSettings(settings QAudioEncoderSettings_ITF) {
+func (ptr *QAudioEncoderSettingsControl) DisconnectSetAudioSettings() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAudioEncoderSettingsControl::setAudioSettings")
@@ -4934,26 +4981,6 @@ func (ptr *QAudioEncoderSettingsControl) MetaObjectDefault() *core.QMetaObject {
 	return nil
 }
 
-//go:generate stringer -type=QAudioFormat__Endian
-//QAudioFormat::Endian
-type QAudioFormat__Endian int64
-
-const (
-	QAudioFormat__BigEndian    QAudioFormat__Endian = QAudioFormat__Endian(core.QSysInfo__BigEndian)
-	QAudioFormat__LittleEndian QAudioFormat__Endian = QAudioFormat__Endian(core.QSysInfo__LittleEndian)
-)
-
-//go:generate stringer -type=QAudioFormat__SampleType
-//QAudioFormat::SampleType
-type QAudioFormat__SampleType int64
-
-const (
-	QAudioFormat__Unknown     QAudioFormat__SampleType = QAudioFormat__SampleType(0)
-	QAudioFormat__SignedInt   QAudioFormat__SampleType = QAudioFormat__SampleType(1)
-	QAudioFormat__UnSignedInt QAudioFormat__SampleType = QAudioFormat__SampleType(2)
-	QAudioFormat__Float       QAudioFormat__SampleType = QAudioFormat__SampleType(3)
-)
-
 type QAudioFormat struct {
 	ptr unsafe.Pointer
 }
@@ -4991,6 +5018,27 @@ func NewQAudioFormatFromPointer(ptr unsafe.Pointer) *QAudioFormat {
 	n.SetPointer(ptr)
 	return n
 }
+
+//go:generate stringer -type=QAudioFormat__Endian
+//QAudioFormat::Endian
+type QAudioFormat__Endian int64
+
+const (
+	QAudioFormat__BigEndian    QAudioFormat__Endian = QAudioFormat__Endian(core.QSysInfo__BigEndian)
+	QAudioFormat__LittleEndian QAudioFormat__Endian = QAudioFormat__Endian(core.QSysInfo__LittleEndian)
+)
+
+//go:generate stringer -type=QAudioFormat__SampleType
+//QAudioFormat::SampleType
+type QAudioFormat__SampleType int64
+
+const (
+	QAudioFormat__Unknown     QAudioFormat__SampleType = QAudioFormat__SampleType(0)
+	QAudioFormat__SignedInt   QAudioFormat__SampleType = QAudioFormat__SampleType(1)
+	QAudioFormat__UnSignedInt QAudioFormat__SampleType = QAudioFormat__SampleType(2)
+	QAudioFormat__Float       QAudioFormat__SampleType = QAudioFormat__SampleType(3)
+)
+
 func NewQAudioFormat() *QAudioFormat {
 	var tmpValue = NewQAudioFormatFromPointer(C.QAudioFormat_NewQAudioFormat())
 	runtime.SetFinalizer(tmpValue, (*QAudioFormat).DestroyQAudioFormat)
@@ -5879,7 +5927,7 @@ func (ptr *QAudioInputSelectorControl) ConnectInputDescription(f func(name strin
 	}
 }
 
-func (ptr *QAudioInputSelectorControl) DisconnectInputDescription(name string) {
+func (ptr *QAudioInputSelectorControl) DisconnectInputDescription() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAudioInputSelectorControl::inputDescription")
@@ -5910,7 +5958,7 @@ func (ptr *QAudioInputSelectorControl) ConnectSetActiveInput(f func(name string)
 	}
 }
 
-func (ptr *QAudioInputSelectorControl) DisconnectSetActiveInput(name string) {
+func (ptr *QAudioInputSelectorControl) DisconnectSetActiveInput() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAudioInputSelectorControl::setActiveInput")
@@ -7053,7 +7101,7 @@ func (ptr *QAudioOutputSelectorControl) ConnectOutputDescription(f func(name str
 	}
 }
 
-func (ptr *QAudioOutputSelectorControl) DisconnectOutputDescription(name string) {
+func (ptr *QAudioOutputSelectorControl) DisconnectOutputDescription() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAudioOutputSelectorControl::outputDescription")
@@ -7084,7 +7132,7 @@ func (ptr *QAudioOutputSelectorControl) ConnectSetActiveOutput(f func(name strin
 	}
 }
 
-func (ptr *QAudioOutputSelectorControl) DisconnectSetActiveOutput(name string) {
+func (ptr *QAudioOutputSelectorControl) DisconnectSetActiveOutput() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAudioOutputSelectorControl::setActiveOutput")
@@ -8085,8 +8133,9 @@ func (ptr *QAudioRecorder) DefaultAudioInput() string {
 func callbackQAudioRecorder_SetAudioInput(ptr unsafe.Pointer, name C.struct_QtMultimedia_PackedString) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAudioRecorder::setAudioInput"); signal != nil {
 		signal.(func(string))(cGoUnpackString(name))
+	} else {
+		NewQAudioRecorderFromPointer(ptr).SetAudioInputDefault(cGoUnpackString(name))
 	}
-
 }
 
 func (ptr *QAudioRecorder) ConnectSetAudioInput(f func(name string)) {
@@ -8096,7 +8145,7 @@ func (ptr *QAudioRecorder) ConnectSetAudioInput(f func(name string)) {
 	}
 }
 
-func (ptr *QAudioRecorder) DisconnectSetAudioInput(name string) {
+func (ptr *QAudioRecorder) DisconnectSetAudioInput() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAudioRecorder::setAudioInput")
@@ -8108,6 +8157,14 @@ func (ptr *QAudioRecorder) SetAudioInput(name string) {
 		var nameC = C.CString(name)
 		defer C.free(unsafe.Pointer(nameC))
 		C.QAudioRecorder_SetAudioInput(ptr.Pointer(), nameC)
+	}
+}
+
+func (ptr *QAudioRecorder) SetAudioInputDefault(name string) {
+	if ptr.Pointer() != nil {
+		var nameC = C.CString(name)
+		defer C.free(unsafe.Pointer(nameC))
+		C.QAudioRecorder_SetAudioInputDefault(ptr.Pointer(), nameC)
 	}
 }
 
@@ -8680,7 +8737,7 @@ func callbackQAudioRecorder_SetMediaObject(ptr unsafe.Pointer, object unsafe.Poi
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*QMediaObject) bool)(NewQMediaObjectFromPointer(object)))))
 	}
 
-	return C.char(int8(qt.GoBoolToInt(NewQAudioRecorderFromPointer(ptr).SetMediaObjectDefault(NewQMediaObjectFromPointer(object)))))
+	return C.char(int8(qt.GoBoolToInt(false)))
 }
 
 func (ptr *QAudioRecorder) ConnectSetMediaObject(f func(object *QMediaObject) bool) {
@@ -8700,13 +8757,6 @@ func (ptr *QAudioRecorder) DisconnectSetMediaObject() {
 func (ptr *QAudioRecorder) SetMediaObject(object QMediaObject_ITF) bool {
 	if ptr.Pointer() != nil {
 		return C.QAudioRecorder_SetMediaObject(ptr.Pointer(), PointerFromQMediaObject(object)) != 0
-	}
-	return false
-}
-
-func (ptr *QAudioRecorder) SetMediaObjectDefault(object QMediaObject_ITF) bool {
-	if ptr.Pointer() != nil {
-		return C.QAudioRecorder_SetMediaObjectDefault(ptr.Pointer(), PointerFromQMediaObject(object)) != 0
 	}
 	return false
 }
@@ -8826,7 +8876,7 @@ func (ptr *QAudioRoleControl) ConnectSetAudioRole(f func(role QAudio__Role)) {
 	}
 }
 
-func (ptr *QAudioRoleControl) DisconnectSetAudioRole(role QAudio__Role) {
+func (ptr *QAudioRoleControl) DisconnectSetAudioRole() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAudioRoleControl::setAudioRole")
@@ -9212,6 +9262,45 @@ func (ptr *QAudioRoleControl) MetaObjectDefault() *core.QMetaObject {
 	return nil
 }
 
+type QCamera struct {
+	QMediaObject
+}
+
+type QCamera_ITF interface {
+	QMediaObject_ITF
+	QCamera_PTR() *QCamera
+}
+
+func (ptr *QCamera) QCamera_PTR() *QCamera {
+	return ptr
+}
+
+func (ptr *QCamera) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QMediaObject_PTR().Pointer()
+	}
+	return nil
+}
+
+func (ptr *QCamera) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QMediaObject_PTR().SetPointer(p)
+	}
+}
+
+func PointerFromQCamera(ptr QCamera_ITF) unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QCamera_PTR().Pointer()
+	}
+	return nil
+}
+
+func NewQCameraFromPointer(ptr unsafe.Pointer) *QCamera {
+	var n = new(QCamera)
+	n.SetPointer(ptr)
+	return n
+}
+
 //go:generate stringer -type=QCamera__CaptureMode
 //QCamera::CaptureMode
 type QCamera__CaptureMode int64
@@ -9303,44 +9392,6 @@ const (
 	QCamera__ActiveStatus      QCamera__Status = QCamera__Status(8)
 )
 
-type QCamera struct {
-	QMediaObject
-}
-
-type QCamera_ITF interface {
-	QMediaObject_ITF
-	QCamera_PTR() *QCamera
-}
-
-func (ptr *QCamera) QCamera_PTR() *QCamera {
-	return ptr
-}
-
-func (ptr *QCamera) Pointer() unsafe.Pointer {
-	if ptr != nil {
-		return ptr.QMediaObject_PTR().Pointer()
-	}
-	return nil
-}
-
-func (ptr *QCamera) SetPointer(p unsafe.Pointer) {
-	if ptr != nil {
-		ptr.QMediaObject_PTR().SetPointer(p)
-	}
-}
-
-func PointerFromQCamera(ptr QCamera_ITF) unsafe.Pointer {
-	if ptr != nil {
-		return ptr.QCamera_PTR().Pointer()
-	}
-	return nil
-}
-
-func NewQCameraFromPointer(ptr unsafe.Pointer) *QCamera {
-	var n = new(QCamera)
-	n.SetPointer(ptr)
-	return n
-}
 func (ptr *QCamera) CaptureMode() QCamera__CaptureMode {
 	if ptr.Pointer() != nil {
 		return QCamera__CaptureMode(C.QCamera_CaptureMode(ptr.Pointer()))
@@ -9352,8 +9403,9 @@ func (ptr *QCamera) CaptureMode() QCamera__CaptureMode {
 func callbackQCamera_SearchAndLock2(ptr unsafe.Pointer, locks C.longlong) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCamera::searchAndLock2"); signal != nil {
 		signal.(func(QCamera__LockType))(QCamera__LockType(locks))
+	} else {
+		NewQCameraFromPointer(ptr).SearchAndLock2Default(QCamera__LockType(locks))
 	}
-
 }
 
 func (ptr *QCamera) ConnectSearchAndLock2(f func(locks QCamera__LockType)) {
@@ -9363,7 +9415,7 @@ func (ptr *QCamera) ConnectSearchAndLock2(f func(locks QCamera__LockType)) {
 	}
 }
 
-func (ptr *QCamera) DisconnectSearchAndLock2(locks QCamera__LockType) {
+func (ptr *QCamera) DisconnectSearchAndLock2() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QCamera::searchAndLock2")
@@ -9376,12 +9428,19 @@ func (ptr *QCamera) SearchAndLock2(locks QCamera__LockType) {
 	}
 }
 
+func (ptr *QCamera) SearchAndLock2Default(locks QCamera__LockType) {
+	if ptr.Pointer() != nil {
+		C.QCamera_SearchAndLock2Default(ptr.Pointer(), C.longlong(locks))
+	}
+}
+
 //export callbackQCamera_SetCaptureMode
 func callbackQCamera_SetCaptureMode(ptr unsafe.Pointer, mode C.longlong) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCamera::setCaptureMode"); signal != nil {
 		signal.(func(QCamera__CaptureMode))(QCamera__CaptureMode(mode))
+	} else {
+		NewQCameraFromPointer(ptr).SetCaptureModeDefault(QCamera__CaptureMode(mode))
 	}
-
 }
 
 func (ptr *QCamera) ConnectSetCaptureMode(f func(mode QCamera__CaptureMode)) {
@@ -9391,7 +9450,7 @@ func (ptr *QCamera) ConnectSetCaptureMode(f func(mode QCamera__CaptureMode)) {
 	}
 }
 
-func (ptr *QCamera) DisconnectSetCaptureMode(mode QCamera__CaptureMode) {
+func (ptr *QCamera) DisconnectSetCaptureMode() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QCamera::setCaptureMode")
@@ -9401,6 +9460,12 @@ func (ptr *QCamera) DisconnectSetCaptureMode(mode QCamera__CaptureMode) {
 func (ptr *QCamera) SetCaptureMode(mode QCamera__CaptureMode) {
 	if ptr.Pointer() != nil {
 		C.QCamera_SetCaptureMode(ptr.Pointer(), C.longlong(mode))
+	}
+}
+
+func (ptr *QCamera) SetCaptureModeDefault(mode QCamera__CaptureMode) {
+	if ptr.Pointer() != nil {
+		C.QCamera_SetCaptureModeDefault(ptr.Pointer(), C.longlong(mode))
 	}
 }
 
@@ -9604,8 +9669,9 @@ func (ptr *QCamera) IsCaptureModeSupported(mode QCamera__CaptureMode) bool {
 func callbackQCamera_Load(ptr unsafe.Pointer) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCamera::load"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQCameraFromPointer(ptr).LoadDefault()
 	}
-
 }
 
 func (ptr *QCamera) ConnectLoad(f func()) {
@@ -9625,6 +9691,12 @@ func (ptr *QCamera) DisconnectLoad() {
 func (ptr *QCamera) Load() {
 	if ptr.Pointer() != nil {
 		C.QCamera_Load(ptr.Pointer())
+	}
+}
+
+func (ptr *QCamera) LoadDefault() {
+	if ptr.Pointer() != nil {
+		C.QCamera_LoadDefault(ptr.Pointer())
 	}
 }
 
@@ -9769,8 +9841,9 @@ func (ptr *QCamera) RequestedLocks() QCamera__LockType {
 func callbackQCamera_SearchAndLock(ptr unsafe.Pointer) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCamera::searchAndLock"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQCameraFromPointer(ptr).SearchAndLockDefault()
 	}
-
 }
 
 func (ptr *QCamera) ConnectSearchAndLock(f func()) {
@@ -9790,6 +9863,12 @@ func (ptr *QCamera) DisconnectSearchAndLock() {
 func (ptr *QCamera) SearchAndLock() {
 	if ptr.Pointer() != nil {
 		C.QCamera_SearchAndLock(ptr.Pointer())
+	}
+}
+
+func (ptr *QCamera) SearchAndLockDefault() {
+	if ptr.Pointer() != nil {
+		C.QCamera_SearchAndLockDefault(ptr.Pointer())
 	}
 }
 
@@ -9821,8 +9900,9 @@ func (ptr *QCamera) SetViewfinderSettings(settings QCameraViewfinderSettings_ITF
 func callbackQCamera_Start(ptr unsafe.Pointer) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCamera::start"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQCameraFromPointer(ptr).StartDefault()
 	}
-
 }
 
 func (ptr *QCamera) ConnectStart(f func()) {
@@ -9842,6 +9922,12 @@ func (ptr *QCamera) DisconnectStart() {
 func (ptr *QCamera) Start() {
 	if ptr.Pointer() != nil {
 		C.QCamera_Start(ptr.Pointer())
+	}
+}
+
+func (ptr *QCamera) StartDefault() {
+	if ptr.Pointer() != nil {
+		C.QCamera_StartDefault(ptr.Pointer())
 	}
 }
 
@@ -9907,8 +9993,9 @@ func (ptr *QCamera) StatusChanged(status QCamera__Status) {
 func callbackQCamera_Stop(ptr unsafe.Pointer) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCamera::stop"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQCameraFromPointer(ptr).StopDefault()
 	}
-
 }
 
 func (ptr *QCamera) ConnectStop(f func()) {
@@ -9928,6 +10015,12 @@ func (ptr *QCamera) DisconnectStop() {
 func (ptr *QCamera) Stop() {
 	if ptr.Pointer() != nil {
 		C.QCamera_Stop(ptr.Pointer())
+	}
+}
+
+func (ptr *QCamera) StopDefault() {
+	if ptr.Pointer() != nil {
+		C.QCamera_StopDefault(ptr.Pointer())
 	}
 }
 
@@ -9968,8 +10061,9 @@ func (ptr *QCamera) SupportedViewfinderSettings(settings QCameraViewfinderSettin
 func callbackQCamera_Unload(ptr unsafe.Pointer) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCamera::unload"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQCameraFromPointer(ptr).UnloadDefault()
 	}
-
 }
 
 func (ptr *QCamera) ConnectUnload(f func()) {
@@ -9992,12 +10086,19 @@ func (ptr *QCamera) Unload() {
 	}
 }
 
+func (ptr *QCamera) UnloadDefault() {
+	if ptr.Pointer() != nil {
+		C.QCamera_UnloadDefault(ptr.Pointer())
+	}
+}
+
 //export callbackQCamera_Unlock
 func callbackQCamera_Unlock(ptr unsafe.Pointer) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCamera::unlock"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQCameraFromPointer(ptr).UnlockDefault()
 	}
-
 }
 
 func (ptr *QCamera) ConnectUnlock(f func()) {
@@ -10020,12 +10121,19 @@ func (ptr *QCamera) Unlock() {
 	}
 }
 
+func (ptr *QCamera) UnlockDefault() {
+	if ptr.Pointer() != nil {
+		C.QCamera_UnlockDefault(ptr.Pointer())
+	}
+}
+
 //export callbackQCamera_Unlock2
 func callbackQCamera_Unlock2(ptr unsafe.Pointer, locks C.longlong) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCamera::unlock2"); signal != nil {
 		signal.(func(QCamera__LockType))(QCamera__LockType(locks))
+	} else {
+		NewQCameraFromPointer(ptr).Unlock2Default(QCamera__LockType(locks))
 	}
-
 }
 
 func (ptr *QCamera) ConnectUnlock2(f func(locks QCamera__LockType)) {
@@ -10035,7 +10143,7 @@ func (ptr *QCamera) ConnectUnlock2(f func(locks QCamera__LockType)) {
 	}
 }
 
-func (ptr *QCamera) DisconnectUnlock2(locks QCamera__LockType) {
+func (ptr *QCamera) DisconnectUnlock2() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QCamera::unlock2")
@@ -10045,6 +10153,12 @@ func (ptr *QCamera) DisconnectUnlock2(locks QCamera__LockType) {
 func (ptr *QCamera) Unlock2(locks QCamera__LockType) {
 	if ptr.Pointer() != nil {
 		C.QCamera_Unlock2(ptr.Pointer(), C.longlong(locks))
+	}
+}
+
+func (ptr *QCamera) Unlock2Default(locks QCamera__LockType) {
+	if ptr.Pointer() != nil {
+		C.QCamera_Unlock2Default(ptr.Pointer(), C.longlong(locks))
 	}
 }
 
@@ -10698,7 +10812,7 @@ func (ptr *QCameraCaptureBufferFormatControl) ConnectSetBufferFormat(f func(form
 	}
 }
 
-func (ptr *QCameraCaptureBufferFormatControl) DisconnectSetBufferFormat(format QVideoFrame__PixelFormat) {
+func (ptr *QCameraCaptureBufferFormatControl) DisconnectSetBufferFormat() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QCameraCaptureBufferFormatControl::setBufferFormat")
@@ -11175,7 +11289,7 @@ func (ptr *QCameraCaptureDestinationControl) ConnectIsCaptureDestinationSupporte
 	}
 }
 
-func (ptr *QCameraCaptureDestinationControl) DisconnectIsCaptureDestinationSupported(destination QCameraImageCapture__CaptureDestination) {
+func (ptr *QCameraCaptureDestinationControl) DisconnectIsCaptureDestinationSupported() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QCameraCaptureDestinationControl::isCaptureDestinationSupported")
@@ -11205,7 +11319,7 @@ func (ptr *QCameraCaptureDestinationControl) ConnectSetCaptureDestination(f func
 	}
 }
 
-func (ptr *QCameraCaptureDestinationControl) DisconnectSetCaptureDestination(destination QCameraImageCapture__CaptureDestination) {
+func (ptr *QCameraCaptureDestinationControl) DisconnectSetCaptureDestination() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QCameraCaptureDestinationControl::setCaptureDestination")
@@ -11559,18 +11673,6 @@ func (ptr *QCameraCaptureDestinationControl) MetaObjectDefault() *core.QMetaObje
 	return nil
 }
 
-//go:generate stringer -type=QCameraControl__PropertyChangeType
-//QCameraControl::PropertyChangeType
-type QCameraControl__PropertyChangeType int64
-
-const (
-	QCameraControl__CaptureMode           QCameraControl__PropertyChangeType = QCameraControl__PropertyChangeType(1)
-	QCameraControl__ImageEncodingSettings QCameraControl__PropertyChangeType = QCameraControl__PropertyChangeType(2)
-	QCameraControl__VideoEncodingSettings QCameraControl__PropertyChangeType = QCameraControl__PropertyChangeType(3)
-	QCameraControl__Viewfinder            QCameraControl__PropertyChangeType = QCameraControl__PropertyChangeType(4)
-	QCameraControl__ViewfinderSettings    QCameraControl__PropertyChangeType = QCameraControl__PropertyChangeType(5)
-)
-
 type QCameraControl struct {
 	QMediaControl
 }
@@ -11609,6 +11711,19 @@ func NewQCameraControlFromPointer(ptr unsafe.Pointer) *QCameraControl {
 	n.SetPointer(ptr)
 	return n
 }
+
+//go:generate stringer -type=QCameraControl__PropertyChangeType
+//QCameraControl::PropertyChangeType
+type QCameraControl__PropertyChangeType int64
+
+const (
+	QCameraControl__CaptureMode           QCameraControl__PropertyChangeType = QCameraControl__PropertyChangeType(1)
+	QCameraControl__ImageEncodingSettings QCameraControl__PropertyChangeType = QCameraControl__PropertyChangeType(2)
+	QCameraControl__VideoEncodingSettings QCameraControl__PropertyChangeType = QCameraControl__PropertyChangeType(3)
+	QCameraControl__Viewfinder            QCameraControl__PropertyChangeType = QCameraControl__PropertyChangeType(4)
+	QCameraControl__ViewfinderSettings    QCameraControl__PropertyChangeType = QCameraControl__PropertyChangeType(5)
+)
+
 func NewQCameraControl(parent core.QObject_ITF) *QCameraControl {
 	var tmpValue = NewQCameraControlFromPointer(C.QCameraControl_NewQCameraControl(core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
@@ -11634,7 +11749,7 @@ func (ptr *QCameraControl) ConnectCanChangeProperty(f func(changeType QCameraCon
 	}
 }
 
-func (ptr *QCameraControl) DisconnectCanChangeProperty(changeType QCameraControl__PropertyChangeType, status QCamera__Status) {
+func (ptr *QCameraControl) DisconnectCanChangeProperty() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QCameraControl::canChangeProperty")
@@ -11756,7 +11871,7 @@ func (ptr *QCameraControl) ConnectIsCaptureModeSupported(f func(mode QCamera__Ca
 	}
 }
 
-func (ptr *QCameraControl) DisconnectIsCaptureModeSupported(mode QCamera__CaptureMode) {
+func (ptr *QCameraControl) DisconnectIsCaptureModeSupported() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QCameraControl::isCaptureModeSupported")
@@ -11786,7 +11901,7 @@ func (ptr *QCameraControl) ConnectSetCaptureMode(f func(mode QCamera__CaptureMod
 	}
 }
 
-func (ptr *QCameraControl) DisconnectSetCaptureMode(mode QCamera__CaptureMode) {
+func (ptr *QCameraControl) DisconnectSetCaptureMode() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QCameraControl::setCaptureMode")
@@ -11815,7 +11930,7 @@ func (ptr *QCameraControl) ConnectSetState(f func(state QCamera__State)) {
 	}
 }
 
-func (ptr *QCameraControl) DisconnectSetState(state QCamera__State) {
+func (ptr *QCameraControl) DisconnectSetState() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QCameraControl::setState")
@@ -12289,6 +12404,53 @@ func (ptr *QCameraControl) MetaObjectDefault() *core.QMetaObject {
 	return nil
 }
 
+type QCameraExposure struct {
+	core.QObject
+}
+
+type QCameraExposure_ITF interface {
+	core.QObject_ITF
+	QCameraExposure_PTR() *QCameraExposure
+}
+
+func (ptr *QCameraExposure) QCameraExposure_PTR() *QCameraExposure {
+	return ptr
+}
+
+func (ptr *QCameraExposure) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QObject_PTR().Pointer()
+	}
+	return nil
+}
+
+func (ptr *QCameraExposure) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QObject_PTR().SetPointer(p)
+	}
+}
+
+func PointerFromQCameraExposure(ptr QCameraExposure_ITF) unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QCameraExposure_PTR().Pointer()
+	}
+	return nil
+}
+
+func NewQCameraExposureFromPointer(ptr unsafe.Pointer) *QCameraExposure {
+	var n = new(QCameraExposure)
+	n.SetPointer(ptr)
+	return n
+}
+
+func (ptr *QCameraExposure) DestroyQCameraExposure() {
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
+		ptr.SetPointer(nil)
+	}
+}
+
 //go:generate stringer -type=QCameraExposure__ExposureMode
 //QCameraExposure::ExposureMode
 type QCameraExposure__ExposureMode int64
@@ -12345,53 +12507,6 @@ const (
 	QCameraExposure__MeteringSpot    QCameraExposure__MeteringMode = QCameraExposure__MeteringMode(3)
 )
 
-type QCameraExposure struct {
-	core.QObject
-}
-
-type QCameraExposure_ITF interface {
-	core.QObject_ITF
-	QCameraExposure_PTR() *QCameraExposure
-}
-
-func (ptr *QCameraExposure) QCameraExposure_PTR() *QCameraExposure {
-	return ptr
-}
-
-func (ptr *QCameraExposure) Pointer() unsafe.Pointer {
-	if ptr != nil {
-		return ptr.QObject_PTR().Pointer()
-	}
-	return nil
-}
-
-func (ptr *QCameraExposure) SetPointer(p unsafe.Pointer) {
-	if ptr != nil {
-		ptr.QObject_PTR().SetPointer(p)
-	}
-}
-
-func PointerFromQCameraExposure(ptr QCameraExposure_ITF) unsafe.Pointer {
-	if ptr != nil {
-		return ptr.QCameraExposure_PTR().Pointer()
-	}
-	return nil
-}
-
-func NewQCameraExposureFromPointer(ptr unsafe.Pointer) *QCameraExposure {
-	var n = new(QCameraExposure)
-	n.SetPointer(ptr)
-	return n
-}
-
-func (ptr *QCameraExposure) DestroyQCameraExposure() {
-	if ptr != nil {
-		C.free(ptr.Pointer())
-		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
-		ptr.SetPointer(nil)
-	}
-}
-
 func (ptr *QCameraExposure) Aperture() float64 {
 	if ptr.Pointer() != nil {
 		return float64(C.QCameraExposure_Aperture(ptr.Pointer()))
@@ -12438,8 +12553,9 @@ func (ptr *QCameraExposure) MeteringMode() QCameraExposure__MeteringMode {
 func callbackQCameraExposure_SetAutoAperture(ptr unsafe.Pointer) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraExposure::setAutoAperture"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQCameraExposureFromPointer(ptr).SetAutoApertureDefault()
 	}
-
 }
 
 func (ptr *QCameraExposure) ConnectSetAutoAperture(f func()) {
@@ -12462,12 +12578,19 @@ func (ptr *QCameraExposure) SetAutoAperture() {
 	}
 }
 
+func (ptr *QCameraExposure) SetAutoApertureDefault() {
+	if ptr.Pointer() != nil {
+		C.QCameraExposure_SetAutoApertureDefault(ptr.Pointer())
+	}
+}
+
 //export callbackQCameraExposure_SetAutoIsoSensitivity
 func callbackQCameraExposure_SetAutoIsoSensitivity(ptr unsafe.Pointer) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraExposure::setAutoIsoSensitivity"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQCameraExposureFromPointer(ptr).SetAutoIsoSensitivityDefault()
 	}
-
 }
 
 func (ptr *QCameraExposure) ConnectSetAutoIsoSensitivity(f func()) {
@@ -12490,12 +12613,19 @@ func (ptr *QCameraExposure) SetAutoIsoSensitivity() {
 	}
 }
 
+func (ptr *QCameraExposure) SetAutoIsoSensitivityDefault() {
+	if ptr.Pointer() != nil {
+		C.QCameraExposure_SetAutoIsoSensitivityDefault(ptr.Pointer())
+	}
+}
+
 //export callbackQCameraExposure_SetExposureCompensation
 func callbackQCameraExposure_SetExposureCompensation(ptr unsafe.Pointer, ev C.double) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraExposure::setExposureCompensation"); signal != nil {
 		signal.(func(float64))(float64(ev))
+	} else {
+		NewQCameraExposureFromPointer(ptr).SetExposureCompensationDefault(float64(ev))
 	}
-
 }
 
 func (ptr *QCameraExposure) ConnectSetExposureCompensation(f func(ev float64)) {
@@ -12505,7 +12635,7 @@ func (ptr *QCameraExposure) ConnectSetExposureCompensation(f func(ev float64)) {
 	}
 }
 
-func (ptr *QCameraExposure) DisconnectSetExposureCompensation(ev float64) {
+func (ptr *QCameraExposure) DisconnectSetExposureCompensation() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QCameraExposure::setExposureCompensation")
@@ -12518,12 +12648,19 @@ func (ptr *QCameraExposure) SetExposureCompensation(ev float64) {
 	}
 }
 
+func (ptr *QCameraExposure) SetExposureCompensationDefault(ev float64) {
+	if ptr.Pointer() != nil {
+		C.QCameraExposure_SetExposureCompensationDefault(ptr.Pointer(), C.double(ev))
+	}
+}
+
 //export callbackQCameraExposure_SetExposureMode
 func callbackQCameraExposure_SetExposureMode(ptr unsafe.Pointer, mode C.longlong) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraExposure::setExposureMode"); signal != nil {
 		signal.(func(QCameraExposure__ExposureMode))(QCameraExposure__ExposureMode(mode))
+	} else {
+		NewQCameraExposureFromPointer(ptr).SetExposureModeDefault(QCameraExposure__ExposureMode(mode))
 	}
-
 }
 
 func (ptr *QCameraExposure) ConnectSetExposureMode(f func(mode QCameraExposure__ExposureMode)) {
@@ -12533,7 +12670,7 @@ func (ptr *QCameraExposure) ConnectSetExposureMode(f func(mode QCameraExposure__
 	}
 }
 
-func (ptr *QCameraExposure) DisconnectSetExposureMode(mode QCameraExposure__ExposureMode) {
+func (ptr *QCameraExposure) DisconnectSetExposureMode() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QCameraExposure::setExposureMode")
@@ -12546,12 +12683,19 @@ func (ptr *QCameraExposure) SetExposureMode(mode QCameraExposure__ExposureMode) 
 	}
 }
 
+func (ptr *QCameraExposure) SetExposureModeDefault(mode QCameraExposure__ExposureMode) {
+	if ptr.Pointer() != nil {
+		C.QCameraExposure_SetExposureModeDefault(ptr.Pointer(), C.longlong(mode))
+	}
+}
+
 //export callbackQCameraExposure_SetFlashMode
 func callbackQCameraExposure_SetFlashMode(ptr unsafe.Pointer, mode C.longlong) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraExposure::setFlashMode"); signal != nil {
 		signal.(func(QCameraExposure__FlashMode))(QCameraExposure__FlashMode(mode))
+	} else {
+		NewQCameraExposureFromPointer(ptr).SetFlashModeDefault(QCameraExposure__FlashMode(mode))
 	}
-
 }
 
 func (ptr *QCameraExposure) ConnectSetFlashMode(f func(mode QCameraExposure__FlashMode)) {
@@ -12561,7 +12705,7 @@ func (ptr *QCameraExposure) ConnectSetFlashMode(f func(mode QCameraExposure__Fla
 	}
 }
 
-func (ptr *QCameraExposure) DisconnectSetFlashMode(mode QCameraExposure__FlashMode) {
+func (ptr *QCameraExposure) DisconnectSetFlashMode() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QCameraExposure::setFlashMode")
@@ -12574,12 +12718,19 @@ func (ptr *QCameraExposure) SetFlashMode(mode QCameraExposure__FlashMode) {
 	}
 }
 
+func (ptr *QCameraExposure) SetFlashModeDefault(mode QCameraExposure__FlashMode) {
+	if ptr.Pointer() != nil {
+		C.QCameraExposure_SetFlashModeDefault(ptr.Pointer(), C.longlong(mode))
+	}
+}
+
 //export callbackQCameraExposure_SetManualAperture
 func callbackQCameraExposure_SetManualAperture(ptr unsafe.Pointer, aperture C.double) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraExposure::setManualAperture"); signal != nil {
 		signal.(func(float64))(float64(aperture))
+	} else {
+		NewQCameraExposureFromPointer(ptr).SetManualApertureDefault(float64(aperture))
 	}
-
 }
 
 func (ptr *QCameraExposure) ConnectSetManualAperture(f func(aperture float64)) {
@@ -12589,7 +12740,7 @@ func (ptr *QCameraExposure) ConnectSetManualAperture(f func(aperture float64)) {
 	}
 }
 
-func (ptr *QCameraExposure) DisconnectSetManualAperture(aperture float64) {
+func (ptr *QCameraExposure) DisconnectSetManualAperture() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QCameraExposure::setManualAperture")
@@ -12602,12 +12753,19 @@ func (ptr *QCameraExposure) SetManualAperture(aperture float64) {
 	}
 }
 
+func (ptr *QCameraExposure) SetManualApertureDefault(aperture float64) {
+	if ptr.Pointer() != nil {
+		C.QCameraExposure_SetManualApertureDefault(ptr.Pointer(), C.double(aperture))
+	}
+}
+
 //export callbackQCameraExposure_SetManualIsoSensitivity
 func callbackQCameraExposure_SetManualIsoSensitivity(ptr unsafe.Pointer, iso C.int) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraExposure::setManualIsoSensitivity"); signal != nil {
 		signal.(func(int))(int(int32(iso)))
+	} else {
+		NewQCameraExposureFromPointer(ptr).SetManualIsoSensitivityDefault(int(int32(iso)))
 	}
-
 }
 
 func (ptr *QCameraExposure) ConnectSetManualIsoSensitivity(f func(iso int)) {
@@ -12617,7 +12775,7 @@ func (ptr *QCameraExposure) ConnectSetManualIsoSensitivity(f func(iso int)) {
 	}
 }
 
-func (ptr *QCameraExposure) DisconnectSetManualIsoSensitivity(iso int) {
+func (ptr *QCameraExposure) DisconnectSetManualIsoSensitivity() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QCameraExposure::setManualIsoSensitivity")
@@ -12630,12 +12788,19 @@ func (ptr *QCameraExposure) SetManualIsoSensitivity(iso int) {
 	}
 }
 
+func (ptr *QCameraExposure) SetManualIsoSensitivityDefault(iso int) {
+	if ptr.Pointer() != nil {
+		C.QCameraExposure_SetManualIsoSensitivityDefault(ptr.Pointer(), C.int(int32(iso)))
+	}
+}
+
 //export callbackQCameraExposure_SetMeteringMode
 func callbackQCameraExposure_SetMeteringMode(ptr unsafe.Pointer, mode C.longlong) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraExposure::setMeteringMode"); signal != nil {
 		signal.(func(QCameraExposure__MeteringMode))(QCameraExposure__MeteringMode(mode))
+	} else {
+		NewQCameraExposureFromPointer(ptr).SetMeteringModeDefault(QCameraExposure__MeteringMode(mode))
 	}
-
 }
 
 func (ptr *QCameraExposure) ConnectSetMeteringMode(f func(mode QCameraExposure__MeteringMode)) {
@@ -12645,7 +12810,7 @@ func (ptr *QCameraExposure) ConnectSetMeteringMode(f func(mode QCameraExposure__
 	}
 }
 
-func (ptr *QCameraExposure) DisconnectSetMeteringMode(mode QCameraExposure__MeteringMode) {
+func (ptr *QCameraExposure) DisconnectSetMeteringMode() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QCameraExposure::setMeteringMode")
@@ -12655,6 +12820,12 @@ func (ptr *QCameraExposure) DisconnectSetMeteringMode(mode QCameraExposure__Mete
 func (ptr *QCameraExposure) SetMeteringMode(mode QCameraExposure__MeteringMode) {
 	if ptr.Pointer() != nil {
 		C.QCameraExposure_SetMeteringMode(ptr.Pointer(), C.longlong(mode))
+	}
+}
+
+func (ptr *QCameraExposure) SetMeteringModeDefault(mode QCameraExposure__MeteringMode) {
+	if ptr.Pointer() != nil {
+		C.QCameraExposure_SetMeteringModeDefault(ptr.Pointer(), C.longlong(mode))
 	}
 }
 
@@ -12878,8 +13049,9 @@ func (ptr *QCameraExposure) RequestedShutterSpeed() float64 {
 func callbackQCameraExposure_SetAutoShutterSpeed(ptr unsafe.Pointer) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraExposure::setAutoShutterSpeed"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQCameraExposureFromPointer(ptr).SetAutoShutterSpeedDefault()
 	}
-
 }
 
 func (ptr *QCameraExposure) ConnectSetAutoShutterSpeed(f func()) {
@@ -12902,12 +13074,19 @@ func (ptr *QCameraExposure) SetAutoShutterSpeed() {
 	}
 }
 
+func (ptr *QCameraExposure) SetAutoShutterSpeedDefault() {
+	if ptr.Pointer() != nil {
+		C.QCameraExposure_SetAutoShutterSpeedDefault(ptr.Pointer())
+	}
+}
+
 //export callbackQCameraExposure_SetManualShutterSpeed
 func callbackQCameraExposure_SetManualShutterSpeed(ptr unsafe.Pointer, seconds C.double) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraExposure::setManualShutterSpeed"); signal != nil {
 		signal.(func(float64))(float64(seconds))
+	} else {
+		NewQCameraExposureFromPointer(ptr).SetManualShutterSpeedDefault(float64(seconds))
 	}
-
 }
 
 func (ptr *QCameraExposure) ConnectSetManualShutterSpeed(f func(seconds float64)) {
@@ -12917,7 +13096,7 @@ func (ptr *QCameraExposure) ConnectSetManualShutterSpeed(f func(seconds float64)
 	}
 }
 
-func (ptr *QCameraExposure) DisconnectSetManualShutterSpeed(seconds float64) {
+func (ptr *QCameraExposure) DisconnectSetManualShutterSpeed() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QCameraExposure::setManualShutterSpeed")
@@ -12927,6 +13106,12 @@ func (ptr *QCameraExposure) DisconnectSetManualShutterSpeed(seconds float64) {
 func (ptr *QCameraExposure) SetManualShutterSpeed(seconds float64) {
 	if ptr.Pointer() != nil {
 		C.QCameraExposure_SetManualShutterSpeed(ptr.Pointer(), C.double(seconds))
+	}
+}
+
+func (ptr *QCameraExposure) SetManualShutterSpeedDefault(seconds float64) {
+	if ptr.Pointer() != nil {
+		C.QCameraExposure_SetManualShutterSpeedDefault(ptr.Pointer(), C.double(seconds))
 	}
 }
 
@@ -13328,24 +13513,6 @@ func (ptr *QCameraExposure) MetaObjectDefault() *core.QMetaObject {
 	return nil
 }
 
-//go:generate stringer -type=QCameraExposureControl__ExposureParameter
-//QCameraExposureControl::ExposureParameter
-type QCameraExposureControl__ExposureParameter int64
-
-const (
-	QCameraExposureControl__ISO                       QCameraExposureControl__ExposureParameter = QCameraExposureControl__ExposureParameter(0)
-	QCameraExposureControl__Aperture                  QCameraExposureControl__ExposureParameter = QCameraExposureControl__ExposureParameter(1)
-	QCameraExposureControl__ShutterSpeed              QCameraExposureControl__ExposureParameter = QCameraExposureControl__ExposureParameter(2)
-	QCameraExposureControl__ExposureCompensation      QCameraExposureControl__ExposureParameter = QCameraExposureControl__ExposureParameter(3)
-	QCameraExposureControl__FlashPower                QCameraExposureControl__ExposureParameter = QCameraExposureControl__ExposureParameter(4)
-	QCameraExposureControl__FlashCompensation         QCameraExposureControl__ExposureParameter = QCameraExposureControl__ExposureParameter(5)
-	QCameraExposureControl__TorchPower                QCameraExposureControl__ExposureParameter = QCameraExposureControl__ExposureParameter(6)
-	QCameraExposureControl__SpotMeteringPoint         QCameraExposureControl__ExposureParameter = QCameraExposureControl__ExposureParameter(7)
-	QCameraExposureControl__ExposureMode              QCameraExposureControl__ExposureParameter = QCameraExposureControl__ExposureParameter(8)
-	QCameraExposureControl__MeteringMode              QCameraExposureControl__ExposureParameter = QCameraExposureControl__ExposureParameter(9)
-	QCameraExposureControl__ExtendedExposureParameter QCameraExposureControl__ExposureParameter = QCameraExposureControl__ExposureParameter(1000)
-)
-
 type QCameraExposureControl struct {
 	QMediaControl
 }
@@ -13385,6 +13552,24 @@ func NewQCameraExposureControlFromPointer(ptr unsafe.Pointer) *QCameraExposureCo
 	return n
 }
 
+//go:generate stringer -type=QCameraExposureControl__ExposureParameter
+//QCameraExposureControl::ExposureParameter
+type QCameraExposureControl__ExposureParameter int64
+
+const (
+	QCameraExposureControl__ISO                       QCameraExposureControl__ExposureParameter = QCameraExposureControl__ExposureParameter(0)
+	QCameraExposureControl__Aperture                  QCameraExposureControl__ExposureParameter = QCameraExposureControl__ExposureParameter(1)
+	QCameraExposureControl__ShutterSpeed              QCameraExposureControl__ExposureParameter = QCameraExposureControl__ExposureParameter(2)
+	QCameraExposureControl__ExposureCompensation      QCameraExposureControl__ExposureParameter = QCameraExposureControl__ExposureParameter(3)
+	QCameraExposureControl__FlashPower                QCameraExposureControl__ExposureParameter = QCameraExposureControl__ExposureParameter(4)
+	QCameraExposureControl__FlashCompensation         QCameraExposureControl__ExposureParameter = QCameraExposureControl__ExposureParameter(5)
+	QCameraExposureControl__TorchPower                QCameraExposureControl__ExposureParameter = QCameraExposureControl__ExposureParameter(6)
+	QCameraExposureControl__SpotMeteringPoint         QCameraExposureControl__ExposureParameter = QCameraExposureControl__ExposureParameter(7)
+	QCameraExposureControl__ExposureMode              QCameraExposureControl__ExposureParameter = QCameraExposureControl__ExposureParameter(8)
+	QCameraExposureControl__MeteringMode              QCameraExposureControl__ExposureParameter = QCameraExposureControl__ExposureParameter(9)
+	QCameraExposureControl__ExtendedExposureParameter QCameraExposureControl__ExposureParameter = QCameraExposureControl__ExposureParameter(1000)
+)
+
 //export callbackQCameraExposureControl_ActualValue
 func callbackQCameraExposureControl_ActualValue(ptr unsafe.Pointer, parameter C.longlong) unsafe.Pointer {
 
@@ -13402,7 +13587,7 @@ func (ptr *QCameraExposureControl) ConnectActualValue(f func(parameter QCameraEx
 	}
 }
 
-func (ptr *QCameraExposureControl) DisconnectActualValue(parameter QCameraExposureControl__ExposureParameter) {
+func (ptr *QCameraExposureControl) DisconnectActualValue() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QCameraExposureControl::actualValue")
@@ -13464,7 +13649,7 @@ func (ptr *QCameraExposureControl) ConnectIsParameterSupported(f func(parameter 
 	}
 }
 
-func (ptr *QCameraExposureControl) DisconnectIsParameterSupported(parameter QCameraExposureControl__ExposureParameter) {
+func (ptr *QCameraExposureControl) DisconnectIsParameterSupported() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QCameraExposureControl::isParameterSupported")
@@ -13524,7 +13709,7 @@ func (ptr *QCameraExposureControl) ConnectRequestedValue(f func(parameter QCamer
 	}
 }
 
-func (ptr *QCameraExposureControl) DisconnectRequestedValue(parameter QCameraExposureControl__ExposureParameter) {
+func (ptr *QCameraExposureControl) DisconnectRequestedValue() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QCameraExposureControl::requestedValue")
@@ -13586,7 +13771,7 @@ func (ptr *QCameraExposureControl) ConnectSetValue(f func(parameter QCameraExpos
 	}
 }
 
-func (ptr *QCameraExposureControl) DisconnectSetValue(parameter QCameraExposureControl__ExposureParameter, value core.QVariant_ITF) {
+func (ptr *QCameraExposureControl) DisconnectSetValue() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QCameraExposureControl::setValue")
@@ -13607,7 +13792,7 @@ func (ptr *QCameraExposureControl) ConnectSupportedParameterRange(f func(paramet
 	}
 }
 
-func (ptr *QCameraExposureControl) DisconnectSupportedParameterRange(parameter QCameraExposureControl__ExposureParameter, continuous bool) {
+func (ptr *QCameraExposureControl) DisconnectSupportedParameterRange() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QCameraExposureControl::supportedParameterRange")
@@ -13977,24 +14162,6 @@ func (ptr *QCameraExposureControl) MetaObjectDefault() *core.QMetaObject {
 	return nil
 }
 
-//go:generate stringer -type=QCameraFeedbackControl__EventType
-//QCameraFeedbackControl::EventType
-type QCameraFeedbackControl__EventType int64
-
-const (
-	QCameraFeedbackControl__ViewfinderStarted   QCameraFeedbackControl__EventType = QCameraFeedbackControl__EventType(1)
-	QCameraFeedbackControl__ViewfinderStopped   QCameraFeedbackControl__EventType = QCameraFeedbackControl__EventType(2)
-	QCameraFeedbackControl__ImageCaptured       QCameraFeedbackControl__EventType = QCameraFeedbackControl__EventType(3)
-	QCameraFeedbackControl__ImageSaved          QCameraFeedbackControl__EventType = QCameraFeedbackControl__EventType(4)
-	QCameraFeedbackControl__ImageError          QCameraFeedbackControl__EventType = QCameraFeedbackControl__EventType(5)
-	QCameraFeedbackControl__RecordingStarted    QCameraFeedbackControl__EventType = QCameraFeedbackControl__EventType(6)
-	QCameraFeedbackControl__RecordingInProgress QCameraFeedbackControl__EventType = QCameraFeedbackControl__EventType(7)
-	QCameraFeedbackControl__RecordingStopped    QCameraFeedbackControl__EventType = QCameraFeedbackControl__EventType(8)
-	QCameraFeedbackControl__AutoFocusInProgress QCameraFeedbackControl__EventType = QCameraFeedbackControl__EventType(9)
-	QCameraFeedbackControl__AutoFocusLocked     QCameraFeedbackControl__EventType = QCameraFeedbackControl__EventType(10)
-	QCameraFeedbackControl__AutoFocusFailed     QCameraFeedbackControl__EventType = QCameraFeedbackControl__EventType(11)
-)
-
 type QCameraFeedbackControl struct {
 	QMediaControl
 }
@@ -14033,6 +14200,25 @@ func NewQCameraFeedbackControlFromPointer(ptr unsafe.Pointer) *QCameraFeedbackCo
 	n.SetPointer(ptr)
 	return n
 }
+
+//go:generate stringer -type=QCameraFeedbackControl__EventType
+//QCameraFeedbackControl::EventType
+type QCameraFeedbackControl__EventType int64
+
+const (
+	QCameraFeedbackControl__ViewfinderStarted   QCameraFeedbackControl__EventType = QCameraFeedbackControl__EventType(1)
+	QCameraFeedbackControl__ViewfinderStopped   QCameraFeedbackControl__EventType = QCameraFeedbackControl__EventType(2)
+	QCameraFeedbackControl__ImageCaptured       QCameraFeedbackControl__EventType = QCameraFeedbackControl__EventType(3)
+	QCameraFeedbackControl__ImageSaved          QCameraFeedbackControl__EventType = QCameraFeedbackControl__EventType(4)
+	QCameraFeedbackControl__ImageError          QCameraFeedbackControl__EventType = QCameraFeedbackControl__EventType(5)
+	QCameraFeedbackControl__RecordingStarted    QCameraFeedbackControl__EventType = QCameraFeedbackControl__EventType(6)
+	QCameraFeedbackControl__RecordingInProgress QCameraFeedbackControl__EventType = QCameraFeedbackControl__EventType(7)
+	QCameraFeedbackControl__RecordingStopped    QCameraFeedbackControl__EventType = QCameraFeedbackControl__EventType(8)
+	QCameraFeedbackControl__AutoFocusInProgress QCameraFeedbackControl__EventType = QCameraFeedbackControl__EventType(9)
+	QCameraFeedbackControl__AutoFocusLocked     QCameraFeedbackControl__EventType = QCameraFeedbackControl__EventType(10)
+	QCameraFeedbackControl__AutoFocusFailed     QCameraFeedbackControl__EventType = QCameraFeedbackControl__EventType(11)
+)
+
 func NewQCameraFeedbackControl(parent core.QObject_ITF) *QCameraFeedbackControl {
 	var tmpValue = NewQCameraFeedbackControlFromPointer(C.QCameraFeedbackControl_NewQCameraFeedbackControl(core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
@@ -14058,7 +14244,7 @@ func (ptr *QCameraFeedbackControl) ConnectIsEventFeedbackEnabled(f func(event QC
 	}
 }
 
-func (ptr *QCameraFeedbackControl) DisconnectIsEventFeedbackEnabled(event QCameraFeedbackControl__EventType) {
+func (ptr *QCameraFeedbackControl) DisconnectIsEventFeedbackEnabled() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QCameraFeedbackControl::isEventFeedbackEnabled")
@@ -14089,7 +14275,7 @@ func (ptr *QCameraFeedbackControl) ConnectIsEventFeedbackLocked(f func(event QCa
 	}
 }
 
-func (ptr *QCameraFeedbackControl) DisconnectIsEventFeedbackLocked(event QCameraFeedbackControl__EventType) {
+func (ptr *QCameraFeedbackControl) DisconnectIsEventFeedbackLocked() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QCameraFeedbackControl::isEventFeedbackLocked")
@@ -14119,7 +14305,7 @@ func (ptr *QCameraFeedbackControl) ConnectResetEventFeedback(f func(event QCamer
 	}
 }
 
-func (ptr *QCameraFeedbackControl) DisconnectResetEventFeedback(event QCameraFeedbackControl__EventType) {
+func (ptr *QCameraFeedbackControl) DisconnectResetEventFeedback() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QCameraFeedbackControl::resetEventFeedback")
@@ -14149,7 +14335,7 @@ func (ptr *QCameraFeedbackControl) ConnectSetEventFeedbackEnabled(f func(event Q
 	}
 }
 
-func (ptr *QCameraFeedbackControl) DisconnectSetEventFeedbackEnabled(event QCameraFeedbackControl__EventType, enabled bool) {
+func (ptr *QCameraFeedbackControl) DisconnectSetEventFeedbackEnabled() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QCameraFeedbackControl::setEventFeedbackEnabled")
@@ -14180,7 +14366,7 @@ func (ptr *QCameraFeedbackControl) ConnectSetEventFeedbackSound(f func(event QCa
 	}
 }
 
-func (ptr *QCameraFeedbackControl) DisconnectSetEventFeedbackSound(event QCameraFeedbackControl__EventType, filePath string) {
+func (ptr *QCameraFeedbackControl) DisconnectSetEventFeedbackSound() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QCameraFeedbackControl::setEventFeedbackSound")
@@ -14660,7 +14846,7 @@ func (ptr *QCameraFlashControl) ConnectIsFlashModeSupported(f func(mode QCameraE
 	}
 }
 
-func (ptr *QCameraFlashControl) DisconnectIsFlashModeSupported(mode QCameraExposure__FlashMode) {
+func (ptr *QCameraFlashControl) DisconnectIsFlashModeSupported() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QCameraFlashControl::isFlashModeSupported")
@@ -14721,7 +14907,7 @@ func (ptr *QCameraFlashControl) ConnectSetFlashMode(f func(mode QCameraExposure_
 	}
 }
 
-func (ptr *QCameraFlashControl) DisconnectSetFlashMode(mode QCameraExposure__FlashMode) {
+func (ptr *QCameraFlashControl) DisconnectSetFlashMode() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QCameraFlashControl::setFlashMode")
@@ -15075,30 +15261,6 @@ func (ptr *QCameraFlashControl) MetaObjectDefault() *core.QMetaObject {
 	return nil
 }
 
-//go:generate stringer -type=QCameraFocus__FocusMode
-//QCameraFocus::FocusMode
-type QCameraFocus__FocusMode int64
-
-const (
-	QCameraFocus__ManualFocus     QCameraFocus__FocusMode = QCameraFocus__FocusMode(0x1)
-	QCameraFocus__HyperfocalFocus QCameraFocus__FocusMode = QCameraFocus__FocusMode(0x02)
-	QCameraFocus__InfinityFocus   QCameraFocus__FocusMode = QCameraFocus__FocusMode(0x04)
-	QCameraFocus__AutoFocus       QCameraFocus__FocusMode = QCameraFocus__FocusMode(0x8)
-	QCameraFocus__ContinuousFocus QCameraFocus__FocusMode = QCameraFocus__FocusMode(0x10)
-	QCameraFocus__MacroFocus      QCameraFocus__FocusMode = QCameraFocus__FocusMode(0x20)
-)
-
-//go:generate stringer -type=QCameraFocus__FocusPointMode
-//QCameraFocus::FocusPointMode
-type QCameraFocus__FocusPointMode int64
-
-const (
-	QCameraFocus__FocusPointAuto          QCameraFocus__FocusPointMode = QCameraFocus__FocusPointMode(0)
-	QCameraFocus__FocusPointCenter        QCameraFocus__FocusPointMode = QCameraFocus__FocusPointMode(1)
-	QCameraFocus__FocusPointFaceDetection QCameraFocus__FocusPointMode = QCameraFocus__FocusPointMode(2)
-	QCameraFocus__FocusPointCustom        QCameraFocus__FocusPointMode = QCameraFocus__FocusPointMode(3)
-)
-
 type QCameraFocus struct {
 	core.QObject
 }
@@ -15145,6 +15307,30 @@ func (ptr *QCameraFocus) DestroyQCameraFocus() {
 		ptr.SetPointer(nil)
 	}
 }
+
+//go:generate stringer -type=QCameraFocus__FocusMode
+//QCameraFocus::FocusMode
+type QCameraFocus__FocusMode int64
+
+const (
+	QCameraFocus__ManualFocus     QCameraFocus__FocusMode = QCameraFocus__FocusMode(0x1)
+	QCameraFocus__HyperfocalFocus QCameraFocus__FocusMode = QCameraFocus__FocusMode(0x02)
+	QCameraFocus__InfinityFocus   QCameraFocus__FocusMode = QCameraFocus__FocusMode(0x04)
+	QCameraFocus__AutoFocus       QCameraFocus__FocusMode = QCameraFocus__FocusMode(0x8)
+	QCameraFocus__ContinuousFocus QCameraFocus__FocusMode = QCameraFocus__FocusMode(0x10)
+	QCameraFocus__MacroFocus      QCameraFocus__FocusMode = QCameraFocus__FocusMode(0x20)
+)
+
+//go:generate stringer -type=QCameraFocus__FocusPointMode
+//QCameraFocus::FocusPointMode
+type QCameraFocus__FocusPointMode int64
+
+const (
+	QCameraFocus__FocusPointAuto          QCameraFocus__FocusPointMode = QCameraFocus__FocusPointMode(0)
+	QCameraFocus__FocusPointCenter        QCameraFocus__FocusPointMode = QCameraFocus__FocusPointMode(1)
+	QCameraFocus__FocusPointFaceDetection QCameraFocus__FocusPointMode = QCameraFocus__FocusPointMode(2)
+	QCameraFocus__FocusPointCustom        QCameraFocus__FocusPointMode = QCameraFocus__FocusPointMode(3)
+)
 
 func (ptr *QCameraFocus) CustomFocusPoint() *core.QPointF {
 	if ptr.Pointer() != nil {
@@ -15941,13 +16127,6 @@ func (ptr *QCameraFocusControl) FocusPointModeChanged(mode QCameraFocus__FocusPo
 	}
 }
 
-func (ptr *QCameraFocusControl) DisconnectFocusZones() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QCameraFocusControl::focusZones")
-	}
-}
-
 //export callbackQCameraFocusControl_FocusZonesChanged
 func callbackQCameraFocusControl_FocusZonesChanged(ptr unsafe.Pointer) {
 
@@ -15994,7 +16173,7 @@ func (ptr *QCameraFocusControl) ConnectIsFocusModeSupported(f func(mode QCameraF
 	}
 }
 
-func (ptr *QCameraFocusControl) DisconnectIsFocusModeSupported(mode QCameraFocus__FocusMode) {
+func (ptr *QCameraFocusControl) DisconnectIsFocusModeSupported() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QCameraFocusControl::isFocusModeSupported")
@@ -16025,7 +16204,7 @@ func (ptr *QCameraFocusControl) ConnectIsFocusPointModeSupported(f func(mode QCa
 	}
 }
 
-func (ptr *QCameraFocusControl) DisconnectIsFocusPointModeSupported(mode QCameraFocus__FocusPointMode) {
+func (ptr *QCameraFocusControl) DisconnectIsFocusPointModeSupported() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QCameraFocusControl::isFocusPointModeSupported")
@@ -16055,7 +16234,7 @@ func (ptr *QCameraFocusControl) ConnectSetCustomFocusPoint(f func(point *core.QP
 	}
 }
 
-func (ptr *QCameraFocusControl) DisconnectSetCustomFocusPoint(point core.QPointF_ITF) {
+func (ptr *QCameraFocusControl) DisconnectSetCustomFocusPoint() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QCameraFocusControl::setCustomFocusPoint")
@@ -16084,7 +16263,7 @@ func (ptr *QCameraFocusControl) ConnectSetFocusMode(f func(mode QCameraFocus__Fo
 	}
 }
 
-func (ptr *QCameraFocusControl) DisconnectSetFocusMode(mode QCameraFocus__FocusMode) {
+func (ptr *QCameraFocusControl) DisconnectSetFocusMode() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QCameraFocusControl::setFocusMode")
@@ -16113,7 +16292,7 @@ func (ptr *QCameraFocusControl) ConnectSetFocusPointMode(f func(mode QCameraFocu
 	}
 }
 
-func (ptr *QCameraFocusControl) DisconnectSetFocusPointMode(mode QCameraFocus__FocusPointMode) {
+func (ptr *QCameraFocusControl) DisconnectSetFocusPointMode() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QCameraFocusControl::setFocusPointMode")
@@ -16467,17 +16646,6 @@ func (ptr *QCameraFocusControl) MetaObjectDefault() *core.QMetaObject {
 	return nil
 }
 
-//go:generate stringer -type=QCameraFocusZone__FocusZoneStatus
-//QCameraFocusZone::FocusZoneStatus
-type QCameraFocusZone__FocusZoneStatus int64
-
-const (
-	QCameraFocusZone__Invalid  QCameraFocusZone__FocusZoneStatus = QCameraFocusZone__FocusZoneStatus(0)
-	QCameraFocusZone__Unused   QCameraFocusZone__FocusZoneStatus = QCameraFocusZone__FocusZoneStatus(1)
-	QCameraFocusZone__Selected QCameraFocusZone__FocusZoneStatus = QCameraFocusZone__FocusZoneStatus(2)
-	QCameraFocusZone__Focused  QCameraFocusZone__FocusZoneStatus = QCameraFocusZone__FocusZoneStatus(3)
-)
-
 type QCameraFocusZone struct {
 	ptr unsafe.Pointer
 }
@@ -16515,6 +16683,18 @@ func NewQCameraFocusZoneFromPointer(ptr unsafe.Pointer) *QCameraFocusZone {
 	n.SetPointer(ptr)
 	return n
 }
+
+//go:generate stringer -type=QCameraFocusZone__FocusZoneStatus
+//QCameraFocusZone::FocusZoneStatus
+type QCameraFocusZone__FocusZoneStatus int64
+
+const (
+	QCameraFocusZone__Invalid  QCameraFocusZone__FocusZoneStatus = QCameraFocusZone__FocusZoneStatus(0)
+	QCameraFocusZone__Unused   QCameraFocusZone__FocusZoneStatus = QCameraFocusZone__FocusZoneStatus(1)
+	QCameraFocusZone__Selected QCameraFocusZone__FocusZoneStatus = QCameraFocusZone__FocusZoneStatus(2)
+	QCameraFocusZone__Focused  QCameraFocusZone__FocusZoneStatus = QCameraFocusZone__FocusZoneStatus(3)
+)
+
 func NewQCameraFocusZone(other QCameraFocusZone_ITF) *QCameraFocusZone {
 	var tmpValue = NewQCameraFocusZoneFromPointer(C.QCameraFocusZone_NewQCameraFocusZone(PointerFromQCameraFocusZone(other)))
 	runtime.SetFinalizer(tmpValue, (*QCameraFocusZone).DestroyQCameraFocusZone)
@@ -16550,36 +16730,6 @@ func (ptr *QCameraFocusZone) DestroyQCameraFocusZone() {
 		ptr.SetPointer(nil)
 	}
 }
-
-//go:generate stringer -type=QCameraImageCapture__CaptureDestination
-//QCameraImageCapture::CaptureDestination
-type QCameraImageCapture__CaptureDestination int64
-
-const (
-	QCameraImageCapture__CaptureToFile   QCameraImageCapture__CaptureDestination = QCameraImageCapture__CaptureDestination(0x01)
-	QCameraImageCapture__CaptureToBuffer QCameraImageCapture__CaptureDestination = QCameraImageCapture__CaptureDestination(0x02)
-)
-
-//go:generate stringer -type=QCameraImageCapture__DriveMode
-//QCameraImageCapture::DriveMode
-type QCameraImageCapture__DriveMode int64
-
-const (
-	QCameraImageCapture__SingleImageCapture QCameraImageCapture__DriveMode = QCameraImageCapture__DriveMode(0)
-)
-
-//go:generate stringer -type=QCameraImageCapture__Error
-//QCameraImageCapture::Error
-type QCameraImageCapture__Error int64
-
-const (
-	QCameraImageCapture__NoError                  QCameraImageCapture__Error = QCameraImageCapture__Error(0)
-	QCameraImageCapture__NotReadyError            QCameraImageCapture__Error = QCameraImageCapture__Error(1)
-	QCameraImageCapture__ResourceError            QCameraImageCapture__Error = QCameraImageCapture__Error(2)
-	QCameraImageCapture__OutOfSpaceError          QCameraImageCapture__Error = QCameraImageCapture__Error(3)
-	QCameraImageCapture__NotSupportedFeatureError QCameraImageCapture__Error = QCameraImageCapture__Error(4)
-	QCameraImageCapture__FormatError              QCameraImageCapture__Error = QCameraImageCapture__Error(5)
-)
 
 type QCameraImageCapture struct {
 	core.QObject
@@ -16622,6 +16772,37 @@ func NewQCameraImageCaptureFromPointer(ptr unsafe.Pointer) *QCameraImageCapture 
 	n.SetPointer(ptr)
 	return n
 }
+
+//go:generate stringer -type=QCameraImageCapture__CaptureDestination
+//QCameraImageCapture::CaptureDestination
+type QCameraImageCapture__CaptureDestination int64
+
+const (
+	QCameraImageCapture__CaptureToFile   QCameraImageCapture__CaptureDestination = QCameraImageCapture__CaptureDestination(0x01)
+	QCameraImageCapture__CaptureToBuffer QCameraImageCapture__CaptureDestination = QCameraImageCapture__CaptureDestination(0x02)
+)
+
+//go:generate stringer -type=QCameraImageCapture__DriveMode
+//QCameraImageCapture::DriveMode
+type QCameraImageCapture__DriveMode int64
+
+const (
+	QCameraImageCapture__SingleImageCapture QCameraImageCapture__DriveMode = QCameraImageCapture__DriveMode(0)
+)
+
+//go:generate stringer -type=QCameraImageCapture__Error
+//QCameraImageCapture::Error
+type QCameraImageCapture__Error int64
+
+const (
+	QCameraImageCapture__NoError                  QCameraImageCapture__Error = QCameraImageCapture__Error(0)
+	QCameraImageCapture__NotReadyError            QCameraImageCapture__Error = QCameraImageCapture__Error(1)
+	QCameraImageCapture__ResourceError            QCameraImageCapture__Error = QCameraImageCapture__Error(2)
+	QCameraImageCapture__OutOfSpaceError          QCameraImageCapture__Error = QCameraImageCapture__Error(3)
+	QCameraImageCapture__NotSupportedFeatureError QCameraImageCapture__Error = QCameraImageCapture__Error(4)
+	QCameraImageCapture__FormatError              QCameraImageCapture__Error = QCameraImageCapture__Error(5)
+)
+
 func (ptr *QCameraImageCapture) IsReadyForCapture() bool {
 	if ptr.Pointer() != nil {
 		return C.QCameraImageCapture_IsReadyForCapture(ptr.Pointer()) != 0
@@ -16684,8 +16865,9 @@ func (ptr *QCameraImageCapture) BufferFormatChanged(format QVideoFrame__PixelFor
 func callbackQCameraImageCapture_CancelCapture(ptr unsafe.Pointer) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraImageCapture::cancelCapture"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQCameraImageCaptureFromPointer(ptr).CancelCaptureDefault()
 	}
-
 }
 
 func (ptr *QCameraImageCapture) ConnectCancelCapture(f func()) {
@@ -16708,13 +16890,19 @@ func (ptr *QCameraImageCapture) CancelCapture() {
 	}
 }
 
+func (ptr *QCameraImageCapture) CancelCaptureDefault() {
+	if ptr.Pointer() != nil {
+		C.QCameraImageCapture_CancelCaptureDefault(ptr.Pointer())
+	}
+}
+
 //export callbackQCameraImageCapture_Capture
 func callbackQCameraImageCapture_Capture(ptr unsafe.Pointer, file C.struct_QtMultimedia_PackedString) C.int {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraImageCapture::capture"); signal != nil {
 		return C.int(int32(signal.(func(string) int)(cGoUnpackString(file))))
 	}
 
-	return C.int(int32(0))
+	return C.int(int32(NewQCameraImageCaptureFromPointer(ptr).CaptureDefault(cGoUnpackString(file))))
 }
 
 func (ptr *QCameraImageCapture) ConnectCapture(f func(file string) int) {
@@ -16724,7 +16912,7 @@ func (ptr *QCameraImageCapture) ConnectCapture(f func(file string) int) {
 	}
 }
 
-func (ptr *QCameraImageCapture) DisconnectCapture(file string) {
+func (ptr *QCameraImageCapture) DisconnectCapture() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QCameraImageCapture::capture")
@@ -16736,6 +16924,15 @@ func (ptr *QCameraImageCapture) Capture(file string) int {
 		var fileC = C.CString(file)
 		defer C.free(unsafe.Pointer(fileC))
 		return int(int32(C.QCameraImageCapture_Capture(ptr.Pointer(), fileC)))
+	}
+	return 0
+}
+
+func (ptr *QCameraImageCapture) CaptureDefault(file string) int {
+	if ptr.Pointer() != nil {
+		var fileC = C.CString(file)
+		defer C.free(unsafe.Pointer(fileC))
+		return int(int32(C.QCameraImageCapture_CaptureDefault(ptr.Pointer(), fileC)))
 	}
 	return 0
 }
@@ -17595,7 +17792,7 @@ func (ptr *QCameraImageCaptureControl) ConnectCapture(f func(fileName string) in
 	}
 }
 
-func (ptr *QCameraImageCaptureControl) DisconnectCapture(fileName string) {
+func (ptr *QCameraImageCaptureControl) DisconnectCapture() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QCameraImageCaptureControl::capture")
@@ -17898,7 +18095,7 @@ func (ptr *QCameraImageCaptureControl) ConnectSetDriveMode(f func(mode QCameraIm
 	}
 }
 
-func (ptr *QCameraImageCaptureControl) DisconnectSetDriveMode(mode QCameraImageCapture__DriveMode) {
+func (ptr *QCameraImageCaptureControl) DisconnectSetDriveMode() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QCameraImageCaptureControl::setDriveMode")
@@ -18252,40 +18449,6 @@ func (ptr *QCameraImageCaptureControl) MetaObjectDefault() *core.QMetaObject {
 	return nil
 }
 
-//go:generate stringer -type=QCameraImageProcessing__ColorFilter
-//QCameraImageProcessing::ColorFilter
-type QCameraImageProcessing__ColorFilter int64
-
-const (
-	QCameraImageProcessing__ColorFilterNone       QCameraImageProcessing__ColorFilter = QCameraImageProcessing__ColorFilter(0)
-	QCameraImageProcessing__ColorFilterGrayscale  QCameraImageProcessing__ColorFilter = QCameraImageProcessing__ColorFilter(1)
-	QCameraImageProcessing__ColorFilterNegative   QCameraImageProcessing__ColorFilter = QCameraImageProcessing__ColorFilter(2)
-	QCameraImageProcessing__ColorFilterSolarize   QCameraImageProcessing__ColorFilter = QCameraImageProcessing__ColorFilter(3)
-	QCameraImageProcessing__ColorFilterSepia      QCameraImageProcessing__ColorFilter = QCameraImageProcessing__ColorFilter(4)
-	QCameraImageProcessing__ColorFilterPosterize  QCameraImageProcessing__ColorFilter = QCameraImageProcessing__ColorFilter(5)
-	QCameraImageProcessing__ColorFilterWhiteboard QCameraImageProcessing__ColorFilter = QCameraImageProcessing__ColorFilter(6)
-	QCameraImageProcessing__ColorFilterBlackboard QCameraImageProcessing__ColorFilter = QCameraImageProcessing__ColorFilter(7)
-	QCameraImageProcessing__ColorFilterAqua       QCameraImageProcessing__ColorFilter = QCameraImageProcessing__ColorFilter(8)
-	QCameraImageProcessing__ColorFilterVendor     QCameraImageProcessing__ColorFilter = QCameraImageProcessing__ColorFilter(1000)
-)
-
-//go:generate stringer -type=QCameraImageProcessing__WhiteBalanceMode
-//QCameraImageProcessing::WhiteBalanceMode
-type QCameraImageProcessing__WhiteBalanceMode int64
-
-const (
-	QCameraImageProcessing__WhiteBalanceAuto        QCameraImageProcessing__WhiteBalanceMode = QCameraImageProcessing__WhiteBalanceMode(0)
-	QCameraImageProcessing__WhiteBalanceManual      QCameraImageProcessing__WhiteBalanceMode = QCameraImageProcessing__WhiteBalanceMode(1)
-	QCameraImageProcessing__WhiteBalanceSunlight    QCameraImageProcessing__WhiteBalanceMode = QCameraImageProcessing__WhiteBalanceMode(2)
-	QCameraImageProcessing__WhiteBalanceCloudy      QCameraImageProcessing__WhiteBalanceMode = QCameraImageProcessing__WhiteBalanceMode(3)
-	QCameraImageProcessing__WhiteBalanceShade       QCameraImageProcessing__WhiteBalanceMode = QCameraImageProcessing__WhiteBalanceMode(4)
-	QCameraImageProcessing__WhiteBalanceTungsten    QCameraImageProcessing__WhiteBalanceMode = QCameraImageProcessing__WhiteBalanceMode(5)
-	QCameraImageProcessing__WhiteBalanceFluorescent QCameraImageProcessing__WhiteBalanceMode = QCameraImageProcessing__WhiteBalanceMode(6)
-	QCameraImageProcessing__WhiteBalanceFlash       QCameraImageProcessing__WhiteBalanceMode = QCameraImageProcessing__WhiteBalanceMode(7)
-	QCameraImageProcessing__WhiteBalanceSunset      QCameraImageProcessing__WhiteBalanceMode = QCameraImageProcessing__WhiteBalanceMode(8)
-	QCameraImageProcessing__WhiteBalanceVendor      QCameraImageProcessing__WhiteBalanceMode = QCameraImageProcessing__WhiteBalanceMode(1000)
-)
-
 type QCameraImageProcessing struct {
 	core.QObject
 }
@@ -18332,6 +18495,40 @@ func (ptr *QCameraImageProcessing) DestroyQCameraImageProcessing() {
 		ptr.SetPointer(nil)
 	}
 }
+
+//go:generate stringer -type=QCameraImageProcessing__ColorFilter
+//QCameraImageProcessing::ColorFilter
+type QCameraImageProcessing__ColorFilter int64
+
+const (
+	QCameraImageProcessing__ColorFilterNone       QCameraImageProcessing__ColorFilter = QCameraImageProcessing__ColorFilter(0)
+	QCameraImageProcessing__ColorFilterGrayscale  QCameraImageProcessing__ColorFilter = QCameraImageProcessing__ColorFilter(1)
+	QCameraImageProcessing__ColorFilterNegative   QCameraImageProcessing__ColorFilter = QCameraImageProcessing__ColorFilter(2)
+	QCameraImageProcessing__ColorFilterSolarize   QCameraImageProcessing__ColorFilter = QCameraImageProcessing__ColorFilter(3)
+	QCameraImageProcessing__ColorFilterSepia      QCameraImageProcessing__ColorFilter = QCameraImageProcessing__ColorFilter(4)
+	QCameraImageProcessing__ColorFilterPosterize  QCameraImageProcessing__ColorFilter = QCameraImageProcessing__ColorFilter(5)
+	QCameraImageProcessing__ColorFilterWhiteboard QCameraImageProcessing__ColorFilter = QCameraImageProcessing__ColorFilter(6)
+	QCameraImageProcessing__ColorFilterBlackboard QCameraImageProcessing__ColorFilter = QCameraImageProcessing__ColorFilter(7)
+	QCameraImageProcessing__ColorFilterAqua       QCameraImageProcessing__ColorFilter = QCameraImageProcessing__ColorFilter(8)
+	QCameraImageProcessing__ColorFilterVendor     QCameraImageProcessing__ColorFilter = QCameraImageProcessing__ColorFilter(1000)
+)
+
+//go:generate stringer -type=QCameraImageProcessing__WhiteBalanceMode
+//QCameraImageProcessing::WhiteBalanceMode
+type QCameraImageProcessing__WhiteBalanceMode int64
+
+const (
+	QCameraImageProcessing__WhiteBalanceAuto        QCameraImageProcessing__WhiteBalanceMode = QCameraImageProcessing__WhiteBalanceMode(0)
+	QCameraImageProcessing__WhiteBalanceManual      QCameraImageProcessing__WhiteBalanceMode = QCameraImageProcessing__WhiteBalanceMode(1)
+	QCameraImageProcessing__WhiteBalanceSunlight    QCameraImageProcessing__WhiteBalanceMode = QCameraImageProcessing__WhiteBalanceMode(2)
+	QCameraImageProcessing__WhiteBalanceCloudy      QCameraImageProcessing__WhiteBalanceMode = QCameraImageProcessing__WhiteBalanceMode(3)
+	QCameraImageProcessing__WhiteBalanceShade       QCameraImageProcessing__WhiteBalanceMode = QCameraImageProcessing__WhiteBalanceMode(4)
+	QCameraImageProcessing__WhiteBalanceTungsten    QCameraImageProcessing__WhiteBalanceMode = QCameraImageProcessing__WhiteBalanceMode(5)
+	QCameraImageProcessing__WhiteBalanceFluorescent QCameraImageProcessing__WhiteBalanceMode = QCameraImageProcessing__WhiteBalanceMode(6)
+	QCameraImageProcessing__WhiteBalanceFlash       QCameraImageProcessing__WhiteBalanceMode = QCameraImageProcessing__WhiteBalanceMode(7)
+	QCameraImageProcessing__WhiteBalanceSunset      QCameraImageProcessing__WhiteBalanceMode = QCameraImageProcessing__WhiteBalanceMode(8)
+	QCameraImageProcessing__WhiteBalanceVendor      QCameraImageProcessing__WhiteBalanceMode = QCameraImageProcessing__WhiteBalanceMode(1000)
+)
 
 func (ptr *QCameraImageProcessing) Brightness() float64 {
 	if ptr.Pointer() != nil {
@@ -18791,27 +18988,6 @@ func (ptr *QCameraImageProcessing) MetaObjectDefault() *core.QMetaObject {
 	return nil
 }
 
-//go:generate stringer -type=QCameraImageProcessingControl__ProcessingParameter
-//QCameraImageProcessingControl::ProcessingParameter
-type QCameraImageProcessingControl__ProcessingParameter int64
-
-const (
-	QCameraImageProcessingControl__WhiteBalancePreset   QCameraImageProcessingControl__ProcessingParameter = QCameraImageProcessingControl__ProcessingParameter(0)
-	QCameraImageProcessingControl__ColorTemperature     QCameraImageProcessingControl__ProcessingParameter = QCameraImageProcessingControl__ProcessingParameter(1)
-	QCameraImageProcessingControl__Contrast             QCameraImageProcessingControl__ProcessingParameter = QCameraImageProcessingControl__ProcessingParameter(2)
-	QCameraImageProcessingControl__Saturation           QCameraImageProcessingControl__ProcessingParameter = QCameraImageProcessingControl__ProcessingParameter(3)
-	QCameraImageProcessingControl__Brightness           QCameraImageProcessingControl__ProcessingParameter = QCameraImageProcessingControl__ProcessingParameter(4)
-	QCameraImageProcessingControl__Sharpening           QCameraImageProcessingControl__ProcessingParameter = QCameraImageProcessingControl__ProcessingParameter(5)
-	QCameraImageProcessingControl__Denoising            QCameraImageProcessingControl__ProcessingParameter = QCameraImageProcessingControl__ProcessingParameter(6)
-	QCameraImageProcessingControl__ContrastAdjustment   QCameraImageProcessingControl__ProcessingParameter = QCameraImageProcessingControl__ProcessingParameter(7)
-	QCameraImageProcessingControl__SaturationAdjustment QCameraImageProcessingControl__ProcessingParameter = QCameraImageProcessingControl__ProcessingParameter(8)
-	QCameraImageProcessingControl__BrightnessAdjustment QCameraImageProcessingControl__ProcessingParameter = QCameraImageProcessingControl__ProcessingParameter(9)
-	QCameraImageProcessingControl__SharpeningAdjustment QCameraImageProcessingControl__ProcessingParameter = QCameraImageProcessingControl__ProcessingParameter(10)
-	QCameraImageProcessingControl__DenoisingAdjustment  QCameraImageProcessingControl__ProcessingParameter = QCameraImageProcessingControl__ProcessingParameter(11)
-	QCameraImageProcessingControl__ColorFilter          QCameraImageProcessingControl__ProcessingParameter = QCameraImageProcessingControl__ProcessingParameter(12)
-	QCameraImageProcessingControl__ExtendedParameter    QCameraImageProcessingControl__ProcessingParameter = QCameraImageProcessingControl__ProcessingParameter(1000)
-)
-
 type QCameraImageProcessingControl struct {
 	QMediaControl
 }
@@ -18850,6 +19026,28 @@ func NewQCameraImageProcessingControlFromPointer(ptr unsafe.Pointer) *QCameraIma
 	n.SetPointer(ptr)
 	return n
 }
+
+//go:generate stringer -type=QCameraImageProcessingControl__ProcessingParameter
+//QCameraImageProcessingControl::ProcessingParameter
+type QCameraImageProcessingControl__ProcessingParameter int64
+
+const (
+	QCameraImageProcessingControl__WhiteBalancePreset   QCameraImageProcessingControl__ProcessingParameter = QCameraImageProcessingControl__ProcessingParameter(0)
+	QCameraImageProcessingControl__ColorTemperature     QCameraImageProcessingControl__ProcessingParameter = QCameraImageProcessingControl__ProcessingParameter(1)
+	QCameraImageProcessingControl__Contrast             QCameraImageProcessingControl__ProcessingParameter = QCameraImageProcessingControl__ProcessingParameter(2)
+	QCameraImageProcessingControl__Saturation           QCameraImageProcessingControl__ProcessingParameter = QCameraImageProcessingControl__ProcessingParameter(3)
+	QCameraImageProcessingControl__Brightness           QCameraImageProcessingControl__ProcessingParameter = QCameraImageProcessingControl__ProcessingParameter(4)
+	QCameraImageProcessingControl__Sharpening           QCameraImageProcessingControl__ProcessingParameter = QCameraImageProcessingControl__ProcessingParameter(5)
+	QCameraImageProcessingControl__Denoising            QCameraImageProcessingControl__ProcessingParameter = QCameraImageProcessingControl__ProcessingParameter(6)
+	QCameraImageProcessingControl__ContrastAdjustment   QCameraImageProcessingControl__ProcessingParameter = QCameraImageProcessingControl__ProcessingParameter(7)
+	QCameraImageProcessingControl__SaturationAdjustment QCameraImageProcessingControl__ProcessingParameter = QCameraImageProcessingControl__ProcessingParameter(8)
+	QCameraImageProcessingControl__BrightnessAdjustment QCameraImageProcessingControl__ProcessingParameter = QCameraImageProcessingControl__ProcessingParameter(9)
+	QCameraImageProcessingControl__SharpeningAdjustment QCameraImageProcessingControl__ProcessingParameter = QCameraImageProcessingControl__ProcessingParameter(10)
+	QCameraImageProcessingControl__DenoisingAdjustment  QCameraImageProcessingControl__ProcessingParameter = QCameraImageProcessingControl__ProcessingParameter(11)
+	QCameraImageProcessingControl__ColorFilter          QCameraImageProcessingControl__ProcessingParameter = QCameraImageProcessingControl__ProcessingParameter(12)
+	QCameraImageProcessingControl__ExtendedParameter    QCameraImageProcessingControl__ProcessingParameter = QCameraImageProcessingControl__ProcessingParameter(1000)
+)
+
 func NewQCameraImageProcessingControl(parent core.QObject_ITF) *QCameraImageProcessingControl {
 	var tmpValue = NewQCameraImageProcessingControlFromPointer(C.QCameraImageProcessingControl_NewQCameraImageProcessingControl(core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
@@ -18875,7 +19073,7 @@ func (ptr *QCameraImageProcessingControl) ConnectIsParameterSupported(f func(par
 	}
 }
 
-func (ptr *QCameraImageProcessingControl) DisconnectIsParameterSupported(parameter QCameraImageProcessingControl__ProcessingParameter) {
+func (ptr *QCameraImageProcessingControl) DisconnectIsParameterSupported() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QCameraImageProcessingControl::isParameterSupported")
@@ -18906,7 +19104,7 @@ func (ptr *QCameraImageProcessingControl) ConnectIsParameterValueSupported(f fun
 	}
 }
 
-func (ptr *QCameraImageProcessingControl) DisconnectIsParameterValueSupported(parameter QCameraImageProcessingControl__ProcessingParameter, value core.QVariant_ITF) {
+func (ptr *QCameraImageProcessingControl) DisconnectIsParameterValueSupported() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QCameraImageProcessingControl::isParameterValueSupported")
@@ -18937,7 +19135,7 @@ func (ptr *QCameraImageProcessingControl) ConnectParameter(f func(parameter QCam
 	}
 }
 
-func (ptr *QCameraImageProcessingControl) DisconnectParameter(parameter QCameraImageProcessingControl__ProcessingParameter) {
+func (ptr *QCameraImageProcessingControl) DisconnectParameter() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QCameraImageProcessingControl::parameter")
@@ -18969,7 +19167,7 @@ func (ptr *QCameraImageProcessingControl) ConnectSetParameter(f func(parameter Q
 	}
 }
 
-func (ptr *QCameraImageProcessingControl) DisconnectSetParameter(parameter QCameraImageProcessingControl__ProcessingParameter, value core.QVariant_ITF) {
+func (ptr *QCameraImageProcessingControl) DisconnectSetParameter() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QCameraImageProcessingControl::setParameter")
@@ -19524,7 +19722,7 @@ func (ptr *QCameraInfoControl) ConnectCameraOrientation(f func(deviceName string
 	}
 }
 
-func (ptr *QCameraInfoControl) DisconnectCameraOrientation(deviceName string) {
+func (ptr *QCameraInfoControl) DisconnectCameraOrientation() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QCameraInfoControl::cameraOrientation")
@@ -19557,7 +19755,7 @@ func (ptr *QCameraInfoControl) ConnectCameraPosition(f func(deviceName string) Q
 	}
 }
 
-func (ptr *QCameraInfoControl) DisconnectCameraPosition(deviceName string) {
+func (ptr *QCameraInfoControl) DisconnectCameraPosition() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QCameraInfoControl::cameraPosition")
@@ -20009,7 +20207,7 @@ func (ptr *QCameraLocksControl) ConnectLockStatus(f func(lock QCamera__LockType)
 	}
 }
 
-func (ptr *QCameraLocksControl) DisconnectLockStatus(lock QCamera__LockType) {
+func (ptr *QCameraLocksControl) DisconnectLockStatus() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QCameraLocksControl::lockStatus")
@@ -20068,7 +20266,7 @@ func (ptr *QCameraLocksControl) ConnectSearchAndLock(f func(locks QCamera__LockT
 	}
 }
 
-func (ptr *QCameraLocksControl) DisconnectSearchAndLock(locks QCamera__LockType) {
+func (ptr *QCameraLocksControl) DisconnectSearchAndLock() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QCameraLocksControl::searchAndLock")
@@ -20128,7 +20326,7 @@ func (ptr *QCameraLocksControl) ConnectUnlock(f func(locks QCamera__LockType)) {
 	}
 }
 
-func (ptr *QCameraLocksControl) DisconnectUnlock(locks QCamera__LockType) {
+func (ptr *QCameraLocksControl) DisconnectUnlock() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QCameraLocksControl::unlock")
@@ -23313,19 +23511,6 @@ func (ptr *QCameraViewfinderSettings) DestroyQCameraViewfinderSettings() {
 	}
 }
 
-//go:generate stringer -type=QCameraViewfinderSettingsControl__ViewfinderParameter
-//QCameraViewfinderSettingsControl::ViewfinderParameter
-type QCameraViewfinderSettingsControl__ViewfinderParameter int64
-
-const (
-	QCameraViewfinderSettingsControl__Resolution       QCameraViewfinderSettingsControl__ViewfinderParameter = QCameraViewfinderSettingsControl__ViewfinderParameter(0)
-	QCameraViewfinderSettingsControl__PixelAspectRatio QCameraViewfinderSettingsControl__ViewfinderParameter = QCameraViewfinderSettingsControl__ViewfinderParameter(1)
-	QCameraViewfinderSettingsControl__MinimumFrameRate QCameraViewfinderSettingsControl__ViewfinderParameter = QCameraViewfinderSettingsControl__ViewfinderParameter(2)
-	QCameraViewfinderSettingsControl__MaximumFrameRate QCameraViewfinderSettingsControl__ViewfinderParameter = QCameraViewfinderSettingsControl__ViewfinderParameter(3)
-	QCameraViewfinderSettingsControl__PixelFormat      QCameraViewfinderSettingsControl__ViewfinderParameter = QCameraViewfinderSettingsControl__ViewfinderParameter(4)
-	QCameraViewfinderSettingsControl__UserParameter    QCameraViewfinderSettingsControl__ViewfinderParameter = QCameraViewfinderSettingsControl__ViewfinderParameter(1000)
-)
-
 type QCameraViewfinderSettingsControl struct {
 	QMediaControl
 }
@@ -23364,6 +23549,20 @@ func NewQCameraViewfinderSettingsControlFromPointer(ptr unsafe.Pointer) *QCamera
 	n.SetPointer(ptr)
 	return n
 }
+
+//go:generate stringer -type=QCameraViewfinderSettingsControl__ViewfinderParameter
+//QCameraViewfinderSettingsControl::ViewfinderParameter
+type QCameraViewfinderSettingsControl__ViewfinderParameter int64
+
+const (
+	QCameraViewfinderSettingsControl__Resolution       QCameraViewfinderSettingsControl__ViewfinderParameter = QCameraViewfinderSettingsControl__ViewfinderParameter(0)
+	QCameraViewfinderSettingsControl__PixelAspectRatio QCameraViewfinderSettingsControl__ViewfinderParameter = QCameraViewfinderSettingsControl__ViewfinderParameter(1)
+	QCameraViewfinderSettingsControl__MinimumFrameRate QCameraViewfinderSettingsControl__ViewfinderParameter = QCameraViewfinderSettingsControl__ViewfinderParameter(2)
+	QCameraViewfinderSettingsControl__MaximumFrameRate QCameraViewfinderSettingsControl__ViewfinderParameter = QCameraViewfinderSettingsControl__ViewfinderParameter(3)
+	QCameraViewfinderSettingsControl__PixelFormat      QCameraViewfinderSettingsControl__ViewfinderParameter = QCameraViewfinderSettingsControl__ViewfinderParameter(4)
+	QCameraViewfinderSettingsControl__UserParameter    QCameraViewfinderSettingsControl__ViewfinderParameter = QCameraViewfinderSettingsControl__ViewfinderParameter(1000)
+)
+
 func NewQCameraViewfinderSettingsControl(parent core.QObject_ITF) *QCameraViewfinderSettingsControl {
 	var tmpValue = NewQCameraViewfinderSettingsControlFromPointer(C.QCameraViewfinderSettingsControl_NewQCameraViewfinderSettingsControl(core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
@@ -23389,7 +23588,7 @@ func (ptr *QCameraViewfinderSettingsControl) ConnectIsViewfinderParameterSupport
 	}
 }
 
-func (ptr *QCameraViewfinderSettingsControl) DisconnectIsViewfinderParameterSupported(parameter QCameraViewfinderSettingsControl__ViewfinderParameter) {
+func (ptr *QCameraViewfinderSettingsControl) DisconnectIsViewfinderParameterSupported() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QCameraViewfinderSettingsControl::isViewfinderParameterSupported")
@@ -23419,7 +23618,7 @@ func (ptr *QCameraViewfinderSettingsControl) ConnectSetViewfinderParameter(f fun
 	}
 }
 
-func (ptr *QCameraViewfinderSettingsControl) DisconnectSetViewfinderParameter(parameter QCameraViewfinderSettingsControl__ViewfinderParameter, value core.QVariant_ITF) {
+func (ptr *QCameraViewfinderSettingsControl) DisconnectSetViewfinderParameter() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QCameraViewfinderSettingsControl::setViewfinderParameter")
@@ -23449,7 +23648,7 @@ func (ptr *QCameraViewfinderSettingsControl) ConnectViewfinderParameter(f func(p
 	}
 }
 
-func (ptr *QCameraViewfinderSettingsControl) DisconnectViewfinderParameter(parameter QCameraViewfinderSettingsControl__ViewfinderParameter) {
+func (ptr *QCameraViewfinderSettingsControl) DisconnectViewfinderParameter() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QCameraViewfinderSettingsControl::viewfinderParameter")
@@ -23861,7 +24060,7 @@ func (ptr *QCameraViewfinderSettingsControl2) ConnectSetViewfinderSettings(f fun
 	}
 }
 
-func (ptr *QCameraViewfinderSettingsControl2) DisconnectSetViewfinderSettings(settings QCameraViewfinderSettings_ITF) {
+func (ptr *QCameraViewfinderSettingsControl2) DisconnectSetViewfinderSettings() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QCameraViewfinderSettingsControl2::setViewfinderSettings")
@@ -24738,7 +24937,7 @@ func (ptr *QCameraZoomControl) ConnectZoomTo(f func(optical float64, digital flo
 	}
 }
 
-func (ptr *QCameraZoomControl) DisconnectZoomTo(optical float64, digital float64) {
+func (ptr *QCameraZoomControl) DisconnectZoomTo() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QCameraZoomControl::zoomTo")
@@ -26848,7 +27047,7 @@ func callbackQGraphicsVideoItem_SetMediaObject(ptr unsafe.Pointer, object unsafe
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*QMediaObject) bool)(NewQMediaObjectFromPointer(object)))))
 	}
 
-	return C.char(int8(qt.GoBoolToInt(NewQGraphicsVideoItemFromPointer(ptr).SetMediaObjectDefault(NewQMediaObjectFromPointer(object)))))
+	return C.char(int8(qt.GoBoolToInt(false)))
 }
 
 func (ptr *QGraphicsVideoItem) ConnectSetMediaObject(f func(object *QMediaObject) bool) {
@@ -26868,13 +27067,6 @@ func (ptr *QGraphicsVideoItem) DisconnectSetMediaObject() {
 func (ptr *QGraphicsVideoItem) SetMediaObject(object QMediaObject_ITF) bool {
 	if ptr.Pointer() != nil {
 		return C.QGraphicsVideoItem_SetMediaObject(ptr.Pointer(), PointerFromQMediaObject(object)) != 0
-	}
-	return false
-}
-
-func (ptr *QGraphicsVideoItem) SetMediaObjectDefault(object QMediaObject_ITF) bool {
-	if ptr.Pointer() != nil {
-		return C.QGraphicsVideoItem_SetMediaObjectDefault(ptr.Pointer(), PointerFromQMediaObject(object)) != 0
 	}
 	return false
 }
@@ -26935,7 +27127,7 @@ func (ptr *QImageEncoderControl) ConnectImageCodecDescription(f func(codec strin
 	}
 }
 
-func (ptr *QImageEncoderControl) DisconnectImageCodecDescription(codec string) {
+func (ptr *QImageEncoderControl) DisconnectImageCodecDescription() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QImageEncoderControl::imageCodecDescription")
@@ -27000,7 +27192,7 @@ func (ptr *QImageEncoderControl) ConnectSetImageSettings(f func(settings *QImage
 	}
 }
 
-func (ptr *QImageEncoderControl) DisconnectSetImageSettings(settings QImageEncoderSettings_ITF) {
+func (ptr *QImageEncoderControl) DisconnectSetImageSettings() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QImageEncoderControl::setImageSettings")
@@ -27051,7 +27243,7 @@ func (ptr *QImageEncoderControl) ConnectSupportedResolutions(f func(settings *QI
 	}
 }
 
-func (ptr *QImageEncoderControl) DisconnectSupportedResolutions(settings QImageEncoderSettings_ITF, continuous bool) {
+func (ptr *QImageEncoderControl) DisconnectSupportedResolutions() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QImageEncoderControl::supportedResolutions")
@@ -28598,7 +28790,7 @@ func (ptr *QMediaBindableInterface) ConnectSetMediaObject(f func(object *QMediaO
 	}
 }
 
-func (ptr *QMediaBindableInterface) DisconnectSetMediaObject(object QMediaObject_ITF) {
+func (ptr *QMediaBindableInterface) DisconnectSetMediaObject() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QMediaBindableInterface::setMediaObject")
@@ -28715,7 +28907,7 @@ func (ptr *QMediaContainerControl) ConnectContainerDescription(f func(format str
 	}
 }
 
-func (ptr *QMediaContainerControl) DisconnectContainerDescription(format string) {
+func (ptr *QMediaContainerControl) DisconnectContainerDescription() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QMediaContainerControl::containerDescription")
@@ -28778,7 +28970,7 @@ func (ptr *QMediaContainerControl) ConnectSetContainerFormat(f func(format strin
 	}
 }
 
-func (ptr *QMediaContainerControl) DisconnectSetContainerFormat(format string) {
+func (ptr *QMediaContainerControl) DisconnectSetContainerFormat() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QMediaContainerControl::setContainerFormat")
@@ -29975,7 +30167,7 @@ func (ptr *QMediaGaplessPlaybackControl) ConnectSetCrossfadeTime(f func(crossfad
 	}
 }
 
-func (ptr *QMediaGaplessPlaybackControl) DisconnectSetCrossfadeTime(crossfadeTime float64) {
+func (ptr *QMediaGaplessPlaybackControl) DisconnectSetCrossfadeTime() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QMediaGaplessPlaybackControl::setCrossfadeTime")
@@ -30004,7 +30196,7 @@ func (ptr *QMediaGaplessPlaybackControl) ConnectSetNextMedia(f func(media *QMedi
 	}
 }
 
-func (ptr *QMediaGaplessPlaybackControl) DisconnectSetNextMedia(media QMediaContent_ITF) {
+func (ptr *QMediaGaplessPlaybackControl) DisconnectSetNextMedia() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QMediaGaplessPlaybackControl::setNextMedia")
@@ -31673,6 +31865,45 @@ func (ptr *QMediaObject) MetaObjectDefault() *core.QMetaObject {
 	return nil
 }
 
+type QMediaPlayer struct {
+	QMediaObject
+}
+
+type QMediaPlayer_ITF interface {
+	QMediaObject_ITF
+	QMediaPlayer_PTR() *QMediaPlayer
+}
+
+func (ptr *QMediaPlayer) QMediaPlayer_PTR() *QMediaPlayer {
+	return ptr
+}
+
+func (ptr *QMediaPlayer) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QMediaObject_PTR().Pointer()
+	}
+	return nil
+}
+
+func (ptr *QMediaPlayer) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QMediaObject_PTR().SetPointer(p)
+	}
+}
+
+func PointerFromQMediaPlayer(ptr QMediaPlayer_ITF) unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QMediaPlayer_PTR().Pointer()
+	}
+	return nil
+}
+
+func NewQMediaPlayerFromPointer(ptr unsafe.Pointer) *QMediaPlayer {
+	var n = new(QMediaPlayer)
+	n.SetPointer(ptr)
+	return n
+}
+
 //go:generate stringer -type=QMediaPlayer__Error
 //QMediaPlayer::Error
 type QMediaPlayer__Error int64
@@ -31723,44 +31954,6 @@ const (
 	QMediaPlayer__PausedState  QMediaPlayer__State = QMediaPlayer__State(2)
 )
 
-type QMediaPlayer struct {
-	QMediaObject
-}
-
-type QMediaPlayer_ITF interface {
-	QMediaObject_ITF
-	QMediaPlayer_PTR() *QMediaPlayer
-}
-
-func (ptr *QMediaPlayer) QMediaPlayer_PTR() *QMediaPlayer {
-	return ptr
-}
-
-func (ptr *QMediaPlayer) Pointer() unsafe.Pointer {
-	if ptr != nil {
-		return ptr.QMediaObject_PTR().Pointer()
-	}
-	return nil
-}
-
-func (ptr *QMediaPlayer) SetPointer(p unsafe.Pointer) {
-	if ptr != nil {
-		ptr.QMediaObject_PTR().SetPointer(p)
-	}
-}
-
-func PointerFromQMediaPlayer(ptr QMediaPlayer_ITF) unsafe.Pointer {
-	if ptr != nil {
-		return ptr.QMediaPlayer_PTR().Pointer()
-	}
-	return nil
-}
-
-func NewQMediaPlayerFromPointer(ptr unsafe.Pointer) *QMediaPlayer {
-	var n = new(QMediaPlayer)
-	n.SetPointer(ptr)
-	return n
-}
 func (ptr *QMediaPlayer) AudioRole() QAudio__Role {
 	if ptr.Pointer() != nil {
 		return QAudio__Role(C.QMediaPlayer_AudioRole(ptr.Pointer()))
@@ -31877,8 +32070,9 @@ func (ptr *QMediaPlayer) SetAudioRole(audioRole QAudio__Role) {
 func callbackQMediaPlayer_SetMuted(ptr unsafe.Pointer, muted C.char) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaPlayer::setMuted"); signal != nil {
 		signal.(func(bool))(int8(muted) != 0)
+	} else {
+		NewQMediaPlayerFromPointer(ptr).SetMutedDefault(int8(muted) != 0)
 	}
-
 }
 
 func (ptr *QMediaPlayer) ConnectSetMuted(f func(muted bool)) {
@@ -31888,7 +32082,7 @@ func (ptr *QMediaPlayer) ConnectSetMuted(f func(muted bool)) {
 	}
 }
 
-func (ptr *QMediaPlayer) DisconnectSetMuted(muted bool) {
+func (ptr *QMediaPlayer) DisconnectSetMuted() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QMediaPlayer::setMuted")
@@ -31901,12 +32095,19 @@ func (ptr *QMediaPlayer) SetMuted(muted bool) {
 	}
 }
 
+func (ptr *QMediaPlayer) SetMutedDefault(muted bool) {
+	if ptr.Pointer() != nil {
+		C.QMediaPlayer_SetMutedDefault(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(muted))))
+	}
+}
+
 //export callbackQMediaPlayer_SetPlaybackRate
 func callbackQMediaPlayer_SetPlaybackRate(ptr unsafe.Pointer, rate C.double) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaPlayer::setPlaybackRate"); signal != nil {
 		signal.(func(float64))(float64(rate))
+	} else {
+		NewQMediaPlayerFromPointer(ptr).SetPlaybackRateDefault(float64(rate))
 	}
-
 }
 
 func (ptr *QMediaPlayer) ConnectSetPlaybackRate(f func(rate float64)) {
@@ -31916,7 +32117,7 @@ func (ptr *QMediaPlayer) ConnectSetPlaybackRate(f func(rate float64)) {
 	}
 }
 
-func (ptr *QMediaPlayer) DisconnectSetPlaybackRate(rate float64) {
+func (ptr *QMediaPlayer) DisconnectSetPlaybackRate() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QMediaPlayer::setPlaybackRate")
@@ -31929,12 +32130,19 @@ func (ptr *QMediaPlayer) SetPlaybackRate(rate float64) {
 	}
 }
 
+func (ptr *QMediaPlayer) SetPlaybackRateDefault(rate float64) {
+	if ptr.Pointer() != nil {
+		C.QMediaPlayer_SetPlaybackRateDefault(ptr.Pointer(), C.double(rate))
+	}
+}
+
 //export callbackQMediaPlayer_SetPlaylist
 func callbackQMediaPlayer_SetPlaylist(ptr unsafe.Pointer, playlist unsafe.Pointer) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaPlayer::setPlaylist"); signal != nil {
 		signal.(func(*QMediaPlaylist))(NewQMediaPlaylistFromPointer(playlist))
+	} else {
+		NewQMediaPlayerFromPointer(ptr).SetPlaylistDefault(NewQMediaPlaylistFromPointer(playlist))
 	}
-
 }
 
 func (ptr *QMediaPlayer) ConnectSetPlaylist(f func(playlist *QMediaPlaylist)) {
@@ -31944,7 +32152,7 @@ func (ptr *QMediaPlayer) ConnectSetPlaylist(f func(playlist *QMediaPlaylist)) {
 	}
 }
 
-func (ptr *QMediaPlayer) DisconnectSetPlaylist(playlist QMediaPlaylist_ITF) {
+func (ptr *QMediaPlayer) DisconnectSetPlaylist() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QMediaPlayer::setPlaylist")
@@ -31957,12 +32165,19 @@ func (ptr *QMediaPlayer) SetPlaylist(playlist QMediaPlaylist_ITF) {
 	}
 }
 
+func (ptr *QMediaPlayer) SetPlaylistDefault(playlist QMediaPlaylist_ITF) {
+	if ptr.Pointer() != nil {
+		C.QMediaPlayer_SetPlaylistDefault(ptr.Pointer(), PointerFromQMediaPlaylist(playlist))
+	}
+}
+
 //export callbackQMediaPlayer_SetPosition
 func callbackQMediaPlayer_SetPosition(ptr unsafe.Pointer, position C.longlong) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaPlayer::setPosition"); signal != nil {
 		signal.(func(int64))(int64(position))
+	} else {
+		NewQMediaPlayerFromPointer(ptr).SetPositionDefault(int64(position))
 	}
-
 }
 
 func (ptr *QMediaPlayer) ConnectSetPosition(f func(position int64)) {
@@ -31972,7 +32187,7 @@ func (ptr *QMediaPlayer) ConnectSetPosition(f func(position int64)) {
 	}
 }
 
-func (ptr *QMediaPlayer) DisconnectSetPosition(position int64) {
+func (ptr *QMediaPlayer) DisconnectSetPosition() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QMediaPlayer::setPosition")
@@ -31982,6 +32197,12 @@ func (ptr *QMediaPlayer) DisconnectSetPosition(position int64) {
 func (ptr *QMediaPlayer) SetPosition(position int64) {
 	if ptr.Pointer() != nil {
 		C.QMediaPlayer_SetPosition(ptr.Pointer(), C.longlong(position))
+	}
+}
+
+func (ptr *QMediaPlayer) SetPositionDefault(position int64) {
+	if ptr.Pointer() != nil {
+		C.QMediaPlayer_SetPositionDefault(ptr.Pointer(), C.longlong(position))
 	}
 }
 
@@ -32001,8 +32222,9 @@ func (ptr *QMediaPlayer) SetVideoOutput(output QVideoWidget_ITF) {
 func callbackQMediaPlayer_SetVolume(ptr unsafe.Pointer, volume C.int) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaPlayer::setVolume"); signal != nil {
 		signal.(func(int))(int(int32(volume)))
+	} else {
+		NewQMediaPlayerFromPointer(ptr).SetVolumeDefault(int(int32(volume)))
 	}
-
 }
 
 func (ptr *QMediaPlayer) ConnectSetVolume(f func(volume int)) {
@@ -32012,7 +32234,7 @@ func (ptr *QMediaPlayer) ConnectSetVolume(f func(volume int)) {
 	}
 }
 
-func (ptr *QMediaPlayer) DisconnectSetVolume(volume int) {
+func (ptr *QMediaPlayer) DisconnectSetVolume() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QMediaPlayer::setVolume")
@@ -32022,6 +32244,12 @@ func (ptr *QMediaPlayer) DisconnectSetVolume(volume int) {
 func (ptr *QMediaPlayer) SetVolume(volume int) {
 	if ptr.Pointer() != nil {
 		C.QMediaPlayer_SetVolume(ptr.Pointer(), C.int(int32(volume)))
+	}
+}
+
+func (ptr *QMediaPlayer) SetVolumeDefault(volume int) {
+	if ptr.Pointer() != nil {
+		C.QMediaPlayer_SetVolumeDefault(ptr.Pointer(), C.int(int32(volume)))
 	}
 }
 
@@ -32422,8 +32650,9 @@ func (ptr *QMediaPlayer) NetworkConfigurationChanged(configuration network.QNetw
 func callbackQMediaPlayer_Pause(ptr unsafe.Pointer) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaPlayer::pause"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQMediaPlayerFromPointer(ptr).PauseDefault()
 	}
-
 }
 
 func (ptr *QMediaPlayer) ConnectPause(f func()) {
@@ -32446,12 +32675,19 @@ func (ptr *QMediaPlayer) Pause() {
 	}
 }
 
+func (ptr *QMediaPlayer) PauseDefault() {
+	if ptr.Pointer() != nil {
+		C.QMediaPlayer_PauseDefault(ptr.Pointer())
+	}
+}
+
 //export callbackQMediaPlayer_Play
 func callbackQMediaPlayer_Play(ptr unsafe.Pointer) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaPlayer::play"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQMediaPlayerFromPointer(ptr).PlayDefault()
 	}
-
 }
 
 func (ptr *QMediaPlayer) ConnectPlay(f func()) {
@@ -32471,6 +32707,12 @@ func (ptr *QMediaPlayer) DisconnectPlay() {
 func (ptr *QMediaPlayer) Play() {
 	if ptr.Pointer() != nil {
 		C.QMediaPlayer_Play(ptr.Pointer())
+	}
+}
+
+func (ptr *QMediaPlayer) PlayDefault() {
+	if ptr.Pointer() != nil {
+		C.QMediaPlayer_PlayDefault(ptr.Pointer())
 	}
 }
 
@@ -32565,8 +32807,9 @@ func (ptr *QMediaPlayer) SeekableChanged(seekable bool) {
 func callbackQMediaPlayer_SetMedia(ptr unsafe.Pointer, media unsafe.Pointer, stream unsafe.Pointer) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaPlayer::setMedia"); signal != nil {
 		signal.(func(*QMediaContent, *core.QIODevice))(NewQMediaContentFromPointer(media), core.NewQIODeviceFromPointer(stream))
+	} else {
+		NewQMediaPlayerFromPointer(ptr).SetMediaDefault(NewQMediaContentFromPointer(media), core.NewQIODeviceFromPointer(stream))
 	}
-
 }
 
 func (ptr *QMediaPlayer) ConnectSetMedia(f func(media *QMediaContent, stream *core.QIODevice)) {
@@ -32576,7 +32819,7 @@ func (ptr *QMediaPlayer) ConnectSetMedia(f func(media *QMediaContent, stream *co
 	}
 }
 
-func (ptr *QMediaPlayer) DisconnectSetMedia(media QMediaContent_ITF, stream core.QIODevice_ITF) {
+func (ptr *QMediaPlayer) DisconnectSetMedia() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QMediaPlayer::setMedia")
@@ -32586,6 +32829,12 @@ func (ptr *QMediaPlayer) DisconnectSetMedia(media QMediaContent_ITF, stream core
 func (ptr *QMediaPlayer) SetMedia(media QMediaContent_ITF, stream core.QIODevice_ITF) {
 	if ptr.Pointer() != nil {
 		C.QMediaPlayer_SetMedia(ptr.Pointer(), PointerFromQMediaContent(media), core.PointerFromQIODevice(stream))
+	}
+}
+
+func (ptr *QMediaPlayer) SetMediaDefault(media QMediaContent_ITF, stream core.QIODevice_ITF) {
+	if ptr.Pointer() != nil {
+		C.QMediaPlayer_SetMediaDefault(ptr.Pointer(), PointerFromQMediaContent(media), core.PointerFromQIODevice(stream))
 	}
 }
 
@@ -32628,8 +32877,9 @@ func (ptr *QMediaPlayer) StateChanged(state QMediaPlayer__State) {
 func callbackQMediaPlayer_Stop(ptr unsafe.Pointer) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaPlayer::stop"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQMediaPlayerFromPointer(ptr).StopDefault()
 	}
-
 }
 
 func (ptr *QMediaPlayer) ConnectStop(f func()) {
@@ -32649,6 +32899,12 @@ func (ptr *QMediaPlayer) DisconnectStop() {
 func (ptr *QMediaPlayer) Stop() {
 	if ptr.Pointer() != nil {
 		C.QMediaPlayer_Stop(ptr.Pointer())
+	}
+}
+
+func (ptr *QMediaPlayer) StopDefault() {
+	if ptr.Pointer() != nil {
+		C.QMediaPlayer_StopDefault(ptr.Pointer())
 	}
 }
 
@@ -34030,7 +34286,7 @@ func (ptr *QMediaPlayerControl) ConnectSetMedia(f func(media *QMediaContent, str
 	}
 }
 
-func (ptr *QMediaPlayerControl) DisconnectSetMedia(media QMediaContent_ITF, stream core.QIODevice_ITF) {
+func (ptr *QMediaPlayerControl) DisconnectSetMedia() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QMediaPlayerControl::setMedia")
@@ -34059,7 +34315,7 @@ func (ptr *QMediaPlayerControl) ConnectSetMuted(f func(mute bool)) {
 	}
 }
 
-func (ptr *QMediaPlayerControl) DisconnectSetMuted(mute bool) {
+func (ptr *QMediaPlayerControl) DisconnectSetMuted() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QMediaPlayerControl::setMuted")
@@ -34088,7 +34344,7 @@ func (ptr *QMediaPlayerControl) ConnectSetPlaybackRate(f func(rate float64)) {
 	}
 }
 
-func (ptr *QMediaPlayerControl) DisconnectSetPlaybackRate(rate float64) {
+func (ptr *QMediaPlayerControl) DisconnectSetPlaybackRate() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QMediaPlayerControl::setPlaybackRate")
@@ -34117,7 +34373,7 @@ func (ptr *QMediaPlayerControl) ConnectSetPosition(f func(position int64)) {
 	}
 }
 
-func (ptr *QMediaPlayerControl) DisconnectSetPosition(position int64) {
+func (ptr *QMediaPlayerControl) DisconnectSetPosition() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QMediaPlayerControl::setPosition")
@@ -34146,7 +34402,7 @@ func (ptr *QMediaPlayerControl) ConnectSetVolume(f func(volume int)) {
 	}
 }
 
-func (ptr *QMediaPlayerControl) DisconnectSetVolume(volume int) {
+func (ptr *QMediaPlayerControl) DisconnectSetVolume() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QMediaPlayerControl::setVolume")
@@ -34678,30 +34934,6 @@ func (ptr *QMediaPlayerControl) MetaObjectDefault() *core.QMetaObject {
 	return nil
 }
 
-//go:generate stringer -type=QMediaPlaylist__Error
-//QMediaPlaylist::Error
-type QMediaPlaylist__Error int64
-
-const (
-	QMediaPlaylist__NoError                 QMediaPlaylist__Error = QMediaPlaylist__Error(0)
-	QMediaPlaylist__FormatError             QMediaPlaylist__Error = QMediaPlaylist__Error(1)
-	QMediaPlaylist__FormatNotSupportedError QMediaPlaylist__Error = QMediaPlaylist__Error(2)
-	QMediaPlaylist__NetworkError            QMediaPlaylist__Error = QMediaPlaylist__Error(3)
-	QMediaPlaylist__AccessDeniedError       QMediaPlaylist__Error = QMediaPlaylist__Error(4)
-)
-
-//go:generate stringer -type=QMediaPlaylist__PlaybackMode
-//QMediaPlaylist::PlaybackMode
-type QMediaPlaylist__PlaybackMode int64
-
-const (
-	QMediaPlaylist__CurrentItemOnce   QMediaPlaylist__PlaybackMode = QMediaPlaylist__PlaybackMode(0)
-	QMediaPlaylist__CurrentItemInLoop QMediaPlaylist__PlaybackMode = QMediaPlaylist__PlaybackMode(1)
-	QMediaPlaylist__Sequential        QMediaPlaylist__PlaybackMode = QMediaPlaylist__PlaybackMode(2)
-	QMediaPlaylist__Loop              QMediaPlaylist__PlaybackMode = QMediaPlaylist__PlaybackMode(3)
-	QMediaPlaylist__Random            QMediaPlaylist__PlaybackMode = QMediaPlaylist__PlaybackMode(4)
-)
-
 type QMediaPlaylist struct {
 	core.QObject
 	QMediaBindableInterface
@@ -34743,6 +34975,31 @@ func NewQMediaPlaylistFromPointer(ptr unsafe.Pointer) *QMediaPlaylist {
 	n.SetPointer(ptr)
 	return n
 }
+
+//go:generate stringer -type=QMediaPlaylist__Error
+//QMediaPlaylist::Error
+type QMediaPlaylist__Error int64
+
+const (
+	QMediaPlaylist__NoError                 QMediaPlaylist__Error = QMediaPlaylist__Error(0)
+	QMediaPlaylist__FormatError             QMediaPlaylist__Error = QMediaPlaylist__Error(1)
+	QMediaPlaylist__FormatNotSupportedError QMediaPlaylist__Error = QMediaPlaylist__Error(2)
+	QMediaPlaylist__NetworkError            QMediaPlaylist__Error = QMediaPlaylist__Error(3)
+	QMediaPlaylist__AccessDeniedError       QMediaPlaylist__Error = QMediaPlaylist__Error(4)
+)
+
+//go:generate stringer -type=QMediaPlaylist__PlaybackMode
+//QMediaPlaylist::PlaybackMode
+type QMediaPlaylist__PlaybackMode int64
+
+const (
+	QMediaPlaylist__CurrentItemOnce   QMediaPlaylist__PlaybackMode = QMediaPlaylist__PlaybackMode(0)
+	QMediaPlaylist__CurrentItemInLoop QMediaPlaylist__PlaybackMode = QMediaPlaylist__PlaybackMode(1)
+	QMediaPlaylist__Sequential        QMediaPlaylist__PlaybackMode = QMediaPlaylist__PlaybackMode(2)
+	QMediaPlaylist__Loop              QMediaPlaylist__PlaybackMode = QMediaPlaylist__PlaybackMode(3)
+	QMediaPlaylist__Random            QMediaPlaylist__PlaybackMode = QMediaPlaylist__PlaybackMode(4)
+)
+
 func (ptr *QMediaPlaylist) PlaybackMode() QMediaPlaylist__PlaybackMode {
 	if ptr.Pointer() != nil {
 		return QMediaPlaylist__PlaybackMode(C.QMediaPlaylist_PlaybackMode(ptr.Pointer()))
@@ -35187,8 +35444,9 @@ func (ptr *QMediaPlaylist) MoveMedia(from int, to int) bool {
 func callbackQMediaPlaylist_Next(ptr unsafe.Pointer) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaPlaylist::next"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQMediaPlaylistFromPointer(ptr).NextDefault()
 	}
-
 }
 
 func (ptr *QMediaPlaylist) ConnectNext(f func()) {
@@ -35208,6 +35466,12 @@ func (ptr *QMediaPlaylist) DisconnectNext() {
 func (ptr *QMediaPlaylist) Next() {
 	if ptr.Pointer() != nil {
 		C.QMediaPlaylist_Next(ptr.Pointer())
+	}
+}
+
+func (ptr *QMediaPlaylist) NextDefault() {
+	if ptr.Pointer() != nil {
+		C.QMediaPlaylist_NextDefault(ptr.Pointer())
 	}
 }
 
@@ -35251,8 +35515,9 @@ func (ptr *QMediaPlaylist) PlaybackModeChanged(mode QMediaPlaylist__PlaybackMode
 func callbackQMediaPlaylist_Previous(ptr unsafe.Pointer) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaPlaylist::previous"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQMediaPlaylistFromPointer(ptr).PreviousDefault()
 	}
-
 }
 
 func (ptr *QMediaPlaylist) ConnectPrevious(f func()) {
@@ -35272,6 +35537,12 @@ func (ptr *QMediaPlaylist) DisconnectPrevious() {
 func (ptr *QMediaPlaylist) Previous() {
 	if ptr.Pointer() != nil {
 		C.QMediaPlaylist_Previous(ptr.Pointer())
+	}
+}
+
+func (ptr *QMediaPlaylist) PreviousDefault() {
+	if ptr.Pointer() != nil {
+		C.QMediaPlaylist_PreviousDefault(ptr.Pointer())
 	}
 }
 
@@ -35318,8 +35589,9 @@ func (ptr *QMediaPlaylist) Save(location core.QUrl_ITF, format string) bool {
 func callbackQMediaPlaylist_SetCurrentIndex(ptr unsafe.Pointer, playlistPosition C.int) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaPlaylist::setCurrentIndex"); signal != nil {
 		signal.(func(int))(int(int32(playlistPosition)))
+	} else {
+		NewQMediaPlaylistFromPointer(ptr).SetCurrentIndexDefault(int(int32(playlistPosition)))
 	}
-
 }
 
 func (ptr *QMediaPlaylist) ConnectSetCurrentIndex(f func(playlistPosition int)) {
@@ -35329,7 +35601,7 @@ func (ptr *QMediaPlaylist) ConnectSetCurrentIndex(f func(playlistPosition int)) 
 	}
 }
 
-func (ptr *QMediaPlaylist) DisconnectSetCurrentIndex(playlistPosition int) {
+func (ptr *QMediaPlaylist) DisconnectSetCurrentIndex() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QMediaPlaylist::setCurrentIndex")
@@ -35342,12 +35614,19 @@ func (ptr *QMediaPlaylist) SetCurrentIndex(playlistPosition int) {
 	}
 }
 
+func (ptr *QMediaPlaylist) SetCurrentIndexDefault(playlistPosition int) {
+	if ptr.Pointer() != nil {
+		C.QMediaPlaylist_SetCurrentIndexDefault(ptr.Pointer(), C.int(int32(playlistPosition)))
+	}
+}
+
 //export callbackQMediaPlaylist_Shuffle
 func callbackQMediaPlaylist_Shuffle(ptr unsafe.Pointer) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaPlaylist::shuffle"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQMediaPlaylistFromPointer(ptr).ShuffleDefault()
 	}
-
 }
 
 func (ptr *QMediaPlaylist) ConnectShuffle(f func()) {
@@ -35367,6 +35646,12 @@ func (ptr *QMediaPlaylist) DisconnectShuffle() {
 func (ptr *QMediaPlaylist) Shuffle() {
 	if ptr.Pointer() != nil {
 		C.QMediaPlaylist_Shuffle(ptr.Pointer())
+	}
+}
+
+func (ptr *QMediaPlaylist) ShuffleDefault() {
+	if ptr.Pointer() != nil {
+		C.QMediaPlaylist_ShuffleDefault(ptr.Pointer())
 	}
 }
 
@@ -35750,7 +36035,7 @@ func callbackQMediaPlaylist_SetMediaObject(ptr unsafe.Pointer, object unsafe.Poi
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*QMediaObject) bool)(NewQMediaObjectFromPointer(object)))))
 	}
 
-	return C.char(int8(qt.GoBoolToInt(NewQMediaPlaylistFromPointer(ptr).SetMediaObjectDefault(NewQMediaObjectFromPointer(object)))))
+	return C.char(int8(qt.GoBoolToInt(false)))
 }
 
 func (ptr *QMediaPlaylist) ConnectSetMediaObject(f func(object *QMediaObject) bool) {
@@ -35773,49 +36058,6 @@ func (ptr *QMediaPlaylist) SetMediaObject(object QMediaObject_ITF) bool {
 	}
 	return false
 }
-
-func (ptr *QMediaPlaylist) SetMediaObjectDefault(object QMediaObject_ITF) bool {
-	if ptr.Pointer() != nil {
-		return C.QMediaPlaylist_SetMediaObjectDefault(ptr.Pointer(), PointerFromQMediaObject(object)) != 0
-	}
-	return false
-}
-
-//go:generate stringer -type=QMediaRecorder__Error
-//QMediaRecorder::Error
-type QMediaRecorder__Error int64
-
-const (
-	QMediaRecorder__NoError         QMediaRecorder__Error = QMediaRecorder__Error(0)
-	QMediaRecorder__ResourceError   QMediaRecorder__Error = QMediaRecorder__Error(1)
-	QMediaRecorder__FormatError     QMediaRecorder__Error = QMediaRecorder__Error(2)
-	QMediaRecorder__OutOfSpaceError QMediaRecorder__Error = QMediaRecorder__Error(3)
-)
-
-//go:generate stringer -type=QMediaRecorder__State
-//QMediaRecorder::State
-type QMediaRecorder__State int64
-
-const (
-	QMediaRecorder__StoppedState   QMediaRecorder__State = QMediaRecorder__State(0)
-	QMediaRecorder__RecordingState QMediaRecorder__State = QMediaRecorder__State(1)
-	QMediaRecorder__PausedState    QMediaRecorder__State = QMediaRecorder__State(2)
-)
-
-//go:generate stringer -type=QMediaRecorder__Status
-//QMediaRecorder::Status
-type QMediaRecorder__Status int64
-
-const (
-	QMediaRecorder__UnavailableStatus QMediaRecorder__Status = QMediaRecorder__Status(0)
-	QMediaRecorder__UnloadedStatus    QMediaRecorder__Status = QMediaRecorder__Status(1)
-	QMediaRecorder__LoadingStatus     QMediaRecorder__Status = QMediaRecorder__Status(2)
-	QMediaRecorder__LoadedStatus      QMediaRecorder__Status = QMediaRecorder__Status(3)
-	QMediaRecorder__StartingStatus    QMediaRecorder__Status = QMediaRecorder__Status(4)
-	QMediaRecorder__RecordingStatus   QMediaRecorder__Status = QMediaRecorder__Status(5)
-	QMediaRecorder__PausedStatus      QMediaRecorder__Status = QMediaRecorder__Status(6)
-	QMediaRecorder__FinalizingStatus  QMediaRecorder__Status = QMediaRecorder__Status(7)
-)
 
 type QMediaRecorder struct {
 	core.QObject
@@ -35858,6 +36100,43 @@ func NewQMediaRecorderFromPointer(ptr unsafe.Pointer) *QMediaRecorder {
 	n.SetPointer(ptr)
 	return n
 }
+
+//go:generate stringer -type=QMediaRecorder__Error
+//QMediaRecorder::Error
+type QMediaRecorder__Error int64
+
+const (
+	QMediaRecorder__NoError         QMediaRecorder__Error = QMediaRecorder__Error(0)
+	QMediaRecorder__ResourceError   QMediaRecorder__Error = QMediaRecorder__Error(1)
+	QMediaRecorder__FormatError     QMediaRecorder__Error = QMediaRecorder__Error(2)
+	QMediaRecorder__OutOfSpaceError QMediaRecorder__Error = QMediaRecorder__Error(3)
+)
+
+//go:generate stringer -type=QMediaRecorder__State
+//QMediaRecorder::State
+type QMediaRecorder__State int64
+
+const (
+	QMediaRecorder__StoppedState   QMediaRecorder__State = QMediaRecorder__State(0)
+	QMediaRecorder__RecordingState QMediaRecorder__State = QMediaRecorder__State(1)
+	QMediaRecorder__PausedState    QMediaRecorder__State = QMediaRecorder__State(2)
+)
+
+//go:generate stringer -type=QMediaRecorder__Status
+//QMediaRecorder::Status
+type QMediaRecorder__Status int64
+
+const (
+	QMediaRecorder__UnavailableStatus QMediaRecorder__Status = QMediaRecorder__Status(0)
+	QMediaRecorder__UnloadedStatus    QMediaRecorder__Status = QMediaRecorder__Status(1)
+	QMediaRecorder__LoadingStatus     QMediaRecorder__Status = QMediaRecorder__Status(2)
+	QMediaRecorder__LoadedStatus      QMediaRecorder__Status = QMediaRecorder__Status(3)
+	QMediaRecorder__StartingStatus    QMediaRecorder__Status = QMediaRecorder__Status(4)
+	QMediaRecorder__RecordingStatus   QMediaRecorder__Status = QMediaRecorder__Status(5)
+	QMediaRecorder__PausedStatus      QMediaRecorder__Status = QMediaRecorder__Status(6)
+	QMediaRecorder__FinalizingStatus  QMediaRecorder__Status = QMediaRecorder__Status(7)
+)
+
 func (ptr *QMediaRecorder) ActualLocation() *core.QUrl {
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQUrlFromPointer(C.QMediaRecorder_ActualLocation(ptr.Pointer()))
@@ -35908,8 +36187,9 @@ func (ptr *QMediaRecorder) OutputLocation() *core.QUrl {
 func callbackQMediaRecorder_SetMuted(ptr unsafe.Pointer, muted C.char) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaRecorder::setMuted"); signal != nil {
 		signal.(func(bool))(int8(muted) != 0)
+	} else {
+		NewQMediaRecorderFromPointer(ptr).SetMutedDefault(int8(muted) != 0)
 	}
-
 }
 
 func (ptr *QMediaRecorder) ConnectSetMuted(f func(muted bool)) {
@@ -35919,7 +36199,7 @@ func (ptr *QMediaRecorder) ConnectSetMuted(f func(muted bool)) {
 	}
 }
 
-func (ptr *QMediaRecorder) DisconnectSetMuted(muted bool) {
+func (ptr *QMediaRecorder) DisconnectSetMuted() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QMediaRecorder::setMuted")
@@ -35929,6 +36209,12 @@ func (ptr *QMediaRecorder) DisconnectSetMuted(muted bool) {
 func (ptr *QMediaRecorder) SetMuted(muted bool) {
 	if ptr.Pointer() != nil {
 		C.QMediaRecorder_SetMuted(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(muted))))
+	}
+}
+
+func (ptr *QMediaRecorder) SetMutedDefault(muted bool) {
+	if ptr.Pointer() != nil {
+		C.QMediaRecorder_SetMutedDefault(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(muted))))
 	}
 }
 
@@ -35943,8 +36229,9 @@ func (ptr *QMediaRecorder) SetOutputLocation(location core.QUrl_ITF) bool {
 func callbackQMediaRecorder_SetVolume(ptr unsafe.Pointer, volume C.double) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaRecorder::setVolume"); signal != nil {
 		signal.(func(float64))(float64(volume))
+	} else {
+		NewQMediaRecorderFromPointer(ptr).SetVolumeDefault(float64(volume))
 	}
-
 }
 
 func (ptr *QMediaRecorder) ConnectSetVolume(f func(volume float64)) {
@@ -35954,7 +36241,7 @@ func (ptr *QMediaRecorder) ConnectSetVolume(f func(volume float64)) {
 	}
 }
 
-func (ptr *QMediaRecorder) DisconnectSetVolume(volume float64) {
+func (ptr *QMediaRecorder) DisconnectSetVolume() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QMediaRecorder::setVolume")
@@ -35964,6 +36251,12 @@ func (ptr *QMediaRecorder) DisconnectSetVolume(volume float64) {
 func (ptr *QMediaRecorder) SetVolume(volume float64) {
 	if ptr.Pointer() != nil {
 		C.QMediaRecorder_SetVolume(ptr.Pointer(), C.double(volume))
+	}
+}
+
+func (ptr *QMediaRecorder) SetVolumeDefault(volume float64) {
+	if ptr.Pointer() != nil {
+		C.QMediaRecorder_SetVolumeDefault(ptr.Pointer(), C.double(volume))
 	}
 }
 
@@ -36404,8 +36697,9 @@ func (ptr *QMediaRecorder) MutedChanged(muted bool) {
 func callbackQMediaRecorder_Pause(ptr unsafe.Pointer) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaRecorder::pause"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQMediaRecorderFromPointer(ptr).PauseDefault()
 	}
-
 }
 
 func (ptr *QMediaRecorder) ConnectPause(f func()) {
@@ -36428,12 +36722,19 @@ func (ptr *QMediaRecorder) Pause() {
 	}
 }
 
+func (ptr *QMediaRecorder) PauseDefault() {
+	if ptr.Pointer() != nil {
+		C.QMediaRecorder_PauseDefault(ptr.Pointer())
+	}
+}
+
 //export callbackQMediaRecorder_Record
 func callbackQMediaRecorder_Record(ptr unsafe.Pointer) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaRecorder::record"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQMediaRecorderFromPointer(ptr).RecordDefault()
 	}
-
 }
 
 func (ptr *QMediaRecorder) ConnectRecord(f func()) {
@@ -36453,6 +36754,12 @@ func (ptr *QMediaRecorder) DisconnectRecord() {
 func (ptr *QMediaRecorder) Record() {
 	if ptr.Pointer() != nil {
 		C.QMediaRecorder_Record(ptr.Pointer())
+	}
+}
+
+func (ptr *QMediaRecorder) RecordDefault() {
+	if ptr.Pointer() != nil {
+		C.QMediaRecorder_RecordDefault(ptr.Pointer())
 	}
 }
 
@@ -36568,8 +36875,9 @@ func (ptr *QMediaRecorder) StatusChanged(status QMediaRecorder__Status) {
 func callbackQMediaRecorder_Stop(ptr unsafe.Pointer) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaRecorder::stop"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQMediaRecorderFromPointer(ptr).StopDefault()
 	}
-
 }
 
 func (ptr *QMediaRecorder) ConnectStop(f func()) {
@@ -36589,6 +36897,12 @@ func (ptr *QMediaRecorder) DisconnectStop() {
 func (ptr *QMediaRecorder) Stop() {
 	if ptr.Pointer() != nil {
 		C.QMediaRecorder_Stop(ptr.Pointer())
+	}
+}
+
+func (ptr *QMediaRecorder) StopDefault() {
+	if ptr.Pointer() != nil {
+		C.QMediaRecorder_StopDefault(ptr.Pointer())
 	}
 }
 
@@ -37030,7 +37344,7 @@ func callbackQMediaRecorder_SetMediaObject(ptr unsafe.Pointer, object unsafe.Poi
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*QMediaObject) bool)(NewQMediaObjectFromPointer(object)))))
 	}
 
-	return C.char(int8(qt.GoBoolToInt(NewQMediaRecorderFromPointer(ptr).SetMediaObjectDefault(NewQMediaObjectFromPointer(object)))))
+	return C.char(int8(qt.GoBoolToInt(false)))
 }
 
 func (ptr *QMediaRecorder) ConnectSetMediaObject(f func(object *QMediaObject) bool) {
@@ -37050,13 +37364,6 @@ func (ptr *QMediaRecorder) DisconnectSetMediaObject() {
 func (ptr *QMediaRecorder) SetMediaObject(object QMediaObject_ITF) bool {
 	if ptr.Pointer() != nil {
 		return C.QMediaRecorder_SetMediaObject(ptr.Pointer(), PointerFromQMediaObject(object)) != 0
-	}
-	return false
-}
-
-func (ptr *QMediaRecorder) SetMediaObjectDefault(object QMediaObject_ITF) bool {
-	if ptr.Pointer() != nil {
-		return C.QMediaRecorder_SetMediaObjectDefault(ptr.Pointer(), PointerFromQMediaObject(object)) != 0
 	}
 	return false
 }
@@ -37364,7 +37671,7 @@ func (ptr *QMediaRecorderControl) ConnectSetMuted(f func(muted bool)) {
 	}
 }
 
-func (ptr *QMediaRecorderControl) DisconnectSetMuted(muted bool) {
+func (ptr *QMediaRecorderControl) DisconnectSetMuted() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QMediaRecorderControl::setMuted")
@@ -37394,7 +37701,7 @@ func (ptr *QMediaRecorderControl) ConnectSetOutputLocation(f func(location *core
 	}
 }
 
-func (ptr *QMediaRecorderControl) DisconnectSetOutputLocation(location core.QUrl_ITF) {
+func (ptr *QMediaRecorderControl) DisconnectSetOutputLocation() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QMediaRecorderControl::setOutputLocation")
@@ -37423,7 +37730,7 @@ func (ptr *QMediaRecorderControl) ConnectSetState(f func(state QMediaRecorder__S
 	}
 }
 
-func (ptr *QMediaRecorderControl) DisconnectSetState(state QMediaRecorder__State) {
+func (ptr *QMediaRecorderControl) DisconnectSetState() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QMediaRecorderControl::setState")
@@ -37451,7 +37758,7 @@ func (ptr *QMediaRecorderControl) ConnectSetVolume(f func(gain float64)) {
 	}
 }
 
-func (ptr *QMediaRecorderControl) DisconnectSetVolume(gain float64) {
+func (ptr *QMediaRecorderControl) DisconnectSetVolume() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QMediaRecorderControl::setVolume")
@@ -38314,7 +38621,7 @@ func (ptr *QMediaService) ConnectReleaseControl(f func(control *QMediaControl)) 
 	}
 }
 
-func (ptr *QMediaService) DisconnectReleaseControl(control QMediaControl_ITF) {
+func (ptr *QMediaService) DisconnectReleaseControl() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QMediaService::releaseControl")
@@ -38344,7 +38651,7 @@ func (ptr *QMediaService) ConnectRequestControl(f func(interfa string) *QMediaCo
 	}
 }
 
-func (ptr *QMediaService) DisconnectRequestControl(interfa string) {
+func (ptr *QMediaService) DisconnectRequestControl() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QMediaService::requestControl")
@@ -38771,7 +39078,7 @@ func (ptr *QMediaServiceCameraInfoInterface) ConnectCameraOrientation(f func(dev
 	}
 }
 
-func (ptr *QMediaServiceCameraInfoInterface) DisconnectCameraOrientation(device core.QByteArray_ITF) {
+func (ptr *QMediaServiceCameraInfoInterface) DisconnectCameraOrientation() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QMediaServiceCameraInfoInterface::cameraOrientation")
@@ -38802,7 +39109,7 @@ func (ptr *QMediaServiceCameraInfoInterface) ConnectCameraPosition(f func(device
 	}
 }
 
-func (ptr *QMediaServiceCameraInfoInterface) DisconnectCameraPosition(device core.QByteArray_ITF) {
+func (ptr *QMediaServiceCameraInfoInterface) DisconnectCameraPosition() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QMediaServiceCameraInfoInterface::cameraPosition")
@@ -38911,7 +39218,7 @@ func (ptr *QMediaServiceDefaultDeviceInterface) ConnectDefaultDevice(f func(serv
 	}
 }
 
-func (ptr *QMediaServiceDefaultDeviceInterface) DisconnectDefaultDevice(service core.QByteArray_ITF) {
+func (ptr *QMediaServiceDefaultDeviceInterface) DisconnectDefaultDevice() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QMediaServiceDefaultDeviceInterface::defaultDevice")
@@ -39003,13 +39310,6 @@ func NewQMediaServiceFeaturesInterfaceFromPointer(ptr unsafe.Pointer) *QMediaSer
 	var n = new(QMediaServiceFeaturesInterface)
 	n.SetPointer(ptr)
 	return n
-}
-
-func (ptr *QMediaServiceFeaturesInterface) DisconnectSupportedFeatures(service core.QByteArray_ITF) {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QMediaServiceFeaturesInterface::supportedFeatures")
-	}
 }
 
 //export callbackQMediaServiceFeaturesInterface_DestroyQMediaServiceFeaturesInterface
@@ -39116,7 +39416,7 @@ func (ptr *QMediaServiceProviderPlugin) ConnectCreate(f func(key string) *QMedia
 	}
 }
 
-func (ptr *QMediaServiceProviderPlugin) DisconnectCreate(key string) {
+func (ptr *QMediaServiceProviderPlugin) DisconnectCreate() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QMediaServiceProviderPlugin::create")
@@ -39152,7 +39452,7 @@ func (ptr *QMediaServiceProviderPlugin) ConnectRelease(f func(service *QMediaSer
 	}
 }
 
-func (ptr *QMediaServiceProviderPlugin) DisconnectRelease(service QMediaService_ITF) {
+func (ptr *QMediaServiceProviderPlugin) DisconnectRelease() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QMediaServiceProviderPlugin::release")
@@ -39553,7 +39853,7 @@ func (ptr *QMediaServiceSupportedDevicesInterface) ConnectDeviceDescription(f fu
 	}
 }
 
-func (ptr *QMediaServiceSupportedDevicesInterface) DisconnectDeviceDescription(service core.QByteArray_ITF, device core.QByteArray_ITF) {
+func (ptr *QMediaServiceSupportedDevicesInterface) DisconnectDeviceDescription() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QMediaServiceSupportedDevicesInterface::deviceDescription")
@@ -39574,7 +39874,7 @@ func (ptr *QMediaServiceSupportedDevicesInterface) ConnectDevices(f func(service
 	}
 }
 
-func (ptr *QMediaServiceSupportedDevicesInterface) DisconnectDevices(service core.QByteArray_ITF) {
+func (ptr *QMediaServiceSupportedDevicesInterface) DisconnectDevices() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QMediaServiceSupportedDevicesInterface::devices")
@@ -39698,7 +39998,7 @@ func (ptr *QMediaServiceSupportedFormatsInterface) ConnectHasSupport(f func(mime
 	}
 }
 
-func (ptr *QMediaServiceSupportedFormatsInterface) DisconnectHasSupport(mimeType string, codecs []string) {
+func (ptr *QMediaServiceSupportedFormatsInterface) DisconnectHasSupport() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QMediaServiceSupportedFormatsInterface::hasSupport")
@@ -39787,18 +40087,6 @@ func (ptr *QMediaServiceSupportedFormatsInterface) DestroyQMediaServiceSupported
 	}
 }
 
-//go:generate stringer -type=QMediaStreamsControl__StreamType
-//QMediaStreamsControl::StreamType
-type QMediaStreamsControl__StreamType int64
-
-const (
-	QMediaStreamsControl__UnknownStream    QMediaStreamsControl__StreamType = QMediaStreamsControl__StreamType(0)
-	QMediaStreamsControl__VideoStream      QMediaStreamsControl__StreamType = QMediaStreamsControl__StreamType(1)
-	QMediaStreamsControl__AudioStream      QMediaStreamsControl__StreamType = QMediaStreamsControl__StreamType(2)
-	QMediaStreamsControl__SubPictureStream QMediaStreamsControl__StreamType = QMediaStreamsControl__StreamType(3)
-	QMediaStreamsControl__DataStream       QMediaStreamsControl__StreamType = QMediaStreamsControl__StreamType(4)
-)
-
 type QMediaStreamsControl struct {
 	QMediaControl
 }
@@ -39837,6 +40125,19 @@ func NewQMediaStreamsControlFromPointer(ptr unsafe.Pointer) *QMediaStreamsContro
 	n.SetPointer(ptr)
 	return n
 }
+
+//go:generate stringer -type=QMediaStreamsControl__StreamType
+//QMediaStreamsControl::StreamType
+type QMediaStreamsControl__StreamType int64
+
+const (
+	QMediaStreamsControl__UnknownStream    QMediaStreamsControl__StreamType = QMediaStreamsControl__StreamType(0)
+	QMediaStreamsControl__VideoStream      QMediaStreamsControl__StreamType = QMediaStreamsControl__StreamType(1)
+	QMediaStreamsControl__AudioStream      QMediaStreamsControl__StreamType = QMediaStreamsControl__StreamType(2)
+	QMediaStreamsControl__SubPictureStream QMediaStreamsControl__StreamType = QMediaStreamsControl__StreamType(3)
+	QMediaStreamsControl__DataStream       QMediaStreamsControl__StreamType = QMediaStreamsControl__StreamType(4)
+)
+
 func NewQMediaStreamsControl(parent core.QObject_ITF) *QMediaStreamsControl {
 	var tmpValue = NewQMediaStreamsControlFromPointer(C.QMediaStreamsControl_NewQMediaStreamsControl(core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
@@ -39891,7 +40192,7 @@ func (ptr *QMediaStreamsControl) ConnectIsActive(f func(stream int) bool) {
 	}
 }
 
-func (ptr *QMediaStreamsControl) DisconnectIsActive(stream int) {
+func (ptr *QMediaStreamsControl) DisconnectIsActive() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QMediaStreamsControl::isActive")
@@ -39922,7 +40223,7 @@ func (ptr *QMediaStreamsControl) ConnectMetaData(f func(stream int, key string) 
 	}
 }
 
-func (ptr *QMediaStreamsControl) DisconnectMetaData(stream int, key string) {
+func (ptr *QMediaStreamsControl) DisconnectMetaData() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QMediaStreamsControl::metaData")
@@ -39956,7 +40257,7 @@ func (ptr *QMediaStreamsControl) ConnectSetActive(f func(stream int, state bool)
 	}
 }
 
-func (ptr *QMediaStreamsControl) DisconnectSetActive(stream int, state bool) {
+func (ptr *QMediaStreamsControl) DisconnectSetActive() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QMediaStreamsControl::setActive")
@@ -40017,7 +40318,7 @@ func (ptr *QMediaStreamsControl) ConnectStreamType(f func(stream int) QMediaStre
 	}
 }
 
-func (ptr *QMediaStreamsControl) DisconnectStreamType(stream int) {
+func (ptr *QMediaStreamsControl) DisconnectStreamType() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QMediaStreamsControl::streamType")
@@ -41311,7 +41612,7 @@ func (ptr *QMetaDataReaderControl) ConnectMetaData(f func(key string) *core.QVar
 	}
 }
 
-func (ptr *QMetaDataReaderControl) DisconnectMetaData(key string) {
+func (ptr *QMetaDataReaderControl) DisconnectMetaData() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QMetaDataReaderControl::metaData")
@@ -41915,7 +42216,7 @@ func (ptr *QMetaDataWriterControl) ConnectMetaData(f func(key string) *core.QVar
 	}
 }
 
-func (ptr *QMetaDataWriterControl) DisconnectMetaData(key string) {
+func (ptr *QMetaDataWriterControl) DisconnectMetaData() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QMetaDataWriterControl::metaData")
@@ -42038,7 +42339,7 @@ func (ptr *QMetaDataWriterControl) ConnectSetMetaData(f func(key string, value *
 	}
 }
 
-func (ptr *QMetaDataWriterControl) DisconnectSetMetaData(key string, value core.QVariant_ITF) {
+func (ptr *QMetaDataWriterControl) DisconnectSetMetaData() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QMetaDataWriterControl::setMetaData")
@@ -42423,6 +42724,51 @@ func (ptr *QMetaDataWriterControl) MetaObjectDefault() *core.QMetaObject {
 	return nil
 }
 
+type QMultimedia struct {
+	ptr unsafe.Pointer
+}
+
+type QMultimedia_ITF interface {
+	QMultimedia_PTR() *QMultimedia
+}
+
+func (ptr *QMultimedia) QMultimedia_PTR() *QMultimedia {
+	return ptr
+}
+
+func (ptr *QMultimedia) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
+	}
+	return nil
+}
+
+func (ptr *QMultimedia) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
+	}
+}
+
+func PointerFromQMultimedia(ptr QMultimedia_ITF) unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QMultimedia_PTR().Pointer()
+	}
+	return nil
+}
+
+func NewQMultimediaFromPointer(ptr unsafe.Pointer) *QMultimedia {
+	var n = new(QMultimedia)
+	n.SetPointer(ptr)
+	return n
+}
+
+func (ptr *QMultimedia) DestroyQMultimedia() {
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
+}
+
 //go:generate stringer -type=QMultimedia__AvailabilityStatus
 //QMultimedia::AvailabilityStatus
 type QMultimedia__AvailabilityStatus int64
@@ -42468,49 +42814,46 @@ const (
 	QMultimedia__PreferredService  QMultimedia__SupportEstimate = QMultimedia__SupportEstimate(3)
 )
 
-type QMultimedia struct {
-	ptr unsafe.Pointer
+type QRadioData struct {
+	core.QObject
+	QMediaBindableInterface
 }
 
-type QMultimedia_ITF interface {
-	QMultimedia_PTR() *QMultimedia
+type QRadioData_ITF interface {
+	core.QObject_ITF
+	QMediaBindableInterface_ITF
+	QRadioData_PTR() *QRadioData
 }
 
-func (ptr *QMultimedia) QMultimedia_PTR() *QMultimedia {
+func (ptr *QRadioData) QRadioData_PTR() *QRadioData {
 	return ptr
 }
 
-func (ptr *QMultimedia) Pointer() unsafe.Pointer {
+func (ptr *QRadioData) Pointer() unsafe.Pointer {
 	if ptr != nil {
-		return ptr.ptr
+		return ptr.QObject_PTR().Pointer()
 	}
 	return nil
 }
 
-func (ptr *QMultimedia) SetPointer(p unsafe.Pointer) {
+func (ptr *QRadioData) SetPointer(p unsafe.Pointer) {
 	if ptr != nil {
-		ptr.ptr = p
+		ptr.QObject_PTR().SetPointer(p)
+		ptr.QMediaBindableInterface_PTR().SetPointer(p)
 	}
 }
 
-func PointerFromQMultimedia(ptr QMultimedia_ITF) unsafe.Pointer {
+func PointerFromQRadioData(ptr QRadioData_ITF) unsafe.Pointer {
 	if ptr != nil {
-		return ptr.QMultimedia_PTR().Pointer()
+		return ptr.QRadioData_PTR().Pointer()
 	}
 	return nil
 }
 
-func NewQMultimediaFromPointer(ptr unsafe.Pointer) *QMultimedia {
-	var n = new(QMultimedia)
+func NewQRadioDataFromPointer(ptr unsafe.Pointer) *QRadioData {
+	var n = new(QRadioData)
 	n.SetPointer(ptr)
 	return n
-}
-
-func (ptr *QMultimedia) DestroyQMultimedia() {
-	if ptr != nil {
-		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
-	}
 }
 
 //go:generate stringer -type=QRadioData__Error
@@ -42579,47 +42922,6 @@ const (
 	QRadioData__College             QRadioData__ProgramType = QRadioData__ProgramType(47)
 )
 
-type QRadioData struct {
-	core.QObject
-	QMediaBindableInterface
-}
-
-type QRadioData_ITF interface {
-	core.QObject_ITF
-	QMediaBindableInterface_ITF
-	QRadioData_PTR() *QRadioData
-}
-
-func (ptr *QRadioData) QRadioData_PTR() *QRadioData {
-	return ptr
-}
-
-func (ptr *QRadioData) Pointer() unsafe.Pointer {
-	if ptr != nil {
-		return ptr.QObject_PTR().Pointer()
-	}
-	return nil
-}
-
-func (ptr *QRadioData) SetPointer(p unsafe.Pointer) {
-	if ptr != nil {
-		ptr.QObject_PTR().SetPointer(p)
-		ptr.QMediaBindableInterface_PTR().SetPointer(p)
-	}
-}
-
-func PointerFromQRadioData(ptr QRadioData_ITF) unsafe.Pointer {
-	if ptr != nil {
-		return ptr.QRadioData_PTR().Pointer()
-	}
-	return nil
-}
-
-func NewQRadioDataFromPointer(ptr unsafe.Pointer) *QRadioData {
-	var n = new(QRadioData)
-	n.SetPointer(ptr)
-	return n
-}
 func (ptr *QRadioData) IsAlternativeFrequenciesEnabled() bool {
 	if ptr.Pointer() != nil {
 		return C.QRadioData_IsAlternativeFrequenciesEnabled(ptr.Pointer()) != 0
@@ -42652,8 +42954,9 @@ func (ptr *QRadioData) RadioText() string {
 func callbackQRadioData_SetAlternativeFrequenciesEnabled(ptr unsafe.Pointer, enabled C.char) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QRadioData::setAlternativeFrequenciesEnabled"); signal != nil {
 		signal.(func(bool))(int8(enabled) != 0)
+	} else {
+		NewQRadioDataFromPointer(ptr).SetAlternativeFrequenciesEnabledDefault(int8(enabled) != 0)
 	}
-
 }
 
 func (ptr *QRadioData) ConnectSetAlternativeFrequenciesEnabled(f func(enabled bool)) {
@@ -42663,7 +42966,7 @@ func (ptr *QRadioData) ConnectSetAlternativeFrequenciesEnabled(f func(enabled bo
 	}
 }
 
-func (ptr *QRadioData) DisconnectSetAlternativeFrequenciesEnabled(enabled bool) {
+func (ptr *QRadioData) DisconnectSetAlternativeFrequenciesEnabled() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QRadioData::setAlternativeFrequenciesEnabled")
@@ -42673,6 +42976,12 @@ func (ptr *QRadioData) DisconnectSetAlternativeFrequenciesEnabled(enabled bool) 
 func (ptr *QRadioData) SetAlternativeFrequenciesEnabled(enabled bool) {
 	if ptr.Pointer() != nil {
 		C.QRadioData_SetAlternativeFrequenciesEnabled(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(enabled))))
+	}
+}
+
+func (ptr *QRadioData) SetAlternativeFrequenciesEnabledDefault(enabled bool) {
+	if ptr.Pointer() != nil {
+		C.QRadioData_SetAlternativeFrequenciesEnabledDefault(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(enabled))))
 	}
 }
 
@@ -43752,7 +44061,7 @@ func (ptr *QRadioDataControl) ConnectSetAlternativeFrequenciesEnabled(f func(ena
 	}
 }
 
-func (ptr *QRadioDataControl) DisconnectSetAlternativeFrequenciesEnabled(enabled bool) {
+func (ptr *QRadioDataControl) DisconnectSetAlternativeFrequenciesEnabled() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QRadioDataControl::setAlternativeFrequenciesEnabled")
@@ -44230,6 +44539,45 @@ func (ptr *QRadioDataControl) MetaObjectDefault() *core.QMetaObject {
 	return nil
 }
 
+type QRadioTuner struct {
+	QMediaObject
+}
+
+type QRadioTuner_ITF interface {
+	QMediaObject_ITF
+	QRadioTuner_PTR() *QRadioTuner
+}
+
+func (ptr *QRadioTuner) QRadioTuner_PTR() *QRadioTuner {
+	return ptr
+}
+
+func (ptr *QRadioTuner) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QMediaObject_PTR().Pointer()
+	}
+	return nil
+}
+
+func (ptr *QRadioTuner) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QMediaObject_PTR().SetPointer(p)
+	}
+}
+
+func PointerFromQRadioTuner(ptr QRadioTuner_ITF) unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QRadioTuner_PTR().Pointer()
+	}
+	return nil
+}
+
+func NewQRadioTunerFromPointer(ptr unsafe.Pointer) *QRadioTuner {
+	var n = new(QRadioTuner)
+	n.SetPointer(ptr)
+	return n
+}
+
 //go:generate stringer -type=QRadioTuner__Band
 //QRadioTuner::Band
 type QRadioTuner__Band int64
@@ -44281,44 +44629,6 @@ const (
 	QRadioTuner__Auto        QRadioTuner__StereoMode = QRadioTuner__StereoMode(2)
 )
 
-type QRadioTuner struct {
-	QMediaObject
-}
-
-type QRadioTuner_ITF interface {
-	QMediaObject_ITF
-	QRadioTuner_PTR() *QRadioTuner
-}
-
-func (ptr *QRadioTuner) QRadioTuner_PTR() *QRadioTuner {
-	return ptr
-}
-
-func (ptr *QRadioTuner) Pointer() unsafe.Pointer {
-	if ptr != nil {
-		return ptr.QMediaObject_PTR().Pointer()
-	}
-	return nil
-}
-
-func (ptr *QRadioTuner) SetPointer(p unsafe.Pointer) {
-	if ptr != nil {
-		ptr.QMediaObject_PTR().SetPointer(p)
-	}
-}
-
-func PointerFromQRadioTuner(ptr QRadioTuner_ITF) unsafe.Pointer {
-	if ptr != nil {
-		return ptr.QRadioTuner_PTR().Pointer()
-	}
-	return nil
-}
-
-func NewQRadioTunerFromPointer(ptr unsafe.Pointer) *QRadioTuner {
-	var n = new(QRadioTuner)
-	n.SetPointer(ptr)
-	return n
-}
 func (ptr *QRadioTuner) Band() QRadioTuner__Band {
 	if ptr.Pointer() != nil {
 		return QRadioTuner__Band(C.QRadioTuner_Band(ptr.Pointer()))
@@ -44376,8 +44686,9 @@ func (ptr *QRadioTuner) RadioData() *QRadioData {
 func callbackQRadioTuner_SetMuted(ptr unsafe.Pointer, muted C.char) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QRadioTuner::setMuted"); signal != nil {
 		signal.(func(bool))(int8(muted) != 0)
+	} else {
+		NewQRadioTunerFromPointer(ptr).SetMutedDefault(int8(muted) != 0)
 	}
-
 }
 
 func (ptr *QRadioTuner) ConnectSetMuted(f func(muted bool)) {
@@ -44387,7 +44698,7 @@ func (ptr *QRadioTuner) ConnectSetMuted(f func(muted bool)) {
 	}
 }
 
-func (ptr *QRadioTuner) DisconnectSetMuted(muted bool) {
+func (ptr *QRadioTuner) DisconnectSetMuted() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QRadioTuner::setMuted")
@@ -44397,6 +44708,12 @@ func (ptr *QRadioTuner) DisconnectSetMuted(muted bool) {
 func (ptr *QRadioTuner) SetMuted(muted bool) {
 	if ptr.Pointer() != nil {
 		C.QRadioTuner_SetMuted(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(muted))))
+	}
+}
+
+func (ptr *QRadioTuner) SetMutedDefault(muted bool) {
+	if ptr.Pointer() != nil {
+		C.QRadioTuner_SetMutedDefault(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(muted))))
 	}
 }
 
@@ -44410,8 +44727,9 @@ func (ptr *QRadioTuner) SetStereoMode(mode QRadioTuner__StereoMode) {
 func callbackQRadioTuner_SetVolume(ptr unsafe.Pointer, volume C.int) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QRadioTuner::setVolume"); signal != nil {
 		signal.(func(int))(int(int32(volume)))
+	} else {
+		NewQRadioTunerFromPointer(ptr).SetVolumeDefault(int(int32(volume)))
 	}
-
 }
 
 func (ptr *QRadioTuner) ConnectSetVolume(f func(volume int)) {
@@ -44421,7 +44739,7 @@ func (ptr *QRadioTuner) ConnectSetVolume(f func(volume int)) {
 	}
 }
 
-func (ptr *QRadioTuner) DisconnectSetVolume(volume int) {
+func (ptr *QRadioTuner) DisconnectSetVolume() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QRadioTuner::setVolume")
@@ -44431,6 +44749,12 @@ func (ptr *QRadioTuner) DisconnectSetVolume(volume int) {
 func (ptr *QRadioTuner) SetVolume(volume int) {
 	if ptr.Pointer() != nil {
 		C.QRadioTuner_SetVolume(ptr.Pointer(), C.int(int32(volume)))
+	}
+}
+
+func (ptr *QRadioTuner) SetVolumeDefault(volume int) {
+	if ptr.Pointer() != nil {
+		C.QRadioTuner_SetVolumeDefault(ptr.Pointer(), C.int(int32(volume)))
 	}
 }
 
@@ -44570,8 +44894,9 @@ func (ptr *QRadioTuner) BandChanged(band QRadioTuner__Band) {
 func callbackQRadioTuner_CancelSearch(ptr unsafe.Pointer) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QRadioTuner::cancelSearch"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQRadioTunerFromPointer(ptr).CancelSearchDefault()
 	}
-
 }
 
 func (ptr *QRadioTuner) ConnectCancelSearch(f func()) {
@@ -44591,6 +44916,12 @@ func (ptr *QRadioTuner) DisconnectCancelSearch() {
 func (ptr *QRadioTuner) CancelSearch() {
 	if ptr.Pointer() != nil {
 		C.QRadioTuner_CancelSearch(ptr.Pointer())
+	}
+}
+
+func (ptr *QRadioTuner) CancelSearchDefault() {
+	if ptr.Pointer() != nil {
+		C.QRadioTuner_CancelSearchDefault(ptr.Pointer())
 	}
 }
 
@@ -44713,8 +45044,9 @@ func (ptr *QRadioTuner) MutedChanged(muted bool) {
 func callbackQRadioTuner_SearchAllStations(ptr unsafe.Pointer, searchMode C.longlong) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QRadioTuner::searchAllStations"); signal != nil {
 		signal.(func(QRadioTuner__SearchMode))(QRadioTuner__SearchMode(searchMode))
+	} else {
+		NewQRadioTunerFromPointer(ptr).SearchAllStationsDefault(QRadioTuner__SearchMode(searchMode))
 	}
-
 }
 
 func (ptr *QRadioTuner) ConnectSearchAllStations(f func(searchMode QRadioTuner__SearchMode)) {
@@ -44724,7 +45056,7 @@ func (ptr *QRadioTuner) ConnectSearchAllStations(f func(searchMode QRadioTuner__
 	}
 }
 
-func (ptr *QRadioTuner) DisconnectSearchAllStations(searchMode QRadioTuner__SearchMode) {
+func (ptr *QRadioTuner) DisconnectSearchAllStations() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QRadioTuner::searchAllStations")
@@ -44737,12 +45069,19 @@ func (ptr *QRadioTuner) SearchAllStations(searchMode QRadioTuner__SearchMode) {
 	}
 }
 
+func (ptr *QRadioTuner) SearchAllStationsDefault(searchMode QRadioTuner__SearchMode) {
+	if ptr.Pointer() != nil {
+		C.QRadioTuner_SearchAllStationsDefault(ptr.Pointer(), C.longlong(searchMode))
+	}
+}
+
 //export callbackQRadioTuner_SearchBackward
 func callbackQRadioTuner_SearchBackward(ptr unsafe.Pointer) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QRadioTuner::searchBackward"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQRadioTunerFromPointer(ptr).SearchBackwardDefault()
 	}
-
 }
 
 func (ptr *QRadioTuner) ConnectSearchBackward(f func()) {
@@ -44765,12 +45104,19 @@ func (ptr *QRadioTuner) SearchBackward() {
 	}
 }
 
+func (ptr *QRadioTuner) SearchBackwardDefault() {
+	if ptr.Pointer() != nil {
+		C.QRadioTuner_SearchBackwardDefault(ptr.Pointer())
+	}
+}
+
 //export callbackQRadioTuner_SearchForward
 func callbackQRadioTuner_SearchForward(ptr unsafe.Pointer) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QRadioTuner::searchForward"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQRadioTunerFromPointer(ptr).SearchForwardDefault()
 	}
-
 }
 
 func (ptr *QRadioTuner) ConnectSearchForward(f func()) {
@@ -44790,6 +45136,12 @@ func (ptr *QRadioTuner) DisconnectSearchForward() {
 func (ptr *QRadioTuner) SearchForward() {
 	if ptr.Pointer() != nil {
 		C.QRadioTuner_SearchForward(ptr.Pointer())
+	}
+}
+
+func (ptr *QRadioTuner) SearchForwardDefault() {
+	if ptr.Pointer() != nil {
+		C.QRadioTuner_SearchForwardDefault(ptr.Pointer())
 	}
 }
 
@@ -44826,8 +45178,9 @@ func (ptr *QRadioTuner) SearchingChanged(searching bool) {
 func callbackQRadioTuner_SetBand(ptr unsafe.Pointer, band C.longlong) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QRadioTuner::setBand"); signal != nil {
 		signal.(func(QRadioTuner__Band))(QRadioTuner__Band(band))
+	} else {
+		NewQRadioTunerFromPointer(ptr).SetBandDefault(QRadioTuner__Band(band))
 	}
-
 }
 
 func (ptr *QRadioTuner) ConnectSetBand(f func(band QRadioTuner__Band)) {
@@ -44837,7 +45190,7 @@ func (ptr *QRadioTuner) ConnectSetBand(f func(band QRadioTuner__Band)) {
 	}
 }
 
-func (ptr *QRadioTuner) DisconnectSetBand(band QRadioTuner__Band) {
+func (ptr *QRadioTuner) DisconnectSetBand() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QRadioTuner::setBand")
@@ -44850,12 +45203,19 @@ func (ptr *QRadioTuner) SetBand(band QRadioTuner__Band) {
 	}
 }
 
+func (ptr *QRadioTuner) SetBandDefault(band QRadioTuner__Band) {
+	if ptr.Pointer() != nil {
+		C.QRadioTuner_SetBandDefault(ptr.Pointer(), C.longlong(band))
+	}
+}
+
 //export callbackQRadioTuner_SetFrequency
 func callbackQRadioTuner_SetFrequency(ptr unsafe.Pointer, frequency C.int) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QRadioTuner::setFrequency"); signal != nil {
 		signal.(func(int))(int(int32(frequency)))
+	} else {
+		NewQRadioTunerFromPointer(ptr).SetFrequencyDefault(int(int32(frequency)))
 	}
-
 }
 
 func (ptr *QRadioTuner) ConnectSetFrequency(f func(frequency int)) {
@@ -44865,7 +45225,7 @@ func (ptr *QRadioTuner) ConnectSetFrequency(f func(frequency int)) {
 	}
 }
 
-func (ptr *QRadioTuner) DisconnectSetFrequency(frequency int) {
+func (ptr *QRadioTuner) DisconnectSetFrequency() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QRadioTuner::setFrequency")
@@ -44875,6 +45235,12 @@ func (ptr *QRadioTuner) DisconnectSetFrequency(frequency int) {
 func (ptr *QRadioTuner) SetFrequency(frequency int) {
 	if ptr.Pointer() != nil {
 		C.QRadioTuner_SetFrequency(ptr.Pointer(), C.int(int32(frequency)))
+	}
+}
+
+func (ptr *QRadioTuner) SetFrequencyDefault(frequency int) {
+	if ptr.Pointer() != nil {
+		C.QRadioTuner_SetFrequencyDefault(ptr.Pointer(), C.int(int32(frequency)))
 	}
 }
 
@@ -44911,8 +45277,9 @@ func (ptr *QRadioTuner) SignalStrengthChanged(strength int) {
 func callbackQRadioTuner_Start(ptr unsafe.Pointer) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QRadioTuner::start"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQRadioTunerFromPointer(ptr).StartDefault()
 	}
-
 }
 
 func (ptr *QRadioTuner) ConnectStart(f func()) {
@@ -44932,6 +45299,12 @@ func (ptr *QRadioTuner) DisconnectStart() {
 func (ptr *QRadioTuner) Start() {
 	if ptr.Pointer() != nil {
 		C.QRadioTuner_Start(ptr.Pointer())
+	}
+}
+
+func (ptr *QRadioTuner) StartDefault() {
+	if ptr.Pointer() != nil {
+		C.QRadioTuner_StartDefault(ptr.Pointer())
 	}
 }
 
@@ -45028,8 +45401,9 @@ func (ptr *QRadioTuner) StereoStatusChanged(stereo bool) {
 func callbackQRadioTuner_Stop(ptr unsafe.Pointer) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QRadioTuner::stop"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQRadioTunerFromPointer(ptr).StopDefault()
 	}
-
 }
 
 func (ptr *QRadioTuner) ConnectStop(f func()) {
@@ -45049,6 +45423,12 @@ func (ptr *QRadioTuner) DisconnectStop() {
 func (ptr *QRadioTuner) Stop() {
 	if ptr.Pointer() != nil {
 		C.QRadioTuner_Stop(ptr.Pointer())
+	}
+}
+
+func (ptr *QRadioTuner) StopDefault() {
+	if ptr.Pointer() != nil {
+		C.QRadioTuner_StopDefault(ptr.Pointer())
 	}
 }
 
@@ -45905,7 +46285,7 @@ func (ptr *QRadioTunerControl) ConnectFrequencyStep(f func(band QRadioTuner__Ban
 	}
 }
 
-func (ptr *QRadioTunerControl) DisconnectFrequencyStep(band QRadioTuner__Band) {
+func (ptr *QRadioTunerControl) DisconnectFrequencyStep() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QRadioTunerControl::frequencyStep")
@@ -45974,7 +46354,7 @@ func (ptr *QRadioTunerControl) ConnectIsBandSupported(f func(band QRadioTuner__B
 	}
 }
 
-func (ptr *QRadioTunerControl) DisconnectIsBandSupported(band QRadioTuner__Band) {
+func (ptr *QRadioTunerControl) DisconnectIsBandSupported() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QRadioTunerControl::isBandSupported")
@@ -46126,7 +46506,7 @@ func (ptr *QRadioTunerControl) ConnectSearchAllStations(f func(searchMode QRadio
 	}
 }
 
-func (ptr *QRadioTunerControl) DisconnectSearchAllStations(searchMode QRadioTuner__SearchMode) {
+func (ptr *QRadioTunerControl) DisconnectSearchAllStations() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QRadioTunerControl::searchAllStations")
@@ -46242,7 +46622,7 @@ func (ptr *QRadioTunerControl) ConnectSetBand(f func(band QRadioTuner__Band)) {
 	}
 }
 
-func (ptr *QRadioTunerControl) DisconnectSetBand(band QRadioTuner__Band) {
+func (ptr *QRadioTunerControl) DisconnectSetBand() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QRadioTunerControl::setBand")
@@ -46271,7 +46651,7 @@ func (ptr *QRadioTunerControl) ConnectSetFrequency(f func(frequency int)) {
 	}
 }
 
-func (ptr *QRadioTunerControl) DisconnectSetFrequency(frequency int) {
+func (ptr *QRadioTunerControl) DisconnectSetFrequency() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QRadioTunerControl::setFrequency")
@@ -46300,7 +46680,7 @@ func (ptr *QRadioTunerControl) ConnectSetMuted(f func(muted bool)) {
 	}
 }
 
-func (ptr *QRadioTunerControl) DisconnectSetMuted(muted bool) {
+func (ptr *QRadioTunerControl) DisconnectSetMuted() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QRadioTunerControl::setMuted")
@@ -46329,7 +46709,7 @@ func (ptr *QRadioTunerControl) ConnectSetStereoMode(f func(mode QRadioTuner__Ste
 	}
 }
 
-func (ptr *QRadioTunerControl) DisconnectSetStereoMode(mode QRadioTuner__StereoMode) {
+func (ptr *QRadioTunerControl) DisconnectSetStereoMode() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QRadioTunerControl::setStereoMode")
@@ -46358,7 +46738,7 @@ func (ptr *QRadioTunerControl) ConnectSetVolume(f func(volume int)) {
 	}
 }
 
-func (ptr *QRadioTunerControl) DisconnectSetVolume(volume int) {
+func (ptr *QRadioTunerControl) DisconnectSetVolume() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QRadioTunerControl::setVolume")
@@ -47041,14 +47421,6 @@ func (ptr *QRadioTunerControl) MetaObjectDefault() *core.QMetaObject {
 	return nil
 }
 
-//go:generate stringer -type=QSound__Loop
-//QSound::Loop
-type QSound__Loop int64
-
-const (
-	QSound__Infinite QSound__Loop = QSound__Loop(-1)
-)
-
 type QSound struct {
 	core.QObject
 }
@@ -47087,6 +47459,15 @@ func NewQSoundFromPointer(ptr unsafe.Pointer) *QSound {
 	n.SetPointer(ptr)
 	return n
 }
+
+//go:generate stringer -type=QSound__Loop
+//QSound::Loop
+type QSound__Loop int64
+
+const (
+	QSound__Infinite QSound__Loop = QSound__Loop(-1)
+)
+
 func (ptr *QSound) SetLoops(number int) {
 	if ptr.Pointer() != nil {
 		C.QSound_SetLoops(ptr.Pointer(), C.int(int32(number)))
@@ -47135,8 +47516,9 @@ func (ptr *QSound) LoopsRemaining() int {
 func callbackQSound_Play2(ptr unsafe.Pointer) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSound::play2"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQSoundFromPointer(ptr).Play2Default()
 	}
-
 }
 
 func (ptr *QSound) ConnectPlay2(f func()) {
@@ -47159,6 +47541,12 @@ func (ptr *QSound) Play2() {
 	}
 }
 
+func (ptr *QSound) Play2Default() {
+	if ptr.Pointer() != nil {
+		C.QSound_Play2Default(ptr.Pointer())
+	}
+}
+
 func QSound_Play(filename string) {
 	var filenameC = C.CString(filename)
 	defer C.free(unsafe.Pointer(filenameC))
@@ -47175,8 +47563,9 @@ func (ptr *QSound) Play(filename string) {
 func callbackQSound_Stop(ptr unsafe.Pointer) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSound::stop"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQSoundFromPointer(ptr).StopDefault()
 	}
-
 }
 
 func (ptr *QSound) ConnectStop(f func()) {
@@ -47196,6 +47585,12 @@ func (ptr *QSound) DisconnectStop() {
 func (ptr *QSound) Stop() {
 	if ptr.Pointer() != nil {
 		C.QSound_Stop(ptr.Pointer())
+	}
+}
+
+func (ptr *QSound) StopDefault() {
+	if ptr.Pointer() != nil {
+		C.QSound_StopDefault(ptr.Pointer())
 	}
 }
 
@@ -47540,25 +47935,6 @@ func (ptr *QSound) MetaObjectDefault() *core.QMetaObject {
 	return nil
 }
 
-//go:generate stringer -type=QSoundEffect__Loop
-//QSoundEffect::Loop
-type QSoundEffect__Loop int64
-
-const (
-	QSoundEffect__Infinite QSoundEffect__Loop = QSoundEffect__Loop(-2)
-)
-
-//go:generate stringer -type=QSoundEffect__Status
-//QSoundEffect::Status
-type QSoundEffect__Status int64
-
-const (
-	QSoundEffect__Null    QSoundEffect__Status = QSoundEffect__Status(0)
-	QSoundEffect__Loading QSoundEffect__Status = QSoundEffect__Status(1)
-	QSoundEffect__Ready   QSoundEffect__Status = QSoundEffect__Status(2)
-	QSoundEffect__Error   QSoundEffect__Status = QSoundEffect__Status(3)
-)
-
 type QSoundEffect struct {
 	core.QObject
 }
@@ -47597,6 +47973,26 @@ func NewQSoundEffectFromPointer(ptr unsafe.Pointer) *QSoundEffect {
 	n.SetPointer(ptr)
 	return n
 }
+
+//go:generate stringer -type=QSoundEffect__Loop
+//QSoundEffect::Loop
+type QSoundEffect__Loop int64
+
+const (
+	QSoundEffect__Infinite QSoundEffect__Loop = QSoundEffect__Loop(-2)
+)
+
+//go:generate stringer -type=QSoundEffect__Status
+//QSoundEffect::Status
+type QSoundEffect__Status int64
+
+const (
+	QSoundEffect__Null    QSoundEffect__Status = QSoundEffect__Status(0)
+	QSoundEffect__Loading QSoundEffect__Status = QSoundEffect__Status(1)
+	QSoundEffect__Ready   QSoundEffect__Status = QSoundEffect__Status(2)
+	QSoundEffect__Error   QSoundEffect__Status = QSoundEffect__Status(3)
+)
+
 func (ptr *QSoundEffect) IsLoaded() bool {
 	if ptr.Pointer() != nil {
 		return C.QSoundEffect_IsLoaded(ptr.Pointer()) != 0
@@ -47615,8 +48011,9 @@ func (ptr *QSoundEffect) LoopsRemaining() int {
 func callbackQSoundEffect_Play(ptr unsafe.Pointer) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSoundEffect::play"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQSoundEffectFromPointer(ptr).PlayDefault()
 	}
-
 }
 
 func (ptr *QSoundEffect) ConnectPlay(f func()) {
@@ -47639,12 +48036,19 @@ func (ptr *QSoundEffect) Play() {
 	}
 }
 
+func (ptr *QSoundEffect) PlayDefault() {
+	if ptr.Pointer() != nil {
+		C.QSoundEffect_PlayDefault(ptr.Pointer())
+	}
+}
+
 //export callbackQSoundEffect_Stop
 func callbackQSoundEffect_Stop(ptr unsafe.Pointer) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSoundEffect::stop"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQSoundEffectFromPointer(ptr).StopDefault()
 	}
-
 }
 
 func (ptr *QSoundEffect) ConnectStop(f func()) {
@@ -47664,6 +48068,12 @@ func (ptr *QSoundEffect) DisconnectStop() {
 func (ptr *QSoundEffect) Stop() {
 	if ptr.Pointer() != nil {
 		C.QSoundEffect_Stop(ptr.Pointer())
+	}
+}
+
+func (ptr *QSoundEffect) StopDefault() {
+	if ptr.Pointer() != nil {
+		C.QSoundEffect_StopDefault(ptr.Pointer())
 	}
 }
 
@@ -48493,7 +48903,7 @@ func (ptr *QVideoDeviceSelectorControl) ConnectDeviceDescription(f func(index in
 	}
 }
 
-func (ptr *QVideoDeviceSelectorControl) DisconnectDeviceDescription(index int) {
+func (ptr *QVideoDeviceSelectorControl) DisconnectDeviceDescription() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QVideoDeviceSelectorControl::deviceDescription")
@@ -48524,7 +48934,7 @@ func (ptr *QVideoDeviceSelectorControl) ConnectDeviceName(f func(index int) stri
 	}
 }
 
-func (ptr *QVideoDeviceSelectorControl) DisconnectDeviceName(index int) {
+func (ptr *QVideoDeviceSelectorControl) DisconnectDeviceName() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QVideoDeviceSelectorControl::deviceName")
@@ -48673,7 +49083,7 @@ func (ptr *QVideoDeviceSelectorControl) ConnectSetSelectedDevice(f func(index in
 	}
 }
 
-func (ptr *QVideoDeviceSelectorControl) DisconnectSetSelectedDevice(index int) {
+func (ptr *QVideoDeviceSelectorControl) DisconnectSetSelectedDevice() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QVideoDeviceSelectorControl::setSelectedDevice")
@@ -49284,7 +49694,7 @@ func (ptr *QVideoEncoderSettingsControl) ConnectSetVideoSettings(f func(settings
 	}
 }
 
-func (ptr *QVideoEncoderSettingsControl) DisconnectSetVideoSettings(settings QVideoEncoderSettings_ITF) {
+func (ptr *QVideoEncoderSettingsControl) DisconnectSetVideoSettings() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QVideoEncoderSettingsControl::setVideoSettings")
@@ -49304,7 +49714,7 @@ func (ptr *QVideoEncoderSettingsControl) ConnectSupportedResolutions(f func(sett
 	}
 }
 
-func (ptr *QVideoEncoderSettingsControl) DisconnectSupportedResolutions(settings QVideoEncoderSettings_ITF, continuous bool) {
+func (ptr *QVideoEncoderSettingsControl) DisconnectSupportedResolutions() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QVideoEncoderSettingsControl::supportedResolutions")
@@ -49372,7 +49782,7 @@ func (ptr *QVideoEncoderSettingsControl) ConnectVideoCodecDescription(f func(cod
 	}
 }
 
-func (ptr *QVideoEncoderSettingsControl) DisconnectVideoCodecDescription(codec string) {
+func (ptr *QVideoEncoderSettingsControl) DisconnectVideoCodecDescription() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QVideoEncoderSettingsControl::videoCodecDescription")
@@ -49803,14 +50213,6 @@ func (ptr *QVideoEncoderSettingsControl) MetaObjectDefault() *core.QMetaObject {
 	return nil
 }
 
-//go:generate stringer -type=QVideoFilterRunnable__RunFlag
-//QVideoFilterRunnable::RunFlag
-type QVideoFilterRunnable__RunFlag int64
-
-const (
-	QVideoFilterRunnable__LastInChain QVideoFilterRunnable__RunFlag = QVideoFilterRunnable__RunFlag(0x01)
-)
-
 type QVideoFilterRunnable struct {
 	ptr unsafe.Pointer
 }
@@ -49857,6 +50259,14 @@ func (ptr *QVideoFilterRunnable) DestroyQVideoFilterRunnable() {
 	}
 }
 
+//go:generate stringer -type=QVideoFilterRunnable__RunFlag
+//QVideoFilterRunnable::RunFlag
+type QVideoFilterRunnable__RunFlag int64
+
+const (
+	QVideoFilterRunnable__LastInChain QVideoFilterRunnable__RunFlag = QVideoFilterRunnable__RunFlag(0x01)
+)
+
 //export callbackQVideoFilterRunnable_Run
 func callbackQVideoFilterRunnable_Run(ptr unsafe.Pointer, input unsafe.Pointer, surfaceFormat unsafe.Pointer, flags C.longlong) unsafe.Pointer {
 
@@ -49874,7 +50284,7 @@ func (ptr *QVideoFilterRunnable) ConnectRun(f func(input *QVideoFrame, surfaceFo
 	}
 }
 
-func (ptr *QVideoFilterRunnable) DisconnectRun(input QVideoFrame_ITF, surfaceFormat QVideoSurfaceFormat_ITF, flags QVideoFilterRunnable__RunFlag) {
+func (ptr *QVideoFilterRunnable) DisconnectRun() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QVideoFilterRunnable::run")
@@ -49888,6 +50298,44 @@ func (ptr *QVideoFilterRunnable) Run(input QVideoFrame_ITF, surfaceFormat QVideo
 		return tmpValue
 	}
 	return nil
+}
+
+type QVideoFrame struct {
+	ptr unsafe.Pointer
+}
+
+type QVideoFrame_ITF interface {
+	QVideoFrame_PTR() *QVideoFrame
+}
+
+func (ptr *QVideoFrame) QVideoFrame_PTR() *QVideoFrame {
+	return ptr
+}
+
+func (ptr *QVideoFrame) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
+	}
+	return nil
+}
+
+func (ptr *QVideoFrame) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
+	}
+}
+
+func PointerFromQVideoFrame(ptr QVideoFrame_ITF) unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QVideoFrame_PTR().Pointer()
+	}
+	return nil
+}
+
+func NewQVideoFrameFromPointer(ptr unsafe.Pointer) *QVideoFrame {
+	var n = new(QVideoFrame)
+	n.SetPointer(ptr)
+	return n
 }
 
 //go:generate stringer -type=QVideoFrame__FieldType
@@ -49942,43 +50390,6 @@ const (
 	QVideoFrame__Format_User                   QVideoFrame__PixelFormat = QVideoFrame__PixelFormat(1000)
 )
 
-type QVideoFrame struct {
-	ptr unsafe.Pointer
-}
-
-type QVideoFrame_ITF interface {
-	QVideoFrame_PTR() *QVideoFrame
-}
-
-func (ptr *QVideoFrame) QVideoFrame_PTR() *QVideoFrame {
-	return ptr
-}
-
-func (ptr *QVideoFrame) Pointer() unsafe.Pointer {
-	if ptr != nil {
-		return ptr.ptr
-	}
-	return nil
-}
-
-func (ptr *QVideoFrame) SetPointer(p unsafe.Pointer) {
-	if ptr != nil {
-		ptr.ptr = p
-	}
-}
-
-func PointerFromQVideoFrame(ptr QVideoFrame_ITF) unsafe.Pointer {
-	if ptr != nil {
-		return ptr.QVideoFrame_PTR().Pointer()
-	}
-	return nil
-}
-
-func NewQVideoFrameFromPointer(ptr unsafe.Pointer) *QVideoFrame {
-	var n = new(QVideoFrame)
-	n.SetPointer(ptr)
-	return n
-}
 func NewQVideoFrame() *QVideoFrame {
 	var tmpValue = NewQVideoFrameFromPointer(C.QVideoFrame_NewQVideoFrame())
 	runtime.SetFinalizer(tmpValue, (*QVideoFrame).DestroyQVideoFrame)
@@ -50768,7 +51179,7 @@ func (ptr *QVideoRendererControl) ConnectSetSurface(f func(surface *QAbstractVid
 	}
 }
 
-func (ptr *QVideoRendererControl) DisconnectSetSurface(surface QAbstractVideoSurface_ITF) {
+func (ptr *QVideoRendererControl) DisconnectSetSurface() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QVideoRendererControl::setSurface")
@@ -51157,28 +51568,6 @@ func (ptr *QVideoRendererControl) MetaObjectDefault() *core.QMetaObject {
 	return nil
 }
 
-//go:generate stringer -type=QVideoSurfaceFormat__Direction
-//QVideoSurfaceFormat::Direction
-type QVideoSurfaceFormat__Direction int64
-
-const (
-	QVideoSurfaceFormat__TopToBottom QVideoSurfaceFormat__Direction = QVideoSurfaceFormat__Direction(0)
-	QVideoSurfaceFormat__BottomToTop QVideoSurfaceFormat__Direction = QVideoSurfaceFormat__Direction(1)
-)
-
-//go:generate stringer -type=QVideoSurfaceFormat__YCbCrColorSpace
-//QVideoSurfaceFormat::YCbCrColorSpace
-type QVideoSurfaceFormat__YCbCrColorSpace int64
-
-const (
-	QVideoSurfaceFormat__YCbCr_Undefined QVideoSurfaceFormat__YCbCrColorSpace = QVideoSurfaceFormat__YCbCrColorSpace(0)
-	QVideoSurfaceFormat__YCbCr_BT601     QVideoSurfaceFormat__YCbCrColorSpace = QVideoSurfaceFormat__YCbCrColorSpace(1)
-	QVideoSurfaceFormat__YCbCr_BT709     QVideoSurfaceFormat__YCbCrColorSpace = QVideoSurfaceFormat__YCbCrColorSpace(2)
-	QVideoSurfaceFormat__YCbCr_xvYCC601  QVideoSurfaceFormat__YCbCrColorSpace = QVideoSurfaceFormat__YCbCrColorSpace(3)
-	QVideoSurfaceFormat__YCbCr_xvYCC709  QVideoSurfaceFormat__YCbCrColorSpace = QVideoSurfaceFormat__YCbCrColorSpace(4)
-	QVideoSurfaceFormat__YCbCr_JPEG      QVideoSurfaceFormat__YCbCrColorSpace = QVideoSurfaceFormat__YCbCrColorSpace(5)
-)
-
 type QVideoSurfaceFormat struct {
 	ptr unsafe.Pointer
 }
@@ -51216,6 +51605,29 @@ func NewQVideoSurfaceFormatFromPointer(ptr unsafe.Pointer) *QVideoSurfaceFormat 
 	n.SetPointer(ptr)
 	return n
 }
+
+//go:generate stringer -type=QVideoSurfaceFormat__Direction
+//QVideoSurfaceFormat::Direction
+type QVideoSurfaceFormat__Direction int64
+
+const (
+	QVideoSurfaceFormat__TopToBottom QVideoSurfaceFormat__Direction = QVideoSurfaceFormat__Direction(0)
+	QVideoSurfaceFormat__BottomToTop QVideoSurfaceFormat__Direction = QVideoSurfaceFormat__Direction(1)
+)
+
+//go:generate stringer -type=QVideoSurfaceFormat__YCbCrColorSpace
+//QVideoSurfaceFormat::YCbCrColorSpace
+type QVideoSurfaceFormat__YCbCrColorSpace int64
+
+const (
+	QVideoSurfaceFormat__YCbCr_Undefined QVideoSurfaceFormat__YCbCrColorSpace = QVideoSurfaceFormat__YCbCrColorSpace(0)
+	QVideoSurfaceFormat__YCbCr_BT601     QVideoSurfaceFormat__YCbCrColorSpace = QVideoSurfaceFormat__YCbCrColorSpace(1)
+	QVideoSurfaceFormat__YCbCr_BT709     QVideoSurfaceFormat__YCbCrColorSpace = QVideoSurfaceFormat__YCbCrColorSpace(2)
+	QVideoSurfaceFormat__YCbCr_xvYCC601  QVideoSurfaceFormat__YCbCrColorSpace = QVideoSurfaceFormat__YCbCrColorSpace(3)
+	QVideoSurfaceFormat__YCbCr_xvYCC709  QVideoSurfaceFormat__YCbCrColorSpace = QVideoSurfaceFormat__YCbCrColorSpace(4)
+	QVideoSurfaceFormat__YCbCr_JPEG      QVideoSurfaceFormat__YCbCrColorSpace = QVideoSurfaceFormat__YCbCrColorSpace(5)
+)
+
 func NewQVideoSurfaceFormat() *QVideoSurfaceFormat {
 	var tmpValue = NewQVideoSurfaceFormatFromPointer(C.QVideoSurfaceFormat_NewQVideoSurfaceFormat())
 	runtime.SetFinalizer(tmpValue, (*QVideoSurfaceFormat).DestroyQVideoSurfaceFormat)
@@ -51548,8 +51960,9 @@ func (ptr *QVideoWidget) Saturation() int {
 func callbackQVideoWidget_SetAspectRatioMode(ptr unsafe.Pointer, mode C.longlong) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QVideoWidget::setAspectRatioMode"); signal != nil {
 		signal.(func(core.Qt__AspectRatioMode))(core.Qt__AspectRatioMode(mode))
+	} else {
+		NewQVideoWidgetFromPointer(ptr).SetAspectRatioModeDefault(core.Qt__AspectRatioMode(mode))
 	}
-
 }
 
 func (ptr *QVideoWidget) ConnectSetAspectRatioMode(f func(mode core.Qt__AspectRatioMode)) {
@@ -51559,7 +51972,7 @@ func (ptr *QVideoWidget) ConnectSetAspectRatioMode(f func(mode core.Qt__AspectRa
 	}
 }
 
-func (ptr *QVideoWidget) DisconnectSetAspectRatioMode(mode core.Qt__AspectRatioMode) {
+func (ptr *QVideoWidget) DisconnectSetAspectRatioMode() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QVideoWidget::setAspectRatioMode")
@@ -51572,12 +51985,19 @@ func (ptr *QVideoWidget) SetAspectRatioMode(mode core.Qt__AspectRatioMode) {
 	}
 }
 
+func (ptr *QVideoWidget) SetAspectRatioModeDefault(mode core.Qt__AspectRatioMode) {
+	if ptr.Pointer() != nil {
+		C.QVideoWidget_SetAspectRatioModeDefault(ptr.Pointer(), C.longlong(mode))
+	}
+}
+
 //export callbackQVideoWidget_SetBrightness
 func callbackQVideoWidget_SetBrightness(ptr unsafe.Pointer, brightness C.int) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QVideoWidget::setBrightness"); signal != nil {
 		signal.(func(int))(int(int32(brightness)))
+	} else {
+		NewQVideoWidgetFromPointer(ptr).SetBrightnessDefault(int(int32(brightness)))
 	}
-
 }
 
 func (ptr *QVideoWidget) ConnectSetBrightness(f func(brightness int)) {
@@ -51587,7 +52007,7 @@ func (ptr *QVideoWidget) ConnectSetBrightness(f func(brightness int)) {
 	}
 }
 
-func (ptr *QVideoWidget) DisconnectSetBrightness(brightness int) {
+func (ptr *QVideoWidget) DisconnectSetBrightness() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QVideoWidget::setBrightness")
@@ -51600,12 +52020,19 @@ func (ptr *QVideoWidget) SetBrightness(brightness int) {
 	}
 }
 
+func (ptr *QVideoWidget) SetBrightnessDefault(brightness int) {
+	if ptr.Pointer() != nil {
+		C.QVideoWidget_SetBrightnessDefault(ptr.Pointer(), C.int(int32(brightness)))
+	}
+}
+
 //export callbackQVideoWidget_SetContrast
 func callbackQVideoWidget_SetContrast(ptr unsafe.Pointer, contrast C.int) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QVideoWidget::setContrast"); signal != nil {
 		signal.(func(int))(int(int32(contrast)))
+	} else {
+		NewQVideoWidgetFromPointer(ptr).SetContrastDefault(int(int32(contrast)))
 	}
-
 }
 
 func (ptr *QVideoWidget) ConnectSetContrast(f func(contrast int)) {
@@ -51615,7 +52042,7 @@ func (ptr *QVideoWidget) ConnectSetContrast(f func(contrast int)) {
 	}
 }
 
-func (ptr *QVideoWidget) DisconnectSetContrast(contrast int) {
+func (ptr *QVideoWidget) DisconnectSetContrast() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QVideoWidget::setContrast")
@@ -51628,12 +52055,19 @@ func (ptr *QVideoWidget) SetContrast(contrast int) {
 	}
 }
 
+func (ptr *QVideoWidget) SetContrastDefault(contrast int) {
+	if ptr.Pointer() != nil {
+		C.QVideoWidget_SetContrastDefault(ptr.Pointer(), C.int(int32(contrast)))
+	}
+}
+
 //export callbackQVideoWidget_SetFullScreen
 func callbackQVideoWidget_SetFullScreen(ptr unsafe.Pointer, fullScreen C.char) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QVideoWidget::setFullScreen"); signal != nil {
 		signal.(func(bool))(int8(fullScreen) != 0)
+	} else {
+		NewQVideoWidgetFromPointer(ptr).SetFullScreenDefault(int8(fullScreen) != 0)
 	}
-
 }
 
 func (ptr *QVideoWidget) ConnectSetFullScreen(f func(fullScreen bool)) {
@@ -51643,7 +52077,7 @@ func (ptr *QVideoWidget) ConnectSetFullScreen(f func(fullScreen bool)) {
 	}
 }
 
-func (ptr *QVideoWidget) DisconnectSetFullScreen(fullScreen bool) {
+func (ptr *QVideoWidget) DisconnectSetFullScreen() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QVideoWidget::setFullScreen")
@@ -51656,12 +52090,19 @@ func (ptr *QVideoWidget) SetFullScreen(fullScreen bool) {
 	}
 }
 
+func (ptr *QVideoWidget) SetFullScreenDefault(fullScreen bool) {
+	if ptr.Pointer() != nil {
+		C.QVideoWidget_SetFullScreenDefault(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(fullScreen))))
+	}
+}
+
 //export callbackQVideoWidget_SetHue
 func callbackQVideoWidget_SetHue(ptr unsafe.Pointer, hue C.int) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QVideoWidget::setHue"); signal != nil {
 		signal.(func(int))(int(int32(hue)))
+	} else {
+		NewQVideoWidgetFromPointer(ptr).SetHueDefault(int(int32(hue)))
 	}
-
 }
 
 func (ptr *QVideoWidget) ConnectSetHue(f func(hue int)) {
@@ -51671,7 +52112,7 @@ func (ptr *QVideoWidget) ConnectSetHue(f func(hue int)) {
 	}
 }
 
-func (ptr *QVideoWidget) DisconnectSetHue(hue int) {
+func (ptr *QVideoWidget) DisconnectSetHue() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QVideoWidget::setHue")
@@ -51684,12 +52125,19 @@ func (ptr *QVideoWidget) SetHue(hue int) {
 	}
 }
 
+func (ptr *QVideoWidget) SetHueDefault(hue int) {
+	if ptr.Pointer() != nil {
+		C.QVideoWidget_SetHueDefault(ptr.Pointer(), C.int(int32(hue)))
+	}
+}
+
 //export callbackQVideoWidget_SetSaturation
 func callbackQVideoWidget_SetSaturation(ptr unsafe.Pointer, saturation C.int) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QVideoWidget::setSaturation"); signal != nil {
 		signal.(func(int))(int(int32(saturation)))
+	} else {
+		NewQVideoWidgetFromPointer(ptr).SetSaturationDefault(int(int32(saturation)))
 	}
-
 }
 
 func (ptr *QVideoWidget) ConnectSetSaturation(f func(saturation int)) {
@@ -51699,7 +52147,7 @@ func (ptr *QVideoWidget) ConnectSetSaturation(f func(saturation int)) {
 	}
 }
 
-func (ptr *QVideoWidget) DisconnectSetSaturation(saturation int) {
+func (ptr *QVideoWidget) DisconnectSetSaturation() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QVideoWidget::setSaturation")
@@ -51709,6 +52157,12 @@ func (ptr *QVideoWidget) DisconnectSetSaturation(saturation int) {
 func (ptr *QVideoWidget) SetSaturation(saturation int) {
 	if ptr.Pointer() != nil {
 		C.QVideoWidget_SetSaturation(ptr.Pointer(), C.int(int32(saturation)))
+	}
+}
+
+func (ptr *QVideoWidget) SetSaturationDefault(saturation int) {
+	if ptr.Pointer() != nil {
+		C.QVideoWidget_SetSaturationDefault(ptr.Pointer(), C.int(int32(saturation)))
 	}
 }
 
@@ -54220,7 +54674,7 @@ func callbackQVideoWidget_SetMediaObject(ptr unsafe.Pointer, object unsafe.Point
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*QMediaObject) bool)(NewQMediaObjectFromPointer(object)))))
 	}
 
-	return C.char(int8(qt.GoBoolToInt(NewQVideoWidgetFromPointer(ptr).SetMediaObjectDefault(NewQMediaObjectFromPointer(object)))))
+	return C.char(int8(qt.GoBoolToInt(false)))
 }
 
 func (ptr *QVideoWidget) ConnectSetMediaObject(f func(object *QMediaObject) bool) {
@@ -54240,13 +54694,6 @@ func (ptr *QVideoWidget) DisconnectSetMediaObject() {
 func (ptr *QVideoWidget) SetMediaObject(object QMediaObject_ITF) bool {
 	if ptr.Pointer() != nil {
 		return C.QVideoWidget_SetMediaObject(ptr.Pointer(), PointerFromQMediaObject(object)) != 0
-	}
-	return false
-}
-
-func (ptr *QVideoWidget) SetMediaObjectDefault(object QMediaObject_ITF) bool {
-	if ptr.Pointer() != nil {
-		return C.QVideoWidget_SetMediaObjectDefault(ptr.Pointer(), PointerFromQMediaObject(object)) != 0
 	}
 	return false
 }
@@ -54644,7 +55091,7 @@ func (ptr *QVideoWidgetControl) ConnectSetAspectRatioMode(f func(mode core.Qt__A
 	}
 }
 
-func (ptr *QVideoWidgetControl) DisconnectSetAspectRatioMode(mode core.Qt__AspectRatioMode) {
+func (ptr *QVideoWidgetControl) DisconnectSetAspectRatioMode() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QVideoWidgetControl::setAspectRatioMode")
@@ -54673,7 +55120,7 @@ func (ptr *QVideoWidgetControl) ConnectSetBrightness(f func(brightness int)) {
 	}
 }
 
-func (ptr *QVideoWidgetControl) DisconnectSetBrightness(brightness int) {
+func (ptr *QVideoWidgetControl) DisconnectSetBrightness() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QVideoWidgetControl::setBrightness")
@@ -54702,7 +55149,7 @@ func (ptr *QVideoWidgetControl) ConnectSetContrast(f func(contrast int)) {
 	}
 }
 
-func (ptr *QVideoWidgetControl) DisconnectSetContrast(contrast int) {
+func (ptr *QVideoWidgetControl) DisconnectSetContrast() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QVideoWidgetControl::setContrast")
@@ -54731,7 +55178,7 @@ func (ptr *QVideoWidgetControl) ConnectSetFullScreen(f func(fullScreen bool)) {
 	}
 }
 
-func (ptr *QVideoWidgetControl) DisconnectSetFullScreen(fullScreen bool) {
+func (ptr *QVideoWidgetControl) DisconnectSetFullScreen() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QVideoWidgetControl::setFullScreen")
@@ -54760,7 +55207,7 @@ func (ptr *QVideoWidgetControl) ConnectSetHue(f func(hue int)) {
 	}
 }
 
-func (ptr *QVideoWidgetControl) DisconnectSetHue(hue int) {
+func (ptr *QVideoWidgetControl) DisconnectSetHue() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QVideoWidgetControl::setHue")
@@ -54789,7 +55236,7 @@ func (ptr *QVideoWidgetControl) ConnectSetSaturation(f func(saturation int)) {
 	}
 }
 
-func (ptr *QVideoWidgetControl) DisconnectSetSaturation(saturation int) {
+func (ptr *QVideoWidgetControl) DisconnectSetSaturation() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QVideoWidgetControl::setSaturation")
@@ -55727,7 +56174,7 @@ func (ptr *QVideoWindowControl) ConnectSetAspectRatioMode(f func(mode core.Qt__A
 	}
 }
 
-func (ptr *QVideoWindowControl) DisconnectSetAspectRatioMode(mode core.Qt__AspectRatioMode) {
+func (ptr *QVideoWindowControl) DisconnectSetAspectRatioMode() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QVideoWindowControl::setAspectRatioMode")
@@ -55756,7 +56203,7 @@ func (ptr *QVideoWindowControl) ConnectSetBrightness(f func(brightness int)) {
 	}
 }
 
-func (ptr *QVideoWindowControl) DisconnectSetBrightness(brightness int) {
+func (ptr *QVideoWindowControl) DisconnectSetBrightness() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QVideoWindowControl::setBrightness")
@@ -55785,7 +56232,7 @@ func (ptr *QVideoWindowControl) ConnectSetContrast(f func(contrast int)) {
 	}
 }
 
-func (ptr *QVideoWindowControl) DisconnectSetContrast(contrast int) {
+func (ptr *QVideoWindowControl) DisconnectSetContrast() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QVideoWindowControl::setContrast")
@@ -55814,7 +56261,7 @@ func (ptr *QVideoWindowControl) ConnectSetDisplayRect(f func(rect *core.QRect)) 
 	}
 }
 
-func (ptr *QVideoWindowControl) DisconnectSetDisplayRect(rect core.QRect_ITF) {
+func (ptr *QVideoWindowControl) DisconnectSetDisplayRect() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QVideoWindowControl::setDisplayRect")
@@ -55843,7 +56290,7 @@ func (ptr *QVideoWindowControl) ConnectSetFullScreen(f func(fullScreen bool)) {
 	}
 }
 
-func (ptr *QVideoWindowControl) DisconnectSetFullScreen(fullScreen bool) {
+func (ptr *QVideoWindowControl) DisconnectSetFullScreen() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QVideoWindowControl::setFullScreen")
@@ -55872,7 +56319,7 @@ func (ptr *QVideoWindowControl) ConnectSetHue(f func(hue int)) {
 	}
 }
 
-func (ptr *QVideoWindowControl) DisconnectSetHue(hue int) {
+func (ptr *QVideoWindowControl) DisconnectSetHue() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QVideoWindowControl::setHue")
@@ -55901,7 +56348,7 @@ func (ptr *QVideoWindowControl) ConnectSetSaturation(f func(saturation int)) {
 	}
 }
 
-func (ptr *QVideoWindowControl) DisconnectSetSaturation(saturation int) {
+func (ptr *QVideoWindowControl) DisconnectSetSaturation() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QVideoWindowControl::setSaturation")
@@ -55930,7 +56377,7 @@ func (ptr *QVideoWindowControl) ConnectSetWinId(f func(id uintptr)) {
 	}
 }
 
-func (ptr *QVideoWindowControl) DisconnectSetWinId(id uintptr) {
+func (ptr *QVideoWindowControl) DisconnectSetWinId() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QVideoWindowControl::setWinId")

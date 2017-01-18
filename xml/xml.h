@@ -320,8 +320,6 @@ char QXmlDefaultHandler_NotationDecl(void* ptr, char* name, char* publicId, char
 char QXmlDefaultHandler_NotationDeclDefault(void* ptr, char* name, char* publicId, char* systemId);
 char QXmlDefaultHandler_ProcessingInstruction(void* ptr, char* target, char* data);
 char QXmlDefaultHandler_ProcessingInstructionDefault(void* ptr, char* target, char* data);
-char QXmlDefaultHandler_ResolveEntity(void* ptr, char* publicId, char* systemId, void* ret);
-char QXmlDefaultHandler_ResolveEntityDefault(void* ptr, char* publicId, char* systemId, void* ret);
 void QXmlDefaultHandler_SetDocumentLocator(void* ptr, void* locator);
 void QXmlDefaultHandler_SetDocumentLocatorDefault(void* ptr, void* locator);
 char QXmlDefaultHandler_SkippedEntity(void* ptr, char* name);
@@ -343,7 +341,6 @@ char QXmlDefaultHandler_UnparsedEntityDeclDefault(void* ptr, char* name, char* p
 char QXmlDefaultHandler_Warning(void* ptr, void* exception);
 char QXmlDefaultHandler_WarningDefault(void* ptr, void* exception);
 struct QtXml_PackedString QXmlEntityResolver_ErrorString(void* ptr);
-char QXmlEntityResolver_ResolveEntity(void* ptr, char* publicId, char* systemId, void* ret);
 void QXmlEntityResolver_DestroyQXmlEntityResolver(void* ptr);
 void QXmlEntityResolver_DestroyQXmlEntityResolverDefault(void* ptr);
 char QXmlErrorHandler_Error(void* ptr, void* exception);

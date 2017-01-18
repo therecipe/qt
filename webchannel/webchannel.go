@@ -113,8 +113,9 @@ func (ptr *QWebChannel) BlockUpdatesChanged(block bool) {
 func callbackQWebChannel_ConnectTo(ptr unsafe.Pointer, transport unsafe.Pointer) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebChannel::connectTo"); signal != nil {
 		signal.(func(*QWebChannelAbstractTransport))(NewQWebChannelAbstractTransportFromPointer(transport))
+	} else {
+		NewQWebChannelFromPointer(ptr).ConnectToDefault(NewQWebChannelAbstractTransportFromPointer(transport))
 	}
-
 }
 
 func (ptr *QWebChannel) ConnectConnectTo(f func(transport *QWebChannelAbstractTransport)) {
@@ -124,7 +125,7 @@ func (ptr *QWebChannel) ConnectConnectTo(f func(transport *QWebChannelAbstractTr
 	}
 }
 
-func (ptr *QWebChannel) DisconnectConnectTo(transport QWebChannelAbstractTransport_ITF) {
+func (ptr *QWebChannel) DisconnectConnectTo() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QWebChannel::connectTo")
@@ -134,6 +135,12 @@ func (ptr *QWebChannel) DisconnectConnectTo(transport QWebChannelAbstractTranspo
 func (ptr *QWebChannel) ConnectTo(transport QWebChannelAbstractTransport_ITF) {
 	if ptr.Pointer() != nil {
 		C.QWebChannel_ConnectTo(ptr.Pointer(), PointerFromQWebChannelAbstractTransport(transport))
+	}
+}
+
+func (ptr *QWebChannel) ConnectToDefault(transport QWebChannelAbstractTransport_ITF) {
+	if ptr.Pointer() != nil {
+		C.QWebChannel_ConnectToDefault(ptr.Pointer(), PointerFromQWebChannelAbstractTransport(transport))
 	}
 }
 
@@ -147,8 +154,9 @@ func (ptr *QWebChannel) DeregisterObject(object core.QObject_ITF) {
 func callbackQWebChannel_DisconnectFrom(ptr unsafe.Pointer, transport unsafe.Pointer) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebChannel::disconnectFrom"); signal != nil {
 		signal.(func(*QWebChannelAbstractTransport))(NewQWebChannelAbstractTransportFromPointer(transport))
+	} else {
+		NewQWebChannelFromPointer(ptr).DisconnectFromDefault(NewQWebChannelAbstractTransportFromPointer(transport))
 	}
-
 }
 
 func (ptr *QWebChannel) ConnectDisconnectFrom(f func(transport *QWebChannelAbstractTransport)) {
@@ -158,7 +166,7 @@ func (ptr *QWebChannel) ConnectDisconnectFrom(f func(transport *QWebChannelAbstr
 	}
 }
 
-func (ptr *QWebChannel) DisconnectDisconnectFrom(transport QWebChannelAbstractTransport_ITF) {
+func (ptr *QWebChannel) DisconnectDisconnectFrom() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QWebChannel::disconnectFrom")
@@ -168,6 +176,12 @@ func (ptr *QWebChannel) DisconnectDisconnectFrom(transport QWebChannelAbstractTr
 func (ptr *QWebChannel) DisconnectFrom(transport QWebChannelAbstractTransport_ITF) {
 	if ptr.Pointer() != nil {
 		C.QWebChannel_DisconnectFrom(ptr.Pointer(), PointerFromQWebChannelAbstractTransport(transport))
+	}
+}
+
+func (ptr *QWebChannel) DisconnectFromDefault(transport QWebChannelAbstractTransport_ITF) {
+	if ptr.Pointer() != nil {
+		C.QWebChannel_DisconnectFromDefault(ptr.Pointer(), PointerFromQWebChannelAbstractTransport(transport))
 	}
 }
 
@@ -610,7 +624,7 @@ func (ptr *QWebChannelAbstractTransport) ConnectSendMessage(f func(message *core
 	}
 }
 
-func (ptr *QWebChannelAbstractTransport) DisconnectSendMessage(message core.QJsonObject_ITF) {
+func (ptr *QWebChannelAbstractTransport) DisconnectSendMessage() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QWebChannelAbstractTransport::sendMessage")

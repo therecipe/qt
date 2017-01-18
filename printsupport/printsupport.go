@@ -25,32 +25,6 @@ func cGoUnpackString(s C.struct_QtPrintSupport_PackedString) string {
 	return C.GoStringN(s.data, C.int(s.len))
 }
 
-//go:generate stringer -type=QAbstractPrintDialog__PrintDialogOption
-//QAbstractPrintDialog::PrintDialogOption
-type QAbstractPrintDialog__PrintDialogOption int64
-
-const (
-	QAbstractPrintDialog__None               QAbstractPrintDialog__PrintDialogOption = QAbstractPrintDialog__PrintDialogOption(0x0000)
-	QAbstractPrintDialog__PrintToFile        QAbstractPrintDialog__PrintDialogOption = QAbstractPrintDialog__PrintDialogOption(0x0001)
-	QAbstractPrintDialog__PrintSelection     QAbstractPrintDialog__PrintDialogOption = QAbstractPrintDialog__PrintDialogOption(0x0002)
-	QAbstractPrintDialog__PrintPageRange     QAbstractPrintDialog__PrintDialogOption = QAbstractPrintDialog__PrintDialogOption(0x0004)
-	QAbstractPrintDialog__PrintShowPageSize  QAbstractPrintDialog__PrintDialogOption = QAbstractPrintDialog__PrintDialogOption(0x0008)
-	QAbstractPrintDialog__PrintCollateCopies QAbstractPrintDialog__PrintDialogOption = QAbstractPrintDialog__PrintDialogOption(0x0010)
-	QAbstractPrintDialog__DontUseSheet       QAbstractPrintDialog__PrintDialogOption = QAbstractPrintDialog__PrintDialogOption(0x0020)
-	QAbstractPrintDialog__PrintCurrentPage   QAbstractPrintDialog__PrintDialogOption = QAbstractPrintDialog__PrintDialogOption(0x0040)
-)
-
-//go:generate stringer -type=QAbstractPrintDialog__PrintRange
-//QAbstractPrintDialog::PrintRange
-type QAbstractPrintDialog__PrintRange int64
-
-const (
-	QAbstractPrintDialog__AllPages    QAbstractPrintDialog__PrintRange = QAbstractPrintDialog__PrintRange(0)
-	QAbstractPrintDialog__Selection   QAbstractPrintDialog__PrintRange = QAbstractPrintDialog__PrintRange(1)
-	QAbstractPrintDialog__PageRange   QAbstractPrintDialog__PrintRange = QAbstractPrintDialog__PrintRange(2)
-	QAbstractPrintDialog__CurrentPage QAbstractPrintDialog__PrintRange = QAbstractPrintDialog__PrintRange(3)
-)
-
 type QAbstractPrintDialog struct {
 	widgets.QDialog
 }
@@ -97,6 +71,32 @@ func (ptr *QAbstractPrintDialog) DestroyQAbstractPrintDialog() {
 		ptr.SetPointer(nil)
 	}
 }
+
+//go:generate stringer -type=QAbstractPrintDialog__PrintDialogOption
+//QAbstractPrintDialog::PrintDialogOption
+type QAbstractPrintDialog__PrintDialogOption int64
+
+const (
+	QAbstractPrintDialog__None               QAbstractPrintDialog__PrintDialogOption = QAbstractPrintDialog__PrintDialogOption(0x0000)
+	QAbstractPrintDialog__PrintToFile        QAbstractPrintDialog__PrintDialogOption = QAbstractPrintDialog__PrintDialogOption(0x0001)
+	QAbstractPrintDialog__PrintSelection     QAbstractPrintDialog__PrintDialogOption = QAbstractPrintDialog__PrintDialogOption(0x0002)
+	QAbstractPrintDialog__PrintPageRange     QAbstractPrintDialog__PrintDialogOption = QAbstractPrintDialog__PrintDialogOption(0x0004)
+	QAbstractPrintDialog__PrintShowPageSize  QAbstractPrintDialog__PrintDialogOption = QAbstractPrintDialog__PrintDialogOption(0x0008)
+	QAbstractPrintDialog__PrintCollateCopies QAbstractPrintDialog__PrintDialogOption = QAbstractPrintDialog__PrintDialogOption(0x0010)
+	QAbstractPrintDialog__DontUseSheet       QAbstractPrintDialog__PrintDialogOption = QAbstractPrintDialog__PrintDialogOption(0x0020)
+	QAbstractPrintDialog__PrintCurrentPage   QAbstractPrintDialog__PrintDialogOption = QAbstractPrintDialog__PrintDialogOption(0x0040)
+)
+
+//go:generate stringer -type=QAbstractPrintDialog__PrintRange
+//QAbstractPrintDialog::PrintRange
+type QAbstractPrintDialog__PrintRange int64
+
+const (
+	QAbstractPrintDialog__AllPages    QAbstractPrintDialog__PrintRange = QAbstractPrintDialog__PrintRange(0)
+	QAbstractPrintDialog__Selection   QAbstractPrintDialog__PrintRange = QAbstractPrintDialog__PrintRange(1)
+	QAbstractPrintDialog__PageRange   QAbstractPrintDialog__PrintRange = QAbstractPrintDialog__PrintRange(2)
+	QAbstractPrintDialog__CurrentPage QAbstractPrintDialog__PrintRange = QAbstractPrintDialog__PrintRange(3)
+)
 
 func NewQAbstractPrintDialog(printer QPrinter_ITF, parent widgets.QWidget_ITF) *QAbstractPrintDialog {
 	var tmpValue = NewQAbstractPrintDialogFromPointer(C.QAbstractPrintDialog_NewQAbstractPrintDialog(PointerFromQPrinter(printer), widgets.PointerFromQWidget(parent)))
@@ -5226,6 +5226,51 @@ func (ptr *QPageSetupDialog) MetaObjectDefault() *core.QMetaObject {
 	return nil
 }
 
+type QPrint struct {
+	ptr unsafe.Pointer
+}
+
+type QPrint_ITF interface {
+	QPrint_PTR() *QPrint
+}
+
+func (ptr *QPrint) QPrint_PTR() *QPrint {
+	return ptr
+}
+
+func (ptr *QPrint) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
+	}
+	return nil
+}
+
+func (ptr *QPrint) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
+	}
+}
+
+func PointerFromQPrint(ptr QPrint_ITF) unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QPrint_PTR().Pointer()
+	}
+	return nil
+}
+
+func NewQPrintFromPointer(ptr unsafe.Pointer) *QPrint {
+	var n = new(QPrint)
+	n.SetPointer(ptr)
+	return n
+}
+
+func (ptr *QPrint) DestroyQPrint() {
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
+}
+
 //go:generate stringer -type=QPrint__ColorMode
 //QPrint::ColorMode
 type QPrint__ColorMode int64
@@ -5293,51 +5338,6 @@ const (
 	QPrint__CustomOutputBin QPrint__OutputBinId = QPrint__OutputBinId(4)
 	QPrint__LastOutputBin   QPrint__OutputBinId = QPrint__OutputBinId(QPrint__CustomOutputBin)
 )
-
-type QPrint struct {
-	ptr unsafe.Pointer
-}
-
-type QPrint_ITF interface {
-	QPrint_PTR() *QPrint
-}
-
-func (ptr *QPrint) QPrint_PTR() *QPrint {
-	return ptr
-}
-
-func (ptr *QPrint) Pointer() unsafe.Pointer {
-	if ptr != nil {
-		return ptr.ptr
-	}
-	return nil
-}
-
-func (ptr *QPrint) SetPointer(p unsafe.Pointer) {
-	if ptr != nil {
-		ptr.ptr = p
-	}
-}
-
-func PointerFromQPrint(ptr QPrint_ITF) unsafe.Pointer {
-	if ptr != nil {
-		return ptr.QPrint_PTR().Pointer()
-	}
-	return nil
-}
-
-func NewQPrintFromPointer(ptr unsafe.Pointer) *QPrint {
-	var n = new(QPrint)
-	n.SetPointer(ptr)
-	return n
-}
-
-func (ptr *QPrint) DestroyQPrint() {
-	if ptr != nil {
-		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
-	}
-}
 
 type QPrintDialog struct {
 	QAbstractPrintDialog
@@ -7949,6 +7949,44 @@ func (ptr *QPrintDialog) MetaObjectDefault() *core.QMetaObject {
 	return nil
 }
 
+type QPrintEngine struct {
+	ptr unsafe.Pointer
+}
+
+type QPrintEngine_ITF interface {
+	QPrintEngine_PTR() *QPrintEngine
+}
+
+func (ptr *QPrintEngine) QPrintEngine_PTR() *QPrintEngine {
+	return ptr
+}
+
+func (ptr *QPrintEngine) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
+	}
+	return nil
+}
+
+func (ptr *QPrintEngine) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
+	}
+}
+
+func PointerFromQPrintEngine(ptr QPrintEngine_ITF) unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QPrintEngine_PTR().Pointer()
+	}
+	return nil
+}
+
+func NewQPrintEngineFromPointer(ptr unsafe.Pointer) *QPrintEngine {
+	var n = new(QPrintEngine)
+	n.SetPointer(ptr)
+	return n
+}
+
 //go:generate stringer -type=QPrintEngine__PrintEnginePropertyKey
 //QPrintEngine::PrintEnginePropertyKey
 type QPrintEngine__PrintEnginePropertyKey int64
@@ -7987,44 +8025,6 @@ const (
 	QPrintEngine__PPK_PaperSize              QPrintEngine__PrintEnginePropertyKey = QPrintEngine__PrintEnginePropertyKey(QPrintEngine__PPK_PageSize)
 	QPrintEngine__PPK_CustomBase             QPrintEngine__PrintEnginePropertyKey = QPrintEngine__PrintEnginePropertyKey(0xff00)
 )
-
-type QPrintEngine struct {
-	ptr unsafe.Pointer
-}
-
-type QPrintEngine_ITF interface {
-	QPrintEngine_PTR() *QPrintEngine
-}
-
-func (ptr *QPrintEngine) QPrintEngine_PTR() *QPrintEngine {
-	return ptr
-}
-
-func (ptr *QPrintEngine) Pointer() unsafe.Pointer {
-	if ptr != nil {
-		return ptr.ptr
-	}
-	return nil
-}
-
-func (ptr *QPrintEngine) SetPointer(p unsafe.Pointer) {
-	if ptr != nil {
-		ptr.ptr = p
-	}
-}
-
-func PointerFromQPrintEngine(ptr QPrintEngine_ITF) unsafe.Pointer {
-	if ptr != nil {
-		return ptr.QPrintEngine_PTR().Pointer()
-	}
-	return nil
-}
-
-func NewQPrintEngineFromPointer(ptr unsafe.Pointer) *QPrintEngine {
-	var n = new(QPrintEngine)
-	n.SetPointer(ptr)
-	return n
-}
 
 //export callbackQPrintEngine_Abort
 func callbackQPrintEngine_Abort(ptr unsafe.Pointer) C.char {
@@ -8074,7 +8074,7 @@ func (ptr *QPrintEngine) ConnectMetric(f func(id gui.QPaintDevice__PaintDeviceMe
 	}
 }
 
-func (ptr *QPrintEngine) DisconnectMetric(id gui.QPaintDevice__PaintDeviceMetric) {
+func (ptr *QPrintEngine) DisconnectMetric() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintEngine::metric")
@@ -8167,7 +8167,7 @@ func (ptr *QPrintEngine) ConnectProperty(f func(key QPrintEngine__PrintEnginePro
 	}
 }
 
-func (ptr *QPrintEngine) DisconnectProperty(key QPrintEngine__PrintEnginePropertyKey) {
+func (ptr *QPrintEngine) DisconnectProperty() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintEngine::property")
@@ -8199,7 +8199,7 @@ func (ptr *QPrintEngine) ConnectSetProperty(f func(key QPrintEngine__PrintEngine
 	}
 }
 
-func (ptr *QPrintEngine) DisconnectSetProperty(key QPrintEngine__PrintEnginePropertyKey, value core.QVariant_ITF) {
+func (ptr *QPrintEngine) DisconnectSetProperty() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintEngine::setProperty")
@@ -10835,26 +10835,6 @@ func (ptr *QPrintPreviewDialog) MetaObjectDefault() *core.QMetaObject {
 	return nil
 }
 
-//go:generate stringer -type=QPrintPreviewWidget__ViewMode
-//QPrintPreviewWidget::ViewMode
-type QPrintPreviewWidget__ViewMode int64
-
-const (
-	QPrintPreviewWidget__SinglePageView  QPrintPreviewWidget__ViewMode = QPrintPreviewWidget__ViewMode(0)
-	QPrintPreviewWidget__FacingPagesView QPrintPreviewWidget__ViewMode = QPrintPreviewWidget__ViewMode(1)
-	QPrintPreviewWidget__AllPagesView    QPrintPreviewWidget__ViewMode = QPrintPreviewWidget__ViewMode(2)
-)
-
-//go:generate stringer -type=QPrintPreviewWidget__ZoomMode
-//QPrintPreviewWidget::ZoomMode
-type QPrintPreviewWidget__ZoomMode int64
-
-const (
-	QPrintPreviewWidget__CustomZoom QPrintPreviewWidget__ZoomMode = QPrintPreviewWidget__ZoomMode(0)
-	QPrintPreviewWidget__FitToWidth QPrintPreviewWidget__ZoomMode = QPrintPreviewWidget__ZoomMode(1)
-	QPrintPreviewWidget__FitInView  QPrintPreviewWidget__ZoomMode = QPrintPreviewWidget__ZoomMode(2)
-)
-
 type QPrintPreviewWidget struct {
 	widgets.QWidget
 }
@@ -10893,6 +10873,27 @@ func NewQPrintPreviewWidgetFromPointer(ptr unsafe.Pointer) *QPrintPreviewWidget 
 	n.SetPointer(ptr)
 	return n
 }
+
+//go:generate stringer -type=QPrintPreviewWidget__ViewMode
+//QPrintPreviewWidget::ViewMode
+type QPrintPreviewWidget__ViewMode int64
+
+const (
+	QPrintPreviewWidget__SinglePageView  QPrintPreviewWidget__ViewMode = QPrintPreviewWidget__ViewMode(0)
+	QPrintPreviewWidget__FacingPagesView QPrintPreviewWidget__ViewMode = QPrintPreviewWidget__ViewMode(1)
+	QPrintPreviewWidget__AllPagesView    QPrintPreviewWidget__ViewMode = QPrintPreviewWidget__ViewMode(2)
+)
+
+//go:generate stringer -type=QPrintPreviewWidget__ZoomMode
+//QPrintPreviewWidget::ZoomMode
+type QPrintPreviewWidget__ZoomMode int64
+
+const (
+	QPrintPreviewWidget__CustomZoom QPrintPreviewWidget__ZoomMode = QPrintPreviewWidget__ZoomMode(0)
+	QPrintPreviewWidget__FitToWidth QPrintPreviewWidget__ZoomMode = QPrintPreviewWidget__ZoomMode(1)
+	QPrintPreviewWidget__FitInView  QPrintPreviewWidget__ZoomMode = QPrintPreviewWidget__ZoomMode(2)
+)
+
 func NewQPrintPreviewWidget(printer QPrinter_ITF, parent widgets.QWidget_ITF, flags core.Qt__WindowType) *QPrintPreviewWidget {
 	var tmpValue = NewQPrintPreviewWidgetFromPointer(C.QPrintPreviewWidget_NewQPrintPreviewWidget(PointerFromQPrinter(printer), widgets.PointerFromQWidget(parent), C.longlong(flags)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
@@ -10920,8 +10921,9 @@ func (ptr *QPrintPreviewWidget) CurrentPage() int {
 func callbackQPrintPreviewWidget_FitInView(ptr unsafe.Pointer) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewWidget::fitInView"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQPrintPreviewWidgetFromPointer(ptr).FitInViewDefault()
 	}
-
 }
 
 func (ptr *QPrintPreviewWidget) ConnectFitInView(f func()) {
@@ -10944,12 +10946,19 @@ func (ptr *QPrintPreviewWidget) FitInView() {
 	}
 }
 
+func (ptr *QPrintPreviewWidget) FitInViewDefault() {
+	if ptr.Pointer() != nil {
+		C.QPrintPreviewWidget_FitInViewDefault(ptr.Pointer())
+	}
+}
+
 //export callbackQPrintPreviewWidget_FitToWidth
 func callbackQPrintPreviewWidget_FitToWidth(ptr unsafe.Pointer) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewWidget::fitToWidth"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQPrintPreviewWidgetFromPointer(ptr).FitToWidthDefault()
 	}
-
 }
 
 func (ptr *QPrintPreviewWidget) ConnectFitToWidth(f func()) {
@@ -10969,6 +10978,12 @@ func (ptr *QPrintPreviewWidget) DisconnectFitToWidth() {
 func (ptr *QPrintPreviewWidget) FitToWidth() {
 	if ptr.Pointer() != nil {
 		C.QPrintPreviewWidget_FitToWidth(ptr.Pointer())
+	}
+}
+
+func (ptr *QPrintPreviewWidget) FitToWidthDefault() {
+	if ptr.Pointer() != nil {
+		C.QPrintPreviewWidget_FitToWidthDefault(ptr.Pointer())
 	}
 }
 
@@ -11048,8 +11063,9 @@ func (ptr *QPrintPreviewWidget) PreviewChanged() {
 func callbackQPrintPreviewWidget_Print(ptr unsafe.Pointer) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewWidget::print"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQPrintPreviewWidgetFromPointer(ptr).PrintDefault()
 	}
-
 }
 
 func (ptr *QPrintPreviewWidget) ConnectPrint(f func()) {
@@ -11072,12 +11088,19 @@ func (ptr *QPrintPreviewWidget) Print() {
 	}
 }
 
+func (ptr *QPrintPreviewWidget) PrintDefault() {
+	if ptr.Pointer() != nil {
+		C.QPrintPreviewWidget_PrintDefault(ptr.Pointer())
+	}
+}
+
 //export callbackQPrintPreviewWidget_SetAllPagesViewMode
 func callbackQPrintPreviewWidget_SetAllPagesViewMode(ptr unsafe.Pointer) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewWidget::setAllPagesViewMode"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQPrintPreviewWidgetFromPointer(ptr).SetAllPagesViewModeDefault()
 	}
-
 }
 
 func (ptr *QPrintPreviewWidget) ConnectSetAllPagesViewMode(f func()) {
@@ -11100,12 +11123,19 @@ func (ptr *QPrintPreviewWidget) SetAllPagesViewMode() {
 	}
 }
 
+func (ptr *QPrintPreviewWidget) SetAllPagesViewModeDefault() {
+	if ptr.Pointer() != nil {
+		C.QPrintPreviewWidget_SetAllPagesViewModeDefault(ptr.Pointer())
+	}
+}
+
 //export callbackQPrintPreviewWidget_SetCurrentPage
 func callbackQPrintPreviewWidget_SetCurrentPage(ptr unsafe.Pointer, page C.int) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewWidget::setCurrentPage"); signal != nil {
 		signal.(func(int))(int(int32(page)))
+	} else {
+		NewQPrintPreviewWidgetFromPointer(ptr).SetCurrentPageDefault(int(int32(page)))
 	}
-
 }
 
 func (ptr *QPrintPreviewWidget) ConnectSetCurrentPage(f func(page int)) {
@@ -11115,7 +11145,7 @@ func (ptr *QPrintPreviewWidget) ConnectSetCurrentPage(f func(page int)) {
 	}
 }
 
-func (ptr *QPrintPreviewWidget) DisconnectSetCurrentPage(page int) {
+func (ptr *QPrintPreviewWidget) DisconnectSetCurrentPage() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::setCurrentPage")
@@ -11128,12 +11158,19 @@ func (ptr *QPrintPreviewWidget) SetCurrentPage(page int) {
 	}
 }
 
+func (ptr *QPrintPreviewWidget) SetCurrentPageDefault(page int) {
+	if ptr.Pointer() != nil {
+		C.QPrintPreviewWidget_SetCurrentPageDefault(ptr.Pointer(), C.int(int32(page)))
+	}
+}
+
 //export callbackQPrintPreviewWidget_SetFacingPagesViewMode
 func callbackQPrintPreviewWidget_SetFacingPagesViewMode(ptr unsafe.Pointer) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewWidget::setFacingPagesViewMode"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQPrintPreviewWidgetFromPointer(ptr).SetFacingPagesViewModeDefault()
 	}
-
 }
 
 func (ptr *QPrintPreviewWidget) ConnectSetFacingPagesViewMode(f func()) {
@@ -11156,12 +11193,19 @@ func (ptr *QPrintPreviewWidget) SetFacingPagesViewMode() {
 	}
 }
 
+func (ptr *QPrintPreviewWidget) SetFacingPagesViewModeDefault() {
+	if ptr.Pointer() != nil {
+		C.QPrintPreviewWidget_SetFacingPagesViewModeDefault(ptr.Pointer())
+	}
+}
+
 //export callbackQPrintPreviewWidget_SetLandscapeOrientation
 func callbackQPrintPreviewWidget_SetLandscapeOrientation(ptr unsafe.Pointer) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewWidget::setLandscapeOrientation"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQPrintPreviewWidgetFromPointer(ptr).SetLandscapeOrientationDefault()
 	}
-
 }
 
 func (ptr *QPrintPreviewWidget) ConnectSetLandscapeOrientation(f func()) {
@@ -11184,12 +11228,19 @@ func (ptr *QPrintPreviewWidget) SetLandscapeOrientation() {
 	}
 }
 
+func (ptr *QPrintPreviewWidget) SetLandscapeOrientationDefault() {
+	if ptr.Pointer() != nil {
+		C.QPrintPreviewWidget_SetLandscapeOrientationDefault(ptr.Pointer())
+	}
+}
+
 //export callbackQPrintPreviewWidget_SetOrientation
 func callbackQPrintPreviewWidget_SetOrientation(ptr unsafe.Pointer, orientation C.longlong) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewWidget::setOrientation"); signal != nil {
 		signal.(func(QPrinter__Orientation))(QPrinter__Orientation(orientation))
+	} else {
+		NewQPrintPreviewWidgetFromPointer(ptr).SetOrientationDefault(QPrinter__Orientation(orientation))
 	}
-
 }
 
 func (ptr *QPrintPreviewWidget) ConnectSetOrientation(f func(orientation QPrinter__Orientation)) {
@@ -11199,7 +11250,7 @@ func (ptr *QPrintPreviewWidget) ConnectSetOrientation(f func(orientation QPrinte
 	}
 }
 
-func (ptr *QPrintPreviewWidget) DisconnectSetOrientation(orientation QPrinter__Orientation) {
+func (ptr *QPrintPreviewWidget) DisconnectSetOrientation() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::setOrientation")
@@ -11212,12 +11263,19 @@ func (ptr *QPrintPreviewWidget) SetOrientation(orientation QPrinter__Orientation
 	}
 }
 
+func (ptr *QPrintPreviewWidget) SetOrientationDefault(orientation QPrinter__Orientation) {
+	if ptr.Pointer() != nil {
+		C.QPrintPreviewWidget_SetOrientationDefault(ptr.Pointer(), C.longlong(orientation))
+	}
+}
+
 //export callbackQPrintPreviewWidget_SetPortraitOrientation
 func callbackQPrintPreviewWidget_SetPortraitOrientation(ptr unsafe.Pointer) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewWidget::setPortraitOrientation"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQPrintPreviewWidgetFromPointer(ptr).SetPortraitOrientationDefault()
 	}
-
 }
 
 func (ptr *QPrintPreviewWidget) ConnectSetPortraitOrientation(f func()) {
@@ -11240,12 +11298,19 @@ func (ptr *QPrintPreviewWidget) SetPortraitOrientation() {
 	}
 }
 
+func (ptr *QPrintPreviewWidget) SetPortraitOrientationDefault() {
+	if ptr.Pointer() != nil {
+		C.QPrintPreviewWidget_SetPortraitOrientationDefault(ptr.Pointer())
+	}
+}
+
 //export callbackQPrintPreviewWidget_SetSinglePageViewMode
 func callbackQPrintPreviewWidget_SetSinglePageViewMode(ptr unsafe.Pointer) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewWidget::setSinglePageViewMode"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQPrintPreviewWidgetFromPointer(ptr).SetSinglePageViewModeDefault()
 	}
-
 }
 
 func (ptr *QPrintPreviewWidget) ConnectSetSinglePageViewMode(f func()) {
@@ -11268,12 +11333,19 @@ func (ptr *QPrintPreviewWidget) SetSinglePageViewMode() {
 	}
 }
 
+func (ptr *QPrintPreviewWidget) SetSinglePageViewModeDefault() {
+	if ptr.Pointer() != nil {
+		C.QPrintPreviewWidget_SetSinglePageViewModeDefault(ptr.Pointer())
+	}
+}
+
 //export callbackQPrintPreviewWidget_SetViewMode
 func callbackQPrintPreviewWidget_SetViewMode(ptr unsafe.Pointer, mode C.longlong) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewWidget::setViewMode"); signal != nil {
 		signal.(func(QPrintPreviewWidget__ViewMode))(QPrintPreviewWidget__ViewMode(mode))
+	} else {
+		NewQPrintPreviewWidgetFromPointer(ptr).SetViewModeDefault(QPrintPreviewWidget__ViewMode(mode))
 	}
-
 }
 
 func (ptr *QPrintPreviewWidget) ConnectSetViewMode(f func(mode QPrintPreviewWidget__ViewMode)) {
@@ -11283,7 +11355,7 @@ func (ptr *QPrintPreviewWidget) ConnectSetViewMode(f func(mode QPrintPreviewWidg
 	}
 }
 
-func (ptr *QPrintPreviewWidget) DisconnectSetViewMode(mode QPrintPreviewWidget__ViewMode) {
+func (ptr *QPrintPreviewWidget) DisconnectSetViewMode() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::setViewMode")
@@ -11293,6 +11365,12 @@ func (ptr *QPrintPreviewWidget) DisconnectSetViewMode(mode QPrintPreviewWidget__
 func (ptr *QPrintPreviewWidget) SetViewMode(mode QPrintPreviewWidget__ViewMode) {
 	if ptr.Pointer() != nil {
 		C.QPrintPreviewWidget_SetViewMode(ptr.Pointer(), C.longlong(mode))
+	}
+}
+
+func (ptr *QPrintPreviewWidget) SetViewModeDefault(mode QPrintPreviewWidget__ViewMode) {
+	if ptr.Pointer() != nil {
+		C.QPrintPreviewWidget_SetViewModeDefault(ptr.Pointer(), C.longlong(mode))
 	}
 }
 
@@ -11336,8 +11414,9 @@ func (ptr *QPrintPreviewWidget) SetVisibleDefault(visible bool) {
 func callbackQPrintPreviewWidget_SetZoomFactor(ptr unsafe.Pointer, factor C.double) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewWidget::setZoomFactor"); signal != nil {
 		signal.(func(float64))(float64(factor))
+	} else {
+		NewQPrintPreviewWidgetFromPointer(ptr).SetZoomFactorDefault(float64(factor))
 	}
-
 }
 
 func (ptr *QPrintPreviewWidget) ConnectSetZoomFactor(f func(factor float64)) {
@@ -11347,7 +11426,7 @@ func (ptr *QPrintPreviewWidget) ConnectSetZoomFactor(f func(factor float64)) {
 	}
 }
 
-func (ptr *QPrintPreviewWidget) DisconnectSetZoomFactor(factor float64) {
+func (ptr *QPrintPreviewWidget) DisconnectSetZoomFactor() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::setZoomFactor")
@@ -11360,12 +11439,19 @@ func (ptr *QPrintPreviewWidget) SetZoomFactor(factor float64) {
 	}
 }
 
+func (ptr *QPrintPreviewWidget) SetZoomFactorDefault(factor float64) {
+	if ptr.Pointer() != nil {
+		C.QPrintPreviewWidget_SetZoomFactorDefault(ptr.Pointer(), C.double(factor))
+	}
+}
+
 //export callbackQPrintPreviewWidget_SetZoomMode
 func callbackQPrintPreviewWidget_SetZoomMode(ptr unsafe.Pointer, zoomMode C.longlong) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewWidget::setZoomMode"); signal != nil {
 		signal.(func(QPrintPreviewWidget__ZoomMode))(QPrintPreviewWidget__ZoomMode(zoomMode))
+	} else {
+		NewQPrintPreviewWidgetFromPointer(ptr).SetZoomModeDefault(QPrintPreviewWidget__ZoomMode(zoomMode))
 	}
-
 }
 
 func (ptr *QPrintPreviewWidget) ConnectSetZoomMode(f func(zoomMode QPrintPreviewWidget__ZoomMode)) {
@@ -11375,7 +11461,7 @@ func (ptr *QPrintPreviewWidget) ConnectSetZoomMode(f func(zoomMode QPrintPreview
 	}
 }
 
-func (ptr *QPrintPreviewWidget) DisconnectSetZoomMode(zoomMode QPrintPreviewWidget__ZoomMode) {
+func (ptr *QPrintPreviewWidget) DisconnectSetZoomMode() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::setZoomMode")
@@ -11388,12 +11474,19 @@ func (ptr *QPrintPreviewWidget) SetZoomMode(zoomMode QPrintPreviewWidget__ZoomMo
 	}
 }
 
+func (ptr *QPrintPreviewWidget) SetZoomModeDefault(zoomMode QPrintPreviewWidget__ZoomMode) {
+	if ptr.Pointer() != nil {
+		C.QPrintPreviewWidget_SetZoomModeDefault(ptr.Pointer(), C.longlong(zoomMode))
+	}
+}
+
 //export callbackQPrintPreviewWidget_UpdatePreview
 func callbackQPrintPreviewWidget_UpdatePreview(ptr unsafe.Pointer) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewWidget::updatePreview"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQPrintPreviewWidgetFromPointer(ptr).UpdatePreviewDefault()
 	}
-
 }
 
 func (ptr *QPrintPreviewWidget) ConnectUpdatePreview(f func()) {
@@ -11416,6 +11509,12 @@ func (ptr *QPrintPreviewWidget) UpdatePreview() {
 	}
 }
 
+func (ptr *QPrintPreviewWidget) UpdatePreviewDefault() {
+	if ptr.Pointer() != nil {
+		C.QPrintPreviewWidget_UpdatePreviewDefault(ptr.Pointer())
+	}
+}
+
 func (ptr *QPrintPreviewWidget) ViewMode() QPrintPreviewWidget__ViewMode {
 	if ptr.Pointer() != nil {
 		return QPrintPreviewWidget__ViewMode(C.QPrintPreviewWidget_ViewMode(ptr.Pointer()))
@@ -11434,8 +11533,9 @@ func (ptr *QPrintPreviewWidget) ZoomFactor() float64 {
 func callbackQPrintPreviewWidget_ZoomIn(ptr unsafe.Pointer, factor C.double) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewWidget::zoomIn"); signal != nil {
 		signal.(func(float64))(float64(factor))
+	} else {
+		NewQPrintPreviewWidgetFromPointer(ptr).ZoomInDefault(float64(factor))
 	}
-
 }
 
 func (ptr *QPrintPreviewWidget) ConnectZoomIn(f func(factor float64)) {
@@ -11445,7 +11545,7 @@ func (ptr *QPrintPreviewWidget) ConnectZoomIn(f func(factor float64)) {
 	}
 }
 
-func (ptr *QPrintPreviewWidget) DisconnectZoomIn(factor float64) {
+func (ptr *QPrintPreviewWidget) DisconnectZoomIn() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::zoomIn")
@@ -11455,6 +11555,12 @@ func (ptr *QPrintPreviewWidget) DisconnectZoomIn(factor float64) {
 func (ptr *QPrintPreviewWidget) ZoomIn(factor float64) {
 	if ptr.Pointer() != nil {
 		C.QPrintPreviewWidget_ZoomIn(ptr.Pointer(), C.double(factor))
+	}
+}
+
+func (ptr *QPrintPreviewWidget) ZoomInDefault(factor float64) {
+	if ptr.Pointer() != nil {
+		C.QPrintPreviewWidget_ZoomInDefault(ptr.Pointer(), C.double(factor))
 	}
 }
 
@@ -11469,8 +11575,9 @@ func (ptr *QPrintPreviewWidget) ZoomMode() QPrintPreviewWidget__ZoomMode {
 func callbackQPrintPreviewWidget_ZoomOut(ptr unsafe.Pointer, factor C.double) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPrintPreviewWidget::zoomOut"); signal != nil {
 		signal.(func(float64))(float64(factor))
+	} else {
+		NewQPrintPreviewWidgetFromPointer(ptr).ZoomOutDefault(float64(factor))
 	}
-
 }
 
 func (ptr *QPrintPreviewWidget) ConnectZoomOut(f func(factor float64)) {
@@ -11480,7 +11587,7 @@ func (ptr *QPrintPreviewWidget) ConnectZoomOut(f func(factor float64)) {
 	}
 }
 
-func (ptr *QPrintPreviewWidget) DisconnectZoomOut(factor float64) {
+func (ptr *QPrintPreviewWidget) DisconnectZoomOut() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrintPreviewWidget::zoomOut")
@@ -11490,6 +11597,12 @@ func (ptr *QPrintPreviewWidget) DisconnectZoomOut(factor float64) {
 func (ptr *QPrintPreviewWidget) ZoomOut(factor float64) {
 	if ptr.Pointer() != nil {
 		C.QPrintPreviewWidget_ZoomOut(ptr.Pointer(), C.double(factor))
+	}
+}
+
+func (ptr *QPrintPreviewWidget) ZoomOutDefault(factor float64) {
+	if ptr.Pointer() != nil {
+		C.QPrintPreviewWidget_ZoomOutDefault(ptr.Pointer(), C.double(factor))
 	}
 }
 
@@ -13799,6 +13912,45 @@ func (ptr *QPrintPreviewWidget) MetaObjectDefault() *core.QMetaObject {
 	return nil
 }
 
+type QPrinter struct {
+	gui.QPagedPaintDevice
+}
+
+type QPrinter_ITF interface {
+	gui.QPagedPaintDevice_ITF
+	QPrinter_PTR() *QPrinter
+}
+
+func (ptr *QPrinter) QPrinter_PTR() *QPrinter {
+	return ptr
+}
+
+func (ptr *QPrinter) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QPagedPaintDevice_PTR().Pointer()
+	}
+	return nil
+}
+
+func (ptr *QPrinter) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QPagedPaintDevice_PTR().SetPointer(p)
+	}
+}
+
+func PointerFromQPrinter(ptr QPrinter_ITF) unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QPrinter_PTR().Pointer()
+	}
+	return nil
+}
+
+func NewQPrinterFromPointer(ptr unsafe.Pointer) *QPrinter {
+	var n = new(QPrinter)
+	n.SetPointer(ptr)
+	return n
+}
+
 //go:generate stringer -type=QPrinter__ColorMode
 //QPrinter::ColorMode
 type QPrinter__ColorMode int64
@@ -14050,44 +14202,6 @@ const (
 	QPrinter__DevicePixel QPrinter__Unit = QPrinter__Unit(6)
 )
 
-type QPrinter struct {
-	gui.QPagedPaintDevice
-}
-
-type QPrinter_ITF interface {
-	gui.QPagedPaintDevice_ITF
-	QPrinter_PTR() *QPrinter
-}
-
-func (ptr *QPrinter) QPrinter_PTR() *QPrinter {
-	return ptr
-}
-
-func (ptr *QPrinter) Pointer() unsafe.Pointer {
-	if ptr != nil {
-		return ptr.QPagedPaintDevice_PTR().Pointer()
-	}
-	return nil
-}
-
-func (ptr *QPrinter) SetPointer(p unsafe.Pointer) {
-	if ptr != nil {
-		ptr.QPagedPaintDevice_PTR().SetPointer(p)
-	}
-}
-
-func PointerFromQPrinter(ptr QPrinter_ITF) unsafe.Pointer {
-	if ptr != nil {
-		return ptr.QPrinter_PTR().Pointer()
-	}
-	return nil
-}
-
-func NewQPrinterFromPointer(ptr unsafe.Pointer) *QPrinter {
-	var n = new(QPrinter)
-	n.SetPointer(ptr)
-	return n
-}
 func (ptr *QPrinter) FromPage() int {
 	if ptr.Pointer() != nil {
 		return int(int32(C.QPrinter_FromPage(ptr.Pointer())))
@@ -14564,13 +14678,6 @@ func (ptr *QPrinter) DestroyQPrinter() {
 		C.QPrinter_DestroyQPrinter(ptr.Pointer())
 		qt.DisconnectAllSignals(fmt.Sprint(ptr.Pointer()))
 		ptr.SetPointer(nil)
-	}
-}
-
-func (ptr *QPrinter) DisconnectSetMargins() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPrinter::setMargins")
 	}
 }
 

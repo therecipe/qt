@@ -25,19 +25,6 @@ func cGoUnpackString(s C.struct_QtCharts_PackedString) string {
 	return C.GoStringN(s.data, C.int(s.len))
 }
 
-//go:generate stringer -type=QAbstractAxis__AxisType
-//QAbstractAxis::AxisType
-type QAbstractAxis__AxisType int64
-
-const (
-	QAbstractAxis__AxisTypeNoAxis      QAbstractAxis__AxisType = QAbstractAxis__AxisType(0x0)
-	QAbstractAxis__AxisTypeValue       QAbstractAxis__AxisType = QAbstractAxis__AxisType(0x1)
-	QAbstractAxis__AxisTypeBarCategory QAbstractAxis__AxisType = QAbstractAxis__AxisType(0x2)
-	QAbstractAxis__AxisTypeCategory    QAbstractAxis__AxisType = QAbstractAxis__AxisType(0x4)
-	QAbstractAxis__AxisTypeDateTime    QAbstractAxis__AxisType = QAbstractAxis__AxisType(0x8)
-	QAbstractAxis__AxisTypeLogValue    QAbstractAxis__AxisType = QAbstractAxis__AxisType(0x10)
-)
-
 type QAbstractAxis struct {
 	ptr unsafe.Pointer
 }
@@ -75,6 +62,20 @@ func NewQAbstractAxisFromPointer(ptr unsafe.Pointer) *QAbstractAxis {
 	n.SetPointer(ptr)
 	return n
 }
+
+//go:generate stringer -type=QAbstractAxis__AxisType
+//QAbstractAxis::AxisType
+type QAbstractAxis__AxisType int64
+
+const (
+	QAbstractAxis__AxisTypeNoAxis      QAbstractAxis__AxisType = QAbstractAxis__AxisType(0x0)
+	QAbstractAxis__AxisTypeValue       QAbstractAxis__AxisType = QAbstractAxis__AxisType(0x1)
+	QAbstractAxis__AxisTypeBarCategory QAbstractAxis__AxisType = QAbstractAxis__AxisType(0x2)
+	QAbstractAxis__AxisTypeCategory    QAbstractAxis__AxisType = QAbstractAxis__AxisType(0x4)
+	QAbstractAxis__AxisTypeDateTime    QAbstractAxis__AxisType = QAbstractAxis__AxisType(0x8)
+	QAbstractAxis__AxisTypeLogValue    QAbstractAxis__AxisType = QAbstractAxis__AxisType(0x10)
+)
+
 func (ptr *QAbstractAxis) Alignment() core.Qt__AlignmentFlag {
 	if ptr.Pointer() != nil {
 		return core.Qt__AlignmentFlag(C.QAbstractAxis_Alignment(ptr.Pointer()))
@@ -1242,17 +1243,6 @@ func (ptr *QAbstractAxis) DestroyQAbstractAxis() {
 	}
 }
 
-//go:generate stringer -type=QAbstractBarSeries__LabelsPosition
-//QAbstractBarSeries::LabelsPosition
-type QAbstractBarSeries__LabelsPosition int64
-
-const (
-	QAbstractBarSeries__LabelsCenter     QAbstractBarSeries__LabelsPosition = QAbstractBarSeries__LabelsPosition(0)
-	QAbstractBarSeries__LabelsInsideEnd  QAbstractBarSeries__LabelsPosition = QAbstractBarSeries__LabelsPosition(1)
-	QAbstractBarSeries__LabelsInsideBase QAbstractBarSeries__LabelsPosition = QAbstractBarSeries__LabelsPosition(2)
-	QAbstractBarSeries__LabelsOutsideEnd QAbstractBarSeries__LabelsPosition = QAbstractBarSeries__LabelsPosition(3)
-)
-
 type QAbstractBarSeries struct {
 	ptr unsafe.Pointer
 }
@@ -1290,6 +1280,18 @@ func NewQAbstractBarSeriesFromPointer(ptr unsafe.Pointer) *QAbstractBarSeries {
 	n.SetPointer(ptr)
 	return n
 }
+
+//go:generate stringer -type=QAbstractBarSeries__LabelsPosition
+//QAbstractBarSeries::LabelsPosition
+type QAbstractBarSeries__LabelsPosition int64
+
+const (
+	QAbstractBarSeries__LabelsCenter     QAbstractBarSeries__LabelsPosition = QAbstractBarSeries__LabelsPosition(0)
+	QAbstractBarSeries__LabelsInsideEnd  QAbstractBarSeries__LabelsPosition = QAbstractBarSeries__LabelsPosition(1)
+	QAbstractBarSeries__LabelsInsideBase QAbstractBarSeries__LabelsPosition = QAbstractBarSeries__LabelsPosition(2)
+	QAbstractBarSeries__LabelsOutsideEnd QAbstractBarSeries__LabelsPosition = QAbstractBarSeries__LabelsPosition(3)
+)
+
 func (ptr *QAbstractBarSeries) LabelsAngle() float64 {
 	if ptr.Pointer() != nil {
 		return float64(C.QAbstractBarSeries_LabelsAngle(ptr.Pointer()))
@@ -1750,25 +1752,6 @@ func (ptr *QAbstractBarSeries) barSets_atList(i int) *QBarSet {
 	return nil
 }
 
-//go:generate stringer -type=QAbstractSeries__SeriesType
-//QAbstractSeries::SeriesType
-type QAbstractSeries__SeriesType int64
-
-const (
-	QAbstractSeries__SeriesTypeLine                 QAbstractSeries__SeriesType = QAbstractSeries__SeriesType(0)
-	QAbstractSeries__SeriesTypeArea                 QAbstractSeries__SeriesType = QAbstractSeries__SeriesType(1)
-	QAbstractSeries__SeriesTypeBar                  QAbstractSeries__SeriesType = QAbstractSeries__SeriesType(2)
-	QAbstractSeries__SeriesTypeStackedBar           QAbstractSeries__SeriesType = QAbstractSeries__SeriesType(3)
-	QAbstractSeries__SeriesTypePercentBar           QAbstractSeries__SeriesType = QAbstractSeries__SeriesType(4)
-	QAbstractSeries__SeriesTypePie                  QAbstractSeries__SeriesType = QAbstractSeries__SeriesType(5)
-	QAbstractSeries__SeriesTypeScatter              QAbstractSeries__SeriesType = QAbstractSeries__SeriesType(6)
-	QAbstractSeries__SeriesTypeSpline               QAbstractSeries__SeriesType = QAbstractSeries__SeriesType(7)
-	QAbstractSeries__SeriesTypeHorizontalBar        QAbstractSeries__SeriesType = QAbstractSeries__SeriesType(8)
-	QAbstractSeries__SeriesTypeHorizontalStackedBar QAbstractSeries__SeriesType = QAbstractSeries__SeriesType(9)
-	QAbstractSeries__SeriesTypeHorizontalPercentBar QAbstractSeries__SeriesType = QAbstractSeries__SeriesType(10)
-	QAbstractSeries__SeriesTypeBoxPlot              QAbstractSeries__SeriesType = QAbstractSeries__SeriesType(11)
-)
-
 type QAbstractSeries struct {
 	ptr unsafe.Pointer
 }
@@ -1806,6 +1789,26 @@ func NewQAbstractSeriesFromPointer(ptr unsafe.Pointer) *QAbstractSeries {
 	n.SetPointer(ptr)
 	return n
 }
+
+//go:generate stringer -type=QAbstractSeries__SeriesType
+//QAbstractSeries::SeriesType
+type QAbstractSeries__SeriesType int64
+
+const (
+	QAbstractSeries__SeriesTypeLine                 QAbstractSeries__SeriesType = QAbstractSeries__SeriesType(0)
+	QAbstractSeries__SeriesTypeArea                 QAbstractSeries__SeriesType = QAbstractSeries__SeriesType(1)
+	QAbstractSeries__SeriesTypeBar                  QAbstractSeries__SeriesType = QAbstractSeries__SeriesType(2)
+	QAbstractSeries__SeriesTypeStackedBar           QAbstractSeries__SeriesType = QAbstractSeries__SeriesType(3)
+	QAbstractSeries__SeriesTypePercentBar           QAbstractSeries__SeriesType = QAbstractSeries__SeriesType(4)
+	QAbstractSeries__SeriesTypePie                  QAbstractSeries__SeriesType = QAbstractSeries__SeriesType(5)
+	QAbstractSeries__SeriesTypeScatter              QAbstractSeries__SeriesType = QAbstractSeries__SeriesType(6)
+	QAbstractSeries__SeriesTypeSpline               QAbstractSeries__SeriesType = QAbstractSeries__SeriesType(7)
+	QAbstractSeries__SeriesTypeHorizontalBar        QAbstractSeries__SeriesType = QAbstractSeries__SeriesType(8)
+	QAbstractSeries__SeriesTypeHorizontalStackedBar QAbstractSeries__SeriesType = QAbstractSeries__SeriesType(9)
+	QAbstractSeries__SeriesTypeHorizontalPercentBar QAbstractSeries__SeriesType = QAbstractSeries__SeriesType(10)
+	QAbstractSeries__SeriesTypeBoxPlot              QAbstractSeries__SeriesType = QAbstractSeries__SeriesType(11)
+)
+
 func (ptr *QAbstractSeries) IsVisible() bool {
 	if ptr.Pointer() != nil {
 		return C.QAbstractSeries_IsVisible(ptr.Pointer()) != 0
@@ -2142,13 +2145,6 @@ func (ptr *QAreaLegendMarker) SeriesDefault() *QAreaSeries {
 		return NewQAreaSeriesFromPointer(C.QAreaLegendMarker_SeriesDefault(ptr.Pointer()))
 	}
 	return nil
-}
-
-func (ptr *QAreaLegendMarker) DisconnectType() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAreaLegendMarker::type")
-	}
 }
 
 //export callbackQAreaLegendMarker_DestroyQAreaLegendMarker
@@ -3142,13 +3138,6 @@ func (ptr *QBarCategoryAxis) SetRange(minCategory string, maxCategory string) {
 	}
 }
 
-func (ptr *QBarCategoryAxis) DisconnectType() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QBarCategoryAxis::type")
-	}
-}
-
 func (ptr *QBarCategoryAxis) DestroyQBarCategoryAxis() {
 	if ptr.Pointer() != nil {
 		C.QBarCategoryAxis_DestroyQBarCategoryAxis(ptr.Pointer())
@@ -3237,13 +3226,6 @@ func (ptr *QBarLegendMarker) SeriesDefault() *QAbstractBarSeries {
 		return NewQAbstractBarSeriesFromPointer(C.QBarLegendMarker_SeriesDefault(ptr.Pointer()))
 	}
 	return nil
-}
-
-func (ptr *QBarLegendMarker) DisconnectType() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QBarLegendMarker::type")
-	}
 }
 
 //export callbackQBarLegendMarker_DestroyQBarLegendMarker
@@ -4161,13 +4143,6 @@ func (ptr *QBoxPlotLegendMarker) SeriesDefault() *QBoxPlotSeries {
 	return nil
 }
 
-func (ptr *QBoxPlotLegendMarker) DisconnectType() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QBoxPlotLegendMarker::type")
-	}
-}
-
 //export callbackQBoxPlotLegendMarker_DestroyQBoxPlotLegendMarker
 func callbackQBoxPlotLegendMarker_DestroyQBoxPlotLegendMarker(ptr unsafe.Pointer) {
 
@@ -4702,18 +4677,6 @@ func (ptr *QBoxPlotSeries) boxSets_atList(i int) *QBoxSet {
 	return nil
 }
 
-//go:generate stringer -type=QBoxSet__ValuePositions
-//QBoxSet::ValuePositions
-type QBoxSet__ValuePositions int64
-
-const (
-	QBoxSet__LowerExtreme  QBoxSet__ValuePositions = QBoxSet__ValuePositions(0)
-	QBoxSet__LowerQuartile QBoxSet__ValuePositions = QBoxSet__ValuePositions(1)
-	QBoxSet__Median        QBoxSet__ValuePositions = QBoxSet__ValuePositions(2)
-	QBoxSet__UpperQuartile QBoxSet__ValuePositions = QBoxSet__ValuePositions(3)
-	QBoxSet__UpperExtreme  QBoxSet__ValuePositions = QBoxSet__ValuePositions(4)
-)
-
 type QBoxSet struct {
 	ptr unsafe.Pointer
 }
@@ -4751,6 +4714,19 @@ func NewQBoxSetFromPointer(ptr unsafe.Pointer) *QBoxSet {
 	n.SetPointer(ptr)
 	return n
 }
+
+//go:generate stringer -type=QBoxSet__ValuePositions
+//QBoxSet::ValuePositions
+type QBoxSet__ValuePositions int64
+
+const (
+	QBoxSet__LowerExtreme  QBoxSet__ValuePositions = QBoxSet__ValuePositions(0)
+	QBoxSet__LowerQuartile QBoxSet__ValuePositions = QBoxSet__ValuePositions(1)
+	QBoxSet__Median        QBoxSet__ValuePositions = QBoxSet__ValuePositions(2)
+	QBoxSet__UpperQuartile QBoxSet__ValuePositions = QBoxSet__ValuePositions(3)
+	QBoxSet__UpperExtreme  QBoxSet__ValuePositions = QBoxSet__ValuePositions(4)
+)
+
 func NewQBoxSet(label string, parent core.QObject_ITF) *QBoxSet {
 	var labelC = C.CString(label)
 	defer C.free(unsafe.Pointer(labelC))
@@ -5170,15 +5146,6 @@ func (ptr *QBoxSet) DestroyQBoxSetDefault() {
 	}
 }
 
-//go:generate stringer -type=QCategoryAxis__AxisLabelsPosition
-//QCategoryAxis::AxisLabelsPosition
-type QCategoryAxis__AxisLabelsPosition int64
-
-const (
-	QCategoryAxis__AxisLabelsPositionCenter  QCategoryAxis__AxisLabelsPosition = QCategoryAxis__AxisLabelsPosition(0x0)
-	QCategoryAxis__AxisLabelsPositionOnValue QCategoryAxis__AxisLabelsPosition = QCategoryAxis__AxisLabelsPosition(0x1)
-)
-
 type QCategoryAxis struct {
 	ptr unsafe.Pointer
 }
@@ -5216,6 +5183,16 @@ func NewQCategoryAxisFromPointer(ptr unsafe.Pointer) *QCategoryAxis {
 	n.SetPointer(ptr)
 	return n
 }
+
+//go:generate stringer -type=QCategoryAxis__AxisLabelsPosition
+//QCategoryAxis::AxisLabelsPosition
+type QCategoryAxis__AxisLabelsPosition int64
+
+const (
+	QCategoryAxis__AxisLabelsPositionCenter  QCategoryAxis__AxisLabelsPosition = QCategoryAxis__AxisLabelsPosition(0x0)
+	QCategoryAxis__AxisLabelsPositionOnValue QCategoryAxis__AxisLabelsPosition = QCategoryAxis__AxisLabelsPosition(0x1)
+)
+
 func (ptr *QCategoryAxis) LabelsPosition() QCategoryAxis__AxisLabelsPosition {
 	if ptr.Pointer() != nil {
 		return QCategoryAxis__AxisLabelsPosition(C.QCategoryAxis_LabelsPosition(ptr.Pointer()))
@@ -5355,13 +5332,6 @@ func (ptr *QCategoryAxis) StartValue(categoryLabel string) float64 {
 	return 0
 }
 
-func (ptr *QCategoryAxis) DisconnectType() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QCategoryAxis::type")
-	}
-}
-
 func (ptr *QCategoryAxis) DestroyQCategoryAxis() {
 	if ptr.Pointer() != nil {
 		C.QCategoryAxis_DestroyQCategoryAxis(ptr.Pointer())
@@ -5369,42 +5339,6 @@ func (ptr *QCategoryAxis) DestroyQCategoryAxis() {
 		ptr.SetPointer(nil)
 	}
 }
-
-//go:generate stringer -type=QChart__AnimationOption
-//QChart::AnimationOption
-type QChart__AnimationOption int64
-
-const (
-	QChart__NoAnimation        QChart__AnimationOption = QChart__AnimationOption(0x0)
-	QChart__GridAxisAnimations QChart__AnimationOption = QChart__AnimationOption(0x1)
-	QChart__SeriesAnimations   QChart__AnimationOption = QChart__AnimationOption(0x2)
-	QChart__AllAnimations      QChart__AnimationOption = QChart__AnimationOption(0x3)
-)
-
-//go:generate stringer -type=QChart__ChartTheme
-//QChart::ChartTheme
-type QChart__ChartTheme int64
-
-const (
-	QChart__ChartThemeLight        QChart__ChartTheme = QChart__ChartTheme(0)
-	QChart__ChartThemeBlueCerulean QChart__ChartTheme = QChart__ChartTheme(1)
-	QChart__ChartThemeDark         QChart__ChartTheme = QChart__ChartTheme(2)
-	QChart__ChartThemeBrownSand    QChart__ChartTheme = QChart__ChartTheme(3)
-	QChart__ChartThemeBlueNcs      QChart__ChartTheme = QChart__ChartTheme(4)
-	QChart__ChartThemeHighContrast QChart__ChartTheme = QChart__ChartTheme(5)
-	QChart__ChartThemeBlueIcy      QChart__ChartTheme = QChart__ChartTheme(6)
-	QChart__ChartThemeQt           QChart__ChartTheme = QChart__ChartTheme(7)
-)
-
-//go:generate stringer -type=QChart__ChartType
-//QChart::ChartType
-type QChart__ChartType int64
-
-const (
-	QChart__ChartTypeUndefined QChart__ChartType = QChart__ChartType(0)
-	QChart__ChartTypeCartesian QChart__ChartType = QChart__ChartType(1)
-	QChart__ChartTypePolar     QChart__ChartType = QChart__ChartType(2)
-)
 
 type QChart struct {
 	ptr unsafe.Pointer
@@ -5443,6 +5377,43 @@ func NewQChartFromPointer(ptr unsafe.Pointer) *QChart {
 	n.SetPointer(ptr)
 	return n
 }
+
+//go:generate stringer -type=QChart__AnimationOption
+//QChart::AnimationOption
+type QChart__AnimationOption int64
+
+const (
+	QChart__NoAnimation        QChart__AnimationOption = QChart__AnimationOption(0x0)
+	QChart__GridAxisAnimations QChart__AnimationOption = QChart__AnimationOption(0x1)
+	QChart__SeriesAnimations   QChart__AnimationOption = QChart__AnimationOption(0x2)
+	QChart__AllAnimations      QChart__AnimationOption = QChart__AnimationOption(0x3)
+)
+
+//go:generate stringer -type=QChart__ChartTheme
+//QChart::ChartTheme
+type QChart__ChartTheme int64
+
+const (
+	QChart__ChartThemeLight        QChart__ChartTheme = QChart__ChartTheme(0)
+	QChart__ChartThemeBlueCerulean QChart__ChartTheme = QChart__ChartTheme(1)
+	QChart__ChartThemeDark         QChart__ChartTheme = QChart__ChartTheme(2)
+	QChart__ChartThemeBrownSand    QChart__ChartTheme = QChart__ChartTheme(3)
+	QChart__ChartThemeBlueNcs      QChart__ChartTheme = QChart__ChartTheme(4)
+	QChart__ChartThemeHighContrast QChart__ChartTheme = QChart__ChartTheme(5)
+	QChart__ChartThemeBlueIcy      QChart__ChartTheme = QChart__ChartTheme(6)
+	QChart__ChartThemeQt           QChart__ChartTheme = QChart__ChartTheme(7)
+)
+
+//go:generate stringer -type=QChart__ChartType
+//QChart::ChartType
+type QChart__ChartType int64
+
+const (
+	QChart__ChartTypeUndefined QChart__ChartType = QChart__ChartType(0)
+	QChart__ChartTypeCartesian QChart__ChartType = QChart__ChartType(1)
+	QChart__ChartTypePolar     QChart__ChartType = QChart__ChartType(2)
+)
+
 func (ptr *QChart) AnimationDuration() int {
 	if ptr.Pointer() != nil {
 		return int(int32(C.QChart_AnimationDuration(ptr.Pointer())))
@@ -5924,17 +5895,6 @@ func (ptr *QChart) series_atList(i int) *QAbstractSeries {
 	return nil
 }
 
-//go:generate stringer -type=QChartView__RubberBand
-//QChartView::RubberBand
-type QChartView__RubberBand int64
-
-const (
-	QChartView__NoRubberBand         QChartView__RubberBand = QChartView__RubberBand(0x0)
-	QChartView__VerticalRubberBand   QChartView__RubberBand = QChartView__RubberBand(0x1)
-	QChartView__HorizontalRubberBand QChartView__RubberBand = QChartView__RubberBand(0x2)
-	QChartView__RectangleRubberBand  QChartView__RubberBand = QChartView__RubberBand(0x3)
-)
-
 type QChartView struct {
 	ptr unsafe.Pointer
 }
@@ -5972,6 +5932,18 @@ func NewQChartViewFromPointer(ptr unsafe.Pointer) *QChartView {
 	n.SetPointer(ptr)
 	return n
 }
+
+//go:generate stringer -type=QChartView__RubberBand
+//QChartView::RubberBand
+type QChartView__RubberBand int64
+
+const (
+	QChartView__NoRubberBand         QChartView__RubberBand = QChartView__RubberBand(0x0)
+	QChartView__VerticalRubberBand   QChartView__RubberBand = QChartView__RubberBand(0x1)
+	QChartView__HorizontalRubberBand QChartView__RubberBand = QChartView__RubberBand(0x2)
+	QChartView__RectangleRubberBand  QChartView__RubberBand = QChartView__RubberBand(0x3)
+)
+
 func NewQChartView2(chart QChart_ITF, parent widgets.QWidget_ITF) *QChartView {
 	var tmpValue = NewQChartViewFromPointer(C.QChartView_NewQChartView2(PointerFromQChart(chart), widgets.PointerFromQWidget(parent)))
 	runtime.SetFinalizer(tmpValue, (*QChartView).DestroyQChartView)
@@ -6290,13 +6262,6 @@ func (ptr *QDateTimeAxis) DisconnectTickCountChanged() {
 func (ptr *QDateTimeAxis) TickCountChanged(tickCount int) {
 	if ptr.Pointer() != nil {
 		C.QDateTimeAxis_TickCountChanged(ptr.Pointer(), C.int(int32(tickCount)))
-	}
-}
-
-func (ptr *QDateTimeAxis) DisconnectType() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QDateTimeAxis::type")
 	}
 }
 
@@ -7931,18 +7896,6 @@ func (ptr *QLegend) markers_atList(i int) *QLegendMarker {
 	return nil
 }
 
-//go:generate stringer -type=QLegendMarker__LegendMarkerType
-//QLegendMarker::LegendMarkerType
-type QLegendMarker__LegendMarkerType int64
-
-const (
-	QLegendMarker__LegendMarkerTypeArea    QLegendMarker__LegendMarkerType = QLegendMarker__LegendMarkerType(0)
-	QLegendMarker__LegendMarkerTypeBar     QLegendMarker__LegendMarkerType = QLegendMarker__LegendMarkerType(1)
-	QLegendMarker__LegendMarkerTypePie     QLegendMarker__LegendMarkerType = QLegendMarker__LegendMarkerType(2)
-	QLegendMarker__LegendMarkerTypeXY      QLegendMarker__LegendMarkerType = QLegendMarker__LegendMarkerType(3)
-	QLegendMarker__LegendMarkerTypeBoxPlot QLegendMarker__LegendMarkerType = QLegendMarker__LegendMarkerType(4)
-)
-
 type QLegendMarker struct {
 	ptr unsafe.Pointer
 }
@@ -7980,6 +7933,19 @@ func NewQLegendMarkerFromPointer(ptr unsafe.Pointer) *QLegendMarker {
 	n.SetPointer(ptr)
 	return n
 }
+
+//go:generate stringer -type=QLegendMarker__LegendMarkerType
+//QLegendMarker::LegendMarkerType
+type QLegendMarker__LegendMarkerType int64
+
+const (
+	QLegendMarker__LegendMarkerTypeArea    QLegendMarker__LegendMarkerType = QLegendMarker__LegendMarkerType(0)
+	QLegendMarker__LegendMarkerTypeBar     QLegendMarker__LegendMarkerType = QLegendMarker__LegendMarkerType(1)
+	QLegendMarker__LegendMarkerTypePie     QLegendMarker__LegendMarkerType = QLegendMarker__LegendMarkerType(2)
+	QLegendMarker__LegendMarkerTypeXY      QLegendMarker__LegendMarkerType = QLegendMarker__LegendMarkerType(3)
+	QLegendMarker__LegendMarkerTypeBoxPlot QLegendMarker__LegendMarkerType = QLegendMarker__LegendMarkerType(4)
+)
+
 func (ptr *QLegendMarker) Brush() *gui.QBrush {
 	if ptr.Pointer() != nil {
 		var tmpValue = gui.NewQBrushFromPointer(C.QLegendMarker_Brush(ptr.Pointer()))
@@ -8738,13 +8704,6 @@ func (ptr *QLogValueAxis) SetRange(min float64, max float64) {
 	}
 }
 
-func (ptr *QLogValueAxis) DisconnectType() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QLogValueAxis::type")
-	}
-}
-
 func (ptr *QLogValueAxis) DestroyQLogValueAxis() {
 	if ptr.Pointer() != nil {
 		C.QLogValueAxis_DestroyQLogValueAxis(ptr.Pointer())
@@ -8921,13 +8880,6 @@ func (ptr *QPieLegendMarker) Slice() *QPieSlice {
 		return NewQPieSliceFromPointer(C.QPieLegendMarker_Slice(ptr.Pointer()))
 	}
 	return nil
-}
-
-func (ptr *QPieLegendMarker) DisconnectType() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPieLegendMarker::type")
-	}
 }
 
 //export callbackQPieLegendMarker_DestroyQPieLegendMarker
@@ -9466,17 +9418,6 @@ func (ptr *QPieSeries) slices_atList(i int) *QPieSlice {
 	return nil
 }
 
-//go:generate stringer -type=QPieSlice__LabelPosition
-//QPieSlice::LabelPosition
-type QPieSlice__LabelPosition int64
-
-const (
-	QPieSlice__LabelOutside          QPieSlice__LabelPosition = QPieSlice__LabelPosition(0)
-	QPieSlice__LabelInsideHorizontal QPieSlice__LabelPosition = QPieSlice__LabelPosition(1)
-	QPieSlice__LabelInsideTangential QPieSlice__LabelPosition = QPieSlice__LabelPosition(2)
-	QPieSlice__LabelInsideNormal     QPieSlice__LabelPosition = QPieSlice__LabelPosition(3)
-)
-
 type QPieSlice struct {
 	ptr unsafe.Pointer
 }
@@ -9514,6 +9455,18 @@ func NewQPieSliceFromPointer(ptr unsafe.Pointer) *QPieSlice {
 	n.SetPointer(ptr)
 	return n
 }
+
+//go:generate stringer -type=QPieSlice__LabelPosition
+//QPieSlice::LabelPosition
+type QPieSlice__LabelPosition int64
+
+const (
+	QPieSlice__LabelOutside          QPieSlice__LabelPosition = QPieSlice__LabelPosition(0)
+	QPieSlice__LabelInsideHorizontal QPieSlice__LabelPosition = QPieSlice__LabelPosition(1)
+	QPieSlice__LabelInsideTangential QPieSlice__LabelPosition = QPieSlice__LabelPosition(2)
+	QPieSlice__LabelInsideNormal     QPieSlice__LabelPosition = QPieSlice__LabelPosition(3)
+)
+
 func (ptr *QPieSlice) AngleSpan() float64 {
 	if ptr.Pointer() != nil {
 		return float64(C.QPieSlice_AngleSpan(ptr.Pointer()))
@@ -10354,15 +10307,6 @@ func (ptr *QPieSlice) DestroyQPieSliceDefault() {
 	}
 }
 
-//go:generate stringer -type=QPolarChart__PolarOrientation
-//QPolarChart::PolarOrientation
-type QPolarChart__PolarOrientation int64
-
-const (
-	QPolarChart__PolarOrientationRadial  QPolarChart__PolarOrientation = QPolarChart__PolarOrientation(0x1)
-	QPolarChart__PolarOrientationAngular QPolarChart__PolarOrientation = QPolarChart__PolarOrientation(0x2)
-)
-
 type QPolarChart struct {
 	ptr unsafe.Pointer
 }
@@ -10400,6 +10344,16 @@ func NewQPolarChartFromPointer(ptr unsafe.Pointer) *QPolarChart {
 	n.SetPointer(ptr)
 	return n
 }
+
+//go:generate stringer -type=QPolarChart__PolarOrientation
+//QPolarChart::PolarOrientation
+type QPolarChart__PolarOrientation int64
+
+const (
+	QPolarChart__PolarOrientationRadial  QPolarChart__PolarOrientation = QPolarChart__PolarOrientation(0x1)
+	QPolarChart__PolarOrientationAngular QPolarChart__PolarOrientation = QPolarChart__PolarOrientation(0x2)
+)
+
 func NewQPolarChart(parent widgets.QGraphicsItem_ITF, wFlags core.Qt__WindowType) *QPolarChart {
 	var tmpValue = NewQPolarChartFromPointer(C.QPolarChart_NewQPolarChart(widgets.PointerFromQGraphicsItem(parent), C.longlong(wFlags)))
 	runtime.SetFinalizer(tmpValue, (*QPolarChart).DestroyQPolarChart)
@@ -10447,15 +10401,6 @@ func (ptr *QPolarChart) axes_atList(i int) *QAbstractAxis {
 	return nil
 }
 
-//go:generate stringer -type=QScatterSeries__MarkerShape
-//QScatterSeries::MarkerShape
-type QScatterSeries__MarkerShape int64
-
-const (
-	QScatterSeries__MarkerShapeCircle    QScatterSeries__MarkerShape = QScatterSeries__MarkerShape(0)
-	QScatterSeries__MarkerShapeRectangle QScatterSeries__MarkerShape = QScatterSeries__MarkerShape(1)
-)
-
 type QScatterSeries struct {
 	ptr unsafe.Pointer
 }
@@ -10493,6 +10438,16 @@ func NewQScatterSeriesFromPointer(ptr unsafe.Pointer) *QScatterSeries {
 	n.SetPointer(ptr)
 	return n
 }
+
+//go:generate stringer -type=QScatterSeries__MarkerShape
+//QScatterSeries::MarkerShape
+type QScatterSeries__MarkerShape int64
+
+const (
+	QScatterSeries__MarkerShapeCircle    QScatterSeries__MarkerShape = QScatterSeries__MarkerShape(0)
+	QScatterSeries__MarkerShapeRectangle QScatterSeries__MarkerShape = QScatterSeries__MarkerShape(1)
+)
+
 func (ptr *QScatterSeries) BorderColor() *gui.QColor {
 	if ptr.Pointer() != nil {
 		var tmpValue = gui.NewQColorFromPointer(C.QScatterSeries_BorderColor(ptr.Pointer()))
@@ -12370,8 +12325,9 @@ func NewQValueAxis(parent core.QObject_ITF) *QValueAxis {
 func callbackQValueAxis_ApplyNiceNumbers(ptr unsafe.Pointer) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QValueAxis::applyNiceNumbers"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQValueAxisFromPointer(ptr).ApplyNiceNumbersDefault()
 	}
-
 }
 
 func (ptr *QValueAxis) ConnectApplyNiceNumbers(f func()) {
@@ -12391,6 +12347,12 @@ func (ptr *QValueAxis) DisconnectApplyNiceNumbers() {
 func (ptr *QValueAxis) ApplyNiceNumbers() {
 	if ptr.Pointer() != nil {
 		C.QValueAxis_ApplyNiceNumbers(ptr.Pointer())
+	}
+}
+
+func (ptr *QValueAxis) ApplyNiceNumbersDefault() {
+	if ptr.Pointer() != nil {
+		C.QValueAxis_ApplyNiceNumbersDefault(ptr.Pointer())
 	}
 }
 
@@ -12576,13 +12538,6 @@ func (ptr *QValueAxis) TickCountChanged(tickCount int) {
 	}
 }
 
-func (ptr *QValueAxis) DisconnectType() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QValueAxis::type")
-	}
-}
-
 func (ptr *QValueAxis) DestroyQValueAxis() {
 	if ptr.Pointer() != nil {
 		C.QValueAxis_DestroyQValueAxis(ptr.Pointer())
@@ -12665,13 +12620,6 @@ func (ptr *QXYLegendMarker) SeriesDefault() *QXYSeries {
 		return NewQXYSeriesFromPointer(C.QXYLegendMarker_SeriesDefault(ptr.Pointer()))
 	}
 	return nil
-}
-
-func (ptr *QXYLegendMarker) DisconnectType() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QXYLegendMarker::type")
-	}
 }
 
 //export callbackQXYLegendMarker_DestroyQXYLegendMarker

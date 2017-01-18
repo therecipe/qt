@@ -24,17 +24,6 @@ func cGoUnpackString(s C.struct_QtQml_PackedString) string {
 	return C.GoStringN(s.data, C.int(s.len))
 }
 
-//go:generate stringer -type=QJSEngine__Extension
-//QJSEngine::Extension
-type QJSEngine__Extension int64
-
-const (
-	QJSEngine__TranslationExtension       QJSEngine__Extension = QJSEngine__Extension(0x1)
-	QJSEngine__ConsoleExtension           QJSEngine__Extension = QJSEngine__Extension(0x2)
-	QJSEngine__GarbageCollectionExtension QJSEngine__Extension = QJSEngine__Extension(0x4)
-	QJSEngine__AllExtensions              QJSEngine__Extension = QJSEngine__Extension(0xffffffff)
-)
-
 type QJSEngine struct {
 	core.QObject
 }
@@ -73,6 +62,18 @@ func NewQJSEngineFromPointer(ptr unsafe.Pointer) *QJSEngine {
 	n.SetPointer(ptr)
 	return n
 }
+
+//go:generate stringer -type=QJSEngine__Extension
+//QJSEngine::Extension
+type QJSEngine__Extension int64
+
+const (
+	QJSEngine__TranslationExtension       QJSEngine__Extension = QJSEngine__Extension(0x1)
+	QJSEngine__ConsoleExtension           QJSEngine__Extension = QJSEngine__Extension(0x2)
+	QJSEngine__GarbageCollectionExtension QJSEngine__Extension = QJSEngine__Extension(0x4)
+	QJSEngine__AllExtensions              QJSEngine__Extension = QJSEngine__Extension(0xffffffff)
+)
+
 func NewQJSEngine() *QJSEngine {
 	var tmpValue = NewQJSEngineFromPointer(C.QJSEngine_NewQJSEngine())
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
@@ -523,15 +524,6 @@ func (ptr *QJSEngine) MetaObjectDefault() *core.QMetaObject {
 	return nil
 }
 
-//go:generate stringer -type=QJSValue__SpecialValue
-//QJSValue::SpecialValue
-type QJSValue__SpecialValue int64
-
-const (
-	QJSValue__NullValue      QJSValue__SpecialValue = QJSValue__SpecialValue(0)
-	QJSValue__UndefinedValue QJSValue__SpecialValue = QJSValue__SpecialValue(1)
-)
-
 type QJSValue struct {
 	ptr unsafe.Pointer
 }
@@ -569,6 +561,16 @@ func NewQJSValueFromPointer(ptr unsafe.Pointer) *QJSValue {
 	n.SetPointer(ptr)
 	return n
 }
+
+//go:generate stringer -type=QJSValue__SpecialValue
+//QJSValue::SpecialValue
+type QJSValue__SpecialValue int64
+
+const (
+	QJSValue__NullValue      QJSValue__SpecialValue = QJSValue__SpecialValue(0)
+	QJSValue__UndefinedValue QJSValue__SpecialValue = QJSValue__SpecialValue(1)
+)
+
 func NewQJSValue3(other QJSValue_ITF) *QJSValue {
 	var tmpValue = NewQJSValueFromPointer(C.QJSValue_NewQJSValue3(PointerFromQJSValue(other)))
 	runtime.SetFinalizer(tmpValue, (*QJSValue).DestroyQJSValue)
@@ -923,17 +925,6 @@ func NewQJSValueIteratorFromPointer(ptr unsafe.Pointer) *QJSValueIterator {
 	return n
 }
 
-//go:generate stringer -type=QQmlAbstractUrlInterceptor__DataType
-//QQmlAbstractUrlInterceptor::DataType
-type QQmlAbstractUrlInterceptor__DataType int64
-
-const (
-	QQmlAbstractUrlInterceptor__QmlFile        QQmlAbstractUrlInterceptor__DataType = QQmlAbstractUrlInterceptor__DataType(0)
-	QQmlAbstractUrlInterceptor__JavaScriptFile QQmlAbstractUrlInterceptor__DataType = QQmlAbstractUrlInterceptor__DataType(1)
-	QQmlAbstractUrlInterceptor__QmldirFile     QQmlAbstractUrlInterceptor__DataType = QQmlAbstractUrlInterceptor__DataType(2)
-	QQmlAbstractUrlInterceptor__UrlString      QQmlAbstractUrlInterceptor__DataType = QQmlAbstractUrlInterceptor__DataType(0x1000)
-)
-
 type QQmlAbstractUrlInterceptor struct {
 	ptr unsafe.Pointer
 }
@@ -971,6 +962,18 @@ func NewQQmlAbstractUrlInterceptorFromPointer(ptr unsafe.Pointer) *QQmlAbstractU
 	n.SetPointer(ptr)
 	return n
 }
+
+//go:generate stringer -type=QQmlAbstractUrlInterceptor__DataType
+//QQmlAbstractUrlInterceptor::DataType
+type QQmlAbstractUrlInterceptor__DataType int64
+
+const (
+	QQmlAbstractUrlInterceptor__QmlFile        QQmlAbstractUrlInterceptor__DataType = QQmlAbstractUrlInterceptor__DataType(0)
+	QQmlAbstractUrlInterceptor__JavaScriptFile QQmlAbstractUrlInterceptor__DataType = QQmlAbstractUrlInterceptor__DataType(1)
+	QQmlAbstractUrlInterceptor__QmldirFile     QQmlAbstractUrlInterceptor__DataType = QQmlAbstractUrlInterceptor__DataType(2)
+	QQmlAbstractUrlInterceptor__UrlString      QQmlAbstractUrlInterceptor__DataType = QQmlAbstractUrlInterceptor__DataType(0x1000)
+)
+
 func NewQQmlAbstractUrlInterceptor() *QQmlAbstractUrlInterceptor {
 	return NewQQmlAbstractUrlInterceptorFromPointer(C.QQmlAbstractUrlInterceptor_NewQQmlAbstractUrlInterceptor())
 }
@@ -992,7 +995,7 @@ func (ptr *QQmlAbstractUrlInterceptor) ConnectIntercept(f func(url *core.QUrl, t
 	}
 }
 
-func (ptr *QQmlAbstractUrlInterceptor) DisconnectIntercept(url core.QUrl_ITF, ty QQmlAbstractUrlInterceptor__DataType) {
+func (ptr *QQmlAbstractUrlInterceptor) DisconnectIntercept() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QQmlAbstractUrlInterceptor::intercept")
@@ -1116,8 +1119,9 @@ func NewQQmlApplicationEngine2(url core.QUrl_ITF, parent core.QObject_ITF) *QQml
 func callbackQQmlApplicationEngine_Load2(ptr unsafe.Pointer, filePath C.struct_QtQml_PackedString) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QQmlApplicationEngine::load2"); signal != nil {
 		signal.(func(string))(cGoUnpackString(filePath))
+	} else {
+		NewQQmlApplicationEngineFromPointer(ptr).Load2Default(cGoUnpackString(filePath))
 	}
-
 }
 
 func (ptr *QQmlApplicationEngine) ConnectLoad2(f func(filePath string)) {
@@ -1127,7 +1131,7 @@ func (ptr *QQmlApplicationEngine) ConnectLoad2(f func(filePath string)) {
 	}
 }
 
-func (ptr *QQmlApplicationEngine) DisconnectLoad2(filePath string) {
+func (ptr *QQmlApplicationEngine) DisconnectLoad2() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QQmlApplicationEngine::load2")
@@ -1142,12 +1146,21 @@ func (ptr *QQmlApplicationEngine) Load2(filePath string) {
 	}
 }
 
+func (ptr *QQmlApplicationEngine) Load2Default(filePath string) {
+	if ptr.Pointer() != nil {
+		var filePathC = C.CString(filePath)
+		defer C.free(unsafe.Pointer(filePathC))
+		C.QQmlApplicationEngine_Load2Default(ptr.Pointer(), filePathC)
+	}
+}
+
 //export callbackQQmlApplicationEngine_Load
 func callbackQQmlApplicationEngine_Load(ptr unsafe.Pointer, url unsafe.Pointer) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QQmlApplicationEngine::load"); signal != nil {
 		signal.(func(*core.QUrl))(core.NewQUrlFromPointer(url))
+	} else {
+		NewQQmlApplicationEngineFromPointer(ptr).LoadDefault(core.NewQUrlFromPointer(url))
 	}
-
 }
 
 func (ptr *QQmlApplicationEngine) ConnectLoad(f func(url *core.QUrl)) {
@@ -1157,7 +1170,7 @@ func (ptr *QQmlApplicationEngine) ConnectLoad(f func(url *core.QUrl)) {
 	}
 }
 
-func (ptr *QQmlApplicationEngine) DisconnectLoad(url core.QUrl_ITF) {
+func (ptr *QQmlApplicationEngine) DisconnectLoad() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QQmlApplicationEngine::load")
@@ -1170,12 +1183,19 @@ func (ptr *QQmlApplicationEngine) Load(url core.QUrl_ITF) {
 	}
 }
 
+func (ptr *QQmlApplicationEngine) LoadDefault(url core.QUrl_ITF) {
+	if ptr.Pointer() != nil {
+		C.QQmlApplicationEngine_LoadDefault(ptr.Pointer(), core.PointerFromQUrl(url))
+	}
+}
+
 //export callbackQQmlApplicationEngine_LoadData
 func callbackQQmlApplicationEngine_LoadData(ptr unsafe.Pointer, data unsafe.Pointer, url unsafe.Pointer) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QQmlApplicationEngine::loadData"); signal != nil {
 		signal.(func(*core.QByteArray, *core.QUrl))(core.NewQByteArrayFromPointer(data), core.NewQUrlFromPointer(url))
+	} else {
+		NewQQmlApplicationEngineFromPointer(ptr).LoadDataDefault(core.NewQByteArrayFromPointer(data), core.NewQUrlFromPointer(url))
 	}
-
 }
 
 func (ptr *QQmlApplicationEngine) ConnectLoadData(f func(data *core.QByteArray, url *core.QUrl)) {
@@ -1185,7 +1205,7 @@ func (ptr *QQmlApplicationEngine) ConnectLoadData(f func(data *core.QByteArray, 
 	}
 }
 
-func (ptr *QQmlApplicationEngine) DisconnectLoadData(data core.QByteArray_ITF, url core.QUrl_ITF) {
+func (ptr *QQmlApplicationEngine) DisconnectLoadData() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QQmlApplicationEngine::loadData")
@@ -1195,6 +1215,12 @@ func (ptr *QQmlApplicationEngine) DisconnectLoadData(data core.QByteArray_ITF, u
 func (ptr *QQmlApplicationEngine) LoadData(data core.QByteArray_ITF, url core.QUrl_ITF) {
 	if ptr.Pointer() != nil {
 		C.QQmlApplicationEngine_LoadData(ptr.Pointer(), core.PointerFromQByteArray(data), core.PointerFromQUrl(url))
+	}
+}
+
+func (ptr *QQmlApplicationEngine) LoadDataDefault(data core.QByteArray_ITF, url core.QUrl_ITF) {
+	if ptr.Pointer() != nil {
+		C.QQmlApplicationEngine_LoadDataDefault(ptr.Pointer(), core.PointerFromQByteArray(data), core.PointerFromQUrl(url))
 	}
 }
 
@@ -1592,26 +1618,6 @@ func (ptr *QQmlApplicationEngine) MetaObjectDefault() *core.QMetaObject {
 	return nil
 }
 
-//go:generate stringer -type=QQmlComponent__CompilationMode
-//QQmlComponent::CompilationMode
-type QQmlComponent__CompilationMode int64
-
-const (
-	QQmlComponent__PreferSynchronous QQmlComponent__CompilationMode = QQmlComponent__CompilationMode(0)
-	QQmlComponent__Asynchronous      QQmlComponent__CompilationMode = QQmlComponent__CompilationMode(1)
-)
-
-//go:generate stringer -type=QQmlComponent__Status
-//QQmlComponent::Status
-type QQmlComponent__Status int64
-
-const (
-	QQmlComponent__Null    QQmlComponent__Status = QQmlComponent__Status(0)
-	QQmlComponent__Ready   QQmlComponent__Status = QQmlComponent__Status(1)
-	QQmlComponent__Loading QQmlComponent__Status = QQmlComponent__Status(2)
-	QQmlComponent__Error   QQmlComponent__Status = QQmlComponent__Status(3)
-)
-
 type QQmlComponent struct {
 	core.QObject
 }
@@ -1650,6 +1656,27 @@ func NewQQmlComponentFromPointer(ptr unsafe.Pointer) *QQmlComponent {
 	n.SetPointer(ptr)
 	return n
 }
+
+//go:generate stringer -type=QQmlComponent__CompilationMode
+//QQmlComponent::CompilationMode
+type QQmlComponent__CompilationMode int64
+
+const (
+	QQmlComponent__PreferSynchronous QQmlComponent__CompilationMode = QQmlComponent__CompilationMode(0)
+	QQmlComponent__Asynchronous      QQmlComponent__CompilationMode = QQmlComponent__CompilationMode(1)
+)
+
+//go:generate stringer -type=QQmlComponent__Status
+//QQmlComponent::Status
+type QQmlComponent__Status int64
+
+const (
+	QQmlComponent__Null    QQmlComponent__Status = QQmlComponent__Status(0)
+	QQmlComponent__Ready   QQmlComponent__Status = QQmlComponent__Status(1)
+	QQmlComponent__Loading QQmlComponent__Status = QQmlComponent__Status(2)
+	QQmlComponent__Error   QQmlComponent__Status = QQmlComponent__Status(3)
+)
+
 func (ptr *QQmlComponent) Progress() float64 {
 	if ptr.Pointer() != nil {
 		return float64(C.QQmlComponent_Progress(ptr.Pointer()))
@@ -1907,8 +1934,9 @@ func (ptr *QQmlComponent) IsReady() bool {
 func callbackQQmlComponent_LoadUrl(ptr unsafe.Pointer, url unsafe.Pointer) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QQmlComponent::loadUrl"); signal != nil {
 		signal.(func(*core.QUrl))(core.NewQUrlFromPointer(url))
+	} else {
+		NewQQmlComponentFromPointer(ptr).LoadUrlDefault(core.NewQUrlFromPointer(url))
 	}
-
 }
 
 func (ptr *QQmlComponent) ConnectLoadUrl(f func(url *core.QUrl)) {
@@ -1918,7 +1946,7 @@ func (ptr *QQmlComponent) ConnectLoadUrl(f func(url *core.QUrl)) {
 	}
 }
 
-func (ptr *QQmlComponent) DisconnectLoadUrl(url core.QUrl_ITF) {
+func (ptr *QQmlComponent) DisconnectLoadUrl() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QQmlComponent::loadUrl")
@@ -1931,12 +1959,19 @@ func (ptr *QQmlComponent) LoadUrl(url core.QUrl_ITF) {
 	}
 }
 
+func (ptr *QQmlComponent) LoadUrlDefault(url core.QUrl_ITF) {
+	if ptr.Pointer() != nil {
+		C.QQmlComponent_LoadUrlDefault(ptr.Pointer(), core.PointerFromQUrl(url))
+	}
+}
+
 //export callbackQQmlComponent_LoadUrl2
 func callbackQQmlComponent_LoadUrl2(ptr unsafe.Pointer, url unsafe.Pointer, mode C.longlong) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QQmlComponent::loadUrl2"); signal != nil {
 		signal.(func(*core.QUrl, QQmlComponent__CompilationMode))(core.NewQUrlFromPointer(url), QQmlComponent__CompilationMode(mode))
+	} else {
+		NewQQmlComponentFromPointer(ptr).LoadUrl2Default(core.NewQUrlFromPointer(url), QQmlComponent__CompilationMode(mode))
 	}
-
 }
 
 func (ptr *QQmlComponent) ConnectLoadUrl2(f func(url *core.QUrl, mode QQmlComponent__CompilationMode)) {
@@ -1946,7 +1981,7 @@ func (ptr *QQmlComponent) ConnectLoadUrl2(f func(url *core.QUrl, mode QQmlCompon
 	}
 }
 
-func (ptr *QQmlComponent) DisconnectLoadUrl2(url core.QUrl_ITF, mode QQmlComponent__CompilationMode) {
+func (ptr *QQmlComponent) DisconnectLoadUrl2() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QQmlComponent::loadUrl2")
@@ -1956,6 +1991,12 @@ func (ptr *QQmlComponent) DisconnectLoadUrl2(url core.QUrl_ITF, mode QQmlCompone
 func (ptr *QQmlComponent) LoadUrl2(url core.QUrl_ITF, mode QQmlComponent__CompilationMode) {
 	if ptr.Pointer() != nil {
 		C.QQmlComponent_LoadUrl2(ptr.Pointer(), core.PointerFromQUrl(url), C.longlong(mode))
+	}
+}
+
+func (ptr *QQmlComponent) LoadUrl2Default(url core.QUrl_ITF, mode QQmlComponent__CompilationMode) {
+	if ptr.Pointer() != nil {
+		C.QQmlComponent_LoadUrl2Default(ptr.Pointer(), core.PointerFromQUrl(url), C.longlong(mode))
 	}
 }
 
@@ -1992,8 +2033,9 @@ func (ptr *QQmlComponent) ProgressChanged(progress float64) {
 func callbackQQmlComponent_SetData(ptr unsafe.Pointer, data unsafe.Pointer, url unsafe.Pointer) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QQmlComponent::setData"); signal != nil {
 		signal.(func(*core.QByteArray, *core.QUrl))(core.NewQByteArrayFromPointer(data), core.NewQUrlFromPointer(url))
+	} else {
+		NewQQmlComponentFromPointer(ptr).SetDataDefault(core.NewQByteArrayFromPointer(data), core.NewQUrlFromPointer(url))
 	}
-
 }
 
 func (ptr *QQmlComponent) ConnectSetData(f func(data *core.QByteArray, url *core.QUrl)) {
@@ -2003,7 +2045,7 @@ func (ptr *QQmlComponent) ConnectSetData(f func(data *core.QByteArray, url *core
 	}
 }
 
-func (ptr *QQmlComponent) DisconnectSetData(data core.QByteArray_ITF, url core.QUrl_ITF) {
+func (ptr *QQmlComponent) DisconnectSetData() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QQmlComponent::setData")
@@ -2013,6 +2055,12 @@ func (ptr *QQmlComponent) DisconnectSetData(data core.QByteArray_ITF, url core.Q
 func (ptr *QQmlComponent) SetData(data core.QByteArray_ITF, url core.QUrl_ITF) {
 	if ptr.Pointer() != nil {
 		C.QQmlComponent_SetData(ptr.Pointer(), core.PointerFromQByteArray(data), core.PointerFromQUrl(url))
+	}
+}
+
+func (ptr *QQmlComponent) SetDataDefault(data core.QByteArray_ITF, url core.QUrl_ITF) {
+	if ptr.Pointer() != nil {
+		C.QQmlComponent_SetDataDefault(ptr.Pointer(), core.PointerFromQByteArray(data), core.PointerFromQUrl(url))
 	}
 }
 
@@ -2958,15 +3006,6 @@ func (ptr *QQmlContext) MetaObjectDefault() *core.QMetaObject {
 	return nil
 }
 
-//go:generate stringer -type=QQmlEngine__ObjectOwnership
-//QQmlEngine::ObjectOwnership
-type QQmlEngine__ObjectOwnership int64
-
-const (
-	QQmlEngine__CppOwnership        QQmlEngine__ObjectOwnership = QQmlEngine__ObjectOwnership(0)
-	QQmlEngine__JavaScriptOwnership QQmlEngine__ObjectOwnership = QQmlEngine__ObjectOwnership(1)
-)
-
 type QQmlEngine struct {
 	QJSEngine
 }
@@ -3005,6 +3044,16 @@ func NewQQmlEngineFromPointer(ptr unsafe.Pointer) *QQmlEngine {
 	n.SetPointer(ptr)
 	return n
 }
+
+//go:generate stringer -type=QQmlEngine__ObjectOwnership
+//QQmlEngine::ObjectOwnership
+type QQmlEngine__ObjectOwnership int64
+
+const (
+	QQmlEngine__CppOwnership        QQmlEngine__ObjectOwnership = QQmlEngine__ObjectOwnership(0)
+	QQmlEngine__JavaScriptOwnership QQmlEngine__ObjectOwnership = QQmlEngine__ObjectOwnership(1)
+)
+
 func (ptr *QQmlEngine) OfflineStoragePath() string {
 	if ptr.Pointer() != nil {
 		return cGoUnpackString(C.QQmlEngine_OfflineStoragePath(ptr.Pointer()))
@@ -4480,7 +4529,7 @@ func (ptr *QQmlExtensionPlugin) ConnectRegisterTypes(f func(uri string)) {
 	}
 }
 
-func (ptr *QQmlExtensionPlugin) DisconnectRegisterTypes(uri string) {
+func (ptr *QQmlExtensionPlugin) DisconnectRegisterTypes() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QQmlExtensionPlugin::registerTypes")
@@ -5264,26 +5313,6 @@ func (ptr *QQmlFileSelector) MetaObjectDefault() *core.QMetaObject {
 	return nil
 }
 
-//go:generate stringer -type=QQmlImageProviderBase__Flag
-//QQmlImageProviderBase::Flag
-type QQmlImageProviderBase__Flag int64
-
-const (
-	QQmlImageProviderBase__ForceAsynchronousImageLoading QQmlImageProviderBase__Flag = QQmlImageProviderBase__Flag(0x01)
-)
-
-//go:generate stringer -type=QQmlImageProviderBase__ImageType
-//QQmlImageProviderBase::ImageType
-type QQmlImageProviderBase__ImageType int64
-
-const (
-	QQmlImageProviderBase__Image         QQmlImageProviderBase__ImageType = QQmlImageProviderBase__ImageType(0)
-	QQmlImageProviderBase__Pixmap        QQmlImageProviderBase__ImageType = QQmlImageProviderBase__ImageType(1)
-	QQmlImageProviderBase__Texture       QQmlImageProviderBase__ImageType = QQmlImageProviderBase__ImageType(2)
-	QQmlImageProviderBase__Invalid       QQmlImageProviderBase__ImageType = QQmlImageProviderBase__ImageType(3)
-	QQmlImageProviderBase__ImageResponse QQmlImageProviderBase__ImageType = QQmlImageProviderBase__ImageType(4)
-)
-
 type QQmlImageProviderBase struct {
 	ptr unsafe.Pointer
 }
@@ -5329,6 +5358,26 @@ func (ptr *QQmlImageProviderBase) DestroyQQmlImageProviderBase() {
 		ptr.SetPointer(nil)
 	}
 }
+
+//go:generate stringer -type=QQmlImageProviderBase__Flag
+//QQmlImageProviderBase::Flag
+type QQmlImageProviderBase__Flag int64
+
+const (
+	QQmlImageProviderBase__ForceAsynchronousImageLoading QQmlImageProviderBase__Flag = QQmlImageProviderBase__Flag(0x01)
+)
+
+//go:generate stringer -type=QQmlImageProviderBase__ImageType
+//QQmlImageProviderBase::ImageType
+type QQmlImageProviderBase__ImageType int64
+
+const (
+	QQmlImageProviderBase__Image         QQmlImageProviderBase__ImageType = QQmlImageProviderBase__ImageType(0)
+	QQmlImageProviderBase__Pixmap        QQmlImageProviderBase__ImageType = QQmlImageProviderBase__ImageType(1)
+	QQmlImageProviderBase__Texture       QQmlImageProviderBase__ImageType = QQmlImageProviderBase__ImageType(2)
+	QQmlImageProviderBase__Invalid       QQmlImageProviderBase__ImageType = QQmlImageProviderBase__ImageType(3)
+	QQmlImageProviderBase__ImageResponse QQmlImageProviderBase__ImageType = QQmlImageProviderBase__ImageType(4)
+)
 
 //export callbackQQmlImageProviderBase_Flags
 func callbackQQmlImageProviderBase_Flags(ptr unsafe.Pointer) C.longlong {
@@ -5502,27 +5551,6 @@ func (ptr *QQmlIncubationController) IncubatingObjectCountChangedDefault(incubat
 	}
 }
 
-//go:generate stringer -type=QQmlIncubator__IncubationMode
-//QQmlIncubator::IncubationMode
-type QQmlIncubator__IncubationMode int64
-
-const (
-	QQmlIncubator__Asynchronous         QQmlIncubator__IncubationMode = QQmlIncubator__IncubationMode(0)
-	QQmlIncubator__AsynchronousIfNested QQmlIncubator__IncubationMode = QQmlIncubator__IncubationMode(1)
-	QQmlIncubator__Synchronous          QQmlIncubator__IncubationMode = QQmlIncubator__IncubationMode(2)
-)
-
-//go:generate stringer -type=QQmlIncubator__Status
-//QQmlIncubator::Status
-type QQmlIncubator__Status int64
-
-const (
-	QQmlIncubator__Null    QQmlIncubator__Status = QQmlIncubator__Status(0)
-	QQmlIncubator__Ready   QQmlIncubator__Status = QQmlIncubator__Status(1)
-	QQmlIncubator__Loading QQmlIncubator__Status = QQmlIncubator__Status(2)
-	QQmlIncubator__Error   QQmlIncubator__Status = QQmlIncubator__Status(3)
-)
-
 type QQmlIncubator struct {
 	ptr unsafe.Pointer
 }
@@ -5568,6 +5596,27 @@ func (ptr *QQmlIncubator) DestroyQQmlIncubator() {
 		ptr.SetPointer(nil)
 	}
 }
+
+//go:generate stringer -type=QQmlIncubator__IncubationMode
+//QQmlIncubator::IncubationMode
+type QQmlIncubator__IncubationMode int64
+
+const (
+	QQmlIncubator__Asynchronous         QQmlIncubator__IncubationMode = QQmlIncubator__IncubationMode(0)
+	QQmlIncubator__AsynchronousIfNested QQmlIncubator__IncubationMode = QQmlIncubator__IncubationMode(1)
+	QQmlIncubator__Synchronous          QQmlIncubator__IncubationMode = QQmlIncubator__IncubationMode(2)
+)
+
+//go:generate stringer -type=QQmlIncubator__Status
+//QQmlIncubator::Status
+type QQmlIncubator__Status int64
+
+const (
+	QQmlIncubator__Null    QQmlIncubator__Status = QQmlIncubator__Status(0)
+	QQmlIncubator__Ready   QQmlIncubator__Status = QQmlIncubator__Status(1)
+	QQmlIncubator__Loading QQmlIncubator__Status = QQmlIncubator__Status(2)
+	QQmlIncubator__Error   QQmlIncubator__Status = QQmlIncubator__Status(3)
+)
 
 func NewQQmlIncubator(mode QQmlIncubator__IncubationMode) *QQmlIncubator {
 	return NewQQmlIncubatorFromPointer(C.QQmlIncubator_NewQQmlIncubator(C.longlong(mode)))
@@ -5990,7 +6039,7 @@ func (ptr *QQmlNetworkAccessManagerFactory) ConnectCreate(f func(parent *core.QO
 	}
 }
 
-func (ptr *QQmlNetworkAccessManagerFactory) DisconnectCreate(parent core.QObject_ITF) {
+func (ptr *QQmlNetworkAccessManagerFactory) DisconnectCreate() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QQmlNetworkAccessManagerFactory::create")
@@ -6156,30 +6205,6 @@ func (ptr *QQmlParserStatus) ComponentComplete() {
 	}
 }
 
-//go:generate stringer -type=QQmlPrivate__AutoParentResult
-//QQmlPrivate::AutoParentResult
-type QQmlPrivate__AutoParentResult int64
-
-const (
-	QQmlPrivate__Parented           QQmlPrivate__AutoParentResult = QQmlPrivate__AutoParentResult(0)
-	QQmlPrivate__IncompatibleObject QQmlPrivate__AutoParentResult = QQmlPrivate__AutoParentResult(1)
-	QQmlPrivate__IncompatibleParent QQmlPrivate__AutoParentResult = QQmlPrivate__AutoParentResult(2)
-)
-
-//go:generate stringer -type=QQmlPrivate__RegistrationType
-//QQmlPrivate::RegistrationType
-type QQmlPrivate__RegistrationType int64
-
-const (
-	QQmlPrivate__TypeRegistration               QQmlPrivate__RegistrationType = QQmlPrivate__RegistrationType(0)
-	QQmlPrivate__InterfaceRegistration          QQmlPrivate__RegistrationType = QQmlPrivate__RegistrationType(1)
-	QQmlPrivate__AutoParentRegistration         QQmlPrivate__RegistrationType = QQmlPrivate__RegistrationType(2)
-	QQmlPrivate__SingletonRegistration          QQmlPrivate__RegistrationType = QQmlPrivate__RegistrationType(3)
-	QQmlPrivate__CompositeRegistration          QQmlPrivate__RegistrationType = QQmlPrivate__RegistrationType(4)
-	QQmlPrivate__CompositeSingletonRegistration QQmlPrivate__RegistrationType = QQmlPrivate__RegistrationType(5)
-	QQmlPrivate__QmlUnitCacheHookRegistration   QQmlPrivate__RegistrationType = QQmlPrivate__RegistrationType(6)
-)
-
 type QQmlPrivate struct {
 	ptr unsafe.Pointer
 }
@@ -6225,25 +6250,28 @@ func (ptr *QQmlPrivate) DestroyQQmlPrivate() {
 	}
 }
 
-//go:generate stringer -type=QQmlProperty__PropertyTypeCategory
-//QQmlProperty::PropertyTypeCategory
-type QQmlProperty__PropertyTypeCategory int64
+//go:generate stringer -type=QQmlPrivate__AutoParentResult
+//QQmlPrivate::AutoParentResult
+type QQmlPrivate__AutoParentResult int64
 
 const (
-	QQmlProperty__InvalidCategory QQmlProperty__PropertyTypeCategory = QQmlProperty__PropertyTypeCategory(0)
-	QQmlProperty__List            QQmlProperty__PropertyTypeCategory = QQmlProperty__PropertyTypeCategory(1)
-	QQmlProperty__Object          QQmlProperty__PropertyTypeCategory = QQmlProperty__PropertyTypeCategory(2)
-	QQmlProperty__Normal          QQmlProperty__PropertyTypeCategory = QQmlProperty__PropertyTypeCategory(3)
+	QQmlPrivate__Parented           QQmlPrivate__AutoParentResult = QQmlPrivate__AutoParentResult(0)
+	QQmlPrivate__IncompatibleObject QQmlPrivate__AutoParentResult = QQmlPrivate__AutoParentResult(1)
+	QQmlPrivate__IncompatibleParent QQmlPrivate__AutoParentResult = QQmlPrivate__AutoParentResult(2)
 )
 
-//go:generate stringer -type=QQmlProperty__Type
-//QQmlProperty::Type
-type QQmlProperty__Type int64
+//go:generate stringer -type=QQmlPrivate__RegistrationType
+//QQmlPrivate::RegistrationType
+type QQmlPrivate__RegistrationType int64
 
 const (
-	QQmlProperty__Invalid        QQmlProperty__Type = QQmlProperty__Type(0)
-	QQmlProperty__Property       QQmlProperty__Type = QQmlProperty__Type(1)
-	QQmlProperty__SignalProperty QQmlProperty__Type = QQmlProperty__Type(2)
+	QQmlPrivate__TypeRegistration               QQmlPrivate__RegistrationType = QQmlPrivate__RegistrationType(0)
+	QQmlPrivate__InterfaceRegistration          QQmlPrivate__RegistrationType = QQmlPrivate__RegistrationType(1)
+	QQmlPrivate__AutoParentRegistration         QQmlPrivate__RegistrationType = QQmlPrivate__RegistrationType(2)
+	QQmlPrivate__SingletonRegistration          QQmlPrivate__RegistrationType = QQmlPrivate__RegistrationType(3)
+	QQmlPrivate__CompositeRegistration          QQmlPrivate__RegistrationType = QQmlPrivate__RegistrationType(4)
+	QQmlPrivate__CompositeSingletonRegistration QQmlPrivate__RegistrationType = QQmlPrivate__RegistrationType(5)
+	QQmlPrivate__QmlUnitCacheHookRegistration   QQmlPrivate__RegistrationType = QQmlPrivate__RegistrationType(6)
 )
 
 type QQmlProperty struct {
@@ -6290,6 +6318,27 @@ func (ptr *QQmlProperty) DestroyQQmlProperty() {
 		ptr.SetPointer(nil)
 	}
 }
+
+//go:generate stringer -type=QQmlProperty__PropertyTypeCategory
+//QQmlProperty::PropertyTypeCategory
+type QQmlProperty__PropertyTypeCategory int64
+
+const (
+	QQmlProperty__InvalidCategory QQmlProperty__PropertyTypeCategory = QQmlProperty__PropertyTypeCategory(0)
+	QQmlProperty__List            QQmlProperty__PropertyTypeCategory = QQmlProperty__PropertyTypeCategory(1)
+	QQmlProperty__Object          QQmlProperty__PropertyTypeCategory = QQmlProperty__PropertyTypeCategory(2)
+	QQmlProperty__Normal          QQmlProperty__PropertyTypeCategory = QQmlProperty__PropertyTypeCategory(3)
+)
+
+//go:generate stringer -type=QQmlProperty__Type
+//QQmlProperty::Type
+type QQmlProperty__Type int64
+
+const (
+	QQmlProperty__Invalid        QQmlProperty__Type = QQmlProperty__Type(0)
+	QQmlProperty__Property       QQmlProperty__Type = QQmlProperty__Type(1)
+	QQmlProperty__SignalProperty QQmlProperty__Type = QQmlProperty__Type(2)
+)
 
 func NewQQmlProperty() *QQmlProperty {
 	var tmpValue = NewQQmlPropertyFromPointer(C.QQmlProperty_NewQQmlProperty())
@@ -7203,7 +7252,7 @@ func (ptr *QQmlPropertyValueSource) ConnectSetTarget(f func(property *QQmlProper
 	}
 }
 
-func (ptr *QQmlPropertyValueSource) DisconnectSetTarget(property QQmlProperty_ITF) {
+func (ptr *QQmlPropertyValueSource) DisconnectSetTarget() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QQmlPropertyValueSource::setTarget")
@@ -7355,30 +7404,6 @@ func (ptr *QQmlScriptString) StringLiteral() string {
 	return ""
 }
 
-//go:generate stringer -type=QV4__PropertyFlag
-//QV4::PropertyFlag
-type QV4__PropertyFlag int64
-
-const (
-	QV4__Attr_Data            QV4__PropertyFlag = QV4__PropertyFlag(0)
-	QV4__Attr_Accessor        QV4__PropertyFlag = QV4__PropertyFlag(0x1)
-	QV4__Attr_NotWritable     QV4__PropertyFlag = QV4__PropertyFlag(0x2)
-	QV4__Attr_NotEnumerable   QV4__PropertyFlag = QV4__PropertyFlag(0x4)
-	QV4__Attr_NotConfigurable QV4__PropertyFlag = QV4__PropertyFlag(0x8)
-	QV4__Attr_ReadOnly        QV4__PropertyFlag = QV4__PropertyFlag(QV4__Attr_NotWritable | QV4__Attr_NotEnumerable | QV4__Attr_NotConfigurable)
-	QV4__Attr_Invalid         QV4__PropertyFlag = QV4__PropertyFlag(0xff)
-)
-
-//go:generate stringer -type=QV4__TypeHint
-//QV4::TypeHint
-type QV4__TypeHint int64
-
-const (
-	QV4__PREFERREDTYPE_HINT QV4__TypeHint = QV4__TypeHint(0)
-	QV4__NUMBER_HINT        QV4__TypeHint = QV4__TypeHint(1)
-	QV4__STRING_HINT        QV4__TypeHint = QV4__TypeHint(2)
-)
-
 type QV4 struct {
 	ptr unsafe.Pointer
 }
@@ -7423,3 +7448,27 @@ func (ptr *QV4) DestroyQV4() {
 		ptr.SetPointer(nil)
 	}
 }
+
+//go:generate stringer -type=QV4__PropertyFlag
+//QV4::PropertyFlag
+type QV4__PropertyFlag int64
+
+const (
+	QV4__Attr_Data            QV4__PropertyFlag = QV4__PropertyFlag(0)
+	QV4__Attr_Accessor        QV4__PropertyFlag = QV4__PropertyFlag(0x1)
+	QV4__Attr_NotWritable     QV4__PropertyFlag = QV4__PropertyFlag(0x2)
+	QV4__Attr_NotEnumerable   QV4__PropertyFlag = QV4__PropertyFlag(0x4)
+	QV4__Attr_NotConfigurable QV4__PropertyFlag = QV4__PropertyFlag(0x8)
+	QV4__Attr_ReadOnly        QV4__PropertyFlag = QV4__PropertyFlag(QV4__Attr_NotWritable | QV4__Attr_NotEnumerable | QV4__Attr_NotConfigurable)
+	QV4__Attr_Invalid         QV4__PropertyFlag = QV4__PropertyFlag(0xff)
+)
+
+//go:generate stringer -type=QV4__TypeHint
+//QV4::TypeHint
+type QV4__TypeHint int64
+
+const (
+	QV4__PREFERREDTYPE_HINT QV4__TypeHint = QV4__TypeHint(0)
+	QV4__NUMBER_HINT        QV4__TypeHint = QV4__TypeHint(1)
+	QV4__STRING_HINT        QV4__TypeHint = QV4__TypeHint(2)
+)

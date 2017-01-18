@@ -439,6 +439,51 @@ func (ptr *QSignalSpy) MetaObjectDefault() *core.QMetaObject {
 	return nil
 }
 
+type QTest struct {
+	ptr unsafe.Pointer
+}
+
+type QTest_ITF interface {
+	QTest_PTR() *QTest
+}
+
+func (ptr *QTest) QTest_PTR() *QTest {
+	return ptr
+}
+
+func (ptr *QTest) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
+	}
+	return nil
+}
+
+func (ptr *QTest) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
+	}
+}
+
+func PointerFromQTest(ptr QTest_ITF) unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QTest_PTR().Pointer()
+	}
+	return nil
+}
+
+func NewQTestFromPointer(ptr unsafe.Pointer) *QTest {
+	var n = new(QTest)
+	n.SetPointer(ptr)
+	return n
+}
+
+func (ptr *QTest) DestroyQTest() {
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
+}
+
 //go:generate stringer -type=QTest__QBenchmarkMetric
 //QTest::QBenchmarkMetric
 type QTest__QBenchmarkMetric int64
@@ -547,51 +592,6 @@ const (
 	QTest__MouseDClick  QTest__MouseAction = QTest__MouseAction(3)
 	QTest__MouseMove    QTest__MouseAction = QTest__MouseAction(4)
 )
-
-type QTest struct {
-	ptr unsafe.Pointer
-}
-
-type QTest_ITF interface {
-	QTest_PTR() *QTest
-}
-
-func (ptr *QTest) QTest_PTR() *QTest {
-	return ptr
-}
-
-func (ptr *QTest) Pointer() unsafe.Pointer {
-	if ptr != nil {
-		return ptr.ptr
-	}
-	return nil
-}
-
-func (ptr *QTest) SetPointer(p unsafe.Pointer) {
-	if ptr != nil {
-		ptr.ptr = p
-	}
-}
-
-func PointerFromQTest(ptr QTest_ITF) unsafe.Pointer {
-	if ptr != nil {
-		return ptr.QTest_PTR().Pointer()
-	}
-	return nil
-}
-
-func NewQTestFromPointer(ptr unsafe.Pointer) *QTest {
-	var n = new(QTest)
-	n.SetPointer(ptr)
-	return n
-}
-
-func (ptr *QTest) DestroyQTest() {
-	if ptr != nil {
-		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
-	}
-}
 
 type QTestEventList struct {
 	core.QList

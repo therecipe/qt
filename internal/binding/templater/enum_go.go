@@ -9,7 +9,7 @@ import (
 	"github.com/therecipe/qt/internal/binding/parser"
 )
 
-func goEnum(e *parser.Enum) string {
+func goEnum(e *parser.Enum, _ *parser.Value) string {
 	var bb = new(bytes.Buffer)
 	defer bb.Reset()
 

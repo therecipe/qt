@@ -652,14 +652,10 @@ void QModbusClient_Close(void* ptr)
 	static_cast<QModbusClient*>(ptr)->close();
 }
 
-
-
 char QModbusClient_Open(void* ptr)
 {
 	return static_cast<QModbusClient*>(ptr)->open();
 }
-
-
 
 void QModbusClient_TimerEvent(void* ptr, void* event)
 {
@@ -1471,19 +1467,9 @@ void QModbusRtuSerialMaster_Close(void* ptr)
 	static_cast<QModbusRtuSerialMaster*>(ptr)->close();
 }
 
-void QModbusRtuSerialMaster_CloseDefault(void* ptr)
-{
-	static_cast<QModbusRtuSerialMaster*>(ptr)->QModbusRtuSerialMaster::close();
-}
-
 char QModbusRtuSerialMaster_Open(void* ptr)
 {
 	return static_cast<QModbusRtuSerialMaster*>(ptr)->open();
-}
-
-char QModbusRtuSerialMaster_OpenDefault(void* ptr)
-{
-	return static_cast<QModbusRtuSerialMaster*>(ptr)->QModbusRtuSerialMaster::open();
 }
 
 void QModbusRtuSerialMaster_TimerEvent(void* ptr, void* event)
@@ -1626,10 +1612,6 @@ char QModbusRtuSerialSlave_ReadDataDefault(void* ptr, void* newData)
 	return static_cast<QModbusRtuSerialSlave*>(ptr)->QModbusRtuSerialSlave::readData(static_cast<QModbusDataUnit*>(newData));
 }
 
-
-
-
-
 char QModbusRtuSerialSlave_SetValue(void* ptr, int option, void* newValue)
 {
 	return static_cast<QModbusRtuSerialSlave*>(ptr)->setValue(option, *static_cast<QVariant*>(newValue));
@@ -1665,19 +1647,9 @@ void QModbusRtuSerialSlave_Close(void* ptr)
 	static_cast<QModbusRtuSerialSlave*>(ptr)->close();
 }
 
-void QModbusRtuSerialSlave_CloseDefault(void* ptr)
-{
-	static_cast<QModbusRtuSerialSlave*>(ptr)->QModbusRtuSerialSlave::close();
-}
-
 char QModbusRtuSerialSlave_Open(void* ptr)
 {
 	return static_cast<QModbusRtuSerialSlave*>(ptr)->open();
-}
-
-char QModbusRtuSerialSlave_OpenDefault(void* ptr)
-{
-	return static_cast<QModbusRtuSerialSlave*>(ptr)->QModbusRtuSerialSlave::open();
 }
 
 void QModbusRtuSerialSlave_TimerEvent(void* ptr, void* event)
@@ -1779,7 +1751,6 @@ public:
 	QModbusResponse processRequest(const QModbusPdu & request) { return *static_cast<QModbusResponse*>(callbackQModbusServer_ProcessRequest(this, const_cast<QModbusPdu*>(&request))); };
 	bool processesBroadcast() const { return callbackQModbusServer_ProcessesBroadcast(const_cast<MyQModbusServer*>(this)) != 0; };
 	bool readData(QModbusDataUnit * newData) const { return callbackQModbusServer_ReadData(const_cast<MyQModbusServer*>(this), newData) != 0; };
-	
 	bool setValue(int option, const QVariant & newValue) { return callbackQModbusServer_SetValue(this, option, const_cast<QVariant*>(&newValue)) != 0; };
 	QVariant value(int option) const { return *static_cast<QVariant*>(callbackQModbusServer_Value(const_cast<MyQModbusServer*>(this), option)); };
 	bool writeData(const QModbusDataUnit & newData) { return callbackQModbusServer_WriteData(this, const_cast<QModbusDataUnit*>(&newData)) != 0; };
@@ -1881,10 +1852,6 @@ char QModbusServer_SetData(void* ptr, void* newData)
 	return static_cast<QModbusServer*>(ptr)->setData(*static_cast<QModbusDataUnit*>(newData));
 }
 
-
-
-
-
 void QModbusServer_SetServerAddress(void* ptr, int serverAddress)
 {
 	static_cast<QModbusServer*>(ptr)->setServerAddress(serverAddress);
@@ -1925,14 +1892,10 @@ void QModbusServer_Close(void* ptr)
 	static_cast<QModbusServer*>(ptr)->close();
 }
 
-
-
 char QModbusServer_Open(void* ptr)
 {
 	return static_cast<QModbusServer*>(ptr)->open();
 }
-
-
 
 void QModbusServer_TimerEvent(void* ptr, void* event)
 {
@@ -2059,19 +2022,9 @@ void QModbusTcpClient_Close(void* ptr)
 	static_cast<QModbusTcpClient*>(ptr)->close();
 }
 
-void QModbusTcpClient_CloseDefault(void* ptr)
-{
-	static_cast<QModbusTcpClient*>(ptr)->QModbusTcpClient::close();
-}
-
 char QModbusTcpClient_Open(void* ptr)
 {
 	return static_cast<QModbusTcpClient*>(ptr)->open();
-}
-
-char QModbusTcpClient_OpenDefault(void* ptr)
-{
-	return static_cast<QModbusTcpClient*>(ptr)->QModbusTcpClient::open();
 }
 
 void QModbusTcpClient_TimerEvent(void* ptr, void* event)
@@ -2214,10 +2167,6 @@ char QModbusTcpServer_ReadDataDefault(void* ptr, void* newData)
 	return static_cast<QModbusTcpServer*>(ptr)->QModbusTcpServer::readData(static_cast<QModbusDataUnit*>(newData));
 }
 
-
-
-
-
 char QModbusTcpServer_SetValue(void* ptr, int option, void* newValue)
 {
 	return static_cast<QModbusTcpServer*>(ptr)->setValue(option, *static_cast<QVariant*>(newValue));
@@ -2253,19 +2202,9 @@ void QModbusTcpServer_Close(void* ptr)
 	static_cast<QModbusTcpServer*>(ptr)->close();
 }
 
-void QModbusTcpServer_CloseDefault(void* ptr)
-{
-	static_cast<QModbusTcpServer*>(ptr)->QModbusTcpServer::close();
-}
-
 char QModbusTcpServer_Open(void* ptr)
 {
 	return static_cast<QModbusTcpServer*>(ptr)->open();
-}
-
-char QModbusTcpServer_OpenDefault(void* ptr)
-{
-	return static_cast<QModbusTcpServer*>(ptr)->QModbusTcpServer::open();
 }
 
 void QModbusTcpServer_TimerEvent(void* ptr, void* event)

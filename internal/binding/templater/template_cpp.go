@@ -77,45 +77,42 @@ func CppTemplate(module string) []byte {
 
 				if !hasUnimplementedPureVirtualFunctions(class.Name) {
 					for _, function := range class.Functions {
-						if function.Meta == parser.CONSTRUCTOR {
-							if function.IsSupported() {
-
-								var input = make([]string, len(function.Parameters))
-								for i, p := range function.Parameters {
-									input[i] = func() string {
-										if p.Name == "" {
-											return "v"
-										}
-										return p.Name
-									}()
-								}
-
-								fmt.Fprintf(bb, "\t%v%v(%v) : %v(%v) {};\n",
-									func() string {
-										if parser.State.Moc {
-											return ""
-										}
-										return "My"
-									}(),
-
-									function.ClassName(),
-
-									strings.Split(strings.Split(function.Signature, "(")[1], ")")[0],
-
-									func() string {
-										if parser.State.Moc {
-											return class.GetBases()[0]
-										}
-										return function.ClassName()
-									}(),
-
-									strings.Join(input, ", "),
-								)
-
-							}
+						if function.Meta != parser.CONSTRUCTOR || !function.IsSupported() {
+							continue
 						}
+
+						var input = make([]string, len(function.Parameters))
+						for i, p := range function.Parameters {
+							input[i] = p.Name
+						}
+
+						var out = fmt.Sprintf("\t%v%v(%v) : %v(%v) {};\n",
+							func() string {
+								if parser.State.Moc {
+									return ""
+								}
+								return "My"
+							}(),
+
+							function.ClassName(),
+
+							strings.Split(strings.Split(function.Signature, "(")[1], ")")[0],
+
+							func() string {
+								if parser.State.Moc {
+									return class.GetBases()[0]
+								}
+								return function.ClassName()
+							}(),
+
+							strings.Join(input, ", "),
+						)
+
+						fmt.Fprint(bb, out)
 					}
 				}
+
+				//TODO: integrate into cTemplate? -->
 
 				//all class functions
 				for _, function := range class.Functions {
@@ -154,9 +151,9 @@ func CppTemplate(module string) []byte {
 
 					}
 				}
+				//<--
 
 				if parser.State.Moc {
-
 					for _, p := range class.Properties {
 						fmt.Fprintf(bb, "\t%v %v() { return _%v; };\n", p.Output, func() string {
 							if p.Output == "bool" {
@@ -196,8 +193,11 @@ func CppTemplate(module string) []byte {
 			}
 		}
 
-		cTemplate(bb, class, cppEnum, cppFunction, "\n\n")
+		cTemplate(bb, class, cppEnum, cppFunction, "\n\n", false)
+	}
 
+	if parser.State.Moc {
+		fmt.Fprintln(bb, "#include \"moc_moc.h\"")
 	}
 
 	return preambleCpp(module, bb.Bytes())
@@ -216,7 +216,7 @@ func preambleCpp(module string, input []byte) []byte {
 #include "_cgo_export.h"
 
 `,
-		buildTags(module),
+		buildTags(module, false),
 
 		func() string {
 			switch module {
@@ -266,10 +266,6 @@ func preambleCpp(module string, input []byte) []byte {
 	fmt.Fprint(bb, "\n")
 
 	bb.Write(input)
-
-	if parser.State.Moc {
-		fmt.Fprintln(bb, "#include \"moc_moc.h\"")
-	}
 
 	return bb.Bytes()
 }

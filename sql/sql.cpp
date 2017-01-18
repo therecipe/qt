@@ -1292,7 +1292,6 @@ public:
 	bool canDropMimeData(const QMimeData * data, Qt::DropAction action, int row, int column, const QModelIndex & parent) const { return callbackQSqlQueryModel_CanDropMimeData(const_cast<MyQSqlQueryModel*>(this), const_cast<QMimeData*>(data), action, row, column, const_cast<QModelIndex*>(&parent)) != 0; };
 	bool hasChildren(const QModelIndex & parent) const { return callbackQSqlQueryModel_HasChildren(const_cast<MyQSqlQueryModel*>(this), const_cast<QModelIndex*>(&parent)) != 0; };
 	bool insertRows(int row, int count, const QModelIndex & parent) { return callbackQSqlQueryModel_InsertRows(this, row, count, const_cast<QModelIndex*>(&parent)) != 0; };
-	
 	QStringList mimeTypes() const { return QString(callbackQSqlQueryModel_MimeTypes(const_cast<MyQSqlQueryModel*>(this))).split("|", QString::SkipEmptyParts); };
 	bool moveColumns(const QModelIndex & sourceParent, int sourceColumn, int count, const QModelIndex & destinationParent, int destinationChild) { return callbackQSqlQueryModel_MoveColumns(this, const_cast<QModelIndex*>(&sourceParent), sourceColumn, count, const_cast<QModelIndex*>(&destinationParent), destinationChild) != 0; };
 	bool moveRows(const QModelIndex & sourceParent, int sourceRow, int count, const QModelIndex & destinationParent, int destinationChild) { return callbackQSqlQueryModel_MoveRows(this, const_cast<QModelIndex*>(&sourceParent), sourceRow, count, const_cast<QModelIndex*>(&destinationParent), destinationChild) != 0; };
@@ -1567,10 +1566,6 @@ char QSqlQueryModel_InsertRowsDefault(void* ptr, int row, int count, void* paren
 	return static_cast<QSqlQueryModel*>(ptr)->QSqlQueryModel::insertRows(row, count, *static_cast<QModelIndex*>(parent));
 }
 
-
-
-
-
 struct QtSql_PackedString QSqlQueryModel_MimeTypes(void* ptr)
 {
 	return ({ QByteArray t1df073 = static_cast<QSqlQueryModel*>(ptr)->mimeTypes().join("|").toUtf8(); QtSql_PackedString { const_cast<char*>(t1df073.prepend("WHITESPACE").constData()+10), t1df073.size()-10 }; });
@@ -1604,11 +1599,6 @@ char QSqlQueryModel_MoveRowsDefault(void* ptr, void* sourceParent, int sourceRow
 void* QSqlQueryModel_Parent(void* ptr, void* index)
 {
 	return new QModelIndex(static_cast<QSqlQueryModel*>(ptr)->parent(*static_cast<QModelIndex*>(index)));
-}
-
-void* QSqlQueryModel_ParentDefault(void* ptr, void* index)
-{
-	return new QModelIndex(static_cast<QSqlQueryModel*>(ptr)->QSqlQueryModel::parent(*static_cast<QModelIndex*>(index)));
 }
 
 char QSqlQueryModel_RemoveRows(void* ptr, int row, int count, void* parent)
@@ -2272,7 +2262,6 @@ public:
 	QModelIndex buddy(const QModelIndex & index) const { return *static_cast<QModelIndex*>(callbackQSqlRelationalTableModel_Buddy(const_cast<MyQSqlRelationalTableModel*>(this), const_cast<QModelIndex*>(&index))); };
 	bool canDropMimeData(const QMimeData * data, Qt::DropAction action, int row, int column, const QModelIndex & parent) const { return callbackQSqlRelationalTableModel_CanDropMimeData(const_cast<MyQSqlRelationalTableModel*>(this), const_cast<QMimeData*>(data), action, row, column, const_cast<QModelIndex*>(&parent)) != 0; };
 	bool hasChildren(const QModelIndex & parent) const { return callbackQSqlRelationalTableModel_HasChildren(const_cast<MyQSqlRelationalTableModel*>(this), const_cast<QModelIndex*>(&parent)) != 0; };
-	
 	QStringList mimeTypes() const { return QString(callbackQSqlRelationalTableModel_MimeTypes(const_cast<MyQSqlRelationalTableModel*>(this))).split("|", QString::SkipEmptyParts); };
 	bool moveColumns(const QModelIndex & sourceParent, int sourceColumn, int count, const QModelIndex & destinationParent, int destinationChild) { return callbackQSqlRelationalTableModel_MoveColumns(this, const_cast<QModelIndex*>(&sourceParent), sourceColumn, count, const_cast<QModelIndex*>(&destinationParent), destinationChild) != 0; };
 	bool moveRows(const QModelIndex & sourceParent, int sourceRow, int count, const QModelIndex & destinationParent, int destinationChild) { return callbackQSqlRelationalTableModel_MoveRows(this, const_cast<QModelIndex*>(&sourceParent), sourceRow, count, const_cast<QModelIndex*>(&destinationParent), destinationChild) != 0; };
@@ -2733,10 +2722,6 @@ char QSqlRelationalTableModel_HasChildrenDefault(void* ptr, void* parent)
 	return static_cast<QSqlRelationalTableModel*>(ptr)->QSqlRelationalTableModel::hasChildren(*static_cast<QModelIndex*>(parent));
 }
 
-
-
-
-
 struct QtSql_PackedString QSqlRelationalTableModel_MimeTypes(void* ptr)
 {
 	return ({ QByteArray te5a031 = static_cast<QSqlRelationalTableModel*>(ptr)->mimeTypes().join("|").toUtf8(); QtSql_PackedString { const_cast<char*>(te5a031.prepend("WHITESPACE").constData()+10), te5a031.size()-10 }; });
@@ -2770,11 +2755,6 @@ char QSqlRelationalTableModel_MoveRowsDefault(void* ptr, void* sourceParent, int
 void* QSqlRelationalTableModel_Parent(void* ptr, void* index)
 {
 	return new QModelIndex(static_cast<QSqlRelationalTableModel*>(ptr)->parent(*static_cast<QModelIndex*>(index)));
-}
-
-void* QSqlRelationalTableModel_ParentDefault(void* ptr, void* index)
-{
-	return new QModelIndex(static_cast<QSqlRelationalTableModel*>(ptr)->QSqlRelationalTableModel::parent(*static_cast<QModelIndex*>(index)));
 }
 
 void QSqlRelationalTableModel_ResetInternalData(void* ptr)
@@ -3311,7 +3291,6 @@ public:
 	QModelIndex buddy(const QModelIndex & index) const { return *static_cast<QModelIndex*>(callbackQSqlTableModel_Buddy(const_cast<MyQSqlTableModel*>(this), const_cast<QModelIndex*>(&index))); };
 	bool canDropMimeData(const QMimeData * data, Qt::DropAction action, int row, int column, const QModelIndex & parent) const { return callbackQSqlTableModel_CanDropMimeData(const_cast<MyQSqlTableModel*>(this), const_cast<QMimeData*>(data), action, row, column, const_cast<QModelIndex*>(&parent)) != 0; };
 	bool hasChildren(const QModelIndex & parent) const { return callbackQSqlTableModel_HasChildren(const_cast<MyQSqlTableModel*>(this), const_cast<QModelIndex*>(&parent)) != 0; };
-	
 	QStringList mimeTypes() const { return QString(callbackQSqlTableModel_MimeTypes(const_cast<MyQSqlTableModel*>(this))).split("|", QString::SkipEmptyParts); };
 	bool moveColumns(const QModelIndex & sourceParent, int sourceColumn, int count, const QModelIndex & destinationParent, int destinationChild) { return callbackQSqlTableModel_MoveColumns(this, const_cast<QModelIndex*>(&sourceParent), sourceColumn, count, const_cast<QModelIndex*>(&destinationParent), destinationChild) != 0; };
 	bool moveRows(const QModelIndex & sourceParent, int sourceRow, int count, const QModelIndex & destinationParent, int destinationChild) { return callbackQSqlTableModel_MoveRows(this, const_cast<QModelIndex*>(&sourceParent), sourceRow, count, const_cast<QModelIndex*>(&destinationParent), destinationChild) != 0; };
@@ -3566,9 +3545,19 @@ void QSqlTableModel_Revert(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QSqlTableModel*>(ptr), "revert");
 }
 
+void QSqlTableModel_RevertDefault(void* ptr)
+{
+	static_cast<QSqlTableModel*>(ptr)->QSqlTableModel::revert();
+}
+
 void QSqlTableModel_RevertAll(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QSqlTableModel*>(ptr), "revertAll");
+}
+
+void QSqlTableModel_RevertAllDefault(void* ptr)
+{
+	static_cast<QSqlTableModel*>(ptr)->QSqlTableModel::revertAll();
 }
 
 void QSqlTableModel_RevertRow(void* ptr, int row)
@@ -3707,11 +3696,21 @@ char QSqlTableModel_Submit(void* ptr)
 	return returnArg;
 }
 
+char QSqlTableModel_SubmitDefault(void* ptr)
+{
+	return static_cast<QSqlTableModel*>(ptr)->QSqlTableModel::submit();
+}
+
 char QSqlTableModel_SubmitAll(void* ptr)
 {
 	bool returnArg;
 	QMetaObject::invokeMethod(static_cast<QSqlTableModel*>(ptr), "submitAll", Q_RETURN_ARG(bool, returnArg));
 	return returnArg;
+}
+
+char QSqlTableModel_SubmitAllDefault(void* ptr)
+{
+	return static_cast<QSqlTableModel*>(ptr)->QSqlTableModel::submitAll();
 }
 
 struct QtSql_PackedString QSqlTableModel_TableName(void* ptr)
@@ -3859,10 +3858,6 @@ char QSqlTableModel_HasChildrenDefault(void* ptr, void* parent)
 	return static_cast<QSqlTableModel*>(ptr)->QSqlTableModel::hasChildren(*static_cast<QModelIndex*>(parent));
 }
 
-
-
-
-
 struct QtSql_PackedString QSqlTableModel_MimeTypes(void* ptr)
 {
 	return ({ QByteArray tabeef0 = static_cast<QSqlTableModel*>(ptr)->mimeTypes().join("|").toUtf8(); QtSql_PackedString { const_cast<char*>(tabeef0.prepend("WHITESPACE").constData()+10), tabeef0.size()-10 }; });
@@ -3896,11 +3891,6 @@ char QSqlTableModel_MoveRowsDefault(void* ptr, void* sourceParent, int sourceRow
 void* QSqlTableModel_Parent(void* ptr, void* index)
 {
 	return new QModelIndex(static_cast<QSqlTableModel*>(ptr)->parent(*static_cast<QModelIndex*>(index)));
-}
-
-void* QSqlTableModel_ParentDefault(void* ptr, void* index)
-{
-	return new QModelIndex(static_cast<QSqlTableModel*>(ptr)->QSqlTableModel::parent(*static_cast<QModelIndex*>(index)));
 }
 
 void QSqlTableModel_ResetInternalData(void* ptr)

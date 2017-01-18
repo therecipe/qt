@@ -279,7 +279,7 @@ func (ptr *QAbstractTextDocumentLayout) ConnectBlockBoundingRect(f func(block *Q
 	}
 }
 
-func (ptr *QAbstractTextDocumentLayout) DisconnectBlockBoundingRect(block QTextBlock_ITF) {
+func (ptr *QAbstractTextDocumentLayout) DisconnectBlockBoundingRect() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractTextDocumentLayout::blockBoundingRect")
@@ -322,7 +322,7 @@ func (ptr *QAbstractTextDocumentLayout) ConnectDocumentChanged(f func(position i
 	}
 }
 
-func (ptr *QAbstractTextDocumentLayout) DisconnectDocumentChanged(position int, charsRemoved int, charsAdded int) {
+func (ptr *QAbstractTextDocumentLayout) DisconnectDocumentChanged() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractTextDocumentLayout::documentChanged")
@@ -413,7 +413,7 @@ func (ptr *QAbstractTextDocumentLayout) ConnectDraw(f func(painter *QPainter, co
 	}
 }
 
-func (ptr *QAbstractTextDocumentLayout) DisconnectDraw(painter QPainter_ITF, context QAbstractTextDocumentLayout_PaintContext_ITF) {
+func (ptr *QAbstractTextDocumentLayout) DisconnectDraw() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractTextDocumentLayout::draw")
@@ -443,7 +443,7 @@ func (ptr *QAbstractTextDocumentLayout) ConnectFrameBoundingRect(f func(frame *Q
 	}
 }
 
-func (ptr *QAbstractTextDocumentLayout) DisconnectFrameBoundingRect(frame QTextFrame_ITF) {
+func (ptr *QAbstractTextDocumentLayout) DisconnectFrameBoundingRect() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractTextDocumentLayout::frameBoundingRect")
@@ -483,7 +483,7 @@ func (ptr *QAbstractTextDocumentLayout) ConnectHitTest(f func(point *core.QPoint
 	}
 }
 
-func (ptr *QAbstractTextDocumentLayout) DisconnectHitTest(point core.QPointF_ITF, accuracy core.Qt__HitTestAccuracy) {
+func (ptr *QAbstractTextDocumentLayout) DisconnectHitTest() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAbstractTextDocumentLayout::hitTest")
@@ -1045,6 +1045,51 @@ func (ptr *QAbstractTextDocumentLayout) MetaObjectDefault() *core.QMetaObject {
 	return nil
 }
 
+type QAccessible struct {
+	ptr unsafe.Pointer
+}
+
+type QAccessible_ITF interface {
+	QAccessible_PTR() *QAccessible
+}
+
+func (ptr *QAccessible) QAccessible_PTR() *QAccessible {
+	return ptr
+}
+
+func (ptr *QAccessible) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
+	}
+	return nil
+}
+
+func (ptr *QAccessible) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
+	}
+}
+
+func PointerFromQAccessible(ptr QAccessible_ITF) unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QAccessible_PTR().Pointer()
+	}
+	return nil
+}
+
+func NewQAccessibleFromPointer(ptr unsafe.Pointer) *QAccessible {
+	var n = new(QAccessible)
+	n.SetPointer(ptr)
+	return n
+}
+
+func (ptr *QAccessible) DestroyQAccessible() {
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
+}
+
 //go:generate stringer -type=QAccessible__Event
 //QAccessible::Event
 type QAccessible__Event int64
@@ -1256,51 +1301,6 @@ const (
 	QAccessible__NoBoundary        QAccessible__TextBoundaryType = QAccessible__TextBoundaryType(5)
 )
 
-type QAccessible struct {
-	ptr unsafe.Pointer
-}
-
-type QAccessible_ITF interface {
-	QAccessible_PTR() *QAccessible
-}
-
-func (ptr *QAccessible) QAccessible_PTR() *QAccessible {
-	return ptr
-}
-
-func (ptr *QAccessible) Pointer() unsafe.Pointer {
-	if ptr != nil {
-		return ptr.ptr
-	}
-	return nil
-}
-
-func (ptr *QAccessible) SetPointer(p unsafe.Pointer) {
-	if ptr != nil {
-		ptr.ptr = p
-	}
-}
-
-func PointerFromQAccessible(ptr QAccessible_ITF) unsafe.Pointer {
-	if ptr != nil {
-		return ptr.QAccessible_PTR().Pointer()
-	}
-	return nil
-}
-
-func NewQAccessibleFromPointer(ptr unsafe.Pointer) *QAccessible {
-	var n = new(QAccessible)
-	n.SetPointer(ptr)
-	return n
-}
-
-func (ptr *QAccessible) DestroyQAccessible() {
-	if ptr != nil {
-		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
-	}
-}
-
 func QAccessible_IsActive() bool {
 	return C.QAccessible_QAccessible_IsActive() != 0
 }
@@ -1510,7 +1510,7 @@ func (ptr *QAccessibleActionInterface) ConnectDoAction(f func(actionName string)
 	}
 }
 
-func (ptr *QAccessibleActionInterface) DisconnectDoAction(actionName string) {
+func (ptr *QAccessibleActionInterface) DisconnectDoAction() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAccessibleActionInterface::doAction")
@@ -1550,7 +1550,7 @@ func (ptr *QAccessibleActionInterface) ConnectKeyBindingsForAction(f func(action
 	}
 }
 
-func (ptr *QAccessibleActionInterface) DisconnectKeyBindingsForAction(actionName string) {
+func (ptr *QAccessibleActionInterface) DisconnectKeyBindingsForAction() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAccessibleActionInterface::keyBindingsForAction")
@@ -1740,7 +1740,7 @@ func (ptr *QAccessibleEditableTextInterface) ConnectDeleteText(f func(startOffse
 	}
 }
 
-func (ptr *QAccessibleEditableTextInterface) DisconnectDeleteText(startOffset int, endOffset int) {
+func (ptr *QAccessibleEditableTextInterface) DisconnectDeleteText() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAccessibleEditableTextInterface::deleteText")
@@ -1769,7 +1769,7 @@ func (ptr *QAccessibleEditableTextInterface) ConnectInsertText(f func(offset int
 	}
 }
 
-func (ptr *QAccessibleEditableTextInterface) DisconnectInsertText(offset int, text string) {
+func (ptr *QAccessibleEditableTextInterface) DisconnectInsertText() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAccessibleEditableTextInterface::insertText")
@@ -1800,7 +1800,7 @@ func (ptr *QAccessibleEditableTextInterface) ConnectReplaceText(f func(startOffs
 	}
 }
 
-func (ptr *QAccessibleEditableTextInterface) DisconnectReplaceText(startOffset int, endOffset int, text string) {
+func (ptr *QAccessibleEditableTextInterface) DisconnectReplaceText() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAccessibleEditableTextInterface::replaceText")
@@ -2142,7 +2142,7 @@ func (ptr *QAccessibleInterface) ConnectChild(f func(index int) *QAccessibleInte
 	}
 }
 
-func (ptr *QAccessibleInterface) DisconnectChild(index int) {
+func (ptr *QAccessibleInterface) DisconnectChild() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAccessibleInterface::child")
@@ -2173,7 +2173,7 @@ func (ptr *QAccessibleInterface) ConnectChildAt(f func(x int, y int) *QAccessibl
 	}
 }
 
-func (ptr *QAccessibleInterface) DisconnectChildAt(x int, y int) {
+func (ptr *QAccessibleInterface) DisconnectChildAt() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAccessibleInterface::childAt")
@@ -2315,7 +2315,7 @@ func (ptr *QAccessibleInterface) ConnectIndexOfChild(f func(child *QAccessibleIn
 	}
 }
 
-func (ptr *QAccessibleInterface) DisconnectIndexOfChild(child QAccessibleInterface_ITF) {
+func (ptr *QAccessibleInterface) DisconnectIndexOfChild() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAccessibleInterface::indexOfChild")
@@ -2544,7 +2544,7 @@ func (ptr *QAccessibleInterface) ConnectSetText(f func(t QAccessible__Text, text
 	}
 }
 
-func (ptr *QAccessibleInterface) DisconnectSetText(t QAccessible__Text, text string) {
+func (ptr *QAccessibleInterface) DisconnectSetText() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAccessibleInterface::setText")
@@ -2590,7 +2590,7 @@ func (ptr *QAccessibleInterface) ConnectText(f func(t QAccessible__Text) string)
 	}
 }
 
-func (ptr *QAccessibleInterface) DisconnectText(t QAccessible__Text) {
+func (ptr *QAccessibleInterface) DisconnectText() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAccessibleInterface::text")
@@ -3442,7 +3442,7 @@ func (ptr *QAccessiblePlugin) ConnectCreate(f func(key string, object *core.QObj
 	}
 }
 
-func (ptr *QAccessiblePlugin) DisconnectCreate(key string, object core.QObject_ITF) {
+func (ptr *QAccessiblePlugin) DisconnectCreate() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAccessiblePlugin::create")
@@ -4301,7 +4301,7 @@ func (ptr *QAccessibleTableInterface) ConnectCellAt(f func(row int, column int) 
 	}
 }
 
-func (ptr *QAccessibleTableInterface) DisconnectCellAt(row int, column int) {
+func (ptr *QAccessibleTableInterface) DisconnectCellAt() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAccessibleTableInterface::cellAt")
@@ -4363,7 +4363,7 @@ func (ptr *QAccessibleTableInterface) ConnectColumnDescription(f func(column int
 	}
 }
 
-func (ptr *QAccessibleTableInterface) DisconnectColumnDescription(column int) {
+func (ptr *QAccessibleTableInterface) DisconnectColumnDescription() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAccessibleTableInterface::columnDescription")
@@ -4394,7 +4394,7 @@ func (ptr *QAccessibleTableInterface) ConnectIsColumnSelected(f func(column int)
 	}
 }
 
-func (ptr *QAccessibleTableInterface) DisconnectIsColumnSelected(column int) {
+func (ptr *QAccessibleTableInterface) DisconnectIsColumnSelected() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAccessibleTableInterface::isColumnSelected")
@@ -4425,7 +4425,7 @@ func (ptr *QAccessibleTableInterface) ConnectIsRowSelected(f func(row int) bool)
 	}
 }
 
-func (ptr *QAccessibleTableInterface) DisconnectIsRowSelected(row int) {
+func (ptr *QAccessibleTableInterface) DisconnectIsRowSelected() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAccessibleTableInterface::isRowSelected")
@@ -4455,7 +4455,7 @@ func (ptr *QAccessibleTableInterface) ConnectModelChange(f func(event *QAccessib
 	}
 }
 
-func (ptr *QAccessibleTableInterface) DisconnectModelChange(event QAccessibleTableModelChangeEvent_ITF) {
+func (ptr *QAccessibleTableInterface) DisconnectModelChange() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAccessibleTableInterface::modelChange")
@@ -4516,7 +4516,7 @@ func (ptr *QAccessibleTableInterface) ConnectRowDescription(f func(row int) stri
 	}
 }
 
-func (ptr *QAccessibleTableInterface) DisconnectRowDescription(row int) {
+func (ptr *QAccessibleTableInterface) DisconnectRowDescription() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAccessibleTableInterface::rowDescription")
@@ -4547,7 +4547,7 @@ func (ptr *QAccessibleTableInterface) ConnectSelectColumn(f func(column int) boo
 	}
 }
 
-func (ptr *QAccessibleTableInterface) DisconnectSelectColumn(column int) {
+func (ptr *QAccessibleTableInterface) DisconnectSelectColumn() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAccessibleTableInterface::selectColumn")
@@ -4578,7 +4578,7 @@ func (ptr *QAccessibleTableInterface) ConnectSelectRow(f func(row int) bool) {
 	}
 }
 
-func (ptr *QAccessibleTableInterface) DisconnectSelectRow(row int) {
+func (ptr *QAccessibleTableInterface) DisconnectSelectRow() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAccessibleTableInterface::selectRow")
@@ -4760,7 +4760,7 @@ func (ptr *QAccessibleTableInterface) ConnectUnselectColumn(f func(column int) b
 	}
 }
 
-func (ptr *QAccessibleTableInterface) DisconnectUnselectColumn(column int) {
+func (ptr *QAccessibleTableInterface) DisconnectUnselectColumn() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAccessibleTableInterface::unselectColumn")
@@ -4791,7 +4791,7 @@ func (ptr *QAccessibleTableInterface) ConnectUnselectRow(f func(row int) bool) {
 	}
 }
 
-func (ptr *QAccessibleTableInterface) DisconnectUnselectRow(row int) {
+func (ptr *QAccessibleTableInterface) DisconnectUnselectRow() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAccessibleTableInterface::unselectRow")
@@ -4852,19 +4852,6 @@ func (ptr *QAccessibleTableInterface) selectedCells_atList(i int) *QAccessibleIn
 	return nil
 }
 
-//go:generate stringer -type=QAccessibleTableModelChangeEvent__ModelChangeType
-//QAccessibleTableModelChangeEvent::ModelChangeType
-type QAccessibleTableModelChangeEvent__ModelChangeType int64
-
-const (
-	QAccessibleTableModelChangeEvent__ModelReset      QAccessibleTableModelChangeEvent__ModelChangeType = QAccessibleTableModelChangeEvent__ModelChangeType(0)
-	QAccessibleTableModelChangeEvent__DataChanged     QAccessibleTableModelChangeEvent__ModelChangeType = QAccessibleTableModelChangeEvent__ModelChangeType(1)
-	QAccessibleTableModelChangeEvent__RowsInserted    QAccessibleTableModelChangeEvent__ModelChangeType = QAccessibleTableModelChangeEvent__ModelChangeType(2)
-	QAccessibleTableModelChangeEvent__ColumnsInserted QAccessibleTableModelChangeEvent__ModelChangeType = QAccessibleTableModelChangeEvent__ModelChangeType(3)
-	QAccessibleTableModelChangeEvent__RowsRemoved     QAccessibleTableModelChangeEvent__ModelChangeType = QAccessibleTableModelChangeEvent__ModelChangeType(4)
-	QAccessibleTableModelChangeEvent__ColumnsRemoved  QAccessibleTableModelChangeEvent__ModelChangeType = QAccessibleTableModelChangeEvent__ModelChangeType(5)
-)
-
 type QAccessibleTableModelChangeEvent struct {
 	QAccessibleEvent
 }
@@ -4910,6 +4897,19 @@ func (ptr *QAccessibleTableModelChangeEvent) DestroyQAccessibleTableModelChangeE
 		ptr.SetPointer(nil)
 	}
 }
+
+//go:generate stringer -type=QAccessibleTableModelChangeEvent__ModelChangeType
+//QAccessibleTableModelChangeEvent::ModelChangeType
+type QAccessibleTableModelChangeEvent__ModelChangeType int64
+
+const (
+	QAccessibleTableModelChangeEvent__ModelReset      QAccessibleTableModelChangeEvent__ModelChangeType = QAccessibleTableModelChangeEvent__ModelChangeType(0)
+	QAccessibleTableModelChangeEvent__DataChanged     QAccessibleTableModelChangeEvent__ModelChangeType = QAccessibleTableModelChangeEvent__ModelChangeType(1)
+	QAccessibleTableModelChangeEvent__RowsInserted    QAccessibleTableModelChangeEvent__ModelChangeType = QAccessibleTableModelChangeEvent__ModelChangeType(2)
+	QAccessibleTableModelChangeEvent__ColumnsInserted QAccessibleTableModelChangeEvent__ModelChangeType = QAccessibleTableModelChangeEvent__ModelChangeType(3)
+	QAccessibleTableModelChangeEvent__RowsRemoved     QAccessibleTableModelChangeEvent__ModelChangeType = QAccessibleTableModelChangeEvent__ModelChangeType(4)
+	QAccessibleTableModelChangeEvent__ColumnsRemoved  QAccessibleTableModelChangeEvent__ModelChangeType = QAccessibleTableModelChangeEvent__ModelChangeType(5)
+)
 
 func NewQAccessibleTableModelChangeEvent2(iface QAccessibleInterface_ITF, changeType QAccessibleTableModelChangeEvent__ModelChangeType) *QAccessibleTableModelChangeEvent {
 	var tmpValue = NewQAccessibleTableModelChangeEventFromPointer(C.QAccessibleTableModelChangeEvent_NewQAccessibleTableModelChangeEvent2(PointerFromQAccessibleInterface(iface), C.longlong(changeType)))
@@ -5409,7 +5409,7 @@ func (ptr *QAccessibleTextInterface) ConnectAddSelection(f func(startOffset int,
 	}
 }
 
-func (ptr *QAccessibleTextInterface) DisconnectAddSelection(startOffset int, endOffset int) {
+func (ptr *QAccessibleTextInterface) DisconnectAddSelection() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAccessibleTextInterface::addSelection")
@@ -5439,7 +5439,7 @@ func (ptr *QAccessibleTextInterface) ConnectAttributes(f func(offset int, startO
 	}
 }
 
-func (ptr *QAccessibleTextInterface) DisconnectAttributes(offset int, startOffset int, endOffset int) {
+func (ptr *QAccessibleTextInterface) DisconnectAttributes() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAccessibleTextInterface::attributes")
@@ -5501,7 +5501,7 @@ func (ptr *QAccessibleTextInterface) ConnectCharacterRect(f func(offset int) *co
 	}
 }
 
-func (ptr *QAccessibleTextInterface) DisconnectCharacterRect(offset int) {
+func (ptr *QAccessibleTextInterface) DisconnectCharacterRect() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAccessibleTextInterface::characterRect")
@@ -5565,7 +5565,7 @@ func (ptr *QAccessibleTextInterface) ConnectOffsetAtPoint(f func(point *core.QPo
 	}
 }
 
-func (ptr *QAccessibleTextInterface) DisconnectOffsetAtPoint(point core.QPoint_ITF) {
+func (ptr *QAccessibleTextInterface) DisconnectOffsetAtPoint() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAccessibleTextInterface::offsetAtPoint")
@@ -5595,7 +5595,7 @@ func (ptr *QAccessibleTextInterface) ConnectRemoveSelection(f func(selectionInde
 	}
 }
 
-func (ptr *QAccessibleTextInterface) DisconnectRemoveSelection(selectionIndex int) {
+func (ptr *QAccessibleTextInterface) DisconnectRemoveSelection() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAccessibleTextInterface::removeSelection")
@@ -5624,7 +5624,7 @@ func (ptr *QAccessibleTextInterface) ConnectScrollToSubstring(f func(startIndex 
 	}
 }
 
-func (ptr *QAccessibleTextInterface) DisconnectScrollToSubstring(startIndex int, endIndex int) {
+func (ptr *QAccessibleTextInterface) DisconnectScrollToSubstring() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAccessibleTextInterface::scrollToSubstring")
@@ -5653,7 +5653,7 @@ func (ptr *QAccessibleTextInterface) ConnectSelection(f func(selectionIndex int,
 	}
 }
 
-func (ptr *QAccessibleTextInterface) DisconnectSelection(selectionIndex int, startOffset int, endOffset int) {
+func (ptr *QAccessibleTextInterface) DisconnectSelection() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAccessibleTextInterface::selection")
@@ -5713,7 +5713,7 @@ func (ptr *QAccessibleTextInterface) ConnectSetCursorPosition(f func(position in
 	}
 }
 
-func (ptr *QAccessibleTextInterface) DisconnectSetCursorPosition(position int) {
+func (ptr *QAccessibleTextInterface) DisconnectSetCursorPosition() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAccessibleTextInterface::setCursorPosition")
@@ -5742,7 +5742,7 @@ func (ptr *QAccessibleTextInterface) ConnectSetSelection(f func(selectionIndex i
 	}
 }
 
-func (ptr *QAccessibleTextInterface) DisconnectSetSelection(selectionIndex int, startOffset int, endOffset int) {
+func (ptr *QAccessibleTextInterface) DisconnectSetSelection() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAccessibleTextInterface::setSelection")
@@ -5772,7 +5772,7 @@ func (ptr *QAccessibleTextInterface) ConnectText(f func(startOffset int, endOffs
 	}
 }
 
-func (ptr *QAccessibleTextInterface) DisconnectText(startOffset int, endOffset int) {
+func (ptr *QAccessibleTextInterface) DisconnectText() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAccessibleTextInterface::text")
@@ -6704,7 +6704,7 @@ func (ptr *QAccessibleValueInterface) ConnectSetCurrentValue(f func(value *core.
 	}
 }
 
-func (ptr *QAccessibleValueInterface) DisconnectSetCurrentValue(value core.QVariant_ITF) {
+func (ptr *QAccessibleValueInterface) DisconnectSetCurrentValue() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QAccessibleValueInterface::setCurrentValue")
@@ -7132,7 +7132,7 @@ func callbackQBitmap_PaintEngine(ptr unsafe.Pointer) unsafe.Pointer {
 		return PointerFromQPaintEngine(signal.(func() *QPaintEngine)())
 	}
 
-	return PointerFromQPaintEngine(NewQBitmapFromPointer(ptr).PaintEngineDefault())
+	return PointerFromQPaintEngine(NewQPaintEngine(0))
 }
 
 func (ptr *QBitmap) ConnectPaintEngine(f func() *QPaintEngine) {
@@ -7152,13 +7152,6 @@ func (ptr *QBitmap) DisconnectPaintEngine() {
 func (ptr *QBitmap) PaintEngine() *QPaintEngine {
 	if ptr.Pointer() != nil {
 		return NewQPaintEngineFromPointer(C.QBitmap_PaintEngine(ptr.Pointer()))
-	}
-	return nil
-}
-
-func (ptr *QBitmap) PaintEngineDefault() *QPaintEngine {
-	if ptr.Pointer() != nil {
-		return NewQPaintEngineFromPointer(C.QBitmap_PaintEngineDefault(ptr.Pointer()))
 	}
 	return nil
 }
@@ -7364,17 +7357,6 @@ func (ptr *QBrush) DestroyQBrush() {
 	}
 }
 
-//go:generate stringer -type=QClipboard__Mode
-//QClipboard::Mode
-type QClipboard__Mode int64
-
-const (
-	QClipboard__Clipboard  QClipboard__Mode = QClipboard__Mode(0)
-	QClipboard__Selection  QClipboard__Mode = QClipboard__Mode(1)
-	QClipboard__FindBuffer QClipboard__Mode = QClipboard__Mode(2)
-	QClipboard__LastMode   QClipboard__Mode = QClipboard__Mode(QClipboard__FindBuffer)
-)
-
 type QClipboard struct {
 	core.QObject
 }
@@ -7421,6 +7403,17 @@ func (ptr *QClipboard) DestroyQClipboard() {
 		ptr.SetPointer(nil)
 	}
 }
+
+//go:generate stringer -type=QClipboard__Mode
+//QClipboard::Mode
+type QClipboard__Mode int64
+
+const (
+	QClipboard__Clipboard  QClipboard__Mode = QClipboard__Mode(0)
+	QClipboard__Selection  QClipboard__Mode = QClipboard__Mode(1)
+	QClipboard__FindBuffer QClipboard__Mode = QClipboard__Mode(2)
+	QClipboard__LastMode   QClipboard__Mode = QClipboard__Mode(QClipboard__FindBuffer)
+)
 
 func (ptr *QClipboard) Clear(mode QClipboard__Mode) {
 	if ptr.Pointer() != nil {
@@ -8035,27 +8028,6 @@ func NewQCloseEvent() *QCloseEvent {
 	return tmpValue
 }
 
-//go:generate stringer -type=QColor__NameFormat
-//QColor::NameFormat
-type QColor__NameFormat int64
-
-const (
-	QColor__HexRgb  QColor__NameFormat = QColor__NameFormat(0)
-	QColor__HexArgb QColor__NameFormat = QColor__NameFormat(1)
-)
-
-//go:generate stringer -type=QColor__Spec
-//QColor::Spec
-type QColor__Spec int64
-
-const (
-	QColor__Invalid QColor__Spec = QColor__Spec(0)
-	QColor__Rgb     QColor__Spec = QColor__Spec(1)
-	QColor__Hsv     QColor__Spec = QColor__Spec(2)
-	QColor__Cmyk    QColor__Spec = QColor__Spec(3)
-	QColor__Hsl     QColor__Spec = QColor__Spec(4)
-)
-
 type QColor struct {
 	ptr unsafe.Pointer
 }
@@ -8100,6 +8072,27 @@ func (ptr *QColor) DestroyQColor() {
 		ptr.SetPointer(nil)
 	}
 }
+
+//go:generate stringer -type=QColor__NameFormat
+//QColor::NameFormat
+type QColor__NameFormat int64
+
+const (
+	QColor__HexRgb  QColor__NameFormat = QColor__NameFormat(0)
+	QColor__HexArgb QColor__NameFormat = QColor__NameFormat(1)
+)
+
+//go:generate stringer -type=QColor__Spec
+//QColor::Spec
+type QColor__Spec int64
+
+const (
+	QColor__Invalid QColor__Spec = QColor__Spec(0)
+	QColor__Rgb     QColor__Spec = QColor__Spec(1)
+	QColor__Hsv     QColor__Spec = QColor__Spec(2)
+	QColor__Cmyk    QColor__Spec = QColor__Spec(3)
+	QColor__Hsl     QColor__Spec = QColor__Spec(4)
+)
 
 func (ptr *QColor) ConvertTo(colorSpec QColor__Spec) *QColor {
 	if ptr.Pointer() != nil {
@@ -8873,16 +8866,6 @@ func (ptr *QConicalGradient) SetCenter2(x float64, y float64) {
 	}
 }
 
-//go:generate stringer -type=QContextMenuEvent__Reason
-//QContextMenuEvent::Reason
-type QContextMenuEvent__Reason int64
-
-const (
-	QContextMenuEvent__Mouse    QContextMenuEvent__Reason = QContextMenuEvent__Reason(0)
-	QContextMenuEvent__Keyboard QContextMenuEvent__Reason = QContextMenuEvent__Reason(1)
-	QContextMenuEvent__Other    QContextMenuEvent__Reason = QContextMenuEvent__Reason(2)
-)
-
 type QContextMenuEvent struct {
 	QInputEvent
 }
@@ -8928,6 +8911,16 @@ func (ptr *QContextMenuEvent) DestroyQContextMenuEvent() {
 		ptr.SetPointer(nil)
 	}
 }
+
+//go:generate stringer -type=QContextMenuEvent__Reason
+//QContextMenuEvent::Reason
+type QContextMenuEvent__Reason int64
+
+const (
+	QContextMenuEvent__Mouse    QContextMenuEvent__Reason = QContextMenuEvent__Reason(0)
+	QContextMenuEvent__Keyboard QContextMenuEvent__Reason = QContextMenuEvent__Reason(1)
+	QContextMenuEvent__Other    QContextMenuEvent__Reason = QContextMenuEvent__Reason(2)
+)
 
 func NewQContextMenuEvent3(reason QContextMenuEvent__Reason, pos core.QPoint_ITF) *QContextMenuEvent {
 	var tmpValue = NewQContextMenuEventFromPointer(C.QContextMenuEvent_NewQContextMenuEvent3(C.longlong(reason), core.PointerFromQPoint(pos)))
@@ -9339,15 +9332,6 @@ func (ptr *QDesktopServices) UnsetUrlHandler(scheme string) {
 	C.QDesktopServices_QDesktopServices_UnsetUrlHandler(schemeC)
 }
 
-//go:generate stringer -type=QDoubleValidator__Notation
-//QDoubleValidator::Notation
-type QDoubleValidator__Notation int64
-
-const (
-	QDoubleValidator__StandardNotation   QDoubleValidator__Notation = QDoubleValidator__Notation(0)
-	QDoubleValidator__ScientificNotation QDoubleValidator__Notation = QDoubleValidator__Notation(1)
-)
-
 type QDoubleValidator struct {
 	QValidator
 }
@@ -9386,6 +9370,16 @@ func NewQDoubleValidatorFromPointer(ptr unsafe.Pointer) *QDoubleValidator {
 	n.SetPointer(ptr)
 	return n
 }
+
+//go:generate stringer -type=QDoubleValidator__Notation
+//QDoubleValidator::Notation
+type QDoubleValidator__Notation int64
+
+const (
+	QDoubleValidator__StandardNotation   QDoubleValidator__Notation = QDoubleValidator__Notation(0)
+	QDoubleValidator__ScientificNotation QDoubleValidator__Notation = QDoubleValidator__Notation(1)
+)
+
 func (ptr *QDoubleValidator) Notation() QDoubleValidator__Notation {
 	if ptr.Pointer() != nil {
 		return QDoubleValidator__Notation(C.QDoubleValidator_Notation(ptr.Pointer()))
@@ -11244,6 +11238,44 @@ func (ptr *QFocusEvent) Reason() core.Qt__FocusReason {
 	return 0
 }
 
+type QFont struct {
+	ptr unsafe.Pointer
+}
+
+type QFont_ITF interface {
+	QFont_PTR() *QFont
+}
+
+func (ptr *QFont) QFont_PTR() *QFont {
+	return ptr
+}
+
+func (ptr *QFont) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
+	}
+	return nil
+}
+
+func (ptr *QFont) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
+	}
+}
+
+func PointerFromQFont(ptr QFont_ITF) unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QFont_PTR().Pointer()
+	}
+	return nil
+}
+
+func NewQFontFromPointer(ptr unsafe.Pointer) *QFont {
+	var n = new(QFont)
+	n.SetPointer(ptr)
+	return n
+}
+
 //go:generate stringer -type=QFont__Capitalization
 //QFont::Capitalization
 type QFont__Capitalization int64
@@ -11358,43 +11390,6 @@ const (
 	QFont__Black      QFont__Weight = QFont__Weight(87)
 )
 
-type QFont struct {
-	ptr unsafe.Pointer
-}
-
-type QFont_ITF interface {
-	QFont_PTR() *QFont
-}
-
-func (ptr *QFont) QFont_PTR() *QFont {
-	return ptr
-}
-
-func (ptr *QFont) Pointer() unsafe.Pointer {
-	if ptr != nil {
-		return ptr.ptr
-	}
-	return nil
-}
-
-func (ptr *QFont) SetPointer(p unsafe.Pointer) {
-	if ptr != nil {
-		ptr.ptr = p
-	}
-}
-
-func PointerFromQFont(ptr QFont_ITF) unsafe.Pointer {
-	if ptr != nil {
-		return ptr.QFont_PTR().Pointer()
-	}
-	return nil
-}
-
-func NewQFontFromPointer(ptr unsafe.Pointer) *QFont {
-	var n = new(QFont)
-	n.SetPointer(ptr)
-	return n
-}
 func (ptr *QFont) DefaultFamily() string {
 	if ptr.Pointer() != nil {
 		return cGoUnpackString(C.QFont_DefaultFamily(ptr.Pointer()))
@@ -11870,6 +11865,51 @@ func (ptr *QFont) ToVariant() *core.QVariant {
 	return nil
 }
 
+type QFontDatabase struct {
+	ptr unsafe.Pointer
+}
+
+type QFontDatabase_ITF interface {
+	QFontDatabase_PTR() *QFontDatabase
+}
+
+func (ptr *QFontDatabase) QFontDatabase_PTR() *QFontDatabase {
+	return ptr
+}
+
+func (ptr *QFontDatabase) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
+	}
+	return nil
+}
+
+func (ptr *QFontDatabase) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
+	}
+}
+
+func PointerFromQFontDatabase(ptr QFontDatabase_ITF) unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QFontDatabase_PTR().Pointer()
+	}
+	return nil
+}
+
+func NewQFontDatabaseFromPointer(ptr unsafe.Pointer) *QFontDatabase {
+	var n = new(QFontDatabase)
+	n.SetPointer(ptr)
+	return n
+}
+
+func (ptr *QFontDatabase) DestroyQFontDatabase() {
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
+}
+
 //go:generate stringer -type=QFontDatabase__SystemFont
 //QFontDatabase::SystemFont
 type QFontDatabase__SystemFont int64
@@ -11923,51 +11963,6 @@ var (
 	QFontDatabase__Nko                 QFontDatabase__WritingSystem = QFontDatabase__WritingSystem(C.QFontDatabase_Nko_Type())
 	QFontDatabase__WritingSystemsCount QFontDatabase__WritingSystem = QFontDatabase__WritingSystem(C.QFontDatabase_WritingSystemsCount_Type())
 )
-
-type QFontDatabase struct {
-	ptr unsafe.Pointer
-}
-
-type QFontDatabase_ITF interface {
-	QFontDatabase_PTR() *QFontDatabase
-}
-
-func (ptr *QFontDatabase) QFontDatabase_PTR() *QFontDatabase {
-	return ptr
-}
-
-func (ptr *QFontDatabase) Pointer() unsafe.Pointer {
-	if ptr != nil {
-		return ptr.ptr
-	}
-	return nil
-}
-
-func (ptr *QFontDatabase) SetPointer(p unsafe.Pointer) {
-	if ptr != nil {
-		ptr.ptr = p
-	}
-}
-
-func PointerFromQFontDatabase(ptr QFontDatabase_ITF) unsafe.Pointer {
-	if ptr != nil {
-		return ptr.QFontDatabase_PTR().Pointer()
-	}
-	return nil
-}
-
-func NewQFontDatabaseFromPointer(ptr unsafe.Pointer) *QFontDatabase {
-	var n = new(QFontDatabase)
-	n.SetPointer(ptr)
-	return n
-}
-
-func (ptr *QFontDatabase) DestroyQFontDatabase() {
-	if ptr != nil {
-		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
-	}
-}
 
 func QFontDatabase_RemoveAllApplicationFonts() bool {
 	return C.QFontDatabase_QFontDatabase_RemoveAllApplicationFonts() != 0
@@ -12991,7 +12986,7 @@ func (ptr *QGenericPlugin) ConnectCreate(f func(key string, specification string
 	}
 }
 
-func (ptr *QGenericPlugin) DisconnectCreate(key string, specification string) {
+func (ptr *QGenericPlugin) DisconnectCreate() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QGenericPlugin::create")
@@ -13431,18 +13426,6 @@ func (ptr *QGenericPluginFactory) Keys() []string {
 	return strings.Split(cGoUnpackString(C.QGenericPluginFactory_QGenericPluginFactory_Keys()), "|")
 }
 
-//go:generate stringer -type=QGlyphRun__GlyphRunFlag
-//QGlyphRun::GlyphRunFlag
-type QGlyphRun__GlyphRunFlag int64
-
-const (
-	QGlyphRun__Overline      QGlyphRun__GlyphRunFlag = QGlyphRun__GlyphRunFlag(0x01)
-	QGlyphRun__Underline     QGlyphRun__GlyphRunFlag = QGlyphRun__GlyphRunFlag(0x02)
-	QGlyphRun__StrikeOut     QGlyphRun__GlyphRunFlag = QGlyphRun__GlyphRunFlag(0x04)
-	QGlyphRun__RightToLeft   QGlyphRun__GlyphRunFlag = QGlyphRun__GlyphRunFlag(0x08)
-	QGlyphRun__SplitLigature QGlyphRun__GlyphRunFlag = QGlyphRun__GlyphRunFlag(0x10)
-)
-
 type QGlyphRun struct {
 	ptr unsafe.Pointer
 }
@@ -13480,6 +13463,19 @@ func NewQGlyphRunFromPointer(ptr unsafe.Pointer) *QGlyphRun {
 	n.SetPointer(ptr)
 	return n
 }
+
+//go:generate stringer -type=QGlyphRun__GlyphRunFlag
+//QGlyphRun::GlyphRunFlag
+type QGlyphRun__GlyphRunFlag int64
+
+const (
+	QGlyphRun__Overline      QGlyphRun__GlyphRunFlag = QGlyphRun__GlyphRunFlag(0x01)
+	QGlyphRun__Underline     QGlyphRun__GlyphRunFlag = QGlyphRun__GlyphRunFlag(0x02)
+	QGlyphRun__StrikeOut     QGlyphRun__GlyphRunFlag = QGlyphRun__GlyphRunFlag(0x04)
+	QGlyphRun__RightToLeft   QGlyphRun__GlyphRunFlag = QGlyphRun__GlyphRunFlag(0x08)
+	QGlyphRun__SplitLigature QGlyphRun__GlyphRunFlag = QGlyphRun__GlyphRunFlag(0x10)
+)
+
 func NewQGlyphRun() *QGlyphRun {
 	var tmpValue = NewQGlyphRunFromPointer(C.QGlyphRun_NewQGlyphRun())
 	runtime.SetFinalizer(tmpValue, (*QGlyphRun).DestroyQGlyphRun)
@@ -13647,37 +13643,6 @@ func (ptr *QGlyphRun) positions_atList(i int) *core.QPointF {
 	return nil
 }
 
-//go:generate stringer -type=QGradient__CoordinateMode
-//QGradient::CoordinateMode
-type QGradient__CoordinateMode int64
-
-const (
-	QGradient__LogicalMode         QGradient__CoordinateMode = QGradient__CoordinateMode(0)
-	QGradient__StretchToDeviceMode QGradient__CoordinateMode = QGradient__CoordinateMode(1)
-	QGradient__ObjectBoundingMode  QGradient__CoordinateMode = QGradient__CoordinateMode(2)
-)
-
-//go:generate stringer -type=QGradient__Spread
-//QGradient::Spread
-type QGradient__Spread int64
-
-const (
-	QGradient__PadSpread     QGradient__Spread = QGradient__Spread(0)
-	QGradient__ReflectSpread QGradient__Spread = QGradient__Spread(1)
-	QGradient__RepeatSpread  QGradient__Spread = QGradient__Spread(2)
-)
-
-//go:generate stringer -type=QGradient__Type
-//QGradient::Type
-type QGradient__Type int64
-
-const (
-	QGradient__LinearGradient  QGradient__Type = QGradient__Type(0)
-	QGradient__RadialGradient  QGradient__Type = QGradient__Type(1)
-	QGradient__ConicalGradient QGradient__Type = QGradient__Type(2)
-	QGradient__NoGradient      QGradient__Type = QGradient__Type(3)
-)
-
 type QGradient struct {
 	ptr unsafe.Pointer
 }
@@ -13722,6 +13687,37 @@ func (ptr *QGradient) DestroyQGradient() {
 		ptr.SetPointer(nil)
 	}
 }
+
+//go:generate stringer -type=QGradient__CoordinateMode
+//QGradient::CoordinateMode
+type QGradient__CoordinateMode int64
+
+const (
+	QGradient__LogicalMode         QGradient__CoordinateMode = QGradient__CoordinateMode(0)
+	QGradient__StretchToDeviceMode QGradient__CoordinateMode = QGradient__CoordinateMode(1)
+	QGradient__ObjectBoundingMode  QGradient__CoordinateMode = QGradient__CoordinateMode(2)
+)
+
+//go:generate stringer -type=QGradient__Spread
+//QGradient::Spread
+type QGradient__Spread int64
+
+const (
+	QGradient__PadSpread     QGradient__Spread = QGradient__Spread(0)
+	QGradient__ReflectSpread QGradient__Spread = QGradient__Spread(1)
+	QGradient__RepeatSpread  QGradient__Spread = QGradient__Spread(2)
+)
+
+//go:generate stringer -type=QGradient__Type
+//QGradient::Type
+type QGradient__Type int64
+
+const (
+	QGradient__LinearGradient  QGradient__Type = QGradient__Type(0)
+	QGradient__RadialGradient  QGradient__Type = QGradient__Type(1)
+	QGradient__ConicalGradient QGradient__Type = QGradient__Type(2)
+	QGradient__NoGradient      QGradient__Type = QGradient__Type(3)
+)
 
 func (ptr *QGradient) SetColorAt(position float64, color QColor_ITF) {
 	if ptr.Pointer() != nil {
@@ -15258,26 +15254,6 @@ func (ptr *QHoverEvent) PosF() *core.QPointF {
 	return nil
 }
 
-//go:generate stringer -type=QIcon__Mode
-//QIcon::Mode
-type QIcon__Mode int64
-
-const (
-	QIcon__Normal   QIcon__Mode = QIcon__Mode(0)
-	QIcon__Disabled QIcon__Mode = QIcon__Mode(1)
-	QIcon__Active   QIcon__Mode = QIcon__Mode(2)
-	QIcon__Selected QIcon__Mode = QIcon__Mode(3)
-)
-
-//go:generate stringer -type=QIcon__State
-//QIcon::State
-type QIcon__State int64
-
-const (
-	QIcon__On  QIcon__State = QIcon__State(0)
-	QIcon__Off QIcon__State = QIcon__State(1)
-)
-
 type QIcon struct {
 	ptr unsafe.Pointer
 }
@@ -15315,6 +15291,27 @@ func NewQIconFromPointer(ptr unsafe.Pointer) *QIcon {
 	n.SetPointer(ptr)
 	return n
 }
+
+//go:generate stringer -type=QIcon__Mode
+//QIcon::Mode
+type QIcon__Mode int64
+
+const (
+	QIcon__Normal   QIcon__Mode = QIcon__Mode(0)
+	QIcon__Disabled QIcon__Mode = QIcon__Mode(1)
+	QIcon__Active   QIcon__Mode = QIcon__Mode(2)
+	QIcon__Selected QIcon__Mode = QIcon__Mode(3)
+)
+
+//go:generate stringer -type=QIcon__State
+//QIcon::State
+type QIcon__State int64
+
+const (
+	QIcon__On  QIcon__State = QIcon__State(0)
+	QIcon__Off QIcon__State = QIcon__State(1)
+)
+
 func NewQIcon() *QIcon {
 	var tmpValue = NewQIconFromPointer(C.QIcon_NewQIcon())
 	runtime.SetFinalizer(tmpValue, (*QIcon).DestroyQIcon)
@@ -15638,16 +15635,6 @@ func NewQIconDragEvent() *QIconDragEvent {
 	return tmpValue
 }
 
-//go:generate stringer -type=QIconEngine__IconEngineHook
-//QIconEngine::IconEngineHook
-type QIconEngine__IconEngineHook int64
-
-const (
-	QIconEngine__AvailableSizesHook QIconEngine__IconEngineHook = QIconEngine__IconEngineHook(1)
-	QIconEngine__IconNameHook       QIconEngine__IconEngineHook = QIconEngine__IconEngineHook(2)
-	QIconEngine__IsNullHook         QIconEngine__IconEngineHook = QIconEngine__IconEngineHook(3)
-)
-
 type QIconEngine struct {
 	ptr unsafe.Pointer
 }
@@ -15685,6 +15672,17 @@ func NewQIconEngineFromPointer(ptr unsafe.Pointer) *QIconEngine {
 	n.SetPointer(ptr)
 	return n
 }
+
+//go:generate stringer -type=QIconEngine__IconEngineHook
+//QIconEngine::IconEngineHook
+type QIconEngine__IconEngineHook int64
+
+const (
+	QIconEngine__AvailableSizesHook QIconEngine__IconEngineHook = QIconEngine__IconEngineHook(1)
+	QIconEngine__IconNameHook       QIconEngine__IconEngineHook = QIconEngine__IconEngineHook(2)
+	QIconEngine__IsNullHook         QIconEngine__IconEngineHook = QIconEngine__IconEngineHook(3)
+)
+
 func NewQIconEngine() *QIconEngine {
 	return NewQIconEngineFromPointer(C.QIconEngine_NewQIconEngine())
 }
@@ -15950,7 +15948,7 @@ func (ptr *QIconEngine) ConnectPaint(f func(painter *QPainter, rect *core.QRect,
 	}
 }
 
-func (ptr *QIconEngine) DisconnectPaint(painter QPainter_ITF, rect core.QRect_ITF, mode QIcon__Mode, state QIcon__State) {
+func (ptr *QIconEngine) DisconnectPaint() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QIconEngine::paint")
@@ -16229,7 +16227,7 @@ func (ptr *QIconEnginePlugin) ConnectCreate(f func(filename string) *QIconEngine
 	}
 }
 
-func (ptr *QIconEnginePlugin) DisconnectCreate(filename string) {
+func (ptr *QIconEnginePlugin) DisconnectCreate() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QIconEnginePlugin::create")
@@ -16586,6 +16584,45 @@ func (ptr *QIconEnginePlugin) MetaObjectDefault() *core.QMetaObject {
 	return nil
 }
 
+type QImage struct {
+	QPaintDevice
+}
+
+type QImage_ITF interface {
+	QPaintDevice_ITF
+	QImage_PTR() *QImage
+}
+
+func (ptr *QImage) QImage_PTR() *QImage {
+	return ptr
+}
+
+func (ptr *QImage) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QPaintDevice_PTR().Pointer()
+	}
+	return nil
+}
+
+func (ptr *QImage) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QPaintDevice_PTR().SetPointer(p)
+	}
+}
+
+func PointerFromQImage(ptr QImage_ITF) unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QImage_PTR().Pointer()
+	}
+	return nil
+}
+
+func NewQImageFromPointer(ptr unsafe.Pointer) *QImage {
+	var n = new(QImage)
+	n.SetPointer(ptr)
+	return n
+}
+
 //go:generate stringer -type=QImage__Format
 //QImage::Format
 type QImage__Format int64
@@ -16627,44 +16664,6 @@ const (
 	QImage__InvertRgba QImage__InvertMode = QImage__InvertMode(1)
 )
 
-type QImage struct {
-	QPaintDevice
-}
-
-type QImage_ITF interface {
-	QPaintDevice_ITF
-	QImage_PTR() *QImage
-}
-
-func (ptr *QImage) QImage_PTR() *QImage {
-	return ptr
-}
-
-func (ptr *QImage) Pointer() unsafe.Pointer {
-	if ptr != nil {
-		return ptr.QPaintDevice_PTR().Pointer()
-	}
-	return nil
-}
-
-func (ptr *QImage) SetPointer(p unsafe.Pointer) {
-	if ptr != nil {
-		ptr.QPaintDevice_PTR().SetPointer(p)
-	}
-}
-
-func PointerFromQImage(ptr QImage_ITF) unsafe.Pointer {
-	if ptr != nil {
-		return ptr.QImage_PTR().Pointer()
-	}
-	return nil
-}
-
-func NewQImageFromPointer(ptr unsafe.Pointer) *QImage {
-	var n = new(QImage)
-	n.SetPointer(ptr)
-	return n
-}
 func (ptr *QImage) ColorCount() int {
 	if ptr.Pointer() != nil {
 		return int(int32(C.QImage_ColorCount(ptr.Pointer())))
@@ -17357,7 +17356,7 @@ func callbackQImage_PaintEngine(ptr unsafe.Pointer) unsafe.Pointer {
 		return PointerFromQPaintEngine(signal.(func() *QPaintEngine)())
 	}
 
-	return PointerFromQPaintEngine(NewQImageFromPointer(ptr).PaintEngineDefault())
+	return PointerFromQPaintEngine(NewQPaintEngine(0))
 }
 
 func (ptr *QImage) ConnectPaintEngine(f func() *QPaintEngine) {
@@ -17381,11 +17380,42 @@ func (ptr *QImage) PaintEngine() *QPaintEngine {
 	return nil
 }
 
-func (ptr *QImage) PaintEngineDefault() *QPaintEngine {
-	if ptr.Pointer() != nil {
-		return NewQPaintEngineFromPointer(C.QImage_PaintEngineDefault(ptr.Pointer()))
+type QImageIOHandler struct {
+	ptr unsafe.Pointer
+}
+
+type QImageIOHandler_ITF interface {
+	QImageIOHandler_PTR() *QImageIOHandler
+}
+
+func (ptr *QImageIOHandler) QImageIOHandler_PTR() *QImageIOHandler {
+	return ptr
+}
+
+func (ptr *QImageIOHandler) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
+}
+
+func (ptr *QImageIOHandler) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
+	}
+}
+
+func PointerFromQImageIOHandler(ptr QImageIOHandler_ITF) unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QImageIOHandler_PTR().Pointer()
+	}
+	return nil
+}
+
+func NewQImageIOHandlerFromPointer(ptr unsafe.Pointer) *QImageIOHandler {
+	var n = new(QImageIOHandler)
+	n.SetPointer(ptr)
+	return n
 }
 
 //go:generate stringer -type=QImageIOHandler__ImageOption
@@ -17430,43 +17460,6 @@ const (
 	QImageIOHandler__TransformationRotate270         QImageIOHandler__Transformation = QImageIOHandler__Transformation(QImageIOHandler__TransformationRotate180 | QImageIOHandler__TransformationRotate90)
 )
 
-type QImageIOHandler struct {
-	ptr unsafe.Pointer
-}
-
-type QImageIOHandler_ITF interface {
-	QImageIOHandler_PTR() *QImageIOHandler
-}
-
-func (ptr *QImageIOHandler) QImageIOHandler_PTR() *QImageIOHandler {
-	return ptr
-}
-
-func (ptr *QImageIOHandler) Pointer() unsafe.Pointer {
-	if ptr != nil {
-		return ptr.ptr
-	}
-	return nil
-}
-
-func (ptr *QImageIOHandler) SetPointer(p unsafe.Pointer) {
-	if ptr != nil {
-		ptr.ptr = p
-	}
-}
-
-func PointerFromQImageIOHandler(ptr QImageIOHandler_ITF) unsafe.Pointer {
-	if ptr != nil {
-		return ptr.QImageIOHandler_PTR().Pointer()
-	}
-	return nil
-}
-
-func NewQImageIOHandlerFromPointer(ptr unsafe.Pointer) *QImageIOHandler {
-	var n = new(QImageIOHandler)
-	n.SetPointer(ptr)
-	return n
-}
 func NewQImageIOHandler() *QImageIOHandler {
 	return NewQImageIOHandlerFromPointer(C.QImageIOHandler_NewQImageIOHandler())
 }
@@ -17851,7 +17844,7 @@ func (ptr *QImageIOHandler) ConnectRead(f func(image *QImage) bool) {
 	}
 }
 
-func (ptr *QImageIOHandler) DisconnectRead(image QImage_ITF) {
+func (ptr *QImageIOHandler) DisconnectRead() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QImageIOHandler::read")
@@ -18035,16 +18028,6 @@ func (ptr *QImageIOHandler) DestroyQImageIOHandlerDefault() {
 	}
 }
 
-//go:generate stringer -type=QImageIOPlugin__Capability
-//QImageIOPlugin::Capability
-type QImageIOPlugin__Capability int64
-
-const (
-	QImageIOPlugin__CanRead            QImageIOPlugin__Capability = QImageIOPlugin__Capability(0x1)
-	QImageIOPlugin__CanWrite           QImageIOPlugin__Capability = QImageIOPlugin__Capability(0x2)
-	QImageIOPlugin__CanReadIncremental QImageIOPlugin__Capability = QImageIOPlugin__Capability(0x4)
-)
-
 type QImageIOPlugin struct {
 	core.QObject
 }
@@ -18083,6 +18066,17 @@ func NewQImageIOPluginFromPointer(ptr unsafe.Pointer) *QImageIOPlugin {
 	n.SetPointer(ptr)
 	return n
 }
+
+//go:generate stringer -type=QImageIOPlugin__Capability
+//QImageIOPlugin::Capability
+type QImageIOPlugin__Capability int64
+
+const (
+	QImageIOPlugin__CanRead            QImageIOPlugin__Capability = QImageIOPlugin__Capability(0x1)
+	QImageIOPlugin__CanWrite           QImageIOPlugin__Capability = QImageIOPlugin__Capability(0x2)
+	QImageIOPlugin__CanReadIncremental QImageIOPlugin__Capability = QImageIOPlugin__Capability(0x4)
+)
+
 func NewQImageIOPlugin(parent core.QObject_ITF) *QImageIOPlugin {
 	var tmpValue = NewQImageIOPluginFromPointer(C.QImageIOPlugin_NewQImageIOPlugin(core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {
@@ -18108,7 +18102,7 @@ func (ptr *QImageIOPlugin) ConnectCapabilities(f func(device *core.QIODevice, fo
 	}
 }
 
-func (ptr *QImageIOPlugin) DisconnectCapabilities(device core.QIODevice_ITF, format core.QByteArray_ITF) {
+func (ptr *QImageIOPlugin) DisconnectCapabilities() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QImageIOPlugin::capabilities")
@@ -18139,7 +18133,7 @@ func (ptr *QImageIOPlugin) ConnectCreate(f func(device *core.QIODevice, format *
 	}
 }
 
-func (ptr *QImageIOPlugin) DisconnectCreate(device core.QIODevice_ITF, format core.QByteArray_ITF) {
+func (ptr *QImageIOPlugin) DisconnectCreate() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QImageIOPlugin::create")
@@ -18526,18 +18520,6 @@ func (ptr *QImageIOPlugin) MetaObjectDefault() *core.QMetaObject {
 	return nil
 }
 
-//go:generate stringer -type=QImageReader__ImageReaderError
-//QImageReader::ImageReaderError
-type QImageReader__ImageReaderError int64
-
-const (
-	QImageReader__UnknownError           QImageReader__ImageReaderError = QImageReader__ImageReaderError(0)
-	QImageReader__FileNotFoundError      QImageReader__ImageReaderError = QImageReader__ImageReaderError(1)
-	QImageReader__DeviceError            QImageReader__ImageReaderError = QImageReader__ImageReaderError(2)
-	QImageReader__UnsupportedFormatError QImageReader__ImageReaderError = QImageReader__ImageReaderError(3)
-	QImageReader__InvalidDataError       QImageReader__ImageReaderError = QImageReader__ImageReaderError(4)
-)
-
 type QImageReader struct {
 	ptr unsafe.Pointer
 }
@@ -18575,6 +18557,19 @@ func NewQImageReaderFromPointer(ptr unsafe.Pointer) *QImageReader {
 	n.SetPointer(ptr)
 	return n
 }
+
+//go:generate stringer -type=QImageReader__ImageReaderError
+//QImageReader::ImageReaderError
+type QImageReader__ImageReaderError int64
+
+const (
+	QImageReader__UnknownError           QImageReader__ImageReaderError = QImageReader__ImageReaderError(0)
+	QImageReader__FileNotFoundError      QImageReader__ImageReaderError = QImageReader__ImageReaderError(1)
+	QImageReader__DeviceError            QImageReader__ImageReaderError = QImageReader__ImageReaderError(2)
+	QImageReader__UnsupportedFormatError QImageReader__ImageReaderError = QImageReader__ImageReaderError(3)
+	QImageReader__InvalidDataError       QImageReader__ImageReaderError = QImageReader__ImageReaderError(4)
+)
+
 func NewQImageReader() *QImageReader {
 	var tmpValue = NewQImageReaderFromPointer(C.QImageReader_NewQImageReader())
 	runtime.SetFinalizer(tmpValue, (*QImageReader).DestroyQImageReader)
@@ -19032,16 +19027,6 @@ func (ptr *QImageReader) supportedSubTypes_atList(i int) *core.QByteArray {
 	return nil
 }
 
-//go:generate stringer -type=QImageWriter__ImageWriterError
-//QImageWriter::ImageWriterError
-type QImageWriter__ImageWriterError int64
-
-const (
-	QImageWriter__UnknownError           QImageWriter__ImageWriterError = QImageWriter__ImageWriterError(0)
-	QImageWriter__DeviceError            QImageWriter__ImageWriterError = QImageWriter__ImageWriterError(1)
-	QImageWriter__UnsupportedFormatError QImageWriter__ImageWriterError = QImageWriter__ImageWriterError(2)
-)
-
 type QImageWriter struct {
 	ptr unsafe.Pointer
 }
@@ -19079,6 +19064,17 @@ func NewQImageWriterFromPointer(ptr unsafe.Pointer) *QImageWriter {
 	n.SetPointer(ptr)
 	return n
 }
+
+//go:generate stringer -type=QImageWriter__ImageWriterError
+//QImageWriter::ImageWriterError
+type QImageWriter__ImageWriterError int64
+
+const (
+	QImageWriter__UnknownError           QImageWriter__ImageWriterError = QImageWriter__ImageWriterError(0)
+	QImageWriter__DeviceError            QImageWriter__ImageWriterError = QImageWriter__ImageWriterError(1)
+	QImageWriter__UnsupportedFormatError QImageWriter__ImageWriterError = QImageWriter__ImageWriterError(2)
+)
+
 func NewQImageWriter() *QImageWriter {
 	var tmpValue = NewQImageWriterFromPointer(C.QImageWriter_NewQImageWriter())
 	runtime.SetFinalizer(tmpValue, (*QImageWriter).DestroyQImageWriter)
@@ -19457,15 +19453,6 @@ func (ptr *QInputEvent) SetTs(vul uint) {
 	}
 }
 
-//go:generate stringer -type=QInputMethod__Action
-//QInputMethod::Action
-type QInputMethod__Action int64
-
-const (
-	QInputMethod__Click       QInputMethod__Action = QInputMethod__Action(0)
-	QInputMethod__ContextMenu QInputMethod__Action = QInputMethod__Action(1)
-)
-
 type QInputMethod struct {
 	core.QObject
 }
@@ -19512,6 +19499,15 @@ func (ptr *QInputMethod) DestroyQInputMethod() {
 		ptr.SetPointer(nil)
 	}
 }
+
+//go:generate stringer -type=QInputMethod__Action
+//QInputMethod::Action
+type QInputMethod__Action int64
+
+const (
+	QInputMethod__Click       QInputMethod__Action = QInputMethod__Action(0)
+	QInputMethod__ContextMenu QInputMethod__Action = QInputMethod__Action(1)
+)
 
 func (ptr *QInputMethod) AnchorRectangle() *core.QRectF {
 	if ptr.Pointer() != nil {
@@ -19641,8 +19637,9 @@ func (ptr *QInputMethod) AnimatingChanged() {
 func callbackQInputMethod_Commit(ptr unsafe.Pointer) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QInputMethod::commit"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQInputMethodFromPointer(ptr).CommitDefault()
 	}
-
 }
 
 func (ptr *QInputMethod) ConnectCommit(f func()) {
@@ -19662,6 +19659,12 @@ func (ptr *QInputMethod) DisconnectCommit() {
 func (ptr *QInputMethod) Commit() {
 	if ptr.Pointer() != nil {
 		C.QInputMethod_Commit(ptr.Pointer())
+	}
+}
+
+func (ptr *QInputMethod) CommitDefault() {
+	if ptr.Pointer() != nil {
+		C.QInputMethod_CommitDefault(ptr.Pointer())
 	}
 }
 
@@ -19698,8 +19701,9 @@ func (ptr *QInputMethod) CursorRectangleChanged() {
 func callbackQInputMethod_Hide(ptr unsafe.Pointer) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QInputMethod::hide"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQInputMethodFromPointer(ptr).HideDefault()
 	}
-
 }
 
 func (ptr *QInputMethod) ConnectHide(f func()) {
@@ -19719,6 +19723,12 @@ func (ptr *QInputMethod) DisconnectHide() {
 func (ptr *QInputMethod) Hide() {
 	if ptr.Pointer() != nil {
 		C.QInputMethod_Hide(ptr.Pointer())
+	}
+}
+
+func (ptr *QInputMethod) HideDefault() {
+	if ptr.Pointer() != nil {
+		C.QInputMethod_HideDefault(ptr.Pointer())
 	}
 }
 
@@ -19802,8 +19812,9 @@ func (ptr *QInputMethod) InputItemTransform() *QTransform {
 func callbackQInputMethod_InvokeAction(ptr unsafe.Pointer, a C.longlong, cursorPosition C.int) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QInputMethod::invokeAction"); signal != nil {
 		signal.(func(QInputMethod__Action, int))(QInputMethod__Action(a), int(int32(cursorPosition)))
+	} else {
+		NewQInputMethodFromPointer(ptr).InvokeActionDefault(QInputMethod__Action(a), int(int32(cursorPosition)))
 	}
-
 }
 
 func (ptr *QInputMethod) ConnectInvokeAction(f func(a QInputMethod__Action, cursorPosition int)) {
@@ -19813,7 +19824,7 @@ func (ptr *QInputMethod) ConnectInvokeAction(f func(a QInputMethod__Action, curs
 	}
 }
 
-func (ptr *QInputMethod) DisconnectInvokeAction(a QInputMethod__Action, cursorPosition int) {
+func (ptr *QInputMethod) DisconnectInvokeAction() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QInputMethod::invokeAction")
@@ -19823,6 +19834,12 @@ func (ptr *QInputMethod) DisconnectInvokeAction(a QInputMethod__Action, cursorPo
 func (ptr *QInputMethod) InvokeAction(a QInputMethod__Action, cursorPosition int) {
 	if ptr.Pointer() != nil {
 		C.QInputMethod_InvokeAction(ptr.Pointer(), C.longlong(a), C.int(int32(cursorPosition)))
+	}
+}
+
+func (ptr *QInputMethod) InvokeActionDefault(a QInputMethod__Action, cursorPosition int) {
+	if ptr.Pointer() != nil {
+		C.QInputMethod_InvokeActionDefault(ptr.Pointer(), C.longlong(a), C.int(int32(cursorPosition)))
 	}
 }
 
@@ -19900,8 +19917,9 @@ func (ptr *QInputMethod) QueryFocusObject(query core.Qt__InputMethodQuery, argum
 func callbackQInputMethod_Reset(ptr unsafe.Pointer) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QInputMethod::reset"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQInputMethodFromPointer(ptr).ResetDefault()
 	}
-
 }
 
 func (ptr *QInputMethod) ConnectReset(f func()) {
@@ -19921,6 +19939,12 @@ func (ptr *QInputMethod) DisconnectReset() {
 func (ptr *QInputMethod) Reset() {
 	if ptr.Pointer() != nil {
 		C.QInputMethod_Reset(ptr.Pointer())
+	}
+}
+
+func (ptr *QInputMethod) ResetDefault() {
+	if ptr.Pointer() != nil {
+		C.QInputMethod_ResetDefault(ptr.Pointer())
 	}
 }
 
@@ -19946,8 +19970,9 @@ func (ptr *QInputMethod) SetVisible(visible bool) {
 func callbackQInputMethod_Show(ptr unsafe.Pointer) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QInputMethod::show"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQInputMethodFromPointer(ptr).ShowDefault()
 	}
-
 }
 
 func (ptr *QInputMethod) ConnectShow(f func()) {
@@ -19970,12 +19995,19 @@ func (ptr *QInputMethod) Show() {
 	}
 }
 
+func (ptr *QInputMethod) ShowDefault() {
+	if ptr.Pointer() != nil {
+		C.QInputMethod_ShowDefault(ptr.Pointer())
+	}
+}
+
 //export callbackQInputMethod_Update
 func callbackQInputMethod_Update(ptr unsafe.Pointer, queries C.longlong) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QInputMethod::update"); signal != nil {
 		signal.(func(core.Qt__InputMethodQuery))(core.Qt__InputMethodQuery(queries))
+	} else {
+		NewQInputMethodFromPointer(ptr).UpdateDefault(core.Qt__InputMethodQuery(queries))
 	}
-
 }
 
 func (ptr *QInputMethod) ConnectUpdate(f func(queries core.Qt__InputMethodQuery)) {
@@ -19985,7 +20017,7 @@ func (ptr *QInputMethod) ConnectUpdate(f func(queries core.Qt__InputMethodQuery)
 	}
 }
 
-func (ptr *QInputMethod) DisconnectUpdate(queries core.Qt__InputMethodQuery) {
+func (ptr *QInputMethod) DisconnectUpdate() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QInputMethod::update")
@@ -19995,6 +20027,12 @@ func (ptr *QInputMethod) DisconnectUpdate(queries core.Qt__InputMethodQuery) {
 func (ptr *QInputMethod) Update(queries core.Qt__InputMethodQuery) {
 	if ptr.Pointer() != nil {
 		C.QInputMethod_Update(ptr.Pointer(), C.longlong(queries))
+	}
+}
+
+func (ptr *QInputMethod) UpdateDefault(queries core.Qt__InputMethodQuery) {
+	if ptr.Pointer() != nil {
+		C.QInputMethod_UpdateDefault(ptr.Pointer(), C.longlong(queries))
 	}
 }
 
@@ -20360,18 +20398,6 @@ func (ptr *QInputMethod) MetaObjectDefault() *core.QMetaObject {
 	return nil
 }
 
-//go:generate stringer -type=QInputMethodEvent__AttributeType
-//QInputMethodEvent::AttributeType
-type QInputMethodEvent__AttributeType int64
-
-const (
-	QInputMethodEvent__TextFormat QInputMethodEvent__AttributeType = QInputMethodEvent__AttributeType(0)
-	QInputMethodEvent__Cursor     QInputMethodEvent__AttributeType = QInputMethodEvent__AttributeType(1)
-	QInputMethodEvent__Language   QInputMethodEvent__AttributeType = QInputMethodEvent__AttributeType(2)
-	QInputMethodEvent__Ruby       QInputMethodEvent__AttributeType = QInputMethodEvent__AttributeType(3)
-	QInputMethodEvent__Selection  QInputMethodEvent__AttributeType = QInputMethodEvent__AttributeType(4)
-)
-
 type QInputMethodEvent struct {
 	core.QEvent
 }
@@ -20410,6 +20436,19 @@ func NewQInputMethodEventFromPointer(ptr unsafe.Pointer) *QInputMethodEvent {
 	n.SetPointer(ptr)
 	return n
 }
+
+//go:generate stringer -type=QInputMethodEvent__AttributeType
+//QInputMethodEvent::AttributeType
+type QInputMethodEvent__AttributeType int64
+
+const (
+	QInputMethodEvent__TextFormat QInputMethodEvent__AttributeType = QInputMethodEvent__AttributeType(0)
+	QInputMethodEvent__Cursor     QInputMethodEvent__AttributeType = QInputMethodEvent__AttributeType(1)
+	QInputMethodEvent__Language   QInputMethodEvent__AttributeType = QInputMethodEvent__AttributeType(2)
+	QInputMethodEvent__Ruby       QInputMethodEvent__AttributeType = QInputMethodEvent__AttributeType(3)
+	QInputMethodEvent__Selection  QInputMethodEvent__AttributeType = QInputMethodEvent__AttributeType(4)
+)
+
 func (ptr *QInputMethodEvent) DestroyQInputMethodEvent() {
 	if ptr.Pointer() != nil {
 		C.QInputMethodEvent_DestroyQInputMethodEvent(ptr.Pointer())
@@ -21283,6 +21322,44 @@ func (ptr *QKeyEvent) SetTxt(vqs string) {
 	}
 }
 
+type QKeySequence struct {
+	ptr unsafe.Pointer
+}
+
+type QKeySequence_ITF interface {
+	QKeySequence_PTR() *QKeySequence
+}
+
+func (ptr *QKeySequence) QKeySequence_PTR() *QKeySequence {
+	return ptr
+}
+
+func (ptr *QKeySequence) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
+	}
+	return nil
+}
+
+func (ptr *QKeySequence) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
+	}
+}
+
+func PointerFromQKeySequence(ptr QKeySequence_ITF) unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QKeySequence_PTR().Pointer()
+	}
+	return nil
+}
+
+func NewQKeySequenceFromPointer(ptr unsafe.Pointer) *QKeySequence {
+	var n = new(QKeySequence)
+	n.SetPointer(ptr)
+	return n
+}
+
 //go:generate stringer -type=QKeySequence__SequenceFormat
 //QKeySequence::SequenceFormat
 type QKeySequence__SequenceFormat int64
@@ -21380,43 +21457,6 @@ const (
 	QKeySequence__Cancel                   QKeySequence__StandardKey = QKeySequence__StandardKey(70)
 )
 
-type QKeySequence struct {
-	ptr unsafe.Pointer
-}
-
-type QKeySequence_ITF interface {
-	QKeySequence_PTR() *QKeySequence
-}
-
-func (ptr *QKeySequence) QKeySequence_PTR() *QKeySequence {
-	return ptr
-}
-
-func (ptr *QKeySequence) Pointer() unsafe.Pointer {
-	if ptr != nil {
-		return ptr.ptr
-	}
-	return nil
-}
-
-func (ptr *QKeySequence) SetPointer(p unsafe.Pointer) {
-	if ptr != nil {
-		ptr.ptr = p
-	}
-}
-
-func PointerFromQKeySequence(ptr QKeySequence_ITF) unsafe.Pointer {
-	if ptr != nil {
-		return ptr.QKeySequence_PTR().Pointer()
-	}
-	return nil
-}
-
-func NewQKeySequenceFromPointer(ptr unsafe.Pointer) *QKeySequence {
-	var n = new(QKeySequence)
-	n.SetPointer(ptr)
-	return n
-}
 func NewQKeySequence() *QKeySequence {
 	var tmpValue = NewQKeySequenceFromPointer(C.QKeySequence_NewQKeySequence())
 	runtime.SetFinalizer(tmpValue, (*QKeySequence).DestroyQKeySequence)
@@ -22347,25 +22387,6 @@ func (ptr *QMoveEvent) Pos() *core.QPoint {
 	return nil
 }
 
-//go:generate stringer -type=QMovie__CacheMode
-//QMovie::CacheMode
-type QMovie__CacheMode int64
-
-const (
-	QMovie__CacheNone QMovie__CacheMode = QMovie__CacheMode(0)
-	QMovie__CacheAll  QMovie__CacheMode = QMovie__CacheMode(1)
-)
-
-//go:generate stringer -type=QMovie__MovieState
-//QMovie::MovieState
-type QMovie__MovieState int64
-
-const (
-	QMovie__NotRunning QMovie__MovieState = QMovie__MovieState(0)
-	QMovie__Paused     QMovie__MovieState = QMovie__MovieState(1)
-	QMovie__Running    QMovie__MovieState = QMovie__MovieState(2)
-)
-
 type QMovie struct {
 	core.QObject
 }
@@ -22404,6 +22425,26 @@ func NewQMovieFromPointer(ptr unsafe.Pointer) *QMovie {
 	n.SetPointer(ptr)
 	return n
 }
+
+//go:generate stringer -type=QMovie__CacheMode
+//QMovie::CacheMode
+type QMovie__CacheMode int64
+
+const (
+	QMovie__CacheNone QMovie__CacheMode = QMovie__CacheMode(0)
+	QMovie__CacheAll  QMovie__CacheMode = QMovie__CacheMode(1)
+)
+
+//go:generate stringer -type=QMovie__MovieState
+//QMovie::MovieState
+type QMovie__MovieState int64
+
+const (
+	QMovie__NotRunning QMovie__MovieState = QMovie__MovieState(0)
+	QMovie__Paused     QMovie__MovieState = QMovie__MovieState(1)
+	QMovie__Running    QMovie__MovieState = QMovie__MovieState(2)
+)
+
 func (ptr *QMovie) CacheMode() QMovie__CacheMode {
 	if ptr.Pointer() != nil {
 		return QMovie__CacheMode(C.QMovie_CacheMode(ptr.Pointer()))
@@ -22421,8 +22462,9 @@ func (ptr *QMovie) SetCacheMode(mode QMovie__CacheMode) {
 func callbackQMovie_SetSpeed(ptr unsafe.Pointer, percentSpeed C.int) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMovie::setSpeed"); signal != nil {
 		signal.(func(int))(int(int32(percentSpeed)))
+	} else {
+		NewQMovieFromPointer(ptr).SetSpeedDefault(int(int32(percentSpeed)))
 	}
-
 }
 
 func (ptr *QMovie) ConnectSetSpeed(f func(percentSpeed int)) {
@@ -22432,7 +22474,7 @@ func (ptr *QMovie) ConnectSetSpeed(f func(percentSpeed int)) {
 	}
 }
 
-func (ptr *QMovie) DisconnectSetSpeed(percentSpeed int) {
+func (ptr *QMovie) DisconnectSetSpeed() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QMovie::setSpeed")
@@ -22442,6 +22484,12 @@ func (ptr *QMovie) DisconnectSetSpeed(percentSpeed int) {
 func (ptr *QMovie) SetSpeed(percentSpeed int) {
 	if ptr.Pointer() != nil {
 		C.QMovie_SetSpeed(ptr.Pointer(), C.int(int32(percentSpeed)))
+	}
+}
+
+func (ptr *QMovie) SetSpeedDefault(percentSpeed int) {
+	if ptr.Pointer() != nil {
+		C.QMovie_SetSpeedDefault(ptr.Pointer(), C.int(int32(percentSpeed)))
 	}
 }
 
@@ -22662,7 +22710,7 @@ func callbackQMovie_JumpToNextFrame(ptr unsafe.Pointer) C.char {
 		return C.char(int8(qt.GoBoolToInt(signal.(func() bool)())))
 	}
 
-	return C.char(int8(qt.GoBoolToInt(false)))
+	return C.char(int8(qt.GoBoolToInt(NewQMovieFromPointer(ptr).JumpToNextFrameDefault())))
 }
 
 func (ptr *QMovie) ConnectJumpToNextFrame(f func() bool) {
@@ -22682,6 +22730,13 @@ func (ptr *QMovie) DisconnectJumpToNextFrame() {
 func (ptr *QMovie) JumpToNextFrame() bool {
 	if ptr.Pointer() != nil {
 		return C.QMovie_JumpToNextFrame(ptr.Pointer()) != 0
+	}
+	return false
+}
+
+func (ptr *QMovie) JumpToNextFrameDefault() bool {
+	if ptr.Pointer() != nil {
+		return C.QMovie_JumpToNextFrameDefault(ptr.Pointer()) != 0
 	}
 	return false
 }
@@ -22768,8 +22823,9 @@ func (ptr *QMovie) SetFormat(format core.QByteArray_ITF) {
 func callbackQMovie_SetPaused(ptr unsafe.Pointer, paused C.char) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMovie::setPaused"); signal != nil {
 		signal.(func(bool))(int8(paused) != 0)
+	} else {
+		NewQMovieFromPointer(ptr).SetPausedDefault(int8(paused) != 0)
 	}
-
 }
 
 func (ptr *QMovie) ConnectSetPaused(f func(paused bool)) {
@@ -22779,7 +22835,7 @@ func (ptr *QMovie) ConnectSetPaused(f func(paused bool)) {
 	}
 }
 
-func (ptr *QMovie) DisconnectSetPaused(paused bool) {
+func (ptr *QMovie) DisconnectSetPaused() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QMovie::setPaused")
@@ -22789,6 +22845,12 @@ func (ptr *QMovie) DisconnectSetPaused(paused bool) {
 func (ptr *QMovie) SetPaused(paused bool) {
 	if ptr.Pointer() != nil {
 		C.QMovie_SetPaused(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(paused))))
+	}
+}
+
+func (ptr *QMovie) SetPausedDefault(paused bool) {
+	if ptr.Pointer() != nil {
+		C.QMovie_SetPausedDefault(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(paused))))
 	}
 }
 
@@ -22802,8 +22864,9 @@ func (ptr *QMovie) SetScaledSize(size core.QSize_ITF) {
 func callbackQMovie_Start(ptr unsafe.Pointer) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMovie::start"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQMovieFromPointer(ptr).StartDefault()
 	}
-
 }
 
 func (ptr *QMovie) ConnectStart(f func()) {
@@ -22823,6 +22886,12 @@ func (ptr *QMovie) DisconnectStart() {
 func (ptr *QMovie) Start() {
 	if ptr.Pointer() != nil {
 		C.QMovie_Start(ptr.Pointer())
+	}
+}
+
+func (ptr *QMovie) StartDefault() {
+	if ptr.Pointer() != nil {
+		C.QMovie_StartDefault(ptr.Pointer())
 	}
 }
 
@@ -22895,8 +22964,9 @@ func (ptr *QMovie) StateChanged(state QMovie__MovieState) {
 func callbackQMovie_Stop(ptr unsafe.Pointer) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMovie::stop"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQMovieFromPointer(ptr).StopDefault()
 	}
-
 }
 
 func (ptr *QMovie) ConnectStop(f func()) {
@@ -22916,6 +22986,12 @@ func (ptr *QMovie) DisconnectStop() {
 func (ptr *QMovie) Stop() {
 	if ptr.Pointer() != nil {
 		C.QMovie_Stop(ptr.Pointer())
+	}
+}
+
+func (ptr *QMovie) StopDefault() {
+	if ptr.Pointer() != nil {
+		C.QMovie_StopDefault(ptr.Pointer())
 	}
 }
 
@@ -24144,6 +24220,44 @@ func (ptr *QOffscreenSurface) MetaObjectDefault() *core.QMetaObject {
 	return nil
 }
 
+type QOpenGLBuffer struct {
+	ptr unsafe.Pointer
+}
+
+type QOpenGLBuffer_ITF interface {
+	QOpenGLBuffer_PTR() *QOpenGLBuffer
+}
+
+func (ptr *QOpenGLBuffer) QOpenGLBuffer_PTR() *QOpenGLBuffer {
+	return ptr
+}
+
+func (ptr *QOpenGLBuffer) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
+	}
+	return nil
+}
+
+func (ptr *QOpenGLBuffer) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
+	}
+}
+
+func PointerFromQOpenGLBuffer(ptr QOpenGLBuffer_ITF) unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QOpenGLBuffer_PTR().Pointer()
+	}
+	return nil
+}
+
+func NewQOpenGLBufferFromPointer(ptr unsafe.Pointer) *QOpenGLBuffer {
+	var n = new(QOpenGLBuffer)
+	n.SetPointer(ptr)
+	return n
+}
+
 //go:generate stringer -type=QOpenGLBuffer__Access
 //QOpenGLBuffer::Access
 type QOpenGLBuffer__Access int64
@@ -24194,53 +24308,6 @@ const (
 	QOpenGLBuffer__DynamicCopy QOpenGLBuffer__UsagePattern = QOpenGLBuffer__UsagePattern(0x88EA)
 )
 
-type QOpenGLBuffer struct {
-	ptr unsafe.Pointer
-}
-
-type QOpenGLBuffer_ITF interface {
-	QOpenGLBuffer_PTR() *QOpenGLBuffer
-}
-
-func (ptr *QOpenGLBuffer) QOpenGLBuffer_PTR() *QOpenGLBuffer {
-	return ptr
-}
-
-func (ptr *QOpenGLBuffer) Pointer() unsafe.Pointer {
-	if ptr != nil {
-		return ptr.ptr
-	}
-	return nil
-}
-
-func (ptr *QOpenGLBuffer) SetPointer(p unsafe.Pointer) {
-	if ptr != nil {
-		ptr.ptr = p
-	}
-}
-
-func PointerFromQOpenGLBuffer(ptr QOpenGLBuffer_ITF) unsafe.Pointer {
-	if ptr != nil {
-		return ptr.QOpenGLBuffer_PTR().Pointer()
-	}
-	return nil
-}
-
-func NewQOpenGLBufferFromPointer(ptr unsafe.Pointer) *QOpenGLBuffer {
-	var n = new(QOpenGLBuffer)
-	n.SetPointer(ptr)
-	return n
-}
-
-//go:generate stringer -type=QOpenGLContext__OpenGLModuleType
-//QOpenGLContext::OpenGLModuleType
-type QOpenGLContext__OpenGLModuleType int64
-
-const (
-	QOpenGLContext__LibGL   QOpenGLContext__OpenGLModuleType = QOpenGLContext__OpenGLModuleType(0)
-	QOpenGLContext__LibGLES QOpenGLContext__OpenGLModuleType = QOpenGLContext__OpenGLModuleType(1)
-)
-
 type QOpenGLContext struct {
 	core.QObject
 }
@@ -24279,6 +24346,15 @@ func NewQOpenGLContextFromPointer(ptr unsafe.Pointer) *QOpenGLContext {
 	n.SetPointer(ptr)
 	return n
 }
+
+//go:generate stringer -type=QOpenGLContext__OpenGLModuleType
+//QOpenGLContext::OpenGLModuleType
+type QOpenGLContext__OpenGLModuleType int64
+
+const (
+	QOpenGLContext__LibGL   QOpenGLContext__OpenGLModuleType = QOpenGLContext__OpenGLModuleType(0)
+	QOpenGLContext__LibGLES QOpenGLContext__OpenGLModuleType = QOpenGLContext__OpenGLModuleType(1)
+)
 
 type QOpenGLContextGroup struct {
 	core.QObject
@@ -24327,15 +24403,6 @@ func (ptr *QOpenGLContextGroup) DestroyQOpenGLContextGroup() {
 	}
 }
 
-//go:generate stringer -type=QOpenGLDebugLogger__LoggingMode
-//QOpenGLDebugLogger::LoggingMode
-type QOpenGLDebugLogger__LoggingMode int64
-
-const (
-	QOpenGLDebugLogger__AsynchronousLogging QOpenGLDebugLogger__LoggingMode = QOpenGLDebugLogger__LoggingMode(0)
-	QOpenGLDebugLogger__SynchronousLogging  QOpenGLDebugLogger__LoggingMode = QOpenGLDebugLogger__LoggingMode(1)
-)
-
 type QOpenGLDebugLogger struct {
 	core.QObject
 }
@@ -24371,6 +24438,53 @@ func PointerFromQOpenGLDebugLogger(ptr QOpenGLDebugLogger_ITF) unsafe.Pointer {
 
 func NewQOpenGLDebugLoggerFromPointer(ptr unsafe.Pointer) *QOpenGLDebugLogger {
 	var n = new(QOpenGLDebugLogger)
+	n.SetPointer(ptr)
+	return n
+}
+
+//go:generate stringer -type=QOpenGLDebugLogger__LoggingMode
+//QOpenGLDebugLogger::LoggingMode
+type QOpenGLDebugLogger__LoggingMode int64
+
+const (
+	QOpenGLDebugLogger__AsynchronousLogging QOpenGLDebugLogger__LoggingMode = QOpenGLDebugLogger__LoggingMode(0)
+	QOpenGLDebugLogger__SynchronousLogging  QOpenGLDebugLogger__LoggingMode = QOpenGLDebugLogger__LoggingMode(1)
+)
+
+type QOpenGLDebugMessage struct {
+	ptr unsafe.Pointer
+}
+
+type QOpenGLDebugMessage_ITF interface {
+	QOpenGLDebugMessage_PTR() *QOpenGLDebugMessage
+}
+
+func (ptr *QOpenGLDebugMessage) QOpenGLDebugMessage_PTR() *QOpenGLDebugMessage {
+	return ptr
+}
+
+func (ptr *QOpenGLDebugMessage) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
+	}
+	return nil
+}
+
+func (ptr *QOpenGLDebugMessage) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
+	}
+}
+
+func PointerFromQOpenGLDebugMessage(ptr QOpenGLDebugMessage_ITF) unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QOpenGLDebugMessage_PTR().Pointer()
+	}
+	return nil
+}
+
+func NewQOpenGLDebugMessageFromPointer(ptr unsafe.Pointer) *QOpenGLDebugMessage {
+	var n = new(QOpenGLDebugMessage)
 	n.SetPointer(ptr)
 	return n
 }
@@ -24424,44 +24538,6 @@ const (
 	QOpenGLDebugMessage__AnyType                QOpenGLDebugMessage__Type = QOpenGLDebugMessage__Type(0xffffffff)
 )
 
-type QOpenGLDebugMessage struct {
-	ptr unsafe.Pointer
-}
-
-type QOpenGLDebugMessage_ITF interface {
-	QOpenGLDebugMessage_PTR() *QOpenGLDebugMessage
-}
-
-func (ptr *QOpenGLDebugMessage) QOpenGLDebugMessage_PTR() *QOpenGLDebugMessage {
-	return ptr
-}
-
-func (ptr *QOpenGLDebugMessage) Pointer() unsafe.Pointer {
-	if ptr != nil {
-		return ptr.ptr
-	}
-	return nil
-}
-
-func (ptr *QOpenGLDebugMessage) SetPointer(p unsafe.Pointer) {
-	if ptr != nil {
-		ptr.ptr = p
-	}
-}
-
-func PointerFromQOpenGLDebugMessage(ptr QOpenGLDebugMessage_ITF) unsafe.Pointer {
-	if ptr != nil {
-		return ptr.QOpenGLDebugMessage_PTR().Pointer()
-	}
-	return nil
-}
-
-func NewQOpenGLDebugMessageFromPointer(ptr unsafe.Pointer) *QOpenGLDebugMessage {
-	var n = new(QOpenGLDebugMessage)
-	n.SetPointer(ptr)
-	return n
-}
-
 type QOpenGLExtraFunctions struct {
 	QOpenGLFunctions
 }
@@ -24501,26 +24577,6 @@ func NewQOpenGLExtraFunctionsFromPointer(ptr unsafe.Pointer) *QOpenGLExtraFuncti
 	return n
 }
 
-//go:generate stringer -type=QOpenGLFramebufferObject__Attachment
-//QOpenGLFramebufferObject::Attachment
-type QOpenGLFramebufferObject__Attachment int64
-
-const (
-	QOpenGLFramebufferObject__NoAttachment         QOpenGLFramebufferObject__Attachment = QOpenGLFramebufferObject__Attachment(0)
-	QOpenGLFramebufferObject__CombinedDepthStencil QOpenGLFramebufferObject__Attachment = QOpenGLFramebufferObject__Attachment(1)
-	QOpenGLFramebufferObject__Depth                QOpenGLFramebufferObject__Attachment = QOpenGLFramebufferObject__Attachment(2)
-)
-
-//go:generate stringer -type=QOpenGLFramebufferObject__FramebufferRestorePolicy
-//QOpenGLFramebufferObject::FramebufferRestorePolicy
-type QOpenGLFramebufferObject__FramebufferRestorePolicy int64
-
-const (
-	QOpenGLFramebufferObject__DontRestoreFramebufferBinding      QOpenGLFramebufferObject__FramebufferRestorePolicy = QOpenGLFramebufferObject__FramebufferRestorePolicy(0)
-	QOpenGLFramebufferObject__RestoreFramebufferBindingToDefault QOpenGLFramebufferObject__FramebufferRestorePolicy = QOpenGLFramebufferObject__FramebufferRestorePolicy(1)
-	QOpenGLFramebufferObject__RestoreFrameBufferBinding          QOpenGLFramebufferObject__FramebufferRestorePolicy = QOpenGLFramebufferObject__FramebufferRestorePolicy(2)
-)
-
 type QOpenGLFramebufferObject struct {
 	ptr unsafe.Pointer
 }
@@ -24558,6 +24614,26 @@ func NewQOpenGLFramebufferObjectFromPointer(ptr unsafe.Pointer) *QOpenGLFramebuf
 	n.SetPointer(ptr)
 	return n
 }
+
+//go:generate stringer -type=QOpenGLFramebufferObject__Attachment
+//QOpenGLFramebufferObject::Attachment
+type QOpenGLFramebufferObject__Attachment int64
+
+const (
+	QOpenGLFramebufferObject__NoAttachment         QOpenGLFramebufferObject__Attachment = QOpenGLFramebufferObject__Attachment(0)
+	QOpenGLFramebufferObject__CombinedDepthStencil QOpenGLFramebufferObject__Attachment = QOpenGLFramebufferObject__Attachment(1)
+	QOpenGLFramebufferObject__Depth                QOpenGLFramebufferObject__Attachment = QOpenGLFramebufferObject__Attachment(2)
+)
+
+//go:generate stringer -type=QOpenGLFramebufferObject__FramebufferRestorePolicy
+//QOpenGLFramebufferObject::FramebufferRestorePolicy
+type QOpenGLFramebufferObject__FramebufferRestorePolicy int64
+
+const (
+	QOpenGLFramebufferObject__DontRestoreFramebufferBinding      QOpenGLFramebufferObject__FramebufferRestorePolicy = QOpenGLFramebufferObject__FramebufferRestorePolicy(0)
+	QOpenGLFramebufferObject__RestoreFramebufferBindingToDefault QOpenGLFramebufferObject__FramebufferRestorePolicy = QOpenGLFramebufferObject__FramebufferRestorePolicy(1)
+	QOpenGLFramebufferObject__RestoreFrameBufferBinding          QOpenGLFramebufferObject__FramebufferRestorePolicy = QOpenGLFramebufferObject__FramebufferRestorePolicy(2)
+)
 
 type QOpenGLFramebufferObjectFormat struct {
 	ptr unsafe.Pointer
@@ -24597,30 +24673,6 @@ func NewQOpenGLFramebufferObjectFormatFromPointer(ptr unsafe.Pointer) *QOpenGLFr
 	return n
 }
 
-//go:generate stringer -type=QOpenGLFunctions__OpenGLFeature
-//QOpenGLFunctions::OpenGLFeature
-type QOpenGLFunctions__OpenGLFeature int64
-
-const (
-	QOpenGLFunctions__Multitexture          QOpenGLFunctions__OpenGLFeature = QOpenGLFunctions__OpenGLFeature(0x0001)
-	QOpenGLFunctions__Shaders               QOpenGLFunctions__OpenGLFeature = QOpenGLFunctions__OpenGLFeature(0x0002)
-	QOpenGLFunctions__Buffers               QOpenGLFunctions__OpenGLFeature = QOpenGLFunctions__OpenGLFeature(0x0004)
-	QOpenGLFunctions__Framebuffers          QOpenGLFunctions__OpenGLFeature = QOpenGLFunctions__OpenGLFeature(0x0008)
-	QOpenGLFunctions__BlendColor            QOpenGLFunctions__OpenGLFeature = QOpenGLFunctions__OpenGLFeature(0x0010)
-	QOpenGLFunctions__BlendEquation         QOpenGLFunctions__OpenGLFeature = QOpenGLFunctions__OpenGLFeature(0x0020)
-	QOpenGLFunctions__BlendEquationSeparate QOpenGLFunctions__OpenGLFeature = QOpenGLFunctions__OpenGLFeature(0x0040)
-	QOpenGLFunctions__BlendFuncSeparate     QOpenGLFunctions__OpenGLFeature = QOpenGLFunctions__OpenGLFeature(0x0080)
-	QOpenGLFunctions__BlendSubtract         QOpenGLFunctions__OpenGLFeature = QOpenGLFunctions__OpenGLFeature(0x0100)
-	QOpenGLFunctions__CompressedTextures    QOpenGLFunctions__OpenGLFeature = QOpenGLFunctions__OpenGLFeature(0x0200)
-	QOpenGLFunctions__Multisample           QOpenGLFunctions__OpenGLFeature = QOpenGLFunctions__OpenGLFeature(0x0400)
-	QOpenGLFunctions__StencilSeparate       QOpenGLFunctions__OpenGLFeature = QOpenGLFunctions__OpenGLFeature(0x0800)
-	QOpenGLFunctions__NPOTTextures          QOpenGLFunctions__OpenGLFeature = QOpenGLFunctions__OpenGLFeature(0x1000)
-	QOpenGLFunctions__NPOTTextureRepeat     QOpenGLFunctions__OpenGLFeature = QOpenGLFunctions__OpenGLFeature(0x2000)
-	QOpenGLFunctions__FixedFunctionPipeline QOpenGLFunctions__OpenGLFeature = QOpenGLFunctions__OpenGLFeature(0x4000)
-	QOpenGLFunctions__TextureRGFormats      QOpenGLFunctions__OpenGLFeature = QOpenGLFunctions__OpenGLFeature(0x8000)
-	QOpenGLFunctions__MultipleRenderTargets QOpenGLFunctions__OpenGLFeature = QOpenGLFunctions__OpenGLFeature(0x10000)
-)
-
 type QOpenGLFunctions struct {
 	ptr unsafe.Pointer
 }
@@ -24658,6 +24710,30 @@ func NewQOpenGLFunctionsFromPointer(ptr unsafe.Pointer) *QOpenGLFunctions {
 	n.SetPointer(ptr)
 	return n
 }
+
+//go:generate stringer -type=QOpenGLFunctions__OpenGLFeature
+//QOpenGLFunctions::OpenGLFeature
+type QOpenGLFunctions__OpenGLFeature int64
+
+const (
+	QOpenGLFunctions__Multitexture          QOpenGLFunctions__OpenGLFeature = QOpenGLFunctions__OpenGLFeature(0x0001)
+	QOpenGLFunctions__Shaders               QOpenGLFunctions__OpenGLFeature = QOpenGLFunctions__OpenGLFeature(0x0002)
+	QOpenGLFunctions__Buffers               QOpenGLFunctions__OpenGLFeature = QOpenGLFunctions__OpenGLFeature(0x0004)
+	QOpenGLFunctions__Framebuffers          QOpenGLFunctions__OpenGLFeature = QOpenGLFunctions__OpenGLFeature(0x0008)
+	QOpenGLFunctions__BlendColor            QOpenGLFunctions__OpenGLFeature = QOpenGLFunctions__OpenGLFeature(0x0010)
+	QOpenGLFunctions__BlendEquation         QOpenGLFunctions__OpenGLFeature = QOpenGLFunctions__OpenGLFeature(0x0020)
+	QOpenGLFunctions__BlendEquationSeparate QOpenGLFunctions__OpenGLFeature = QOpenGLFunctions__OpenGLFeature(0x0040)
+	QOpenGLFunctions__BlendFuncSeparate     QOpenGLFunctions__OpenGLFeature = QOpenGLFunctions__OpenGLFeature(0x0080)
+	QOpenGLFunctions__BlendSubtract         QOpenGLFunctions__OpenGLFeature = QOpenGLFunctions__OpenGLFeature(0x0100)
+	QOpenGLFunctions__CompressedTextures    QOpenGLFunctions__OpenGLFeature = QOpenGLFunctions__OpenGLFeature(0x0200)
+	QOpenGLFunctions__Multisample           QOpenGLFunctions__OpenGLFeature = QOpenGLFunctions__OpenGLFeature(0x0400)
+	QOpenGLFunctions__StencilSeparate       QOpenGLFunctions__OpenGLFeature = QOpenGLFunctions__OpenGLFeature(0x0800)
+	QOpenGLFunctions__NPOTTextures          QOpenGLFunctions__OpenGLFeature = QOpenGLFunctions__OpenGLFeature(0x1000)
+	QOpenGLFunctions__NPOTTextureRepeat     QOpenGLFunctions__OpenGLFeature = QOpenGLFunctions__OpenGLFeature(0x2000)
+	QOpenGLFunctions__FixedFunctionPipeline QOpenGLFunctions__OpenGLFeature = QOpenGLFunctions__OpenGLFeature(0x4000)
+	QOpenGLFunctions__TextureRGFormats      QOpenGLFunctions__OpenGLFeature = QOpenGLFunctions__OpenGLFeature(0x8000)
+	QOpenGLFunctions__MultipleRenderTargets QOpenGLFunctions__OpenGLFeature = QOpenGLFunctions__OpenGLFeature(0x10000)
+)
 
 type QOpenGLFunctions_1_0 struct {
 	QAbstractOpenGLFunctions
@@ -25789,19 +25865,6 @@ func NewQOpenGLPixelTransferOptionsFromPointer(ptr unsafe.Pointer) *QOpenGLPixel
 	return n
 }
 
-//go:generate stringer -type=QOpenGLShader__ShaderTypeBit
-//QOpenGLShader::ShaderTypeBit
-type QOpenGLShader__ShaderTypeBit int64
-
-const (
-	QOpenGLShader__Vertex                 QOpenGLShader__ShaderTypeBit = QOpenGLShader__ShaderTypeBit(0x0001)
-	QOpenGLShader__Fragment               QOpenGLShader__ShaderTypeBit = QOpenGLShader__ShaderTypeBit(0x0002)
-	QOpenGLShader__Geometry               QOpenGLShader__ShaderTypeBit = QOpenGLShader__ShaderTypeBit(0x0004)
-	QOpenGLShader__TessellationControl    QOpenGLShader__ShaderTypeBit = QOpenGLShader__ShaderTypeBit(0x0008)
-	QOpenGLShader__TessellationEvaluation QOpenGLShader__ShaderTypeBit = QOpenGLShader__ShaderTypeBit(0x0010)
-	QOpenGLShader__Compute                QOpenGLShader__ShaderTypeBit = QOpenGLShader__ShaderTypeBit(0x0020)
-)
-
 type QOpenGLShader struct {
 	core.QObject
 }
@@ -25841,6 +25904,19 @@ func NewQOpenGLShaderFromPointer(ptr unsafe.Pointer) *QOpenGLShader {
 	return n
 }
 
+//go:generate stringer -type=QOpenGLShader__ShaderTypeBit
+//QOpenGLShader::ShaderTypeBit
+type QOpenGLShader__ShaderTypeBit int64
+
+const (
+	QOpenGLShader__Vertex                 QOpenGLShader__ShaderTypeBit = QOpenGLShader__ShaderTypeBit(0x0001)
+	QOpenGLShader__Fragment               QOpenGLShader__ShaderTypeBit = QOpenGLShader__ShaderTypeBit(0x0002)
+	QOpenGLShader__Geometry               QOpenGLShader__ShaderTypeBit = QOpenGLShader__ShaderTypeBit(0x0004)
+	QOpenGLShader__TessellationControl    QOpenGLShader__ShaderTypeBit = QOpenGLShader__ShaderTypeBit(0x0008)
+	QOpenGLShader__TessellationEvaluation QOpenGLShader__ShaderTypeBit = QOpenGLShader__ShaderTypeBit(0x0010)
+	QOpenGLShader__Compute                QOpenGLShader__ShaderTypeBit = QOpenGLShader__ShaderTypeBit(0x0020)
+)
+
 type QOpenGLShaderProgram struct {
 	core.QObject
 }
@@ -25876,6 +25952,44 @@ func PointerFromQOpenGLShaderProgram(ptr QOpenGLShaderProgram_ITF) unsafe.Pointe
 
 func NewQOpenGLShaderProgramFromPointer(ptr unsafe.Pointer) *QOpenGLShaderProgram {
 	var n = new(QOpenGLShaderProgram)
+	n.SetPointer(ptr)
+	return n
+}
+
+type QOpenGLTexture struct {
+	ptr unsafe.Pointer
+}
+
+type QOpenGLTexture_ITF interface {
+	QOpenGLTexture_PTR() *QOpenGLTexture
+}
+
+func (ptr *QOpenGLTexture) QOpenGLTexture_PTR() *QOpenGLTexture {
+	return ptr
+}
+
+func (ptr *QOpenGLTexture) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
+	}
+	return nil
+}
+
+func (ptr *QOpenGLTexture) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
+	}
+}
+
+func PointerFromQOpenGLTexture(ptr QOpenGLTexture_ITF) unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QOpenGLTexture_PTR().Pointer()
+	}
+	return nil
+}
+
+func NewQOpenGLTextureFromPointer(ptr unsafe.Pointer) *QOpenGLTexture {
+	var n = new(QOpenGLTexture)
 	n.SetPointer(ptr)
 	return n
 }
@@ -26225,44 +26339,6 @@ const (
 	QOpenGLTexture__ClampToBorder  QOpenGLTexture__WrapMode = QOpenGLTexture__WrapMode(0x812D)
 )
 
-type QOpenGLTexture struct {
-	ptr unsafe.Pointer
-}
-
-type QOpenGLTexture_ITF interface {
-	QOpenGLTexture_PTR() *QOpenGLTexture
-}
-
-func (ptr *QOpenGLTexture) QOpenGLTexture_PTR() *QOpenGLTexture {
-	return ptr
-}
-
-func (ptr *QOpenGLTexture) Pointer() unsafe.Pointer {
-	if ptr != nil {
-		return ptr.ptr
-	}
-	return nil
-}
-
-func (ptr *QOpenGLTexture) SetPointer(p unsafe.Pointer) {
-	if ptr != nil {
-		ptr.ptr = p
-	}
-}
-
-func PointerFromQOpenGLTexture(ptr QOpenGLTexture_ITF) unsafe.Pointer {
-	if ptr != nil {
-		return ptr.QOpenGLTexture_PTR().Pointer()
-	}
-	return nil
-}
-
-func NewQOpenGLTextureFromPointer(ptr unsafe.Pointer) *QOpenGLTexture {
-	var n = new(QOpenGLTexture)
-	n.SetPointer(ptr)
-	return n
-}
-
 type QOpenGLTimeMonitor struct {
 	core.QObject
 }
@@ -26418,16 +26494,6 @@ func NewQOpenGLVertexArrayObjectFromPointer(ptr unsafe.Pointer) *QOpenGLVertexAr
 	return n
 }
 
-//go:generate stringer -type=QOpenGLWindow__UpdateBehavior
-//QOpenGLWindow::UpdateBehavior
-type QOpenGLWindow__UpdateBehavior int64
-
-const (
-	QOpenGLWindow__NoPartialUpdate    QOpenGLWindow__UpdateBehavior = QOpenGLWindow__UpdateBehavior(0)
-	QOpenGLWindow__PartialUpdateBlit  QOpenGLWindow__UpdateBehavior = QOpenGLWindow__UpdateBehavior(1)
-	QOpenGLWindow__PartialUpdateBlend QOpenGLWindow__UpdateBehavior = QOpenGLWindow__UpdateBehavior(2)
-)
-
 type QOpenGLWindow struct {
 	QPaintDeviceWindow
 }
@@ -26467,35 +26533,14 @@ func NewQOpenGLWindowFromPointer(ptr unsafe.Pointer) *QOpenGLWindow {
 	return n
 }
 
-//go:generate stringer -type=QPageLayout__Mode
-//QPageLayout::Mode
-type QPageLayout__Mode int64
+//go:generate stringer -type=QOpenGLWindow__UpdateBehavior
+//QOpenGLWindow::UpdateBehavior
+type QOpenGLWindow__UpdateBehavior int64
 
 const (
-	QPageLayout__StandardMode QPageLayout__Mode = QPageLayout__Mode(0)
-	QPageLayout__FullPageMode QPageLayout__Mode = QPageLayout__Mode(1)
-)
-
-//go:generate stringer -type=QPageLayout__Orientation
-//QPageLayout::Orientation
-type QPageLayout__Orientation int64
-
-const (
-	QPageLayout__Portrait  QPageLayout__Orientation = QPageLayout__Orientation(0)
-	QPageLayout__Landscape QPageLayout__Orientation = QPageLayout__Orientation(1)
-)
-
-//go:generate stringer -type=QPageLayout__Unit
-//QPageLayout::Unit
-type QPageLayout__Unit int64
-
-const (
-	QPageLayout__Millimeter QPageLayout__Unit = QPageLayout__Unit(0)
-	QPageLayout__Point      QPageLayout__Unit = QPageLayout__Unit(1)
-	QPageLayout__Inch       QPageLayout__Unit = QPageLayout__Unit(2)
-	QPageLayout__Pica       QPageLayout__Unit = QPageLayout__Unit(3)
-	QPageLayout__Didot      QPageLayout__Unit = QPageLayout__Unit(4)
-	QPageLayout__Cicero     QPageLayout__Unit = QPageLayout__Unit(5)
+	QOpenGLWindow__NoPartialUpdate    QOpenGLWindow__UpdateBehavior = QOpenGLWindow__UpdateBehavior(0)
+	QOpenGLWindow__PartialUpdateBlit  QOpenGLWindow__UpdateBehavior = QOpenGLWindow__UpdateBehavior(1)
+	QOpenGLWindow__PartialUpdateBlend QOpenGLWindow__UpdateBehavior = QOpenGLWindow__UpdateBehavior(2)
 )
 
 type QPageLayout struct {
@@ -26535,6 +26580,38 @@ func NewQPageLayoutFromPointer(ptr unsafe.Pointer) *QPageLayout {
 	n.SetPointer(ptr)
 	return n
 }
+
+//go:generate stringer -type=QPageLayout__Mode
+//QPageLayout::Mode
+type QPageLayout__Mode int64
+
+const (
+	QPageLayout__StandardMode QPageLayout__Mode = QPageLayout__Mode(0)
+	QPageLayout__FullPageMode QPageLayout__Mode = QPageLayout__Mode(1)
+)
+
+//go:generate stringer -type=QPageLayout__Orientation
+//QPageLayout::Orientation
+type QPageLayout__Orientation int64
+
+const (
+	QPageLayout__Portrait  QPageLayout__Orientation = QPageLayout__Orientation(0)
+	QPageLayout__Landscape QPageLayout__Orientation = QPageLayout__Orientation(1)
+)
+
+//go:generate stringer -type=QPageLayout__Unit
+//QPageLayout::Unit
+type QPageLayout__Unit int64
+
+const (
+	QPageLayout__Millimeter QPageLayout__Unit = QPageLayout__Unit(0)
+	QPageLayout__Point      QPageLayout__Unit = QPageLayout__Unit(1)
+	QPageLayout__Inch       QPageLayout__Unit = QPageLayout__Unit(2)
+	QPageLayout__Pica       QPageLayout__Unit = QPageLayout__Unit(3)
+	QPageLayout__Didot      QPageLayout__Unit = QPageLayout__Unit(4)
+	QPageLayout__Cicero     QPageLayout__Unit = QPageLayout__Unit(5)
+)
+
 func NewQPageLayout() *QPageLayout {
 	var tmpValue = NewQPageLayoutFromPointer(C.QPageLayout_NewQPageLayout())
 	runtime.SetFinalizer(tmpValue, (*QPageLayout).DestroyQPageLayout)
@@ -26801,6 +26878,44 @@ func (ptr *QPageLayout) DestroyQPageLayout() {
 	}
 }
 
+type QPageSize struct {
+	ptr unsafe.Pointer
+}
+
+type QPageSize_ITF interface {
+	QPageSize_PTR() *QPageSize
+}
+
+func (ptr *QPageSize) QPageSize_PTR() *QPageSize {
+	return ptr
+}
+
+func (ptr *QPageSize) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
+	}
+	return nil
+}
+
+func (ptr *QPageSize) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
+	}
+}
+
+func PointerFromQPageSize(ptr QPageSize_ITF) unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QPageSize_PTR().Pointer()
+	}
+	return nil
+}
+
+func NewQPageSizeFromPointer(ptr unsafe.Pointer) *QPageSize {
+	var n = new(QPageSize)
+	n.SetPointer(ptr)
+	return n
+}
+
 //go:generate stringer -type=QPageSize__PageSizeId
 //QPageSize::PageSizeId
 type QPageSize__PageSizeId int64
@@ -26958,43 +27073,6 @@ const (
 	QPageSize__Cicero     QPageSize__Unit = QPageSize__Unit(5)
 )
 
-type QPageSize struct {
-	ptr unsafe.Pointer
-}
-
-type QPageSize_ITF interface {
-	QPageSize_PTR() *QPageSize
-}
-
-func (ptr *QPageSize) QPageSize_PTR() *QPageSize {
-	return ptr
-}
-
-func (ptr *QPageSize) Pointer() unsafe.Pointer {
-	if ptr != nil {
-		return ptr.ptr
-	}
-	return nil
-}
-
-func (ptr *QPageSize) SetPointer(p unsafe.Pointer) {
-	if ptr != nil {
-		ptr.ptr = p
-	}
-}
-
-func PointerFromQPageSize(ptr QPageSize_ITF) unsafe.Pointer {
-	if ptr != nil {
-		return ptr.QPageSize_PTR().Pointer()
-	}
-	return nil
-}
-
-func NewQPageSizeFromPointer(ptr unsafe.Pointer) *QPageSize {
-	var n = new(QPageSize)
-	n.SetPointer(ptr)
-	return n
-}
 func NewQPageSize() *QPageSize {
 	var tmpValue = NewQPageSizeFromPointer(C.QPageSize_NewQPageSize())
 	runtime.SetFinalizer(tmpValue, (*QPageSize).DestroyQPageSize)
@@ -27258,6 +27336,45 @@ func (ptr *QPageSize) DestroyQPageSize() {
 	}
 }
 
+type QPagedPaintDevice struct {
+	QPaintDevice
+}
+
+type QPagedPaintDevice_ITF interface {
+	QPaintDevice_ITF
+	QPagedPaintDevice_PTR() *QPagedPaintDevice
+}
+
+func (ptr *QPagedPaintDevice) QPagedPaintDevice_PTR() *QPagedPaintDevice {
+	return ptr
+}
+
+func (ptr *QPagedPaintDevice) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QPaintDevice_PTR().Pointer()
+	}
+	return nil
+}
+
+func (ptr *QPagedPaintDevice) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QPaintDevice_PTR().SetPointer(p)
+	}
+}
+
+func PointerFromQPagedPaintDevice(ptr QPagedPaintDevice_ITF) unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QPagedPaintDevice_PTR().Pointer()
+	}
+	return nil
+}
+
+func NewQPagedPaintDeviceFromPointer(ptr unsafe.Pointer) *QPagedPaintDevice {
+	var n = new(QPagedPaintDevice)
+	n.SetPointer(ptr)
+	return n
+}
+
 //go:generate stringer -type=QPagedPaintDevice__PageSize
 //QPagedPaintDevice::PageSize
 type QPagedPaintDevice__PageSize int64
@@ -27392,44 +27509,6 @@ const (
 	QPagedPaintDevice__Envelope10         QPagedPaintDevice__PageSize = QPagedPaintDevice__PageSize(QPagedPaintDevice__Comm10E)
 )
 
-type QPagedPaintDevice struct {
-	QPaintDevice
-}
-
-type QPagedPaintDevice_ITF interface {
-	QPaintDevice_ITF
-	QPagedPaintDevice_PTR() *QPagedPaintDevice
-}
-
-func (ptr *QPagedPaintDevice) QPagedPaintDevice_PTR() *QPagedPaintDevice {
-	return ptr
-}
-
-func (ptr *QPagedPaintDevice) Pointer() unsafe.Pointer {
-	if ptr != nil {
-		return ptr.QPaintDevice_PTR().Pointer()
-	}
-	return nil
-}
-
-func (ptr *QPagedPaintDevice) SetPointer(p unsafe.Pointer) {
-	if ptr != nil {
-		ptr.QPaintDevice_PTR().SetPointer(p)
-	}
-}
-
-func PointerFromQPagedPaintDevice(ptr QPagedPaintDevice_ITF) unsafe.Pointer {
-	if ptr != nil {
-		return ptr.QPagedPaintDevice_PTR().Pointer()
-	}
-	return nil
-}
-
-func NewQPagedPaintDeviceFromPointer(ptr unsafe.Pointer) *QPagedPaintDevice {
-	var n = new(QPagedPaintDevice)
-	n.SetPointer(ptr)
-	return n
-}
 func NewQPagedPaintDevice() *QPagedPaintDevice {
 	return NewQPagedPaintDeviceFromPointer(C.QPagedPaintDevice_NewQPagedPaintDevice())
 }
@@ -27488,13 +27567,6 @@ func (ptr *QPagedPaintDevice) PageSizeMM() *core.QSizeF {
 		return tmpValue
 	}
 	return nil
-}
-
-func (ptr *QPagedPaintDevice) DisconnectSetMargins() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPagedPaintDevice::setMargins")
-	}
 }
 
 func (ptr *QPagedPaintDevice) SetPageLayout(newPageLayout QPageLayout_ITF) bool {
@@ -27681,25 +27753,6 @@ func (ptr *QPagedPaintDevice) PaintEngine() *QPaintEngine {
 	return nil
 }
 
-//go:generate stringer -type=QPaintDevice__PaintDeviceMetric
-//QPaintDevice::PaintDeviceMetric
-type QPaintDevice__PaintDeviceMetric int64
-
-const (
-	QPaintDevice__PdmWidth                  QPaintDevice__PaintDeviceMetric = QPaintDevice__PaintDeviceMetric(1)
-	QPaintDevice__PdmHeight                 QPaintDevice__PaintDeviceMetric = QPaintDevice__PaintDeviceMetric(2)
-	QPaintDevice__PdmWidthMM                QPaintDevice__PaintDeviceMetric = QPaintDevice__PaintDeviceMetric(3)
-	QPaintDevice__PdmHeightMM               QPaintDevice__PaintDeviceMetric = QPaintDevice__PaintDeviceMetric(4)
-	QPaintDevice__PdmNumColors              QPaintDevice__PaintDeviceMetric = QPaintDevice__PaintDeviceMetric(5)
-	QPaintDevice__PdmDepth                  QPaintDevice__PaintDeviceMetric = QPaintDevice__PaintDeviceMetric(6)
-	QPaintDevice__PdmDpiX                   QPaintDevice__PaintDeviceMetric = QPaintDevice__PaintDeviceMetric(7)
-	QPaintDevice__PdmDpiY                   QPaintDevice__PaintDeviceMetric = QPaintDevice__PaintDeviceMetric(8)
-	QPaintDevice__PdmPhysicalDpiX           QPaintDevice__PaintDeviceMetric = QPaintDevice__PaintDeviceMetric(9)
-	QPaintDevice__PdmPhysicalDpiY           QPaintDevice__PaintDeviceMetric = QPaintDevice__PaintDeviceMetric(10)
-	QPaintDevice__PdmDevicePixelRatio       QPaintDevice__PaintDeviceMetric = QPaintDevice__PaintDeviceMetric(11)
-	QPaintDevice__PdmDevicePixelRatioScaled QPaintDevice__PaintDeviceMetric = QPaintDevice__PaintDeviceMetric(12)
-)
-
 type QPaintDevice struct {
 	ptr unsafe.Pointer
 }
@@ -27737,6 +27790,26 @@ func NewQPaintDeviceFromPointer(ptr unsafe.Pointer) *QPaintDevice {
 	n.SetPointer(ptr)
 	return n
 }
+
+//go:generate stringer -type=QPaintDevice__PaintDeviceMetric
+//QPaintDevice::PaintDeviceMetric
+type QPaintDevice__PaintDeviceMetric int64
+
+const (
+	QPaintDevice__PdmWidth                  QPaintDevice__PaintDeviceMetric = QPaintDevice__PaintDeviceMetric(1)
+	QPaintDevice__PdmHeight                 QPaintDevice__PaintDeviceMetric = QPaintDevice__PaintDeviceMetric(2)
+	QPaintDevice__PdmWidthMM                QPaintDevice__PaintDeviceMetric = QPaintDevice__PaintDeviceMetric(3)
+	QPaintDevice__PdmHeightMM               QPaintDevice__PaintDeviceMetric = QPaintDevice__PaintDeviceMetric(4)
+	QPaintDevice__PdmNumColors              QPaintDevice__PaintDeviceMetric = QPaintDevice__PaintDeviceMetric(5)
+	QPaintDevice__PdmDepth                  QPaintDevice__PaintDeviceMetric = QPaintDevice__PaintDeviceMetric(6)
+	QPaintDevice__PdmDpiX                   QPaintDevice__PaintDeviceMetric = QPaintDevice__PaintDeviceMetric(7)
+	QPaintDevice__PdmDpiY                   QPaintDevice__PaintDeviceMetric = QPaintDevice__PaintDeviceMetric(8)
+	QPaintDevice__PdmPhysicalDpiX           QPaintDevice__PaintDeviceMetric = QPaintDevice__PaintDeviceMetric(9)
+	QPaintDevice__PdmPhysicalDpiY           QPaintDevice__PaintDeviceMetric = QPaintDevice__PaintDeviceMetric(10)
+	QPaintDevice__PdmDevicePixelRatio       QPaintDevice__PaintDeviceMetric = QPaintDevice__PaintDeviceMetric(11)
+	QPaintDevice__PdmDevicePixelRatioScaled QPaintDevice__PaintDeviceMetric = QPaintDevice__PaintDeviceMetric(12)
+)
+
 func NewQPaintDevice() *QPaintDevice {
 	return NewQPaintDeviceFromPointer(C.QPaintDevice_NewQPaintDevice())
 }
@@ -28044,8 +28117,9 @@ func (ptr *QPaintDeviceWindow) PaintEventDefault(event QPaintEvent_ITF) {
 func callbackQPaintDeviceWindow_Update3(ptr unsafe.Pointer) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPaintDeviceWindow::update3"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQPaintDeviceWindowFromPointer(ptr).Update3Default()
 	}
-
 }
 
 func (ptr *QPaintDeviceWindow) ConnectUpdate3(f func()) {
@@ -28065,6 +28139,12 @@ func (ptr *QPaintDeviceWindow) DisconnectUpdate3() {
 func (ptr *QPaintDeviceWindow) Update3() {
 	if ptr.Pointer() != nil {
 		C.QPaintDeviceWindow_Update3(ptr.Pointer())
+	}
+}
+
+func (ptr *QPaintDeviceWindow) Update3Default() {
+	if ptr.Pointer() != nil {
+		C.QPaintDeviceWindow_Update3Default(ptr.Pointer())
 	}
 }
 
@@ -30016,7 +30096,7 @@ func callbackQPaintDeviceWindow_PaintEngine(ptr unsafe.Pointer) unsafe.Pointer {
 		return PointerFromQPaintEngine(signal.(func() *QPaintEngine)())
 	}
 
-	return PointerFromQPaintEngine(NewQPaintDeviceWindowFromPointer(ptr).PaintEngineDefault())
+	return PointerFromQPaintEngine(NewQPaintEngine(0))
 }
 
 func (ptr *QPaintDeviceWindow) ConnectPaintEngine(f func() *QPaintEngine) {
@@ -30040,11 +30120,42 @@ func (ptr *QPaintDeviceWindow) PaintEngine() *QPaintEngine {
 	return nil
 }
 
-func (ptr *QPaintDeviceWindow) PaintEngineDefault() *QPaintEngine {
-	if ptr.Pointer() != nil {
-		return NewQPaintEngineFromPointer(C.QPaintDeviceWindow_PaintEngineDefault(ptr.Pointer()))
+type QPaintEngine struct {
+	ptr unsafe.Pointer
+}
+
+type QPaintEngine_ITF interface {
+	QPaintEngine_PTR() *QPaintEngine
+}
+
+func (ptr *QPaintEngine) QPaintEngine_PTR() *QPaintEngine {
+	return ptr
+}
+
+func (ptr *QPaintEngine) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
+}
+
+func (ptr *QPaintEngine) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
+	}
+}
+
+func PointerFromQPaintEngine(ptr QPaintEngine_ITF) unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QPaintEngine_PTR().Pointer()
+	}
+	return nil
+}
+
+func NewQPaintEngineFromPointer(ptr unsafe.Pointer) *QPaintEngine {
+	var n = new(QPaintEngine)
+	n.SetPointer(ptr)
+	return n
 }
 
 //go:generate stringer -type=QPaintEngine__DirtyFlag
@@ -30132,44 +30243,6 @@ const (
 	QPaintEngine__User          QPaintEngine__Type = QPaintEngine__Type(50)
 	QPaintEngine__MaxUser       QPaintEngine__Type = QPaintEngine__Type(100)
 )
-
-type QPaintEngine struct {
-	ptr unsafe.Pointer
-}
-
-type QPaintEngine_ITF interface {
-	QPaintEngine_PTR() *QPaintEngine
-}
-
-func (ptr *QPaintEngine) QPaintEngine_PTR() *QPaintEngine {
-	return ptr
-}
-
-func (ptr *QPaintEngine) Pointer() unsafe.Pointer {
-	if ptr != nil {
-		return ptr.ptr
-	}
-	return nil
-}
-
-func (ptr *QPaintEngine) SetPointer(p unsafe.Pointer) {
-	if ptr != nil {
-		ptr.ptr = p
-	}
-}
-
-func PointerFromQPaintEngine(ptr QPaintEngine_ITF) unsafe.Pointer {
-	if ptr != nil {
-		return ptr.QPaintEngine_PTR().Pointer()
-	}
-	return nil
-}
-
-func NewQPaintEngineFromPointer(ptr unsafe.Pointer) *QPaintEngine {
-	var n = new(QPaintEngine)
-	n.SetPointer(ptr)
-	return n
-}
 
 //export callbackQPaintEngine_DrawEllipse
 func callbackQPaintEngine_DrawEllipse(ptr unsafe.Pointer, rect unsafe.Pointer) {
@@ -30300,7 +30373,7 @@ func (ptr *QPaintEngine) ConnectBegin(f func(pdev *QPaintDevice) bool) {
 	}
 }
 
-func (ptr *QPaintEngine) DisconnectBegin(pdev QPaintDevice_ITF) {
+func (ptr *QPaintEngine) DisconnectBegin() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPaintEngine::begin")
@@ -30474,7 +30547,7 @@ func (ptr *QPaintEngine) ConnectDrawPixmap(f func(r *core.QRectF, pm *QPixmap, s
 	}
 }
 
-func (ptr *QPaintEngine) DisconnectDrawPixmap(r core.QRectF_ITF, pm QPixmap_ITF, sr core.QRectF_ITF) {
+func (ptr *QPaintEngine) DisconnectDrawPixmap() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPaintEngine::drawPixmap")
@@ -30851,7 +30924,7 @@ func (ptr *QPaintEngine) ConnectUpdateState(f func(state *QPaintEngineState)) {
 	}
 }
 
-func (ptr *QPaintEngine) DisconnectUpdateState(state QPaintEngineState_ITF) {
+func (ptr *QPaintEngine) DisconnectUpdateState() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPaintEngine::updateState")
@@ -31245,6 +31318,44 @@ func (ptr *QPaintEvent) SetM_region(vqr QRegion_ITF) {
 	}
 }
 
+type QPainter struct {
+	ptr unsafe.Pointer
+}
+
+type QPainter_ITF interface {
+	QPainter_PTR() *QPainter
+}
+
+func (ptr *QPainter) QPainter_PTR() *QPainter {
+	return ptr
+}
+
+func (ptr *QPainter) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
+	}
+	return nil
+}
+
+func (ptr *QPainter) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
+	}
+}
+
+func PointerFromQPainter(ptr QPainter_ITF) unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QPainter_PTR().Pointer()
+	}
+	return nil
+}
+
+func NewQPainterFromPointer(ptr unsafe.Pointer) *QPainter {
+	var n = new(QPainter)
+	n.SetPointer(ptr)
+	return n
+}
+
 //go:generate stringer -type=QPainter__CompositionMode
 //QPainter::CompositionMode
 type QPainter__CompositionMode int64
@@ -31311,43 +31422,6 @@ const (
 	QPainter__Qt4CompatiblePainting   QPainter__RenderHint = QPainter__RenderHint(0x20)
 )
 
-type QPainter struct {
-	ptr unsafe.Pointer
-}
-
-type QPainter_ITF interface {
-	QPainter_PTR() *QPainter
-}
-
-func (ptr *QPainter) QPainter_PTR() *QPainter {
-	return ptr
-}
-
-func (ptr *QPainter) Pointer() unsafe.Pointer {
-	if ptr != nil {
-		return ptr.ptr
-	}
-	return nil
-}
-
-func (ptr *QPainter) SetPointer(p unsafe.Pointer) {
-	if ptr != nil {
-		ptr.ptr = p
-	}
-}
-
-func PointerFromQPainter(ptr QPainter_ITF) unsafe.Pointer {
-	if ptr != nil {
-		return ptr.QPainter_PTR().Pointer()
-	}
-	return nil
-}
-
-func NewQPainterFromPointer(ptr unsafe.Pointer) *QPainter {
-	var n = new(QPainter)
-	n.SetPointer(ptr)
-	return n
-}
 func NewQPainter2(device QPaintDevice_ITF) *QPainter {
 	var tmpValue = NewQPainterFromPointer(C.QPainter_NewQPainter2(PointerFromQPaintDevice(device)))
 	runtime.SetFinalizer(tmpValue, (*QPainter).DestroyQPainter)
@@ -32529,17 +32603,6 @@ func (ptr *QPainter) DestroyQPainter() {
 	}
 }
 
-//go:generate stringer -type=QPainterPath__ElementType
-//QPainterPath::ElementType
-type QPainterPath__ElementType int64
-
-const (
-	QPainterPath__MoveToElement      QPainterPath__ElementType = QPainterPath__ElementType(0)
-	QPainterPath__LineToElement      QPainterPath__ElementType = QPainterPath__ElementType(1)
-	QPainterPath__CurveToElement     QPainterPath__ElementType = QPainterPath__ElementType(2)
-	QPainterPath__CurveToDataElement QPainterPath__ElementType = QPainterPath__ElementType(3)
-)
-
 type QPainterPath struct {
 	ptr unsafe.Pointer
 }
@@ -32577,6 +32640,18 @@ func NewQPainterPathFromPointer(ptr unsafe.Pointer) *QPainterPath {
 	n.SetPointer(ptr)
 	return n
 }
+
+//go:generate stringer -type=QPainterPath__ElementType
+//QPainterPath::ElementType
+type QPainterPath__ElementType int64
+
+const (
+	QPainterPath__MoveToElement      QPainterPath__ElementType = QPainterPath__ElementType(0)
+	QPainterPath__LineToElement      QPainterPath__ElementType = QPainterPath__ElementType(1)
+	QPainterPath__CurveToElement     QPainterPath__ElementType = QPainterPath__ElementType(2)
+	QPainterPath__CurveToDataElement QPainterPath__ElementType = QPainterPath__ElementType(3)
+)
+
 func NewQPainterPath3(path QPainterPath_ITF) *QPainterPath {
 	var tmpValue = NewQPainterPathFromPointer(C.QPainterPath_NewQPainterPath3(PointerFromQPainterPath(path)))
 	runtime.SetFinalizer(tmpValue, (*QPainterPath).DestroyQPainterPath)
@@ -33177,6 +33252,44 @@ func (ptr *QPainterPathStroker) DestroyQPainterPathStroker() {
 	}
 }
 
+type QPalette struct {
+	ptr unsafe.Pointer
+}
+
+type QPalette_ITF interface {
+	QPalette_PTR() *QPalette
+}
+
+func (ptr *QPalette) QPalette_PTR() *QPalette {
+	return ptr
+}
+
+func (ptr *QPalette) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
+	}
+	return nil
+}
+
+func (ptr *QPalette) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
+	}
+}
+
+func PointerFromQPalette(ptr QPalette_ITF) unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QPalette_PTR().Pointer()
+	}
+	return nil
+}
+
+func NewQPaletteFromPointer(ptr unsafe.Pointer) *QPalette {
+	var n = new(QPalette)
+	n.SetPointer(ptr)
+	return n
+}
+
 //go:generate stringer -type=QPalette__ColorGroup
 //QPalette::ColorGroup
 type QPalette__ColorGroup int64
@@ -33221,43 +33334,6 @@ var (
 	QPalette__Background      QPalette__ColorRole = QPalette__ColorRole(QPalette__Window)
 )
 
-type QPalette struct {
-	ptr unsafe.Pointer
-}
-
-type QPalette_ITF interface {
-	QPalette_PTR() *QPalette
-}
-
-func (ptr *QPalette) QPalette_PTR() *QPalette {
-	return ptr
-}
-
-func (ptr *QPalette) Pointer() unsafe.Pointer {
-	if ptr != nil {
-		return ptr.ptr
-	}
-	return nil
-}
-
-func (ptr *QPalette) SetPointer(p unsafe.Pointer) {
-	if ptr != nil {
-		ptr.ptr = p
-	}
-}
-
-func PointerFromQPalette(ptr QPalette_ITF) unsafe.Pointer {
-	if ptr != nil {
-		return ptr.QPalette_PTR().Pointer()
-	}
-	return nil
-}
-
-func NewQPaletteFromPointer(ptr unsafe.Pointer) *QPalette {
-	var n = new(QPalette)
-	n.SetPointer(ptr)
-	return n
-}
 func (ptr *QPalette) Brush(group QPalette__ColorGroup, role QPalette__ColorRole) *QBrush {
 	if ptr.Pointer() != nil {
 		return NewQBrushFromPointer(C.QPalette_Brush(ptr.Pointer(), C.longlong(group), C.longlong(role)))
@@ -33554,17 +33630,6 @@ func (ptr *QPalette) DestroyQPalette() {
 	}
 }
 
-//go:generate stringer -type=QPdf__PathFlags
-//QPdf::PathFlags
-type QPdf__PathFlags int64
-
-const (
-	QPdf__ClipPath          QPdf__PathFlags = QPdf__PathFlags(0)
-	QPdf__FillPath          QPdf__PathFlags = QPdf__PathFlags(1)
-	QPdf__StrokePath        QPdf__PathFlags = QPdf__PathFlags(2)
-	QPdf__FillAndStrokePath QPdf__PathFlags = QPdf__PathFlags(3)
-)
-
 type QPdf struct {
 	ptr unsafe.Pointer
 }
@@ -33609,6 +33674,17 @@ func (ptr *QPdf) DestroyQPdf() {
 		ptr.SetPointer(nil)
 	}
 }
+
+//go:generate stringer -type=QPdf__PathFlags
+//QPdf::PathFlags
+type QPdf__PathFlags int64
+
+const (
+	QPdf__ClipPath          QPdf__PathFlags = QPdf__PathFlags(0)
+	QPdf__FillPath          QPdf__PathFlags = QPdf__PathFlags(1)
+	QPdf__StrokePath        QPdf__PathFlags = QPdf__PathFlags(2)
+	QPdf__FillAndStrokePath QPdf__PathFlags = QPdf__PathFlags(3)
+)
 
 type QPdfWriter struct {
 	core.QObject
@@ -34204,13 +34280,6 @@ func (ptr *QPdfWriter) MetaObjectDefault() *core.QMetaObject {
 	return nil
 }
 
-func (ptr *QPdfWriter) DisconnectSetMargins() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QPdfWriter::setMargins")
-	}
-}
-
 //export callbackQPdfWriter_SetPageSize2
 func callbackQPdfWriter_SetPageSize2(ptr unsafe.Pointer, size C.longlong) {
 
@@ -34794,7 +34863,7 @@ func callbackQPicture_PaintEngine(ptr unsafe.Pointer) unsafe.Pointer {
 		return PointerFromQPaintEngine(signal.(func() *QPaintEngine)())
 	}
 
-	return PointerFromQPaintEngine(NewQPictureFromPointer(ptr).PaintEngineDefault())
+	return PointerFromQPaintEngine(NewQPaintEngine(0))
 }
 
 func (ptr *QPicture) ConnectPaintEngine(f func() *QPaintEngine) {
@@ -34818,11 +34887,49 @@ func (ptr *QPicture) PaintEngine() *QPaintEngine {
 	return nil
 }
 
-func (ptr *QPicture) PaintEngineDefault() *QPaintEngine {
-	if ptr.Pointer() != nil {
-		return NewQPaintEngineFromPointer(C.QPicture_PaintEngineDefault(ptr.Pointer()))
+type QPixelFormat struct {
+	ptr unsafe.Pointer
+}
+
+type QPixelFormat_ITF interface {
+	QPixelFormat_PTR() *QPixelFormat
+}
+
+func (ptr *QPixelFormat) QPixelFormat_PTR() *QPixelFormat {
+	return ptr
+}
+
+func (ptr *QPixelFormat) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
 	}
 	return nil
+}
+
+func (ptr *QPixelFormat) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
+	}
+}
+
+func PointerFromQPixelFormat(ptr QPixelFormat_ITF) unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QPixelFormat_PTR().Pointer()
+	}
+	return nil
+}
+
+func NewQPixelFormatFromPointer(ptr unsafe.Pointer) *QPixelFormat {
+	var n = new(QPixelFormat)
+	n.SetPointer(ptr)
+	return n
+}
+
+func (ptr *QPixelFormat) DestroyQPixelFormat() {
+	if ptr != nil {
+		C.free(ptr.Pointer())
+		ptr.SetPointer(nil)
+	}
 }
 
 //go:generate stringer -type=QPixelFormat__AlphaPosition
@@ -34911,51 +35018,6 @@ const (
 	QPixelFormat__Y8       QPixelFormat__YUVLayout = QPixelFormat__YUVLayout(14)
 	QPixelFormat__Y16      QPixelFormat__YUVLayout = QPixelFormat__YUVLayout(15)
 )
-
-type QPixelFormat struct {
-	ptr unsafe.Pointer
-}
-
-type QPixelFormat_ITF interface {
-	QPixelFormat_PTR() *QPixelFormat
-}
-
-func (ptr *QPixelFormat) QPixelFormat_PTR() *QPixelFormat {
-	return ptr
-}
-
-func (ptr *QPixelFormat) Pointer() unsafe.Pointer {
-	if ptr != nil {
-		return ptr.ptr
-	}
-	return nil
-}
-
-func (ptr *QPixelFormat) SetPointer(p unsafe.Pointer) {
-	if ptr != nil {
-		ptr.ptr = p
-	}
-}
-
-func PointerFromQPixelFormat(ptr QPixelFormat_ITF) unsafe.Pointer {
-	if ptr != nil {
-		return ptr.QPixelFormat_PTR().Pointer()
-	}
-	return nil
-}
-
-func NewQPixelFormatFromPointer(ptr unsafe.Pointer) *QPixelFormat {
-	var n = new(QPixelFormat)
-	n.SetPointer(ptr)
-	return n
-}
-
-func (ptr *QPixelFormat) DestroyQPixelFormat() {
-	if ptr != nil {
-		C.free(ptr.Pointer())
-		ptr.SetPointer(nil)
-	}
-}
 
 func NewQPixelFormat() *QPixelFormat {
 	var tmpValue = NewQPixelFormatFromPointer(C.QPixelFormat_NewQPixelFormat())
@@ -35590,7 +35652,7 @@ func callbackQPixmap_PaintEngine(ptr unsafe.Pointer) unsafe.Pointer {
 		return PointerFromQPaintEngine(signal.(func() *QPaintEngine)())
 	}
 
-	return PointerFromQPaintEngine(NewQPixmapFromPointer(ptr).PaintEngineDefault())
+	return PointerFromQPaintEngine(NewQPaintEngine(0))
 }
 
 func (ptr *QPixmap) ConnectPaintEngine(f func() *QPaintEngine) {
@@ -35610,13 +35672,6 @@ func (ptr *QPixmap) DisconnectPaintEngine() {
 func (ptr *QPixmap) PaintEngine() *QPaintEngine {
 	if ptr.Pointer() != nil {
 		return NewQPaintEngineFromPointer(C.QPixmap_PaintEngine(ptr.Pointer()))
-	}
-	return nil
-}
-
-func (ptr *QPixmap) PaintEngineDefault() *QPaintEngine {
-	if ptr.Pointer() != nil {
-		return NewQPaintEngineFromPointer(C.QPixmap_PaintEngineDefault(ptr.Pointer()))
 	}
 	return nil
 }
@@ -35726,27 +35781,6 @@ func (ptr *QPixmapCache) SetCacheLimit(n int) {
 	C.QPixmapCache_QPixmapCache_SetCacheLimit(C.int(int32(n)))
 }
 
-//go:generate stringer -type=QPlatformGraphicsBuffer__AccessType
-//QPlatformGraphicsBuffer::AccessType
-type QPlatformGraphicsBuffer__AccessType int64
-
-const (
-	QPlatformGraphicsBuffer__None          QPlatformGraphicsBuffer__AccessType = QPlatformGraphicsBuffer__AccessType(0x00)
-	QPlatformGraphicsBuffer__SWReadAccess  QPlatformGraphicsBuffer__AccessType = QPlatformGraphicsBuffer__AccessType(0x01)
-	QPlatformGraphicsBuffer__SWWriteAccess QPlatformGraphicsBuffer__AccessType = QPlatformGraphicsBuffer__AccessType(0x02)
-	QPlatformGraphicsBuffer__TextureAccess QPlatformGraphicsBuffer__AccessType = QPlatformGraphicsBuffer__AccessType(0x04)
-	QPlatformGraphicsBuffer__HWCompositor  QPlatformGraphicsBuffer__AccessType = QPlatformGraphicsBuffer__AccessType(0x08)
-)
-
-//go:generate stringer -type=QPlatformGraphicsBuffer__Origin
-//QPlatformGraphicsBuffer::Origin
-type QPlatformGraphicsBuffer__Origin int64
-
-const (
-	QPlatformGraphicsBuffer__OriginBottomLeft QPlatformGraphicsBuffer__Origin = QPlatformGraphicsBuffer__Origin(0)
-	QPlatformGraphicsBuffer__OriginTopLeft    QPlatformGraphicsBuffer__Origin = QPlatformGraphicsBuffer__Origin(1)
-)
-
 type QPlatformGraphicsBuffer struct {
 	core.QObject
 }
@@ -35786,13 +35820,25 @@ func NewQPlatformGraphicsBufferFromPointer(ptr unsafe.Pointer) *QPlatformGraphic
 	return n
 }
 
-//go:generate stringer -type=QPlatformSurfaceEvent__SurfaceEventType
-//QPlatformSurfaceEvent::SurfaceEventType
-type QPlatformSurfaceEvent__SurfaceEventType int64
+//go:generate stringer -type=QPlatformGraphicsBuffer__AccessType
+//QPlatformGraphicsBuffer::AccessType
+type QPlatformGraphicsBuffer__AccessType int64
 
 const (
-	QPlatformSurfaceEvent__SurfaceCreated            QPlatformSurfaceEvent__SurfaceEventType = QPlatformSurfaceEvent__SurfaceEventType(0)
-	QPlatformSurfaceEvent__SurfaceAboutToBeDestroyed QPlatformSurfaceEvent__SurfaceEventType = QPlatformSurfaceEvent__SurfaceEventType(1)
+	QPlatformGraphicsBuffer__None          QPlatformGraphicsBuffer__AccessType = QPlatformGraphicsBuffer__AccessType(0x00)
+	QPlatformGraphicsBuffer__SWReadAccess  QPlatformGraphicsBuffer__AccessType = QPlatformGraphicsBuffer__AccessType(0x01)
+	QPlatformGraphicsBuffer__SWWriteAccess QPlatformGraphicsBuffer__AccessType = QPlatformGraphicsBuffer__AccessType(0x02)
+	QPlatformGraphicsBuffer__TextureAccess QPlatformGraphicsBuffer__AccessType = QPlatformGraphicsBuffer__AccessType(0x04)
+	QPlatformGraphicsBuffer__HWCompositor  QPlatformGraphicsBuffer__AccessType = QPlatformGraphicsBuffer__AccessType(0x08)
+)
+
+//go:generate stringer -type=QPlatformGraphicsBuffer__Origin
+//QPlatformGraphicsBuffer::Origin
+type QPlatformGraphicsBuffer__Origin int64
+
+const (
+	QPlatformGraphicsBuffer__OriginBottomLeft QPlatformGraphicsBuffer__Origin = QPlatformGraphicsBuffer__Origin(0)
+	QPlatformGraphicsBuffer__OriginTopLeft    QPlatformGraphicsBuffer__Origin = QPlatformGraphicsBuffer__Origin(1)
 )
 
 type QPlatformSurfaceEvent struct {
@@ -35841,6 +35887,15 @@ func (ptr *QPlatformSurfaceEvent) DestroyQPlatformSurfaceEvent() {
 	}
 }
 
+//go:generate stringer -type=QPlatformSurfaceEvent__SurfaceEventType
+//QPlatformSurfaceEvent::SurfaceEventType
+type QPlatformSurfaceEvent__SurfaceEventType int64
+
+const (
+	QPlatformSurfaceEvent__SurfaceCreated            QPlatformSurfaceEvent__SurfaceEventType = QPlatformSurfaceEvent__SurfaceEventType(0)
+	QPlatformSurfaceEvent__SurfaceAboutToBeDestroyed QPlatformSurfaceEvent__SurfaceEventType = QPlatformSurfaceEvent__SurfaceEventType(1)
+)
+
 func NewQPlatformSurfaceEvent(surfaceEventType QPlatformSurfaceEvent__SurfaceEventType) *QPlatformSurfaceEvent {
 	var tmpValue = NewQPlatformSurfaceEventFromPointer(C.QPlatformSurfaceEvent_NewQPlatformSurfaceEvent(C.longlong(surfaceEventType)))
 	runtime.SetFinalizer(tmpValue, (*QPlatformSurfaceEvent).DestroyQPlatformSurfaceEvent)
@@ -35866,29 +35921,6 @@ func (ptr *QPlatformSurfaceEvent) SetM_surfaceEventType(vsu QPlatformSurfaceEven
 		C.QPlatformSurfaceEvent_SetM_surfaceEventType(ptr.Pointer(), C.longlong(vsu))
 	}
 }
-
-//go:generate stringer -type=QPlatformSystemTrayIcon__ActivationReason
-//QPlatformSystemTrayIcon::ActivationReason
-type QPlatformSystemTrayIcon__ActivationReason int64
-
-const (
-	QPlatformSystemTrayIcon__Unknown     QPlatformSystemTrayIcon__ActivationReason = QPlatformSystemTrayIcon__ActivationReason(0)
-	QPlatformSystemTrayIcon__Context     QPlatformSystemTrayIcon__ActivationReason = QPlatformSystemTrayIcon__ActivationReason(1)
-	QPlatformSystemTrayIcon__DoubleClick QPlatformSystemTrayIcon__ActivationReason = QPlatformSystemTrayIcon__ActivationReason(2)
-	QPlatformSystemTrayIcon__Trigger     QPlatformSystemTrayIcon__ActivationReason = QPlatformSystemTrayIcon__ActivationReason(3)
-	QPlatformSystemTrayIcon__MiddleClick QPlatformSystemTrayIcon__ActivationReason = QPlatformSystemTrayIcon__ActivationReason(4)
-)
-
-//go:generate stringer -type=QPlatformSystemTrayIcon__MessageIcon
-//QPlatformSystemTrayIcon::MessageIcon
-type QPlatformSystemTrayIcon__MessageIcon int64
-
-const (
-	QPlatformSystemTrayIcon__NoIcon      QPlatformSystemTrayIcon__MessageIcon = QPlatformSystemTrayIcon__MessageIcon(0)
-	QPlatformSystemTrayIcon__Information QPlatformSystemTrayIcon__MessageIcon = QPlatformSystemTrayIcon__MessageIcon(1)
-	QPlatformSystemTrayIcon__Warning     QPlatformSystemTrayIcon__MessageIcon = QPlatformSystemTrayIcon__MessageIcon(2)
-	QPlatformSystemTrayIcon__Critical    QPlatformSystemTrayIcon__MessageIcon = QPlatformSystemTrayIcon__MessageIcon(3)
-)
 
 type QPlatformSystemTrayIcon struct {
 	core.QObject
@@ -35936,6 +35968,29 @@ func (ptr *QPlatformSystemTrayIcon) DestroyQPlatformSystemTrayIcon() {
 		ptr.SetPointer(nil)
 	}
 }
+
+//go:generate stringer -type=QPlatformSystemTrayIcon__ActivationReason
+//QPlatformSystemTrayIcon::ActivationReason
+type QPlatformSystemTrayIcon__ActivationReason int64
+
+const (
+	QPlatformSystemTrayIcon__Unknown     QPlatformSystemTrayIcon__ActivationReason = QPlatformSystemTrayIcon__ActivationReason(0)
+	QPlatformSystemTrayIcon__Context     QPlatformSystemTrayIcon__ActivationReason = QPlatformSystemTrayIcon__ActivationReason(1)
+	QPlatformSystemTrayIcon__DoubleClick QPlatformSystemTrayIcon__ActivationReason = QPlatformSystemTrayIcon__ActivationReason(2)
+	QPlatformSystemTrayIcon__Trigger     QPlatformSystemTrayIcon__ActivationReason = QPlatformSystemTrayIcon__ActivationReason(3)
+	QPlatformSystemTrayIcon__MiddleClick QPlatformSystemTrayIcon__ActivationReason = QPlatformSystemTrayIcon__ActivationReason(4)
+)
+
+//go:generate stringer -type=QPlatformSystemTrayIcon__MessageIcon
+//QPlatformSystemTrayIcon::MessageIcon
+type QPlatformSystemTrayIcon__MessageIcon int64
+
+const (
+	QPlatformSystemTrayIcon__NoIcon      QPlatformSystemTrayIcon__MessageIcon = QPlatformSystemTrayIcon__MessageIcon(0)
+	QPlatformSystemTrayIcon__Information QPlatformSystemTrayIcon__MessageIcon = QPlatformSystemTrayIcon__MessageIcon(1)
+	QPlatformSystemTrayIcon__Warning     QPlatformSystemTrayIcon__MessageIcon = QPlatformSystemTrayIcon__MessageIcon(2)
+	QPlatformSystemTrayIcon__Critical    QPlatformSystemTrayIcon__MessageIcon = QPlatformSystemTrayIcon__MessageIcon(3)
+)
 
 type QPolygon struct {
 	core.QVector
@@ -38946,7 +39001,7 @@ func callbackQRasterWindow_PaintEngine(ptr unsafe.Pointer) unsafe.Pointer {
 		return PointerFromQPaintEngine(signal.(func() *QPaintEngine)())
 	}
 
-	return PointerFromQPaintEngine(NewQRasterWindowFromPointer(ptr).PaintEngineDefault())
+	return PointerFromQPaintEngine(NewQPaintEngine(0))
 }
 
 func (ptr *QRasterWindow) ConnectPaintEngine(f func() *QPaintEngine) {
@@ -38969,32 +39024,6 @@ func (ptr *QRasterWindow) PaintEngine() *QPaintEngine {
 	}
 	return nil
 }
-
-func (ptr *QRasterWindow) PaintEngineDefault() *QPaintEngine {
-	if ptr.Pointer() != nil {
-		return NewQPaintEngineFromPointer(C.QRasterWindow_PaintEngineDefault(ptr.Pointer()))
-	}
-	return nil
-}
-
-//go:generate stringer -type=QRawFont__AntialiasingType
-//QRawFont::AntialiasingType
-type QRawFont__AntialiasingType int64
-
-const (
-	QRawFont__PixelAntialiasing    QRawFont__AntialiasingType = QRawFont__AntialiasingType(0)
-	QRawFont__SubPixelAntialiasing QRawFont__AntialiasingType = QRawFont__AntialiasingType(1)
-)
-
-//go:generate stringer -type=QRawFont__LayoutFlag
-//QRawFont::LayoutFlag
-type QRawFont__LayoutFlag int64
-
-const (
-	QRawFont__SeparateAdvances QRawFont__LayoutFlag = QRawFont__LayoutFlag(0)
-	QRawFont__KernedAdvances   QRawFont__LayoutFlag = QRawFont__LayoutFlag(1)
-	QRawFont__UseDesignMetrics QRawFont__LayoutFlag = QRawFont__LayoutFlag(2)
-)
 
 type QRawFont struct {
 	ptr unsafe.Pointer
@@ -39033,6 +39062,26 @@ func NewQRawFontFromPointer(ptr unsafe.Pointer) *QRawFont {
 	n.SetPointer(ptr)
 	return n
 }
+
+//go:generate stringer -type=QRawFont__AntialiasingType
+//QRawFont::AntialiasingType
+type QRawFont__AntialiasingType int64
+
+const (
+	QRawFont__PixelAntialiasing    QRawFont__AntialiasingType = QRawFont__AntialiasingType(0)
+	QRawFont__SubPixelAntialiasing QRawFont__AntialiasingType = QRawFont__AntialiasingType(1)
+)
+
+//go:generate stringer -type=QRawFont__LayoutFlag
+//QRawFont::LayoutFlag
+type QRawFont__LayoutFlag int64
+
+const (
+	QRawFont__SeparateAdvances QRawFont__LayoutFlag = QRawFont__LayoutFlag(0)
+	QRawFont__KernedAdvances   QRawFont__LayoutFlag = QRawFont__LayoutFlag(1)
+	QRawFont__UseDesignMetrics QRawFont__LayoutFlag = QRawFont__LayoutFlag(2)
+)
+
 func NewQRawFont() *QRawFont {
 	var tmpValue = NewQRawFontFromPointer(C.QRawFont_NewQRawFont())
 	runtime.SetFinalizer(tmpValue, (*QRawFont).DestroyQRawFont)
@@ -39779,15 +39828,6 @@ func (ptr *QRegExpValidator) MetaObjectDefault() *core.QMetaObject {
 	return nil
 }
 
-//go:generate stringer -type=QRegion__RegionType
-//QRegion::RegionType
-type QRegion__RegionType int64
-
-const (
-	QRegion__Rectangle QRegion__RegionType = QRegion__RegionType(0)
-	QRegion__Ellipse   QRegion__RegionType = QRegion__RegionType(1)
-)
-
 type QRegion struct {
 	ptr unsafe.Pointer
 }
@@ -39832,6 +39872,15 @@ func (ptr *QRegion) DestroyQRegion() {
 		ptr.SetPointer(nil)
 	}
 }
+
+//go:generate stringer -type=QRegion__RegionType
+//QRegion::RegionType
+type QRegion__RegionType int64
+
+const (
+	QRegion__Rectangle QRegion__RegionType = QRegion__RegionType(0)
+	QRegion__Ellipse   QRegion__RegionType = QRegion__RegionType(1)
+)
 
 func NewQRegion() *QRegion {
 	var tmpValue = NewQRegionFromPointer(C.QRegion_NewQRegion())
@@ -40102,8 +40151,9 @@ func (ptr *QRegularExpressionValidator) RegularExpression() *core.QRegularExpres
 func callbackQRegularExpressionValidator_SetRegularExpression(ptr unsafe.Pointer, re unsafe.Pointer) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QRegularExpressionValidator::setRegularExpression"); signal != nil {
 		signal.(func(*core.QRegularExpression))(core.NewQRegularExpressionFromPointer(re))
+	} else {
+		NewQRegularExpressionValidatorFromPointer(ptr).SetRegularExpressionDefault(core.NewQRegularExpressionFromPointer(re))
 	}
-
 }
 
 func (ptr *QRegularExpressionValidator) ConnectSetRegularExpression(f func(re *core.QRegularExpression)) {
@@ -40113,7 +40163,7 @@ func (ptr *QRegularExpressionValidator) ConnectSetRegularExpression(f func(re *c
 	}
 }
 
-func (ptr *QRegularExpressionValidator) DisconnectSetRegularExpression(re core.QRegularExpression_ITF) {
+func (ptr *QRegularExpressionValidator) DisconnectSetRegularExpression() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QRegularExpressionValidator::setRegularExpression")
@@ -40123,6 +40173,12 @@ func (ptr *QRegularExpressionValidator) DisconnectSetRegularExpression(re core.Q
 func (ptr *QRegularExpressionValidator) SetRegularExpression(re core.QRegularExpression_ITF) {
 	if ptr.Pointer() != nil {
 		C.QRegularExpressionValidator_SetRegularExpression(ptr.Pointer(), core.PointerFromQRegularExpression(re))
+	}
+}
+
+func (ptr *QRegularExpressionValidator) SetRegularExpressionDefault(re core.QRegularExpression_ITF) {
+	if ptr.Pointer() != nil {
+		C.QRegularExpressionValidator_SetRegularExpressionDefault(ptr.Pointer(), core.PointerFromQRegularExpression(re))
 	}
 }
 
@@ -41710,16 +41766,6 @@ func (ptr *QScreen) MetaObjectDefault() *core.QMetaObject {
 	return nil
 }
 
-//go:generate stringer -type=QScrollEvent__ScrollState
-//QScrollEvent::ScrollState
-type QScrollEvent__ScrollState int64
-
-const (
-	QScrollEvent__ScrollStarted  QScrollEvent__ScrollState = QScrollEvent__ScrollState(0)
-	QScrollEvent__ScrollUpdated  QScrollEvent__ScrollState = QScrollEvent__ScrollState(1)
-	QScrollEvent__ScrollFinished QScrollEvent__ScrollState = QScrollEvent__ScrollState(2)
-)
-
 type QScrollEvent struct {
 	core.QEvent
 }
@@ -41758,6 +41804,17 @@ func NewQScrollEventFromPointer(ptr unsafe.Pointer) *QScrollEvent {
 	n.SetPointer(ptr)
 	return n
 }
+
+//go:generate stringer -type=QScrollEvent__ScrollState
+//QScrollEvent::ScrollState
+type QScrollEvent__ScrollState int64
+
+const (
+	QScrollEvent__ScrollStarted  QScrollEvent__ScrollState = QScrollEvent__ScrollState(0)
+	QScrollEvent__ScrollUpdated  QScrollEvent__ScrollState = QScrollEvent__ScrollState(1)
+	QScrollEvent__ScrollFinished QScrollEvent__ScrollState = QScrollEvent__ScrollState(2)
+)
+
 func NewQScrollEvent(contentPos core.QPointF_ITF, overshootDistance core.QPointF_ITF, scrollState QScrollEvent__ScrollState) *QScrollEvent {
 	var tmpValue = NewQScrollEventFromPointer(C.QScrollEvent_NewQScrollEvent(core.PointerFromQPointF(contentPos), core.PointerFromQPointF(overshootDistance), C.longlong(scrollState)))
 	runtime.SetFinalizer(tmpValue, (*QScrollEvent).DestroyQScrollEvent)
@@ -41901,17 +41958,6 @@ func (ptr *QScrollPrepareEvent) DestroyQScrollPrepareEvent() {
 	}
 }
 
-//go:generate stringer -type=QSessionManager__RestartHint
-//QSessionManager::RestartHint
-type QSessionManager__RestartHint int64
-
-const (
-	QSessionManager__RestartIfRunning   QSessionManager__RestartHint = QSessionManager__RestartHint(0)
-	QSessionManager__RestartAnyway      QSessionManager__RestartHint = QSessionManager__RestartHint(1)
-	QSessionManager__RestartImmediately QSessionManager__RestartHint = QSessionManager__RestartHint(2)
-	QSessionManager__RestartNever       QSessionManager__RestartHint = QSessionManager__RestartHint(3)
-)
-
 type QSessionManager struct {
 	core.QObject
 }
@@ -41958,6 +42004,17 @@ func (ptr *QSessionManager) DestroyQSessionManager() {
 		ptr.SetPointer(nil)
 	}
 }
+
+//go:generate stringer -type=QSessionManager__RestartHint
+//QSessionManager::RestartHint
+type QSessionManager__RestartHint int64
+
+const (
+	QSessionManager__RestartIfRunning   QSessionManager__RestartHint = QSessionManager__RestartHint(0)
+	QSessionManager__RestartAnyway      QSessionManager__RestartHint = QSessionManager__RestartHint(1)
+	QSessionManager__RestartImmediately QSessionManager__RestartHint = QSessionManager__RestartHint(2)
+	QSessionManager__RestartNever       QSessionManager__RestartHint = QSessionManager__RestartHint(3)
+)
 
 func (ptr *QSessionManager) RestartHint() QSessionManager__RestartHint {
 	if ptr.Pointer() != nil {
@@ -42573,15 +42630,6 @@ func NewQShowEvent() *QShowEvent {
 	return tmpValue
 }
 
-//go:generate stringer -type=QStandardItem__ItemType
-//QStandardItem::ItemType
-type QStandardItem__ItemType int64
-
-const (
-	QStandardItem__Type     QStandardItem__ItemType = QStandardItem__ItemType(0)
-	QStandardItem__UserType QStandardItem__ItemType = QStandardItem__ItemType(1000)
-)
-
 type QStandardItem struct {
 	ptr unsafe.Pointer
 }
@@ -42619,6 +42667,16 @@ func NewQStandardItemFromPointer(ptr unsafe.Pointer) *QStandardItem {
 	n.SetPointer(ptr)
 	return n
 }
+
+//go:generate stringer -type=QStandardItem__ItemType
+//QStandardItem::ItemType
+type QStandardItem__ItemType int64
+
+const (
+	QStandardItem__Type     QStandardItem__ItemType = QStandardItem__ItemType(0)
+	QStandardItem__UserType QStandardItem__ItemType = QStandardItem__ItemType(1000)
+)
+
 func NewQStandardItem() *QStandardItem {
 	return NewQStandardItemFromPointer(C.QStandardItem_NewQStandardItem())
 }
@@ -43958,13 +44016,6 @@ func (ptr *QStandardItemModel) ItemPrototype() *QStandardItem {
 	return nil
 }
 
-func (ptr *QStandardItemModel) DisconnectMimeData() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QStandardItemModel::mimeData")
-	}
-}
-
 //export callbackQStandardItemModel_MimeTypes
 func callbackQStandardItemModel_MimeTypes(ptr unsafe.Pointer) *C.char {
 
@@ -45242,15 +45293,6 @@ func (ptr *QStandardItemModel) MetaObjectDefault() *core.QMetaObject {
 	return nil
 }
 
-//go:generate stringer -type=QStaticText__PerformanceHint
-//QStaticText::PerformanceHint
-type QStaticText__PerformanceHint int64
-
-const (
-	QStaticText__ModerateCaching   QStaticText__PerformanceHint = QStaticText__PerformanceHint(0)
-	QStaticText__AggressiveCaching QStaticText__PerformanceHint = QStaticText__PerformanceHint(1)
-)
-
 type QStaticText struct {
 	ptr unsafe.Pointer
 }
@@ -45288,6 +45330,16 @@ func NewQStaticTextFromPointer(ptr unsafe.Pointer) *QStaticText {
 	n.SetPointer(ptr)
 	return n
 }
+
+//go:generate stringer -type=QStaticText__PerformanceHint
+//QStaticText::PerformanceHint
+type QStaticText__PerformanceHint int64
+
+const (
+	QStaticText__ModerateCaching   QStaticText__PerformanceHint = QStaticText__PerformanceHint(0)
+	QStaticText__AggressiveCaching QStaticText__PerformanceHint = QStaticText__PerformanceHint(1)
+)
+
 func NewQStaticText() *QStaticText {
 	var tmpValue = NewQStaticTextFromPointer(C.QStaticText_NewQStaticText())
 	runtime.SetFinalizer(tmpValue, (*QStaticText).DestroyQStaticText)
@@ -46208,25 +46260,6 @@ func NewQSupportedWritingSystemsFromPointer(ptr unsafe.Pointer) *QSupportedWriti
 	return n
 }
 
-//go:generate stringer -type=QSurface__SurfaceClass
-//QSurface::SurfaceClass
-type QSurface__SurfaceClass int64
-
-const (
-	QSurface__Window    QSurface__SurfaceClass = QSurface__SurfaceClass(0)
-	QSurface__Offscreen QSurface__SurfaceClass = QSurface__SurfaceClass(1)
-)
-
-//go:generate stringer -type=QSurface__SurfaceType
-//QSurface::SurfaceType
-type QSurface__SurfaceType int64
-
-const (
-	QSurface__RasterSurface   QSurface__SurfaceType = QSurface__SurfaceType(0)
-	QSurface__OpenGLSurface   QSurface__SurfaceType = QSurface__SurfaceType(1)
-	QSurface__RasterGLSurface QSurface__SurfaceType = QSurface__SurfaceType(2)
-)
-
 type QSurface struct {
 	ptr unsafe.Pointer
 }
@@ -46264,6 +46297,25 @@ func NewQSurfaceFromPointer(ptr unsafe.Pointer) *QSurface {
 	n.SetPointer(ptr)
 	return n
 }
+
+//go:generate stringer -type=QSurface__SurfaceClass
+//QSurface::SurfaceClass
+type QSurface__SurfaceClass int64
+
+const (
+	QSurface__Window    QSurface__SurfaceClass = QSurface__SurfaceClass(0)
+	QSurface__Offscreen QSurface__SurfaceClass = QSurface__SurfaceClass(1)
+)
+
+//go:generate stringer -type=QSurface__SurfaceType
+//QSurface::SurfaceType
+type QSurface__SurfaceType int64
+
+const (
+	QSurface__RasterSurface   QSurface__SurfaceType = QSurface__SurfaceType(0)
+	QSurface__OpenGLSurface   QSurface__SurfaceType = QSurface__SurfaceType(1)
+	QSurface__RasterGLSurface QSurface__SurfaceType = QSurface__SurfaceType(2)
+)
 
 //export callbackQSurface_Format
 func callbackQSurface_Format(ptr unsafe.Pointer) unsafe.Pointer {
@@ -46429,6 +46481,44 @@ func (ptr *QSurface) SetM_type(vsu QSurface__SurfaceClass) {
 	}
 }
 
+type QSurfaceFormat struct {
+	ptr unsafe.Pointer
+}
+
+type QSurfaceFormat_ITF interface {
+	QSurfaceFormat_PTR() *QSurfaceFormat
+}
+
+func (ptr *QSurfaceFormat) QSurfaceFormat_PTR() *QSurfaceFormat {
+	return ptr
+}
+
+func (ptr *QSurfaceFormat) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
+	}
+	return nil
+}
+
+func (ptr *QSurfaceFormat) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
+	}
+}
+
+func PointerFromQSurfaceFormat(ptr QSurfaceFormat_ITF) unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QSurfaceFormat_PTR().Pointer()
+	}
+	return nil
+}
+
+func NewQSurfaceFormatFromPointer(ptr unsafe.Pointer) *QSurfaceFormat {
+	var n = new(QSurfaceFormat)
+	n.SetPointer(ptr)
+	return n
+}
+
 //go:generate stringer -type=QSurfaceFormat__FormatOption
 //QSurfaceFormat::FormatOption
 type QSurfaceFormat__FormatOption int64
@@ -46472,43 +46562,6 @@ const (
 	QSurfaceFormat__TripleBuffer        QSurfaceFormat__SwapBehavior = QSurfaceFormat__SwapBehavior(3)
 )
 
-type QSurfaceFormat struct {
-	ptr unsafe.Pointer
-}
-
-type QSurfaceFormat_ITF interface {
-	QSurfaceFormat_PTR() *QSurfaceFormat
-}
-
-func (ptr *QSurfaceFormat) QSurfaceFormat_PTR() *QSurfaceFormat {
-	return ptr
-}
-
-func (ptr *QSurfaceFormat) Pointer() unsafe.Pointer {
-	if ptr != nil {
-		return ptr.ptr
-	}
-	return nil
-}
-
-func (ptr *QSurfaceFormat) SetPointer(p unsafe.Pointer) {
-	if ptr != nil {
-		ptr.ptr = p
-	}
-}
-
-func PointerFromQSurfaceFormat(ptr QSurfaceFormat_ITF) unsafe.Pointer {
-	if ptr != nil {
-		return ptr.QSurfaceFormat_PTR().Pointer()
-	}
-	return nil
-}
-
-func NewQSurfaceFormatFromPointer(ptr unsafe.Pointer) *QSurfaceFormat {
-	var n = new(QSurfaceFormat)
-	n.SetPointer(ptr)
-	return n
-}
 func NewQSurfaceFormat() *QSurfaceFormat {
 	var tmpValue = NewQSurfaceFormatFromPointer(C.QSurfaceFormat_NewQSurfaceFormat())
 	runtime.SetFinalizer(tmpValue, (*QSurfaceFormat).DestroyQSurfaceFormat)
@@ -46888,7 +46941,7 @@ func (ptr *QSyntaxHighlighter) ConnectHighlightBlock(f func(text string)) {
 	}
 }
 
-func (ptr *QSyntaxHighlighter) DisconnectHighlightBlock(text string) {
+func (ptr *QSyntaxHighlighter) DisconnectHighlightBlock() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSyntaxHighlighter::highlightBlock")
@@ -46914,8 +46967,9 @@ func (ptr *QSyntaxHighlighter) PreviousBlockState() int {
 func callbackQSyntaxHighlighter_Rehighlight(ptr unsafe.Pointer) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSyntaxHighlighter::rehighlight"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQSyntaxHighlighterFromPointer(ptr).RehighlightDefault()
 	}
-
 }
 
 func (ptr *QSyntaxHighlighter) ConnectRehighlight(f func()) {
@@ -46938,12 +46992,19 @@ func (ptr *QSyntaxHighlighter) Rehighlight() {
 	}
 }
 
+func (ptr *QSyntaxHighlighter) RehighlightDefault() {
+	if ptr.Pointer() != nil {
+		C.QSyntaxHighlighter_RehighlightDefault(ptr.Pointer())
+	}
+}
+
 //export callbackQSyntaxHighlighter_RehighlightBlock
 func callbackQSyntaxHighlighter_RehighlightBlock(ptr unsafe.Pointer, block unsafe.Pointer) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSyntaxHighlighter::rehighlightBlock"); signal != nil {
 		signal.(func(*QTextBlock))(NewQTextBlockFromPointer(block))
+	} else {
+		NewQSyntaxHighlighterFromPointer(ptr).RehighlightBlockDefault(NewQTextBlockFromPointer(block))
 	}
-
 }
 
 func (ptr *QSyntaxHighlighter) ConnectRehighlightBlock(f func(block *QTextBlock)) {
@@ -46953,7 +47014,7 @@ func (ptr *QSyntaxHighlighter) ConnectRehighlightBlock(f func(block *QTextBlock)
 	}
 }
 
-func (ptr *QSyntaxHighlighter) DisconnectRehighlightBlock(block QTextBlock_ITF) {
+func (ptr *QSyntaxHighlighter) DisconnectRehighlightBlock() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QSyntaxHighlighter::rehighlightBlock")
@@ -46963,6 +47024,12 @@ func (ptr *QSyntaxHighlighter) DisconnectRehighlightBlock(block QTextBlock_ITF) 
 func (ptr *QSyntaxHighlighter) RehighlightBlock(block QTextBlock_ITF) {
 	if ptr.Pointer() != nil {
 		C.QSyntaxHighlighter_RehighlightBlock(ptr.Pointer(), PointerFromQTextBlock(block))
+	}
+}
+
+func (ptr *QSyntaxHighlighter) RehighlightBlockDefault(block QTextBlock_ITF) {
+	if ptr.Pointer() != nil {
+		C.QSyntaxHighlighter_RehighlightBlockDefault(ptr.Pointer(), PointerFromQTextBlock(block))
 	}
 }
 
@@ -47375,31 +47442,6 @@ func (ptr *QSyntaxHighlighter) MetaObjectDefault() *core.QMetaObject {
 	return nil
 }
 
-//go:generate stringer -type=QTabletEvent__PointerType
-//QTabletEvent::PointerType
-type QTabletEvent__PointerType int64
-
-const (
-	QTabletEvent__UnknownPointer QTabletEvent__PointerType = QTabletEvent__PointerType(0)
-	QTabletEvent__Pen            QTabletEvent__PointerType = QTabletEvent__PointerType(1)
-	QTabletEvent__Cursor         QTabletEvent__PointerType = QTabletEvent__PointerType(2)
-	QTabletEvent__Eraser         QTabletEvent__PointerType = QTabletEvent__PointerType(3)
-)
-
-//go:generate stringer -type=QTabletEvent__TabletDevice
-//QTabletEvent::TabletDevice
-type QTabletEvent__TabletDevice int64
-
-const (
-	QTabletEvent__NoDevice       QTabletEvent__TabletDevice = QTabletEvent__TabletDevice(0)
-	QTabletEvent__Puck           QTabletEvent__TabletDevice = QTabletEvent__TabletDevice(1)
-	QTabletEvent__Stylus         QTabletEvent__TabletDevice = QTabletEvent__TabletDevice(2)
-	QTabletEvent__Airbrush       QTabletEvent__TabletDevice = QTabletEvent__TabletDevice(3)
-	QTabletEvent__FourDMouse     QTabletEvent__TabletDevice = QTabletEvent__TabletDevice(4)
-	QTabletEvent__XFreeEraser    QTabletEvent__TabletDevice = QTabletEvent__TabletDevice(5)
-	QTabletEvent__RotationStylus QTabletEvent__TabletDevice = QTabletEvent__TabletDevice(6)
-)
-
 type QTabletEvent struct {
 	QInputEvent
 }
@@ -47445,6 +47487,31 @@ func (ptr *QTabletEvent) DestroyQTabletEvent() {
 		ptr.SetPointer(nil)
 	}
 }
+
+//go:generate stringer -type=QTabletEvent__PointerType
+//QTabletEvent::PointerType
+type QTabletEvent__PointerType int64
+
+const (
+	QTabletEvent__UnknownPointer QTabletEvent__PointerType = QTabletEvent__PointerType(0)
+	QTabletEvent__Pen            QTabletEvent__PointerType = QTabletEvent__PointerType(1)
+	QTabletEvent__Cursor         QTabletEvent__PointerType = QTabletEvent__PointerType(2)
+	QTabletEvent__Eraser         QTabletEvent__PointerType = QTabletEvent__PointerType(3)
+)
+
+//go:generate stringer -type=QTabletEvent__TabletDevice
+//QTabletEvent::TabletDevice
+type QTabletEvent__TabletDevice int64
+
+const (
+	QTabletEvent__NoDevice       QTabletEvent__TabletDevice = QTabletEvent__TabletDevice(0)
+	QTabletEvent__Puck           QTabletEvent__TabletDevice = QTabletEvent__TabletDevice(1)
+	QTabletEvent__Stylus         QTabletEvent__TabletDevice = QTabletEvent__TabletDevice(2)
+	QTabletEvent__Airbrush       QTabletEvent__TabletDevice = QTabletEvent__TabletDevice(3)
+	QTabletEvent__FourDMouse     QTabletEvent__TabletDevice = QTabletEvent__TabletDevice(4)
+	QTabletEvent__XFreeEraser    QTabletEvent__TabletDevice = QTabletEvent__TabletDevice(5)
+	QTabletEvent__RotationStylus QTabletEvent__TabletDevice = QTabletEvent__TabletDevice(6)
+)
 
 func NewQTabletEvent(ty core.QEvent__Type, pos core.QPointF_ITF, globalPos core.QPointF_ITF, device int, pointerType int, pressure float64, xTilt int, yTilt int, tangentialPressure float64, rotation float64, z int, keyState core.Qt__KeyboardModifier, uniqueID int64, button core.Qt__MouseButton, buttons core.Qt__MouseButton) *QTabletEvent {
 	var tmpValue = NewQTabletEventFromPointer(C.QTabletEvent_NewQTabletEvent(C.longlong(ty), core.PointerFromQPointF(pos), core.PointerFromQPointF(globalPos), C.int(int32(device)), C.int(int32(pointerType)), C.double(pressure), C.int(int32(xTilt)), C.int(int32(yTilt)), C.double(tangentialPressure), C.double(rotation), C.int(int32(z)), C.longlong(keyState), C.longlong(uniqueID), C.longlong(button), C.longlong(buttons)))
@@ -47886,18 +47953,6 @@ func (ptr *QTextBlock) UserState() int {
 	return 0
 }
 
-//go:generate stringer -type=QTextBlockFormat__LineHeightTypes
-//QTextBlockFormat::LineHeightTypes
-type QTextBlockFormat__LineHeightTypes int64
-
-const (
-	QTextBlockFormat__SingleHeight       QTextBlockFormat__LineHeightTypes = QTextBlockFormat__LineHeightTypes(0)
-	QTextBlockFormat__ProportionalHeight QTextBlockFormat__LineHeightTypes = QTextBlockFormat__LineHeightTypes(1)
-	QTextBlockFormat__FixedHeight        QTextBlockFormat__LineHeightTypes = QTextBlockFormat__LineHeightTypes(2)
-	QTextBlockFormat__MinimumHeight      QTextBlockFormat__LineHeightTypes = QTextBlockFormat__LineHeightTypes(3)
-	QTextBlockFormat__LineDistanceHeight QTextBlockFormat__LineHeightTypes = QTextBlockFormat__LineHeightTypes(4)
-)
-
 type QTextBlockFormat struct {
 	QTextFormat
 }
@@ -47943,6 +47998,18 @@ func (ptr *QTextBlockFormat) DestroyQTextBlockFormat() {
 		ptr.SetPointer(nil)
 	}
 }
+
+//go:generate stringer -type=QTextBlockFormat__LineHeightTypes
+//QTextBlockFormat::LineHeightTypes
+type QTextBlockFormat__LineHeightTypes int64
+
+const (
+	QTextBlockFormat__SingleHeight       QTextBlockFormat__LineHeightTypes = QTextBlockFormat__LineHeightTypes(0)
+	QTextBlockFormat__ProportionalHeight QTextBlockFormat__LineHeightTypes = QTextBlockFormat__LineHeightTypes(1)
+	QTextBlockFormat__FixedHeight        QTextBlockFormat__LineHeightTypes = QTextBlockFormat__LineHeightTypes(2)
+	QTextBlockFormat__MinimumHeight      QTextBlockFormat__LineHeightTypes = QTextBlockFormat__LineHeightTypes(3)
+	QTextBlockFormat__LineDistanceHeight QTextBlockFormat__LineHeightTypes = QTextBlockFormat__LineHeightTypes(4)
+)
 
 func NewQTextBlockFormat() *QTextBlockFormat {
 	var tmpValue = NewQTextBlockFormatFromPointer(C.QTextBlockFormat_NewQTextBlockFormat())
@@ -48696,44 +48763,6 @@ func (ptr *QTextBlockUserData) DestroyQTextBlockUserDataDefault() {
 	}
 }
 
-//go:generate stringer -type=QTextCharFormat__FontPropertiesInheritanceBehavior
-//QTextCharFormat::FontPropertiesInheritanceBehavior
-type QTextCharFormat__FontPropertiesInheritanceBehavior int64
-
-const (
-	QTextCharFormat__FontPropertiesSpecifiedOnly QTextCharFormat__FontPropertiesInheritanceBehavior = QTextCharFormat__FontPropertiesInheritanceBehavior(0)
-	QTextCharFormat__FontPropertiesAll           QTextCharFormat__FontPropertiesInheritanceBehavior = QTextCharFormat__FontPropertiesInheritanceBehavior(1)
-)
-
-//go:generate stringer -type=QTextCharFormat__UnderlineStyle
-//QTextCharFormat::UnderlineStyle
-type QTextCharFormat__UnderlineStyle int64
-
-var (
-	QTextCharFormat__NoUnderline         QTextCharFormat__UnderlineStyle = QTextCharFormat__UnderlineStyle(0)
-	QTextCharFormat__SingleUnderline     QTextCharFormat__UnderlineStyle = QTextCharFormat__UnderlineStyle(1)
-	QTextCharFormat__DashUnderline       QTextCharFormat__UnderlineStyle = QTextCharFormat__UnderlineStyle(2)
-	QTextCharFormat__DotLine             QTextCharFormat__UnderlineStyle = QTextCharFormat__UnderlineStyle(3)
-	QTextCharFormat__DashDotLine         QTextCharFormat__UnderlineStyle = QTextCharFormat__UnderlineStyle(4)
-	QTextCharFormat__DashDotDotLine      QTextCharFormat__UnderlineStyle = QTextCharFormat__UnderlineStyle(5)
-	QTextCharFormat__WaveUnderline       QTextCharFormat__UnderlineStyle = QTextCharFormat__UnderlineStyle(6)
-	QTextCharFormat__SpellCheckUnderline QTextCharFormat__UnderlineStyle = QTextCharFormat__UnderlineStyle(7)
-)
-
-//go:generate stringer -type=QTextCharFormat__VerticalAlignment
-//QTextCharFormat::VerticalAlignment
-type QTextCharFormat__VerticalAlignment int64
-
-const (
-	QTextCharFormat__AlignNormal      QTextCharFormat__VerticalAlignment = QTextCharFormat__VerticalAlignment(0)
-	QTextCharFormat__AlignSuperScript QTextCharFormat__VerticalAlignment = QTextCharFormat__VerticalAlignment(1)
-	QTextCharFormat__AlignSubScript   QTextCharFormat__VerticalAlignment = QTextCharFormat__VerticalAlignment(2)
-	QTextCharFormat__AlignMiddle      QTextCharFormat__VerticalAlignment = QTextCharFormat__VerticalAlignment(3)
-	QTextCharFormat__AlignTop         QTextCharFormat__VerticalAlignment = QTextCharFormat__VerticalAlignment(4)
-	QTextCharFormat__AlignBottom      QTextCharFormat__VerticalAlignment = QTextCharFormat__VerticalAlignment(5)
-	QTextCharFormat__AlignBaseline    QTextCharFormat__VerticalAlignment = QTextCharFormat__VerticalAlignment(6)
-)
-
 type QTextCharFormat struct {
 	QTextFormat
 }
@@ -48779,6 +48808,44 @@ func (ptr *QTextCharFormat) DestroyQTextCharFormat() {
 		ptr.SetPointer(nil)
 	}
 }
+
+//go:generate stringer -type=QTextCharFormat__FontPropertiesInheritanceBehavior
+//QTextCharFormat::FontPropertiesInheritanceBehavior
+type QTextCharFormat__FontPropertiesInheritanceBehavior int64
+
+const (
+	QTextCharFormat__FontPropertiesSpecifiedOnly QTextCharFormat__FontPropertiesInheritanceBehavior = QTextCharFormat__FontPropertiesInheritanceBehavior(0)
+	QTextCharFormat__FontPropertiesAll           QTextCharFormat__FontPropertiesInheritanceBehavior = QTextCharFormat__FontPropertiesInheritanceBehavior(1)
+)
+
+//go:generate stringer -type=QTextCharFormat__UnderlineStyle
+//QTextCharFormat::UnderlineStyle
+type QTextCharFormat__UnderlineStyle int64
+
+var (
+	QTextCharFormat__NoUnderline         QTextCharFormat__UnderlineStyle = QTextCharFormat__UnderlineStyle(0)
+	QTextCharFormat__SingleUnderline     QTextCharFormat__UnderlineStyle = QTextCharFormat__UnderlineStyle(1)
+	QTextCharFormat__DashUnderline       QTextCharFormat__UnderlineStyle = QTextCharFormat__UnderlineStyle(2)
+	QTextCharFormat__DotLine             QTextCharFormat__UnderlineStyle = QTextCharFormat__UnderlineStyle(3)
+	QTextCharFormat__DashDotLine         QTextCharFormat__UnderlineStyle = QTextCharFormat__UnderlineStyle(4)
+	QTextCharFormat__DashDotDotLine      QTextCharFormat__UnderlineStyle = QTextCharFormat__UnderlineStyle(5)
+	QTextCharFormat__WaveUnderline       QTextCharFormat__UnderlineStyle = QTextCharFormat__UnderlineStyle(6)
+	QTextCharFormat__SpellCheckUnderline QTextCharFormat__UnderlineStyle = QTextCharFormat__UnderlineStyle(7)
+)
+
+//go:generate stringer -type=QTextCharFormat__VerticalAlignment
+//QTextCharFormat::VerticalAlignment
+type QTextCharFormat__VerticalAlignment int64
+
+const (
+	QTextCharFormat__AlignNormal      QTextCharFormat__VerticalAlignment = QTextCharFormat__VerticalAlignment(0)
+	QTextCharFormat__AlignSuperScript QTextCharFormat__VerticalAlignment = QTextCharFormat__VerticalAlignment(1)
+	QTextCharFormat__AlignSubScript   QTextCharFormat__VerticalAlignment = QTextCharFormat__VerticalAlignment(2)
+	QTextCharFormat__AlignMiddle      QTextCharFormat__VerticalAlignment = QTextCharFormat__VerticalAlignment(3)
+	QTextCharFormat__AlignTop         QTextCharFormat__VerticalAlignment = QTextCharFormat__VerticalAlignment(4)
+	QTextCharFormat__AlignBottom      QTextCharFormat__VerticalAlignment = QTextCharFormat__VerticalAlignment(5)
+	QTextCharFormat__AlignBaseline    QTextCharFormat__VerticalAlignment = QTextCharFormat__VerticalAlignment(6)
+)
 
 func NewQTextCharFormat() *QTextCharFormat {
 	var tmpValue = NewQTextCharFormatFromPointer(C.QTextCharFormat_NewQTextCharFormat())
@@ -49151,6 +49218,44 @@ func (ptr *QTextCharFormat) VerticalAlignment() QTextCharFormat__VerticalAlignme
 	return 0
 }
 
+type QTextCursor struct {
+	ptr unsafe.Pointer
+}
+
+type QTextCursor_ITF interface {
+	QTextCursor_PTR() *QTextCursor
+}
+
+func (ptr *QTextCursor) QTextCursor_PTR() *QTextCursor {
+	return ptr
+}
+
+func (ptr *QTextCursor) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
+	}
+	return nil
+}
+
+func (ptr *QTextCursor) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
+	}
+}
+
+func PointerFromQTextCursor(ptr QTextCursor_ITF) unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QTextCursor_PTR().Pointer()
+	}
+	return nil
+}
+
+func NewQTextCursorFromPointer(ptr unsafe.Pointer) *QTextCursor {
+	var n = new(QTextCursor)
+	n.SetPointer(ptr)
+	return n
+}
+
 //go:generate stringer -type=QTextCursor__MoveMode
 //QTextCursor::MoveMode
 type QTextCursor__MoveMode int64
@@ -49203,43 +49308,6 @@ const (
 	QTextCursor__Document         QTextCursor__SelectionType = QTextCursor__SelectionType(3)
 )
 
-type QTextCursor struct {
-	ptr unsafe.Pointer
-}
-
-type QTextCursor_ITF interface {
-	QTextCursor_PTR() *QTextCursor
-}
-
-func (ptr *QTextCursor) QTextCursor_PTR() *QTextCursor {
-	return ptr
-}
-
-func (ptr *QTextCursor) Pointer() unsafe.Pointer {
-	if ptr != nil {
-		return ptr.ptr
-	}
-	return nil
-}
-
-func (ptr *QTextCursor) SetPointer(p unsafe.Pointer) {
-	if ptr != nil {
-		ptr.ptr = p
-	}
-}
-
-func PointerFromQTextCursor(ptr QTextCursor_ITF) unsafe.Pointer {
-	if ptr != nil {
-		return ptr.QTextCursor_PTR().Pointer()
-	}
-	return nil
-}
-
-func NewQTextCursorFromPointer(ptr unsafe.Pointer) *QTextCursor {
-	var n = new(QTextCursor)
-	n.SetPointer(ptr)
-	return n
-}
 func (ptr *QTextCursor) InsertBlock3(format QTextBlockFormat_ITF, charFormat QTextCharFormat_ITF) {
 	if ptr.Pointer() != nil {
 		C.QTextCursor_InsertBlock3(ptr.Pointer(), PointerFromQTextBlockFormat(format), PointerFromQTextCharFormat(charFormat))
@@ -49779,6 +49847,45 @@ func (ptr *QTextCursor) DestroyQTextCursor() {
 	}
 }
 
+type QTextDocument struct {
+	core.QObject
+}
+
+type QTextDocument_ITF interface {
+	core.QObject_ITF
+	QTextDocument_PTR() *QTextDocument
+}
+
+func (ptr *QTextDocument) QTextDocument_PTR() *QTextDocument {
+	return ptr
+}
+
+func (ptr *QTextDocument) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QObject_PTR().Pointer()
+	}
+	return nil
+}
+
+func (ptr *QTextDocument) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.QObject_PTR().SetPointer(p)
+	}
+}
+
+func PointerFromQTextDocument(ptr QTextDocument_ITF) unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QTextDocument_PTR().Pointer()
+	}
+	return nil
+}
+
+func NewQTextDocumentFromPointer(ptr unsafe.Pointer) *QTextDocument {
+	var n = new(QTextDocument)
+	n.SetPointer(ptr)
+	return n
+}
+
 //go:generate stringer -type=QTextDocument__FindFlag
 //QTextDocument::FindFlag
 type QTextDocument__FindFlag int64
@@ -49819,44 +49926,6 @@ const (
 	QTextDocument__UndoAndRedoStacks QTextDocument__Stacks = QTextDocument__Stacks(QTextDocument__UndoStack | QTextDocument__RedoStack)
 )
 
-type QTextDocument struct {
-	core.QObject
-}
-
-type QTextDocument_ITF interface {
-	core.QObject_ITF
-	QTextDocument_PTR() *QTextDocument
-}
-
-func (ptr *QTextDocument) QTextDocument_PTR() *QTextDocument {
-	return ptr
-}
-
-func (ptr *QTextDocument) Pointer() unsafe.Pointer {
-	if ptr != nil {
-		return ptr.QObject_PTR().Pointer()
-	}
-	return nil
-}
-
-func (ptr *QTextDocument) SetPointer(p unsafe.Pointer) {
-	if ptr != nil {
-		ptr.QObject_PTR().SetPointer(p)
-	}
-}
-
-func PointerFromQTextDocument(ptr QTextDocument_ITF) unsafe.Pointer {
-	if ptr != nil {
-		return ptr.QTextDocument_PTR().Pointer()
-	}
-	return nil
-}
-
-func NewQTextDocumentFromPointer(ptr unsafe.Pointer) *QTextDocument {
-	var n = new(QTextDocument)
-	n.SetPointer(ptr)
-	return n
-}
 func (ptr *QTextDocument) BaseUrl() *core.QUrl {
 	if ptr.Pointer() != nil {
 		var tmpValue = core.NewQUrlFromPointer(C.QTextDocument_BaseUrl(ptr.Pointer()))
@@ -50017,8 +50086,9 @@ func (ptr *QTextDocument) SetMaximumBlockCount(maximum int) {
 func callbackQTextDocument_SetModified(ptr unsafe.Pointer, m C.char) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QTextDocument::setModified"); signal != nil {
 		signal.(func(bool))(int8(m) != 0)
+	} else {
+		NewQTextDocumentFromPointer(ptr).SetModifiedDefault(int8(m) != 0)
 	}
-
 }
 
 func (ptr *QTextDocument) ConnectSetModified(f func(m bool)) {
@@ -50028,7 +50098,7 @@ func (ptr *QTextDocument) ConnectSetModified(f func(m bool)) {
 	}
 }
 
-func (ptr *QTextDocument) DisconnectSetModified(m bool) {
+func (ptr *QTextDocument) DisconnectSetModified() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QTextDocument::setModified")
@@ -50038,6 +50108,12 @@ func (ptr *QTextDocument) DisconnectSetModified(m bool) {
 func (ptr *QTextDocument) SetModified(m bool) {
 	if ptr.Pointer() != nil {
 		C.QTextDocument_SetModified(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(m))))
+	}
+}
+
+func (ptr *QTextDocument) SetModifiedDefault(m bool) {
+	if ptr.Pointer() != nil {
+		C.QTextDocument_SetModifiedDefault(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(m))))
 	}
 }
 
@@ -50692,8 +50768,9 @@ func (ptr *QTextDocument) Print(printer QPagedPaintDevice_ITF) {
 func callbackQTextDocument_Redo2(ptr unsafe.Pointer) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QTextDocument::redo2"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQTextDocumentFromPointer(ptr).Redo2Default()
 	}
-
 }
 
 func (ptr *QTextDocument) ConnectRedo2(f func()) {
@@ -50713,6 +50790,12 @@ func (ptr *QTextDocument) DisconnectRedo2() {
 func (ptr *QTextDocument) Redo2() {
 	if ptr.Pointer() != nil {
 		C.QTextDocument_Redo2(ptr.Pointer())
+	}
+}
+
+func (ptr *QTextDocument) Redo2Default() {
+	if ptr.Pointer() != nil {
+		C.QTextDocument_Redo2Default(ptr.Pointer())
 	}
 }
 
@@ -50850,8 +50933,9 @@ func (ptr *QTextDocument) ToPlainText() string {
 func callbackQTextDocument_Undo2(ptr unsafe.Pointer) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QTextDocument::undo2"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQTextDocumentFromPointer(ptr).Undo2Default()
 	}
-
 }
 
 func (ptr *QTextDocument) ConnectUndo2(f func()) {
@@ -50871,6 +50955,12 @@ func (ptr *QTextDocument) DisconnectUndo2() {
 func (ptr *QTextDocument) Undo2() {
 	if ptr.Pointer() != nil {
 		C.QTextDocument_Undo2(ptr.Pointer())
+	}
+}
+
+func (ptr *QTextDocument) Undo2Default() {
+	if ptr.Pointer() != nil {
+		C.QTextDocument_Undo2Default(ptr.Pointer())
 	}
 }
 
@@ -51592,6 +51682,44 @@ func (ptr *QTextDocumentWriter) supportedDocumentFormats_atList(i int) *core.QBy
 	return nil
 }
 
+type QTextFormat struct {
+	ptr unsafe.Pointer
+}
+
+type QTextFormat_ITF interface {
+	QTextFormat_PTR() *QTextFormat
+}
+
+func (ptr *QTextFormat) QTextFormat_PTR() *QTextFormat {
+	return ptr
+}
+
+func (ptr *QTextFormat) Pointer() unsafe.Pointer {
+	if ptr != nil {
+		return ptr.ptr
+	}
+	return nil
+}
+
+func (ptr *QTextFormat) SetPointer(p unsafe.Pointer) {
+	if ptr != nil {
+		ptr.ptr = p
+	}
+}
+
+func PointerFromQTextFormat(ptr QTextFormat_ITF) unsafe.Pointer {
+	if ptr != nil {
+		return ptr.QTextFormat_PTR().Pointer()
+	}
+	return nil
+}
+
+func NewQTextFormatFromPointer(ptr unsafe.Pointer) *QTextFormat {
+	var n = new(QTextFormat)
+	n.SetPointer(ptr)
+	return n
+}
+
 //go:generate stringer -type=QTextFormat__FormatType
 //QTextFormat::FormatType
 type QTextFormat__FormatType int64
@@ -51717,43 +51845,6 @@ const (
 	QTextFormat__UserProperty                      QTextFormat__Property = QTextFormat__Property(0x100000)
 )
 
-type QTextFormat struct {
-	ptr unsafe.Pointer
-}
-
-type QTextFormat_ITF interface {
-	QTextFormat_PTR() *QTextFormat
-}
-
-func (ptr *QTextFormat) QTextFormat_PTR() *QTextFormat {
-	return ptr
-}
-
-func (ptr *QTextFormat) Pointer() unsafe.Pointer {
-	if ptr != nil {
-		return ptr.ptr
-	}
-	return nil
-}
-
-func (ptr *QTextFormat) SetPointer(p unsafe.Pointer) {
-	if ptr != nil {
-		ptr.ptr = p
-	}
-}
-
-func PointerFromQTextFormat(ptr QTextFormat_ITF) unsafe.Pointer {
-	if ptr != nil {
-		return ptr.QTextFormat_PTR().Pointer()
-	}
-	return nil
-}
-
-func NewQTextFormatFromPointer(ptr unsafe.Pointer) *QTextFormat {
-	var n = new(QTextFormat)
-	n.SetPointer(ptr)
-	return n
-}
 func NewQTextFormat3(other QTextFormat_ITF) *QTextFormat {
 	var tmpValue = NewQTextFormatFromPointer(C.QTextFormat_NewQTextFormat3(PointerFromQTextFormat(other)))
 	runtime.SetFinalizer(tmpValue, (*QTextFormat).DestroyQTextFormat)
@@ -52712,34 +52803,6 @@ func (ptr *QTextFrame) MetaObjectDefault() *core.QMetaObject {
 	return nil
 }
 
-//go:generate stringer -type=QTextFrameFormat__BorderStyle
-//QTextFrameFormat::BorderStyle
-type QTextFrameFormat__BorderStyle int64
-
-var (
-	QTextFrameFormat__BorderStyle_None       QTextFrameFormat__BorderStyle = QTextFrameFormat__BorderStyle(0)
-	QTextFrameFormat__BorderStyle_Dotted     QTextFrameFormat__BorderStyle = QTextFrameFormat__BorderStyle(1)
-	QTextFrameFormat__BorderStyle_Dashed     QTextFrameFormat__BorderStyle = QTextFrameFormat__BorderStyle(2)
-	QTextFrameFormat__BorderStyle_Solid      QTextFrameFormat__BorderStyle = QTextFrameFormat__BorderStyle(3)
-	QTextFrameFormat__BorderStyle_Double     QTextFrameFormat__BorderStyle = QTextFrameFormat__BorderStyle(4)
-	QTextFrameFormat__BorderStyle_DotDash    QTextFrameFormat__BorderStyle = QTextFrameFormat__BorderStyle(5)
-	QTextFrameFormat__BorderStyle_DotDotDash QTextFrameFormat__BorderStyle = QTextFrameFormat__BorderStyle(6)
-	QTextFrameFormat__BorderStyle_Groove     QTextFrameFormat__BorderStyle = QTextFrameFormat__BorderStyle(7)
-	QTextFrameFormat__BorderStyle_Ridge      QTextFrameFormat__BorderStyle = QTextFrameFormat__BorderStyle(8)
-	QTextFrameFormat__BorderStyle_Inset      QTextFrameFormat__BorderStyle = QTextFrameFormat__BorderStyle(9)
-	QTextFrameFormat__BorderStyle_Outset     QTextFrameFormat__BorderStyle = QTextFrameFormat__BorderStyle(10)
-)
-
-//go:generate stringer -type=QTextFrameFormat__Position
-//QTextFrameFormat::Position
-type QTextFrameFormat__Position int64
-
-const (
-	QTextFrameFormat__InFlow     QTextFrameFormat__Position = QTextFrameFormat__Position(0)
-	QTextFrameFormat__FloatLeft  QTextFrameFormat__Position = QTextFrameFormat__Position(1)
-	QTextFrameFormat__FloatRight QTextFrameFormat__Position = QTextFrameFormat__Position(2)
-)
-
 type QTextFrameFormat struct {
 	QTextFormat
 }
@@ -52785,6 +52848,34 @@ func (ptr *QTextFrameFormat) DestroyQTextFrameFormat() {
 		ptr.SetPointer(nil)
 	}
 }
+
+//go:generate stringer -type=QTextFrameFormat__BorderStyle
+//QTextFrameFormat::BorderStyle
+type QTextFrameFormat__BorderStyle int64
+
+var (
+	QTextFrameFormat__BorderStyle_None       QTextFrameFormat__BorderStyle = QTextFrameFormat__BorderStyle(0)
+	QTextFrameFormat__BorderStyle_Dotted     QTextFrameFormat__BorderStyle = QTextFrameFormat__BorderStyle(1)
+	QTextFrameFormat__BorderStyle_Dashed     QTextFrameFormat__BorderStyle = QTextFrameFormat__BorderStyle(2)
+	QTextFrameFormat__BorderStyle_Solid      QTextFrameFormat__BorderStyle = QTextFrameFormat__BorderStyle(3)
+	QTextFrameFormat__BorderStyle_Double     QTextFrameFormat__BorderStyle = QTextFrameFormat__BorderStyle(4)
+	QTextFrameFormat__BorderStyle_DotDash    QTextFrameFormat__BorderStyle = QTextFrameFormat__BorderStyle(5)
+	QTextFrameFormat__BorderStyle_DotDotDash QTextFrameFormat__BorderStyle = QTextFrameFormat__BorderStyle(6)
+	QTextFrameFormat__BorderStyle_Groove     QTextFrameFormat__BorderStyle = QTextFrameFormat__BorderStyle(7)
+	QTextFrameFormat__BorderStyle_Ridge      QTextFrameFormat__BorderStyle = QTextFrameFormat__BorderStyle(8)
+	QTextFrameFormat__BorderStyle_Inset      QTextFrameFormat__BorderStyle = QTextFrameFormat__BorderStyle(9)
+	QTextFrameFormat__BorderStyle_Outset     QTextFrameFormat__BorderStyle = QTextFrameFormat__BorderStyle(10)
+)
+
+//go:generate stringer -type=QTextFrameFormat__Position
+//QTextFrameFormat::Position
+type QTextFrameFormat__Position int64
+
+const (
+	QTextFrameFormat__InFlow     QTextFrameFormat__Position = QTextFrameFormat__Position(0)
+	QTextFrameFormat__FloatLeft  QTextFrameFormat__Position = QTextFrameFormat__Position(1)
+	QTextFrameFormat__FloatRight QTextFrameFormat__Position = QTextFrameFormat__Position(2)
+)
 
 func NewQTextFrameFormat() *QTextFrameFormat {
 	var tmpValue = NewQTextFrameFormatFromPointer(C.QTextFrameFormat_NewQTextFrameFormat())
@@ -53223,18 +53314,6 @@ func (ptr *QTextInlineObject) Width() float64 {
 	return 0
 }
 
-//go:generate stringer -type=QTextItem__RenderFlag
-//QTextItem::RenderFlag
-type QTextItem__RenderFlag int64
-
-const (
-	QTextItem__RightToLeft QTextItem__RenderFlag = QTextItem__RenderFlag(0x1)
-	QTextItem__Overline    QTextItem__RenderFlag = QTextItem__RenderFlag(0x10)
-	QTextItem__Underline   QTextItem__RenderFlag = QTextItem__RenderFlag(0x20)
-	QTextItem__StrikeOut   QTextItem__RenderFlag = QTextItem__RenderFlag(0x40)
-	QTextItem__Dummy       QTextItem__RenderFlag = QTextItem__RenderFlag(0xffffffff)
-)
-
 type QTextItem struct {
 	ptr unsafe.Pointer
 }
@@ -53280,6 +53359,18 @@ func (ptr *QTextItem) DestroyQTextItem() {
 	}
 }
 
+//go:generate stringer -type=QTextItem__RenderFlag
+//QTextItem::RenderFlag
+type QTextItem__RenderFlag int64
+
+const (
+	QTextItem__RightToLeft QTextItem__RenderFlag = QTextItem__RenderFlag(0x1)
+	QTextItem__Overline    QTextItem__RenderFlag = QTextItem__RenderFlag(0x10)
+	QTextItem__Underline   QTextItem__RenderFlag = QTextItem__RenderFlag(0x20)
+	QTextItem__StrikeOut   QTextItem__RenderFlag = QTextItem__RenderFlag(0x40)
+	QTextItem__Dummy       QTextItem__RenderFlag = QTextItem__RenderFlag(0xffffffff)
+)
+
 func (ptr *QTextItem) Ascent() float64 {
 	if ptr.Pointer() != nil {
 		return float64(C.QTextItem_Ascent(ptr.Pointer()))
@@ -53324,15 +53415,6 @@ func (ptr *QTextItem) Width() float64 {
 	return 0
 }
 
-//go:generate stringer -type=QTextLayout__CursorMode
-//QTextLayout::CursorMode
-type QTextLayout__CursorMode int64
-
-const (
-	QTextLayout__SkipCharacters QTextLayout__CursorMode = QTextLayout__CursorMode(0)
-	QTextLayout__SkipWords      QTextLayout__CursorMode = QTextLayout__CursorMode(1)
-)
-
 type QTextLayout struct {
 	ptr unsafe.Pointer
 }
@@ -53370,6 +53452,16 @@ func NewQTextLayoutFromPointer(ptr unsafe.Pointer) *QTextLayout {
 	n.SetPointer(ptr)
 	return n
 }
+
+//go:generate stringer -type=QTextLayout__CursorMode
+//QTextLayout::CursorMode
+type QTextLayout__CursorMode int64
+
+const (
+	QTextLayout__SkipCharacters QTextLayout__CursorMode = QTextLayout__CursorMode(0)
+	QTextLayout__SkipWords      QTextLayout__CursorMode = QTextLayout__CursorMode(1)
+)
+
 func (ptr *QTextLayout) DrawCursor2(painter QPainter_ITF, position core.QPointF_ITF, cursorPosition int) {
 	if ptr.Pointer() != nil {
 		C.QTextLayout_DrawCursor2(ptr.Pointer(), PointerFromQPainter(painter), core.PointerFromQPointF(position), C.int(int32(cursorPosition)))
@@ -53655,16 +53747,6 @@ func (ptr *QTextLayout) glyphRuns_atList(i int) *QGlyphRun {
 	return nil
 }
 
-//go:generate stringer -type=QTextLength__Type
-//QTextLength::Type
-type QTextLength__Type int64
-
-const (
-	QTextLength__VariableLength   QTextLength__Type = QTextLength__Type(0)
-	QTextLength__FixedLength      QTextLength__Type = QTextLength__Type(1)
-	QTextLength__PercentageLength QTextLength__Type = QTextLength__Type(2)
-)
-
 type QTextLength struct {
 	ptr unsafe.Pointer
 }
@@ -53710,6 +53792,16 @@ func (ptr *QTextLength) DestroyQTextLength() {
 	}
 }
 
+//go:generate stringer -type=QTextLength__Type
+//QTextLength::Type
+type QTextLength__Type int64
+
+const (
+	QTextLength__VariableLength   QTextLength__Type = QTextLength__Type(0)
+	QTextLength__FixedLength      QTextLength__Type = QTextLength__Type(1)
+	QTextLength__PercentageLength QTextLength__Type = QTextLength__Type(2)
+)
+
 func NewQTextLength() *QTextLength {
 	var tmpValue = NewQTextLengthFromPointer(C.QTextLength_NewQTextLength())
 	runtime.SetFinalizer(tmpValue, (*QTextLength).DestroyQTextLength)
@@ -53742,24 +53834,6 @@ func (ptr *QTextLength) Value(maximumLength float64) float64 {
 	}
 	return 0
 }
-
-//go:generate stringer -type=QTextLine__CursorPosition
-//QTextLine::CursorPosition
-type QTextLine__CursorPosition int64
-
-const (
-	QTextLine__CursorBetweenCharacters QTextLine__CursorPosition = QTextLine__CursorPosition(0)
-	QTextLine__CursorOnCharacter       QTextLine__CursorPosition = QTextLine__CursorPosition(1)
-)
-
-//go:generate stringer -type=QTextLine__Edge
-//QTextLine::Edge
-type QTextLine__Edge int64
-
-const (
-	QTextLine__Leading  QTextLine__Edge = QTextLine__Edge(0)
-	QTextLine__Trailing QTextLine__Edge = QTextLine__Edge(1)
-)
 
 type QTextLine struct {
 	ptr unsafe.Pointer
@@ -53805,6 +53879,24 @@ func (ptr *QTextLine) DestroyQTextLine() {
 		ptr.SetPointer(nil)
 	}
 }
+
+//go:generate stringer -type=QTextLine__CursorPosition
+//QTextLine::CursorPosition
+type QTextLine__CursorPosition int64
+
+const (
+	QTextLine__CursorBetweenCharacters QTextLine__CursorPosition = QTextLine__CursorPosition(0)
+	QTextLine__CursorOnCharacter       QTextLine__CursorPosition = QTextLine__CursorPosition(1)
+)
+
+//go:generate stringer -type=QTextLine__Edge
+//QTextLine::Edge
+type QTextLine__Edge int64
+
+const (
+	QTextLine__Leading  QTextLine__Edge = QTextLine__Edge(0)
+	QTextLine__Trailing QTextLine__Edge = QTextLine__Edge(1)
+)
 
 func (ptr *QTextLine) XToCursor(x float64, cpos QTextLine__CursorPosition) int {
 	if ptr.Pointer() != nil {
@@ -54561,22 +54653,6 @@ func (ptr *QTextList) MetaObjectDefault() *core.QMetaObject {
 	return nil
 }
 
-//go:generate stringer -type=QTextListFormat__Style
-//QTextListFormat::Style
-type QTextListFormat__Style int64
-
-var (
-	QTextListFormat__ListDisc           QTextListFormat__Style = QTextListFormat__Style(-1)
-	QTextListFormat__ListCircle         QTextListFormat__Style = QTextListFormat__Style(-2)
-	QTextListFormat__ListSquare         QTextListFormat__Style = QTextListFormat__Style(-3)
-	QTextListFormat__ListDecimal        QTextListFormat__Style = QTextListFormat__Style(-4)
-	QTextListFormat__ListLowerAlpha     QTextListFormat__Style = QTextListFormat__Style(-5)
-	QTextListFormat__ListUpperAlpha     QTextListFormat__Style = QTextListFormat__Style(-6)
-	QTextListFormat__ListLowerRoman     QTextListFormat__Style = QTextListFormat__Style(-7)
-	QTextListFormat__ListUpperRoman     QTextListFormat__Style = QTextListFormat__Style(-8)
-	QTextListFormat__ListStyleUndefined QTextListFormat__Style = QTextListFormat__Style(0)
-)
-
 type QTextListFormat struct {
 	QTextFormat
 }
@@ -54622,6 +54698,22 @@ func (ptr *QTextListFormat) DestroyQTextListFormat() {
 		ptr.SetPointer(nil)
 	}
 }
+
+//go:generate stringer -type=QTextListFormat__Style
+//QTextListFormat::Style
+type QTextListFormat__Style int64
+
+var (
+	QTextListFormat__ListDisc           QTextListFormat__Style = QTextListFormat__Style(-1)
+	QTextListFormat__ListCircle         QTextListFormat__Style = QTextListFormat__Style(-2)
+	QTextListFormat__ListSquare         QTextListFormat__Style = QTextListFormat__Style(-3)
+	QTextListFormat__ListDecimal        QTextListFormat__Style = QTextListFormat__Style(-4)
+	QTextListFormat__ListLowerAlpha     QTextListFormat__Style = QTextListFormat__Style(-5)
+	QTextListFormat__ListUpperAlpha     QTextListFormat__Style = QTextListFormat__Style(-6)
+	QTextListFormat__ListLowerRoman     QTextListFormat__Style = QTextListFormat__Style(-7)
+	QTextListFormat__ListUpperRoman     QTextListFormat__Style = QTextListFormat__Style(-8)
+	QTextListFormat__ListStyleUndefined QTextListFormat__Style = QTextListFormat__Style(0)
+)
 
 func NewQTextListFormat() *QTextListFormat {
 	var tmpValue = NewQTextListFormatFromPointer(C.QTextListFormat_NewQTextListFormat())
@@ -55213,7 +55305,7 @@ func (ptr *QTextObjectInterface) ConnectDrawObject(f func(painter *QPainter, rec
 	}
 }
 
-func (ptr *QTextObjectInterface) DisconnectDrawObject(painter QPainter_ITF, rect core.QRectF_ITF, doc QTextDocument_ITF, posInDocument int, format QTextFormat_ITF) {
+func (ptr *QTextObjectInterface) DisconnectDrawObject() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QTextObjectInterface::drawObject")
@@ -55243,7 +55335,7 @@ func (ptr *QTextObjectInterface) ConnectIntrinsicSize(f func(doc *QTextDocument,
 	}
 }
 
-func (ptr *QTextObjectInterface) DisconnectIntrinsicSize(doc QTextDocument_ITF, posInDocument int, format QTextFormat_ITF) {
+func (ptr *QTextObjectInterface) DisconnectIntrinsicSize() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QTextObjectInterface::intrinsicSize")
@@ -55258,42 +55350,6 @@ func (ptr *QTextObjectInterface) IntrinsicSize(doc QTextDocument_ITF, posInDocum
 	}
 	return nil
 }
-
-//go:generate stringer -type=QTextOption__Flag
-//QTextOption::Flag
-type QTextOption__Flag int64
-
-const (
-	QTextOption__ShowTabsAndSpaces                     QTextOption__Flag = QTextOption__Flag(0x1)
-	QTextOption__ShowLineAndParagraphSeparators        QTextOption__Flag = QTextOption__Flag(0x2)
-	QTextOption__AddSpaceForLineAndParagraphSeparators QTextOption__Flag = QTextOption__Flag(0x4)
-	QTextOption__SuppressColors                        QTextOption__Flag = QTextOption__Flag(0x8)
-	QTextOption__ShowDocumentTerminator                QTextOption__Flag = QTextOption__Flag(0x10)
-	QTextOption__IncludeTrailingSpaces                 QTextOption__Flag = QTextOption__Flag(0x80000000)
-)
-
-//go:generate stringer -type=QTextOption__TabType
-//QTextOption::TabType
-type QTextOption__TabType int64
-
-const (
-	QTextOption__LeftTab      QTextOption__TabType = QTextOption__TabType(0)
-	QTextOption__RightTab     QTextOption__TabType = QTextOption__TabType(1)
-	QTextOption__CenterTab    QTextOption__TabType = QTextOption__TabType(2)
-	QTextOption__DelimiterTab QTextOption__TabType = QTextOption__TabType(3)
-)
-
-//go:generate stringer -type=QTextOption__WrapMode
-//QTextOption::WrapMode
-type QTextOption__WrapMode int64
-
-const (
-	QTextOption__NoWrap                       QTextOption__WrapMode = QTextOption__WrapMode(0)
-	QTextOption__WordWrap                     QTextOption__WrapMode = QTextOption__WrapMode(1)
-	QTextOption__ManualWrap                   QTextOption__WrapMode = QTextOption__WrapMode(2)
-	QTextOption__WrapAnywhere                 QTextOption__WrapMode = QTextOption__WrapMode(3)
-	QTextOption__WrapAtWordBoundaryOrAnywhere QTextOption__WrapMode = QTextOption__WrapMode(4)
-)
 
 type QTextOption struct {
 	ptr unsafe.Pointer
@@ -55332,6 +55388,43 @@ func NewQTextOptionFromPointer(ptr unsafe.Pointer) *QTextOption {
 	n.SetPointer(ptr)
 	return n
 }
+
+//go:generate stringer -type=QTextOption__Flag
+//QTextOption::Flag
+type QTextOption__Flag int64
+
+const (
+	QTextOption__ShowTabsAndSpaces                     QTextOption__Flag = QTextOption__Flag(0x1)
+	QTextOption__ShowLineAndParagraphSeparators        QTextOption__Flag = QTextOption__Flag(0x2)
+	QTextOption__AddSpaceForLineAndParagraphSeparators QTextOption__Flag = QTextOption__Flag(0x4)
+	QTextOption__SuppressColors                        QTextOption__Flag = QTextOption__Flag(0x8)
+	QTextOption__ShowDocumentTerminator                QTextOption__Flag = QTextOption__Flag(0x10)
+	QTextOption__IncludeTrailingSpaces                 QTextOption__Flag = QTextOption__Flag(0x80000000)
+)
+
+//go:generate stringer -type=QTextOption__TabType
+//QTextOption::TabType
+type QTextOption__TabType int64
+
+const (
+	QTextOption__LeftTab      QTextOption__TabType = QTextOption__TabType(0)
+	QTextOption__RightTab     QTextOption__TabType = QTextOption__TabType(1)
+	QTextOption__CenterTab    QTextOption__TabType = QTextOption__TabType(2)
+	QTextOption__DelimiterTab QTextOption__TabType = QTextOption__TabType(3)
+)
+
+//go:generate stringer -type=QTextOption__WrapMode
+//QTextOption::WrapMode
+type QTextOption__WrapMode int64
+
+const (
+	QTextOption__NoWrap                       QTextOption__WrapMode = QTextOption__WrapMode(0)
+	QTextOption__WordWrap                     QTextOption__WrapMode = QTextOption__WrapMode(1)
+	QTextOption__ManualWrap                   QTextOption__WrapMode = QTextOption__WrapMode(2)
+	QTextOption__WrapAnywhere                 QTextOption__WrapMode = QTextOption__WrapMode(3)
+	QTextOption__WrapAtWordBoundaryOrAnywhere QTextOption__WrapMode = QTextOption__WrapMode(4)
+)
+
 func NewQTextOption3(other QTextOption_ITF) *QTextOption {
 	var tmpValue = NewQTextOptionFromPointer(C.QTextOption_NewQTextOption3(PointerFromQTextOption(other)))
 	runtime.SetFinalizer(tmpValue, (*QTextOption).DestroyQTextOption)
@@ -56330,29 +56423,6 @@ func (ptr *QTextTableFormat) columnWidthConstraints_atList(i int) *QTextLength {
 	return nil
 }
 
-//go:generate stringer -type=QTouchDevice__CapabilityFlag
-//QTouchDevice::CapabilityFlag
-type QTouchDevice__CapabilityFlag int64
-
-const (
-	QTouchDevice__Position           QTouchDevice__CapabilityFlag = QTouchDevice__CapabilityFlag(0x0001)
-	QTouchDevice__Area               QTouchDevice__CapabilityFlag = QTouchDevice__CapabilityFlag(0x0002)
-	QTouchDevice__Pressure           QTouchDevice__CapabilityFlag = QTouchDevice__CapabilityFlag(0x0004)
-	QTouchDevice__Velocity           QTouchDevice__CapabilityFlag = QTouchDevice__CapabilityFlag(0x0008)
-	QTouchDevice__RawPositions       QTouchDevice__CapabilityFlag = QTouchDevice__CapabilityFlag(0x0010)
-	QTouchDevice__NormalizedPosition QTouchDevice__CapabilityFlag = QTouchDevice__CapabilityFlag(0x0020)
-	QTouchDevice__MouseEmulation     QTouchDevice__CapabilityFlag = QTouchDevice__CapabilityFlag(0x0040)
-)
-
-//go:generate stringer -type=QTouchDevice__DeviceType
-//QTouchDevice::DeviceType
-type QTouchDevice__DeviceType int64
-
-const (
-	QTouchDevice__TouchScreen QTouchDevice__DeviceType = QTouchDevice__DeviceType(0)
-	QTouchDevice__TouchPad    QTouchDevice__DeviceType = QTouchDevice__DeviceType(1)
-)
-
 type QTouchDevice struct {
 	ptr unsafe.Pointer
 }
@@ -56390,6 +56460,30 @@ func NewQTouchDeviceFromPointer(ptr unsafe.Pointer) *QTouchDevice {
 	n.SetPointer(ptr)
 	return n
 }
+
+//go:generate stringer -type=QTouchDevice__CapabilityFlag
+//QTouchDevice::CapabilityFlag
+type QTouchDevice__CapabilityFlag int64
+
+const (
+	QTouchDevice__Position           QTouchDevice__CapabilityFlag = QTouchDevice__CapabilityFlag(0x0001)
+	QTouchDevice__Area               QTouchDevice__CapabilityFlag = QTouchDevice__CapabilityFlag(0x0002)
+	QTouchDevice__Pressure           QTouchDevice__CapabilityFlag = QTouchDevice__CapabilityFlag(0x0004)
+	QTouchDevice__Velocity           QTouchDevice__CapabilityFlag = QTouchDevice__CapabilityFlag(0x0008)
+	QTouchDevice__RawPositions       QTouchDevice__CapabilityFlag = QTouchDevice__CapabilityFlag(0x0010)
+	QTouchDevice__NormalizedPosition QTouchDevice__CapabilityFlag = QTouchDevice__CapabilityFlag(0x0020)
+	QTouchDevice__MouseEmulation     QTouchDevice__CapabilityFlag = QTouchDevice__CapabilityFlag(0x0040)
+)
+
+//go:generate stringer -type=QTouchDevice__DeviceType
+//QTouchDevice::DeviceType
+type QTouchDevice__DeviceType int64
+
+const (
+	QTouchDevice__TouchScreen QTouchDevice__DeviceType = QTouchDevice__DeviceType(0)
+	QTouchDevice__TouchPad    QTouchDevice__DeviceType = QTouchDevice__DeviceType(1)
+)
+
 func NewQTouchDevice() *QTouchDevice {
 	var tmpValue = NewQTouchDeviceFromPointer(C.QTouchDevice_NewQTouchDevice())
 	runtime.SetFinalizer(tmpValue, (*QTouchDevice).DestroyQTouchDevice)
@@ -56625,19 +56719,6 @@ func (ptr *QTouchEvent) Set_window(vqw QWindow_ITF) {
 	}
 }
 
-//go:generate stringer -type=QTransform__TransformationType
-//QTransform::TransformationType
-type QTransform__TransformationType int64
-
-const (
-	QTransform__TxNone      QTransform__TransformationType = QTransform__TransformationType(0x00)
-	QTransform__TxTranslate QTransform__TransformationType = QTransform__TransformationType(0x01)
-	QTransform__TxScale     QTransform__TransformationType = QTransform__TransformationType(0x02)
-	QTransform__TxRotate    QTransform__TransformationType = QTransform__TransformationType(0x04)
-	QTransform__TxShear     QTransform__TransformationType = QTransform__TransformationType(0x08)
-	QTransform__TxProject   QTransform__TransformationType = QTransform__TransformationType(0x10)
-)
-
 type QTransform struct {
 	ptr unsafe.Pointer
 }
@@ -56682,6 +56763,19 @@ func (ptr *QTransform) DestroyQTransform() {
 		ptr.SetPointer(nil)
 	}
 }
+
+//go:generate stringer -type=QTransform__TransformationType
+//QTransform::TransformationType
+type QTransform__TransformationType int64
+
+const (
+	QTransform__TxNone      QTransform__TransformationType = QTransform__TransformationType(0x00)
+	QTransform__TxTranslate QTransform__TransformationType = QTransform__TransformationType(0x01)
+	QTransform__TxScale     QTransform__TransformationType = QTransform__TransformationType(0x02)
+	QTransform__TxRotate    QTransform__TransformationType = QTransform__TransformationType(0x04)
+	QTransform__TxShear     QTransform__TransformationType = QTransform__TransformationType(0x08)
+	QTransform__TxProject   QTransform__TransformationType = QTransform__TransformationType(0x10)
+)
 
 func NewQTransform3(m11 float64, m12 float64, m13 float64, m21 float64, m22 float64, m23 float64, m31 float64, m32 float64, m33 float64) *QTransform {
 	var tmpValue = NewQTransformFromPointer(C.QTransform_NewQTransform3(C.double(m11), C.double(m12), C.double(m13), C.double(m21), C.double(m22), C.double(m23), C.double(m31), C.double(m32), C.double(m33)))
@@ -57089,16 +57183,6 @@ func (ptr *QTransform) Type() QTransform__TransformationType {
 	return 0
 }
 
-//go:generate stringer -type=QValidator__State
-//QValidator::State
-type QValidator__State int64
-
-const (
-	QValidator__Invalid      QValidator__State = QValidator__State(0)
-	QValidator__Intermediate QValidator__State = QValidator__State(1)
-	QValidator__Acceptable   QValidator__State = QValidator__State(2)
-)
-
 type QValidator struct {
 	core.QObject
 }
@@ -57137,6 +57221,16 @@ func NewQValidatorFromPointer(ptr unsafe.Pointer) *QValidator {
 	n.SetPointer(ptr)
 	return n
 }
+
+//go:generate stringer -type=QValidator__State
+//QValidator::State
+type QValidator__State int64
+
+const (
+	QValidator__Invalid      QValidator__State = QValidator__State(0)
+	QValidator__Intermediate QValidator__State = QValidator__State(1)
+	QValidator__Acceptable   QValidator__State = QValidator__State(2)
+)
 
 //export callbackQValidator_Fixup
 func callbackQValidator_Fixup(ptr unsafe.Pointer, input C.struct_QtGui_PackedString) {
@@ -57247,7 +57341,7 @@ func (ptr *QValidator) ConnectValidate(f func(input string, pos int) QValidator_
 	}
 }
 
-func (ptr *QValidator) DisconnectValidate(input string, pos int) {
+func (ptr *QValidator) DisconnectValidate() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QValidator::validate")
@@ -58680,28 +58774,6 @@ func (ptr *QWheelEvent) SetQt4O(vqt core.Qt__Orientation) {
 	}
 }
 
-//go:generate stringer -type=QWindow__AncestorMode
-//QWindow::AncestorMode
-type QWindow__AncestorMode int64
-
-const (
-	QWindow__ExcludeTransients QWindow__AncestorMode = QWindow__AncestorMode(0)
-	QWindow__IncludeTransients QWindow__AncestorMode = QWindow__AncestorMode(1)
-)
-
-//go:generate stringer -type=QWindow__Visibility
-//QWindow::Visibility
-type QWindow__Visibility int64
-
-const (
-	QWindow__Hidden              QWindow__Visibility = QWindow__Visibility(0)
-	QWindow__AutomaticVisibility QWindow__Visibility = QWindow__Visibility(1)
-	QWindow__Windowed            QWindow__Visibility = QWindow__Visibility(2)
-	QWindow__Minimized           QWindow__Visibility = QWindow__Visibility(3)
-	QWindow__Maximized           QWindow__Visibility = QWindow__Visibility(4)
-	QWindow__FullScreen          QWindow__Visibility = QWindow__Visibility(5)
-)
-
 type QWindow struct {
 	core.QObject
 	QSurface
@@ -58743,6 +58815,29 @@ func NewQWindowFromPointer(ptr unsafe.Pointer) *QWindow {
 	n.SetPointer(ptr)
 	return n
 }
+
+//go:generate stringer -type=QWindow__AncestorMode
+//QWindow::AncestorMode
+type QWindow__AncestorMode int64
+
+const (
+	QWindow__ExcludeTransients QWindow__AncestorMode = QWindow__AncestorMode(0)
+	QWindow__IncludeTransients QWindow__AncestorMode = QWindow__AncestorMode(1)
+)
+
+//go:generate stringer -type=QWindow__Visibility
+//QWindow::Visibility
+type QWindow__Visibility int64
+
+const (
+	QWindow__Hidden              QWindow__Visibility = QWindow__Visibility(0)
+	QWindow__AutomaticVisibility QWindow__Visibility = QWindow__Visibility(1)
+	QWindow__Windowed            QWindow__Visibility = QWindow__Visibility(2)
+	QWindow__Minimized           QWindow__Visibility = QWindow__Visibility(3)
+	QWindow__Maximized           QWindow__Visibility = QWindow__Visibility(4)
+	QWindow__FullScreen          QWindow__Visibility = QWindow__Visibility(5)
+)
+
 func (ptr *QWindow) ContentOrientation() core.Qt__ScreenOrientation {
 	if ptr.Pointer() != nil {
 		return core.Qt__ScreenOrientation(C.QWindow_ContentOrientation(ptr.Pointer()))
@@ -58812,8 +58907,9 @@ func (ptr *QWindow) SetFlags(flags core.Qt__WindowType) {
 func callbackQWindow_SetHeight(ptr unsafe.Pointer, arg C.int) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWindow::setHeight"); signal != nil {
 		signal.(func(int))(int(int32(arg)))
+	} else {
+		NewQWindowFromPointer(ptr).SetHeightDefault(int(int32(arg)))
 	}
-
 }
 
 func (ptr *QWindow) ConnectSetHeight(f func(arg int)) {
@@ -58823,7 +58919,7 @@ func (ptr *QWindow) ConnectSetHeight(f func(arg int)) {
 	}
 }
 
-func (ptr *QWindow) DisconnectSetHeight(arg int) {
+func (ptr *QWindow) DisconnectSetHeight() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QWindow::setHeight")
@@ -58836,12 +58932,19 @@ func (ptr *QWindow) SetHeight(arg int) {
 	}
 }
 
+func (ptr *QWindow) SetHeightDefault(arg int) {
+	if ptr.Pointer() != nil {
+		C.QWindow_SetHeightDefault(ptr.Pointer(), C.int(int32(arg)))
+	}
+}
+
 //export callbackQWindow_SetMaximumHeight
 func callbackQWindow_SetMaximumHeight(ptr unsafe.Pointer, h C.int) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWindow::setMaximumHeight"); signal != nil {
 		signal.(func(int))(int(int32(h)))
+	} else {
+		NewQWindowFromPointer(ptr).SetMaximumHeightDefault(int(int32(h)))
 	}
-
 }
 
 func (ptr *QWindow) ConnectSetMaximumHeight(f func(h int)) {
@@ -58851,7 +58954,7 @@ func (ptr *QWindow) ConnectSetMaximumHeight(f func(h int)) {
 	}
 }
 
-func (ptr *QWindow) DisconnectSetMaximumHeight(h int) {
+func (ptr *QWindow) DisconnectSetMaximumHeight() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QWindow::setMaximumHeight")
@@ -58864,12 +58967,19 @@ func (ptr *QWindow) SetMaximumHeight(h int) {
 	}
 }
 
+func (ptr *QWindow) SetMaximumHeightDefault(h int) {
+	if ptr.Pointer() != nil {
+		C.QWindow_SetMaximumHeightDefault(ptr.Pointer(), C.int(int32(h)))
+	}
+}
+
 //export callbackQWindow_SetMaximumWidth
 func callbackQWindow_SetMaximumWidth(ptr unsafe.Pointer, w C.int) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWindow::setMaximumWidth"); signal != nil {
 		signal.(func(int))(int(int32(w)))
+	} else {
+		NewQWindowFromPointer(ptr).SetMaximumWidthDefault(int(int32(w)))
 	}
-
 }
 
 func (ptr *QWindow) ConnectSetMaximumWidth(f func(w int)) {
@@ -58879,7 +58989,7 @@ func (ptr *QWindow) ConnectSetMaximumWidth(f func(w int)) {
 	}
 }
 
-func (ptr *QWindow) DisconnectSetMaximumWidth(w int) {
+func (ptr *QWindow) DisconnectSetMaximumWidth() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QWindow::setMaximumWidth")
@@ -58892,12 +59002,19 @@ func (ptr *QWindow) SetMaximumWidth(w int) {
 	}
 }
 
+func (ptr *QWindow) SetMaximumWidthDefault(w int) {
+	if ptr.Pointer() != nil {
+		C.QWindow_SetMaximumWidthDefault(ptr.Pointer(), C.int(int32(w)))
+	}
+}
+
 //export callbackQWindow_SetMinimumHeight
 func callbackQWindow_SetMinimumHeight(ptr unsafe.Pointer, h C.int) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWindow::setMinimumHeight"); signal != nil {
 		signal.(func(int))(int(int32(h)))
+	} else {
+		NewQWindowFromPointer(ptr).SetMinimumHeightDefault(int(int32(h)))
 	}
-
 }
 
 func (ptr *QWindow) ConnectSetMinimumHeight(f func(h int)) {
@@ -58907,7 +59024,7 @@ func (ptr *QWindow) ConnectSetMinimumHeight(f func(h int)) {
 	}
 }
 
-func (ptr *QWindow) DisconnectSetMinimumHeight(h int) {
+func (ptr *QWindow) DisconnectSetMinimumHeight() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QWindow::setMinimumHeight")
@@ -58920,12 +59037,19 @@ func (ptr *QWindow) SetMinimumHeight(h int) {
 	}
 }
 
+func (ptr *QWindow) SetMinimumHeightDefault(h int) {
+	if ptr.Pointer() != nil {
+		C.QWindow_SetMinimumHeightDefault(ptr.Pointer(), C.int(int32(h)))
+	}
+}
+
 //export callbackQWindow_SetMinimumWidth
 func callbackQWindow_SetMinimumWidth(ptr unsafe.Pointer, w C.int) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWindow::setMinimumWidth"); signal != nil {
 		signal.(func(int))(int(int32(w)))
+	} else {
+		NewQWindowFromPointer(ptr).SetMinimumWidthDefault(int(int32(w)))
 	}
-
 }
 
 func (ptr *QWindow) ConnectSetMinimumWidth(f func(w int)) {
@@ -58935,7 +59059,7 @@ func (ptr *QWindow) ConnectSetMinimumWidth(f func(w int)) {
 	}
 }
 
-func (ptr *QWindow) DisconnectSetMinimumWidth(w int) {
+func (ptr *QWindow) DisconnectSetMinimumWidth() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QWindow::setMinimumWidth")
@@ -58945,6 +59069,12 @@ func (ptr *QWindow) DisconnectSetMinimumWidth(w int) {
 func (ptr *QWindow) SetMinimumWidth(w int) {
 	if ptr.Pointer() != nil {
 		C.QWindow_SetMinimumWidth(ptr.Pointer(), C.int(int32(w)))
+	}
+}
+
+func (ptr *QWindow) SetMinimumWidthDefault(w int) {
+	if ptr.Pointer() != nil {
+		C.QWindow_SetMinimumWidthDefault(ptr.Pointer(), C.int(int32(w)))
 	}
 }
 
@@ -58964,8 +59094,9 @@ func (ptr *QWindow) SetOpacity(level float64) {
 func callbackQWindow_SetTitle(ptr unsafe.Pointer, vqs C.struct_QtGui_PackedString) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWindow::setTitle"); signal != nil {
 		signal.(func(string))(cGoUnpackString(vqs))
+	} else {
+		NewQWindowFromPointer(ptr).SetTitleDefault(cGoUnpackString(vqs))
 	}
-
 }
 
 func (ptr *QWindow) ConnectSetTitle(f func(vqs string)) {
@@ -58975,7 +59106,7 @@ func (ptr *QWindow) ConnectSetTitle(f func(vqs string)) {
 	}
 }
 
-func (ptr *QWindow) DisconnectSetTitle(vqs string) {
+func (ptr *QWindow) DisconnectSetTitle() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QWindow::setTitle")
@@ -58990,6 +59121,14 @@ func (ptr *QWindow) SetTitle(vqs string) {
 	}
 }
 
+func (ptr *QWindow) SetTitleDefault(vqs string) {
+	if ptr.Pointer() != nil {
+		var vqsC = C.CString(vqs)
+		defer C.free(unsafe.Pointer(vqsC))
+		C.QWindow_SetTitleDefault(ptr.Pointer(), vqsC)
+	}
+}
+
 func (ptr *QWindow) SetVisibility(v QWindow__Visibility) {
 	if ptr.Pointer() != nil {
 		C.QWindow_SetVisibility(ptr.Pointer(), C.longlong(v))
@@ -59000,8 +59139,9 @@ func (ptr *QWindow) SetVisibility(v QWindow__Visibility) {
 func callbackQWindow_SetVisible(ptr unsafe.Pointer, visible C.char) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWindow::setVisible"); signal != nil {
 		signal.(func(bool))(int8(visible) != 0)
+	} else {
+		NewQWindowFromPointer(ptr).SetVisibleDefault(int8(visible) != 0)
 	}
-
 }
 
 func (ptr *QWindow) ConnectSetVisible(f func(visible bool)) {
@@ -59011,7 +59151,7 @@ func (ptr *QWindow) ConnectSetVisible(f func(visible bool)) {
 	}
 }
 
-func (ptr *QWindow) DisconnectSetVisible(visible bool) {
+func (ptr *QWindow) DisconnectSetVisible() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QWindow::setVisible")
@@ -59024,12 +59164,19 @@ func (ptr *QWindow) SetVisible(visible bool) {
 	}
 }
 
+func (ptr *QWindow) SetVisibleDefault(visible bool) {
+	if ptr.Pointer() != nil {
+		C.QWindow_SetVisibleDefault(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(visible))))
+	}
+}
+
 //export callbackQWindow_SetWidth
 func callbackQWindow_SetWidth(ptr unsafe.Pointer, arg C.int) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWindow::setWidth"); signal != nil {
 		signal.(func(int))(int(int32(arg)))
+	} else {
+		NewQWindowFromPointer(ptr).SetWidthDefault(int(int32(arg)))
 	}
-
 }
 
 func (ptr *QWindow) ConnectSetWidth(f func(arg int)) {
@@ -59039,7 +59186,7 @@ func (ptr *QWindow) ConnectSetWidth(f func(arg int)) {
 	}
 }
 
-func (ptr *QWindow) DisconnectSetWidth(arg int) {
+func (ptr *QWindow) DisconnectSetWidth() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QWindow::setWidth")
@@ -59052,12 +59199,19 @@ func (ptr *QWindow) SetWidth(arg int) {
 	}
 }
 
+func (ptr *QWindow) SetWidthDefault(arg int) {
+	if ptr.Pointer() != nil {
+		C.QWindow_SetWidthDefault(ptr.Pointer(), C.int(int32(arg)))
+	}
+}
+
 //export callbackQWindow_SetX
 func callbackQWindow_SetX(ptr unsafe.Pointer, arg C.int) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWindow::setX"); signal != nil {
 		signal.(func(int))(int(int32(arg)))
+	} else {
+		NewQWindowFromPointer(ptr).SetXDefault(int(int32(arg)))
 	}
-
 }
 
 func (ptr *QWindow) ConnectSetX(f func(arg int)) {
@@ -59067,7 +59221,7 @@ func (ptr *QWindow) ConnectSetX(f func(arg int)) {
 	}
 }
 
-func (ptr *QWindow) DisconnectSetX(arg int) {
+func (ptr *QWindow) DisconnectSetX() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QWindow::setX")
@@ -59080,12 +59234,19 @@ func (ptr *QWindow) SetX(arg int) {
 	}
 }
 
+func (ptr *QWindow) SetXDefault(arg int) {
+	if ptr.Pointer() != nil {
+		C.QWindow_SetXDefault(ptr.Pointer(), C.int(int32(arg)))
+	}
+}
+
 //export callbackQWindow_SetY
 func callbackQWindow_SetY(ptr unsafe.Pointer, arg C.int) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWindow::setY"); signal != nil {
 		signal.(func(int))(int(int32(arg)))
+	} else {
+		NewQWindowFromPointer(ptr).SetYDefault(int(int32(arg)))
 	}
-
 }
 
 func (ptr *QWindow) ConnectSetY(f func(arg int)) {
@@ -59095,7 +59256,7 @@ func (ptr *QWindow) ConnectSetY(f func(arg int)) {
 	}
 }
 
-func (ptr *QWindow) DisconnectSetY(arg int) {
+func (ptr *QWindow) DisconnectSetY() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QWindow::setY")
@@ -59105,6 +59266,12 @@ func (ptr *QWindow) DisconnectSetY(arg int) {
 func (ptr *QWindow) SetY(arg int) {
 	if ptr.Pointer() != nil {
 		C.QWindow_SetY(ptr.Pointer(), C.int(int32(arg)))
+	}
+}
+
+func (ptr *QWindow) SetYDefault(arg int) {
+	if ptr.Pointer() != nil {
+		C.QWindow_SetYDefault(ptr.Pointer(), C.int(int32(arg)))
 	}
 }
 
@@ -59171,8 +59338,9 @@ func (ptr *QWindow) ActiveChanged() {
 func callbackQWindow_Alert(ptr unsafe.Pointer, msec C.int) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWindow::alert"); signal != nil {
 		signal.(func(int))(int(int32(msec)))
+	} else {
+		NewQWindowFromPointer(ptr).AlertDefault(int(int32(msec)))
 	}
-
 }
 
 func (ptr *QWindow) ConnectAlert(f func(msec int)) {
@@ -59182,7 +59350,7 @@ func (ptr *QWindow) ConnectAlert(f func(msec int)) {
 	}
 }
 
-func (ptr *QWindow) DisconnectAlert(msec int) {
+func (ptr *QWindow) DisconnectAlert() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QWindow::alert")
@@ -59192,6 +59360,12 @@ func (ptr *QWindow) DisconnectAlert(msec int) {
 func (ptr *QWindow) Alert(msec int) {
 	if ptr.Pointer() != nil {
 		C.QWindow_Alert(ptr.Pointer(), C.int(int32(msec)))
+	}
+}
+
+func (ptr *QWindow) AlertDefault(msec int) {
+	if ptr.Pointer() != nil {
+		C.QWindow_AlertDefault(ptr.Pointer(), C.int(int32(msec)))
 	}
 }
 
@@ -59210,7 +59384,7 @@ func callbackQWindow_Close(ptr unsafe.Pointer) C.char {
 		return C.char(int8(qt.GoBoolToInt(signal.(func() bool)())))
 	}
 
-	return C.char(int8(qt.GoBoolToInt(false)))
+	return C.char(int8(qt.GoBoolToInt(NewQWindowFromPointer(ptr).CloseDefault())))
 }
 
 func (ptr *QWindow) ConnectClose(f func() bool) {
@@ -59230,6 +59404,13 @@ func (ptr *QWindow) DisconnectClose() {
 func (ptr *QWindow) Close() bool {
 	if ptr.Pointer() != nil {
 		return C.QWindow_Close(ptr.Pointer()) != 0
+	}
+	return false
+}
+
+func (ptr *QWindow) CloseDefault() bool {
+	if ptr.Pointer() != nil {
+		return C.QWindow_CloseDefault(ptr.Pointer()) != 0
 	}
 	return false
 }
@@ -59653,8 +59834,9 @@ func (ptr *QWindow) HeightChanged(arg int) {
 func callbackQWindow_Hide(ptr unsafe.Pointer) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWindow::hide"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQWindowFromPointer(ptr).HideDefault()
 	}
-
 }
 
 func (ptr *QWindow) ConnectHide(f func()) {
@@ -59674,6 +59856,12 @@ func (ptr *QWindow) DisconnectHide() {
 func (ptr *QWindow) Hide() {
 	if ptr.Pointer() != nil {
 		C.QWindow_Hide(ptr.Pointer())
+	}
+}
+
+func (ptr *QWindow) HideDefault() {
+	if ptr.Pointer() != nil {
+		C.QWindow_HideDefault(ptr.Pointer())
 	}
 }
 
@@ -59833,8 +60021,9 @@ func (ptr *QWindow) KeyReleaseEventDefault(ev QKeyEvent_ITF) {
 func callbackQWindow_Lower(ptr unsafe.Pointer) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWindow::lower"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQWindowFromPointer(ptr).LowerDefault()
 	}
-
 }
 
 func (ptr *QWindow) ConnectLower(f func()) {
@@ -59854,6 +60043,12 @@ func (ptr *QWindow) DisconnectLower() {
 func (ptr *QWindow) Lower() {
 	if ptr.Pointer() != nil {
 		C.QWindow_Lower(ptr.Pointer())
+	}
+}
+
+func (ptr *QWindow) LowerDefault() {
+	if ptr.Pointer() != nil {
+		C.QWindow_LowerDefault(ptr.Pointer())
 	}
 }
 
@@ -60328,8 +60523,9 @@ func (ptr *QWindow) Position() *core.QPoint {
 func callbackQWindow_Raise(ptr unsafe.Pointer) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWindow::raise"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQWindowFromPointer(ptr).RaiseDefault()
 	}
-
 }
 
 func (ptr *QWindow) ConnectRaise(f func()) {
@@ -60352,12 +60548,19 @@ func (ptr *QWindow) Raise() {
 	}
 }
 
+func (ptr *QWindow) RaiseDefault() {
+	if ptr.Pointer() != nil {
+		C.QWindow_RaiseDefault(ptr.Pointer())
+	}
+}
+
 //export callbackQWindow_RequestActivate
 func callbackQWindow_RequestActivate(ptr unsafe.Pointer) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWindow::requestActivate"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQWindowFromPointer(ptr).RequestActivateDefault()
 	}
-
 }
 
 func (ptr *QWindow) ConnectRequestActivate(f func()) {
@@ -60380,12 +60583,19 @@ func (ptr *QWindow) RequestActivate() {
 	}
 }
 
+func (ptr *QWindow) RequestActivateDefault() {
+	if ptr.Pointer() != nil {
+		C.QWindow_RequestActivateDefault(ptr.Pointer())
+	}
+}
+
 //export callbackQWindow_RequestUpdate
 func callbackQWindow_RequestUpdate(ptr unsafe.Pointer) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWindow::requestUpdate"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQWindowFromPointer(ptr).RequestUpdateDefault()
 	}
-
 }
 
 func (ptr *QWindow) ConnectRequestUpdate(f func()) {
@@ -60405,6 +60615,12 @@ func (ptr *QWindow) DisconnectRequestUpdate() {
 func (ptr *QWindow) RequestUpdate() {
 	if ptr.Pointer() != nil {
 		C.QWindow_RequestUpdate(ptr.Pointer())
+	}
+}
+
+func (ptr *QWindow) RequestUpdateDefault() {
+	if ptr.Pointer() != nil {
+		C.QWindow_RequestUpdateDefault(ptr.Pointer())
 	}
 }
 
@@ -60639,8 +60855,9 @@ func (ptr *QWindow) SetWindowState(state core.Qt__WindowState) {
 func callbackQWindow_Show(ptr unsafe.Pointer) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWindow::show"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQWindowFromPointer(ptr).ShowDefault()
 	}
-
 }
 
 func (ptr *QWindow) ConnectShow(f func()) {
@@ -60660,6 +60877,12 @@ func (ptr *QWindow) DisconnectShow() {
 func (ptr *QWindow) Show() {
 	if ptr.Pointer() != nil {
 		C.QWindow_Show(ptr.Pointer())
+	}
+}
+
+func (ptr *QWindow) ShowDefault() {
+	if ptr.Pointer() != nil {
+		C.QWindow_ShowDefault(ptr.Pointer())
 	}
 }
 
@@ -60703,8 +60926,9 @@ func (ptr *QWindow) ShowEventDefault(ev QShowEvent_ITF) {
 func callbackQWindow_ShowFullScreen(ptr unsafe.Pointer) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWindow::showFullScreen"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQWindowFromPointer(ptr).ShowFullScreenDefault()
 	}
-
 }
 
 func (ptr *QWindow) ConnectShowFullScreen(f func()) {
@@ -60727,12 +60951,19 @@ func (ptr *QWindow) ShowFullScreen() {
 	}
 }
 
+func (ptr *QWindow) ShowFullScreenDefault() {
+	if ptr.Pointer() != nil {
+		C.QWindow_ShowFullScreenDefault(ptr.Pointer())
+	}
+}
+
 //export callbackQWindow_ShowMaximized
 func callbackQWindow_ShowMaximized(ptr unsafe.Pointer) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWindow::showMaximized"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQWindowFromPointer(ptr).ShowMaximizedDefault()
 	}
-
 }
 
 func (ptr *QWindow) ConnectShowMaximized(f func()) {
@@ -60755,12 +60986,19 @@ func (ptr *QWindow) ShowMaximized() {
 	}
 }
 
+func (ptr *QWindow) ShowMaximizedDefault() {
+	if ptr.Pointer() != nil {
+		C.QWindow_ShowMaximizedDefault(ptr.Pointer())
+	}
+}
+
 //export callbackQWindow_ShowMinimized
 func callbackQWindow_ShowMinimized(ptr unsafe.Pointer) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWindow::showMinimized"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQWindowFromPointer(ptr).ShowMinimizedDefault()
 	}
-
 }
 
 func (ptr *QWindow) ConnectShowMinimized(f func()) {
@@ -60783,12 +61021,19 @@ func (ptr *QWindow) ShowMinimized() {
 	}
 }
 
+func (ptr *QWindow) ShowMinimizedDefault() {
+	if ptr.Pointer() != nil {
+		C.QWindow_ShowMinimizedDefault(ptr.Pointer())
+	}
+}
+
 //export callbackQWindow_ShowNormal
 func callbackQWindow_ShowNormal(ptr unsafe.Pointer) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWindow::showNormal"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQWindowFromPointer(ptr).ShowNormalDefault()
 	}
-
 }
 
 func (ptr *QWindow) ConnectShowNormal(f func()) {
@@ -60808,6 +61053,12 @@ func (ptr *QWindow) DisconnectShowNormal() {
 func (ptr *QWindow) ShowNormal() {
 	if ptr.Pointer() != nil {
 		C.QWindow_ShowNormal(ptr.Pointer())
+	}
+}
+
+func (ptr *QWindow) ShowNormalDefault() {
+	if ptr.Pointer() != nil {
+		C.QWindow_ShowNormalDefault(ptr.Pointer())
 	}
 }
 

@@ -78,7 +78,7 @@ func (ptr *QMacPasteboardMime) ConnectCanConvert(f func(mime string, flav string
 	}
 }
 
-func (ptr *QMacPasteboardMime) DisconnectCanConvert(mime string, flav string) {
+func (ptr *QMacPasteboardMime) DisconnectCanConvert() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QMacPasteboardMime::canConvert")
@@ -103,7 +103,7 @@ func (ptr *QMacPasteboardMime) ConnectConvertFromMime(f func(mime string, data *
 	}
 }
 
-func (ptr *QMacPasteboardMime) DisconnectConvertFromMime(mime string, data core.QVariant_ITF, flav string) {
+func (ptr *QMacPasteboardMime) DisconnectConvertFromMime() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QMacPasteboardMime::convertFromMime")
@@ -213,7 +213,7 @@ func (ptr *QMacPasteboardMime) ConnectFlavorFor(f func(mime string) string) {
 	}
 }
 
-func (ptr *QMacPasteboardMime) DisconnectFlavorFor(mime string) {
+func (ptr *QMacPasteboardMime) DisconnectFlavorFor() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QMacPasteboardMime::flavorFor")
@@ -246,7 +246,7 @@ func (ptr *QMacPasteboardMime) ConnectMimeFor(f func(flav string) string) {
 	}
 }
 
-func (ptr *QMacPasteboardMime) DisconnectMimeFor(flav string) {
+func (ptr *QMacPasteboardMime) DisconnectMimeFor() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QMacPasteboardMime::mimeFor")
@@ -800,16 +800,6 @@ func (ptr *QMacToolBar) MetaObjectDefault() *core.QMetaObject {
 	return nil
 }
 
-//go:generate stringer -type=QMacToolBarItem__StandardItem
-//QMacToolBarItem::StandardItem
-type QMacToolBarItem__StandardItem int64
-
-const (
-	QMacToolBarItem__NoStandardItem QMacToolBarItem__StandardItem = QMacToolBarItem__StandardItem(0)
-	QMacToolBarItem__Space          QMacToolBarItem__StandardItem = QMacToolBarItem__StandardItem(1)
-	QMacToolBarItem__FlexibleSpace  QMacToolBarItem__StandardItem = QMacToolBarItem__StandardItem(2)
-)
-
 type QMacToolBarItem struct {
 	core.QObject
 }
@@ -848,6 +838,17 @@ func NewQMacToolBarItemFromPointer(ptr unsafe.Pointer) *QMacToolBarItem {
 	n.SetPointer(ptr)
 	return n
 }
+
+//go:generate stringer -type=QMacToolBarItem__StandardItem
+//QMacToolBarItem::StandardItem
+type QMacToolBarItem__StandardItem int64
+
+const (
+	QMacToolBarItem__NoStandardItem QMacToolBarItem__StandardItem = QMacToolBarItem__StandardItem(0)
+	QMacToolBarItem__Space          QMacToolBarItem__StandardItem = QMacToolBarItem__StandardItem(1)
+	QMacToolBarItem__FlexibleSpace  QMacToolBarItem__StandardItem = QMacToolBarItem__StandardItem(2)
+)
+
 func NewQMacToolBarItem(parent core.QObject_ITF) *QMacToolBarItem {
 	var tmpValue = NewQMacToolBarItemFromPointer(C.QMacToolBarItem_NewQMacToolBarItem(core.PointerFromQObject(parent)))
 	if !qt.ExistsSignal(fmt.Sprint(tmpValue.Pointer()), "QObject::destroyed") {

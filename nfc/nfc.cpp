@@ -917,18 +917,12 @@ public:
 	MyQNearFieldTarget(QObject *parent) : QNearFieldTarget(parent) {};
 	AccessMethods accessMethods() const { return static_cast<QNearFieldTarget::AccessMethod>(callbackQNearFieldTarget_AccessMethods(const_cast<MyQNearFieldTarget*>(this))); };
 	void Signal_Disconnected() { callbackQNearFieldTarget_Disconnected(this); };
-	
-	
 	bool hasNdefMessage() { return callbackQNearFieldTarget_HasNdefMessage(this) != 0; };
 	void Signal_NdefMessageRead(const QNdefMessage & message) { callbackQNearFieldTarget_NdefMessageRead(this, const_cast<QNdefMessage*>(&message)); };
 	void Signal_NdefMessagesWritten() { callbackQNearFieldTarget_NdefMessagesWritten(this); };
-	
-	
-	
 	Type type() const { return static_cast<QNearFieldTarget::Type>(callbackQNearFieldTarget_Type(const_cast<MyQNearFieldTarget*>(this))); };
 	QByteArray uid() const { return *static_cast<QByteArray*>(callbackQNearFieldTarget_Uid(const_cast<MyQNearFieldTarget*>(this))); };
 	QUrl url() const { return *static_cast<QUrl*>(callbackQNearFieldTarget_Url(const_cast<MyQNearFieldTarget*>(this))); };
-	
 	 ~MyQNearFieldTarget() { callbackQNearFieldTarget_DestroyQNearFieldTarget(this); };
 	void timerEvent(QTimerEvent * event) { callbackQNearFieldTarget_TimerEvent(this, event); };
 	void childEvent(QChildEvent * event) { callbackQNearFieldTarget_ChildEvent(this, event); };
@@ -965,16 +959,6 @@ void QNearFieldTarget_Disconnected(void* ptr)
 {
 	static_cast<QNearFieldTarget*>(ptr)->disconnected();
 }
-
-
-
-
-
-
-
-
-
-
 
 char QNearFieldTarget_HasNdefMessage(void* ptr)
 {
@@ -1021,20 +1005,6 @@ void QNearFieldTarget_NdefMessagesWritten(void* ptr)
 	static_cast<QNearFieldTarget*>(ptr)->ndefMessagesWritten();
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 long long QNearFieldTarget_Type(void* ptr)
 {
 	return static_cast<QNearFieldTarget*>(ptr)->type();
@@ -1054,10 +1024,6 @@ void* QNearFieldTarget_UrlDefault(void* ptr)
 {
 	return new QUrl(static_cast<QNearFieldTarget*>(ptr)->QNearFieldTarget::url());
 }
-
-
-
-
 
 void QNearFieldTarget_DestroyQNearFieldTarget(void* ptr)
 {

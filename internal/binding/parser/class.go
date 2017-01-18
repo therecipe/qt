@@ -159,10 +159,10 @@ func (c *Class) NeedsDestructor() bool {
 	return true
 }
 
-func (class *Class) HasCallbackFunctions() bool {
+func (c *Class) HasCallbackFunctions() bool {
 
-	for _, function := range class.Functions {
-		if function.Virtual == IMPURE || function.Virtual == PURE || function.Meta == SIGNAL || function.Meta == SLOT {
+	for _, f := range c.Functions {
+		if f.Virtual == IMPURE || f.Virtual == PURE || f.Meta == SIGNAL || f.Meta == SLOT {
 			return true
 		}
 	}

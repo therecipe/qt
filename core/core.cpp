@@ -230,6 +230,11 @@ void QAbstractAnimation_SetCurrentTime(void* ptr, int msecs)
 	QMetaObject::invokeMethod(static_cast<QAbstractAnimation*>(ptr), "setCurrentTime", Q_ARG(int, msecs));
 }
 
+void QAbstractAnimation_SetCurrentTimeDefault(void* ptr, int msecs)
+{
+	static_cast<QAbstractAnimation*>(ptr)->QAbstractAnimation::setCurrentTime(msecs);
+}
+
 void QAbstractAnimation_SetDirection(void* ptr, long long direction)
 {
 	static_cast<QAbstractAnimation*>(ptr)->setDirection(static_cast<QAbstractAnimation::Direction>(direction));
@@ -325,9 +330,19 @@ void QAbstractAnimation_Pause(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QAbstractAnimation*>(ptr), "pause");
 }
 
+void QAbstractAnimation_PauseDefault(void* ptr)
+{
+	static_cast<QAbstractAnimation*>(ptr)->QAbstractAnimation::pause();
+}
+
 void QAbstractAnimation_Resume(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QAbstractAnimation*>(ptr), "resume");
+}
+
+void QAbstractAnimation_ResumeDefault(void* ptr)
+{
+	static_cast<QAbstractAnimation*>(ptr)->QAbstractAnimation::resume();
 }
 
 void QAbstractAnimation_SetPaused(void* ptr, char paused)
@@ -335,9 +350,19 @@ void QAbstractAnimation_SetPaused(void* ptr, char paused)
 	QMetaObject::invokeMethod(static_cast<QAbstractAnimation*>(ptr), "setPaused", Q_ARG(bool, paused != 0));
 }
 
+void QAbstractAnimation_SetPausedDefault(void* ptr, char paused)
+{
+	static_cast<QAbstractAnimation*>(ptr)->QAbstractAnimation::setPaused(paused != 0);
+}
+
 void QAbstractAnimation_Start(void* ptr, long long policy)
 {
 	QMetaObject::invokeMethod(static_cast<QAbstractAnimation*>(ptr), "start", Q_ARG(QAbstractAnimation::DeletionPolicy, static_cast<QAbstractAnimation::DeletionPolicy>(policy)));
+}
+
+void QAbstractAnimation_StartDefault(void* ptr, long long policy)
+{
+	static_cast<QAbstractAnimation*>(ptr)->QAbstractAnimation::start(static_cast<QAbstractAnimation::DeletionPolicy>(policy));
 }
 
 void QAbstractAnimation_ConnectStateChanged(void* ptr)
@@ -358,6 +383,11 @@ void QAbstractAnimation_StateChanged(void* ptr, long long newState, long long ol
 void QAbstractAnimation_Stop(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QAbstractAnimation*>(ptr), "stop");
+}
+
+void QAbstractAnimation_StopDefault(void* ptr)
+{
+	static_cast<QAbstractAnimation*>(ptr)->QAbstractAnimation::stop();
 }
 
 int QAbstractAnimation_TotalDuration(void* ptr)
@@ -753,7 +783,6 @@ public:
 	QModelIndex index(int row, int column, const QModelIndex & parent) const { return *static_cast<QModelIndex*>(callbackQAbstractItemModel_Index(const_cast<MyQAbstractItemModel*>(this), row, column, const_cast<QModelIndex*>(&parent))); };
 	bool insertColumns(int column, int count, const QModelIndex & parent) { return callbackQAbstractItemModel_InsertColumns(this, column, count, const_cast<QModelIndex*>(&parent)) != 0; };
 	bool insertRows(int row, int count, const QModelIndex & parent) { return callbackQAbstractItemModel_InsertRows(this, row, count, const_cast<QModelIndex*>(&parent)) != 0; };
-	
 	QStringList mimeTypes() const { return QString(callbackQAbstractItemModel_MimeTypes(const_cast<MyQAbstractItemModel*>(this))).split("|", QString::SkipEmptyParts); };
 	void Signal_ModelAboutToBeReset() { callbackQAbstractItemModel_ModelAboutToBeReset(this); };
 	void Signal_ModelReset() { callbackQAbstractItemModel_ModelReset(this); };
@@ -1100,10 +1129,6 @@ struct QtCore_PackedList QAbstractItemModel_Match(void* ptr, void* start, int ro
 	return ({ QList<QModelIndex>* tmpValue = new QList<QModelIndex>(static_cast<QAbstractItemModel*>(ptr)->match(*static_cast<QModelIndex*>(start), role, *static_cast<QVariant*>(value), hits, static_cast<Qt::MatchFlag>(flags))); QtCore_PackedList { tmpValue, tmpValue->size() }; });
 }
 
-
-
-
-
 struct QtCore_PackedString QAbstractItemModel_MimeTypes(void* ptr)
 {
 	return ({ QByteArray ta50262 = static_cast<QAbstractItemModel*>(ptr)->mimeTypes().join("|").toUtf8(); QtCore_PackedString { const_cast<char*>(ta50262.prepend("WHITESPACE").constData()+10), ta50262.size()-10 }; });
@@ -1207,6 +1232,11 @@ char QAbstractItemModel_RemoveRowsDefault(void* ptr, int row, int count, void* p
 void QAbstractItemModel_ResetInternalData(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QAbstractItemModel*>(ptr), "resetInternalData");
+}
+
+void QAbstractItemModel_ResetInternalDataDefault(void* ptr)
+{
+	static_cast<QAbstractItemModel*>(ptr)->QAbstractItemModel::resetInternalData();
 }
 
 void QAbstractItemModel_Revert(void* ptr)
@@ -1484,7 +1514,6 @@ public:
 	QVariant headerData(int section, Qt::Orientation orientation, int role) const { return *static_cast<QVariant*>(callbackQAbstractListModel_HeaderData(const_cast<MyQAbstractListModel*>(this), section, orientation, role)); };
 	bool insertColumns(int column, int count, const QModelIndex & parent) { return callbackQAbstractListModel_InsertColumns(this, column, count, const_cast<QModelIndex*>(&parent)) != 0; };
 	bool insertRows(int row, int count, const QModelIndex & parent) { return callbackQAbstractListModel_InsertRows(this, row, count, const_cast<QModelIndex*>(&parent)) != 0; };
-	
 	QStringList mimeTypes() const { return QString(callbackQAbstractListModel_MimeTypes(const_cast<MyQAbstractListModel*>(this))).split("|", QString::SkipEmptyParts); };
 	bool moveColumns(const QModelIndex & sourceParent, int sourceColumn, int count, const QModelIndex & destinationParent, int destinationChild) { return callbackQAbstractListModel_MoveColumns(this, const_cast<QModelIndex*>(&sourceParent), sourceColumn, count, const_cast<QModelIndex*>(&destinationParent), destinationChild) != 0; };
 	bool moveRows(const QModelIndex & sourceParent, int sourceRow, int count, const QModelIndex & destinationParent, int destinationChild) { return callbackQAbstractListModel_MoveRows(this, const_cast<QModelIndex*>(&sourceParent), sourceRow, count, const_cast<QModelIndex*>(&destinationParent), destinationChild) != 0; };
@@ -1597,17 +1626,10 @@ int QAbstractListModel_ColumnCount(void* ptr, void* parent)
 	return static_cast<QAbstractListModel*>(ptr)->columnCount(*static_cast<QModelIndex*>(parent));
 }
 
-int QAbstractListModel_ColumnCountDefault(void* ptr, void* parent)
-{
-	return static_cast<QAbstractListModel*>(ptr)->QAbstractListModel::columnCount(*static_cast<QModelIndex*>(parent));
-}
-
 void* QAbstractListModel_Data(void* ptr, void* index, int role)
 {
 	return new QVariant(static_cast<QAbstractListModel*>(ptr)->data(*static_cast<QModelIndex*>(index), role));
 }
-
-
 
 void QAbstractListModel_FetchMore(void* ptr, void* parent)
 {
@@ -1659,10 +1681,6 @@ char QAbstractListModel_InsertRowsDefault(void* ptr, int row, int count, void* p
 	return static_cast<QAbstractListModel*>(ptr)->QAbstractListModel::insertRows(row, count, *static_cast<QModelIndex*>(parent));
 }
 
-
-
-
-
 struct QtCore_PackedString QAbstractListModel_MimeTypes(void* ptr)
 {
 	return ({ QByteArray ta756a4 = static_cast<QAbstractListModel*>(ptr)->mimeTypes().join("|").toUtf8(); QtCore_PackedString { const_cast<char*>(ta756a4.prepend("WHITESPACE").constData()+10), ta756a4.size()-10 }; });
@@ -1696,11 +1714,6 @@ char QAbstractListModel_MoveRowsDefault(void* ptr, void* sourceParent, int sourc
 void* QAbstractListModel_Parent(void* ptr, void* index)
 {
 	return new QModelIndex(static_cast<QAbstractListModel*>(ptr)->parent(*static_cast<QModelIndex*>(index)));
-}
-
-void* QAbstractListModel_ParentDefault(void* ptr, void* index)
-{
-	return new QModelIndex(static_cast<QAbstractListModel*>(ptr)->QAbstractListModel::parent(*static_cast<QModelIndex*>(index)));
 }
 
 char QAbstractListModel_RemoveColumns(void* ptr, int column, int count, void* parent)
@@ -1747,8 +1760,6 @@ int QAbstractListModel_RowCount(void* ptr, void* parent)
 {
 	return static_cast<QAbstractListModel*>(ptr)->rowCount(*static_cast<QModelIndex*>(parent));
 }
-
-
 
 char QAbstractListModel_SetData(void* ptr, void* index, void* value, int role)
 {
@@ -1957,7 +1968,6 @@ public:
 	QItemSelection mapSelectionFromSource(const QItemSelection & sourceSelection) const { return *static_cast<QItemSelection*>(callbackQAbstractProxyModel_MapSelectionFromSource(const_cast<MyQAbstractProxyModel*>(this), const_cast<QItemSelection*>(&sourceSelection))); };
 	QItemSelection mapSelectionToSource(const QItemSelection & proxySelection) const { return *static_cast<QItemSelection*>(callbackQAbstractProxyModel_MapSelectionToSource(const_cast<MyQAbstractProxyModel*>(this), const_cast<QItemSelection*>(&proxySelection))); };
 	QModelIndex mapToSource(const QModelIndex & proxyIndex) const { return *static_cast<QModelIndex*>(callbackQAbstractProxyModel_MapToSource(const_cast<MyQAbstractProxyModel*>(this), const_cast<QModelIndex*>(&proxyIndex))); };
-	
 	QStringList mimeTypes() const { return QString(callbackQAbstractProxyModel_MimeTypes(const_cast<MyQAbstractProxyModel*>(this))).split("|", QString::SkipEmptyParts); };
 	void resetInternalData() { callbackQAbstractProxyModel_ResetInternalData(this); };
 	void revert() { callbackQAbstractProxyModel_Revert(this); };
@@ -2117,10 +2127,6 @@ void* QAbstractProxyModel_MapToSource(void* ptr, void* proxyIndex)
 	return new QModelIndex(static_cast<QAbstractProxyModel*>(ptr)->mapToSource(*static_cast<QModelIndex*>(proxyIndex)));
 }
 
-
-
-
-
 struct QtCore_PackedString QAbstractProxyModel_MimeTypes(void* ptr)
 {
 	return ({ QByteArray tf9f44a = static_cast<QAbstractProxyModel*>(ptr)->mimeTypes().join("|").toUtf8(); QtCore_PackedString { const_cast<char*>(tf9f44a.prepend("WHITESPACE").constData()+10), tf9f44a.size()-10 }; });
@@ -2134,6 +2140,11 @@ struct QtCore_PackedString QAbstractProxyModel_MimeTypesDefault(void* ptr)
 void QAbstractProxyModel_ResetInternalData(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QAbstractProxyModel*>(ptr), "resetInternalData");
+}
+
+void QAbstractProxyModel_ResetInternalDataDefault(void* ptr)
+{
+	static_cast<QAbstractProxyModel*>(ptr)->QAbstractProxyModel::resetInternalData();
 }
 
 void QAbstractProxyModel_Revert(void* ptr)
@@ -2261,14 +2272,10 @@ int QAbstractProxyModel_ColumnCount(void* ptr, void* parent)
 	return static_cast<QAbstractProxyModel*>(ptr)->columnCount(*static_cast<QModelIndex*>(parent));
 }
 
-
-
 void* QAbstractProxyModel_Index(void* ptr, int row, int column, void* parent)
 {
 	return new QModelIndex(static_cast<QAbstractProxyModel*>(ptr)->index(row, column, *static_cast<QModelIndex*>(parent)));
 }
-
-
 
 char QAbstractProxyModel_InsertColumns(void* ptr, int column, int count, void* parent)
 {
@@ -2315,8 +2322,6 @@ void* QAbstractProxyModel_Parent(void* ptr, void* index)
 	return new QModelIndex(static_cast<QAbstractProxyModel*>(ptr)->parent(*static_cast<QModelIndex*>(index)));
 }
 
-
-
 char QAbstractProxyModel_RemoveColumns(void* ptr, int column, int count, void* parent)
 {
 	return static_cast<QAbstractProxyModel*>(ptr)->removeColumns(column, count, *static_cast<QModelIndex*>(parent));
@@ -2341,8 +2346,6 @@ int QAbstractProxyModel_RowCount(void* ptr, void* parent)
 {
 	return static_cast<QAbstractProxyModel*>(ptr)->rowCount(*static_cast<QModelIndex*>(parent));
 }
-
-
 
 void QAbstractProxyModel_TimerEvent(void* ptr, void* event)
 {
@@ -2632,7 +2635,6 @@ public:
 	QVariant headerData(int section, Qt::Orientation orientation, int role) const { return *static_cast<QVariant*>(callbackQAbstractTableModel_HeaderData(const_cast<MyQAbstractTableModel*>(this), section, orientation, role)); };
 	bool insertColumns(int column, int count, const QModelIndex & parent) { return callbackQAbstractTableModel_InsertColumns(this, column, count, const_cast<QModelIndex*>(&parent)) != 0; };
 	bool insertRows(int row, int count, const QModelIndex & parent) { return callbackQAbstractTableModel_InsertRows(this, row, count, const_cast<QModelIndex*>(&parent)) != 0; };
-	
 	QStringList mimeTypes() const { return QString(callbackQAbstractTableModel_MimeTypes(const_cast<MyQAbstractTableModel*>(this))).split("|", QString::SkipEmptyParts); };
 	bool moveColumns(const QModelIndex & sourceParent, int sourceColumn, int count, const QModelIndex & destinationParent, int destinationChild) { return callbackQAbstractTableModel_MoveColumns(this, const_cast<QModelIndex*>(&sourceParent), sourceColumn, count, const_cast<QModelIndex*>(&destinationParent), destinationChild) != 0; };
 	bool moveRows(const QModelIndex & sourceParent, int sourceRow, int count, const QModelIndex & destinationParent, int destinationChild) { return callbackQAbstractTableModel_MoveRows(this, const_cast<QModelIndex*>(&sourceParent), sourceRow, count, const_cast<QModelIndex*>(&destinationParent), destinationChild) != 0; };
@@ -2745,14 +2747,10 @@ int QAbstractTableModel_ColumnCount(void* ptr, void* parent)
 	return static_cast<QAbstractTableModel*>(ptr)->columnCount(*static_cast<QModelIndex*>(parent));
 }
 
-
-
 void* QAbstractTableModel_Data(void* ptr, void* index, int role)
 {
 	return new QVariant(static_cast<QAbstractTableModel*>(ptr)->data(*static_cast<QModelIndex*>(index), role));
 }
-
-
 
 void QAbstractTableModel_FetchMore(void* ptr, void* parent)
 {
@@ -2804,10 +2802,6 @@ char QAbstractTableModel_InsertRowsDefault(void* ptr, int row, int count, void* 
 	return static_cast<QAbstractTableModel*>(ptr)->QAbstractTableModel::insertRows(row, count, *static_cast<QModelIndex*>(parent));
 }
 
-
-
-
-
 struct QtCore_PackedString QAbstractTableModel_MimeTypes(void* ptr)
 {
 	return ({ QByteArray tec0be7 = static_cast<QAbstractTableModel*>(ptr)->mimeTypes().join("|").toUtf8(); QtCore_PackedString { const_cast<char*>(tec0be7.prepend("WHITESPACE").constData()+10), tec0be7.size()-10 }; });
@@ -2841,11 +2835,6 @@ char QAbstractTableModel_MoveRowsDefault(void* ptr, void* sourceParent, int sour
 void* QAbstractTableModel_Parent(void* ptr, void* index)
 {
 	return new QModelIndex(static_cast<QAbstractTableModel*>(ptr)->parent(*static_cast<QModelIndex*>(index)));
-}
-
-void* QAbstractTableModel_ParentDefault(void* ptr, void* index)
-{
-	return new QModelIndex(static_cast<QAbstractTableModel*>(ptr)->QAbstractTableModel::parent(*static_cast<QModelIndex*>(index)));
 }
 
 char QAbstractTableModel_RemoveColumns(void* ptr, int column, int count, void* parent)
@@ -2892,8 +2881,6 @@ int QAbstractTableModel_RowCount(void* ptr, void* parent)
 {
 	return static_cast<QAbstractTableModel*>(ptr)->rowCount(*static_cast<QModelIndex*>(parent));
 }
-
-
 
 char QAbstractTableModel_SetData(void* ptr, void* index, void* value, int role)
 {
@@ -3383,8 +3370,6 @@ int QAnimationGroup_Duration(void* ptr)
 	return static_cast<QAnimationGroup*>(ptr)->duration();
 }
 
-
-
 void QAnimationGroup_Pause(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QAnimationGroup*>(ptr), "pause");
@@ -3439,8 +3424,6 @@ void QAnimationGroup_UpdateCurrentTime(void* ptr, int currentTime)
 {
 	static_cast<QAnimationGroup*>(ptr)->updateCurrentTime(currentTime);
 }
-
-
 
 void QAnimationGroup_UpdateDirection(void* ptr, long long direction)
 {
@@ -5683,6 +5666,11 @@ void QCoreApplication_Quit(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QCoreApplication*>(ptr), "quit");
 }
 
+void QCoreApplication_QuitDefault(void* ptr)
+{
+	static_cast<QCoreApplication*>(ptr)->QCoreApplication::quit();
+}
+
 void QCoreApplication_QCoreApplication_RemoveLibraryPath(char* path)
 {
 	QCoreApplication::removeLibraryPath(QString(path));
@@ -7124,6 +7112,11 @@ void QEventLoop_ProcessEvents2(void* ptr, long long flags, int maxTime)
 void QEventLoop_Quit(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QEventLoop*>(ptr), "quit");
+}
+
+void QEventLoop_QuitDefault(void* ptr)
+{
+	static_cast<QEventLoop*>(ptr)->QEventLoop::quit();
 }
 
 void QEventLoop_WakeUp(void* ptr)
@@ -9723,7 +9716,6 @@ public:
 	void fetchMore(const QModelIndex & parent) { callbackQIdentityProxyModel_FetchMore(this, const_cast<QModelIndex*>(&parent)); };
 	Qt::ItemFlags flags(const QModelIndex & index) const { return static_cast<Qt::ItemFlag>(callbackQIdentityProxyModel_Flags(const_cast<MyQIdentityProxyModel*>(this), const_cast<QModelIndex*>(&index))); };
 	bool hasChildren(const QModelIndex & parent) const { return callbackQIdentityProxyModel_HasChildren(const_cast<MyQIdentityProxyModel*>(this), const_cast<QModelIndex*>(&parent)) != 0; };
-	
 	QStringList mimeTypes() const { return QString(callbackQIdentityProxyModel_MimeTypes(const_cast<MyQIdentityProxyModel*>(this))).split("|", QString::SkipEmptyParts); };
 	void resetInternalData() { callbackQIdentityProxyModel_ResetInternalData(this); };
 	void revert() { callbackQIdentityProxyModel_Revert(this); };
@@ -9996,10 +9988,6 @@ char QIdentityProxyModel_HasChildrenDefault(void* ptr, void* parent)
 {
 	return static_cast<QIdentityProxyModel*>(ptr)->QIdentityProxyModel::hasChildren(*static_cast<QModelIndex*>(parent));
 }
-
-
-
-
 
 struct QtCore_PackedString QIdentityProxyModel_MimeTypes(void* ptr)
 {
@@ -10313,6 +10301,11 @@ void QItemSelectionModel_ClearCurrentIndexDefault(void* ptr)
 void QItemSelectionModel_ClearSelection(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QItemSelectionModel*>(ptr), "clearSelection");
+}
+
+void QItemSelectionModel_ClearSelectionDefault(void* ptr)
+{
+	static_cast<QItemSelectionModel*>(ptr)->QItemSelectionModel::clearSelection();
 }
 
 char QItemSelectionModel_ColumnIntersectsSelection(void* ptr, int column, void* parent)
@@ -13171,7 +13164,6 @@ public:
 	MyQMimeData() : QMimeData() {};
 	QStringList formats() const { return QString(callbackQMimeData_Formats(const_cast<MyQMimeData*>(this))).split("|", QString::SkipEmptyParts); };
 	bool hasFormat(const QString & mimeType) const { QByteArray t3313b8 = mimeType.toUtf8(); QtCore_PackedString mimeTypePacked = { const_cast<char*>(t3313b8.prepend("WHITESPACE").constData()+10), t3313b8.size()-10 };return callbackQMimeData_HasFormat(const_cast<MyQMimeData*>(this), mimeTypePacked) != 0; };
-	
 	void timerEvent(QTimerEvent * event) { callbackQMimeData_TimerEvent(this, event); };
 	void childEvent(QChildEvent * event) { callbackQMimeData_ChildEvent(this, event); };
 	void connectNotify(const QMetaMethod & sign) { callbackQMimeData_ConnectNotify(this, const_cast<QMetaMethod*>(&sign)); };
@@ -13262,10 +13254,6 @@ void QMimeData_RemoveFormat(void* ptr, char* mimeType)
 {
 	static_cast<QMimeData*>(ptr)->removeFormat(QString(mimeType));
 }
-
-
-
-
 
 void QMimeData_SetColorData(void* ptr, void* color)
 {
@@ -13763,6 +13751,11 @@ void QObject_CustomEventDefault(void* ptr, void* event)
 void QObject_DeleteLater(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QObject*>(ptr), "deleteLater");
+}
+
+void QObject_DeleteLaterDefault(void* ptr)
+{
+	static_cast<QObject*>(ptr)->QObject::deleteLater();
 }
 
 void QObject_ConnectDestroyed(void* ptr)
@@ -17630,9 +17623,19 @@ void QSignalMapper_Map(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QSignalMapper*>(ptr), "map");
 }
 
+void QSignalMapper_MapDefault(void* ptr)
+{
+	static_cast<QSignalMapper*>(ptr)->QSignalMapper::map();
+}
+
 void QSignalMapper_Map2(void* ptr, void* sender)
 {
 	QMetaObject::invokeMethod(static_cast<QSignalMapper*>(ptr), "map", Q_ARG(QObject*, static_cast<QObject*>(sender)));
+}
+
+void QSignalMapper_Map2Default(void* ptr, void* sender)
+{
+	static_cast<QSignalMapper*>(ptr)->QSignalMapper::map(static_cast<QObject*>(sender));
 }
 
 void QSignalMapper_ConnectMapped4(void* ptr)
@@ -18266,6 +18269,11 @@ void QSocketNotifier_SetEnabled(void* ptr, char enable)
 	QMetaObject::invokeMethod(static_cast<QSocketNotifier*>(ptr), "setEnabled", Q_ARG(bool, enable != 0));
 }
 
+void QSocketNotifier_SetEnabledDefault(void* ptr, char enable)
+{
+	static_cast<QSocketNotifier*>(ptr)->QSocketNotifier::setEnabled(enable != 0);
+}
+
 long long QSocketNotifier_Type(void* ptr)
 {
 	return static_cast<QSocketNotifier*>(ptr)->type();
@@ -18380,7 +18388,6 @@ public:
 	QItemSelection mapSelectionFromSource(const QItemSelection & sourceSelection) const { return *static_cast<QItemSelection*>(callbackQSortFilterProxyModel_MapSelectionFromSource(const_cast<MyQSortFilterProxyModel*>(this), const_cast<QItemSelection*>(&sourceSelection))); };
 	QItemSelection mapSelectionToSource(const QItemSelection & proxySelection) const { return *static_cast<QItemSelection*>(callbackQSortFilterProxyModel_MapSelectionToSource(const_cast<MyQSortFilterProxyModel*>(this), const_cast<QItemSelection*>(&proxySelection))); };
 	QModelIndex mapToSource(const QModelIndex & proxyIndex) const { return *static_cast<QModelIndex*>(callbackQSortFilterProxyModel_MapToSource(const_cast<MyQSortFilterProxyModel*>(this), const_cast<QModelIndex*>(&proxyIndex))); };
-	
 	QStringList mimeTypes() const { return QString(callbackQSortFilterProxyModel_MimeTypes(const_cast<MyQSortFilterProxyModel*>(this))).split("|", QString::SkipEmptyParts); };
 	QModelIndex parent(const QModelIndex & child) const { return *static_cast<QModelIndex*>(callbackQSortFilterProxyModel_Parent(const_cast<MyQSortFilterProxyModel*>(this), const_cast<QModelIndex*>(&child))); };
 	bool removeColumns(int column, int count, const QModelIndex & parent) { return callbackQSortFilterProxyModel_RemoveColumns(this, column, count, const_cast<QModelIndex*>(&parent)) != 0; };
@@ -18644,6 +18651,11 @@ void QSortFilterProxyModel_Invalidate(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QSortFilterProxyModel*>(ptr), "invalidate");
 }
 
+void QSortFilterProxyModel_InvalidateDefault(void* ptr)
+{
+	static_cast<QSortFilterProxyModel*>(ptr)->QSortFilterProxyModel::invalidate();
+}
+
 void QSortFilterProxyModel_InvalidateFilter(void* ptr)
 {
 	static_cast<QSortFilterProxyModel*>(ptr)->invalidateFilter();
@@ -18703,10 +18715,6 @@ struct QtCore_PackedList QSortFilterProxyModel_Match(void* ptr, void* start, int
 {
 	return ({ QList<QModelIndex>* tmpValue = new QList<QModelIndex>(static_cast<QSortFilterProxyModel*>(ptr)->match(*static_cast<QModelIndex*>(start), role, *static_cast<QVariant*>(value), hits, static_cast<Qt::MatchFlag>(flags))); QtCore_PackedList { tmpValue, tmpValue->size() }; });
 }
-
-
-
-
 
 struct QtCore_PackedString QSortFilterProxyModel_MimeTypes(void* ptr)
 {
@@ -18773,14 +18781,29 @@ void QSortFilterProxyModel_SetFilterFixedString(void* ptr, char* pattern)
 	QMetaObject::invokeMethod(static_cast<QSortFilterProxyModel*>(ptr), "setFilterFixedString", Q_ARG(QString, QString(pattern)));
 }
 
+void QSortFilterProxyModel_SetFilterFixedStringDefault(void* ptr, char* pattern)
+{
+	static_cast<QSortFilterProxyModel*>(ptr)->QSortFilterProxyModel::setFilterFixedString(QString(pattern));
+}
+
 void QSortFilterProxyModel_SetFilterRegExp2(void* ptr, char* pattern)
 {
 	QMetaObject::invokeMethod(static_cast<QSortFilterProxyModel*>(ptr), "setFilterRegExp", Q_ARG(QString, QString(pattern)));
 }
 
+void QSortFilterProxyModel_SetFilterRegExp2Default(void* ptr, char* pattern)
+{
+	static_cast<QSortFilterProxyModel*>(ptr)->QSortFilterProxyModel::setFilterRegExp(QString(pattern));
+}
+
 void QSortFilterProxyModel_SetFilterWildcard(void* ptr, char* pattern)
 {
 	QMetaObject::invokeMethod(static_cast<QSortFilterProxyModel*>(ptr), "setFilterWildcard", Q_ARG(QString, QString(pattern)));
+}
+
+void QSortFilterProxyModel_SetFilterWildcardDefault(void* ptr, char* pattern)
+{
+	static_cast<QSortFilterProxyModel*>(ptr)->QSortFilterProxyModel::setFilterWildcard(QString(pattern));
 }
 
 char QSortFilterProxyModel_SetHeaderData(void* ptr, int section, long long orientation, void* value, int role)
@@ -19355,6 +19378,11 @@ void QStateMachine_SetRunning(void* ptr, char running)
 	QMetaObject::invokeMethod(static_cast<QStateMachine*>(ptr), "setRunning", Q_ARG(bool, running != 0));
 }
 
+void QStateMachine_SetRunningDefault(void* ptr, char running)
+{
+	static_cast<QStateMachine*>(ptr)->QStateMachine::setRunning(running != 0);
+}
+
 void* QStateMachine_NewQStateMachine(void* parent)
 {
 	return new MyQStateMachine(static_cast<QObject*>(parent));
@@ -19500,6 +19528,11 @@ void QStateMachine_Start(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QStateMachine*>(ptr), "start");
 }
 
+void QStateMachine_StartDefault(void* ptr)
+{
+	static_cast<QStateMachine*>(ptr)->QStateMachine::start();
+}
+
 void QStateMachine_ConnectStarted(void* ptr)
 {
 	QObject::connect(static_cast<QStateMachine*>(ptr), &QStateMachine::started, static_cast<MyQStateMachine*>(ptr), static_cast<void (MyQStateMachine::*)()>(&MyQStateMachine::Signal_Started));
@@ -19513,6 +19546,11 @@ void QStateMachine_DisconnectStarted(void* ptr)
 void QStateMachine_Stop(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QStateMachine*>(ptr), "stop");
+}
+
+void QStateMachine_StopDefault(void* ptr)
+{
+	static_cast<QStateMachine*>(ptr)->QStateMachine::stop();
 }
 
 void QStateMachine_ConnectStopped(void* ptr)
@@ -19764,7 +19802,6 @@ public:
 	bool hasChildren(const QModelIndex & parent) const { return callbackQStringListModel_HasChildren(const_cast<MyQStringListModel*>(this), const_cast<QModelIndex*>(&parent)) != 0; };
 	QVariant headerData(int section, Qt::Orientation orientation, int role) const { return *static_cast<QVariant*>(callbackQStringListModel_HeaderData(const_cast<MyQStringListModel*>(this), section, orientation, role)); };
 	bool insertColumns(int column, int count, const QModelIndex & parent) { return callbackQStringListModel_InsertColumns(this, column, count, const_cast<QModelIndex*>(&parent)) != 0; };
-	
 	QStringList mimeTypes() const { return QString(callbackQStringListModel_MimeTypes(const_cast<MyQStringListModel*>(this))).split("|", QString::SkipEmptyParts); };
 	bool moveColumns(const QModelIndex & sourceParent, int sourceColumn, int count, const QModelIndex & destinationParent, int destinationChild) { return callbackQStringListModel_MoveColumns(this, const_cast<QModelIndex*>(&sourceParent), sourceColumn, count, const_cast<QModelIndex*>(&destinationParent), destinationChild) != 0; };
 	bool moveRows(const QModelIndex & sourceParent, int sourceRow, int count, const QModelIndex & destinationParent, int destinationChild) { return callbackQStringListModel_MoveRows(this, const_cast<QModelIndex*>(&sourceParent), sourceRow, count, const_cast<QModelIndex*>(&destinationParent), destinationChild) != 0; };
@@ -19952,11 +19989,6 @@ int QStringListModel_ColumnCount(void* ptr, void* parent)
 	return static_cast<QStringListModel*>(ptr)->columnCount(*static_cast<QModelIndex*>(parent));
 }
 
-int QStringListModel_ColumnCountDefault(void* ptr, void* parent)
-{
-	return static_cast<QStringListModel*>(ptr)->QStringListModel::columnCount(*static_cast<QModelIndex*>(parent));
-}
-
 void QStringListModel_FetchMore(void* ptr, void* parent)
 {
 	static_cast<QStringListModel*>(ptr)->fetchMore(*static_cast<QModelIndex*>(parent));
@@ -19997,10 +20029,6 @@ char QStringListModel_InsertColumnsDefault(void* ptr, int column, int count, voi
 	return static_cast<QStringListModel*>(ptr)->QStringListModel::insertColumns(column, count, *static_cast<QModelIndex*>(parent));
 }
 
-
-
-
-
 struct QtCore_PackedString QStringListModel_MimeTypes(void* ptr)
 {
 	return ({ QByteArray teea12a = static_cast<QStringListModel*>(ptr)->mimeTypes().join("|").toUtf8(); QtCore_PackedString { const_cast<char*>(teea12a.prepend("WHITESPACE").constData()+10), teea12a.size()-10 }; });
@@ -20034,11 +20062,6 @@ char QStringListModel_MoveRowsDefault(void* ptr, void* sourceParent, int sourceR
 void* QStringListModel_Parent(void* ptr, void* index)
 {
 	return new QModelIndex(static_cast<QStringListModel*>(ptr)->parent(*static_cast<QModelIndex*>(index)));
-}
-
-void* QStringListModel_ParentDefault(void* ptr, void* index)
-{
-	return new QModelIndex(static_cast<QStringListModel*>(ptr)->QStringListModel::parent(*static_cast<QModelIndex*>(index)));
 }
 
 char QStringListModel_RemoveColumns(void* ptr, int column, int count, void* parent)
@@ -21493,7 +21516,6 @@ class MyQTextCodec: public QTextCodec
 {
 public:
 	
-	
 	int mibEnum() const { return callbackQTextCodec_MibEnum(const_cast<MyQTextCodec*>(this)); };
 	QByteArray name() const { return *static_cast<QByteArray*>(callbackQTextCodec_Name(const_cast<MyQTextCodec*>(this))); };
 	 ~MyQTextCodec() { callbackQTextCodec_DestroyQTextCodec(this); };
@@ -21558,10 +21580,6 @@ void* QTextCodec_QTextCodec_CodecForUtfText(void* ba, void* defaultCodec)
 {
 	return QTextCodec::codecForUtfText(*static_cast<QByteArray*>(ba), static_cast<QTextCodec*>(defaultCodec));
 }
-
-
-
-
 
 void* QTextCodec_FromUnicode(void* ptr, char* str)
 {
@@ -22025,6 +22043,11 @@ void QThread_Quit(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QThread*>(ptr), "quit");
 }
 
+void QThread_QuitDefault(void* ptr)
+{
+	static_cast<QThread*>(ptr)->QThread::quit();
+}
+
 void QThread_RequestInterruption(void* ptr)
 {
 	static_cast<QThread*>(ptr)->requestInterruption();
@@ -22095,9 +22118,19 @@ void QThread_Start(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QThread*>(ptr), "start");
 }
 
+void QThread_StartDefault(void* ptr)
+{
+	static_cast<QThread*>(ptr)->QThread::start();
+}
+
 void QThread_Terminate(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QThread*>(ptr), "terminate");
+}
+
+void QThread_TerminateDefault(void* ptr)
+{
+	static_cast<QThread*>(ptr)->QThread::terminate();
 }
 
 void QThread_QThread_Usleep(unsigned long usecs)
@@ -22542,6 +22575,11 @@ void QTimeLine_SetCurrentTime(void* ptr, int msec)
 	QMetaObject::invokeMethod(static_cast<QTimeLine*>(ptr), "setCurrentTime", Q_ARG(int, msec));
 }
 
+void QTimeLine_SetCurrentTimeDefault(void* ptr, int msec)
+{
+	static_cast<QTimeLine*>(ptr)->QTimeLine::setCurrentTime(msec);
+}
+
 void QTimeLine_SetCurveShape(void* ptr, long long shape)
 {
 	static_cast<QTimeLine*>(ptr)->setCurveShape(static_cast<QTimeLine::CurveShape>(shape));
@@ -22627,6 +22665,11 @@ void QTimeLine_Resume(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QTimeLine*>(ptr), "resume");
 }
 
+void QTimeLine_ResumeDefault(void* ptr)
+{
+	static_cast<QTimeLine*>(ptr)->QTimeLine::resume();
+}
+
 void QTimeLine_SetEndFrame(void* ptr, int frame)
 {
 	static_cast<QTimeLine*>(ptr)->setEndFrame(frame);
@@ -22642,6 +22685,11 @@ void QTimeLine_SetPaused(void* ptr, char paused)
 	QMetaObject::invokeMethod(static_cast<QTimeLine*>(ptr), "setPaused", Q_ARG(bool, paused != 0));
 }
 
+void QTimeLine_SetPausedDefault(void* ptr, char paused)
+{
+	static_cast<QTimeLine*>(ptr)->QTimeLine::setPaused(paused != 0);
+}
+
 void QTimeLine_SetStartFrame(void* ptr, int frame)
 {
 	static_cast<QTimeLine*>(ptr)->setStartFrame(frame);
@@ -22650,6 +22698,11 @@ void QTimeLine_SetStartFrame(void* ptr, int frame)
 void QTimeLine_Start(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QTimeLine*>(ptr), "start");
+}
+
+void QTimeLine_StartDefault(void* ptr)
+{
+	static_cast<QTimeLine*>(ptr)->QTimeLine::start();
 }
 
 int QTimeLine_StartFrame(void* ptr)
@@ -22677,6 +22730,11 @@ void QTimeLine_Stop(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QTimeLine*>(ptr), "stop");
 }
 
+void QTimeLine_StopDefault(void* ptr)
+{
+	static_cast<QTimeLine*>(ptr)->QTimeLine::stop();
+}
+
 void QTimeLine_TimerEvent(void* ptr, void* event)
 {
 	static_cast<QTimeLine*>(ptr)->timerEvent(static_cast<QTimerEvent*>(event));
@@ -22690,6 +22748,11 @@ void QTimeLine_TimerEventDefault(void* ptr, void* event)
 void QTimeLine_ToggleDirection(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QTimeLine*>(ptr), "toggleDirection");
+}
+
+void QTimeLine_ToggleDirectionDefault(void* ptr)
+{
+	static_cast<QTimeLine*>(ptr)->QTimeLine::toggleDirection();
 }
 
 void QTimeLine_ConnectValueChanged(void* ptr)
@@ -23046,14 +23109,29 @@ void QTimer_Start2(void* ptr)
 	QMetaObject::invokeMethod(static_cast<QTimer*>(ptr), "start");
 }
 
+void QTimer_Start2Default(void* ptr)
+{
+	static_cast<QTimer*>(ptr)->QTimer::start();
+}
+
 void QTimer_Start(void* ptr, int msec)
 {
 	QMetaObject::invokeMethod(static_cast<QTimer*>(ptr), "start", Q_ARG(int, msec));
 }
 
+void QTimer_StartDefault(void* ptr, int msec)
+{
+	static_cast<QTimer*>(ptr)->QTimer::start(msec);
+}
+
 void QTimer_Stop(void* ptr)
 {
 	QMetaObject::invokeMethod(static_cast<QTimer*>(ptr), "stop");
+}
+
+void QTimer_StopDefault(void* ptr)
+{
+	static_cast<QTimer*>(ptr)->QTimer::stop();
 }
 
 void QTimer_ConnectTimeout(void* ptr)

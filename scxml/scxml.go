@@ -227,13 +227,6 @@ func (ptr *QScxmlCppDataModel) SetScxmlPropertyDefault(name string, value core.Q
 	return false
 }
 
-func (ptr *QScxmlCppDataModel) DisconnectSetup() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QScxmlCppDataModel::setup")
-	}
-}
-
 //export callbackQScxmlCppDataModel_TimerEvent
 func callbackQScxmlCppDataModel_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 
@@ -631,7 +624,7 @@ func (ptr *QScxmlDataModel) ConnectHasScxmlProperty(f func(name string) bool) {
 	}
 }
 
-func (ptr *QScxmlDataModel) DisconnectHasScxmlProperty(name string) {
+func (ptr *QScxmlDataModel) DisconnectHasScxmlProperty() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QScxmlDataModel::hasScxmlProperty")
@@ -664,7 +657,7 @@ func (ptr *QScxmlDataModel) ConnectScxmlProperty(f func(name string) *core.QVari
 	}
 }
 
-func (ptr *QScxmlDataModel) DisconnectScxmlProperty(name string) {
+func (ptr *QScxmlDataModel) DisconnectScxmlProperty() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QScxmlDataModel::scxmlProperty")
@@ -698,7 +691,7 @@ func (ptr *QScxmlDataModel) ConnectSetScxmlEvent(f func(event *QScxmlEvent)) {
 	}
 }
 
-func (ptr *QScxmlDataModel) DisconnectSetScxmlEvent(event QScxmlEvent_ITF) {
+func (ptr *QScxmlDataModel) DisconnectSetScxmlEvent() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QScxmlDataModel::setScxmlEvent")
@@ -728,7 +721,7 @@ func (ptr *QScxmlDataModel) ConnectSetScxmlProperty(f func(name string, value *c
 	}
 }
 
-func (ptr *QScxmlDataModel) DisconnectSetScxmlProperty(name string, value core.QVariant_ITF, context string) {
+func (ptr *QScxmlDataModel) DisconnectSetScxmlProperty() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QScxmlDataModel::setScxmlProperty")
@@ -1367,13 +1360,6 @@ func (ptr *QScxmlEcmaScriptDataModel) SetScxmlPropertyDefault(name string, value
 	return false
 }
 
-func (ptr *QScxmlEcmaScriptDataModel) DisconnectSetup() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QScxmlEcmaScriptDataModel::setup")
-	}
-}
-
 //export callbackQScxmlEcmaScriptDataModel_TimerEvent
 func callbackQScxmlEcmaScriptDataModel_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
 
@@ -1815,16 +1801,6 @@ func (ptr *QScxmlError) DestroyQScxmlError() {
 	}
 }
 
-//go:generate stringer -type=QScxmlEvent__EventType
-//QScxmlEvent::EventType
-type QScxmlEvent__EventType int64
-
-const (
-	QScxmlEvent__PlatformEvent QScxmlEvent__EventType = QScxmlEvent__EventType(0)
-	QScxmlEvent__InternalEvent QScxmlEvent__EventType = QScxmlEvent__EventType(1)
-	QScxmlEvent__ExternalEvent QScxmlEvent__EventType = QScxmlEvent__EventType(2)
-)
-
 type QScxmlEvent struct {
 	core.QEvent
 }
@@ -1863,6 +1839,17 @@ func NewQScxmlEventFromPointer(ptr unsafe.Pointer) *QScxmlEvent {
 	n.SetPointer(ptr)
 	return n
 }
+
+//go:generate stringer -type=QScxmlEvent__EventType
+//QScxmlEvent::EventType
+type QScxmlEvent__EventType int64
+
+const (
+	QScxmlEvent__PlatformEvent QScxmlEvent__EventType = QScxmlEvent__EventType(0)
+	QScxmlEvent__InternalEvent QScxmlEvent__EventType = QScxmlEvent__EventType(1)
+	QScxmlEvent__ExternalEvent QScxmlEvent__EventType = QScxmlEvent__EventType(2)
+)
+
 func NewQScxmlEvent() *QScxmlEvent {
 	var tmpValue = NewQScxmlEventFromPointer(C.QScxmlEvent_NewQScxmlEvent())
 	runtime.SetFinalizer(tmpValue, (*QScxmlEvent).DestroyQScxmlEvent)
@@ -2088,7 +2075,7 @@ func (ptr *QScxmlEventFilter) ConnectHandle(f func(event *QScxmlEvent, stateMach
 	}
 }
 
-func (ptr *QScxmlEventFilter) DisconnectHandle(event QScxmlEvent_ITF, stateMachine QScxmlStateMachine_ITF) {
+func (ptr *QScxmlEventFilter) DisconnectHandle() {
 	if ptr.Pointer() != nil {
 
 		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QScxmlEventFilter::handle")
@@ -2365,13 +2352,6 @@ func (ptr *QScxmlNullDataModel) SetScxmlPropertyDefault(name string, value core.
 		return C.QScxmlNullDataModel_SetScxmlPropertyDefault(ptr.Pointer(), nameC, core.PointerFromQVariant(value), contextC) != 0
 	}
 	return false
-}
-
-func (ptr *QScxmlNullDataModel) DisconnectSetup() {
-	if ptr.Pointer() != nil {
-
-		qt.DisconnectSignal(fmt.Sprint(ptr.Pointer()), "QScxmlNullDataModel::setup")
-	}
 }
 
 //export callbackQScxmlNullDataModel_TimerEvent
@@ -2707,16 +2687,6 @@ func (ptr *QScxmlNullDataModel) MetaObjectDefault() *core.QMetaObject {
 	return nil
 }
 
-//go:generate stringer -type=QScxmlParser__QtMode
-//QScxmlParser::QtMode
-type QScxmlParser__QtMode int64
-
-const (
-	QScxmlParser__QtModeDisabled      QScxmlParser__QtMode = QScxmlParser__QtMode(0)
-	QScxmlParser__QtModeEnabled       QScxmlParser__QtMode = QScxmlParser__QtMode(1)
-	QScxmlParser__QtModeFromInputFile QScxmlParser__QtMode = QScxmlParser__QtMode(2)
-)
-
 type QScxmlParser struct {
 	ptr unsafe.Pointer
 }
@@ -2754,6 +2724,17 @@ func NewQScxmlParserFromPointer(ptr unsafe.Pointer) *QScxmlParser {
 	n.SetPointer(ptr)
 	return n
 }
+
+//go:generate stringer -type=QScxmlParser__QtMode
+//QScxmlParser::QtMode
+type QScxmlParser__QtMode int64
+
+const (
+	QScxmlParser__QtModeDisabled      QScxmlParser__QtMode = QScxmlParser__QtMode(0)
+	QScxmlParser__QtModeEnabled       QScxmlParser__QtMode = QScxmlParser__QtMode(1)
+	QScxmlParser__QtModeFromInputFile QScxmlParser__QtMode = QScxmlParser__QtMode(2)
+)
+
 func NewQScxmlParser(reader core.QXmlStreamReader_ITF) *QScxmlParser {
 	var tmpValue = NewQScxmlParserFromPointer(C.QScxmlParser_NewQScxmlParser(core.PointerFromQXmlStreamReader(reader)))
 	runtime.SetFinalizer(tmpValue, (*QScxmlParser).DestroyQScxmlParser)
@@ -2848,15 +2829,6 @@ func (ptr *QScxmlParser) errors_atList(i int) *QScxmlError {
 	return nil
 }
 
-//go:generate stringer -type=QScxmlStateMachine__BindingMethod
-//QScxmlStateMachine::BindingMethod
-type QScxmlStateMachine__BindingMethod int64
-
-const (
-	QScxmlStateMachine__EarlyBinding QScxmlStateMachine__BindingMethod = QScxmlStateMachine__BindingMethod(0)
-	QScxmlStateMachine__LateBinding  QScxmlStateMachine__BindingMethod = QScxmlStateMachine__BindingMethod(1)
-)
-
 type QScxmlStateMachine struct {
 	core.QObject
 }
@@ -2903,6 +2875,15 @@ func (ptr *QScxmlStateMachine) DestroyQScxmlStateMachine() {
 		ptr.SetPointer(nil)
 	}
 }
+
+//go:generate stringer -type=QScxmlStateMachine__BindingMethod
+//QScxmlStateMachine::BindingMethod
+type QScxmlStateMachine__BindingMethod int64
+
+const (
+	QScxmlStateMachine__EarlyBinding QScxmlStateMachine__BindingMethod = QScxmlStateMachine__BindingMethod(0)
+	QScxmlStateMachine__LateBinding  QScxmlStateMachine__BindingMethod = QScxmlStateMachine__BindingMethod(1)
+)
 
 func (ptr *QScxmlStateMachine) IsInitialized() bool {
 	if ptr.Pointer() != nil {
@@ -3118,7 +3099,7 @@ func callbackQScxmlStateMachine_Init(ptr unsafe.Pointer) C.char {
 		return C.char(int8(qt.GoBoolToInt(signal.(func() bool)())))
 	}
 
-	return C.char(int8(qt.GoBoolToInt(false)))
+	return C.char(int8(qt.GoBoolToInt(NewQScxmlStateMachineFromPointer(ptr).InitDefault())))
 }
 
 func (ptr *QScxmlStateMachine) ConnectInit(f func() bool) {
@@ -3138,6 +3119,13 @@ func (ptr *QScxmlStateMachine) DisconnectInit() {
 func (ptr *QScxmlStateMachine) Init() bool {
 	if ptr.Pointer() != nil {
 		return C.QScxmlStateMachine_Init(ptr.Pointer()) != 0
+	}
+	return false
+}
+
+func (ptr *QScxmlStateMachine) InitDefault() bool {
+	if ptr.Pointer() != nil {
+		return C.QScxmlStateMachine_InitDefault(ptr.Pointer()) != 0
 	}
 	return false
 }
@@ -3358,8 +3346,9 @@ func (ptr *QScxmlStateMachine) SetSessionId(id string) {
 func callbackQScxmlStateMachine_Start(ptr unsafe.Pointer) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QScxmlStateMachine::start"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQScxmlStateMachineFromPointer(ptr).StartDefault()
 	}
-
 }
 
 func (ptr *QScxmlStateMachine) ConnectStart(f func()) {
@@ -3382,6 +3371,12 @@ func (ptr *QScxmlStateMachine) Start() {
 	}
 }
 
+func (ptr *QScxmlStateMachine) StartDefault() {
+	if ptr.Pointer() != nil {
+		C.QScxmlStateMachine_StartDefault(ptr.Pointer())
+	}
+}
+
 func (ptr *QScxmlStateMachine) StateNames(compress bool) []string {
 	if ptr.Pointer() != nil {
 		return strings.Split(cGoUnpackString(C.QScxmlStateMachine_StateNames(ptr.Pointer(), C.char(int8(qt.GoBoolToInt(compress))))), "|")
@@ -3393,8 +3388,9 @@ func (ptr *QScxmlStateMachine) StateNames(compress bool) []string {
 func callbackQScxmlStateMachine_Stop(ptr unsafe.Pointer) {
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QScxmlStateMachine::stop"); signal != nil {
 		signal.(func())()
+	} else {
+		NewQScxmlStateMachineFromPointer(ptr).StopDefault()
 	}
-
 }
 
 func (ptr *QScxmlStateMachine) ConnectStop(f func()) {
@@ -3414,6 +3410,12 @@ func (ptr *QScxmlStateMachine) DisconnectStop() {
 func (ptr *QScxmlStateMachine) Stop() {
 	if ptr.Pointer() != nil {
 		C.QScxmlStateMachine_Stop(ptr.Pointer())
+	}
+}
+
+func (ptr *QScxmlStateMachine) StopDefault() {
+	if ptr.Pointer() != nil {
+		C.QScxmlStateMachine_StopDefault(ptr.Pointer())
 	}
 }
 

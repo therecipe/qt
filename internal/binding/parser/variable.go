@@ -125,8 +125,7 @@ func (v *Variable) propToFunc(c *Class) []*Function {
 		Signature:  "()",
 	})
 
-
-	if c.Module == MOC{
+	if c.Module == MOC {
 		funcs = append(funcs, &Function{
 			Name:       fmt.Sprintf("%vChanged", v.Name),
 			Fullname:   fmt.Sprintf("%v::%vChanged", v.ClassName(), v.Name),
