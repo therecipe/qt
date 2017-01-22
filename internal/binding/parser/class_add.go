@@ -47,29 +47,77 @@ func (c *Class) addGeneralFuncs() {
 
 	case "QQmlEngine":
 		{
-			if !c.HasFunctionWithName("qmlRegisterSingletonType") {
-				//http://doc.qt.io/qt-5/qqmlengine.html#qmlRegisterSingletonType-2
-				//int qmlRegisterSingletonType(const QUrl &url, const char *uri, int versionMajor, int versionMinor, const char *qmlName)
-				c.Functions = append(c.Functions, &Function{
-					Name:        "qmlRegisterSingletonType",
-					Fullname:    fmt.Sprintf("%v::qmlRegisterSingletonType", c.Name),
-					Access:      "public",
-					Virtual:     "non",
-					Meta:        PLAIN,
-					NonMember:   true,
-					NoMocDeduce: true,
-					Static:      true,
-					Output:      fmt.Sprintf("int"),
-					Parameters: []*Parameter{
-						{Name: "url", Value: "const QUrl &"},
-						{Name: "uri", Value: "const char *"},
-						{Name: "versionMajor", Value: "int"},
-						{Name: "versionMinor", Value: "int"},
-						{Name: "qmlName", Value: "const char *"},
-					},
-					Signature: "(const QUrl &url, const char *uri, int versionMajor, int versionMinor, const char *qmlName)",
-				})
-			}
+			//http://doc.qt.io/qt-5/qqmlengine.html#qmlRegisterSingletonType-2
+			//int qmlRegisterSingletonType(const QUrl &url, const char *uri, int versionMajor, int versionMinor, const char *qmlName)
+			c.Functions = append(c.Functions, &Function{
+				Name:      "qmlRegisterSingletonType",
+				Fullname:  fmt.Sprintf("%v::qmlRegisterSingletonType", c.Name),
+				Access:    "public",
+				Virtual:   "non",
+				Meta:      PLAIN,
+				NonMember: true,
+				Static:    true,
+				Output:    fmt.Sprintf("int"),
+				Parameters: []*Parameter{
+					{Name: "url", Value: "const QUrl &"},
+					{Name: "uri", Value: "const char *"},
+					{Name: "versionMajor", Value: "int"},
+					{Name: "versionMinor", Value: "int"},
+					{Name: "qmlName", Value: "const char *"},
+				},
+				Signature: "(const QUrl &url, const char *uri, int versionMajor, int versionMinor, const char *qmlName)",
+			})
+		}
+
+	case "QAndroidJniEnvironment":
+		{
+			c.Functions = append(c.Functions, &Function{
+				Name:       "ExceptionCheck",
+				Fullname:   fmt.Sprintf("%v::ExceptionCheck", c.Name),
+				Access:     "public",
+				Virtual:    "non",
+				Meta:       PLAIN,
+				Static:     true,
+				Output:     "bool",
+				Parameters: []*Parameter{},
+				Signature:  "()",
+			})
+
+			c.Functions = append(c.Functions, &Function{
+				Name:       "ExceptionDescribe",
+				Fullname:   fmt.Sprintf("%v::ExceptionDescribe", c.Name),
+				Access:     "public",
+				Virtual:    "non",
+				Meta:       PLAIN,
+				Static:     true,
+				Output:     "void",
+				Parameters: []*Parameter{},
+				Signature:  "()",
+			})
+
+			c.Functions = append(c.Functions, &Function{
+				Name:       "ExceptionClear",
+				Fullname:   fmt.Sprintf("%v::ExceptionClear", c.Name),
+				Access:     "public",
+				Virtual:    "non",
+				Meta:       PLAIN,
+				Static:     true,
+				Output:     "void",
+				Parameters: []*Parameter{},
+				Signature:  "()",
+			})
+
+			c.Functions = append(c.Functions, &Function{
+				Name:       "ExceptionOccurred",
+				Fullname:   fmt.Sprintf("%v::ExceptionOccurred", c.Name),
+				Access:     "public",
+				Virtual:    "non",
+				Meta:       PLAIN,
+				Static:     true,
+				Output:     "void*",
+				Parameters: []*Parameter{},
+				Signature:  "()",
+			})
 		}
 	}
 

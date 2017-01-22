@@ -181,7 +181,6 @@ func NewQAbstractAnimation(parent QObject_ITF) *QAbstractAnimation {
 
 //export callbackQAbstractAnimation_CurrentLoopChanged
 func callbackQAbstractAnimation_CurrentLoopChanged(ptr unsafe.Pointer, currentLoop C.int) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractAnimation::currentLoopChanged"); signal != nil {
 		signal.(func(int))(int(int32(currentLoop)))
 	}
@@ -217,7 +216,6 @@ func (ptr *QAbstractAnimation) CurrentLoopTime() int {
 
 //export callbackQAbstractAnimation_DirectionChanged
 func callbackQAbstractAnimation_DirectionChanged(ptr unsafe.Pointer, newDirection C.longlong) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractAnimation::directionChanged"); signal != nil {
 		signal.(func(QAbstractAnimation__Direction))(QAbstractAnimation__Direction(newDirection))
 	}
@@ -246,7 +244,6 @@ func (ptr *QAbstractAnimation) DirectionChanged(newDirection QAbstractAnimation_
 
 //export callbackQAbstractAnimation_Duration
 func callbackQAbstractAnimation_Duration(ptr unsafe.Pointer) C.int {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractAnimation::duration"); signal != nil {
 		return C.int(int32(signal.(func() int)()))
 	}
@@ -277,7 +274,6 @@ func (ptr *QAbstractAnimation) Duration() int {
 
 //export callbackQAbstractAnimation_Event
 func callbackQAbstractAnimation_Event(ptr unsafe.Pointer, event unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractAnimation::event"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*QEvent) bool)(NewQEventFromPointer(event)))))
 	}
@@ -315,7 +311,6 @@ func (ptr *QAbstractAnimation) EventDefault(event QEvent_ITF) bool {
 
 //export callbackQAbstractAnimation_Finished
 func callbackQAbstractAnimation_Finished(ptr unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractAnimation::finished"); signal != nil {
 		signal.(func())()
 	}
@@ -495,7 +490,6 @@ func (ptr *QAbstractAnimation) StartDefault(policy QAbstractAnimation__DeletionP
 
 //export callbackQAbstractAnimation_StateChanged
 func callbackQAbstractAnimation_StateChanged(ptr unsafe.Pointer, newState C.longlong, oldState C.longlong) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractAnimation::stateChanged"); signal != nil {
 		signal.(func(QAbstractAnimation__State, QAbstractAnimation__State))(QAbstractAnimation__State(newState), QAbstractAnimation__State(oldState))
 	}
@@ -566,7 +560,6 @@ func (ptr *QAbstractAnimation) TotalDuration() int {
 
 //export callbackQAbstractAnimation_UpdateCurrentTime
 func callbackQAbstractAnimation_UpdateCurrentTime(ptr unsafe.Pointer, currentTime C.int) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractAnimation::updateCurrentTime"); signal != nil {
 		signal.(func(int))(int(int32(currentTime)))
 	}
@@ -595,7 +588,6 @@ func (ptr *QAbstractAnimation) UpdateCurrentTime(currentTime int) {
 
 //export callbackQAbstractAnimation_UpdateDirection
 func callbackQAbstractAnimation_UpdateDirection(ptr unsafe.Pointer, direction C.longlong) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractAnimation::updateDirection"); signal != nil {
 		signal.(func(QAbstractAnimation__Direction))(QAbstractAnimation__Direction(direction))
 	} else {
@@ -631,7 +623,6 @@ func (ptr *QAbstractAnimation) UpdateDirectionDefault(direction QAbstractAnimati
 
 //export callbackQAbstractAnimation_UpdateState
 func callbackQAbstractAnimation_UpdateState(ptr unsafe.Pointer, newState C.longlong, oldState C.longlong) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractAnimation::updateState"); signal != nil {
 		signal.(func(QAbstractAnimation__State, QAbstractAnimation__State))(QAbstractAnimation__State(newState), QAbstractAnimation__State(oldState))
 	} else {
@@ -667,7 +658,6 @@ func (ptr *QAbstractAnimation) UpdateStateDefault(newState QAbstractAnimation__S
 
 //export callbackQAbstractAnimation_DestroyQAbstractAnimation
 func callbackQAbstractAnimation_DestroyQAbstractAnimation(ptr unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractAnimation::~QAbstractAnimation"); signal != nil {
 		signal.(func())()
 	} else {
@@ -707,7 +697,6 @@ func (ptr *QAbstractAnimation) DestroyQAbstractAnimationDefault() {
 
 //export callbackQAbstractAnimation_TimerEvent
 func callbackQAbstractAnimation_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractAnimation::timerEvent"); signal != nil {
 		signal.(func(*QTimerEvent))(NewQTimerEventFromPointer(event))
 	} else {
@@ -743,7 +732,6 @@ func (ptr *QAbstractAnimation) TimerEventDefault(event QTimerEvent_ITF) {
 
 //export callbackQAbstractAnimation_ChildEvent
 func callbackQAbstractAnimation_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractAnimation::childEvent"); signal != nil {
 		signal.(func(*QChildEvent))(NewQChildEventFromPointer(event))
 	} else {
@@ -779,7 +767,6 @@ func (ptr *QAbstractAnimation) ChildEventDefault(event QChildEvent_ITF) {
 
 //export callbackQAbstractAnimation_ConnectNotify
 func callbackQAbstractAnimation_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractAnimation::connectNotify"); signal != nil {
 		signal.(func(*QMetaMethod))(NewQMetaMethodFromPointer(sign))
 	} else {
@@ -815,7 +802,6 @@ func (ptr *QAbstractAnimation) ConnectNotifyDefault(sign QMetaMethod_ITF) {
 
 //export callbackQAbstractAnimation_CustomEvent
 func callbackQAbstractAnimation_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractAnimation::customEvent"); signal != nil {
 		signal.(func(*QEvent))(NewQEventFromPointer(event))
 	} else {
@@ -890,7 +876,6 @@ func (ptr *QAbstractAnimation) DeleteLaterDefault() {
 
 //export callbackQAbstractAnimation_DisconnectNotify
 func callbackQAbstractAnimation_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractAnimation::disconnectNotify"); signal != nil {
 		signal.(func(*QMetaMethod))(NewQMetaMethodFromPointer(sign))
 	} else {
@@ -926,7 +911,6 @@ func (ptr *QAbstractAnimation) DisconnectNotifyDefault(sign QMetaMethod_ITF) {
 
 //export callbackQAbstractAnimation_EventFilter
 func callbackQAbstractAnimation_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractAnimation::eventFilter"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*QObject, *QEvent) bool)(NewQObjectFromPointer(watched), NewQEventFromPointer(event)))))
 	}
@@ -964,7 +948,6 @@ func (ptr *QAbstractAnimation) EventFilterDefault(watched QObject_ITF, event QEv
 
 //export callbackQAbstractAnimation_MetaObject
 func callbackQAbstractAnimation_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractAnimation::metaObject"); signal != nil {
 		return PointerFromQMetaObject(signal.(func() *QMetaObject)())
 	}
@@ -1041,7 +1024,6 @@ func NewQAbstractEventDispatcherFromPointer(ptr unsafe.Pointer) *QAbstractEventD
 
 //export callbackQAbstractEventDispatcher_AboutToBlock
 func callbackQAbstractEventDispatcher_AboutToBlock(ptr unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractEventDispatcher::aboutToBlock"); signal != nil {
 		signal.(func())()
 	}
@@ -1070,7 +1052,6 @@ func (ptr *QAbstractEventDispatcher) AboutToBlock() {
 
 //export callbackQAbstractEventDispatcher_Awake
 func callbackQAbstractEventDispatcher_Awake(ptr unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractEventDispatcher::awake"); signal != nil {
 		signal.(func())()
 	}
@@ -1106,7 +1087,6 @@ func (ptr *QAbstractEventDispatcher) FilterNativeEvent(eventType QByteArray_ITF,
 
 //export callbackQAbstractEventDispatcher_Flush
 func callbackQAbstractEventDispatcher_Flush(ptr unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractEventDispatcher::flush"); signal != nil {
 		signal.(func())()
 	}
@@ -1157,7 +1137,6 @@ func (ptr *QAbstractEventDispatcher) Instance(thread QThread_ITF) *QAbstractEven
 
 //export callbackQAbstractEventDispatcher_Interrupt
 func callbackQAbstractEventDispatcher_Interrupt(ptr unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractEventDispatcher::interrupt"); signal != nil {
 		signal.(func())()
 	}
@@ -1186,7 +1165,6 @@ func (ptr *QAbstractEventDispatcher) Interrupt() {
 
 //export callbackQAbstractEventDispatcher_ProcessEvents
 func callbackQAbstractEventDispatcher_ProcessEvents(ptr unsafe.Pointer, flags C.longlong) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractEventDispatcher::processEvents"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(QEventLoop__ProcessEventsFlag) bool)(QEventLoop__ProcessEventsFlag(flags)))))
 	}
@@ -1217,7 +1195,6 @@ func (ptr *QAbstractEventDispatcher) ProcessEvents(flags QEventLoop__ProcessEven
 
 //export callbackQAbstractEventDispatcher_RegisterEventNotifier
 func callbackQAbstractEventDispatcher_RegisterEventNotifier(ptr unsafe.Pointer, notifier unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractEventDispatcher::registerEventNotifier"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*QWinEventNotifier) bool)(NewQWinEventNotifierFromPointer(notifier)))))
 	}
@@ -1248,7 +1225,6 @@ func (ptr *QAbstractEventDispatcher) RegisterEventNotifier(notifier QWinEventNot
 
 //export callbackQAbstractEventDispatcher_RegisterSocketNotifier
 func callbackQAbstractEventDispatcher_RegisterSocketNotifier(ptr unsafe.Pointer, notifier unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractEventDispatcher::registerSocketNotifier"); signal != nil {
 		signal.(func(*QSocketNotifier))(NewQSocketNotifierFromPointer(notifier))
 	}
@@ -1284,7 +1260,6 @@ func (ptr *QAbstractEventDispatcher) RegisterTimer(interval int, timerType Qt__T
 
 //export callbackQAbstractEventDispatcher_RegisterTimer4
 func callbackQAbstractEventDispatcher_RegisterTimer4(ptr unsafe.Pointer, timerId C.int, interval C.int, timerType C.longlong, object unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractEventDispatcher::registerTimer4"); signal != nil {
 		signal.(func(int, int, Qt__TimerType, *QObject))(int(int32(timerId)), int(int32(interval)), Qt__TimerType(timerType), NewQObjectFromPointer(object))
 	}
@@ -1313,7 +1288,6 @@ func (ptr *QAbstractEventDispatcher) RegisterTimer4(timerId int, interval int, t
 
 //export callbackQAbstractEventDispatcher_RemainingTime
 func callbackQAbstractEventDispatcher_RemainingTime(ptr unsafe.Pointer, timerId C.int) C.int {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractEventDispatcher::remainingTime"); signal != nil {
 		return C.int(int32(signal.(func(int) int)(int(int32(timerId)))))
 	}
@@ -1350,7 +1324,6 @@ func (ptr *QAbstractEventDispatcher) RemoveNativeEventFilter(filter QAbstractNat
 
 //export callbackQAbstractEventDispatcher_UnregisterEventNotifier
 func callbackQAbstractEventDispatcher_UnregisterEventNotifier(ptr unsafe.Pointer, notifier unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractEventDispatcher::unregisterEventNotifier"); signal != nil {
 		signal.(func(*QWinEventNotifier))(NewQWinEventNotifierFromPointer(notifier))
 	}
@@ -1379,7 +1352,6 @@ func (ptr *QAbstractEventDispatcher) UnregisterEventNotifier(notifier QWinEventN
 
 //export callbackQAbstractEventDispatcher_UnregisterSocketNotifier
 func callbackQAbstractEventDispatcher_UnregisterSocketNotifier(ptr unsafe.Pointer, notifier unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractEventDispatcher::unregisterSocketNotifier"); signal != nil {
 		signal.(func(*QSocketNotifier))(NewQSocketNotifierFromPointer(notifier))
 	}
@@ -1408,7 +1380,6 @@ func (ptr *QAbstractEventDispatcher) UnregisterSocketNotifier(notifier QSocketNo
 
 //export callbackQAbstractEventDispatcher_UnregisterTimer
 func callbackQAbstractEventDispatcher_UnregisterTimer(ptr unsafe.Pointer, timerId C.int) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractEventDispatcher::unregisterTimer"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(int) bool)(int(int32(timerId))))))
 	}
@@ -1439,7 +1410,6 @@ func (ptr *QAbstractEventDispatcher) UnregisterTimer(timerId int) bool {
 
 //export callbackQAbstractEventDispatcher_UnregisterTimers
 func callbackQAbstractEventDispatcher_UnregisterTimers(ptr unsafe.Pointer, object unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractEventDispatcher::unregisterTimers"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*QObject) bool)(NewQObjectFromPointer(object)))))
 	}
@@ -1470,7 +1440,6 @@ func (ptr *QAbstractEventDispatcher) UnregisterTimers(object QObject_ITF) bool {
 
 //export callbackQAbstractEventDispatcher_WakeUp
 func callbackQAbstractEventDispatcher_WakeUp(ptr unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractEventDispatcher::wakeUp"); signal != nil {
 		signal.(func())()
 	}
@@ -1507,7 +1476,6 @@ func (ptr *QAbstractEventDispatcher) DestroyQAbstractEventDispatcher() {
 
 //export callbackQAbstractEventDispatcher_TimerEvent
 func callbackQAbstractEventDispatcher_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractEventDispatcher::timerEvent"); signal != nil {
 		signal.(func(*QTimerEvent))(NewQTimerEventFromPointer(event))
 	} else {
@@ -1543,7 +1511,6 @@ func (ptr *QAbstractEventDispatcher) TimerEventDefault(event QTimerEvent_ITF) {
 
 //export callbackQAbstractEventDispatcher_ChildEvent
 func callbackQAbstractEventDispatcher_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractEventDispatcher::childEvent"); signal != nil {
 		signal.(func(*QChildEvent))(NewQChildEventFromPointer(event))
 	} else {
@@ -1579,7 +1546,6 @@ func (ptr *QAbstractEventDispatcher) ChildEventDefault(event QChildEvent_ITF) {
 
 //export callbackQAbstractEventDispatcher_ConnectNotify
 func callbackQAbstractEventDispatcher_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractEventDispatcher::connectNotify"); signal != nil {
 		signal.(func(*QMetaMethod))(NewQMetaMethodFromPointer(sign))
 	} else {
@@ -1615,7 +1581,6 @@ func (ptr *QAbstractEventDispatcher) ConnectNotifyDefault(sign QMetaMethod_ITF) 
 
 //export callbackQAbstractEventDispatcher_CustomEvent
 func callbackQAbstractEventDispatcher_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractEventDispatcher::customEvent"); signal != nil {
 		signal.(func(*QEvent))(NewQEventFromPointer(event))
 	} else {
@@ -1690,7 +1655,6 @@ func (ptr *QAbstractEventDispatcher) DeleteLaterDefault() {
 
 //export callbackQAbstractEventDispatcher_DisconnectNotify
 func callbackQAbstractEventDispatcher_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractEventDispatcher::disconnectNotify"); signal != nil {
 		signal.(func(*QMetaMethod))(NewQMetaMethodFromPointer(sign))
 	} else {
@@ -1726,7 +1690,6 @@ func (ptr *QAbstractEventDispatcher) DisconnectNotifyDefault(sign QMetaMethod_IT
 
 //export callbackQAbstractEventDispatcher_Event
 func callbackQAbstractEventDispatcher_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractEventDispatcher::event"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*QEvent) bool)(NewQEventFromPointer(e)))))
 	}
@@ -1764,7 +1727,6 @@ func (ptr *QAbstractEventDispatcher) EventDefault(e QEvent_ITF) bool {
 
 //export callbackQAbstractEventDispatcher_EventFilter
 func callbackQAbstractEventDispatcher_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractEventDispatcher::eventFilter"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*QObject, *QEvent) bool)(NewQObjectFromPointer(watched), NewQEventFromPointer(event)))))
 	}
@@ -1802,7 +1764,6 @@ func (ptr *QAbstractEventDispatcher) EventFilterDefault(watched QObject_ITF, eve
 
 //export callbackQAbstractEventDispatcher_MetaObject
 func callbackQAbstractEventDispatcher_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractEventDispatcher::metaObject"); signal != nil {
 		return PointerFromQMetaObject(signal.(func() *QMetaObject)())
 	}
@@ -1889,7 +1850,6 @@ const (
 
 //export callbackQAbstractItemModel_Sibling
 func callbackQAbstractItemModel_Sibling(ptr unsafe.Pointer, row C.int, column C.int, index unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractItemModel::sibling"); signal != nil {
 		return PointerFromQModelIndex(signal.(func(int, int, *QModelIndex) *QModelIndex)(int(int32(row)), int(int32(column)), NewQModelIndexFromPointer(index)))
 	}
@@ -1983,7 +1943,6 @@ func (ptr *QAbstractItemModel) BeginResetModel() {
 
 //export callbackQAbstractItemModel_Buddy
 func callbackQAbstractItemModel_Buddy(ptr unsafe.Pointer, index unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractItemModel::buddy"); signal != nil {
 		return PointerFromQModelIndex(signal.(func(*QModelIndex) *QModelIndex)(NewQModelIndexFromPointer(index)))
 	}
@@ -2025,7 +1984,6 @@ func (ptr *QAbstractItemModel) BuddyDefault(index QModelIndex_ITF) *QModelIndex 
 
 //export callbackQAbstractItemModel_CanDropMimeData
 func callbackQAbstractItemModel_CanDropMimeData(ptr unsafe.Pointer, data unsafe.Pointer, action C.longlong, row C.int, column C.int, parent unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractItemModel::canDropMimeData"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*QMimeData, Qt__DropAction, int, int, *QModelIndex) bool)(NewQMimeDataFromPointer(data), Qt__DropAction(action), int(int32(row)), int(int32(column)), NewQModelIndexFromPointer(parent)))))
 	}
@@ -2063,7 +2021,6 @@ func (ptr *QAbstractItemModel) CanDropMimeDataDefault(data QMimeData_ITF, action
 
 //export callbackQAbstractItemModel_CanFetchMore
 func callbackQAbstractItemModel_CanFetchMore(ptr unsafe.Pointer, parent unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractItemModel::canFetchMore"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*QModelIndex) bool)(NewQModelIndexFromPointer(parent)))))
 	}
@@ -2107,7 +2064,6 @@ func (ptr *QAbstractItemModel) ChangePersistentIndex(from QModelIndex_ITF, to QM
 
 //export callbackQAbstractItemModel_ColumnCount
 func callbackQAbstractItemModel_ColumnCount(ptr unsafe.Pointer, parent unsafe.Pointer) C.int {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractItemModel::columnCount"); signal != nil {
 		return C.int(int32(signal.(func(*QModelIndex) int)(NewQModelIndexFromPointer(parent))))
 	}
@@ -2138,7 +2094,6 @@ func (ptr *QAbstractItemModel) ColumnCount(parent QModelIndex_ITF) int {
 
 //export callbackQAbstractItemModel_ColumnsAboutToBeInserted
 func callbackQAbstractItemModel_ColumnsAboutToBeInserted(ptr unsafe.Pointer, parent unsafe.Pointer, first C.int, last C.int) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractItemModel::columnsAboutToBeInserted"); signal != nil {
 		signal.(func(*QModelIndex, int, int))(NewQModelIndexFromPointer(parent), int(int32(first)), int(int32(last)))
 	}
@@ -2161,7 +2116,6 @@ func (ptr *QAbstractItemModel) DisconnectColumnsAboutToBeInserted() {
 
 //export callbackQAbstractItemModel_ColumnsAboutToBeMoved
 func callbackQAbstractItemModel_ColumnsAboutToBeMoved(ptr unsafe.Pointer, sourceParent unsafe.Pointer, sourceStart C.int, sourceEnd C.int, destinationParent unsafe.Pointer, destinationColumn C.int) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractItemModel::columnsAboutToBeMoved"); signal != nil {
 		signal.(func(*QModelIndex, int, int, *QModelIndex, int))(NewQModelIndexFromPointer(sourceParent), int(int32(sourceStart)), int(int32(sourceEnd)), NewQModelIndexFromPointer(destinationParent), int(int32(destinationColumn)))
 	}
@@ -2184,7 +2138,6 @@ func (ptr *QAbstractItemModel) DisconnectColumnsAboutToBeMoved() {
 
 //export callbackQAbstractItemModel_ColumnsAboutToBeRemoved
 func callbackQAbstractItemModel_ColumnsAboutToBeRemoved(ptr unsafe.Pointer, parent unsafe.Pointer, first C.int, last C.int) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractItemModel::columnsAboutToBeRemoved"); signal != nil {
 		signal.(func(*QModelIndex, int, int))(NewQModelIndexFromPointer(parent), int(int32(first)), int(int32(last)))
 	}
@@ -2207,7 +2160,6 @@ func (ptr *QAbstractItemModel) DisconnectColumnsAboutToBeRemoved() {
 
 //export callbackQAbstractItemModel_ColumnsInserted
 func callbackQAbstractItemModel_ColumnsInserted(ptr unsafe.Pointer, parent unsafe.Pointer, first C.int, last C.int) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractItemModel::columnsInserted"); signal != nil {
 		signal.(func(*QModelIndex, int, int))(NewQModelIndexFromPointer(parent), int(int32(first)), int(int32(last)))
 	}
@@ -2230,7 +2182,6 @@ func (ptr *QAbstractItemModel) DisconnectColumnsInserted() {
 
 //export callbackQAbstractItemModel_ColumnsMoved
 func callbackQAbstractItemModel_ColumnsMoved(ptr unsafe.Pointer, parent unsafe.Pointer, start C.int, end C.int, destination unsafe.Pointer, column C.int) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractItemModel::columnsMoved"); signal != nil {
 		signal.(func(*QModelIndex, int, int, *QModelIndex, int))(NewQModelIndexFromPointer(parent), int(int32(start)), int(int32(end)), NewQModelIndexFromPointer(destination), int(int32(column)))
 	}
@@ -2253,7 +2204,6 @@ func (ptr *QAbstractItemModel) DisconnectColumnsMoved() {
 
 //export callbackQAbstractItemModel_ColumnsRemoved
 func callbackQAbstractItemModel_ColumnsRemoved(ptr unsafe.Pointer, parent unsafe.Pointer, first C.int, last C.int) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractItemModel::columnsRemoved"); signal != nil {
 		signal.(func(*QModelIndex, int, int))(NewQModelIndexFromPointer(parent), int(int32(first)), int(int32(last)))
 	}
@@ -2294,7 +2244,6 @@ func (ptr *QAbstractItemModel) CreateIndex(row int, column int, p unsafe.Pointer
 
 //export callbackQAbstractItemModel_Data
 func callbackQAbstractItemModel_Data(ptr unsafe.Pointer, index unsafe.Pointer, role C.int) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractItemModel::data"); signal != nil {
 		return PointerFromQVariant(signal.(func(*QModelIndex, int) *QVariant)(NewQModelIndexFromPointer(index), int(int32(role))))
 	}
@@ -2327,7 +2276,6 @@ func (ptr *QAbstractItemModel) Data(index QModelIndex_ITF, role int) *QVariant {
 
 //export callbackQAbstractItemModel_DropMimeData
 func callbackQAbstractItemModel_DropMimeData(ptr unsafe.Pointer, data unsafe.Pointer, action C.longlong, row C.int, column C.int, parent unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractItemModel::dropMimeData"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*QMimeData, Qt__DropAction, int, int, *QModelIndex) bool)(NewQMimeDataFromPointer(data), Qt__DropAction(action), int(int32(row)), int(int32(column)), NewQModelIndexFromPointer(parent)))))
 	}
@@ -2407,7 +2355,6 @@ func (ptr *QAbstractItemModel) EndResetModel() {
 
 //export callbackQAbstractItemModel_FetchMore
 func callbackQAbstractItemModel_FetchMore(ptr unsafe.Pointer, parent unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractItemModel::fetchMore"); signal != nil {
 		signal.(func(*QModelIndex))(NewQModelIndexFromPointer(parent))
 	} else {
@@ -2443,7 +2390,6 @@ func (ptr *QAbstractItemModel) FetchMoreDefault(parent QModelIndex_ITF) {
 
 //export callbackQAbstractItemModel_Flags
 func callbackQAbstractItemModel_Flags(ptr unsafe.Pointer, index unsafe.Pointer) C.longlong {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractItemModel::flags"); signal != nil {
 		return C.longlong(signal.(func(*QModelIndex) Qt__ItemFlag)(NewQModelIndexFromPointer(index)))
 	}
@@ -2481,7 +2427,6 @@ func (ptr *QAbstractItemModel) FlagsDefault(index QModelIndex_ITF) Qt__ItemFlag 
 
 //export callbackQAbstractItemModel_HasChildren
 func callbackQAbstractItemModel_HasChildren(ptr unsafe.Pointer, parent unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractItemModel::hasChildren"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*QModelIndex) bool)(NewQModelIndexFromPointer(parent)))))
 	}
@@ -2526,7 +2471,6 @@ func (ptr *QAbstractItemModel) HasIndex(row int, column int, parent QModelIndex_
 
 //export callbackQAbstractItemModel_HeaderData
 func callbackQAbstractItemModel_HeaderData(ptr unsafe.Pointer, section C.int, orientation C.longlong, role C.int) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractItemModel::headerData"); signal != nil {
 		return PointerFromQVariant(signal.(func(int, Qt__Orientation, int) *QVariant)(int(int32(section)), Qt__Orientation(orientation), int(int32(role))))
 	}
@@ -2568,7 +2512,6 @@ func (ptr *QAbstractItemModel) HeaderDataDefault(section int, orientation Qt__Or
 
 //export callbackQAbstractItemModel_HeaderDataChanged
 func callbackQAbstractItemModel_HeaderDataChanged(ptr unsafe.Pointer, orientation C.longlong, first C.int, last C.int) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractItemModel::headerDataChanged"); signal != nil {
 		signal.(func(Qt__Orientation, int, int))(Qt__Orientation(orientation), int(int32(first)), int(int32(last)))
 	}
@@ -2597,7 +2540,6 @@ func (ptr *QAbstractItemModel) HeaderDataChanged(orientation Qt__Orientation, fi
 
 //export callbackQAbstractItemModel_Index
 func callbackQAbstractItemModel_Index(ptr unsafe.Pointer, row C.int, column C.int, parent unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractItemModel::index"); signal != nil {
 		return PointerFromQModelIndex(signal.(func(int, int, *QModelIndex) *QModelIndex)(int(int32(row)), int(int32(column)), NewQModelIndexFromPointer(parent)))
 	}
@@ -2637,7 +2579,6 @@ func (ptr *QAbstractItemModel) InsertColumn(column int, parent QModelIndex_ITF) 
 
 //export callbackQAbstractItemModel_InsertColumns
 func callbackQAbstractItemModel_InsertColumns(ptr unsafe.Pointer, column C.int, count C.int, parent unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractItemModel::insertColumns"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(int, int, *QModelIndex) bool)(int(int32(column)), int(int32(count)), NewQModelIndexFromPointer(parent)))))
 	}
@@ -2682,7 +2623,6 @@ func (ptr *QAbstractItemModel) InsertRow(row int, parent QModelIndex_ITF) bool {
 
 //export callbackQAbstractItemModel_InsertRows
 func callbackQAbstractItemModel_InsertRows(ptr unsafe.Pointer, row C.int, count C.int, parent unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractItemModel::insertRows"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(int, int, *QModelIndex) bool)(int(int32(row)), int(int32(count)), NewQModelIndexFromPointer(parent)))))
 	}
@@ -2733,7 +2673,6 @@ func (ptr *QAbstractItemModel) Match(start QModelIndex_ITF, role int, value QVar
 
 //export callbackQAbstractItemModel_MimeTypes
 func callbackQAbstractItemModel_MimeTypes(ptr unsafe.Pointer) *C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractItemModel::mimeTypes"); signal != nil {
 		return C.CString(strings.Join(signal.(func() []string)(), "|"))
 	}
@@ -2771,7 +2710,6 @@ func (ptr *QAbstractItemModel) MimeTypesDefault() []string {
 
 //export callbackQAbstractItemModel_ModelAboutToBeReset
 func callbackQAbstractItemModel_ModelAboutToBeReset(ptr unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractItemModel::modelAboutToBeReset"); signal != nil {
 		signal.(func())()
 	}
@@ -2794,7 +2732,6 @@ func (ptr *QAbstractItemModel) DisconnectModelAboutToBeReset() {
 
 //export callbackQAbstractItemModel_ModelReset
 func callbackQAbstractItemModel_ModelReset(ptr unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractItemModel::modelReset"); signal != nil {
 		signal.(func())()
 	}
@@ -2824,7 +2761,6 @@ func (ptr *QAbstractItemModel) MoveColumn(sourceParent QModelIndex_ITF, sourceCo
 
 //export callbackQAbstractItemModel_MoveColumns
 func callbackQAbstractItemModel_MoveColumns(ptr unsafe.Pointer, sourceParent unsafe.Pointer, sourceColumn C.int, count C.int, destinationParent unsafe.Pointer, destinationChild C.int) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractItemModel::moveColumns"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*QModelIndex, int, int, *QModelIndex, int) bool)(NewQModelIndexFromPointer(sourceParent), int(int32(sourceColumn)), int(int32(count)), NewQModelIndexFromPointer(destinationParent), int(int32(destinationChild))))))
 	}
@@ -2869,7 +2805,6 @@ func (ptr *QAbstractItemModel) MoveRow(sourceParent QModelIndex_ITF, sourceRow i
 
 //export callbackQAbstractItemModel_MoveRows
 func callbackQAbstractItemModel_MoveRows(ptr unsafe.Pointer, sourceParent unsafe.Pointer, sourceRow C.int, count C.int, destinationParent unsafe.Pointer, destinationChild C.int) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractItemModel::moveRows"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*QModelIndex, int, int, *QModelIndex, int) bool)(NewQModelIndexFromPointer(sourceParent), int(int32(sourceRow)), int(int32(count)), NewQModelIndexFromPointer(destinationParent), int(int32(destinationChild))))))
 	}
@@ -2907,7 +2842,6 @@ func (ptr *QAbstractItemModel) MoveRowsDefault(sourceParent QModelIndex_ITF, sou
 
 //export callbackQAbstractItemModel_Parent
 func callbackQAbstractItemModel_Parent(ptr unsafe.Pointer, index unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractItemModel::parent"); signal != nil {
 		return PointerFromQModelIndex(signal.(func(*QModelIndex) *QModelIndex)(NewQModelIndexFromPointer(index)))
 	}
@@ -2960,7 +2894,6 @@ func (ptr *QAbstractItemModel) RemoveColumn(column int, parent QModelIndex_ITF) 
 
 //export callbackQAbstractItemModel_RemoveColumns
 func callbackQAbstractItemModel_RemoveColumns(ptr unsafe.Pointer, column C.int, count C.int, parent unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractItemModel::removeColumns"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(int, int, *QModelIndex) bool)(int(int32(column)), int(int32(count)), NewQModelIndexFromPointer(parent)))))
 	}
@@ -3005,7 +2938,6 @@ func (ptr *QAbstractItemModel) RemoveRow(row int, parent QModelIndex_ITF) bool {
 
 //export callbackQAbstractItemModel_RemoveRows
 func callbackQAbstractItemModel_RemoveRows(ptr unsafe.Pointer, row C.int, count C.int, parent unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractItemModel::removeRows"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(int, int, *QModelIndex) bool)(int(int32(row)), int(int32(count)), NewQModelIndexFromPointer(parent)))))
 	}
@@ -3113,7 +3045,6 @@ func (ptr *QAbstractItemModel) RevertDefault() {
 
 //export callbackQAbstractItemModel_RowCount
 func callbackQAbstractItemModel_RowCount(ptr unsafe.Pointer, parent unsafe.Pointer) C.int {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractItemModel::rowCount"); signal != nil {
 		return C.int(int32(signal.(func(*QModelIndex) int)(NewQModelIndexFromPointer(parent))))
 	}
@@ -3144,7 +3075,6 @@ func (ptr *QAbstractItemModel) RowCount(parent QModelIndex_ITF) int {
 
 //export callbackQAbstractItemModel_RowsAboutToBeInserted
 func callbackQAbstractItemModel_RowsAboutToBeInserted(ptr unsafe.Pointer, parent unsafe.Pointer, start C.int, end C.int) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractItemModel::rowsAboutToBeInserted"); signal != nil {
 		signal.(func(*QModelIndex, int, int))(NewQModelIndexFromPointer(parent), int(int32(start)), int(int32(end)))
 	}
@@ -3167,7 +3097,6 @@ func (ptr *QAbstractItemModel) DisconnectRowsAboutToBeInserted() {
 
 //export callbackQAbstractItemModel_RowsAboutToBeMoved
 func callbackQAbstractItemModel_RowsAboutToBeMoved(ptr unsafe.Pointer, sourceParent unsafe.Pointer, sourceStart C.int, sourceEnd C.int, destinationParent unsafe.Pointer, destinationRow C.int) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractItemModel::rowsAboutToBeMoved"); signal != nil {
 		signal.(func(*QModelIndex, int, int, *QModelIndex, int))(NewQModelIndexFromPointer(sourceParent), int(int32(sourceStart)), int(int32(sourceEnd)), NewQModelIndexFromPointer(destinationParent), int(int32(destinationRow)))
 	}
@@ -3190,7 +3119,6 @@ func (ptr *QAbstractItemModel) DisconnectRowsAboutToBeMoved() {
 
 //export callbackQAbstractItemModel_RowsAboutToBeRemoved
 func callbackQAbstractItemModel_RowsAboutToBeRemoved(ptr unsafe.Pointer, parent unsafe.Pointer, first C.int, last C.int) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractItemModel::rowsAboutToBeRemoved"); signal != nil {
 		signal.(func(*QModelIndex, int, int))(NewQModelIndexFromPointer(parent), int(int32(first)), int(int32(last)))
 	}
@@ -3213,7 +3141,6 @@ func (ptr *QAbstractItemModel) DisconnectRowsAboutToBeRemoved() {
 
 //export callbackQAbstractItemModel_RowsInserted
 func callbackQAbstractItemModel_RowsInserted(ptr unsafe.Pointer, parent unsafe.Pointer, first C.int, last C.int) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractItemModel::rowsInserted"); signal != nil {
 		signal.(func(*QModelIndex, int, int))(NewQModelIndexFromPointer(parent), int(int32(first)), int(int32(last)))
 	}
@@ -3236,7 +3163,6 @@ func (ptr *QAbstractItemModel) DisconnectRowsInserted() {
 
 //export callbackQAbstractItemModel_RowsMoved
 func callbackQAbstractItemModel_RowsMoved(ptr unsafe.Pointer, parent unsafe.Pointer, start C.int, end C.int, destination unsafe.Pointer, row C.int) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractItemModel::rowsMoved"); signal != nil {
 		signal.(func(*QModelIndex, int, int, *QModelIndex, int))(NewQModelIndexFromPointer(parent), int(int32(start)), int(int32(end)), NewQModelIndexFromPointer(destination), int(int32(row)))
 	}
@@ -3259,7 +3185,6 @@ func (ptr *QAbstractItemModel) DisconnectRowsMoved() {
 
 //export callbackQAbstractItemModel_RowsRemoved
 func callbackQAbstractItemModel_RowsRemoved(ptr unsafe.Pointer, parent unsafe.Pointer, first C.int, last C.int) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractItemModel::rowsRemoved"); signal != nil {
 		signal.(func(*QModelIndex, int, int))(NewQModelIndexFromPointer(parent), int(int32(first)), int(int32(last)))
 	}
@@ -3282,7 +3207,6 @@ func (ptr *QAbstractItemModel) DisconnectRowsRemoved() {
 
 //export callbackQAbstractItemModel_SetData
 func callbackQAbstractItemModel_SetData(ptr unsafe.Pointer, index unsafe.Pointer, value unsafe.Pointer, role C.int) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractItemModel::setData"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*QModelIndex, *QVariant, int) bool)(NewQModelIndexFromPointer(index), NewQVariantFromPointer(value), int(int32(role))))))
 	}
@@ -3320,7 +3244,6 @@ func (ptr *QAbstractItemModel) SetDataDefault(index QModelIndex_ITF, value QVari
 
 //export callbackQAbstractItemModel_SetHeaderData
 func callbackQAbstractItemModel_SetHeaderData(ptr unsafe.Pointer, section C.int, orientation C.longlong, value unsafe.Pointer, role C.int) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractItemModel::setHeaderData"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(int, Qt__Orientation, *QVariant, int) bool)(int(int32(section)), Qt__Orientation(orientation), NewQVariantFromPointer(value), int(int32(role))))))
 	}
@@ -3358,7 +3281,6 @@ func (ptr *QAbstractItemModel) SetHeaderDataDefault(section int, orientation Qt_
 
 //export callbackQAbstractItemModel_Sort
 func callbackQAbstractItemModel_Sort(ptr unsafe.Pointer, column C.int, order C.longlong) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractItemModel::sort"); signal != nil {
 		signal.(func(int, Qt__SortOrder))(int(int32(column)), Qt__SortOrder(order))
 	} else {
@@ -3394,7 +3316,6 @@ func (ptr *QAbstractItemModel) SortDefault(column int, order Qt__SortOrder) {
 
 //export callbackQAbstractItemModel_Span
 func callbackQAbstractItemModel_Span(ptr unsafe.Pointer, index unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractItemModel::span"); signal != nil {
 		return PointerFromQSize(signal.(func(*QModelIndex) *QSize)(NewQModelIndexFromPointer(index)))
 	}
@@ -3473,7 +3394,6 @@ func (ptr *QAbstractItemModel) SubmitDefault() bool {
 
 //export callbackQAbstractItemModel_SupportedDragActions
 func callbackQAbstractItemModel_SupportedDragActions(ptr unsafe.Pointer) C.longlong {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractItemModel::supportedDragActions"); signal != nil {
 		return C.longlong(signal.(func() Qt__DropAction)())
 	}
@@ -3511,7 +3431,6 @@ func (ptr *QAbstractItemModel) SupportedDragActionsDefault() Qt__DropAction {
 
 //export callbackQAbstractItemModel_SupportedDropActions
 func callbackQAbstractItemModel_SupportedDropActions(ptr unsafe.Pointer) C.longlong {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractItemModel::supportedDropActions"); signal != nil {
 		return C.longlong(signal.(func() Qt__DropAction)())
 	}
@@ -3549,7 +3468,6 @@ func (ptr *QAbstractItemModel) SupportedDropActionsDefault() Qt__DropAction {
 
 //export callbackQAbstractItemModel_DestroyQAbstractItemModel
 func callbackQAbstractItemModel_DestroyQAbstractItemModel(ptr unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractItemModel::~QAbstractItemModel"); signal != nil {
 		signal.(func())()
 	} else {
@@ -3607,7 +3525,6 @@ func (ptr *QAbstractItemModel) persistentIndexList_atList(i int) *QModelIndex {
 
 //export callbackQAbstractItemModel_TimerEvent
 func callbackQAbstractItemModel_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractItemModel::timerEvent"); signal != nil {
 		signal.(func(*QTimerEvent))(NewQTimerEventFromPointer(event))
 	} else {
@@ -3643,7 +3560,6 @@ func (ptr *QAbstractItemModel) TimerEventDefault(event QTimerEvent_ITF) {
 
 //export callbackQAbstractItemModel_ChildEvent
 func callbackQAbstractItemModel_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractItemModel::childEvent"); signal != nil {
 		signal.(func(*QChildEvent))(NewQChildEventFromPointer(event))
 	} else {
@@ -3679,7 +3595,6 @@ func (ptr *QAbstractItemModel) ChildEventDefault(event QChildEvent_ITF) {
 
 //export callbackQAbstractItemModel_ConnectNotify
 func callbackQAbstractItemModel_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractItemModel::connectNotify"); signal != nil {
 		signal.(func(*QMetaMethod))(NewQMetaMethodFromPointer(sign))
 	} else {
@@ -3715,7 +3630,6 @@ func (ptr *QAbstractItemModel) ConnectNotifyDefault(sign QMetaMethod_ITF) {
 
 //export callbackQAbstractItemModel_CustomEvent
 func callbackQAbstractItemModel_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractItemModel::customEvent"); signal != nil {
 		signal.(func(*QEvent))(NewQEventFromPointer(event))
 	} else {
@@ -3790,7 +3704,6 @@ func (ptr *QAbstractItemModel) DeleteLaterDefault() {
 
 //export callbackQAbstractItemModel_DisconnectNotify
 func callbackQAbstractItemModel_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractItemModel::disconnectNotify"); signal != nil {
 		signal.(func(*QMetaMethod))(NewQMetaMethodFromPointer(sign))
 	} else {
@@ -3826,7 +3739,6 @@ func (ptr *QAbstractItemModel) DisconnectNotifyDefault(sign QMetaMethod_ITF) {
 
 //export callbackQAbstractItemModel_Event
 func callbackQAbstractItemModel_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractItemModel::event"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*QEvent) bool)(NewQEventFromPointer(e)))))
 	}
@@ -3864,7 +3776,6 @@ func (ptr *QAbstractItemModel) EventDefault(e QEvent_ITF) bool {
 
 //export callbackQAbstractItemModel_EventFilter
 func callbackQAbstractItemModel_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractItemModel::eventFilter"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*QObject, *QEvent) bool)(NewQObjectFromPointer(watched), NewQEventFromPointer(event)))))
 	}
@@ -3902,7 +3813,6 @@ func (ptr *QAbstractItemModel) EventFilterDefault(watched QObject_ITF, event QEv
 
 //export callbackQAbstractItemModel_MetaObject
 func callbackQAbstractItemModel_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractItemModel::metaObject"); signal != nil {
 		return PointerFromQMetaObject(signal.(func() *QMetaObject)())
 	}
@@ -3979,7 +3889,6 @@ func NewQAbstractListModelFromPointer(ptr unsafe.Pointer) *QAbstractListModel {
 
 //export callbackQAbstractListModel_Index
 func callbackQAbstractListModel_Index(ptr unsafe.Pointer, row C.int, column C.int, parent unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractListModel::index"); signal != nil {
 		return PointerFromQModelIndex(signal.(func(int, int, *QModelIndex) *QModelIndex)(int(int32(row)), int(int32(column)), NewQModelIndexFromPointer(parent)))
 	}
@@ -4029,7 +3938,6 @@ func NewQAbstractListModel(parent QObject_ITF) *QAbstractListModel {
 
 //export callbackQAbstractListModel_DropMimeData
 func callbackQAbstractListModel_DropMimeData(ptr unsafe.Pointer, data unsafe.Pointer, action C.longlong, row C.int, column C.int, parent unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractListModel::dropMimeData"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*QMimeData, Qt__DropAction, int, int, *QModelIndex) bool)(NewQMimeDataFromPointer(data), Qt__DropAction(action), int(int32(row)), int(int32(column)), NewQModelIndexFromPointer(parent)))))
 	}
@@ -4067,7 +3975,6 @@ func (ptr *QAbstractListModel) DropMimeDataDefault(data QMimeData_ITF, action Qt
 
 //export callbackQAbstractListModel_Flags
 func callbackQAbstractListModel_Flags(ptr unsafe.Pointer, index unsafe.Pointer) C.longlong {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractListModel::flags"); signal != nil {
 		return C.longlong(signal.(func(*QModelIndex) Qt__ItemFlag)(NewQModelIndexFromPointer(index)))
 	}
@@ -4105,7 +4012,6 @@ func (ptr *QAbstractListModel) FlagsDefault(index QModelIndex_ITF) Qt__ItemFlag 
 
 //export callbackQAbstractListModel_Sibling
 func callbackQAbstractListModel_Sibling(ptr unsafe.Pointer, row C.int, column C.int, idx unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractListModel::sibling"); signal != nil {
 		return PointerFromQModelIndex(signal.(func(int, int, *QModelIndex) *QModelIndex)(int(int32(row)), int(int32(column)), NewQModelIndexFromPointer(idx)))
 	}
@@ -4155,7 +4061,6 @@ func (ptr *QAbstractListModel) DestroyQAbstractListModel() {
 
 //export callbackQAbstractListModel_Buddy
 func callbackQAbstractListModel_Buddy(ptr unsafe.Pointer, index unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractListModel::buddy"); signal != nil {
 		return PointerFromQModelIndex(signal.(func(*QModelIndex) *QModelIndex)(NewQModelIndexFromPointer(index)))
 	}
@@ -4197,7 +4102,6 @@ func (ptr *QAbstractListModel) BuddyDefault(index QModelIndex_ITF) *QModelIndex 
 
 //export callbackQAbstractListModel_CanDropMimeData
 func callbackQAbstractListModel_CanDropMimeData(ptr unsafe.Pointer, data unsafe.Pointer, action C.longlong, row C.int, column C.int, parent unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractListModel::canDropMimeData"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*QMimeData, Qt__DropAction, int, int, *QModelIndex) bool)(NewQMimeDataFromPointer(data), Qt__DropAction(action), int(int32(row)), int(int32(column)), NewQModelIndexFromPointer(parent)))))
 	}
@@ -4235,7 +4139,6 @@ func (ptr *QAbstractListModel) CanDropMimeDataDefault(data QMimeData_ITF, action
 
 //export callbackQAbstractListModel_CanFetchMore
 func callbackQAbstractListModel_CanFetchMore(ptr unsafe.Pointer, parent unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractListModel::canFetchMore"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*QModelIndex) bool)(NewQModelIndexFromPointer(parent)))))
 	}
@@ -4273,7 +4176,6 @@ func (ptr *QAbstractListModel) CanFetchMoreDefault(parent QModelIndex_ITF) bool 
 
 //export callbackQAbstractListModel_ColumnCount
 func callbackQAbstractListModel_ColumnCount(ptr unsafe.Pointer, parent unsafe.Pointer) C.int {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractListModel::columnCount"); signal != nil {
 		return C.int(int32(signal.(func(*QModelIndex) int)(NewQModelIndexFromPointer(parent))))
 	}
@@ -4304,7 +4206,6 @@ func (ptr *QAbstractListModel) ColumnCount(parent QModelIndex_ITF) int {
 
 //export callbackQAbstractListModel_Data
 func callbackQAbstractListModel_Data(ptr unsafe.Pointer, index unsafe.Pointer, role C.int) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractListModel::data"); signal != nil {
 		return PointerFromQVariant(signal.(func(*QModelIndex, int) *QVariant)(NewQModelIndexFromPointer(index), int(int32(role))))
 	}
@@ -4337,7 +4238,6 @@ func (ptr *QAbstractListModel) Data(index QModelIndex_ITF, role int) *QVariant {
 
 //export callbackQAbstractListModel_FetchMore
 func callbackQAbstractListModel_FetchMore(ptr unsafe.Pointer, parent unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractListModel::fetchMore"); signal != nil {
 		signal.(func(*QModelIndex))(NewQModelIndexFromPointer(parent))
 	} else {
@@ -4373,7 +4273,6 @@ func (ptr *QAbstractListModel) FetchMoreDefault(parent QModelIndex_ITF) {
 
 //export callbackQAbstractListModel_HasChildren
 func callbackQAbstractListModel_HasChildren(ptr unsafe.Pointer, parent unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractListModel::hasChildren"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*QModelIndex) bool)(NewQModelIndexFromPointer(parent)))))
 	}
@@ -4411,7 +4310,6 @@ func (ptr *QAbstractListModel) HasChildrenDefault(parent QModelIndex_ITF) bool {
 
 //export callbackQAbstractListModel_HeaderData
 func callbackQAbstractListModel_HeaderData(ptr unsafe.Pointer, section C.int, orientation C.longlong, role C.int) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractListModel::headerData"); signal != nil {
 		return PointerFromQVariant(signal.(func(int, Qt__Orientation, int) *QVariant)(int(int32(section)), Qt__Orientation(orientation), int(int32(role))))
 	}
@@ -4453,7 +4351,6 @@ func (ptr *QAbstractListModel) HeaderDataDefault(section int, orientation Qt__Or
 
 //export callbackQAbstractListModel_InsertColumns
 func callbackQAbstractListModel_InsertColumns(ptr unsafe.Pointer, column C.int, count C.int, parent unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractListModel::insertColumns"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(int, int, *QModelIndex) bool)(int(int32(column)), int(int32(count)), NewQModelIndexFromPointer(parent)))))
 	}
@@ -4491,7 +4388,6 @@ func (ptr *QAbstractListModel) InsertColumnsDefault(column int, count int, paren
 
 //export callbackQAbstractListModel_InsertRows
 func callbackQAbstractListModel_InsertRows(ptr unsafe.Pointer, row C.int, count C.int, parent unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractListModel::insertRows"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(int, int, *QModelIndex) bool)(int(int32(row)), int(int32(count)), NewQModelIndexFromPointer(parent)))))
 	}
@@ -4529,7 +4425,6 @@ func (ptr *QAbstractListModel) InsertRowsDefault(row int, count int, parent QMod
 
 //export callbackQAbstractListModel_MimeTypes
 func callbackQAbstractListModel_MimeTypes(ptr unsafe.Pointer) *C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractListModel::mimeTypes"); signal != nil {
 		return C.CString(strings.Join(signal.(func() []string)(), "|"))
 	}
@@ -4567,7 +4462,6 @@ func (ptr *QAbstractListModel) MimeTypesDefault() []string {
 
 //export callbackQAbstractListModel_MoveColumns
 func callbackQAbstractListModel_MoveColumns(ptr unsafe.Pointer, sourceParent unsafe.Pointer, sourceColumn C.int, count C.int, destinationParent unsafe.Pointer, destinationChild C.int) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractListModel::moveColumns"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*QModelIndex, int, int, *QModelIndex, int) bool)(NewQModelIndexFromPointer(sourceParent), int(int32(sourceColumn)), int(int32(count)), NewQModelIndexFromPointer(destinationParent), int(int32(destinationChild))))))
 	}
@@ -4605,7 +4499,6 @@ func (ptr *QAbstractListModel) MoveColumnsDefault(sourceParent QModelIndex_ITF, 
 
 //export callbackQAbstractListModel_MoveRows
 func callbackQAbstractListModel_MoveRows(ptr unsafe.Pointer, sourceParent unsafe.Pointer, sourceRow C.int, count C.int, destinationParent unsafe.Pointer, destinationChild C.int) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractListModel::moveRows"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*QModelIndex, int, int, *QModelIndex, int) bool)(NewQModelIndexFromPointer(sourceParent), int(int32(sourceRow)), int(int32(count)), NewQModelIndexFromPointer(destinationParent), int(int32(destinationChild))))))
 	}
@@ -4643,7 +4536,6 @@ func (ptr *QAbstractListModel) MoveRowsDefault(sourceParent QModelIndex_ITF, sou
 
 //export callbackQAbstractListModel_Parent
 func callbackQAbstractListModel_Parent(ptr unsafe.Pointer, index unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractListModel::parent"); signal != nil {
 		return PointerFromQModelIndex(signal.(func(*QModelIndex) *QModelIndex)(NewQModelIndexFromPointer(index)))
 	}
@@ -4676,7 +4568,6 @@ func (ptr *QAbstractListModel) Parent(index QModelIndex_ITF) *QModelIndex {
 
 //export callbackQAbstractListModel_RemoveColumns
 func callbackQAbstractListModel_RemoveColumns(ptr unsafe.Pointer, column C.int, count C.int, parent unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractListModel::removeColumns"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(int, int, *QModelIndex) bool)(int(int32(column)), int(int32(count)), NewQModelIndexFromPointer(parent)))))
 	}
@@ -4714,7 +4605,6 @@ func (ptr *QAbstractListModel) RemoveColumnsDefault(column int, count int, paren
 
 //export callbackQAbstractListModel_RemoveRows
 func callbackQAbstractListModel_RemoveRows(ptr unsafe.Pointer, row C.int, count C.int, parent unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractListModel::removeRows"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(int, int, *QModelIndex) bool)(int(int32(row)), int(int32(count)), NewQModelIndexFromPointer(parent)))))
 	}
@@ -4822,7 +4712,6 @@ func (ptr *QAbstractListModel) RevertDefault() {
 
 //export callbackQAbstractListModel_RowCount
 func callbackQAbstractListModel_RowCount(ptr unsafe.Pointer, parent unsafe.Pointer) C.int {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractListModel::rowCount"); signal != nil {
 		return C.int(int32(signal.(func(*QModelIndex) int)(NewQModelIndexFromPointer(parent))))
 	}
@@ -4853,7 +4742,6 @@ func (ptr *QAbstractListModel) RowCount(parent QModelIndex_ITF) int {
 
 //export callbackQAbstractListModel_SetData
 func callbackQAbstractListModel_SetData(ptr unsafe.Pointer, index unsafe.Pointer, value unsafe.Pointer, role C.int) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractListModel::setData"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*QModelIndex, *QVariant, int) bool)(NewQModelIndexFromPointer(index), NewQVariantFromPointer(value), int(int32(role))))))
 	}
@@ -4891,7 +4779,6 @@ func (ptr *QAbstractListModel) SetDataDefault(index QModelIndex_ITF, value QVari
 
 //export callbackQAbstractListModel_SetHeaderData
 func callbackQAbstractListModel_SetHeaderData(ptr unsafe.Pointer, section C.int, orientation C.longlong, value unsafe.Pointer, role C.int) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractListModel::setHeaderData"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(int, Qt__Orientation, *QVariant, int) bool)(int(int32(section)), Qt__Orientation(orientation), NewQVariantFromPointer(value), int(int32(role))))))
 	}
@@ -4929,7 +4816,6 @@ func (ptr *QAbstractListModel) SetHeaderDataDefault(section int, orientation Qt_
 
 //export callbackQAbstractListModel_Sort
 func callbackQAbstractListModel_Sort(ptr unsafe.Pointer, column C.int, order C.longlong) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractListModel::sort"); signal != nil {
 		signal.(func(int, Qt__SortOrder))(int(int32(column)), Qt__SortOrder(order))
 	} else {
@@ -4965,7 +4851,6 @@ func (ptr *QAbstractListModel) SortDefault(column int, order Qt__SortOrder) {
 
 //export callbackQAbstractListModel_Span
 func callbackQAbstractListModel_Span(ptr unsafe.Pointer, index unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractListModel::span"); signal != nil {
 		return PointerFromQSize(signal.(func(*QModelIndex) *QSize)(NewQModelIndexFromPointer(index)))
 	}
@@ -5044,7 +4929,6 @@ func (ptr *QAbstractListModel) SubmitDefault() bool {
 
 //export callbackQAbstractListModel_SupportedDragActions
 func callbackQAbstractListModel_SupportedDragActions(ptr unsafe.Pointer) C.longlong {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractListModel::supportedDragActions"); signal != nil {
 		return C.longlong(signal.(func() Qt__DropAction)())
 	}
@@ -5082,7 +4966,6 @@ func (ptr *QAbstractListModel) SupportedDragActionsDefault() Qt__DropAction {
 
 //export callbackQAbstractListModel_SupportedDropActions
 func callbackQAbstractListModel_SupportedDropActions(ptr unsafe.Pointer) C.longlong {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractListModel::supportedDropActions"); signal != nil {
 		return C.longlong(signal.(func() Qt__DropAction)())
 	}
@@ -5120,7 +5003,6 @@ func (ptr *QAbstractListModel) SupportedDropActionsDefault() Qt__DropAction {
 
 //export callbackQAbstractListModel_TimerEvent
 func callbackQAbstractListModel_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractListModel::timerEvent"); signal != nil {
 		signal.(func(*QTimerEvent))(NewQTimerEventFromPointer(event))
 	} else {
@@ -5156,7 +5038,6 @@ func (ptr *QAbstractListModel) TimerEventDefault(event QTimerEvent_ITF) {
 
 //export callbackQAbstractListModel_ChildEvent
 func callbackQAbstractListModel_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractListModel::childEvent"); signal != nil {
 		signal.(func(*QChildEvent))(NewQChildEventFromPointer(event))
 	} else {
@@ -5192,7 +5073,6 @@ func (ptr *QAbstractListModel) ChildEventDefault(event QChildEvent_ITF) {
 
 //export callbackQAbstractListModel_ConnectNotify
 func callbackQAbstractListModel_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractListModel::connectNotify"); signal != nil {
 		signal.(func(*QMetaMethod))(NewQMetaMethodFromPointer(sign))
 	} else {
@@ -5228,7 +5108,6 @@ func (ptr *QAbstractListModel) ConnectNotifyDefault(sign QMetaMethod_ITF) {
 
 //export callbackQAbstractListModel_CustomEvent
 func callbackQAbstractListModel_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractListModel::customEvent"); signal != nil {
 		signal.(func(*QEvent))(NewQEventFromPointer(event))
 	} else {
@@ -5303,7 +5182,6 @@ func (ptr *QAbstractListModel) DeleteLaterDefault() {
 
 //export callbackQAbstractListModel_DisconnectNotify
 func callbackQAbstractListModel_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractListModel::disconnectNotify"); signal != nil {
 		signal.(func(*QMetaMethod))(NewQMetaMethodFromPointer(sign))
 	} else {
@@ -5339,7 +5217,6 @@ func (ptr *QAbstractListModel) DisconnectNotifyDefault(sign QMetaMethod_ITF) {
 
 //export callbackQAbstractListModel_Event
 func callbackQAbstractListModel_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractListModel::event"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*QEvent) bool)(NewQEventFromPointer(e)))))
 	}
@@ -5377,7 +5254,6 @@ func (ptr *QAbstractListModel) EventDefault(e QEvent_ITF) bool {
 
 //export callbackQAbstractListModel_EventFilter
 func callbackQAbstractListModel_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractListModel::eventFilter"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*QObject, *QEvent) bool)(NewQObjectFromPointer(watched), NewQEventFromPointer(event)))))
 	}
@@ -5415,7 +5291,6 @@ func (ptr *QAbstractListModel) EventFilterDefault(watched QObject_ITF, event QEv
 
 //export callbackQAbstractListModel_MetaObject
 func callbackQAbstractListModel_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractListModel::metaObject"); signal != nil {
 		return PointerFromQMetaObject(signal.(func() *QMetaObject)())
 	}
@@ -5494,7 +5369,6 @@ func NewQAbstractNativeEventFilter() *QAbstractNativeEventFilter {
 
 //export callbackQAbstractNativeEventFilter_NativeEventFilter
 func callbackQAbstractNativeEventFilter_NativeEventFilter(ptr unsafe.Pointer, eventType unsafe.Pointer, message unsafe.Pointer, result C.long) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractNativeEventFilter::nativeEventFilter"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*QByteArray, unsafe.Pointer, int) bool)(NewQByteArrayFromPointer(eventType), message, int(int32(result))))))
 	}
@@ -5525,7 +5399,6 @@ func (ptr *QAbstractNativeEventFilter) NativeEventFilter(eventType QByteArray_IT
 
 //export callbackQAbstractNativeEventFilter_DestroyQAbstractNativeEventFilter
 func callbackQAbstractNativeEventFilter_DestroyQAbstractNativeEventFilter(ptr unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractNativeEventFilter::~QAbstractNativeEventFilter"); signal != nil {
 		signal.(func())()
 	} else {
@@ -5611,7 +5484,6 @@ func NewQAbstractProxyModel(parent QObject_ITF) *QAbstractProxyModel {
 
 //export callbackQAbstractProxyModel_Buddy
 func callbackQAbstractProxyModel_Buddy(ptr unsafe.Pointer, index unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractProxyModel::buddy"); signal != nil {
 		return PointerFromQModelIndex(signal.(func(*QModelIndex) *QModelIndex)(NewQModelIndexFromPointer(index)))
 	}
@@ -5653,7 +5525,6 @@ func (ptr *QAbstractProxyModel) BuddyDefault(index QModelIndex_ITF) *QModelIndex
 
 //export callbackQAbstractProxyModel_CanDropMimeData
 func callbackQAbstractProxyModel_CanDropMimeData(ptr unsafe.Pointer, data unsafe.Pointer, action C.longlong, row C.int, column C.int, parent unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractProxyModel::canDropMimeData"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*QMimeData, Qt__DropAction, int, int, *QModelIndex) bool)(NewQMimeDataFromPointer(data), Qt__DropAction(action), int(int32(row)), int(int32(column)), NewQModelIndexFromPointer(parent)))))
 	}
@@ -5691,7 +5562,6 @@ func (ptr *QAbstractProxyModel) CanDropMimeDataDefault(data QMimeData_ITF, actio
 
 //export callbackQAbstractProxyModel_CanFetchMore
 func callbackQAbstractProxyModel_CanFetchMore(ptr unsafe.Pointer, parent unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractProxyModel::canFetchMore"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*QModelIndex) bool)(NewQModelIndexFromPointer(parent)))))
 	}
@@ -5729,7 +5599,6 @@ func (ptr *QAbstractProxyModel) CanFetchMoreDefault(parent QModelIndex_ITF) bool
 
 //export callbackQAbstractProxyModel_Data
 func callbackQAbstractProxyModel_Data(ptr unsafe.Pointer, proxyIndex unsafe.Pointer, role C.int) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractProxyModel::data"); signal != nil {
 		return PointerFromQVariant(signal.(func(*QModelIndex, int) *QVariant)(NewQModelIndexFromPointer(proxyIndex), int(int32(role))))
 	}
@@ -5771,7 +5640,6 @@ func (ptr *QAbstractProxyModel) DataDefault(proxyIndex QModelIndex_ITF, role int
 
 //export callbackQAbstractProxyModel_DropMimeData
 func callbackQAbstractProxyModel_DropMimeData(ptr unsafe.Pointer, data unsafe.Pointer, action C.longlong, row C.int, column C.int, parent unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractProxyModel::dropMimeData"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*QMimeData, Qt__DropAction, int, int, *QModelIndex) bool)(NewQMimeDataFromPointer(data), Qt__DropAction(action), int(int32(row)), int(int32(column)), NewQModelIndexFromPointer(parent)))))
 	}
@@ -5809,7 +5677,6 @@ func (ptr *QAbstractProxyModel) DropMimeDataDefault(data QMimeData_ITF, action Q
 
 //export callbackQAbstractProxyModel_FetchMore
 func callbackQAbstractProxyModel_FetchMore(ptr unsafe.Pointer, parent unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractProxyModel::fetchMore"); signal != nil {
 		signal.(func(*QModelIndex))(NewQModelIndexFromPointer(parent))
 	} else {
@@ -5845,7 +5712,6 @@ func (ptr *QAbstractProxyModel) FetchMoreDefault(parent QModelIndex_ITF) {
 
 //export callbackQAbstractProxyModel_Flags
 func callbackQAbstractProxyModel_Flags(ptr unsafe.Pointer, index unsafe.Pointer) C.longlong {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractProxyModel::flags"); signal != nil {
 		return C.longlong(signal.(func(*QModelIndex) Qt__ItemFlag)(NewQModelIndexFromPointer(index)))
 	}
@@ -5883,7 +5749,6 @@ func (ptr *QAbstractProxyModel) FlagsDefault(index QModelIndex_ITF) Qt__ItemFlag
 
 //export callbackQAbstractProxyModel_HasChildren
 func callbackQAbstractProxyModel_HasChildren(ptr unsafe.Pointer, parent unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractProxyModel::hasChildren"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*QModelIndex) bool)(NewQModelIndexFromPointer(parent)))))
 	}
@@ -5921,7 +5786,6 @@ func (ptr *QAbstractProxyModel) HasChildrenDefault(parent QModelIndex_ITF) bool 
 
 //export callbackQAbstractProxyModel_HeaderData
 func callbackQAbstractProxyModel_HeaderData(ptr unsafe.Pointer, section C.int, orientation C.longlong, role C.int) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractProxyModel::headerData"); signal != nil {
 		return PointerFromQVariant(signal.(func(int, Qt__Orientation, int) *QVariant)(int(int32(section)), Qt__Orientation(orientation), int(int32(role))))
 	}
@@ -5963,7 +5827,6 @@ func (ptr *QAbstractProxyModel) HeaderDataDefault(section int, orientation Qt__O
 
 //export callbackQAbstractProxyModel_MapFromSource
 func callbackQAbstractProxyModel_MapFromSource(ptr unsafe.Pointer, sourceIndex unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractProxyModel::mapFromSource"); signal != nil {
 		return PointerFromQModelIndex(signal.(func(*QModelIndex) *QModelIndex)(NewQModelIndexFromPointer(sourceIndex)))
 	}
@@ -5996,7 +5859,6 @@ func (ptr *QAbstractProxyModel) MapFromSource(sourceIndex QModelIndex_ITF) *QMod
 
 //export callbackQAbstractProxyModel_MapSelectionFromSource
 func callbackQAbstractProxyModel_MapSelectionFromSource(ptr unsafe.Pointer, sourceSelection unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractProxyModel::mapSelectionFromSource"); signal != nil {
 		return PointerFromQItemSelection(signal.(func(*QItemSelection) *QItemSelection)(NewQItemSelectionFromPointer(sourceSelection)))
 	}
@@ -6038,7 +5900,6 @@ func (ptr *QAbstractProxyModel) MapSelectionFromSourceDefault(sourceSelection QI
 
 //export callbackQAbstractProxyModel_MapSelectionToSource
 func callbackQAbstractProxyModel_MapSelectionToSource(ptr unsafe.Pointer, proxySelection unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractProxyModel::mapSelectionToSource"); signal != nil {
 		return PointerFromQItemSelection(signal.(func(*QItemSelection) *QItemSelection)(NewQItemSelectionFromPointer(proxySelection)))
 	}
@@ -6080,7 +5941,6 @@ func (ptr *QAbstractProxyModel) MapSelectionToSourceDefault(proxySelection QItem
 
 //export callbackQAbstractProxyModel_MapToSource
 func callbackQAbstractProxyModel_MapToSource(ptr unsafe.Pointer, proxyIndex unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractProxyModel::mapToSource"); signal != nil {
 		return PointerFromQModelIndex(signal.(func(*QModelIndex) *QModelIndex)(NewQModelIndexFromPointer(proxyIndex)))
 	}
@@ -6113,7 +5973,6 @@ func (ptr *QAbstractProxyModel) MapToSource(proxyIndex QModelIndex_ITF) *QModelI
 
 //export callbackQAbstractProxyModel_MimeTypes
 func callbackQAbstractProxyModel_MimeTypes(ptr unsafe.Pointer) *C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractProxyModel::mimeTypes"); signal != nil {
 		return C.CString(strings.Join(signal.(func() []string)(), "|"))
 	}
@@ -6186,7 +6045,6 @@ func (ptr *QAbstractProxyModel) ResetInternalDataDefault() {
 
 //export callbackQAbstractProxyModel_Revert
 func callbackQAbstractProxyModel_Revert(ptr unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractProxyModel::revert"); signal != nil {
 		signal.(func())()
 	} else {
@@ -6222,7 +6080,6 @@ func (ptr *QAbstractProxyModel) RevertDefault() {
 
 //export callbackQAbstractProxyModel_SetData
 func callbackQAbstractProxyModel_SetData(ptr unsafe.Pointer, index unsafe.Pointer, value unsafe.Pointer, role C.int) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractProxyModel::setData"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*QModelIndex, *QVariant, int) bool)(NewQModelIndexFromPointer(index), NewQVariantFromPointer(value), int(int32(role))))))
 	}
@@ -6260,7 +6117,6 @@ func (ptr *QAbstractProxyModel) SetDataDefault(index QModelIndex_ITF, value QVar
 
 //export callbackQAbstractProxyModel_SetHeaderData
 func callbackQAbstractProxyModel_SetHeaderData(ptr unsafe.Pointer, section C.int, orientation C.longlong, value unsafe.Pointer, role C.int) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractProxyModel::setHeaderData"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(int, Qt__Orientation, *QVariant, int) bool)(int(int32(section)), Qt__Orientation(orientation), NewQVariantFromPointer(value), int(int32(role))))))
 	}
@@ -6298,7 +6154,6 @@ func (ptr *QAbstractProxyModel) SetHeaderDataDefault(section int, orientation Qt
 
 //export callbackQAbstractProxyModel_SetSourceModel
 func callbackQAbstractProxyModel_SetSourceModel(ptr unsafe.Pointer, sourceModel unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractProxyModel::setSourceModel"); signal != nil {
 		signal.(func(*QAbstractItemModel))(NewQAbstractItemModelFromPointer(sourceModel))
 	} else {
@@ -6334,7 +6189,6 @@ func (ptr *QAbstractProxyModel) SetSourceModelDefault(sourceModel QAbstractItemM
 
 //export callbackQAbstractProxyModel_Sibling
 func callbackQAbstractProxyModel_Sibling(ptr unsafe.Pointer, row C.int, column C.int, idx unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractProxyModel::sibling"); signal != nil {
 		return PointerFromQModelIndex(signal.(func(int, int, *QModelIndex) *QModelIndex)(int(int32(row)), int(int32(column)), NewQModelIndexFromPointer(idx)))
 	}
@@ -6376,7 +6230,6 @@ func (ptr *QAbstractProxyModel) SiblingDefault(row int, column int, idx QModelIn
 
 //export callbackQAbstractProxyModel_Sort
 func callbackQAbstractProxyModel_Sort(ptr unsafe.Pointer, column C.int, order C.longlong) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractProxyModel::sort"); signal != nil {
 		signal.(func(int, Qt__SortOrder))(int(int32(column)), Qt__SortOrder(order))
 	} else {
@@ -6423,7 +6276,6 @@ func (ptr *QAbstractProxyModel) SourceModel() *QAbstractItemModel {
 
 //export callbackQAbstractProxyModel_SourceModelChanged
 func callbackQAbstractProxyModel_SourceModelChanged(ptr unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractProxyModel::sourceModelChanged"); signal != nil {
 		signal.(func())()
 	}
@@ -6446,7 +6298,6 @@ func (ptr *QAbstractProxyModel) DisconnectSourceModelChanged() {
 
 //export callbackQAbstractProxyModel_Span
 func callbackQAbstractProxyModel_Span(ptr unsafe.Pointer, index unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractProxyModel::span"); signal != nil {
 		return PointerFromQSize(signal.(func(*QModelIndex) *QSize)(NewQModelIndexFromPointer(index)))
 	}
@@ -6488,7 +6339,6 @@ func (ptr *QAbstractProxyModel) SpanDefault(index QModelIndex_ITF) *QSize {
 
 //export callbackQAbstractProxyModel_Submit
 func callbackQAbstractProxyModel_Submit(ptr unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractProxyModel::submit"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func() bool)())))
 	}
@@ -6526,7 +6376,6 @@ func (ptr *QAbstractProxyModel) SubmitDefault() bool {
 
 //export callbackQAbstractProxyModel_SupportedDragActions
 func callbackQAbstractProxyModel_SupportedDragActions(ptr unsafe.Pointer) C.longlong {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractProxyModel::supportedDragActions"); signal != nil {
 		return C.longlong(signal.(func() Qt__DropAction)())
 	}
@@ -6564,7 +6413,6 @@ func (ptr *QAbstractProxyModel) SupportedDragActionsDefault() Qt__DropAction {
 
 //export callbackQAbstractProxyModel_SupportedDropActions
 func callbackQAbstractProxyModel_SupportedDropActions(ptr unsafe.Pointer) C.longlong {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractProxyModel::supportedDropActions"); signal != nil {
 		return C.longlong(signal.(func() Qt__DropAction)())
 	}
@@ -6610,7 +6458,6 @@ func (ptr *QAbstractProxyModel) DestroyQAbstractProxyModel() {
 
 //export callbackQAbstractProxyModel_ColumnCount
 func callbackQAbstractProxyModel_ColumnCount(ptr unsafe.Pointer, parent unsafe.Pointer) C.int {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractProxyModel::columnCount"); signal != nil {
 		return C.int(int32(signal.(func(*QModelIndex) int)(NewQModelIndexFromPointer(parent))))
 	}
@@ -6641,7 +6488,6 @@ func (ptr *QAbstractProxyModel) ColumnCount(parent QModelIndex_ITF) int {
 
 //export callbackQAbstractProxyModel_Index
 func callbackQAbstractProxyModel_Index(ptr unsafe.Pointer, row C.int, column C.int, parent unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractProxyModel::index"); signal != nil {
 		return PointerFromQModelIndex(signal.(func(int, int, *QModelIndex) *QModelIndex)(int(int32(row)), int(int32(column)), NewQModelIndexFromPointer(parent)))
 	}
@@ -6674,7 +6520,6 @@ func (ptr *QAbstractProxyModel) Index(row int, column int, parent QModelIndex_IT
 
 //export callbackQAbstractProxyModel_InsertColumns
 func callbackQAbstractProxyModel_InsertColumns(ptr unsafe.Pointer, column C.int, count C.int, parent unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractProxyModel::insertColumns"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(int, int, *QModelIndex) bool)(int(int32(column)), int(int32(count)), NewQModelIndexFromPointer(parent)))))
 	}
@@ -6712,7 +6557,6 @@ func (ptr *QAbstractProxyModel) InsertColumnsDefault(column int, count int, pare
 
 //export callbackQAbstractProxyModel_InsertRows
 func callbackQAbstractProxyModel_InsertRows(ptr unsafe.Pointer, row C.int, count C.int, parent unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractProxyModel::insertRows"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(int, int, *QModelIndex) bool)(int(int32(row)), int(int32(count)), NewQModelIndexFromPointer(parent)))))
 	}
@@ -6750,7 +6594,6 @@ func (ptr *QAbstractProxyModel) InsertRowsDefault(row int, count int, parent QMo
 
 //export callbackQAbstractProxyModel_MoveColumns
 func callbackQAbstractProxyModel_MoveColumns(ptr unsafe.Pointer, sourceParent unsafe.Pointer, sourceColumn C.int, count C.int, destinationParent unsafe.Pointer, destinationChild C.int) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractProxyModel::moveColumns"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*QModelIndex, int, int, *QModelIndex, int) bool)(NewQModelIndexFromPointer(sourceParent), int(int32(sourceColumn)), int(int32(count)), NewQModelIndexFromPointer(destinationParent), int(int32(destinationChild))))))
 	}
@@ -6788,7 +6631,6 @@ func (ptr *QAbstractProxyModel) MoveColumnsDefault(sourceParent QModelIndex_ITF,
 
 //export callbackQAbstractProxyModel_MoveRows
 func callbackQAbstractProxyModel_MoveRows(ptr unsafe.Pointer, sourceParent unsafe.Pointer, sourceRow C.int, count C.int, destinationParent unsafe.Pointer, destinationChild C.int) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractProxyModel::moveRows"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*QModelIndex, int, int, *QModelIndex, int) bool)(NewQModelIndexFromPointer(sourceParent), int(int32(sourceRow)), int(int32(count)), NewQModelIndexFromPointer(destinationParent), int(int32(destinationChild))))))
 	}
@@ -6826,7 +6668,6 @@ func (ptr *QAbstractProxyModel) MoveRowsDefault(sourceParent QModelIndex_ITF, so
 
 //export callbackQAbstractProxyModel_Parent
 func callbackQAbstractProxyModel_Parent(ptr unsafe.Pointer, index unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractProxyModel::parent"); signal != nil {
 		return PointerFromQModelIndex(signal.(func(*QModelIndex) *QModelIndex)(NewQModelIndexFromPointer(index)))
 	}
@@ -6859,7 +6700,6 @@ func (ptr *QAbstractProxyModel) Parent(index QModelIndex_ITF) *QModelIndex {
 
 //export callbackQAbstractProxyModel_RemoveColumns
 func callbackQAbstractProxyModel_RemoveColumns(ptr unsafe.Pointer, column C.int, count C.int, parent unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractProxyModel::removeColumns"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(int, int, *QModelIndex) bool)(int(int32(column)), int(int32(count)), NewQModelIndexFromPointer(parent)))))
 	}
@@ -6897,7 +6737,6 @@ func (ptr *QAbstractProxyModel) RemoveColumnsDefault(column int, count int, pare
 
 //export callbackQAbstractProxyModel_RemoveRows
 func callbackQAbstractProxyModel_RemoveRows(ptr unsafe.Pointer, row C.int, count C.int, parent unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractProxyModel::removeRows"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(int, int, *QModelIndex) bool)(int(int32(row)), int(int32(count)), NewQModelIndexFromPointer(parent)))))
 	}
@@ -6935,7 +6774,6 @@ func (ptr *QAbstractProxyModel) RemoveRowsDefault(row int, count int, parent QMo
 
 //export callbackQAbstractProxyModel_RowCount
 func callbackQAbstractProxyModel_RowCount(ptr unsafe.Pointer, parent unsafe.Pointer) C.int {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractProxyModel::rowCount"); signal != nil {
 		return C.int(int32(signal.(func(*QModelIndex) int)(NewQModelIndexFromPointer(parent))))
 	}
@@ -6966,7 +6804,6 @@ func (ptr *QAbstractProxyModel) RowCount(parent QModelIndex_ITF) int {
 
 //export callbackQAbstractProxyModel_TimerEvent
 func callbackQAbstractProxyModel_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractProxyModel::timerEvent"); signal != nil {
 		signal.(func(*QTimerEvent))(NewQTimerEventFromPointer(event))
 	} else {
@@ -7002,7 +6839,6 @@ func (ptr *QAbstractProxyModel) TimerEventDefault(event QTimerEvent_ITF) {
 
 //export callbackQAbstractProxyModel_ChildEvent
 func callbackQAbstractProxyModel_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractProxyModel::childEvent"); signal != nil {
 		signal.(func(*QChildEvent))(NewQChildEventFromPointer(event))
 	} else {
@@ -7038,7 +6874,6 @@ func (ptr *QAbstractProxyModel) ChildEventDefault(event QChildEvent_ITF) {
 
 //export callbackQAbstractProxyModel_ConnectNotify
 func callbackQAbstractProxyModel_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractProxyModel::connectNotify"); signal != nil {
 		signal.(func(*QMetaMethod))(NewQMetaMethodFromPointer(sign))
 	} else {
@@ -7074,7 +6909,6 @@ func (ptr *QAbstractProxyModel) ConnectNotifyDefault(sign QMetaMethod_ITF) {
 
 //export callbackQAbstractProxyModel_CustomEvent
 func callbackQAbstractProxyModel_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractProxyModel::customEvent"); signal != nil {
 		signal.(func(*QEvent))(NewQEventFromPointer(event))
 	} else {
@@ -7149,7 +6983,6 @@ func (ptr *QAbstractProxyModel) DeleteLaterDefault() {
 
 //export callbackQAbstractProxyModel_DisconnectNotify
 func callbackQAbstractProxyModel_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractProxyModel::disconnectNotify"); signal != nil {
 		signal.(func(*QMetaMethod))(NewQMetaMethodFromPointer(sign))
 	} else {
@@ -7185,7 +7018,6 @@ func (ptr *QAbstractProxyModel) DisconnectNotifyDefault(sign QMetaMethod_ITF) {
 
 //export callbackQAbstractProxyModel_Event
 func callbackQAbstractProxyModel_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractProxyModel::event"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*QEvent) bool)(NewQEventFromPointer(e)))))
 	}
@@ -7223,7 +7055,6 @@ func (ptr *QAbstractProxyModel) EventDefault(e QEvent_ITF) bool {
 
 //export callbackQAbstractProxyModel_EventFilter
 func callbackQAbstractProxyModel_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractProxyModel::eventFilter"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*QObject, *QEvent) bool)(NewQObjectFromPointer(watched), NewQEventFromPointer(event)))))
 	}
@@ -7261,7 +7092,6 @@ func (ptr *QAbstractProxyModel) EventFilterDefault(watched QObject_ITF, event QE
 
 //export callbackQAbstractProxyModel_MetaObject
 func callbackQAbstractProxyModel_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractProxyModel::metaObject"); signal != nil {
 		return PointerFromQMetaObject(signal.(func() *QMetaObject)())
 	}
@@ -7352,7 +7182,6 @@ func (ptr *QAbstractState) Active() bool {
 
 //export callbackQAbstractState_ActiveChanged
 func callbackQAbstractState_ActiveChanged(ptr unsafe.Pointer, active C.char) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractState::activeChanged"); signal != nil {
 		signal.(func(bool))(int8(active) != 0)
 	}
@@ -7381,7 +7210,6 @@ func (ptr *QAbstractState) ActiveChanged(active bool) {
 
 //export callbackQAbstractState_Entered
 func callbackQAbstractState_Entered(ptr unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractState::entered"); signal != nil {
 		signal.(func())()
 	}
@@ -7404,7 +7232,6 @@ func (ptr *QAbstractState) DisconnectEntered() {
 
 //export callbackQAbstractState_Event
 func callbackQAbstractState_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractState::event"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*QEvent) bool)(NewQEventFromPointer(e)))))
 	}
@@ -7442,7 +7269,6 @@ func (ptr *QAbstractState) EventDefault(e QEvent_ITF) bool {
 
 //export callbackQAbstractState_Exited
 func callbackQAbstractState_Exited(ptr unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractState::exited"); signal != nil {
 		signal.(func())()
 	}
@@ -7476,7 +7302,6 @@ func (ptr *QAbstractState) Machine() *QStateMachine {
 
 //export callbackQAbstractState_OnEntry
 func callbackQAbstractState_OnEntry(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractState::onEntry"); signal != nil {
 		signal.(func(*QEvent))(NewQEventFromPointer(event))
 	}
@@ -7505,7 +7330,6 @@ func (ptr *QAbstractState) OnEntry(event QEvent_ITF) {
 
 //export callbackQAbstractState_OnExit
 func callbackQAbstractState_OnExit(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractState::onExit"); signal != nil {
 		signal.(func(*QEvent))(NewQEventFromPointer(event))
 	}
@@ -7553,7 +7377,6 @@ func (ptr *QAbstractState) DestroyQAbstractState() {
 
 //export callbackQAbstractState_TimerEvent
 func callbackQAbstractState_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractState::timerEvent"); signal != nil {
 		signal.(func(*QTimerEvent))(NewQTimerEventFromPointer(event))
 	} else {
@@ -7589,7 +7412,6 @@ func (ptr *QAbstractState) TimerEventDefault(event QTimerEvent_ITF) {
 
 //export callbackQAbstractState_ChildEvent
 func callbackQAbstractState_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractState::childEvent"); signal != nil {
 		signal.(func(*QChildEvent))(NewQChildEventFromPointer(event))
 	} else {
@@ -7625,7 +7447,6 @@ func (ptr *QAbstractState) ChildEventDefault(event QChildEvent_ITF) {
 
 //export callbackQAbstractState_ConnectNotify
 func callbackQAbstractState_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractState::connectNotify"); signal != nil {
 		signal.(func(*QMetaMethod))(NewQMetaMethodFromPointer(sign))
 	} else {
@@ -7661,7 +7482,6 @@ func (ptr *QAbstractState) ConnectNotifyDefault(sign QMetaMethod_ITF) {
 
 //export callbackQAbstractState_CustomEvent
 func callbackQAbstractState_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractState::customEvent"); signal != nil {
 		signal.(func(*QEvent))(NewQEventFromPointer(event))
 	} else {
@@ -7736,7 +7556,6 @@ func (ptr *QAbstractState) DeleteLaterDefault() {
 
 //export callbackQAbstractState_DisconnectNotify
 func callbackQAbstractState_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractState::disconnectNotify"); signal != nil {
 		signal.(func(*QMetaMethod))(NewQMetaMethodFromPointer(sign))
 	} else {
@@ -7772,7 +7591,6 @@ func (ptr *QAbstractState) DisconnectNotifyDefault(sign QMetaMethod_ITF) {
 
 //export callbackQAbstractState_EventFilter
 func callbackQAbstractState_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractState::eventFilter"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*QObject, *QEvent) bool)(NewQObjectFromPointer(watched), NewQEventFromPointer(event)))))
 	}
@@ -7810,7 +7628,6 @@ func (ptr *QAbstractState) EventFilterDefault(watched QObject_ITF, event QEvent_
 
 //export callbackQAbstractState_MetaObject
 func callbackQAbstractState_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractState::metaObject"); signal != nil {
 		return PointerFromQMetaObject(signal.(func() *QMetaObject)())
 	}
@@ -7887,7 +7704,6 @@ func NewQAbstractTableModelFromPointer(ptr unsafe.Pointer) *QAbstractTableModel 
 
 //export callbackQAbstractTableModel_Index
 func callbackQAbstractTableModel_Index(ptr unsafe.Pointer, row C.int, column C.int, parent unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractTableModel::index"); signal != nil {
 		return PointerFromQModelIndex(signal.(func(int, int, *QModelIndex) *QModelIndex)(int(int32(row)), int(int32(column)), NewQModelIndexFromPointer(parent)))
 	}
@@ -7937,7 +7753,6 @@ func NewQAbstractTableModel(parent QObject_ITF) *QAbstractTableModel {
 
 //export callbackQAbstractTableModel_DropMimeData
 func callbackQAbstractTableModel_DropMimeData(ptr unsafe.Pointer, data unsafe.Pointer, action C.longlong, row C.int, column C.int, parent unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractTableModel::dropMimeData"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*QMimeData, Qt__DropAction, int, int, *QModelIndex) bool)(NewQMimeDataFromPointer(data), Qt__DropAction(action), int(int32(row)), int(int32(column)), NewQModelIndexFromPointer(parent)))))
 	}
@@ -7975,7 +7790,6 @@ func (ptr *QAbstractTableModel) DropMimeDataDefault(data QMimeData_ITF, action Q
 
 //export callbackQAbstractTableModel_Flags
 func callbackQAbstractTableModel_Flags(ptr unsafe.Pointer, index unsafe.Pointer) C.longlong {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractTableModel::flags"); signal != nil {
 		return C.longlong(signal.(func(*QModelIndex) Qt__ItemFlag)(NewQModelIndexFromPointer(index)))
 	}
@@ -8013,7 +7827,6 @@ func (ptr *QAbstractTableModel) FlagsDefault(index QModelIndex_ITF) Qt__ItemFlag
 
 //export callbackQAbstractTableModel_Sibling
 func callbackQAbstractTableModel_Sibling(ptr unsafe.Pointer, row C.int, column C.int, idx unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractTableModel::sibling"); signal != nil {
 		return PointerFromQModelIndex(signal.(func(int, int, *QModelIndex) *QModelIndex)(int(int32(row)), int(int32(column)), NewQModelIndexFromPointer(idx)))
 	}
@@ -8063,7 +7876,6 @@ func (ptr *QAbstractTableModel) DestroyQAbstractTableModel() {
 
 //export callbackQAbstractTableModel_Buddy
 func callbackQAbstractTableModel_Buddy(ptr unsafe.Pointer, index unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractTableModel::buddy"); signal != nil {
 		return PointerFromQModelIndex(signal.(func(*QModelIndex) *QModelIndex)(NewQModelIndexFromPointer(index)))
 	}
@@ -8105,7 +7917,6 @@ func (ptr *QAbstractTableModel) BuddyDefault(index QModelIndex_ITF) *QModelIndex
 
 //export callbackQAbstractTableModel_CanDropMimeData
 func callbackQAbstractTableModel_CanDropMimeData(ptr unsafe.Pointer, data unsafe.Pointer, action C.longlong, row C.int, column C.int, parent unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractTableModel::canDropMimeData"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*QMimeData, Qt__DropAction, int, int, *QModelIndex) bool)(NewQMimeDataFromPointer(data), Qt__DropAction(action), int(int32(row)), int(int32(column)), NewQModelIndexFromPointer(parent)))))
 	}
@@ -8143,7 +7954,6 @@ func (ptr *QAbstractTableModel) CanDropMimeDataDefault(data QMimeData_ITF, actio
 
 //export callbackQAbstractTableModel_CanFetchMore
 func callbackQAbstractTableModel_CanFetchMore(ptr unsafe.Pointer, parent unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractTableModel::canFetchMore"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*QModelIndex) bool)(NewQModelIndexFromPointer(parent)))))
 	}
@@ -8181,7 +7991,6 @@ func (ptr *QAbstractTableModel) CanFetchMoreDefault(parent QModelIndex_ITF) bool
 
 //export callbackQAbstractTableModel_ColumnCount
 func callbackQAbstractTableModel_ColumnCount(ptr unsafe.Pointer, parent unsafe.Pointer) C.int {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractTableModel::columnCount"); signal != nil {
 		return C.int(int32(signal.(func(*QModelIndex) int)(NewQModelIndexFromPointer(parent))))
 	}
@@ -8212,7 +8021,6 @@ func (ptr *QAbstractTableModel) ColumnCount(parent QModelIndex_ITF) int {
 
 //export callbackQAbstractTableModel_Data
 func callbackQAbstractTableModel_Data(ptr unsafe.Pointer, index unsafe.Pointer, role C.int) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractTableModel::data"); signal != nil {
 		return PointerFromQVariant(signal.(func(*QModelIndex, int) *QVariant)(NewQModelIndexFromPointer(index), int(int32(role))))
 	}
@@ -8245,7 +8053,6 @@ func (ptr *QAbstractTableModel) Data(index QModelIndex_ITF, role int) *QVariant 
 
 //export callbackQAbstractTableModel_FetchMore
 func callbackQAbstractTableModel_FetchMore(ptr unsafe.Pointer, parent unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractTableModel::fetchMore"); signal != nil {
 		signal.(func(*QModelIndex))(NewQModelIndexFromPointer(parent))
 	} else {
@@ -8281,7 +8088,6 @@ func (ptr *QAbstractTableModel) FetchMoreDefault(parent QModelIndex_ITF) {
 
 //export callbackQAbstractTableModel_HasChildren
 func callbackQAbstractTableModel_HasChildren(ptr unsafe.Pointer, parent unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractTableModel::hasChildren"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*QModelIndex) bool)(NewQModelIndexFromPointer(parent)))))
 	}
@@ -8319,7 +8125,6 @@ func (ptr *QAbstractTableModel) HasChildrenDefault(parent QModelIndex_ITF) bool 
 
 //export callbackQAbstractTableModel_HeaderData
 func callbackQAbstractTableModel_HeaderData(ptr unsafe.Pointer, section C.int, orientation C.longlong, role C.int) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractTableModel::headerData"); signal != nil {
 		return PointerFromQVariant(signal.(func(int, Qt__Orientation, int) *QVariant)(int(int32(section)), Qt__Orientation(orientation), int(int32(role))))
 	}
@@ -8361,7 +8166,6 @@ func (ptr *QAbstractTableModel) HeaderDataDefault(section int, orientation Qt__O
 
 //export callbackQAbstractTableModel_InsertColumns
 func callbackQAbstractTableModel_InsertColumns(ptr unsafe.Pointer, column C.int, count C.int, parent unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractTableModel::insertColumns"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(int, int, *QModelIndex) bool)(int(int32(column)), int(int32(count)), NewQModelIndexFromPointer(parent)))))
 	}
@@ -8399,7 +8203,6 @@ func (ptr *QAbstractTableModel) InsertColumnsDefault(column int, count int, pare
 
 //export callbackQAbstractTableModel_InsertRows
 func callbackQAbstractTableModel_InsertRows(ptr unsafe.Pointer, row C.int, count C.int, parent unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractTableModel::insertRows"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(int, int, *QModelIndex) bool)(int(int32(row)), int(int32(count)), NewQModelIndexFromPointer(parent)))))
 	}
@@ -8437,7 +8240,6 @@ func (ptr *QAbstractTableModel) InsertRowsDefault(row int, count int, parent QMo
 
 //export callbackQAbstractTableModel_MimeTypes
 func callbackQAbstractTableModel_MimeTypes(ptr unsafe.Pointer) *C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractTableModel::mimeTypes"); signal != nil {
 		return C.CString(strings.Join(signal.(func() []string)(), "|"))
 	}
@@ -8475,7 +8277,6 @@ func (ptr *QAbstractTableModel) MimeTypesDefault() []string {
 
 //export callbackQAbstractTableModel_MoveColumns
 func callbackQAbstractTableModel_MoveColumns(ptr unsafe.Pointer, sourceParent unsafe.Pointer, sourceColumn C.int, count C.int, destinationParent unsafe.Pointer, destinationChild C.int) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractTableModel::moveColumns"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*QModelIndex, int, int, *QModelIndex, int) bool)(NewQModelIndexFromPointer(sourceParent), int(int32(sourceColumn)), int(int32(count)), NewQModelIndexFromPointer(destinationParent), int(int32(destinationChild))))))
 	}
@@ -8513,7 +8314,6 @@ func (ptr *QAbstractTableModel) MoveColumnsDefault(sourceParent QModelIndex_ITF,
 
 //export callbackQAbstractTableModel_MoveRows
 func callbackQAbstractTableModel_MoveRows(ptr unsafe.Pointer, sourceParent unsafe.Pointer, sourceRow C.int, count C.int, destinationParent unsafe.Pointer, destinationChild C.int) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractTableModel::moveRows"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*QModelIndex, int, int, *QModelIndex, int) bool)(NewQModelIndexFromPointer(sourceParent), int(int32(sourceRow)), int(int32(count)), NewQModelIndexFromPointer(destinationParent), int(int32(destinationChild))))))
 	}
@@ -8551,7 +8351,6 @@ func (ptr *QAbstractTableModel) MoveRowsDefault(sourceParent QModelIndex_ITF, so
 
 //export callbackQAbstractTableModel_Parent
 func callbackQAbstractTableModel_Parent(ptr unsafe.Pointer, index unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractTableModel::parent"); signal != nil {
 		return PointerFromQModelIndex(signal.(func(*QModelIndex) *QModelIndex)(NewQModelIndexFromPointer(index)))
 	}
@@ -8584,7 +8383,6 @@ func (ptr *QAbstractTableModel) Parent(index QModelIndex_ITF) *QModelIndex {
 
 //export callbackQAbstractTableModel_RemoveColumns
 func callbackQAbstractTableModel_RemoveColumns(ptr unsafe.Pointer, column C.int, count C.int, parent unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractTableModel::removeColumns"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(int, int, *QModelIndex) bool)(int(int32(column)), int(int32(count)), NewQModelIndexFromPointer(parent)))))
 	}
@@ -8622,7 +8420,6 @@ func (ptr *QAbstractTableModel) RemoveColumnsDefault(column int, count int, pare
 
 //export callbackQAbstractTableModel_RemoveRows
 func callbackQAbstractTableModel_RemoveRows(ptr unsafe.Pointer, row C.int, count C.int, parent unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractTableModel::removeRows"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(int, int, *QModelIndex) bool)(int(int32(row)), int(int32(count)), NewQModelIndexFromPointer(parent)))))
 	}
@@ -8730,7 +8527,6 @@ func (ptr *QAbstractTableModel) RevertDefault() {
 
 //export callbackQAbstractTableModel_RowCount
 func callbackQAbstractTableModel_RowCount(ptr unsafe.Pointer, parent unsafe.Pointer) C.int {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractTableModel::rowCount"); signal != nil {
 		return C.int(int32(signal.(func(*QModelIndex) int)(NewQModelIndexFromPointer(parent))))
 	}
@@ -8761,7 +8557,6 @@ func (ptr *QAbstractTableModel) RowCount(parent QModelIndex_ITF) int {
 
 //export callbackQAbstractTableModel_SetData
 func callbackQAbstractTableModel_SetData(ptr unsafe.Pointer, index unsafe.Pointer, value unsafe.Pointer, role C.int) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractTableModel::setData"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*QModelIndex, *QVariant, int) bool)(NewQModelIndexFromPointer(index), NewQVariantFromPointer(value), int(int32(role))))))
 	}
@@ -8799,7 +8594,6 @@ func (ptr *QAbstractTableModel) SetDataDefault(index QModelIndex_ITF, value QVar
 
 //export callbackQAbstractTableModel_SetHeaderData
 func callbackQAbstractTableModel_SetHeaderData(ptr unsafe.Pointer, section C.int, orientation C.longlong, value unsafe.Pointer, role C.int) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractTableModel::setHeaderData"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(int, Qt__Orientation, *QVariant, int) bool)(int(int32(section)), Qt__Orientation(orientation), NewQVariantFromPointer(value), int(int32(role))))))
 	}
@@ -8837,7 +8631,6 @@ func (ptr *QAbstractTableModel) SetHeaderDataDefault(section int, orientation Qt
 
 //export callbackQAbstractTableModel_Sort
 func callbackQAbstractTableModel_Sort(ptr unsafe.Pointer, column C.int, order C.longlong) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractTableModel::sort"); signal != nil {
 		signal.(func(int, Qt__SortOrder))(int(int32(column)), Qt__SortOrder(order))
 	} else {
@@ -8873,7 +8666,6 @@ func (ptr *QAbstractTableModel) SortDefault(column int, order Qt__SortOrder) {
 
 //export callbackQAbstractTableModel_Span
 func callbackQAbstractTableModel_Span(ptr unsafe.Pointer, index unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractTableModel::span"); signal != nil {
 		return PointerFromQSize(signal.(func(*QModelIndex) *QSize)(NewQModelIndexFromPointer(index)))
 	}
@@ -8952,7 +8744,6 @@ func (ptr *QAbstractTableModel) SubmitDefault() bool {
 
 //export callbackQAbstractTableModel_SupportedDragActions
 func callbackQAbstractTableModel_SupportedDragActions(ptr unsafe.Pointer) C.longlong {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractTableModel::supportedDragActions"); signal != nil {
 		return C.longlong(signal.(func() Qt__DropAction)())
 	}
@@ -8990,7 +8781,6 @@ func (ptr *QAbstractTableModel) SupportedDragActionsDefault() Qt__DropAction {
 
 //export callbackQAbstractTableModel_SupportedDropActions
 func callbackQAbstractTableModel_SupportedDropActions(ptr unsafe.Pointer) C.longlong {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractTableModel::supportedDropActions"); signal != nil {
 		return C.longlong(signal.(func() Qt__DropAction)())
 	}
@@ -9028,7 +8818,6 @@ func (ptr *QAbstractTableModel) SupportedDropActionsDefault() Qt__DropAction {
 
 //export callbackQAbstractTableModel_TimerEvent
 func callbackQAbstractTableModel_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractTableModel::timerEvent"); signal != nil {
 		signal.(func(*QTimerEvent))(NewQTimerEventFromPointer(event))
 	} else {
@@ -9064,7 +8853,6 @@ func (ptr *QAbstractTableModel) TimerEventDefault(event QTimerEvent_ITF) {
 
 //export callbackQAbstractTableModel_ChildEvent
 func callbackQAbstractTableModel_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractTableModel::childEvent"); signal != nil {
 		signal.(func(*QChildEvent))(NewQChildEventFromPointer(event))
 	} else {
@@ -9100,7 +8888,6 @@ func (ptr *QAbstractTableModel) ChildEventDefault(event QChildEvent_ITF) {
 
 //export callbackQAbstractTableModel_ConnectNotify
 func callbackQAbstractTableModel_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractTableModel::connectNotify"); signal != nil {
 		signal.(func(*QMetaMethod))(NewQMetaMethodFromPointer(sign))
 	} else {
@@ -9136,7 +8923,6 @@ func (ptr *QAbstractTableModel) ConnectNotifyDefault(sign QMetaMethod_ITF) {
 
 //export callbackQAbstractTableModel_CustomEvent
 func callbackQAbstractTableModel_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractTableModel::customEvent"); signal != nil {
 		signal.(func(*QEvent))(NewQEventFromPointer(event))
 	} else {
@@ -9211,7 +8997,6 @@ func (ptr *QAbstractTableModel) DeleteLaterDefault() {
 
 //export callbackQAbstractTableModel_DisconnectNotify
 func callbackQAbstractTableModel_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractTableModel::disconnectNotify"); signal != nil {
 		signal.(func(*QMetaMethod))(NewQMetaMethodFromPointer(sign))
 	} else {
@@ -9247,7 +9032,6 @@ func (ptr *QAbstractTableModel) DisconnectNotifyDefault(sign QMetaMethod_ITF) {
 
 //export callbackQAbstractTableModel_Event
 func callbackQAbstractTableModel_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractTableModel::event"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*QEvent) bool)(NewQEventFromPointer(e)))))
 	}
@@ -9285,7 +9069,6 @@ func (ptr *QAbstractTableModel) EventDefault(e QEvent_ITF) bool {
 
 //export callbackQAbstractTableModel_EventFilter
 func callbackQAbstractTableModel_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractTableModel::eventFilter"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*QObject, *QEvent) bool)(NewQObjectFromPointer(watched), NewQEventFromPointer(event)))))
 	}
@@ -9323,7 +9106,6 @@ func (ptr *QAbstractTableModel) EventFilterDefault(watched QObject_ITF, event QE
 
 //export callbackQAbstractTableModel_MetaObject
 func callbackQAbstractTableModel_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractTableModel::metaObject"); signal != nil {
 		return PointerFromQMetaObject(signal.(func() *QMetaObject)())
 	}
@@ -9436,7 +9218,6 @@ func (ptr *QAbstractTransition) Animations() []*QAbstractAnimation {
 
 //export callbackQAbstractTransition_Event
 func callbackQAbstractTransition_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractTransition::event"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*QEvent) bool)(NewQEventFromPointer(e)))))
 	}
@@ -9474,7 +9255,6 @@ func (ptr *QAbstractTransition) EventDefault(e QEvent_ITF) bool {
 
 //export callbackQAbstractTransition_EventTest
 func callbackQAbstractTransition_EventTest(ptr unsafe.Pointer, event unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractTransition::eventTest"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*QEvent) bool)(NewQEventFromPointer(event)))))
 	}
@@ -9516,7 +9296,6 @@ func (ptr *QAbstractTransition) Machine() *QStateMachine {
 
 //export callbackQAbstractTransition_OnTransition
 func callbackQAbstractTransition_OnTransition(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractTransition::onTransition"); signal != nil {
 		signal.(func(*QEvent))(NewQEventFromPointer(event))
 	}
@@ -9585,7 +9364,6 @@ func (ptr *QAbstractTransition) TargetState() *QAbstractState {
 
 //export callbackQAbstractTransition_TargetStateChanged
 func callbackQAbstractTransition_TargetStateChanged(ptr unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractTransition::targetStateChanged"); signal != nil {
 		signal.(func())()
 	}
@@ -9621,7 +9399,6 @@ func (ptr *QAbstractTransition) TargetStates() []*QAbstractState {
 
 //export callbackQAbstractTransition_TargetStatesChanged
 func callbackQAbstractTransition_TargetStatesChanged(ptr unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractTransition::targetStatesChanged"); signal != nil {
 		signal.(func())()
 	}
@@ -9651,7 +9428,6 @@ func (ptr *QAbstractTransition) TransitionType() QAbstractTransition__Transition
 
 //export callbackQAbstractTransition_Triggered
 func callbackQAbstractTransition_Triggered(ptr unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractTransition::triggered"); signal != nil {
 		signal.(func())()
 	}
@@ -9674,7 +9450,6 @@ func (ptr *QAbstractTransition) DisconnectTriggered() {
 
 //export callbackQAbstractTransition_DestroyQAbstractTransition
 func callbackQAbstractTransition_DestroyQAbstractTransition(ptr unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractTransition::~QAbstractTransition"); signal != nil {
 		signal.(func())()
 	} else {
@@ -9736,7 +9511,6 @@ func (ptr *QAbstractTransition) targetStates_atList(i int) *QAbstractState {
 
 //export callbackQAbstractTransition_TimerEvent
 func callbackQAbstractTransition_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractTransition::timerEvent"); signal != nil {
 		signal.(func(*QTimerEvent))(NewQTimerEventFromPointer(event))
 	} else {
@@ -9772,7 +9546,6 @@ func (ptr *QAbstractTransition) TimerEventDefault(event QTimerEvent_ITF) {
 
 //export callbackQAbstractTransition_ChildEvent
 func callbackQAbstractTransition_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractTransition::childEvent"); signal != nil {
 		signal.(func(*QChildEvent))(NewQChildEventFromPointer(event))
 	} else {
@@ -9808,7 +9581,6 @@ func (ptr *QAbstractTransition) ChildEventDefault(event QChildEvent_ITF) {
 
 //export callbackQAbstractTransition_ConnectNotify
 func callbackQAbstractTransition_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractTransition::connectNotify"); signal != nil {
 		signal.(func(*QMetaMethod))(NewQMetaMethodFromPointer(sign))
 	} else {
@@ -9844,7 +9616,6 @@ func (ptr *QAbstractTransition) ConnectNotifyDefault(sign QMetaMethod_ITF) {
 
 //export callbackQAbstractTransition_CustomEvent
 func callbackQAbstractTransition_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractTransition::customEvent"); signal != nil {
 		signal.(func(*QEvent))(NewQEventFromPointer(event))
 	} else {
@@ -9919,7 +9690,6 @@ func (ptr *QAbstractTransition) DeleteLaterDefault() {
 
 //export callbackQAbstractTransition_DisconnectNotify
 func callbackQAbstractTransition_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractTransition::disconnectNotify"); signal != nil {
 		signal.(func(*QMetaMethod))(NewQMetaMethodFromPointer(sign))
 	} else {
@@ -9955,7 +9725,6 @@ func (ptr *QAbstractTransition) DisconnectNotifyDefault(sign QMetaMethod_ITF) {
 
 //export callbackQAbstractTransition_EventFilter
 func callbackQAbstractTransition_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractTransition::eventFilter"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*QObject, *QEvent) bool)(NewQObjectFromPointer(watched), NewQEventFromPointer(event)))))
 	}
@@ -9993,7 +9762,6 @@ func (ptr *QAbstractTransition) EventFilterDefault(watched QObject_ITF, event QE
 
 //export callbackQAbstractTransition_MetaObject
 func callbackQAbstractTransition_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractTransition::metaObject"); signal != nil {
 		return PointerFromQMetaObject(signal.(func() *QMetaObject)())
 	}
@@ -10107,7 +9875,6 @@ func (ptr *QAnimationGroup) Clear() {
 
 //export callbackQAnimationGroup_Event
 func callbackQAnimationGroup_Event(ptr unsafe.Pointer, event unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAnimationGroup::event"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*QEvent) bool)(NewQEventFromPointer(event)))))
 	}
@@ -10218,7 +9985,6 @@ func (ptr *QAnimationGroup) SetCurrentTimeDefault(msecs int) {
 
 //export callbackQAnimationGroup_Duration
 func callbackQAnimationGroup_Duration(ptr unsafe.Pointer) C.int {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAnimationGroup::duration"); signal != nil {
 		return C.int(int32(signal.(func() int)()))
 	}
@@ -10424,7 +10190,6 @@ func (ptr *QAnimationGroup) StopDefault() {
 
 //export callbackQAnimationGroup_UpdateCurrentTime
 func callbackQAnimationGroup_UpdateCurrentTime(ptr unsafe.Pointer, currentTime C.int) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAnimationGroup::updateCurrentTime"); signal != nil {
 		signal.(func(int))(int(int32(currentTime)))
 	}
@@ -10453,7 +10218,6 @@ func (ptr *QAnimationGroup) UpdateCurrentTime(currentTime int) {
 
 //export callbackQAnimationGroup_UpdateDirection
 func callbackQAnimationGroup_UpdateDirection(ptr unsafe.Pointer, direction C.longlong) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAnimationGroup::updateDirection"); signal != nil {
 		signal.(func(QAbstractAnimation__Direction))(QAbstractAnimation__Direction(direction))
 	} else {
@@ -10489,7 +10253,6 @@ func (ptr *QAnimationGroup) UpdateDirectionDefault(direction QAbstractAnimation_
 
 //export callbackQAnimationGroup_UpdateState
 func callbackQAnimationGroup_UpdateState(ptr unsafe.Pointer, newState C.longlong, oldState C.longlong) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAnimationGroup::updateState"); signal != nil {
 		signal.(func(QAbstractAnimation__State, QAbstractAnimation__State))(QAbstractAnimation__State(newState), QAbstractAnimation__State(oldState))
 	} else {
@@ -10525,7 +10288,6 @@ func (ptr *QAnimationGroup) UpdateStateDefault(newState QAbstractAnimation__Stat
 
 //export callbackQAnimationGroup_TimerEvent
 func callbackQAnimationGroup_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAnimationGroup::timerEvent"); signal != nil {
 		signal.(func(*QTimerEvent))(NewQTimerEventFromPointer(event))
 	} else {
@@ -10561,7 +10323,6 @@ func (ptr *QAnimationGroup) TimerEventDefault(event QTimerEvent_ITF) {
 
 //export callbackQAnimationGroup_ChildEvent
 func callbackQAnimationGroup_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAnimationGroup::childEvent"); signal != nil {
 		signal.(func(*QChildEvent))(NewQChildEventFromPointer(event))
 	} else {
@@ -10597,7 +10358,6 @@ func (ptr *QAnimationGroup) ChildEventDefault(event QChildEvent_ITF) {
 
 //export callbackQAnimationGroup_ConnectNotify
 func callbackQAnimationGroup_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAnimationGroup::connectNotify"); signal != nil {
 		signal.(func(*QMetaMethod))(NewQMetaMethodFromPointer(sign))
 	} else {
@@ -10633,7 +10393,6 @@ func (ptr *QAnimationGroup) ConnectNotifyDefault(sign QMetaMethod_ITF) {
 
 //export callbackQAnimationGroup_CustomEvent
 func callbackQAnimationGroup_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAnimationGroup::customEvent"); signal != nil {
 		signal.(func(*QEvent))(NewQEventFromPointer(event))
 	} else {
@@ -10708,7 +10467,6 @@ func (ptr *QAnimationGroup) DeleteLaterDefault() {
 
 //export callbackQAnimationGroup_DisconnectNotify
 func callbackQAnimationGroup_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAnimationGroup::disconnectNotify"); signal != nil {
 		signal.(func(*QMetaMethod))(NewQMetaMethodFromPointer(sign))
 	} else {
@@ -10744,7 +10502,6 @@ func (ptr *QAnimationGroup) DisconnectNotifyDefault(sign QMetaMethod_ITF) {
 
 //export callbackQAnimationGroup_EventFilter
 func callbackQAnimationGroup_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAnimationGroup::eventFilter"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*QObject, *QEvent) bool)(NewQObjectFromPointer(watched), NewQEventFromPointer(event)))))
 	}
@@ -10782,7 +10539,6 @@ func (ptr *QAnimationGroup) EventFilterDefault(watched QObject_ITF, event QEvent
 
 //export callbackQAnimationGroup_MetaObject
 func callbackQAnimationGroup_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAnimationGroup::metaObject"); signal != nil {
 		return PointerFromQMetaObject(signal.(func() *QMetaObject)())
 	}
@@ -11333,7 +11089,6 @@ func NewQBuffer(parent QObject_ITF) *QBuffer {
 
 //export callbackQBuffer_AtEnd
 func callbackQBuffer_AtEnd(ptr unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QBuffer::atEnd"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func() bool)())))
 	}
@@ -11387,7 +11142,6 @@ func (ptr *QBuffer) Buffer2() *QByteArray {
 
 //export callbackQBuffer_CanReadLine
 func callbackQBuffer_CanReadLine(ptr unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QBuffer::canReadLine"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func() bool)())))
 	}
@@ -11425,7 +11179,6 @@ func (ptr *QBuffer) CanReadLineDefault() bool {
 
 //export callbackQBuffer_Close
 func callbackQBuffer_Close(ptr unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QBuffer::close"); signal != nil {
 		signal.(func())()
 	} else {
@@ -11468,7 +11221,6 @@ func (ptr *QBuffer) Data() *QByteArray {
 
 //export callbackQBuffer_Open
 func callbackQBuffer_Open(ptr unsafe.Pointer, flags C.longlong) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QBuffer::open"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(QIODevice__OpenModeFlag) bool)(QIODevice__OpenModeFlag(flags)))))
 	}
@@ -11506,7 +11258,6 @@ func (ptr *QBuffer) OpenDefault(flags QIODevice__OpenModeFlag) bool {
 
 //export callbackQBuffer_Pos
 func callbackQBuffer_Pos(ptr unsafe.Pointer) C.longlong {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QBuffer::pos"); signal != nil {
 		return C.longlong(signal.(func() int64)())
 	}
@@ -11544,7 +11295,6 @@ func (ptr *QBuffer) PosDefault() int64 {
 
 //export callbackQBuffer_ReadData
 func callbackQBuffer_ReadData(ptr unsafe.Pointer, data C.struct_QtCore_PackedString, len C.longlong) C.longlong {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QBuffer::readData"); signal != nil {
 		var retS = cGoUnpackString(data)
 		var ret = C.longlong(signal.(func(*string, int64) int64)(&retS, int64(len)))
@@ -11603,7 +11353,6 @@ func (ptr *QBuffer) ReadDataDefault(data *string, len int64) int64 {
 
 //export callbackQBuffer_Seek
 func callbackQBuffer_Seek(ptr unsafe.Pointer, pos C.longlong) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QBuffer::seek"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(int64) bool)(int64(pos)))))
 	}
@@ -11661,7 +11410,6 @@ func (ptr *QBuffer) SetData2(data string, size int) {
 
 //export callbackQBuffer_Size
 func callbackQBuffer_Size(ptr unsafe.Pointer) C.longlong {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QBuffer::size"); signal != nil {
 		return C.longlong(signal.(func() int64)())
 	}
@@ -11699,7 +11447,6 @@ func (ptr *QBuffer) SizeDefault() int64 {
 
 //export callbackQBuffer_WriteData
 func callbackQBuffer_WriteData(ptr unsafe.Pointer, data C.struct_QtCore_PackedString, len C.longlong) C.longlong {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QBuffer::writeData"); signal != nil {
 		return C.longlong(signal.(func(string, int64) int64)(cGoUnpackString(data), int64(len)))
 	}
@@ -11749,7 +11496,6 @@ func (ptr *QBuffer) DestroyQBuffer() {
 
 //export callbackQBuffer_BytesAvailable
 func callbackQBuffer_BytesAvailable(ptr unsafe.Pointer) C.longlong {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QBuffer::bytesAvailable"); signal != nil {
 		return C.longlong(signal.(func() int64)())
 	}
@@ -11787,7 +11533,6 @@ func (ptr *QBuffer) BytesAvailableDefault() int64 {
 
 //export callbackQBuffer_BytesToWrite
 func callbackQBuffer_BytesToWrite(ptr unsafe.Pointer) C.longlong {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QBuffer::bytesToWrite"); signal != nil {
 		return C.longlong(signal.(func() int64)())
 	}
@@ -11825,7 +11570,6 @@ func (ptr *QBuffer) BytesToWriteDefault() int64 {
 
 //export callbackQBuffer_IsSequential
 func callbackQBuffer_IsSequential(ptr unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QBuffer::isSequential"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func() bool)())))
 	}
@@ -11863,7 +11607,6 @@ func (ptr *QBuffer) IsSequentialDefault() bool {
 
 //export callbackQBuffer_ReadLineData
 func callbackQBuffer_ReadLineData(ptr unsafe.Pointer, data C.struct_QtCore_PackedString, maxSize C.longlong) C.longlong {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QBuffer::readLineData"); signal != nil {
 		return C.longlong(signal.(func(string, int64) int64)(cGoUnpackString(data), int64(maxSize)))
 	}
@@ -11905,7 +11648,6 @@ func (ptr *QBuffer) ReadLineDataDefault(data string, maxSize int64) int64 {
 
 //export callbackQBuffer_Reset
 func callbackQBuffer_Reset(ptr unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QBuffer::reset"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func() bool)())))
 	}
@@ -11943,7 +11685,6 @@ func (ptr *QBuffer) ResetDefault() bool {
 
 //export callbackQBuffer_WaitForBytesWritten
 func callbackQBuffer_WaitForBytesWritten(ptr unsafe.Pointer, msecs C.int) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QBuffer::waitForBytesWritten"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(int) bool)(int(int32(msecs))))))
 	}
@@ -11981,7 +11722,6 @@ func (ptr *QBuffer) WaitForBytesWrittenDefault(msecs int) bool {
 
 //export callbackQBuffer_WaitForReadyRead
 func callbackQBuffer_WaitForReadyRead(ptr unsafe.Pointer, msecs C.int) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QBuffer::waitForReadyRead"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(int) bool)(int(int32(msecs))))))
 	}
@@ -12019,7 +11759,6 @@ func (ptr *QBuffer) WaitForReadyReadDefault(msecs int) bool {
 
 //export callbackQBuffer_TimerEvent
 func callbackQBuffer_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QBuffer::timerEvent"); signal != nil {
 		signal.(func(*QTimerEvent))(NewQTimerEventFromPointer(event))
 	} else {
@@ -12055,7 +11794,6 @@ func (ptr *QBuffer) TimerEventDefault(event QTimerEvent_ITF) {
 
 //export callbackQBuffer_ChildEvent
 func callbackQBuffer_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QBuffer::childEvent"); signal != nil {
 		signal.(func(*QChildEvent))(NewQChildEventFromPointer(event))
 	} else {
@@ -12091,7 +11829,6 @@ func (ptr *QBuffer) ChildEventDefault(event QChildEvent_ITF) {
 
 //export callbackQBuffer_ConnectNotify
 func callbackQBuffer_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QBuffer::connectNotify"); signal != nil {
 		signal.(func(*QMetaMethod))(NewQMetaMethodFromPointer(sign))
 	} else {
@@ -12127,7 +11864,6 @@ func (ptr *QBuffer) ConnectNotifyDefault(sign QMetaMethod_ITF) {
 
 //export callbackQBuffer_CustomEvent
 func callbackQBuffer_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QBuffer::customEvent"); signal != nil {
 		signal.(func(*QEvent))(NewQEventFromPointer(event))
 	} else {
@@ -12202,7 +11938,6 @@ func (ptr *QBuffer) DeleteLaterDefault() {
 
 //export callbackQBuffer_DisconnectNotify
 func callbackQBuffer_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QBuffer::disconnectNotify"); signal != nil {
 		signal.(func(*QMetaMethod))(NewQMetaMethodFromPointer(sign))
 	} else {
@@ -12238,7 +11973,6 @@ func (ptr *QBuffer) DisconnectNotifyDefault(sign QMetaMethod_ITF) {
 
 //export callbackQBuffer_Event
 func callbackQBuffer_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QBuffer::event"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*QEvent) bool)(NewQEventFromPointer(e)))))
 	}
@@ -12276,7 +12010,6 @@ func (ptr *QBuffer) EventDefault(e QEvent_ITF) bool {
 
 //export callbackQBuffer_EventFilter
 func callbackQBuffer_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QBuffer::eventFilter"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*QObject, *QEvent) bool)(NewQObjectFromPointer(watched), NewQEventFromPointer(event)))))
 	}
@@ -12314,7 +12047,6 @@ func (ptr *QBuffer) EventFilterDefault(watched QObject_ITF, event QEvent_ITF) bo
 
 //export callbackQBuffer_MetaObject
 func callbackQBuffer_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QBuffer::metaObject"); signal != nil {
 		return PointerFromQMetaObject(signal.(func() *QMetaObject)())
 	}
@@ -15692,7 +15424,6 @@ func NewQCoreApplication(argc int, argv []string) *QCoreApplication {
 
 //export callbackQCoreApplication_AboutToQuit
 func callbackQCoreApplication_AboutToQuit(ptr unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCoreApplication::aboutToQuit"); signal != nil {
 		signal.(func())()
 	}
@@ -15767,7 +15498,6 @@ func (ptr *QCoreApplication) ClosingDown() bool {
 
 //export callbackQCoreApplication_Event
 func callbackQCoreApplication_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCoreApplication::event"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*QEvent) bool)(NewQEventFromPointer(e)))))
 	}
@@ -16088,7 +15818,6 @@ func (ptr *QCoreApplication) ApplicationFlags() int {
 
 //export callbackQCoreApplication_TimerEvent
 func callbackQCoreApplication_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCoreApplication::timerEvent"); signal != nil {
 		signal.(func(*QTimerEvent))(NewQTimerEventFromPointer(event))
 	} else {
@@ -16124,7 +15853,6 @@ func (ptr *QCoreApplication) TimerEventDefault(event QTimerEvent_ITF) {
 
 //export callbackQCoreApplication_ChildEvent
 func callbackQCoreApplication_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCoreApplication::childEvent"); signal != nil {
 		signal.(func(*QChildEvent))(NewQChildEventFromPointer(event))
 	} else {
@@ -16160,7 +15888,6 @@ func (ptr *QCoreApplication) ChildEventDefault(event QChildEvent_ITF) {
 
 //export callbackQCoreApplication_ConnectNotify
 func callbackQCoreApplication_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCoreApplication::connectNotify"); signal != nil {
 		signal.(func(*QMetaMethod))(NewQMetaMethodFromPointer(sign))
 	} else {
@@ -16196,7 +15923,6 @@ func (ptr *QCoreApplication) ConnectNotifyDefault(sign QMetaMethod_ITF) {
 
 //export callbackQCoreApplication_CustomEvent
 func callbackQCoreApplication_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCoreApplication::customEvent"); signal != nil {
 		signal.(func(*QEvent))(NewQEventFromPointer(event))
 	} else {
@@ -16271,7 +15997,6 @@ func (ptr *QCoreApplication) DeleteLaterDefault() {
 
 //export callbackQCoreApplication_DisconnectNotify
 func callbackQCoreApplication_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCoreApplication::disconnectNotify"); signal != nil {
 		signal.(func(*QMetaMethod))(NewQMetaMethodFromPointer(sign))
 	} else {
@@ -16307,7 +16032,6 @@ func (ptr *QCoreApplication) DisconnectNotifyDefault(sign QMetaMethod_ITF) {
 
 //export callbackQCoreApplication_EventFilter
 func callbackQCoreApplication_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCoreApplication::eventFilter"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*QObject, *QEvent) bool)(NewQObjectFromPointer(watched), NewQEventFromPointer(event)))))
 	}
@@ -16345,7 +16069,6 @@ func (ptr *QCoreApplication) EventFilterDefault(watched QObject_ITF, event QEven
 
 //export callbackQCoreApplication_MetaObject
 func callbackQCoreApplication_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCoreApplication::metaObject"); signal != nil {
 		return PointerFromQMetaObject(signal.(func() *QMetaObject)())
 	}
@@ -19264,7 +18987,6 @@ func (ptr *QEvent) Type() QEvent__Type {
 
 //export callbackQEvent_DestroyQEvent
 func callbackQEvent_DestroyQEvent(ptr unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QEvent::~QEvent"); signal != nil {
 		signal.(func())()
 	} else {
@@ -19378,7 +19100,6 @@ func NewQEventLoop(parent QObject_ITF) *QEventLoop {
 
 //export callbackQEventLoop_Event
 func callbackQEventLoop_Event(ptr unsafe.Pointer, event unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QEventLoop::event"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*QEvent) bool)(NewQEventFromPointer(event)))))
 	}
@@ -19498,7 +19219,6 @@ func (ptr *QEventLoop) DestroyQEventLoop() {
 
 //export callbackQEventLoop_TimerEvent
 func callbackQEventLoop_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QEventLoop::timerEvent"); signal != nil {
 		signal.(func(*QTimerEvent))(NewQTimerEventFromPointer(event))
 	} else {
@@ -19534,7 +19254,6 @@ func (ptr *QEventLoop) TimerEventDefault(event QTimerEvent_ITF) {
 
 //export callbackQEventLoop_ChildEvent
 func callbackQEventLoop_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QEventLoop::childEvent"); signal != nil {
 		signal.(func(*QChildEvent))(NewQChildEventFromPointer(event))
 	} else {
@@ -19570,7 +19289,6 @@ func (ptr *QEventLoop) ChildEventDefault(event QChildEvent_ITF) {
 
 //export callbackQEventLoop_ConnectNotify
 func callbackQEventLoop_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QEventLoop::connectNotify"); signal != nil {
 		signal.(func(*QMetaMethod))(NewQMetaMethodFromPointer(sign))
 	} else {
@@ -19606,7 +19324,6 @@ func (ptr *QEventLoop) ConnectNotifyDefault(sign QMetaMethod_ITF) {
 
 //export callbackQEventLoop_CustomEvent
 func callbackQEventLoop_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QEventLoop::customEvent"); signal != nil {
 		signal.(func(*QEvent))(NewQEventFromPointer(event))
 	} else {
@@ -19681,7 +19398,6 @@ func (ptr *QEventLoop) DeleteLaterDefault() {
 
 //export callbackQEventLoop_DisconnectNotify
 func callbackQEventLoop_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QEventLoop::disconnectNotify"); signal != nil {
 		signal.(func(*QMetaMethod))(NewQMetaMethodFromPointer(sign))
 	} else {
@@ -19717,7 +19433,6 @@ func (ptr *QEventLoop) DisconnectNotifyDefault(sign QMetaMethod_ITF) {
 
 //export callbackQEventLoop_EventFilter
 func callbackQEventLoop_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QEventLoop::eventFilter"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*QObject, *QEvent) bool)(NewQObjectFromPointer(watched), NewQEventFromPointer(event)))))
 	}
@@ -19755,7 +19470,6 @@ func (ptr *QEventLoop) EventFilterDefault(watched QObject_ITF, event QEvent_ITF)
 
 //export callbackQEventLoop_MetaObject
 func callbackQEventLoop_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QEventLoop::metaObject"); signal != nil {
 		return PointerFromQMetaObject(signal.(func() *QMetaObject)())
 	}
@@ -19909,7 +19623,6 @@ func NewQEventTransition(sourceState QState_ITF) *QEventTransition {
 
 //export callbackQEventTransition_Event
 func callbackQEventTransition_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QEventTransition::event"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*QEvent) bool)(NewQEventFromPointer(e)))))
 	}
@@ -19958,7 +19671,6 @@ func (ptr *QEventTransition) EventSource() *QObject {
 
 //export callbackQEventTransition_EventTest
 func callbackQEventTransition_EventTest(ptr unsafe.Pointer, event unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QEventTransition::eventTest"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*QEvent) bool)(NewQEventFromPointer(event)))))
 	}
@@ -20003,7 +19715,6 @@ func (ptr *QEventTransition) EventType() QEvent__Type {
 
 //export callbackQEventTransition_OnTransition
 func callbackQEventTransition_OnTransition(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QEventTransition::onTransition"); signal != nil {
 		signal.(func(*QEvent))(NewQEventFromPointer(event))
 	} else {
@@ -20059,7 +19770,6 @@ func (ptr *QEventTransition) DestroyQEventTransition() {
 
 //export callbackQEventTransition_TimerEvent
 func callbackQEventTransition_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QEventTransition::timerEvent"); signal != nil {
 		signal.(func(*QTimerEvent))(NewQTimerEventFromPointer(event))
 	} else {
@@ -20095,7 +19805,6 @@ func (ptr *QEventTransition) TimerEventDefault(event QTimerEvent_ITF) {
 
 //export callbackQEventTransition_ChildEvent
 func callbackQEventTransition_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QEventTransition::childEvent"); signal != nil {
 		signal.(func(*QChildEvent))(NewQChildEventFromPointer(event))
 	} else {
@@ -20131,7 +19840,6 @@ func (ptr *QEventTransition) ChildEventDefault(event QChildEvent_ITF) {
 
 //export callbackQEventTransition_ConnectNotify
 func callbackQEventTransition_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QEventTransition::connectNotify"); signal != nil {
 		signal.(func(*QMetaMethod))(NewQMetaMethodFromPointer(sign))
 	} else {
@@ -20167,7 +19875,6 @@ func (ptr *QEventTransition) ConnectNotifyDefault(sign QMetaMethod_ITF) {
 
 //export callbackQEventTransition_CustomEvent
 func callbackQEventTransition_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QEventTransition::customEvent"); signal != nil {
 		signal.(func(*QEvent))(NewQEventFromPointer(event))
 	} else {
@@ -20242,7 +19949,6 @@ func (ptr *QEventTransition) DeleteLaterDefault() {
 
 //export callbackQEventTransition_DisconnectNotify
 func callbackQEventTransition_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QEventTransition::disconnectNotify"); signal != nil {
 		signal.(func(*QMetaMethod))(NewQMetaMethodFromPointer(sign))
 	} else {
@@ -20278,7 +19984,6 @@ func (ptr *QEventTransition) DisconnectNotifyDefault(sign QMetaMethod_ITF) {
 
 //export callbackQEventTransition_EventFilter
 func callbackQEventTransition_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QEventTransition::eventFilter"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*QObject, *QEvent) bool)(NewQObjectFromPointer(watched), NewQEventFromPointer(event)))))
 	}
@@ -20316,7 +20021,6 @@ func (ptr *QEventTransition) EventFilterDefault(watched QObject_ITF, event QEven
 
 //export callbackQEventTransition_MetaObject
 func callbackQEventTransition_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QEventTransition::metaObject"); signal != nil {
 		return PointerFromQMetaObject(signal.(func() *QMetaObject)())
 	}
@@ -20592,7 +20296,6 @@ func (ptr *QFile) Exists2() bool {
 
 //export callbackQFile_FileName
 func callbackQFile_FileName(ptr unsafe.Pointer) *C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QFile::fileName"); signal != nil {
 		return C.CString(signal.(func() string)())
 	}
@@ -20655,7 +20358,6 @@ func (ptr *QFile) Link(linkName string) bool {
 
 //export callbackQFile_Open
 func callbackQFile_Open(ptr unsafe.Pointer, mode C.longlong) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QFile::open"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(QIODevice__OpenModeFlag) bool)(QIODevice__OpenModeFlag(mode)))))
 	}
@@ -20712,7 +20414,6 @@ func (ptr *QFile) Permissions2(fileName string) QFileDevice__Permission {
 
 //export callbackQFile_Permissions
 func callbackQFile_Permissions(ptr unsafe.Pointer) C.longlong {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QFile::permissions"); signal != nil {
 		return C.longlong(signal.(func() QFileDevice__Permission)())
 	}
@@ -20806,7 +20507,6 @@ func (ptr *QFile) Resize2(fileName string, sz int64) bool {
 
 //export callbackQFile_Resize
 func callbackQFile_Resize(ptr unsafe.Pointer, sz C.longlong) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QFile::resize"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(int64) bool)(int64(sz)))))
 	}
@@ -20852,7 +20552,6 @@ func (ptr *QFile) SetFileName(name string) {
 
 //export callbackQFile_SetPermissions
 func callbackQFile_SetPermissions(ptr unsafe.Pointer, permissions C.longlong) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QFile::setPermissions"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(QFileDevice__Permission) bool)(QFileDevice__Permission(permissions)))))
 	}
@@ -20902,7 +20601,6 @@ func (ptr *QFile) SetPermissions2(fileName string, permissions QFileDevice__Perm
 
 //export callbackQFile_Size
 func callbackQFile_Size(ptr unsafe.Pointer) C.longlong {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QFile::size"); signal != nil {
 		return C.longlong(signal.(func() int64)())
 	}
@@ -20967,7 +20665,6 @@ func (ptr *QFile) DestroyQFile() {
 
 //export callbackQFile_Seek
 func callbackQFile_Seek(ptr unsafe.Pointer, pos C.longlong) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QFile::seek"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(int64) bool)(int64(pos)))))
 	}
@@ -21005,7 +20702,6 @@ func (ptr *QFile) SeekDefault(pos int64) bool {
 
 //export callbackQFile_AtEnd
 func callbackQFile_AtEnd(ptr unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QFile::atEnd"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func() bool)())))
 	}
@@ -21043,7 +20739,6 @@ func (ptr *QFile) AtEndDefault() bool {
 
 //export callbackQFile_Close
 func callbackQFile_Close(ptr unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QFile::close"); signal != nil {
 		signal.(func())()
 	} else {
@@ -21079,7 +20774,6 @@ func (ptr *QFile) CloseDefault() {
 
 //export callbackQFile_IsSequential
 func callbackQFile_IsSequential(ptr unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QFile::isSequential"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func() bool)())))
 	}
@@ -21117,7 +20811,6 @@ func (ptr *QFile) IsSequentialDefault() bool {
 
 //export callbackQFile_Pos
 func callbackQFile_Pos(ptr unsafe.Pointer) C.longlong {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QFile::pos"); signal != nil {
 		return C.longlong(signal.(func() int64)())
 	}
@@ -21155,7 +20848,6 @@ func (ptr *QFile) PosDefault() int64 {
 
 //export callbackQFile_ReadData
 func callbackQFile_ReadData(ptr unsafe.Pointer, data C.struct_QtCore_PackedString, len C.longlong) C.longlong {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QFile::readData"); signal != nil {
 		var retS = cGoUnpackString(data)
 		var ret = C.longlong(signal.(func(*string, int64) int64)(&retS, int64(len)))
@@ -21214,7 +20906,6 @@ func (ptr *QFile) ReadDataDefault(data *string, len int64) int64 {
 
 //export callbackQFile_ReadLineData
 func callbackQFile_ReadLineData(ptr unsafe.Pointer, data C.struct_QtCore_PackedString, maxlen C.longlong) C.longlong {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QFile::readLineData"); signal != nil {
 		return C.longlong(signal.(func(string, int64) int64)(cGoUnpackString(data), int64(maxlen)))
 	}
@@ -21256,7 +20947,6 @@ func (ptr *QFile) ReadLineDataDefault(data string, maxlen int64) int64 {
 
 //export callbackQFile_WriteData
 func callbackQFile_WriteData(ptr unsafe.Pointer, data C.struct_QtCore_PackedString, len C.longlong) C.longlong {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QFile::writeData"); signal != nil {
 		return C.longlong(signal.(func(string, int64) int64)(cGoUnpackString(data), int64(len)))
 	}
@@ -21298,7 +20988,6 @@ func (ptr *QFile) WriteDataDefault(data string, len int64) int64 {
 
 //export callbackQFile_BytesAvailable
 func callbackQFile_BytesAvailable(ptr unsafe.Pointer) C.longlong {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QFile::bytesAvailable"); signal != nil {
 		return C.longlong(signal.(func() int64)())
 	}
@@ -21336,7 +21025,6 @@ func (ptr *QFile) BytesAvailableDefault() int64 {
 
 //export callbackQFile_BytesToWrite
 func callbackQFile_BytesToWrite(ptr unsafe.Pointer) C.longlong {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QFile::bytesToWrite"); signal != nil {
 		return C.longlong(signal.(func() int64)())
 	}
@@ -21374,7 +21062,6 @@ func (ptr *QFile) BytesToWriteDefault() int64 {
 
 //export callbackQFile_CanReadLine
 func callbackQFile_CanReadLine(ptr unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QFile::canReadLine"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func() bool)())))
 	}
@@ -21412,7 +21099,6 @@ func (ptr *QFile) CanReadLineDefault() bool {
 
 //export callbackQFile_Reset
 func callbackQFile_Reset(ptr unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QFile::reset"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func() bool)())))
 	}
@@ -21450,7 +21136,6 @@ func (ptr *QFile) ResetDefault() bool {
 
 //export callbackQFile_WaitForBytesWritten
 func callbackQFile_WaitForBytesWritten(ptr unsafe.Pointer, msecs C.int) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QFile::waitForBytesWritten"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(int) bool)(int(int32(msecs))))))
 	}
@@ -21488,7 +21173,6 @@ func (ptr *QFile) WaitForBytesWrittenDefault(msecs int) bool {
 
 //export callbackQFile_WaitForReadyRead
 func callbackQFile_WaitForReadyRead(ptr unsafe.Pointer, msecs C.int) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QFile::waitForReadyRead"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(int) bool)(int(int32(msecs))))))
 	}
@@ -21526,7 +21210,6 @@ func (ptr *QFile) WaitForReadyReadDefault(msecs int) bool {
 
 //export callbackQFile_TimerEvent
 func callbackQFile_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QFile::timerEvent"); signal != nil {
 		signal.(func(*QTimerEvent))(NewQTimerEventFromPointer(event))
 	} else {
@@ -21562,7 +21245,6 @@ func (ptr *QFile) TimerEventDefault(event QTimerEvent_ITF) {
 
 //export callbackQFile_ChildEvent
 func callbackQFile_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QFile::childEvent"); signal != nil {
 		signal.(func(*QChildEvent))(NewQChildEventFromPointer(event))
 	} else {
@@ -21598,7 +21280,6 @@ func (ptr *QFile) ChildEventDefault(event QChildEvent_ITF) {
 
 //export callbackQFile_ConnectNotify
 func callbackQFile_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QFile::connectNotify"); signal != nil {
 		signal.(func(*QMetaMethod))(NewQMetaMethodFromPointer(sign))
 	} else {
@@ -21634,7 +21315,6 @@ func (ptr *QFile) ConnectNotifyDefault(sign QMetaMethod_ITF) {
 
 //export callbackQFile_CustomEvent
 func callbackQFile_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QFile::customEvent"); signal != nil {
 		signal.(func(*QEvent))(NewQEventFromPointer(event))
 	} else {
@@ -21709,7 +21389,6 @@ func (ptr *QFile) DeleteLaterDefault() {
 
 //export callbackQFile_DisconnectNotify
 func callbackQFile_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QFile::disconnectNotify"); signal != nil {
 		signal.(func(*QMetaMethod))(NewQMetaMethodFromPointer(sign))
 	} else {
@@ -21745,7 +21424,6 @@ func (ptr *QFile) DisconnectNotifyDefault(sign QMetaMethod_ITF) {
 
 //export callbackQFile_Event
 func callbackQFile_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QFile::event"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*QEvent) bool)(NewQEventFromPointer(e)))))
 	}
@@ -21783,7 +21461,6 @@ func (ptr *QFile) EventDefault(e QEvent_ITF) bool {
 
 //export callbackQFile_EventFilter
 func callbackQFile_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QFile::eventFilter"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*QObject, *QEvent) bool)(NewQObjectFromPointer(watched), NewQEventFromPointer(event)))))
 	}
@@ -21821,7 +21498,6 @@ func (ptr *QFile) EventFilterDefault(watched QObject_ITF, event QEvent_ITF) bool
 
 //export callbackQFile_MetaObject
 func callbackQFile_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QFile::metaObject"); signal != nil {
 		return PointerFromQMetaObject(signal.(func() *QMetaObject)())
 	}
@@ -21957,7 +21633,6 @@ const (
 
 //export callbackQFileDevice_Seek
 func callbackQFileDevice_Seek(ptr unsafe.Pointer, pos C.longlong) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QFileDevice::seek"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(int64) bool)(int64(pos)))))
 	}
@@ -21995,7 +21670,6 @@ func (ptr *QFileDevice) SeekDefault(pos int64) bool {
 
 //export callbackQFileDevice_AtEnd
 func callbackQFileDevice_AtEnd(ptr unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QFileDevice::atEnd"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func() bool)())))
 	}
@@ -22033,7 +21707,6 @@ func (ptr *QFileDevice) AtEndDefault() bool {
 
 //export callbackQFileDevice_Close
 func callbackQFileDevice_Close(ptr unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QFileDevice::close"); signal != nil {
 		signal.(func())()
 	} else {
@@ -22076,7 +21749,6 @@ func (ptr *QFileDevice) Error() QFileDevice__FileError {
 
 //export callbackQFileDevice_FileName
 func callbackQFileDevice_FileName(ptr unsafe.Pointer) *C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QFileDevice::fileName"); signal != nil {
 		return C.CString(signal.(func() string)())
 	}
@@ -22128,7 +21800,6 @@ func (ptr *QFileDevice) Handle() int {
 
 //export callbackQFileDevice_IsSequential
 func callbackQFileDevice_IsSequential(ptr unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QFileDevice::isSequential"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func() bool)())))
 	}
@@ -22173,7 +21844,6 @@ func (ptr *QFileDevice) Map(offset int64, size int64, flags QFileDevice__MemoryM
 
 //export callbackQFileDevice_Permissions
 func callbackQFileDevice_Permissions(ptr unsafe.Pointer) C.longlong {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QFileDevice::permissions"); signal != nil {
 		return C.longlong(signal.(func() QFileDevice__Permission)())
 	}
@@ -22211,7 +21881,6 @@ func (ptr *QFileDevice) PermissionsDefault() QFileDevice__Permission {
 
 //export callbackQFileDevice_Pos
 func callbackQFileDevice_Pos(ptr unsafe.Pointer) C.longlong {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QFileDevice::pos"); signal != nil {
 		return C.longlong(signal.(func() int64)())
 	}
@@ -22249,7 +21918,6 @@ func (ptr *QFileDevice) PosDefault() int64 {
 
 //export callbackQFileDevice_ReadData
 func callbackQFileDevice_ReadData(ptr unsafe.Pointer, data C.struct_QtCore_PackedString, len C.longlong) C.longlong {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QFileDevice::readData"); signal != nil {
 		var retS = cGoUnpackString(data)
 		var ret = C.longlong(signal.(func(*string, int64) int64)(&retS, int64(len)))
@@ -22308,7 +21976,6 @@ func (ptr *QFileDevice) ReadDataDefault(data *string, len int64) int64 {
 
 //export callbackQFileDevice_ReadLineData
 func callbackQFileDevice_ReadLineData(ptr unsafe.Pointer, data C.struct_QtCore_PackedString, maxlen C.longlong) C.longlong {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QFileDevice::readLineData"); signal != nil {
 		return C.longlong(signal.(func(string, int64) int64)(cGoUnpackString(data), int64(maxlen)))
 	}
@@ -22350,7 +22017,6 @@ func (ptr *QFileDevice) ReadLineDataDefault(data string, maxlen int64) int64 {
 
 //export callbackQFileDevice_Resize
 func callbackQFileDevice_Resize(ptr unsafe.Pointer, sz C.longlong) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QFileDevice::resize"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(int64) bool)(int64(sz)))))
 	}
@@ -22388,7 +22054,6 @@ func (ptr *QFileDevice) ResizeDefault(sz int64) bool {
 
 //export callbackQFileDevice_SetPermissions
 func callbackQFileDevice_SetPermissions(ptr unsafe.Pointer, permissions C.longlong) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QFileDevice::setPermissions"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(QFileDevice__Permission) bool)(QFileDevice__Permission(permissions)))))
 	}
@@ -22426,7 +22091,6 @@ func (ptr *QFileDevice) SetPermissionsDefault(permissions QFileDevice__Permissio
 
 //export callbackQFileDevice_Size
 func callbackQFileDevice_Size(ptr unsafe.Pointer) C.longlong {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QFileDevice::size"); signal != nil {
 		return C.longlong(signal.(func() int64)())
 	}
@@ -22479,7 +22143,6 @@ func (ptr *QFileDevice) UnsetError() {
 
 //export callbackQFileDevice_WriteData
 func callbackQFileDevice_WriteData(ptr unsafe.Pointer, data C.struct_QtCore_PackedString, len C.longlong) C.longlong {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QFileDevice::writeData"); signal != nil {
 		return C.longlong(signal.(func(string, int64) int64)(cGoUnpackString(data), int64(len)))
 	}
@@ -22529,7 +22192,6 @@ func (ptr *QFileDevice) DestroyQFileDevice() {
 
 //export callbackQFileDevice_BytesAvailable
 func callbackQFileDevice_BytesAvailable(ptr unsafe.Pointer) C.longlong {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QFileDevice::bytesAvailable"); signal != nil {
 		return C.longlong(signal.(func() int64)())
 	}
@@ -22567,7 +22229,6 @@ func (ptr *QFileDevice) BytesAvailableDefault() int64 {
 
 //export callbackQFileDevice_BytesToWrite
 func callbackQFileDevice_BytesToWrite(ptr unsafe.Pointer) C.longlong {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QFileDevice::bytesToWrite"); signal != nil {
 		return C.longlong(signal.(func() int64)())
 	}
@@ -22605,7 +22266,6 @@ func (ptr *QFileDevice) BytesToWriteDefault() int64 {
 
 //export callbackQFileDevice_CanReadLine
 func callbackQFileDevice_CanReadLine(ptr unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QFileDevice::canReadLine"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func() bool)())))
 	}
@@ -22643,7 +22303,6 @@ func (ptr *QFileDevice) CanReadLineDefault() bool {
 
 //export callbackQFileDevice_Open
 func callbackQFileDevice_Open(ptr unsafe.Pointer, mode C.longlong) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QFileDevice::open"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(QIODevice__OpenModeFlag) bool)(QIODevice__OpenModeFlag(mode)))))
 	}
@@ -22681,7 +22340,6 @@ func (ptr *QFileDevice) OpenDefault(mode QIODevice__OpenModeFlag) bool {
 
 //export callbackQFileDevice_Reset
 func callbackQFileDevice_Reset(ptr unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QFileDevice::reset"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func() bool)())))
 	}
@@ -22719,7 +22377,6 @@ func (ptr *QFileDevice) ResetDefault() bool {
 
 //export callbackQFileDevice_WaitForBytesWritten
 func callbackQFileDevice_WaitForBytesWritten(ptr unsafe.Pointer, msecs C.int) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QFileDevice::waitForBytesWritten"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(int) bool)(int(int32(msecs))))))
 	}
@@ -22757,7 +22414,6 @@ func (ptr *QFileDevice) WaitForBytesWrittenDefault(msecs int) bool {
 
 //export callbackQFileDevice_WaitForReadyRead
 func callbackQFileDevice_WaitForReadyRead(ptr unsafe.Pointer, msecs C.int) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QFileDevice::waitForReadyRead"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(int) bool)(int(int32(msecs))))))
 	}
@@ -22795,7 +22451,6 @@ func (ptr *QFileDevice) WaitForReadyReadDefault(msecs int) bool {
 
 //export callbackQFileDevice_TimerEvent
 func callbackQFileDevice_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QFileDevice::timerEvent"); signal != nil {
 		signal.(func(*QTimerEvent))(NewQTimerEventFromPointer(event))
 	} else {
@@ -22831,7 +22486,6 @@ func (ptr *QFileDevice) TimerEventDefault(event QTimerEvent_ITF) {
 
 //export callbackQFileDevice_ChildEvent
 func callbackQFileDevice_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QFileDevice::childEvent"); signal != nil {
 		signal.(func(*QChildEvent))(NewQChildEventFromPointer(event))
 	} else {
@@ -22867,7 +22521,6 @@ func (ptr *QFileDevice) ChildEventDefault(event QChildEvent_ITF) {
 
 //export callbackQFileDevice_ConnectNotify
 func callbackQFileDevice_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QFileDevice::connectNotify"); signal != nil {
 		signal.(func(*QMetaMethod))(NewQMetaMethodFromPointer(sign))
 	} else {
@@ -22903,7 +22556,6 @@ func (ptr *QFileDevice) ConnectNotifyDefault(sign QMetaMethod_ITF) {
 
 //export callbackQFileDevice_CustomEvent
 func callbackQFileDevice_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QFileDevice::customEvent"); signal != nil {
 		signal.(func(*QEvent))(NewQEventFromPointer(event))
 	} else {
@@ -22978,7 +22630,6 @@ func (ptr *QFileDevice) DeleteLaterDefault() {
 
 //export callbackQFileDevice_DisconnectNotify
 func callbackQFileDevice_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QFileDevice::disconnectNotify"); signal != nil {
 		signal.(func(*QMetaMethod))(NewQMetaMethodFromPointer(sign))
 	} else {
@@ -23014,7 +22665,6 @@ func (ptr *QFileDevice) DisconnectNotifyDefault(sign QMetaMethod_ITF) {
 
 //export callbackQFileDevice_Event
 func callbackQFileDevice_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QFileDevice::event"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*QEvent) bool)(NewQEventFromPointer(e)))))
 	}
@@ -23052,7 +22702,6 @@ func (ptr *QFileDevice) EventDefault(e QEvent_ITF) bool {
 
 //export callbackQFileDevice_EventFilter
 func callbackQFileDevice_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QFileDevice::eventFilter"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*QObject, *QEvent) bool)(NewQObjectFromPointer(watched), NewQEventFromPointer(event)))))
 	}
@@ -23090,7 +22739,6 @@ func (ptr *QFileDevice) EventFilterDefault(watched QObject_ITF, event QEvent_ITF
 
 //export callbackQFileDevice_MetaObject
 func callbackQFileDevice_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QFileDevice::metaObject"); signal != nil {
 		return PointerFromQMetaObject(signal.(func() *QMetaObject)())
 	}
@@ -23628,7 +23276,6 @@ func (ptr *QFileSelector) DestroyQFileSelector() {
 
 //export callbackQFileSelector_TimerEvent
 func callbackQFileSelector_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QFileSelector::timerEvent"); signal != nil {
 		signal.(func(*QTimerEvent))(NewQTimerEventFromPointer(event))
 	} else {
@@ -23664,7 +23311,6 @@ func (ptr *QFileSelector) TimerEventDefault(event QTimerEvent_ITF) {
 
 //export callbackQFileSelector_ChildEvent
 func callbackQFileSelector_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QFileSelector::childEvent"); signal != nil {
 		signal.(func(*QChildEvent))(NewQChildEventFromPointer(event))
 	} else {
@@ -23700,7 +23346,6 @@ func (ptr *QFileSelector) ChildEventDefault(event QChildEvent_ITF) {
 
 //export callbackQFileSelector_ConnectNotify
 func callbackQFileSelector_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QFileSelector::connectNotify"); signal != nil {
 		signal.(func(*QMetaMethod))(NewQMetaMethodFromPointer(sign))
 	} else {
@@ -23736,7 +23381,6 @@ func (ptr *QFileSelector) ConnectNotifyDefault(sign QMetaMethod_ITF) {
 
 //export callbackQFileSelector_CustomEvent
 func callbackQFileSelector_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QFileSelector::customEvent"); signal != nil {
 		signal.(func(*QEvent))(NewQEventFromPointer(event))
 	} else {
@@ -23811,7 +23455,6 @@ func (ptr *QFileSelector) DeleteLaterDefault() {
 
 //export callbackQFileSelector_DisconnectNotify
 func callbackQFileSelector_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QFileSelector::disconnectNotify"); signal != nil {
 		signal.(func(*QMetaMethod))(NewQMetaMethodFromPointer(sign))
 	} else {
@@ -23847,7 +23490,6 @@ func (ptr *QFileSelector) DisconnectNotifyDefault(sign QMetaMethod_ITF) {
 
 //export callbackQFileSelector_Event
 func callbackQFileSelector_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QFileSelector::event"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*QEvent) bool)(NewQEventFromPointer(e)))))
 	}
@@ -23885,7 +23527,6 @@ func (ptr *QFileSelector) EventDefault(e QEvent_ITF) bool {
 
 //export callbackQFileSelector_EventFilter
 func callbackQFileSelector_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QFileSelector::eventFilter"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*QObject, *QEvent) bool)(NewQObjectFromPointer(watched), NewQEventFromPointer(event)))))
 	}
@@ -23923,7 +23564,6 @@ func (ptr *QFileSelector) EventFilterDefault(watched QObject_ITF, event QEvent_I
 
 //export callbackQFileSelector_MetaObject
 func callbackQFileSelector_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QFileSelector::metaObject"); signal != nil {
 		return PointerFromQMetaObject(signal.(func() *QMetaObject)())
 	}
@@ -24049,7 +23689,6 @@ func (ptr *QFileSystemWatcher) AddPaths(paths []string) []string {
 
 //export callbackQFileSystemWatcher_DirectoryChanged
 func callbackQFileSystemWatcher_DirectoryChanged(ptr unsafe.Pointer, path C.struct_QtCore_PackedString) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QFileSystemWatcher::directoryChanged"); signal != nil {
 		signal.(func(string))(cGoUnpackString(path))
 	}
@@ -24072,7 +23711,6 @@ func (ptr *QFileSystemWatcher) DisconnectDirectoryChanged() {
 
 //export callbackQFileSystemWatcher_FileChanged
 func callbackQFileSystemWatcher_FileChanged(ptr unsafe.Pointer, path C.struct_QtCore_PackedString) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QFileSystemWatcher::fileChanged"); signal != nil {
 		signal.(func(string))(cGoUnpackString(path))
 	}
@@ -24121,7 +23759,6 @@ func (ptr *QFileSystemWatcher) DestroyQFileSystemWatcher() {
 
 //export callbackQFileSystemWatcher_TimerEvent
 func callbackQFileSystemWatcher_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QFileSystemWatcher::timerEvent"); signal != nil {
 		signal.(func(*QTimerEvent))(NewQTimerEventFromPointer(event))
 	} else {
@@ -24157,7 +23794,6 @@ func (ptr *QFileSystemWatcher) TimerEventDefault(event QTimerEvent_ITF) {
 
 //export callbackQFileSystemWatcher_ChildEvent
 func callbackQFileSystemWatcher_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QFileSystemWatcher::childEvent"); signal != nil {
 		signal.(func(*QChildEvent))(NewQChildEventFromPointer(event))
 	} else {
@@ -24193,7 +23829,6 @@ func (ptr *QFileSystemWatcher) ChildEventDefault(event QChildEvent_ITF) {
 
 //export callbackQFileSystemWatcher_ConnectNotify
 func callbackQFileSystemWatcher_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QFileSystemWatcher::connectNotify"); signal != nil {
 		signal.(func(*QMetaMethod))(NewQMetaMethodFromPointer(sign))
 	} else {
@@ -24229,7 +23864,6 @@ func (ptr *QFileSystemWatcher) ConnectNotifyDefault(sign QMetaMethod_ITF) {
 
 //export callbackQFileSystemWatcher_CustomEvent
 func callbackQFileSystemWatcher_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QFileSystemWatcher::customEvent"); signal != nil {
 		signal.(func(*QEvent))(NewQEventFromPointer(event))
 	} else {
@@ -24304,7 +23938,6 @@ func (ptr *QFileSystemWatcher) DeleteLaterDefault() {
 
 //export callbackQFileSystemWatcher_DisconnectNotify
 func callbackQFileSystemWatcher_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QFileSystemWatcher::disconnectNotify"); signal != nil {
 		signal.(func(*QMetaMethod))(NewQMetaMethodFromPointer(sign))
 	} else {
@@ -24340,7 +23973,6 @@ func (ptr *QFileSystemWatcher) DisconnectNotifyDefault(sign QMetaMethod_ITF) {
 
 //export callbackQFileSystemWatcher_Event
 func callbackQFileSystemWatcher_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QFileSystemWatcher::event"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*QEvent) bool)(NewQEventFromPointer(e)))))
 	}
@@ -24378,7 +24010,6 @@ func (ptr *QFileSystemWatcher) EventDefault(e QEvent_ITF) bool {
 
 //export callbackQFileSystemWatcher_EventFilter
 func callbackQFileSystemWatcher_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QFileSystemWatcher::eventFilter"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*QObject, *QEvent) bool)(NewQObjectFromPointer(watched), NewQEventFromPointer(event)))))
 	}
@@ -24416,7 +24047,6 @@ func (ptr *QFileSystemWatcher) EventFilterDefault(watched QObject_ITF, event QEv
 
 //export callbackQFileSystemWatcher_MetaObject
 func callbackQFileSystemWatcher_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QFileSystemWatcher::metaObject"); signal != nil {
 		return PointerFromQMetaObject(signal.(func() *QMetaObject)())
 	}
@@ -24500,7 +24130,6 @@ func NewQFinalState(parent QState_ITF) *QFinalState {
 
 //export callbackQFinalState_Event
 func callbackQFinalState_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QFinalState::event"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*QEvent) bool)(NewQEventFromPointer(e)))))
 	}
@@ -24538,7 +24167,6 @@ func (ptr *QFinalState) EventDefault(e QEvent_ITF) bool {
 
 //export callbackQFinalState_OnEntry
 func callbackQFinalState_OnEntry(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QFinalState::onEntry"); signal != nil {
 		signal.(func(*QEvent))(NewQEventFromPointer(event))
 	} else {
@@ -24574,7 +24202,6 @@ func (ptr *QFinalState) OnEntryDefault(event QEvent_ITF) {
 
 //export callbackQFinalState_OnExit
 func callbackQFinalState_OnExit(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QFinalState::onExit"); signal != nil {
 		signal.(func(*QEvent))(NewQEventFromPointer(event))
 	} else {
@@ -24618,7 +24245,6 @@ func (ptr *QFinalState) DestroyQFinalState() {
 
 //export callbackQFinalState_TimerEvent
 func callbackQFinalState_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QFinalState::timerEvent"); signal != nil {
 		signal.(func(*QTimerEvent))(NewQTimerEventFromPointer(event))
 	} else {
@@ -24654,7 +24280,6 @@ func (ptr *QFinalState) TimerEventDefault(event QTimerEvent_ITF) {
 
 //export callbackQFinalState_ChildEvent
 func callbackQFinalState_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QFinalState::childEvent"); signal != nil {
 		signal.(func(*QChildEvent))(NewQChildEventFromPointer(event))
 	} else {
@@ -24690,7 +24315,6 @@ func (ptr *QFinalState) ChildEventDefault(event QChildEvent_ITF) {
 
 //export callbackQFinalState_ConnectNotify
 func callbackQFinalState_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QFinalState::connectNotify"); signal != nil {
 		signal.(func(*QMetaMethod))(NewQMetaMethodFromPointer(sign))
 	} else {
@@ -24726,7 +24350,6 @@ func (ptr *QFinalState) ConnectNotifyDefault(sign QMetaMethod_ITF) {
 
 //export callbackQFinalState_CustomEvent
 func callbackQFinalState_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QFinalState::customEvent"); signal != nil {
 		signal.(func(*QEvent))(NewQEventFromPointer(event))
 	} else {
@@ -24801,7 +24424,6 @@ func (ptr *QFinalState) DeleteLaterDefault() {
 
 //export callbackQFinalState_DisconnectNotify
 func callbackQFinalState_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QFinalState::disconnectNotify"); signal != nil {
 		signal.(func(*QMetaMethod))(NewQMetaMethodFromPointer(sign))
 	} else {
@@ -24837,7 +24459,6 @@ func (ptr *QFinalState) DisconnectNotifyDefault(sign QMetaMethod_ITF) {
 
 //export callbackQFinalState_EventFilter
 func callbackQFinalState_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QFinalState::eventFilter"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*QObject, *QEvent) bool)(NewQObjectFromPointer(watched), NewQEventFromPointer(event)))))
 	}
@@ -24875,7 +24496,6 @@ func (ptr *QFinalState) EventFilterDefault(watched QObject_ITF, event QEvent_ITF
 
 //export callbackQFinalState_MetaObject
 func callbackQFinalState_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QFinalState::metaObject"); signal != nil {
 		return PointerFromQMetaObject(signal.(func() *QMetaObject)())
 	}
@@ -25511,7 +25131,6 @@ func (ptr *QHistoryState) DefaultState() *QAbstractState {
 
 //export callbackQHistoryState_DefaultStateChanged
 func callbackQHistoryState_DefaultStateChanged(ptr unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHistoryState::defaultStateChanged"); signal != nil {
 		signal.(func())()
 	}
@@ -25545,7 +25164,6 @@ func (ptr *QHistoryState) DefaultTransition() *QAbstractTransition {
 
 //export callbackQHistoryState_DefaultTransitionChanged
 func callbackQHistoryState_DefaultTransitionChanged(ptr unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHistoryState::defaultTransitionChanged"); signal != nil {
 		signal.(func())()
 	}
@@ -25568,7 +25186,6 @@ func (ptr *QHistoryState) DisconnectDefaultTransitionChanged() {
 
 //export callbackQHistoryState_Event
 func callbackQHistoryState_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHistoryState::event"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*QEvent) bool)(NewQEventFromPointer(e)))))
 	}
@@ -25613,7 +25230,6 @@ func (ptr *QHistoryState) HistoryType() QHistoryState__HistoryType {
 
 //export callbackQHistoryState_HistoryTypeChanged
 func callbackQHistoryState_HistoryTypeChanged(ptr unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHistoryState::historyTypeChanged"); signal != nil {
 		signal.(func())()
 	}
@@ -25636,7 +25252,6 @@ func (ptr *QHistoryState) DisconnectHistoryTypeChanged() {
 
 //export callbackQHistoryState_OnEntry
 func callbackQHistoryState_OnEntry(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHistoryState::onEntry"); signal != nil {
 		signal.(func(*QEvent))(NewQEventFromPointer(event))
 	} else {
@@ -25672,7 +25287,6 @@ func (ptr *QHistoryState) OnEntryDefault(event QEvent_ITF) {
 
 //export callbackQHistoryState_OnExit
 func callbackQHistoryState_OnExit(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHistoryState::onExit"); signal != nil {
 		signal.(func(*QEvent))(NewQEventFromPointer(event))
 	} else {
@@ -25734,7 +25348,6 @@ func (ptr *QHistoryState) DestroyQHistoryState() {
 
 //export callbackQHistoryState_TimerEvent
 func callbackQHistoryState_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHistoryState::timerEvent"); signal != nil {
 		signal.(func(*QTimerEvent))(NewQTimerEventFromPointer(event))
 	} else {
@@ -25770,7 +25383,6 @@ func (ptr *QHistoryState) TimerEventDefault(event QTimerEvent_ITF) {
 
 //export callbackQHistoryState_ChildEvent
 func callbackQHistoryState_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHistoryState::childEvent"); signal != nil {
 		signal.(func(*QChildEvent))(NewQChildEventFromPointer(event))
 	} else {
@@ -25806,7 +25418,6 @@ func (ptr *QHistoryState) ChildEventDefault(event QChildEvent_ITF) {
 
 //export callbackQHistoryState_ConnectNotify
 func callbackQHistoryState_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHistoryState::connectNotify"); signal != nil {
 		signal.(func(*QMetaMethod))(NewQMetaMethodFromPointer(sign))
 	} else {
@@ -25842,7 +25453,6 @@ func (ptr *QHistoryState) ConnectNotifyDefault(sign QMetaMethod_ITF) {
 
 //export callbackQHistoryState_CustomEvent
 func callbackQHistoryState_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHistoryState::customEvent"); signal != nil {
 		signal.(func(*QEvent))(NewQEventFromPointer(event))
 	} else {
@@ -25917,7 +25527,6 @@ func (ptr *QHistoryState) DeleteLaterDefault() {
 
 //export callbackQHistoryState_DisconnectNotify
 func callbackQHistoryState_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHistoryState::disconnectNotify"); signal != nil {
 		signal.(func(*QMetaMethod))(NewQMetaMethodFromPointer(sign))
 	} else {
@@ -25953,7 +25562,6 @@ func (ptr *QHistoryState) DisconnectNotifyDefault(sign QMetaMethod_ITF) {
 
 //export callbackQHistoryState_EventFilter
 func callbackQHistoryState_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHistoryState::eventFilter"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*QObject, *QEvent) bool)(NewQObjectFromPointer(watched), NewQEventFromPointer(event)))))
 	}
@@ -25991,7 +25599,6 @@ func (ptr *QHistoryState) EventFilterDefault(watched QObject_ITF, event QEvent_I
 
 //export callbackQHistoryState_MetaObject
 func callbackQHistoryState_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHistoryState::metaObject"); signal != nil {
 		return PointerFromQMetaObject(signal.(func() *QMetaObject)())
 	}
@@ -26177,7 +25784,6 @@ func NewQIODevice2(parent QObject_ITF) *QIODevice {
 
 //export callbackQIODevice_AboutToClose
 func callbackQIODevice_AboutToClose(ptr unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QIODevice::aboutToClose"); signal != nil {
 		signal.(func())()
 	}
@@ -26206,7 +25812,6 @@ func (ptr *QIODevice) AboutToClose() {
 
 //export callbackQIODevice_AtEnd
 func callbackQIODevice_AtEnd(ptr unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QIODevice::atEnd"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func() bool)())))
 	}
@@ -26244,7 +25849,6 @@ func (ptr *QIODevice) AtEndDefault() bool {
 
 //export callbackQIODevice_BytesAvailable
 func callbackQIODevice_BytesAvailable(ptr unsafe.Pointer) C.longlong {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QIODevice::bytesAvailable"); signal != nil {
 		return C.longlong(signal.(func() int64)())
 	}
@@ -26282,7 +25886,6 @@ func (ptr *QIODevice) BytesAvailableDefault() int64 {
 
 //export callbackQIODevice_BytesToWrite
 func callbackQIODevice_BytesToWrite(ptr unsafe.Pointer) C.longlong {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QIODevice::bytesToWrite"); signal != nil {
 		return C.longlong(signal.(func() int64)())
 	}
@@ -26320,7 +25923,6 @@ func (ptr *QIODevice) BytesToWriteDefault() int64 {
 
 //export callbackQIODevice_BytesWritten
 func callbackQIODevice_BytesWritten(ptr unsafe.Pointer, bytes C.longlong) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QIODevice::bytesWritten"); signal != nil {
 		signal.(func(int64))(int64(bytes))
 	}
@@ -26349,7 +25951,6 @@ func (ptr *QIODevice) BytesWritten(bytes int64) {
 
 //export callbackQIODevice_CanReadLine
 func callbackQIODevice_CanReadLine(ptr unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QIODevice::canReadLine"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func() bool)())))
 	}
@@ -26387,7 +25988,6 @@ func (ptr *QIODevice) CanReadLineDefault() bool {
 
 //export callbackQIODevice_ChannelBytesWritten
 func callbackQIODevice_ChannelBytesWritten(ptr unsafe.Pointer, channel C.int, bytes C.longlong) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QIODevice::channelBytesWritten"); signal != nil {
 		signal.(func(int, int64))(int(int32(channel)), int64(bytes))
 	}
@@ -26416,7 +26016,6 @@ func (ptr *QIODevice) ChannelBytesWritten(channel int, bytes int64) {
 
 //export callbackQIODevice_ChannelReadyRead
 func callbackQIODevice_ChannelReadyRead(ptr unsafe.Pointer, channel C.int) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QIODevice::channelReadyRead"); signal != nil {
 		signal.(func(int))(int(int32(channel)))
 	}
@@ -26445,7 +26044,6 @@ func (ptr *QIODevice) ChannelReadyRead(channel int) {
 
 //export callbackQIODevice_Close
 func callbackQIODevice_Close(ptr unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QIODevice::close"); signal != nil {
 		signal.(func())()
 	} else {
@@ -26522,7 +26120,6 @@ func (ptr *QIODevice) IsReadable() bool {
 
 //export callbackQIODevice_IsSequential
 func callbackQIODevice_IsSequential(ptr unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QIODevice::isSequential"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func() bool)())))
 	}
@@ -26581,7 +26178,6 @@ func (ptr *QIODevice) IsWritable() bool {
 
 //export callbackQIODevice_Open
 func callbackQIODevice_Open(ptr unsafe.Pointer, mode C.longlong) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QIODevice::open"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(QIODevice__OpenModeFlag) bool)(QIODevice__OpenModeFlag(mode)))))
 	}
@@ -26644,7 +26240,6 @@ func (ptr *QIODevice) Peek(data string, maxSize int64) int64 {
 
 //export callbackQIODevice_Pos
 func callbackQIODevice_Pos(ptr unsafe.Pointer) C.longlong {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QIODevice::pos"); signal != nil {
 		return C.longlong(signal.(func() int64)())
 	}
@@ -26716,7 +26311,6 @@ func (ptr *QIODevice) ReadChannelCount() int {
 
 //export callbackQIODevice_ReadChannelFinished
 func callbackQIODevice_ReadChannelFinished(ptr unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QIODevice::readChannelFinished"); signal != nil {
 		signal.(func())()
 	}
@@ -26745,7 +26339,6 @@ func (ptr *QIODevice) ReadChannelFinished() {
 
 //export callbackQIODevice_ReadData
 func callbackQIODevice_ReadData(ptr unsafe.Pointer, data C.struct_QtCore_PackedString, maxSize C.longlong) C.longlong {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QIODevice::readData"); signal != nil {
 		var retS = cGoUnpackString(data)
 		var ret = C.longlong(signal.(func(*string, int64) int64)(&retS, int64(maxSize)))
@@ -26805,7 +26398,6 @@ func (ptr *QIODevice) ReadLine(data string, maxSize int64) int64 {
 
 //export callbackQIODevice_ReadLineData
 func callbackQIODevice_ReadLineData(ptr unsafe.Pointer, data C.struct_QtCore_PackedString, maxSize C.longlong) C.longlong {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QIODevice::readLineData"); signal != nil {
 		return C.longlong(signal.(func(string, int64) int64)(cGoUnpackString(data), int64(maxSize)))
 	}
@@ -26847,7 +26439,6 @@ func (ptr *QIODevice) ReadLineDataDefault(data string, maxSize int64) int64 {
 
 //export callbackQIODevice_ReadyRead
 func callbackQIODevice_ReadyRead(ptr unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QIODevice::readyRead"); signal != nil {
 		signal.(func())()
 	}
@@ -26876,7 +26467,6 @@ func (ptr *QIODevice) ReadyRead() {
 
 //export callbackQIODevice_Reset
 func callbackQIODevice_Reset(ptr unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QIODevice::reset"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func() bool)())))
 	}
@@ -26920,7 +26510,6 @@ func (ptr *QIODevice) RollbackTransaction() {
 
 //export callbackQIODevice_Seek
 func callbackQIODevice_Seek(ptr unsafe.Pointer, pos C.longlong) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QIODevice::seek"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(int64) bool)(int64(pos)))))
 	}
@@ -26990,7 +26579,6 @@ func (ptr *QIODevice) SetTextModeEnabled(enabled bool) {
 
 //export callbackQIODevice_Size
 func callbackQIODevice_Size(ptr unsafe.Pointer) C.longlong {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QIODevice::size"); signal != nil {
 		return C.longlong(signal.(func() int64)())
 	}
@@ -27042,7 +26630,6 @@ func (ptr *QIODevice) UngetChar(c string) {
 
 //export callbackQIODevice_WaitForBytesWritten
 func callbackQIODevice_WaitForBytesWritten(ptr unsafe.Pointer, msecs C.int) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QIODevice::waitForBytesWritten"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(int) bool)(int(int32(msecs))))))
 	}
@@ -27080,7 +26667,6 @@ func (ptr *QIODevice) WaitForBytesWrittenDefault(msecs int) bool {
 
 //export callbackQIODevice_WaitForReadyRead
 func callbackQIODevice_WaitForReadyRead(ptr unsafe.Pointer, msecs C.int) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QIODevice::waitForReadyRead"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(int) bool)(int(int32(msecs))))))
 	}
@@ -27150,7 +26736,6 @@ func (ptr *QIODevice) WriteChannelCount() int {
 
 //export callbackQIODevice_WriteData
 func callbackQIODevice_WriteData(ptr unsafe.Pointer, data C.struct_QtCore_PackedString, maxSize C.longlong) C.longlong {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QIODevice::writeData"); signal != nil {
 		return C.longlong(signal.(func(string, int64) int64)(cGoUnpackString(data), int64(maxSize)))
 	}
@@ -27183,7 +26768,6 @@ func (ptr *QIODevice) WriteData(data string, maxSize int64) int64 {
 
 //export callbackQIODevice_DestroyQIODevice
 func callbackQIODevice_DestroyQIODevice(ptr unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QIODevice::~QIODevice"); signal != nil {
 		signal.(func())()
 	} else {
@@ -27223,7 +26807,6 @@ func (ptr *QIODevice) DestroyQIODeviceDefault() {
 
 //export callbackQIODevice_TimerEvent
 func callbackQIODevice_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QIODevice::timerEvent"); signal != nil {
 		signal.(func(*QTimerEvent))(NewQTimerEventFromPointer(event))
 	} else {
@@ -27259,7 +26842,6 @@ func (ptr *QIODevice) TimerEventDefault(event QTimerEvent_ITF) {
 
 //export callbackQIODevice_ChildEvent
 func callbackQIODevice_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QIODevice::childEvent"); signal != nil {
 		signal.(func(*QChildEvent))(NewQChildEventFromPointer(event))
 	} else {
@@ -27295,7 +26877,6 @@ func (ptr *QIODevice) ChildEventDefault(event QChildEvent_ITF) {
 
 //export callbackQIODevice_ConnectNotify
 func callbackQIODevice_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QIODevice::connectNotify"); signal != nil {
 		signal.(func(*QMetaMethod))(NewQMetaMethodFromPointer(sign))
 	} else {
@@ -27331,7 +26912,6 @@ func (ptr *QIODevice) ConnectNotifyDefault(sign QMetaMethod_ITF) {
 
 //export callbackQIODevice_CustomEvent
 func callbackQIODevice_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QIODevice::customEvent"); signal != nil {
 		signal.(func(*QEvent))(NewQEventFromPointer(event))
 	} else {
@@ -27406,7 +26986,6 @@ func (ptr *QIODevice) DeleteLaterDefault() {
 
 //export callbackQIODevice_DisconnectNotify
 func callbackQIODevice_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QIODevice::disconnectNotify"); signal != nil {
 		signal.(func(*QMetaMethod))(NewQMetaMethodFromPointer(sign))
 	} else {
@@ -27442,7 +27021,6 @@ func (ptr *QIODevice) DisconnectNotifyDefault(sign QMetaMethod_ITF) {
 
 //export callbackQIODevice_Event
 func callbackQIODevice_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QIODevice::event"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*QEvent) bool)(NewQEventFromPointer(e)))))
 	}
@@ -27480,7 +27058,6 @@ func (ptr *QIODevice) EventDefault(e QEvent_ITF) bool {
 
 //export callbackQIODevice_EventFilter
 func callbackQIODevice_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QIODevice::eventFilter"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*QObject, *QEvent) bool)(NewQObjectFromPointer(watched), NewQEventFromPointer(event)))))
 	}
@@ -27518,7 +27095,6 @@ func (ptr *QIODevice) EventFilterDefault(watched QObject_ITF, event QEvent_ITF) 
 
 //export callbackQIODevice_MetaObject
 func callbackQIODevice_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QIODevice::metaObject"); signal != nil {
 		return PointerFromQMetaObject(signal.(func() *QMetaObject)())
 	}
@@ -27602,7 +27178,6 @@ func NewQIdentityProxyModel(parent QObject_ITF) *QIdentityProxyModel {
 
 //export callbackQIdentityProxyModel_ColumnCount
 func callbackQIdentityProxyModel_ColumnCount(ptr unsafe.Pointer, parent unsafe.Pointer) C.int {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QIdentityProxyModel::columnCount"); signal != nil {
 		return C.int(int32(signal.(func(*QModelIndex) int)(NewQModelIndexFromPointer(parent))))
 	}
@@ -27640,7 +27215,6 @@ func (ptr *QIdentityProxyModel) ColumnCountDefault(parent QModelIndex_ITF) int {
 
 //export callbackQIdentityProxyModel_DropMimeData
 func callbackQIdentityProxyModel_DropMimeData(ptr unsafe.Pointer, data unsafe.Pointer, action C.longlong, row C.int, column C.int, parent unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QIdentityProxyModel::dropMimeData"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*QMimeData, Qt__DropAction, int, int, *QModelIndex) bool)(NewQMimeDataFromPointer(data), Qt__DropAction(action), int(int32(row)), int(int32(column)), NewQModelIndexFromPointer(parent)))))
 	}
@@ -27678,7 +27252,6 @@ func (ptr *QIdentityProxyModel) DropMimeDataDefault(data QMimeData_ITF, action Q
 
 //export callbackQIdentityProxyModel_HeaderData
 func callbackQIdentityProxyModel_HeaderData(ptr unsafe.Pointer, section C.int, orientation C.longlong, role C.int) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QIdentityProxyModel::headerData"); signal != nil {
 		return PointerFromQVariant(signal.(func(int, Qt__Orientation, int) *QVariant)(int(int32(section)), Qt__Orientation(orientation), int(int32(role))))
 	}
@@ -27720,7 +27293,6 @@ func (ptr *QIdentityProxyModel) HeaderDataDefault(section int, orientation Qt__O
 
 //export callbackQIdentityProxyModel_Index
 func callbackQIdentityProxyModel_Index(ptr unsafe.Pointer, row C.int, column C.int, parent unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QIdentityProxyModel::index"); signal != nil {
 		return PointerFromQModelIndex(signal.(func(int, int, *QModelIndex) *QModelIndex)(int(int32(row)), int(int32(column)), NewQModelIndexFromPointer(parent)))
 	}
@@ -27762,7 +27334,6 @@ func (ptr *QIdentityProxyModel) IndexDefault(row int, column int, parent QModelI
 
 //export callbackQIdentityProxyModel_InsertColumns
 func callbackQIdentityProxyModel_InsertColumns(ptr unsafe.Pointer, column C.int, count C.int, parent unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QIdentityProxyModel::insertColumns"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(int, int, *QModelIndex) bool)(int(int32(column)), int(int32(count)), NewQModelIndexFromPointer(parent)))))
 	}
@@ -27800,7 +27371,6 @@ func (ptr *QIdentityProxyModel) InsertColumnsDefault(column int, count int, pare
 
 //export callbackQIdentityProxyModel_InsertRows
 func callbackQIdentityProxyModel_InsertRows(ptr unsafe.Pointer, row C.int, count C.int, parent unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QIdentityProxyModel::insertRows"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(int, int, *QModelIndex) bool)(int(int32(row)), int(int32(count)), NewQModelIndexFromPointer(parent)))))
 	}
@@ -27838,7 +27408,6 @@ func (ptr *QIdentityProxyModel) InsertRowsDefault(row int, count int, parent QMo
 
 //export callbackQIdentityProxyModel_MapFromSource
 func callbackQIdentityProxyModel_MapFromSource(ptr unsafe.Pointer, sourceIndex unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QIdentityProxyModel::mapFromSource"); signal != nil {
 		return PointerFromQModelIndex(signal.(func(*QModelIndex) *QModelIndex)(NewQModelIndexFromPointer(sourceIndex)))
 	}
@@ -27880,7 +27449,6 @@ func (ptr *QIdentityProxyModel) MapFromSourceDefault(sourceIndex QModelIndex_ITF
 
 //export callbackQIdentityProxyModel_MapSelectionFromSource
 func callbackQIdentityProxyModel_MapSelectionFromSource(ptr unsafe.Pointer, selection unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QIdentityProxyModel::mapSelectionFromSource"); signal != nil {
 		return PointerFromQItemSelection(signal.(func(*QItemSelection) *QItemSelection)(NewQItemSelectionFromPointer(selection)))
 	}
@@ -27922,7 +27490,6 @@ func (ptr *QIdentityProxyModel) MapSelectionFromSourceDefault(selection QItemSel
 
 //export callbackQIdentityProxyModel_MapSelectionToSource
 func callbackQIdentityProxyModel_MapSelectionToSource(ptr unsafe.Pointer, selection unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QIdentityProxyModel::mapSelectionToSource"); signal != nil {
 		return PointerFromQItemSelection(signal.(func(*QItemSelection) *QItemSelection)(NewQItemSelectionFromPointer(selection)))
 	}
@@ -27964,7 +27531,6 @@ func (ptr *QIdentityProxyModel) MapSelectionToSourceDefault(selection QItemSelec
 
 //export callbackQIdentityProxyModel_MapToSource
 func callbackQIdentityProxyModel_MapToSource(ptr unsafe.Pointer, proxyIndex unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QIdentityProxyModel::mapToSource"); signal != nil {
 		return PointerFromQModelIndex(signal.(func(*QModelIndex) *QModelIndex)(NewQModelIndexFromPointer(proxyIndex)))
 	}
@@ -28019,7 +27585,6 @@ func (ptr *QIdentityProxyModel) Match(start QModelIndex_ITF, role int, value QVa
 
 //export callbackQIdentityProxyModel_Parent
 func callbackQIdentityProxyModel_Parent(ptr unsafe.Pointer, child unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QIdentityProxyModel::parent"); signal != nil {
 		return PointerFromQModelIndex(signal.(func(*QModelIndex) *QModelIndex)(NewQModelIndexFromPointer(child)))
 	}
@@ -28061,7 +27626,6 @@ func (ptr *QIdentityProxyModel) ParentDefault(child QModelIndex_ITF) *QModelInde
 
 //export callbackQIdentityProxyModel_RemoveColumns
 func callbackQIdentityProxyModel_RemoveColumns(ptr unsafe.Pointer, column C.int, count C.int, parent unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QIdentityProxyModel::removeColumns"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(int, int, *QModelIndex) bool)(int(int32(column)), int(int32(count)), NewQModelIndexFromPointer(parent)))))
 	}
@@ -28099,7 +27663,6 @@ func (ptr *QIdentityProxyModel) RemoveColumnsDefault(column int, count int, pare
 
 //export callbackQIdentityProxyModel_RemoveRows
 func callbackQIdentityProxyModel_RemoveRows(ptr unsafe.Pointer, row C.int, count C.int, parent unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QIdentityProxyModel::removeRows"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(int, int, *QModelIndex) bool)(int(int32(row)), int(int32(count)), NewQModelIndexFromPointer(parent)))))
 	}
@@ -28137,7 +27700,6 @@ func (ptr *QIdentityProxyModel) RemoveRowsDefault(row int, count int, parent QMo
 
 //export callbackQIdentityProxyModel_RowCount
 func callbackQIdentityProxyModel_RowCount(ptr unsafe.Pointer, parent unsafe.Pointer) C.int {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QIdentityProxyModel::rowCount"); signal != nil {
 		return C.int(int32(signal.(func(*QModelIndex) int)(NewQModelIndexFromPointer(parent))))
 	}
@@ -28175,7 +27737,6 @@ func (ptr *QIdentityProxyModel) RowCountDefault(parent QModelIndex_ITF) int {
 
 //export callbackQIdentityProxyModel_SetSourceModel
 func callbackQIdentityProxyModel_SetSourceModel(ptr unsafe.Pointer, newSourceModel unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QIdentityProxyModel::setSourceModel"); signal != nil {
 		signal.(func(*QAbstractItemModel))(NewQAbstractItemModelFromPointer(newSourceModel))
 	} else {
@@ -28211,7 +27772,6 @@ func (ptr *QIdentityProxyModel) SetSourceModelDefault(newSourceModel QAbstractIt
 
 //export callbackQIdentityProxyModel_Sibling
 func callbackQIdentityProxyModel_Sibling(ptr unsafe.Pointer, row C.int, column C.int, idx unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QIdentityProxyModel::sibling"); signal != nil {
 		return PointerFromQModelIndex(signal.(func(int, int, *QModelIndex) *QModelIndex)(int(int32(row)), int(int32(column)), NewQModelIndexFromPointer(idx)))
 	}
@@ -28270,7 +27830,6 @@ func (ptr *QIdentityProxyModel) match_atList(i int) *QModelIndex {
 
 //export callbackQIdentityProxyModel_Buddy
 func callbackQIdentityProxyModel_Buddy(ptr unsafe.Pointer, index unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QIdentityProxyModel::buddy"); signal != nil {
 		return PointerFromQModelIndex(signal.(func(*QModelIndex) *QModelIndex)(NewQModelIndexFromPointer(index)))
 	}
@@ -28312,7 +27871,6 @@ func (ptr *QIdentityProxyModel) BuddyDefault(index QModelIndex_ITF) *QModelIndex
 
 //export callbackQIdentityProxyModel_CanDropMimeData
 func callbackQIdentityProxyModel_CanDropMimeData(ptr unsafe.Pointer, data unsafe.Pointer, action C.longlong, row C.int, column C.int, parent unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QIdentityProxyModel::canDropMimeData"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*QMimeData, Qt__DropAction, int, int, *QModelIndex) bool)(NewQMimeDataFromPointer(data), Qt__DropAction(action), int(int32(row)), int(int32(column)), NewQModelIndexFromPointer(parent)))))
 	}
@@ -28350,7 +27908,6 @@ func (ptr *QIdentityProxyModel) CanDropMimeDataDefault(data QMimeData_ITF, actio
 
 //export callbackQIdentityProxyModel_CanFetchMore
 func callbackQIdentityProxyModel_CanFetchMore(ptr unsafe.Pointer, parent unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QIdentityProxyModel::canFetchMore"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*QModelIndex) bool)(NewQModelIndexFromPointer(parent)))))
 	}
@@ -28388,7 +27945,6 @@ func (ptr *QIdentityProxyModel) CanFetchMoreDefault(parent QModelIndex_ITF) bool
 
 //export callbackQIdentityProxyModel_Data
 func callbackQIdentityProxyModel_Data(ptr unsafe.Pointer, proxyIndex unsafe.Pointer, role C.int) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QIdentityProxyModel::data"); signal != nil {
 		return PointerFromQVariant(signal.(func(*QModelIndex, int) *QVariant)(NewQModelIndexFromPointer(proxyIndex), int(int32(role))))
 	}
@@ -28430,7 +27986,6 @@ func (ptr *QIdentityProxyModel) DataDefault(proxyIndex QModelIndex_ITF, role int
 
 //export callbackQIdentityProxyModel_FetchMore
 func callbackQIdentityProxyModel_FetchMore(ptr unsafe.Pointer, parent unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QIdentityProxyModel::fetchMore"); signal != nil {
 		signal.(func(*QModelIndex))(NewQModelIndexFromPointer(parent))
 	} else {
@@ -28466,7 +28021,6 @@ func (ptr *QIdentityProxyModel) FetchMoreDefault(parent QModelIndex_ITF) {
 
 //export callbackQIdentityProxyModel_Flags
 func callbackQIdentityProxyModel_Flags(ptr unsafe.Pointer, index unsafe.Pointer) C.longlong {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QIdentityProxyModel::flags"); signal != nil {
 		return C.longlong(signal.(func(*QModelIndex) Qt__ItemFlag)(NewQModelIndexFromPointer(index)))
 	}
@@ -28504,7 +28058,6 @@ func (ptr *QIdentityProxyModel) FlagsDefault(index QModelIndex_ITF) Qt__ItemFlag
 
 //export callbackQIdentityProxyModel_HasChildren
 func callbackQIdentityProxyModel_HasChildren(ptr unsafe.Pointer, parent unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QIdentityProxyModel::hasChildren"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*QModelIndex) bool)(NewQModelIndexFromPointer(parent)))))
 	}
@@ -28542,7 +28095,6 @@ func (ptr *QIdentityProxyModel) HasChildrenDefault(parent QModelIndex_ITF) bool 
 
 //export callbackQIdentityProxyModel_MimeTypes
 func callbackQIdentityProxyModel_MimeTypes(ptr unsafe.Pointer) *C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QIdentityProxyModel::mimeTypes"); signal != nil {
 		return C.CString(strings.Join(signal.(func() []string)(), "|"))
 	}
@@ -28615,7 +28167,6 @@ func (ptr *QIdentityProxyModel) ResetInternalDataDefault() {
 
 //export callbackQIdentityProxyModel_Revert
 func callbackQIdentityProxyModel_Revert(ptr unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QIdentityProxyModel::revert"); signal != nil {
 		signal.(func())()
 	} else {
@@ -28651,7 +28202,6 @@ func (ptr *QIdentityProxyModel) RevertDefault() {
 
 //export callbackQIdentityProxyModel_SetData
 func callbackQIdentityProxyModel_SetData(ptr unsafe.Pointer, index unsafe.Pointer, value unsafe.Pointer, role C.int) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QIdentityProxyModel::setData"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*QModelIndex, *QVariant, int) bool)(NewQModelIndexFromPointer(index), NewQVariantFromPointer(value), int(int32(role))))))
 	}
@@ -28689,7 +28239,6 @@ func (ptr *QIdentityProxyModel) SetDataDefault(index QModelIndex_ITF, value QVar
 
 //export callbackQIdentityProxyModel_SetHeaderData
 func callbackQIdentityProxyModel_SetHeaderData(ptr unsafe.Pointer, section C.int, orientation C.longlong, value unsafe.Pointer, role C.int) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QIdentityProxyModel::setHeaderData"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(int, Qt__Orientation, *QVariant, int) bool)(int(int32(section)), Qt__Orientation(orientation), NewQVariantFromPointer(value), int(int32(role))))))
 	}
@@ -28727,7 +28276,6 @@ func (ptr *QIdentityProxyModel) SetHeaderDataDefault(section int, orientation Qt
 
 //export callbackQIdentityProxyModel_Sort
 func callbackQIdentityProxyModel_Sort(ptr unsafe.Pointer, column C.int, order C.longlong) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QIdentityProxyModel::sort"); signal != nil {
 		signal.(func(int, Qt__SortOrder))(int(int32(column)), Qt__SortOrder(order))
 	} else {
@@ -28763,7 +28311,6 @@ func (ptr *QIdentityProxyModel) SortDefault(column int, order Qt__SortOrder) {
 
 //export callbackQIdentityProxyModel_Span
 func callbackQIdentityProxyModel_Span(ptr unsafe.Pointer, index unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QIdentityProxyModel::span"); signal != nil {
 		return PointerFromQSize(signal.(func(*QModelIndex) *QSize)(NewQModelIndexFromPointer(index)))
 	}
@@ -28805,7 +28352,6 @@ func (ptr *QIdentityProxyModel) SpanDefault(index QModelIndex_ITF) *QSize {
 
 //export callbackQIdentityProxyModel_Submit
 func callbackQIdentityProxyModel_Submit(ptr unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QIdentityProxyModel::submit"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func() bool)())))
 	}
@@ -28843,7 +28389,6 @@ func (ptr *QIdentityProxyModel) SubmitDefault() bool {
 
 //export callbackQIdentityProxyModel_SupportedDragActions
 func callbackQIdentityProxyModel_SupportedDragActions(ptr unsafe.Pointer) C.longlong {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QIdentityProxyModel::supportedDragActions"); signal != nil {
 		return C.longlong(signal.(func() Qt__DropAction)())
 	}
@@ -28881,7 +28426,6 @@ func (ptr *QIdentityProxyModel) SupportedDragActionsDefault() Qt__DropAction {
 
 //export callbackQIdentityProxyModel_SupportedDropActions
 func callbackQIdentityProxyModel_SupportedDropActions(ptr unsafe.Pointer) C.longlong {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QIdentityProxyModel::supportedDropActions"); signal != nil {
 		return C.longlong(signal.(func() Qt__DropAction)())
 	}
@@ -28919,7 +28463,6 @@ func (ptr *QIdentityProxyModel) SupportedDropActionsDefault() Qt__DropAction {
 
 //export callbackQIdentityProxyModel_MoveColumns
 func callbackQIdentityProxyModel_MoveColumns(ptr unsafe.Pointer, sourceParent unsafe.Pointer, sourceColumn C.int, count C.int, destinationParent unsafe.Pointer, destinationChild C.int) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QIdentityProxyModel::moveColumns"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*QModelIndex, int, int, *QModelIndex, int) bool)(NewQModelIndexFromPointer(sourceParent), int(int32(sourceColumn)), int(int32(count)), NewQModelIndexFromPointer(destinationParent), int(int32(destinationChild))))))
 	}
@@ -28957,7 +28500,6 @@ func (ptr *QIdentityProxyModel) MoveColumnsDefault(sourceParent QModelIndex_ITF,
 
 //export callbackQIdentityProxyModel_MoveRows
 func callbackQIdentityProxyModel_MoveRows(ptr unsafe.Pointer, sourceParent unsafe.Pointer, sourceRow C.int, count C.int, destinationParent unsafe.Pointer, destinationChild C.int) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QIdentityProxyModel::moveRows"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*QModelIndex, int, int, *QModelIndex, int) bool)(NewQModelIndexFromPointer(sourceParent), int(int32(sourceRow)), int(int32(count)), NewQModelIndexFromPointer(destinationParent), int(int32(destinationChild))))))
 	}
@@ -28995,7 +28537,6 @@ func (ptr *QIdentityProxyModel) MoveRowsDefault(sourceParent QModelIndex_ITF, so
 
 //export callbackQIdentityProxyModel_TimerEvent
 func callbackQIdentityProxyModel_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QIdentityProxyModel::timerEvent"); signal != nil {
 		signal.(func(*QTimerEvent))(NewQTimerEventFromPointer(event))
 	} else {
@@ -29031,7 +28572,6 @@ func (ptr *QIdentityProxyModel) TimerEventDefault(event QTimerEvent_ITF) {
 
 //export callbackQIdentityProxyModel_ChildEvent
 func callbackQIdentityProxyModel_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QIdentityProxyModel::childEvent"); signal != nil {
 		signal.(func(*QChildEvent))(NewQChildEventFromPointer(event))
 	} else {
@@ -29067,7 +28607,6 @@ func (ptr *QIdentityProxyModel) ChildEventDefault(event QChildEvent_ITF) {
 
 //export callbackQIdentityProxyModel_ConnectNotify
 func callbackQIdentityProxyModel_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QIdentityProxyModel::connectNotify"); signal != nil {
 		signal.(func(*QMetaMethod))(NewQMetaMethodFromPointer(sign))
 	} else {
@@ -29103,7 +28642,6 @@ func (ptr *QIdentityProxyModel) ConnectNotifyDefault(sign QMetaMethod_ITF) {
 
 //export callbackQIdentityProxyModel_CustomEvent
 func callbackQIdentityProxyModel_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QIdentityProxyModel::customEvent"); signal != nil {
 		signal.(func(*QEvent))(NewQEventFromPointer(event))
 	} else {
@@ -29178,7 +28716,6 @@ func (ptr *QIdentityProxyModel) DeleteLaterDefault() {
 
 //export callbackQIdentityProxyModel_DisconnectNotify
 func callbackQIdentityProxyModel_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QIdentityProxyModel::disconnectNotify"); signal != nil {
 		signal.(func(*QMetaMethod))(NewQMetaMethodFromPointer(sign))
 	} else {
@@ -29214,7 +28751,6 @@ func (ptr *QIdentityProxyModel) DisconnectNotifyDefault(sign QMetaMethod_ITF) {
 
 //export callbackQIdentityProxyModel_Event
 func callbackQIdentityProxyModel_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QIdentityProxyModel::event"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*QEvent) bool)(NewQEventFromPointer(e)))))
 	}
@@ -29252,7 +28788,6 @@ func (ptr *QIdentityProxyModel) EventDefault(e QEvent_ITF) bool {
 
 //export callbackQIdentityProxyModel_EventFilter
 func callbackQIdentityProxyModel_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QIdentityProxyModel::eventFilter"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*QObject, *QEvent) bool)(NewQObjectFromPointer(watched), NewQEventFromPointer(event)))))
 	}
@@ -29290,7 +28825,6 @@ func (ptr *QIdentityProxyModel) EventFilterDefault(watched QObject_ITF, event QE
 
 //export callbackQIdentityProxyModel_MetaObject
 func callbackQIdentityProxyModel_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QIdentityProxyModel::metaObject"); signal != nil {
 		return PointerFromQMetaObject(signal.(func() *QMetaObject)())
 	}
@@ -29620,7 +29154,6 @@ func (ptr *QItemSelectionModel) ColumnIntersectsSelection(column int, parent QMo
 
 //export callbackQItemSelectionModel_CurrentChanged
 func callbackQItemSelectionModel_CurrentChanged(ptr unsafe.Pointer, current unsafe.Pointer, previous unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QItemSelectionModel::currentChanged"); signal != nil {
 		signal.(func(*QModelIndex, *QModelIndex))(NewQModelIndexFromPointer(current), NewQModelIndexFromPointer(previous))
 	}
@@ -29649,7 +29182,6 @@ func (ptr *QItemSelectionModel) CurrentChanged(current QModelIndex_ITF, previous
 
 //export callbackQItemSelectionModel_CurrentColumnChanged
 func callbackQItemSelectionModel_CurrentColumnChanged(ptr unsafe.Pointer, current unsafe.Pointer, previous unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QItemSelectionModel::currentColumnChanged"); signal != nil {
 		signal.(func(*QModelIndex, *QModelIndex))(NewQModelIndexFromPointer(current), NewQModelIndexFromPointer(previous))
 	}
@@ -29687,7 +29219,6 @@ func (ptr *QItemSelectionModel) CurrentIndex() *QModelIndex {
 
 //export callbackQItemSelectionModel_CurrentRowChanged
 func callbackQItemSelectionModel_CurrentRowChanged(ptr unsafe.Pointer, current unsafe.Pointer, previous unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QItemSelectionModel::currentRowChanged"); signal != nil {
 		signal.(func(*QModelIndex, *QModelIndex))(NewQModelIndexFromPointer(current), NewQModelIndexFromPointer(previous))
 	}
@@ -29772,7 +29303,6 @@ func (ptr *QItemSelectionModel) Model() *QAbstractItemModel {
 
 //export callbackQItemSelectionModel_ModelChanged
 func callbackQItemSelectionModel_ModelChanged(ptr unsafe.Pointer, model unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QItemSelectionModel::modelChanged"); signal != nil {
 		signal.(func(*QAbstractItemModel))(NewQAbstractItemModelFromPointer(model))
 	}
@@ -29961,7 +29491,6 @@ func (ptr *QItemSelectionModel) Selection() *QItemSelection {
 
 //export callbackQItemSelectionModel_SelectionChanged
 func callbackQItemSelectionModel_SelectionChanged(ptr unsafe.Pointer, selected unsafe.Pointer, deselected unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QItemSelectionModel::selectionChanged"); signal != nil {
 		signal.(func(*QItemSelection, *QItemSelection))(NewQItemSelectionFromPointer(selected), NewQItemSelectionFromPointer(deselected))
 	}
@@ -30031,7 +29560,6 @@ func (ptr *QItemSelectionModel) SetModel(model QAbstractItemModel_ITF) {
 
 //export callbackQItemSelectionModel_DestroyQItemSelectionModel
 func callbackQItemSelectionModel_DestroyQItemSelectionModel(ptr unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QItemSelectionModel::~QItemSelectionModel"); signal != nil {
 		signal.(func())()
 	} else {
@@ -30098,7 +29626,6 @@ func (ptr *QItemSelectionModel) selectedRows_atList(i int) *QModelIndex {
 
 //export callbackQItemSelectionModel_TimerEvent
 func callbackQItemSelectionModel_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QItemSelectionModel::timerEvent"); signal != nil {
 		signal.(func(*QTimerEvent))(NewQTimerEventFromPointer(event))
 	} else {
@@ -30134,7 +29661,6 @@ func (ptr *QItemSelectionModel) TimerEventDefault(event QTimerEvent_ITF) {
 
 //export callbackQItemSelectionModel_ChildEvent
 func callbackQItemSelectionModel_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QItemSelectionModel::childEvent"); signal != nil {
 		signal.(func(*QChildEvent))(NewQChildEventFromPointer(event))
 	} else {
@@ -30170,7 +29696,6 @@ func (ptr *QItemSelectionModel) ChildEventDefault(event QChildEvent_ITF) {
 
 //export callbackQItemSelectionModel_ConnectNotify
 func callbackQItemSelectionModel_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QItemSelectionModel::connectNotify"); signal != nil {
 		signal.(func(*QMetaMethod))(NewQMetaMethodFromPointer(sign))
 	} else {
@@ -30206,7 +29731,6 @@ func (ptr *QItemSelectionModel) ConnectNotifyDefault(sign QMetaMethod_ITF) {
 
 //export callbackQItemSelectionModel_CustomEvent
 func callbackQItemSelectionModel_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QItemSelectionModel::customEvent"); signal != nil {
 		signal.(func(*QEvent))(NewQEventFromPointer(event))
 	} else {
@@ -30281,7 +29805,6 @@ func (ptr *QItemSelectionModel) DeleteLaterDefault() {
 
 //export callbackQItemSelectionModel_DisconnectNotify
 func callbackQItemSelectionModel_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QItemSelectionModel::disconnectNotify"); signal != nil {
 		signal.(func(*QMetaMethod))(NewQMetaMethodFromPointer(sign))
 	} else {
@@ -30317,7 +29840,6 @@ func (ptr *QItemSelectionModel) DisconnectNotifyDefault(sign QMetaMethod_ITF) {
 
 //export callbackQItemSelectionModel_Event
 func callbackQItemSelectionModel_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QItemSelectionModel::event"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*QEvent) bool)(NewQEventFromPointer(e)))))
 	}
@@ -30355,7 +29877,6 @@ func (ptr *QItemSelectionModel) EventDefault(e QEvent_ITF) bool {
 
 //export callbackQItemSelectionModel_EventFilter
 func callbackQItemSelectionModel_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QItemSelectionModel::eventFilter"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*QObject, *QEvent) bool)(NewQObjectFromPointer(watched), NewQEventFromPointer(event)))))
 	}
@@ -30393,7 +29914,6 @@ func (ptr *QItemSelectionModel) EventFilterDefault(watched QObject_ITF, event QE
 
 //export callbackQItemSelectionModel_MetaObject
 func callbackQItemSelectionModel_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QItemSelectionModel::metaObject"); signal != nil {
 		return PointerFromQMetaObject(signal.(func() *QMetaObject)())
 	}
@@ -31994,7 +31514,6 @@ func (ptr *QLibrary) DestroyQLibrary() {
 
 //export callbackQLibrary_TimerEvent
 func callbackQLibrary_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QLibrary::timerEvent"); signal != nil {
 		signal.(func(*QTimerEvent))(NewQTimerEventFromPointer(event))
 	} else {
@@ -32030,7 +31549,6 @@ func (ptr *QLibrary) TimerEventDefault(event QTimerEvent_ITF) {
 
 //export callbackQLibrary_ChildEvent
 func callbackQLibrary_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QLibrary::childEvent"); signal != nil {
 		signal.(func(*QChildEvent))(NewQChildEventFromPointer(event))
 	} else {
@@ -32066,7 +31584,6 @@ func (ptr *QLibrary) ChildEventDefault(event QChildEvent_ITF) {
 
 //export callbackQLibrary_ConnectNotify
 func callbackQLibrary_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QLibrary::connectNotify"); signal != nil {
 		signal.(func(*QMetaMethod))(NewQMetaMethodFromPointer(sign))
 	} else {
@@ -32102,7 +31619,6 @@ func (ptr *QLibrary) ConnectNotifyDefault(sign QMetaMethod_ITF) {
 
 //export callbackQLibrary_CustomEvent
 func callbackQLibrary_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QLibrary::customEvent"); signal != nil {
 		signal.(func(*QEvent))(NewQEventFromPointer(event))
 	} else {
@@ -32177,7 +31693,6 @@ func (ptr *QLibrary) DeleteLaterDefault() {
 
 //export callbackQLibrary_DisconnectNotify
 func callbackQLibrary_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QLibrary::disconnectNotify"); signal != nil {
 		signal.(func(*QMetaMethod))(NewQMetaMethodFromPointer(sign))
 	} else {
@@ -32213,7 +31728,6 @@ func (ptr *QLibrary) DisconnectNotifyDefault(sign QMetaMethod_ITF) {
 
 //export callbackQLibrary_Event
 func callbackQLibrary_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QLibrary::event"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*QEvent) bool)(NewQEventFromPointer(e)))))
 	}
@@ -32251,7 +31765,6 @@ func (ptr *QLibrary) EventDefault(e QEvent_ITF) bool {
 
 //export callbackQLibrary_EventFilter
 func callbackQLibrary_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QLibrary::eventFilter"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*QObject, *QEvent) bool)(NewQObjectFromPointer(watched), NewQEventFromPointer(event)))))
 	}
@@ -32289,7 +31802,6 @@ func (ptr *QLibrary) EventFilterDefault(watched QObject_ITF, event QEvent_ITF) b
 
 //export callbackQLibrary_MetaObject
 func callbackQLibrary_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QLibrary::metaObject"); signal != nil {
 		return PointerFromQMetaObject(signal.(func() *QMetaObject)())
 	}
@@ -37090,7 +36602,6 @@ func (ptr *QMimeData) Data(mimeType string) *QByteArray {
 
 //export callbackQMimeData_Formats
 func callbackQMimeData_Formats(ptr unsafe.Pointer) *C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMimeData::formats"); signal != nil {
 		return C.CString(strings.Join(signal.(func() []string)(), "|"))
 	}
@@ -37135,7 +36646,6 @@ func (ptr *QMimeData) HasColor() bool {
 
 //export callbackQMimeData_HasFormat
 func callbackQMimeData_HasFormat(ptr unsafe.Pointer, mimeType C.struct_QtCore_PackedString) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMimeData::hasFormat"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(string) bool)(cGoUnpackString(mimeType)))))
 	}
@@ -37302,7 +36812,6 @@ func (ptr *QMimeData) urls_atList(i int) *QUrl {
 
 //export callbackQMimeData_TimerEvent
 func callbackQMimeData_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMimeData::timerEvent"); signal != nil {
 		signal.(func(*QTimerEvent))(NewQTimerEventFromPointer(event))
 	} else {
@@ -37338,7 +36847,6 @@ func (ptr *QMimeData) TimerEventDefault(event QTimerEvent_ITF) {
 
 //export callbackQMimeData_ChildEvent
 func callbackQMimeData_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMimeData::childEvent"); signal != nil {
 		signal.(func(*QChildEvent))(NewQChildEventFromPointer(event))
 	} else {
@@ -37374,7 +36882,6 @@ func (ptr *QMimeData) ChildEventDefault(event QChildEvent_ITF) {
 
 //export callbackQMimeData_ConnectNotify
 func callbackQMimeData_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMimeData::connectNotify"); signal != nil {
 		signal.(func(*QMetaMethod))(NewQMetaMethodFromPointer(sign))
 	} else {
@@ -37410,7 +36917,6 @@ func (ptr *QMimeData) ConnectNotifyDefault(sign QMetaMethod_ITF) {
 
 //export callbackQMimeData_CustomEvent
 func callbackQMimeData_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMimeData::customEvent"); signal != nil {
 		signal.(func(*QEvent))(NewQEventFromPointer(event))
 	} else {
@@ -37485,7 +36991,6 @@ func (ptr *QMimeData) DeleteLaterDefault() {
 
 //export callbackQMimeData_DisconnectNotify
 func callbackQMimeData_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMimeData::disconnectNotify"); signal != nil {
 		signal.(func(*QMetaMethod))(NewQMetaMethodFromPointer(sign))
 	} else {
@@ -37521,7 +37026,6 @@ func (ptr *QMimeData) DisconnectNotifyDefault(sign QMetaMethod_ITF) {
 
 //export callbackQMimeData_Event
 func callbackQMimeData_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMimeData::event"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*QEvent) bool)(NewQEventFromPointer(e)))))
 	}
@@ -37559,7 +37063,6 @@ func (ptr *QMimeData) EventDefault(e QEvent_ITF) bool {
 
 //export callbackQMimeData_EventFilter
 func callbackQMimeData_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMimeData::eventFilter"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*QObject, *QEvent) bool)(NewQObjectFromPointer(watched), NewQEventFromPointer(event)))))
 	}
@@ -37597,7 +37100,6 @@ func (ptr *QMimeData) EventFilterDefault(watched QObject_ITF, event QEvent_ITF) 
 
 //export callbackQMimeData_MetaObject
 func callbackQMimeData_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMimeData::metaObject"); signal != nil {
 		return PointerFromQMetaObject(signal.(func() *QMetaObject)())
 	}
@@ -38765,7 +38267,6 @@ func (ptr *QObject) SetObjectName(name string) {
 
 //export callbackQObject_TimerEvent
 func callbackQObject_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QObject::timerEvent"); signal != nil {
 		signal.(func(*QTimerEvent))(NewQTimerEventFromPointer(event))
 	} else {
@@ -38816,7 +38317,6 @@ func (ptr *QObject) BlockSignals(block bool) bool {
 
 //export callbackQObject_ChildEvent
 func callbackQObject_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QObject::childEvent"); signal != nil {
 		signal.(func(*QChildEvent))(NewQChildEventFromPointer(event))
 	} else {
@@ -38852,7 +38352,6 @@ func (ptr *QObject) ChildEventDefault(event QChildEvent_ITF) {
 
 //export callbackQObject_ConnectNotify
 func callbackQObject_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QObject::connectNotify"); signal != nil {
 		signal.(func(*QMetaMethod))(NewQMetaMethodFromPointer(sign))
 	} else {
@@ -38888,7 +38387,6 @@ func (ptr *QObject) ConnectNotifyDefault(sign QMetaMethod_ITF) {
 
 //export callbackQObject_CustomEvent
 func callbackQObject_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QObject::customEvent"); signal != nil {
 		signal.(func(*QEvent))(NewQEventFromPointer(event))
 	} else {
@@ -38963,7 +38461,6 @@ func (ptr *QObject) DeleteLaterDefault() {
 
 //export callbackQObject_Destroyed
 func callbackQObject_Destroyed(ptr unsafe.Pointer, obj unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QObject::destroyed"); signal != nil {
 		signal.(func(*QObject))(NewQObjectFromPointer(obj))
 	}
@@ -39038,7 +38535,6 @@ func (ptr *QObject) Disconnect3(sign string, receiver QObject_ITF, method string
 
 //export callbackQObject_DisconnectNotify
 func callbackQObject_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QObject::disconnectNotify"); signal != nil {
 		signal.(func(*QMetaMethod))(NewQMetaMethodFromPointer(sign))
 	} else {
@@ -39099,7 +38595,6 @@ func (ptr *QObject) DynamicPropertyNames() []*QByteArray {
 
 //export callbackQObject_Event
 func callbackQObject_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QObject::event"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*QEvent) bool)(NewQEventFromPointer(e)))))
 	}
@@ -39137,7 +38632,6 @@ func (ptr *QObject) EventDefault(e QEvent_ITF) bool {
 
 //export callbackQObject_EventFilter
 func callbackQObject_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QObject::eventFilter"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*QObject, *QEvent) bool)(NewQObjectFromPointer(watched), NewQEventFromPointer(event)))))
 	}
@@ -39265,7 +38759,6 @@ func (ptr *QObject) KillTimer(id int) {
 
 //export callbackQObject_MetaObject
 func callbackQObject_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QObject::metaObject"); signal != nil {
 		return PointerFromQMetaObject(signal.(func() *QMetaObject)())
 	}
@@ -39309,7 +38802,6 @@ func (ptr *QObject) MoveToThread(targetThread QThread_ITF) {
 
 //export callbackQObject_ObjectNameChanged
 func callbackQObject_ObjectNameChanged(ptr unsafe.Pointer, objectName C.struct_QtCore_PackedString) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QObject::objectNameChanged"); signal != nil {
 		signal.(func(string))(cGoUnpackString(objectName))
 	}
@@ -39443,7 +38935,6 @@ func (ptr *QObject) Tr(sourceText string, disambiguation string, n int) string {
 
 //export callbackQObject_DestroyQObject
 func callbackQObject_DestroyQObject(ptr unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QObject::~QObject"); signal != nil {
 		signal.(func())()
 	} else {
@@ -39596,7 +39087,6 @@ func (ptr *QObjectCleanupHandler) DestroyQObjectCleanupHandler() {
 
 //export callbackQObjectCleanupHandler_TimerEvent
 func callbackQObjectCleanupHandler_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QObjectCleanupHandler::timerEvent"); signal != nil {
 		signal.(func(*QTimerEvent))(NewQTimerEventFromPointer(event))
 	} else {
@@ -39632,7 +39122,6 @@ func (ptr *QObjectCleanupHandler) TimerEventDefault(event QTimerEvent_ITF) {
 
 //export callbackQObjectCleanupHandler_ChildEvent
 func callbackQObjectCleanupHandler_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QObjectCleanupHandler::childEvent"); signal != nil {
 		signal.(func(*QChildEvent))(NewQChildEventFromPointer(event))
 	} else {
@@ -39668,7 +39157,6 @@ func (ptr *QObjectCleanupHandler) ChildEventDefault(event QChildEvent_ITF) {
 
 //export callbackQObjectCleanupHandler_ConnectNotify
 func callbackQObjectCleanupHandler_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QObjectCleanupHandler::connectNotify"); signal != nil {
 		signal.(func(*QMetaMethod))(NewQMetaMethodFromPointer(sign))
 	} else {
@@ -39704,7 +39192,6 @@ func (ptr *QObjectCleanupHandler) ConnectNotifyDefault(sign QMetaMethod_ITF) {
 
 //export callbackQObjectCleanupHandler_CustomEvent
 func callbackQObjectCleanupHandler_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QObjectCleanupHandler::customEvent"); signal != nil {
 		signal.(func(*QEvent))(NewQEventFromPointer(event))
 	} else {
@@ -39779,7 +39266,6 @@ func (ptr *QObjectCleanupHandler) DeleteLaterDefault() {
 
 //export callbackQObjectCleanupHandler_DisconnectNotify
 func callbackQObjectCleanupHandler_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QObjectCleanupHandler::disconnectNotify"); signal != nil {
 		signal.(func(*QMetaMethod))(NewQMetaMethodFromPointer(sign))
 	} else {
@@ -39815,7 +39301,6 @@ func (ptr *QObjectCleanupHandler) DisconnectNotifyDefault(sign QMetaMethod_ITF) 
 
 //export callbackQObjectCleanupHandler_Event
 func callbackQObjectCleanupHandler_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QObjectCleanupHandler::event"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*QEvent) bool)(NewQEventFromPointer(e)))))
 	}
@@ -39853,7 +39338,6 @@ func (ptr *QObjectCleanupHandler) EventDefault(e QEvent_ITF) bool {
 
 //export callbackQObjectCleanupHandler_EventFilter
 func callbackQObjectCleanupHandler_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QObjectCleanupHandler::eventFilter"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*QObject, *QEvent) bool)(NewQObjectFromPointer(watched), NewQEventFromPointer(event)))))
 	}
@@ -39891,7 +39375,6 @@ func (ptr *QObjectCleanupHandler) EventFilterDefault(watched QObject_ITF, event 
 
 //export callbackQObjectCleanupHandler_MetaObject
 func callbackQObjectCleanupHandler_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QObjectCleanupHandler::metaObject"); signal != nil {
 		return PointerFromQMetaObject(signal.(func() *QMetaObject)())
 	}
@@ -40020,7 +39503,6 @@ func NewQParallelAnimationGroup(parent QObject_ITF) *QParallelAnimationGroup {
 
 //export callbackQParallelAnimationGroup_Duration
 func callbackQParallelAnimationGroup_Duration(ptr unsafe.Pointer) C.int {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QParallelAnimationGroup::duration"); signal != nil {
 		return C.int(int32(signal.(func() int)()))
 	}
@@ -40058,7 +39540,6 @@ func (ptr *QParallelAnimationGroup) DurationDefault() int {
 
 //export callbackQParallelAnimationGroup_Event
 func callbackQParallelAnimationGroup_Event(ptr unsafe.Pointer, event unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QParallelAnimationGroup::event"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*QEvent) bool)(NewQEventFromPointer(event)))))
 	}
@@ -40096,7 +39577,6 @@ func (ptr *QParallelAnimationGroup) EventDefault(event QEvent_ITF) bool {
 
 //export callbackQParallelAnimationGroup_UpdateCurrentTime
 func callbackQParallelAnimationGroup_UpdateCurrentTime(ptr unsafe.Pointer, currentTime C.int) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QParallelAnimationGroup::updateCurrentTime"); signal != nil {
 		signal.(func(int))(int(int32(currentTime)))
 	} else {
@@ -40132,7 +39612,6 @@ func (ptr *QParallelAnimationGroup) UpdateCurrentTimeDefault(currentTime int) {
 
 //export callbackQParallelAnimationGroup_UpdateDirection
 func callbackQParallelAnimationGroup_UpdateDirection(ptr unsafe.Pointer, direction C.longlong) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QParallelAnimationGroup::updateDirection"); signal != nil {
 		signal.(func(QAbstractAnimation__Direction))(QAbstractAnimation__Direction(direction))
 	} else {
@@ -40168,7 +39647,6 @@ func (ptr *QParallelAnimationGroup) UpdateDirectionDefault(direction QAbstractAn
 
 //export callbackQParallelAnimationGroup_UpdateState
 func callbackQParallelAnimationGroup_UpdateState(ptr unsafe.Pointer, newState C.longlong, oldState C.longlong) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QParallelAnimationGroup::updateState"); signal != nil {
 		signal.(func(QAbstractAnimation__State, QAbstractAnimation__State))(QAbstractAnimation__State(newState), QAbstractAnimation__State(oldState))
 	} else {
@@ -40422,7 +39900,6 @@ func (ptr *QParallelAnimationGroup) StopDefault() {
 
 //export callbackQParallelAnimationGroup_TimerEvent
 func callbackQParallelAnimationGroup_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QParallelAnimationGroup::timerEvent"); signal != nil {
 		signal.(func(*QTimerEvent))(NewQTimerEventFromPointer(event))
 	} else {
@@ -40458,7 +39935,6 @@ func (ptr *QParallelAnimationGroup) TimerEventDefault(event QTimerEvent_ITF) {
 
 //export callbackQParallelAnimationGroup_ChildEvent
 func callbackQParallelAnimationGroup_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QParallelAnimationGroup::childEvent"); signal != nil {
 		signal.(func(*QChildEvent))(NewQChildEventFromPointer(event))
 	} else {
@@ -40494,7 +39970,6 @@ func (ptr *QParallelAnimationGroup) ChildEventDefault(event QChildEvent_ITF) {
 
 //export callbackQParallelAnimationGroup_ConnectNotify
 func callbackQParallelAnimationGroup_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QParallelAnimationGroup::connectNotify"); signal != nil {
 		signal.(func(*QMetaMethod))(NewQMetaMethodFromPointer(sign))
 	} else {
@@ -40530,7 +40005,6 @@ func (ptr *QParallelAnimationGroup) ConnectNotifyDefault(sign QMetaMethod_ITF) {
 
 //export callbackQParallelAnimationGroup_CustomEvent
 func callbackQParallelAnimationGroup_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QParallelAnimationGroup::customEvent"); signal != nil {
 		signal.(func(*QEvent))(NewQEventFromPointer(event))
 	} else {
@@ -40605,7 +40079,6 @@ func (ptr *QParallelAnimationGroup) DeleteLaterDefault() {
 
 //export callbackQParallelAnimationGroup_DisconnectNotify
 func callbackQParallelAnimationGroup_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QParallelAnimationGroup::disconnectNotify"); signal != nil {
 		signal.(func(*QMetaMethod))(NewQMetaMethodFromPointer(sign))
 	} else {
@@ -40641,7 +40114,6 @@ func (ptr *QParallelAnimationGroup) DisconnectNotifyDefault(sign QMetaMethod_ITF
 
 //export callbackQParallelAnimationGroup_EventFilter
 func callbackQParallelAnimationGroup_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QParallelAnimationGroup::eventFilter"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*QObject, *QEvent) bool)(NewQObjectFromPointer(watched), NewQEventFromPointer(event)))))
 	}
@@ -40679,7 +40151,6 @@ func (ptr *QParallelAnimationGroup) EventFilterDefault(watched QObject_ITF, even
 
 //export callbackQParallelAnimationGroup_MetaObject
 func callbackQParallelAnimationGroup_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QParallelAnimationGroup::metaObject"); signal != nil {
 		return PointerFromQMetaObject(signal.(func() *QMetaObject)())
 	}
@@ -40756,7 +40227,6 @@ func NewQPauseAnimationFromPointer(ptr unsafe.Pointer) *QPauseAnimation {
 
 //export callbackQPauseAnimation_Duration
 func callbackQPauseAnimation_Duration(ptr unsafe.Pointer) C.int {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPauseAnimation::duration"); signal != nil {
 		return C.int(int32(signal.(func() int)()))
 	}
@@ -40816,7 +40286,6 @@ func NewQPauseAnimation2(msecs int, parent QObject_ITF) *QPauseAnimation {
 
 //export callbackQPauseAnimation_Event
 func callbackQPauseAnimation_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPauseAnimation::event"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*QEvent) bool)(NewQEventFromPointer(e)))))
 	}
@@ -40854,7 +40323,6 @@ func (ptr *QPauseAnimation) EventDefault(e QEvent_ITF) bool {
 
 //export callbackQPauseAnimation_UpdateCurrentTime
 func callbackQPauseAnimation_UpdateCurrentTime(ptr unsafe.Pointer, vin C.int) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPauseAnimation::updateCurrentTime"); signal != nil {
 		signal.(func(int))(int(int32(vin)))
 	} else {
@@ -41108,7 +40576,6 @@ func (ptr *QPauseAnimation) StopDefault() {
 
 //export callbackQPauseAnimation_UpdateDirection
 func callbackQPauseAnimation_UpdateDirection(ptr unsafe.Pointer, direction C.longlong) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPauseAnimation::updateDirection"); signal != nil {
 		signal.(func(QAbstractAnimation__Direction))(QAbstractAnimation__Direction(direction))
 	} else {
@@ -41144,7 +40611,6 @@ func (ptr *QPauseAnimation) UpdateDirectionDefault(direction QAbstractAnimation_
 
 //export callbackQPauseAnimation_UpdateState
 func callbackQPauseAnimation_UpdateState(ptr unsafe.Pointer, newState C.longlong, oldState C.longlong) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPauseAnimation::updateState"); signal != nil {
 		signal.(func(QAbstractAnimation__State, QAbstractAnimation__State))(QAbstractAnimation__State(newState), QAbstractAnimation__State(oldState))
 	} else {
@@ -41180,7 +40646,6 @@ func (ptr *QPauseAnimation) UpdateStateDefault(newState QAbstractAnimation__Stat
 
 //export callbackQPauseAnimation_TimerEvent
 func callbackQPauseAnimation_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPauseAnimation::timerEvent"); signal != nil {
 		signal.(func(*QTimerEvent))(NewQTimerEventFromPointer(event))
 	} else {
@@ -41216,7 +40681,6 @@ func (ptr *QPauseAnimation) TimerEventDefault(event QTimerEvent_ITF) {
 
 //export callbackQPauseAnimation_ChildEvent
 func callbackQPauseAnimation_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPauseAnimation::childEvent"); signal != nil {
 		signal.(func(*QChildEvent))(NewQChildEventFromPointer(event))
 	} else {
@@ -41252,7 +40716,6 @@ func (ptr *QPauseAnimation) ChildEventDefault(event QChildEvent_ITF) {
 
 //export callbackQPauseAnimation_ConnectNotify
 func callbackQPauseAnimation_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPauseAnimation::connectNotify"); signal != nil {
 		signal.(func(*QMetaMethod))(NewQMetaMethodFromPointer(sign))
 	} else {
@@ -41288,7 +40751,6 @@ func (ptr *QPauseAnimation) ConnectNotifyDefault(sign QMetaMethod_ITF) {
 
 //export callbackQPauseAnimation_CustomEvent
 func callbackQPauseAnimation_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPauseAnimation::customEvent"); signal != nil {
 		signal.(func(*QEvent))(NewQEventFromPointer(event))
 	} else {
@@ -41363,7 +40825,6 @@ func (ptr *QPauseAnimation) DeleteLaterDefault() {
 
 //export callbackQPauseAnimation_DisconnectNotify
 func callbackQPauseAnimation_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPauseAnimation::disconnectNotify"); signal != nil {
 		signal.(func(*QMetaMethod))(NewQMetaMethodFromPointer(sign))
 	} else {
@@ -41399,7 +40860,6 @@ func (ptr *QPauseAnimation) DisconnectNotifyDefault(sign QMetaMethod_ITF) {
 
 //export callbackQPauseAnimation_EventFilter
 func callbackQPauseAnimation_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPauseAnimation::eventFilter"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*QObject, *QEvent) bool)(NewQObjectFromPointer(watched), NewQEventFromPointer(event)))))
 	}
@@ -41437,7 +40897,6 @@ func (ptr *QPauseAnimation) EventFilterDefault(watched QObject_ITF, event QEvent
 
 //export callbackQPauseAnimation_MetaObject
 func callbackQPauseAnimation_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPauseAnimation::metaObject"); signal != nil {
 		return PointerFromQMetaObject(signal.(func() *QMetaObject)())
 	}
@@ -41790,7 +41249,6 @@ func (ptr *QPluginLoader) staticInstances_atList(i int) *QObject {
 
 //export callbackQPluginLoader_TimerEvent
 func callbackQPluginLoader_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPluginLoader::timerEvent"); signal != nil {
 		signal.(func(*QTimerEvent))(NewQTimerEventFromPointer(event))
 	} else {
@@ -41826,7 +41284,6 @@ func (ptr *QPluginLoader) TimerEventDefault(event QTimerEvent_ITF) {
 
 //export callbackQPluginLoader_ChildEvent
 func callbackQPluginLoader_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPluginLoader::childEvent"); signal != nil {
 		signal.(func(*QChildEvent))(NewQChildEventFromPointer(event))
 	} else {
@@ -41862,7 +41319,6 @@ func (ptr *QPluginLoader) ChildEventDefault(event QChildEvent_ITF) {
 
 //export callbackQPluginLoader_ConnectNotify
 func callbackQPluginLoader_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPluginLoader::connectNotify"); signal != nil {
 		signal.(func(*QMetaMethod))(NewQMetaMethodFromPointer(sign))
 	} else {
@@ -41898,7 +41354,6 @@ func (ptr *QPluginLoader) ConnectNotifyDefault(sign QMetaMethod_ITF) {
 
 //export callbackQPluginLoader_CustomEvent
 func callbackQPluginLoader_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPluginLoader::customEvent"); signal != nil {
 		signal.(func(*QEvent))(NewQEventFromPointer(event))
 	} else {
@@ -41973,7 +41428,6 @@ func (ptr *QPluginLoader) DeleteLaterDefault() {
 
 //export callbackQPluginLoader_DisconnectNotify
 func callbackQPluginLoader_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPluginLoader::disconnectNotify"); signal != nil {
 		signal.(func(*QMetaMethod))(NewQMetaMethodFromPointer(sign))
 	} else {
@@ -42009,7 +41463,6 @@ func (ptr *QPluginLoader) DisconnectNotifyDefault(sign QMetaMethod_ITF) {
 
 //export callbackQPluginLoader_Event
 func callbackQPluginLoader_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPluginLoader::event"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*QEvent) bool)(NewQEventFromPointer(e)))))
 	}
@@ -42047,7 +41500,6 @@ func (ptr *QPluginLoader) EventDefault(e QEvent_ITF) bool {
 
 //export callbackQPluginLoader_EventFilter
 func callbackQPluginLoader_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPluginLoader::eventFilter"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*QObject, *QEvent) bool)(NewQObjectFromPointer(watched), NewQEventFromPointer(event)))))
 	}
@@ -42085,7 +41537,6 @@ func (ptr *QPluginLoader) EventFilterDefault(watched QObject_ITF, event QEvent_I
 
 //export callbackQPluginLoader_MetaObject
 func callbackQPluginLoader_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPluginLoader::metaObject"); signal != nil {
 		return PointerFromQMetaObject(signal.(func() *QMetaObject)())
 	}
@@ -42639,7 +42090,6 @@ func NewQPropertyAnimation2(target QObject_ITF, propertyName QByteArray_ITF, par
 
 //export callbackQPropertyAnimation_Event
 func callbackQPropertyAnimation_Event(ptr unsafe.Pointer, event unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPropertyAnimation::event"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*QEvent) bool)(NewQEventFromPointer(event)))))
 	}
@@ -42677,7 +42127,6 @@ func (ptr *QPropertyAnimation) EventDefault(event QEvent_ITF) bool {
 
 //export callbackQPropertyAnimation_UpdateCurrentValue
 func callbackQPropertyAnimation_UpdateCurrentValue(ptr unsafe.Pointer, value unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPropertyAnimation::updateCurrentValue"); signal != nil {
 		signal.(func(*QVariant))(NewQVariantFromPointer(value))
 	} else {
@@ -42713,7 +42162,6 @@ func (ptr *QPropertyAnimation) UpdateCurrentValueDefault(value QVariant_ITF) {
 
 //export callbackQPropertyAnimation_UpdateState
 func callbackQPropertyAnimation_UpdateState(ptr unsafe.Pointer, newState C.longlong, oldState C.longlong) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPropertyAnimation::updateState"); signal != nil {
 		signal.(func(QAbstractAnimation__State, QAbstractAnimation__State))(QAbstractAnimation__State(newState), QAbstractAnimation__State(oldState))
 	} else {
@@ -42757,7 +42205,6 @@ func (ptr *QPropertyAnimation) DestroyQPropertyAnimation() {
 
 //export callbackQPropertyAnimation_Duration
 func callbackQPropertyAnimation_Duration(ptr unsafe.Pointer) C.int {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPropertyAnimation::duration"); signal != nil {
 		return C.int(int32(signal.(func() int)()))
 	}
@@ -42795,7 +42242,6 @@ func (ptr *QPropertyAnimation) DurationDefault() int {
 
 //export callbackQPropertyAnimation_Interpolated
 func callbackQPropertyAnimation_Interpolated(ptr unsafe.Pointer, from unsafe.Pointer, to unsafe.Pointer, progress C.double) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPropertyAnimation::interpolated"); signal != nil {
 		return PointerFromQVariant(signal.(func(*QVariant, *QVariant, float64) *QVariant)(NewQVariantFromPointer(from), NewQVariantFromPointer(to), float64(progress)))
 	}
@@ -42837,7 +42283,6 @@ func (ptr *QPropertyAnimation) InterpolatedDefault(from QVariant_ITF, to QVarian
 
 //export callbackQPropertyAnimation_UpdateCurrentTime
 func callbackQPropertyAnimation_UpdateCurrentTime(ptr unsafe.Pointer, vin C.int) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPropertyAnimation::updateCurrentTime"); signal != nil {
 		signal.(func(int))(int(int32(vin)))
 	} else {
@@ -43083,7 +42528,6 @@ func (ptr *QPropertyAnimation) StopDefault() {
 
 //export callbackQPropertyAnimation_UpdateDirection
 func callbackQPropertyAnimation_UpdateDirection(ptr unsafe.Pointer, direction C.longlong) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPropertyAnimation::updateDirection"); signal != nil {
 		signal.(func(QAbstractAnimation__Direction))(QAbstractAnimation__Direction(direction))
 	} else {
@@ -43119,7 +42563,6 @@ func (ptr *QPropertyAnimation) UpdateDirectionDefault(direction QAbstractAnimati
 
 //export callbackQPropertyAnimation_TimerEvent
 func callbackQPropertyAnimation_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPropertyAnimation::timerEvent"); signal != nil {
 		signal.(func(*QTimerEvent))(NewQTimerEventFromPointer(event))
 	} else {
@@ -43155,7 +42598,6 @@ func (ptr *QPropertyAnimation) TimerEventDefault(event QTimerEvent_ITF) {
 
 //export callbackQPropertyAnimation_ChildEvent
 func callbackQPropertyAnimation_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPropertyAnimation::childEvent"); signal != nil {
 		signal.(func(*QChildEvent))(NewQChildEventFromPointer(event))
 	} else {
@@ -43191,7 +42633,6 @@ func (ptr *QPropertyAnimation) ChildEventDefault(event QChildEvent_ITF) {
 
 //export callbackQPropertyAnimation_ConnectNotify
 func callbackQPropertyAnimation_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPropertyAnimation::connectNotify"); signal != nil {
 		signal.(func(*QMetaMethod))(NewQMetaMethodFromPointer(sign))
 	} else {
@@ -43227,7 +42668,6 @@ func (ptr *QPropertyAnimation) ConnectNotifyDefault(sign QMetaMethod_ITF) {
 
 //export callbackQPropertyAnimation_CustomEvent
 func callbackQPropertyAnimation_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPropertyAnimation::customEvent"); signal != nil {
 		signal.(func(*QEvent))(NewQEventFromPointer(event))
 	} else {
@@ -43302,7 +42742,6 @@ func (ptr *QPropertyAnimation) DeleteLaterDefault() {
 
 //export callbackQPropertyAnimation_DisconnectNotify
 func callbackQPropertyAnimation_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPropertyAnimation::disconnectNotify"); signal != nil {
 		signal.(func(*QMetaMethod))(NewQMetaMethodFromPointer(sign))
 	} else {
@@ -43338,7 +42777,6 @@ func (ptr *QPropertyAnimation) DisconnectNotifyDefault(sign QMetaMethod_ITF) {
 
 //export callbackQPropertyAnimation_EventFilter
 func callbackQPropertyAnimation_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPropertyAnimation::eventFilter"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*QObject, *QEvent) bool)(NewQObjectFromPointer(watched), NewQEventFromPointer(event)))))
 	}
@@ -43376,7 +42814,6 @@ func (ptr *QPropertyAnimation) EventFilterDefault(watched QObject_ITF, event QEv
 
 //export callbackQPropertyAnimation_MetaObject
 func callbackQPropertyAnimation_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QPropertyAnimation::metaObject"); signal != nil {
 		return PointerFromQMetaObject(signal.(func() *QMetaObject)())
 	}
@@ -45607,7 +45044,6 @@ func NewQRunnableFromPointer(ptr unsafe.Pointer) *QRunnable {
 
 //export callbackQRunnable_DestroyQRunnable
 func callbackQRunnable_DestroyQRunnable(ptr unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QRunnable::~QRunnable"); signal != nil {
 		signal.(func())()
 	} else {
@@ -45658,7 +45094,6 @@ func (ptr *QRunnable) AutoDelete() bool {
 
 //export callbackQRunnable_Run
 func callbackQRunnable_Run(ptr unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QRunnable::run"); signal != nil {
 		signal.(func())()
 	}
@@ -45779,7 +45214,6 @@ func (ptr *QSaveFile) DirectWriteFallback() bool {
 
 //export callbackQSaveFile_FileName
 func callbackQSaveFile_FileName(ptr unsafe.Pointer) *C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSaveFile::fileName"); signal != nil {
 		return C.CString(signal.(func() string)())
 	}
@@ -45817,7 +45251,6 @@ func (ptr *QSaveFile) FileNameDefault() string {
 
 //export callbackQSaveFile_Open
 func callbackQSaveFile_Open(ptr unsafe.Pointer, mode C.longlong) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSaveFile::open"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(QIODevice__OpenModeFlag) bool)(QIODevice__OpenModeFlag(mode)))))
 	}
@@ -45869,7 +45302,6 @@ func (ptr *QSaveFile) SetFileName(name string) {
 
 //export callbackQSaveFile_WriteData
 func callbackQSaveFile_WriteData(ptr unsafe.Pointer, data C.struct_QtCore_PackedString, len C.longlong) C.longlong {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSaveFile::writeData"); signal != nil {
 		return C.longlong(signal.(func(string, int64) int64)(cGoUnpackString(data), int64(len)))
 	}
@@ -45919,7 +45351,6 @@ func (ptr *QSaveFile) DestroyQSaveFile() {
 
 //export callbackQSaveFile_Seek
 func callbackQSaveFile_Seek(ptr unsafe.Pointer, pos C.longlong) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSaveFile::seek"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(int64) bool)(int64(pos)))))
 	}
@@ -45957,7 +45388,6 @@ func (ptr *QSaveFile) SeekDefault(pos int64) bool {
 
 //export callbackQSaveFile_AtEnd
 func callbackQSaveFile_AtEnd(ptr unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSaveFile::atEnd"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func() bool)())))
 	}
@@ -45995,7 +45425,6 @@ func (ptr *QSaveFile) AtEndDefault() bool {
 
 //export callbackQSaveFile_Close
 func callbackQSaveFile_Close(ptr unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSaveFile::close"); signal != nil {
 		signal.(func())()
 	} else {
@@ -46031,7 +45460,6 @@ func (ptr *QSaveFile) CloseDefault() {
 
 //export callbackQSaveFile_IsSequential
 func callbackQSaveFile_IsSequential(ptr unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSaveFile::isSequential"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func() bool)())))
 	}
@@ -46069,7 +45497,6 @@ func (ptr *QSaveFile) IsSequentialDefault() bool {
 
 //export callbackQSaveFile_Permissions
 func callbackQSaveFile_Permissions(ptr unsafe.Pointer) C.longlong {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSaveFile::permissions"); signal != nil {
 		return C.longlong(signal.(func() QFileDevice__Permission)())
 	}
@@ -46107,7 +45534,6 @@ func (ptr *QSaveFile) PermissionsDefault() QFileDevice__Permission {
 
 //export callbackQSaveFile_Pos
 func callbackQSaveFile_Pos(ptr unsafe.Pointer) C.longlong {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSaveFile::pos"); signal != nil {
 		return C.longlong(signal.(func() int64)())
 	}
@@ -46145,7 +45571,6 @@ func (ptr *QSaveFile) PosDefault() int64 {
 
 //export callbackQSaveFile_ReadData
 func callbackQSaveFile_ReadData(ptr unsafe.Pointer, data C.struct_QtCore_PackedString, len C.longlong) C.longlong {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSaveFile::readData"); signal != nil {
 		var retS = cGoUnpackString(data)
 		var ret = C.longlong(signal.(func(*string, int64) int64)(&retS, int64(len)))
@@ -46204,7 +45629,6 @@ func (ptr *QSaveFile) ReadDataDefault(data *string, len int64) int64 {
 
 //export callbackQSaveFile_ReadLineData
 func callbackQSaveFile_ReadLineData(ptr unsafe.Pointer, data C.struct_QtCore_PackedString, maxlen C.longlong) C.longlong {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSaveFile::readLineData"); signal != nil {
 		return C.longlong(signal.(func(string, int64) int64)(cGoUnpackString(data), int64(maxlen)))
 	}
@@ -46246,7 +45670,6 @@ func (ptr *QSaveFile) ReadLineDataDefault(data string, maxlen int64) int64 {
 
 //export callbackQSaveFile_Resize
 func callbackQSaveFile_Resize(ptr unsafe.Pointer, sz C.longlong) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSaveFile::resize"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(int64) bool)(int64(sz)))))
 	}
@@ -46284,7 +45707,6 @@ func (ptr *QSaveFile) ResizeDefault(sz int64) bool {
 
 //export callbackQSaveFile_SetPermissions
 func callbackQSaveFile_SetPermissions(ptr unsafe.Pointer, permissions C.longlong) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSaveFile::setPermissions"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(QFileDevice__Permission) bool)(QFileDevice__Permission(permissions)))))
 	}
@@ -46322,7 +45744,6 @@ func (ptr *QSaveFile) SetPermissionsDefault(permissions QFileDevice__Permission)
 
 //export callbackQSaveFile_Size
 func callbackQSaveFile_Size(ptr unsafe.Pointer) C.longlong {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSaveFile::size"); signal != nil {
 		return C.longlong(signal.(func() int64)())
 	}
@@ -46360,7 +45781,6 @@ func (ptr *QSaveFile) SizeDefault() int64 {
 
 //export callbackQSaveFile_BytesAvailable
 func callbackQSaveFile_BytesAvailable(ptr unsafe.Pointer) C.longlong {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSaveFile::bytesAvailable"); signal != nil {
 		return C.longlong(signal.(func() int64)())
 	}
@@ -46398,7 +45818,6 @@ func (ptr *QSaveFile) BytesAvailableDefault() int64 {
 
 //export callbackQSaveFile_BytesToWrite
 func callbackQSaveFile_BytesToWrite(ptr unsafe.Pointer) C.longlong {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSaveFile::bytesToWrite"); signal != nil {
 		return C.longlong(signal.(func() int64)())
 	}
@@ -46436,7 +45855,6 @@ func (ptr *QSaveFile) BytesToWriteDefault() int64 {
 
 //export callbackQSaveFile_CanReadLine
 func callbackQSaveFile_CanReadLine(ptr unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSaveFile::canReadLine"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func() bool)())))
 	}
@@ -46474,7 +45892,6 @@ func (ptr *QSaveFile) CanReadLineDefault() bool {
 
 //export callbackQSaveFile_Reset
 func callbackQSaveFile_Reset(ptr unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSaveFile::reset"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func() bool)())))
 	}
@@ -46512,7 +45929,6 @@ func (ptr *QSaveFile) ResetDefault() bool {
 
 //export callbackQSaveFile_WaitForBytesWritten
 func callbackQSaveFile_WaitForBytesWritten(ptr unsafe.Pointer, msecs C.int) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSaveFile::waitForBytesWritten"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(int) bool)(int(int32(msecs))))))
 	}
@@ -46550,7 +45966,6 @@ func (ptr *QSaveFile) WaitForBytesWrittenDefault(msecs int) bool {
 
 //export callbackQSaveFile_WaitForReadyRead
 func callbackQSaveFile_WaitForReadyRead(ptr unsafe.Pointer, msecs C.int) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSaveFile::waitForReadyRead"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(int) bool)(int(int32(msecs))))))
 	}
@@ -46588,7 +46003,6 @@ func (ptr *QSaveFile) WaitForReadyReadDefault(msecs int) bool {
 
 //export callbackQSaveFile_TimerEvent
 func callbackQSaveFile_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSaveFile::timerEvent"); signal != nil {
 		signal.(func(*QTimerEvent))(NewQTimerEventFromPointer(event))
 	} else {
@@ -46624,7 +46038,6 @@ func (ptr *QSaveFile) TimerEventDefault(event QTimerEvent_ITF) {
 
 //export callbackQSaveFile_ChildEvent
 func callbackQSaveFile_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSaveFile::childEvent"); signal != nil {
 		signal.(func(*QChildEvent))(NewQChildEventFromPointer(event))
 	} else {
@@ -46660,7 +46073,6 @@ func (ptr *QSaveFile) ChildEventDefault(event QChildEvent_ITF) {
 
 //export callbackQSaveFile_ConnectNotify
 func callbackQSaveFile_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSaveFile::connectNotify"); signal != nil {
 		signal.(func(*QMetaMethod))(NewQMetaMethodFromPointer(sign))
 	} else {
@@ -46696,7 +46108,6 @@ func (ptr *QSaveFile) ConnectNotifyDefault(sign QMetaMethod_ITF) {
 
 //export callbackQSaveFile_CustomEvent
 func callbackQSaveFile_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSaveFile::customEvent"); signal != nil {
 		signal.(func(*QEvent))(NewQEventFromPointer(event))
 	} else {
@@ -46771,7 +46182,6 @@ func (ptr *QSaveFile) DeleteLaterDefault() {
 
 //export callbackQSaveFile_DisconnectNotify
 func callbackQSaveFile_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSaveFile::disconnectNotify"); signal != nil {
 		signal.(func(*QMetaMethod))(NewQMetaMethodFromPointer(sign))
 	} else {
@@ -46807,7 +46217,6 @@ func (ptr *QSaveFile) DisconnectNotifyDefault(sign QMetaMethod_ITF) {
 
 //export callbackQSaveFile_Event
 func callbackQSaveFile_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSaveFile::event"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*QEvent) bool)(NewQEventFromPointer(e)))))
 	}
@@ -46845,7 +46254,6 @@ func (ptr *QSaveFile) EventDefault(e QEvent_ITF) bool {
 
 //export callbackQSaveFile_EventFilter
 func callbackQSaveFile_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSaveFile::eventFilter"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*QObject, *QEvent) bool)(NewQObjectFromPointer(watched), NewQEventFromPointer(event)))))
 	}
@@ -46883,7 +46291,6 @@ func (ptr *QSaveFile) EventFilterDefault(watched QObject_ITF, event QEvent_ITF) 
 
 //export callbackQSaveFile_MetaObject
 func callbackQSaveFile_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSaveFile::metaObject"); signal != nil {
 		return PointerFromQMetaObject(signal.(func() *QMetaObject)())
 	}
@@ -47194,7 +46601,6 @@ func (ptr *QSequentialAnimationGroup) AddPause(msecs int) *QPauseAnimation {
 
 //export callbackQSequentialAnimationGroup_CurrentAnimationChanged
 func callbackQSequentialAnimationGroup_CurrentAnimationChanged(ptr unsafe.Pointer, current unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSequentialAnimationGroup::currentAnimationChanged"); signal != nil {
 		signal.(func(*QAbstractAnimation))(NewQAbstractAnimationFromPointer(current))
 	}
@@ -47223,7 +46629,6 @@ func (ptr *QSequentialAnimationGroup) CurrentAnimationChanged(current QAbstractA
 
 //export callbackQSequentialAnimationGroup_Duration
 func callbackQSequentialAnimationGroup_Duration(ptr unsafe.Pointer) C.int {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSequentialAnimationGroup::duration"); signal != nil {
 		return C.int(int32(signal.(func() int)()))
 	}
@@ -47261,7 +46666,6 @@ func (ptr *QSequentialAnimationGroup) DurationDefault() int {
 
 //export callbackQSequentialAnimationGroup_Event
 func callbackQSequentialAnimationGroup_Event(ptr unsafe.Pointer, event unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSequentialAnimationGroup::event"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*QEvent) bool)(NewQEventFromPointer(event)))))
 	}
@@ -47310,7 +46714,6 @@ func (ptr *QSequentialAnimationGroup) InsertPause(index int, msecs int) *QPauseA
 
 //export callbackQSequentialAnimationGroup_UpdateCurrentTime
 func callbackQSequentialAnimationGroup_UpdateCurrentTime(ptr unsafe.Pointer, currentTime C.int) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSequentialAnimationGroup::updateCurrentTime"); signal != nil {
 		signal.(func(int))(int(int32(currentTime)))
 	} else {
@@ -47346,7 +46749,6 @@ func (ptr *QSequentialAnimationGroup) UpdateCurrentTimeDefault(currentTime int) 
 
 //export callbackQSequentialAnimationGroup_UpdateDirection
 func callbackQSequentialAnimationGroup_UpdateDirection(ptr unsafe.Pointer, direction C.longlong) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSequentialAnimationGroup::updateDirection"); signal != nil {
 		signal.(func(QAbstractAnimation__Direction))(QAbstractAnimation__Direction(direction))
 	} else {
@@ -47382,7 +46784,6 @@ func (ptr *QSequentialAnimationGroup) UpdateDirectionDefault(direction QAbstract
 
 //export callbackQSequentialAnimationGroup_UpdateState
 func callbackQSequentialAnimationGroup_UpdateState(ptr unsafe.Pointer, newState C.longlong, oldState C.longlong) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSequentialAnimationGroup::updateState"); signal != nil {
 		signal.(func(QAbstractAnimation__State, QAbstractAnimation__State))(QAbstractAnimation__State(newState), QAbstractAnimation__State(oldState))
 	} else {
@@ -47636,7 +47037,6 @@ func (ptr *QSequentialAnimationGroup) StopDefault() {
 
 //export callbackQSequentialAnimationGroup_TimerEvent
 func callbackQSequentialAnimationGroup_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSequentialAnimationGroup::timerEvent"); signal != nil {
 		signal.(func(*QTimerEvent))(NewQTimerEventFromPointer(event))
 	} else {
@@ -47672,7 +47072,6 @@ func (ptr *QSequentialAnimationGroup) TimerEventDefault(event QTimerEvent_ITF) {
 
 //export callbackQSequentialAnimationGroup_ChildEvent
 func callbackQSequentialAnimationGroup_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSequentialAnimationGroup::childEvent"); signal != nil {
 		signal.(func(*QChildEvent))(NewQChildEventFromPointer(event))
 	} else {
@@ -47708,7 +47107,6 @@ func (ptr *QSequentialAnimationGroup) ChildEventDefault(event QChildEvent_ITF) {
 
 //export callbackQSequentialAnimationGroup_ConnectNotify
 func callbackQSequentialAnimationGroup_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSequentialAnimationGroup::connectNotify"); signal != nil {
 		signal.(func(*QMetaMethod))(NewQMetaMethodFromPointer(sign))
 	} else {
@@ -47744,7 +47142,6 @@ func (ptr *QSequentialAnimationGroup) ConnectNotifyDefault(sign QMetaMethod_ITF)
 
 //export callbackQSequentialAnimationGroup_CustomEvent
 func callbackQSequentialAnimationGroup_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSequentialAnimationGroup::customEvent"); signal != nil {
 		signal.(func(*QEvent))(NewQEventFromPointer(event))
 	} else {
@@ -47819,7 +47216,6 @@ func (ptr *QSequentialAnimationGroup) DeleteLaterDefault() {
 
 //export callbackQSequentialAnimationGroup_DisconnectNotify
 func callbackQSequentialAnimationGroup_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSequentialAnimationGroup::disconnectNotify"); signal != nil {
 		signal.(func(*QMetaMethod))(NewQMetaMethodFromPointer(sign))
 	} else {
@@ -47855,7 +47251,6 @@ func (ptr *QSequentialAnimationGroup) DisconnectNotifyDefault(sign QMetaMethod_I
 
 //export callbackQSequentialAnimationGroup_EventFilter
 func callbackQSequentialAnimationGroup_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSequentialAnimationGroup::eventFilter"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*QObject, *QEvent) bool)(NewQObjectFromPointer(watched), NewQEventFromPointer(event)))))
 	}
@@ -47893,7 +47288,6 @@ func (ptr *QSequentialAnimationGroup) EventFilterDefault(watched QObject_ITF, ev
 
 //export callbackQSequentialAnimationGroup_MetaObject
 func callbackQSequentialAnimationGroup_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSequentialAnimationGroup::metaObject"); signal != nil {
 		return PointerFromQMetaObject(signal.(func() *QMetaObject)())
 	}
@@ -48317,7 +47711,6 @@ func (ptr *QSettings) EndGroup() {
 
 //export callbackQSettings_Event
 func callbackQSettings_Event(ptr unsafe.Pointer, event unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSettings::event"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*QEvent) bool)(NewQEventFromPointer(event)))))
 	}
@@ -48505,7 +47898,6 @@ func (ptr *QSettings) DestroyQSettings() {
 
 //export callbackQSettings_TimerEvent
 func callbackQSettings_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSettings::timerEvent"); signal != nil {
 		signal.(func(*QTimerEvent))(NewQTimerEventFromPointer(event))
 	} else {
@@ -48541,7 +47933,6 @@ func (ptr *QSettings) TimerEventDefault(event QTimerEvent_ITF) {
 
 //export callbackQSettings_ChildEvent
 func callbackQSettings_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSettings::childEvent"); signal != nil {
 		signal.(func(*QChildEvent))(NewQChildEventFromPointer(event))
 	} else {
@@ -48577,7 +47968,6 @@ func (ptr *QSettings) ChildEventDefault(event QChildEvent_ITF) {
 
 //export callbackQSettings_ConnectNotify
 func callbackQSettings_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSettings::connectNotify"); signal != nil {
 		signal.(func(*QMetaMethod))(NewQMetaMethodFromPointer(sign))
 	} else {
@@ -48613,7 +48003,6 @@ func (ptr *QSettings) ConnectNotifyDefault(sign QMetaMethod_ITF) {
 
 //export callbackQSettings_CustomEvent
 func callbackQSettings_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSettings::customEvent"); signal != nil {
 		signal.(func(*QEvent))(NewQEventFromPointer(event))
 	} else {
@@ -48688,7 +48077,6 @@ func (ptr *QSettings) DeleteLaterDefault() {
 
 //export callbackQSettings_DisconnectNotify
 func callbackQSettings_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSettings::disconnectNotify"); signal != nil {
 		signal.(func(*QMetaMethod))(NewQMetaMethodFromPointer(sign))
 	} else {
@@ -48724,7 +48112,6 @@ func (ptr *QSettings) DisconnectNotifyDefault(sign QMetaMethod_ITF) {
 
 //export callbackQSettings_EventFilter
 func callbackQSettings_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSettings::eventFilter"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*QObject, *QEvent) bool)(NewQObjectFromPointer(watched), NewQEventFromPointer(event)))))
 	}
@@ -48762,7 +48149,6 @@ func (ptr *QSettings) EventFilterDefault(watched QObject_ITF, event QEvent_ITF) 
 
 //export callbackQSettings_MetaObject
 func callbackQSettings_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSettings::metaObject"); signal != nil {
 		return PointerFromQMetaObject(signal.(func() *QMetaObject)())
 	}
@@ -49099,7 +48485,6 @@ func (ptr *QSharedMemory) DestroyQSharedMemory() {
 
 //export callbackQSharedMemory_TimerEvent
 func callbackQSharedMemory_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSharedMemory::timerEvent"); signal != nil {
 		signal.(func(*QTimerEvent))(NewQTimerEventFromPointer(event))
 	} else {
@@ -49135,7 +48520,6 @@ func (ptr *QSharedMemory) TimerEventDefault(event QTimerEvent_ITF) {
 
 //export callbackQSharedMemory_ChildEvent
 func callbackQSharedMemory_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSharedMemory::childEvent"); signal != nil {
 		signal.(func(*QChildEvent))(NewQChildEventFromPointer(event))
 	} else {
@@ -49171,7 +48555,6 @@ func (ptr *QSharedMemory) ChildEventDefault(event QChildEvent_ITF) {
 
 //export callbackQSharedMemory_ConnectNotify
 func callbackQSharedMemory_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSharedMemory::connectNotify"); signal != nil {
 		signal.(func(*QMetaMethod))(NewQMetaMethodFromPointer(sign))
 	} else {
@@ -49207,7 +48590,6 @@ func (ptr *QSharedMemory) ConnectNotifyDefault(sign QMetaMethod_ITF) {
 
 //export callbackQSharedMemory_CustomEvent
 func callbackQSharedMemory_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSharedMemory::customEvent"); signal != nil {
 		signal.(func(*QEvent))(NewQEventFromPointer(event))
 	} else {
@@ -49282,7 +48664,6 @@ func (ptr *QSharedMemory) DeleteLaterDefault() {
 
 //export callbackQSharedMemory_DisconnectNotify
 func callbackQSharedMemory_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSharedMemory::disconnectNotify"); signal != nil {
 		signal.(func(*QMetaMethod))(NewQMetaMethodFromPointer(sign))
 	} else {
@@ -49318,7 +48699,6 @@ func (ptr *QSharedMemory) DisconnectNotifyDefault(sign QMetaMethod_ITF) {
 
 //export callbackQSharedMemory_Event
 func callbackQSharedMemory_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSharedMemory::event"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*QEvent) bool)(NewQEventFromPointer(e)))))
 	}
@@ -49356,7 +48736,6 @@ func (ptr *QSharedMemory) EventDefault(e QEvent_ITF) bool {
 
 //export callbackQSharedMemory_EventFilter
 func callbackQSharedMemory_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSharedMemory::eventFilter"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*QObject, *QEvent) bool)(NewQObjectFromPointer(watched), NewQEventFromPointer(event)))))
 	}
@@ -49394,7 +48773,6 @@ func (ptr *QSharedMemory) EventFilterDefault(watched QObject_ITF, event QEvent_I
 
 //export callbackQSharedMemory_MetaObject
 func callbackQSharedMemory_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSharedMemory::metaObject"); signal != nil {
 		return PointerFromQMetaObject(signal.(func() *QMetaObject)())
 	}
@@ -49654,7 +49032,6 @@ func (ptr *QSignalMapper) Map2Default(sender QObject_ITF) {
 
 //export callbackQSignalMapper_Mapped4
 func callbackQSignalMapper_Mapped4(ptr unsafe.Pointer, object unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSignalMapper::mapped4"); signal != nil {
 		signal.(func(*QObject))(NewQObjectFromPointer(object))
 	}
@@ -49683,7 +49060,6 @@ func (ptr *QSignalMapper) Mapped4(object QObject_ITF) {
 
 //export callbackQSignalMapper_Mapped3
 func callbackQSignalMapper_Mapped3(ptr unsafe.Pointer, widget unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSignalMapper::mapped3"); signal != nil {
 		signal.(func(unsafe.Pointer))(unsafe.Pointer(widget))
 	}
@@ -49712,7 +49088,6 @@ func (ptr *QSignalMapper) Mapped3(widget unsafe.Pointer) {
 
 //export callbackQSignalMapper_Mapped2
 func callbackQSignalMapper_Mapped2(ptr unsafe.Pointer, text C.struct_QtCore_PackedString) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSignalMapper::mapped2"); signal != nil {
 		signal.(func(string))(cGoUnpackString(text))
 	}
@@ -49743,7 +49118,6 @@ func (ptr *QSignalMapper) Mapped2(text string) {
 
 //export callbackQSignalMapper_Mapped
 func callbackQSignalMapper_Mapped(ptr unsafe.Pointer, i C.int) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSignalMapper::mapped"); signal != nil {
 		signal.(func(int))(int(int32(i)))
 	}
@@ -49858,7 +49232,6 @@ func (ptr *QSignalMapper) DestroyQSignalMapper() {
 
 //export callbackQSignalMapper_TimerEvent
 func callbackQSignalMapper_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSignalMapper::timerEvent"); signal != nil {
 		signal.(func(*QTimerEvent))(NewQTimerEventFromPointer(event))
 	} else {
@@ -49894,7 +49267,6 @@ func (ptr *QSignalMapper) TimerEventDefault(event QTimerEvent_ITF) {
 
 //export callbackQSignalMapper_ChildEvent
 func callbackQSignalMapper_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSignalMapper::childEvent"); signal != nil {
 		signal.(func(*QChildEvent))(NewQChildEventFromPointer(event))
 	} else {
@@ -49930,7 +49302,6 @@ func (ptr *QSignalMapper) ChildEventDefault(event QChildEvent_ITF) {
 
 //export callbackQSignalMapper_ConnectNotify
 func callbackQSignalMapper_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSignalMapper::connectNotify"); signal != nil {
 		signal.(func(*QMetaMethod))(NewQMetaMethodFromPointer(sign))
 	} else {
@@ -49966,7 +49337,6 @@ func (ptr *QSignalMapper) ConnectNotifyDefault(sign QMetaMethod_ITF) {
 
 //export callbackQSignalMapper_CustomEvent
 func callbackQSignalMapper_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSignalMapper::customEvent"); signal != nil {
 		signal.(func(*QEvent))(NewQEventFromPointer(event))
 	} else {
@@ -50041,7 +49411,6 @@ func (ptr *QSignalMapper) DeleteLaterDefault() {
 
 //export callbackQSignalMapper_DisconnectNotify
 func callbackQSignalMapper_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSignalMapper::disconnectNotify"); signal != nil {
 		signal.(func(*QMetaMethod))(NewQMetaMethodFromPointer(sign))
 	} else {
@@ -50077,7 +49446,6 @@ func (ptr *QSignalMapper) DisconnectNotifyDefault(sign QMetaMethod_ITF) {
 
 //export callbackQSignalMapper_Event
 func callbackQSignalMapper_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSignalMapper::event"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*QEvent) bool)(NewQEventFromPointer(e)))))
 	}
@@ -50115,7 +49483,6 @@ func (ptr *QSignalMapper) EventDefault(e QEvent_ITF) bool {
 
 //export callbackQSignalMapper_EventFilter
 func callbackQSignalMapper_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSignalMapper::eventFilter"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*QObject, *QEvent) bool)(NewQObjectFromPointer(watched), NewQEventFromPointer(event)))))
 	}
@@ -50153,7 +49520,6 @@ func (ptr *QSignalMapper) EventFilterDefault(watched QObject_ITF, event QEvent_I
 
 //export callbackQSignalMapper_MetaObject
 func callbackQSignalMapper_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSignalMapper::metaObject"); signal != nil {
 		return PointerFromQMetaObject(signal.(func() *QMetaObject)())
 	}
@@ -50247,7 +49613,6 @@ func NewQSignalTransition2(sender QObject_ITF, sign string, sourceState QState_I
 
 //export callbackQSignalTransition_Event
 func callbackQSignalTransition_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSignalTransition::event"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*QEvent) bool)(NewQEventFromPointer(e)))))
 	}
@@ -50285,7 +49650,6 @@ func (ptr *QSignalTransition) EventDefault(e QEvent_ITF) bool {
 
 //export callbackQSignalTransition_EventTest
 func callbackQSignalTransition_EventTest(ptr unsafe.Pointer, event unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSignalTransition::eventTest"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*QEvent) bool)(NewQEventFromPointer(event)))))
 	}
@@ -50323,7 +49687,6 @@ func (ptr *QSignalTransition) EventTestDefault(event QEvent_ITF) bool {
 
 //export callbackQSignalTransition_OnTransition
 func callbackQSignalTransition_OnTransition(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSignalTransition::onTransition"); signal != nil {
 		signal.(func(*QEvent))(NewQEventFromPointer(event))
 	} else {
@@ -50370,7 +49733,6 @@ func (ptr *QSignalTransition) SenderObject() *QObject {
 
 //export callbackQSignalTransition_SenderObjectChanged
 func callbackQSignalTransition_SenderObjectChanged(ptr unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSignalTransition::senderObjectChanged"); signal != nil {
 		signal.(func())()
 	}
@@ -50414,7 +49776,6 @@ func (ptr *QSignalTransition) Signal() *QByteArray {
 
 //export callbackQSignalTransition_SignalChanged
 func callbackQSignalTransition_SignalChanged(ptr unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSignalTransition::signalChanged"); signal != nil {
 		signal.(func())()
 	}
@@ -50445,7 +49806,6 @@ func (ptr *QSignalTransition) DestroyQSignalTransition() {
 
 //export callbackQSignalTransition_TimerEvent
 func callbackQSignalTransition_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSignalTransition::timerEvent"); signal != nil {
 		signal.(func(*QTimerEvent))(NewQTimerEventFromPointer(event))
 	} else {
@@ -50481,7 +49841,6 @@ func (ptr *QSignalTransition) TimerEventDefault(event QTimerEvent_ITF) {
 
 //export callbackQSignalTransition_ChildEvent
 func callbackQSignalTransition_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSignalTransition::childEvent"); signal != nil {
 		signal.(func(*QChildEvent))(NewQChildEventFromPointer(event))
 	} else {
@@ -50517,7 +49876,6 @@ func (ptr *QSignalTransition) ChildEventDefault(event QChildEvent_ITF) {
 
 //export callbackQSignalTransition_ConnectNotify
 func callbackQSignalTransition_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSignalTransition::connectNotify"); signal != nil {
 		signal.(func(*QMetaMethod))(NewQMetaMethodFromPointer(sign))
 	} else {
@@ -50553,7 +49911,6 @@ func (ptr *QSignalTransition) ConnectNotifyDefault(sign QMetaMethod_ITF) {
 
 //export callbackQSignalTransition_CustomEvent
 func callbackQSignalTransition_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSignalTransition::customEvent"); signal != nil {
 		signal.(func(*QEvent))(NewQEventFromPointer(event))
 	} else {
@@ -50628,7 +49985,6 @@ func (ptr *QSignalTransition) DeleteLaterDefault() {
 
 //export callbackQSignalTransition_DisconnectNotify
 func callbackQSignalTransition_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSignalTransition::disconnectNotify"); signal != nil {
 		signal.(func(*QMetaMethod))(NewQMetaMethodFromPointer(sign))
 	} else {
@@ -50664,7 +50020,6 @@ func (ptr *QSignalTransition) DisconnectNotifyDefault(sign QMetaMethod_ITF) {
 
 //export callbackQSignalTransition_EventFilter
 func callbackQSignalTransition_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSignalTransition::eventFilter"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*QObject, *QEvent) bool)(NewQObjectFromPointer(watched), NewQEventFromPointer(event)))))
 	}
@@ -50702,7 +50057,6 @@ func (ptr *QSignalTransition) EventFilterDefault(watched QObject_ITF, event QEve
 
 //export callbackQSignalTransition_MetaObject
 func callbackQSignalTransition_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSignalTransition::metaObject"); signal != nil {
 		return PointerFromQMetaObject(signal.(func() *QMetaObject)())
 	}
@@ -51166,7 +50520,6 @@ const (
 
 //export callbackQSocketNotifier_Activated
 func callbackQSocketNotifier_Activated(ptr unsafe.Pointer, socket C.int) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSocketNotifier::activated"); signal != nil {
 		signal.(func(int))(int(int32(socket)))
 	}
@@ -51189,7 +50542,6 @@ func (ptr *QSocketNotifier) DisconnectActivated() {
 
 //export callbackQSocketNotifier_Event
 func callbackQSocketNotifier_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSocketNotifier::event"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*QEvent) bool)(NewQEventFromPointer(e)))))
 	}
@@ -51284,7 +50636,6 @@ func (ptr *QSocketNotifier) DestroyQSocketNotifier() {
 
 //export callbackQSocketNotifier_TimerEvent
 func callbackQSocketNotifier_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSocketNotifier::timerEvent"); signal != nil {
 		signal.(func(*QTimerEvent))(NewQTimerEventFromPointer(event))
 	} else {
@@ -51320,7 +50671,6 @@ func (ptr *QSocketNotifier) TimerEventDefault(event QTimerEvent_ITF) {
 
 //export callbackQSocketNotifier_ChildEvent
 func callbackQSocketNotifier_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSocketNotifier::childEvent"); signal != nil {
 		signal.(func(*QChildEvent))(NewQChildEventFromPointer(event))
 	} else {
@@ -51356,7 +50706,6 @@ func (ptr *QSocketNotifier) ChildEventDefault(event QChildEvent_ITF) {
 
 //export callbackQSocketNotifier_ConnectNotify
 func callbackQSocketNotifier_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSocketNotifier::connectNotify"); signal != nil {
 		signal.(func(*QMetaMethod))(NewQMetaMethodFromPointer(sign))
 	} else {
@@ -51392,7 +50741,6 @@ func (ptr *QSocketNotifier) ConnectNotifyDefault(sign QMetaMethod_ITF) {
 
 //export callbackQSocketNotifier_CustomEvent
 func callbackQSocketNotifier_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSocketNotifier::customEvent"); signal != nil {
 		signal.(func(*QEvent))(NewQEventFromPointer(event))
 	} else {
@@ -51467,7 +50815,6 @@ func (ptr *QSocketNotifier) DeleteLaterDefault() {
 
 //export callbackQSocketNotifier_DisconnectNotify
 func callbackQSocketNotifier_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSocketNotifier::disconnectNotify"); signal != nil {
 		signal.(func(*QMetaMethod))(NewQMetaMethodFromPointer(sign))
 	} else {
@@ -51503,7 +50850,6 @@ func (ptr *QSocketNotifier) DisconnectNotifyDefault(sign QMetaMethod_ITF) {
 
 //export callbackQSocketNotifier_EventFilter
 func callbackQSocketNotifier_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSocketNotifier::eventFilter"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*QObject, *QEvent) bool)(NewQObjectFromPointer(watched), NewQEventFromPointer(event)))))
 	}
@@ -51541,7 +50887,6 @@ func (ptr *QSocketNotifier) EventFilterDefault(watched QObject_ITF, event QEvent
 
 //export callbackQSocketNotifier_MetaObject
 func callbackQSocketNotifier_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSocketNotifier::metaObject"); signal != nil {
 		return PointerFromQMetaObject(signal.(func() *QMetaObject)())
 	}
@@ -51731,7 +51076,6 @@ func NewQSortFilterProxyModel(parent QObject_ITF) *QSortFilterProxyModel {
 
 //export callbackQSortFilterProxyModel_Buddy
 func callbackQSortFilterProxyModel_Buddy(ptr unsafe.Pointer, index unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSortFilterProxyModel::buddy"); signal != nil {
 		return PointerFromQModelIndex(signal.(func(*QModelIndex) *QModelIndex)(NewQModelIndexFromPointer(index)))
 	}
@@ -51773,7 +51117,6 @@ func (ptr *QSortFilterProxyModel) BuddyDefault(index QModelIndex_ITF) *QModelInd
 
 //export callbackQSortFilterProxyModel_CanFetchMore
 func callbackQSortFilterProxyModel_CanFetchMore(ptr unsafe.Pointer, parent unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSortFilterProxyModel::canFetchMore"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*QModelIndex) bool)(NewQModelIndexFromPointer(parent)))))
 	}
@@ -51811,7 +51154,6 @@ func (ptr *QSortFilterProxyModel) CanFetchMoreDefault(parent QModelIndex_ITF) bo
 
 //export callbackQSortFilterProxyModel_ColumnCount
 func callbackQSortFilterProxyModel_ColumnCount(ptr unsafe.Pointer, parent unsafe.Pointer) C.int {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSortFilterProxyModel::columnCount"); signal != nil {
 		return C.int(int32(signal.(func(*QModelIndex) int)(NewQModelIndexFromPointer(parent))))
 	}
@@ -51849,7 +51191,6 @@ func (ptr *QSortFilterProxyModel) ColumnCountDefault(parent QModelIndex_ITF) int
 
 //export callbackQSortFilterProxyModel_Data
 func callbackQSortFilterProxyModel_Data(ptr unsafe.Pointer, index unsafe.Pointer, role C.int) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSortFilterProxyModel::data"); signal != nil {
 		return PointerFromQVariant(signal.(func(*QModelIndex, int) *QVariant)(NewQModelIndexFromPointer(index), int(int32(role))))
 	}
@@ -51891,7 +51232,6 @@ func (ptr *QSortFilterProxyModel) DataDefault(index QModelIndex_ITF, role int) *
 
 //export callbackQSortFilterProxyModel_DropMimeData
 func callbackQSortFilterProxyModel_DropMimeData(ptr unsafe.Pointer, data unsafe.Pointer, action C.longlong, row C.int, column C.int, parent unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSortFilterProxyModel::dropMimeData"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*QMimeData, Qt__DropAction, int, int, *QModelIndex) bool)(NewQMimeDataFromPointer(data), Qt__DropAction(action), int(int32(row)), int(int32(column)), NewQModelIndexFromPointer(parent)))))
 	}
@@ -51929,7 +51269,6 @@ func (ptr *QSortFilterProxyModel) DropMimeDataDefault(data QMimeData_ITF, action
 
 //export callbackQSortFilterProxyModel_FetchMore
 func callbackQSortFilterProxyModel_FetchMore(ptr unsafe.Pointer, parent unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSortFilterProxyModel::fetchMore"); signal != nil {
 		signal.(func(*QModelIndex))(NewQModelIndexFromPointer(parent))
 	} else {
@@ -51965,7 +51304,6 @@ func (ptr *QSortFilterProxyModel) FetchMoreDefault(parent QModelIndex_ITF) {
 
 //export callbackQSortFilterProxyModel_FilterAcceptsColumn
 func callbackQSortFilterProxyModel_FilterAcceptsColumn(ptr unsafe.Pointer, source_column C.int, source_parent unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSortFilterProxyModel::filterAcceptsColumn"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(int, *QModelIndex) bool)(int(int32(source_column)), NewQModelIndexFromPointer(source_parent)))))
 	}
@@ -52003,7 +51341,6 @@ func (ptr *QSortFilterProxyModel) FilterAcceptsColumnDefault(source_column int, 
 
 //export callbackQSortFilterProxyModel_FilterAcceptsRow
 func callbackQSortFilterProxyModel_FilterAcceptsRow(ptr unsafe.Pointer, source_row C.int, source_parent unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSortFilterProxyModel::filterAcceptsRow"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(int, *QModelIndex) bool)(int(int32(source_row)), NewQModelIndexFromPointer(source_parent)))))
 	}
@@ -52041,7 +51378,6 @@ func (ptr *QSortFilterProxyModel) FilterAcceptsRowDefault(source_row int, source
 
 //export callbackQSortFilterProxyModel_Flags
 func callbackQSortFilterProxyModel_Flags(ptr unsafe.Pointer, index unsafe.Pointer) C.longlong {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSortFilterProxyModel::flags"); signal != nil {
 		return C.longlong(signal.(func(*QModelIndex) Qt__ItemFlag)(NewQModelIndexFromPointer(index)))
 	}
@@ -52079,7 +51415,6 @@ func (ptr *QSortFilterProxyModel) FlagsDefault(index QModelIndex_ITF) Qt__ItemFl
 
 //export callbackQSortFilterProxyModel_HasChildren
 func callbackQSortFilterProxyModel_HasChildren(ptr unsafe.Pointer, parent unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSortFilterProxyModel::hasChildren"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*QModelIndex) bool)(NewQModelIndexFromPointer(parent)))))
 	}
@@ -52117,7 +51452,6 @@ func (ptr *QSortFilterProxyModel) HasChildrenDefault(parent QModelIndex_ITF) boo
 
 //export callbackQSortFilterProxyModel_HeaderData
 func callbackQSortFilterProxyModel_HeaderData(ptr unsafe.Pointer, section C.int, orientation C.longlong, role C.int) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSortFilterProxyModel::headerData"); signal != nil {
 		return PointerFromQVariant(signal.(func(int, Qt__Orientation, int) *QVariant)(int(int32(section)), Qt__Orientation(orientation), int(int32(role))))
 	}
@@ -52159,7 +51493,6 @@ func (ptr *QSortFilterProxyModel) HeaderDataDefault(section int, orientation Qt_
 
 //export callbackQSortFilterProxyModel_Index
 func callbackQSortFilterProxyModel_Index(ptr unsafe.Pointer, row C.int, column C.int, parent unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSortFilterProxyModel::index"); signal != nil {
 		return PointerFromQModelIndex(signal.(func(int, int, *QModelIndex) *QModelIndex)(int(int32(row)), int(int32(column)), NewQModelIndexFromPointer(parent)))
 	}
@@ -52201,7 +51534,6 @@ func (ptr *QSortFilterProxyModel) IndexDefault(row int, column int, parent QMode
 
 //export callbackQSortFilterProxyModel_InsertColumns
 func callbackQSortFilterProxyModel_InsertColumns(ptr unsafe.Pointer, column C.int, count C.int, parent unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSortFilterProxyModel::insertColumns"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(int, int, *QModelIndex) bool)(int(int32(column)), int(int32(count)), NewQModelIndexFromPointer(parent)))))
 	}
@@ -52239,7 +51571,6 @@ func (ptr *QSortFilterProxyModel) InsertColumnsDefault(column int, count int, pa
 
 //export callbackQSortFilterProxyModel_InsertRows
 func callbackQSortFilterProxyModel_InsertRows(ptr unsafe.Pointer, row C.int, count C.int, parent unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSortFilterProxyModel::insertRows"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(int, int, *QModelIndex) bool)(int(int32(row)), int(int32(count)), NewQModelIndexFromPointer(parent)))))
 	}
@@ -52318,7 +51649,6 @@ func (ptr *QSortFilterProxyModel) InvalidateFilter() {
 
 //export callbackQSortFilterProxyModel_LessThan
 func callbackQSortFilterProxyModel_LessThan(ptr unsafe.Pointer, source_left unsafe.Pointer, source_right unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSortFilterProxyModel::lessThan"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*QModelIndex, *QModelIndex) bool)(NewQModelIndexFromPointer(source_left), NewQModelIndexFromPointer(source_right)))))
 	}
@@ -52356,7 +51686,6 @@ func (ptr *QSortFilterProxyModel) LessThanDefault(source_left QModelIndex_ITF, s
 
 //export callbackQSortFilterProxyModel_MapFromSource
 func callbackQSortFilterProxyModel_MapFromSource(ptr unsafe.Pointer, sourceIndex unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSortFilterProxyModel::mapFromSource"); signal != nil {
 		return PointerFromQModelIndex(signal.(func(*QModelIndex) *QModelIndex)(NewQModelIndexFromPointer(sourceIndex)))
 	}
@@ -52398,7 +51727,6 @@ func (ptr *QSortFilterProxyModel) MapFromSourceDefault(sourceIndex QModelIndex_I
 
 //export callbackQSortFilterProxyModel_MapSelectionFromSource
 func callbackQSortFilterProxyModel_MapSelectionFromSource(ptr unsafe.Pointer, sourceSelection unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSortFilterProxyModel::mapSelectionFromSource"); signal != nil {
 		return PointerFromQItemSelection(signal.(func(*QItemSelection) *QItemSelection)(NewQItemSelectionFromPointer(sourceSelection)))
 	}
@@ -52440,7 +51768,6 @@ func (ptr *QSortFilterProxyModel) MapSelectionFromSourceDefault(sourceSelection 
 
 //export callbackQSortFilterProxyModel_MapSelectionToSource
 func callbackQSortFilterProxyModel_MapSelectionToSource(ptr unsafe.Pointer, proxySelection unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSortFilterProxyModel::mapSelectionToSource"); signal != nil {
 		return PointerFromQItemSelection(signal.(func(*QItemSelection) *QItemSelection)(NewQItemSelectionFromPointer(proxySelection)))
 	}
@@ -52482,7 +51809,6 @@ func (ptr *QSortFilterProxyModel) MapSelectionToSourceDefault(proxySelection QIt
 
 //export callbackQSortFilterProxyModel_MapToSource
 func callbackQSortFilterProxyModel_MapToSource(ptr unsafe.Pointer, proxyIndex unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSortFilterProxyModel::mapToSource"); signal != nil {
 		return PointerFromQModelIndex(signal.(func(*QModelIndex) *QModelIndex)(NewQModelIndexFromPointer(proxyIndex)))
 	}
@@ -52537,7 +51863,6 @@ func (ptr *QSortFilterProxyModel) Match(start QModelIndex_ITF, role int, value Q
 
 //export callbackQSortFilterProxyModel_MimeTypes
 func callbackQSortFilterProxyModel_MimeTypes(ptr unsafe.Pointer) *C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSortFilterProxyModel::mimeTypes"); signal != nil {
 		return C.CString(strings.Join(signal.(func() []string)(), "|"))
 	}
@@ -52575,7 +51900,6 @@ func (ptr *QSortFilterProxyModel) MimeTypesDefault() []string {
 
 //export callbackQSortFilterProxyModel_Parent
 func callbackQSortFilterProxyModel_Parent(ptr unsafe.Pointer, child unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSortFilterProxyModel::parent"); signal != nil {
 		return PointerFromQModelIndex(signal.(func(*QModelIndex) *QModelIndex)(NewQModelIndexFromPointer(child)))
 	}
@@ -52617,7 +51941,6 @@ func (ptr *QSortFilterProxyModel) ParentDefault(child QModelIndex_ITF) *QModelIn
 
 //export callbackQSortFilterProxyModel_RemoveColumns
 func callbackQSortFilterProxyModel_RemoveColumns(ptr unsafe.Pointer, column C.int, count C.int, parent unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSortFilterProxyModel::removeColumns"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(int, int, *QModelIndex) bool)(int(int32(column)), int(int32(count)), NewQModelIndexFromPointer(parent)))))
 	}
@@ -52655,7 +51978,6 @@ func (ptr *QSortFilterProxyModel) RemoveColumnsDefault(column int, count int, pa
 
 //export callbackQSortFilterProxyModel_RemoveRows
 func callbackQSortFilterProxyModel_RemoveRows(ptr unsafe.Pointer, row C.int, count C.int, parent unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSortFilterProxyModel::removeRows"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(int, int, *QModelIndex) bool)(int(int32(row)), int(int32(count)), NewQModelIndexFromPointer(parent)))))
 	}
@@ -52693,7 +52015,6 @@ func (ptr *QSortFilterProxyModel) RemoveRowsDefault(row int, count int, parent Q
 
 //export callbackQSortFilterProxyModel_RowCount
 func callbackQSortFilterProxyModel_RowCount(ptr unsafe.Pointer, parent unsafe.Pointer) C.int {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSortFilterProxyModel::rowCount"); signal != nil {
 		return C.int(int32(signal.(func(*QModelIndex) int)(NewQModelIndexFromPointer(parent))))
 	}
@@ -52731,7 +52052,6 @@ func (ptr *QSortFilterProxyModel) RowCountDefault(parent QModelIndex_ITF) int {
 
 //export callbackQSortFilterProxyModel_SetData
 func callbackQSortFilterProxyModel_SetData(ptr unsafe.Pointer, index unsafe.Pointer, value unsafe.Pointer, role C.int) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSortFilterProxyModel::setData"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*QModelIndex, *QVariant, int) bool)(NewQModelIndexFromPointer(index), NewQVariantFromPointer(value), int(int32(role))))))
 	}
@@ -52886,7 +52206,6 @@ func (ptr *QSortFilterProxyModel) SetFilterWildcardDefault(pattern string) {
 
 //export callbackQSortFilterProxyModel_SetHeaderData
 func callbackQSortFilterProxyModel_SetHeaderData(ptr unsafe.Pointer, section C.int, orientation C.longlong, value unsafe.Pointer, role C.int) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSortFilterProxyModel::setHeaderData"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(int, Qt__Orientation, *QVariant, int) bool)(int(int32(section)), Qt__Orientation(orientation), NewQVariantFromPointer(value), int(int32(role))))))
 	}
@@ -52924,7 +52243,6 @@ func (ptr *QSortFilterProxyModel) SetHeaderDataDefault(section int, orientation 
 
 //export callbackQSortFilterProxyModel_SetSourceModel
 func callbackQSortFilterProxyModel_SetSourceModel(ptr unsafe.Pointer, sourceModel unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSortFilterProxyModel::setSourceModel"); signal != nil {
 		signal.(func(*QAbstractItemModel))(NewQAbstractItemModelFromPointer(sourceModel))
 	} else {
@@ -52960,7 +52278,6 @@ func (ptr *QSortFilterProxyModel) SetSourceModelDefault(sourceModel QAbstractIte
 
 //export callbackQSortFilterProxyModel_Sibling
 func callbackQSortFilterProxyModel_Sibling(ptr unsafe.Pointer, row C.int, column C.int, idx unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSortFilterProxyModel::sibling"); signal != nil {
 		return PointerFromQModelIndex(signal.(func(int, int, *QModelIndex) *QModelIndex)(int(int32(row)), int(int32(column)), NewQModelIndexFromPointer(idx)))
 	}
@@ -53002,7 +52319,6 @@ func (ptr *QSortFilterProxyModel) SiblingDefault(row int, column int, idx QModel
 
 //export callbackQSortFilterProxyModel_Sort
 func callbackQSortFilterProxyModel_Sort(ptr unsafe.Pointer, column C.int, order C.longlong) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSortFilterProxyModel::sort"); signal != nil {
 		signal.(func(int, Qt__SortOrder))(int(int32(column)), Qt__SortOrder(order))
 	} else {
@@ -53052,7 +52368,6 @@ func (ptr *QSortFilterProxyModel) SortOrder() Qt__SortOrder {
 
 //export callbackQSortFilterProxyModel_Span
 func callbackQSortFilterProxyModel_Span(ptr unsafe.Pointer, index unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSortFilterProxyModel::span"); signal != nil {
 		return PointerFromQSize(signal.(func(*QModelIndex) *QSize)(NewQModelIndexFromPointer(index)))
 	}
@@ -53094,7 +52409,6 @@ func (ptr *QSortFilterProxyModel) SpanDefault(index QModelIndex_ITF) *QSize {
 
 //export callbackQSortFilterProxyModel_SupportedDropActions
 func callbackQSortFilterProxyModel_SupportedDropActions(ptr unsafe.Pointer) C.longlong {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSortFilterProxyModel::supportedDropActions"); signal != nil {
 		return C.longlong(signal.(func() Qt__DropAction)())
 	}
@@ -53149,7 +52463,6 @@ func (ptr *QSortFilterProxyModel) match_atList(i int) *QModelIndex {
 
 //export callbackQSortFilterProxyModel_CanDropMimeData
 func callbackQSortFilterProxyModel_CanDropMimeData(ptr unsafe.Pointer, data unsafe.Pointer, action C.longlong, row C.int, column C.int, parent unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSortFilterProxyModel::canDropMimeData"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*QMimeData, Qt__DropAction, int, int, *QModelIndex) bool)(NewQMimeDataFromPointer(data), Qt__DropAction(action), int(int32(row)), int(int32(column)), NewQModelIndexFromPointer(parent)))))
 	}
@@ -53222,7 +52535,6 @@ func (ptr *QSortFilterProxyModel) ResetInternalDataDefault() {
 
 //export callbackQSortFilterProxyModel_Revert
 func callbackQSortFilterProxyModel_Revert(ptr unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSortFilterProxyModel::revert"); signal != nil {
 		signal.(func())()
 	} else {
@@ -53258,7 +52570,6 @@ func (ptr *QSortFilterProxyModel) RevertDefault() {
 
 //export callbackQSortFilterProxyModel_Submit
 func callbackQSortFilterProxyModel_Submit(ptr unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSortFilterProxyModel::submit"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func() bool)())))
 	}
@@ -53296,7 +52607,6 @@ func (ptr *QSortFilterProxyModel) SubmitDefault() bool {
 
 //export callbackQSortFilterProxyModel_SupportedDragActions
 func callbackQSortFilterProxyModel_SupportedDragActions(ptr unsafe.Pointer) C.longlong {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSortFilterProxyModel::supportedDragActions"); signal != nil {
 		return C.longlong(signal.(func() Qt__DropAction)())
 	}
@@ -53334,7 +52644,6 @@ func (ptr *QSortFilterProxyModel) SupportedDragActionsDefault() Qt__DropAction {
 
 //export callbackQSortFilterProxyModel_MoveColumns
 func callbackQSortFilterProxyModel_MoveColumns(ptr unsafe.Pointer, sourceParent unsafe.Pointer, sourceColumn C.int, count C.int, destinationParent unsafe.Pointer, destinationChild C.int) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSortFilterProxyModel::moveColumns"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*QModelIndex, int, int, *QModelIndex, int) bool)(NewQModelIndexFromPointer(sourceParent), int(int32(sourceColumn)), int(int32(count)), NewQModelIndexFromPointer(destinationParent), int(int32(destinationChild))))))
 	}
@@ -53372,7 +52681,6 @@ func (ptr *QSortFilterProxyModel) MoveColumnsDefault(sourceParent QModelIndex_IT
 
 //export callbackQSortFilterProxyModel_MoveRows
 func callbackQSortFilterProxyModel_MoveRows(ptr unsafe.Pointer, sourceParent unsafe.Pointer, sourceRow C.int, count C.int, destinationParent unsafe.Pointer, destinationChild C.int) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSortFilterProxyModel::moveRows"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*QModelIndex, int, int, *QModelIndex, int) bool)(NewQModelIndexFromPointer(sourceParent), int(int32(sourceRow)), int(int32(count)), NewQModelIndexFromPointer(destinationParent), int(int32(destinationChild))))))
 	}
@@ -53410,7 +52718,6 @@ func (ptr *QSortFilterProxyModel) MoveRowsDefault(sourceParent QModelIndex_ITF, 
 
 //export callbackQSortFilterProxyModel_TimerEvent
 func callbackQSortFilterProxyModel_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSortFilterProxyModel::timerEvent"); signal != nil {
 		signal.(func(*QTimerEvent))(NewQTimerEventFromPointer(event))
 	} else {
@@ -53446,7 +52753,6 @@ func (ptr *QSortFilterProxyModel) TimerEventDefault(event QTimerEvent_ITF) {
 
 //export callbackQSortFilterProxyModel_ChildEvent
 func callbackQSortFilterProxyModel_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSortFilterProxyModel::childEvent"); signal != nil {
 		signal.(func(*QChildEvent))(NewQChildEventFromPointer(event))
 	} else {
@@ -53482,7 +52788,6 @@ func (ptr *QSortFilterProxyModel) ChildEventDefault(event QChildEvent_ITF) {
 
 //export callbackQSortFilterProxyModel_ConnectNotify
 func callbackQSortFilterProxyModel_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSortFilterProxyModel::connectNotify"); signal != nil {
 		signal.(func(*QMetaMethod))(NewQMetaMethodFromPointer(sign))
 	} else {
@@ -53518,7 +52823,6 @@ func (ptr *QSortFilterProxyModel) ConnectNotifyDefault(sign QMetaMethod_ITF) {
 
 //export callbackQSortFilterProxyModel_CustomEvent
 func callbackQSortFilterProxyModel_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSortFilterProxyModel::customEvent"); signal != nil {
 		signal.(func(*QEvent))(NewQEventFromPointer(event))
 	} else {
@@ -53593,7 +52897,6 @@ func (ptr *QSortFilterProxyModel) DeleteLaterDefault() {
 
 //export callbackQSortFilterProxyModel_DisconnectNotify
 func callbackQSortFilterProxyModel_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSortFilterProxyModel::disconnectNotify"); signal != nil {
 		signal.(func(*QMetaMethod))(NewQMetaMethodFromPointer(sign))
 	} else {
@@ -53629,7 +52932,6 @@ func (ptr *QSortFilterProxyModel) DisconnectNotifyDefault(sign QMetaMethod_ITF) 
 
 //export callbackQSortFilterProxyModel_Event
 func callbackQSortFilterProxyModel_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSortFilterProxyModel::event"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*QEvent) bool)(NewQEventFromPointer(e)))))
 	}
@@ -53667,7 +52969,6 @@ func (ptr *QSortFilterProxyModel) EventDefault(e QEvent_ITF) bool {
 
 //export callbackQSortFilterProxyModel_EventFilter
 func callbackQSortFilterProxyModel_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSortFilterProxyModel::eventFilter"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*QObject, *QEvent) bool)(NewQObjectFromPointer(watched), NewQEventFromPointer(event)))))
 	}
@@ -53705,7 +53006,6 @@ func (ptr *QSortFilterProxyModel) EventFilterDefault(watched QObject_ITF, event 
 
 //export callbackQSortFilterProxyModel_MetaObject
 func callbackQSortFilterProxyModel_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSortFilterProxyModel::metaObject"); signal != nil {
 		return PointerFromQMetaObject(signal.(func() *QMetaObject)())
 	}
@@ -54060,7 +53360,6 @@ func (ptr *QState) ChildMode() QState__ChildMode {
 
 //export callbackQState_ChildModeChanged
 func callbackQState_ChildModeChanged(ptr unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QState::childModeChanged"); signal != nil {
 		signal.(func())()
 	}
@@ -54094,7 +53393,6 @@ func (ptr *QState) ErrorState() *QAbstractState {
 
 //export callbackQState_ErrorStateChanged
 func callbackQState_ErrorStateChanged(ptr unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QState::errorStateChanged"); signal != nil {
 		signal.(func())()
 	}
@@ -54117,7 +53415,6 @@ func (ptr *QState) DisconnectErrorStateChanged() {
 
 //export callbackQState_Event
 func callbackQState_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QState::event"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*QEvent) bool)(NewQEventFromPointer(e)))))
 	}
@@ -54155,7 +53452,6 @@ func (ptr *QState) EventDefault(e QEvent_ITF) bool {
 
 //export callbackQState_Finished
 func callbackQState_Finished(ptr unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QState::finished"); signal != nil {
 		signal.(func())()
 	}
@@ -54189,7 +53485,6 @@ func (ptr *QState) InitialState() *QAbstractState {
 
 //export callbackQState_InitialStateChanged
 func callbackQState_InitialStateChanged(ptr unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QState::initialStateChanged"); signal != nil {
 		signal.(func())()
 	}
@@ -54212,7 +53507,6 @@ func (ptr *QState) DisconnectInitialStateChanged() {
 
 //export callbackQState_OnEntry
 func callbackQState_OnEntry(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QState::onEntry"); signal != nil {
 		signal.(func(*QEvent))(NewQEventFromPointer(event))
 	} else {
@@ -54248,7 +53542,6 @@ func (ptr *QState) OnEntryDefault(event QEvent_ITF) {
 
 //export callbackQState_OnExit
 func callbackQState_OnExit(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QState::onExit"); signal != nil {
 		signal.(func(*QEvent))(NewQEventFromPointer(event))
 	} else {
@@ -54284,7 +53577,6 @@ func (ptr *QState) OnExitDefault(event QEvent_ITF) {
 
 //export callbackQState_PropertiesAssigned
 func callbackQState_PropertiesAssigned(ptr unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QState::propertiesAssigned"); signal != nil {
 		signal.(func())()
 	}
@@ -54363,7 +53655,6 @@ func (ptr *QState) transitions_atList(i int) *QAbstractTransition {
 
 //export callbackQState_TimerEvent
 func callbackQState_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QState::timerEvent"); signal != nil {
 		signal.(func(*QTimerEvent))(NewQTimerEventFromPointer(event))
 	} else {
@@ -54399,7 +53690,6 @@ func (ptr *QState) TimerEventDefault(event QTimerEvent_ITF) {
 
 //export callbackQState_ChildEvent
 func callbackQState_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QState::childEvent"); signal != nil {
 		signal.(func(*QChildEvent))(NewQChildEventFromPointer(event))
 	} else {
@@ -54435,7 +53725,6 @@ func (ptr *QState) ChildEventDefault(event QChildEvent_ITF) {
 
 //export callbackQState_ConnectNotify
 func callbackQState_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QState::connectNotify"); signal != nil {
 		signal.(func(*QMetaMethod))(NewQMetaMethodFromPointer(sign))
 	} else {
@@ -54471,7 +53760,6 @@ func (ptr *QState) ConnectNotifyDefault(sign QMetaMethod_ITF) {
 
 //export callbackQState_CustomEvent
 func callbackQState_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QState::customEvent"); signal != nil {
 		signal.(func(*QEvent))(NewQEventFromPointer(event))
 	} else {
@@ -54546,7 +53834,6 @@ func (ptr *QState) DeleteLaterDefault() {
 
 //export callbackQState_DisconnectNotify
 func callbackQState_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QState::disconnectNotify"); signal != nil {
 		signal.(func(*QMetaMethod))(NewQMetaMethodFromPointer(sign))
 	} else {
@@ -54582,7 +53869,6 @@ func (ptr *QState) DisconnectNotifyDefault(sign QMetaMethod_ITF) {
 
 //export callbackQState_EventFilter
 func callbackQState_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QState::eventFilter"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*QObject, *QEvent) bool)(NewQObjectFromPointer(watched), NewQEventFromPointer(event)))))
 	}
@@ -54620,7 +53906,6 @@ func (ptr *QState) EventFilterDefault(watched QObject_ITF, event QEvent_ITF) boo
 
 //export callbackQState_MetaObject
 func callbackQState_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QState::metaObject"); signal != nil {
 		return PointerFromQMetaObject(signal.(func() *QMetaObject)())
 	}
@@ -54827,7 +54112,6 @@ func (ptr *QStateMachine) ErrorString() string {
 
 //export callbackQStateMachine_Event
 func callbackQStateMachine_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QStateMachine::event"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*QEvent) bool)(NewQEventFromPointer(e)))))
 	}
@@ -54865,7 +54149,6 @@ func (ptr *QStateMachine) EventDefault(e QEvent_ITF) bool {
 
 //export callbackQStateMachine_EventFilter
 func callbackQStateMachine_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QStateMachine::eventFilter"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*QObject, *QEvent) bool)(NewQObjectFromPointer(watched), NewQEventFromPointer(event)))))
 	}
@@ -54917,7 +54200,6 @@ func (ptr *QStateMachine) IsAnimated() bool {
 
 //export callbackQStateMachine_OnEntry
 func callbackQStateMachine_OnEntry(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QStateMachine::onEntry"); signal != nil {
 		signal.(func(*QEvent))(NewQEventFromPointer(event))
 	} else {
@@ -54953,7 +54235,6 @@ func (ptr *QStateMachine) OnEntryDefault(event QEvent_ITF) {
 
 //export callbackQStateMachine_OnExit
 func callbackQStateMachine_OnExit(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QStateMachine::onExit"); signal != nil {
 		signal.(func(*QEvent))(NewQEventFromPointer(event))
 	} else {
@@ -55014,7 +54295,6 @@ func (ptr *QStateMachine) RemoveState(state QAbstractState_ITF) {
 
 //export callbackQStateMachine_RunningChanged
 func callbackQStateMachine_RunningChanged(ptr unsafe.Pointer, running C.char) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QStateMachine::runningChanged"); signal != nil {
 		signal.(func(bool))(int8(running) != 0)
 	}
@@ -55090,7 +54370,6 @@ func (ptr *QStateMachine) StartDefault() {
 
 //export callbackQStateMachine_Started
 func callbackQStateMachine_Started(ptr unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QStateMachine::started"); signal != nil {
 		signal.(func())()
 	}
@@ -55148,7 +54427,6 @@ func (ptr *QStateMachine) StopDefault() {
 
 //export callbackQStateMachine_Stopped
 func callbackQStateMachine_Stopped(ptr unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QStateMachine::stopped"); signal != nil {
 		signal.(func())()
 	}
@@ -55190,7 +54468,6 @@ func (ptr *QStateMachine) defaultAnimations_atList(i int) *QAbstractAnimation {
 
 //export callbackQStateMachine_TimerEvent
 func callbackQStateMachine_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QStateMachine::timerEvent"); signal != nil {
 		signal.(func(*QTimerEvent))(NewQTimerEventFromPointer(event))
 	} else {
@@ -55226,7 +54503,6 @@ func (ptr *QStateMachine) TimerEventDefault(event QTimerEvent_ITF) {
 
 //export callbackQStateMachine_ChildEvent
 func callbackQStateMachine_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QStateMachine::childEvent"); signal != nil {
 		signal.(func(*QChildEvent))(NewQChildEventFromPointer(event))
 	} else {
@@ -55262,7 +54538,6 @@ func (ptr *QStateMachine) ChildEventDefault(event QChildEvent_ITF) {
 
 //export callbackQStateMachine_ConnectNotify
 func callbackQStateMachine_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QStateMachine::connectNotify"); signal != nil {
 		signal.(func(*QMetaMethod))(NewQMetaMethodFromPointer(sign))
 	} else {
@@ -55298,7 +54573,6 @@ func (ptr *QStateMachine) ConnectNotifyDefault(sign QMetaMethod_ITF) {
 
 //export callbackQStateMachine_CustomEvent
 func callbackQStateMachine_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QStateMachine::customEvent"); signal != nil {
 		signal.(func(*QEvent))(NewQEventFromPointer(event))
 	} else {
@@ -55373,7 +54647,6 @@ func (ptr *QStateMachine) DeleteLaterDefault() {
 
 //export callbackQStateMachine_DisconnectNotify
 func callbackQStateMachine_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QStateMachine::disconnectNotify"); signal != nil {
 		signal.(func(*QMetaMethod))(NewQMetaMethodFromPointer(sign))
 	} else {
@@ -55409,7 +54682,6 @@ func (ptr *QStateMachine) DisconnectNotifyDefault(sign QMetaMethod_ITF) {
 
 //export callbackQStateMachine_MetaObject
 func callbackQStateMachine_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QStateMachine::metaObject"); signal != nil {
 		return PointerFromQMetaObject(signal.(func() *QMetaObject)())
 	}
@@ -55926,7 +55198,6 @@ func NewQStringListModel2(strin []string, parent QObject_ITF) *QStringListModel 
 
 //export callbackQStringListModel_Data
 func callbackQStringListModel_Data(ptr unsafe.Pointer, index unsafe.Pointer, role C.int) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QStringListModel::data"); signal != nil {
 		return PointerFromQVariant(signal.(func(*QModelIndex, int) *QVariant)(NewQModelIndexFromPointer(index), int(int32(role))))
 	}
@@ -55968,7 +55239,6 @@ func (ptr *QStringListModel) DataDefault(index QModelIndex_ITF, role int) *QVari
 
 //export callbackQStringListModel_Flags
 func callbackQStringListModel_Flags(ptr unsafe.Pointer, index unsafe.Pointer) C.longlong {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QStringListModel::flags"); signal != nil {
 		return C.longlong(signal.(func(*QModelIndex) Qt__ItemFlag)(NewQModelIndexFromPointer(index)))
 	}
@@ -56006,7 +55276,6 @@ func (ptr *QStringListModel) FlagsDefault(index QModelIndex_ITF) Qt__ItemFlag {
 
 //export callbackQStringListModel_InsertRows
 func callbackQStringListModel_InsertRows(ptr unsafe.Pointer, row C.int, count C.int, parent unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QStringListModel::insertRows"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(int, int, *QModelIndex) bool)(int(int32(row)), int(int32(count)), NewQModelIndexFromPointer(parent)))))
 	}
@@ -56044,7 +55313,6 @@ func (ptr *QStringListModel) InsertRowsDefault(row int, count int, parent QModel
 
 //export callbackQStringListModel_RemoveRows
 func callbackQStringListModel_RemoveRows(ptr unsafe.Pointer, row C.int, count C.int, parent unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QStringListModel::removeRows"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(int, int, *QModelIndex) bool)(int(int32(row)), int(int32(count)), NewQModelIndexFromPointer(parent)))))
 	}
@@ -56082,7 +55350,6 @@ func (ptr *QStringListModel) RemoveRowsDefault(row int, count int, parent QModel
 
 //export callbackQStringListModel_RowCount
 func callbackQStringListModel_RowCount(ptr unsafe.Pointer, parent unsafe.Pointer) C.int {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QStringListModel::rowCount"); signal != nil {
 		return C.int(int32(signal.(func(*QModelIndex) int)(NewQModelIndexFromPointer(parent))))
 	}
@@ -56120,7 +55387,6 @@ func (ptr *QStringListModel) RowCountDefault(parent QModelIndex_ITF) int {
 
 //export callbackQStringListModel_SetData
 func callbackQStringListModel_SetData(ptr unsafe.Pointer, index unsafe.Pointer, value unsafe.Pointer, role C.int) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QStringListModel::setData"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*QModelIndex, *QVariant, int) bool)(NewQModelIndexFromPointer(index), NewQVariantFromPointer(value), int(int32(role))))))
 	}
@@ -56166,7 +55432,6 @@ func (ptr *QStringListModel) SetStringList(strin []string) {
 
 //export callbackQStringListModel_Sibling
 func callbackQStringListModel_Sibling(ptr unsafe.Pointer, row C.int, column C.int, idx unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QStringListModel::sibling"); signal != nil {
 		return PointerFromQModelIndex(signal.(func(int, int, *QModelIndex) *QModelIndex)(int(int32(row)), int(int32(column)), NewQModelIndexFromPointer(idx)))
 	}
@@ -56208,7 +55473,6 @@ func (ptr *QStringListModel) SiblingDefault(row int, column int, idx QModelIndex
 
 //export callbackQStringListModel_Sort
 func callbackQStringListModel_Sort(ptr unsafe.Pointer, column C.int, order C.longlong) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QStringListModel::sort"); signal != nil {
 		signal.(func(int, Qt__SortOrder))(int(int32(column)), Qt__SortOrder(order))
 	} else {
@@ -56251,7 +55515,6 @@ func (ptr *QStringListModel) StringList() []string {
 
 //export callbackQStringListModel_SupportedDropActions
 func callbackQStringListModel_SupportedDropActions(ptr unsafe.Pointer) C.longlong {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QStringListModel::supportedDropActions"); signal != nil {
 		return C.longlong(signal.(func() Qt__DropAction)())
 	}
@@ -56289,7 +55552,6 @@ func (ptr *QStringListModel) SupportedDropActionsDefault() Qt__DropAction {
 
 //export callbackQStringListModel_Index
 func callbackQStringListModel_Index(ptr unsafe.Pointer, row C.int, column C.int, parent unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QStringListModel::index"); signal != nil {
 		return PointerFromQModelIndex(signal.(func(int, int, *QModelIndex) *QModelIndex)(int(int32(row)), int(int32(column)), NewQModelIndexFromPointer(parent)))
 	}
@@ -56331,7 +55593,6 @@ func (ptr *QStringListModel) IndexDefault(row int, column int, parent QModelInde
 
 //export callbackQStringListModel_DropMimeData
 func callbackQStringListModel_DropMimeData(ptr unsafe.Pointer, data unsafe.Pointer, action C.longlong, row C.int, column C.int, parent unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QStringListModel::dropMimeData"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*QMimeData, Qt__DropAction, int, int, *QModelIndex) bool)(NewQMimeDataFromPointer(data), Qt__DropAction(action), int(int32(row)), int(int32(column)), NewQModelIndexFromPointer(parent)))))
 	}
@@ -56369,7 +55630,6 @@ func (ptr *QStringListModel) DropMimeDataDefault(data QMimeData_ITF, action Qt__
 
 //export callbackQStringListModel_Buddy
 func callbackQStringListModel_Buddy(ptr unsafe.Pointer, index unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QStringListModel::buddy"); signal != nil {
 		return PointerFromQModelIndex(signal.(func(*QModelIndex) *QModelIndex)(NewQModelIndexFromPointer(index)))
 	}
@@ -56411,7 +55671,6 @@ func (ptr *QStringListModel) BuddyDefault(index QModelIndex_ITF) *QModelIndex {
 
 //export callbackQStringListModel_CanDropMimeData
 func callbackQStringListModel_CanDropMimeData(ptr unsafe.Pointer, data unsafe.Pointer, action C.longlong, row C.int, column C.int, parent unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QStringListModel::canDropMimeData"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*QMimeData, Qt__DropAction, int, int, *QModelIndex) bool)(NewQMimeDataFromPointer(data), Qt__DropAction(action), int(int32(row)), int(int32(column)), NewQModelIndexFromPointer(parent)))))
 	}
@@ -56449,7 +55708,6 @@ func (ptr *QStringListModel) CanDropMimeDataDefault(data QMimeData_ITF, action Q
 
 //export callbackQStringListModel_CanFetchMore
 func callbackQStringListModel_CanFetchMore(ptr unsafe.Pointer, parent unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QStringListModel::canFetchMore"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*QModelIndex) bool)(NewQModelIndexFromPointer(parent)))))
 	}
@@ -56487,7 +55745,6 @@ func (ptr *QStringListModel) CanFetchMoreDefault(parent QModelIndex_ITF) bool {
 
 //export callbackQStringListModel_ColumnCount
 func callbackQStringListModel_ColumnCount(ptr unsafe.Pointer, parent unsafe.Pointer) C.int {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QStringListModel::columnCount"); signal != nil {
 		return C.int(int32(signal.(func(*QModelIndex) int)(NewQModelIndexFromPointer(parent))))
 	}
@@ -56518,7 +55775,6 @@ func (ptr *QStringListModel) ColumnCount(parent QModelIndex_ITF) int {
 
 //export callbackQStringListModel_FetchMore
 func callbackQStringListModel_FetchMore(ptr unsafe.Pointer, parent unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QStringListModel::fetchMore"); signal != nil {
 		signal.(func(*QModelIndex))(NewQModelIndexFromPointer(parent))
 	} else {
@@ -56554,7 +55810,6 @@ func (ptr *QStringListModel) FetchMoreDefault(parent QModelIndex_ITF) {
 
 //export callbackQStringListModel_HasChildren
 func callbackQStringListModel_HasChildren(ptr unsafe.Pointer, parent unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QStringListModel::hasChildren"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*QModelIndex) bool)(NewQModelIndexFromPointer(parent)))))
 	}
@@ -56592,7 +55847,6 @@ func (ptr *QStringListModel) HasChildrenDefault(parent QModelIndex_ITF) bool {
 
 //export callbackQStringListModel_HeaderData
 func callbackQStringListModel_HeaderData(ptr unsafe.Pointer, section C.int, orientation C.longlong, role C.int) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QStringListModel::headerData"); signal != nil {
 		return PointerFromQVariant(signal.(func(int, Qt__Orientation, int) *QVariant)(int(int32(section)), Qt__Orientation(orientation), int(int32(role))))
 	}
@@ -56634,7 +55888,6 @@ func (ptr *QStringListModel) HeaderDataDefault(section int, orientation Qt__Orie
 
 //export callbackQStringListModel_InsertColumns
 func callbackQStringListModel_InsertColumns(ptr unsafe.Pointer, column C.int, count C.int, parent unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QStringListModel::insertColumns"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(int, int, *QModelIndex) bool)(int(int32(column)), int(int32(count)), NewQModelIndexFromPointer(parent)))))
 	}
@@ -56672,7 +55925,6 @@ func (ptr *QStringListModel) InsertColumnsDefault(column int, count int, parent 
 
 //export callbackQStringListModel_MimeTypes
 func callbackQStringListModel_MimeTypes(ptr unsafe.Pointer) *C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QStringListModel::mimeTypes"); signal != nil {
 		return C.CString(strings.Join(signal.(func() []string)(), "|"))
 	}
@@ -56710,7 +55962,6 @@ func (ptr *QStringListModel) MimeTypesDefault() []string {
 
 //export callbackQStringListModel_MoveColumns
 func callbackQStringListModel_MoveColumns(ptr unsafe.Pointer, sourceParent unsafe.Pointer, sourceColumn C.int, count C.int, destinationParent unsafe.Pointer, destinationChild C.int) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QStringListModel::moveColumns"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*QModelIndex, int, int, *QModelIndex, int) bool)(NewQModelIndexFromPointer(sourceParent), int(int32(sourceColumn)), int(int32(count)), NewQModelIndexFromPointer(destinationParent), int(int32(destinationChild))))))
 	}
@@ -56748,7 +55999,6 @@ func (ptr *QStringListModel) MoveColumnsDefault(sourceParent QModelIndex_ITF, so
 
 //export callbackQStringListModel_MoveRows
 func callbackQStringListModel_MoveRows(ptr unsafe.Pointer, sourceParent unsafe.Pointer, sourceRow C.int, count C.int, destinationParent unsafe.Pointer, destinationChild C.int) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QStringListModel::moveRows"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*QModelIndex, int, int, *QModelIndex, int) bool)(NewQModelIndexFromPointer(sourceParent), int(int32(sourceRow)), int(int32(count)), NewQModelIndexFromPointer(destinationParent), int(int32(destinationChild))))))
 	}
@@ -56786,7 +56036,6 @@ func (ptr *QStringListModel) MoveRowsDefault(sourceParent QModelIndex_ITF, sourc
 
 //export callbackQStringListModel_Parent
 func callbackQStringListModel_Parent(ptr unsafe.Pointer, index unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QStringListModel::parent"); signal != nil {
 		return PointerFromQModelIndex(signal.(func(*QModelIndex) *QModelIndex)(NewQModelIndexFromPointer(index)))
 	}
@@ -56819,7 +56068,6 @@ func (ptr *QStringListModel) Parent(index QModelIndex_ITF) *QModelIndex {
 
 //export callbackQStringListModel_RemoveColumns
 func callbackQStringListModel_RemoveColumns(ptr unsafe.Pointer, column C.int, count C.int, parent unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QStringListModel::removeColumns"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(int, int, *QModelIndex) bool)(int(int32(column)), int(int32(count)), NewQModelIndexFromPointer(parent)))))
 	}
@@ -56927,7 +56175,6 @@ func (ptr *QStringListModel) RevertDefault() {
 
 //export callbackQStringListModel_SetHeaderData
 func callbackQStringListModel_SetHeaderData(ptr unsafe.Pointer, section C.int, orientation C.longlong, value unsafe.Pointer, role C.int) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QStringListModel::setHeaderData"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(int, Qt__Orientation, *QVariant, int) bool)(int(int32(section)), Qt__Orientation(orientation), NewQVariantFromPointer(value), int(int32(role))))))
 	}
@@ -56965,7 +56212,6 @@ func (ptr *QStringListModel) SetHeaderDataDefault(section int, orientation Qt__O
 
 //export callbackQStringListModel_Span
 func callbackQStringListModel_Span(ptr unsafe.Pointer, index unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QStringListModel::span"); signal != nil {
 		return PointerFromQSize(signal.(func(*QModelIndex) *QSize)(NewQModelIndexFromPointer(index)))
 	}
@@ -57044,7 +56290,6 @@ func (ptr *QStringListModel) SubmitDefault() bool {
 
 //export callbackQStringListModel_SupportedDragActions
 func callbackQStringListModel_SupportedDragActions(ptr unsafe.Pointer) C.longlong {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QStringListModel::supportedDragActions"); signal != nil {
 		return C.longlong(signal.(func() Qt__DropAction)())
 	}
@@ -57082,7 +56327,6 @@ func (ptr *QStringListModel) SupportedDragActionsDefault() Qt__DropAction {
 
 //export callbackQStringListModel_TimerEvent
 func callbackQStringListModel_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QStringListModel::timerEvent"); signal != nil {
 		signal.(func(*QTimerEvent))(NewQTimerEventFromPointer(event))
 	} else {
@@ -57118,7 +56362,6 @@ func (ptr *QStringListModel) TimerEventDefault(event QTimerEvent_ITF) {
 
 //export callbackQStringListModel_ChildEvent
 func callbackQStringListModel_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QStringListModel::childEvent"); signal != nil {
 		signal.(func(*QChildEvent))(NewQChildEventFromPointer(event))
 	} else {
@@ -57154,7 +56397,6 @@ func (ptr *QStringListModel) ChildEventDefault(event QChildEvent_ITF) {
 
 //export callbackQStringListModel_ConnectNotify
 func callbackQStringListModel_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QStringListModel::connectNotify"); signal != nil {
 		signal.(func(*QMetaMethod))(NewQMetaMethodFromPointer(sign))
 	} else {
@@ -57190,7 +56432,6 @@ func (ptr *QStringListModel) ConnectNotifyDefault(sign QMetaMethod_ITF) {
 
 //export callbackQStringListModel_CustomEvent
 func callbackQStringListModel_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QStringListModel::customEvent"); signal != nil {
 		signal.(func(*QEvent))(NewQEventFromPointer(event))
 	} else {
@@ -57265,7 +56506,6 @@ func (ptr *QStringListModel) DeleteLaterDefault() {
 
 //export callbackQStringListModel_DisconnectNotify
 func callbackQStringListModel_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QStringListModel::disconnectNotify"); signal != nil {
 		signal.(func(*QMetaMethod))(NewQMetaMethodFromPointer(sign))
 	} else {
@@ -57301,7 +56541,6 @@ func (ptr *QStringListModel) DisconnectNotifyDefault(sign QMetaMethod_ITF) {
 
 //export callbackQStringListModel_Event
 func callbackQStringListModel_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QStringListModel::event"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*QEvent) bool)(NewQEventFromPointer(e)))))
 	}
@@ -57339,7 +56578,6 @@ func (ptr *QStringListModel) EventDefault(e QEvent_ITF) bool {
 
 //export callbackQStringListModel_EventFilter
 func callbackQStringListModel_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QStringListModel::eventFilter"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*QObject, *QEvent) bool)(NewQObjectFromPointer(watched), NewQEventFromPointer(event)))))
 	}
@@ -57377,7 +56615,6 @@ func (ptr *QStringListModel) EventFilterDefault(watched QObject_ITF, event QEven
 
 //export callbackQStringListModel_MetaObject
 func callbackQStringListModel_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QStringListModel::metaObject"); signal != nil {
 		return PointerFromQMetaObject(signal.(func() *QMetaObject)())
 	}
@@ -58724,7 +57961,6 @@ func (ptr *QTemporaryFile) CreateNativeFile2(fileName string) *QTemporaryFile {
 
 //export callbackQTemporaryFile_FileName
 func callbackQTemporaryFile_FileName(ptr unsafe.Pointer) *C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QTemporaryFile::fileName"); signal != nil {
 		return C.CString(signal.(func() string)())
 	}
@@ -58776,7 +58012,6 @@ func (ptr *QTemporaryFile) Open() bool {
 
 //export callbackQTemporaryFile_Open2
 func callbackQTemporaryFile_Open2(ptr unsafe.Pointer, flags C.longlong) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QTemporaryFile::open2"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(QIODevice__OpenModeFlag) bool)(QIODevice__OpenModeFlag(flags)))))
 	}
@@ -58836,7 +58071,6 @@ func (ptr *QTemporaryFile) DestroyQTemporaryFile() {
 
 //export callbackQTemporaryFile_Permissions
 func callbackQTemporaryFile_Permissions(ptr unsafe.Pointer) C.longlong {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QTemporaryFile::permissions"); signal != nil {
 		return C.longlong(signal.(func() QFileDevice__Permission)())
 	}
@@ -58874,7 +58108,6 @@ func (ptr *QTemporaryFile) PermissionsDefault() QFileDevice__Permission {
 
 //export callbackQTemporaryFile_Resize
 func callbackQTemporaryFile_Resize(ptr unsafe.Pointer, sz C.longlong) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QTemporaryFile::resize"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(int64) bool)(int64(sz)))))
 	}
@@ -58912,7 +58145,6 @@ func (ptr *QTemporaryFile) ResizeDefault(sz int64) bool {
 
 //export callbackQTemporaryFile_SetPermissions
 func callbackQTemporaryFile_SetPermissions(ptr unsafe.Pointer, permissions C.longlong) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QTemporaryFile::setPermissions"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(QFileDevice__Permission) bool)(QFileDevice__Permission(permissions)))))
 	}
@@ -58950,7 +58182,6 @@ func (ptr *QTemporaryFile) SetPermissionsDefault(permissions QFileDevice__Permis
 
 //export callbackQTemporaryFile_Size
 func callbackQTemporaryFile_Size(ptr unsafe.Pointer) C.longlong {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QTemporaryFile::size"); signal != nil {
 		return C.longlong(signal.(func() int64)())
 	}
@@ -58988,7 +58219,6 @@ func (ptr *QTemporaryFile) SizeDefault() int64 {
 
 //export callbackQTemporaryFile_Seek
 func callbackQTemporaryFile_Seek(ptr unsafe.Pointer, pos C.longlong) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QTemporaryFile::seek"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(int64) bool)(int64(pos)))))
 	}
@@ -59026,7 +58256,6 @@ func (ptr *QTemporaryFile) SeekDefault(pos int64) bool {
 
 //export callbackQTemporaryFile_AtEnd
 func callbackQTemporaryFile_AtEnd(ptr unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QTemporaryFile::atEnd"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func() bool)())))
 	}
@@ -59064,7 +58293,6 @@ func (ptr *QTemporaryFile) AtEndDefault() bool {
 
 //export callbackQTemporaryFile_Close
 func callbackQTemporaryFile_Close(ptr unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QTemporaryFile::close"); signal != nil {
 		signal.(func())()
 	} else {
@@ -59100,7 +58328,6 @@ func (ptr *QTemporaryFile) CloseDefault() {
 
 //export callbackQTemporaryFile_IsSequential
 func callbackQTemporaryFile_IsSequential(ptr unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QTemporaryFile::isSequential"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func() bool)())))
 	}
@@ -59138,7 +58365,6 @@ func (ptr *QTemporaryFile) IsSequentialDefault() bool {
 
 //export callbackQTemporaryFile_Pos
 func callbackQTemporaryFile_Pos(ptr unsafe.Pointer) C.longlong {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QTemporaryFile::pos"); signal != nil {
 		return C.longlong(signal.(func() int64)())
 	}
@@ -59176,7 +58402,6 @@ func (ptr *QTemporaryFile) PosDefault() int64 {
 
 //export callbackQTemporaryFile_ReadData
 func callbackQTemporaryFile_ReadData(ptr unsafe.Pointer, data C.struct_QtCore_PackedString, len C.longlong) C.longlong {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QTemporaryFile::readData"); signal != nil {
 		var retS = cGoUnpackString(data)
 		var ret = C.longlong(signal.(func(*string, int64) int64)(&retS, int64(len)))
@@ -59235,7 +58460,6 @@ func (ptr *QTemporaryFile) ReadDataDefault(data *string, len int64) int64 {
 
 //export callbackQTemporaryFile_ReadLineData
 func callbackQTemporaryFile_ReadLineData(ptr unsafe.Pointer, data C.struct_QtCore_PackedString, maxlen C.longlong) C.longlong {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QTemporaryFile::readLineData"); signal != nil {
 		return C.longlong(signal.(func(string, int64) int64)(cGoUnpackString(data), int64(maxlen)))
 	}
@@ -59277,7 +58501,6 @@ func (ptr *QTemporaryFile) ReadLineDataDefault(data string, maxlen int64) int64 
 
 //export callbackQTemporaryFile_WriteData
 func callbackQTemporaryFile_WriteData(ptr unsafe.Pointer, data C.struct_QtCore_PackedString, len C.longlong) C.longlong {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QTemporaryFile::writeData"); signal != nil {
 		return C.longlong(signal.(func(string, int64) int64)(cGoUnpackString(data), int64(len)))
 	}
@@ -59319,7 +58542,6 @@ func (ptr *QTemporaryFile) WriteDataDefault(data string, len int64) int64 {
 
 //export callbackQTemporaryFile_BytesAvailable
 func callbackQTemporaryFile_BytesAvailable(ptr unsafe.Pointer) C.longlong {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QTemporaryFile::bytesAvailable"); signal != nil {
 		return C.longlong(signal.(func() int64)())
 	}
@@ -59357,7 +58579,6 @@ func (ptr *QTemporaryFile) BytesAvailableDefault() int64 {
 
 //export callbackQTemporaryFile_BytesToWrite
 func callbackQTemporaryFile_BytesToWrite(ptr unsafe.Pointer) C.longlong {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QTemporaryFile::bytesToWrite"); signal != nil {
 		return C.longlong(signal.(func() int64)())
 	}
@@ -59395,7 +58616,6 @@ func (ptr *QTemporaryFile) BytesToWriteDefault() int64 {
 
 //export callbackQTemporaryFile_CanReadLine
 func callbackQTemporaryFile_CanReadLine(ptr unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QTemporaryFile::canReadLine"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func() bool)())))
 	}
@@ -59433,7 +58653,6 @@ func (ptr *QTemporaryFile) CanReadLineDefault() bool {
 
 //export callbackQTemporaryFile_Reset
 func callbackQTemporaryFile_Reset(ptr unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QTemporaryFile::reset"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func() bool)())))
 	}
@@ -59471,7 +58690,6 @@ func (ptr *QTemporaryFile) ResetDefault() bool {
 
 //export callbackQTemporaryFile_WaitForBytesWritten
 func callbackQTemporaryFile_WaitForBytesWritten(ptr unsafe.Pointer, msecs C.int) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QTemporaryFile::waitForBytesWritten"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(int) bool)(int(int32(msecs))))))
 	}
@@ -59509,7 +58727,6 @@ func (ptr *QTemporaryFile) WaitForBytesWrittenDefault(msecs int) bool {
 
 //export callbackQTemporaryFile_WaitForReadyRead
 func callbackQTemporaryFile_WaitForReadyRead(ptr unsafe.Pointer, msecs C.int) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QTemporaryFile::waitForReadyRead"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(int) bool)(int(int32(msecs))))))
 	}
@@ -59547,7 +58764,6 @@ func (ptr *QTemporaryFile) WaitForReadyReadDefault(msecs int) bool {
 
 //export callbackQTemporaryFile_TimerEvent
 func callbackQTemporaryFile_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QTemporaryFile::timerEvent"); signal != nil {
 		signal.(func(*QTimerEvent))(NewQTimerEventFromPointer(event))
 	} else {
@@ -59583,7 +58799,6 @@ func (ptr *QTemporaryFile) TimerEventDefault(event QTimerEvent_ITF) {
 
 //export callbackQTemporaryFile_ChildEvent
 func callbackQTemporaryFile_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QTemporaryFile::childEvent"); signal != nil {
 		signal.(func(*QChildEvent))(NewQChildEventFromPointer(event))
 	} else {
@@ -59619,7 +58834,6 @@ func (ptr *QTemporaryFile) ChildEventDefault(event QChildEvent_ITF) {
 
 //export callbackQTemporaryFile_ConnectNotify
 func callbackQTemporaryFile_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QTemporaryFile::connectNotify"); signal != nil {
 		signal.(func(*QMetaMethod))(NewQMetaMethodFromPointer(sign))
 	} else {
@@ -59655,7 +58869,6 @@ func (ptr *QTemporaryFile) ConnectNotifyDefault(sign QMetaMethod_ITF) {
 
 //export callbackQTemporaryFile_CustomEvent
 func callbackQTemporaryFile_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QTemporaryFile::customEvent"); signal != nil {
 		signal.(func(*QEvent))(NewQEventFromPointer(event))
 	} else {
@@ -59730,7 +58943,6 @@ func (ptr *QTemporaryFile) DeleteLaterDefault() {
 
 //export callbackQTemporaryFile_DisconnectNotify
 func callbackQTemporaryFile_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QTemporaryFile::disconnectNotify"); signal != nil {
 		signal.(func(*QMetaMethod))(NewQMetaMethodFromPointer(sign))
 	} else {
@@ -59766,7 +58978,6 @@ func (ptr *QTemporaryFile) DisconnectNotifyDefault(sign QMetaMethod_ITF) {
 
 //export callbackQTemporaryFile_Event
 func callbackQTemporaryFile_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QTemporaryFile::event"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*QEvent) bool)(NewQEventFromPointer(e)))))
 	}
@@ -59804,7 +59015,6 @@ func (ptr *QTemporaryFile) EventDefault(e QEvent_ITF) bool {
 
 //export callbackQTemporaryFile_EventFilter
 func callbackQTemporaryFile_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QTemporaryFile::eventFilter"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*QObject, *QEvent) bool)(NewQObjectFromPointer(watched), NewQEventFromPointer(event)))))
 	}
@@ -59842,7 +59052,6 @@ func (ptr *QTemporaryFile) EventFilterDefault(watched QObject_ITF, event QEvent_
 
 //export callbackQTemporaryFile_MetaObject
 func callbackQTemporaryFile_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QTemporaryFile::metaObject"); signal != nil {
 		return PointerFromQMetaObject(signal.(func() *QMetaObject)())
 	}
@@ -60234,7 +59443,6 @@ func (ptr *QTextCodec) MakeEncoder(flags QTextCodec__ConversionFlag) *QTextEncod
 
 //export callbackQTextCodec_MibEnum
 func callbackQTextCodec_MibEnum(ptr unsafe.Pointer) C.int {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QTextCodec::mibEnum"); signal != nil {
 		return C.int(int32(signal.(func() int)()))
 	}
@@ -60265,7 +59473,6 @@ func (ptr *QTextCodec) MibEnum() int {
 
 //export callbackQTextCodec_Name
 func callbackQTextCodec_Name(ptr unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QTextCodec::name"); signal != nil {
 		return PointerFromQByteArray(signal.(func() *QByteArray)())
 	}
@@ -60322,7 +59529,6 @@ func (ptr *QTextCodec) ToUnicode2(chars string) string {
 
 //export callbackQTextCodec_DestroyQTextCodec
 func callbackQTextCodec_DestroyQTextCodec(ptr unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QTextCodec::~QTextCodec"); signal != nil {
 		signal.(func())()
 	} else {
@@ -60917,7 +60123,6 @@ func (ptr *QTextStream) String() string {
 
 //export callbackQTextStream_DestroyQTextStream
 func callbackQTextStream_DestroyQTextStream(ptr unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QTextStream::~QTextStream"); signal != nil {
 		signal.(func())()
 	} else {
@@ -61041,7 +60246,6 @@ func (ptr *QThread) CurrentThread() *QThread {
 
 //export callbackQThread_Event
 func callbackQThread_Event(ptr unsafe.Pointer, event unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QThread::event"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*QEvent) bool)(NewQEventFromPointer(event)))))
 	}
@@ -61103,7 +60307,6 @@ func (ptr *QThread) Exit(returnCode int) {
 
 //export callbackQThread_Finished
 func callbackQThread_Finished(ptr unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QThread::finished"); signal != nil {
 		signal.(func())()
 	}
@@ -61202,7 +60405,6 @@ func (ptr *QThread) RequestInterruption() {
 
 //export callbackQThread_Run
 func callbackQThread_Run(ptr unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QThread::run"); signal != nil {
 		signal.(func())()
 	} else {
@@ -61257,7 +60459,6 @@ func (ptr *QThread) StackSize() uint {
 
 //export callbackQThread_Started
 func callbackQThread_Started(ptr unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QThread::started"); signal != nil {
 		signal.(func())()
 	}
@@ -61413,7 +60614,6 @@ func (ptr *QThread) YieldCurrentThread() {
 
 //export callbackQThread_TimerEvent
 func callbackQThread_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QThread::timerEvent"); signal != nil {
 		signal.(func(*QTimerEvent))(NewQTimerEventFromPointer(event))
 	} else {
@@ -61449,7 +60649,6 @@ func (ptr *QThread) TimerEventDefault(event QTimerEvent_ITF) {
 
 //export callbackQThread_ChildEvent
 func callbackQThread_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QThread::childEvent"); signal != nil {
 		signal.(func(*QChildEvent))(NewQChildEventFromPointer(event))
 	} else {
@@ -61485,7 +60684,6 @@ func (ptr *QThread) ChildEventDefault(event QChildEvent_ITF) {
 
 //export callbackQThread_ConnectNotify
 func callbackQThread_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QThread::connectNotify"); signal != nil {
 		signal.(func(*QMetaMethod))(NewQMetaMethodFromPointer(sign))
 	} else {
@@ -61521,7 +60719,6 @@ func (ptr *QThread) ConnectNotifyDefault(sign QMetaMethod_ITF) {
 
 //export callbackQThread_CustomEvent
 func callbackQThread_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QThread::customEvent"); signal != nil {
 		signal.(func(*QEvent))(NewQEventFromPointer(event))
 	} else {
@@ -61596,7 +60793,6 @@ func (ptr *QThread) DeleteLaterDefault() {
 
 //export callbackQThread_DisconnectNotify
 func callbackQThread_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QThread::disconnectNotify"); signal != nil {
 		signal.(func(*QMetaMethod))(NewQMetaMethodFromPointer(sign))
 	} else {
@@ -61632,7 +60828,6 @@ func (ptr *QThread) DisconnectNotifyDefault(sign QMetaMethod_ITF) {
 
 //export callbackQThread_EventFilter
 func callbackQThread_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QThread::eventFilter"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*QObject, *QEvent) bool)(NewQObjectFromPointer(watched), NewQEventFromPointer(event)))))
 	}
@@ -61670,7 +60865,6 @@ func (ptr *QThread) EventFilterDefault(watched QObject_ITF, event QEvent_ITF) bo
 
 //export callbackQThread_MetaObject
 func callbackQThread_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QThread::metaObject"); signal != nil {
 		return PointerFromQMetaObject(signal.(func() *QMetaObject)())
 	}
@@ -61855,7 +61049,6 @@ func (ptr *QThreadPool) DestroyQThreadPool() {
 
 //export callbackQThreadPool_TimerEvent
 func callbackQThreadPool_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QThreadPool::timerEvent"); signal != nil {
 		signal.(func(*QTimerEvent))(NewQTimerEventFromPointer(event))
 	} else {
@@ -61891,7 +61084,6 @@ func (ptr *QThreadPool) TimerEventDefault(event QTimerEvent_ITF) {
 
 //export callbackQThreadPool_ChildEvent
 func callbackQThreadPool_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QThreadPool::childEvent"); signal != nil {
 		signal.(func(*QChildEvent))(NewQChildEventFromPointer(event))
 	} else {
@@ -61927,7 +61119,6 @@ func (ptr *QThreadPool) ChildEventDefault(event QChildEvent_ITF) {
 
 //export callbackQThreadPool_ConnectNotify
 func callbackQThreadPool_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QThreadPool::connectNotify"); signal != nil {
 		signal.(func(*QMetaMethod))(NewQMetaMethodFromPointer(sign))
 	} else {
@@ -61963,7 +61154,6 @@ func (ptr *QThreadPool) ConnectNotifyDefault(sign QMetaMethod_ITF) {
 
 //export callbackQThreadPool_CustomEvent
 func callbackQThreadPool_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QThreadPool::customEvent"); signal != nil {
 		signal.(func(*QEvent))(NewQEventFromPointer(event))
 	} else {
@@ -62038,7 +61228,6 @@ func (ptr *QThreadPool) DeleteLaterDefault() {
 
 //export callbackQThreadPool_DisconnectNotify
 func callbackQThreadPool_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QThreadPool::disconnectNotify"); signal != nil {
 		signal.(func(*QMetaMethod))(NewQMetaMethodFromPointer(sign))
 	} else {
@@ -62074,7 +61263,6 @@ func (ptr *QThreadPool) DisconnectNotifyDefault(sign QMetaMethod_ITF) {
 
 //export callbackQThreadPool_Event
 func callbackQThreadPool_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QThreadPool::event"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*QEvent) bool)(NewQEventFromPointer(e)))))
 	}
@@ -62112,7 +61300,6 @@ func (ptr *QThreadPool) EventDefault(e QEvent_ITF) bool {
 
 //export callbackQThreadPool_EventFilter
 func callbackQThreadPool_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QThreadPool::eventFilter"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*QObject, *QEvent) bool)(NewQObjectFromPointer(watched), NewQEventFromPointer(event)))))
 	}
@@ -62150,7 +61337,6 @@ func (ptr *QThreadPool) EventFilterDefault(watched QObject_ITF, event QEvent_ITF
 
 //export callbackQThreadPool_MetaObject
 func callbackQThreadPool_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QThreadPool::metaObject"); signal != nil {
 		return PointerFromQMetaObject(signal.(func() *QMetaObject)())
 	}
@@ -62697,7 +61883,6 @@ func (ptr *QTimeLine) EndFrame() int {
 
 //export callbackQTimeLine_Finished
 func callbackQTimeLine_Finished(ptr unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QTimeLine::finished"); signal != nil {
 		signal.(func())()
 	}
@@ -62720,7 +61905,6 @@ func (ptr *QTimeLine) DisconnectFinished() {
 
 //export callbackQTimeLine_FrameChanged
 func callbackQTimeLine_FrameChanged(ptr unsafe.Pointer, frame C.int) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QTimeLine::frameChanged"); signal != nil {
 		signal.(func(int))(int(int32(frame)))
 	}
@@ -62887,7 +62071,6 @@ func (ptr *QTimeLine) State() QTimeLine__State {
 
 //export callbackQTimeLine_StateChanged
 func callbackQTimeLine_StateChanged(ptr unsafe.Pointer, newState C.longlong) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QTimeLine::stateChanged"); signal != nil {
 		signal.(func(QTimeLine__State))(QTimeLine__State(newState))
 	}
@@ -62945,7 +62128,6 @@ func (ptr *QTimeLine) StopDefault() {
 
 //export callbackQTimeLine_TimerEvent
 func callbackQTimeLine_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QTimeLine::timerEvent"); signal != nil {
 		signal.(func(*QTimerEvent))(NewQTimerEventFromPointer(event))
 	} else {
@@ -63016,7 +62198,6 @@ func (ptr *QTimeLine) ToggleDirectionDefault() {
 
 //export callbackQTimeLine_ValueChanged
 func callbackQTimeLine_ValueChanged(ptr unsafe.Pointer, value C.double) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QTimeLine::valueChanged"); signal != nil {
 		signal.(func(float64))(float64(value))
 	}
@@ -63039,7 +62220,6 @@ func (ptr *QTimeLine) DisconnectValueChanged() {
 
 //export callbackQTimeLine_ValueForTime
 func callbackQTimeLine_ValueForTime(ptr unsafe.Pointer, msec C.int) C.double {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QTimeLine::valueForTime"); signal != nil {
 		return C.double(signal.(func(int) float64)(int(int32(msec))))
 	}
@@ -63077,7 +62257,6 @@ func (ptr *QTimeLine) ValueForTimeDefault(msec int) float64 {
 
 //export callbackQTimeLine_DestroyQTimeLine
 func callbackQTimeLine_DestroyQTimeLine(ptr unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QTimeLine::~QTimeLine"); signal != nil {
 		signal.(func())()
 	} else {
@@ -63117,7 +62296,6 @@ func (ptr *QTimeLine) DestroyQTimeLineDefault() {
 
 //export callbackQTimeLine_ChildEvent
 func callbackQTimeLine_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QTimeLine::childEvent"); signal != nil {
 		signal.(func(*QChildEvent))(NewQChildEventFromPointer(event))
 	} else {
@@ -63153,7 +62331,6 @@ func (ptr *QTimeLine) ChildEventDefault(event QChildEvent_ITF) {
 
 //export callbackQTimeLine_ConnectNotify
 func callbackQTimeLine_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QTimeLine::connectNotify"); signal != nil {
 		signal.(func(*QMetaMethod))(NewQMetaMethodFromPointer(sign))
 	} else {
@@ -63189,7 +62366,6 @@ func (ptr *QTimeLine) ConnectNotifyDefault(sign QMetaMethod_ITF) {
 
 //export callbackQTimeLine_CustomEvent
 func callbackQTimeLine_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QTimeLine::customEvent"); signal != nil {
 		signal.(func(*QEvent))(NewQEventFromPointer(event))
 	} else {
@@ -63264,7 +62440,6 @@ func (ptr *QTimeLine) DeleteLaterDefault() {
 
 //export callbackQTimeLine_DisconnectNotify
 func callbackQTimeLine_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QTimeLine::disconnectNotify"); signal != nil {
 		signal.(func(*QMetaMethod))(NewQMetaMethodFromPointer(sign))
 	} else {
@@ -63300,7 +62475,6 @@ func (ptr *QTimeLine) DisconnectNotifyDefault(sign QMetaMethod_ITF) {
 
 //export callbackQTimeLine_Event
 func callbackQTimeLine_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QTimeLine::event"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*QEvent) bool)(NewQEventFromPointer(e)))))
 	}
@@ -63338,7 +62512,6 @@ func (ptr *QTimeLine) EventDefault(e QEvent_ITF) bool {
 
 //export callbackQTimeLine_EventFilter
 func callbackQTimeLine_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QTimeLine::eventFilter"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*QObject, *QEvent) bool)(NewQObjectFromPointer(watched), NewQEventFromPointer(event)))))
 	}
@@ -63376,7 +62549,6 @@ func (ptr *QTimeLine) EventFilterDefault(watched QObject_ITF, event QEvent_ITF) 
 
 //export callbackQTimeLine_MetaObject
 func callbackQTimeLine_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QTimeLine::metaObject"); signal != nil {
 		return PointerFromQMetaObject(signal.(func() *QMetaObject)())
 	}
@@ -64034,7 +63206,6 @@ func (ptr *QTimer) StopDefault() {
 
 //export callbackQTimer_Timeout
 func callbackQTimer_Timeout(ptr unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QTimer::timeout"); signal != nil {
 		signal.(func())()
 	}
@@ -64057,7 +63228,6 @@ func (ptr *QTimer) DisconnectTimeout() {
 
 //export callbackQTimer_TimerEvent
 func callbackQTimer_TimerEvent(ptr unsafe.Pointer, e unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QTimer::timerEvent"); signal != nil {
 		signal.(func(*QTimerEvent))(NewQTimerEventFromPointer(e))
 	} else {
@@ -64115,7 +63285,6 @@ func (ptr *QTimer) DestroyQTimer() {
 
 //export callbackQTimer_ChildEvent
 func callbackQTimer_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QTimer::childEvent"); signal != nil {
 		signal.(func(*QChildEvent))(NewQChildEventFromPointer(event))
 	} else {
@@ -64151,7 +63320,6 @@ func (ptr *QTimer) ChildEventDefault(event QChildEvent_ITF) {
 
 //export callbackQTimer_ConnectNotify
 func callbackQTimer_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QTimer::connectNotify"); signal != nil {
 		signal.(func(*QMetaMethod))(NewQMetaMethodFromPointer(sign))
 	} else {
@@ -64187,7 +63355,6 @@ func (ptr *QTimer) ConnectNotifyDefault(sign QMetaMethod_ITF) {
 
 //export callbackQTimer_CustomEvent
 func callbackQTimer_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QTimer::customEvent"); signal != nil {
 		signal.(func(*QEvent))(NewQEventFromPointer(event))
 	} else {
@@ -64262,7 +63429,6 @@ func (ptr *QTimer) DeleteLaterDefault() {
 
 //export callbackQTimer_DisconnectNotify
 func callbackQTimer_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QTimer::disconnectNotify"); signal != nil {
 		signal.(func(*QMetaMethod))(NewQMetaMethodFromPointer(sign))
 	} else {
@@ -64298,7 +63464,6 @@ func (ptr *QTimer) DisconnectNotifyDefault(sign QMetaMethod_ITF) {
 
 //export callbackQTimer_Event
 func callbackQTimer_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QTimer::event"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*QEvent) bool)(NewQEventFromPointer(e)))))
 	}
@@ -64336,7 +63501,6 @@ func (ptr *QTimer) EventDefault(e QEvent_ITF) bool {
 
 //export callbackQTimer_EventFilter
 func callbackQTimer_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QTimer::eventFilter"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*QObject, *QEvent) bool)(NewQObjectFromPointer(watched), NewQEventFromPointer(event)))))
 	}
@@ -64374,7 +63538,6 @@ func (ptr *QTimer) EventFilterDefault(watched QObject_ITF, event QEvent_ITF) boo
 
 //export callbackQTimer_MetaObject
 func callbackQTimer_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QTimer::metaObject"); signal != nil {
 		return PointerFromQMetaObject(signal.(func() *QMetaObject)())
 	}
@@ -64530,7 +63693,6 @@ func NewQTranslator(parent QObject_ITF) *QTranslator {
 
 //export callbackQTranslator_IsEmpty
 func callbackQTranslator_IsEmpty(ptr unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QTranslator::isEmpty"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func() bool)())))
 	}
@@ -64609,7 +63771,6 @@ func (ptr *QTranslator) Load3(data string, len int, directory string) bool {
 
 //export callbackQTranslator_Translate
 func callbackQTranslator_Translate(ptr unsafe.Pointer, context C.struct_QtCore_PackedString, sourceText C.struct_QtCore_PackedString, disambiguation C.struct_QtCore_PackedString, n C.int) *C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QTranslator::translate"); signal != nil {
 		return C.CString(signal.(func(string, string, string, int) string)(cGoUnpackString(context), cGoUnpackString(sourceText), cGoUnpackString(disambiguation), int(int32(n))))
 	}
@@ -64667,7 +63828,6 @@ func (ptr *QTranslator) DestroyQTranslator() {
 
 //export callbackQTranslator_TimerEvent
 func callbackQTranslator_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QTranslator::timerEvent"); signal != nil {
 		signal.(func(*QTimerEvent))(NewQTimerEventFromPointer(event))
 	} else {
@@ -64703,7 +63863,6 @@ func (ptr *QTranslator) TimerEventDefault(event QTimerEvent_ITF) {
 
 //export callbackQTranslator_ChildEvent
 func callbackQTranslator_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QTranslator::childEvent"); signal != nil {
 		signal.(func(*QChildEvent))(NewQChildEventFromPointer(event))
 	} else {
@@ -64739,7 +63898,6 @@ func (ptr *QTranslator) ChildEventDefault(event QChildEvent_ITF) {
 
 //export callbackQTranslator_ConnectNotify
 func callbackQTranslator_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QTranslator::connectNotify"); signal != nil {
 		signal.(func(*QMetaMethod))(NewQMetaMethodFromPointer(sign))
 	} else {
@@ -64775,7 +63933,6 @@ func (ptr *QTranslator) ConnectNotifyDefault(sign QMetaMethod_ITF) {
 
 //export callbackQTranslator_CustomEvent
 func callbackQTranslator_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QTranslator::customEvent"); signal != nil {
 		signal.(func(*QEvent))(NewQEventFromPointer(event))
 	} else {
@@ -64850,7 +64007,6 @@ func (ptr *QTranslator) DeleteLaterDefault() {
 
 //export callbackQTranslator_DisconnectNotify
 func callbackQTranslator_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QTranslator::disconnectNotify"); signal != nil {
 		signal.(func(*QMetaMethod))(NewQMetaMethodFromPointer(sign))
 	} else {
@@ -64886,7 +64042,6 @@ func (ptr *QTranslator) DisconnectNotifyDefault(sign QMetaMethod_ITF) {
 
 //export callbackQTranslator_Event
 func callbackQTranslator_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QTranslator::event"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*QEvent) bool)(NewQEventFromPointer(e)))))
 	}
@@ -64924,7 +64079,6 @@ func (ptr *QTranslator) EventDefault(e QEvent_ITF) bool {
 
 //export callbackQTranslator_EventFilter
 func callbackQTranslator_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QTranslator::eventFilter"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*QObject, *QEvent) bool)(NewQObjectFromPointer(watched), NewQEventFromPointer(event)))))
 	}
@@ -64962,7 +64116,6 @@ func (ptr *QTranslator) EventFilterDefault(watched QObject_ITF, event QEvent_ITF
 
 //export callbackQTranslator_MetaObject
 func callbackQTranslator_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QTranslator::metaObject"); signal != nil {
 		return PointerFromQMetaObject(signal.(func() *QMetaObject)())
 	}
@@ -67152,7 +66305,6 @@ func (ptr *QVariantAnimation) CurrentValue() *QVariant {
 
 //export callbackQVariantAnimation_Duration
 func callbackQVariantAnimation_Duration(ptr unsafe.Pointer) C.int {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QVariantAnimation::duration"); signal != nil {
 		return C.int(int32(signal.(func() int)()))
 	}
@@ -67258,7 +66410,6 @@ func (ptr *QVariantAnimation) KeyValueAt(step float64) *QVariant {
 
 //export callbackQVariantAnimation_Event
 func callbackQVariantAnimation_Event(ptr unsafe.Pointer, event unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QVariantAnimation::event"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*QEvent) bool)(NewQEventFromPointer(event)))))
 	}
@@ -67296,7 +66447,6 @@ func (ptr *QVariantAnimation) EventDefault(event QEvent_ITF) bool {
 
 //export callbackQVariantAnimation_Interpolated
 func callbackQVariantAnimation_Interpolated(ptr unsafe.Pointer, from unsafe.Pointer, to unsafe.Pointer, progress C.double) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QVariantAnimation::interpolated"); signal != nil {
 		return PointerFromQVariant(signal.(func(*QVariant, *QVariant, float64) *QVariant)(NewQVariantFromPointer(from), NewQVariantFromPointer(to), float64(progress)))
 	}
@@ -67344,7 +66494,6 @@ func (ptr *QVariantAnimation) SetKeyValueAt(step float64, value QVariant_ITF) {
 
 //export callbackQVariantAnimation_UpdateCurrentTime
 func callbackQVariantAnimation_UpdateCurrentTime(ptr unsafe.Pointer, vin C.int) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QVariantAnimation::updateCurrentTime"); signal != nil {
 		signal.(func(int))(int(int32(vin)))
 	} else {
@@ -67380,7 +66529,6 @@ func (ptr *QVariantAnimation) UpdateCurrentTimeDefault(vin int) {
 
 //export callbackQVariantAnimation_UpdateCurrentValue
 func callbackQVariantAnimation_UpdateCurrentValue(ptr unsafe.Pointer, value unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QVariantAnimation::updateCurrentValue"); signal != nil {
 		signal.(func(*QVariant))(NewQVariantFromPointer(value))
 	} else {
@@ -67416,7 +66564,6 @@ func (ptr *QVariantAnimation) UpdateCurrentValueDefault(value QVariant_ITF) {
 
 //export callbackQVariantAnimation_UpdateState
 func callbackQVariantAnimation_UpdateState(ptr unsafe.Pointer, newState C.longlong, oldState C.longlong) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QVariantAnimation::updateState"); signal != nil {
 		signal.(func(QAbstractAnimation__State, QAbstractAnimation__State))(QAbstractAnimation__State(newState), QAbstractAnimation__State(oldState))
 	} else {
@@ -67452,7 +66599,6 @@ func (ptr *QVariantAnimation) UpdateStateDefault(newState QAbstractAnimation__St
 
 //export callbackQVariantAnimation_ValueChanged
 func callbackQVariantAnimation_ValueChanged(ptr unsafe.Pointer, value unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QVariantAnimation::valueChanged"); signal != nil {
 		signal.(func(*QVariant))(NewQVariantFromPointer(value))
 	}
@@ -67699,7 +66845,6 @@ func (ptr *QVariantAnimation) StopDefault() {
 
 //export callbackQVariantAnimation_UpdateDirection
 func callbackQVariantAnimation_UpdateDirection(ptr unsafe.Pointer, direction C.longlong) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QVariantAnimation::updateDirection"); signal != nil {
 		signal.(func(QAbstractAnimation__Direction))(QAbstractAnimation__Direction(direction))
 	} else {
@@ -67735,7 +66880,6 @@ func (ptr *QVariantAnimation) UpdateDirectionDefault(direction QAbstractAnimatio
 
 //export callbackQVariantAnimation_TimerEvent
 func callbackQVariantAnimation_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QVariantAnimation::timerEvent"); signal != nil {
 		signal.(func(*QTimerEvent))(NewQTimerEventFromPointer(event))
 	} else {
@@ -67771,7 +66915,6 @@ func (ptr *QVariantAnimation) TimerEventDefault(event QTimerEvent_ITF) {
 
 //export callbackQVariantAnimation_ChildEvent
 func callbackQVariantAnimation_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QVariantAnimation::childEvent"); signal != nil {
 		signal.(func(*QChildEvent))(NewQChildEventFromPointer(event))
 	} else {
@@ -67807,7 +66950,6 @@ func (ptr *QVariantAnimation) ChildEventDefault(event QChildEvent_ITF) {
 
 //export callbackQVariantAnimation_ConnectNotify
 func callbackQVariantAnimation_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QVariantAnimation::connectNotify"); signal != nil {
 		signal.(func(*QMetaMethod))(NewQMetaMethodFromPointer(sign))
 	} else {
@@ -67843,7 +66985,6 @@ func (ptr *QVariantAnimation) ConnectNotifyDefault(sign QMetaMethod_ITF) {
 
 //export callbackQVariantAnimation_CustomEvent
 func callbackQVariantAnimation_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QVariantAnimation::customEvent"); signal != nil {
 		signal.(func(*QEvent))(NewQEventFromPointer(event))
 	} else {
@@ -67918,7 +67059,6 @@ func (ptr *QVariantAnimation) DeleteLaterDefault() {
 
 //export callbackQVariantAnimation_DisconnectNotify
 func callbackQVariantAnimation_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QVariantAnimation::disconnectNotify"); signal != nil {
 		signal.(func(*QMetaMethod))(NewQMetaMethodFromPointer(sign))
 	} else {
@@ -67954,7 +67094,6 @@ func (ptr *QVariantAnimation) DisconnectNotifyDefault(sign QMetaMethod_ITF) {
 
 //export callbackQVariantAnimation_EventFilter
 func callbackQVariantAnimation_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QVariantAnimation::eventFilter"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*QObject, *QEvent) bool)(NewQObjectFromPointer(watched), NewQEventFromPointer(event)))))
 	}
@@ -67992,7 +67131,6 @@ func (ptr *QVariantAnimation) EventFilterDefault(watched QObject_ITF, event QEve
 
 //export callbackQVariantAnimation_MetaObject
 func callbackQVariantAnimation_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QVariantAnimation::metaObject"); signal != nil {
 		return PointerFromQMetaObject(signal.(func() *QMetaObject)())
 	}
@@ -68947,7 +68085,6 @@ func NewQXmlStreamEntityResolverFromPointer(ptr unsafe.Pointer) *QXmlStreamEntit
 
 //export callbackQXmlStreamEntityResolver_ResolveUndeclaredEntity
 func callbackQXmlStreamEntityResolver_ResolveUndeclaredEntity(ptr unsafe.Pointer, name C.struct_QtCore_PackedString) *C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QXmlStreamEntityResolver::resolveUndeclaredEntity"); signal != nil {
 		return C.CString(signal.(func(string) string)(cGoUnpackString(name)))
 	}
@@ -68989,7 +68126,6 @@ func (ptr *QXmlStreamEntityResolver) ResolveUndeclaredEntityDefault(name string)
 
 //export callbackQXmlStreamEntityResolver_DestroyQXmlStreamEntityResolver
 func callbackQXmlStreamEntityResolver_DestroyQXmlStreamEntityResolver(ptr unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QXmlStreamEntityResolver::~QXmlStreamEntityResolver"); signal != nil {
 		signal.(func())()
 	} else {

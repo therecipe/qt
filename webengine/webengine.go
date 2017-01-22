@@ -231,7 +231,6 @@ func NewQQuickWebEngineProfile(parent core.QObject_ITF) *QQuickWebEngineProfile 
 
 //export callbackQQuickWebEngineProfile_CachePathChanged
 func callbackQQuickWebEngineProfile_CachePathChanged(ptr unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QQuickWebEngineProfile::cachePathChanged"); signal != nil {
 		signal.(func())()
 	}
@@ -293,7 +292,6 @@ func (ptr *QQuickWebEngineProfile) DefaultProfile() *QQuickWebEngineProfile {
 
 //export callbackQQuickWebEngineProfile_HttpAcceptLanguageChanged
 func callbackQQuickWebEngineProfile_HttpAcceptLanguageChanged(ptr unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QQuickWebEngineProfile::httpAcceptLanguageChanged"); signal != nil {
 		signal.(func())()
 	}
@@ -322,7 +320,6 @@ func (ptr *QQuickWebEngineProfile) HttpAcceptLanguageChanged() {
 
 //export callbackQQuickWebEngineProfile_HttpCacheMaximumSizeChanged
 func callbackQQuickWebEngineProfile_HttpCacheMaximumSizeChanged(ptr unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QQuickWebEngineProfile::httpCacheMaximumSizeChanged"); signal != nil {
 		signal.(func())()
 	}
@@ -351,7 +348,6 @@ func (ptr *QQuickWebEngineProfile) HttpCacheMaximumSizeChanged() {
 
 //export callbackQQuickWebEngineProfile_HttpCacheTypeChanged
 func callbackQQuickWebEngineProfile_HttpCacheTypeChanged(ptr unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QQuickWebEngineProfile::httpCacheTypeChanged"); signal != nil {
 		signal.(func())()
 	}
@@ -380,7 +376,6 @@ func (ptr *QQuickWebEngineProfile) HttpCacheTypeChanged() {
 
 //export callbackQQuickWebEngineProfile_HttpUserAgentChanged
 func callbackQQuickWebEngineProfile_HttpUserAgentChanged(ptr unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QQuickWebEngineProfile::httpUserAgentChanged"); signal != nil {
 		signal.(func())()
 	}
@@ -415,7 +410,6 @@ func (ptr *QQuickWebEngineProfile) InstallUrlSchemeHandler(scheme core.QByteArra
 
 //export callbackQQuickWebEngineProfile_OffTheRecordChanged
 func callbackQQuickWebEngineProfile_OffTheRecordChanged(ptr unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QQuickWebEngineProfile::offTheRecordChanged"); signal != nil {
 		signal.(func())()
 	}
@@ -444,7 +438,6 @@ func (ptr *QQuickWebEngineProfile) OffTheRecordChanged() {
 
 //export callbackQQuickWebEngineProfile_PersistentCookiesPolicyChanged
 func callbackQQuickWebEngineProfile_PersistentCookiesPolicyChanged(ptr unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QQuickWebEngineProfile::persistentCookiesPolicyChanged"); signal != nil {
 		signal.(func())()
 	}
@@ -473,7 +466,6 @@ func (ptr *QQuickWebEngineProfile) PersistentCookiesPolicyChanged() {
 
 //export callbackQQuickWebEngineProfile_PersistentStoragePathChanged
 func callbackQQuickWebEngineProfile_PersistentStoragePathChanged(ptr unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QQuickWebEngineProfile::persistentStoragePathChanged"); signal != nil {
 		signal.(func())()
 	}
@@ -526,7 +518,6 @@ func (ptr *QQuickWebEngineProfile) SetRequestInterceptor(interceptor QWebEngineU
 
 //export callbackQQuickWebEngineProfile_StorageNameChanged
 func callbackQQuickWebEngineProfile_StorageNameChanged(ptr unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QQuickWebEngineProfile::storageNameChanged"); signal != nil {
 		signal.(func())()
 	}
@@ -566,7 +557,6 @@ func (ptr *QQuickWebEngineProfile) UrlSchemeHandler(scheme core.QByteArray_ITF) 
 
 //export callbackQQuickWebEngineProfile_TimerEvent
 func callbackQQuickWebEngineProfile_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QQuickWebEngineProfile::timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
 	} else {
@@ -602,7 +592,6 @@ func (ptr *QQuickWebEngineProfile) TimerEventDefault(event core.QTimerEvent_ITF)
 
 //export callbackQQuickWebEngineProfile_ChildEvent
 func callbackQQuickWebEngineProfile_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QQuickWebEngineProfile::childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
 	} else {
@@ -638,7 +627,6 @@ func (ptr *QQuickWebEngineProfile) ChildEventDefault(event core.QChildEvent_ITF)
 
 //export callbackQQuickWebEngineProfile_ConnectNotify
 func callbackQQuickWebEngineProfile_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QQuickWebEngineProfile::connectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
@@ -674,7 +662,6 @@ func (ptr *QQuickWebEngineProfile) ConnectNotifyDefault(sign core.QMetaMethod_IT
 
 //export callbackQQuickWebEngineProfile_CustomEvent
 func callbackQQuickWebEngineProfile_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QQuickWebEngineProfile::customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
 	} else {
@@ -749,7 +736,6 @@ func (ptr *QQuickWebEngineProfile) DeleteLaterDefault() {
 
 //export callbackQQuickWebEngineProfile_DisconnectNotify
 func callbackQQuickWebEngineProfile_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QQuickWebEngineProfile::disconnectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
@@ -785,7 +771,6 @@ func (ptr *QQuickWebEngineProfile) DisconnectNotifyDefault(sign core.QMetaMethod
 
 //export callbackQQuickWebEngineProfile_Event
 func callbackQQuickWebEngineProfile_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QQuickWebEngineProfile::event"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
 	}
@@ -823,7 +808,6 @@ func (ptr *QQuickWebEngineProfile) EventDefault(e core.QEvent_ITF) bool {
 
 //export callbackQQuickWebEngineProfile_EventFilter
 func callbackQQuickWebEngineProfile_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QQuickWebEngineProfile::eventFilter"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
 	}
@@ -861,7 +845,6 @@ func (ptr *QQuickWebEngineProfile) EventFilterDefault(watched core.QObject_ITF, 
 
 //export callbackQQuickWebEngineProfile_MetaObject
 func callbackQQuickWebEngineProfile_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QQuickWebEngineProfile::metaObject"); signal != nil {
 		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
 	}
@@ -1166,7 +1149,6 @@ func NewQWebEngineCookieStoreFromPointer(ptr unsafe.Pointer) *QWebEngineCookieSt
 
 //export callbackQWebEngineCookieStore_CookieAdded
 func callbackQWebEngineCookieStore_CookieAdded(ptr unsafe.Pointer, cookie unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineCookieStore::cookieAdded"); signal != nil {
 		signal.(func(*network.QNetworkCookie))(network.NewQNetworkCookieFromPointer(cookie))
 	}
@@ -1195,7 +1177,6 @@ func (ptr *QWebEngineCookieStore) CookieAdded(cookie network.QNetworkCookie_ITF)
 
 //export callbackQWebEngineCookieStore_CookieRemoved
 func callbackQWebEngineCookieStore_CookieRemoved(ptr unsafe.Pointer, cookie unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineCookieStore::cookieRemoved"); signal != nil {
 		signal.(func(*network.QNetworkCookie))(network.NewQNetworkCookieFromPointer(cookie))
 	}
@@ -1254,7 +1235,6 @@ func (ptr *QWebEngineCookieStore) SetCookie(cookie network.QNetworkCookie_ITF, o
 
 //export callbackQWebEngineCookieStore_DestroyQWebEngineCookieStore
 func callbackQWebEngineCookieStore_DestroyQWebEngineCookieStore(ptr unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineCookieStore::~QWebEngineCookieStore"); signal != nil {
 		signal.(func())()
 	} else {
@@ -1294,7 +1274,6 @@ func (ptr *QWebEngineCookieStore) DestroyQWebEngineCookieStoreDefault() {
 
 //export callbackQWebEngineCookieStore_TimerEvent
 func callbackQWebEngineCookieStore_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineCookieStore::timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
 	} else {
@@ -1330,7 +1309,6 @@ func (ptr *QWebEngineCookieStore) TimerEventDefault(event core.QTimerEvent_ITF) 
 
 //export callbackQWebEngineCookieStore_ChildEvent
 func callbackQWebEngineCookieStore_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineCookieStore::childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
 	} else {
@@ -1366,7 +1344,6 @@ func (ptr *QWebEngineCookieStore) ChildEventDefault(event core.QChildEvent_ITF) 
 
 //export callbackQWebEngineCookieStore_ConnectNotify
 func callbackQWebEngineCookieStore_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineCookieStore::connectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
@@ -1402,7 +1379,6 @@ func (ptr *QWebEngineCookieStore) ConnectNotifyDefault(sign core.QMetaMethod_ITF
 
 //export callbackQWebEngineCookieStore_CustomEvent
 func callbackQWebEngineCookieStore_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineCookieStore::customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
 	} else {
@@ -1477,7 +1453,6 @@ func (ptr *QWebEngineCookieStore) DeleteLaterDefault() {
 
 //export callbackQWebEngineCookieStore_DisconnectNotify
 func callbackQWebEngineCookieStore_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineCookieStore::disconnectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
@@ -1513,7 +1488,6 @@ func (ptr *QWebEngineCookieStore) DisconnectNotifyDefault(sign core.QMetaMethod_
 
 //export callbackQWebEngineCookieStore_Event
 func callbackQWebEngineCookieStore_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineCookieStore::event"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
 	}
@@ -1551,7 +1525,6 @@ func (ptr *QWebEngineCookieStore) EventDefault(e core.QEvent_ITF) bool {
 
 //export callbackQWebEngineCookieStore_EventFilter
 func callbackQWebEngineCookieStore_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineCookieStore::eventFilter"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
 	}
@@ -1589,7 +1562,6 @@ func (ptr *QWebEngineCookieStore) EventFilterDefault(watched core.QObject_ITF, e
 
 //export callbackQWebEngineCookieStore_MetaObject
 func callbackQWebEngineCookieStore_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineCookieStore::metaObject"); signal != nil {
 		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
 	}
@@ -1767,7 +1739,6 @@ func (ptr *QWebEngineDownloadItem) CancelDefault() {
 
 //export callbackQWebEngineDownloadItem_DownloadProgress
 func callbackQWebEngineDownloadItem_DownloadProgress(ptr unsafe.Pointer, bytesReceived C.longlong, bytesTotal C.longlong) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineDownloadItem::downloadProgress"); signal != nil {
 		signal.(func(int64, int64))(int64(bytesReceived), int64(bytesTotal))
 	}
@@ -1796,7 +1767,6 @@ func (ptr *QWebEngineDownloadItem) DownloadProgress(bytesReceived int64, bytesTo
 
 //export callbackQWebEngineDownloadItem_Finished
 func callbackQWebEngineDownloadItem_Finished(ptr unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineDownloadItem::finished"); signal != nil {
 		signal.(func())()
 	}
@@ -1888,7 +1858,6 @@ func (ptr *QWebEngineDownloadItem) State() QWebEngineDownloadItem__DownloadState
 
 //export callbackQWebEngineDownloadItem_StateChanged
 func callbackQWebEngineDownloadItem_StateChanged(ptr unsafe.Pointer, state C.longlong) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineDownloadItem::stateChanged"); signal != nil {
 		signal.(func(QWebEngineDownloadItem__DownloadState))(QWebEngineDownloadItem__DownloadState(state))
 	}
@@ -1933,7 +1902,6 @@ func (ptr *QWebEngineDownloadItem) Url() *core.QUrl {
 
 //export callbackQWebEngineDownloadItem_TimerEvent
 func callbackQWebEngineDownloadItem_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineDownloadItem::timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
 	} else {
@@ -1969,7 +1937,6 @@ func (ptr *QWebEngineDownloadItem) TimerEventDefault(event core.QTimerEvent_ITF)
 
 //export callbackQWebEngineDownloadItem_ChildEvent
 func callbackQWebEngineDownloadItem_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineDownloadItem::childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
 	} else {
@@ -2005,7 +1972,6 @@ func (ptr *QWebEngineDownloadItem) ChildEventDefault(event core.QChildEvent_ITF)
 
 //export callbackQWebEngineDownloadItem_ConnectNotify
 func callbackQWebEngineDownloadItem_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineDownloadItem::connectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
@@ -2041,7 +2007,6 @@ func (ptr *QWebEngineDownloadItem) ConnectNotifyDefault(sign core.QMetaMethod_IT
 
 //export callbackQWebEngineDownloadItem_CustomEvent
 func callbackQWebEngineDownloadItem_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineDownloadItem::customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
 	} else {
@@ -2116,7 +2081,6 @@ func (ptr *QWebEngineDownloadItem) DeleteLaterDefault() {
 
 //export callbackQWebEngineDownloadItem_DisconnectNotify
 func callbackQWebEngineDownloadItem_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineDownloadItem::disconnectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
@@ -2152,7 +2116,6 @@ func (ptr *QWebEngineDownloadItem) DisconnectNotifyDefault(sign core.QMetaMethod
 
 //export callbackQWebEngineDownloadItem_Event
 func callbackQWebEngineDownloadItem_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineDownloadItem::event"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
 	}
@@ -2190,7 +2153,6 @@ func (ptr *QWebEngineDownloadItem) EventDefault(e core.QEvent_ITF) bool {
 
 //export callbackQWebEngineDownloadItem_EventFilter
 func callbackQWebEngineDownloadItem_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineDownloadItem::eventFilter"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
 	}
@@ -2228,7 +2190,6 @@ func (ptr *QWebEngineDownloadItem) EventFilterDefault(watched core.QObject_ITF, 
 
 //export callbackQWebEngineDownloadItem_MetaObject
 func callbackQWebEngineDownloadItem_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineDownloadItem::metaObject"); signal != nil {
 		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
 	}
@@ -2815,7 +2776,6 @@ func NewQWebEnginePage(parent core.QObject_ITF) *QWebEnginePage {
 
 //export callbackQWebEnginePage_AcceptNavigationRequest
 func callbackQWebEnginePage_AcceptNavigationRequest(ptr unsafe.Pointer, url unsafe.Pointer, ty C.longlong, isMainFrame C.char) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEnginePage::acceptNavigationRequest"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QUrl, QWebEnginePage__NavigationType, bool) bool)(core.NewQUrlFromPointer(url), QWebEnginePage__NavigationType(ty), int8(isMainFrame) != 0))))
 	}
@@ -2873,7 +2833,6 @@ func (ptr *QWebEnginePage) BackgroundColor() *gui.QColor {
 
 //export callbackQWebEnginePage_CertificateError
 func callbackQWebEnginePage_CertificateError(ptr unsafe.Pointer, certificateError unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEnginePage::certificateError"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*QWebEngineCertificateError) bool)(NewQWebEngineCertificateErrorFromPointer(certificateError)))))
 	}
@@ -2911,7 +2870,6 @@ func (ptr *QWebEnginePage) CertificateErrorDefault(certificateError QWebEngineCe
 
 //export callbackQWebEnginePage_ChooseFiles
 func callbackQWebEnginePage_ChooseFiles(ptr unsafe.Pointer, mode C.longlong, oldFiles C.struct_QtWebEngine_PackedString, acceptedMimeTypes C.struct_QtWebEngine_PackedString) *C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEnginePage::chooseFiles"); signal != nil {
 		return C.CString(strings.Join(signal.(func(QWebEnginePage__FileSelectionMode, []string, []string) []string)(QWebEnginePage__FileSelectionMode(mode), strings.Split(cGoUnpackString(oldFiles), "|"), strings.Split(cGoUnpackString(acceptedMimeTypes), "|")), "|"))
 	}
@@ -2977,7 +2935,6 @@ func (ptr *QWebEnginePage) CreateStandardContextMenu() *widgets.QMenu {
 
 //export callbackQWebEnginePage_CreateWindow
 func callbackQWebEnginePage_CreateWindow(ptr unsafe.Pointer, ty C.longlong) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEnginePage::createWindow"); signal != nil {
 		return PointerFromQWebEnginePage(signal.(func(QWebEnginePage__WebWindowType) *QWebEnginePage)(QWebEnginePage__WebWindowType(ty)))
 	}
@@ -3062,7 +3019,6 @@ func (ptr *QWebEnginePage) IsAudioMuted() bool {
 
 //export callbackQWebEnginePage_JavaScriptAlert
 func callbackQWebEnginePage_JavaScriptAlert(ptr unsafe.Pointer, securityOrigin unsafe.Pointer, msg C.struct_QtWebEngine_PackedString) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEnginePage::javaScriptAlert"); signal != nil {
 		signal.(func(*core.QUrl, string))(core.NewQUrlFromPointer(securityOrigin), cGoUnpackString(msg))
 	} else {
@@ -3102,7 +3058,6 @@ func (ptr *QWebEnginePage) JavaScriptAlertDefault(securityOrigin core.QUrl_ITF, 
 
 //export callbackQWebEnginePage_JavaScriptConfirm
 func callbackQWebEnginePage_JavaScriptConfirm(ptr unsafe.Pointer, securityOrigin unsafe.Pointer, msg C.struct_QtWebEngine_PackedString) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEnginePage::javaScriptConfirm"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QUrl, string) bool)(core.NewQUrlFromPointer(securityOrigin), cGoUnpackString(msg)))))
 	}
@@ -3144,7 +3099,6 @@ func (ptr *QWebEnginePage) JavaScriptConfirmDefault(securityOrigin core.QUrl_ITF
 
 //export callbackQWebEnginePage_JavaScriptConsoleMessage
 func callbackQWebEnginePage_JavaScriptConsoleMessage(ptr unsafe.Pointer, level C.longlong, message C.struct_QtWebEngine_PackedString, lineNumber C.int, sourceID C.struct_QtWebEngine_PackedString) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEnginePage::javaScriptConsoleMessage"); signal != nil {
 		signal.(func(QWebEnginePage__JavaScriptConsoleMessageLevel, string, int, string))(QWebEnginePage__JavaScriptConsoleMessageLevel(level), cGoUnpackString(message), int(int32(lineNumber)), cGoUnpackString(sourceID))
 	} else {
@@ -3188,7 +3142,6 @@ func (ptr *QWebEnginePage) JavaScriptConsoleMessageDefault(level QWebEnginePage_
 
 //export callbackQWebEnginePage_JavaScriptPrompt
 func callbackQWebEnginePage_JavaScriptPrompt(ptr unsafe.Pointer, securityOrigin unsafe.Pointer, msg C.struct_QtWebEngine_PackedString, defaultValue C.struct_QtWebEngine_PackedString, result C.struct_QtWebEngine_PackedString) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEnginePage::javaScriptPrompt"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QUrl, string, string, string) bool)(core.NewQUrlFromPointer(securityOrigin), cGoUnpackString(msg), cGoUnpackString(defaultValue), cGoUnpackString(result)))))
 	}
@@ -3358,7 +3311,6 @@ func (ptr *QWebEnginePage) Title() string {
 
 //export callbackQWebEnginePage_TriggerAction
 func callbackQWebEnginePage_TriggerAction(ptr unsafe.Pointer, action C.longlong, checked C.char) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEnginePage::triggerAction"); signal != nil {
 		signal.(func(QWebEnginePage__WebAction, bool))(QWebEnginePage__WebAction(action), int8(checked) != 0)
 	} else {
@@ -3437,7 +3389,6 @@ func NewQWebEnginePage2(profile QWebEngineProfile_ITF, parent core.QObject_ITF) 
 
 //export callbackQWebEnginePage_AudioMutedChanged
 func callbackQWebEnginePage_AudioMutedChanged(ptr unsafe.Pointer, muted C.char) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEnginePage::audioMutedChanged"); signal != nil {
 		signal.(func(bool))(int8(muted) != 0)
 	}
@@ -3466,7 +3417,6 @@ func (ptr *QWebEnginePage) AudioMutedChanged(muted bool) {
 
 //export callbackQWebEnginePage_AuthenticationRequired
 func callbackQWebEnginePage_AuthenticationRequired(ptr unsafe.Pointer, requestUrl unsafe.Pointer, authenticator unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEnginePage::authenticationRequired"); signal != nil {
 		signal.(func(*core.QUrl, *network.QAuthenticator))(core.NewQUrlFromPointer(requestUrl), network.NewQAuthenticatorFromPointer(authenticator))
 	}
@@ -3495,7 +3445,6 @@ func (ptr *QWebEnginePage) AuthenticationRequired(requestUrl core.QUrl_ITF, auth
 
 //export callbackQWebEnginePage_ContentsSizeChanged
 func callbackQWebEnginePage_ContentsSizeChanged(ptr unsafe.Pointer, size unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEnginePage::contentsSizeChanged"); signal != nil {
 		signal.(func(*core.QSizeF))(core.NewQSizeFFromPointer(size))
 	}
@@ -3531,7 +3480,6 @@ func (ptr *QWebEnginePage) ContextMenuData() *QWebEngineContextMenuData {
 
 //export callbackQWebEnginePage_Event
 func callbackQWebEnginePage_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEnginePage::event"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
 	}
@@ -3569,7 +3517,6 @@ func (ptr *QWebEnginePage) EventDefault(e core.QEvent_ITF) bool {
 
 //export callbackQWebEnginePage_FeaturePermissionRequestCanceled
 func callbackQWebEnginePage_FeaturePermissionRequestCanceled(ptr unsafe.Pointer, securityOrigin unsafe.Pointer, feature C.longlong) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEnginePage::featurePermissionRequestCanceled"); signal != nil {
 		signal.(func(*core.QUrl, QWebEnginePage__Feature))(core.NewQUrlFromPointer(securityOrigin), QWebEnginePage__Feature(feature))
 	}
@@ -3598,7 +3545,6 @@ func (ptr *QWebEnginePage) FeaturePermissionRequestCanceled(securityOrigin core.
 
 //export callbackQWebEnginePage_FeaturePermissionRequested
 func callbackQWebEnginePage_FeaturePermissionRequested(ptr unsafe.Pointer, securityOrigin unsafe.Pointer, feature C.longlong) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEnginePage::featurePermissionRequested"); signal != nil {
 		signal.(func(*core.QUrl, QWebEnginePage__Feature))(core.NewQUrlFromPointer(securityOrigin), QWebEnginePage__Feature(feature))
 	}
@@ -3635,7 +3581,6 @@ func (ptr *QWebEnginePage) FindText(subString string, options QWebEnginePage__Fi
 
 //export callbackQWebEnginePage_GeometryChangeRequested
 func callbackQWebEnginePage_GeometryChangeRequested(ptr unsafe.Pointer, geom unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEnginePage::geometryChangeRequested"); signal != nil {
 		signal.(func(*core.QRect))(core.NewQRectFromPointer(geom))
 	}
@@ -3664,7 +3609,6 @@ func (ptr *QWebEnginePage) GeometryChangeRequested(geom core.QRect_ITF) {
 
 //export callbackQWebEnginePage_IconChanged
 func callbackQWebEnginePage_IconChanged(ptr unsafe.Pointer, icon unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEnginePage::iconChanged"); signal != nil {
 		signal.(func(*gui.QIcon))(gui.NewQIconFromPointer(icon))
 	}
@@ -3693,7 +3637,6 @@ func (ptr *QWebEnginePage) IconChanged(icon gui.QIcon_ITF) {
 
 //export callbackQWebEnginePage_IconUrlChanged
 func callbackQWebEnginePage_IconUrlChanged(ptr unsafe.Pointer, url unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEnginePage::iconUrlChanged"); signal != nil {
 		signal.(func(*core.QUrl))(core.NewQUrlFromPointer(url))
 	}
@@ -3722,7 +3665,6 @@ func (ptr *QWebEnginePage) IconUrlChanged(url core.QUrl_ITF) {
 
 //export callbackQWebEnginePage_LinkHovered
 func callbackQWebEnginePage_LinkHovered(ptr unsafe.Pointer, url C.struct_QtWebEngine_PackedString) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEnginePage::linkHovered"); signal != nil {
 		signal.(func(string))(cGoUnpackString(url))
 	}
@@ -3753,7 +3695,6 @@ func (ptr *QWebEnginePage) LinkHovered(url string) {
 
 //export callbackQWebEnginePage_LoadFinished
 func callbackQWebEnginePage_LoadFinished(ptr unsafe.Pointer, ok C.char) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEnginePage::loadFinished"); signal != nil {
 		signal.(func(bool))(int8(ok) != 0)
 	}
@@ -3782,7 +3723,6 @@ func (ptr *QWebEnginePage) LoadFinished(ok bool) {
 
 //export callbackQWebEnginePage_LoadProgress
 func callbackQWebEnginePage_LoadProgress(ptr unsafe.Pointer, progress C.int) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEnginePage::loadProgress"); signal != nil {
 		signal.(func(int))(int(int32(progress)))
 	}
@@ -3811,7 +3751,6 @@ func (ptr *QWebEnginePage) LoadProgress(progress int) {
 
 //export callbackQWebEnginePage_LoadStarted
 func callbackQWebEnginePage_LoadStarted(ptr unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEnginePage::loadStarted"); signal != nil {
 		signal.(func())()
 	}
@@ -3859,7 +3798,6 @@ func (ptr *QWebEnginePage) Profile() *QWebEngineProfile {
 
 //export callbackQWebEnginePage_ProxyAuthenticationRequired
 func callbackQWebEnginePage_ProxyAuthenticationRequired(ptr unsafe.Pointer, requestUrl unsafe.Pointer, authenticator unsafe.Pointer, proxyHost C.struct_QtWebEngine_PackedString) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEnginePage::proxyAuthenticationRequired"); signal != nil {
 		signal.(func(*core.QUrl, *network.QAuthenticator, string))(core.NewQUrlFromPointer(requestUrl), network.NewQAuthenticatorFromPointer(authenticator), cGoUnpackString(proxyHost))
 	}
@@ -3890,7 +3828,6 @@ func (ptr *QWebEnginePage) ProxyAuthenticationRequired(requestUrl core.QUrl_ITF,
 
 //export callbackQWebEnginePage_RecentlyAudibleChanged
 func callbackQWebEnginePage_RecentlyAudibleChanged(ptr unsafe.Pointer, recentlyAudible C.char) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEnginePage::recentlyAudibleChanged"); signal != nil {
 		signal.(func(bool))(int8(recentlyAudible) != 0)
 	}
@@ -3919,7 +3856,6 @@ func (ptr *QWebEnginePage) RecentlyAudibleChanged(recentlyAudible bool) {
 
 //export callbackQWebEnginePage_RenderProcessTerminated
 func callbackQWebEnginePage_RenderProcessTerminated(ptr unsafe.Pointer, terminationStatus C.longlong, exitCode C.int) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEnginePage::renderProcessTerminated"); signal != nil {
 		signal.(func(QWebEnginePage__RenderProcessTerminationStatus, int))(QWebEnginePage__RenderProcessTerminationStatus(terminationStatus), int(int32(exitCode)))
 	}
@@ -3948,7 +3884,6 @@ func (ptr *QWebEnginePage) RenderProcessTerminated(terminationStatus QWebEngineP
 
 //export callbackQWebEnginePage_ScrollPositionChanged
 func callbackQWebEnginePage_ScrollPositionChanged(ptr unsafe.Pointer, position unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEnginePage::scrollPositionChanged"); signal != nil {
 		signal.(func(*core.QPointF))(core.NewQPointFFromPointer(position))
 	}
@@ -3977,7 +3912,6 @@ func (ptr *QWebEnginePage) ScrollPositionChanged(position core.QPointF_ITF) {
 
 //export callbackQWebEnginePage_SelectionChanged
 func callbackQWebEnginePage_SelectionChanged(ptr unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEnginePage::selectionChanged"); signal != nil {
 		signal.(func())()
 	}
@@ -4018,7 +3952,6 @@ func (ptr *QWebEnginePage) SetWebChannel(channel webchannel.QWebChannel_ITF, wor
 
 //export callbackQWebEnginePage_TitleChanged
 func callbackQWebEnginePage_TitleChanged(ptr unsafe.Pointer, title C.struct_QtWebEngine_PackedString) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEnginePage::titleChanged"); signal != nil {
 		signal.(func(string))(cGoUnpackString(title))
 	}
@@ -4049,7 +3982,6 @@ func (ptr *QWebEnginePage) TitleChanged(title string) {
 
 //export callbackQWebEnginePage_UrlChanged
 func callbackQWebEnginePage_UrlChanged(ptr unsafe.Pointer, url unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEnginePage::urlChanged"); signal != nil {
 		signal.(func(*core.QUrl))(core.NewQUrlFromPointer(url))
 	}
@@ -4089,7 +4021,6 @@ func (ptr *QWebEnginePage) WebChannel() *webchannel.QWebChannel {
 
 //export callbackQWebEnginePage_WindowCloseRequested
 func callbackQWebEnginePage_WindowCloseRequested(ptr unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEnginePage::windowCloseRequested"); signal != nil {
 		signal.(func())()
 	}
@@ -4118,7 +4049,6 @@ func (ptr *QWebEnginePage) WindowCloseRequested() {
 
 //export callbackQWebEnginePage_TimerEvent
 func callbackQWebEnginePage_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEnginePage::timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
 	} else {
@@ -4154,7 +4084,6 @@ func (ptr *QWebEnginePage) TimerEventDefault(event core.QTimerEvent_ITF) {
 
 //export callbackQWebEnginePage_ChildEvent
 func callbackQWebEnginePage_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEnginePage::childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
 	} else {
@@ -4190,7 +4119,6 @@ func (ptr *QWebEnginePage) ChildEventDefault(event core.QChildEvent_ITF) {
 
 //export callbackQWebEnginePage_ConnectNotify
 func callbackQWebEnginePage_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEnginePage::connectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
@@ -4226,7 +4154,6 @@ func (ptr *QWebEnginePage) ConnectNotifyDefault(sign core.QMetaMethod_ITF) {
 
 //export callbackQWebEnginePage_CustomEvent
 func callbackQWebEnginePage_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEnginePage::customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
 	} else {
@@ -4301,7 +4228,6 @@ func (ptr *QWebEnginePage) DeleteLaterDefault() {
 
 //export callbackQWebEnginePage_DisconnectNotify
 func callbackQWebEnginePage_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEnginePage::disconnectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
@@ -4337,7 +4263,6 @@ func (ptr *QWebEnginePage) DisconnectNotifyDefault(sign core.QMetaMethod_ITF) {
 
 //export callbackQWebEnginePage_EventFilter
 func callbackQWebEnginePage_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEnginePage::eventFilter"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
 	}
@@ -4375,7 +4300,6 @@ func (ptr *QWebEnginePage) EventFilterDefault(watched core.QObject_ITF, event co
 
 //export callbackQWebEnginePage_MetaObject
 func callbackQWebEnginePage_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEnginePage::metaObject"); signal != nil {
 		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
 	}
@@ -4544,7 +4468,6 @@ func (ptr *QWebEngineProfile) DefaultProfile() *QWebEngineProfile {
 
 //export callbackQWebEngineProfile_DownloadRequested
 func callbackQWebEngineProfile_DownloadRequested(ptr unsafe.Pointer, download unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineProfile::downloadRequested"); signal != nil {
 		signal.(func(*QWebEngineDownloadItem))(NewQWebEngineDownloadItemFromPointer(download))
 	}
@@ -4741,7 +4664,6 @@ func (ptr *QWebEngineProfile) VisitedLinksContainsUrl(url core.QUrl_ITF) bool {
 
 //export callbackQWebEngineProfile_TimerEvent
 func callbackQWebEngineProfile_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineProfile::timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
 	} else {
@@ -4777,7 +4699,6 @@ func (ptr *QWebEngineProfile) TimerEventDefault(event core.QTimerEvent_ITF) {
 
 //export callbackQWebEngineProfile_ChildEvent
 func callbackQWebEngineProfile_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineProfile::childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
 	} else {
@@ -4813,7 +4734,6 @@ func (ptr *QWebEngineProfile) ChildEventDefault(event core.QChildEvent_ITF) {
 
 //export callbackQWebEngineProfile_ConnectNotify
 func callbackQWebEngineProfile_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineProfile::connectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
@@ -4849,7 +4769,6 @@ func (ptr *QWebEngineProfile) ConnectNotifyDefault(sign core.QMetaMethod_ITF) {
 
 //export callbackQWebEngineProfile_CustomEvent
 func callbackQWebEngineProfile_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineProfile::customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
 	} else {
@@ -4924,7 +4843,6 @@ func (ptr *QWebEngineProfile) DeleteLaterDefault() {
 
 //export callbackQWebEngineProfile_DisconnectNotify
 func callbackQWebEngineProfile_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineProfile::disconnectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
@@ -4960,7 +4878,6 @@ func (ptr *QWebEngineProfile) DisconnectNotifyDefault(sign core.QMetaMethod_ITF)
 
 //export callbackQWebEngineProfile_Event
 func callbackQWebEngineProfile_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineProfile::event"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
 	}
@@ -4998,7 +4915,6 @@ func (ptr *QWebEngineProfile) EventDefault(e core.QEvent_ITF) bool {
 
 //export callbackQWebEngineProfile_EventFilter
 func callbackQWebEngineProfile_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineProfile::eventFilter"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
 	}
@@ -5036,7 +4952,6 @@ func (ptr *QWebEngineProfile) EventFilterDefault(watched core.QObject_ITF, event
 
 //export callbackQWebEngineProfile_MetaObject
 func callbackQWebEngineProfile_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineProfile::metaObject"); signal != nil {
 		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
 	}
@@ -5766,7 +5681,6 @@ func NewQWebEngineUrlRequestInterceptor(p core.QObject_ITF) *QWebEngineUrlReques
 
 //export callbackQWebEngineUrlRequestInterceptor_InterceptRequest
 func callbackQWebEngineUrlRequestInterceptor_InterceptRequest(ptr unsafe.Pointer, info unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineUrlRequestInterceptor::interceptRequest"); signal != nil {
 		signal.(func(*QWebEngineUrlRequestInfo))(NewQWebEngineUrlRequestInfoFromPointer(info))
 	}
@@ -5795,7 +5709,6 @@ func (ptr *QWebEngineUrlRequestInterceptor) InterceptRequest(info QWebEngineUrlR
 
 //export callbackQWebEngineUrlRequestInterceptor_TimerEvent
 func callbackQWebEngineUrlRequestInterceptor_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineUrlRequestInterceptor::timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
 	} else {
@@ -5831,7 +5744,6 @@ func (ptr *QWebEngineUrlRequestInterceptor) TimerEventDefault(event core.QTimerE
 
 //export callbackQWebEngineUrlRequestInterceptor_ChildEvent
 func callbackQWebEngineUrlRequestInterceptor_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineUrlRequestInterceptor::childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
 	} else {
@@ -5867,7 +5779,6 @@ func (ptr *QWebEngineUrlRequestInterceptor) ChildEventDefault(event core.QChildE
 
 //export callbackQWebEngineUrlRequestInterceptor_ConnectNotify
 func callbackQWebEngineUrlRequestInterceptor_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineUrlRequestInterceptor::connectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
@@ -5903,7 +5814,6 @@ func (ptr *QWebEngineUrlRequestInterceptor) ConnectNotifyDefault(sign core.QMeta
 
 //export callbackQWebEngineUrlRequestInterceptor_CustomEvent
 func callbackQWebEngineUrlRequestInterceptor_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineUrlRequestInterceptor::customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
 	} else {
@@ -5978,7 +5888,6 @@ func (ptr *QWebEngineUrlRequestInterceptor) DeleteLaterDefault() {
 
 //export callbackQWebEngineUrlRequestInterceptor_DisconnectNotify
 func callbackQWebEngineUrlRequestInterceptor_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineUrlRequestInterceptor::disconnectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
@@ -6014,7 +5923,6 @@ func (ptr *QWebEngineUrlRequestInterceptor) DisconnectNotifyDefault(sign core.QM
 
 //export callbackQWebEngineUrlRequestInterceptor_Event
 func callbackQWebEngineUrlRequestInterceptor_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineUrlRequestInterceptor::event"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
 	}
@@ -6052,7 +5960,6 @@ func (ptr *QWebEngineUrlRequestInterceptor) EventDefault(e core.QEvent_ITF) bool
 
 //export callbackQWebEngineUrlRequestInterceptor_EventFilter
 func callbackQWebEngineUrlRequestInterceptor_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineUrlRequestInterceptor::eventFilter"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
 	}
@@ -6090,7 +5997,6 @@ func (ptr *QWebEngineUrlRequestInterceptor) EventFilterDefault(watched core.QObj
 
 //export callbackQWebEngineUrlRequestInterceptor_MetaObject
 func callbackQWebEngineUrlRequestInterceptor_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineUrlRequestInterceptor::metaObject"); signal != nil {
 		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
 	}
@@ -6224,7 +6130,6 @@ func (ptr *QWebEngineUrlRequestJob) RequestUrl() *core.QUrl {
 
 //export callbackQWebEngineUrlRequestJob_TimerEvent
 func callbackQWebEngineUrlRequestJob_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineUrlRequestJob::timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
 	} else {
@@ -6260,7 +6165,6 @@ func (ptr *QWebEngineUrlRequestJob) TimerEventDefault(event core.QTimerEvent_ITF
 
 //export callbackQWebEngineUrlRequestJob_ChildEvent
 func callbackQWebEngineUrlRequestJob_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineUrlRequestJob::childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
 	} else {
@@ -6296,7 +6200,6 @@ func (ptr *QWebEngineUrlRequestJob) ChildEventDefault(event core.QChildEvent_ITF
 
 //export callbackQWebEngineUrlRequestJob_ConnectNotify
 func callbackQWebEngineUrlRequestJob_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineUrlRequestJob::connectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
@@ -6332,7 +6235,6 @@ func (ptr *QWebEngineUrlRequestJob) ConnectNotifyDefault(sign core.QMetaMethod_I
 
 //export callbackQWebEngineUrlRequestJob_CustomEvent
 func callbackQWebEngineUrlRequestJob_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineUrlRequestJob::customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
 	} else {
@@ -6407,7 +6309,6 @@ func (ptr *QWebEngineUrlRequestJob) DeleteLaterDefault() {
 
 //export callbackQWebEngineUrlRequestJob_DisconnectNotify
 func callbackQWebEngineUrlRequestJob_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineUrlRequestJob::disconnectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
@@ -6443,7 +6344,6 @@ func (ptr *QWebEngineUrlRequestJob) DisconnectNotifyDefault(sign core.QMetaMetho
 
 //export callbackQWebEngineUrlRequestJob_Event
 func callbackQWebEngineUrlRequestJob_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineUrlRequestJob::event"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
 	}
@@ -6481,7 +6381,6 @@ func (ptr *QWebEngineUrlRequestJob) EventDefault(e core.QEvent_ITF) bool {
 
 //export callbackQWebEngineUrlRequestJob_EventFilter
 func callbackQWebEngineUrlRequestJob_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineUrlRequestJob::eventFilter"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
 	}
@@ -6519,7 +6418,6 @@ func (ptr *QWebEngineUrlRequestJob) EventFilterDefault(watched core.QObject_ITF,
 
 //export callbackQWebEngineUrlRequestJob_MetaObject
 func callbackQWebEngineUrlRequestJob_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineUrlRequestJob::metaObject"); signal != nil {
 		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
 	}
@@ -6603,7 +6501,6 @@ func NewQWebEngineUrlSchemeHandler(parent core.QObject_ITF) *QWebEngineUrlScheme
 
 //export callbackQWebEngineUrlSchemeHandler_RequestStarted
 func callbackQWebEngineUrlSchemeHandler_RequestStarted(ptr unsafe.Pointer, request unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineUrlSchemeHandler::requestStarted"); signal != nil {
 		signal.(func(*QWebEngineUrlRequestJob))(NewQWebEngineUrlRequestJobFromPointer(request))
 	}
@@ -6640,7 +6537,6 @@ func (ptr *QWebEngineUrlSchemeHandler) DestroyQWebEngineUrlSchemeHandler() {
 
 //export callbackQWebEngineUrlSchemeHandler_TimerEvent
 func callbackQWebEngineUrlSchemeHandler_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineUrlSchemeHandler::timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
 	} else {
@@ -6676,7 +6572,6 @@ func (ptr *QWebEngineUrlSchemeHandler) TimerEventDefault(event core.QTimerEvent_
 
 //export callbackQWebEngineUrlSchemeHandler_ChildEvent
 func callbackQWebEngineUrlSchemeHandler_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineUrlSchemeHandler::childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
 	} else {
@@ -6712,7 +6607,6 @@ func (ptr *QWebEngineUrlSchemeHandler) ChildEventDefault(event core.QChildEvent_
 
 //export callbackQWebEngineUrlSchemeHandler_ConnectNotify
 func callbackQWebEngineUrlSchemeHandler_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineUrlSchemeHandler::connectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
@@ -6748,7 +6642,6 @@ func (ptr *QWebEngineUrlSchemeHandler) ConnectNotifyDefault(sign core.QMetaMetho
 
 //export callbackQWebEngineUrlSchemeHandler_CustomEvent
 func callbackQWebEngineUrlSchemeHandler_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineUrlSchemeHandler::customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
 	} else {
@@ -6823,7 +6716,6 @@ func (ptr *QWebEngineUrlSchemeHandler) DeleteLaterDefault() {
 
 //export callbackQWebEngineUrlSchemeHandler_DisconnectNotify
 func callbackQWebEngineUrlSchemeHandler_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineUrlSchemeHandler::disconnectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
@@ -6859,7 +6751,6 @@ func (ptr *QWebEngineUrlSchemeHandler) DisconnectNotifyDefault(sign core.QMetaMe
 
 //export callbackQWebEngineUrlSchemeHandler_Event
 func callbackQWebEngineUrlSchemeHandler_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineUrlSchemeHandler::event"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
 	}
@@ -6897,7 +6788,6 @@ func (ptr *QWebEngineUrlSchemeHandler) EventDefault(e core.QEvent_ITF) bool {
 
 //export callbackQWebEngineUrlSchemeHandler_EventFilter
 func callbackQWebEngineUrlSchemeHandler_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineUrlSchemeHandler::eventFilter"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
 	}
@@ -6935,7 +6825,6 @@ func (ptr *QWebEngineUrlSchemeHandler) EventFilterDefault(watched core.QObject_I
 
 //export callbackQWebEngineUrlSchemeHandler_MetaObject
 func callbackQWebEngineUrlSchemeHandler_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineUrlSchemeHandler::metaObject"); signal != nil {
 		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
 	}
@@ -7054,7 +6943,6 @@ func (ptr *QWebEngineView) BackDefault() {
 
 //export callbackQWebEngineView_CreateWindow
 func callbackQWebEngineView_CreateWindow(ptr unsafe.Pointer, ty C.longlong) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineView::createWindow"); signal != nil {
 		return PointerFromQWebEngineView(signal.(func(QWebEnginePage__WebWindowType) *QWebEngineView)(QWebEnginePage__WebWindowType(ty)))
 	}
@@ -7342,7 +7230,6 @@ func (ptr *QWebEngineView) ZoomFactor() float64 {
 
 //export callbackQWebEngineView_DestroyQWebEngineView
 func callbackQWebEngineView_DestroyQWebEngineView(ptr unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineView::~QWebEngineView"); signal != nil {
 		signal.(func())()
 	} else {
@@ -7382,7 +7269,6 @@ func (ptr *QWebEngineView) DestroyQWebEngineViewDefault() {
 
 //export callbackQWebEngineView_ContextMenuEvent
 func callbackQWebEngineView_ContextMenuEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineView::contextMenuEvent"); signal != nil {
 		signal.(func(*gui.QContextMenuEvent))(gui.NewQContextMenuEventFromPointer(event))
 	} else {
@@ -7418,7 +7304,6 @@ func (ptr *QWebEngineView) ContextMenuEventDefault(event gui.QContextMenuEvent_I
 
 //export callbackQWebEngineView_DragEnterEvent
 func callbackQWebEngineView_DragEnterEvent(ptr unsafe.Pointer, e unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineView::dragEnterEvent"); signal != nil {
 		signal.(func(*gui.QDragEnterEvent))(gui.NewQDragEnterEventFromPointer(e))
 	} else {
@@ -7454,7 +7339,6 @@ func (ptr *QWebEngineView) DragEnterEventDefault(e gui.QDragEnterEvent_ITF) {
 
 //export callbackQWebEngineView_DragLeaveEvent
 func callbackQWebEngineView_DragLeaveEvent(ptr unsafe.Pointer, e unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineView::dragLeaveEvent"); signal != nil {
 		signal.(func(*gui.QDragLeaveEvent))(gui.NewQDragLeaveEventFromPointer(e))
 	} else {
@@ -7490,7 +7374,6 @@ func (ptr *QWebEngineView) DragLeaveEventDefault(e gui.QDragLeaveEvent_ITF) {
 
 //export callbackQWebEngineView_DragMoveEvent
 func callbackQWebEngineView_DragMoveEvent(ptr unsafe.Pointer, e unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineView::dragMoveEvent"); signal != nil {
 		signal.(func(*gui.QDragMoveEvent))(gui.NewQDragMoveEventFromPointer(e))
 	} else {
@@ -7526,7 +7409,6 @@ func (ptr *QWebEngineView) DragMoveEventDefault(e gui.QDragMoveEvent_ITF) {
 
 //export callbackQWebEngineView_DropEvent
 func callbackQWebEngineView_DropEvent(ptr unsafe.Pointer, e unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineView::dropEvent"); signal != nil {
 		signal.(func(*gui.QDropEvent))(gui.NewQDropEventFromPointer(e))
 	} else {
@@ -7562,7 +7444,6 @@ func (ptr *QWebEngineView) DropEventDefault(e gui.QDropEvent_ITF) {
 
 //export callbackQWebEngineView_Event
 func callbackQWebEngineView_Event(ptr unsafe.Pointer, ev unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineView::event"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(ev)))))
 	}
@@ -7608,7 +7489,6 @@ func (ptr *QWebEngineView) FindText(subString string, options QWebEnginePage__Fi
 
 //export callbackQWebEngineView_HideEvent
 func callbackQWebEngineView_HideEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineView::hideEvent"); signal != nil {
 		signal.(func(*gui.QHideEvent))(gui.NewQHideEventFromPointer(event))
 	} else {
@@ -7644,7 +7524,6 @@ func (ptr *QWebEngineView) HideEventDefault(event gui.QHideEvent_ITF) {
 
 //export callbackQWebEngineView_IconChanged
 func callbackQWebEngineView_IconChanged(ptr unsafe.Pointer, icon unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineView::iconChanged"); signal != nil {
 		signal.(func(*gui.QIcon))(gui.NewQIconFromPointer(icon))
 	}
@@ -7673,7 +7552,6 @@ func (ptr *QWebEngineView) IconChanged(icon gui.QIcon_ITF) {
 
 //export callbackQWebEngineView_IconUrlChanged
 func callbackQWebEngineView_IconUrlChanged(ptr unsafe.Pointer, url unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineView::iconUrlChanged"); signal != nil {
 		signal.(func(*core.QUrl))(core.NewQUrlFromPointer(url))
 	}
@@ -7702,7 +7580,6 @@ func (ptr *QWebEngineView) IconUrlChanged(url core.QUrl_ITF) {
 
 //export callbackQWebEngineView_LoadFinished
 func callbackQWebEngineView_LoadFinished(ptr unsafe.Pointer, ok C.char) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineView::loadFinished"); signal != nil {
 		signal.(func(bool))(int8(ok) != 0)
 	}
@@ -7731,7 +7608,6 @@ func (ptr *QWebEngineView) LoadFinished(ok bool) {
 
 //export callbackQWebEngineView_LoadProgress
 func callbackQWebEngineView_LoadProgress(ptr unsafe.Pointer, progress C.int) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineView::loadProgress"); signal != nil {
 		signal.(func(int))(int(int32(progress)))
 	}
@@ -7760,7 +7636,6 @@ func (ptr *QWebEngineView) LoadProgress(progress int) {
 
 //export callbackQWebEngineView_LoadStarted
 func callbackQWebEngineView_LoadStarted(ptr unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineView::loadStarted"); signal != nil {
 		signal.(func())()
 	}
@@ -7789,7 +7664,6 @@ func (ptr *QWebEngineView) LoadStarted() {
 
 //export callbackQWebEngineView_RenderProcessTerminated
 func callbackQWebEngineView_RenderProcessTerminated(ptr unsafe.Pointer, terminationStatus C.longlong, exitCode C.int) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineView::renderProcessTerminated"); signal != nil {
 		signal.(func(QWebEnginePage__RenderProcessTerminationStatus, int))(QWebEnginePage__RenderProcessTerminationStatus(terminationStatus), int(int32(exitCode)))
 	}
@@ -7818,7 +7692,6 @@ func (ptr *QWebEngineView) RenderProcessTerminated(terminationStatus QWebEngineP
 
 //export callbackQWebEngineView_SelectionChanged
 func callbackQWebEngineView_SelectionChanged(ptr unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineView::selectionChanged"); signal != nil {
 		signal.(func())()
 	}
@@ -7847,7 +7720,6 @@ func (ptr *QWebEngineView) SelectionChanged() {
 
 //export callbackQWebEngineView_ShowEvent
 func callbackQWebEngineView_ShowEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineView::showEvent"); signal != nil {
 		signal.(func(*gui.QShowEvent))(gui.NewQShowEventFromPointer(event))
 	} else {
@@ -7883,7 +7755,6 @@ func (ptr *QWebEngineView) ShowEventDefault(event gui.QShowEvent_ITF) {
 
 //export callbackQWebEngineView_SizeHint
 func callbackQWebEngineView_SizeHint(ptr unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineView::sizeHint"); signal != nil {
 		return core.PointerFromQSize(signal.(func() *core.QSize)())
 	}
@@ -7925,7 +7796,6 @@ func (ptr *QWebEngineView) SizeHintDefault() *core.QSize {
 
 //export callbackQWebEngineView_TitleChanged
 func callbackQWebEngineView_TitleChanged(ptr unsafe.Pointer, title C.struct_QtWebEngine_PackedString) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineView::titleChanged"); signal != nil {
 		signal.(func(string))(cGoUnpackString(title))
 	}
@@ -7956,7 +7826,6 @@ func (ptr *QWebEngineView) TitleChanged(title string) {
 
 //export callbackQWebEngineView_UrlChanged
 func callbackQWebEngineView_UrlChanged(ptr unsafe.Pointer, url unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineView::urlChanged"); signal != nil {
 		signal.(func(*core.QUrl))(core.NewQUrlFromPointer(url))
 	}
@@ -7985,7 +7854,6 @@ func (ptr *QWebEngineView) UrlChanged(url core.QUrl_ITF) {
 
 //export callbackQWebEngineView_ActionEvent
 func callbackQWebEngineView_ActionEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineView::actionEvent"); signal != nil {
 		signal.(func(*gui.QActionEvent))(gui.NewQActionEventFromPointer(event))
 	} else {
@@ -8021,7 +7889,6 @@ func (ptr *QWebEngineView) ActionEventDefault(event gui.QActionEvent_ITF) {
 
 //export callbackQWebEngineView_EnterEvent
 func callbackQWebEngineView_EnterEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineView::enterEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
 	} else {
@@ -8057,7 +7924,6 @@ func (ptr *QWebEngineView) EnterEventDefault(event core.QEvent_ITF) {
 
 //export callbackQWebEngineView_FocusInEvent
 func callbackQWebEngineView_FocusInEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineView::focusInEvent"); signal != nil {
 		signal.(func(*gui.QFocusEvent))(gui.NewQFocusEventFromPointer(event))
 	} else {
@@ -8093,7 +7959,6 @@ func (ptr *QWebEngineView) FocusInEventDefault(event gui.QFocusEvent_ITF) {
 
 //export callbackQWebEngineView_FocusOutEvent
 func callbackQWebEngineView_FocusOutEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineView::focusOutEvent"); signal != nil {
 		signal.(func(*gui.QFocusEvent))(gui.NewQFocusEventFromPointer(event))
 	} else {
@@ -8129,7 +7994,6 @@ func (ptr *QWebEngineView) FocusOutEventDefault(event gui.QFocusEvent_ITF) {
 
 //export callbackQWebEngineView_LeaveEvent
 func callbackQWebEngineView_LeaveEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineView::leaveEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
 	} else {
@@ -8165,7 +8029,6 @@ func (ptr *QWebEngineView) LeaveEventDefault(event core.QEvent_ITF) {
 
 //export callbackQWebEngineView_Metric
 func callbackQWebEngineView_Metric(ptr unsafe.Pointer, m C.longlong) C.int {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineView::metric"); signal != nil {
 		return C.int(int32(signal.(func(gui.QPaintDevice__PaintDeviceMetric) int)(gui.QPaintDevice__PaintDeviceMetric(m))))
 	}
@@ -8203,7 +8066,6 @@ func (ptr *QWebEngineView) MetricDefault(m gui.QPaintDevice__PaintDeviceMetric) 
 
 //export callbackQWebEngineView_MinimumSizeHint
 func callbackQWebEngineView_MinimumSizeHint(ptr unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineView::minimumSizeHint"); signal != nil {
 		return core.PointerFromQSize(signal.(func() *core.QSize)())
 	}
@@ -8245,7 +8107,6 @@ func (ptr *QWebEngineView) MinimumSizeHintDefault() *core.QSize {
 
 //export callbackQWebEngineView_MoveEvent
 func callbackQWebEngineView_MoveEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineView::moveEvent"); signal != nil {
 		signal.(func(*gui.QMoveEvent))(gui.NewQMoveEventFromPointer(event))
 	} else {
@@ -8281,7 +8142,6 @@ func (ptr *QWebEngineView) MoveEventDefault(event gui.QMoveEvent_ITF) {
 
 //export callbackQWebEngineView_PaintEngine
 func callbackQWebEngineView_PaintEngine(ptr unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineView::paintEngine"); signal != nil {
 		return gui.PointerFromQPaintEngine(signal.(func() *gui.QPaintEngine)())
 	}
@@ -8319,7 +8179,6 @@ func (ptr *QWebEngineView) PaintEngineDefault() *gui.QPaintEngine {
 
 //export callbackQWebEngineView_PaintEvent
 func callbackQWebEngineView_PaintEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineView::paintEvent"); signal != nil {
 		signal.(func(*gui.QPaintEvent))(gui.NewQPaintEventFromPointer(event))
 	} else {
@@ -8538,7 +8397,6 @@ func (ptr *QWebEngineView) SetWindowTitleDefault(vqs string) {
 
 //export callbackQWebEngineView_ChangeEvent
 func callbackQWebEngineView_ChangeEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineView::changeEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
 	} else {
@@ -8611,7 +8469,6 @@ func (ptr *QWebEngineView) CloseDefault() bool {
 
 //export callbackQWebEngineView_CloseEvent
 func callbackQWebEngineView_CloseEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineView::closeEvent"); signal != nil {
 		signal.(func(*gui.QCloseEvent))(gui.NewQCloseEventFromPointer(event))
 	} else {
@@ -8647,7 +8504,6 @@ func (ptr *QWebEngineView) CloseEventDefault(event gui.QCloseEvent_ITF) {
 
 //export callbackQWebEngineView_FocusNextPrevChild
 func callbackQWebEngineView_FocusNextPrevChild(ptr unsafe.Pointer, next C.char) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineView::focusNextPrevChild"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(bool) bool)(int8(next) != 0))))
 	}
@@ -8685,7 +8541,6 @@ func (ptr *QWebEngineView) FocusNextPrevChildDefault(next bool) bool {
 
 //export callbackQWebEngineView_HasHeightForWidth
 func callbackQWebEngineView_HasHeightForWidth(ptr unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineView::hasHeightForWidth"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func() bool)())))
 	}
@@ -8723,7 +8578,6 @@ func (ptr *QWebEngineView) HasHeightForWidthDefault() bool {
 
 //export callbackQWebEngineView_HeightForWidth
 func callbackQWebEngineView_HeightForWidth(ptr unsafe.Pointer, w C.int) C.int {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineView::heightForWidth"); signal != nil {
 		return C.int(int32(signal.(func(int) int)(int(int32(w)))))
 	}
@@ -8796,7 +8650,6 @@ func (ptr *QWebEngineView) HideDefault() {
 
 //export callbackQWebEngineView_InputMethodEvent
 func callbackQWebEngineView_InputMethodEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineView::inputMethodEvent"); signal != nil {
 		signal.(func(*gui.QInputMethodEvent))(gui.NewQInputMethodEventFromPointer(event))
 	} else {
@@ -8832,7 +8685,6 @@ func (ptr *QWebEngineView) InputMethodEventDefault(event gui.QInputMethodEvent_I
 
 //export callbackQWebEngineView_InputMethodQuery
 func callbackQWebEngineView_InputMethodQuery(ptr unsafe.Pointer, query C.longlong) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineView::inputMethodQuery"); signal != nil {
 		return core.PointerFromQVariant(signal.(func(core.Qt__InputMethodQuery) *core.QVariant)(core.Qt__InputMethodQuery(query)))
 	}
@@ -8874,7 +8726,6 @@ func (ptr *QWebEngineView) InputMethodQueryDefault(query core.Qt__InputMethodQue
 
 //export callbackQWebEngineView_KeyPressEvent
 func callbackQWebEngineView_KeyPressEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineView::keyPressEvent"); signal != nil {
 		signal.(func(*gui.QKeyEvent))(gui.NewQKeyEventFromPointer(event))
 	} else {
@@ -8910,7 +8761,6 @@ func (ptr *QWebEngineView) KeyPressEventDefault(event gui.QKeyEvent_ITF) {
 
 //export callbackQWebEngineView_KeyReleaseEvent
 func callbackQWebEngineView_KeyReleaseEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineView::keyReleaseEvent"); signal != nil {
 		signal.(func(*gui.QKeyEvent))(gui.NewQKeyEventFromPointer(event))
 	} else {
@@ -8981,7 +8831,6 @@ func (ptr *QWebEngineView) LowerDefault() {
 
 //export callbackQWebEngineView_MouseDoubleClickEvent
 func callbackQWebEngineView_MouseDoubleClickEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineView::mouseDoubleClickEvent"); signal != nil {
 		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
 	} else {
@@ -9017,7 +8866,6 @@ func (ptr *QWebEngineView) MouseDoubleClickEventDefault(event gui.QMouseEvent_IT
 
 //export callbackQWebEngineView_MouseMoveEvent
 func callbackQWebEngineView_MouseMoveEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineView::mouseMoveEvent"); signal != nil {
 		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
 	} else {
@@ -9053,7 +8901,6 @@ func (ptr *QWebEngineView) MouseMoveEventDefault(event gui.QMouseEvent_ITF) {
 
 //export callbackQWebEngineView_MousePressEvent
 func callbackQWebEngineView_MousePressEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineView::mousePressEvent"); signal != nil {
 		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
 	} else {
@@ -9089,7 +8936,6 @@ func (ptr *QWebEngineView) MousePressEventDefault(event gui.QMouseEvent_ITF) {
 
 //export callbackQWebEngineView_MouseReleaseEvent
 func callbackQWebEngineView_MouseReleaseEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineView::mouseReleaseEvent"); signal != nil {
 		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
 	} else {
@@ -9125,7 +8971,6 @@ func (ptr *QWebEngineView) MouseReleaseEventDefault(event gui.QMouseEvent_ITF) {
 
 //export callbackQWebEngineView_NativeEvent
 func callbackQWebEngineView_NativeEvent(ptr unsafe.Pointer, eventType unsafe.Pointer, message unsafe.Pointer, result C.long) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineView::nativeEvent"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QByteArray, unsafe.Pointer, int) bool)(core.NewQByteArrayFromPointer(eventType), message, int(int32(result))))))
 	}
@@ -9233,7 +9078,6 @@ func (ptr *QWebEngineView) RepaintDefault() {
 
 //export callbackQWebEngineView_ResizeEvent
 func callbackQWebEngineView_ResizeEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineView::resizeEvent"); signal != nil {
 		signal.(func(*gui.QResizeEvent))(gui.NewQResizeEventFromPointer(event))
 	} else {
@@ -9549,7 +9393,6 @@ func (ptr *QWebEngineView) ShowNormalDefault() {
 
 //export callbackQWebEngineView_TabletEvent
 func callbackQWebEngineView_TabletEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineView::tabletEvent"); signal != nil {
 		signal.(func(*gui.QTabletEvent))(gui.NewQTabletEventFromPointer(event))
 	} else {
@@ -9655,7 +9498,6 @@ func (ptr *QWebEngineView) UpdateMicroFocusDefault() {
 
 //export callbackQWebEngineView_WheelEvent
 func callbackQWebEngineView_WheelEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineView::wheelEvent"); signal != nil {
 		signal.(func(*gui.QWheelEvent))(gui.NewQWheelEventFromPointer(event))
 	} else {
@@ -9691,7 +9533,6 @@ func (ptr *QWebEngineView) WheelEventDefault(event gui.QWheelEvent_ITF) {
 
 //export callbackQWebEngineView_TimerEvent
 func callbackQWebEngineView_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineView::timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
 	} else {
@@ -9727,7 +9568,6 @@ func (ptr *QWebEngineView) TimerEventDefault(event core.QTimerEvent_ITF) {
 
 //export callbackQWebEngineView_ChildEvent
 func callbackQWebEngineView_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineView::childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
 	} else {
@@ -9763,7 +9603,6 @@ func (ptr *QWebEngineView) ChildEventDefault(event core.QChildEvent_ITF) {
 
 //export callbackQWebEngineView_ConnectNotify
 func callbackQWebEngineView_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineView::connectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
@@ -9799,7 +9638,6 @@ func (ptr *QWebEngineView) ConnectNotifyDefault(sign core.QMetaMethod_ITF) {
 
 //export callbackQWebEngineView_CustomEvent
 func callbackQWebEngineView_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineView::customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
 	} else {
@@ -9874,7 +9712,6 @@ func (ptr *QWebEngineView) DeleteLaterDefault() {
 
 //export callbackQWebEngineView_DisconnectNotify
 func callbackQWebEngineView_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineView::disconnectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
@@ -9910,7 +9747,6 @@ func (ptr *QWebEngineView) DisconnectNotifyDefault(sign core.QMetaMethod_ITF) {
 
 //export callbackQWebEngineView_EventFilter
 func callbackQWebEngineView_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineView::eventFilter"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
 	}
@@ -9948,7 +9784,6 @@ func (ptr *QWebEngineView) EventFilterDefault(watched core.QObject_ITF, event co
 
 //export callbackQWebEngineView_MetaObject
 func callbackQWebEngineView_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebEngineView::metaObject"); signal != nil {
 		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
 	}

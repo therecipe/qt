@@ -2695,7 +2695,6 @@ func NewQXmlAttributes() *QXmlAttributes {
 
 //export callbackQXmlAttributes_DestroyQXmlAttributes
 func callbackQXmlAttributes_DestroyQXmlAttributes(ptr unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QXmlAttributes::~QXmlAttributes"); signal != nil {
 		signal.(func())()
 	} else {
@@ -2916,7 +2915,6 @@ func NewQXmlContentHandlerFromPointer(ptr unsafe.Pointer) *QXmlContentHandler {
 
 //export callbackQXmlContentHandler_Characters
 func callbackQXmlContentHandler_Characters(ptr unsafe.Pointer, ch C.struct_QtXml_PackedString) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QXmlContentHandler::characters"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(string) bool)(cGoUnpackString(ch)))))
 	}
@@ -2949,7 +2947,6 @@ func (ptr *QXmlContentHandler) Characters(ch string) bool {
 
 //export callbackQXmlContentHandler_EndDocument
 func callbackQXmlContentHandler_EndDocument(ptr unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QXmlContentHandler::endDocument"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func() bool)())))
 	}
@@ -2980,7 +2977,6 @@ func (ptr *QXmlContentHandler) EndDocument() bool {
 
 //export callbackQXmlContentHandler_EndElement
 func callbackQXmlContentHandler_EndElement(ptr unsafe.Pointer, namespaceURI C.struct_QtXml_PackedString, localName C.struct_QtXml_PackedString, qName C.struct_QtXml_PackedString) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QXmlContentHandler::endElement"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(string, string, string) bool)(cGoUnpackString(namespaceURI), cGoUnpackString(localName), cGoUnpackString(qName)))))
 	}
@@ -3017,7 +3013,6 @@ func (ptr *QXmlContentHandler) EndElement(namespaceURI string, localName string,
 
 //export callbackQXmlContentHandler_EndPrefixMapping
 func callbackQXmlContentHandler_EndPrefixMapping(ptr unsafe.Pointer, prefix C.struct_QtXml_PackedString) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QXmlContentHandler::endPrefixMapping"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(string) bool)(cGoUnpackString(prefix)))))
 	}
@@ -3050,7 +3045,6 @@ func (ptr *QXmlContentHandler) EndPrefixMapping(prefix string) bool {
 
 //export callbackQXmlContentHandler_ErrorString
 func callbackQXmlContentHandler_ErrorString(ptr unsafe.Pointer) *C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QXmlContentHandler::errorString"); signal != nil {
 		return C.CString(signal.(func() string)())
 	}
@@ -3081,7 +3075,6 @@ func (ptr *QXmlContentHandler) ErrorString() string {
 
 //export callbackQXmlContentHandler_IgnorableWhitespace
 func callbackQXmlContentHandler_IgnorableWhitespace(ptr unsafe.Pointer, ch C.struct_QtXml_PackedString) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QXmlContentHandler::ignorableWhitespace"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(string) bool)(cGoUnpackString(ch)))))
 	}
@@ -3114,7 +3107,6 @@ func (ptr *QXmlContentHandler) IgnorableWhitespace(ch string) bool {
 
 //export callbackQXmlContentHandler_ProcessingInstruction
 func callbackQXmlContentHandler_ProcessingInstruction(ptr unsafe.Pointer, target C.struct_QtXml_PackedString, data C.struct_QtXml_PackedString) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QXmlContentHandler::processingInstruction"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(string, string) bool)(cGoUnpackString(target), cGoUnpackString(data)))))
 	}
@@ -3149,7 +3141,6 @@ func (ptr *QXmlContentHandler) ProcessingInstruction(target string, data string)
 
 //export callbackQXmlContentHandler_SetDocumentLocator
 func callbackQXmlContentHandler_SetDocumentLocator(ptr unsafe.Pointer, locator unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QXmlContentHandler::setDocumentLocator"); signal != nil {
 		signal.(func(*QXmlLocator))(NewQXmlLocatorFromPointer(locator))
 	}
@@ -3178,7 +3169,6 @@ func (ptr *QXmlContentHandler) SetDocumentLocator(locator QXmlLocator_ITF) {
 
 //export callbackQXmlContentHandler_SkippedEntity
 func callbackQXmlContentHandler_SkippedEntity(ptr unsafe.Pointer, name C.struct_QtXml_PackedString) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QXmlContentHandler::skippedEntity"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(string) bool)(cGoUnpackString(name)))))
 	}
@@ -3211,7 +3201,6 @@ func (ptr *QXmlContentHandler) SkippedEntity(name string) bool {
 
 //export callbackQXmlContentHandler_StartDocument
 func callbackQXmlContentHandler_StartDocument(ptr unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QXmlContentHandler::startDocument"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func() bool)())))
 	}
@@ -3242,7 +3231,6 @@ func (ptr *QXmlContentHandler) StartDocument() bool {
 
 //export callbackQXmlContentHandler_StartElement
 func callbackQXmlContentHandler_StartElement(ptr unsafe.Pointer, namespaceURI C.struct_QtXml_PackedString, localName C.struct_QtXml_PackedString, qName C.struct_QtXml_PackedString, atts unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QXmlContentHandler::startElement"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(string, string, string, *QXmlAttributes) bool)(cGoUnpackString(namespaceURI), cGoUnpackString(localName), cGoUnpackString(qName), NewQXmlAttributesFromPointer(atts)))))
 	}
@@ -3279,7 +3267,6 @@ func (ptr *QXmlContentHandler) StartElement(namespaceURI string, localName strin
 
 //export callbackQXmlContentHandler_StartPrefixMapping
 func callbackQXmlContentHandler_StartPrefixMapping(ptr unsafe.Pointer, prefix C.struct_QtXml_PackedString, uri C.struct_QtXml_PackedString) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QXmlContentHandler::startPrefixMapping"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(string, string) bool)(cGoUnpackString(prefix), cGoUnpackString(uri)))))
 	}
@@ -3314,7 +3301,6 @@ func (ptr *QXmlContentHandler) StartPrefixMapping(prefix string, uri string) boo
 
 //export callbackQXmlContentHandler_DestroyQXmlContentHandler
 func callbackQXmlContentHandler_DestroyQXmlContentHandler(ptr unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QXmlContentHandler::~QXmlContentHandler"); signal != nil {
 		signal.(func())()
 	} else {
@@ -3392,7 +3378,6 @@ func NewQXmlDTDHandlerFromPointer(ptr unsafe.Pointer) *QXmlDTDHandler {
 
 //export callbackQXmlDTDHandler_ErrorString
 func callbackQXmlDTDHandler_ErrorString(ptr unsafe.Pointer) *C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QXmlDTDHandler::errorString"); signal != nil {
 		return C.CString(signal.(func() string)())
 	}
@@ -3423,7 +3408,6 @@ func (ptr *QXmlDTDHandler) ErrorString() string {
 
 //export callbackQXmlDTDHandler_NotationDecl
 func callbackQXmlDTDHandler_NotationDecl(ptr unsafe.Pointer, name C.struct_QtXml_PackedString, publicId C.struct_QtXml_PackedString, systemId C.struct_QtXml_PackedString) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QXmlDTDHandler::notationDecl"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(string, string, string) bool)(cGoUnpackString(name), cGoUnpackString(publicId), cGoUnpackString(systemId)))))
 	}
@@ -3460,7 +3444,6 @@ func (ptr *QXmlDTDHandler) NotationDecl(name string, publicId string, systemId s
 
 //export callbackQXmlDTDHandler_UnparsedEntityDecl
 func callbackQXmlDTDHandler_UnparsedEntityDecl(ptr unsafe.Pointer, name C.struct_QtXml_PackedString, publicId C.struct_QtXml_PackedString, systemId C.struct_QtXml_PackedString, notationName C.struct_QtXml_PackedString) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QXmlDTDHandler::unparsedEntityDecl"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(string, string, string, string) bool)(cGoUnpackString(name), cGoUnpackString(publicId), cGoUnpackString(systemId), cGoUnpackString(notationName)))))
 	}
@@ -3499,7 +3482,6 @@ func (ptr *QXmlDTDHandler) UnparsedEntityDecl(name string, publicId string, syst
 
 //export callbackQXmlDTDHandler_DestroyQXmlDTDHandler
 func callbackQXmlDTDHandler_DestroyQXmlDTDHandler(ptr unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QXmlDTDHandler::~QXmlDTDHandler"); signal != nil {
 		signal.(func())()
 	} else {
@@ -3577,7 +3559,6 @@ func NewQXmlDeclHandlerFromPointer(ptr unsafe.Pointer) *QXmlDeclHandler {
 
 //export callbackQXmlDeclHandler_AttributeDecl
 func callbackQXmlDeclHandler_AttributeDecl(ptr unsafe.Pointer, eName C.struct_QtXml_PackedString, aName C.struct_QtXml_PackedString, ty C.struct_QtXml_PackedString, valueDefault C.struct_QtXml_PackedString, value C.struct_QtXml_PackedString) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QXmlDeclHandler::attributeDecl"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(string, string, string, string, string) bool)(cGoUnpackString(eName), cGoUnpackString(aName), cGoUnpackString(ty), cGoUnpackString(valueDefault), cGoUnpackString(value)))))
 	}
@@ -3618,7 +3599,6 @@ func (ptr *QXmlDeclHandler) AttributeDecl(eName string, aName string, ty string,
 
 //export callbackQXmlDeclHandler_ErrorString
 func callbackQXmlDeclHandler_ErrorString(ptr unsafe.Pointer) *C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QXmlDeclHandler::errorString"); signal != nil {
 		return C.CString(signal.(func() string)())
 	}
@@ -3649,7 +3629,6 @@ func (ptr *QXmlDeclHandler) ErrorString() string {
 
 //export callbackQXmlDeclHandler_ExternalEntityDecl
 func callbackQXmlDeclHandler_ExternalEntityDecl(ptr unsafe.Pointer, name C.struct_QtXml_PackedString, publicId C.struct_QtXml_PackedString, systemId C.struct_QtXml_PackedString) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QXmlDeclHandler::externalEntityDecl"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(string, string, string) bool)(cGoUnpackString(name), cGoUnpackString(publicId), cGoUnpackString(systemId)))))
 	}
@@ -3686,7 +3665,6 @@ func (ptr *QXmlDeclHandler) ExternalEntityDecl(name string, publicId string, sys
 
 //export callbackQXmlDeclHandler_InternalEntityDecl
 func callbackQXmlDeclHandler_InternalEntityDecl(ptr unsafe.Pointer, name C.struct_QtXml_PackedString, value C.struct_QtXml_PackedString) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QXmlDeclHandler::internalEntityDecl"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(string, string) bool)(cGoUnpackString(name), cGoUnpackString(value)))))
 	}
@@ -3721,7 +3699,6 @@ func (ptr *QXmlDeclHandler) InternalEntityDecl(name string, value string) bool {
 
 //export callbackQXmlDeclHandler_DestroyQXmlDeclHandler
 func callbackQXmlDeclHandler_DestroyQXmlDeclHandler(ptr unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QXmlDeclHandler::~QXmlDeclHandler"); signal != nil {
 		signal.(func())()
 	} else {
@@ -3818,7 +3795,6 @@ func NewQXmlDefaultHandler() *QXmlDefaultHandler {
 
 //export callbackQXmlDefaultHandler_DestroyQXmlDefaultHandler
 func callbackQXmlDefaultHandler_DestroyQXmlDefaultHandler(ptr unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QXmlDefaultHandler::~QXmlDefaultHandler"); signal != nil {
 		signal.(func())()
 	} else {
@@ -3858,7 +3834,6 @@ func (ptr *QXmlDefaultHandler) DestroyQXmlDefaultHandlerDefault() {
 
 //export callbackQXmlDefaultHandler_AttributeDecl
 func callbackQXmlDefaultHandler_AttributeDecl(ptr unsafe.Pointer, eName C.struct_QtXml_PackedString, aName C.struct_QtXml_PackedString, ty C.struct_QtXml_PackedString, valueDefault C.struct_QtXml_PackedString, value C.struct_QtXml_PackedString) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QXmlDefaultHandler::attributeDecl"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(string, string, string, string, string) bool)(cGoUnpackString(eName), cGoUnpackString(aName), cGoUnpackString(ty), cGoUnpackString(valueDefault), cGoUnpackString(value)))))
 	}
@@ -3916,7 +3891,6 @@ func (ptr *QXmlDefaultHandler) AttributeDeclDefault(eName string, aName string, 
 
 //export callbackQXmlDefaultHandler_Characters
 func callbackQXmlDefaultHandler_Characters(ptr unsafe.Pointer, ch C.struct_QtXml_PackedString) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QXmlDefaultHandler::characters"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(string) bool)(cGoUnpackString(ch)))))
 	}
@@ -3958,7 +3932,6 @@ func (ptr *QXmlDefaultHandler) CharactersDefault(ch string) bool {
 
 //export callbackQXmlDefaultHandler_Comment
 func callbackQXmlDefaultHandler_Comment(ptr unsafe.Pointer, ch C.struct_QtXml_PackedString) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QXmlDefaultHandler::comment"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(string) bool)(cGoUnpackString(ch)))))
 	}
@@ -4000,7 +3973,6 @@ func (ptr *QXmlDefaultHandler) CommentDefault(ch string) bool {
 
 //export callbackQXmlDefaultHandler_EndCDATA
 func callbackQXmlDefaultHandler_EndCDATA(ptr unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QXmlDefaultHandler::endCDATA"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func() bool)())))
 	}
@@ -4038,7 +4010,6 @@ func (ptr *QXmlDefaultHandler) EndCDATADefault() bool {
 
 //export callbackQXmlDefaultHandler_EndDTD
 func callbackQXmlDefaultHandler_EndDTD(ptr unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QXmlDefaultHandler::endDTD"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func() bool)())))
 	}
@@ -4076,7 +4047,6 @@ func (ptr *QXmlDefaultHandler) EndDTDDefault() bool {
 
 //export callbackQXmlDefaultHandler_EndDocument
 func callbackQXmlDefaultHandler_EndDocument(ptr unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QXmlDefaultHandler::endDocument"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func() bool)())))
 	}
@@ -4114,7 +4084,6 @@ func (ptr *QXmlDefaultHandler) EndDocumentDefault() bool {
 
 //export callbackQXmlDefaultHandler_EndElement
 func callbackQXmlDefaultHandler_EndElement(ptr unsafe.Pointer, namespaceURI C.struct_QtXml_PackedString, localName C.struct_QtXml_PackedString, qName C.struct_QtXml_PackedString) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QXmlDefaultHandler::endElement"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(string, string, string) bool)(cGoUnpackString(namespaceURI), cGoUnpackString(localName), cGoUnpackString(qName)))))
 	}
@@ -4164,7 +4133,6 @@ func (ptr *QXmlDefaultHandler) EndElementDefault(namespaceURI string, localName 
 
 //export callbackQXmlDefaultHandler_EndEntity
 func callbackQXmlDefaultHandler_EndEntity(ptr unsafe.Pointer, name C.struct_QtXml_PackedString) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QXmlDefaultHandler::endEntity"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(string) bool)(cGoUnpackString(name)))))
 	}
@@ -4206,7 +4174,6 @@ func (ptr *QXmlDefaultHandler) EndEntityDefault(name string) bool {
 
 //export callbackQXmlDefaultHandler_EndPrefixMapping
 func callbackQXmlDefaultHandler_EndPrefixMapping(ptr unsafe.Pointer, prefix C.struct_QtXml_PackedString) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QXmlDefaultHandler::endPrefixMapping"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(string) bool)(cGoUnpackString(prefix)))))
 	}
@@ -4248,7 +4215,6 @@ func (ptr *QXmlDefaultHandler) EndPrefixMappingDefault(prefix string) bool {
 
 //export callbackQXmlDefaultHandler_Error
 func callbackQXmlDefaultHandler_Error(ptr unsafe.Pointer, exception unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QXmlDefaultHandler::error"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*QXmlParseException) bool)(NewQXmlParseExceptionFromPointer(exception)))))
 	}
@@ -4286,7 +4252,6 @@ func (ptr *QXmlDefaultHandler) ErrorDefault(exception QXmlParseException_ITF) bo
 
 //export callbackQXmlDefaultHandler_ErrorString
 func callbackQXmlDefaultHandler_ErrorString(ptr unsafe.Pointer) *C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QXmlDefaultHandler::errorString"); signal != nil {
 		return C.CString(signal.(func() string)())
 	}
@@ -4324,7 +4289,6 @@ func (ptr *QXmlDefaultHandler) ErrorStringDefault() string {
 
 //export callbackQXmlDefaultHandler_ExternalEntityDecl
 func callbackQXmlDefaultHandler_ExternalEntityDecl(ptr unsafe.Pointer, name C.struct_QtXml_PackedString, publicId C.struct_QtXml_PackedString, systemId C.struct_QtXml_PackedString) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QXmlDefaultHandler::externalEntityDecl"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(string, string, string) bool)(cGoUnpackString(name), cGoUnpackString(publicId), cGoUnpackString(systemId)))))
 	}
@@ -4374,7 +4338,6 @@ func (ptr *QXmlDefaultHandler) ExternalEntityDeclDefault(name string, publicId s
 
 //export callbackQXmlDefaultHandler_FatalError
 func callbackQXmlDefaultHandler_FatalError(ptr unsafe.Pointer, exception unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QXmlDefaultHandler::fatalError"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*QXmlParseException) bool)(NewQXmlParseExceptionFromPointer(exception)))))
 	}
@@ -4412,7 +4375,6 @@ func (ptr *QXmlDefaultHandler) FatalErrorDefault(exception QXmlParseException_IT
 
 //export callbackQXmlDefaultHandler_IgnorableWhitespace
 func callbackQXmlDefaultHandler_IgnorableWhitespace(ptr unsafe.Pointer, ch C.struct_QtXml_PackedString) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QXmlDefaultHandler::ignorableWhitespace"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(string) bool)(cGoUnpackString(ch)))))
 	}
@@ -4454,7 +4416,6 @@ func (ptr *QXmlDefaultHandler) IgnorableWhitespaceDefault(ch string) bool {
 
 //export callbackQXmlDefaultHandler_InternalEntityDecl
 func callbackQXmlDefaultHandler_InternalEntityDecl(ptr unsafe.Pointer, name C.struct_QtXml_PackedString, value C.struct_QtXml_PackedString) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QXmlDefaultHandler::internalEntityDecl"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(string, string) bool)(cGoUnpackString(name), cGoUnpackString(value)))))
 	}
@@ -4500,7 +4461,6 @@ func (ptr *QXmlDefaultHandler) InternalEntityDeclDefault(name string, value stri
 
 //export callbackQXmlDefaultHandler_NotationDecl
 func callbackQXmlDefaultHandler_NotationDecl(ptr unsafe.Pointer, name C.struct_QtXml_PackedString, publicId C.struct_QtXml_PackedString, systemId C.struct_QtXml_PackedString) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QXmlDefaultHandler::notationDecl"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(string, string, string) bool)(cGoUnpackString(name), cGoUnpackString(publicId), cGoUnpackString(systemId)))))
 	}
@@ -4550,7 +4510,6 @@ func (ptr *QXmlDefaultHandler) NotationDeclDefault(name string, publicId string,
 
 //export callbackQXmlDefaultHandler_ProcessingInstruction
 func callbackQXmlDefaultHandler_ProcessingInstruction(ptr unsafe.Pointer, target C.struct_QtXml_PackedString, data C.struct_QtXml_PackedString) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QXmlDefaultHandler::processingInstruction"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(string, string) bool)(cGoUnpackString(target), cGoUnpackString(data)))))
 	}
@@ -4596,7 +4555,6 @@ func (ptr *QXmlDefaultHandler) ProcessingInstructionDefault(target string, data 
 
 //export callbackQXmlDefaultHandler_SetDocumentLocator
 func callbackQXmlDefaultHandler_SetDocumentLocator(ptr unsafe.Pointer, locator unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QXmlDefaultHandler::setDocumentLocator"); signal != nil {
 		signal.(func(*QXmlLocator))(NewQXmlLocatorFromPointer(locator))
 	} else {
@@ -4632,7 +4590,6 @@ func (ptr *QXmlDefaultHandler) SetDocumentLocatorDefault(locator QXmlLocator_ITF
 
 //export callbackQXmlDefaultHandler_SkippedEntity
 func callbackQXmlDefaultHandler_SkippedEntity(ptr unsafe.Pointer, name C.struct_QtXml_PackedString) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QXmlDefaultHandler::skippedEntity"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(string) bool)(cGoUnpackString(name)))))
 	}
@@ -4674,7 +4631,6 @@ func (ptr *QXmlDefaultHandler) SkippedEntityDefault(name string) bool {
 
 //export callbackQXmlDefaultHandler_StartCDATA
 func callbackQXmlDefaultHandler_StartCDATA(ptr unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QXmlDefaultHandler::startCDATA"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func() bool)())))
 	}
@@ -4712,7 +4668,6 @@ func (ptr *QXmlDefaultHandler) StartCDATADefault() bool {
 
 //export callbackQXmlDefaultHandler_StartDTD
 func callbackQXmlDefaultHandler_StartDTD(ptr unsafe.Pointer, name C.struct_QtXml_PackedString, publicId C.struct_QtXml_PackedString, systemId C.struct_QtXml_PackedString) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QXmlDefaultHandler::startDTD"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(string, string, string) bool)(cGoUnpackString(name), cGoUnpackString(publicId), cGoUnpackString(systemId)))))
 	}
@@ -4762,7 +4717,6 @@ func (ptr *QXmlDefaultHandler) StartDTDDefault(name string, publicId string, sys
 
 //export callbackQXmlDefaultHandler_StartDocument
 func callbackQXmlDefaultHandler_StartDocument(ptr unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QXmlDefaultHandler::startDocument"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func() bool)())))
 	}
@@ -4800,7 +4754,6 @@ func (ptr *QXmlDefaultHandler) StartDocumentDefault() bool {
 
 //export callbackQXmlDefaultHandler_StartElement
 func callbackQXmlDefaultHandler_StartElement(ptr unsafe.Pointer, namespaceURI C.struct_QtXml_PackedString, localName C.struct_QtXml_PackedString, qName C.struct_QtXml_PackedString, atts unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QXmlDefaultHandler::startElement"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(string, string, string, *QXmlAttributes) bool)(cGoUnpackString(namespaceURI), cGoUnpackString(localName), cGoUnpackString(qName), NewQXmlAttributesFromPointer(atts)))))
 	}
@@ -4850,7 +4803,6 @@ func (ptr *QXmlDefaultHandler) StartElementDefault(namespaceURI string, localNam
 
 //export callbackQXmlDefaultHandler_StartEntity
 func callbackQXmlDefaultHandler_StartEntity(ptr unsafe.Pointer, name C.struct_QtXml_PackedString) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QXmlDefaultHandler::startEntity"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(string) bool)(cGoUnpackString(name)))))
 	}
@@ -4892,7 +4844,6 @@ func (ptr *QXmlDefaultHandler) StartEntityDefault(name string) bool {
 
 //export callbackQXmlDefaultHandler_StartPrefixMapping
 func callbackQXmlDefaultHandler_StartPrefixMapping(ptr unsafe.Pointer, prefix C.struct_QtXml_PackedString, uri C.struct_QtXml_PackedString) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QXmlDefaultHandler::startPrefixMapping"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(string, string) bool)(cGoUnpackString(prefix), cGoUnpackString(uri)))))
 	}
@@ -4938,7 +4889,6 @@ func (ptr *QXmlDefaultHandler) StartPrefixMappingDefault(prefix string, uri stri
 
 //export callbackQXmlDefaultHandler_UnparsedEntityDecl
 func callbackQXmlDefaultHandler_UnparsedEntityDecl(ptr unsafe.Pointer, name C.struct_QtXml_PackedString, publicId C.struct_QtXml_PackedString, systemId C.struct_QtXml_PackedString, notationName C.struct_QtXml_PackedString) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QXmlDefaultHandler::unparsedEntityDecl"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(string, string, string, string) bool)(cGoUnpackString(name), cGoUnpackString(publicId), cGoUnpackString(systemId), cGoUnpackString(notationName)))))
 	}
@@ -4992,7 +4942,6 @@ func (ptr *QXmlDefaultHandler) UnparsedEntityDeclDefault(name string, publicId s
 
 //export callbackQXmlDefaultHandler_Warning
 func callbackQXmlDefaultHandler_Warning(ptr unsafe.Pointer, exception unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QXmlDefaultHandler::warning"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*QXmlParseException) bool)(NewQXmlParseExceptionFromPointer(exception)))))
 	}
@@ -5068,7 +5017,6 @@ func NewQXmlEntityResolverFromPointer(ptr unsafe.Pointer) *QXmlEntityResolver {
 
 //export callbackQXmlEntityResolver_ErrorString
 func callbackQXmlEntityResolver_ErrorString(ptr unsafe.Pointer) *C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QXmlEntityResolver::errorString"); signal != nil {
 		return C.CString(signal.(func() string)())
 	}
@@ -5099,7 +5047,6 @@ func (ptr *QXmlEntityResolver) ErrorString() string {
 
 //export callbackQXmlEntityResolver_DestroyQXmlEntityResolver
 func callbackQXmlEntityResolver_DestroyQXmlEntityResolver(ptr unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QXmlEntityResolver::~QXmlEntityResolver"); signal != nil {
 		signal.(func())()
 	} else {
@@ -5177,7 +5124,6 @@ func NewQXmlErrorHandlerFromPointer(ptr unsafe.Pointer) *QXmlErrorHandler {
 
 //export callbackQXmlErrorHandler_Error
 func callbackQXmlErrorHandler_Error(ptr unsafe.Pointer, exception unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QXmlErrorHandler::error"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*QXmlParseException) bool)(NewQXmlParseExceptionFromPointer(exception)))))
 	}
@@ -5208,7 +5154,6 @@ func (ptr *QXmlErrorHandler) Error(exception QXmlParseException_ITF) bool {
 
 //export callbackQXmlErrorHandler_ErrorString
 func callbackQXmlErrorHandler_ErrorString(ptr unsafe.Pointer) *C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QXmlErrorHandler::errorString"); signal != nil {
 		return C.CString(signal.(func() string)())
 	}
@@ -5239,7 +5184,6 @@ func (ptr *QXmlErrorHandler) ErrorString() string {
 
 //export callbackQXmlErrorHandler_FatalError
 func callbackQXmlErrorHandler_FatalError(ptr unsafe.Pointer, exception unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QXmlErrorHandler::fatalError"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*QXmlParseException) bool)(NewQXmlParseExceptionFromPointer(exception)))))
 	}
@@ -5270,7 +5214,6 @@ func (ptr *QXmlErrorHandler) FatalError(exception QXmlParseException_ITF) bool {
 
 //export callbackQXmlErrorHandler_Warning
 func callbackQXmlErrorHandler_Warning(ptr unsafe.Pointer, exception unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QXmlErrorHandler::warning"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*QXmlParseException) bool)(NewQXmlParseExceptionFromPointer(exception)))))
 	}
@@ -5301,7 +5244,6 @@ func (ptr *QXmlErrorHandler) Warning(exception QXmlParseException_ITF) bool {
 
 //export callbackQXmlErrorHandler_DestroyQXmlErrorHandler
 func callbackQXmlErrorHandler_DestroyQXmlErrorHandler(ptr unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QXmlErrorHandler::~QXmlErrorHandler"); signal != nil {
 		signal.(func())()
 	} else {
@@ -5386,7 +5328,6 @@ func NewQXmlInputSource2(dev core.QIODevice_ITF) *QXmlInputSource {
 
 //export callbackQXmlInputSource_Data
 func callbackQXmlInputSource_Data(ptr unsafe.Pointer) *C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QXmlInputSource::data"); signal != nil {
 		return C.CString(signal.(func() string)())
 	}
@@ -5424,7 +5365,6 @@ func (ptr *QXmlInputSource) DataDefault() string {
 
 //export callbackQXmlInputSource_FetchData
 func callbackQXmlInputSource_FetchData(ptr unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QXmlInputSource::fetchData"); signal != nil {
 		signal.(func())()
 	} else {
@@ -5460,7 +5400,6 @@ func (ptr *QXmlInputSource) FetchDataDefault() {
 
 //export callbackQXmlInputSource_FromRawData
 func callbackQXmlInputSource_FromRawData(ptr unsafe.Pointer, data unsafe.Pointer, beginning C.char) *C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QXmlInputSource::fromRawData"); signal != nil {
 		return C.CString(signal.(func(*core.QByteArray, bool) string)(core.NewQByteArrayFromPointer(data), int8(beginning) != 0))
 	}
@@ -5498,7 +5437,6 @@ func (ptr *QXmlInputSource) FromRawDataDefault(data core.QByteArray_ITF, beginni
 
 //export callbackQXmlInputSource_Next
 func callbackQXmlInputSource_Next(ptr unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QXmlInputSource::next"); signal != nil {
 		return core.PointerFromQChar(signal.(func() *core.QChar)())
 	}
@@ -5540,7 +5478,6 @@ func (ptr *QXmlInputSource) NextDefault() *core.QChar {
 
 //export callbackQXmlInputSource_Reset
 func callbackQXmlInputSource_Reset(ptr unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QXmlInputSource::reset"); signal != nil {
 		signal.(func())()
 	} else {
@@ -5576,7 +5513,6 @@ func (ptr *QXmlInputSource) ResetDefault() {
 
 //export callbackQXmlInputSource_SetData2
 func callbackQXmlInputSource_SetData2(ptr unsafe.Pointer, dat unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QXmlInputSource::setData2"); signal != nil {
 		signal.(func(*core.QByteArray))(core.NewQByteArrayFromPointer(dat))
 	} else {
@@ -5612,7 +5548,6 @@ func (ptr *QXmlInputSource) SetData2Default(dat core.QByteArray_ITF) {
 
 //export callbackQXmlInputSource_SetData
 func callbackQXmlInputSource_SetData(ptr unsafe.Pointer, dat C.struct_QtXml_PackedString) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QXmlInputSource::setData"); signal != nil {
 		signal.(func(string))(cGoUnpackString(dat))
 	} else {
@@ -5652,7 +5587,6 @@ func (ptr *QXmlInputSource) SetDataDefault(dat string) {
 
 //export callbackQXmlInputSource_DestroyQXmlInputSource
 func callbackQXmlInputSource_DestroyQXmlInputSource(ptr unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QXmlInputSource::~QXmlInputSource"); signal != nil {
 		signal.(func())()
 	} else {
@@ -5746,7 +5680,6 @@ func NewQXmlLexicalHandlerFromPointer(ptr unsafe.Pointer) *QXmlLexicalHandler {
 
 //export callbackQXmlLexicalHandler_Comment
 func callbackQXmlLexicalHandler_Comment(ptr unsafe.Pointer, ch C.struct_QtXml_PackedString) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QXmlLexicalHandler::comment"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(string) bool)(cGoUnpackString(ch)))))
 	}
@@ -5779,7 +5712,6 @@ func (ptr *QXmlLexicalHandler) Comment(ch string) bool {
 
 //export callbackQXmlLexicalHandler_EndCDATA
 func callbackQXmlLexicalHandler_EndCDATA(ptr unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QXmlLexicalHandler::endCDATA"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func() bool)())))
 	}
@@ -5810,7 +5742,6 @@ func (ptr *QXmlLexicalHandler) EndCDATA() bool {
 
 //export callbackQXmlLexicalHandler_EndDTD
 func callbackQXmlLexicalHandler_EndDTD(ptr unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QXmlLexicalHandler::endDTD"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func() bool)())))
 	}
@@ -5841,7 +5772,6 @@ func (ptr *QXmlLexicalHandler) EndDTD() bool {
 
 //export callbackQXmlLexicalHandler_EndEntity
 func callbackQXmlLexicalHandler_EndEntity(ptr unsafe.Pointer, name C.struct_QtXml_PackedString) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QXmlLexicalHandler::endEntity"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(string) bool)(cGoUnpackString(name)))))
 	}
@@ -5874,7 +5804,6 @@ func (ptr *QXmlLexicalHandler) EndEntity(name string) bool {
 
 //export callbackQXmlLexicalHandler_ErrorString
 func callbackQXmlLexicalHandler_ErrorString(ptr unsafe.Pointer) *C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QXmlLexicalHandler::errorString"); signal != nil {
 		return C.CString(signal.(func() string)())
 	}
@@ -5905,7 +5834,6 @@ func (ptr *QXmlLexicalHandler) ErrorString() string {
 
 //export callbackQXmlLexicalHandler_StartCDATA
 func callbackQXmlLexicalHandler_StartCDATA(ptr unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QXmlLexicalHandler::startCDATA"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func() bool)())))
 	}
@@ -5936,7 +5864,6 @@ func (ptr *QXmlLexicalHandler) StartCDATA() bool {
 
 //export callbackQXmlLexicalHandler_StartDTD
 func callbackQXmlLexicalHandler_StartDTD(ptr unsafe.Pointer, name C.struct_QtXml_PackedString, publicId C.struct_QtXml_PackedString, systemId C.struct_QtXml_PackedString) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QXmlLexicalHandler::startDTD"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(string, string, string) bool)(cGoUnpackString(name), cGoUnpackString(publicId), cGoUnpackString(systemId)))))
 	}
@@ -5973,7 +5900,6 @@ func (ptr *QXmlLexicalHandler) StartDTD(name string, publicId string, systemId s
 
 //export callbackQXmlLexicalHandler_StartEntity
 func callbackQXmlLexicalHandler_StartEntity(ptr unsafe.Pointer, name C.struct_QtXml_PackedString) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QXmlLexicalHandler::startEntity"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(string) bool)(cGoUnpackString(name)))))
 	}
@@ -6006,7 +5932,6 @@ func (ptr *QXmlLexicalHandler) StartEntity(name string) bool {
 
 //export callbackQXmlLexicalHandler_DestroyQXmlLexicalHandler
 func callbackQXmlLexicalHandler_DestroyQXmlLexicalHandler(ptr unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QXmlLexicalHandler::~QXmlLexicalHandler"); signal != nil {
 		signal.(func())()
 	} else {
@@ -6087,7 +6012,6 @@ func NewQXmlLocator() *QXmlLocator {
 
 //export callbackQXmlLocator_ColumnNumber
 func callbackQXmlLocator_ColumnNumber(ptr unsafe.Pointer) C.int {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QXmlLocator::columnNumber"); signal != nil {
 		return C.int(int32(signal.(func() int)()))
 	}
@@ -6118,7 +6042,6 @@ func (ptr *QXmlLocator) ColumnNumber() int {
 
 //export callbackQXmlLocator_LineNumber
 func callbackQXmlLocator_LineNumber(ptr unsafe.Pointer) C.int {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QXmlLocator::lineNumber"); signal != nil {
 		return C.int(int32(signal.(func() int)()))
 	}
@@ -6149,7 +6072,6 @@ func (ptr *QXmlLocator) LineNumber() int {
 
 //export callbackQXmlLocator_DestroyQXmlLocator
 func callbackQXmlLocator_DestroyQXmlLocator(ptr unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QXmlLocator::~QXmlLocator"); signal != nil {
 		signal.(func())()
 	} else {
@@ -6460,7 +6382,6 @@ func NewQXmlReaderFromPointer(ptr unsafe.Pointer) *QXmlReader {
 
 //export callbackQXmlReader_DTDHandler
 func callbackQXmlReader_DTDHandler(ptr unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QXmlReader::DTDHandler"); signal != nil {
 		return PointerFromQXmlDTDHandler(signal.(func() *QXmlDTDHandler)())
 	}
@@ -6491,7 +6412,6 @@ func (ptr *QXmlReader) DTDHandler() *QXmlDTDHandler {
 
 //export callbackQXmlReader_ContentHandler
 func callbackQXmlReader_ContentHandler(ptr unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QXmlReader::contentHandler"); signal != nil {
 		return PointerFromQXmlContentHandler(signal.(func() *QXmlContentHandler)())
 	}
@@ -6522,7 +6442,6 @@ func (ptr *QXmlReader) ContentHandler() *QXmlContentHandler {
 
 //export callbackQXmlReader_DeclHandler
 func callbackQXmlReader_DeclHandler(ptr unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QXmlReader::declHandler"); signal != nil {
 		return PointerFromQXmlDeclHandler(signal.(func() *QXmlDeclHandler)())
 	}
@@ -6553,7 +6472,6 @@ func (ptr *QXmlReader) DeclHandler() *QXmlDeclHandler {
 
 //export callbackQXmlReader_EntityResolver
 func callbackQXmlReader_EntityResolver(ptr unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QXmlReader::entityResolver"); signal != nil {
 		return PointerFromQXmlEntityResolver(signal.(func() *QXmlEntityResolver)())
 	}
@@ -6584,7 +6502,6 @@ func (ptr *QXmlReader) EntityResolver() *QXmlEntityResolver {
 
 //export callbackQXmlReader_ErrorHandler
 func callbackQXmlReader_ErrorHandler(ptr unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QXmlReader::errorHandler"); signal != nil {
 		return PointerFromQXmlErrorHandler(signal.(func() *QXmlErrorHandler)())
 	}
@@ -6615,7 +6532,6 @@ func (ptr *QXmlReader) ErrorHandler() *QXmlErrorHandler {
 
 //export callbackQXmlReader_Feature
 func callbackQXmlReader_Feature(ptr unsafe.Pointer, name C.struct_QtXml_PackedString, ok C.char) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QXmlReader::feature"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(string, bool) bool)(cGoUnpackString(name), int8(ok) != 0))))
 	}
@@ -6648,7 +6564,6 @@ func (ptr *QXmlReader) Feature(name string, ok bool) bool {
 
 //export callbackQXmlReader_HasFeature
 func callbackQXmlReader_HasFeature(ptr unsafe.Pointer, name C.struct_QtXml_PackedString) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QXmlReader::hasFeature"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(string) bool)(cGoUnpackString(name)))))
 	}
@@ -6681,7 +6596,6 @@ func (ptr *QXmlReader) HasFeature(name string) bool {
 
 //export callbackQXmlReader_HasProperty
 func callbackQXmlReader_HasProperty(ptr unsafe.Pointer, name C.struct_QtXml_PackedString) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QXmlReader::hasProperty"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(string) bool)(cGoUnpackString(name)))))
 	}
@@ -6714,7 +6628,6 @@ func (ptr *QXmlReader) HasProperty(name string) bool {
 
 //export callbackQXmlReader_LexicalHandler
 func callbackQXmlReader_LexicalHandler(ptr unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QXmlReader::lexicalHandler"); signal != nil {
 		return PointerFromQXmlLexicalHandler(signal.(func() *QXmlLexicalHandler)())
 	}
@@ -6745,7 +6658,6 @@ func (ptr *QXmlReader) LexicalHandler() *QXmlLexicalHandler {
 
 //export callbackQXmlReader_Parse
 func callbackQXmlReader_Parse(ptr unsafe.Pointer, input unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QXmlReader::parse"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*QXmlInputSource) bool)(NewQXmlInputSourceFromPointer(input)))))
 	}
@@ -6776,7 +6688,6 @@ func (ptr *QXmlReader) Parse(input QXmlInputSource_ITF) bool {
 
 //export callbackQXmlReader_Property
 func callbackQXmlReader_Property(ptr unsafe.Pointer, name C.struct_QtXml_PackedString, ok C.char) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QXmlReader::property"); signal != nil {
 		return signal.(func(string, bool) unsafe.Pointer)(cGoUnpackString(name), int8(ok) != 0)
 	}
@@ -6809,7 +6720,6 @@ func (ptr *QXmlReader) Property(name string, ok bool) unsafe.Pointer {
 
 //export callbackQXmlReader_SetContentHandler
 func callbackQXmlReader_SetContentHandler(ptr unsafe.Pointer, handler unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QXmlReader::setContentHandler"); signal != nil {
 		signal.(func(*QXmlContentHandler))(NewQXmlContentHandlerFromPointer(handler))
 	}
@@ -6838,7 +6748,6 @@ func (ptr *QXmlReader) SetContentHandler(handler QXmlContentHandler_ITF) {
 
 //export callbackQXmlReader_SetDTDHandler
 func callbackQXmlReader_SetDTDHandler(ptr unsafe.Pointer, handler unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QXmlReader::setDTDHandler"); signal != nil {
 		signal.(func(*QXmlDTDHandler))(NewQXmlDTDHandlerFromPointer(handler))
 	}
@@ -6867,7 +6776,6 @@ func (ptr *QXmlReader) SetDTDHandler(handler QXmlDTDHandler_ITF) {
 
 //export callbackQXmlReader_SetDeclHandler
 func callbackQXmlReader_SetDeclHandler(ptr unsafe.Pointer, handler unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QXmlReader::setDeclHandler"); signal != nil {
 		signal.(func(*QXmlDeclHandler))(NewQXmlDeclHandlerFromPointer(handler))
 	}
@@ -6896,7 +6804,6 @@ func (ptr *QXmlReader) SetDeclHandler(handler QXmlDeclHandler_ITF) {
 
 //export callbackQXmlReader_SetEntityResolver
 func callbackQXmlReader_SetEntityResolver(ptr unsafe.Pointer, handler unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QXmlReader::setEntityResolver"); signal != nil {
 		signal.(func(*QXmlEntityResolver))(NewQXmlEntityResolverFromPointer(handler))
 	}
@@ -6925,7 +6832,6 @@ func (ptr *QXmlReader) SetEntityResolver(handler QXmlEntityResolver_ITF) {
 
 //export callbackQXmlReader_SetErrorHandler
 func callbackQXmlReader_SetErrorHandler(ptr unsafe.Pointer, handler unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QXmlReader::setErrorHandler"); signal != nil {
 		signal.(func(*QXmlErrorHandler))(NewQXmlErrorHandlerFromPointer(handler))
 	}
@@ -6954,7 +6860,6 @@ func (ptr *QXmlReader) SetErrorHandler(handler QXmlErrorHandler_ITF) {
 
 //export callbackQXmlReader_SetFeature
 func callbackQXmlReader_SetFeature(ptr unsafe.Pointer, name C.struct_QtXml_PackedString, value C.char) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QXmlReader::setFeature"); signal != nil {
 		signal.(func(string, bool))(cGoUnpackString(name), int8(value) != 0)
 	}
@@ -6985,7 +6890,6 @@ func (ptr *QXmlReader) SetFeature(name string, value bool) {
 
 //export callbackQXmlReader_SetLexicalHandler
 func callbackQXmlReader_SetLexicalHandler(ptr unsafe.Pointer, handler unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QXmlReader::setLexicalHandler"); signal != nil {
 		signal.(func(*QXmlLexicalHandler))(NewQXmlLexicalHandlerFromPointer(handler))
 	}
@@ -7014,7 +6918,6 @@ func (ptr *QXmlReader) SetLexicalHandler(handler QXmlLexicalHandler_ITF) {
 
 //export callbackQXmlReader_SetProperty
 func callbackQXmlReader_SetProperty(ptr unsafe.Pointer, name C.struct_QtXml_PackedString, value unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QXmlReader::setProperty"); signal != nil {
 		signal.(func(string, unsafe.Pointer))(cGoUnpackString(name), value)
 	}
@@ -7045,7 +6948,6 @@ func (ptr *QXmlReader) SetProperty(name string, value unsafe.Pointer) {
 
 //export callbackQXmlReader_DestroyQXmlReader
 func callbackQXmlReader_DestroyQXmlReader(ptr unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QXmlReader::~QXmlReader"); signal != nil {
 		signal.(func())()
 	} else {
@@ -7124,7 +7026,6 @@ func NewQXmlSimpleReaderFromPointer(ptr unsafe.Pointer) *QXmlSimpleReader {
 
 //export callbackQXmlSimpleReader_DTDHandler
 func callbackQXmlSimpleReader_DTDHandler(ptr unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QXmlSimpleReader::DTDHandler"); signal != nil {
 		return PointerFromQXmlDTDHandler(signal.(func() *QXmlDTDHandler)())
 	}
@@ -7166,7 +7067,6 @@ func NewQXmlSimpleReader() *QXmlSimpleReader {
 
 //export callbackQXmlSimpleReader_ContentHandler
 func callbackQXmlSimpleReader_ContentHandler(ptr unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QXmlSimpleReader::contentHandler"); signal != nil {
 		return PointerFromQXmlContentHandler(signal.(func() *QXmlContentHandler)())
 	}
@@ -7204,7 +7104,6 @@ func (ptr *QXmlSimpleReader) ContentHandlerDefault() *QXmlContentHandler {
 
 //export callbackQXmlSimpleReader_DeclHandler
 func callbackQXmlSimpleReader_DeclHandler(ptr unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QXmlSimpleReader::declHandler"); signal != nil {
 		return PointerFromQXmlDeclHandler(signal.(func() *QXmlDeclHandler)())
 	}
@@ -7242,7 +7141,6 @@ func (ptr *QXmlSimpleReader) DeclHandlerDefault() *QXmlDeclHandler {
 
 //export callbackQXmlSimpleReader_EntityResolver
 func callbackQXmlSimpleReader_EntityResolver(ptr unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QXmlSimpleReader::entityResolver"); signal != nil {
 		return PointerFromQXmlEntityResolver(signal.(func() *QXmlEntityResolver)())
 	}
@@ -7280,7 +7178,6 @@ func (ptr *QXmlSimpleReader) EntityResolverDefault() *QXmlEntityResolver {
 
 //export callbackQXmlSimpleReader_ErrorHandler
 func callbackQXmlSimpleReader_ErrorHandler(ptr unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QXmlSimpleReader::errorHandler"); signal != nil {
 		return PointerFromQXmlErrorHandler(signal.(func() *QXmlErrorHandler)())
 	}
@@ -7318,7 +7215,6 @@ func (ptr *QXmlSimpleReader) ErrorHandlerDefault() *QXmlErrorHandler {
 
 //export callbackQXmlSimpleReader_Feature
 func callbackQXmlSimpleReader_Feature(ptr unsafe.Pointer, name C.struct_QtXml_PackedString, ok C.char) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QXmlSimpleReader::feature"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(string, bool) bool)(cGoUnpackString(name), int8(ok) != 0))))
 	}
@@ -7360,7 +7256,6 @@ func (ptr *QXmlSimpleReader) FeatureDefault(name string, ok bool) bool {
 
 //export callbackQXmlSimpleReader_HasFeature
 func callbackQXmlSimpleReader_HasFeature(ptr unsafe.Pointer, name C.struct_QtXml_PackedString) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QXmlSimpleReader::hasFeature"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(string) bool)(cGoUnpackString(name)))))
 	}
@@ -7402,7 +7297,6 @@ func (ptr *QXmlSimpleReader) HasFeatureDefault(name string) bool {
 
 //export callbackQXmlSimpleReader_HasProperty
 func callbackQXmlSimpleReader_HasProperty(ptr unsafe.Pointer, name C.struct_QtXml_PackedString) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QXmlSimpleReader::hasProperty"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(string) bool)(cGoUnpackString(name)))))
 	}
@@ -7444,7 +7338,6 @@ func (ptr *QXmlSimpleReader) HasPropertyDefault(name string) bool {
 
 //export callbackQXmlSimpleReader_LexicalHandler
 func callbackQXmlSimpleReader_LexicalHandler(ptr unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QXmlSimpleReader::lexicalHandler"); signal != nil {
 		return PointerFromQXmlLexicalHandler(signal.(func() *QXmlLexicalHandler)())
 	}
@@ -7482,7 +7375,6 @@ func (ptr *QXmlSimpleReader) LexicalHandlerDefault() *QXmlLexicalHandler {
 
 //export callbackQXmlSimpleReader_Parse
 func callbackQXmlSimpleReader_Parse(ptr unsafe.Pointer, input unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QXmlSimpleReader::parse"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*QXmlInputSource) bool)(NewQXmlInputSourceFromPointer(input)))))
 	}
@@ -7520,7 +7412,6 @@ func (ptr *QXmlSimpleReader) ParseDefault(input QXmlInputSource_ITF) bool {
 
 //export callbackQXmlSimpleReader_Parse2
 func callbackQXmlSimpleReader_Parse2(ptr unsafe.Pointer, input unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QXmlSimpleReader::parse2"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*QXmlInputSource) bool)(NewQXmlInputSourceFromPointer(input)))))
 	}
@@ -7558,7 +7449,6 @@ func (ptr *QXmlSimpleReader) Parse2Default(input QXmlInputSource_ITF) bool {
 
 //export callbackQXmlSimpleReader_Parse3
 func callbackQXmlSimpleReader_Parse3(ptr unsafe.Pointer, input unsafe.Pointer, incremental C.char) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QXmlSimpleReader::parse3"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*QXmlInputSource, bool) bool)(NewQXmlInputSourceFromPointer(input), int8(incremental) != 0))))
 	}
@@ -7596,7 +7486,6 @@ func (ptr *QXmlSimpleReader) Parse3Default(input QXmlInputSource_ITF, incrementa
 
 //export callbackQXmlSimpleReader_ParseContinue
 func callbackQXmlSimpleReader_ParseContinue(ptr unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QXmlSimpleReader::parseContinue"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func() bool)())))
 	}
@@ -7634,7 +7523,6 @@ func (ptr *QXmlSimpleReader) ParseContinueDefault() bool {
 
 //export callbackQXmlSimpleReader_Property
 func callbackQXmlSimpleReader_Property(ptr unsafe.Pointer, name C.struct_QtXml_PackedString, ok C.char) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QXmlSimpleReader::property"); signal != nil {
 		return signal.(func(string, bool) unsafe.Pointer)(cGoUnpackString(name), int8(ok) != 0)
 	}
@@ -7676,7 +7564,6 @@ func (ptr *QXmlSimpleReader) PropertyDefault(name string, ok bool) unsafe.Pointe
 
 //export callbackQXmlSimpleReader_SetContentHandler
 func callbackQXmlSimpleReader_SetContentHandler(ptr unsafe.Pointer, handler unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QXmlSimpleReader::setContentHandler"); signal != nil {
 		signal.(func(*QXmlContentHandler))(NewQXmlContentHandlerFromPointer(handler))
 	} else {
@@ -7712,7 +7599,6 @@ func (ptr *QXmlSimpleReader) SetContentHandlerDefault(handler QXmlContentHandler
 
 //export callbackQXmlSimpleReader_SetDTDHandler
 func callbackQXmlSimpleReader_SetDTDHandler(ptr unsafe.Pointer, handler unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QXmlSimpleReader::setDTDHandler"); signal != nil {
 		signal.(func(*QXmlDTDHandler))(NewQXmlDTDHandlerFromPointer(handler))
 	} else {
@@ -7748,7 +7634,6 @@ func (ptr *QXmlSimpleReader) SetDTDHandlerDefault(handler QXmlDTDHandler_ITF) {
 
 //export callbackQXmlSimpleReader_SetDeclHandler
 func callbackQXmlSimpleReader_SetDeclHandler(ptr unsafe.Pointer, handler unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QXmlSimpleReader::setDeclHandler"); signal != nil {
 		signal.(func(*QXmlDeclHandler))(NewQXmlDeclHandlerFromPointer(handler))
 	} else {
@@ -7784,7 +7669,6 @@ func (ptr *QXmlSimpleReader) SetDeclHandlerDefault(handler QXmlDeclHandler_ITF) 
 
 //export callbackQXmlSimpleReader_SetEntityResolver
 func callbackQXmlSimpleReader_SetEntityResolver(ptr unsafe.Pointer, handler unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QXmlSimpleReader::setEntityResolver"); signal != nil {
 		signal.(func(*QXmlEntityResolver))(NewQXmlEntityResolverFromPointer(handler))
 	} else {
@@ -7820,7 +7704,6 @@ func (ptr *QXmlSimpleReader) SetEntityResolverDefault(handler QXmlEntityResolver
 
 //export callbackQXmlSimpleReader_SetErrorHandler
 func callbackQXmlSimpleReader_SetErrorHandler(ptr unsafe.Pointer, handler unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QXmlSimpleReader::setErrorHandler"); signal != nil {
 		signal.(func(*QXmlErrorHandler))(NewQXmlErrorHandlerFromPointer(handler))
 	} else {
@@ -7856,7 +7739,6 @@ func (ptr *QXmlSimpleReader) SetErrorHandlerDefault(handler QXmlErrorHandler_ITF
 
 //export callbackQXmlSimpleReader_SetFeature
 func callbackQXmlSimpleReader_SetFeature(ptr unsafe.Pointer, name C.struct_QtXml_PackedString, enable C.char) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QXmlSimpleReader::setFeature"); signal != nil {
 		signal.(func(string, bool))(cGoUnpackString(name), int8(enable) != 0)
 	} else {
@@ -7896,7 +7778,6 @@ func (ptr *QXmlSimpleReader) SetFeatureDefault(name string, enable bool) {
 
 //export callbackQXmlSimpleReader_SetLexicalHandler
 func callbackQXmlSimpleReader_SetLexicalHandler(ptr unsafe.Pointer, handler unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QXmlSimpleReader::setLexicalHandler"); signal != nil {
 		signal.(func(*QXmlLexicalHandler))(NewQXmlLexicalHandlerFromPointer(handler))
 	} else {
@@ -7932,7 +7813,6 @@ func (ptr *QXmlSimpleReader) SetLexicalHandlerDefault(handler QXmlLexicalHandler
 
 //export callbackQXmlSimpleReader_SetProperty
 func callbackQXmlSimpleReader_SetProperty(ptr unsafe.Pointer, name C.struct_QtXml_PackedString, value unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QXmlSimpleReader::setProperty"); signal != nil {
 		signal.(func(string, unsafe.Pointer))(cGoUnpackString(name), value)
 	} else {
@@ -7972,7 +7852,6 @@ func (ptr *QXmlSimpleReader) SetPropertyDefault(name string, value unsafe.Pointe
 
 //export callbackQXmlSimpleReader_DestroyQXmlSimpleReader
 func callbackQXmlSimpleReader_DestroyQXmlSimpleReader(ptr unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QXmlSimpleReader::~QXmlSimpleReader"); signal != nil {
 		signal.(func())()
 	} else {

@@ -36,6 +36,7 @@ type Function struct {
 	AsError         bool
 	Synthetic       bool
 	Checked         bool
+	Exception       bool
 }
 
 type Parameter struct {

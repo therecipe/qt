@@ -161,7 +161,6 @@ func NewQHelpContentModelFromPointer(ptr unsafe.Pointer) *QHelpContentModel {
 
 //export callbackQHelpContentModel_ColumnCount
 func callbackQHelpContentModel_ColumnCount(ptr unsafe.Pointer, parent unsafe.Pointer) C.int {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentModel::columnCount"); signal != nil {
 		return C.int(int32(signal.(func(*core.QModelIndex) int)(core.NewQModelIndexFromPointer(parent))))
 	}
@@ -206,7 +205,6 @@ func (ptr *QHelpContentModel) ContentItemAt(index core.QModelIndex_ITF) *QHelpCo
 
 //export callbackQHelpContentModel_ContentsCreated
 func callbackQHelpContentModel_ContentsCreated(ptr unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentModel::contentsCreated"); signal != nil {
 		signal.(func())()
 	}
@@ -235,7 +233,6 @@ func (ptr *QHelpContentModel) ContentsCreated() {
 
 //export callbackQHelpContentModel_ContentsCreationStarted
 func callbackQHelpContentModel_ContentsCreationStarted(ptr unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentModel::contentsCreationStarted"); signal != nil {
 		signal.(func())()
 	}
@@ -272,7 +269,6 @@ func (ptr *QHelpContentModel) CreateContents(customFilterName string) {
 
 //export callbackQHelpContentModel_Data
 func callbackQHelpContentModel_Data(ptr unsafe.Pointer, index unsafe.Pointer, role C.int) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentModel::data"); signal != nil {
 		return core.PointerFromQVariant(signal.(func(*core.QModelIndex, int) *core.QVariant)(core.NewQModelIndexFromPointer(index), int(int32(role))))
 	}
@@ -314,7 +310,6 @@ func (ptr *QHelpContentModel) DataDefault(index core.QModelIndex_ITF, role int) 
 
 //export callbackQHelpContentModel_Index
 func callbackQHelpContentModel_Index(ptr unsafe.Pointer, row C.int, column C.int, parent unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentModel::index"); signal != nil {
 		return core.PointerFromQModelIndex(signal.(func(int, int, *core.QModelIndex) *core.QModelIndex)(int(int32(row)), int(int32(column)), core.NewQModelIndexFromPointer(parent)))
 	}
@@ -363,7 +358,6 @@ func (ptr *QHelpContentModel) IsCreatingContents() bool {
 
 //export callbackQHelpContentModel_Parent
 func callbackQHelpContentModel_Parent(ptr unsafe.Pointer, index unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentModel::parent"); signal != nil {
 		return core.PointerFromQModelIndex(signal.(func(*core.QModelIndex) *core.QModelIndex)(core.NewQModelIndexFromPointer(index)))
 	}
@@ -405,7 +399,6 @@ func (ptr *QHelpContentModel) ParentDefault(index core.QModelIndex_ITF) *core.QM
 
 //export callbackQHelpContentModel_RowCount
 func callbackQHelpContentModel_RowCount(ptr unsafe.Pointer, parent unsafe.Pointer) C.int {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentModel::rowCount"); signal != nil {
 		return C.int(int32(signal.(func(*core.QModelIndex) int)(core.NewQModelIndexFromPointer(parent))))
 	}
@@ -451,7 +444,6 @@ func (ptr *QHelpContentModel) DestroyQHelpContentModel() {
 
 //export callbackQHelpContentModel_Sibling
 func callbackQHelpContentModel_Sibling(ptr unsafe.Pointer, row C.int, column C.int, index unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentModel::sibling"); signal != nil {
 		return core.PointerFromQModelIndex(signal.(func(int, int, *core.QModelIndex) *core.QModelIndex)(int(int32(row)), int(int32(column)), core.NewQModelIndexFromPointer(index)))
 	}
@@ -493,7 +485,6 @@ func (ptr *QHelpContentModel) SiblingDefault(row int, column int, index core.QMo
 
 //export callbackQHelpContentModel_Buddy
 func callbackQHelpContentModel_Buddy(ptr unsafe.Pointer, index unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentModel::buddy"); signal != nil {
 		return core.PointerFromQModelIndex(signal.(func(*core.QModelIndex) *core.QModelIndex)(core.NewQModelIndexFromPointer(index)))
 	}
@@ -535,7 +526,6 @@ func (ptr *QHelpContentModel) BuddyDefault(index core.QModelIndex_ITF) *core.QMo
 
 //export callbackQHelpContentModel_CanDropMimeData
 func callbackQHelpContentModel_CanDropMimeData(ptr unsafe.Pointer, data unsafe.Pointer, action C.longlong, row C.int, column C.int, parent unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentModel::canDropMimeData"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QMimeData, core.Qt__DropAction, int, int, *core.QModelIndex) bool)(core.NewQMimeDataFromPointer(data), core.Qt__DropAction(action), int(int32(row)), int(int32(column)), core.NewQModelIndexFromPointer(parent)))))
 	}
@@ -573,7 +563,6 @@ func (ptr *QHelpContentModel) CanDropMimeDataDefault(data core.QMimeData_ITF, ac
 
 //export callbackQHelpContentModel_CanFetchMore
 func callbackQHelpContentModel_CanFetchMore(ptr unsafe.Pointer, parent unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentModel::canFetchMore"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QModelIndex) bool)(core.NewQModelIndexFromPointer(parent)))))
 	}
@@ -611,7 +600,6 @@ func (ptr *QHelpContentModel) CanFetchMoreDefault(parent core.QModelIndex_ITF) b
 
 //export callbackQHelpContentModel_DropMimeData
 func callbackQHelpContentModel_DropMimeData(ptr unsafe.Pointer, data unsafe.Pointer, action C.longlong, row C.int, column C.int, parent unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentModel::dropMimeData"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QMimeData, core.Qt__DropAction, int, int, *core.QModelIndex) bool)(core.NewQMimeDataFromPointer(data), core.Qt__DropAction(action), int(int32(row)), int(int32(column)), core.NewQModelIndexFromPointer(parent)))))
 	}
@@ -649,7 +637,6 @@ func (ptr *QHelpContentModel) DropMimeDataDefault(data core.QMimeData_ITF, actio
 
 //export callbackQHelpContentModel_FetchMore
 func callbackQHelpContentModel_FetchMore(ptr unsafe.Pointer, parent unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentModel::fetchMore"); signal != nil {
 		signal.(func(*core.QModelIndex))(core.NewQModelIndexFromPointer(parent))
 	} else {
@@ -685,7 +672,6 @@ func (ptr *QHelpContentModel) FetchMoreDefault(parent core.QModelIndex_ITF) {
 
 //export callbackQHelpContentModel_Flags
 func callbackQHelpContentModel_Flags(ptr unsafe.Pointer, index unsafe.Pointer) C.longlong {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentModel::flags"); signal != nil {
 		return C.longlong(signal.(func(*core.QModelIndex) core.Qt__ItemFlag)(core.NewQModelIndexFromPointer(index)))
 	}
@@ -723,7 +709,6 @@ func (ptr *QHelpContentModel) FlagsDefault(index core.QModelIndex_ITF) core.Qt__
 
 //export callbackQHelpContentModel_HasChildren
 func callbackQHelpContentModel_HasChildren(ptr unsafe.Pointer, parent unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentModel::hasChildren"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QModelIndex) bool)(core.NewQModelIndexFromPointer(parent)))))
 	}
@@ -761,7 +746,6 @@ func (ptr *QHelpContentModel) HasChildrenDefault(parent core.QModelIndex_ITF) bo
 
 //export callbackQHelpContentModel_HeaderData
 func callbackQHelpContentModel_HeaderData(ptr unsafe.Pointer, section C.int, orientation C.longlong, role C.int) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentModel::headerData"); signal != nil {
 		return core.PointerFromQVariant(signal.(func(int, core.Qt__Orientation, int) *core.QVariant)(int(int32(section)), core.Qt__Orientation(orientation), int(int32(role))))
 	}
@@ -803,7 +787,6 @@ func (ptr *QHelpContentModel) HeaderDataDefault(section int, orientation core.Qt
 
 //export callbackQHelpContentModel_InsertColumns
 func callbackQHelpContentModel_InsertColumns(ptr unsafe.Pointer, column C.int, count C.int, parent unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentModel::insertColumns"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(int, int, *core.QModelIndex) bool)(int(int32(column)), int(int32(count)), core.NewQModelIndexFromPointer(parent)))))
 	}
@@ -841,7 +824,6 @@ func (ptr *QHelpContentModel) InsertColumnsDefault(column int, count int, parent
 
 //export callbackQHelpContentModel_InsertRows
 func callbackQHelpContentModel_InsertRows(ptr unsafe.Pointer, row C.int, count C.int, parent unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentModel::insertRows"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(int, int, *core.QModelIndex) bool)(int(int32(row)), int(int32(count)), core.NewQModelIndexFromPointer(parent)))))
 	}
@@ -879,7 +861,6 @@ func (ptr *QHelpContentModel) InsertRowsDefault(row int, count int, parent core.
 
 //export callbackQHelpContentModel_MimeTypes
 func callbackQHelpContentModel_MimeTypes(ptr unsafe.Pointer) *C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentModel::mimeTypes"); signal != nil {
 		return C.CString(strings.Join(signal.(func() []string)(), "|"))
 	}
@@ -917,7 +898,6 @@ func (ptr *QHelpContentModel) MimeTypesDefault() []string {
 
 //export callbackQHelpContentModel_MoveColumns
 func callbackQHelpContentModel_MoveColumns(ptr unsafe.Pointer, sourceParent unsafe.Pointer, sourceColumn C.int, count C.int, destinationParent unsafe.Pointer, destinationChild C.int) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentModel::moveColumns"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QModelIndex, int, int, *core.QModelIndex, int) bool)(core.NewQModelIndexFromPointer(sourceParent), int(int32(sourceColumn)), int(int32(count)), core.NewQModelIndexFromPointer(destinationParent), int(int32(destinationChild))))))
 	}
@@ -955,7 +935,6 @@ func (ptr *QHelpContentModel) MoveColumnsDefault(sourceParent core.QModelIndex_I
 
 //export callbackQHelpContentModel_MoveRows
 func callbackQHelpContentModel_MoveRows(ptr unsafe.Pointer, sourceParent unsafe.Pointer, sourceRow C.int, count C.int, destinationParent unsafe.Pointer, destinationChild C.int) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentModel::moveRows"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QModelIndex, int, int, *core.QModelIndex, int) bool)(core.NewQModelIndexFromPointer(sourceParent), int(int32(sourceRow)), int(int32(count)), core.NewQModelIndexFromPointer(destinationParent), int(int32(destinationChild))))))
 	}
@@ -993,7 +972,6 @@ func (ptr *QHelpContentModel) MoveRowsDefault(sourceParent core.QModelIndex_ITF,
 
 //export callbackQHelpContentModel_RemoveColumns
 func callbackQHelpContentModel_RemoveColumns(ptr unsafe.Pointer, column C.int, count C.int, parent unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentModel::removeColumns"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(int, int, *core.QModelIndex) bool)(int(int32(column)), int(int32(count)), core.NewQModelIndexFromPointer(parent)))))
 	}
@@ -1031,7 +1009,6 @@ func (ptr *QHelpContentModel) RemoveColumnsDefault(column int, count int, parent
 
 //export callbackQHelpContentModel_RemoveRows
 func callbackQHelpContentModel_RemoveRows(ptr unsafe.Pointer, row C.int, count C.int, parent unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentModel::removeRows"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(int, int, *core.QModelIndex) bool)(int(int32(row)), int(int32(count)), core.NewQModelIndexFromPointer(parent)))))
 	}
@@ -1139,7 +1116,6 @@ func (ptr *QHelpContentModel) RevertDefault() {
 
 //export callbackQHelpContentModel_SetData
 func callbackQHelpContentModel_SetData(ptr unsafe.Pointer, index unsafe.Pointer, value unsafe.Pointer, role C.int) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentModel::setData"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QModelIndex, *core.QVariant, int) bool)(core.NewQModelIndexFromPointer(index), core.NewQVariantFromPointer(value), int(int32(role))))))
 	}
@@ -1177,7 +1153,6 @@ func (ptr *QHelpContentModel) SetDataDefault(index core.QModelIndex_ITF, value c
 
 //export callbackQHelpContentModel_SetHeaderData
 func callbackQHelpContentModel_SetHeaderData(ptr unsafe.Pointer, section C.int, orientation C.longlong, value unsafe.Pointer, role C.int) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentModel::setHeaderData"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(int, core.Qt__Orientation, *core.QVariant, int) bool)(int(int32(section)), core.Qt__Orientation(orientation), core.NewQVariantFromPointer(value), int(int32(role))))))
 	}
@@ -1215,7 +1190,6 @@ func (ptr *QHelpContentModel) SetHeaderDataDefault(section int, orientation core
 
 //export callbackQHelpContentModel_Sort
 func callbackQHelpContentModel_Sort(ptr unsafe.Pointer, column C.int, order C.longlong) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentModel::sort"); signal != nil {
 		signal.(func(int, core.Qt__SortOrder))(int(int32(column)), core.Qt__SortOrder(order))
 	} else {
@@ -1251,7 +1225,6 @@ func (ptr *QHelpContentModel) SortDefault(column int, order core.Qt__SortOrder) 
 
 //export callbackQHelpContentModel_Span
 func callbackQHelpContentModel_Span(ptr unsafe.Pointer, index unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentModel::span"); signal != nil {
 		return core.PointerFromQSize(signal.(func(*core.QModelIndex) *core.QSize)(core.NewQModelIndexFromPointer(index)))
 	}
@@ -1330,7 +1303,6 @@ func (ptr *QHelpContentModel) SubmitDefault() bool {
 
 //export callbackQHelpContentModel_SupportedDragActions
 func callbackQHelpContentModel_SupportedDragActions(ptr unsafe.Pointer) C.longlong {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentModel::supportedDragActions"); signal != nil {
 		return C.longlong(signal.(func() core.Qt__DropAction)())
 	}
@@ -1368,7 +1340,6 @@ func (ptr *QHelpContentModel) SupportedDragActionsDefault() core.Qt__DropAction 
 
 //export callbackQHelpContentModel_SupportedDropActions
 func callbackQHelpContentModel_SupportedDropActions(ptr unsafe.Pointer) C.longlong {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentModel::supportedDropActions"); signal != nil {
 		return C.longlong(signal.(func() core.Qt__DropAction)())
 	}
@@ -1406,7 +1377,6 @@ func (ptr *QHelpContentModel) SupportedDropActionsDefault() core.Qt__DropAction 
 
 //export callbackQHelpContentModel_TimerEvent
 func callbackQHelpContentModel_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentModel::timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
 	} else {
@@ -1442,7 +1412,6 @@ func (ptr *QHelpContentModel) TimerEventDefault(event core.QTimerEvent_ITF) {
 
 //export callbackQHelpContentModel_ChildEvent
 func callbackQHelpContentModel_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentModel::childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
 	} else {
@@ -1478,7 +1447,6 @@ func (ptr *QHelpContentModel) ChildEventDefault(event core.QChildEvent_ITF) {
 
 //export callbackQHelpContentModel_ConnectNotify
 func callbackQHelpContentModel_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentModel::connectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
@@ -1514,7 +1482,6 @@ func (ptr *QHelpContentModel) ConnectNotifyDefault(sign core.QMetaMethod_ITF) {
 
 //export callbackQHelpContentModel_CustomEvent
 func callbackQHelpContentModel_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentModel::customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
 	} else {
@@ -1589,7 +1556,6 @@ func (ptr *QHelpContentModel) DeleteLaterDefault() {
 
 //export callbackQHelpContentModel_DisconnectNotify
 func callbackQHelpContentModel_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentModel::disconnectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
@@ -1625,7 +1591,6 @@ func (ptr *QHelpContentModel) DisconnectNotifyDefault(sign core.QMetaMethod_ITF)
 
 //export callbackQHelpContentModel_Event
 func callbackQHelpContentModel_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentModel::event"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
 	}
@@ -1663,7 +1628,6 @@ func (ptr *QHelpContentModel) EventDefault(e core.QEvent_ITF) bool {
 
 //export callbackQHelpContentModel_EventFilter
 func callbackQHelpContentModel_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentModel::eventFilter"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
 	}
@@ -1701,7 +1665,6 @@ func (ptr *QHelpContentModel) EventFilterDefault(watched core.QObject_ITF, event
 
 //export callbackQHelpContentModel_MetaObject
 func callbackQHelpContentModel_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentModel::metaObject"); signal != nil {
 		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
 	}
@@ -1795,7 +1758,6 @@ func (ptr *QHelpContentWidget) IndexOf(link core.QUrl_ITF) *core.QModelIndex {
 
 //export callbackQHelpContentWidget_LinkActivated
 func callbackQHelpContentWidget_LinkActivated(ptr unsafe.Pointer, link unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentWidget::linkActivated"); signal != nil {
 		signal.(func(*core.QUrl))(core.NewQUrlFromPointer(link))
 	}
@@ -2034,7 +1996,6 @@ func (ptr *QHelpContentWidget) ColumnResizedDefault(column int, oldSize int, new
 
 //export callbackQHelpContentWidget_CurrentChanged
 func callbackQHelpContentWidget_CurrentChanged(ptr unsafe.Pointer, current unsafe.Pointer, previous unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentWidget::currentChanged"); signal != nil {
 		signal.(func(*core.QModelIndex, *core.QModelIndex))(core.NewQModelIndexFromPointer(current), core.NewQModelIndexFromPointer(previous))
 	} else {
@@ -2070,7 +2031,6 @@ func (ptr *QHelpContentWidget) CurrentChangedDefault(current core.QModelIndex_IT
 
 //export callbackQHelpContentWidget_DragMoveEvent
 func callbackQHelpContentWidget_DragMoveEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentWidget::dragMoveEvent"); signal != nil {
 		signal.(func(*gui.QDragMoveEvent))(gui.NewQDragMoveEventFromPointer(event))
 	} else {
@@ -2106,7 +2066,6 @@ func (ptr *QHelpContentWidget) DragMoveEventDefault(event gui.QDragMoveEvent_ITF
 
 //export callbackQHelpContentWidget_DrawBranches
 func callbackQHelpContentWidget_DrawBranches(ptr unsafe.Pointer, painter unsafe.Pointer, rect unsafe.Pointer, index unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentWidget::drawBranches"); signal != nil {
 		signal.(func(*gui.QPainter, *core.QRect, *core.QModelIndex))(gui.NewQPainterFromPointer(painter), core.NewQRectFromPointer(rect), core.NewQModelIndexFromPointer(index))
 	} else {
@@ -2142,7 +2101,6 @@ func (ptr *QHelpContentWidget) DrawBranchesDefault(painter gui.QPainter_ITF, rec
 
 //export callbackQHelpContentWidget_DrawRow
 func callbackQHelpContentWidget_DrawRow(ptr unsafe.Pointer, painter unsafe.Pointer, option unsafe.Pointer, index unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentWidget::drawRow"); signal != nil {
 		signal.(func(*gui.QPainter, *widgets.QStyleOptionViewItem, *core.QModelIndex))(gui.NewQPainterFromPointer(painter), widgets.NewQStyleOptionViewItemFromPointer(option), core.NewQModelIndexFromPointer(index))
 	} else {
@@ -2283,7 +2241,6 @@ func (ptr *QHelpContentWidget) HideColumnDefault(column int) {
 
 //export callbackQHelpContentWidget_HorizontalOffset
 func callbackQHelpContentWidget_HorizontalOffset(ptr unsafe.Pointer) C.int {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentWidget::horizontalOffset"); signal != nil {
 		return C.int(int32(signal.(func() int)()))
 	}
@@ -2321,7 +2278,6 @@ func (ptr *QHelpContentWidget) HorizontalOffsetDefault() int {
 
 //export callbackQHelpContentWidget_IndexAt
 func callbackQHelpContentWidget_IndexAt(ptr unsafe.Pointer, point unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentWidget::indexAt"); signal != nil {
 		return core.PointerFromQModelIndex(signal.(func(*core.QPoint) *core.QModelIndex)(core.NewQPointFromPointer(point)))
 	}
@@ -2363,7 +2319,6 @@ func (ptr *QHelpContentWidget) IndexAtDefault(point core.QPoint_ITF) *core.QMode
 
 //export callbackQHelpContentWidget_IsIndexHidden
 func callbackQHelpContentWidget_IsIndexHidden(ptr unsafe.Pointer, index unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentWidget::isIndexHidden"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QModelIndex) bool)(core.NewQModelIndexFromPointer(index)))))
 	}
@@ -2401,7 +2356,6 @@ func (ptr *QHelpContentWidget) IsIndexHiddenDefault(index core.QModelIndex_ITF) 
 
 //export callbackQHelpContentWidget_KeyPressEvent
 func callbackQHelpContentWidget_KeyPressEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentWidget::keyPressEvent"); signal != nil {
 		signal.(func(*gui.QKeyEvent))(gui.NewQKeyEventFromPointer(event))
 	} else {
@@ -2437,7 +2391,6 @@ func (ptr *QHelpContentWidget) KeyPressEventDefault(event gui.QKeyEvent_ITF) {
 
 //export callbackQHelpContentWidget_KeyboardSearch
 func callbackQHelpContentWidget_KeyboardSearch(ptr unsafe.Pointer, search C.struct_QtHelp_PackedString) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentWidget::keyboardSearch"); signal != nil {
 		signal.(func(string))(cGoUnpackString(search))
 	} else {
@@ -2477,7 +2430,6 @@ func (ptr *QHelpContentWidget) KeyboardSearchDefault(search string) {
 
 //export callbackQHelpContentWidget_MouseDoubleClickEvent
 func callbackQHelpContentWidget_MouseDoubleClickEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentWidget::mouseDoubleClickEvent"); signal != nil {
 		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
 	} else {
@@ -2513,7 +2465,6 @@ func (ptr *QHelpContentWidget) MouseDoubleClickEventDefault(event gui.QMouseEven
 
 //export callbackQHelpContentWidget_MouseMoveEvent
 func callbackQHelpContentWidget_MouseMoveEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentWidget::mouseMoveEvent"); signal != nil {
 		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
 	} else {
@@ -2549,7 +2500,6 @@ func (ptr *QHelpContentWidget) MouseMoveEventDefault(event gui.QMouseEvent_ITF) 
 
 //export callbackQHelpContentWidget_MousePressEvent
 func callbackQHelpContentWidget_MousePressEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentWidget::mousePressEvent"); signal != nil {
 		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
 	} else {
@@ -2585,7 +2535,6 @@ func (ptr *QHelpContentWidget) MousePressEventDefault(event gui.QMouseEvent_ITF)
 
 //export callbackQHelpContentWidget_MouseReleaseEvent
 func callbackQHelpContentWidget_MouseReleaseEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentWidget::mouseReleaseEvent"); signal != nil {
 		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
 	} else {
@@ -2621,7 +2570,6 @@ func (ptr *QHelpContentWidget) MouseReleaseEventDefault(event gui.QMouseEvent_IT
 
 //export callbackQHelpContentWidget_MoveCursor
 func callbackQHelpContentWidget_MoveCursor(ptr unsafe.Pointer, cursorAction C.longlong, modifiers C.longlong) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentWidget::moveCursor"); signal != nil {
 		return core.PointerFromQModelIndex(signal.(func(widgets.QAbstractItemView__CursorAction, core.Qt__KeyboardModifier) *core.QModelIndex)(widgets.QAbstractItemView__CursorAction(cursorAction), core.Qt__KeyboardModifier(modifiers)))
 	}
@@ -2663,7 +2611,6 @@ func (ptr *QHelpContentWidget) MoveCursorDefault(cursorAction widgets.QAbstractI
 
 //export callbackQHelpContentWidget_PaintEvent
 func callbackQHelpContentWidget_PaintEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentWidget::paintEvent"); signal != nil {
 		signal.(func(*gui.QPaintEvent))(gui.NewQPaintEventFromPointer(event))
 	} else {
@@ -2699,7 +2646,6 @@ func (ptr *QHelpContentWidget) PaintEventDefault(event gui.QPaintEvent_ITF) {
 
 //export callbackQHelpContentWidget_Reset
 func callbackQHelpContentWidget_Reset(ptr unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentWidget::reset"); signal != nil {
 		signal.(func())()
 	} else {
@@ -2770,7 +2716,6 @@ func (ptr *QHelpContentWidget) ResizeColumnToContentsDefault(column int) {
 
 //export callbackQHelpContentWidget_RowsAboutToBeRemoved
 func callbackQHelpContentWidget_RowsAboutToBeRemoved(ptr unsafe.Pointer, parent unsafe.Pointer, start C.int, end C.int) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentWidget::rowsAboutToBeRemoved"); signal != nil {
 		signal.(func(*core.QModelIndex, int, int))(core.NewQModelIndexFromPointer(parent), int(int32(start)), int(int32(end)))
 	} else {
@@ -2806,7 +2751,6 @@ func (ptr *QHelpContentWidget) RowsAboutToBeRemovedDefault(parent core.QModelInd
 
 //export callbackQHelpContentWidget_RowsInserted
 func callbackQHelpContentWidget_RowsInserted(ptr unsafe.Pointer, parent unsafe.Pointer, start C.int, end C.int) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentWidget::rowsInserted"); signal != nil {
 		signal.(func(*core.QModelIndex, int, int))(core.NewQModelIndexFromPointer(parent), int(int32(start)), int(int32(end)))
 	} else {
@@ -2877,7 +2821,6 @@ func (ptr *QHelpContentWidget) RowsRemovedDefault(parent core.QModelIndex_ITF, s
 
 //export callbackQHelpContentWidget_ScrollContentsBy
 func callbackQHelpContentWidget_ScrollContentsBy(ptr unsafe.Pointer, dx C.int, dy C.int) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentWidget::scrollContentsBy"); signal != nil {
 		signal.(func(int, int))(int(int32(dx)), int(int32(dy)))
 	} else {
@@ -2913,7 +2856,6 @@ func (ptr *QHelpContentWidget) ScrollContentsByDefault(dx int, dy int) {
 
 //export callbackQHelpContentWidget_ScrollTo
 func callbackQHelpContentWidget_ScrollTo(ptr unsafe.Pointer, index unsafe.Pointer, hint C.longlong) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentWidget::scrollTo"); signal != nil {
 		signal.(func(*core.QModelIndex, widgets.QAbstractItemView__ScrollHint))(core.NewQModelIndexFromPointer(index), widgets.QAbstractItemView__ScrollHint(hint))
 	} else {
@@ -2949,7 +2891,6 @@ func (ptr *QHelpContentWidget) ScrollToDefault(index core.QModelIndex_ITF, hint 
 
 //export callbackQHelpContentWidget_SelectAll
 func callbackQHelpContentWidget_SelectAll(ptr unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentWidget::selectAll"); signal != nil {
 		signal.(func())()
 	} else {
@@ -2985,7 +2926,6 @@ func (ptr *QHelpContentWidget) SelectAllDefault() {
 
 //export callbackQHelpContentWidget_SelectionChanged
 func callbackQHelpContentWidget_SelectionChanged(ptr unsafe.Pointer, selected unsafe.Pointer, deselected unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentWidget::selectionChanged"); signal != nil {
 		signal.(func(*core.QItemSelection, *core.QItemSelection))(core.NewQItemSelectionFromPointer(selected), core.NewQItemSelectionFromPointer(deselected))
 	} else {
@@ -3021,7 +2961,6 @@ func (ptr *QHelpContentWidget) SelectionChangedDefault(selected core.QItemSelect
 
 //export callbackQHelpContentWidget_SetModel
 func callbackQHelpContentWidget_SetModel(ptr unsafe.Pointer, model unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentWidget::setModel"); signal != nil {
 		signal.(func(*core.QAbstractItemModel))(core.NewQAbstractItemModelFromPointer(model))
 	} else {
@@ -3057,7 +2996,6 @@ func (ptr *QHelpContentWidget) SetModelDefault(model core.QAbstractItemModel_ITF
 
 //export callbackQHelpContentWidget_SetRootIndex
 func callbackQHelpContentWidget_SetRootIndex(ptr unsafe.Pointer, index unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentWidget::setRootIndex"); signal != nil {
 		signal.(func(*core.QModelIndex))(core.NewQModelIndexFromPointer(index))
 	} else {
@@ -3093,7 +3031,6 @@ func (ptr *QHelpContentWidget) SetRootIndexDefault(index core.QModelIndex_ITF) {
 
 //export callbackQHelpContentWidget_SetSelection
 func callbackQHelpContentWidget_SetSelection(ptr unsafe.Pointer, rect unsafe.Pointer, command C.longlong) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentWidget::setSelection"); signal != nil {
 		signal.(func(*core.QRect, core.QItemSelectionModel__SelectionFlag))(core.NewQRectFromPointer(rect), core.QItemSelectionModel__SelectionFlag(command))
 	} else {
@@ -3129,7 +3066,6 @@ func (ptr *QHelpContentWidget) SetSelectionDefault(rect core.QRect_ITF, command 
 
 //export callbackQHelpContentWidget_SetSelectionModel
 func callbackQHelpContentWidget_SetSelectionModel(ptr unsafe.Pointer, selectionModel unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentWidget::setSelectionModel"); signal != nil {
 		signal.(func(*core.QItemSelectionModel))(core.NewQItemSelectionModelFromPointer(selectionModel))
 	} else {
@@ -3200,7 +3136,6 @@ func (ptr *QHelpContentWidget) ShowColumnDefault(column int) {
 
 //export callbackQHelpContentWidget_SizeHintForColumn
 func callbackQHelpContentWidget_SizeHintForColumn(ptr unsafe.Pointer, column C.int) C.int {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentWidget::sizeHintForColumn"); signal != nil {
 		return C.int(int32(signal.(func(int) int)(int(int32(column)))))
 	}
@@ -3238,7 +3173,6 @@ func (ptr *QHelpContentWidget) SizeHintForColumnDefault(column int) int {
 
 //export callbackQHelpContentWidget_UpdateGeometries
 func callbackQHelpContentWidget_UpdateGeometries(ptr unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentWidget::updateGeometries"); signal != nil {
 		signal.(func())()
 	} else {
@@ -3274,7 +3208,6 @@ func (ptr *QHelpContentWidget) UpdateGeometriesDefault() {
 
 //export callbackQHelpContentWidget_VerticalOffset
 func callbackQHelpContentWidget_VerticalOffset(ptr unsafe.Pointer) C.int {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentWidget::verticalOffset"); signal != nil {
 		return C.int(int32(signal.(func() int)()))
 	}
@@ -3312,7 +3245,6 @@ func (ptr *QHelpContentWidget) VerticalOffsetDefault() int {
 
 //export callbackQHelpContentWidget_ViewportEvent
 func callbackQHelpContentWidget_ViewportEvent(ptr unsafe.Pointer, event unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentWidget::viewportEvent"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(event)))))
 	}
@@ -3350,7 +3282,6 @@ func (ptr *QHelpContentWidget) ViewportEventDefault(event core.QEvent_ITF) bool 
 
 //export callbackQHelpContentWidget_ViewportSizeHint
 func callbackQHelpContentWidget_ViewportSizeHint(ptr unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentWidget::viewportSizeHint"); signal != nil {
 		return core.PointerFromQSize(signal.(func() *core.QSize)())
 	}
@@ -3392,7 +3323,6 @@ func (ptr *QHelpContentWidget) ViewportSizeHintDefault() *core.QSize {
 
 //export callbackQHelpContentWidget_VisualRect
 func callbackQHelpContentWidget_VisualRect(ptr unsafe.Pointer, index unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentWidget::visualRect"); signal != nil {
 		return core.PointerFromQRect(signal.(func(*core.QModelIndex) *core.QRect)(core.NewQModelIndexFromPointer(index)))
 	}
@@ -3434,7 +3364,6 @@ func (ptr *QHelpContentWidget) VisualRectDefault(index core.QModelIndex_ITF) *co
 
 //export callbackQHelpContentWidget_VisualRegionForSelection
 func callbackQHelpContentWidget_VisualRegionForSelection(ptr unsafe.Pointer, selection unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentWidget::visualRegionForSelection"); signal != nil {
 		return gui.PointerFromQRegion(signal.(func(*core.QItemSelection) *gui.QRegion)(core.NewQItemSelectionFromPointer(selection)))
 	}
@@ -3476,7 +3405,6 @@ func (ptr *QHelpContentWidget) VisualRegionForSelectionDefault(selection core.QI
 
 //export callbackQHelpContentWidget_DragLeaveEvent
 func callbackQHelpContentWidget_DragLeaveEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentWidget::dragLeaveEvent"); signal != nil {
 		signal.(func(*gui.QDragLeaveEvent))(gui.NewQDragLeaveEventFromPointer(event))
 	} else {
@@ -3617,7 +3545,6 @@ func (ptr *QHelpContentWidget) CommitDataDefault(editor widgets.QWidget_ITF) {
 
 //export callbackQHelpContentWidget_DragEnterEvent
 func callbackQHelpContentWidget_DragEnterEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentWidget::dragEnterEvent"); signal != nil {
 		signal.(func(*gui.QDragEnterEvent))(gui.NewQDragEnterEventFromPointer(event))
 	} else {
@@ -3653,7 +3580,6 @@ func (ptr *QHelpContentWidget) DragEnterEventDefault(event gui.QDragEnterEvent_I
 
 //export callbackQHelpContentWidget_DropEvent
 func callbackQHelpContentWidget_DropEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentWidget::dropEvent"); signal != nil {
 		signal.(func(*gui.QDropEvent))(gui.NewQDropEventFromPointer(event))
 	} else {
@@ -3724,7 +3650,6 @@ func (ptr *QHelpContentWidget) EditDefault(index core.QModelIndex_ITF) {
 
 //export callbackQHelpContentWidget_Edit2
 func callbackQHelpContentWidget_Edit2(ptr unsafe.Pointer, index unsafe.Pointer, trigger C.longlong, event unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentWidget::edit2"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QModelIndex, widgets.QAbstractItemView__EditTrigger, *core.QEvent) bool)(core.NewQModelIndexFromPointer(index), widgets.QAbstractItemView__EditTrigger(trigger), core.NewQEventFromPointer(event)))))
 	}
@@ -3797,7 +3722,6 @@ func (ptr *QHelpContentWidget) EditorDestroyedDefault(editor core.QObject_ITF) {
 
 //export callbackQHelpContentWidget_FocusInEvent
 func callbackQHelpContentWidget_FocusInEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentWidget::focusInEvent"); signal != nil {
 		signal.(func(*gui.QFocusEvent))(gui.NewQFocusEventFromPointer(event))
 	} else {
@@ -3833,7 +3757,6 @@ func (ptr *QHelpContentWidget) FocusInEventDefault(event gui.QFocusEvent_ITF) {
 
 //export callbackQHelpContentWidget_FocusNextPrevChild
 func callbackQHelpContentWidget_FocusNextPrevChild(ptr unsafe.Pointer, next C.char) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentWidget::focusNextPrevChild"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(bool) bool)(int8(next) != 0))))
 	}
@@ -3871,7 +3794,6 @@ func (ptr *QHelpContentWidget) FocusNextPrevChildDefault(next bool) bool {
 
 //export callbackQHelpContentWidget_FocusOutEvent
 func callbackQHelpContentWidget_FocusOutEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentWidget::focusOutEvent"); signal != nil {
 		signal.(func(*gui.QFocusEvent))(gui.NewQFocusEventFromPointer(event))
 	} else {
@@ -3907,7 +3829,6 @@ func (ptr *QHelpContentWidget) FocusOutEventDefault(event gui.QFocusEvent_ITF) {
 
 //export callbackQHelpContentWidget_InputMethodEvent
 func callbackQHelpContentWidget_InputMethodEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentWidget::inputMethodEvent"); signal != nil {
 		signal.(func(*gui.QInputMethodEvent))(gui.NewQInputMethodEventFromPointer(event))
 	} else {
@@ -3943,7 +3864,6 @@ func (ptr *QHelpContentWidget) InputMethodEventDefault(event gui.QInputMethodEve
 
 //export callbackQHelpContentWidget_InputMethodQuery
 func callbackQHelpContentWidget_InputMethodQuery(ptr unsafe.Pointer, query C.longlong) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentWidget::inputMethodQuery"); signal != nil {
 		return core.PointerFromQVariant(signal.(func(core.Qt__InputMethodQuery) *core.QVariant)(core.Qt__InputMethodQuery(query)))
 	}
@@ -3985,7 +3905,6 @@ func (ptr *QHelpContentWidget) InputMethodQueryDefault(query core.Qt__InputMetho
 
 //export callbackQHelpContentWidget_ResizeEvent
 func callbackQHelpContentWidget_ResizeEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentWidget::resizeEvent"); signal != nil {
 		signal.(func(*gui.QResizeEvent))(gui.NewQResizeEventFromPointer(event))
 	} else {
@@ -4091,7 +4010,6 @@ func (ptr *QHelpContentWidget) ScrollToTopDefault() {
 
 //export callbackQHelpContentWidget_SelectionCommand
 func callbackQHelpContentWidget_SelectionCommand(ptr unsafe.Pointer, index unsafe.Pointer, event unsafe.Pointer) C.longlong {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentWidget::selectionCommand"); signal != nil {
 		return C.longlong(signal.(func(*core.QModelIndex, *core.QEvent) core.QItemSelectionModel__SelectionFlag)(core.NewQModelIndexFromPointer(index), core.NewQEventFromPointer(event)))
 	}
@@ -4164,7 +4082,6 @@ func (ptr *QHelpContentWidget) SetCurrentIndexDefault(index core.QModelIndex_ITF
 
 //export callbackQHelpContentWidget_SizeHintForRow
 func callbackQHelpContentWidget_SizeHintForRow(ptr unsafe.Pointer, row C.int) C.int {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentWidget::sizeHintForRow"); signal != nil {
 		return C.int(int32(signal.(func(int) int)(int(int32(row)))))
 	}
@@ -4202,7 +4119,6 @@ func (ptr *QHelpContentWidget) SizeHintForRowDefault(row int) int {
 
 //export callbackQHelpContentWidget_StartDrag
 func callbackQHelpContentWidget_StartDrag(ptr unsafe.Pointer, supportedActions C.longlong) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentWidget::startDrag"); signal != nil {
 		signal.(func(core.Qt__DropAction))(core.Qt__DropAction(supportedActions))
 	} else {
@@ -4273,7 +4189,6 @@ func (ptr *QHelpContentWidget) UpdateDefault(index core.QModelIndex_ITF) {
 
 //export callbackQHelpContentWidget_ViewOptions
 func callbackQHelpContentWidget_ViewOptions(ptr unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentWidget::viewOptions"); signal != nil {
 		return widgets.PointerFromQStyleOptionViewItem(signal.(func() *widgets.QStyleOptionViewItem)())
 	}
@@ -4315,7 +4230,6 @@ func (ptr *QHelpContentWidget) ViewOptionsDefault() *widgets.QStyleOptionViewIte
 
 //export callbackQHelpContentWidget_ContextMenuEvent
 func callbackQHelpContentWidget_ContextMenuEvent(ptr unsafe.Pointer, e unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentWidget::contextMenuEvent"); signal != nil {
 		signal.(func(*gui.QContextMenuEvent))(gui.NewQContextMenuEventFromPointer(e))
 	} else {
@@ -4351,7 +4265,6 @@ func (ptr *QHelpContentWidget) ContextMenuEventDefault(e gui.QContextMenuEvent_I
 
 //export callbackQHelpContentWidget_MinimumSizeHint
 func callbackQHelpContentWidget_MinimumSizeHint(ptr unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentWidget::minimumSizeHint"); signal != nil {
 		return core.PointerFromQSize(signal.(func() *core.QSize)())
 	}
@@ -4393,7 +4306,6 @@ func (ptr *QHelpContentWidget) MinimumSizeHintDefault() *core.QSize {
 
 //export callbackQHelpContentWidget_SetupViewport
 func callbackQHelpContentWidget_SetupViewport(ptr unsafe.Pointer, viewport unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentWidget::setupViewport"); signal != nil {
 		signal.(func(*widgets.QWidget))(widgets.NewQWidgetFromPointer(viewport))
 	} else {
@@ -4429,7 +4341,6 @@ func (ptr *QHelpContentWidget) SetupViewportDefault(viewport widgets.QWidget_ITF
 
 //export callbackQHelpContentWidget_SizeHint
 func callbackQHelpContentWidget_SizeHint(ptr unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentWidget::sizeHint"); signal != nil {
 		return core.PointerFromQSize(signal.(func() *core.QSize)())
 	}
@@ -4471,7 +4382,6 @@ func (ptr *QHelpContentWidget) SizeHintDefault() *core.QSize {
 
 //export callbackQHelpContentWidget_WheelEvent
 func callbackQHelpContentWidget_WheelEvent(ptr unsafe.Pointer, e unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentWidget::wheelEvent"); signal != nil {
 		signal.(func(*gui.QWheelEvent))(gui.NewQWheelEventFromPointer(e))
 	} else {
@@ -4507,7 +4417,6 @@ func (ptr *QHelpContentWidget) WheelEventDefault(e gui.QWheelEvent_ITF) {
 
 //export callbackQHelpContentWidget_ChangeEvent
 func callbackQHelpContentWidget_ChangeEvent(ptr unsafe.Pointer, ev unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentWidget::changeEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(ev))
 	} else {
@@ -4543,7 +4452,6 @@ func (ptr *QHelpContentWidget) ChangeEventDefault(ev core.QEvent_ITF) {
 
 //export callbackQHelpContentWidget_ActionEvent
 func callbackQHelpContentWidget_ActionEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentWidget::actionEvent"); signal != nil {
 		signal.(func(*gui.QActionEvent))(gui.NewQActionEventFromPointer(event))
 	} else {
@@ -4579,7 +4487,6 @@ func (ptr *QHelpContentWidget) ActionEventDefault(event gui.QActionEvent_ITF) {
 
 //export callbackQHelpContentWidget_EnterEvent
 func callbackQHelpContentWidget_EnterEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentWidget::enterEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
 	} else {
@@ -4615,7 +4522,6 @@ func (ptr *QHelpContentWidget) EnterEventDefault(event core.QEvent_ITF) {
 
 //export callbackQHelpContentWidget_HideEvent
 func callbackQHelpContentWidget_HideEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentWidget::hideEvent"); signal != nil {
 		signal.(func(*gui.QHideEvent))(gui.NewQHideEventFromPointer(event))
 	} else {
@@ -4651,7 +4557,6 @@ func (ptr *QHelpContentWidget) HideEventDefault(event gui.QHideEvent_ITF) {
 
 //export callbackQHelpContentWidget_LeaveEvent
 func callbackQHelpContentWidget_LeaveEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentWidget::leaveEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
 	} else {
@@ -4687,7 +4592,6 @@ func (ptr *QHelpContentWidget) LeaveEventDefault(event core.QEvent_ITF) {
 
 //export callbackQHelpContentWidget_Metric
 func callbackQHelpContentWidget_Metric(ptr unsafe.Pointer, m C.longlong) C.int {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentWidget::metric"); signal != nil {
 		return C.int(int32(signal.(func(gui.QPaintDevice__PaintDeviceMetric) int)(gui.QPaintDevice__PaintDeviceMetric(m))))
 	}
@@ -4725,7 +4629,6 @@ func (ptr *QHelpContentWidget) MetricDefault(m gui.QPaintDevice__PaintDeviceMetr
 
 //export callbackQHelpContentWidget_MoveEvent
 func callbackQHelpContentWidget_MoveEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentWidget::moveEvent"); signal != nil {
 		signal.(func(*gui.QMoveEvent))(gui.NewQMoveEventFromPointer(event))
 	} else {
@@ -4761,7 +4664,6 @@ func (ptr *QHelpContentWidget) MoveEventDefault(event gui.QMoveEvent_ITF) {
 
 //export callbackQHelpContentWidget_PaintEngine
 func callbackQHelpContentWidget_PaintEngine(ptr unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentWidget::paintEngine"); signal != nil {
 		return gui.PointerFromQPaintEngine(signal.(func() *gui.QPaintEngine)())
 	}
@@ -4982,7 +4884,6 @@ func (ptr *QHelpContentWidget) SetWindowTitleDefault(vqs string) {
 
 //export callbackQHelpContentWidget_ShowEvent
 func callbackQHelpContentWidget_ShowEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentWidget::showEvent"); signal != nil {
 		signal.(func(*gui.QShowEvent))(gui.NewQShowEventFromPointer(event))
 	} else {
@@ -5055,7 +4956,6 @@ func (ptr *QHelpContentWidget) CloseDefault() bool {
 
 //export callbackQHelpContentWidget_CloseEvent
 func callbackQHelpContentWidget_CloseEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentWidget::closeEvent"); signal != nil {
 		signal.(func(*gui.QCloseEvent))(gui.NewQCloseEventFromPointer(event))
 	} else {
@@ -5091,7 +4991,6 @@ func (ptr *QHelpContentWidget) CloseEventDefault(event gui.QCloseEvent_ITF) {
 
 //export callbackQHelpContentWidget_Event
 func callbackQHelpContentWidget_Event(ptr unsafe.Pointer, event unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentWidget::event"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(event)))))
 	}
@@ -5129,7 +5028,6 @@ func (ptr *QHelpContentWidget) EventDefault(event core.QEvent_ITF) bool {
 
 //export callbackQHelpContentWidget_HasHeightForWidth
 func callbackQHelpContentWidget_HasHeightForWidth(ptr unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentWidget::hasHeightForWidth"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func() bool)())))
 	}
@@ -5167,7 +5065,6 @@ func (ptr *QHelpContentWidget) HasHeightForWidthDefault() bool {
 
 //export callbackQHelpContentWidget_HeightForWidth
 func callbackQHelpContentWidget_HeightForWidth(ptr unsafe.Pointer, w C.int) C.int {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentWidget::heightForWidth"); signal != nil {
 		return C.int(int32(signal.(func(int) int)(int(int32(w)))))
 	}
@@ -5240,7 +5137,6 @@ func (ptr *QHelpContentWidget) HideDefault() {
 
 //export callbackQHelpContentWidget_KeyReleaseEvent
 func callbackQHelpContentWidget_KeyReleaseEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentWidget::keyReleaseEvent"); signal != nil {
 		signal.(func(*gui.QKeyEvent))(gui.NewQKeyEventFromPointer(event))
 	} else {
@@ -5311,7 +5207,6 @@ func (ptr *QHelpContentWidget) LowerDefault() {
 
 //export callbackQHelpContentWidget_NativeEvent
 func callbackQHelpContentWidget_NativeEvent(ptr unsafe.Pointer, eventType unsafe.Pointer, message unsafe.Pointer, result C.long) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentWidget::nativeEvent"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QByteArray, unsafe.Pointer, int) bool)(core.NewQByteArrayFromPointer(eventType), message, int(int32(result))))))
 	}
@@ -5699,7 +5594,6 @@ func (ptr *QHelpContentWidget) ShowNormalDefault() {
 
 //export callbackQHelpContentWidget_TabletEvent
 func callbackQHelpContentWidget_TabletEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentWidget::tabletEvent"); signal != nil {
 		signal.(func(*gui.QTabletEvent))(gui.NewQTabletEventFromPointer(event))
 	} else {
@@ -5770,7 +5664,6 @@ func (ptr *QHelpContentWidget) UpdateMicroFocusDefault() {
 
 //export callbackQHelpContentWidget_TimerEvent
 func callbackQHelpContentWidget_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentWidget::timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
 	} else {
@@ -5806,7 +5699,6 @@ func (ptr *QHelpContentWidget) TimerEventDefault(event core.QTimerEvent_ITF) {
 
 //export callbackQHelpContentWidget_ChildEvent
 func callbackQHelpContentWidget_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentWidget::childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
 	} else {
@@ -5842,7 +5734,6 @@ func (ptr *QHelpContentWidget) ChildEventDefault(event core.QChildEvent_ITF) {
 
 //export callbackQHelpContentWidget_ConnectNotify
 func callbackQHelpContentWidget_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentWidget::connectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
@@ -5878,7 +5769,6 @@ func (ptr *QHelpContentWidget) ConnectNotifyDefault(sign core.QMetaMethod_ITF) {
 
 //export callbackQHelpContentWidget_CustomEvent
 func callbackQHelpContentWidget_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentWidget::customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
 	} else {
@@ -5953,7 +5843,6 @@ func (ptr *QHelpContentWidget) DeleteLaterDefault() {
 
 //export callbackQHelpContentWidget_DisconnectNotify
 func callbackQHelpContentWidget_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentWidget::disconnectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
@@ -5989,7 +5878,6 @@ func (ptr *QHelpContentWidget) DisconnectNotifyDefault(sign core.QMetaMethod_ITF
 
 //export callbackQHelpContentWidget_EventFilter
 func callbackQHelpContentWidget_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentWidget::eventFilter"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
 	}
@@ -6027,7 +5915,6 @@ func (ptr *QHelpContentWidget) EventFilterDefault(watched core.QObject_ITF, even
 
 //export callbackQHelpContentWidget_MetaObject
 func callbackQHelpContentWidget_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpContentWidget::metaObject"); signal != nil {
 		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
 	}
@@ -6176,7 +6063,6 @@ func (ptr *QHelpEngine) DestroyQHelpEngine() {
 
 //export callbackQHelpEngine_TimerEvent
 func callbackQHelpEngine_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpEngine::timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
 	} else {
@@ -6212,7 +6098,6 @@ func (ptr *QHelpEngine) TimerEventDefault(event core.QTimerEvent_ITF) {
 
 //export callbackQHelpEngine_ChildEvent
 func callbackQHelpEngine_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpEngine::childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
 	} else {
@@ -6248,7 +6133,6 @@ func (ptr *QHelpEngine) ChildEventDefault(event core.QChildEvent_ITF) {
 
 //export callbackQHelpEngine_ConnectNotify
 func callbackQHelpEngine_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpEngine::connectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
@@ -6284,7 +6168,6 @@ func (ptr *QHelpEngine) ConnectNotifyDefault(sign core.QMetaMethod_ITF) {
 
 //export callbackQHelpEngine_CustomEvent
 func callbackQHelpEngine_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpEngine::customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
 	} else {
@@ -6359,7 +6242,6 @@ func (ptr *QHelpEngine) DeleteLaterDefault() {
 
 //export callbackQHelpEngine_DisconnectNotify
 func callbackQHelpEngine_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpEngine::disconnectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
@@ -6395,7 +6277,6 @@ func (ptr *QHelpEngine) DisconnectNotifyDefault(sign core.QMetaMethod_ITF) {
 
 //export callbackQHelpEngine_Event
 func callbackQHelpEngine_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpEngine::event"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
 	}
@@ -6433,7 +6314,6 @@ func (ptr *QHelpEngine) EventDefault(e core.QEvent_ITF) bool {
 
 //export callbackQHelpEngine_EventFilter
 func callbackQHelpEngine_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpEngine::eventFilter"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
 	}
@@ -6471,7 +6351,6 @@ func (ptr *QHelpEngine) EventFilterDefault(watched core.QObject_ITF, event core.
 
 //export callbackQHelpEngine_MetaObject
 func callbackQHelpEngine_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpEngine::metaObject"); signal != nil {
 		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
 	}
@@ -6620,7 +6499,6 @@ func (ptr *QHelpEngineCore) CopyCollectionFile(fileName string) bool {
 
 //export callbackQHelpEngineCore_CurrentFilterChanged
 func callbackQHelpEngineCore_CurrentFilterChanged(ptr unsafe.Pointer, newFilter C.struct_QtHelp_PackedString) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpEngineCore::currentFilterChanged"); signal != nil {
 		signal.(func(string))(cGoUnpackString(newFilter))
 	}
@@ -6770,7 +6648,6 @@ func (ptr *QHelpEngineCore) NamespaceName(documentationFileName string) string {
 
 //export callbackQHelpEngineCore_ReadersAboutToBeInvalidated
 func callbackQHelpEngineCore_ReadersAboutToBeInvalidated(ptr unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpEngineCore::readersAboutToBeInvalidated"); signal != nil {
 		signal.(func())()
 	}
@@ -6849,7 +6726,6 @@ func (ptr *QHelpEngineCore) SetupData() bool {
 
 //export callbackQHelpEngineCore_SetupFinished
 func callbackQHelpEngineCore_SetupFinished(ptr unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpEngineCore::setupFinished"); signal != nil {
 		signal.(func())()
 	}
@@ -6878,7 +6754,6 @@ func (ptr *QHelpEngineCore) SetupFinished() {
 
 //export callbackQHelpEngineCore_SetupStarted
 func callbackQHelpEngineCore_SetupStarted(ptr unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpEngineCore::setupStarted"); signal != nil {
 		signal.(func())()
 	}
@@ -6916,7 +6791,6 @@ func (ptr *QHelpEngineCore) UnregisterDocumentation(namespaceName string) bool {
 
 //export callbackQHelpEngineCore_Warning
 func callbackQHelpEngineCore_Warning(ptr unsafe.Pointer, msg C.struct_QtHelp_PackedString) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpEngineCore::warning"); signal != nil {
 		signal.(func(string))(cGoUnpackString(msg))
 	}
@@ -6947,7 +6821,6 @@ func (ptr *QHelpEngineCore) Warning(msg string) {
 
 //export callbackQHelpEngineCore_DestroyQHelpEngineCore
 func callbackQHelpEngineCore_DestroyQHelpEngineCore(ptr unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpEngineCore::~QHelpEngineCore"); signal != nil {
 		signal.(func())()
 	} else {
@@ -7003,7 +6876,6 @@ func (ptr *QHelpEngineCore) filterAttributeSets_atList(i int) []string {
 
 //export callbackQHelpEngineCore_TimerEvent
 func callbackQHelpEngineCore_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpEngineCore::timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
 	} else {
@@ -7039,7 +6911,6 @@ func (ptr *QHelpEngineCore) TimerEventDefault(event core.QTimerEvent_ITF) {
 
 //export callbackQHelpEngineCore_ChildEvent
 func callbackQHelpEngineCore_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpEngineCore::childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
 	} else {
@@ -7075,7 +6946,6 @@ func (ptr *QHelpEngineCore) ChildEventDefault(event core.QChildEvent_ITF) {
 
 //export callbackQHelpEngineCore_ConnectNotify
 func callbackQHelpEngineCore_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpEngineCore::connectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
@@ -7111,7 +6981,6 @@ func (ptr *QHelpEngineCore) ConnectNotifyDefault(sign core.QMetaMethod_ITF) {
 
 //export callbackQHelpEngineCore_CustomEvent
 func callbackQHelpEngineCore_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpEngineCore::customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
 	} else {
@@ -7186,7 +7055,6 @@ func (ptr *QHelpEngineCore) DeleteLaterDefault() {
 
 //export callbackQHelpEngineCore_DisconnectNotify
 func callbackQHelpEngineCore_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpEngineCore::disconnectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
@@ -7222,7 +7090,6 @@ func (ptr *QHelpEngineCore) DisconnectNotifyDefault(sign core.QMetaMethod_ITF) {
 
 //export callbackQHelpEngineCore_Event
 func callbackQHelpEngineCore_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpEngineCore::event"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
 	}
@@ -7260,7 +7127,6 @@ func (ptr *QHelpEngineCore) EventDefault(e core.QEvent_ITF) bool {
 
 //export callbackQHelpEngineCore_EventFilter
 func callbackQHelpEngineCore_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpEngineCore::eventFilter"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
 	}
@@ -7298,7 +7164,6 @@ func (ptr *QHelpEngineCore) EventFilterDefault(watched core.QObject_ITF, event c
 
 //export callbackQHelpEngineCore_MetaObject
 func callbackQHelpEngineCore_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpEngineCore::metaObject"); signal != nil {
 		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
 	}
@@ -7404,7 +7269,6 @@ func (ptr *QHelpIndexModel) Filter(filter string, wildcard string) *core.QModelI
 
 //export callbackQHelpIndexModel_IndexCreated
 func callbackQHelpIndexModel_IndexCreated(ptr unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpIndexModel::indexCreated"); signal != nil {
 		signal.(func())()
 	}
@@ -7433,7 +7297,6 @@ func (ptr *QHelpIndexModel) IndexCreated() {
 
 //export callbackQHelpIndexModel_IndexCreationStarted
 func callbackQHelpIndexModel_IndexCreationStarted(ptr unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpIndexModel::indexCreationStarted"); signal != nil {
 		signal.(func())()
 	}
@@ -7469,7 +7332,6 @@ func (ptr *QHelpIndexModel) IsCreatingIndex() bool {
 
 //export callbackQHelpIndexModel_Data
 func callbackQHelpIndexModel_Data(ptr unsafe.Pointer, index unsafe.Pointer, role C.int) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpIndexModel::data"); signal != nil {
 		return core.PointerFromQVariant(signal.(func(*core.QModelIndex, int) *core.QVariant)(core.NewQModelIndexFromPointer(index), int(int32(role))))
 	}
@@ -7511,7 +7373,6 @@ func (ptr *QHelpIndexModel) DataDefault(index core.QModelIndex_ITF, role int) *c
 
 //export callbackQHelpIndexModel_Flags
 func callbackQHelpIndexModel_Flags(ptr unsafe.Pointer, index unsafe.Pointer) C.longlong {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpIndexModel::flags"); signal != nil {
 		return C.longlong(signal.(func(*core.QModelIndex) core.Qt__ItemFlag)(core.NewQModelIndexFromPointer(index)))
 	}
@@ -7549,7 +7410,6 @@ func (ptr *QHelpIndexModel) FlagsDefault(index core.QModelIndex_ITF) core.Qt__It
 
 //export callbackQHelpIndexModel_InsertRows
 func callbackQHelpIndexModel_InsertRows(ptr unsafe.Pointer, row C.int, count C.int, parent unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpIndexModel::insertRows"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(int, int, *core.QModelIndex) bool)(int(int32(row)), int(int32(count)), core.NewQModelIndexFromPointer(parent)))))
 	}
@@ -7587,7 +7447,6 @@ func (ptr *QHelpIndexModel) InsertRowsDefault(row int, count int, parent core.QM
 
 //export callbackQHelpIndexModel_RemoveRows
 func callbackQHelpIndexModel_RemoveRows(ptr unsafe.Pointer, row C.int, count C.int, parent unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpIndexModel::removeRows"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(int, int, *core.QModelIndex) bool)(int(int32(row)), int(int32(count)), core.NewQModelIndexFromPointer(parent)))))
 	}
@@ -7625,7 +7484,6 @@ func (ptr *QHelpIndexModel) RemoveRowsDefault(row int, count int, parent core.QM
 
 //export callbackQHelpIndexModel_RowCount
 func callbackQHelpIndexModel_RowCount(ptr unsafe.Pointer, parent unsafe.Pointer) C.int {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpIndexModel::rowCount"); signal != nil {
 		return C.int(int32(signal.(func(*core.QModelIndex) int)(core.NewQModelIndexFromPointer(parent))))
 	}
@@ -7663,7 +7521,6 @@ func (ptr *QHelpIndexModel) RowCountDefault(parent core.QModelIndex_ITF) int {
 
 //export callbackQHelpIndexModel_SetData
 func callbackQHelpIndexModel_SetData(ptr unsafe.Pointer, index unsafe.Pointer, value unsafe.Pointer, role C.int) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpIndexModel::setData"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QModelIndex, *core.QVariant, int) bool)(core.NewQModelIndexFromPointer(index), core.NewQVariantFromPointer(value), int(int32(role))))))
 	}
@@ -7701,7 +7558,6 @@ func (ptr *QHelpIndexModel) SetDataDefault(index core.QModelIndex_ITF, value cor
 
 //export callbackQHelpIndexModel_Sibling
 func callbackQHelpIndexModel_Sibling(ptr unsafe.Pointer, row C.int, column C.int, idx unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpIndexModel::sibling"); signal != nil {
 		return core.PointerFromQModelIndex(signal.(func(int, int, *core.QModelIndex) *core.QModelIndex)(int(int32(row)), int(int32(column)), core.NewQModelIndexFromPointer(idx)))
 	}
@@ -7743,7 +7599,6 @@ func (ptr *QHelpIndexModel) SiblingDefault(row int, column int, idx core.QModelI
 
 //export callbackQHelpIndexModel_Sort
 func callbackQHelpIndexModel_Sort(ptr unsafe.Pointer, column C.int, order C.longlong) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpIndexModel::sort"); signal != nil {
 		signal.(func(int, core.Qt__SortOrder))(int(int32(column)), core.Qt__SortOrder(order))
 	} else {
@@ -7779,7 +7634,6 @@ func (ptr *QHelpIndexModel) SortDefault(column int, order core.Qt__SortOrder) {
 
 //export callbackQHelpIndexModel_SupportedDropActions
 func callbackQHelpIndexModel_SupportedDropActions(ptr unsafe.Pointer) C.longlong {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpIndexModel::supportedDropActions"); signal != nil {
 		return C.longlong(signal.(func() core.Qt__DropAction)())
 	}
@@ -7817,7 +7671,6 @@ func (ptr *QHelpIndexModel) SupportedDropActionsDefault() core.Qt__DropAction {
 
 //export callbackQHelpIndexModel_Index
 func callbackQHelpIndexModel_Index(ptr unsafe.Pointer, row C.int, column C.int, parent unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpIndexModel::index"); signal != nil {
 		return core.PointerFromQModelIndex(signal.(func(int, int, *core.QModelIndex) *core.QModelIndex)(int(int32(row)), int(int32(column)), core.NewQModelIndexFromPointer(parent)))
 	}
@@ -7859,7 +7712,6 @@ func (ptr *QHelpIndexModel) IndexDefault(row int, column int, parent core.QModel
 
 //export callbackQHelpIndexModel_DropMimeData
 func callbackQHelpIndexModel_DropMimeData(ptr unsafe.Pointer, data unsafe.Pointer, action C.longlong, row C.int, column C.int, parent unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpIndexModel::dropMimeData"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QMimeData, core.Qt__DropAction, int, int, *core.QModelIndex) bool)(core.NewQMimeDataFromPointer(data), core.Qt__DropAction(action), int(int32(row)), int(int32(column)), core.NewQModelIndexFromPointer(parent)))))
 	}
@@ -7897,7 +7749,6 @@ func (ptr *QHelpIndexModel) DropMimeDataDefault(data core.QMimeData_ITF, action 
 
 //export callbackQHelpIndexModel_Buddy
 func callbackQHelpIndexModel_Buddy(ptr unsafe.Pointer, index unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpIndexModel::buddy"); signal != nil {
 		return core.PointerFromQModelIndex(signal.(func(*core.QModelIndex) *core.QModelIndex)(core.NewQModelIndexFromPointer(index)))
 	}
@@ -7939,7 +7790,6 @@ func (ptr *QHelpIndexModel) BuddyDefault(index core.QModelIndex_ITF) *core.QMode
 
 //export callbackQHelpIndexModel_CanDropMimeData
 func callbackQHelpIndexModel_CanDropMimeData(ptr unsafe.Pointer, data unsafe.Pointer, action C.longlong, row C.int, column C.int, parent unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpIndexModel::canDropMimeData"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QMimeData, core.Qt__DropAction, int, int, *core.QModelIndex) bool)(core.NewQMimeDataFromPointer(data), core.Qt__DropAction(action), int(int32(row)), int(int32(column)), core.NewQModelIndexFromPointer(parent)))))
 	}
@@ -7977,7 +7827,6 @@ func (ptr *QHelpIndexModel) CanDropMimeDataDefault(data core.QMimeData_ITF, acti
 
 //export callbackQHelpIndexModel_CanFetchMore
 func callbackQHelpIndexModel_CanFetchMore(ptr unsafe.Pointer, parent unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpIndexModel::canFetchMore"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QModelIndex) bool)(core.NewQModelIndexFromPointer(parent)))))
 	}
@@ -8015,7 +7864,6 @@ func (ptr *QHelpIndexModel) CanFetchMoreDefault(parent core.QModelIndex_ITF) boo
 
 //export callbackQHelpIndexModel_ColumnCount
 func callbackQHelpIndexModel_ColumnCount(ptr unsafe.Pointer, parent unsafe.Pointer) C.int {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpIndexModel::columnCount"); signal != nil {
 		return C.int(int32(signal.(func(*core.QModelIndex) int)(core.NewQModelIndexFromPointer(parent))))
 	}
@@ -8046,7 +7894,6 @@ func (ptr *QHelpIndexModel) ColumnCount(parent core.QModelIndex_ITF) int {
 
 //export callbackQHelpIndexModel_FetchMore
 func callbackQHelpIndexModel_FetchMore(ptr unsafe.Pointer, parent unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpIndexModel::fetchMore"); signal != nil {
 		signal.(func(*core.QModelIndex))(core.NewQModelIndexFromPointer(parent))
 	} else {
@@ -8082,7 +7929,6 @@ func (ptr *QHelpIndexModel) FetchMoreDefault(parent core.QModelIndex_ITF) {
 
 //export callbackQHelpIndexModel_HasChildren
 func callbackQHelpIndexModel_HasChildren(ptr unsafe.Pointer, parent unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpIndexModel::hasChildren"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QModelIndex) bool)(core.NewQModelIndexFromPointer(parent)))))
 	}
@@ -8120,7 +7966,6 @@ func (ptr *QHelpIndexModel) HasChildrenDefault(parent core.QModelIndex_ITF) bool
 
 //export callbackQHelpIndexModel_HeaderData
 func callbackQHelpIndexModel_HeaderData(ptr unsafe.Pointer, section C.int, orientation C.longlong, role C.int) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpIndexModel::headerData"); signal != nil {
 		return core.PointerFromQVariant(signal.(func(int, core.Qt__Orientation, int) *core.QVariant)(int(int32(section)), core.Qt__Orientation(orientation), int(int32(role))))
 	}
@@ -8162,7 +8007,6 @@ func (ptr *QHelpIndexModel) HeaderDataDefault(section int, orientation core.Qt__
 
 //export callbackQHelpIndexModel_InsertColumns
 func callbackQHelpIndexModel_InsertColumns(ptr unsafe.Pointer, column C.int, count C.int, parent unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpIndexModel::insertColumns"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(int, int, *core.QModelIndex) bool)(int(int32(column)), int(int32(count)), core.NewQModelIndexFromPointer(parent)))))
 	}
@@ -8200,7 +8044,6 @@ func (ptr *QHelpIndexModel) InsertColumnsDefault(column int, count int, parent c
 
 //export callbackQHelpIndexModel_MimeTypes
 func callbackQHelpIndexModel_MimeTypes(ptr unsafe.Pointer) *C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpIndexModel::mimeTypes"); signal != nil {
 		return C.CString(strings.Join(signal.(func() []string)(), "|"))
 	}
@@ -8238,7 +8081,6 @@ func (ptr *QHelpIndexModel) MimeTypesDefault() []string {
 
 //export callbackQHelpIndexModel_MoveColumns
 func callbackQHelpIndexModel_MoveColumns(ptr unsafe.Pointer, sourceParent unsafe.Pointer, sourceColumn C.int, count C.int, destinationParent unsafe.Pointer, destinationChild C.int) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpIndexModel::moveColumns"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QModelIndex, int, int, *core.QModelIndex, int) bool)(core.NewQModelIndexFromPointer(sourceParent), int(int32(sourceColumn)), int(int32(count)), core.NewQModelIndexFromPointer(destinationParent), int(int32(destinationChild))))))
 	}
@@ -8276,7 +8118,6 @@ func (ptr *QHelpIndexModel) MoveColumnsDefault(sourceParent core.QModelIndex_ITF
 
 //export callbackQHelpIndexModel_MoveRows
 func callbackQHelpIndexModel_MoveRows(ptr unsafe.Pointer, sourceParent unsafe.Pointer, sourceRow C.int, count C.int, destinationParent unsafe.Pointer, destinationChild C.int) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpIndexModel::moveRows"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QModelIndex, int, int, *core.QModelIndex, int) bool)(core.NewQModelIndexFromPointer(sourceParent), int(int32(sourceRow)), int(int32(count)), core.NewQModelIndexFromPointer(destinationParent), int(int32(destinationChild))))))
 	}
@@ -8314,7 +8155,6 @@ func (ptr *QHelpIndexModel) MoveRowsDefault(sourceParent core.QModelIndex_ITF, s
 
 //export callbackQHelpIndexModel_Parent
 func callbackQHelpIndexModel_Parent(ptr unsafe.Pointer, index unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpIndexModel::parent"); signal != nil {
 		return core.PointerFromQModelIndex(signal.(func(*core.QModelIndex) *core.QModelIndex)(core.NewQModelIndexFromPointer(index)))
 	}
@@ -8347,7 +8187,6 @@ func (ptr *QHelpIndexModel) Parent(index core.QModelIndex_ITF) *core.QModelIndex
 
 //export callbackQHelpIndexModel_RemoveColumns
 func callbackQHelpIndexModel_RemoveColumns(ptr unsafe.Pointer, column C.int, count C.int, parent unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpIndexModel::removeColumns"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(int, int, *core.QModelIndex) bool)(int(int32(column)), int(int32(count)), core.NewQModelIndexFromPointer(parent)))))
 	}
@@ -8455,7 +8294,6 @@ func (ptr *QHelpIndexModel) RevertDefault() {
 
 //export callbackQHelpIndexModel_SetHeaderData
 func callbackQHelpIndexModel_SetHeaderData(ptr unsafe.Pointer, section C.int, orientation C.longlong, value unsafe.Pointer, role C.int) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpIndexModel::setHeaderData"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(int, core.Qt__Orientation, *core.QVariant, int) bool)(int(int32(section)), core.Qt__Orientation(orientation), core.NewQVariantFromPointer(value), int(int32(role))))))
 	}
@@ -8493,7 +8331,6 @@ func (ptr *QHelpIndexModel) SetHeaderDataDefault(section int, orientation core.Q
 
 //export callbackQHelpIndexModel_Span
 func callbackQHelpIndexModel_Span(ptr unsafe.Pointer, index unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpIndexModel::span"); signal != nil {
 		return core.PointerFromQSize(signal.(func(*core.QModelIndex) *core.QSize)(core.NewQModelIndexFromPointer(index)))
 	}
@@ -8572,7 +8409,6 @@ func (ptr *QHelpIndexModel) SubmitDefault() bool {
 
 //export callbackQHelpIndexModel_SupportedDragActions
 func callbackQHelpIndexModel_SupportedDragActions(ptr unsafe.Pointer) C.longlong {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpIndexModel::supportedDragActions"); signal != nil {
 		return C.longlong(signal.(func() core.Qt__DropAction)())
 	}
@@ -8610,7 +8446,6 @@ func (ptr *QHelpIndexModel) SupportedDragActionsDefault() core.Qt__DropAction {
 
 //export callbackQHelpIndexModel_TimerEvent
 func callbackQHelpIndexModel_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpIndexModel::timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
 	} else {
@@ -8646,7 +8481,6 @@ func (ptr *QHelpIndexModel) TimerEventDefault(event core.QTimerEvent_ITF) {
 
 //export callbackQHelpIndexModel_ChildEvent
 func callbackQHelpIndexModel_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpIndexModel::childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
 	} else {
@@ -8682,7 +8516,6 @@ func (ptr *QHelpIndexModel) ChildEventDefault(event core.QChildEvent_ITF) {
 
 //export callbackQHelpIndexModel_ConnectNotify
 func callbackQHelpIndexModel_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpIndexModel::connectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
@@ -8718,7 +8551,6 @@ func (ptr *QHelpIndexModel) ConnectNotifyDefault(sign core.QMetaMethod_ITF) {
 
 //export callbackQHelpIndexModel_CustomEvent
 func callbackQHelpIndexModel_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpIndexModel::customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
 	} else {
@@ -8793,7 +8625,6 @@ func (ptr *QHelpIndexModel) DeleteLaterDefault() {
 
 //export callbackQHelpIndexModel_DisconnectNotify
 func callbackQHelpIndexModel_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpIndexModel::disconnectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
@@ -8829,7 +8660,6 @@ func (ptr *QHelpIndexModel) DisconnectNotifyDefault(sign core.QMetaMethod_ITF) {
 
 //export callbackQHelpIndexModel_Event
 func callbackQHelpIndexModel_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpIndexModel::event"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
 	}
@@ -8867,7 +8697,6 @@ func (ptr *QHelpIndexModel) EventDefault(e core.QEvent_ITF) bool {
 
 //export callbackQHelpIndexModel_EventFilter
 func callbackQHelpIndexModel_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpIndexModel::eventFilter"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
 	}
@@ -8905,7 +8734,6 @@ func (ptr *QHelpIndexModel) EventFilterDefault(watched core.QObject_ITF, event c
 
 //export callbackQHelpIndexModel_MetaObject
 func callbackQHelpIndexModel_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpIndexModel::metaObject"); signal != nil {
 		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
 	}
@@ -9068,7 +8896,6 @@ func (ptr *QHelpIndexWidget) FilterIndicesDefault(filter string, wildcard string
 
 //export callbackQHelpIndexWidget_LinkActivated
 func callbackQHelpIndexWidget_LinkActivated(ptr unsafe.Pointer, link unsafe.Pointer, keyword C.struct_QtHelp_PackedString) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpIndexWidget::linkActivated"); signal != nil {
 		signal.(func(*core.QUrl, string))(core.NewQUrlFromPointer(link), cGoUnpackString(keyword))
 	}
@@ -9099,7 +8926,6 @@ func (ptr *QHelpIndexWidget) LinkActivated(link core.QUrl_ITF, keyword string) {
 
 //export callbackQHelpIndexWidget_CurrentChanged
 func callbackQHelpIndexWidget_CurrentChanged(ptr unsafe.Pointer, current unsafe.Pointer, previous unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpIndexWidget::currentChanged"); signal != nil {
 		signal.(func(*core.QModelIndex, *core.QModelIndex))(core.NewQModelIndexFromPointer(current), core.NewQModelIndexFromPointer(previous))
 	} else {
@@ -9135,7 +8961,6 @@ func (ptr *QHelpIndexWidget) CurrentChangedDefault(current core.QModelIndex_ITF,
 
 //export callbackQHelpIndexWidget_DragLeaveEvent
 func callbackQHelpIndexWidget_DragLeaveEvent(ptr unsafe.Pointer, e unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpIndexWidget::dragLeaveEvent"); signal != nil {
 		signal.(func(*gui.QDragLeaveEvent))(gui.NewQDragLeaveEventFromPointer(e))
 	} else {
@@ -9171,7 +8996,6 @@ func (ptr *QHelpIndexWidget) DragLeaveEventDefault(e gui.QDragLeaveEvent_ITF) {
 
 //export callbackQHelpIndexWidget_DragMoveEvent
 func callbackQHelpIndexWidget_DragMoveEvent(ptr unsafe.Pointer, e unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpIndexWidget::dragMoveEvent"); signal != nil {
 		signal.(func(*gui.QDragMoveEvent))(gui.NewQDragMoveEventFromPointer(e))
 	} else {
@@ -9207,7 +9031,6 @@ func (ptr *QHelpIndexWidget) DragMoveEventDefault(e gui.QDragMoveEvent_ITF) {
 
 //export callbackQHelpIndexWidget_DropEvent
 func callbackQHelpIndexWidget_DropEvent(ptr unsafe.Pointer, e unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpIndexWidget::dropEvent"); signal != nil {
 		signal.(func(*gui.QDropEvent))(gui.NewQDropEventFromPointer(e))
 	} else {
@@ -9243,7 +9066,6 @@ func (ptr *QHelpIndexWidget) DropEventDefault(e gui.QDropEvent_ITF) {
 
 //export callbackQHelpIndexWidget_HorizontalOffset
 func callbackQHelpIndexWidget_HorizontalOffset(ptr unsafe.Pointer) C.int {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpIndexWidget::horizontalOffset"); signal != nil {
 		return C.int(int32(signal.(func() int)()))
 	}
@@ -9281,7 +9103,6 @@ func (ptr *QHelpIndexWidget) HorizontalOffsetDefault() int {
 
 //export callbackQHelpIndexWidget_IndexAt
 func callbackQHelpIndexWidget_IndexAt(ptr unsafe.Pointer, p unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpIndexWidget::indexAt"); signal != nil {
 		return core.PointerFromQModelIndex(signal.(func(*core.QPoint) *core.QModelIndex)(core.NewQPointFromPointer(p)))
 	}
@@ -9323,7 +9144,6 @@ func (ptr *QHelpIndexWidget) IndexAtDefault(p core.QPoint_ITF) *core.QModelIndex
 
 //export callbackQHelpIndexWidget_IsIndexHidden
 func callbackQHelpIndexWidget_IsIndexHidden(ptr unsafe.Pointer, index unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpIndexWidget::isIndexHidden"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QModelIndex) bool)(core.NewQModelIndexFromPointer(index)))))
 	}
@@ -9361,7 +9181,6 @@ func (ptr *QHelpIndexWidget) IsIndexHiddenDefault(index core.QModelIndex_ITF) bo
 
 //export callbackQHelpIndexWidget_MouseMoveEvent
 func callbackQHelpIndexWidget_MouseMoveEvent(ptr unsafe.Pointer, e unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpIndexWidget::mouseMoveEvent"); signal != nil {
 		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(e))
 	} else {
@@ -9397,7 +9216,6 @@ func (ptr *QHelpIndexWidget) MouseMoveEventDefault(e gui.QMouseEvent_ITF) {
 
 //export callbackQHelpIndexWidget_MouseReleaseEvent
 func callbackQHelpIndexWidget_MouseReleaseEvent(ptr unsafe.Pointer, e unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpIndexWidget::mouseReleaseEvent"); signal != nil {
 		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(e))
 	} else {
@@ -9433,7 +9251,6 @@ func (ptr *QHelpIndexWidget) MouseReleaseEventDefault(e gui.QMouseEvent_ITF) {
 
 //export callbackQHelpIndexWidget_MoveCursor
 func callbackQHelpIndexWidget_MoveCursor(ptr unsafe.Pointer, cursorAction C.longlong, modifiers C.longlong) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpIndexWidget::moveCursor"); signal != nil {
 		return core.PointerFromQModelIndex(signal.(func(widgets.QAbstractItemView__CursorAction, core.Qt__KeyboardModifier) *core.QModelIndex)(widgets.QAbstractItemView__CursorAction(cursorAction), core.Qt__KeyboardModifier(modifiers)))
 	}
@@ -9475,7 +9292,6 @@ func (ptr *QHelpIndexWidget) MoveCursorDefault(cursorAction widgets.QAbstractIte
 
 //export callbackQHelpIndexWidget_PaintEvent
 func callbackQHelpIndexWidget_PaintEvent(ptr unsafe.Pointer, e unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpIndexWidget::paintEvent"); signal != nil {
 		signal.(func(*gui.QPaintEvent))(gui.NewQPaintEventFromPointer(e))
 	} else {
@@ -9511,7 +9327,6 @@ func (ptr *QHelpIndexWidget) PaintEventDefault(e gui.QPaintEvent_ITF) {
 
 //export callbackQHelpIndexWidget_ResizeEvent
 func callbackQHelpIndexWidget_ResizeEvent(ptr unsafe.Pointer, e unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpIndexWidget::resizeEvent"); signal != nil {
 		signal.(func(*gui.QResizeEvent))(gui.NewQResizeEventFromPointer(e))
 	} else {
@@ -9547,7 +9362,6 @@ func (ptr *QHelpIndexWidget) ResizeEventDefault(e gui.QResizeEvent_ITF) {
 
 //export callbackQHelpIndexWidget_RowsAboutToBeRemoved
 func callbackQHelpIndexWidget_RowsAboutToBeRemoved(ptr unsafe.Pointer, parent unsafe.Pointer, start C.int, end C.int) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpIndexWidget::rowsAboutToBeRemoved"); signal != nil {
 		signal.(func(*core.QModelIndex, int, int))(core.NewQModelIndexFromPointer(parent), int(int32(start)), int(int32(end)))
 	} else {
@@ -9583,7 +9397,6 @@ func (ptr *QHelpIndexWidget) RowsAboutToBeRemovedDefault(parent core.QModelIndex
 
 //export callbackQHelpIndexWidget_RowsInserted
 func callbackQHelpIndexWidget_RowsInserted(ptr unsafe.Pointer, parent unsafe.Pointer, start C.int, end C.int) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpIndexWidget::rowsInserted"); signal != nil {
 		signal.(func(*core.QModelIndex, int, int))(core.NewQModelIndexFromPointer(parent), int(int32(start)), int(int32(end)))
 	} else {
@@ -9619,7 +9432,6 @@ func (ptr *QHelpIndexWidget) RowsInsertedDefault(parent core.QModelIndex_ITF, st
 
 //export callbackQHelpIndexWidget_ScrollTo
 func callbackQHelpIndexWidget_ScrollTo(ptr unsafe.Pointer, index unsafe.Pointer, hint C.longlong) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpIndexWidget::scrollTo"); signal != nil {
 		signal.(func(*core.QModelIndex, widgets.QAbstractItemView__ScrollHint))(core.NewQModelIndexFromPointer(index), widgets.QAbstractItemView__ScrollHint(hint))
 	} else {
@@ -9655,7 +9467,6 @@ func (ptr *QHelpIndexWidget) ScrollToDefault(index core.QModelIndex_ITF, hint wi
 
 //export callbackQHelpIndexWidget_SelectionChanged
 func callbackQHelpIndexWidget_SelectionChanged(ptr unsafe.Pointer, selected unsafe.Pointer, deselected unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpIndexWidget::selectionChanged"); signal != nil {
 		signal.(func(*core.QItemSelection, *core.QItemSelection))(core.NewQItemSelectionFromPointer(selected), core.NewQItemSelectionFromPointer(deselected))
 	} else {
@@ -9691,7 +9502,6 @@ func (ptr *QHelpIndexWidget) SelectionChangedDefault(selected core.QItemSelectio
 
 //export callbackQHelpIndexWidget_SetSelection
 func callbackQHelpIndexWidget_SetSelection(ptr unsafe.Pointer, rect unsafe.Pointer, command C.longlong) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpIndexWidget::setSelection"); signal != nil {
 		signal.(func(*core.QRect, core.QItemSelectionModel__SelectionFlag))(core.NewQRectFromPointer(rect), core.QItemSelectionModel__SelectionFlag(command))
 	} else {
@@ -9727,7 +9537,6 @@ func (ptr *QHelpIndexWidget) SetSelectionDefault(rect core.QRect_ITF, command co
 
 //export callbackQHelpIndexWidget_StartDrag
 func callbackQHelpIndexWidget_StartDrag(ptr unsafe.Pointer, supportedActions C.longlong) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpIndexWidget::startDrag"); signal != nil {
 		signal.(func(core.Qt__DropAction))(core.Qt__DropAction(supportedActions))
 	} else {
@@ -9763,7 +9572,6 @@ func (ptr *QHelpIndexWidget) StartDragDefault(supportedActions core.Qt__DropActi
 
 //export callbackQHelpIndexWidget_UpdateGeometries
 func callbackQHelpIndexWidget_UpdateGeometries(ptr unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpIndexWidget::updateGeometries"); signal != nil {
 		signal.(func())()
 	} else {
@@ -9799,7 +9607,6 @@ func (ptr *QHelpIndexWidget) UpdateGeometriesDefault() {
 
 //export callbackQHelpIndexWidget_VerticalOffset
 func callbackQHelpIndexWidget_VerticalOffset(ptr unsafe.Pointer) C.int {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpIndexWidget::verticalOffset"); signal != nil {
 		return C.int(int32(signal.(func() int)()))
 	}
@@ -9837,7 +9644,6 @@ func (ptr *QHelpIndexWidget) VerticalOffsetDefault() int {
 
 //export callbackQHelpIndexWidget_ViewOptions
 func callbackQHelpIndexWidget_ViewOptions(ptr unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpIndexWidget::viewOptions"); signal != nil {
 		return widgets.PointerFromQStyleOptionViewItem(signal.(func() *widgets.QStyleOptionViewItem)())
 	}
@@ -9879,7 +9685,6 @@ func (ptr *QHelpIndexWidget) ViewOptionsDefault() *widgets.QStyleOptionViewItem 
 
 //export callbackQHelpIndexWidget_ViewportSizeHint
 func callbackQHelpIndexWidget_ViewportSizeHint(ptr unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpIndexWidget::viewportSizeHint"); signal != nil {
 		return core.PointerFromQSize(signal.(func() *core.QSize)())
 	}
@@ -9921,7 +9726,6 @@ func (ptr *QHelpIndexWidget) ViewportSizeHintDefault() *core.QSize {
 
 //export callbackQHelpIndexWidget_VisualRect
 func callbackQHelpIndexWidget_VisualRect(ptr unsafe.Pointer, index unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpIndexWidget::visualRect"); signal != nil {
 		return core.PointerFromQRect(signal.(func(*core.QModelIndex) *core.QRect)(core.NewQModelIndexFromPointer(index)))
 	}
@@ -9963,7 +9767,6 @@ func (ptr *QHelpIndexWidget) VisualRectDefault(index core.QModelIndex_ITF) *core
 
 //export callbackQHelpIndexWidget_VisualRegionForSelection
 func callbackQHelpIndexWidget_VisualRegionForSelection(ptr unsafe.Pointer, selection unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpIndexWidget::visualRegionForSelection"); signal != nil {
 		return gui.PointerFromQRegion(signal.(func(*core.QItemSelection) *gui.QRegion)(core.NewQItemSelectionFromPointer(selection)))
 	}
@@ -10005,7 +9808,6 @@ func (ptr *QHelpIndexWidget) VisualRegionForSelectionDefault(selection core.QIte
 
 //export callbackQHelpIndexWidget_WheelEvent
 func callbackQHelpIndexWidget_WheelEvent(ptr unsafe.Pointer, e unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpIndexWidget::wheelEvent"); signal != nil {
 		signal.(func(*gui.QWheelEvent))(gui.NewQWheelEventFromPointer(e))
 	} else {
@@ -10041,7 +9843,6 @@ func (ptr *QHelpIndexWidget) WheelEventDefault(e gui.QWheelEvent_ITF) {
 
 //export callbackQHelpIndexWidget_ViewportEvent
 func callbackQHelpIndexWidget_ViewportEvent(ptr unsafe.Pointer, event unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpIndexWidget::viewportEvent"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(event)))))
 	}
@@ -10184,7 +9985,6 @@ func (ptr *QHelpIndexWidget) CommitDataDefault(editor widgets.QWidget_ITF) {
 
 //export callbackQHelpIndexWidget_DragEnterEvent
 func callbackQHelpIndexWidget_DragEnterEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpIndexWidget::dragEnterEvent"); signal != nil {
 		signal.(func(*gui.QDragEnterEvent))(gui.NewQDragEnterEventFromPointer(event))
 	} else {
@@ -10255,7 +10055,6 @@ func (ptr *QHelpIndexWidget) EditDefault(index core.QModelIndex_ITF) {
 
 //export callbackQHelpIndexWidget_Edit2
 func callbackQHelpIndexWidget_Edit2(ptr unsafe.Pointer, index unsafe.Pointer, trigger C.longlong, event unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpIndexWidget::edit2"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QModelIndex, widgets.QAbstractItemView__EditTrigger, *core.QEvent) bool)(core.NewQModelIndexFromPointer(index), widgets.QAbstractItemView__EditTrigger(trigger), core.NewQEventFromPointer(event)))))
 	}
@@ -10328,7 +10127,6 @@ func (ptr *QHelpIndexWidget) EditorDestroyedDefault(editor core.QObject_ITF) {
 
 //export callbackQHelpIndexWidget_FocusInEvent
 func callbackQHelpIndexWidget_FocusInEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpIndexWidget::focusInEvent"); signal != nil {
 		signal.(func(*gui.QFocusEvent))(gui.NewQFocusEventFromPointer(event))
 	} else {
@@ -10364,7 +10162,6 @@ func (ptr *QHelpIndexWidget) FocusInEventDefault(event gui.QFocusEvent_ITF) {
 
 //export callbackQHelpIndexWidget_FocusNextPrevChild
 func callbackQHelpIndexWidget_FocusNextPrevChild(ptr unsafe.Pointer, next C.char) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpIndexWidget::focusNextPrevChild"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(bool) bool)(int8(next) != 0))))
 	}
@@ -10402,7 +10199,6 @@ func (ptr *QHelpIndexWidget) FocusNextPrevChildDefault(next bool) bool {
 
 //export callbackQHelpIndexWidget_FocusOutEvent
 func callbackQHelpIndexWidget_FocusOutEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpIndexWidget::focusOutEvent"); signal != nil {
 		signal.(func(*gui.QFocusEvent))(gui.NewQFocusEventFromPointer(event))
 	} else {
@@ -10438,7 +10234,6 @@ func (ptr *QHelpIndexWidget) FocusOutEventDefault(event gui.QFocusEvent_ITF) {
 
 //export callbackQHelpIndexWidget_InputMethodEvent
 func callbackQHelpIndexWidget_InputMethodEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpIndexWidget::inputMethodEvent"); signal != nil {
 		signal.(func(*gui.QInputMethodEvent))(gui.NewQInputMethodEventFromPointer(event))
 	} else {
@@ -10474,7 +10269,6 @@ func (ptr *QHelpIndexWidget) InputMethodEventDefault(event gui.QInputMethodEvent
 
 //export callbackQHelpIndexWidget_InputMethodQuery
 func callbackQHelpIndexWidget_InputMethodQuery(ptr unsafe.Pointer, query C.longlong) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpIndexWidget::inputMethodQuery"); signal != nil {
 		return core.PointerFromQVariant(signal.(func(core.Qt__InputMethodQuery) *core.QVariant)(core.Qt__InputMethodQuery(query)))
 	}
@@ -10516,7 +10310,6 @@ func (ptr *QHelpIndexWidget) InputMethodQueryDefault(query core.Qt__InputMethodQ
 
 //export callbackQHelpIndexWidget_KeyPressEvent
 func callbackQHelpIndexWidget_KeyPressEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpIndexWidget::keyPressEvent"); signal != nil {
 		signal.(func(*gui.QKeyEvent))(gui.NewQKeyEventFromPointer(event))
 	} else {
@@ -10552,7 +10345,6 @@ func (ptr *QHelpIndexWidget) KeyPressEventDefault(event gui.QKeyEvent_ITF) {
 
 //export callbackQHelpIndexWidget_KeyboardSearch
 func callbackQHelpIndexWidget_KeyboardSearch(ptr unsafe.Pointer, search C.struct_QtHelp_PackedString) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpIndexWidget::keyboardSearch"); signal != nil {
 		signal.(func(string))(cGoUnpackString(search))
 	} else {
@@ -10592,7 +10384,6 @@ func (ptr *QHelpIndexWidget) KeyboardSearchDefault(search string) {
 
 //export callbackQHelpIndexWidget_MouseDoubleClickEvent
 func callbackQHelpIndexWidget_MouseDoubleClickEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpIndexWidget::mouseDoubleClickEvent"); signal != nil {
 		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
 	} else {
@@ -10628,7 +10419,6 @@ func (ptr *QHelpIndexWidget) MouseDoubleClickEventDefault(event gui.QMouseEvent_
 
 //export callbackQHelpIndexWidget_MousePressEvent
 func callbackQHelpIndexWidget_MousePressEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpIndexWidget::mousePressEvent"); signal != nil {
 		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
 	} else {
@@ -10804,7 +10594,6 @@ func (ptr *QHelpIndexWidget) SelectAllDefault() {
 
 //export callbackQHelpIndexWidget_SelectionCommand
 func callbackQHelpIndexWidget_SelectionCommand(ptr unsafe.Pointer, index unsafe.Pointer, event unsafe.Pointer) C.longlong {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpIndexWidget::selectionCommand"); signal != nil {
 		return C.longlong(signal.(func(*core.QModelIndex, *core.QEvent) core.QItemSelectionModel__SelectionFlag)(core.NewQModelIndexFromPointer(index), core.NewQEventFromPointer(event)))
 	}
@@ -10877,7 +10666,6 @@ func (ptr *QHelpIndexWidget) SetCurrentIndexDefault(index core.QModelIndex_ITF) 
 
 //export callbackQHelpIndexWidget_SetModel
 func callbackQHelpIndexWidget_SetModel(ptr unsafe.Pointer, model unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpIndexWidget::setModel"); signal != nil {
 		signal.(func(*core.QAbstractItemModel))(core.NewQAbstractItemModelFromPointer(model))
 	} else {
@@ -10948,7 +10736,6 @@ func (ptr *QHelpIndexWidget) SetRootIndexDefault(index core.QModelIndex_ITF) {
 
 //export callbackQHelpIndexWidget_SetSelectionModel
 func callbackQHelpIndexWidget_SetSelectionModel(ptr unsafe.Pointer, selectionModel unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpIndexWidget::setSelectionModel"); signal != nil {
 		signal.(func(*core.QItemSelectionModel))(core.NewQItemSelectionModelFromPointer(selectionModel))
 	} else {
@@ -10984,7 +10771,6 @@ func (ptr *QHelpIndexWidget) SetSelectionModelDefault(selectionModel core.QItemS
 
 //export callbackQHelpIndexWidget_SizeHintForColumn
 func callbackQHelpIndexWidget_SizeHintForColumn(ptr unsafe.Pointer, column C.int) C.int {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpIndexWidget::sizeHintForColumn"); signal != nil {
 		return C.int(int32(signal.(func(int) int)(int(int32(column)))))
 	}
@@ -11022,7 +10808,6 @@ func (ptr *QHelpIndexWidget) SizeHintForColumnDefault(column int) int {
 
 //export callbackQHelpIndexWidget_SizeHintForRow
 func callbackQHelpIndexWidget_SizeHintForRow(ptr unsafe.Pointer, row C.int) C.int {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpIndexWidget::sizeHintForRow"); signal != nil {
 		return C.int(int32(signal.(func(int) int)(int(int32(row)))))
 	}
@@ -11095,7 +10880,6 @@ func (ptr *QHelpIndexWidget) UpdateDefault(index core.QModelIndex_ITF) {
 
 //export callbackQHelpIndexWidget_ContextMenuEvent
 func callbackQHelpIndexWidget_ContextMenuEvent(ptr unsafe.Pointer, e unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpIndexWidget::contextMenuEvent"); signal != nil {
 		signal.(func(*gui.QContextMenuEvent))(gui.NewQContextMenuEventFromPointer(e))
 	} else {
@@ -11131,7 +10915,6 @@ func (ptr *QHelpIndexWidget) ContextMenuEventDefault(e gui.QContextMenuEvent_ITF
 
 //export callbackQHelpIndexWidget_MinimumSizeHint
 func callbackQHelpIndexWidget_MinimumSizeHint(ptr unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpIndexWidget::minimumSizeHint"); signal != nil {
 		return core.PointerFromQSize(signal.(func() *core.QSize)())
 	}
@@ -11173,7 +10956,6 @@ func (ptr *QHelpIndexWidget) MinimumSizeHintDefault() *core.QSize {
 
 //export callbackQHelpIndexWidget_ScrollContentsBy
 func callbackQHelpIndexWidget_ScrollContentsBy(ptr unsafe.Pointer, dx C.int, dy C.int) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpIndexWidget::scrollContentsBy"); signal != nil {
 		signal.(func(int, int))(int(int32(dx)), int(int32(dy)))
 	} else {
@@ -11209,7 +10991,6 @@ func (ptr *QHelpIndexWidget) ScrollContentsByDefault(dx int, dy int) {
 
 //export callbackQHelpIndexWidget_SetupViewport
 func callbackQHelpIndexWidget_SetupViewport(ptr unsafe.Pointer, viewport unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpIndexWidget::setupViewport"); signal != nil {
 		signal.(func(*widgets.QWidget))(widgets.NewQWidgetFromPointer(viewport))
 	} else {
@@ -11245,7 +11026,6 @@ func (ptr *QHelpIndexWidget) SetupViewportDefault(viewport widgets.QWidget_ITF) 
 
 //export callbackQHelpIndexWidget_SizeHint
 func callbackQHelpIndexWidget_SizeHint(ptr unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpIndexWidget::sizeHint"); signal != nil {
 		return core.PointerFromQSize(signal.(func() *core.QSize)())
 	}
@@ -11287,7 +11067,6 @@ func (ptr *QHelpIndexWidget) SizeHintDefault() *core.QSize {
 
 //export callbackQHelpIndexWidget_ChangeEvent
 func callbackQHelpIndexWidget_ChangeEvent(ptr unsafe.Pointer, ev unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpIndexWidget::changeEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(ev))
 	} else {
@@ -11323,7 +11102,6 @@ func (ptr *QHelpIndexWidget) ChangeEventDefault(ev core.QEvent_ITF) {
 
 //export callbackQHelpIndexWidget_ActionEvent
 func callbackQHelpIndexWidget_ActionEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpIndexWidget::actionEvent"); signal != nil {
 		signal.(func(*gui.QActionEvent))(gui.NewQActionEventFromPointer(event))
 	} else {
@@ -11359,7 +11137,6 @@ func (ptr *QHelpIndexWidget) ActionEventDefault(event gui.QActionEvent_ITF) {
 
 //export callbackQHelpIndexWidget_EnterEvent
 func callbackQHelpIndexWidget_EnterEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpIndexWidget::enterEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
 	} else {
@@ -11395,7 +11172,6 @@ func (ptr *QHelpIndexWidget) EnterEventDefault(event core.QEvent_ITF) {
 
 //export callbackQHelpIndexWidget_HideEvent
 func callbackQHelpIndexWidget_HideEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpIndexWidget::hideEvent"); signal != nil {
 		signal.(func(*gui.QHideEvent))(gui.NewQHideEventFromPointer(event))
 	} else {
@@ -11431,7 +11207,6 @@ func (ptr *QHelpIndexWidget) HideEventDefault(event gui.QHideEvent_ITF) {
 
 //export callbackQHelpIndexWidget_LeaveEvent
 func callbackQHelpIndexWidget_LeaveEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpIndexWidget::leaveEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
 	} else {
@@ -11467,7 +11242,6 @@ func (ptr *QHelpIndexWidget) LeaveEventDefault(event core.QEvent_ITF) {
 
 //export callbackQHelpIndexWidget_Metric
 func callbackQHelpIndexWidget_Metric(ptr unsafe.Pointer, m C.longlong) C.int {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpIndexWidget::metric"); signal != nil {
 		return C.int(int32(signal.(func(gui.QPaintDevice__PaintDeviceMetric) int)(gui.QPaintDevice__PaintDeviceMetric(m))))
 	}
@@ -11505,7 +11279,6 @@ func (ptr *QHelpIndexWidget) MetricDefault(m gui.QPaintDevice__PaintDeviceMetric
 
 //export callbackQHelpIndexWidget_MoveEvent
 func callbackQHelpIndexWidget_MoveEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpIndexWidget::moveEvent"); signal != nil {
 		signal.(func(*gui.QMoveEvent))(gui.NewQMoveEventFromPointer(event))
 	} else {
@@ -11541,7 +11314,6 @@ func (ptr *QHelpIndexWidget) MoveEventDefault(event gui.QMoveEvent_ITF) {
 
 //export callbackQHelpIndexWidget_PaintEngine
 func callbackQHelpIndexWidget_PaintEngine(ptr unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpIndexWidget::paintEngine"); signal != nil {
 		return gui.PointerFromQPaintEngine(signal.(func() *gui.QPaintEngine)())
 	}
@@ -11762,7 +11534,6 @@ func (ptr *QHelpIndexWidget) SetWindowTitleDefault(vqs string) {
 
 //export callbackQHelpIndexWidget_ShowEvent
 func callbackQHelpIndexWidget_ShowEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpIndexWidget::showEvent"); signal != nil {
 		signal.(func(*gui.QShowEvent))(gui.NewQShowEventFromPointer(event))
 	} else {
@@ -11835,7 +11606,6 @@ func (ptr *QHelpIndexWidget) CloseDefault() bool {
 
 //export callbackQHelpIndexWidget_CloseEvent
 func callbackQHelpIndexWidget_CloseEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpIndexWidget::closeEvent"); signal != nil {
 		signal.(func(*gui.QCloseEvent))(gui.NewQCloseEventFromPointer(event))
 	} else {
@@ -11871,7 +11641,6 @@ func (ptr *QHelpIndexWidget) CloseEventDefault(event gui.QCloseEvent_ITF) {
 
 //export callbackQHelpIndexWidget_Event
 func callbackQHelpIndexWidget_Event(ptr unsafe.Pointer, event unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpIndexWidget::event"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(event)))))
 	}
@@ -11909,7 +11678,6 @@ func (ptr *QHelpIndexWidget) EventDefault(event core.QEvent_ITF) bool {
 
 //export callbackQHelpIndexWidget_HasHeightForWidth
 func callbackQHelpIndexWidget_HasHeightForWidth(ptr unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpIndexWidget::hasHeightForWidth"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func() bool)())))
 	}
@@ -11947,7 +11715,6 @@ func (ptr *QHelpIndexWidget) HasHeightForWidthDefault() bool {
 
 //export callbackQHelpIndexWidget_HeightForWidth
 func callbackQHelpIndexWidget_HeightForWidth(ptr unsafe.Pointer, w C.int) C.int {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpIndexWidget::heightForWidth"); signal != nil {
 		return C.int(int32(signal.(func(int) int)(int(int32(w)))))
 	}
@@ -12020,7 +11787,6 @@ func (ptr *QHelpIndexWidget) HideDefault() {
 
 //export callbackQHelpIndexWidget_KeyReleaseEvent
 func callbackQHelpIndexWidget_KeyReleaseEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpIndexWidget::keyReleaseEvent"); signal != nil {
 		signal.(func(*gui.QKeyEvent))(gui.NewQKeyEventFromPointer(event))
 	} else {
@@ -12091,7 +11857,6 @@ func (ptr *QHelpIndexWidget) LowerDefault() {
 
 //export callbackQHelpIndexWidget_NativeEvent
 func callbackQHelpIndexWidget_NativeEvent(ptr unsafe.Pointer, eventType unsafe.Pointer, message unsafe.Pointer, result C.long) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpIndexWidget::nativeEvent"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QByteArray, unsafe.Pointer, int) bool)(core.NewQByteArrayFromPointer(eventType), message, int(int32(result))))))
 	}
@@ -12479,7 +12244,6 @@ func (ptr *QHelpIndexWidget) ShowNormalDefault() {
 
 //export callbackQHelpIndexWidget_TabletEvent
 func callbackQHelpIndexWidget_TabletEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpIndexWidget::tabletEvent"); signal != nil {
 		signal.(func(*gui.QTabletEvent))(gui.NewQTabletEventFromPointer(event))
 	} else {
@@ -12550,7 +12314,6 @@ func (ptr *QHelpIndexWidget) UpdateMicroFocusDefault() {
 
 //export callbackQHelpIndexWidget_TimerEvent
 func callbackQHelpIndexWidget_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpIndexWidget::timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
 	} else {
@@ -12586,7 +12349,6 @@ func (ptr *QHelpIndexWidget) TimerEventDefault(event core.QTimerEvent_ITF) {
 
 //export callbackQHelpIndexWidget_ChildEvent
 func callbackQHelpIndexWidget_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpIndexWidget::childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
 	} else {
@@ -12622,7 +12384,6 @@ func (ptr *QHelpIndexWidget) ChildEventDefault(event core.QChildEvent_ITF) {
 
 //export callbackQHelpIndexWidget_ConnectNotify
 func callbackQHelpIndexWidget_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpIndexWidget::connectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
@@ -12658,7 +12419,6 @@ func (ptr *QHelpIndexWidget) ConnectNotifyDefault(sign core.QMetaMethod_ITF) {
 
 //export callbackQHelpIndexWidget_CustomEvent
 func callbackQHelpIndexWidget_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpIndexWidget::customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
 	} else {
@@ -12733,7 +12493,6 @@ func (ptr *QHelpIndexWidget) DeleteLaterDefault() {
 
 //export callbackQHelpIndexWidget_DisconnectNotify
 func callbackQHelpIndexWidget_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpIndexWidget::disconnectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
@@ -12769,7 +12528,6 @@ func (ptr *QHelpIndexWidget) DisconnectNotifyDefault(sign core.QMetaMethod_ITF) 
 
 //export callbackQHelpIndexWidget_EventFilter
 func callbackQHelpIndexWidget_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpIndexWidget::eventFilter"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
 	}
@@ -12807,7 +12565,6 @@ func (ptr *QHelpIndexWidget) EventFilterDefault(watched core.QObject_ITF, event 
 
 //export callbackQHelpIndexWidget_MetaObject
 func callbackQHelpIndexWidget_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpIndexWidget::metaObject"); signal != nil {
 		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
 	}
@@ -12968,7 +12725,6 @@ func (ptr *QHelpSearchEngine) HitCount() int {
 
 //export callbackQHelpSearchEngine_IndexingFinished
 func callbackQHelpSearchEngine_IndexingFinished(ptr unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpSearchEngine::indexingFinished"); signal != nil {
 		signal.(func())()
 	}
@@ -12997,7 +12753,6 @@ func (ptr *QHelpSearchEngine) IndexingFinished() {
 
 //export callbackQHelpSearchEngine_IndexingStarted
 func callbackQHelpSearchEngine_IndexingStarted(ptr unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpSearchEngine::indexingStarted"); signal != nil {
 		signal.(func())()
 	}
@@ -13083,7 +12838,6 @@ func (ptr *QHelpSearchEngine) ResultWidget() *QHelpSearchResultWidget {
 
 //export callbackQHelpSearchEngine_SearchingFinished
 func callbackQHelpSearchEngine_SearchingFinished(ptr unsafe.Pointer, hits C.int) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpSearchEngine::searchingFinished"); signal != nil {
 		signal.(func(int))(int(int32(hits)))
 	}
@@ -13112,7 +12866,6 @@ func (ptr *QHelpSearchEngine) SearchingFinished(hits int) {
 
 //export callbackQHelpSearchEngine_SearchingStarted
 func callbackQHelpSearchEngine_SearchingStarted(ptr unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpSearchEngine::searchingStarted"); signal != nil {
 		signal.(func())()
 	}
@@ -13158,7 +12911,6 @@ func (ptr *QHelpSearchEngine) query_atList(i int) *QHelpSearchQuery {
 
 //export callbackQHelpSearchEngine_TimerEvent
 func callbackQHelpSearchEngine_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpSearchEngine::timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
 	} else {
@@ -13194,7 +12946,6 @@ func (ptr *QHelpSearchEngine) TimerEventDefault(event core.QTimerEvent_ITF) {
 
 //export callbackQHelpSearchEngine_ChildEvent
 func callbackQHelpSearchEngine_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpSearchEngine::childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
 	} else {
@@ -13230,7 +12981,6 @@ func (ptr *QHelpSearchEngine) ChildEventDefault(event core.QChildEvent_ITF) {
 
 //export callbackQHelpSearchEngine_ConnectNotify
 func callbackQHelpSearchEngine_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpSearchEngine::connectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
@@ -13266,7 +13016,6 @@ func (ptr *QHelpSearchEngine) ConnectNotifyDefault(sign core.QMetaMethod_ITF) {
 
 //export callbackQHelpSearchEngine_CustomEvent
 func callbackQHelpSearchEngine_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpSearchEngine::customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
 	} else {
@@ -13341,7 +13090,6 @@ func (ptr *QHelpSearchEngine) DeleteLaterDefault() {
 
 //export callbackQHelpSearchEngine_DisconnectNotify
 func callbackQHelpSearchEngine_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpSearchEngine::disconnectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
@@ -13377,7 +13125,6 @@ func (ptr *QHelpSearchEngine) DisconnectNotifyDefault(sign core.QMetaMethod_ITF)
 
 //export callbackQHelpSearchEngine_Event
 func callbackQHelpSearchEngine_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpSearchEngine::event"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
 	}
@@ -13415,7 +13162,6 @@ func (ptr *QHelpSearchEngine) EventDefault(e core.QEvent_ITF) bool {
 
 //export callbackQHelpSearchEngine_EventFilter
 func callbackQHelpSearchEngine_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpSearchEngine::eventFilter"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
 	}
@@ -13453,7 +13199,6 @@ func (ptr *QHelpSearchEngine) EventFilterDefault(watched core.QObject_ITF, event
 
 //export callbackQHelpSearchEngine_MetaObject
 func callbackQHelpSearchEngine_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpSearchEngine::metaObject"); signal != nil {
 		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
 	}
@@ -13656,7 +13401,6 @@ func (ptr *QHelpSearchQueryWidget) ExpandExtendedSearch() {
 
 //export callbackQHelpSearchQueryWidget_Search
 func callbackQHelpSearchQueryWidget_Search(ptr unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpSearchQueryWidget::search"); signal != nil {
 		signal.(func())()
 	}
@@ -13702,7 +13446,6 @@ func (ptr *QHelpSearchQueryWidget) query_atList(i int) *QHelpSearchQuery {
 
 //export callbackQHelpSearchQueryWidget_ActionEvent
 func callbackQHelpSearchQueryWidget_ActionEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpSearchQueryWidget::actionEvent"); signal != nil {
 		signal.(func(*gui.QActionEvent))(gui.NewQActionEventFromPointer(event))
 	} else {
@@ -13738,7 +13481,6 @@ func (ptr *QHelpSearchQueryWidget) ActionEventDefault(event gui.QActionEvent_ITF
 
 //export callbackQHelpSearchQueryWidget_DragEnterEvent
 func callbackQHelpSearchQueryWidget_DragEnterEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpSearchQueryWidget::dragEnterEvent"); signal != nil {
 		signal.(func(*gui.QDragEnterEvent))(gui.NewQDragEnterEventFromPointer(event))
 	} else {
@@ -13774,7 +13516,6 @@ func (ptr *QHelpSearchQueryWidget) DragEnterEventDefault(event gui.QDragEnterEve
 
 //export callbackQHelpSearchQueryWidget_DragLeaveEvent
 func callbackQHelpSearchQueryWidget_DragLeaveEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpSearchQueryWidget::dragLeaveEvent"); signal != nil {
 		signal.(func(*gui.QDragLeaveEvent))(gui.NewQDragLeaveEventFromPointer(event))
 	} else {
@@ -13810,7 +13551,6 @@ func (ptr *QHelpSearchQueryWidget) DragLeaveEventDefault(event gui.QDragLeaveEve
 
 //export callbackQHelpSearchQueryWidget_DragMoveEvent
 func callbackQHelpSearchQueryWidget_DragMoveEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpSearchQueryWidget::dragMoveEvent"); signal != nil {
 		signal.(func(*gui.QDragMoveEvent))(gui.NewQDragMoveEventFromPointer(event))
 	} else {
@@ -13846,7 +13586,6 @@ func (ptr *QHelpSearchQueryWidget) DragMoveEventDefault(event gui.QDragMoveEvent
 
 //export callbackQHelpSearchQueryWidget_DropEvent
 func callbackQHelpSearchQueryWidget_DropEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpSearchQueryWidget::dropEvent"); signal != nil {
 		signal.(func(*gui.QDropEvent))(gui.NewQDropEventFromPointer(event))
 	} else {
@@ -13882,7 +13621,6 @@ func (ptr *QHelpSearchQueryWidget) DropEventDefault(event gui.QDropEvent_ITF) {
 
 //export callbackQHelpSearchQueryWidget_EnterEvent
 func callbackQHelpSearchQueryWidget_EnterEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpSearchQueryWidget::enterEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
 	} else {
@@ -13918,7 +13656,6 @@ func (ptr *QHelpSearchQueryWidget) EnterEventDefault(event core.QEvent_ITF) {
 
 //export callbackQHelpSearchQueryWidget_FocusInEvent
 func callbackQHelpSearchQueryWidget_FocusInEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpSearchQueryWidget::focusInEvent"); signal != nil {
 		signal.(func(*gui.QFocusEvent))(gui.NewQFocusEventFromPointer(event))
 	} else {
@@ -13954,7 +13691,6 @@ func (ptr *QHelpSearchQueryWidget) FocusInEventDefault(event gui.QFocusEvent_ITF
 
 //export callbackQHelpSearchQueryWidget_FocusOutEvent
 func callbackQHelpSearchQueryWidget_FocusOutEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpSearchQueryWidget::focusOutEvent"); signal != nil {
 		signal.(func(*gui.QFocusEvent))(gui.NewQFocusEventFromPointer(event))
 	} else {
@@ -13990,7 +13726,6 @@ func (ptr *QHelpSearchQueryWidget) FocusOutEventDefault(event gui.QFocusEvent_IT
 
 //export callbackQHelpSearchQueryWidget_HideEvent
 func callbackQHelpSearchQueryWidget_HideEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpSearchQueryWidget::hideEvent"); signal != nil {
 		signal.(func(*gui.QHideEvent))(gui.NewQHideEventFromPointer(event))
 	} else {
@@ -14026,7 +13761,6 @@ func (ptr *QHelpSearchQueryWidget) HideEventDefault(event gui.QHideEvent_ITF) {
 
 //export callbackQHelpSearchQueryWidget_LeaveEvent
 func callbackQHelpSearchQueryWidget_LeaveEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpSearchQueryWidget::leaveEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
 	} else {
@@ -14062,7 +13796,6 @@ func (ptr *QHelpSearchQueryWidget) LeaveEventDefault(event core.QEvent_ITF) {
 
 //export callbackQHelpSearchQueryWidget_Metric
 func callbackQHelpSearchQueryWidget_Metric(ptr unsafe.Pointer, m C.longlong) C.int {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpSearchQueryWidget::metric"); signal != nil {
 		return C.int(int32(signal.(func(gui.QPaintDevice__PaintDeviceMetric) int)(gui.QPaintDevice__PaintDeviceMetric(m))))
 	}
@@ -14100,7 +13833,6 @@ func (ptr *QHelpSearchQueryWidget) MetricDefault(m gui.QPaintDevice__PaintDevice
 
 //export callbackQHelpSearchQueryWidget_MinimumSizeHint
 func callbackQHelpSearchQueryWidget_MinimumSizeHint(ptr unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpSearchQueryWidget::minimumSizeHint"); signal != nil {
 		return core.PointerFromQSize(signal.(func() *core.QSize)())
 	}
@@ -14142,7 +13874,6 @@ func (ptr *QHelpSearchQueryWidget) MinimumSizeHintDefault() *core.QSize {
 
 //export callbackQHelpSearchQueryWidget_MoveEvent
 func callbackQHelpSearchQueryWidget_MoveEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpSearchQueryWidget::moveEvent"); signal != nil {
 		signal.(func(*gui.QMoveEvent))(gui.NewQMoveEventFromPointer(event))
 	} else {
@@ -14178,7 +13909,6 @@ func (ptr *QHelpSearchQueryWidget) MoveEventDefault(event gui.QMoveEvent_ITF) {
 
 //export callbackQHelpSearchQueryWidget_PaintEngine
 func callbackQHelpSearchQueryWidget_PaintEngine(ptr unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpSearchQueryWidget::paintEngine"); signal != nil {
 		return gui.PointerFromQPaintEngine(signal.(func() *gui.QPaintEngine)())
 	}
@@ -14216,7 +13946,6 @@ func (ptr *QHelpSearchQueryWidget) PaintEngineDefault() *gui.QPaintEngine {
 
 //export callbackQHelpSearchQueryWidget_PaintEvent
 func callbackQHelpSearchQueryWidget_PaintEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpSearchQueryWidget::paintEvent"); signal != nil {
 		signal.(func(*gui.QPaintEvent))(gui.NewQPaintEventFromPointer(event))
 	} else {
@@ -14435,7 +14164,6 @@ func (ptr *QHelpSearchQueryWidget) SetWindowTitleDefault(vqs string) {
 
 //export callbackQHelpSearchQueryWidget_ShowEvent
 func callbackQHelpSearchQueryWidget_ShowEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpSearchQueryWidget::showEvent"); signal != nil {
 		signal.(func(*gui.QShowEvent))(gui.NewQShowEventFromPointer(event))
 	} else {
@@ -14471,7 +14199,6 @@ func (ptr *QHelpSearchQueryWidget) ShowEventDefault(event gui.QShowEvent_ITF) {
 
 //export callbackQHelpSearchQueryWidget_SizeHint
 func callbackQHelpSearchQueryWidget_SizeHint(ptr unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpSearchQueryWidget::sizeHint"); signal != nil {
 		return core.PointerFromQSize(signal.(func() *core.QSize)())
 	}
@@ -14513,7 +14240,6 @@ func (ptr *QHelpSearchQueryWidget) SizeHintDefault() *core.QSize {
 
 //export callbackQHelpSearchQueryWidget_ChangeEvent
 func callbackQHelpSearchQueryWidget_ChangeEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpSearchQueryWidget::changeEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
 	} else {
@@ -14586,7 +14312,6 @@ func (ptr *QHelpSearchQueryWidget) CloseDefault() bool {
 
 //export callbackQHelpSearchQueryWidget_CloseEvent
 func callbackQHelpSearchQueryWidget_CloseEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpSearchQueryWidget::closeEvent"); signal != nil {
 		signal.(func(*gui.QCloseEvent))(gui.NewQCloseEventFromPointer(event))
 	} else {
@@ -14622,7 +14347,6 @@ func (ptr *QHelpSearchQueryWidget) CloseEventDefault(event gui.QCloseEvent_ITF) 
 
 //export callbackQHelpSearchQueryWidget_ContextMenuEvent
 func callbackQHelpSearchQueryWidget_ContextMenuEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpSearchQueryWidget::contextMenuEvent"); signal != nil {
 		signal.(func(*gui.QContextMenuEvent))(gui.NewQContextMenuEventFromPointer(event))
 	} else {
@@ -14658,7 +14382,6 @@ func (ptr *QHelpSearchQueryWidget) ContextMenuEventDefault(event gui.QContextMen
 
 //export callbackQHelpSearchQueryWidget_Event
 func callbackQHelpSearchQueryWidget_Event(ptr unsafe.Pointer, event unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpSearchQueryWidget::event"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(event)))))
 	}
@@ -14696,7 +14419,6 @@ func (ptr *QHelpSearchQueryWidget) EventDefault(event core.QEvent_ITF) bool {
 
 //export callbackQHelpSearchQueryWidget_FocusNextPrevChild
 func callbackQHelpSearchQueryWidget_FocusNextPrevChild(ptr unsafe.Pointer, next C.char) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpSearchQueryWidget::focusNextPrevChild"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(bool) bool)(int8(next) != 0))))
 	}
@@ -14734,7 +14456,6 @@ func (ptr *QHelpSearchQueryWidget) FocusNextPrevChildDefault(next bool) bool {
 
 //export callbackQHelpSearchQueryWidget_HasHeightForWidth
 func callbackQHelpSearchQueryWidget_HasHeightForWidth(ptr unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpSearchQueryWidget::hasHeightForWidth"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func() bool)())))
 	}
@@ -14772,7 +14493,6 @@ func (ptr *QHelpSearchQueryWidget) HasHeightForWidthDefault() bool {
 
 //export callbackQHelpSearchQueryWidget_HeightForWidth
 func callbackQHelpSearchQueryWidget_HeightForWidth(ptr unsafe.Pointer, w C.int) C.int {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpSearchQueryWidget::heightForWidth"); signal != nil {
 		return C.int(int32(signal.(func(int) int)(int(int32(w)))))
 	}
@@ -14845,7 +14565,6 @@ func (ptr *QHelpSearchQueryWidget) HideDefault() {
 
 //export callbackQHelpSearchQueryWidget_InputMethodEvent
 func callbackQHelpSearchQueryWidget_InputMethodEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpSearchQueryWidget::inputMethodEvent"); signal != nil {
 		signal.(func(*gui.QInputMethodEvent))(gui.NewQInputMethodEventFromPointer(event))
 	} else {
@@ -14881,7 +14600,6 @@ func (ptr *QHelpSearchQueryWidget) InputMethodEventDefault(event gui.QInputMetho
 
 //export callbackQHelpSearchQueryWidget_InputMethodQuery
 func callbackQHelpSearchQueryWidget_InputMethodQuery(ptr unsafe.Pointer, query C.longlong) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpSearchQueryWidget::inputMethodQuery"); signal != nil {
 		return core.PointerFromQVariant(signal.(func(core.Qt__InputMethodQuery) *core.QVariant)(core.Qt__InputMethodQuery(query)))
 	}
@@ -14923,7 +14641,6 @@ func (ptr *QHelpSearchQueryWidget) InputMethodQueryDefault(query core.Qt__InputM
 
 //export callbackQHelpSearchQueryWidget_KeyPressEvent
 func callbackQHelpSearchQueryWidget_KeyPressEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpSearchQueryWidget::keyPressEvent"); signal != nil {
 		signal.(func(*gui.QKeyEvent))(gui.NewQKeyEventFromPointer(event))
 	} else {
@@ -14959,7 +14676,6 @@ func (ptr *QHelpSearchQueryWidget) KeyPressEventDefault(event gui.QKeyEvent_ITF)
 
 //export callbackQHelpSearchQueryWidget_KeyReleaseEvent
 func callbackQHelpSearchQueryWidget_KeyReleaseEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpSearchQueryWidget::keyReleaseEvent"); signal != nil {
 		signal.(func(*gui.QKeyEvent))(gui.NewQKeyEventFromPointer(event))
 	} else {
@@ -15030,7 +14746,6 @@ func (ptr *QHelpSearchQueryWidget) LowerDefault() {
 
 //export callbackQHelpSearchQueryWidget_MouseDoubleClickEvent
 func callbackQHelpSearchQueryWidget_MouseDoubleClickEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpSearchQueryWidget::mouseDoubleClickEvent"); signal != nil {
 		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
 	} else {
@@ -15066,7 +14781,6 @@ func (ptr *QHelpSearchQueryWidget) MouseDoubleClickEventDefault(event gui.QMouse
 
 //export callbackQHelpSearchQueryWidget_MouseMoveEvent
 func callbackQHelpSearchQueryWidget_MouseMoveEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpSearchQueryWidget::mouseMoveEvent"); signal != nil {
 		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
 	} else {
@@ -15102,7 +14816,6 @@ func (ptr *QHelpSearchQueryWidget) MouseMoveEventDefault(event gui.QMouseEvent_I
 
 //export callbackQHelpSearchQueryWidget_MousePressEvent
 func callbackQHelpSearchQueryWidget_MousePressEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpSearchQueryWidget::mousePressEvent"); signal != nil {
 		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
 	} else {
@@ -15138,7 +14851,6 @@ func (ptr *QHelpSearchQueryWidget) MousePressEventDefault(event gui.QMouseEvent_
 
 //export callbackQHelpSearchQueryWidget_MouseReleaseEvent
 func callbackQHelpSearchQueryWidget_MouseReleaseEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpSearchQueryWidget::mouseReleaseEvent"); signal != nil {
 		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
 	} else {
@@ -15174,7 +14886,6 @@ func (ptr *QHelpSearchQueryWidget) MouseReleaseEventDefault(event gui.QMouseEven
 
 //export callbackQHelpSearchQueryWidget_NativeEvent
 func callbackQHelpSearchQueryWidget_NativeEvent(ptr unsafe.Pointer, eventType unsafe.Pointer, message unsafe.Pointer, result C.long) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpSearchQueryWidget::nativeEvent"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QByteArray, unsafe.Pointer, int) bool)(core.NewQByteArrayFromPointer(eventType), message, int(int32(result))))))
 	}
@@ -15282,7 +14993,6 @@ func (ptr *QHelpSearchQueryWidget) RepaintDefault() {
 
 //export callbackQHelpSearchQueryWidget_ResizeEvent
 func callbackQHelpSearchQueryWidget_ResizeEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpSearchQueryWidget::resizeEvent"); signal != nil {
 		signal.(func(*gui.QResizeEvent))(gui.NewQResizeEventFromPointer(event))
 	} else {
@@ -15598,7 +15308,6 @@ func (ptr *QHelpSearchQueryWidget) ShowNormalDefault() {
 
 //export callbackQHelpSearchQueryWidget_TabletEvent
 func callbackQHelpSearchQueryWidget_TabletEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpSearchQueryWidget::tabletEvent"); signal != nil {
 		signal.(func(*gui.QTabletEvent))(gui.NewQTabletEventFromPointer(event))
 	} else {
@@ -15704,7 +15413,6 @@ func (ptr *QHelpSearchQueryWidget) UpdateMicroFocusDefault() {
 
 //export callbackQHelpSearchQueryWidget_WheelEvent
 func callbackQHelpSearchQueryWidget_WheelEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpSearchQueryWidget::wheelEvent"); signal != nil {
 		signal.(func(*gui.QWheelEvent))(gui.NewQWheelEventFromPointer(event))
 	} else {
@@ -15740,7 +15448,6 @@ func (ptr *QHelpSearchQueryWidget) WheelEventDefault(event gui.QWheelEvent_ITF) 
 
 //export callbackQHelpSearchQueryWidget_TimerEvent
 func callbackQHelpSearchQueryWidget_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpSearchQueryWidget::timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
 	} else {
@@ -15776,7 +15483,6 @@ func (ptr *QHelpSearchQueryWidget) TimerEventDefault(event core.QTimerEvent_ITF)
 
 //export callbackQHelpSearchQueryWidget_ChildEvent
 func callbackQHelpSearchQueryWidget_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpSearchQueryWidget::childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
 	} else {
@@ -15812,7 +15518,6 @@ func (ptr *QHelpSearchQueryWidget) ChildEventDefault(event core.QChildEvent_ITF)
 
 //export callbackQHelpSearchQueryWidget_ConnectNotify
 func callbackQHelpSearchQueryWidget_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpSearchQueryWidget::connectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
@@ -15848,7 +15553,6 @@ func (ptr *QHelpSearchQueryWidget) ConnectNotifyDefault(sign core.QMetaMethod_IT
 
 //export callbackQHelpSearchQueryWidget_CustomEvent
 func callbackQHelpSearchQueryWidget_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpSearchQueryWidget::customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
 	} else {
@@ -15923,7 +15627,6 @@ func (ptr *QHelpSearchQueryWidget) DeleteLaterDefault() {
 
 //export callbackQHelpSearchQueryWidget_DisconnectNotify
 func callbackQHelpSearchQueryWidget_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpSearchQueryWidget::disconnectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
@@ -15959,7 +15662,6 @@ func (ptr *QHelpSearchQueryWidget) DisconnectNotifyDefault(sign core.QMetaMethod
 
 //export callbackQHelpSearchQueryWidget_EventFilter
 func callbackQHelpSearchQueryWidget_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpSearchQueryWidget::eventFilter"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
 	}
@@ -15997,7 +15699,6 @@ func (ptr *QHelpSearchQueryWidget) EventFilterDefault(watched core.QObject_ITF, 
 
 //export callbackQHelpSearchQueryWidget_MetaObject
 func callbackQHelpSearchQueryWidget_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpSearchQueryWidget::metaObject"); signal != nil {
 		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
 	}
@@ -16082,7 +15783,6 @@ func (ptr *QHelpSearchResultWidget) LinkAt(point core.QPoint_ITF) *core.QUrl {
 
 //export callbackQHelpSearchResultWidget_RequestShowLink
 func callbackQHelpSearchResultWidget_RequestShowLink(ptr unsafe.Pointer, link unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpSearchResultWidget::requestShowLink"); signal != nil {
 		signal.(func(*core.QUrl))(core.NewQUrlFromPointer(link))
 	}
@@ -16119,7 +15819,6 @@ func (ptr *QHelpSearchResultWidget) DestroyQHelpSearchResultWidget() {
 
 //export callbackQHelpSearchResultWidget_ActionEvent
 func callbackQHelpSearchResultWidget_ActionEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpSearchResultWidget::actionEvent"); signal != nil {
 		signal.(func(*gui.QActionEvent))(gui.NewQActionEventFromPointer(event))
 	} else {
@@ -16155,7 +15854,6 @@ func (ptr *QHelpSearchResultWidget) ActionEventDefault(event gui.QActionEvent_IT
 
 //export callbackQHelpSearchResultWidget_DragEnterEvent
 func callbackQHelpSearchResultWidget_DragEnterEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpSearchResultWidget::dragEnterEvent"); signal != nil {
 		signal.(func(*gui.QDragEnterEvent))(gui.NewQDragEnterEventFromPointer(event))
 	} else {
@@ -16191,7 +15889,6 @@ func (ptr *QHelpSearchResultWidget) DragEnterEventDefault(event gui.QDragEnterEv
 
 //export callbackQHelpSearchResultWidget_DragLeaveEvent
 func callbackQHelpSearchResultWidget_DragLeaveEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpSearchResultWidget::dragLeaveEvent"); signal != nil {
 		signal.(func(*gui.QDragLeaveEvent))(gui.NewQDragLeaveEventFromPointer(event))
 	} else {
@@ -16227,7 +15924,6 @@ func (ptr *QHelpSearchResultWidget) DragLeaveEventDefault(event gui.QDragLeaveEv
 
 //export callbackQHelpSearchResultWidget_DragMoveEvent
 func callbackQHelpSearchResultWidget_DragMoveEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpSearchResultWidget::dragMoveEvent"); signal != nil {
 		signal.(func(*gui.QDragMoveEvent))(gui.NewQDragMoveEventFromPointer(event))
 	} else {
@@ -16263,7 +15959,6 @@ func (ptr *QHelpSearchResultWidget) DragMoveEventDefault(event gui.QDragMoveEven
 
 //export callbackQHelpSearchResultWidget_DropEvent
 func callbackQHelpSearchResultWidget_DropEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpSearchResultWidget::dropEvent"); signal != nil {
 		signal.(func(*gui.QDropEvent))(gui.NewQDropEventFromPointer(event))
 	} else {
@@ -16299,7 +15994,6 @@ func (ptr *QHelpSearchResultWidget) DropEventDefault(event gui.QDropEvent_ITF) {
 
 //export callbackQHelpSearchResultWidget_EnterEvent
 func callbackQHelpSearchResultWidget_EnterEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpSearchResultWidget::enterEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
 	} else {
@@ -16335,7 +16029,6 @@ func (ptr *QHelpSearchResultWidget) EnterEventDefault(event core.QEvent_ITF) {
 
 //export callbackQHelpSearchResultWidget_FocusInEvent
 func callbackQHelpSearchResultWidget_FocusInEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpSearchResultWidget::focusInEvent"); signal != nil {
 		signal.(func(*gui.QFocusEvent))(gui.NewQFocusEventFromPointer(event))
 	} else {
@@ -16371,7 +16064,6 @@ func (ptr *QHelpSearchResultWidget) FocusInEventDefault(event gui.QFocusEvent_IT
 
 //export callbackQHelpSearchResultWidget_FocusOutEvent
 func callbackQHelpSearchResultWidget_FocusOutEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpSearchResultWidget::focusOutEvent"); signal != nil {
 		signal.(func(*gui.QFocusEvent))(gui.NewQFocusEventFromPointer(event))
 	} else {
@@ -16407,7 +16099,6 @@ func (ptr *QHelpSearchResultWidget) FocusOutEventDefault(event gui.QFocusEvent_I
 
 //export callbackQHelpSearchResultWidget_HideEvent
 func callbackQHelpSearchResultWidget_HideEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpSearchResultWidget::hideEvent"); signal != nil {
 		signal.(func(*gui.QHideEvent))(gui.NewQHideEventFromPointer(event))
 	} else {
@@ -16443,7 +16134,6 @@ func (ptr *QHelpSearchResultWidget) HideEventDefault(event gui.QHideEvent_ITF) {
 
 //export callbackQHelpSearchResultWidget_LeaveEvent
 func callbackQHelpSearchResultWidget_LeaveEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpSearchResultWidget::leaveEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
 	} else {
@@ -16479,7 +16169,6 @@ func (ptr *QHelpSearchResultWidget) LeaveEventDefault(event core.QEvent_ITF) {
 
 //export callbackQHelpSearchResultWidget_Metric
 func callbackQHelpSearchResultWidget_Metric(ptr unsafe.Pointer, m C.longlong) C.int {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpSearchResultWidget::metric"); signal != nil {
 		return C.int(int32(signal.(func(gui.QPaintDevice__PaintDeviceMetric) int)(gui.QPaintDevice__PaintDeviceMetric(m))))
 	}
@@ -16517,7 +16206,6 @@ func (ptr *QHelpSearchResultWidget) MetricDefault(m gui.QPaintDevice__PaintDevic
 
 //export callbackQHelpSearchResultWidget_MinimumSizeHint
 func callbackQHelpSearchResultWidget_MinimumSizeHint(ptr unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpSearchResultWidget::minimumSizeHint"); signal != nil {
 		return core.PointerFromQSize(signal.(func() *core.QSize)())
 	}
@@ -16559,7 +16247,6 @@ func (ptr *QHelpSearchResultWidget) MinimumSizeHintDefault() *core.QSize {
 
 //export callbackQHelpSearchResultWidget_MoveEvent
 func callbackQHelpSearchResultWidget_MoveEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpSearchResultWidget::moveEvent"); signal != nil {
 		signal.(func(*gui.QMoveEvent))(gui.NewQMoveEventFromPointer(event))
 	} else {
@@ -16595,7 +16282,6 @@ func (ptr *QHelpSearchResultWidget) MoveEventDefault(event gui.QMoveEvent_ITF) {
 
 //export callbackQHelpSearchResultWidget_PaintEngine
 func callbackQHelpSearchResultWidget_PaintEngine(ptr unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpSearchResultWidget::paintEngine"); signal != nil {
 		return gui.PointerFromQPaintEngine(signal.(func() *gui.QPaintEngine)())
 	}
@@ -16633,7 +16319,6 @@ func (ptr *QHelpSearchResultWidget) PaintEngineDefault() *gui.QPaintEngine {
 
 //export callbackQHelpSearchResultWidget_PaintEvent
 func callbackQHelpSearchResultWidget_PaintEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpSearchResultWidget::paintEvent"); signal != nil {
 		signal.(func(*gui.QPaintEvent))(gui.NewQPaintEventFromPointer(event))
 	} else {
@@ -16852,7 +16537,6 @@ func (ptr *QHelpSearchResultWidget) SetWindowTitleDefault(vqs string) {
 
 //export callbackQHelpSearchResultWidget_ShowEvent
 func callbackQHelpSearchResultWidget_ShowEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpSearchResultWidget::showEvent"); signal != nil {
 		signal.(func(*gui.QShowEvent))(gui.NewQShowEventFromPointer(event))
 	} else {
@@ -16888,7 +16572,6 @@ func (ptr *QHelpSearchResultWidget) ShowEventDefault(event gui.QShowEvent_ITF) {
 
 //export callbackQHelpSearchResultWidget_SizeHint
 func callbackQHelpSearchResultWidget_SizeHint(ptr unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpSearchResultWidget::sizeHint"); signal != nil {
 		return core.PointerFromQSize(signal.(func() *core.QSize)())
 	}
@@ -16930,7 +16613,6 @@ func (ptr *QHelpSearchResultWidget) SizeHintDefault() *core.QSize {
 
 //export callbackQHelpSearchResultWidget_ChangeEvent
 func callbackQHelpSearchResultWidget_ChangeEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpSearchResultWidget::changeEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
 	} else {
@@ -17003,7 +16685,6 @@ func (ptr *QHelpSearchResultWidget) CloseDefault() bool {
 
 //export callbackQHelpSearchResultWidget_CloseEvent
 func callbackQHelpSearchResultWidget_CloseEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpSearchResultWidget::closeEvent"); signal != nil {
 		signal.(func(*gui.QCloseEvent))(gui.NewQCloseEventFromPointer(event))
 	} else {
@@ -17039,7 +16720,6 @@ func (ptr *QHelpSearchResultWidget) CloseEventDefault(event gui.QCloseEvent_ITF)
 
 //export callbackQHelpSearchResultWidget_ContextMenuEvent
 func callbackQHelpSearchResultWidget_ContextMenuEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpSearchResultWidget::contextMenuEvent"); signal != nil {
 		signal.(func(*gui.QContextMenuEvent))(gui.NewQContextMenuEventFromPointer(event))
 	} else {
@@ -17075,7 +16755,6 @@ func (ptr *QHelpSearchResultWidget) ContextMenuEventDefault(event gui.QContextMe
 
 //export callbackQHelpSearchResultWidget_Event
 func callbackQHelpSearchResultWidget_Event(ptr unsafe.Pointer, event unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpSearchResultWidget::event"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(event)))))
 	}
@@ -17113,7 +16792,6 @@ func (ptr *QHelpSearchResultWidget) EventDefault(event core.QEvent_ITF) bool {
 
 //export callbackQHelpSearchResultWidget_FocusNextPrevChild
 func callbackQHelpSearchResultWidget_FocusNextPrevChild(ptr unsafe.Pointer, next C.char) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpSearchResultWidget::focusNextPrevChild"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(bool) bool)(int8(next) != 0))))
 	}
@@ -17151,7 +16829,6 @@ func (ptr *QHelpSearchResultWidget) FocusNextPrevChildDefault(next bool) bool {
 
 //export callbackQHelpSearchResultWidget_HasHeightForWidth
 func callbackQHelpSearchResultWidget_HasHeightForWidth(ptr unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpSearchResultWidget::hasHeightForWidth"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func() bool)())))
 	}
@@ -17189,7 +16866,6 @@ func (ptr *QHelpSearchResultWidget) HasHeightForWidthDefault() bool {
 
 //export callbackQHelpSearchResultWidget_HeightForWidth
 func callbackQHelpSearchResultWidget_HeightForWidth(ptr unsafe.Pointer, w C.int) C.int {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpSearchResultWidget::heightForWidth"); signal != nil {
 		return C.int(int32(signal.(func(int) int)(int(int32(w)))))
 	}
@@ -17262,7 +16938,6 @@ func (ptr *QHelpSearchResultWidget) HideDefault() {
 
 //export callbackQHelpSearchResultWidget_InputMethodEvent
 func callbackQHelpSearchResultWidget_InputMethodEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpSearchResultWidget::inputMethodEvent"); signal != nil {
 		signal.(func(*gui.QInputMethodEvent))(gui.NewQInputMethodEventFromPointer(event))
 	} else {
@@ -17298,7 +16973,6 @@ func (ptr *QHelpSearchResultWidget) InputMethodEventDefault(event gui.QInputMeth
 
 //export callbackQHelpSearchResultWidget_InputMethodQuery
 func callbackQHelpSearchResultWidget_InputMethodQuery(ptr unsafe.Pointer, query C.longlong) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpSearchResultWidget::inputMethodQuery"); signal != nil {
 		return core.PointerFromQVariant(signal.(func(core.Qt__InputMethodQuery) *core.QVariant)(core.Qt__InputMethodQuery(query)))
 	}
@@ -17340,7 +17014,6 @@ func (ptr *QHelpSearchResultWidget) InputMethodQueryDefault(query core.Qt__Input
 
 //export callbackQHelpSearchResultWidget_KeyPressEvent
 func callbackQHelpSearchResultWidget_KeyPressEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpSearchResultWidget::keyPressEvent"); signal != nil {
 		signal.(func(*gui.QKeyEvent))(gui.NewQKeyEventFromPointer(event))
 	} else {
@@ -17376,7 +17049,6 @@ func (ptr *QHelpSearchResultWidget) KeyPressEventDefault(event gui.QKeyEvent_ITF
 
 //export callbackQHelpSearchResultWidget_KeyReleaseEvent
 func callbackQHelpSearchResultWidget_KeyReleaseEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpSearchResultWidget::keyReleaseEvent"); signal != nil {
 		signal.(func(*gui.QKeyEvent))(gui.NewQKeyEventFromPointer(event))
 	} else {
@@ -17447,7 +17119,6 @@ func (ptr *QHelpSearchResultWidget) LowerDefault() {
 
 //export callbackQHelpSearchResultWidget_MouseDoubleClickEvent
 func callbackQHelpSearchResultWidget_MouseDoubleClickEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpSearchResultWidget::mouseDoubleClickEvent"); signal != nil {
 		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
 	} else {
@@ -17483,7 +17154,6 @@ func (ptr *QHelpSearchResultWidget) MouseDoubleClickEventDefault(event gui.QMous
 
 //export callbackQHelpSearchResultWidget_MouseMoveEvent
 func callbackQHelpSearchResultWidget_MouseMoveEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpSearchResultWidget::mouseMoveEvent"); signal != nil {
 		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
 	} else {
@@ -17519,7 +17189,6 @@ func (ptr *QHelpSearchResultWidget) MouseMoveEventDefault(event gui.QMouseEvent_
 
 //export callbackQHelpSearchResultWidget_MousePressEvent
 func callbackQHelpSearchResultWidget_MousePressEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpSearchResultWidget::mousePressEvent"); signal != nil {
 		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
 	} else {
@@ -17555,7 +17224,6 @@ func (ptr *QHelpSearchResultWidget) MousePressEventDefault(event gui.QMouseEvent
 
 //export callbackQHelpSearchResultWidget_MouseReleaseEvent
 func callbackQHelpSearchResultWidget_MouseReleaseEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpSearchResultWidget::mouseReleaseEvent"); signal != nil {
 		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
 	} else {
@@ -17591,7 +17259,6 @@ func (ptr *QHelpSearchResultWidget) MouseReleaseEventDefault(event gui.QMouseEve
 
 //export callbackQHelpSearchResultWidget_NativeEvent
 func callbackQHelpSearchResultWidget_NativeEvent(ptr unsafe.Pointer, eventType unsafe.Pointer, message unsafe.Pointer, result C.long) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpSearchResultWidget::nativeEvent"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QByteArray, unsafe.Pointer, int) bool)(core.NewQByteArrayFromPointer(eventType), message, int(int32(result))))))
 	}
@@ -17699,7 +17366,6 @@ func (ptr *QHelpSearchResultWidget) RepaintDefault() {
 
 //export callbackQHelpSearchResultWidget_ResizeEvent
 func callbackQHelpSearchResultWidget_ResizeEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpSearchResultWidget::resizeEvent"); signal != nil {
 		signal.(func(*gui.QResizeEvent))(gui.NewQResizeEventFromPointer(event))
 	} else {
@@ -18015,7 +17681,6 @@ func (ptr *QHelpSearchResultWidget) ShowNormalDefault() {
 
 //export callbackQHelpSearchResultWidget_TabletEvent
 func callbackQHelpSearchResultWidget_TabletEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpSearchResultWidget::tabletEvent"); signal != nil {
 		signal.(func(*gui.QTabletEvent))(gui.NewQTabletEventFromPointer(event))
 	} else {
@@ -18121,7 +17786,6 @@ func (ptr *QHelpSearchResultWidget) UpdateMicroFocusDefault() {
 
 //export callbackQHelpSearchResultWidget_WheelEvent
 func callbackQHelpSearchResultWidget_WheelEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpSearchResultWidget::wheelEvent"); signal != nil {
 		signal.(func(*gui.QWheelEvent))(gui.NewQWheelEventFromPointer(event))
 	} else {
@@ -18157,7 +17821,6 @@ func (ptr *QHelpSearchResultWidget) WheelEventDefault(event gui.QWheelEvent_ITF)
 
 //export callbackQHelpSearchResultWidget_TimerEvent
 func callbackQHelpSearchResultWidget_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpSearchResultWidget::timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
 	} else {
@@ -18193,7 +17856,6 @@ func (ptr *QHelpSearchResultWidget) TimerEventDefault(event core.QTimerEvent_ITF
 
 //export callbackQHelpSearchResultWidget_ChildEvent
 func callbackQHelpSearchResultWidget_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpSearchResultWidget::childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
 	} else {
@@ -18229,7 +17891,6 @@ func (ptr *QHelpSearchResultWidget) ChildEventDefault(event core.QChildEvent_ITF
 
 //export callbackQHelpSearchResultWidget_ConnectNotify
 func callbackQHelpSearchResultWidget_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpSearchResultWidget::connectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
@@ -18265,7 +17926,6 @@ func (ptr *QHelpSearchResultWidget) ConnectNotifyDefault(sign core.QMetaMethod_I
 
 //export callbackQHelpSearchResultWidget_CustomEvent
 func callbackQHelpSearchResultWidget_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpSearchResultWidget::customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
 	} else {
@@ -18340,7 +18000,6 @@ func (ptr *QHelpSearchResultWidget) DeleteLaterDefault() {
 
 //export callbackQHelpSearchResultWidget_DisconnectNotify
 func callbackQHelpSearchResultWidget_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpSearchResultWidget::disconnectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
@@ -18376,7 +18035,6 @@ func (ptr *QHelpSearchResultWidget) DisconnectNotifyDefault(sign core.QMetaMetho
 
 //export callbackQHelpSearchResultWidget_EventFilter
 func callbackQHelpSearchResultWidget_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpSearchResultWidget::eventFilter"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
 	}
@@ -18414,7 +18072,6 @@ func (ptr *QHelpSearchResultWidget) EventFilterDefault(watched core.QObject_ITF,
 
 //export callbackQHelpSearchResultWidget_MetaObject
 func callbackQHelpSearchResultWidget_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QHelpSearchResultWidget::metaObject"); signal != nil {
 		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
 	}

@@ -191,7 +191,7 @@ func exportFunction(class *parser.Class, function *parser.Function) {
 			}
 
 			if class, exists := parser.State.ClassMap[parser.CleanValue(f.Output)]; exists {
-				class.Export = true
+				exportClass(class)
 
 				for _, bc := range class.GetAllBases() {
 					parser.State.ClassMap[bc].Export = true
@@ -205,6 +205,15 @@ func exportFunction(class *parser.Class, function *parser.Function) {
 					}
 				}
 			}
+		}
+	}
+}
+
+func exportClass(c *parser.Class) {
+	c.Export = true
+	for _, f := range c.Functions {
+		if f.Meta == parser.CONSTRUCTOR && !f.Export {
+			exportFunction(c, f)
 		}
 	}
 }

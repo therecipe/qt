@@ -71,6 +71,10 @@ func GoHeaderName(f *parser.Function) string {
 		fmt.Fprint(bb, "Default")
 	}
 
+	if f.Exception {
+		fmt.Fprint(bb, "Caught")
+	}
+
 	if strings.ContainsAny(bb.String(), "&<>=/!()[]{}^|*+-") || strings.Contains(bb.String(), "Operator") {
 		f.Access = "unsupported_GoHeaderName"
 		return f.Access
@@ -105,10 +109,17 @@ func GoHeaderOutput(f *parser.Function) string {
 
 	var o = goType(f, value)
 	if isClass(o) {
-		if strings.HasPrefix(o, "[]") {
-			return fmt.Sprintf("%v", o)
+		if !strings.HasPrefix(o, "[]") {
+			o = fmt.Sprintf("*%v", o)
 		}
-		return fmt.Sprintf("*%v", o)
+	}
+
+	if f.Exception {
+		if o != "" {
+			o += ", "
+		}
+		o += "error"
+		o = fmt.Sprintf("(%v)", o)
 	}
 	return o
 }

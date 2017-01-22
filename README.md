@@ -27,7 +27,7 @@ However it should already contain everything you need to build fully featured Qt
 
 The full installation requires at least **8gb** free ram and takes 20 min.
 
-The stub installation requires only **1gb** free ram and takes 10 min. (**experimental**)
+The stub installation requires only **2gb** free ram and takes 10 min.
 
 The only difference between those two version is, that you **won't** be able to use `go run/build` to build your applications if you choose to install the stub version.
 You are therefore **limited** to the use of `qtdeploy` to build your application.
@@ -42,7 +42,7 @@ Add the environmental variables into your `$HOME/.bash_profile` or `$HOME/.profi
 
 Or if you are on Windows simply use the advanced system settings.
 
-#### Docker Images (**experimental**)
+#### Docker Images
 
 You can also use Docker images from [hub.docker](https://hub.docker.com/r/therecipe/qt/).
 

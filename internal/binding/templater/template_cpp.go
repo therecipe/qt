@@ -256,7 +256,7 @@ func preambleCpp(module string, input []byte) []byte {
 
 	for _, class := range classes {
 		if class == "SailfishApp" {
-			fmt.Fprintln(bb, "#include <sailfishapp.h>")
+			fmt.Fprint(bb, "#include <sailfishapp.h>\n")
 		} else {
 			if strings.HasPrefix(class, "Q") && !(class == "QBluetooth" || class == "QDBus" || class == "QCss" || class == "QPdf" || class == "QSsl" || class == "QPrint" || class == "QScript" || class == "QSql" || class == "QTest" || class == "QWebSocketProtocol") {
 				fmt.Fprintf(bb, "#include <%v>\n", class)

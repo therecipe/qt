@@ -26,6 +26,8 @@ type Class struct {
 	WeakLink  map[string]struct{}
 	Export    bool
 	Fullname  string
+
+	Constructors []string
 }
 
 func (c *Class) register(m string) {

@@ -151,6 +151,10 @@ func cTemplateFunctions(bb *bytes.Buffer, pc *parser.Class, ff func(*parser.Func
 					for _, m := range converter.CppOutputParametersJNIGenericModes(&f) {
 						f.TemplateModeJNI = m
 						fmt.Fprintf(bb, "%v%v", ff(&f), del)
+
+						f.Exception = true
+						fmt.Fprintf(bb, "%v%v", ff(&f), del)
+						f.Exception = false
 					}
 				}
 

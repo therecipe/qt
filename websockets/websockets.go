@@ -71,7 +71,6 @@ func NewQMaskGenerator(parent core.QObject_ITF) *QMaskGenerator {
 
 //export callbackQMaskGenerator_NextMask
 func callbackQMaskGenerator_NextMask(ptr unsafe.Pointer) C.uint {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMaskGenerator::nextMask"); signal != nil {
 		return C.uint(uint32(signal.(func() uint)()))
 	}
@@ -102,7 +101,6 @@ func (ptr *QMaskGenerator) NextMask() uint {
 
 //export callbackQMaskGenerator_Seed
 func callbackQMaskGenerator_Seed(ptr unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMaskGenerator::seed"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func() bool)())))
 	}
@@ -133,7 +131,6 @@ func (ptr *QMaskGenerator) Seed() bool {
 
 //export callbackQMaskGenerator_DestroyQMaskGenerator
 func callbackQMaskGenerator_DestroyQMaskGenerator(ptr unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMaskGenerator::~QMaskGenerator"); signal != nil {
 		signal.(func())()
 	} else {
@@ -173,7 +170,6 @@ func (ptr *QMaskGenerator) DestroyQMaskGeneratorDefault() {
 
 //export callbackQMaskGenerator_TimerEvent
 func callbackQMaskGenerator_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMaskGenerator::timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
 	} else {
@@ -209,7 +205,6 @@ func (ptr *QMaskGenerator) TimerEventDefault(event core.QTimerEvent_ITF) {
 
 //export callbackQMaskGenerator_ChildEvent
 func callbackQMaskGenerator_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMaskGenerator::childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
 	} else {
@@ -245,7 +240,6 @@ func (ptr *QMaskGenerator) ChildEventDefault(event core.QChildEvent_ITF) {
 
 //export callbackQMaskGenerator_ConnectNotify
 func callbackQMaskGenerator_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMaskGenerator::connectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
@@ -281,7 +275,6 @@ func (ptr *QMaskGenerator) ConnectNotifyDefault(sign core.QMetaMethod_ITF) {
 
 //export callbackQMaskGenerator_CustomEvent
 func callbackQMaskGenerator_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMaskGenerator::customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
 	} else {
@@ -356,7 +349,6 @@ func (ptr *QMaskGenerator) DeleteLaterDefault() {
 
 //export callbackQMaskGenerator_DisconnectNotify
 func callbackQMaskGenerator_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMaskGenerator::disconnectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
@@ -392,7 +384,6 @@ func (ptr *QMaskGenerator) DisconnectNotifyDefault(sign core.QMetaMethod_ITF) {
 
 //export callbackQMaskGenerator_Event
 func callbackQMaskGenerator_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMaskGenerator::event"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
 	}
@@ -430,7 +421,6 @@ func (ptr *QMaskGenerator) EventDefault(e core.QEvent_ITF) bool {
 
 //export callbackQMaskGenerator_EventFilter
 func callbackQMaskGenerator_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMaskGenerator::eventFilter"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
 	}
@@ -468,7 +458,6 @@ func (ptr *QMaskGenerator) EventFilterDefault(watched core.QObject_ITF, event co
 
 //export callbackQMaskGenerator_MetaObject
 func callbackQMaskGenerator_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMaskGenerator::metaObject"); signal != nil {
 		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
 	}
@@ -560,7 +549,6 @@ func (ptr *QWebSocket) Abort() {
 
 //export callbackQWebSocket_AboutToClose
 func callbackQWebSocket_AboutToClose(ptr unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebSocket::aboutToClose"); signal != nil {
 		signal.(func())()
 	}
@@ -589,7 +577,6 @@ func (ptr *QWebSocket) AboutToClose() {
 
 //export callbackQWebSocket_BinaryFrameReceived
 func callbackQWebSocket_BinaryFrameReceived(ptr unsafe.Pointer, frame unsafe.Pointer, isLastFrame C.char) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebSocket::binaryFrameReceived"); signal != nil {
 		signal.(func(*core.QByteArray, bool))(core.NewQByteArrayFromPointer(frame), int8(isLastFrame) != 0)
 	}
@@ -618,7 +605,6 @@ func (ptr *QWebSocket) BinaryFrameReceived(frame core.QByteArray_ITF, isLastFram
 
 //export callbackQWebSocket_BinaryMessageReceived
 func callbackQWebSocket_BinaryMessageReceived(ptr unsafe.Pointer, message unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebSocket::binaryMessageReceived"); signal != nil {
 		signal.(func(*core.QByteArray))(core.NewQByteArrayFromPointer(message))
 	}
@@ -647,7 +633,6 @@ func (ptr *QWebSocket) BinaryMessageReceived(message core.QByteArray_ITF) {
 
 //export callbackQWebSocket_BytesWritten
 func callbackQWebSocket_BytesWritten(ptr unsafe.Pointer, bytes C.longlong) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebSocket::bytesWritten"); signal != nil {
 		signal.(func(int64))(int64(bytes))
 	}
@@ -729,7 +714,6 @@ func (ptr *QWebSocket) CloseReason() string {
 
 //export callbackQWebSocket_Connected
 func callbackQWebSocket_Connected(ptr unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebSocket::connected"); signal != nil {
 		signal.(func())()
 	}
@@ -758,7 +742,6 @@ func (ptr *QWebSocket) Connected() {
 
 //export callbackQWebSocket_Disconnected
 func callbackQWebSocket_Disconnected(ptr unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebSocket::disconnected"); signal != nil {
 		signal.(func())()
 	}
@@ -787,7 +770,6 @@ func (ptr *QWebSocket) Disconnected() {
 
 //export callbackQWebSocket_Error2
 func callbackQWebSocket_Error2(ptr unsafe.Pointer, error C.longlong) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebSocket::error2"); signal != nil {
 		signal.(func(network.QAbstractSocket__SocketError))(network.QAbstractSocket__SocketError(error))
 	}
@@ -1048,7 +1030,6 @@ func (ptr *QWebSocket) PingDefault(payload core.QByteArray_ITF) {
 
 //export callbackQWebSocket_Pong
 func callbackQWebSocket_Pong(ptr unsafe.Pointer, elapsedTime C.ulonglong, payload unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebSocket::pong"); signal != nil {
 		signal.(func(uint64, *core.QByteArray))(uint64(elapsedTime), core.NewQByteArrayFromPointer(payload))
 	}
@@ -1086,7 +1067,6 @@ func (ptr *QWebSocket) Proxy() *network.QNetworkProxy {
 
 //export callbackQWebSocket_ProxyAuthenticationRequired
 func callbackQWebSocket_ProxyAuthenticationRequired(ptr unsafe.Pointer, proxy unsafe.Pointer, authenticator unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebSocket::proxyAuthenticationRequired"); signal != nil {
 		signal.(func(*network.QNetworkProxy, *network.QAuthenticator))(network.NewQNetworkProxyFromPointer(proxy), network.NewQAuthenticatorFromPointer(authenticator))
 	}
@@ -1122,7 +1102,6 @@ func (ptr *QWebSocket) ReadBufferSize() int64 {
 
 //export callbackQWebSocket_ReadChannelFinished
 func callbackQWebSocket_ReadChannelFinished(ptr unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebSocket::readChannelFinished"); signal != nil {
 		signal.(func())()
 	}
@@ -1244,7 +1223,6 @@ func (ptr *QWebSocket) State() network.QAbstractSocket__SocketState {
 
 //export callbackQWebSocket_StateChanged
 func callbackQWebSocket_StateChanged(ptr unsafe.Pointer, state C.longlong) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebSocket::stateChanged"); signal != nil {
 		signal.(func(network.QAbstractSocket__SocketState))(network.QAbstractSocket__SocketState(state))
 	}
@@ -1273,7 +1251,6 @@ func (ptr *QWebSocket) StateChanged(state network.QAbstractSocket__SocketState) 
 
 //export callbackQWebSocket_TextFrameReceived
 func callbackQWebSocket_TextFrameReceived(ptr unsafe.Pointer, frame C.struct_QtWebSockets_PackedString, isLastFrame C.char) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebSocket::textFrameReceived"); signal != nil {
 		signal.(func(string, bool))(cGoUnpackString(frame), int8(isLastFrame) != 0)
 	}
@@ -1304,7 +1281,6 @@ func (ptr *QWebSocket) TextFrameReceived(frame string, isLastFrame bool) {
 
 //export callbackQWebSocket_TextMessageReceived
 func callbackQWebSocket_TextMessageReceived(ptr unsafe.Pointer, message C.struct_QtWebSockets_PackedString) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebSocket::textMessageReceived"); signal != nil {
 		signal.(func(string))(cGoUnpackString(message))
 	}
@@ -1342,7 +1318,6 @@ func (ptr *QWebSocket) Version() QWebSocketProtocol__Version {
 
 //export callbackQWebSocket_DestroyQWebSocket
 func callbackQWebSocket_DestroyQWebSocket(ptr unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebSocket::~QWebSocket"); signal != nil {
 		signal.(func())()
 	} else {
@@ -1382,7 +1357,6 @@ func (ptr *QWebSocket) DestroyQWebSocketDefault() {
 
 //export callbackQWebSocket_TimerEvent
 func callbackQWebSocket_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebSocket::timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
 	} else {
@@ -1418,7 +1392,6 @@ func (ptr *QWebSocket) TimerEventDefault(event core.QTimerEvent_ITF) {
 
 //export callbackQWebSocket_ChildEvent
 func callbackQWebSocket_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebSocket::childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
 	} else {
@@ -1454,7 +1427,6 @@ func (ptr *QWebSocket) ChildEventDefault(event core.QChildEvent_ITF) {
 
 //export callbackQWebSocket_ConnectNotify
 func callbackQWebSocket_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebSocket::connectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
@@ -1490,7 +1462,6 @@ func (ptr *QWebSocket) ConnectNotifyDefault(sign core.QMetaMethod_ITF) {
 
 //export callbackQWebSocket_CustomEvent
 func callbackQWebSocket_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebSocket::customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
 	} else {
@@ -1565,7 +1536,6 @@ func (ptr *QWebSocket) DeleteLaterDefault() {
 
 //export callbackQWebSocket_DisconnectNotify
 func callbackQWebSocket_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebSocket::disconnectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
@@ -1601,7 +1571,6 @@ func (ptr *QWebSocket) DisconnectNotifyDefault(sign core.QMetaMethod_ITF) {
 
 //export callbackQWebSocket_Event
 func callbackQWebSocket_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebSocket::event"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
 	}
@@ -1639,7 +1608,6 @@ func (ptr *QWebSocket) EventDefault(e core.QEvent_ITF) bool {
 
 //export callbackQWebSocket_EventFilter
 func callbackQWebSocket_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebSocket::eventFilter"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
 	}
@@ -1677,7 +1645,6 @@ func (ptr *QWebSocket) EventFilterDefault(watched core.QObject_ITF, event core.Q
 
 //export callbackQWebSocket_MetaObject
 func callbackQWebSocket_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebSocket::metaObject"); signal != nil {
 		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
 	}
@@ -1944,7 +1911,6 @@ func NewQWebSocketServer(serverName string, secureMode QWebSocketServer__SslMode
 
 //export callbackQWebSocketServer_AcceptError
 func callbackQWebSocketServer_AcceptError(ptr unsafe.Pointer, socketError C.longlong) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebSocketServer::acceptError"); signal != nil {
 		signal.(func(network.QAbstractSocket__SocketError))(network.QAbstractSocket__SocketError(socketError))
 	}
@@ -1979,7 +1945,6 @@ func (ptr *QWebSocketServer) Close() {
 
 //export callbackQWebSocketServer_Closed
 func callbackQWebSocketServer_Closed(ptr unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebSocketServer::closed"); signal != nil {
 		signal.(func())()
 	}
@@ -2050,7 +2015,6 @@ func (ptr *QWebSocketServer) MaxPendingConnections() int {
 
 //export callbackQWebSocketServer_NewConnection
 func callbackQWebSocketServer_NewConnection(ptr unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebSocketServer::newConnection"); signal != nil {
 		signal.(func())()
 	}
@@ -2079,7 +2043,6 @@ func (ptr *QWebSocketServer) NewConnection() {
 
 //export callbackQWebSocketServer_NextPendingConnection
 func callbackQWebSocketServer_NextPendingConnection(ptr unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebSocketServer::nextPendingConnection"); signal != nil {
 		return PointerFromQWebSocket(signal.(func() *QWebSocket)())
 	}
@@ -2125,7 +2088,6 @@ func (ptr *QWebSocketServer) NextPendingConnectionDefault() *QWebSocket {
 
 //export callbackQWebSocketServer_OriginAuthenticationRequired
 func callbackQWebSocketServer_OriginAuthenticationRequired(ptr unsafe.Pointer, authenticator unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebSocketServer::originAuthenticationRequired"); signal != nil {
 		signal.(func(*QWebSocketCorsAuthenticator))(NewQWebSocketCorsAuthenticatorFromPointer(authenticator))
 	}
@@ -2160,7 +2122,6 @@ func (ptr *QWebSocketServer) PauseAccepting() {
 
 //export callbackQWebSocketServer_PeerVerifyError
 func callbackQWebSocketServer_PeerVerifyError(ptr unsafe.Pointer, error unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebSocketServer::peerVerifyError"); signal != nil {
 		signal.(func(*network.QSslError))(network.NewQSslErrorFromPointer(error))
 	}
@@ -2220,7 +2181,6 @@ func (ptr *QWebSocketServer) ServerAddress() *network.QHostAddress {
 
 //export callbackQWebSocketServer_ServerError
 func callbackQWebSocketServer_ServerError(ptr unsafe.Pointer, closeCode C.longlong) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebSocketServer::serverError"); signal != nil {
 		signal.(func(QWebSocketProtocol__CloseCode))(QWebSocketProtocol__CloseCode(closeCode))
 	}
@@ -2321,7 +2281,6 @@ func (ptr *QWebSocketServer) SslConfiguration() *network.QSslConfiguration {
 
 //export callbackQWebSocketServer_DestroyQWebSocketServer
 func callbackQWebSocketServer_DestroyQWebSocketServer(ptr unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebSocketServer::~QWebSocketServer"); signal != nil {
 		signal.(func())()
 	} else {
@@ -2361,7 +2320,6 @@ func (ptr *QWebSocketServer) DestroyQWebSocketServerDefault() {
 
 //export callbackQWebSocketServer_TimerEvent
 func callbackQWebSocketServer_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebSocketServer::timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
 	} else {
@@ -2397,7 +2355,6 @@ func (ptr *QWebSocketServer) TimerEventDefault(event core.QTimerEvent_ITF) {
 
 //export callbackQWebSocketServer_ChildEvent
 func callbackQWebSocketServer_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebSocketServer::childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
 	} else {
@@ -2433,7 +2390,6 @@ func (ptr *QWebSocketServer) ChildEventDefault(event core.QChildEvent_ITF) {
 
 //export callbackQWebSocketServer_ConnectNotify
 func callbackQWebSocketServer_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebSocketServer::connectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
@@ -2469,7 +2425,6 @@ func (ptr *QWebSocketServer) ConnectNotifyDefault(sign core.QMetaMethod_ITF) {
 
 //export callbackQWebSocketServer_CustomEvent
 func callbackQWebSocketServer_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebSocketServer::customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
 	} else {
@@ -2544,7 +2499,6 @@ func (ptr *QWebSocketServer) DeleteLaterDefault() {
 
 //export callbackQWebSocketServer_DisconnectNotify
 func callbackQWebSocketServer_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebSocketServer::disconnectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
@@ -2580,7 +2534,6 @@ func (ptr *QWebSocketServer) DisconnectNotifyDefault(sign core.QMetaMethod_ITF) 
 
 //export callbackQWebSocketServer_Event
 func callbackQWebSocketServer_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebSocketServer::event"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
 	}
@@ -2618,7 +2571,6 @@ func (ptr *QWebSocketServer) EventDefault(e core.QEvent_ITF) bool {
 
 //export callbackQWebSocketServer_EventFilter
 func callbackQWebSocketServer_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebSocketServer::eventFilter"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
 	}
@@ -2656,7 +2608,6 @@ func (ptr *QWebSocketServer) EventFilterDefault(watched core.QObject_ITF, event 
 
 //export callbackQWebSocketServer_MetaObject
 func callbackQWebSocketServer_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QWebSocketServer::metaObject"); signal != nil {
 		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
 	}

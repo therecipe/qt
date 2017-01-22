@@ -91,7 +91,7 @@ func UnpackedList(v string) string {
 }
 
 var LibDeps = map[string][]string{
-	"Core":          {"Widgets", "Gui"}, //Widgets, Gui
+	"Core":          {"Widgets", "Gui", "Svg"}, //Widgets, Gui //Svg (needed because it's more convenient)
 	"AndroidExtras": {"Core"},
 	"Gui":           {"Widgets", "Core"}, //Widgets
 	"Network":       {"Core"},
@@ -198,7 +198,6 @@ func ShouldBuild(module string) bool {
 }
 
 func GetLibs() []string {
-	var out = Libs
 	for i := len(Libs) - 1; i >= 0; i-- {
 		switch {
 		case !(runtime.GOOS == "darwin" || runtime.GOOS == "linux") && Libs[i] == "WebEngine",
@@ -206,16 +205,16 @@ func GetLibs() []string {
 			runtime.GOOS != "darwin" && Libs[i] == "MacExtras",
 			runtime.GOOS != "linux" && Libs[i] == "X11Extras":
 			{
-				out = append(out[:i], out[i+1:]...)
+				Libs = append(Libs[:i], Libs[i+1:]...)
 			}
 
 		case utils.QT_VERSION() != "5.8.0" && Libs[i] == "Speech":
 			{
-				out = append(out[:i], out[i+1:]...)
+				Libs = append(Libs[:i], Libs[i+1:]...)
 			}
 		}
 	}
-	return out
+	return Libs
 }
 
 func Dump() {

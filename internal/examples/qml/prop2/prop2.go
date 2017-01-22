@@ -18,13 +18,11 @@ type QmlBride struct {
 	_ string        `property:"stringProp"`
 	_ []string      `property:"stringListProp"`
 	_ *core.QObject `property:"objectProp"`
+
+	_ func() `constructor:"init"`
 }
 
-func main() {
-
-	gui.NewQGuiApplication(len(os.Args), os.Args)
-
-	var bridge = NewQmlBride(nil)
+func (bridge *QmlBride) init() {
 	bridge.ConnectBoolPropChanged(func(boolProp bool) {
 		fmt.Println(" go: changed bool ->", boolProp)
 	})
@@ -48,6 +46,13 @@ func main() {
 	var obj = core.NewQObject(nil)
 	obj.SetObjectName("objectName")
 	bridge.SetObjectProp(obj)
+}
+
+func main() {
+
+	gui.NewQGuiApplication(len(os.Args), os.Args)
+
+	var bridge = NewQmlBride(nil)
 
 	var app = qml.NewQQmlApplicationEngine(nil)
 	app.RootContext().SetContextProperty("bridge", bridge)

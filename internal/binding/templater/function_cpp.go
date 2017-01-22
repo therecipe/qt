@@ -344,9 +344,14 @@ func cppFunctionBodyInternal(function *parser.Function) string {
 					return ""
 				}(),
 
-				converter.CppOutputParameters(function, fmt.Sprintf("%v%v%v(%v)",
+				converter.CppOutputParameters(function, fmt.Sprintf("%v%v%v(%v)%v",
 
 					func() string {
+						var c, _ = function.Class()
+						//TODO:
+						if c.Name == "QAndroidJniEnvironment" && function.Meta == parser.PLAIN && strings.HasPrefix(function.Name, "Exception") {
+							return "({ QAndroidJniEnvironment env; env->"
+						}
 						if function.NonMember {
 							return ""
 						}
@@ -355,7 +360,7 @@ func cppFunctionBodyInternal(function *parser.Function) string {
 						}
 						return fmt.Sprintf("static_cast<%v*>(ptr)->",
 							func() string {
-								if c := parser.State.ClassMap[function.ClassName()]; c != nil && c.Fullname != "" {
+								if c.Fullname != "" {
 									return c.Fullname
 								}
 								if strings.HasSuffix(function.Name, "_atList") {
@@ -377,7 +382,15 @@ func cppFunctionBodyInternal(function *parser.Function) string {
 						return function.Name
 					}(),
 
-					converter.CppOutputParametersDeducedFromGeneric(function), converter.CppInputParameters(function))))
+					converter.CppOutputParametersDeducedFromGeneric(function), converter.CppInputParameters(function),
+					//TODO:
+					func() string {
+						var c, _ = function.Class()
+						if c.Name == "QAndroidJniEnvironment" && function.Meta == parser.PLAIN && strings.HasPrefix(function.Name, "Exception") {
+							return "; })"
+						}
+						return ""
+					}())))
 		}
 
 	case parser.GETTER:

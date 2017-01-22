@@ -125,6 +125,8 @@ func (m *appMoc) parseGo(path string) error {
 						meta = parser.SLOT
 					case strings.HasPrefix(tag, "property:"):
 						meta = parser.PROP
+					case strings.HasPrefix(tag, "constructor:"):
+						meta = parser.CONSTRUCTOR
 					default:
 						// only handle signal and slot and properties
 						continue
@@ -132,41 +134,52 @@ func (m *appMoc) parseGo(path string) error {
 
 					var typ = string(src[field.Type.Pos()-1 : field.Type.End()-1])
 
-					if meta == parser.SIGNAL || meta == parser.SLOT {
-						var f = &parser.Function{
-							Access:     "public",
-							Fullname:   fmt.Sprintf("%v::%v", class.Name, strings.Split(tag, ":")[1]),
-							Meta:       meta,
-							Name:       strings.Split(tag, ":")[1],
-							Status:     "public",
-							Virtual:    parser.PURE,
-							Signature:  "()",
-							Parameters: getParameters(typ),
-							Output: func() string {
-								if meta == parser.SLOT {
-									var out = strings.TrimSpace(strings.Split(typ, ")")[1])
-									if strings.Contains(out, "(") {
-										return getParameters(out + ")")[0].Value
+					switch meta {
+					case parser.SIGNAL, parser.SLOT:
+						{
+							var f = &parser.Function{
+								Access:     "public",
+								Fullname:   fmt.Sprintf("%v::%v", class.Name, strings.Split(tag, ":")[1]),
+								Meta:       meta,
+								Name:       strings.Split(tag, ":")[1],
+								Status:     "public",
+								Virtual:    parser.PURE,
+								Signature:  "()",
+								Parameters: getParameters(typ),
+								Output: func() string {
+									if meta == parser.SLOT {
+										var out = strings.TrimSpace(strings.Split(typ, ")")[1])
+										if strings.Contains(out, "(") {
+											return getParameters(out + ")")[0].Value
+										}
+										return out
 									}
-									return out
-								}
-								return "void"
-							}(),
+									return "void"
+								}(),
+							}
+
+							if len(f.Parameters[0].Value) == 0 {
+								f.Parameters = make([]*parser.Parameter, 0)
+							}
+							class.Functions = append(class.Functions, f)
 						}
 
-						if len(f.Parameters[0].Value) == 0 {
-							f.Parameters = make([]*parser.Parameter, 0)
+					case parser.PROP:
+						{
+							var p = &parser.Variable{
+								Access:   "public",
+								Fullname: fmt.Sprintf("%v::%v", class.Name, strings.Split(tag, ":")[1]),
+								Name:     strings.Split(tag, ":")[1],
+								Status:   "public",
+								Output:   typ,
+							}
+							class.Properties = append(class.Properties, p)
 						}
-						class.Functions = append(class.Functions, f)
-					} else if meta == parser.PROP {
-						var p = &parser.Variable{
-							Access:   "public",
-							Fullname: fmt.Sprintf("%v::%v", class.Name, strings.Split(tag, ":")[1]),
-							Name:     strings.Split(tag, ":")[1],
-							Status:   "public",
-							Output:   typ,
+
+					case parser.CONSTRUCTOR:
+						{
+							class.Constructors = append(class.Constructors, strings.Split(tag, ":")[1])
 						}
-						class.Properties = append(class.Properties, p)
 					}
 				}
 

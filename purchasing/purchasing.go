@@ -115,7 +115,6 @@ func (ptr *QInAppProduct) Title() string {
 
 //export callbackQInAppProduct_Purchase
 func callbackQInAppProduct_Purchase(ptr unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QInAppProduct::purchase"); signal != nil {
 		signal.(func())()
 	}
@@ -144,7 +143,6 @@ func (ptr *QInAppProduct) Purchase() {
 
 //export callbackQInAppProduct_TimerEvent
 func callbackQInAppProduct_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QInAppProduct::timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
 	} else {
@@ -180,7 +178,6 @@ func (ptr *QInAppProduct) TimerEventDefault(event core.QTimerEvent_ITF) {
 
 //export callbackQInAppProduct_ChildEvent
 func callbackQInAppProduct_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QInAppProduct::childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
 	} else {
@@ -216,7 +213,6 @@ func (ptr *QInAppProduct) ChildEventDefault(event core.QChildEvent_ITF) {
 
 //export callbackQInAppProduct_ConnectNotify
 func callbackQInAppProduct_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QInAppProduct::connectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
@@ -252,7 +248,6 @@ func (ptr *QInAppProduct) ConnectNotifyDefault(sign core.QMetaMethod_ITF) {
 
 //export callbackQInAppProduct_CustomEvent
 func callbackQInAppProduct_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QInAppProduct::customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
 	} else {
@@ -327,7 +322,6 @@ func (ptr *QInAppProduct) DeleteLaterDefault() {
 
 //export callbackQInAppProduct_DisconnectNotify
 func callbackQInAppProduct_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QInAppProduct::disconnectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
@@ -363,7 +357,6 @@ func (ptr *QInAppProduct) DisconnectNotifyDefault(sign core.QMetaMethod_ITF) {
 
 //export callbackQInAppProduct_Event
 func callbackQInAppProduct_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QInAppProduct::event"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
 	}
@@ -401,7 +394,6 @@ func (ptr *QInAppProduct) EventDefault(e core.QEvent_ITF) bool {
 
 //export callbackQInAppProduct_EventFilter
 func callbackQInAppProduct_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QInAppProduct::eventFilter"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
 	}
@@ -439,7 +431,6 @@ func (ptr *QInAppProduct) EventFilterDefault(watched core.QObject_ITF, event cor
 
 //export callbackQInAppProduct_MetaObject
 func callbackQInAppProduct_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QInAppProduct::metaObject"); signal != nil {
 		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
 	}
@@ -523,7 +514,6 @@ func NewQInAppStore(parent core.QObject_ITF) *QInAppStore {
 
 //export callbackQInAppStore_ProductRegistered
 func callbackQInAppStore_ProductRegistered(ptr unsafe.Pointer, product unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QInAppStore::productRegistered"); signal != nil {
 		signal.(func(*QInAppProduct))(NewQInAppProductFromPointer(product))
 	}
@@ -552,7 +542,6 @@ func (ptr *QInAppStore) ProductRegistered(product QInAppProduct_ITF) {
 
 //export callbackQInAppStore_ProductUnknown
 func callbackQInAppStore_ProductUnknown(ptr unsafe.Pointer, productType C.longlong, identifier C.struct_QtPurchasing_PackedString) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QInAppStore::productUnknown"); signal != nil {
 		signal.(func(QInAppProduct__ProductType, string))(QInAppProduct__ProductType(productType), cGoUnpackString(identifier))
 	}
@@ -620,7 +609,6 @@ func (ptr *QInAppStore) SetPlatformProperty(propertyName string, value string) {
 
 //export callbackQInAppStore_TransactionReady
 func callbackQInAppStore_TransactionReady(ptr unsafe.Pointer, transaction unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QInAppStore::transactionReady"); signal != nil {
 		signal.(func(*QInAppTransaction))(NewQInAppTransactionFromPointer(transaction))
 	}
@@ -657,7 +645,6 @@ func (ptr *QInAppStore) DestroyQInAppStore() {
 
 //export callbackQInAppStore_TimerEvent
 func callbackQInAppStore_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QInAppStore::timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
 	} else {
@@ -693,7 +680,6 @@ func (ptr *QInAppStore) TimerEventDefault(event core.QTimerEvent_ITF) {
 
 //export callbackQInAppStore_ChildEvent
 func callbackQInAppStore_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QInAppStore::childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
 	} else {
@@ -729,7 +715,6 @@ func (ptr *QInAppStore) ChildEventDefault(event core.QChildEvent_ITF) {
 
 //export callbackQInAppStore_ConnectNotify
 func callbackQInAppStore_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QInAppStore::connectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
@@ -765,7 +750,6 @@ func (ptr *QInAppStore) ConnectNotifyDefault(sign core.QMetaMethod_ITF) {
 
 //export callbackQInAppStore_CustomEvent
 func callbackQInAppStore_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QInAppStore::customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
 	} else {
@@ -840,7 +824,6 @@ func (ptr *QInAppStore) DeleteLaterDefault() {
 
 //export callbackQInAppStore_DisconnectNotify
 func callbackQInAppStore_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QInAppStore::disconnectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
@@ -876,7 +859,6 @@ func (ptr *QInAppStore) DisconnectNotifyDefault(sign core.QMetaMethod_ITF) {
 
 //export callbackQInAppStore_Event
 func callbackQInAppStore_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QInAppStore::event"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
 	}
@@ -914,7 +896,6 @@ func (ptr *QInAppStore) EventDefault(e core.QEvent_ITF) bool {
 
 //export callbackQInAppStore_EventFilter
 func callbackQInAppStore_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QInAppStore::eventFilter"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
 	}
@@ -952,7 +933,6 @@ func (ptr *QInAppStore) EventFilterDefault(watched core.QObject_ITF, event core.
 
 //export callbackQInAppStore_MetaObject
 func callbackQInAppStore_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QInAppStore::metaObject"); signal != nil {
 		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
 	}
@@ -1058,7 +1038,6 @@ const (
 
 //export callbackQInAppTransaction_ErrorString
 func callbackQInAppTransaction_ErrorString(ptr unsafe.Pointer) *C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QInAppTransaction::errorString"); signal != nil {
 		return C.CString(signal.(func() string)())
 	}
@@ -1096,7 +1075,6 @@ func (ptr *QInAppTransaction) ErrorStringDefault() string {
 
 //export callbackQInAppTransaction_FailureReason
 func callbackQInAppTransaction_FailureReason(ptr unsafe.Pointer) C.longlong {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QInAppTransaction::failureReason"); signal != nil {
 		return C.longlong(signal.(func() QInAppTransaction__FailureReason)())
 	}
@@ -1134,7 +1112,6 @@ func (ptr *QInAppTransaction) FailureReasonDefault() QInAppTransaction__FailureR
 
 //export callbackQInAppTransaction_OrderId
 func callbackQInAppTransaction_OrderId(ptr unsafe.Pointer) *C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QInAppTransaction::orderId"); signal != nil {
 		return C.CString(signal.(func() string)())
 	}
@@ -1190,7 +1167,6 @@ func (ptr *QInAppTransaction) Status() QInAppTransaction__TransactionStatus {
 
 //export callbackQInAppTransaction_Timestamp
 func callbackQInAppTransaction_Timestamp(ptr unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QInAppTransaction::timestamp"); signal != nil {
 		return core.PointerFromQDateTime(signal.(func() *core.QDateTime)())
 	}
@@ -1232,7 +1208,6 @@ func (ptr *QInAppTransaction) TimestampDefault() *core.QDateTime {
 
 //export callbackQInAppTransaction_Finalize
 func callbackQInAppTransaction_Finalize(ptr unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QInAppTransaction::finalize"); signal != nil {
 		signal.(func())()
 	}
@@ -1261,7 +1236,6 @@ func (ptr *QInAppTransaction) Finalize() {
 
 //export callbackQInAppTransaction_PlatformProperty
 func callbackQInAppTransaction_PlatformProperty(ptr unsafe.Pointer, propertyName C.struct_QtPurchasing_PackedString) *C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QInAppTransaction::platformProperty"); signal != nil {
 		return C.CString(signal.(func(string) string)(cGoUnpackString(propertyName)))
 	}
@@ -1303,7 +1277,6 @@ func (ptr *QInAppTransaction) PlatformPropertyDefault(propertyName string) strin
 
 //export callbackQInAppTransaction_TimerEvent
 func callbackQInAppTransaction_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QInAppTransaction::timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
 	} else {
@@ -1339,7 +1312,6 @@ func (ptr *QInAppTransaction) TimerEventDefault(event core.QTimerEvent_ITF) {
 
 //export callbackQInAppTransaction_ChildEvent
 func callbackQInAppTransaction_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QInAppTransaction::childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
 	} else {
@@ -1375,7 +1347,6 @@ func (ptr *QInAppTransaction) ChildEventDefault(event core.QChildEvent_ITF) {
 
 //export callbackQInAppTransaction_ConnectNotify
 func callbackQInAppTransaction_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QInAppTransaction::connectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
@@ -1411,7 +1382,6 @@ func (ptr *QInAppTransaction) ConnectNotifyDefault(sign core.QMetaMethod_ITF) {
 
 //export callbackQInAppTransaction_CustomEvent
 func callbackQInAppTransaction_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QInAppTransaction::customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
 	} else {
@@ -1486,7 +1456,6 @@ func (ptr *QInAppTransaction) DeleteLaterDefault() {
 
 //export callbackQInAppTransaction_DisconnectNotify
 func callbackQInAppTransaction_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QInAppTransaction::disconnectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
@@ -1522,7 +1491,6 @@ func (ptr *QInAppTransaction) DisconnectNotifyDefault(sign core.QMetaMethod_ITF)
 
 //export callbackQInAppTransaction_Event
 func callbackQInAppTransaction_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QInAppTransaction::event"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
 	}
@@ -1560,7 +1528,6 @@ func (ptr *QInAppTransaction) EventDefault(e core.QEvent_ITF) bool {
 
 //export callbackQInAppTransaction_EventFilter
 func callbackQInAppTransaction_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QInAppTransaction::eventFilter"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
 	}
@@ -1598,7 +1565,6 @@ func (ptr *QInAppTransaction) EventFilterDefault(watched core.QObject_ITF, event
 
 //export callbackQInAppTransaction_MetaObject
 func callbackQInAppTransaction_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QInAppTransaction::metaObject"); signal != nil {
 		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
 	}

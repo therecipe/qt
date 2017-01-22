@@ -22,6 +22,27 @@ func GoTemplate(module string, stub bool) []byte {
 		fmt.Fprintf(bb, "func cGoUnpackString(s C.struct_%v_PackedString) string { if len := int(s.len); len == -1 {\n return C.GoString(s.data)\n }\n return C.GoStringN(s.data, C.int(s.len)) }\n", strings.Title(module))
 	}
 
+	if module == "QtAndroidExtras" {
+		fmt.Fprint(bb, "func QAndroidJniEnvironment_ExceptionCatch() error {\n")
+		if !(UseStub() || stub) {
+			fmt.Fprint(bb, "var err error\n")
+			fmt.Fprint(bb, "if QAndroidJniEnvironment_ExceptionCheck() {\nvar tmpExcPtr = QAndroidJniEnvironment_ExceptionOccurred()\nQAndroidJniEnvironment_ExceptionClear()\n")
+			fmt.Fprint(bb, "var tmpExc = NewQAndroidJniObject6(tmpExcPtr)\n")
+			fmt.Fprint(bb, "err = errors.New(tmpExc.CallMethodString2(\"toString\", \"()Ljava/lang/String;\"))\n")
+			fmt.Fprint(bb, "tmpExc.DestroyQAndroidJniObject()\n")
+			fmt.Fprint(bb, "}\nreturn err\n")
+		} else {
+			fmt.Fprint(bb, "return nil\n")
+		}
+		fmt.Fprint(bb, "}\n\n")
+
+		if !(UseStub() || stub) {
+			fmt.Fprint(bb, "func (e *QAndroidJniEnvironment) ExceptionCatch() error { return QAndroidJniEnvironment_ExceptionCatch() }\n")
+		} else {
+			fmt.Fprint(bb, "func (e *QAndroidJniEnvironment) ExceptionCatch() error { return nil }\n")
+		}
+	}
+
 	for _, class := range sortedClassesForModule(module) {
 
 		class.Stub = UseStub() || stub

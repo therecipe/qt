@@ -67,7 +67,6 @@ func NewQAbstractPlanarVideoBufferFromPointer(ptr unsafe.Pointer) *QAbstractPlan
 
 //export callbackQAbstractPlanarVideoBuffer_DestroyQAbstractPlanarVideoBuffer
 func callbackQAbstractPlanarVideoBuffer_DestroyQAbstractPlanarVideoBuffer(ptr unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractPlanarVideoBuffer::~QAbstractPlanarVideoBuffer"); signal != nil {
 		signal.(func())()
 	} else {
@@ -107,7 +106,6 @@ func (ptr *QAbstractPlanarVideoBuffer) DestroyQAbstractPlanarVideoBufferDefault(
 
 //export callbackQAbstractPlanarVideoBuffer_Handle
 func callbackQAbstractPlanarVideoBuffer_Handle(ptr unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractPlanarVideoBuffer::handle"); signal != nil {
 		return core.PointerFromQVariant(signal.(func() *core.QVariant)())
 	}
@@ -149,7 +147,6 @@ func (ptr *QAbstractPlanarVideoBuffer) HandleDefault() *core.QVariant {
 
 //export callbackQAbstractPlanarVideoBuffer_Map
 func callbackQAbstractPlanarVideoBuffer_Map(ptr unsafe.Pointer, mode C.longlong, numBytes C.int, bytesPerLine C.int) *C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractPlanarVideoBuffer::map"); signal != nil {
 		return C.CString(signal.(func(QAbstractVideoBuffer__MapMode, int, int) string)(QAbstractVideoBuffer__MapMode(mode), int(int32(numBytes)), int(int32(bytesPerLine))))
 	}
@@ -180,7 +177,6 @@ func (ptr *QAbstractPlanarVideoBuffer) Map(mode QAbstractVideoBuffer__MapMode, n
 
 //export callbackQAbstractPlanarVideoBuffer_MapMode
 func callbackQAbstractPlanarVideoBuffer_MapMode(ptr unsafe.Pointer) C.longlong {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractPlanarVideoBuffer::mapMode"); signal != nil {
 		return C.longlong(signal.(func() QAbstractVideoBuffer__MapMode)())
 	}
@@ -211,7 +207,6 @@ func (ptr *QAbstractPlanarVideoBuffer) MapMode() QAbstractVideoBuffer__MapMode {
 
 //export callbackQAbstractPlanarVideoBuffer_Release
 func callbackQAbstractPlanarVideoBuffer_Release(ptr unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractPlanarVideoBuffer::release"); signal != nil {
 		signal.(func())()
 	} else {
@@ -247,7 +242,6 @@ func (ptr *QAbstractPlanarVideoBuffer) ReleaseDefault() {
 
 //export callbackQAbstractPlanarVideoBuffer_Unmap
 func callbackQAbstractPlanarVideoBuffer_Unmap(ptr unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractPlanarVideoBuffer::unmap"); signal != nil {
 		signal.(func())()
 	}
@@ -343,7 +337,6 @@ func NewQAbstractVideoBuffer(ty QAbstractVideoBuffer__HandleType) *QAbstractVide
 
 //export callbackQAbstractVideoBuffer_Handle
 func callbackQAbstractVideoBuffer_Handle(ptr unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractVideoBuffer::handle"); signal != nil {
 		return core.PointerFromQVariant(signal.(func() *core.QVariant)())
 	}
@@ -392,7 +385,6 @@ func (ptr *QAbstractVideoBuffer) HandleType() QAbstractVideoBuffer__HandleType {
 
 //export callbackQAbstractVideoBuffer_Map
 func callbackQAbstractVideoBuffer_Map(ptr unsafe.Pointer, mode C.longlong, numBytes C.int, bytesPerLine C.int) *C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractVideoBuffer::map"); signal != nil {
 		return C.CString(signal.(func(QAbstractVideoBuffer__MapMode, int, int) string)(QAbstractVideoBuffer__MapMode(mode), int(int32(numBytes)), int(int32(bytesPerLine))))
 	}
@@ -423,7 +415,6 @@ func (ptr *QAbstractVideoBuffer) Map(mode QAbstractVideoBuffer__MapMode, numByte
 
 //export callbackQAbstractVideoBuffer_MapMode
 func callbackQAbstractVideoBuffer_MapMode(ptr unsafe.Pointer) C.longlong {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractVideoBuffer::mapMode"); signal != nil {
 		return C.longlong(signal.(func() QAbstractVideoBuffer__MapMode)())
 	}
@@ -454,7 +445,6 @@ func (ptr *QAbstractVideoBuffer) MapMode() QAbstractVideoBuffer__MapMode {
 
 //export callbackQAbstractVideoBuffer_Release
 func callbackQAbstractVideoBuffer_Release(ptr unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractVideoBuffer::release"); signal != nil {
 		signal.(func())()
 	} else {
@@ -490,7 +480,6 @@ func (ptr *QAbstractVideoBuffer) ReleaseDefault() {
 
 //export callbackQAbstractVideoBuffer_Unmap
 func callbackQAbstractVideoBuffer_Unmap(ptr unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractVideoBuffer::unmap"); signal != nil {
 		signal.(func())()
 	}
@@ -519,7 +508,6 @@ func (ptr *QAbstractVideoBuffer) Unmap() {
 
 //export callbackQAbstractVideoBuffer_DestroyQAbstractVideoBuffer
 func callbackQAbstractVideoBuffer_DestroyQAbstractVideoBuffer(ptr unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractVideoBuffer::~QAbstractVideoBuffer"); signal != nil {
 		signal.(func())()
 	} else {
@@ -640,7 +628,6 @@ func NewQAbstractVideoFilter(parent core.QObject_ITF) *QAbstractVideoFilter {
 
 //export callbackQAbstractVideoFilter_ActiveChanged
 func callbackQAbstractVideoFilter_ActiveChanged(ptr unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractVideoFilter::activeChanged"); signal != nil {
 		signal.(func())()
 	}
@@ -669,7 +656,6 @@ func (ptr *QAbstractVideoFilter) ActiveChanged() {
 
 //export callbackQAbstractVideoFilter_CreateFilterRunnable
 func callbackQAbstractVideoFilter_CreateFilterRunnable(ptr unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractVideoFilter::createFilterRunnable"); signal != nil {
 		return PointerFromQVideoFilterRunnable(signal.(func() *QVideoFilterRunnable)())
 	}
@@ -700,7 +686,6 @@ func (ptr *QAbstractVideoFilter) CreateFilterRunnable() *QVideoFilterRunnable {
 
 //export callbackQAbstractVideoFilter_TimerEvent
 func callbackQAbstractVideoFilter_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractVideoFilter::timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
 	} else {
@@ -736,7 +721,6 @@ func (ptr *QAbstractVideoFilter) TimerEventDefault(event core.QTimerEvent_ITF) {
 
 //export callbackQAbstractVideoFilter_ChildEvent
 func callbackQAbstractVideoFilter_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractVideoFilter::childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
 	} else {
@@ -772,7 +756,6 @@ func (ptr *QAbstractVideoFilter) ChildEventDefault(event core.QChildEvent_ITF) {
 
 //export callbackQAbstractVideoFilter_ConnectNotify
 func callbackQAbstractVideoFilter_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractVideoFilter::connectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
@@ -808,7 +791,6 @@ func (ptr *QAbstractVideoFilter) ConnectNotifyDefault(sign core.QMetaMethod_ITF)
 
 //export callbackQAbstractVideoFilter_CustomEvent
 func callbackQAbstractVideoFilter_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractVideoFilter::customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
 	} else {
@@ -883,7 +865,6 @@ func (ptr *QAbstractVideoFilter) DeleteLaterDefault() {
 
 //export callbackQAbstractVideoFilter_DisconnectNotify
 func callbackQAbstractVideoFilter_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractVideoFilter::disconnectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
@@ -919,7 +900,6 @@ func (ptr *QAbstractVideoFilter) DisconnectNotifyDefault(sign core.QMetaMethod_I
 
 //export callbackQAbstractVideoFilter_Event
 func callbackQAbstractVideoFilter_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractVideoFilter::event"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
 	}
@@ -957,7 +937,6 @@ func (ptr *QAbstractVideoFilter) EventDefault(e core.QEvent_ITF) bool {
 
 //export callbackQAbstractVideoFilter_EventFilter
 func callbackQAbstractVideoFilter_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractVideoFilter::eventFilter"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
 	}
@@ -995,7 +974,6 @@ func (ptr *QAbstractVideoFilter) EventFilterDefault(watched core.QObject_ITF, ev
 
 //export callbackQAbstractVideoFilter_MetaObject
 func callbackQAbstractVideoFilter_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractVideoFilter::metaObject"); signal != nil {
 		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
 	}
@@ -1093,7 +1071,6 @@ func (ptr *QAbstractVideoSurface) NativeResolution() *core.QSize {
 
 //export callbackQAbstractVideoSurface_ActiveChanged
 func callbackQAbstractVideoSurface_ActiveChanged(ptr unsafe.Pointer, active C.char) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractVideoSurface::activeChanged"); signal != nil {
 		signal.(func(bool))(int8(active) != 0)
 	}
@@ -1136,7 +1113,6 @@ func (ptr *QAbstractVideoSurface) IsActive() bool {
 
 //export callbackQAbstractVideoSurface_IsFormatSupported
 func callbackQAbstractVideoSurface_IsFormatSupported(ptr unsafe.Pointer, format unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractVideoSurface::isFormatSupported"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*QVideoSurfaceFormat) bool)(NewQVideoSurfaceFormatFromPointer(format)))))
 	}
@@ -1174,7 +1150,6 @@ func (ptr *QAbstractVideoSurface) IsFormatSupportedDefault(format QVideoSurfaceF
 
 //export callbackQAbstractVideoSurface_NativeResolutionChanged
 func callbackQAbstractVideoSurface_NativeResolutionChanged(ptr unsafe.Pointer, resolution unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractVideoSurface::nativeResolutionChanged"); signal != nil {
 		signal.(func(*core.QSize))(core.NewQSizeFromPointer(resolution))
 	}
@@ -1203,7 +1178,6 @@ func (ptr *QAbstractVideoSurface) NativeResolutionChanged(resolution core.QSize_
 
 //export callbackQAbstractVideoSurface_NearestFormat
 func callbackQAbstractVideoSurface_NearestFormat(ptr unsafe.Pointer, format unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractVideoSurface::nearestFormat"); signal != nil {
 		return PointerFromQVideoSurfaceFormat(signal.(func(*QVideoSurfaceFormat) *QVideoSurfaceFormat)(NewQVideoSurfaceFormatFromPointer(format)))
 	}
@@ -1245,7 +1219,6 @@ func (ptr *QAbstractVideoSurface) NearestFormatDefault(format QVideoSurfaceForma
 
 //export callbackQAbstractVideoSurface_Present
 func callbackQAbstractVideoSurface_Present(ptr unsafe.Pointer, frame unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractVideoSurface::present"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*QVideoFrame) bool)(NewQVideoFrameFromPointer(frame)))))
 	}
@@ -1288,7 +1261,6 @@ func (ptr *QAbstractVideoSurface) SetNativeResolution(resolution core.QSize_ITF)
 
 //export callbackQAbstractVideoSurface_Start
 func callbackQAbstractVideoSurface_Start(ptr unsafe.Pointer, format unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractVideoSurface::start"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*QVideoSurfaceFormat) bool)(NewQVideoSurfaceFormatFromPointer(format)))))
 	}
@@ -1326,7 +1298,6 @@ func (ptr *QAbstractVideoSurface) StartDefault(format QVideoSurfaceFormat_ITF) b
 
 //export callbackQAbstractVideoSurface_Stop
 func callbackQAbstractVideoSurface_Stop(ptr unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractVideoSurface::stop"); signal != nil {
 		signal.(func())()
 	} else {
@@ -1362,7 +1333,6 @@ func (ptr *QAbstractVideoSurface) StopDefault() {
 
 //export callbackQAbstractVideoSurface_SupportedFormatsChanged
 func callbackQAbstractVideoSurface_SupportedFormatsChanged(ptr unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractVideoSurface::supportedFormatsChanged"); signal != nil {
 		signal.(func())()
 	}
@@ -1400,7 +1370,6 @@ func (ptr *QAbstractVideoSurface) SurfaceFormat() *QVideoSurfaceFormat {
 
 //export callbackQAbstractVideoSurface_SurfaceFormatChanged
 func callbackQAbstractVideoSurface_SurfaceFormatChanged(ptr unsafe.Pointer, format unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractVideoSurface::surfaceFormatChanged"); signal != nil {
 		signal.(func(*QVideoSurfaceFormat))(NewQVideoSurfaceFormatFromPointer(format))
 	}
@@ -1437,7 +1406,6 @@ func (ptr *QAbstractVideoSurface) DestroyQAbstractVideoSurface() {
 
 //export callbackQAbstractVideoSurface_TimerEvent
 func callbackQAbstractVideoSurface_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractVideoSurface::timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
 	} else {
@@ -1473,7 +1441,6 @@ func (ptr *QAbstractVideoSurface) TimerEventDefault(event core.QTimerEvent_ITF) 
 
 //export callbackQAbstractVideoSurface_ChildEvent
 func callbackQAbstractVideoSurface_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractVideoSurface::childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
 	} else {
@@ -1509,7 +1476,6 @@ func (ptr *QAbstractVideoSurface) ChildEventDefault(event core.QChildEvent_ITF) 
 
 //export callbackQAbstractVideoSurface_ConnectNotify
 func callbackQAbstractVideoSurface_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractVideoSurface::connectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
@@ -1545,7 +1511,6 @@ func (ptr *QAbstractVideoSurface) ConnectNotifyDefault(sign core.QMetaMethod_ITF
 
 //export callbackQAbstractVideoSurface_CustomEvent
 func callbackQAbstractVideoSurface_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractVideoSurface::customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
 	} else {
@@ -1620,7 +1585,6 @@ func (ptr *QAbstractVideoSurface) DeleteLaterDefault() {
 
 //export callbackQAbstractVideoSurface_DisconnectNotify
 func callbackQAbstractVideoSurface_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractVideoSurface::disconnectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
@@ -1656,7 +1620,6 @@ func (ptr *QAbstractVideoSurface) DisconnectNotifyDefault(sign core.QMetaMethod_
 
 //export callbackQAbstractVideoSurface_Event
 func callbackQAbstractVideoSurface_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractVideoSurface::event"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
 	}
@@ -1694,7 +1657,6 @@ func (ptr *QAbstractVideoSurface) EventDefault(e core.QEvent_ITF) bool {
 
 //export callbackQAbstractVideoSurface_EventFilter
 func callbackQAbstractVideoSurface_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractVideoSurface::eventFilter"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
 	}
@@ -1732,7 +1694,6 @@ func (ptr *QAbstractVideoSurface) EventFilterDefault(watched core.QObject_ITF, e
 
 //export callbackQAbstractVideoSurface_MetaObject
 func callbackQAbstractVideoSurface_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAbstractVideoSurface::metaObject"); signal != nil {
 		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
 	}
@@ -2123,7 +2084,6 @@ func (ptr *QAudioDecoder) BufferAvailable() bool {
 
 //export callbackQAudioDecoder_BufferAvailableChanged
 func callbackQAudioDecoder_BufferAvailableChanged(ptr unsafe.Pointer, available C.char) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAudioDecoder::bufferAvailableChanged"); signal != nil {
 		signal.(func(bool))(int8(available) != 0)
 	}
@@ -2152,7 +2112,6 @@ func (ptr *QAudioDecoder) BufferAvailableChanged(available bool) {
 
 //export callbackQAudioDecoder_BufferReady
 func callbackQAudioDecoder_BufferReady(ptr unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAudioDecoder::bufferReady"); signal != nil {
 		signal.(func())()
 	}
@@ -2188,7 +2147,6 @@ func (ptr *QAudioDecoder) Duration() int64 {
 
 //export callbackQAudioDecoder_DurationChanged
 func callbackQAudioDecoder_DurationChanged(ptr unsafe.Pointer, duration C.longlong) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAudioDecoder::durationChanged"); signal != nil {
 		signal.(func(int64))(int64(duration))
 	}
@@ -2217,7 +2175,6 @@ func (ptr *QAudioDecoder) DurationChanged(duration int64) {
 
 //export callbackQAudioDecoder_Error2
 func callbackQAudioDecoder_Error2(ptr unsafe.Pointer, error C.longlong) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAudioDecoder::error2"); signal != nil {
 		signal.(func(QAudioDecoder__Error))(QAudioDecoder__Error(error))
 	}
@@ -2253,7 +2210,6 @@ func (ptr *QAudioDecoder) Error() QAudioDecoder__Error {
 
 //export callbackQAudioDecoder_Finished
 func callbackQAudioDecoder_Finished(ptr unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAudioDecoder::finished"); signal != nil {
 		signal.(func())()
 	}
@@ -2282,7 +2238,6 @@ func (ptr *QAudioDecoder) Finished() {
 
 //export callbackQAudioDecoder_FormatChanged
 func callbackQAudioDecoder_FormatChanged(ptr unsafe.Pointer, format unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAudioDecoder::formatChanged"); signal != nil {
 		signal.(func(*QAudioFormat))(NewQAudioFormatFromPointer(format))
 	}
@@ -2334,7 +2289,6 @@ func (ptr *QAudioDecoder) Position() int64 {
 
 //export callbackQAudioDecoder_PositionChanged
 func callbackQAudioDecoder_PositionChanged(ptr unsafe.Pointer, position C.longlong) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAudioDecoder::positionChanged"); signal != nil {
 		signal.(func(int64))(int64(position))
 	}
@@ -2392,7 +2346,6 @@ func (ptr *QAudioDecoder) SetSourceFilename(fileName string) {
 
 //export callbackQAudioDecoder_SourceChanged
 func callbackQAudioDecoder_SourceChanged(ptr unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAudioDecoder::sourceChanged"); signal != nil {
 		signal.(func())()
 	}
@@ -2474,7 +2427,6 @@ func (ptr *QAudioDecoder) StartDefault() {
 
 //export callbackQAudioDecoder_StateChanged
 func callbackQAudioDecoder_StateChanged(ptr unsafe.Pointer, state C.longlong) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAudioDecoder::stateChanged"); signal != nil {
 		signal.(func(QAudioDecoder__State))(QAudioDecoder__State(state))
 	}
@@ -2546,7 +2498,6 @@ func (ptr *QAudioDecoder) DestroyQAudioDecoder() {
 
 //export callbackQAudioDecoder_Availability
 func callbackQAudioDecoder_Availability(ptr unsafe.Pointer) C.longlong {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAudioDecoder::availability"); signal != nil {
 		return C.longlong(signal.(func() QMultimedia__AvailabilityStatus)())
 	}
@@ -2584,7 +2535,6 @@ func (ptr *QAudioDecoder) AvailabilityDefault() QMultimedia__AvailabilityStatus 
 
 //export callbackQAudioDecoder_Bind
 func callbackQAudioDecoder_Bind(ptr unsafe.Pointer, object unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAudioDecoder::bind"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject) bool)(core.NewQObjectFromPointer(object)))))
 	}
@@ -2622,7 +2572,6 @@ func (ptr *QAudioDecoder) BindDefault(object core.QObject_ITF) bool {
 
 //export callbackQAudioDecoder_IsAvailable
 func callbackQAudioDecoder_IsAvailable(ptr unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAudioDecoder::isAvailable"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func() bool)())))
 	}
@@ -2660,7 +2609,6 @@ func (ptr *QAudioDecoder) IsAvailableDefault() bool {
 
 //export callbackQAudioDecoder_Service
 func callbackQAudioDecoder_Service(ptr unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAudioDecoder::service"); signal != nil {
 		return PointerFromQMediaService(signal.(func() *QMediaService)())
 	}
@@ -2706,7 +2654,6 @@ func (ptr *QAudioDecoder) ServiceDefault() *QMediaService {
 
 //export callbackQAudioDecoder_Unbind
 func callbackQAudioDecoder_Unbind(ptr unsafe.Pointer, object unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAudioDecoder::unbind"); signal != nil {
 		signal.(func(*core.QObject))(core.NewQObjectFromPointer(object))
 	} else {
@@ -2742,7 +2689,6 @@ func (ptr *QAudioDecoder) UnbindDefault(object core.QObject_ITF) {
 
 //export callbackQAudioDecoder_TimerEvent
 func callbackQAudioDecoder_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAudioDecoder::timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
 	} else {
@@ -2778,7 +2724,6 @@ func (ptr *QAudioDecoder) TimerEventDefault(event core.QTimerEvent_ITF) {
 
 //export callbackQAudioDecoder_ChildEvent
 func callbackQAudioDecoder_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAudioDecoder::childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
 	} else {
@@ -2814,7 +2759,6 @@ func (ptr *QAudioDecoder) ChildEventDefault(event core.QChildEvent_ITF) {
 
 //export callbackQAudioDecoder_ConnectNotify
 func callbackQAudioDecoder_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAudioDecoder::connectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
@@ -2850,7 +2794,6 @@ func (ptr *QAudioDecoder) ConnectNotifyDefault(sign core.QMetaMethod_ITF) {
 
 //export callbackQAudioDecoder_CustomEvent
 func callbackQAudioDecoder_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAudioDecoder::customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
 	} else {
@@ -2925,7 +2868,6 @@ func (ptr *QAudioDecoder) DeleteLaterDefault() {
 
 //export callbackQAudioDecoder_DisconnectNotify
 func callbackQAudioDecoder_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAudioDecoder::disconnectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
@@ -2961,7 +2903,6 @@ func (ptr *QAudioDecoder) DisconnectNotifyDefault(sign core.QMetaMethod_ITF) {
 
 //export callbackQAudioDecoder_Event
 func callbackQAudioDecoder_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAudioDecoder::event"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
 	}
@@ -2999,7 +2940,6 @@ func (ptr *QAudioDecoder) EventDefault(e core.QEvent_ITF) bool {
 
 //export callbackQAudioDecoder_EventFilter
 func callbackQAudioDecoder_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAudioDecoder::eventFilter"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
 	}
@@ -3037,7 +2977,6 @@ func (ptr *QAudioDecoder) EventFilterDefault(watched core.QObject_ITF, event cor
 
 //export callbackQAudioDecoder_MetaObject
 func callbackQAudioDecoder_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAudioDecoder::metaObject"); signal != nil {
 		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
 	}
@@ -3121,7 +3060,6 @@ func NewQAudioDecoderControl(parent core.QObject_ITF) *QAudioDecoderControl {
 
 //export callbackQAudioDecoderControl_AudioFormat
 func callbackQAudioDecoderControl_AudioFormat(ptr unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAudioDecoderControl::audioFormat"); signal != nil {
 		return PointerFromQAudioFormat(signal.(func() *QAudioFormat)())
 	}
@@ -3154,7 +3092,6 @@ func (ptr *QAudioDecoderControl) AudioFormat() *QAudioFormat {
 
 //export callbackQAudioDecoderControl_BufferAvailable
 func callbackQAudioDecoderControl_BufferAvailable(ptr unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAudioDecoderControl::bufferAvailable"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func() bool)())))
 	}
@@ -3185,7 +3122,6 @@ func (ptr *QAudioDecoderControl) BufferAvailable() bool {
 
 //export callbackQAudioDecoderControl_BufferAvailableChanged
 func callbackQAudioDecoderControl_BufferAvailableChanged(ptr unsafe.Pointer, available C.char) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAudioDecoderControl::bufferAvailableChanged"); signal != nil {
 		signal.(func(bool))(int8(available) != 0)
 	}
@@ -3214,7 +3150,6 @@ func (ptr *QAudioDecoderControl) BufferAvailableChanged(available bool) {
 
 //export callbackQAudioDecoderControl_BufferReady
 func callbackQAudioDecoderControl_BufferReady(ptr unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAudioDecoderControl::bufferReady"); signal != nil {
 		signal.(func())()
 	}
@@ -3243,7 +3178,6 @@ func (ptr *QAudioDecoderControl) BufferReady() {
 
 //export callbackQAudioDecoderControl_Duration
 func callbackQAudioDecoderControl_Duration(ptr unsafe.Pointer) C.longlong {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAudioDecoderControl::duration"); signal != nil {
 		return C.longlong(signal.(func() int64)())
 	}
@@ -3274,7 +3208,6 @@ func (ptr *QAudioDecoderControl) Duration() int64 {
 
 //export callbackQAudioDecoderControl_DurationChanged
 func callbackQAudioDecoderControl_DurationChanged(ptr unsafe.Pointer, duration C.longlong) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAudioDecoderControl::durationChanged"); signal != nil {
 		signal.(func(int64))(int64(duration))
 	}
@@ -3303,7 +3236,6 @@ func (ptr *QAudioDecoderControl) DurationChanged(duration int64) {
 
 //export callbackQAudioDecoderControl_Error
 func callbackQAudioDecoderControl_Error(ptr unsafe.Pointer, error C.int, errorString C.struct_QtMultimedia_PackedString) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAudioDecoderControl::error"); signal != nil {
 		signal.(func(int, string))(int(int32(error)), cGoUnpackString(errorString))
 	}
@@ -3334,7 +3266,6 @@ func (ptr *QAudioDecoderControl) Error(error int, errorString string) {
 
 //export callbackQAudioDecoderControl_Finished
 func callbackQAudioDecoderControl_Finished(ptr unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAudioDecoderControl::finished"); signal != nil {
 		signal.(func())()
 	}
@@ -3363,7 +3294,6 @@ func (ptr *QAudioDecoderControl) Finished() {
 
 //export callbackQAudioDecoderControl_FormatChanged
 func callbackQAudioDecoderControl_FormatChanged(ptr unsafe.Pointer, format unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAudioDecoderControl::formatChanged"); signal != nil {
 		signal.(func(*QAudioFormat))(NewQAudioFormatFromPointer(format))
 	}
@@ -3392,7 +3322,6 @@ func (ptr *QAudioDecoderControl) FormatChanged(format QAudioFormat_ITF) {
 
 //export callbackQAudioDecoderControl_Position
 func callbackQAudioDecoderControl_Position(ptr unsafe.Pointer) C.longlong {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAudioDecoderControl::position"); signal != nil {
 		return C.longlong(signal.(func() int64)())
 	}
@@ -3423,7 +3352,6 @@ func (ptr *QAudioDecoderControl) Position() int64 {
 
 //export callbackQAudioDecoderControl_PositionChanged
 func callbackQAudioDecoderControl_PositionChanged(ptr unsafe.Pointer, position C.longlong) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAudioDecoderControl::positionChanged"); signal != nil {
 		signal.(func(int64))(int64(position))
 	}
@@ -3452,7 +3380,6 @@ func (ptr *QAudioDecoderControl) PositionChanged(position int64) {
 
 //export callbackQAudioDecoderControl_Read
 func callbackQAudioDecoderControl_Read(ptr unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAudioDecoderControl::read"); signal != nil {
 		return PointerFromQAudioBuffer(signal.(func() *QAudioBuffer)())
 	}
@@ -3485,7 +3412,6 @@ func (ptr *QAudioDecoderControl) Read() *QAudioBuffer {
 
 //export callbackQAudioDecoderControl_SetAudioFormat
 func callbackQAudioDecoderControl_SetAudioFormat(ptr unsafe.Pointer, format unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAudioDecoderControl::setAudioFormat"); signal != nil {
 		signal.(func(*QAudioFormat))(NewQAudioFormatFromPointer(format))
 	}
@@ -3514,7 +3440,6 @@ func (ptr *QAudioDecoderControl) SetAudioFormat(format QAudioFormat_ITF) {
 
 //export callbackQAudioDecoderControl_SetSourceDevice
 func callbackQAudioDecoderControl_SetSourceDevice(ptr unsafe.Pointer, device unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAudioDecoderControl::setSourceDevice"); signal != nil {
 		signal.(func(*core.QIODevice))(core.NewQIODeviceFromPointer(device))
 	}
@@ -3543,7 +3468,6 @@ func (ptr *QAudioDecoderControl) SetSourceDevice(device core.QIODevice_ITF) {
 
 //export callbackQAudioDecoderControl_SetSourceFilename
 func callbackQAudioDecoderControl_SetSourceFilename(ptr unsafe.Pointer, fileName C.struct_QtMultimedia_PackedString) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAudioDecoderControl::setSourceFilename"); signal != nil {
 		signal.(func(string))(cGoUnpackString(fileName))
 	}
@@ -3574,7 +3498,6 @@ func (ptr *QAudioDecoderControl) SetSourceFilename(fileName string) {
 
 //export callbackQAudioDecoderControl_SourceChanged
 func callbackQAudioDecoderControl_SourceChanged(ptr unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAudioDecoderControl::sourceChanged"); signal != nil {
 		signal.(func())()
 	}
@@ -3603,7 +3526,6 @@ func (ptr *QAudioDecoderControl) SourceChanged() {
 
 //export callbackQAudioDecoderControl_SourceDevice
 func callbackQAudioDecoderControl_SourceDevice(ptr unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAudioDecoderControl::sourceDevice"); signal != nil {
 		return core.PointerFromQIODevice(signal.(func() *core.QIODevice)())
 	}
@@ -3638,7 +3560,6 @@ func (ptr *QAudioDecoderControl) SourceDevice() *core.QIODevice {
 
 //export callbackQAudioDecoderControl_SourceFilename
 func callbackQAudioDecoderControl_SourceFilename(ptr unsafe.Pointer) *C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAudioDecoderControl::sourceFilename"); signal != nil {
 		return C.CString(signal.(func() string)())
 	}
@@ -3669,7 +3590,6 @@ func (ptr *QAudioDecoderControl) SourceFilename() string {
 
 //export callbackQAudioDecoderControl_Start
 func callbackQAudioDecoderControl_Start(ptr unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAudioDecoderControl::start"); signal != nil {
 		signal.(func())()
 	}
@@ -3698,7 +3618,6 @@ func (ptr *QAudioDecoderControl) Start() {
 
 //export callbackQAudioDecoderControl_State
 func callbackQAudioDecoderControl_State(ptr unsafe.Pointer) C.longlong {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAudioDecoderControl::state"); signal != nil {
 		return C.longlong(signal.(func() QAudioDecoder__State)())
 	}
@@ -3729,7 +3648,6 @@ func (ptr *QAudioDecoderControl) State() QAudioDecoder__State {
 
 //export callbackQAudioDecoderControl_StateChanged
 func callbackQAudioDecoderControl_StateChanged(ptr unsafe.Pointer, state C.longlong) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAudioDecoderControl::stateChanged"); signal != nil {
 		signal.(func(QAudioDecoder__State))(QAudioDecoder__State(state))
 	}
@@ -3758,7 +3676,6 @@ func (ptr *QAudioDecoderControl) StateChanged(state QAudioDecoder__State) {
 
 //export callbackQAudioDecoderControl_Stop
 func callbackQAudioDecoderControl_Stop(ptr unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAudioDecoderControl::stop"); signal != nil {
 		signal.(func())()
 	}
@@ -3795,7 +3712,6 @@ func (ptr *QAudioDecoderControl) DestroyQAudioDecoderControl() {
 
 //export callbackQAudioDecoderControl_TimerEvent
 func callbackQAudioDecoderControl_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAudioDecoderControl::timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
 	} else {
@@ -3831,7 +3747,6 @@ func (ptr *QAudioDecoderControl) TimerEventDefault(event core.QTimerEvent_ITF) {
 
 //export callbackQAudioDecoderControl_ChildEvent
 func callbackQAudioDecoderControl_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAudioDecoderControl::childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
 	} else {
@@ -3867,7 +3782,6 @@ func (ptr *QAudioDecoderControl) ChildEventDefault(event core.QChildEvent_ITF) {
 
 //export callbackQAudioDecoderControl_ConnectNotify
 func callbackQAudioDecoderControl_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAudioDecoderControl::connectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
@@ -3903,7 +3817,6 @@ func (ptr *QAudioDecoderControl) ConnectNotifyDefault(sign core.QMetaMethod_ITF)
 
 //export callbackQAudioDecoderControl_CustomEvent
 func callbackQAudioDecoderControl_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAudioDecoderControl::customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
 	} else {
@@ -3978,7 +3891,6 @@ func (ptr *QAudioDecoderControl) DeleteLaterDefault() {
 
 //export callbackQAudioDecoderControl_DisconnectNotify
 func callbackQAudioDecoderControl_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAudioDecoderControl::disconnectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
@@ -4014,7 +3926,6 @@ func (ptr *QAudioDecoderControl) DisconnectNotifyDefault(sign core.QMetaMethod_I
 
 //export callbackQAudioDecoderControl_Event
 func callbackQAudioDecoderControl_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAudioDecoderControl::event"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
 	}
@@ -4052,7 +3963,6 @@ func (ptr *QAudioDecoderControl) EventDefault(e core.QEvent_ITF) bool {
 
 //export callbackQAudioDecoderControl_EventFilter
 func callbackQAudioDecoderControl_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAudioDecoderControl::eventFilter"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
 	}
@@ -4090,7 +4000,6 @@ func (ptr *QAudioDecoderControl) EventFilterDefault(watched core.QObject_ITF, ev
 
 //export callbackQAudioDecoderControl_MetaObject
 func callbackQAudioDecoderControl_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAudioDecoderControl::metaObject"); signal != nil {
 		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
 	}
@@ -4484,7 +4393,6 @@ func NewQAudioEncoderSettingsControlFromPointer(ptr unsafe.Pointer) *QAudioEncod
 
 //export callbackQAudioEncoderSettingsControl_AudioSettings
 func callbackQAudioEncoderSettingsControl_AudioSettings(ptr unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAudioEncoderSettingsControl::audioSettings"); signal != nil {
 		return PointerFromQAudioEncoderSettings(signal.(func() *QAudioEncoderSettings)())
 	}
@@ -4517,7 +4425,6 @@ func (ptr *QAudioEncoderSettingsControl) AudioSettings() *QAudioEncoderSettings 
 
 //export callbackQAudioEncoderSettingsControl_CodecDescription
 func callbackQAudioEncoderSettingsControl_CodecDescription(ptr unsafe.Pointer, codec C.struct_QtMultimedia_PackedString) *C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAudioEncoderSettingsControl::codecDescription"); signal != nil {
 		return C.CString(signal.(func(string) string)(cGoUnpackString(codec)))
 	}
@@ -4550,7 +4457,6 @@ func (ptr *QAudioEncoderSettingsControl) CodecDescription(codec string) string {
 
 //export callbackQAudioEncoderSettingsControl_SetAudioSettings
 func callbackQAudioEncoderSettingsControl_SetAudioSettings(ptr unsafe.Pointer, settings unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAudioEncoderSettingsControl::setAudioSettings"); signal != nil {
 		signal.(func(*QAudioEncoderSettings))(NewQAudioEncoderSettingsFromPointer(settings))
 	}
@@ -4579,7 +4485,6 @@ func (ptr *QAudioEncoderSettingsControl) SetAudioSettings(settings QAudioEncoder
 
 //export callbackQAudioEncoderSettingsControl_SupportedAudioCodecs
 func callbackQAudioEncoderSettingsControl_SupportedAudioCodecs(ptr unsafe.Pointer) *C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAudioEncoderSettingsControl::supportedAudioCodecs"); signal != nil {
 		return C.CString(strings.Join(signal.(func() []string)(), "|"))
 	}
@@ -4610,7 +4515,6 @@ func (ptr *QAudioEncoderSettingsControl) SupportedAudioCodecs() []string {
 
 //export callbackQAudioEncoderSettingsControl_DestroyQAudioEncoderSettingsControl
 func callbackQAudioEncoderSettingsControl_DestroyQAudioEncoderSettingsControl(ptr unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAudioEncoderSettingsControl::~QAudioEncoderSettingsControl"); signal != nil {
 		signal.(func())()
 	} else {
@@ -4650,7 +4554,6 @@ func (ptr *QAudioEncoderSettingsControl) DestroyQAudioEncoderSettingsControlDefa
 
 //export callbackQAudioEncoderSettingsControl_TimerEvent
 func callbackQAudioEncoderSettingsControl_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAudioEncoderSettingsControl::timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
 	} else {
@@ -4686,7 +4589,6 @@ func (ptr *QAudioEncoderSettingsControl) TimerEventDefault(event core.QTimerEven
 
 //export callbackQAudioEncoderSettingsControl_ChildEvent
 func callbackQAudioEncoderSettingsControl_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAudioEncoderSettingsControl::childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
 	} else {
@@ -4722,7 +4624,6 @@ func (ptr *QAudioEncoderSettingsControl) ChildEventDefault(event core.QChildEven
 
 //export callbackQAudioEncoderSettingsControl_ConnectNotify
 func callbackQAudioEncoderSettingsControl_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAudioEncoderSettingsControl::connectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
@@ -4758,7 +4659,6 @@ func (ptr *QAudioEncoderSettingsControl) ConnectNotifyDefault(sign core.QMetaMet
 
 //export callbackQAudioEncoderSettingsControl_CustomEvent
 func callbackQAudioEncoderSettingsControl_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAudioEncoderSettingsControl::customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
 	} else {
@@ -4833,7 +4733,6 @@ func (ptr *QAudioEncoderSettingsControl) DeleteLaterDefault() {
 
 //export callbackQAudioEncoderSettingsControl_DisconnectNotify
 func callbackQAudioEncoderSettingsControl_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAudioEncoderSettingsControl::disconnectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
@@ -4869,7 +4768,6 @@ func (ptr *QAudioEncoderSettingsControl) DisconnectNotifyDefault(sign core.QMeta
 
 //export callbackQAudioEncoderSettingsControl_Event
 func callbackQAudioEncoderSettingsControl_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAudioEncoderSettingsControl::event"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
 	}
@@ -4907,7 +4805,6 @@ func (ptr *QAudioEncoderSettingsControl) EventDefault(e core.QEvent_ITF) bool {
 
 //export callbackQAudioEncoderSettingsControl_EventFilter
 func callbackQAudioEncoderSettingsControl_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAudioEncoderSettingsControl::eventFilter"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
 	}
@@ -4945,7 +4842,6 @@ func (ptr *QAudioEncoderSettingsControl) EventFilterDefault(watched core.QObject
 
 //export callbackQAudioEncoderSettingsControl_MetaObject
 func callbackQAudioEncoderSettingsControl_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAudioEncoderSettingsControl::metaObject"); signal != nil {
 		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
 	}
@@ -5362,7 +5258,6 @@ func (ptr *QAudioInput) State() QAudio__State {
 
 //export callbackQAudioInput_StateChanged
 func callbackQAudioInput_StateChanged(ptr unsafe.Pointer, state C.longlong) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAudioInput::stateChanged"); signal != nil {
 		signal.(func(QAudio__State))(QAudio__State(state))
 	}
@@ -5418,7 +5313,6 @@ func (ptr *QAudioInput) DestroyQAudioInput() {
 
 //export callbackQAudioInput_TimerEvent
 func callbackQAudioInput_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAudioInput::timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
 	} else {
@@ -5454,7 +5348,6 @@ func (ptr *QAudioInput) TimerEventDefault(event core.QTimerEvent_ITF) {
 
 //export callbackQAudioInput_ChildEvent
 func callbackQAudioInput_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAudioInput::childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
 	} else {
@@ -5490,7 +5383,6 @@ func (ptr *QAudioInput) ChildEventDefault(event core.QChildEvent_ITF) {
 
 //export callbackQAudioInput_ConnectNotify
 func callbackQAudioInput_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAudioInput::connectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
@@ -5526,7 +5418,6 @@ func (ptr *QAudioInput) ConnectNotifyDefault(sign core.QMetaMethod_ITF) {
 
 //export callbackQAudioInput_CustomEvent
 func callbackQAudioInput_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAudioInput::customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
 	} else {
@@ -5601,7 +5492,6 @@ func (ptr *QAudioInput) DeleteLaterDefault() {
 
 //export callbackQAudioInput_DisconnectNotify
 func callbackQAudioInput_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAudioInput::disconnectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
@@ -5637,7 +5527,6 @@ func (ptr *QAudioInput) DisconnectNotifyDefault(sign core.QMetaMethod_ITF) {
 
 //export callbackQAudioInput_Event
 func callbackQAudioInput_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAudioInput::event"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
 	}
@@ -5675,7 +5564,6 @@ func (ptr *QAudioInput) EventDefault(e core.QEvent_ITF) bool {
 
 //export callbackQAudioInput_EventFilter
 func callbackQAudioInput_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAudioInput::eventFilter"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
 	}
@@ -5713,7 +5601,6 @@ func (ptr *QAudioInput) EventFilterDefault(watched core.QObject_ITF, event core.
 
 //export callbackQAudioInput_MetaObject
 func callbackQAudioInput_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAudioInput::metaObject"); signal != nil {
 		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
 	}
@@ -5790,7 +5677,6 @@ func NewQAudioInputSelectorControlFromPointer(ptr unsafe.Pointer) *QAudioInputSe
 
 //export callbackQAudioInputSelectorControl_ActiveInput
 func callbackQAudioInputSelectorControl_ActiveInput(ptr unsafe.Pointer) *C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAudioInputSelectorControl::activeInput"); signal != nil {
 		return C.CString(signal.(func() string)())
 	}
@@ -5821,7 +5707,6 @@ func (ptr *QAudioInputSelectorControl) ActiveInput() string {
 
 //export callbackQAudioInputSelectorControl_ActiveInputChanged
 func callbackQAudioInputSelectorControl_ActiveInputChanged(ptr unsafe.Pointer, name C.struct_QtMultimedia_PackedString) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAudioInputSelectorControl::activeInputChanged"); signal != nil {
 		signal.(func(string))(cGoUnpackString(name))
 	}
@@ -5852,7 +5737,6 @@ func (ptr *QAudioInputSelectorControl) ActiveInputChanged(name string) {
 
 //export callbackQAudioInputSelectorControl_AvailableInputsChanged
 func callbackQAudioInputSelectorControl_AvailableInputsChanged(ptr unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAudioInputSelectorControl::availableInputsChanged"); signal != nil {
 		signal.(func())()
 	}
@@ -5881,7 +5765,6 @@ func (ptr *QAudioInputSelectorControl) AvailableInputsChanged() {
 
 //export callbackQAudioInputSelectorControl_DefaultInput
 func callbackQAudioInputSelectorControl_DefaultInput(ptr unsafe.Pointer) *C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAudioInputSelectorControl::defaultInput"); signal != nil {
 		return C.CString(signal.(func() string)())
 	}
@@ -5912,7 +5795,6 @@ func (ptr *QAudioInputSelectorControl) DefaultInput() string {
 
 //export callbackQAudioInputSelectorControl_InputDescription
 func callbackQAudioInputSelectorControl_InputDescription(ptr unsafe.Pointer, name C.struct_QtMultimedia_PackedString) *C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAudioInputSelectorControl::inputDescription"); signal != nil {
 		return C.CString(signal.(func(string) string)(cGoUnpackString(name)))
 	}
@@ -5975,7 +5857,6 @@ func (ptr *QAudioInputSelectorControl) SetActiveInput(name string) {
 
 //export callbackQAudioInputSelectorControl_DestroyQAudioInputSelectorControl
 func callbackQAudioInputSelectorControl_DestroyQAudioInputSelectorControl(ptr unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAudioInputSelectorControl::~QAudioInputSelectorControl"); signal != nil {
 		signal.(func())()
 	} else {
@@ -6022,7 +5903,6 @@ func (ptr *QAudioInputSelectorControl) availableInputs_atList(i int) string {
 
 //export callbackQAudioInputSelectorControl_TimerEvent
 func callbackQAudioInputSelectorControl_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAudioInputSelectorControl::timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
 	} else {
@@ -6058,7 +5938,6 @@ func (ptr *QAudioInputSelectorControl) TimerEventDefault(event core.QTimerEvent_
 
 //export callbackQAudioInputSelectorControl_ChildEvent
 func callbackQAudioInputSelectorControl_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAudioInputSelectorControl::childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
 	} else {
@@ -6094,7 +5973,6 @@ func (ptr *QAudioInputSelectorControl) ChildEventDefault(event core.QChildEvent_
 
 //export callbackQAudioInputSelectorControl_ConnectNotify
 func callbackQAudioInputSelectorControl_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAudioInputSelectorControl::connectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
@@ -6130,7 +6008,6 @@ func (ptr *QAudioInputSelectorControl) ConnectNotifyDefault(sign core.QMetaMetho
 
 //export callbackQAudioInputSelectorControl_CustomEvent
 func callbackQAudioInputSelectorControl_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAudioInputSelectorControl::customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
 	} else {
@@ -6205,7 +6082,6 @@ func (ptr *QAudioInputSelectorControl) DeleteLaterDefault() {
 
 //export callbackQAudioInputSelectorControl_DisconnectNotify
 func callbackQAudioInputSelectorControl_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAudioInputSelectorControl::disconnectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
@@ -6241,7 +6117,6 @@ func (ptr *QAudioInputSelectorControl) DisconnectNotifyDefault(sign core.QMetaMe
 
 //export callbackQAudioInputSelectorControl_Event
 func callbackQAudioInputSelectorControl_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAudioInputSelectorControl::event"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
 	}
@@ -6279,7 +6154,6 @@ func (ptr *QAudioInputSelectorControl) EventDefault(e core.QEvent_ITF) bool {
 
 //export callbackQAudioInputSelectorControl_EventFilter
 func callbackQAudioInputSelectorControl_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAudioInputSelectorControl::eventFilter"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
 	}
@@ -6317,7 +6191,6 @@ func (ptr *QAudioInputSelectorControl) EventFilterDefault(watched core.QObject_I
 
 //export callbackQAudioInputSelectorControl_MetaObject
 func callbackQAudioInputSelectorControl_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAudioInputSelectorControl::metaObject"); signal != nil {
 		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
 	}
@@ -6536,7 +6409,6 @@ func (ptr *QAudioOutput) State() QAudio__State {
 
 //export callbackQAudioOutput_StateChanged
 func callbackQAudioOutput_StateChanged(ptr unsafe.Pointer, state C.longlong) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAudioOutput::stateChanged"); signal != nil {
 		signal.(func(QAudio__State))(QAudio__State(state))
 	}
@@ -6592,7 +6464,6 @@ func (ptr *QAudioOutput) DestroyQAudioOutput() {
 
 //export callbackQAudioOutput_TimerEvent
 func callbackQAudioOutput_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAudioOutput::timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
 	} else {
@@ -6628,7 +6499,6 @@ func (ptr *QAudioOutput) TimerEventDefault(event core.QTimerEvent_ITF) {
 
 //export callbackQAudioOutput_ChildEvent
 func callbackQAudioOutput_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAudioOutput::childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
 	} else {
@@ -6664,7 +6534,6 @@ func (ptr *QAudioOutput) ChildEventDefault(event core.QChildEvent_ITF) {
 
 //export callbackQAudioOutput_ConnectNotify
 func callbackQAudioOutput_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAudioOutput::connectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
@@ -6700,7 +6569,6 @@ func (ptr *QAudioOutput) ConnectNotifyDefault(sign core.QMetaMethod_ITF) {
 
 //export callbackQAudioOutput_CustomEvent
 func callbackQAudioOutput_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAudioOutput::customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
 	} else {
@@ -6775,7 +6643,6 @@ func (ptr *QAudioOutput) DeleteLaterDefault() {
 
 //export callbackQAudioOutput_DisconnectNotify
 func callbackQAudioOutput_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAudioOutput::disconnectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
@@ -6811,7 +6678,6 @@ func (ptr *QAudioOutput) DisconnectNotifyDefault(sign core.QMetaMethod_ITF) {
 
 //export callbackQAudioOutput_Event
 func callbackQAudioOutput_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAudioOutput::event"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
 	}
@@ -6849,7 +6715,6 @@ func (ptr *QAudioOutput) EventDefault(e core.QEvent_ITF) bool {
 
 //export callbackQAudioOutput_EventFilter
 func callbackQAudioOutput_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAudioOutput::eventFilter"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
 	}
@@ -6887,7 +6752,6 @@ func (ptr *QAudioOutput) EventFilterDefault(watched core.QObject_ITF, event core
 
 //export callbackQAudioOutput_MetaObject
 func callbackQAudioOutput_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAudioOutput::metaObject"); signal != nil {
 		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
 	}
@@ -6964,7 +6828,6 @@ func NewQAudioOutputSelectorControlFromPointer(ptr unsafe.Pointer) *QAudioOutput
 
 //export callbackQAudioOutputSelectorControl_ActiveOutput
 func callbackQAudioOutputSelectorControl_ActiveOutput(ptr unsafe.Pointer) *C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAudioOutputSelectorControl::activeOutput"); signal != nil {
 		return C.CString(signal.(func() string)())
 	}
@@ -6995,7 +6858,6 @@ func (ptr *QAudioOutputSelectorControl) ActiveOutput() string {
 
 //export callbackQAudioOutputSelectorControl_ActiveOutputChanged
 func callbackQAudioOutputSelectorControl_ActiveOutputChanged(ptr unsafe.Pointer, name C.struct_QtMultimedia_PackedString) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAudioOutputSelectorControl::activeOutputChanged"); signal != nil {
 		signal.(func(string))(cGoUnpackString(name))
 	}
@@ -7026,7 +6888,6 @@ func (ptr *QAudioOutputSelectorControl) ActiveOutputChanged(name string) {
 
 //export callbackQAudioOutputSelectorControl_AvailableOutputsChanged
 func callbackQAudioOutputSelectorControl_AvailableOutputsChanged(ptr unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAudioOutputSelectorControl::availableOutputsChanged"); signal != nil {
 		signal.(func())()
 	}
@@ -7055,7 +6916,6 @@ func (ptr *QAudioOutputSelectorControl) AvailableOutputsChanged() {
 
 //export callbackQAudioOutputSelectorControl_DefaultOutput
 func callbackQAudioOutputSelectorControl_DefaultOutput(ptr unsafe.Pointer) *C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAudioOutputSelectorControl::defaultOutput"); signal != nil {
 		return C.CString(signal.(func() string)())
 	}
@@ -7086,7 +6946,6 @@ func (ptr *QAudioOutputSelectorControl) DefaultOutput() string {
 
 //export callbackQAudioOutputSelectorControl_OutputDescription
 func callbackQAudioOutputSelectorControl_OutputDescription(ptr unsafe.Pointer, name C.struct_QtMultimedia_PackedString) *C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAudioOutputSelectorControl::outputDescription"); signal != nil {
 		return C.CString(signal.(func(string) string)(cGoUnpackString(name)))
 	}
@@ -7149,7 +7008,6 @@ func (ptr *QAudioOutputSelectorControl) SetActiveOutput(name string) {
 
 //export callbackQAudioOutputSelectorControl_DestroyQAudioOutputSelectorControl
 func callbackQAudioOutputSelectorControl_DestroyQAudioOutputSelectorControl(ptr unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAudioOutputSelectorControl::~QAudioOutputSelectorControl"); signal != nil {
 		signal.(func())()
 	} else {
@@ -7196,7 +7054,6 @@ func (ptr *QAudioOutputSelectorControl) availableOutputs_atList(i int) string {
 
 //export callbackQAudioOutputSelectorControl_TimerEvent
 func callbackQAudioOutputSelectorControl_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAudioOutputSelectorControl::timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
 	} else {
@@ -7232,7 +7089,6 @@ func (ptr *QAudioOutputSelectorControl) TimerEventDefault(event core.QTimerEvent
 
 //export callbackQAudioOutputSelectorControl_ChildEvent
 func callbackQAudioOutputSelectorControl_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAudioOutputSelectorControl::childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
 	} else {
@@ -7268,7 +7124,6 @@ func (ptr *QAudioOutputSelectorControl) ChildEventDefault(event core.QChildEvent
 
 //export callbackQAudioOutputSelectorControl_ConnectNotify
 func callbackQAudioOutputSelectorControl_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAudioOutputSelectorControl::connectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
@@ -7304,7 +7159,6 @@ func (ptr *QAudioOutputSelectorControl) ConnectNotifyDefault(sign core.QMetaMeth
 
 //export callbackQAudioOutputSelectorControl_CustomEvent
 func callbackQAudioOutputSelectorControl_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAudioOutputSelectorControl::customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
 	} else {
@@ -7379,7 +7233,6 @@ func (ptr *QAudioOutputSelectorControl) DeleteLaterDefault() {
 
 //export callbackQAudioOutputSelectorControl_DisconnectNotify
 func callbackQAudioOutputSelectorControl_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAudioOutputSelectorControl::disconnectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
@@ -7415,7 +7268,6 @@ func (ptr *QAudioOutputSelectorControl) DisconnectNotifyDefault(sign core.QMetaM
 
 //export callbackQAudioOutputSelectorControl_Event
 func callbackQAudioOutputSelectorControl_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAudioOutputSelectorControl::event"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
 	}
@@ -7453,7 +7305,6 @@ func (ptr *QAudioOutputSelectorControl) EventDefault(e core.QEvent_ITF) bool {
 
 //export callbackQAudioOutputSelectorControl_EventFilter
 func callbackQAudioOutputSelectorControl_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAudioOutputSelectorControl::eventFilter"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
 	}
@@ -7491,7 +7342,6 @@ func (ptr *QAudioOutputSelectorControl) EventFilterDefault(watched core.QObject_
 
 //export callbackQAudioOutputSelectorControl_MetaObject
 func callbackQAudioOutputSelectorControl_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAudioOutputSelectorControl::metaObject"); signal != nil {
 		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
 	}
@@ -7575,7 +7425,6 @@ func NewQAudioProbe(parent core.QObject_ITF) *QAudioProbe {
 
 //export callbackQAudioProbe_AudioBufferProbed
 func callbackQAudioProbe_AudioBufferProbed(ptr unsafe.Pointer, buffer unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAudioProbe::audioBufferProbed"); signal != nil {
 		signal.(func(*QAudioBuffer))(NewQAudioBufferFromPointer(buffer))
 	}
@@ -7604,7 +7453,6 @@ func (ptr *QAudioProbe) AudioBufferProbed(buffer QAudioBuffer_ITF) {
 
 //export callbackQAudioProbe_Flush
 func callbackQAudioProbe_Flush(ptr unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAudioProbe::flush"); signal != nil {
 		signal.(func())()
 	}
@@ -7662,7 +7510,6 @@ func (ptr *QAudioProbe) DestroyQAudioProbe() {
 
 //export callbackQAudioProbe_TimerEvent
 func callbackQAudioProbe_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAudioProbe::timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
 	} else {
@@ -7698,7 +7545,6 @@ func (ptr *QAudioProbe) TimerEventDefault(event core.QTimerEvent_ITF) {
 
 //export callbackQAudioProbe_ChildEvent
 func callbackQAudioProbe_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAudioProbe::childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
 	} else {
@@ -7734,7 +7580,6 @@ func (ptr *QAudioProbe) ChildEventDefault(event core.QChildEvent_ITF) {
 
 //export callbackQAudioProbe_ConnectNotify
 func callbackQAudioProbe_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAudioProbe::connectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
@@ -7770,7 +7615,6 @@ func (ptr *QAudioProbe) ConnectNotifyDefault(sign core.QMetaMethod_ITF) {
 
 //export callbackQAudioProbe_CustomEvent
 func callbackQAudioProbe_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAudioProbe::customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
 	} else {
@@ -7845,7 +7689,6 @@ func (ptr *QAudioProbe) DeleteLaterDefault() {
 
 //export callbackQAudioProbe_DisconnectNotify
 func callbackQAudioProbe_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAudioProbe::disconnectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
@@ -7881,7 +7724,6 @@ func (ptr *QAudioProbe) DisconnectNotifyDefault(sign core.QMetaMethod_ITF) {
 
 //export callbackQAudioProbe_Event
 func callbackQAudioProbe_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAudioProbe::event"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
 	}
@@ -7919,7 +7761,6 @@ func (ptr *QAudioProbe) EventDefault(e core.QEvent_ITF) bool {
 
 //export callbackQAudioProbe_EventFilter
 func callbackQAudioProbe_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAudioProbe::eventFilter"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
 	}
@@ -7957,7 +7798,6 @@ func (ptr *QAudioProbe) EventFilterDefault(watched core.QObject_ITF, event core.
 
 //export callbackQAudioProbe_MetaObject
 func callbackQAudioProbe_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAudioProbe::metaObject"); signal != nil {
 		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
 	}
@@ -8048,7 +7888,6 @@ func (ptr *QAudioRecorder) AudioInput() string {
 
 //export callbackQAudioRecorder_AudioInputChanged
 func callbackQAudioRecorder_AudioInputChanged(ptr unsafe.Pointer, name C.struct_QtMultimedia_PackedString) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAudioRecorder::audioInputChanged"); signal != nil {
 		signal.(func(string))(cGoUnpackString(name))
 	}
@@ -8095,7 +7934,6 @@ func (ptr *QAudioRecorder) AudioInputs() []string {
 
 //export callbackQAudioRecorder_AvailableAudioInputsChanged
 func callbackQAudioRecorder_AvailableAudioInputsChanged(ptr unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAudioRecorder::availableAudioInputsChanged"); signal != nil {
 		signal.(func())()
 	}
@@ -8248,7 +8086,6 @@ func (ptr *QAudioRecorder) SetVolumeDefault(volume float64) {
 
 //export callbackQAudioRecorder_MediaObject
 func callbackQAudioRecorder_MediaObject(ptr unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAudioRecorder::mediaObject"); signal != nil {
 		return PointerFromQMediaObject(signal.(func() *QMediaObject)())
 	}
@@ -8399,7 +8236,6 @@ func (ptr *QAudioRecorder) StopDefault() {
 
 //export callbackQAudioRecorder_TimerEvent
 func callbackQAudioRecorder_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAudioRecorder::timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
 	} else {
@@ -8435,7 +8271,6 @@ func (ptr *QAudioRecorder) TimerEventDefault(event core.QTimerEvent_ITF) {
 
 //export callbackQAudioRecorder_ChildEvent
 func callbackQAudioRecorder_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAudioRecorder::childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
 	} else {
@@ -8471,7 +8306,6 @@ func (ptr *QAudioRecorder) ChildEventDefault(event core.QChildEvent_ITF) {
 
 //export callbackQAudioRecorder_ConnectNotify
 func callbackQAudioRecorder_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAudioRecorder::connectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
@@ -8507,7 +8341,6 @@ func (ptr *QAudioRecorder) ConnectNotifyDefault(sign core.QMetaMethod_ITF) {
 
 //export callbackQAudioRecorder_CustomEvent
 func callbackQAudioRecorder_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAudioRecorder::customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
 	} else {
@@ -8582,7 +8415,6 @@ func (ptr *QAudioRecorder) DeleteLaterDefault() {
 
 //export callbackQAudioRecorder_DisconnectNotify
 func callbackQAudioRecorder_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAudioRecorder::disconnectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
@@ -8618,7 +8450,6 @@ func (ptr *QAudioRecorder) DisconnectNotifyDefault(sign core.QMetaMethod_ITF) {
 
 //export callbackQAudioRecorder_Event
 func callbackQAudioRecorder_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAudioRecorder::event"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
 	}
@@ -8656,7 +8487,6 @@ func (ptr *QAudioRecorder) EventDefault(e core.QEvent_ITF) bool {
 
 //export callbackQAudioRecorder_EventFilter
 func callbackQAudioRecorder_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAudioRecorder::eventFilter"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
 	}
@@ -8694,7 +8524,6 @@ func (ptr *QAudioRecorder) EventFilterDefault(watched core.QObject_ITF, event co
 
 //export callbackQAudioRecorder_MetaObject
 func callbackQAudioRecorder_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAudioRecorder::metaObject"); signal != nil {
 		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
 	}
@@ -8732,7 +8561,6 @@ func (ptr *QAudioRecorder) MetaObjectDefault() *core.QMetaObject {
 
 //export callbackQAudioRecorder_SetMediaObject
 func callbackQAudioRecorder_SetMediaObject(ptr unsafe.Pointer, object unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAudioRecorder::setMediaObject"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*QMediaObject) bool)(NewQMediaObjectFromPointer(object)))))
 	}
@@ -8802,7 +8630,6 @@ func NewQAudioRoleControlFromPointer(ptr unsafe.Pointer) *QAudioRoleControl {
 
 //export callbackQAudioRoleControl_AudioRole
 func callbackQAudioRoleControl_AudioRole(ptr unsafe.Pointer) C.longlong {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAudioRoleControl::audioRole"); signal != nil {
 		return C.longlong(signal.(func() QAudio__Role)())
 	}
@@ -8833,7 +8660,6 @@ func (ptr *QAudioRoleControl) AudioRole() QAudio__Role {
 
 //export callbackQAudioRoleControl_AudioRoleChanged
 func callbackQAudioRoleControl_AudioRoleChanged(ptr unsafe.Pointer, role C.longlong) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAudioRoleControl::audioRoleChanged"); signal != nil {
 		signal.(func(QAudio__Role))(QAudio__Role(role))
 	}
@@ -8862,7 +8688,6 @@ func (ptr *QAudioRoleControl) AudioRoleChanged(role QAudio__Role) {
 
 //export callbackQAudioRoleControl_SetAudioRole
 func callbackQAudioRoleControl_SetAudioRole(ptr unsafe.Pointer, role C.longlong) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAudioRoleControl::setAudioRole"); signal != nil {
 		signal.(func(QAudio__Role))(QAudio__Role(role))
 	}
@@ -8891,7 +8716,6 @@ func (ptr *QAudioRoleControl) SetAudioRole(role QAudio__Role) {
 
 //export callbackQAudioRoleControl_DestroyQAudioRoleControl
 func callbackQAudioRoleControl_DestroyQAudioRoleControl(ptr unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAudioRoleControl::~QAudioRoleControl"); signal != nil {
 		signal.(func())()
 	} else {
@@ -8931,7 +8755,6 @@ func (ptr *QAudioRoleControl) DestroyQAudioRoleControlDefault() {
 
 //export callbackQAudioRoleControl_TimerEvent
 func callbackQAudioRoleControl_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAudioRoleControl::timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
 	} else {
@@ -8967,7 +8790,6 @@ func (ptr *QAudioRoleControl) TimerEventDefault(event core.QTimerEvent_ITF) {
 
 //export callbackQAudioRoleControl_ChildEvent
 func callbackQAudioRoleControl_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAudioRoleControl::childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
 	} else {
@@ -9003,7 +8825,6 @@ func (ptr *QAudioRoleControl) ChildEventDefault(event core.QChildEvent_ITF) {
 
 //export callbackQAudioRoleControl_ConnectNotify
 func callbackQAudioRoleControl_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAudioRoleControl::connectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
@@ -9039,7 +8860,6 @@ func (ptr *QAudioRoleControl) ConnectNotifyDefault(sign core.QMetaMethod_ITF) {
 
 //export callbackQAudioRoleControl_CustomEvent
 func callbackQAudioRoleControl_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAudioRoleControl::customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
 	} else {
@@ -9114,7 +8934,6 @@ func (ptr *QAudioRoleControl) DeleteLaterDefault() {
 
 //export callbackQAudioRoleControl_DisconnectNotify
 func callbackQAudioRoleControl_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAudioRoleControl::disconnectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
@@ -9150,7 +8969,6 @@ func (ptr *QAudioRoleControl) DisconnectNotifyDefault(sign core.QMetaMethod_ITF)
 
 //export callbackQAudioRoleControl_Event
 func callbackQAudioRoleControl_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAudioRoleControl::event"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
 	}
@@ -9188,7 +9006,6 @@ func (ptr *QAudioRoleControl) EventDefault(e core.QEvent_ITF) bool {
 
 //export callbackQAudioRoleControl_EventFilter
 func callbackQAudioRoleControl_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAudioRoleControl::eventFilter"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
 	}
@@ -9226,7 +9043,6 @@ func (ptr *QAudioRoleControl) EventFilterDefault(watched core.QObject_ITF, event
 
 //export callbackQAudioRoleControl_MetaObject
 func callbackQAudioRoleControl_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QAudioRoleControl::metaObject"); signal != nil {
 		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
 	}
@@ -9517,7 +9333,6 @@ func NewQCamera3(cameraInfo QCameraInfo_ITF, parent core.QObject_ITF) *QCamera {
 
 //export callbackQCamera_Availability
 func callbackQCamera_Availability(ptr unsafe.Pointer) C.longlong {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCamera::availability"); signal != nil {
 		return C.longlong(signal.(func() QMultimedia__AvailabilityStatus)())
 	}
@@ -9555,7 +9370,6 @@ func (ptr *QCamera) AvailabilityDefault() QMultimedia__AvailabilityStatus {
 
 //export callbackQCamera_CaptureModeChanged
 func callbackQCamera_CaptureModeChanged(ptr unsafe.Pointer, mode C.longlong) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCamera::captureModeChanged"); signal != nil {
 		signal.(func(QCamera__CaptureMode))(QCamera__CaptureMode(mode))
 	}
@@ -9584,7 +9398,6 @@ func (ptr *QCamera) CaptureModeChanged(mode QCamera__CaptureMode) {
 
 //export callbackQCamera_Error2
 func callbackQCamera_Error2(ptr unsafe.Pointer, value C.longlong) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCamera::error2"); signal != nil {
 		signal.(func(QCamera__Error))(QCamera__Error(value))
 	}
@@ -9702,7 +9515,6 @@ func (ptr *QCamera) LoadDefault() {
 
 //export callbackQCamera_LockFailed
 func callbackQCamera_LockFailed(ptr unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCamera::lockFailed"); signal != nil {
 		signal.(func())()
 	}
@@ -9745,7 +9557,6 @@ func (ptr *QCamera) LockStatus2(lockType QCamera__LockType) QCamera__LockStatus 
 
 //export callbackQCamera_LockStatusChanged
 func callbackQCamera_LockStatusChanged(ptr unsafe.Pointer, status C.longlong, reason C.longlong) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCamera::lockStatusChanged"); signal != nil {
 		signal.(func(QCamera__LockStatus, QCamera__LockChangeReason))(QCamera__LockStatus(status), QCamera__LockChangeReason(reason))
 	}
@@ -9774,7 +9585,6 @@ func (ptr *QCamera) LockStatusChanged(status QCamera__LockStatus, reason QCamera
 
 //export callbackQCamera_LockStatusChanged2
 func callbackQCamera_LockStatusChanged2(ptr unsafe.Pointer, lock C.longlong, status C.longlong, reason C.longlong) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCamera::lockStatusChanged2"); signal != nil {
 		signal.(func(QCamera__LockType, QCamera__LockStatus, QCamera__LockChangeReason))(QCamera__LockType(lock), QCamera__LockStatus(status), QCamera__LockChangeReason(reason))
 	}
@@ -9803,7 +9613,6 @@ func (ptr *QCamera) LockStatusChanged2(lock QCamera__LockType, status QCamera__L
 
 //export callbackQCamera_Locked
 func callbackQCamera_Locked(ptr unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCamera::locked"); signal != nil {
 		signal.(func())()
 	}
@@ -9933,7 +9742,6 @@ func (ptr *QCamera) StartDefault() {
 
 //export callbackQCamera_StateChanged
 func callbackQCamera_StateChanged(ptr unsafe.Pointer, state C.longlong) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCamera::stateChanged"); signal != nil {
 		signal.(func(QCamera__State))(QCamera__State(state))
 	}
@@ -9962,7 +9770,6 @@ func (ptr *QCamera) StateChanged(state QCamera__State) {
 
 //export callbackQCamera_StatusChanged
 func callbackQCamera_StatusChanged(ptr unsafe.Pointer, status C.longlong) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCamera::statusChanged"); signal != nil {
 		signal.(func(QCamera__Status))(QCamera__Status(status))
 	}
@@ -10208,7 +10015,6 @@ func (ptr *QCamera) supportedViewfinderSettings_atList(i int) *QCameraViewfinder
 
 //export callbackQCamera_Bind
 func callbackQCamera_Bind(ptr unsafe.Pointer, object unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCamera::bind"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject) bool)(core.NewQObjectFromPointer(object)))))
 	}
@@ -10246,7 +10052,6 @@ func (ptr *QCamera) BindDefault(object core.QObject_ITF) bool {
 
 //export callbackQCamera_IsAvailable
 func callbackQCamera_IsAvailable(ptr unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCamera::isAvailable"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func() bool)())))
 	}
@@ -10284,7 +10089,6 @@ func (ptr *QCamera) IsAvailableDefault() bool {
 
 //export callbackQCamera_Service
 func callbackQCamera_Service(ptr unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCamera::service"); signal != nil {
 		return PointerFromQMediaService(signal.(func() *QMediaService)())
 	}
@@ -10330,7 +10134,6 @@ func (ptr *QCamera) ServiceDefault() *QMediaService {
 
 //export callbackQCamera_Unbind
 func callbackQCamera_Unbind(ptr unsafe.Pointer, object unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCamera::unbind"); signal != nil {
 		signal.(func(*core.QObject))(core.NewQObjectFromPointer(object))
 	} else {
@@ -10366,7 +10169,6 @@ func (ptr *QCamera) UnbindDefault(object core.QObject_ITF) {
 
 //export callbackQCamera_TimerEvent
 func callbackQCamera_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCamera::timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
 	} else {
@@ -10402,7 +10204,6 @@ func (ptr *QCamera) TimerEventDefault(event core.QTimerEvent_ITF) {
 
 //export callbackQCamera_ChildEvent
 func callbackQCamera_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCamera::childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
 	} else {
@@ -10438,7 +10239,6 @@ func (ptr *QCamera) ChildEventDefault(event core.QChildEvent_ITF) {
 
 //export callbackQCamera_ConnectNotify
 func callbackQCamera_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCamera::connectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
@@ -10474,7 +10274,6 @@ func (ptr *QCamera) ConnectNotifyDefault(sign core.QMetaMethod_ITF) {
 
 //export callbackQCamera_CustomEvent
 func callbackQCamera_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCamera::customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
 	} else {
@@ -10549,7 +10348,6 @@ func (ptr *QCamera) DeleteLaterDefault() {
 
 //export callbackQCamera_DisconnectNotify
 func callbackQCamera_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCamera::disconnectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
@@ -10585,7 +10383,6 @@ func (ptr *QCamera) DisconnectNotifyDefault(sign core.QMetaMethod_ITF) {
 
 //export callbackQCamera_Event
 func callbackQCamera_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCamera::event"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
 	}
@@ -10623,7 +10420,6 @@ func (ptr *QCamera) EventDefault(e core.QEvent_ITF) bool {
 
 //export callbackQCamera_EventFilter
 func callbackQCamera_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCamera::eventFilter"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
 	}
@@ -10661,7 +10457,6 @@ func (ptr *QCamera) EventFilterDefault(watched core.QObject_ITF, event core.QEve
 
 //export callbackQCamera_MetaObject
 func callbackQCamera_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCamera::metaObject"); signal != nil {
 		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
 	}
@@ -10738,7 +10533,6 @@ func NewQCameraCaptureBufferFormatControlFromPointer(ptr unsafe.Pointer) *QCamer
 
 //export callbackQCameraCaptureBufferFormatControl_BufferFormat
 func callbackQCameraCaptureBufferFormatControl_BufferFormat(ptr unsafe.Pointer) C.longlong {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraCaptureBufferFormatControl::bufferFormat"); signal != nil {
 		return C.longlong(signal.(func() QVideoFrame__PixelFormat)())
 	}
@@ -10769,7 +10563,6 @@ func (ptr *QCameraCaptureBufferFormatControl) BufferFormat() QVideoFrame__PixelF
 
 //export callbackQCameraCaptureBufferFormatControl_BufferFormatChanged
 func callbackQCameraCaptureBufferFormatControl_BufferFormatChanged(ptr unsafe.Pointer, format C.longlong) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraCaptureBufferFormatControl::bufferFormatChanged"); signal != nil {
 		signal.(func(QVideoFrame__PixelFormat))(QVideoFrame__PixelFormat(format))
 	}
@@ -10798,7 +10591,6 @@ func (ptr *QCameraCaptureBufferFormatControl) BufferFormatChanged(format QVideoF
 
 //export callbackQCameraCaptureBufferFormatControl_SetBufferFormat
 func callbackQCameraCaptureBufferFormatControl_SetBufferFormat(ptr unsafe.Pointer, format C.longlong) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraCaptureBufferFormatControl::setBufferFormat"); signal != nil {
 		signal.(func(QVideoFrame__PixelFormat))(QVideoFrame__PixelFormat(format))
 	}
@@ -10835,7 +10627,6 @@ func (ptr *QCameraCaptureBufferFormatControl) DestroyQCameraCaptureBufferFormatC
 
 //export callbackQCameraCaptureBufferFormatControl_TimerEvent
 func callbackQCameraCaptureBufferFormatControl_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraCaptureBufferFormatControl::timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
 	} else {
@@ -10871,7 +10662,6 @@ func (ptr *QCameraCaptureBufferFormatControl) TimerEventDefault(event core.QTime
 
 //export callbackQCameraCaptureBufferFormatControl_ChildEvent
 func callbackQCameraCaptureBufferFormatControl_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraCaptureBufferFormatControl::childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
 	} else {
@@ -10907,7 +10697,6 @@ func (ptr *QCameraCaptureBufferFormatControl) ChildEventDefault(event core.QChil
 
 //export callbackQCameraCaptureBufferFormatControl_ConnectNotify
 func callbackQCameraCaptureBufferFormatControl_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraCaptureBufferFormatControl::connectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
@@ -10943,7 +10732,6 @@ func (ptr *QCameraCaptureBufferFormatControl) ConnectNotifyDefault(sign core.QMe
 
 //export callbackQCameraCaptureBufferFormatControl_CustomEvent
 func callbackQCameraCaptureBufferFormatControl_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraCaptureBufferFormatControl::customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
 	} else {
@@ -11018,7 +10806,6 @@ func (ptr *QCameraCaptureBufferFormatControl) DeleteLaterDefault() {
 
 //export callbackQCameraCaptureBufferFormatControl_DisconnectNotify
 func callbackQCameraCaptureBufferFormatControl_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraCaptureBufferFormatControl::disconnectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
@@ -11054,7 +10841,6 @@ func (ptr *QCameraCaptureBufferFormatControl) DisconnectNotifyDefault(sign core.
 
 //export callbackQCameraCaptureBufferFormatControl_Event
 func callbackQCameraCaptureBufferFormatControl_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraCaptureBufferFormatControl::event"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
 	}
@@ -11092,7 +10878,6 @@ func (ptr *QCameraCaptureBufferFormatControl) EventDefault(e core.QEvent_ITF) bo
 
 //export callbackQCameraCaptureBufferFormatControl_EventFilter
 func callbackQCameraCaptureBufferFormatControl_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraCaptureBufferFormatControl::eventFilter"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
 	}
@@ -11130,7 +10915,6 @@ func (ptr *QCameraCaptureBufferFormatControl) EventFilterDefault(watched core.QO
 
 //export callbackQCameraCaptureBufferFormatControl_MetaObject
 func callbackQCameraCaptureBufferFormatControl_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraCaptureBufferFormatControl::metaObject"); signal != nil {
 		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
 	}
@@ -11214,7 +10998,6 @@ func NewQCameraCaptureDestinationControl(parent core.QObject_ITF) *QCameraCaptur
 
 //export callbackQCameraCaptureDestinationControl_CaptureDestination
 func callbackQCameraCaptureDestinationControl_CaptureDestination(ptr unsafe.Pointer) C.longlong {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraCaptureDestinationControl::captureDestination"); signal != nil {
 		return C.longlong(signal.(func() QCameraImageCapture__CaptureDestination)())
 	}
@@ -11245,7 +11028,6 @@ func (ptr *QCameraCaptureDestinationControl) CaptureDestination() QCameraImageCa
 
 //export callbackQCameraCaptureDestinationControl_CaptureDestinationChanged
 func callbackQCameraCaptureDestinationControl_CaptureDestinationChanged(ptr unsafe.Pointer, destination C.longlong) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraCaptureDestinationControl::captureDestinationChanged"); signal != nil {
 		signal.(func(QCameraImageCapture__CaptureDestination))(QCameraImageCapture__CaptureDestination(destination))
 	}
@@ -11274,7 +11056,6 @@ func (ptr *QCameraCaptureDestinationControl) CaptureDestinationChanged(destinati
 
 //export callbackQCameraCaptureDestinationControl_IsCaptureDestinationSupported
 func callbackQCameraCaptureDestinationControl_IsCaptureDestinationSupported(ptr unsafe.Pointer, destination C.longlong) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraCaptureDestinationControl::isCaptureDestinationSupported"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(QCameraImageCapture__CaptureDestination) bool)(QCameraImageCapture__CaptureDestination(destination)))))
 	}
@@ -11305,7 +11086,6 @@ func (ptr *QCameraCaptureDestinationControl) IsCaptureDestinationSupported(desti
 
 //export callbackQCameraCaptureDestinationControl_SetCaptureDestination
 func callbackQCameraCaptureDestinationControl_SetCaptureDestination(ptr unsafe.Pointer, destination C.longlong) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraCaptureDestinationControl::setCaptureDestination"); signal != nil {
 		signal.(func(QCameraImageCapture__CaptureDestination))(QCameraImageCapture__CaptureDestination(destination))
 	}
@@ -11342,7 +11122,6 @@ func (ptr *QCameraCaptureDestinationControl) DestroyQCameraCaptureDestinationCon
 
 //export callbackQCameraCaptureDestinationControl_TimerEvent
 func callbackQCameraCaptureDestinationControl_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraCaptureDestinationControl::timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
 	} else {
@@ -11378,7 +11157,6 @@ func (ptr *QCameraCaptureDestinationControl) TimerEventDefault(event core.QTimer
 
 //export callbackQCameraCaptureDestinationControl_ChildEvent
 func callbackQCameraCaptureDestinationControl_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraCaptureDestinationControl::childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
 	} else {
@@ -11414,7 +11192,6 @@ func (ptr *QCameraCaptureDestinationControl) ChildEventDefault(event core.QChild
 
 //export callbackQCameraCaptureDestinationControl_ConnectNotify
 func callbackQCameraCaptureDestinationControl_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraCaptureDestinationControl::connectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
@@ -11450,7 +11227,6 @@ func (ptr *QCameraCaptureDestinationControl) ConnectNotifyDefault(sign core.QMet
 
 //export callbackQCameraCaptureDestinationControl_CustomEvent
 func callbackQCameraCaptureDestinationControl_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraCaptureDestinationControl::customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
 	} else {
@@ -11525,7 +11301,6 @@ func (ptr *QCameraCaptureDestinationControl) DeleteLaterDefault() {
 
 //export callbackQCameraCaptureDestinationControl_DisconnectNotify
 func callbackQCameraCaptureDestinationControl_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraCaptureDestinationControl::disconnectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
@@ -11561,7 +11336,6 @@ func (ptr *QCameraCaptureDestinationControl) DisconnectNotifyDefault(sign core.Q
 
 //export callbackQCameraCaptureDestinationControl_Event
 func callbackQCameraCaptureDestinationControl_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraCaptureDestinationControl::event"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
 	}
@@ -11599,7 +11373,6 @@ func (ptr *QCameraCaptureDestinationControl) EventDefault(e core.QEvent_ITF) boo
 
 //export callbackQCameraCaptureDestinationControl_EventFilter
 func callbackQCameraCaptureDestinationControl_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraCaptureDestinationControl::eventFilter"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
 	}
@@ -11637,7 +11410,6 @@ func (ptr *QCameraCaptureDestinationControl) EventFilterDefault(watched core.QOb
 
 //export callbackQCameraCaptureDestinationControl_MetaObject
 func callbackQCameraCaptureDestinationControl_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraCaptureDestinationControl::metaObject"); signal != nil {
 		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
 	}
@@ -11734,7 +11506,6 @@ func NewQCameraControl(parent core.QObject_ITF) *QCameraControl {
 
 //export callbackQCameraControl_CanChangeProperty
 func callbackQCameraControl_CanChangeProperty(ptr unsafe.Pointer, changeType C.longlong, status C.longlong) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraControl::canChangeProperty"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(QCameraControl__PropertyChangeType, QCamera__Status) bool)(QCameraControl__PropertyChangeType(changeType), QCamera__Status(status)))))
 	}
@@ -11765,7 +11536,6 @@ func (ptr *QCameraControl) CanChangeProperty(changeType QCameraControl__Property
 
 //export callbackQCameraControl_CaptureMode
 func callbackQCameraControl_CaptureMode(ptr unsafe.Pointer) C.longlong {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraControl::captureMode"); signal != nil {
 		return C.longlong(signal.(func() QCamera__CaptureMode)())
 	}
@@ -11796,7 +11566,6 @@ func (ptr *QCameraControl) CaptureMode() QCamera__CaptureMode {
 
 //export callbackQCameraControl_CaptureModeChanged
 func callbackQCameraControl_CaptureModeChanged(ptr unsafe.Pointer, mode C.longlong) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraControl::captureModeChanged"); signal != nil {
 		signal.(func(QCamera__CaptureMode))(QCamera__CaptureMode(mode))
 	}
@@ -11825,7 +11594,6 @@ func (ptr *QCameraControl) CaptureModeChanged(mode QCamera__CaptureMode) {
 
 //export callbackQCameraControl_Error
 func callbackQCameraControl_Error(ptr unsafe.Pointer, error C.int, errorString C.struct_QtMultimedia_PackedString) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraControl::error"); signal != nil {
 		signal.(func(int, string))(int(int32(error)), cGoUnpackString(errorString))
 	}
@@ -11856,7 +11624,6 @@ func (ptr *QCameraControl) Error(error int, errorString string) {
 
 //export callbackQCameraControl_IsCaptureModeSupported
 func callbackQCameraControl_IsCaptureModeSupported(ptr unsafe.Pointer, mode C.longlong) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraControl::isCaptureModeSupported"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(QCamera__CaptureMode) bool)(QCamera__CaptureMode(mode)))))
 	}
@@ -11887,7 +11654,6 @@ func (ptr *QCameraControl) IsCaptureModeSupported(mode QCamera__CaptureMode) boo
 
 //export callbackQCameraControl_SetCaptureMode
 func callbackQCameraControl_SetCaptureMode(ptr unsafe.Pointer, mode C.longlong) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraControl::setCaptureMode"); signal != nil {
 		signal.(func(QCamera__CaptureMode))(QCamera__CaptureMode(mode))
 	}
@@ -11916,7 +11682,6 @@ func (ptr *QCameraControl) SetCaptureMode(mode QCamera__CaptureMode) {
 
 //export callbackQCameraControl_SetState
 func callbackQCameraControl_SetState(ptr unsafe.Pointer, state C.longlong) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraControl::setState"); signal != nil {
 		signal.(func(QCamera__State))(QCamera__State(state))
 	}
@@ -11945,7 +11710,6 @@ func (ptr *QCameraControl) SetState(state QCamera__State) {
 
 //export callbackQCameraControl_State
 func callbackQCameraControl_State(ptr unsafe.Pointer) C.longlong {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraControl::state"); signal != nil {
 		return C.longlong(signal.(func() QCamera__State)())
 	}
@@ -11976,7 +11740,6 @@ func (ptr *QCameraControl) State() QCamera__State {
 
 //export callbackQCameraControl_StateChanged
 func callbackQCameraControl_StateChanged(ptr unsafe.Pointer, state C.longlong) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraControl::stateChanged"); signal != nil {
 		signal.(func(QCamera__State))(QCamera__State(state))
 	}
@@ -12005,7 +11768,6 @@ func (ptr *QCameraControl) StateChanged(state QCamera__State) {
 
 //export callbackQCameraControl_Status
 func callbackQCameraControl_Status(ptr unsafe.Pointer) C.longlong {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraControl::status"); signal != nil {
 		return C.longlong(signal.(func() QCamera__Status)())
 	}
@@ -12036,7 +11798,6 @@ func (ptr *QCameraControl) Status() QCamera__Status {
 
 //export callbackQCameraControl_StatusChanged
 func callbackQCameraControl_StatusChanged(ptr unsafe.Pointer, status C.longlong) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraControl::statusChanged"); signal != nil {
 		signal.(func(QCamera__Status))(QCamera__Status(status))
 	}
@@ -12073,7 +11834,6 @@ func (ptr *QCameraControl) DestroyQCameraControl() {
 
 //export callbackQCameraControl_TimerEvent
 func callbackQCameraControl_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraControl::timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
 	} else {
@@ -12109,7 +11869,6 @@ func (ptr *QCameraControl) TimerEventDefault(event core.QTimerEvent_ITF) {
 
 //export callbackQCameraControl_ChildEvent
 func callbackQCameraControl_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraControl::childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
 	} else {
@@ -12145,7 +11904,6 @@ func (ptr *QCameraControl) ChildEventDefault(event core.QChildEvent_ITF) {
 
 //export callbackQCameraControl_ConnectNotify
 func callbackQCameraControl_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraControl::connectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
@@ -12181,7 +11939,6 @@ func (ptr *QCameraControl) ConnectNotifyDefault(sign core.QMetaMethod_ITF) {
 
 //export callbackQCameraControl_CustomEvent
 func callbackQCameraControl_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraControl::customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
 	} else {
@@ -12256,7 +12013,6 @@ func (ptr *QCameraControl) DeleteLaterDefault() {
 
 //export callbackQCameraControl_DisconnectNotify
 func callbackQCameraControl_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraControl::disconnectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
@@ -12292,7 +12048,6 @@ func (ptr *QCameraControl) DisconnectNotifyDefault(sign core.QMetaMethod_ITF) {
 
 //export callbackQCameraControl_Event
 func callbackQCameraControl_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraControl::event"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
 	}
@@ -12330,7 +12085,6 @@ func (ptr *QCameraControl) EventDefault(e core.QEvent_ITF) bool {
 
 //export callbackQCameraControl_EventFilter
 func callbackQCameraControl_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraControl::eventFilter"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
 	}
@@ -12368,7 +12122,6 @@ func (ptr *QCameraControl) EventFilterDefault(watched core.QObject_ITF, event co
 
 //export callbackQCameraControl_MetaObject
 func callbackQCameraControl_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraControl::metaObject"); signal != nil {
 		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
 	}
@@ -12846,7 +12599,6 @@ func (ptr *QCameraExposure) SpotMeteringPoint() *core.QPointF {
 
 //export callbackQCameraExposure_ApertureChanged
 func callbackQCameraExposure_ApertureChanged(ptr unsafe.Pointer, value C.double) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraExposure::apertureChanged"); signal != nil {
 		signal.(func(float64))(float64(value))
 	}
@@ -12875,7 +12627,6 @@ func (ptr *QCameraExposure) ApertureChanged(value float64) {
 
 //export callbackQCameraExposure_ApertureRangeChanged
 func callbackQCameraExposure_ApertureRangeChanged(ptr unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraExposure::apertureRangeChanged"); signal != nil {
 		signal.(func())()
 	}
@@ -12904,7 +12655,6 @@ func (ptr *QCameraExposure) ApertureRangeChanged() {
 
 //export callbackQCameraExposure_ExposureCompensationChanged
 func callbackQCameraExposure_ExposureCompensationChanged(ptr unsafe.Pointer, value C.double) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraExposure::exposureCompensationChanged"); signal != nil {
 		signal.(func(float64))(float64(value))
 	}
@@ -12933,7 +12683,6 @@ func (ptr *QCameraExposure) ExposureCompensationChanged(value float64) {
 
 //export callbackQCameraExposure_FlashReady
 func callbackQCameraExposure_FlashReady(ptr unsafe.Pointer, ready C.char) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraExposure::flashReady"); signal != nil {
 		signal.(func(bool))(int8(ready) != 0)
 	}
@@ -12997,7 +12746,6 @@ func (ptr *QCameraExposure) IsMeteringModeSupported(mode QCameraExposure__Meteri
 
 //export callbackQCameraExposure_IsoSensitivityChanged
 func callbackQCameraExposure_IsoSensitivityChanged(ptr unsafe.Pointer, value C.int) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraExposure::isoSensitivityChanged"); signal != nil {
 		signal.(func(int))(int(int32(value)))
 	}
@@ -13124,7 +12872,6 @@ func (ptr *QCameraExposure) ShutterSpeed() float64 {
 
 //export callbackQCameraExposure_ShutterSpeedChanged
 func callbackQCameraExposure_ShutterSpeedChanged(ptr unsafe.Pointer, speed C.double) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraExposure::shutterSpeedChanged"); signal != nil {
 		signal.(func(float64))(float64(speed))
 	}
@@ -13153,7 +12900,6 @@ func (ptr *QCameraExposure) ShutterSpeedChanged(speed float64) {
 
 //export callbackQCameraExposure_ShutterSpeedRangeChanged
 func callbackQCameraExposure_ShutterSpeedRangeChanged(ptr unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraExposure::shutterSpeedRangeChanged"); signal != nil {
 		signal.(func())()
 	}
@@ -13182,7 +12928,6 @@ func (ptr *QCameraExposure) ShutterSpeedRangeChanged() {
 
 //export callbackQCameraExposure_TimerEvent
 func callbackQCameraExposure_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraExposure::timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
 	} else {
@@ -13218,7 +12963,6 @@ func (ptr *QCameraExposure) TimerEventDefault(event core.QTimerEvent_ITF) {
 
 //export callbackQCameraExposure_ChildEvent
 func callbackQCameraExposure_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraExposure::childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
 	} else {
@@ -13254,7 +12998,6 @@ func (ptr *QCameraExposure) ChildEventDefault(event core.QChildEvent_ITF) {
 
 //export callbackQCameraExposure_ConnectNotify
 func callbackQCameraExposure_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraExposure::connectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
@@ -13290,7 +13033,6 @@ func (ptr *QCameraExposure) ConnectNotifyDefault(sign core.QMetaMethod_ITF) {
 
 //export callbackQCameraExposure_CustomEvent
 func callbackQCameraExposure_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraExposure::customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
 	} else {
@@ -13365,7 +13107,6 @@ func (ptr *QCameraExposure) DeleteLaterDefault() {
 
 //export callbackQCameraExposure_DisconnectNotify
 func callbackQCameraExposure_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraExposure::disconnectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
@@ -13401,7 +13142,6 @@ func (ptr *QCameraExposure) DisconnectNotifyDefault(sign core.QMetaMethod_ITF) {
 
 //export callbackQCameraExposure_Event
 func callbackQCameraExposure_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraExposure::event"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
 	}
@@ -13439,7 +13179,6 @@ func (ptr *QCameraExposure) EventDefault(e core.QEvent_ITF) bool {
 
 //export callbackQCameraExposure_EventFilter
 func callbackQCameraExposure_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraExposure::eventFilter"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
 	}
@@ -13477,7 +13216,6 @@ func (ptr *QCameraExposure) EventFilterDefault(watched core.QObject_ITF, event c
 
 //export callbackQCameraExposure_MetaObject
 func callbackQCameraExposure_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraExposure::metaObject"); signal != nil {
 		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
 	}
@@ -13572,7 +13310,6 @@ const (
 
 //export callbackQCameraExposureControl_ActualValue
 func callbackQCameraExposureControl_ActualValue(ptr unsafe.Pointer, parameter C.longlong) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraExposureControl::actualValue"); signal != nil {
 		return core.PointerFromQVariant(signal.(func(QCameraExposureControl__ExposureParameter) *core.QVariant)(QCameraExposureControl__ExposureParameter(parameter)))
 	}
@@ -13605,7 +13342,6 @@ func (ptr *QCameraExposureControl) ActualValue(parameter QCameraExposureControl_
 
 //export callbackQCameraExposureControl_ActualValueChanged
 func callbackQCameraExposureControl_ActualValueChanged(ptr unsafe.Pointer, parameter C.int) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraExposureControl::actualValueChanged"); signal != nil {
 		signal.(func(int))(int(int32(parameter)))
 	}
@@ -13634,7 +13370,6 @@ func (ptr *QCameraExposureControl) ActualValueChanged(parameter int) {
 
 //export callbackQCameraExposureControl_IsParameterSupported
 func callbackQCameraExposureControl_IsParameterSupported(ptr unsafe.Pointer, parameter C.longlong) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraExposureControl::isParameterSupported"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(QCameraExposureControl__ExposureParameter) bool)(QCameraExposureControl__ExposureParameter(parameter)))))
 	}
@@ -13665,7 +13400,6 @@ func (ptr *QCameraExposureControl) IsParameterSupported(parameter QCameraExposur
 
 //export callbackQCameraExposureControl_ParameterRangeChanged
 func callbackQCameraExposureControl_ParameterRangeChanged(ptr unsafe.Pointer, parameter C.int) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraExposureControl::parameterRangeChanged"); signal != nil {
 		signal.(func(int))(int(int32(parameter)))
 	}
@@ -13694,7 +13428,6 @@ func (ptr *QCameraExposureControl) ParameterRangeChanged(parameter int) {
 
 //export callbackQCameraExposureControl_RequestedValue
 func callbackQCameraExposureControl_RequestedValue(ptr unsafe.Pointer, parameter C.longlong) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraExposureControl::requestedValue"); signal != nil {
 		return core.PointerFromQVariant(signal.(func(QCameraExposureControl__ExposureParameter) *core.QVariant)(QCameraExposureControl__ExposureParameter(parameter)))
 	}
@@ -13727,7 +13460,6 @@ func (ptr *QCameraExposureControl) RequestedValue(parameter QCameraExposureContr
 
 //export callbackQCameraExposureControl_RequestedValueChanged
 func callbackQCameraExposureControl_RequestedValueChanged(ptr unsafe.Pointer, parameter C.int) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraExposureControl::requestedValueChanged"); signal != nil {
 		signal.(func(int))(int(int32(parameter)))
 	}
@@ -13756,7 +13488,6 @@ func (ptr *QCameraExposureControl) RequestedValueChanged(parameter int) {
 
 //export callbackQCameraExposureControl_SetValue
 func callbackQCameraExposureControl_SetValue(ptr unsafe.Pointer, parameter C.longlong, value unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraExposureControl::setValue"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(QCameraExposureControl__ExposureParameter, *core.QVariant) bool)(QCameraExposureControl__ExposureParameter(parameter), core.NewQVariantFromPointer(value)))))
 	}
@@ -13831,7 +13562,6 @@ func (ptr *QCameraExposureControl) supportedParameterRange_atList(i int) *core.Q
 
 //export callbackQCameraExposureControl_TimerEvent
 func callbackQCameraExposureControl_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraExposureControl::timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
 	} else {
@@ -13867,7 +13597,6 @@ func (ptr *QCameraExposureControl) TimerEventDefault(event core.QTimerEvent_ITF)
 
 //export callbackQCameraExposureControl_ChildEvent
 func callbackQCameraExposureControl_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraExposureControl::childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
 	} else {
@@ -13903,7 +13632,6 @@ func (ptr *QCameraExposureControl) ChildEventDefault(event core.QChildEvent_ITF)
 
 //export callbackQCameraExposureControl_ConnectNotify
 func callbackQCameraExposureControl_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraExposureControl::connectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
@@ -13939,7 +13667,6 @@ func (ptr *QCameraExposureControl) ConnectNotifyDefault(sign core.QMetaMethod_IT
 
 //export callbackQCameraExposureControl_CustomEvent
 func callbackQCameraExposureControl_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraExposureControl::customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
 	} else {
@@ -14014,7 +13741,6 @@ func (ptr *QCameraExposureControl) DeleteLaterDefault() {
 
 //export callbackQCameraExposureControl_DisconnectNotify
 func callbackQCameraExposureControl_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraExposureControl::disconnectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
@@ -14050,7 +13776,6 @@ func (ptr *QCameraExposureControl) DisconnectNotifyDefault(sign core.QMetaMethod
 
 //export callbackQCameraExposureControl_Event
 func callbackQCameraExposureControl_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraExposureControl::event"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
 	}
@@ -14088,7 +13813,6 @@ func (ptr *QCameraExposureControl) EventDefault(e core.QEvent_ITF) bool {
 
 //export callbackQCameraExposureControl_EventFilter
 func callbackQCameraExposureControl_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraExposureControl::eventFilter"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
 	}
@@ -14126,7 +13850,6 @@ func (ptr *QCameraExposureControl) EventFilterDefault(watched core.QObject_ITF, 
 
 //export callbackQCameraExposureControl_MetaObject
 func callbackQCameraExposureControl_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraExposureControl::metaObject"); signal != nil {
 		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
 	}
@@ -14229,7 +13952,6 @@ func NewQCameraFeedbackControl(parent core.QObject_ITF) *QCameraFeedbackControl 
 
 //export callbackQCameraFeedbackControl_IsEventFeedbackEnabled
 func callbackQCameraFeedbackControl_IsEventFeedbackEnabled(ptr unsafe.Pointer, event C.longlong) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraFeedbackControl::isEventFeedbackEnabled"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(QCameraFeedbackControl__EventType) bool)(QCameraFeedbackControl__EventType(event)))))
 	}
@@ -14260,7 +13982,6 @@ func (ptr *QCameraFeedbackControl) IsEventFeedbackEnabled(event QCameraFeedbackC
 
 //export callbackQCameraFeedbackControl_IsEventFeedbackLocked
 func callbackQCameraFeedbackControl_IsEventFeedbackLocked(ptr unsafe.Pointer, event C.longlong) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraFeedbackControl::isEventFeedbackLocked"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(QCameraFeedbackControl__EventType) bool)(QCameraFeedbackControl__EventType(event)))))
 	}
@@ -14291,7 +14012,6 @@ func (ptr *QCameraFeedbackControl) IsEventFeedbackLocked(event QCameraFeedbackCo
 
 //export callbackQCameraFeedbackControl_ResetEventFeedback
 func callbackQCameraFeedbackControl_ResetEventFeedback(ptr unsafe.Pointer, event C.longlong) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraFeedbackControl::resetEventFeedback"); signal != nil {
 		signal.(func(QCameraFeedbackControl__EventType))(QCameraFeedbackControl__EventType(event))
 	}
@@ -14320,7 +14040,6 @@ func (ptr *QCameraFeedbackControl) ResetEventFeedback(event QCameraFeedbackContr
 
 //export callbackQCameraFeedbackControl_SetEventFeedbackEnabled
 func callbackQCameraFeedbackControl_SetEventFeedbackEnabled(ptr unsafe.Pointer, event C.longlong, enabled C.char) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraFeedbackControl::setEventFeedbackEnabled"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(QCameraFeedbackControl__EventType, bool) bool)(QCameraFeedbackControl__EventType(event), int8(enabled) != 0))))
 	}
@@ -14351,7 +14070,6 @@ func (ptr *QCameraFeedbackControl) SetEventFeedbackEnabled(event QCameraFeedback
 
 //export callbackQCameraFeedbackControl_SetEventFeedbackSound
 func callbackQCameraFeedbackControl_SetEventFeedbackSound(ptr unsafe.Pointer, event C.longlong, filePath C.struct_QtMultimedia_PackedString) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraFeedbackControl::setEventFeedbackSound"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(QCameraFeedbackControl__EventType, string) bool)(QCameraFeedbackControl__EventType(event), cGoUnpackString(filePath)))))
 	}
@@ -14392,7 +14110,6 @@ func (ptr *QCameraFeedbackControl) DestroyQCameraFeedbackControl() {
 
 //export callbackQCameraFeedbackControl_TimerEvent
 func callbackQCameraFeedbackControl_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraFeedbackControl::timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
 	} else {
@@ -14428,7 +14145,6 @@ func (ptr *QCameraFeedbackControl) TimerEventDefault(event core.QTimerEvent_ITF)
 
 //export callbackQCameraFeedbackControl_ChildEvent
 func callbackQCameraFeedbackControl_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraFeedbackControl::childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
 	} else {
@@ -14464,7 +14180,6 @@ func (ptr *QCameraFeedbackControl) ChildEventDefault(event core.QChildEvent_ITF)
 
 //export callbackQCameraFeedbackControl_ConnectNotify
 func callbackQCameraFeedbackControl_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraFeedbackControl::connectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
@@ -14500,7 +14215,6 @@ func (ptr *QCameraFeedbackControl) ConnectNotifyDefault(sign core.QMetaMethod_IT
 
 //export callbackQCameraFeedbackControl_CustomEvent
 func callbackQCameraFeedbackControl_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraFeedbackControl::customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
 	} else {
@@ -14575,7 +14289,6 @@ func (ptr *QCameraFeedbackControl) DeleteLaterDefault() {
 
 //export callbackQCameraFeedbackControl_DisconnectNotify
 func callbackQCameraFeedbackControl_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraFeedbackControl::disconnectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
@@ -14611,7 +14324,6 @@ func (ptr *QCameraFeedbackControl) DisconnectNotifyDefault(sign core.QMetaMethod
 
 //export callbackQCameraFeedbackControl_Event
 func callbackQCameraFeedbackControl_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraFeedbackControl::event"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
 	}
@@ -14649,7 +14361,6 @@ func (ptr *QCameraFeedbackControl) EventDefault(e core.QEvent_ITF) bool {
 
 //export callbackQCameraFeedbackControl_EventFilter
 func callbackQCameraFeedbackControl_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraFeedbackControl::eventFilter"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
 	}
@@ -14687,7 +14398,6 @@ func (ptr *QCameraFeedbackControl) EventFilterDefault(watched core.QObject_ITF, 
 
 //export callbackQCameraFeedbackControl_MetaObject
 func callbackQCameraFeedbackControl_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraFeedbackControl::metaObject"); signal != nil {
 		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
 	}
@@ -14771,7 +14481,6 @@ func NewQCameraFlashControl(parent core.QObject_ITF) *QCameraFlashControl {
 
 //export callbackQCameraFlashControl_FlashMode
 func callbackQCameraFlashControl_FlashMode(ptr unsafe.Pointer) C.longlong {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraFlashControl::flashMode"); signal != nil {
 		return C.longlong(signal.(func() QCameraExposure__FlashMode)())
 	}
@@ -14802,7 +14511,6 @@ func (ptr *QCameraFlashControl) FlashMode() QCameraExposure__FlashMode {
 
 //export callbackQCameraFlashControl_FlashReady
 func callbackQCameraFlashControl_FlashReady(ptr unsafe.Pointer, ready C.char) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraFlashControl::flashReady"); signal != nil {
 		signal.(func(bool))(int8(ready) != 0)
 	}
@@ -14831,7 +14539,6 @@ func (ptr *QCameraFlashControl) FlashReady(ready bool) {
 
 //export callbackQCameraFlashControl_IsFlashModeSupported
 func callbackQCameraFlashControl_IsFlashModeSupported(ptr unsafe.Pointer, mode C.longlong) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraFlashControl::isFlashModeSupported"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(QCameraExposure__FlashMode) bool)(QCameraExposure__FlashMode(mode)))))
 	}
@@ -14862,7 +14569,6 @@ func (ptr *QCameraFlashControl) IsFlashModeSupported(mode QCameraExposure__Flash
 
 //export callbackQCameraFlashControl_IsFlashReady
 func callbackQCameraFlashControl_IsFlashReady(ptr unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraFlashControl::isFlashReady"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func() bool)())))
 	}
@@ -14893,7 +14599,6 @@ func (ptr *QCameraFlashControl) IsFlashReady() bool {
 
 //export callbackQCameraFlashControl_SetFlashMode
 func callbackQCameraFlashControl_SetFlashMode(ptr unsafe.Pointer, mode C.longlong) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraFlashControl::setFlashMode"); signal != nil {
 		signal.(func(QCameraExposure__FlashMode))(QCameraExposure__FlashMode(mode))
 	}
@@ -14930,7 +14635,6 @@ func (ptr *QCameraFlashControl) DestroyQCameraFlashControl() {
 
 //export callbackQCameraFlashControl_TimerEvent
 func callbackQCameraFlashControl_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraFlashControl::timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
 	} else {
@@ -14966,7 +14670,6 @@ func (ptr *QCameraFlashControl) TimerEventDefault(event core.QTimerEvent_ITF) {
 
 //export callbackQCameraFlashControl_ChildEvent
 func callbackQCameraFlashControl_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraFlashControl::childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
 	} else {
@@ -15002,7 +14705,6 @@ func (ptr *QCameraFlashControl) ChildEventDefault(event core.QChildEvent_ITF) {
 
 //export callbackQCameraFlashControl_ConnectNotify
 func callbackQCameraFlashControl_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraFlashControl::connectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
@@ -15038,7 +14740,6 @@ func (ptr *QCameraFlashControl) ConnectNotifyDefault(sign core.QMetaMethod_ITF) 
 
 //export callbackQCameraFlashControl_CustomEvent
 func callbackQCameraFlashControl_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraFlashControl::customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
 	} else {
@@ -15113,7 +14814,6 @@ func (ptr *QCameraFlashControl) DeleteLaterDefault() {
 
 //export callbackQCameraFlashControl_DisconnectNotify
 func callbackQCameraFlashControl_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraFlashControl::disconnectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
@@ -15149,7 +14849,6 @@ func (ptr *QCameraFlashControl) DisconnectNotifyDefault(sign core.QMetaMethod_IT
 
 //export callbackQCameraFlashControl_Event
 func callbackQCameraFlashControl_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraFlashControl::event"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
 	}
@@ -15187,7 +14886,6 @@ func (ptr *QCameraFlashControl) EventDefault(e core.QEvent_ITF) bool {
 
 //export callbackQCameraFlashControl_EventFilter
 func callbackQCameraFlashControl_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraFlashControl::eventFilter"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
 	}
@@ -15225,7 +14923,6 @@ func (ptr *QCameraFlashControl) EventFilterDefault(watched core.QObject_ITF, eve
 
 //export callbackQCameraFlashControl_MetaObject
 func callbackQCameraFlashControl_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraFlashControl::metaObject"); signal != nil {
 		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
 	}
@@ -15389,7 +15086,6 @@ func (ptr *QCameraFocus) SetFocusPointMode(mode QCameraFocus__FocusPointMode) {
 
 //export callbackQCameraFocus_DigitalZoomChanged
 func callbackQCameraFocus_DigitalZoomChanged(ptr unsafe.Pointer, value C.double) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraFocus::digitalZoomChanged"); signal != nil {
 		signal.(func(float64))(float64(value))
 	}
@@ -15418,7 +15114,6 @@ func (ptr *QCameraFocus) DigitalZoomChanged(value float64) {
 
 //export callbackQCameraFocus_FocusZonesChanged
 func callbackQCameraFocus_FocusZonesChanged(ptr unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraFocus::focusZonesChanged"); signal != nil {
 		signal.(func())()
 	}
@@ -15475,7 +15170,6 @@ func (ptr *QCameraFocus) MaximumDigitalZoom() float64 {
 
 //export callbackQCameraFocus_MaximumDigitalZoomChanged
 func callbackQCameraFocus_MaximumDigitalZoomChanged(ptr unsafe.Pointer, zoom C.double) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraFocus::maximumDigitalZoomChanged"); signal != nil {
 		signal.(func(float64))(float64(zoom))
 	}
@@ -15511,7 +15205,6 @@ func (ptr *QCameraFocus) MaximumOpticalZoom() float64 {
 
 //export callbackQCameraFocus_MaximumOpticalZoomChanged
 func callbackQCameraFocus_MaximumOpticalZoomChanged(ptr unsafe.Pointer, zoom C.double) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraFocus::maximumOpticalZoomChanged"); signal != nil {
 		signal.(func(float64))(float64(zoom))
 	}
@@ -15540,7 +15233,6 @@ func (ptr *QCameraFocus) MaximumOpticalZoomChanged(zoom float64) {
 
 //export callbackQCameraFocus_OpticalZoomChanged
 func callbackQCameraFocus_OpticalZoomChanged(ptr unsafe.Pointer, value C.double) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraFocus::opticalZoomChanged"); signal != nil {
 		signal.(func(float64))(float64(value))
 	}
@@ -15575,7 +15267,6 @@ func (ptr *QCameraFocus) ZoomTo(optical float64, digital float64) {
 
 //export callbackQCameraFocus_TimerEvent
 func callbackQCameraFocus_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraFocus::timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
 	} else {
@@ -15611,7 +15302,6 @@ func (ptr *QCameraFocus) TimerEventDefault(event core.QTimerEvent_ITF) {
 
 //export callbackQCameraFocus_ChildEvent
 func callbackQCameraFocus_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraFocus::childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
 	} else {
@@ -15647,7 +15337,6 @@ func (ptr *QCameraFocus) ChildEventDefault(event core.QChildEvent_ITF) {
 
 //export callbackQCameraFocus_ConnectNotify
 func callbackQCameraFocus_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraFocus::connectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
@@ -15683,7 +15372,6 @@ func (ptr *QCameraFocus) ConnectNotifyDefault(sign core.QMetaMethod_ITF) {
 
 //export callbackQCameraFocus_CustomEvent
 func callbackQCameraFocus_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraFocus::customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
 	} else {
@@ -15758,7 +15446,6 @@ func (ptr *QCameraFocus) DeleteLaterDefault() {
 
 //export callbackQCameraFocus_DisconnectNotify
 func callbackQCameraFocus_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraFocus::disconnectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
@@ -15794,7 +15481,6 @@ func (ptr *QCameraFocus) DisconnectNotifyDefault(sign core.QMetaMethod_ITF) {
 
 //export callbackQCameraFocus_Event
 func callbackQCameraFocus_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraFocus::event"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
 	}
@@ -15832,7 +15518,6 @@ func (ptr *QCameraFocus) EventDefault(e core.QEvent_ITF) bool {
 
 //export callbackQCameraFocus_EventFilter
 func callbackQCameraFocus_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraFocus::eventFilter"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
 	}
@@ -15870,7 +15555,6 @@ func (ptr *QCameraFocus) EventFilterDefault(watched core.QObject_ITF, event core
 
 //export callbackQCameraFocus_MetaObject
 func callbackQCameraFocus_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraFocus::metaObject"); signal != nil {
 		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
 	}
@@ -15947,7 +15631,6 @@ func NewQCameraFocusControlFromPointer(ptr unsafe.Pointer) *QCameraFocusControl 
 
 //export callbackQCameraFocusControl_CustomFocusPoint
 func callbackQCameraFocusControl_CustomFocusPoint(ptr unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraFocusControl::customFocusPoint"); signal != nil {
 		return core.PointerFromQPointF(signal.(func() *core.QPointF)())
 	}
@@ -15980,7 +15663,6 @@ func (ptr *QCameraFocusControl) CustomFocusPoint() *core.QPointF {
 
 //export callbackQCameraFocusControl_CustomFocusPointChanged
 func callbackQCameraFocusControl_CustomFocusPointChanged(ptr unsafe.Pointer, point unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraFocusControl::customFocusPointChanged"); signal != nil {
 		signal.(func(*core.QPointF))(core.NewQPointFFromPointer(point))
 	}
@@ -16009,7 +15691,6 @@ func (ptr *QCameraFocusControl) CustomFocusPointChanged(point core.QPointF_ITF) 
 
 //export callbackQCameraFocusControl_FocusMode
 func callbackQCameraFocusControl_FocusMode(ptr unsafe.Pointer) C.longlong {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraFocusControl::focusMode"); signal != nil {
 		return C.longlong(signal.(func() QCameraFocus__FocusMode)())
 	}
@@ -16040,7 +15721,6 @@ func (ptr *QCameraFocusControl) FocusMode() QCameraFocus__FocusMode {
 
 //export callbackQCameraFocusControl_FocusModeChanged
 func callbackQCameraFocusControl_FocusModeChanged(ptr unsafe.Pointer, mode C.longlong) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraFocusControl::focusModeChanged"); signal != nil {
 		signal.(func(QCameraFocus__FocusMode))(QCameraFocus__FocusMode(mode))
 	}
@@ -16069,7 +15749,6 @@ func (ptr *QCameraFocusControl) FocusModeChanged(mode QCameraFocus__FocusMode) {
 
 //export callbackQCameraFocusControl_FocusPointMode
 func callbackQCameraFocusControl_FocusPointMode(ptr unsafe.Pointer) C.longlong {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraFocusControl::focusPointMode"); signal != nil {
 		return C.longlong(signal.(func() QCameraFocus__FocusPointMode)())
 	}
@@ -16100,7 +15779,6 @@ func (ptr *QCameraFocusControl) FocusPointMode() QCameraFocus__FocusPointMode {
 
 //export callbackQCameraFocusControl_FocusPointModeChanged
 func callbackQCameraFocusControl_FocusPointModeChanged(ptr unsafe.Pointer, mode C.longlong) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraFocusControl::focusPointModeChanged"); signal != nil {
 		signal.(func(QCameraFocus__FocusPointMode))(QCameraFocus__FocusPointMode(mode))
 	}
@@ -16129,7 +15807,6 @@ func (ptr *QCameraFocusControl) FocusPointModeChanged(mode QCameraFocus__FocusPo
 
 //export callbackQCameraFocusControl_FocusZonesChanged
 func callbackQCameraFocusControl_FocusZonesChanged(ptr unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraFocusControl::focusZonesChanged"); signal != nil {
 		signal.(func())()
 	}
@@ -16158,7 +15835,6 @@ func (ptr *QCameraFocusControl) FocusZonesChanged() {
 
 //export callbackQCameraFocusControl_IsFocusModeSupported
 func callbackQCameraFocusControl_IsFocusModeSupported(ptr unsafe.Pointer, mode C.longlong) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraFocusControl::isFocusModeSupported"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(QCameraFocus__FocusMode) bool)(QCameraFocus__FocusMode(mode)))))
 	}
@@ -16189,7 +15865,6 @@ func (ptr *QCameraFocusControl) IsFocusModeSupported(mode QCameraFocus__FocusMod
 
 //export callbackQCameraFocusControl_IsFocusPointModeSupported
 func callbackQCameraFocusControl_IsFocusPointModeSupported(ptr unsafe.Pointer, mode C.longlong) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraFocusControl::isFocusPointModeSupported"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(QCameraFocus__FocusPointMode) bool)(QCameraFocus__FocusPointMode(mode)))))
 	}
@@ -16220,7 +15895,6 @@ func (ptr *QCameraFocusControl) IsFocusPointModeSupported(mode QCameraFocus__Foc
 
 //export callbackQCameraFocusControl_SetCustomFocusPoint
 func callbackQCameraFocusControl_SetCustomFocusPoint(ptr unsafe.Pointer, point unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraFocusControl::setCustomFocusPoint"); signal != nil {
 		signal.(func(*core.QPointF))(core.NewQPointFFromPointer(point))
 	}
@@ -16249,7 +15923,6 @@ func (ptr *QCameraFocusControl) SetCustomFocusPoint(point core.QPointF_ITF) {
 
 //export callbackQCameraFocusControl_SetFocusMode
 func callbackQCameraFocusControl_SetFocusMode(ptr unsafe.Pointer, mode C.longlong) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraFocusControl::setFocusMode"); signal != nil {
 		signal.(func(QCameraFocus__FocusMode))(QCameraFocus__FocusMode(mode))
 	}
@@ -16278,7 +15951,6 @@ func (ptr *QCameraFocusControl) SetFocusMode(mode QCameraFocus__FocusMode) {
 
 //export callbackQCameraFocusControl_SetFocusPointMode
 func callbackQCameraFocusControl_SetFocusPointMode(ptr unsafe.Pointer, mode C.longlong) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraFocusControl::setFocusPointMode"); signal != nil {
 		signal.(func(QCameraFocus__FocusPointMode))(QCameraFocus__FocusPointMode(mode))
 	}
@@ -16315,7 +15987,6 @@ func (ptr *QCameraFocusControl) DestroyQCameraFocusControl() {
 
 //export callbackQCameraFocusControl_TimerEvent
 func callbackQCameraFocusControl_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraFocusControl::timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
 	} else {
@@ -16351,7 +16022,6 @@ func (ptr *QCameraFocusControl) TimerEventDefault(event core.QTimerEvent_ITF) {
 
 //export callbackQCameraFocusControl_ChildEvent
 func callbackQCameraFocusControl_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraFocusControl::childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
 	} else {
@@ -16387,7 +16057,6 @@ func (ptr *QCameraFocusControl) ChildEventDefault(event core.QChildEvent_ITF) {
 
 //export callbackQCameraFocusControl_ConnectNotify
 func callbackQCameraFocusControl_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraFocusControl::connectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
@@ -16423,7 +16092,6 @@ func (ptr *QCameraFocusControl) ConnectNotifyDefault(sign core.QMetaMethod_ITF) 
 
 //export callbackQCameraFocusControl_CustomEvent
 func callbackQCameraFocusControl_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraFocusControl::customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
 	} else {
@@ -16498,7 +16166,6 @@ func (ptr *QCameraFocusControl) DeleteLaterDefault() {
 
 //export callbackQCameraFocusControl_DisconnectNotify
 func callbackQCameraFocusControl_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraFocusControl::disconnectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
@@ -16534,7 +16201,6 @@ func (ptr *QCameraFocusControl) DisconnectNotifyDefault(sign core.QMetaMethod_IT
 
 //export callbackQCameraFocusControl_Event
 func callbackQCameraFocusControl_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraFocusControl::event"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
 	}
@@ -16572,7 +16238,6 @@ func (ptr *QCameraFocusControl) EventDefault(e core.QEvent_ITF) bool {
 
 //export callbackQCameraFocusControl_EventFilter
 func callbackQCameraFocusControl_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraFocusControl::eventFilter"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
 	}
@@ -16610,7 +16275,6 @@ func (ptr *QCameraFocusControl) EventFilterDefault(watched core.QObject_ITF, eve
 
 //export callbackQCameraFocusControl_MetaObject
 func callbackQCameraFocusControl_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraFocusControl::metaObject"); signal != nil {
 		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
 	}
@@ -16834,7 +16498,6 @@ func (ptr *QCameraImageCapture) BufferFormat() QVideoFrame__PixelFormat {
 
 //export callbackQCameraImageCapture_BufferFormatChanged
 func callbackQCameraImageCapture_BufferFormatChanged(ptr unsafe.Pointer, format C.longlong) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraImageCapture::bufferFormatChanged"); signal != nil {
 		signal.(func(QVideoFrame__PixelFormat))(QVideoFrame__PixelFormat(format))
 	}
@@ -16946,7 +16609,6 @@ func (ptr *QCameraImageCapture) CaptureDestination() QCameraImageCapture__Captur
 
 //export callbackQCameraImageCapture_CaptureDestinationChanged
 func callbackQCameraImageCapture_CaptureDestinationChanged(ptr unsafe.Pointer, destination C.longlong) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraImageCapture::captureDestinationChanged"); signal != nil {
 		signal.(func(QCameraImageCapture__CaptureDestination))(QCameraImageCapture__CaptureDestination(destination))
 	}
@@ -16984,7 +16646,6 @@ func (ptr *QCameraImageCapture) EncodingSettings() *QImageEncoderSettings {
 
 //export callbackQCameraImageCapture_Error2
 func callbackQCameraImageCapture_Error2(ptr unsafe.Pointer, id C.int, error C.longlong, errorString C.struct_QtMultimedia_PackedString) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraImageCapture::error2"); signal != nil {
 		signal.(func(int, QCameraImageCapture__Error, string))(int(int32(id)), QCameraImageCapture__Error(error), cGoUnpackString(errorString))
 	}
@@ -17029,7 +16690,6 @@ func (ptr *QCameraImageCapture) ErrorString() string {
 
 //export callbackQCameraImageCapture_ImageAvailable
 func callbackQCameraImageCapture_ImageAvailable(ptr unsafe.Pointer, id C.int, buffer unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraImageCapture::imageAvailable"); signal != nil {
 		signal.(func(int, *QVideoFrame))(int(int32(id)), NewQVideoFrameFromPointer(buffer))
 	}
@@ -17058,7 +16718,6 @@ func (ptr *QCameraImageCapture) ImageAvailable(id int, buffer QVideoFrame_ITF) {
 
 //export callbackQCameraImageCapture_ImageCaptured
 func callbackQCameraImageCapture_ImageCaptured(ptr unsafe.Pointer, id C.int, preview unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraImageCapture::imageCaptured"); signal != nil {
 		signal.(func(int, *gui.QImage))(int(int32(id)), gui.NewQImageFromPointer(preview))
 	}
@@ -17096,7 +16755,6 @@ func (ptr *QCameraImageCapture) ImageCodecDescription(codec string) string {
 
 //export callbackQCameraImageCapture_ImageExposed
 func callbackQCameraImageCapture_ImageExposed(ptr unsafe.Pointer, id C.int) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraImageCapture::imageExposed"); signal != nil {
 		signal.(func(int))(int(int32(id)))
 	}
@@ -17125,7 +16783,6 @@ func (ptr *QCameraImageCapture) ImageExposed(id int) {
 
 //export callbackQCameraImageCapture_ImageMetadataAvailable
 func callbackQCameraImageCapture_ImageMetadataAvailable(ptr unsafe.Pointer, id C.int, key C.struct_QtMultimedia_PackedString, value unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraImageCapture::imageMetadataAvailable"); signal != nil {
 		signal.(func(int, string, *core.QVariant))(int(int32(id)), cGoUnpackString(key), core.NewQVariantFromPointer(value))
 	}
@@ -17156,7 +16813,6 @@ func (ptr *QCameraImageCapture) ImageMetadataAvailable(id int, key string, value
 
 //export callbackQCameraImageCapture_ImageSaved
 func callbackQCameraImageCapture_ImageSaved(ptr unsafe.Pointer, id C.int, fileName C.struct_QtMultimedia_PackedString) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraImageCapture::imageSaved"); signal != nil {
 		signal.(func(int, string))(int(int32(id)), cGoUnpackString(fileName))
 	}
@@ -17201,7 +16857,6 @@ func (ptr *QCameraImageCapture) IsCaptureDestinationSupported(destination QCamer
 
 //export callbackQCameraImageCapture_MediaObject
 func callbackQCameraImageCapture_MediaObject(ptr unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraImageCapture::mediaObject"); signal != nil {
 		return PointerFromQMediaObject(signal.(func() *QMediaObject)())
 	}
@@ -17247,7 +16902,6 @@ func (ptr *QCameraImageCapture) MediaObjectDefault() *QMediaObject {
 
 //export callbackQCameraImageCapture_ReadyForCaptureChanged
 func callbackQCameraImageCapture_ReadyForCaptureChanged(ptr unsafe.Pointer, ready C.char) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraImageCapture::readyForCaptureChanged"); signal != nil {
 		signal.(func(bool))(int8(ready) != 0)
 	}
@@ -17294,7 +16948,6 @@ func (ptr *QCameraImageCapture) SetEncodingSettings(settings QImageEncoderSettin
 
 //export callbackQCameraImageCapture_SetMediaObject
 func callbackQCameraImageCapture_SetMediaObject(ptr unsafe.Pointer, mediaObject unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraImageCapture::setMediaObject"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*QMediaObject) bool)(NewQMediaObjectFromPointer(mediaObject)))))
 	}
@@ -17369,7 +17022,6 @@ func (ptr *QCameraImageCapture) supportedResolutions_atList(i int) *core.QSize {
 
 //export callbackQCameraImageCapture_TimerEvent
 func callbackQCameraImageCapture_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraImageCapture::timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
 	} else {
@@ -17405,7 +17057,6 @@ func (ptr *QCameraImageCapture) TimerEventDefault(event core.QTimerEvent_ITF) {
 
 //export callbackQCameraImageCapture_ChildEvent
 func callbackQCameraImageCapture_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraImageCapture::childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
 	} else {
@@ -17441,7 +17092,6 @@ func (ptr *QCameraImageCapture) ChildEventDefault(event core.QChildEvent_ITF) {
 
 //export callbackQCameraImageCapture_ConnectNotify
 func callbackQCameraImageCapture_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraImageCapture::connectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
@@ -17477,7 +17127,6 @@ func (ptr *QCameraImageCapture) ConnectNotifyDefault(sign core.QMetaMethod_ITF) 
 
 //export callbackQCameraImageCapture_CustomEvent
 func callbackQCameraImageCapture_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraImageCapture::customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
 	} else {
@@ -17552,7 +17201,6 @@ func (ptr *QCameraImageCapture) DeleteLaterDefault() {
 
 //export callbackQCameraImageCapture_DisconnectNotify
 func callbackQCameraImageCapture_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraImageCapture::disconnectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
@@ -17588,7 +17236,6 @@ func (ptr *QCameraImageCapture) DisconnectNotifyDefault(sign core.QMetaMethod_IT
 
 //export callbackQCameraImageCapture_Event
 func callbackQCameraImageCapture_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraImageCapture::event"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
 	}
@@ -17626,7 +17273,6 @@ func (ptr *QCameraImageCapture) EventDefault(e core.QEvent_ITF) bool {
 
 //export callbackQCameraImageCapture_EventFilter
 func callbackQCameraImageCapture_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraImageCapture::eventFilter"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
 	}
@@ -17664,7 +17310,6 @@ func (ptr *QCameraImageCapture) EventFilterDefault(watched core.QObject_ITF, eve
 
 //export callbackQCameraImageCapture_MetaObject
 func callbackQCameraImageCapture_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraImageCapture::metaObject"); signal != nil {
 		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
 	}
@@ -17748,7 +17393,6 @@ func NewQCameraImageCaptureControl(parent core.QObject_ITF) *QCameraImageCapture
 
 //export callbackQCameraImageCaptureControl_CancelCapture
 func callbackQCameraImageCaptureControl_CancelCapture(ptr unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraImageCaptureControl::cancelCapture"); signal != nil {
 		signal.(func())()
 	}
@@ -17777,7 +17421,6 @@ func (ptr *QCameraImageCaptureControl) CancelCapture() {
 
 //export callbackQCameraImageCaptureControl_Capture
 func callbackQCameraImageCaptureControl_Capture(ptr unsafe.Pointer, fileName C.struct_QtMultimedia_PackedString) C.int {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraImageCaptureControl::capture"); signal != nil {
 		return C.int(int32(signal.(func(string) int)(cGoUnpackString(fileName))))
 	}
@@ -17810,7 +17453,6 @@ func (ptr *QCameraImageCaptureControl) Capture(fileName string) int {
 
 //export callbackQCameraImageCaptureControl_DriveMode
 func callbackQCameraImageCaptureControl_DriveMode(ptr unsafe.Pointer) C.longlong {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraImageCaptureControl::driveMode"); signal != nil {
 		return C.longlong(signal.(func() QCameraImageCapture__DriveMode)())
 	}
@@ -17841,7 +17483,6 @@ func (ptr *QCameraImageCaptureControl) DriveMode() QCameraImageCapture__DriveMod
 
 //export callbackQCameraImageCaptureControl_Error
 func callbackQCameraImageCaptureControl_Error(ptr unsafe.Pointer, id C.int, error C.int, errorString C.struct_QtMultimedia_PackedString) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraImageCaptureControl::error"); signal != nil {
 		signal.(func(int, int, string))(int(int32(id)), int(int32(error)), cGoUnpackString(errorString))
 	}
@@ -17872,7 +17513,6 @@ func (ptr *QCameraImageCaptureControl) Error(id int, error int, errorString stri
 
 //export callbackQCameraImageCaptureControl_ImageAvailable
 func callbackQCameraImageCaptureControl_ImageAvailable(ptr unsafe.Pointer, requestId C.int, buffer unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraImageCaptureControl::imageAvailable"); signal != nil {
 		signal.(func(int, *QVideoFrame))(int(int32(requestId)), NewQVideoFrameFromPointer(buffer))
 	}
@@ -17901,7 +17541,6 @@ func (ptr *QCameraImageCaptureControl) ImageAvailable(requestId int, buffer QVid
 
 //export callbackQCameraImageCaptureControl_ImageCaptured
 func callbackQCameraImageCaptureControl_ImageCaptured(ptr unsafe.Pointer, requestId C.int, preview unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraImageCaptureControl::imageCaptured"); signal != nil {
 		signal.(func(int, *gui.QImage))(int(int32(requestId)), gui.NewQImageFromPointer(preview))
 	}
@@ -17930,7 +17569,6 @@ func (ptr *QCameraImageCaptureControl) ImageCaptured(requestId int, preview gui.
 
 //export callbackQCameraImageCaptureControl_ImageExposed
 func callbackQCameraImageCaptureControl_ImageExposed(ptr unsafe.Pointer, requestId C.int) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraImageCaptureControl::imageExposed"); signal != nil {
 		signal.(func(int))(int(int32(requestId)))
 	}
@@ -17959,7 +17597,6 @@ func (ptr *QCameraImageCaptureControl) ImageExposed(requestId int) {
 
 //export callbackQCameraImageCaptureControl_ImageMetadataAvailable
 func callbackQCameraImageCaptureControl_ImageMetadataAvailable(ptr unsafe.Pointer, id C.int, key C.struct_QtMultimedia_PackedString, value unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraImageCaptureControl::imageMetadataAvailable"); signal != nil {
 		signal.(func(int, string, *core.QVariant))(int(int32(id)), cGoUnpackString(key), core.NewQVariantFromPointer(value))
 	}
@@ -17990,7 +17627,6 @@ func (ptr *QCameraImageCaptureControl) ImageMetadataAvailable(id int, key string
 
 //export callbackQCameraImageCaptureControl_ImageSaved
 func callbackQCameraImageCaptureControl_ImageSaved(ptr unsafe.Pointer, requestId C.int, fileName C.struct_QtMultimedia_PackedString) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraImageCaptureControl::imageSaved"); signal != nil {
 		signal.(func(int, string))(int(int32(requestId)), cGoUnpackString(fileName))
 	}
@@ -18021,7 +17657,6 @@ func (ptr *QCameraImageCaptureControl) ImageSaved(requestId int, fileName string
 
 //export callbackQCameraImageCaptureControl_IsReadyForCapture
 func callbackQCameraImageCaptureControl_IsReadyForCapture(ptr unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraImageCaptureControl::isReadyForCapture"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func() bool)())))
 	}
@@ -18052,7 +17687,6 @@ func (ptr *QCameraImageCaptureControl) IsReadyForCapture() bool {
 
 //export callbackQCameraImageCaptureControl_ReadyForCaptureChanged
 func callbackQCameraImageCaptureControl_ReadyForCaptureChanged(ptr unsafe.Pointer, ready C.char) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraImageCaptureControl::readyForCaptureChanged"); signal != nil {
 		signal.(func(bool))(int8(ready) != 0)
 	}
@@ -18081,7 +17715,6 @@ func (ptr *QCameraImageCaptureControl) ReadyForCaptureChanged(ready bool) {
 
 //export callbackQCameraImageCaptureControl_SetDriveMode
 func callbackQCameraImageCaptureControl_SetDriveMode(ptr unsafe.Pointer, mode C.longlong) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraImageCaptureControl::setDriveMode"); signal != nil {
 		signal.(func(QCameraImageCapture__DriveMode))(QCameraImageCapture__DriveMode(mode))
 	}
@@ -18118,7 +17751,6 @@ func (ptr *QCameraImageCaptureControl) DestroyQCameraImageCaptureControl() {
 
 //export callbackQCameraImageCaptureControl_TimerEvent
 func callbackQCameraImageCaptureControl_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraImageCaptureControl::timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
 	} else {
@@ -18154,7 +17786,6 @@ func (ptr *QCameraImageCaptureControl) TimerEventDefault(event core.QTimerEvent_
 
 //export callbackQCameraImageCaptureControl_ChildEvent
 func callbackQCameraImageCaptureControl_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraImageCaptureControl::childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
 	} else {
@@ -18190,7 +17821,6 @@ func (ptr *QCameraImageCaptureControl) ChildEventDefault(event core.QChildEvent_
 
 //export callbackQCameraImageCaptureControl_ConnectNotify
 func callbackQCameraImageCaptureControl_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraImageCaptureControl::connectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
@@ -18226,7 +17856,6 @@ func (ptr *QCameraImageCaptureControl) ConnectNotifyDefault(sign core.QMetaMetho
 
 //export callbackQCameraImageCaptureControl_CustomEvent
 func callbackQCameraImageCaptureControl_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraImageCaptureControl::customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
 	} else {
@@ -18301,7 +17930,6 @@ func (ptr *QCameraImageCaptureControl) DeleteLaterDefault() {
 
 //export callbackQCameraImageCaptureControl_DisconnectNotify
 func callbackQCameraImageCaptureControl_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraImageCaptureControl::disconnectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
@@ -18337,7 +17965,6 @@ func (ptr *QCameraImageCaptureControl) DisconnectNotifyDefault(sign core.QMetaMe
 
 //export callbackQCameraImageCaptureControl_Event
 func callbackQCameraImageCaptureControl_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraImageCaptureControl::event"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
 	}
@@ -18375,7 +18002,6 @@ func (ptr *QCameraImageCaptureControl) EventDefault(e core.QEvent_ITF) bool {
 
 //export callbackQCameraImageCaptureControl_EventFilter
 func callbackQCameraImageCaptureControl_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraImageCaptureControl::eventFilter"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
 	}
@@ -18413,7 +18039,6 @@ func (ptr *QCameraImageCaptureControl) EventFilterDefault(watched core.QObject_I
 
 //export callbackQCameraImageCaptureControl_MetaObject
 func callbackQCameraImageCaptureControl_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraImageCaptureControl::metaObject"); signal != nil {
 		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
 	}
@@ -18657,7 +18282,6 @@ func (ptr *QCameraImageProcessing) WhiteBalanceMode() QCameraImageProcessing__Wh
 
 //export callbackQCameraImageProcessing_TimerEvent
 func callbackQCameraImageProcessing_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraImageProcessing::timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
 	} else {
@@ -18693,7 +18317,6 @@ func (ptr *QCameraImageProcessing) TimerEventDefault(event core.QTimerEvent_ITF)
 
 //export callbackQCameraImageProcessing_ChildEvent
 func callbackQCameraImageProcessing_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraImageProcessing::childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
 	} else {
@@ -18729,7 +18352,6 @@ func (ptr *QCameraImageProcessing) ChildEventDefault(event core.QChildEvent_ITF)
 
 //export callbackQCameraImageProcessing_ConnectNotify
 func callbackQCameraImageProcessing_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraImageProcessing::connectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
@@ -18765,7 +18387,6 @@ func (ptr *QCameraImageProcessing) ConnectNotifyDefault(sign core.QMetaMethod_IT
 
 //export callbackQCameraImageProcessing_CustomEvent
 func callbackQCameraImageProcessing_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraImageProcessing::customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
 	} else {
@@ -18840,7 +18461,6 @@ func (ptr *QCameraImageProcessing) DeleteLaterDefault() {
 
 //export callbackQCameraImageProcessing_DisconnectNotify
 func callbackQCameraImageProcessing_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraImageProcessing::disconnectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
@@ -18876,7 +18496,6 @@ func (ptr *QCameraImageProcessing) DisconnectNotifyDefault(sign core.QMetaMethod
 
 //export callbackQCameraImageProcessing_Event
 func callbackQCameraImageProcessing_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraImageProcessing::event"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
 	}
@@ -18914,7 +18533,6 @@ func (ptr *QCameraImageProcessing) EventDefault(e core.QEvent_ITF) bool {
 
 //export callbackQCameraImageProcessing_EventFilter
 func callbackQCameraImageProcessing_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraImageProcessing::eventFilter"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
 	}
@@ -18952,7 +18570,6 @@ func (ptr *QCameraImageProcessing) EventFilterDefault(watched core.QObject_ITF, 
 
 //export callbackQCameraImageProcessing_MetaObject
 func callbackQCameraImageProcessing_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraImageProcessing::metaObject"); signal != nil {
 		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
 	}
@@ -19058,7 +18675,6 @@ func NewQCameraImageProcessingControl(parent core.QObject_ITF) *QCameraImageProc
 
 //export callbackQCameraImageProcessingControl_IsParameterSupported
 func callbackQCameraImageProcessingControl_IsParameterSupported(ptr unsafe.Pointer, parameter C.longlong) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraImageProcessingControl::isParameterSupported"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(QCameraImageProcessingControl__ProcessingParameter) bool)(QCameraImageProcessingControl__ProcessingParameter(parameter)))))
 	}
@@ -19089,7 +18705,6 @@ func (ptr *QCameraImageProcessingControl) IsParameterSupported(parameter QCamera
 
 //export callbackQCameraImageProcessingControl_IsParameterValueSupported
 func callbackQCameraImageProcessingControl_IsParameterValueSupported(ptr unsafe.Pointer, parameter C.longlong, value unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraImageProcessingControl::isParameterValueSupported"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(QCameraImageProcessingControl__ProcessingParameter, *core.QVariant) bool)(QCameraImageProcessingControl__ProcessingParameter(parameter), core.NewQVariantFromPointer(value)))))
 	}
@@ -19120,7 +18735,6 @@ func (ptr *QCameraImageProcessingControl) IsParameterValueSupported(parameter QC
 
 //export callbackQCameraImageProcessingControl_Parameter
 func callbackQCameraImageProcessingControl_Parameter(ptr unsafe.Pointer, parameter C.longlong) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraImageProcessingControl::parameter"); signal != nil {
 		return core.PointerFromQVariant(signal.(func(QCameraImageProcessingControl__ProcessingParameter) *core.QVariant)(QCameraImageProcessingControl__ProcessingParameter(parameter)))
 	}
@@ -19153,7 +18767,6 @@ func (ptr *QCameraImageProcessingControl) Parameter(parameter QCameraImageProces
 
 //export callbackQCameraImageProcessingControl_SetParameter
 func callbackQCameraImageProcessingControl_SetParameter(ptr unsafe.Pointer, parameter C.longlong, value unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraImageProcessingControl::setParameter"); signal != nil {
 		signal.(func(QCameraImageProcessingControl__ProcessingParameter, *core.QVariant))(QCameraImageProcessingControl__ProcessingParameter(parameter), core.NewQVariantFromPointer(value))
 	}
@@ -19190,7 +18803,6 @@ func (ptr *QCameraImageProcessingControl) DestroyQCameraImageProcessingControl()
 
 //export callbackQCameraImageProcessingControl_TimerEvent
 func callbackQCameraImageProcessingControl_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraImageProcessingControl::timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
 	} else {
@@ -19226,7 +18838,6 @@ func (ptr *QCameraImageProcessingControl) TimerEventDefault(event core.QTimerEve
 
 //export callbackQCameraImageProcessingControl_ChildEvent
 func callbackQCameraImageProcessingControl_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraImageProcessingControl::childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
 	} else {
@@ -19262,7 +18873,6 @@ func (ptr *QCameraImageProcessingControl) ChildEventDefault(event core.QChildEve
 
 //export callbackQCameraImageProcessingControl_ConnectNotify
 func callbackQCameraImageProcessingControl_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraImageProcessingControl::connectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
@@ -19298,7 +18908,6 @@ func (ptr *QCameraImageProcessingControl) ConnectNotifyDefault(sign core.QMetaMe
 
 //export callbackQCameraImageProcessingControl_CustomEvent
 func callbackQCameraImageProcessingControl_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraImageProcessingControl::customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
 	} else {
@@ -19373,7 +18982,6 @@ func (ptr *QCameraImageProcessingControl) DeleteLaterDefault() {
 
 //export callbackQCameraImageProcessingControl_DisconnectNotify
 func callbackQCameraImageProcessingControl_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraImageProcessingControl::disconnectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
@@ -19409,7 +19017,6 @@ func (ptr *QCameraImageProcessingControl) DisconnectNotifyDefault(sign core.QMet
 
 //export callbackQCameraImageProcessingControl_Event
 func callbackQCameraImageProcessingControl_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraImageProcessingControl::event"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
 	}
@@ -19447,7 +19054,6 @@ func (ptr *QCameraImageProcessingControl) EventDefault(e core.QEvent_ITF) bool {
 
 //export callbackQCameraImageProcessingControl_EventFilter
 func callbackQCameraImageProcessingControl_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraImageProcessingControl::eventFilter"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
 	}
@@ -19485,7 +19091,6 @@ func (ptr *QCameraImageProcessingControl) EventFilterDefault(watched core.QObjec
 
 //export callbackQCameraImageProcessingControl_MetaObject
 func callbackQCameraImageProcessingControl_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraImageProcessingControl::metaObject"); signal != nil {
 		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
 	}
@@ -19707,7 +19312,6 @@ func NewQCameraInfoControl(parent core.QObject_ITF) *QCameraInfoControl {
 
 //export callbackQCameraInfoControl_CameraOrientation
 func callbackQCameraInfoControl_CameraOrientation(ptr unsafe.Pointer, deviceName C.struct_QtMultimedia_PackedString) C.int {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraInfoControl::cameraOrientation"); signal != nil {
 		return C.int(int32(signal.(func(string) int)(cGoUnpackString(deviceName))))
 	}
@@ -19740,7 +19344,6 @@ func (ptr *QCameraInfoControl) CameraOrientation(deviceName string) int {
 
 //export callbackQCameraInfoControl_CameraPosition
 func callbackQCameraInfoControl_CameraPosition(ptr unsafe.Pointer, deviceName C.struct_QtMultimedia_PackedString) C.longlong {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraInfoControl::cameraPosition"); signal != nil {
 		return C.longlong(signal.(func(string) QCamera__Position)(cGoUnpackString(deviceName)))
 	}
@@ -19773,7 +19376,6 @@ func (ptr *QCameraInfoControl) CameraPosition(deviceName string) QCamera__Positi
 
 //export callbackQCameraInfoControl_DestroyQCameraInfoControl
 func callbackQCameraInfoControl_DestroyQCameraInfoControl(ptr unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraInfoControl::~QCameraInfoControl"); signal != nil {
 		signal.(func())()
 	} else {
@@ -19813,7 +19415,6 @@ func (ptr *QCameraInfoControl) DestroyQCameraInfoControlDefault() {
 
 //export callbackQCameraInfoControl_TimerEvent
 func callbackQCameraInfoControl_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraInfoControl::timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
 	} else {
@@ -19849,7 +19450,6 @@ func (ptr *QCameraInfoControl) TimerEventDefault(event core.QTimerEvent_ITF) {
 
 //export callbackQCameraInfoControl_ChildEvent
 func callbackQCameraInfoControl_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraInfoControl::childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
 	} else {
@@ -19885,7 +19485,6 @@ func (ptr *QCameraInfoControl) ChildEventDefault(event core.QChildEvent_ITF) {
 
 //export callbackQCameraInfoControl_ConnectNotify
 func callbackQCameraInfoControl_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraInfoControl::connectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
@@ -19921,7 +19520,6 @@ func (ptr *QCameraInfoControl) ConnectNotifyDefault(sign core.QMetaMethod_ITF) {
 
 //export callbackQCameraInfoControl_CustomEvent
 func callbackQCameraInfoControl_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraInfoControl::customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
 	} else {
@@ -19996,7 +19594,6 @@ func (ptr *QCameraInfoControl) DeleteLaterDefault() {
 
 //export callbackQCameraInfoControl_DisconnectNotify
 func callbackQCameraInfoControl_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraInfoControl::disconnectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
@@ -20032,7 +19629,6 @@ func (ptr *QCameraInfoControl) DisconnectNotifyDefault(sign core.QMetaMethod_ITF
 
 //export callbackQCameraInfoControl_Event
 func callbackQCameraInfoControl_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraInfoControl::event"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
 	}
@@ -20070,7 +19666,6 @@ func (ptr *QCameraInfoControl) EventDefault(e core.QEvent_ITF) bool {
 
 //export callbackQCameraInfoControl_EventFilter
 func callbackQCameraInfoControl_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraInfoControl::eventFilter"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
 	}
@@ -20108,7 +19703,6 @@ func (ptr *QCameraInfoControl) EventFilterDefault(watched core.QObject_ITF, even
 
 //export callbackQCameraInfoControl_MetaObject
 func callbackQCameraInfoControl_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraInfoControl::metaObject"); signal != nil {
 		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
 	}
@@ -20192,7 +19786,6 @@ func NewQCameraLocksControl(parent core.QObject_ITF) *QCameraLocksControl {
 
 //export callbackQCameraLocksControl_LockStatus
 func callbackQCameraLocksControl_LockStatus(ptr unsafe.Pointer, lock C.longlong) C.longlong {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraLocksControl::lockStatus"); signal != nil {
 		return C.longlong(signal.(func(QCamera__LockType) QCamera__LockStatus)(QCamera__LockType(lock)))
 	}
@@ -20223,7 +19816,6 @@ func (ptr *QCameraLocksControl) LockStatus(lock QCamera__LockType) QCamera__Lock
 
 //export callbackQCameraLocksControl_LockStatusChanged
 func callbackQCameraLocksControl_LockStatusChanged(ptr unsafe.Pointer, lock C.longlong, status C.longlong, reason C.longlong) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraLocksControl::lockStatusChanged"); signal != nil {
 		signal.(func(QCamera__LockType, QCamera__LockStatus, QCamera__LockChangeReason))(QCamera__LockType(lock), QCamera__LockStatus(status), QCamera__LockChangeReason(reason))
 	}
@@ -20252,7 +19844,6 @@ func (ptr *QCameraLocksControl) LockStatusChanged(lock QCamera__LockType, status
 
 //export callbackQCameraLocksControl_SearchAndLock
 func callbackQCameraLocksControl_SearchAndLock(ptr unsafe.Pointer, locks C.longlong) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraLocksControl::searchAndLock"); signal != nil {
 		signal.(func(QCamera__LockType))(QCamera__LockType(locks))
 	}
@@ -20281,7 +19872,6 @@ func (ptr *QCameraLocksControl) SearchAndLock(locks QCamera__LockType) {
 
 //export callbackQCameraLocksControl_SupportedLocks
 func callbackQCameraLocksControl_SupportedLocks(ptr unsafe.Pointer) C.longlong {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraLocksControl::supportedLocks"); signal != nil {
 		return C.longlong(signal.(func() QCamera__LockType)())
 	}
@@ -20312,7 +19902,6 @@ func (ptr *QCameraLocksControl) SupportedLocks() QCamera__LockType {
 
 //export callbackQCameraLocksControl_Unlock
 func callbackQCameraLocksControl_Unlock(ptr unsafe.Pointer, locks C.longlong) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraLocksControl::unlock"); signal != nil {
 		signal.(func(QCamera__LockType))(QCamera__LockType(locks))
 	}
@@ -20349,7 +19938,6 @@ func (ptr *QCameraLocksControl) DestroyQCameraLocksControl() {
 
 //export callbackQCameraLocksControl_TimerEvent
 func callbackQCameraLocksControl_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraLocksControl::timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
 	} else {
@@ -20385,7 +19973,6 @@ func (ptr *QCameraLocksControl) TimerEventDefault(event core.QTimerEvent_ITF) {
 
 //export callbackQCameraLocksControl_ChildEvent
 func callbackQCameraLocksControl_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraLocksControl::childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
 	} else {
@@ -20421,7 +20008,6 @@ func (ptr *QCameraLocksControl) ChildEventDefault(event core.QChildEvent_ITF) {
 
 //export callbackQCameraLocksControl_ConnectNotify
 func callbackQCameraLocksControl_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraLocksControl::connectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
@@ -20457,7 +20043,6 @@ func (ptr *QCameraLocksControl) ConnectNotifyDefault(sign core.QMetaMethod_ITF) 
 
 //export callbackQCameraLocksControl_CustomEvent
 func callbackQCameraLocksControl_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraLocksControl::customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
 	} else {
@@ -20532,7 +20117,6 @@ func (ptr *QCameraLocksControl) DeleteLaterDefault() {
 
 //export callbackQCameraLocksControl_DisconnectNotify
 func callbackQCameraLocksControl_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraLocksControl::disconnectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
@@ -20568,7 +20152,6 @@ func (ptr *QCameraLocksControl) DisconnectNotifyDefault(sign core.QMetaMethod_IT
 
 //export callbackQCameraLocksControl_Event
 func callbackQCameraLocksControl_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraLocksControl::event"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
 	}
@@ -20606,7 +20189,6 @@ func (ptr *QCameraLocksControl) EventDefault(e core.QEvent_ITF) bool {
 
 //export callbackQCameraLocksControl_EventFilter
 func callbackQCameraLocksControl_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraLocksControl::eventFilter"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
 	}
@@ -20644,7 +20226,6 @@ func (ptr *QCameraLocksControl) EventFilterDefault(watched core.QObject_ITF, eve
 
 //export callbackQCameraLocksControl_MetaObject
 func callbackQCameraLocksControl_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraLocksControl::metaObject"); signal != nil {
 		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
 	}
@@ -20728,7 +20309,6 @@ func NewQCameraViewfinder(parent widgets.QWidget_ITF) *QCameraViewfinder {
 
 //export callbackQCameraViewfinder_MediaObject
 func callbackQCameraViewfinder_MediaObject(ptr unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraViewfinder::mediaObject"); signal != nil {
 		return PointerFromQMediaObject(signal.(func() *QMediaObject)())
 	}
@@ -20774,7 +20354,6 @@ func (ptr *QCameraViewfinder) MediaObjectDefault() *QMediaObject {
 
 //export callbackQCameraViewfinder_SetMediaObject
 func callbackQCameraViewfinder_SetMediaObject(ptr unsafe.Pointer, object unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraViewfinder::setMediaObject"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*QMediaObject) bool)(NewQMediaObjectFromPointer(object)))))
 	}
@@ -21030,7 +20609,6 @@ func (ptr *QCameraViewfinder) SetSaturationDefault(saturation int) {
 
 //export callbackQCameraViewfinder_Event
 func callbackQCameraViewfinder_Event(ptr unsafe.Pointer, event unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraViewfinder::event"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(event)))))
 	}
@@ -21068,7 +20646,6 @@ func (ptr *QCameraViewfinder) EventDefault(event core.QEvent_ITF) bool {
 
 //export callbackQCameraViewfinder_HideEvent
 func callbackQCameraViewfinder_HideEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraViewfinder::hideEvent"); signal != nil {
 		signal.(func(*gui.QHideEvent))(gui.NewQHideEventFromPointer(event))
 	} else {
@@ -21104,7 +20681,6 @@ func (ptr *QCameraViewfinder) HideEventDefault(event gui.QHideEvent_ITF) {
 
 //export callbackQCameraViewfinder_MoveEvent
 func callbackQCameraViewfinder_MoveEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraViewfinder::moveEvent"); signal != nil {
 		signal.(func(*gui.QMoveEvent))(gui.NewQMoveEventFromPointer(event))
 	} else {
@@ -21140,7 +20716,6 @@ func (ptr *QCameraViewfinder) MoveEventDefault(event gui.QMoveEvent_ITF) {
 
 //export callbackQCameraViewfinder_PaintEvent
 func callbackQCameraViewfinder_PaintEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraViewfinder::paintEvent"); signal != nil {
 		signal.(func(*gui.QPaintEvent))(gui.NewQPaintEventFromPointer(event))
 	} else {
@@ -21176,7 +20751,6 @@ func (ptr *QCameraViewfinder) PaintEventDefault(event gui.QPaintEvent_ITF) {
 
 //export callbackQCameraViewfinder_ResizeEvent
 func callbackQCameraViewfinder_ResizeEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraViewfinder::resizeEvent"); signal != nil {
 		signal.(func(*gui.QResizeEvent))(gui.NewQResizeEventFromPointer(event))
 	} else {
@@ -21212,7 +20786,6 @@ func (ptr *QCameraViewfinder) ResizeEventDefault(event gui.QResizeEvent_ITF) {
 
 //export callbackQCameraViewfinder_ShowEvent
 func callbackQCameraViewfinder_ShowEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraViewfinder::showEvent"); signal != nil {
 		signal.(func(*gui.QShowEvent))(gui.NewQShowEventFromPointer(event))
 	} else {
@@ -21248,7 +20821,6 @@ func (ptr *QCameraViewfinder) ShowEventDefault(event gui.QShowEvent_ITF) {
 
 //export callbackQCameraViewfinder_SizeHint
 func callbackQCameraViewfinder_SizeHint(ptr unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraViewfinder::sizeHint"); signal != nil {
 		return core.PointerFromQSize(signal.(func() *core.QSize)())
 	}
@@ -21290,7 +20862,6 @@ func (ptr *QCameraViewfinder) SizeHintDefault() *core.QSize {
 
 //export callbackQCameraViewfinder_ActionEvent
 func callbackQCameraViewfinder_ActionEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraViewfinder::actionEvent"); signal != nil {
 		signal.(func(*gui.QActionEvent))(gui.NewQActionEventFromPointer(event))
 	} else {
@@ -21326,7 +20897,6 @@ func (ptr *QCameraViewfinder) ActionEventDefault(event gui.QActionEvent_ITF) {
 
 //export callbackQCameraViewfinder_DragEnterEvent
 func callbackQCameraViewfinder_DragEnterEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraViewfinder::dragEnterEvent"); signal != nil {
 		signal.(func(*gui.QDragEnterEvent))(gui.NewQDragEnterEventFromPointer(event))
 	} else {
@@ -21362,7 +20932,6 @@ func (ptr *QCameraViewfinder) DragEnterEventDefault(event gui.QDragEnterEvent_IT
 
 //export callbackQCameraViewfinder_DragLeaveEvent
 func callbackQCameraViewfinder_DragLeaveEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraViewfinder::dragLeaveEvent"); signal != nil {
 		signal.(func(*gui.QDragLeaveEvent))(gui.NewQDragLeaveEventFromPointer(event))
 	} else {
@@ -21398,7 +20967,6 @@ func (ptr *QCameraViewfinder) DragLeaveEventDefault(event gui.QDragLeaveEvent_IT
 
 //export callbackQCameraViewfinder_DragMoveEvent
 func callbackQCameraViewfinder_DragMoveEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraViewfinder::dragMoveEvent"); signal != nil {
 		signal.(func(*gui.QDragMoveEvent))(gui.NewQDragMoveEventFromPointer(event))
 	} else {
@@ -21434,7 +21002,6 @@ func (ptr *QCameraViewfinder) DragMoveEventDefault(event gui.QDragMoveEvent_ITF)
 
 //export callbackQCameraViewfinder_DropEvent
 func callbackQCameraViewfinder_DropEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraViewfinder::dropEvent"); signal != nil {
 		signal.(func(*gui.QDropEvent))(gui.NewQDropEventFromPointer(event))
 	} else {
@@ -21470,7 +21037,6 @@ func (ptr *QCameraViewfinder) DropEventDefault(event gui.QDropEvent_ITF) {
 
 //export callbackQCameraViewfinder_EnterEvent
 func callbackQCameraViewfinder_EnterEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraViewfinder::enterEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
 	} else {
@@ -21506,7 +21072,6 @@ func (ptr *QCameraViewfinder) EnterEventDefault(event core.QEvent_ITF) {
 
 //export callbackQCameraViewfinder_FocusInEvent
 func callbackQCameraViewfinder_FocusInEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraViewfinder::focusInEvent"); signal != nil {
 		signal.(func(*gui.QFocusEvent))(gui.NewQFocusEventFromPointer(event))
 	} else {
@@ -21542,7 +21107,6 @@ func (ptr *QCameraViewfinder) FocusInEventDefault(event gui.QFocusEvent_ITF) {
 
 //export callbackQCameraViewfinder_FocusOutEvent
 func callbackQCameraViewfinder_FocusOutEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraViewfinder::focusOutEvent"); signal != nil {
 		signal.(func(*gui.QFocusEvent))(gui.NewQFocusEventFromPointer(event))
 	} else {
@@ -21578,7 +21142,6 @@ func (ptr *QCameraViewfinder) FocusOutEventDefault(event gui.QFocusEvent_ITF) {
 
 //export callbackQCameraViewfinder_LeaveEvent
 func callbackQCameraViewfinder_LeaveEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraViewfinder::leaveEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
 	} else {
@@ -21614,7 +21177,6 @@ func (ptr *QCameraViewfinder) LeaveEventDefault(event core.QEvent_ITF) {
 
 //export callbackQCameraViewfinder_Metric
 func callbackQCameraViewfinder_Metric(ptr unsafe.Pointer, m C.longlong) C.int {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraViewfinder::metric"); signal != nil {
 		return C.int(int32(signal.(func(gui.QPaintDevice__PaintDeviceMetric) int)(gui.QPaintDevice__PaintDeviceMetric(m))))
 	}
@@ -21652,7 +21214,6 @@ func (ptr *QCameraViewfinder) MetricDefault(m gui.QPaintDevice__PaintDeviceMetri
 
 //export callbackQCameraViewfinder_MinimumSizeHint
 func callbackQCameraViewfinder_MinimumSizeHint(ptr unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraViewfinder::minimumSizeHint"); signal != nil {
 		return core.PointerFromQSize(signal.(func() *core.QSize)())
 	}
@@ -21694,7 +21255,6 @@ func (ptr *QCameraViewfinder) MinimumSizeHintDefault() *core.QSize {
 
 //export callbackQCameraViewfinder_PaintEngine
 func callbackQCameraViewfinder_PaintEngine(ptr unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraViewfinder::paintEngine"); signal != nil {
 		return gui.PointerFromQPaintEngine(signal.(func() *gui.QPaintEngine)())
 	}
@@ -21915,7 +21475,6 @@ func (ptr *QCameraViewfinder) SetWindowTitleDefault(vqs string) {
 
 //export callbackQCameraViewfinder_ChangeEvent
 func callbackQCameraViewfinder_ChangeEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraViewfinder::changeEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
 	} else {
@@ -21988,7 +21547,6 @@ func (ptr *QCameraViewfinder) CloseDefault() bool {
 
 //export callbackQCameraViewfinder_CloseEvent
 func callbackQCameraViewfinder_CloseEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraViewfinder::closeEvent"); signal != nil {
 		signal.(func(*gui.QCloseEvent))(gui.NewQCloseEventFromPointer(event))
 	} else {
@@ -22024,7 +21582,6 @@ func (ptr *QCameraViewfinder) CloseEventDefault(event gui.QCloseEvent_ITF) {
 
 //export callbackQCameraViewfinder_ContextMenuEvent
 func callbackQCameraViewfinder_ContextMenuEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraViewfinder::contextMenuEvent"); signal != nil {
 		signal.(func(*gui.QContextMenuEvent))(gui.NewQContextMenuEventFromPointer(event))
 	} else {
@@ -22060,7 +21617,6 @@ func (ptr *QCameraViewfinder) ContextMenuEventDefault(event gui.QContextMenuEven
 
 //export callbackQCameraViewfinder_FocusNextPrevChild
 func callbackQCameraViewfinder_FocusNextPrevChild(ptr unsafe.Pointer, next C.char) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraViewfinder::focusNextPrevChild"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(bool) bool)(int8(next) != 0))))
 	}
@@ -22098,7 +21654,6 @@ func (ptr *QCameraViewfinder) FocusNextPrevChildDefault(next bool) bool {
 
 //export callbackQCameraViewfinder_HasHeightForWidth
 func callbackQCameraViewfinder_HasHeightForWidth(ptr unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraViewfinder::hasHeightForWidth"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func() bool)())))
 	}
@@ -22136,7 +21691,6 @@ func (ptr *QCameraViewfinder) HasHeightForWidthDefault() bool {
 
 //export callbackQCameraViewfinder_HeightForWidth
 func callbackQCameraViewfinder_HeightForWidth(ptr unsafe.Pointer, w C.int) C.int {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraViewfinder::heightForWidth"); signal != nil {
 		return C.int(int32(signal.(func(int) int)(int(int32(w)))))
 	}
@@ -22209,7 +21763,6 @@ func (ptr *QCameraViewfinder) HideDefault() {
 
 //export callbackQCameraViewfinder_InputMethodEvent
 func callbackQCameraViewfinder_InputMethodEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraViewfinder::inputMethodEvent"); signal != nil {
 		signal.(func(*gui.QInputMethodEvent))(gui.NewQInputMethodEventFromPointer(event))
 	} else {
@@ -22245,7 +21798,6 @@ func (ptr *QCameraViewfinder) InputMethodEventDefault(event gui.QInputMethodEven
 
 //export callbackQCameraViewfinder_InputMethodQuery
 func callbackQCameraViewfinder_InputMethodQuery(ptr unsafe.Pointer, query C.longlong) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraViewfinder::inputMethodQuery"); signal != nil {
 		return core.PointerFromQVariant(signal.(func(core.Qt__InputMethodQuery) *core.QVariant)(core.Qt__InputMethodQuery(query)))
 	}
@@ -22287,7 +21839,6 @@ func (ptr *QCameraViewfinder) InputMethodQueryDefault(query core.Qt__InputMethod
 
 //export callbackQCameraViewfinder_KeyPressEvent
 func callbackQCameraViewfinder_KeyPressEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraViewfinder::keyPressEvent"); signal != nil {
 		signal.(func(*gui.QKeyEvent))(gui.NewQKeyEventFromPointer(event))
 	} else {
@@ -22323,7 +21874,6 @@ func (ptr *QCameraViewfinder) KeyPressEventDefault(event gui.QKeyEvent_ITF) {
 
 //export callbackQCameraViewfinder_KeyReleaseEvent
 func callbackQCameraViewfinder_KeyReleaseEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraViewfinder::keyReleaseEvent"); signal != nil {
 		signal.(func(*gui.QKeyEvent))(gui.NewQKeyEventFromPointer(event))
 	} else {
@@ -22394,7 +21944,6 @@ func (ptr *QCameraViewfinder) LowerDefault() {
 
 //export callbackQCameraViewfinder_MouseDoubleClickEvent
 func callbackQCameraViewfinder_MouseDoubleClickEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraViewfinder::mouseDoubleClickEvent"); signal != nil {
 		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
 	} else {
@@ -22430,7 +21979,6 @@ func (ptr *QCameraViewfinder) MouseDoubleClickEventDefault(event gui.QMouseEvent
 
 //export callbackQCameraViewfinder_MouseMoveEvent
 func callbackQCameraViewfinder_MouseMoveEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraViewfinder::mouseMoveEvent"); signal != nil {
 		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
 	} else {
@@ -22466,7 +22014,6 @@ func (ptr *QCameraViewfinder) MouseMoveEventDefault(event gui.QMouseEvent_ITF) {
 
 //export callbackQCameraViewfinder_MousePressEvent
 func callbackQCameraViewfinder_MousePressEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraViewfinder::mousePressEvent"); signal != nil {
 		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
 	} else {
@@ -22502,7 +22049,6 @@ func (ptr *QCameraViewfinder) MousePressEventDefault(event gui.QMouseEvent_ITF) 
 
 //export callbackQCameraViewfinder_MouseReleaseEvent
 func callbackQCameraViewfinder_MouseReleaseEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraViewfinder::mouseReleaseEvent"); signal != nil {
 		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
 	} else {
@@ -22538,7 +22084,6 @@ func (ptr *QCameraViewfinder) MouseReleaseEventDefault(event gui.QMouseEvent_ITF
 
 //export callbackQCameraViewfinder_NativeEvent
 func callbackQCameraViewfinder_NativeEvent(ptr unsafe.Pointer, eventType unsafe.Pointer, message unsafe.Pointer, result C.long) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraViewfinder::nativeEvent"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QByteArray, unsafe.Pointer, int) bool)(core.NewQByteArrayFromPointer(eventType), message, int(int32(result))))))
 	}
@@ -22926,7 +22471,6 @@ func (ptr *QCameraViewfinder) ShowNormalDefault() {
 
 //export callbackQCameraViewfinder_TabletEvent
 func callbackQCameraViewfinder_TabletEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraViewfinder::tabletEvent"); signal != nil {
 		signal.(func(*gui.QTabletEvent))(gui.NewQTabletEventFromPointer(event))
 	} else {
@@ -23032,7 +22576,6 @@ func (ptr *QCameraViewfinder) UpdateMicroFocusDefault() {
 
 //export callbackQCameraViewfinder_WheelEvent
 func callbackQCameraViewfinder_WheelEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraViewfinder::wheelEvent"); signal != nil {
 		signal.(func(*gui.QWheelEvent))(gui.NewQWheelEventFromPointer(event))
 	} else {
@@ -23068,7 +22611,6 @@ func (ptr *QCameraViewfinder) WheelEventDefault(event gui.QWheelEvent_ITF) {
 
 //export callbackQCameraViewfinder_TimerEvent
 func callbackQCameraViewfinder_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraViewfinder::timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
 	} else {
@@ -23104,7 +22646,6 @@ func (ptr *QCameraViewfinder) TimerEventDefault(event core.QTimerEvent_ITF) {
 
 //export callbackQCameraViewfinder_ChildEvent
 func callbackQCameraViewfinder_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraViewfinder::childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
 	} else {
@@ -23140,7 +22681,6 @@ func (ptr *QCameraViewfinder) ChildEventDefault(event core.QChildEvent_ITF) {
 
 //export callbackQCameraViewfinder_ConnectNotify
 func callbackQCameraViewfinder_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraViewfinder::connectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
@@ -23176,7 +22716,6 @@ func (ptr *QCameraViewfinder) ConnectNotifyDefault(sign core.QMetaMethod_ITF) {
 
 //export callbackQCameraViewfinder_CustomEvent
 func callbackQCameraViewfinder_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraViewfinder::customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
 	} else {
@@ -23251,7 +22790,6 @@ func (ptr *QCameraViewfinder) DeleteLaterDefault() {
 
 //export callbackQCameraViewfinder_DisconnectNotify
 func callbackQCameraViewfinder_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraViewfinder::disconnectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
@@ -23287,7 +22825,6 @@ func (ptr *QCameraViewfinder) DisconnectNotifyDefault(sign core.QMetaMethod_ITF)
 
 //export callbackQCameraViewfinder_EventFilter
 func callbackQCameraViewfinder_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraViewfinder::eventFilter"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
 	}
@@ -23325,7 +22862,6 @@ func (ptr *QCameraViewfinder) EventFilterDefault(watched core.QObject_ITF, event
 
 //export callbackQCameraViewfinder_MetaObject
 func callbackQCameraViewfinder_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraViewfinder::metaObject"); signal != nil {
 		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
 	}
@@ -23573,7 +23109,6 @@ func NewQCameraViewfinderSettingsControl(parent core.QObject_ITF) *QCameraViewfi
 
 //export callbackQCameraViewfinderSettingsControl_IsViewfinderParameterSupported
 func callbackQCameraViewfinderSettingsControl_IsViewfinderParameterSupported(ptr unsafe.Pointer, parameter C.longlong) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraViewfinderSettingsControl::isViewfinderParameterSupported"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(QCameraViewfinderSettingsControl__ViewfinderParameter) bool)(QCameraViewfinderSettingsControl__ViewfinderParameter(parameter)))))
 	}
@@ -23604,7 +23139,6 @@ func (ptr *QCameraViewfinderSettingsControl) IsViewfinderParameterSupported(para
 
 //export callbackQCameraViewfinderSettingsControl_SetViewfinderParameter
 func callbackQCameraViewfinderSettingsControl_SetViewfinderParameter(ptr unsafe.Pointer, parameter C.longlong, value unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraViewfinderSettingsControl::setViewfinderParameter"); signal != nil {
 		signal.(func(QCameraViewfinderSettingsControl__ViewfinderParameter, *core.QVariant))(QCameraViewfinderSettingsControl__ViewfinderParameter(parameter), core.NewQVariantFromPointer(value))
 	}
@@ -23633,7 +23167,6 @@ func (ptr *QCameraViewfinderSettingsControl) SetViewfinderParameter(parameter QC
 
 //export callbackQCameraViewfinderSettingsControl_ViewfinderParameter
 func callbackQCameraViewfinderSettingsControl_ViewfinderParameter(ptr unsafe.Pointer, parameter C.longlong) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraViewfinderSettingsControl::viewfinderParameter"); signal != nil {
 		return core.PointerFromQVariant(signal.(func(QCameraViewfinderSettingsControl__ViewfinderParameter) *core.QVariant)(QCameraViewfinderSettingsControl__ViewfinderParameter(parameter)))
 	}
@@ -23674,7 +23207,6 @@ func (ptr *QCameraViewfinderSettingsControl) DestroyQCameraViewfinderSettingsCon
 
 //export callbackQCameraViewfinderSettingsControl_TimerEvent
 func callbackQCameraViewfinderSettingsControl_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraViewfinderSettingsControl::timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
 	} else {
@@ -23710,7 +23242,6 @@ func (ptr *QCameraViewfinderSettingsControl) TimerEventDefault(event core.QTimer
 
 //export callbackQCameraViewfinderSettingsControl_ChildEvent
 func callbackQCameraViewfinderSettingsControl_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraViewfinderSettingsControl::childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
 	} else {
@@ -23746,7 +23277,6 @@ func (ptr *QCameraViewfinderSettingsControl) ChildEventDefault(event core.QChild
 
 //export callbackQCameraViewfinderSettingsControl_ConnectNotify
 func callbackQCameraViewfinderSettingsControl_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraViewfinderSettingsControl::connectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
@@ -23782,7 +23312,6 @@ func (ptr *QCameraViewfinderSettingsControl) ConnectNotifyDefault(sign core.QMet
 
 //export callbackQCameraViewfinderSettingsControl_CustomEvent
 func callbackQCameraViewfinderSettingsControl_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraViewfinderSettingsControl::customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
 	} else {
@@ -23857,7 +23386,6 @@ func (ptr *QCameraViewfinderSettingsControl) DeleteLaterDefault() {
 
 //export callbackQCameraViewfinderSettingsControl_DisconnectNotify
 func callbackQCameraViewfinderSettingsControl_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraViewfinderSettingsControl::disconnectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
@@ -23893,7 +23421,6 @@ func (ptr *QCameraViewfinderSettingsControl) DisconnectNotifyDefault(sign core.Q
 
 //export callbackQCameraViewfinderSettingsControl_Event
 func callbackQCameraViewfinderSettingsControl_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraViewfinderSettingsControl::event"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
 	}
@@ -23931,7 +23458,6 @@ func (ptr *QCameraViewfinderSettingsControl) EventDefault(e core.QEvent_ITF) boo
 
 //export callbackQCameraViewfinderSettingsControl_EventFilter
 func callbackQCameraViewfinderSettingsControl_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraViewfinderSettingsControl::eventFilter"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
 	}
@@ -23969,7 +23495,6 @@ func (ptr *QCameraViewfinderSettingsControl) EventFilterDefault(watched core.QOb
 
 //export callbackQCameraViewfinderSettingsControl_MetaObject
 func callbackQCameraViewfinderSettingsControl_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraViewfinderSettingsControl::metaObject"); signal != nil {
 		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
 	}
@@ -24046,7 +23571,6 @@ func NewQCameraViewfinderSettingsControl2FromPointer(ptr unsafe.Pointer) *QCamer
 
 //export callbackQCameraViewfinderSettingsControl2_SetViewfinderSettings
 func callbackQCameraViewfinderSettingsControl2_SetViewfinderSettings(ptr unsafe.Pointer, settings unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraViewfinderSettingsControl2::setViewfinderSettings"); signal != nil {
 		signal.(func(*QCameraViewfinderSettings))(NewQCameraViewfinderSettingsFromPointer(settings))
 	}
@@ -24102,7 +23626,6 @@ func (ptr *QCameraViewfinderSettingsControl2) SupportedViewfinderSettings() []*Q
 
 //export callbackQCameraViewfinderSettingsControl2_ViewfinderSettings
 func callbackQCameraViewfinderSettingsControl2_ViewfinderSettings(ptr unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraViewfinderSettingsControl2::viewfinderSettings"); signal != nil {
 		return PointerFromQCameraViewfinderSettings(signal.(func() *QCameraViewfinderSettings)())
 	}
@@ -24135,7 +23658,6 @@ func (ptr *QCameraViewfinderSettingsControl2) ViewfinderSettings() *QCameraViewf
 
 //export callbackQCameraViewfinderSettingsControl2_DestroyQCameraViewfinderSettingsControl2
 func callbackQCameraViewfinderSettingsControl2_DestroyQCameraViewfinderSettingsControl2(ptr unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraViewfinderSettingsControl2::~QCameraViewfinderSettingsControl2"); signal != nil {
 		signal.(func())()
 	} else {
@@ -24184,7 +23706,6 @@ func (ptr *QCameraViewfinderSettingsControl2) supportedViewfinderSettings_atList
 
 //export callbackQCameraViewfinderSettingsControl2_TimerEvent
 func callbackQCameraViewfinderSettingsControl2_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraViewfinderSettingsControl2::timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
 	} else {
@@ -24220,7 +23741,6 @@ func (ptr *QCameraViewfinderSettingsControl2) TimerEventDefault(event core.QTime
 
 //export callbackQCameraViewfinderSettingsControl2_ChildEvent
 func callbackQCameraViewfinderSettingsControl2_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraViewfinderSettingsControl2::childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
 	} else {
@@ -24256,7 +23776,6 @@ func (ptr *QCameraViewfinderSettingsControl2) ChildEventDefault(event core.QChil
 
 //export callbackQCameraViewfinderSettingsControl2_ConnectNotify
 func callbackQCameraViewfinderSettingsControl2_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraViewfinderSettingsControl2::connectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
@@ -24292,7 +23811,6 @@ func (ptr *QCameraViewfinderSettingsControl2) ConnectNotifyDefault(sign core.QMe
 
 //export callbackQCameraViewfinderSettingsControl2_CustomEvent
 func callbackQCameraViewfinderSettingsControl2_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraViewfinderSettingsControl2::customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
 	} else {
@@ -24367,7 +23885,6 @@ func (ptr *QCameraViewfinderSettingsControl2) DeleteLaterDefault() {
 
 //export callbackQCameraViewfinderSettingsControl2_DisconnectNotify
 func callbackQCameraViewfinderSettingsControl2_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraViewfinderSettingsControl2::disconnectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
@@ -24403,7 +23920,6 @@ func (ptr *QCameraViewfinderSettingsControl2) DisconnectNotifyDefault(sign core.
 
 //export callbackQCameraViewfinderSettingsControl2_Event
 func callbackQCameraViewfinderSettingsControl2_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraViewfinderSettingsControl2::event"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
 	}
@@ -24441,7 +23957,6 @@ func (ptr *QCameraViewfinderSettingsControl2) EventDefault(e core.QEvent_ITF) bo
 
 //export callbackQCameraViewfinderSettingsControl2_EventFilter
 func callbackQCameraViewfinderSettingsControl2_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraViewfinderSettingsControl2::eventFilter"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
 	}
@@ -24479,7 +23994,6 @@ func (ptr *QCameraViewfinderSettingsControl2) EventFilterDefault(watched core.QO
 
 //export callbackQCameraViewfinderSettingsControl2_MetaObject
 func callbackQCameraViewfinderSettingsControl2_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraViewfinderSettingsControl2::metaObject"); signal != nil {
 		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
 	}
@@ -24563,7 +24077,6 @@ func NewQCameraZoomControl(parent core.QObject_ITF) *QCameraZoomControl {
 
 //export callbackQCameraZoomControl_CurrentDigitalZoom
 func callbackQCameraZoomControl_CurrentDigitalZoom(ptr unsafe.Pointer) C.double {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraZoomControl::currentDigitalZoom"); signal != nil {
 		return C.double(signal.(func() float64)())
 	}
@@ -24594,7 +24107,6 @@ func (ptr *QCameraZoomControl) CurrentDigitalZoom() float64 {
 
 //export callbackQCameraZoomControl_CurrentDigitalZoomChanged
 func callbackQCameraZoomControl_CurrentDigitalZoomChanged(ptr unsafe.Pointer, zoom C.double) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraZoomControl::currentDigitalZoomChanged"); signal != nil {
 		signal.(func(float64))(float64(zoom))
 	}
@@ -24623,7 +24135,6 @@ func (ptr *QCameraZoomControl) CurrentDigitalZoomChanged(zoom float64) {
 
 //export callbackQCameraZoomControl_CurrentOpticalZoom
 func callbackQCameraZoomControl_CurrentOpticalZoom(ptr unsafe.Pointer) C.double {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraZoomControl::currentOpticalZoom"); signal != nil {
 		return C.double(signal.(func() float64)())
 	}
@@ -24654,7 +24165,6 @@ func (ptr *QCameraZoomControl) CurrentOpticalZoom() float64 {
 
 //export callbackQCameraZoomControl_CurrentOpticalZoomChanged
 func callbackQCameraZoomControl_CurrentOpticalZoomChanged(ptr unsafe.Pointer, zoom C.double) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraZoomControl::currentOpticalZoomChanged"); signal != nil {
 		signal.(func(float64))(float64(zoom))
 	}
@@ -24683,7 +24193,6 @@ func (ptr *QCameraZoomControl) CurrentOpticalZoomChanged(zoom float64) {
 
 //export callbackQCameraZoomControl_MaximumDigitalZoom
 func callbackQCameraZoomControl_MaximumDigitalZoom(ptr unsafe.Pointer) C.double {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraZoomControl::maximumDigitalZoom"); signal != nil {
 		return C.double(signal.(func() float64)())
 	}
@@ -24714,7 +24223,6 @@ func (ptr *QCameraZoomControl) MaximumDigitalZoom() float64 {
 
 //export callbackQCameraZoomControl_MaximumDigitalZoomChanged
 func callbackQCameraZoomControl_MaximumDigitalZoomChanged(ptr unsafe.Pointer, zoom C.double) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraZoomControl::maximumDigitalZoomChanged"); signal != nil {
 		signal.(func(float64))(float64(zoom))
 	}
@@ -24743,7 +24251,6 @@ func (ptr *QCameraZoomControl) MaximumDigitalZoomChanged(zoom float64) {
 
 //export callbackQCameraZoomControl_MaximumOpticalZoom
 func callbackQCameraZoomControl_MaximumOpticalZoom(ptr unsafe.Pointer) C.double {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraZoomControl::maximumOpticalZoom"); signal != nil {
 		return C.double(signal.(func() float64)())
 	}
@@ -24774,7 +24281,6 @@ func (ptr *QCameraZoomControl) MaximumOpticalZoom() float64 {
 
 //export callbackQCameraZoomControl_MaximumOpticalZoomChanged
 func callbackQCameraZoomControl_MaximumOpticalZoomChanged(ptr unsafe.Pointer, zoom C.double) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraZoomControl::maximumOpticalZoomChanged"); signal != nil {
 		signal.(func(float64))(float64(zoom))
 	}
@@ -24803,7 +24309,6 @@ func (ptr *QCameraZoomControl) MaximumOpticalZoomChanged(zoom float64) {
 
 //export callbackQCameraZoomControl_RequestedDigitalZoom
 func callbackQCameraZoomControl_RequestedDigitalZoom(ptr unsafe.Pointer) C.double {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraZoomControl::requestedDigitalZoom"); signal != nil {
 		return C.double(signal.(func() float64)())
 	}
@@ -24834,7 +24339,6 @@ func (ptr *QCameraZoomControl) RequestedDigitalZoom() float64 {
 
 //export callbackQCameraZoomControl_RequestedDigitalZoomChanged
 func callbackQCameraZoomControl_RequestedDigitalZoomChanged(ptr unsafe.Pointer, zoom C.double) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraZoomControl::requestedDigitalZoomChanged"); signal != nil {
 		signal.(func(float64))(float64(zoom))
 	}
@@ -24863,7 +24367,6 @@ func (ptr *QCameraZoomControl) RequestedDigitalZoomChanged(zoom float64) {
 
 //export callbackQCameraZoomControl_RequestedOpticalZoom
 func callbackQCameraZoomControl_RequestedOpticalZoom(ptr unsafe.Pointer) C.double {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraZoomControl::requestedOpticalZoom"); signal != nil {
 		return C.double(signal.(func() float64)())
 	}
@@ -24894,7 +24397,6 @@ func (ptr *QCameraZoomControl) RequestedOpticalZoom() float64 {
 
 //export callbackQCameraZoomControl_RequestedOpticalZoomChanged
 func callbackQCameraZoomControl_RequestedOpticalZoomChanged(ptr unsafe.Pointer, zoom C.double) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraZoomControl::requestedOpticalZoomChanged"); signal != nil {
 		signal.(func(float64))(float64(zoom))
 	}
@@ -24923,7 +24425,6 @@ func (ptr *QCameraZoomControl) RequestedOpticalZoomChanged(zoom float64) {
 
 //export callbackQCameraZoomControl_ZoomTo
 func callbackQCameraZoomControl_ZoomTo(ptr unsafe.Pointer, optical C.double, digital C.double) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraZoomControl::zoomTo"); signal != nil {
 		signal.(func(float64, float64))(float64(optical), float64(digital))
 	}
@@ -24960,7 +24461,6 @@ func (ptr *QCameraZoomControl) DestroyQCameraZoomControl() {
 
 //export callbackQCameraZoomControl_TimerEvent
 func callbackQCameraZoomControl_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraZoomControl::timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
 	} else {
@@ -24996,7 +24496,6 @@ func (ptr *QCameraZoomControl) TimerEventDefault(event core.QTimerEvent_ITF) {
 
 //export callbackQCameraZoomControl_ChildEvent
 func callbackQCameraZoomControl_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraZoomControl::childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
 	} else {
@@ -25032,7 +24531,6 @@ func (ptr *QCameraZoomControl) ChildEventDefault(event core.QChildEvent_ITF) {
 
 //export callbackQCameraZoomControl_ConnectNotify
 func callbackQCameraZoomControl_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraZoomControl::connectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
@@ -25068,7 +24566,6 @@ func (ptr *QCameraZoomControl) ConnectNotifyDefault(sign core.QMetaMethod_ITF) {
 
 //export callbackQCameraZoomControl_CustomEvent
 func callbackQCameraZoomControl_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraZoomControl::customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
 	} else {
@@ -25143,7 +24640,6 @@ func (ptr *QCameraZoomControl) DeleteLaterDefault() {
 
 //export callbackQCameraZoomControl_DisconnectNotify
 func callbackQCameraZoomControl_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraZoomControl::disconnectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
@@ -25179,7 +24675,6 @@ func (ptr *QCameraZoomControl) DisconnectNotifyDefault(sign core.QMetaMethod_ITF
 
 //export callbackQCameraZoomControl_Event
 func callbackQCameraZoomControl_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraZoomControl::event"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
 	}
@@ -25217,7 +24712,6 @@ func (ptr *QCameraZoomControl) EventDefault(e core.QEvent_ITF) bool {
 
 //export callbackQCameraZoomControl_EventFilter
 func callbackQCameraZoomControl_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraZoomControl::eventFilter"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
 	}
@@ -25255,7 +24749,6 @@ func (ptr *QCameraZoomControl) EventFilterDefault(watched core.QObject_ITF, even
 
 //export callbackQCameraZoomControl_MetaObject
 func callbackQCameraZoomControl_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QCameraZoomControl::metaObject"); signal != nil {
 		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
 	}
@@ -25335,7 +24828,6 @@ func NewQGraphicsVideoItemFromPointer(ptr unsafe.Pointer) *QGraphicsVideoItem {
 
 //export callbackQGraphicsVideoItem_NativeSizeChanged
 func callbackQGraphicsVideoItem_NativeSizeChanged(ptr unsafe.Pointer, size unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QGraphicsVideoItem::nativeSizeChanged"); signal != nil {
 		signal.(func(*core.QSizeF))(core.NewQSizeFFromPointer(size))
 	}
@@ -25379,7 +24871,6 @@ func (ptr *QGraphicsVideoItem) AspectRatioMode() core.Qt__AspectRatioMode {
 
 //export callbackQGraphicsVideoItem_BoundingRect
 func callbackQGraphicsVideoItem_BoundingRect(ptr unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QGraphicsVideoItem::boundingRect"); signal != nil {
 		return core.PointerFromQRectF(signal.(func() *core.QRectF)())
 	}
@@ -25421,7 +24912,6 @@ func (ptr *QGraphicsVideoItem) BoundingRectDefault() *core.QRectF {
 
 //export callbackQGraphicsVideoItem_MediaObject
 func callbackQGraphicsVideoItem_MediaObject(ptr unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QGraphicsVideoItem::mediaObject"); signal != nil {
 		return PointerFromQMediaObject(signal.(func() *QMediaObject)())
 	}
@@ -25485,7 +24975,6 @@ func (ptr *QGraphicsVideoItem) Offset() *core.QPointF {
 
 //export callbackQGraphicsVideoItem_Paint
 func callbackQGraphicsVideoItem_Paint(ptr unsafe.Pointer, painter unsafe.Pointer, option unsafe.Pointer, widget unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QGraphicsVideoItem::paint"); signal != nil {
 		signal.(func(*gui.QPainter, *widgets.QStyleOptionGraphicsItem, *widgets.QWidget))(gui.NewQPainterFromPointer(painter), widgets.NewQStyleOptionGraphicsItemFromPointer(option), widgets.NewQWidgetFromPointer(widget))
 	} else {
@@ -25556,7 +25045,6 @@ func (ptr *QGraphicsVideoItem) DestroyQGraphicsVideoItem() {
 
 //export callbackQGraphicsVideoItem_Event
 func callbackQGraphicsVideoItem_Event(ptr unsafe.Pointer, ev unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QGraphicsVideoItem::event"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(ev)))))
 	}
@@ -25629,7 +25117,6 @@ func (ptr *QGraphicsVideoItem) UpdateMicroFocusDefault() {
 
 //export callbackQGraphicsVideoItem_TimerEvent
 func callbackQGraphicsVideoItem_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QGraphicsVideoItem::timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
 	} else {
@@ -25665,7 +25152,6 @@ func (ptr *QGraphicsVideoItem) TimerEventDefault(event core.QTimerEvent_ITF) {
 
 //export callbackQGraphicsVideoItem_ChildEvent
 func callbackQGraphicsVideoItem_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QGraphicsVideoItem::childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
 	} else {
@@ -25701,7 +25187,6 @@ func (ptr *QGraphicsVideoItem) ChildEventDefault(event core.QChildEvent_ITF) {
 
 //export callbackQGraphicsVideoItem_ConnectNotify
 func callbackQGraphicsVideoItem_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QGraphicsVideoItem::connectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
@@ -25737,7 +25222,6 @@ func (ptr *QGraphicsVideoItem) ConnectNotifyDefault(sign core.QMetaMethod_ITF) {
 
 //export callbackQGraphicsVideoItem_CustomEvent
 func callbackQGraphicsVideoItem_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QGraphicsVideoItem::customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
 	} else {
@@ -25812,7 +25296,6 @@ func (ptr *QGraphicsVideoItem) DeleteLaterDefault() {
 
 //export callbackQGraphicsVideoItem_DisconnectNotify
 func callbackQGraphicsVideoItem_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QGraphicsVideoItem::disconnectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
@@ -25848,7 +25331,6 @@ func (ptr *QGraphicsVideoItem) DisconnectNotifyDefault(sign core.QMetaMethod_ITF
 
 //export callbackQGraphicsVideoItem_EventFilter
 func callbackQGraphicsVideoItem_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QGraphicsVideoItem::eventFilter"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
 	}
@@ -25886,7 +25368,6 @@ func (ptr *QGraphicsVideoItem) EventFilterDefault(watched core.QObject_ITF, even
 
 //export callbackQGraphicsVideoItem_MetaObject
 func callbackQGraphicsVideoItem_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QGraphicsVideoItem::metaObject"); signal != nil {
 		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
 	}
@@ -25924,7 +25405,6 @@ func (ptr *QGraphicsVideoItem) MetaObjectDefault() *core.QMetaObject {
 
 //export callbackQGraphicsVideoItem_Advance
 func callbackQGraphicsVideoItem_Advance(ptr unsafe.Pointer, phase C.int) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QGraphicsVideoItem::advance"); signal != nil {
 		signal.(func(int))(int(int32(phase)))
 	} else {
@@ -25960,7 +25440,6 @@ func (ptr *QGraphicsVideoItem) AdvanceDefault(phase int) {
 
 //export callbackQGraphicsVideoItem_CollidesWithItem
 func callbackQGraphicsVideoItem_CollidesWithItem(ptr unsafe.Pointer, other unsafe.Pointer, mode C.longlong) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QGraphicsVideoItem::collidesWithItem"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*widgets.QGraphicsItem, core.Qt__ItemSelectionMode) bool)(widgets.NewQGraphicsItemFromPointer(other), core.Qt__ItemSelectionMode(mode)))))
 	}
@@ -25998,7 +25477,6 @@ func (ptr *QGraphicsVideoItem) CollidesWithItemDefault(other widgets.QGraphicsIt
 
 //export callbackQGraphicsVideoItem_CollidesWithPath
 func callbackQGraphicsVideoItem_CollidesWithPath(ptr unsafe.Pointer, path unsafe.Pointer, mode C.longlong) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QGraphicsVideoItem::collidesWithPath"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*gui.QPainterPath, core.Qt__ItemSelectionMode) bool)(gui.NewQPainterPathFromPointer(path), core.Qt__ItemSelectionMode(mode)))))
 	}
@@ -26036,7 +25514,6 @@ func (ptr *QGraphicsVideoItem) CollidesWithPathDefault(path gui.QPainterPath_ITF
 
 //export callbackQGraphicsVideoItem_Contains
 func callbackQGraphicsVideoItem_Contains(ptr unsafe.Pointer, point unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QGraphicsVideoItem::contains"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QPointF) bool)(core.NewQPointFFromPointer(point)))))
 	}
@@ -26074,7 +25551,6 @@ func (ptr *QGraphicsVideoItem) ContainsDefault(point core.QPointF_ITF) bool {
 
 //export callbackQGraphicsVideoItem_ContextMenuEvent
 func callbackQGraphicsVideoItem_ContextMenuEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QGraphicsVideoItem::contextMenuEvent"); signal != nil {
 		signal.(func(*widgets.QGraphicsSceneContextMenuEvent))(widgets.NewQGraphicsSceneContextMenuEventFromPointer(event))
 	} else {
@@ -26110,7 +25586,6 @@ func (ptr *QGraphicsVideoItem) ContextMenuEventDefault(event widgets.QGraphicsSc
 
 //export callbackQGraphicsVideoItem_DragEnterEvent
 func callbackQGraphicsVideoItem_DragEnterEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QGraphicsVideoItem::dragEnterEvent"); signal != nil {
 		signal.(func(*widgets.QGraphicsSceneDragDropEvent))(widgets.NewQGraphicsSceneDragDropEventFromPointer(event))
 	} else {
@@ -26146,7 +25621,6 @@ func (ptr *QGraphicsVideoItem) DragEnterEventDefault(event widgets.QGraphicsScen
 
 //export callbackQGraphicsVideoItem_DragLeaveEvent
 func callbackQGraphicsVideoItem_DragLeaveEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QGraphicsVideoItem::dragLeaveEvent"); signal != nil {
 		signal.(func(*widgets.QGraphicsSceneDragDropEvent))(widgets.NewQGraphicsSceneDragDropEventFromPointer(event))
 	} else {
@@ -26182,7 +25656,6 @@ func (ptr *QGraphicsVideoItem) DragLeaveEventDefault(event widgets.QGraphicsScen
 
 //export callbackQGraphicsVideoItem_DragMoveEvent
 func callbackQGraphicsVideoItem_DragMoveEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QGraphicsVideoItem::dragMoveEvent"); signal != nil {
 		signal.(func(*widgets.QGraphicsSceneDragDropEvent))(widgets.NewQGraphicsSceneDragDropEventFromPointer(event))
 	} else {
@@ -26218,7 +25691,6 @@ func (ptr *QGraphicsVideoItem) DragMoveEventDefault(event widgets.QGraphicsScene
 
 //export callbackQGraphicsVideoItem_DropEvent
 func callbackQGraphicsVideoItem_DropEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QGraphicsVideoItem::dropEvent"); signal != nil {
 		signal.(func(*widgets.QGraphicsSceneDragDropEvent))(widgets.NewQGraphicsSceneDragDropEventFromPointer(event))
 	} else {
@@ -26254,7 +25726,6 @@ func (ptr *QGraphicsVideoItem) DropEventDefault(event widgets.QGraphicsSceneDrag
 
 //export callbackQGraphicsVideoItem_FocusInEvent
 func callbackQGraphicsVideoItem_FocusInEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QGraphicsVideoItem::focusInEvent"); signal != nil {
 		signal.(func(*gui.QFocusEvent))(gui.NewQFocusEventFromPointer(event))
 	} else {
@@ -26290,7 +25761,6 @@ func (ptr *QGraphicsVideoItem) FocusInEventDefault(event gui.QFocusEvent_ITF) {
 
 //export callbackQGraphicsVideoItem_FocusOutEvent
 func callbackQGraphicsVideoItem_FocusOutEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QGraphicsVideoItem::focusOutEvent"); signal != nil {
 		signal.(func(*gui.QFocusEvent))(gui.NewQFocusEventFromPointer(event))
 	} else {
@@ -26326,7 +25796,6 @@ func (ptr *QGraphicsVideoItem) FocusOutEventDefault(event gui.QFocusEvent_ITF) {
 
 //export callbackQGraphicsVideoItem_HoverEnterEvent
 func callbackQGraphicsVideoItem_HoverEnterEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QGraphicsVideoItem::hoverEnterEvent"); signal != nil {
 		signal.(func(*widgets.QGraphicsSceneHoverEvent))(widgets.NewQGraphicsSceneHoverEventFromPointer(event))
 	} else {
@@ -26362,7 +25831,6 @@ func (ptr *QGraphicsVideoItem) HoverEnterEventDefault(event widgets.QGraphicsSce
 
 //export callbackQGraphicsVideoItem_HoverLeaveEvent
 func callbackQGraphicsVideoItem_HoverLeaveEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QGraphicsVideoItem::hoverLeaveEvent"); signal != nil {
 		signal.(func(*widgets.QGraphicsSceneHoverEvent))(widgets.NewQGraphicsSceneHoverEventFromPointer(event))
 	} else {
@@ -26398,7 +25866,6 @@ func (ptr *QGraphicsVideoItem) HoverLeaveEventDefault(event widgets.QGraphicsSce
 
 //export callbackQGraphicsVideoItem_HoverMoveEvent
 func callbackQGraphicsVideoItem_HoverMoveEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QGraphicsVideoItem::hoverMoveEvent"); signal != nil {
 		signal.(func(*widgets.QGraphicsSceneHoverEvent))(widgets.NewQGraphicsSceneHoverEventFromPointer(event))
 	} else {
@@ -26434,7 +25901,6 @@ func (ptr *QGraphicsVideoItem) HoverMoveEventDefault(event widgets.QGraphicsScen
 
 //export callbackQGraphicsVideoItem_InputMethodEvent
 func callbackQGraphicsVideoItem_InputMethodEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QGraphicsVideoItem::inputMethodEvent"); signal != nil {
 		signal.(func(*gui.QInputMethodEvent))(gui.NewQInputMethodEventFromPointer(event))
 	} else {
@@ -26470,7 +25936,6 @@ func (ptr *QGraphicsVideoItem) InputMethodEventDefault(event gui.QInputMethodEve
 
 //export callbackQGraphicsVideoItem_InputMethodQuery
 func callbackQGraphicsVideoItem_InputMethodQuery(ptr unsafe.Pointer, query C.longlong) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QGraphicsVideoItem::inputMethodQuery"); signal != nil {
 		return core.PointerFromQVariant(signal.(func(core.Qt__InputMethodQuery) *core.QVariant)(core.Qt__InputMethodQuery(query)))
 	}
@@ -26512,7 +25977,6 @@ func (ptr *QGraphicsVideoItem) InputMethodQueryDefault(query core.Qt__InputMetho
 
 //export callbackQGraphicsVideoItem_IsObscuredBy
 func callbackQGraphicsVideoItem_IsObscuredBy(ptr unsafe.Pointer, item unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QGraphicsVideoItem::isObscuredBy"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*widgets.QGraphicsItem) bool)(widgets.NewQGraphicsItemFromPointer(item)))))
 	}
@@ -26550,7 +26014,6 @@ func (ptr *QGraphicsVideoItem) IsObscuredByDefault(item widgets.QGraphicsItem_IT
 
 //export callbackQGraphicsVideoItem_ItemChange
 func callbackQGraphicsVideoItem_ItemChange(ptr unsafe.Pointer, change C.longlong, value unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QGraphicsVideoItem::itemChange"); signal != nil {
 		return core.PointerFromQVariant(signal.(func(widgets.QGraphicsItem__GraphicsItemChange, *core.QVariant) *core.QVariant)(widgets.QGraphicsItem__GraphicsItemChange(change), core.NewQVariantFromPointer(value)))
 	}
@@ -26592,7 +26055,6 @@ func (ptr *QGraphicsVideoItem) ItemChangeDefault(change widgets.QGraphicsItem__G
 
 //export callbackQGraphicsVideoItem_KeyPressEvent
 func callbackQGraphicsVideoItem_KeyPressEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QGraphicsVideoItem::keyPressEvent"); signal != nil {
 		signal.(func(*gui.QKeyEvent))(gui.NewQKeyEventFromPointer(event))
 	} else {
@@ -26628,7 +26090,6 @@ func (ptr *QGraphicsVideoItem) KeyPressEventDefault(event gui.QKeyEvent_ITF) {
 
 //export callbackQGraphicsVideoItem_KeyReleaseEvent
 func callbackQGraphicsVideoItem_KeyReleaseEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QGraphicsVideoItem::keyReleaseEvent"); signal != nil {
 		signal.(func(*gui.QKeyEvent))(gui.NewQKeyEventFromPointer(event))
 	} else {
@@ -26664,7 +26125,6 @@ func (ptr *QGraphicsVideoItem) KeyReleaseEventDefault(event gui.QKeyEvent_ITF) {
 
 //export callbackQGraphicsVideoItem_MouseDoubleClickEvent
 func callbackQGraphicsVideoItem_MouseDoubleClickEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QGraphicsVideoItem::mouseDoubleClickEvent"); signal != nil {
 		signal.(func(*widgets.QGraphicsSceneMouseEvent))(widgets.NewQGraphicsSceneMouseEventFromPointer(event))
 	} else {
@@ -26700,7 +26160,6 @@ func (ptr *QGraphicsVideoItem) MouseDoubleClickEventDefault(event widgets.QGraph
 
 //export callbackQGraphicsVideoItem_MouseMoveEvent
 func callbackQGraphicsVideoItem_MouseMoveEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QGraphicsVideoItem::mouseMoveEvent"); signal != nil {
 		signal.(func(*widgets.QGraphicsSceneMouseEvent))(widgets.NewQGraphicsSceneMouseEventFromPointer(event))
 	} else {
@@ -26736,7 +26195,6 @@ func (ptr *QGraphicsVideoItem) MouseMoveEventDefault(event widgets.QGraphicsScen
 
 //export callbackQGraphicsVideoItem_MousePressEvent
 func callbackQGraphicsVideoItem_MousePressEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QGraphicsVideoItem::mousePressEvent"); signal != nil {
 		signal.(func(*widgets.QGraphicsSceneMouseEvent))(widgets.NewQGraphicsSceneMouseEventFromPointer(event))
 	} else {
@@ -26772,7 +26230,6 @@ func (ptr *QGraphicsVideoItem) MousePressEventDefault(event widgets.QGraphicsSce
 
 //export callbackQGraphicsVideoItem_MouseReleaseEvent
 func callbackQGraphicsVideoItem_MouseReleaseEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QGraphicsVideoItem::mouseReleaseEvent"); signal != nil {
 		signal.(func(*widgets.QGraphicsSceneMouseEvent))(widgets.NewQGraphicsSceneMouseEventFromPointer(event))
 	} else {
@@ -26808,7 +26265,6 @@ func (ptr *QGraphicsVideoItem) MouseReleaseEventDefault(event widgets.QGraphicsS
 
 //export callbackQGraphicsVideoItem_OpaqueArea
 func callbackQGraphicsVideoItem_OpaqueArea(ptr unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QGraphicsVideoItem::opaqueArea"); signal != nil {
 		return gui.PointerFromQPainterPath(signal.(func() *gui.QPainterPath)())
 	}
@@ -26850,7 +26306,6 @@ func (ptr *QGraphicsVideoItem) OpaqueAreaDefault() *gui.QPainterPath {
 
 //export callbackQGraphicsVideoItem_SceneEvent
 func callbackQGraphicsVideoItem_SceneEvent(ptr unsafe.Pointer, event unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QGraphicsVideoItem::sceneEvent"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(event)))))
 	}
@@ -26888,7 +26343,6 @@ func (ptr *QGraphicsVideoItem) SceneEventDefault(event core.QEvent_ITF) bool {
 
 //export callbackQGraphicsVideoItem_SceneEventFilter
 func callbackQGraphicsVideoItem_SceneEventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QGraphicsVideoItem::sceneEventFilter"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*widgets.QGraphicsItem, *core.QEvent) bool)(widgets.NewQGraphicsItemFromPointer(watched), core.NewQEventFromPointer(event)))))
 	}
@@ -26926,7 +26380,6 @@ func (ptr *QGraphicsVideoItem) SceneEventFilterDefault(watched widgets.QGraphics
 
 //export callbackQGraphicsVideoItem_Shape
 func callbackQGraphicsVideoItem_Shape(ptr unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QGraphicsVideoItem::shape"); signal != nil {
 		return gui.PointerFromQPainterPath(signal.(func() *gui.QPainterPath)())
 	}
@@ -26968,7 +26421,6 @@ func (ptr *QGraphicsVideoItem) ShapeDefault() *gui.QPainterPath {
 
 //export callbackQGraphicsVideoItem_Type
 func callbackQGraphicsVideoItem_Type(ptr unsafe.Pointer) C.int {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QGraphicsVideoItem::type"); signal != nil {
 		return C.int(int32(signal.(func() int)()))
 	}
@@ -27006,7 +26458,6 @@ func (ptr *QGraphicsVideoItem) TypeDefault() int {
 
 //export callbackQGraphicsVideoItem_WheelEvent
 func callbackQGraphicsVideoItem_WheelEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QGraphicsVideoItem::wheelEvent"); signal != nil {
 		signal.(func(*widgets.QGraphicsSceneWheelEvent))(widgets.NewQGraphicsSceneWheelEventFromPointer(event))
 	} else {
@@ -27042,7 +26493,6 @@ func (ptr *QGraphicsVideoItem) WheelEventDefault(event widgets.QGraphicsSceneWhe
 
 //export callbackQGraphicsVideoItem_SetMediaObject
 func callbackQGraphicsVideoItem_SetMediaObject(ptr unsafe.Pointer, object unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QGraphicsVideoItem::setMediaObject"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*QMediaObject) bool)(NewQMediaObjectFromPointer(object)))))
 	}
@@ -27112,7 +26562,6 @@ func NewQImageEncoderControlFromPointer(ptr unsafe.Pointer) *QImageEncoderContro
 
 //export callbackQImageEncoderControl_ImageCodecDescription
 func callbackQImageEncoderControl_ImageCodecDescription(ptr unsafe.Pointer, codec C.struct_QtMultimedia_PackedString) *C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QImageEncoderControl::imageCodecDescription"); signal != nil {
 		return C.CString(signal.(func(string) string)(cGoUnpackString(codec)))
 	}
@@ -27145,7 +26594,6 @@ func (ptr *QImageEncoderControl) ImageCodecDescription(codec string) string {
 
 //export callbackQImageEncoderControl_ImageSettings
 func callbackQImageEncoderControl_ImageSettings(ptr unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QImageEncoderControl::imageSettings"); signal != nil {
 		return PointerFromQImageEncoderSettings(signal.(func() *QImageEncoderSettings)())
 	}
@@ -27178,7 +26626,6 @@ func (ptr *QImageEncoderControl) ImageSettings() *QImageEncoderSettings {
 
 //export callbackQImageEncoderControl_SetImageSettings
 func callbackQImageEncoderControl_SetImageSettings(ptr unsafe.Pointer, settings unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QImageEncoderControl::setImageSettings"); signal != nil {
 		signal.(func(*QImageEncoderSettings))(NewQImageEncoderSettingsFromPointer(settings))
 	}
@@ -27207,7 +26654,6 @@ func (ptr *QImageEncoderControl) SetImageSettings(settings QImageEncoderSettings
 
 //export callbackQImageEncoderControl_SupportedImageCodecs
 func callbackQImageEncoderControl_SupportedImageCodecs(ptr unsafe.Pointer) *C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QImageEncoderControl::supportedImageCodecs"); signal != nil {
 		return C.CString(strings.Join(signal.(func() []string)(), "|"))
 	}
@@ -27265,7 +26711,6 @@ func (ptr *QImageEncoderControl) SupportedResolutions(settings QImageEncoderSett
 
 //export callbackQImageEncoderControl_DestroyQImageEncoderControl
 func callbackQImageEncoderControl_DestroyQImageEncoderControl(ptr unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QImageEncoderControl::~QImageEncoderControl"); signal != nil {
 		signal.(func())()
 	} else {
@@ -27314,7 +26759,6 @@ func (ptr *QImageEncoderControl) supportedResolutions_atList(i int) *core.QSize 
 
 //export callbackQImageEncoderControl_TimerEvent
 func callbackQImageEncoderControl_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QImageEncoderControl::timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
 	} else {
@@ -27350,7 +26794,6 @@ func (ptr *QImageEncoderControl) TimerEventDefault(event core.QTimerEvent_ITF) {
 
 //export callbackQImageEncoderControl_ChildEvent
 func callbackQImageEncoderControl_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QImageEncoderControl::childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
 	} else {
@@ -27386,7 +26829,6 @@ func (ptr *QImageEncoderControl) ChildEventDefault(event core.QChildEvent_ITF) {
 
 //export callbackQImageEncoderControl_ConnectNotify
 func callbackQImageEncoderControl_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QImageEncoderControl::connectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
@@ -27422,7 +26864,6 @@ func (ptr *QImageEncoderControl) ConnectNotifyDefault(sign core.QMetaMethod_ITF)
 
 //export callbackQImageEncoderControl_CustomEvent
 func callbackQImageEncoderControl_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QImageEncoderControl::customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
 	} else {
@@ -27497,7 +26938,6 @@ func (ptr *QImageEncoderControl) DeleteLaterDefault() {
 
 //export callbackQImageEncoderControl_DisconnectNotify
 func callbackQImageEncoderControl_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QImageEncoderControl::disconnectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
@@ -27533,7 +26973,6 @@ func (ptr *QImageEncoderControl) DisconnectNotifyDefault(sign core.QMetaMethod_I
 
 //export callbackQImageEncoderControl_Event
 func callbackQImageEncoderControl_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QImageEncoderControl::event"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
 	}
@@ -27571,7 +27010,6 @@ func (ptr *QImageEncoderControl) EventDefault(e core.QEvent_ITF) bool {
 
 //export callbackQImageEncoderControl_EventFilter
 func callbackQImageEncoderControl_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QImageEncoderControl::eventFilter"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
 	}
@@ -27609,7 +27047,6 @@ func (ptr *QImageEncoderControl) EventFilterDefault(watched core.QObject_ITF, ev
 
 //export callbackQImageEncoderControl_MetaObject
 func callbackQImageEncoderControl_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QImageEncoderControl::metaObject"); signal != nil {
 		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
 	}
@@ -27824,7 +27261,6 @@ func NewQMediaAudioProbeControl(parent core.QObject_ITF) *QMediaAudioProbeContro
 
 //export callbackQMediaAudioProbeControl_AudioBufferProbed
 func callbackQMediaAudioProbeControl_AudioBufferProbed(ptr unsafe.Pointer, buffer unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaAudioProbeControl::audioBufferProbed"); signal != nil {
 		signal.(func(*QAudioBuffer))(NewQAudioBufferFromPointer(buffer))
 	}
@@ -27853,7 +27289,6 @@ func (ptr *QMediaAudioProbeControl) AudioBufferProbed(buffer QAudioBuffer_ITF) {
 
 //export callbackQMediaAudioProbeControl_Flush
 func callbackQMediaAudioProbeControl_Flush(ptr unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaAudioProbeControl::flush"); signal != nil {
 		signal.(func())()
 	}
@@ -27882,7 +27317,6 @@ func (ptr *QMediaAudioProbeControl) Flush() {
 
 //export callbackQMediaAudioProbeControl_DestroyQMediaAudioProbeControl
 func callbackQMediaAudioProbeControl_DestroyQMediaAudioProbeControl(ptr unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaAudioProbeControl::~QMediaAudioProbeControl"); signal != nil {
 		signal.(func())()
 	} else {
@@ -27922,7 +27356,6 @@ func (ptr *QMediaAudioProbeControl) DestroyQMediaAudioProbeControlDefault() {
 
 //export callbackQMediaAudioProbeControl_TimerEvent
 func callbackQMediaAudioProbeControl_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaAudioProbeControl::timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
 	} else {
@@ -27958,7 +27391,6 @@ func (ptr *QMediaAudioProbeControl) TimerEventDefault(event core.QTimerEvent_ITF
 
 //export callbackQMediaAudioProbeControl_ChildEvent
 func callbackQMediaAudioProbeControl_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaAudioProbeControl::childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
 	} else {
@@ -27994,7 +27426,6 @@ func (ptr *QMediaAudioProbeControl) ChildEventDefault(event core.QChildEvent_ITF
 
 //export callbackQMediaAudioProbeControl_ConnectNotify
 func callbackQMediaAudioProbeControl_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaAudioProbeControl::connectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
@@ -28030,7 +27461,6 @@ func (ptr *QMediaAudioProbeControl) ConnectNotifyDefault(sign core.QMetaMethod_I
 
 //export callbackQMediaAudioProbeControl_CustomEvent
 func callbackQMediaAudioProbeControl_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaAudioProbeControl::customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
 	} else {
@@ -28105,7 +27535,6 @@ func (ptr *QMediaAudioProbeControl) DeleteLaterDefault() {
 
 //export callbackQMediaAudioProbeControl_DisconnectNotify
 func callbackQMediaAudioProbeControl_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaAudioProbeControl::disconnectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
@@ -28141,7 +27570,6 @@ func (ptr *QMediaAudioProbeControl) DisconnectNotifyDefault(sign core.QMetaMetho
 
 //export callbackQMediaAudioProbeControl_Event
 func callbackQMediaAudioProbeControl_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaAudioProbeControl::event"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
 	}
@@ -28179,7 +27607,6 @@ func (ptr *QMediaAudioProbeControl) EventDefault(e core.QEvent_ITF) bool {
 
 //export callbackQMediaAudioProbeControl_EventFilter
 func callbackQMediaAudioProbeControl_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaAudioProbeControl::eventFilter"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
 	}
@@ -28217,7 +27644,6 @@ func (ptr *QMediaAudioProbeControl) EventFilterDefault(watched core.QObject_ITF,
 
 //export callbackQMediaAudioProbeControl_MetaObject
 func callbackQMediaAudioProbeControl_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaAudioProbeControl::metaObject"); signal != nil {
 		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
 	}
@@ -28301,7 +27727,6 @@ func NewQMediaAvailabilityControl(parent core.QObject_ITF) *QMediaAvailabilityCo
 
 //export callbackQMediaAvailabilityControl_Availability
 func callbackQMediaAvailabilityControl_Availability(ptr unsafe.Pointer) C.longlong {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaAvailabilityControl::availability"); signal != nil {
 		return C.longlong(signal.(func() QMultimedia__AvailabilityStatus)())
 	}
@@ -28332,7 +27757,6 @@ func (ptr *QMediaAvailabilityControl) Availability() QMultimedia__AvailabilitySt
 
 //export callbackQMediaAvailabilityControl_AvailabilityChanged
 func callbackQMediaAvailabilityControl_AvailabilityChanged(ptr unsafe.Pointer, availability C.longlong) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaAvailabilityControl::availabilityChanged"); signal != nil {
 		signal.(func(QMultimedia__AvailabilityStatus))(QMultimedia__AvailabilityStatus(availability))
 	}
@@ -28369,7 +27793,6 @@ func (ptr *QMediaAvailabilityControl) DestroyQMediaAvailabilityControl() {
 
 //export callbackQMediaAvailabilityControl_TimerEvent
 func callbackQMediaAvailabilityControl_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaAvailabilityControl::timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
 	} else {
@@ -28405,7 +27828,6 @@ func (ptr *QMediaAvailabilityControl) TimerEventDefault(event core.QTimerEvent_I
 
 //export callbackQMediaAvailabilityControl_ChildEvent
 func callbackQMediaAvailabilityControl_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaAvailabilityControl::childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
 	} else {
@@ -28441,7 +27863,6 @@ func (ptr *QMediaAvailabilityControl) ChildEventDefault(event core.QChildEvent_I
 
 //export callbackQMediaAvailabilityControl_ConnectNotify
 func callbackQMediaAvailabilityControl_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaAvailabilityControl::connectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
@@ -28477,7 +27898,6 @@ func (ptr *QMediaAvailabilityControl) ConnectNotifyDefault(sign core.QMetaMethod
 
 //export callbackQMediaAvailabilityControl_CustomEvent
 func callbackQMediaAvailabilityControl_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaAvailabilityControl::customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
 	} else {
@@ -28552,7 +27972,6 @@ func (ptr *QMediaAvailabilityControl) DeleteLaterDefault() {
 
 //export callbackQMediaAvailabilityControl_DisconnectNotify
 func callbackQMediaAvailabilityControl_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaAvailabilityControl::disconnectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
@@ -28588,7 +28007,6 @@ func (ptr *QMediaAvailabilityControl) DisconnectNotifyDefault(sign core.QMetaMet
 
 //export callbackQMediaAvailabilityControl_Event
 func callbackQMediaAvailabilityControl_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaAvailabilityControl::event"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
 	}
@@ -28626,7 +28044,6 @@ func (ptr *QMediaAvailabilityControl) EventDefault(e core.QEvent_ITF) bool {
 
 //export callbackQMediaAvailabilityControl_EventFilter
 func callbackQMediaAvailabilityControl_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaAvailabilityControl::eventFilter"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
 	}
@@ -28664,7 +28081,6 @@ func (ptr *QMediaAvailabilityControl) EventFilterDefault(watched core.QObject_IT
 
 //export callbackQMediaAvailabilityControl_MetaObject
 func callbackQMediaAvailabilityControl_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaAvailabilityControl::metaObject"); signal != nil {
 		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
 	}
@@ -28740,7 +28156,6 @@ func NewQMediaBindableInterfaceFromPointer(ptr unsafe.Pointer) *QMediaBindableIn
 
 //export callbackQMediaBindableInterface_MediaObject
 func callbackQMediaBindableInterface_MediaObject(ptr unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaBindableInterface::mediaObject"); signal != nil {
 		return PointerFromQMediaObject(signal.(func() *QMediaObject)())
 	}
@@ -28775,7 +28190,6 @@ func (ptr *QMediaBindableInterface) MediaObject() *QMediaObject {
 
 //export callbackQMediaBindableInterface_SetMediaObject
 func callbackQMediaBindableInterface_SetMediaObject(ptr unsafe.Pointer, object unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaBindableInterface::setMediaObject"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*QMediaObject) bool)(NewQMediaObjectFromPointer(object)))))
 	}
@@ -28806,7 +28220,6 @@ func (ptr *QMediaBindableInterface) SetMediaObject(object QMediaObject_ITF) bool
 
 //export callbackQMediaBindableInterface_DestroyQMediaBindableInterface
 func callbackQMediaBindableInterface_DestroyQMediaBindableInterface(ptr unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaBindableInterface::~QMediaBindableInterface"); signal != nil {
 		signal.(func())()
 	} else {
@@ -28892,7 +28305,6 @@ func NewQMediaContainerControl(parent core.QObject_ITF) *QMediaContainerControl 
 
 //export callbackQMediaContainerControl_ContainerDescription
 func callbackQMediaContainerControl_ContainerDescription(ptr unsafe.Pointer, format C.struct_QtMultimedia_PackedString) *C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaContainerControl::containerDescription"); signal != nil {
 		return C.CString(signal.(func(string) string)(cGoUnpackString(format)))
 	}
@@ -28925,7 +28337,6 @@ func (ptr *QMediaContainerControl) ContainerDescription(format string) string {
 
 //export callbackQMediaContainerControl_ContainerFormat
 func callbackQMediaContainerControl_ContainerFormat(ptr unsafe.Pointer) *C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaContainerControl::containerFormat"); signal != nil {
 		return C.CString(signal.(func() string)())
 	}
@@ -28956,7 +28367,6 @@ func (ptr *QMediaContainerControl) ContainerFormat() string {
 
 //export callbackQMediaContainerControl_SetContainerFormat
 func callbackQMediaContainerControl_SetContainerFormat(ptr unsafe.Pointer, format C.struct_QtMultimedia_PackedString) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaContainerControl::setContainerFormat"); signal != nil {
 		signal.(func(string))(cGoUnpackString(format))
 	}
@@ -28987,7 +28397,6 @@ func (ptr *QMediaContainerControl) SetContainerFormat(format string) {
 
 //export callbackQMediaContainerControl_SupportedContainers
 func callbackQMediaContainerControl_SupportedContainers(ptr unsafe.Pointer) *C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaContainerControl::supportedContainers"); signal != nil {
 		return C.CString(strings.Join(signal.(func() []string)(), "|"))
 	}
@@ -29018,7 +28427,6 @@ func (ptr *QMediaContainerControl) SupportedContainers() []string {
 
 //export callbackQMediaContainerControl_DestroyQMediaContainerControl
 func callbackQMediaContainerControl_DestroyQMediaContainerControl(ptr unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaContainerControl::~QMediaContainerControl"); signal != nil {
 		signal.(func())()
 	} else {
@@ -29058,7 +28466,6 @@ func (ptr *QMediaContainerControl) DestroyQMediaContainerControlDefault() {
 
 //export callbackQMediaContainerControl_TimerEvent
 func callbackQMediaContainerControl_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaContainerControl::timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
 	} else {
@@ -29094,7 +28501,6 @@ func (ptr *QMediaContainerControl) TimerEventDefault(event core.QTimerEvent_ITF)
 
 //export callbackQMediaContainerControl_ChildEvent
 func callbackQMediaContainerControl_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaContainerControl::childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
 	} else {
@@ -29130,7 +28536,6 @@ func (ptr *QMediaContainerControl) ChildEventDefault(event core.QChildEvent_ITF)
 
 //export callbackQMediaContainerControl_ConnectNotify
 func callbackQMediaContainerControl_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaContainerControl::connectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
@@ -29166,7 +28571,6 @@ func (ptr *QMediaContainerControl) ConnectNotifyDefault(sign core.QMetaMethod_IT
 
 //export callbackQMediaContainerControl_CustomEvent
 func callbackQMediaContainerControl_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaContainerControl::customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
 	} else {
@@ -29241,7 +28645,6 @@ func (ptr *QMediaContainerControl) DeleteLaterDefault() {
 
 //export callbackQMediaContainerControl_DisconnectNotify
 func callbackQMediaContainerControl_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaContainerControl::disconnectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
@@ -29277,7 +28680,6 @@ func (ptr *QMediaContainerControl) DisconnectNotifyDefault(sign core.QMetaMethod
 
 //export callbackQMediaContainerControl_Event
 func callbackQMediaContainerControl_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaContainerControl::event"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
 	}
@@ -29315,7 +28717,6 @@ func (ptr *QMediaContainerControl) EventDefault(e core.QEvent_ITF) bool {
 
 //export callbackQMediaContainerControl_EventFilter
 func callbackQMediaContainerControl_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaContainerControl::eventFilter"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
 	}
@@ -29353,7 +28754,6 @@ func (ptr *QMediaContainerControl) EventFilterDefault(watched core.QObject_ITF, 
 
 //export callbackQMediaContainerControl_MetaObject
 func callbackQMediaContainerControl_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaContainerControl::metaObject"); signal != nil {
 		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
 	}
@@ -29592,7 +28992,6 @@ func (ptr *QMediaControl) DestroyQMediaControl() {
 
 //export callbackQMediaControl_TimerEvent
 func callbackQMediaControl_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaControl::timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
 	} else {
@@ -29628,7 +29027,6 @@ func (ptr *QMediaControl) TimerEventDefault(event core.QTimerEvent_ITF) {
 
 //export callbackQMediaControl_ChildEvent
 func callbackQMediaControl_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaControl::childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
 	} else {
@@ -29664,7 +29062,6 @@ func (ptr *QMediaControl) ChildEventDefault(event core.QChildEvent_ITF) {
 
 //export callbackQMediaControl_ConnectNotify
 func callbackQMediaControl_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaControl::connectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
@@ -29700,7 +29097,6 @@ func (ptr *QMediaControl) ConnectNotifyDefault(sign core.QMetaMethod_ITF) {
 
 //export callbackQMediaControl_CustomEvent
 func callbackQMediaControl_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaControl::customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
 	} else {
@@ -29775,7 +29171,6 @@ func (ptr *QMediaControl) DeleteLaterDefault() {
 
 //export callbackQMediaControl_DisconnectNotify
 func callbackQMediaControl_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaControl::disconnectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
@@ -29811,7 +29206,6 @@ func (ptr *QMediaControl) DisconnectNotifyDefault(sign core.QMetaMethod_ITF) {
 
 //export callbackQMediaControl_Event
 func callbackQMediaControl_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaControl::event"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
 	}
@@ -29849,7 +29243,6 @@ func (ptr *QMediaControl) EventDefault(e core.QEvent_ITF) bool {
 
 //export callbackQMediaControl_EventFilter
 func callbackQMediaControl_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaControl::eventFilter"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
 	}
@@ -29887,7 +29280,6 @@ func (ptr *QMediaControl) EventFilterDefault(watched core.QObject_ITF, event cor
 
 //export callbackQMediaControl_MetaObject
 func callbackQMediaControl_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaControl::metaObject"); signal != nil {
 		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
 	}
@@ -29971,7 +29363,6 @@ func NewQMediaGaplessPlaybackControl(parent core.QObject_ITF) *QMediaGaplessPlay
 
 //export callbackQMediaGaplessPlaybackControl_AdvancedToNextMedia
 func callbackQMediaGaplessPlaybackControl_AdvancedToNextMedia(ptr unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaGaplessPlaybackControl::advancedToNextMedia"); signal != nil {
 		signal.(func())()
 	}
@@ -30000,7 +29391,6 @@ func (ptr *QMediaGaplessPlaybackControl) AdvancedToNextMedia() {
 
 //export callbackQMediaGaplessPlaybackControl_CrossfadeTime
 func callbackQMediaGaplessPlaybackControl_CrossfadeTime(ptr unsafe.Pointer) C.double {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaGaplessPlaybackControl::crossfadeTime"); signal != nil {
 		return C.double(signal.(func() float64)())
 	}
@@ -30031,7 +29421,6 @@ func (ptr *QMediaGaplessPlaybackControl) CrossfadeTime() float64 {
 
 //export callbackQMediaGaplessPlaybackControl_CrossfadeTimeChanged
 func callbackQMediaGaplessPlaybackControl_CrossfadeTimeChanged(ptr unsafe.Pointer, crossfadeTime C.double) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaGaplessPlaybackControl::crossfadeTimeChanged"); signal != nil {
 		signal.(func(float64))(float64(crossfadeTime))
 	}
@@ -30060,7 +29449,6 @@ func (ptr *QMediaGaplessPlaybackControl) CrossfadeTimeChanged(crossfadeTime floa
 
 //export callbackQMediaGaplessPlaybackControl_IsCrossfadeSupported
 func callbackQMediaGaplessPlaybackControl_IsCrossfadeSupported(ptr unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaGaplessPlaybackControl::isCrossfadeSupported"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func() bool)())))
 	}
@@ -30091,7 +29479,6 @@ func (ptr *QMediaGaplessPlaybackControl) IsCrossfadeSupported() bool {
 
 //export callbackQMediaGaplessPlaybackControl_NextMedia
 func callbackQMediaGaplessPlaybackControl_NextMedia(ptr unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaGaplessPlaybackControl::nextMedia"); signal != nil {
 		return PointerFromQMediaContent(signal.(func() *QMediaContent)())
 	}
@@ -30124,7 +29511,6 @@ func (ptr *QMediaGaplessPlaybackControl) NextMedia() *QMediaContent {
 
 //export callbackQMediaGaplessPlaybackControl_NextMediaChanged
 func callbackQMediaGaplessPlaybackControl_NextMediaChanged(ptr unsafe.Pointer, media unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaGaplessPlaybackControl::nextMediaChanged"); signal != nil {
 		signal.(func(*QMediaContent))(NewQMediaContentFromPointer(media))
 	}
@@ -30153,7 +29539,6 @@ func (ptr *QMediaGaplessPlaybackControl) NextMediaChanged(media QMediaContent_IT
 
 //export callbackQMediaGaplessPlaybackControl_SetCrossfadeTime
 func callbackQMediaGaplessPlaybackControl_SetCrossfadeTime(ptr unsafe.Pointer, crossfadeTime C.double) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaGaplessPlaybackControl::setCrossfadeTime"); signal != nil {
 		signal.(func(float64))(float64(crossfadeTime))
 	}
@@ -30182,7 +29567,6 @@ func (ptr *QMediaGaplessPlaybackControl) SetCrossfadeTime(crossfadeTime float64)
 
 //export callbackQMediaGaplessPlaybackControl_SetNextMedia
 func callbackQMediaGaplessPlaybackControl_SetNextMedia(ptr unsafe.Pointer, media unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaGaplessPlaybackControl::setNextMedia"); signal != nil {
 		signal.(func(*QMediaContent))(NewQMediaContentFromPointer(media))
 	}
@@ -30211,7 +29595,6 @@ func (ptr *QMediaGaplessPlaybackControl) SetNextMedia(media QMediaContent_ITF) {
 
 //export callbackQMediaGaplessPlaybackControl_DestroyQMediaGaplessPlaybackControl
 func callbackQMediaGaplessPlaybackControl_DestroyQMediaGaplessPlaybackControl(ptr unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaGaplessPlaybackControl::~QMediaGaplessPlaybackControl"); signal != nil {
 		signal.(func())()
 	} else {
@@ -30251,7 +29634,6 @@ func (ptr *QMediaGaplessPlaybackControl) DestroyQMediaGaplessPlaybackControlDefa
 
 //export callbackQMediaGaplessPlaybackControl_TimerEvent
 func callbackQMediaGaplessPlaybackControl_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaGaplessPlaybackControl::timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
 	} else {
@@ -30287,7 +29669,6 @@ func (ptr *QMediaGaplessPlaybackControl) TimerEventDefault(event core.QTimerEven
 
 //export callbackQMediaGaplessPlaybackControl_ChildEvent
 func callbackQMediaGaplessPlaybackControl_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaGaplessPlaybackControl::childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
 	} else {
@@ -30323,7 +29704,6 @@ func (ptr *QMediaGaplessPlaybackControl) ChildEventDefault(event core.QChildEven
 
 //export callbackQMediaGaplessPlaybackControl_ConnectNotify
 func callbackQMediaGaplessPlaybackControl_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaGaplessPlaybackControl::connectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
@@ -30359,7 +29739,6 @@ func (ptr *QMediaGaplessPlaybackControl) ConnectNotifyDefault(sign core.QMetaMet
 
 //export callbackQMediaGaplessPlaybackControl_CustomEvent
 func callbackQMediaGaplessPlaybackControl_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaGaplessPlaybackControl::customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
 	} else {
@@ -30434,7 +29813,6 @@ func (ptr *QMediaGaplessPlaybackControl) DeleteLaterDefault() {
 
 //export callbackQMediaGaplessPlaybackControl_DisconnectNotify
 func callbackQMediaGaplessPlaybackControl_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaGaplessPlaybackControl::disconnectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
@@ -30470,7 +29848,6 @@ func (ptr *QMediaGaplessPlaybackControl) DisconnectNotifyDefault(sign core.QMeta
 
 //export callbackQMediaGaplessPlaybackControl_Event
 func callbackQMediaGaplessPlaybackControl_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaGaplessPlaybackControl::event"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
 	}
@@ -30508,7 +29885,6 @@ func (ptr *QMediaGaplessPlaybackControl) EventDefault(e core.QEvent_ITF) bool {
 
 //export callbackQMediaGaplessPlaybackControl_EventFilter
 func callbackQMediaGaplessPlaybackControl_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaGaplessPlaybackControl::eventFilter"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
 	}
@@ -30546,7 +29922,6 @@ func (ptr *QMediaGaplessPlaybackControl) EventFilterDefault(watched core.QObject
 
 //export callbackQMediaGaplessPlaybackControl_MetaObject
 func callbackQMediaGaplessPlaybackControl_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaGaplessPlaybackControl::metaObject"); signal != nil {
 		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
 	}
@@ -30623,7 +29998,6 @@ func NewQMediaNetworkAccessControlFromPointer(ptr unsafe.Pointer) *QMediaNetwork
 
 //export callbackQMediaNetworkAccessControl_ConfigurationChanged
 func callbackQMediaNetworkAccessControl_ConfigurationChanged(ptr unsafe.Pointer, configuration unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaNetworkAccessControl::configurationChanged"); signal != nil {
 		signal.(func(*network.QNetworkConfiguration))(network.NewQNetworkConfigurationFromPointer(configuration))
 	}
@@ -30652,7 +30026,6 @@ func (ptr *QMediaNetworkAccessControl) ConfigurationChanged(configuration networ
 
 //export callbackQMediaNetworkAccessControl_CurrentConfiguration
 func callbackQMediaNetworkAccessControl_CurrentConfiguration(ptr unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaNetworkAccessControl::currentConfiguration"); signal != nil {
 		return network.PointerFromQNetworkConfiguration(signal.(func() *network.QNetworkConfiguration)())
 	}
@@ -30685,7 +30058,6 @@ func (ptr *QMediaNetworkAccessControl) CurrentConfiguration() *network.QNetworkC
 
 //export callbackQMediaNetworkAccessControl_DestroyQMediaNetworkAccessControl
 func callbackQMediaNetworkAccessControl_DestroyQMediaNetworkAccessControl(ptr unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaNetworkAccessControl::~QMediaNetworkAccessControl"); signal != nil {
 		signal.(func())()
 	} else {
@@ -30725,7 +30097,6 @@ func (ptr *QMediaNetworkAccessControl) DestroyQMediaNetworkAccessControlDefault(
 
 //export callbackQMediaNetworkAccessControl_TimerEvent
 func callbackQMediaNetworkAccessControl_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaNetworkAccessControl::timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
 	} else {
@@ -30761,7 +30132,6 @@ func (ptr *QMediaNetworkAccessControl) TimerEventDefault(event core.QTimerEvent_
 
 //export callbackQMediaNetworkAccessControl_ChildEvent
 func callbackQMediaNetworkAccessControl_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaNetworkAccessControl::childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
 	} else {
@@ -30797,7 +30167,6 @@ func (ptr *QMediaNetworkAccessControl) ChildEventDefault(event core.QChildEvent_
 
 //export callbackQMediaNetworkAccessControl_ConnectNotify
 func callbackQMediaNetworkAccessControl_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaNetworkAccessControl::connectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
@@ -30833,7 +30202,6 @@ func (ptr *QMediaNetworkAccessControl) ConnectNotifyDefault(sign core.QMetaMetho
 
 //export callbackQMediaNetworkAccessControl_CustomEvent
 func callbackQMediaNetworkAccessControl_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaNetworkAccessControl::customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
 	} else {
@@ -30908,7 +30276,6 @@ func (ptr *QMediaNetworkAccessControl) DeleteLaterDefault() {
 
 //export callbackQMediaNetworkAccessControl_DisconnectNotify
 func callbackQMediaNetworkAccessControl_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaNetworkAccessControl::disconnectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
@@ -30944,7 +30311,6 @@ func (ptr *QMediaNetworkAccessControl) DisconnectNotifyDefault(sign core.QMetaMe
 
 //export callbackQMediaNetworkAccessControl_Event
 func callbackQMediaNetworkAccessControl_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaNetworkAccessControl::event"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
 	}
@@ -30982,7 +30348,6 @@ func (ptr *QMediaNetworkAccessControl) EventDefault(e core.QEvent_ITF) bool {
 
 //export callbackQMediaNetworkAccessControl_EventFilter
 func callbackQMediaNetworkAccessControl_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaNetworkAccessControl::eventFilter"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
 	}
@@ -31020,7 +30385,6 @@ func (ptr *QMediaNetworkAccessControl) EventFilterDefault(watched core.QObject_I
 
 //export callbackQMediaNetworkAccessControl_MetaObject
 func callbackQMediaNetworkAccessControl_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaNetworkAccessControl::metaObject"); signal != nil {
 		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
 	}
@@ -31123,7 +30487,6 @@ func (ptr *QMediaObject) AddPropertyWatch(name core.QByteArray_ITF) {
 
 //export callbackQMediaObject_Availability
 func callbackQMediaObject_Availability(ptr unsafe.Pointer) C.longlong {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaObject::availability"); signal != nil {
 		return C.longlong(signal.(func() QMultimedia__AvailabilityStatus)())
 	}
@@ -31161,7 +30524,6 @@ func (ptr *QMediaObject) AvailabilityDefault() QMultimedia__AvailabilityStatus {
 
 //export callbackQMediaObject_AvailabilityChanged2
 func callbackQMediaObject_AvailabilityChanged2(ptr unsafe.Pointer, availability C.longlong) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaObject::availabilityChanged2"); signal != nil {
 		signal.(func(QMultimedia__AvailabilityStatus))(QMultimedia__AvailabilityStatus(availability))
 	}
@@ -31190,7 +30552,6 @@ func (ptr *QMediaObject) AvailabilityChanged2(availability QMultimedia__Availabi
 
 //export callbackQMediaObject_AvailabilityChanged
 func callbackQMediaObject_AvailabilityChanged(ptr unsafe.Pointer, available C.char) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaObject::availabilityChanged"); signal != nil {
 		signal.(func(bool))(int8(available) != 0)
 	}
@@ -31226,7 +30587,6 @@ func (ptr *QMediaObject) AvailableMetaData() []string {
 
 //export callbackQMediaObject_Bind
 func callbackQMediaObject_Bind(ptr unsafe.Pointer, object unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaObject::bind"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject) bool)(core.NewQObjectFromPointer(object)))))
 	}
@@ -31264,7 +30624,6 @@ func (ptr *QMediaObject) BindDefault(object core.QObject_ITF) bool {
 
 //export callbackQMediaObject_IsAvailable
 func callbackQMediaObject_IsAvailable(ptr unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaObject::isAvailable"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func() bool)())))
 	}
@@ -31320,7 +30679,6 @@ func (ptr *QMediaObject) MetaData(key string) *core.QVariant {
 
 //export callbackQMediaObject_MetaDataAvailableChanged
 func callbackQMediaObject_MetaDataAvailableChanged(ptr unsafe.Pointer, available C.char) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaObject::metaDataAvailableChanged"); signal != nil {
 		signal.(func(bool))(int8(available) != 0)
 	}
@@ -31349,7 +30707,6 @@ func (ptr *QMediaObject) MetaDataAvailableChanged(available bool) {
 
 //export callbackQMediaObject_MetaDataChanged
 func callbackQMediaObject_MetaDataChanged(ptr unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaObject::metaDataChanged"); signal != nil {
 		signal.(func())()
 	}
@@ -31378,7 +30735,6 @@ func (ptr *QMediaObject) MetaDataChanged() {
 
 //export callbackQMediaObject_MetaDataChanged2
 func callbackQMediaObject_MetaDataChanged2(ptr unsafe.Pointer, key C.struct_QtMultimedia_PackedString, value unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaObject::metaDataChanged2"); signal != nil {
 		signal.(func(string, *core.QVariant))(cGoUnpackString(key), core.NewQVariantFromPointer(value))
 	}
@@ -31409,7 +30765,6 @@ func (ptr *QMediaObject) MetaDataChanged2(key string, value core.QVariant_ITF) {
 
 //export callbackQMediaObject_NotifyIntervalChanged
 func callbackQMediaObject_NotifyIntervalChanged(ptr unsafe.Pointer, milliseconds C.int) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaObject::notifyIntervalChanged"); signal != nil {
 		signal.(func(int))(int(int32(milliseconds)))
 	}
@@ -31444,7 +30799,6 @@ func (ptr *QMediaObject) RemovePropertyWatch(name core.QByteArray_ITF) {
 
 //export callbackQMediaObject_Service
 func callbackQMediaObject_Service(ptr unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaObject::service"); signal != nil {
 		return PointerFromQMediaService(signal.(func() *QMediaService)())
 	}
@@ -31490,7 +30844,6 @@ func (ptr *QMediaObject) ServiceDefault() *QMediaService {
 
 //export callbackQMediaObject_Unbind
 func callbackQMediaObject_Unbind(ptr unsafe.Pointer, object unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaObject::unbind"); signal != nil {
 		signal.(func(*core.QObject))(core.NewQObjectFromPointer(object))
 	} else {
@@ -31534,7 +30887,6 @@ func (ptr *QMediaObject) DestroyQMediaObject() {
 
 //export callbackQMediaObject_TimerEvent
 func callbackQMediaObject_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaObject::timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
 	} else {
@@ -31570,7 +30922,6 @@ func (ptr *QMediaObject) TimerEventDefault(event core.QTimerEvent_ITF) {
 
 //export callbackQMediaObject_ChildEvent
 func callbackQMediaObject_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaObject::childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
 	} else {
@@ -31606,7 +30957,6 @@ func (ptr *QMediaObject) ChildEventDefault(event core.QChildEvent_ITF) {
 
 //export callbackQMediaObject_ConnectNotify
 func callbackQMediaObject_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaObject::connectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
@@ -31642,7 +30992,6 @@ func (ptr *QMediaObject) ConnectNotifyDefault(sign core.QMetaMethod_ITF) {
 
 //export callbackQMediaObject_CustomEvent
 func callbackQMediaObject_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaObject::customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
 	} else {
@@ -31717,7 +31066,6 @@ func (ptr *QMediaObject) DeleteLaterDefault() {
 
 //export callbackQMediaObject_DisconnectNotify
 func callbackQMediaObject_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaObject::disconnectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
@@ -31753,7 +31101,6 @@ func (ptr *QMediaObject) DisconnectNotifyDefault(sign core.QMetaMethod_ITF) {
 
 //export callbackQMediaObject_Event
 func callbackQMediaObject_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaObject::event"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
 	}
@@ -31791,7 +31138,6 @@ func (ptr *QMediaObject) EventDefault(e core.QEvent_ITF) bool {
 
 //export callbackQMediaObject_EventFilter
 func callbackQMediaObject_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaObject::eventFilter"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
 	}
@@ -31829,7 +31175,6 @@ func (ptr *QMediaObject) EventFilterDefault(watched core.QObject_ITF, event core
 
 //export callbackQMediaObject_MetaObject
 func callbackQMediaObject_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaObject::metaObject"); signal != nil {
 		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
 	}
@@ -32277,7 +31622,6 @@ func NewQMediaPlayer(parent core.QObject_ITF, flags QMediaPlayer__Flag) *QMediaP
 
 //export callbackQMediaPlayer_AudioAvailableChanged
 func callbackQMediaPlayer_AudioAvailableChanged(ptr unsafe.Pointer, available C.char) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaPlayer::audioAvailableChanged"); signal != nil {
 		signal.(func(bool))(int8(available) != 0)
 	}
@@ -32306,7 +31650,6 @@ func (ptr *QMediaPlayer) AudioAvailableChanged(available bool) {
 
 //export callbackQMediaPlayer_AudioRoleChanged
 func callbackQMediaPlayer_AudioRoleChanged(ptr unsafe.Pointer, role C.longlong) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaPlayer::audioRoleChanged"); signal != nil {
 		signal.(func(QAudio__Role))(QAudio__Role(role))
 	}
@@ -32335,7 +31678,6 @@ func (ptr *QMediaPlayer) AudioRoleChanged(role QAudio__Role) {
 
 //export callbackQMediaPlayer_Availability
 func callbackQMediaPlayer_Availability(ptr unsafe.Pointer) C.longlong {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaPlayer::availability"); signal != nil {
 		return C.longlong(signal.(func() QMultimedia__AvailabilityStatus)())
 	}
@@ -32373,7 +31715,6 @@ func (ptr *QMediaPlayer) AvailabilityDefault() QMultimedia__AvailabilityStatus {
 
 //export callbackQMediaPlayer_BufferStatusChanged
 func callbackQMediaPlayer_BufferStatusChanged(ptr unsafe.Pointer, percentFilled C.int) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaPlayer::bufferStatusChanged"); signal != nil {
 		signal.(func(int))(int(int32(percentFilled)))
 	}
@@ -32402,7 +31743,6 @@ func (ptr *QMediaPlayer) BufferStatusChanged(percentFilled int) {
 
 //export callbackQMediaPlayer_CurrentMediaChanged
 func callbackQMediaPlayer_CurrentMediaChanged(ptr unsafe.Pointer, media unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaPlayer::currentMediaChanged"); signal != nil {
 		signal.(func(*QMediaContent))(NewQMediaContentFromPointer(media))
 	}
@@ -32440,7 +31780,6 @@ func (ptr *QMediaPlayer) CurrentNetworkConfiguration() *network.QNetworkConfigur
 
 //export callbackQMediaPlayer_DurationChanged
 func callbackQMediaPlayer_DurationChanged(ptr unsafe.Pointer, duration C.longlong) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaPlayer::durationChanged"); signal != nil {
 		signal.(func(int64))(int64(duration))
 	}
@@ -32469,7 +31808,6 @@ func (ptr *QMediaPlayer) DurationChanged(duration int64) {
 
 //export callbackQMediaPlayer_Error2
 func callbackQMediaPlayer_Error2(ptr unsafe.Pointer, error C.longlong) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaPlayer::error2"); signal != nil {
 		signal.(func(QMediaPlayer__Error))(QMediaPlayer__Error(error))
 	}
@@ -32521,7 +31859,6 @@ func (ptr *QMediaPlayer) HasSupport(mimeType string, codecs []string, flags QMed
 
 //export callbackQMediaPlayer_MediaChanged
 func callbackQMediaPlayer_MediaChanged(ptr unsafe.Pointer, media unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaPlayer::mediaChanged"); signal != nil {
 		signal.(func(*QMediaContent))(NewQMediaContentFromPointer(media))
 	}
@@ -32550,7 +31887,6 @@ func (ptr *QMediaPlayer) MediaChanged(media QMediaContent_ITF) {
 
 //export callbackQMediaPlayer_MediaStatusChanged
 func callbackQMediaPlayer_MediaStatusChanged(ptr unsafe.Pointer, status C.longlong) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaPlayer::mediaStatusChanged"); signal != nil {
 		signal.(func(QMediaPlayer__MediaStatus))(QMediaPlayer__MediaStatus(status))
 	}
@@ -32590,7 +31926,6 @@ func (ptr *QMediaPlayer) MediaStream() *core.QIODevice {
 
 //export callbackQMediaPlayer_MutedChanged
 func callbackQMediaPlayer_MutedChanged(ptr unsafe.Pointer, muted C.char) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaPlayer::mutedChanged"); signal != nil {
 		signal.(func(bool))(int8(muted) != 0)
 	}
@@ -32619,7 +31954,6 @@ func (ptr *QMediaPlayer) MutedChanged(muted bool) {
 
 //export callbackQMediaPlayer_NetworkConfigurationChanged
 func callbackQMediaPlayer_NetworkConfigurationChanged(ptr unsafe.Pointer, configuration unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaPlayer::networkConfigurationChanged"); signal != nil {
 		signal.(func(*network.QNetworkConfiguration))(network.NewQNetworkConfigurationFromPointer(configuration))
 	}
@@ -32718,7 +32052,6 @@ func (ptr *QMediaPlayer) PlayDefault() {
 
 //export callbackQMediaPlayer_PlaybackRateChanged
 func callbackQMediaPlayer_PlaybackRateChanged(ptr unsafe.Pointer, rate C.double) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaPlayer::playbackRateChanged"); signal != nil {
 		signal.(func(float64))(float64(rate))
 	}
@@ -32747,7 +32080,6 @@ func (ptr *QMediaPlayer) PlaybackRateChanged(rate float64) {
 
 //export callbackQMediaPlayer_PositionChanged
 func callbackQMediaPlayer_PositionChanged(ptr unsafe.Pointer, position C.longlong) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaPlayer::positionChanged"); signal != nil {
 		signal.(func(int64))(int64(position))
 	}
@@ -32776,7 +32108,6 @@ func (ptr *QMediaPlayer) PositionChanged(position int64) {
 
 //export callbackQMediaPlayer_SeekableChanged
 func callbackQMediaPlayer_SeekableChanged(ptr unsafe.Pointer, seekable C.char) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaPlayer::seekableChanged"); signal != nil {
 		signal.(func(bool))(int8(seekable) != 0)
 	}
@@ -32846,7 +32177,6 @@ func (ptr *QMediaPlayer) SetVideoOutput3(surface QAbstractVideoSurface_ITF) {
 
 //export callbackQMediaPlayer_StateChanged
 func callbackQMediaPlayer_StateChanged(ptr unsafe.Pointer, state C.longlong) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaPlayer::stateChanged"); signal != nil {
 		signal.(func(QMediaPlayer__State))(QMediaPlayer__State(state))
 	}
@@ -32910,7 +32240,6 @@ func (ptr *QMediaPlayer) StopDefault() {
 
 //export callbackQMediaPlayer_VideoAvailableChanged
 func callbackQMediaPlayer_VideoAvailableChanged(ptr unsafe.Pointer, videoAvailable C.char) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaPlayer::videoAvailableChanged"); signal != nil {
 		signal.(func(bool))(int8(videoAvailable) != 0)
 	}
@@ -32939,7 +32268,6 @@ func (ptr *QMediaPlayer) VideoAvailableChanged(videoAvailable bool) {
 
 //export callbackQMediaPlayer_VolumeChanged
 func callbackQMediaPlayer_VolumeChanged(ptr unsafe.Pointer, volume C.int) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaPlayer::volumeChanged"); signal != nil {
 		signal.(func(int))(int(int32(volume)))
 	}
@@ -32976,7 +32304,6 @@ func (ptr *QMediaPlayer) DestroyQMediaPlayer() {
 
 //export callbackQMediaPlayer_Bind
 func callbackQMediaPlayer_Bind(ptr unsafe.Pointer, object unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaPlayer::bind"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject) bool)(core.NewQObjectFromPointer(object)))))
 	}
@@ -33014,7 +32341,6 @@ func (ptr *QMediaPlayer) BindDefault(object core.QObject_ITF) bool {
 
 //export callbackQMediaPlayer_IsAvailable
 func callbackQMediaPlayer_IsAvailable(ptr unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaPlayer::isAvailable"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func() bool)())))
 	}
@@ -33052,7 +32378,6 @@ func (ptr *QMediaPlayer) IsAvailableDefault() bool {
 
 //export callbackQMediaPlayer_Service
 func callbackQMediaPlayer_Service(ptr unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaPlayer::service"); signal != nil {
 		return PointerFromQMediaService(signal.(func() *QMediaService)())
 	}
@@ -33098,7 +32423,6 @@ func (ptr *QMediaPlayer) ServiceDefault() *QMediaService {
 
 //export callbackQMediaPlayer_Unbind
 func callbackQMediaPlayer_Unbind(ptr unsafe.Pointer, object unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaPlayer::unbind"); signal != nil {
 		signal.(func(*core.QObject))(core.NewQObjectFromPointer(object))
 	} else {
@@ -33134,7 +32458,6 @@ func (ptr *QMediaPlayer) UnbindDefault(object core.QObject_ITF) {
 
 //export callbackQMediaPlayer_TimerEvent
 func callbackQMediaPlayer_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaPlayer::timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
 	} else {
@@ -33170,7 +32493,6 @@ func (ptr *QMediaPlayer) TimerEventDefault(event core.QTimerEvent_ITF) {
 
 //export callbackQMediaPlayer_ChildEvent
 func callbackQMediaPlayer_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaPlayer::childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
 	} else {
@@ -33206,7 +32528,6 @@ func (ptr *QMediaPlayer) ChildEventDefault(event core.QChildEvent_ITF) {
 
 //export callbackQMediaPlayer_ConnectNotify
 func callbackQMediaPlayer_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaPlayer::connectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
@@ -33242,7 +32563,6 @@ func (ptr *QMediaPlayer) ConnectNotifyDefault(sign core.QMetaMethod_ITF) {
 
 //export callbackQMediaPlayer_CustomEvent
 func callbackQMediaPlayer_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaPlayer::customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
 	} else {
@@ -33317,7 +32637,6 @@ func (ptr *QMediaPlayer) DeleteLaterDefault() {
 
 //export callbackQMediaPlayer_DisconnectNotify
 func callbackQMediaPlayer_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaPlayer::disconnectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
@@ -33353,7 +32672,6 @@ func (ptr *QMediaPlayer) DisconnectNotifyDefault(sign core.QMetaMethod_ITF) {
 
 //export callbackQMediaPlayer_Event
 func callbackQMediaPlayer_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaPlayer::event"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
 	}
@@ -33391,7 +32709,6 @@ func (ptr *QMediaPlayer) EventDefault(e core.QEvent_ITF) bool {
 
 //export callbackQMediaPlayer_EventFilter
 func callbackQMediaPlayer_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaPlayer::eventFilter"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
 	}
@@ -33429,7 +32746,6 @@ func (ptr *QMediaPlayer) EventFilterDefault(watched core.QObject_ITF, event core
 
 //export callbackQMediaPlayer_MetaObject
 func callbackQMediaPlayer_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaPlayer::metaObject"); signal != nil {
 		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
 	}
@@ -33513,7 +32829,6 @@ func NewQMediaPlayerControl(parent core.QObject_ITF) *QMediaPlayerControl {
 
 //export callbackQMediaPlayerControl_AudioAvailableChanged
 func callbackQMediaPlayerControl_AudioAvailableChanged(ptr unsafe.Pointer, audio C.char) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaPlayerControl::audioAvailableChanged"); signal != nil {
 		signal.(func(bool))(int8(audio) != 0)
 	}
@@ -33542,7 +32857,6 @@ func (ptr *QMediaPlayerControl) AudioAvailableChanged(audio bool) {
 
 //export callbackQMediaPlayerControl_AvailablePlaybackRanges
 func callbackQMediaPlayerControl_AvailablePlaybackRanges(ptr unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaPlayerControl::availablePlaybackRanges"); signal != nil {
 		return PointerFromQMediaTimeRange(signal.(func() *QMediaTimeRange)())
 	}
@@ -33575,7 +32889,6 @@ func (ptr *QMediaPlayerControl) AvailablePlaybackRanges() *QMediaTimeRange {
 
 //export callbackQMediaPlayerControl_AvailablePlaybackRangesChanged
 func callbackQMediaPlayerControl_AvailablePlaybackRangesChanged(ptr unsafe.Pointer, ranges unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaPlayerControl::availablePlaybackRangesChanged"); signal != nil {
 		signal.(func(*QMediaTimeRange))(NewQMediaTimeRangeFromPointer(ranges))
 	}
@@ -33604,7 +32917,6 @@ func (ptr *QMediaPlayerControl) AvailablePlaybackRangesChanged(ranges QMediaTime
 
 //export callbackQMediaPlayerControl_BufferStatus
 func callbackQMediaPlayerControl_BufferStatus(ptr unsafe.Pointer) C.int {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaPlayerControl::bufferStatus"); signal != nil {
 		return C.int(int32(signal.(func() int)()))
 	}
@@ -33635,7 +32947,6 @@ func (ptr *QMediaPlayerControl) BufferStatus() int {
 
 //export callbackQMediaPlayerControl_BufferStatusChanged
 func callbackQMediaPlayerControl_BufferStatusChanged(ptr unsafe.Pointer, progress C.int) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaPlayerControl::bufferStatusChanged"); signal != nil {
 		signal.(func(int))(int(int32(progress)))
 	}
@@ -33664,7 +32975,6 @@ func (ptr *QMediaPlayerControl) BufferStatusChanged(progress int) {
 
 //export callbackQMediaPlayerControl_Duration
 func callbackQMediaPlayerControl_Duration(ptr unsafe.Pointer) C.longlong {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaPlayerControl::duration"); signal != nil {
 		return C.longlong(signal.(func() int64)())
 	}
@@ -33695,7 +33005,6 @@ func (ptr *QMediaPlayerControl) Duration() int64 {
 
 //export callbackQMediaPlayerControl_DurationChanged
 func callbackQMediaPlayerControl_DurationChanged(ptr unsafe.Pointer, duration C.longlong) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaPlayerControl::durationChanged"); signal != nil {
 		signal.(func(int64))(int64(duration))
 	}
@@ -33724,7 +33033,6 @@ func (ptr *QMediaPlayerControl) DurationChanged(duration int64) {
 
 //export callbackQMediaPlayerControl_Error
 func callbackQMediaPlayerControl_Error(ptr unsafe.Pointer, error C.int, errorString C.struct_QtMultimedia_PackedString) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaPlayerControl::error"); signal != nil {
 		signal.(func(int, string))(int(int32(error)), cGoUnpackString(errorString))
 	}
@@ -33755,7 +33063,6 @@ func (ptr *QMediaPlayerControl) Error(error int, errorString string) {
 
 //export callbackQMediaPlayerControl_IsAudioAvailable
 func callbackQMediaPlayerControl_IsAudioAvailable(ptr unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaPlayerControl::isAudioAvailable"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func() bool)())))
 	}
@@ -33786,7 +33093,6 @@ func (ptr *QMediaPlayerControl) IsAudioAvailable() bool {
 
 //export callbackQMediaPlayerControl_IsMuted
 func callbackQMediaPlayerControl_IsMuted(ptr unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaPlayerControl::isMuted"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func() bool)())))
 	}
@@ -33817,7 +33123,6 @@ func (ptr *QMediaPlayerControl) IsMuted() bool {
 
 //export callbackQMediaPlayerControl_IsSeekable
 func callbackQMediaPlayerControl_IsSeekable(ptr unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaPlayerControl::isSeekable"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func() bool)())))
 	}
@@ -33848,7 +33153,6 @@ func (ptr *QMediaPlayerControl) IsSeekable() bool {
 
 //export callbackQMediaPlayerControl_IsVideoAvailable
 func callbackQMediaPlayerControl_IsVideoAvailable(ptr unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaPlayerControl::isVideoAvailable"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func() bool)())))
 	}
@@ -33879,7 +33183,6 @@ func (ptr *QMediaPlayerControl) IsVideoAvailable() bool {
 
 //export callbackQMediaPlayerControl_Media
 func callbackQMediaPlayerControl_Media(ptr unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaPlayerControl::media"); signal != nil {
 		return PointerFromQMediaContent(signal.(func() *QMediaContent)())
 	}
@@ -33912,7 +33215,6 @@ func (ptr *QMediaPlayerControl) Media() *QMediaContent {
 
 //export callbackQMediaPlayerControl_MediaChanged
 func callbackQMediaPlayerControl_MediaChanged(ptr unsafe.Pointer, content unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaPlayerControl::mediaChanged"); signal != nil {
 		signal.(func(*QMediaContent))(NewQMediaContentFromPointer(content))
 	}
@@ -33941,7 +33243,6 @@ func (ptr *QMediaPlayerControl) MediaChanged(content QMediaContent_ITF) {
 
 //export callbackQMediaPlayerControl_MediaStatus
 func callbackQMediaPlayerControl_MediaStatus(ptr unsafe.Pointer) C.longlong {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaPlayerControl::mediaStatus"); signal != nil {
 		return C.longlong(signal.(func() QMediaPlayer__MediaStatus)())
 	}
@@ -33972,7 +33273,6 @@ func (ptr *QMediaPlayerControl) MediaStatus() QMediaPlayer__MediaStatus {
 
 //export callbackQMediaPlayerControl_MediaStatusChanged
 func callbackQMediaPlayerControl_MediaStatusChanged(ptr unsafe.Pointer, status C.longlong) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaPlayerControl::mediaStatusChanged"); signal != nil {
 		signal.(func(QMediaPlayer__MediaStatus))(QMediaPlayer__MediaStatus(status))
 	}
@@ -34001,7 +33301,6 @@ func (ptr *QMediaPlayerControl) MediaStatusChanged(status QMediaPlayer__MediaSta
 
 //export callbackQMediaPlayerControl_MediaStream
 func callbackQMediaPlayerControl_MediaStream(ptr unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaPlayerControl::mediaStream"); signal != nil {
 		return core.PointerFromQIODevice(signal.(func() *core.QIODevice)())
 	}
@@ -34036,7 +33335,6 @@ func (ptr *QMediaPlayerControl) MediaStream() *core.QIODevice {
 
 //export callbackQMediaPlayerControl_MutedChanged
 func callbackQMediaPlayerControl_MutedChanged(ptr unsafe.Pointer, mute C.char) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaPlayerControl::mutedChanged"); signal != nil {
 		signal.(func(bool))(int8(mute) != 0)
 	}
@@ -34065,7 +33363,6 @@ func (ptr *QMediaPlayerControl) MutedChanged(mute bool) {
 
 //export callbackQMediaPlayerControl_Pause
 func callbackQMediaPlayerControl_Pause(ptr unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaPlayerControl::pause"); signal != nil {
 		signal.(func())()
 	}
@@ -34094,7 +33391,6 @@ func (ptr *QMediaPlayerControl) Pause() {
 
 //export callbackQMediaPlayerControl_Play
 func callbackQMediaPlayerControl_Play(ptr unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaPlayerControl::play"); signal != nil {
 		signal.(func())()
 	}
@@ -34123,7 +33419,6 @@ func (ptr *QMediaPlayerControl) Play() {
 
 //export callbackQMediaPlayerControl_PlaybackRate
 func callbackQMediaPlayerControl_PlaybackRate(ptr unsafe.Pointer) C.double {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaPlayerControl::playbackRate"); signal != nil {
 		return C.double(signal.(func() float64)())
 	}
@@ -34154,7 +33449,6 @@ func (ptr *QMediaPlayerControl) PlaybackRate() float64 {
 
 //export callbackQMediaPlayerControl_PlaybackRateChanged
 func callbackQMediaPlayerControl_PlaybackRateChanged(ptr unsafe.Pointer, rate C.double) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaPlayerControl::playbackRateChanged"); signal != nil {
 		signal.(func(float64))(float64(rate))
 	}
@@ -34183,7 +33477,6 @@ func (ptr *QMediaPlayerControl) PlaybackRateChanged(rate float64) {
 
 //export callbackQMediaPlayerControl_Position
 func callbackQMediaPlayerControl_Position(ptr unsafe.Pointer) C.longlong {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaPlayerControl::position"); signal != nil {
 		return C.longlong(signal.(func() int64)())
 	}
@@ -34214,7 +33507,6 @@ func (ptr *QMediaPlayerControl) Position() int64 {
 
 //export callbackQMediaPlayerControl_PositionChanged
 func callbackQMediaPlayerControl_PositionChanged(ptr unsafe.Pointer, position C.longlong) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaPlayerControl::positionChanged"); signal != nil {
 		signal.(func(int64))(int64(position))
 	}
@@ -34243,7 +33535,6 @@ func (ptr *QMediaPlayerControl) PositionChanged(position int64) {
 
 //export callbackQMediaPlayerControl_SeekableChanged
 func callbackQMediaPlayerControl_SeekableChanged(ptr unsafe.Pointer, seekable C.char) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaPlayerControl::seekableChanged"); signal != nil {
 		signal.(func(bool))(int8(seekable) != 0)
 	}
@@ -34272,7 +33563,6 @@ func (ptr *QMediaPlayerControl) SeekableChanged(seekable bool) {
 
 //export callbackQMediaPlayerControl_SetMedia
 func callbackQMediaPlayerControl_SetMedia(ptr unsafe.Pointer, media unsafe.Pointer, stream unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaPlayerControl::setMedia"); signal != nil {
 		signal.(func(*QMediaContent, *core.QIODevice))(NewQMediaContentFromPointer(media), core.NewQIODeviceFromPointer(stream))
 	}
@@ -34301,7 +33591,6 @@ func (ptr *QMediaPlayerControl) SetMedia(media QMediaContent_ITF, stream core.QI
 
 //export callbackQMediaPlayerControl_SetMuted
 func callbackQMediaPlayerControl_SetMuted(ptr unsafe.Pointer, mute C.char) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaPlayerControl::setMuted"); signal != nil {
 		signal.(func(bool))(int8(mute) != 0)
 	}
@@ -34330,7 +33619,6 @@ func (ptr *QMediaPlayerControl) SetMuted(mute bool) {
 
 //export callbackQMediaPlayerControl_SetPlaybackRate
 func callbackQMediaPlayerControl_SetPlaybackRate(ptr unsafe.Pointer, rate C.double) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaPlayerControl::setPlaybackRate"); signal != nil {
 		signal.(func(float64))(float64(rate))
 	}
@@ -34359,7 +33647,6 @@ func (ptr *QMediaPlayerControl) SetPlaybackRate(rate float64) {
 
 //export callbackQMediaPlayerControl_SetPosition
 func callbackQMediaPlayerControl_SetPosition(ptr unsafe.Pointer, position C.longlong) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaPlayerControl::setPosition"); signal != nil {
 		signal.(func(int64))(int64(position))
 	}
@@ -34388,7 +33675,6 @@ func (ptr *QMediaPlayerControl) SetPosition(position int64) {
 
 //export callbackQMediaPlayerControl_SetVolume
 func callbackQMediaPlayerControl_SetVolume(ptr unsafe.Pointer, volume C.int) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaPlayerControl::setVolume"); signal != nil {
 		signal.(func(int))(int(int32(volume)))
 	}
@@ -34417,7 +33703,6 @@ func (ptr *QMediaPlayerControl) SetVolume(volume int) {
 
 //export callbackQMediaPlayerControl_State
 func callbackQMediaPlayerControl_State(ptr unsafe.Pointer) C.longlong {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaPlayerControl::state"); signal != nil {
 		return C.longlong(signal.(func() QMediaPlayer__State)())
 	}
@@ -34448,7 +33733,6 @@ func (ptr *QMediaPlayerControl) State() QMediaPlayer__State {
 
 //export callbackQMediaPlayerControl_StateChanged
 func callbackQMediaPlayerControl_StateChanged(ptr unsafe.Pointer, state C.longlong) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaPlayerControl::stateChanged"); signal != nil {
 		signal.(func(QMediaPlayer__State))(QMediaPlayer__State(state))
 	}
@@ -34477,7 +33761,6 @@ func (ptr *QMediaPlayerControl) StateChanged(state QMediaPlayer__State) {
 
 //export callbackQMediaPlayerControl_Stop
 func callbackQMediaPlayerControl_Stop(ptr unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaPlayerControl::stop"); signal != nil {
 		signal.(func())()
 	}
@@ -34506,7 +33789,6 @@ func (ptr *QMediaPlayerControl) Stop() {
 
 //export callbackQMediaPlayerControl_VideoAvailableChanged
 func callbackQMediaPlayerControl_VideoAvailableChanged(ptr unsafe.Pointer, video C.char) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaPlayerControl::videoAvailableChanged"); signal != nil {
 		signal.(func(bool))(int8(video) != 0)
 	}
@@ -34535,7 +33817,6 @@ func (ptr *QMediaPlayerControl) VideoAvailableChanged(video bool) {
 
 //export callbackQMediaPlayerControl_Volume
 func callbackQMediaPlayerControl_Volume(ptr unsafe.Pointer) C.int {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaPlayerControl::volume"); signal != nil {
 		return C.int(int32(signal.(func() int)()))
 	}
@@ -34566,7 +33847,6 @@ func (ptr *QMediaPlayerControl) Volume() int {
 
 //export callbackQMediaPlayerControl_VolumeChanged
 func callbackQMediaPlayerControl_VolumeChanged(ptr unsafe.Pointer, volume C.int) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaPlayerControl::volumeChanged"); signal != nil {
 		signal.(func(int))(int(int32(volume)))
 	}
@@ -34603,7 +33883,6 @@ func (ptr *QMediaPlayerControl) DestroyQMediaPlayerControl() {
 
 //export callbackQMediaPlayerControl_TimerEvent
 func callbackQMediaPlayerControl_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaPlayerControl::timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
 	} else {
@@ -34639,7 +33918,6 @@ func (ptr *QMediaPlayerControl) TimerEventDefault(event core.QTimerEvent_ITF) {
 
 //export callbackQMediaPlayerControl_ChildEvent
 func callbackQMediaPlayerControl_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaPlayerControl::childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
 	} else {
@@ -34675,7 +33953,6 @@ func (ptr *QMediaPlayerControl) ChildEventDefault(event core.QChildEvent_ITF) {
 
 //export callbackQMediaPlayerControl_ConnectNotify
 func callbackQMediaPlayerControl_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaPlayerControl::connectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
@@ -34711,7 +33988,6 @@ func (ptr *QMediaPlayerControl) ConnectNotifyDefault(sign core.QMetaMethod_ITF) 
 
 //export callbackQMediaPlayerControl_CustomEvent
 func callbackQMediaPlayerControl_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaPlayerControl::customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
 	} else {
@@ -34786,7 +34062,6 @@ func (ptr *QMediaPlayerControl) DeleteLaterDefault() {
 
 //export callbackQMediaPlayerControl_DisconnectNotify
 func callbackQMediaPlayerControl_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaPlayerControl::disconnectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
@@ -34822,7 +34097,6 @@ func (ptr *QMediaPlayerControl) DisconnectNotifyDefault(sign core.QMetaMethod_IT
 
 //export callbackQMediaPlayerControl_Event
 func callbackQMediaPlayerControl_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaPlayerControl::event"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
 	}
@@ -34860,7 +34134,6 @@ func (ptr *QMediaPlayerControl) EventDefault(e core.QEvent_ITF) bool {
 
 //export callbackQMediaPlayerControl_EventFilter
 func callbackQMediaPlayerControl_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaPlayerControl::eventFilter"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
 	}
@@ -34898,7 +34171,6 @@ func (ptr *QMediaPlayerControl) EventFilterDefault(watched core.QObject_ITF, eve
 
 //export callbackQMediaPlayerControl_MetaObject
 func callbackQMediaPlayerControl_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaPlayerControl::metaObject"); signal != nil {
 		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
 	}
@@ -35044,7 +34316,6 @@ func (ptr *QMediaPlaylist) CurrentIndex() int {
 
 //export callbackQMediaPlaylist_CurrentIndexChanged
 func callbackQMediaPlaylist_CurrentIndexChanged(ptr unsafe.Pointer, position C.int) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaPlaylist::currentIndexChanged"); signal != nil {
 		signal.(func(int))(int(int32(position)))
 	}
@@ -35082,7 +34353,6 @@ func (ptr *QMediaPlaylist) CurrentMedia() *QMediaContent {
 
 //export callbackQMediaPlaylist_CurrentMediaChanged
 func callbackQMediaPlaylist_CurrentMediaChanged(ptr unsafe.Pointer, content unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaPlaylist::currentMediaChanged"); signal != nil {
 		signal.(func(*QMediaContent))(NewQMediaContentFromPointer(content))
 	}
@@ -35170,7 +34440,6 @@ func (ptr *QMediaPlaylist) Load2(location core.QUrl_ITF, format string) {
 
 //export callbackQMediaPlaylist_LoadFailed
 func callbackQMediaPlaylist_LoadFailed(ptr unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaPlaylist::loadFailed"); signal != nil {
 		signal.(func())()
 	}
@@ -35199,7 +34468,6 @@ func (ptr *QMediaPlaylist) LoadFailed() {
 
 //export callbackQMediaPlaylist_Loaded
 func callbackQMediaPlaylist_Loaded(ptr unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaPlaylist::loaded"); signal != nil {
 		signal.(func())()
 	}
@@ -35237,7 +34505,6 @@ func (ptr *QMediaPlaylist) Media(index int) *QMediaContent {
 
 //export callbackQMediaPlaylist_MediaAboutToBeInserted
 func callbackQMediaPlaylist_MediaAboutToBeInserted(ptr unsafe.Pointer, start C.int, end C.int) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaPlaylist::mediaAboutToBeInserted"); signal != nil {
 		signal.(func(int, int))(int(int32(start)), int(int32(end)))
 	}
@@ -35266,7 +34533,6 @@ func (ptr *QMediaPlaylist) MediaAboutToBeInserted(start int, end int) {
 
 //export callbackQMediaPlaylist_MediaAboutToBeRemoved
 func callbackQMediaPlaylist_MediaAboutToBeRemoved(ptr unsafe.Pointer, start C.int, end C.int) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaPlaylist::mediaAboutToBeRemoved"); signal != nil {
 		signal.(func(int, int))(int(int32(start)), int(int32(end)))
 	}
@@ -35295,7 +34561,6 @@ func (ptr *QMediaPlaylist) MediaAboutToBeRemoved(start int, end int) {
 
 //export callbackQMediaPlaylist_MediaChanged
 func callbackQMediaPlaylist_MediaChanged(ptr unsafe.Pointer, start C.int, end C.int) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaPlaylist::mediaChanged"); signal != nil {
 		signal.(func(int, int))(int(int32(start)), int(int32(end)))
 	}
@@ -35331,7 +34596,6 @@ func (ptr *QMediaPlaylist) MediaCount() int {
 
 //export callbackQMediaPlaylist_MediaInserted
 func callbackQMediaPlaylist_MediaInserted(ptr unsafe.Pointer, start C.int, end C.int) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaPlaylist::mediaInserted"); signal != nil {
 		signal.(func(int, int))(int(int32(start)), int(int32(end)))
 	}
@@ -35360,7 +34624,6 @@ func (ptr *QMediaPlaylist) MediaInserted(start int, end int) {
 
 //export callbackQMediaPlaylist_MediaObject
 func callbackQMediaPlaylist_MediaObject(ptr unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaPlaylist::mediaObject"); signal != nil {
 		return PointerFromQMediaObject(signal.(func() *QMediaObject)())
 	}
@@ -35406,7 +34669,6 @@ func (ptr *QMediaPlaylist) MediaObjectDefault() *QMediaObject {
 
 //export callbackQMediaPlaylist_MediaRemoved
 func callbackQMediaPlaylist_MediaRemoved(ptr unsafe.Pointer, start C.int, end C.int) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaPlaylist::mediaRemoved"); signal != nil {
 		signal.(func(int, int))(int(int32(start)), int(int32(end)))
 	}
@@ -35484,7 +34746,6 @@ func (ptr *QMediaPlaylist) NextIndex(steps int) int {
 
 //export callbackQMediaPlaylist_PlaybackModeChanged
 func callbackQMediaPlaylist_PlaybackModeChanged(ptr unsafe.Pointer, mode C.longlong) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaPlaylist::playbackModeChanged"); signal != nil {
 		signal.(func(QMediaPlaylist__PlaybackMode))(QMediaPlaylist__PlaybackMode(mode))
 	}
@@ -35657,7 +34918,6 @@ func (ptr *QMediaPlaylist) ShuffleDefault() {
 
 //export callbackQMediaPlaylist_DestroyQMediaPlaylist
 func callbackQMediaPlaylist_DestroyQMediaPlaylist(ptr unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaPlaylist::~QMediaPlaylist"); signal != nil {
 		signal.(func())()
 	} else {
@@ -35697,7 +34957,6 @@ func (ptr *QMediaPlaylist) DestroyQMediaPlaylistDefault() {
 
 //export callbackQMediaPlaylist_TimerEvent
 func callbackQMediaPlaylist_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaPlaylist::timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
 	} else {
@@ -35733,7 +34992,6 @@ func (ptr *QMediaPlaylist) TimerEventDefault(event core.QTimerEvent_ITF) {
 
 //export callbackQMediaPlaylist_ChildEvent
 func callbackQMediaPlaylist_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaPlaylist::childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
 	} else {
@@ -35769,7 +35027,6 @@ func (ptr *QMediaPlaylist) ChildEventDefault(event core.QChildEvent_ITF) {
 
 //export callbackQMediaPlaylist_ConnectNotify
 func callbackQMediaPlaylist_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaPlaylist::connectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
@@ -35805,7 +35062,6 @@ func (ptr *QMediaPlaylist) ConnectNotifyDefault(sign core.QMetaMethod_ITF) {
 
 //export callbackQMediaPlaylist_CustomEvent
 func callbackQMediaPlaylist_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaPlaylist::customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
 	} else {
@@ -35880,7 +35136,6 @@ func (ptr *QMediaPlaylist) DeleteLaterDefault() {
 
 //export callbackQMediaPlaylist_DisconnectNotify
 func callbackQMediaPlaylist_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaPlaylist::disconnectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
@@ -35916,7 +35171,6 @@ func (ptr *QMediaPlaylist) DisconnectNotifyDefault(sign core.QMetaMethod_ITF) {
 
 //export callbackQMediaPlaylist_Event
 func callbackQMediaPlaylist_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaPlaylist::event"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
 	}
@@ -35954,7 +35208,6 @@ func (ptr *QMediaPlaylist) EventDefault(e core.QEvent_ITF) bool {
 
 //export callbackQMediaPlaylist_EventFilter
 func callbackQMediaPlaylist_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaPlaylist::eventFilter"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
 	}
@@ -35992,7 +35245,6 @@ func (ptr *QMediaPlaylist) EventFilterDefault(watched core.QObject_ITF, event co
 
 //export callbackQMediaPlaylist_MetaObject
 func callbackQMediaPlaylist_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaPlaylist::metaObject"); signal != nil {
 		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
 	}
@@ -36030,7 +35282,6 @@ func (ptr *QMediaPlaylist) MetaObjectDefault() *core.QMetaObject {
 
 //export callbackQMediaPlaylist_SetMediaObject
 func callbackQMediaPlaylist_SetMediaObject(ptr unsafe.Pointer, object unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaPlaylist::setMediaObject"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*QMediaObject) bool)(NewQMediaObjectFromPointer(object)))))
 	}
@@ -36277,7 +35528,6 @@ func NewQMediaRecorder(mediaObject QMediaObject_ITF, parent core.QObject_ITF) *Q
 
 //export callbackQMediaRecorder_ActualLocationChanged
 func callbackQMediaRecorder_ActualLocationChanged(ptr unsafe.Pointer, location unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaRecorder::actualLocationChanged"); signal != nil {
 		signal.(func(*core.QUrl))(core.NewQUrlFromPointer(location))
 	}
@@ -36331,7 +35581,6 @@ func (ptr *QMediaRecorder) Availability() QMultimedia__AvailabilityStatus {
 
 //export callbackQMediaRecorder_AvailabilityChanged2
 func callbackQMediaRecorder_AvailabilityChanged2(ptr unsafe.Pointer, availability C.longlong) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaRecorder::availabilityChanged2"); signal != nil {
 		signal.(func(QMultimedia__AvailabilityStatus))(QMultimedia__AvailabilityStatus(availability))
 	}
@@ -36360,7 +35609,6 @@ func (ptr *QMediaRecorder) AvailabilityChanged2(availability QMultimedia__Availa
 
 //export callbackQMediaRecorder_AvailabilityChanged
 func callbackQMediaRecorder_AvailabilityChanged(ptr unsafe.Pointer, available C.char) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaRecorder::availabilityChanged"); signal != nil {
 		signal.(func(bool))(int8(available) != 0)
 	}
@@ -36412,7 +35660,6 @@ func (ptr *QMediaRecorder) ContainerFormat() string {
 
 //export callbackQMediaRecorder_DurationChanged
 func callbackQMediaRecorder_DurationChanged(ptr unsafe.Pointer, duration C.longlong) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaRecorder::durationChanged"); signal != nil {
 		signal.(func(int64))(int64(duration))
 	}
@@ -36441,7 +35688,6 @@ func (ptr *QMediaRecorder) DurationChanged(duration int64) {
 
 //export callbackQMediaRecorder_Error2
 func callbackQMediaRecorder_Error2(ptr unsafe.Pointer, error C.longlong) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaRecorder::error2"); signal != nil {
 		signal.(func(QMediaRecorder__Error))(QMediaRecorder__Error(error))
 	}
@@ -36491,7 +35737,6 @@ func (ptr *QMediaRecorder) IsAvailable() bool {
 
 //export callbackQMediaRecorder_MediaObject
 func callbackQMediaRecorder_MediaObject(ptr unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaRecorder::mediaObject"); signal != nil {
 		return PointerFromQMediaObject(signal.(func() *QMediaObject)())
 	}
@@ -36548,7 +35793,6 @@ func (ptr *QMediaRecorder) MetaData(key string) *core.QVariant {
 
 //export callbackQMediaRecorder_MetaDataAvailableChanged
 func callbackQMediaRecorder_MetaDataAvailableChanged(ptr unsafe.Pointer, available C.char) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaRecorder::metaDataAvailableChanged"); signal != nil {
 		signal.(func(bool))(int8(available) != 0)
 	}
@@ -36577,7 +35821,6 @@ func (ptr *QMediaRecorder) MetaDataAvailableChanged(available bool) {
 
 //export callbackQMediaRecorder_MetaDataChanged
 func callbackQMediaRecorder_MetaDataChanged(ptr unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaRecorder::metaDataChanged"); signal != nil {
 		signal.(func())()
 	}
@@ -36606,7 +35849,6 @@ func (ptr *QMediaRecorder) MetaDataChanged() {
 
 //export callbackQMediaRecorder_MetaDataChanged2
 func callbackQMediaRecorder_MetaDataChanged2(ptr unsafe.Pointer, key C.struct_QtMultimedia_PackedString, value unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaRecorder::metaDataChanged2"); signal != nil {
 		signal.(func(string, *core.QVariant))(cGoUnpackString(key), core.NewQVariantFromPointer(value))
 	}
@@ -36637,7 +35879,6 @@ func (ptr *QMediaRecorder) MetaDataChanged2(key string, value core.QVariant_ITF)
 
 //export callbackQMediaRecorder_MetaDataWritableChanged
 func callbackQMediaRecorder_MetaDataWritableChanged(ptr unsafe.Pointer, writable C.char) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaRecorder::metaDataWritableChanged"); signal != nil {
 		signal.(func(bool))(int8(writable) != 0)
 	}
@@ -36666,7 +35907,6 @@ func (ptr *QMediaRecorder) MetaDataWritableChanged(writable bool) {
 
 //export callbackQMediaRecorder_MutedChanged
 func callbackQMediaRecorder_MutedChanged(ptr unsafe.Pointer, muted C.char) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaRecorder::mutedChanged"); signal != nil {
 		signal.(func(bool))(int8(muted) != 0)
 	}
@@ -36808,7 +36048,6 @@ func (ptr *QMediaRecorder) State() QMediaRecorder__State {
 
 //export callbackQMediaRecorder_StateChanged
 func callbackQMediaRecorder_StateChanged(ptr unsafe.Pointer, state C.longlong) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaRecorder::stateChanged"); signal != nil {
 		signal.(func(QMediaRecorder__State))(QMediaRecorder__State(state))
 	}
@@ -36844,7 +36083,6 @@ func (ptr *QMediaRecorder) Status() QMediaRecorder__Status {
 
 //export callbackQMediaRecorder_StatusChanged
 func callbackQMediaRecorder_StatusChanged(ptr unsafe.Pointer, status C.longlong) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaRecorder::statusChanged"); signal != nil {
 		signal.(func(QMediaRecorder__Status))(QMediaRecorder__Status(status))
 	}
@@ -36960,7 +36198,6 @@ func (ptr *QMediaRecorder) VideoSettings() *QVideoEncoderSettings {
 
 //export callbackQMediaRecorder_VolumeChanged
 func callbackQMediaRecorder_VolumeChanged(ptr unsafe.Pointer, volume C.double) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaRecorder::volumeChanged"); signal != nil {
 		signal.(func(float64))(float64(volume))
 	}
@@ -37006,7 +36243,6 @@ func (ptr *QMediaRecorder) supportedResolutions_atList(i int) *core.QSize {
 
 //export callbackQMediaRecorder_TimerEvent
 func callbackQMediaRecorder_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaRecorder::timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
 	} else {
@@ -37042,7 +36278,6 @@ func (ptr *QMediaRecorder) TimerEventDefault(event core.QTimerEvent_ITF) {
 
 //export callbackQMediaRecorder_ChildEvent
 func callbackQMediaRecorder_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaRecorder::childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
 	} else {
@@ -37078,7 +36313,6 @@ func (ptr *QMediaRecorder) ChildEventDefault(event core.QChildEvent_ITF) {
 
 //export callbackQMediaRecorder_ConnectNotify
 func callbackQMediaRecorder_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaRecorder::connectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
@@ -37114,7 +36348,6 @@ func (ptr *QMediaRecorder) ConnectNotifyDefault(sign core.QMetaMethod_ITF) {
 
 //export callbackQMediaRecorder_CustomEvent
 func callbackQMediaRecorder_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaRecorder::customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
 	} else {
@@ -37189,7 +36422,6 @@ func (ptr *QMediaRecorder) DeleteLaterDefault() {
 
 //export callbackQMediaRecorder_DisconnectNotify
 func callbackQMediaRecorder_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaRecorder::disconnectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
@@ -37225,7 +36457,6 @@ func (ptr *QMediaRecorder) DisconnectNotifyDefault(sign core.QMetaMethod_ITF) {
 
 //export callbackQMediaRecorder_Event
 func callbackQMediaRecorder_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaRecorder::event"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
 	}
@@ -37263,7 +36494,6 @@ func (ptr *QMediaRecorder) EventDefault(e core.QEvent_ITF) bool {
 
 //export callbackQMediaRecorder_EventFilter
 func callbackQMediaRecorder_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaRecorder::eventFilter"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
 	}
@@ -37301,7 +36531,6 @@ func (ptr *QMediaRecorder) EventFilterDefault(watched core.QObject_ITF, event co
 
 //export callbackQMediaRecorder_MetaObject
 func callbackQMediaRecorder_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaRecorder::metaObject"); signal != nil {
 		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
 	}
@@ -37339,7 +36568,6 @@ func (ptr *QMediaRecorder) MetaObjectDefault() *core.QMetaObject {
 
 //export callbackQMediaRecorder_SetMediaObject
 func callbackQMediaRecorder_SetMediaObject(ptr unsafe.Pointer, object unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaRecorder::setMediaObject"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*QMediaObject) bool)(NewQMediaObjectFromPointer(object)))))
 	}
@@ -37416,7 +36644,6 @@ func NewQMediaRecorderControl(parent core.QObject_ITF) *QMediaRecorderControl {
 
 //export callbackQMediaRecorderControl_ActualLocationChanged
 func callbackQMediaRecorderControl_ActualLocationChanged(ptr unsafe.Pointer, location unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaRecorderControl::actualLocationChanged"); signal != nil {
 		signal.(func(*core.QUrl))(core.NewQUrlFromPointer(location))
 	}
@@ -37445,7 +36672,6 @@ func (ptr *QMediaRecorderControl) ActualLocationChanged(location core.QUrl_ITF) 
 
 //export callbackQMediaRecorderControl_ApplySettings
 func callbackQMediaRecorderControl_ApplySettings(ptr unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaRecorderControl::applySettings"); signal != nil {
 		signal.(func())()
 	}
@@ -37474,7 +36700,6 @@ func (ptr *QMediaRecorderControl) ApplySettings() {
 
 //export callbackQMediaRecorderControl_Duration
 func callbackQMediaRecorderControl_Duration(ptr unsafe.Pointer) C.longlong {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaRecorderControl::duration"); signal != nil {
 		return C.longlong(signal.(func() int64)())
 	}
@@ -37505,7 +36730,6 @@ func (ptr *QMediaRecorderControl) Duration() int64 {
 
 //export callbackQMediaRecorderControl_DurationChanged
 func callbackQMediaRecorderControl_DurationChanged(ptr unsafe.Pointer, duration C.longlong) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaRecorderControl::durationChanged"); signal != nil {
 		signal.(func(int64))(int64(duration))
 	}
@@ -37534,7 +36758,6 @@ func (ptr *QMediaRecorderControl) DurationChanged(duration int64) {
 
 //export callbackQMediaRecorderControl_Error
 func callbackQMediaRecorderControl_Error(ptr unsafe.Pointer, error C.int, errorString C.struct_QtMultimedia_PackedString) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaRecorderControl::error"); signal != nil {
 		signal.(func(int, string))(int(int32(error)), cGoUnpackString(errorString))
 	}
@@ -37565,7 +36788,6 @@ func (ptr *QMediaRecorderControl) Error(error int, errorString string) {
 
 //export callbackQMediaRecorderControl_IsMuted
 func callbackQMediaRecorderControl_IsMuted(ptr unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaRecorderControl::isMuted"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func() bool)())))
 	}
@@ -37596,7 +36818,6 @@ func (ptr *QMediaRecorderControl) IsMuted() bool {
 
 //export callbackQMediaRecorderControl_MutedChanged
 func callbackQMediaRecorderControl_MutedChanged(ptr unsafe.Pointer, muted C.char) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaRecorderControl::mutedChanged"); signal != nil {
 		signal.(func(bool))(int8(muted) != 0)
 	}
@@ -37625,7 +36846,6 @@ func (ptr *QMediaRecorderControl) MutedChanged(muted bool) {
 
 //export callbackQMediaRecorderControl_OutputLocation
 func callbackQMediaRecorderControl_OutputLocation(ptr unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaRecorderControl::outputLocation"); signal != nil {
 		return core.PointerFromQUrl(signal.(func() *core.QUrl)())
 	}
@@ -37686,7 +36906,6 @@ func (ptr *QMediaRecorderControl) SetMuted(muted bool) {
 
 //export callbackQMediaRecorderControl_SetOutputLocation
 func callbackQMediaRecorderControl_SetOutputLocation(ptr unsafe.Pointer, location unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaRecorderControl::setOutputLocation"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QUrl) bool)(core.NewQUrlFromPointer(location)))))
 	}
@@ -37773,7 +36992,6 @@ func (ptr *QMediaRecorderControl) SetVolume(gain float64) {
 
 //export callbackQMediaRecorderControl_State
 func callbackQMediaRecorderControl_State(ptr unsafe.Pointer) C.longlong {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaRecorderControl::state"); signal != nil {
 		return C.longlong(signal.(func() QMediaRecorder__State)())
 	}
@@ -37804,7 +37022,6 @@ func (ptr *QMediaRecorderControl) State() QMediaRecorder__State {
 
 //export callbackQMediaRecorderControl_StateChanged
 func callbackQMediaRecorderControl_StateChanged(ptr unsafe.Pointer, state C.longlong) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaRecorderControl::stateChanged"); signal != nil {
 		signal.(func(QMediaRecorder__State))(QMediaRecorder__State(state))
 	}
@@ -37833,7 +37050,6 @@ func (ptr *QMediaRecorderControl) StateChanged(state QMediaRecorder__State) {
 
 //export callbackQMediaRecorderControl_Status
 func callbackQMediaRecorderControl_Status(ptr unsafe.Pointer) C.longlong {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaRecorderControl::status"); signal != nil {
 		return C.longlong(signal.(func() QMediaRecorder__Status)())
 	}
@@ -37864,7 +37080,6 @@ func (ptr *QMediaRecorderControl) Status() QMediaRecorder__Status {
 
 //export callbackQMediaRecorderControl_StatusChanged
 func callbackQMediaRecorderControl_StatusChanged(ptr unsafe.Pointer, status C.longlong) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaRecorderControl::statusChanged"); signal != nil {
 		signal.(func(QMediaRecorder__Status))(QMediaRecorder__Status(status))
 	}
@@ -37893,7 +37108,6 @@ func (ptr *QMediaRecorderControl) StatusChanged(status QMediaRecorder__Status) {
 
 //export callbackQMediaRecorderControl_Volume
 func callbackQMediaRecorderControl_Volume(ptr unsafe.Pointer) C.double {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaRecorderControl::volume"); signal != nil {
 		return C.double(signal.(func() float64)())
 	}
@@ -37924,7 +37138,6 @@ func (ptr *QMediaRecorderControl) Volume() float64 {
 
 //export callbackQMediaRecorderControl_VolumeChanged
 func callbackQMediaRecorderControl_VolumeChanged(ptr unsafe.Pointer, gain C.double) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaRecorderControl::volumeChanged"); signal != nil {
 		signal.(func(float64))(float64(gain))
 	}
@@ -37953,7 +37166,6 @@ func (ptr *QMediaRecorderControl) VolumeChanged(gain float64) {
 
 //export callbackQMediaRecorderControl_DestroyQMediaRecorderControl
 func callbackQMediaRecorderControl_DestroyQMediaRecorderControl(ptr unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaRecorderControl::~QMediaRecorderControl"); signal != nil {
 		signal.(func())()
 	} else {
@@ -37993,7 +37205,6 @@ func (ptr *QMediaRecorderControl) DestroyQMediaRecorderControlDefault() {
 
 //export callbackQMediaRecorderControl_TimerEvent
 func callbackQMediaRecorderControl_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaRecorderControl::timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
 	} else {
@@ -38029,7 +37240,6 @@ func (ptr *QMediaRecorderControl) TimerEventDefault(event core.QTimerEvent_ITF) 
 
 //export callbackQMediaRecorderControl_ChildEvent
 func callbackQMediaRecorderControl_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaRecorderControl::childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
 	} else {
@@ -38065,7 +37275,6 @@ func (ptr *QMediaRecorderControl) ChildEventDefault(event core.QChildEvent_ITF) 
 
 //export callbackQMediaRecorderControl_ConnectNotify
 func callbackQMediaRecorderControl_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaRecorderControl::connectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
@@ -38101,7 +37310,6 @@ func (ptr *QMediaRecorderControl) ConnectNotifyDefault(sign core.QMetaMethod_ITF
 
 //export callbackQMediaRecorderControl_CustomEvent
 func callbackQMediaRecorderControl_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaRecorderControl::customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
 	} else {
@@ -38176,7 +37384,6 @@ func (ptr *QMediaRecorderControl) DeleteLaterDefault() {
 
 //export callbackQMediaRecorderControl_DisconnectNotify
 func callbackQMediaRecorderControl_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaRecorderControl::disconnectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
@@ -38212,7 +37419,6 @@ func (ptr *QMediaRecorderControl) DisconnectNotifyDefault(sign core.QMetaMethod_
 
 //export callbackQMediaRecorderControl_Event
 func callbackQMediaRecorderControl_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaRecorderControl::event"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
 	}
@@ -38250,7 +37456,6 @@ func (ptr *QMediaRecorderControl) EventDefault(e core.QEvent_ITF) bool {
 
 //export callbackQMediaRecorderControl_EventFilter
 func callbackQMediaRecorderControl_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaRecorderControl::eventFilter"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
 	}
@@ -38288,7 +37493,6 @@ func (ptr *QMediaRecorderControl) EventFilterDefault(watched core.QObject_ITF, e
 
 //export callbackQMediaRecorderControl_MetaObject
 func callbackQMediaRecorderControl_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaRecorderControl::metaObject"); signal != nil {
 		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
 	}
@@ -38607,7 +37811,6 @@ func NewQMediaService(parent core.QObject_ITF) *QMediaService {
 
 //export callbackQMediaService_ReleaseControl
 func callbackQMediaService_ReleaseControl(ptr unsafe.Pointer, control unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaService::releaseControl"); signal != nil {
 		signal.(func(*QMediaControl))(NewQMediaControlFromPointer(control))
 	}
@@ -38636,7 +37839,6 @@ func (ptr *QMediaService) ReleaseControl(control QMediaControl_ITF) {
 
 //export callbackQMediaService_RequestControl
 func callbackQMediaService_RequestControl(ptr unsafe.Pointer, interfa C.struct_QtMultimedia_PackedString) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaService::requestControl"); signal != nil {
 		return PointerFromQMediaControl(signal.(func(string) *QMediaControl)(cGoUnpackString(interfa)))
 	}
@@ -38692,7 +37894,6 @@ func (ptr *QMediaService) DestroyQMediaService() {
 
 //export callbackQMediaService_TimerEvent
 func callbackQMediaService_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaService::timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
 	} else {
@@ -38728,7 +37929,6 @@ func (ptr *QMediaService) TimerEventDefault(event core.QTimerEvent_ITF) {
 
 //export callbackQMediaService_ChildEvent
 func callbackQMediaService_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaService::childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
 	} else {
@@ -38764,7 +37964,6 @@ func (ptr *QMediaService) ChildEventDefault(event core.QChildEvent_ITF) {
 
 //export callbackQMediaService_ConnectNotify
 func callbackQMediaService_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaService::connectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
@@ -38800,7 +37999,6 @@ func (ptr *QMediaService) ConnectNotifyDefault(sign core.QMetaMethod_ITF) {
 
 //export callbackQMediaService_CustomEvent
 func callbackQMediaService_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaService::customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
 	} else {
@@ -38875,7 +38073,6 @@ func (ptr *QMediaService) DeleteLaterDefault() {
 
 //export callbackQMediaService_DisconnectNotify
 func callbackQMediaService_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaService::disconnectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
@@ -38911,7 +38108,6 @@ func (ptr *QMediaService) DisconnectNotifyDefault(sign core.QMetaMethod_ITF) {
 
 //export callbackQMediaService_Event
 func callbackQMediaService_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaService::event"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
 	}
@@ -38949,7 +38145,6 @@ func (ptr *QMediaService) EventDefault(e core.QEvent_ITF) bool {
 
 //export callbackQMediaService_EventFilter
 func callbackQMediaService_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaService::eventFilter"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
 	}
@@ -38987,7 +38182,6 @@ func (ptr *QMediaService) EventFilterDefault(watched core.QObject_ITF, event cor
 
 //export callbackQMediaService_MetaObject
 func callbackQMediaService_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaService::metaObject"); signal != nil {
 		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
 	}
@@ -39063,7 +38257,6 @@ func NewQMediaServiceCameraInfoInterfaceFromPointer(ptr unsafe.Pointer) *QMediaS
 
 //export callbackQMediaServiceCameraInfoInterface_CameraOrientation
 func callbackQMediaServiceCameraInfoInterface_CameraOrientation(ptr unsafe.Pointer, device unsafe.Pointer) C.int {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaServiceCameraInfoInterface::cameraOrientation"); signal != nil {
 		return C.int(int32(signal.(func(*core.QByteArray) int)(core.NewQByteArrayFromPointer(device))))
 	}
@@ -39094,7 +38287,6 @@ func (ptr *QMediaServiceCameraInfoInterface) CameraOrientation(device core.QByte
 
 //export callbackQMediaServiceCameraInfoInterface_CameraPosition
 func callbackQMediaServiceCameraInfoInterface_CameraPosition(ptr unsafe.Pointer, device unsafe.Pointer) C.longlong {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaServiceCameraInfoInterface::cameraPosition"); signal != nil {
 		return C.longlong(signal.(func(*core.QByteArray) QCamera__Position)(core.NewQByteArrayFromPointer(device)))
 	}
@@ -39125,7 +38317,6 @@ func (ptr *QMediaServiceCameraInfoInterface) CameraPosition(device core.QByteArr
 
 //export callbackQMediaServiceCameraInfoInterface_DestroyQMediaServiceCameraInfoInterface
 func callbackQMediaServiceCameraInfoInterface_DestroyQMediaServiceCameraInfoInterface(ptr unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaServiceCameraInfoInterface::~QMediaServiceCameraInfoInterface"); signal != nil {
 		signal.(func())()
 	} else {
@@ -39203,7 +38394,6 @@ func NewQMediaServiceDefaultDeviceInterfaceFromPointer(ptr unsafe.Pointer) *QMed
 
 //export callbackQMediaServiceDefaultDeviceInterface_DefaultDevice
 func callbackQMediaServiceDefaultDeviceInterface_DefaultDevice(ptr unsafe.Pointer, service unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaServiceDefaultDeviceInterface::defaultDevice"); signal != nil {
 		return core.PointerFromQByteArray(signal.(func(*core.QByteArray) *core.QByteArray)(core.NewQByteArrayFromPointer(service)))
 	}
@@ -39236,7 +38426,6 @@ func (ptr *QMediaServiceDefaultDeviceInterface) DefaultDevice(service core.QByte
 
 //export callbackQMediaServiceDefaultDeviceInterface_DestroyQMediaServiceDefaultDeviceInterface
 func callbackQMediaServiceDefaultDeviceInterface_DestroyQMediaServiceDefaultDeviceInterface(ptr unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaServiceDefaultDeviceInterface::~QMediaServiceDefaultDeviceInterface"); signal != nil {
 		signal.(func())()
 	} else {
@@ -39314,7 +38503,6 @@ func NewQMediaServiceFeaturesInterfaceFromPointer(ptr unsafe.Pointer) *QMediaSer
 
 //export callbackQMediaServiceFeaturesInterface_DestroyQMediaServiceFeaturesInterface
 func callbackQMediaServiceFeaturesInterface_DestroyQMediaServiceFeaturesInterface(ptr unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaServiceFeaturesInterface::~QMediaServiceFeaturesInterface"); signal != nil {
 		signal.(func())()
 	} else {
@@ -39401,7 +38589,6 @@ func (ptr *QMediaServiceProviderPlugin) DestroyQMediaServiceProviderPlugin() {
 
 //export callbackQMediaServiceProviderPlugin_Create
 func callbackQMediaServiceProviderPlugin_Create(ptr unsafe.Pointer, key C.struct_QtMultimedia_PackedString) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaServiceProviderPlugin::create"); signal != nil {
 		return PointerFromQMediaService(signal.(func(string) *QMediaService)(cGoUnpackString(key)))
 	}
@@ -39438,7 +38625,6 @@ func (ptr *QMediaServiceProviderPlugin) Create(key string) *QMediaService {
 
 //export callbackQMediaServiceProviderPlugin_Release
 func callbackQMediaServiceProviderPlugin_Release(ptr unsafe.Pointer, service unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaServiceProviderPlugin::release"); signal != nil {
 		signal.(func(*QMediaService))(NewQMediaServiceFromPointer(service))
 	}
@@ -39467,7 +38653,6 @@ func (ptr *QMediaServiceProviderPlugin) Release(service QMediaService_ITF) {
 
 //export callbackQMediaServiceProviderPlugin_TimerEvent
 func callbackQMediaServiceProviderPlugin_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaServiceProviderPlugin::timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
 	} else {
@@ -39503,7 +38688,6 @@ func (ptr *QMediaServiceProviderPlugin) TimerEventDefault(event core.QTimerEvent
 
 //export callbackQMediaServiceProviderPlugin_ChildEvent
 func callbackQMediaServiceProviderPlugin_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaServiceProviderPlugin::childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
 	} else {
@@ -39539,7 +38723,6 @@ func (ptr *QMediaServiceProviderPlugin) ChildEventDefault(event core.QChildEvent
 
 //export callbackQMediaServiceProviderPlugin_ConnectNotify
 func callbackQMediaServiceProviderPlugin_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaServiceProviderPlugin::connectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
@@ -39575,7 +38758,6 @@ func (ptr *QMediaServiceProviderPlugin) ConnectNotifyDefault(sign core.QMetaMeth
 
 //export callbackQMediaServiceProviderPlugin_CustomEvent
 func callbackQMediaServiceProviderPlugin_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaServiceProviderPlugin::customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
 	} else {
@@ -39650,7 +38832,6 @@ func (ptr *QMediaServiceProviderPlugin) DeleteLaterDefault() {
 
 //export callbackQMediaServiceProviderPlugin_DisconnectNotify
 func callbackQMediaServiceProviderPlugin_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaServiceProviderPlugin::disconnectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
@@ -39686,7 +38867,6 @@ func (ptr *QMediaServiceProviderPlugin) DisconnectNotifyDefault(sign core.QMetaM
 
 //export callbackQMediaServiceProviderPlugin_Event
 func callbackQMediaServiceProviderPlugin_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaServiceProviderPlugin::event"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
 	}
@@ -39724,7 +38904,6 @@ func (ptr *QMediaServiceProviderPlugin) EventDefault(e core.QEvent_ITF) bool {
 
 //export callbackQMediaServiceProviderPlugin_EventFilter
 func callbackQMediaServiceProviderPlugin_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaServiceProviderPlugin::eventFilter"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
 	}
@@ -39762,7 +38941,6 @@ func (ptr *QMediaServiceProviderPlugin) EventFilterDefault(watched core.QObject_
 
 //export callbackQMediaServiceProviderPlugin_MetaObject
 func callbackQMediaServiceProviderPlugin_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaServiceProviderPlugin::metaObject"); signal != nil {
 		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
 	}
@@ -39838,7 +39016,6 @@ func NewQMediaServiceSupportedDevicesInterfaceFromPointer(ptr unsafe.Pointer) *Q
 
 //export callbackQMediaServiceSupportedDevicesInterface_DeviceDescription
 func callbackQMediaServiceSupportedDevicesInterface_DeviceDescription(ptr unsafe.Pointer, service unsafe.Pointer, device unsafe.Pointer) *C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaServiceSupportedDevicesInterface::deviceDescription"); signal != nil {
 		return C.CString(signal.(func(*core.QByteArray, *core.QByteArray) string)(core.NewQByteArrayFromPointer(service), core.NewQByteArrayFromPointer(device)))
 	}
@@ -39896,7 +39073,6 @@ func (ptr *QMediaServiceSupportedDevicesInterface) Devices(service core.QByteArr
 
 //export callbackQMediaServiceSupportedDevicesInterface_DestroyQMediaServiceSupportedDevicesInterface
 func callbackQMediaServiceSupportedDevicesInterface_DestroyQMediaServiceSupportedDevicesInterface(ptr unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaServiceSupportedDevicesInterface::~QMediaServiceSupportedDevicesInterface"); signal != nil {
 		signal.(func())()
 	} else {
@@ -39983,7 +39159,6 @@ func NewQMediaServiceSupportedFormatsInterfaceFromPointer(ptr unsafe.Pointer) *Q
 
 //export callbackQMediaServiceSupportedFormatsInterface_HasSupport
 func callbackQMediaServiceSupportedFormatsInterface_HasSupport(ptr unsafe.Pointer, mimeType C.struct_QtMultimedia_PackedString, codecs C.struct_QtMultimedia_PackedString) C.longlong {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaServiceSupportedFormatsInterface::hasSupport"); signal != nil {
 		return C.longlong(signal.(func(string, []string) QMultimedia__SupportEstimate)(cGoUnpackString(mimeType), strings.Split(cGoUnpackString(codecs), "|")))
 	}
@@ -40018,7 +39193,6 @@ func (ptr *QMediaServiceSupportedFormatsInterface) HasSupport(mimeType string, c
 
 //export callbackQMediaServiceSupportedFormatsInterface_SupportedMimeTypes
 func callbackQMediaServiceSupportedFormatsInterface_SupportedMimeTypes(ptr unsafe.Pointer) *C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaServiceSupportedFormatsInterface::supportedMimeTypes"); signal != nil {
 		return C.CString(strings.Join(signal.(func() []string)(), "|"))
 	}
@@ -40049,7 +39223,6 @@ func (ptr *QMediaServiceSupportedFormatsInterface) SupportedMimeTypes() []string
 
 //export callbackQMediaServiceSupportedFormatsInterface_DestroyQMediaServiceSupportedFormatsInterface
 func callbackQMediaServiceSupportedFormatsInterface_DestroyQMediaServiceSupportedFormatsInterface(ptr unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaServiceSupportedFormatsInterface::~QMediaServiceSupportedFormatsInterface"); signal != nil {
 		signal.(func())()
 	} else {
@@ -40148,7 +39321,6 @@ func NewQMediaStreamsControl(parent core.QObject_ITF) *QMediaStreamsControl {
 
 //export callbackQMediaStreamsControl_ActiveStreamsChanged
 func callbackQMediaStreamsControl_ActiveStreamsChanged(ptr unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaStreamsControl::activeStreamsChanged"); signal != nil {
 		signal.(func())()
 	}
@@ -40177,7 +39349,6 @@ func (ptr *QMediaStreamsControl) ActiveStreamsChanged() {
 
 //export callbackQMediaStreamsControl_IsActive
 func callbackQMediaStreamsControl_IsActive(ptr unsafe.Pointer, stream C.int) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaStreamsControl::isActive"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(int) bool)(int(int32(stream))))))
 	}
@@ -40208,7 +39379,6 @@ func (ptr *QMediaStreamsControl) IsActive(stream int) bool {
 
 //export callbackQMediaStreamsControl_MetaData
 func callbackQMediaStreamsControl_MetaData(ptr unsafe.Pointer, stream C.int, key C.struct_QtMultimedia_PackedString) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaStreamsControl::metaData"); signal != nil {
 		return core.PointerFromQVariant(signal.(func(int, string) *core.QVariant)(int(int32(stream)), cGoUnpackString(key)))
 	}
@@ -40243,7 +39413,6 @@ func (ptr *QMediaStreamsControl) MetaData(stream int, key string) *core.QVariant
 
 //export callbackQMediaStreamsControl_SetActive
 func callbackQMediaStreamsControl_SetActive(ptr unsafe.Pointer, stream C.int, state C.char) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaStreamsControl::setActive"); signal != nil {
 		signal.(func(int, bool))(int(int32(stream)), int8(state) != 0)
 	}
@@ -40272,7 +39441,6 @@ func (ptr *QMediaStreamsControl) SetActive(stream int, state bool) {
 
 //export callbackQMediaStreamsControl_StreamCount
 func callbackQMediaStreamsControl_StreamCount(ptr unsafe.Pointer) C.int {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaStreamsControl::streamCount"); signal != nil {
 		return C.int(int32(signal.(func() int)()))
 	}
@@ -40303,7 +39471,6 @@ func (ptr *QMediaStreamsControl) StreamCount() int {
 
 //export callbackQMediaStreamsControl_StreamType
 func callbackQMediaStreamsControl_StreamType(ptr unsafe.Pointer, stream C.int) C.longlong {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaStreamsControl::streamType"); signal != nil {
 		return C.longlong(signal.(func(int) QMediaStreamsControl__StreamType)(int(int32(stream))))
 	}
@@ -40334,7 +39501,6 @@ func (ptr *QMediaStreamsControl) StreamType(stream int) QMediaStreamsControl__St
 
 //export callbackQMediaStreamsControl_StreamsChanged
 func callbackQMediaStreamsControl_StreamsChanged(ptr unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaStreamsControl::streamsChanged"); signal != nil {
 		signal.(func())()
 	}
@@ -40363,7 +39529,6 @@ func (ptr *QMediaStreamsControl) StreamsChanged() {
 
 //export callbackQMediaStreamsControl_DestroyQMediaStreamsControl
 func callbackQMediaStreamsControl_DestroyQMediaStreamsControl(ptr unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaStreamsControl::~QMediaStreamsControl"); signal != nil {
 		signal.(func())()
 	} else {
@@ -40403,7 +39568,6 @@ func (ptr *QMediaStreamsControl) DestroyQMediaStreamsControlDefault() {
 
 //export callbackQMediaStreamsControl_TimerEvent
 func callbackQMediaStreamsControl_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaStreamsControl::timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
 	} else {
@@ -40439,7 +39603,6 @@ func (ptr *QMediaStreamsControl) TimerEventDefault(event core.QTimerEvent_ITF) {
 
 //export callbackQMediaStreamsControl_ChildEvent
 func callbackQMediaStreamsControl_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaStreamsControl::childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
 	} else {
@@ -40475,7 +39638,6 @@ func (ptr *QMediaStreamsControl) ChildEventDefault(event core.QChildEvent_ITF) {
 
 //export callbackQMediaStreamsControl_ConnectNotify
 func callbackQMediaStreamsControl_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaStreamsControl::connectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
@@ -40511,7 +39673,6 @@ func (ptr *QMediaStreamsControl) ConnectNotifyDefault(sign core.QMetaMethod_ITF)
 
 //export callbackQMediaStreamsControl_CustomEvent
 func callbackQMediaStreamsControl_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaStreamsControl::customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
 	} else {
@@ -40586,7 +39747,6 @@ func (ptr *QMediaStreamsControl) DeleteLaterDefault() {
 
 //export callbackQMediaStreamsControl_DisconnectNotify
 func callbackQMediaStreamsControl_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaStreamsControl::disconnectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
@@ -40622,7 +39782,6 @@ func (ptr *QMediaStreamsControl) DisconnectNotifyDefault(sign core.QMetaMethod_I
 
 //export callbackQMediaStreamsControl_Event
 func callbackQMediaStreamsControl_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaStreamsControl::event"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
 	}
@@ -40660,7 +39819,6 @@ func (ptr *QMediaStreamsControl) EventDefault(e core.QEvent_ITF) bool {
 
 //export callbackQMediaStreamsControl_EventFilter
 func callbackQMediaStreamsControl_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaStreamsControl::eventFilter"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
 	}
@@ -40698,7 +39856,6 @@ func (ptr *QMediaStreamsControl) EventFilterDefault(watched core.QObject_ITF, ev
 
 //export callbackQMediaStreamsControl_MetaObject
 func callbackQMediaStreamsControl_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaStreamsControl::metaObject"); signal != nil {
 		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
 	}
@@ -41058,7 +40215,6 @@ func NewQMediaVideoProbeControl(parent core.QObject_ITF) *QMediaVideoProbeContro
 
 //export callbackQMediaVideoProbeControl_Flush
 func callbackQMediaVideoProbeControl_Flush(ptr unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaVideoProbeControl::flush"); signal != nil {
 		signal.(func())()
 	}
@@ -41087,7 +40243,6 @@ func (ptr *QMediaVideoProbeControl) Flush() {
 
 //export callbackQMediaVideoProbeControl_VideoFrameProbed
 func callbackQMediaVideoProbeControl_VideoFrameProbed(ptr unsafe.Pointer, frame unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaVideoProbeControl::videoFrameProbed"); signal != nil {
 		signal.(func(*QVideoFrame))(NewQVideoFrameFromPointer(frame))
 	}
@@ -41116,7 +40271,6 @@ func (ptr *QMediaVideoProbeControl) VideoFrameProbed(frame QVideoFrame_ITF) {
 
 //export callbackQMediaVideoProbeControl_DestroyQMediaVideoProbeControl
 func callbackQMediaVideoProbeControl_DestroyQMediaVideoProbeControl(ptr unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaVideoProbeControl::~QMediaVideoProbeControl"); signal != nil {
 		signal.(func())()
 	} else {
@@ -41156,7 +40310,6 @@ func (ptr *QMediaVideoProbeControl) DestroyQMediaVideoProbeControlDefault() {
 
 //export callbackQMediaVideoProbeControl_TimerEvent
 func callbackQMediaVideoProbeControl_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaVideoProbeControl::timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
 	} else {
@@ -41192,7 +40345,6 @@ func (ptr *QMediaVideoProbeControl) TimerEventDefault(event core.QTimerEvent_ITF
 
 //export callbackQMediaVideoProbeControl_ChildEvent
 func callbackQMediaVideoProbeControl_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaVideoProbeControl::childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
 	} else {
@@ -41228,7 +40380,6 @@ func (ptr *QMediaVideoProbeControl) ChildEventDefault(event core.QChildEvent_ITF
 
 //export callbackQMediaVideoProbeControl_ConnectNotify
 func callbackQMediaVideoProbeControl_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaVideoProbeControl::connectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
@@ -41264,7 +40415,6 @@ func (ptr *QMediaVideoProbeControl) ConnectNotifyDefault(sign core.QMetaMethod_I
 
 //export callbackQMediaVideoProbeControl_CustomEvent
 func callbackQMediaVideoProbeControl_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaVideoProbeControl::customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
 	} else {
@@ -41339,7 +40489,6 @@ func (ptr *QMediaVideoProbeControl) DeleteLaterDefault() {
 
 //export callbackQMediaVideoProbeControl_DisconnectNotify
 func callbackQMediaVideoProbeControl_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaVideoProbeControl::disconnectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
@@ -41375,7 +40524,6 @@ func (ptr *QMediaVideoProbeControl) DisconnectNotifyDefault(sign core.QMetaMetho
 
 //export callbackQMediaVideoProbeControl_Event
 func callbackQMediaVideoProbeControl_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaVideoProbeControl::event"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
 	}
@@ -41413,7 +40561,6 @@ func (ptr *QMediaVideoProbeControl) EventDefault(e core.QEvent_ITF) bool {
 
 //export callbackQMediaVideoProbeControl_EventFilter
 func callbackQMediaVideoProbeControl_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaVideoProbeControl::eventFilter"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
 	}
@@ -41451,7 +40598,6 @@ func (ptr *QMediaVideoProbeControl) EventFilterDefault(watched core.QObject_ITF,
 
 //export callbackQMediaVideoProbeControl_MetaObject
 func callbackQMediaVideoProbeControl_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMediaVideoProbeControl::metaObject"); signal != nil {
 		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
 	}
@@ -41535,7 +40681,6 @@ func NewQMetaDataReaderControl(parent core.QObject_ITF) *QMetaDataReaderControl 
 
 //export callbackQMetaDataReaderControl_AvailableMetaData
 func callbackQMetaDataReaderControl_AvailableMetaData(ptr unsafe.Pointer) *C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMetaDataReaderControl::availableMetaData"); signal != nil {
 		return C.CString(strings.Join(signal.(func() []string)(), "|"))
 	}
@@ -41566,7 +40711,6 @@ func (ptr *QMetaDataReaderControl) AvailableMetaData() []string {
 
 //export callbackQMetaDataReaderControl_IsMetaDataAvailable
 func callbackQMetaDataReaderControl_IsMetaDataAvailable(ptr unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMetaDataReaderControl::isMetaDataAvailable"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func() bool)())))
 	}
@@ -41597,7 +40741,6 @@ func (ptr *QMetaDataReaderControl) IsMetaDataAvailable() bool {
 
 //export callbackQMetaDataReaderControl_MetaData
 func callbackQMetaDataReaderControl_MetaData(ptr unsafe.Pointer, key C.struct_QtMultimedia_PackedString) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMetaDataReaderControl::metaData"); signal != nil {
 		return core.PointerFromQVariant(signal.(func(string) *core.QVariant)(cGoUnpackString(key)))
 	}
@@ -41632,7 +40775,6 @@ func (ptr *QMetaDataReaderControl) MetaData(key string) *core.QVariant {
 
 //export callbackQMetaDataReaderControl_MetaDataAvailableChanged
 func callbackQMetaDataReaderControl_MetaDataAvailableChanged(ptr unsafe.Pointer, available C.char) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMetaDataReaderControl::metaDataAvailableChanged"); signal != nil {
 		signal.(func(bool))(int8(available) != 0)
 	}
@@ -41661,7 +40803,6 @@ func (ptr *QMetaDataReaderControl) MetaDataAvailableChanged(available bool) {
 
 //export callbackQMetaDataReaderControl_MetaDataChanged
 func callbackQMetaDataReaderControl_MetaDataChanged(ptr unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMetaDataReaderControl::metaDataChanged"); signal != nil {
 		signal.(func())()
 	}
@@ -41690,7 +40831,6 @@ func (ptr *QMetaDataReaderControl) MetaDataChanged() {
 
 //export callbackQMetaDataReaderControl_MetaDataChanged2
 func callbackQMetaDataReaderControl_MetaDataChanged2(ptr unsafe.Pointer, key C.struct_QtMultimedia_PackedString, value unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMetaDataReaderControl::metaDataChanged2"); signal != nil {
 		signal.(func(string, *core.QVariant))(cGoUnpackString(key), core.NewQVariantFromPointer(value))
 	}
@@ -41729,7 +40869,6 @@ func (ptr *QMetaDataReaderControl) DestroyQMetaDataReaderControl() {
 
 //export callbackQMetaDataReaderControl_TimerEvent
 func callbackQMetaDataReaderControl_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMetaDataReaderControl::timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
 	} else {
@@ -41765,7 +40904,6 @@ func (ptr *QMetaDataReaderControl) TimerEventDefault(event core.QTimerEvent_ITF)
 
 //export callbackQMetaDataReaderControl_ChildEvent
 func callbackQMetaDataReaderControl_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMetaDataReaderControl::childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
 	} else {
@@ -41801,7 +40939,6 @@ func (ptr *QMetaDataReaderControl) ChildEventDefault(event core.QChildEvent_ITF)
 
 //export callbackQMetaDataReaderControl_ConnectNotify
 func callbackQMetaDataReaderControl_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMetaDataReaderControl::connectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
@@ -41837,7 +40974,6 @@ func (ptr *QMetaDataReaderControl) ConnectNotifyDefault(sign core.QMetaMethod_IT
 
 //export callbackQMetaDataReaderControl_CustomEvent
 func callbackQMetaDataReaderControl_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMetaDataReaderControl::customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
 	} else {
@@ -41912,7 +41048,6 @@ func (ptr *QMetaDataReaderControl) DeleteLaterDefault() {
 
 //export callbackQMetaDataReaderControl_DisconnectNotify
 func callbackQMetaDataReaderControl_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMetaDataReaderControl::disconnectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
@@ -41948,7 +41083,6 @@ func (ptr *QMetaDataReaderControl) DisconnectNotifyDefault(sign core.QMetaMethod
 
 //export callbackQMetaDataReaderControl_Event
 func callbackQMetaDataReaderControl_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMetaDataReaderControl::event"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
 	}
@@ -41986,7 +41120,6 @@ func (ptr *QMetaDataReaderControl) EventDefault(e core.QEvent_ITF) bool {
 
 //export callbackQMetaDataReaderControl_EventFilter
 func callbackQMetaDataReaderControl_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMetaDataReaderControl::eventFilter"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
 	}
@@ -42024,7 +41157,6 @@ func (ptr *QMetaDataReaderControl) EventFilterDefault(watched core.QObject_ITF, 
 
 //export callbackQMetaDataReaderControl_MetaObject
 func callbackQMetaDataReaderControl_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMetaDataReaderControl::metaObject"); signal != nil {
 		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
 	}
@@ -42108,7 +41240,6 @@ func NewQMetaDataWriterControl(parent core.QObject_ITF) *QMetaDataWriterControl 
 
 //export callbackQMetaDataWriterControl_AvailableMetaData
 func callbackQMetaDataWriterControl_AvailableMetaData(ptr unsafe.Pointer) *C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMetaDataWriterControl::availableMetaData"); signal != nil {
 		return C.CString(strings.Join(signal.(func() []string)(), "|"))
 	}
@@ -42139,7 +41270,6 @@ func (ptr *QMetaDataWriterControl) AvailableMetaData() []string {
 
 //export callbackQMetaDataWriterControl_IsMetaDataAvailable
 func callbackQMetaDataWriterControl_IsMetaDataAvailable(ptr unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMetaDataWriterControl::isMetaDataAvailable"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func() bool)())))
 	}
@@ -42170,7 +41300,6 @@ func (ptr *QMetaDataWriterControl) IsMetaDataAvailable() bool {
 
 //export callbackQMetaDataWriterControl_IsWritable
 func callbackQMetaDataWriterControl_IsWritable(ptr unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMetaDataWriterControl::isWritable"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func() bool)())))
 	}
@@ -42201,7 +41330,6 @@ func (ptr *QMetaDataWriterControl) IsWritable() bool {
 
 //export callbackQMetaDataWriterControl_MetaData
 func callbackQMetaDataWriterControl_MetaData(ptr unsafe.Pointer, key C.struct_QtMultimedia_PackedString) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMetaDataWriterControl::metaData"); signal != nil {
 		return core.PointerFromQVariant(signal.(func(string) *core.QVariant)(cGoUnpackString(key)))
 	}
@@ -42236,7 +41364,6 @@ func (ptr *QMetaDataWriterControl) MetaData(key string) *core.QVariant {
 
 //export callbackQMetaDataWriterControl_MetaDataAvailableChanged
 func callbackQMetaDataWriterControl_MetaDataAvailableChanged(ptr unsafe.Pointer, available C.char) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMetaDataWriterControl::metaDataAvailableChanged"); signal != nil {
 		signal.(func(bool))(int8(available) != 0)
 	}
@@ -42265,7 +41392,6 @@ func (ptr *QMetaDataWriterControl) MetaDataAvailableChanged(available bool) {
 
 //export callbackQMetaDataWriterControl_MetaDataChanged
 func callbackQMetaDataWriterControl_MetaDataChanged(ptr unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMetaDataWriterControl::metaDataChanged"); signal != nil {
 		signal.(func())()
 	}
@@ -42294,7 +41420,6 @@ func (ptr *QMetaDataWriterControl) MetaDataChanged() {
 
 //export callbackQMetaDataWriterControl_MetaDataChanged2
 func callbackQMetaDataWriterControl_MetaDataChanged2(ptr unsafe.Pointer, key C.struct_QtMultimedia_PackedString, value unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMetaDataWriterControl::metaDataChanged2"); signal != nil {
 		signal.(func(string, *core.QVariant))(cGoUnpackString(key), core.NewQVariantFromPointer(value))
 	}
@@ -42325,7 +41450,6 @@ func (ptr *QMetaDataWriterControl) MetaDataChanged2(key string, value core.QVari
 
 //export callbackQMetaDataWriterControl_SetMetaData
 func callbackQMetaDataWriterControl_SetMetaData(ptr unsafe.Pointer, key C.struct_QtMultimedia_PackedString, value unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMetaDataWriterControl::setMetaData"); signal != nil {
 		signal.(func(string, *core.QVariant))(cGoUnpackString(key), core.NewQVariantFromPointer(value))
 	}
@@ -42356,7 +41480,6 @@ func (ptr *QMetaDataWriterControl) SetMetaData(key string, value core.QVariant_I
 
 //export callbackQMetaDataWriterControl_WritableChanged
 func callbackQMetaDataWriterControl_WritableChanged(ptr unsafe.Pointer, writable C.char) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMetaDataWriterControl::writableChanged"); signal != nil {
 		signal.(func(bool))(int8(writable) != 0)
 	}
@@ -42393,7 +41516,6 @@ func (ptr *QMetaDataWriterControl) DestroyQMetaDataWriterControl() {
 
 //export callbackQMetaDataWriterControl_TimerEvent
 func callbackQMetaDataWriterControl_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMetaDataWriterControl::timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
 	} else {
@@ -42429,7 +41551,6 @@ func (ptr *QMetaDataWriterControl) TimerEventDefault(event core.QTimerEvent_ITF)
 
 //export callbackQMetaDataWriterControl_ChildEvent
 func callbackQMetaDataWriterControl_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMetaDataWriterControl::childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
 	} else {
@@ -42465,7 +41586,6 @@ func (ptr *QMetaDataWriterControl) ChildEventDefault(event core.QChildEvent_ITF)
 
 //export callbackQMetaDataWriterControl_ConnectNotify
 func callbackQMetaDataWriterControl_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMetaDataWriterControl::connectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
@@ -42501,7 +41621,6 @@ func (ptr *QMetaDataWriterControl) ConnectNotifyDefault(sign core.QMetaMethod_IT
 
 //export callbackQMetaDataWriterControl_CustomEvent
 func callbackQMetaDataWriterControl_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMetaDataWriterControl::customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
 	} else {
@@ -42576,7 +41695,6 @@ func (ptr *QMetaDataWriterControl) DeleteLaterDefault() {
 
 //export callbackQMetaDataWriterControl_DisconnectNotify
 func callbackQMetaDataWriterControl_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMetaDataWriterControl::disconnectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
@@ -42612,7 +41730,6 @@ func (ptr *QMetaDataWriterControl) DisconnectNotifyDefault(sign core.QMetaMethod
 
 //export callbackQMetaDataWriterControl_Event
 func callbackQMetaDataWriterControl_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMetaDataWriterControl::event"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
 	}
@@ -42650,7 +41767,6 @@ func (ptr *QMetaDataWriterControl) EventDefault(e core.QEvent_ITF) bool {
 
 //export callbackQMetaDataWriterControl_EventFilter
 func callbackQMetaDataWriterControl_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMetaDataWriterControl::eventFilter"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
 	}
@@ -42688,7 +41804,6 @@ func (ptr *QMetaDataWriterControl) EventFilterDefault(watched core.QObject_ITF, 
 
 //export callbackQMetaDataWriterControl_MetaObject
 func callbackQMetaDataWriterControl_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QMetaDataWriterControl::metaObject"); signal != nil {
 		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
 	}
@@ -43009,7 +42124,6 @@ func NewQRadioData(mediaObject QMediaObject_ITF, parent core.QObject_ITF) *QRadi
 
 //export callbackQRadioData_AlternativeFrequenciesEnabledChanged
 func callbackQRadioData_AlternativeFrequenciesEnabledChanged(ptr unsafe.Pointer, enabled C.char) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QRadioData::alternativeFrequenciesEnabledChanged"); signal != nil {
 		signal.(func(bool))(int8(enabled) != 0)
 	}
@@ -43045,7 +42159,6 @@ func (ptr *QRadioData) Availability() QMultimedia__AvailabilityStatus {
 
 //export callbackQRadioData_Error2
 func callbackQRadioData_Error2(ptr unsafe.Pointer, error C.longlong) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QRadioData::error2"); signal != nil {
 		signal.(func(QRadioData__Error))(QRadioData__Error(error))
 	}
@@ -43088,7 +42201,6 @@ func (ptr *QRadioData) ErrorString() string {
 
 //export callbackQRadioData_MediaObject
 func callbackQRadioData_MediaObject(ptr unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QRadioData::mediaObject"); signal != nil {
 		return PointerFromQMediaObject(signal.(func() *QMediaObject)())
 	}
@@ -43134,7 +42246,6 @@ func (ptr *QRadioData) MediaObjectDefault() *QMediaObject {
 
 //export callbackQRadioData_ProgramTypeChanged
 func callbackQRadioData_ProgramTypeChanged(ptr unsafe.Pointer, programType C.longlong) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QRadioData::programTypeChanged"); signal != nil {
 		signal.(func(QRadioData__ProgramType))(QRadioData__ProgramType(programType))
 	}
@@ -43163,7 +42274,6 @@ func (ptr *QRadioData) ProgramTypeChanged(programType QRadioData__ProgramType) {
 
 //export callbackQRadioData_ProgramTypeNameChanged
 func callbackQRadioData_ProgramTypeNameChanged(ptr unsafe.Pointer, programTypeName C.struct_QtMultimedia_PackedString) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QRadioData::programTypeNameChanged"); signal != nil {
 		signal.(func(string))(cGoUnpackString(programTypeName))
 	}
@@ -43194,7 +42304,6 @@ func (ptr *QRadioData) ProgramTypeNameChanged(programTypeName string) {
 
 //export callbackQRadioData_RadioTextChanged
 func callbackQRadioData_RadioTextChanged(ptr unsafe.Pointer, radioText C.struct_QtMultimedia_PackedString) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QRadioData::radioTextChanged"); signal != nil {
 		signal.(func(string))(cGoUnpackString(radioText))
 	}
@@ -43225,7 +42334,6 @@ func (ptr *QRadioData) RadioTextChanged(radioText string) {
 
 //export callbackQRadioData_SetMediaObject
 func callbackQRadioData_SetMediaObject(ptr unsafe.Pointer, mediaObject unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QRadioData::setMediaObject"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*QMediaObject) bool)(NewQMediaObjectFromPointer(mediaObject)))))
 	}
@@ -43263,7 +42371,6 @@ func (ptr *QRadioData) SetMediaObjectDefault(mediaObject QMediaObject_ITF) bool 
 
 //export callbackQRadioData_StationIdChanged
 func callbackQRadioData_StationIdChanged(ptr unsafe.Pointer, stationId C.struct_QtMultimedia_PackedString) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QRadioData::stationIdChanged"); signal != nil {
 		signal.(func(string))(cGoUnpackString(stationId))
 	}
@@ -43294,7 +42401,6 @@ func (ptr *QRadioData) StationIdChanged(stationId string) {
 
 //export callbackQRadioData_StationNameChanged
 func callbackQRadioData_StationNameChanged(ptr unsafe.Pointer, stationName C.struct_QtMultimedia_PackedString) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QRadioData::stationNameChanged"); signal != nil {
 		signal.(func(string))(cGoUnpackString(stationName))
 	}
@@ -43333,7 +42439,6 @@ func (ptr *QRadioData) DestroyQRadioData() {
 
 //export callbackQRadioData_TimerEvent
 func callbackQRadioData_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QRadioData::timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
 	} else {
@@ -43369,7 +42474,6 @@ func (ptr *QRadioData) TimerEventDefault(event core.QTimerEvent_ITF) {
 
 //export callbackQRadioData_ChildEvent
 func callbackQRadioData_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QRadioData::childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
 	} else {
@@ -43405,7 +42509,6 @@ func (ptr *QRadioData) ChildEventDefault(event core.QChildEvent_ITF) {
 
 //export callbackQRadioData_ConnectNotify
 func callbackQRadioData_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QRadioData::connectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
@@ -43441,7 +42544,6 @@ func (ptr *QRadioData) ConnectNotifyDefault(sign core.QMetaMethod_ITF) {
 
 //export callbackQRadioData_CustomEvent
 func callbackQRadioData_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QRadioData::customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
 	} else {
@@ -43516,7 +42618,6 @@ func (ptr *QRadioData) DeleteLaterDefault() {
 
 //export callbackQRadioData_DisconnectNotify
 func callbackQRadioData_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QRadioData::disconnectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
@@ -43552,7 +42653,6 @@ func (ptr *QRadioData) DisconnectNotifyDefault(sign core.QMetaMethod_ITF) {
 
 //export callbackQRadioData_Event
 func callbackQRadioData_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QRadioData::event"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
 	}
@@ -43590,7 +42690,6 @@ func (ptr *QRadioData) EventDefault(e core.QEvent_ITF) bool {
 
 //export callbackQRadioData_EventFilter
 func callbackQRadioData_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QRadioData::eventFilter"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
 	}
@@ -43628,7 +42727,6 @@ func (ptr *QRadioData) EventFilterDefault(watched core.QObject_ITF, event core.Q
 
 //export callbackQRadioData_MetaObject
 func callbackQRadioData_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QRadioData::metaObject"); signal != nil {
 		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
 	}
@@ -43712,7 +42810,6 @@ func NewQRadioDataControl(parent core.QObject_ITF) *QRadioDataControl {
 
 //export callbackQRadioDataControl_AlternativeFrequenciesEnabledChanged
 func callbackQRadioDataControl_AlternativeFrequenciesEnabledChanged(ptr unsafe.Pointer, enabled C.char) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QRadioDataControl::alternativeFrequenciesEnabledChanged"); signal != nil {
 		signal.(func(bool))(int8(enabled) != 0)
 	}
@@ -43741,7 +42838,6 @@ func (ptr *QRadioDataControl) AlternativeFrequenciesEnabledChanged(enabled bool)
 
 //export callbackQRadioDataControl_Error2
 func callbackQRadioDataControl_Error2(ptr unsafe.Pointer, error C.longlong) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QRadioDataControl::error2"); signal != nil {
 		signal.(func(QRadioData__Error))(QRadioData__Error(error))
 	}
@@ -43770,7 +42866,6 @@ func (ptr *QRadioDataControl) Error2(error QRadioData__Error) {
 
 //export callbackQRadioDataControl_Error
 func callbackQRadioDataControl_Error(ptr unsafe.Pointer) C.longlong {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QRadioDataControl::error"); signal != nil {
 		return C.longlong(signal.(func() QRadioData__Error)())
 	}
@@ -43801,7 +42896,6 @@ func (ptr *QRadioDataControl) Error() QRadioData__Error {
 
 //export callbackQRadioDataControl_ErrorString
 func callbackQRadioDataControl_ErrorString(ptr unsafe.Pointer) *C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QRadioDataControl::errorString"); signal != nil {
 		return C.CString(signal.(func() string)())
 	}
@@ -43832,7 +42926,6 @@ func (ptr *QRadioDataControl) ErrorString() string {
 
 //export callbackQRadioDataControl_IsAlternativeFrequenciesEnabled
 func callbackQRadioDataControl_IsAlternativeFrequenciesEnabled(ptr unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QRadioDataControl::isAlternativeFrequenciesEnabled"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func() bool)())))
 	}
@@ -43863,7 +42956,6 @@ func (ptr *QRadioDataControl) IsAlternativeFrequenciesEnabled() bool {
 
 //export callbackQRadioDataControl_ProgramType
 func callbackQRadioDataControl_ProgramType(ptr unsafe.Pointer) C.longlong {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QRadioDataControl::programType"); signal != nil {
 		return C.longlong(signal.(func() QRadioData__ProgramType)())
 	}
@@ -43894,7 +42986,6 @@ func (ptr *QRadioDataControl) ProgramType() QRadioData__ProgramType {
 
 //export callbackQRadioDataControl_ProgramTypeChanged
 func callbackQRadioDataControl_ProgramTypeChanged(ptr unsafe.Pointer, programType C.longlong) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QRadioDataControl::programTypeChanged"); signal != nil {
 		signal.(func(QRadioData__ProgramType))(QRadioData__ProgramType(programType))
 	}
@@ -43923,7 +43014,6 @@ func (ptr *QRadioDataControl) ProgramTypeChanged(programType QRadioData__Program
 
 //export callbackQRadioDataControl_ProgramTypeName
 func callbackQRadioDataControl_ProgramTypeName(ptr unsafe.Pointer) *C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QRadioDataControl::programTypeName"); signal != nil {
 		return C.CString(signal.(func() string)())
 	}
@@ -43954,7 +43044,6 @@ func (ptr *QRadioDataControl) ProgramTypeName() string {
 
 //export callbackQRadioDataControl_ProgramTypeNameChanged
 func callbackQRadioDataControl_ProgramTypeNameChanged(ptr unsafe.Pointer, programTypeName C.struct_QtMultimedia_PackedString) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QRadioDataControl::programTypeNameChanged"); signal != nil {
 		signal.(func(string))(cGoUnpackString(programTypeName))
 	}
@@ -43985,7 +43074,6 @@ func (ptr *QRadioDataControl) ProgramTypeNameChanged(programTypeName string) {
 
 //export callbackQRadioDataControl_RadioText
 func callbackQRadioDataControl_RadioText(ptr unsafe.Pointer) *C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QRadioDataControl::radioText"); signal != nil {
 		return C.CString(signal.(func() string)())
 	}
@@ -44016,7 +43104,6 @@ func (ptr *QRadioDataControl) RadioText() string {
 
 //export callbackQRadioDataControl_RadioTextChanged
 func callbackQRadioDataControl_RadioTextChanged(ptr unsafe.Pointer, radioText C.struct_QtMultimedia_PackedString) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QRadioDataControl::radioTextChanged"); signal != nil {
 		signal.(func(string))(cGoUnpackString(radioText))
 	}
@@ -44047,7 +43134,6 @@ func (ptr *QRadioDataControl) RadioTextChanged(radioText string) {
 
 //export callbackQRadioDataControl_SetAlternativeFrequenciesEnabled
 func callbackQRadioDataControl_SetAlternativeFrequenciesEnabled(ptr unsafe.Pointer, enabled C.char) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QRadioDataControl::setAlternativeFrequenciesEnabled"); signal != nil {
 		signal.(func(bool))(int8(enabled) != 0)
 	}
@@ -44076,7 +43162,6 @@ func (ptr *QRadioDataControl) SetAlternativeFrequenciesEnabled(enabled bool) {
 
 //export callbackQRadioDataControl_StationId
 func callbackQRadioDataControl_StationId(ptr unsafe.Pointer) *C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QRadioDataControl::stationId"); signal != nil {
 		return C.CString(signal.(func() string)())
 	}
@@ -44107,7 +43192,6 @@ func (ptr *QRadioDataControl) StationId() string {
 
 //export callbackQRadioDataControl_StationIdChanged
 func callbackQRadioDataControl_StationIdChanged(ptr unsafe.Pointer, stationId C.struct_QtMultimedia_PackedString) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QRadioDataControl::stationIdChanged"); signal != nil {
 		signal.(func(string))(cGoUnpackString(stationId))
 	}
@@ -44138,7 +43222,6 @@ func (ptr *QRadioDataControl) StationIdChanged(stationId string) {
 
 //export callbackQRadioDataControl_StationName
 func callbackQRadioDataControl_StationName(ptr unsafe.Pointer) *C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QRadioDataControl::stationName"); signal != nil {
 		return C.CString(signal.(func() string)())
 	}
@@ -44169,7 +43252,6 @@ func (ptr *QRadioDataControl) StationName() string {
 
 //export callbackQRadioDataControl_StationNameChanged
 func callbackQRadioDataControl_StationNameChanged(ptr unsafe.Pointer, stationName C.struct_QtMultimedia_PackedString) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QRadioDataControl::stationNameChanged"); signal != nil {
 		signal.(func(string))(cGoUnpackString(stationName))
 	}
@@ -44208,7 +43290,6 @@ func (ptr *QRadioDataControl) DestroyQRadioDataControl() {
 
 //export callbackQRadioDataControl_TimerEvent
 func callbackQRadioDataControl_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QRadioDataControl::timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
 	} else {
@@ -44244,7 +43325,6 @@ func (ptr *QRadioDataControl) TimerEventDefault(event core.QTimerEvent_ITF) {
 
 //export callbackQRadioDataControl_ChildEvent
 func callbackQRadioDataControl_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QRadioDataControl::childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
 	} else {
@@ -44280,7 +43360,6 @@ func (ptr *QRadioDataControl) ChildEventDefault(event core.QChildEvent_ITF) {
 
 //export callbackQRadioDataControl_ConnectNotify
 func callbackQRadioDataControl_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QRadioDataControl::connectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
@@ -44316,7 +43395,6 @@ func (ptr *QRadioDataControl) ConnectNotifyDefault(sign core.QMetaMethod_ITF) {
 
 //export callbackQRadioDataControl_CustomEvent
 func callbackQRadioDataControl_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QRadioDataControl::customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
 	} else {
@@ -44391,7 +43469,6 @@ func (ptr *QRadioDataControl) DeleteLaterDefault() {
 
 //export callbackQRadioDataControl_DisconnectNotify
 func callbackQRadioDataControl_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QRadioDataControl::disconnectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
@@ -44427,7 +43504,6 @@ func (ptr *QRadioDataControl) DisconnectNotifyDefault(sign core.QMetaMethod_ITF)
 
 //export callbackQRadioDataControl_Event
 func callbackQRadioDataControl_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QRadioDataControl::event"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
 	}
@@ -44465,7 +43541,6 @@ func (ptr *QRadioDataControl) EventDefault(e core.QEvent_ITF) bool {
 
 //export callbackQRadioDataControl_EventFilter
 func callbackQRadioDataControl_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QRadioDataControl::eventFilter"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
 	}
@@ -44503,7 +43578,6 @@ func (ptr *QRadioDataControl) EventFilterDefault(watched core.QObject_ITF, event
 
 //export callbackQRadioDataControl_MetaObject
 func callbackQRadioDataControl_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QRadioDataControl::metaObject"); signal != nil {
 		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
 	}
@@ -44796,7 +43870,6 @@ func NewQRadioTuner(parent core.QObject_ITF) *QRadioTuner {
 
 //export callbackQRadioTuner_AntennaConnectedChanged
 func callbackQRadioTuner_AntennaConnectedChanged(ptr unsafe.Pointer, connectionStatus C.char) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QRadioTuner::antennaConnectedChanged"); signal != nil {
 		signal.(func(bool))(int8(connectionStatus) != 0)
 	}
@@ -44825,7 +43898,6 @@ func (ptr *QRadioTuner) AntennaConnectedChanged(connectionStatus bool) {
 
 //export callbackQRadioTuner_Availability
 func callbackQRadioTuner_Availability(ptr unsafe.Pointer) C.longlong {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QRadioTuner::availability"); signal != nil {
 		return C.longlong(signal.(func() QMultimedia__AvailabilityStatus)())
 	}
@@ -44863,7 +43935,6 @@ func (ptr *QRadioTuner) AvailabilityDefault() QMultimedia__AvailabilityStatus {
 
 //export callbackQRadioTuner_BandChanged
 func callbackQRadioTuner_BandChanged(ptr unsafe.Pointer, band C.longlong) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QRadioTuner::bandChanged"); signal != nil {
 		signal.(func(QRadioTuner__Band))(QRadioTuner__Band(band))
 	}
@@ -44927,7 +43998,6 @@ func (ptr *QRadioTuner) CancelSearchDefault() {
 
 //export callbackQRadioTuner_Error2
 func callbackQRadioTuner_Error2(ptr unsafe.Pointer, error C.longlong) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QRadioTuner::error2"); signal != nil {
 		signal.(func(QRadioTuner__Error))(QRadioTuner__Error(error))
 	}
@@ -44970,7 +44040,6 @@ func (ptr *QRadioTuner) ErrorString() string {
 
 //export callbackQRadioTuner_FrequencyChanged
 func callbackQRadioTuner_FrequencyChanged(ptr unsafe.Pointer, frequency C.int) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QRadioTuner::frequencyChanged"); signal != nil {
 		signal.(func(int))(int(int32(frequency)))
 	}
@@ -45013,7 +44082,6 @@ func (ptr *QRadioTuner) IsBandSupported(band QRadioTuner__Band) bool {
 
 //export callbackQRadioTuner_MutedChanged
 func callbackQRadioTuner_MutedChanged(ptr unsafe.Pointer, muted C.char) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QRadioTuner::mutedChanged"); signal != nil {
 		signal.(func(bool))(int8(muted) != 0)
 	}
@@ -45147,7 +44215,6 @@ func (ptr *QRadioTuner) SearchForwardDefault() {
 
 //export callbackQRadioTuner_SearchingChanged
 func callbackQRadioTuner_SearchingChanged(ptr unsafe.Pointer, searching C.char) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QRadioTuner::searchingChanged"); signal != nil {
 		signal.(func(bool))(int8(searching) != 0)
 	}
@@ -45246,7 +44313,6 @@ func (ptr *QRadioTuner) SetFrequencyDefault(frequency int) {
 
 //export callbackQRadioTuner_SignalStrengthChanged
 func callbackQRadioTuner_SignalStrengthChanged(ptr unsafe.Pointer, strength C.int) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QRadioTuner::signalStrengthChanged"); signal != nil {
 		signal.(func(int))(int(int32(strength)))
 	}
@@ -45310,7 +44376,6 @@ func (ptr *QRadioTuner) StartDefault() {
 
 //export callbackQRadioTuner_StateChanged
 func callbackQRadioTuner_StateChanged(ptr unsafe.Pointer, state C.longlong) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QRadioTuner::stateChanged"); signal != nil {
 		signal.(func(QRadioTuner__State))(QRadioTuner__State(state))
 	}
@@ -45339,7 +44404,6 @@ func (ptr *QRadioTuner) StateChanged(state QRadioTuner__State) {
 
 //export callbackQRadioTuner_StationFound
 func callbackQRadioTuner_StationFound(ptr unsafe.Pointer, frequency C.int, stationId C.struct_QtMultimedia_PackedString) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QRadioTuner::stationFound"); signal != nil {
 		signal.(func(int, string))(int(int32(frequency)), cGoUnpackString(stationId))
 	}
@@ -45370,7 +44434,6 @@ func (ptr *QRadioTuner) StationFound(frequency int, stationId string) {
 
 //export callbackQRadioTuner_StereoStatusChanged
 func callbackQRadioTuner_StereoStatusChanged(ptr unsafe.Pointer, stereo C.char) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QRadioTuner::stereoStatusChanged"); signal != nil {
 		signal.(func(bool))(int8(stereo) != 0)
 	}
@@ -45434,7 +44497,6 @@ func (ptr *QRadioTuner) StopDefault() {
 
 //export callbackQRadioTuner_VolumeChanged
 func callbackQRadioTuner_VolumeChanged(ptr unsafe.Pointer, volume C.int) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QRadioTuner::volumeChanged"); signal != nil {
 		signal.(func(int))(int(int32(volume)))
 	}
@@ -45471,7 +44533,6 @@ func (ptr *QRadioTuner) DestroyQRadioTuner() {
 
 //export callbackQRadioTuner_Bind
 func callbackQRadioTuner_Bind(ptr unsafe.Pointer, object unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QRadioTuner::bind"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject) bool)(core.NewQObjectFromPointer(object)))))
 	}
@@ -45509,7 +44570,6 @@ func (ptr *QRadioTuner) BindDefault(object core.QObject_ITF) bool {
 
 //export callbackQRadioTuner_IsAvailable
 func callbackQRadioTuner_IsAvailable(ptr unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QRadioTuner::isAvailable"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func() bool)())))
 	}
@@ -45547,7 +44607,6 @@ func (ptr *QRadioTuner) IsAvailableDefault() bool {
 
 //export callbackQRadioTuner_Service
 func callbackQRadioTuner_Service(ptr unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QRadioTuner::service"); signal != nil {
 		return PointerFromQMediaService(signal.(func() *QMediaService)())
 	}
@@ -45593,7 +44652,6 @@ func (ptr *QRadioTuner) ServiceDefault() *QMediaService {
 
 //export callbackQRadioTuner_Unbind
 func callbackQRadioTuner_Unbind(ptr unsafe.Pointer, object unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QRadioTuner::unbind"); signal != nil {
 		signal.(func(*core.QObject))(core.NewQObjectFromPointer(object))
 	} else {
@@ -45629,7 +44687,6 @@ func (ptr *QRadioTuner) UnbindDefault(object core.QObject_ITF) {
 
 //export callbackQRadioTuner_TimerEvent
 func callbackQRadioTuner_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QRadioTuner::timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
 	} else {
@@ -45665,7 +44722,6 @@ func (ptr *QRadioTuner) TimerEventDefault(event core.QTimerEvent_ITF) {
 
 //export callbackQRadioTuner_ChildEvent
 func callbackQRadioTuner_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QRadioTuner::childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
 	} else {
@@ -45701,7 +44757,6 @@ func (ptr *QRadioTuner) ChildEventDefault(event core.QChildEvent_ITF) {
 
 //export callbackQRadioTuner_ConnectNotify
 func callbackQRadioTuner_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QRadioTuner::connectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
@@ -45737,7 +44792,6 @@ func (ptr *QRadioTuner) ConnectNotifyDefault(sign core.QMetaMethod_ITF) {
 
 //export callbackQRadioTuner_CustomEvent
 func callbackQRadioTuner_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QRadioTuner::customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
 	} else {
@@ -45812,7 +44866,6 @@ func (ptr *QRadioTuner) DeleteLaterDefault() {
 
 //export callbackQRadioTuner_DisconnectNotify
 func callbackQRadioTuner_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QRadioTuner::disconnectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
@@ -45848,7 +44901,6 @@ func (ptr *QRadioTuner) DisconnectNotifyDefault(sign core.QMetaMethod_ITF) {
 
 //export callbackQRadioTuner_Event
 func callbackQRadioTuner_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QRadioTuner::event"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
 	}
@@ -45886,7 +44938,6 @@ func (ptr *QRadioTuner) EventDefault(e core.QEvent_ITF) bool {
 
 //export callbackQRadioTuner_EventFilter
 func callbackQRadioTuner_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QRadioTuner::eventFilter"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
 	}
@@ -45924,7 +44975,6 @@ func (ptr *QRadioTuner) EventFilterDefault(watched core.QObject_ITF, event core.
 
 //export callbackQRadioTuner_MetaObject
 func callbackQRadioTuner_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QRadioTuner::metaObject"); signal != nil {
 		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
 	}
@@ -46001,7 +45051,6 @@ func NewQRadioTunerControlFromPointer(ptr unsafe.Pointer) *QRadioTunerControl {
 
 //export callbackQRadioTunerControl_AntennaConnectedChanged
 func callbackQRadioTunerControl_AntennaConnectedChanged(ptr unsafe.Pointer, connectionStatus C.char) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QRadioTunerControl::antennaConnectedChanged"); signal != nil {
 		signal.(func(bool))(int8(connectionStatus) != 0)
 	}
@@ -46030,7 +45079,6 @@ func (ptr *QRadioTunerControl) AntennaConnectedChanged(connectionStatus bool) {
 
 //export callbackQRadioTunerControl_Band
 func callbackQRadioTunerControl_Band(ptr unsafe.Pointer) C.longlong {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QRadioTunerControl::band"); signal != nil {
 		return C.longlong(signal.(func() QRadioTuner__Band)())
 	}
@@ -46061,7 +45109,6 @@ func (ptr *QRadioTunerControl) Band() QRadioTuner__Band {
 
 //export callbackQRadioTunerControl_BandChanged
 func callbackQRadioTunerControl_BandChanged(ptr unsafe.Pointer, band C.longlong) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QRadioTunerControl::bandChanged"); signal != nil {
 		signal.(func(QRadioTuner__Band))(QRadioTuner__Band(band))
 	}
@@ -46090,7 +45137,6 @@ func (ptr *QRadioTunerControl) BandChanged(band QRadioTuner__Band) {
 
 //export callbackQRadioTunerControl_CancelSearch
 func callbackQRadioTunerControl_CancelSearch(ptr unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QRadioTunerControl::cancelSearch"); signal != nil {
 		signal.(func())()
 	}
@@ -46119,7 +45165,6 @@ func (ptr *QRadioTunerControl) CancelSearch() {
 
 //export callbackQRadioTunerControl_Error2
 func callbackQRadioTunerControl_Error2(ptr unsafe.Pointer, error C.longlong) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QRadioTunerControl::error2"); signal != nil {
 		signal.(func(QRadioTuner__Error))(QRadioTuner__Error(error))
 	}
@@ -46148,7 +45193,6 @@ func (ptr *QRadioTunerControl) Error2(error QRadioTuner__Error) {
 
 //export callbackQRadioTunerControl_Error
 func callbackQRadioTunerControl_Error(ptr unsafe.Pointer) C.longlong {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QRadioTunerControl::error"); signal != nil {
 		return C.longlong(signal.(func() QRadioTuner__Error)())
 	}
@@ -46179,7 +45223,6 @@ func (ptr *QRadioTunerControl) Error() QRadioTuner__Error {
 
 //export callbackQRadioTunerControl_ErrorString
 func callbackQRadioTunerControl_ErrorString(ptr unsafe.Pointer) *C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QRadioTunerControl::errorString"); signal != nil {
 		return C.CString(signal.(func() string)())
 	}
@@ -46210,7 +45253,6 @@ func (ptr *QRadioTunerControl) ErrorString() string {
 
 //export callbackQRadioTunerControl_Frequency
 func callbackQRadioTunerControl_Frequency(ptr unsafe.Pointer) C.int {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QRadioTunerControl::frequency"); signal != nil {
 		return C.int(int32(signal.(func() int)()))
 	}
@@ -46241,7 +45283,6 @@ func (ptr *QRadioTunerControl) Frequency() int {
 
 //export callbackQRadioTunerControl_FrequencyChanged
 func callbackQRadioTunerControl_FrequencyChanged(ptr unsafe.Pointer, frequency C.int) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QRadioTunerControl::frequencyChanged"); signal != nil {
 		signal.(func(int))(int(int32(frequency)))
 	}
@@ -46270,7 +45311,6 @@ func (ptr *QRadioTunerControl) FrequencyChanged(frequency int) {
 
 //export callbackQRadioTunerControl_FrequencyStep
 func callbackQRadioTunerControl_FrequencyStep(ptr unsafe.Pointer, band C.longlong) C.int {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QRadioTunerControl::frequencyStep"); signal != nil {
 		return C.int(int32(signal.(func(QRadioTuner__Band) int)(QRadioTuner__Band(band))))
 	}
@@ -46301,7 +45341,6 @@ func (ptr *QRadioTunerControl) FrequencyStep(band QRadioTuner__Band) int {
 
 //export callbackQRadioTunerControl_IsAntennaConnected
 func callbackQRadioTunerControl_IsAntennaConnected(ptr unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QRadioTunerControl::isAntennaConnected"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func() bool)())))
 	}
@@ -46339,7 +45378,6 @@ func (ptr *QRadioTunerControl) IsAntennaConnectedDefault() bool {
 
 //export callbackQRadioTunerControl_IsBandSupported
 func callbackQRadioTunerControl_IsBandSupported(ptr unsafe.Pointer, band C.longlong) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QRadioTunerControl::isBandSupported"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(QRadioTuner__Band) bool)(QRadioTuner__Band(band)))))
 	}
@@ -46370,7 +45408,6 @@ func (ptr *QRadioTunerControl) IsBandSupported(band QRadioTuner__Band) bool {
 
 //export callbackQRadioTunerControl_IsMuted
 func callbackQRadioTunerControl_IsMuted(ptr unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QRadioTunerControl::isMuted"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func() bool)())))
 	}
@@ -46401,7 +45438,6 @@ func (ptr *QRadioTunerControl) IsMuted() bool {
 
 //export callbackQRadioTunerControl_IsSearching
 func callbackQRadioTunerControl_IsSearching(ptr unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QRadioTunerControl::isSearching"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func() bool)())))
 	}
@@ -46432,7 +45468,6 @@ func (ptr *QRadioTunerControl) IsSearching() bool {
 
 //export callbackQRadioTunerControl_IsStereo
 func callbackQRadioTunerControl_IsStereo(ptr unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QRadioTunerControl::isStereo"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func() bool)())))
 	}
@@ -46463,7 +45498,6 @@ func (ptr *QRadioTunerControl) IsStereo() bool {
 
 //export callbackQRadioTunerControl_MutedChanged
 func callbackQRadioTunerControl_MutedChanged(ptr unsafe.Pointer, muted C.char) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QRadioTunerControl::mutedChanged"); signal != nil {
 		signal.(func(bool))(int8(muted) != 0)
 	}
@@ -46492,7 +45526,6 @@ func (ptr *QRadioTunerControl) MutedChanged(muted bool) {
 
 //export callbackQRadioTunerControl_SearchAllStations
 func callbackQRadioTunerControl_SearchAllStations(ptr unsafe.Pointer, searchMode C.longlong) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QRadioTunerControl::searchAllStations"); signal != nil {
 		signal.(func(QRadioTuner__SearchMode))(QRadioTuner__SearchMode(searchMode))
 	}
@@ -46521,7 +45554,6 @@ func (ptr *QRadioTunerControl) SearchAllStations(searchMode QRadioTuner__SearchM
 
 //export callbackQRadioTunerControl_SearchBackward
 func callbackQRadioTunerControl_SearchBackward(ptr unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QRadioTunerControl::searchBackward"); signal != nil {
 		signal.(func())()
 	}
@@ -46550,7 +45582,6 @@ func (ptr *QRadioTunerControl) SearchBackward() {
 
 //export callbackQRadioTunerControl_SearchForward
 func callbackQRadioTunerControl_SearchForward(ptr unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QRadioTunerControl::searchForward"); signal != nil {
 		signal.(func())()
 	}
@@ -46579,7 +45610,6 @@ func (ptr *QRadioTunerControl) SearchForward() {
 
 //export callbackQRadioTunerControl_SearchingChanged
 func callbackQRadioTunerControl_SearchingChanged(ptr unsafe.Pointer, searching C.char) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QRadioTunerControl::searchingChanged"); signal != nil {
 		signal.(func(bool))(int8(searching) != 0)
 	}
@@ -46608,7 +45638,6 @@ func (ptr *QRadioTunerControl) SearchingChanged(searching bool) {
 
 //export callbackQRadioTunerControl_SetBand
 func callbackQRadioTunerControl_SetBand(ptr unsafe.Pointer, band C.longlong) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QRadioTunerControl::setBand"); signal != nil {
 		signal.(func(QRadioTuner__Band))(QRadioTuner__Band(band))
 	}
@@ -46637,7 +45666,6 @@ func (ptr *QRadioTunerControl) SetBand(band QRadioTuner__Band) {
 
 //export callbackQRadioTunerControl_SetFrequency
 func callbackQRadioTunerControl_SetFrequency(ptr unsafe.Pointer, frequency C.int) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QRadioTunerControl::setFrequency"); signal != nil {
 		signal.(func(int))(int(int32(frequency)))
 	}
@@ -46666,7 +45694,6 @@ func (ptr *QRadioTunerControl) SetFrequency(frequency int) {
 
 //export callbackQRadioTunerControl_SetMuted
 func callbackQRadioTunerControl_SetMuted(ptr unsafe.Pointer, muted C.char) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QRadioTunerControl::setMuted"); signal != nil {
 		signal.(func(bool))(int8(muted) != 0)
 	}
@@ -46695,7 +45722,6 @@ func (ptr *QRadioTunerControl) SetMuted(muted bool) {
 
 //export callbackQRadioTunerControl_SetStereoMode
 func callbackQRadioTunerControl_SetStereoMode(ptr unsafe.Pointer, mode C.longlong) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QRadioTunerControl::setStereoMode"); signal != nil {
 		signal.(func(QRadioTuner__StereoMode))(QRadioTuner__StereoMode(mode))
 	}
@@ -46724,7 +45750,6 @@ func (ptr *QRadioTunerControl) SetStereoMode(mode QRadioTuner__StereoMode) {
 
 //export callbackQRadioTunerControl_SetVolume
 func callbackQRadioTunerControl_SetVolume(ptr unsafe.Pointer, volume C.int) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QRadioTunerControl::setVolume"); signal != nil {
 		signal.(func(int))(int(int32(volume)))
 	}
@@ -46753,7 +45778,6 @@ func (ptr *QRadioTunerControl) SetVolume(volume int) {
 
 //export callbackQRadioTunerControl_SignalStrength
 func callbackQRadioTunerControl_SignalStrength(ptr unsafe.Pointer) C.int {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QRadioTunerControl::signalStrength"); signal != nil {
 		return C.int(int32(signal.(func() int)()))
 	}
@@ -46784,7 +45808,6 @@ func (ptr *QRadioTunerControl) SignalStrength() int {
 
 //export callbackQRadioTunerControl_SignalStrengthChanged
 func callbackQRadioTunerControl_SignalStrengthChanged(ptr unsafe.Pointer, strength C.int) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QRadioTunerControl::signalStrengthChanged"); signal != nil {
 		signal.(func(int))(int(int32(strength)))
 	}
@@ -46813,7 +45836,6 @@ func (ptr *QRadioTunerControl) SignalStrengthChanged(strength int) {
 
 //export callbackQRadioTunerControl_Start
 func callbackQRadioTunerControl_Start(ptr unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QRadioTunerControl::start"); signal != nil {
 		signal.(func())()
 	}
@@ -46842,7 +45864,6 @@ func (ptr *QRadioTunerControl) Start() {
 
 //export callbackQRadioTunerControl_State
 func callbackQRadioTunerControl_State(ptr unsafe.Pointer) C.longlong {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QRadioTunerControl::state"); signal != nil {
 		return C.longlong(signal.(func() QRadioTuner__State)())
 	}
@@ -46873,7 +45894,6 @@ func (ptr *QRadioTunerControl) State() QRadioTuner__State {
 
 //export callbackQRadioTunerControl_StateChanged
 func callbackQRadioTunerControl_StateChanged(ptr unsafe.Pointer, state C.longlong) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QRadioTunerControl::stateChanged"); signal != nil {
 		signal.(func(QRadioTuner__State))(QRadioTuner__State(state))
 	}
@@ -46902,7 +45922,6 @@ func (ptr *QRadioTunerControl) StateChanged(state QRadioTuner__State) {
 
 //export callbackQRadioTunerControl_StationFound
 func callbackQRadioTunerControl_StationFound(ptr unsafe.Pointer, frequency C.int, stationId C.struct_QtMultimedia_PackedString) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QRadioTunerControl::stationFound"); signal != nil {
 		signal.(func(int, string))(int(int32(frequency)), cGoUnpackString(stationId))
 	}
@@ -46933,7 +45952,6 @@ func (ptr *QRadioTunerControl) StationFound(frequency int, stationId string) {
 
 //export callbackQRadioTunerControl_StereoMode
 func callbackQRadioTunerControl_StereoMode(ptr unsafe.Pointer) C.longlong {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QRadioTunerControl::stereoMode"); signal != nil {
 		return C.longlong(signal.(func() QRadioTuner__StereoMode)())
 	}
@@ -46964,7 +45982,6 @@ func (ptr *QRadioTunerControl) StereoMode() QRadioTuner__StereoMode {
 
 //export callbackQRadioTunerControl_StereoStatusChanged
 func callbackQRadioTunerControl_StereoStatusChanged(ptr unsafe.Pointer, stereo C.char) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QRadioTunerControl::stereoStatusChanged"); signal != nil {
 		signal.(func(bool))(int8(stereo) != 0)
 	}
@@ -46993,7 +46010,6 @@ func (ptr *QRadioTunerControl) StereoStatusChanged(stereo bool) {
 
 //export callbackQRadioTunerControl_Stop
 func callbackQRadioTunerControl_Stop(ptr unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QRadioTunerControl::stop"); signal != nil {
 		signal.(func())()
 	}
@@ -47022,7 +46038,6 @@ func (ptr *QRadioTunerControl) Stop() {
 
 //export callbackQRadioTunerControl_Volume
 func callbackQRadioTunerControl_Volume(ptr unsafe.Pointer) C.int {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QRadioTunerControl::volume"); signal != nil {
 		return C.int(int32(signal.(func() int)()))
 	}
@@ -47053,7 +46068,6 @@ func (ptr *QRadioTunerControl) Volume() int {
 
 //export callbackQRadioTunerControl_VolumeChanged
 func callbackQRadioTunerControl_VolumeChanged(ptr unsafe.Pointer, volume C.int) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QRadioTunerControl::volumeChanged"); signal != nil {
 		signal.(func(int))(int(int32(volume)))
 	}
@@ -47090,7 +46104,6 @@ func (ptr *QRadioTunerControl) DestroyQRadioTunerControl() {
 
 //export callbackQRadioTunerControl_TimerEvent
 func callbackQRadioTunerControl_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QRadioTunerControl::timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
 	} else {
@@ -47126,7 +46139,6 @@ func (ptr *QRadioTunerControl) TimerEventDefault(event core.QTimerEvent_ITF) {
 
 //export callbackQRadioTunerControl_ChildEvent
 func callbackQRadioTunerControl_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QRadioTunerControl::childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
 	} else {
@@ -47162,7 +46174,6 @@ func (ptr *QRadioTunerControl) ChildEventDefault(event core.QChildEvent_ITF) {
 
 //export callbackQRadioTunerControl_ConnectNotify
 func callbackQRadioTunerControl_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QRadioTunerControl::connectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
@@ -47198,7 +46209,6 @@ func (ptr *QRadioTunerControl) ConnectNotifyDefault(sign core.QMetaMethod_ITF) {
 
 //export callbackQRadioTunerControl_CustomEvent
 func callbackQRadioTunerControl_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QRadioTunerControl::customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
 	} else {
@@ -47273,7 +46283,6 @@ func (ptr *QRadioTunerControl) DeleteLaterDefault() {
 
 //export callbackQRadioTunerControl_DisconnectNotify
 func callbackQRadioTunerControl_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QRadioTunerControl::disconnectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
@@ -47309,7 +46318,6 @@ func (ptr *QRadioTunerControl) DisconnectNotifyDefault(sign core.QMetaMethod_ITF
 
 //export callbackQRadioTunerControl_Event
 func callbackQRadioTunerControl_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QRadioTunerControl::event"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
 	}
@@ -47347,7 +46355,6 @@ func (ptr *QRadioTunerControl) EventDefault(e core.QEvent_ITF) bool {
 
 //export callbackQRadioTunerControl_EventFilter
 func callbackQRadioTunerControl_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QRadioTunerControl::eventFilter"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
 	}
@@ -47385,7 +46392,6 @@ func (ptr *QRadioTunerControl) EventFilterDefault(watched core.QObject_ITF, even
 
 //export callbackQRadioTunerControl_MetaObject
 func callbackQRadioTunerControl_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QRadioTunerControl::metaObject"); signal != nil {
 		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
 	}
@@ -47604,7 +46610,6 @@ func (ptr *QSound) DestroyQSound() {
 
 //export callbackQSound_TimerEvent
 func callbackQSound_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSound::timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
 	} else {
@@ -47640,7 +46645,6 @@ func (ptr *QSound) TimerEventDefault(event core.QTimerEvent_ITF) {
 
 //export callbackQSound_ChildEvent
 func callbackQSound_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSound::childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
 	} else {
@@ -47676,7 +46680,6 @@ func (ptr *QSound) ChildEventDefault(event core.QChildEvent_ITF) {
 
 //export callbackQSound_ConnectNotify
 func callbackQSound_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSound::connectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
@@ -47712,7 +46715,6 @@ func (ptr *QSound) ConnectNotifyDefault(sign core.QMetaMethod_ITF) {
 
 //export callbackQSound_CustomEvent
 func callbackQSound_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSound::customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
 	} else {
@@ -47787,7 +46789,6 @@ func (ptr *QSound) DeleteLaterDefault() {
 
 //export callbackQSound_DisconnectNotify
 func callbackQSound_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSound::disconnectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
@@ -47823,7 +46824,6 @@ func (ptr *QSound) DisconnectNotifyDefault(sign core.QMetaMethod_ITF) {
 
 //export callbackQSound_Event
 func callbackQSound_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSound::event"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
 	}
@@ -47861,7 +46861,6 @@ func (ptr *QSound) EventDefault(e core.QEvent_ITF) bool {
 
 //export callbackQSound_EventFilter
 func callbackQSound_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSound::eventFilter"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
 	}
@@ -47899,7 +46898,6 @@ func (ptr *QSound) EventFilterDefault(watched core.QObject_ITF, event core.QEven
 
 //export callbackQSound_MetaObject
 func callbackQSound_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSound::metaObject"); signal != nil {
 		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
 	}
@@ -48102,7 +47100,6 @@ func (ptr *QSoundEffect) Category() string {
 
 //export callbackQSoundEffect_CategoryChanged
 func callbackQSoundEffect_CategoryChanged(ptr unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSoundEffect::categoryChanged"); signal != nil {
 		signal.(func())()
 	}
@@ -48145,7 +47142,6 @@ func (ptr *QSoundEffect) IsPlaying() bool {
 
 //export callbackQSoundEffect_LoadedChanged
 func callbackQSoundEffect_LoadedChanged(ptr unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSoundEffect::loadedChanged"); signal != nil {
 		signal.(func())()
 	}
@@ -48181,7 +47177,6 @@ func (ptr *QSoundEffect) LoopCount() int {
 
 //export callbackQSoundEffect_LoopCountChanged
 func callbackQSoundEffect_LoopCountChanged(ptr unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSoundEffect::loopCountChanged"); signal != nil {
 		signal.(func())()
 	}
@@ -48210,7 +47205,6 @@ func (ptr *QSoundEffect) LoopCountChanged() {
 
 //export callbackQSoundEffect_LoopsRemainingChanged
 func callbackQSoundEffect_LoopsRemainingChanged(ptr unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSoundEffect::loopsRemainingChanged"); signal != nil {
 		signal.(func())()
 	}
@@ -48239,7 +47233,6 @@ func (ptr *QSoundEffect) LoopsRemainingChanged() {
 
 //export callbackQSoundEffect_MutedChanged
 func callbackQSoundEffect_MutedChanged(ptr unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSoundEffect::mutedChanged"); signal != nil {
 		signal.(func())()
 	}
@@ -48268,7 +47261,6 @@ func (ptr *QSoundEffect) MutedChanged() {
 
 //export callbackQSoundEffect_PlayingChanged
 func callbackQSoundEffect_PlayingChanged(ptr unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSoundEffect::playingChanged"); signal != nil {
 		signal.(func())()
 	}
@@ -48338,7 +47330,6 @@ func (ptr *QSoundEffect) Source() *core.QUrl {
 
 //export callbackQSoundEffect_SourceChanged
 func callbackQSoundEffect_SourceChanged(ptr unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSoundEffect::sourceChanged"); signal != nil {
 		signal.(func())()
 	}
@@ -48374,7 +47365,6 @@ func (ptr *QSoundEffect) Status() QSoundEffect__Status {
 
 //export callbackQSoundEffect_StatusChanged
 func callbackQSoundEffect_StatusChanged(ptr unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSoundEffect::statusChanged"); signal != nil {
 		signal.(func())()
 	}
@@ -48410,7 +47400,6 @@ func (ptr *QSoundEffect) Volume() float64 {
 
 //export callbackQSoundEffect_VolumeChanged
 func callbackQSoundEffect_VolumeChanged(ptr unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSoundEffect::volumeChanged"); signal != nil {
 		signal.(func())()
 	}
@@ -48447,7 +47436,6 @@ func (ptr *QSoundEffect) DestroyQSoundEffect() {
 
 //export callbackQSoundEffect_TimerEvent
 func callbackQSoundEffect_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSoundEffect::timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
 	} else {
@@ -48483,7 +47471,6 @@ func (ptr *QSoundEffect) TimerEventDefault(event core.QTimerEvent_ITF) {
 
 //export callbackQSoundEffect_ChildEvent
 func callbackQSoundEffect_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSoundEffect::childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
 	} else {
@@ -48519,7 +47506,6 @@ func (ptr *QSoundEffect) ChildEventDefault(event core.QChildEvent_ITF) {
 
 //export callbackQSoundEffect_ConnectNotify
 func callbackQSoundEffect_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSoundEffect::connectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
@@ -48555,7 +47541,6 @@ func (ptr *QSoundEffect) ConnectNotifyDefault(sign core.QMetaMethod_ITF) {
 
 //export callbackQSoundEffect_CustomEvent
 func callbackQSoundEffect_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSoundEffect::customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
 	} else {
@@ -48630,7 +47615,6 @@ func (ptr *QSoundEffect) DeleteLaterDefault() {
 
 //export callbackQSoundEffect_DisconnectNotify
 func callbackQSoundEffect_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSoundEffect::disconnectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
@@ -48666,7 +47650,6 @@ func (ptr *QSoundEffect) DisconnectNotifyDefault(sign core.QMetaMethod_ITF) {
 
 //export callbackQSoundEffect_Event
 func callbackQSoundEffect_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSoundEffect::event"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
 	}
@@ -48704,7 +47687,6 @@ func (ptr *QSoundEffect) EventDefault(e core.QEvent_ITF) bool {
 
 //export callbackQSoundEffect_EventFilter
 func callbackQSoundEffect_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSoundEffect::eventFilter"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
 	}
@@ -48742,7 +47724,6 @@ func (ptr *QSoundEffect) EventFilterDefault(watched core.QObject_ITF, event core
 
 //export callbackQSoundEffect_MetaObject
 func callbackQSoundEffect_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QSoundEffect::metaObject"); signal != nil {
 		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
 	}
@@ -48826,7 +47807,6 @@ func NewQVideoDeviceSelectorControl(parent core.QObject_ITF) *QVideoDeviceSelect
 
 //export callbackQVideoDeviceSelectorControl_DefaultDevice
 func callbackQVideoDeviceSelectorControl_DefaultDevice(ptr unsafe.Pointer) C.int {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QVideoDeviceSelectorControl::defaultDevice"); signal != nil {
 		return C.int(int32(signal.(func() int)()))
 	}
@@ -48857,7 +47837,6 @@ func (ptr *QVideoDeviceSelectorControl) DefaultDevice() int {
 
 //export callbackQVideoDeviceSelectorControl_DeviceCount
 func callbackQVideoDeviceSelectorControl_DeviceCount(ptr unsafe.Pointer) C.int {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QVideoDeviceSelectorControl::deviceCount"); signal != nil {
 		return C.int(int32(signal.(func() int)()))
 	}
@@ -48888,7 +47867,6 @@ func (ptr *QVideoDeviceSelectorControl) DeviceCount() int {
 
 //export callbackQVideoDeviceSelectorControl_DeviceDescription
 func callbackQVideoDeviceSelectorControl_DeviceDescription(ptr unsafe.Pointer, index C.int) *C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QVideoDeviceSelectorControl::deviceDescription"); signal != nil {
 		return C.CString(signal.(func(int) string)(int(int32(index))))
 	}
@@ -48919,7 +47897,6 @@ func (ptr *QVideoDeviceSelectorControl) DeviceDescription(index int) string {
 
 //export callbackQVideoDeviceSelectorControl_DeviceName
 func callbackQVideoDeviceSelectorControl_DeviceName(ptr unsafe.Pointer, index C.int) *C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QVideoDeviceSelectorControl::deviceName"); signal != nil {
 		return C.CString(signal.(func(int) string)(int(int32(index))))
 	}
@@ -48950,7 +47927,6 @@ func (ptr *QVideoDeviceSelectorControl) DeviceName(index int) string {
 
 //export callbackQVideoDeviceSelectorControl_DevicesChanged
 func callbackQVideoDeviceSelectorControl_DevicesChanged(ptr unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QVideoDeviceSelectorControl::devicesChanged"); signal != nil {
 		signal.(func())()
 	}
@@ -48979,7 +47955,6 @@ func (ptr *QVideoDeviceSelectorControl) DevicesChanged() {
 
 //export callbackQVideoDeviceSelectorControl_SelectedDevice
 func callbackQVideoDeviceSelectorControl_SelectedDevice(ptr unsafe.Pointer) C.int {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QVideoDeviceSelectorControl::selectedDevice"); signal != nil {
 		return C.int(int32(signal.(func() int)()))
 	}
@@ -49010,7 +47985,6 @@ func (ptr *QVideoDeviceSelectorControl) SelectedDevice() int {
 
 //export callbackQVideoDeviceSelectorControl_SelectedDeviceChanged2
 func callbackQVideoDeviceSelectorControl_SelectedDeviceChanged2(ptr unsafe.Pointer, name C.struct_QtMultimedia_PackedString) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QVideoDeviceSelectorControl::selectedDeviceChanged2"); signal != nil {
 		signal.(func(string))(cGoUnpackString(name))
 	}
@@ -49041,7 +48015,6 @@ func (ptr *QVideoDeviceSelectorControl) SelectedDeviceChanged2(name string) {
 
 //export callbackQVideoDeviceSelectorControl_SelectedDeviceChanged
 func callbackQVideoDeviceSelectorControl_SelectedDeviceChanged(ptr unsafe.Pointer, index C.int) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QVideoDeviceSelectorControl::selectedDeviceChanged"); signal != nil {
 		signal.(func(int))(int(int32(index)))
 	}
@@ -49098,7 +48071,6 @@ func (ptr *QVideoDeviceSelectorControl) SetSelectedDevice(index int) {
 
 //export callbackQVideoDeviceSelectorControl_DestroyQVideoDeviceSelectorControl
 func callbackQVideoDeviceSelectorControl_DestroyQVideoDeviceSelectorControl(ptr unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QVideoDeviceSelectorControl::~QVideoDeviceSelectorControl"); signal != nil {
 		signal.(func())()
 	} else {
@@ -49138,7 +48110,6 @@ func (ptr *QVideoDeviceSelectorControl) DestroyQVideoDeviceSelectorControlDefaul
 
 //export callbackQVideoDeviceSelectorControl_TimerEvent
 func callbackQVideoDeviceSelectorControl_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QVideoDeviceSelectorControl::timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
 	} else {
@@ -49174,7 +48145,6 @@ func (ptr *QVideoDeviceSelectorControl) TimerEventDefault(event core.QTimerEvent
 
 //export callbackQVideoDeviceSelectorControl_ChildEvent
 func callbackQVideoDeviceSelectorControl_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QVideoDeviceSelectorControl::childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
 	} else {
@@ -49210,7 +48180,6 @@ func (ptr *QVideoDeviceSelectorControl) ChildEventDefault(event core.QChildEvent
 
 //export callbackQVideoDeviceSelectorControl_ConnectNotify
 func callbackQVideoDeviceSelectorControl_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QVideoDeviceSelectorControl::connectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
@@ -49246,7 +48215,6 @@ func (ptr *QVideoDeviceSelectorControl) ConnectNotifyDefault(sign core.QMetaMeth
 
 //export callbackQVideoDeviceSelectorControl_CustomEvent
 func callbackQVideoDeviceSelectorControl_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QVideoDeviceSelectorControl::customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
 	} else {
@@ -49321,7 +48289,6 @@ func (ptr *QVideoDeviceSelectorControl) DeleteLaterDefault() {
 
 //export callbackQVideoDeviceSelectorControl_DisconnectNotify
 func callbackQVideoDeviceSelectorControl_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QVideoDeviceSelectorControl::disconnectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
@@ -49357,7 +48324,6 @@ func (ptr *QVideoDeviceSelectorControl) DisconnectNotifyDefault(sign core.QMetaM
 
 //export callbackQVideoDeviceSelectorControl_Event
 func callbackQVideoDeviceSelectorControl_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QVideoDeviceSelectorControl::event"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
 	}
@@ -49395,7 +48361,6 @@ func (ptr *QVideoDeviceSelectorControl) EventDefault(e core.QEvent_ITF) bool {
 
 //export callbackQVideoDeviceSelectorControl_EventFilter
 func callbackQVideoDeviceSelectorControl_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QVideoDeviceSelectorControl::eventFilter"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
 	}
@@ -49433,7 +48398,6 @@ func (ptr *QVideoDeviceSelectorControl) EventFilterDefault(watched core.QObject_
 
 //export callbackQVideoDeviceSelectorControl_MetaObject
 func callbackQVideoDeviceSelectorControl_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QVideoDeviceSelectorControl::metaObject"); signal != nil {
 		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
 	}
@@ -49680,7 +48644,6 @@ func NewQVideoEncoderSettingsControlFromPointer(ptr unsafe.Pointer) *QVideoEncod
 
 //export callbackQVideoEncoderSettingsControl_SetVideoSettings
 func callbackQVideoEncoderSettingsControl_SetVideoSettings(ptr unsafe.Pointer, settings unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QVideoEncoderSettingsControl::setVideoSettings"); signal != nil {
 		signal.(func(*QVideoEncoderSettings))(NewQVideoEncoderSettingsFromPointer(settings))
 	}
@@ -49736,7 +48699,6 @@ func (ptr *QVideoEncoderSettingsControl) SupportedResolutions(settings QVideoEnc
 
 //export callbackQVideoEncoderSettingsControl_SupportedVideoCodecs
 func callbackQVideoEncoderSettingsControl_SupportedVideoCodecs(ptr unsafe.Pointer) *C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QVideoEncoderSettingsControl::supportedVideoCodecs"); signal != nil {
 		return C.CString(strings.Join(signal.(func() []string)(), "|"))
 	}
@@ -49767,7 +48729,6 @@ func (ptr *QVideoEncoderSettingsControl) SupportedVideoCodecs() []string {
 
 //export callbackQVideoEncoderSettingsControl_VideoCodecDescription
 func callbackQVideoEncoderSettingsControl_VideoCodecDescription(ptr unsafe.Pointer, codec C.struct_QtMultimedia_PackedString) *C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QVideoEncoderSettingsControl::videoCodecDescription"); signal != nil {
 		return C.CString(signal.(func(string) string)(cGoUnpackString(codec)))
 	}
@@ -49800,7 +48761,6 @@ func (ptr *QVideoEncoderSettingsControl) VideoCodecDescription(codec string) str
 
 //export callbackQVideoEncoderSettingsControl_VideoSettings
 func callbackQVideoEncoderSettingsControl_VideoSettings(ptr unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QVideoEncoderSettingsControl::videoSettings"); signal != nil {
 		return PointerFromQVideoEncoderSettings(signal.(func() *QVideoEncoderSettings)())
 	}
@@ -49833,7 +48793,6 @@ func (ptr *QVideoEncoderSettingsControl) VideoSettings() *QVideoEncoderSettings 
 
 //export callbackQVideoEncoderSettingsControl_DestroyQVideoEncoderSettingsControl
 func callbackQVideoEncoderSettingsControl_DestroyQVideoEncoderSettingsControl(ptr unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QVideoEncoderSettingsControl::~QVideoEncoderSettingsControl"); signal != nil {
 		signal.(func())()
 	} else {
@@ -49882,7 +48841,6 @@ func (ptr *QVideoEncoderSettingsControl) supportedResolutions_atList(i int) *cor
 
 //export callbackQVideoEncoderSettingsControl_TimerEvent
 func callbackQVideoEncoderSettingsControl_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QVideoEncoderSettingsControl::timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
 	} else {
@@ -49918,7 +48876,6 @@ func (ptr *QVideoEncoderSettingsControl) TimerEventDefault(event core.QTimerEven
 
 //export callbackQVideoEncoderSettingsControl_ChildEvent
 func callbackQVideoEncoderSettingsControl_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QVideoEncoderSettingsControl::childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
 	} else {
@@ -49954,7 +48911,6 @@ func (ptr *QVideoEncoderSettingsControl) ChildEventDefault(event core.QChildEven
 
 //export callbackQVideoEncoderSettingsControl_ConnectNotify
 func callbackQVideoEncoderSettingsControl_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QVideoEncoderSettingsControl::connectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
@@ -49990,7 +48946,6 @@ func (ptr *QVideoEncoderSettingsControl) ConnectNotifyDefault(sign core.QMetaMet
 
 //export callbackQVideoEncoderSettingsControl_CustomEvent
 func callbackQVideoEncoderSettingsControl_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QVideoEncoderSettingsControl::customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
 	} else {
@@ -50065,7 +49020,6 @@ func (ptr *QVideoEncoderSettingsControl) DeleteLaterDefault() {
 
 //export callbackQVideoEncoderSettingsControl_DisconnectNotify
 func callbackQVideoEncoderSettingsControl_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QVideoEncoderSettingsControl::disconnectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
@@ -50101,7 +49055,6 @@ func (ptr *QVideoEncoderSettingsControl) DisconnectNotifyDefault(sign core.QMeta
 
 //export callbackQVideoEncoderSettingsControl_Event
 func callbackQVideoEncoderSettingsControl_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QVideoEncoderSettingsControl::event"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
 	}
@@ -50139,7 +49092,6 @@ func (ptr *QVideoEncoderSettingsControl) EventDefault(e core.QEvent_ITF) bool {
 
 //export callbackQVideoEncoderSettingsControl_EventFilter
 func callbackQVideoEncoderSettingsControl_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QVideoEncoderSettingsControl::eventFilter"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
 	}
@@ -50177,7 +49129,6 @@ func (ptr *QVideoEncoderSettingsControl) EventFilterDefault(watched core.QObject
 
 //export callbackQVideoEncoderSettingsControl_MetaObject
 func callbackQVideoEncoderSettingsControl_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QVideoEncoderSettingsControl::metaObject"); signal != nil {
 		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
 	}
@@ -50269,7 +49220,6 @@ const (
 
 //export callbackQVideoFilterRunnable_Run
 func callbackQVideoFilterRunnable_Run(ptr unsafe.Pointer, input unsafe.Pointer, surfaceFormat unsafe.Pointer, flags C.longlong) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QVideoFilterRunnable::run"); signal != nil {
 		return PointerFromQVideoFrame(signal.(func(*QVideoFrame, *QVideoSurfaceFormat, QVideoFilterRunnable__RunFlag) *QVideoFrame)(NewQVideoFrameFromPointer(input), NewQVideoSurfaceFormatFromPointer(surfaceFormat), QVideoFilterRunnable__RunFlag(flags)))
 	}
@@ -50699,7 +49649,6 @@ func NewQVideoProbe(parent core.QObject_ITF) *QVideoProbe {
 
 //export callbackQVideoProbe_Flush
 func callbackQVideoProbe_Flush(ptr unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QVideoProbe::flush"); signal != nil {
 		signal.(func())()
 	}
@@ -50749,7 +49698,6 @@ func (ptr *QVideoProbe) SetSource2(mediaRecorder QMediaRecorder_ITF) bool {
 
 //export callbackQVideoProbe_VideoFrameProbed
 func callbackQVideoProbe_VideoFrameProbed(ptr unsafe.Pointer, frame unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QVideoProbe::videoFrameProbed"); signal != nil {
 		signal.(func(*QVideoFrame))(NewQVideoFrameFromPointer(frame))
 	}
@@ -50786,7 +49734,6 @@ func (ptr *QVideoProbe) DestroyQVideoProbe() {
 
 //export callbackQVideoProbe_TimerEvent
 func callbackQVideoProbe_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QVideoProbe::timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
 	} else {
@@ -50822,7 +49769,6 @@ func (ptr *QVideoProbe) TimerEventDefault(event core.QTimerEvent_ITF) {
 
 //export callbackQVideoProbe_ChildEvent
 func callbackQVideoProbe_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QVideoProbe::childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
 	} else {
@@ -50858,7 +49804,6 @@ func (ptr *QVideoProbe) ChildEventDefault(event core.QChildEvent_ITF) {
 
 //export callbackQVideoProbe_ConnectNotify
 func callbackQVideoProbe_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QVideoProbe::connectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
@@ -50894,7 +49839,6 @@ func (ptr *QVideoProbe) ConnectNotifyDefault(sign core.QMetaMethod_ITF) {
 
 //export callbackQVideoProbe_CustomEvent
 func callbackQVideoProbe_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QVideoProbe::customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
 	} else {
@@ -50969,7 +49913,6 @@ func (ptr *QVideoProbe) DeleteLaterDefault() {
 
 //export callbackQVideoProbe_DisconnectNotify
 func callbackQVideoProbe_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QVideoProbe::disconnectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
@@ -51005,7 +49948,6 @@ func (ptr *QVideoProbe) DisconnectNotifyDefault(sign core.QMetaMethod_ITF) {
 
 //export callbackQVideoProbe_Event
 func callbackQVideoProbe_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QVideoProbe::event"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
 	}
@@ -51043,7 +49985,6 @@ func (ptr *QVideoProbe) EventDefault(e core.QEvent_ITF) bool {
 
 //export callbackQVideoProbe_EventFilter
 func callbackQVideoProbe_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QVideoProbe::eventFilter"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
 	}
@@ -51081,7 +50022,6 @@ func (ptr *QVideoProbe) EventFilterDefault(watched core.QObject_ITF, event core.
 
 //export callbackQVideoProbe_MetaObject
 func callbackQVideoProbe_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QVideoProbe::metaObject"); signal != nil {
 		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
 	}
@@ -51165,7 +50105,6 @@ func NewQVideoRendererControl(parent core.QObject_ITF) *QVideoRendererControl {
 
 //export callbackQVideoRendererControl_SetSurface
 func callbackQVideoRendererControl_SetSurface(ptr unsafe.Pointer, surface unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QVideoRendererControl::setSurface"); signal != nil {
 		signal.(func(*QAbstractVideoSurface))(NewQAbstractVideoSurfaceFromPointer(surface))
 	}
@@ -51194,7 +50133,6 @@ func (ptr *QVideoRendererControl) SetSurface(surface QAbstractVideoSurface_ITF) 
 
 //export callbackQVideoRendererControl_Surface
 func callbackQVideoRendererControl_Surface(ptr unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QVideoRendererControl::surface"); signal != nil {
 		return PointerFromQAbstractVideoSurface(signal.(func() *QAbstractVideoSurface)())
 	}
@@ -51237,7 +50175,6 @@ func (ptr *QVideoRendererControl) DestroyQVideoRendererControl() {
 
 //export callbackQVideoRendererControl_TimerEvent
 func callbackQVideoRendererControl_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QVideoRendererControl::timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
 	} else {
@@ -51273,7 +50210,6 @@ func (ptr *QVideoRendererControl) TimerEventDefault(event core.QTimerEvent_ITF) 
 
 //export callbackQVideoRendererControl_ChildEvent
 func callbackQVideoRendererControl_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QVideoRendererControl::childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
 	} else {
@@ -51309,7 +50245,6 @@ func (ptr *QVideoRendererControl) ChildEventDefault(event core.QChildEvent_ITF) 
 
 //export callbackQVideoRendererControl_ConnectNotify
 func callbackQVideoRendererControl_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QVideoRendererControl::connectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
@@ -51345,7 +50280,6 @@ func (ptr *QVideoRendererControl) ConnectNotifyDefault(sign core.QMetaMethod_ITF
 
 //export callbackQVideoRendererControl_CustomEvent
 func callbackQVideoRendererControl_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QVideoRendererControl::customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
 	} else {
@@ -51420,7 +50354,6 @@ func (ptr *QVideoRendererControl) DeleteLaterDefault() {
 
 //export callbackQVideoRendererControl_DisconnectNotify
 func callbackQVideoRendererControl_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QVideoRendererControl::disconnectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
@@ -51456,7 +50389,6 @@ func (ptr *QVideoRendererControl) DisconnectNotifyDefault(sign core.QMetaMethod_
 
 //export callbackQVideoRendererControl_Event
 func callbackQVideoRendererControl_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QVideoRendererControl::event"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
 	}
@@ -51494,7 +50426,6 @@ func (ptr *QVideoRendererControl) EventDefault(e core.QEvent_ITF) bool {
 
 //export callbackQVideoRendererControl_EventFilter
 func callbackQVideoRendererControl_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QVideoRendererControl::eventFilter"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
 	}
@@ -51532,7 +50463,6 @@ func (ptr *QVideoRendererControl) EventFilterDefault(watched core.QObject_ITF, e
 
 //export callbackQVideoRendererControl_MetaObject
 func callbackQVideoRendererControl_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QVideoRendererControl::metaObject"); signal != nil {
 		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
 	}
@@ -51905,7 +50835,6 @@ func (ptr *QVideoWidget) Hue() int {
 
 //export callbackQVideoWidget_MediaObject
 func callbackQVideoWidget_MediaObject(ptr unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QVideoWidget::mediaObject"); signal != nil {
 		return PointerFromQMediaObject(signal.(func() *QMediaObject)())
 	}
@@ -52176,7 +51105,6 @@ func NewQVideoWidget(parent widgets.QWidget_ITF) *QVideoWidget {
 
 //export callbackQVideoWidget_BrightnessChanged
 func callbackQVideoWidget_BrightnessChanged(ptr unsafe.Pointer, brightness C.int) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QVideoWidget::brightnessChanged"); signal != nil {
 		signal.(func(int))(int(int32(brightness)))
 	}
@@ -52205,7 +51133,6 @@ func (ptr *QVideoWidget) BrightnessChanged(brightness int) {
 
 //export callbackQVideoWidget_ContrastChanged
 func callbackQVideoWidget_ContrastChanged(ptr unsafe.Pointer, contrast C.int) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QVideoWidget::contrastChanged"); signal != nil {
 		signal.(func(int))(int(int32(contrast)))
 	}
@@ -52234,7 +51161,6 @@ func (ptr *QVideoWidget) ContrastChanged(contrast int) {
 
 //export callbackQVideoWidget_Event
 func callbackQVideoWidget_Event(ptr unsafe.Pointer, event unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QVideoWidget::event"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(event)))))
 	}
@@ -52272,7 +51198,6 @@ func (ptr *QVideoWidget) EventDefault(event core.QEvent_ITF) bool {
 
 //export callbackQVideoWidget_FullScreenChanged
 func callbackQVideoWidget_FullScreenChanged(ptr unsafe.Pointer, fullScreen C.char) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QVideoWidget::fullScreenChanged"); signal != nil {
 		signal.(func(bool))(int8(fullScreen) != 0)
 	}
@@ -52301,7 +51226,6 @@ func (ptr *QVideoWidget) FullScreenChanged(fullScreen bool) {
 
 //export callbackQVideoWidget_HideEvent
 func callbackQVideoWidget_HideEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QVideoWidget::hideEvent"); signal != nil {
 		signal.(func(*gui.QHideEvent))(gui.NewQHideEventFromPointer(event))
 	} else {
@@ -52337,7 +51261,6 @@ func (ptr *QVideoWidget) HideEventDefault(event gui.QHideEvent_ITF) {
 
 //export callbackQVideoWidget_HueChanged
 func callbackQVideoWidget_HueChanged(ptr unsafe.Pointer, hue C.int) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QVideoWidget::hueChanged"); signal != nil {
 		signal.(func(int))(int(int32(hue)))
 	}
@@ -52373,7 +51296,6 @@ func (ptr *QVideoWidget) IsFullScreen() bool {
 
 //export callbackQVideoWidget_MoveEvent
 func callbackQVideoWidget_MoveEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QVideoWidget::moveEvent"); signal != nil {
 		signal.(func(*gui.QMoveEvent))(gui.NewQMoveEventFromPointer(event))
 	} else {
@@ -52409,7 +51331,6 @@ func (ptr *QVideoWidget) MoveEventDefault(event gui.QMoveEvent_ITF) {
 
 //export callbackQVideoWidget_PaintEvent
 func callbackQVideoWidget_PaintEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QVideoWidget::paintEvent"); signal != nil {
 		signal.(func(*gui.QPaintEvent))(gui.NewQPaintEventFromPointer(event))
 	} else {
@@ -52445,7 +51366,6 @@ func (ptr *QVideoWidget) PaintEventDefault(event gui.QPaintEvent_ITF) {
 
 //export callbackQVideoWidget_ResizeEvent
 func callbackQVideoWidget_ResizeEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QVideoWidget::resizeEvent"); signal != nil {
 		signal.(func(*gui.QResizeEvent))(gui.NewQResizeEventFromPointer(event))
 	} else {
@@ -52481,7 +51401,6 @@ func (ptr *QVideoWidget) ResizeEventDefault(event gui.QResizeEvent_ITF) {
 
 //export callbackQVideoWidget_SaturationChanged
 func callbackQVideoWidget_SaturationChanged(ptr unsafe.Pointer, saturation C.int) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QVideoWidget::saturationChanged"); signal != nil {
 		signal.(func(int))(int(int32(saturation)))
 	}
@@ -52510,7 +51429,6 @@ func (ptr *QVideoWidget) SaturationChanged(saturation int) {
 
 //export callbackQVideoWidget_ShowEvent
 func callbackQVideoWidget_ShowEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QVideoWidget::showEvent"); signal != nil {
 		signal.(func(*gui.QShowEvent))(gui.NewQShowEventFromPointer(event))
 	} else {
@@ -52546,7 +51464,6 @@ func (ptr *QVideoWidget) ShowEventDefault(event gui.QShowEvent_ITF) {
 
 //export callbackQVideoWidget_SizeHint
 func callbackQVideoWidget_SizeHint(ptr unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QVideoWidget::sizeHint"); signal != nil {
 		return core.PointerFromQSize(signal.(func() *core.QSize)())
 	}
@@ -52596,7 +51513,6 @@ func (ptr *QVideoWidget) DestroyQVideoWidget() {
 
 //export callbackQVideoWidget_ActionEvent
 func callbackQVideoWidget_ActionEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QVideoWidget::actionEvent"); signal != nil {
 		signal.(func(*gui.QActionEvent))(gui.NewQActionEventFromPointer(event))
 	} else {
@@ -52632,7 +51548,6 @@ func (ptr *QVideoWidget) ActionEventDefault(event gui.QActionEvent_ITF) {
 
 //export callbackQVideoWidget_DragEnterEvent
 func callbackQVideoWidget_DragEnterEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QVideoWidget::dragEnterEvent"); signal != nil {
 		signal.(func(*gui.QDragEnterEvent))(gui.NewQDragEnterEventFromPointer(event))
 	} else {
@@ -52668,7 +51583,6 @@ func (ptr *QVideoWidget) DragEnterEventDefault(event gui.QDragEnterEvent_ITF) {
 
 //export callbackQVideoWidget_DragLeaveEvent
 func callbackQVideoWidget_DragLeaveEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QVideoWidget::dragLeaveEvent"); signal != nil {
 		signal.(func(*gui.QDragLeaveEvent))(gui.NewQDragLeaveEventFromPointer(event))
 	} else {
@@ -52704,7 +51618,6 @@ func (ptr *QVideoWidget) DragLeaveEventDefault(event gui.QDragLeaveEvent_ITF) {
 
 //export callbackQVideoWidget_DragMoveEvent
 func callbackQVideoWidget_DragMoveEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QVideoWidget::dragMoveEvent"); signal != nil {
 		signal.(func(*gui.QDragMoveEvent))(gui.NewQDragMoveEventFromPointer(event))
 	} else {
@@ -52740,7 +51653,6 @@ func (ptr *QVideoWidget) DragMoveEventDefault(event gui.QDragMoveEvent_ITF) {
 
 //export callbackQVideoWidget_DropEvent
 func callbackQVideoWidget_DropEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QVideoWidget::dropEvent"); signal != nil {
 		signal.(func(*gui.QDropEvent))(gui.NewQDropEventFromPointer(event))
 	} else {
@@ -52776,7 +51688,6 @@ func (ptr *QVideoWidget) DropEventDefault(event gui.QDropEvent_ITF) {
 
 //export callbackQVideoWidget_EnterEvent
 func callbackQVideoWidget_EnterEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QVideoWidget::enterEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
 	} else {
@@ -52812,7 +51723,6 @@ func (ptr *QVideoWidget) EnterEventDefault(event core.QEvent_ITF) {
 
 //export callbackQVideoWidget_FocusInEvent
 func callbackQVideoWidget_FocusInEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QVideoWidget::focusInEvent"); signal != nil {
 		signal.(func(*gui.QFocusEvent))(gui.NewQFocusEventFromPointer(event))
 	} else {
@@ -52848,7 +51758,6 @@ func (ptr *QVideoWidget) FocusInEventDefault(event gui.QFocusEvent_ITF) {
 
 //export callbackQVideoWidget_FocusOutEvent
 func callbackQVideoWidget_FocusOutEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QVideoWidget::focusOutEvent"); signal != nil {
 		signal.(func(*gui.QFocusEvent))(gui.NewQFocusEventFromPointer(event))
 	} else {
@@ -52884,7 +51793,6 @@ func (ptr *QVideoWidget) FocusOutEventDefault(event gui.QFocusEvent_ITF) {
 
 //export callbackQVideoWidget_LeaveEvent
 func callbackQVideoWidget_LeaveEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QVideoWidget::leaveEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
 	} else {
@@ -52920,7 +51828,6 @@ func (ptr *QVideoWidget) LeaveEventDefault(event core.QEvent_ITF) {
 
 //export callbackQVideoWidget_Metric
 func callbackQVideoWidget_Metric(ptr unsafe.Pointer, m C.longlong) C.int {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QVideoWidget::metric"); signal != nil {
 		return C.int(int32(signal.(func(gui.QPaintDevice__PaintDeviceMetric) int)(gui.QPaintDevice__PaintDeviceMetric(m))))
 	}
@@ -52958,7 +51865,6 @@ func (ptr *QVideoWidget) MetricDefault(m gui.QPaintDevice__PaintDeviceMetric) in
 
 //export callbackQVideoWidget_MinimumSizeHint
 func callbackQVideoWidget_MinimumSizeHint(ptr unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QVideoWidget::minimumSizeHint"); signal != nil {
 		return core.PointerFromQSize(signal.(func() *core.QSize)())
 	}
@@ -53000,7 +51906,6 @@ func (ptr *QVideoWidget) MinimumSizeHintDefault() *core.QSize {
 
 //export callbackQVideoWidget_PaintEngine
 func callbackQVideoWidget_PaintEngine(ptr unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QVideoWidget::paintEngine"); signal != nil {
 		return gui.PointerFromQPaintEngine(signal.(func() *gui.QPaintEngine)())
 	}
@@ -53221,7 +52126,6 @@ func (ptr *QVideoWidget) SetWindowTitleDefault(vqs string) {
 
 //export callbackQVideoWidget_ChangeEvent
 func callbackQVideoWidget_ChangeEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QVideoWidget::changeEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
 	} else {
@@ -53294,7 +52198,6 @@ func (ptr *QVideoWidget) CloseDefault() bool {
 
 //export callbackQVideoWidget_CloseEvent
 func callbackQVideoWidget_CloseEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QVideoWidget::closeEvent"); signal != nil {
 		signal.(func(*gui.QCloseEvent))(gui.NewQCloseEventFromPointer(event))
 	} else {
@@ -53330,7 +52233,6 @@ func (ptr *QVideoWidget) CloseEventDefault(event gui.QCloseEvent_ITF) {
 
 //export callbackQVideoWidget_ContextMenuEvent
 func callbackQVideoWidget_ContextMenuEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QVideoWidget::contextMenuEvent"); signal != nil {
 		signal.(func(*gui.QContextMenuEvent))(gui.NewQContextMenuEventFromPointer(event))
 	} else {
@@ -53366,7 +52268,6 @@ func (ptr *QVideoWidget) ContextMenuEventDefault(event gui.QContextMenuEvent_ITF
 
 //export callbackQVideoWidget_FocusNextPrevChild
 func callbackQVideoWidget_FocusNextPrevChild(ptr unsafe.Pointer, next C.char) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QVideoWidget::focusNextPrevChild"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(bool) bool)(int8(next) != 0))))
 	}
@@ -53404,7 +52305,6 @@ func (ptr *QVideoWidget) FocusNextPrevChildDefault(next bool) bool {
 
 //export callbackQVideoWidget_HasHeightForWidth
 func callbackQVideoWidget_HasHeightForWidth(ptr unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QVideoWidget::hasHeightForWidth"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func() bool)())))
 	}
@@ -53442,7 +52342,6 @@ func (ptr *QVideoWidget) HasHeightForWidthDefault() bool {
 
 //export callbackQVideoWidget_HeightForWidth
 func callbackQVideoWidget_HeightForWidth(ptr unsafe.Pointer, w C.int) C.int {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QVideoWidget::heightForWidth"); signal != nil {
 		return C.int(int32(signal.(func(int) int)(int(int32(w)))))
 	}
@@ -53515,7 +52414,6 @@ func (ptr *QVideoWidget) HideDefault() {
 
 //export callbackQVideoWidget_InputMethodEvent
 func callbackQVideoWidget_InputMethodEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QVideoWidget::inputMethodEvent"); signal != nil {
 		signal.(func(*gui.QInputMethodEvent))(gui.NewQInputMethodEventFromPointer(event))
 	} else {
@@ -53551,7 +52449,6 @@ func (ptr *QVideoWidget) InputMethodEventDefault(event gui.QInputMethodEvent_ITF
 
 //export callbackQVideoWidget_InputMethodQuery
 func callbackQVideoWidget_InputMethodQuery(ptr unsafe.Pointer, query C.longlong) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QVideoWidget::inputMethodQuery"); signal != nil {
 		return core.PointerFromQVariant(signal.(func(core.Qt__InputMethodQuery) *core.QVariant)(core.Qt__InputMethodQuery(query)))
 	}
@@ -53593,7 +52490,6 @@ func (ptr *QVideoWidget) InputMethodQueryDefault(query core.Qt__InputMethodQuery
 
 //export callbackQVideoWidget_KeyPressEvent
 func callbackQVideoWidget_KeyPressEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QVideoWidget::keyPressEvent"); signal != nil {
 		signal.(func(*gui.QKeyEvent))(gui.NewQKeyEventFromPointer(event))
 	} else {
@@ -53629,7 +52525,6 @@ func (ptr *QVideoWidget) KeyPressEventDefault(event gui.QKeyEvent_ITF) {
 
 //export callbackQVideoWidget_KeyReleaseEvent
 func callbackQVideoWidget_KeyReleaseEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QVideoWidget::keyReleaseEvent"); signal != nil {
 		signal.(func(*gui.QKeyEvent))(gui.NewQKeyEventFromPointer(event))
 	} else {
@@ -53700,7 +52595,6 @@ func (ptr *QVideoWidget) LowerDefault() {
 
 //export callbackQVideoWidget_MouseDoubleClickEvent
 func callbackQVideoWidget_MouseDoubleClickEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QVideoWidget::mouseDoubleClickEvent"); signal != nil {
 		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
 	} else {
@@ -53736,7 +52630,6 @@ func (ptr *QVideoWidget) MouseDoubleClickEventDefault(event gui.QMouseEvent_ITF)
 
 //export callbackQVideoWidget_MouseMoveEvent
 func callbackQVideoWidget_MouseMoveEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QVideoWidget::mouseMoveEvent"); signal != nil {
 		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
 	} else {
@@ -53772,7 +52665,6 @@ func (ptr *QVideoWidget) MouseMoveEventDefault(event gui.QMouseEvent_ITF) {
 
 //export callbackQVideoWidget_MousePressEvent
 func callbackQVideoWidget_MousePressEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QVideoWidget::mousePressEvent"); signal != nil {
 		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
 	} else {
@@ -53808,7 +52700,6 @@ func (ptr *QVideoWidget) MousePressEventDefault(event gui.QMouseEvent_ITF) {
 
 //export callbackQVideoWidget_MouseReleaseEvent
 func callbackQVideoWidget_MouseReleaseEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QVideoWidget::mouseReleaseEvent"); signal != nil {
 		signal.(func(*gui.QMouseEvent))(gui.NewQMouseEventFromPointer(event))
 	} else {
@@ -53844,7 +52735,6 @@ func (ptr *QVideoWidget) MouseReleaseEventDefault(event gui.QMouseEvent_ITF) {
 
 //export callbackQVideoWidget_NativeEvent
 func callbackQVideoWidget_NativeEvent(ptr unsafe.Pointer, eventType unsafe.Pointer, message unsafe.Pointer, result C.long) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QVideoWidget::nativeEvent"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QByteArray, unsafe.Pointer, int) bool)(core.NewQByteArrayFromPointer(eventType), message, int(int32(result))))))
 	}
@@ -54232,7 +53122,6 @@ func (ptr *QVideoWidget) ShowNormalDefault() {
 
 //export callbackQVideoWidget_TabletEvent
 func callbackQVideoWidget_TabletEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QVideoWidget::tabletEvent"); signal != nil {
 		signal.(func(*gui.QTabletEvent))(gui.NewQTabletEventFromPointer(event))
 	} else {
@@ -54338,7 +53227,6 @@ func (ptr *QVideoWidget) UpdateMicroFocusDefault() {
 
 //export callbackQVideoWidget_WheelEvent
 func callbackQVideoWidget_WheelEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QVideoWidget::wheelEvent"); signal != nil {
 		signal.(func(*gui.QWheelEvent))(gui.NewQWheelEventFromPointer(event))
 	} else {
@@ -54374,7 +53262,6 @@ func (ptr *QVideoWidget) WheelEventDefault(event gui.QWheelEvent_ITF) {
 
 //export callbackQVideoWidget_TimerEvent
 func callbackQVideoWidget_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QVideoWidget::timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
 	} else {
@@ -54410,7 +53297,6 @@ func (ptr *QVideoWidget) TimerEventDefault(event core.QTimerEvent_ITF) {
 
 //export callbackQVideoWidget_ChildEvent
 func callbackQVideoWidget_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QVideoWidget::childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
 	} else {
@@ -54446,7 +53332,6 @@ func (ptr *QVideoWidget) ChildEventDefault(event core.QChildEvent_ITF) {
 
 //export callbackQVideoWidget_ConnectNotify
 func callbackQVideoWidget_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QVideoWidget::connectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
@@ -54482,7 +53367,6 @@ func (ptr *QVideoWidget) ConnectNotifyDefault(sign core.QMetaMethod_ITF) {
 
 //export callbackQVideoWidget_CustomEvent
 func callbackQVideoWidget_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QVideoWidget::customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
 	} else {
@@ -54557,7 +53441,6 @@ func (ptr *QVideoWidget) DeleteLaterDefault() {
 
 //export callbackQVideoWidget_DisconnectNotify
 func callbackQVideoWidget_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QVideoWidget::disconnectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
@@ -54593,7 +53476,6 @@ func (ptr *QVideoWidget) DisconnectNotifyDefault(sign core.QMetaMethod_ITF) {
 
 //export callbackQVideoWidget_EventFilter
 func callbackQVideoWidget_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QVideoWidget::eventFilter"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
 	}
@@ -54631,7 +53513,6 @@ func (ptr *QVideoWidget) EventFilterDefault(watched core.QObject_ITF, event core
 
 //export callbackQVideoWidget_MetaObject
 func callbackQVideoWidget_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QVideoWidget::metaObject"); signal != nil {
 		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
 	}
@@ -54669,7 +53550,6 @@ func (ptr *QVideoWidget) MetaObjectDefault() *core.QMetaObject {
 
 //export callbackQVideoWidget_SetMediaObject
 func callbackQVideoWidget_SetMediaObject(ptr unsafe.Pointer, object unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QVideoWidget::setMediaObject"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*QMediaObject) bool)(NewQMediaObjectFromPointer(object)))))
 	}
@@ -54746,7 +53626,6 @@ func NewQVideoWidgetControl(parent core.QObject_ITF) *QVideoWidgetControl {
 
 //export callbackQVideoWidgetControl_AspectRatioMode
 func callbackQVideoWidgetControl_AspectRatioMode(ptr unsafe.Pointer) C.longlong {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QVideoWidgetControl::aspectRatioMode"); signal != nil {
 		return C.longlong(signal.(func() core.Qt__AspectRatioMode)())
 	}
@@ -54777,7 +53656,6 @@ func (ptr *QVideoWidgetControl) AspectRatioMode() core.Qt__AspectRatioMode {
 
 //export callbackQVideoWidgetControl_Brightness
 func callbackQVideoWidgetControl_Brightness(ptr unsafe.Pointer) C.int {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QVideoWidgetControl::brightness"); signal != nil {
 		return C.int(int32(signal.(func() int)()))
 	}
@@ -54808,7 +53686,6 @@ func (ptr *QVideoWidgetControl) Brightness() int {
 
 //export callbackQVideoWidgetControl_BrightnessChanged
 func callbackQVideoWidgetControl_BrightnessChanged(ptr unsafe.Pointer, brightness C.int) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QVideoWidgetControl::brightnessChanged"); signal != nil {
 		signal.(func(int))(int(int32(brightness)))
 	}
@@ -54837,7 +53714,6 @@ func (ptr *QVideoWidgetControl) BrightnessChanged(brightness int) {
 
 //export callbackQVideoWidgetControl_Contrast
 func callbackQVideoWidgetControl_Contrast(ptr unsafe.Pointer) C.int {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QVideoWidgetControl::contrast"); signal != nil {
 		return C.int(int32(signal.(func() int)()))
 	}
@@ -54868,7 +53744,6 @@ func (ptr *QVideoWidgetControl) Contrast() int {
 
 //export callbackQVideoWidgetControl_ContrastChanged
 func callbackQVideoWidgetControl_ContrastChanged(ptr unsafe.Pointer, contrast C.int) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QVideoWidgetControl::contrastChanged"); signal != nil {
 		signal.(func(int))(int(int32(contrast)))
 	}
@@ -54897,7 +53772,6 @@ func (ptr *QVideoWidgetControl) ContrastChanged(contrast int) {
 
 //export callbackQVideoWidgetControl_FullScreenChanged
 func callbackQVideoWidgetControl_FullScreenChanged(ptr unsafe.Pointer, fullScreen C.char) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QVideoWidgetControl::fullScreenChanged"); signal != nil {
 		signal.(func(bool))(int8(fullScreen) != 0)
 	}
@@ -54926,7 +53800,6 @@ func (ptr *QVideoWidgetControl) FullScreenChanged(fullScreen bool) {
 
 //export callbackQVideoWidgetControl_Hue
 func callbackQVideoWidgetControl_Hue(ptr unsafe.Pointer) C.int {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QVideoWidgetControl::hue"); signal != nil {
 		return C.int(int32(signal.(func() int)()))
 	}
@@ -54957,7 +53830,6 @@ func (ptr *QVideoWidgetControl) Hue() int {
 
 //export callbackQVideoWidgetControl_HueChanged
 func callbackQVideoWidgetControl_HueChanged(ptr unsafe.Pointer, hue C.int) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QVideoWidgetControl::hueChanged"); signal != nil {
 		signal.(func(int))(int(int32(hue)))
 	}
@@ -54986,7 +53858,6 @@ func (ptr *QVideoWidgetControl) HueChanged(hue int) {
 
 //export callbackQVideoWidgetControl_IsFullScreen
 func callbackQVideoWidgetControl_IsFullScreen(ptr unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QVideoWidgetControl::isFullScreen"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func() bool)())))
 	}
@@ -55017,7 +53888,6 @@ func (ptr *QVideoWidgetControl) IsFullScreen() bool {
 
 //export callbackQVideoWidgetControl_Saturation
 func callbackQVideoWidgetControl_Saturation(ptr unsafe.Pointer) C.int {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QVideoWidgetControl::saturation"); signal != nil {
 		return C.int(int32(signal.(func() int)()))
 	}
@@ -55048,7 +53918,6 @@ func (ptr *QVideoWidgetControl) Saturation() int {
 
 //export callbackQVideoWidgetControl_SaturationChanged
 func callbackQVideoWidgetControl_SaturationChanged(ptr unsafe.Pointer, saturation C.int) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QVideoWidgetControl::saturationChanged"); signal != nil {
 		signal.(func(int))(int(int32(saturation)))
 	}
@@ -55077,7 +53946,6 @@ func (ptr *QVideoWidgetControl) SaturationChanged(saturation int) {
 
 //export callbackQVideoWidgetControl_SetAspectRatioMode
 func callbackQVideoWidgetControl_SetAspectRatioMode(ptr unsafe.Pointer, mode C.longlong) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QVideoWidgetControl::setAspectRatioMode"); signal != nil {
 		signal.(func(core.Qt__AspectRatioMode))(core.Qt__AspectRatioMode(mode))
 	}
@@ -55106,7 +53974,6 @@ func (ptr *QVideoWidgetControl) SetAspectRatioMode(mode core.Qt__AspectRatioMode
 
 //export callbackQVideoWidgetControl_SetBrightness
 func callbackQVideoWidgetControl_SetBrightness(ptr unsafe.Pointer, brightness C.int) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QVideoWidgetControl::setBrightness"); signal != nil {
 		signal.(func(int))(int(int32(brightness)))
 	}
@@ -55135,7 +54002,6 @@ func (ptr *QVideoWidgetControl) SetBrightness(brightness int) {
 
 //export callbackQVideoWidgetControl_SetContrast
 func callbackQVideoWidgetControl_SetContrast(ptr unsafe.Pointer, contrast C.int) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QVideoWidgetControl::setContrast"); signal != nil {
 		signal.(func(int))(int(int32(contrast)))
 	}
@@ -55164,7 +54030,6 @@ func (ptr *QVideoWidgetControl) SetContrast(contrast int) {
 
 //export callbackQVideoWidgetControl_SetFullScreen
 func callbackQVideoWidgetControl_SetFullScreen(ptr unsafe.Pointer, fullScreen C.char) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QVideoWidgetControl::setFullScreen"); signal != nil {
 		signal.(func(bool))(int8(fullScreen) != 0)
 	}
@@ -55193,7 +54058,6 @@ func (ptr *QVideoWidgetControl) SetFullScreen(fullScreen bool) {
 
 //export callbackQVideoWidgetControl_SetHue
 func callbackQVideoWidgetControl_SetHue(ptr unsafe.Pointer, hue C.int) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QVideoWidgetControl::setHue"); signal != nil {
 		signal.(func(int))(int(int32(hue)))
 	}
@@ -55222,7 +54086,6 @@ func (ptr *QVideoWidgetControl) SetHue(hue int) {
 
 //export callbackQVideoWidgetControl_SetSaturation
 func callbackQVideoWidgetControl_SetSaturation(ptr unsafe.Pointer, saturation C.int) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QVideoWidgetControl::setSaturation"); signal != nil {
 		signal.(func(int))(int(int32(saturation)))
 	}
@@ -55251,7 +54114,6 @@ func (ptr *QVideoWidgetControl) SetSaturation(saturation int) {
 
 //export callbackQVideoWidgetControl_VideoWidget
 func callbackQVideoWidgetControl_VideoWidget(ptr unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QVideoWidgetControl::videoWidget"); signal != nil {
 		return widgets.PointerFromQWidget(signal.(func() *widgets.QWidget)())
 	}
@@ -55286,7 +54148,6 @@ func (ptr *QVideoWidgetControl) VideoWidget() *widgets.QWidget {
 
 //export callbackQVideoWidgetControl_DestroyQVideoWidgetControl
 func callbackQVideoWidgetControl_DestroyQVideoWidgetControl(ptr unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QVideoWidgetControl::~QVideoWidgetControl"); signal != nil {
 		signal.(func())()
 	} else {
@@ -55326,7 +54187,6 @@ func (ptr *QVideoWidgetControl) DestroyQVideoWidgetControlDefault() {
 
 //export callbackQVideoWidgetControl_TimerEvent
 func callbackQVideoWidgetControl_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QVideoWidgetControl::timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
 	} else {
@@ -55362,7 +54222,6 @@ func (ptr *QVideoWidgetControl) TimerEventDefault(event core.QTimerEvent_ITF) {
 
 //export callbackQVideoWidgetControl_ChildEvent
 func callbackQVideoWidgetControl_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QVideoWidgetControl::childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
 	} else {
@@ -55398,7 +54257,6 @@ func (ptr *QVideoWidgetControl) ChildEventDefault(event core.QChildEvent_ITF) {
 
 //export callbackQVideoWidgetControl_ConnectNotify
 func callbackQVideoWidgetControl_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QVideoWidgetControl::connectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
@@ -55434,7 +54292,6 @@ func (ptr *QVideoWidgetControl) ConnectNotifyDefault(sign core.QMetaMethod_ITF) 
 
 //export callbackQVideoWidgetControl_CustomEvent
 func callbackQVideoWidgetControl_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QVideoWidgetControl::customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
 	} else {
@@ -55509,7 +54366,6 @@ func (ptr *QVideoWidgetControl) DeleteLaterDefault() {
 
 //export callbackQVideoWidgetControl_DisconnectNotify
 func callbackQVideoWidgetControl_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QVideoWidgetControl::disconnectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
@@ -55545,7 +54401,6 @@ func (ptr *QVideoWidgetControl) DisconnectNotifyDefault(sign core.QMetaMethod_IT
 
 //export callbackQVideoWidgetControl_Event
 func callbackQVideoWidgetControl_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QVideoWidgetControl::event"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
 	}
@@ -55583,7 +54438,6 @@ func (ptr *QVideoWidgetControl) EventDefault(e core.QEvent_ITF) bool {
 
 //export callbackQVideoWidgetControl_EventFilter
 func callbackQVideoWidgetControl_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QVideoWidgetControl::eventFilter"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
 	}
@@ -55621,7 +54475,6 @@ func (ptr *QVideoWidgetControl) EventFilterDefault(watched core.QObject_ITF, eve
 
 //export callbackQVideoWidgetControl_MetaObject
 func callbackQVideoWidgetControl_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QVideoWidgetControl::metaObject"); signal != nil {
 		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
 	}
@@ -55705,7 +54558,6 @@ func NewQVideoWindowControl(parent core.QObject_ITF) *QVideoWindowControl {
 
 //export callbackQVideoWindowControl_AspectRatioMode
 func callbackQVideoWindowControl_AspectRatioMode(ptr unsafe.Pointer) C.longlong {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QVideoWindowControl::aspectRatioMode"); signal != nil {
 		return C.longlong(signal.(func() core.Qt__AspectRatioMode)())
 	}
@@ -55736,7 +54588,6 @@ func (ptr *QVideoWindowControl) AspectRatioMode() core.Qt__AspectRatioMode {
 
 //export callbackQVideoWindowControl_Brightness
 func callbackQVideoWindowControl_Brightness(ptr unsafe.Pointer) C.int {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QVideoWindowControl::brightness"); signal != nil {
 		return C.int(int32(signal.(func() int)()))
 	}
@@ -55767,7 +54618,6 @@ func (ptr *QVideoWindowControl) Brightness() int {
 
 //export callbackQVideoWindowControl_BrightnessChanged
 func callbackQVideoWindowControl_BrightnessChanged(ptr unsafe.Pointer, brightness C.int) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QVideoWindowControl::brightnessChanged"); signal != nil {
 		signal.(func(int))(int(int32(brightness)))
 	}
@@ -55796,7 +54646,6 @@ func (ptr *QVideoWindowControl) BrightnessChanged(brightness int) {
 
 //export callbackQVideoWindowControl_Contrast
 func callbackQVideoWindowControl_Contrast(ptr unsafe.Pointer) C.int {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QVideoWindowControl::contrast"); signal != nil {
 		return C.int(int32(signal.(func() int)()))
 	}
@@ -55827,7 +54676,6 @@ func (ptr *QVideoWindowControl) Contrast() int {
 
 //export callbackQVideoWindowControl_ContrastChanged
 func callbackQVideoWindowControl_ContrastChanged(ptr unsafe.Pointer, contrast C.int) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QVideoWindowControl::contrastChanged"); signal != nil {
 		signal.(func(int))(int(int32(contrast)))
 	}
@@ -55856,7 +54704,6 @@ func (ptr *QVideoWindowControl) ContrastChanged(contrast int) {
 
 //export callbackQVideoWindowControl_DisplayRect
 func callbackQVideoWindowControl_DisplayRect(ptr unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QVideoWindowControl::displayRect"); signal != nil {
 		return core.PointerFromQRect(signal.(func() *core.QRect)())
 	}
@@ -55889,7 +54736,6 @@ func (ptr *QVideoWindowControl) DisplayRect() *core.QRect {
 
 //export callbackQVideoWindowControl_FullScreenChanged
 func callbackQVideoWindowControl_FullScreenChanged(ptr unsafe.Pointer, fullScreen C.char) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QVideoWindowControl::fullScreenChanged"); signal != nil {
 		signal.(func(bool))(int8(fullScreen) != 0)
 	}
@@ -55918,7 +54764,6 @@ func (ptr *QVideoWindowControl) FullScreenChanged(fullScreen bool) {
 
 //export callbackQVideoWindowControl_Hue
 func callbackQVideoWindowControl_Hue(ptr unsafe.Pointer) C.int {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QVideoWindowControl::hue"); signal != nil {
 		return C.int(int32(signal.(func() int)()))
 	}
@@ -55949,7 +54794,6 @@ func (ptr *QVideoWindowControl) Hue() int {
 
 //export callbackQVideoWindowControl_HueChanged
 func callbackQVideoWindowControl_HueChanged(ptr unsafe.Pointer, hue C.int) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QVideoWindowControl::hueChanged"); signal != nil {
 		signal.(func(int))(int(int32(hue)))
 	}
@@ -55978,7 +54822,6 @@ func (ptr *QVideoWindowControl) HueChanged(hue int) {
 
 //export callbackQVideoWindowControl_IsFullScreen
 func callbackQVideoWindowControl_IsFullScreen(ptr unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QVideoWindowControl::isFullScreen"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func() bool)())))
 	}
@@ -56009,7 +54852,6 @@ func (ptr *QVideoWindowControl) IsFullScreen() bool {
 
 //export callbackQVideoWindowControl_NativeSize
 func callbackQVideoWindowControl_NativeSize(ptr unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QVideoWindowControl::nativeSize"); signal != nil {
 		return core.PointerFromQSize(signal.(func() *core.QSize)())
 	}
@@ -56042,7 +54884,6 @@ func (ptr *QVideoWindowControl) NativeSize() *core.QSize {
 
 //export callbackQVideoWindowControl_NativeSizeChanged
 func callbackQVideoWindowControl_NativeSizeChanged(ptr unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QVideoWindowControl::nativeSizeChanged"); signal != nil {
 		signal.(func())()
 	}
@@ -56071,7 +54912,6 @@ func (ptr *QVideoWindowControl) NativeSizeChanged() {
 
 //export callbackQVideoWindowControl_Repaint
 func callbackQVideoWindowControl_Repaint(ptr unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QVideoWindowControl::repaint"); signal != nil {
 		signal.(func())()
 	}
@@ -56100,7 +54940,6 @@ func (ptr *QVideoWindowControl) Repaint() {
 
 //export callbackQVideoWindowControl_Saturation
 func callbackQVideoWindowControl_Saturation(ptr unsafe.Pointer) C.int {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QVideoWindowControl::saturation"); signal != nil {
 		return C.int(int32(signal.(func() int)()))
 	}
@@ -56131,7 +54970,6 @@ func (ptr *QVideoWindowControl) Saturation() int {
 
 //export callbackQVideoWindowControl_SaturationChanged
 func callbackQVideoWindowControl_SaturationChanged(ptr unsafe.Pointer, saturation C.int) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QVideoWindowControl::saturationChanged"); signal != nil {
 		signal.(func(int))(int(int32(saturation)))
 	}
@@ -56160,7 +54998,6 @@ func (ptr *QVideoWindowControl) SaturationChanged(saturation int) {
 
 //export callbackQVideoWindowControl_SetAspectRatioMode
 func callbackQVideoWindowControl_SetAspectRatioMode(ptr unsafe.Pointer, mode C.longlong) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QVideoWindowControl::setAspectRatioMode"); signal != nil {
 		signal.(func(core.Qt__AspectRatioMode))(core.Qt__AspectRatioMode(mode))
 	}
@@ -56189,7 +55026,6 @@ func (ptr *QVideoWindowControl) SetAspectRatioMode(mode core.Qt__AspectRatioMode
 
 //export callbackQVideoWindowControl_SetBrightness
 func callbackQVideoWindowControl_SetBrightness(ptr unsafe.Pointer, brightness C.int) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QVideoWindowControl::setBrightness"); signal != nil {
 		signal.(func(int))(int(int32(brightness)))
 	}
@@ -56218,7 +55054,6 @@ func (ptr *QVideoWindowControl) SetBrightness(brightness int) {
 
 //export callbackQVideoWindowControl_SetContrast
 func callbackQVideoWindowControl_SetContrast(ptr unsafe.Pointer, contrast C.int) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QVideoWindowControl::setContrast"); signal != nil {
 		signal.(func(int))(int(int32(contrast)))
 	}
@@ -56247,7 +55082,6 @@ func (ptr *QVideoWindowControl) SetContrast(contrast int) {
 
 //export callbackQVideoWindowControl_SetDisplayRect
 func callbackQVideoWindowControl_SetDisplayRect(ptr unsafe.Pointer, rect unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QVideoWindowControl::setDisplayRect"); signal != nil {
 		signal.(func(*core.QRect))(core.NewQRectFromPointer(rect))
 	}
@@ -56276,7 +55110,6 @@ func (ptr *QVideoWindowControl) SetDisplayRect(rect core.QRect_ITF) {
 
 //export callbackQVideoWindowControl_SetFullScreen
 func callbackQVideoWindowControl_SetFullScreen(ptr unsafe.Pointer, fullScreen C.char) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QVideoWindowControl::setFullScreen"); signal != nil {
 		signal.(func(bool))(int8(fullScreen) != 0)
 	}
@@ -56305,7 +55138,6 @@ func (ptr *QVideoWindowControl) SetFullScreen(fullScreen bool) {
 
 //export callbackQVideoWindowControl_SetHue
 func callbackQVideoWindowControl_SetHue(ptr unsafe.Pointer, hue C.int) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QVideoWindowControl::setHue"); signal != nil {
 		signal.(func(int))(int(int32(hue)))
 	}
@@ -56334,7 +55166,6 @@ func (ptr *QVideoWindowControl) SetHue(hue int) {
 
 //export callbackQVideoWindowControl_SetSaturation
 func callbackQVideoWindowControl_SetSaturation(ptr unsafe.Pointer, saturation C.int) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QVideoWindowControl::setSaturation"); signal != nil {
 		signal.(func(int))(int(int32(saturation)))
 	}
@@ -56363,7 +55194,6 @@ func (ptr *QVideoWindowControl) SetSaturation(saturation int) {
 
 //export callbackQVideoWindowControl_SetWinId
 func callbackQVideoWindowControl_SetWinId(ptr unsafe.Pointer, id C.uintptr_t) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QVideoWindowControl::setWinId"); signal != nil {
 		signal.(func(uintptr))(uintptr(id))
 	}
@@ -56392,7 +55222,6 @@ func (ptr *QVideoWindowControl) SetWinId(id uintptr) {
 
 //export callbackQVideoWindowControl_WinId
 func callbackQVideoWindowControl_WinId(ptr unsafe.Pointer) C.uintptr_t {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QVideoWindowControl::winId"); signal != nil {
 		return C.uintptr_t(signal.(func() uintptr)())
 	}
@@ -56431,7 +55260,6 @@ func (ptr *QVideoWindowControl) DestroyQVideoWindowControl() {
 
 //export callbackQVideoWindowControl_TimerEvent
 func callbackQVideoWindowControl_TimerEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QVideoWindowControl::timerEvent"); signal != nil {
 		signal.(func(*core.QTimerEvent))(core.NewQTimerEventFromPointer(event))
 	} else {
@@ -56467,7 +55295,6 @@ func (ptr *QVideoWindowControl) TimerEventDefault(event core.QTimerEvent_ITF) {
 
 //export callbackQVideoWindowControl_ChildEvent
 func callbackQVideoWindowControl_ChildEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QVideoWindowControl::childEvent"); signal != nil {
 		signal.(func(*core.QChildEvent))(core.NewQChildEventFromPointer(event))
 	} else {
@@ -56503,7 +55330,6 @@ func (ptr *QVideoWindowControl) ChildEventDefault(event core.QChildEvent_ITF) {
 
 //export callbackQVideoWindowControl_ConnectNotify
 func callbackQVideoWindowControl_ConnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QVideoWindowControl::connectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
@@ -56539,7 +55365,6 @@ func (ptr *QVideoWindowControl) ConnectNotifyDefault(sign core.QMetaMethod_ITF) 
 
 //export callbackQVideoWindowControl_CustomEvent
 func callbackQVideoWindowControl_CustomEvent(ptr unsafe.Pointer, event unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QVideoWindowControl::customEvent"); signal != nil {
 		signal.(func(*core.QEvent))(core.NewQEventFromPointer(event))
 	} else {
@@ -56614,7 +55439,6 @@ func (ptr *QVideoWindowControl) DeleteLaterDefault() {
 
 //export callbackQVideoWindowControl_DisconnectNotify
 func callbackQVideoWindowControl_DisconnectNotify(ptr unsafe.Pointer, sign unsafe.Pointer) {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QVideoWindowControl::disconnectNotify"); signal != nil {
 		signal.(func(*core.QMetaMethod))(core.NewQMetaMethodFromPointer(sign))
 	} else {
@@ -56650,7 +55474,6 @@ func (ptr *QVideoWindowControl) DisconnectNotifyDefault(sign core.QMetaMethod_IT
 
 //export callbackQVideoWindowControl_Event
 func callbackQVideoWindowControl_Event(ptr unsafe.Pointer, e unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QVideoWindowControl::event"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QEvent) bool)(core.NewQEventFromPointer(e)))))
 	}
@@ -56688,7 +55511,6 @@ func (ptr *QVideoWindowControl) EventDefault(e core.QEvent_ITF) bool {
 
 //export callbackQVideoWindowControl_EventFilter
 func callbackQVideoWindowControl_EventFilter(ptr unsafe.Pointer, watched unsafe.Pointer, event unsafe.Pointer) C.char {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QVideoWindowControl::eventFilter"); signal != nil {
 		return C.char(int8(qt.GoBoolToInt(signal.(func(*core.QObject, *core.QEvent) bool)(core.NewQObjectFromPointer(watched), core.NewQEventFromPointer(event)))))
 	}
@@ -56726,7 +55548,6 @@ func (ptr *QVideoWindowControl) EventFilterDefault(watched core.QObject_ITF, eve
 
 //export callbackQVideoWindowControl_MetaObject
 func callbackQVideoWindowControl_MetaObject(ptr unsafe.Pointer) unsafe.Pointer {
-
 	if signal := qt.GetSignal(fmt.Sprint(ptr), "QVideoWindowControl::metaObject"); signal != nil {
 		return core.PointerFromQMetaObject(signal.(func() *core.QMetaObject)())
 	}
