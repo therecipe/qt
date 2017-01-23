@@ -421,7 +421,8 @@ func build() {
 		cmdiOS.Dir = appPath
 		cmdiOS.Args = append(cmdiOS.Args, fmt.Sprintf("-tags=\"%v\"", strings.Join(tagFlags, "\" \"")))
 		if buildTarget != "desktop" {
-			cmdiOS.Args = append(cmdiOS.Args, fmt.Sprintf("-installsuffix=%v", buildTarget))
+			cmdiOS.Args = append(cmdiOS.Args, []string{"-installsuffix", strings.Replace(buildTarget, "-", "_", -1)}...)
+			cmdiOS.Args = append(cmdiOS.Args, []string{"-pkgdir", filepath.Join(utils.MustGoPath(), "pkg", fmt.Sprintf("%v_%v_%v", env["GOOS"], env["GOARCH"], strings.Replace(buildTarget, "-", "_", -1)))}...)
 		}
 		cmdiOS.Args = append(cmdiOS.Args, "-buildmode", "c-archive")
 		var tmp = strings.Replace(strings.Join(cmd.Env, "|"), "-arch arm64", "-arch armv7", -1)

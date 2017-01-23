@@ -98,7 +98,8 @@ func installPkgCmd(buildTarget, tagFlags, pkg string, env map[string]string) *ex
 		cmd.Args = append(cmd.Args, tagFlags)
 	}
 	if buildTarget != "desktop" {
-		cmd.Args = append(cmd.Args, fmt.Sprintf("-installsuffix=%v", strings.Replace(buildTarget, "-", "_", -1)))
+		cmd.Args = append(cmd.Args, []string{"-installsuffix", strings.Replace(buildTarget, "-", "_", -1)}...)
+		cmd.Args = append(cmd.Args, []string{"-pkgdir", filepath.Join(utils.MustGoPath(), "pkg", fmt.Sprintf("%v_%v_%v", env["GOOS"], env["GOARCH"], strings.Replace(buildTarget, "-", "_", -1)))}...)
 	}
 	cmd.Args = append(cmd.Args, pkg)
 	for key, value := range env {
