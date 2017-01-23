@@ -388,11 +388,12 @@ func build() {
 		}
 	}
 
-	var cmd = exec.Command("go", "build", "-p", strconv.Itoa(runtime.GOMAXPROCS(0)), "-v", fmt.Sprintf("-ldflags=\"%v\"", strings.Join(ldFlags, "\" \"")), "-o", outputFile+ending)
+	var cmd = exec.Command("go", "build", "-i", "-p", strconv.Itoa(runtime.GOMAXPROCS(0)), "-v", fmt.Sprintf("-ldflags=\"%v\"", strings.Join(ldFlags, "\" \"")), "-o", outputFile+ending)
 	cmd.Dir = appPath
 	cmd.Args = append(cmd.Args, fmt.Sprintf("-tags=\"%v\"", strings.Join(tagFlags, "\" \"")))
 	if buildTarget != "desktop" {
-		cmd.Args = append(cmd.Args, fmt.Sprintf("-installsuffix=%v", strings.Replace(buildTarget, "-", "_", -1)))
+		cmd.Args = append(cmd.Args, []string{"-installsuffix", strings.Replace(buildTarget, "-", "_", -1)}...)
+		cmd.Args = append(cmd.Args, []string{"-pkgdir", filepath.Join(utils.MustGoPath(), "pkg", fmt.Sprintf("%v_%v_%v", env["GOOS"], env["GOARCH"], strings.Replace(buildTarget, "-", "_", -1)))}...)
 	}
 
 	if buildTarget != "desktop" || (runtime.GOOS == "windows" && buildTarget == "desktop") {
