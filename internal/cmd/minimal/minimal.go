@@ -153,7 +153,12 @@ func Minimal(appPath, buildTarget string) {
 	}
 
 	if buildTarget == "sailfish" || buildTarget == "sailfish-emulator" {
-		parser.State.ClassMap["QQuickWidget"].Export = false
+		if _, ok := parser.State.ClassMap["QQuickWidget"]; ok {
+			parser.State.ClassMap["QQuickWidget"].Export = false
+		}
+		if _, ok := parser.State.ClassMap["TestCase"]; ok {
+			delete(parser.State.ClassMap, "TestCase")
+		}
 	}
 
 	if buildTarget == "ios" || buildTarget == "ios-simulator" {

@@ -230,7 +230,10 @@ func (f *Function) IsSupported() bool {
 }
 
 func (f *Function) IsDerivedFromVirtual() bool {
-	var class, _ = f.Class()
+	var class, ok = f.Class()
+	if !ok {
+		return false
+	}
 
 	if f.Virtual != "non" {
 		return true
