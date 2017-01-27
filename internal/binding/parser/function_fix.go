@@ -153,6 +153,11 @@ func (f *Function) fixGeneric() {
 func (f *Function) fixGenericOutput() {
 
 	switch CleanValue(f.Output) {
+	case "QJSValueList":
+		{
+			f.Output = "QList<QJSValue>"
+		}
+
 	case "QModelIndexList":
 		{
 			f.Output = "QList<QModelIndex>"
@@ -215,6 +220,11 @@ func (f *Function) fixGenericOutput() {
 func (f *Function) fixGenericInput() {
 	for _, p := range f.Parameters {
 		switch CleanValue(p.Value) {
+		case "QJSValueList":
+			{
+				p.Value = "QList<QJSValue>"
+			}
+
 		case "QModelIndexList":
 			{
 				p.Value = "QList<QModelIndex>"

@@ -744,6 +744,51 @@ func NewQJSValue6(value uint) *QJSValue {
 	return tmpValue
 }
 
+func (ptr *QJSValue) Call(args []*QJSValue) *QJSValue {
+	if ptr.Pointer() != nil {
+		var tmpValue = NewQJSValueFromPointer(C.QJSValue_Call(ptr.Pointer(), func() unsafe.Pointer {
+			var tmpList = NewQJSValueFromPointer(NewQJSValueFromPointer(unsafe.Pointer(uintptr(1))).__call_args_newList())
+			for _, v := range args {
+				tmpList.__call_args_setList(v)
+			}
+			return tmpList.Pointer()
+		}()))
+		runtime.SetFinalizer(tmpValue, (*QJSValue).DestroyQJSValue)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QJSValue) CallAsConstructor(args []*QJSValue) *QJSValue {
+	if ptr.Pointer() != nil {
+		var tmpValue = NewQJSValueFromPointer(C.QJSValue_CallAsConstructor(ptr.Pointer(), func() unsafe.Pointer {
+			var tmpList = NewQJSValueFromPointer(NewQJSValueFromPointer(unsafe.Pointer(uintptr(1))).__callAsConstructor_args_newList())
+			for _, v := range args {
+				tmpList.__callAsConstructor_args_setList(v)
+			}
+			return tmpList.Pointer()
+		}()))
+		runtime.SetFinalizer(tmpValue, (*QJSValue).DestroyQJSValue)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QJSValue) CallWithInstance(instance QJSValue_ITF, args []*QJSValue) *QJSValue {
+	if ptr.Pointer() != nil {
+		var tmpValue = NewQJSValueFromPointer(C.QJSValue_CallWithInstance(ptr.Pointer(), PointerFromQJSValue(instance), func() unsafe.Pointer {
+			var tmpList = NewQJSValueFromPointer(NewQJSValueFromPointer(unsafe.Pointer(uintptr(1))).__callWithInstance_args_newList())
+			for _, v := range args {
+				tmpList.__callWithInstance_args_setList(v)
+			}
+			return tmpList.Pointer()
+		}()))
+		runtime.SetFinalizer(tmpValue, (*QJSValue).DestroyQJSValue)
+		return tmpValue
+	}
+	return nil
+}
+
 func (ptr *QJSValue) DeleteProperty(name string) bool {
 	if ptr.Pointer() != nil {
 		var nameC = C.CString(name)
@@ -994,6 +1039,72 @@ func (ptr *QJSValue) DestroyQJSValue() {
 		C.QJSValue_DestroyQJSValue(ptr.Pointer())
 		ptr.SetPointer(nil)
 	}
+}
+
+func (ptr *QJSValue) __call_args_atList(i int) *QJSValue {
+	if ptr.Pointer() != nil {
+		var tmpValue = NewQJSValueFromPointer(C.QJSValue___call_args_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*QJSValue).DestroyQJSValue)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QJSValue) __call_args_setList(i QJSValue_ITF) {
+	if ptr.Pointer() != nil {
+		C.QJSValue___call_args_setList(ptr.Pointer(), PointerFromQJSValue(i))
+	}
+}
+
+func (ptr *QJSValue) __call_args_newList() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QJSValue___call_args_newList(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QJSValue) __callAsConstructor_args_atList(i int) *QJSValue {
+	if ptr.Pointer() != nil {
+		var tmpValue = NewQJSValueFromPointer(C.QJSValue___callAsConstructor_args_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*QJSValue).DestroyQJSValue)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QJSValue) __callAsConstructor_args_setList(i QJSValue_ITF) {
+	if ptr.Pointer() != nil {
+		C.QJSValue___callAsConstructor_args_setList(ptr.Pointer(), PointerFromQJSValue(i))
+	}
+}
+
+func (ptr *QJSValue) __callAsConstructor_args_newList() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QJSValue___callAsConstructor_args_newList(ptr.Pointer()))
+	}
+	return nil
+}
+
+func (ptr *QJSValue) __callWithInstance_args_atList(i int) *QJSValue {
+	if ptr.Pointer() != nil {
+		var tmpValue = NewQJSValueFromPointer(C.QJSValue___callWithInstance_args_atList(ptr.Pointer(), C.int(int32(i))))
+		runtime.SetFinalizer(tmpValue, (*QJSValue).DestroyQJSValue)
+		return tmpValue
+	}
+	return nil
+}
+
+func (ptr *QJSValue) __callWithInstance_args_setList(i QJSValue_ITF) {
+	if ptr.Pointer() != nil {
+		C.QJSValue___callWithInstance_args_setList(ptr.Pointer(), PointerFromQJSValue(i))
+	}
+}
+
+func (ptr *QJSValue) __callWithInstance_args_newList() unsafe.Pointer {
+	if ptr.Pointer() != nil {
+		return unsafe.Pointer(C.QJSValue___callWithInstance_args_newList(ptr.Pointer()))
+	}
+	return nil
 }
 
 type QJSValueIterator struct {

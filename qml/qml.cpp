@@ -335,6 +335,21 @@ void* QJSValue_NewQJSValue6(unsigned int value)
 	return new QJSValue(value);
 }
 
+void* QJSValue_Call(void* ptr, void* args)
+{
+	return new QJSValue(static_cast<QJSValue*>(ptr)->call(*static_cast<QList<QJSValue>*>(args)));
+}
+
+void* QJSValue_CallAsConstructor(void* ptr, void* args)
+{
+	return new QJSValue(static_cast<QJSValue*>(ptr)->callAsConstructor(*static_cast<QList<QJSValue>*>(args)));
+}
+
+void* QJSValue_CallWithInstance(void* ptr, void* instance, void* args)
+{
+	return new QJSValue(static_cast<QJSValue*>(ptr)->callWithInstance(*static_cast<QJSValue*>(instance), *static_cast<QList<QJSValue>*>(args)));
+}
+
 char QJSValue_DeleteProperty(void* ptr, char* name)
 {
 	return static_cast<QJSValue*>(ptr)->deleteProperty(QString(name));
@@ -498,6 +513,51 @@ void* QJSValue_ToVariant(void* ptr)
 void QJSValue_DestroyQJSValue(void* ptr)
 {
 	static_cast<QJSValue*>(ptr)->~QJSValue();
+}
+
+void* QJSValue___call_args_atList(void* ptr, int i)
+{
+	return new QJSValue(static_cast<QList<QJSValue>*>(ptr)->at(i));
+}
+
+void QJSValue___call_args_setList(void* ptr, void* i)
+{
+	static_cast<QList<QJSValue>*>(ptr)->append(*static_cast<QJSValue*>(i));
+}
+
+void* QJSValue___call_args_newList(void* ptr)
+{
+	return new QList<QJSValue>;
+}
+
+void* QJSValue___callAsConstructor_args_atList(void* ptr, int i)
+{
+	return new QJSValue(static_cast<QList<QJSValue>*>(ptr)->at(i));
+}
+
+void QJSValue___callAsConstructor_args_setList(void* ptr, void* i)
+{
+	static_cast<QList<QJSValue>*>(ptr)->append(*static_cast<QJSValue*>(i));
+}
+
+void* QJSValue___callAsConstructor_args_newList(void* ptr)
+{
+	return new QList<QJSValue>;
+}
+
+void* QJSValue___callWithInstance_args_atList(void* ptr, int i)
+{
+	return new QJSValue(static_cast<QList<QJSValue>*>(ptr)->at(i));
+}
+
+void QJSValue___callWithInstance_args_setList(void* ptr, void* i)
+{
+	static_cast<QList<QJSValue>*>(ptr)->append(*static_cast<QJSValue*>(i));
+}
+
+void* QJSValue___callWithInstance_args_newList(void* ptr)
+{
+	return new QList<QJSValue>;
 }
 
 class MyQQmlAbstractUrlInterceptor: public QQmlAbstractUrlInterceptor
